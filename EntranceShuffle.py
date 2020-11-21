@@ -407,7 +407,7 @@ def shuffle_random_entrances(worlds):
             if pool_type == 'OwlDrop':
                 valid_target_types = ('WarpSong', 'OwlDrop', 'Overworld', 'Extra')
                 valid_target_types_reverse = ('Dungeon', 'Interior', 'SpecialInterior', 'Grotto', 'Grave')
-                one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse, exclude=['Prelude of Light Warp -> Temple of Time'])
+                one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse, exclude=['Prelude of Light Warp -> Temple of Time', 'OGC Great Fairy Fountain -> Castle Grounds'])
                 for target in one_way_target_entrance_pools[pool_type]:
                     target.set_rule(lambda state, age=None, **kwargs: age == 'child')
             elif pool_type == 'Spawn':
