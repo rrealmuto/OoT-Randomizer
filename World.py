@@ -603,6 +603,10 @@ class World(object):
         return [entrance for entrance in self.get_entrances() if (type == None or entrance.type == type) and (not only_primary or entrance.primary)]
 
 
+    def get_shufflable_entrances_reverse(self, type=None):
+        return [entrance for entrance in self.get_entrances() if (type == None or entrance.type == type) and not entrance.primary]
+
+
     def get_shuffled_entrances(self, type=None, only_primary=False):
         return [entrance for entrance in self.get_shufflable_entrances(type=type, only_primary=only_primary) if entrance.shuffled]
 
