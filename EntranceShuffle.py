@@ -406,17 +406,17 @@ def shuffle_random_entrances(worlds):
             # One way entrances are extra entrances that will be connected to entrance positions from a selection of entrance pools
             if pool_type == 'OwlDrop':
                 valid_target_types = ('WarpSong', 'OwlDrop', 'Overworld', 'Extra')
-                valid_target_types_reverse = ('Dungeon', 'Interior', 'SpecialInterior', 'Grave')
+                valid_target_types_reverse = ('Interior', 'SpecialInterior')
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse, exclude=['Prelude of Light Warp -> Temple of Time', 'OGC Great Fairy Fountain -> Castle Grounds'])
                 for target in one_way_target_entrance_pools[pool_type]:
                     target.set_rule(lambda state, age=None, **kwargs: age == 'child')
             elif pool_type == 'Spawn':
                 valid_target_types = ('Spawn', 'WarpSong', 'OwlDrop', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
-                valid_target_types_reverse = ('Dungeon', 'Grave')
+                valid_target_types_reverse = ()
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
             elif pool_type == 'WarpSong':
                 valid_target_types = ('Spawn', 'WarpSong', 'OwlDrop', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
-                valid_target_types_reverse = ('Dungeon', 'Grave')
+                valid_target_types_reverse = ()
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
             # Ensure that when trying to place the last entrance of a one way pool, we don't assume the rest of the targets are reachable
             for target in one_way_target_entrance_pools[pool_type]:
