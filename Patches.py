@@ -3,6 +3,7 @@ import struct
 import itertools
 import re
 import zlib
+import datetime
 from collections import defaultdict
 
 from World import World
@@ -19,6 +20,7 @@ from Messages import read_messages, update_message_by_id, read_shop_items, updat
 from OcarinaSongs import replace_songs
 from MQ import patch_files, File, update_dmadata, insert_space, add_relocations
 from SaveContext import SaveContext, Scenes, FlagType
+from version import __version__
 import StartingItems
 
 
@@ -156,6 +158,33 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     if world.settings.bombchus_in_logic:
         rom.write_int32(rom.sym('BOMBCHUS_IN_LOGIC'), 1)
+
+    def makebytes(txt, size):
+        bytes = list(ord(c) for c in txt[:size-1]) + [0] * size
+        return bytes[:size]
+
+    def truncstr(txt, size):
+        if len(txt) > size:
+            txt = txt[:size-3] + "..."
+        return txt
+
+    version_str = "version " + __version__
+    rom.write_bytes(rom.sym('VERSION_STRING_TXT'), makebytes(version_str, 25))
+
+    if world.settings.create_spoiler:
+        rom.write_byte(rom.sym('SPOILER_AVAILABLE'), 0x01)
+        
+    if world.settings.enable_distribution_file:
+        rom.write_byte(rom.sym('PLANDOMIZER_USED'), 0x01)
+
+    if world.settings.world_count > 1:
+        world_str = "{} of {}".format(world.id + 1, world.settings.world_count)
+    else:
+        world_str = ""
+    rom.write_bytes(rom.sym('WORLD_STRING_TXT'), makebytes(world_str, 12))
+
+    time_str = "at " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+    rom.write_bytes(rom.sym('TIME_STRING_TXT'), makebytes(time_str, 25))
 
     # Change graveyard graves to not allow grabbing on to the ledge
     rom.write_byte(0x0202039D, 0x20)
