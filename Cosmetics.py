@@ -35,23 +35,24 @@ def patch_settings_string(rom, settings, log, symbols):
         rom.write_byte(symbols['CFG_SHOW_SETTING_INFO'], 0x01)
     else:
         rom.write_byte(symbols['CFG_SHOW_SETTING_INFO'], 0x00)
-    custom_msg = settings.user_message.strip()[:48]
-    if len(custom_msg) <= 24:
+    line_len = 26
+    custom_msg = settings.user_message.strip()[:(2*line_len)]
+    if len(custom_msg) <= line_len:
         msg = [custom_msg, ""]
     else:
         # try to split message
-        msg = [custom_msg[:24], custom_msg[24:]]
+        msg = [custom_msg[:line_len], custom_msg[line_len:]]
         part1 = msg[0].split(' ')
-        if len(part1[-1]) + len(msg[1]) < 24:
+        if len(part1[-1]) + len(msg[1]) < line_len:
             msg = [" ".join(part1[:-1]), part1[-1] + msg[1]]
         else:
         # Is it a URL?
             part1 = msg[0].split('/')
-            if len(part1[-1]) + len(msg[1]) < 24:
+            if len(part1[-1]) + len(msg[1]) < line_len:
                 msg = ["/".join(part1[:-1]) + "/", part1[-1] + msg[1]]
         for idx,part in enumerate(msg):
-            part_bytes = list(ord(c) for c in part) + [0] * 25
-            part_bytes = part_bytes[:25]
+            part_bytes = list(ord(c) for c in part) + [0] * (line_len+1)
+            part_bytes = part_bytes[:(line_len+1)]
             symbol = symbols['CFG_CUSTOM_MESSAGE_{}'.format(idx+1)]
             rom.write_bytes(symbol, part_bytes)
 
