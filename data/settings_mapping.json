@@ -368,7 +368,9 @@
             "default_targeting",
             "display_dpad",
             "correct_model_colors",
-            "randomize_all_cosmetics"
+            "randomize_all_cosmetics",
+            "show_seed_info",
+            "seed_info_message"
           ]
         },
         {

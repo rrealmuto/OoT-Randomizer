@@ -3799,6 +3799,38 @@ setting_infos = [
         default        = False,
     ),
     Checkbutton(
+        name           = 'show_seed_info',
+        gui_text       = 'Show seed info on title screen',
+        shared         = False,
+        cosmetic       = True,
+        gui_tooltip    = '''\
+            Display the version number, world number, settings string,
+            and seed string on the title screen.
+        ''',
+        default        = False,
+        disable        = {
+            False : {'settings' : ["seed_info_message"]}
+        }
+    ),
+    Setting_Info(
+        name           = 'seed_info_message',
+        type           = str,
+        gui_text       = "User-configurable message",
+        shared         = False,
+        cosmetic       = True,
+        gui_type       = "Textinput",
+        choices        = {},
+        gui_tooltip    = """\
+            Add a custom message to the seed info.
+        """,
+        default        = "",
+        gui_params     = {
+            "size"               : "medium",
+            "max_length"         : 48,
+            "hide_when_disabled" : True,
+        }
+    ),
+    Checkbutton(
         name           = 'randomize_all_cosmetics',
         gui_text       = 'Randomize All Cosmetics',
         shared         = False,
