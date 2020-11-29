@@ -363,7 +363,7 @@
         {
           "name": "generalcosmetics_section",
           "col_span": 4,
-          "row_span": [2,2,2],
+          "row_span": [3,3,3],
           "settings": [
             "default_targeting",
             "display_dpad",
