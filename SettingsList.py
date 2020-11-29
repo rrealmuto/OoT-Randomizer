@@ -3800,20 +3800,20 @@ setting_infos = [
     ),
     Checkbutton(
         name           = 'show_seed_info',
-        gui_text       = 'Show seed info on title screen',
+        gui_text       = 'Show seed info on file screen',
         shared         = False,
         cosmetic       = True,
         gui_tooltip    = '''\
-            Display the version number, world number, settings string,
-            and seed string on the title screen.
+            Display the version number, generation time, and user
+            message on the file screen.
         ''',
-        default        = False,
+        default        = True,
         disable        = {
-            False : {'settings' : ["seed_info_message"]}
+            False : {'settings' : ["user_message"]}
         }
     ),
     Setting_Info(
-        name           = 'seed_info_message',
+        name           = 'user_message',
         type           = str,
         gui_text       = "User-configurable message",
         shared         = False,
@@ -3825,7 +3825,7 @@ setting_infos = [
         """,
         default        = "",
         gui_params     = {
-            "size"               : "medium",
+            "size"               : "full",
             "max_length"         : 48,
             "hide_when_disabled" : True,
         }

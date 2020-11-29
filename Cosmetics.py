@@ -35,15 +35,20 @@ def patch_settings_string(rom, settings, log, symbols):
         rom.write_byte(symbols['CFG_SHOW_SETTING_INFO'], 0x01)
     else:
         rom.write_byte(symbols['CFG_SHOW_SETTING_INFO'], 0x00)
-    custom_msg = settings.seed_info_message.strip()[:48]
+    custom_msg = settings.user_message.strip()[:48]
     if len(custom_msg) <= 24:
         msg = [custom_msg, ""]
     else:
         # try to split message
         msg = [custom_msg[:24], custom_msg[24:]]
-        part1 = msg[0].split()
+        part1 = msg[0].split(' ')
         if len(part1[-1]) + len(msg[1]) < 24:
             msg = [" ".join(part1[:-1]), part1[-1] + msg[1]]
+        else:
+        # Is it a URL?
+            part1 = msg[0].split('/')
+            if len(part1[-1]) + len(msg[1]) < 24:
+                msg = ["/".join(part1[:-1]) + "/", part1[-1] + msg[1]]
         for idx,part in enumerate(msg):
             part_bytes = list(ord(c) for c in part) + [0] * 25
             part_bytes = part_bytes[:25]
