@@ -36,7 +36,7 @@ def patch_settings_string(rom, settings, log, symbols):
     else:
         rom.write_byte(symbols['CFG_SHOW_SETTING_INFO'], 0x00)
     line_len = 26
-    custom_msg = settings.user_message.strip()[:(2*line_len)]
+    custom_msg = settings.user_message.strip()[:48]
     if len(custom_msg) <= line_len:
         msg = [custom_msg, ""]
     else:
