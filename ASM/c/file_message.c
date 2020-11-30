@@ -14,16 +14,11 @@ extern uint8_t PLANDOMIZER_USED;
 #define TEXT_WIDTH 5
 #define TEXT_HEIGHT 6
 
-#define NUM_MESSAGE_TYPES 2
-
 static int string_length(const char* txt) {
     const char* pos = txt;
     while (*pos) ++pos;
     return pos - txt;
 }
-
-#define SCREEN_W 320
-#define SCREEN_H 240
 
 static uint8_t get_alpha(const z64_menudata_t* menu_data) {
     uint8_t alt_tr = (uint8_t)menu_data->alt_transition;
