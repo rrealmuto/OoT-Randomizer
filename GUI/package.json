@@ -1,7 +1,7 @@
 {
   "name": "ootr-electron-gui",
   "description": "GUI for Ocarina of Time Randomizer",
-  "version": "5.2.0",
+  "version": "6.0.0",
   "homepage": "https://www.ootrandomizer.com",
   "author": "ZeldaSpeedRuns <zsrstaff@gmail.com>",
   "main": "electron/dist/main.js",
@@ -89,7 +89,7 @@
     "tree-kill": "1.2.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "0.13.9",
+    "@angular-devkit/build-angular": "0.13.10",
     "@angular/animations": "7.2.15",
     "@angular/cdk": "7.3.7",
     "@angular/cli": "7.3.9",
@@ -133,9 +133,9 @@
     "karma-jasmine-html-reporter": "0.2.2",
     "nebular-icons": "1.1.0",
     "ngx-color-picker": "https://github.com/dragonbane0/ngx-color-picker/tarball/7471e8595e5bf508813c5f6b1964e53ac9902448",
-    "node-sass": "4.12.0",
+    "node-sass": "4.14.1",
     "normalize.css": "6.0.0",
-    "pace-js": "1.0.2",
+    "pace-progress": "https://github.com/dragonbane0/pace/tarball/bcbd25563bf6193b223f856dc1668c0705fd8710",
     "popper.js": "1.15.0",
     "protractor": "5.4.2",
     "roboto-fontface": "0.8.0",

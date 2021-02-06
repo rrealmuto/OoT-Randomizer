@@ -363,7 +363,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     if songs_as_items:
         rom.write_int32(0x0252FD24, 0xFFFFFFFF) # Header: frame_count
     else:
-        rom.write_int32(0x0252FD24, 0x0000003C) # Header: frame_count
+        rom.write_int32(0x0252FD24, 0x0000004A) # Header: frame_count
 
     rom.write_int32s(0x02531320, [0x00000013, 0x0000000E]) # Textbox, Count
     rom.write_int16s(None, [0x0014, 0x0000, 0x0010, 0x0002, 0x088B, 0xFFFF]) # ID, start, end, type, alt1, alt2
@@ -1003,7 +1003,10 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     if world.skip_child_zelda:
         save_context.give_item('Zeldas Letter')
-        save_context.give_raw_item(world.get_location('Song from Impa').item.name)
+        for w in spoiler.worlds:
+            item = w.get_location('Song from Impa').item
+            if world.id == item.world.id:
+                save_context.give_raw_item(item.name)
         save_context.write_bits(0x0ED7, 0x04) # "Obtained Malon's Item"
         save_context.write_bits(0x0ED7, 0x08) # "Woke Talon in castle"
         save_context.write_bits(0x0ED7, 0x10) # "Talon has fled castle"
