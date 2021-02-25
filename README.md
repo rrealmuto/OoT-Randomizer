@@ -4,7 +4,7 @@ This is a randomizer for _The Legend of Zelda: Ocarina of Time_ for the Nintendo
 
 **WARNING:** This branch is a modified version of the randomizer. It is **not** officially supported and may be **very unstable**.
 Please refrain from asking questions and from reporting issues in the main Randomizer Discord when using this branch.
-Instead, you can open an issue on this fork [here](https://github.com/Roman971/OoT-Randomizer/issues) or contact me directly on discord (Roman#7295) for any help, report or request.
+Instead, you can open an issue on this fork [here](https://github.com/fenhl/OoT-Randomizer/issues) or contact me directly on discord (Fenhl#4813) for any help, report or request.
 
 Differences between this branch and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):
 * Various GUI tweaks and improvements along with setting tooltip/option changes

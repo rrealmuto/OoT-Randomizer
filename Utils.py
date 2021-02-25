@@ -88,7 +88,7 @@ def get_version_bytes(a):
     version_bytes = [0x00, 0x00, 0x00, 0x00]
     if not a:
         return version_bytes
-    sa = a.replace('R-', '').replace('v', '').replace(' ', '.').split('.')
+    sa = a.replace('R-', '').replace('Fenhl-', '').replace('v', '').replace(' ', '.').split('.')
 
     for i in range(0, min(len(sa), 4)):
         try:
@@ -124,7 +124,7 @@ class VersionError(Exception):
 def check_version(checked_version):
     if compare_version(checked_version, __version__) < 0:
         try:
-            with urllib.request.urlopen('http://raw.githubusercontent.com/Roman971/OoT-Randomizer/Dev-R/version.py') as versionurl:
+            with urllib.request.urlopen('http://raw.githubusercontent.com/fenhl/OoT-Randomizer/dev-fenhl/version.py') as versionurl:
                 version = versionurl.read()
                 version = re.search(".__version__ = '(.+)'", str(version)).group(1)
 

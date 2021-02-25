@@ -64,7 +64,7 @@ export class FooterComponent {
       autoFocus: true, closeOnBackdropClick: true, closeOnEsc: true, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "New Version Available!", dialogMessage: "You are on version " + this.localVersion + ", and the latest is version " + this.remoteVersion + ". Do you want to download the latest version now?" }
     }).onClose.subscribe(confirmed => {
       if (confirmed)
-        (<any>window).open("https://github.com/Roman971/OoT-Randomizer/tree/Dev-R", "_blank");
+        (<any>window).open("https://github.com/fenhl/OoT-Randomizer/tree/dev-fenhl", "_blank");
     });
   }
 }

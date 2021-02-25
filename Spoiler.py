@@ -3,7 +3,6 @@ import json
 import re
 import random
 
-from version import __version__
 from Hints import gossipLocations
 from Item import Item
 from LocationList import location_sort_order
