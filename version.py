@@ -1,1 +1,1 @@
-__version__ = '6.0.12 Fenhl-2'
+__version__ = '6.0.12 Fenhl-3'
