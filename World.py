@@ -32,6 +32,7 @@ class World(object):
         self._region_cache = {}
         self._location_cache = {}
         self.required_locations = []
+        self.opportunity_locations = []
         self.shop_prices = {}
         self.scrub_prices = {}
         self.maximum_wallets = 0
@@ -65,6 +66,8 @@ class World(object):
                                              self.warp_songs or self.spawn_positions or self.decouple_entrances or (self.mix_entrance_pools != 'off')):
             self.open_forest = 'closed_deku'
 
+        if self.triforce_goal_per_world > self.triforce_count_per_world:
+            raise ValueError("Triforces required cannot be more than the triforce count.")
         self.triforce_goal = self.triforce_goal_per_world * settings.world_count
 
         if self.triforce_hunt:

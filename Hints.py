@@ -327,6 +327,7 @@ def get_hint_area(spot):
 
 
 def get_woth_hint(spoiler, world, checked):
+    hint_suffix = "is on the way of the hero."
     locations = spoiler.required_locations[world.id]
     locations = list(filter(lambda location:
         location.name not in checked
@@ -335,6 +336,22 @@ def get_woth_hint(spoiler, world, checked):
         and location.name not in world.hint_type_overrides['woth']
         and location.item.name not in world.item_hint_type_overrides['woth'],
         locations))
+
+    # Choose a opportunity hint instead if either there are no woth remaining or randomly if there aren't many woth remaining
+    if not locations or (len(locations) < 3 and random.random() > 0.5):
+        opportunity_locations = spoiler.opportunity_locations[world.id]
+        opportunity_locations = list(filter(lambda location:
+            location.name not in checked
+            and not (world.woth_dungeon >= world.hint_dist_user['dungeons_woth_limit'] and location.parent_region.dungeon)
+            and location.name not in world.hint_exclusions
+            and location.name not in world.hint_type_overrides['woth']
+            and location.item.name not in world.item_hint_type_overrides['woth'],
+            opportunity_locations))
+
+        # only select an from the opportunity locations if there are any
+        if opportunity_locations:
+            hint_suffix = "presents an opportunity."
+            locations = opportunity_locations
 
     if not locations:
         return None
@@ -348,10 +365,7 @@ def get_woth_hint(spoiler, world, checked):
     else:
         location_text = get_hint_area(location)
 
-    if world.triforce_hunt:
-        return (GossipText('#%s# is on the path of gold.' % location_text, ['Light Blue']), location)
-    else:
-        return (GossipText('#%s# is on the way of the hero.' % location_text, ['Light Blue']), location)
+    return (GossipText(f'#{location_text}# {hint_suffix}', ['Light Blue']), location)
 
 
 def get_barren_hint(spoiler, world, checked):

@@ -185,6 +185,7 @@ def make_spoiler(settings, worlds, window=dummy_window()):
         window.update_status('Calculating Hint Data')
         logger.info('Calculating hint data.')
         update_required_items(spoiler)
+        update_opportunity_items(spoiler)
         buildGossipHints(spoiler, worlds)
         window.update_progress(55)
     elif settings.misc_hints:
@@ -594,6 +595,52 @@ def update_required_items(spoiler):
     for world in worlds:
         required_locations_dict[world.id] = list(filter(lambda location: location.world.id == world.id, required_locations))
     spoiler.required_locations = required_locations_dict
+
+
+def update_opportunity_items(spoiler):
+    worlds = spoiler.worlds
+
+    # Get the max requirement counts that are reachable based on the settings
+    search = Search([world.state for world in worlds])
+    search.collect_locations()
+    opportunity_requirements = [state.get_opportunity_progress() for state in search.state_list]
+
+    if opportunity_requirements == {}:
+        return
+
+    # get list of all of the progressive items that can appear in hints
+    # all_locations: all progressive items. have to collect from these
+    # item_locations: only the ones that should appear as "required"/WotH
+    all_locations = [location for world in worlds for location in world.get_filled_locations()]
+
+    # Set to test inclusion against
+    item_locations = {location for location in all_locations if location.item.majoritem and not location.locked and location.item.name != 'Triforce Piece' \
+                        and not any(map(lambda loc: location.name == loc.name, spoiler.required_locations[location.world.id]))}
+
+    opportunity_locations = []
+
+    search = Search([world.state for world in worlds])
+    for location in search.iter_reachable_locations(all_locations):
+        # Try to remove items one at a time and see if the game is still beatable
+        if location in item_locations:
+            old_item = location.item
+            location.item = None
+            # copies state! This is very important as we're in the middle of a search
+            # already, but beneficially, has search it can start from
+            # collect all available items and check if all the oppotunity requirements are satisfied
+            sub_search = search.copy()
+            sub_search.collect_locations()
+            opportunity_collections = [state.get_opportunity_progress() for state in sub_search.state_list]
+            if opportunity_collections != opportunity_requirements:
+                opportunity_locations.append(location)
+            location.item = old_item
+        search.state_list[location.item.world.id].collect(location.item)
+
+    # Filter the required location to only include location in the world
+    opportunity_locations_dict = {}
+    for world in worlds:
+        opportunity_locations_dict[world.id] = list(filter(lambda location: location.world.id == world.id, opportunity_locations))
+    spoiler.opportunity_locations = opportunity_locations_dict
 
 
 def create_playthrough(spoiler):

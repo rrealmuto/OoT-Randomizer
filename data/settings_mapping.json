@@ -158,6 +158,7 @@
             "bridge_rewards",
             "bridge_tokens",
             "triforce_hunt",
+            "triforce_count_per_world",
             "triforce_goal_per_world",
             "bombchus_in_logic",
             "one_item_per_dungeon",

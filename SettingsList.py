@@ -2138,7 +2138,22 @@ setting_infos = [
         },
         disable        = {
             True  : {'settings' : ['shuffle_ganon_bosskey', 'lacs_medallions', 'lacs_stones', 'lacs_rewards', 'lacs_tokens']},
-            False : {'settings' : ['triforce_goal_per_world']}
+            False : {'settings' : ['triforce_count_per_world', 'triforce_goal_per_world']}
+        },
+    ),
+    Scale(
+        name           = 'triforce_count_per_world',
+        gui_text       = 'Triforces Per World',
+        default        = 30,
+        min            = 1,
+        max            = 100,
+        shared         = True,
+        gui_tooltip    = '''\
+            Select the amount of Triforce Pieces placed in each world.
+            Each world will have the same number of triforces.
+        ''',
+        gui_params     = {
+            "hide_when_disabled": True,
         },
     ),
     Scale(
@@ -2151,16 +2166,9 @@ setting_infos = [
         gui_tooltip    = '''\
             Select the amount of Triforce Pieces required to beat the game.
 
-            In multiworld, each world will have the same number of triforces 
-            in them. The required amount will be per world collectively. 
+            In multiworld, the required amount will be per world collectively. 
             For example, if this is set to 20 in a 2 player multiworld, players 
             need 40 total, but one player could obtain 30 and the other 10. 
-
-            Extra pieces are determined by the the Item Pool setting:
-            'Plentiful': 100% Extra
-            'Balanced': 50% Extra
-            'Scarce': 25% Extra
-            'Minimal: No Extra
         ''',
         gui_params     = {
             "hide_when_disabled": True,

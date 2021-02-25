@@ -8,6 +8,15 @@ Instead, you can open an issue on this fork [here](https://github.com/fenhl/OoT-
 
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
+* Rework of Path of Gold and some Triforce Hunt changes ([#1165](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1165))
+    * New hint subtype: Opportunity
+        * These are weaker versions of Way of the Hero hints that appear if there are optional goals and there are not enough Way of the Hero locations.
+        * Optional goals are settings that have the requirements be less than the available, such as medallions, stones, triforce pieces.
+        * These hints are like Way of the Hero, but they are items needed to complete all optional objectives.
+        * This replaces the previous Path of Gold hints.
+    * Triforce Hunt changes
+        * When playing beatable only, there is no longer a guarantee that all triforces are reachable (the minimum is still guaranteed). The previous behavior can be restored using the All Goals Reachable setting.
+        * Path of Gold is replaced with Opportunity hints, and Way of the Hero hints are now able to be generated.
 * All Goals Reachable setting ([#1198](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1198))
 * Add Misc. Hints setting ([#1212](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1212))
 * update "Princess Ruto got the Spiritual Stone" text with the correct reward ([#1216](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1216))
