@@ -8,6 +8,7 @@ Instead, you can open an issue on this fork [here](https://github.com/fenhl/OoT-
 
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
+* Add Misc. Hints setting ([#1212](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1212))
 * update "Princess Ruto got the Spiritual Stone" text with the correct reward ([#1216](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1216))
 * Fix cloak models not being set on Bombchu Bowling prizes ([#1247](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1247))
 
