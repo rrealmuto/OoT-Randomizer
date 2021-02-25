@@ -1317,7 +1317,8 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
 
     # build silly ganon lines
-    buildGanonText(world, messages)
+    if world.misc_hints:
+        buildGanonText(world, messages)
 
     # Write item overrides
     override_table = get_override_table(world)
@@ -1697,7 +1698,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Set hints on the altar inside ToT
     rom.write_int16(0xE2ADB2, 0x707A)
     rom.write_int16(0xE2ADB6, 0x7057)
-    buildAltarHints(world, messages, include_rewards=not world.enhance_map_compass)
+    buildAltarHints(world, messages, include_rewards=world.misc_hints and not world.enhance_map_compass, include_wincons=world.misc_hints)
 
     if world.tokensanity == 'off':
         # Change the GS token pickup message to fade out after 2 seconds (40 frames)
@@ -2177,6 +2178,7 @@ def configure_dungeon_info(rom, world):
     rom.write_int32(rom.sym('cfg_dungeon_info_enable'), 1)
     rom.write_int32(rom.sym('cfg_dungeon_info_mq_enable'), int(mq_enable))
     rom.write_int32(rom.sym('cfg_dungeon_info_mq_need_map'), int(enhance_map_compass))
+    rom.write_int32(rom.sym('cfg_dungeon_info_reward_enable'), int(world.misc_hints))
     rom.write_int32(rom.sym('cfg_dungeon_info_reward_need_compass'), int(enhance_map_compass))
     rom.write_int32(rom.sym('cfg_dungeon_info_reward_need_altar'), int(not enhance_map_compass))
     rom.write_bytes(rom.sym('cfg_dungeon_rewards'), dungeon_rewards)
