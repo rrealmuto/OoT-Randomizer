@@ -28,34 +28,6 @@ def patch_dpad(rom, settings, log, symbols):
         rom.write_byte(symbols['CFG_DISPLAY_DPAD'], 0x00)
     log.display_dpad = settings.display_dpad
 
-    
-def patch_settings_string(rom, settings, log, symbols):
-    # Display D-Pad HUD
-    if settings.show_seed_info:
-        rom.write_byte(symbols['CFG_SHOW_SETTING_INFO'], 0x01)
-    else:
-        rom.write_byte(symbols['CFG_SHOW_SETTING_INFO'], 0x00)
-    line_len = 26
-    custom_msg = settings.user_message.strip()[:48]
-    if len(custom_msg) <= line_len:
-        msg = [custom_msg, ""]
-    else:
-        # try to split message
-        msg = [custom_msg[:line_len], custom_msg[line_len:]]
-        part1 = msg[0].split(' ')
-        if len(part1[-1]) + len(msg[1]) < line_len:
-            msg = [" ".join(part1[:-1]), part1[-1] + msg[1]]
-        else:
-        # Is it a URL?
-            part1 = msg[0].split('/')
-            if len(part1[-1]) + len(msg[1]) < line_len:
-                msg = ["/".join(part1[:-1]) + "/", part1[-1] + msg[1]]
-        for idx,part in enumerate(msg):
-            part_bytes = list(ord(c) for c in part) + [0] * (line_len+1)
-            part_bytes = part_bytes[:(line_len+1)]
-            symbol = symbols['CFG_CUSTOM_MESSAGE_{}'.format(idx+1)]
-            rom.write_bytes(symbol, part_bytes)
-
 
 def patch_music(rom, settings, log, symbols):
     # patch music
@@ -908,52 +880,6 @@ patch_sets = {
             "CFG_RAINBOW_NAVI_NPC_OUTER_ENABLED": 0x0052,
             "CFG_RAINBOW_NAVI_PROP_INNER_ENABLED": 0x0053,
             "CFG_RAINBOW_NAVI_PROP_OUTER_ENABLED": 0x0054,
-        }
-    },
-    0x1F074ABC: {
-        "patches": [
-            patch_dpad,
-            patch_navi_colors,
-            patch_sword_trails,
-            patch_heart_colors,
-            patch_magic_colors,
-            patch_button_colors,
-            patch_boomerang_trails,
-            patch_bombchu_trails,
-            patch_settings_string
-        ],
-        "symbols": {
-            "CFG_MAGIC_COLOR": 0x0004,
-            "CFG_HEART_COLOR": 0x000A,
-            "CFG_A_BUTTON_COLOR": 0x0010,
-            "CFG_B_BUTTON_COLOR": 0x0016,
-            "CFG_C_BUTTON_COLOR": 0x001C,
-            "CFG_TEXT_CURSOR_COLOR": 0x0022,
-            "CFG_SHOP_CURSOR_COLOR": 0x0028,
-            "CFG_A_NOTE_COLOR": 0x002E,
-            "CFG_C_NOTE_COLOR": 0x0034,
-            "CFG_BOOM_TRAIL_INNER_COLOR": 0x003A,
-            "CFG_BOOM_TRAIL_OUTER_COLOR": 0x003D,
-            "CFG_BOMBCHU_TRAIL_INNER_COLOR": 0x0040,
-            "CFG_BOMBCHU_TRAIL_OUTER_COLOR": 0x0043,
-            "CFG_DISPLAY_DPAD": 0x0046,
-            "CFG_RAINBOW_SWORD_INNER_ENABLED": 0x0047,
-            "CFG_RAINBOW_SWORD_OUTER_ENABLED": 0x0048,
-            "CFG_RAINBOW_BOOM_TRAIL_INNER_ENABLED": 0x0049,
-            "CFG_RAINBOW_BOOM_TRAIL_OUTER_ENABLED": 0x004A,
-            "CFG_RAINBOW_BOMBCHU_TRAIL_INNER_ENABLED": 0x004B,
-            "CFG_RAINBOW_BOMBCHU_TRAIL_OUTER_ENABLED": 0x004C,
-            "CFG_RAINBOW_NAVI_IDLE_INNER_ENABLED": 0x004D,
-            "CFG_RAINBOW_NAVI_IDLE_OUTER_ENABLED": 0x004E,
-            "CFG_RAINBOW_NAVI_ENEMY_INNER_ENABLED": 0x004F,
-            "CFG_RAINBOW_NAVI_ENEMY_OUTER_ENABLED": 0x0050,
-            "CFG_RAINBOW_NAVI_NPC_INNER_ENABLED": 0x0051,
-            "CFG_RAINBOW_NAVI_NPC_OUTER_ENABLED": 0x0052,
-            "CFG_RAINBOW_NAVI_PROP_INNER_ENABLED": 0x0053,
-            "CFG_RAINBOW_NAVI_PROP_OUTER_ENABLED": 0x0054,
-            "CFG_SHOW_SETTING_INFO": 0x0055,
-            "CFG_CUSTOM_MESSAGE_1": 0x0056,
-            "CFG_CUSTOM_MESSAGE_2": 0x0076,
         }
     },
 }
