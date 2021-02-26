@@ -3,6 +3,7 @@ import struct
 import itertools
 import re
 import zlib
+import datetime
 from collections import defaultdict
 
 from World import World
@@ -19,6 +20,7 @@ from Messages import read_messages, update_message_by_id, read_shop_items, \
 from OcarinaSongs import replace_songs
 from MQ import patch_files, File, update_dmadata, insert_space, add_relocations
 from SaveContext import SaveContext
+from version import __version__
 import StartingItems
 
 
@@ -135,6 +137,59 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     if world.bombchus_in_logic:
         rom.write_int32(rom.sym('BOMBCHUS_IN_LOGIC'), 1)
+
+    # show seed info on file select screen
+    def makebytes(txt, size):
+        bytes = list(ord(c) for c in txt[:size-1]) + [0] * size
+        return bytes[:size]
+
+    def truncstr(txt, size):
+        if len(txt) > size:
+            txt = txt[:size-3] + "..."
+        return txt
+
+    version_str = "version " + __version__
+    rom.write_bytes(rom.sym('VERSION_STRING_TXT'), makebytes(version_str, 25))
+
+    if world.settings.create_spoiler:
+        rom.write_byte(rom.sym('SPOILER_AVAILABLE'), 0x01)
+
+    if world.settings.enable_distribution_file:
+        rom.write_byte(rom.sym('PLANDOMIZER_USED'), 0x01)
+
+    if world.settings.world_count > 1:
+        world_str = "{} of {}".format(world.id + 1, world.settings.world_count)
+    else:
+        world_str = ""
+    rom.write_bytes(rom.sym('WORLD_STRING_TXT'), makebytes(world_str, 12))
+
+    time_str = "at " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+    rom.write_bytes(rom.sym('TIME_STRING_TXT'), makebytes(time_str, 25))
+
+    if world.settings.show_seed_info:
+        rom.write_byte(rom.sym('CFG_SHOW_SETTING_INFO'), 0x01)
+    else:
+        rom.write_byte(rom.sym('CFG_SHOW_SETTING_INFO'), 0x00)
+    line_len = 26
+    custom_msg = world.settings.user_message.strip()[:48]
+    if len(custom_msg) <= line_len:
+        msg = [custom_msg, ""]
+    else:
+        # try to split message
+        msg = [custom_msg[:line_len], custom_msg[line_len:]]
+        part1 = msg[0].split(' ')
+        if len(part1[-1]) + len(msg[1]) < line_len:
+            msg = [" ".join(part1[:-1]), part1[-1] + msg[1]]
+        else:
+        # Is it a URL?
+            part1 = msg[0].split('/')
+            if len(part1[-1]) + len(msg[1]) < line_len:
+                msg = ["/".join(part1[:-1]) + "/", part1[-1] + msg[1]]
+    for idx,part in enumerate(msg):
+        part_bytes = list(ord(c) for c in part) + [0] * (line_len+1)
+        part_bytes = part_bytes[:(line_len+1)]
+        symbol = rom.sym('CFG_CUSTOM_MESSAGE_{}'.format(idx+1))
+        rom.write_bytes(symbol, part_bytes)
 
     # Change graveyard graves to not allow grabbing on to the ledge
     rom.write_byte(0x0202039D, 0x20)

@@ -1,5 +1,7 @@
 {
   "Easy Mode": {
+    "show_seed_info": true,
+    "user_message": "Easy Mode",
     "create_spoiler": true,
     "world_count": 1,
     "randomize_settings": false,
@@ -89,6 +91,8 @@
     "logic_latest_adult_trade": "claim_check"
   },
   "S4 Tournament": {
+    "show_seed_info": true,
+    "user_message": "S4 Tournament",
     "create_spoiler": true,
     "world_count": 1,
     "randomize_settings": false,
@@ -202,6 +206,8 @@
     "logic_latest_adult_trade": "claim_check"
   },
   "Standard Weekly (2020-03-21)": {
+    "show_seed_info": true,
+    "user_message": "Standard Weekly (2020-03-21)",
     "create_spoiler": true,
     "world_count": 1,
     "randomize_settings": false,
@@ -303,6 +309,8 @@
     "logic_latest_adult_trade": "claim_check"
   },
   "DDR Weekly (2020-10-01)": {
+    "show_seed_info": true,
+    "user_message": "DDR Weekly (2020-10-01)",
     "create_spoiler": true,
     "world_count": 1,
     "randomize_settings": false,
@@ -414,6 +422,8 @@
     "logic_latest_adult_trade": "claim_check"
   },
   "Scrub Tournament": {
+    "show_seed_info": true,
+    "user_message": "Scrub Tournament",
     "create_spoiler": true,
     "world_count": 1,
     "randomize_settings": false,
@@ -511,6 +521,8 @@
     "logic_latest_adult_trade": "claim_check"
   },
   "Multiworld": {
+    "show_seed_info": true,
+    "user_message": "Multiworld",
     "create_spoiler": true,
     "world_count": 3,
     "randomize_settings": false,
@@ -610,6 +622,8 @@
     "logic_latest_adult_trade": "claim_check"
   },
   "Hell Mode": {
+    "show_seed_info": true,
+    "user_message": "Hell Mode",
     "create_spoiler": true,
     "world_count": 1,
     "randomize_settings": false,
@@ -833,6 +847,8 @@
     "logic_latest_adult_trade": "pocket_egg"
   },
   "Bingo": {
+    "show_seed_info":                          true,
+    "user_message":                            "Bingo",
     "world_count":                             1,
     "create_spoiler":                          true,
     "randomize_settings":                      false,

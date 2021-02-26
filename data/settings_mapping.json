@@ -21,6 +21,8 @@
             "create_spoiler",
             "create_cosmetics_log",
             "compress_rom",
+            "show_seed_info",
+            "user_message",
             "open_output_dir",
             "open_python_dir"
           ]

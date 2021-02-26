@@ -29,7 +29,6 @@ def patch_dpad(rom, settings, log, symbols):
     log.display_dpad = settings.display_dpad
 
 
-
 def patch_music(rom, settings, log, symbols):
     # patch music
     if settings.background_music != 'normal' or settings.fanfares != 'normal' or log.src_dict.get('bgm', {}):
