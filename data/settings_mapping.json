@@ -21,6 +21,8 @@
             "create_spoiler",
             "create_cosmetics_log",
             "compress_rom",
+            "show_seed_info",
+            "user_message",
             "open_output_dir",
             "open_python_dir"
           ]
@@ -363,14 +365,12 @@
         {
           "name": "generalcosmetics_section",
           "col_span": 4,
-          "row_span": [3,3,3],
+          "row_span": [2,2,2],
           "settings": [
             "default_targeting",
             "display_dpad",
             "correct_model_colors",
-            "randomize_all_cosmetics",
-            "show_seed_info",
-            "user_message"
+            "randomize_all_cosmetics"
           ]
         },
         {

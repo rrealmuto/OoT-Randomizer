@@ -1732,6 +1732,36 @@ setting_infos = [
         }),
     Setting_Info('output_dir',        str, "Output Directory", "Directoryinput", False, {}),
     Setting_Info('output_file',       str, None, None, False, {}),
+    Checkbutton(
+        name           = 'show_seed_info',
+        gui_text       = 'Show seed info on file screen',
+        shared         = True,
+        gui_tooltip    = '''\
+            Display the version number, generation time, and user
+            message on the file screen.
+        ''',
+        default        = True,
+        disable        = {
+            False : {'settings' : ["user_message"]}
+        }
+    ),
+    Setting_Info(
+        name           = 'user_message',
+        type           = str,
+        gui_text       = "User-configurable message",
+        shared         = True,
+        gui_type       = "Textinput",
+        choices        = {},
+        gui_tooltip    = """\
+            Add a custom message to the seed info.
+        """,
+        default        = "",
+        gui_params     = {
+            "size"               : "full",
+            "max_length"         : 48,
+            "hide_when_disabled" : True,
+        }
+    ),
     Setting_Info('seed',              str, None, None, False, {}),
     Setting_Info('patch_file',        str, "Patch File", "Fileinput", False, {},
         gui_params = {
@@ -3797,38 +3827,6 @@ setting_infos = [
             able to discern freestanding Tunics from each other.
         ''',
         default        = False,
-    ),
-    Checkbutton(
-        name           = 'show_seed_info',
-        gui_text       = 'Show seed info on file screen',
-        shared         = False,
-        cosmetic       = True,
-        gui_tooltip    = '''\
-            Display the version number, generation time, and user
-            message on the file screen.
-        ''',
-        default        = True,
-        disable        = {
-            False : {'settings' : ["user_message"]}
-        }
-    ),
-    Setting_Info(
-        name           = 'user_message',
-        type           = str,
-        gui_text       = "User-configurable message",
-        shared         = False,
-        cosmetic       = True,
-        gui_type       = "Textinput",
-        choices        = {},
-        gui_tooltip    = """\
-            Add a custom message to the seed info.
-        """,
-        default        = "",
-        gui_params     = {
-            "size"               : "full",
-            "max_length"         : 48,
-            "hide_when_disabled" : True,
-        }
     ),
     Checkbutton(
         name           = 'randomize_all_cosmetics',
