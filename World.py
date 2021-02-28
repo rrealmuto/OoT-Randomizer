@@ -75,18 +75,6 @@ class World(object):
             # (specifically, for randomize_settings)
             self.shuffle_ganon_bosskey = 'triforce'
 
-        # Determine LACS Condition
-        if self.shuffle_ganon_bosskey == 'lacs_medallions':
-            self.lacs_condition = 'medallions'
-        elif self.shuffle_ganon_bosskey == 'lacs_dungeons':
-            self.lacs_condition = 'dungeons'
-        elif self.shuffle_ganon_bosskey == 'lacs_stones':
-            self.lacs_condition = 'stones'
-        elif self.shuffle_ganon_bosskey == 'lacs_tokens':
-            self.lacs_condition = 'tokens'
-        else:
-            self.lacs_condition = 'vanilla'
-
         # trials that can be skipped will be decided later
         self.skipped_trials = {
             'Forest': False,
@@ -112,8 +100,6 @@ class World(object):
             'Shadow Temple': False,
             'Ganons Castle': False
         }
-
-        self.can_take_damage = True
 
         self.resolve_random_settings()
 
@@ -176,6 +162,8 @@ class World(object):
                     raise Exception('Custom hint text too large for %s', loc['location'])
                 self.hint_text_overrides.update({loc['location']: loc['text']})
 
+        self.named_item_pool = list(self.item_hints)
+
         self.always_hints = [hint.name for hint in getRequiredHints(self)]
         
         self.state = State(self)
@@ -206,7 +194,6 @@ class World(object):
         new_world.big_poe_count = copy.copy(self.big_poe_count)
         new_world.starting_tod = self.starting_tod
         new_world.starting_age = self.starting_age
-        new_world.can_take_damage = self.can_take_damage
         new_world.shop_prices = copy.copy(self.shop_prices)
         new_world.triforce_goal = self.triforce_goal
         new_world.triforce_count = self.triforce_count

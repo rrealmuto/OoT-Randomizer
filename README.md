@@ -17,9 +17,6 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
     * Triforce Hunt changes
         * When playing beatable only, there is no longer a guarantee that all triforces are reachable (the minimum is still guaranteed). The previous behavior can be restored using the All Goals Reachable setting.
         * Path of Gold is replaced with Opportunity hints, and Way of the Hero hints are now able to be generated.
-* All Goals Reachable setting ([#1198](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1198))
-* Add Misc. Hints setting ([#1212](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1212))
-* update "Princess Ruto got the Spiritual Stone" text with the correct reward ([#1216](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1216))
 * Fix cloak models not being set on Bombchu Bowling prizes ([#1247](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1247))
 * Remove “same hint area” restrictions when all hints are off ([#1248](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1248))
 * Add setting to show seed info ([#1253](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1253))
@@ -128,6 +125,14 @@ do that.
 
 ### Dev
 
+#### New Features
+
+* Added a GameCube-style reset. Hold B + C-Right + Start for ten frames to reset to the title screen.
+* New setting `Reachable Locations` replaces `All Locations Reachable` and adds a new option "All Goals" which ensures that all goal items for Ganon's Boss Key and the Rainbow Bridge are reachable, regardless of how many are required by the setting.
+  * For example, if the Rainbow Bridge requires 4 medallions, all 6 medallions will be guaranteed reachable.
+* New separate setting `LACS Condition` to select what goal items are required for the Light Arrows Cutscene.
+* New option `Misc. Hints` controls whether the Temple of Time altar and Ganondorf give hints, defaulting on to preserve behavior. Hell Mode disables this setting.
+
 #### Bug Fixes
 
 * Fixed a bug where importing from a settings string might not choose the correct hint distribution depending on platform or number of custom hint distributions in the Hints folder.
@@ -139,6 +144,9 @@ do that.
 #### Other Changes
 
 * Add ability to provide settings through stdin (useful for shell scripting).
+* Ruto now knows what kind of medallion or stone she gets in Jabu Jabu.
+* Added Nayru's Love back to the minimal item pool on high damage settings.
+* Hint distribution changes for named-item hints, including a new `vague_named_items` option for `hint_dist_user` that will name the location but not the item.
 
 ### 6.0
 
