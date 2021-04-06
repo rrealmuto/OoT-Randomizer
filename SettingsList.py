@@ -2775,20 +2775,39 @@ setting_infos = [
             'randomize_key': 'randomize_settings',
         },
     ),
-    Checkbutton(
+    Combobox(
         name           = 'spawn_positions',
         gui_text       = 'Randomize Overworld Spawns',
+        choices        = {
+            'off':       'Off',
+            'balanced':  'Balanced',
+            'full':      'Full',
+        },
         gui_tooltip    = '''\
             Randomize where you start as Child or Adult when loading
-            a save in the Overworld. This means you may not necessarily
-            spawn inside Link's House or Temple of Time.
+            a save in the Overworld. This stays consistent after
+            saving and loading the game again.
 
-            This stays consistent after saving and loading the game again.
+            'Off':
+            Child will spawn in Link's House and Adult in the Temple of Time.
+
+            'Balanced':
+            The spawn positions are randomly chosen from overworld, interior,
+            and a few special entrances.
+
+            'Full':
+            Link can also spawn inside or outside of dungeons,
+            potentially bypassing item requirements.
         ''',
-        default        = False,
+        default        = 'off',
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
+            'distribution':  [
+                ('off', 2),
+                ('balanced', 1),
+                ('full', 1),
+            ],
         },
     ),
     Combobox(

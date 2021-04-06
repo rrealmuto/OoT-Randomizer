@@ -28,7 +28,7 @@
 "shuffle_overworld_entrances": false,
 "owl_drops": true,
 "warp_songs": true,
-"spawn_positions": true,
+"spawn_positions": "balanced",
 "shuffle_scrubs": "off",
 "shopsanity": "off",
 "tokensanity": "off",

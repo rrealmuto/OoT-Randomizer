@@ -433,6 +433,8 @@ def shuffle_random_entrances(worlds):
                     target.set_rule(lambda state, age=None, **kwargs: age == 'child')
             elif pool_type == 'Spawn':
                 valid_target_types = ('Spawn', 'WarpSong', 'OwlDrop', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
+                if worlds[0].full_spawn_positions:
+                    valid_target_types = ('Dungeon', *valid_target_types) # there may be issues with Grotto and Grave entrances so these are excluded for now
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types)
             elif pool_type == 'WarpSong':
                 valid_target_types = ('Spawn', 'WarpSong', 'OwlDrop', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')

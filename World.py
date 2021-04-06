@@ -52,6 +52,9 @@ class World(object):
         self.keysanity = self.shuffle_smallkeys in ['keysanity', 'remove', 'any_dungeon', 'overworld']
         self.check_beatable_only = self.reachable_locations != 'all'
 
+        self.full_spawn_positions = self.spawn_positions == 'full'
+        self.spawn_positions = self.spawn_positions in ['balanced', 'full']
+
         self.shuffle_special_interior_entrances = self.shuffle_interior_entrances == 'all'
         self.shuffle_interior_entrances = self.shuffle_interior_entrances in ['simple', 'all']
 
