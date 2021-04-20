@@ -1192,7 +1192,7 @@
     "correct_chest_sizes": false,
     "clearer_hints": true,
     "hints": "always",
-    "hint_dist": "very_strong",
+    "hint_dist": "random",
     "misc_hints": true,
     "text_shuffle": "none",
     "damage_multiplier": "half",
