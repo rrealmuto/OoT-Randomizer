@@ -2352,6 +2352,22 @@ setting_infos = [
         },
     ),
     Checkbutton(
+        name           = 'dungeon_shortcuts',
+        gui_text       = 'Dungeon Boss Shortcuts',
+        gui_tooltip    = '''\
+            Shortcuts to dungeon bosses are available
+            without any requirements. This includes the
+            Deku Tree webs and the block in the basement,
+            Dodongo's Cavern mouth, Jabu Jabu pathway 
+            lowered, Forest Temple elevator, Fire Temple
+            pillar, Shadow Temple Truthspinner and boat
+            block and statue bridge moved, and the Spirit
+            Temple main room elevator and platform lowered
+            and statue face melted.
+        ''',
+        shared         = True,
+    ),
+    Checkbutton(
         name           = 'no_escape_sequence',
         gui_text       = 'Skip Tower Escape Sequence',
         gui_tooltip    = '''\

@@ -5,7 +5,8 @@
         "exits": {
             "Desert Colossus From Spirit Lobby": "True",
             "Child Spirit Temple": "is_child",
-            "Early Adult Spirit Temple": "can_use(Silver_Gauntlets)"
+            "Early Adult Spirit Temple": "can_use(Silver_Gauntlets)",
+            "Spirit Temple Boss Platform": "can_use(Silver_Gauntlets) and can_use(Longshot) and dungeon_shortcuts"
         }
     },
     {
@@ -180,13 +181,20 @@
             "Spirit Temple Boss Key Chest": "
                 can_play(Zeldas_Lullaby) and Bow and 
                 Progressive_Hookshot",
-            "Spirit Temple Topmost Chest": "Mirror_Shield",
+            "Spirit Temple Topmost Chest": "Mirror_Shield"
+        },
+        "exits": {
+            "Spirit Temple Boss Platform": "Mirror_Shield and has_explosives"
+        }
+    },
+    {
+        "region_name": "Spirit Temple Boss Platform",
+        "dungeon": "Spirit Temple",
+        "locations": {
             "Spirit Temple Twinrova Heart": "
-                Mirror_Shield and has_explosives and 
-                Progressive_Hookshot and Boss_Key_Spirit_Temple",
+                Mirror_Shield and Progressive_Hookshot and Boss_Key_Spirit_Temple",
             "Twinrova": "
-                Mirror_Shield and has_explosives and 
-                Progressive_Hookshot and Boss_Key_Spirit_Temple"
+                Mirror_Shield and Progressive_Hookshot and Boss_Key_Spirit_Temple"
         }
     }
 ]

@@ -30,7 +30,8 @@
         },
         "exits": {
             "Jabu Jabus Belly Beginning": "True",
-            "Jabu Jabus Belly Depths": "has_explosives and can_use(Boomerang)"
+            "Jabu Jabus Belly Depths": "has_explosives and can_use(Boomerang)",
+            "Jabu Jabus Belly Boss Area": "dungeon_shortcuts"
         }
     },
     {
@@ -45,18 +46,28 @@
         },
         "exits": {
             "Jabu Jabus Belly Main": "True",
-            "Jabu Jabus Belly Boss Area": "Sticks or (can_use(Dins_Fire) and Kokiri_Sword)"
+            "Jabu Jabus Belly Past Big Octo": "Sticks or (can_use(Dins_Fire) and Kokiri_Sword)"
+        }
+    },
+    {
+        "region_name": "Jabu Jabus Past Big Octo",
+        "dungeon": "Jabu Jabus Belly",
+        "locations": {
+            "Jabu Jabus Belly MQ Cow" : "can_play(Eponas_Song)"
+        },
+        "exits": {
+            "Jabu Jabus Belly Main": "True",
+            "Jabu Jabus Belly Boss Area": "True"
         }
     },
     {
         "region_name": "Jabu Jabus Belly Boss Area",
         "dungeon": "Jabu Jabus Belly",
         "locations": {
-            "Jabu Jabus Belly MQ Cow" : "can_play(Eponas_Song)",
             "Jabu Jabus Belly MQ Near Boss Chest": "True",
-            "Jabu Jabus Belly Barinade Heart": "True",
-            "Barinade": "True",
-            "Jabu Jabus Belly MQ GS Near Boss": "True",
+            "Jabu Jabus Belly Barinade Heart": "can_use(Boomerang) and (Sticks or Kokiri_Sword)",
+            "Barinade": "can_use(Boomerang) and (Sticks or Kokiri_Sword)",
+            "Jabu Jabus Belly MQ GS Near Boss": "can_use(Boomerang) or can_use(Longshot)",
             "Fairy Pot": "has_bottle"
         },
         "exits": {

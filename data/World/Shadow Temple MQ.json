@@ -37,7 +37,10 @@
             "Shadow Temple MQ Near Ship Invisible Chest": "True"
         },
         "exits": {
-            "Shadow Temple Upper Huge Pit": "has_explosives and (Small_Key_Shadow_Temple, 2)"
+            "Shadow Temple Upper Huge Pit": "
+                (has_explosives and (Small_Key_Shadow_Temple, 2) and not dungeon_shortcuts) or
+                (Small_Key_Shadow_Temple, 5)",
+            "Shadow Temple Boat": "dungeon_shortcuts"
         }
     },
     {
@@ -65,19 +68,30 @@
                 (logic_shadow_umbrella and Hover_Boots) or Progressive_Strength_Upgrade",
             "Shadow Temple MQ Falling Spikes Switch Chest": "
                 (logic_shadow_umbrella and Hover_Boots) or Progressive_Strength_Upgrade",
-            "Shadow Temple MQ Invisible Spikes Chest": "
-                Hover_Boots and (Small_Key_Shadow_Temple, 3) and
-                (logic_lens_shadow_mq_back or can_use(Lens_of_Truth))",
-            "Shadow Temple MQ Stalfos Room Chest": "
-                Hover_Boots and (Small_Key_Shadow_Temple, 3) and Progressive_Hookshot and
-                (logic_lens_shadow_mq_back or can_use(Lens_of_Truth))",
             "Shadow Temple MQ GS Falling Spikes Room": "
                 (logic_shadow_umbrella_gs and Hover_Boots) or Progressive_Hookshot"
         },
         "exits": {
+            "Shadow Temple Invisible Spikes": "
+                Hover_Boots and (logic_lens_shadow_mq_back or can_use(Lens_of_Truth)) and
+                (Small_Key_Shadow_Temple, 3)",
+            "Shadow Temple Upper Huge Pit": "can_use(Longshot)"
+        }
+    },
+    {
+        "region_name": "Shadow Temple Invisible Spikes",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple MQ Invisible Spikes Chest": "True",
+            "Shadow Temple MQ Stalfos Room Chest": "
+                Hover_Boots and Progressive_Hookshot and
+                (logic_lens_shadow_mq_back or can_use(Lens_of_Truth))"
+        },
+        "exits": {
             "Shadow Temple Wind Tunnel": "
                 Hover_Boots and (logic_lens_shadow_mq_back or can_use(Lens_of_Truth)) and 
-                Progressive_Hookshot and (Small_Key_Shadow_Temple, 4)"
+                Progressive_Hookshot and (Small_Key_Shadow_Temple, 4)",
+            "Shadow Temple Lower Huge Pit": "Hover_Boots"
         }
     },
     {
@@ -85,15 +99,35 @@
         "dungeon": "Shadow Temple",
         "locations": {
             "Shadow Temple MQ Wind Hint Chest": "True",
+            "Shadow Temple MQ GS Wind Hint Room": "True"
+        },
+        "exits": {
+            "Shadow Temple After Wind": "True",
+            "Shadow Temple Invisible Spikes": "Progressive_Hookshot"
+        }
+    },
+    {
+        "region_name": "Shadow Temple After Wind",
+        "dungeon": "Shadow Temple",
+        "locations": {
             "Shadow Temple MQ After Wind Enemy Chest": "True",
-            "Shadow Temple MQ After Wind Hidden Chest": "True",
-            "Shadow Temple MQ GS Wind Hint Room": "True",
-            "Shadow Temple MQ GS After Wind": "True",
+            "Shadow Temple MQ After Wind Hidden Chest": "has_explosives",
+            "Shadow Temple MQ GS After Wind": "has_explosives",
             "Nut Pot": "True"
         },
         "exits": {
-            "Shadow Temple Beyond Boat": "
-                can_play(Zeldas_Lullaby) and (Small_Key_Shadow_Temple, 5)"
+            "Shadow Temple Boat": "(Small_Key_Shadow_Temple, 5)",
+            "Shadow Temple Wind Tunnel": "Hover_Boots and logic_lens_shadow_mq_back or can_use(Lens_of_Truth)"
+        }
+    },
+    {
+        "region_name": "Shadow Temple Boat",
+        "dungeon": "Shadow Temple",
+        "exits": {
+            # Beyond Boat lens logic is applied here so as not to repeat it for every
+            # check in the back of Shadow (maze and Bongo Bongo both need Lens)
+            "Shadow Temple After Wind": "(Small_Key_Shadow_Temple, 5)",
+            "Shadow Temple Beyond Boat": "can_play(Zeldas_Lullaby) and (logic_lens_shadow_mq_back or can_use(Lens_of_Truth)"
         }
     },
     {
@@ -101,11 +135,11 @@
         "dungeon": "Shadow Temple",
         "locations": {
             "Shadow Temple Bongo Bongo Heart": "
-                (Bow or (logic_shadow_statue and has_bombchus)) and Boss_Key_Shadow_Temple",
+                (Bow or (logic_shadow_statue and has_bombchus)) and Boss_Key_Shadow_Temple and Hover_Boots",
             "Bongo Bongo": "
-                (Bow or (logic_shadow_statue and has_bombchus)) and Boss_Key_Shadow_Temple",
+                (Bow or (logic_shadow_statue and has_bombchus)) and Boss_Key_Shadow_Temple and Hover_Boots",
             "Shadow Temple MQ GS After Ship": "True",
-            "Shadow Temple MQ GS Near Boss": "Bow or (logic_shadow_statue and has_bombchus)"
+            "Shadow Temple MQ GS Near Boss": "Bow or (logic_shadow_statue and has_bombchus) and Hover_Boots"
         },
         "exits": {
             "Shadow Temple Invisible Maze": "

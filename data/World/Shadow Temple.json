@@ -30,7 +30,13 @@
             "Shadow Temple Early Silver Rupee Chest": "True"
         },
         "exits": {
-            "Shadow Temple Huge Pit": "has_explosives and (Small_Key_Shadow_Temple, 1)"
+            # If the shortcut is open, reverse shadow becomes an option, so we need to check for 4 keys.
+            # We don't need to check for 5 since if they can use 4 and the shortcut is open then the last center door is irrelevant.
+            # Also, we only need to check shortcut keys here and at boat, since key requirements are always the same.
+            "Shadow Temple Huge Pit": "
+                has_explosives and
+                ((Small_Key_Shadow_Temple, 1) and not dungeon_shortcuts) or (Small_Key_Shadow_Temple, 4)",
+            "Shadow Temple Boat": "dungeon_shortcuts"
         }
     },
     {
@@ -65,13 +71,36 @@
         "region_name": "Shadow Temple Wind Tunnel",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple Wind Hint Chest": "True",
-            "Shadow Temple After Wind Enemy Chest": "True",
-            "Shadow Temple After Wind Hidden Chest": "True",
-            "Shadow Temple GS Near Ship": "can_use(Longshot) and (Small_Key_Shadow_Temple, 4)"
+            "Shadow Temple Wind Hint Chest": "True"
         },
         "exits": {
-            "Shadow Temple Beyond Boat": "can_play(Zeldas_Lullaby) and (Small_Key_Shadow_Temple, 4)"
+            "Shadow Temple After Wind": "True",
+            "Shadow Temple Huge Pit": "Progressive_Hookshot"
+        }
+    },
+    {
+        "region_name": "Shadow Temple After Wind",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple After Wind Enemy Chest": "True",
+            "Shadow Temple After Wind Hidden Chest": "has_explosives and (logic_lens_shadow or can_use(Lens_of_Truth))"
+        },
+        "exits": {
+            "Shadow Temple Boat": "(Small_Key_Shadow_Temple, 4)",
+            "Shadow Temple Wind Tunnel": "logic_lens_shadow_back or can_use(Lens_of_Truth)"
+        }
+    },
+    {
+        "region_name": "Shadow Temple Boat",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple GS Near Ship": "can_use(Longshot)"
+        },
+        "exits": {
+            # Beyond Boat lens logic is applied here so as not to repeat it for every
+            # check in the back of Shadow (maze and Bongo Bongo both need Lens)
+            "Shadow Temple After Wind": "(Small_Key_Shadow_Temple, 4)",
+            "Shadow Temple Beyond Boat": "can_play(Zeldas_Lullaby) and (logic_lens_shadow_back or can_use(Lens_of_Truth)"
         }
     },
     {

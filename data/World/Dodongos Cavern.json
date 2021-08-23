@@ -31,7 +31,8 @@
             "Dodongos Cavern Staircase Room": "
                 here(is_adult or Sticks or
                     (can_use(Dins_Fire) and (Slingshot or has_explosives or Kokiri_Sword)))",
-            "Dodongos Cavern Far Bridge": "at('Dodongos Cavern Far Bridge', True)"
+            "Dodongos Cavern Far Bridge": "at('Dodongos Cavern Far Bridge', True)",
+            "Dodongos Cavern Boss Area": "dungeon_shortcuts"
         }
     },
     {
@@ -95,7 +96,9 @@
             "King Dodongo": "
                 (Bombs or Progressive_Strength_Upgrade) and 
                 (is_adult or Sticks or Kokiri_Sword)",
-            "Dodongos Cavern GS Back Room": "True",
+            "Dodongos Cavern GS Back Room": "
+                (dungeon_shortcuts and can_blast_or_smash) or
+                (not dungeon_shortcuts)",
             "Fairy Pot": "has_bottle"
         },
         "exits": {

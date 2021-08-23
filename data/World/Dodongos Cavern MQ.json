@@ -37,6 +37,7 @@
                 is_adult or (here(is_adult) and has_explosives) or
                 (logic_dc_mq_child_bombs and (Kokiri_Sword or Sticks) and can_take_damage)",
             "Dodongos Cavern Boss Area": "
+                dungeon_shortcuts or
                 has_explosives or
                 (logic_dc_mq_eyes and Progressive_Strength_Upgrade and
                     (is_adult or logic_dc_mq_child_back) and
@@ -75,13 +76,19 @@
         "region_name": "Dodongos Cavern Boss Area",
         "dungeon": "Dodongos Cavern",
         "locations": {
-            "Dodongos Cavern MQ Under Grave Chest": "True",
-            "Dodongos Cavern Boss Room Chest": "True",
+            "Dodongos Cavern MQ Under Grave Chest": "
+                (not dungeon_shortcuts) or
+                (dungeon_shortcuts and (is_adult or has_explosives or logic_dc_mq_child_back))",
+            "Dodongos Cavern Boss Room Chest": "
+                (not dungeon_shortcuts) or
+                (dungeon_shortcuts and (is_adult or has_explosives or logic_dc_mq_child_back))",
             "Dodongos Cavern King Dodongo Heart": "
-                can_blast_or_smash and (Bombs or Progressive_Strength_Upgrade) and 
+                can_blast_or_smash and 
+                (Bombs or (Progressive_Strength_Upgrade and (is_adult or logic_dc_mq_child_back))) and 
                 (is_adult or Sticks or Kokiri_Sword)",
             "King Dodongo": "
-                can_blast_or_smash and (Bombs or Progressive_Strength_Upgrade) and 
+                can_blast_or_smash and 
+                (Bombs or (Progressive_Strength_Upgrade and (is_adult or logic_dc_mq_child_back))) and 
                 (is_adult or Sticks or Kokiri_Sword)",
             "Dodongos Cavern MQ GS Back Area": "True",
             "Fairy Pot": "has_bottle"

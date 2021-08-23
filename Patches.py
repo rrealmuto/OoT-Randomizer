@@ -906,8 +906,47 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     save_context = SaveContext()
 
     # Initial Save Data
-    if not world.settings.useful_cutscenes:
+    if not world.settings.useful_cutscenes and not world.settings.dungeon_shortcuts:
         save_context.write_bits(0x00D4 + 0x03 * 0x1C + 0x04 + 0x0, 0x08) # Forest Temple switch flag (Poe Sisters cutscene)
+
+    if world.settings.dungeon_shortcuts:
+        # Deku Tree
+        if not world.dungeon_mq['Deku Tree']:
+            save_context.write_bits(0x00D4 + 0x00 * 0x1C + 0x04 + 0x1, 0x01) # Deku Block down
+            save_context.write_bits(0x00D4 + 0x00 * 0x1C + 0x08 + 0x2, 0x02) # Deku 231:
+            save_context.write_bits(0x00D4 + 0x00 * 0x1C + 0x04 + 0x3, 0x20) # Deku 1st Web
+            save_context.write_bits(0x00D4 + 0x00 * 0x1C + 0x04 + 0x3, 0x40) # Deku 2nd Web
+
+        # Dodongo's Cavern
+        if not world.dungeon_mq['Dodongos Cavern']:
+            save_context.write_bits(0x00D4 + 0x01 * 0x1C + 0x04 + 0x0, 0x04) # DC Mouth 
+            save_context.write_bits(0x00D4 + 0x12 * 0x1C + 0x04 + 0x3, 0x02) # DC Boss Floor
+
+        # Jabu
+        if not world.dungeon_mq['Jabu Jabus Belly']:
+            save_context.write_bits(0x00D4 + 0x02 * 0x1C + 0x04 + 0x0, 0x20) # Jabu Pathway down
+        
+        # Forest
+        if not world.dungeon_mq['Forest Temple']:
+            save_context.write_bits(0x00D4 + 0x03 * 0x1C + 0x04 + 0x0, 0x10) # Forest Elevator up
+            save_context.write_bits(0x00D4 + 0x03 * 0x1C + 0x04 + 0x1, 0x01 + 0x02 + 0x04) # Forest Basement Puzzle Done
+
+        # Fire
+        if not world.dungeon_mq['Fire Temple']:
+            save_context.write_bits(0x00D4 + 0x04 * 0x1C + 0x04 + 0x2, 0x40) # Fire Pillar down
+
+        # Spirit
+        if not world.dungeon_mq['Spirit Temple']:
+            save_context.write_bits(0x00D4 + 0x06 * 0x1C + 0x04 + 0x1, 0x80) # Spirit Chains
+            save_context.write_bits(0x00D4 + 0x06 * 0x1C + 0x04 + 0x2, 0x02 + 0x08 + 0x10) # Spirit main room elevator (N block, Rusted Switch, E block)
+            save_context.write_bits(0x00D4 + 0x06 * 0x1C + 0x04 + 0x3, 0x10) # Spirit Face
+        
+        # Shadow
+        if not world.dungeon_mq['Shadow Temple']:
+            save_context.write_bits(0x00D4 + 0x07 * 0x1C + 0x04 + 0x0, 0x08) # Shadow Truthspinner
+            save_context.write_bits(0x00D4 + 0x07 * 0x1C + 0x04 + 0x0, 0x20) # Shadow Boat Block
+            save_context.write_bits(0x00D4 + 0x07 * 0x1C + 0x04 + 0x1, 0x01) # Shadow Bird Bridge
+
     save_context.write_bits(0x00D4 + 0x05 * 0x1C + 0x04 + 0x1, 0x01) # Water temple switch flag (Ruto)
     save_context.write_bits(0x00D4 + 0x51 * 0x1C + 0x04 + 0x2, 0x08) # Hyrule Field switch flag (Owl)
     save_context.write_bits(0x00D4 + 0x55 * 0x1C + 0x04 + 0x0, 0x80) # Kokiri Forest switch flag (Owl)
