@@ -50,7 +50,7 @@
         }
     },
     {
-        "region_name": "Jabu Jabus Past Big Octo",
+        "region_name": "Jabu Jabus Belly Past Big Octo",
         "dungeon": "Jabu Jabus Belly",
         "locations": {
             "Jabu Jabus Belly MQ Cow" : "can_play(Eponas_Song)"

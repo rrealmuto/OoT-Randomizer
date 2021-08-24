@@ -100,7 +100,7 @@
             # Beyond Boat lens logic is applied here so as not to repeat it for every
             # check in the back of Shadow (maze and Bongo Bongo both need Lens)
             "Shadow Temple After Wind": "(Small_Key_Shadow_Temple, 4)",
-            "Shadow Temple Beyond Boat": "can_play(Zeldas_Lullaby) and (logic_lens_shadow_back or can_use(Lens_of_Truth)"
+            "Shadow Temple Beyond Boat": "can_play(Zeldas_Lullaby) and (logic_lens_shadow_back or can_use(Lens_of_Truth))"
         }
     },
     {

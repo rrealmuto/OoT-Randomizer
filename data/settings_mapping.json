@@ -309,6 +309,7 @@
           "row_span": [1,1,1],
           "settings": [
             "skip_child_zelda",
+            "dungeon_shortcuts",
             "no_escape_sequence",
             "no_guard_stealth",
             "no_epona_race",
