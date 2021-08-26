@@ -18,7 +18,7 @@ from Messages import read_messages, update_message_by_id, read_shop_items, updat
         get_message_by_id
 from OcarinaSongs import replace_songs
 from MQ import patch_files, File, update_dmadata, insert_space, add_relocations
-from SaveContext import SaveContext
+from SaveContext import SaveContext, Scenes, FlagType
 import StartingItems
 
 
@@ -911,52 +911,54 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     if world.settings.dungeon_shortcuts:
         # Deku Tree, flags are the same between vanilla/MQ
-        save_context.write_bits(0x00D4 + 0x00 * 0x1C + 0x04 + 0x1, 0x01) # Deku Block down
-        save_context.write_bits(0x00D4 + 0x00 * 0x1C + 0x08 + 0x2, 0x02) # Deku 231:
-        save_context.write_bits(0x00D4 + 0x00 * 0x1C + 0x04 + 0x3, 0x20) # Deku 1st Web
-        save_context.write_bits(0x00D4 + 0x00 * 0x1C + 0x04 + 0x3, 0x40) # Deku 2nd Web
+        save_context.write_permanent_flag(Scenes.DEKU_TREE, FlagType.SWITCH, 0x1, 0x01) # Deku Block down
+        save_context.write_permanent_flag(Scenes.DEKU_TREE, FlagType.CLEAR,  0x2, 0x02) # Deku 231/312
+        save_context.write_permanent_flag(Scenes.DEKU_TREE, FlagType.SWITCH, 0x3, 0x20) # Deku 1st Web
+        save_context.write_permanent_flag(Scenes.DEKU_TREE, FlagType.SWITCH, 0x3, 0x40) # Deku 2nd Web
 
         # Dodongo's Cavern, flags are the same between vanilla/MQ
-        save_context.write_bits(0x00D4 + 0x01 * 0x1C + 0x04 + 0x0, 0x04) # DC Mouth 
-        save_context.write_bits(0x00D4 + 0x12 * 0x1C + 0x04 + 0x3, 0x02) # DC Boss Floor
+        save_context.write_permanent_flag(Scenes.DODONGOS_CAVERN, FlagType.SWITCH, 0x0, 0x04) # DC Mouth
+        save_context.write_permanent_flag(Scenes.DODONGOS_CAVERN, FlagType.SWITCH, 0x3, 0x02) # DC Boss Floor
 
         # Jabu
         if not world.dungeon_mq['Jabu Jabus Belly']:
-            save_context.write_bits(0x00D4 + 0x02 * 0x1C + 0x04 + 0x0, 0x20) # Jabu Pathway down
+            save_context.write_permanent_flag(Scenes.JABU_JABU, FlagType.SWITCH, 0x0, 0x20) # Jabu Pathway down
         else:
-            save_context.write_bits(0x00D4 + 0x02 * 0x1C + 0x04 + 0x1, 0x20) # Jabu Lobby Slingshot Door open
-            save_context.write_bits(0x00D4 + 0x02 * 0x1C + 0x04 + 0x0, 0x20) # Jabu Pathway down
-            save_context.write_bits(0x00D4 + 0x02 * 0x1C + 0x08 + 0x2, 0x01) # Jabu Red Slimy Thing defeated
-            save_context.write_bits(0x00D4 + 0x02 * 0x1C + 0x04 + 0x2, 0x08) # Jabu Red Slimy Thing not in front of boss lobby
-            save_context.write_bits(0x00D4 + 0x02 * 0x1C + 0x04 + 0x1, 0x10) # Jabu Boss Door Switch Activated
+            save_context.write_permanent_flag(Scenes.JABU_JABU, FlagType.SWITCH, 0x1, 0x20) # Jabu Lobby Slingshot Door open
+            save_context.write_permanent_flag(Scenes.JABU_JABU, FlagType.SWITCH, 0x0, 0x20) # Jabu Pathway down
+            save_context.write_permanent_flag(Scenes.JABU_JABU, FlagType.CLEAR,  0x2, 0x01) # Jabu Red Slimy Thing defeated
+            save_context.write_permanent_flag(Scenes.JABU_JABU, FlagType.SWITCH, 0x2, 0x08) # Jabu Red Slimy Thing not in front of boss lobby
+            save_context.write_permanent_flag(Scenes.JABU_JABU, FlagType.SWITCH, 0x1, 0x10) # Jabu Boss Door Switch Activated
         
         # Forest, flags are the same between vanilla/MQ
-        save_context.write_bits(0x00D4 + 0x03 * 0x1C + 0x04 + 0x0, 0x10) # Forest Elevator up
-        save_context.write_bits(0x00D4 + 0x03 * 0x1C + 0x04 + 0x1, 0x01 + 0x02 + 0x04) # Forest Basement Puzzle Done
+        save_context.write_permanent_flag(Scenes.FOREST_TEMPLE, FlagType.SWITCH, 0x0, 0x10) # Forest Elevator up
+        save_context.write_permanent_flag(Scenes.FOREST_TEMPLE, FlagType.SWITCH, 0x1, 0x01 + 0x02 + 0x04) # Forest Basement Puzzle Done
 
         # Fire, flags are the same between vanilla/MQ
-        save_context.write_bits(0x00D4 + 0x04 * 0x1C + 0x04 + 0x2, 0x40) # Fire Pillar down
+        save_context.write_permanent_flag(Scenes.FIRE_TEMPLE, FlagType.SWITCH, 0x2, 0x40) # Fire Pillar down
 
         # Spirit
         if not world.dungeon_mq['Spirit Temple']:
-            save_context.write_bits(0x00D4 + 0x06 * 0x1C + 0x04 + 0x1, 0x80) # Spirit Chains
-            save_context.write_bits(0x00D4 + 0x06 * 0x1C + 0x04 + 0x2, 0x02 + 0x08 + 0x10) # Spirit main room elevator (N block, Rusted Switch, E block)
-            save_context.write_bits(0x00D4 + 0x06 * 0x1C + 0x04 + 0x3, 0x10) # Spirit Face
+            save_context.write_permanent_flag(Scenes.SPIRIT_TEMPLE, FlagType.SWITCH, 0x1, 0x80) # Spirit Chains
+            save_context.write_permanent_flag(Scenes.SPIRIT_TEMPLE, FlagType.SWITCH, 0x2, 0x02 + 0x08 + 0x10) # Spirit main room elevator (N block, Rusted Switch, E block)
+            save_context.write_permanent_flag(Scenes.SPIRIT_TEMPLE, FlagType.SWITCH, 0x3, 0x10) # Spirit Face
         else:
-            save_context.write_bits(0x00D4 + 0x06 * 0x1C + 0x04 + 0x2, 0x10) # Spirit Bombchu Boulder
-            save_context.write_bits(0x00D4 + 0x06 * 0x1C + 0x04 + 0x2, 0x02) # Spirit Silver Block
-            save_context.write_bits(0x00D4 + 0x06 * 0x1C + 0x04 + 0x1, 0x80) # Spirit Chains
-            save_context.write_bits(0x00D4 + 0x06 * 0x1C + 0x04 + 0x3, 0x10) # Spirit Face
+            save_context.write_permanent_flag(Scenes.SPIRIT_TEMPLE, FlagType.SWITCH, 0x2, 0x10) # Spirit Bombchu Boulder
+            save_context.write_permanent_flag(Scenes.SPIRIT_TEMPLE, FlagType.SWITCH, 0x2, 0x02) # Spirit Silver Block
+            save_context.write_permanent_flag(Scenes.SPIRIT_TEMPLE, FlagType.SWITCH, 0x1, 0x80) # Spirit Chains
+            save_context.write_permanent_flag(Scenes.SPIRIT_TEMPLE, FlagType.SWITCH, 0x3, 0x10) # Spirit Face
         
         # Shadow
         if not world.dungeon_mq['Shadow Temple']:
-            save_context.write_bits(0x00D4 + 0x07 * 0x1C + 0x04 + 0x0, 0x08) # Shadow Truthspinner
-            save_context.write_bits(0x00D4 + 0x07 * 0x1C + 0x04 + 0x0, 0x20) # Shadow Boat Block
-            save_context.write_bits(0x00D4 + 0x07 * 0x1C + 0x04 + 0x1, 0x01) # Shadow Bird Bridge
+            save_context.write_permanent_flag(Scenes.SHADOW_TEMPLE, FlagType.SWITCH, 0x0, 0x08) # Shadow Truthspinner
+            save_context.write_permanent_flag(Scenes.SHADOW_TEMPLE, FlagType.SWITCH, 0x0, 0x20) # Shadow Boat Block
+            save_context.write_permanent_flag(Scenes.SHADOW_TEMPLE, FlagType.SWITCH, 0x1, 0x01) # Shadow Bird Bridge
         else:
-            save_context.write_bits(0x00D4 + 0x07 * 0x1C + 0x04 + 0x2, 0x08) # Shadow Truthspinner
-            save_context.write_bits(0x00D4 + 0x07 * 0x1C + 0x04 + 0x0, 0x20) # Shadow Boat Block
-            save_context.write_bits(0x00D4 + 0x07 * 0x1C + 0x04 + 0x1, 0x01) # Shadow Bird Bridge
+            save_context.write_permanent_flag(Scenes.SHADOW_TEMPLE, FlagType.SWITCH, 0x2, 0x08) # Shadow Truthspinner
+            save_context.write_permanent_flag(Scenes.SHADOW_TEMPLE, FlagType.SWITCH, 0x0, 0x20) # Shadow Boat Block
+            save_context.write_permanent_flag(Scenes.SHADOW_TEMPLE, FlagType.SWITCH, 0x1, 0x01) # Shadow Bird Bridge
+
+    set_spirit_shortcut_actors(rom) # Change elevator starting position to avoid waiting a half cycle from the temple entrance
 
     save_context.write_bits(0x00D4 + 0x05 * 0x1C + 0x04 + 0x1, 0x01) # Water temple switch flag (Ruto)
     save_context.write_bits(0x00D4 + 0x51 * 0x1C + 0x04 + 0x2, 0x08) # Hyrule Field switch flag (Owl)
@@ -2081,6 +2083,27 @@ def set_jabu_stone_actors(rom, jabu_actor_type):
                 rom.write_byte(actor + 15, jabu_actor_type)
 
     get_actor_list(rom, set_jabu_stone_actor)
+
+
+def set_spirit_shortcut_actors(rom):
+    def set_spirit_shortcut(rom, actor_id, actor, scene):
+        # Hack to swap silver block position in the vanilla shortcut hallway
+        # to allow movement from lobby -> statue room. If you want to use this,
+        # only set the flag for the east block pushed, then use this to move
+        # the north block to the other side of the hole.
+        #if actor_id == 0x00FF and scene == 6: # push blocks in spirit temple
+        #    actor_x = rom.read_int16(actor + 2)
+        #    actor_y = rom.read_int16(actor + 4)
+        #    actor_z = rom.read_int16(actor + 6)
+        #    # Move north block from near statue door to other side of its hole near the shortcut elevator
+        #    if actor_x == 0x0154 and actor_y == 0x019D and actor_z == 0xFE33:
+        #        rom.write_int16(actor + 2, 0x021C)
+        #        rom.write_int16(actor + 6, 0xFEFB)
+        if actor_id == 0x018e and scene == 6: # raise initial elevator height
+            rom.write_int16(actor + 4, 0x015E)
+
+    get_actor_list(rom, set_spirit_shortcut)
+
 
 
 def get_locked_doors(rom, world):
