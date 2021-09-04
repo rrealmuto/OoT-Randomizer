@@ -1298,7 +1298,8 @@ logic_tricks = {
                     fire wall, and by defeating Armos to detonate bomb
                     flowers (among other methods). While these techniques
                     themselves are relatively simple, they're not
-                    relevant unless "Dodongo's Cavern MQ Light the Eyes
+                    relevant unless Dodongo's Cavern dungeon shortcuts
+                    are on or "Dodongo's Cavern MQ Light the Eyes
                     with Strength" is enabled, which is a trick that
                     is particularly difficult for child to perform.
                     '''},
@@ -2351,19 +2352,33 @@ setting_infos = [
             True: {'settings': ['shuffle_weird_egg']},
         },
     ),
-    Checkbutton(
+    Setting_Info(
         name           = 'dungeon_shortcuts',
+        type           = list,
         gui_text       = 'Dungeon Boss Shortcuts',
+        gui_type       = "MultipleSelect",
+        choices        = {
+            'deku_tree': 'Deku Tree',
+            'dodongos_cavern': 'Dodongo\'s Cavern',
+            'jabu_jabus_belly': 'Jabu Jabu\'s Belly',
+            'forest_temple': 'Forest Temple',
+            'fire_temple': 'Fire Temple',
+            'water_temple': 'Water Temple', # doesn't do anything, but added to prevent confusion
+            'shadow_temple': 'Shadow Temple',
+            'spirit_temple': 'Spirit Temple'
+        },
+        default        = [],
         gui_tooltip    = '''\
             Shortcuts to dungeon bosses are available
             without any requirements. This includes the
             Deku Tree webs and the block in the basement,
-            Dodongo's Cavern mouth, Jabu Jabu pathway 
-            lowered, Forest Temple elevator, Fire Temple
-            pillar, Shadow Temple Truthspinner and boat
-            block and statue bridge moved, and the Spirit
-            Temple main room elevator and platform lowered
-            and statue face melted.
+            Dodongo's Cavern mouth opened and boss lobby
+            floor bombed, Jabu Jabu pathway lowered,
+            Forest Temple elevator, Fire Temple pillar,
+            Shadow Temple Truthspinner and boat block and
+            statue bridge moved, and the Spirit Temple
+            lobby elevator and central room platform
+            lowered and statue face melted.
         ''',
         shared         = True,
     ),

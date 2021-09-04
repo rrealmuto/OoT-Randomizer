@@ -16,7 +16,8 @@
             "Shadow Temple Entryway": "True",
             "Shadow Temple First Beamos": "
                 can_use(Fire_Arrows) or Hover_Boots or
-                (logic_shadow_mq_gap and can_use(Longshot))",
+                (logic_shadow_mq_gap and can_use(Longshot)) or
+                shadow_temple_shortcuts",
             "Shadow Temple Dead Hand Area": "has_explosives and (Small_Key_Shadow_Temple, 6)"
         }
     },
@@ -38,9 +39,9 @@
         },
         "exits": {
             "Shadow Temple Upper Huge Pit": "
-                (has_explosives and (Small_Key_Shadow_Temple, 2) and not dungeon_shortcuts) or
+                has_explosives and ((Small_Key_Shadow_Temple, 2) and not shadow_temple_shortcuts) or
                 (Small_Key_Shadow_Temple, 5)",
-            "Shadow Temple Boat": "dungeon_shortcuts"
+            "Shadow Temple Boat": "shadow_temple_shortcuts"
         }
     },
     {

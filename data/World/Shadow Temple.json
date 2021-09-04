@@ -35,8 +35,8 @@
             # Also, we only need to check shortcut keys here and at boat, since key requirements are always the same.
             "Shadow Temple Huge Pit": "
                 has_explosives and
-                ((Small_Key_Shadow_Temple, 1) and not dungeon_shortcuts) or (Small_Key_Shadow_Temple, 4)",
-            "Shadow Temple Boat": "dungeon_shortcuts"
+                ((Small_Key_Shadow_Temple, 1) and not shadow_temple_shortcuts) or (Small_Key_Shadow_Temple, 4)",
+            "Shadow Temple Boat": "shadow_temple_shortcuts"
         }
     },
     {

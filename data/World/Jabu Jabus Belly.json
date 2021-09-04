@@ -23,7 +23,7 @@
             "Jabu Jabus Belly Beginning": "True",
             "Jabu Jabus Belly Depths": "can_use(Boomerang)",
             "Jabu Jabus Belly Boss Area": "(logic_jabu_boss_gs_adult and can_use(Hover_Boots)) or
-                dungeon_shortcuts"
+                jabu_shortcuts"
         }
     },
     {

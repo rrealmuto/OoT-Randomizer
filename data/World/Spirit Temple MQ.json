@@ -15,7 +15,7 @@
             "Desert Colossus From Spirit Lobby": "True",
             "Child Spirit Temple": "is_child",
             "Adult Spirit Temple": "
-                has_bombchus and can_use(Longshot) and can_use(Silver_Gauntlets)"
+                can_use(Longshot) and ((can_use(Silver_Gauntlets) and has_bombchus) or spirit_temple_shortcuts)"
         }
     },
     {
@@ -67,7 +67,7 @@
             "Mirror Shield Hand": "
                 (Small_Key_Spirit_Temple, 5) and can_play(Song_of_Time) and
                 (logic_lens_spirit_mq or can_use(Lens_of_Truth))",
-            "Spirit Temple Boss Platform": "dungeon_shortcuts"
+            "Spirit Temple Boss Platform": "spirit_temple_shortcuts"
         }
     },
     {
