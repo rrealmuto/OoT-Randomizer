@@ -455,6 +455,26 @@ logic_tricks = {
                     jump down and swim through the tunnel. This allows adult to
                     access the scrub with no Scale or Iron Boots.
                     '''},
+    'Jabu MQ Compass Chest as Adult with Jump Dive': {
+        'name'    : 'logic_jabu_mq_jump_dive',
+        'tags'    : ("Jabu Jabu's Belly", "Entrance",),
+        'tooltip' : '''\
+                    Standing above the underwater tunnel leading to the Compass
+                    chest, jump down and swim through the tunnel. This allows
+                    adult to access Compass chest with no Scale or Iron Boots.
+                    It also allows adult to activate the nearby switch to open
+                    the door deeper into Jabu.
+                    '''},
+    'Jabu MQ Compass Chest as Child with Boomerang': {
+        'name'    : 'logic_jabu_mq_rang_jump',
+        'tags'    : ("Jabu Jabu's Belly", "Entrance",),
+        'tooltip' : '''\
+                    Boomerang can reach the cow switch to spawn the chest by
+                    targeting the cow, jumping off of the ledge where the
+                    chest spawns, and throwing the Boomerang in midair. This
+                    is only relevant with Jabu Jabu's Belly dungeon shortcuts
+                    enabled.
+                    '''},
     'Jabu MQ Song of Time Block GS with Boomerang': {
         'name'    : 'logic_jabu_mq_sot_gs',
         'tags'    : ("Jabu Jabu's Belly", "Skulltulas",),
@@ -1276,18 +1296,33 @@ logic_tricks = {
                     you also enable the Adult variant: "Dodongo's
                     Cavern Spike Trap Room Jump without Hover Boots".
                     '''},
-    'Dodongo\'s Cavern MQ Light the Eyes with Strength': {
-        'name'    : 'logic_dc_mq_eyes',
+    'Dodongo\'s Cavern MQ Light the Eyes with Strength as Adult': {
+        'name'    : 'logic_dc_mq_eyes_adult',
+        'tags'    : ("Dodongo's Cavern",),
+        'tooltip' : '''\
+                    If you move very quickly, it is possible to use
+                    the bomb flower at the top of the room to light
+                    the eyes. Also, the bombable floor before King Dodongo
+                    can be destroyed with Hammer if hit in the very center.
+                    '''},
+    'Dodongo\'s Cavern MQ Smash the Boss Lobby Floor': {
+        'name'    : 'logic_dc_mq_hammer_floor',
+        'tags'    : ("Dodongo's Cavern",),
+        'tooltip' : '''\
+                    The bombable floor before King Dodongo can be destroyed
+                    with Hammer if hit in the very center. This is only
+                    relevant if either of Dodongo's Cavern dungeon shortcuts
+                    or "Dodongo's Cavern MQ Light the Eyes with Strength
+                    as Adult" are on.
+                    '''},
+    'Dodongo\'s Cavern MQ Light the Eyes with Strength as Child': {
+        'name'    : 'logic_dc_mq_eyes_child',
         'tags'    : ("Dodongo's Cavern",),
         'tooltip' : '''\
                     If you move very quickly, it is possible to use
                     the bomb flower at the top of the room to light
                     the eyes. To perform this trick as child is
-                    significantly more difficult, but child will never
-                    be expected to do so unless "Dodongo's Cavern MQ
-                    Back Areas as Child without Explosives" is enabled.
-                    Also, the bombable floor before King Dodongo can be
-                    destroyed with Hammer if hit in the very center.
+                    significantly more difficult than adult.
                     '''},
     'Dodongo\'s Cavern MQ Back Areas as Child without Explosives': {
         'name'    : 'logic_dc_mq_child_back',
@@ -1297,11 +1332,12 @@ logic_tricks = {
                     explosives by throwing a pot at a switch to lower a
                     fire wall, and by defeating Armos to detonate bomb
                     flowers (among other methods). While these techniques
-                    themselves are relatively simple, they're not
-                    relevant unless Dodongo's Cavern dungeon shortcuts
-                    are on or "Dodongo's Cavern MQ Light the Eyes
-                    with Strength" is enabled, which is a trick that
-                    is particularly difficult for child to perform.
+                    themselves are relatively simple, they are not
+                    relevant unless at least one of three options are enabled:
+                    Dodongo's Cavern dungeon shortcuts, the logic trick
+                    "Dodongo's Cavern MQ Light the Eyes with Strength as Adult",
+                    or the trick "Dodongo's Cavern MQ Light the Eyes with 
+                    Strength as Child".
                     '''},
     'Rolling Goron (Hot Rodder Goron) as Child with Strength': {
         'name'    : 'logic_child_rolling_with_strength',

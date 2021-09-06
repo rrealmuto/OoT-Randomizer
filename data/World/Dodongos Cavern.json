@@ -17,13 +17,11 @@
                 has_explosives or is_adult or Slingshot or 
                 Boomerang or Sticks or Kokiri_Sword",
             "Dodongos Cavern GS Scarecrow": "
-                here(can_blast_or_smash or Progressive_Strength_Upgrade) and
-                (can_use(Scarecrow) or can_use(Longshot) or 
-                (logic_dc_scarecrow_gs and (is_adult or can_child_attack)))",
+                (can_use(Scarecrow) or can_use(Longshot) or (logic_dc_scarecrow_gs and (is_adult or
+                (can_child_attack and here(can_blast_or_smash or Progressive_Strength_Upgrade)))))",
             "Dodongos Cavern Deku Scrub Side Room Near Dodongos": "
-                here(can_blast_or_smash or Progressive_Strength_Upgrade) and
-                (is_adult or Slingshot or Sticks or 
-                has_explosives or Kokiri_Sword)",
+                (is_adult or has_explosives or
+                (Progressive_Strength_Upgrade and (Slingshot or Sticks or Kokiri_Sword)))",
             "Dodongos Cavern Deku Scrub Lobby": "True",
             "Dodongos Cavern Gossip Stone": "here(can_blast_or_smash or Progressive_Strength_Upgrade)",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle and here(can_blast_or_smash or Progressive_Strength_Upgrade)"
@@ -31,8 +29,8 @@
         "exits": {
             "Dodongos Cavern Beginning": "True",
             "Dodongos Cavern Staircase Room": "
-                here(is_adult or (has_explosives or Progressive_Strength_Upgrade or Sticks or
-                    (can_use(Dins_Fire) and (Slingshot or has_explosives or Kokiri_Sword))))",
+                here(is_adult or ((has_explosives or Progressive_Strength_Upgrade) and (Sticks or
+                    (can_use(Dins_Fire) and (Slingshot or has_explosives or Kokiri_Sword)))))",
             "Dodongos Cavern Far Bridge": "at('Dodongos Cavern Far Bridge', True)",
             "Dodongos Cavern Boss Area": "dodongos_cavern_shortcuts"
         }

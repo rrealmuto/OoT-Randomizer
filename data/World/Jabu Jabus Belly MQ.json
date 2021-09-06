@@ -13,7 +13,7 @@
         }
     },
     {
-        "region_name": "Jabu Jabus Belly Main",
+        "region_name": "Jabu Jabus Belly Elevator Room",
         "dungeon": "Jabu Jabus Belly",
         "locations": {
             "Jabu Jabus Belly MQ Second Room Lower Chest": "True",
@@ -22,18 +22,39 @@
                 (can_use(Hover_Boots) or can_use(Hookshot) or
                 at('Jabu Jabus Belly Boss Area', is_child) or
                 jabu_shortcuts)",
-            "Jabu Jabus Belly MQ Compass Chest": "can_use(Slingshot)",
-            "Jabu Jabus Belly MQ Basement Near Vines Chest": "can_use(Slingshot)",
-            "Jabu Jabus Belly MQ Basement Near Switches Chest": "can_use(Slingshot)",
-            "Jabu Jabus Belly MQ Boomerang Room Small Chest": "True",
-            "Jabu Jabus Belly MQ Boomerang Chest": "can_child_damage",
-            "Jabu Jabus Belly MQ GS Boomerang Chest Room": "
-                (can_play(Song_of_Time) and can_child_attack) or (logic_jabu_mq_sot_gs and can_use(Boomerang))"
+            "Jabu Jabus Belly MQ Compass Chest": "
+                can_use(Slingshot) or has_bombchus or
+                (logic_jabu_mq_rang_jump and can_use(Boomerang)) or
+                ((can_dive or logic_jabu_mq_jump_dive or Iron_Boots) and
+                (Bow or Hookshot) and is_adult)"
         },
         "exits": {
             "Jabu Jabus Belly Beginning": "True",
-            "Jabu Jabus Belly Depths": "has_explosives and can_use(Boomerang) and can_use(Slingshot)",
+            "Jabu Jabus Belly Main": "can_dive or is_child or logic_jabu_mq_jump_dive or can_use(Iron_Boots)",
             "Jabu Jabus Belly Boss Area": "jabu_shortcuts"
+        }
+    },
+    {
+        "region_name": "Jabu Jabus Belly Main",
+        "dungeon": "Jabu Jabus Belly",
+        "locations": {
+            "Jabu Jabus Belly MQ Basement Near Vines Chest": "can_use(Slingshot)",
+            "Jabu Jabus Belly MQ Basement Near Switches Chest": "can_use(Slingshot)",
+            "Jabu Jabus Belly MQ Boomerang Room Small Chest": "True",
+            "Jabu Jabus Belly MQ Boomerang Chest": "Kokiri_Sword or Slingshot or is_adult",
+            "Jabu Jabus Belly MQ GS Boomerang Chest Room": "
+                (can_play(Song_of_Time) and (can_child_attack or is_adult)) or (logic_jabu_mq_sot_gs and can_use(Boomerang))",
+            "Jabu Jabus Belly MQ GS Invisible Enemies Room": "
+                (at('Jabu Jabus Belly Depths', True) or jabu_shortcuts) and
+                ((can_use(Hookshot) and can_use(Hover_Boots)) or
+                (here((logic_lens_jabu_mq or can_use(Lens_of_Truth)) and
+                    (can_use(Slingshot) or can_use(Bow) or can_use(Longshot) or
+                    (can_use(Hookshot) and can_use(Iron_Boots) and logic_lens_jabu_mq))) and
+                    (can_use(Boomerang) or (can_use(Hookshot) and can_use(Iron_Boots)))))"
+        },
+        "exits": {
+            "Jabu Jabus Belly Elevator Room": "True",
+            "Jabu Jabus Belly Depths": "has_explosives and can_use(Boomerang) and can_use(Slingshot)"
         }
     },
     {
@@ -41,10 +62,7 @@
         "dungeon": "Jabu Jabus Belly",
         "locations": {
             "Jabu Jabus Belly MQ Falling Like Like Room Chest": "True",
-            "Jabu Jabus Belly MQ GS Tailpasaran Room": "Sticks or can_use(Dins_Fire)",
-            "Jabu Jabus Belly MQ GS Invisible Enemies Room": "
-                (logic_lens_jabu_mq or can_use(Lens_of_Truth)) or
-                at('Jabu Jabus Belly Main', can_use(Hover_Boots) and can_use(Hookshot))"
+            "Jabu Jabus Belly MQ GS Tailpasaran Room": "Sticks or can_use(Dins_Fire)"
         },
         "exits": {
             "Jabu Jabus Belly Main": "True",

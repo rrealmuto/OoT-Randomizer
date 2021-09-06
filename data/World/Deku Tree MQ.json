@@ -88,18 +88,18 @@
         "locations": {
             "Deku Tree MQ Deku Scrub": "can_stun_deku",
             "Deku Tree Queen Gohma Heart": "
-                (here(has_fire_source_with_torch) and here(has_shield)) or
-                deku_tree_shortcuts and
+                ((here(has_fire_source_with_torch) and here(has_shield)) or
+                deku_tree_shortcuts) and
                 (is_adult or Kokiri_Sword or Sticks)",
             "Queen Gohma": "
-                (here(has_fire_source_with_torch) and here(has_shield)) or
-                deku_tree_shortcuts and
+                ((here(has_fire_source_with_torch) and here(has_shield)) or
+                deku_tree_shortcuts) and
                 (is_adult or Kokiri_Sword or Sticks)"
         },
         "events": {
             "Deku Tree Clear": "
-                (here(has_fire_source_with_torch) and here(has_shield)) or
-                deku_tree_shortcuts and
+                ((here(has_fire_source_with_torch) and here(has_shield)) or
+                deku_tree_shortcuts) and
                 (is_adult or Kokiri_Sword or Sticks)"
         },
         "exits" : {
