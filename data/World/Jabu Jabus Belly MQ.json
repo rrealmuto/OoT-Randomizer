@@ -23,10 +23,10 @@
                 at('Jabu Jabus Belly Boss Area', is_child) or
                 jabu_shortcuts)",
             "Jabu Jabus Belly MQ Compass Chest": "
-                can_use(Slingshot) or has_bombchus or
+                can_use(Slingshot) or (has_bombchus and is_child) or
                 (logic_jabu_mq_rang_jump and can_use(Boomerang)) or
                 ((can_dive or logic_jabu_mq_jump_dive or Iron_Boots) and
-                (Bow or Hookshot) and is_adult)"
+                (Bow or Hookshot or has_bombchus) and is_adult)"
         },
         "exits": {
             "Jabu Jabus Belly Beginning": "True",
