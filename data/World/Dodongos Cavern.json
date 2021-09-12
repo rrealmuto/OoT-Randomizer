@@ -14,15 +14,15 @@
         "locations": {
             "Dodongos Cavern Map Chest": "here(can_blast_or_smash or Progressive_Strength_Upgrade)",
             "Dodongos Cavern GS Side Room Near Lower Lizalfos": "
-                has_explosives or is_adult or Slingshot or 
-                Boomerang or Sticks or Kokiri_Sword",
+                is_adult or has_explosives or
+                (Progressive_Strength_Upgrade and (Slingshot or Boomerang or Sticks or Kokiri_Sword))",
             "Dodongos Cavern GS Scarecrow": "
                 (can_use(Scarecrow) or can_use(Longshot) or (logic_dc_scarecrow_gs and (is_adult or
                 (can_child_attack and here(can_blast_or_smash or Progressive_Strength_Upgrade)))))",
             "Dodongos Cavern Deku Scrub Side Room Near Dodongos": "
                 (is_adult or has_explosives or
-                (Progressive_Strength_Upgrade and (Slingshot or Sticks or Kokiri_Sword)))",
-            "Dodongos Cavern Deku Scrub Lobby": "True",
+                (Progressive_Strength_Upgrade and can_stun_deku))",
+            "Dodongos Cavern Deku Scrub Lobby": "can_stun_deku",
             "Dodongos Cavern Gossip Stone": "here(can_blast_or_smash or Progressive_Strength_Upgrade)",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle and here(can_blast_or_smash or Progressive_Strength_Upgrade)"
         },
@@ -39,7 +39,7 @@
         "region_name": "Dodongos Cavern Staircase Room",
         "dungeon": "Dodongos Cavern",
         "locations": {
-            "Dodongos Cavern Compass Chest": "here(can_blast_or_smash or Progressive_Strength_Upgrade)",
+            "Dodongos Cavern Compass Chest": "can_blast_or_smash or Progressive_Strength_Upgrade",
             "Dodongos Cavern GS Vines Above Stairs": "
                 has_explosives or Progressive_Strength_Upgrade or can_use(Dins_Fire) or
                 (logic_dc_staircase and can_use(Bow)) or
@@ -67,9 +67,11 @@
         "exits": {
             "Dodongos Cavern Lobby": "True",
             "Dodongos Cavern Far Bridge": "
+                (is_adult and (Hover_Boots or can_use(Longshot) or logic_dc_jump)) or
+                (here(can_blast_or_smash) and
                 (is_child and (Slingshot or
                     (logic_dc_slingshot_skip and (Sticks or has_explosives or Kokiri_Sword)))) or 
-                (is_adult and (Bow or Hover_Boots or can_use(Longshot) or logic_dc_jump))"
+                (is_adult and Bow))"
         }
     },
     {

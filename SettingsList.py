@@ -439,6 +439,16 @@ logic_tricks = {
                     - Spirit Temple Statue Room Northeast Chest
                     - Spirit Temple GS Lobby
                     '''},
+    'Spirit Temple Main Room Hookshot to Boss Platform': {
+        'name'    : 'logic_spirit_platform_hookshot',
+        'tags'    : ("Spirit Temple", "Entrance",),
+        'tooltip' : '''\
+                    Precise hookshot aiming at the platform chains can be
+                    used to reach the boss platform from the middle landings.
+                    Using a jumpslash immediately after reaching a chain
+                    makes aiming more lenient. Relevant only when Spirit
+                    Temple boss shortcuts are on.
+                    '''},
     'Spirit Temple MQ Sun Block Room GS with Boomerang': {
         'name'    : 'logic_spirit_mq_sun_block_gs',
         'tags'    : ("Spirit Temple", "Skulltulas",),
@@ -447,23 +457,15 @@ logic_tricks = {
                     curves through the side of the glass block
                     to hit the Gold Skulltula.
                     '''},
-    'Jabu Scrub as Adult with Jump Dive': {
-        'name'    : 'logic_jabu_scrub_jump_dive',
+    'Jabu Underwater Alcove as Adult with Jump Dive': {
+        'name'    : 'logic_jabu_alcove_jump_dive',
         'tags'    : ("Jabu Jabu's Belly", "Entrance",),
         'tooltip' : '''\
                     Standing above the underwater tunnel leading to the scrub,
                     jump down and swim through the tunnel. This allows adult to
-                    access the scrub with no Scale or Iron Boots.
-                    '''},
-    'Jabu MQ Compass Chest as Adult with Jump Dive': {
-        'name'    : 'logic_jabu_mq_jump_dive',
-        'tags'    : ("Jabu Jabu's Belly", "Entrance",),
-        'tooltip' : '''\
-                    Standing above the underwater tunnel leading to the Compass
-                    chest, jump down and swim through the tunnel. This allows
-                    adult to access Compass chest with no Scale or Iron Boots.
-                    It also allows adult to activate the nearby switch to open
-                    the door deeper into Jabu.
+                    access the alcove with no Scale or Iron Boots. In vanilla Jabu,
+                    this alcove has a business scrub. In MQ Jabu, it has the compass
+                    chest and a door switch for the main floor.
                     '''},
     'Jabu MQ Compass Chest as Child with Boomerang': {
         'name'    : 'logic_jabu_mq_rang_jump',
@@ -1302,8 +1304,7 @@ logic_tricks = {
         'tooltip' : '''\
                     If you move very quickly, it is possible to use
                     the bomb flower at the top of the room to light
-                    the eyes. Also, the bombable floor before King Dodongo
-                    can be destroyed with Hammer if hit in the very center.
+                    the eyes.
                     '''},
     'Dodongo\'s Cavern MQ Smash the Boss Lobby Floor': {
         'name'    : 'logic_dc_mq_hammer_floor',
@@ -1311,9 +1312,8 @@ logic_tricks = {
         'tooltip' : '''\
                     The bombable floor before King Dodongo can be destroyed
                     with Hammer if hit in the very center. This is only
-                    relevant if either of Dodongo's Cavern dungeon shortcuts
-                    or "Dodongo's Cavern MQ Light the Eyes with Strength
-                    as Adult" are on.
+                    relevant if either the adult or child variant of
+                    "Dodongo's Cavern MQ Light the Eyes with Strength" are on.
                     '''},
     'Dodongo\'s Cavern MQ Light the Eyes with Strength as Child': {
         'name'    : 'logic_dc_mq_eyes_child',
@@ -1324,20 +1324,18 @@ logic_tricks = {
                     the eyes. To perform this trick as child is
                     significantly more difficult than adult.
                     '''},
-    'Dodongo\'s Cavern MQ Back Areas as Child without Explosives': {
+    'Dodongo\'s Cavern MQ Armos Wall as Child without Explosives': {
         'name'    : 'logic_dc_mq_child_back',
         'tags'    : ("Dodongo's Cavern",),
         'tooltip' : '''\
-                    Child can progress through the back areas without
-                    explosives by throwing a pot at a switch to lower a
-                    fire wall, and by defeating Armos to detonate bomb
-                    flowers (among other methods). While these techniques
-                    themselves are relatively simple, they are not
-                    relevant unless at least one of three options are enabled:
-                    Dodongo's Cavern dungeon shortcuts, the logic trick
-                    "Dodongo's Cavern MQ Light the Eyes with Strength as Adult",
-                    or the trick "Dodongo's Cavern MQ Light the Eyes with 
-                    Strength as Child".
+                    Child can activate the switch in the back of Dodongo's
+                    Cavern behind an army of Armos by defeating Armos to
+                    detonate bomb flowers. The Armos' position can be manipulated
+                    by standing under the bomb flower or hitting the right-most
+                    Armos and running into the nearby alcove. This is not
+                    relevant unless at least one of two options are enabled:
+                    Dodongo's Cavern dungeon shortcuts, or the trick
+                    "Dodongo's Cavern MQ Light the Eyes with Strength as Child".
                     '''},
     'Rolling Goron (Hot Rodder Goron) as Child with Strength': {
         'name'    : 'logic_child_rolling_with_strength',
@@ -2250,7 +2248,7 @@ setting_infos = [
             'glitchless': {'settings' : ['tricks_list_msg']},
             'glitched'  : {'settings' : ['allowed_tricks', 'shuffle_interior_entrances', 'shuffle_grotto_entrances',
                                          'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'owl_drops',
-                                         'warp_songs', 'spawn_positions', 'mq_dungeons_random', 'mq_dungeons', ]},
+                                         'warp_songs', 'spawn_positions', 'mq_dungeons_random', 'mq_dungeons', 'dungeon_shortcuts']},
             'none'      : {'settings' : ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
         },
         shared         = True,

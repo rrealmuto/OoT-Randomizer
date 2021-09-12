@@ -2097,18 +2097,6 @@ def set_jabu_stone_actors(rom, jabu_actor_type):
 
 def set_spirit_shortcut_actors(rom):
     def set_spirit_shortcut(rom, actor_id, actor, scene):
-        # Hack to swap silver block position in the vanilla shortcut hallway
-        # to allow movement from lobby -> statue room. If you want to use this,
-        # only set the flag for the east block pushed, then use this to move
-        # the north block to the other side of the hole.
-        #if actor_id == 0x00FF and scene == 6: # push blocks in spirit temple
-        #    actor_x = rom.read_int16(actor + 2)
-        #    actor_y = rom.read_int16(actor + 4)
-        #    actor_z = rom.read_int16(actor + 6)
-        #    # Move north block from near statue door to other side of its hole near the shortcut elevator
-        #    if actor_x == 0x0154 and actor_y == 0x019D and actor_z == 0xFE33:
-        #        rom.write_int16(actor + 2, 0x021C)
-        #        rom.write_int16(actor + 6, 0xFEFB)
         if actor_id == 0x018e and scene == 6: # raise initial elevator height
             rom.write_int16(actor + 4, 0x015E)
 

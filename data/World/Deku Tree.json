@@ -6,7 +6,7 @@
             "Deku Tree Map Chest": "True",
             "Deku Tree Compass Chest": "True",
             "Deku Tree Compass Room Side Chest": "True",
-            "Deku Tree Basement Chest": "is_adult or can_child_attack or Nuts",
+            "Deku Tree Basement Chest": "is_adult or can_child_attack or Nuts or deku_tree_shortcuts",
             "Deku Tree GS Compass Room": "is_adult or can_child_attack",
             "Deku Tree GS Basement Vines": "
                 can_use_projectile or can_use(Dins_Fire) or

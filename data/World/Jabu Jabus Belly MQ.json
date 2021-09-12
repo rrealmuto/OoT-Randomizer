@@ -18,19 +18,19 @@
         "locations": {
             "Jabu Jabus Belly MQ Second Room Lower Chest": "True",
             "Jabu Jabus Belly MQ Second Room Upper Chest": "
-                can_use(Slingshot) and 
+                here(can_use(Slingshot)) and 
                 (can_use(Hover_Boots) or can_use(Hookshot) or
                 at('Jabu Jabus Belly Boss Area', is_child) or
                 jabu_shortcuts)",
             "Jabu Jabus Belly MQ Compass Chest": "
                 can_use(Slingshot) or (has_bombchus and is_child) or
                 (logic_jabu_mq_rang_jump and can_use(Boomerang)) or
-                ((can_dive or logic_jabu_mq_jump_dive or Iron_Boots) and
+                ((can_dive or logic_jabu_alcove_jump_dive or Iron_Boots) and
                 (Bow or Hookshot or has_bombchus) and is_adult)"
         },
         "exits": {
             "Jabu Jabus Belly Beginning": "True",
-            "Jabu Jabus Belly Main": "can_dive or is_child or logic_jabu_mq_jump_dive or can_use(Iron_Boots)",
+            "Jabu Jabus Belly Main": "can_dive or here(is_child) or logic_jabu_alcove_jump_dive or can_use(Iron_Boots)",
             "Jabu Jabus Belly Boss Area": "jabu_shortcuts"
         }
     },
