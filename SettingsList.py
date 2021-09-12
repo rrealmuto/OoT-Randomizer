@@ -441,7 +441,7 @@ logic_tricks = {
                     '''},
     'Spirit Temple Main Room Hookshot to Boss Platform': {
         'name'    : 'logic_spirit_platform_hookshot',
-        'tags'    : ("Spirit Temple", "Entrance",),
+        'tags'    : ("Spirit Temple",),
         'tooltip' : '''\
                     Precise hookshot aiming at the platform chains can be
                     used to reach the boss platform from the middle landings.
