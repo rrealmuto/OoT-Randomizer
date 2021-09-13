@@ -33,7 +33,7 @@
         "locations": {
             "Jabu Jabus Belly Map Chest": "True",
             "Jabu Jabus Belly Compass Chest": "True",
-            "Nut Pot": "True"
+            "Nut Pot": "Sticks or Kokiri_Sword"
         },
         "exits": {
             "Jabu Jabus Belly Main": "True",

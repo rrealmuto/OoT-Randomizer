@@ -20,8 +20,9 @@
                 (can_use(Scarecrow) or can_use(Longshot) or (logic_dc_scarecrow_gs and (is_adult or
                 (can_child_attack and here(can_blast_or_smash or Progressive_Strength_Upgrade)))))",
             "Dodongos Cavern Deku Scrub Side Room Near Dodongos": "
-                (is_adult or has_explosives or
-                (Progressive_Strength_Upgrade and can_stun_deku))",
+                can_blast_or_smash and
+                (is_adult or Slingshot or Sticks or
+                has_explosives or Kokiri_Sword)",
             "Dodongos Cavern Deku Scrub Lobby": "can_stun_deku",
             "Dodongos Cavern Gossip Stone": "here(can_blast_or_smash or Progressive_Strength_Upgrade)",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle and here(can_blast_or_smash or Progressive_Strength_Upgrade)"
