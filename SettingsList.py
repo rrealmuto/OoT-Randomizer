@@ -608,6 +608,24 @@ logic_tricks = {
                     a small piece of ground that you can stand on that
                     you can just jump down to.
                     '''},
+    'Shadow Temple MQ Windy Walkway Reverse without Hover Boots': {
+        'name'    : 'logic_shadow_mq_windy_walkway',
+        'tags'    : ("Shadow Temple",),
+        'tooltip' : '''\
+                    With shadow dungeon shortcuts enabled, it is possible
+                    to jump from the alcove in the windy hallway to the
+                    middle platform by holding forward after opening the
+                    door. You must wait a fan cycle in order to climb up
+                    from the ledge.
+                    '''},
+    'Shadow Temple MQ After Wind Gold Skulltula with Nothing': {
+        'name'    : 'logic_shadow_mq_after_wind_gs',
+        'tags'    : ("Shadow Temple","Skulltulas",),
+        'tooltip' : '''\
+                    The Gold Skulltula in the rubble pile can be killed
+                    with a sword slash without blowing up the rubble. The
+                    reward will appear above the rubble pile.
+                    '''},
     'Backflip over Mido as Adult': {
         'name'    : 'logic_mido_backflip',
         'tags'    : ("the Lost Woods",),
@@ -901,6 +919,15 @@ logic_tricks = {
                     gorge, you can knock down the statue without
                     needing a Bow.
                     Applies in both vanilla and MQ Shadow.
+                    '''},
+    'Shadow Temple Bongo Bongo with Nothing': {
+        'name'    : 'logic_shadow_bongo',
+        'tags'    : ("Shadow Temple",),
+        'tooltip' : '''\
+                    If Shadow Temple dungeon shortcuts and "Shadow
+                    Temple River Statue with Bombchu" are enabled, 
+                    Bongo Bongo can be fought without projectiles
+                    using precise sword slashes.
                     '''},
     'Stop Link the Goron with Din\'s Fire': {
         'name'    : 'logic_link_goron_dins',
@@ -1491,33 +1518,59 @@ logic_tricks = {
                     Removes the requirements for the Lens of Truth
                     in Jabu MQ.
                     '''},
-    'Shadow Temple MQ before Invisible Moving Platform without Lens of Truth': {
+    'Shadow Temple MQ Stationary Objects without Lens of Truth': {
         'name'    : 'logic_lens_shadow_mq',
         'tags'    : ("Lens of Truth","Shadow Temple",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
-                    in Shadow Temple MQ before the invisible moving platform.
+                    in Shadow Temple MQ for most areas in the dungeon.
+                    See "Shadow Temple MQ Invisible Moving Platform
+                    without Lens of Truth", "Shadow Temple MQ Invisible
+                    Blades Silves Rupees without Lens of Truth", and
+                    "Shadow Temple MQ 2nd Dead Hand without Lens of Truth"
+                    for exceptions.
                     '''},
-    'Shadow Temple MQ beyond Invisible Moving Platform without Lens of Truth': {
-        'name'    : 'logic_lens_shadow_mq_back',
+    'Shadow Temple MQ Invisible Moving Platform without Lens of Truth': {
+        'name'    : 'logic_lens_shadow_mq_platform',
         'tags'    : ("Lens of Truth","Shadow Temple",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
-                    in Shadow Temple MQ beyond the invisible moving platform.
+                    in Shadow Temple MQ to cross the invisible moving
+                    platform in the huge pit room in either direction.
                     '''},
-    'Shadow Temple before Invisible Moving Platform without Lens of Truth': {
+    'Shadow Temple MQ Invisible Blades Silves Rupees without Lens of Truth': {
+        'name'    : 'logic_lens_shadow_mq_invisible_blades',
+        'tags'    : ("Lens of Truth","Shadow Temple",),
+        'tooltip' : '''\
+                    Removes the requirement for the Lens of Truth
+                    in Shadow Temple MQ for the Invisible Blades room
+                    silver rupee collection.
+                    '''},
+    'Shadow Temple MQ 2nd Dead Hand without Lens of Truth': {
+        'name'    : 'logic_lens_shadow_mq_dead_hand',
+        'tags'    : ("Lens of Truth","Shadow Temple",),
+        'tooltip' : '''\
+                    Dead Hand can spawn out of bounds in the back room of
+                    Shadow Temple, making him unreachable until the room
+                    is reloaded. The only way to tell if this happened is
+                    with Lens of Truth. This trick removes that safety net.
+                    '''},
+    'Shadow Temple Stationary Objects without Lens of Truth': {
         'name'    : 'logic_lens_shadow',
         'tags'    : ("Lens of Truth","Shadow Temple",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
-                    in Shadow Temple before the invisible moving platform.
+                    in Shadow Temple for most areas in the dungeon
+                    except for crossing the moving platform in the huge
+                    pit room.
                     '''},
-    'Shadow Temple beyond Invisible Moving Platform without Lens of Truth': {
-        'name'    : 'logic_lens_shadow_back',
+    'Shadow Temple Invisible Moving Platform without Lens of Truth': {
+        'name'    : 'logic_lens_shadow_platform',
         'tags'    : ("Lens of Truth","Shadow Temple",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
-                    in Shadow Temple beyond the invisible moving platform.
+                    in Shadow Temple to cross the invisible moving
+                    platform in the huge pit room in either direction.
                     '''},
     'Spirit Temple MQ without Lens of Truth': {
         'name'    : 'logic_lens_spirit_mq',
