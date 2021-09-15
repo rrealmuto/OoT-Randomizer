@@ -614,9 +614,11 @@ logic_tricks = {
         'tooltip' : '''\
                     With shadow dungeon shortcuts enabled, it is possible
                     to jump from the alcove in the windy hallway to the
-                    middle platform by holding forward after opening the
-                    door. You must wait a fan cycle in order to climb up
-                    from the ledge.
+                    middle platform. There are two methods: wait out the fan
+                    opposite the door and hold forward, or jump to the right
+                    to be pushed by the fan there towards the platform ledge.
+                    Note that jumps of this distance are inconsistent, but
+                    still possible.
                     '''},
     'Shadow Temple MQ After Wind Gold Skulltula with Nothing': {
         'name'    : 'logic_shadow_mq_after_wind_gs',
@@ -1526,7 +1528,7 @@ logic_tricks = {
                     in Shadow Temple MQ for most areas in the dungeon.
                     See "Shadow Temple MQ Invisible Moving Platform
                     without Lens of Truth", "Shadow Temple MQ Invisible
-                    Blades Silves Rupees without Lens of Truth", and
+                    Blades Silver Rupees without Lens of Truth", and
                     "Shadow Temple MQ 2nd Dead Hand without Lens of Truth"
                     for exceptions.
                     '''},
@@ -1538,13 +1540,13 @@ logic_tricks = {
                     in Shadow Temple MQ to cross the invisible moving
                     platform in the huge pit room in either direction.
                     '''},
-    'Shadow Temple MQ Invisible Blades Silves Rupees without Lens of Truth': {
+    'Shadow Temple MQ Invisible Blades Silver Rupees without Lens of Truth': {
         'name'    : 'logic_lens_shadow_mq_invisible_blades',
         'tags'    : ("Lens of Truth","Shadow Temple",),
         'tooltip' : '''\
-                    Removes the requirement for the Lens of Truth
-                    in Shadow Temple MQ for the Invisible Blades room
-                    silver rupee collection.
+                    Removes the requirement for the Lens of Truth or
+                    Nayru's Love in Shadow Temple MQ for the Invisible
+                    Blades room silver rupee collection.
                     '''},
     'Shadow Temple MQ 2nd Dead Hand without Lens of Truth': {
         'name'    : 'logic_lens_shadow_mq_dead_hand',

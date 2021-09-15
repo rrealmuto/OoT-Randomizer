@@ -30,14 +30,16 @@
             "Shadow Temple Early Silver Rupee Chest": "True"
         },
         "exits": {
-            # If the shortcut is open, reverse shadow becomes an option, so we need to check for 4 keys.
-            # We don't need to check for 5 since if they can use 4 and the shortcut is open then the last center door is irrelevant.
+            # If the shortcut is open, reverse shadow becomes an option, so we need to check for 4 keys with Lens/trick
+            # or all 5 keys. If the moving platform lens trick is off, forward shadow is the only way to access
+            # the huge pit checks without Lens of Truth. Getting to the invisible blades room in reverse uses the falling
+            # elevator near the Beamos.
             # Also, we only need to check shortcut keys here and at boat, since key requirements are always the same.
             "Shadow Temple Huge Pit": "
                 has_explosives and
-                ((Small_Key_Shadow_Temple, 1) and not shadow_temple_shortcuts) or
-                (Small_Key_Shadow_Temple, 5) or
-                ((Small_Key_Shadow_Temple, 4) and (logic_lens_shadow_platform or can_use(Lens_of_Truth)))",
+                    (((Small_Key_Shadow_Temple, 1) and not shadow_temple_shortcuts) or
+                    (Small_Key_Shadow_Temple, 5) or
+                    ((Small_Key_Shadow_Temple, 4) and (logic_lens_shadow_platform or can_use(Lens_of_Truth))))",
             "Shadow Temple Boat": "shadow_temple_shortcuts"
         }
     },
@@ -72,9 +74,7 @@
         "exits": {
             "Shadow Temple Wind Tunnel": "
                 Progressive_Hookshot and (Small_Key_Shadow_Temple, 3)",
-            "Shadow Temple Huge Pit": "
-                (Small_Key_Shadow_Temple, 5) or
-                ((Small_Key_Shadow_Temple, 4) and (logic_lens_shadow_platform or can_use(Lens_of_Truth)))"
+            "Shadow Temple Huge Pit": "logic_lens_shadow_platform or can_use(Lens_of_Truth)"
         }
     },
     {
