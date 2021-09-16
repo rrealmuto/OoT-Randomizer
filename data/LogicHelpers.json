@@ -117,7 +117,7 @@
         (shuffle_ganon_bosskey == 'dungeons' and has_dungeon_rewards(ganon_bosskey_rewards)) or
         (shuffle_ganon_bosskey == 'tokens' and (Gold_Skulltula_Token, ganon_bosskey_tokens))) or
         (shuffle_ganon_bosskey != 'stones' and shuffle_ganon_bosskey != 'medallions' and
-         shuffle_ganon_bosskey != 'dungeons' and shuffle_ganon_bosskey != 'tokens')"
+         shuffle_ganon_bosskey != 'dungeons' and shuffle_ganon_bosskey != 'tokens')",
 
     # Dungeon Shortcuts
     "deku_tree_shortcuts": "'deku_tree' in dungeon_shortcuts",
