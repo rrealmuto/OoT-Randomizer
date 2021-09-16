@@ -467,9 +467,9 @@ logic_tricks = {
                     this alcove has a business scrub. In MQ Jabu, it has the compass
                     chest and a door switch for the main floor.
                     '''},
-    'Jabu MQ Compass Chest as Child with Boomerang': {
+    'Jabu MQ Compass Chest with Boomerang': {
         'name'    : 'logic_jabu_mq_rang_jump',
-        'tags'    : ("Jabu Jabu's Belly", "Entrance",),
+        'tags'    : ("Jabu Jabu's Belly",),
         'tooltip' : '''\
                     Boomerang can reach the cow switch to spawn the chest by
                     targeting the cow, jumping off of the ledge where the
@@ -926,8 +926,7 @@ logic_tricks = {
         'name'    : 'logic_shadow_bongo',
         'tags'    : ("Shadow Temple",),
         'tooltip' : '''\
-                    If Shadow Temple dungeon shortcuts and "Shadow
-                    Temple River Statue with Bombchu" are enabled, 
+                    If Shadow Temple dungeon shortcuts are enabled, 
                     Bongo Bongo can be fought without projectiles
                     using precise sword slashes.
                     '''},

@@ -45,15 +45,15 @@
         "region_name": "Adult Spirit Temple",
         "dungeon": "Spirit Temple",
         "locations": {
-            "Spirit Temple MQ Child Climb South Chest": "(Small_Key_Spirit_Temple, 7)",
+            "Spirit Temple MQ Child Climb South Chest": "(Small_Key_Spirit_Temple, 7) and has_explosives",
             "Spirit Temple MQ Statue Room Lullaby Chest": "can_play(Zeldas_Lullaby)",
             "Spirit Temple MQ Statue Room Invisible Chest": "
                 logic_lens_spirit_mq or can_use(Lens_of_Truth)",
-            "Spirit Temple MQ Beamos Room Chest": "(Small_Key_Spirit_Temple, 5)",
+            "Spirit Temple MQ Beamos Room Chest": "(Small_Key_Spirit_Temple, 5) and has_explosives",
             "Spirit Temple MQ Chest Switch Chest": "
-                (Small_Key_Spirit_Temple, 5) and can_play(Song_of_Time)",
+                (Small_Key_Spirit_Temple, 5) and can_play(Song_of_Time) and has_explosives",
             "Spirit Temple MQ Boss Key Chest": "
-                (Small_Key_Spirit_Temple, 5) and can_play(Song_of_Time) and Mirror_Shield",
+                (Small_Key_Spirit_Temple, 5) and can_play(Song_of_Time) and Mirror_Shield and has_explosives",
             "Spirit Temple MQ GS Nine Thrones Room West": "(Small_Key_Spirit_Temple, 7)",
             "Spirit Temple MQ GS Nine Thrones Room North": "(Small_Key_Spirit_Temple, 7)"
         },
@@ -66,7 +66,7 @@
                 (Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby) and Megaton_Hammer",
             "Mirror Shield Hand": "
                 (Small_Key_Spirit_Temple, 5) and can_play(Song_of_Time) and
-                (logic_lens_spirit_mq or can_use(Lens_of_Truth))",
+                (logic_lens_spirit_mq or can_use(Lens_of_Truth)) and has_explosives",
             "Spirit Temple Boss Platform": "spirit_temple_shortcuts"
         }
     },
@@ -78,7 +78,8 @@
         "region_name": "Spirit Temple Shared",
         "dungeon": "Spirit Temple",
         "locations": {
-            "Spirit Temple MQ Child Climb North Chest": "(Small_Key_Spirit_Temple, 6)",
+            "Spirit Temple MQ Child Climb North Chest": "
+                (Small_Key_Spirit_Temple, 6) and has_explosives and (is_adult or Bombs)",
             "Spirit Temple MQ Compass Chest": "
                 (can_use(Slingshot) and (Small_Key_Spirit_Temple, 7)) or
                 can_use(Bow) or

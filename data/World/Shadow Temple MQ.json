@@ -117,20 +117,13 @@
     {
         "region_name": "Shadow Temple Wind Tunnel",
         "dungeon": "Shadow Temple",
-        "exits": {
-            "Shadow Temple Wind Hint": "
-                not shadow_temple_shortcuts or (Small_Key_Shadow_Temple, 6) or
-                Hover_Boots or logic_shadow_mq_windy_walkway",
-            "Shadow Temple After Wind": "True",
-            "Shadow Temple Invisible Spikes": "Hookshot"
-        }
-    },
-    {
-        "region_name": "Shadow Temple Wind Hint",
-        "dungeon": "Shadow Temple",
         "locations": {
             "Shadow Temple MQ Wind Hint Chest": "True",
             "Shadow Temple MQ GS Wind Hint Room": "Hookshot"
+        },
+        "exits": {
+            "Shadow Temple After Wind": "True",
+            "Shadow Temple Invisible Spikes": "Hookshot"
         }
     },
     {
@@ -165,7 +158,7 @@
         "exits": {
             "Shadow Temple Invisible Maze": "Bow and can_play(Song_of_Time) and Longshot",
             "Shadow Temple Near Boss": "
-                (Bow or (logic_shadow_statue and has_bombchus)) and Hover_Boots"
+                (Bow or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts) and Hover_Boots"
         }
     },
     {
@@ -189,7 +182,7 @@
                 Boss_Key_Shadow_Temple and (logic_shadow_bongo or Bow or Hookshot)",
             "Bongo Bongo": "
                 Boss_Key_Shadow_Temple and (logic_shadow_bongo or Bow or Hookshot)",
-            "Shadow Temple MQ GS Near Boss": "True"
+            "Shadow Temple MQ GS Near Boss": "has_projectile(adult) or can_use(Dins_Fire)"
         }
     }
 ]

@@ -150,7 +150,7 @@
         "region_name": "Forest Temple Boss Region",
         "dungeon": "Forest Temple",
         "locations": {
-            "Forest Temple Basement Chest": "True",
+            "Forest Temple Basement Chest": "is_adult or can_child_attack or Nuts",
             "Forest Temple Phantom Ganon Heart": "
                 Boss_Key_Forest_Temple and
                 ((is_adult and (Bow or Hookshot)) or

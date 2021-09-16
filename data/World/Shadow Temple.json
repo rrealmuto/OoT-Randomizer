@@ -124,7 +124,8 @@
         "exits": {
             "Shadow Temple Boss Room": "
                 (Small_Key_Shadow_Temple, 5) and Boss_Key_Shadow_Temple and
-                (Bow or can_use(Distant_Scarecrow) or (logic_shadow_statue and has_bombchus))"
+                (Bow or can_use(Distant_Scarecrow) or (logic_shadow_statue and has_bombchus) or
+                shadow_temple_shortcuts)"
         }
     },
     {

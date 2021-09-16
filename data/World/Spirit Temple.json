@@ -137,8 +137,12 @@
                     and (Progressive_Hookshot or Hover_Boots or logic_spirit_lobby_jump))",
             # Moved out of Early Adult Spirit to allow access with dungeon shortcuts
             # The exit to Early Adult requires 5 small keys to get past the door
-            "Spirit Temple First Mirror Left Chest": "((Small_Key_Spirit_Temple, 3) and is_adult) or (can_use(Hookshot) and spirit_temple_shortcuts)",
-            "Spirit Temple First Mirror Right Chest": "((Small_Key_Spirit_Temple, 3) and is_adult) or (can_use(Hookshot) and spirit_temple_shortcuts)"
+            "Spirit Temple First Mirror Left Chest": "
+                ((Small_Key_Spirit_Temple, 3) and can_use(Silver_Gauntlets)) or 
+                (can_use(Hookshot) and spirit_temple_shortcuts)",
+            "Spirit Temple First Mirror Right Chest": "
+                ((Small_Key_Spirit_Temple, 3) and can_use(Silver_Gauntlets)) or
+                (can_use(Hookshot) and spirit_temple_shortcuts)"
         },
         "exits": {
             "Spirit Temple Outdoor Hands": "True",
