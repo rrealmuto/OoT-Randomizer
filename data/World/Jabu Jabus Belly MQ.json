@@ -41,7 +41,7 @@
             "Jabu Jabus Belly MQ Basement Near Vines Chest": "can_use(Slingshot)",
             "Jabu Jabus Belly MQ Basement Near Switches Chest": "can_use(Slingshot)",
             "Jabu Jabus Belly MQ Boomerang Room Small Chest": "True",
-            "Jabu Jabus Belly MQ Boomerang Chest": "Kokiri_Sword or Slingshot or is_adult",
+            "Jabu Jabus Belly MQ Boomerang Chest": "Kokiri_Sword or Slingshot or Bombs or Sticks or is_adult",
             "Jabu Jabus Belly MQ GS Boomerang Chest Room": "
                 (can_play(Song_of_Time) and (can_child_attack or is_adult)) or (logic_jabu_mq_sot_gs and can_use(Boomerang))",
             "Jabu Jabus Belly MQ GS Invisible Enemies Room": "

@@ -22,7 +22,7 @@
             "Dodongos Cavern Deku Scrub Side Room Near Dodongos": "
                 (can_blast_or_smash or Progressive_Strength_Upgrade) and
                 (is_adult or Slingshot or Sticks or
-                has_explosives or Kokiri_Sword)",
+                Bombs or Kokiri_Sword)",
             "Dodongos Cavern Deku Scrub Lobby": "can_stun_deku",
             "Dodongos Cavern Gossip Stone": "here(can_blast_or_smash or Progressive_Strength_Upgrade)",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle and (can_blast_or_smash or Progressive_Strength_Upgrade)"
@@ -31,7 +31,7 @@
             "Dodongos Cavern Beginning": "True",
             "Dodongos Cavern Staircase Room": "
                 here(is_adult or ((has_explosives or Progressive_Strength_Upgrade) and (Sticks or
-                    (can_use(Dins_Fire) and (Slingshot or has_explosives or Kokiri_Sword)))))",
+                    (can_use(Dins_Fire) and (Slingshot or Bombs or Kokiri_Sword)))))",
             "Dodongos Cavern Far Bridge": "at('Dodongos Cavern Far Bridge', True)",
             "Dodongos Cavern Boss Area": "dodongos_cavern_shortcuts"
         }
@@ -71,7 +71,7 @@
                 (is_adult and (Hover_Boots or can_use(Longshot) or logic_dc_jump)) or
                 ((here(can_blast_or_smash) or Progressive_Strength_Upgrade) and
                 (is_child and (Slingshot or
-                    (logic_dc_slingshot_skip and (Sticks or has_explosives or Kokiri_Sword)))) or 
+                    (logic_dc_slingshot_skip and (Sticks or Bombs or Kokiri_Sword)))) or 
                 (is_adult and Bow))"
         }
     },

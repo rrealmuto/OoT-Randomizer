@@ -51,9 +51,9 @@
                 logic_lens_spirit_mq or can_use(Lens_of_Truth)",
             "Spirit Temple MQ Beamos Room Chest": "(Small_Key_Spirit_Temple, 5) and has_explosives",
             "Spirit Temple MQ Chest Switch Chest": "
-                (Small_Key_Spirit_Temple, 5) and can_play(Song_of_Time) and has_explosives",
+                (Small_Key_Spirit_Temple, 5) and can_play(Song_of_Time) and (has_explosives or Nuts)",
             "Spirit Temple MQ Boss Key Chest": "
-                (Small_Key_Spirit_Temple, 5) and can_play(Song_of_Time) and Mirror_Shield and has_explosives",
+                (Small_Key_Spirit_Temple, 5) and can_play(Song_of_Time) and Mirror_Shield and (has_explosives or Nuts)",
             "Spirit Temple MQ GS Nine Thrones Room West": "(Small_Key_Spirit_Temple, 7)",
             "Spirit Temple MQ GS Nine Thrones Room North": "(Small_Key_Spirit_Temple, 7)"
         },
@@ -66,7 +66,7 @@
                 (Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby) and Megaton_Hammer",
             "Mirror Shield Hand": "
                 (Small_Key_Spirit_Temple, 5) and can_play(Song_of_Time) and
-                (logic_lens_spirit_mq or can_use(Lens_of_Truth)) and has_explosives",
+                (logic_lens_spirit_mq or can_use(Lens_of_Truth)) and (has_explosives or Nuts)",
             "Spirit Temple Boss Platform": "spirit_temple_shortcuts"
         }
     },
@@ -79,7 +79,7 @@
         "dungeon": "Spirit Temple",
         "locations": {
             "Spirit Temple MQ Child Climb North Chest": "
-                (Small_Key_Spirit_Temple, 6) and has_explosives and (is_adult or Bombs)",
+                (Small_Key_Spirit_Temple, 6) and has_explosives",
             "Spirit Temple MQ Compass Chest": "
                 (can_use(Slingshot) and (Small_Key_Spirit_Temple, 7)) or
                 can_use(Bow) or
@@ -96,12 +96,12 @@
             "Silver Gauntlets Hand": "
                 ((Small_Key_Spirit_Temple, 7) and
                     (can_play(Song_of_Time) or logic_spirit_mq_sun_block_sot or is_adult)) or 
-                ((Small_Key_Spirit_Temple, 4) and can_play(Song_of_Time) and 
+                ((Small_Key_Spirit_Temple, 4) and can_play(Song_of_Time) and (has_explosives or Nuts) and
                     (logic_lens_spirit_mq or can_use(Lens_of_Truth)))",
             "Desert Colossus": "
                 ((Small_Key_Spirit_Temple, 7) and
                     (can_play(Song_of_Time) or logic_spirit_mq_sun_block_sot or is_adult)) or
-                ((Small_Key_Spirit_Temple, 4) and can_play(Song_of_Time) and
+                ((Small_Key_Spirit_Temple, 4) and can_play(Song_of_Time) and (has_explosives or Nuts) and
                     (logic_lens_spirit_mq or can_use(Lens_of_Truth)) and is_adult)"
         }
     },
