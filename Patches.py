@@ -906,7 +906,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     save_context = SaveContext()
 
     # Initial Save Data
-    if not world.settings.useful_cutscenes and not 'forest_temple' in world.settings.dungeon_shortcuts:
+    if not world.settings.useful_cutscenes and 'forest_temple' not in world.settings.dungeon_shortcuts:
         save_context.write_bits(0x00D4 + 0x03 * 0x1C + 0x04 + 0x0, 0x08) # Forest Temple switch flag (Poe Sisters cutscene)
 
     if 'deku_tree' in world.settings.dungeon_shortcuts:
