@@ -3146,6 +3146,7 @@ setting_infos = [
         ''',
         disable        = {
             'any_dungeon': {'settings': ['one_item_per_dungeon']},
+            'vanilla': {'settings': ['dungeon_shortcuts']}
         },
         shared         = True,
         gui_params     = {
