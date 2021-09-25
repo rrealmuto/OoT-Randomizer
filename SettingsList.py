@@ -2458,15 +2458,26 @@ setting_infos = [
         default        = [],
         gui_tooltip    = '''\
             Shortcuts to dungeon bosses are available
-            without any requirements. This includes the
-            Deku Tree webs and the block in the basement,
-            Dodongo's Cavern mouth opened and boss lobby
-            floor bombed, Jabu Jabu pathway lowered,
-            Forest Temple elevator, Fire Temple pillar,
-            Shadow Temple Truthspinner and boat block and
-            statue bridge moved, and the Spirit Temple
-            lobby elevator and central room platform
-            lowered and statue face melted.
+            without any requirements. Incompatible with
+            small keys in vanilla locations and glitched logic.
+
+            Changes include:
+            <b>Deku Tree</b>: webs burned, block in the basement
+            moved, 231 scrubs defeated
+            <b>Dodongo's Cavern</b>: mud wall bombed, mouth opened
+            and boss lobby floor bombed
+            <b>Jabu Jabu</b>: pathway lowered
+            <b>Forest Temple</b>: elevator raised and basement gates
+            open
+            <b>Fire Temple</b>: pillar knocked down
+            <b>Shadow Temple</b>: Truthspinner solved, boat block
+            moved, and statue bridge moved
+            <b>Spirit Temple</b>: lobby elevator activated, shortcut
+            silver blocks moved, central room platform lowered,
+            and statue face melted
+
+            MQ dungeon shortcuts are similar to those
+            listed for the vanilla dungeons above.
         ''',
         shared         = True,
     ),
