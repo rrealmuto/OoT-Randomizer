@@ -92,16 +92,23 @@
         "dungeon": "Dodongos Cavern",
         "locations": {
             "Dodongos Cavern MQ Under Grave Chest": "True",
+            # The second line of the GS and Boss Room logic strings
+            # refers to a trick previously separated as its own.
+            # Child can activate the switch in the back of Dodongo's
+            # Cavern behind an army of Armos by defeating Armos to
+            # detonate bomb flowers. The Armos' position can be manipulated
+            # by standing under the bomb flower or hitting the right-most
+            # Armos and running into the nearby alcove. This trick is expected
+            # if logic_dc_mq_eyes_child is active, as that trick does not
+            # provide meaningful changes without this strat as well.
             "Dodongos Cavern MQ GS Back Area": "
-                is_adult or has_explosives or Boomerang or can_use(Dins_Fire) or
-                (logic_dc_mq_child_back and
-                    (Sticks or ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot))))"
+                is_adult or has_explosives or Boomerang or can_use(Dins_Fire) or dodongos_cavern_shortcuts or
+                (Sticks or ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))"
         },
         "exits": {
             "Dodongos Cavern Boss Room": "
-                is_adult or has_explosives or can_use(Dins_Fire) or
-                (logic_dc_mq_child_back and
-                    (Sticks or ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot))))"
+                is_adult or has_explosives or can_use(Dins_Fire) or dodongos_cavern_shortcuts or
+                (Sticks or ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))"
         }
     },
     {

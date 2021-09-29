@@ -1350,20 +1350,11 @@ logic_tricks = {
                     If you move very quickly, it is possible to use
                     the bomb flower at the top of the room to light
                     the eyes. To perform this trick as child is
-                    significantly more difficult than adult.
-                    '''},
-    'Dodongo\'s Cavern MQ Armos Wall as Child without Explosives': {
-        'name'    : 'logic_dc_mq_child_back',
-        'tags'    : ("Dodongo's Cavern",),
-        'tooltip' : '''\
-                    Child can activate the switch in the back of Dodongo's
-                    Cavern behind an army of Armos by defeating Armos to
-                    detonate bomb flowers. The Armos' position can be manipulated
-                    by standing under the bomb flower or hitting the right-most
-                    Armos and running into the nearby alcove. This is not
-                    relevant unless at least one of two options are enabled:
-                    Dodongo's Cavern dungeon shortcuts, or the trick
-                    "Dodongo's Cavern MQ Light the Eyes with Strength as Child".
+                    significantly more difficult than adult. The
+                    player is also expected to complete the DC back
+                    area without strength or explosives, including
+                    getting past the Armos wall to the switch for
+                    the boss door.
                     '''},
     'Rolling Goron (Hot Rodder Goron) as Child with Strength': {
         'name'    : 'logic_child_rolling_with_strength',
