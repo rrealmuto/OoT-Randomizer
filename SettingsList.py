@@ -2468,7 +2468,9 @@ setting_infos = [
             and statue face melted
 
             MQ dungeon shortcuts are similar to those
-            listed for the vanilla dungeons above.
+            listed for the vanilla dungeons above. For Jabu, note
+            that the red slimy thing that used to block the boss
+            is also removed from in front of the Invisible Enemies GS.
         ''',
         shared         = True,
     ),
