@@ -1352,9 +1352,8 @@ logic_tricks = {
                     the eyes. To perform this trick as child is
                     significantly more difficult than adult. The
                     player is also expected to complete the DC back
-                    area without strength or explosives, including
-                    getting past the Armos wall to the switch for
-                    the boss door.
+                    area without explosives, including getting past
+                    the Armos wall to the switch for the boss door.
                     '''},
     'Rolling Goron (Hot Rodder Goron) as Child with Strength': {
         'name'    : 'logic_child_rolling_with_strength',
