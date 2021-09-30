@@ -2447,9 +2447,9 @@ setting_infos = [
         },
         default        = [],
         gui_tooltip    = '''\
-            Shortcuts to dungeon bosses are available
-            without any requirements. Incompatible with
-            small keys in vanilla locations and glitched logic.
+            Shortcuts to dungeon bosses are available without
+            any requirements.
+            Incompatible with glitched logic.
 
             Changes include:
             <b>Deku Tree</b>: webs burned, block in the basement
