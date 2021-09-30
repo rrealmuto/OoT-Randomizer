@@ -103,7 +103,7 @@
             # provide meaningful changes without this strat as well.
             "Dodongos Cavern MQ GS Back Area": "
                 is_adult or has_explosives or Boomerang or can_use(Dins_Fire) or
-                (dodongos_cavern_shortcuts and can_child_attack) or
+                (dodongos_cavern_shortcuts and (can_child_attack or Progressive_Strength_Upgrade)) or
                 (Sticks or ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))"
         },
         "exits": {
