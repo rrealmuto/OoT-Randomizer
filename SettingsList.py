@@ -2461,7 +2461,8 @@ setting_infos = [
             open
             <b>Fire Temple</b>: pillar knocked down
             <b>Shadow Temple</b>: Truthspinner solved, boat block
-            moved, and statue bridge moved
+            moved, and statue bridge moved. You start with 2 small
+            keys if Shuffle Small Keys is set to Vanilla.
             <b>Spirit Temple</b>: lobby elevator activated, shortcut
             silver blocks moved, central room platform lowered,
             and statue face melted
@@ -3120,7 +3121,9 @@ setting_infos = [
             'Vanilla': Small Keys will appear in their 
             vanilla locations. You start with 3 keys in 
             Spirit Temple MQ because the vanilla key 
-            layout is not beatable in logic.
+            layout is not beatable in logic. You start with
+            2 keys in Vanilla/MQ Shadow Temple with its
+            dungeon shortcut enabled to prevent softlocks.
 
             'Own Dungeon': Small Keys can only appear in their
             respective dungeon. If Fire Temple is not a
