@@ -552,10 +552,10 @@ class Message:
             elif speed_up_text and code.code in box_breaks:
                 # some special cases for text that needs to be on a timer
                 if (self.id == 0x605A or  # twinrova transformation
-                    self.id == 0x706C or  # raru ending text
+                    self.id == 0x706C or  # rauru ending text
                     self.id == 0x70DD or  # ganondorf ending text
-                    self.id == 0x7070
-                ):   # zelda ending text
+                    self.id in (0x706F, 0x7091, 0x7092, 0x7093, 0x7094, 0x7095, 0x7070)  # zelda ending text
+                ):
                     text_codes.append(code)
                     text_codes.append(Text_Code(0x08, 0))  # allow instant
                 else:

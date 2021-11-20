@@ -8,6 +8,7 @@ Instead, you can open an issue on this fork [here](https://github.com/fenhl/OoT-
 
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
+* Automatically advance credits text ([#1412](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1412))
 * Triforce count setting ([#1403](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1403/files))
 * Add setting to show seed info ([#1253](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1253))
 * Setting to include dungeons in spawn entrance pool ([#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))

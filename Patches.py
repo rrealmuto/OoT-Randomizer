@@ -16,7 +16,7 @@ from Utils import data_path
 from Messages import read_messages, update_message_by_id, read_shop_items, update_warp_song_text, \
         write_shop_items, remove_unused_messages, make_player_message, \
         add_item_messages, repack_messages, shuffle_messages, \
-        get_message_by_id
+        get_message_by_id, Text_Code
 from OcarinaSongs import replace_songs
 from MQ import patch_files, File, update_dmadata, insert_space, add_relocations
 from SaveContext import SaveContext
@@ -1811,6 +1811,24 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     update_message_by_id(messages, 0x00F8, tycoon_message, 0x23)
 
     write_shop_items(rom, shop_item_file.start + 0x1DEC, shop_items)
+
+    # set end credits text to automatically fade without player input,
+    # with timing depending on the number of lines in the text box
+    for message_id in (0x706F, 0x7091, 0x7092, 0x7093, 0x7094, 0x7095):
+        text_codes = []
+        lines_in_section = 1
+        for code in get_message_by_id(messages, message_id).text_codes:
+            if code.code == 0x04: # box-break
+                text_codes.append(Text_Code(0x0c, 30 * lines_in_section))
+                lines_in_section = 1
+            elif code.code == 0x02: # end
+                text_codes.append(Text_Code(0x0e, 30 * lines_in_section))
+                text_codes.append(code)
+            else:
+                if code.code == 0x01: # line-break
+                    lines_in_section += 1
+                text_codes.append(code)
+        update_message_by_id(messages, message_id, ''.join(code.get_string() for code in text_codes))
 
     permutation = None
 
