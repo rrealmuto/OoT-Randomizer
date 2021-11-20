@@ -55,17 +55,20 @@ class World(object):
         self.keysanity = settings.shuffle_smallkeys in ['keysanity', 'remove', 'any_dungeon', 'overworld']
         self.check_beatable_only = settings.reachable_locations != 'all'
 
+        self.full_spawn_positions = settings.spawn_positions == 'full'
+        self.spawn_positions = settings.spawn_positions in ['balanced', 'full']
+
         self.shuffle_special_interior_entrances = settings.shuffle_interior_entrances == 'all'
         self.shuffle_interior_entrances = settings.shuffle_interior_entrances in ['simple', 'all']
 
         self.entrance_shuffle = self.shuffle_interior_entrances or settings.shuffle_grotto_entrances or settings.shuffle_dungeon_entrances or \
-                                settings.shuffle_overworld_entrances or settings.owl_drops or settings.warp_songs or settings.spawn_positions
+                                settings.shuffle_overworld_entrances or settings.owl_drops or settings.warp_songs or self.spawn_positions
 
-        self.ensure_tod_access = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or settings.spawn_positions
+        self.ensure_tod_access = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or self.spawn_positions
         self.disable_trade_revert = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances
 
         if settings.open_forest == 'closed' and (self.shuffle_special_interior_entrances or settings.shuffle_overworld_entrances or 
-                                                 settings.warp_songs or settings.spawn_positions or settings.decouple_entrances or (settings.mix_entrance_pools != 'off')):
+                                                 settings.warp_songs or self.spawn_positions or settings.decouple_entrances or (settings.mix_entrance_pools != 'off')):
             self.settings.open_forest = 'closed_deku'
 
         if settings.triforce_goal_per_world > settings.triforce_count_per_world:

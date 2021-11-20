@@ -388,7 +388,7 @@ def shuffle_random_entrances(worlds):
         if worlds[0].settings.owl_drops:
             one_way_entrance_pools['OwlDrop'] = world.get_shufflable_entrances(type='OwlDrop')
 
-        if worlds[0].settings.spawn_positions:
+        if worlds[0].spawn_positions:
             one_way_entrance_pools['Spawn'] = world.get_shufflable_entrances(type='Spawn')
 
         if worlds[0].settings.warp_songs:
@@ -456,6 +456,8 @@ def shuffle_random_entrances(worlds):
                     target.set_rule(lambda state, age=None, **kwargs: age == 'child')
             elif pool_type == 'Spawn':
                 valid_target_types = ('Spawn', 'WarpSong', 'OwlDrop', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
+                if worlds[0].full_spawn_positions:
+                    valid_target_types = ('Dungeon', *valid_target_types) # there may be issues with Grotto and Grave entrances so these are excluded for now
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types)
             elif pool_type == 'WarpSong':
                 valid_target_types = ('Spawn', 'WarpSong', 'OwlDrop', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
@@ -767,7 +769,7 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
             if impas_front_entrance is not None and impas_back_entrance is not None and not same_hint_area(impas_front_entrance, impas_back_entrance):
                 raise EntranceShuffleError('Kak Impas House entrances are not in the same hint area')
 
-    if (world.shuffle_special_interior_entrances or world.settings.shuffle_overworld_entrances or world.settings.spawn_positions) and \
+    if (world.shuffle_special_interior_entrances or world.settings.shuffle_overworld_entrances or world.spawn_positions) and \
        (entrance_placed == None or entrance_placed.type in ['SpecialInterior', 'Overworld', 'Spawn', 'WarpSong', 'OwlDrop']):
         # At least one valid starting region with all basic refills should be reachable without using any items at the beginning of the seed
         # Note this creates new empty states rather than reuse the worlds' states (which already have starting items)

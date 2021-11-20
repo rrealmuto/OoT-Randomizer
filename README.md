@@ -10,6 +10,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
 
 * Triforce count setting ([#1403](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1403/files))
 * Add setting to show seed info ([#1253](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1253))
+* Setting to include dungeons in spawn entrance pool ([#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
 * Add `chaos` hint distribution
 * Add `allsanity-casual` and `debug` presets
 

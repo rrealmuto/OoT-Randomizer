@@ -933,7 +933,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         # Remove deku sprout and drop player at SFM after forest completion
         rom.write_int16(0xAC9F96, 0x0608)
 
-    if world.settings.spawn_positions:
+    if world.spawn_positions:
         # Fix save warping inside Link's House to not be a special case
         rom.write_int32(0xB06318, 0x00000000)
 
@@ -1190,7 +1190,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Add a gate-opening guard on the Wasteland side of the Gerudo gate when the card is shuffled or certain levels of ER.
     # Overrides the generic guard at the bottom of the ladder in Gerudo Fortress
     if world.settings.shuffle_gerudo_card or world.settings.shuffle_overworld_entrances or \
-       world.shuffle_special_interior_entrances or world.settings.spawn_positions:
+       world.shuffle_special_interior_entrances or world.spawn_positions:
         # Add a gate opening guard on the Wasteland side of the Gerudo Fortress' gate
         new_gate_opening_guard = [0x0138, 0xFAC8, 0x005D, 0xF448, 0x0000, 0x95B0, 0x0000, 0x0301]
         rom.write_int16s(0x21BD3EC, new_gate_opening_guard)  # Adult Day
