@@ -19,7 +19,7 @@ from Messages import read_messages, update_message_by_id, read_shop_items, updat
         get_message_by_id, Text_Code
 from OcarinaSongs import replace_songs
 from MQ import patch_files, File, update_dmadata, insert_space, add_relocations
-from SaveContext import SaveContext
+from SaveContext import SaveContext, Scenes, FlagType
 from version import __version__
 import StartingItems
 
@@ -961,8 +961,73 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     save_context = SaveContext()
 
     # Initial Save Data
-    if not world.settings.useful_cutscenes:
+    if not world.settings.useful_cutscenes and 'forest_temple' not in world.settings.dungeon_shortcuts:
         save_context.write_bits(0x00D4 + 0x03 * 0x1C + 0x04 + 0x0, 0x08) # Forest Temple switch flag (Poe Sisters cutscene)
+
+    if 'deku_tree' in world.settings.dungeon_shortcuts:
+        # Deku Tree, flags are the same between vanilla/MQ
+        save_context.write_permanent_flag(Scenes.DEKU_TREE, FlagType.SWITCH, 0x1, 0x01) # Deku Block down
+        save_context.write_permanent_flag(Scenes.DEKU_TREE, FlagType.CLEAR,  0x2, 0x02) # Deku 231/312
+        save_context.write_permanent_flag(Scenes.DEKU_TREE, FlagType.SWITCH, 0x3, 0x20) # Deku 1st Web
+        save_context.write_permanent_flag(Scenes.DEKU_TREE, FlagType.SWITCH, 0x3, 0x40) # Deku 2nd Web
+
+    if 'dodongos_cavern' in world.settings.dungeon_shortcuts:
+        # Dodongo's Cavern, flags are the same between vanilla/MQ
+        save_context.write_permanent_flag(Scenes.DODONGOS_CAVERN, FlagType.SWITCH, 0x3, 0x80) # DC Entrance Mud Wall
+        save_context.write_permanent_flag(Scenes.DODONGOS_CAVERN, FlagType.SWITCH, 0x0, 0x04) # DC Mouth
+        save_context.write_permanent_flag(Scenes.KING_DODONGO_LOBBY, FlagType.SWITCH, 0x3, 0x02) # DC Boss Floor
+        # Extra permanent flag in MQ for the child route
+        if world.dungeon_mq['Dodongos Cavern']:
+            save_context.write_permanent_flag(Scenes.DODONGOS_CAVERN, FlagType.SWITCH, 0x0, 0x02) # Armos wall switch
+
+    if 'jabu_jabus_belly' in world.settings.dungeon_shortcuts:
+        # Jabu
+        if not world.dungeon_mq['Jabu Jabus Belly']:
+            save_context.write_permanent_flag(Scenes.JABU_JABU, FlagType.SWITCH, 0x0, 0x20) # Jabu Pathway down
+        else:
+            save_context.write_permanent_flag(Scenes.JABU_JABU, FlagType.SWITCH, 0x1, 0x20) # Jabu Lobby Slingshot Door open
+            save_context.write_permanent_flag(Scenes.JABU_JABU, FlagType.SWITCH, 0x0, 0x20) # Jabu Pathway down
+            save_context.write_permanent_flag(Scenes.JABU_JABU, FlagType.CLEAR,  0x2, 0x01) # Jabu Red Slimy Thing defeated
+            save_context.write_permanent_flag(Scenes.JABU_JABU, FlagType.SWITCH, 0x2, 0x08) # Jabu Red Slimy Thing not in front of boss lobby
+            save_context.write_permanent_flag(Scenes.JABU_JABU, FlagType.SWITCH, 0x1, 0x10) # Jabu Boss Door Switch Activated
+        
+    if 'forest_temple' in world.settings.dungeon_shortcuts:
+        # Forest, flags are the same between vanilla/MQ
+        save_context.write_permanent_flag(Scenes.FOREST_TEMPLE, FlagType.SWITCH, 0x0, 0x10) # Forest Elevator up
+        save_context.write_permanent_flag(Scenes.FOREST_TEMPLE, FlagType.SWITCH, 0x1, 0x01 + 0x02 + 0x04) # Forest Basement Puzzle Done
+
+    if 'fire_temple' in world.settings.dungeon_shortcuts:
+        # Fire, flags are the same between vanilla/MQ
+        save_context.write_permanent_flag(Scenes.FIRE_TEMPLE, FlagType.SWITCH, 0x2, 0x40) # Fire Pillar down
+
+    if 'spirit_temple' in world.settings.dungeon_shortcuts:
+        # Spirit
+        if not world.dungeon_mq['Spirit Temple']:
+            save_context.write_permanent_flag(Scenes.SPIRIT_TEMPLE, FlagType.SWITCH, 0x1, 0x80) # Spirit Chains
+            save_context.write_permanent_flag(Scenes.SPIRIT_TEMPLE, FlagType.SWITCH, 0x2, 0x02 + 0x08 + 0x10) # Spirit main room elevator (N block, Rusted Switch, E block)
+            save_context.write_permanent_flag(Scenes.SPIRIT_TEMPLE, FlagType.SWITCH, 0x3, 0x10) # Spirit Face
+        else:
+            save_context.write_permanent_flag(Scenes.SPIRIT_TEMPLE, FlagType.SWITCH, 0x2, 0x10) # Spirit Bombchu Boulder
+            save_context.write_permanent_flag(Scenes.SPIRIT_TEMPLE, FlagType.SWITCH, 0x2, 0x02) # Spirit Silver Block
+            save_context.write_permanent_flag(Scenes.SPIRIT_TEMPLE, FlagType.SWITCH, 0x1, 0x80) # Spirit Chains
+            save_context.write_permanent_flag(Scenes.SPIRIT_TEMPLE, FlagType.SWITCH, 0x3, 0x10) # Spirit Face
+        
+    if 'shadow_temple' in world.settings.dungeon_shortcuts:
+        # Shadow
+        if not world.dungeon_mq['Shadow Temple']:
+            save_context.write_permanent_flag(Scenes.SHADOW_TEMPLE, FlagType.SWITCH, 0x0, 0x08) # Shadow Truthspinner
+            save_context.write_permanent_flag(Scenes.SHADOW_TEMPLE, FlagType.SWITCH, 0x0, 0x20) # Shadow Boat Block
+            save_context.write_permanent_flag(Scenes.SHADOW_TEMPLE, FlagType.SWITCH, 0x1, 0x01) # Shadow Bird Bridge
+        else:
+            save_context.write_permanent_flag(Scenes.SHADOW_TEMPLE, FlagType.SWITCH, 0x2, 0x08) # Shadow Truthspinner
+            save_context.write_permanent_flag(Scenes.SHADOW_TEMPLE, FlagType.SWITCH, 0x3, 0x20) # Shadow Fire Arrow Platform
+            save_context.write_permanent_flag(Scenes.SHADOW_TEMPLE, FlagType.SWITCH, 0x3, 0x80) # Shadow Spinning Blades room Skulltulas defeated
+            save_context.write_permanent_flag(Scenes.SHADOW_TEMPLE, FlagType.CLEAR,  0x3, 0x40) # Shadow Spinning Blades room Skulltulas defeated
+            save_context.write_permanent_flag(Scenes.SHADOW_TEMPLE, FlagType.SWITCH, 0x0, 0x20) # Shadow Boat Block
+            save_context.write_permanent_flag(Scenes.SHADOW_TEMPLE, FlagType.SWITCH, 0x1, 0x01) # Shadow Bird Bridge
+
+    set_spirit_shortcut_actors(rom) # Change elevator starting position to avoid waiting a half cycle from the temple entrance
+
     save_context.write_bits(0x00D4 + 0x05 * 0x1C + 0x04 + 0x1, 0x01) # Water temple switch flag (Ruto)
     save_context.write_bits(0x00D4 + 0x51 * 0x1C + 0x04 + 0x2, 0x08) # Hyrule Field switch flag (Owl)
     save_context.write_bits(0x00D4 + 0x55 * 0x1C + 0x04 + 0x0, 0x80) # Kokiri Forest switch flag (Owl)
@@ -1205,6 +1270,8 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     if world.settings.shuffle_smallkeys == 'vanilla':
         if world.dungeon_mq['Spirit Temple']:
             save_context.addresses['keys']['spirit'].value = 3
+        if 'shadow_temple' in world.settings.dungeon_shortcuts:
+            save_context.addresses['keys']['shadow'].value = 2
 
     if world.settings.start_with_rupees:
         rom.write_byte(rom.sym('MAX_RUPEES'), 0x01)
@@ -2127,6 +2194,15 @@ def set_jabu_stone_actors(rom, jabu_actor_type):
                 rom.write_byte(actor + 15, jabu_actor_type)
 
     get_actor_list(rom, set_jabu_stone_actor)
+
+
+def set_spirit_shortcut_actors(rom):
+    def set_spirit_shortcut(rom, actor_id, actor, scene):
+        if actor_id == 0x018e and scene == 6: # raise initial elevator height
+            rom.write_int16(actor + 4, 0x015E)
+
+    get_actor_list(rom, set_spirit_shortcut)
+
 
 
 def get_locked_doors(rom, world):

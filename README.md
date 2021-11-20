@@ -10,8 +10,9 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
 
 * Automatically advance credits text ([#1412](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1412))
 * Triforce count setting ([#1403](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1403/files))
-* Add setting to show seed info ([#1253](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1253))
+* Add boss rush setting ([#1369](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1369))
 * Setting to include dungeons in spawn entrance pool ([#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
+* Add setting to show seed info ([#1253](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1253))
 * Add `chaos` hint distribution
 * Add `allsanity-casual` and `debug` presets
 
@@ -130,6 +131,7 @@ do that.
   * New setting `LACS Condition` to select what goal items are required for the Light Arrows Cutscene, separate from whether Ganon's Boss Key is placed there. (Additional settings are added to control how many.)
   * `Ganon's Boss Key` now allows you to set it to the Light Arrow Cutscene (and use `LACS Condition` to set its objective) or for it to be directly awarded when meeting a configurable target number of Spiritual Stones, Medallions, Dungeons completed, or Gold Skulltula Tokens. (Additional settings are added to control how many.)
   * New `Rainbow Bridge` option `Random` that will choose one of the other options at random (besides Skulltula Tokens), and require the maximum of that goal (if applicable).
+  * New setting `Dungeon Shortcuts` opens shortcuts in blue warp dungeons to the boss room. This is toggleable per-dungeon, and affects glitchless logic.
 
 * **Hints**
   * New option `Misc. Hints` controls whether the Temple of Time altar and Ganondorf give hints, defaulting on to preserve behavior. Hell Mode disables this setting.
