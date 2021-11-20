@@ -93,7 +93,7 @@ class Location(object):
     # Can the player see what's placed at this location without collecting it?
     # Used to reduce JSON spoiler noise
     def has_preview(self):
-        return location_is_viewable(self.name, self.world.correct_chest_sizes)
+        return location_is_viewable(self.name, self.world.settings.correct_chest_sizes)
 
 
     def has_item(self):
@@ -126,7 +126,7 @@ def LocationFactory(locations, world=None):
         else:
             match_location = next(filter(lambda k: k.lower() == location.lower(), location_table), None)
         if match_location:
-            type, scene, default, addresses, filter_tags = location_table[match_location]
+            type, scene, default, addresses, vanilla_item, filter_tags = location_table[match_location]
             if addresses is None:
                 addresses = (None, None)
             address, address2 = addresses

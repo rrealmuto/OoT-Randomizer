@@ -40,6 +40,8 @@ class Region(object):
         self.time_passes = False
         self.provides_time = TimeOfDay.NONE
         self.scene = None
+        self.pretty_name = None
+        self.font_color = None
 
 
     def copy(self, new_world):
@@ -50,6 +52,8 @@ class Region(object):
         new_region.time_passes = self.time_passes
         new_region.provides_time = self.provides_time
         new_region.scene = self.scene
+        new_region.pretty_name = self.pretty_name
+        new_region.font_color = self.font_color
 
         if self.dungeon:
             new_region.dungeon = self.dungeon.name
@@ -64,24 +68,24 @@ class Region(object):
         is_dungeon_restricted = False
         is_overworld_restricted = False
         if item.map or item.compass:
-            is_self_dungeon_restricted = self.world.shuffle_mapcompass in ['dungeon', 'vanilla']
-            is_dungeon_restricted = self.world.shuffle_mapcompass == 'any_dungeon'
-            is_overworld_restricted = self.world.shuffle_mapcompass == 'overworld'
+            is_self_dungeon_restricted = self.world.settings.shuffle_mapcompass in ['dungeon', 'vanilla']
+            is_dungeon_restricted = self.world.settings.shuffle_mapcompass == 'any_dungeon'
+            is_overworld_restricted = self.world.settings.shuffle_mapcompass == 'overworld'
         elif item.type == 'SmallKey':
-            is_self_dungeon_restricted = self.world.shuffle_smallkeys in ['dungeon', 'vanilla']
-            is_dungeon_restricted = self.world.shuffle_smallkeys == 'any_dungeon'
-            is_overworld_restricted = self.world.shuffle_smallkeys == 'overworld'
-        elif item.type == 'FortressSmallKey':
-            is_dungeon_restricted = self.world.shuffle_fortresskeys == 'any_dungeon'
-            is_overworld_restricted = self.world.shuffle_fortresskeys == 'overworld'
+            is_self_dungeon_restricted = self.world.settings.shuffle_smallkeys in ['dungeon', 'vanilla']
+            is_dungeon_restricted = self.world.settings.shuffle_smallkeys == 'any_dungeon'
+            is_overworld_restricted = self.world.settings.shuffle_smallkeys == 'overworld'
+        elif item.type == 'HideoutSmallKey':
+            is_dungeon_restricted = self.world.settings.shuffle_hideoutkeys == 'any_dungeon'
+            is_overworld_restricted = self.world.settings.shuffle_hideoutkeys == 'overworld'
         elif item.type == 'BossKey':
-            is_self_dungeon_restricted = self.world.shuffle_bosskeys in ['dungeon', 'vanilla']
-            is_dungeon_restricted = self.world.shuffle_bosskeys == 'any_dungeon'
-            is_overworld_restricted = self.world.shuffle_bosskeys == 'overworld'
+            is_self_dungeon_restricted = self.world.settings.shuffle_bosskeys in ['dungeon', 'vanilla']
+            is_dungeon_restricted = self.world.settings.shuffle_bosskeys == 'any_dungeon'
+            is_overworld_restricted = self.world.settings.shuffle_bosskeys == 'overworld'
         elif item.type == 'GanonBossKey':
-            is_self_dungeon_restricted = self.world.shuffle_ganon_bosskey in ['dungeon', 'vanilla']
-            is_dungeon_restricted = self.world.shuffle_ganon_bosskey == 'any_dungeon'
-            is_overworld_restricted = self.world.shuffle_ganon_bosskey == 'overworld'
+            is_self_dungeon_restricted = self.world.settings.shuffle_ganon_bosskey in ['dungeon', 'vanilla']
+            is_dungeon_restricted = self.world.settings.shuffle_ganon_bosskey == 'any_dungeon'
+            is_overworld_restricted = self.world.settings.shuffle_ganon_bosskey == 'overworld'
 
         if is_self_dungeon_restricted and not manual:
             return self.dungeon and self.dungeon.is_dungeon_item(item) and item.world.id == self.world.id

@@ -1,0 +1,16 @@
+{
+  "settings": {
+    "logic_rules":                             "glitchless",
+    "shuffle_interior_entrances":              "off",
+    "shuffle_overworld_entrances":             false,
+    "warp_songs":                              false,
+    "spawn_positions":                         true,
+    "starting_items":                          [
+      "ocarina"
+    ],
+    "starting_age":                            "adult"
+  },
+  "entrances": {
+    "Adult Spawn -> Temple of Time": {"region": "Desert Colossus", "from": "Colossus Great Fairy Fountain"}
+  }
+}

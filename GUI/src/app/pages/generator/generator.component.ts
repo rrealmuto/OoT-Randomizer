@@ -154,7 +154,7 @@ export class GeneratorComponent implements OnInit {
     return filteredTabList;
   }
 
-  generateSeed(fromPatchFile: boolean = false, webRaceSeed: boolean = false) {
+  generateSeed(fromPatchFile: boolean = false, webRaceSeed: boolean = false, goalHintsConfirmed: boolean = false) {
 
     this.generateSeedButtonEnabled = false;
     this.seedString = this.seedString.trim().replace(/[^a-zA-Z0-9_-]/g, '');
@@ -163,9 +163,10 @@ export class GeneratorComponent implements OnInit {
     //console.log(this.global.generator_settingsMap);
     //console.log(this.global.generator_customColorMap);
 
-    if (this.global.getGlobalVar('electronAvailable')) { //Electron
-
-      //Delay the generation if settings are currently locked to avoid race conditions
+    //Delay the generation if settings are currently locked to avoid race conditions.
+    //Do this here so the goal hint confirmation dialog can be defined once for
+    //Electron and Web
+    if (this.global.getGlobalVar('electronAvailable')) {
       if (this.settingsLocked) {
         setTimeout(() => {
           this.generateSeed(fromPatchFile, webRaceSeed);
@@ -173,6 +174,29 @@ export class GeneratorComponent implements OnInit {
 
         return;
       }
+    }
+
+    let goalErrorText = "The selected hint distribution includes the Goal hint type. This can drastically increase generation time for large multiworld seeds. Continue?";
+    let goalDistros = this.global.getGlobalVar('generatorGoalDistros');
+
+    if (!goalHintsConfirmed && goalDistros.indexOf(this.global.generator_settingsMap["hint_dist"]) > -1 && this.global.generator_settingsMap["world_count"] > 5) {
+      this.dialogService.open(ConfirmationWindow, {
+        autoFocus: true, closeOnBackdropClick: false, closeOnEsc: false, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "Goal Hint Warning", dialogMessage: goalErrorText }
+      }).onClose.subscribe(confirmed => {
+        //User acknowledged increased generation time for multiworld seeds with goal hints
+        if (confirmed) {
+          this.generateSeed(fromPatchFile, webRaceSeed, true);
+        }
+      });
+
+      this.generateSeedButtonEnabled = true;
+      this.cd.markForCheck();
+      this.cd.detectChanges();
+
+      return;
+    }
+
+    if (this.global.getGlobalVar('electronAvailable')) { //Electron
 
       //Hack: Fix Generation Count being None occasionally
       if (!this.global.generator_settingsMap["count"] || this.global.generator_settingsMap["count"] < 1)
@@ -1245,6 +1269,7 @@ export class GeneratorComponent implements OnInit {
     let isGenerator = this.global.getGlobalVar("appType") == "generator";
     let storageSettingsKey = isGenerator ? "generatorSettings_" : "patcherSettings_";
     let currentVersion = this.global.getGlobalVar("webSourceVersion");
+    let currentBranch = currentVersion.startsWith("dev") && currentVersion.includes("_") ? currentVersion.split("_")[0] : "master";
 
     try {
       userSettings = localStorage.getItem(storageSettingsKey + currentVersion);
@@ -1255,7 +1280,7 @@ export class GeneratorComponent implements OnInit {
 
     if (!userSettings) {
 
-      //Check if we have a prior version settings map and find the closest one
+      //Check if we have a prior version settings map and find the closest one from the same branch (master/dev are compatible with each other)
       if (localStorage.length) {
 
         let closestFoundVersion = "";
@@ -1265,10 +1290,14 @@ export class GeneratorComponent implements OnInit {
 
           if (key && key.startsWith(storageSettingsKey)) {
             let version = key.replace(storageSettingsKey, "");
+            let branch = version.startsWith("dev") && version.includes("_") ? version.split("_")[0] : "master";
 
-            if (this.global.isVersionNewer(version, currentVersion) == false)
-              if (!closestFoundVersion || this.global.isVersionNewer(version, closestFoundVersion))
-                closestFoundVersion = version;
+            if ((branch === currentBranch) || (branch === "master" && currentBranch === "dev") || (branch === "dev" && currentBranch === "master")) {
+
+              if (this.global.isVersionNewer(version, currentVersion) == false)
+                if (!closestFoundVersion || this.global.isVersionNewer(version, closestFoundVersion))
+                  closestFoundVersion = version;
+            }
           }
         }
 

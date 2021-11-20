@@ -1,16 +1,17 @@
 import argparse
-import textwrap
-import string
-import re
 import hashlib
-import math
-import sys
 import json
 import logging
+import math
+import os
+import re
+import string
+import sys
+import textwrap
 
 from version import __version__
-from Utils import random_choices, local_path
-from SettingsList import setting_infos, get_setting_info
+from Utils import random_choices, local_path, data_path
+from SettingsList import setting_infos, get_setting_info, validate_settings
 from Plandomizer import Distribution
 
 class ArgumentDefaultsHelpFormatter(argparse.RawTextHelpFormatter):
@@ -47,6 +48,13 @@ def text_to_bit_string(text):
         for b in range(5):
             bits += [ (index >> b) & 1 ]
     return bits
+
+
+def get_preset_files():
+    return [data_path('presets_default.json')] + sorted(
+            os.path.join(data_path('Presets'), fn)
+            for fn in os.listdir(data_path('Presets'))
+            if fn.endswith('.json'))
 
 
 # holds the particular choices for a run's settings
@@ -223,10 +231,11 @@ class Settings:
 
     def get_dependency(self, setting_name, check_random=True):
         info = get_setting_info(setting_name)
-        if check_random and 'randomize_key' in info.gui_params and self.__dict__[info.gui_params['randomize_key']]:
+        not_in_dist = '_settings' not in self.distribution.src_dict or info.name not in self.distribution.src_dict['_settings'].keys()
+        if check_random and 'randomize_key' in info.gui_params and self.__dict__[info.gui_params['randomize_key']] and not_in_dist:
             return info.disabled_default
         elif info.dependency != None:
-            return info.disabled_default if info.dependency(self) else None
+            return info.disabled_default if info.dependency(self) and not_in_dist else None
         else:
             return None
 
@@ -263,7 +272,10 @@ class Settings:
             if randomize_key is not None and info.gui_params['randomize_key'] != randomize_key:
                 continue
 
-            if self.__dict__[info.gui_params['randomize_key']]:
+            # Make sure the setting is meant to be randomized and not specified in distribution
+            # We that check it's not specified in the distribution so that plando can override randomized settings
+            not_in_dist = '_settings' not in self.distribution.src_dict or info.name not in self.distribution.src_dict['_settings'].keys()
+            if self.__dict__[info.gui_params['randomize_key']] and not_in_dist:
                 randomize_keys_enabled.add(info.gui_params['randomize_key'])
                 choices, weights = zip(*info.gui_params['distribution'])
                 self.__dict__[info.name] = random_choices(choices, weights=weights)[0]
@@ -284,7 +296,9 @@ class Settings:
 
 
     # add the settings as fields, and calculate information based on them
-    def __init__(self, settings_dict):
+    def __init__(self, settings_dict, strict=False):
+        if strict:
+            validate_settings(settings_dict)
         self.__dict__.update(settings_dict)
         for info in setting_infos:
             if info.name not in self.__dict__:
@@ -303,7 +317,9 @@ class Settings:
 
     def to_json(self):
         return {setting.name: self.__dict__[setting.name] for setting in setting_infos
-                if setting.shared and setting.name not in self._disabled}
+                if setting.shared and (setting.name not in self._disabled or
+                # We want to still include settings disabled by randomized settings options if they're specified in distribution
+                ('_settings' in self.distribution.src_dict and setting.name in self.distribution.src_dict['_settings'].keys()))}
 
 
     def to_json_cosmetics(self):
@@ -319,25 +335,38 @@ def get_settings_from_command_line_args():
     parser.add_argument('--settings_string', help='Provide sharable settings using a settings string. This will override all flags that it specifies.')
     parser.add_argument('--convert_settings', help='Only convert the specified settings to a settings string. If a settings string is specified output the used settings instead.', action='store_true')
     parser.add_argument('--settings', help='Use the specified settings file to use for generation')
+    parser.add_argument('--settings_preset', help="Use the given preset for base settings. Anything defined in the --settings file or the --settings_string will override the preset.")
     parser.add_argument('--seed', help='Generate the specified seed.')
     parser.add_argument('--no_log', help='Suppresses the generation of a log file.', action='store_true')
     parser.add_argument('--output_settings', help='Always outputs a settings.json file even when spoiler is enabled.', action='store_true')
 
     args = parser.parse_args()
+    settings_base = {}
+    if args.settings_preset:
+        presetsFiles = get_preset_files()
+        for fn in presetsFiles:
+            with open(fn, encoding='utf-8') as f:
+                presets = json.load(f)
+                if args.settings_preset in presets:
+                    settings_base.update(presets[args.settings_preset])
+                    break
+        else:
+            sys.stderr.write(f'ERROR:No preset found with name {args.settings_preset!r}\n')
+            sys.exit(1)
 
     if args.settings == '-':
-        settings = Settings(json.loads(sys.stdin.read()))
-    else:
+        settings_base.update(json.loads(sys.stdin.read()))
+    elif args.settings or not settings_base:  # avoid implicitly using settings.sav with presets
         settingsFile = local_path(args.settings or 'settings.sav')
 
         try:
-            with open(settingsFile) as f:
-                settings = Settings(json.load(f))
+            with open(settingsFile, encoding='utf-8') as f:
+                settings_base.update(json.load(f))
         except Exception as ex:
-            if args.settings is None:
-                settings = Settings({})
-            else:
+            if args.settings is not None:
                 raise ex
+
+    settings = Settings(settings_base)
 
     settings.output_settings = args.output_settings
 

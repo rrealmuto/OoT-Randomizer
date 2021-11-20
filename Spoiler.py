@@ -49,11 +49,14 @@ class Spoiler(object):
         self.settings = worlds[0].settings
         self.playthrough = {}
         self.entrance_playthrough = {}
+        self.full_playthrough = {}
+        self.max_sphere = 0
         self.locations = {}
         self.entrances = []
         self.metadata = {}
         self.required_locations = {}
-        self.opportunity_locations = {}
+        self.goal_locations = {}
+        self.goal_categories = {}
         self.hints = {world.id: {} for world in worlds}
         self.file_hash = []
 
@@ -88,7 +91,7 @@ class Spoiler(object):
 
         self.entrances = {}
         for world in self.worlds:
-            spoiler_entrances = [entrance for entrance in world.get_shuffled_entrances() if entrance.primary or entrance.type == 'Overworld' or world.decouple_entrances]
+            spoiler_entrances = [entrance for entrance in world.get_shuffled_entrances() if entrance.primary or entrance.type == 'Overworld' or world.settings.decouple_entrances]
             spoiler_entrances.sort(key=lambda entrance: entrance.name)
             spoiler_entrances.sort(key=lambda entrance: entrance_sort_order.get(entrance.type, -1))
             self.entrances[world.id] = spoiler_entrances

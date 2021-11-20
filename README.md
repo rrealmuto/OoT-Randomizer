@@ -8,18 +8,9 @@ Instead, you can open an issue on this fork [here](https://github.com/fenhl/OoT-
 
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
-* Rework of Path of Gold and some Triforce Hunt changes ([#1165](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1165))
-    * New hint subtype: Opportunity
-        * These are weaker versions of Way of the Hero hints that appear if there are optional goals and there are not enough Way of the Hero locations.
-        * Optional goals are settings that have the requirements be less than the available, such as medallions, stones, triforce pieces.
-        * These hints are like Way of the Hero, but they are items needed to complete all optional objectives.
-        * This replaces the previous Path of Gold hints.
-    * Triforce Hunt changes
-        * When playing beatable only, there is no longer a guarantee that all triforces are reachable (the minimum is still guaranteed). The previous behavior can be restored using the All Goals Reachable setting.
-        * Path of Gold is replaced with Opportunity hints, and Way of the Hero hints are now able to be generated.
-* Fix cloak models not being set on Bombchu Bowling prizes ([#1247](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1247))
-* Remove “same hint area” restrictions when all hints are off ([#1248](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1248))
+* Triforce count setting ([#1403](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1403/files))
 * Add setting to show seed info ([#1253](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1253))
+* Add `chaos` hint distribution
 * Add `allsanity-casual` and `debug` presets
 
 Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):
@@ -28,6 +19,7 @@ Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https:
 * 2 new advanced ER settings: "Mixed Entrance Pools" and "Decouple Entrances"
 * Picking up Gold Skulltula Tokens in non-Tokensanity displays a self-closing textbox which no longer freezes the player.
 * "Bombchus In Logic" is improved to include bombchu drops (from grass, pots, etc) that start dropping once you have found Bombchus.
+* New cosmetic setting to randomize the color of some additional equipment and items.
 
 ## Index
 
@@ -37,6 +29,7 @@ Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https:
   * [Settings](#settings)
   * [Known Issues](#known-issues)
 * [Changelog](#changelog)
+  * [6.1](#61)
   * [6.0](#60)
   * [5.2](#52)
   * [5.1](#51)
@@ -48,7 +41,7 @@ Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https:
 To run this program, clone this repository and either run ```Gui.py``` for a graphical interface or ```OoTRandomizer.py```
 for the command line version. They both require Python 3.6+. This will be fully featured,
 but the seeds you generate will have different random factors than the bundled release.
-To use the GUI, [NodeJS](https://nodejs.org/en/download/) (v12, with npm) will additionally need to be installed.
+To use the GUI, [NodeJS](https://nodejs.org/download/release/v14.15.1/) (v14, with npm) will additionally need to be installed.
 The first time ```Gui.py``` is run it will need to install necessary components, which could take a few minutes. Subsequent instances will run much quicker.
 Built-in WAD injection is only supported on the website. To create a WAD from a seed created locally, either use 
 [gzinject](https://github.com/krimtonz/gzinject/tree/0.2.0) or output a patch file and run that through the website.
@@ -58,9 +51,9 @@ the user wishes a pre-decompressed ROM may be supplied as input. Please be sure 
 playing via any means other than on real N64 hardware, the use of the "Compress patched ROM" flag is strongly encouraged as uncompressed ROMs are
 impossible to inject for the Virtual Console and have random crashing problems on all emulators.
 
-For general use, there are three recommended emulators: [Project 64 (v2.4+)](https://wiki.ootrandomizer.com/index.php?title=Project64), [Bizhawk](https://wiki.ootrandomizer.com/index.php?title=Bizhawk), and [RetroArch](https://wiki.ootrandomizer.com/index.php?title=Retroarch).
+For general use, there are three recommended emulators: [Project 64 (v3.0+)](https://wiki.ootrandomizer.com/index.php?title=Project64), [Bizhawk](https://wiki.ootrandomizer.com/index.php?title=Bizhawk), and [RetroArch](https://wiki.ootrandomizer.com/index.php?title=Retroarch).
 In a nutshell the differences are:
-* Project64 is the lightest emulator and the easiest to setup, however, you will need a stable version from 2.4 or later to run OoTR well (and earlier versions are not permitted for use in OoTR races).
+* Project64 is the lightest emulator and the easiest to setup, however, you will need the 3.0.0 version or later to run OoTR well (and earlier versions are not permitted for use in OoTR races).
 * Bizhawk is the most resource-intensive, but easier to set up than RetroArch and the only race-legal emulator to support [Multiworld](https://wiki.ootrandomizer.com/index.php?title=Multiworld).
 * RetroArch is less resource-intensive than Bizhawk and the only of these three to work on platforms other than Windows, but it can be frustrating to set up.
 
@@ -114,8 +107,8 @@ Unfortunately, a few known issues exist. These will hopefully be addressed in fu
 
 * The fishing minigame sometimes refuses to allow you to catch fish when playing specifically on Bizhawk. Save and Hard Reset (NOT savestate) and return to fix the
 issue. You should always Hard Reset to avoid this issue entirely.
-* Versions older than 2.4 of Project64 have known compatablity issues with OoTR. To avoid this either 
-[update to v2.4 and follow the rest of our PJ64 guide](https://wiki.ootrandomizer.com/index.php?title=Project64) or change to one of our other two supported emulators.
+* Versions older than 3.0 of Project64 have known compatablity issues with OoTR. To avoid this either 
+[update to v3.0 and follow the rest of our PJ64 guide](https://wiki.ootrandomizer.com/index.php?title=Project64) or change to one of our other two supported emulators.
 * Executing the collection delay glitch on various NPCs may have unpredictable and undesirable consequences.
 * Saving and quitting on the very first frame after becoming an adult when you would trigger the Light Arrow cutscene can have undesired consequences. Just don't
 do that.
@@ -125,28 +118,106 @@ do that.
 
 ### Dev
 
+### 6.1
+
 #### New Features
 
-* Added a GameCube-style reset. Hold B + C-Right + Start for ten frames to reset to the title screen.
-* New setting `Reachable Locations` replaces `All Locations Reachable` and adds a new option "All Goals" which ensures that all goal items for Ganon's Boss Key and the Rainbow Bridge are reachable, regardless of how many are required by the setting.
-  * For example, if the Rainbow Bridge requires 4 medallions, all 6 medallions will be guaranteed reachable.
-* New separate setting `LACS Condition` to select what goal items are required for the Light Arrows Cutscene.
-* New option `Misc. Hints` controls whether the Temple of Time altar and Ganondorf give hints, defaulting on to preserve behavior. Hell Mode disables this setting.
+* **Objective Settings**
+  * New setting `Reachable Locations` replaces `All Locations Reachable` and adds a new option "All Goals" which ensures that all goal items for Ganon's Boss Key and the Rainbow Bridge are reachable, regardless of how many are required by the setting.
+    * For example, if the Rainbow Bridge requires 4 medallions, all 6 medallions will be guaranteed reachable.
+  * New setting `LACS Condition` to select what goal items are required for the Light Arrows Cutscene, separate from whether Ganon's Boss Key is placed there. (Additional settings are added to control how many.)
+  * `Ganon's Boss Key` now allows you to set it to the Light Arrow Cutscene (and use `LACS Condition` to set its objective) or for it to be directly awarded when meeting a configurable target number of Spiritual Stones, Medallions, Dungeons completed, or Gold Skulltula Tokens. (Additional settings are added to control how many.)
+  * New `Rainbow Bridge` option `Random` that will choose one of the other options at random (besides Skulltula Tokens), and require the maximum of that goal (if applicable).
+
+* **Hints**
+  * New option `Misc. Hints` controls whether the Temple of Time altar and Ganondorf give hints, defaulting on to preserve behavior. Hell Mode disables this setting.
+  * New `goal` hint type for use in custom hint distributions. 
+    * Default goals are included for the Rainbow Bridge, Ganon's Castle Boss Key, and Ganon's Trials settings.
+    * Hints read as "They say that Kokiri Forest is on the path to Twinrova.", where the medallion or stone reward from defeating Twinrova can be used for the bridge or Ganon's Castle Boss Key. Twinrova is not necessarily required depending on other settings. For example, with 2 medallions for the bridge, all medallions accessible without entering Ganon's Castle, and Spirit Medallion on Twinrova, the hint only points to one possible path to building the rainbow bridge.
+  * Hint distributions can now filter areas from being hinted as foolish, via putting the area names in `remove_locations`.
+  * Various other hint distribution changes for named-item hints, including a new `vague_named_items` option for `hint_dist_user` that will name the location but not the item.
+  * The dungeon name is now provided when hinting keys.
+  * Allow special characters (such as the é in Dampé) to appear in in-game hints.
+  * Certain Unicode characters and control characters like 'Ⓐ' and '⯅' can now be used in hint texts to refer to the corresponding in-game symbols.
+
+* **Plandomizer**
+  * New `#MajorItem` item category for Plandomizer allows placing a random major item. This won't include songs unless Song Shuffle is Anywhere.
+  * New `#Vanilla` item category for Plandomizer allows placing the item normally at the location.
+  * New Plandomizer support for defining custom item groups.
+  * New Plandomizer support for defining custom song note patterns (rhythm is still random).
+  * Allow Plandomizer to override otherwise randomized settings.
+
+* **Tricks**
+  * Added `King Zora Skip` - Adult Link can make a precise jump to climb atop the fence next to King Zora from the audience chamber.
+  * Removed `Forest Temple MQ Twisted Hallway Switch with Hookshot` - This was determined to be a clip and therefore not allowed in glitchless rulesets.
+
+* **Misc.**
+  * Allow Giant's Knife as a starting item.
+  * Added a file `data/custom_music_exclusion.txt` where one can specify which music files shouldn't be shuffled in with random custom music.
+  * Ruto now knows what kind of medallion or stone she gets in Jabu Jabu.
+  * Randomized songs' note patterns are now included in the spoiler log.
 
 #### Bug Fixes
 
-* Fixed a bug where importing from a settings string might not choose the correct hint distribution depending on platform or number of custom hint distributions in the Hints folder.
-* `Skip Child Zelda` in Multiworld (with Song Shuffle: Anywhere) now correctly provides items to the right player.
-* Smarter replacement of required warp songs when warp songs are shuffled. 
-* Fix Entrance Randomizer hint area validation to work with shuffled warp songs.
-* Fix error thrown on some operating systems for capitalized file extensions .N64/.Z64.
+* **Gameplay**
+  * Adjust the weather system to fix the fog glitch.
+  * Disable Sandstorm transitions in certain cases in Entrance Randomizer. In particular, this prevents Sandstorm transitions from triggering strobe effects due to a bug.
+  * Remove the Door of Time collision while the door is opening.
+  * Cache chest sizes and colors in the actor to reduce some latency with Chest Size Matches Contents.
+
+* **Entrance Randomizer**
+  * Smarter replacement of required warp songs when warp songs are shuffled. 
+  * Fix hint area validation to work with shuffled warp songs.
+  * Fix dungeon entrance hints.
+
+* **Plandomizer**
+  * Correctly consider plando'ed prices in logic, and limit set prices to a range of -32768 to 999.
+  * Fix duplicating placed shop items.
+  * Properly randomize starting age and time of day when plando sets it to random.
+
+* **Hints**
+  * Make hints in Triforce Hunt function based on the required number of Triforce Pieces and not the total number (improves Way of the Hero hints as well as compatibility with Guaranteed Reachable Locations set to Required Only).
+  * Prevent areas hinted as barren from having a location hint.
+  * Fix trying to place hints when we've run out of stones.
+
+* **Misc. Seed Generation**
+  * Fixed a bug where importing from a settings string might not choose the correct hint distribution depending on platform or number of custom hint distributions in the Hints folder.
+  * `Skip Child Zelda` in Multiworld (with Song Shuffle: Anywhere) now correctly provides items to the right player.
+  * `Skip Child Zelda` in Triforce Hunt (with Song Shuffle: Anywhere) now avoids starting having already won (by preventing Impa from giving out Triforce Pieces at all if there are more players than Triforce Pieces needed to win).
+  * Fix some potential failures for placing junk.
+  * Fix disabled song locations getting a general junk item instead of a junk song.
+  * Fix some spoiler entries for visible ice traps.
+  * Fix error thrown on some operating systems for capitalized file extensions .N64/.Z64.
+<!-- * Show the actual result settings in the spoiler instead of originally chosen settings (in case some settings like Closed Forest were modified). The settings string remains the original so the seed can be easily reproduced. -->
+
 
 #### Other Changes
 
-* Add ability to provide settings through stdin (useful for shell scripting).
-* Ruto now knows what kind of medallion or stone she gets in Jabu Jabu.
 * Added Nayru's Love back to the minimal item pool on high damage settings.
-* Hint distribution changes for named-item hints, including a new `vague_named_items` option for `hint_dist_user` that will name the location but not the item.
+* Allow settings with a 'Random' option to be different per-world. (This does not permit settings randomized only by Randomize Main Rules to be different per-world.)
+* Updated sometimes hints.
+* Renamed some regions, locations, items, etc to match vanilla names. This will make Plandomizer files incompatible between versions.
+  * Gerudo Training **Grounds** -> Gerudo Training **Ground**
+  * Gerudo Fortress -> Thieves' Hideout (when referring to the interior areas or the carpenter rescue quest)
+  * Graveyard Composers' Grave -> Royal Family's Tomb
+* Giant's Knife and Biggoron's Sword are considered useless in glitchless logic but not in glitched.
+* Entrance Randomizer: Prelude of Light and Serenade of Water are considered useless in ER if the only ER option enabled is Random Spawns (which already cannot be placed in certain areas where any items are necessary to escape).
+* Entrance Randomizer: Allow Kakariko Potion Shop and Impa's House to have their entrances appear in different areas if all hints are off.
+* Entrance Randomizer: When warp songs are shuffled, the confirmation text now shows the actual destination.
+* Text Shuffle: Expanded the "Shuffled except Hints and Keys" to include some shop and scrub text, and renamed it to "Shuffled except Important Text".
+* Hid the trick list on the GUI when it's disabled.
+* Changed internal names for the broken swords.
+* Added validation of settings for plandomizer before attempting generation.
+* Removed size check for the decompressor.
+* Updated presets.
+* Updated logic.
+* Added internal tracking of what items were where in vanilla OoT.
+* Added ability to provide settings through stdin (useful for shell scripting).
+* Added a commandline flag to use a preset by name. This still allows supplying additional settings, e.g. to control cosmetics and ROM output.
+* Added settings validation for unittests.
+* Added unittests for settings presets.
+* Use HTTPS for the version check to github.
+
 
 ### 6.0
 
@@ -517,7 +588,7 @@ do that.
     * In the affected modes, a Gerudo is added behind the Wasteland gate who can open the gate
   * Removed RNG from Fishing Minigame
     * Note: The optimal strategy is to have the line stationary for the fish to bite
-  * Can now cast Farore's Wind and play Warp Songs from within Gerudo Training Grounds and all of Ganon's Castle
+  * Can now cast Farore's Wind and play Warp Songs from within Gerudo Training Ground and all of Ganon's Castle
 * Hint Changes
   * Every generic grotto gossip stone has their own hint.
   * The "Very Strong" hint setting can now give multiple Foolish dungeon hints.

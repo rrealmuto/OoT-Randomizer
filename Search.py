@@ -236,6 +236,63 @@ class Search(object):
         else:
             return False
 
+
+    def can_beat_goals_fast(self, goal_categories, world_filter = None):
+        valid_goals = self.test_category_goals(goal_categories, world_filter)
+        if all(map(State.won, self.state_list)):
+            valid_goals['way of the hero'] = True
+        else:
+            valid_goals['way of the hero'] = False
+        return valid_goals
+
+
+    def can_beat_goals(self, goal_categories):
+        # collect all available items
+        # make a new search since we might be iterating over one already
+        search = self.copy()
+        search.collect_locations()
+        valid_goals = search.test_category_goals(goal_categories)
+        if all(map(State.won, search.state_list)):
+            valid_goals['way of the hero'] = True
+        else:
+            valid_goals['way of the hero'] = False
+        return valid_goals
+
+
+    def test_category_goals(self, goal_categories, world_filter = None):
+        valid_goals = {}
+        for category_name, category in goal_categories.items():
+            valid_goals[category_name] = {}
+            valid_goals[category_name]['stateReverse'] = {}
+            for state in self.state_list:
+                # Must explicitly test for None as the world filter can be 0
+                # for the first world ID
+                # Skips item search when an entrance lock is active to avoid
+                # mixing accessible goals with/without the entrance lock in
+                # multiworld
+                if world_filter is not None and state.world.id != world_filter:
+                    continue
+                valid_goals[category_name]['stateReverse'][state.world.id] = []
+                for goal in category.goals:
+                    if goal.name not in valid_goals[category_name]:
+                        valid_goals[category_name][goal.name] = []
+                    # Check if already beaten
+                    if all(map(lambda i: state.has_full_item_goal(category, goal, i), goal.items)):
+                        valid_goals[category_name][goal.name].append(state.world.id)
+                        # Reverse lookup for checking if the category is already beaten.
+                        # Only used to check if starting items satisfy the category.
+                        valid_goals[category_name]['stateReverse'][state.world.id].append(goal.name)
+        return valid_goals
+
+
+    def collect_pseudo_starting_items(self):
+        for state in self.state_list:
+            # Skip Child Zelda and Link's Pocket are not technically starting items, so collect them now
+            if state.world.settings.skip_child_zelda:
+                self.collect(state.world.get_location('Song from Impa').item)
+            self.collect(state.world.get_location('Links Pocket').item)
+
+
     # Use the cache in the search to determine region reachability.
     # Implicitly requires is_starting_age or Time_Travel.
     def can_reach(self, region, age=None, tod=TimeOfDay.NONE):
@@ -255,6 +312,9 @@ class Search(object):
             # treat None as either
             return self.can_reach(region, age='adult', tod=tod) or self.can_reach(region, age='child', tod=tod)
 
+    def can_reach_spot(self, state, locationName, age=None, tod=TimeOfDay.NONE):
+        location = state.world.get_location(locationName)
+        return self.spot_access(location, age, tod)
 
     # Use the cache in the search to determine location reachability.
     # Only works for locations that had progression items...

@@ -561,7 +561,7 @@ typedef struct
   char            unk_0E_[0x0003];          /* 0x1354 */
   int8_t          file_index;               /* 0x1357 */
   char            unk_0F_[0x0004];          /* 0x1358 */
-  int32_t         interface_flag;           /* 0x135C */
+  int32_t         game_mode;                /* 0x135C */
   uint32_t        scene_setup_index;        /* 0x1360 */
   int32_t         void_flag;                /* 0x1364 */
   z64_xyzf_t      void_pos;                 /* 0x1368 */
@@ -781,8 +781,8 @@ struct z64_actor_s
   char            unk_11_[0x0003];  /* 0x0112 */
   uint8_t         active;           /* 0x0115 */
   char            unk_12_[0x0002];  /* 0x0116 */
-  z64_actor_t    *unk_13_;          /* 0x0118 */
-  char            unk_14_[0x0004];  /* 0x011C */
+  z64_actor_t    *parent;           /* 0x0118 */
+  z64_actor_t    *child;            /* 0x011C */
   z64_actor_t    *prev;             /* 0x0120 */
   z64_actor_t    *next;             /* 0x0124 */
   void           *ctor;             /* 0x0128 */

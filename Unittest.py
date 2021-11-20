@@ -5,13 +5,16 @@ import json
 import logging
 import os
 import random
+import re
 import unittest
 
+from EntranceShuffle import EntranceShuffleError
 from ItemList import item_table
 from ItemPool import remove_junk_items, item_groups
 from LocationList import location_groups, location_is_viewable
-from Main import main, resolve_settings, build_world_graphs
-from Settings import Settings
+from Main import main, resolve_settings, build_world_graphs, place_items
+from Search import Search
+from Settings import Settings, get_preset_files
 
 test_dir = os.path.join(os.path.dirname(__file__), 'tests')
 output_dir = os.path.join(test_dir, 'Output')
@@ -48,11 +51,23 @@ bottles = {
 junk = set(remove_junk_items)
 
 
+def make_settings_for_test(settings_dict, seed=None, outfilename=None):
+    # Some consistent settings for testability
+    settings_dict.update({
+        'compress_rom': "None",
+        'count': 1,
+        'create_spoiler': True,
+        'output_file': os.path.join(test_dir, 'Output', outfilename),
+    })
+    if seed and 'seed' not in settings_dict:
+        settings_dict['seed'] = seed
+    return Settings(settings_dict, strict=True)
+
+
 def load_settings(settings_file, seed=None, filename=None):
     if isinstance(settings_file, dict):  # Check if settings_file is a distribution file settings dict
         try:
             j = settings_file
-            ofile = os.path.join(test_dir, 'Output', filename)
             j.update({
                 'enable_distribution_file': True,
                 'distribution_file': os.path.join(test_dir, 'plando', filename + '.json')
@@ -61,19 +76,10 @@ def load_settings(settings_file, seed=None, filename=None):
             raise RuntimeError("Running test with in memory file but did not supply a filename for output file.")
     else:
         sfile = os.path.join(test_dir, settings_file)
-        ofile = os.path.join(test_dir, 'Output', os.path.splitext(settings_file)[0])
+        filename = os.path.splitext(settings_file)[0]
         with open(sfile) as f:
             j = json.load(f)
-    # Some consistent settings for testability
-    j.update({
-        'compress_rom': "None",
-        'count': 1,
-        'create_spoiler': True,
-        'output_file': ofile,
-    })
-    if seed and 'seed' not in j:
-        j['seed'] = seed
-    return Settings(j)
+    return make_settings_for_test(j, seed=seed, outfilename=filename)
 
 
 def load_spoiler(json_file):
@@ -198,7 +204,7 @@ class TestPlandomizer(unittest.TestCase):
             "plando-item-pool-matches-items-placed-after-starting-items-replaced",
             "plando-new-placed-ice-traps",
             "plando-placed-and-added-ice-traps",
-            "bombchu-bowling-ice-trap",
+            "non-standard-visible-ice-traps",
         ]
         for filename in filenames:
             with self.subTest(filename):
@@ -219,7 +225,7 @@ class TestPlandomizer(unittest.TestCase):
                         # This distribution file should set all junk items to 1 except for ice traps so we will reuse it
                         _, spoiler = generate_with_plandomizer("plando-explicit-item-pool")
                         self.assertGreater(spoiler['item_pool']['Ice Trap'], 6)
-                if filename == "bombchu-bowling-ice-trap":
+                if filename == "non-standard-visible-ice-traps":
                     with self.subTest("ice trap models in non-standard visible locations"):
                         for location in distribution_file['locations']:
                             self.assertIn('model', spoiler['locations'][location])
@@ -240,7 +246,13 @@ class TestPlandomizer(unittest.TestCase):
             "plando-num-bottles-fountain-closed-good",
             "plando-num-bottles-fountain-open-good",
             "plando-change-triforce-piece-count",
-            "plando-use-normal-triforce-piece-count"
+            "plando-use-normal-triforce-piece-count",
+            "plando-egg-not-shuffled-one-pool",
+            "plando-egg-not-shuffled-two-pool",
+            "plando-egg-shuffled-one-pool",
+            "plando-egg-shuffled-two-pool",
+            "no-ice-trap-pending-junk",
+            "disabled-song-location",
         ]
         for filename in filenames:
             with self.subTest(filename):
@@ -264,13 +276,16 @@ class TestPlandomizer(unittest.TestCase):
             "plando-item-pool-matches-items-placed-after-starting-items-replaced",
             "plando-change-triforce-piece-count",
             "plando-use-normal-triforce-piece-count",
+            "plando-shop-items",
+            "no-ice-trap-pending-junk",
         ]
         for filename in filenames:
             with self.subTest(filename + " pool accuracy"):
                 distribution_file, spoiler = generate_with_plandomizer(filename)
                 actual_pool = get_actual_pool(spoiler)
                 for item in spoiler['item_pool']:
-                    self.assertEqual(actual_pool[item], spoiler['item_pool'][item])
+                    self.assertEqual(actual_pool[item], spoiler['item_pool'][item],
+                    f"Pool item {item} count mismatch")
         filename = "plando-list-exhaustion"
         with self.subTest(filename + " pool accuracy"):
             distribution_file, spoiler = generate_with_plandomizer(filename)
@@ -284,6 +299,23 @@ class TestPlandomizer(unittest.TestCase):
             for item in distribution_file['starting_items']:
                 self.assertNotIn(item, actual_pool)
 
+    def test_weird_egg_in_pool(self):
+        # Not shuffled, one in pool: Should remove from pool and not place anywhere
+        not_shuffled_one = "plando-egg-not-shuffled-one-pool"
+        distribution_file, spoiler = generate_with_plandomizer(not_shuffled_one)
+        self.assertNotIn('Weird Egg', spoiler['item_pool'])
+        # Not shuffled, two in pool: Should be the same outcome as previous case
+        not_shuffled_two = "plando-egg-not-shuffled-two-pool"
+        distribution_file, spoiler = generate_with_plandomizer(not_shuffled_two)
+        self.assertNotIn('Weird Egg', spoiler['item_pool'])
+        # Shuffled, one in pool: Valid config, shouldn't have to make any changes, will end with 1 in pool
+        shuffled_one = "plando-egg-shuffled-one-pool"
+        distribution_file, spoiler = generate_with_plandomizer(shuffled_one)
+        self.assertEqual(spoiler['item_pool']['Weird Egg'], 1)
+        # Shuffled, two in pool: Shouldn't have more than one, will remove force to 1 in pool
+        shuffled_two = "plando-egg-shuffled-two-pool"
+        distribution_file, spoiler = generate_with_plandomizer(shuffled_two)
+        self.assertEqual(spoiler['item_pool']['Weird Egg'], 1)
 
 class TestHints(unittest.TestCase):
     def test_skip_zelda(self):
@@ -305,6 +337,30 @@ class TestHints(unittest.TestCase):
                 _, spoiler = generate_with_plandomizer(filename, live_copy=True)
                 self.assertIsNotNone(spoiler.worlds[0].light_arrow_location)
                 self.assertNotEqual('Ganons Tower Boss Key Chest', spoiler.worlds[0].light_arrow_location.name)
+
+
+class TestEntranceRandomizer(unittest.TestCase):
+    def test_spawn_point_invalid_areas(self):
+        # With special interior, overworld, and warp song ER off, random spawns
+        # require itemless access to Kokiri Forest or Kakariko Village. This imposes
+        # a world state such that the Prelude and Serenade warp pads are also reachable
+        # with no items, and Prelude and Serenade should be foolish. If this behaviour
+        # is changed, this unit test serves as a reminder to revisit warp song
+        # foolishness.
+        # Currently only tests glitchless as glitched logic does not support ER yet.
+        # Assumes the player starts with an ocarina to use a warp song from Sheik at
+        # Colossus or Ice Cavern.
+        filenames = [
+            "plando-er-colossus-spawn-validity",
+        ]
+        for filename in filenames:
+            distribution_file = load_spoiler(os.path.join(test_dir, 'plando', filename + '.json'))
+            settings = load_settings(distribution_file['settings'], seed='TESTTESTTEST', filename=filename)
+            resolve_settings(settings)
+            # Test for an entrance shuffle error during world validation.
+            # If the test succeeds, this confirms Serenade and Prelude can be foolish.
+            with self.assertRaises(EntranceShuffleError):
+                build_world_graphs(settings)
 
 
 class TestValidSpoilers(unittest.TestCase):
@@ -363,7 +419,7 @@ class TestValidSpoilers(unittest.TestCase):
         # No disabled locations
         disables = set(spoiler['settings'].get('disabled_locations', []))
         self.assertEqual(
-            expected_none,
+            {p: set() for p in locations},  # keys might differ bt locations/items
             {p: disables & c for p, c in locations.items()},
             'Disabled locations deemed required')
         # No more than one of any 'once' item
@@ -397,8 +453,11 @@ class TestValidSpoilers(unittest.TestCase):
         # Everybody reached the win condition in the playthrough
         if spoiler['settings'].get('triforce_hunt', False) or spoiler['randomized_settings'].get('triforce_hunt', False):
             item_pool = self.normalize_worlds_dict(spoiler['item_pool'])
+            # playthrough assumes each player gets exactly the goal
+            req = spoiler['settings'].get('triforce_goal_per_world', None) or spoiler['randomized_settings'].get('triforce_goal_per_world', None)
             self.assertEqual(
-                {p: item_pool[p]['Triforce Piece'] for p in items},
+                {p: req or item_pool[p]['Triforce Piece']
+                    for p in items},
                 {p: c['Triforce Piece'] for p, c in items.items()},
                 'Playthrough missing some (or having extra) Triforce Pieces')
         else:
@@ -422,7 +481,7 @@ class TestValidSpoilers(unittest.TestCase):
             {loc: items - junk for loc, items in locitems.items()},
             'Disabled locations have non-junk')
 
-    def test_spoiler(self):
+    def test_testcases(self):
         test_files = [filename
                       for filename in os.listdir(test_dir)
                       if filename.endswith('.sav')]
@@ -435,6 +494,22 @@ class TestValidSpoilers(unittest.TestCase):
                 self.verify_woth(spoiler)
                 self.verify_playthrough(spoiler)
                 self.verify_disables(spoiler)
+
+    def test_presets(self):
+        presetsFiles = get_preset_files()
+        for fn in presetsFiles:
+            with open(fn, encoding='utf-8') as f:
+                presets = json.load(f)
+            for name, settings_dict in presets.items():
+                ofile = 'preset_' + re.sub(r'[^a-zA-Z0-9_-]+', '_', name)
+                with self.subTest(name, filename=ofile):
+                    settings = make_settings_for_test(
+                            settings_dict, seed='TESTTESTTEST', outfilename=ofile)
+                    main(settings)
+                    spoiler = load_spoiler('%s_Spoiler.json' % settings.output_file)
+                    self.verify_woth(spoiler)
+                    self.verify_playthrough(spoiler)
+                    self.verify_disables(spoiler)
 
     def test_fuzzer(self):
         random.seed()
