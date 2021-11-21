@@ -3935,9 +3935,17 @@ setting_infos = [
         ''',
         shared         = True,
     ),
-    Checkbutton(
+    Setting_Info(
         name           = 'misc_hints',
+        type           = list,
         gui_text       = 'Misc. Hints',
+        gui_type       = "MultipleSelect",
+        choices        = {
+            'altar': 'Temple of Time Altar',
+            'ganondorf': 'Ganondorf',
+            'warp_songs': 'Warp Songs'
+        },
+        default        = ['altar', 'ganondorf', 'warp_songs'],
         gui_tooltip    = '''\
             This setting adds some hints at locations
             other than Gossip Stones:
@@ -3956,13 +3964,15 @@ setting_infos = [
 
             Talking to Ganondorf in his boss room will
             tell you the location of the Light Arrows.
-
-            If this setting is enabled and Ganondorf
+            If this option is enabled and Ganondorf
             is reachable without Light Arrows, Gossip
             Stones will never hint the Light Arrows.
+
+            Playing a warp song will tell you where
+            it leads. (If warp song destinations
+            are vanilla, the vanilla text is used.)
         ''',
         shared         = True,
-        default        = True,
     ),
     Combobox(
         name           = 'ice_trap_appearance',

@@ -760,7 +760,7 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
                 if not max_search.visited(location):
                     raise EntranceShuffleError('%s is unreachable' % location.name)
 
-    if world.shuffle_interior_entrances and (world.settings.misc_hints or world.settings.hints != 'none') and \
+    if world.shuffle_interior_entrances and ('ganondorf' in world.settings.misc_hints or world.settings.hints != 'none') and \
        (entrance_placed == None or entrance_placed.type in ['Interior', 'SpecialInterior']):
         # When cows are shuffled, ensure both Impa's House entrances are in the same hint area because the cow is reachable from both sides
         if world.settings.shuffle_cows:

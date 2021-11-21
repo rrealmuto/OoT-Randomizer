@@ -991,17 +991,21 @@ def update_warp_song_text(messages, world):
     }
 
     for id, entr in msg_list.items():
-        destination = world.get_entrance(entr).connected_region
+        if 'warp_songs' in world.settings.misc_hints:
+            destination = world.get_entrance(entr).connected_region
 
-        if destination.pretty_name:
-            destination_name = destination.pretty_name
-        elif destination.hint:
-            destination_name = destination.hint
-        elif destination.dungeon:
-            destination_name = destination.dungeon.hint
+            if destination.pretty_name:
+                destination_name = destination.pretty_name
+            elif destination.hint:
+                destination_name = destination.hint
+            elif destination.dungeon:
+                destination_name = destination.dungeon.hint
+            else:
+                destination_name = destination.name
+            color = COLOR_MAP[destination.font_color or 'White']
         else:
-            destination_name = destination.name
-        color = COLOR_MAP[destination.font_color or 'White']
+            destination_name = 'a mysterious place'
+            color = 'White'
 
         new_msg = f"\x08\x05{color}Warp to {destination_name}?\x05\40\x09\x01\x01\x1b\x05{color}OK\x01No\x05\40"
         update_message_by_id(messages, id, new_msg)

@@ -13,6 +13,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
 * Add boss rush setting ([#1369](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1369))
 * Setting to include dungeons in spawn entrance pool ([#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
 * Add setting to show seed info ([#1253](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1253))
+* The “Misc. Hints” setting is split into 3 toggles: Ganondorf, Temple of Time altar, and a new feature to disable warp song destination hints
 * Add `chaos` hint distribution
 * Add `allsanity-casual` and `debug` presets
 

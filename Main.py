@@ -196,7 +196,7 @@ def make_spoiler(settings, worlds, window=dummy_window()):
         update_goal_items(spoiler)
         buildGossipHints(spoiler, worlds)
         window.update_progress(55)
-    elif settings.misc_hints:
+    elif 'ganondorf' in settings.misc_hints:
         # Ganon may still provide the Light Arrows hint
         find_light_arrows(spoiler)
     spoiler.build_file_hash()
