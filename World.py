@@ -12,7 +12,6 @@ from HintList import getRequiredHints
 from Hints import get_hint_area, hint_dist_keys, HintDistFiles
 from Item import Item, ItemFactory, MakeEventItem
 from ItemList import item_table
-from ItemPool import TriforceCounts
 from Location import Location, LocationFactory
 from LocationList import business_scrubs
 from Plandomizer import InvalidFileException
@@ -595,7 +594,6 @@ class World(object):
         trial_goal = Goal(self, 'the Tower', 'path to the Tower', 'White', items=[], create_empty=True)
 
         if self.settings.triforce_hunt and self.settings.triforce_goal_per_world > 0:
-            triforce_count = int((TriforceCounts[self.settings.item_pool_value] * self.settings.triforce_goal_per_world).to_integral_value(rounding=ROUND_HALF_UP))
             # "Hintable" value of False means the goal items themselves cannot
             # be hinted directly. This is used for Triforce Hunt and Skull
             # conditions to restrict hints to useful items instead of the win
@@ -606,7 +604,7 @@ class World(object):
             # Key, which makes these items directly hintable in their respective goals
             # assuming they do not get hinted by another hint type (always, woth with
             # an earlier order in the hint distro, etc).
-            th.add_goal(Goal(self, 'gold', 'path of gold', 'Yellow', items=[{'name': 'Triforce Piece', 'quantity': triforce_count, 'minimum': self.settings.triforce_goal_per_world, 'hintable': False}]))
+            th.add_goal(Goal(self, 'gold', 'path of gold', 'Yellow', items=[{'name': 'Triforce Piece', 'quantity': self.settings.triforce_count_per_world, 'minimum': self.settings.triforce_goal_per_world, 'hintable': False}]))
             self.goal_categories[th.name] = th
         # Category goals are defined for each possible setting for each category.
         # Bridge can be Stones, Medallions, Dungeons, Skulls, or Vanilla.
@@ -759,7 +757,10 @@ class World(object):
                 trials.goal_count += 1
 
             # Trials category is finalized and saved only if at least one trial is on
-            if self.settings.trials > 0:
+            # If random trials are on and one world in multiworld gets 0 trials, still
+            # add the goal to prevent key errors. Since no items fulfill the goal, it
+            # will always be invalid for that world and not generate hints.
+            if self.settings.trials > 0 or self.settings.trials_random:
                 trials.add_goal(trial_goal)
                 self.goal_categories[trials.name] = trials
 

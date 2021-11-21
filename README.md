@@ -122,6 +122,11 @@ do that.
 
 ### Dev
 
+#### Bug fixes
+
+* Fix seed generation for multiworld with random trials.
+* Fix seed generation for All Goals Reachable.
+
 ### 6.1
 
 #### New Features
@@ -300,6 +305,8 @@ do that.
   * Many locations that did not previously have item hints now have hints, in case a custom hint distribution makes use of them.
   * Using the hint distribution "Bingo" allows setting a "Bingosync URL" to build hints for the specific OoTR Bingo board. Otherwise it's a generic hint distribution for OoTR Bingo.
 * Hint distributions can configure groups of stones to all have the same hint, and can also disable stones from receiving useful hints (give them junk hints instead).
+* Triforce Hunt changes
+  * The number of Triforce pieces available per world, which was previously tied to the item pool setting, is now a separate setting.
 * Tournament hint distribution changes
   * Grotto stones are disabled and only provide junk hints.
   * Zelda's Lullaby is never considered for Way of the Hero hints.

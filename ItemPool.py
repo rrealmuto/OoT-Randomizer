@@ -1303,7 +1303,7 @@ def get_pool_core(world):
         world.state.collect(ItemFactory('Small Key (Fire Temple)'))
 
     if world.settings.triforce_hunt:
-        pending_junk_pool.extend(['Triforce Piece'] * world.triforce_count_per_world)
+        pending_junk_pool.extend(['Triforce Piece'] * world.settings.triforce_count_per_world)
 
     if world.settings.shuffle_ganon_bosskey == 'on_lacs':
         placed_items['ToT Light Arrows Cutscene'] = 'Boss Key (Ganons Castle)'
