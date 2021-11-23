@@ -2447,30 +2447,26 @@ setting_infos = [
         },
         default        = [],
         gui_tooltip    = '''\
-            Shortcuts to dungeon bosses are available without
-            any requirements.
+            Shortcuts to dungeon bosses are available
+            without any requirements.
             Incompatible with glitched logic.
 
-            Changes include:
-            <b>Deku Tree</b>: webs burned, block in the basement
-            moved, 231 scrubs defeated
-            <b>Dodongo's Cavern</b>: mud wall bombed, mouth opened
-            and boss lobby floor bombed
+            Changes include (vanilla shown, MQ similar):
+            <b>Deku Tree</b>: webs burned, block in the
+            basement moved, 231 scrubs defeated
+            <b>Dodongo's Cavern</b>: mud wall bombed,
+            mouth opened and boss lobby floor bombed
             <b>Jabu Jabu</b>: pathway lowered
-            <b>Forest Temple</b>: elevator raised and basement gates
-            open
+            <b>Forest Temple</b>: elevator raised and
+            basement gates open
             <b>Fire Temple</b>: pillar knocked down
-            <b>Shadow Temple</b>: Truthspinner solved, boat block
-            moved, and statue bridge moved. You start with 2 small
-            keys if Shuffle Small Keys is set to Vanilla.
-            <b>Spirit Temple</b>: lobby elevator activated, shortcut
-            silver blocks moved, central room platform lowered,
-            and statue face melted
-
-            MQ dungeon shortcuts are similar to those
-            listed for the vanilla dungeons above. For Jabu, note
-            that the red slimy thing that used to block the boss
-            is also removed from in front of the Invisible Enemies GS.
+            <b>Shadow Temple</b>: Truthspinner solved, boat
+            block moved, and statue bridge moved. You start
+            with 2 small keys if Shuffle Small Keys is set
+            to Vanilla.
+            <b>Spirit Temple</b>: lobby elevator activated,
+            shortcut silver blocks moved, central room
+            platform lowered, and statue face melted
         ''',
         shared         = True,
     ),
