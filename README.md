@@ -45,7 +45,7 @@ Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https:
 To run this program, clone this repository and either run ```Gui.py``` for a graphical interface or ```OoTRandomizer.py```
 for the command line version. They both require Python 3.6+. This will be fully featured,
 but the seeds you generate will have different random factors than the bundled release.
-To use the GUI, [NodeJS](https://nodejs.org/download/release/v14.15.1/) (v14, with npm) will additionally need to be installed.
+To use the GUI, [NodeJS](https://nodejs.org/download/release/v14.15.1/) (v14, with npm) will additionally need to be installed. NodeJS v16+ is currently not supported.
 The first time ```Gui.py``` is run it will need to install necessary components, which could take a few minutes. Subsequent instances will run much quicker.
 Built-in WAD injection is only supported on the website. To create a WAD from a seed created locally, either use 
 [gzinject](https://github.com/krimtonz/gzinject/tree/0.2.0) or output a patch file and run that through the website.
@@ -126,6 +126,12 @@ do that.
 
 * Fix seed generation for multiworld with random trials.
 * Fix seed generation for All Goals Reachable.
+* Fix a minor optimization for counting needed Skulltula Tokens.
+* Fix some erroneous category tags for locations.
+
+#### Other changes
+* Allow foolish hints to apply even if an area has an Always hint (but no other types).
+* Renamed setting `Enable Useful Cutscenes` to `Enable Specific Glitch-Useful Cutscenes` for clarity.
 
 ### 6.1
 
