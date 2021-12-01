@@ -177,7 +177,7 @@ PLANDOMIZER_USED:
 ; These configuration values are given fixed addresses to aid auto-trackers.
 AUTO_TRACKER_CONTEXT:
 AUTO_TRACKER_VERSION:
-.word 0 ; Increment this if the auto-tracker context layout changes
+.word 1 ; Increment this if the auto-tracker context layout changes
 
 CFG_DUNGEON_INFO_ENABLE:
 .word 1
