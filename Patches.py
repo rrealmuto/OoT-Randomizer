@@ -2345,11 +2345,11 @@ def configure_dungeon_info(rom, world):
              'Gerudo Training Ground', 'Hideout (N/A)', 'Ganons Castle']
     dungeon_is_mq = [1 if world.dungeon_mq.get(c) else 0 for c in codes]
 
-    rom.write_int32(rom.sym('cfg_dungeon_info_enable'), 1)
-    rom.write_int32(rom.sym('cfg_dungeon_info_mq_enable'), int(mq_enable))
-    rom.write_int32(rom.sym('cfg_dungeon_info_mq_need_map'), int(enhance_map_compass))
-    rom.write_int32(rom.sym('cfg_dungeon_info_reward_enable'), int('altar' in world.settings.misc_hints or enhance_map_compass))
-    rom.write_int32(rom.sym('cfg_dungeon_info_reward_need_compass'), int(enhance_map_compass))
-    rom.write_int32(rom.sym('cfg_dungeon_info_reward_need_altar'), int(not enhance_map_compass))
-    rom.write_bytes(rom.sym('cfg_dungeon_rewards'), dungeon_rewards)
-    rom.write_bytes(rom.sym('cfg_dungeon_is_mq'), dungeon_is_mq)
+    rom.write_int32(rom.sym('CFG_DUNGEON_INFO_ENABLE'), 1)
+    rom.write_int32(rom.sym('CFG_DUNGEON_INFO_MQ_ENABLE'), int(mq_enable))
+    rom.write_int32(rom.sym('CFG_DUNGEON_INFO_MQ_NEED_MAP'), int(enhance_map_compass))
+    rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_ENABLE'), int('altar' in world.settings.misc_hints or enhance_map_compass))
+    rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_NEED_COMPASS'), int(enhance_map_compass))
+    rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_NEED_ALTAR'), int(not enhance_map_compass))
+    rom.write_bytes(rom.sym('CFG_DUNGEON_REWARDS'), dungeon_rewards)
+    rom.write_bytes(rom.sym('CFG_DUNGEON_IS_MQ'), dungeon_is_mq)

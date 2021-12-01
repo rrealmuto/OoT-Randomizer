@@ -8,6 +8,7 @@ Instead, you can open an issue on this fork [here](https://github.com/fenhl/OoT-
 
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
+* Simplify dungeon info setting detection for auto-trackers ([#1445](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1445))
 * Automatically advances credits text ([#1412](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1412))
 * New “Triforces Per World” setting ([#1403](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1403/files))
 * New “Dungeon Boss Shortcuts” setting ([#1369](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1369))
