@@ -209,7 +209,7 @@ class TestPlandomizer(unittest.TestCase):
         for filename in filenames:
             with self.subTest(filename):
                 distribution_file, spoiler = generate_with_plandomizer(filename)
-                csmc = spoiler['settings'].get('correct_chest_sizes')
+                csmc = spoiler['settings'].get('correct_chest_appearances')
                 for location in spoiler['locations']:
                     if location_is_viewable(location, csmc):
                         item = spoiler['locations'][location]

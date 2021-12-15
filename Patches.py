@@ -79,6 +79,27 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Add it to the extended object table
     add_to_extended_object_table(rom, 0x194, dd_obj_file)
 
+    # Apply chest texture diffs to vanilla wooden chest texture for Chest Texture Matches Content setting
+    # new texture, vanilla texture, num bytes
+    textures = [(rom.sym('SILVER_CHEST_FRONT_TEXTURE'), 0xFEC798, 4096),
+                (rom.sym('SILVER_CHEST_BASE_TEXTURE'), 0xFED798, 2048),
+                (rom.sym('GILDED_CHEST_FRONT_TEXTURE'), 0xFEC798, 4096),
+                (rom.sym('GILDED_CHEST_BASE_TEXTURE'), 0xFED798, 2048),
+                (rom.sym('SKULL_CHEST_FRONT_TEXTURE'), 0xFEC798, 4096),
+                (rom.sym('SKULL_CHEST_BASE_TEXTURE'), 0xFED798, 2048)]
+    # Diff texture is the new texture minus the vanilla texture with byte overflow.
+    # This is done to avoid distributing copyrighted material with the randomizer,
+    # as the new textures are derivations of the wood chest textures.
+    # The following rebuilds the texture from the diff.
+    for diff_tex, vanilla_tex, size in textures:
+        db = rom.read_bytes(diff_tex, size)
+        vb = rom.read_bytes(vanilla_tex, size)
+        # bytes are immutable in python, can't edit in place
+        new_tex = bytearray(size)
+        for i in range(len(vb)):
+            new_tex[i] = (db[i] + vb[i]) & 0xFF
+        rom.write_bytes(diff_tex, new_tex)
+
     # Create an option so that recovery hearts no longer drop by changing the code which checks Link's health when an item is spawned.
     if world.settings.no_collectible_hearts:
         rom.write_byte(0xA895B7, 0x2E)
@@ -1435,6 +1456,10 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         # Update the first horseback archery text to make it clear both rewards are available from the start
         update_message_by_id(messages, 0x6040, "Hey newcomer, you have a fine \x01horse!\x04I don't know where you stole \x01it from, but...\x04OK, how about challenging this \x01\x05\x41horseback archery\x05\x40?\x04Once the horse starts galloping,\x01shoot the targets with your\x01arrows. \x04Let's see how many points you \x01can score. You get 20 arrows.\x04If you can score \x05\x411,000 points\x05\x40, I will \x01give you something good! And even \x01more if you score \x05\x411,500 points\x05\x40!\x0B\x02")
 
+    # Fix HBA to not wait for the fanfare to complete before transitioning to claim reward
+    rom.write_byte(0xC1C00B, 0x2)
+    rom.write_byte(0xC1C01B, 0x2)
+
     # Sets hooks for gossip stone changes
 
     symbol = rom.sym("GOSSIP_HINT_CONDITION");
@@ -1747,20 +1772,27 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         bombchu_ids = [0x6A, 0x03, 0x6B]
         for i in bombchu_ids:
             item = read_rom_item(rom, i)
-            item['chest_type'] = 0
+            item['chest_type'] = 12
             write_rom_item(rom, i, item)
     if world.settings.bridge == 'tokens' or world.settings.lacs_condition == 'tokens' or world.settings.shuffle_ganon_bosskey == 'tokens':
         item = read_rom_item(rom, 0x5B)
-        item['chest_type'] = 0
+        item['chest_type'] = 15
         write_rom_item(rom, 0x5B, item)
 
-    # Update chest type sizes
-    if world.settings.correct_chest_sizes:
+    # Update chest type appearance
+    if world.settings.correct_chest_appearances == 'textures':
+        symbol = rom.sym('CHEST_TEXTURE_MATCH_CONTENTS')
+        rom.write_int32(symbol, 0x00000001)
+    if world.settings.correct_chest_appearances == 'sizes':
         symbol = rom.sym('CHEST_SIZE_MATCH_CONTENTS')
         rom.write_int32(symbol, 0x00000001)
         # Move Ganon's Castle's Zelda's Lullaby Chest back so is reachable if large
         if not world.dungeon_mq['Ganons Castle']:
-            rom.write_int16(0x321B176, 0xFC40) # original 0xFC48
+            chest_name = 'Ganons Castle Light Trial Lullaby Chest'
+            location = world.get_location(chest_name)
+            item = read_rom_item(rom, location.item.index)
+            if item['chest_type'] in (2, 12, 15):
+                rom.write_int16(0x321B176, 0xFC40) # original 0xFC48
 
         # Move Spirit Temple Compass Chest if it is a small chest so it is reachable with hookshot
         if not world.dungeon_mq['Spirit Temple']:
@@ -1768,7 +1800,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             chest_address = 0x2B6B07C
             location = world.get_location(chest_name)
             item = read_rom_item(rom, location.item.index)
-            if item['chest_type'] in (1, 3):
+            if item['chest_type'] in (0, 13, 14):
                 rom.write_int16(chest_address + 2, 0x0190) # X pos
                 rom.write_int16(chest_address + 6, 0xFABC) # Z pos
 
@@ -1779,7 +1811,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             chest_address_2 = 0x21A06E4  # Address in setup 2
             location = world.get_location(chest_name)
             item = read_rom_item(rom, location.item.index)
-            if item['chest_type'] in (1, 3):
+            if item['chest_type'] in (0, 13, 14):
                 rom.write_int16(chest_address_0 + 6, 0x0172)  # Z pos
                 rom.write_int16(chest_address_2 + 6, 0x0172)  # Z pos
 
