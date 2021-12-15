@@ -1963,8 +1963,10 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         symbol = rom.sym('FAST_BUNNY_HOOD_ENABLED')
         rom.write_byte(symbol, 0x01)
 
-    if world.settings.ocarina_songs:
-        replace_songs(world, rom)
+    replace_songs(world, rom,
+        toprow=world.settings.ocarina_songs in ('toprow', 'all'),
+        warp=world.settings.ocarina_songs in ('warp', 'all'),
+    )
 
     # actually write the save table to rom
     world.distribution.give_items(save_context)
