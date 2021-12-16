@@ -158,6 +158,7 @@
             "bridge_stones",
             "bridge_rewards",
             "bridge_tokens",
+            "bridge_hearts",
             "trials_random",
             "trials"
           ]
@@ -217,6 +218,7 @@
             "ganon_bosskey_stones",
             "ganon_bosskey_rewards",
             "ganon_bosskey_tokens",
+            "ganon_bosskey_hearts",
             "enhance_map_compass"
           ]
         }

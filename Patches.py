@@ -1154,6 +1154,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     elif world.settings.bridge == 'tokens':
         rom.write_int32(symbol, 5)
         rom.write_int16(count_symbol, world.settings.bridge_tokens)
+    elif world.settings.bridge == 'hearts':
+        rom.write_int32(symbol, 6)
+        rom.write_int16(count_symbol, world.settings.bridge_hearts * 0x10)
 
     if world.settings.triforce_hunt:
         rom.write_int16(rom.sym('triforce_pieces_requied'), world.triforce_goal)
@@ -1174,6 +1177,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     elif world.settings.shuffle_ganon_bosskey == 'tokens':
         rom.write_byte(symbol, 4)
         rom.write_int16(count_symbol, world.settings.ganon_bosskey_tokens)
+    elif world.settings.shuffle_ganon_bosskey == 'hearts':
+        rom.write_byte(symbol, 5)
+        rom.write_int16(count_symbol, world.settings.ganon_bosskey_hearts * 0x10)
     else:
         rom.write_byte(symbol, 0)
         rom.write_int16(count_symbol, 0)
@@ -1193,6 +1199,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     elif world.settings.lacs_condition == 'tokens':
         rom.write_int32(symbol, 4)
         rom.write_int16(count_symbol, world.settings.lacs_tokens)
+    elif world.settings.lacs_condition == 'hearts':
+        rom.write_int32(symbol, 5)
+        rom.write_int16(count_symbol, world.settings.lacs_hearts * 0x10)
     else:
         rom.write_int32(symbol, 0)
 
@@ -1753,6 +1762,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         item = read_rom_item(rom, 0x5B)
         item['chest_type'] = SKULL_CHEST_BIG
         write_rom_item(rom, 0x5B, item)
+    #TODO put heart pieces and containers in big chests if bridge/LACS/Ganon bk on hearts
 
     # Update chest type appearance
     if world.settings.correct_chest_appearances == 'textures':

@@ -702,7 +702,7 @@ item_groups = {
     'Song': songlist,
     'NonWarpSong': songlist[0:6],
     'WarpSong': songlist[6:],
-    'HealthUpgrade': ('Heart Container', 'Piece of Heart'),
+    'HealthUpgrade': ('Heart Container', 'Piece of Heart', 'Piece of Heart (Treasure Chest Game)'),
     'ProgressItem': [name for (name, data) in item_table.items() if data[0] == 'Item' and data[1]],
     'MajorItem': [name for (name, data) in item_table.items() if (data[0] == 'Item' or data[0] == 'Song') and data[1] and name not in exclude_from_major],
     'DungeonReward': dungeon_rewards,
@@ -1367,7 +1367,7 @@ def get_pool_core(world):
     elif world.settings.shuffle_ganon_bosskey == 'vanilla':
         placed_items['Ganons Tower Boss Key Chest'] = 'Boss Key (Ganons Castle)'
 
-    if world.settings.shuffle_ganon_bosskey in ['stones', 'medallions', 'dungeons', 'tokens']:
+    if world.settings.shuffle_ganon_bosskey in ['stones', 'medallions', 'dungeons', 'tokens', 'hearts']:
         placed_items['Gift from Sages'] = 'Boss Key (Ganons Castle)'
         pool.extend(get_junk_item())
     else:
