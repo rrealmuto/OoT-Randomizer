@@ -233,7 +233,12 @@ class World(object):
                 else:
                     cat = GoalCategory(category['category'], category['priority'], minimum_goals=category['minimum_goals'])
                 for goal in category['goals']:
-                    cat.add_goal(Goal(self, goal['name'], goal['hint_text'], goal['color'], items=list({'name': i['name'], 'quantity': i['quantity'], 'minimum': i['minimum'], 'hintable': i['hintable']} for i in goal['items'])))
+                    items = []
+                    for i in goal['items']:
+                        items.append({'name': i['name'], 'quantity': i['quantity'], 'minimum': i['minimum'], 'hintable': i['hintable']})
+                        if 'weights' in i:
+                            items[-1]['weights'] = i['weights']
+                    cat.add_goal(Goal(self, goal['name'], goal['hint_text'], goal['color'], items=items))
                 if 'count_override' in category:
                     cat.goal_count = category['count_override']
                 else:
@@ -692,7 +697,13 @@ class World(object):
                     b.add_goal(Goal(self, 'Skulls', 'path of Skulls', 'Light Blue', items=[{'name': 'Gold Skulltula Token', 'quantity': 100, 'minimum': self.settings.bridge_tokens, 'hintable': False}]))
                     b.goal_count = round(self.settings.bridge_tokens / 10)
                     b.minimum_goals = 1
-                #TODO goal for bridge_hearts (requires support for items with different weights for the goal: 4 heart pieces = 1 heart container)
+                if (self.settings.bridge_hearts > 3
+                    and self.settings.bridge == 'hearts'
+                    and (self.settings.shuffle_ganon_bosskey != 'hearts'
+                            or self.settings.bridge_hearts >= self.settings.ganon_bosskey_hearts)):
+                    b.add_goal(Goal(self, 'hearts', 'path of hearts', 'Light Blue', items=[{'name': 'hearts', 'weights': {'Heart Container': 1, 'Piece of Heart': 0.25, 'Piece of Heart (Treasure Chest Game)': 0.25}, 'quantity': 17, 'minimum': self.settings.bridge_hearts - 3, 'hintable': False}])) #TODO adjust quantity based on item_pool_value and starting_hearts?
+                    b.goal_count = round((self.settings.bridge_hearts - 3) / 2)
+                    b.minimum_goals = 1
                 self.goal_categories[b.name] = b
 
             # If the Ganon's Boss Key condition is the same or similar conditions
@@ -778,7 +789,13 @@ class World(object):
                 gbk.add_goal(Goal(self, 'Skulls', 'path of Skulls', 'Light Blue', items=[{'name': 'Gold Skulltula Token', 'quantity': 100, 'minimum': self.settings.lacs_tokens, 'hintable': False}]))
                 gbk.goal_count = round(self.settings.lacs_tokens / 10)
                 gbk.minimum_goals = 1
-            #TODO goal for ganon_bosskey_hearts (requires support for items with different weights for the goal: 4 heart pieces = 1 heart container)
+            if (self.settings.ganon_bosskey_hearts > 0
+                and self.settings.shuffle_ganon_bosskey == 'hearts'
+                and (self.settings.bridge != 'hearts'
+                        or self.settings.bridge_hearts < self.settings.ganon_bosskey_hearts)):
+                gbk.add_goal(Goal(self, 'hearts', 'path of hearts', 'Light Blue', items=[{'name': 'hearts', 'weights': {'Heart Container': 1, 'Piece of Heart': 0.25, 'Piece of Heart (Treasure Chest Game)': 0.25}, 'quantity': 17, 'minimum': self.settings.ganon_bosskey_hearts - 3, 'hintable': False}])) #TODO adjust quantity based on item_pool_value and starting_hearts?
+                gbk.goal_count = round(self.settings.ganon_bosskey_tokens / 10)
+                gbk.minimum_goals = 1
 
             # Ganon's Boss Key shuffled directly in the world will always
             # generate a category/goal pair, though locations are not

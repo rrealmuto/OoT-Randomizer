@@ -55,7 +55,7 @@ class Goal(object):
 
     def requires(self, item):
         # Prevent direct hints for certain items that can have many duplicates, such as tokens and Triforce Pieces
-        return any(i['name'] == item and not i['hintable'] for i in self.items)
+        return any((item in i['weights'] if 'weights' in i else i['name'] == item) and not i['hintable'] for i in self.items)
 
 
 class GoalCategory(object):

@@ -99,13 +99,19 @@ class State(object):
 
 
     def has_item_goal(self, item_goal):
-        return self.prog_items[item_goal['name']] >= item_goal['minimum']
+        if 'weights' in item_goal:
+            return sum(self.prog_items[name] * weight for name, weight in item_goal['weights'].items()) >= item_goal['minimum']
+        else:
+            return self.prog_items[item_goal['name']] >= item_goal['minimum']
 
 
     def has_full_item_goal(self, category, goal, item_goal):
         local_goal = self.world.goal_categories[category.name].get_goal(goal.name)
         per_world_max_quantity = local_goal.get_item(item_goal['name'])['quantity']
-        return self.prog_items[item_goal['name']] >= per_world_max_quantity
+        if 'weights' in item_goal:
+            return sum(self.prog_items[name] * weight for name, weight in item_goal['weights'].items()) >= per_world_max_quantity
+        else:
+            return self.prog_items[item_goal['name']] >= per_world_max_quantity
 
 
     def has_all_item_goals(self):
