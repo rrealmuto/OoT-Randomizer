@@ -152,6 +152,7 @@
             "open_door_of_time",
             "zora_fountain",
             "gerudo_fortress",
+            "dungeon_shortcuts",
             "bridge",
             "bridge_medallions",
             "bridge_stones",
@@ -309,7 +310,6 @@
           "row_span": [1,1,1],
           "settings": [
             "skip_child_zelda",
-            "dungeon_shortcuts",
             "no_escape_sequence",
             "no_guard_stealth",
             "no_epona_race",
