@@ -89,6 +89,13 @@ def patch_tunic_colors(rom, settings, log, symbols):
         if log.src_dict.get('equipment_colors', {}).get(tunic, {}).get('color', ''):
             tunic_option = log.src_dict['equipment_colors'][tunic]['color']
 
+	   # handle rainbow
+        if tunic_option == 'Rainbow':
+            #get symbol
+            rainbow_tunic_symbol = symbols.get('CFG_RAINBOW_TUNIC_ENABLED')
+            rom.write_byte(rainbow_tunic_symbol, 0x01)
+            tunic_option = 'Random Choice'
+        
         # handle random
         if tunic_option == 'Random Choice':
             tunic_option = random.choice(tunic_color_list)
@@ -842,6 +849,7 @@ patch_sets = {
         "patches": [
             patch_dpad,
             patch_navi_colors,
+            patch_tunic_colors,
             patch_sword_trails,
             patch_heart_colors,
             patch_magic_colors,
@@ -878,6 +886,7 @@ patch_sets = {
             "CFG_RAINBOW_NAVI_NPC_OUTER_ENABLED": 0x0052,
             "CFG_RAINBOW_NAVI_PROP_INNER_ENABLED": 0x0053,
             "CFG_RAINBOW_NAVI_PROP_OUTER_ENABLED": 0x0054,
+            "CFG_RAINBOW_TUNIC_ENABLED": 0x0055,
         }
     },
 }

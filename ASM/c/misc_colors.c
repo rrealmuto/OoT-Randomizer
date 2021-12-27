@@ -250,6 +250,21 @@ void update_navi_colors()
     }
 }
 
+#define TUNIC_CYCLE_FRAMES 20
+extern uint8_t CFG_RAINBOW_TUNIC_ENABLED;
+
+void update_tunic_colors()
+{
+	if(CFG_RAINBOW_TUNIC_ENABLED)
+	{
+		colorRGB8_t* ptr_tunic_colors = (colorRGB8_t*)(0x800F7AD8);
+		colorRGB8_t tunic_color = get_rainbow_color(frames, TUNIC_CYCLE_FRAMES);
+		ptr_tunic_colors[0] = tunic_color; //Update kokiri tunic color
+		ptr_tunic_colors[1] = tunic_color; //Update goron tunic color
+		ptr_tunic_colors[2] = tunic_color; //Update zora tunic color
+	}
+}
+
 void update_misc_colors()
 {
     frames++;
@@ -257,4 +272,5 @@ void update_misc_colors()
     update_boomerang_trail_colors();
     update_bombchu_trail_colors();
     update_navi_colors();
+    update_tunic_colors();
 }
