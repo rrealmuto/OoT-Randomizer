@@ -245,7 +245,7 @@ start_button_colors = {
     "Orange":           Color(0xFF, 0x80, 0x00),
 }
 
-meta_color_choices = ["Random Choice", "Completely Random", "Custom Color", "Rainbow"]
+meta_color_choices = ["Random Choice", "Completely Random", "Custom Color"]
 
 
 def get_tunic_colors():
@@ -253,7 +253,7 @@ def get_tunic_colors():
 
 
 def get_tunic_color_options():
-    return meta_color_choices + get_tunic_colors()
+    return meta_color_choices + ["Rainbow"] + get_tunic_colors()
 
 
 def get_navi_colors():
