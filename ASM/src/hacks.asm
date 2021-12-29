@@ -2283,3 +2283,13 @@ skip_GS_BGS_text:
 .orga 0xCCE9A4
     jal     kill_door_of_time_col ; Replaces lui     $at, 0x3F80 
     lw      a0, 0x011C(s0) ; replaces mtc1    $at, $f6 
+
+;===================================================================================================
+;Update tunic color code to point to new table
+;===================================================================================================
+.orga 0xAEFFD0
+;    lui     T9, 0x8040
+;    ori   T9, T9, 0xC6EC
+;    lui     T9, hi(tunic_colors)
+;    ori   T9, T9, lo(tunic_colors)
+    li	T9, CFG_TUNIC_COLORS
