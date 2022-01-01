@@ -176,6 +176,7 @@
             "spawn_positions",
             "triforce_hunt",
             "triforce_goal_per_world",
+            "triforce_pool_per_world",
             "bombchus_in_logic",
             "one_item_per_dungeon",
             "mq_dungeons_random",

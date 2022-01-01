@@ -590,7 +590,7 @@ class World(object):
         trial_goal = Goal(self, 'the Tower', 'path to the Tower', 'White', items=[], create_empty=True)
 
         if self.settings.triforce_hunt and self.settings.triforce_goal_per_world > 0:
-            triforce_count = int((TriforceCounts[self.settings.item_pool_value] * self.settings.triforce_goal_per_world).to_integral_value(rounding=ROUND_HALF_UP))
+            triforce_count = self.settings.triforce_pool_per_world
             # "Hintable" value of False means the goal items themselves cannot
             # be hinted directly. This is used for Triforce Hunt and Skull
             # conditions to restrict hints to useful items instead of the win
