@@ -2156,7 +2156,8 @@ setting_infos = [
             'randomize_key': 'randomize_settings',
         },
         disable        = {
-            True  : {'settings' : ['shuffle_ganon_bosskey', 'ganon_bosskey_stones', 'ganon_bosskey_medallions', 'ganon_bosskey_rewards', 'ganon_bosskey_tokens']},
+            True  : {'settings' : ['shuffle_ganon_bosskey', 'ganon_bosskey_stones', 'ganon_bosskey_medallions', 
+                                   'ganon_bosskey_rewards', 'ganon_bosskey_tokens', 'triforce_blitz']},
             False : {'settings' : ['triforce_goal_per_world']}
         },
     ),
@@ -2183,6 +2184,21 @@ setting_infos = [
         ''',
         gui_params     = {
             "hide_when_disabled": True,
+        },
+    ),
+    Checkbutton(
+        name           = 'triforce_blitz',
+        gui_text       = 'Triforce Blitz',
+        gui_tooltip    = '''\
+            Find the Triforce pieces of Power, Wisdom, and Courage to beat the game.
+        ''',
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+        disable        = {
+            True  : {'settings' : ['shuffle_ganon_bosskey', 'ganon_bosskey_stones', 'ganon_bosskey_medallions', 
+                                   'ganon_bosskey_rewards', 'ganon_bosskey_tokens', 'triforce_hunt', 'triforce_goal_per_world']}
         },
     ),
     Combobox(
