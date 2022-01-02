@@ -590,7 +590,7 @@ class World(object):
         trial_goal = Goal(self, 'the Tower', 'path to the Tower', 'White', items=[], create_empty=True)
 
         if self.settings.triforce_hunt and self.settings.triforce_goal_per_world > 0:
-            triforce_count = self.settings.triforce_pool_per_world
+            triforce_count = int((TriforceCounts[self.settings.item_pool_value] * self.settings.triforce_goal_per_world).to_integral_value(rounding=ROUND_HALF_UP))
             # "Hintable" value of False means the goal items themselves cannot
             # be hinted directly. This is used for Triforce Hunt and Skull
             # conditions to restrict hints to useful items instead of the win
@@ -601,7 +601,7 @@ class World(object):
             # Key, which makes these items directly hintable in their respective goals
             # assuming they do not get hinted by another hint type (always, woth with
             # an earlier order in the hint distro, etc).
-            th.add_goal(Goal(self, 'gold', 'the path of gold', 'Yellow', items=[{'name': 'Triforce Piece', 'quantity': triforce_count, 'minimum': self.settings.triforce_goal_per_world, 'hintable': False}]))
+            th.add_goal(Goal(self, 'gold', 'path of gold', 'Yellow', items=[{'name': 'Triforce Piece', 'quantity': triforce_count, 'minimum': self.settings.triforce_goal_per_world, 'hintable': False}]))
             self.goal_categories[th.name] = th
         # Category goals are defined for each possible setting for each category.
         # Bridge can be Stones, Medallions, Dungeons, Skulls, or Vanilla.

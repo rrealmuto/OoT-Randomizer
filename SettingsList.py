@@ -2157,7 +2157,7 @@ setting_infos = [
         },
         disable        = {
             True  : {'settings' : ['shuffle_ganon_bosskey', 'ganon_bosskey_stones', 'ganon_bosskey_medallions', 'ganon_bosskey_rewards', 'ganon_bosskey_tokens']},
-            False : {'settings' : ['triforce_goal_per_world', 'triforce_pool_per_world']}
+            False : {'settings' : ['triforce_goal_per_world']}
         },
     ),
     Scale(
@@ -2174,22 +2174,12 @@ setting_infos = [
             in them. The required amount will be per world collectively. 
             For example, if this is set to 20 in a 2 player multiworld, players 
             need 40 total, but one player could obtain 30 and the other 10. 
-        ''',
-        gui_params     = {
-            "hide_when_disabled": True,
-        },
-    ),
-    Scale(
-        name           = 'triforce_pool_per_world',
-        gui_text       = 'Available Triforces Per World',
-        default        = 20,
-        min            = 1,
-        max            = 100,
-        shared         = True,
-        gui_tooltip    = '''\
-            Select the amount of Triforce Pieces available in each game world.
 
-            The value must be greater than or equal to the Required Triforces Per World.
+            Extra pieces are determined by the the Item Pool setting:
+            'Plentiful': 100% Extra
+            'Balanced': 50% Extra
+            'Scarce': 25% Extra
+            'Minimal: No Extra
         ''',
         gui_params     = {
             "hide_when_disabled": True,
