@@ -604,12 +604,6 @@ class World(object):
             th.add_goal(Goal(self, 'gold', 'path of gold', 'Yellow', items=[{'name': 'Triforce Piece', 'quantity': triforce_count, 'minimum': self.settings.triforce_goal_per_world, 'hintable': False}]))
             self.goal_categories[th.name] = th
 
-        if self.settings.triforce_blitz:
-            th.add_goal(Goal(self, 'power', 'the path of power', 'Red', items=[{'name': 'Triforce of Power', 'quantity': 1, 'minimum': 1, 'hintable': False}]))
-            th.add_goal(Goal(self, 'wisdom', 'the path of wisdom', 'Pink', items=[{'name': 'Triforce of Wisdom', 'quantity': 1, 'minimum': 1, 'hintable': False}]))
-            th.add_goal(Goal(self, 'courage', 'the path of courage', 'Green', items=[{'name': 'Triforce of Courage', 'quantity': 1, 'minimum': 1, 'hintable': False}]))
-            self.goal_categories[th.name] = th
-
         # Category goals are defined for each possible setting for each category.
         # Bridge can be Stones, Medallions, Dungeons, Skulls, or Vanilla.
         # Ganon's Boss Key can be Stones, Medallions, Dungeons, Skulls, LACS or
@@ -619,7 +613,7 @@ class World(object):
         # no trials), a fallback "path of the hero" clone of WOTH is created. Path
         # wording is used to distinguish the hint type even though the hintable location
         # set is identical to WOTH.
-        if not self.settings.triforce_hunt and not self.settings.triforce_blitz:
+        if not self.settings.triforce_hunt:
             # Bridge goals will always be defined as they have the most immediate priority
             if self.settings.bridge != 'open':
                 # "Replace" hint text dictionaries are used to reference the
