@@ -1,4 +1,5 @@
 from enum import Enum, unique
+from ItemPool import triforce_items
 
 
 @unique
@@ -96,7 +97,7 @@ class Region(object):
         if is_overworld_restricted and not manual:
             return not self.dungeon
 
-        if item.name == 'Triforce Piece':
+        if item.name in triforce_items:
             return item.world.id == self.world.id
 
         return True

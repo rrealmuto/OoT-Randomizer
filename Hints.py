@@ -455,13 +455,14 @@ def get_goal_count_hint(spoiler, world, checked):
         return None
 
     goals = goal_category.goals
+    goal = None
     goal_locations = []
 
     # Choose random goal and check if any locations are already hinted.
     # If all locations for a goal are hinted, remove the goal from the list and try again.
     # If all locations for all goals are hinted, try remaining goal categories
     # If all locations for all goal categories are hinted, return no hint.
-    while not goal_locations:
+    while not goal:
         if not goals:
             del world.goal_categories[goal_category.name]
             goal_category = get_goal_category(spoiler, world, world.goal_categories)
@@ -470,27 +471,27 @@ def get_goal_count_hint(spoiler, world, checked):
             else:
                 goals = goal_category.goals
 
+        unchecked_goals = list(filter(lambda goal:
+            goal.name not in checked,
+            goals
+        ))
+
+        if not unchecked_goals:
+            return None
+
         weights = []
         zero_weights = True
-        for goal in goals:
+        for goal in unchecked_goals:
             if goal.weight > 0:
                 zero_weights = False
             weights.append(goal.weight)
 
         if zero_weights:
-            goal = random.choice(goals)
+            goal = random.choice(unchecked_goals)
         else:
-            goal = random.choices(goals, weights=weights)[0]
+            goal = random.choices(unchecked_goals, weights=weights)[0]
 
-        goal_locations = list(filter(lambda location:
-            location[0].name not in checked
-            and location[0].name not in world.hint_exclusions
-            and location[0].name not in world.hint_type_overrides['goal']
-            and location[0].item.name not in world.item_hint_type_overrides['goal'],
-            goal.required_locations))
-
-        if not goal_locations:
-            goals.remove(goal)
+        goal_locations = goal.required_locations
 
     checked.add(goal.name)
     item_count = len(goal_locations)

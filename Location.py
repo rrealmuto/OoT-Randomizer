@@ -110,6 +110,10 @@ class Location(object):
         return str(self.__unicode__())
 
 
+    def __repr__(self):
+        return str(self.__unicode__())
+
+
     def __unicode__(self):
         return '%s' % self.name
 

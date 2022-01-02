@@ -1,5 +1,6 @@
 import collections
 import logging
+from ItemPool import triforce_blitz_items
 from Location import DisableType
 from SaveContext import SaveContext
 from Search import Search
@@ -55,6 +56,9 @@ def set_rules(world):
                 # We have enough starting Triforce pieces that putting a piece on every world's Song from Impa would hit the goal count
                 # and render the game unbeatable, so for simplicity's sake we forbid putting pieces on any world's Song from Impa.
                 forbid_item(location, 'Triforce Piece')
+            if world.settings.triforce_blitz:
+                for item in triforce_blitz_items:
+                    forbid_item(location, item)
 
         if location.name == 'Forest Temple MQ First Room Chest' and world.settings.shuffle_bosskeys == 'dungeon' and world.settings.shuffle_smallkeys == 'dungeon' and world.settings.tokensanity == 'off':
             # This location needs to be a small key. Make sure the boss key isn't placed here.

@@ -2,6 +2,7 @@ from collections import Counter
 import copy
 
 from Item import ItemInfo
+from ItemPool import triforce_blitz_items
 from Region import Region, TimeOfDay
 
 
@@ -12,7 +13,13 @@ class State(object):
         self.prog_items = Counter()
         self.world = parent
         self.search = None
-        self._won = self.won_triforce_hunt if self.world.settings.triforce_hunt else self.won_normal
+        
+        if self.world.settings.triforce_hunt:
+            self._won = self.won_triforce_hunt
+        elif self.world.settings.triforce_blitz:
+            self._won = self.won_triforce_blitz
+        else:
+            self._won = self.won_normal
 
 
     ## Ensure that this will always have a value
@@ -42,6 +49,10 @@ class State(object):
 
     def won_triforce_hunt(self):
         return self.has('Triforce Piece', self.world.settings.triforce_goal_per_world)
+
+
+    def won_triforce_blitz(self):
+        return self.has_all_of(triforce_blitz_items)
 
 
     def won_normal(self):
