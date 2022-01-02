@@ -195,7 +195,6 @@
     "starting_age":                            "random"
   },
   "Triforce Blitz": {
-    "compress_rom":                             "None",
     "world_count":                              1,
     "create_spoiler":                           true,
     "randomize_settings":                       false,
@@ -277,6 +276,14 @@
       "logic_lens_shadow",
       "logic_lens_shadow_back",
       "logic_lens_spirit"
+    ],
+    "logic_earliest_adult_trade":              "prescription",
+    "logic_latest_adult_trade":                "claim_check",
+    "starting_equipment":                      [
+      "deku_shield"
+    ],
+    "starting_items":                          [
+      "ocarina"
     ],
     "starting_songs":                          [],
     "ocarina_songs":                           false,
