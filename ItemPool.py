@@ -337,12 +337,12 @@ vanilla_deku_scrubs = {
     'SFM Deku Scrub Grotto Front': 'Buy Green Potion',
     'LH Deku Scrub Grotto Left': 'Buy Deku Nut (5)',
     'LH Deku Scrub Grotto Right': 'Buy Bombs (5) [35]',
-    'LH Deku Scrub Grotto Center': 'Buy Arrows (30)',
+    'LH Deku Scrub Grotto Center': 'Buy Deku Seeds (30)',
     'GV Deku Scrub Grotto Rear': 'Buy Red Potion [30]',
     'GV Deku Scrub Grotto Front': 'Buy Green Potion',
     'LW Deku Scrub Near Deku Theater Right': 'Buy Deku Nut (5)',
     'LW Deku Scrub Near Deku Theater Left': 'Buy Deku Stick (1)',
-    'LW Deku Scrub Grotto Rear': 'Buy Arrows (30)',
+    'LW Deku Scrub Grotto Rear': 'Buy Deku Seeds (30)',
     'Colossus Deku Scrub Grotto Rear': 'Buy Red Potion [30]',
     'Colossus Deku Scrub Grotto Front': 'Buy Green Potion',
     'DMC Deku Scrub': 'Buy Bombs (5) [35]',
@@ -354,7 +354,7 @@ vanilla_deku_scrubs = {
     'GC Deku Scrub Grotto Center': 'Buy Arrows (30)',
     'LLR Deku Scrub Grotto Left': 'Buy Deku Nut (5)',
     'LLR Deku Scrub Grotto Right': 'Buy Bombs (5) [35]',
-    'LLR Deku Scrub Grotto Center': 'Buy Arrows (30)',
+    'LLR Deku Scrub Grotto Center': 'Buy Deku Seeds (30)',
 }
 
 
@@ -1149,8 +1149,11 @@ def get_pool_core(world):
         else:
             pool.extend(['Bombs (5)', 'Recovery Heart', 'Rupees (5)'])
         pool.extend(deku_scrubs_items)
-        for _ in range(7):
-            pool.append('Arrows (30)' if random.randint(0,3) > 0 else 'Deku Seeds (30)')
+        if world.settings.vanilla_seed:
+            pool.extend(['Arrows (30)'] * 3 + ['Deku Seeds (30)'] * 4)
+        else:
+            for _ in range(7):
+                pool.append('Arrows (30)' if random.randint(0,3) > 0 else 'Deku Seeds (30)')
 
     else:
         if world.dungeon_mq['Deku Tree']:
@@ -1219,12 +1222,15 @@ def get_pool_core(world):
     else:
         pool.extend(GC_vanilla)
 
-    for i in range(bottle_count):
-        if i >= ruto_bottles:
-            bottle = random.choice(normal_bottles)
-            pool.append(bottle)
-        else:
-            pool.append('Rutos Letter')
+    if world.settings.vanilla_seed:
+        pool.extend(['Rutos Letter', 'Bottle with Milk', 'Bottle', 'Bottle'])
+    else:
+        for i in range(bottle_count):
+            if i >= ruto_bottles:
+                bottle = random.choice(normal_bottles)
+                pool.append(bottle)
+            else:
+                pool.append('Rutos Letter')
 
     earliest_trade = tradeitemoptions.index(world.settings.logic_earliest_adult_trade)
     latest_trade = tradeitemoptions.index(world.settings.logic_latest_adult_trade)

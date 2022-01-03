@@ -1972,6 +1972,22 @@ setting_infos = [
         },
     ),
     Checkbutton(
+        name           = 'vanilla_seed',
+        gui_text       = 'Generate Vanilla Seed',
+        gui_tooltip    = '''\
+                         Locks all items to their vanilla locations and
+                         adjusts logic to allow such a seed to generate.
+
+                         This currently does not work with
+                         glitched logic or Master Quest.
+                         ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'optional': True,
+        },
+    ),
+    Checkbutton(
         name           = 'randomize_settings',
         gui_text       = 'Randomize Main Rule Settings',
         gui_tooltip    = '''\

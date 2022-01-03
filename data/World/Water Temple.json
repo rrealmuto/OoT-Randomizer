@@ -136,7 +136,7 @@
                 (logic_water_falling_platform_gs_boomerang and can_use(Boomerang))"
         },
         "exits": {
-            "Water Temple Dark Link Region": "(Small_Key_Water_Temple, 5) and can_use(Hookshot)"
+            "Water Temple Dark Link Region": "((Small_Key_Water_Temple, 5) or (vanilla_seed and (Small_Key_Water_Temple, 4))) and can_use(Hookshot)"
         }
     },
     {

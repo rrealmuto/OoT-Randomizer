@@ -162,8 +162,9 @@
         "dungeon": "Spirit Temple",
         "locations": {
             "Spirit Temple Silver Gauntlets Chest": "
-                ((Small_Key_Spirit_Temple, 3) and (Progressive_Hookshot, 2) and has_explosives) or 
-                (Small_Key_Spirit_Temple, 5)",
+                (((Small_Key_Spirit_Temple, 3) or (vanilla_seed and (Small_Key_Spirit_Temple, 2)))
+                    and (Progressive_Hookshot, 2) and has_explosives)
+                or (Small_Key_Spirit_Temple, 5)",
             "Spirit Temple Mirror Shield Chest": "
                 (Small_Key_Spirit_Temple, 4) and
                 (can_use(Silver_Gauntlets) or (can_use(Hookshot) and spirit_temple_shortcuts))

@@ -13,7 +13,7 @@ from Hints import get_hint_area, hint_dist_keys, HintDistFiles
 from Item import Item, ItemFactory, MakeEventItem
 from ItemList import item_table
 from Location import Location, LocationFactory
-from LocationList import business_scrubs
+from LocationList import business_scrubs, location_table
 from Plandomizer import InvalidFileException
 from Region import Region, TimeOfDay
 from Rules import set_rules, set_shop_rules
@@ -560,8 +560,12 @@ class World(object):
             bossCount -= 1
             random.shuffle(prizepool)
             random.shuffle(prize_locs)
-            item = prizepool.pop()
             loc = prize_locs.pop()
+            if self.settings.vanilla_seed:
+                item = next(item for item in prizepool if item.name == location_table[loc.name][4])
+                prizepool.remove(item)
+            else:
+                item = prizepool.pop()
             self.push_item(loc, item)
 
     def set_goals(self):

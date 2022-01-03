@@ -22,9 +22,10 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
 * New “Dungeon Boss Shortcuts” setting ([#1369](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1369))
 * New “Full” option for “Randomize Overworld Spawns” setting that includes dungeon entrances ([#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
 * New “Show seed info on file screen” and “User-configurable message” settings ([#1253](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1253))
+* New hidden “Generate Vanilla Seed” setting (used for `vanilla` preset)
 * The “Misc. Hints” setting is split into 3 toggles: Ganondorf, Temple of Time altar, and a new feature to disable warp song destination hints
 * New `chaos` hint distribution
-* New `allsanity-casual` and `debug` presets
+* New `allsanity-casual`, `debug`, and `vanilla` presets
 
 Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):
 

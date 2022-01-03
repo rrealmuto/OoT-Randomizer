@@ -3,7 +3,7 @@ import logging
 from State import State
 from Rules import set_shop_rules
 from Location import DisableType
-from LocationList import location_groups
+from LocationList import location_groups, location_table
 from ItemPool import songlist, get_junk_item, item_groups, remove_junk_items, remove_junk_set
 from ItemList import item_table
 from Item import ItemFactory
@@ -507,7 +507,11 @@ def fast_fill(window, locations, itempool):
     random.shuffle(locations)
     while itempool and locations:
         spot_to_fill = locations.pop()
-        item_to_place = itempool.pop()
+        if spot_to_fill.world.settings.vanilla_seed:
+            item_to_place = next(item for item in itempool if item.name == location_table[spot_to_fill.name][4])
+            itempool.remove(item_to_place)
+        else:
+            item_to_place = itempool.pop()
         # Impa can't presently hand out refills at the start of the game.
         # Only replace her item with a rupee if it's junk.
         if spot_to_fill.world.settings.skip_child_zelda and spot_to_fill.name == 'Song from Impa' and item_to_place.name in remove_junk_set:
