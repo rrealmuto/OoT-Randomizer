@@ -9,12 +9,12 @@ Instead, you can open an issue on this fork [here](https://github.com/fenhl/OoT-
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
 * Simplify dungeon info setting detection for auto-trackers ([#1445](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1445))
+* The “Randomize Ocarina Song Notes” setting has new options “Top Row Songs Only” and “Warp Songs Only” ([#1423](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1423))
 * Automatically advances credits text ([#1412](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1412))
 * New “Triforces Per World” setting ([#1403](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1403/files))
 * New “Dungeon Boss Shortcuts” setting ([#1369](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1369))
 * New “Full” option for “Randomize Overworld Spawns” setting that includes dungeon entrances ([#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
 * New “Show seed info on file screen” and “User-configurable message” settings ([#1253](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1253))
-* The “Randomize Ocarina Song Notes” setting has new options “Top Row Songs Only” and “Warp Songs Only” ([#1423](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1423) and [Maplesstar#2](https://github.com/Maplesstar/OoT-Randomizer/pull/2))
 * The “Misc. Hints” setting is split into 3 toggles: Ganondorf, Temple of Time altar, and a new feature to disable warp song destination hints
 * New `chaos` hint distribution
 * New `allsanity-casual` and `debug` presets
