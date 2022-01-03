@@ -1328,6 +1328,13 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         save_context.addresses['equip_items']['kokiri_boots'].value = True  # (to avoid issues when going back child for the first time)
         save_context.write_byte(0x0F33, 0x00)                               # Unset Swordless Flag (to avoid issues with sword getting unequipped)
 
+    # For Inventory_SwapAgeEquipment going child -> adult:
+    # Change range in which items are read from slot instead of items
+    # Extended to include hookshot and ocarina
+    rom.write_byte(0xAE5867, 0x07) # >= ITEM_OCARINA_FAIRY
+    rom.write_byte(0xAE5873, 0x0C) # <= ITEM_LONGSHOT
+    rom.write_byte(0xAE587B, 0x14) # >= ITEM_BOTTLE
+
     # Revert change that Skips the Epona Race
     if not world.settings.no_epona_race:
         rom.write_int32(0xA9E838, 0x03E00008)

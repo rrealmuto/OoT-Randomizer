@@ -186,7 +186,7 @@ Gameplay_InitSkybox:
     jal     give_master_sword
 
 ; Replaces:
-;   lui/addiu a1, 0x8011A5D0
+;   lui/addiu a1, 0x8011A5D0 (start of Inventory_SwapAgeEquipment)
 .orga 0xAE5764
     j       before_time_travel
     nop
@@ -194,7 +194,7 @@ Gameplay_InitSkybox:
 ; After time travel
 ; Replaces:
 ;   jr      ra
-.orga 0xAE59E0 ; In memory: 0x8006FA80
+.orga 0xAE59E0 ; In memory: 0x8006FA80 (end of Inventory_SwapAgeEquipment)
     j       after_time_travel
 
 ;==================================================================================================

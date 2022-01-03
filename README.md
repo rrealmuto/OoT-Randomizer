@@ -8,6 +8,7 @@ Instead, you can open an issue on this fork [here](https://github.com/fenhl/OoT-
 
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
+* Fixes equipped magic arrows being replaced with bow on time travel ([#1457](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1457))
 * Speeds up the equip animation for magic arrows ([#1456](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1456))
 * Fixes Dead Hand sometimes spawning out of bounds ([#1455](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1455))
 * Fixes the color of menu items in the warp song text box ([#1452](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1452))
