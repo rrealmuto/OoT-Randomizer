@@ -664,6 +664,14 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Speed up Death Mountain Trail Owl Flight
     rom.write_bytes(0x223B6B2, [0x00, 0x01])
 
+    # Speed up magic arrow equips
+    rom.write_int16(0xBB84CE, 0x0000) # Skips the initial growing glowing orb phase
+    rom.write_byte(0xBB84B7, 0xFF) # Set glowing orb above magic arrow to be small sized immediately
+    rom.write_byte(0xBB84CB, 0x01) # Sets timer for holding icon above magic arrow (1 frame)
+    rom.write_byte(0xBB7E67, 0x04) # speed up magic arrow icon -> bow icon interpolation (4 frames)
+    rom.write_byte(0xBB8957, 0x01) # Sets timer for holding icon above bow (1 frame)
+    rom.write_byte(0xBB854B, 0x05) # speed up bow icon -> c button interpolation (5 frames)
+
     # Poacher's Saw no longer messes up Forest Stage
     rom.write_bytes(0xAE72CC, [0x00, 0x00, 0x00, 0x00])
 
