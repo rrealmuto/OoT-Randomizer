@@ -458,6 +458,7 @@
           "row_span": [6,6,13],
           "settings": [
             "background_music",
+            "disable_battle_music",
             "fanfares",
             "ocarina_fanfares",
             "sfx_low_hp",

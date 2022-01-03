@@ -28,6 +28,7 @@ Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https:
 * New cosmetic setting to randomize the color of some additional equipment and items.
 * "Chest Size Matches Content" is replaced with "Chest Appearance Matches Content" (from mracsys's [ctmc branch](https://github.com/mracsys/OoT-Randomizer/tree/ctmc))
 * HBA fanfare fix: no longer waits for fanfare to complete (from engineer124's [hba_fanfare_fix branch](https://github.com/engineer124/OoT-Randomizer/tree/hba_fanfare_fix))
+* New SFX setting to disable standard battle music (from GSKirox's [disable-battle-music branch](https://github.com/GSKirox/OoT-Randomizer/tree/disable-battle-music))
 
 ## Index
 
