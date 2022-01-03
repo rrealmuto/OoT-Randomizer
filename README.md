@@ -8,6 +8,7 @@ Instead, you can open an issue on this fork [here](https://github.com/fenhl/OoT-
 
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
+* Fixes the color of menu items in the warp song text box ([#1452](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1452))
 * Simplify dungeon info setting detection for auto-trackers ([#1445](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1445))
 * The “Randomize Ocarina Song Notes” setting has new options “Top Row Songs Only” and “Warp Songs Only” ([#1423](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1423))
 * Automatically advances credits text ([#1412](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1412))

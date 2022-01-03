@@ -1007,5 +1007,5 @@ def update_warp_song_text(messages, world):
             destination_name = 'a mysterious place'
             color = COLOR_MAP['White']
 
-        new_msg = f"\x08\x05{color}Warp to {destination_name}?\x05\40\x09\x01\x01\x1b\x05{color}OK\x01No\x05\40"
+        new_msg = f"\x08\x05{color}Warp to {destination_name}?\x05\40\x09\x01\x01\x1b\x05\x42OK\x01No\x05\40"
         update_message_by_id(messages, id, new_msg)
