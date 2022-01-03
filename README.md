@@ -8,6 +8,7 @@ Instead, you can open an issue on this fork [here](https://github.com/fenhl/OoT-
 
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
+* Fixes a potential softlock with “LACS Condition” set to “Tokens” ([#1463](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1463))
 * Removes an unintended bridge spawn condition with “Rainbow Bridge Requirement” set to “Vanilla Requirements” ([#1460](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1460))
 * The convenience patch for floor switches now applies to more MQ switches ([#1459](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1459))
 * Fixes equipped magic arrows being replaced with bow on time travel ([#1457](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1457))
