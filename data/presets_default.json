@@ -203,8 +203,8 @@
     "open_door_of_time":                        true,
     "zora_fountain":                            "closed",
     "gerudo_fortress":                          "fast",
-    "bridge":                                   "medallions",
-    "bridge_medallions":                        6,
+    "bridge":                                   "dungeons",
+    "bridge_rewards":                           2,
     "triforce_hunt":                            false,
     "triforce_blitz":                           true,
     "logic_rules":                              "glitchless",
@@ -228,7 +228,7 @@
     "start_with_consumables":                   true,
     "starting_hearts":                          3,
     "chicken_count_random":                     false,
-    "chicken_count":                            7,
+    "chicken_count":                            4,
     "big_poe_count_random":                     false,
     "big_poe_count":                            1,
     "shuffle_kokiri_sword":                     true,
@@ -258,7 +258,11 @@
     "mq_dungeons_random":                       false,
     "mq_dungeons":                              0,
     "disabled_locations":                       [
-      "Deku Theater Mask of Truth"
+      "Deku Theater Skull Mask",
+      "Deku Theater Mask of Truth",
+      "Kak 30 Gold Skulltula Reward",
+      "Kak 40 Gold Skulltula Reward",
+      "Kak 50 Gold Skulltula Reward"
     ],
     "allowed_tricks":                           [
       "logic_fewer_tunic_requirements",
@@ -277,7 +281,7 @@
       "logic_lens_shadow_back",
       "logic_lens_spirit"
     ],
-    "logic_earliest_adult_trade":              "prescription",
+    "logic_earliest_adult_trade":              "claim_check",
     "logic_latest_adult_trade":                "claim_check",
     "starting_equipment":                      [
       "deku_shield"
