@@ -255,7 +255,7 @@
     "ice_trap_appearance": "major_only",
     "logic_earliest_adult_trade": "claim_check",
     "logic_latest_adult_trade": "claim_check"
-},
+  },
   "Easy Mode": {
     "show_seed_info": true,
     "user_message": "Easy Mode",
@@ -428,7 +428,7 @@
       "logic_lens_castle",
       "logic_lens_gtg",
       "logic_lens_shadow",
-      "logic_lens_shadow_back",
+      "logic_lens_shadow_platform",
       "logic_lens_spirit"
     ],
     "logic_earliest_adult_trade":              "prescription",
@@ -540,7 +540,7 @@
       "logic_lens_castle",
       "logic_lens_gtg",
       "logic_lens_shadow",
-      "logic_lens_shadow_back",
+      "logic_lens_shadow_platform",
       "logic_lens_spirit"
     ],
     "logic_earliest_adult_trade":              "prescription",
@@ -652,7 +652,7 @@
         "logic_lens_castle",
         "logic_lens_gtg",
         "logic_lens_shadow",
-        "logic_lens_shadow_back",
+        "logic_lens_shadow_platform",
         "logic_lens_spirit"
     ],
     "logic_earliest_adult_trade":              "prescription",
@@ -874,7 +874,7 @@
       "logic_lens_castle",
       "logic_lens_gtg",
       "logic_lens_shadow",
-      "logic_lens_shadow_back",
+      "logic_lens_shadow_platform",
       "logic_lens_spirit",
       "logic_dc_scarecrow_gs"
     ],
@@ -991,7 +991,7 @@
       "logic_spirit_lobby_gs",
       "logic_spirit_lobby_jump",
       "logic_spirit_mq_sun_block_gs",
-      "logic_jabu_scrub_jump_dive",
+      "logic_jabu_alcove_jump_dive",
       "logic_jabu_mq_sot_gs",
       "logic_botw_mq_dead_hand_key",
       "logic_fire_flame_maze",
@@ -1078,8 +1078,8 @@
       "logic_dc_mq_child_bombs",
       "logic_dc_scrub_room",
       "logic_dc_slingshot_skip",
-      "logic_dc_mq_eyes",
-      "logic_dc_mq_child_back",
+      "logic_dc_mq_eyes_adult",
+      "logic_dc_mq_eyes_child",
       "logic_child_rolling_with_strength",
       "logic_goron_city_pot",
       "logic_valley_crate_hovers",
@@ -1099,9 +1099,9 @@
       "logic_lens_gtg",
       "logic_lens_jabu_mq",
       "logic_lens_shadow_mq",
-      "logic_lens_shadow_mq_back",
+      "logic_lens_shadow_mq_platform",
       "logic_lens_shadow",
-      "logic_lens_shadow_back",
+      "logic_lens_shadow_platform",
       "logic_lens_spirit_mq",
       "logic_lens_spirit"
     ],
@@ -1206,7 +1206,7 @@
       "logic_lens_castle",
       "logic_lens_gtg",
       "logic_lens_shadow",
-      "logic_lens_shadow_back",
+      "logic_lens_shadow_platform",
       "logic_lens_spirit"
     ],
     "logic_earliest_adult_trade":              "prescription",
@@ -1307,7 +1307,7 @@
       "logic_lens_castle",
       "logic_lens_gtg",
       "logic_lens_shadow",
-      "logic_lens_shadow_back",
+      "logic_lens_shadow_platform",
       "logic_lens_spirit"
     ],
     "logic_earliest_adult_trade":              "claim_check",
@@ -1417,7 +1417,7 @@
       "logic_lens_castle",
       "logic_lens_gtg",
       "logic_lens_shadow",
-      "logic_lens_shadow_back",
+      "logic_lens_shadow_platform",
       "logic_lens_spirit"
     ],
     "logic_earliest_adult_trade":              "prescription",

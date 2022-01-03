@@ -14,12 +14,12 @@ class Scenes(IntEnum):
 
 class FlagType(IntEnum):
     CHEST = 0x00
-    SWITCH = 0x04
-    CLEAR = 0x08
-    COLLECT = 0x0C
-    # 0x10 unused
-    VISITED_ROOM = 0x14
-    VISITED_FLOOR = 0x18
+    SWITCH = 0x01
+    CLEAR = 0x02
+    COLLECT = 0x03
+    # 0x04 unused
+    VISITED_ROOM = 0x05
+    VISITED_FLOOR = 0x06
 
 class Address():
     prev_address = None
@@ -184,7 +184,7 @@ class SaveContext():
         # takes 28 (0x1C) bytes.
         # Scenes and FlagType enums are defined for increased readability when using
         # this function.
-        self.write_bits(0x00D4 + scene * 0x1C + type + byte_offset, bit_values)
+        self.write_bits(0x00D4 + scene * 0x1C + type * 0x04 + byte_offset, bit_values)
 
     def set_ammo_max(self):
         ammo_maxes = {
