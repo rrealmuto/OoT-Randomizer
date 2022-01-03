@@ -1898,6 +1898,15 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         rom.write_int16(0x277D068, jabu_stone_object)
         rom.write_int16(0x277D168, jabu_stone_object)
 
+    # Fix Dead Hand spawn coordinates in vanilla shadow temple and bottom of the well to be the exact centre of the room
+    # This prevents the extremely small possibility of Dead Hand spawning outside of collision
+    if not world.dungeon_mq['Shadow Temple']:
+        rom.write_int16(0x27DC0AE, 0xF67E) # x-coordinate spawn in shadow temple
+        rom.write_int16(0x27DC0B2, 0xFE6B) # z-coordinate spawn in shadow temple
+    if not world.dungeon_mq['Bottom of the Well']:
+        rom.write_int16(0x32FB08E, 0x0500) # x-coordinate spawn in bottom of the well
+        rom.write_int16(0x32FB092, 0x00D2) # z-coordinate spawn in bottom of the well
+
     # update happy mask shop to use new SOLD OUT text id
     rom.write_int16(shop_item_file.start + 0x1726, shop_items[0x26].description_message)
 
