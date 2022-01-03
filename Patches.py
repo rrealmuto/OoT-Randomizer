@@ -1962,7 +1962,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         permutation = shuffle_messages(messages, except_hints=False)
 
     # If Warp Song ER is on, update text boxes
-    if world.settings.warp_songs:
+    if world.settings.warp_songs != 'off':
         update_warp_song_text(messages, world)
 
     repack_messages(rom, messages, permutation)

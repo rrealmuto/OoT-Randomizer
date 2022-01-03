@@ -2995,30 +2995,76 @@ setting_infos = [
             'randomize_key': 'randomize_settings',
         },
     ),
-    Checkbutton(
+    Combobox(
         name           = 'owl_drops',
         gui_text       = 'Randomize Owl Drops',
+        choices        = {
+            'off':       'Off',
+            'balanced':  'Balanced',
+            'full':      'Full',
+        },
         gui_tooltip    = '''\
             Randomize where Kaepora Gaebora (the Owl) drops you at 
             when you talk to him at Lake Hylia or at the top of 
             Death Mountain Trail.
+
+            'Off':
+            He will take you from Lake Hylia to Hyrule Field
+            (near the Market entrance) and from Death Mountain Trail
+            to Kakariko (onto the roof of Impa's house).
+
+            'Balanced':
+            The destinations are randomly chosen from overworld
+            and a few special entrances.
+
+            'Full':
+            The Owl can also drop you off outside of buildings,
+            inside the Temple of Time, or inside or outside of
+            dungeons, potentially bypassing item requirements.
         ''',
-        default        = False,
+        default        = 'off',
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
+            'distribution':  [
+                ('off', 2),
+                ('balanced', 1),
+                ('full', 1),
+            ],
         },
     ),
-    Checkbutton(
+    Combobox(
         name           = 'warp_songs',
         gui_text       = 'Randomize Warp Song Destinations',
+        choices        = {
+            'off':       'Off',
+            'balanced':  'Balanced',
+            'full':      'Full',
+        },
         gui_tooltip    = '''\
             Randomize where each of the 6 warp songs leads to.
+
+            'Off':
+            The warp songs lead to their vanilla destinations
+            (the warp pads near the Temples).
+
+            'Balanced':
+            The destinations are randomly chosen from overworld,
+            interior, and a few special entrances.
+
+            'Full':
+            Warp songs can also take you inside or outside of graves
+            or dungeons, potentially bypassing item requirements.
         ''',
-        default        = False,
+        default        = 'off',
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
+            'distribution':  [
+                ('off', 2),
+                ('balanced', 1),
+                ('full', 1),
+            ],
         },
     ),
     Combobox(

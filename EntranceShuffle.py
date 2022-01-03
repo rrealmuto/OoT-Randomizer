@@ -47,10 +47,12 @@ def assume_entrance_pool(entrance_pool):
     return assumed_pool
 
 
-def build_one_way_targets(world, types_to_include, exclude=(), target_region_names=()):
+def build_one_way_targets(world, types_to_include, types_to_include_reverse, exclude=(), target_region_names=()):
     one_way_entrances = []
     for pool_type in types_to_include:
-        one_way_entrances += world.get_shufflable_entrances(type=pool_type)
+        one_way_entrances += world.get_shufflable_entrances(type=pool_type, only_primary=True)
+    for pool_type in types_to_include_reverse:
+        one_way_entrances += world.get_shufflable_entrances_reverse(type=pool_type)
     valid_one_way_entrances = list(filter(lambda entrance: entrance.name not in exclude, one_way_entrances))
     if target_region_names:
         return [entrance.get_new_target() for entrance in valid_one_way_entrances
@@ -385,13 +387,13 @@ def shuffle_random_entrances(worlds):
         entrance_pools = OrderedDict()
         one_way_priorities = {}
 
-        if worlds[0].settings.owl_drops:
+        if worlds[0].settings.owl_drops != 'off':
             one_way_entrance_pools['OwlDrop'] = world.get_shufflable_entrances(type='OwlDrop')
 
         if worlds[0].spawn_positions:
             one_way_entrance_pools['Spawn'] = world.get_shufflable_entrances(type='Spawn')
 
-        if worlds[0].settings.warp_songs:
+        if worlds[0].settings.warp_songs != 'off':
             one_way_entrance_pools['WarpSong'] = world.get_shufflable_entrances(type='WarpSong')
             if worlds[0].settings.reachable_locations != 'beatable' and worlds[0].settings.logic_rules == 'glitchless':
                 # In glitchless, there aren't any other ways to access these areas
@@ -451,17 +453,30 @@ def shuffle_random_entrances(worlds):
             # One way entrances are extra entrances that will be connected to entrance positions from a selection of entrance pools
             if pool_type == 'OwlDrop':
                 valid_target_types = ('WarpSong', 'OwlDrop', 'Overworld', 'Extra')
-                one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, exclude=['Prelude of Light Warp -> Temple of Time'])
+                valid_target_types_reverse = ('Overworld',)
+                exclude = ['OGC Great Fairy Fountain -> Castle Grounds']
+                if worlds[0].settings.owl_drops == 'full':
+                    valid_target_types = ('Dungeon', *valid_target_types)
+                    valid_target_types_reverse = ('Dungeon', 'Interior', 'SpecialInterior', *valid_target_types_reverse)
+                else:
+                    exclude.append('Prelude of Light Warp -> Temple of Time')
+                one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse, exclude=exclude)
                 for target in one_way_target_entrance_pools[pool_type]:
                     target.set_rule(lambda state, age=None, **kwargs: age == 'child')
             elif pool_type == 'Spawn':
                 valid_target_types = ('Spawn', 'WarpSong', 'OwlDrop', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
+                valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
                 if worlds[0].full_spawn_positions:
                     valid_target_types = ('Dungeon', *valid_target_types) # there may be issues with Grotto and Grave entrances so these are excluded for now
-                one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types)
+                    valid_target_types_reverse = ('Dungeon', 'Grotto', 'Grave', *valid_target_types_reverse)
+                one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
             elif pool_type == 'WarpSong':
                 valid_target_types = ('Spawn', 'WarpSong', 'OwlDrop', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
-                one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types)
+                valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
+                if worlds[0].settings.warp_songs == 'full':
+                    valid_target_types = ('Dungeon', 'Grave', *valid_target_types)
+                    valid_target_types_reverse = ('Dungeon', 'Grave', *valid_target_types_reverse)
+                one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
             # Ensure that when trying to place the last entrance of a one way pool, we don't assume the rest of the targets are reachable
             for target in one_way_target_entrance_pools[pool_type]:
                 target.add_rule((lambda entrances=entrance_pool: (lambda state, **kwargs: any(entrance.connected_region == None for entrance in entrances)))())

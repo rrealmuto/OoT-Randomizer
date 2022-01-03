@@ -61,13 +61,13 @@ class World(object):
         self.shuffle_interior_entrances = settings.shuffle_interior_entrances in ['simple', 'all']
 
         self.entrance_shuffle = self.shuffle_interior_entrances or settings.shuffle_grotto_entrances or settings.shuffle_dungeon_entrances or \
-                                settings.shuffle_overworld_entrances or settings.owl_drops or settings.warp_songs or self.spawn_positions
+                                settings.shuffle_overworld_entrances or settings.owl_drops != 'off' or settings.warp_songs != 'off' or self.spawn_positions
 
         self.ensure_tod_access = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or self.spawn_positions
         self.disable_trade_revert = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances
 
         if settings.open_forest == 'closed' and (self.shuffle_special_interior_entrances or settings.shuffle_overworld_entrances or 
-                                                 settings.warp_songs or self.spawn_positions or settings.decouple_entrances or (settings.mix_entrance_pools != 'off')):
+                                                 settings.warp_songs != 'off' or self.spawn_positions or settings.decouple_entrances or (settings.mix_entrance_pools != 'off')):
             self.settings.open_forest = 'closed_deku'
 
         if settings.triforce_goal_per_world > settings.triforce_count_per_world:
@@ -909,6 +909,10 @@ class World(object):
         return [entrance for entrance in self.get_entrances() if (type == None or entrance.type == type) and (not only_primary or entrance.primary)]
 
 
+    def get_shufflable_entrances_reverse(self, type=None):
+        return [entrance for entrance in self.get_entrances() if (type == None or entrance.type == type) and not entrance.primary]
+
+
     def get_shuffled_entrances(self, type=None, only_primary=False):
         return [entrance for entrance in self.get_shufflable_entrances(type=type, only_primary=only_primary) if entrance.shuffled]
 
@@ -980,7 +984,7 @@ class World(object):
         if self.settings.logic_grottos_without_agony and self.settings.hints != 'agony':
             # Stone of Agony skippable if not used for hints or grottos
             exclude_item_list.append('Stone of Agony')
-        if not self.shuffle_special_interior_entrances and not self.settings.shuffle_overworld_entrances and not self.settings.warp_songs:
+        if not self.shuffle_special_interior_entrances and not self.settings.shuffle_overworld_entrances and self.settings.warp_songs == 'off':
             # Serenade and Prelude are never required unless one of those settings is enabled
             exclude_item_list.append('Serenade of Water')
             exclude_item_list.append('Prelude of Light')
