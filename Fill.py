@@ -4,7 +4,7 @@ from State import State
 from Rules import set_shop_rules
 from Location import DisableType
 from LocationList import location_groups
-from ItemPool import songlist, get_junk_item, item_groups, remove_junk_items, remove_junk_set
+from ItemPool import songlist, get_junk_item, item_groups, remove_junk_items, remove_junk_set, triforce_blitz_items
 from ItemList import item_table
 from Item import ItemFactory
 from Search import Search
@@ -367,6 +367,13 @@ def fill_restrictive(window, worlds, base_search, locations, itempool, count=-1)
     items_search.collect_all(itempool)
     logging.getLogger('').debug(f'Placing {len(itempool)} items among {len(locations)} potential locations.')
 
+    dungeons = [dungeon for world in worlds for dungeon in world.dungeons]
+    all_dungeon_locations = []
+
+    for dungeon in dungeons:
+        dungeon_locations = [location for region in dungeon.regions for location in region.locations]
+        all_dungeon_locations.extend(dungeon_locations)
+
     # loop until there are no items or locations
     while itempool and locations:
         # if remaining count is 0, return. Negative means unbounded.
@@ -435,6 +442,10 @@ def fill_restrictive(window, worlds, base_search, locations, itempool, count=-1)
                                 parent_region = parent_region.entrances[0].parent_region
                         if not can_reach:
                             continue
+
+                # Triforce blitz pieces can only be placed in dungeons
+                if item_to_place.name in triforce_blitz_items and location not in all_dungeon_locations:
+                    continue
 
                 if location.disabled == DisableType.PENDING:
                     if not max_search.can_beat_game(False):
