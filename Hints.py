@@ -518,7 +518,7 @@ def get_goal_count_hint(spoiler, world, checked):
     item_count = len(goal_locations)
     item_text = 'step' if item_count == 1 else 'steps'
 
-    return (GossipText('#%s# requires #%d# %s.' % (goal.hint_text, item_count, item_text), [goal.color, 'Light Blue']), None)
+    return (GossipText('#%s# requires #%d# %s.' % (goal.hint_text, item_count, item_text), ['Light Blue', goal.color]), None)
 
 def get_barren_hint(spoiler, world, checked):
     if not hasattr(world, 'get_barren_hint_prev'):
