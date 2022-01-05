@@ -12,7 +12,7 @@ from EntranceShuffle import EntranceShuffleError, change_connections, confirm_re
 from Hints import gossipLocations, GossipText
 from Item import ItemFactory, ItemIterator, IsItem
 from ItemList import item_table
-from ItemPool import item_groups, get_junk_item
+from ItemPool import item_groups, get_junk_item, triforce_blitz_items
 from Location import LocationIterator, LocationFactory, IsLocation
 from LocationList import location_groups, location_table
 from Search import Search
@@ -301,6 +301,8 @@ class WorldDistribution(object):
                     # Special handling for things not included in base_pool
                     if self.distribution.settings.triforce_hunt:
                         self.major_group.append('Triforce Piece')
+                    if self.distribution.settings.triforce_blitz:
+                        self.major_group.extend(triforce_blitz_items)
                     major_tokens = ((self.distribution.settings.shuffle_ganon_bosskey == 'on_lacs' and
                             self.distribution.settings.lacs_condition == 'tokens') or 
                             self.distribution.settings.shuffle_ganon_bosskey == 'tokens' or self.distribution.settings.bridge == 'tokens')
@@ -1028,6 +1030,16 @@ class Distribution(object):
 
         for world in worlds:
             world.total_starting_triforce_count = total_starting_count # used later in Rules.py
+
+
+    def configure_triforce_blitz(self, worlds):
+
+        for world in worlds:
+            total_count = 0
+            for item in triforce_blitz_items:
+                total_count += world.distribution.item_pool[item].count 
+            
+            world.triforce_count = total_count
 
 
     def reset(self):

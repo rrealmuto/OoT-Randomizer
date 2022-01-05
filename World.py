@@ -604,6 +604,7 @@ class World(object):
             # an earlier order in the hint distro, etc).
             th.add_goal(Goal(self, 'gold', 'path of gold', 'Yellow', items=[{'name': 'Triforce Piece', 'quantity': triforce_count, 'minimum': self.settings.triforce_goal_per_world, 'hintable': False}]))
             self.goal_categories[th.name] = th
+
         # Category goals are defined for each possible setting for each category.
         # Bridge can be Stones, Medallions, Dungeons, Skulls, or Vanilla.
         # Ganon's Boss Key can be Stones, Medallions, Dungeons, Skulls, LACS or

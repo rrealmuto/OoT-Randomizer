@@ -168,6 +168,8 @@ def build_world_graphs(settings, window=dummy_window()):
 
     if settings.triforce_hunt:
         settings.distribution.configure_triforce_hunt(worlds)
+    if settings.triforce_blitz:
+        settings.distribution.configure_triforce_blitz(worlds)
 
     logger.info('Setting Entrances.')
     set_entrances(worlds)

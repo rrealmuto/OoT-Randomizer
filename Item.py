@@ -156,6 +156,10 @@ class Item(object):
     def __str__(self):
         return str(self.__unicode__())
 
+    
+    def __repr__(self):
+        return str(self.__unicode__())
+
 
     def __unicode__(self):
         return '%s' % self.name

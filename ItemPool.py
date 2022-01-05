@@ -119,6 +119,21 @@ item_difficulty_max = {
     },
 }
 
+triforce_items = ([
+    'Triforce Piece', 
+    'Triforce of Power', 
+    'Triforce of Wisdom', 
+    'Triforce of Courage'
+])
+
+
+triforce_blitz_items = ([
+    'Triforce of Power', 
+    'Triforce of Wisdom', 
+    'Triforce of Courage'
+])
+
+
 TriforceCounts = {
     'plentiful': Decimal(2.00),
     'balanced':  Decimal(1.50),
@@ -689,7 +704,10 @@ exclude_from_major = [
     'Bombchus (10)',
     'Bombchus (20)',
     'Odd Potion',
-    'Triforce Piece'
+    'Triforce Piece',
+    'Triforce of Power',
+    'Triforce of Wisdom',
+    'Triforce of Courage',
 ]
 
 item_groups = {
@@ -1308,6 +1326,9 @@ def get_pool_core(world):
     if world.settings.triforce_hunt:
         triforce_count = int((TriforceCounts[world.settings.item_pool_value] * world.settings.triforce_goal_per_world).to_integral_value(rounding=ROUND_HALF_UP))
         pending_junk_pool.extend(['Triforce Piece'] * triforce_count)
+
+    if world.settings.triforce_blitz:
+        pending_junk_pool.extend(triforce_blitz_items)
 
     if world.settings.shuffle_ganon_bosskey == 'on_lacs':
         placed_items['ToT Light Arrows Cutscene'] = 'Boss Key (Ganons Castle)'

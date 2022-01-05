@@ -3,6 +3,7 @@ import logging
 
 from HintList import goalTable, getHintGroup, hintExclusions
 from Search import Search
+from ItemPool import triforce_items
 
 
 validColors = [
@@ -147,7 +148,7 @@ def update_goal_items(spoiler):
     # item_locations: only the ones that should appear as "required"/WotH
     all_locations = [location for world in worlds for location in world.get_filled_locations()]
     # Set to test inclusion against
-    item_locations = {location for location in all_locations if location.item.majoritem and not location.locked and location.item.name != 'Triforce Piece'}
+    item_locations = {location for location in all_locations if location.item.majoritem and not location.locked and location.item.name not in triforce_items}
 
     # required_locations[category.name][goal.name][world_id] = [...]
     required_locations = defaultdict(lambda: defaultdict(lambda: defaultdict(list)))
