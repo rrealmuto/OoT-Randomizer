@@ -92,6 +92,7 @@ location_table = OrderedDict([
 
     # Lost Woods
     ("LW Gift from Saria",                                           ("Cutscene",     0xFF,  0x02, None,                        'Ocarina',                               ("the Lost Woods", "Forest",))),
+    ("LW Under Boulder Rupee",                                       ("Collectable",  0x5B,  0x13, None,                        'Rupees (5)',                            ("the Lost Woods", "Forest",))),
     ("LW Ocarina Memory Game",                                       ("NPC",          0x5B,  0x76, None,                        'Piece of Heart',                        ("the Lost Woods", "Forest", "Minigames"))),
     ("LW Target in Woods",                                           ("NPC",          0x5B,  0x60, None,                        'Slingshot',                             ("the Lost Woods", "Forest",))),
     ("LW Near Shortcuts Grotto Chest",                               ("Chest",        0x3E,  0x14, None,                        'Rupees (5)',                            ("the Lost Woods", "Forest", "Grottos"))),

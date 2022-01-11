@@ -251,6 +251,7 @@
         "scene": "Lost Woods",
         "hint": "the Lost Woods",
         "locations": {
+            "LW Under Boulder Rupee": "here(can_blast_or_smash)",
             "LW Deku Scrub Near Deku Theater Right": "is_child and can_stun_deku",
             "LW Deku Scrub Near Deku Theater Left": "is_child and can_stun_deku",
             "LW GS Above Theater": "

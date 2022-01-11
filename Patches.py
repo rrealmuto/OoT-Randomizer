@@ -1339,6 +1339,8 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     rom.write_bytes(0x020A6092, [0x0F, 0x06]) #KF Boulder maze blupee 1
     rom.write_bytes(0x020A60A2, [0x0E, 0x06]) #KF Boulder maze bluepee 2
     rom.write_bytes(0x02081102, [0x11, 0x06]) #KF End of Bridge blupee
+    rom.write_bytes(0x0217C0BE, [0x13, 0x06]) #LW Under Boulder Rupee (child)
+    rom.write_bytes(0x0217C166, [0x13, 0x06]) #LW Under Boulder Rupee (adult)
     rom.write_bytes(0x03356066, [0x01, 0x06]) #LH Lab Dive Rupee 1
     rom.write_bytes(0x03356076, [0x02, 0x06]) #LH Lab Dive Rupee 1
     rom.write_bytes(0x03356086, [0x03, 0x06]) #LH Lab Dive Rupee 1
