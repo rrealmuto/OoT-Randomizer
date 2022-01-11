@@ -34,6 +34,9 @@ def shop_address(shop_id, shelf_id):
 # Note that the scene for skulltulas is not the actual scene the token appears in
 # Rather, it is the index of the grouping used when storing skulltula collection
 # For example, zora river, zora's domain, and zora fountain are all a single 'scene' for skulltulas
+
+#Note: for ActorOverride locations, the "Addresses" variable is in the form ([addresses], [bytes]) where addresses is a list of memory locations in ROM to be updated, and bytes is the data that will be written to that location
+
 #   Location:                                                        Type             Scene  Default Addresses                  Vanilla Item                             Categories
 location_table = OrderedDict([
     ## Dungeon Rewards
