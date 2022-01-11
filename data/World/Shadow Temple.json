@@ -39,6 +39,8 @@
         "locations": {
             "Shadow Temple Invisible Blades Visible Chest": "True",
             "Shadow Temple Invisible Blades Invisible Chest": "True",
+            "Shadow Temple Invisible Blades Recovery Heart 1": "can_play(Song_of_Time)",
+            "Shadow Temple Invisible Blades Recovery Heart 2": "can_play(Song_of_Time)",
             "Shadow Temple Falling Spikes Lower Chest": "True",
             "Shadow Temple Falling Spikes Upper Chest": "logic_shadow_umbrella or Progressive_Strength_Upgrade",
             "Shadow Temple Falling Spikes Switch Chest": "logic_shadow_umbrella or Progressive_Strength_Upgrade",
@@ -68,7 +70,9 @@
             "Shadow Temple Wind Hint Chest": "True",
             "Shadow Temple After Wind Enemy Chest": "True",
             "Shadow Temple After Wind Hidden Chest": "True",
-            "Shadow Temple GS Near Ship": "can_use(Longshot) and (Small_Key_Shadow_Temple, 4)"
+            "Shadow Temple GS Near Ship": "can_use(Longshot) and (Small_Key_Shadow_Temple, 4)",
+            "Shadow Temple Before Boat Freestanding Recovery Heart 1": "can_use(Distant_Scarecrow) and (Small_Key_Shadow_Temple, 4)",
+            "Shadow Temple Before Boat Freestanding Recovery Heart 2": "can_use(Distant_Scarecrow) and (Small_Key_Shadow_Temple, 4)"
         },
         "exits": {
             "Shadow Temple Beyond Boat": "can_play(Zeldas_Lullaby) and (Small_Key_Shadow_Temple, 4)"
@@ -78,6 +82,9 @@
         "region_name": "Shadow Temple Beyond Boat",
         "dungeon": "Shadow Temple",
         "locations": {
+            "Shadow Temple After Boat Freestanding Recovery Heart Upper 1" : "can_use(Distant_Scarecrow)",
+            "Shadow Temple After Boat Freestanding Recovery Heart Upper 2" : "can_use(Distant_Scarecrow) ",
+            "Shadow Temple After Boat Freestanding Recovery Heart Lower" : "can_play(Song_of_Time) or can_use(Distant_Scarecrow)",
             "Shadow Temple Spike Walls Left Chest": "can_use(Dins_Fire)",
             "Shadow Temple Boss Key Chest": "can_use(Dins_Fire)",
             "Shadow Temple Invisible Floormaster Chest": "True",

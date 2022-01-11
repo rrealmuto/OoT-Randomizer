@@ -19,6 +19,7 @@
             "Dodongos Cavern GS Scarecrow": "
                 can_use(Scarecrow) or can_use(Longshot) or 
                 (logic_dc_scarecrow_gs and (is_adult or can_child_attack))",
+            "Dodongos Cavern Lizalfos Hidden Recovery Heart": "True",
             "Dodongos Cavern Deku Scrub Side Room Near Dodongos": "
                 is_adult or Slingshot or Sticks or 
                 has_explosives or Kokiri_Sword",
@@ -43,6 +44,7 @@
                 has_explosives or Progressive_Strength_Upgrade or can_use(Dins_Fire) or
                 (logic_dc_staircase and can_use(Bow)) or
                 (logic_dc_vines_gs and can_use(Longshot))"
+            
         },
         "exits": {
             "Dodongos Cavern Lobby": "True",
@@ -56,6 +58,9 @@
         "dungeon": "Dodongos Cavern",
         "locations": {
             "Dodongos Cavern Bomb Flower Platform Chest": "True",
+            "Dodongos Cavern Lizalfos Recovery Heart 1": "True",
+            "Dodongos Cavern Lizalfos Recovery Heart 2": "True",
+            "Dodongos Cavern Behind Block" : "True",
             "Dodongos Cavern Deku Scrub Near Bomb Bag Right": "
                 can_blast_or_smash or
                 (logic_dc_scrub_room and is_adult and Progressive_Strength_Upgrade)",

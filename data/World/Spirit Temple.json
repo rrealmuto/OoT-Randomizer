@@ -177,6 +177,8 @@
         "region_name": "Spirit Temple Beyond Final Locked Door",
         "dungeon": "Spirit Temple",
         "locations": {
+            "Spirit Temple Shifting Wall Recovery Heart 1": "Progressive_Hookshot",
+            "Spirit Temple Shifting Wall Recovery Heart 2": "Progressive_Hookshot",
             "Spirit Temple Boss Key Chest": "
                 can_play(Zeldas_Lullaby) and Bow and 
                 Progressive_Hookshot",

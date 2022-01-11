@@ -1362,6 +1362,7 @@ typedef void (*z64_DisplayTextbox_proc)   (z64_game_t *game, uint16_t text_id,
                                            int unknown_);
 typedef void (*z64_GiveItem_proc)         (z64_game_t *game, uint8_t item);
 
+
 typedef void(*z64_LinkDamage_proc)        (z64_game_t *ctxt, z64_link_t *link,
                                            uint8_t damage_type, float unk_00, uint32_t unk_01,
                                            uint16_t unk_02);
@@ -1416,7 +1417,6 @@ typedef float *(*z64_GetMatrixStackTop_proc)();
 #define z64_DisplayTextbox      ((z64_DisplayTextbox_proc)                    \
                                                       z64_DisplayTextbox_addr)
 #define z64_GiveItem            ((z64_GiveItem_proc)  z64_GiveItem_addr)
-
 #define z64_LinkDamage          ((z64_LinkDamage_proc)z64_LinkDamage_addr)
 #define z64_LinkInvincibility   ((z64_LinkInvincibility_proc)                 \
                                                       z64_LinkInvincibility_addr)

@@ -218,6 +218,45 @@ Gameplay_InitSkybox:
 .orga 0xE2F093 :: .byte 0x34 ; Market Bombchu Bowling Bomb Bag
 .orga 0xEC9CE7 :: .byte 0x7A ; Deku Theater Mask of Truth
 
+
+; Runs when player collides w/ Collectible (inside en_item00_update()) start of switch case at 0x80012CA4
+
+; Override Item_Give(RUPEE_GREEN)
+; Replaces:
+;OR	A0, S1, R0
+;JAL	0x8006FDCC
+;addiu	a1, r0, 0x0084
+.orga 0xA88C0C ; In memory: 80012CAC
+	jal item_give_hook
+	or A2, S0, R0
+
+; Override Item_Give(RUPEE_BLUE)
+; Replaces:
+;OR	A0, S1, R0
+;JAL	0x8006FDCC
+;addiu	a1, r0, 0x0084
+.orga 0xA88C20 ; In memory: 80012CC0)
+	jal item_give_hook
+	or A2, S0, R0
+
+; Override Item_Give(RUPEE_RED)
+; Replaces:
+;OR	A0, S1, R0
+;JAL	0x8006FDCC
+;addiu	a1, r0, 0x0084
+.orga 0xA88C34 ; In memory: 80012CD4)
+	jal item_give_hook
+	or A2, S0, R0
+
+; Override Item_Give(ITEM_HEART)
+; Replaces:
+;or	A0, S1, R0
+;JAL	0x8006FDCC
+;ADDIU	A1, R0, 0x0083
+.orga 0xA88C88 ; In memory: 0x80012D28
+    jal	item_give_hook
+    or	A2, S0, R0 ;pass actor pointer to function
+
 ; Runs when storing an incoming item to the player instance
 ; Replaces:
 ;   sb      a2, 0x0424 (a3)
@@ -350,6 +389,29 @@ Gameplay_InitSkybox:
 ;==================================================================================================
 ; Freestanding models
 ;==================================================================================================
+
+
+;Replaces:
+;   who knows ; Draw Rupee Function
+.headersize(0x80013004 - 0xA88F64)
+.orga 0xA88F64 ; In memory: 0x80013004
+    jal     rupee_draw_hook
+    nop
+.headersize(0)    
+
+;Replaces:
+;   	LH	V0, 0x014a(A2)
+;	ADDIU	AT, R0, 0xFFFF
+.headersize(0x8001303C - 0xA88F9C)
+.orga 0xA88F9C ; In memory: 0x8001303C
+;    or    A0, A2, R0
+     jal     recovery_heart_draw_hook
+     nop
+after_recovery_heart_hook:
+    .skip 0x6C
+end_of_recovery_draw:
+ .headersize(0)
+
 
 ; Replaces:
 ;   jal     0x80013498 ; Piece of Heart draw function

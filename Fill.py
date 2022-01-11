@@ -52,13 +52,21 @@ def distribute_items_restrictive(window, worlds, fill_locations=None):
 
     shop_locations = [location for world in worlds for location in world.get_unfilled_locations() if location.type == 'Shop' and location.price == None]
 
+    actor_override_locations = [location for world in worlds for location in world.get_locations() if location.type == 'ActorOverride']
+
     # If not passed in, then get a shuffled list of locations to fill in
     if not fill_locations:
         fill_locations = [
             location for world in worlds for location in world.get_unfilled_locations()
             if location not in song_locations
                 and location not in shop_locations
+                and location not in actor_override_locations
                 and not location.type.startswith('Hint')]
+    
+    if world.settings.shuffle_freestanding_items:
+        fill_locations.extend(actor_override_locations)
+
+
     world_states = [world.state for world in worlds]
 
     window.locationcount = len(fill_locations) + len(song_locations) + len(shop_locations)

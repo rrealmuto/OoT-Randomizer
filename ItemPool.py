@@ -51,6 +51,7 @@ alwaysitems = ([
     + ['Piece of Heart (Treasure Chest Game)'])
 
 
+
 easy_items = ([
     'Biggoron Sword',
     'Kokiri Sword',
@@ -764,13 +765,14 @@ def generate_itempool(world):
         world.push_item(drop_location, ItemFactory(item, world))
         drop_location.locked = True
 
+    
     # set up item pool
     (pool, placed_items) = get_pool_core(world)
     world.itempool = ItemFactory(pool, world)
     for (location, item) in placed_items.items():
         world.push_item(location, ItemFactory(item, world))
         world.get_location(location).locked = True
-
+    
     world.initialize_items()
     world.distribution.set_complete_itempool(world.itempool)
 
@@ -812,6 +814,7 @@ def collect_heart_container(world, pool):
 
 
 def get_pool_core(world):
+    logger = logging.getLogger('')
     pool = []
     placed_items = {
         'HC Zeldas Letter': 'Zeldas Letter',
@@ -872,6 +875,23 @@ def get_pool_core(world):
         pool.append('Giants Knife')
     else:
         placed_items['GC Medigoron'] = 'Giants Knife'
+
+    actor_override_locations = [location for location in world.get_locations() if location.type == 'ActorOverride']
+    freestanding_locations = [location for location in world.get_locations() if (location.type == 'Collectable' and 'Freestanding' in location.filter_tags) ]
+    if world.settings.shuffle_freestanding_items:        
+        logger.info("Actor override locations:")
+        for actor_override_location in actor_override_locations:
+            pool.append(actor_override_location.vanilla_item)
+            logger.info(actor_override_location)
+        logger.info("Freestanding locations")
+        for location in freestanding_locations:
+            pool.append(location.vanilla_item)
+            logger.info(location)
+    else:
+        for actor_override_location in actor_override_locations:
+            placed_items[actor_override_location.name] = actor_override_location.vanilla_item
+        for location in freestanding_locations:
+            placed_items[location.name] = location.vanilla_item
 
     if world.dungeon_mq['Deku Tree']:
         skulltula_locations_final = skulltula_locations + [

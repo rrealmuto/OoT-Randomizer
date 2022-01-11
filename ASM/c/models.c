@@ -1,5 +1,5 @@
 #include "models.h"
-
+#include <stdbool.h>
 #include "get_items.h"
 #include "item_table.h"
 #include "util.h"
@@ -140,6 +140,31 @@ void lookup_model(model_t *model, z64_actor_t *actor, z64_game_t *game, uint16_t
     lookup_model_by_override(model, override);
 }
 
+
+bool recovery_heart_draw(z64_actor_t *actor, z64_game_t *game) {
+    model_t model = {
+        .object_id = 0x0000,
+        .graphic_id = 0x00,
+    };
+    lookup_model(&model, actor, game, 0);
+    if(model.object_id != 0x0000)
+    {
+        draw_model(model, actor, game, 25.0);
+        return true;
+    }
+    return false;
+}
+
+void rupee_draw(z64_actor_t *actor, z64_game_t *game) {
+    model_t model = {
+        .object_id = 0x0000,
+        .graphic_id = 0x00,
+    };
+    lookup_model(&model, actor, game, 0);
+    if(model.object_id != 0x0000)
+        draw_model(model, actor, game, 10.0);
+}
+
 void heart_piece_draw(z64_actor_t *actor, z64_game_t *game) {
     model_t model = {
         .object_id = 0x00BD,
@@ -163,13 +188,18 @@ void small_key_draw(z64_actor_t *actor, z64_game_t *game) {
     draw_model(model, actor, game, 25.0);
 }
 
-void heart_container_draw(z64_actor_t *actor, z64_game_t *game) {
+bool heart_container_draw(z64_actor_t *actor, z64_game_t *game) {
     model_t model = {
-        .object_id = 0x00BD,
-        .graphic_id = 0x13,
+        .object_id = 0x0000,
+        .graphic_id = 0x00,
     };
     lookup_model(&model, actor, game, 0x4F);
-    draw_model(model, actor, game, 1.25);
+    if(model.object_id != 0x0000)
+    {
+        draw_model(model, actor, game, 1.25);
+        return true;
+    }
+    return false;
 }
 
 void skull_token_draw(z64_actor_t *actor, z64_game_t *game) {

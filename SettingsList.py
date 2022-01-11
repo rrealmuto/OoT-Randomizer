@@ -2646,6 +2646,18 @@ setting_infos = [
         shared         = True,
     ),
     Checkbutton(
+        name           = 'shuffle_freestanding_items',
+        gui_text       = 'Shuffle Freestanding items',
+        gui_tooltip    = '''\
+            Shuffle a whole bunch of shit.
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    ),
+    Checkbutton(
         name           = 'shuffle_cows',
         gui_text       = 'Shuffle Cows',
         gui_tooltip    = '''\
@@ -2732,6 +2744,8 @@ setting_infos = [
             'randomize_key': 'randomize_settings',
         },
     ),
+    
+
     Checkbutton(
         name           = 'shuffle_dungeon_entrances',
         gui_text       = 'Shuffle Dungeon Entrances',
@@ -4026,6 +4040,8 @@ setting_infos = [
             color from this list of colors.
             'Completely Random': Choose a random
             color from any color the N64 can draw.
+            'Rainbow': Rainbow effect. Selecting
+            rainbow for any tunic will apply for all.
         ''',
         gui_params     = {
             'randomize_key': 'randomize_all_cosmetics',
@@ -4048,6 +4064,8 @@ setting_infos = [
             color from this list of colors.
             'Completely Random': Choose a random
             color from any color the N64 can draw.
+            'Rainbow': Rainbow effect. Selecting
+            rainbow for any tunic will apply for all.
         ''',
         gui_params     = {
             'randomize_key': 'randomize_all_cosmetics',
@@ -4071,6 +4089,8 @@ setting_infos = [
             color from this list of colors.
             'Completely Random': Choose a random
             color from any color the N64 can draw.
+            'Rainbow': Rainbow effect. Selecting
+            rainbow for any tunic will apply for all.
         ''',
         gui_params     = {
             'randomize_key': 'randomize_all_cosmetics',

@@ -3,6 +3,8 @@ import struct
 import itertools
 import re
 import zlib
+import logging
+import binascii
 from collections import defaultdict
 
 from World import World
@@ -1334,8 +1336,29 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     if world.settings.misc_hints:
         buildGanonText(world, messages)
 
+
+    #Patch actor overrides for freestanding items. Need to figure out how to fix this for MQ, Multiword, etc.
+    if world.settings.shuffle_freestanding_items:
+    # Get actor_override locations
+        actor_override_locations = [location for location in world.get_locations() if location.type == 'ActorOverride']
+        for location in actor_override_locations:
+            addresses = location.address
+            patch = location.address2
+            if addresses is not None and patch is not None:
+                for address in addresses:
+                    rom.write_bytes(address, patch)
+        freestanding_locations = [location for location in world.get_locations() if location.type == 'Collectable' and 'Freestanding' in location.filter_tags]
+        for location in freestanding_locations:
+            addresses = location.address
+            patch = location.address2
+            if addresses is not None and patch is not None:
+                for address in addresses:
+                    rom.write_bytes(address, patch)
+
     # Write item overrides
     override_table = get_override_table(world)
+    logger = logging.getLogger('')
+    logger.info(get_override_table_bytes(override_table))
     rom.write_bytes(rom.sym('cfg_item_overrides'), get_override_table_bytes(override_table))
     rom.write_byte(rom.sym('PLAYER_ID'), world.id + 1) # Write player ID
 
@@ -1448,8 +1471,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     shuffle_messages.shop_item_messages = []
 
     # kokiri shop
+    shop_locations = world.get_region('KF Kokiri Shop').locations
     shop_objs = place_shop_items(rom, world, shop_items, messages,
-        world.get_region('KF Kokiri Shop').locations, True)
+        shop_locations[1:], True)
     shop_objs |= {0x00FC, 0x00B2, 0x0101, 0x0102, 0x00FD, 0x00C5} # Shop objects
     rom.write_byte(0x2587029, len(shop_objs))
     rom.write_int32(0x258702C, 0x0300F600)
@@ -1816,11 +1840,22 @@ def get_override_table(world):
 
 
 override_struct = struct.Struct('>xBBBHBB') # match override_t in get_items.c
+    
 def get_override_table_bytes(override_table):
+    logger = logging.getLogger('')
+    table_bytes = itertools.starmap(override_struct.pack, override_table)
+    i = 0
+    for entry in sorted(table_bytes):
+        logger.info(i)
+        i = i + 1
+        logger.info(entry)
+        logger.info(entry.hex())
     return b''.join(sorted(itertools.starmap(override_struct.pack, override_table)))
 
 
 def get_override_entry(location):
+    
+    logger = logging.getLogger('')
     scene = location.scene
     default = location.default
     item_id = location.item.index
@@ -1838,6 +1873,8 @@ def get_override_entry(location):
     elif location.type == 'Chest':
         type = 1
         default &= 0x1F
+    elif location.type == 'ActorOverride':
+        type = 2
     elif location.type == 'Collectable':
         type = 2
     elif location.type == 'GS Token':
@@ -1850,7 +1887,10 @@ def get_override_entry(location):
         type = 5
     else:
         return None
-
+    logger.info(location)
+    logger.info(scene)
+    logger.info(type)
+    logger.info(default)
     return (scene, type, default, item_id, player_id, looks_like_item_id)
 
 

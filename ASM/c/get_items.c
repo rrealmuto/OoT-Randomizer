@@ -7,7 +7,7 @@
 
 extern uint8_t OCARINAS_SHUFFLED;
 
-override_t cfg_item_overrides[512] = { 0 };
+override_t cfg_item_overrides[1024] = { 0 };
 int item_overrides_count = 0;
 
 override_t pending_item_queue[3] = { 0 };
@@ -62,7 +62,7 @@ override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_
     } else if (actor->actor_id == 0x15) {
         // Only override heart pieces and keys
         int collectable_type = actor->variable & 0xFF;
-        if (collectable_type != 0x06 && collectable_type != 0x11) {
+        if (collectable_type != 0x06 && collectable_type != 0x11 && collectable_type != 0x03 && collectable_type != 2 && collectable_type != 0x01 &&collectable_type != 0x00) {
             return (override_key_t){ .all = 0 };
         }
 
@@ -327,6 +327,53 @@ void get_item(z64_actor_t *from_actor, z64_link_t *link, int8_t incoming_item_id
 
 
     link->incoming_item_id = incoming_negative ? -base_item_id : base_item_id;
+}
+
+#define GIVEITEM_RUPEE_GREEN 0x84
+#define GIVEITEM_RUPEE_BLUE  0x85
+#define GIVEITEM_RUPEE_RED 0x86
+#define GIVEITEM_HEART 0x83
+
+#define ITEM_RUPEE_GREEN 0x00
+#define ITEM_RUPEE_BLUE 0x01
+#define ITEM_RUPEE_RED 0x02
+#define ITEM_HEART 0x03
+
+uint8_t items[] = {GIVEITEM_RUPEE_GREEN, GIVEITEM_RUPEE_BLUE, GIVEITEM_RUPEE_RED, GIVEITEM_HEART};
+
+void item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_actor){
+	override_t override = lookup_override(from_actor, z64_game.scene_index, 0);
+	uint16_t item_id;
+	uint8_t player;
+    if (override.key.all == 0) {
+        z64_GiveItem(&z64_game, items[item]);
+        return;
+    } else {
+        item_id = override.value.item_id;
+        player = override.value.player;
+    }
+
+     uint16_t resolved_item_id = resolve_upgrades(item_id);
+     item_row_t *item_row = get_item_row(resolved_item_id);
+
+     PLAYER_NAME_ID = player;
+    z64_DisplayTextbox(&z64_game, item_row->text_id, 0);
+
+    if (resolved_item_id == 0xCA) {
+        // Send triforce to everyone
+        set_outgoing_override(&override);
+        z64_GiveItem(&z64_game, item_row->action_id);
+        call_effect_function(item_row);
+    } else if (player != PLAYER_ID) {
+        set_outgoing_override(&override);
+    } else {
+           //push_pending_item(override);
+		z64_GiveItem(&z64_game, item_row->action_id);
+        	 call_effect_function(item_row);
+
+
+    }
+
 }
 
 void get_skulltula_token(z64_actor_t *token_actor) {
