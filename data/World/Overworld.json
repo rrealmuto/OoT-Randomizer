@@ -749,6 +749,9 @@
             "Market Potion Shop": "is_child and at_day",
             "Market Treasure Chest Game": "is_child and at_night",
             "Market Back Alley": "is_child"
+        },
+        "locations": {
+            "Market Night Crate Rupee" : "is_child and at_night"
         }
     },
     {
