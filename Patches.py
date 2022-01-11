@@ -1338,10 +1338,11 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Get actor_override locations
         actor_override_locations = [location for location in world.get_locations() if location.type == 'ActorOverride']
         for location in actor_override_locations:
-            address = location.address
+            addresses = location.address
             patch = location.address2
-            if address is not None and patch is not None:
-                rom.write_bytes(address, patch)
+            if addresses is not None and patch is not None:
+                for address in addresses:
+                    rom.write_bytes(address, patch)
     # Override some freestanding rupees
 #    rom.write_bytes(0x020810F2, [0x12, 0x06]) #KF Blupee behind midos in
 #    rom.write_bytes(0x020A6092, [0x0F, 0x06]) #KF Boulder maze blupee 1
