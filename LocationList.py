@@ -68,6 +68,7 @@ location_table = OrderedDict([
     ("KF Behind Midos Blupee",                                       ("Collectable",  0x55,  0x12, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
     ("KF Boulder Maze Blupee 1",                                     ("Collectable",  0x55,  0x0F, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
     ("KF Boulder Maze Blupee 2",                                     ("Collectable",  0x55,  0x0E, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
+    ("KF End of Bridge Blupee",                                      ("Collectable",  0x55,  0x11, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
     ("KF Midos Top Left Chest",                                      ("Chest",        0x28,  0x00, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
     ("KF Midos Top Right Chest",                                     ("Chest",        0x28,  0x01, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
     ("KF Midos Bottom Left Chest",                                   ("Chest",        0x28,  0x02, None,                        'Rupee (1)',                             ("Kokiri Forest", "Forest",))),

@@ -1338,7 +1338,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     rom.write_bytes(0x020810F2, [0x12, 0x06]) #KF Blupee behind midos in
     rom.write_bytes(0x020A6092, [0x0F, 0x06]) #KF Boulder maze blupee 1
     rom.write_bytes(0x020A60A2, [0x0E, 0x06]) #KF Boulder maze bluepee 2
-	
+    rom.write_bytes(0x02081102, [0x11, 0x06]) #KF End of Bridge blupee
 
     # Write item overrides
     override_table = get_override_table(world)

@@ -49,7 +49,7 @@ alwaysitems = ([
     + ['Deku Stick Capacity'] * 2
     + ['Deku Nut Capacity'] * 2
     + ['Piece of Heart (Treasure Chest Game)']
-    + ['Rupees (5)'] * 3)
+    + ['Rupees (5)'] * 4)
 
 
 easy_items = ([
