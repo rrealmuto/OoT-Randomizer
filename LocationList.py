@@ -124,6 +124,7 @@ location_table = OrderedDict([
     ("HF GS Near Kak Grotto",                                        ("GS Token",     0x0A,  0x02, None,                        'Gold Skulltula Token',                  ("Hyrule Field", "Skulltulas", "Grottos"))),
 
     # Market
+    ("Market Night Crate Rupee",                                     ("Collectable",  0x21,  0x03, None,                        'Rupees (20)',                           ("the market", "Market",))),
     ("Market Shooting Gallery Reward",                               ("NPC",          0x42,  0x60, None,                        'Slingshot',                             ("the Market", "Market", "Minigames"))),
     ("Market Bombchu Bowling First Prize",                           ("NPC",          0x4B,  0x34, None,                        'Bomb Bag',                              ("the Market", "Market", "Minigames"))),
     ("Market Bombchu Bowling Second Prize",                          ("NPC",          0x4B,  0x3E, None,                        'Piece of Heart',                        ("the Market", "Market", "Minigames"))),

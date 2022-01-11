@@ -1343,6 +1343,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     rom.write_bytes(0x03356076, [0x02, 0x06]) #LH Lab Dive Rupee 1
     rom.write_bytes(0x03356086, [0x03, 0x06]) #LH Lab Dive Rupee 1
 
+    # Override night market red rupee in crate
+    rom.write_bytes(0x022D21B8, [0x00, 0x06, 0x00, 0x00, 0x00, 0x03]) 
+
     # Write item overrides
     override_table = get_override_table(world)
     
