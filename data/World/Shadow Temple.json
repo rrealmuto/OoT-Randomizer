@@ -68,7 +68,9 @@
             "Shadow Temple Wind Hint Chest": "True",
             "Shadow Temple After Wind Enemy Chest": "True",
             "Shadow Temple After Wind Hidden Chest": "True",
-            "Shadow Temple GS Near Ship": "can_use(Longshot) and (Small_Key_Shadow_Temple, 4)"
+            "Shadow Temple GS Near Ship": "can_use(Longshot) and (Small_Key_Shadow_Temple, 4)",
+            "Shadow Temple Before Boat Freestanding Heart Container 1": "can_use(Distant_Scarecrow) and (Small_Key_Shadow_Temple, 4)",
+            "Shadow Temple Before Boat Freestanding Heart Container 2": "can_use(Distant_Scarecrow) and (Small_Key_Shadow_Temple, 4)"
         },
         "exits": {
             "Shadow Temple Beyond Boat": "can_play(Zeldas_Lullaby) and (Small_Key_Shadow_Temple, 4)"
@@ -78,6 +80,9 @@
         "region_name": "Shadow Temple Beyond Boat",
         "dungeon": "Shadow Temple",
         "locations": {
+            "Shadow Temple After Boat Freestanding Heart Container 1" : "can_use(Distant_Scarecrow) or ((Bow or (logic_shadow_statue and has_bombchus)) and can_use(Scarecrow))",
+            "Shadow Temple After Boat Freestanding Heart Container 2" : "can_use(Distant_Scarecrow)",
+            "Shadow Temple After Boat Freestanding Heart Container 3" : "can_use(Distant_Scarecrow)",
             "Shadow Temple Spike Walls Left Chest": "can_use(Dins_Fire)",
             "Shadow Temple Boss Key Chest": "can_use(Dins_Fire)",
             "Shadow Temple Invisible Floormaster Chest": "True",

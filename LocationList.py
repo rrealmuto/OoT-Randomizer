@@ -640,6 +640,12 @@ location_table = OrderedDict([
     ("Shadow Temple Wind Hint Chest",                                ("Chest",        0x07,  0x15, None,                        'Arrows (10)',                           ("Shadow Temple", "Vanilla",))),
     ("Shadow Temple After Wind Enemy Chest",                         ("Chest",        0x07,  0x08, None,                        'Rupees (5)',                            ("Shadow Temple", "Vanilla",))),
     ("Shadow Temple After Wind Hidden Chest",                        ("Chest",        0x07,  0x14, None,                        'Small Key (Shadow Temple)',             ("Shadow Temple", "Vanilla",))),
+    ("Shadow Temple Before Boat Freestanding Heart Container 1",     ("ActorOverride",0x07,  0x15, ([0x0283B0C6], [0x15, 0x06]),'Recovery Heart',                        ("Shadow Temple", "Vanilla",))),
+    ("Shadow Temple Before Boat Freestanding Heart Container 2",     ("ActorOverride",0x07,  0x16, ([0x0283B0D6], [0x16, 0x06]),'Recovery Heart',                        ("Shadow Temple", "Vanilla",))),
+    ("Shadow Temple After Boat Freestanding Heart Container 1",      ("ActorOverride",0x07,  0x17, ([0x0283B0E6], [0x17, 0x06]),'Recovery Heart',                        ("Shadow Temple", "Vanilla",))),
+    ("Shadow Temple After Boat Freestanding Heart Container 2",      ("ActorOverride",0x07,  0x18, ([0x0283B0F6], [0x18, 0x06]),'Recovery Heart',                        ("Shadow Temple", "Vanilla",))),
+    ("Shadow Temple After Boat Freestanding Heart Container 3",      ("ActorOverride",0x07,  0x19, ([0x0283B106], [0x19, 0x06]),'Recovery Heart',                        ("Shadow Temple", "Vanilla",))),
+
     ("Shadow Temple Spike Walls Left Chest",                         ("Chest",        0x07,  0x0A, None,                        'Rupees (5)',                            ("Shadow Temple", "Vanilla",))),
     ("Shadow Temple Boss Key Chest",                                 ("Chest",        0x07,  0x0B, None,                        'Boss Key (Shadow Temple)',              ("Shadow Temple", "Vanilla",))),
     ("Shadow Temple Invisible Floormaster Chest",                    ("Chest",        0x07,  0x0D, None,                        'Small Key (Shadow Temple)',             ("Shadow Temple", "Vanilla",))),
@@ -647,8 +653,9 @@ location_table = OrderedDict([
     ("Shadow Temple GS Falling Spikes Room",                         ("GS Token",     0x07,  0x02, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Vanilla", "Skulltulas",))),
     ("Shadow Temple GS Single Giant Pot",                            ("GS Token",     0x07,  0x01, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Vanilla", "Skulltulas",))),
     ("Shadow Temple GS Near Ship",                                   ("GS Token",     0x07,  0x10, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Vanilla", "Skulltulas",))),
-    ("Shadow Temple GS Triple Giant Pot",                            ("GS Token",     0x07,  0x04, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Vanilla", "Skulltulas",))),
-    # Shadow Temple MQ
+    ("Shadow Temple GS Triple Giant Pot",                            ("GS Token",     0x07,  0x04, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Vanilla", "Skulltulas",))),  
+
+# Shadow Temple MQ
     ("Shadow Temple MQ Early Gibdos Chest",                          ("Chest",        0x07,  0x03, None,                        'Small Key (Shadow Temple)',             ("Shadow Temple", "Master Quest",))),
     ("Shadow Temple MQ Map Chest",                                   ("Chest",        0x07,  0x02, None,                        'Map (Shadow Temple)',                   ("Shadow Temple", "Master Quest",))),
     ("Shadow Temple MQ Near Ship Invisible Chest",                   ("Chest",        0x07,  0x0E, None,                        'Small Key (Shadow Temple)',             ("Shadow Temple", "Master Quest",))),
