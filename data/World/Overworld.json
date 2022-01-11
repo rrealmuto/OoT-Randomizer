@@ -453,6 +453,9 @@
             "LH Lab Dive": "
                 (Progressive_Scale, 2) or
                 (logic_lab_diving and Iron_Boots and can_use(Hookshot))",
+            "LH Lab Dive Rupee 1": "(Progressive_Scale, 2) or Iron_Boots",
+            "LH Lab Dive Rupee 2": "(Progressive_Scale, 2) or Iron_Boots",
+            "LH Lab Dive Rupee 3": "(Progressive_Scale, 2) or Iron_Boots",
             "LH GS Lab Crate": "Iron_Boots and can_use(Hookshot)"
         },
         "exits": {
