@@ -79,6 +79,7 @@ location_table = OrderedDict([
     ("KF GS Know It All House",                                      ("GS Token",     0x0C,  0x02, None,                        'Gold Skulltula Token',                  ("Kokiri Forest", "Skulltulas",))),
     ("KF GS Bean Patch",                                             ("GS Token",     0x0C,  0x01, None,                        'Gold Skulltula Token',                  ("Kokiri Forest", "Skulltulas",))),
     ("KF GS House of Twins",                                         ("GS Token",     0x0C,  0x04, None,                        'Gold Skulltula Token',                  ("Kokiri Forest", "Skulltulas",))),
+    ("KF Shop Invisible Rupee",                                      ("Collectable",  0x2D,  0x01, None,                        "Rupees (5)",                            ("Kokiri Forest", "Forest",))),
     ("KF Shop Item 1",                                               ("Shop",         0x2D,  0x30, (shop_address(0, 0), None),  'Buy Deku Shield',                       ("Kokiri Forest", "Forest", "Shops"))),
     ("KF Shop Item 2",                                               ("Shop",         0x2D,  0x31, (shop_address(0, 1), None),  'Buy Deku Nut (5)',                      ("Kokiri Forest", "Forest", "Shops"))),
     ("KF Shop Item 3",                                               ("Shop",         0x2D,  0x32, (shop_address(0, 2), None),  'Buy Deku Nut (10)',                     ("Kokiri Forest", "Forest", "Shops"))),

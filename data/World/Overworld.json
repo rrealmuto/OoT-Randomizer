@@ -190,6 +190,7 @@
         "pretty_name": "the Kokiri Shop",
         "scene": "KF Kokiri Shop",
         "locations": {
+            "KF Shop Invisible Rupee": "True",
             "KF Shop Item 1": "True",
             "KF Shop Item 2": "True",
             "KF Shop Item 3": "True",
@@ -747,10 +748,7 @@
             "Market Potion Shop": "is_child and at_day",
             "Market Treasure Chest Game": "is_child and at_night",
             "Market Back Alley": "is_child"
-        },
-        "locations": {
-            "Market Night Crate Rupee": "is_child and at_night"
-         }
+        }
     },
     {
         "region_name": "Market Back Alley",

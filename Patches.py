@@ -1343,6 +1343,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     rom.write_bytes(0x03356076, [0x02, 0x06]) #LH Lab Dive Rupee 1
     rom.write_bytes(0x03356086, [0x03, 0x06]) #LH Lab Dive Rupee 1
 
+    # Override invisible rupees
+    rom.write_bytes(0x02587098, [0x00, 0x15, 0x00, 0x92, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x06])
+
     # Override night market red rupee in crate
     rom.write_bytes(0x022D21B8, [0x00, 0x06, 0x00, 0x00, 0x00, 0x03]) 
 
@@ -1461,8 +1464,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     shuffle_messages.shop_item_messages = []
 
     # kokiri shop
+    shop_locations = world.get_region('KF Kokiri Shop').locations
     shop_objs = place_shop_items(rom, world, shop_items, messages,
-        world.get_region('KF Kokiri Shop').locations, True)
+        shop_locations[1:], True)
     shop_objs |= {0x00FC, 0x00B2, 0x0101, 0x0102, 0x00FD, 0x00C5} # Shop objects
     rom.write_byte(0x2587029, len(shop_objs))
     rom.write_int32(0x258702C, 0x0300F600)
