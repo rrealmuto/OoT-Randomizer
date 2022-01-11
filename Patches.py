@@ -1334,22 +1334,33 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     if world.settings.misc_hints:
         buildGanonText(world, messages)
 
+    if world.settings.actor_overrides:
+    # Get actor_override locations
+        actor_override_locations = [location for location in world.get_locations() if location.type == 'ActorOverride']
+        for location in actor_override_locations:
+            address = location.address
+            patch = location.address2
+            if address is not None and patch is not None:
+                rom.write_bytes(address, patch)
     # Override some freestanding rupees
-    rom.write_bytes(0x020810F2, [0x12, 0x06]) #KF Blupee behind midos in
-    rom.write_bytes(0x020A6092, [0x0F, 0x06]) #KF Boulder maze blupee 1
-    rom.write_bytes(0x020A60A2, [0x0E, 0x06]) #KF Boulder maze bluepee 2
-    rom.write_bytes(0x02081102, [0x11, 0x06]) #KF End of Bridge blupee
-    rom.write_bytes(0x0217C0BE, [0x13, 0x06]) #LW Under Boulder Rupee (child)
-    rom.write_bytes(0x0217C166, [0x13, 0x06]) #LW Under Boulder Rupee (adult)
-    rom.write_bytes(0x03356066, [0x01, 0x06]) #LH Lab Dive Rupee 1
-    rom.write_bytes(0x03356076, [0x02, 0x06]) #LH Lab Dive Rupee 1
-    rom.write_bytes(0x03356086, [0x03, 0x06]) #LH Lab Dive Rupee 1
+#    rom.write_bytes(0x020810F2, [0x12, 0x06]) #KF Blupee behind midos in
+#    rom.write_bytes(0x020A6092, [0x0F, 0x06]) #KF Boulder maze blupee 1
+#    rom.write_bytes(0x020A60A2, [0x0E, 0x06]) #KF Boulder maze bluepee 2
+#    rom.write_bytes(0x02081102, [0x11, 0x06]) #KF End of Bridge blupee
+#    rom.write_bytes(0x0217C0BE, [0x13, 0x06]) #LW Under Boulder Rupee (child)
+#    rom.write_bytes(0x0217C166, [0x13, 0x06]) #LW Under Boulder Rupee (adult)
+#    rom.write_bytes(0x03356066, [0x01, 0x06]) #LH Lab Dive Rupee 1
+#    rom.write_bytes(0x03356076, [0x02, 0x06]) #LH Lab Dive Rupee 1
+#    rom.write_bytes(0x03356086, [0x03, 0x06]) #LH Lab Dive Rupee 1
 
     # Override invisible rupees
-    rom.write_bytes(0x02587098, [0x00, 0x15, 0x00, 0x92, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x06])
+#    rom.write_bytes(0x02587098, [0x00, 0x15, 0x00, 0x92, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x06])
 
     # Override night market red rupee in crate
-    rom.write_bytes(0x022D21B8, [0x00, 0x06, 0x00, 0x00, 0x00, 0x03]) 
+#    rom.write_bytes(0x022D21B8, [0x00, 0x06, 0x00, 0x00, 0x00, 0x03]) 
+
+    # Override some non-permanent freestanding items
+#    #rom.write_bytes(0x21680EE, [0x37, 0x06]) #LW Rupee in shortcut to ZR
 
     # Write item overrides
     override_table = get_override_table(world)
@@ -1857,7 +1868,7 @@ def get_override_entry(location):
     elif location.type == 'Chest':
         type = 1
         default &= 0x1F
-    elif location.type == 'Collectable':
+    elif location.type == 'Collectable' or location.type == 'ActorOverride':
         type = 2
     elif location.type == 'GS Token':
         type = 3

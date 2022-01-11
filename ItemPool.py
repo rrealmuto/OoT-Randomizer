@@ -48,9 +48,8 @@ alwaysitems = ([
     + ['Double Defense']
     + ['Deku Stick Capacity'] * 2
     + ['Deku Nut Capacity'] * 2
-    + ['Piece of Heart (Treasure Chest Game)']
-    + ['Rupees (5)'] * 5
-    + ['Rupees (20)'] * 4)
+    + ['Piece of Heart (Treasure Chest Game)'])
+
 
 
 easy_items = ([
@@ -874,6 +873,11 @@ def get_pool_core(world):
         pool.append('Giants Knife')
     else:
         placed_items['GC Medigoron'] = 'Giants Knife'
+
+    if world.settings.actor_overrides:
+        actor_override_locations = [location for location in world.get_locations() if location.type == 'ActorOverride']
+        for actor_override_location in actor_override_locations:
+            pool.append(actor_override_location.vanilla_item)        
 
     if world.dungeon_mq['Deku Tree']:
         skulltula_locations_final = skulltula_locations + [

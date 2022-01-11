@@ -52,13 +52,20 @@ def distribute_items_restrictive(window, worlds, fill_locations=None):
 
     shop_locations = [location for world in worlds for location in world.get_unfilled_locations() if location.type == 'Shop' and location.price == None]
 
+    actor_override_locations = [location for world in worlds for location in world.get_locations() if location.type == 'ActorOverride']
+
     # If not passed in, then get a shuffled list of locations to fill in
     if not fill_locations:
         fill_locations = [
             location for world in worlds for location in world.get_unfilled_locations()
             if location not in song_locations
                 and location not in shop_locations
+                and location not in actor_override_locations
                 and not location.type.startswith('Hint')]
+                
+    if(world.settings.actor_overrides):
+        fill_locations.extend(actor_override_locations)
+
     world_states = [world.state for world in worlds]
 
     window.locationcount = len(fill_locations) + len(song_locations) + len(shop_locations)
@@ -82,7 +89,7 @@ def distribute_items_restrictive(window, worlds, fill_locations=None):
     prioitempool = [item for item in itempool if not item.advancement and item.priority]
     restitempool = [item for item in itempool if not item.advancement and not item.priority]
 
-    cloakable_locations = shop_locations + song_locations + fill_locations
+    cloakable_locations = shop_locations + song_locations + actor_override_locations + fill_locations
     all_models = shopitempool + dungeon_items + songitempool + itempool
     worlds[0].settings.distribution.fill(window, worlds, [shop_locations, song_locations, fill_locations], [shopitempool, dungeon_items, songitempool, progitempool, prioitempool, restitempool])
     itempool = progitempool + prioitempool + restitempool

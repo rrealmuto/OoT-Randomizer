@@ -49,6 +49,7 @@ class World(object):
         # dump settings directly into world's namespace
         # this gives the world an attribute for every setting listed in Settings.py
         self.settings = settings
+        self.settings.actor_overrides = True
         self.distribution = settings.distribution.world_dists[id]
 
         # rename a few attributes...

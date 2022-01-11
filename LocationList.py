@@ -65,10 +65,10 @@ location_table = OrderedDict([
 
     ## Overworld
     # Kokiri Forest
-    ("KF Behind Midos Blupee",                                       ("Collectable",  0x55,  0x12, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
-    ("KF Boulder Maze Blupee 1",                                     ("Collectable",  0x55,  0x0F, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
-    ("KF Boulder Maze Blupee 2",                                     ("Collectable",  0x55,  0x0E, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
-    ("KF End of Bridge Blupee",                                      ("Collectable",  0x55,  0x11, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
+    ("KF Behind Midos Blupee",                                       ("ActorOverride",  0x55,  0x12, (0x020810F2, [0x12, 0x06]),                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
+    ("KF Boulder Maze Blupee 1",                                     ("ActorOverride",  0x55,  0x0F, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
+    ("KF Boulder Maze Blupee 2",                                     ("ActorOverride",  0x55,  0x0E, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
+    ("KF End of Bridge Blupee",                                      ("ActorOverride",  0x55,  0x11, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
     ("KF Midos Top Left Chest",                                      ("Chest",        0x28,  0x00, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
     ("KF Midos Top Right Chest",                                     ("Chest",        0x28,  0x01, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
     ("KF Midos Bottom Left Chest",                                   ("Chest",        0x28,  0x02, None,                        'Rupee (1)',                             ("Kokiri Forest", "Forest",))),
@@ -79,7 +79,7 @@ location_table = OrderedDict([
     ("KF GS Know It All House",                                      ("GS Token",     0x0C,  0x02, None,                        'Gold Skulltula Token',                  ("Kokiri Forest", "Skulltulas",))),
     ("KF GS Bean Patch",                                             ("GS Token",     0x0C,  0x01, None,                        'Gold Skulltula Token',                  ("Kokiri Forest", "Skulltulas",))),
     ("KF GS House of Twins",                                         ("GS Token",     0x0C,  0x04, None,                        'Gold Skulltula Token',                  ("Kokiri Forest", "Skulltulas",))),
-    ("KF Shop Invisible Rupee",                                      ("Collectable",  0x2D,  0x01, None,                        "Rupees (5)",                            ("Kokiri Forest", "Forest",))),
+    ("KF Shop Invisible Rupee",                                      ("ActorOverride",  0x2D,  0x01, None,                        "Rupees (5)",                            ("Kokiri Forest", "Forest",))),
     ("KF Shop Item 1",                                               ("Shop",         0x2D,  0x30, (shop_address(0, 0), None),  'Buy Deku Shield',                       ("Kokiri Forest", "Forest", "Shops"))),
     ("KF Shop Item 2",                                               ("Shop",         0x2D,  0x31, (shop_address(0, 1), None),  'Buy Deku Nut (5)',                      ("Kokiri Forest", "Forest", "Shops"))),
     ("KF Shop Item 3",                                               ("Shop",         0x2D,  0x32, (shop_address(0, 2), None),  'Buy Deku Nut (10)',                     ("Kokiri Forest", "Forest", "Shops"))),
@@ -92,7 +92,7 @@ location_table = OrderedDict([
 
     # Lost Woods
     ("LW Gift from Saria",                                           ("Cutscene",     0xFF,  0x02, None,                        'Ocarina',                               ("the Lost Woods", "Forest",))),
-    ("LW Under Boulder Rupee",                                       ("Collectable",  0x5B,  0x13, None,                        'Rupees (5)',                            ("the Lost Woods", "Forest",))),
+    ("LW Under Boulder Rupee",                                       ("ActorOverride",  0x5B,  0x13, None,                        'Rupees (5)',                            ("the Lost Woods", "Forest",))),
     ("LW Ocarina Memory Game",                                       ("NPC",          0x5B,  0x76, None,                        'Piece of Heart',                        ("the Lost Woods", "Forest", "Minigames"))),
     ("LW Target in Woods",                                           ("NPC",          0x5B,  0x60, None,                        'Slingshot',                             ("the Lost Woods", "Forest",))),
     ("LW Near Shortcuts Grotto Chest",                               ("Chest",        0x3E,  0x14, None,                        'Rupees (5)',                            ("the Lost Woods", "Forest", "Grottos"))),
@@ -126,7 +126,7 @@ location_table = OrderedDict([
     ("HF GS Near Kak Grotto",                                        ("GS Token",     0x0A,  0x02, None,                        'Gold Skulltula Token',                  ("Hyrule Field", "Skulltulas", "Grottos"))),
 
     # Market
-    ("Market Night Crate Rupee",                                     ("Collectable",  0x21,  0x03, None,                        'Rupees (20)',                           ("the market", "Market",))),
+    ("Market Night Crate Rupee",                                     ("ActorOverride",  0x21,  0x03, None,                        'Rupees (20)',                           ("the market", "Market",))),
     ("Market Shooting Gallery Reward",                               ("NPC",          0x42,  0x60, None,                        'Slingshot',                             ("the Market", "Market", "Minigames"))),
     ("Market Bombchu Bowling First Prize",                           ("NPC",          0x4B,  0x34, None,                        'Bomb Bag',                              ("the Market", "Market", "Minigames"))),
     ("Market Bombchu Bowling Second Prize",                          ("NPC",          0x4B,  0x3E, None,                        'Piece of Heart',                        ("the Market", "Market", "Minigames"))),
@@ -322,9 +322,9 @@ location_table = OrderedDict([
     ("LH Underwater Item",                                           ("NPC",          0x57,  0x15, None,                        'Rutos Letter',                          ("Lake Hylia",))),
     ("LH Child Fishing",                                             ("NPC",          0x49,  0x3E, None,                        'Piece of Heart',                        ("Lake Hylia", "Minigames",))),
     ("LH Adult Fishing",                                             ("NPC",          0x49,  0x38, None,                        'Progressive Scale',                     ("Lake Hylia", "Minigames",))),
-    ("LH Lab Dive Rupee 1",                                          ("Collectable",  0x38,  0x01, None,                        'Rupees (20)',                           ("Lake Hylia",))),
-    ("LH Lab Dive Rupee 2",                                          ("Collectable",  0x38,  0x02, None,                        'Rupees (20)',                           ("Lake Hylia",))),
-    ("LH Lab Dive Rupee 3",                                          ("Collectable",  0x38,  0x03, None,                        'Rupees (20)',                           ("Lake Hylia",))),
+    ("LH Lab Dive Rupee 1",                                          ("ActorOverride",  0x38,  0x01, None,                        'Rupees (20)',                           ("Lake Hylia",))),
+    ("LH Lab Dive Rupee 2",                                          ("ActorOverride",  0x38,  0x02, None,                        'Rupees (20)',                           ("Lake Hylia",))),
+    ("LH Lab Dive Rupee 3",                                          ("ActorOverride",  0x38,  0x03, None,                        'Rupees (20)',                           ("Lake Hylia",))),
     ("LH Lab Dive",                                                  ("NPC",          0x38,  0x3E, None,                        'Piece of Heart',                        ("Lake Hylia",))),
     ("LH Freestanding PoH",                                          ("Collectable",  0x57,  0x1E, None,                        'Piece of Heart',                        ("Lake Hylia",))),
     ("LH Sun",                                                       ("NPC",          0x57,  0x58, None,                        'Fire Arrows',                           ("Lake Hylia",))),
@@ -921,6 +921,7 @@ location_groups = {
     'Song': [name for (name, data) in location_table.items() if data[0] == 'Song'],
     'Chest': [name for (name, data) in location_table.items() if data[0] == 'Chest'],
     'Collectable': [name for (name, data) in location_table.items() if data[0] == 'Collectable'],
+    'ActorOverride': [name for (name, data) in location_table.items() if data[0] == 'ActorOverride'],
     'BossHeart': [name for (name, data) in location_table.items() if data[0] == 'BossHeart'],
     'CollectableLike': [name for (name, data) in location_table.items() if data[0] in ('Collectable', 'BossHeart', 'GS Token')],
     'CanSee': [name for (name, data) in location_table.items()
