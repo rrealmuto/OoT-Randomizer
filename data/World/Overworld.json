@@ -81,6 +81,9 @@
             "Showed Mido Sword & Shield": "is_child and Kokiri_Sword and Buy_Deku_Shield"
         },
         "locations": {
+            "KF Behind Midos Blupee": "is_child",
+            "KF Boulder Maze Blupee 1": "is_child",
+            "KF Boulder Maze Blupee 2": "is_child",
             "KF Kokiri Sword Chest": "is_child",
             "KF GS Know It All House": "
                 is_child and can_child_attack and at_night and

@@ -34,7 +34,6 @@ def shop_address(shop_id, shelf_id):
 # Note that the scene for skulltulas is not the actual scene the token appears in
 # Rather, it is the index of the grouping used when storing skulltula collection
 # For example, zora river, zora's domain, and zora fountain are all a single 'scene' for skulltulas
-
 #   Location:                                                        Type             Scene  Default Addresses                  Vanilla Item                             Categories
 location_table = OrderedDict([
     ## Dungeon Rewards
@@ -66,6 +65,9 @@ location_table = OrderedDict([
 
     ## Overworld
     # Kokiri Forest
+    ("KF Behind Midos Blupee",                                       ("Collectable",  0x55,  0x12, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
+    ("KF Boulder Maze Blupee 1",                                     ("Collectable",  0x55,  0x0F, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
+    ("KF Boulder Maze Blupee 2",                                     ("Collectable",  0x55,  0x0E, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
     ("KF Midos Top Left Chest",                                      ("Chest",        0x28,  0x00, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
     ("KF Midos Top Right Chest",                                     ("Chest",        0x28,  0x01, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
     ("KF Midos Bottom Left Chest",                                   ("Chest",        0x28,  0x02, None,                        'Rupee (1)',                             ("Kokiri Forest", "Forest",))),
@@ -84,6 +86,7 @@ location_table = OrderedDict([
     ("KF Shop Item 6",                                               ("Shop",         0x2D,  0x35, (shop_address(0, 5), None),  'Buy Arrows (10)',                       ("Kokiri Forest", "Forest", "Shops"))),
     ("KF Shop Item 7",                                               ("Shop",         0x2D,  0x36, (shop_address(0, 6), None),  'Buy Arrows (30)',                       ("Kokiri Forest", "Forest", "Shops"))),
     ("KF Shop Item 8",                                               ("Shop",         0x2D,  0x37, (shop_address(0, 7), None),  'Buy Heart',                             ("Kokiri Forest", "Forest", "Shops"))),
+
 
     # Lost Woods
     ("LW Gift from Saria",                                           ("Cutscene",     0xFF,  0x02, None,                        'Ocarina',                               ("the Lost Woods", "Forest",))),

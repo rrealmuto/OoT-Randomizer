@@ -1334,8 +1334,15 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     if world.settings.misc_hints:
         buildGanonText(world, messages)
 
+    # Override some freestanding blupees
+    rom.write_bytes(0x020810F2, [0x12, 0x06]) #KF Blupee behind midos in
+    rom.write_bytes(0x020A6092, [0x0F, 0x06]) #KF Boulder maze blupee 1
+    rom.write_bytes(0x020A60A2, [0x0E, 0x06]) #KF Boulder maze bluepee 2
+	
+
     # Write item overrides
     override_table = get_override_table(world)
+    
     rom.write_bytes(rom.sym('cfg_item_overrides'), get_override_table_bytes(override_table))
     rom.write_byte(rom.sym('PLAYER_ID'), world.id + 1) # Write player ID
 
