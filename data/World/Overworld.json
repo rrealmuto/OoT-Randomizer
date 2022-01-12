@@ -1699,6 +1699,9 @@
                 is_adult and
                 (here(can_plant_bean) or 
                     (logic_crater_bean_poh_with_hovers and Hover_Boots))",
+            "DMC Pierre Red Rupee" : "is_adult and can_use(Distant_Scarecrow)",
+            "DMC Lower Red Rupee 1" : "is_child and can_play(Bolero_of_Fire)",
+            "DMC Lower Red Rupee 2" : "is_child and can_play(Bolero_of_Fire)",
             "Sheik in Crater": "is_adult"
         },
         "exits": {

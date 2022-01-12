@@ -285,6 +285,10 @@ location_table = OrderedDict([
     # Death Mountain Crater
     ("DMC Volcano Freestanding PoH",                                 ("Collectable",  0x61,  0x08, None,                        'Piece of Heart',                        ("Death Mountain Crater", "Death Mountain",))),
     ("DMC Wall Freestanding PoH",                                    ("Collectable",  0x61,  0x02, None,                        'Piece of Heart',                        ("Death Mountain Crater", "Death Mountain",))),
+    ("DMC Pierre Red Rupee",                                         ("ActorOverride",0x61,  0x1F, ([0x0225E63C],[0x00, 0x15, 0x04, 0x62, 0x01, 0x6F, 0x01, 0xB3, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1F, 0x06]), 'Rupees (20)',                           ("Death Mountain Crater", "Death Mountain",))),    
+    ("DMC Lower Red Rupee 1",                                        ("ActorOverride",0x61,  0x1E, ([0x0225E096],[0x1E, 0x06]), 'Rupees (20)',                           ("Death Mountain Crater", "Death Mountain",))),    
+    ("DMC Lower Red Rupee 2",                                        ("ActorOverride",0x61,  0x1D, ([0x0225E0A6],[0x1D, 0x06]), 'Rupees (20)',                           ("Death Mountain Crater", "Death Mountain",))),    
+
     ("DMC Upper Grotto Chest",                                       ("Chest",        0x3E,  0x1A, None,                        'Bombs (20)',                            ("Death Mountain Crater", "Death Mountain", "Grottos"))),
     ("DMC Great Fairy Reward",                                       ("Cutscene",     0xFF,  0x14, None,                        'Magic Meter',                           ("Death Mountain Crater", "Death Mountain", "Fairies",))),
     ("DMC Deku Scrub",                                               ("NPC",          0x61,  0x37, None,                        'Buy Bombs (5) [35]',                    ("Death Mountain Crater", "Death Mountain", "Deku Scrub"))),
