@@ -39,6 +39,8 @@
         "locations": {
             "Shadow Temple Invisible Blades Visible Chest": "True",
             "Shadow Temple Invisible Blades Invisible Chest": "True",
+            "Shadow Temple Invisible Blades Recovery Heart 1": "can_play(Song_of_Time)",
+            "Shadow Temple Invisible Blades Recovery Heart 2": "can_play(Song_of_Time)",
             "Shadow Temple Falling Spikes Lower Chest": "True",
             "Shadow Temple Falling Spikes Upper Chest": "logic_shadow_umbrella or Progressive_Strength_Upgrade",
             "Shadow Temple Falling Spikes Switch Chest": "logic_shadow_umbrella or Progressive_Strength_Upgrade",
