@@ -75,7 +75,7 @@ location_table = OrderedDict([
     ("KF Top of Sarias Heart 1",                                     ("ActorOverride", 0x55, 0x1C, ([0x020811D2], [0x1C, 0x06]),  'Recovery Heart', ("Kokiri Forest", "Forest",))),
     ("KF Top of Sarias Heart 2",                                     ("ActorOverride", 0x55, 0x1E, ([0x020811E2], [0x1E, 0x06]),  'Recovery Heart', ("Kokiri Forest", "Forest",))),
     ("KF Top of Sarias Heart 3",                                     ("ActorOverride", 0x55, 0x1D, ([0x020811F2], [0x1D, 0x06]),  'Recovery Heart', ("Kokiri Forest", "Forest",))),
-
+    ("KF Bean Platform Rupee",                                       ("ActorOverride", 0x55, 0x1F, ([0x020816A0], [0x00, 0x15, 0x05, 0x18, 0x00, 0xF0, 0xFD, 0xDC, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1F, 0x06]), 'Rupees (20)', ("Kokiri Forest", "Forest",))),
     ("KF Midos Top Left Chest",                                      ("Chest",        0x28,  0x00, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
     ("KF Midos Top Right Chest",                                     ("Chest",        0x28,  0x01, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
     ("KF Midos Bottom Left Chest",                                   ("Chest",        0x28,  0x02, None,                        'Rupee (1)',                             ("Kokiri Forest", "Forest",))),
@@ -332,6 +332,9 @@ location_table = OrderedDict([
 
     # Lake Hylia
     ("LH Underwater Item",                                           ("NPC",          0x57,  0x15, None,                        'Rutos Letter',                          ("Lake Hylia",))),
+    ("LH Underwater Rupee 1",                                        ("ActorOverride", 0x57, 0x1D, ([0x020E739A], [0x1D, 0x06]), 'Rupee (1)',                            ("Lake Hylia",))),
+    ("LH Underwater Rupee 2",                                        ("ActorOverride", 0x57, 0x1C, ([0x020E73AA], [0x1C, 0x06]), 'Rupee (1)',                            ("Lake Hylia",))),
+    ("LH Underwater Rupee 3",                                        ("ActorOverride", 0x57, 0x1B, ([0x020E73BA], [0x1B, 0x06]), 'Rupee (1)',                            ("Lake Hylia",))),
     ("LH Child Fishing",                                             ("NPC",          0x49,  0x3E, None,                        'Piece of Heart',                        ("Lake Hylia", "Minigames",))),
     ("LH Adult Fishing",                                             ("NPC",          0x49,  0x38, None,                        'Progressive Scale',                     ("Lake Hylia", "Minigames",))),
     ("LH Lab Dive Rupee 1",                                          ("ActorOverride",  0x38,  0x01, ([0x03356066], [0x01, 0x06]) ,                        'Rupees (20)',                           ("Lake Hylia",))),
@@ -352,6 +355,7 @@ location_table = OrderedDict([
     # Gerudo Valley
     ("GV Crate Freestanding PoH",                                    ("Collectable",  0x5A,  0x02, None,                        'Piece of Heart',                        ("Gerudo Valley", "Gerudo",))),
     ("GV Waterfall Freestanding PoH",                                ("Collectable",  0x5A,  0x01, None,                        'Piece of Heart',                        ("Gerudo Valley", "Gerudo",))),
+    ("GV Crate Near Cow",                                            ("ActorOverride",0x5A,  0x19, ([0x0213D2CC], [0x01, 0xA0, 0xFE, 0x3F, 0xF7, 0xFD, 0x00, 0x7B, 0x00, 0x06, 0x00, 0x00, 0x00, 0x19, 0xFF, 0xFF]), 'Rupee (1)',                            ("Gerudo Valley", "Gerudo",))),
     ("GV Chest",                                                     ("Chest",        0x5A,  0x00, None,                        'Rupees (50)',                           ("Gerudo Valley", "Gerudo",))),
     ("GV Deku Scrub Grotto Front",                                   ("GrottoNPC",    0xF0,  0x3A, None,                        'Buy Green Potion',                      ("Gerudo Valley", "Gerudo", "Deku Scrub", "Grottos"))),
     ("GV Deku Scrub Grotto Rear",                                    ("GrottoNPC",    0xF0,  0x39, None,                        'Buy Red Potion [30]',                   ("Gerudo Valley", "Gerudo", "Deku Scrub", "Grottos"))),
@@ -360,6 +364,8 @@ location_table = OrderedDict([
     ("GV GS Bean Patch",                                             ("GS Token",     0x13,  0x01, None,                        'Gold Skulltula Token',                  ("Gerudo Valley", "Skulltulas",))),
     ("GV GS Behind Tent",                                            ("GS Token",     0x13,  0x08, None,                        'Gold Skulltula Token',                  ("Gerudo Valley", "Skulltulas",))),
     ("GV GS Pillar",                                                 ("GS Token",     0x13,  0x04, None,                        'Gold Skulltula Token',                  ("Gerudo Valley", "Skulltulas",))),
+    ("GV Octorok Grotto Red Rupee",                                  ("ActorOverride", 0x3E, 0x19, ([0x026E00D2], [0x19, 0x06]), 'Rupees (20)',                          ("Gerudo Valley", "Gerudo", "Grottos"))),
+    
 
     # Gerudo's Fortress
     ("GF Chest",                                                     ("Chest",        0x5D,  0x00, None,                        'Piece of Heart',                        ("Gerudo's Fortress", "Gerudo",))),

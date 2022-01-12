@@ -89,6 +89,7 @@
             "KF Top of Sarias Heart 2": "is_child",
             "KF Top of Sarias Heart 3": "is_child",
             "KF Kokiri Sword Chest": "is_child",
+            "KF Bean Platform Rupee": "is_adult and (can_plant_bean or can_use(Hover_Boots))",
             "KF GS Know It All House": "
                 is_child and can_child_attack and at_night and
                 (had_night_start or can_leave_forest or can_play(Suns_Song))",
@@ -400,6 +401,9 @@
         "locations": {
             "Pierre": "is_adult and Bonooru and not free_scarecrow",
             "LH Underwater Item": "is_child and can_dive",
+            "LH Underwater Rupee 1": "is_child",
+            "LH Underwater Rupee 2": "is_child and can_dive",
+            "LH Underwater Rupee 3": "is_child and can_dive",
             "LH Sun": "
                 is_adult and 
                 (can_use(Distant_Scarecrow) or 'Water Temple Clear') and can_use(Bow)",
@@ -515,6 +519,7 @@
         "locations": {
             "GV Waterfall Freestanding PoH": "True",
             "GV GS Bean Patch": "can_plant_bugs and can_child_attack",
+            "GV Crate Near Cow": "is_child",
             "GV Cow": "is_child and can_play(Eponas_Song)",
             "GV Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
@@ -2439,6 +2444,9 @@
         "region_name": "GV Octorok Grotto",
         "pretty_name": "the Octorok Grotto",
         "scene": "GV Octorok Grotto",
+        "locations":{
+            "GV Octorok Grotto Red Rupee" : "True"
+        },
         "exits": {
             "GV Grotto Ledge": "True"
         }
