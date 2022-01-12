@@ -1371,6 +1371,14 @@
             "Dampes Windmill Access": "is_adult and can_play(Song_of_Time)"
         },
         "locations": {
+            "Graveyard Dampe Race Rupee 1": "True",
+            "Graveyard Dampe Race Rupee 2": "True",
+            "Graveyard Dampe Race Rupee 3": "True",
+            "Graveyard Dampe Race Rupee 4": "True",
+            "Graveyard Dampe Race Rupee 5": "True",
+            "Graveyard Dampe Race Rupee 6": "True",
+            "Graveyard Dampe Race Rupee 7": "True",
+            "Graveyard Dampe Race Rupee 8": "True",
             "Graveyard Hookshot Chest": "True",
             "Graveyard Dampe Race Freestanding PoH": "is_adult or logic_child_dampe_race_poh",
             "Nut Pot": "True"

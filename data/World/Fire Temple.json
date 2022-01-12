@@ -59,6 +59,9 @@
             "Fire Temple Scarecrow Chest": "
                 (Small_Key_Fire_Temple, 6) and
                 (can_use(Scarecrow) or (logic_fire_scarecrow and can_use(Longshot)))",
+            "Fire Temple Eye Switch Room Recovery Heart 1": "(Small_Key_Fire_Temple, 5)",
+            "Fire Temple Eye Switch Room Recovery Heart 2": "(Small_Key_Fire_Temple, 5)",
+            "Fire Temple Eye Switch Room Recovery Heart 3": "(Small_Key_Fire_Temple, 5)",
             "Fire Temple Map Chest": "
                 (Small_Key_Fire_Temple, 6) or ((Small_Key_Fire_Temple, 5) and can_use(Bow))",
             "Fire Temple Compass Chest": "(Small_Key_Fire_Temple, 7)",
