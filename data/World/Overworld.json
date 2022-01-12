@@ -2315,7 +2315,12 @@
         "pretty_name": "the Cow Grotto",
         "scene": "DMT Cow Grotto",
         "locations": {
-            "DMT Cow Grotto Cow": "can_play(Eponas_Song)"
+            "DMT Cow Grotto Cow": "can_play(Eponas_Song)",
+            "DMT Cow Grotto Rupee": "True",
+            "DMT Cow Grotto Recovery Heart 1": "True",
+            "DMT Cow Grotto Recovery Heart 2": "True",
+            "DMT Cow Grotto Recovery Heart 3": "True",
+            "DMT Cow Grotto Recovery Heart 4": "True"
         },
         "exits": {
             "Death Mountain Summit": "True"

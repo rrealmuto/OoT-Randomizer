@@ -251,6 +251,12 @@ location_table = OrderedDict([
     ("DMT Freestanding PoH",                                         ("Collectable",  0x60,  0x1E, None,                        'Piece of Heart',                        ("Death Mountain Trail", "Death Mountain",))),
     ("DMT Chest",                                                    ("Chest",        0x60,  0x01, None,                        'Rupees (50)',                           ("Death Mountain Trail", "Death Mountain",))),
     ("DMT Storms Grotto Chest",                                      ("Chest",        0x3E,  0x17, None,                        'Rupees (200)',                          ("Death Mountain Trail", "Death Mountain", "Grottos"))),
+    ("DMT Cow Grotto Rupee",                                         ("ActorOverride",0x3E,  0x1E, ([0x026D2098], [0x00, 0x15, 0x09, 0x79, 0xFF, 0xEC, 0xFF, 0x88, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1E, 0x06]),                        'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos"))),
+    ("DMT Cow Grotto Recovery Heart 1",                              ("ActorOverride",0x3E,  0x1A, ([0x026D20B6], [0x1A, 0x06]),'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos"))),
+    ("DMT Cow Grotto Recovery Heart 2",                              ("ActorOverride",0x3E,  0x1B, ([0x026D20C6], [0x1B, 0x06]),'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos"))),
+    ("DMT Cow Grotto Recovery Heart 3",                              ("ActorOverride",0x3E,  0x1C, ([0x026D20D6], [0x1C, 0x06]),'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos"))),
+    ("DMT Cow Grotto Recovery Heart 4",                              ("ActorOverride",0x3E,  0x1D, ([0x026D20E6], [0x1D, 0x06]),'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos"))),
+    
     ("DMT Great Fairy Reward",                                       ("Cutscene",     0xFF,  0x13, None,                        'Magic Meter',                           ("Death Mountain Trail", "Death Mountain", "Fairies"))),
     ("DMT Biggoron",                                                 ("NPC",          0x60,  0x57, None,                        'Biggoron Sword',                        ("Death Mountain Trail", "Death Mountain",))),
     ("DMT Cow Grotto Cow",                                           ("NPC",          0x3E,  0x15, None,                        'Milk',                                  ("Death Mountain Trail", "Death Mountain", "Cow", "Grottos"))),
@@ -368,7 +374,7 @@ location_table = OrderedDict([
     ("GV GS Bean Patch",                                             ("GS Token",     0x13,  0x01, None,                        'Gold Skulltula Token',                  ("Gerudo Valley", "Skulltulas",))),
     ("GV GS Behind Tent",                                            ("GS Token",     0x13,  0x08, None,                        'Gold Skulltula Token',                  ("Gerudo Valley", "Skulltulas",))),
     ("GV GS Pillar",                                                 ("GS Token",     0x13,  0x04, None,                        'Gold Skulltula Token',                  ("Gerudo Valley", "Skulltulas",))),
-    ("GV Octorok Grotto Red Rupee",                                  ("ActorOverride", 0x3E, 0x19, ([0x026E00D2], [0x19, 0x06]), 'Rupees (20)',                          ("Gerudo Valley", "Gerudo", "Grottos"))),
+    ("GV Octorok Grotto Red Rupee",                                  ("ActorOverride", 0x3E, 0x1F, ([0x026E00D2], [0x1F, 0x06]), 'Rupees (20)',                          ("Gerudo Valley", "Gerudo", "Grottos"))),
     
 
     # Gerudo's Fortress
