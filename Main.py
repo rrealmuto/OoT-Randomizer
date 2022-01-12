@@ -188,7 +188,7 @@ def make_spoiler(settings, worlds, window=dummy_window()):
     if settings.create_spoiler:
         window.update_status('Calculating Spoiler Data')
         logger.info('Calculating playthrough.')
-        create_playthrough(spoiler)
+        create_playthrough(spoiler)        
         window.update_progress(50)
     if settings.create_spoiler or settings.hints != 'none':
         window.update_status('Calculating Hint Data')
@@ -314,6 +314,7 @@ def patch_and_output(settings, window, spoiler, rom):
             logger.info("Created uncompressed rom at: %s" % output_path)
         window.update_progress(95)
 
+    
     if not settings.create_spoiler or settings.output_settings:
         settings.distribution.update_spoiler(spoiler, False)
         window.update_status('Creating Settings Log')

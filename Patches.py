@@ -1334,7 +1334,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     if world.settings.misc_hints:
         buildGanonText(world, messages)
 
-    if world.settings.actor_overrides:
+    if world.settings.shuffle_freestanding_items:
     # Get actor_override locations
         actor_override_locations = [location for location in world.get_locations() if location.type == 'ActorOverride']
         for location in actor_override_locations:

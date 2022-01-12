@@ -62,9 +62,10 @@ def distribute_items_restrictive(window, worlds, fill_locations=None):
                 and location not in shop_locations
                 and location not in actor_override_locations
                 and not location.type.startswith('Hint')]
-                
-    if(world.settings.actor_overrides):
+    
+    if world.settings.shuffle_freestanding_items:
         fill_locations.extend(actor_override_locations)
+
 
     world_states = [world.state for world in worlds]
 
@@ -89,7 +90,7 @@ def distribute_items_restrictive(window, worlds, fill_locations=None):
     prioitempool = [item for item in itempool if not item.advancement and item.priority]
     restitempool = [item for item in itempool if not item.advancement and not item.priority]
 
-    cloakable_locations = shop_locations + song_locations + actor_override_locations + fill_locations
+    cloakable_locations = shop_locations + song_locations + fill_locations
     all_models = shopitempool + dungeon_items + songitempool + itempool
     worlds[0].settings.distribution.fill(window, worlds, [shop_locations, song_locations, fill_locations], [shopitempool, dungeon_items, songitempool, progitempool, prioitempool, restitempool])
     itempool = progitempool + prioitempool + restitempool

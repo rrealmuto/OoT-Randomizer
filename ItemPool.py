@@ -765,13 +765,14 @@ def generate_itempool(world):
         world.push_item(drop_location, ItemFactory(item, world))
         drop_location.locked = True
 
+    
     # set up item pool
     (pool, placed_items) = get_pool_core(world)
     world.itempool = ItemFactory(pool, world)
     for (location, item) in placed_items.items():
         world.push_item(location, ItemFactory(item, world))
         world.get_location(location).locked = True
-
+    
     world.initialize_items()
     world.distribution.set_complete_itempool(world.itempool)
 
@@ -874,10 +875,13 @@ def get_pool_core(world):
     else:
         placed_items['GC Medigoron'] = 'Giants Knife'
 
-    if world.settings.actor_overrides:
-        actor_override_locations = [location for location in world.get_locations() if location.type == 'ActorOverride']
+    actor_override_locations = [location for location in world.get_locations() if location.type == 'ActorOverride']
+    if world.settings.shuffle_freestanding_items:        
         for actor_override_location in actor_override_locations:
-            pool.append(actor_override_location.vanilla_item)        
+            pool.append(actor_override_location.vanilla_item)
+    else:
+        for actor_override_location in actor_override_locations:
+            placed_items[actor_override_location.name] = actor_override_location.vanilla_item
 
     if world.dungeon_mq['Deku Tree']:
         skulltula_locations_final = skulltula_locations + [
