@@ -2469,7 +2469,14 @@
         "pretty_name": "the Octorok Grotto",
         "scene": "GV Octorok Grotto",
         "locations":{
-            "GV Octorok Grotto Red Rupee" : "True"
+            "GV Octorok Grotto Red Rupee" : "True",
+            "GV Octorok Grotto Blue Rupee 1": "True",
+            "GV Octorok Grotto Blue Rupee 2": "True",
+            "GV Octorok Grotto Blue Rupee 3": "True",
+            "GV Octorok Grotto Green Rupee 1": "True",
+            "GV Octorok Grotto Green Rupee 2": "True",
+            "GV Octorok Grotto Green Rupee 3": "True",
+            "GV Octorok Grotto Green Rupee 4": "True"
         },
         "exits": {
             "GV Grotto Ledge": "True"

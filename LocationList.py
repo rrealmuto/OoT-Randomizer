@@ -392,7 +392,14 @@ location_table = OrderedDict([
     ("GV GS Behind Tent",                                            ("GS Token",     0x13,  0x08, None,                        'Gold Skulltula Token',                  ("Gerudo Valley", "Skulltulas",))),
     ("GV GS Pillar",                                                 ("GS Token",     0x13,  0x04, None,                        'Gold Skulltula Token',                  ("Gerudo Valley", "Skulltulas",))),
     ("GV Octorok Grotto Red Rupee",                                  ("ActorOverride", 0x3E, 0x1F, ([0x026E00D2], [0x1F, 0x06]), 'Rupees (20)',                          ("Gerudo Valley", "Gerudo", "Grottos"))),
-    
+    ("GV Octorok Grotto Blue Rupee 1",                               ("ActorOverride", 0x3E, 0x19, ([0x026E0062], [0x19, 0x06]), 'Rupees (20)',                          ("Gerudo Valley", "Gerudo", "Grottos"))),
+    ("GV Octorok Grotto Blue Rupee 2",                               ("ActorOverride", 0x3E, 0x18, ([0x026E0072], [0x18, 0x06]), 'Rupees (20)',                          ("Gerudo Valley", "Gerudo", "Grottos"))),
+    ("GV Octorok Grotto Blue Rupee 3",                               ("ActorOverride", 0x3E, 0x17, ([0x026E0082], [0x17, 0x06]), 'Rupees (20)',                          ("Gerudo Valley", "Gerudo", "Grottos"))),
+    ("GV Octorok Grotto Green Rupee 1",                              ("ActorOverride", 0x3E, 0x16, ([0x026E0092], [0x16, 0x06]), 'Rupees (20)',                          ("Gerudo Valley", "Gerudo", "Grottos"))),
+    ("GV Octorok Grotto Green Rupee 2",                              ("ActorOverride", 0x3E, 0x15, ([0x026E00A2], [0x15, 0x06]), 'Rupees (20)',                          ("Gerudo Valley", "Gerudo", "Grottos"))),
+    ("GV Octorok Grotto Green Rupee 3",                              ("ActorOverride", 0x3E, 0x14, ([0x026E00B2], [0x14, 0x06]), 'Rupees (20)',                          ("Gerudo Valley", "Gerudo", "Grottos"))),
+    ("GV Octorok Grotto Green Rupee 4",                              ("ActorOverride", 0x3E, 0x13, ([0x026E00C2], [0x13, 0x06]), 'Rupees (20)',                          ("Gerudo Valley", "Gerudo", "Grottos"))),
+
 
     # Gerudo's Fortress
     ("GF Chest",                                                     ("Chest",        0x5D,  0x00, None,                        'Piece of Heart',                        ("Gerudo's Fortress", "Gerudo",))),
