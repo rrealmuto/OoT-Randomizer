@@ -1335,7 +1335,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         buildGanonText(world, messages)
 
 
-    # need to figure out how to fix this for MQ, Multiword, etc.
+    #Patch actor overrides for freestanding items. Need to figure out how to fix this for MQ, Multiword, etc.
     if world.settings.shuffle_freestanding_items:
     # Get actor_override locations
         actor_override_locations = [location for location in world.get_locations() if location.type == 'ActorOverride']

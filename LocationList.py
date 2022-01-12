@@ -787,6 +787,15 @@ location_table = OrderedDict([
     # Ice Cavern vanilla
     ("Ice Cavern Map Chest",                                         ("Chest",        0x09,  0x00, None,                        'Map (Ice Cavern)',                      ("Ice Cavern", "Vanilla",))),
     ("Ice Cavern Compass Chest",                                     ("Chest",        0x09,  0x01, None,                        'Compass (Ice Cavern)',                  ("Ice Cavern", "Vanilla",))),
+    ("Ice Cavern Freestanding Blue Rupee",                           ("ActorOverride",0x09,  0x1F,([0x2C06072],[0x1F,0x06]),    'Rupees (5)',                            ("Ice Cavern", "Vanilla",))),
+    ("Ice Cavern Map Room Recovery Heart 1",                         ("ActorOverride",0x09,  0x1E,([0x2C400DA],[0x1E,0x06]),    'Recovery Heart',                        ("Ice Cavern", "Vanilla",))),
+    ("Ice Cavern Map Room Recovery Heart 2",                         ("ActorOverride",0x09,  0x1D,([0x2C400EA],[0x1D,0x06]),    'Recovery Heart',                        ("Ice Cavern", "Vanilla",))),
+    ("Ice Cavern Map Room Recovery Heart 3",                         ("ActorOverride",0x09,  0x1C,([0x2C400FA],[0x1C,0x06]),    'Recovery Heart',                        ("Ice Cavern", "Vanilla",))),
+    ("Ice Cavern Block Room Red Rupee 1",                            ("ActorOverride",0x09,  0x1B,([0x2C2A076],[0x1B,0x06]),    'Rupees (20)',                           ("Ice Cavern", "Vanilla",))),
+    ("Ice Cavern Block Room Red Rupee 2",                            ("ActorOverride",0x09,  0x1A,([0x2C2A086],[0x1A,0x06]),    'Rupees (20)',                           ("Ice Cavern", "Vanilla",))),
+    ("Ice Cavern Block Room Red Rupee 3",                            ("ActorOverride",0x09,  0x19,([0x2C2A096],[0x19,0x06]),    'Rupees (20)',                           ("Ice Cavern", "Vanilla",))),
+
+
     ("Ice Cavern Freestanding PoH",                                  ("Collectable",  0x09,  0x01, None,                        'Piece of Heart',                        ("Ice Cavern", "Vanilla",))),
     ("Ice Cavern Iron Boots Chest",                                  ("Chest",        0x09,  0x02, None,                        'Iron Boots',                            ("Ice Cavern", "Vanilla",))),
     ("Ice Cavern GS Spinning Scythe Room",                           ("GS Token",     0x09,  0x02, None,                        'Gold Skulltula Token',                  ("Ice Cavern", "Vanilla", "Skulltulas",))),
