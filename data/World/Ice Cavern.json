@@ -22,7 +22,7 @@
                 Blue_Fire and 
                 (is_adult or Slingshot or Sticks or 
                     Kokiri_Sword or can_use(Dins_Fire))",
-            "Ice Cavern Freestanding Blue Rupee": "True",
+            "Ice Cavern Freestanding Blue Rupee": "Blue_Fire",
             "Ice Cavern Map Room Recovery Heart 1": "is_adult",
             "Ice Cavern Map Room Recovery Heart 2": "is_adult",
             "Ice Cavern Map Room Recovery Heart 3": "is_adult",
