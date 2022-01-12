@@ -104,7 +104,15 @@ location_table = OrderedDict([
 
     # Lost Woods
     ("LW Gift from Saria",                                           ("Cutscene",     0xFF,  0x02, None,                        'Ocarina',                               ("the Lost Woods", "Forest",))),
-    ("LW Under Boulder Rupee",                                       ("ActorOverride",  0x5B,  0x13, ([0x0217C0BE, 0x217C166], [0x13, 0x06]),                        'Rupees (5)',                            ("the Lost Woods", "Forest",))),
+    ("LW Under Boulder Rupee",                                       ("ActorOverride",0x5B,  0x13, ([0x0217C0BE, 0x217C166], [0x13, 0x06]),                        'Rupees (5)',                            ("the Lost Woods", "Forest",))),
+    ("LW Water Rupee 1",                                             ("ActorOverride",0x5B,  0x1F, ([0x021680BE], [0x1F, 0x06]), 'Rupee (1)',                            ("the Lost Woods", "Forest",))),
+    ("LW Water Rupee 2",                                             ("ActorOverride",0x5B,  0x1E, ([0x021680CE], [0x1E, 0x06]), 'Rupee (1)',                            ("the Lost Woods", "Forest",))),
+    ("LW Water Rupee 3",                                             ("ActorOverride",0x5B,  0x1D, ([0x021680DE], [0x1D, 0x06]), 'Rupee (1)',                            ("the Lost Woods", "Forest",))),
+    ("LW Water Rupee 4",                                             ("ActorOverride",0x5B,  0x1C, ([0x021680EE], [0x1C, 0x06]), 'Rupee (1)',                            ("the Lost Woods", "Forest",))),
+    ("LW Water Rupee 5",                                             ("ActorOverride",0x5B,  0x1B, ([0x021680FE], [0x1B, 0x06]), 'Rupee (1)',                            ("the Lost Woods", "Forest",))),
+    ("LW Water Rupee 6",                                             ("ActorOverride",0x5B,  0x1A, ([0x0216810E], [0x1A, 0x06]), 'Rupee (1)',                            ("the Lost Woods", "Forest",))),
+    ("LW Water Rupee 7",                                             ("ActorOverride",0x5B,  0x19, ([0x0216811E], [0x19, 0x06]), 'Rupee (1)',                            ("the Lost Woods", "Forest",))),
+    ("LW Water Rupee 8",                                             ("ActorOverride",0x5B,  0x18, ([0x0216812E], [0x18, 0x06]), 'Rupee (1)',                            ("the Lost Woods", "Forest",))),
     ("LW Ocarina Memory Game",                                       ("NPC",          0x5B,  0x76, None,                        'Piece of Heart',                        ("the Lost Woods", "Forest", "Minigames"))),
     ("LW Target in Woods",                                           ("NPC",          0x5B,  0x60, None,                        'Slingshot',                             ("the Lost Woods", "Forest",))),
     ("LW Near Shortcuts Grotto Chest",                               ("Chest",        0x3E,  0x14, None,                        'Rupees (5)',                            ("the Lost Woods", "Forest", "Grottos"))),
