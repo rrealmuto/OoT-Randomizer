@@ -1444,6 +1444,8 @@
             "DMT Freestanding PoH": "
                 can_take_damage or can_use(Hover_Boots) or
                 (is_adult and here(can_plant_bean and (has_explosives or Progressive_Strength_Upgrade)))",
+            "DMT Rock Red Rupee": "here(is_child) and has_explosives",
+            "DMT Rock Blue Rupee": "here(is_child) and has_explosives",
             "DMT GS Bean Patch": "
                 can_plant_bugs and can_child_attack and
                     (has_explosives or Progressive_Strength_Upgrade or
