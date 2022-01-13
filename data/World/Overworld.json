@@ -85,9 +85,9 @@
             "KF Boulder Maze Blupee 1": "is_child",
             "KF Boulder Maze Blupee 2": "is_child",
             "KF End of Bridge Blupee": "is_child",
-            #"KF Top of Sarias Heart 1": "is_child",
-            #"KF Top of Sarias Heart 2": "is_child",
-            #"KF Top of Sarias Heart 3": "is_child",
+            "KF Top of Sarias Heart 1": "is_child",
+            "KF Top of Sarias Heart 2": "is_child",
+            "KF Top of Sarias Heart 3": "is_child",
             "KF Kokiri Sword Chest": "is_child",
             "KF Bean Platform Rupee": "is_adult and (can_plant_bean or can_use(Hover_Boots))",
             "KF GS Know It All House": "
@@ -170,10 +170,10 @@
         "pretty_name": "Saria's House",
         "scene": "KF Sarias House",
         "locations": {
-            "KF Sarias Freestanding Heart 1": "True"
-            #"KF Sarias Freestanding Heart 2": "True",
-            #"KF Sarias Freestanding Heart 3": "True",
-            #"KF Sarias Freestanding Heart 4": "True"
+            "KF Sarias Freestanding Heart 1": "True",
+            "KF Sarias Freestanding Heart 2": "True",
+            "KF Sarias Freestanding Heart 3": "True",
+            "KF Sarias Freestanding Heart 4": "True"
         },
         "exits": {
             "Kokiri Forest": "True"

@@ -396,7 +396,7 @@ Gameplay_InitSkybox:
 .headersize(0x80013004 - 0xA88F64)
 .orga 0xA88F64 ; In memory: 0x80013004
     jal     rupee_draw_hook
-
+    nop
 .headersize(0)    
 
 ;Replaces:

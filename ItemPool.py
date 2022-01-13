@@ -814,6 +814,7 @@ def collect_heart_container(world, pool):
 
 
 def get_pool_core(world):
+    logger = logging.getLogger('')
     pool = []
     placed_items = {
         'HC Zeldas Letter': 'Zeldas Letter',
@@ -876,16 +877,21 @@ def get_pool_core(world):
         placed_items['GC Medigoron'] = 'Giants Knife'
 
     actor_override_locations = [location for location in world.get_locations() if location.type == 'ActorOverride']
-    freestanding_locations = [location for location in world.get_locations() if location.type == 'Collectible' and 'Freestanding' in location.filter_tags ]
+    freestanding_locations = [location for location in world.get_locations() if (location.type == 'Collectable' and 'Freestanding' in location.filter_tags) ]
     if world.settings.shuffle_freestanding_items:        
+        logger.info("Actor override locations:")
         for actor_override_location in actor_override_locations:
             pool.append(actor_override_location.vanilla_item)
+            logger.info(actor_override_location)
+        logger.info("Freestanding locations")
         for location in freestanding_locations:
             pool.append(location.vanilla_item)
+            logger.info(location)
     else:
         for actor_override_location in actor_override_locations:
             placed_items[actor_override_location.name] = actor_override_location.vanilla_item
-        
+        for location in freestanding_locations:
+            placed_items[location.name] = location.vanilla_item
 
     if world.dungeon_mq['Deku Tree']:
         skulltula_locations_final = skulltula_locations + [

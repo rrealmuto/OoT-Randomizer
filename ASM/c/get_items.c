@@ -62,7 +62,7 @@ override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_
     } else if (actor->actor_id == 0x15) {
         // Only override heart pieces and keys
         int collectable_type = actor->variable & 0xFF;
-        if (collectable_type != 0x06 && collectable_type != 0x11 && collectable_type != 0x03 && collectable_type != 0x01) {
+        if (collectable_type != 0x06 && collectable_type != 0x11 && collectable_type != 0x03 && collectable_type != 2 && collectable_type != 0x01 &&collectable_type != 0x00) {
             return (override_key_t){ .all = 0 };
         }
 
@@ -345,7 +345,7 @@ void item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_act
      item_row_t *item_row = get_item_row(resolved_item_id);
 
      PLAYER_NAME_ID = player;
-    //z64_DisplayTextbox(&z64_game, item_row->text_id, 0);
+    z64_DisplayTextbox(&z64_game, item_row->text_id, 0);
 
     if (resolved_item_id == 0xCA) {
         // Send triforce to everyone
@@ -355,7 +355,11 @@ void item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_act
     } else if (player != PLAYER_ID) {
         set_outgoing_override(&override);
     } else {
-           push_pending_item(override);
+           //push_pending_item(override);
+		z64_GiveItem(&z64_game, item_row->action_id);
+        	 call_effect_function(item_row);
+
+
     }
 
 }
