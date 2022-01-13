@@ -238,7 +238,7 @@ dungeon_rewards = [
 
 
 normal_rupees = (
-    ['Rupees (5)'] * 13 +
+    ['Rupees (5)'] * 14 +
     ['Rupees (20)'] * 5 +
     ['Rupees (50)'] * 7 +
     ['Rupees (200)'] * 3)

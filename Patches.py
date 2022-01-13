@@ -3,6 +3,7 @@ import struct
 import itertools
 import re
 import zlib
+import logging
 from collections import defaultdict
 
 from World import World
@@ -1835,6 +1836,8 @@ def get_override_table_bytes(override_table):
 
 
 def get_override_entry(location):
+    
+    logger = logging.getLogger('')
     scene = location.scene
     default = location.default
     item_id = location.item.index
@@ -1852,7 +1855,14 @@ def get_override_entry(location):
     elif location.type == 'Chest':
         type = 1
         default &= 0x1F
-    elif location.type == 'Collectable' or location.type == 'ActorOverride':
+    elif location.type == 'ActorOverride':
+        logger.info(location)
+        logger.info(location.filter_tags)
+        if 'Floating' not in location.filter_tags:
+            type = 2
+        else:
+            type = 3
+    elif location.type == 'Collectable':
         type = 2
     elif location.type == 'GS Token':
         type = 3
