@@ -346,7 +346,7 @@ void item_give_heart(z64_actor_t *from_actor, z64_link_t *link){
      item_row_t *item_row = get_item_row(resolved_item_id);
 
      PLAYER_NAME_ID = player;
-    z64_DisplayTextbox(&z64_game, item_row->text_id, 0);
+    //z64_DisplayTextbox(&z64_game, item_row->text_id, 0);
 
     if (resolved_item_id == 0xCA) {
         // Send triforce to everyone
@@ -356,7 +356,11 @@ void item_give_heart(z64_actor_t *from_actor, z64_link_t *link){
     } else if (player != PLAYER_ID) {
         set_outgoing_override(&override);
     } else {
-        z64_GiveItem(&z64_game, item_row->action_id);
+        //z64_GiveItem(&z64_game, item_row->action_id);
+           link->incoming_item_id = resolved_item_id;
+           link->incoming_item_actor = from_actor;
+           //link->getItemDirection = absYawDiff;
+
         call_effect_function(item_row);
     }
 
