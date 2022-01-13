@@ -140,6 +140,7 @@ void lookup_model(model_t *model, z64_actor_t *actor, z64_game_t *game, uint16_t
     lookup_model_by_override(model, override);
 }
 
+
 bool recovery_heart_draw(z64_actor_t *actor, z64_game_t *game) {
     model_t model = {
         .object_id = 0x0000,

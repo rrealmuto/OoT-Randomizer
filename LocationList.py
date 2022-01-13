@@ -68,23 +68,23 @@ location_table = OrderedDict([
 
     ## Overworld
     # Kokiri Forest
-    ("KF Behind Midos Blupee",                                       ("ActorOverride",  0x55,  0x12, ([0x020810F2], [0x12, 0x06]),                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
-    ("KF Boulder Maze Blupee 1",                                     ("ActorOverride",  0x55,  0x0F, ([0x020A6092], [0x0F, 0x06]),                       'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
-    ("KF Boulder Maze Blupee 2",                                     ("ActorOverride",  0x55,  0x0E, ([0x020A60A2], [0x0E, 0x06]),                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
-    ("KF End of Bridge Blupee",                                      ("ActorOverride",  0x55,  0x11, ([0x02081102], [0x11, 0x06]),                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
-    #("KF Top of Sarias Heart 1",                                     ("ActorOverride", 0x55, 0x1C, ([0x020811D2], [0x1C, 0x06]),  'Recovery Heart', ("Kokiri Forest", "Forest",))),
-    #("KF Top of Sarias Heart 2",                                     ("ActorOverride", 0x55, 0x1E, ([0x020811E2], [0x1E, 0x06]),  'Recovery Heart', ("Kokiri Forest", "Forest",))),
-    #("KF Top of Sarias Heart 3",                                     ("ActorOverride", 0x55, 0x1D, ([0x020811F2], [0x1D, 0x06]),  'Recovery Heart', ("Kokiri Forest", "Forest",))),
+    ("KF Behind Midos Blupee",								("Collectable",  0x55, 0x12, None,                          'Rupees (5)',						("Kokiri Forest", "Forest", "Freestanding",))),
+    ("KF Boulder Maze Blupee 1",                                     ("Collectable",  0x55,  0x0F, None,                       'Rupees (5)',                            ("Kokiri Forest", "Forest", "Freestanding"))),
+    ("KF Boulder Maze Blupee 2",                                     ("Collectable",  0x55,  0x0E, None,                       'Rupees (5)',                            ("Kokiri Forest", "Forest", "Freestanding"))),
+    ("KF End of Bridge Blupee",                                      ("Collectable",  0x55,  0x11, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest", "Freestanding"))),
+    ("KF Top of Sarias Heart 1",                                     ("Collectable", 0x55, 0x1C, None,                          'Recovery Heart', ("Kokiri Forest", "Forest", "Freestanding"))),
+    ("KF Top of Sarias Heart 2",                                     ("Collectable", 0x55, 0x1E, None,                          'Recovery Heart', ("Kokiri Forest", "Forest", "Freestanding"))),
+    ("KF Top of Sarias Heart 3",                                     ("Collectable", 0x55, 0x1D, None,                          'Recovery Heart', ("Kokiri Forest", "Forest", "Freestanding"))),
     ("KF Bean Platform Rupee",                                       ("ActorOverride", 0x55, 0x1F, ([0x020816A0], [0x00, 0x15, 0x05, 0x18, 0x00, 0xF0, 0xFD, 0xDC, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1F, 0x06]), 'Rupees (20)', ("Kokiri Forest", "Forest",))),
     ("KF Midos Top Left Chest",                                      ("Chest",        0x28,  0x00, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
     ("KF Midos Top Right Chest",                                     ("Chest",        0x28,  0x01, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
     ("KF Midos Bottom Left Chest",                                   ("Chest",        0x28,  0x02, None,                        'Rupee (1)',                             ("Kokiri Forest", "Forest",))),
     ("KF Midos Bottom Right Chest",                                  ("Chest",        0x28,  0x03, None,                        'Recovery Heart',                        ("Kokiri Forest", "Forest",))),
     ("KF Sarias Freestanding Heart 1",                               ("Collectable",  0x29,  0x39, None,                        'Recovery Heart',                        ("Kokiri Forest", "Forest",))),
-    #("KF Sarias Freestanding Heart 1",                               ("ActorOverride", 0x29, 0x18, ([0x02FB607A], [0x18, 0x06]),                       'Recovery Heart', ("Kokiri Forest", "Forest",))),
-    #("KF Sarias Freestanding Heart 2",                               ("ActorOverride", 0x29, 0x19, ([0x02FB608A], [0x19, 0x06]),                       'Recovery Heart', ("Kokiri Forest", "Forest",))),
-    #("KF Sarias Freestanding Heart 3",                               ("ActorOverride", 0x29, 0x1A, ([0x02FB609A], [0x1A, 0x06]),                       'Recovery Heart', ("Kokiri Forest", "Forest",))),
-    #("KF Sarias Freestanding Heart 4",                               ("ActorOverride", 0x29, 0x1B, ([0x02FB60AA], [0x1B, 0x06]),                       'Recovery Heart', ("Kokiri Forest", "Forest",))),
+    ("KF Sarias Freestanding Heart 1",                               ("ActorOverride", 0x29, 0x18, ([0x02FB607A], [0x18, 0x06]),                       'Recovery Heart', ("Kokiri Forest", "Forest",))),
+    ("KF Sarias Freestanding Heart 2",                               ("ActorOverride", 0x29, 0x19, ([0x02FB608A], [0x19, 0x06]),                       'Recovery Heart', ("Kokiri Forest", "Forest",))),
+    ("KF Sarias Freestanding Heart 3",                               ("ActorOverride", 0x29, 0x1A, ([0x02FB609A], [0x1A, 0x06]),                       'Recovery Heart', ("Kokiri Forest", "Forest",))),
+    ("KF Sarias Freestanding Heart 4",                               ("ActorOverride", 0x29, 0x1B, ([0x02FB60AA], [0x1B, 0x06]),                       'Recovery Heart', ("Kokiri Forest", "Forest",))),
 
     ("KF Kokiri Sword Chest",                                        ("Chest",        0x55,  0x00, None,                        'Kokiri Sword',                          ("Kokiri Forest", "Forest",))),
     ("KF Storms Grotto Chest",                                       ("Chest",        0x3E,  0x0C, None,                        'Rupees (20)',                           ("Kokiri Forest", "Forest", "Grottos"))),
@@ -437,7 +437,9 @@ location_table = OrderedDict([
     ## Dungeons
     # Deku Tree vanilla
     ("Deku Tree Map Chest",                                          ("Chest",        0x00,  0x03, None,                        'Map (Deku Tree)',                       ("Deku Tree", "Vanilla",))),
-    ("Deku Tree Walk the Plank Recovery Heart",                      ("ActorOverride",0x00,  0x02, ([0x24A71E8],[0x01, 0x9C, 0xFF, 0xE7, 0x01, 0x18, 0xFF, 0xAF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02]),  'Recovery Heart',                        ("Deku Tree", "Vanilla", "Floating"))),
+    ("Deku Tree Walk the Plank Recovery Heart",                      ("Collectable",  0x00, 0x2C,    None,  'Recovery Heart',     ("Deku Tree", "Vanilla"))),
+
+    #("Deku Tree Walk the Plank Recovery Heart",                      ("ActorOverride",0x00,  0x02, ([0x24A71E8],[0x01, 0x9C, 0xFF, 0xE7, 0x01, 0x18, 0xFF, 0xAF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02]),  'Recovery Heart',                        ("Deku Tree", "Vanilla", "Floating"))),
     ("Deku Tree Leap Recovery Heart",                                ("ActorOverride",0x00,  0x00, ([0x24A7206],[0x1E, 0x06]),  'Recovery Heart',                        ("Deku Tree", "Vanilla",))),
     ("Deku Tree 2-3-1 Scrubs Recovery Heart 1",                      ("ActorOverride",0x00,  0x1D, ([0x24FA0C2],[0x1D, 0x06]),  'Recovery Heart',                        ("Deku Tree", "Vanilla",))),
     ("Deku Tree 2-3-1 Scrubs Recovery Heart 2",                      ("ActorOverride",0x00,  0x1C, ([0x24FA0D2],[0x1C, 0x06]),  'Recovery Heart',                        ("Deku Tree", "Vanilla",))),
