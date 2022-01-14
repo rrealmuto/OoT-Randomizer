@@ -4,6 +4,7 @@ import itertools
 import re
 import zlib
 import logging
+import binascii
 from collections import defaultdict
 
 from World import World
@@ -1356,7 +1357,8 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     # Write item overrides
     override_table = get_override_table(world)
-    
+    logger = logging.getLogger('')
+    logger.info(get_override_table_bytes(override_table))
     rom.write_bytes(rom.sym('cfg_item_overrides'), get_override_table_bytes(override_table))
     rom.write_byte(rom.sym('PLAYER_ID'), world.id + 1) # Write player ID
 
@@ -1838,7 +1840,16 @@ def get_override_table(world):
 
 
 override_struct = struct.Struct('>xBBBHBB') # match override_t in get_items.c
+    
 def get_override_table_bytes(override_table):
+    logger = logging.getLogger('')
+    table_bytes = itertools.starmap(override_struct.pack, override_table)
+    i = 0
+    for entry in sorted(table_bytes):
+        logger.info(i)
+        i = i + 1
+        logger.info(entry)
+        logger.info(entry.hex())
     return b''.join(sorted(itertools.starmap(override_struct.pack, override_table)))
 
 

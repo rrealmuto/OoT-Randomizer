@@ -7,7 +7,7 @@
 
 extern uint8_t OCARINAS_SHUFFLED;
 
-override_t cfg_item_overrides[512] = { 0 };
+override_t cfg_item_overrides[1024] = { 0 };
 int item_overrides_count = 0;
 
 override_t pending_item_queue[3] = { 0 };
