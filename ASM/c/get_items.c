@@ -329,12 +329,24 @@ void get_item(z64_actor_t *from_actor, z64_link_t *link, int8_t incoming_item_id
     link->incoming_item_id = incoming_negative ? -base_item_id : base_item_id;
 }
 
+#define GIVEITEM_RUPEE_GREEN 0x84
+#define GIVEITEM_RUPEE_BLUE  0x85
+#define GIVEITEM_RUPEE_RED 0x86
+#define GIVEITEM_HEART 0x83
+
+#define ITEM_RUPEE_GREEN 0x00
+#define ITEM_RUPEE_BLUE 0x01
+#define ITEM_RUPEE_RED 0x02
+#define ITEM_HEART 0x03
+
+uint8_t items[] = {GIVEITEM_RUPEE_GREEN, GIVEITEM_RUPEE_BLUE, GIVEITEM_RUPEE_RED, GIVEITEM_HEART};
+
 void item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_actor){
 	override_t override = lookup_override(from_actor, z64_game.scene_index, 0);
 	uint16_t item_id;
 	uint8_t player;
     if (override.key.all == 0) {
-        z64_GiveItem(&z64_game, item);
+        z64_GiveItem(&z64_game, items[item]);
         return;
     } else {
         item_id = override.value.item_id;

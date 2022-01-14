@@ -191,16 +191,34 @@ get_item_hook:
     addiu   sp, sp, 0x20
 
 item_give_hook:
-    addiu	sp, sp, -0x20
-    sw		ra, 0x1C(sp)
-
+    addiu sp, sp, -0x80
+        sw	ra, 0x10(sp)
+	sw	v0, 0x14(sp)
+	sw	v1, 0x18(sp)
+        sw	a0, 0x1C(sp)
+	sw	a1, 0x20(sp) 
+	sw	a2, 0x24(sp)
+	sw	a3, 0x28(sp)
+	sw	s0, 0x2c(sp)
+	sw	s1, 0x30(sp)
+	sw	at, 0x34(sp)
+    or A0, v1, R0
     or A1, S2, R0 ;pass player pointer to function
     jal	item_give_collectible
     nop
 
-    lw		ra, 0x1C(sp)
+    lw	ra, 0x10(sp)
+	lw	v0, 0x14(sp)
+	lw	v1, 0x18(sp)
+        lw	a0, 0x1C(sp)
+	lw	a1, 0x20(sp) 
+	lw	a2, 0x24(sp)
+	lw	a3, 0x28(sp)
+	lw	s0, 0x2c(sp)
+	lw	s1, 0x30(sp)
+	lw	at, 0x34(sp)
     jr	ra
-    addiu	sp, sp, 0x20
+    addiu	sp, sp, 0x80
 
 rupee_draw_hook:
 ;push things on the stack
