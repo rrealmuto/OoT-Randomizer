@@ -1863,12 +1863,7 @@ def get_override_entry(location):
         type = 1
         default &= 0x1F
     elif location.type == 'ActorOverride':
-        logger.info(location)
-        logger.info(location.filter_tags)
-        if 'Floating' not in location.filter_tags:
-            type = 2
-        else:
-            type = 3
+        type = 2
     elif location.type == 'Collectable':
         type = 2
     elif location.type == 'GS Token':
@@ -1881,7 +1876,10 @@ def get_override_entry(location):
         type = 5
     else:
         return None
-
+    logger.info(location)
+    logger.info(scene)
+    logger.info(type)
+    logger.info(default)
     return (scene, type, default, item_id, player_id, looks_like_item_id)
 
 
