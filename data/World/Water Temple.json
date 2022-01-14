@@ -144,7 +144,7 @@
         "dungeon": "Water Temple",
         "locations": {
             "Water Temple Longshot Chest": "True",
-            "Water Temple River Recovery Heart 1": "can_play(Song_of_Time)"
+            "Water Temple River Recovery Heart 1": "can_play(Song_of_Time)",
             "Water Temple River Recovery Heart 2": "can_play(Song_of_Time)",
             "Water Temple River Recovery Heart 3": "can_play(Song_of_Time)",
             "Water Temple River Recovery Heart 4": "can_play(Song_of_Time)",
