@@ -60,7 +60,7 @@
             "Dodongos Cavern Bomb Flower Platform Chest": "True",
             "Dodongos Cavern Lizalfos Recovery Heart 1": "True",
             "Dodongos Cavern Lizalfos Recovery Heart 2": "True",
-
+            "Dodongos Cavern Behind Block" : "True",
             "Dodongos Cavern Deku Scrub Near Bomb Bag Right": "
                 can_blast_or_smash or
                 (logic_dc_scrub_room and is_adult and Progressive_Strength_Upgrade)",
