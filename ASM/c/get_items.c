@@ -352,6 +352,7 @@ struct EnItem00;
 typedef void(*EnItem00ActionFunc)(struct EnItem00*, z64_game_t*);
 typedef void(*ActorKillFunc)(z64_actor_t*);
 typedef uint8_t(*Message_GetStateFunc)(uint8_t*);
+typedef void(*Flags_SetCollectibleFunc)(z64_game_t* game, uint16_t flag);
 
 typedef struct EnItem00 {
 	z64_actor_t actor;
@@ -368,7 +369,7 @@ typedef struct EnItem00 {
 EnItem00ActionFunc Func = (EnItem00ActionFunc)(0x800127E0);
 ActorKillFunc Actor_Kill = (ActorKillFunc)(0x80020EB4);
 Message_GetStateFunc Message_GetState = (Message_GetStateFunc)(0x800DD464);
-
+Flags_SetCollectibleFunc Flags_SetCollectible = (Flags_SetCollectibleFunc)(0x8002071C);
 
 void NewAction(EnItem00* this, z64_game_t* game)
 {
@@ -425,8 +426,9 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
 		
 
 	}
-
 	EnItem00* pItem = (EnItem00*)from_actor;
+
+	Flags_SetCollectible(&z64_game, pItem->collectibleFlag);
 	pItem->unk_15A = 15;
 	pItem->unk_154 = 35;
 	pItem->getItemId = 0;
