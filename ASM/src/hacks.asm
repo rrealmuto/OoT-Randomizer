@@ -227,7 +227,7 @@ Gameplay_InitSkybox:
 ;JAL	0x8006FDCC
 ;addiu	a1, r0, 0x0084
 .orga 0xA88C0C ; In memory: 80012CAC
-	jal item_give_hook
+	j item_give_hook
 	or A2, S0, R0
 
 ; Override Item_Give(RUPEE_BLUE)
@@ -236,7 +236,7 @@ Gameplay_InitSkybox:
 ;JAL	0x8006FDCC
 ;addiu	a1, r0, 0x0084
 .orga 0xA88C20 ; In memory: 80012CC0)
-	jal item_give_hook
+	j item_give_hook
 	or A2, S0, R0
 
 ; Override Item_Give(RUPEE_RED)
@@ -245,8 +245,9 @@ Gameplay_InitSkybox:
 ;JAL	0x8006FDCC
 ;addiu	a1, r0, 0x0084
 .orga 0xA88C34 ; In memory: 80012CD4)
-	jal item_give_hook
+	j item_give_hook
 	or A2, S0, R0
+	
 
 ; Override Item_Give(ITEM_HEART)
 ; Replaces:
@@ -254,7 +255,7 @@ Gameplay_InitSkybox:
 ;JAL	0x8006FDCC
 ;ADDIU	A1, R0, 0x0083
 .orga 0xA88C88 ; In memory: 0x80012D28
-    jal	item_give_hook
+    j	item_give_hook
     or	A2, S0, R0 ;pass actor pointer to function
 
 ; Runs when storing an incoming item to the player instance

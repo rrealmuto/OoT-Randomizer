@@ -192,10 +192,10 @@ get_item_hook:
 
 item_give_hook:
     addiu sp, sp, -0x80
-        sw	ra, 0x10(sp)
+    sw	ra, 0x10(sp)
 	sw	v0, 0x14(sp)
 	sw	v1, 0x18(sp)
-        sw	a0, 0x1C(sp)
+    sw	a0, 0x1C(sp)
 	sw	a1, 0x20(sp) 
 	sw	a2, 0x24(sp)
 	sw	a3, 0x28(sp)
@@ -204,13 +204,29 @@ item_give_hook:
 	sw	at, 0x34(sp)
     or A0, v1, R0
     or A1, S2, R0 ;pass player pointer to function
-    jal	item_give_collectible
+    jal	item_give_collectible ;if it was overridden, result will be stored in v0 as a 1. otherwise 0
     nop
-
+	bgtz v0, exit_func    ;if we overrode, return to our new function, otherwise return to the original
+	nop
+return_to_func:
+	lw	ra, 0x10(sp)
+	lw	v0, 0x14(sp)
+	lw	v1, 0x18(sp)
+    lw	a0, 0x1C(sp)
+	lw	a1, 0x20(sp) 
+	lw	a2, 0x24(sp)
+	lw	a3, 0x28(sp)
+	lw	s0, 0x2c(sp)
+	lw	s1, 0x30(sp)
+	lw	at, 0x34(sp)
+	lw  t0, 0x003C(sp) ;this is what they do after the branch in the OG function
+	j 0x80012E2C ; jump back where the OG function would have
+	addiu sp, sp, 0x80
+exit_func:
     lw	ra, 0x10(sp)
 	lw	v0, 0x14(sp)
 	lw	v1, 0x18(sp)
-        lw	a0, 0x1C(sp)
+    lw	a0, 0x1C(sp)
 	lw	a1, 0x20(sp) 
 	lw	a2, 0x24(sp)
 	lw	a3, 0x28(sp)
