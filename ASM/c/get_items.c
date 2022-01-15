@@ -353,7 +353,7 @@ typedef void(*EnItem00ActionFunc)(struct EnItem00*, z64_game_t*);
 typedef void(*ActorKillFunc)(z64_actor_t*);
 typedef uint8_t(*Message_GetStateFunc)(uint8_t*);
 typedef void(*Flags_SetCollectibleFunc)(z64_game_t* game, uint16_t flag);
-
+typedef void(*Audio_PlaySoundGeneralFunc)(uint16_t sfxId, void* pos, uint8_t token, float* freqScale, float* a4, uint8_t* reverbAdd);
 typedef struct EnItem00 {
 	z64_actor_t actor;
 	EnItem00ActionFunc actionFunc;
@@ -370,6 +370,7 @@ EnItem00ActionFunc Func = (EnItem00ActionFunc)(0x800127E0);
 ActorKillFunc Actor_Kill = (ActorKillFunc)(0x80020EB4);
 Message_GetStateFunc Message_GetState = (Message_GetStateFunc)(0x800DD464);
 Flags_SetCollectibleFunc Flags_SetCollectible = (Flags_SetCollectibleFunc)(0x8002071C);
+Audio_PlaySoundGeneralFunc Audio_PlaySoundGeneral = (Audio_PlaySoundGeneralFunc)(0x800C806C);
 
 void NewAction(EnItem00* this, z64_game_t* game)
 {
@@ -387,6 +388,7 @@ void NewAction(EnItem00* this, z64_game_t* game)
 		z64_link.common.frozen = 10;
 	}
 }
+#define NA_SE_SY_GET_ITEM 0x4824
 
 uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_actor) {
 	override_t override = lookup_override(from_actor, z64_game.scene_index, 0);
@@ -396,10 +398,9 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
 		z64_GiveItem(&z64_game, items[item]);
 		return 0;
 	}
-	else {
-		item_id = override.value.item_id;
-		player = override.value.player;
-	}
+
+	item_id = override.value.item_id;
+	player = override.value.player;
 
 	uint16_t resolved_item_id = resolve_upgrades(item_id);
 	item_row_t *item_row = get_item_row(resolved_item_id);
@@ -423,11 +424,11 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
 		call_effect_function(item_row);
 		link->common.frozen = 10;
 
-		
+
 
 	}
 	EnItem00* pItem = (EnItem00*)from_actor;
-
+	Audio_PlaySoundGeneral(NA_SE_SY_GET_ITEM, (void*)0x801333D4, 4, (float*)0x801333E0, (float*)0x801333E0, (uint8_t*)0x801333E8);
 	Flags_SetCollectible(&z64_game, pItem->collectibleFlag);
 	pItem->unk_15A = 15;
 	pItem->unk_154 = 35;
