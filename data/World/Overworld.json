@@ -88,6 +88,10 @@
             "KF Top of Sarias Heart 1": "is_child",
             "KF Top of Sarias Heart 2": "is_child",
             "KF Top of Sarias Heart 3": "is_child",
+            "KF Near Ramp Green Rupee 1": "is_child",
+            "KF Near Ramp Green Rupee 2": "is_child",
+            "KF Near Midos Green Rupee 1": "is_child",
+            "KF Near Midos Green Rupee 2": "is_child",
             "KF Kokiri Sword Chest": "is_child",
             "KF Bean Platform Rupee": "is_adult and (can_plant_bean or can_use(Hover_Boots))",
             "KF GS Know It All House": "
@@ -1809,6 +1813,10 @@
                 is_child or can_use(Hover_Boots) or (is_adult and logic_zora_river_lower)",
             "ZR Near Domain Freestanding PoH": "
                 is_child or can_use(Hover_Boots) or (is_adult and logic_zora_river_upper)",
+            "ZR Waterfall Rupee 1":"is_adult",
+            "ZR Waterfall Rupee 2":"is_adult",
+            "ZR Waterfall Rupee 3":"is_adult",
+            "ZR Waterfall Rupee 4":"is_adult",
             "ZR GS Ladder": "is_child and at_night and can_child_attack",
             "ZR GS Near Raised Grottos": "can_use(Hookshot) and at_night",
             "ZR GS Above Bridge": "can_use(Hookshot) and at_night",
