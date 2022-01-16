@@ -354,6 +354,8 @@ typedef void(*ActorKillFunc)(z64_actor_t*);
 typedef uint8_t(*Message_GetStateFunc)(uint8_t*);
 typedef void(*Flags_SetCollectibleFunc)(z64_game_t* game, uint16_t flag);
 typedef void(*Audio_PlaySoundGeneralFunc)(uint16_t sfxId, void* pos, uint8_t token, float* freqScale, float* a4, uint8_t* reverbAdd);
+typedef void(*Audio_PlayFanFareFunc)(uint16_t);
+
 typedef struct EnItem00 {
 	z64_actor_t actor;
 	EnItem00ActionFunc actionFunc;
@@ -371,11 +373,12 @@ ActorKillFunc Actor_Kill = (ActorKillFunc)(0x80020EB4);
 Message_GetStateFunc Message_GetState = (Message_GetStateFunc)(0x800DD464);
 Flags_SetCollectibleFunc Flags_SetCollectible = (Flags_SetCollectibleFunc)(0x8002071C);
 Audio_PlaySoundGeneralFunc Audio_PlaySoundGeneral = (Audio_PlaySoundGeneralFunc)(0x800C806C);
+Audio_PlayFanFareFunc Audio_PlayFanFare = (Audio_PlayFanFareFunc)(0x800C69A0);
 
 void NewAction(EnItem00* this, z64_game_t* game)
 {
 	//Check message state:
-	if (Message_GetState(((uint8_t*)(&z64_game)) + 0x20D8) == 2)
+	if (Message_GetState(((uint8_t*)(&z64_game)) + 0x20D8) == 0)
 	{
 		if (this->unk_15A == 0)
 		{
@@ -388,7 +391,7 @@ void NewAction(EnItem00* this, z64_game_t* game)
 		z64_link.common.frozen = 10;
 	}
 }
-#define NA_SE_SY_GET_ITEM 0x4824
+#define NA_BGM_SMALL_ITEM_GET 0x39
 
 uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_actor) {
 	override_t override = lookup_override(from_actor, z64_game.scene_index, 0);
@@ -424,11 +427,11 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
 		call_effect_function(item_row);
 		link->common.frozen = 10;
 
-
-
 	}
+
+
 	EnItem00* pItem = (EnItem00*)from_actor;
-	Audio_PlaySoundGeneral(NA_SE_SY_GET_ITEM, (void*)0x801333D4, 4, (float*)0x801333E0, (float*)0x801333E0, (uint8_t*)0x801333E8);
+	Audio_PlayFanFare(NA_BGM_SMALL_ITEM_GET);
 	Flags_SetCollectible(&z64_game, pItem->collectibleFlag);
 	pItem->unk_15A = 15;
 	pItem->unk_154 = 35;
