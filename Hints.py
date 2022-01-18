@@ -14,6 +14,7 @@ import itertools
 from HintList import getHint, getHintGroup, Hint, hintExclusions
 from Item import MakeEventItem
 from Messages import COLOR_MAP, update_message_by_id
+from Region import Region
 from Search import Search
 from StartingItems import everything
 from TextBox import line_wrap
@@ -295,9 +296,14 @@ class HintAreaNotFound(RuntimeError):
     pass
 
 
-# Peforms a breadth first search to find the closest hint area from a given spot (location or entrance)
+# Peforms a breadth first search to find the closest hint area from a given spot (region, location, or entrance)
+# and returns the name and color of that area.
 # May fail to find a hint if the given spot is only accessible from the root and not from any other region with a hint area
 def get_hint_area(spot):
+    if isinstance(spot, Region):
+        original_parent = spot
+    else:
+        original_parent = spot.parent_region
     already_checked = []
     spot_queue = [spot]
 
@@ -305,12 +311,15 @@ def get_hint_area(spot):
         current_spot = spot_queue.pop(0)
         already_checked.append(current_spot)
 
-        parent_region = current_spot.parent_region
-    
+        if isinstance(current_spot, Region):
+            parent_region = current_spot
+        else:
+            parent_region = current_spot.parent_region
+
         if parent_region.dungeon:
-            return parent_region.dungeon.hint
-        elif parent_region.hint and (spot.parent_region.name == 'Root' or parent_region.name != 'Root'):
-            return parent_region.hint
+            return parent_region.dungeon.hint, parent_region.dungeon.font_color
+        elif parent_region.hint and (original_parent.name == 'Root' or parent_region.name != 'Root'):
+            return parent_region.hint, parent_region.font_color or 'White'
 
         spot_queue.extend(list(filter(lambda ent: ent not in already_checked, parent_region.entrances)))
 
@@ -337,7 +346,7 @@ def get_woth_hint(spoiler, world, checked):
         world.woth_dungeon += 1
         location_text = getHint(location.parent_region.dungeon.name, world.settings.clearer_hints).text
     else:
-        location_text = get_hint_area(location)
+        location_text, _ = get_hint_area(location)
 
     return (GossipText('#%s# is on the way of the hero.' % location_text, ['Light Blue']), location)
 
@@ -347,7 +356,7 @@ def get_checked_areas(world, checked):
             location = world.get_location(check)
         except Exception as e:
             return check
-        return get_hint_area(location)
+        return get_hint_area(location)[0]
 
     return set(get_area_from_name(check) for check in checked)
 
@@ -436,7 +445,7 @@ def get_goal_hint(spoiler, world, checked):
     if location.parent_region.dungeon:
         location_text = getHint(location.parent_region.dungeon.name, world.settings.clearer_hints).text
     else:
-        location_text = get_hint_area(location)
+        location_text, _ = get_hint_area(location)
     
     if world_id == world.id:
         player_text = "the"
@@ -501,7 +510,7 @@ def get_barren_hint(spoiler, world, checked):
 
 
 def is_not_checked(location, checked):
-    return not (location.name in checked or get_hint_area(location) in checked)
+    return not (location.name in checked or get_hint_area(location)[0] in checked)
 
 
 def get_good_item_hint(spoiler, world, checked):
@@ -526,7 +535,7 @@ def get_good_item_hint(spoiler, world, checked):
         location_text = getHint(location.parent_region.dungeon.name, world.settings.clearer_hints).text
         return (GossipText('#%s# hoards #%s#.' % (location_text, item_text), ['Green', 'Red']), location)
     else:
-        location_text = get_hint_area(location)
+        location_text, _ = get_hint_area(location)
         return (GossipText('#%s# can be found at #%s#.' % (item_text, location_text), ['Red', 'Green']), location)
 
 
@@ -583,7 +592,7 @@ def get_specific_item_hint(spoiler, world, checked):
             else:
                 return (GossipText('#%s# hoards #%s#.' % (location_text, item_text), ['Green', 'Red']), location)
         else:
-            location_text = get_hint_area(location)
+            location_text, _ = get_hint_area(location)
             if world.hint_dist_user.get('vague_named_items', False):
                 return (GossipText('#%s# may be on the hero\'s path.' % (location_text), ['Green']), location)
             else:
@@ -667,7 +676,7 @@ def get_specific_item_hint(spoiler, world, checked):
             else:
                 return (GossipText('#Player %d\'s %s# hoards #%s#.' % (location.world.id+1, location_text, item_text), ['Green', 'Red']), location)
         else:
-            location_text = get_hint_area(location)
+            location_text, _ = get_hint_area(location)
             if world.hint_dist_user.get('vague_named_items', False):
                 return (GossipText('#Player %d\'s %s# may be on the hero\'s path.' % (location.world.id+1 , location_text), ['Green']), location)
             else:
@@ -696,7 +705,7 @@ def get_random_location_hint(spoiler, world, checked):
         location_text = getHint(dungeon.name, world.settings.clearer_hints).text
         return (GossipText('#%s# hoards #%s#.' % (location_text, item_text), ['Green', 'Red']), location)
     else:
-        location_text = get_hint_area(location)
+        location_text, _ = get_hint_area(location)
         return (GossipText('#%s# can be found at #%s#.' % (item_text, location_text), ['Red', 'Green']), location)
 
 
@@ -1272,7 +1281,7 @@ def buildGanonText(world, messages):
     elif world.light_arrow_location:
         text = get_raw_text(getHint('Light Arrow Location', world.settings.clearer_hints).text)
         location = world.light_arrow_location
-        location_hint = get_hint_area(location)
+        location_hint, _ = get_hint_area(location)
         if world.id != location.world.id:
             text += "\x05\x42Player %d's\x05\x40 %s" % (location.world.id +1, get_raw_text(location_hint))
         else:

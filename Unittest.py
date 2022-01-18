@@ -425,10 +425,15 @@ class TestValidSpoilers(unittest.TestCase):
         # No more than one of any 'once' item
         multi = {p: {it for it, ct in c.items() if ct > 1}
                  for p, c in items.items()}
+        bottles_collected = {p: bottles & c.keys() for p, c in items.items()}
         self.assertEqual(
             expected_none,
             {p: once & multi[p] for p in items},
             'Collected unexpected items more than once')
+        for p in items:
+            if 'Rutos Letter' in multi[p]:
+                multi[p].remove('Rutos Letter')
+                bottles_collected[p].add('Rutos Letter')
         # Any item more than once is special['progressive']
         self.assertEqual(
             expected_none,

@@ -1125,6 +1125,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     save_context.write_bits(0x0EEB, 0x01) # "Entered Dodongo's Cavern"
     save_context.write_bits(0x0F08, 0x08) # "Entered Hyrule Castle"
 
+    if world.dungeon_mq['Shadow Temple']:
+        save_context.write_bits(0x019F, 0x80) # "Turn On Clear Wall Blocking Hover Boots Room"
+
     # Set the number of chickens to collect
     rom.write_byte(0x00E1E523, world.settings.chicken_count)
 
@@ -1783,15 +1786,21 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             save_context.write_bits(door_byte, door_bits)
 
     # Fix chest animations
+    BROWN_CHEST = 0
+    GOLD_CHEST = 2
+    GILDED_CHEST = 12
+    SILVER_CHEST = 13
+    SKULL_CHEST_SMALL = 14
+    SKULL_CHEST_BIG =  15
     if world.settings.bombchus_in_logic:
         bombchu_ids = [0x6A, 0x03, 0x6B]
         for i in bombchu_ids:
             item = read_rom_item(rom, i)
-            item['chest_type'] = 12
+            item['chest_type'] = GILDED_CHEST
             write_rom_item(rom, i, item)
     if world.settings.bridge == 'tokens' or world.settings.lacs_condition == 'tokens' or world.settings.shuffle_ganon_bosskey == 'tokens':
         item = read_rom_item(rom, 0x5B)
-        item['chest_type'] = 15
+        item['chest_type'] = SKULL_CHEST_BIG
         write_rom_item(rom, 0x5B, item)
 
     # Update chest type appearance
@@ -1806,7 +1815,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             chest_name = 'Ganons Castle Light Trial Lullaby Chest'
             location = world.get_location(chest_name)
             item = read_rom_item(rom, location.item.index)
-            if item['chest_type'] in (2, 12, 15):
+            if item['chest_type'] in (GOLD_CHEST, GILDED_CHEST, SKULL_CHEST_BIG):
                 rom.write_int16(0x321B176, 0xFC40) # original 0xFC48
 
         # Move Spirit Temple Compass Chest if it is a small chest so it is reachable with hookshot
@@ -1815,7 +1824,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             chest_address = 0x2B6B07C
             location = world.get_location(chest_name)
             item = read_rom_item(rom, location.item.index)
-            if item['chest_type'] in (0, 13, 14):
+            if item['chest_type'] in (BROWN_CHEST, SILVER_CHEST, SKULL_CHEST_SMALL):
                 rom.write_int16(chest_address + 2, 0x0190) # X pos
                 rom.write_int16(chest_address + 6, 0xFABC) # Z pos
 
@@ -1826,7 +1835,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             chest_address_2 = 0x21A06E4  # Address in setup 2
             location = world.get_location(chest_name)
             item = read_rom_item(rom, location.item.index)
-            if item['chest_type'] in (0, 13, 14):
+            if item['chest_type'] in (BROWN_CHEST, SILVER_CHEST, SKULL_CHEST_SMALL):
                 rom.write_int16(chest_address_0 + 6, 0x0172)  # Z pos
                 rom.write_int16(chest_address_2 + 6, 0x0172)  # Z pos
 

@@ -819,7 +819,7 @@ def get_pool_core(world):
     if world.settings.zora_fountain == 'open':
         ruto_bottles = 0
     elif world.settings.item_pool_value == 'plentiful':
-        ruto_bottles += 1
+        pending_junk_pool.append('Rutos Letter')
 
     if world.settings.skip_child_zelda:
         placed_items['HC Malon Egg'] = 'Recovery Heart'

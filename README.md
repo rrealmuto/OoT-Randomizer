@@ -8,18 +8,10 @@ Instead, you can open an issue on this fork [here](https://github.com/fenhl/OoT-
 
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
-* Fixes potentially missing tokens in spoiler log playthrough with “LACS Condition” set to “Tokens” ([#1463](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1463))
-* Removes an unintended bridge spawn condition with “Rainbow Bridge Requirement” set to “Vanilla Requirements” ([#1460](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1460))
 * The convenience patch for floor switches now applies to more MQ switches ([#1459](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1459))
-* Fixes equipped magic arrows being replaced with bow on time travel ([#1457](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1457))
-* Speeds up the equip animation for magic arrows ([#1456](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1456))
-* Fixes Dead Hand sometimes spawning out of bounds ([#1455](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1455))
-* Fixes the color of menu items in the warp song text box ([#1452](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1452))
-* Simplify dungeon info setting detection for auto-trackers ([#1445](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1445))
 * The “Randomize Ocarina Song Notes” setting has new options “Top Row Songs Only” and “Warp Songs Only” ([#1423](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1423))
 * Automatically advances credits text ([#1412](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1412))
 * New “Triforces Per World” setting ([#1403](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1403/files))
-* New “Dungeon Boss Shortcuts” setting ([#1369](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1369))
 * New “Full” options for the “Randomize Owl Drops”, “Randomize Warp Song Destinations”, and “Randomize Overworld Spawns” settings that include more types of entrances (based on [#1179](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1179) and [#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
 * New “Show seed info on file screen” and “User-configurable message” settings ([#1253](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1253))
 * New hidden “Generate Vanilla Seed” setting (used for `vanilla` preset)
@@ -34,9 +26,6 @@ Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https:
 * Picking up Gold Skulltula Tokens in non-Tokensanity displays a self-closing textbox which no longer freezes the player.
 * "Bombchus In Logic" is improved to include bombchu drops (from grass, pots, etc) that start dropping once you have found Bombchus.
 * New cosmetic setting to randomize the color of some additional equipment and items.
-* "Chest Size Matches Content" is replaced with "Chest Appearance Matches Content" (from mracsys's [ctmc branch](https://github.com/mracsys/OoT-Randomizer/tree/ctmc))
-* HBA fanfare fix: no longer waits for fanfare to complete (from engineer124's [hba_fanfare_fix branch](https://github.com/engineer124/OoT-Randomizer/tree/hba_fanfare_fix))
-* New SFX setting to disable standard battle music (from GSKirox's [disable-battle-music branch](https://github.com/GSKirox/OoT-Randomizer/tree/disable-battle-music))
 
 ## Index
 
@@ -134,6 +123,35 @@ do that.
 ## Changelog
 
 ### Dev
+
+#### New Features
+
+* **Settings**
+  * New setting `Dungeon Shortcuts` opens shortcuts in blue warp dungeons to the boss room. This is toggleable per-dungeon, and affects glitchless logic.
+  * New setting `Shopsanity Prices` adds additional price range options when Shopsanity is enabled, including "Affordable" which sets all prices to 10 rupees (to match the same option in Scrub Shuffle).
+  * `Chest Size Matches Content` has been replaced with `Chest Appearance Matches Content`. Unique textures are applied to chests containing major items, small keys, boss keys, skulltula tokens, and remaining items. An additional option also changes chest sizes like the previous setting.
+  * New cosmetic setting `Disable battle music` turns off the battle music from being near enemies, allowing the background music to continue uninterrupted.
+
+* **Gameplay**
+  * Shortened the animation for equipping magic arrows.
+
+
+#### Bug fixes
+  * Return the color of the "OK" and "No" options of the warp song prompts to their correct colors in Warp Song Shuffle.
+  * Horseback Archery will no longer delay ending based on the fanfare.
+  * Prevent Dead Hand from spawning outside the room collision.
+  * Magic arrows equipped as adult no longer revert to the Bow after traveling through time to child and back.
+  * Rainbow Bridge set to vanilla no longer spawns without Light Arrows.
+  * Fix MQ Shadow Temple making use of shared flags.
+  * Fix MQ Fire Temple missing the Hammer chest from the map and minimap.
+  * Add correct default Goals for Ganon's Boss Key when Light Arrow Cutscene is non-vanilla.
+
+#### Other changes
+  * Added an auto-tracker context area to memory, so auto-trackers can find certain symbols much easier.
+  * Improve some error messages when running the generator.
+  * Fix logic parser shortcuts not working right in newer Python versions.
+
+### 6.2
 
 #### Bug fixes
 

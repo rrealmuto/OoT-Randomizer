@@ -195,6 +195,7 @@
           "settings": [
             "shuffle_song_items",
             "shopsanity",
+            "shopsanity_prices",
             "tokensanity",
             "shuffle_scrubs",
             "shuffle_cows",

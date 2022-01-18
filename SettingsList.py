@@ -2347,7 +2347,7 @@ setting_infos = [
             'glitched'  : {'settings' : ['allowed_tricks', 'shuffle_interior_entrances', 'shuffle_grotto_entrances',
                                          'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'owl_drops',
                                          'warp_songs', 'spawn_positions', 'mq_dungeons_random', 'mq_dungeons', 'dungeon_shortcuts',
-                                         'mix_entrance_pools', 'decouple_entrances' ]},
+                                         'mix_entrance_pools', 'decouple_entrances']},
             'none'      : {'settings' : ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
         },
         shared         = True,
@@ -3151,6 +3151,9 @@ setting_infos = [
             '4':      '4 Items Per Shop',
             'random': 'Random # of Items Per Shop',
         },
+        disable        = {
+            'off':  {'settings': ['shopsanity_prices']},
+        },
         gui_tooltip    = '''\
             Randomizes Shop contents.
             
@@ -3187,6 +3190,42 @@ setting_infos = [
                 ('4',      1),
                 ('random', 1),
             ],
+        },
+    ),
+    Combobox(
+        name           = 'shopsanity_prices',
+        gui_text       = 'Shopsanity Prices',
+        default        = 'random',
+        choices        = {
+            'random':          'Random',
+            'random_starting':    'Starting Wallet',
+            'random_adult':   'Adult\'s Wallet',
+            'random_giant':    'Giant\'s Wallet',
+            'random_tycoon':   'Tycoon\'s Wallet',
+            'affordable':      'Affordable',
+        },
+        disable        = {
+        },
+        gui_tooltip    = '''\
+            Controls the randomization of prices for shopsanity items.
+            For more control, utilize the plandomizer.
+
+            'Random': The default randomization. Shop prices for
+            shopsanity items will range between 0 to 300 rupees,
+            with a bias towards values slightly below the middle of the
+            range, in multiples of 5.
+
+            'X Wallet': Shop prices for shopsanity items will range
+            between 0 and the specified wallet's maximum capacity,
+            in multiples of 5.
+
+            'Affordable': Shop prices for shopsanity items will be
+            fixed to 10 rupees.
+        ''',
+        disabled_default =  'random',
+        shared         = True,
+        gui_params     = {
+            "hide_when_disabled": True,
         },
     ),
     Combobox(
@@ -3876,19 +3915,19 @@ setting_infos = [
         default        = 'off',
         choices        = {
             'off': 'Off',
-            'textures': 'Textures',
-            'sizes': 'Size and Textures'
+            'textures': 'Texture',
+            'sizes': 'Size and Texture'
         },
         gui_tooltip    = '''\
-            Chest style will reflect its contents regardless
-            of size.  Fancy chests will contain keys, Gilded
-            chests will contain major items, shuffled tokens
-            will be in Webbed chests, and Wooden chests
+            If enabled, chest texture will reflect its contents
+            regardless of size.  Fancy chests will contain keys,
+            Gilded chests will contain major items, shuffled
+            tokens will be in Webbed chests, and Wooden chests
             will contain the rest.
             This allows skipping chests if they are wooden. 
             However, skipping wooden chests will mean having 
             low health, ammo, and rupees, so doing so is a risk.
-            Size matches content will change chests with major
+            "Size and Texture" will change chests with major
             items and boss keys into big chests, and everything
             else into small chests.
         ''',
