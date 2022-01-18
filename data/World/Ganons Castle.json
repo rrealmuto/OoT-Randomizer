@@ -48,6 +48,9 @@
             "Fire Trial Clear": "
                 can_use(Goron_Tunic) and can_use(Golden_Gauntlets) and 
                 can_use(Light_Arrows) and can_use(Longshot)"
+        },
+        "locations": {
+            "Ganons Castle Fire Trial Recovery Heart": "True"
         }
     },
     {
@@ -78,7 +81,20 @@
                 Hover_Boots or can_play(Song_of_Time)",
             "Ganons Castle Shadow Trial Golden Gauntlets Chest": "
                 can_use(Fire_Arrows) or 
-                (can_use(Longshot) and (Hover_Boots or can_use(Dins_Fire)))"
+                (can_use(Longshot) and (Hover_Boots or can_use(Dins_Fire)))",
+            "Ganons Castle Shadow Trial Recovery Heart 1": 
+                "can_use(Lens_of_Truth) and (
+                    can_use(Fire_Arrows) or 
+                    (can_use(Longshot) or (Hover_Boots or can_use(Dins_Fire)))",
+            "Ganons Castle Shadow Trial Recovery Heart 2": 
+                    "can_use(Lens_of_Truth) and (
+                    can_use(Fire_Arrows) or 
+                    (can_use(Longshot) and (Hover_Boots or can_use(Dins_Fire)))",
+            "Ganons Castle Shadow Trial Recovery Heart 3": 
+                    "can_use(Lens_of_Truth) and (
+                    can_use(Fire_Arrows) or 
+                    (can_use(Longshot) and (Hover_Boots or can_use(Dins_Fire)))"
+
         }
     },
     {
@@ -97,7 +113,8 @@
                 has_bombchus and (logic_lens_castle or can_use(Lens_of_Truth))",
             "Nut Pot": "
                 (logic_spirit_trial_hookshot or Progressive_Hookshot) and
-                has_bombchus and Bow and Mirror_Shield"
+                has_bombchus and Bow and Mirror_Shield",
+            "Ganons Castle Spirit Trial Recovery Heart": "True"
         }
     },
     {
