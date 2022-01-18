@@ -880,9 +880,9 @@ def get_pool_core(world):
     freestanding_locations = [location for location in world.get_locations() if (location.type == 'Collectable' and 'Freestanding' in location.filter_tags) ]
     if world.settings.shuffle_freestanding_items:        
         logger.info("Actor override locations:")
-        for actor_override_location in actor_override_locations:
-            pool.append(actor_override_location.vanilla_item)
-            logger.info(actor_override_location)
+        for location in actor_override_locations:
+            pool.append(location.vanilla_item)
+            logger.info(location)
         logger.info("Freestanding locations")
         for location in freestanding_locations:
             pool.append(location.vanilla_item)

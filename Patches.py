@@ -11,6 +11,7 @@ from World import World
 from Rom import Rom
 from Spoiler import Spoiler
 from LocationList import business_scrubs
+from Location import DisableType
 from Hints import writeGossipStoneHints, buildAltarHints, \
         buildGanonText, getSimpleHintNoPrefix
 from Utils import data_path
@@ -1337,18 +1338,20 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         buildGanonText(world, messages)
 
 
-    #Patch actor overrides for freestanding items. Need to figure out how to fix this for MQ, Multiword, etc.
+    logger = logging.getLogger('')
+    #Patch actor overrides for freestanding items. Need to figure out how to fix this for MQ
     if world.settings.shuffle_freestanding_items:
     # Get actor_override locations
-        actor_override_locations = [location for location in world.get_locations() if location.type == 'ActorOverride']
+        actor_override_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'ActorOverride' ]
         for location in actor_override_locations:
             addresses = location.address
             patch = location.address2
             if addresses is not None and patch is not None:
                 for address in addresses:
                     rom.write_bytes(address, patch)
-        freestanding_locations = [location for location in world.get_locations() if location.type == 'Collectable' and 'Freestanding' in location.filter_tags]
+        freestanding_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and 'Freestanding' in location.filter_tags]
         for location in freestanding_locations:
+            logger.info(location)
             addresses = location.address
             patch = location.address2
             if addresses is not None and patch is not None:
@@ -1357,8 +1360,6 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     # Write item overrides
     override_table = get_override_table(world)
-    logger = logging.getLogger('')
-    logger.info(get_override_table_bytes(override_table))
     rom.write_bytes(rom.sym('cfg_item_overrides'), get_override_table_bytes(override_table))
     rom.write_byte(rom.sym('PLAYER_ID'), world.id + 1) # Write player ID
 
@@ -1836,6 +1837,9 @@ def write_rom_item(rom, item_id, item):
 
 
 def get_override_table(world):
+    logger = logging.getLogger('')
+    for location in world.get_filled_locations():
+        logger.info(location)
     return list(filter(lambda val: val != None, map(get_override_entry, world.get_filled_locations())))
 
 
@@ -1860,6 +1864,10 @@ def get_override_entry(location):
     default = location.default
     item_id = location.item.index
     if None in [scene, default, item_id]:
+        return None
+
+    if location.disabled == DisableType.DISABLED or location.disabled == DisableType.PENDING:
+        logger.info("Disabled location: " + location.name)
         return None
 
     player_id = location.item.world.id + 1
@@ -1888,6 +1896,8 @@ def get_override_entry(location):
     else:
         return None
     logger.info(location)
+    logger.info(location.is_disabled())
+    logger.info(location.disabled)
     logger.info(scene)
     logger.info(type)
     logger.info(default)
