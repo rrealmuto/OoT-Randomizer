@@ -446,7 +446,7 @@ location_table = OrderedDict([
     ## Dungeons
     # Deku Tree vanilla
     ("Deku Tree Map Chest",                                          ("Chest",        0x00,  0x03, None,                        'Map (Deku Tree)',                       ("Deku Tree", "Vanilla",))),
-    ("Deku Tree Walk the Plank Recovery Heart",                      ("Collectable",  0x00, 0x2C,([0x24A71E8 + 14],[0x2C]),  'Recovery Heart',     ("Deku Tree", "Vanilla", "Freestanding"))),
+    ("Deku Tree Walk the Plank Recovery Heart",                      ("Collectable",  0x00, 0x1F,([0x24A71E8 + 14],[0x1F]),  'Recovery Heart',     ("Deku Tree", "Vanilla", "Freestanding"))),
 
     #("Deku Tree Walk the Plank Recovery Heart",                      ("ActorOverride",0x00,  0x02, ([0x24A71E8],[0x01, 0x9C, 0xFF, 0xE7, 0x01, 0x18, 0xFF, 0xAF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02]),  'Recovery Heart',                        ("Deku Tree", "Vanilla", "Floating"))),
     ("Deku Tree Leap Recovery Heart",                                ("Collectable",0x00,  0x01E, ([0x24A7206],[0x1E]),  'Recovery Heart',                        ("Deku Tree", "Vanilla", "Freestanding"))),
