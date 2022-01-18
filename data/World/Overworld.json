@@ -481,9 +481,9 @@
             "LH Lab Dive": "
                 (Progressive_Scale, 2) or
                 (logic_lab_diving and Iron_Boots and can_use(Hookshot))",
-            "LH Lab Dive Rupee 1": "(Progressive_Scale, 2) or Iron_Boots",
-            "LH Lab Dive Rupee 2": "(Progressive_Scale, 2) or Iron_Boots",
-            "LH Lab Dive Rupee 3": "(Progressive_Scale, 2) or Iron_Boots",
+            "LH Lab Dive Rupee 1": "(Progressive_Scale, 2) or can_use(Iron_Boots)",
+            "LH Lab Dive Rupee 2": "(Progressive_Scale, 2) or can_use(Iron_Boots)",
+            "LH Lab Dive Rupee 3": "(Progressive_Scale, 2) or can_use(Iron_Boots)",
             "LH GS Lab Crate": "Iron_Boots and can_use(Hookshot)"
         },
         "exits": {
@@ -1664,10 +1664,20 @@
         "exits": {
             "DMC Upper Nearby": "True",
             "DMC Ladder Area Nearby": "True",
+            "DMC Pierre Platform":"True",
             "DMC Central Nearby": "
                 can_use(Goron_Tunic) and can_use(Longshot) and 
                 ((damage_multiplier != 'ohko' and damage_multiplier != 'quadruple') or 
                     (Fairy and not entrance_shuffle) or can_use(Nayrus_Love))"
+        }
+    },
+    {
+        "region_name" : "DMC Pierre Platform",
+        "font_color": "Red",
+        "scene" : "Death Mountain Crater",
+        "hint": "Death Mountain Crater",
+        "locations": {
+            "DMC Pierre Red Rupee" : "here(is_adult)"
         }
     },
     {
@@ -1722,12 +1732,13 @@
                 (here(can_plant_bean) or 
                     (logic_crater_bean_poh_with_hovers and Hover_Boots))",
             "DMC Pierre Red Rupee" : "is_adult and can_use(Distant_Scarecrow)",
-            "DMC Lower Red Rupee 1" : "is_child and can_play(Bolero_of_Fire)",
-            "DMC Lower Red Rupee 2" : "is_child and can_play(Bolero_of_Fire)",
+            "DMC Lower Red Rupee 1" : "here(is_child)",
+            "DMC Lower Red Rupee 2" : "here(is_child)",
             "Sheik in Crater": "is_adult"
         },
         "exits": {
-            "DMC Central Local": "can_use(Goron_Tunic)"
+            "DMC Central Local": "can_use(Goron_Tunic)",
+            "DMC Pierre Platform": "can_use(Distant_Scarecrow)"
         }
     },
     {
