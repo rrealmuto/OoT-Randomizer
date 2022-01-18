@@ -3897,7 +3897,7 @@ setting_infos = [
         default        = 'off',
         choices        = {
             'off': 'Off',
-            'toprow': 'Top Row Songs Only',
+            'frog': 'Frog Songs Only',
             'warp': 'Warp Songs Only',
             'all':  'All Songs',
         },

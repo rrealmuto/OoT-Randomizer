@@ -1997,7 +1997,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         rom.write_byte(symbol, 0x01)
 
     replace_songs(world, rom,
-        toprow=world.settings.ocarina_songs in ('toprow', 'all'),
+        frog=world.settings.ocarina_songs in ('frog', 'all'),
         warp=world.settings.ocarina_songs in ('warp', 'all'),
     )
 

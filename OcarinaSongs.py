@@ -324,9 +324,9 @@ def get_random_song():
 
 
 # create a list of 12 songs, none of which are sub-strings of any other song
-def generate_song_list(world, toprow, warp):
+def generate_song_list(world, frog, warp):
     fixed_songs = {}
-    if not toprow:
+    if not frog:
         fixed_songs.update({name: Song.from_str(notes) for name, (_, is_warp, notes) in SONG_TABLE.items() if not is_warp})
     if not warp:
         fixed_songs.update({name: Song.from_str(notes) for name, (_, is_warp, notes) in SONG_TABLE.items() if is_warp})
@@ -371,8 +371,8 @@ def generate_song_list(world, toprow, warp):
 
 
 # replace the playback and activation requirements for the ocarina songs
-def replace_songs(world, rom, *, toprow, warp):
-    songs = generate_song_list(world, toprow, warp)
+def replace_songs(world, rom, *, frog, warp):
+    songs = generate_song_list(world, frog, warp)
     world.song_notes = songs
 
     for name, song in songs.items():
