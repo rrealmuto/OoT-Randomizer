@@ -23,6 +23,9 @@
 
 #define Z64_ETAB_LENGTH       0x0614
 
+
+#define NA_BGM_SMALL_ITEM_GET 0x39
+
 typedef struct
 {
   int16_t x;
@@ -1269,7 +1272,29 @@ typedef struct
                                               /* 0x01B0 */
 } z64_trail_t;
 
+struct EnItem00;
+
+typedef void(*EnItem00ActionFunc)(struct EnItem00*, z64_game_t*);
+
+typedef struct EnItem00 {
+	z64_actor_t actor;
+	EnItem00ActionFunc actionFunc;
+	uint16_t collectibleFlag;
+	uint16_t getItemId;
+	uint16_t unk_154;
+	uint16_t unk_156;
+	uint16_t unk_158;
+	uint16_t unk_15A;
+	float scale;
+} EnItem00;
+
 /* dram addresses */
+#define z64_EnItem00Action_addr                 0x800127E0
+#define z64_ActorKill_addr                      0x80020EB4
+#define z64_Message_GetState_addr               0x800DD464
+#define z64_SetCollectibleFlags_addr            0x8002071C
+#define z64_Audio_PlaySoundGeneral_addr         0x800C806C
+#define z64_Audio_PlayFanFare_addr              0x800C69A0
 #define z64_osSendMesg_addr                     0x80001E20
 #define z64_osRecvMesg_addr                     0x80002030
 #define z64_osCreateMesgQueue_addr              0x80004220
@@ -1342,6 +1367,12 @@ typedef struct
 #define z64_ctxt_game_size                      0x00012518
 
 /* function prototypes */
+typedef void(*z64_EnItem00ActionFunc)(struct EnItem00*, z64_game_t*);
+typedef void(*z64_ActorKillFunc)(z64_actor_t*);
+typedef uint8_t(*z64_Message_GetStateFunc)(uint8_t*);
+typedef void(*z64_Flags_SetCollectibleFunc)(z64_game_t* game, uint16_t flag);
+typedef void(*z64_Audio_PlaySoundGeneralFunc)(uint16_t sfxId, void* pos, uint8_t token, float* freqScale, float* a4, uint8_t* reverbAdd);
+typedef void(*z64_Audio_PlayFanFareFunc)(uint16_t);
 typedef void (*z64_DrawActors_proc)       (z64_game_t *game, void *actor_ctxt);
 typedef void (*z64_DeleteActor_proc)      (z64_game_t *game, void *actor_ctxt,
                                            z64_actor_t *actor);
@@ -1398,6 +1429,13 @@ typedef float *(*z64_GetMatrixStackTop_proc)();
 
 
 /* functions */
+#define z64_ActorKill               ((z64_ActorKillFunc)    z64_ActorKill_addr)
+#define z64_MessageGetState         ((z64_Message_GetStateFunc)z64_Message_GetState_addr)
+#define z64_SetCollectibleFlags     ((z64_Flags_SetCollectibleFunc)z64_SetCollectibleFlags_addr)
+#define z64_Audio_PlaySoundGeneral  ((z64_Audio_PlaySoundGeneralFunc)z64_Audio_PlaySoundGeneral_addr)
+#define z64_Audio_PlayFanFare       ((z64_Audio_PlayFanFareFunc)z64_Audio_PlayFanFare_addr)
+
+
 #define z64_osSendMesg          ((osSendMesg_t)       z64_osSendMesg_addr)
 #define z64_osRecvMesg          ((osRecvMesg_t)       z64_osRecvMesg_addr)
 #define z64_osCreateMesgQueue   ((osCreateMesgQueue_t)                        \

@@ -233,7 +233,8 @@ exit_func:
 	lw	s0, 0x2c(sp)
 	lw	s1, 0x30(sp)
 	lw	at, 0x34(sp)
-    jr	ra
+    ;jr	ra
+    j 0x80012FA4
     addiu	sp, sp, 0x80
 
 rupee_draw_hook:
