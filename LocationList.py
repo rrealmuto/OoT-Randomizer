@@ -124,6 +124,7 @@ location_table = OrderedDict([
 
 
 
+
     # Lost Woods
     ("LW Gift from Saria",                                           ("Cutscene",     0xFF,  0x02, None,                        'Ocarina',                               ("the Lost Woods", "Forest",))),
     ("LW Under Boulder Rupee",                                       ("Collectable",  0x5B,  0x13, None,                        'Rupees (5)',                            ("the Lost Woods", "Forest","Freestanding",))),

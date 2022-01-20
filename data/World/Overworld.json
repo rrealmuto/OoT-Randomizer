@@ -186,6 +186,7 @@
         "exits": {
             "Kokiri Forest": "True"
         }
+        
     },
     {
         "region_name": "KF House of Twins",
@@ -539,6 +540,7 @@
         "locations": {
             "GV Waterfall Freestanding PoH": "True",
             "GV GS Bean Patch": "can_plant_bugs and can_child_attack",
+            "GV Crate Near Cow": "is_child",
             "GV Cow": "is_child and can_play(Eponas_Song)",
             "GV Crate Near Cow": "is_child",
             "GV Gossip Stone": "True",
