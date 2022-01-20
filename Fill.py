@@ -52,6 +52,7 @@ def distribute_items_restrictive(window, worlds, fill_locations=None):
 
     shop_locations = [location for world in worlds for location in world.get_unfilled_locations() if location.type == 'Shop' and location.price == None]
 
+    
     # If not passed in, then get a shuffled list of locations to fill in
     if not fill_locations:
         fill_locations = [
@@ -59,9 +60,19 @@ def distribute_items_restrictive(window, worlds, fill_locations=None):
             if location not in song_locations
                 and location not in shop_locations
                 and not location.type.startswith('Hint')]
+    
+    logger.info("****")
+    for world in worlds:
+        for location in world.get_unfilled_locations():
+            if location.type != "Chest":
+                logger.info(location)
+    logger.info("****")
+
+
     world_states = [world.state for world in worlds]
 
     window.locationcount = len(fill_locations) + len(song_locations) + len(shop_locations)
+
     window.fillcount = 0
 
     # Generate the itempools
@@ -121,7 +132,8 @@ def distribute_items_restrictive(window, worlds, fill_locations=None):
 
     # Start a search cache here.
     search = Search([world.state for world in worlds])
-
+    logger.info(len(progitempool + prioitempool + restitempool))
+    logger.info(len(fill_locations))
     # We place all the shop items first. Like songs, they have a more limited
     # set of locations that they can be placed in, so placing them first will
     # reduce the odds of creating unbeatable seeds. This also avoids needing

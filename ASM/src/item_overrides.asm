@@ -189,3 +189,147 @@ get_item_hook:
     lw      ra, 0x1C (sp)
     jr      ra
     addiu   sp, sp, 0x20
+
+item_give_hook:
+    addiu sp, sp, -0x80
+    sw	ra, 0x10(sp)
+	sw	v0, 0x14(sp)
+	sw	v1, 0x18(sp)
+    sw	a0, 0x1C(sp)
+	sw	a1, 0x20(sp) 
+	sw	a2, 0x24(sp)
+	sw	a3, 0x28(sp)
+	sw	s0, 0x2c(sp)
+	sw	s1, 0x30(sp)
+	sw	at, 0x34(sp)
+    or A0, v1, R0
+    or A1, S2, R0 ;pass player pointer to function
+    jal	item_give_collectible ;if it was overridden, result will be stored in v0 as a 1. otherwise 0
+    nop
+	bgtz v0, exit_func    ;if we overrode, return to our new function, otherwise return to the original
+	nop
+return_to_func:
+	lw	ra, 0x10(sp)
+	lw	v0, 0x14(sp)
+	lw	v1, 0x18(sp)
+    lw	a0, 0x1C(sp)
+	lw	a1, 0x20(sp) 
+	lw	a2, 0x24(sp)
+	lw	a3, 0x28(sp)
+	lw	s0, 0x2c(sp)
+	lw	s1, 0x30(sp)
+	lw	at, 0x34(sp)
+	lw  t0, 0x003C(sp) ;this is what they do after the branch in the OG function
+	j 0x80012E2C ; jump back where the OG function would have
+	addiu sp, sp, 0x80
+exit_func:
+    lw	ra, 0x10(sp)
+	lw	v0, 0x14(sp)
+	lw	v1, 0x18(sp)
+    lw	a0, 0x1C(sp)
+	lw	a1, 0x20(sp) 
+	lw	a2, 0x24(sp)
+	lw	a3, 0x28(sp)
+	lw	s0, 0x2c(sp)
+	lw	s1, 0x30(sp)
+	lw	at, 0x34(sp)
+    ;jr	ra
+    j 0x80012FA4
+    addiu	sp, sp, 0x80
+
+rupee_draw_hook:
+;push things on the stack
+	addiu sp, sp, -0x80
+        sw	ra, 0x10(sp)
+	sw	v0, 0x14(sp)
+	sw	v1, 0x18(sp)
+        sw	a0, 0x1C(sp)
+	sw	a1, 0x20(sp) 
+	sw	a2, 0x24(sp)
+	sw	a3, 0x28(sp)
+	sw	s0, 0x2c(sp)
+	sw	s1, 0x30(sp)
+	sw	at, 0x34(sp)
+
+	jal 	collectible_draw
+	nop
+;pop things off the stack
+;put our return value somewhere
+	bgtz	v0, @return_to_func
+	nop
+@rupee_draw_orig:
+	lw	ra, 0x10(sp)
+	lw	v0, 0x14(sp)
+	lw	v1, 0x18(sp)
+        lw	a0, 0x1C(sp)
+	lw	a1, 0x20(sp) 
+	lw	a2, 0x24(sp)
+	lw	a3, 0x28(sp)
+	lw	s0, 0x2c(sp)
+	lw	s1, 0x30(sp)
+	lw	at, 0x34(sp)
+	jal	0x80013150
+	nop
+	lw	ra, 0x10(sp)
+	lw	v0, 0x14(sp)
+	lw	v1, 0x18(sp)
+        lw	a0, 0x1C(sp)
+	lw	a1, 0x20(sp) 
+	lw	a2, 0x24(sp)
+	lw	a3, 0x28(sp)
+	lw	s0, 0x2c(sp)
+	lw	s1, 0x30(sp)
+	lw	at, 0x34(sp)
+	jr	ra
+        addiu	sp, sp, 0x80
+
+recovery_heart_draw_hook:
+;push things on the stack
+	addiu sp, sp, -0x80
+        sw	ra, 0x10(sp)
+	sw	v0, 0x14(sp)
+	sw	v1, 0x18(sp)
+        sw	a0, 0x1C(sp)
+	sw	a1, 0x20(sp) 
+	sw	a2, 0x24(sp)
+	sw	a3, 0x28(sp)
+	sw	s0, 0x2c(sp)
+	sw	s1, 0x30(sp)
+	sw	at, 0x34(sp)
+
+	jal 	collectible_draw
+	nop
+;pop things off the stack
+;put our return value somewhere
+	beqz	v0, @return_to_func
+	nop
+@exit_func:
+	lw	ra, 0x10(sp)
+	lw	v0, 0x14(sp)
+	lw	v1, 0x18(sp)
+        lw	a0, 0x1C(sp)
+	lw	a1, 0x20(sp) 
+	lw	a2, 0x24(sp)
+	lw	a3, 0x28(sp)
+	lw	s0, 0x2c(sp)
+	lw	s1, 0x30(sp)
+	lw	at, 0x34(sp)
+	addiu	sp, sp, 0x80
+	j	end_of_recovery_draw
+	nop
+
+@return_to_func:
+	lw	ra, 0x10(sp)
+	lw	v0, 0x14(sp)
+	lw	v1, 0x18(sp)
+        lw	a0, 0x1C(sp)
+	lw	a1, 0x20(sp) 
+	lw	a2, 0x24(sp)
+	lw	a3, 0x28(sp)
+	lw	s0, 0x2c(sp)
+	lw	s1, 0x30(sp)
+	lw	at, 0x34(sp)
+	addiu	sp, sp, 0x80
+	LH	V0, 0x014a(A2)
+	jr	ra
+	addiu	at, r0, 0xFFFF

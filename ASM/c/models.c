@@ -1,5 +1,5 @@
 #include "models.h"
-
+#include <stdbool.h>
 #include "get_items.h"
 #include "item_table.h"
 #include "util.h"
@@ -139,6 +139,24 @@ void lookup_model(model_t *model, z64_actor_t *actor, z64_game_t *game, uint16_t
     override_t override = lookup_override(actor, game->scene_index, base_item_id);
     lookup_model_by_override(model, override);
 }
+
+
+bool collectible_draw(z64_actor_t *actor, z64_game_t *game) {
+    model_t model = {
+        .object_id = 0x0000,
+        .graphic_id = 0x00,
+    };
+    lookup_model(&model, actor, game, 0);
+    if(model.object_id != 0x0000)
+    {
+        EnItem00* this = (EnItem00*)actor;
+        if(this->actionFunc != Collectible_WaitForMessageBox)
+            draw_model(model, actor, game, 25.0);
+        return true;
+    }
+    return false;
+}
+
 
 void heart_piece_draw(z64_actor_t *actor, z64_game_t *game) {
     model_t model = {
