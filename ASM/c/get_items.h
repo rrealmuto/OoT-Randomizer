@@ -42,5 +42,6 @@ typedef struct {
 
 override_t lookup_override_by_key(override_key_t key);
 override_t lookup_override(z64_actor_t *actor, uint8_t scene, uint8_t item_id);
+void Collectible_WaitForMessageBox(EnItem00 *this, z64_game_t *game);
 
 #endif

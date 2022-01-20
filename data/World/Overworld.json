@@ -81,7 +81,19 @@
             "Showed Mido Sword & Shield": "is_child and Kokiri_Sword and Buy_Deku_Shield"
         },
         "locations": {
+            "KF Behind Midos Blupee": "is_child",
+            "KF Boulder Maze Blupee 1": "is_child",
+            "KF Boulder Maze Blupee 2": "is_child",
+            "KF End of Bridge Blupee": "is_child",
+            "KF Top of Sarias Heart 1": "is_child",
+            "KF Top of Sarias Heart 2": "is_child",
+            "KF Top of Sarias Heart 3": "is_child",
+            "KF Near Ramp Green Rupee 1": "is_child",
+            "KF Near Ramp Green Rupee 2": "is_child",
+            "KF Near Midos Green Rupee 1": "is_child",
+            "KF Near Midos Green Rupee 2": "is_child",
             "KF Kokiri Sword Chest": "is_child",
+            "KF Bean Platform Rupee": "is_adult and (can_plant_bean or can_use(Hover_Boots))",
             "KF GS Know It All House": "
                 is_child and can_child_attack and at_night and
                 (had_night_start or can_leave_forest or can_play(Suns_Song))",
@@ -158,9 +170,16 @@
     {
         "region_name": "KF Sarias House",
         "scene": "KF Sarias House",
+        "locations": {
+            "KF Sarias Freestanding Heart 1": "True",
+            "KF Sarias Freestanding Heart 2": "True",
+            "KF Sarias Freestanding Heart 3": "True",
+            "KF Sarias Freestanding Heart 4": "True"
+        },
         "exits": {
             "Kokiri Forest": "True"
         }
+        
     },
     {
         "region_name": "KF House of Twins",
@@ -180,6 +199,7 @@
         "region_name": "KF Kokiri Shop",
         "scene": "KF Kokiri Shop",
         "locations": {
+            "KF Shop Invisible Rupee": "True",
             "KF Shop Item 1": "True",
             "KF Shop Item 2": "True",
             "KF Shop Item 3": "True",
@@ -240,6 +260,15 @@
         "scene": "Lost Woods",
         "hint": "the Lost Woods",
         "locations": {
+            "LW Under Boulder Rupee": "here(can_blast_or_smash)",
+            "LW Water Rupee 1" : "is_child and (can_dive or can_use(Boomerang))",
+            "LW Water Rupee 2" : "is_child and (can_dive or can_use(Boomerang))",
+            "LW Water Rupee 3" : "is_child and (can_dive or can_use(Boomerang))",
+            "LW Water Rupee 4" : "is_child and (can_dive or can_use(Boomerang))",
+            "LW Water Rupee 5" : "is_child and (can_dive or can_use(Boomerang))",
+            "LW Water Rupee 6" : "is_child and (can_dive or can_use(Boomerang))",
+            "LW Water Rupee 7" : "is_child and (can_dive or can_use(Boomerang))",
+            "LW Water Rupee 8" : "is_child and (can_dive or can_use(Boomerang))",
             "LW Deku Scrub Near Deku Theater Right": "is_child and can_stun_deku",
             "LW Deku Scrub Near Deku Theater Left": "is_child and can_stun_deku",
             "LW GS Above Theater": "
@@ -378,6 +407,9 @@
         "locations": {
             "Pierre": "is_adult and Bonooru and not free_scarecrow",
             "LH Underwater Item": "is_child and can_dive",
+            "LH Underwater Rupee 1": "is_child",
+            "LH Underwater Rupee 2": "is_child and can_dive",
+            "LH Underwater Rupee 3": "is_child and can_dive",
             "LH Sun": "
                 is_adult and 
                 (can_use(Distant_Scarecrow) or 'Water Temple Clear') and can_use(Bow)",
@@ -442,6 +474,9 @@
             "LH Lab Dive": "
                 (Progressive_Scale, 2) or
                 (logic_lab_diving and Iron_Boots and can_use(Hookshot))",
+            "LH Lab Dive Rupee 1": "(Progressive_Scale, 2) or can_use(Iron_Boots)",
+            "LH Lab Dive Rupee 2": "(Progressive_Scale, 2) or can_use(Iron_Boots)",
+            "LH Lab Dive Rupee 3": "(Progressive_Scale, 2) or can_use(Iron_Boots)",
             "LH GS Lab Crate": "Iron_Boots and can_use(Hookshot)"
         },
         "exits": {
@@ -488,6 +523,7 @@
         "locations": {
             "GV Waterfall Freestanding PoH": "True",
             "GV GS Bean Patch": "can_plant_bugs and can_child_attack",
+            "GV Crate Near Cow": "is_child",
             "GV Cow": "is_child and can_play(Eponas_Song)",
             "GV Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
@@ -728,6 +764,9 @@
             "Market Potion Shop": "is_child and at_day",
             "Market Treasure Chest Game": "is_child and at_night",
             "Market Back Alley": "is_child"
+        },
+        "locations": {
+            "Market Night Crate Rupee" : "is_child and at_night"
         }
     },
     {
@@ -1299,6 +1338,14 @@
             "Dampes Windmill Access": "is_adult and can_play(Song_of_Time)"
         },
         "locations": {
+            "Graveyard Dampe Race Rupee 1": "True",
+            "Graveyard Dampe Race Rupee 2": "True",
+            "Graveyard Dampe Race Rupee 3": "True",
+            "Graveyard Dampe Race Rupee 4": "True",
+            "Graveyard Dampe Race Rupee 5": "True",
+            "Graveyard Dampe Race Rupee 6": "True",
+            "Graveyard Dampe Race Rupee 7": "True",
+            "Graveyard Dampe Race Rupee 8": "True",
             "Graveyard Hookshot Chest": "True",
             "Graveyard Dampe Race Freestanding PoH": "is_adult or logic_child_dampe_race_poh",
             "Nut Pot": "True"
@@ -1355,6 +1402,8 @@
             "DMT Freestanding PoH": "
                 can_take_damage or can_use(Hover_Boots) or
                 (is_adult and here(can_plant_bean and (has_explosives or Progressive_Strength_Upgrade)))",
+            "DMT Rock Red Rupee": "here(is_child) and has_explosives",
+            "DMT Rock Blue Rupee": "here(is_child) and has_explosives",
             "DMT GS Bean Patch": "
                 can_plant_bugs and can_child_attack and
                     (has_explosives or Progressive_Strength_Upgrade or
@@ -1568,10 +1617,20 @@
         "exits": {
             "DMC Upper Nearby": "True",
             "DMC Ladder Area Nearby": "True",
+            "DMC Pierre Platform":"True",
             "DMC Central Nearby": "
                 can_use(Goron_Tunic) and can_use(Longshot) and 
                 ((damage_multiplier != 'ohko' and damage_multiplier != 'quadruple') or 
                     (Fairy and not entrance_shuffle) or can_use(Nayrus_Love))"
+        }
+    },
+    {
+        "region_name" : "DMC Pierre Platform",
+        "font_color": "Red",
+        "scene" : "Death Mountain Crater",
+        "hint": "Death Mountain Crater",
+        "locations": {
+            "DMC Pierre Red Rupee" : "here(is_adult)"
         }
     },
     {
@@ -1625,10 +1684,19 @@
                 is_adult and
                 (here(can_plant_bean) or 
                     (logic_crater_bean_poh_with_hovers and Hover_Boots))",
+            "DMC Lower Red Rupee 1" : "here(is_child)",
+            "DMC Lower Red Rupee 2" : "here(is_child)",
+            "DMC Lower Blue Rupee 1": "here(is_child)",
+            "DMC Lower Blue Rupee 2": "here(is_child)",
+            "DMC Lower Blue Rupee 3": "here(is_child)",
+            "DMC Lower Blue Rupee 4": "here(is_child)",
+            "DMC Lower Blue Rupee 5": "here(is_child)",
+            "DMC Lower Blue Rupee 6": "here(is_child)",
             "Sheik in Crater": "is_adult"
         },
         "exits": {
-            "DMC Central Local": "can_use(Goron_Tunic)"
+            "DMC Central Local": "can_use(Goron_Tunic)",
+            "DMC Pierre Platform": "can_use(Distant_Scarecrow)"
         }
     },
     {
@@ -1712,6 +1780,10 @@
                 is_child or can_use(Hover_Boots) or (is_adult and logic_zora_river_lower)",
             "ZR Near Domain Freestanding PoH": "
                 is_child or can_use(Hover_Boots) or (is_adult and logic_zora_river_upper)",
+            "ZR Waterfall Rupee 1":"is_adult",
+            "ZR Waterfall Rupee 2":"is_adult",
+            "ZR Waterfall Rupee 3":"is_adult",
+            "ZR Waterfall Rupee 4":"is_adult",
             "ZR GS Ladder": "is_child and at_night and can_child_attack",
             "ZR GS Near Raised Grottos": "can_use(Hookshot) and at_night",
             "ZR GS Above Bridge": "can_use(Hookshot) and at_night",
@@ -1822,6 +1894,24 @@
             "ZF Iceberg Freestanding PoH": "is_adult",
             "ZF Bottom Freestanding PoH": "
                 is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 1" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 2" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 3" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 4" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 5" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 6" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 7" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 8" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 9" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 10" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 11" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 12" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 13" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 14" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 15" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 16" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 17" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 18" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
             "ZF GS Tree": "is_child",
             "ZF GS Above the Log": "can_use(Boomerang) and at_night",
             "ZF GS Hidden Cave": "
@@ -2208,7 +2298,12 @@
         "region_name": "DMT Cow Grotto",
         "scene": "DMT Cow Grotto",
         "locations": {
-            "DMT Cow Grotto Cow": "can_play(Eponas_Song)"
+            "DMT Cow Grotto Cow": "can_play(Eponas_Song)",
+            "DMT Cow Grotto Rupee": "True",
+            "DMT Cow Grotto Recovery Heart 1": "True",
+            "DMT Cow Grotto Recovery Heart 2": "True",
+            "DMT Cow Grotto Recovery Heart 3": "True",
+            "DMT Cow Grotto Recovery Heart 4": "True"
         },
         "exits": {
             "Death Mountain Summit": "True"
@@ -2330,6 +2425,16 @@
     {
         "region_name": "GV Octorok Grotto",
         "scene": "GV Octorok Grotto",
+        "locations":{
+            "GV Octorok Grotto Red Rupee" : "True",
+            "GV Octorok Grotto Blue Rupee 1": "True",
+            "GV Octorok Grotto Blue Rupee 2": "True",
+            "GV Octorok Grotto Blue Rupee 3": "True",
+            "GV Octorok Grotto Green Rupee 1": "True",
+            "GV Octorok Grotto Green Rupee 2": "True",
+            "GV Octorok Grotto Green Rupee 3": "True",
+            "GV Octorok Grotto Green Rupee 4": "True"
+        },
         "exits": {
             "GV Grotto Ledge": "True"
         }

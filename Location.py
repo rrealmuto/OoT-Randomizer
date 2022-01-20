@@ -6,7 +6,7 @@ from itertools import chain
 
 class Location(object):
 
-    def __init__(self, name='', address=None, address2=None, default=None, type='Chest', scene=None, parent=None, filter_tags=None, internal=False):
+    def __init__(self, name='', address=None, address2=None, default=None, type='Chest', scene=None, parent=None, filter_tags=None, internal=False, vanilla_item=None):
         self.name = name
         self.parent_region = parent
         self.item = None
@@ -16,6 +16,7 @@ class Location(object):
         self.type = type
         self.scene = scene
         self.internal = internal
+        self.vanilla_item = vanilla_item
         self.staleness_count = 0
         self.access_rule = lambda state, **kwargs: True
         self.access_rules = []
@@ -34,7 +35,7 @@ class Location(object):
 
 
     def copy(self, new_region):
-        new_location = Location(self.name, self.address, self.address2, self.default, self.type, self.scene, new_region, self.filter_tags)
+        new_location = Location(self.name, self.address, self.address2, self.default, self.type, self.scene, new_region, self.filter_tags, self.vanilla_item)
         new_location.world = new_region.world
         if self.item:
             new_location.item = self.item.copy(new_region.world)
@@ -127,7 +128,7 @@ def LocationFactory(locations, world=None):
             if addresses is None:
                 addresses = (None, None)
             address, address2 = addresses
-            ret.append(Location(match_location, address, address2, default, type, scene, filter_tags=filter_tags))
+            ret.append(Location(match_location, address, address2, default, type, scene, filter_tags=filter_tags, vanilla_item=vanilla_item))
         else:
             raise KeyError('Unknown Location: %s', location)
 
