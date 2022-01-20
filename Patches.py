@@ -2002,6 +2002,16 @@ def get_override_entry(location):
     if None in [scene, default, item_id]:
         return None
 
+    logger = logging.getLogger('')
+
+    #Don't add freestanding items to the override table if they're disabled. We use this check to determine how to draw and interact with them.
+    if not location.world.settings.shuffle_freestanding_items:
+        if (location.type == "ActorOverride" or (location.type == "Collectable" and "Freestanding" in location.filter_tags)) :
+            return None
+    else:
+        if (location.type == "ActorOverride" or (location.type == "Collectable" and "Freestanding" in location.filter_tags)) and location.disabled != DisableType.ENABLED :
+            return None
+
     player_id = location.item.world.id + 1
     if location.item.looks_like_item is not None:
         looks_like_item_id = location.item.looks_like_item.index
