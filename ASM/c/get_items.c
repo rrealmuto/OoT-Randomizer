@@ -68,7 +68,7 @@ override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_
 	}
 	else if (actor->actor_id == 0x15)
 	{
-		// Only override heart pieces and keys
+		// Override heart pieces, keys, red, blue, green rupees, and recovery hearts
 		int collectable_type = actor->variable & 0xFF;
 		if (collectable_type != 0x06 && collectable_type != 0x11 && collectable_type != 0x03 && collectable_type != 2 && collectable_type != 0x01 && collectable_type != 0x00)
 		{
@@ -437,7 +437,7 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
 		return 0;
 	}
 
-	if (!collectible_mutex)
+	if (!collectible_mutex) //Check our mutex so that only one collectible can run at a time (if 2 run on the same frame you lose the message).
 	{
 		EnItem00 *pItem = (EnItem00 *)from_actor;
 		collectible_mutex = 1;
