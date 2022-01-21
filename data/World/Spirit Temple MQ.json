@@ -22,6 +22,8 @@
         "region_name": "Child Spirit Temple",
         "dungeon": "Spirit Temple",
         "locations": {
+            "Spirit Temple MQ Child Recovery Heart 1" : "can_use(Slingshot)",
+            "Spirit Temple MQ Child Recovery Heart 2" : "can_use(Slingshot)",
             "Spirit Temple MQ Child Hammer Switch Chest": "
                 at('Adult Spirit Temple', (Small_Key_Spirit_Temple, 7) and Megaton_Hammer)",
             "Spirit Temple MQ Map Room Enemy Chest": "

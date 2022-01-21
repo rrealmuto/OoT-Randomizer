@@ -25,8 +25,8 @@
         "region_name": "Forest Temple Well",
         "dungeon": "Forest Temple",
         "locations": {
-            "Forest Temple Drain Recovery Heart 1": "True",
-            "Forest Temple Drain Recovery Heart 2": "True"
+            "Forest Temple Well Recovery Heart 1": "True",
+            "Forest Temple Well Recovery Heart 2": "True"
         },
         "exits" : {
             "Forest Temple NE Outdoors" : "True",

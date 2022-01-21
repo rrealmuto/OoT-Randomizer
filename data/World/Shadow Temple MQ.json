@@ -70,7 +70,9 @@
         "dungeon": "Shadow Temple",
         "locations": {
             "Shadow Temple MQ Invisible Blades Visible Chest": "True",
-            "Shadow Temple MQ Invisible Blades Invisible Chest": "True"
+            "Shadow Temple MQ Invisible Blades Invisible Chest": "True",
+            "Shadow Temple MQ Invisible Blades Recovery Heart 1": "can_play(Song_of_Time)",
+            "Shadow Temple MQ Invisible Blades Recovery Heart 2": "can_play(Song_of_Time)"
         }
     },
     {
@@ -144,6 +146,10 @@
     {
         "region_name": "Shadow Temple Boat",
         "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple MQ Before Boat Recovery Heart 1": "can_use(Distant_Scarecrow)",
+            "Shadow Temple MQ Before Boat Recovery Heart 2": "can_use(Distant_Scarecrow)"
+        },
         "exits": {
             "Shadow Temple After Wind": "(Small_Key_Shadow_Temple, 5)",
             "Shadow Temple Beyond Boat": "can_play(Zeldas_Lullaby)"
@@ -178,6 +184,9 @@
         "region_name": "Shadow Temple Near Boss",
         "dungeon": "Shadow Temple",
         "locations": {
+            "Shadow Temple MQ Near Boss Upper Recovery Heart 1" : "Bow and can_play(Song_of_Time) and Longshot",
+            "Shadow Temple MQ Near Boss Upper Recovery Heart 2" : "Bow and can_play(Song_of_Time) and Longshot",
+            "Shadow Temple MQ Near Boss Lower Recovery Heart" : "True",
             "Shadow Temple Bongo Bongo Heart": "
                 Boss_Key_Shadow_Temple and (logic_shadow_bongo or Bow or Hookshot)",
             "Bongo Bongo": "
