@@ -60,13 +60,6 @@ def distribute_items_restrictive(window, worlds, fill_locations=None):
             if location not in song_locations
                 and location not in shop_locations
                 and not location.type.startswith('Hint')]
-    
-    logger.info("****")
-    for world in worlds:
-        for location in world.get_unfilled_locations():
-            if location.type != "Chest":
-                logger.info(location)
-    logger.info("****")
 
 
     world_states = [world.state for world in worlds]
@@ -130,10 +123,10 @@ def distribute_items_restrictive(window, worlds, fill_locations=None):
         ice_trap = ice_traps.pop(0)
         ice_trap.looks_like_item = random_item
 
+
     # Start a search cache here.
     search = Search([world.state for world in worlds])
-    logger.info(len(progitempool + prioitempool + restitempool))
-    logger.info(len(fill_locations))
+    
     # We place all the shop items first. Like songs, they have a more limited
     # set of locations that they can be placed in, so placing them first will
     # reduce the odds of creating unbeatable seeds. This also avoids needing
@@ -189,6 +182,10 @@ def distribute_items_restrictive(window, worlds, fill_locations=None):
     # for things like Ice Traps that can't be found at some locations
     logger.info('Placing priority items.')
     fill_restrictive_fast(window, worlds, fill_locations, prioitempool)
+
+    
+    logger.info(len(fill_locations))
+    logger.info(len(restitempool))
 
     # Place the rest of the items.
     # No restrictions at all. Places them completely randomly. Since they
