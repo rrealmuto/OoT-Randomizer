@@ -1,0 +1,178 @@
+0: KF Behind Midos Blupee: is_child
+1: KF Boulder Maze Blupee 1: is_child
+2: KF Boulder Maze Blupee 2: is_child
+3: KF End of Bridge Blupee: is_child
+4: KF Top of Sarias Heart 1: is_child
+5: KF Top of Sarias Heart 2: is_child
+6: KF Top of Sarias Heart 3: is_child
+7: KF Near Ramp Green Rupee 1: is_child
+8: KF Near Ramp Green Rupee 2: is_child
+9: KF Near Midos Green Rupee 1: is_child
+10: KF Near Midos Green Rupee 2: is_child
+11: KF Bean Platform Rupee: is_adult and (can_plant_bean or can_use(Hover_Boots))
+KF Sarias House
+12: KF Sarias Freestanding Heart 1: True
+13: KF Sarias Freestanding Heart 2: True
+14: KF Sarias Freestanding Heart 3: True
+15: KF Sarias Freestanding Heart 4: True
+KF Kokiri Shop
+16: KF Shop Invisible Rupee: True
+LW Beyond Mido
+17: LW Under Boulder Rupee: here(can_blast_or_smash)
+18: LW Water Rupee 1: is_child and (can_dive or can_use(Boomerang))
+19: LW Water Rupee 2: is_child and (can_dive or can_use(Boomerang))
+20: LW Water Rupee 3: is_child and (can_dive or can_use(Boomerang))
+21: LW Water Rupee 4: is_child and (can_dive or can_use(Boomerang))
+22: LW Water Rupee 5: is_child and (can_dive or can_use(Boomerang))
+23: LW Water Rupee 6: is_child and (can_dive or can_use(Boomerang))
+24: LW Water Rupee 7: is_child and (can_dive or can_use(Boomerang))
+25: LW Water Rupee 8: is_child and (can_dive or can_use(Boomerang))
+Lake Hylia
+26: LH Underwater Rupee 1: is_child
+27: LH Underwater Rupee 2: is_child and can_dive
+28: LH Underwater Rupee 3: is_child and can_dive
+LH Lab
+29: LH Lab Dive Rupee 1: (Progressive_Scale, 2) or can_use(Iron_Boots)
+30: LH Lab Dive Rupee 2: (Progressive_Scale, 2) or can_use(Iron_Boots)
+31: LH Lab Dive Rupee 3: (Progressive_Scale, 2) or can_use(Iron_Boots)
+GV Upper Stream
+32: GV Crate Near Cow: is_child
+Market
+33: Market Night Crate Rupee: is_child and at_night
+Graveyard Dampes Grave
+34: Graveyard Dampe Race Rupee 1: True
+35: Graveyard Dampe Race Rupee 2: True
+36: Graveyard Dampe Race Rupee 3: True
+37: Graveyard Dampe Race Rupee 4: True
+38: Graveyard Dampe Race Rupee 5: True
+39: Graveyard Dampe Race Rupee 6: True
+40: Graveyard Dampe Race Rupee 7: True
+41: Graveyard Dampe Race Rupee 8: True
+Death Mountain
+42: DMT Rock Red Rupee: here(is_child) and has_explosives
+43: DMT Rock Blue Rupee: here(is_child) and has_explosives
+DMC Pierre Platform
+44: DMC Pierre Red Rupee: here(is_adult)
+DMC Central Nearby
+45: DMC Lower Red Rupee 1: here(is_child)
+46: DMC Lower Red Rupee 2: here(is_child)
+47: DMC Lower Blue Rupee 1: here(is_child)
+48: DMC Lower Blue Rupee 2: here(is_child)
+49: DMC Lower Blue Rupee 3: here(is_child)
+50: DMC Lower Blue Rupee 4: here(is_child)
+51: DMC Lower Blue Rupee 5: here(is_child)
+52: DMC Lower Blue Rupee 6: here(is_child)
+Zora River
+53: ZR Waterfall Rupee 1: is_adult
+54: ZR Waterfall Rupee 2: is_adult
+55: ZR Waterfall Rupee 3: is_adult
+56: ZR Waterfall Rupee 4: is_adult
+Zoras Fountain
+57: ZF Bottom Freestanding Rupee 1: is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))
+58: ZF Bottom Freestanding Rupee 2: is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))
+59: ZF Bottom Freestanding Rupee 3: is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))
+60: ZF Bottom Freestanding Rupee 4: is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))
+61: ZF Bottom Freestanding Rupee 5: is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))
+62: ZF Bottom Freestanding Rupee 6: is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))
+63: ZF Bottom Freestanding Rupee 7: is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))
+64: ZF Bottom Freestanding Rupee 8: is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))
+65: ZF Bottom Freestanding Rupee 9: is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))
+66: ZF Bottom Freestanding Rupee 10: is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))
+67: ZF Bottom Freestanding Rupee 11: is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))
+68: ZF Bottom Freestanding Rupee 12: is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))
+69: ZF Bottom Freestanding Rupee 13: is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))
+70: ZF Bottom Freestanding Rupee 14: is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))
+71: ZF Bottom Freestanding Rupee 15: is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))
+72: ZF Bottom Freestanding Rupee 16: is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))
+73: ZF Bottom Freestanding Rupee 17: is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))
+74: ZF Bottom Freestanding Rupee 18: is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))
+DMT Cow Grotto
+75: DMT Cow Grotto Rupee: True
+76: DMT Cow Grotto Recovery Heart 1: True
+77: DMT Cow Grotto Recovery Heart 2: True
+78: DMT Cow Grotto Recovery Heart 3: True
+79: DMT Cow Grotto Recovery Heart 4: True
+GV Octorok Grotto
+80: GV Octorok Grotto Red Rupee: True
+81: GV Octorok Grotto Blue Rupee 1: True
+82: GV Octorok Grotto Blue Rupee 2: True
+83: GV Octorok Grotto Blue Rupee 3: True
+84: GV Octorok Grotto Green Rupee 1: True
+85: GV Octorok Grotto Green Rupee 2: True
+86: GV Octorok Grotto Green Rupee 3: True
+87: GV Octorok Grotto Green Rupee 4: True
+Deku Tree Lobby
+88: Deku Tree Walk the Plank Recovery Heart: True
+89: Deku Tree Leap Recovery Heart: is_adult or can_child_attack or Nuts
+Deku Tree Boss Room
+90: Deku Tree 2-3-1 Scrubs Recovery Heart 1: True
+91: Deku Tree 2-3-1 Scrubs Recovery Heart 2: True
+92: Deku Tree 2-3-1 Scrubs Recovery Heart 3: True
+Dodongos Cavern Lobby
+93: Dodongos Cavern Lizalfos Hidden Recovery Heart: True
+Dodongos Cavern Climb
+94: Dodongos Cavern Lizalfos Recovery Heart 1: True
+95: Dodongos Cavern Lizalfos Recovery Heart 2: True
+96: Dodongos Cavern Behind Block: True
+Forest Temple Well
+97: Forest Temple Drain Recovery Heart 1: True
+98: Forest Temple Drain Recovery Heart 2: True
+Forest Temple Outside Upper Ledge
+99: Forest Temple Courtyard Recovery Heart 1: True
+100: Forest Temple Courtyard Recovery Heart 2: True
+Fire Temple Big Lava Room
+101: Fire Temple Elevator Room Recovery Heart 1: (Small_Key_Fire_Temple, 3)
+102: Fire Temple Elevator Room Recovery Heart 2: (Small_Key_Fire_Temple, 3)
+103: Fire Temple Elevator Room Recovery Heart 3: (Small_Key_Fire_Temple, 3)
+Fire Temple Middle
+104: Fire Temple Eye Switch Room Recovery Heart 1: (Small_Key_Fire_Temple, 5)
+105: Fire Temple Eye Switch Room Recovery Heart 2: (Small_Key_Fire_Temple, 5)
+106: Fire Temple Eye Switch Room Recovery Heart 3: (Small_Key_Fire_Temple, 5)
+107: Fire Temple Moving Fire Room Recovery Heart 1: (Small_Key_Fire_Temple, 6)
+108: Fire Temple Moving Fire Room Recovery Heart 2: (Small_Key_Fire_Temple, 6)
+109: Fire Temple Moving Fire Room Recovery Heart 3: (Small_Key_Fire_Temple, 6)
+Water Temple Dark Link Region
+110: Water Temple River Recovery Heart 1: can_play(Song_of_Time)
+111: Water Temple River Recovery Heart 2: can_play(Song_of_Time)
+112: Water Temple River Recovery Heart 3: can_play(Song_of_Time)
+113: Water Temple River Recovery Heart 4: can_play(Song_of_Time)
+Shadow Temple Huge Pit
+114: Shadow Temple Invisible Blades Recovery Heart 1: can_play(Song_of_Time)
+115: Shadow Temple Invisible Blades Recovery Heart 2: can_play(Song_of_Time)
+Shadow Temple Boat
+116: Shadow Temple Before Boat Freestanding Recovery Heart 1: can_use(Distant_Scarecrow) and (Small_Key_Shadow_Temple, 4)
+117: Shadow Temple Before Boat Freestanding Recovery Heart 2: can_use(Distant_Scarecrow) and (Small_Key_Shadow_Temple, 4)
+Shadow Temple Beyond Boat
+118: Shadow Temple After Boat Freestanding Recovery Heart Upper 1: can_use(Distant_Scarecrow)
+119: Shadow Temple After Boat Freestanding Recovery Heart Upper 2: can_use(Distant_Scarecrow)
+120: Shadow Temple After Boat Freestanding Recovery Heart Lower: can_play(Song_of_Time) or can_use(Distant_Scarecrow)
+Spirit Temple Beyond Final Locked Door
+121: Spirit Temple Shifting Wall Recovery Heart 1: Progressive_Hookshot
+122: Spirit Temple Shifting Wall Recovery Heart 2: Progressive_Hookshot
+Ganons Castle Fire Trial
+123: Ganons Castle Fire Trial Recovery Heart: True
+Ganons Castle Shadow Trial
+124: Ganons Castle Shadow Trial Recovery Heart 1: can_use(Lens_of_Truth) and ( can_use(Fire_Arrows) or (can_use(Longshot) and (Hover_Boots or can_use(Dins_Fire))))
+125: Ganons Castle Shadow Trial Recovery Heart 2: can_use(Lens_of_Truth) and ( can_use(Fire_Arrows) or (can_use(Longshot) and (Hover_Boots or can_use(Dins_Fire))))
+126: Ganons Castle Shadow Trial Recovery Heart 3: can_use(Lens_of_Truth) and ( can_use(Fire_Arrows) or (can_use(Longshot) and (Hover_Boots or can_use(Dins_Fire))))
+Ganons Castle Spirit Trial
+127: Ganons Castle Spirit Trial Recovery Heart: True
+Bottom of the Well Main Area
+128: Bottom of the Well Coffin Recovery Heart 1: Sticks or can_use(Dins_Fire)
+129: Bottom of the Well Coffin Recovery Heart 2: Sticks or can_use(Dins_Fire)
+130: Bottom of the Well Center Room Rupee 1: logic_lens_botw or can_use(Lens_of_Truth)
+131: Bottom of the Well Center Room Rupee 2: logic_lens_botw or can_use(Lens_of_Truth)
+132: Bottom of the Well Center Room Rupee 3: logic_lens_botw or can_use(Lens_of_Truth)
+133: Bottom of the Well Center Room Rupee 4: logic_lens_botw or can_use(Lens_of_Truth)
+134: Bottom of the Well Center Room Rupee 5: logic_lens_botw or can_use(Lens_of_Truth)
+Gerudo Training Ground Lobby
+135: Gerudo Training Ground Beamos Recovery Heart 1: True
+136: Gerudo Training Ground Beamos Recovery Heart 2: True
+Ice Cavern
+137: Ice Cavern Freestanding Blue Rupee: Blue_Fire
+138: Ice Cavern Map Room Recovery Heart 1: is_adult
+139: Ice Cavern Map Room Recovery Heart 2: is_adult
+140: Ice Cavern Map Room Recovery Heart 3: is_adult
+141: Ice Cavern Block Room Red Rupee 1: (is_adult and can_play(Song_of_Time)) or (is_child and can_use(Boomerang))
+142: Ice Cavern Block Room Red Rupee 2: (is_adult and can_play(Song_of_Time)) or (is_child and can_use(Boomerang))
+143: Ice Cavern Block Room Red Rupee 3: (is_adult and can_play(Song_of_Time)) or (is_child and can_use(Boomerang))
