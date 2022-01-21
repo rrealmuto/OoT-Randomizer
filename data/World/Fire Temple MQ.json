@@ -45,7 +45,10 @@
             "Fire Temple MQ GS Big Lava Room Open Door": "True",
             "Fairy Pot": "
                 has_bottle and has_fire_source and (Bow or logic_fire_mq_bk_chest) and
-                (can_use(Hookshot) or logic_fire_song_of_time)"
+                (can_use(Hookshot) or logic_fire_song_of_time)",
+            "Fire Temple MQ Elevator Room Recovery Heart 1" : "(Small_Key_Fire_Temple, 1)",
+            "Fire Temple MQ Elevator Room Recovery Heart 2" : "(Small_Key_Fire_Temple, 1)",
+            "Fire Temple MQ Elevator Room Recovery Heart 3" : "(Small_Key_Fire_Temple, 1)"
 
         },
         "exits": {

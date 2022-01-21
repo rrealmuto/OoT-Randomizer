@@ -63,6 +63,7 @@
         },
         "locations": {
             "Ganons Castle MQ Water Trial Chest": "Blue_Fire",
+            "Ganons Castle MQ Water Trial Recovery Heart": "Blue_Fire",
             "Blue Fire": "has_bottle"
         }
     },
@@ -124,7 +125,9 @@
                 (Progressive_Hookshot or logic_light_trial_mq)"
         },
         "locations": {
-            "Ganons Castle MQ Light Trial Lullaby Chest": "can_play(Zeldas_Lullaby)"
+            "Ganons Castle MQ Light Trial Lullaby Chest": "can_play(Zeldas_Lullaby)",
+            "Ganons Castle MQ Light Trial Recovery Heart 1": "(Small_Key_Ganons_Castle, 3) and (Progressive_Hookshot or logic_light_trial_mq)",
+            "Ganons Castle MQ Light Trial Recovery Heart 2": "(Small_Key_Ganons_Castle, 3) and (Progressive_Hookshot or logic_light_trial_mq)"
         }
     }
 ]

@@ -89,6 +89,9 @@
                     (can_play(Song_of_Time) or (can_use(Hover_Boots) and logic_forest_door_frame)))",
             "Forest Temple MQ GS Well": "
                 (can_use(Iron_Boots) and can_use(Hookshot)) or can_use(Bow) or can_use(Slingshot)",
+            "Forest Temple MQ Well Recovery Heart 1": "can_use(Iron_Boots) or can_use(Bow) or can_use(Slingshot)",
+            "Forest Temple MQ Well Recovery Heart 2": "can_use(Iron_Boots) or can_use(Bow) or can_use(Slingshot)",
+            "Forest Temple MQ Well Recovery Heart 3": "can_use(Iron_Boots) or can_use(Bow) or can_use(Slingshot)",
             "Deku Baba Sticks": "is_adult or Kokiri_Sword or Boomerang",
             "Deku Baba Nuts": "
                 is_adult or Slingshot or Sticks or 
@@ -106,7 +109,10 @@
         "region_name": "Forest Temple Outdoors Top Ledges",
         "dungeon": "Forest Temple",
         "locations": {
-            "Forest Temple MQ Raised Island Courtyard Upper Chest": "True"
+            "Forest Temple MQ Raised Island Courtyard Upper Chest": "True",
+            "Forest Temple MQ Courtyard Recovery Heart 1" : "True",
+            "Forest Temple MQ Courtyard Recovery Heart 2" : "True",
+            "Forest Temple MQ Courtyard Recovery Heart 3" : "True"
         },
         "exits": {
             "Forest Temple NE Outdoors": "True",

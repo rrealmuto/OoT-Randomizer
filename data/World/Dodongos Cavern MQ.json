@@ -16,6 +16,12 @@
             "Dodongos Cavern MQ Map Chest": "can_blast_or_smash or Progressive_Strength_Upgrade",
             "Dodongos Cavern MQ Deku Scrub Lobby Rear": "can_stun_deku",
             "Dodongos Cavern MQ Deku Scrub Lobby Front": "can_stun_deku",
+            "Dodongos Cavern Lizalfos Hidden Recovery Heart" : "
+                is_adult or 
+                    (can_use(Slingshot) and
+                        (can_use(explosives) or 
+                        Progressive_Strength_Upgrade or
+                        can_use(Dins_Fire)))",
             "Dodongos Cavern Gossip Stone": "here(can_blast_or_smash or Progressive_Strength_Upgrade)",
             "Gossip Stone Fairy": "
                 (can_blast_or_smash or Progressive_Strength_Upgrade) and
@@ -81,7 +87,8 @@
             "Dodongos Cavern MQ GS Scrub Room": "
                 (here(can_use(Bow)) or Progressive_Strength_Upgrade or
                     can_use(Dins_Fire) or has_explosives) and
-                (can_use(Hookshot) or can_use(Boomerang))"
+                (can_use(Hookshot) or can_use(Boomerang))",
+            "Dodongos Cavern MQ Block Room Recovery Heart": "True"
         },
         "exits": {
             "Dodongos Cavern Lower Right Side": "True"
