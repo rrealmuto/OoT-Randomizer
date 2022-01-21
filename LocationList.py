@@ -515,6 +515,7 @@ location_table = OrderedDict([
     ("Dodongos Cavern End of Bridge Chest",                          ("Chest",        0x01,  0x0A, None,                        'Deku Shield',                           ("Dodongo's Cavern", "Vanilla",))),
     ("Dodongos Cavern Lizalfos Recovery Heart 1",              ("Collectable",   0x01,  0x19, ([0x1F560A8+14],[0x19]),                        'Recovery Heart',                        ("Dodongo's Cavern", "Vanilla", "Freestanding",))),
     ("Dodongos Cavern Lizalfos Recovery Heart 2",              ("Collectable",   0x01,  0x1A, ([0x1F560B8+14],[0x1A]),                        'Recovery Heart',                        ("Dodongo's Cavern", "Vanilla", "Freestanding",))),
+    
     ("Dodongos Cavern Behind Block",                           ("Collectable",   0x01,  0x1B, ([0x1F89130+14],[0x1B]),                        'Recovery Heart',                        ("Dodongo's Cavern", "Vanilla", "Freestanding",))),
     ("Dodongos Cavern Deku Scrub Side Room Near Dodongos",           ("NPC",          0x01,  0x31, None,                        'Buy Deku Stick (1)',                    ("Dodongo's Cavern", "Vanilla", "Deku Scrub",))),
     ("Dodongos Cavern Deku Scrub Lobby",                             ("NPC",          0x01,  0x34, None,                        'Buy Deku Shield',                       ("Dodongo's Cavern", "Vanilla", "Deku Scrub",))),
@@ -543,7 +544,7 @@ location_table = OrderedDict([
     ("Dodongos Cavern MQ GS Song of Time Block Room",                ("GS Token",     0x01,  0x08, None,                        'Gold Skulltula Token',                  ("Dodongo's Cavern", "Master Quest", "Skulltulas",))),
     ("Dodongos Cavern MQ GS Back Area",                              ("GS Token",     0x01,  0x01, None,                        'Gold Skulltula Token',                  ("Dodongo's Cavern", "Master Quest", "Skulltulas",))),
     # Dodongo's Cavern shared
-    ("Dodongos Cavern Lizalfos Hidden Recovery Heart",               ("Collectable",   0x01,  0x18, None,                       'Recovery Heart',                        ("Dodongo's Cavern", "Vanilla", "Master Quest" "Freestanding",))),
+    ("Dodongos Cavern Lizalfos Hidden Recovery Heart",               ("Collectable",   0x01,  0x18, None,                       'Recovery Heart',                        ("Dodongo's Cavern", "Vanilla", "Master Quest", "Freestanding",))),
     ("Dodongos Cavern Boss Room Chest",                              ("Chest",        0x12,  0x00, None,                        'Bombs (5)',                             ("Dodongo's Cavern", "Vanilla", "Master Quest",))),
     ("Dodongos Cavern King Dodongo Heart",                           ("BossHeart",    0x12,  0x4F, None,                        'Heart Container',                       ("Dodongo's Cavern", "Vanilla", "Master Quest",))),
 
