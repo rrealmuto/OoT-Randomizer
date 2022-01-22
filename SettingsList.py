@@ -2797,7 +2797,7 @@ setting_infos = [
     ),
     Checkbutton(
         name           = 'shuffle_freestanding_items',
-        gui_text       = 'Shuffle Rupees/Recovery Hearts',
+        gui_text       = 'Shuffle Rupees & Recovery Hearts',
         gui_tooltip    = '''\
             Shuffles freestanding rupees and recovery hearts.
         ''',

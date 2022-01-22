@@ -240,10 +240,10 @@ exit_func:
 rupee_draw_hook:
 ;push things on the stack
 	addiu sp, sp, -0x80
-        sw	ra, 0x10(sp)
+    sw	ra, 0x10(sp)
 	sw	v0, 0x14(sp)
 	sw	v1, 0x18(sp)
-        sw	a0, 0x1C(sp)
+    sw	a0, 0x1C(sp)
 	sw	a1, 0x20(sp) 
 	sw	a2, 0x24(sp)
 	sw	a3, 0x28(sp)
@@ -255,13 +255,13 @@ rupee_draw_hook:
 	nop
 ;pop things off the stack
 ;put our return value somewhere
-	bgtz	v0, @return_to_func
+	bgtz	v0, @return
 	nop
 @rupee_draw_orig:
 	lw	ra, 0x10(sp)
 	lw	v0, 0x14(sp)
 	lw	v1, 0x18(sp)
-        lw	a0, 0x1C(sp)
+    lw	a0, 0x1C(sp)
 	lw	a1, 0x20(sp) 
 	lw	a2, 0x24(sp)
 	lw	a3, 0x28(sp)
@@ -270,10 +270,11 @@ rupee_draw_hook:
 	lw	at, 0x34(sp)
 	jal	0x80013150
 	nop
+@return:
 	lw	ra, 0x10(sp)
 	lw	v0, 0x14(sp)
 	lw	v1, 0x18(sp)
-        lw	a0, 0x1C(sp)
+    lw	a0, 0x1C(sp)
 	lw	a1, 0x20(sp) 
 	lw	a2, 0x24(sp)
 	lw	a3, 0x28(sp)
@@ -281,7 +282,7 @@ rupee_draw_hook:
 	lw	s1, 0x30(sp)
 	lw	at, 0x34(sp)
 	jr	ra
-        addiu	sp, sp, 0x80
+    addiu	sp, sp, 0x80
 
 recovery_heart_draw_hook:
 ;push things on the stack
@@ -307,7 +308,7 @@ recovery_heart_draw_hook:
 	lw	ra, 0x10(sp)
 	lw	v0, 0x14(sp)
 	lw	v1, 0x18(sp)
-        lw	a0, 0x1C(sp)
+    lw	a0, 0x1C(sp)
 	lw	a1, 0x20(sp) 
 	lw	a2, 0x24(sp)
 	lw	a3, 0x28(sp)
@@ -322,7 +323,7 @@ recovery_heart_draw_hook:
 	lw	ra, 0x10(sp)
 	lw	v0, 0x14(sp)
 	lw	v1, 0x18(sp)
-        lw	a0, 0x1C(sp)
+    lw	a0, 0x1C(sp)
 	lw	a1, 0x20(sp) 
 	lw	a2, 0x24(sp)
 	lw	a3, 0x28(sp)
