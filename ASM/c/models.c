@@ -105,9 +105,13 @@ float scale_factor(int8_t graphic_id, z64_actor_t *actor, float base_scale) {
 
 void draw_model(model_t model, z64_actor_t *actor, z64_game_t *game, float base_scale) {
     loaded_object_t *object = get_object(model.object_id);
-    set_object_segment(object);
-    scale_top_matrix(scale_factor(model.graphic_id, actor, base_scale));
-    draw_model_low_level(model.graphic_id - 1, actor, game);
+    if(object != NULL)
+    {
+        set_object_segment(object);
+        scale_top_matrix(scale_factor(model.graphic_id, actor, base_scale));
+        draw_model_low_level(model.graphic_id - 1, actor, game);
+    }
+    
 }
 
 void models_init() {
