@@ -1465,20 +1465,14 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     if world.settings.shuffle_freestanding_items:
     # Get actor_override locations
         actor_override_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'ActorOverride' ]
-        for location in actor_override_locations:
-            addresses = location.address
-            patch = location.address2
-            if addresses is not None and patch is not None:
-                for address in addresses:
-                    rom.write_bytes(address, patch)
         freestanding_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and 'Freestanding' in location.filter_tags]
-        for location in freestanding_locations:
-            logger.info(location)
-            addresses = location.address
-            patch = location.address2
-            if addresses is not None and patch is not None:
-                for address in addresses:
-                    rom.write_bytes(address, patch)
+        for location in actor_override_locations + freestanding_locations:
+                addresses = location.address
+                patch = location.address2
+                if addresses is not None and patch is not None:
+                    for address in addresses:
+                        rom.write_bytes(address, patch)
+
 
     # Write item overrides
     override_table = get_override_table(world)
