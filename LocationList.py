@@ -75,7 +75,7 @@ location_table = OrderedDict([
     ("KF Top of Sarias Heart 1",                                     ("Collectable", 0x55, 0x1C, None,                          'Recovery Heart', ("Kokiri Forest", "Forest", "Freestanding"))),
     ("KF Top of Sarias Heart 2",                                     ("Collectable", 0x55, 0x1E, None,                          'Recovery Heart', ("Kokiri Forest", "Forest", "Freestanding"))),
     ("KF Top of Sarias Heart 3",                                     ("Collectable", 0x55, 0x1D, None,                          'Recovery Heart', ("Kokiri Forest", "Forest", "Freestanding"))),
-    ("KF Bean Platform Rupee",                                       ("ActorOverride", 0x55, 0x1F, ([0x020816A0], [0x00, 0x15, 0x05, 0x18, 0x00, 0xF0, 0xFD, 0xDC, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1F, 0x06]), 'Rupees (20)', ("Kokiri Forest", "Forest",))),
+    ("KF Bean Platform Rupee",                                       ("ActorOverride", 0x55, 0x1F, ([0x020816A0, 0x2081910], [0x00, 0x15, 0x05, 0x18, 0x00, 0xF0, 0xFD, 0xDC, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1F, 0x06]), 'Rupees (20)', ("Kokiri Forest", "Forest",))),
     ("KF Near Ramp Green Rupee 1",                                   ("Collectable", 0x55, 0x1B, ([0x20810A4 + 14],[0x1B]),     'Rupee (1)',      ("Kokiri Forest", "Forest", "Freestanding"))),
     ("KF Near Ramp Green Rupee 2",                                   ("Collectable", 0x55, 0x1A, ([0x20810B4 + 14],[0x1A]),     'Rupee (1)',      ("Kokiri Forest", "Forest", "Freestanding"))),
     ("KF Near Midos Green Rupee 1",                                  ("Collectable", 0x55, 0x19, ([0x20810C4 + 14],[0x19]),     'Rupee (1)',      ("Kokiri Forest", "Forest", "Freestanding"))),
