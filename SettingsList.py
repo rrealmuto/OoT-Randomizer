@@ -2764,18 +2764,29 @@ setting_infos = [
         },
         shared         = True,
     ),
-    Checkbutton(
-        name           = 'shuffle_freestanding_items',
-        gui_text       = 'Shuffle Rupees & Recovery Hearts',
+    Combobox(
+        name = 'shuffle_freestanding_items',
+        gui_text = 'Rupee & Heart Shuffle',
+        default = 'off',
+        choices = {
+            'off': 'Off',
+            'all': 'All',
+            'overworld' : 'Overworld Only',
+            'dungeons' : 'Dungeons Only'
+        },
         gui_tooltip    = '''\
             Shuffles freestanding rupees and recovery hearts.
+
+            Off: No freestanding rupees/recovery hearts are shuffled.
+            All: All Visible freestanding rupees/recovery hearts are shuffled.
+            Overworld Only: Freestanding rupees/recovery hearts in the overworld are shuffled.
+            Dungeons Only: Freestanding rupees/recovery hearts in dungeons are shuffled.
         ''',
-        default        = False,
-        shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
         },
     ),
+    
     Checkbutton(
         name           = 'shuffle_cows',
         gui_text       = 'Shuffle Cows',

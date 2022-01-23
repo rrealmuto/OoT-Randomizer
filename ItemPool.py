@@ -2,6 +2,7 @@ from collections import namedtuple
 import logging
 import random
 from itertools import chain
+from Location import DisableType
 from Utils import random_choices
 from Item import ItemFactory
 from ItemList import item_table
@@ -880,16 +881,27 @@ def get_pool_core(world):
 
     actor_override_locations = [location for location in world.get_locations() if location.type == 'ActorOverride']
     freestanding_locations = [location for location in world.get_locations() if (location.type == 'Collectable' and 'Freestanding' in location.filter_tags) ]
-    if world.settings.shuffle_freestanding_items:        
-        for location in actor_override_locations:
+    if world.settings.shuffle_freestanding_items == 'all':        
+        for location in actor_override_locations + freestanding_locations:
             pool.append(location.vanilla_item)
-        for location in freestanding_locations:
-            pool.append(location.vanilla_item)
+    elif world.settings.shuffle_freestanding_items == 'dungeons':
+        for location in actor_override_locations + freestanding_locations:
+            if location.scene <= 0x0B:
+                pool.append(location.vanilla_item)
+            else:
+                placed_items[location.name] = location.vanilla_item
+                location.disabled = DisableType.DISABLED
+    elif world.settings.shuffle_freestanding_items == 'overworld':
+         for location in actor_override_locations + freestanding_locations:
+            if location.scene <= 0x0B:
+                placed_items[location.name] = location.vanilla_item
+                location.disabled = DisableType.DISABLED
+            else:
+                pool.append(location.vanilla_item)
     else:
-        for location in actor_override_locations:
+        for location in actor_override_locations + freestanding_locations:
             placed_items[location.name] = location.vanilla_item
-        for location in freestanding_locations:
-            placed_items[location.name] = location.vanilla_item
+            location.disabled = DisableType.DISABLED
 
     if world.dungeon_mq['Deku Tree']:
         skulltula_locations_final = skulltula_locations + [
