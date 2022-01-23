@@ -46,15 +46,22 @@
             "Fairy Pot": "
                 has_bottle and has_fire_source and (Bow or logic_fire_mq_bk_chest) and
                 (can_use(Hookshot) or logic_fire_song_of_time)",
-            "Fire Temple MQ Elevator Room Recovery Heart 1" : "(Small_Key_Fire_Temple, 1)",
-            "Fire Temple MQ Elevator Room Recovery Heart 2" : "(Small_Key_Fire_Temple, 1)",
-            "Fire Temple MQ Elevator Room Recovery Heart 3" : "(Small_Key_Fire_Temple, 1)"
 
         },
         "exits": {
-            "Fire Lower Maze": "
-                can_use(Goron_Tunic) and (Small_Key_Fire_Temple, 2) and
-                (has_fire_source or (logic_fire_mq_climb and Hover_Boots))"
+            "Fire Elevator Room": "can_use(Goron_Tunic) and (Small_Key_Fire_Temple, 2)"
+        }
+    },
+    {
+        "region_name": "Fire Elevator Room",
+        "dungeon": "Fire Temple",
+        "locations": {
+            "Fire Temple MQ Elevator Room Recovery Heart 1" : "True",
+            "Fire Temple MQ Elevator Room Recovery Heart 2" : "True",
+            "Fire Temple MQ Elevator Room Recovery Heart 3" : "True"
+        },
+        "exits": {
+            "Fire Lower Maze": "(has_fire_source or (logic_fire_mq_climb and Hover_Boots))"
         }
     },
     {
