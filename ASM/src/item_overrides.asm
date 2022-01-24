@@ -287,10 +287,10 @@ rupee_draw_hook:
 recovery_heart_draw_hook:
 ;push things on the stack
 	addiu sp, sp, -0x80
-        sw	ra, 0x10(sp)
+    sw	ra, 0x10(sp)
 	sw	v0, 0x14(sp)
 	sw	v1, 0x18(sp)
-        sw	a0, 0x1C(sp)
+    sw	a0, 0x1C(sp)
 	sw	a1, 0x20(sp) 
 	sw	a2, 0x24(sp)
 	sw	a3, 0x28(sp)
