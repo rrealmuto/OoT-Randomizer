@@ -20,6 +20,7 @@ typedef struct {
 } loaded_object_t;
 
 extern uint32_t EXTENDED_OBJECT_TABLE;
+extern uint8_t collectible_mutex;
 
 loaded_object_t object_slots[slot_count] = { 0 };
 
@@ -146,12 +147,13 @@ void lookup_model(model_t *model, z64_actor_t *actor, z64_game_t *game, uint16_t
 
 
 bool collectible_draw(z64_actor_t *actor, z64_game_t *game) {
+    EnItem00* pItem = (EnItem00*)actor;
     model_t model = {
         .object_id = 0x0000,
         .graphic_id = 0x00,
     };
     lookup_model(&model, actor, game, 0);
-    if(model.object_id != 0x0000)
+    if(model.object_id != 0x0000 && (!(z64_file.scene_flags[z64_game.scene_index].unk_00_ & (1 << pItem->collectibleFlag)) || collectible_mutex))
     {
         EnItem00* this = (EnItem00*)actor;
         if(this->actionFunc != Collectible_WaitForMessageBox)

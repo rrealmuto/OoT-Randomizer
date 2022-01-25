@@ -921,6 +921,7 @@
             "Market 10 Big Poes": "
                 is_adult and 
                 (Big_Poe or (Bottle_with_Big_Poe, big_poe_count))",
+            "Market Guard House Crate Rupee" : "is_child",
             "Market GS Guard House": "is_child"
         },
         "exits": {

@@ -3,6 +3,7 @@
 #include "icetrap.h"
 #include "item_table.h"
 #include "util.h"
+#include "stdbool.h"
 #include "z64.h"
 
 extern uint8_t OCARINAS_SHUFFLED;
@@ -412,7 +413,7 @@ void Collectible_WaitForMessageBox(EnItem00 *this, z64_game_t *game)
 	if (z64_MessageGetState(((uint8_t *)(&z64_game)) + 0x20D8) == 0)
 	{
 		//Make sure link was frozen for the minimum amount of time
-		if (this->unk_15A == 0)
+		if (this->timeToLive == 0)
 		{
 			collectible_mutex = 0; //release the mutex
 			//Kill the actor
@@ -425,6 +426,36 @@ void Collectible_WaitForMessageBox(EnItem00 *this, z64_game_t *game)
 	}
 }
 
+bool has_collectible_been_collected(EnItem00* item00)
+{
+	return ((z64_file.scene_flags[z64_game.scene_index].unk_00_ & (1 << item00->collectibleFlag)) > 0);
+}
+
+bool should_override_collectible(EnItem00* item00)
+{
+	override_t override = lookup_override(item00, z64_game.scene_index, 0);
+	if (override.key.all == 0 || has_collectible_been_collected(item00))
+	{
+		return 0;
+	}
+	return 1;
+}
+
+//Hack for keeping freestanding overrides alive when they spawn from crates/pots.
+void Item00_KeepAlive(EnItem00* item00)
+{
+	if(should_override_collectible(item00))
+	{
+		if(item00->unk_156)
+			item00->timeToLive = 0xFF;
+	}
+	else
+	{
+		if(item00->timeToLive > 0)
+			item00->timeToLive--;
+	}
+}
+
 //Override hack for freestanding collectibles (green, blue, red rupees, recovery hearts)
 uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_actor)
 {
@@ -433,12 +464,15 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
 	
 	override_t override = lookup_override(from_actor, z64_game.scene_index, 0);
 
+
 	//Check if we should override the item. We have logic in the randomizer to not include excluded items in the override table.
-	if (override.key.all == 0)
+	if (override.key.all == 0 || has_collectible_been_collected(pItem))
 	{
 		z64_GiveItem(&z64_game, items[item]); //Give the regular item (this is what is normally called by the non-hacked function)
 		return 0;
 	}
+
+
 
 	if (!collectible_mutex) //Check our mutex so that only one collectible can run at a time (if 2 run on the same frame you lose the message).
 	{
@@ -483,7 +517,7 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
 		z64_DisplayTextbox(&z64_game, item_row->text_id, 0);
 
 		//Set up
-		pItem->unk_15A = 15; //unk_15A is a frame timer that is decremented each frame by the main actor code.
+		pItem->timeToLive = 15; //unk_15A is a frame timer that is decremented each frame by the main actor code.
 		pItem->unk_154 = 35; //not quite sure but this is what the vanilla game does.
 		pItem->getItemId = 0;
 		z64_link.common.frozen = 10;					   //freeze link (like when picking up a skull)

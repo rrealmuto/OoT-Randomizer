@@ -17,6 +17,10 @@
             "Jabu Jabus Belly GS Lobby Basement Upper": "can_use(Boomerang) or can_use(Hookshot)",
             "Jabu Jabus Belly Deku Scrub": "
                 can_dive or is_child or logic_jabu_alcove_jump_dive or can_use(Iron_Boots)",
+            "Jabu Jabus Belly Breakable Pot 1" : "can_use(Boomerang)",
+            "Jabu Jabus Belly Breakable Pot 2" : "can_use(Boomerang)",
+            "Jabu Jabus Belly Breakable Pot 3" : "can_use(Boomerang)",
+            "Jabu Jabus Belly Breakable Pot 4" : "can_use(Boomerang)",
             "Fairy Pot": "has_bottle"
         },
         "exits": {

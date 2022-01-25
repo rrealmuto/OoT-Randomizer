@@ -1284,7 +1284,7 @@ typedef struct EnItem00 {
 	uint16_t unk_154;
 	uint16_t unk_156;
 	uint16_t unk_158;
-	uint16_t unk_15A;
+	uint16_t timeToLive; //0x15A
 	float scale;
 } EnItem00;
 

@@ -14,6 +14,7 @@
     "AUDIO_THREAD_INFO_MEM_START": "034831B0",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "AUDIO_THREAD_MEM_START": "03495250",
 >>>>>>> a653aa5c (Add shuffle freestanding items)
 =======
@@ -22,6 +23,9 @@
 =======
     "AUDIO_THREAD_MEM_START": "03495290",
 >>>>>>> fbe930d5 (testing ASM to use OG flags instead of overriding)
+=======
+    "AUDIO_THREAD_MEM_START": "034953E0",
+>>>>>>> ad6c7fb7 (Update asm/c to allow use of existing collectible flags for overrides. This allows us to do the overrides without having to update the actors in rom in most cases)
     "AUTO_TRACKER_CONTEXT": "03480CD0",
     "AUTO_TRACKER_VERSION": "03480CD0",
     "BOMBCHUS_IN_LOGIC": "03480CAC",
@@ -71,6 +75,7 @@
     "CHAIN_HBA_REWARDS": "03483B28",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "CHEST_SIZE_MATCH_CONTENTS": "0348BC8C",
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348BC90",
     "COMPLETE_MASK_QUEST": "0348BCDD",
@@ -85,6 +90,11 @@
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348BCC8",
     "COMPLETE_MASK_QUEST": "0348BD15",
 >>>>>>> fbe930d5 (testing ASM to use OG flags instead of overriding)
+=======
+    "CHEST_SIZE_MATCH_CONTENTS": "0348BE14",
+    "CHEST_TEXTURE_MATCH_CONTENTS": "0348BE18",
+    "COMPLETE_MASK_QUEST": "0348BE65",
+>>>>>>> ad6c7fb7 (Update asm/c to allow use of existing collectible flags for overrides. This allows us to do the overrides without having to update the actors in rom in most cases)
     "COOP_CONTEXT": "03480020",
     "COOP_VERSION": "03480020",
     "COSMETIC_CONTEXT": "03480834",
@@ -92,6 +102,7 @@
     "CURRENT_GROTTO_ID": "03483056",
     "DEBUG_OFFSET": "03482A74",
     "DISABLE_TIMERS": "03480CCC",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -105,11 +116,15 @@
 =======
     "DPAD_TEXTURE": "0348F288",
 >>>>>>> fbe930d5 (testing ASM to use OG flags instead of overriding)
+=======
+    "DPAD_TEXTURE": "0348F3D8",
+>>>>>>> ad6c7fb7 (Update asm/c to allow use of existing collectible flags for overrides. This allows us to do the overrides without having to update the actors in rom in most cases)
     "DUNGEONS_SHUFFLED": "03480CCD",
     "EXTENDED_OBJECT_TABLE": "03480C8C",
     "EXTERN_DAMAGE_MULTIPLYER": "03482E85",
     "FAST_BUNNY_HOOD_ENABLED": "03480CCF",
     "FAST_CHESTS": "03480CC6",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -129,11 +144,15 @@
 =======
     "FONT_TEXTURE": "0348DDC0",
 >>>>>>> fbe930d5 (testing ASM to use OG flags instead of overriding)
+=======
+    "FONT_TEXTURE": "0348DF10",
+>>>>>>> ad6c7fb7 (Update asm/c to allow use of existing collectible flags for overrides. This allows us to do the overrides without having to update the actors in rom in most cases)
     "FREE_SCARECROW_ENABLED": "03480CBC",
-    "GANON_BOSS_KEY_CONDITION": "0348BCD8",
-    "GANON_BOSS_KEY_CONDITION_COUNT": "0348BCD6",
+    "GANON_BOSS_KEY_CONDITION": "0348BE28",
+    "GANON_BOSS_KEY_CONDITION_COUNT": "0348BE26",
     "GET_CHEST_OVERRIDE_WRAPPER": "034828EC",
     "GET_ITEM_TRIGGERED": "03481608",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     "GILDED_CHEST_BASE_TEXTURE": "03491A50",
@@ -147,6 +166,10 @@
     "GILDED_CHEST_BASE_TEXTURE": "03491A88",
     "GILDED_CHEST_FRONT_TEXTURE": "03490A88",
 >>>>>>> fbe930d5 (testing ASM to use OG flags instead of overriding)
+=======
+    "GILDED_CHEST_BASE_TEXTURE": "03491BD8",
+    "GILDED_CHEST_FRONT_TEXTURE": "03490BD8",
+>>>>>>> ad6c7fb7 (Update asm/c to allow use of existing collectible flags for overrides. This allows us to do the overrides without having to update the actors in rom in most cases)
     "GOSSIP_HINT_CONDITION": "03480CB8",
     "GROTTO_EXIT_LIST": "03483014",
     "GROTTO_LOAD_TABLE": "03482F90",
@@ -154,6 +177,7 @@
     "INCOMING_PLAYER": "03480026",
     "INITIAL_SAVE_DATA": "0348088C",
     "JABU_ELEVATOR_ENABLE": "03480CC4",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -167,10 +191,14 @@
 =======
     "KAKARIKO_WEATHER_FORECAST": "0348BD34",
 >>>>>>> fbe930d5 (testing ASM to use OG flags instead of overriding)
+=======
+    "KAKARIKO_WEATHER_FORECAST": "0348BE84",
+>>>>>>> ad6c7fb7 (Update asm/c to allow use of existing collectible flags for overrides. This allows us to do the overrides without having to update the actors in rom in most cases)
     "LACS_CONDITION": "03480CB4",
     "LACS_CONDITION_COUNT": "03480CC2",
     "MALON_GAVE_ICETRAP": "03483864",
     "MALON_TEXT_ID": "03480CCB",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -187,9 +215,13 @@
 =======
     "MAX_RUPEES": "0348BD17",
 >>>>>>> fbe930d5 (testing ASM to use OG flags instead of overriding)
+=======
+    "MAX_RUPEES": "0348BE67",
+>>>>>>> ad6c7fb7 (Update asm/c to allow use of existing collectible flags for overrides. This allows us to do the overrides without having to update the actors in rom in most cases)
     "MOVED_ADULT_KING_ZORA": "034831D4",
-    "NO_ESCAPE_SEQUENCE": "0348BCD4",
+    "NO_ESCAPE_SEQUENCE": "0348BE24",
     "OCARINAS_SHUFFLED": "03480CC5",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     "OPEN_KAKARIKO": "0348BCDE",
@@ -200,10 +232,14 @@
 =======
     "OPEN_KAKARIKO": "0348BD16",
 >>>>>>> fbe930d5 (testing ASM to use OG flags instead of overriding)
+=======
+    "OPEN_KAKARIKO": "0348BE66",
+>>>>>>> ad6c7fb7 (Update asm/c to allow use of existing collectible flags for overrides. This allows us to do the overrides without having to update the actors in rom in most cases)
     "OUTGOING_ITEM": "03480030",
     "OUTGOING_KEY": "0348002C",
     "OUTGOING_PLAYER": "03480032",
     "OVERWORLD_SHUFFLED": "03480CCE",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -217,6 +253,9 @@
 =======
     "PAYLOAD_END": "03495290",
 >>>>>>> fbe930d5 (testing ASM to use OG flags instead of overriding)
+=======
+    "PAYLOAD_END": "034953E0",
+>>>>>>> ad6c7fb7 (Update asm/c to allow use of existing collectible flags for overrides. This allows us to do the overrides without having to update the actors in rom in most cases)
     "PAYLOAD_START": "03480000",
     "PLAYED_WARP_SONG": "0348140C",
     "PLAYER_ID": "03480024",
@@ -319,19 +358,20 @@
     "triforce_sprite": "0348A708"
 =======
     "SHUFFLE_MEDIGORON": "03483C3C",
-    "SILVER_CHEST_BASE_TEXTURE": "03493288",
-    "SILVER_CHEST_FRONT_TEXTURE": "03492288",
-    "SKULL_CHEST_BASE_TEXTURE": "03494A88",
-    "SKULL_CHEST_FRONT_TEXTURE": "03493A88",
+    "SILVER_CHEST_BASE_TEXTURE": "034933D8",
+    "SILVER_CHEST_FRONT_TEXTURE": "034923D8",
+    "SKULL_CHEST_BASE_TEXTURE": "03494BD8",
+    "SKULL_CHEST_FRONT_TEXTURE": "03493BD8",
     "SONGS_AS_ITEMS": "03480CC8",
     "SOS_ITEM_GIVEN": "034816D4",
     "SPEED_MULTIPLIER": "03482934",
     "START_TWINROVA_FIGHT": "03483254",
     "TIME_TRAVEL_SAVED_EQUIPS": "03481C60",
-    "TRIFORCE_ICON_TEXTURE": "0348FA88",
+    "TRIFORCE_ICON_TEXTURE": "0348FBD8",
     "TWINROVA_ACTION_TIMER": "03483258",
     "WINDMILL_SONG_ID": "03480CC9",
     "WINDMILL_TEXT_ID": "03480CCA",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     "a_button": "0348BC68",
@@ -567,4 +607,82 @@
     "triforce_pieces_requied": "0348BCC2",
     "triforce_sprite": "0348ABB8"
 >>>>>>> fbe930d5 (testing ASM to use OG flags instead of overriding)
+=======
+    "a_button": "0348BDF0",
+    "a_note_b": "0348BDDC",
+    "a_note_font_glow_base": "0348BDC4",
+    "a_note_font_glow_max": "0348BDC0",
+    "a_note_g": "0348BDE0",
+    "a_note_glow_base": "0348BDCC",
+    "a_note_glow_max": "0348BDC8",
+    "a_note_r": "0348BDE4",
+    "active_item_action_id": "0348BE48",
+    "active_item_fast_chest": "0348BE38",
+    "active_item_graphic_id": "0348BE3C",
+    "active_item_object_id": "0348BE40",
+    "active_item_row": "0348BE4C",
+    "active_item_text_id": "0348BE44",
+    "active_override": "0348BE54",
+    "active_override_is_outgoing": "0348BE50",
+    "b_button": "0348BDEC",
+    "beating_dd": "0348BDF8",
+    "beating_no_dd": "0348BE00",
+    "c_button": "0348BDE8",
+    "c_note_b": "0348BDD0",
+    "c_note_font_glow_base": "0348BDB4",
+    "c_note_font_glow_max": "0348BDB0",
+    "c_note_g": "0348BDD4",
+    "c_note_glow_base": "0348BDBC",
+    "c_note_glow_max": "0348BDB8",
+    "c_note_r": "0348BDD8",
+    "cfg_file_select_hash": "0348BE20",
+    "cfg_item_overrides": "0348BECC",
+    "collectible_mutex": "0348BE34",
+    "collectible_override": "0348BE2C",
+    "defaultDDHeart": "0348BE04",
+    "defaultHeart": "0348BE0C",
+    "dpad_sprite": "0348AD18",
+    "dummy_actor": "0348BE5C",
+    "dungeon_count": "0348BD80",
+    "dungeons": "0348AB88",
+    "empty_dlist": "0348BD98",
+    "extern_ctxt": "0348AC24",
+    "font_sprite": "0348AD28",
+    "freecam_modes": "0348A8F0",
+    "hash_sprites": "0348BD8C",
+    "hash_symbols": "0348AC38",
+    "heap_next": "0348BE80",
+    "heart_sprite": "0348ACB8",
+    "icon_sprites": "0348AAB4",
+    "item_digit_sprite": "0348ACD8",
+    "item_overrides_count": "0348BE60",
+    "item_table": "0348ADA0",
+    "items": "0348BD94",
+    "items_sprite": "0348AD48",
+    "key_rupee_clock_sprite": "0348ACE8",
+    "last_fog_distance": "0348BD84",
+    "linkhead_skull_sprite": "0348ACC8",
+    "medal_colors": "0348AB74",
+    "medals_sprite": "0348AD58",
+    "normal_dd": "0348BDF4",
+    "normal_no_dd": "0348BDFC",
+    "num_to_bits": "0348AC78",
+    "object_slots": "0348DECC",
+    "pending_freezes": "0348BE64",
+    "pending_item_queue": "0348BEB4",
+    "quest_items_sprite": "0348AD38",
+    "rupee_colors": "0348AAC0",
+    "satisified_pending_frames": "0348BE35",
+    "scene_fog_distance": "0348BD88",
+    "setup_db": "0348AD78",
+    "song_note_sprite": "0348ACF8",
+    "stones_sprite": "0348AD68",
+    "text_cursor_border_base": "0348BDA4",
+    "text_cursor_border_max": "0348BDA0",
+    "text_cursor_inner_base": "0348BDAC",
+    "text_cursor_inner_max": "0348BDA8",
+    "triforce_hunt_enabled": "0348BE74",
+    "triforce_pieces_requied": "0348BE12",
+    "triforce_sprite": "0348AD08"
+>>>>>>> ad6c7fb7 (Update asm/c to allow use of existing collectible flags for overrides. This allows us to do the overrides without having to update the actors in rom in most cases)
 }

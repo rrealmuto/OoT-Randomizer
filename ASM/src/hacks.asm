@@ -218,6 +218,13 @@ Gameplay_InitSkybox:
 .orga 0xE2F093 :: .byte 0x34 ; Market Bombchu Bowling Bomb Bag
 .orga 0xEC9CE7 :: .byte 0x7A ; Deku Theater Mask of Truth
 
+; en_item00_update() hacks - 0x80012938
+; Hack to keep collectibles alive if we are overriding them
+.orga 0xA888BC; in Memory 0x8001295C
+    jal Item00_KeepAlive
+    nop
+    nop
+    LH V0, 0x014A (S0)
 
 ; Runs when player collides w/ Collectible (inside en_item00_update()) start of switch case at 0x80012CA4
 
