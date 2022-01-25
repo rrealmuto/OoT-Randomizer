@@ -254,7 +254,6 @@ Gameplay_InitSkybox:
 .orga 0xA88C34 ; In memory: 80012CD4)
 	j item_give_hook
 	or A2, S0, R0
-	
 
 ; Override Item_Give(ITEM_HEART)
 ; Replaces:
@@ -264,6 +263,18 @@ Gameplay_InitSkybox:
 .orga 0xA88C88 ; In memory: 0x80012D28
     j	item_give_hook
     or	A2, S0, R0 ;pass actor pointer to function
+
+; Override Stick Collectible
+.orga 0xA88C70 ; In memory: 0x80012D10
+    j   item_give_hook
+    or  A2, S0, R0
+    nop
+
+; Override Nut Collectible
+.orga 0xA88C7C ; In memory: 0x80012D1C
+    j   item_give_hook
+    or  A2, S0, R0
+    nop
 
 ; Runs when storing an incoming item to the player instance
 ; Replaces:
@@ -428,7 +439,7 @@ end_of_recovery_draw:
 ; Replaces:
 ;   jal     0x80013498 ; Collectable draw function
 .orga 0xA89048 ; In memory: 0x800130E8
-    jal     small_key_draw
+    jal     collectible_draw_other
 
 ; Replaces:
 ;   addiu   sp, sp, -0x48
