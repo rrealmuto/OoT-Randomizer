@@ -1,5 +1,8 @@
 {
+    "entrances": {
+        "Child Spawn -> KF Links House":               "KF Links House"
+    },
     "locations": {
-        "DMT Rock Red Rupee" : "Song of Time"
+        
     }
-  }
+}

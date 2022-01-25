@@ -185,6 +185,10 @@
     {
         "region_name": "KF House of Twins",
         "scene": "KF House of Twins",
+        "locations": {
+            "KF Twins House Pot 1" : "True",
+            "KF Twins House Pot 2" : "True"
+        },
         "exits": {
             "Kokiri Forest": "True"
         }
@@ -192,6 +196,10 @@
     {
         "region_name": "KF Know It All House",
         "scene": "KF Know it All House",
+        "locations": {
+            "KF Know-it-all Brothers House Pot 1" : "True",
+            "KF Know-it-all Brothers House Pot 2" : "True"
+        },
         "exits": {
             "Kokiri Forest": "True"
         }
@@ -1853,6 +1861,11 @@
             "ZD Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle",
             "Fish Group": "is_child and has_bottle",
+            "ZD Pot 1" : "True",
+            "ZD Pot 2" : "True",
+            "ZD Pot 3" : "True",
+            "ZD Pot 4" : "True",
+            "ZD Pot 5" : "True",
             "Stick Pot": "is_child",
             "Nut Pot": "True"
         },

@@ -2,7 +2,7 @@
 #define GET_ITEMS_H
 
 #include "z64.h"
-
+#include <stdbool.h>
 void item_overrides_init();
 void handle_pending_items();
 void push_delayed_item(uint8_t flag);
@@ -42,6 +42,7 @@ typedef struct {
 
 override_t lookup_override_by_key(override_key_t key);
 override_t lookup_override(z64_actor_t *actor, uint8_t scene, uint8_t item_id);
+bool should_override_collectible(EnItem00* this);
 void Collectible_WaitForMessageBox(EnItem00 *this, z64_game_t *game);
 
 #endif

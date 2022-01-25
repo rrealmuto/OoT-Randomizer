@@ -71,10 +71,12 @@ override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_
 	{
 		// Override heart pieces, keys, red, blue, green rupees, and recovery hearts
 		int collectable_type = actor->variable & 0xFF;
-		if (collectable_type != 0x06 && collectable_type != 0x11 && collectable_type != 0x03 && collectable_type != 2 && collectable_type != 0x01 && collectable_type != 0x00)
+		if(collectable_type == 0x12) //don't override fairies
+			return (override_key_t){.all=0};
+		/*if (collectable_type != 0x06 && collectable_type != 0x11 && collectable_type != 0x03 && collectable_type != 2 && collectable_type != 0x01 && collectable_type != 0x00 && collectable_type != 13)
 		{
 			return (override_key_t){.all = 0};
-		}
+		}*/
 
 		return (override_key_t){
 			.scene = scene,
@@ -393,15 +395,33 @@ void get_item(z64_actor_t *from_actor, z64_link_t *link, int8_t incoming_item_id
 #define GIVEITEM_RUPEE_BLUE 0x85
 #define GIVEITEM_RUPEE_RED 0x86
 #define GIVEITEM_HEART 0x83
+#define GIVEITEM_STICK 0x00
+#define GIVEITEM_NUT_5 140
 
 #define ITEM_RUPEE_GREEN 0x00
 #define ITEM_RUPEE_BLUE 0x01
 #define ITEM_RUPEE_RED 0x02
 #define ITEM_HEART 0x03
+#define ITEM_STICK 13
 
-uint8_t items[] = {GIVEITEM_RUPEE_GREEN, GIVEITEM_RUPEE_BLUE, GIVEITEM_RUPEE_RED, GIVEITEM_HEART};
 
-uint8_t collectible_mutex = 0;
+uint8_t items[] = {
+	GIVEITEM_RUPEE_GREEN, 
+	GIVEITEM_RUPEE_BLUE, 
+	GIVEITEM_RUPEE_RED, 
+	GIVEITEM_HEART,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	GIVEITEM_NUT_5,
+	GIVEITEM_STICK};
+
+EnItem00* collectible_mutex = 0;
 
 override_t collectible_override;
 
@@ -415,7 +435,7 @@ void Collectible_WaitForMessageBox(EnItem00 *this, z64_game_t *game)
 		//Make sure link was frozen for the minimum amount of time
 		if (this->timeToLive == 0)
 		{
-			collectible_mutex = 0; //release the mutex
+			collectible_mutex = NULL; //release the mutex
 			//Kill the actor
 			z64_ActorKill(&(this->actor));
 		}
@@ -476,7 +496,7 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
 
 	if (!collectible_mutex) //Check our mutex so that only one collectible can run at a time (if 2 run on the same frame you lose the message).
 	{
-		collectible_mutex = 1;
+		collectible_mutex = from_actor;
 		collectible_override = override;
 		//resolve upgrades and figure out what item to give.
 		uint16_t item_id = collectible_override.value.item_id;

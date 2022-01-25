@@ -112,7 +112,7 @@ location_table = OrderedDict([
     ("KF Know-it-all Brothers House Pot 1",                          ("Collectable",  0x26,  0x20, None,                        'Rupee (1)',                        ("Kokiri Forest", "Forest", "Pot"))),
     ("KF Know-it-all Brothers House Pot 2",                          ("Collectable",  0x26,  0x21, None,                        'Rupee (1)',                        ("Kokiri Forest", "Forest", "Pot"))),
     ("KF Twins House Pot 1",                                         ("Collectable",  0x27,  0x21, None,                        'Rupee (1)',                        ("Kokiri Forest", "Forest", "Pot"))),
-    ("KF Twins House Pot 2",                                         ("Collectable",  0x27,  0x22, None,                        'Rupee (5)',                        ("Kokiri Forest", "Forest", "Pot"))),
+    ("KF Twins House Pot 2",                                         ("Collectable",  0x27,  0x22, None,                        'Rupees (5)',                        ("Kokiri Forest", "Forest", "Pot"))),
 
 
 
@@ -353,10 +353,10 @@ location_table = OrderedDict([
     ("ZR Frogs Ocarina Game",                                        ("NPC",          0x54,  0x76, None,                        'Piece of Heart',                        ("Zora's River",))),
     ("ZR Near Open Grotto Freestanding PoH",                         ("Collectable",  0x54,  0x04, None,                        'Piece of Heart',                        ("Zora's River",))),
     ("ZR Near Domain Freestanding PoH",                              ("Collectable",  0x54,  0x0B, None,                        'Piece of Heart',                        ("Zora's River",))),
-    ("ZR Waterfall Rupee 1",                                      ("Collectable",  0x54,  0x20, None,   'Rupees (20)',                           ("Zora's River", "Freestanding"))),
-    ("ZR Waterfall Rupee 2",                                      ("Collectable",  0x54,  0x21, None,   'Rupees (20)',                           ("Zora's River", "Freestanding"))),
-    ("ZR Waterfall Rupee 3",                                      ("Collectable",  0x54,  0x22, None,   'Rupees (20)',                           ("Zora's River", "Freestanding"))),
-    ("ZR Waterfall Rupee 4",                                      ("Collectable",  0x54,  0x23, None,   'Rupees (20)',                           ("Zora's River", "Freestanding"))),
+    ("ZR Waterfall Rupee 1",                                         ("Collectable",  0x54,  0x20, None,   'Rupees (20)',                           ("Zora's River", "Freestanding"))),
+    ("ZR Waterfall Rupee 2",                                         ("Collectable",  0x54,  0x21, None,   'Rupees (20)',                           ("Zora's River", "Freestanding"))),
+    ("ZR Waterfall Rupee 3",                                         ("Collectable",  0x54,  0x22, None,   'Rupees (20)',                           ("Zora's River", "Freestanding"))),
+    ("ZR Waterfall Rupee 4",                                         ("Collectable",  0x54,  0x23, None,   'Rupees (20)',                           ("Zora's River", "Freestanding"))),
     ("ZR Deku Scrub Grotto Front",                                   ("GrottoNPC",    0xEB,  0x3A, None,                        'Buy Green Potion',                      ("Zora's River", "Deku Scrub", "Grottos"))),
     ("ZR Deku Scrub Grotto Rear",                                    ("GrottoNPC",    0xEB,  0x39, None,                        'Buy Red Potion [30]',                   ("Zora's River", "Deku Scrub", "Grottos"))),
     ("ZR GS Tree",                                                   ("GS Token",     0x11,  0x02, None,                        'Gold Skulltula Token',                  ("Zora's River", "Skulltulas",))),
@@ -377,6 +377,12 @@ location_table = OrderedDict([
     ("ZD Shop Item 6",                                               ("Shop",         0x2F,  0x35, (shop_address(7, 5), None),  'Buy Arrows (50)',                       ("Zora's Domain", "Shops",))),
     ("ZD Shop Item 7",                                               ("Shop",         0x2F,  0x36, (shop_address(7, 6), None),  'Buy Fish',                              ("Zora's Domain", "Shops",))),
     ("ZD Shop Item 8",                                               ("Shop",         0x2F,  0x37, (shop_address(7, 7), None),  'Buy Red Potion [50]',                   ("Zora's Domain", "Shops",))),
+    ("ZD Pot 1",                                                     ("Collectable",  0x58,  0x24, None,                        'Deku Stick (1)',                        ("Zora's Domain", "Pot"))),
+    ("ZD Pot 2",                                                     ("Collectable",  0x58,  0x23, None,                        'Deku Stick (1)',                        ("Zora's Domain", "Pot"))),
+    ("ZD Pot 3",                                                     ("Collectable",  0x58,  0x22, None,                        'Deku Stick (1)',                        ("Zora's Domain", "Pot"))),
+    ("ZD Pot 4",                                                     ("Collectable",  0x58,  0x21, None,                        'Deku Stick (1)',                        ("Zora's Domain", "Pot"))),
+    ("ZD Pot 5",                                                     ("Collectable",  0x58,  0x20, None,                        'Deku Stick (1)',                        ("Zora's Domain", "Pot"))),
+
 
     # Zora's Fountain
     ("ZF Great Fairy Reward",                                        ("Cutscene",     0xFF,  0x10, None,                        'Farores Wind',                          ("Zora's Fountain", "Fairies",))),

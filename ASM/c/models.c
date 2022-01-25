@@ -20,7 +20,7 @@ typedef struct {
 } loaded_object_t;
 
 extern uint32_t EXTENDED_OBJECT_TABLE;
-extern uint8_t collectible_mutex;
+extern EnItem00* collectible_mutex;
 
 loaded_object_t object_slots[slot_count] = { 0 };
 
@@ -145,18 +145,17 @@ void lookup_model(model_t *model, z64_actor_t *actor, z64_game_t *game, uint16_t
     lookup_model_by_override(model, override);
 }
 
-
+//Collectible draw function for rupees/recovery hearts
 bool collectible_draw(z64_actor_t *actor, z64_game_t *game) {
-    EnItem00* pItem = (EnItem00*)actor;
+    EnItem00* this = (EnItem00*)actor;
     model_t model = {
         .object_id = 0x0000,
         .graphic_id = 0x00,
     };
     lookup_model(&model, actor, game, 0);
-    if(model.object_id != 0x0000 && (!(z64_file.scene_flags[z64_game.scene_index].unk_00_ & (1 << pItem->collectibleFlag)) || collectible_mutex))
+    if(model.object_id != 0x0000 && (!(z64_file.scene_flags[z64_game.scene_index].unk_00_ & (1 << this->collectibleFlag)) || collectible_mutex))
     {
-        EnItem00* this = (EnItem00*)actor;
-        if(this->actionFunc != Collectible_WaitForMessageBox)
+        if(!(collectible_mutex == this))
             draw_model(model, actor, game, 25.0);
         return true;
     }
@@ -173,18 +172,22 @@ void heart_piece_draw(z64_actor_t *actor, z64_game_t *game) {
     draw_model(model, actor, game, 25.0);
 }
 
-void small_key_draw(z64_actor_t *actor, z64_game_t *game) {
-    if ((actor->variable & 0xFF) != 0x11) {
+//collectible draw function for common items (sticks, nuts, arrows/seeds/etc. and keys)
+void collectible_draw_other(z64_actor_t *actor, z64_game_t *game) {
+    EnItem00* this = (EnItem00*)actor;
+    
+    if (!should_override_collectible(actor) && !(collectible_mutex == this)) {
         base_collectable_draw(actor, game);
         return;
     }
 
     model_t model = {
-        .object_id = 0x00AA,
-        .graphic_id = 0x02,
-     };
+        .object_id = 0x0000,
+        .graphic_id = 0x00,
+    };
     lookup_model(&model, actor, game, 0);
-    draw_model(model, actor, game, 25.0);
+    if(!(collectible_mutex == this))
+        draw_model(model, actor, game, 25.0);
 }
 
 void heart_container_draw(z64_actor_t *actor, z64_game_t *game) {
