@@ -84,7 +84,6 @@ location_table = OrderedDict([
     ("KF Near Ramp Green Rupee 2",                                   ("Collectable", 0x55, 0x27, None,     'Rupee (1)',      ("Kokiri Forest", "Forest", "Freestanding"))),
     ("KF Near Midos Green Rupee 1",                                  ("Collectable", 0x55, 0x25, None,     'Rupee (1)',      ("Kokiri Forest", "Forest", "Freestanding"))),
     ("KF Near Midos Green Rupee 2",                                  ("Collectable", 0x55, 0x26, None,     'Rupee (1)',      ("Kokiri Forest", "Forest", "Freestanding"))),
-    
     ("KF Midos Top Left Chest",                                      ("Chest",        0x28,  0x00, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
     ("KF Midos Top Right Chest",                                     ("Chest",        0x28,  0x01, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
     ("KF Midos Bottom Left Chest",                                   ("Chest",        0x28,  0x02, None,                        'Rupee (1)',                             ("Kokiri Forest", "Forest",))),
@@ -93,7 +92,6 @@ location_table = OrderedDict([
     ("KF Sarias Freestanding Heart 2",                               ("Collectable", 0x29, 0x39, None,                       'Recovery Heart', ("Kokiri Forest", "Forest","Freestanding",))),
     ("KF Sarias Freestanding Heart 3",                               ("Collectable", 0x29, 0x3A, None,                       'Recovery Heart', ("Kokiri Forest", "Forest","Freestanding",))),
     ("KF Sarias Freestanding Heart 4",                               ("Collectable", 0x29, 0x3B, None,                       'Recovery Heart', ("Kokiri Forest", "Forest", "Freestanding",))),
-
     ("KF Kokiri Sword Chest",                                        ("Chest",        0x55,  0x00, None,                        'Kokiri Sword',                          ("Kokiri Forest", "Forest",))),
     ("KF Storms Grotto Chest",                                       ("Chest",        0x3E,  0x0C, None,                        'Rupees (20)',                           ("Kokiri Forest", "Forest", "Grottos"))),
     ("KF Links House Cow",                                           ("NPC",          0x34,  0x15, None,                        'Milk',                                  ("Kokiri Forest", "Forest", "Cow", "Minigames"))),
@@ -109,6 +107,13 @@ location_table = OrderedDict([
     ("KF Shop Item 6",                                               ("Shop",         0x2D,  0x35, (shop_address(0, 5), None),  'Buy Arrows (10)',                       ("Kokiri Forest", "Forest", "Shops"))),
     ("KF Shop Item 7",                                               ("Shop",         0x2D,  0x36, (shop_address(0, 6), None),  'Buy Arrows (30)',                       ("Kokiri Forest", "Forest", "Shops"))),
     ("KF Shop Item 8",                                               ("Shop",         0x2D,  0x37, (shop_address(0, 7), None),  'Buy Heart',                             ("Kokiri Forest", "Forest", "Shops"))),
+    #KF Pots
+    ("KF Links House Pot",                                           ("Collectable",  0x34,  0x20, None,                        'Recovery Heart',                        ("Kokiri Forest", "Forest", "Pot"))),
+    ("KF Know-it-all Brothers House Pot 1",                          ("Collectable",  0x26,  0x20, None,                        'Rupee (1)',                        ("Kokiri Forest", "Forest", "Pot"))),
+    ("KF Know-it-all Brothers House Pot 2",                          ("Collectable",  0x26,  0x21, None,                        'Rupee (1)',                        ("Kokiri Forest", "Forest", "Pot"))),
+    ("KF Twins House Pot 1",                                         ("Collectable",  0x27,  0x21, None,                        'Rupee (1)',                        ("Kokiri Forest", "Forest", "Pot"))),
+    ("KF Twins House Pot 2",                                         ("Collectable",  0x27,  0x22, None,                        'Rupee (5)',                        ("Kokiri Forest", "Forest", "Pot"))),
+
 
 
     # Lost Woods
@@ -560,10 +565,10 @@ location_table = OrderedDict([
     ("Jabu Jabus Belly Boomerang Chest",                             ("Chest",        0x02,  0x01, None,                        'Boomerang',                             ("Jabu Jabu's Belly", "Vanilla",))),
     ("Jabu Jabus Belly Map Chest",                                   ("Chest",        0x02,  0x02, None,                        'Map (Jabu Jabus Belly)',                ("Jabu Jabu's Belly", "Vanilla",))),
     ("Jabu Jabus Belly Compass Chest",                               ("Chest",        0x02,  0x04, None,                        'Compass (Jabu Jabus Belly)',            ("Jabu Jabu's Belly", "Vanilla",))),
-    ("Jabu Jabus Belly Breakable Pot 1",                             ("Collectable",  0x02,  0x21, None,                        'Rupees (5)',                            ("Jabu Jabu's Belly", "Vanilla", "Freestanding"))),
-    ("Jabu Jabus Belly Breakable Pot 2",                             ("Collectable",  0x02,  0x22, None,                        'Rupees (20)',                            ("Jabu Jabu's Belly", "Vanilla", "Freestanding"))),
-    ("Jabu Jabus Belly Breakable Pot 3",                             ("Collectable",  0x02,  0x23, None,                        'Rupees (20)',                            ("Jabu Jabu's Belly", "Vanilla", "Freestanding"))),
-    ("Jabu Jabus Belly Breakable Pot 4",                             ("Collectable",  0x02,  0x24, None,                        'Rupees (5)',                            ("Jabu Jabu's Belly", "Vanilla", "Freestanding"))),
+    ("Jabu Jabus Belly Breakable Pot 1",                             ("Collectable",  0x02,  0x21, None,                        'Rupees (5)',                            ("Jabu Jabu's Belly", "Vanilla", "Pot"))),
+    ("Jabu Jabus Belly Breakable Pot 2",                             ("Collectable",  0x02,  0x22, None,                        'Rupees (20)',                            ("Jabu Jabu's Belly", "Vanilla", "Pot"))),
+    ("Jabu Jabus Belly Breakable Pot 3",                             ("Collectable",  0x02,  0x23, None,                        'Rupees (20)',                            ("Jabu Jabu's Belly", "Vanilla", "Pot"))),
+    ("Jabu Jabus Belly Breakable Pot 4",                             ("Collectable",  0x02,  0x24, None,                        'Rupees (5)',                            ("Jabu Jabu's Belly", "Vanilla", "Pot"))),
     ("Jabu Jabus Belly Deku Scrub",                                  ("NPC",          0x02,  0x30, None,                        'Buy Deku Nut (5)',                      ("Jabu Jabu's Belly", "Vanilla", "Deku Scrub",))),
     ("Jabu Jabus Belly GS Water Switch Room",                        ("GS Token",     0x02,  0x08, None,                        'Gold Skulltula Token',                  ("Jabu Jabu's Belly", "Vanilla", "Skulltulas",))),
     ("Jabu Jabus Belly GS Lobby Basement Lower",                     ("GS Token",     0x02,  0x01, None,                        'Gold Skulltula Token',                  ("Jabu Jabu's Belly", "Vanilla", "Skulltulas",))),

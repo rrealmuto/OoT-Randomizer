@@ -148,7 +148,8 @@
         "region_name": "KF Links House",
         "scene": "KF Links House",
         "locations": {
-            "KF Links House Cow": "is_adult and can_play(Eponas_Song) and 'Links Cow'"
+            "KF Links House Cow": "is_adult and can_play(Eponas_Song) and 'Links Cow'",
+            "KF Links House Pot": "True"
         },
         "exits": {
             "Kokiri Forest": "True"
