@@ -428,6 +428,9 @@ void Collectible_WaitForMessageBox(EnItem00 *this, z64_game_t *game)
 //Override hack for freestanding collectibles (green, blue, red rupees, recovery hearts)
 uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_actor)
 {
+	
+	EnItem00 *pItem = (EnItem00 *)from_actor;
+	
 	override_t override = lookup_override(from_actor, z64_game.scene_index, 0);
 
 	//Check if we should override the item. We have logic in the randomizer to not include excluded items in the override table.
@@ -439,7 +442,6 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
 
 	if (!collectible_mutex) //Check our mutex so that only one collectible can run at a time (if 2 run on the same frame you lose the message).
 	{
-		EnItem00 *pItem = (EnItem00 *)from_actor;
 		collectible_mutex = 1;
 		collectible_override = override;
 		//resolve upgrades and figure out what item to give.
@@ -448,9 +450,11 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
 		item_row_t *item_row = get_item_row(resolved_item_id);
 
 		//Set the collectible flag
+		z64_file.scene_flags[z64_game.scene_index].unk_00_  |= 1 << pItem->collectibleFlag;
 		z64_SetCollectibleFlags(&z64_game, pItem->collectibleFlag);
 		item_id = collectible_override.value.item_id;
 		uint8_t player = collectible_override.value.player;
+
 
 		PLAYER_NAME_ID = player;
 
