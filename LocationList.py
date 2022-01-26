@@ -867,12 +867,12 @@ location_table = OrderedDict([
     ("Water Temple Near Compass Pot 3",                              ("Collectable",  0x05,  0x28, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
     ("Water Temple Like Like Pot 1",                                 ("Collectable",  0x05,  0x2B, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
     ("Water Temple Like Like Pot 2",                                 ("Collectable",  0x05,  0x2C, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
-    ("Water Temple Block Switch Room Pot 1",                         ("Collectable",  0x05,  0x3E, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
-    ("Water Temple Block Switch Room Pot 2",                         ("Collectable",  0x05,  0x25, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
-    ("Water Temple Boss Key Pot 1",                                  ("Collectable",  0x05,  0x26, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
-    ("Water Temple Boss Key Pot 2",                                  ("Collectable",  0x05,  0x37, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
-    ("Water Temple L1 Torch Pot 1",                                  ("Collectable",  0x05,  0x3F, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
-    ("Water Temple L1 Torch Pot 2",                                  ("Collectable",  0x05,  0x2F, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
+    ("Water Temple Block Switch Room Pot 1",                         ("Collectable",  0x05,  0x3B, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
+    ("Water Temple Block Switch Room Pot 2",                         ("Collectable",  0x05,  0x2C, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
+    #("Water Temple Boss Key Pot 1",                                  ("Collectable",  0x05,  0x3D, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
+    #("Water Temple Boss Key Pot 2",                                  ("Collectable",  0x05,  0x3E, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
+    ("Water Temple L1 Torch Pot 1",                                  ("Collectable",  0x05,  0x25, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
+    ("Water Temple L1 Torch Pot 2",                                  ("Collectable",  0x05,  0x26, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
     
     
 
