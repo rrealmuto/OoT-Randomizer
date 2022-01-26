@@ -545,6 +545,10 @@ location_table = OrderedDict([
     ("Dodongos Cavern GS Alcove Above Stairs",                       ("GS Token",     0x01,  0x04, None,                        'Gold Skulltula Token',                  ("Dodongo's Cavern", "Vanilla", "Skulltulas",))),
     ("Dodongos Cavern GS Vines Above Stairs",                        ("GS Token",     0x01,  0x01, None,                        'Gold Skulltula Token',                  ("Dodongo's Cavern", "Vanilla", "Skulltulas",))),
     ("Dodongos Cavern GS Back Room",                                 ("GS Token",     0x01,  0x08, None,                        'Gold Skulltula Token',                  ("Dodongo's Cavern", "Vanilla", "Skulltulas",))),
+    
+    #Dodongo's Caverg Pots vanilla
+    ("Dodongos Cavern Pot Test",                                     ("Collectable",  0x01,  0x20, None,                        'Rupees (20)',                           ("Dodongo's Cavern", "Vanilla", "Pot"))),
+    
     # Dodongo's Cavern MQ
     ("Dodongos Cavern MQ Map Chest",                                 ("Chest",        0x01,  0x00, None,                        'Map (Dodongos Cavern)',                 ("Dodongo's Cavern", "Master Quest",))),
     ("Dodongos Cavern MQ Bomb Bag Chest",                            ("Chest",        0x01,  0x04, None,                        'Bomb Bag',                              ("Dodongo's Cavern", "Master Quest",))),
@@ -674,6 +678,29 @@ location_table = OrderedDict([
     ("Forest Temple GS Raised Island Courtyard",                     ("GS Token",     0x03,  0x01, None,                        'Gold Skulltula Token',                  ("Forest Temple", "Vanilla", "Skulltulas",))),
     ("Forest Temple GS Level Island Courtyard",                      ("GS Token",     0x03,  0x04, None,                        'Gold Skulltula Token',                  ("Forest Temple", "Vanilla", "Skulltulas",))),
     ("Forest Temple GS Basement",                                    ("GS Token",     0x03,  0x10, None,                        'Gold Skulltula Token',                  ("Forest Temple", "Vanilla", "Skulltulas",))),
+    # Forest Temple Vanilla Pots
+    ("Forest Temple Center Room Pot 1",                        ("Collectable",  0x03,  0x20, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
+    ("Forest Temple Center Room Pot 2",                        ("Collectable",  0x03,  0x21, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
+    ("Forest Temple Center Room Pot 3",                        ("Collectable",  0x03,  0x22, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
+    ("Forest Temple Center Room Pot 4",                        ("Collectable",  0x03,  0x23, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
+    ("Forest Temple Center Room Pot 5",                        ("Collectable",  0x03,  0x24, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
+    ("Forest Temple Center Room Pot 6",                        ("Collectable",  0x03,  0x25, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
+    ("Forest Temple Lower Stalfos Pot 1",                      ("Collectable",  0x03,  0x31, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
+    #("Forest Temple Lower Stalfos Pot 2",                      ("Collectable",  0x03,  0x32, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
+    ("Forest Temple Upper Stalfos Pot 1",                      ("Collectable",  0x03,  0x33, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
+    ("Forest Temple Upper Stalfos Pot 2",                      ("Collectable",  0x03,  0x34, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
+    ("Forest Temple Upper Stalfos Pot 3",                      ("Collectable",  0x03,  0x35, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
+    ("Forest Temple Upper Stalfos Pot 4",                      ("Collectable",  0x03,  0x36, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
+    ("Forest Temple Blue Poe Room Pot 1",                      ("Collectable",  0x03,  0x26, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
+    ("Forest Temple Blue Poe Room Pot 2",                      ("Collectable",  0x03,  0x27, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
+    ("Forest Temple Blue Poe Room Pot 3",                      ("Collectable",  0x03,  0x28, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
+    ("Forest Temple Fire Switch Room Pot 1",                   ("Collectable",  0x03,  0x29, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
+    ("Forest Temple Fire Switch Room Pot 2",                   ("Collectable",  0x03,  0x2A, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
+    ("Forest Temple Block Puzzle Room Pot 1",                  ("Collectable",  0x03,  0x2B, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
+    ("Forest Temple Block Puzzle Room Pot 2",                  ("Collectable",  0x03,  0x2C, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
+ 
+
+
     # Forest Temple MQ
     ("Forest Temple MQ First Room Chest",                            ("Chest",        0x03,  0x03, None,                        'Small Key (Forest Temple)',             ("Forest Temple", "Master Quest",))),
     ("Forest Temple MQ Wolfos Chest",                                ("Chest",        0x03,  0x00, None,                        'Small Key (Forest Temple)',             ("Forest Temple", "Master Quest",))),
