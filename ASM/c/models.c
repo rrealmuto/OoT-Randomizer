@@ -187,7 +187,7 @@ void collectible_draw_other(z64_actor_t *actor, z64_game_t *game) {
     };
     lookup_model(&model, actor, game, 0);
     if(!(collectible_mutex == this))
-        draw_model(model, actor, game, 25.0);
+        draw_model(model, actor, game, 10.0);
 }
 
 void heart_container_draw(z64_actor_t *actor, z64_game_t *game) {

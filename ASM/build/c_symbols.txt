@@ -67,11 +67,12 @@ SYMBOL TABLE:
 0000002c l       .rodata.cst4	00000000 $LC7
 00000030 l       .rodata.cst4	00000000 $LC8
 00000034 l       .rodata.cst4	00000000 $LC9
+00000038 l       .rodata.cst4	00000000 $LC10
 00000000 l    df *ABS*	00000000 rainbow.c
 00000214 l     O .rodata	00000015 cycle_colors
 00000000 l       .rodata.cst8	00000000 $LC0
-00000038 l       .rodata.cst4	00000000 $LC1
-0000003c l       .rodata.cst4	00000000 $LC2
+0000003c l       .rodata.cst4	00000000 $LC1
+00000040 l       .rodata.cst4	00000000 $LC2
 00000000 l    df *ABS*	00000000 refill.c
 00000000 l    df *ABS*	00000000 scarecrow.c
 00000000 l    df *ABS*	00000000 text.c

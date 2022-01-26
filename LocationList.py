@@ -584,7 +584,7 @@ location_table = OrderedDict([
     ("Dodongos Cavern MQ Larvae Room Chest",                         ("Chest",        0x01,  0x02, None,                        'Deku Shield',                           ("Dodongo's Cavern", "Master Quest",))),
     ("Dodongos Cavern MQ Compass Chest",                             ("Chest",        0x01,  0x05, None,                        'Compass (Dodongos Cavern)',             ("Dodongo's Cavern", "Master Quest",))),
     ("Dodongos Cavern MQ Under Grave Chest",                         ("Chest",        0x01,  0x01, None,                        'Hylian Shield',                         ("Dodongo's Cavern", "Master Quest",))),
-    ("Dodongos Cavern MQ Block Room Recovery Heart",                 ("Collectable",  0x01,  0x30, None,        'Recovery Heart',                        ("Dodongo's Cavern", "Master Quest", "Freestanding"))),
+    ("Dodongos Cavern MQ Block Room Recovery Heart",                 ("Collectable",  0x01,  0x30, None,                        'Recovery Heart',                        ("Dodongo's Cavern", "Master Quest", "Freestanding"))),
     ("Dodongos Cavern MQ Deku Scrub Lobby Front",                    ("NPC",          0x01,  0x33, None,                        'Buy Deku Seeds (30)',                   ("Dodongo's Cavern", "Master Quest", "Deku Scrub",))),
     ("Dodongos Cavern MQ Deku Scrub Lobby Rear",                     ("NPC",          0x01,  0x31, None,                        'Buy Deku Stick (1)',                    ("Dodongo's Cavern", "Master Quest", "Deku Scrub",))),
     ("Dodongos Cavern MQ Deku Scrub Side Room Near Lower Lizalfos",  ("NPC",          0x01,  0x39, None,                        'Buy Red Potion [30]',                   ("Dodongo's Cavern", "Master Quest", "Deku Scrub",))),
