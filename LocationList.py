@@ -752,7 +752,6 @@ location_table = OrderedDict([
     ("Fire Temple Moving Fire Room Recovery Heart 1",                ("Collectable",  0x04,  0x31, None,                         'Recovery Heart',                        ("Fire Temple", "Vanilla", "Freestanding"))),
     ("Fire Temple Moving Fire Room Recovery Heart 2",                ("Collectable",  0x04,  0x32, None,                         'Recovery Heart',                        ("Fire Temple", "Vanilla", "Freestanding"))),
     ("Fire Temple Moving Fire Room Recovery Heart 3",                ("Collectable",  0x04,  0x33, None,                         'Recovery Heart',                        ("Fire Temple", "Vanilla", "Freestanding"))),
-
     ("Fire Temple Megaton Hammer Chest",                             ("Chest",        0x04,  0x05, None,                        'Megaton Hammer',                        ("Fire Temple", "Vanilla",))),
     ("Fire Temple Highest Goron Chest",                              ("Chest",        0x04,  0x09, None,                        'Small Key (Fire Temple)',               ("Fire Temple", "Vanilla",))),
     ("Fire Temple GS Boss Key Loop",                                 ("GS Token",     0x04,  0x02, None,                        'Gold Skulltula Token',                  ("Fire Temple", "Vanilla", "Skulltulas",))),
@@ -760,6 +759,22 @@ location_table = OrderedDict([
     ("Fire Temple GS Boulder Maze",                                  ("GS Token",     0x04,  0x04, None,                        'Gold Skulltula Token',                  ("Fire Temple", "Vanilla", "Skulltulas",))),
     ("Fire Temple GS Scarecrow Climb",                               ("GS Token",     0x04,  0x10, None,                        'Gold Skulltula Token',                  ("Fire Temple", "Vanilla", "Skulltulas",))),
     ("Fire Temple GS Scarecrow Top",                                 ("GS Token",     0x04,  0x08, None,                        'Gold Skulltula Token',                  ("Fire Temple", "Vanilla", "Skulltulas",))),
+    # Fire Temple Vanilla Pots
+    ("Fire Temple Big Lava Room Pot 1",                              ("Collectable",  0x04,  0x20, None,                        'Arrows (10)',                           ("Fire Temple", "Vanilla", "Pot"))),
+    ("Fire Temple Big Lava Room Pot 2",                              ("Collectable",  0x04,  0x21, None,                        'Recovery Heart',                           ("Fire Temple", "Vanilla", "Pot"))),
+    ("Fire Temple Big Lava Room Pot 3",                              ("Collectable",  0x04,  0x22, None,                        'Arrows (10)',                           ("Fire Temple", "Vanilla", "Pot"))),
+    ("Fire Temple Near Boss Pot 1",                                  ("Collectable",  0x04,  0x2C, None,                        'Bombs (10)',                           ("Fire Temple", "Vanilla", "Pot"))),
+    ("Fire Temple Near Boss Pot 2",                                  ("Collectable",  0x04,  0x2D, None,                        'Bombs (10)',                           ("Fire Temple", "Vanilla", "Pot"))),
+    ("Fire Temple Flame Maze Right Side Pot 1",                      ("Collectable",  0x04,  0x23, None,                        'Bombs (10)',                           ("Fire Temple", "Vanilla", "Pot"))),
+    ("Fire Temple Flame Maze Right Side Pot 2",                      ("Collectable",  0x04,  0x24, None,                        'Recovery Heart',                           ("Fire Temple", "Vanilla", "Pot"))),
+    ("Fire Temple Flame Maze Right Side Pot 3",                      ("Collectable",  0x04,  0x25, None,                        'Recovery Heart',                           ("Fire Temple", "Vanilla", "Pot"))),
+    ("Fire Temple Flame Maze Right Side Pot 4",                      ("Collectable",  0x04,  0x26, None,                        'Bombs (10)',                           ("Fire Temple", "Vanilla", "Pot"))),
+    ("Fire Temple Flame Maze Left Side Pot 1",                       ("Collectable",  0x04,  0x27, None,                        'Recovery Heart',                           ("Fire Temple", "Vanilla", "Pot"))),
+    ("Fire Temple Flame Maze Left Side Pot 2",                       ("Collectable",  0x04,  0x28, None,                        'Recovery Heart',                           ("Fire Temple", "Vanilla", "Pot"))),
+    ("Fire Temple Flame Maze Left Side Pot 3",                       ("Collectable",  0x04,  0x29, None,                        'Recovery Heart',                           ("Fire Temple", "Vanilla", "Pot"))),
+    ("Fire Temple Flame Maze Left Side Pot 4",                       ("Collectable",  0x04,  0x2A, None,                        'Recovery Heart',                           ("Fire Temple", "Vanilla", "Pot"))),
+    
+
     # Fire Temple MQ
     ("Fire Temple MQ Map Room Side Chest",                           ("Chest",        0x04,  0x02, None,                        'Hylian Shield',                         ("Fire Temple", "Master Quest",))),
     ("Fire Temple MQ Megaton Hammer Chest",                          ("Chest",        0x04,  0x00, None,                        'Megaton Hammer',                        ("Fire Temple", "Master Quest",))),
