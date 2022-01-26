@@ -2828,12 +2828,12 @@ setting_infos = [
             'dungeons' : 'Dungeons Only'
         },
         gui_tooltip    = '''\
-            Shuffles breakable pots.
+            Shuffles breakable pots into the location pool.
 
-            Off: No freestanding rupees/recovery hearts are shuffled.
-            All: All Visible freestanding rupees/recovery hearts are shuffled.
-            Overworld Only: Freestanding rupees/recovery hearts in the overworld are shuffled.
-            Dungeons Only: Freestanding rupees/recovery hearts in dungeons are shuffled.
+            Off: Pots are not shuffled.
+            All: All pots are shuffled.
+            Overworld Only: Only overworld pots are shuffled.
+            Dungeons Only: Only dungeon pots are shuffled.
         ''',
         gui_params     = {
             'randomize_key': 'randomize_settings',

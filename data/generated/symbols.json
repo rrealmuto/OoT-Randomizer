@@ -16,6 +16,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "AUDIO_THREAD_MEM_START": "03495250",
 >>>>>>> a653aa5c (Add shuffle freestanding items)
 =======
@@ -30,6 +31,9 @@
 =======
     "AUDIO_THREAD_MEM_START": "034953F0",
 >>>>>>> ff5a0fb8 (Add forest temple pots)
+=======
+    "AUDIO_THREAD_MEM_START": "03495400",
+>>>>>>> 30e393f1 (Sort of fix scaling on collectibles dropped from pots)
     "AUTO_TRACKER_CONTEXT": "03480CD0",
     "AUTO_TRACKER_VERSION": "03480CD0",
     "BOMBCHUS_IN_LOGIC": "03480CAC",
@@ -81,6 +85,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "CHEST_SIZE_MATCH_CONTENTS": "0348BC8C",
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348BC90",
     "COMPLETE_MASK_QUEST": "0348BCDD",
@@ -109,6 +114,11 @@
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348BE30",
     "COMPLETE_MASK_QUEST": "0348BE81",
 >>>>>>> ff5a0fb8 (Add forest temple pots)
+=======
+    "CHEST_SIZE_MATCH_CONTENTS": "0348BE34",
+    "CHEST_TEXTURE_MATCH_CONTENTS": "0348BE38",
+    "COMPLETE_MASK_QUEST": "0348BE89",
+>>>>>>> 30e393f1 (Sort of fix scaling on collectibles dropped from pots)
     "COOP_CONTEXT": "03480020",
     "COOP_VERSION": "03480020",
     "COSMETIC_CONTEXT": "03480834",
@@ -116,6 +126,7 @@
     "CURRENT_GROTTO_ID": "03483056",
     "DEBUG_OFFSET": "03482A74",
     "DISABLE_TIMERS": "03480CCC",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -137,11 +148,15 @@
 =======
     "DPAD_TEXTURE": "0348F3F0",
 >>>>>>> ff5a0fb8 (Add forest temple pots)
+=======
+    "DPAD_TEXTURE": "0348F3F8",
+>>>>>>> 30e393f1 (Sort of fix scaling on collectibles dropped from pots)
     "DUNGEONS_SHUFFLED": "03480CCD",
     "EXTENDED_OBJECT_TABLE": "03480C8C",
     "EXTERN_DAMAGE_MULTIPLYER": "03482E85",
     "FAST_BUNNY_HOOD_ENABLED": "03480CCF",
     "FAST_CHESTS": "03480CC6",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -169,11 +184,15 @@
 =======
     "FONT_TEXTURE": "0348DF28",
 >>>>>>> ff5a0fb8 (Add forest temple pots)
+=======
+    "FONT_TEXTURE": "0348DF30",
+>>>>>>> 30e393f1 (Sort of fix scaling on collectibles dropped from pots)
     "FREE_SCARECROW_ENABLED": "03480CBC",
-    "GANON_BOSS_KEY_CONDITION": "0348BE40",
-    "GANON_BOSS_KEY_CONDITION_COUNT": "0348BE3E",
+    "GANON_BOSS_KEY_CONDITION": "0348BE48",
+    "GANON_BOSS_KEY_CONDITION_COUNT": "0348BE46",
     "GET_CHEST_OVERRIDE_WRAPPER": "034828EC",
     "GET_ITEM_TRIGGERED": "03481608",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -197,6 +216,10 @@
     "GILDED_CHEST_BASE_TEXTURE": "03491BF0",
     "GILDED_CHEST_FRONT_TEXTURE": "03490BF0",
 >>>>>>> ff5a0fb8 (Add forest temple pots)
+=======
+    "GILDED_CHEST_BASE_TEXTURE": "03491BF8",
+    "GILDED_CHEST_FRONT_TEXTURE": "03490BF8",
+>>>>>>> 30e393f1 (Sort of fix scaling on collectibles dropped from pots)
     "GOSSIP_HINT_CONDITION": "03480CB8",
     "GROTTO_EXIT_LIST": "03483014",
     "GROTTO_LOAD_TABLE": "03482F90",
@@ -204,6 +227,7 @@
     "INCOMING_PLAYER": "03480026",
     "INITIAL_SAVE_DATA": "0348088C",
     "JABU_ELEVATOR_ENABLE": "03480CC4",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -229,10 +253,14 @@
 =======
     "KAKARIKO_WEATHER_FORECAST": "0348BEA0",
 >>>>>>> ff5a0fb8 (Add forest temple pots)
+=======
+    "KAKARIKO_WEATHER_FORECAST": "0348BEA8",
+>>>>>>> 30e393f1 (Sort of fix scaling on collectibles dropped from pots)
     "LACS_CONDITION": "03480CB4",
     "LACS_CONDITION_COUNT": "03480CC2",
     "MALON_GAVE_ICETRAP": "03483864",
     "MALON_TEXT_ID": "03480CCB",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -277,19 +305,27 @@
 =======
     "MAX_RUPEES": "0348BE83",
 >>>>>>> ff5a0fb8 (Add forest temple pots)
+=======
+    "MAX_RUPEES": "0348BE8B",
+>>>>>>> 30e393f1 (Sort of fix scaling on collectibles dropped from pots)
     "MOVED_ADULT_KING_ZORA": "034831D4",
-    "NO_ESCAPE_SEQUENCE": "0348BE3C",
+    "NO_ESCAPE_SEQUENCE": "0348BE44",
     "OCARINAS_SHUFFLED": "03480CC5",
+<<<<<<< HEAD
 <<<<<<< HEAD
     "OPEN_KAKARIKO": "0348BE6A",
 >>>>>>> 45ad05d9 (Add overrides for stick/nut collectibles from pots)
 =======
     "OPEN_KAKARIKO": "0348BE82",
 >>>>>>> ff5a0fb8 (Add forest temple pots)
+=======
+    "OPEN_KAKARIKO": "0348BE8A",
+>>>>>>> 30e393f1 (Sort of fix scaling on collectibles dropped from pots)
     "OUTGOING_ITEM": "03480030",
     "OUTGOING_KEY": "0348002C",
     "OUTGOING_PLAYER": "03480032",
     "OVERWORLD_SHUFFLED": "03480CCE",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -311,6 +347,9 @@
 =======
     "PAYLOAD_END": "034953F0",
 >>>>>>> ff5a0fb8 (Add forest temple pots)
+=======
+    "PAYLOAD_END": "03495400",
+>>>>>>> 30e393f1 (Sort of fix scaling on collectibles dropped from pots)
     "PAYLOAD_START": "03480000",
     "PLAYED_WARP_SONG": "0348140C",
     "PLAYER_ID": "03480024",
@@ -413,19 +452,20 @@
     "triforce_sprite": "0348A708"
 =======
     "SHUFFLE_MEDIGORON": "03483C3C",
-    "SILVER_CHEST_BASE_TEXTURE": "034933F0",
-    "SILVER_CHEST_FRONT_TEXTURE": "034923F0",
-    "SKULL_CHEST_BASE_TEXTURE": "03494BF0",
-    "SKULL_CHEST_FRONT_TEXTURE": "03493BF0",
+    "SILVER_CHEST_BASE_TEXTURE": "034933F8",
+    "SILVER_CHEST_FRONT_TEXTURE": "034923F8",
+    "SKULL_CHEST_BASE_TEXTURE": "03494BF8",
+    "SKULL_CHEST_FRONT_TEXTURE": "03493BF8",
     "SONGS_AS_ITEMS": "03480CC8",
     "SOS_ITEM_GIVEN": "034816D4",
     "SPEED_MULTIPLIER": "03482934",
     "START_TWINROVA_FIGHT": "03483254",
     "TIME_TRAVEL_SAVED_EQUIPS": "03481C60",
-    "TRIFORCE_ICON_TEXTURE": "0348FBF0",
+    "TRIFORCE_ICON_TEXTURE": "0348FBF8",
     "TWINROVA_ACTION_TIMER": "03483258",
     "WINDMILL_SONG_ID": "03480CC9",
     "WINDMILL_TEXT_ID": "03480CCA",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -782,30 +822,73 @@
     "empty_dlist": "0348BDB0",
     "extern_ctxt": "0348AC24",
     "font_sprite": "0348AD40",
+=======
+    "a_button": "0348BE10",
+    "a_note_b": "0348BDFC",
+    "a_note_font_glow_base": "0348BDE4",
+    "a_note_font_glow_max": "0348BDE0",
+    "a_note_g": "0348BE00",
+    "a_note_glow_base": "0348BDEC",
+    "a_note_glow_max": "0348BDE8",
+    "a_note_r": "0348BE04",
+    "active_item_action_id": "0348BE6C",
+    "active_item_fast_chest": "0348BE5C",
+    "active_item_graphic_id": "0348BE60",
+    "active_item_object_id": "0348BE64",
+    "active_item_row": "0348BE70",
+    "active_item_text_id": "0348BE68",
+    "active_override": "0348BE78",
+    "active_override_is_outgoing": "0348BE74",
+    "b_button": "0348BE0C",
+    "beating_dd": "0348BE18",
+    "beating_no_dd": "0348BE20",
+    "c_button": "0348BE08",
+    "c_note_b": "0348BDF0",
+    "c_note_font_glow_base": "0348BDD4",
+    "c_note_font_glow_max": "0348BDD0",
+    "c_note_g": "0348BDF4",
+    "c_note_glow_base": "0348BDDC",
+    "c_note_glow_max": "0348BDD8",
+    "c_note_r": "0348BDF8",
+    "cfg_file_select_hash": "0348BE40",
+    "cfg_item_overrides": "0348BEF0",
+    "collectible_mutex": "0348BE54",
+    "collectible_override": "0348BE4C",
+    "defaultDDHeart": "0348BE24",
+    "defaultHeart": "0348BE2C",
+    "dpad_sprite": "0348AD38",
+    "dummy_actor": "0348BE80",
+    "dungeon_count": "0348BDA0",
+    "dungeons": "0348AB90",
+    "empty_dlist": "0348BDB8",
+    "extern_ctxt": "0348AC2C",
+    "font_sprite": "0348AD48",
+>>>>>>> 30e393f1 (Sort of fix scaling on collectibles dropped from pots)
     "freecam_modes": "0348A8F8",
-    "hash_sprites": "0348BDA4",
-    "hash_symbols": "0348AC38",
-    "heap_next": "0348BE9C",
-    "heart_sprite": "0348ACD0",
+    "hash_sprites": "0348BDAC",
+    "hash_symbols": "0348AC40",
+    "heap_next": "0348BEA4",
+    "heart_sprite": "0348ACD8",
     "icon_sprites": "0348AABC",
-    "item_digit_sprite": "0348ACF0",
-    "item_overrides_count": "0348BE7C",
-    "item_table": "0348ADB8",
-    "items": "0348ACB8",
-    "items_sprite": "0348AD60",
-    "key_rupee_clock_sprite": "0348AD00",
-    "last_fog_distance": "0348BD9C",
-    "linkhead_skull_sprite": "0348ACE0",
-    "medal_colors": "0348AB74",
-    "medals_sprite": "0348AD70",
-    "normal_dd": "0348BE0C",
-    "normal_no_dd": "0348BE14",
-    "num_to_bits": "0348AC78",
-    "object_slots": "0348DEE8",
-    "pending_freezes": "0348BE80",
-    "pending_item_queue": "0348BED0",
-    "quest_items_sprite": "0348AD50",
+    "item_digit_sprite": "0348ACF8",
+    "item_overrides_count": "0348BE84",
+    "item_table": "0348ADC0",
+    "items": "0348ACC0",
+    "items_sprite": "0348AD68",
+    "key_rupee_clock_sprite": "0348AD08",
+    "last_fog_distance": "0348BDA4",
+    "linkhead_skull_sprite": "0348ACE8",
+    "medal_colors": "0348AB7C",
+    "medals_sprite": "0348AD78",
+    "normal_dd": "0348BE14",
+    "normal_no_dd": "0348BE1C",
+    "num_to_bits": "0348AC80",
+    "object_slots": "0348DEF0",
+    "pending_freezes": "0348BE88",
+    "pending_item_queue": "0348BED8",
+    "quest_items_sprite": "0348AD58",
     "rupee_colors": "0348AAC8",
+<<<<<<< HEAD
     "satisified_pending_frames": "0348BE50",
     "scene_fog_distance": "0348BDA0",
     "setup_db": "0348AD90",
@@ -819,4 +902,18 @@
     "triforce_pieces_requied": "0348BE2A",
     "triforce_sprite": "0348AD20"
 >>>>>>> ff5a0fb8 (Add forest temple pots)
+=======
+    "satisified_pending_frames": "0348BE58",
+    "scene_fog_distance": "0348BDA8",
+    "setup_db": "0348AD98",
+    "song_note_sprite": "0348AD18",
+    "stones_sprite": "0348AD88",
+    "text_cursor_border_base": "0348BDC4",
+    "text_cursor_border_max": "0348BDC0",
+    "text_cursor_inner_base": "0348BDCC",
+    "text_cursor_inner_max": "0348BDC8",
+    "triforce_hunt_enabled": "0348BE98",
+    "triforce_pieces_requied": "0348BE32",
+    "triforce_sprite": "0348AD28"
+>>>>>>> 30e393f1 (Sort of fix scaling on collectibles dropped from pots)
 }
