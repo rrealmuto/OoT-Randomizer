@@ -603,15 +603,23 @@ location_table = OrderedDict([
     ("Jabu Jabus Belly Boomerang Chest",                             ("Chest",        0x02,  0x01, None,                        'Boomerang',                             ("Jabu Jabu's Belly", "Vanilla",))),
     ("Jabu Jabus Belly Map Chest",                                   ("Chest",        0x02,  0x02, None,                        'Map (Jabu Jabus Belly)',                ("Jabu Jabu's Belly", "Vanilla",))),
     ("Jabu Jabus Belly Compass Chest",                               ("Chest",        0x02,  0x04, None,                        'Compass (Jabu Jabus Belly)',            ("Jabu Jabu's Belly", "Vanilla",))),
-    ("Jabu Jabus Belly Breakable Pot 1",                             ("Collectable",  0x02,  0x21, None,                        'Rupees (5)',                            ("Jabu Jabu's Belly", "Vanilla", "Pot"))),
-    ("Jabu Jabus Belly Breakable Pot 2",                             ("Collectable",  0x02,  0x22, None,                        'Rupees (20)',                            ("Jabu Jabu's Belly", "Vanilla", "Pot"))),
-    ("Jabu Jabus Belly Breakable Pot 3",                             ("Collectable",  0x02,  0x23, None,                        'Rupees (20)',                            ("Jabu Jabu's Belly", "Vanilla", "Pot"))),
-    ("Jabu Jabus Belly Breakable Pot 4",                             ("Collectable",  0x02,  0x24, None,                        'Rupees (5)',                            ("Jabu Jabu's Belly", "Vanilla", "Pot"))),
     ("Jabu Jabus Belly Deku Scrub",                                  ("NPC",          0x02,  0x30, None,                        'Buy Deku Nut (5)',                      ("Jabu Jabu's Belly", "Vanilla", "Deku Scrub",))),
     ("Jabu Jabus Belly GS Water Switch Room",                        ("GS Token",     0x02,  0x08, None,                        'Gold Skulltula Token',                  ("Jabu Jabu's Belly", "Vanilla", "Skulltulas",))),
     ("Jabu Jabus Belly GS Lobby Basement Lower",                     ("GS Token",     0x02,  0x01, None,                        'Gold Skulltula Token',                  ("Jabu Jabu's Belly", "Vanilla", "Skulltulas",))),
     ("Jabu Jabus Belly GS Lobby Basement Upper",                     ("GS Token",     0x02,  0x02, None,                        'Gold Skulltula Token',                  ("Jabu Jabu's Belly", "Vanilla", "Skulltulas",))),
     ("Jabu Jabus Belly GS Near Boss",                                ("GS Token",     0x02,  0x04, None,                        'Gold Skulltula Token',                  ("Jabu Jabu's Belly", "Vanilla", "Skulltulas",))),
+    #Jabu Jabu's Belly Vanilla Pots
+    #("Jabu Jabus Belly Above Big Octo Pot X",                        ("Collectable",     0x02,  0x28, None,                        'Deku Nuts (5)',                  ("Jabu Jabu's Belly", "Vanilla", "Pot",))),
+    ("Jabu Jabus Belly Above Big Octo Pot 1",                        ("Collectable",     0x02,  0x29, None,                        'Deku Nuts (5)',                  ("Jabu Jabu's Belly", "Vanilla", "Pot",))),
+    ("Jabu Jabus Belly Above Big Octo Pot 2",                        ("Collectable",     0x02,  0x2A, None,                        'Deku Nuts (5)',                  ("Jabu Jabu's Belly", "Vanilla", "Pot",))),
+    #("Jabu Jabus Belly DLC Pot X",                                   ("Collectable",     0x02,  0x20, None,                        'Deku Nuts (5)',                  ("Jabu Jabu's Belly", "Vanilla", "Pot",))),
+    ("Jabu Jabus Belly DLC Pot 1",                                   ("Collectable",     0x02,  0x21, None,                        'Rupees (5)',                  ("Jabu Jabu's Belly", "Vanilla", "Pot",))),
+    ("Jabu Jabus Belly DLC Pot 2",                                   ("Collectable",     0x02,  0x22, None,                        'Rupees (20)',                  ("Jabu Jabu's Belly", "Vanilla", "Pot",))),
+    ("Jabu Jabus Belly DLC Pot 3",                                   ("Collectable",     0x02,  0x23, None,                        'Rupees (20)',                  ("Jabu Jabu's Belly", "Vanilla", "Pot",))),
+    ("Jabu Jabus Belly DLC Pot 4",                                   ("Collectable",     0x02,  0x24, None,                        'Rupees (5)',                  ("Jabu Jabu's Belly", "Vanilla", "Pot",))),
+    ("Jabu Jabus Belly Basement Switch Room Pot 1",                  ("Collectable",     0x02,  0x25, None,                        'Deku Seeds (30)',                  ("Jabu Jabu's Belly", "Vanilla", "Pot",))),
+    #("Jabu Jabus Belly Basement Switch Room Pot X",                  ("Collectable",     0x02,  0x26, None,                        'Deku Nuts (5)',                  ("Jabu Jabu's Belly", "Vanilla", "Pot",))),
+    ("Jabu Jabus Belly Basement Switch Room Pot 2",                  ("Collectable",     0x02,  0x27, None,                        'Deku Seeds (30)',                  ("Jabu Jabu's Belly", "Vanilla", "Pot",))),
     
     
     # Jabu Jabu's Belly MQ
@@ -847,6 +855,27 @@ location_table = OrderedDict([
     ("Water Temple GS Central Pillar",                               ("GS Token",     0x05,  0x04, None,                        'Gold Skulltula Token',                  ("Water Temple", "Vanilla", "Skulltulas",))),
     ("Water Temple GS Falling Platform Room",                        ("GS Token",     0x05,  0x02, None,                        'Gold Skulltula Token',                  ("Water Temple", "Vanilla", "Skulltulas",))),
     ("Water Temple GS River",                                        ("GS Token",     0x05,  0x10, None,                        'Gold Skulltula Token',                  ("Water Temple", "Vanilla", "Skulltulas",))),
+    # Water Temple Vanilla Pots
+    ("Water Temple Main Room L2 Pot 1",                              ("Collectable",  0x05,  0x22, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
+    ("Water Temple Main Room L2 Pot 2",                              ("Collectable",  0x05,  0x23, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
+    ("Water Temple Behind Gate Pot 1",                               ("Collectable",  0x05,  0x21, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
+    ("Water Temple Behind Gate Pot 2",                               ("Collectable",  0x05,  0x24, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
+    ("Water Temple Behind Gate Pot 3",                               ("Collectable",  0x05,  0x29, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
+    ("Water Temple Behind Gate Pot 4",                               ("Collectable",  0x05,  0x35, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
+    ("Water Temple Near Compass Pot 1",                              ("Collectable",  0x05,  0x20, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
+    ("Water Temple Near Compass Pot 2",                              ("Collectable",  0x05,  0x27, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
+    ("Water Temple Near Compass Pot 3",                              ("Collectable",  0x05,  0x28, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
+    ("Water Temple Like Like Pot 1",                                 ("Collectable",  0x05,  0x2B, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
+    ("Water Temple Like Like Pot 2",                                 ("Collectable",  0x05,  0x2C, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
+    ("Water Temple Block Switch Room Pot 1",                         ("Collectable",  0x05,  0x3E, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
+    ("Water Temple Block Switch Room Pot 2",                         ("Collectable",  0x05,  0x25, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
+    ("Water Temple Boss Key Pot 1",                                  ("Collectable",  0x05,  0x26, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
+    ("Water Temple Boss Key Pot 2",                                  ("Collectable",  0x05,  0x37, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
+    ("Water Temple L1 Torch Pot 1",                                  ("Collectable",  0x05,  0x3F, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
+    ("Water Temple L1 Torch Pot 2",                                  ("Collectable",  0x05,  0x2F, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
+    
+    
+
     # Water Temple MQ
     ("Water Temple MQ Longshot Chest",                               ("Chest",        0x05,  0x00, None,                        'Progressive Hookshot',                  ("Water Temple", "Master Quest",))),
     ("Water Temple MQ Map Chest",                                    ("Chest",        0x05,  0x02, None,                        'Map (Water Temple)',                    ("Water Temple", "Master Quest",))),
