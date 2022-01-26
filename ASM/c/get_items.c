@@ -397,12 +397,14 @@ void get_item(z64_actor_t *from_actor, z64_link_t *link, int8_t incoming_item_id
 #define GIVEITEM_HEART 0x83
 #define GIVEITEM_STICK 0x00
 #define GIVEITEM_NUT_5 140
-
-#define ITEM_RUPEE_GREEN 0x00
-#define ITEM_RUPEE_BLUE 0x01
-#define ITEM_RUPEE_RED 0x02
-#define ITEM_HEART 0x03
-#define ITEM_STICK 13
+#define GIVEITEM_BOMBS_5 142
+#define GIVEITEM_ARROWS_SINGLE 3
+#define GIVEITEM_ARROWS_SMALL 146
+#define GIVEITEM_ARROWS_MEDIUM 147
+#define GIVEITEM_ARROWS_LARGE 148
+#define GIVEITEM_SEEDS 88
+#define GIVEITEM_MAGIC_SMALL 120
+#define GIVEITEM_MAGIC_LARGE 121
 
 
 uint8_t items[] = {
@@ -410,16 +412,19 @@ uint8_t items[] = {
 	GIVEITEM_RUPEE_BLUE, 
 	GIVEITEM_RUPEE_RED, 
 	GIVEITEM_HEART,
+	GIVEITEM_BOMBS_5,
+	GIVEITEM_ARROWS_SINGLE,
 	0,
 	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
+	GIVEITEM_ARROWS_SMALL,
+	GIVEITEM_ARROWS_MEDIUM,
+	GIVEITEM_ARROWS_LARGE,
+	GIVEITEM_BOMBS_5,
 	GIVEITEM_NUT_5,
-	GIVEITEM_STICK};
+	GIVEITEM_STICK,
+	GIVEITEM_MAGIC_LARGE,
+	GIVEITEM_MAGIC_SMALL,
+	GIVEITEM_SEEDS};
 
 EnItem00* collectible_mutex = 0;
 
@@ -464,7 +469,7 @@ bool should_override_collectible(EnItem00* item00)
 //Hack for keeping freestanding overrides alive when they spawn from crates/pots.
 void Item00_KeepAlive(EnItem00* item00)
 {
-	if(should_override_collectible(item00))
+	if(should_override_collectible(item00) && (item00->actionFunc != (EnItem00ActionFunc*)0x800127E0))
 	{
 		if(item00->unk_156)
 			item00->timeToLive = 0xFF;

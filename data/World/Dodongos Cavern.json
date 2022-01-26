@@ -102,6 +102,7 @@
             "Dodongos Cavern King Dodongo Heart": "
                 (Bombs or Progressive_Strength_Upgrade) and 
                 (is_adult or Sticks or Kokiri_Sword)",
+            "Dodongos Cavern Pot Test":"True",
             "King Dodongo": "
                 (Bombs or Progressive_Strength_Upgrade) and 
                 (is_adult or Sticks or Kokiri_Sword)",

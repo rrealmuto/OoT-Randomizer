@@ -1,6 +1,6 @@
 {
     "entrances": {
-        "Child Spawn -> KF Links House":               "KF Links House"
+        "Child Spawn -> KF Links House":               {"region": "Death Mountain", "from": "Kak Behind Gate"}
     },
     "locations": {
         
