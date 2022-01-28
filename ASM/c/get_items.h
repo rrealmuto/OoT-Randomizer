@@ -3,6 +3,7 @@
 
 #include "z64.h"
 #include <stdbool.h>
+
 void item_overrides_init();
 void handle_pending_items();
 void push_delayed_item(uint8_t flag);
