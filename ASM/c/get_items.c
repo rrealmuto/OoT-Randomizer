@@ -451,7 +451,7 @@ void Collectible_WaitForMessageBox(EnItem00 *this, z64_game_t *game)
 	}
 }
 
-uint32_t collectible_override_flags[2*101] = {0};
+uint32_t collectible_override_flags[202] = {0};
 
 bool Get_CollectibleOverrideFlag(EnItem00* item00)
 {
