@@ -329,6 +329,14 @@ Gameplay_InitSkybox:
     or      A2, S0, R0
     nop
 
+; Hack Write_Save function to store additional collectible flags
+.orga 0xB065F4 ; In memory: 0x80090694
+    jal Save_Write_Hook
+.orga 0xB06668 ; In memory: 0x80090708
+    jal Save_Write_Hook
+
+
+
 ; Runs when storing an incoming item to the player instance
 ; Replaces:
 ;   sb      a2, 0x0424 (a3)

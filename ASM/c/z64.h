@@ -1344,6 +1344,7 @@ typedef struct EnItem00 {
 #define z64_event_state_1_addr                  0x800EF1B0
 #define z64_LinkInvincibility_addr              0x8038E578
 #define z64_LinkDamage_addr                     0x8038E6A8
+#define SsSram_ReadWrite_addr                   0x80091474
 
 /* rom addresses */
 #define z64_icon_item_static_vaddr              0x007BD000
@@ -1401,6 +1402,7 @@ typedef void(*z64_LinkDamage_proc)        (z64_game_t *ctxt, z64_link_t *link,
                                            uint16_t unk_02);
 typedef void(*z64_LinkInvincibility_proc) (z64_link_t *link, uint8_t frames);
 typedef float *(*z64_GetMatrixStackTop_proc)();
+typedef void (*SsSram_ReadWrite_proc)(uint32_t addr, void* dramAddr, size_t size, uint32_t direction);
 
 /* data */
 #define z64_file_mq             (*(OSMesgQueue*)      z64_file_mq_addr)
@@ -1462,5 +1464,6 @@ typedef float *(*z64_GetMatrixStackTop_proc)();
                                                       z64_LinkInvincibility_addr)
 #define z64_GetMatrixStackTop   ((z64_GetMatrixStackTop_proc) \
                                                       z64_GetMatrixStackTop_addr)
+#define SsSram_ReadWrite ((SsSram_ReadWrite_proc)SsSram_ReadWrite_addr)
 
 #endif

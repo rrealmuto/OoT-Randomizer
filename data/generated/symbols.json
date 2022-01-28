@@ -17,6 +17,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "AUDIO_THREAD_MEM_START": "03495250",
 >>>>>>> a653aa5c (Add shuffle freestanding items)
 =======
@@ -34,6 +35,9 @@
 =======
     "AUDIO_THREAD_MEM_START": "03495400",
 >>>>>>> 30e393f1 (Sort of fix scaling on collectibles dropped from pots)
+=======
+    "AUDIO_THREAD_MEM_START": "034957C0",
+>>>>>>> e9ed1f6c (Try to get pots working)
     "AUTO_TRACKER_CONTEXT": "03480CD0",
     "AUTO_TRACKER_VERSION": "03480CD0",
     "BOMBCHUS_IN_LOGIC": "03480CAC",
@@ -86,6 +90,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "CHEST_SIZE_MATCH_CONTENTS": "0348BC8C",
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348BC90",
     "COMPLETE_MASK_QUEST": "0348BCDD",
@@ -119,6 +124,11 @@
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348BE38",
     "COMPLETE_MASK_QUEST": "0348BE89",
 >>>>>>> 30e393f1 (Sort of fix scaling on collectibles dropped from pots)
+=======
+    "CHEST_SIZE_MATCH_CONTENTS": "0348BECC",
+    "CHEST_TEXTURE_MATCH_CONTENTS": "0348BED0",
+    "COMPLETE_MASK_QUEST": "0348BF21",
+>>>>>>> e9ed1f6c (Try to get pots working)
     "COOP_CONTEXT": "03480020",
     "COOP_VERSION": "03480020",
     "COSMETIC_CONTEXT": "03480834",
@@ -126,6 +136,7 @@
     "CURRENT_GROTTO_ID": "03483056",
     "DEBUG_OFFSET": "03482A74",
     "DISABLE_TIMERS": "03480CCC",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -151,11 +162,15 @@
 =======
     "DPAD_TEXTURE": "0348F3F8",
 >>>>>>> 30e393f1 (Sort of fix scaling on collectibles dropped from pots)
+=======
+    "DPAD_TEXTURE": "0348F7B8",
+>>>>>>> e9ed1f6c (Try to get pots working)
     "DUNGEONS_SHUFFLED": "03480CCD",
     "EXTENDED_OBJECT_TABLE": "03480C8C",
     "EXTERN_DAMAGE_MULTIPLYER": "03482E85",
     "FAST_BUNNY_HOOD_ENABLED": "03480CCF",
     "FAST_CHESTS": "03480CC6",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -187,11 +202,15 @@
 =======
     "FONT_TEXTURE": "0348DF30",
 >>>>>>> 30e393f1 (Sort of fix scaling on collectibles dropped from pots)
+=======
+    "FONT_TEXTURE": "0348E2F0",
+>>>>>>> e9ed1f6c (Try to get pots working)
     "FREE_SCARECROW_ENABLED": "03480CBC",
-    "GANON_BOSS_KEY_CONDITION": "0348BE48",
-    "GANON_BOSS_KEY_CONDITION_COUNT": "0348BE46",
+    "GANON_BOSS_KEY_CONDITION": "0348BEE0",
+    "GANON_BOSS_KEY_CONDITION_COUNT": "0348BEDE",
     "GET_CHEST_OVERRIDE_WRAPPER": "034828EC",
     "GET_ITEM_TRIGGERED": "03481608",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -220,6 +239,10 @@
     "GILDED_CHEST_BASE_TEXTURE": "03491BF8",
     "GILDED_CHEST_FRONT_TEXTURE": "03490BF8",
 >>>>>>> 30e393f1 (Sort of fix scaling on collectibles dropped from pots)
+=======
+    "GILDED_CHEST_BASE_TEXTURE": "03491FB8",
+    "GILDED_CHEST_FRONT_TEXTURE": "03490FB8",
+>>>>>>> e9ed1f6c (Try to get pots working)
     "GOSSIP_HINT_CONDITION": "03480CB8",
     "GROTTO_EXIT_LIST": "03483014",
     "GROTTO_LOAD_TABLE": "03482F90",
@@ -227,6 +250,7 @@
     "INCOMING_PLAYER": "03480026",
     "INITIAL_SAVE_DATA": "0348088C",
     "JABU_ELEVATOR_ENABLE": "03480CC4",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -256,10 +280,14 @@
 =======
     "KAKARIKO_WEATHER_FORECAST": "0348BEA8",
 >>>>>>> 30e393f1 (Sort of fix scaling on collectibles dropped from pots)
+=======
+    "KAKARIKO_WEATHER_FORECAST": "0348BF40",
+>>>>>>> e9ed1f6c (Try to get pots working)
     "LACS_CONDITION": "03480CB4",
     "LACS_CONDITION_COUNT": "03480CC2",
     "MALON_GAVE_ICETRAP": "03483864",
     "MALON_TEXT_ID": "03480CCB",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -308,9 +336,13 @@
 =======
     "MAX_RUPEES": "0348BE8B",
 >>>>>>> 30e393f1 (Sort of fix scaling on collectibles dropped from pots)
+=======
+    "MAX_RUPEES": "0348BF23",
+>>>>>>> e9ed1f6c (Try to get pots working)
     "MOVED_ADULT_KING_ZORA": "034831D4",
-    "NO_ESCAPE_SEQUENCE": "0348BE44",
+    "NO_ESCAPE_SEQUENCE": "0348BEDC",
     "OCARINAS_SHUFFLED": "03480CC5",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     "OPEN_KAKARIKO": "0348BE6A",
@@ -321,10 +353,14 @@
 =======
     "OPEN_KAKARIKO": "0348BE8A",
 >>>>>>> 30e393f1 (Sort of fix scaling on collectibles dropped from pots)
+=======
+    "OPEN_KAKARIKO": "0348BF22",
+>>>>>>> e9ed1f6c (Try to get pots working)
     "OUTGOING_ITEM": "03480030",
     "OUTGOING_KEY": "0348002C",
     "OUTGOING_PLAYER": "03480032",
     "OVERWORLD_SHUFFLED": "03480CCE",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -350,6 +386,9 @@
 =======
     "PAYLOAD_END": "03495400",
 >>>>>>> 30e393f1 (Sort of fix scaling on collectibles dropped from pots)
+=======
+    "PAYLOAD_END": "034957C0",
+>>>>>>> e9ed1f6c (Try to get pots working)
     "PAYLOAD_START": "03480000",
     "PLAYED_WARP_SONG": "0348140C",
     "PLAYER_ID": "03480024",
@@ -452,19 +491,20 @@
     "triforce_sprite": "0348A708"
 =======
     "SHUFFLE_MEDIGORON": "03483C3C",
-    "SILVER_CHEST_BASE_TEXTURE": "034933F8",
-    "SILVER_CHEST_FRONT_TEXTURE": "034923F8",
-    "SKULL_CHEST_BASE_TEXTURE": "03494BF8",
-    "SKULL_CHEST_FRONT_TEXTURE": "03493BF8",
+    "SILVER_CHEST_BASE_TEXTURE": "034937B8",
+    "SILVER_CHEST_FRONT_TEXTURE": "034927B8",
+    "SKULL_CHEST_BASE_TEXTURE": "03494FB8",
+    "SKULL_CHEST_FRONT_TEXTURE": "03493FB8",
     "SONGS_AS_ITEMS": "03480CC8",
     "SOS_ITEM_GIVEN": "034816D4",
     "SPEED_MULTIPLIER": "03482934",
     "START_TWINROVA_FIGHT": "03483254",
     "TIME_TRAVEL_SAVED_EQUIPS": "03481C60",
-    "TRIFORCE_ICON_TEXTURE": "0348FBF8",
+    "TRIFORCE_ICON_TEXTURE": "0348FFB8",
     "TWINROVA_ACTION_TIMER": "03483258",
     "WINDMILL_SONG_ID": "03480CC9",
     "WINDMILL_TEXT_ID": "03480CCA",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -916,4 +956,83 @@
     "triforce_pieces_requied": "0348BE32",
     "triforce_sprite": "0348AD28"
 >>>>>>> 30e393f1 (Sort of fix scaling on collectibles dropped from pots)
+=======
+    "a_button": "0348BEA8",
+    "a_note_b": "0348BE94",
+    "a_note_font_glow_base": "0348BE7C",
+    "a_note_font_glow_max": "0348BE78",
+    "a_note_g": "0348BE98",
+    "a_note_glow_base": "0348BE84",
+    "a_note_glow_max": "0348BE80",
+    "a_note_r": "0348BE9C",
+    "active_item_action_id": "0348BF04",
+    "active_item_fast_chest": "0348BEF4",
+    "active_item_graphic_id": "0348BEF8",
+    "active_item_object_id": "0348BEFC",
+    "active_item_row": "0348BF08",
+    "active_item_text_id": "0348BF00",
+    "active_override": "0348BF10",
+    "active_override_is_outgoing": "0348BF0C",
+    "b_button": "0348BEA4",
+    "beating_dd": "0348BEB0",
+    "beating_no_dd": "0348BEB8",
+    "c_button": "0348BEA0",
+    "c_note_b": "0348BE88",
+    "c_note_font_glow_base": "0348BE6C",
+    "c_note_font_glow_max": "0348BE68",
+    "c_note_g": "0348BE8C",
+    "c_note_glow_base": "0348BE74",
+    "c_note_glow_max": "0348BE70",
+    "c_note_r": "0348BE90",
+    "cfg_file_select_hash": "0348BED8",
+    "cfg_item_overrides": "0348C2B0",
+    "collectible_mutex": "0348BEEC",
+    "collectible_override": "0348BEE4",
+    "collectible_override_flags": "0348BF70",
+    "defaultDDHeart": "0348BEBC",
+    "defaultHeart": "0348BEC4",
+    "dpad_sprite": "0348ADD0",
+    "dummy_actor": "0348BF18",
+    "dungeon_count": "0348BE38",
+    "dungeons": "0348AC28",
+    "empty_dlist": "0348BE50",
+    "extern_ctxt": "0348ACC4",
+    "font_sprite": "0348ADE0",
+    "freecam_modes": "0348A994",
+    "hash_sprites": "0348BE44",
+    "hash_symbols": "0348ACD8",
+    "heap_next": "0348BF3C",
+    "heart_sprite": "0348AD70",
+    "icon_sprites": "0348AB58",
+    "item_digit_sprite": "0348AD90",
+    "item_overrides_count": "0348BF1C",
+    "item_table": "0348AE58",
+    "items": "0348AD58",
+    "items_sprite": "0348AE00",
+    "key_rupee_clock_sprite": "0348ADA0",
+    "last_fog_distance": "0348BE3C",
+    "linkhead_skull_sprite": "0348AD80",
+    "medal_colors": "0348AC14",
+    "medals_sprite": "0348AE10",
+    "normal_dd": "0348BEAC",
+    "normal_no_dd": "0348BEB4",
+    "num_to_bits": "0348AD18",
+    "object_slots": "0348E2B0",
+    "pending_freezes": "0348BF20",
+    "pending_item_queue": "0348C298",
+    "quest_items_sprite": "0348ADF0",
+    "rupee_colors": "0348AB64",
+    "satisified_pending_frames": "0348BEF0",
+    "scene_fog_distance": "0348BE40",
+    "setup_db": "0348AE30",
+    "song_note_sprite": "0348ADB0",
+    "stones_sprite": "0348AE20",
+    "text_cursor_border_base": "0348BE5C",
+    "text_cursor_border_max": "0348BE58",
+    "text_cursor_inner_base": "0348BE64",
+    "text_cursor_inner_max": "0348BE60",
+    "triforce_hunt_enabled": "0348BF30",
+    "triforce_pieces_requied": "0348BECA",
+    "triforce_sprite": "0348ADC0"
+>>>>>>> e9ed1f6c (Try to get pots working)
 }

@@ -153,7 +153,7 @@ bool collectible_draw(z64_actor_t *actor, z64_game_t *game) {
         .graphic_id = 0x00,
     };
     lookup_model(&model, actor, game, 0);
-    if(model.object_id != 0x0000 && (!(z64_file.scene_flags[z64_game.scene_index].unk_00_ & (1 << this->collectibleFlag)) || collectible_mutex))
+    if(model.object_id != 0x0000 && (!Get_CollectibleOverrideFlag(this) || collectible_mutex))
     {
         if(!(collectible_mutex == this))
             draw_model(model, actor, game, 25.0);
