@@ -921,7 +921,30 @@ location_table = OrderedDict([
     ("Shadow Temple GS Single Giant Pot",                            ("GS Token",     0x07,  0x01, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Vanilla", "Skulltulas",))),
     ("Shadow Temple GS Near Ship",                                   ("GS Token",     0x07,  0x10, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Vanilla", "Skulltulas",))),
     ("Shadow Temple GS Triple Giant Pot",                            ("GS Token",     0x07,  0x04, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Vanilla", "Skulltulas",))),  
-   
+    #Shadow Temple Pots
+    ("Shadow Temple Before Dead Hand Pot 1",                         ("Collectable",  0x07,  0x28, None,                        'Rupees (5)',                            ("Shadow Temple", "Vanilla", "Pot"))),
+    ("Shadow Temple Before Dead Hand Pot 2",                         ("Collectable",  0x07,  0x29, None,                        'Rupees (5)',                            ("Shadow Temple", "Vanilla", "Pot"))),
+    ("Shadow Temple Before Dead Hand Pot 3",                         ("Collectable",  0x07,  0x2A, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
+    ("Shadow Temple Before Dead Hand Pot 4",                         ("Collectable",  0x07,  0x2F, None,                        'Rupees (5)',                            ("Shadow Temple", "Vanilla", "Pot"))),
+    ("Shadow Temple Before Dead Hand Pot 5",                         ("Collectable",  0x07,  0x30, None,                        'Deku Nuts (5)',                            ("Shadow Temple", "Vanilla", "Pot"))),
+    ("Shadow Temple Before Dead Hand Pot 6",                         ("Collectable",  0x07,  0x31, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
+    ("Shadow Temple Map Chest Room Pot 1",                           ("Collectable",  0x07,  0x27, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
+    ("Shadow Temple Map Chest Room Pot 2",                           ("Collectable",  0x07,  0x2C, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
+    ("Shadow Temple Falling Spikes Pot 2",                       ("Collectable",  0x07,  0x25, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
+    ("Shadow Temple Falling Spikes Pot 1",                       ("Collectable",  0x07,  0x24, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
+    ("Shadow Temple Falling Spikes Pot 3",                       ("Collectable",  0x07,  0x2B, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
+    ("Shadow Temple Falling Spikes Pot 4",                       ("Collectable",  0x07,  0x2D, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
+    ("Shadow Temple Spike Walls Pot",                                ("Collectable",  0x07,  0x26, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
+    ("Shadow Temple Invisible Floormaster Pot 1",                    ("Collectable",  0x07,  0x33, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
+    ("Shadow Temple Invisible Floormaster Pot 2",                    ("Collectable",  0x07,  0x34, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
+    ("Shadow Temple After Wind Pot 1",                               ("Collectable",  0x07,  0x2E, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
+    ("Shadow Temple After Wind Pot 2",                               ("Collectable",  0x07,  0x32, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
+    ("Shadow Temple After Boat Pot 1",                               ("Collectable",  0x07,  0x38, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
+    #("Shadow Temple After Boat Pot 2"                               ("Collectable",  0x07,  0x3B, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
+    ("Shadow Temple Near Boss Pot 1",                                ("Collectable",  0x07,  0x3D, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
+    ("Shadow Temple Near Boss Pot 2",                                ("Collectable",  0x07,  0x3E, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
+    
+
 # Shadow Temple MQ
     ("Shadow Temple MQ Early Gibdos Chest",                          ("Chest",        0x07,  0x03, None,                        'Small Key (Shadow Temple)',             ("Shadow Temple", "Master Quest",))),
     ("Shadow Temple MQ Map Chest",                                   ("Chest",        0x07,  0x02, None,                        'Map (Shadow Temple)',                   ("Shadow Temple", "Master Quest",))),
