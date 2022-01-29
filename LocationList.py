@@ -540,10 +540,10 @@ location_table = OrderedDict([
     ("Wasteland Bombchu Salesman",                                   ("NPC",          0x5E,  0x03, None,                        'Bombchus (10)',                         ("Haunted Wasteland",))),
     ("Wasteland Chest",                                              ("Chest",        0x5E,  0x00, None,                        'Rupees (50)',                           ("Haunted Wasteland",))),
     ("Wasteland GS",                                                 ("GS Token",     0x15,  0x02, None,                        'Gold Skulltula Token',                  ("Haunted Wasteland", "Skulltulas",))),
-    ("Wasteland Near GS Pot 1",                                      ("Collectable",  0x15,  0x20, None,                        'Recovery Heart',                            ("Haunted Wasteland", "Pot"))),
-    ("Wasteland Near GS Pot 2",                                      ("Collectable",  0x15,  0x21, None,                        'Deku Nuts (5)',                            ("Haunted Wasteland", "Pot"))),
-    #("Wasteland Near GS Pot 3",                                      ("Collectable",  0x15,  0x22, None,                        'Rupees (5)',                            ("Haunted Wasteland", "Pot"))),
-    ("Wasteland Near GS Pot 3",                                      ("Collectable",  0x15,  0x23, None,                        'Rupees (5)',                            ("Haunted Wasteland", "Pot"))),
+    ("Wasteland Near GS Pot 1",                                      ("Collectable",  0x5E,  0x20, None,                        'Recovery Heart',                            ("Haunted Wasteland", "Pot"))),
+    ("Wasteland Near GS Pot 2",                                      ("Collectable",  0x5E,  0x21, None,                        'Deku Nuts (5)',                            ("Haunted Wasteland", "Pot"))),
+    #("Wasteland Near GS Pot 3",                                      ("Collectable",  0x5E,  0x22, None,                        'Rupees (5)',                            ("Haunted Wasteland", "Pot"))),
+    ("Wasteland Near GS Pot 3",                                      ("Collectable",  0x5E,  0x23, None,                        'Rupees (5)',                            ("Haunted Wasteland", "Pot"))),
 
     # Colossus
     ("Colossus Great Fairy Reward",                                  ("Cutscene",     0xFF,  0x12, None,                        'Nayrus Love',                           ("Desert Colossus", "Fairies",))),
