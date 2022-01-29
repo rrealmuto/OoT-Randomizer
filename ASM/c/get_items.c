@@ -80,6 +80,9 @@ override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_
 		//Check if it was a dropped collectable and use a separate override for that
 		if(actor->dropFlag)
 		{
+			//Use the same override flags for the pots in ganon's tower
+			if(scene == 0x0A)
+				scene = 0x19;
 			return (override_key_t){
 				.scene = scene,
 				.type = OVR_DROPPEDCOLLECTABLE,
@@ -466,31 +469,37 @@ uint32_t dropped_collectible_override_flags[202] = {0x00};
 bool Get_CollectibleOverrideFlag(EnItem00* item00)
 {
 	uint32_t* flag_table = &collectible_override_flags;
+	uint16_t scene = z64_game.scene_index;
 	if(item00->actor.dropFlag) //we set this if it's dropped
 	{
 		flag_table = &dropped_collectible_override_flags;
+		if(scene == 0x0A)
+			scene = 0x19;
 	}
 	if(item00->collectibleFlag < 0x20)
 	{
-		return (flag_table[2*z64_game.scene_index] & (1 << item00->collectibleFlag)) > 0;
+		return (flag_table[2*scene] & (1 << item00->collectibleFlag)) > 0;
 	}
-	return (flag_table[2*z64_game.scene_index + 1] & (1 << (item00->collectibleFlag - 0x20))) > 0;
+	return (flag_table[2*scene + 1] & (1 << (item00->collectibleFlag - 0x20))) > 0;
 }
 
 void Set_CollectibleOverrideFlag(EnItem00* item00)
 {
 	uint32_t* flag_table = &collectible_override_flags;
+	uint16_t scene = z64_game.scene_index;
 	if(item00->actor.dropFlag)
 	{
 		flag_table = &dropped_collectible_override_flags;
+		if(scene == 0x0A)
+			scene = 0x19;
 	}
 	if(item00->collectibleFlag < 0x20)
 	{
-		flag_table[2 * z64_game.scene_index] |= (1 << item00->collectibleFlag);
+		flag_table[2 * scene] |= (1 << item00->collectibleFlag);
 	}
 	else
 	{
-		flag_table[2 * z64_game.scene_index + 1] |= (1 << (item00->collectibleFlag -0x20));
+		flag_table[2 * scene + 1] |= (1 << (item00->collectibleFlag -0x20));
 	}
 }
 

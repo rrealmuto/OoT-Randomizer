@@ -1,7 +1,7 @@
 {
     "entrances": {
-        "Child Spawn -> KF Links House" : {"region" : "Zoras Fountain", "from": "ZD Behind King Zora"},
-        "Adult Spawn -> Temple of Time" : {"region" : "Zoras Domain", "from": "ZR Behind Waterfall"}
+        "Child Spawn -> KF Links House" : {"region" : "Goron City", "from": "Death Mountain"},
+        "Adult Spawn -> Temple of Time" : {"region" : "GC Darunias Chamber", "from": "DMC Lower Nearby"}
     },
     "locations": {
         "Dodongos Cavern Last Block Pot 2" : "Progressive Hookshot"
