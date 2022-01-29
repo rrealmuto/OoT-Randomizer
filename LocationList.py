@@ -198,7 +198,9 @@ location_table = OrderedDict([
     ("Market Bombchu Shop Item 8",                                   ("Shop",         0x32,  0x37, (shop_address(2, 7), None),  'Buy Bombchu (20)',                      ("the Market", "Market", "Shops"))),
 
     ("Market Guard House Crate Rupee",                               ("Collectable",  0x4D,  0x3C, None,                         'Rupee (1)',                            ("the Market", "Market", "Crate"))),
-
+    ("Market Back Alley House Pot 1",                                ("Collectable",  0x2B,  0x21, None,                        'Recovery Heart',                        ("the market", "Market", "Pot"))),
+    ("Market Back Alley House Pot 2",                                ("Collectable",  0x2B,  0x22, None,                        'Recovery Heart',                        ("the market", "Market", "Pot"))),
+    ("Market Back Alley House Pot 3",                                ("Collectable",  0x2B,  0x23, None,                        'Recovery Heart',                        ("the market", "Market", "Pot"))),
     ("ToT Light Arrows Cutscene",                                    ("Cutscene",     0xFF,  0x01, None,                        'Light Arrows',                          ("Temple of Time", "Market",))),
 
     # Hyrule Castle
@@ -229,7 +231,9 @@ location_table = OrderedDict([
     ("LLR Pot 5",                                                    ("Collectable",  0x99,  0x26, None,                        'Recovery Heart',                        ("Lon Lon Ranch", "Pot"))),
     ("LLR Pot 6",                                                    ("Collectable",  0x99,  0x27, None,                        'Recovery Heart',                        ("Lon Lon Ranch", "Pot"))),
     ("LLR Pot 7",                                                    ("Collectable",  0x99,  0x28, None,                        'Recovery Heart',                        ("Lon Lon Ranch", "Pot"))),
-
+    ("LLR Talons House Pot 1",                                       ("Collectable",  0x76,  0x29, None,                        'Rupees (5)',                            ("Lon Lon Ranch", "Pot"))),
+    ("LLR Talons House Pot 2",                                       ("Collectable",  0x76,  0x2A, None,                        'Rupees (5)',                            ("Lon Lon Ranch", "Pot"))),
+    ("LLR Talons House Pot 3",                                       ("Collectable",  0x76,  0x2B, None,                        'Rupees (5)',                            ("Lon Lon Ranch", "Pot"))),
 
     # Kakariko
     ("Kak Anju as Child",                                            ("NPC",          0x52,  0x0F, None,                        'Bottle',                                ("Kakariko Village", "Kakariko", "Minigames"))),
@@ -348,6 +352,17 @@ location_table = OrderedDict([
     ("GC Shop Item 6",                                               ("Shop",         0x2E,  0x35, (shop_address(8, 5), None),  'Buy Heart',                             ("Goron City", "Shops",))),
     ("GC Shop Item 7",                                               ("Shop",         0x2E,  0x36, (shop_address(8, 6), None),  'Buy Red Potion [40]',                   ("Goron City", "Shops",))),
     ("GC Shop Item 8",                                               ("Shop",         0x2E,  0x37, (shop_address(8, 7), None),  'Buy Heart',                             ("Goron City", "Shops",))),
+    # Goron City Pots. Reassign some flags because nintendo decided adult pots should share flags... 
+    ("GC Darunia Pot 1",                                     ("Collectable",  0x62,  0x38, None,                    'Deku Stick (1)',                        ("Goron City", "Pot"))),
+    ("GC Darunia Pot 2",                                     ("Collectable",  0x62,  0x39, None,                    'Rupee (1)',                             ("Goron City", "Pot"))),
+    ("GC Darunia Pot 3",                                     ("Collectable",  0x62,  0x3A, None,                    'Deku Stick (1)',                        ("Goron City", "Pot"))),
+    ("GC Medigoron Pot",                                     ("Collectable",  0x62,  0x33, ([0x22961D0 + 14], [0x67]),  'Rupees (5)',                            ("Goron City", "Pot"))),
+    ("GC Lower Staircase Pot 1",                             ("Collectable",  0x62,  0x34, ([0x22A84D8 + 14], [0x69]),  'Deku Stick (1)',                        ("Goron City", "Pot"))),
+    ("GC Lower Staircase Pot 2",                             ("Collectable",  0x62,  0x3C, ([0x22A8518 + 14], [0x79]),  'Recovery Heart',                        ("Goron City", "Pot"))),
+    ("GC Upper Staircase Pot 1",                             ("Collectable",  0x62,  0x35, ([0x22A84E8 + 14], [0x6B]),  'Rupees (5)',                            ("Goron City", "Pot"))),
+    ("GC Upper Staircase Pot 2",                             ("Collectable",  0x62,  0x36, ([0x22A84F8 + 14], [0x6D]),  'Rupee (1)',                             ("Goron City", "Pot"))),
+    ("GC Upper Staircase Pot 3",                             ("Collectable",  0x62,  0x3B, ([0x22A8508 + 14], [0x77]),  'Rupees (5)',                            ("Goron City", "Pot"))),
+    
 
     # Death Mountain Crater
     ("DMC Volcano Freestanding PoH",                                 ("Collectable",  0x61,  0x08, None,                        'Piece of Heart',                        ("Death Mountain Crater", "Death Mountain",))),
@@ -361,6 +376,11 @@ location_table = OrderedDict([
     ("DMC Lower Blue Rupee 4",                                        ("Collectable",0x61,  0x25, None, 'Rupees (5)',                           ("Death Mountain Crater", "Death Mountain", "Freestanding",))),    
     ("DMC Lower Blue Rupee 5",                                        ("Collectable",0x61,  0x26, None, 'Rupees (5)',                           ("Death Mountain Crater", "Death Mountain", "Freestanding",))),    
     ("DMC Lower Blue Rupee 6",                                        ("Collectable",0x61,  0x27, None, 'Rupees (5)',                           ("Death Mountain Crater", "Death Mountain", "Freestanding",))),    
+    ("DMC Near GC Pot 1",                                             ("Collectable",0x61,  0x20, None, 'Recovery Heart',                           ("Death Mountain Crater", "Death Mountain", "Pot",))),    
+    ("DMC Near GC Pot 2",                                             ("Collectable",0x61,  0x21, None, 'Arrows (10)',                           ("Death Mountain Crater", "Death Mountain", "Pot",))),    
+    ("DMC Near GC Pot 3",                                             ("Collectable",0x61,  0x22, None, 'Rupees (5)',                           ("Death Mountain Crater", "Death Mountain", "Pot",))),    
+    ("DMC Near GC Pot 4",                                             ("Collectable",0x61,  0x23, None, 'Rupees (5)',                           ("Death Mountain Crater", "Death Mountain", "Pot",))),    
+
 
     ("DMC Upper Grotto Chest",                                       ("Chest",        0x3E,  0x1A, None,                        'Bombs (20)',                            ("Death Mountain Crater", "Death Mountain", "Grottos"))),
     ("DMC Great Fairy Reward",                                       ("Cutscene",     0xFF,  0x14, None,                        'Magic Meter',                           ("Death Mountain Crater", "Death Mountain", "Fairies",))),
@@ -656,7 +676,12 @@ location_table = OrderedDict([
     ("Jabu Jabus Belly Basement Switch Room Pot 1",                  ("Collectable",     0x02,  0x25, None,                        'Deku Seeds (30)',                  ("Jabu Jabu's Belly", "Vanilla", "Pot",))),
     #("Jabu Jabus Belly Basement Switch Room Pot X",                  ("Collectable",     0x02,  0x26, None,                        'Deku Nuts (5)',                  ("Jabu Jabu's Belly", "Vanilla", "Pot",))),
     ("Jabu Jabus Belly Basement Switch Room Pot 2",                  ("Collectable",     0x02,  0x27, None,                        'Deku Seeds (30)',                  ("Jabu Jabu's Belly", "Vanilla", "Pot",))),
-    
+    ("Jabu Jabus Belly Barinade Pot 1",                              ("Collectable",     0x13,  0x20, None,                        'Recovery Heart',                   ("Jabu Jabu's Belly", "vanilla", "Pot"))),
+    ("Jabu Jabus Belly Barinade Pot 2",                              ("Collectable",     0x13,  0x21, None,                        'Recovery Heart',                   ("Jabu Jabu's Belly", "vanilla", "Pot"))),
+    ("Jabu Jabus Belly Barinade Pot 3",                              ("Collectable",     0x13,  0x22, None,                        'Recovery Heart',                   ("Jabu Jabu's Belly", "vanilla", "Pot"))),
+    ("Jabu Jabus Belly Barinade Pot 4",                              ("Collectable",     0x13,  0x23, None,                        'Recovery Heart',                   ("Jabu Jabu's Belly", "vanilla", "Pot"))),
+    ("Jabu Jabus Belly Barinade Pot 5",                              ("Collectable",     0x13,  0x24, None,                        'Recovery Heart',                   ("Jabu Jabu's Belly", "vanilla", "Pot"))),
+    ("Jabu Jabus Belly Barinade Pot 6",                              ("Collectable",     0x13,  0x25, None,                        'Recovery Heart',                   ("Jabu Jabu's Belly", "vanilla", "Pot"))),
     
     # Jabu Jabu's Belly MQ
     ("Jabu Jabus Belly MQ Map Chest",                                ("Chest",        0x02,  0x03, None,                        'Map (Jabu Jabus Belly)',                ("Jabu Jabu's Belly", "Master Quest",))),
@@ -1223,6 +1248,24 @@ location_table = OrderedDict([
     ("Ganons Castle Deku Scrub Center-Left",                         ("NPC",          0x0D,  0x37, None,                        'Buy Bombs (5) [35]',                    ("Ganon's Castle", "Vanilla", "Deku Scrub",))),
     ("Ganons Castle Deku Scrub Center-Right",                        ("NPC",          0x0D,  0x33, None,                        'Buy Arrows (30)',                       ("Ganon's Castle", "Vanilla", "Deku Scrub",))),
     ("Ganons Castle Deku Scrub Right",                               ("NPC",          0x0D,  0x39, None,                        'Buy Red Potion [30]',                   ("Ganon's Castle", "Vanilla", "Deku Scrub",))),
+    # Ganons Castle Vanilla Pots
+    ("Ganons Castle Water Trial Pot 1",                              ("Collectable",  0x0D,  0x39, None,                        'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Pot"))),
+    ("Ganons Castle Water Trial Pot 2",                              ("Collectable",  0x0D,  0x3A, None,                        'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Pot"))),
+    ("Ganons Castle Forest Trial Pot 1",                             ("Collectable",  0x0D,  0x35, None,                        'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Pot"))),
+    ("Ganons Castle Forest Trial Pot 2",                             ("Collectable",  0x0D,  0x36, None,                        'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Pot"))),
+    ("Ganons Castle Light Trial Boulder Pot",                        ("Collectable",  0x0D,  0x25, None,                        'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Pot"))),
+    ("Ganons Castle Light Trial Pot 1",                              ("Collectable",  0x0D,  0x3B, None,                        'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Pot"))),
+    ("Ganons Castle Light Trial Pot 2",                              ("Collectable",  0x0D,  0x3C, None,                        'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Pot"))),
+    ("Ganons Castle Shadow Trial Like-Like Pot 1",                   ("Collectable",  0x0D,  0x2D, None,                        'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Pot"))),
+    ("Ganons Castle Shadow Trial Like-Like Pot 2",                   ("Collectable",  0x0D,  0x2F, None,                        'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Pot"))),
+    ("Ganons Castle Shadow Trial Pot 1",                             ("Collectable",  0x0D,  0x31, None,                        'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Pot"))),
+    ("Ganons Castle Shadow Trial Pot 2",                             ("Collectable",  0x0D,  0x32, None,                        'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Pot"))),
+    ("Ganons Castle Fire Trial Pot 1",                               ("Collectable",  0x0D,  0x30, None,                        'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Pot"))),
+    ("Ganons Castle Fire Trial Pot 2",                               ("Collectable",  0x0D,  0x37, ([0x325409C + 14],[0x6E]),   'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Pot"))),
+    ("Ganons Castle Spirit Trial Pot 1",                             ("Collectable",  0x0D,  0x33, None,                        'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Pot"))),
+    ("Ganons Castle Spirit Trial Pot 2",                             ("Collectable",  0x0D,  0x34, None,                        'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Pot"))),
+    
+    
     # Ganon's Castle MQ
     ("Ganons Castle MQ Forest Trial Freestanding Key",               ("Collectable",  0x0D,  0x01, None,                        'Small Key (Ganons Castle)',             ("Ganon's Castle", "Master Quest",))),
     ("Ganons Castle MQ Forest Trial Eye Switch Chest",               ("Chest",        0x0D,  0x02, None,                        'Arrows (10)',                           ("Ganon's Castle", "Master Quest",))),
@@ -1247,6 +1290,22 @@ location_table = OrderedDict([
     ("Ganons Castle MQ Deku Scrub Right",                            ("NPC",          0x0D,  0x30, None,                        'Buy Deku Nut (5)',                      ("Ganon's Castle", "Master Quest", "Deku Scrub",))),
     # Ganon's Castle shared
     ("Ganons Tower Boss Key Chest",                                  ("Chest",        0x0A,  0x0B, None,                        'Boss Key (Ganons Castle)',              ("Ganon's Castle", "Vanilla", "Master Quest",))),
+
+    # Ganon's Tower
+    ("Ganons Tower Pot 1",                                           ("Collectable",  0x19,  0x20, None,                        'Recovery Heart',                        ("Ganon's Tower", "Pot"))),
+    ("Ganons Tower Pot 2",                                           ("Collectable",  0x19,  0x21, None,                        'Recovery Heart',                        ("Ganon's Tower", "Pot"))),
+    ("Ganons Tower Pot 3",                                           ("Collectable",  0x19,  0x25, None,                        'Recovery Heart',                        ("Ganon's Tower", "Pot"))),
+    ("Ganons Tower Pot 4",                                           ("Collectable",  0x19,  0x22, None,                        'Recovery Heart',                        ("Ganon's Tower", "Pot"))),
+    ("Ganons Tower Pot 5",                                           ("Collectable",  0x19,  0x26, None,                        'Recovery Heart',                        ("Ganon's Tower", "Pot"))),
+    ("Ganons Tower Pot 6",                                           ("Collectable",  0x19,  0x27, None,                        'Recovery Heart',                        ("Ganon's Tower", "Pot"))),
+    ("Ganons Tower Pot 7",                                           ("Collectable",  0x19,  0x23, None,                        'Recovery Heart',                        ("Ganon's Tower", "Pot"))),
+    ("Ganons Tower Pot 8",                                           ("Collectable",  0x19,  0x24, None,                        'Recovery Heart',                        ("Ganon's Tower", "Pot"))),
+    ("Ganons Tower Pot 9",                                           ("Collectable",  0x19,  0x2A, None,                        'Recovery Heart',                         ("Ganon's Tower", "Pot"))),
+    ("Ganons Tower Pot 10",                                          ("Collectable",  0x19,  0x2B, None,                        'Recovery Heart',                        ("Ganon's Tower", "Pot"))),
+    ("Ganons Tower Pot 11",                                          ("Collectable",  0x19,  0x2C, None,                        'Recovery Heart',                        ("Ganon's Tower", "Pot"))),
+    ("Ganons Tower Pot 12",                                          ("Collectable",  0x19,  0x2D, None,                        'Recovery Heart',                        ("Ganon's Tower", "Pot"))),
+    ("Ganons Tower Pot 13",                                          ("Collectable",  0x19,  0x2E, None,                        'Recovery Heart',                        ("Ganon's Tower", "Pot"))),
+    ("Ganons Tower Pot 14",                                          ("Collectable",  0x19,  0x31, None,                        'Recovery Heart',                        ("Ganon's Tower", "Pot"))),
 
     ## Events and Drops
     ("Pierre",                                                       ("Event",        None,  None, None,                        'Scarecrow Song',                        None)),
