@@ -161,7 +161,7 @@ location_table = OrderedDict([
 
     # Market
     #("Market Night Crate Rupee",                                     ("ActorOverride",0x21,  0x03, ([0x022D21B8], [0x00, 0x06, 0x00, 0x00, 0x00, 0x03]) ,                        'Rupees (20)',                           ("the market", "Market",))),
-    ("Market Night Crate Rupee",                                     ("Collectable",  0x21,  0x03, None,                        'Rupees (20)',                           ("the market", "Market", "Freestanding"))),
+    ("Market Night Crate Rupee",                                     ("Collectable",  0x21,  0x03, None,                        'Rupees (20)',                           ("the market", "Market", "Crate"))),
     ("Market Shooting Gallery Reward",                               ("NPC",          0x42,  0x60, None,                        'Slingshot',                             ("the Market", "Market", "Minigames"))),
     ("Market Bombchu Bowling First Prize",                           ("NPC",          0x4B,  0x34, None,                        'Bomb Bag',                              ("the Market", "Market", "Minigames"))),
     ("Market Bombchu Bowling Second Prize",                          ("NPC",          0x4B,  0x3E, None,                        'Piece of Heart',                        ("the Market", "Market", "Minigames"))),
@@ -197,7 +197,7 @@ location_table = OrderedDict([
     ("Market Bombchu Shop Item 7",                                   ("Shop",         0x32,  0x36, (shop_address(2, 6), None),  'Buy Bombchu (20)',                      ("the Market", "Market", "Shops"))),
     ("Market Bombchu Shop Item 8",                                   ("Shop",         0x32,  0x37, (shop_address(2, 7), None),  'Buy Bombchu (20)',                      ("the Market", "Market", "Shops"))),
 
-    ("Market Guard House Crate Rupee",                               ("Collectable",  0x4D,  0x3C, None,                         'Rupee (1)',                            ("the Market", "Market", "Freestanding"))),
+    ("Market Guard House Crate Rupee",                               ("Collectable",  0x4D,  0x3C, None,                         'Rupee (1)',                            ("the Market", "Market", "Crate"))),
 
     ("ToT Light Arrows Cutscene",                                    ("Cutscene",     0xFF,  0x01, None,                        'Light Arrows',                          ("Temple of Time", "Market",))),
 
@@ -436,7 +436,7 @@ location_table = OrderedDict([
     ("GV Crate Freestanding PoH",                                    ("Collectable",  0x5A,  0x02, None,                        'Piece of Heart',                        ("Gerudo Valley", "Gerudo",))),
     ("GV Waterfall Freestanding PoH",                                ("Collectable",  0x5A,  0x01, None,                        'Piece of Heart',                        ("Gerudo Valley", "Gerudo",))),
     #("GV Crate Near Cow",                                            ("Collectable",  0x5A,  0x19, ([0x0213D2CC], [0x01, 0xA0, 0xFE, 0x3F, 0xF7, 0xFD, 0x00, 0x7B, 0x00, 0x06, 0x00, 0x00, 0x00, 0x19, 0xFF, 0xFF]), 'Rupee (1)',                            ("Gerudo Valley", "Gerudo", "Freestanding"))),
-    ("GV Crate Near Cow",                                            ("Collectable",  0x5A,  0x00, None,                        'Rupee (1)',                            ("Gerudo Valley", "Gerudo", "Freestanding"))),
+    ("GV Crate Near Cow",                                            ("Collectable",  0x5A,  0x00, None,                        'Rupee (1)',                            ("Gerudo Valley", "Gerudo", "Crate"))),
     ("GV Chest",                                                     ("Chest",        0x5A,  0x00, None,                        'Rupees (50)',                           ("Gerudo Valley", "Gerudo",))),
     ("GV Deku Scrub Grotto Front",                                   ("GrottoNPC",    0xF0,  0x3A, None,                        'Buy Green Potion',                      ("Gerudo Valley", "Gerudo", "Deku Scrub", "Grottos"))),
     ("GV Deku Scrub Grotto Rear",                                    ("GrottoNPC",    0xF0,  0x39, None,                        'Buy Red Potion [30]',                   ("Gerudo Valley", "Gerudo", "Deku Scrub", "Grottos"))),
