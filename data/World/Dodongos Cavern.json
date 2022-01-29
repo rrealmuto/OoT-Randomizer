@@ -130,9 +130,9 @@
             "Dodongos Cavern King Dodongo Heart": "
                 (Bombs or Progressive_Strength_Upgrade) and 
                 (is_adult or Sticks or Kokiri_Sword)",
-            "Dodongos Cavern Last Block Pot 1":"True",
+            "Dodongos Cavern Last Block Pot 1":"can_use(Bombs)",
             "Dodongos Cavern Last Block Pot 2":"True",
-            "Dodongos Cavern Last Block Pot 3":"True",
+            "Dodongos Cavern Last Block Pot 3":"can_use(Slingshot) or can_use(Bow)",
             "King Dodongo": "
                 (Bombs or Progressive_Strength_Upgrade) and 
                 (is_adult or Sticks or Kokiri_Sword)",
