@@ -77,6 +77,15 @@ override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_
 		{
 			return (override_key_t){.all = 0};
 		}*/
+		//Check if it was a dropped collectable and use a separate override for that
+		if(actor->dropFlag)
+		{
+			return (override_key_t){
+				.scene = scene,
+				.type = OVR_DROPPEDCOLLECTABLE,
+				.flag = *(((uint8_t *)actor) + 0x141),
+			};
+		}
 
 		return (override_key_t){
 			.scene = scene,
@@ -451,26 +460,37 @@ void Collectible_WaitForMessageBox(EnItem00 *this, z64_game_t *game)
 	}
 }
 
-uint32_t collectible_override_flags[202] = {0};
+uint32_t collectible_override_flags[202] = {0x00};
+uint32_t dropped_collectible_override_flags[202] = {0x00};
 
 bool Get_CollectibleOverrideFlag(EnItem00* item00)
 {
+	uint32_t* flag_table = &collectible_override_flags;
+	if(item00->actor.dropFlag) //we set this if it's dropped
+	{
+		flag_table = &dropped_collectible_override_flags;
+	}
 	if(item00->collectibleFlag < 0x20)
 	{
-		return (collectible_override_flags[2*z64_game.scene_index] & (1 << item00->collectibleFlag)) > 0;
+		return (flag_table[2*z64_game.scene_index] & (1 << item00->collectibleFlag)) > 0;
 	}
-	return (collectible_override_flags[2*z64_game.scene_index + 1] & (1 << (item00->collectibleFlag - 0x20))) > 0;
+	return (flag_table[2*z64_game.scene_index + 1] & (1 << (item00->collectibleFlag - 0x20))) > 0;
 }
 
 void Set_CollectibleOverrideFlag(EnItem00* item00)
 {
+	uint32_t* flag_table = &collectible_override_flags;
+	if(item00->actor.dropFlag)
+	{
+		flag_table = &dropped_collectible_override_flags;
+	}
 	if(item00->collectibleFlag < 0x20)
 	{
-		collectible_override_flags[2 * z64_game.scene_index] |= (1 << item00->collectibleFlag);
+		flag_table[2 * z64_game.scene_index] |= (1 << item00->collectibleFlag);
 	}
 	else
 	{
-		collectible_override_flags[2 * z64_game.scene_index + 1] |= (1 << (item00->collectibleFlag -0x20));
+		flag_table[2 * z64_game.scene_index + 1] |= (1 << (item00->collectibleFlag -0x20));
 	}
 }
 
@@ -528,7 +548,7 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
 
 		//Set the collectible flag
 		Set_CollectibleOverrideFlag(pItem);
-		z64_SetCollectibleFlags(&z64_game, pItem->collectibleFlag);
+		//z64_SetCollectibleFlags(&z64_game, pItem->collectibleFlag);
 		item_id = collectible_override.value.item_id;
 		uint8_t player = collectible_override.value.player;
 

@@ -15,6 +15,7 @@ enum override_type {
     OVR_SKULL = 3,
     OVR_GROTTO_SCRUB = 4,
     OVR_DELAYED = 5,
+    OVR_DROPPEDCOLLECTABLE = 6
 };
 
 typedef union {

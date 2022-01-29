@@ -2016,7 +2016,10 @@ def get_override_entry(location):
     elif location.type == 'ActorOverride':
         type = 2
     elif location.type == 'Collectable':
-        type = 2
+        if "Pot" in location.filter_tags:
+            type = 6
+        else:
+            type = 2
     elif location.type == 'GS Token':
         type = 3
     elif location.type == 'Shop' and location.item.type != 'Shop':

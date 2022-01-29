@@ -220,11 +220,11 @@ Gameplay_InitSkybox:
 
 ; en_item00_update() hacks - 0x80012938
 ; Hack to keep collectibles alive if we are overriding them
-.orga 0xA888BC; in Memory 0x8001295C
-    jal Item00_KeepAlive
-    nop
-    nop
-    LH V0, 0x014A (S0)
+;.orga 0xA888BC; in Memory 0x8001295C
+;    jal Item00_KeepAlive
+;    nop
+;    nop
+;    LH V0, 0x014A (S0)
 
 ; Runs when player collides w/ Collectible (inside en_item00_update()) start of switch case at 0x80012CA4
 
@@ -329,13 +329,36 @@ Gameplay_InitSkybox:
     or      A2, S0, R0
     nop
 
+
 ; Hack Write_Save function to store additional collectible flags
 .orga 0xB065F4 ; In memory: 0x80090694
     jal Save_Write_Hook
 .orga 0xB06668 ; In memory: 0x80090708
     jal Save_Write_Hook
 
+; Hack Open_Save function to retrieve additional collectible flags
+; At the start of the Sram_OpenSave function, SramContext address is stored in A0 and also on the stack at 0x20(SP)
+; Overwrite the memcpy function at 0x800902E8
+; jal   0x80057030
+; addu  A1, T9, A3
+.orga 0xB06248 ;In memory: 0x800902E8
+jal open_save_hook
+nop
 
+;Hack to EnItem00_Init to store if it was dropped by a pot
+;replaces
+;ANDI t9, v0, 0x00FF
+;SH  T9, 0x001c(S0)
+.orga 0xA87AF0; In memory 0x80011B90
+jal  item00_init_hook
+nop
+
+;Hack Item_DropCollectible to add a flag that this was a dropped collectible (vs spawned).
+;replaces or t4, t3, t1
+;sw t4, 0x0024(sp)
+.orga 0xA89708; in memory 0x800137A8
+jal drop_collectible_hook
+or t4, t3, t1
 
 ; Runs when storing an incoming item to the player instance
 ; Replaces:
