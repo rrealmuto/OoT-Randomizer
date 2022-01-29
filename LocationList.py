@@ -673,6 +673,28 @@ location_table = OrderedDict([
     ("Bottom of the Well GS West Inner Room",                        ("GS Token",     0x08,  0x04, None,                        'Gold Skulltula Token',                  ("Bottom of the Well", "Vanilla", "Skulltulas",))),
     ("Bottom of the Well GS East Inner Room",                        ("GS Token",     0x08,  0x02, None,                        'Gold Skulltula Token',                  ("Bottom of the Well", "Vanilla", "Skulltulas",))),
     ("Bottom of the Well GS Like Like Cage",                         ("GS Token",     0x08,  0x01, None,                        'Gold Skulltula Token',                  ("Bottom of the Well", "Vanilla", "Skulltulas",))),
+    # Bottom of the Well Vanilla Pots
+    ("Bottom of the Well Left Side Pot 1",                           ("Collectable",  0x08,  0x21, None,                        'Recovery Heart',                        ("Bottom of the Well", "Vanilla", "Pot"))),
+    ("Bottom of the Well Left Side Pot 2",                           ("Collectable",  0x08,  0x22, None,                        'Rupees (5)',                        ("Bottom of the Well", "Vanilla", "Pot"))),
+    ("Bottom of the Well Left Side Pot 3",                           ("Collectable",  0x08,  0x23, None,                        'Recovery Heart',                        ("Bottom of the Well", "Vanilla", "Pot"))),
+    ("Bottom of the Well Near Entrance Pot 1",                       ("Collectable",  0x08,  0x24, None,                        'Rupees (5)',                        ("Bottom of the Well", "Vanilla", "Pot"))),
+    ("Bottom of the Well Near Entrance Pot 2",                       ("Collectable",  0x08,  0x25, None,                        'Rupees (20)',                        ("Bottom of the Well", "Vanilla", "Pot"))),
+    ("Bottom of the Well Underwater Pot",                            ("Collectable",  0x08,  0x26, None,                        'Bombs (10)',                            ("Bottom of the Well", "Vanilla", "Pot"))),
+    ("Bottom of the Well Basement Pot 1",                            ("Collectable",  0x08,  0x27, None,                        'Recovery Heart',                            ("Bottom of the Well", "Vanilla", "Pot"))),
+    ("Bottom of the Well Basement Pot 2",                            ("Collectable",  0x08,  0x28, None,                        'Rupees (5)',                            ("Bottom of the Well", "Vanilla", "Pot"))),
+    ("Bottom of the Well Basement Pot 3",                            ("Collectable",  0x08,  0x29, None,                        'Recovery Heart',                            ("Bottom of the Well", "Vanilla", "Pot"))),
+    ("Bottom of the Well Basement Pot 4",                            ("Collectable",  0x08,  0x2A, None,                        'Rupees (5)',                            ("Bottom of the Well", "Vanilla", "Pot"))),
+    ("Bottom of the Well Basement Pot 5",                            ("Collectable",  0x08,  0x2B, None,                        'Rupees (5)',                            ("Bottom of the Well", "Vanilla", "Pot"))),
+    ("Bottom of the Well Basement Pot 6",                            ("Collectable",  0x08,  0x2C, None,                        'Recovery Heart',                            ("Bottom of the Well", "Vanilla", "Pot"))),
+    ("Bottom of the Well Basement Pot 7",                            ("Collectable",  0x08,  0x2D, None,                        'Recovery Heart',                            ("Bottom of the Well", "Vanilla", "Pot"))),
+    ("Bottom of the Well Basement Pot 8",                            ("Collectable",  0x08,  0x2E, None,                        'Recovery Heart',                            ("Bottom of the Well", "Vanilla", "Pot"))),
+    ("Bottom of the Well Basement Pot 9",                            ("Collectable",  0x08,  0x2F, None,                        'Deku Nuts (5)',                            ("Bottom of the Well", "Vanilla", "Pot"))),
+    ("Bottom of the Well Basement Pot 10",                           ("Collectable",  0x08,  0x30, None,                        'Rupees (20)',                            ("Bottom of the Well", "Vanilla", "Pot"))),
+    ("Bottom of the Well Basement Pot 11",                           ("Collectable",  0x08,  0x31, None,                        'Rupees (5)',                            ("Bottom of the Well", "Vanilla", "Pot"))),
+    ("Bottom of the Well Basement Pot 12",                           ("Collectable",  0x08,  0x32, None,                        'Recovery Heart',                            ("Bottom of the Well", "Vanilla", "Pot"))),
+    ("Bottom of the Well Fire Keese Pot",                                ("Collectable",  0x08,  0x33, None,                   'Rupees (5)',                            ("Bottom of the Well", "Vanilla", "Pot"))),
+
+
     # Bottom of the Well MQ
     ("Bottom of the Well MQ Map Chest",                              ("Chest",        0x08,  0x03, None,                        'Map (Bottom of the Well)',              ("Bottom of the Well", "Master Quest",))),
     ("Bottom of the Well MQ East Inner Room Freestanding Key",       ("Collectable",  0x08,  0x01, None,                        'Small Key (Bottom of the Well)',        ("Bottom of the Well", "Master Quest",))),
