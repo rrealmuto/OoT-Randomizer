@@ -255,6 +255,14 @@ Gameplay_InitSkybox:
 	j item_give_hook
 	or A2, S0, R0
 
+; Override Item_Give(RUPEE_PURPLE)
+; Replaces:
+;OR	A0, S1, R0
+;JAL	0x8006FDCC
+;addiu	a1, r0, 0x0084
+.orga 0xA88C48 ; In memory: 80012CE8)
+	j item_give_hook
+	or A2, S0, R0
 
 ; Override Stick Collectible
 .orga 0xA88C70 ; In memory: 0x80012D10
