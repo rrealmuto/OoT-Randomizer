@@ -222,6 +222,14 @@ location_table = OrderedDict([
     ("LLR GS Tree",                                                  ("GS Token",     0x0B,  0x08, None,                        'Gold Skulltula Token',                  ("Lon Lon Ranch", "Skulltulas",))),
     ("LLR GS Rain Shed",                                             ("GS Token",     0x0B,  0x02, None,                        'Gold Skulltula Token',                  ("Lon Lon Ranch", "Skulltulas",))),
     ("LLR GS Back Wall",                                             ("GS Token",     0x0B,  0x01, None,                        'Gold Skulltula Token',                  ("Lon Lon Ranch", "Skulltulas",))),
+    ("LLR Pot 1",                                                    ("Collectable",  0x99,  0x20, None,                        'Recovery Heart',                        ("Lon Lon Ranch", "Pot"))),
+    ("LLR Pot 2",                                                    ("Collectable",  0x99,  0x21, None,                        'Recovery Heart',                        ("Lon Lon Ranch", "Pot"))),
+    ("LLR Pot 3",                                                    ("Collectable",  0x99,  0x22, None,                        'Rupee (1)',                        ("Lon Lon Ranch", "Pot"))),
+    ("LLR Pot 4",                                                    ("Collectable",  0x99,  0x23, None,                        'Rupee (1)',                        ("Lon Lon Ranch", "Pot"))),
+    ("LLR Pot 5",                                                    ("Collectable",  0x99,  0x26, None,                        'Recovery Heart',                        ("Lon Lon Ranch", "Pot"))),
+    ("LLR Pot 6",                                                    ("Collectable",  0x99,  0x27, None,                        'Recovery Heart',                        ("Lon Lon Ranch", "Pot"))),
+    ("LLR Pot 7",                                                    ("Collectable",  0x99,  0x28, None,                        'Recovery Heart',                        ("Lon Lon Ranch", "Pot"))),
+
 
     # Kakariko
     ("Kak Anju as Child",                                            ("NPC",          0x52,  0x0F, None,                        'Bottle',                                ("Kakariko Village", "Kakariko", "Minigames"))),
@@ -260,6 +268,18 @@ location_table = OrderedDict([
     ("Kak Potion Shop Item 6",                                       ("Shop",         0x30,  0x35, (shop_address(1, 5), None),  'Buy Bottle Bug',                        ("Kakariko Village", "Kakariko", "Shops"))),
     ("Kak Potion Shop Item 7",                                       ("Shop",         0x30,  0x36, (shop_address(1, 6), None),  'Buy Poe',                               ("Kakariko Village", "Kakariko", "Shops"))),
     ("Kak Potion Shop Item 8",                                       ("Shop",         0x30,  0x37, (shop_address(1, 7), None),  'Buy Fairy\'s Spirit',                   ("Kakariko Village", "Kakariko", "Shops"))),
+    #Kak Pots
+    ("Kak Pot 1",                                                    ("Collectable",  0x30,  0x20, None,                        'Recovery Heart',                        ("Kakariko Village", "Kakariko", "Pot"))),
+    ("Kak Pot 2",                                                    ("Collectable",  0x30,  0x21, None,                        'Recovery Heart',                        ("Kakariko Village", "Kakariko", "Pot"))),
+    ("Kak Pot 3",                                                    ("Collectable",  0x30,  0x22, None,                        'Recovery Heart',                        ("Kakariko Village", "Kakariko", "Pot"))),
+    ("Kak Pot 4",                                                    ("Collectable",  0x30,  0x23, None,                        'Recovery Heart',                        ("Kakariko Village", "Kakariko", "Pot"))),
+    ("Kak Pot 5",                                                    ("Collectable",  0x30,  0x24, None,                        'Recovery Heart',                        ("Kakariko Village", "Kakariko", "Pot"))),
+    ("Kak Pot 6",                                                    ("Collectable",  0x30,  0x25, None,                        'Recovery Heart',                        ("Kakariko Village", "Kakariko", "Pot"))),
+    ("Kak Pot 7",                                                    ("Collectable",  0x30,  0x26, None,                        'Recovery Heart',                        ("Kakariko Village", "Kakariko", "Pot"))),
+    ("Kak Pot 8",                                                    ("Collectable",  0x30,  0x27, None,                        'Recovery Heart',                        ("Kakariko Village", "Kakariko", "Pot"))),
+    ("Kak Pot 9",                                                    ("Collectable",  0x30,  0x28, None,                        'Recovery Heart',                        ("Kakariko Village", "Kakariko", "Pot"))),
+    ("Kak Pot 10",                                                   ("Collectable",  0x30,  0x29, None,                        'Recovery Heart',                        ("Kakariko Village", "Kakariko", "Pot"))),
+    ("Kak Pot 11",                                                   ("Collectable",  0x30,  0x2A, None,                        'Recovery Heart',                        ("Kakariko Village", "Kakariko", "Pot"))),
 
     # Graveyard
     ("Graveyard Shield Grave Chest",                                 ("Chest",        0x40,  0x00, None,                        'Hylian Shield',                         ("the Graveyard", "Kakariko",))),
@@ -275,7 +295,12 @@ location_table = OrderedDict([
     ("Graveyard Dampe Race Rupee 6",                                 ("Collectable",  0x48,  0x3D, None, 'Rupee (1)',                             ("the Graveyard", "Kakariko", "Freestanding",))),
     ("Graveyard Dampe Race Rupee 7",                                 ("Collectable",  0x48,  0x3E, None, 'Rupee (1)',                             ("the Graveyard", "Kakariko", "Freestanding",))),
     ("Graveyard Dampe Race Rupee 8",                                 ("Collectable",  0x48,  0x3F, None, 'Rupee (1)',                             ("the Graveyard", "Kakariko", "Freestanding",))),
-
+    ("Grave Dampe Pot 1",                                            ("Collectable",  0x48,  0x22, None, 'Recovery Heart',                        ("the Graveyard", "Kakariko", "Pot"))),
+    ("Grave Dampe Pot 2",                                            ("Collectable",  0x48,  0x23, None, 'Deku Nuts (5)',                        ("the Graveyard", "Kakariko", "Pot"))),
+    ("Grave Dampe Pot 3",                                            ("Collectable",  0x48,  0x24, None, 'Bombs (5)',                        ("the Graveyard", "Kakariko", "Pot"))),
+    ("Grave Dampe Pot 4",                                            ("Collectable",  0x48,  0x25, None, 'Arrows (10)',                        ("the Graveyard", "Kakariko", "Pot"))),
+    ("Grave Dampe Pot 5",                                            ("Collectable",  0x48,  0x26, None, 'Rupees (20)',                        ("the Graveyard", "Kakariko", "Pot"))),
+    ("Grave Dampe Pot 6",                                            ("Collectable",  0x48,  0x27, None, 'Rupees (20)',                        ("the Graveyard", "Kakariko", "Pot"))),
     ("Graveyard Hookshot Chest",                                     ("Chest",        0x48,  0x00, None,                        'Progressive Hookshot',                  ("the Graveyard", "Kakariko",))),
     ("Graveyard Dampe Race Freestanding PoH",                        ("Collectable",  0x48,  0x07, None,                        'Piece of Heart',                        ("the Graveyard", "Kakariko", "Minigames"))),
     ("Graveyard GS Bean Patch",                                      ("GS Token",     0x10,  0x01, None,                        'Gold Skulltula Token',                  ("the Graveyard", "Skulltulas",))),
@@ -409,7 +434,14 @@ location_table = OrderedDict([
     ("ZF GS Above the Log",                                          ("GS Token",     0x11,  0x04, None,                        'Gold Skulltula Token',                  ("Zora's Fountain", "Skulltulas",))),
     ("ZF GS Tree",                                                   ("GS Token",     0x11,  0x80, None,                        'Gold Skulltula Token',                  ("Zora's Fountain", "Skulltulas",))),
     ("ZF GS Hidden Cave",                                            ("GS Token",     0x11,  0x20, None,                        'Gold Skulltula Token',                  ("Zora's Fountain", "Skulltulas",))),
-
+    ("ZF Hidden Cave Pot 1",                                         ("Collectable",  0x59,  0x3F, ([0x2122624 + 14],[0x7F]),        'Rupees (5)',                            ("Zora's Fountain", "Pot"))),
+    ("ZF Hidden Cave Pot 2",                                         ("Collectable",  0x59,  0x3C, None,        'Rupees (5)',                            ("Zora's Fountain", "Pot"))),
+    ("ZF Hidden Cave Pot 3",                                         ("Collectable",  0x59,  0x3E, ([0x2122644 + 14],[0x7D]),        'Rupees (5)',                            ("Zora's Fountain", "Pot"))),
+    ("ZF Near Jabu Pot 1",                                           ("Collectable",  0x59,  0x38, None,        'Rupees (5)',                            ("Zora's Fountain", "Pot"))),
+    ("ZF Near Jabu Pot 2",                                           ("Collectable",  0x59,  0x39, None,        'Rupees (5)',                            ("Zora's Fountain", "Pot"))),
+    ("ZF Near Jabu Pot 3",                                           ("Collectable",  0x59,  0x3B, None,        'Rupees (5)',                            ("Zora's Fountain", "Pot"))),
+    ("ZF Near Jabu Pot 4",                                           ("Collectable",  0x59,  0x3D, None,        'Rupees (5)',                            ("Zora's Fountain", "Pot"))),
+    
     # Lake Hylia
     ("LH Underwater Item",                                           ("NPC",          0x57,  0x15, None,                        'Rutos Letter',                          ("Lake Hylia",))),
     ("LH Underwater Rupee 1",                                        ("Collectable",  0x57,  0x20, None,        'Rupee (1)',                            ("Lake Hylia", "Freestanding"))),
@@ -473,6 +505,10 @@ location_table = OrderedDict([
     ("Wasteland Bombchu Salesman",                                   ("NPC",          0x5E,  0x03, None,                        'Bombchus (10)',                         ("Haunted Wasteland",))),
     ("Wasteland Chest",                                              ("Chest",        0x5E,  0x00, None,                        'Rupees (50)',                           ("Haunted Wasteland",))),
     ("Wasteland GS",                                                 ("GS Token",     0x15,  0x02, None,                        'Gold Skulltula Token',                  ("Haunted Wasteland", "Skulltulas",))),
+    ("Wasteland Near GS Pot 1",                                      ("Collectable",  0x15,  0x20, None,                        'Recovery Heart',                            ("Haunted Wasteland", "Pot"))),
+    ("Wasteland Near GS Pot 2",                                      ("Collectable",  0x15,  0x21, None,                        'Deku Nuts (5)',                            ("Haunted Wasteland", "Pot"))),
+    #("Wasteland Near GS Pot 3",                                      ("Collectable",  0x15,  0x22, None,                        'Rupees (5)',                            ("Haunted Wasteland", "Pot"))),
+    ("Wasteland Near GS Pot 3",                                      ("Collectable",  0x15,  0x23, None,                        'Rupees (5)',                            ("Haunted Wasteland", "Pot"))),
 
     # Colossus
     ("Colossus Great Fairy Reward",                                  ("Cutscene",     0xFF,  0x12, None,                        'Nayrus Love',                           ("Desert Colossus", "Fairies",))),
