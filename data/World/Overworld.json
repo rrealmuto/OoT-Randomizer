@@ -641,7 +641,7 @@
                 (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or
                     can_use(Hover_Boots) or logic_gerudo_kitchen)",
             "Hideout Pot 1" : "Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)",
-            "Hideout Pot 2" : "Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)",
+            "Hideout Pot 2" : "Magic_Meter and (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot))",
             "Hideout Pot 3" : "True",
             "Hideout Pot 4" : "True",
             "Hideout Pot 5" : "True",
@@ -697,7 +697,7 @@
             "Wasteland GS": "can_use(Hookshot) or can_use(Boomerang)",
             "Wasteland Near GS Pot 1" : "True",
             "Wasteland Near GS Pot 2" : "True",
-            "Wasteland Near GS Pot 3" : "True",
+            "Wasteland Near GS Pot 3" : "Magic_Meter",
             "Fairy Pot": "has_bottle",
             "Nut Pot": "True"
         },
@@ -1069,7 +1069,7 @@
         "locations": {
             "Market Back Alley House Pot 1": "is_child and at_night",
             "Market Back Alley House Pot 2": "is_child and at_night",
-            "Market Back Alley House Pot 3": "is_child and at_night"
+            "Market Back Alley House Pot 3": "is_child and at_night and Magic_Meter"
         },
         "exits": {
             "Market Back Alley": "True"
@@ -1392,9 +1392,9 @@
             "Graveyard Dampe Race Rupee 8": "True",
             "Grave Dampe Pot 1" : "True",
             "Grave Dampe Pot 2" : "True",
-            "Grave Dampe Pot 3" : "True",
+            "Grave Dampe Pot 3" : "can_use(Bombs)",
             "Grave Dampe Pot 4" : "True",
-            "Grave Dampe Pot 5" : "True",
+            "Grave Dampe Pot 5" : "Magic_Meter",
             "Grave Dampe Pot 6" : "True",
             "Graveyard Hookshot Chest": "True",
             "Graveyard Dampe Race Freestanding PoH": "is_adult or logic_child_dampe_race_poh",
@@ -1717,7 +1717,7 @@
             "DMC Near GC Pot 1" : "is_adult",
             "DMC Near GC Pot 2" : "is_adult",
             "DMC Near GC Pot 3" : "is_adult",
-            "DMC Near GC Pot 4" : "is_adult"
+            "DMC Near GC Pot 4" : "is_adult and Magic_Meter"
         },
         "exits": {
             "DMC Lower Local": "can_use(Goron_Tunic)",
@@ -1983,12 +1983,12 @@
             "ZF Bottom Freestanding Rupee 16" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
             "ZF Bottom Freestanding Rupee 17" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
             "ZF Bottom Freestanding Rupee 18" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Hidden Cave Pot 1" : "can_use(Silver_Gauntlets) and can_blast_or_smash",
-            "ZF Hidden Cave Pot 2" : "can_use(Silver_Gauntlets) and can_blast_or_smash",
+            "ZF Hidden Cave Pot 1" : "Magic_Meter and can_use(Silver_Gauntlets) and can_blast_or_smash",
+            "ZF Hidden Cave Pot 2" : "Magic_Meter and can_use(Silver_Gauntlets) and can_blast_or_smash",
             "ZF Hidden Cave Pot 3" : "can_use(Silver_Gauntlets) and can_blast_or_smash",
-            "ZF Near Jabu Pot 1" : "is_child",
-            "ZF Near Jabu Pot 2" : "is_child",
-            "ZF Near Jabu Pot 3" : "is_child",
+            "ZF Near Jabu Pot 1" : "is_child and Slingshot",
+            "ZF Near Jabu Pot 2" : "is_child and Slingshot",
+            "ZF Near Jabu Pot 3" : "is_child and Slingshot",
             "ZF Near Jabu Pot 4" : "is_child",
             "ZF GS Tree": "is_child",
             "ZF GS Above the Log": "can_use(Boomerang) and at_night",
@@ -2117,13 +2117,13 @@
         "locations": {
             "Ganons Tower Boss Key Chest": "True",
             "Ganondorf Hint": "Boss_Key_Ganons_Castle",
-            "Ganons Tower Pot 1" : "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 1" : "Boss_Key_Ganons_Castle and Magic_Meter",
             "Ganons Tower Pot 2" : "Boss_Key_Ganons_Castle",
             "Ganons Tower Pot 3" : "Boss_Key_Ganons_Castle",
-            "Ganons Tower Pot 4" : "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 4" : "Boss_Key_Ganons_Castle and Magic_Meter",
             "Ganons Tower Pot 5" : "Boss_Key_Ganons_Castle",
             "Ganons Tower Pot 6" : "Boss_Key_Ganons_Castle",
-            "Ganons Tower Pot 7" : "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 7" : "Boss_Key_Ganons_Castle and Magic_Meter",
             "Ganons Tower Pot 8" : "Boss_Key_Ganons_Castle",
             "Ganons Tower Pot 9" : "Boss_Key_Ganons_Castle",
             "Ganons Tower Pot 10" : "Boss_Key_Ganons_Castle",

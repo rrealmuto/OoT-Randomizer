@@ -4,7 +4,7 @@
         "dungeon": "Spirit Temple",
         "locations" : {
             "Spirit Temple Lobby Pot 1" : "True",
-            "Spirit Temple Lobby Pot 2" : "True"
+            "Spirit Temple Lobby Pot 2" : "Magic_Meter"
         },
         "exits": {
             "Desert Colossus From Spirit Lobby": "True",
@@ -71,11 +71,11 @@
                 is_adult and has_projectile(adult)) or 
                 ((Small_Key_Spirit_Temple, 5) and is_child and 
                     has_projectile(child))",
-            "Spirit Temple Child Climb Pot": "(spirit_temple_shortcuts and is_adult) or
+            "Spirit Temple Child Climb Pot": "(can_use(Slingshot) or can_use(Bow)) and ((spirit_temple_shortcuts and is_adult) or
                 (((Small_Key_Spirit_Temple, 3) or 
                     ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)) and 
                 is_adult) or 
-                ((Small_Key_Spirit_Temple, 5) and is_child)",
+                ((Small_Key_Spirit_Temple, 5) and is_child))",
             "Spirit Temple GS Sun on Floor Room": "
                 has_projectile(both) or can_use(Dins_Fire) or 
                 ((has_projectile(adult) or can_take_damage) and spirit_temple_shortcuts and is_adult) or 
@@ -135,7 +135,7 @@
             "Spirit Temple Hall After Sun Block Room Pot 2" : "(((Small_Key_Spirit_Temple, 3) and is_adult) or (is_adult and spirit_temple_shortcuts)) or
                 (has_explosives or (Small_Key_Spirit_Temple, 3) or ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)) or
                 ((Small_Key_Spirit_Temple, 5) and has_explosives)",
-            "Spirit Temple Beamos Hall Pot" : "is_adult and (Small_Key_Spirit_Temple, 3)",
+            "Spirit Temple Beamos Hall Pot" : "is_adult and (Small_Key_Spirit_Temple, 3) and can_use(Bombs)",
             "Spirit Temple Statue Room Hand Chest": "
                 (((Small_Key_Spirit_Temple, 3) and can_use(Silver_Gauntlets)) or
                     (is_adult and spirit_temple_shortcuts and can_use(Hookshot))) and 
