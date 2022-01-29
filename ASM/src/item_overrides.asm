@@ -190,6 +190,19 @@ get_item_hook:
     jr      ra
     addiu   sp, sp, 0x20
 
+item00_init_hook:
+    andi t8, v0, 0x4000
+    sra t8, t8, 14
+    sb t8, 0x116(a0)
+    andi T9, V0, 0x00FF
+    jr ra
+    sh  T9, 0x001c(S0)
+
+drop_collectible_hook:
+    ori t4, t4, 0x4000
+    jr ra
+    sw t4, 0x0024(sp)
+
 item_give_hook:
     addiu sp, sp, -0x80
     sw	ra, 0x10(sp)
