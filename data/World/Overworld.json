@@ -680,6 +680,9 @@
                 Progressive_Wallet and 
                 (is_adult or Sticks or Kokiri_Sword)",
             "Wasteland GS": "can_use(Hookshot) or can_use(Boomerang)",
+            "Wasteland Near GS Pot 1" : "True",
+            "Wasteland Near GS Pot 2" : "True",
+            "Wasteland Near GS Pot 3" : "True",
             "Fairy Pot": "has_bottle",
             "Nut Pot": "True"
         },
@@ -1074,7 +1077,18 @@
                 is_child and (Slingshot or has_bombchus or 
                     (logic_kakariko_tower_gs and (Sticks or Kokiri_Sword) and
                     can_take_damage)) and at_night",
-            "Bug Rock": "has_bottle"
+            "Bug Rock": "has_bottle",
+            "Kak Pot 1" : "True",
+            "Kak Pot 2" : "True",
+            "Kak Pot 3" : "True",
+            "Kak Pot 4" : "True",
+            "Kak Pot 5" : "True",
+            "Kak Pot 6" : "True",
+            "Kak Pot 7" : "True",
+            "Kak Pot 8" : "True",
+            "Kak Pot 9" : "True",
+            "Kak Pot 10" : "True",
+            "Kak Pot 11" : "True"
         },
         "exits": {
             "Hyrule Field": "True",
@@ -1356,6 +1370,12 @@
             "Graveyard Dampe Race Rupee 6": "True",
             "Graveyard Dampe Race Rupee 7": "True",
             "Graveyard Dampe Race Rupee 8": "True",
+            "Grave Dampe Pot 1" : "True",
+            "Grave Dampe Pot 2" : "True",
+            "Grave Dampe Pot 3" : "True",
+            "Grave Dampe Pot 4" : "True",
+            "Grave Dampe Pot 5" : "True",
+            "Grave Dampe Pot 6" : "True",
             "Graveyard Hookshot Chest": "True",
             "Graveyard Dampe Race Freestanding PoH": "is_adult or logic_child_dampe_race_poh",
             "Nut Pot": "True"
@@ -1928,6 +1948,13 @@
             "ZF Bottom Freestanding Rupee 16" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
             "ZF Bottom Freestanding Rupee 17" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
             "ZF Bottom Freestanding Rupee 18" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Hidden Cave Pot 1" : "can_use(Silver_Gauntlets) and can_blast_or_smash",
+            "ZF Hidden Cave Pot 2" : "can_use(Silver_Gauntlets) and can_blast_or_smash",
+            "ZF Hidden Cave Pot 3" : "can_use(Silver_Gauntlets) and can_blast_or_smash",
+            "ZF Near Jabu Pot 1" : "is_child",
+            "ZF Near Jabu Pot 2" : "is_child",
+            "ZF Near Jabu Pot 3" : "is_child",
+            "ZF Near Jabu Pot 4" : "is_child",
             "ZF GS Tree": "is_child",
             "ZF GS Above the Log": "can_use(Boomerang) and at_night",
             "ZF GS Hidden Cave": "
@@ -1996,7 +2023,14 @@
             "LLR GS Tree": "is_child",
             "LLR GS Rain Shed": "is_child and at_night",
             "LLR GS House Window": "can_use(Boomerang) and at_night",
-            "LLR GS Back Wall": "can_use(Boomerang) and at_night"
+            "LLR GS Back Wall": "can_use(Boomerang) and at_night",
+            "LLR Pot 1" : "True",
+            "LLR Pot 2" : "True",
+            "LLR Pot 3" : "True",
+            "LLR Pot 4" : "True",
+            "LLR Pot 5" : "True",
+            "LLR Pot 6" : "True",
+            "LLR Pot 7" : "True"
         },
         "exits": {
             "Hyrule Field": "True",
