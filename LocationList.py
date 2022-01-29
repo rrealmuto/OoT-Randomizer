@@ -913,7 +913,6 @@ location_table = OrderedDict([
     ("Shadow Temple After Boat Freestanding Recovery Heart Upper 1", ("Collectable",  0x07,  0x39, None,                        'Recovery Heart',                        ("Shadow Temple", "Vanilla", "Freestanding"))),
     ("Shadow Temple After Boat Freestanding Recovery Heart Upper 2", ("Collectable",  0x07,  0x3A, None,                        'Recovery Heart',                        ("Shadow Temple", "Vanilla", "Freestanding"))),
     ("Shadow Temple After Boat Freestanding Recovery Heart Lower",   ("Collectable",  0x07,  0x3C, None,                        'Recovery Heart',                        ("Shadow Temple", "Vanilla", "Freestanding"))),
-
     ("Shadow Temple Spike Walls Left Chest",                         ("Chest",        0x07,  0x0A, None,                        'Rupees (5)',                            ("Shadow Temple", "Vanilla",))),
     ("Shadow Temple Boss Key Chest",                                 ("Chest",        0x07,  0x0B, None,                        'Boss Key (Shadow Temple)',              ("Shadow Temple", "Vanilla",))),
     ("Shadow Temple Invisible Floormaster Chest",                    ("Chest",        0x07,  0x0D, None,                        'Small Key (Shadow Temple)',             ("Shadow Temple", "Vanilla",))),
@@ -922,7 +921,7 @@ location_table = OrderedDict([
     ("Shadow Temple GS Single Giant Pot",                            ("GS Token",     0x07,  0x01, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Vanilla", "Skulltulas",))),
     ("Shadow Temple GS Near Ship",                                   ("GS Token",     0x07,  0x10, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Vanilla", "Skulltulas",))),
     ("Shadow Temple GS Triple Giant Pot",                            ("GS Token",     0x07,  0x04, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Vanilla", "Skulltulas",))),  
-
+   
 # Shadow Temple MQ
     ("Shadow Temple MQ Early Gibdos Chest",                          ("Chest",        0x07,  0x03, None,                        'Small Key (Shadow Temple)',             ("Shadow Temple", "Master Quest",))),
     ("Shadow Temple MQ Map Chest",                                   ("Chest",        0x07,  0x02, None,                        'Map (Shadow Temple)',                   ("Shadow Temple", "Master Quest",))),
@@ -1020,6 +1019,24 @@ location_table = OrderedDict([
     ("Spirit Temple MQ GS Nine Thrones Room North",                  ("GS Token",     0x06,  0x10, None,                        'Gold Skulltula Token',                  ("Spirit Temple", "Master Quest", "Skulltulas",))),
 
     ("Spirit Temple Twinrova Heart",                                 ("BossHeart",    0x17,  0x4F, None,                        'Heart Container',                       ("Spirit Temple", "Vanilla", "Master Quest",))),
+ #Spirit Temple Pots
+    ("Spirit Temple Lobby Pot 1",                                    ("Collectable",  0x06,  0x21, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
+    ("Spirit Temple Lobby Pot 2",                                    ("Collectable",  0x06,  0x22, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
+    ("Spirit Temple Child Climb Pot",                                ("Collectable",  0x06,  0x23, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
+    ("Spirit Temple Statue Room Pot 1",                              ("Collectable",  0x06,  0x24, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
+    ("Spirit Temple Statue Room Pot 2",                              ("Collectable",  0x06,  0x25, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
+    ("Spirit Temple Statue Room Pot 3",                              ("Collectable",  0x06,  0x26, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
+    ("Spirit Temple Statue Room Pot 4",                              ("Collectable",  0x06,  0x27, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
+    ("Spirit Temple Statue Room Pot 5",                              ("Collectable",  0x06,  0x28, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
+    ("Spirit Temple Statue Room Pot 6",                              ("Collectable",  0x06,  0x29, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
+    ("Spirit Temple Hall After Sun Block Room Pot 1",                ("Collectable",  0x06,  0x2A, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
+    ("Spirit Temple Hall After Sun Block Room Pot 2",                ("Collectable",  0x06,  0x2B, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
+    ("Spirit Temple Beamos Hall Pot",                                ("Collectable",  0x06,  0x2C, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
+    ("Spirit Temple Child Anubis Pot",                               ("Collectable",  0x06,  0x2F, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
+    #("Spirit Temple Child Anubis Pot",                               ("Collectable",  0x07,  0x2F, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
+    #("Spirit Temple Child Anubis Pot",                               ("Collectable",  0x07,  0x2F, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
+    #("Spirit Temple Child Anubis Pot",                               ("Collectable",  0x07,  0x2F, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
+    
 
     # Ice Cavern vanilla
     ("Ice Cavern Map Chest",                                         ("Chest",        0x09,  0x00, None,                        'Map (Ice Cavern)',                      ("Ice Cavern", "Vanilla",))),
