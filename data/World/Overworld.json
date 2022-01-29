@@ -639,7 +639,22 @@
             "GF GS Top Floor": "
                 is_adult and at_night and 
                 (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or
-                    can_use(Hover_Boots) or logic_gerudo_kitchen)"
+                    can_use(Hover_Boots) or logic_gerudo_kitchen)",
+            "Hideout Pot 1" : "True",
+            "Hideout Pot 2" : "True",
+            "Hideout Pot 3" : "True",
+            "Hideout Pot 4" : "True",
+            "Hideout Pot 5" : "True",
+            "Hideout Pot 6" : "True",
+            "Hideout Pot 7" : "True",
+            "Hideout Pot 8" : "True",
+            "Hideout Pot 9" : "True",
+            "Hideout Pot 10" : "True",
+            "Hideout Pot 11" : "True",
+            "Hideout Pot 12" : "True",
+            "Hideout Pot 13" : "True",
+            "Hideout Pot 14" : "True",
+            "Hideout Pot 15" : "True"
         },
         "exits": {
             "GV Fortress Side": "True",
