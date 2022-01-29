@@ -906,8 +906,8 @@ def get_pool_core(world):
             placed_items[location.name] = location.vanilla_item
             location.disabled = DisableType.DISABLED
 
-    #shuffle pots
-    pot_locations = [location for location in world.get_locations() if(location.type == 'Collectable' and 'Pot' in location.filter_tags)]
+    #shuffle pots/crates
+    pot_locations = [location for location in world.get_locations() if(location.type == 'Collectable' and ('Pot' in location.filter_tags or 'Crate' in location.filter_tags))]
     if world.settings.shuffle_pots == 'all':        
         for location in pot_locations:
             pool.append(location.vanilla_item)
