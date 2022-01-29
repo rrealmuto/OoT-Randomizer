@@ -1093,13 +1093,22 @@ location_table = OrderedDict([
     ("Ice Cavern Block Room Red Rupee 1",                            ("Collectable",  0x09,  0x2E, None,    'Rupees (20)',                           ("Ice Cavern", "Vanilla","Freestanding"))),
     ("Ice Cavern Block Room Red Rupee 2",                            ("Collectable",  0x09,  0x2F, None,    'Rupees (20)',                           ("Ice Cavern", "Vanilla","Freestanding"))),
     ("Ice Cavern Block Room Red Rupee 3",                            ("Collectable",  0x09,  0x30, None,    'Rupees (20)',                           ("Ice Cavern", "Vanilla","Freestanding"))),
-
-
     ("Ice Cavern Freestanding PoH",                                  ("Collectable",  0x09,  0x01, None,                        'Piece of Heart',                        ("Ice Cavern", "Vanilla",))),
     ("Ice Cavern Iron Boots Chest",                                  ("Chest",        0x09,  0x02, None,                        'Iron Boots',                            ("Ice Cavern", "Vanilla",))),
     ("Ice Cavern GS Spinning Scythe Room",                           ("GS Token",     0x09,  0x02, None,                        'Gold Skulltula Token',                  ("Ice Cavern", "Vanilla", "Skulltulas",))),
     ("Ice Cavern GS Heart Piece Room",                               ("GS Token",     0x09,  0x04, None,                        'Gold Skulltula Token',                  ("Ice Cavern", "Vanilla", "Skulltulas",))),
     ("Ice Cavern GS Push Block Room",                                ("GS Token",     0x09,  0x01, None,                        'Gold Skulltula Token',                  ("Ice Cavern", "Vanilla", "Skulltulas",))),
+    #Ice Cavern Vanilla Pots
+    ("Ice Cavern Hall Pot 1",                                        ("Collectable",   0x09,  0x25, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
+    ("Ice Cavern Hall Pot 2",                                        ("Collectable",   0x09,  0x26, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
+    ("Ice Cavern Spinning Blade Pot 1",                              ("Collectable",   0x09,  0x27, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
+    ("Ice Cavern Spinning Blade Pot 2",                              ("Collectable",   0x09,  0x28, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
+    ("Ice Cavern Spinning Blade Pot 3",                              ("Collectable",   0x09,  0x29, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
+    ("Ice Cavern Near End Pot 1",                                    ("Collectable",   0x09,  0x2A, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
+    ("Ice Cavern Near End Pot 2",                                    ("Collectable",   0x09,  0x2B, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
+    ("Ice Cavern Frozen Pot",                                        ("Collectable",   0x09,  0x2D, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
+
+    
     # Ice Cavern MQ
     ("Ice Cavern MQ Map Chest",                                      ("Chest",        0x09,  0x01, None,                        'Map (Ice Cavern)',                      ("Ice Cavern", "Master Quest",))),
     ("Ice Cavern MQ Compass Chest",                                  ("Chest",        0x09,  0x00, None,                        'Compass (Ice Cavern)',                  ("Ice Cavern", "Master Quest",))),
