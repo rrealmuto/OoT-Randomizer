@@ -46,11 +46,15 @@
     "AUDIO_THREAD_INFO_MEM_SIZE": "034831D4",
     "AUDIO_THREAD_INFO_MEM_START": "034831D0",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "AUDIO_THREAD_MEM_START": "03495CB0",
 >>>>>>> c26848a1 (Added new flag tables for collectibles and dropped collectible. Add new droppedcollectible override type. Save/load the new tables from SRAM)
 =======
     "AUDIO_THREAD_MEM_START": "03495CD0",
 >>>>>>> 250d14a7 (Added a shit ton more overworld pots)
+=======
+    "AUDIO_THREAD_MEM_START": "03495CE0",
+>>>>>>> f38eaac5 (Reset collectible mutex when scene loads to fix void out issues)
     "AUTO_TRACKER_CONTEXT": "03480CD0",
     "AUTO_TRACKER_VERSION": "03480CD0",
     "BOMBCHUS_IN_LOGIC": "03480CAC",
@@ -146,6 +150,7 @@
 =======
     "CHAIN_HBA_REWARDS": "03483B48",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "CHEST_SIZE_MATCH_CONTENTS": "0348C09C",
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348C0A0",
     "COMPLETE_MASK_QUEST": "0348C0F1",
@@ -155,6 +160,11 @@
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348C0C0",
     "COMPLETE_MASK_QUEST": "0348C111",
 >>>>>>> 250d14a7 (Added a shit ton more overworld pots)
+=======
+    "CHEST_SIZE_MATCH_CONTENTS": "0348C0CC",
+    "CHEST_TEXTURE_MATCH_CONTENTS": "0348C0D0",
+    "COMPLETE_MASK_QUEST": "0348C121",
+>>>>>>> f38eaac5 (Reset collectible mutex when scene loads to fix void out issues)
     "COOP_CONTEXT": "03480020",
     "COOP_VERSION": "03480020",
     "COSMETIC_CONTEXT": "03480834",
@@ -162,6 +172,7 @@
     "CURRENT_GROTTO_ID": "0348307A",
     "DEBUG_OFFSET": "03482A98",
     "DISABLE_TIMERS": "03480CCC",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -199,11 +210,15 @@
 =======
     "DPAD_TEXTURE": "0348FCD0",
 >>>>>>> 250d14a7 (Added a shit ton more overworld pots)
+=======
+    "DPAD_TEXTURE": "0348FCE0",
+>>>>>>> f38eaac5 (Reset collectible mutex when scene loads to fix void out issues)
     "DUNGEONS_SHUFFLED": "03480CCD",
     "EXTENDED_OBJECT_TABLE": "03480C8C",
     "EXTERN_DAMAGE_MULTIPLYER": "03482EA9",
     "FAST_BUNNY_HOOD_ENABLED": "03480CCF",
     "FAST_CHESTS": "03480CC6",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -284,11 +299,15 @@
 =======
     "FONT_TEXTURE": "0348E808",
 >>>>>>> 250d14a7 (Added a shit ton more overworld pots)
+=======
+    "FONT_TEXTURE": "0348E818",
+>>>>>>> f38eaac5 (Reset collectible mutex when scene loads to fix void out issues)
     "FREE_SCARECROW_ENABLED": "03480CBC",
-    "GANON_BOSS_KEY_CONDITION": "0348C0D0",
-    "GANON_BOSS_KEY_CONDITION_COUNT": "0348C0CE",
+    "GANON_BOSS_KEY_CONDITION": "0348C0E0",
+    "GANON_BOSS_KEY_CONDITION_COUNT": "0348C0DE",
     "GET_CHEST_OVERRIDE_WRAPPER": "03482910",
     "GET_ITEM_TRIGGERED": "0348162C",
+<<<<<<< HEAD
 <<<<<<< HEAD
     "GILDED_CHEST_BASE_TEXTURE": "034924B0",
     "GILDED_CHEST_FRONT_TEXTURE": "034914B0",
@@ -297,6 +316,10 @@
     "GILDED_CHEST_BASE_TEXTURE": "034924D0",
     "GILDED_CHEST_FRONT_TEXTURE": "034914D0",
 >>>>>>> 250d14a7 (Added a shit ton more overworld pots)
+=======
+    "GILDED_CHEST_BASE_TEXTURE": "034924E0",
+    "GILDED_CHEST_FRONT_TEXTURE": "034914E0",
+>>>>>>> f38eaac5 (Reset collectible mutex when scene loads to fix void out issues)
     "GOSSIP_HINT_CONDITION": "03480CB8",
     "GROTTO_EXIT_LIST": "03483038",
     "GROTTO_LOAD_TABLE": "03482FB4",
@@ -304,6 +327,7 @@
     "INCOMING_PLAYER": "03480026",
     "INITIAL_SAVE_DATA": "0348088C",
     "JABU_ELEVATOR_ENABLE": "03480CC4",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -345,10 +369,14 @@
 =======
     "KAKARIKO_WEATHER_FORECAST": "0348C130",
 >>>>>>> 250d14a7 (Added a shit ton more overworld pots)
+=======
+    "KAKARIKO_WEATHER_FORECAST": "0348C140",
+>>>>>>> f38eaac5 (Reset collectible mutex when scene loads to fix void out issues)
     "LACS_CONDITION": "03480CB4",
     "LACS_CONDITION_COUNT": "03480CC2",
     "MALON_GAVE_ICETRAP": "03483884",
     "MALON_TEXT_ID": "03480CCB",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -425,19 +453,27 @@
 =======
     "MAX_RUPEES": "0348C113",
 >>>>>>> 250d14a7 (Added a shit ton more overworld pots)
+=======
+    "MAX_RUPEES": "0348C123",
+>>>>>>> f38eaac5 (Reset collectible mutex when scene loads to fix void out issues)
     "MOVED_ADULT_KING_ZORA": "034831F4",
-    "NO_ESCAPE_SEQUENCE": "0348C0CC",
+    "NO_ESCAPE_SEQUENCE": "0348C0DC",
     "OCARINAS_SHUFFLED": "03480CC5",
+<<<<<<< HEAD
 <<<<<<< HEAD
     "OPEN_KAKARIKO": "0348C0F2",
 >>>>>>> c26848a1 (Added new flag tables for collectibles and dropped collectible. Add new droppedcollectible override type. Save/load the new tables from SRAM)
 =======
     "OPEN_KAKARIKO": "0348C112",
 >>>>>>> 250d14a7 (Added a shit ton more overworld pots)
+=======
+    "OPEN_KAKARIKO": "0348C122",
+>>>>>>> f38eaac5 (Reset collectible mutex when scene loads to fix void out issues)
     "OUTGOING_ITEM": "03480030",
     "OUTGOING_KEY": "0348002C",
     "OUTGOING_PLAYER": "03480032",
     "OVERWORLD_SHUFFLED": "03480CCE",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -475,6 +511,9 @@
 =======
     "PAYLOAD_END": "03495CD0",
 >>>>>>> 250d14a7 (Added a shit ton more overworld pots)
+=======
+    "PAYLOAD_END": "03495CE0",
+>>>>>>> f38eaac5 (Reset collectible mutex when scene loads to fix void out issues)
     "PAYLOAD_START": "03480000",
     "PLAYED_WARP_SONG": "03481430",
     "PLAYER_ID": "03480024",
@@ -585,6 +624,7 @@
 =======
     "SHUFFLE_MEDIGORON": "03483C5C",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "SILVER_CHEST_BASE_TEXTURE": "03493CB0",
     "SILVER_CHEST_FRONT_TEXTURE": "03492CB0",
     "SKULL_CHEST_BASE_TEXTURE": "034954B0",
@@ -596,15 +636,22 @@
     "SKULL_CHEST_BASE_TEXTURE": "034954D0",
     "SKULL_CHEST_FRONT_TEXTURE": "034944D0",
 >>>>>>> 250d14a7 (Added a shit ton more overworld pots)
+=======
+    "SILVER_CHEST_BASE_TEXTURE": "03493CE0",
+    "SILVER_CHEST_FRONT_TEXTURE": "03492CE0",
+    "SKULL_CHEST_BASE_TEXTURE": "034954E0",
+    "SKULL_CHEST_FRONT_TEXTURE": "034944E0",
+>>>>>>> f38eaac5 (Reset collectible mutex when scene loads to fix void out issues)
     "SONGS_AS_ITEMS": "03480CC8",
     "SOS_ITEM_GIVEN": "034816F8",
     "SPEED_MULTIPLIER": "03482958",
     "START_TWINROVA_FIGHT": "03483274",
     "TIME_TRAVEL_SAVED_EQUIPS": "03481C84",
-    "TRIFORCE_ICON_TEXTURE": "034904D0",
+    "TRIFORCE_ICON_TEXTURE": "034904E0",
     "TWINROVA_ACTION_TIMER": "03483278",
     "WINDMILL_SONG_ID": "03480CC9",
     "WINDMILL_TEXT_ID": "03480CCA",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1298,4 +1345,84 @@
     "triforce_pieces_requied": "0348C0BA",
     "triforce_sprite": "0348AFB0"
 >>>>>>> 250d14a7 (Added a shit ton more overworld pots)
+=======
+    "a_button": "0348C0A8",
+    "a_note_b": "0348C094",
+    "a_note_font_glow_base": "0348C07C",
+    "a_note_font_glow_max": "0348C078",
+    "a_note_g": "0348C098",
+    "a_note_glow_base": "0348C084",
+    "a_note_glow_max": "0348C080",
+    "a_note_r": "0348C09C",
+    "active_item_action_id": "0348C104",
+    "active_item_fast_chest": "0348C0F4",
+    "active_item_graphic_id": "0348C0F8",
+    "active_item_object_id": "0348C0FC",
+    "active_item_row": "0348C108",
+    "active_item_text_id": "0348C100",
+    "active_override": "0348C110",
+    "active_override_is_outgoing": "0348C10C",
+    "b_button": "0348C0A4",
+    "beating_dd": "0348C0B0",
+    "beating_no_dd": "0348C0B8",
+    "c_button": "0348C0A0",
+    "c_note_b": "0348C088",
+    "c_note_font_glow_base": "0348C06C",
+    "c_note_font_glow_max": "0348C068",
+    "c_note_g": "0348C08C",
+    "c_note_glow_base": "0348C074",
+    "c_note_glow_max": "0348C070",
+    "c_note_r": "0348C090",
+    "cfg_file_select_hash": "0348C0D8",
+    "cfg_item_overrides": "0348C7D8",
+    "collectible_mutex": "0348C0EC",
+    "collectible_override": "0348C0E4",
+    "collectible_override_flags": "0348C498",
+    "defaultDDHeart": "0348C0BC",
+    "defaultHeart": "0348C0C4",
+    "dpad_sprite": "0348AFD0",
+    "dropped_collectible_override_flags": "0348C170",
+    "dummy_actor": "0348C118",
+    "dungeon_count": "0348C038",
+    "dungeons": "0348AE28",
+    "empty_dlist": "0348C050",
+    "extern_ctxt": "0348AEC4",
+    "font_sprite": "0348AFE0",
+    "freecam_modes": "0348AB94",
+    "hash_sprites": "0348C044",
+    "hash_symbols": "0348AED8",
+    "heap_next": "0348C13C",
+    "heart_sprite": "0348AF70",
+    "icon_sprites": "0348AD58",
+    "item_digit_sprite": "0348AF90",
+    "item_overrides_count": "0348C11C",
+    "item_table": "0348B058",
+    "items": "0348AF58",
+    "items_sprite": "0348B000",
+    "key_rupee_clock_sprite": "0348AFA0",
+    "last_fog_distance": "0348C03C",
+    "linkhead_skull_sprite": "0348AF80",
+    "medal_colors": "0348AE14",
+    "medals_sprite": "0348B010",
+    "normal_dd": "0348C0AC",
+    "normal_no_dd": "0348C0B4",
+    "num_to_bits": "0348AF18",
+    "object_slots": "0348E7D8",
+    "pending_freezes": "0348C120",
+    "pending_item_queue": "0348C7C0",
+    "quest_items_sprite": "0348AFF0",
+    "rupee_colors": "0348AD64",
+    "satisified_pending_frames": "0348C0F0",
+    "scene_fog_distance": "0348C040",
+    "setup_db": "0348B030",
+    "song_note_sprite": "0348AFB0",
+    "stones_sprite": "0348B020",
+    "text_cursor_border_base": "0348C05C",
+    "text_cursor_border_max": "0348C058",
+    "text_cursor_inner_base": "0348C064",
+    "text_cursor_inner_max": "0348C060",
+    "triforce_hunt_enabled": "0348C130",
+    "triforce_pieces_requied": "0348C0CA",
+    "triforce_sprite": "0348AFC0"
+>>>>>>> f38eaac5 (Reset collectible mutex when scene loads to fix void out issues)
 }
