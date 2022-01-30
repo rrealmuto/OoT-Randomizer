@@ -532,10 +532,11 @@ location_table = OrderedDict([
     ("Hideout Pot 10",                                               ("Collectable",  0x0C,  0x27, None,                        'Recovery Heart',                        ("Thieves' Hideout", "Gerudo", "Pot"))),
     ("Hideout Pot 11",                                               ("Collectable",  0x0C,  0x28, None,                        'Recovery Heart',                        ("Thieves' Hideout", "Gerudo", "Pot"))),
     ("Hideout Pot 12",                                               ("Collectable",  0x0C,  0x29, None,                        'Recovery Heart',                        ("Thieves' Hideout", "Gerudo", "Pot"))),
-    ("Hideout Pot 13",                                               ("Collectable",  0x0C,  0x2D, None,                        'Recovery Heart',                        ("Thieves' Hideout", "Gerudo", "Pot"))),
-    ("Hideout Pot 14",                                               ("Collectable",  0x0C,  0x2E, None,                        'Recovery Heart',                        ("Thieves' Hideout", "Gerudo", "Pot"))),
-    ("Hideout Pot 15",                                               ("Collectable",  0x0C,  0x2F, None,                        'Recovery Heart',                        ("Thieves' Hideout", "Gerudo", "Pot"))),
-
+    ("Hideout Pot 13",                                               ("Collectable",  0x0C,  0x2C, None,                        'Recovery Heart',                        ("Thieves' Hideout", "Gerudo", "Pot"))),
+    ("Hideout Pot 14",                                               ("Collectable",  0x0C,  0x2D, None,                        'Recovery Heart',                        ("Thieves' Hideout", "Gerudo", "Pot"))),
+    ("Hideout Pot 15",                                               ("Collectable",  0x0C,  0x2E, None,                        'Recovery Heart',                        ("Thieves' Hideout", "Gerudo", "Pot"))),
+    ("Hideout Pot 16",                                               ("Collectable",  0x0C,  0x2F, None,                        'Recovery Heart',                        ("Thieves' Hideout", "Gerudo", "Pot"))),
+    
     # Wasteland
     ("Wasteland Bombchu Salesman",                                   ("NPC",          0x5E,  0x03, None,                        'Bombchus (10)',                         ("Haunted Wasteland",))),
     ("Wasteland Chest",                                              ("Chest",        0x5E,  0x00, None,                        'Rupees (50)',                           ("Haunted Wasteland",))),
