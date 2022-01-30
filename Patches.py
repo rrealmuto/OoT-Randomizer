@@ -1454,7 +1454,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Get actor_override locations
         actor_override_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'ActorOverride' ]
         freestanding_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and 'Freestanding' in location.filter_tags]
-        for location in actor_override_locations + freestanding_locations:
+        pot_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and 'Pot' in location.filter_tags]
+        
+        for location in actor_override_locations + freestanding_locations + pot_locations:
                 addresses = location.address
                 patch = location.address2
                 if addresses is not None and patch is not None:
@@ -1994,6 +1996,14 @@ def get_override_entry(location):
         if (location.type == "ActorOverride" or (location.type == "Collectable" and "Freestanding" in location.filter_tags)) and location.disabled != DisableType.ENABLED :
             return None
 
+    #Don't add pots to the override table if they're disabled. We use this check to dtermine how to draw and interact with them
+    if not location.world.settings.shuffle_pots:
+        if (location.type == "Collectable" and ("Pot" in location.filter_tags or "Crate" in location.filter_tags)) :
+            return None
+    else:
+        if (location.type == "Collectable" and ("Pot" in location.filter_tags or "Crate" in location.filter_tags)) and location.disabled != DisableType.ENABLED :
+            return None
+
     player_id = location.item.world.id + 1
     if location.item.looks_like_item is not None:
         looks_like_item_id = location.item.looks_like_item.index
@@ -2008,7 +2018,10 @@ def get_override_entry(location):
     elif location.type == 'ActorOverride':
         type = 2
     elif location.type == 'Collectable':
-        type = 2
+        if "Pot" in location.filter_tags or "Crate" in location.filter_tags:
+            type = 6
+        else:
+            type = 2
     elif location.type == 'GS Token':
         type = 3
     elif location.type == 'Shop' and location.item.type != 'Shop':

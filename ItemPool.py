@@ -881,13 +881,16 @@ def get_pool_core(world):
 
     actor_override_locations = [location for location in world.get_locations() if location.type == 'ActorOverride']
     freestanding_locations = [location for location in world.get_locations() if (location.type == 'Collectable' and 'Freestanding' in location.filter_tags) ]
+    
+
+    #shuffle freestanding
     if world.settings.shuffle_freestanding_items == 'all':        
         for location in actor_override_locations + freestanding_locations:
-            pool.append(location.vanilla_item)
+            pool.extend(get_junk_item())
     elif world.settings.shuffle_freestanding_items == 'dungeons':
         for location in actor_override_locations + freestanding_locations:
             if location.scene <= 0x0B:
-                pool.append(location.vanilla_item)
+                pool.extend(get_junk_item())
             else:
                 placed_items[location.name] = location.vanilla_item
                 location.disabled = DisableType.DISABLED
@@ -897,9 +900,33 @@ def get_pool_core(world):
                 placed_items[location.name] = location.vanilla_item
                 location.disabled = DisableType.DISABLED
             else:
-                pool.append(location.vanilla_item)
+                pool.extend(get_junk_item())
     else:
         for location in actor_override_locations + freestanding_locations:
+            placed_items[location.name] = location.vanilla_item
+            location.disabled = DisableType.DISABLED
+
+    #shuffle pots/crates
+    pot_locations = [location for location in world.get_locations() if(location.type == 'Collectable' and ('Pot' in location.filter_tags or 'Crate' in location.filter_tags))]
+    if world.settings.shuffle_pots == 'all':        
+        for location in pot_locations:
+            pool.extend(get_junk_item())
+    elif world.settings.shuffle_pots == 'dungeons':
+        for location in pot_locations:
+            if location.scene <= 0x0B:
+                pool.extend(get_junk_item())
+            else:
+                placed_items[location.name] = location.vanilla_item
+                location.disabled = DisableType.DISABLED
+    elif world.settings.shuffle_pots == 'overworld':
+         for location in pot_locations:
+            if location.scene <= 0x0B:
+                placed_items[location.name] = location.vanilla_item
+                location.disabled = DisableType.DISABLED
+            else:
+                pool.extend(get_junk_item())
+    else:
+        for location in pot_locations:
             placed_items[location.name] = location.vanilla_item
             location.disabled = DisableType.DISABLED
 
@@ -1370,8 +1397,12 @@ def get_pool_core(world):
 
     for item,max in item_difficulty_max[world.settings.item_pool_value].items():
         replace_max_item(pool, item, max)
-
+    logger.info(pool.count('Triforce Piece'))
     world.distribution.alter_pool(world, pool)
+
+    logger.info("Pending junk pool")
+    logger.info(pool.count('Triforce Piece'))
+    logger.info(pending_junk_pool.count('Triforce Piece'))
 
     # Make sure our pending_junk_pool is empty. If not, remove some random junk here.
     if pending_junk_pool:

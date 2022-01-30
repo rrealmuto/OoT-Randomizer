@@ -2786,6 +2786,28 @@ setting_infos = [
             'randomize_key': 'randomize_settings',
         },
     ),
+    Combobox(
+        name = 'shuffle_pots',
+        gui_text = 'Breakable Pot Shuffle',
+        default = 'off',
+        choices = {
+            'off': 'Off',
+            'all': 'All',
+            'overworld' : 'Overworld Only',
+            'dungeons' : 'Dungeons Only'
+        },
+        gui_tooltip    = '''\
+            Shuffles breakable pots into the location pool.
+
+            Off: Pots are not shuffled.
+            All: All pots are shuffled.
+            Overworld Only: Only overworld pots are shuffled.
+            Dungeons Only: Only dungeon pots are shuffled.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    ),
     
     Checkbutton(
         name           = 'shuffle_cows',

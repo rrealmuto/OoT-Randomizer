@@ -20,7 +20,21 @@
                 (can_use(Scarecrow) or can_use(Longshot) or (logic_dc_scarecrow_gs and (is_adult or
                 (can_child_attack and (can_blast_or_smash or Progressive_Strength_Upgrade)))))",
 
-            "Dodongos Cavern Lizalfos Hidden Recovery Heart": "True",
+            "Dodongos Cavern Lizalfos Hidden Recovery Heart": "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
+            "Dodongos Cavern Lower Lizalfos Pot 1" : "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
+            "Dodongos Cavern Lower Lizalfos Pot 2" : "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
+            "Dodongos Cavern Lower Lizalfos Pot 3" : "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
+            "Dodongos Cavern Lower Lizalfos Pot 4" : "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
+            "Dodongos Cavern Right Side Pot 1": "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
+            "Dodongos Cavern Right Side Pot 2": "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
+            "Dodongos Cavern Right Side Pot 3": "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
+            "Dodongos Cavern Right Side Pot 4": "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
+            "Dodongos Cavern Right Side Pot 5": "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
+            "Dodongos Cavern Right Side Pot 6": "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
+            "Dodongos Cavern Torch Room Pot 1": "((here(can_blast_or_smash) or Progressive_Strength_Upgrade) and can_child_attack) or is_adult",
+            "Dodongos Cavern Torch Room Pot 2": "((here(can_blast_or_smash) or Progressive_Strength_Upgrade) and can_child_attack) or is_adult",
+            "Dodongos Cavern Torch Room Pot 3": "((here(can_blast_or_smash) or Progressive_Strength_Upgrade) and can_child_attack) or is_adult",
+            "Dodongos Cavern Torch Room Pot 4": "((here(can_blast_or_smash) or Progressive_Strength_Upgrade) and can_child_attack) or is_adult",
             "Dodongos Cavern Deku Scrub Side Room Near Dodongos": "
                 (can_blast_or_smash or Progressive_Strength_Upgrade) and
                 (is_adult or Slingshot or Sticks or
@@ -64,6 +78,18 @@
             "Dodongos Cavern Lizalfos Recovery Heart 1": "True",
             "Dodongos Cavern Lizalfos Recovery Heart 2": "True",
             "Dodongos Cavern Behind Block" : "True",
+            "Dodongos Cavern Staircase Pot 1" : "True",
+            "Dodongos Cavern Staircase Pot 2" : "True",
+            "Dodongos Cavern Staircase Pot 3" : "True",
+            "Dodongos Cavern Staircase Pot 4" : "True",
+            "Dodongos Cavern Single Eye Pot 1": "(can_blast_or_smash or Progressive_Strength_Upgrade) or
+                (is_adult and (Hover_Boots or can_use(Longshot) or logic_dc_jump))",
+            "Dodongos Cavern Single Eye Pot 2": "(can_blast_or_smash or Progressive_Strength_Upgrade) or
+            (is_adult and (Hover_Boots or can_use(Longshot) or logic_dc_jump))",
+            "Dodongos Cavern Blade Room Pot 1": "can_use(Boomerang) or
+                at('Dodongos Cavern Far Bridge', True)",
+            "Dodongos Cavern Blade Room Pot 2": "can_use(Boomerang) or
+            at('Dodongos Cavern Far Bridge', True)",
             "Dodongos Cavern Deku Scrub Near Bomb Bag Right": "
                 can_blast_or_smash or
                 (logic_dc_scrub_room and is_adult and Progressive_Strength_Upgrade)",
@@ -87,6 +113,8 @@
         "locations": {
             "Dodongos Cavern Bomb Bag Chest": "True",
             "Dodongos Cavern End of Bridge Chest": "can_blast_or_smash",
+            "Dodongos Cavern Double Eye Pot 1" : "True",
+            "Dodongos Cavern Double Eye Pot 2" : "True",
             "Dodongos Cavern GS Alcove Above Stairs": "can_use(Hookshot) or can_use(Boomerang)"
         },
         "exits": {
@@ -102,6 +130,9 @@
             "Dodongos Cavern King Dodongo Heart": "
                 (Bombs or Progressive_Strength_Upgrade) and 
                 (is_adult or Sticks or Kokiri_Sword)",
+            "Dodongos Cavern Last Block Pot 1":"can_use(Bombs)",
+            "Dodongos Cavern Last Block Pot 2":"True",
+            "Dodongos Cavern Last Block Pot 3":"can_use(Slingshot) or can_use(Bow)",
             "King Dodongo": "
                 (Bombs or Progressive_Strength_Upgrade) and 
                 (is_adult or Sticks or Kokiri_Sword)",

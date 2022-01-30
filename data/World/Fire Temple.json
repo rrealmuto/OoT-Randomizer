@@ -21,7 +21,9 @@
                 ((Small_Key_Fire_Temple, 8) or not keysanity) and can_use(Megaton_Hammer)",
             "Fairy Pot": "
                 has_bottle and (can_use(Hover_Boots) or can_use(Hookshot)) and
-                (logic_fewer_tunic_requirements or can_use(Goron_Tunic))"
+                (logic_fewer_tunic_requirements or can_use(Goron_Tunic))",
+            "Fire Temple Near Boss Pot 1": "can_use(Bombs) and ((can_use(Hover_Boots) or can_use(Hookshot)) and (logic_fewer_tunic_requirements or can_use(Goron_Tunic)))",
+            "Fire Temple Near Boss Pot 2": "can_use(Bombs) and ((can_use(Hover_Boots) or can_use(Hookshot)) and (logic_fewer_tunic_requirements or can_use(Goron_Tunic)))"
         },
         "exits": {
             "DMC Fire Temple Entrance": "True",
@@ -39,6 +41,9 @@
             "Fire Temple Elevator Room Recovery Heart 1": "(Small_Key_Fire_Temple, 3)",
             "Fire Temple Elevator Room Recovery Heart 2": "(Small_Key_Fire_Temple, 3)",
             "Fire Temple Elevator Room Recovery Heart 3": "(Small_Key_Fire_Temple, 3)",
+            "Fire Temple Big Lava Room Pot 1" : "can_use(Bow) or can_use(Slingshot)",
+            "Fire Temple Big Lava Room Pot 2" : "True",
+            "Fire Temple Big Lava Room Pot 3" : "can_use(Bow) or can_use(Slingshot)",
             "Fire Temple GS Song of Time Room": "
                 is_adult and (can_play(Song_of_Time) or logic_fire_song_of_time)"
         },
@@ -72,6 +77,10 @@
             "Fire Temple Moving Fire Room Recovery Heart 3" : "(Small_Key_Fire_Temple, 6)",
             "Fire Temple Compass Chest": "(Small_Key_Fire_Temple, 7)",
             "Fire Temple GS Boulder Maze": "(Small_Key_Fire_Temple, 4) and has_explosives",
+            "Fire Temple Flame Maze Left Side Pot 1": "(Small_Key_Fire_Temple, 7)",
+            "Fire Temple Flame Maze Left Side Pot 2": "(Small_Key_Fire_Temple, 7)",
+            "Fire Temple Flame Maze Left Side Pot 3": "(Small_Key_Fire_Temple, 7)",
+            "Fire Temple Flame Maze Left Side Pot 4": "(Small_Key_Fire_Temple, 7)",
             "Fire Temple GS Scarecrow Climb": "
                 (Small_Key_Fire_Temple, 6) and
                 (can_use(Scarecrow) or (logic_fire_scarecrow and can_use(Longshot)))",
@@ -90,6 +99,10 @@
         "region_name": "Fire Temple Upper",
         "dungeon": "Fire Temple",
         "locations": {
+            "Fire Temple Flame Maze Right Side Pot 1" : "can_use(Bombs)",
+            "Fire Temple Flame Maze Right Side Pot 2" : "True",
+            "Fire Temple Flame Maze Right Side Pot 3" : "True",
+            "Fire Temple Flame Maze Right Side Pot 4" : "can_use(Bombs)",
             "Fire Temple Highest Goron Chest": "
                 can_use(Megaton_Hammer) and 
                 (can_play(Song_of_Time) or (logic_rusted_switches and 

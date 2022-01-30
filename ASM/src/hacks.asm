@@ -218,6 +218,13 @@ Gameplay_InitSkybox:
 .orga 0xE2F093 :: .byte 0x34 ; Market Bombchu Bowling Bomb Bag
 .orga 0xEC9CE7 :: .byte 0x7A ; Deku Theater Mask of Truth
 
+; en_item00_update() hacks - 0x80012938
+; Hack to keep collectibles alive if we are overriding them
+;.orga 0xA888BC; in Memory 0x8001295C
+;    jal Item00_KeepAlive
+;    nop
+;    nop
+;    LH V0, 0x014A (S0)
 
 ; Runs when player collides w/ Collectible (inside en_item00_update()) start of switch case at 0x80012CA4
 
@@ -247,7 +254,27 @@ Gameplay_InitSkybox:
 .orga 0xA88C34 ; In memory: 80012CD4)
 	j item_give_hook
 	or A2, S0, R0
-	
+
+; Override Item_Give(RUPEE_PURPLE)
+; Replaces:
+;OR	A0, S1, R0
+;JAL	0x8006FDCC
+;addiu	a1, r0, 0x0084
+.orga 0xA88C48 ; In memory: 80012CE8)
+	j item_give_hook
+	or A2, S0, R0
+
+; Override Stick Collectible
+.orga 0xA88C70 ; In memory: 0x80012D10
+    j   item_give_hook
+    or  A2, S0, R0
+    nop
+
+; Override Nut Collectible
+.orga 0xA88C7C ; In memory: 0x80012D1C
+    j   item_give_hook
+    or  A2, S0, R0
+    nop
 
 ; Override Item_Give(ITEM_HEART)
 ; Replaces:
@@ -257,6 +284,88 @@ Gameplay_InitSkybox:
 .orga 0xA88C88 ; In memory: 0x80012D28
     j	item_give_hook
     or	A2, S0, R0 ;pass actor pointer to function
+
+
+; Override Bombs Collectible
+.orga 0xA88CB0 ; In memory 0x80012D50
+    j	item_give_hook
+    or      A2, S0, R0
+    nop
+
+; Override Arrows Single Collectible
+.orga 0xA88CC4 ; In memory 0x80012D64
+    j	item_give_hook
+    or      A2, S0, R0
+    nop
+
+
+; Override Arrows Small Collectible
+.orga 0xA88CD8 ; In memory 0x80012D78
+    j	item_give_hook
+    or      A2, S0, R0
+    nop
+
+
+; Override Arrows Medium Collectible
+.orga 0xA88CEC ; In memory  0x80012D8C
+    j	item_give_hook
+    or      A2, S0, R0
+    nop
+
+
+; Override Arrows Large Collectible
+.orga 0xA88D00 ; In memory  0x80012DA0
+    j	item_give_hook
+    or      A2, S0, R0
+    nop
+
+; Override Seeds Collectible (as adult: 0x80012D78 and calls item_give, as child: 0x80012DB4 and uses getitemid)
+.orga 0xA88D14 ; In memory: 0x80012DB4
+    j		item_give_hook
+    or      A2, S0, R0
+    nop
+
+; Override Magic Large Collectible
+.orga 0xA88D44 ; In memory: 0x80012DE4
+    j		item_give_hook
+    or      A2, S0, R0
+    nop
+
+; Override Magic Small Collectible
+.orga 0xA88D50 ; In memory: 0x80012DF0
+    j		item_give_hook
+    or      A2, S0, R0
+    nop
+
+; Hack Write_Save function to store additional collectible flags
+.orga 0xB065F4 ; In memory: 0x80090694
+    jal Save_Write_Hook
+.orga 0xB06668 ; In memory: 0x80090708
+    jal Save_Write_Hook
+
+; Hack Open_Save function to retrieve additional collectible flags
+; At the start of the Sram_OpenSave function, SramContext address is stored in A0 and also on the stack at 0x20(SP)
+; Overwrite the memcpy function at 0x800902E8
+; jal   0x80057030
+; addu  A1, T9, A3
+.orga 0xB06248 ;In memory: 0x800902E8
+jal open_save_hook
+nop
+
+;Hack to EnItem00_Init to store if it was dropped by a pot
+;replaces
+;ANDI t9, v0, 0x00FF
+;SH  T9, 0x001c(S0)
+.orga 0xA87AF0; In memory 0x80011B90
+jal  item00_init_hook
+nop
+
+;Hack Item_DropCollectible to add a flag that this was a dropped collectible (vs spawned).
+;replaces or t4, t3, t1
+;sw t4, 0x0024(sp)
+.orga 0xA89708; in memory 0x800137A8
+jal drop_collectible_hook
+or t4, t3, t1
 
 ; Runs when storing an incoming item to the player instance
 ; Replaces:
@@ -421,7 +530,7 @@ end_of_recovery_draw:
 ; Replaces:
 ;   jal     0x80013498 ; Collectable draw function
 .orga 0xA89048 ; In memory: 0x800130E8
-    jal     small_key_draw
+    jal     collectible_draw_other
 
 ; Replaces:
 ;   addiu   sp, sp, -0x48
