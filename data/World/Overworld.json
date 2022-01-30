@@ -2115,7 +2115,16 @@
         "region_name": "Ganons Castle Tower",
         "dungeon": "Ganons Castle",
         "locations": {
-            "Ganons Tower Boss Key Chest": "True",
+            "Ganons Tower Boss Key Chest": "True"
+        },
+        "exits" : {
+            "Ganondorf Fight" : "Boss_Key_Ganons_Castle"
+        }
+    },
+    {
+        "region_name":"Ganondorf Fight",
+        "hint": "Ganondorf Fight",
+        "locations" : {
             "Ganondorf Hint": "Boss_Key_Ganons_Castle",
             "Ganons Tower Pot 1" : "Boss_Key_Ganons_Castle and Magic_Meter",
             "Ganons Tower Pot 2" : "Boss_Key_Ganons_Castle",

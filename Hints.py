@@ -1285,7 +1285,7 @@ def buildGanonText(world, messages):
         if world.id != location.world.id:
             text += "\x05\x42Player %d's\x05\x40 %s" % (location.world.id +1, get_raw_text(location_hint))
         else:
-            location_hint = location_hint.replace('Ganon\'s Castle', 'my castle')
+            location_hint = location_hint.replace('Ganon\'s Castle', 'my castle').replace('Ganondorf Fight', 'those pots over there')
             text += get_raw_text(location_hint)
     else:
         text = get_raw_text(getHint('Validation Line', world.settings.clearer_hints).text)
