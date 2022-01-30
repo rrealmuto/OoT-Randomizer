@@ -607,7 +607,6 @@ nop
     or      A2, S0, R0
     nop
 
-
 ; Hack Write_Save function to store additional collectible flags
 .orga 0xB065F4 ; In memory: 0x80090694
     jal Save_Write_Hook
