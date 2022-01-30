@@ -158,6 +158,8 @@ location_table = OrderedDict([
     ("HF Cow Grotto Cow",                                            ("NPC",          0x3E,  0x16, None,                        'Milk',                                  ("Hyrule Field", "Cow", "Grottos"))),
     ("HF GS Cow Grotto",                                             ("GS Token",     0x0A,  0x01, None,                        'Gold Skulltula Token',                  ("Hyrule Field", "Skulltulas", "Grottos"))),
     ("HF GS Near Kak Grotto",                                        ("GS Token",     0x0A,  0x02, None,                        'Gold Skulltula Token',                  ("Hyrule Field", "Skulltulas", "Grottos"))),
+    ("HF Cow Grotto Pot 1",                                          ("Collectable",  0x3E,  0x20, None,                        'Recovery Heart',                        ("Hyrule Field", "Grotto", "Pot"))),
+    ("HF Cow Grotto Pot 2",                                          ("Collectable",  0x3E,  0x21, None,                        'Recovery Heart',                        ("Hyrule Field", "Grotto", "Pot"))),
 
     # Market
     #("Market Night Crate Rupee",                                     ("ActorOverride",0x21,  0x03, ([0x022D21B8], [0x00, 0x06, 0x00, 0x00, 0x00, 0x03]) ,                        'Rupees (20)',                           ("the market", "Market",))),
@@ -209,6 +211,10 @@ location_table = OrderedDict([
     ("HC Great Fairy Reward",                                        ("Cutscene",     0xFF,  0x11, None,                        'Dins Fire',                             ("Hyrule Castle", "Market", "Fairies"))),
     ("HC GS Tree",                                                   ("GS Token",     0x0E,  0x04, None,                        'Gold Skulltula Token',                  ("Hyrule Castle", "Skulltulas",))),
     ("HC GS Storms Grotto",                                          ("GS Token",     0x0E,  0x02, None,                        'Gold Skulltula Token',                  ("Hyrule Castle", "Skulltulas", "Grottos"))),
+    ("HC Storms Grotto Pot 1",                                       ("Collectable",  0x3E,  0x22, None,                        'Recovery Heart',                        ("Hyrule Castle", "Grottos", "Pot"))),
+    ("HC Storms Grotto Pot 2",                                       ("Collectable",  0x3E,  0x23, None,                        'Recovery Heart',                        ("Hyrule Castle", "Grottos", "Pot"))),
+    ("HC Storms Grotto Pot 3",                                       ("Collectable",  0x3E,  0x24, None,                        'Recovery Heart',                        ("Hyrule Castle", "Grottos", "Pot"))),
+    ("HC Storms Grotto Pot 4",                                       ("Collectable",  0x3E,  0x25, None,                        'Recovery Heart',                        ("Hyrule Castle", "Grottos", "Pot"))),
 
     # Lon Lon Ranch
     ("LLR Talons Chickens",                                          ("NPC",          0x4C,  0x14, None,                        'Bottle with Milk',                      ("Lon Lon Ranch", "Minigames"))),

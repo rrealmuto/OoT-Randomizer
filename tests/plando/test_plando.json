@@ -1,9 +1,8 @@
 {
     "entrances": {
-        "Child Spawn -> KF Links House" : {"region" : "Goron City", "from": "Death Mountain"},
-        "Adult Spawn -> Temple of Time" : {"region" : "GC Darunias Chamber", "from": "DMC Lower Nearby"}
+
     },
     "locations": {
-        "Dodongos Cavern Last Block Pot 2" : "Progressive Hookshot"
+        "Ganons Tower Pot 1" : "Light Arrows"
     }
 }
