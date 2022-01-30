@@ -2307,6 +2307,8 @@
             "HF GS Cow Grotto": "
                 has_fire_source and (can_use(Hookshot) or can_use(Boomerang))",
             "HF Cow Grotto Cow": "has_fire_source and can_play(Eponas_Song)",
+            "HF Cow Grotto Pot 1" : "has_fire_source",
+            "HF Cow Grotto Pot 2" : "has_fire_source",
             "HF Cow Grotto Gossip Stone": "has_fire_source",
             "Gossip Stone Fairy": "has_fire_source and can_summon_gossip_fairy and has_bottle",
             "Bug Shrub": "has_fire_source and can_cut_shrubs and has_bottle",
@@ -2369,6 +2371,10 @@
             "HC GS Storms Grotto": "
                 (can_blast_or_smash or (is_child and logic_castle_storms_gs)) and
                 (can_use(Boomerang) or can_use(Hookshot))",
+            "HC Storms Grotto Pot 1" : "can_blast_or_smash",
+            "HC Storms Grotto Pot 2" : "can_blast_or_smash and can_use(Bombs)",
+            "HC Storms Grotto Pot 3" : "can_blast_or_smash and (can_use(Bombs) or can_use(Slingshot))",
+            "HC Storms Grotto Pot 4" : "can_blast_or_smash",
             "HC Storms Grotto Gossip Stone": "can_blast_or_smash",
             "Gossip Stone Fairy": "can_blast_or_smash and can_summon_gossip_fairy and has_bottle",
             "Wandering Bugs": "can_blast_or_smash and has_bottle",
