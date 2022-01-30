@@ -100,11 +100,11 @@
                     "can_use(Lens_of_Truth) and (
                     can_use(Fire_Arrows) or 
                     (can_use(Longshot) and (Hover_Boots or can_use(Dins_Fire))))",
-            "Ganons Castle Shadow Trial Like-Like Pot 1" : "can_use(Fire_Arrows) or can_use(Longshot)",
+            "Ganons Castle Shadow Trial Like-Like Pot 1" : "can_use(Bow) and (can_use(Fire_Arrows) or can_use(Longshot))",
             "Ganons Castle Shadow Trial Like-Like Pot 2" : "Magic_Meter and (can_use(Fire_Arrows) or can_use(Longshot))",
-            "Ganons Castle Shadow Trial Pot 1" : "can_use(Megaton_Hammer) and 
+            "Ganons Castle Shadow Trial Pot 1" : "can_use(Bow) and (can_use(Megaton_Hammer) and 
                 ((Fire_Arrows and (logic_lens_castle or can_use(Lens_of_Truth))) or 
-                (can_use(Longshot) and (Hover_Boots or (Dins_Fire and (logic_lens_castle or can_use(Lens_of_Truth))))))",
+                (can_use(Longshot) and (Hover_Boots or (Dins_Fire and (logic_lens_castle or can_use(Lens_of_Truth)))))))",
             "Ganons Castle Shadow Trial Pot 2" : "Magic_Meter and (can_use(Megaton_Hammer) and 
                 ((Fire_Arrows and (logic_lens_castle or can_use(Lens_of_Truth))) or 
                 (can_use(Longshot) and (Hover_Boots or (Dins_Fire and (logic_lens_castle or can_use(Lens_of_Truth)))))))"
