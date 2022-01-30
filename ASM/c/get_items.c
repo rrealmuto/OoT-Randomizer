@@ -442,6 +442,10 @@ EnItem00* collectible_mutex = 0;
 
 override_t collectible_override;
 
+void reset_collectible_mutex(){
+	collectible_mutex = NULL;
+}
+
 //New EnItem00 function that freezes link until the messagebox is closed. Similar to how skulls work.
 void Collectible_WaitForMessageBox(EnItem00 *this, z64_game_t *game)
 {
@@ -452,7 +456,7 @@ void Collectible_WaitForMessageBox(EnItem00 *this, z64_game_t *game)
 		//Make sure link was frozen for the minimum amount of time
 		if (this->timeToLive == 0)
 		{
-			collectible_mutex = NULL; //release the mutex
+			reset_collectible_mutex(); //release the mutex
 			//Kill the actor
 			z64_ActorKill(&(this->actor));
 		}
