@@ -43,7 +43,7 @@
             "Bottom of the Well Near Entrance Pot 1": "True",
             "Bottom of the Well Near Entrance Pot 2": "Magic_Meter",
             "Bottom of the Well Fire Keese Pot" : "Magic_Meter and ((Small_Key_Bottom_of_the_Well, 3) and (logic_lens_botw or can_use(Lens_of_Truth)))",
-            "Bottom of the Well Underwater Pot" : "can_use(Bombs) and (can_play(Zeldas_Lullaby) or can_use(Slingshot) or can_use(Boomerang))",
+            "Bottom of the Well Underwater Pot" : "Bomb_Bag and (can_play(Zeldas_Lullaby) or can_use(Slingshot) or can_use(Boomerang))",
             "Bottom of the Well Lens of Truth Chest": "
                 can_play(Zeldas_Lullaby) and 
                 (Kokiri_Sword or (Sticks and logic_child_deadhand))", 

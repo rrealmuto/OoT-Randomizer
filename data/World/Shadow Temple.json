@@ -63,7 +63,7 @@
             "Shadow Temple Falling Spikes Upper Chest": "logic_shadow_umbrella or Progressive_Strength_Upgrade",
             "Shadow Temple Falling Spikes Switch Chest": "logic_shadow_umbrella or Progressive_Strength_Upgrade",
             "Shadow Temple Falling Spikes Pot 1": "True",
-            "Shadow Temple Falling Spikes Pot 2": "can_use(Bombs)",
+            "Shadow Temple Falling Spikes Pot 2": "Bomb_Bag",
             "Shadow Temple Falling Spikes Pot 3": "logic_shadow_umbrella or Progressive_Strength_Upgrade",
             "Shadow Temple Falling Spikes Pot 4": "logic_shadow_umbrella or Progressive_Strength_Upgrade",
             "Shadow Temple GS Like Like Room": "True",
