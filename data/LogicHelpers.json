@@ -115,6 +115,7 @@
         (shuffle_ganon_bosskey == 'medallions' and has_medallions(ganon_bosskey_medallions)) or
         (shuffle_ganon_bosskey == 'dungeons' and has_dungeon_rewards(ganon_bosskey_rewards)) or
         (shuffle_ganon_bosskey == 'tokens' and (Gold_Skulltula_Token, ganon_bosskey_tokens)) or
+        (shuffle_ganon_bosskey == 'triforce' and won_triforce_hunt()) or
         ((shuffle_ganon_bosskey != 'stones') and (shuffle_ganon_bosskey != 'medallions') and
          (shuffle_ganon_bosskey != 'dungeons') and (shuffle_ganon_bosskey != 'tokens') and (shuffle_ganon_bosskey != 'triforce'))",
 
