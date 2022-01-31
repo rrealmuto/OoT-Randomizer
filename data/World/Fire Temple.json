@@ -22,8 +22,8 @@
             "Fairy Pot": "
                 has_bottle and (can_use(Hover_Boots) or can_use(Hookshot)) and
                 (logic_fewer_tunic_requirements or can_use(Goron_Tunic))",
-            "Fire Temple Near Boss Pot 1": "can_use(Bombs) and ((can_use(Hover_Boots) or can_use(Hookshot)) and (logic_fewer_tunic_requirements or can_use(Goron_Tunic)))",
-            "Fire Temple Near Boss Pot 2": "can_use(Bombs) and ((can_use(Hover_Boots) or can_use(Hookshot)) and (logic_fewer_tunic_requirements or can_use(Goron_Tunic)))"
+            "Fire Temple Near Boss Pot 1": "Bomb_Bag and ((can_use(Hover_Boots) or can_use(Hookshot)) and (logic_fewer_tunic_requirements or can_use(Goron_Tunic)))",
+            "Fire Temple Near Boss Pot 2": "Bomb_Bag and ((can_use(Hover_Boots) or can_use(Hookshot)) and (logic_fewer_tunic_requirements or can_use(Goron_Tunic)))"
         },
         "exits": {
             "DMC Fire Temple Entrance": "True",
@@ -99,10 +99,10 @@
         "region_name": "Fire Temple Upper",
         "dungeon": "Fire Temple",
         "locations": {
-            "Fire Temple Flame Maze Right Side Pot 1" : "can_use(Bombs)",
+            "Fire Temple Flame Maze Right Side Pot 1" : "Bomb_Bag",
             "Fire Temple Flame Maze Right Side Pot 2" : "True",
             "Fire Temple Flame Maze Right Side Pot 3" : "True",
-            "Fire Temple Flame Maze Right Side Pot 4" : "can_use(Bombs)",
+            "Fire Temple Flame Maze Right Side Pot 4" : "Bomb_Bag",
             "Fire Temple Highest Goron Chest": "
                 can_use(Megaton_Hammer) and 
                 (can_play(Song_of_Time) or (logic_rusted_switches and 

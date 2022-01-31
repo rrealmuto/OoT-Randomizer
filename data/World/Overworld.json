@@ -1420,7 +1420,7 @@
             "Graveyard Dampe Race Rupee 8": "True",
             "Grave Dampe Pot 1" : "True",
             "Grave Dampe Pot 2" : "True",
-            "Grave Dampe Pot 3" : "can_use(Bombs)",
+            "Grave Dampe Pot 3" : "Bomb_Bag",
             "Grave Dampe Pot 4" : "can_use(Bow) or can_use(Slingshot)",
             "Grave Dampe Pot 5" : "Magic_Meter",
             "Grave Dampe Pot 6" : "True",
@@ -2143,16 +2143,7 @@
         "region_name": "Ganons Castle Tower",
         "dungeon": "Ganons Castle",
         "locations": {
-            "Ganons Tower Boss Key Chest": "True"
-        },
-        "exits" : {
-            "Ganondorf Fight" : "Boss_Key_Ganons_Castle"
-        }
-    },
-    {
-        "region_name":"Ganondorf Fight",
-        "hint": "Ganondorf Fight",
-        "locations" : {
+            "Ganons Tower Boss Key Chest": "True",
             "Ganondorf Hint": "Boss_Key_Ganons_Castle",
             "Ganons Tower Pot 1" : "Boss_Key_Ganons_Castle and Magic_Meter",
             "Ganons Tower Pot 2" : "Boss_Key_Ganons_Castle",
@@ -2169,6 +2160,9 @@
             "Ganons Tower Pot 13" : "Boss_Key_Ganons_Castle",
             "Ganons Tower Pot 14" : "Boss_Key_Ganons_Castle and can_use(Bow)",
             "Ganon": "Boss_Key_Ganons_Castle and can_use(Light_Arrows)"
+        },
+        "exits" : {
+            "Ganons Castle Lobby" : "True"
         }
     },
     {
@@ -2400,8 +2394,8 @@
                 (can_blast_or_smash or (is_child and logic_castle_storms_gs)) and
                 (can_use(Boomerang) or can_use(Hookshot))",
             "HC Storms Grotto Pot 1" : "can_blast_or_smash",
-            "HC Storms Grotto Pot 2" : "can_blast_or_smash and can_use(Bombs)",
-            "HC Storms Grotto Pot 3" : "can_blast_or_smash and (can_use(Bombs) or can_use(Slingshot))",
+            "HC Storms Grotto Pot 2" : "can_blast_or_smash and Bomb_Bag",
+            "HC Storms Grotto Pot 3" : "can_blast_or_smash and (Bomb_Bag or can_use(Slingshot))",
             "HC Storms Grotto Pot 4" : "can_blast_or_smash",
             "HC Storms Grotto Gossip Stone": "can_blast_or_smash",
             "Gossip Stone Fairy": "can_blast_or_smash and can_summon_gossip_fairy and has_bottle",
