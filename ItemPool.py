@@ -1369,7 +1369,7 @@ def get_pool_core(world):
         for item in [item for dungeon in world.dungeons if dungeon.name != 'Ganons Castle' for item in dungeon.boss_key]:
             world.state.collect(item)
             pool.extend(get_junk_item())
-    if world.settings.shuffle_ganon_bosskey in ['remove', 'triforce']:
+    if world.settings.shuffle_ganon_bosskey in ['remove']:
         for item in [item for dungeon in world.dungeons if dungeon.name == 'Ganons Castle' for item in dungeon.boss_key]:
             world.state.collect(item)
             pool.extend(get_junk_item())
@@ -1424,7 +1424,7 @@ def get_pool_core(world):
     elif world.settings.shuffle_ganon_bosskey == 'vanilla':
         placed_items['Ganons Tower Boss Key Chest'] = 'Boss Key (Ganons Castle)'
 
-    if world.settings.shuffle_ganon_bosskey in ['stones', 'medallions', 'dungeons', 'tokens']:
+    if world.settings.shuffle_ganon_bosskey in ['stones', 'medallions', 'dungeons', 'tokens', 'triforce']:
         placed_items['Gift from Sages'] = 'Boss Key (Ganons Castle)'
         pool.extend(get_junk_item())
     else:
@@ -1446,12 +1446,7 @@ def get_pool_core(world):
 
     for item,max in item_difficulty_max[world.settings.item_pool_value].items():
         replace_max_item(pool, item, max)
-    logger.info(pool.count('Triforce Piece'))
     world.distribution.alter_pool(world, pool)
-
-    logger.info("Pending junk pool")
-    logger.info(pool.count('Triforce Piece'))
-    logger.info(pending_junk_pool.count('Triforce Piece'))
 
     # Make sure our pending_junk_pool is empty. If not, remove some random junk here.
     if pending_junk_pool:
