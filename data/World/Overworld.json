@@ -653,7 +653,8 @@
             "Hideout Pot 12" : "True",
             "Hideout Pot 13" : "True",
             "Hideout Pot 14" : "True",
-            "Hideout Pot 15" : "True"
+            "Hideout Pot 15" : "True",
+            "Hideout Pot 16" : "True"
         },
         "exits": {
             "GV Fortress Side": "True",
