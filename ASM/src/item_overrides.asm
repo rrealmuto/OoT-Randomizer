@@ -190,6 +190,7 @@ get_item_hook:
     jr      ra
     addiu   sp, sp, 0x20
 
+;Set actors dropFlag to indicate that it was dropped from something.
 item00_init_hook:
     andi t8, v0, 0x4000
     sra t8, t8, 14
@@ -233,7 +234,7 @@ return_to_func:
 	lw	s1, 0x30(sp)
 	lw	at, 0x34(sp)
 	lw  t0, 0x003C(sp) ;this is what they do after the branch in the OG function
-	j 0x80012E2C ; jump back where the OG function would have
+	j 0x80012E28 ; jump back where the OG function would have
 	addiu sp, sp, 0x80
 exit_func:
     lw	ra, 0x10(sp)

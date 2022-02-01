@@ -268,13 +268,13 @@ Gameplay_InitSkybox:
 .orga 0xA88C70 ; In memory: 0x80012D10
     j   item_give_hook
     or  A2, S0, R0
-    nop
+    
 
 ; Override Nut Collectible
 .orga 0xA88C7C ; In memory: 0x80012D1C
     j   item_give_hook
     or  A2, S0, R0
-    nop
+    
 
 ; Override Item_Give(ITEM_HEART)
 ; Replaces:
@@ -290,52 +290,46 @@ Gameplay_InitSkybox:
 .orga 0xA88CB0 ; In memory 0x80012D50
     j	item_give_hook
     or      A2, S0, R0
-    nop
 
 ; Override Arrows Single Collectible
 .orga 0xA88CC4 ; In memory 0x80012D64
     j	item_give_hook
     or      A2, S0, R0
-    nop
+    
 
 
 ; Override Arrows Small Collectible
 .orga 0xA88CD8 ; In memory 0x80012D78
     j	item_give_hook
     or      A2, S0, R0
-    nop
-
 
 ; Override Arrows Medium Collectible
 .orga 0xA88CEC ; In memory  0x80012D8C
     j	item_give_hook
     or      A2, S0, R0
-    nop
+    
 
 
 ; Override Arrows Large Collectible
 .orga 0xA88D00 ; In memory  0x80012DA0
     j	item_give_hook
     or      A2, S0, R0
-    nop
+    
 
 ; Override Seeds Collectible (as adult: 0x80012D78 and calls item_give, as child: 0x80012DB4 and uses getitemid)
 .orga 0xA88D14 ; In memory: 0x80012DB4
     j		item_give_hook
     or      A2, S0, R0
-    nop
 
 ; Override Magic Large Collectible
 .orga 0xA88D44 ; In memory: 0x80012DE4
     j		item_give_hook
     or      A2, S0, R0
-    nop
 
 ; Override Magic Small Collectible
 .orga 0xA88D50 ; In memory: 0x80012DF0
     j		item_give_hook
     or      A2, S0, R0
-    nop
 
 ; Hack Write_Save function to store additional collectible flags
 .orga 0xB065F4 ; In memory: 0x80090694
