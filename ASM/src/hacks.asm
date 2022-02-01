@@ -616,6 +616,12 @@ nop
 jal open_save_hook
 nop
 
+; Verify And Load all saves function to only check slots 1 and 2.
+; Overwrite the loop calculation at 0x80090974
+; slti at, s4, 0x0003
+.orga  0xB068D4 ; In memory: 0x80090974  
+slti at, s4, 0x0002
+
 ;Hack to EnItem00_Init to store if it was dropped by a pot
 ;replaces
 ;ANDI t9, v0, 0x00FF
