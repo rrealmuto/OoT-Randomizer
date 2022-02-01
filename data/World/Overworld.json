@@ -2087,13 +2087,13 @@
             "LLR GS Rain Shed": "is_child and at_night",
             "LLR GS House Window": "can_use(Boomerang) and at_night",
             "LLR GS Back Wall": "can_use(Boomerang) and at_night",
-            "LLR Pot 1" : "True",
-            "LLR Pot 2" : "True",
-            "LLR Pot 3" : "True",
-            "LLR Pot 4" : "True",
-            "LLR Pot 5" : "True",
-            "LLR Pot 6" : "True",
-            "LLR Pot 7" : "True"
+            "LLR Pot 1" : "is_child",
+            "LLR Pot 2" : "is_child",
+            "LLR Pot 3" : "is_child",
+            "LLR Pot 4" : "is_child",
+            "LLR Pot 5" : "is_child",
+            "LLR Pot 6" : "is_child",
+            "LLR Pot 7" : "is_child"
         },
         "exits": {
             "Hyrule Field": "True",
