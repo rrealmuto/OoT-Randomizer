@@ -2030,7 +2030,7 @@ def get_override_entry(location):
     elif location.type == 'ActorOverride':
         type = 2
     elif location.type == 'Collectable':
-        if "Pot" in location.filter_tags or "Crate" in location.filter_tags:
+        if "Pot" in location.filter_tags or "Crate" in location.filter_tags or "Drop" in location.filter_tags:
             type = 6
         else:
             type = 2
