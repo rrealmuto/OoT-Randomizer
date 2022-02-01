@@ -369,7 +369,7 @@ location_table = OrderedDict([
 
     # Goron City
     ("GC Darunias Joy",                                              ("NPC",          0x62,  0x54, None,                        'Progressive Strength Upgrade',          ("Goron City",))),
-    ("GC Pot Freestanding PoH",                                      ("Collectable",  0x62,  0x1F, None,                        'Piece of Heart',                        ("Goron City", "Goron City",))),
+    ("GC Pot Freestanding PoH",                                      ("Collectable",  0x62,  0x1F, None,                        'Piece of Heart',                        ("Goron City", "Goron City", "Drop"))),
     ("GC Rolling Goron as Child",                                    ("NPC",          0x62,  0x34, None,                        'Bomb Bag',                              ("Goron City",))),
     ("GC Rolling Goron as Adult",                                    ("NPC",          0x62,  0x2C, None,                        'Goron Tunic',                           ("Goron City",))),
     ("GC Medigoron",                                                 ("NPC",          0x62,  0x28, None,                        'Giants Knife',                          ("Goron City",))),
@@ -552,10 +552,10 @@ location_table = OrderedDict([
     ("GF GS Archery Range",                                          ("GS Token",     0x14,  0x01, None,                        'Gold Skulltula Token',                  ("Gerudo's Fortress", "Skulltulas",))),
 
     # Thieves' Hideout
-    ("Hideout Jail Guard (1 Torch)",                                 ("Collectable",  0x0C,  0x0C, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo",))),
-    ("Hideout Jail Guard (2 Torches)",                               ("Collectable",  0x0C,  0x0F, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo",))),
-    ("Hideout Jail Guard (3 Torches)",                               ("Collectable",  0x0C,  0x0A, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo",))),
-    ("Hideout Jail Guard (4 Torches)",                               ("Collectable",  0x0C,  0x0E, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo",))),
+    ("Hideout Jail Guard (1 Torch)",                                 ("Collectable",  0x0C,  0x0C, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo", "Drop"))),
+    ("Hideout Jail Guard (2 Torches)",                               ("Collectable",  0x0C,  0x0F, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo", "Drop"))),
+    ("Hideout Jail Guard (3 Torches)",                               ("Collectable",  0x0C,  0x0A, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo", "Drop"))),
+    ("Hideout Jail Guard (4 Torches)",                               ("Collectable",  0x0C,  0x0E, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo", "Drop"))),
     ("Hideout Gerudo Membership Card",                               ("NPC",          0x0C,  0x3A, None,                        'Gerudo Membership Card',                ("Thieves' Hideout", "Gerudo",))),
     ("Hideout Pot 1",                                                ("Collectable",  0x0C,  0x2A, None,                        'Recovery Heart',                        ("Thieves' Hideout", "Gerudo", "Pot"))),
     ("Hideout Pot 2",                                                ("Collectable",  0x0C,  0x2B, None,                        'Recovery Heart',                        ("Thieves' Hideout", "Gerudo", "Pot"))),
@@ -1040,7 +1040,7 @@ location_table = OrderedDict([
     ("Shadow Temple Falling Spikes Upper Chest",                     ("Chest",        0x07,  0x06, None,                        'Rupees (5)',                            ("Shadow Temple", "Vanilla",))),
     ("Shadow Temple Falling Spikes Switch Chest",                    ("Chest",        0x07,  0x04, None,                        'Small Key (Shadow Temple)',             ("Shadow Temple", "Vanilla",))),
     ("Shadow Temple Invisible Spikes Chest",                         ("Chest",        0x07,  0x09, None,                        'Rupees (5)',                            ("Shadow Temple", "Vanilla",))),
-    ("Shadow Temple Freestanding Key",                               ("Collectable",  0x07,  0x01, None,                        'Small Key (Shadow Temple)',             ("Shadow Temple", "Vanilla",))),
+    ("Shadow Temple Freestanding Key",                               ("Collectable",  0x07,  0x01, None,                        'Small Key (Shadow Temple)',             ("Shadow Temple", "Vanilla", "Drop"))),
     ("Shadow Temple Wind Hint Chest",                                ("Chest",        0x07,  0x15, None,                        'Arrows (10)',                           ("Shadow Temple", "Vanilla",))),
     ("Shadow Temple After Wind Enemy Chest",                         ("Chest",        0x07,  0x08, None,                        'Rupees (5)',                            ("Shadow Temple", "Vanilla",))),
     ("Shadow Temple After Wind Hidden Chest",                        ("Chest",        0x07,  0x14, None,                        'Small Key (Shadow Temple)',             ("Shadow Temple", "Vanilla",))),
