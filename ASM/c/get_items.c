@@ -540,7 +540,14 @@ int16_t get_override_drop_id(int16_t dropId, int16_t collectible_flag)
 	dummy.actor.actor_id = 0x15;
 	dummy.actor.dropFlag = 1;
 
-	if(should_override_collectible(&dummy))
+	if(should_override_collectible(&dummy) && 
+		(dropId != ITEM00_HEART_PIECE) &&
+		(dropId != ITEM00_SMALL_KEY) &&
+		(dropId != ITEM00_HEART_CONTAINER) &&
+		(dropId != ITEM00_SHIELD_DEKU) &&
+		(dropId != ITEM00_SHIELD_HYLIAN) &&
+		(dropId != ITEM00_TUNIC_ZORA) &&
+		(dropId != ITEM00_TUNIC_GORON) )
 	{
 		dropId = ITEM00_RUPEE_GREEN;
 		return dropId;
