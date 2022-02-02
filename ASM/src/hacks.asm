@@ -616,6 +616,11 @@ nop
 jal open_save_hook
 nop
 
+; Hack Init_Save function to zero the additional collectible flags
+; Overwrite the SsSram_Read_Write call at 0x80090D84
+.orga 0xB06CE4 ; In Memory: 0x80090D84
+jal Save_Init_Write_Hook
+
 ; Verify And Load all saves function to only check slots 1 and 2.
 ; Overwrite the loop calculation at 0x80090974
 ; slti at, s4, 0x0003
