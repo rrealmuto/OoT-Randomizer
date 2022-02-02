@@ -120,8 +120,8 @@
                 (Small_Key_Water_Temple, 5) and 
                 (logic_water_bk_jump_dive or can_use(Iron_Boots)) and
                 (logic_water_north_basement_ledge_jump or (has_explosives and Progressive_Strength_Upgrade) or Hover_Boots)",
-            "Water Temple Block Switch Room Pot 1": "(Small_Key_Water_Temple, 5) and Bomb_Bag",
-            "Water Temple Block Switch Room Pot 2": "(Small_Key_Water_Temple, 5) and Bomb_Bag",
+            "Water Temple Block Switch Room Pot 1": "(Small_Key_Water_Temple, 5)",
+            "Water Temple Block Switch Room Pot 2": "(Small_Key_Water_Temple, 5)",
             "Water Temple GS Near Boss Key Chest": "True",
                 # Longshot just reaches without the need to actually go near,
                 # Otherwise you have hovers and just hover over and collect with a jump slash
@@ -179,8 +179,8 @@
             "Water Temple River Recovery Heart 2": "can_play(Song_of_Time)",
             "Water Temple River Recovery Heart 3": "can_play(Song_of_Time)",
             "Water Temple River Recovery Heart 4": "can_play(Song_of_Time)",
-            "Water Temple Like Like Pot 1": "Magic_Meter",
-            "Water Temple Like Like Pot 2": "Magic_Meter",
+            "Water Temple Like Like Pot 1": "True",
+            "Water Temple Like Like Pot 2": "True",
             "Water Temple River Chest": "can_play(Song_of_Time) and Bow",
             "Water Temple GS River": "
                 can_play(Song_of_Time) and 
