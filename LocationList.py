@@ -1009,8 +1009,10 @@ location_table = OrderedDict([
     #("Water Temple Boss Key Pot 2",                                  ("Collectable",  0x05,  0x3E, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
     ("Water Temple L1 Torch Pot 1",                                  ("Collectable",  0x05,  0x25, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
     ("Water Temple L1 Torch Pot 2",                                  ("Collectable",  0x05,  0x26, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
-    
-    
+    ("Water Temple River Pot 1",                                  ("Collectable",  0x05,  0x2F, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
+    #("Water Temple River Pot 2",                                  ("Collectable",  0x05,  0x26, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
+    ("Water Temple Central Bow Target Pot 1",                                  ("Collectable",  0x05,  0x37, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
+    ("Water Temple Central Bow Target Pot 2",                                  ("Collectable",  0x05,  0x3F, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
 
     # Water Temple MQ
     ("Water Temple MQ Longshot Chest",                               ("Chest",        0x05,  0x00, None,                        'Progressive Hookshot',                  ("Water Temple", "Master Quest",))),
