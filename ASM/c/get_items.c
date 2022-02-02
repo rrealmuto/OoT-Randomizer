@@ -532,6 +532,51 @@ void Item00_KeepAlive(EnItem00* item00)
 	}
 }
 
+int16_t get_override_drop_id(int16_t dropId, int16_t collectible_flag)
+{
+	//make our a dummy enitem00 with enough info to get the override
+	EnItem00 dummy;
+	dummy.collectibleFlag = collectible_flag >> 8;
+	dummy.actor.actor_id = 0x15;
+	dummy.actor.dropFlag = 1;
+
+	if(should_override_collectible(&dummy))
+	{
+		dropId = ITEM00_RUPEE_GREEN;
+		return dropId;
+	}
+
+	if (LINK_IS_ADULT) {
+        if (dropId == ITEM00_SEEDS) {
+            dropId = ITEM00_ARROWS_SMALL;
+        } else if (dropId == ITEM00_STICK) {
+            dropId = ITEM00_RUPEE_GREEN;
+        }
+    } else {
+        if (dropId == ITEM00_ARROWS_SMALL || dropId == ITEM00_ARROWS_MEDIUM || dropId == ITEM00_ARROWS_LARGE) {
+            dropId = ITEM00_SEEDS;
+        }
+    }
+
+    // This is convoluted but it seems like it must be a single condition to match
+	if(((dropId == ITEM00_BOMBS_A) || (dropId == ITEM00_BOMBS_SPECIAL) || (dropId == ITEM00_BOMBS_B)) && (z64_file.items[ITEM_BOMB] == -1))
+		return -1;
+	if(((dropId == ITEM00_ARROWS_SMALL) || (dropId == ITEM00_ARROWS_MEDIUM) || (dropId == ITEM00_ARROWS_LARGE)) && (z64_file.items[ITEM_BOW] == -1))
+		return -1;
+	if(((dropId == ITEM00_MAGIC_LARGE)  || (dropId == ITEM00_MAGIC_SMALL)) && (z64_file.magic_capacity_set == 0))
+		return -1;
+    if(((dropId == ITEM00_SEEDS)) && (z64_file.items[ITEM_SLINGSHOT] == -1)) {
+        return -1;
+    }
+
+
+    if ((dropId == ITEM00_HEART) && (z64_file.energy_capacity == z64_file.energy)) {
+        return ITEM00_RUPEE_GREEN;
+    }
+
+    return dropId;
+}
+
 //Override hack for freestanding collectibles (green, blue, red rupees, recovery hearts)
 uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_actor)
 {
