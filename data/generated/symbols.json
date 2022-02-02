@@ -62,8 +62,12 @@
     "AUDIO_THREAD_INFO": "034831D8",
     "AUDIO_THREAD_INFO_MEM_SIZE": "034831F4",
     "AUDIO_THREAD_INFO_MEM_START": "034831F0",
+<<<<<<< HEAD
     "AUDIO_THREAD_MEM_START": "03495EC0",
 >>>>>>> 226722b3 (Make pots drop their shuffled items even if you dont have the required item. Need to fix logic now)
+=======
+    "AUDIO_THREAD_MEM_START": "03495F80",
+>>>>>>> 267513bb (Hack to erase new collectible flags in SRAM when initializing a new save. Copying still wont work)
     "AUTO_TRACKER_CONTEXT": "03480CD0",
     "AUTO_TRACKER_VERSION": "03480CD0",
     "BOMBCHUS_IN_LOGIC": "03480CAC",
@@ -177,10 +181,16 @@
 >>>>>>> f38eaac5 (Reset collectible mutex when scene loads to fix void out issues)
 =======
     "CHAIN_HBA_REWARDS": "03483B68",
+<<<<<<< HEAD
     "CHEST_SIZE_MATCH_CONTENTS": "0348C2A4",
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348C2A8",
     "COMPLETE_MASK_QUEST": "0348C2F9",
 >>>>>>> 226722b3 (Make pots drop their shuffled items even if you dont have the required item. Need to fix logic now)
+=======
+    "CHEST_SIZE_MATCH_CONTENTS": "0348C36C",
+    "CHEST_TEXTURE_MATCH_CONTENTS": "0348C370",
+    "COMPLETE_MASK_QUEST": "0348C3C1",
+>>>>>>> 267513bb (Hack to erase new collectible flags in SRAM when initializing a new save. Copying still wont work)
     "COOP_CONTEXT": "03480020",
     "COOP_VERSION": "03480020",
     "COSMETIC_CONTEXT": "03480834",
@@ -188,6 +198,7 @@
     "CURRENT_GROTTO_ID": "0348309A",
     "DEBUG_OFFSET": "03482AB8",
     "DISABLE_TIMERS": "03480CCC",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -233,11 +244,15 @@
 =======
     "DPAD_TEXTURE": "0348FEB8",
 >>>>>>> 226722b3 (Make pots drop their shuffled items even if you dont have the required item. Need to fix logic now)
+=======
+    "DPAD_TEXTURE": "0348FF80",
+>>>>>>> 267513bb (Hack to erase new collectible flags in SRAM when initializing a new save. Copying still wont work)
     "DUNGEONS_SHUFFLED": "03480CCD",
     "EXTENDED_OBJECT_TABLE": "03480C8C",
     "EXTERN_DAMAGE_MULTIPLYER": "03482EC9",
     "FAST_BUNNY_HOOD_ENABLED": "03480CCF",
     "FAST_CHESTS": "03480CC6",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -343,14 +358,22 @@
 >>>>>>> f38eaac5 (Reset collectible mutex when scene loads to fix void out issues)
 =======
     "FONT_TEXTURE": "0348E9F0",
+=======
+    "FONT_TEXTURE": "0348EAB8",
+>>>>>>> 267513bb (Hack to erase new collectible flags in SRAM when initializing a new save. Copying still wont work)
     "FREE_SCARECROW_ENABLED": "03480CBC",
-    "GANON_BOSS_KEY_CONDITION": "0348C2B8",
-    "GANON_BOSS_KEY_CONDITION_COUNT": "0348C2B6",
+    "GANON_BOSS_KEY_CONDITION": "0348C380",
+    "GANON_BOSS_KEY_CONDITION_COUNT": "0348C37E",
     "GET_CHEST_OVERRIDE_WRAPPER": "03482930",
     "GET_ITEM_TRIGGERED": "0348164C",
+<<<<<<< HEAD
     "GILDED_CHEST_BASE_TEXTURE": "034926B8",
     "GILDED_CHEST_FRONT_TEXTURE": "034916B8",
 >>>>>>> 226722b3 (Make pots drop their shuffled items even if you dont have the required item. Need to fix logic now)
+=======
+    "GILDED_CHEST_BASE_TEXTURE": "03492780",
+    "GILDED_CHEST_FRONT_TEXTURE": "03491780",
+>>>>>>> 267513bb (Hack to erase new collectible flags in SRAM when initializing a new save. Copying still wont work)
     "GOSSIP_HINT_CONDITION": "03480CB8",
     "GROTTO_EXIT_LIST": "03483058",
     "GROTTO_LOAD_TABLE": "03482FD4",
@@ -358,6 +381,7 @@
     "INCOMING_PLAYER": "03480026",
     "INITIAL_SAVE_DATA": "0348088C",
     "JABU_ELEVATOR_ENABLE": "03480CC4",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -407,10 +431,14 @@
 =======
     "KAKARIKO_WEATHER_FORECAST": "0348C318",
 >>>>>>> 226722b3 (Make pots drop their shuffled items even if you dont have the required item. Need to fix logic now)
+=======
+    "KAKARIKO_WEATHER_FORECAST": "0348C3E0",
+>>>>>>> 267513bb (Hack to erase new collectible flags in SRAM when initializing a new save. Copying still wont work)
     "LACS_CONDITION": "03480CB4",
     "LACS_CONDITION_COUNT": "03480CC2",
     "MALON_GAVE_ICETRAP": "034838A4",
     "MALON_TEXT_ID": "03480CCB",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -507,15 +535,23 @@
 >>>>>>> f38eaac5 (Reset collectible mutex when scene loads to fix void out issues)
 =======
     "MAX_RUPEES": "0348C2FB",
+=======
+    "MAX_RUPEES": "0348C3C3",
+>>>>>>> 267513bb (Hack to erase new collectible flags in SRAM when initializing a new save. Copying still wont work)
     "MOVED_ADULT_KING_ZORA": "03483214",
-    "NO_ESCAPE_SEQUENCE": "0348C2B4",
+    "NO_ESCAPE_SEQUENCE": "0348C37C",
     "OCARINAS_SHUFFLED": "03480CC5",
+<<<<<<< HEAD
     "OPEN_KAKARIKO": "0348C2FA",
 >>>>>>> 226722b3 (Make pots drop their shuffled items even if you dont have the required item. Need to fix logic now)
+=======
+    "OPEN_KAKARIKO": "0348C3C2",
+>>>>>>> 267513bb (Hack to erase new collectible flags in SRAM when initializing a new save. Copying still wont work)
     "OUTGOING_ITEM": "03480030",
     "OUTGOING_KEY": "0348002C",
     "OUTGOING_PLAYER": "03480032",
     "OVERWORLD_SHUFFLED": "03480CCE",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -561,6 +597,9 @@
 =======
     "PAYLOAD_END": "03495EC0",
 >>>>>>> 226722b3 (Make pots drop their shuffled items even if you dont have the required item. Need to fix logic now)
+=======
+    "PAYLOAD_END": "03495F80",
+>>>>>>> 267513bb (Hack to erase new collectible flags in SRAM when initializing a new save. Copying still wont work)
     "PAYLOAD_START": "03480000",
     "PLAYED_WARP_SONG": "03481450",
     "PLAYER_ID": "03480024",
@@ -692,20 +731,28 @@
 >>>>>>> f38eaac5 (Reset collectible mutex when scene loads to fix void out issues)
 =======
     "SHUFFLE_MEDIGORON": "03483C7C",
+<<<<<<< HEAD
     "SILVER_CHEST_BASE_TEXTURE": "03493EB8",
     "SILVER_CHEST_FRONT_TEXTURE": "03492EB8",
     "SKULL_CHEST_BASE_TEXTURE": "034956B8",
     "SKULL_CHEST_FRONT_TEXTURE": "034946B8",
 >>>>>>> 226722b3 (Make pots drop their shuffled items even if you dont have the required item. Need to fix logic now)
+=======
+    "SILVER_CHEST_BASE_TEXTURE": "03493F80",
+    "SILVER_CHEST_FRONT_TEXTURE": "03492F80",
+    "SKULL_CHEST_BASE_TEXTURE": "03495780",
+    "SKULL_CHEST_FRONT_TEXTURE": "03494780",
+>>>>>>> 267513bb (Hack to erase new collectible flags in SRAM when initializing a new save. Copying still wont work)
     "SONGS_AS_ITEMS": "03480CC8",
     "SOS_ITEM_GIVEN": "03481718",
     "SPEED_MULTIPLIER": "03482978",
     "START_TWINROVA_FIGHT": "03483294",
     "TIME_TRAVEL_SAVED_EQUIPS": "03481CA4",
-    "TRIFORCE_ICON_TEXTURE": "034906B8",
+    "TRIFORCE_ICON_TEXTURE": "03490780",
     "TWINROVA_ACTION_TIMER": "03483298",
     "WINDMILL_SONG_ID": "03480CC9",
     "WINDMILL_TEXT_ID": "03480CCA",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1561,4 +1608,84 @@
     "triforce_pieces_requied": "0348C2A2",
     "triforce_sprite": "0348B198"
 >>>>>>> 226722b3 (Make pots drop their shuffled items even if you dont have the required item. Need to fix logic now)
+=======
+    "a_button": "0348C348",
+    "a_note_b": "0348C334",
+    "a_note_font_glow_base": "0348C31C",
+    "a_note_font_glow_max": "0348C318",
+    "a_note_g": "0348C338",
+    "a_note_glow_base": "0348C324",
+    "a_note_glow_max": "0348C320",
+    "a_note_r": "0348C33C",
+    "active_item_action_id": "0348C3A4",
+    "active_item_fast_chest": "0348C394",
+    "active_item_graphic_id": "0348C398",
+    "active_item_object_id": "0348C39C",
+    "active_item_row": "0348C3A8",
+    "active_item_text_id": "0348C3A0",
+    "active_override": "0348C3B0",
+    "active_override_is_outgoing": "0348C3AC",
+    "b_button": "0348C344",
+    "beating_dd": "0348C350",
+    "beating_no_dd": "0348C358",
+    "c_button": "0348C340",
+    "c_note_b": "0348C328",
+    "c_note_font_glow_base": "0348C30C",
+    "c_note_font_glow_max": "0348C308",
+    "c_note_g": "0348C32C",
+    "c_note_glow_base": "0348C314",
+    "c_note_glow_max": "0348C310",
+    "c_note_r": "0348C330",
+    "cfg_file_select_hash": "0348C378",
+    "cfg_item_overrides": "0348CA78",
+    "collectible_mutex": "0348C38C",
+    "collectible_override": "0348C384",
+    "collectible_override_flags": "0348C738",
+    "defaultDDHeart": "0348C35C",
+    "defaultHeart": "0348C364",
+    "dpad_sprite": "0348B270",
+    "dropped_collectible_override_flags": "0348C410",
+    "dummy_actor": "0348C3B8",
+    "dungeon_count": "0348C2D8",
+    "dungeons": "0348B0C8",
+    "empty_dlist": "0348C2F0",
+    "extern_ctxt": "0348B164",
+    "font_sprite": "0348B280",
+    "freecam_modes": "0348AE34",
+    "hash_sprites": "0348C2E4",
+    "hash_symbols": "0348B178",
+    "heap_next": "0348C3DC",
+    "heart_sprite": "0348B210",
+    "icon_sprites": "0348AFF8",
+    "item_digit_sprite": "0348B230",
+    "item_overrides_count": "0348C3BC",
+    "item_table": "0348B2F8",
+    "items": "0348B1F8",
+    "items_sprite": "0348B2A0",
+    "key_rupee_clock_sprite": "0348B240",
+    "last_fog_distance": "0348C2DC",
+    "linkhead_skull_sprite": "0348B220",
+    "medal_colors": "0348B0B4",
+    "medals_sprite": "0348B2B0",
+    "normal_dd": "0348C34C",
+    "normal_no_dd": "0348C354",
+    "num_to_bits": "0348B1B8",
+    "object_slots": "0348EA78",
+    "pending_freezes": "0348C3C0",
+    "pending_item_queue": "0348CA60",
+    "quest_items_sprite": "0348B290",
+    "rupee_colors": "0348B004",
+    "satisified_pending_frames": "0348C390",
+    "scene_fog_distance": "0348C2E0",
+    "setup_db": "0348B2D0",
+    "song_note_sprite": "0348B250",
+    "stones_sprite": "0348B2C0",
+    "text_cursor_border_base": "0348C2FC",
+    "text_cursor_border_max": "0348C2F8",
+    "text_cursor_inner_base": "0348C304",
+    "text_cursor_inner_max": "0348C300",
+    "triforce_hunt_enabled": "0348C3D0",
+    "triforce_pieces_requied": "0348C36A",
+    "triforce_sprite": "0348B260"
+>>>>>>> 267513bb (Hack to erase new collectible flags in SRAM when initializing a new save. Copying still wont work)
 }
