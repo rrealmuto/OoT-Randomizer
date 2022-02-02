@@ -606,7 +606,8 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
 
 		//Set the collectible flag
 		Set_CollectibleOverrideFlag(pItem);
-		//z64_SetCollectibleFlags(&z64_game, pItem->collectibleFlag);
+		if((item == ITEM00_HEART_PIECE) || (item == ITEM00_SMALL_KEY)) //Don't allow heart pieces or small keys to be collected a second time. This is really just for the "Drop" types.
+			z64_SetCollectibleFlags(&z64_game, pItem->collectibleFlag);
 		item_id = collectible_override.value.item_id;
 		uint8_t player = collectible_override.value.player;
 

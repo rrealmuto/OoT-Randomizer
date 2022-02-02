@@ -63,11 +63,15 @@
     "AUDIO_THREAD_INFO_MEM_SIZE": "034831F4",
     "AUDIO_THREAD_INFO_MEM_START": "034831F0",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "AUDIO_THREAD_MEM_START": "03495EC0",
 >>>>>>> 226722b3 (Make pots drop their shuffled items even if you dont have the required item. Need to fix logic now)
 =======
     "AUDIO_THREAD_MEM_START": "03495F80",
 >>>>>>> 267513bb (Hack to erase new collectible flags in SRAM when initializing a new save. Copying still wont work)
+=======
+    "AUDIO_THREAD_MEM_START": "03495FC0",
+>>>>>>> e439196c (Fix gerudo guard not setting collectible flag)
     "AUTO_TRACKER_CONTEXT": "03480CD0",
     "AUTO_TRACKER_VERSION": "03480CD0",
     "BOMBCHUS_IN_LOGIC": "03480CAC",
@@ -182,6 +186,7 @@
 =======
     "CHAIN_HBA_REWARDS": "03483B68",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "CHEST_SIZE_MATCH_CONTENTS": "0348C2A4",
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348C2A8",
     "COMPLETE_MASK_QUEST": "0348C2F9",
@@ -191,6 +196,11 @@
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348C370",
     "COMPLETE_MASK_QUEST": "0348C3C1",
 >>>>>>> 267513bb (Hack to erase new collectible flags in SRAM when initializing a new save. Copying still wont work)
+=======
+    "CHEST_SIZE_MATCH_CONTENTS": "0348C3A4",
+    "CHEST_TEXTURE_MATCH_CONTENTS": "0348C3A8",
+    "COMPLETE_MASK_QUEST": "0348C3F9",
+>>>>>>> e439196c (Fix gerudo guard not setting collectible flag)
     "COOP_CONTEXT": "03480020",
     "COOP_VERSION": "03480020",
     "COSMETIC_CONTEXT": "03480834",
@@ -198,6 +208,7 @@
     "CURRENT_GROTTO_ID": "0348309A",
     "DEBUG_OFFSET": "03482AB8",
     "DISABLE_TIMERS": "03480CCC",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -247,11 +258,15 @@
 =======
     "DPAD_TEXTURE": "0348FF80",
 >>>>>>> 267513bb (Hack to erase new collectible flags in SRAM when initializing a new save. Copying still wont work)
+=======
+    "DPAD_TEXTURE": "0348FFB8",
+>>>>>>> e439196c (Fix gerudo guard not setting collectible flag)
     "DUNGEONS_SHUFFLED": "03480CCD",
     "EXTENDED_OBJECT_TABLE": "03480C8C",
     "EXTERN_DAMAGE_MULTIPLYER": "03482EC9",
     "FAST_BUNNY_HOOD_ENABLED": "03480CCF",
     "FAST_CHESTS": "03480CC6",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -361,11 +376,15 @@
 =======
     "FONT_TEXTURE": "0348EAB8",
 >>>>>>> 267513bb (Hack to erase new collectible flags in SRAM when initializing a new save. Copying still wont work)
+=======
+    "FONT_TEXTURE": "0348EAF0",
+>>>>>>> e439196c (Fix gerudo guard not setting collectible flag)
     "FREE_SCARECROW_ENABLED": "03480CBC",
-    "GANON_BOSS_KEY_CONDITION": "0348C380",
-    "GANON_BOSS_KEY_CONDITION_COUNT": "0348C37E",
+    "GANON_BOSS_KEY_CONDITION": "0348C3B8",
+    "GANON_BOSS_KEY_CONDITION_COUNT": "0348C3B6",
     "GET_CHEST_OVERRIDE_WRAPPER": "03482930",
     "GET_ITEM_TRIGGERED": "0348164C",
+<<<<<<< HEAD
 <<<<<<< HEAD
     "GILDED_CHEST_BASE_TEXTURE": "034926B8",
     "GILDED_CHEST_FRONT_TEXTURE": "034916B8",
@@ -374,6 +393,10 @@
     "GILDED_CHEST_BASE_TEXTURE": "03492780",
     "GILDED_CHEST_FRONT_TEXTURE": "03491780",
 >>>>>>> 267513bb (Hack to erase new collectible flags in SRAM when initializing a new save. Copying still wont work)
+=======
+    "GILDED_CHEST_BASE_TEXTURE": "034927B8",
+    "GILDED_CHEST_FRONT_TEXTURE": "034917B8",
+>>>>>>> e439196c (Fix gerudo guard not setting collectible flag)
     "GOSSIP_HINT_CONDITION": "03480CB8",
     "GROTTO_EXIT_LIST": "03483058",
     "GROTTO_LOAD_TABLE": "03482FD4",
@@ -381,6 +404,7 @@
     "INCOMING_PLAYER": "03480026",
     "INITIAL_SAVE_DATA": "0348088C",
     "JABU_ELEVATOR_ENABLE": "03480CC4",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -434,10 +458,14 @@
 =======
     "KAKARIKO_WEATHER_FORECAST": "0348C3E0",
 >>>>>>> 267513bb (Hack to erase new collectible flags in SRAM when initializing a new save. Copying still wont work)
+=======
+    "KAKARIKO_WEATHER_FORECAST": "0348C418",
+>>>>>>> e439196c (Fix gerudo guard not setting collectible flag)
     "LACS_CONDITION": "03480CB4",
     "LACS_CONDITION_COUNT": "03480CC2",
     "MALON_GAVE_ICETRAP": "034838A4",
     "MALON_TEXT_ID": "03480CCB",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -538,19 +566,27 @@
 =======
     "MAX_RUPEES": "0348C3C3",
 >>>>>>> 267513bb (Hack to erase new collectible flags in SRAM when initializing a new save. Copying still wont work)
+=======
+    "MAX_RUPEES": "0348C3FB",
+>>>>>>> e439196c (Fix gerudo guard not setting collectible flag)
     "MOVED_ADULT_KING_ZORA": "03483214",
-    "NO_ESCAPE_SEQUENCE": "0348C37C",
+    "NO_ESCAPE_SEQUENCE": "0348C3B4",
     "OCARINAS_SHUFFLED": "03480CC5",
+<<<<<<< HEAD
 <<<<<<< HEAD
     "OPEN_KAKARIKO": "0348C2FA",
 >>>>>>> 226722b3 (Make pots drop their shuffled items even if you dont have the required item. Need to fix logic now)
 =======
     "OPEN_KAKARIKO": "0348C3C2",
 >>>>>>> 267513bb (Hack to erase new collectible flags in SRAM when initializing a new save. Copying still wont work)
+=======
+    "OPEN_KAKARIKO": "0348C3FA",
+>>>>>>> e439196c (Fix gerudo guard not setting collectible flag)
     "OUTGOING_ITEM": "03480030",
     "OUTGOING_KEY": "0348002C",
     "OUTGOING_PLAYER": "03480032",
     "OVERWORLD_SHUFFLED": "03480CCE",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -600,6 +636,9 @@
 =======
     "PAYLOAD_END": "03495F80",
 >>>>>>> 267513bb (Hack to erase new collectible flags in SRAM when initializing a new save. Copying still wont work)
+=======
+    "PAYLOAD_END": "03495FC0",
+>>>>>>> e439196c (Fix gerudo guard not setting collectible flag)
     "PAYLOAD_START": "03480000",
     "PLAYED_WARP_SONG": "03481450",
     "PLAYER_ID": "03480024",
@@ -732,6 +771,7 @@
 =======
     "SHUFFLE_MEDIGORON": "03483C7C",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "SILVER_CHEST_BASE_TEXTURE": "03493EB8",
     "SILVER_CHEST_FRONT_TEXTURE": "03492EB8",
     "SKULL_CHEST_BASE_TEXTURE": "034956B8",
@@ -743,15 +783,22 @@
     "SKULL_CHEST_BASE_TEXTURE": "03495780",
     "SKULL_CHEST_FRONT_TEXTURE": "03494780",
 >>>>>>> 267513bb (Hack to erase new collectible flags in SRAM when initializing a new save. Copying still wont work)
+=======
+    "SILVER_CHEST_BASE_TEXTURE": "03493FB8",
+    "SILVER_CHEST_FRONT_TEXTURE": "03492FB8",
+    "SKULL_CHEST_BASE_TEXTURE": "034957B8",
+    "SKULL_CHEST_FRONT_TEXTURE": "034947B8",
+>>>>>>> e439196c (Fix gerudo guard not setting collectible flag)
     "SONGS_AS_ITEMS": "03480CC8",
     "SOS_ITEM_GIVEN": "03481718",
     "SPEED_MULTIPLIER": "03482978",
     "START_TWINROVA_FIGHT": "03483294",
     "TIME_TRAVEL_SAVED_EQUIPS": "03481CA4",
-    "TRIFORCE_ICON_TEXTURE": "03490780",
+    "TRIFORCE_ICON_TEXTURE": "034907B8",
     "TWINROVA_ACTION_TIMER": "03483298",
     "WINDMILL_SONG_ID": "03480CC9",
     "WINDMILL_TEXT_ID": "03480CCA",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1688,4 +1735,84 @@
     "triforce_pieces_requied": "0348C36A",
     "triforce_sprite": "0348B260"
 >>>>>>> 267513bb (Hack to erase new collectible flags in SRAM when initializing a new save. Copying still wont work)
+=======
+    "a_button": "0348C380",
+    "a_note_b": "0348C36C",
+    "a_note_font_glow_base": "0348C354",
+    "a_note_font_glow_max": "0348C350",
+    "a_note_g": "0348C370",
+    "a_note_glow_base": "0348C35C",
+    "a_note_glow_max": "0348C358",
+    "a_note_r": "0348C374",
+    "active_item_action_id": "0348C3DC",
+    "active_item_fast_chest": "0348C3CC",
+    "active_item_graphic_id": "0348C3D0",
+    "active_item_object_id": "0348C3D4",
+    "active_item_row": "0348C3E0",
+    "active_item_text_id": "0348C3D8",
+    "active_override": "0348C3E8",
+    "active_override_is_outgoing": "0348C3E4",
+    "b_button": "0348C37C",
+    "beating_dd": "0348C388",
+    "beating_no_dd": "0348C390",
+    "c_button": "0348C378",
+    "c_note_b": "0348C360",
+    "c_note_font_glow_base": "0348C344",
+    "c_note_font_glow_max": "0348C340",
+    "c_note_g": "0348C364",
+    "c_note_glow_base": "0348C34C",
+    "c_note_glow_max": "0348C348",
+    "c_note_r": "0348C368",
+    "cfg_file_select_hash": "0348C3B0",
+    "cfg_item_overrides": "0348CAB0",
+    "collectible_mutex": "0348C3C4",
+    "collectible_override": "0348C3BC",
+    "collectible_override_flags": "0348C770",
+    "defaultDDHeart": "0348C394",
+    "defaultHeart": "0348C39C",
+    "dpad_sprite": "0348B2A8",
+    "dropped_collectible_override_flags": "0348C448",
+    "dummy_actor": "0348C3F0",
+    "dungeon_count": "0348C310",
+    "dungeons": "0348B100",
+    "empty_dlist": "0348C328",
+    "extern_ctxt": "0348B19C",
+    "font_sprite": "0348B2B8",
+    "freecam_modes": "0348AE68",
+    "hash_sprites": "0348C31C",
+    "hash_symbols": "0348B1B0",
+    "heap_next": "0348C414",
+    "heart_sprite": "0348B248",
+    "icon_sprites": "0348B02C",
+    "item_digit_sprite": "0348B268",
+    "item_overrides_count": "0348C3F4",
+    "item_table": "0348B330",
+    "items": "0348B230",
+    "items_sprite": "0348B2D8",
+    "key_rupee_clock_sprite": "0348B278",
+    "last_fog_distance": "0348C314",
+    "linkhead_skull_sprite": "0348B258",
+    "medal_colors": "0348B0EC",
+    "medals_sprite": "0348B2E8",
+    "normal_dd": "0348C384",
+    "normal_no_dd": "0348C38C",
+    "num_to_bits": "0348B1F0",
+    "object_slots": "0348EAB0",
+    "pending_freezes": "0348C3F8",
+    "pending_item_queue": "0348CA98",
+    "quest_items_sprite": "0348B2C8",
+    "rupee_colors": "0348B038",
+    "satisified_pending_frames": "0348C3C8",
+    "scene_fog_distance": "0348C318",
+    "setup_db": "0348B308",
+    "song_note_sprite": "0348B288",
+    "stones_sprite": "0348B2F8",
+    "text_cursor_border_base": "0348C334",
+    "text_cursor_border_max": "0348C330",
+    "text_cursor_inner_base": "0348C33C",
+    "text_cursor_inner_max": "0348C338",
+    "triforce_hunt_enabled": "0348C408",
+    "triforce_pieces_requied": "0348C3A2",
+    "triforce_sprite": "0348B298"
+>>>>>>> e439196c (Fix gerudo guard not setting collectible flag)
 }
