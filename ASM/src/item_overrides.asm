@@ -199,6 +199,17 @@ item00_init_hook:
     jr ra
     sh  T9, 0x001c(S0)
 
+get_override_drop_id_hook:
+    addiu sp, sp, -0x10
+    sw ra, 0x00(sp)
+    or a1, r0, t1 ;our collectible flag should be in t1 (<< 8)
+    jal get_override_drop_id
+    nop
+    lw ra, 0x00(sp)
+    jr ra
+    addiu sp, sp, 0x10
+
+
 drop_collectible_hook:
     ori t4, t4, 0x4000
     jr ra

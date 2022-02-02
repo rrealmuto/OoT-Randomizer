@@ -360,6 +360,15 @@ slti at, s4, 0x0002
 jal  item00_init_hook
 nop
 
+;Hack Item_DropCollectible to call custom function to determine what item should be dropped based on our override.
+;overriding call at 0x8001376C to function 0x80013530
+;replaces
+;jal 0x80013530
+;sh T1, 0x0046(sp)
+.orga 0xA896CC; in memory 0x8001376C
+jal get_override_drop_id_hook
+sh T1, 0x0046(sp)
+
 ;Hack Item_DropCollectible to add a flag that this was a dropped collectible (vs spawned).
 ;replaces or t4, t3, t1
 ;sw t4, 0x0024(sp)
