@@ -18,8 +18,8 @@
             "Water Temple Main Room L2 Pot 2" : "at('Water Temple Middle Water Level', 'True') or
                 ((can_use(Iron_Boots) or (Progressive_Scale, 2)) and (can_use(Bow) or can_use(Hookshot))) or
                 can_use(Boomerang)",
-            "Water Temple L1 Torch Pot 1" : "at('Water Temple Dive', 'True') and can_use(Bow) and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))",
-            "Water Temple L1 Torch Pot 2" : "at('Water Temple Dive', 'True') and can_use(Bow) and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))"
+            "Water Temple L1 Torch Pot 1" : "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))",
+            "Water Temple L1 Torch Pot 2" : "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))"
         },
         "exits": {
             "Lake Hylia": "True",
@@ -71,13 +71,13 @@
                 has_explosives and can_play(Zeldas_Lullaby) and
                 (can_use(Iron_Boots) or can_dive)",
             "Water Temple Behind Gate Pot 3": "
-                can_use(Bow) and ((can_use(Hookshot) or can_use(Hover_Boots)) and 
+                (can_use(Hookshot) or can_use(Hover_Boots)) and 
                 has_explosives and can_play(Zeldas_Lullaby) and
-                (can_use(Iron_Boots) or can_dive))",
+                (can_use(Iron_Boots) or can_dive)",
             "Water Temple Behind Gate Pot 4": "
-                can_use(Bow) and ((can_use(Hookshot) or can_use(Hover_Boots)) and 
+                (can_use(Hookshot) or can_use(Hover_Boots)) and 
                 has_explosives and can_play(Zeldas_Lullaby) and
-                (can_use(Iron_Boots) or can_dive))",
+                (can_use(Iron_Boots) or can_dive)",
             "Water Temple GS Behind Gate": "
                 (can_use(Hookshot) or can_use(Hover_Boots)) and 
                 has_explosives and can_play(Zeldas_Lullaby) and
