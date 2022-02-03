@@ -1,21 +1,21 @@
 Kokiri Forest
-0: KF Behind Midos Blupee: is_child
-1: KF Boulder Maze Blupee 1: is_child
-2: KF Boulder Maze Blupee 2: is_child
-3: KF End of Bridge Blupee: is_child
-4: KF Top of Sarias Heart 1: is_child
-5: KF Top of Sarias Heart 2: is_child
-6: KF Top of Sarias Heart 3: is_child
+0: KF Behind Midos Blue Rupee: is_child       
+1: KF Boulder Maze Blue Rupee 1: is_child     
+2: KF Boulder Maze Blue Rupee 2: is_child     
+3: KF End of Bridge Blue Rupee: is_child      
+4: KF Top of Sarias Recovery Heart 1: is_child
+5: KF Top of Sarias Recovery Heart 2: is_child
+6: KF Top of Sarias Recovery Heart 3: is_child
 7: KF Near Ramp Green Rupee 1: is_child
 8: KF Near Ramp Green Rupee 2: is_child
 9: KF Near Midos Green Rupee 1: is_child
 10: KF Near Midos Green Rupee 2: is_child
 11: KF Bean Platform Rupee: is_adult and (can_plant_bean or can_use(Hover_Boots))
 KF Sarias House
-12: KF Sarias Freestanding Heart 1: True
-13: KF Sarias Freestanding Heart 2: True
-14: KF Sarias Freestanding Heart 3: True
-15: KF Sarias Freestanding Heart 4: True
+12: KF Sarias Recovery Heart 1: True
+13: KF Sarias Recovery Heart 2: True
+14: KF Sarias Recovery Heart 3: True
+15: KF Sarias Recovery Heart 4: True
 KF Kokiri Shop
 16: KF Shop Invisible Rupee: True
 LW Beyond Mido
@@ -110,7 +110,7 @@ Dodongos Cavern Lobby
 Dodongos Cavern Climb
 92: Dodongos Cavern Lizalfos Recovery Heart 1: True
 93: Dodongos Cavern Lizalfos Recovery Heart 2: True
-94: Dodongos Cavern Behind Block: True
+94: Dodongos Cavern Behind Block Recovery Heart: True
 Forest Temple Well
 95: Forest Temple Well Recovery Heart 1: True
 96: Forest Temple Well Recovery Heart 2: True
@@ -156,12 +156,12 @@ Ganons Castle Spirit Trial
 125: Ganons Castle Spirit Trial Recovery Heart: True
 Bottom of the Well Main Area
 126: Bottom of the Well Coffin Recovery Heart 1: Sticks or can_use(Dins_Fire)
-127: Bottom of the Well Coffin Recovery Heart 2: Sticks or can_use(Dins_Fire)
-128: Bottom of the Well Center Room Rupee 1: logic_lens_botw or can_use(Lens_of_Truth)
-129: Bottom of the Well Center Room Rupee 2: logic_lens_botw or can_use(Lens_of_Truth)
-130: Bottom of the Well Center Room Rupee 3: logic_lens_botw or can_use(Lens_of_Truth)
-131: Bottom of the Well Center Room Rupee 4: logic_lens_botw or can_use(Lens_of_Truth)
-132: Bottom of the Well Center Room Rupee 5: logic_lens_botw or can_use(Lens_of_Truth)
+127: Bottom of the Well Coffin Recovery Heart 2: True
+128: Bottom of the Well Center Room Pit Fall Rupee 1: logic_lens_botw or can_use(Lens_of_Truth)
+129: Bottom of the Well Center Room Pit Fall Rupee 2: logic_lens_botw or can_use(Lens_of_Truth)
+130: Bottom of the Well Center Room Pit Fall Rupee 3: logic_lens_botw or can_use(Lens_of_Truth)
+131: Bottom of the Well Center Room Pit Fall Rupee 4: logic_lens_botw or can_use(Lens_of_Truth)
+132: Bottom of the Well Center Room Pit Fall Rupee 5: logic_lens_botw or can_use(Lens_of_Truth)
 Gerudo Training Ground Lobby
 133: Gerudo Training Ground Beamos Recovery Heart 1: True
 134: Gerudo Training Ground Beamos Recovery Heart 2: True
@@ -183,329 +183,337 @@ KF Know It All House
 3: KF Know-it-all Brothers House Pot 1: True
 4: KF Know-it-all Brothers House Pot 2: True
 Gerudo Fortress
-5: Hideout Pot 1: can_use(Bow) and (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot))
-6: Hideout Pot 2: Magic_Meter and (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot))
-7: Hideout Pot 3: True
-8: Hideout Pot 4: can_use(Bow)
-9: Hideout Pot 5: True
-10: Hideout Pot 6: can_use(Bow) and (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot))
-11: Hideout Pot 7: Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)
-12: Hideout Pot 8: True
-13: Hideout Pot 9: True
-14: Hideout Pot 10: True
-15: Hideout Pot 11: True
-16: Hideout Pot 12: True
-17: Hideout Pot 13: True
-18: Hideout Pot 14: True
-19: Hideout Pot 15: True
+5: Hideout Break Room Pot 1: Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)
+6: Hideout Break Room Pot 2: Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)
+7: Hideout 1 Torch Jail Pot 1: True
+8: Hideout 1 Torch Jail Pot 2: True
+9: Hideout 1 Torch Jail Pot 3: True
+10: Hideout Kitchen Pot 1: Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)
+11: Hideout Kitchen Pot 2: Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)
+12: Hideout 4 Torch Jail Pot 1: True
+13: Hideout 4 Torch Jail Pot 2: True
+14: Hideout 2 Torch Jail Pot 1: True
+15: Hideout 2 Torch Jail Pot 2: True
+16: Hideout 2 Torch Jail Pot 3: True
+17: Hideout 2 Torch Jail In Cell Pot 1: True
+18: Hideout 2 Torch Jail In Cell Pot 2: True
+19: Hideout 2 Torch Jail In Cell Pot 3: True
+20: Hideout 2 Torch Jail In Cell Pot 4: True
 Haunted Wasteland
-20: Wasteland Near GS Pot 1: True
-21: Wasteland Near GS Pot 2: True
-22: Wasteland Near GS Pot 3: Magic_Meter
+21: Wasteland Near GS Pot 1: True
+22: Wasteland Near GS Pot 2: True
+23: Wasteland Near GS Pot 3: True
 Market Guard House
-23: Market Guard House Child Pot 1: is_child
-24: Market Guard House Child Pot 2: is_child
-25: Market Guard House Child Pot 3: is_child
-26: Market Guard House Child Pot 4: is_child
-27: Market Guard House Child Pot 5: is_child
-28: Market Guard House Child Pot 6: is_child
-29: Market Guard House Child Pot 7: is_child
-30: Market Guard House Child Pot 8: is_child
-31: Market Guard House Child Pot 9: is_child
-32: Market Guard House Child Pot 10: is_child
-33: Market Guard House Child Pot 11: is_child
-34: Market Guard House Child Pot 12: is_child
-35: Market Guard House Child Pot 13: is_child
-36: Market Guard House Child Pot 14: is_child
-37: Market Guard House Child Pot 15: is_child
-38: Market Guard House Child Pot 16: is_child
-39: Market Guard House Child Pot 17: is_child
-40: Market Guard House Child Pot 18: is_child
-41: Market Guard House Child Pot 19: is_child
-42: Market Guard House Child Pot 20: is_child
-43: Market Guard House Child Pot 21: is_child
-44: Market Guard House Child Pot 22: is_child
-45: Market Guard House Adult Pot 1: is_adult
-46: Market Guard House Adult Pot 2: is_adult
-47: Market Guard House Adult Pot 3: is_adult
-48: Market Guard House Adult Pot 4: is_adult
-49: Market Guard House Adult Pot 5: is_adult
-50: Market Guard House Adult Pot 6: is_adult
-51: Market Guard House Adult Pot 7: is_adult
+24: Market Guard House Child Pot 1: is_child
+25: Market Guard House Child Pot 2: is_child
+26: Market Guard House Child Pot 3: is_child
+27: Market Guard House Child Pot 4: is_child
+28: Market Guard House Child Pot 5: is_child
+29: Market Guard House Child Pot 6: is_child
+30: Market Guard House Child Pot 7: is_child
+31: Market Guard House Child Pot 8: is_child
+32: Market Guard House Child Pot 9: is_child
+33: Market Guard House Child Pot 10: is_child
+34: Market Guard House Child Pot 11: is_child
+35: Market Guard House Child Pot 12: is_child
+36: Market Guard House Child Pot 13: is_child
+37: Market Guard House Child Pot 14: is_child
+38: Market Guard House Child Pot 15: is_child
+39: Market Guard House Child Pot 16: is_child
+40: Market Guard House Child Pot 17: is_child
+41: Market Guard House Child Pot 18: is_child
+42: Market Guard House Child Pot 19: is_child
+43: Market Guard House Child Pot 20: is_child
+44: Market Guard House Child Pot 21: is_child
+45: Market Guard House Child Pot 22: is_child
+46: Market Guard House Adult Pot 1: is_adult
+47: Market Guard House Adult Pot 2: is_adult
+48: Market Guard House Adult Pot 3: is_adult
+49: Market Guard House Adult Pot 4: is_adult
+50: Market Guard House Adult Pot 5: is_adult
+51: Market Guard House Adult Pot 6: is_adult
+52: Market Guard House Adult Pot 7: is_adult
 Market Man in Green House
-52: Market Back Alley House Pot 1: is_child and at_night
-53: Market Back Alley House Pot 2: is_child and at_night
-54: Market Back Alley House Pot 3: is_child and at_night and Magic_Meter
+53: Market Back Alley House Pot 1: is_child and at_night
+54: Market Back Alley House Pot 2: is_child and at_night
+55: Market Back Alley House Pot 3: is_child and at_night
 Kakariko Village
-55: Kak Pot 1: is_child
-56: Kak Pot 2: is_child
-57: Kak Pot 3: is_child
-58: Kak Pot 4: is_child
-59: Kak Pot 5: is_child
-60: Kak Pot 6: is_child
-61: Kak Pot 7: is_child
-62: Kak Pot 8: is_child
-63: Kak Pot 9: is_child
-64: Kak Pot 10: is_child
-65: Kak Pot 11: is_child
+56: Kak Near Potion Shop Pot 1: is_child
+57: Kak Near Potion Shop Pot 2: is_child
+58: Kak Near Potion Shop Pot 3: is_child
+59: Kak Impas House Pot 1: is_child
+60: Kak Impas House Pot 2: is_child
+61: Kak Impas House Pot 3: is_child
+62: Kak Near Guards House Pot 1: is_child
+63: Kak Near Guards House Pot 2: is_child
+64: Kak Near Guards House Pot 3: is_child
+65: Kak Near Odd Medicine Building Pot 1: is_child
+66: Kak Near Odd Medicine Building Pot 2: is_child
 Graveyard Dampes Grave
-66: Grave Dampe Pot 1: True
-67: Grave Dampe Pot 2: True
-68: Grave Dampe Pot 3: can_use(Bombs)
-69: Grave Dampe Pot 4: can_use(Bow) or can_use(Slingshot)
-70: Grave Dampe Pot 5: Magic_Meter
-71: Grave Dampe Pot 6: True
+67: Grave Dampe Pot 1: True
+68: Grave Dampe Pot 2: True
+69: Grave Dampe Pot 3: True
+70: Grave Dampe Pot 4: True
+71: Grave Dampe Pot 5: True
+72: Grave Dampe Pot 6: True
 Goron City
-72: GC Lower Staircase Pot 1: is_child or (is_adult and can_use(Bow))
-73: GC Lower Staircase Pot 2: True
-74: GC Upper Staircase Pot 1: True
-75: GC Upper Staircase Pot 2: True
-76: GC Upper Staircase Pot 3: is_child or (is_adult and can_use(Bow))
-77: GC Medigoron Pot: can_blast_or_smash or Progressive_Strength_Upgrade
+73: GC Lower Staircase Pot 1: True
+74: GC Lower Staircase Pot 2: True
+75: GC Upper Staircase Pot 1: True
+76: GC Upper Staircase Pot 2: True
+77: GC Upper Staircase Pot 3: True
+78: GC Medigoron Pot: can_blast_or_smash or Progressive_Strength_Upgrade
 GC Darunias Chamber
-78: GC Darunia Pot 1: is_child or (is_adult and can_use(Bow))
-79: GC Darunia Pot 2: True
-80: GC Darunia Pot 3: True
+79: GC Darunia Pot 1: True
+80: GC Darunia Pot 2: True
+81: GC Darunia Pot 3: True
 DMC Lower Nearby
-81: DMC Near GC Pot 1: is_adult
-82: DMC Near GC Pot 2: is_adult and can_use(Bow)
-83: DMC Near GC Pot 3: is_adult
-84: DMC Near GC Pot 4: is_adult and Magic_Meter
+82: DMC Near GC Pot 1: is_adult
+83: DMC Near GC Pot 2: is_adult
+84: DMC Near GC Pot 3: is_adult
+85: DMC Near GC Pot 4: is_adult
 Zoras Domain
-85: ZD Pot 1: True
-86: ZD Pot 2: True
-87: ZD Pot 3: True
-88: ZD Pot 4: True
-89: ZD Pot 5: True
+86: ZD Pot 1: True
+87: ZD Pot 2: True
+88: ZD Pot 3: True
+89: ZD Pot 4: True
+90: ZD Pot 5: True
 Zoras Fountain
-90: ZF Hidden Cave Pot 1: Magic_Meter and can_use(Silver_Gauntlets) and can_blast_or_smash
-91: ZF Hidden Cave Pot 2: Magic_Meter and can_use(Silver_Gauntlets) and can_blast_or_smash
-92: ZF Hidden Cave Pot 3: can_use(Bow) and (can_use(Silver_Gauntlets) and can_blast_or_smash)
-93: ZF Near Jabu Pot 1: is_child and Slingshot
-94: ZF Near Jabu Pot 2: is_child and Slingshot
-95: ZF Near Jabu Pot 3: is_child and Slingshot
-96: ZF Near Jabu Pot 4: is_child
+91: ZF Hidden Cave Pot 1: can_use(Silver_Gauntlets) and can_blast_or_smash
+92: ZF Hidden Cave Pot 2: can_use(Silver_Gauntlets) and can_blast_or_smash
+93: ZF Hidden Cave Pot 3: can_use(Silver_Gauntlets) and can_blast_or_smash
+94: ZF Near Jabu Pot 1: is_child
+95: ZF Near Jabu Pot 2: is_child
+96: ZF Near Jabu Pot 3: is_child
+97: ZF Near Jabu Pot 4: is_child
 Lon Lon Ranch
-97: LLR Pot 1: True
-98: LLR Pot 2: True
-99: LLR Pot 3: True
-100: LLR Pot 4: True
-101: LLR Pot 5: True
-102: LLR Pot 6: True
-103: LLR Pot 7: True
+98: LLR Front Pot 1: is_child
+99: LLR Front Pot 2: is_child
+100: LLR Front Pot 3: is_child
+101: LLR Front Pot 4: is_child
+102: LLR Rain Shed Pot 1: is_child
+103: LLR Rain Shed Pot 2: is_child
+104: LLR Rain Shed Pot 3: is_child
 LLR Talons House
-104: LLR Talons House Pot 1: True
-105: LLR Talons House Pot 2: True
-106: LLR Talons House Pot 3: True
+105: LLR Talons House Pot 1: True
+106: LLR Talons House Pot 2: True
+107: LLR Talons House Pot 3: True
 Ganondorf Fight
-107: Ganons Tower Pot 1: Boss_Key_Ganons_Castle and Magic_Meter
-108: Ganons Tower Pot 2: Boss_Key_Ganons_Castle
-109: Ganons Tower Pot 3: Boss_Key_Ganons_Castle and can_use(Bow)
-110: Ganons Tower Pot 4: Boss_Key_Ganons_Castle and Magic_Meter
-111: Ganons Tower Pot 5: Boss_Key_Ganons_Castle and can_use(Bow)
-112: Ganons Tower Pot 6: Boss_Key_Ganons_Castle
-113: Ganons Tower Pot 7: Boss_Key_Ganons_Castle and Magic_Meter
-114: Ganons Tower Pot 8: Boss_Key_Ganons_Castle
-115: Ganons Tower Pot 9: Boss_Key_Ganons_Castle and can_use(Bow)
-116: Ganons Tower Pot 10: Boss_Key_Ganons_Castle and can_use(Bow)
-117: Ganons Tower Pot 11: Boss_Key_Ganons_Castle
-118: Ganons Tower Pot 12: Boss_Key_Ganons_Castle
-119: Ganons Tower Pot 13: Boss_Key_Ganons_Castle
-120: Ganons Tower Pot 14: Boss_Key_Ganons_Castle and can_use(Bow)
+108: Ganons Tower Pot 1: Boss_Key_Ganons_Castle
+109: Ganons Tower Pot 2: Boss_Key_Ganons_Castle
+110: Ganons Tower Pot 3: Boss_Key_Ganons_Castle
+111: Ganons Tower Pot 4: Boss_Key_Ganons_Castle
+112: Ganons Tower Pot 5: Boss_Key_Ganons_Castle
+113: Ganons Tower Pot 6: Boss_Key_Ganons_Castle
+114: Ganons Tower Pot 7: Boss_Key_Ganons_Castle
+115: Ganons Tower Pot 8: Boss_Key_Ganons_Castle
+116: Ganons Tower Pot 9: Boss_Key_Ganons_Castle
+117: Ganons Tower Pot 10: Boss_Key_Ganons_Castle
+118: Ganons Tower Pot 11: Boss_Key_Ganons_Castle
+119: Ganons Tower Pot 12: Boss_Key_Ganons_Castle
+120: Ganons Tower Pot 13: Boss_Key_Ganons_Castle
+121: Ganons Tower Pot 14: Boss_Key_Ganons_Castle
 HF Cow Grotto
-121: HF Cow Grotto Pot 1: has_fire_source
-122: HF Cow Grotto Pot 2: has_fire_source
+122: HF Cow Grotto Pot 1: has_fire_source
+123: HF Cow Grotto Pot 2: has_fire_source
 HC Storms Grotto
-123: HC Storms Grotto Pot 1: can_blast_or_smash
-124: HC Storms Grotto Pot 2: can_blast_or_smash and can_use(Bombs)
-125: HC Storms Grotto Pot 3: can_blast_or_smash and (can_use(Bombs) or can_use(Slingshot))
-126: HC Storms Grotto Pot 4: can_blast_or_smash
+124: HC Storms Grotto Pot 1: can_blast_or_smash
+125: HC Storms Grotto Pot 2: can_blast_or_smash and Bomb_Bag
+126: HC Storms Grotto Pot 3: can_blast_or_smash and (Bomb_Bag or can_use(Slingshot))
+127: HC Storms Grotto Pot 4: can_blast_or_smash
 Dodongos Cavern Lobby
-127: Dodongos Cavern Lower Lizalfos Pot 1: here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult
-128: Dodongos Cavern Lower Lizalfos Pot 2: here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult
-129: Dodongos Cavern Lower Lizalfos Pot 3: here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult
-130: Dodongos Cavern Lower Lizalfos Pot 4: here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult
-131: Dodongos Cavern Right Side Pot 1: here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult
-132: Dodongos Cavern Right Side Pot 2: here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult
-133: Dodongos Cavern Right Side Pot 3: here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult
-134: Dodongos Cavern Right Side Pot 4: here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult
-135: Dodongos Cavern Right Side Pot 5: here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult
-136: Dodongos Cavern Right Side Pot 6: here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult
-137: Dodongos Cavern Torch Room Pot 1: ((here(can_blast_or_smash) or Progressive_Strength_Upgrade) and can_child_attack) or is_adult
-138: Dodongos Cavern Torch Room Pot 2: ((here(can_blast_or_smash) or Progressive_Strength_Upgrade) and can_child_attack) or is_adult
-139: Dodongos Cavern Torch Room Pot 3: ((here(can_blast_or_smash) or Progressive_Strength_Upgrade) and can_child_attack) or is_adult
-140: Dodongos Cavern Torch Room Pot 4: ((here(can_blast_or_smash) or Progressive_Strength_Upgrade) and can_child_attack) or is_adult
+128: Dodongos Cavern Lower Lizalfos Pot 1: here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult
+129: Dodongos Cavern Lower Lizalfos Pot 2: here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult
+130: Dodongos Cavern Lower Lizalfos Pot 3: here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult
+131: Dodongos Cavern Lower Lizalfos Pot 4: here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult
+132: Dodongos Cavern Right Side Pot 1: here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult
+133: Dodongos Cavern Right Side Pot 2: here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult
+134: Dodongos Cavern Right Side Pot 3: here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult
+135: Dodongos Cavern Right Side Pot 4: here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult
+136: Dodongos Cavern Right Side Pot 5: here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult
+137: Dodongos Cavern Right Side Pot 6: here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult
+138: Dodongos Cavern Torch Room Pot 1: ((here(can_blast_or_smash) or Progressive_Strength_Upgrade) and can_child_attack) or is_adult
+139: Dodongos Cavern Torch Room Pot 2: ((here(can_blast_or_smash) or Progressive_Strength_Upgrade) and can_child_attack) or is_adult
+140: Dodongos Cavern Torch Room Pot 3: ((here(can_blast_or_smash) or Progressive_Strength_Upgrade) and can_child_attack) or is_adult
+141: Dodongos Cavern Torch Room Pot 4: ((here(can_blast_or_smash) or Progressive_Strength_Upgrade) and can_child_attack) or is_adult
 Dodongos Cavern Climb
-141: Dodongos Cavern Staircase Pot 1: True
-142: Dodongos Cavern Staircase Pot 2: True
-143: Dodongos Cavern Staircase Pot 3: True
-144: Dodongos Cavern Staircase Pot 4: True
-145: Dodongos Cavern Single Eye Pot 1: (can_blast_or_smash or Progressive_Strength_Upgrade) or (is_adult and (Hover_Boots or can_use(Longshot) or logic_dc_jump))
-146: Dodongos Cavern Single Eye Pot 2: (can_blast_or_smash or Progressive_Strength_Upgrade) or (is_adult and (Hover_Boots or can_use(Longshot) or logic_dc_jump))
-147: Dodongos Cavern Blade Room Pot 1: can_use(Boomerang) or at('Dodongos Cavern Far Bridge', True)
-148: Dodongos Cavern Blade Room Pot 2: can_use(Boomerang) or at('Dodongos Cavern Far Bridge', True)
+142: Dodongos Cavern Staircase Pot 1: True
+143: Dodongos Cavern Staircase Pot 2: True
+144: Dodongos Cavern Staircase Pot 3: True
+145: Dodongos Cavern Staircase Pot 4: True
+146: Dodongos Cavern Single Eye Switch Room Pot 1: (can_blast_or_smash or Progressive_Strength_Upgrade) or (is_adult and (Hover_Boots or can_use(Longshot) or logic_dc_jump))
+147: Dodongos Cavern Single Eye Switch Room Pot 2: (can_blast_or_smash or Progressive_Strength_Upgrade) or (is_adult and (Hover_Boots or can_use(Longshot) or logic_dc_jump))
+148: Dodongos Cavern Blade Room Pot 1: can_use(Boomerang) or at('Dodongos Cavern Far Bridge', True)
+149: Dodongos Cavern Blade Room Pot 2: can_use(Boomerang) or at('Dodongos Cavern Far Bridge', True)
 Dodongos Cavern Far Bridge
-149: Dodongos Cavern Double Eye Pot 1: True
-150: Dodongos Cavern Double Eye Pot 2: True
+150: Dodongos Cavern Double Eye Switch Room Pot 1: True
+151: Dodongos Cavern Double Eye Switch Room Pot 2: True
 Dodongos Cavern Boss Area
-151: Dodongos Cavern Last Block Pot 1: can_use(Bombs)
-152: Dodongos Cavern Last Block Pot 2: True
-153: Dodongos Cavern Last Block Pot 3: can_use(Slingshot) or can_use(Bow)
+152: Dodongos Cavern Last Block Pot 1: True
+153: Dodongos Cavern Last Block Pot 2: True
+154: Dodongos Cavern Last Block Pot 3: True
 Jabu Jabus Belly Main
-154: Jabu Jabus Belly DLC Pot 1: can_use(Boomerang)
-155: Jabu Jabus Belly DLC Pot 2: can_use(Boomerang)
-156: Jabu Jabus Belly DLC Pot 3: can_use(Boomerang)
-157: Jabu Jabus Belly DLC Pot 4: can_use(Boomerang)
-158: Jabu Jabus Belly Basement Switch Room Pot 1: can_use(Slingshot) or can_use(Bow)
-159: Jabu Jabus Belly Basement Switch Room Pot 2: can_use(Slingshot) or can_use(Bow)
-160: Jabu Jabus Belly Above Big Octo Pot 1: can_use(Boomerang) and can_child_attack
-161: Jabu Jabus Belly Above Big Octo Pot 2: can_use(Boomerang) and can_child_attack
+155: Jabu Jabus Belly DLC Pot 1: can_use(Boomerang)
+156: Jabu Jabus Belly DLC Pot 2: can_use(Boomerang)
+157: Jabu Jabus Belly DLC Pot 3: can_use(Boomerang)
+158: Jabu Jabus Belly DLC Pot 4: can_use(Boomerang)
+159: Jabu Jabus Belly Basement Switch Room Pot 1: True
+160: Jabu Jabus Belly Basement Switch Room Pot 2: True
+161: Jabu Jabus Belly Above Big Octo Pot 1: can_use(Boomerang) and can_child_attack
+162: Jabu Jabus Belly Above Big Octo Pot 2: can_use(Boomerang) and can_child_attack
 Jabu Jabus Belly Boss Area
-162: Jabu Jabus Belly Barinade Pot 1: can_use(Boomerang)
-163: Jabu Jabus Belly Barinade Pot 2: can_use(Boomerang)
-164: Jabu Jabus Belly Barinade Pot 3: can_use(Boomerang)
-165: Jabu Jabus Belly Barinade Pot 4: can_use(Boomerang)
-166: Jabu Jabus Belly Barinade Pot 5: can_use(Boomerang)
-167: Jabu Jabus Belly Barinade Pot 6: can_use(Boomerang)
+163: Jabu Jabus Belly Barinade Pot 1: can_use(Boomerang)
+164: Jabu Jabus Belly Barinade Pot 2: can_use(Boomerang)
+165: Jabu Jabus Belly Barinade Pot 3: can_use(Boomerang)
+166: Jabu Jabus Belly Barinade Pot 4: can_use(Boomerang)
+167: Jabu Jabus Belly Barinade Pot 5: can_use(Boomerang)
+168: Jabu Jabus Belly Barinade Pot 6: can_use(Boomerang)
 Forest Temple Lobby
-168: Forest Temple Center Room Pot 1: Magic_Meter
-169: Forest Temple Center Room Pot 2: Magic_Meter
-170: Forest Temple Center Room Pot 3: True
-171: Forest Temple Center Room Pot 4: True
-172: Forest Temple Center Room Pot 5: can_use(Bow) or can_use(Slingshot)
-173: Forest Temple Center Room Pot 6: can_use(Bow) or can_use(Slingshot)
-174: Forest Temple Lower Stalfos Pot 1: True
+169: Forest Temple Center Room Pot 1: True
+170: Forest Temple Center Room Pot 2: True
+171: Forest Temple Center Room Pot 3: True
+172: Forest Temple Center Room Pot 4: True
+173: Forest Temple Center Room Pot 5: True
+174: Forest Temple Center Room Pot 6: True
+175: Forest Temple Lower Stalfos Pot 1: True
 Forest Temple Falling Room
-175: Forest Temple Block Puzzle Room Pot 1: True
-176: Forest Temple Block Puzzle Room Pot 2: can_use(Bow) or can_use(Slingshot)
+176: Forest Temple Green Poe Room Pot 1: True
+177: Forest Temple Green Poe Room Pot 2: True
 Forest Temple Bow Region
-177: Forest Temple Upper Stalfos Pot 1: True
-178: Forest Temple Upper Stalfos Pot 2: True
-179: Forest Temple Upper Stalfos Pot 3: True
-180: Forest Temple Upper Stalfos Pot 4: True
-181: Forest Temple Blue Poe Room Pot 1: True
-182: Forest Temple Blue Poe Room Pot 2: can_use(Bow) or can_use(Slingshot)
-183: Forest Temple Blue Poe Room Pot 3: can_use(Bow) or can_use(Slingshot)
-184: Forest Temple Fire Switch Room Pot 1: True
-185: Forest Temple Fire Switch Room Pot 2: can_use(Bow) or can_use(Slingshot)
+178: Forest Temple Upper Stalfos Pot 1: True
+179: Forest Temple Upper Stalfos Pot 2: True
+180: Forest Temple Upper Stalfos Pot 3: True
+181: Forest Temple Upper Stalfos Pot 4: True
+182: Forest Temple Blue Poe Room Pot 1: True
+183: Forest Temple Blue Poe Room Pot 2: True
+184: Forest Temple Blue Poe Room Pot 3: True
+185: Forest Temple Frozen Eye Switch Room Pot 1: (Small_Key_Forest_Temple, 5)
+186: Forest Temple Frozen Eye Switch Room Pot 2: (Small_Key_Forest_Temple, 5)
 Fire Temple Lower
-186: Fire Temple Near Boss Pot 1: can_use(Bombs) and ((can_use(Hover_Boots) or can_use(Hookshot)) and (logic_fewer_tunic_requirements or can_use(Goron_Tunic)))
-187: Fire Temple Near Boss Pot 2: can_use(Bombs) and ((can_use(Hover_Boots) or can_use(Hookshot)) and (logic_fewer_tunic_requirements or can_use(Goron_Tunic)))
+187: Fire Temple Near Boss Pot 1: (can_use(Hover_Boots) or can_use(Hookshot)) and (logic_fewer_tunic_requirements or can_use(Goron_Tunic))
+188: Fire Temple Near Boss Pot 2: (can_use(Hover_Boots) or can_use(Hookshot)) and (logic_fewer_tunic_requirements or can_use(Goron_Tunic))
 Fire Temple Big Lava Room
-188: Fire Temple Big Lava Room Pot 1: can_use(Bow) or can_use(Slingshot)
-189: Fire Temple Big Lava Room Pot 2: True
-190: Fire Temple Big Lava Room Pot 3: can_use(Bow) or can_use(Slingshot)
+189: Fire Temple Big Lava Room Pot 1: True
+190: Fire Temple Big Lava Room Pot 2: True
+191: Fire Temple Big Lava Room Pot 3: True
 Fire Temple Middle
-191: Fire Temple Flame Maze Left Side Pot 1: (Small_Key_Fire_Temple, 7)
-192: Fire Temple Flame Maze Left Side Pot 2: (Small_Key_Fire_Temple, 7)
-193: Fire Temple Flame Maze Left Side Pot 3: (Small_Key_Fire_Temple, 7)
-194: Fire Temple Flame Maze Left Side Pot 4: (Small_Key_Fire_Temple, 7)
+192: Fire Temple Flame Maze Left Side Pot 1: (Small_Key_Fire_Temple, 7)
+193: Fire Temple Flame Maze Left Side Pot 2: (Small_Key_Fire_Temple, 7)
+194: Fire Temple Flame Maze Left Side Pot 3: (Small_Key_Fire_Temple, 7)
+195: Fire Temple Flame Maze Left Side Pot 4: (Small_Key_Fire_Temple, 7)
 Fire Temple Upper
-195: Fire Temple Flame Maze Right Side Pot 1: can_use(Bombs)
-196: Fire Temple Flame Maze Right Side Pot 2: True
-197: Fire Temple Flame Maze Right Side Pot 3: True
-198: Fire Temple Flame Maze Right Side Pot 4: can_use(Bombs)
+196: Fire Temple Flame Maze Right Side Pot 1: True
+197: Fire Temple Flame Maze Right Side Pot 2: True
+198: Fire Temple Flame Maze Right Side Pot 3: True
+199: Fire Temple Flame Maze Right Side Pot 4: True
 Water Temple Lobby
-199: Water Temple Main Room L2 Pot 1: at('Water Temple Middle Water Level', 'True') or ((can_use(Iron_Boots) or (Progressive_Scale, 2)) and (can_use(Bow) or can_use(Hookshot))) or can_use(Boomerang)
-200: Water Temple Main Room L2 Pot 2: at('Water Temple Middle Water Level', 'True') or ((can_use(Iron_Boots) or (Progressive_Scale, 2)) and (can_use(Bow) or can_use(Hookshot))) or can_use(Boomerang)
-201: Water Temple L1 Torch Pot 1: at('Water Temple Dive', 'True') and can_use(Bow) and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))
-202: Water Temple L1 Torch Pot 2: at('Water Temple Dive', 'True') and can_use(Bow) and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))
+200: Water Temple Main Room L2 Pot 1: at('Water Temple Middle Water Level', 'True') or ((can_use(Iron_Boots) or (Progressive_Scale, 2)) and (can_use(Bow) or can_use(Hookshot))) or can_use(Boomerang)
+201: Water Temple Main Room L2 Pot 2: at('Water Temple Middle Water Level', 'True') or ((can_use(Iron_Boots) or (Progressive_Scale, 2)) and (can_use(Bow) or can_use(Hookshot))) or can_use(Boomerang)
+202: Water Temple L1 Torch Pot 1: at('Water Temple Dive', 'True') and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))
+203: Water Temple L1 Torch Pot 2: at('Water Temple Dive', 'True') and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))
 Water Temple Dive
-203: Water Temple Near Compass Pot 1: (can_play(Zeldas_Lullaby) or can_use(Iron_Boots)) and can_use(Hookshot)
-204: Water Temple Near Compass Pot 2: (can_play(Zeldas_Lullaby) or can_use(Iron_Boots)) and can_use(Hookshot)
-205: Water Temple Near Compass Pot 3: (can_play(Zeldas_Lullaby) or can_use(Iron_Boots)) and can_use(Hookshot)
-206: Water Temple Behind Gate Pot 1:  (can_use(Hookshot) or can_use(Hover_Boots)) and has_explosives and can_play(Zeldas_Lullaby) and (can_use(Iron_Boots) or can_dive)
-207: Water Temple Behind Gate Pot 2:  (can_use(Hookshot) or can_use(Hover_Boots)) and has_explosives and can_play(Zeldas_Lullaby) and (can_use(Iron_Boots) or can_dive)
-208: Water Temple Behind Gate Pot 3:  can_use(Bow) and ((can_use(Hookshot) or can_use(Hover_Boots)) and has_explosives and can_play(Zeldas_Lullaby) and (can_use(Iron_Boots) or can_dive))
-209: Water Temple Behind Gate Pot 4:  can_use(Bow) and ((can_use(Hookshot) or can_use(Hover_Boots)) and has_explosives and can_play(Zeldas_Lullaby) and (can_use(Iron_Boots) or can_dive))
+204: Water Temple Near Compass Pot 1: (can_play(Zeldas_Lullaby) or can_use(Iron_Boots)) and can_use(Hookshot)
+205: Water Temple Near Compass Pot 2: (can_play(Zeldas_Lullaby) or can_use(Iron_Boots)) and can_use(Hookshot)
+206: Water Temple Near Compass Pot 3: (can_play(Zeldas_Lullaby) or can_use(Iron_Boots)) and can_use(Hookshot)
+207: Water Temple Central Bow Target Pot 1:  Progressive_Strength_Upgrade and can_play(Zeldas_Lullaby) and ((Bow and (logic_water_central_bow or Hover_Boots or can_use(Longshot))) or (logic_water_central_bow 
+and Child_Water_Temple and Slingshot and at('Water Temple Middle Water Level', True)))
+208: Water Temple Behind Gate Pot 1:  (can_use(Hookshot) or can_use(Hover_Boots)) and has_explosives and can_play(Zeldas_Lullaby) and (can_use(Iron_Boots) or can_dive)
+209: Water Temple Behind Gate Pot 2:  (can_use(Hookshot) or can_use(Hover_Boots)) and has_explosives and can_play(Zeldas_Lullaby) and (can_use(Iron_Boots) or can_dive)
+210: Water Temple Behind Gate Pot 3:  (can_use(Hookshot) or can_use(Hover_Boots)) and has_explosives and can_play(Zeldas_Lullaby) and (can_use(Iron_Boots) or can_dive)
+211: Water Temple Behind Gate Pot 4:  (can_use(Hookshot) or can_use(Hover_Boots)) and has_explosives and can_play(Zeldas_Lullaby) and (can_use(Iron_Boots) or can_dive)
 Water Temple North Basement
-210: Water Temple Block Switch Room Pot 1: (Small_Key_Water_Temple, 5) and can_use(Bombs)
-211: Water Temple Block Switch Room Pot 2: (Small_Key_Water_Temple, 5) and can_use(Bombs)
+212: Water Temple North Basement Block Puzzle Pot 1: True
+213: Water Temple North Basement Block Puzzle Pot 2: True
 Water Temple Dark Link Region
-212: Water Temple Like Like Pot 1: Magic_Meter
-213: Water Temple Like Like Pot 2: Magic_Meter
+214: Water Temple River Pot 1: can_play(Song_of_Time)
+215: Water Temple Like Like Pot 1: True
+216: Water Temple Like Like Pot 2: True
 Shadow Temple Beginning
-214: Shadow Temple Before Dead Hand Pot 1: Magic_Meter
-215: Shadow Temple Before Dead Hand Pot 2: Magic_Meter
-216: Shadow Temple Before Dead Hand Pot 3: True
-217: Shadow Temple Before Dead Hand Pot 4: True
-218: Shadow Temple Before Dead Hand Pot 5: True
-219: Shadow Temple Before Dead Hand Pot 6: True
-220: Shadow Temple Map Chest Room Pot 1: can_use(Bow)
-221: Shadow Temple Map Chest Room Pot 2: True
+217: Shadow Temple Whispering Walls Near Dead Hand Pot: True
+218: Shadow Temple Whispering Walls Left Pot 1: True
+219: Shadow Temple Whispering Walls Left Pot 2: True
+220: Shadow Temple Whispering Walls Left Pot 3: True
+221: Shadow Temple Whispering Walls Front Pot 1: True
+222: Shadow Temple Whispering Walls Front Pot 2: True
+223: Shadow Temple Map Chest Room Pot 1: True
+224: Shadow Temple Map Chest Room Pot 2: True
 Shadow Temple Huge Pit
-222: Shadow Temple Falling Spikes Pot 1: True
-223: Shadow Temple Falling Spikes Pot 2: can_use(Bombs)
-224: Shadow Temple Falling Spikes Pot 3: logic_shadow_umbrella or Progressive_Strength_Upgrade
-225: Shadow Temple Falling Spikes Pot 4: logic_shadow_umbrella or Progressive_Strength_Upgrade
+225: Shadow Temple Falling Spikes Lower Pot 1: True
+226: Shadow Temple Falling Spikes Lower Pot 2: True
+227: Shadow Temple Falling Spikes Upper Pot 3: logic_shadow_umbrella or Progressive_Strength_Upgrade
+228: Shadow Temple Falling Spikes Upper Pot 4: logic_shadow_umbrella or Progressive_Strength_Upgrade
 Shadow Temple After Wind
-226: Shadow Temple After Wind Pot 1: True
-227: Shadow Temple After Wind Pot 2: True
+229: Shadow Temple After Wind Pot 1: True
+230: Shadow Temple After Wind Pot 2: True
 Shadow Temple Beyond Boat
-228: Shadow Temple Spike Walls Pot: Magic_Meter
-229: Shadow Temple Invisible Floormaster Pot 1: True
-230: Shadow Temple Invisible Floormaster Pot 2: can_use(Bow)
-231: Shadow Temple After Boat Pot 1: can_use(Bow)
-232: Shadow Temple Near Boss Pot 1: can_use(Bow) and (Bow or can_use(Distant_Scarecrow) or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts)
-233: Shadow Temple Near Boss Pot 2: Magic_Meter and ((Bow or can_use(Distant_Scarecrow) or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts))
+231: Shadow Temple Spike Walls Pot: True
+232: Shadow Temple Invisible Floormaster Pot 1: True
+233: Shadow Temple Invisible Floormaster Pot 2: True
+234: Shadow Temple After Boat Pot 1: True
+235: Shadow Temple Near Boss Pot 1: (Bow or can_use(Distant_Scarecrow) or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts)
+236: Shadow Temple Near Boss Pot 2: (Bow or can_use(Distant_Scarecrow) or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts)
 Spirit Temple Lobby
-234: Spirit Temple Lobby Pot 1: True
-235: Spirit Temple Lobby Pot 2: Magic_Meter
+237: Spirit Temple Lobby Pot 1: True
+238: Spirit Temple Lobby Pot 2: True
 Child Spirit Temple
-236: Spirit Temple Child Anubis Pot:  (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and (Sticks or has_explosives or ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))
+239: Spirit Temple Child Anubis Pot:  (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and (Sticks or has_explosives or ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))
 Child Spirit Temple Climb
-237: Spirit Temple Child Climb Pot: (can_use(Slingshot) or can_use(Bow)) and ((spirit_temple_shortcuts and is_adult) or (((Small_Key_Spirit_Temple, 3) or ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)) and is_adult) or ((Small_Key_Spirit_Temple, 5) and is_child))
+240: Spirit Temple Child Climb Pot: (spirit_temple_shortcuts and is_adult) or (((Small_Key_Spirit_Temple, 3) or ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)) and is_adult) or 
+((Small_Key_Spirit_Temple, 5) and is_child)
 Spirit Temple Central Chamber
-238: Spirit Temple Hall After Sun Block Room Pot 1: (((Small_Key_Spirit_Temple, 3) and is_adult) or (is_adult and spirit_temple_shortcuts)) or (has_explosives or (Small_Key_Spirit_Temple, 3) or ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)) or ((Small_Key_Spirit_Temple, 5) and has_explosives)
-239: Spirit Temple Hall After Sun Block Room Pot 2: (((Small_Key_Spirit_Temple, 3) and is_adult) or (is_adult and spirit_temple_shortcuts)) or (has_explosives or (Small_Key_Spirit_Temple, 3) or ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)) or ((Small_Key_Spirit_Temple, 5) and has_explosives)
-240: Spirit Temple Beamos Hall Pot: is_adult and (Small_Key_Spirit_Temple, 3) and can_use(Bombs)
+241: Spirit Temple Hall After Sun Block Room Pot 1: (((Small_Key_Spirit_Temple, 3) and is_adult) or (is_adult and spirit_temple_shortcuts)) or (has_explosives or (Small_Key_Spirit_Temple, 3) or ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)) or ((Small_Key_Spirit_Temple, 5) and has_explosives)
+242: Spirit Temple Hall After Sun Block Room Pot 2: (((Small_Key_Spirit_Temple, 3) and is_adult) or (is_adult and spirit_temple_shortcuts)) or (has_explosives or (Small_Key_Spirit_Temple, 3) or ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)) or ((Small_Key_Spirit_Temple, 5) and has_explosives)
+243: Spirit Temple Beamos Hall Pot: is_adult and (Small_Key_Spirit_Temple, 3)
 Ganons Castle Forest Trial
-241: Ganons Castle Forest Trial Pot 1: can_use(Fire_Arrows) or can_use(Dins_Fire)
-242: Ganons Castle Forest Trial Pot 2: Magic_Meter and (can_use(Fire_Arrows) or can_use(Dins_Fire))
+244: Ganons Castle Forest Trial Pot 1: can_use(Fire_Arrows) or can_use(Dins_Fire)
+245: Ganons Castle Forest Trial Pot 2: can_use(Fire_Arrows) or can_use(Dins_Fire)
 Ganons Castle Fire Trial
-243: Ganons Castle Fire Trial Pot 1: can_use(Goron_Tunic) and can_use(Golden_Gauntlets) and can_use(Longshot)
-244: Ganons Castle Fire Trial Pot 2: Magic_Meter and (can_use(Goron_Tunic) and can_use(Golden_Gauntlets) and can_use(Longshot))
+246: Ganons Castle Fire Trial Pot 1: can_use(Goron_Tunic) and can_use(Golden_Gauntlets) and can_use(Longshot)
+247: Ganons Castle Fire Trial Pot 2: can_use(Goron_Tunic) and can_use(Golden_Gauntlets) and can_use(Longshot)
 Ganons Castle Water Trial
-245: Ganons Castle Water Trial Pot 1: Blue_Fire and Megaton_Hammer
-246: Ganons Castle Water Trial Pot 2: Blue_Fire and Megaton_Hammer and Magic_Meter
+248: Ganons Castle Water Trial Pot 1: Blue_Fire and Megaton_Hammer
+249: Ganons Castle Water Trial Pot 2: Blue_Fire and Megaton_Hammer
 Ganons Castle Shadow Trial
-247: Ganons Castle Shadow Trial Like-Like Pot 1: can_use(Bow) and (can_use(Fire_Arrows) or can_use(Longshot))
-248: Ganons Castle Shadow Trial Like-Like Pot 2: Magic_Meter and (can_use(Fire_Arrows) or can_use(Longshot))
-249: Ganons Castle Shadow Trial Pot 1: can_use(Bow) and (can_use(Megaton_Hammer) and ((Fire_Arrows and (logic_lens_castle or can_use(Lens_of_Truth))) or (can_use(Longshot) and (Hover_Boots or (Dins_Fire and (logic_lens_castle or can_use(Lens_of_Truth)))))))
-250: Ganons Castle Shadow Trial Pot 2: Magic_Meter and (can_use(Megaton_Hammer) and ((Fire_Arrows and (logic_lens_castle or can_use(Lens_of_Truth))) or (can_use(Longshot) and (Hover_Boots or (Dins_Fire and (logic_lens_castle or can_use(Lens_of_Truth)))))))
+250: Ganons Castle Shadow Trial Like-Like Pot 1: can_use(Fire_Arrows) or can_use(Longshot)
+251: Ganons Castle Shadow Trial Like-Like Pot 2: can_use(Fire_Arrows) or can_use(Longshot)
+252: Ganons Castle Shadow Trial Pot 1: can_use(Megaton_Hammer) and ((Fire_Arrows and (logic_lens_castle or can_use(Lens_of_Truth))) or (can_use(Longshot) and (Hover_Boots or (Dins_Fire and (logic_lens_castle 
+or can_use(Lens_of_Truth))))))
+253: Ganons Castle Shadow Trial Pot 2: can_use(Megaton_Hammer) and ((Fire_Arrows and (logic_lens_castle or can_use(Lens_of_Truth))) or (can_use(Longshot) and (Hover_Boots or (Dins_Fire and (logic_lens_castle 
+or can_use(Lens_of_Truth))))))
 Ganons Castle Spirit Trial
-251: Ganons Castle Spirit Trial Pot 1: can_use(Mirror_Shield) and has_bombchus and (logic_spirit_trial_hookshot or Progressive_Hookshot)
-252: Ganons Castle Spirit Trial Pot 2: Magic_Meter and (can_use(Mirror_Shield) and has_bombchus and (logic_spirit_trial_hookshot or Progressive_Hookshot))
+254: Ganons Castle Spirit Trial Pot 1: can_use(Mirror_Shield) and has_bombchus and (logic_spirit_trial_hookshot or Progressive_Hookshot)
+255: Ganons Castle Spirit Trial Pot 2: can_use(Mirror_Shield) and has_bombchus and (logic_spirit_trial_hookshot or Progressive_Hookshot)
 Ganons Castle Light Trial
-253: Ganons Castle Light Trial Boulder Pot: (Small_Key_Ganons_Castle, 2)
-254: Ganons Castle Light Trial Pot 1: (Small_Key_Ganons_Castle, 2) and Progressive_Hookshot and (logic_lens_castle or can_use(Lens_of_Truth))
-255: Ganons Castle Light Trial Pot 2: Magic_Meter and ((Small_Key_Ganons_Castle, 2) and Progressive_Hookshot and (logic_lens_castle or can_use(Lens_of_Truth)))
+256: Ganons Castle Light Trial Boulder Pot: (Small_Key_Ganons_Castle, 2)
+257: Ganons Castle Light Trial Pot 1: (Small_Key_Ganons_Castle, 2) and Progressive_Hookshot and (logic_lens_castle or can_use(Lens_of_Truth))
+258: Ganons Castle Light Trial Pot 2: (Small_Key_Ganons_Castle, 2) and Progressive_Hookshot and (logic_lens_castle or can_use(Lens_of_Truth))
 Bottom of the Well Main Area
-256: Bottom of the Well Basement Pot 1: True
-257: Bottom of the Well Basement Pot 2: Magic_Meter
-258: Bottom of the Well Basement Pot 3: True
-259: Bottom of the Well Basement Pot 4: True
-260: Bottom of the Well Basement Pot 5: Magic_Meter
-261: Bottom of the Well Basement Pot 6: True
-262: Bottom of the Well Basement Pot 7: True
-263: Bottom of the Well Basement Pot 8: True
-264: Bottom of the Well Basement Pot 9: True
-265: Bottom of the Well Basement Pot 10: True
-266: Bottom of the Well Basement Pot 11: Magic_Meter
-267: Bottom of the Well Basement Pot 12: True
-268: Bottom of the Well Left Side Pot 1: True
-269: Bottom of the Well Left Side Pot 2: Magic_Meter
-270: Bottom of the Well Left Side Pot 3: True
-271: Bottom of the Well Near Entrance Pot 1: True
-272: Bottom of the Well Near Entrance Pot 2: Magic_Meter
-273: Bottom of the Well Fire Keese Pot: Magic_Meter and ((Small_Key_Bottom_of_the_Well, 3) and (logic_lens_botw or can_use(Lens_of_Truth)))
-274: Bottom of the Well Underwater Pot: can_use(Bombs) and (can_play(Zeldas_Lullaby) or can_use(Slingshot) or can_use(Boomerang))
+259: Bottom of the Well Basement Pot 1: True
+260: Bottom of the Well Basement Pot 2: True
+261: Bottom of the Well Basement Pot 3: True
+262: Bottom of the Well Basement Pot 4: True
+263: Bottom of the Well Basement Pot 5: True
+264: Bottom of the Well Basement Pot 6: True
+265: Bottom of the Well Basement Pot 7: True
+266: Bottom of the Well Basement Pot 8: True
+267: Bottom of the Well Basement Pot 9: True
+268: Bottom of the Well Basement Pot 10: True
+269: Bottom of the Well Basement Pot 11: True
+270: Bottom of the Well Basement Pot 12: True
+271: Bottom of the Well Left Side Pot 1: True
+272: Bottom of the Well Left Side Pot 2: True
+273: Bottom of the Well Left Side Pot 3: True
+274: Bottom of the Well Near Entrance Pot 1: True
+275: Bottom of the Well Near Entrance Pot 2: True
+276: Bottom of the Well Fire Keese Pot: (Small_Key_Bottom_of_the_Well, 3) and (logic_lens_botw or can_use(Lens_of_Truth))
+277: Bottom of the Well Underwater Pot: can_play(Zeldas_Lullaby) or can_use(Slingshot) or can_use(Boomerang)
 Ice Cavern
-275: Ice Cavern Hall Pot 1: is_adult or (is_child and can_child_attack)
-276: Ice Cavern Hall Pot 2: is_adult or (is_child and can_child_attack)
-277: Ice Cavern Spinning Blade Pot 1: is_adult or (is_child and can_child_attack)
-278: Ice Cavern Spinning Blade Pot 2: is_adult or (is_child and can_child_attack)
-279: Ice Cavern Spinning Blade Pot 3: is_adult or (is_child and can_child_attack)
-280: Ice Cavern Near End Pot 1: Blue_Fire and (is_adult or (can_child_attack))
-281: Ice Cavern Near End Pot 2: Blue_Fire and (is_adult or (can_child_attack))
-282: Ice Cavern Frozen Pot: is_adult and Blue_Fire
+278: Ice Cavern Hall Pot 1: is_adult or (is_child and can_child_attack)
+279: Ice Cavern Hall Pot 2: is_adult or (is_child and can_child_attack)
+280: Ice Cavern Spinning Blade Pot 1: is_adult or (is_child and can_child_attack)
+281: Ice Cavern Spinning Blade Pot 2: is_adult or (is_child and can_child_attack)
+282: Ice Cavern Spinning Blade Pot 3: is_adult or (is_child and can_child_attack)
+283: Ice Cavern Near End Pot 1: Blue_Fire and (is_adult or (can_child_attack))
+284: Ice Cavern Near End Pot 2: Blue_Fire and (is_adult or (can_child_attack))
+285: Ice Cavern Frozen Pot: is_adult and Blue_Fire
+***
