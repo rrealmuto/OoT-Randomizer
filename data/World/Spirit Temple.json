@@ -135,7 +135,6 @@
             "Spirit Temple Hall After Sun Block Room Pot 2" : "(((Small_Key_Spirit_Temple, 3) and is_adult) or (is_adult and spirit_temple_shortcuts)) or
                 (has_explosives or (Small_Key_Spirit_Temple, 3) or ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)) or
                 ((Small_Key_Spirit_Temple, 5) and has_explosives)",
-            "Spirit Temple Beamos Hall Pot" : "is_adult and (Small_Key_Spirit_Temple, 3)",
             "Spirit Temple Statue Room Hand Chest": "
                 (((Small_Key_Spirit_Temple, 3) and can_use(Silver_Gauntlets)) or
                     (is_adult and spirit_temple_shortcuts and can_use(Hookshot))) and 
@@ -203,7 +202,8 @@
         "locations": {
             "Spirit Temple Near Four Armos Chest": "Mirror_Shield and has_explosives",
             "Spirit Temple Hallway Left Invisible Chest": "(logic_lens_spirit or can_use(Lens_of_Truth)) and has_explosives",
-            "Spirit Temple Hallway Right Invisible Chest": "(logic_lens_spirit or can_use(Lens_of_Truth)) and has_explosives"
+            "Spirit Temple Hallway Right Invisible Chest": "(logic_lens_spirit or can_use(Lens_of_Truth)) and has_explosives",
+            "Spirit Temple Beamos Hall Pot" : "True"
         },
         "exits": {
             "Spirit Temple Beyond Final Locked Door": "
