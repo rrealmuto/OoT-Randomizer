@@ -734,6 +734,38 @@ location_table = OrderedDict([
     ("Dodongos Cavern MQ GS Lizalfos Room",                          ("GS Token",     0x01,  0x04, None,                        'Gold Skulltula Token',                  ("Dodongo's Cavern", "Master Quest", "Skulltulas",))),
     ("Dodongos Cavern MQ GS Song of Time Block Room",                ("GS Token",     0x01,  0x08, None,                        'Gold Skulltula Token',                  ("Dodongo's Cavern", "Master Quest", "Skulltulas",))),
     ("Dodongos Cavern MQ GS Back Area",                              ("GS Token",     0x01,  0x01, None,                        'Gold Skulltula Token',                  ("Dodongo's Cavern", "Master Quest", "Skulltulas",))),
+    # Dodongo's Cavern MQ Pots
+    ("Dodongos Cavern MQ Right Side Pot 1",                             ("Collectable",  0x01,  0x22, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ Right Side Pot 2",                             ("Collectable",  0x01,  0x23, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ Right Side Pot 3",                             ("Collectable",  0x01,  0x28, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ Right Side Pot 4",                             ("Collectable",  0x01,  0x29, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ Staircase Room Pot 1",                         ("Collectable",  0x01,  0x33, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ Staircase Room Pot 2",                         ("Collectable",  0x01,  0x34, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ Staircase Room Pot 3",                         ("Collectable",  0x01,  0x35, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ Staircase Room Pot 4",                         ("Collectable",  0x01,  0x36, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ Upper Lizalfos Pot 1",                         ("Collectable",  0x01,  0x2A, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ Upper Lizalfos Pot 2",                         ("Collectable",  0x01,  0x2B, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ Upper Lizalfos Pot 3",                         ("Collectable",  0x01,  0x2C, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ Upper Lizalfos Pot 4",                         ("Collectable",  0x01,  0x2D, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ Torch Room Pot 1",                         ("Collectable",  0x01,  0x2E, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ Torch Room Pot 2",                         ("Collectable",  0x01,  0x2F, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ Torch Room Pot 3",                         ("Collectable",  0x01,  0x31, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ Torch Room Pot 4",                         ("Collectable",  0x01,  0x32, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ Before Boss Room Pot 1",                         ("Collectable",  0x01,  0x3D, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ Before Boss Room Pot 2",                         ("Collectable",  0x01,  0x3E, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ Armos Army Room Pot 1",                         ("Collectable",  0x01,  0x20, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ Armos Army Room Pot 2",                         ("Collectable",  0x01,  0x37, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ Armos Army Room Pot 3",                         ("Collectable",  0x01,  0x3C, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ 3 Torch Room Pot 1",                         ("Collectable",  0x01,  0x26, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ 3 Torch Room Pot 2",                         ("Collectable",  0x01,  0x27, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ Before Upper Lizalfos Pot 1",                         ("Collectable",  0x01,  0x39, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ Before Upper Lizalfos Pot 2",                         ("Collectable",  0x01,  0x3A, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ After Upper Lizalfos Pot 1",                         ("Collectable",  0x01,  0x3B, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ After Upper Lizalfos Pot 2",                         ("Collectable",  0x01,  0x3C, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ Back Poe Room Pot 1",                         ("Collectable",  0x01,  0x38, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ Back Poe Room Pot 2",                         ("Collectable",  0x01,  0x3F, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    
+    
     # Dodongo's Cavern shared
     ("Dodongos Cavern Lizalfos Hidden Recovery Heart",               ("Collectable",   0x01,  0x18, None,                       'Recovery Heart',                        ("Dodongo's Cavern", "Vanilla", "Master Quest", "Freestanding",))),
     ("Dodongos Cavern Boss Room Chest",                              ("Chest",        0x12,  0x00, None,                        'Bombs (5)',                             ("Dodongo's Cavern", "Vanilla", "Master Quest",))),
@@ -760,12 +792,6 @@ location_table = OrderedDict([
     ("Jabu Jabus Belly Basement Switch Room Pot 1",                  ("Collectable",     0x02,  0x25, None,                        'Deku Seeds (30)',                  ("Jabu Jabu's Belly", "Vanilla", "Pot",))),
     #("Jabu Jabus Belly Basement Switch Room Pot X",                  ("Collectable",     0x02,  0x26, None,                        'Deku Nuts (5)',                  ("Jabu Jabu's Belly", "Vanilla", "Pot",))),
     ("Jabu Jabus Belly Basement Switch Room Pot 2",                  ("Collectable",     0x02,  0x27, None,                        'Deku Seeds (30)',                  ("Jabu Jabu's Belly", "Vanilla", "Pot",))),
-    ("Jabu Jabus Belly Barinade Pot 1",                              ("Collectable",     0x13,  0x20, None,                        'Recovery Heart',                   ("Jabu Jabu's Belly", "vanilla", "Pot"))),
-    ("Jabu Jabus Belly Barinade Pot 2",                              ("Collectable",     0x13,  0x21, None,                        'Recovery Heart',                   ("Jabu Jabu's Belly", "vanilla", "Pot"))),
-    ("Jabu Jabus Belly Barinade Pot 3",                              ("Collectable",     0x13,  0x22, None,                        'Recovery Heart',                   ("Jabu Jabu's Belly", "vanilla", "Pot"))),
-    ("Jabu Jabus Belly Barinade Pot 4",                              ("Collectable",     0x13,  0x23, None,                        'Recovery Heart',                   ("Jabu Jabu's Belly", "vanilla", "Pot"))),
-    ("Jabu Jabus Belly Barinade Pot 5",                              ("Collectable",     0x13,  0x24, None,                        'Recovery Heart',                   ("Jabu Jabu's Belly", "vanilla", "Pot"))),
-    ("Jabu Jabus Belly Barinade Pot 6",                              ("Collectable",     0x13,  0x25, None,                        'Recovery Heart',                   ("Jabu Jabu's Belly", "vanilla", "Pot"))),
     ("Jabu Jabus Belly Small Wooden Crate", ("Collectable", 0x2, 0x3F, None, 'Recovery Heart', ("Jabu Jabu's Belly", "Vanilla", "Crate"))),
 
     # Jabu Jabu's Belly MQ
@@ -790,8 +816,25 @@ location_table = OrderedDict([
     ("Jabu Jabus Belly MQ GS Tailpasaran Room",                      ("GS Token",     0x02,  0x04, None,                        'Gold Skulltula Token',                  ("Jabu Jabu's Belly", "Master Quest", "Skulltulas",))),
     ("Jabu Jabus Belly MQ GS Invisible Enemies Room",                ("GS Token",     0x02,  0x08, None,                        'Gold Skulltula Token',                  ("Jabu Jabu's Belly", "Master Quest", "Skulltulas",))),
     ("Jabu Jabus Belly MQ GS Near Boss",                             ("GS Token",     0x02,  0x02, None,                        'Gold Skulltula Token',                  ("Jabu Jabu's Belly", "Master Quest", "Skulltulas",))),
+    # Jabu Jabu's Belly MQ Pots
+    ("Jabu Jabus Belly MQ First Room Pot 1",                          ("Collectable",  0x02,  0x04, None,       'Rupee (1)',                             ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
+    ("Jabu Jabus Belly MQ First Room Pot 2",                          ("Collectable",  0x02,  0x0C, None,       'Rupee (1)',                             ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
+    ("Jabu Jabus Belly MQ Compass Elevator Room Pot 1",                          ("Collectable",  0x02,  0x39, None,       'Rupee (1)',                             ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
+    ("Jabu Jabus Belly MQ Compass Elevator Room Pot 2",                          ("Collectable",  0x02,  0x3A, None,       'Rupee (1)',                             ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
+    ("Jabu Jabus Belly MQ Falling Like Like Room Pot 1",                          ("Collectable",  0x02,  0x3D, None,       'Rupee (1)',                             ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
+    ("Jabu Jabus Belly MQ Falling Like Like Room Pot 2",                          ("Collectable",  0x02,  0x3F, None,       'Rupee (1)',                             ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
+    ("Jabu Jabus Belly MQ Boomerang Room Pot 1",                          ("Collectable",  0x02,  0x33, None,       'Rupee (1)',                             ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
+    ("Jabu Jabus Belly MQ Boomerang Room Pot 2",                          ("Collectable",  0x02,  0x34, None,       'Rupee (1)',                             ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
+    
     # Jabu Jabu's Belly shared
     ("Jabu Jabus Belly Barinade Heart",                              ("BossHeart",    0x13,  0x4F, None,                        'Heart Container',                       ("Jabu Jabu's Belly", "Vanilla", "Master Quest",))),
+    ("Jabu Jabus Belly Barinade Pot 1",                              ("Collectable",     0x13,  0x20, None,                        'Recovery Heart',                   ("Jabu Jabu's Belly", "Vanilla", "Master Quest", "Pot"))),
+    ("Jabu Jabus Belly Barinade Pot 2",                              ("Collectable",     0x13,  0x21, None,                        'Recovery Heart',                   ("Jabu Jabu's Belly", "Vanilla", "Master Quest", "Pot"))),
+    ("Jabu Jabus Belly Barinade Pot 3",                              ("Collectable",     0x13,  0x22, None,                        'Recovery Heart',                   ("Jabu Jabu's Belly", "Vanilla", "Master Quest", "Pot"))),
+    ("Jabu Jabus Belly Barinade Pot 4",                              ("Collectable",     0x13,  0x23, None,                        'Recovery Heart',                   ("Jabu Jabu's Belly", "Vanilla", "Master Quest", "Pot"))),
+    ("Jabu Jabus Belly Barinade Pot 5",                              ("Collectable",     0x13,  0x24, None,                        'Recovery Heart',                   ("Jabu Jabu's Belly", "Vanilla", "Master Quest", "Pot"))),
+    ("Jabu Jabus Belly Barinade Pot 6",                              ("Collectable",     0x13,  0x25, None,                        'Recovery Heart',                   ("Jabu Jabu's Belly", "Vanilla", "Master Quest", "Pot"))),
+    
 
     # Bottom of the Well vanilla
     ("Bottom of the Well Front Left Fake Wall Chest",                ("Chest",        0x08,  0x08, None,                        'Small Key (Bottom of the Well)',        ("Bottom of the Well", "Vanilla",))),
