@@ -1,13 +1,18 @@
 {
     "entrances": {
-
+        "Adult Spawn -> Temple of Time" : {"region" : "Zoras Fountain", "from" : "ZD Behind King Zora"}
     },
     "locations": {
-        "KF Links House Pot" : "Boss Key (Ganons Castle)",
-        "Ganons Tower Pot 4" : "Megaton Hammer",
-        "Ganons Tower Pot 1" : "Bomb Bag",
-        "Ganons Tower Pot 2" : "Bomb Bag",
-        "Ganons Tower Pot 3" : "Bomb Bag",
-        "Dodongos Cavern Last Block Pot 1" : "Light Arrows"
+        "ZF Bottom Freestanding Rupee 1": "Progressive Strength Upgrade",
+        "ZF Bottom Freestanding Rupee 2" : "Megaton Hammer",
+        "ZF Bottom Freestanding Rupee 3" : "Progressive Scale",
+        "ZF Bottom Freestanding Rupee 4" : "Hover Boots",
+        "ZF Bottom Freestanding Rupee 6" : "Bow",
+        "ZF Bottom Freestanding Rupee 7" : "Slingshot",
+        "ZF Bottom Freestanding Rupee 8" : "Rupee (1)",
+        "ZF Bottom Freestanding Rupee 9" : "Rupees (5)",
+        "ZF Bottom Freestanding Rupee 10" : "Rupees (20)",
+        "ZF Bottom Freestanding Rupee 11" : "Rupees (50)",
+        "ZF Bottom Freestanding Rupee 12" : "Gold Skulltula Token"
     }
 }
