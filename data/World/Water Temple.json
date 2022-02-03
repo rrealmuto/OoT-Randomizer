@@ -66,7 +66,7 @@
                 Progressive_Strength_Upgrade and can_play(Zeldas_Lullaby) and 
                 ((Bow and (logic_water_central_bow or Hover_Boots or can_use(Longshot))) or
                     (logic_water_central_bow and Child_Water_Temple and Slingshot and at('Water Temple Middle Water Level', True)))",
-            "Water Temple Central Bow Target Pot 1": "
+            "Water Temple Central Bow Target Pot 2": "
                 Progressive_Strength_Upgrade and can_play(Zeldas_Lullaby) and 
                 ((Bow and (logic_water_central_bow or Hover_Boots or can_use(Longshot))) or
                     (logic_water_central_bow and Child_Water_Temple and Slingshot and at('Water Temple Middle Water Level', True)))",
