@@ -45,7 +45,7 @@
             "Fire Temple MQ GS Big Lava Room Open Door": "True",
             "Fairy Pot": "
                 has_bottle and has_fire_source and (Bow or logic_fire_mq_bk_chest) and
-                (can_use(Hookshot) or logic_fire_song_of_time)",
+                (can_use(Hookshot) or logic_fire_song_of_time)"
 
         },
         "exits": {
