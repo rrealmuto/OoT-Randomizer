@@ -903,6 +903,14 @@ location_table = OrderedDict([
     ("Bottom of the Well MQ GS Coffin Room",                         ("GS Token",     0x08,  0x04, None,                        'Gold Skulltula Token',                  ("Bottom of the Well", "Master Quest", "Skulltulas",))),
     ("Bottom of the Well MQ GS West Inner Room",                     ("GS Token",     0x08,  0x02, None,                        'Gold Skulltula Token',                  ("Bottom of the Well", "Master Quest", "Skulltulas",))),
     ("Bottom of the Well MQ GS Basement",                            ("GS Token",     0x08,  0x01, None,                        'Gold Skulltula Token',                  ("Bottom of the Well", "Master Quest", "Skulltulas",))),
+    # Bottom of the Well MQ Pots
+    ("Bottom of the Well MQ Center Room Right Pot 1", ("Collectable", 0x08, 0x29, None, 'Recovery Heart', ("Bottom of the Well", "Master Quest", "Pot"))),
+    ("Bottom of the Well MQ Center Room Right Pot 2", ("Collectable", 0x08, 0x27, None, 'Arrows (10)', ("Bottom of the Well", "Master Quest", "Pot"))),
+    ("Bottom of the Well MQ Center Room Right Pot 3", ("Collectable", 0x08, 0x28, None, 'Bombs (5)', ("Bottom of the Well", "Master Quest", "Pot"))),
+    #("Bottom of the Well MQ Perimiter Behind Gate Bot", ("Collectable", 0x08, 0x2A, None, 'N/A', ("Bottom of the Well", "Master Quest", "Pot"))),
+    ("Bottom of the Well MQ East Inner Room Pot 1", ("Collectable", 0x08, 0x26, None, 'Recovery Heart', ("Bottom of the Well", "Master Quest", "Pot"))),
+    ("Bottom of the Well MQ East Inner Room Pot 2", ("Collectable", 0x08, 0x25, None, 'Recovery Heart', ("Bottom of the Well", "Master Quest", "Pot"))),
+    ("Bottom of the Well MQ East Inner Room Pot 3", ("Collectable", 0x08, 0x24, None, 'Recovery Heart', ("Bottom of the Well", "Master Quest", "Pot"))),
 
     # Forest Temple vanilla
     ("Forest Temple First Room Chest",                               ("Chest",        0x03,  0x03, None,                        'Small Key (Forest Temple)',             ("Forest Temple", "Vanilla",))),
@@ -968,14 +976,35 @@ location_table = OrderedDict([
     ("Forest Temple MQ Courtyard Recovery Heart 3",                  ("Collectable",  0x03,  0x2F, None,                     'Recovery Heart',                        ("Forest Temple", "Master Quest", "Freestanding"))),
     ("Forest Temple MQ Well Recovery Heart 1",                       ("Collectable",  0x03,  0x38, None,                     'Recovery Heart',                        ("Forest Temple", "Master Quest", "Freestanding"))),
     ("Forest Temple MQ Well Recovery Heart 2",                       ("Collectable",  0x03,  0x39, None,                     'Recovery Heart',                        ("Forest Temple", "Master Quest", "Freestanding"))),
-    ("Forest Temple MQ Well Recovery Heart 3",                       ("Collectable",  0x03,  0x3A, None,                     'Recovery Heart',                        ("Forest Temple", "Master Quest", "Freestanding"))),
-    
-    
+    ("Forest Temple MQ Well Recovery Heart 3",                       ("Collectable",  0x03,  0x3A, None,                     'Recovery Heart',                        ("Forest Temple", "Master Quest", "Freestanding"))),  
     ("Forest Temple MQ GS First Hallway",                            ("GS Token",     0x03,  0x02, None,                        'Gold Skulltula Token',                  ("Forest Temple", "Master Quest", "Skulltulas",))),
     ("Forest Temple MQ GS Raised Island Courtyard",                  ("GS Token",     0x03,  0x01, None,                        'Gold Skulltula Token',                  ("Forest Temple", "Master Quest", "Skulltulas",))),
     ("Forest Temple MQ GS Level Island Courtyard",                   ("GS Token",     0x03,  0x04, None,                        'Gold Skulltula Token',                  ("Forest Temple", "Master Quest", "Skulltulas",))),
     ("Forest Temple MQ GS Well",                                     ("GS Token",     0x03,  0x08, None,                        'Gold Skulltula Token',                  ("Forest Temple", "Master Quest", "Skulltulas",))),
     ("Forest Temple MQ GS Block Push Room",                          ("GS Token",     0x03,  0x10, None,                        'Gold Skulltula Token',                  ("Forest Temple", "Master Quest", "Skulltulas",))),
+    # Forest Temple MQ Pots
+    ("Forest Temple MQ Center Room Right Pot 1", ("Collectable", 0x03, 0x20, None, 'Rupees (5)', ("Forest Temple", "Master Quest", "Pot"))),
+    ("Forest Temple MQ Center Room Right Pot 2", ("Collectable", 0x03, 0x22, None, 'Recovery Heart', ("Forest Temple", "Master Quest", "Pot"))),
+    ("Forest Temple MQ Center Room Right Pot 3", ("Collectable", 0x03, 0x24, None, 'Arrows (10)', ("Forest Temple", "Master Quest", "Pot"))),
+    ("Forest Temple MQ Center Room Left Pot 1", ("Collectable", 0x03, 0x21, None, 'Rupees (5)', ("Forest Temple", "Master Quest", "Pot"))),
+    ("Forest Temple MQ Center Room Left Pot 2", ("Collectable", 0x03, 0x23, None, 'Recovery Heart', ("Forest Temple", "Master Quest", "Pot"))),
+    ("Forest Temple MQ Center Room Left Pot 3", ("Collectable", 0x03, 0x25, None, 'Arrows (10)', ("Forest Temple", "Master Quest", "Pot"))),
+    ("Forest Temple MQ Wolfos Room Pot", ("Collectable", 0x03, 0x31, None, 'Recovery Heart', ("Forest Temple", "Master Quest", "Pot"))),
+    #("Forest Temple MQ Wolfos Room Pot 2", ("Collectable", 0x03, 0x32, None, 'N/A', ("Forest Temple", "Master Quest", "Pot"))),
+    ("Forest Temple MQ Upper Stalfos Pot 1", ("Collectable", 0x03, 0x33, None, 'Recovery Heart', ("Forest Temple", "Master Quest", "Pot"))),
+    ("Forest Temple MQ Upper Stalfos Pot 2", ("Collectable", 0x03, 0x34, None, 'Recovery Heart', ("Forest Temple", "Master Quest", "Pot"))),
+    ("Forest Temple MQ Upper Stalfos Pot 3", ("Collectable", 0x03, 0x35, None, 'Recovery Heart', ("Forest Temple", "Master Quest", "Pot"))),
+    ("Forest Temple MQ Upper Stalfos Pot 4", ("Collectable", 0x03, 0x36, None, 'Recovery Heart', ("Forest Temple", "Master Quest", "Pot"))),
+    ("Forest Temple MQ Blue Poe Room Pot 1", ("Collectable", 0x03, 0x26, None, 'Recovery Heart', ("Forest Temple", "Master Quest", "Pot"))),
+    ("Forest Temple MQ Blue Poe Room Pot 2", ("Collectable", 0x03, 0x27, None, 'Arrows (10)', ("Forest Temple", "Master Quest", "Pot"))),
+    ("Forest Temple MQ Blue Poe Room Pot 3", ("Collectable", 0x03, 0x28, None, 'Arrows (10)', ("Forest Temple", "Master Quest", "Pot"))),
+    ("Forest Temple MQ Green Poe Room Pot 1", ("Collectable", 0x03, 0x2B, None, 'Recovery Heart', ("Forest Temple", "Master Quest", "Pot"))),
+    ("Forest Temple MQ Green Poe Room Pot 2", ("Collectable", 0x03, 0x2C, None, 'Arrows (10)', ("Forest Temple", "Master Quest", "Pot"))),
+    ("Forest Temple MQ Basement Pot 1", ("Collectable", 0x03, 0x38, None, 'Recovery Heart', ("Forest Temple", "Master Quest", "Pot"))),
+    ("Forest Temple MQ Basement Pot 2", ("Collectable", 0x03, 0x39, None, 'Recovery Heart', ("Forest Temple", "Master Quest", "Pot"))),
+    ("Forest Temple MQ Basement Pot 3", ("Collectable", 0x03, 0x3A, None, 'Bombs (5)', ("Forest Temple", "Master Quest", "Pot"))),
+    ("Forest Temple MQ Basement Pot 4", ("Collectable", 0x03, 0x3B, None, 'Arrows (5)', ("Forest Temple", "Master Quest", "Pot"))),
+    
     # Forest Temple shared
     ("Forest Temple Phantom Ganon Heart",                            ("BossHeart",    0x14,  0x4F, None,                        'Heart Container',                       ("Forest Temple", "Vanilla", "Master Quest",))),
 
@@ -1045,6 +1074,36 @@ location_table = OrderedDict([
     ("Fire Temple MQ GS Fire Wall Maze Center",                      ("GS Token",     0x04,  0x08, None,                        'Gold Skulltula Token',                  ("Fire Temple", "Master Quest", "Skulltulas",))),
     ("Fire Temple MQ GS Fire Wall Maze Side Room",                   ("GS Token",     0x04,  0x10, None,                        'Gold Skulltula Token',                  ("Fire Temple", "Master Quest", "Skulltulas",))),
     ("Fire Temple MQ GS Above Fire Wall Maze",                       ("GS Token",     0x04,  0x02, None,                        'Gold Skulltula Token',                  ("Fire Temple", "Master Quest", "Skulltulas",))),
+    # Fire Temple MQ Pots
+    ("Fire Temple MQ First Room Pot 1", ("Collectable", 0x04, 0x2B, None, 'Rupees (5)', ("Fire Temple", "Master Quest", "Pot"))),
+    ("Fire Temple MQ First Room Pot 1", ("Collectable", 0x04, 0x2C, None, 'Rupees (5)', ("Fire Temple", "Master Quest", "Pot"))),
+    ("Fire Temple MQ Big Lava Room Left Pot", ("Collectable", 0x04, 0x20, None, 'Arrows (10)', ("Fire Temple", "Master Quest", "Pot"))),
+    ("Fire Temple MQ Big Lava Room Right Pot", ("Collectable", 0x04, 0x22, None, 'Rupees (5)', ("Fire Temple", "Master Quest", "Pot"))),
+    ("Fire Temple MQ Big Lava Room Alcove Pot", ("Collectable", 0x04, 0x21, None, 'Rupees (5)', ("Fire Temple", "Master Quest", "Pot"))),
+    ("Fire Temple MQ Near Boss Pot 1", ("Collectable", 0x04, 0x2D, None, 'Rupees (5)', ("Fire Temple", "Master Quest", "Pot"))),
+    ("Fire Temple MQ Near Boss Pot 2", ("Collectable", 0x04, 0x2E, None, 'Arrows (20)', ("Fire Temple", "Master Quest", "Pot"))),
+    ("Fire Temple MQ Narrow Path Room Pot 1", ("Collectable", 0x04, 0x3A, None, 'Arrows (10)', ("Fire Temple", "Master Quest", "Pot"))),
+    ("Fire Temple MQ Narrow Path Room Pot 2", ("Collectable", 0x04, 0x3B, None, 'Bombs (5)', ("Fire Temple", "Master Quest", "Pot"))),
+    #("Fire Temple MQ Narrow Path Room Pot 3", ("Collectable", 0x04, 0x39, None, 'N/A', ("Fire Temple", "Master Quest", "Pot")))
+    ("Fire Temple MQ Flame Maze Right Pot 1", ("Collectable", 0x04, 0x23, None, 'Bombs (5)', ("Fire Temple", "Master Quest", "Pot"))),
+    ("Fire Temple MQ Flame Maze Right Pot 2", ("Collectable", 0x04, 0x24, None, 'Recovery Heart', ("Fire Temple", "Master Quest", "Pot"))),
+    ("Fire Temple MQ Flame Maze Right Pot 3", ("Collectable", 0x04, 0x26, None, 'Bombs (5)', ("Fire Temple", "Master Quest", "Pot"))),
+    ("Fire Temple MQ Flame Maze Right Pot 4", ("Collectable", 0x04, 0x25, None, 'Recovery Heart', ("Fire Temple", "Master Quest", "Pot"))),
+    #("Fire Temple MQ Flame Maze Left Pot 2", ("Collectable", 0x04, 0x27, None, 'N/A', ("Fire Temple", "Master Quest", "Pot")))
+    ("Fire Temple MQ Flame Maze Left Pot 1", ("Collectable", 0x04, 0x28, None, 'Bombs (5)', ("Fire Temple", "Master Quest", "Pot"))),
+    ("Fire Temple MQ Shoot Torch On Wall Room Pot 1", ("Collectable", 0x04, 0x29, None, 'Arrows (10)', ("Fire Temple", "Master Quest", "Pot"))),
+    ("Fire Temple MQ Shoot Torch On Wall Room Pot 2", ("Collectable", 0x04, 0x2A, None, 'Arrows (10)', ("Fire Temple", "Master Quest", "Pot"))),
+    ("Fire Temple MQ Iron Knuckle Room Pot 1", ("Collectable", 0x04, 0x30, None, 'Bombs (5)', ("Fire Temple", "Master Quest", "Pot"))),
+    ("Fire Temple MQ Iron Knuckle Room Pot 2", ("Collectable", 0x04, 0x32, None, 'Bombs (5)', ("Fire Temple", "Master Quest", "Pot"))),
+    ("Fire Temple MQ Iron Knuckle Room Pot 3", ("Collectable", 0x04, 0x33, None, 'Bombs (5)', ("Fire Temple", "Master Quest", "Pot"))),
+    ("Fire Temple MQ Iron Knuckle Room Pot 4", ("Collectable", 0x04, 0x34, None, 'Bombs (5)', ("Fire Temple", "Master Quest", "Pot"))),
+    #("Fire Temple MQ Iron Knuckle Room Pot 5", ("Collectable", 0x04, 0x2F, None, 'N/A', ("Fire Temple", "Master Quest", "Pot")))
+    #("Fire Temple MQ Iron Knuckle Room Pot 6", ("Collectable", 0x04, 0x35, None, 'N/A', ("Fire Temple", "Master Quest", "Pot")))
+    #("Fire Temple MQ Iron Knuckle Room Pot 7", ("Collectable", 0x04, 0x36, None, 'N/A', ("Fire Temple", "Master Quest", "Pot")))
+    #("Fire Temple MQ Iron Knuckle Room Pot 8", ("Collectable", 0x04, 0x31, None, 'N/A', ("Fire Temple", "Master Quest", "Pot")))
+    ("Fire Temple MQ Boss Key Chest Room Pot 1", ("Collectable", 0x04, 0x38, None, 'Rupees (5)', ("Fire Temple", "Master Quest", "Pot"))),
+    #("Fire Temple MQ Boss Key Chest Room Pot 2", ("Collectable", 0x04, 0x37, None, 'N/A', ("Fire Temple", "Master Quest", "Pot")))
+    
     # Fire Temple shared
     ("Fire Temple Volvagia Heart",                                   ("BossHeart",    0x15,  0x4F, None,                        'Heart Container',                       ("Fire Temple", "Vanilla", "Master Quest",))),
 
@@ -1103,6 +1162,40 @@ location_table = OrderedDict([
     ("Water Temple MQ GS River",                                     ("GS Token",     0x05,  0x02, None,                        'Gold Skulltula Token',                  ("Water Temple", "Master Quest", "Skulltulas",))),
     ("Water Temple MQ GS Freestanding Key Area",                     ("GS Token",     0x05,  0x08, None,                        'Gold Skulltula Token',                  ("Water Temple", "Master Quest", "Skulltulas",))),
     ("Water Temple MQ GS Triple Wall Torch",                         ("GS Token",     0x05,  0x10, None,                        'Gold Skulltula Token',                  ("Water Temple", "Master Quest", "Skulltulas",))),
+    
+    # Water Temple MQ Pots
+    ("Water Temple MQ Triple Wall Torch Pot 1", ("Collectable", 0x05, 0x29, None, 'Arrows (10)', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Temple MQ Triple Wall Torch Pot 2", ("Collectable", 0x05, 0x35, None, 'Arrows (10)', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Temple MQ Triple Wall Torch Pot 3", ("Collectable", 0x05, 0x24, None, 'Bombs (5)', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Temple MQ Triple Wall Torch Pot 4", ("Collectable", 0x05, 0x21, None, 'Bombs (5)', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Temple MQ Storage Room Pot 1", ("Collectable", 0x05, 0x20, None, 'Recovery Heart', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Temple MQ Storage Room Pot 2", ("Collectable", 0x05, 0x28, None, 'Recovery Heart', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Temple MQ Storage Room Pot 3", ("Collectable", 0x05, 0x27, None, 'Recovery Heart', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Tempe MQ Before Dark Link Top Pot 1", ("Collectable", 0x05, 0x2B, None, 'Rupees (5)', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Tempe MQ Before Dark Link Top Pot 2", ("Collectable", 0x05, 0x2C, None, 'Rupees (5)', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Tempe MQ Before Dark Link Lower Pot", ("Collectable", 0x05, 0x2D, None, 'Deku Nuts (5)', ("Water Temple", "Master Quest", "Pot"))),
+    #("Water Tempe MQ Before Dark Link Lower Pot 2", ("Collectable", 0x05, 0x2E, None, 'N/A', ("Water Temple", "Master Quest", "Pot")))
+    #("Water Tempe MQ Before Dark Link Lower Pot 3", ("Collectable", 0x05, 0x30, None, 'N/A', ("Water Temple", "Master Quest", "Pot")))
+    ("Water Tempe MQ Room After Dark Link Pot", ("Collectable", 0x05, 0x32, None, 'Arrows (20)', ("Water Temple", "Master Quest", "Pot"))),
+    #("Water Tempe MQ Room After Dark Link Pot 2", ("Collectable", 0x05, 0x33, None, 'N/A', ("Water Temple", "Master Quest", "Pot")))
+    ("Water Temple MQ Boss Key Chest Room Pot", ("Collectable", 0x05, 0x34, None, 'Rupees (5)', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Temple MQ Before Upper Water Switch Pot 1", ("Collectable", 0x05, 0x38, None, 'Recovery Heart', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Temple MQ Before Upper Water Switch Pot 2", ("Collectable", 0x05, 0x39, None, 'Recovery Heart', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Temple MQ Before Upper Water Switch Pot 3", ("Collectable", 0x05, 0x3A, None, 'Recovery Heart', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Temple MQ Dodongo Orgy Room Pot 1", ("Collectable", 0x05, 0x3C, None, 'Bombs (5)', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Temple MQ Dodongo Orgy Room Pot 2", ("Collectable", 0x05, 0x3B, None, 'Bombs (5)', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Temple MQ Freestanding Item Room Pot", ("Collectable", 0x05, 0x3E, None, 'Rupees (5)', ("Water Temple", "Master Quest", "Pot"))),
+    #("Water Temple MQ Freestanding Item Room Pot 2", ("Collectable", 0x05, 0x3D, None, 'N/A', ("Water Temple", "Master Quest", "Pot")))
+    ("Water Temple MQ L1 Torch Pot 1", ("Collectable", 0x05, 0x25, None, 'Rupees (5)', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Temple MQ L1 Torch Pot 2", ("Collectable", 0x05, 0x26, None, 'Rupees (5)', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Temple MQ Lizalfos Hallway Pot 1", ("Collectable", 0x05, 0x22, None, 'Rupees (20)', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Temple MQ Lizalfos Hallway Pot 2", ("Collectable", 0x05, 0x23, None, 'Arrows (10)', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Temple MQ Lizalfos Hallway Pot 3", ("Collectable", 0x05, 0x2A, None, 'Rupees (5)', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Temple MQ Lizalfos Hallway Gate Pot 1", ("Collectable", 0x05, 0x3F, None, 'Recovery Heart', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Temple MQ Lizalfos Hallway Gate Pot 2", ("Collectable", 0x05, 0x37, None, 'Recovery Heart', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Temple MQ River Pot 1", ("Collectable", 0x05, 0x2F, None, 'Arrows (10)', ("Water Temple", "Master Quest", "Pot"))),
+    #("Water Temple MQ River Pot 2", ("Collectable", 0x05, 0x31, None, 'N/A', ("Water Temple", "Master Quest", "Pot")))
+    
     # Water Temple shared
     ("Water Temple Morpha Heart",                                    ("BossHeart",    0x16,  0x4F, None,                        'Heart Container',                       ("Water Temple", "Vanilla", "Master Quest",))),
 
@@ -1196,6 +1289,31 @@ location_table = OrderedDict([
     ("Shadow Temple MQ GS After Wind",                               ("GS Token",     0x07,  0x08, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Master Quest", "Skulltulas",))),
     ("Shadow Temple MQ GS After Ship",                               ("GS Token",     0x07,  0x10, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Master Quest", "Skulltulas",))),
     ("Shadow Temple MQ GS Near Boss",                                ("GS Token",     0x07,  0x04, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Master Quest", "Skulltulas",))),
+    # Shadow Temple MQ Pots
+    ("Shadow Temple MQ Whispering Walls Pot 1", ("Collectable", 0x07, 0x38, None, 'Recovery Heart', ("Shadow Temple", "Master Quest", "Pot"))),
+    ("Shadow Temple MQ Whispering Walls Pot 2", ("Collectable", 0x07, 0x39, None, 'Recovery Heart', ("Shadow Temple", "Master Quest", "Pot"))),
+    #("Shadow Temple MQ Whispering Walls Flying Pot 1", ("Collectable", 0x07, 0x1, None, 'N/A', ("Shadow Temple", "Master Quest", "Pot"))),
+    #("Shadow Temple MQ Whispering Walls Flying Pot 2", ("Collectable", 0x07, 0x1, None, 'N/A', ("Shadow Temple", "Master Quest", "Pot"))),
+    #("Shadow Temple MQ Whispering Walls Flying Pot 3", ("Collectable", 0x07, 0x1, None, 'N/A', ("Shadow Temple", "Master Quest", "Pot"))),
+    #("Shadow Temple MQ Whispering Walls Flying Pot 4", ("Collectable", 0x07, 0x1, None, 'N/A', ("Shadow Temple", "Master Quest", "Pot"))),
+    ("Shadow Temple MQ Compass Room Pot 1", ("Collectable", 0x07, 0x2C, None, 'Recovery Heart', ("Shadow Temple", "Master Quest", "Pot"))),
+    ("Shadow Temple MQ Compass Room Pot 2", ("Collectable", 0x07, 0x27, None, 'Recovery Heart', ("Shadow Temple", "Master Quest", "Pot"))),
+    ("Shadow Temple MQ Falling Spikes Lower Pot 1", ("Collectable", 0x07, 0x24, None, 'Recovery Heart', ("Shadow Temple", "Master Quest", "Pot"))),
+    ("Shadow Temple MQ Falling Spikes Lower Pot 2", ("Collectable", 0x07, 0x25, None, 'Bombs (5)', ("Shadow Temple", "Master Quest", "Pot"))),
+    ("Shadow Temple MQ Falling Spikes Upper Pot 1", ("Collectable", 0x07, 0x2B, None, 'Recovery Heart', ("Shadow Temple", "Master Quest", "Pot"))),
+    ("Shadow Temple MQ Falling Spikes Upper Pot 2", ("Collectable", 0x07, 0x2D, None, 'Recovery Heart', ("Shadow Temple", "Master Quest", "Pot"))),
+    ("Shadow Temple MQ After Wind Pot 1", ("Collectable", 0x07, 0x2E, None, 'Rupees (5)', ("Shadow Temple", "Master Quest", "Pot"))),
+    ("Shadow Temple MQ After Wind Pot 2", ("Collectable", 0x07, 0x32, None, 'Deku Nuts (5)', ("Shadow Temple", "Master Quest", "Pot"))),
+    #("Shadow Temple MQ After Wind Flying Pot 1", ("Collectable", 0x07, 0x0, None, 'N/A', ("Shadow Temple", "Master Quest", "Pot"))),
+    #("Shadow Temple MQ After Wind Flying Pot 2", ("Collectable", 0x07, 0x1, None, 'N/A', ("Shadow Temple", "Master Quest", "Pot"))),
+    ("Shadow Temple MQ After Boat Pot 1", ("Collectable", 0x07, 0x3B, None, 'Arrows (10)', ("Shadow Temple", "Master Quest", "Pot"))),
+    ("Shadow Temple MQ After Boat Pot 2", ("Collectable", 0x07, 0x38, None, 'Arrows (10)', ("Shadow Temple", "Master Quest", "Pot"))),
+    ("Shadow Temple MQ Near Boss Pot 1", ("Collectable", 0x07, 0x3E, None, 'Rupees (5)', ("Shadow Temple", "Master Quest", "Pot"))),
+    ("Shadow Temple MQ Near Boss Pot 2", ("Collectable", 0x07, 0x3D, None, 'Arrows (20)', ("Shadow Temple", "Master Quest", "Pot"))),
+    ("Shadow Temple MQ Dead Hand II Pot 1", ("Collectable", 0x07, 0x34, None, 'Arrows (20)', ("Shadow Temple", "Master Quest", "Pot"))),
+    ("Shadow Temple MQ Dead Hand II Pot 2", ("Collectable", 0x07, 0x33, None, 'Bombs (5)', ("Shadow Temple", "Master Quest", "Pot"))),
+    ("Shadow Temple MQ Spike Walls Pot", ("Collectable", 0x07, 0x26, None, 'Rupees (5)', ("Shadow Temple", "Master Quest", "Pot"))),
+    
     # Shadow Temple shared
     ("Shadow Temple Bongo Bongo Heart",                              ("BossHeart",    0x18,  0x4F, None,                        'Heart Container',                       ("Shadow Temple", "Vanilla", "Master Quest",))),
 
@@ -1292,6 +1410,40 @@ location_table = OrderedDict([
     ("Spirit Temple Big Mirror Flying Pot 4", ("Collectable", 0x6, 0x3C, None, 'Recovery Heart', ("Spirit Temple", "Vanilla", "Pot"))),
     ("Spirit Temple Big Mirror Flying Pot 5", ("Collectable", 0x6, 0x3D, None, 'Recovery Heart', ("Spirit Temple", "Vanilla", "Pot"))),
     ("Spirit Temple Big Mirror Flying Pot 6", ("Collectable", 0x6, 0x3E, None, 'Recovery Heart', ("Spirit Temple", "Vanilla", "Pot"))),
+    
+    # Spirit Temple MQ Pots
+    ("Spirit Temple MQ Lobby Pot 1", ("Collectable", 0x06, 0x31, None, 'Bombs (5)', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ Lobby Pot 2", ("Collectable", 0x06, 0x21, None, 'Recovery Heart', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ Lobby Pot 3", ("Collectable", 0x06, 0x22, None, 'Rupees (5)', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ Lobby Pot 4", ("Collectable", 0x06, 0x32, None, 'Recovery Heart', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ Child Torch Slugs Room Pot", ("Collectable", 0x06, 0x22, None, 'Bombs (5)', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ Child 3 Gibdo Room Pot 1", ("Collectable", 0x06, 0x33, None, 'Rupees (5)', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ Child 3 Gibdo Room Pot 2", ("Collectable", 0x06, 0x34, None, 'Recovery Heart', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ Child Stalfos Fight Pot 1", ("Collectable", 0x06, 0x30, None, 'Rupees (5)', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ Child Stalfos Fight Pot 2", ("Collectable", 0x06, 0x2F, None, 'Recovery Heart', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ Child Stalfos Fight Pot 3", ("Collectable", 0x06, 0x2E, None, 'Recovery Heart', ("Spirit Temple", "Master Quest", "Pot"))),
+    #("Spirit Temple MQ Child Stalfos Fight Pot 4", ("Collectable", 0x06, 0x2D, None, 'N/A', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ Child Climb Pot", ("Collectable", 0x06, 0x23, None, 'Rupees (5)', ("Spirit Temple", "Master Quest", "Pot"))),
+    #("Spirit Temple MQ Central Chamber Flying Pot 1", ("Collectable", 0x06, 0x3F, None, 'N/A', ("Spirit Temple", "Master Quest", "Pot"))),
+    #("Spirit Temple MQ Central Chamber Flying Pot 2", ("Collectable", 0x06, 0x3F, None, 'N/A', ("Spirit Temple", "Master Quest", "Pot"))),
+    #("Spirit Temple MQ Central Chamber Flying Pot 3", ("Collectable", 0x06, 0x3F, None, 'N/A', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ Central Chamber Floor Pot 1", ("Collectable", 0x06, 0x35, None, 'Rupees (5)', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ Central Chamber Floor Pot 2", ("Collectable", 0x06, 0x27, None, 'Recovery Heart', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ Central Chamber Floor Pot 3", ("Collectable", 0x06, 0x29, None, 'Rupees (5)', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ Central Chamber Top Left Pot 1", ("Collectable", 0x06, 0x24, None, 'Rupees (5)', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ Central Chamber Top Left Pot 2", ("Collectable", 0x06, 0x26, None, 'Arrows (5)', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ Sun Block Room Pot 1", ("Collectable", 0x06, 0x2A, None, 'Rupees (5)', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ Sun Block Room Pot 2", ("Collectable", 0x06, 0x2B, None, 'Recovery Heart', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ Below 4 Wallmasters Pot 1", ("Collectable", 0x06, 0x38, None, 'Recovery Heart', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ Below 4 Wallmasters Pot 2", ("Collectable", 0x06, 0x37, None, 'Recovery Heart', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ Shifting Wall Pot 1", ("Collectable", 0x06, 0x1, None, 'Recovery Heart', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ Shifting Wall Pot 2", ("Collectable", 0x06, 0x2, None, 'Recovery Heart', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ After Shifting Wall Room Pot 1", ("Collectable", 0x06, 0x39, None, 'Bombs (5)', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ After Shifting Wall Room Pot 2", ("Collectable", 0x06, 0x3A, None, 'Recovery Heart', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ Lower Boss Platform Pot 1", ("Collectable", 0x06, 0x3E, None, 'Recovery Heart', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ Lower Boss Platform Pot 2", ("Collectable", 0x06, 0x3C, None, 'Recovery Heart', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ Lower Boss Platform Pot 3", ("Collectable", 0x06, 0x3D, None, 'Recovery Heart', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ Lower Boss Platform Pot 4", ("Collectable", 0x06, 0x3B, None, 'Rupees (5)', ("Spirit Temple", "Master Quest", "Pot"))),
 
     # Ice Cavern vanilla
     ("Ice Cavern Map Chest",                                         ("Chest",        0x09,  0x00, None,                        'Map (Ice Cavern)',                      ("Ice Cavern", "Vanilla",))),
@@ -1327,6 +1479,18 @@ location_table = OrderedDict([
     ("Ice Cavern MQ GS Red Ice",                                     ("GS Token",     0x09,  0x02, None,                        'Gold Skulltula Token',                  ("Ice Cavern", "Master Quest", "Skulltulas",))),
     ("Ice Cavern MQ GS Ice Block",                                   ("GS Token",     0x09,  0x04, None,                        'Gold Skulltula Token',                  ("Ice Cavern", "Master Quest", "Skulltulas",))),
     ("Ice Cavern MQ GS Scarecrow",                                   ("GS Token",     0x09,  0x01, None,                        'Gold Skulltula Token',                  ("Ice Cavern", "Master Quest", "Skulltulas",))),
+    # Ice Cavern MQ Pots
+    ("Ice Cavern MQ First Hall Pot", ("Collectable", 0x09, 0x20, None, 'Recovery Heart', ("Ice Cavern", "Master Quest", "Pot"))),
+    ("Ice Cavern MQ Tektite Room Pot 1", ("Collectable", 0x09, 0x26, None, 'Recovery Heart', ("Ice Cavern", "Master Quest", "Pot"))),
+    ("Ice Cavern MQ Tektite Room Pot 2", ("Collectable", 0x09, 0x25, None, 'Recovery Heart', ("Ice Cavern", "Master Quest", "Pot"))),
+    ("Ice Cavern MQ Center Room Pot 1", ("Collectable", 0x09, 0x28, None, 'Rupees (5)', ("Ice Cavern", "Master Quest", "Pot"))),
+    ("Ice Cavern MQ Center Room Pot 2", ("Collectable", 0x09, 0x29, None, 'Recovery Heart', ("Ice Cavern", "Master Quest", "Pot"))),
+    #("Ice Cavern MQ Center Room Pot 3", ("Collectable", 0x09, 0x2C, None, 'N/A', ("Ice Cavern", "Master Quest", "Pot"))),
+    #("Ice Cavern MQ Center Room Pot 4", ("Collectable", 0x09, 0x27, None, 'N/A', ("Ice Cavern", "Master Quest", "Pot"))),
+    ("Ice Cavern MQ Near End Pot", ("Collectable", 0x09, 0x2B, None, 'Rupees (5)', ("Ice Cavern", "Master Quest", "Pot"))),
+    #("Ice Cavern MQ Near End Pot 2", ("Collectable", 0x09, 0x2A, None, 'N/A', ("Ice Cavern", "Master Quest", "Pot"))),
+    ("Ice Cavern MQ Compass Room Pot 1", ("Collectable", 0x09, 0x36, None, 'Bombs (5)', ("Ice Cavern", "Master Quest", "Pot"))),
+    ("Ice Cavern MQ Compass Room Pot 2", ("Collectable", 0x09, 0x37, None, 'Bombs (5)', ("Ice Cavern", "Master Quest", "Pot"))),
 
     # Gerudo Training Ground vanilla
     ("Gerudo Training Ground Lobby Left Chest",                      ("Chest",        0x0B,  0x13, None,                        'Rupees (5)',                            ("Gerudo Training Ground", "Vanilla",))),
@@ -1437,6 +1601,21 @@ location_table = OrderedDict([
     ("Ganons Castle MQ Deku Scrub Center",                           ("NPC",          0x0D,  0x33, None,                        'Buy Arrows (30)',                       ("Ganon's Castle", "Master Quest", "Deku Scrub",))),
     ("Ganons Castle MQ Deku Scrub Center-Right",                     ("NPC",          0x0D,  0x39, None,                        'Buy Red Potion [30]',                   ("Ganon's Castle", "Master Quest", "Deku Scrub",))),
     ("Ganons Castle MQ Deku Scrub Right",                            ("NPC",          0x0D,  0x30, None,                        'Buy Deku Nut (5)',                      ("Ganon's Castle", "Master Quest", "Deku Scrub",))),
+    # Ganon's Castle MQ Pots
+    ("Ganons Castle MQ Water Trial Pot 1", ("Collectable", 0x0D, 0x39, None, 'Recovery Heart', ("Ganon's Castle", "Master Quest", "Pot"))),
+    ("Ganons Castle MQ Water Trial Pot 2", ("Collectable", 0x0D, 0x3A, None, 'Arrows (10)', ("Ganon's Castle", "Master Quest", "Pot"))),
+    ("Ganons Castle MQ Forest Trial Pot 1", ("Collectable", 0x0D, 0x35, None, 'Recovery Heart', ("Ganon's Castle", "Master Quest", "Pot"))),
+    ("Ganons Castle MQ Forest Trial Pot 2", ("Collectable", 0x0D, 0x36, None, 'Rupees (5)', ("Ganon's Castle", "Master Quest", "Pot"))),
+    ("Ganons Castle MQ Light Trial Pot 1", ("Collectable", 0x0D, 0x3B, None, 'Rupees (5)', ("Ganon's Castle", "Master Quest", "Pot"))),
+    ("Ganons Castle MQ Light Trial Pot 2", ("Collectable", 0x0D, 0x3C, None, 'Recovery Heart', ("Ganon's Castle", "Master Quest", "Pot"))),
+    ("Ganons Castle MQ Shadow Trial Pot 1", ("Collectable", 0x0D, 0x32, None, 'Rupees (5)', ("Ganon's Castle", "Master Quest", "Pot"))),
+    ("Ganons Castle MQ Shadow Trial Pot 2", ("Collectable", 0x0D, 0x38, None, 'Arrows (10)', ("Ganon's Castle", "Master Quest", "Pot"))),
+    ("Ganons Castle MQ Fire Trial Pot 1", ("Collectable", 0x0D, 0x31, ([0x325bd9c+14], [0x62]), 'Rupees (5)', ("Ganon's Castle", "Master Quest", "Pot"))),
+    ("Ganons Castle MQ Fire Trial Pot 2", ("Collectable", 0x0D, 0x37, None, 'Recovery Heart', ("Ganon's Castle", "Master Quest", "Pot"))),
+    ("Ganons Castle MQ Spirit Trial Pot 1", ("Collectable", 0x0D, 0x34, None, 'Rupees (5)', ("Ganon's Castle", "Master Quest", "Pot"))),
+    ("Ganons Castle MQ Spirit Trial Pot 2", ("Collectable", 0x0D, 0x33, None, 'Deku Nuts (5)', ("Ganon's Castle", "Master Quest", "Pot"))),
+
+
     # Ganon's Castle shared
     ("Ganons Tower Boss Key Chest",                                  ("Chest",        0x0A,  0x0B, None,                        'Boss Key (Ganons Castle)',              ("Ganon's Castle", "Vanilla", "Master Quest",))),
 
