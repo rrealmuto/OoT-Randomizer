@@ -137,7 +137,7 @@
         "locations": {
             "Shadow Temple After Boat Freestanding Recovery Heart Upper 1" : "can_use(Distant_Scarecrow)",
             "Shadow Temple After Boat Freestanding Recovery Heart Upper 2" : "can_use(Distant_Scarecrow) ",
-            "Shadow Temple After Boat Freestanding Recovery Heart Lower" : "can_play(Song_of_Time) or can_use(Distant_Scarecrow)",
+            "Shadow Temple After Boat Freestanding Recovery Heart Lower" : "can_use(Distant_Scarecrow) or ((Bow or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts) and can_play(Song_of_Time))",
             "Shadow Temple Spike Walls Left Chest": "can_use(Dins_Fire)",
             "Shadow Temple Boss Key Chest": "can_use(Dins_Fire)",
             "Shadow Temple Spike Walls Pot": "True",
