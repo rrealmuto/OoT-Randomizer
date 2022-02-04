@@ -327,7 +327,7 @@ location_table = OrderedDict([
     ("Graveyard Heart Piece Grave Chest",                            ("Chest",        0x3F,  0x00, None,                        'Piece of Heart',                        ("the Graveyard", "Kakariko",))),
     ("Graveyard Royal Familys Tomb Chest",                           ("Chest",        0x41,  0x00, None,                        'Bombs (5)',                             ("the Graveyard", "Kakariko",))),
     ("Graveyard Freestanding PoH",                                   ("Collectable",  0x53,  0x04, None,                        'Piece of Heart',                        ("the Graveyard", "Kakariko",))),
-    ("Graveyard Dampe Gravedigging Tour",                            ("Collectable",  0x53,  0x08, None,                        'Piece of Heart',                        ("the Graveyard", "Kakariko",))),
+    ("Graveyard Dampe Gravedigging Tour",                            ("Collectable",  0x53,  0x08, None,                        'Piece of Heart',                        ("the Graveyard", "Kakariko", "Drop"))),
     ("Graveyard Dampe Race Rupee 1",                                 ("Collectable",  0x48,  0x38, None, 'Rupee (1)',                             ("the Graveyard", "Kakariko", "Freestanding",))),
     ("Graveyard Dampe Race Rupee 2",                                 ("Collectable",  0x48,  0x39, None, 'Rupee (1)',                             ("the Graveyard", "Kakariko", "Freestanding",))),
     ("Graveyard Dampe Race Rupee 3",                                 ("Collectable",  0x48,  0x3A, None, 'Rupee (1)',                             ("the Graveyard", "Kakariko", "Freestanding",))),
