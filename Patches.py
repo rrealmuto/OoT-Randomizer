@@ -1011,7 +1011,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         save_context.write_permanent_flag(Scenes.DESERT_COLOSSUS, FlagType.SWITCH, 0x1, 0x18) # Plant bean
         save_context.write_permanent_flag(Scenes.DEATH_MOUNTAIN_TRAIL, FlagType.SWITCH, 0x1, 0x06) # Plant bean
         save_context.write_permanent_flag(Scenes.DEATH_MOUNTAIN_CRATER, FlagType.SWITCH, 0x1, 0x03) # Plant bean
-        save_context.write_bits(0x009B, 0x00) # 0 magic beans available
+        save_context.write_bits(0x009B, 0x0A) # 10 magic beans sold
 
     set_spirit_shortcut_actors(rom) # Change elevator starting position to avoid waiting a half cycle from the temple entrance
 
@@ -1710,9 +1710,6 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         rom.write_bytes(0x33650CA, [0xFE, 0xD3, 0x00, 0x00, 0x00, 0x6E, 0x00, 0x00, 0x4A, 0x34]) # LLR Tower right cow
         rom.write_bytes(0x2C550AE, [0x00, 0x82]) # LLR Stable right cow
         set_cow_id_data(rom, world)
-
-    if world.settings.plant_beans:
-        rom.write_byte(rom.sym('SHUFFLE_BEANS'), 0x00)
 
     if world.settings.shuffle_beans:
         rom.write_byte(rom.sym('SHUFFLE_BEANS'), 0x01)
