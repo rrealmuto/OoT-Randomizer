@@ -7,7 +7,9 @@
         },
         "locations": {
             "Water Temple Morpha Heart": "Boss_Key_Water_Temple and can_use(Longshot)",
-            "Morpha": "Boss_Key_Water_Temple and can_use(Longshot)"
+            "Morpha": "Boss_Key_Water_Temple and can_use(Longshot)",
+            "Water Temple MQ L1 Torch Pot 1": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))",
+            "Water Temple MQ L1 Torch Pot 2": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))"
         },
         "exits": {
             "Lake Hylia": "True",
@@ -25,7 +27,10 @@
             "Water Temple MQ Central Pillar Chest": "
                 can_use(Zora_Tunic) and can_use(Hookshot) and
                 ((logic_water_mq_central_pillar and can_use(Fire_Arrows)) or
-                    (can_use(Dins_Fire) and can_play(Song_of_Time)))"
+                    (can_use(Dins_Fire) and can_play(Song_of_Time)))",
+            "Water Temple MQ Storage Room Pot 1": "can_use(Hookshot)",
+            "Water Temple MQ Storage Room Pot 2": "can_use(Hookshot)",
+            "Water Temple MQ Storage Room Pot 3": "can_use(Hookshot)"
         },
         "exits": {
             "Water Temple Lowered Water Levels": "can_play(Zeldas_Lullaby)"
@@ -40,7 +45,15 @@
                 at('Water Temple Lobby', can_use(Sticks) and has_explosives)",
             "Water Temple MQ Longshot Chest": "can_use(Hookshot)",
             "Water Temple MQ GS Lizalfos Hallway": "can_use(Dins_Fire)",
-            "Water Temple MQ GS Before Upper Water Switch": "can_use(Longshot)"
+            "Water Temple MQ GS Before Upper Water Switch": "can_use(Longshot)",
+            "Water Temple MQ Before Upper Water Switch Pot 1": "can_use(Longshot)",
+            "Water Temple MQ Before Upper Water Switch Pot 2": "can_use(Longshot)",
+            "Water Temple MQ Before Upper Water Switch Pot 3": "can_use(Longshot)",
+            "Water Temple MQ Lizalfos Hallway Pot 1": "True",
+            "Water Temple MQ Lizalfos Hallway Pot 2": "True",
+            "Water Temple MQ Lizalfos Hallway Pot 3": "True",
+            "Water Temple MQ Lizalfos Hallway Gate Pot 1": "can_use(Dins_Fire)",
+            "Water Temple MQ Lizalfos Hallway Gate Pot 1": "can_use(Dins_Fire)"
         }
     },
     {
@@ -48,9 +61,17 @@
         "dungeon": "Water Temple",
         "locations": {
             "Water Temple MQ Boss Key Chest": "
-                (can_use(Zora_Tunic) or logic_fewer_tunic_requirements) and can_use(Dins_Fire) and
+                (can_use(Zora_Tunic) or logic_fewer_tunic_requirements) and has_fire_source and
                 (logic_water_dragon_jump_dive or can_dive or can_use(Iron_Boots))",
             "Water Temple MQ GS River": "True",
+            "Water Tempe MQ Before Dark Link Top Pot 1": "True",
+            "Water Tempe MQ Before Dark Link Top Pot 2": "True",
+            "Water Tempe MQ Before Dark Link Lower Pot": "True",
+            "Water Tempe MQ Room After Dark Link Pot": "True",
+            "Water Temple MQ Boss Key Chest Room Pot": "
+                (can_use(Zora_Tunic) or logic_fewer_tunic_requirements) and can_use(Dins_Fire) and
+                (logic_water_dragon_jump_dive or can_dive or can_use(Iron_Boots))",
+            "Water Temple MQ River Pot 1": "True",
             "Fairy Pot": "has_bottle",
             "Nut Pot": "True"
         },
@@ -68,9 +89,25 @@
                 Hover_Boots or can_use(Scarecrow) or logic_water_north_basement_ledge_jump",
             "Water Temple MQ GS Triple Wall Torch": "
                 can_use(Fire_Arrows) and (Hover_Boots or can_use(Scarecrow))",
+            "Water Temple MQ Triple Wall Torch Pot 1": "
+                can_use(Fire_Arrows) and (Hover_Boots or can_use(Scarecrow))",
+            "Water Temple MQ Triple Wall Torch Pot 2": "
+                can_use(Fire_Arrows) and (Hover_Boots or can_use(Scarecrow))",
+            "Water Temple MQ Triple Wall Torch Pot 3": "
+                can_use(Fire_Arrows) and (Hover_Boots or can_use(Scarecrow))",
+            "Water Temple MQ Triple Wall Torch Pot 4": "
+                can_use(Fire_Arrows) and (Hover_Boots or can_use(Scarecrow))",
             "Water Temple MQ GS Freestanding Key Area": "
                 logic_water_mq_locked_gs or ((Small_Key_Water_Temple, 2) and
-                    (Hover_Boots or can_use(Scarecrow) or logic_water_north_basement_ledge_jump))"
+                    (Hover_Boots or can_use(Scarecrow) or logic_water_north_basement_ledge_jump))",
+            "Water Temple MQ Dodongo Orgy Room Pot 1": "
+                logic_water_mq_locked_gs or ((Small_Key_Water_Temple, 2) and
+                    (Hover_Boots or can_use(Scarecrow) or logic_water_north_basement_ledge_jump))",
+            "Water Temple MQ Dodongo Orgy Room Pot 2": "
+                logic_water_mq_locked_gs or ((Small_Key_Water_Temple, 2) and
+                    (Hover_Boots or can_use(Scarecrow) or logic_water_north_basement_ledge_jump))",
+            "Water Temple MQ Freestanding Item Room Pot": "
+                Hover_Boots or can_use(Scarecrow) or logic_water_north_basement_ledge_jump"
         }
     }
 ]
