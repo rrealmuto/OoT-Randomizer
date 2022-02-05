@@ -533,6 +533,7 @@
             "GV Waterfall Freestanding PoH": "True",
             "GV GS Bean Patch": "can_plant_bugs and can_child_attack",
             "GV Cow": "is_child and can_play(Eponas_Song)",
+            "GV Crate Near Cow" : "is_child",
             "GV Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Bean Plant Fairy": "can_plant_bean and can_play(Song_of_Storms) and has_bottle"
@@ -570,7 +571,8 @@
         "hint": "Gerudo Valley",
         "time_passes": true,
         "locations": {
-            "GV Crate Freestanding PoH": "True"
+            "GV Crate Freestanding PoH": "True",
+            "GV Freestanding PoH Crate Rupee": "True"
         },
         "exits": {
             "GV Lower Stream": "True"

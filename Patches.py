@@ -1466,9 +1466,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Get actor_override locations
         actor_override_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'ActorOverride' ]
         freestanding_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and 'Freestanding' in location.filter_tags]
-        pot_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and 'Pot' in location.filter_tags]
+        pot_crate_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and ('Pot' in location.filter_tags or 'Crate' in location.filter_tags)]
         
-        for location in actor_override_locations + freestanding_locations + pot_locations:
+        for location in actor_override_locations + freestanding_locations + pot_crate_locations:
                 addresses = location.address
                 patch = location.address2
                 if addresses is not None and patch is not None:
