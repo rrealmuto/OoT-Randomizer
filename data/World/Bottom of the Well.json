@@ -63,6 +63,9 @@
             "Bottom of the Well GS West Inner Room": "
                 Boomerang and (logic_lens_botw or can_use(Lens_of_Truth)) and 
                 (Small_Key_Bottom_of_the_Well, 3)",
+            "Bottom of the Well West Inner Room Flying Pot 1": "(logic_lens_botw or can_use(Lens_of_Truth)) and (Small_Key_Bottom_of_the_Well, 3)",
+            "Bottom of the Well West Inner Room Flying Pot 2": "(logic_lens_botw or can_use(Lens_of_Truth)) and (Small_Key_Bottom_of_the_Well, 3)",
+            "Bottom of the Well West Inner Room Flying Pot 3": "(logic_lens_botw or can_use(Lens_of_Truth)) and (Small_Key_Bottom_of_the_Well, 3)",
             "Bottom of the Well GS East Inner Room": "
                 Boomerang and (logic_lens_botw or can_use(Lens_of_Truth)) and 
                 (Small_Key_Bottom_of_the_Well, 3)",

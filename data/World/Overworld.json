@@ -639,6 +639,7 @@
                 is_adult and at_night and 
                 (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or
                     can_use(Hover_Boots) or logic_gerudo_kitchen)",
+            "GF Adult Crate Purple Rupee" : "can_use(Hookshot)",
             "Hideout Break Room Pot 1" : "Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)",
             "Hideout Break Room Pot 2" : "Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)",
             "Hideout 1 Torch Jail Pot 1" : "True",
@@ -793,7 +794,11 @@
             "Market Back Alley": "is_child"
         },
         "locations": {
-            "Market Night Crate Rupee" : "is_child and at_night"
+            "Market Night Crate Red Rupee" : "is_child and at_night",
+            "Market Night Crate Green Rupee 1" : "is_child and at_night",
+            "Market Night Crate Green Rupee 2" : "is_child and at_night",
+            "Market Night Crate Green Rupee 3" : "is_child and at_night",
+            "Market Richards House Crate Rupee 1" : "is_child"
         }
     },
     {
@@ -1137,7 +1142,9 @@
             "Kak Near Guards House Pot 2" : "is_child",
             "Kak Near Guards House Pot 3" : "is_child",
             "Kak Near Odd Medicine Building Pot 1" : "is_child",
-            "Kak Near Odd Medicine Building Pot 2" : "is_child"
+            "Kak Near Odd Medicine Building Pot 2" : "is_child",
+            "Kak Adult Crate Red Rupee": "is_adult",
+            "Kak Adult Crate Arrows" : "is_adult"
         },
         "exits": {
             "Hyrule Field": "True",
