@@ -326,8 +326,8 @@ location_table = OrderedDict([
     ("Kak Near Guards House Pot 3",                                                    ("Collectable",  0x52,  0x28, None,                        'Recovery Heart',                        ("Kakariko Village", "Kakariko", "Pot"))),
     ("Kak Near Odd Medicine Building Pot 1",                                                   ("Collectable",  0x52,  0x29, None,                        'Recovery Heart',                        ("Kakariko Village", "Kakariko", "Pot"))),
     ("Kak Near Odd Medicine Building Pot 2",                                                   ("Collectable",  0x52,  0x2A, None,                        'Recovery Heart',                        ("Kakariko Village", "Kakariko", "Pot"))),
-    ("Kak Adult Crate Red Rupee", ("Collectable", 0x52, 0x2B, ([0x201680C + 13, 0x2016BFC  + 13], [0x2B]), 'Rupees (20)', ("Kakariko Village", "Kakariko", "Pot"))), #update crate flags to not conflict w/ child pots. These move day/night
-    ("Kak Adult Crate Arrows", ("Collectable", 0x52, 0x2C, ([0x201689C + 13, 0x2016BCC + 13],[0x2C]), 'Arrows (10)', ("Kakariko Village", "Kakariko", "Pot"))), #update crate flags to not conflict w/ child pots. These move day/night
+    ("Kak Adult Crate Red Rupee", ("Collectable", 0x52, 0x2B, ([0x201680C + 13, 0x2016BFC  + 13], [0x2B]), 'Rupees (20)', ("Kakariko Village", "Kakariko", "Crate"))), #update crate flags to not conflict w/ child pots. These move day/night
+    ("Kak Adult Crate Arrows", ("Collectable", 0x52, 0x2C, ([0x201689C + 13, 0x2016BCC + 13],[0x2C]), 'Arrows (10)', ("Kakariko Village", "Kakariko", "Crate"))), #update crate flags to not conflict w/ child pots. These move day/night
 
     # Graveyard
     ("Graveyard Shield Grave Chest",                                 ("Chest",        0x40,  0x00, None,                        'Hylian Shield',                         ("the Graveyard", "Kakariko",))),
@@ -532,7 +532,8 @@ location_table = OrderedDict([
     ("GV Crate Freestanding PoH",                                    ("Collectable",  0x5A,  0x02, None,                        'Piece of Heart',                        ("Gerudo Valley", "Gerudo",))),
     ("GV Waterfall Freestanding PoH",                                ("Collectable",  0x5A,  0x01, None,                        'Piece of Heart',                        ("Gerudo Valley", "Gerudo",))),
     #("GV Crate Near Cow",                                            ("Collectable",  0x5A,  0x19, ([0x0213D2CC], [0x01, 0xA0, 0xFE, 0x3F, 0xF7, 0xFD, 0x00, 0x7B, 0x00, 0x06, 0x00, 0x00, 0x00, 0x19, 0xFF, 0xFF]), 'Rupee (1)',                            ("Gerudo Valley", "Gerudo", "Freestanding"))),
-    #("GV Crate Near Cow",                                            ("Collectable",  0x5A,  0x00, None,                        'Rupee (1)',                            ("Gerudo Valley", "Gerudo", "Crate"))),
+    ("GV Crate Near Cow",                                            ("Collectable",  0x5A,  0x3F, ([0x213D2CC+13],[0x3F]),                        'Rupee (1)',                            ("Gerudo Valley", "Gerudo", "Crate"))),
+    ("GV Freestanding PoH Crate Rupee",                              ("Collectable",  0x5A,  0x3E, ([0x213D2DC+13],[0x3E]),                        'Rupee (1)',                            ("Gerudo Valley", "Gerudo", "Crate"))),
     ("GV Chest",                                                     ("Chest",        0x5A,  0x00, None,                        'Rupees (50)',                           ("Gerudo Valley", "Gerudo",))),
     ("GV Deku Scrub Grotto Front",                                   ("GrottoNPC",    0xF0,  0x3A, None,                        'Buy Green Potion',                      ("Gerudo Valley", "Gerudo", "Deku Scrub", "Grottos"))),
     ("GV Deku Scrub Grotto Rear",                                    ("GrottoNPC",    0xF0,  0x39, None,                        'Buy Red Potion [30]',                   ("Gerudo Valley", "Gerudo", "Deku Scrub", "Grottos"))),

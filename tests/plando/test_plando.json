@@ -1,6 +1,6 @@
 {
     "entrances": {
-        "Adult Spawn -> Temple of Time" : {"region" : "Zoras Fountain", "from" : "ZD Behind King Zora"}
+        "Child Spawn -> KF Links House" : {"region" : "Gerudo Valley", "from" : "Hyrule Field"}
     },
     "locations": {
         "ZF Bottom Freestanding Rupee 1": "Progressive Strength Upgrade",
