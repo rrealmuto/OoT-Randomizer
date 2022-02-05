@@ -567,6 +567,8 @@ location_table = OrderedDict([
     ("Hideout Jail Guard (3 Torches)",                               ("Collectable",  0x0C,  0x0A, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo", "Drop"))),
     ("Hideout Jail Guard (4 Torches)",                               ("Collectable",  0x0C,  0x0E, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo", "Drop"))),
     ("Hideout Gerudo Membership Card",                               ("NPC",          0x0C,  0x3A, None,                        'Gerudo Membership Card',                ("Thieves' Hideout", "Gerudo",))),
+    
+    # Thieve's Hideout Pots/Crates
     ("Hideout Break Room Pot 1",                                                ("Collectable",  0x0C,  0x2A, None,                        'Recovery Heart',                        ("Thieves' Hideout", "Gerudo", "Pot"))),
     ("Hideout Break Room Pot 2",                                                ("Collectable",  0x0C,  0x2B, None,                        'Recovery Heart',                        ("Thieves' Hideout", "Gerudo", "Pot"))),
     ("Hideout 1 Torch Jail Pot 1",                                                ("Collectable",  0x0C,  0x20, None,                        'Recovery Heart',                        ("Thieves' Hideout", "Gerudo", "Pot"))),
@@ -583,7 +585,20 @@ location_table = OrderedDict([
     ("Hideout 2 Torch Jail In Cell Pot 2",                                               ("Collectable",  0x0C,  0x2D, None,                        'Recovery Heart',                        ("Thieves' Hideout", "Gerudo", "Pot"))),
     ("Hideout 2 Torch Jail In Cell Pot 3",                                               ("Collectable",  0x0C,  0x2E, None,                        'Recovery Heart',                        ("Thieves' Hideout", "Gerudo", "Pot"))),
     ("Hideout 2 Torch Jail In Cell Pot 4",                                               ("Collectable",  0x0C,  0x2F, None,                        'Recovery Heart',                        ("Thieves' Hideout", "Gerudo", "Pot"))),
-    
+    ("Hideout Break Room Crate 1", ("Collectable", 0x0C, 0x30, ([0x32a00b0+13],[0x30]), 'Rupee (1)', ("Thieves Hideout", "", "Crate"))),
+    ("Hideout Break Room Crate 2", ("Collectable", 0x0C, 0x31, ([0x32a00c0+13],[0x31]), 'Rupee (1)', ("Thieves Hideout", "", "Crate"))),
+    ("Hideout Break Room Crate 3", ("Collectable", 0x0C, 0x32, ([0x32a00d0+13],[0x32]), 'Rupee (1)', ("Thieves Hideout", "", "Crate"))),
+    ("Hideout Break Room Crate 4", ("Collectable", 0x0C, 0x33, ([0x32a00e0+13],[0x33]), 'Rupee (1)', ("Thieves Hideout", "", "Crate"))),
+    ("Hideout 3 Torch Crate", ("Collectable", 0x0C, 0x34, ([0x32a50f0+13],[0x34]), 'Rupee (1)', ("Thieves Hideout", "", "Crate"))),
+    ("Hideout 1 Torch Crate", ("Collectable", 0x0C, 0x35, ([0x32ad0f0+13],[0x35]), 'Rupee (1)', ("Thieves Hideout", "", "Crate"))),
+    ("Hideout Near Kitchen Crate 1", ("Collectable", 0x0C, 0x36, ([0x32b10c0+13],[0x36]), 'Rupee (1)', ("Thieves Hideout", "", "Crate"))),
+    ("Hideout Near Kitchen Crate 2", ("Collectable", 0x0C, 0x37, ([0x32b10f0+13],[0x37]), 'Rupee (1)', ("Thieves Hideout", "", "Crate"))),
+    ("Hideout Near Kitchen Crate 3", ("Collectable", 0x0C, 0x38, ([0x32b1100+13],[0x38]), 'Rupee (1)', ("Thieves Hideout", "", "Crate"))),
+    ("Hideout Near Kitchen Crate 4", ("Collectable", 0x0C, 0x39, ([0x32b1110+13],[0x39]), 'Rupee (1)', ("Thieves Hideout", "", "Crate"))),
+    ("Hideout Near Kitchen Crate 5", ("Collectable", 0x0C, 0x3A, ([0x32b1120+13],[0x3A]), 'Rupee (1)', ("Thieves Hideout", "", "Crate"))),
+    ("Hideout 2 Torch Crate 1", ("Collectable", 0x0C, 0x3B, ([0x32c1140+13],[0x3B]), 'Rupee (1)', ("Thieves Hideout", "", "Crate"))),
+    ("Hideout 2 Torch Crate 2", ("Collectable", 0x0C, 0x3C, ([0x32c1150+13],[0x3C]), 'Rupee (1)', ("Thieves Hideout", "", "Crate"))),
+
     # Wasteland
     ("Wasteland Bombchu Salesman",                                   ("NPC",          0x5E,  0x03, None,                        'Bombchus (10)',                         ("Haunted Wasteland",))),
     ("Wasteland Chest",                                              ("Chest",        0x5E,  0x00, None,                        'Rupees (50)',                           ("Haunted Wasteland",))),
