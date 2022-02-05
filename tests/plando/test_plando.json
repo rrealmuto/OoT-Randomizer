@@ -1,6 +1,6 @@
 {
     "entrances": {
-        "Child Spawn -> KF Links House" : {"region" : "Gerudo Valley", "from" : "Hyrule Field"}
+        "Adult Spawn -> Temple of Time" : {"region" : "Gerudo Fortress", "from" : "GV Fortress Side"}
     },
     "locations": {
         "ZF Bottom Freestanding Rupee 1": "Progressive Strength Upgrade",
