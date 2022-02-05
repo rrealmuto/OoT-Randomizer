@@ -23,6 +23,7 @@
             "Shadow Temple Whispering Walls Front Pot 2" : "True",
             "Shadow Temple Map Chest Room Pot 1": "True",
             "Shadow Temple Map Chest Room Pot 2": "True",
+            "Shadow Temple Whispering Walls Flying Pot" : "True",
             "Nut Pot": "True"
         },
         "exits": {
@@ -110,7 +111,9 @@
             "Shadow Temple After Wind Enemy Chest": "True",
             "Shadow Temple After Wind Hidden Chest": "has_explosives",
             "Shadow Temple After Wind Pot 1" : "True",
-            "Shadow Temple After Wind Pot 2" : "True"
+            "Shadow Temple After Wind Pot 2" : "True",
+            "Shadow Temple After Wind Flying Pot 1" : "True",
+            "Shadow Temple After Wind Flying Pot 2" : "True"
             
         },
         "exits": {

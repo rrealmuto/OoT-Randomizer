@@ -4,7 +4,9 @@
         "dungeon": "Spirit Temple",
         "locations" : {
             "Spirit Temple Lobby Pot 1" : "True",
-            "Spirit Temple Lobby Pot 2" : "True"
+            "Spirit Temple Lobby Pot 2" : "True",
+            "Spirit Temple Lobby Flying Pot 1" : "True",
+            "Spirit Temple Lobby Flying Pot 2" : "True"
         },
         "exits": {
             "Desert Colossus From Spirit Lobby": "True",
@@ -22,11 +24,17 @@
                 (Sticks or has_explosives or 
                     ((Nuts or Boomerang) and 
                         (Kokiri_Sword or Slingshot)))",
+            "Spirit Temple Child Bridge Flying Pot" : "
+                (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and 
+                (Sticks or has_explosives or 
+                    ((Nuts or Boomerang) and 
+                        (Kokiri_Sword or Slingshot)))",
             "Spirit Temple Child Anubis Pot" : "
                 (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and 
                 (Sticks or has_explosives or 
                     ((Nuts or Boomerang) and 
                         (Kokiri_Sword or Slingshot)))",
+            
             "Spirit Temple Child Early Torches Chest": "
                 (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and 
                 (Sticks or has_explosives or 
@@ -45,6 +53,8 @@
         "region_name": "Child Spirit Before Locked Door",
         "dungeon": "Spirit Temple",
         "locations": {
+            "Spirit Temple Before Child Climb Small Wooden Crate 1" : "True",
+            "Spirit Temple Before Child Climb Small Wooden Crate 2" : "True",
             "Nut Crate": "True"
         },
         "exits": {
@@ -162,7 +172,13 @@
                 (can_use(Hookshot) and spirit_temple_shortcuts)",
             "Spirit Temple First Mirror Right Chest": "
                 ((Small_Key_Spirit_Temple, 3) and can_use(Silver_Gauntlets)) or
-                (can_use(Hookshot) and spirit_temple_shortcuts)"
+                (can_use(Hookshot) and spirit_temple_shortcuts)",
+            "Spirit Temple Adult Climb Flying Pot 1" : "((Small_Key_Spirit_Temple, 3) and can_use(Silver_Gauntlets)) or
+            (can_use(Hookshot) and spirit_temple_shortcuts)",
+            "Spirit Temple Adult Climb Flying Pot 2" : "((Small_Key_Spirit_Temple, 3) and can_use(Silver_Gauntlets)) or
+            (can_use(Hookshot) and spirit_temple_shortcuts)",
+            "Spirit Temple Central Chamber Flying Pot 1" : "True",
+            "Spirit Temple Central Chamber Flying Pot 2" : "True" 
         },
         "exits": {
             "Spirit Temple Outdoor Hands": "True",
@@ -222,7 +238,13 @@
             "Spirit Temple Boss Key Chest": "
                 can_play(Zeldas_Lullaby) and Bow and 
                 Progressive_Hookshot",
-            "Spirit Temple Topmost Chest": "Mirror_Shield"
+            "Spirit Temple Topmost Chest": "Mirror_Shield",
+            "Spirit Temple Big Mirror Flying Pot 1": "True",
+            "Spirit Temple Big Mirror Flying Pot 2": "True",
+            "Spirit Temple Big Mirror Flying Pot 3": "True",
+            "Spirit Temple Big Mirror Flying Pot 4": "True",
+            "Spirit Temple Big Mirror Flying Pot 5": "True",
+            "Spirit Temple Big Mirror Flying Pot 6": "True"
         },
         "exits": {
             "Spirit Temple Boss Platform": "Mirror_Shield and has_explosives"

@@ -35,6 +35,7 @@
             "Ice Cavern Spinning Blade Pot 1": "is_adult or (is_child and can_child_attack)",
             "Ice Cavern Spinning Blade Pot 2": "is_adult or (is_child and can_child_attack)",
             "Ice Cavern Spinning Blade Pot 3": "is_adult or (is_child and can_child_attack)",
+            "Ice Cavern Spinning Blade Flying Pot":  "is_adult or (is_child and can_child_attack)",
             "Ice Cavern Near End Pot 1" : "Blue_Fire and 
                 (is_adult or (can_child_attack))",
             "Ice Cavern Near End Pot 2" : "Blue_Fire and 

@@ -163,7 +163,12 @@ location_table = OrderedDict([
 
     # Market
     #("Market Night Crate Rupee",                                     ("ActorOverride",0x21,  0x03, ([0x022D21B8], [0x00, 0x06, 0x00, 0x00, 0x00, 0x03]) ,                        'Rupees (20)',                           ("the market", "Market",))),
-    ("Market Night Crate Rupee",                                     ("Collectable",  0x21,  0x03, None,                        'Rupees (20)',                           ("the market", "Market", "Crate"))),
+    ("Market Night Crate Red Rupee",                                     ("Collectable",  0x21,  0x03, None,                        'Rupees (20)',                           ("the market", "Market", "Crate"))),
+    ("Market Night Crate Green Rupee 1", ("Collectable", 0x21, 0x21, None, 'Rupee (1)', ("the market", "Market", "Crate"))),
+    ("Market Night Crate Green Rupee 2", ("Collectable", 0x21, 0x22, None, 'Rupee (1)', ("the market", "Market", "Crate"))),
+    ("Market Night Crate Green Rupee 3", ("Collectable", 0x21, 0x23, None, 'Rupee (1)', ("the market", "Market", "Crate"))),
+    ("Market Richards House Crate Rupee 1", ("Collectable", 0x35, 0x20, None, 'Rupees (5)', ("Market", "Market", "Crate"))),
+    
     ("Market Shooting Gallery Reward",                               ("NPC",          0x42,  0x60, None,                        'Slingshot',                             ("the Market", "Market", "Minigames"))),
     ("Market Bombchu Bowling First Prize",                           ("NPC",          0x4B,  0x34, None,                        'Bomb Bag',                              ("the Market", "Market", "Minigames"))),
     ("Market Bombchu Bowling Second Prize",                          ("NPC",          0x4B,  0x3E, None,                        'Piece of Heart',                        ("the Market", "Market", "Minigames"))),
@@ -321,6 +326,8 @@ location_table = OrderedDict([
     ("Kak Near Guards House Pot 3",                                                    ("Collectable",  0x52,  0x28, None,                        'Recovery Heart',                        ("Kakariko Village", "Kakariko", "Pot"))),
     ("Kak Near Odd Medicine Building Pot 1",                                                   ("Collectable",  0x52,  0x29, None,                        'Recovery Heart',                        ("Kakariko Village", "Kakariko", "Pot"))),
     ("Kak Near Odd Medicine Building Pot 2",                                                   ("Collectable",  0x52,  0x2A, None,                        'Recovery Heart',                        ("Kakariko Village", "Kakariko", "Pot"))),
+    ("Kak Adult Crate Red Rupee", ("Collectable", 0x52, 0x2B, ([0x201680C + 13, 0x2016BFC  + 13], [0x2B]), 'Rupees (20)', ("Kakariko Village", "Kakariko", "Pot"))), #update crate flags to not conflict w/ child pots. These move day/night
+    ("Kak Adult Crate Arrows", ("Collectable", 0x52, 0x2C, ([0x201689C + 13, 0x2016BCC + 13],[0x2C]), 'Arrows (10)', ("Kakariko Village", "Kakariko", "Pot"))), #update crate flags to not conflict w/ child pots. These move day/night
 
     # Graveyard
     ("Graveyard Shield Grave Chest",                                 ("Chest",        0x40,  0x00, None,                        'Hylian Shield',                         ("the Graveyard", "Kakariko",))),
@@ -550,6 +557,8 @@ location_table = OrderedDict([
     ("GF HBA 1500 Points",                                           ("NPC",          0x5D,  0x30, None,                        'Bow',                                   ("Gerudo's Fortress", "Gerudo", "Minigames"))),
     ("GF GS Top Floor",                                              ("GS Token",     0x14,  0x02, None,                        'Gold Skulltula Token',                  ("Gerudo's Fortress", "Skulltulas",))),
     ("GF GS Archery Range",                                          ("GS Token",     0x14,  0x01, None,                        'Gold Skulltula Token',                  ("Gerudo's Fortress", "Skulltulas",))),
+    # Gerudo's Fortress Crates/Pots
+    ("GF Adult Crate Purple Rupee", ("Collectable", 0x5D, 0x1F, None, 'Rupees (50)', ("Gerudo's Fortress", "Gerudo", "Pot"))),
 
     # Thieves' Hideout
     ("Hideout Jail Guard (1 Torch)",                                 ("Collectable",  0x0C,  0x0C, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo", "Drop"))),
@@ -735,7 +744,8 @@ location_table = OrderedDict([
     ("Jabu Jabus Belly Barinade Pot 4",                              ("Collectable",     0x13,  0x23, None,                        'Recovery Heart',                   ("Jabu Jabu's Belly", "vanilla", "Pot"))),
     ("Jabu Jabus Belly Barinade Pot 5",                              ("Collectable",     0x13,  0x24, None,                        'Recovery Heart',                   ("Jabu Jabu's Belly", "vanilla", "Pot"))),
     ("Jabu Jabus Belly Barinade Pot 6",                              ("Collectable",     0x13,  0x25, None,                        'Recovery Heart',                   ("Jabu Jabu's Belly", "vanilla", "Pot"))),
-    
+    ("Jabu Jabus Belly Small Wooden Crate", ("Collectable", 0x2, 0x3F, None, 'Recovery Heart', ("Jabu Jabu's Belly", "Vanilla", "Crate"))),
+
     # Jabu Jabu's Belly MQ
     ("Jabu Jabus Belly MQ Map Chest",                                ("Chest",        0x02,  0x03, None,                        'Map (Jabu Jabus Belly)',                ("Jabu Jabu's Belly", "Master Quest",))),
     ("Jabu Jabus Belly MQ First Room Side Chest",                    ("Chest",        0x02,  0x05, None,                        'Deku Nuts (5)',                         ("Jabu Jabu's Belly", "Master Quest",))),
@@ -807,7 +817,9 @@ location_table = OrderedDict([
     ("Bottom of the Well Basement Pot 11",                           ("Collectable",  0x08,  0x31, None,                        'Rupees (5)',                            ("Bottom of the Well", "Vanilla", "Pot"))),
     ("Bottom of the Well Basement Pot 12",                           ("Collectable",  0x08,  0x32, None,                        'Recovery Heart',                            ("Bottom of the Well", "Vanilla", "Pot"))),
     ("Bottom of the Well Fire Keese Pot",                                ("Collectable",  0x08,  0x33, None,                   'Rupees (5)',                            ("Bottom of the Well", "Vanilla", "Pot"))),
-
+    ("Bottom of the Well West Inner Room Flying Pot 1", ("Collectable", 0x8, 0x34, None, 'Recovery Heart', ("Bottom of the Well", "Vanilla", "Pot"))),
+    ("Bottom of the Well West Inner Room Flying Pot 2", ("Collectable", 0x8, 0x35, None, 'Recovery Heart', ("Bottom of the Well", "Vanilla", "Pot"))),
+    ("Bottom of the Well West Inner Room Flying Pot 3", ("Collectable", 0x8, 0x36, None, 'Recovery Heart', ("Bottom of the Well", "Vanilla", "Pot"))),
 
     # Bottom of the Well MQ
     ("Bottom of the Well MQ Map Chest",                              ("Chest",        0x08,  0x03, None,                        'Map (Bottom of the Well)',              ("Bottom of the Well", "Master Quest",))),
@@ -1059,7 +1071,7 @@ location_table = OrderedDict([
     ("Shadow Temple GS Single Giant Pot",                            ("GS Token",     0x07,  0x01, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Vanilla", "Skulltulas",))),
     ("Shadow Temple GS Near Ship",                                   ("GS Token",     0x07,  0x10, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Vanilla", "Skulltulas",))),
     ("Shadow Temple GS Triple Giant Pot",                            ("GS Token",     0x07,  0x04, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Vanilla", "Skulltulas",))),  
-    #Shadow Temple Pots
+    #Shadow Temple Vanilla Pots
     ("Shadow Temple Whispering Walls Near Dead Hand Pot",                         ("Collectable",  0x07,  0x28, None,                        'Rupees (5)',                            ("Shadow Temple", "Vanilla", "Pot"))),
     ("Shadow Temple Whispering Walls Left Pot 1",                         ("Collectable",  0x07,  0x29, None,                        'Rupees (5)',                            ("Shadow Temple", "Vanilla", "Pot"))),
     ("Shadow Temple Whispering Walls Left Pot 2",                         ("Collectable",  0x07,  0x2A, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
@@ -1077,11 +1089,14 @@ location_table = OrderedDict([
     ("Shadow Temple Invisible Floormaster Pot 2",                    ("Collectable",  0x07,  0x34, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
     ("Shadow Temple After Wind Pot 1",                               ("Collectable",  0x07,  0x2E, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
     ("Shadow Temple After Wind Pot 2",                               ("Collectable",  0x07,  0x32, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
+    ("Shadow Temple After Wind Flying Pot 1", ("Collectable", 0x7, 0x36, None, 'Recovery Heart', ("Shadow Temple", "Vanilla", "Pot"))),
+    ("Shadow Temple After Wind Flying Pot 2", ("Collectable", 0x7, 0x37, None, 'Recovery Heart', ("Shadow Temple", "Vanilla", "Pot"))),
     ("Shadow Temple After Boat Pot 1",                               ("Collectable",  0x07,  0x38, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
     #("Shadow Temple After Boat Pot 2"                               ("Collectable",  0x07,  0x3B, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
     ("Shadow Temple Near Boss Pot 1",                                ("Collectable",  0x07,  0x3D, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
     ("Shadow Temple Near Boss Pot 2",                                ("Collectable",  0x07,  0x3E, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
-    
+    ("Shadow Temple Whispering Walls Flying Pot", ("Collectable", 0x7, 0x35, None, 'Recovery Heart', ("Shadow Temple", "Vanilla", "Pot"))),
+
 
 # Shadow Temple MQ
     ("Shadow Temple MQ Early Gibdos Chest",                          ("Chest",        0x07,  0x03, None,                        'Small Key (Shadow Temple)',             ("Shadow Temple", "Master Quest",))),
@@ -1194,10 +1209,24 @@ location_table = OrderedDict([
     ("Spirit Temple Hall After Sun Block Room Pot 2",                ("Collectable",  0x06,  0x2B, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
     ("Spirit Temple Beamos Hall Pot",                                ("Collectable",  0x06,  0x2C, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
     ("Spirit Temple Child Anubis Pot",                               ("Collectable",  0x06,  0x2F, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
+    ("Spirit Temple Lobby Flying Pot 1",                          ("Collectable",  0x06,  0x31, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
+    ("Spirit Temple Lobby Flying Pot 2",                          ("Collectable",  0x06,  0x32, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
+    ("Spirit Temple Child Bridge Flying Pot", ("Collectable", 0x6, 0x34, None, 'Recovery Heart', ("Spirit Temple", "Vanilla", "Pot"))),
+    ("Spirit Temple Before Child Climb Small Wooden Crate 1",        ("Collectable",  0x06,  0x3F, ([0x2AF8110 + 14],[0x00, 0xFF]), 'Deku Nuts (5)', ("Spirit Temple", "Vanilla", "Crate"))), #Overwrite original flag 0x2C because it conflicts w/ Beamos hall pot
+    ("Spirit Temple Before Child Climb Small Wooden Crate 2",        ("Collectable",  0x06,  0x2E, None, 'Bombs (5)', ("Spirit Temple", "Vanilla", "Crate"))),
     #("Spirit Temple Child Anubis Pot",                               ("Collectable",  0x07,  0x2F, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
     #("Spirit Temple Child Anubis Pot",                               ("Collectable",  0x07,  0x2F, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
     #("Spirit Temple Child Anubis Pot",                               ("Collectable",  0x07,  0x2F, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
-    
+    ("Spirit Temple Central Chamber Flying Pot 1", ("Collectable", 0x6, 0x35, None, 'Recovery Heart', ("Spirit Temple", "Vanilla", "Pot"))),
+    ("Spirit Temple Central Chamber Flying Pot 2", ("Collectable", 0x6, 0x36, None, 'Recovery Heart', ("Spirit Temple", "Vanilla", "Pot"))),
+    ("Spirit Temple Adult Climb Flying Pot 1", ("Collectable", 0x6, 0x37, None, 'Recovery Heart', ("Spirit Temple", "Vanilla", "Pot"))),
+    ("Spirit Temple Adult Climb Flying Pot 2", ("Collectable", 0x6, 0x38, None, 'Recovery Heart', ("Spirit Temple", "Vanilla", "Pot"))),
+    ("Spirit Temple Big Mirror Flying Pot 1", ("Collectable", 0x6, 0x39, None, 'Recovery Heart', ("Spirit Temple", "Vanilla", "Pot"))),
+    ("Spirit Temple Big Mirror Flying Pot 2", ("Collectable", 0x6, 0x3A, None, 'Recovery Heart', ("Spirit Temple", "Vanilla", "Pot"))),
+    ("Spirit Temple Big Mirror Flying Pot 3", ("Collectable", 0x6, 0x3B, None, 'Recovery Heart', ("Spirit Temple", "Vanilla", "Pot"))),
+    ("Spirit Temple Big Mirror Flying Pot 4", ("Collectable", 0x6, 0x3C, None, 'Recovery Heart', ("Spirit Temple", "Vanilla", "Pot"))),
+    ("Spirit Temple Big Mirror Flying Pot 5", ("Collectable", 0x6, 0x3D, None, 'Recovery Heart', ("Spirit Temple", "Vanilla", "Pot"))),
+    ("Spirit Temple Big Mirror Flying Pot 6", ("Collectable", 0x6, 0x3E, None, 'Recovery Heart', ("Spirit Temple", "Vanilla", "Pot"))),
 
     # Ice Cavern vanilla
     ("Ice Cavern Map Chest",                                         ("Chest",        0x09,  0x00, None,                        'Map (Ice Cavern)',                      ("Ice Cavern", "Vanilla",))),
@@ -1223,7 +1252,7 @@ location_table = OrderedDict([
     ("Ice Cavern Near End Pot 1",                                    ("Collectable",   0x09,  0x2A, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
     ("Ice Cavern Near End Pot 2",                                    ("Collectable",   0x09,  0x2B, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
     ("Ice Cavern Frozen Pot",                                        ("Collectable",   0x09,  0x2D, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
-
+    ("Ice Cavern Spinning Blade Flying Pot", ("Collectable", 0x9, 0x2C, None, 'Recovery Heart', ("Ice Cavern", "Vanilla", "Pot"))),
     
     # Ice Cavern MQ
     ("Ice Cavern MQ Map Chest",                                      ("Chest",        0x09,  0x01, None,                        'Map (Ice Cavern)',                      ("Ice Cavern", "Master Quest",))),
