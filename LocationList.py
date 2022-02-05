@@ -817,15 +817,14 @@ location_table = OrderedDict([
     ("Jabu Jabus Belly MQ GS Invisible Enemies Room",                ("GS Token",     0x02,  0x08, None,                        'Gold Skulltula Token',                  ("Jabu Jabu's Belly", "Master Quest", "Skulltulas",))),
     ("Jabu Jabus Belly MQ GS Near Boss",                             ("GS Token",     0x02,  0x02, None,                        'Gold Skulltula Token',                  ("Jabu Jabu's Belly", "Master Quest", "Skulltulas",))),
     # Jabu Jabu's Belly MQ Pots
-    ("Jabu Jabus Belly MQ First Room Pot 1",                          ("Collectable",  0x02,  0x04, None,       'Rupee (1)',                             ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
-    ("Jabu Jabus Belly MQ First Room Pot 2",                          ("Collectable",  0x02,  0x0C, None,       'Rupee (1)',                             ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
-    ("Jabu Jabus Belly MQ Compass Elevator Room Pot 1",                          ("Collectable",  0x02,  0x39, None,       'Rupee (1)',                             ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
-    ("Jabu Jabus Belly MQ Compass Elevator Room Pot 2",                          ("Collectable",  0x02,  0x3A, None,       'Rupee (1)',                             ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
-    ("Jabu Jabus Belly MQ Falling Like Like Room Pot 1",                          ("Collectable",  0x02,  0x3D, None,       'Rupee (1)',                             ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
-    ("Jabu Jabus Belly MQ Falling Like Like Room Pot 2",                          ("Collectable",  0x02,  0x3F, None,       'Rupee (1)',                             ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
-    ("Jabu Jabus Belly MQ Boomerang Room Pot 1",                          ("Collectable",  0x02,  0x33, None,       'Rupee (1)',                             ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
-    ("Jabu Jabus Belly MQ Boomerang Room Pot 2",                          ("Collectable",  0x02,  0x34, None,       'Rupee (1)',                             ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
-    
+    ("Jabu Jabus Belly MQ First Room Pot 1", ("Collectable", 0x02, 0x3C, None, 'Bombs (5)', ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
+    ("Jabu Jabus Belly MQ First Room Pot 2", ("Collectable", 0x02, 0x32, None, 'Deku Nuts (5)', ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
+    ("Jabu Jabus Belly MQ Elevator Room Pot 1", ("Collectable", 0x02, 0x39, None, 'Arrows (5)', ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
+    ("Jabu Jabus Belly MQ Elevator Room Pot 2", ("Collectable", 0x02, 0x3A, None, 'Deku Nuts (5)', ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
+    #("Jabu Jabus Belly MQ Near Boss Pot", ("Collectable", 0x02, 0x31, None, 'N/A', ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
+    ("Jabu Jabus Belly MQ Falling Like Like Room Pot 1", ("Collectable", 0x02, 0x3D, None, 'Arrows (5)', ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
+    ("Jabu Jabus Belly MQ Falling Like Like Room Pot 2", ("Collectable", 0x02, 0x3F, None, 'Bombs (5)', ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
+    ("Jabu Jabus Belly MQ Boomerang Room Pot 1", ("Collectable", 0x02, 0x33, None, 'Bombs (5)', ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
     # Jabu Jabu's Belly shared
     ("Jabu Jabus Belly Barinade Heart",                              ("BossHeart",    0x13,  0x4F, None,                        'Heart Container',                       ("Jabu Jabu's Belly", "Vanilla", "Master Quest",))),
     ("Jabu Jabus Belly Barinade Pot 1",                              ("Collectable",     0x13,  0x20, None,                        'Recovery Heart',                   ("Jabu Jabu's Belly", "Vanilla", "Master Quest", "Pot"))),
