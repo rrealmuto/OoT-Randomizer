@@ -276,6 +276,7 @@ location_table = OrderedDict([
     ("LLR Talons House Pot 1",                                       ("Collectable",  0x4C,  0x29, None,                        'Rupees (5)',                            ("Lon Lon Ranch", "Pot"))),
     ("LLR Talons House Pot 2",                                       ("Collectable",  0x4C,  0x2A, None,                        'Rupees (5)',                            ("Lon Lon Ranch", "Pot"))),
     ("LLR Talons House Pot 3",                                       ("Collectable",  0x4C,  0x2B, None,                        'Rupees (5)',                            ("Lon Lon Ranch", "Pot"))),
+    ("LLR Child Crate", ("Collectable", 0x63, 0x3F, ([0x29ce204+13, 0x29ce84c+13],[0x3F]), 'Rupee (1)', ("Lon Lon Ranch", "", "Crate"))),
 
     # Kakariko
     ("Kak Anju as Child",                                            ("NPC",          0x52,  0x0F, None,                        'Bottle',                                ("Kakariko Village", "Kakariko", "Minigames"))),
@@ -406,7 +407,7 @@ location_table = OrderedDict([
     ("GC Upper Staircase Pot 1",                             ("Collectable",  0x62,  0x35, ([0x22A84E8 + 14], [0x6B]),  'Rupees (5)',                            ("Goron City", "Pot"))),
     ("GC Upper Staircase Pot 2",                             ("Collectable",  0x62,  0x36, ([0x22A84F8 + 14], [0x6D]),  'Rupee (1)',                             ("Goron City", "Pot"))),
     ("GC Upper Staircase Pot 3",                             ("Collectable",  0x62,  0x3B, ([0x22A8508 + 14], [0x77]),  'Rupees (5)',                            ("Goron City", "Pot"))),
-    
+    ("GC Boulder Maze Crate as Adult", ("Collectable", 0x62, 0x3F, ([0x227c6ec+13],[0x3F]), 'Rupee (1)', ("Goron City", "Crate"))),
 
     # Death Mountain Crater
     ("DMC Volcano Freestanding PoH",                                 ("Collectable",  0x61,  0x08, None,                        'Piece of Heart',                        ("Death Mountain Crater", "Death Mountain",))),
@@ -607,6 +608,11 @@ location_table = OrderedDict([
     ("Wasteland Near GS Pot 2",                                      ("Collectable",  0x5E,  0x21, None,                        'Deku Nuts (5)',                            ("Haunted Wasteland", "Pot"))),
     #("Wasteland Near GS Pot 3",                                      ("Collectable",  0x5E,  0x22, None,                        'Rupees (5)',                            ("Haunted Wasteland", "Pot"))),
     ("Wasteland Near GS Pot 3",                                      ("Collectable",  0x5E,  0x23, None,                        'Rupees (5)',                            ("Haunted Wasteland", "Pot"))),
+    ("Wasteland Crate Before Quicksand", ("Collectable", 0x5E, 0x24, ([0x21e32B0+13],[0x24]), 'Rupee (1)', ("Haunted Wasteland", "Crate"))),
+    ("Wasteland Crate After Quicksand 1", ("Collectable", 0x5E, 0x25, ([0x21e3280+13],[0x25]), 'Rupee (1)', ("Haunted Wasteland", "Crate"))),
+    ("Wasteland Crate After Quicksand 2", ("Collectable", 0x5E, 0x26, ([0x21e3290+13],[0x26]), 'Rupee (1)', ("Haunted Wasteland", "Crate"))),
+    ("Wasteland Crate After Quicksand 3", ("Collectable", 0x5E, 0x27, ([0x21e32A0+13],[0x27]), 'Rupee (1)', ("Haunted Wasteland", "Crate"))),
+    ("Wasteland Crate Near Colossus", ("Collectable", 0x5E, 0x28, ([0x21e3270+13],[0x28]), 'Rupee (1)', ("Haunted Wasteland", "Crate"))),
 
     # Colossus
     ("Colossus Great Fairy Reward",                                  ("Cutscene",     0xFF,  0x12, None,                        'Nayrus Love',                           ("Desert Colossus", "Fairies",))),
