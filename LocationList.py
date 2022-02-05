@@ -1534,7 +1534,10 @@ location_table = OrderedDict([
     ("Gerudo Training Ground MQ Maze Path First Chest",              ("Chest",        0x0B,  0x06, None,                        'Rupee (1)',                             ("Gerudo Training Ground", "Master Quest",))),
     ("Gerudo Training Ground MQ Maze Path Third Chest",              ("Chest",        0x0B,  0x09, None,                        'Rupee (Treasure Chest Game)',           ("Gerudo Training Ground", "Master Quest",))),
     ("Gerudo Training Ground MQ Maze Path Second Chest",             ("Chest",        0x0B,  0x0A, None,                        'Rupees (20)',                           ("Gerudo Training Ground", "Master Quest",))),
-
+    ("Gerudo Training Ground MQ Lobby Left Pot 1", ("Collectable", 0x0B, 0x3B, None, 'Recovery Heart', ("Gerudo Training Ground", "Master Quest", "Pot"))),
+    ("Gerudo Training Ground MQ Lobby Left Pot 2", ("Collectable", 0x0B, 0x3C, None, 'Rupees (5)', ("Gerudo Training Ground", "Master Quest", "Pot"))),
+    ("Gerudo Training Ground MQ Lobby Right Pot 1", ("Collectable", 0x0B, 0x3D, None, 'Rupees (5)', ("Gerudo Training Ground", "Master Quest", "Pot"))),
+    ("Gerudo Training Ground MQ Lobby Right Pot 2", ("Collectable", 0x0B, 0x3E, None, 'Recovery Heart', ("Gerudo Training Ground", "Master Quest", "Pot"))),
     # Ganon's Castle vanilla
     ("Ganons Castle Forest Trial Chest",                             ("Chest",        0x0D,  0x09, None,                        'Rupees (5)',                            ("Ganon's Castle", "Vanilla",))),
     ("Ganons Castle Water Trial Left Chest",                         ("Chest",        0x0D,  0x07, None,                        'Ice Trap',                              ("Ganon's Castle", "Vanilla",))),
