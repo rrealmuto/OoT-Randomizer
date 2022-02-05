@@ -34,7 +34,7 @@ for file in files:
                             print(str(i) + ": " + location + ": " + region["locations"].get(location))
                             i = i + 1
 i = 0
-print ("**POTS**")
+print ("**POTS/CRATES**")
 for file in files:
     file_path = path.join(path.curdir, world_dir, file)
 
@@ -46,7 +46,7 @@ for file in files:
                 locations.append(location)
                 if location_table.get(location):
                     if location_table.get(location)[5]:
-                        if 'Pot' in location_table.get(location)[5]:
+                        if 'Pot' in location_table.get(location)[5] or 'Crate' in location_table.get(location)[5]:
                             if not printed_region_name:
                                 print(region.get("region_name"))
                                 printed_region_name = True
