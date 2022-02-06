@@ -192,12 +192,12 @@ get_item_hook:
 
 ;Set actors dropFlag to indicate that it was dropped from something.
 item00_init_hook:
-    andi t8, v0, 0x4000
-    sra t8, t8, 14
-    sb t8, 0x116(a0)
-    andi T9, V0, 0x00FF
+    andi t8, v0, 0x4000   ;get the second highest bit (thats where we stored the flag) in drop_collectible_hook
+    sra t8, t8, 14        ;shift it over
+    sb t8, 0x116(a0)      ;store it in drop_flag at offset 0x116
+    andi T9, V0, 0x00FF   ;replaced code
     jr ra
-    sh  T9, 0x001c(S0)
+    sh  T9, 0x001c(S0)    ;replaced code
 
 get_override_drop_id_hook:
     addiu sp, sp, -0x10

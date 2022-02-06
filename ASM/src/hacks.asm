@@ -331,6 +331,16 @@ Gameplay_InitSkybox:
     j		item_give_hook
     or      A2, S0, R0
 
+; Hack save slot table offsets to only use 2 saves
+; save slot table is stored at B71E60 in ROM
+.orga 0xB71E60
+.halfword 0x0020 ; slot 1
+.halfword 0x1470 ; slot 2
+.halfword 0x0000 ;remove slot 3
+.halfword 0x28C0 ; slot 1 backup
+.halfword 0x3D10 ; slot 2 backup
+.halfword 0x0000 ; remove slot 3 backup
+
 ; Hack Write_Save function to store additional collectible flags
 .orga 0xB065F4 ; In memory: 0x80090694
     jal Save_Write_Hook
@@ -380,6 +390,16 @@ sh T1, 0x0046(sp)
 .orga 0xA89708; in memory 0x800137A8
 jal drop_collectible_hook
 or t4, t3, t1
+
+;Hack ObjKibako2_SpawnCollectible (Large crates) to call our overridden spawn function
+;
+.orga 0xEC8264
+j ObjKibako2_SpawnCollectible_Hack
+nop
+
+;Hack ObjKibako2_Init (Large Crates) to not delete our extended flag
+.orga 0xEC832C
+or T8, T7, R0
 
 ; Runs when storing an incoming item to the player instance
 ; Replaces:

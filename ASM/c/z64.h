@@ -798,6 +798,7 @@ struct z64_actor_s
                                     /* 0x013C */
 };
 
+
 typedef struct
 {
   z64_actor_t  common;               /* 0x0000 */
@@ -824,6 +825,19 @@ typedef struct
   int16_t      drop_distance;        /* 0x0886 */
                                      /* 0x0888 */
 } z64_link_t;
+
+
+typedef struct DynaPolyActor {
+    /* 0x000 */ z64_actor_t actor;
+    /* 0x14C */ int32_t bgId;
+    /* 0x150 */ float unk_150;
+    /* 0x154 */ float unk_154;
+    /* 0x158 */ int16_t unk_158; // y rotation?
+    /* 0x15A */ uint16_t unk_15A;
+    /* 0x15C */ uint32_t unk_15C;
+    /* 0x160 */ uint8_t unk_160;
+    /* 0x162 */ int16_t unk_162;
+} DynaPolyActor; // size = 0x164
 
 typedef struct
 {
@@ -1571,6 +1585,7 @@ typedef enum {
 #define SsSram_ReadWrite_addr                   0x80091474
 #define z64_memcopy_addr                        0x80057030
 #define z64_bzero_addr                          0x80002E80
+#define z64_Item_DropCollectible_addr           0x80013678
 
 /* rom addresses */
 #define z64_icon_item_static_vaddr              0x007BD000
@@ -1631,6 +1646,7 @@ typedef float *(*z64_GetMatrixStackTop_proc)();
 typedef void (*SsSram_ReadWrite_proc)(uint32_t addr, void* dramAddr, size_t size, uint32_t direction);
 typedef void* (*z64_memcopy_proc)(void* dest, void* src, uint32_t size);
 typedef void (*z64_bzero_proc)(void* __s, uint32_t __n);
+typedef EnItem00* (*z64_Item_DropCollectible_proc)(z64_game_t* globalCtx, z64_xyzf_t* spawnPos, int16_t params);
 
 /* data */
 #define z64_file_mq             (*(OSMesgQueue*)      z64_file_mq_addr)
@@ -1695,4 +1711,5 @@ typedef void (*z64_bzero_proc)(void* __s, uint32_t __n);
 #define SsSram_ReadWrite ((SsSram_ReadWrite_proc)SsSram_ReadWrite_addr)
 #define z64_memcopy ((z64_memcopy_proc)z64_memcopy_addr)
 #define z64_bzero ((z64_bzero_proc)z64_bzero_addr)
+#define z64_Item_DropCollectible ((z64_Item_DropCollectible_proc)z64_Item_DropCollectible_addr)
 #endif
