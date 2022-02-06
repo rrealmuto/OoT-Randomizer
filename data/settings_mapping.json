@@ -153,7 +153,6 @@
             "zora_fountain",
             "gerudo_fortress",
             "dungeon_shortcuts",
-            "plant_beans",
             "bridge",
             "bridge_medallions",
             "bridge_stones",
@@ -324,7 +323,8 @@
             "chicken_count_random",
             "chicken_count",
             "big_poe_count_random",
-            "big_poe_count"
+            "big_poe_count",
+            "plant_beans"
           ]
         },
         {
