@@ -78,7 +78,9 @@ override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_
 			return (override_key_t){.all = 0};
 		}*/
 		//Check if it was a dropped collectable and use a separate override for that
-		if(actor->dropFlag)
+		EnItem00* item = (EnItem00*)actor;
+		uint8_t flag = ((item->actor.dropFlag & 0xFE) << 5) + item->collectibleFlag;
+		if(item->actor.dropFlag)
 		{
 			//Use the same override flags for the pots in ganon's tower
 			if(scene == 0x0A)
@@ -86,14 +88,14 @@ override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_
 			return (override_key_t){
 				.scene = scene,
 				.type = OVR_DROPPEDCOLLECTABLE,
-				.flag = *(((uint8_t *)actor) + 0x141),
+				.flag = flag,
 			};
 		}
 
 		return (override_key_t){
 			.scene = scene,
 			.type = OVR_COLLECTABLE,
-			.flag = *(((uint8_t *)actor) + 0x141),
+			.flag = flag
 		};
 	}
 	else if (actor->actor_id == 0x19C)
@@ -472,43 +474,63 @@ void Collectible_WaitForMessageBox(EnItem00 *this, z64_game_t *game)
 }
 
 uint32_t collectible_override_flags[202] = {0x00};
-uint32_t dropped_collectible_override_flags[202] = {0x00};
+uint32_t dropped_collectible_override_flags[808] = {0x00};
+
+uint8_t get_extended_flag(EnItem00* item00)
+{
+	return ((item00->actor.dropFlag & 0xFE) << 5) + item00->collectibleFlag;
+}
 
 bool Get_CollectibleOverrideFlag(EnItem00* item00)
 {
 	uint32_t* flag_table = &collectible_override_flags;
 	uint16_t scene = z64_game.scene_index;
-	if(item00->actor.dropFlag) //we set this if it's dropped
+	bool dropFlag = item00->actor.dropFlag & 0x0001;
+	uint16_t extended_flag = get_extended_flag(item00);
+	if(dropFlag) //we set this if it's dropped
 	{
 		flag_table = &dropped_collectible_override_flags;
 		if(scene == 0x0A)
 			scene = 0x19;
 	}
+
+	//uint16_t extended_flag = item00->collectibleFlag; //Update this to make the flag bigger
+
+	return (flag_table[8*scene + (extended_flag/0x20)] & (1 << (extended_flag % 0x20)));
+	/*
 	if(item00->collectibleFlag < 0x20)
 	{
 		return (flag_table[2*scene] & (1 << item00->collectibleFlag)) > 0;
 	}
 	return (flag_table[2*scene + 1] & (1 << (item00->collectibleFlag - 0x20))) > 0;
+	*/
 }
 
 void Set_CollectibleOverrideFlag(EnItem00* item00)
 {
 	uint32_t* flag_table = &collectible_override_flags;
 	uint16_t scene = z64_game.scene_index;
-	if(item00->actor.dropFlag)
+	bool dropFlag = item00->actor.dropFlag & 0x0001;
+	uint16_t extended_flag = get_extended_flag(item00);
+	if(dropFlag)
 	{
 		flag_table = &dropped_collectible_override_flags;
 		if(scene == 0x0A)
 			scene = 0x19;
 	}
-	if(item00->collectibleFlag < 0x20)
+
+	//uint16_t extended_flag = item00->collectibleFlag; //Update this to make the flag bigger
+
+	flag_table[8*scene + (extended_flag/0x20)] |= (1 << (extended_flag % 0x20));
+	return;
+	/*if(item00->collectibleFlag < 0x20)
 	{
 		flag_table[2 * scene] |= (1 << item00->collectibleFlag);
 	}
 	else
 	{
 		flag_table[2 * scene + 1] |= (1 << (item00->collectibleFlag -0x20));
-	}
+	}*/
 }
 
 bool should_override_collectible(EnItem00* item00)
@@ -601,6 +623,10 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
 	if (override.key.all == 0 || Get_CollectibleOverrideFlag(pItem))
 	{
 		z64_GiveItem(&z64_game, items[item]); //Give the regular item (this is what is normally called by the non-hacked function)
+		if(get_extended_flag(pItem) > 0x3F) //If our extended collectible flag is outside the range of normal collectibles, set the flag to 0 so it doesn't write something wrong. We should only ever be using this for things that normally are 0 anyway
+		{
+			pItem->collectibleFlag = 0;
+		}
 		return 0;
 	}
 
