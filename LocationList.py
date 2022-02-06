@@ -1298,10 +1298,10 @@ location_table = OrderedDict([
     # Shadow Temple MQ Pots
     ("Shadow Temple MQ Whispering Walls Pot 1", ("Collectable", 0x07, 0x38, None, 'Recovery Heart', ("Shadow Temple", "Master Quest", "Pot"))),
     ("Shadow Temple MQ Whispering Walls Pot 2", ("Collectable", 0x07, 0x39, None, 'Recovery Heart', ("Shadow Temple", "Master Quest", "Pot"))),
-    #("Shadow Temple MQ Whispering Walls Flying Pot 1", ("Collectable", 0x07, 0x1, None, 'N/A', ("Shadow Temple", "Master Quest", "Pot"))),
-    #("Shadow Temple MQ Whispering Walls Flying Pot 2", ("Collectable", 0x07, 0x1, None, 'N/A', ("Shadow Temple", "Master Quest", "Pot"))),
-    #("Shadow Temple MQ Whispering Walls Flying Pot 3", ("Collectable", 0x07, 0x1, None, 'N/A', ("Shadow Temple", "Master Quest", "Pot"))),
-    #("Shadow Temple MQ Whispering Walls Flying Pot 4", ("Collectable", 0x07, 0x1, None, 'N/A', ("Shadow Temple", "Master Quest", "Pot"))),
+    ("Shadow Temple MQ Whispering Walls Flying Pot 1", ("Collectable", 0x07, 0x3C, None, 'Recovery Heart', ("Shadow Temple", "Master Quest", "Pot"))),
+    ("Shadow Temple MQ Whispering Walls Flying Pot 2", ("Collectable", 0x07, 0x20, ([0x27cb140+15],[0xE0]), 'Recovery Heart', ("Shadow Temple", "Master Quest", "Pot"))),
+    ("Shadow Temple MQ Whispering Walls Flying Pot 3", ("Collectable", 0x07, 0x21, ([0x27cb150+15],[0xE1]), 'Recovery Heart', ("Shadow Temple", "Master Quest", "Pot"))),
+    ("Shadow Temple MQ Whispering Walls Flying Pot 4", ("Collectable", 0x07, 0x22, ([0x27cb160+15],[0xE2]), 'Recovery Heart', ("Shadow Temple", "Master Quest", "Pot"))),
     ("Shadow Temple MQ Compass Room Pot 1", ("Collectable", 0x07, 0x2C, None, 'Recovery Heart', ("Shadow Temple", "Master Quest", "Pot"))),
     ("Shadow Temple MQ Compass Room Pot 2", ("Collectable", 0x07, 0x27, None, 'Recovery Heart', ("Shadow Temple", "Master Quest", "Pot"))),
     ("Shadow Temple MQ Falling Spikes Lower Pot 1", ("Collectable", 0x07, 0x24, None, 'Recovery Heart', ("Shadow Temple", "Master Quest", "Pot"))),
@@ -1310,8 +1310,8 @@ location_table = OrderedDict([
     ("Shadow Temple MQ Falling Spikes Upper Pot 2", ("Collectable", 0x07, 0x2D, None, 'Recovery Heart', ("Shadow Temple", "Master Quest", "Pot"))),
     ("Shadow Temple MQ After Wind Pot 1", ("Collectable", 0x07, 0x2E, None, 'Rupees (5)', ("Shadow Temple", "Master Quest", "Pot"))),
     ("Shadow Temple MQ After Wind Pot 2", ("Collectable", 0x07, 0x32, None, 'Deku Nuts (5)', ("Shadow Temple", "Master Quest", "Pot"))),
-    #("Shadow Temple MQ After Wind Flying Pot 1", ("Collectable", 0x07, 0x0, None, 'N/A', ("Shadow Temple", "Master Quest", "Pot"))),
-    #("Shadow Temple MQ After Wind Flying Pot 2", ("Collectable", 0x07, 0x1, None, 'N/A', ("Shadow Temple", "Master Quest", "Pot"))),
+    ("Shadow Temple MQ After Wind Flying Pot 1", ("Collectable", 0x07, 0x36, None, 'Recovery Heart', ("Shadow Temple", "Master Quest", "Pot"))),
+    ("Shadow Temple MQ After Wind Flying Pot 2", ("Collectable", 0x07, 0x37, None, 'Recovery Heart', ("Shadow Temple", "Master Quest", "Pot"))),
     ("Shadow Temple MQ After Boat Pot 1", ("Collectable", 0x07, 0x3B, None, 'Arrows (10)', ("Shadow Temple", "Master Quest", "Pot"))),
     ("Shadow Temple MQ After Boat Pot 2", ("Collectable", 0x07, 0x38, None, 'Arrows (10)', ("Shadow Temple", "Master Quest", "Pot"))),
     ("Shadow Temple MQ Near Boss Pot 1", ("Collectable", 0x07, 0x3E, None, 'Rupees (5)', ("Shadow Temple", "Master Quest", "Pot"))),
@@ -1319,7 +1319,11 @@ location_table = OrderedDict([
     ("Shadow Temple MQ Dead Hand II Pot 1", ("Collectable", 0x07, 0x34, None, 'Arrows (20)', ("Shadow Temple", "Master Quest", "Pot"))),
     ("Shadow Temple MQ Dead Hand II Pot 2", ("Collectable", 0x07, 0x33, None, 'Bombs (5)', ("Shadow Temple", "Master Quest", "Pot"))),
     ("Shadow Temple MQ Spike Walls Pot", ("Collectable", 0x07, 0x26, None, 'Rupees (5)', ("Shadow Temple", "Master Quest", "Pot"))),
-    
+    ("Shadow Temple MQ Truth Spinner Small Wooden Crate 1", ("Collectable", 0x07, 0x30, None, 'Arrows (10)', ("Shadow Temple", "Master Quest", "Crate"))),
+    ("Shadow Temple MQ Truth Spinner Small Wooden Crate 2", ("Collectable", 0x07, 0x31, None, 'Rupees (5)', ("Shadow Temple", "Master Quest", "Crate"))),
+    ("Shadow Temple MQ Truth Spinner Small Wooden Crate 3", ("Collectable", 0x07, 0x3F, ([0x27d8a2c+14],[0x3F]), 'Bombs (5)', ("Shadow Temple", "Master Quest", "Crate"))),
+    ("Shadow Temple MQ Truth Spinner Small Wooden Crate 4", ("Collectable", 0x07, 0x3A, None, 'Recovery Heart', ("Shadow Temple", "Master Quest", "Crate"))),
+
     # Shadow Temple shared
     ("Shadow Temple Bongo Bongo Heart",                              ("BossHeart",    0x18,  0x4F, None,                        'Heart Container',                       ("Shadow Temple", "Vanilla", "Master Quest",))),
 
