@@ -858,9 +858,6 @@ def get_pool_core(world):
         if world.dungeon_mq['Jabu Jabus Belly']:
             placed_items['Jabu Jabus Belly MQ Cow'] = 'Milk'
 
-    if world.settings.plant_beans:
-        world.distribution.give_item('Magic Bean', 0)
-
     if world.settings.shuffle_beans:
         if not world.settings.plant_beans and world.distribution.get_starting_item('Magic Bean') < 10:
             pool.append('Magic Bean Pack')
