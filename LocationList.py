@@ -1075,7 +1075,7 @@ location_table = OrderedDict([
     ("Fire Temple MQ GS Above Fire Wall Maze",                       ("GS Token",     0x04,  0x02, None,                        'Gold Skulltula Token',                  ("Fire Temple", "Master Quest", "Skulltulas",))),
     # Fire Temple MQ Pots
     ("Fire Temple MQ First Room Pot 1", ("Collectable", 0x04, 0x2B, None, 'Rupees (5)', ("Fire Temple", "Master Quest", "Pot"))),
-    ("Fire Temple MQ First Room Pot 1", ("Collectable", 0x04, 0x2C, None, 'Rupees (5)', ("Fire Temple", "Master Quest", "Pot"))),
+    ("Fire Temple MQ First Room Pot 2", ("Collectable", 0x04, 0x2C, None, 'Rupees (5)', ("Fire Temple", "Master Quest", "Pot"))),
     ("Fire Temple MQ Big Lava Room Left Pot", ("Collectable", 0x04, 0x20, None, 'Arrows (10)', ("Fire Temple", "Master Quest", "Pot"))),
     ("Fire Temple MQ Big Lava Room Right Pot", ("Collectable", 0x04, 0x22, None, 'Rupees (5)', ("Fire Temple", "Master Quest", "Pot"))),
     ("Fire Temple MQ Big Lava Room Alcove Pot", ("Collectable", 0x04, 0x21, None, 'Rupees (5)', ("Fire Temple", "Master Quest", "Pot"))),
@@ -1083,12 +1083,12 @@ location_table = OrderedDict([
     ("Fire Temple MQ Near Boss Pot 2", ("Collectable", 0x04, 0x2E, None, 'Arrows (20)', ("Fire Temple", "Master Quest", "Pot"))),
     ("Fire Temple MQ Narrow Path Room Pot 1", ("Collectable", 0x04, 0x3A, None, 'Arrows (10)', ("Fire Temple", "Master Quest", "Pot"))),
     ("Fire Temple MQ Narrow Path Room Pot 2", ("Collectable", 0x04, 0x3B, None, 'Bombs (5)', ("Fire Temple", "Master Quest", "Pot"))),
-    #("Fire Temple MQ Narrow Path Room Pot 3", ("Collectable", 0x04, 0x39, None, 'N/A', ("Fire Temple", "Master Quest", "Pot")))
+    #("Fire Temple MQ Narrow Path Room Pot 3", ("Collectable", 0x04, 0x39, None, 'N/A', ("Fire Temple", "Master Quest", "Pot"))),
     ("Fire Temple MQ Flame Maze Right Pot 1", ("Collectable", 0x04, 0x23, None, 'Bombs (5)', ("Fire Temple", "Master Quest", "Pot"))),
     ("Fire Temple MQ Flame Maze Right Pot 2", ("Collectable", 0x04, 0x24, None, 'Recovery Heart', ("Fire Temple", "Master Quest", "Pot"))),
     ("Fire Temple MQ Flame Maze Right Pot 3", ("Collectable", 0x04, 0x26, None, 'Bombs (5)', ("Fire Temple", "Master Quest", "Pot"))),
     ("Fire Temple MQ Flame Maze Right Pot 4", ("Collectable", 0x04, 0x25, None, 'Recovery Heart', ("Fire Temple", "Master Quest", "Pot"))),
-    #("Fire Temple MQ Flame Maze Left Pot 2", ("Collectable", 0x04, 0x27, None, 'N/A', ("Fire Temple", "Master Quest", "Pot")))
+    #("Fire Temple MQ Flame Maze Left Pot 2", ("Collectable", 0x04, 0x27, None, 'N/A', ("Fire Temple", "Master Quest", "Pot"))),
     ("Fire Temple MQ Flame Maze Left Pot 1", ("Collectable", 0x04, 0x28, None, 'Bombs (5)', ("Fire Temple", "Master Quest", "Pot"))),
     ("Fire Temple MQ Shoot Torch On Wall Room Pot 1", ("Collectable", 0x04, 0x29, None, 'Arrows (10)', ("Fire Temple", "Master Quest", "Pot"))),
     ("Fire Temple MQ Shoot Torch On Wall Room Pot 2", ("Collectable", 0x04, 0x2A, None, 'Arrows (10)', ("Fire Temple", "Master Quest", "Pot"))),
@@ -1096,12 +1096,19 @@ location_table = OrderedDict([
     ("Fire Temple MQ Iron Knuckle Room Pot 2", ("Collectable", 0x04, 0x32, None, 'Bombs (5)', ("Fire Temple", "Master Quest", "Pot"))),
     ("Fire Temple MQ Iron Knuckle Room Pot 3", ("Collectable", 0x04, 0x33, None, 'Bombs (5)', ("Fire Temple", "Master Quest", "Pot"))),
     ("Fire Temple MQ Iron Knuckle Room Pot 4", ("Collectable", 0x04, 0x34, None, 'Bombs (5)', ("Fire Temple", "Master Quest", "Pot"))),
-    #("Fire Temple MQ Iron Knuckle Room Pot 5", ("Collectable", 0x04, 0x2F, None, 'N/A', ("Fire Temple", "Master Quest", "Pot")))
-    #("Fire Temple MQ Iron Knuckle Room Pot 6", ("Collectable", 0x04, 0x35, None, 'N/A', ("Fire Temple", "Master Quest", "Pot")))
-    #("Fire Temple MQ Iron Knuckle Room Pot 7", ("Collectable", 0x04, 0x36, None, 'N/A', ("Fire Temple", "Master Quest", "Pot")))
-    #("Fire Temple MQ Iron Knuckle Room Pot 8", ("Collectable", 0x04, 0x31, None, 'N/A', ("Fire Temple", "Master Quest", "Pot")))
+    #("Fire Temple MQ Iron Knuckle Room Pot 5", ("Collectable", 0x04, 0x2F, None, 'N/A', ("Fire Temple", "Master Quest", "Pot"))),
+    #("Fire Temple MQ Iron Knuckle Room Pot 6", ("Collectable", 0x04, 0x35, None, 'N/A', ("Fire Temple", "Master Quest", "Pot"))),
+    #("Fire Temple MQ Iron Knuckle Room Pot 7", ("Collectable", 0x04, 0x36, None, 'N/A', ("Fire Temple", "Master Quest", "Pot"))),
+    #("Fire Temple MQ Iron Knuckle Room Pot 8", ("Collectable", 0x04, 0x31, None, 'N/A', ("Fire Temple", "Master Quest", "Pot"))),
     ("Fire Temple MQ Boss Key Chest Room Pot 1", ("Collectable", 0x04, 0x38, None, 'Rupees (5)', ("Fire Temple", "Master Quest", "Pot"))),
-    #("Fire Temple MQ Boss Key Chest Room Pot 2", ("Collectable", 0x04, 0x37, None, 'N/A', ("Fire Temple", "Master Quest", "Pot")))
+    #("Fire Temple MQ Boss Key Chest Room Pot 2", ("Collectable", 0x04, 0x37, None, 'N/A', ("Fire Temple", "Master Quest", "Pot"))),
+    #("Fire Temple MQ Upper Maze Small Wooden Crate 1", ("Collectable", 0x04, 0x3F, None, 'N/A', ("Fire Temple", "Master Quest", "Pot"))),
+    #("Fire Temple MQ Upper Maze Small Wooden Crate 2", ("Collectable", 0x04, 0x3F, None, 'N/A', ("Fire Temple", "Master Quest", "Pot"))),
+    #("Fire Temple MQ Shoot Torch On Wall Room Small Wooden Crate 1", ("Collectable", 0x04, 0x3F, None, 'N/A', ("Fire Temple", "Master Quest", "Pot"))),
+    #("Fire Temple MQ Shoot Torch On Wall Room Small Wooden Crate 2", ("Collectable", 0x04, 0x3F, None, 'N/A', ("Fire Temple", "Master Quest", "Pot"))),
+    #("Fire Temple MQ Shoot Torch On Wall Room Small Wooden Crate 3", ("Collectable", 0x04, 0x3F, None, 'N/A', ("Fire Temple", "Master Quest", "Pot"))),
+    #("Fire Temple MQ Shoot Torch On Wall Room Small Wooden Crate 4", ("Collectable", 0x04, 0x3F, None, 'N/A', ("Fire Temple", "Master Quest", "Pot"))),
+    #("Fire Temple MQ Shoot Torch On Wall Room Small Wooden Crate 5", ("Collectable", 0x04, 0x3F, None, 'N/A', ("Fire Temple", "Master Quest", "Pot"))),
     
     # Fire Temple shared
     ("Fire Temple Volvagia Heart",                                   ("BossHeart",    0x15,  0x4F, None,                        'Heart Container',                       ("Fire Temple", "Vanilla", "Master Quest",))),
