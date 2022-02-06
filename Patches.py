@@ -1001,16 +1001,16 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             save_context.write_permanent_flag(Scenes.SHADOW_TEMPLE, FlagType.SWITCH, 0x1, 0x01) # Shadow Bird Bridge
 
     if world.settings.plant_beans:
-        save_context.write_permanent_flag(Scenes.GRAVEYARD, FlagType.SWITCH, 0x1, 0x03) # Plant Graveyard bean
-        save_context.write_permanent_flag(Scenes.ZORAS_RIVER, FlagType.SWITCH, 0x1, 0x03) # Plant Zora's River bean
-        save_context.write_permanent_flag(Scenes.KOKIRI_FOREST, FlagType.SWITCH, 0x1, 0x09) # Plant Kokiri Forest bean
-        save_context.write_permanent_flag(Scenes.LAKE_HYLIA, FlagType.SWITCH, 0x1, 0x01) # Plant Lake Hylia bean
-        save_context.write_permanent_flag(Scenes.GERUDO_VALLEY, FlagType.SWITCH, 0x1, 0x03) # Plant Gerudo Valley bean
-        save_context.write_permanent_flag(Scenes.LOST_WOODS, FlagType.SWITCH, 0x1, 0x04) # Plant Lost Woods bridge bean
-        save_context.write_permanent_flag(Scenes.LOST_WOODS, FlagType.SWITCH, 0x1, 0x12) # Plant Lost Woods theater bean
-        save_context.write_permanent_flag(Scenes.DESERT_COLOSSUS, FlagType.SWITCH, 0x1, 0x18) # Plant Desert Colossus bean
-        save_context.write_permanent_flag(Scenes.DEATH_MOUNTAIN_TRAIL, FlagType.SWITCH, 0x1, 0x06) # Plant Death Mountain Trail bean
-        save_context.write_permanent_flag(Scenes.DEATH_MOUNTAIN_CRATER, FlagType.SWITCH, 0x1, 0x03) # Plant Death Mountain Crater bean
+        save_context.write_permanent_flag(Scenes.GRAVEYARD, FlagType.SWITCH, 0x3, 0x08) # Plant Graveyard bean
+        save_context.write_permanent_flag(Scenes.ZORAS_RIVER, FlagType.SWITCH, 0x3, 0x08) # Plant Zora's River bean
+        save_context.write_permanent_flag(Scenes.KOKIRI_FOREST, FlagType.SWITCH, 0x2, 0x02) # Plant Kokiri Forest bean
+        save_context.write_permanent_flag(Scenes.LAKE_HYLIA, FlagType.SWITCH, 0x3, 0x02) # Plant Lake Hylia bean
+        save_context.write_permanent_flag(Scenes.GERUDO_VALLEY, FlagType.SWITCH, 0x3, 0x08) # Plant Gerudo Valley bean
+        save_context.write_permanent_flag(Scenes.LOST_WOODS, FlagType.SWITCH, 0x3, 0x10) # Plant Lost Woods bridge bean
+        save_context.write_permanent_flag(Scenes.LOST_WOODS, FlagType.SWITCH, 0x1, 0x04) # Plant Lost Woods theater bean
+        save_context.write_permanent_flag(Scenes.DESERT_COLOSSUS, FlagType.SWITCH, 0x0, 0x1) # Plant Desert Colossus bean
+        save_context.write_permanent_flag(Scenes.DEATH_MOUNTAIN_TRAIL, FlagType.SWITCH, 0x3, 0x40) # Plant Death Mountain Trail bean
+        save_context.write_permanent_flag(Scenes.DEATH_MOUNTAIN_CRATER, FlagType.SWITCH, 0x3, 0x08) # Plant Death Mountain Crater bean
         save_context.write_bits(0x009B, 0x0A) # 10 magic beans sold
 
     set_spirit_shortcut_actors(rom) # Change elevator starting position to avoid waiting a half cycle from the temple entrance
