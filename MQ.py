@@ -539,7 +539,7 @@ def update_scene_table(rom:Rom, sceneId, start, end):
 def write_actor_data(rom:Rom, cur, actors):
     logger = logging.getLogger('')
     for actor in actors:
-        logger.info(str(hex(cur)) + ": " + str(actor))
+        logger.info(str(hex(cur)) + ": " + str(list(map(hex,actor))))
         rom.write_int16s(cur, actor)
         cur += 0x10
 
