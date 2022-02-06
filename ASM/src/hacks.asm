@@ -651,6 +651,16 @@ sh T1, 0x0046(sp)
 jal drop_collectible_hook
 or t4, t3, t1
 
+;Hack ObjKibako2_SpawnCollectible (Large crates) to call our overridden spawn function
+;
+.orga 0xEC8264
+j ObjKibako2_SpawnCollectible_Hack
+nop
+
+;Hack ObjKibako2_Init (Large Crates) to not delete our extended flag
+.orga 0xEC832C
+or T8, T7, R0
+
 ; Runs when storing an incoming item to the player instance
 ; Replaces:
 ;   sb      a2, 0x0424 (a3)
