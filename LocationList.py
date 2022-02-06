@@ -1003,7 +1003,10 @@ location_table = OrderedDict([
     ("Forest Temple MQ Basement Pot 2", ("Collectable", 0x03, 0x39, None, 'Recovery Heart', ("Forest Temple", "Master Quest", "Pot"))),
     ("Forest Temple MQ Basement Pot 3", ("Collectable", 0x03, 0x3A, None, 'Bombs (5)', ("Forest Temple", "Master Quest", "Pot"))),
     ("Forest Temple MQ Basement Pot 4", ("Collectable", 0x03, 0x3B, None, 'Arrows (5)', ("Forest Temple", "Master Quest", "Pot"))),
-    
+    ("Forest Temple MQ Frozen Eye Switch Room Small Wooden Crate 1", ("Collectable", 0x03, 0x3C, ([0x247dc34+14],[0x3C]), 'Recovery Heart', ("Forest Temple", "Master Quest", "Crate"))),
+    ("Forest Temple MQ Frozen Eye Switch Room Small Wooden Crate 2", ("Collectable", 0x03, 0x3D, ([0x247dc44+14],[0x3D]), 'Arrows (5)', ("Forest Temple", "Master Quest", "Crate"))),
+    ("Forest Temple MQ Frozen Eye Switch Room Small Wooden Crate 3", ("Collectable", 0x03, 0x3E, ([0x247dc54+14],[0x3E]), 'Arrows (5)', ("Forest Temple", "Master Quest", "Crate"))),
+
     # Forest Temple shared
     ("Forest Temple Phantom Ganon Heart",                            ("BossHeart",    0x14,  0x4F, None,                        'Heart Container',                       ("Forest Temple", "Vanilla", "Master Quest",))),
 
