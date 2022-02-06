@@ -355,7 +355,7 @@ SYMBOL TABLE:
 000047e8 g     F .text	00000024 give_small_key
 00000064 g     O .sbss	00000002 triforce_hunt_enabled
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_MQ_ENABLE
-00000148 g     O .data	00000011 items
+00000148 g     O .data	00000015 items
 00000000         *UND*	00000000 C_HEAP
 00003984 g     F .text	00000204 item_give_collectible
 0000616c g     F .text	0000022c get_rainbow_color

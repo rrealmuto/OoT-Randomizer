@@ -417,7 +417,7 @@ void get_item(z64_actor_t *from_actor, z64_link_t *link, int8_t incoming_item_id
 #define GIVEITEM_SEEDS 88
 #define GIVEITEM_MAGIC_SMALL 120
 #define GIVEITEM_MAGIC_LARGE 121
-
+#define GIVEITEM_RUPEE_PURPLE 135
 
 uint8_t items[] = {
 	GIVEITEM_RUPEE_GREEN, 
@@ -436,7 +436,11 @@ uint8_t items[] = {
 	GIVEITEM_STICK,
 	GIVEITEM_MAGIC_LARGE,
 	GIVEITEM_MAGIC_SMALL,
-	GIVEITEM_SEEDS};
+	GIVEITEM_SEEDS,
+	0,
+	0,
+	0,
+	GIVEITEM_RUPEE_PURPLE};
 
 EnItem00* collectible_mutex = 0;
 

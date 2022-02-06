@@ -873,7 +873,7 @@
 8040B1C8 hash_symbols
 8040B208 .byt:0040
 8040B208 num_to_bits
-8040B248 .byt:0011
+8040B248 .byt:0015
 8040B248 items
 8040B260 .byt:0010
 8040B260 heart_sprite
