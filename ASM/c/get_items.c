@@ -546,6 +546,16 @@ bool should_override_collectible(EnItem00* item00)
 	return 1;
 }
 
+void Item00_KillActorIfFlagIsSet(z64_actor_t* actor)
+{
+	EnItem00* this = (EnItem00*)actor;
+	if(should_override_collectible(this))
+		return;
+	if(get_extended_flag(this) >= 0x40)
+		return;
+	z64_ActorKill(actor);
+}
+
 //Hack for keeping freestanding overrides alive when they spawn from crates/pots.
 void Item00_KeepAlive(EnItem00* item00)
 {

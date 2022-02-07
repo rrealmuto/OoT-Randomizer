@@ -375,6 +375,12 @@ slti at, s4, 0x0002
 jal  item00_init_hook
 nop
 
+;Hack EnItem00_Init when it checks the scene flags to prevent killing the actor if its being overridden.
+;replaces
+;jal 0x80020EB4
+.orga 0x0A87B10; In Memory 0x80011BB0
+jal Item00_KillActorIfFlagIsSet
+
 ;Hack Item_DropCollectible to call custom function to determine what item should be dropped based on our override.
 ;overriding call at 0x8001376C to function 0x80013530
 ;replaces

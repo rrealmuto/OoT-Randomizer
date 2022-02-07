@@ -194,8 +194,11 @@ get_item_hook:
 item00_init_hook:
     andi t8, v0, 0x4000   ;get the second highest bit (thats where we stored the flag) in drop_collectible_hook
     sra t8, t8, 14        ;shift it over
+    andi t9, v0, 0x00C0   ;get the 2 highest bits in the lower byte (thats where were storing our extra flag info).
+    sra t9, t9, 5         ;shift it over
+    or  t8, t8, t9        ; or the two together
     sb t8, 0x116(a0)      ;store it in drop_flag at offset 0x116
-    andi T9, V0, 0x00FF   ;replaced code
+    andi T9, V0, 0x003F   ;replaced code  but change it to only use 0x3F
     jr ra
     sh  T9, 0x001c(S0)    ;replaced code
 
