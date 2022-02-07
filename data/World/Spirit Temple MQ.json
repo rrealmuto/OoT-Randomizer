@@ -73,7 +73,11 @@
             "Spirit Temple MQ Lower Boss Platform Pot 1": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
             "Spirit Temple MQ Lower Boss Platform Pot 2": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
             "Spirit Temple MQ Lower Boss Platform Pot 3": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
-            "Spirit Temple MQ Lower Boss Platform Pot 4": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)"
+            "Spirit Temple MQ Lower Boss Platform Pot 4": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
+            "Spirit Temple MQ Lower Boss Platform Crate 1": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
+            "Spirit Temple MQ Lower Boss Platform Crate 2": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
+            "Spirit Temple MQ Lower Boss Platform Crate 3": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
+            "Spirit Temple MQ Lower Boss Platform Crate 4": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)"
         },
         "exits": {
             "Lower Adult Spirit Temple": "
@@ -118,6 +122,8 @@
             "Spirit Temple MQ Central Chamber Flying Pot 3": "True",
             "Spirit Temple MQ Central Chamber Top Left Pot 1": "can_use(Hover_Boots) or can_play(Song_of_Time)",
             "Spirit Temple MQ Central Chamber Top Left Pot 2": "can_use(Hover_Boots) or can_play(Song_of_Time)",
+            "Spirit Temple MQ Central Chamber Crate 1": "True",
+            "Spirit Temple MQ Central Chamber Crate 2": "True",
             "Spirit Temple MQ Sun Block Room Pot 1": "
                 can_play(Song_of_Time) or logic_spirit_mq_sun_block_sot or
                 is_adult",

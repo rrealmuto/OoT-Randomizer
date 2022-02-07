@@ -1502,6 +1502,13 @@ location_table = OrderedDict([
     ("Spirit Temple MQ Lower Boss Platform Pot 2", ("Collectable", 0x06, 0x3C, None, 'Recovery Heart', ("Spirit Temple", "Master Quest", "Pot"))),
     ("Spirit Temple MQ Lower Boss Platform Pot 3", ("Collectable", 0x06, 0x3D, None, 'Recovery Heart', ("Spirit Temple", "Master Quest", "Pot"))),
     ("Spirit Temple MQ Lower Boss Platform Pot 4", ("Collectable", 0x06, 0x3B, None, 'Rupees (5)', ("Spirit Temple", "Master Quest", "Pot"))),
+    # Spirit Temple MQ Crates
+    ("Spirit Temple MQ Central Chamber Crate 1", ("Collectable", 0x6, 0x40, ([0x2b3c38c],None), 'Rupee (1)', ("Spirit Temple", "Master Quest", "Crate"))),
+    ("Spirit Temple MQ Central Chamber Crate 2", ("Collectable", 0x6, 0x41, ([0x2b3c39c],None), 'Rupee (1)', ("Spirit Temple", "Master Quest", "Crate"))),
+    ("Spirit Temple MQ Lower Boss Platform Crate 1", ("Collectable", 0x6, 0x42, ([0x2bceb9c],None), 'Rupee (1)', ("Spirit Temple", "Master Quest", "Crate"))),
+    ("Spirit Temple MQ Lower Boss Platform Crate 2", ("Collectable", 0x6, 0x43, ([0x2bcebac],None), 'Rupee (1)', ("Spirit Temple", "Master Quest", "Crate"))),
+    ("Spirit Temple MQ Lower Boss Platform Crate 3", ("Collectable", 0x6, 0x44, ([0x2bcebbc],None), 'Rupee (1)', ("Spirit Temple", "Master Quest", "Crate"))),
+    ("Spirit Temple MQ Lower Boss Platform Crate 4", ("Collectable", 0x6, 0x45, ([0x2bcebcc],None), 'Rupee (1)', ("Spirit Temple", "Master Quest", "Crate"))),
 
     # Ice Cavern vanilla
     ("Ice Cavern Map Chest",                                         ("Chest",        0x09,  0x00, None,                        'Map (Ice Cavern)',                      ("Ice Cavern", "Vanilla",))),
