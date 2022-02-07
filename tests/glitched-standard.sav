@@ -26,6 +26,7 @@
     "shuffle_weird_egg": false,
     "shuffle_gerudo_card": false,
     "shuffle_beans": false,
+    "plant_beans": false,
     "shuffle_mapcompass": "startwith",
     "shuffle_smallkeys": "dungeon",
     "shuffle_bosskeys": "dungeon",
