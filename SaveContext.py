@@ -6,9 +6,7 @@ class Scenes(IntEnum):
     DEKU_TREE = 0x00
     DODONGOS_CAVERN = 0x01
     KING_DODONGO_LOBBY = 0x12
-    JABU_JABU = 0x02
-    FOREST_TEMPLE = 0x03
-    FIRE_TEMPLE = 0x04
+	@@ -11,6 +12,16 @@ class Scenes(IntEnum):
     WATER_TEMPLE = 0x05
     SPIRIT_TEMPLE = 0x06
     SHADOW_TEMPLE = 0x07
