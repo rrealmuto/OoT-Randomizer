@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "ADULT_INIT_ITEMS": "03481D50",
     "ADULT_VALID_ITEMS": "03481D58",
     "AUDIO_THREAD_INFO": "03482FA8",
@@ -92,6 +93,14 @@
 =======
     "AUDIO_THREAD_MEM_START": "03496A40",
 >>>>>>> 9671f20d (Fix setting collectible flag)
+=======
+    "ADULT_INIT_ITEMS": "03481F8C",
+    "ADULT_VALID_ITEMS": "03481F94",
+    "AUDIO_THREAD_INFO": "034831E4",
+    "AUDIO_THREAD_INFO_MEM_SIZE": "03483204",
+    "AUDIO_THREAD_INFO_MEM_START": "03483200",
+    "AUDIO_THREAD_MEM_START": "03497A90",
+>>>>>>> 33ad5d8c (idk exactly but it worked.)
     "AUTO_TRACKER_CONTEXT": "03480CD0",
     "AUTO_TRACKER_VERSION": "03480CD0",
     "BOMBCHUS_IN_LOGIC": "03480CAC",
@@ -104,7 +113,7 @@
     "CFG_B_BUTTON_COLOR": "0348084A",
     "CFG_C_BUTTON_COLOR": "03480850",
     "CFG_C_NOTE_COLOR": "03480868",
-    "CFG_DAMAGE_MULTIPLYER": "03482EC8",
+    "CFG_DAMAGE_MULTIPLYER": "03482ED4",
     "CFG_DISPLAY_DPAD": "0348087A",
     "CFG_DUNGEON_INFO_ENABLE": "03480CD4",
     "CFG_DUNGEON_INFO_MQ_ENABLE": "03480CD8",
@@ -132,6 +141,7 @@
     "CFG_RAINBOW_SWORD_OUTER_ENABLED": "0348087C",
     "CFG_SHOP_CURSOR_COLOR": "0348085C",
     "CFG_TEXT_CURSOR_COLOR": "03480856",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -251,13 +261,20 @@
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348C430",
     "COMPLETE_MASK_QUEST": "0348C481",
 >>>>>>> 9671f20d (Fix setting collectible flag)
+=======
+    "CHAIN_HBA_REWARDS": "03483B78",
+    "CHEST_SIZE_MATCH_CONTENTS": "0348C47C",
+    "CHEST_TEXTURE_MATCH_CONTENTS": "0348C480",
+    "COMPLETE_MASK_QUEST": "0348C4D1",
+>>>>>>> 33ad5d8c (idk exactly but it worked.)
     "COOP_CONTEXT": "03480020",
     "COOP_VERSION": "03480020",
     "COSMETIC_CONTEXT": "03480834",
     "COSMETIC_FORMAT_VERSION": "03480834",
-    "CURRENT_GROTTO_ID": "0348309A",
-    "DEBUG_OFFSET": "03482AB8",
+    "CURRENT_GROTTO_ID": "034830A6",
+    "DEBUG_OFFSET": "03482AC4",
     "DISABLE_TIMERS": "03480CCC",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -331,11 +348,15 @@
 =======
     "DPAD_TEXTURE": "03490A38",
 >>>>>>> 9671f20d (Fix setting collectible flag)
+=======
+    "DPAD_TEXTURE": "03491A88",
+>>>>>>> 33ad5d8c (idk exactly but it worked.)
     "DUNGEONS_SHUFFLED": "03480CCD",
     "EXTENDED_OBJECT_TABLE": "03480C8C",
-    "EXTERN_DAMAGE_MULTIPLYER": "03482EC9",
+    "EXTERN_DAMAGE_MULTIPLYER": "03482ED5",
     "FAST_BUNNY_HOOD_ENABLED": "03480CCF",
     "FAST_CHESTS": "03480CC6",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -512,13 +533,24 @@
     "GILDED_CHEST_BASE_TEXTURE": "03493238",
     "GILDED_CHEST_FRONT_TEXTURE": "03492238",
 >>>>>>> 9671f20d (Fix setting collectible flag)
+=======
+    "FONT_TEXTURE": "034905C0",
+    "FREE_SCARECROW_ENABLED": "03480CBC",
+    "GANON_BOSS_KEY_CONDITION": "0348C490",
+    "GANON_BOSS_KEY_CONDITION_COUNT": "0348C48E",
+    "GET_CHEST_OVERRIDE_WRAPPER": "0348293C",
+    "GET_ITEM_TRIGGERED": "03481658",
+    "GILDED_CHEST_BASE_TEXTURE": "03494288",
+    "GILDED_CHEST_FRONT_TEXTURE": "03493288",
+>>>>>>> 33ad5d8c (idk exactly but it worked.)
     "GOSSIP_HINT_CONDITION": "03480CB8",
-    "GROTTO_EXIT_LIST": "03483058",
-    "GROTTO_LOAD_TABLE": "03482FD4",
+    "GROTTO_EXIT_LIST": "03483064",
+    "GROTTO_LOAD_TABLE": "03482FE0",
     "INCOMING_ITEM": "03480028",
     "INCOMING_PLAYER": "03480026",
     "INITIAL_SAVE_DATA": "0348088C",
     "JABU_ELEVATOR_ENABLE": "03480CC4",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -596,10 +628,14 @@
 =======
     "KAKARIKO_WEATHER_FORECAST": "0348C4A0",
 >>>>>>> 9671f20d (Fix setting collectible flag)
+=======
+    "KAKARIKO_WEATHER_FORECAST": "0348C4F0",
+>>>>>>> 33ad5d8c (idk exactly but it worked.)
     "LACS_CONDITION": "03480CB4",
     "LACS_CONDITION_COUNT": "03480CC2",
-    "MALON_GAVE_ICETRAP": "034838A4",
+    "MALON_GAVE_ICETRAP": "034838B4",
     "MALON_TEXT_ID": "03480CCB",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -757,10 +793,18 @@
 =======
     "OPEN_KAKARIKO": "0348C482",
 >>>>>>> 9671f20d (Fix setting collectible flag)
+=======
+    "MAX_RUPEES": "0348C4D3",
+    "MOVED_ADULT_KING_ZORA": "03483224",
+    "NO_ESCAPE_SEQUENCE": "0348C48C",
+    "OCARINAS_SHUFFLED": "03480CC5",
+    "OPEN_KAKARIKO": "0348C4D2",
+>>>>>>> 33ad5d8c (idk exactly but it worked.)
     "OUTGOING_ITEM": "03480030",
     "OUTGOING_KEY": "0348002C",
     "OUTGOING_PLAYER": "03480032",
     "OVERWORLD_SHUFFLED": "03480CCE",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -834,17 +878,21 @@
 =======
     "PAYLOAD_END": "03496A40",
 >>>>>>> 9671f20d (Fix setting collectible flag)
+=======
+    "PAYLOAD_END": "03497A90",
+>>>>>>> 33ad5d8c (idk exactly but it worked.)
     "PAYLOAD_START": "03480000",
-    "PLAYED_WARP_SONG": "03481450",
+    "PLAYED_WARP_SONG": "0348145C",
     "PLAYER_ID": "03480024",
     "PLAYER_NAMES": "03480034",
     "PLAYER_NAME_ID": "03480025",
     "RAINBOW_BRIDGE_CONDITION": "03480CB0",
     "RAINBOW_BRIDGE_COUNT": "03480CC0",
     "RANDO_CONTEXT": "03480000",
-    "SHUFFLE_BEANS": "03482F30",
-    "SHUFFLE_CARPET_SALESMAN": "03483C20",
+    "SHUFFLE_BEANS": "03482F3C",
+    "SHUFFLE_CARPET_SALESMAN": "03483C30",
     "SHUFFLE_COWS": "03480CC7",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1019,15 +1067,23 @@
     "SKULL_CHEST_BASE_TEXTURE": "03496238",
     "SKULL_CHEST_FRONT_TEXTURE": "03495238",
 >>>>>>> 9671f20d (Fix setting collectible flag)
+=======
+    "SHUFFLE_MEDIGORON": "03483C8C",
+    "SILVER_CHEST_BASE_TEXTURE": "03495A88",
+    "SILVER_CHEST_FRONT_TEXTURE": "03494A88",
+    "SKULL_CHEST_BASE_TEXTURE": "03497288",
+    "SKULL_CHEST_FRONT_TEXTURE": "03496288",
+>>>>>>> 33ad5d8c (idk exactly but it worked.)
     "SONGS_AS_ITEMS": "03480CC8",
-    "SOS_ITEM_GIVEN": "03481718",
-    "SPEED_MULTIPLIER": "03482978",
-    "START_TWINROVA_FIGHT": "03483294",
-    "TIME_TRAVEL_SAVED_EQUIPS": "03481CA4",
-    "TRIFORCE_ICON_TEXTURE": "03491238",
-    "TWINROVA_ACTION_TIMER": "03483298",
+    "SOS_ITEM_GIVEN": "03481724",
+    "SPEED_MULTIPLIER": "03482984",
+    "START_TWINROVA_FIGHT": "034832A4",
+    "TIME_TRAVEL_SAVED_EQUIPS": "03481CB0",
+    "TRIFORCE_ICON_TEXTURE": "03492288",
+    "TWINROVA_ACTION_TIMER": "034832A8",
     "WINDMILL_SONG_ID": "03480CC9",
     "WINDMILL_TEXT_ID": "03480CCA",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -2450,4 +2506,84 @@
     "triforce_pieces_requied": "0348C42A",
     "triforce_sprite": "0348B320"
 >>>>>>> 9671f20d (Fix setting collectible flag)
+=======
+    "a_button": "0348C458",
+    "a_note_b": "0348C444",
+    "a_note_font_glow_base": "0348C42C",
+    "a_note_font_glow_max": "0348C428",
+    "a_note_g": "0348C448",
+    "a_note_glow_base": "0348C434",
+    "a_note_glow_max": "0348C430",
+    "a_note_r": "0348C44C",
+    "active_item_action_id": "0348C4B4",
+    "active_item_fast_chest": "0348C4A4",
+    "active_item_graphic_id": "0348C4A8",
+    "active_item_object_id": "0348C4AC",
+    "active_item_row": "0348C4B8",
+    "active_item_text_id": "0348C4B0",
+    "active_override": "0348C4C0",
+    "active_override_is_outgoing": "0348C4BC",
+    "b_button": "0348C454",
+    "beating_dd": "0348C460",
+    "beating_no_dd": "0348C468",
+    "c_button": "0348C450",
+    "c_note_b": "0348C438",
+    "c_note_font_glow_base": "0348C41C",
+    "c_note_font_glow_max": "0348C418",
+    "c_note_g": "0348C43C",
+    "c_note_glow_base": "0348C424",
+    "c_note_glow_max": "0348C420",
+    "c_note_r": "0348C440",
+    "cfg_file_select_hash": "0348C488",
+    "cfg_item_overrides": "0348D500",
+    "collectible_mutex": "0348C49C",
+    "collectible_override": "0348C494",
+    "collectible_override_flags": "0348D1C0",
+    "defaultDDHeart": "0348C46C",
+    "defaultHeart": "0348C474",
+    "dpad_sprite": "0348B380",
+    "dropped_collectible_override_flags": "0348C520",
+    "dummy_actor": "0348C4C8",
+    "dungeon_count": "0348C3E8",
+    "dungeons": "0348B1D8",
+    "empty_dlist": "0348C400",
+    "extern_ctxt": "0348B274",
+    "font_sprite": "0348B390",
+    "freecam_modes": "0348AF40",
+    "hash_sprites": "0348C3F4",
+    "hash_symbols": "0348B288",
+    "heap_next": "0348C4EC",
+    "heart_sprite": "0348B320",
+    "icon_sprites": "0348B104",
+    "item_digit_sprite": "0348B340",
+    "item_overrides_count": "0348C4CC",
+    "item_table": "0348B408",
+    "items": "0348B308",
+    "items_sprite": "0348B3B0",
+    "key_rupee_clock_sprite": "0348B350",
+    "last_fog_distance": "0348C3EC",
+    "linkhead_skull_sprite": "0348B330",
+    "medal_colors": "0348B1C4",
+    "medals_sprite": "0348B3C0",
+    "normal_dd": "0348C45C",
+    "normal_no_dd": "0348C464",
+    "num_to_bits": "0348B2C8",
+    "object_slots": "03490500",
+    "pending_freezes": "0348C4D0",
+    "pending_item_queue": "0348D4E8",
+    "quest_items_sprite": "0348B3A0",
+    "rupee_colors": "0348B110",
+    "satisified_pending_frames": "0348C4A0",
+    "scene_fog_distance": "0348C3F0",
+    "setup_db": "0348B3E0",
+    "song_note_sprite": "0348B360",
+    "stones_sprite": "0348B3D0",
+    "text_cursor_border_base": "0348C40C",
+    "text_cursor_border_max": "0348C408",
+    "text_cursor_inner_base": "0348C414",
+    "text_cursor_inner_max": "0348C410",
+    "triforce_hunt_enabled": "0348C4E0",
+    "triforce_pieces_requied": "0348C47A",
+    "triforce_sprite": "0348B370"
+>>>>>>> 33ad5d8c (idk exactly but it worked.)
 }
