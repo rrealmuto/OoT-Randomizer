@@ -122,7 +122,7 @@
             "Water Temple MQ Lizalfos Hallway Pot 2": "True",
             "Water Temple MQ Lizalfos Hallway Pot 3": "True",
             "Water Temple MQ Lizalfos Hallway Gate Pot 1": "can_use(Dins_Fire)",
-            "Water Temple MQ Lizalfos Hallway Gate Pot 1": "can_use(Dins_Fire)",
+            "Water Temple MQ Lizalfos Hallway Gate Pot 2": "can_use(Dins_Fire)",
             "Water Temple MQ Before Upper Water Switch Lower Crate 1": "can_use(Hookshot)",
             "Water Temple MQ Before Upper Water Switch Lower Crate 2": "can_use(Hookshot)",
             "Water Temple MQ Before Upper Water Switch Lower Crate 3": "can_use(Hookshot)",
