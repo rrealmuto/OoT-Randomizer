@@ -496,7 +496,7 @@ bool Get_CollectibleOverrideFlag(EnItem00* item00)
 
 	//uint16_t extended_flag = item00->collectibleFlag; //Update this to make the flag bigger
 
-	return (flag_table[8*scene + (extended_flag/0x20)] & (1 << (extended_flag % 0x20)));
+	return (flag_table[(dropFlag ? 8 : 2)*scene + (extended_flag/0x20)] & (1 << (extended_flag % 0x20)));
 	/*
 	if(item00->collectibleFlag < 0x20)
 	{
@@ -517,11 +517,14 @@ void Set_CollectibleOverrideFlag(EnItem00* item00)
 		flag_table = &dropped_collectible_override_flags;
 		if(scene == 0x0A)
 			scene = 0x19;
+		
+		return;
 	}
+	flag_table[(dropFlag ? 8 : 2)*scene + (extended_flag/0x20)] |= (1 << (extended_flag % 0x20));
 
 	//uint16_t extended_flag = item00->collectibleFlag; //Update this to make the flag bigger
 
-	flag_table[8*scene + (extended_flag/0x20)] |= (1 << (extended_flag % 0x20));
+	
 	return;
 	/*if(item00->collectibleFlag < 0x20)
 	{
