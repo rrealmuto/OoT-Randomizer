@@ -1133,7 +1133,31 @@ location_table = OrderedDict([
     #("Fire Temple MQ Shoot Torch On Wall Room Small Wooden Crate 3", ("Collectable", 0x04, 0x3F, None, 'N/A', ("Fire Temple", "Master Quest", "Pot"))),
     #("Fire Temple MQ Shoot Torch On Wall Room Small Wooden Crate 4", ("Collectable", 0x04, 0x3F, None, 'N/A', ("Fire Temple", "Master Quest", "Pot"))),
     #("Fire Temple MQ Shoot Torch On Wall Room Small Wooden Crate 5", ("Collectable", 0x04, 0x3F, None, 'N/A', ("Fire Temple", "Master Quest", "Pot"))),
-    
+    # Fire Temple MQ Crates
+    ("Fire Temple MQ Before Boss Left Crate 1", ("Collectable", 0x4, 0x40, ([0x2317bf8],None), 'Rupee (1)', ("Fire Temple", "Master Quest", "Crate"))),
+    ("Fire Temple MQ Before Boss Left Crate 2", ("Collectable", 0x4, 0x41, ([0x2317be8],None), 'Rupee (1)', ("Fire Temple", "Master Quest", "Crate"))),
+    ("Fire Temple MQ Before Boss Right Lower Crate 1", ("Collectable", 0x4, 0x42, ([0x2317bc8],None), 'Rupee (1)', ("Fire Temple", "Master Quest", "Crate"))),
+    ("Fire Temple MQ Before Boss Right Lower Crate 2", ("Collectable", 0x4, 0x43, ([0x2317bb8],None), 'Rupee (1)', ("Fire Temple", "Master Quest", "Crate"))),
+    ("Fire Temple MQ Before Boss Right Mid Crate", ("Collectable", 0x4, 0x44, ([0x2317bd8],None), 'Rupee (1)', ("Fire Temple", "Master Quest", "Crate"))),
+    ("Fire Temple MQ Before Boss Right Upper Crate", ("Collectable", 0x4, 0x45, ([0x2317c08],None), 'Rupee (1)', ("Fire Temple", "Master Quest", "Crate"))),
+    ("Fire Temple MQ Shortcut Crate 1", ("Collectable", 0x4, 0x46, ([0x2322944],None), 'Rupee (1)', ("Fire Temple", "Master Quest", "Crate"))),
+    ("Fire Temple MQ Shortcut Crate 2", ("Collectable", 0x4, 0x47, ([0x2322954],None), 'Rupee (1)', ("Fire Temple", "Master Quest", "Crate"))),
+    ("Fire Temple MQ Shortcut Crate 3", ("Collectable", 0x4, 0x48, ([0x2322964],None), 'Rupee (1)', ("Fire Temple", "Master Quest", "Crate"))),
+    ("Fire Temple MQ Shortcut Crate 4", ("Collectable", 0x4, 0x49, ([0x2322974],None), 'Rupee (1)', ("Fire Temple", "Master Quest", "Crate"))),
+    ("Fire Temple MQ Shortcut Crate 5", ("Collectable", 0x4, 0x4A, ([0x2322984],None), 'Rupee (1)', ("Fire Temple", "Master Quest", "Crate"))),
+    ("Fire Temple MQ Shortcut Crate 6", ("Collectable", 0x4, 0x4B, ([0x2322994],None), 'Rupee (1)', ("Fire Temple", "Master Quest", "Crate"))),
+    ("Fire Temple MQ Lower Lizalfos Maze Crate 1", ("Collectable", 0x4, 0x4C, ([0x232d3f4],None), 'Rupee (1)', ("Fire Temple", "Master Quest", "Crate"))),
+    ("Fire Temple MQ Lower Lizalfos Maze Crate 2", ("Collectable", 0x4, 0x4D, ([0x232d404],None), 'Rupee (1)', ("Fire Temple", "Master Quest", "Crate"))),
+    ("Fire Temple MQ Lower Lizalfos Maze Crate 3", ("Collectable", 0x4, 0x4E, ([0x232d414],None), 'Rupee (1)', ("Fire Temple", "Master Quest", "Crate"))),
+    ("Fire Temple MQ Upper Lizalfos Maze Crate 1", ("Collectable", 0x4, 0x4F, ([0x232d3c4],None), 'Rupee (1)', ("Fire Temple", "Master Quest", "Crate"))),
+    ("Fire Temple MQ Upper Lizalfos Maze Crate 2", ("Collectable", 0x4, 0x50, ([0x232d3d4],None), 'Rupee (1)', ("Fire Temple", "Master Quest", "Crate"))),
+    ("Fire Temple MQ Upper Lizalfos Maze Crate 3", ("Collectable", 0x4, 0x51, ([0x232d3e4],None), 'Rupee (1)', ("Fire Temple", "Master Quest", "Crate"))),
+    ("Fire Temple MQ Shoot Torch On Wall Right Crate 1", ("Collectable", 0x4, 0x52, ([0x2389a1c],None), 'Rupee (1)', ("Fire Temple", "Master Quest", "Crate"))),
+    ("Fire Temple MQ Shoot Torch On Wall Right Crate 2", ("Collectable", 0x4, 0x53, ([0x2389a3c],None), 'Rupee (1)', ("Fire Temple", "Master Quest", "Crate"))),
+    ("Fire Temple MQ Shoot Torch On Wall Center Crate", ("Collectable", 0x4, 0x54, ([0x2389a0c],None), 'Rupee (1)', ("Fire Temple", "Master Quest", "Crate"))),
+    ("Fire Temple MQ Shoot Torch On Wall Left Crate 1", ("Collectable", 0x4, 0x55, ([0x2389a2c],None), 'Rupee (1)', ("Fire Temple", "Master Quest", "Crate"))),
+    ("Fire Temple MQ Shoot Torch On Wall Left Crate 2", ("Collectable", 0x4, 0x56, ([0x23899fc],None), 'Rupee (1)', ("Fire Temple", "Master Quest", "Crate"))),
+
     # Fire Temple shared
     ("Fire Temple Volvagia Heart",                                   ("BossHeart",    0x15,  0x4F, None,                        'Heart Container',                       ("Fire Temple", "Vanilla", "Master Quest",))),
 
