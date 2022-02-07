@@ -1490,6 +1490,8 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     # Write item overrides
     override_table = get_override_table(world)
+    if len(override_table) >= 1024:
+        raise(RuntimeError("Exceeded override table size: " + str(len(override_table))))
     rom.write_bytes(rom.sym('cfg_item_overrides'), get_override_table_bytes(override_table))
     rom.write_byte(rom.sym('PLAYER_ID'), world.id + 1) # Write player ID
 
