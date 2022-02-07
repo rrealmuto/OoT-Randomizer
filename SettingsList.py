@@ -2840,6 +2840,21 @@ setting_infos = [
         },
     ),
     Checkbutton(
+        name           = 'plant_beans',
+        gui_text       = 'Plant Magic Beans',
+        gui_tooltip    = '''\
+            Enabling this plants all 10 magic beans in soft soil
+            causing the bean plants to be available as adult. You
+            will start with 0 magic beans in your inventory and
+            not be able to buy beans from the Magic Bean Salesman.
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    ),
+    Checkbutton(
         name           = 'shuffle_medigoron_carpet_salesman',
         gui_text       = 'Shuffle Medigoron & Carpet Salesman',
         gui_tooltip    = '''\
