@@ -68,6 +68,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "AUDIO_THREAD_MEM_START": "03495EC0",
 >>>>>>> 226722b3 (Make pots drop their shuffled items even if you dont have the required item. Need to fix logic now)
 =======
@@ -88,6 +89,9 @@
 =======
     "AUDIO_THREAD_MEM_START": "03496A10",
 >>>>>>> 6c94fa55 (Fix freestanding table indexing. Update how actors are patched to clean up locationlist a bit. Seems to be working but need more testing)
+=======
+    "AUDIO_THREAD_MEM_START": "03496A40",
+>>>>>>> 9671f20d (Fix setting collectible flag)
     "AUTO_TRACKER_CONTEXT": "03480CD0",
     "AUTO_TRACKER_VERSION": "03480CD0",
     "BOMBCHUS_IN_LOGIC": "03480CAC",
@@ -207,6 +211,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "CHEST_SIZE_MATCH_CONTENTS": "0348C2A4",
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348C2A8",
     "COMPLETE_MASK_QUEST": "0348C2F9",
@@ -241,6 +246,11 @@
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348C400",
     "COMPLETE_MASK_QUEST": "0348C451",
 >>>>>>> 6c94fa55 (Fix freestanding table indexing. Update how actors are patched to clean up locationlist a bit. Seems to be working but need more testing)
+=======
+    "CHEST_SIZE_MATCH_CONTENTS": "0348C42C",
+    "CHEST_TEXTURE_MATCH_CONTENTS": "0348C430",
+    "COMPLETE_MASK_QUEST": "0348C481",
+>>>>>>> 9671f20d (Fix setting collectible flag)
     "COOP_CONTEXT": "03480020",
     "COOP_VERSION": "03480020",
     "COSMETIC_CONTEXT": "03480834",
@@ -248,6 +258,7 @@
     "CURRENT_GROTTO_ID": "0348309A",
     "DEBUG_OFFSET": "03482AB8",
     "DISABLE_TIMERS": "03480CCC",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -317,11 +328,15 @@
 =======
     "DPAD_TEXTURE": "03490A08",
 >>>>>>> 6c94fa55 (Fix freestanding table indexing. Update how actors are patched to clean up locationlist a bit. Seems to be working but need more testing)
+=======
+    "DPAD_TEXTURE": "03490A38",
+>>>>>>> 9671f20d (Fix setting collectible flag)
     "DUNGEONS_SHUFFLED": "03480CCD",
     "EXTENDED_OBJECT_TABLE": "03480C8C",
     "EXTERN_DAMAGE_MULTIPLYER": "03482EC9",
     "FAST_BUNNY_HOOD_ENABLED": "03480CCF",
     "FAST_CHESTS": "03480CC6",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -451,11 +466,15 @@
 =======
     "FONT_TEXTURE": "0348F540",
 >>>>>>> 6c94fa55 (Fix freestanding table indexing. Update how actors are patched to clean up locationlist a bit. Seems to be working but need more testing)
+=======
+    "FONT_TEXTURE": "0348F570",
+>>>>>>> 9671f20d (Fix setting collectible flag)
     "FREE_SCARECROW_ENABLED": "03480CBC",
-    "GANON_BOSS_KEY_CONDITION": "0348C410",
-    "GANON_BOSS_KEY_CONDITION_COUNT": "0348C40E",
+    "GANON_BOSS_KEY_CONDITION": "0348C440",
+    "GANON_BOSS_KEY_CONDITION_COUNT": "0348C43E",
     "GET_CHEST_OVERRIDE_WRAPPER": "03482930",
     "GET_ITEM_TRIGGERED": "0348164C",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -489,6 +508,10 @@
     "GILDED_CHEST_BASE_TEXTURE": "03493208",
     "GILDED_CHEST_FRONT_TEXTURE": "03492208",
 >>>>>>> 6c94fa55 (Fix freestanding table indexing. Update how actors are patched to clean up locationlist a bit. Seems to be working but need more testing)
+=======
+    "GILDED_CHEST_BASE_TEXTURE": "03493238",
+    "GILDED_CHEST_FRONT_TEXTURE": "03492238",
+>>>>>>> 9671f20d (Fix setting collectible flag)
     "GOSSIP_HINT_CONDITION": "03480CB8",
     "GROTTO_EXIT_LIST": "03483058",
     "GROTTO_LOAD_TABLE": "03482FD4",
@@ -496,6 +519,7 @@
     "INCOMING_PLAYER": "03480026",
     "INITIAL_SAVE_DATA": "0348088C",
     "JABU_ELEVATOR_ENABLE": "03480CC4",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -569,10 +593,14 @@
 =======
     "KAKARIKO_WEATHER_FORECAST": "0348C470",
 >>>>>>> 6c94fa55 (Fix freestanding table indexing. Update how actors are patched to clean up locationlist a bit. Seems to be working but need more testing)
+=======
+    "KAKARIKO_WEATHER_FORECAST": "0348C4A0",
+>>>>>>> 9671f20d (Fix setting collectible flag)
     "LACS_CONDITION": "03480CB4",
     "LACS_CONDITION_COUNT": "03480CC2",
     "MALON_GAVE_ICETRAP": "034838A4",
     "MALON_TEXT_ID": "03480CCB",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -693,9 +721,13 @@
 =======
     "MAX_RUPEES": "0348C453",
 >>>>>>> 6c94fa55 (Fix freestanding table indexing. Update how actors are patched to clean up locationlist a bit. Seems to be working but need more testing)
+=======
+    "MAX_RUPEES": "0348C483",
+>>>>>>> 9671f20d (Fix setting collectible flag)
     "MOVED_ADULT_KING_ZORA": "03483214",
-    "NO_ESCAPE_SEQUENCE": "0348C40C",
+    "NO_ESCAPE_SEQUENCE": "0348C43C",
     "OCARINAS_SHUFFLED": "03480CC5",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -722,10 +754,14 @@
 =======
     "OPEN_KAKARIKO": "0348C452",
 >>>>>>> 6c94fa55 (Fix freestanding table indexing. Update how actors are patched to clean up locationlist a bit. Seems to be working but need more testing)
+=======
+    "OPEN_KAKARIKO": "0348C482",
+>>>>>>> 9671f20d (Fix setting collectible flag)
     "OUTGOING_ITEM": "03480030",
     "OUTGOING_KEY": "0348002C",
     "OUTGOING_PLAYER": "03480032",
     "OVERWORLD_SHUFFLED": "03480CCE",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -795,6 +831,9 @@
 =======
     "PAYLOAD_END": "03496A10",
 >>>>>>> 6c94fa55 (Fix freestanding table indexing. Update how actors are patched to clean up locationlist a bit. Seems to be working but need more testing)
+=======
+    "PAYLOAD_END": "03496A40",
+>>>>>>> 9671f20d (Fix setting collectible flag)
     "PAYLOAD_START": "03480000",
     "PLAYED_WARP_SONG": "03481450",
     "PLAYER_ID": "03480024",
@@ -932,6 +971,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "SILVER_CHEST_BASE_TEXTURE": "03493EB8",
     "SILVER_CHEST_FRONT_TEXTURE": "03492EB8",
     "SKULL_CHEST_BASE_TEXTURE": "034956B8",
@@ -973,15 +1013,22 @@
     "SKULL_CHEST_BASE_TEXTURE": "03496208",
     "SKULL_CHEST_FRONT_TEXTURE": "03495208",
 >>>>>>> 6c94fa55 (Fix freestanding table indexing. Update how actors are patched to clean up locationlist a bit. Seems to be working but need more testing)
+=======
+    "SILVER_CHEST_BASE_TEXTURE": "03494A38",
+    "SILVER_CHEST_FRONT_TEXTURE": "03493A38",
+    "SKULL_CHEST_BASE_TEXTURE": "03496238",
+    "SKULL_CHEST_FRONT_TEXTURE": "03495238",
+>>>>>>> 9671f20d (Fix setting collectible flag)
     "SONGS_AS_ITEMS": "03480CC8",
     "SOS_ITEM_GIVEN": "03481718",
     "SPEED_MULTIPLIER": "03482978",
     "START_TWINROVA_FIGHT": "03483294",
     "TIME_TRAVEL_SAVED_EQUIPS": "03481CA4",
-    "TRIFORCE_ICON_TEXTURE": "03491208",
+    "TRIFORCE_ICON_TEXTURE": "03491238",
     "TWINROVA_ACTION_TIMER": "03483298",
     "WINDMILL_SONG_ID": "03480CC9",
     "WINDMILL_TEXT_ID": "03480CCA",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -2323,4 +2370,84 @@
     "triforce_pieces_requied": "0348C3FA",
     "triforce_sprite": "0348B2F0"
 >>>>>>> 6c94fa55 (Fix freestanding table indexing. Update how actors are patched to clean up locationlist a bit. Seems to be working but need more testing)
+=======
+    "a_button": "0348C408",
+    "a_note_b": "0348C3F4",
+    "a_note_font_glow_base": "0348C3DC",
+    "a_note_font_glow_max": "0348C3D8",
+    "a_note_g": "0348C3F8",
+    "a_note_glow_base": "0348C3E4",
+    "a_note_glow_max": "0348C3E0",
+    "a_note_r": "0348C3FC",
+    "active_item_action_id": "0348C464",
+    "active_item_fast_chest": "0348C454",
+    "active_item_graphic_id": "0348C458",
+    "active_item_object_id": "0348C45C",
+    "active_item_row": "0348C468",
+    "active_item_text_id": "0348C460",
+    "active_override": "0348C470",
+    "active_override_is_outgoing": "0348C46C",
+    "b_button": "0348C404",
+    "beating_dd": "0348C410",
+    "beating_no_dd": "0348C418",
+    "c_button": "0348C400",
+    "c_note_b": "0348C3E8",
+    "c_note_font_glow_base": "0348C3CC",
+    "c_note_font_glow_max": "0348C3C8",
+    "c_note_g": "0348C3EC",
+    "c_note_glow_base": "0348C3D4",
+    "c_note_glow_max": "0348C3D0",
+    "c_note_r": "0348C3F0",
+    "cfg_file_select_hash": "0348C438",
+    "cfg_item_overrides": "0348D4B0",
+    "collectible_mutex": "0348C44C",
+    "collectible_override": "0348C444",
+    "collectible_override_flags": "0348D170",
+    "defaultDDHeart": "0348C41C",
+    "defaultHeart": "0348C424",
+    "dpad_sprite": "0348B330",
+    "dropped_collectible_override_flags": "0348C4D0",
+    "dummy_actor": "0348C478",
+    "dungeon_count": "0348C398",
+    "dungeons": "0348B188",
+    "empty_dlist": "0348C3B0",
+    "extern_ctxt": "0348B224",
+    "font_sprite": "0348B340",
+    "freecam_modes": "0348AEF4",
+    "hash_sprites": "0348C3A4",
+    "hash_symbols": "0348B238",
+    "heap_next": "0348C49C",
+    "heart_sprite": "0348B2D0",
+    "icon_sprites": "0348B0B8",
+    "item_digit_sprite": "0348B2F0",
+    "item_overrides_count": "0348C47C",
+    "item_table": "0348B3B8",
+    "items": "0348B2B8",
+    "items_sprite": "0348B360",
+    "key_rupee_clock_sprite": "0348B300",
+    "last_fog_distance": "0348C39C",
+    "linkhead_skull_sprite": "0348B2E0",
+    "medal_colors": "0348B174",
+    "medals_sprite": "0348B370",
+    "normal_dd": "0348C40C",
+    "normal_no_dd": "0348C414",
+    "num_to_bits": "0348B278",
+    "object_slots": "0348F4B0",
+    "pending_freezes": "0348C480",
+    "pending_item_queue": "0348D498",
+    "quest_items_sprite": "0348B350",
+    "rupee_colors": "0348B0C4",
+    "satisified_pending_frames": "0348C450",
+    "scene_fog_distance": "0348C3A0",
+    "setup_db": "0348B390",
+    "song_note_sprite": "0348B310",
+    "stones_sprite": "0348B380",
+    "text_cursor_border_base": "0348C3BC",
+    "text_cursor_border_max": "0348C3B8",
+    "text_cursor_inner_base": "0348C3C4",
+    "text_cursor_inner_max": "0348C3C0",
+    "triforce_hunt_enabled": "0348C490",
+    "triforce_pieces_requied": "0348C42A",
+    "triforce_sprite": "0348B320"
+>>>>>>> 9671f20d (Fix setting collectible flag)
 }

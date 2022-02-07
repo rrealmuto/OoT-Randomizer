@@ -515,10 +515,10 @@ void Set_CollectibleOverrideFlag(EnItem00* item00)
 	if(dropFlag)
 	{
 		flag_table = &dropped_collectible_override_flags;
+		
 		if(scene == 0x0A)
 			scene = 0x19;
 		
-		return;
 	}
 	flag_table[(dropFlag ? 8 : 2)*scene + (extended_flag/0x20)] |= (1 << (extended_flag % 0x20));
 
