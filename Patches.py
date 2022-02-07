@@ -1455,12 +1455,10 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         actor_override_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'ActorOverride' ]
         freestanding_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and 'Freestanding' in location.filter_tags]
         
-        for location in actor_override_locations + freestanding_locations:
-                addresses = location.address
-                patch = location.address2
-                if addresses is not None and patch is not None:
-                    for address in addresses:
-                        rom.write_bytes(address, patch)
+        for location in actor_override_locations:
+            patch_actor_override(location, rom)
+        for location in freestanding_locations:
+            patch_freestanding_collectible(location, rom)
 
 
     if world.settings.shuffle_pots:
@@ -2387,11 +2385,27 @@ def configure_dungeon_info(rom, world):
     rom.write_bytes(rom.sym('CFG_DUNGEON_REWARDS'), dungeon_rewards)
     rom.write_bytes(rom.sym('CFG_DUNGEON_IS_MQ'), dungeon_is_mq)
 
+#Overwrite an actor in rom w/ the actor data from LocationList
+def patch_actor_override(location, rom: Rom):
+    addresses = location.address
+    patch = location.address2
+    if addresses is not None and patch is not None:
+        for address in addresses:
+            rom.write_bytes(address, patch)
+
+#Patch the flag of a freestanding collectible
+def patch_freestanding_collectible(location, rom: Rom):
+    if location.address:
+        for address in location.address:
+            rom.write_byte(address + 14, location.default)
+
+#Patch the collectible flag used by a crate
 def patch_crate(location, rom : Rom):
     if location.address:
         for address in location.address:
             rom.write_byte(address + 13, location.default)
 
+#Patch the collectible flag used by a flying pot
 def patch_flying_pot(location, rom : Rom):
     if location.address:
         for address in location.address:
@@ -2400,11 +2414,13 @@ def patch_flying_pot(location, rom : Rom):
             byte |= (location.default & 0x3F)
             rom.write_byte(address + 15, byte)
 
+#Patch the collectible flag used by a small crate
 def patch_small_crate(location, rom : Rom):
     if location.address:
         for address in location.address:
             rom.write_byte(address + 14, location.default)
 
+#Patch the collectible flag used by a pot
 def patch_pot(location, rom : Rom):
     if location.address:
         for address in location.address:

@@ -276,7 +276,7 @@ location_table = OrderedDict([
     ("LLR Talons House Pot 1",                                       ("Collectable",  0x4C,  0x29, None,                        'Rupees (5)',                            ("Lon Lon Ranch", "Pot"))),
     ("LLR Talons House Pot 2",                                       ("Collectable",  0x4C,  0x2A, None,                        'Rupees (5)',                            ("Lon Lon Ranch", "Pot"))),
     ("LLR Talons House Pot 3",                                       ("Collectable",  0x4C,  0x2B, None,                        'Rupees (5)',                            ("Lon Lon Ranch", "Pot"))),
-    ("LLR Child Crate", ("Collectable", 0x63, 0x3F, ([0x29ce204+13, 0x29ce84c+13],[0x3F]), 'Rupee (1)', ("Lon Lon Ranch", "", "Crate"))),
+    ("LLR Child Crate", ("Collectable", 0x63, 0x40, ([0x29ce204, 0x29ce84c],None), 'Rupee (1)', ("Lon Lon Ranch", "Crate"))),
 
     # Kakariko
     ("Kak Anju as Child",                                            ("NPC",          0x52,  0x0F, None,                        'Bottle',                                ("Kakariko Village", "Kakariko", "Minigames"))),
@@ -407,12 +407,12 @@ location_table = OrderedDict([
     ("GC Upper Staircase Pot 1",                             ("Collectable",  0x62,  0x35, ([0x22A84E8], None),  'Rupees (5)',                            ("Goron City", "Pot"))),
     ("GC Upper Staircase Pot 2",                             ("Collectable",  0x62,  0x36, ([0x22A84F8], None),  'Rupee (1)',                             ("Goron City", "Pot"))),
     ("GC Upper Staircase Pot 3",                             ("Collectable",  0x62,  0x3B, ([0x22A8508], None),  'Rupees (5)',                            ("Goron City", "Pot"))),
-    ("GC Boulder Maze Crate as Adult", ("Collectable", 0x62, 0x3F, ([0x227c6ec+13],[0x3F]), 'Rupee (1)', ("Goron City", "Crate"))),
+    ("GC Boulder Maze Crate as Adult", ("Collectable", 0x62, 0x40, ([0x227c6ec],None), 'Rupee (1)', ("Goron City", "Crate"))),
 
     # Death Mountain Crater
     ("DMC Volcano Freestanding PoH",                                 ("Collectable",  0x61,  0x08, None,                        'Piece of Heart',                        ("Death Mountain Crater", "Death Mountain",))),
     ("DMC Wall Freestanding PoH",                                    ("Collectable",  0x61,  0x02, None,                        'Piece of Heart',                        ("Death Mountain Crater", "Death Mountain",))),
-    ("DMC Pierre Red Rupee",                                         ("Collectable",0x61,  0x1F,([0x0225E63C],[0x00, 0x15, 0x04, 0x62, 0x01, 0x6F, 0x01, 0xB3, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1F, 0x06]), 'Rupees (20)',                           ("Death Mountain Crater", "Death Mountain", "Freestanding"))),    
+    ("DMC Pierre Red Rupee",                                         ("ActorOverride",0x61,  0x1F,([0x0225E63C],[0x00, 0x15, 0x04, 0x62, 0x01, 0x6F, 0x01, 0xB3, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1F, 0x06]), 'Rupees (20)',                           ("Death Mountain Crater", "Death Mountain", "Freestanding"))),    
     ("DMC Lower Red Rupee 1",                                        ("Collectable",0x61,   0x20, None, 'Rupees (20)',                           ("Death Mountain Crater", "Death Mountain","Freestanding",))),    
     ("DMC Lower Red Rupee 2",                                        ("Collectable",0x61,   0x21, None, 'Rupees (20)',                           ("Death Mountain Crater", "Death Mountain", "Freestanding",))),    
     ("DMC Lower Blue Rupee 1",                                        ("Collectable",0x61,  0x22, None, 'Rupees (5)',                           ("Death Mountain Crater", "Death Mountain", "Freestanding",))),    
@@ -533,8 +533,8 @@ location_table = OrderedDict([
     ("GV Crate Freestanding PoH",                                    ("Collectable",  0x5A,  0x02, None,                        'Piece of Heart',                        ("Gerudo Valley", "Gerudo",))),
     ("GV Waterfall Freestanding PoH",                                ("Collectable",  0x5A,  0x01, None,                        'Piece of Heart',                        ("Gerudo Valley", "Gerudo",))),
     #("GV Crate Near Cow",                                            ("Collectable",  0x5A,  0x19, ([0x0213D2CC], [0x01, 0xA0, 0xFE, 0x3F, 0xF7, 0xFD, 0x00, 0x7B, 0x00, 0x06, 0x00, 0x00, 0x00, 0x19, 0xFF, 0xFF]), 'Rupee (1)',                            ("Gerudo Valley", "Gerudo", "Freestanding"))),
-    ("GV Crate Near Cow",                                            ("Collectable",  0x5A,  0x3F, ([0x213D2CC],None),                        'Rupee (1)',                            ("Gerudo Valley", "Gerudo", "Crate"))),
-    ("GV Freestanding PoH Crate Rupee",                              ("Collectable",  0x5A,  0x3E, ([0x213D2DC, 0x213d548],None),                        'Rupee (1)',                            ("Gerudo Valley", "Gerudo", "Crate"))),
+    ("GV Crate Near Cow",                                            ("Collectable",  0x5A,  0x40, ([0x213D2CC],None),                        'Rupee (1)',                            ("Gerudo Valley", "Gerudo", "Crate"))),
+    ("GV Freestanding PoH Crate Rupee",                              ("Collectable",  0x5A,  0x40, ([0x213D2DC, 0x213d548],None),                        'Rupee (1)',                            ("Gerudo Valley", "Gerudo", "Crate"))),
     ("GV Chest",                                                     ("Chest",        0x5A,  0x00, None,                        'Rupees (50)',                           ("Gerudo Valley", "Gerudo",))),
     ("GV Deku Scrub Grotto Front",                                   ("GrottoNPC",    0xF0,  0x3A, None,                        'Buy Green Potion',                      ("Gerudo Valley", "Gerudo", "Deku Scrub", "Grottos"))),
     ("GV Deku Scrub Grotto Rear",                                    ("GrottoNPC",    0xF0,  0x39, None,                        'Buy Red Potion [30]',                   ("Gerudo Valley", "Gerudo", "Deku Scrub", "Grottos"))),
