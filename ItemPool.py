@@ -907,7 +907,7 @@ def get_pool_core(world):
             location.disabled = DisableType.DISABLED
 
     #shuffle pots/crates
-    pot_locations = [location for location in world.get_locations() if(location.type == 'Collectable' and ('Pot' in location.filter_tags or 'Crate' in location.filter_tags))]
+    pot_locations = [location for location in world.get_locations() if(location.type == 'Collectable' and ('Pot' in location.filter_tags or 'Crate' in location.filter_tags or 'FlyingPot' in location.filter_tags or 'SmallCrate' in location.filter_tags))]
     if world.settings.shuffle_pots == 'all':        
         for location in pot_locations:
             pool.extend(get_junk_item())

@@ -1466,15 +1466,29 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Get actor_override locations
         actor_override_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'ActorOverride' ]
         freestanding_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and 'Freestanding' in location.filter_tags]
-        pot_crate_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and ('Pot' in location.filter_tags or 'Crate' in location.filter_tags)]
         
-        for location in actor_override_locations + freestanding_locations + pot_crate_locations:
+        for location in actor_override_locations + freestanding_locations:
                 addresses = location.address
                 patch = location.address2
                 if addresses is not None and patch is not None:
                     for address in addresses:
                         rom.write_bytes(address, patch)
 
+
+    if world.settings.shuffle_pots:
+        pot_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and ('Pot' in location.filter_tags)]
+        flying_pot_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and ('FlyingPot' in location.filter_tags)]
+        crate_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and ('Crate' in location.filter_tags)]
+        smallcrate_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and ('SmallCrate' in location.filter_tags)]
+        for location in pot_locations:
+            patch_pot(location, rom)
+        for location in flying_pot_locations:
+            patch_flying_pot(location, rom)
+        for location in crate_locations:
+            patch_crate(location, rom)
+        for location in smallcrate_locations:
+            patch_small_crate(location, rom)
+            
 
     # Write item overrides
     override_table = get_override_table(world)
@@ -2030,7 +2044,7 @@ def get_override_entry(location):
     elif location.type == 'ActorOverride':
         type = 2
     elif location.type == 'Collectable':
-        if "Pot" in location.filter_tags or "Crate" in location.filter_tags or "Drop" in location.filter_tags:
+        if "Pot" in location.filter_tags or "Crate" in location.filter_tags or "Drop" in location.filter_tags or "FlyingPot" in location.filter_tags or "SmallCrate" in location.filter_tags:
             type = 6
         else:
             type = 2
@@ -2384,3 +2398,29 @@ def configure_dungeon_info(rom, world):
     rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_NEED_ALTAR'), int(not enhance_map_compass))
     rom.write_bytes(rom.sym('CFG_DUNGEON_REWARDS'), dungeon_rewards)
     rom.write_bytes(rom.sym('CFG_DUNGEON_IS_MQ'), dungeon_is_mq)
+
+def patch_crate(location, rom : Rom):
+    if location.address:
+        for address in location.address:
+            rom.write_byte(address + 13, location.default)
+
+def patch_flying_pot(location, rom : Rom):
+    if location.address:
+        for address in location.address:
+            byte = rom.read_byte(address + 15)
+            byte = byte & 0xC0
+            byte |= (location.default & 0x3F)
+            rom.write_byte(address + 15, byte)
+
+def patch_small_crate(location, rom : Rom):
+    if location.address:
+        for address in location.address:
+            rom.write_byte(address + 14, location.default)
+
+def patch_pot(location, rom : Rom):
+    if location.address:
+        for address in location.address:
+            byte = rom.read_byte(address + 14)
+            byte = byte & 0x01
+            byte |= location.default << 1
+            rom.write_byte(address + 14, byte)
