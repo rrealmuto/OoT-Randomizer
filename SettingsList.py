@@ -4007,6 +4007,16 @@ setting_infos = [
         ''',
         shared         = True,
     ),
+    Checkbutton(
+        name           = 'deadly_bonks',
+        gui_text       = 'One Bonk KO',
+        gui_tooltip    = '''\
+            When rolling, hitting a wall or object
+            will kill Link.
+        ''',
+        shared         = True,
+        default        = False,
+    ),
     Combobox(
         name           = 'starting_tod',
         gui_text       = 'Starting Time of Day',

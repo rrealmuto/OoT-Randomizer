@@ -340,7 +340,8 @@
             "misc_hints",
             "text_shuffle",
             "damage_multiplier",
-			"no_collectible_hearts",
+            "deadly_bonks",
+      			"no_collectible_hearts",
             "starting_tod"
           ]
         },

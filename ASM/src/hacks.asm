@@ -938,6 +938,31 @@ skip_GS_BGS_text:
     nop
     nop
 @@continue:
+    
+;==================================================================================================
+; Roll Collision / Bonks Kill Player
+;==================================================================================================
+
+; Set player health to zero on last frame of bonk animation
+; z_player func_80844708, conditional where this->unk_850 != 0 and temp >= 0 || sp44
+; Replaces:
+;   or      a0, s0, $zero
+;   jal     func_80838178
+;   lw      a1, 0x0054($sp)
+;   b       lbl_80842AE8
+;   lw      $ra, 0x0024($sp)
+; The branch address is shifted to an alternate location where lw $ra... is run.
+; Required as la t8, APPLY_BONK_DAMAGE gets expanded to two commands.
+.orga 0xBE0228
+    la      t8, APPLY_BONK_DAMAGE
+;    nop
+;    nop
+    jal     APPLY_BONK_DAMAGE
+    lw      a1, 0x0054($sp)
+    b       0xBE0494
+
+;.org 0x8039B484  ; vram 0x80842AE4
+;END_ROLL_FRAME:
 
 ;==================================================================================================
 ; Skip Scarecrow Song

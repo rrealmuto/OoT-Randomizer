@@ -80,6 +80,7 @@ RANDO_CONTEXT:
 .include "timers.asm"
 .include "shooting_gallery.asm"
 .include "damage.asm"
+.include "bonk.asm"
 .include "bean_salesman.asm"
 .include "grotto.asm"
 .include "deku_mouth_condition.asm"
