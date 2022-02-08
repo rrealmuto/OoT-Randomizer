@@ -79,7 +79,7 @@ override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_
 		}*/
 		//Check if it was a dropped collectable and use a separate override for that
 		EnItem00* item = (EnItem00*)actor;
-		uint8_t flag = ((item->actor.dropFlag & 0xFE) << 5) + item->collectibleFlag;
+		uint8_t flag = ((item->actor.dropFlag & 0x06) << 5) + item->collectibleFlag;
 		if(item->actor.dropFlag)
 		{
 			//Use the same override flags for the pots in ganon's tower
@@ -577,14 +577,14 @@ void Item00_KeepAlive(EnItem00* item00)
 	}
 }
 
-int16_t get_override_drop_id(int16_t dropId, int16_t collectible_flag)
+int16_t get_override_drop_id(int16_t dropId, uint16_t params)
 {
 	//make our a dummy enitem00 with enough info to get the override
 	EnItem00 dummy;
-	dummy.collectibleFlag = collectible_flag >> 8;
+	dummy.collectibleFlag = (params & 0x3F00) >> 8;
 	dummy.actor.actor_id = 0x15;
 	dummy.actor.dropFlag = 1;
-
+	dummy.actor.dropFlag |= (params & 0x00C0) >> 5;
 	if(should_override_collectible(&dummy) && 
 		(dropId != ITEM00_HEART_PIECE) &&
 		(dropId != ITEM00_SMALL_KEY) &&
@@ -645,6 +645,7 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
 		if(get_extended_flag(pItem) > 0x3F) //If our extended collectible flag is outside the range of normal collectibles, set the flag to 0 so it doesn't write something wrong. We should only ever be using this for things that normally are 0 anyway
 		{
 			pItem->collectibleFlag = 0;
+			pItem->actor.dropFlag &= 0x01;
 		}
 		return 0;
 	}
