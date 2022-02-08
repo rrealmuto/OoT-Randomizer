@@ -851,6 +851,7 @@ location_table = OrderedDict([
     ("Jabu Jabus Belly MQ Falling Like Like Room Pot 1", ("Collectable", 0x02, 0x3D, None, 'Arrows (5)', ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
     ("Jabu Jabus Belly MQ Falling Like Like Room Pot 2", ("Collectable", 0x02, 0x3F, None, 'Bombs (5)', ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
     ("Jabu Jabus Belly MQ Boomerang Room Pot 1", ("Collectable", 0x02, 0x33, None, 'Bombs (5)', ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
+    ("Jabu Jabus Belly MQ Boomerang Room Pot 2", ("Collectable", 0x02, 0x34, None, 'Bombs (5)', ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
     # Jabu Jabu's Belly shared
     ("Jabu Jabus Belly Barinade Heart",                              ("BossHeart",    0x13,  0x4F, None,                        'Heart Container',                       ("Jabu Jabu's Belly", "Vanilla", "Master Quest",))),
     ("Jabu Jabus Belly Barinade Pot 1",                              ("Collectable",     0x13,  0x20, None,                        'Recovery Heart',                   ("Jabu Jabu's Belly", "Vanilla", "Master Quest", "Pot"))),
