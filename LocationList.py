@@ -664,6 +664,11 @@ location_table = OrderedDict([
     ("Deku Tree MQ GS Compass Room",                                 ("GS Token",     0x00,  0x08, None,                        'Gold Skulltula Token',                  ("Deku Tree", "Master Quest", "Skulltulas",))),
     ("Deku Tree MQ GS Basement Graves Room",                         ("GS Token",     0x00,  0x04, None,                        'Gold Skulltula Token',                  ("Deku Tree", "Master Quest", "Skulltulas",))),
     ("Deku Tree MQ GS Basement Back Room",                           ("GS Token",     0x00,  0x01, None,                        'Gold Skulltula Token',                  ("Deku Tree", "Master Quest", "Skulltulas",))),
+    # Deku Tree MQ Pots
+    ("Deku Tree MQ Lobby Crate", ("Collectable", 0x0, 0x40, ([0x24bc4cc],None), 'Rupee (1)', ("Deku Tree", "Master Quest", "Crate"))),
+    ("Deku Tree MQ Slingshot Room Crate 1", ("Collectable", 0x0, 0x41, ([0x2508e94],None), 'Rupee (1)', ("Deku Tree", "Master Quest", "Crate"))),
+    ("Deku Tree MQ Slingshot Room Crate 2", ("Collectable", 0x0, 0x42, ([0x2508ea4],None), 'Rupee (1)', ("Deku Tree", "Master Quest", "Crate"))),
+    
     # Deku Tree shared
     ("Deku Tree Queen Gohma Heart",                                  ("BossHeart",    0x11,  0x4F, None,                        'Heart Container',                       ("Deku Tree", "Vanilla", "Master Quest",))),
 
@@ -755,7 +760,7 @@ location_table = OrderedDict([
     ("Dodongos Cavern MQ Before Boss Room Pot 2",                         ("Collectable",  0x01,  0x3E, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
     ("Dodongos Cavern MQ Armos Army Room Pot 1",                         ("Collectable",  0x01,  0x20, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
     ("Dodongos Cavern MQ Armos Army Room Pot 2",                         ("Collectable",  0x01,  0x37, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
-    ("Dodongos Cavern MQ Armos Army Room Pot 3",                         ("Collectable",  0x01,  0x21, ([0x1f88578]),                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
+    ("Dodongos Cavern MQ Armos Army Room Pot 3",                         ("Collectable",  0x01,  0x21, ([0x1f88578], None),                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
     ("Dodongos Cavern MQ 3 Torch Room Pot 1",                         ("Collectable",  0x01,  0x26, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
     ("Dodongos Cavern MQ 3 Torch Room Pot 2",                         ("Collectable",  0x01,  0x27, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
     ("Dodongos Cavern MQ Before Upper Lizalfos Pot 1",                         ("Collectable",  0x01,  0x39, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
