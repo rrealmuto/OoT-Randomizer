@@ -7,7 +7,7 @@ APPLY_BONK_DAMAGE:
 
     ; displaced code
     or      a0, s0, $zero
-    jal     0x80390B18  ; func_80838178
+    jal     0x80390B18  ; func_80838178, static location as part of player overlay
     nop
 
     ; One Bonk KO setting enabled
@@ -16,8 +16,8 @@ APPLY_BONK_DAMAGE:
     nop
 
     ; Set player health to zero
-    lui     t1, 0x8012              ; Save Context (upper half)
-    addiu   t1, t1, 0xA5D0          ; Save Context (lower half)
+    lui     t1, 0x8012       ; Save Context (upper half)
+    addiu   t1, t1, 0xA5D0   ; Save Context (lower half)
     sh      $zero, 0x30(t1)
 
 @@return_bonk:

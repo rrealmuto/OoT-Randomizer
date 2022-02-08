@@ -951,14 +951,21 @@ skip_GS_BGS_text:
 ;   lw      a1, 0x0054($sp)
 ;   b       lbl_80842AE8
 ;   lw      $ra, 0x0024($sp)
-; The branch address is shifted to an alternate location where lw $ra... is run.
-; Required as la t8, APPLY_BONK_DAMAGE gets expanded to two commands.
 .orga 0xBE0228
-    la      t8, APPLY_BONK_DAMAGE
-;    nop
-;    nop
+; Load APPLY_BONK_DAMAGE address as throwaway instructions. Replacing the jump call causes
+; problems when overlay relocation is applied, breaking both replacement jump calls and nop'ing
+; the instruction. By chance, these two instructions (equivalent to `la APPLY_BONK_DAMAGE`) do
+; not crash after relocation, and so are kept here even though they do nothing.
+    lui     t8, 0x8040
+    addiu   t8, t8, 0x2D04
+; Replace original function call with hook to apply damage if the setting is on.
+; The original function is called in the new function before applying damage.
+; Since the player actor always ends up in the same location in RAM, the jump
+; address there is hardcoded.
     jal     APPLY_BONK_DAMAGE
     lw      a1, 0x0054($sp)
+; The branch address is shifted to an alternate location where lw $ra... is run.
+; Required as la t8, APPLY_BONK_DAMAGE gets expanded to two commands.
     b       0xBE0494
 
 ;.org 0x8039B484  ; vram 0x80842AE4
