@@ -205,7 +205,7 @@ item00_init_hook:
 get_override_drop_id_hook:
     addiu sp, sp, -0x10
     sw ra, 0x00(sp)
-    or a1, r0, t1 ;our collectible flag should be in t1 (<< 8)
+    or a1, r0, a2 ;pass params which should be in a2 right now.
     jal get_override_drop_id
     nop
     lw ra, 0x00(sp)
@@ -215,6 +215,9 @@ get_override_drop_id_hook:
 
 drop_collectible_hook:
     ori t4, t4, 0x4000
+    lw  t3, 0x60(sp)
+    andi t3, t3, 0x00C0
+    or t4, t4, t3
     jr ra
     sw t4, 0x0024(sp)
 
