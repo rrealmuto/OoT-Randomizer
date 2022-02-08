@@ -1567,7 +1567,7 @@ location_table = OrderedDict([
     ("Spirit Temple MQ Lobby Pot 2", ("Collectable", 0x06, 0x21, None, 'Recovery Heart', ("Spirit Temple", "Master Quest", "Pot"))),
     ("Spirit Temple MQ Lobby Pot 3", ("Collectable", 0x06, 0x22, None, 'Rupees (5)', ("Spirit Temple", "Master Quest", "Pot"))),
     ("Spirit Temple MQ Lobby Pot 4", ("Collectable", 0x06, 0x32, None, 'Recovery Heart', ("Spirit Temple", "Master Quest", "Pot"))),
-    ("Spirit Temple MQ Child Torch Slugs Room Pot", ("Collectable", 0x06, 0x22, None, 'Bombs (5)', ("Spirit Temple", "Master Quest", "Pot"))),
+    ("Spirit Temple MQ Child Torch Slugs Room Pot", ("Collectable", 0x06, 0x3F, ([0x2b123c4], None), 'Bombs (5)', ("Spirit Temple", "Master Quest", "Pot"))),
     ("Spirit Temple MQ Child 3 Gibdo Room Pot 1", ("Collectable", 0x06, 0x33, None, 'Rupees (5)', ("Spirit Temple", "Master Quest", "Pot"))),
     ("Spirit Temple MQ Child 3 Gibdo Room Pot 2", ("Collectable", 0x06, 0x34, None, 'Recovery Heart', ("Spirit Temple", "Master Quest", "Pot"))),
     ("Spirit Temple MQ Child Stalfos Fight Pot 1", ("Collectable", 0x06, 0x30, None, 'Rupees (5)', ("Spirit Temple", "Master Quest", "Pot"))),
