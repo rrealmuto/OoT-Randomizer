@@ -1311,6 +1311,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         mq_scenes.append(4)
     if world.dungeon_mq['Water Temple']:
         mq_scenes.append(5)
+        tex = open('data/water_texture.bin', 'rb')
+        bytes = tex.read()
+        rom.write_bytes(0x1990000, bytes)
     if world.dungeon_mq['Spirit Temple']:
         mq_scenes.append(6)
     if world.dungeon_mq['Shadow Temple']:
