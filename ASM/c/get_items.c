@@ -486,6 +486,12 @@ bool Get_CollectibleOverrideFlag(EnItem00* item00)
 	uint32_t* flag_table = &collectible_override_flags;
 	uint16_t scene = z64_game.scene_index;
 	bool dropFlag = item00->actor.dropFlag & 0x0001;
+
+	if(item00->actor.variable == ITEM00_HEART_PIECE || item00->actor.variable == ITEM00_SMALL_KEY || item00->actor.variable == ITEM00_HEART_CONTAINER)
+	{
+		return z64_Flags_GetCollectible(&z64_game, item00->collectibleFlag) > 0;
+	}
+
 	uint16_t extended_flag = get_extended_flag(item00);
 	if(dropFlag) //we set this if it's dropped
 	{
