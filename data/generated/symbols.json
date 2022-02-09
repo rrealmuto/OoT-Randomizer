@@ -112,8 +112,12 @@
     "AUDIO_THREAD_INFO": "034831F0",
     "AUDIO_THREAD_INFO_MEM_SIZE": "0348320C",
     "AUDIO_THREAD_INFO_MEM_START": "03483208",
+<<<<<<< HEAD
     "AUDIO_THREAD_MEM_START": "03497AF0",
 >>>>>>> 93e32b2c (Hopefully fix extended flags)
+=======
+    "AUDIO_THREAD_MEM_START": "03497B30",
+>>>>>>> 7e0c5de7 (Fix issue w/ new flags)
     "AUTO_TRACKER_CONTEXT": "03480CD0",
     "AUTO_TRACKER_VERSION": "03480CD0",
     "BOMBCHUS_IN_LOGIC": "03480CAC",
@@ -289,10 +293,16 @@
 >>>>>>> 10815a52 (Use original collectible table for hearts pieces/small keys. This probably needs to be revisited)
 =======
     "CHAIN_HBA_REWARDS": "03483B80",
+<<<<<<< HEAD
     "CHEST_SIZE_MATCH_CONTENTS": "0348C4E4",
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348C4E8",
     "COMPLETE_MASK_QUEST": "0348C539",
 >>>>>>> 93e32b2c (Hopefully fix extended flags)
+=======
+    "CHEST_SIZE_MATCH_CONTENTS": "0348C51C",
+    "CHEST_TEXTURE_MATCH_CONTENTS": "0348C520",
+    "COMPLETE_MASK_QUEST": "0348C571",
+>>>>>>> 7e0c5de7 (Fix issue w/ new flags)
     "COOP_CONTEXT": "03480020",
     "COOP_VERSION": "03480020",
     "COSMETIC_CONTEXT": "03480834",
@@ -300,6 +310,7 @@
     "CURRENT_GROTTO_ID": "034830B2",
     "DEBUG_OFFSET": "03482AD0",
     "DISABLE_TIMERS": "03480CCC",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -385,11 +396,15 @@
 =======
     "DPAD_TEXTURE": "03491AF0",
 >>>>>>> 93e32b2c (Hopefully fix extended flags)
+=======
+    "DPAD_TEXTURE": "03491B28",
+>>>>>>> 7e0c5de7 (Fix issue w/ new flags)
     "DUNGEONS_SHUFFLED": "03480CCD",
     "EXTENDED_OBJECT_TABLE": "03480C8C",
     "EXTERN_DAMAGE_MULTIPLYER": "03482EE1",
     "FAST_BUNNY_HOOD_ENABLED": "03480CCF",
     "FAST_CHESTS": "03480CC6",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -589,14 +604,22 @@
 >>>>>>> 10815a52 (Use original collectible table for hearts pieces/small keys. This probably needs to be revisited)
 =======
     "FONT_TEXTURE": "03490628",
+=======
+    "FONT_TEXTURE": "03490660",
+>>>>>>> 7e0c5de7 (Fix issue w/ new flags)
     "FREE_SCARECROW_ENABLED": "03480CBC",
-    "GANON_BOSS_KEY_CONDITION": "0348C4F8",
-    "GANON_BOSS_KEY_CONDITION_COUNT": "0348C4F6",
+    "GANON_BOSS_KEY_CONDITION": "0348C530",
+    "GANON_BOSS_KEY_CONDITION_COUNT": "0348C52E",
     "GET_CHEST_OVERRIDE_WRAPPER": "03482948",
     "GET_ITEM_TRIGGERED": "03481664",
+<<<<<<< HEAD
     "GILDED_CHEST_BASE_TEXTURE": "034942F0",
     "GILDED_CHEST_FRONT_TEXTURE": "034932F0",
 >>>>>>> 93e32b2c (Hopefully fix extended flags)
+=======
+    "GILDED_CHEST_BASE_TEXTURE": "03494328",
+    "GILDED_CHEST_FRONT_TEXTURE": "03493328",
+>>>>>>> 7e0c5de7 (Fix issue w/ new flags)
     "GOSSIP_HINT_CONDITION": "03480CB8",
     "GROTTO_EXIT_LIST": "03483070",
     "GROTTO_LOAD_TABLE": "03482FEC",
@@ -604,6 +627,7 @@
     "INCOMING_PLAYER": "03480026",
     "INITIAL_SAVE_DATA": "0348088C",
     "JABU_ELEVATOR_ENABLE": "03480CC4",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -693,10 +717,14 @@
 =======
     "KAKARIKO_WEATHER_FORECAST": "0348C558",
 >>>>>>> 93e32b2c (Hopefully fix extended flags)
+=======
+    "KAKARIKO_WEATHER_FORECAST": "0348C590",
+>>>>>>> 7e0c5de7 (Fix issue w/ new flags)
     "LACS_CONDITION": "03480CB4",
     "LACS_CONDITION_COUNT": "03480CC2",
     "MALON_GAVE_ICETRAP": "034838BC",
     "MALON_TEXT_ID": "03480CCB",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -873,15 +901,23 @@
 >>>>>>> 10815a52 (Use original collectible table for hearts pieces/small keys. This probably needs to be revisited)
 =======
     "MAX_RUPEES": "0348C53B",
+=======
+    "MAX_RUPEES": "0348C573",
+>>>>>>> 7e0c5de7 (Fix issue w/ new flags)
     "MOVED_ADULT_KING_ZORA": "0348322C",
-    "NO_ESCAPE_SEQUENCE": "0348C4F4",
+    "NO_ESCAPE_SEQUENCE": "0348C52C",
     "OCARINAS_SHUFFLED": "03480CC5",
+<<<<<<< HEAD
     "OPEN_KAKARIKO": "0348C53A",
 >>>>>>> 93e32b2c (Hopefully fix extended flags)
+=======
+    "OPEN_KAKARIKO": "0348C572",
+>>>>>>> 7e0c5de7 (Fix issue w/ new flags)
     "OUTGOING_ITEM": "03480030",
     "OUTGOING_KEY": "0348002C",
     "OUTGOING_PLAYER": "03480032",
     "OVERWORLD_SHUFFLED": "03480CCE",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -967,6 +1003,9 @@
 =======
     "PAYLOAD_END": "03497AF0",
 >>>>>>> 93e32b2c (Hopefully fix extended flags)
+=======
+    "PAYLOAD_END": "03497B30",
+>>>>>>> 7e0c5de7 (Fix issue w/ new flags)
     "PAYLOAD_START": "03480000",
     "PLAYED_WARP_SONG": "03481468",
     "PLAYER_ID": "03480024",
@@ -1170,20 +1209,28 @@
 >>>>>>> 10815a52 (Use original collectible table for hearts pieces/small keys. This probably needs to be revisited)
 =======
     "SHUFFLE_MEDIGORON": "03483C94",
+<<<<<<< HEAD
     "SILVER_CHEST_BASE_TEXTURE": "03495AF0",
     "SILVER_CHEST_FRONT_TEXTURE": "03494AF0",
     "SKULL_CHEST_BASE_TEXTURE": "034972F0",
     "SKULL_CHEST_FRONT_TEXTURE": "034962F0",
 >>>>>>> 93e32b2c (Hopefully fix extended flags)
+=======
+    "SILVER_CHEST_BASE_TEXTURE": "03495B28",
+    "SILVER_CHEST_FRONT_TEXTURE": "03494B28",
+    "SKULL_CHEST_BASE_TEXTURE": "03497328",
+    "SKULL_CHEST_FRONT_TEXTURE": "03496328",
+>>>>>>> 7e0c5de7 (Fix issue w/ new flags)
     "SONGS_AS_ITEMS": "03480CC8",
     "SOS_ITEM_GIVEN": "03481730",
     "SPEED_MULTIPLIER": "03482990",
     "START_TWINROVA_FIGHT": "034832AC",
     "TIME_TRAVEL_SAVED_EQUIPS": "03481CBC",
-    "TRIFORCE_ICON_TEXTURE": "034922F0",
+    "TRIFORCE_ICON_TEXTURE": "03492328",
     "TWINROVA_ACTION_TIMER": "034832B0",
     "WINDMILL_SONG_ID": "03480CC9",
     "WINDMILL_TEXT_ID": "03480CCA",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -2849,4 +2896,84 @@
     "triforce_pieces_requied": "0348C4E2",
     "triforce_sprite": "0348B3D8"
 >>>>>>> 93e32b2c (Hopefully fix extended flags)
+=======
+    "a_button": "0348C4F8",
+    "a_note_b": "0348C4E4",
+    "a_note_font_glow_base": "0348C4CC",
+    "a_note_font_glow_max": "0348C4C8",
+    "a_note_g": "0348C4E8",
+    "a_note_glow_base": "0348C4D4",
+    "a_note_glow_max": "0348C4D0",
+    "a_note_r": "0348C4EC",
+    "active_item_action_id": "0348C554",
+    "active_item_fast_chest": "0348C544",
+    "active_item_graphic_id": "0348C548",
+    "active_item_object_id": "0348C54C",
+    "active_item_row": "0348C558",
+    "active_item_text_id": "0348C550",
+    "active_override": "0348C560",
+    "active_override_is_outgoing": "0348C55C",
+    "b_button": "0348C4F4",
+    "beating_dd": "0348C500",
+    "beating_no_dd": "0348C508",
+    "c_button": "0348C4F0",
+    "c_note_b": "0348C4D8",
+    "c_note_font_glow_base": "0348C4BC",
+    "c_note_font_glow_max": "0348C4B8",
+    "c_note_g": "0348C4DC",
+    "c_note_glow_base": "0348C4C4",
+    "c_note_glow_max": "0348C4C0",
+    "c_note_r": "0348C4E0",
+    "cfg_file_select_hash": "0348C528",
+    "cfg_item_overrides": "0348D5A0",
+    "collectible_mutex": "0348C53C",
+    "collectible_override": "0348C534",
+    "collectible_override_flags": "0348D260",
+    "defaultDDHeart": "0348C50C",
+    "defaultHeart": "0348C514",
+    "dpad_sprite": "0348B420",
+    "dropped_collectible_override_flags": "0348C5C0",
+    "dummy_actor": "0348C568",
+    "dungeon_count": "0348C488",
+    "dungeons": "0348B278",
+    "empty_dlist": "0348C4A0",
+    "extern_ctxt": "0348B314",
+    "font_sprite": "0348B430",
+    "freecam_modes": "0348AFE0",
+    "hash_sprites": "0348C494",
+    "hash_symbols": "0348B328",
+    "heap_next": "0348C58C",
+    "heart_sprite": "0348B3C0",
+    "icon_sprites": "0348B1A4",
+    "item_digit_sprite": "0348B3E0",
+    "item_overrides_count": "0348C56C",
+    "item_table": "0348B4A8",
+    "items": "0348B3A8",
+    "items_sprite": "0348B450",
+    "key_rupee_clock_sprite": "0348B3F0",
+    "last_fog_distance": "0348C48C",
+    "linkhead_skull_sprite": "0348B3D0",
+    "medal_colors": "0348B264",
+    "medals_sprite": "0348B460",
+    "normal_dd": "0348C4FC",
+    "normal_no_dd": "0348C504",
+    "num_to_bits": "0348B368",
+    "object_slots": "034905A0",
+    "pending_freezes": "0348C570",
+    "pending_item_queue": "0348D588",
+    "quest_items_sprite": "0348B440",
+    "rupee_colors": "0348B1B0",
+    "satisified_pending_frames": "0348C540",
+    "scene_fog_distance": "0348C490",
+    "setup_db": "0348B480",
+    "song_note_sprite": "0348B400",
+    "stones_sprite": "0348B470",
+    "text_cursor_border_base": "0348C4AC",
+    "text_cursor_border_max": "0348C4A8",
+    "text_cursor_inner_base": "0348C4B4",
+    "text_cursor_inner_max": "0348C4B0",
+    "triforce_hunt_enabled": "0348C580",
+    "triforce_pieces_requied": "0348C51A",
+    "triforce_sprite": "0348B410"
+>>>>>>> 7e0c5de7 (Fix issue w/ new flags)
 }
