@@ -1546,7 +1546,7 @@ location_table = OrderedDict([
     ("Spirit Temple Lobby Flying Pot 1",                          ("Collectable",  0x06,  0x31, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "FlyingPot"))),
     ("Spirit Temple Lobby Flying Pot 2",                          ("Collectable",  0x06,  0x32, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "FlyingPot"))),
     ("Spirit Temple Child Bridge Flying Pot", ("Collectable", 0x6, 0x34, None, 'Recovery Heart', ("Spirit Temple", "Vanilla", "FlyingPot"))),
-    ("Spirit Temple Before Child Climb Small Wooden Crate 1",        ("Collectable",  0x06,  0x3F, ([0x2AF8110],None), 'Deku Nuts (5)', ("Spirit Temple", "Vanilla", "SmallCrate"))), #Overwrite original flag 0x2C because it conflicts w/ Beamos hall pot
+    ("Spirit Temple Before Child Climb Small Wooden Crate 1",        ("Collectable",  0x06,  0x3F, ([0x2B090E0],None), 'Deku Nuts (5)', ("Spirit Temple", "Vanilla", "SmallCrate"))), #Overwrite original flag 0x2C because it conflicts w/ Beamos hall pot
     ("Spirit Temple Before Child Climb Small Wooden Crate 2",        ("Collectable",  0x06,  0x2E, None, 'Bombs (5)', ("Spirit Temple", "Vanilla", "SmallCrate"))),
     #("Spirit Temple Child Anubis Pot",                               ("Collectable",  0x07,  0x2F, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
     #("Spirit Temple Child Anubis Pot",                               ("Collectable",  0x07,  0x2F, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
