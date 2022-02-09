@@ -49,35 +49,44 @@
             "Dodongos Cavern MQ GS Larvae Room": "can_use(Sticks) or has_fire_source",
             "Dodongos Cavern MQ GS Lizalfos Room": "can_blast_or_smash",
             "Dodongos Cavern MQ Deku Scrub Staircase": "can_stun_deku",
+            "Dodongos Cavern MQ Block Room Recovery Heart": "can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire)",
             "Dodongos Cavern MQ Staircase Room Pot 1": "True",
             "Dodongos Cavern MQ Staircase Room Pot 2": "True",
             "Dodongos Cavern MQ Staircase Room Pot 3": "True",
             "Dodongos Cavern MQ Staircase Room Pot 4": "True",
-            "Dodongos Cavern MQ Upper Lizalfos Pot 1": "can_blast_or_smash",
-            "Dodongos Cavern MQ Upper Lizalfos Pot 2": "can_blast_or_smash",
-            "Dodongos Cavern MQ Upper Lizalfos Pot 3": "can_blast_or_smash",
-            "Dodongos Cavern MQ Upper Lizalfos Pot 4": "can_blast_or_smash",
+            "Dodongos Cavern MQ Upper Lizalfos Pot 1": "
+                can_blast_or_smash or can_use(Sticks) or has_fire_source or 
+                (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
+            "Dodongos Cavern MQ Upper Lizalfos Pot 2": "
+                can_blast_or_smash or can_use(Sticks) or has_fire_source or 
+                (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
+            "Dodongos Cavern MQ Upper Lizalfos Pot 3": "
+                can_blast_or_smash or can_use(Sticks) or has_fire_source or 
+                (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
+            "Dodongos Cavern MQ Upper Lizalfos Pot 4": "
+                can_blast_or_smash or can_use(Sticks) or has_fire_source or 
+                (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
             "Dodongos Cavern MQ 3 Torch Room Pot 1": "
-                can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or 
+                can_blast_or_smash or can_use(Sticks) or has_fire_source or 
                 (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
             "Dodongos Cavern MQ 3 Torch Room Pot 2": "
-                can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or 
+                can_blast_or_smash or can_use(Sticks) or has_fire_source or 
                 (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
             "Dodongos Cavern MQ Before Upper Lizalfos Pot 1": "
-                can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or 
+                can_blast_or_smash or can_use(Sticks) or has_fire_source or 
                 (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
             "Dodongos Cavern MQ Before Upper Lizalfos Pot 2": "
-                can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or 
+                can_blast_or_smash or can_use(Sticks) or has_fire_source or 
                 (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
             "Dodongos Cavern MQ After Upper Lizalfos Pot 1": "
-                can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or 
+                can_blast_or_smash or can_use(Sticks) or has_fire_source or 
                 (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
             "Dodongos Cavern MQ After Upper Lizalfos Pot 2": "
-                can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or 
+                can_blast_or_smash or can_use(Sticks) or has_fire_source or 
                 (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
             "Dodongos Cavern MQ Staircase Crate Bottom Left": "True",
             "Dodongos Cavern MQ Staircase Crate Bottom Right": "True",
-            ##whatever was used to destroy the boulder to activate the elevator can be used to access the top of the staircase
+            #whatever was used to destroy the boulder to activate the elevator can be used to access the top of the staircase
             "Dodongos Cavern MQ Staircase Crate Mid Left": "True",
             "Dodongos Cavern MQ Staircase Crate Mid Right": "True",
             "Dodongos Cavern MQ Staircase Crate Top Left": "True",
@@ -89,10 +98,10 @@
             "Dodongos Cavern MQ Larvae Room Crate 5": "can_use(Sticks) or has_fire_source",
             "Dodongos Cavern MQ Larvae Room Crate 6": "can_use(Sticks) or has_fire_source",
             "Dodongos Cavern MQ After Upper Lizalfos Crate 1": "
-                can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or 
+                can_blast_or_smash or can_use(Sticks) or has_fire_source or 
                 (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
             "Dodongos Cavern MQ After Upper Lizalfos Crate 2": "
-                can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or 
+                can_blast_or_smash or can_use(Sticks) or has_fire_source or 
                 (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))"
         },
         "exits": {
@@ -137,19 +146,18 @@
                 (here(can_use(Bow)) or Progressive_Strength_Upgrade or
                     can_use(Dins_Fire) or has_explosives) and
                 (can_use(Hookshot) or can_use(Boomerang))",
-            "Dodongos Cavern MQ Block Room Recovery Heart": "True",
-            "Dodongos Cavern MQ Torch Room Pot 1": "True",
-            "Dodongos Cavern MQ Torch Room Pot 2": "True",
-            "Dodongos Cavern MQ Torch Room Pot 3": "True",
-            "Dodongos Cavern MQ Torch Room Pot 4": "True",
-            "Dodongos Cavern MQ Torch Room Crate 1": "True",
-            "Dodongos Cavern MQ Torch Room Crate 2": "True",
-            "Dodongos Cavern MQ Torch Room Crate 3": "True",
-            "Dodongos Cavern MQ Torch Room Crate 4": "True",
-            "Dodongos Cavern MQ Torch Room Crate 5": "True",
-            "Dodongos Cavern MQ Torch Room Crate 6": "True",
-            "Dodongos Cavern MQ Torch Room Crate 7": "True",
-            "Dodongos Cavern MQ Torch Room Crate 8": "True"
+            "Dodongos Cavern MQ Poes Room Pot 1": "True",
+            "Dodongos Cavern MQ Poes Room Pot 2": "True",
+            "Dodongos Cavern MQ Poes Room Pot 3": "True",
+            "Dodongos Cavern MQ Poes Room Pot 4": "True",
+            "Dodongos Cavern MQ Poes Room Crate 1": "True",
+            "Dodongos Cavern MQ Poes Room Crate 2": "True",
+            "Dodongos Cavern MQ Poes Room Crate 3": "True",
+            "Dodongos Cavern MQ Poes Room Crate 4": "True",
+            "Dodongos Cavern MQ Poes Room Crate 5": "True",
+            "Dodongos Cavern MQ Poes Room Crate 6": "True",
+            "Dodongos Cavern MQ Poes Room Crate 7": "True",
+            "Dodongos Cavern MQ Poes Room Crate 8": "True"
         },
         "exits": {
             "Dodongos Cavern Lower Right Side": "True"
