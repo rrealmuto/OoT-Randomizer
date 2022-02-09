@@ -378,8 +378,19 @@ nop
 ;Hack EnItem00_Init when it checks the scene flags to prevent killing the actor if its being overridden.
 ;replaces
 ;jal 0x80020EB4
-.orga 0x0A87B10; In Memory 0x80011BB0
+;.orga 0x0A87B10; In Memory 0x80011BB0
+;jal Item00_KillActorIfFlagIsSet
+.headersize(0x80011B98 - 0xA87AF8)
+.orga 0xA87AF8; In Memory 0x80011B98
 jal Item00_KillActorIfFlagIsSet
+or a0, s0, r0
+bnez v0, 0x800121A4
+lw RA, 0x001c(sp)
+b 0x80011Bc0
+nop
+nop
+nop
+nop
 
 ;Hack Item_DropCollectible to call custom function to determine what item should be dropped based on our override.
 ;overriding call at 0x8001376C to function 0x80013530

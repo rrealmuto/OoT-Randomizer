@@ -202,6 +202,8 @@ item00_init_hook:
     jr ra
     sh  T9, 0x001c(S0)    ;replaced code
 
+
+
 get_override_drop_id_hook:
     addiu sp, sp, -0x10
     sw ra, 0x00(sp)
