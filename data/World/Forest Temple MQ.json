@@ -66,7 +66,10 @@
         "region_name": "Forest Temple Outdoor Ledge",
         "dungeon": "Forest Temple",
         "locations": {
-            "Forest Temple MQ Redead Chest": "True"
+            "Forest Temple MQ Redead Chest": "True",
+            "Forest Temple MQ Courtyard Recovery Heart 1" : "True",
+            "Forest Temple MQ Courtyard Recovery Heart 2" : "True",
+            "Forest Temple MQ Courtyard Recovery Heart 3" : "True"
         },
         "exits": {
             "Forest Temple NW Outdoors": "True"
@@ -116,10 +119,7 @@
         "region_name": "Forest Temple Outdoors Top Ledges",
         "dungeon": "Forest Temple",
         "locations": {
-            "Forest Temple MQ Raised Island Courtyard Upper Chest": "True",
-            "Forest Temple MQ Courtyard Recovery Heart 1" : "True",
-            "Forest Temple MQ Courtyard Recovery Heart 2" : "True",
-            "Forest Temple MQ Courtyard Recovery Heart 3" : "True"
+            "Forest Temple MQ Raised Island Courtyard Upper Chest": "True"
         },
         "exits": {
             "Forest Temple NE Outdoors": "True",
