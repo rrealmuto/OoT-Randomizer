@@ -70,6 +70,8 @@
             "Spirit Temple MQ GS Nine Thrones Room North": "(Small_Key_Spirit_Temple, 7)",
             "Spirit Temple MQ Shifting Wall Pot 1": "Small_Key_Spirit_Temple, 6",
             "Spirit Temple MQ Shifting Wall Pot 2": "Small_Key_Spirit_Temple, 6",
+            "Spirit Temple MQ After Shifting Wall Room Pot 1": "Small_Key_Spirit_Temple, 6",
+            "Spirit Temple MQ After Shifting Wall Room Pot 2": "Small_Key_Spirit_Temple, 6",
             "Spirit Temple MQ Lower Boss Platform Pot 1": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
             "Spirit Temple MQ Lower Boss Platform Pot 2": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
             "Spirit Temple MQ Lower Boss Platform Pot 3": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
