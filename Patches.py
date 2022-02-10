@@ -1011,9 +1011,6 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         save_context.write_permanent_flag(Scenes.DESERT_COLOSSUS, FlagType.SWITCH, 0x0, 0x1) # Plant Desert Colossus bean
         save_context.write_permanent_flag(Scenes.DEATH_MOUNTAIN_TRAIL, FlagType.SWITCH, 0x3, 0x40) # Plant Death Mountain Trail bean
         save_context.write_permanent_flag(Scenes.DEATH_MOUNTAIN_CRATER, FlagType.SWITCH, 0x3, 0x08) # Plant Death Mountain Crater bean
-        world.distribution.give_item('Magic Bean', 0) # Place Magic Bean into starting_items for the spoiler log
-        save_context.give_item('Magic Bean', 0) # 0 magic beans in inventory
-        save_context.addresses['magic_beans_sold'].value = 10 # 10 magic beans sold
 
     set_spirit_shortcut_actors(rom) # Change elevator starting position to avoid waiting a half cycle from the temple entrance
 

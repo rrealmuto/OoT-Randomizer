@@ -2798,8 +2798,7 @@ setting_infos = [
         gui_tooltip    = '''\
             Enabling this plants all 10 magic beans in soft soil
             causing the bean plants to be available as adult. You
-            will start with 0 magic beans in your inventory and
-            not be able to buy beans from the Magic Bean Salesman.
+            can still get beans normally.
         ''',
         default        = False,
         shared         = True,
