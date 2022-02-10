@@ -265,7 +265,7 @@ exit_func:
 	lw	s0, 0x2c(sp)
 	lw	s1, 0x30(sp)
 	lw	at, 0x34(sp)
-    beq v0, v1, return_to_func_near_end
+    beq v0, v1, return_to_func_near_end  ;check if our function returned 3. This means that it didnt play the fanfare. Jump back into function near the end so it sets up the proper animation
     nop
 	lw	v0, 0x14(sp)
 	lw	v1, 0x18(sp)
