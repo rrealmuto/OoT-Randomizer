@@ -256,9 +256,8 @@ return_to_func:
 	j 0x80012E28 ; jump back where the OG function would have
 	addiu sp, sp, 0x80
 exit_func:
+    addiu v1, r0, 0x03
     lw	ra, 0x10(sp)
-	lw	v0, 0x14(sp)
-	lw	v1, 0x18(sp)
     lw	a0, 0x1C(sp)
 	lw	a1, 0x20(sp) 
 	lw	a2, 0x24(sp)
@@ -266,9 +265,18 @@ exit_func:
 	lw	s0, 0x2c(sp)
 	lw	s1, 0x30(sp)
 	lw	at, 0x34(sp)
+    beq v0, v1, return_to_func_near_end
+    nop
+	lw	v0, 0x14(sp)
+	lw	v1, 0x18(sp)
     ;jr	ra
     j 0x80012FA4
     addiu	sp, sp, 0x80
+return_to_func_near_end:
+    lw	v0, 0x14(sp)
+	lw	v1, 0x18(sp)
+    j 0x80012F58
+    addiu   sp, sp, 0x80
 
 rupee_draw_hook:
 ;push things on the stack
