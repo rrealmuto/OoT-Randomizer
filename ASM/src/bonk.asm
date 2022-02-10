@@ -18,7 +18,10 @@ APPLY_BONK_DAMAGE:
     ; Set player health to zero
     lui     t1, 0x8012       ; Save Context (upper half)
     addiu   t1, t1, 0xA5D0   ; Save Context (lower half)
-    sh      $zero, 0x30(t1)
+    lh      t2, 0x13C8(t1)   ; Nayru's Love Timer, range 0 - 1200
+    bnez    t2, @@return_bonk
+    nop
+    sh      $zero, 0x30(t1)  ; Player Health
 
 @@return_bonk:
     lw      ra, 0x10($sp)
