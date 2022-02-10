@@ -164,7 +164,7 @@
             "Fire Temple MQ Flame Maze Right Pot 1": "can_use(Hookshot) or logic_fire_mq_flame_maze",
             "Fire Temple MQ Flame Maze Right Pot 2": "can_use(Hookshot) or logic_fire_mq_flame_maze",
             "Fire Temple MQ Flame Maze Right Pot 3": "can_play(Song_of_Time) or Hover_Boots or logic_fire_mq_flame_maze",
-            "Fire Temple MQ Flame Maze Right Pot 3": "can_play(Song_of_Time) or Hover_Boots or logic_fire_mq_flame_maze"
+            "Fire Temple MQ Flame Maze Right Pot 4": "can_play(Song_of_Time) or Hover_Boots or logic_fire_mq_flame_maze"
         }
     },
     {
