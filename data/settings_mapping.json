@@ -341,7 +341,7 @@
             "text_shuffle",
             "damage_multiplier",
             "deadly_bonks",
-      			"no_collectible_hearts",
+            "no_collectible_hearts",
             "starting_tod"
           ]
         },
