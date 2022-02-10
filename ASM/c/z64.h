@@ -25,6 +25,8 @@
 
 
 #define NA_BGM_SMALL_ITEM_GET 0x39
+#define NA_SE_SY_GET_RUPY 0x4803
+#define NA_SE_SY_GET_ITEM 0x4824
 
 typedef struct
 {

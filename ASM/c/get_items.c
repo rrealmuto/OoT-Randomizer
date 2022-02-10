@@ -684,8 +684,12 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
 			collectible_mutex = NULL;
 			pItem->actor.health = 1;
 			z64_GiveItem(&z64_game, item_row->action_id);
-			pItem->actor.variable = item_row->collectible; 
-			return 0; //Return to the original function so it can draw the collectible above our head.
+			//pItem->actor.variable = item_row->collectible; 
+			uint16_t sfxId = NA_SE_SY_GET_ITEM;
+			if(item_row->collectible <= ITEM00_RUPEE_RED || item_row->collectible == ITEM00_RUPEE_PURPLE || item_row->collectible == ITEM00_RUPEE_ORANGE)
+				sfxId = NA_SE_SY_GET_RUPY;
+			z64_Audio_PlaySoundGeneral(sfxId, 0x80104394, 4, 0x801043A0, 0x801043A0, 0x801043A8);
+			return 3; //Return to the original function so it can draw the collectible above our head.
 		}
 
 		//draw message box and play get item sound (like when a skull is picked up)
