@@ -421,6 +421,8 @@ void get_item(z64_actor_t *from_actor, z64_link_t *link, int8_t incoming_item_id
 #define GIVEITEM_MAGIC_LARGE 121
 #define GIVEITEM_RUPEE_PURPLE 135
 
+
+#define LEN_ITEMS  21
 uint8_t items[] = {
 	GIVEITEM_RUPEE_GREEN, 
 	GIVEITEM_RUPEE_BLUE, 
@@ -676,6 +678,28 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
 
 		PLAYER_NAME_ID = player;
 
+		//If it's a bunk item (aka a regular collectible) don't do the fanfare music/message box.
+		if(item_row->collectible > 0) //Item is one of our base collectibles
+		{
+			collectible_mutex = NULL;
+			pItem->actor.health = 1;
+			z64_GiveItem(&z64_game, item_row->action_id);
+			pItem->actor.variable = item_row->collectible; 
+			return 0; //Return to the original function so it can draw the collectible above our head.
+		}
+
+		//draw message box and play get item sound (like when a skull is picked up)
+		z64_Audio_PlayFanFare(NA_BGM_SMALL_ITEM_GET);
+
+		z64_DisplayTextbox(&z64_game, item_row->text_id, 0);
+
+		//Set up
+		pItem->timeToLive = 15; //unk_15A is a frame timer that is decremented each frame by the main actor code.
+		pItem->unk_154 = 35; //not quite sure but this is what the vanilla game does.
+		pItem->getItemId = 0;
+		z64_link.common.frozen = 10;					   //freeze link (like when picking up a skull)
+		pItem->actionFunc = Collectible_WaitForMessageBox; //Set up the EnItem00 action function to wait for the message box to close.
+		
 		//Give the item to the right place
 		if (resolved_item_id == 0xCA)
 		{
@@ -694,18 +718,7 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
 			z64_GiveItem(&z64_game, item_row->action_id);
 			call_effect_function(item_row);
 		}
-		//draw message box and play get item sound (like when a skull is picked up)
-
-		z64_Audio_PlayFanFare(NA_BGM_SMALL_ITEM_GET);
-
-		z64_DisplayTextbox(&z64_game, item_row->text_id, 0);
-
-		//Set up
-		pItem->timeToLive = 15; //unk_15A is a frame timer that is decremented each frame by the main actor code.
-		pItem->unk_154 = 35; //not quite sure but this is what the vanilla game does.
-		pItem->getItemId = 0;
-		z64_link.common.frozen = 10;					   //freeze link (like when picking up a skull)
-		pItem->actionFunc = Collectible_WaitForMessageBox; //Set up the EnItem00 action function to wait for the message box to close.
+		
 		return 1;
 	}
 	return 2; //

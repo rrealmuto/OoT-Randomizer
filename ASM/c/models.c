@@ -153,7 +153,7 @@ bool collectible_draw(z64_actor_t *actor, z64_game_t *game) {
         .graphic_id = 0x00,
     };
     lookup_model(&model, actor, game, 0);
-    if(model.object_id != 0x0000 && (!Get_CollectibleOverrideFlag(this) || (collectible_mutex == this)))
+    if(model.object_id != 0x0000 && (this->actor.health==1 || !Get_CollectibleOverrideFlag(this) || (collectible_mutex == this)))
     {
         if(!(collectible_mutex == this))
             draw_model(model, actor, game, 25.0);
@@ -176,7 +176,7 @@ void heart_piece_draw(z64_actor_t *actor, z64_game_t *game) {
 void collectible_draw_other(z64_actor_t *actor, z64_game_t *game) {
     EnItem00* this = (EnItem00*)actor;
     
-    if (!should_override_collectible(actor) && !(collectible_mutex == this)) {
+    if (!should_override_collectible(actor) && !(collectible_mutex == this) && (this->actor.health!=1)) {
         base_collectable_draw(actor, game);
         return;
     }

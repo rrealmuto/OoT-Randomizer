@@ -113,11 +113,15 @@
     "AUDIO_THREAD_INFO_MEM_SIZE": "0348320C",
     "AUDIO_THREAD_INFO_MEM_START": "03483208",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "AUDIO_THREAD_MEM_START": "03497AF0",
 >>>>>>> 93e32b2c (Hopefully fix extended flags)
 =======
     "AUDIO_THREAD_MEM_START": "03497B30",
 >>>>>>> 7e0c5de7 (Fix issue w/ new flags)
+=======
+    "AUDIO_THREAD_MEM_START": "03497EB0",
+>>>>>>> 6182b30e (Make junk collectibles not play fanfare/pause. Fix ordering of giving items/displaying textbox in order to display heart piece text properly.)
     "AUTO_TRACKER_CONTEXT": "03480CD0",
     "AUTO_TRACKER_VERSION": "03480CD0",
     "BOMBCHUS_IN_LOGIC": "03480CAC",
@@ -294,6 +298,7 @@
 =======
     "CHAIN_HBA_REWARDS": "03483B80",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "CHEST_SIZE_MATCH_CONTENTS": "0348C4E4",
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348C4E8",
     "COMPLETE_MASK_QUEST": "0348C539",
@@ -303,6 +308,11 @@
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348C520",
     "COMPLETE_MASK_QUEST": "0348C571",
 >>>>>>> 7e0c5de7 (Fix issue w/ new flags)
+=======
+    "CHEST_SIZE_MATCH_CONTENTS": "0348C89C",
+    "CHEST_TEXTURE_MATCH_CONTENTS": "0348C8A0",
+    "COMPLETE_MASK_QUEST": "0348C8F1",
+>>>>>>> 6182b30e (Make junk collectibles not play fanfare/pause. Fix ordering of giving items/displaying textbox in order to display heart piece text properly.)
     "COOP_CONTEXT": "03480020",
     "COOP_VERSION": "03480020",
     "COSMETIC_CONTEXT": "03480834",
@@ -310,6 +320,7 @@
     "CURRENT_GROTTO_ID": "034830B2",
     "DEBUG_OFFSET": "03482AD0",
     "DISABLE_TIMERS": "03480CCC",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -399,11 +410,15 @@
 =======
     "DPAD_TEXTURE": "03491B28",
 >>>>>>> 7e0c5de7 (Fix issue w/ new flags)
+=======
+    "DPAD_TEXTURE": "03491EA8",
+>>>>>>> 6182b30e (Make junk collectibles not play fanfare/pause. Fix ordering of giving items/displaying textbox in order to display heart piece text properly.)
     "DUNGEONS_SHUFFLED": "03480CCD",
     "EXTENDED_OBJECT_TABLE": "03480C8C",
     "EXTERN_DAMAGE_MULTIPLYER": "03482EE1",
     "FAST_BUNNY_HOOD_ENABLED": "03480CCF",
     "FAST_CHESTS": "03480CC6",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -607,11 +622,15 @@
 =======
     "FONT_TEXTURE": "03490660",
 >>>>>>> 7e0c5de7 (Fix issue w/ new flags)
+=======
+    "FONT_TEXTURE": "034909E0",
+>>>>>>> 6182b30e (Make junk collectibles not play fanfare/pause. Fix ordering of giving items/displaying textbox in order to display heart piece text properly.)
     "FREE_SCARECROW_ENABLED": "03480CBC",
-    "GANON_BOSS_KEY_CONDITION": "0348C530",
-    "GANON_BOSS_KEY_CONDITION_COUNT": "0348C52E",
+    "GANON_BOSS_KEY_CONDITION": "0348C8B0",
+    "GANON_BOSS_KEY_CONDITION_COUNT": "0348C8AE",
     "GET_CHEST_OVERRIDE_WRAPPER": "03482948",
     "GET_ITEM_TRIGGERED": "03481664",
+<<<<<<< HEAD
 <<<<<<< HEAD
     "GILDED_CHEST_BASE_TEXTURE": "034942F0",
     "GILDED_CHEST_FRONT_TEXTURE": "034932F0",
@@ -620,6 +639,10 @@
     "GILDED_CHEST_BASE_TEXTURE": "03494328",
     "GILDED_CHEST_FRONT_TEXTURE": "03493328",
 >>>>>>> 7e0c5de7 (Fix issue w/ new flags)
+=======
+    "GILDED_CHEST_BASE_TEXTURE": "034946A8",
+    "GILDED_CHEST_FRONT_TEXTURE": "034936A8",
+>>>>>>> 6182b30e (Make junk collectibles not play fanfare/pause. Fix ordering of giving items/displaying textbox in order to display heart piece text properly.)
     "GOSSIP_HINT_CONDITION": "03480CB8",
     "GROTTO_EXIT_LIST": "03483070",
     "GROTTO_LOAD_TABLE": "03482FEC",
@@ -627,6 +650,7 @@
     "INCOMING_PLAYER": "03480026",
     "INITIAL_SAVE_DATA": "0348088C",
     "JABU_ELEVATOR_ENABLE": "03480CC4",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -720,10 +744,14 @@
 =======
     "KAKARIKO_WEATHER_FORECAST": "0348C590",
 >>>>>>> 7e0c5de7 (Fix issue w/ new flags)
+=======
+    "KAKARIKO_WEATHER_FORECAST": "0348C910",
+>>>>>>> 6182b30e (Make junk collectibles not play fanfare/pause. Fix ordering of giving items/displaying textbox in order to display heart piece text properly.)
     "LACS_CONDITION": "03480CB4",
     "LACS_CONDITION_COUNT": "03480CC2",
     "MALON_GAVE_ICETRAP": "034838BC",
     "MALON_TEXT_ID": "03480CCB",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -904,19 +932,27 @@
 =======
     "MAX_RUPEES": "0348C573",
 >>>>>>> 7e0c5de7 (Fix issue w/ new flags)
+=======
+    "MAX_RUPEES": "0348C8F3",
+>>>>>>> 6182b30e (Make junk collectibles not play fanfare/pause. Fix ordering of giving items/displaying textbox in order to display heart piece text properly.)
     "MOVED_ADULT_KING_ZORA": "0348322C",
-    "NO_ESCAPE_SEQUENCE": "0348C52C",
+    "NO_ESCAPE_SEQUENCE": "0348C8AC",
     "OCARINAS_SHUFFLED": "03480CC5",
+<<<<<<< HEAD
 <<<<<<< HEAD
     "OPEN_KAKARIKO": "0348C53A",
 >>>>>>> 93e32b2c (Hopefully fix extended flags)
 =======
     "OPEN_KAKARIKO": "0348C572",
 >>>>>>> 7e0c5de7 (Fix issue w/ new flags)
+=======
+    "OPEN_KAKARIKO": "0348C8F2",
+>>>>>>> 6182b30e (Make junk collectibles not play fanfare/pause. Fix ordering of giving items/displaying textbox in order to display heart piece text properly.)
     "OUTGOING_ITEM": "03480030",
     "OUTGOING_KEY": "0348002C",
     "OUTGOING_PLAYER": "03480032",
     "OVERWORLD_SHUFFLED": "03480CCE",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1006,6 +1042,9 @@
 =======
     "PAYLOAD_END": "03497B30",
 >>>>>>> 7e0c5de7 (Fix issue w/ new flags)
+=======
+    "PAYLOAD_END": "03497EB0",
+>>>>>>> 6182b30e (Make junk collectibles not play fanfare/pause. Fix ordering of giving items/displaying textbox in order to display heart piece text properly.)
     "PAYLOAD_START": "03480000",
     "PLAYED_WARP_SONG": "03481468",
     "PLAYER_ID": "03480024",
@@ -1210,6 +1249,7 @@
 =======
     "SHUFFLE_MEDIGORON": "03483C94",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "SILVER_CHEST_BASE_TEXTURE": "03495AF0",
     "SILVER_CHEST_FRONT_TEXTURE": "03494AF0",
     "SKULL_CHEST_BASE_TEXTURE": "034972F0",
@@ -1221,15 +1261,22 @@
     "SKULL_CHEST_BASE_TEXTURE": "03497328",
     "SKULL_CHEST_FRONT_TEXTURE": "03496328",
 >>>>>>> 7e0c5de7 (Fix issue w/ new flags)
+=======
+    "SILVER_CHEST_BASE_TEXTURE": "03495EA8",
+    "SILVER_CHEST_FRONT_TEXTURE": "03494EA8",
+    "SKULL_CHEST_BASE_TEXTURE": "034976A8",
+    "SKULL_CHEST_FRONT_TEXTURE": "034966A8",
+>>>>>>> 6182b30e (Make junk collectibles not play fanfare/pause. Fix ordering of giving items/displaying textbox in order to display heart piece text properly.)
     "SONGS_AS_ITEMS": "03480CC8",
     "SOS_ITEM_GIVEN": "03481730",
     "SPEED_MULTIPLIER": "03482990",
     "START_TWINROVA_FIGHT": "034832AC",
     "TIME_TRAVEL_SAVED_EQUIPS": "03481CBC",
-    "TRIFORCE_ICON_TEXTURE": "03492328",
+    "TRIFORCE_ICON_TEXTURE": "034926A8",
     "TWINROVA_ACTION_TIMER": "034832B0",
     "WINDMILL_SONG_ID": "03480CC9",
     "WINDMILL_TEXT_ID": "03480CCA",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -2976,4 +3023,84 @@
     "triforce_pieces_requied": "0348C51A",
     "triforce_sprite": "0348B410"
 >>>>>>> 7e0c5de7 (Fix issue w/ new flags)
+=======
+    "a_button": "0348C878",
+    "a_note_b": "0348C864",
+    "a_note_font_glow_base": "0348C84C",
+    "a_note_font_glow_max": "0348C848",
+    "a_note_g": "0348C868",
+    "a_note_glow_base": "0348C854",
+    "a_note_glow_max": "0348C850",
+    "a_note_r": "0348C86C",
+    "active_item_action_id": "0348C8D4",
+    "active_item_fast_chest": "0348C8C4",
+    "active_item_graphic_id": "0348C8C8",
+    "active_item_object_id": "0348C8CC",
+    "active_item_row": "0348C8D8",
+    "active_item_text_id": "0348C8D0",
+    "active_override": "0348C8E0",
+    "active_override_is_outgoing": "0348C8DC",
+    "b_button": "0348C874",
+    "beating_dd": "0348C880",
+    "beating_no_dd": "0348C888",
+    "c_button": "0348C870",
+    "c_note_b": "0348C858",
+    "c_note_font_glow_base": "0348C83C",
+    "c_note_font_glow_max": "0348C838",
+    "c_note_g": "0348C85C",
+    "c_note_glow_base": "0348C844",
+    "c_note_glow_max": "0348C840",
+    "c_note_r": "0348C860",
+    "cfg_file_select_hash": "0348C8A8",
+    "cfg_item_overrides": "0348D920",
+    "collectible_mutex": "0348C8BC",
+    "collectible_override": "0348C8B4",
+    "collectible_override_flags": "0348D5E0",
+    "defaultDDHeart": "0348C88C",
+    "defaultHeart": "0348C894",
+    "dpad_sprite": "0348B478",
+    "dropped_collectible_override_flags": "0348C940",
+    "dummy_actor": "0348C8E8",
+    "dungeon_count": "0348C808",
+    "dungeons": "0348B2D0",
+    "empty_dlist": "0348C820",
+    "extern_ctxt": "0348B36C",
+    "font_sprite": "0348B488",
+    "freecam_modes": "0348B03C",
+    "hash_sprites": "0348C814",
+    "hash_symbols": "0348B380",
+    "heap_next": "0348C90C",
+    "heart_sprite": "0348B418",
+    "icon_sprites": "0348B200",
+    "item_digit_sprite": "0348B438",
+    "item_overrides_count": "0348C8EC",
+    "item_table": "0348B500",
+    "items": "0348B400",
+    "items_sprite": "0348B4A8",
+    "key_rupee_clock_sprite": "0348B448",
+    "last_fog_distance": "0348C80C",
+    "linkhead_skull_sprite": "0348B428",
+    "medal_colors": "0348B2BC",
+    "medals_sprite": "0348B4B8",
+    "normal_dd": "0348C87C",
+    "normal_no_dd": "0348C884",
+    "num_to_bits": "0348B3C0",
+    "object_slots": "03490920",
+    "pending_freezes": "0348C8F0",
+    "pending_item_queue": "0348D908",
+    "quest_items_sprite": "0348B498",
+    "rupee_colors": "0348B20C",
+    "satisified_pending_frames": "0348C8C0",
+    "scene_fog_distance": "0348C810",
+    "setup_db": "0348B4D8",
+    "song_note_sprite": "0348B458",
+    "stones_sprite": "0348B4C8",
+    "text_cursor_border_base": "0348C82C",
+    "text_cursor_border_max": "0348C828",
+    "text_cursor_inner_base": "0348C834",
+    "text_cursor_inner_max": "0348C830",
+    "triforce_hunt_enabled": "0348C900",
+    "triforce_pieces_requied": "0348C89A",
+    "triforce_sprite": "0348B468"
+>>>>>>> 6182b30e (Make junk collectibles not play fanfare/pause. Fix ordering of giving items/displaying textbox in order to display heart piece text properly.)
 }
