@@ -316,11 +316,12 @@ def get_hint_area(spot):
         else:
             parent_region = current_spot.parent_region
 
-        if parent_region.dungeon:
-            return parent_region.dungeon.hint, parent_region.dungeon.font_color
-        elif parent_region.hint and (original_parent.name == 'Root' or parent_region.name != 'Root'):
+        if parent_region.hint and (original_parent.name == 'Root' or parent_region.name != 'Root'):
             return parent_region.hint, parent_region.font_color or 'White'
 
+        if parent_region.dungeon:
+            return parent_region.dungeon.hint, parent_region.dungeon.font_color
+        
         spot_queue.extend(list(filter(lambda ent: ent not in already_checked, parent_region.entrances)))
 
     raise HintAreaNotFound('No hint area could be found for %s [World %d]' % (spot, spot.world.id))
