@@ -1110,7 +1110,7 @@ location_table = OrderedDict([
     ("Fire Temple MQ Big Lava Room Right Pot", ("Collectable", 0x04, 0x22, None, 'Rupees (5)', ("Fire Temple", "Master Quest", "Pot"))),
     ("Fire Temple MQ Big Lava Room Alcove Pot", ("Collectable", 0x04, 0x21, None, 'Rupees (5)', ("Fire Temple", "Master Quest", "Pot"))),
     ("Fire Temple MQ Near Boss Pot 1", ("Collectable", 0x04, 0x2D, None, 'Rupees (5)', ("Fire Temple", "Master Quest", "Pot"))),
-    ("Fire Temple MQ Near Boss Pot 2", ("Collectable", 0x04, 0x2E, None, 'Arrows (20)', ("Fire Temple", "Master Quest", "Pot"))),
+    ("Fire Temple MQ Near Boss Pot 2", ("Collectable", 0x04, 0x2E, None, 'Arrows (30)', ("Fire Temple", "Master Quest", "Pot"))),
     ("Fire Temple MQ Narrow Path Room Pot 1", ("Collectable", 0x04, 0x3A, None, 'Arrows (10)', ("Fire Temple", "Master Quest", "Pot"))),
     ("Fire Temple MQ Narrow Path Room Pot 2", ("Collectable", 0x04, 0x3B, None, 'Bombs (5)', ("Fire Temple", "Master Quest", "Pot"))),
     #("Fire Temple MQ Narrow Path Room Pot 3", ("Collectable", 0x04, 0x39, None, 'N/A', ("Fire Temple", "Master Quest", "Pot"))),
@@ -1236,7 +1236,7 @@ location_table = OrderedDict([
     ("Water Tempe MQ Before Dark Link Lower Pot", ("Collectable", 0x05, 0x2D, None, 'Deku Nuts (5)', ("Water Temple", "Master Quest", "Pot"))),
     #("Water Tempe MQ Before Dark Link Lower Pot 2", ("Collectable", 0x05, 0x2E, None, 'N/A', ("Water Temple", "Master Quest", "Pot")))
     #("Water Tempe MQ Before Dark Link Lower Pot 3", ("Collectable", 0x05, 0x30, None, 'N/A', ("Water Temple", "Master Quest", "Pot")))
-    ("Water Tempe MQ Room After Dark Link Pot", ("Collectable", 0x05, 0x32, None, 'Arrows (20)', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Tempe MQ Room After Dark Link Pot", ("Collectable", 0x05, 0x32, None, 'Arrows (30)', ("Water Temple", "Master Quest", "Pot"))),
     #("Water Tempe MQ Room After Dark Link Pot 2", ("Collectable", 0x05, 0x33, None, 'N/A', ("Water Temple", "Master Quest", "Pot")))
     ("Water Temple MQ Boss Key Chest Room Pot", ("Collectable", 0x05, 0x34, None, 'Rupees (5)', ("Water Temple", "Master Quest", "Pot"))),
     ("Water Temple MQ Before Upper Water Switch Pot 1", ("Collectable", 0x05, 0x38, None, 'Recovery Heart', ("Water Temple", "Master Quest", "Pot"))),
@@ -1456,8 +1456,8 @@ location_table = OrderedDict([
     ("Shadow Temple MQ After Boat Pot 1", ("Collectable", 0x07, 0x3B, None, 'Arrows (10)', ("Shadow Temple", "Master Quest", "Pot"))),
     ("Shadow Temple MQ After Boat Pot 2", ("Collectable", 0x07, 0x38, None, 'Arrows (10)', ("Shadow Temple", "Master Quest", "Pot"))),
     ("Shadow Temple MQ Near Boss Pot 1", ("Collectable", 0x07, 0x3E, None, 'Rupees (5)', ("Shadow Temple", "Master Quest", "Pot"))),
-    ("Shadow Temple MQ Near Boss Pot 2", ("Collectable", 0x07, 0x3D, None, 'Arrows (20)', ("Shadow Temple", "Master Quest", "Pot"))),
-    ("Shadow Temple MQ Dead Hand II Pot 1", ("Collectable", 0x07, 0x34, None, 'Arrows (20)', ("Shadow Temple", "Master Quest", "Pot"))),
+    ("Shadow Temple MQ Near Boss Pot 2", ("Collectable", 0x07, 0x3D, None, 'Arrows (30)', ("Shadow Temple", "Master Quest", "Pot"))),
+    ("Shadow Temple MQ Dead Hand II Pot 1", ("Collectable", 0x07, 0x34, None, 'Arrows (30)', ("Shadow Temple", "Master Quest", "Pot"))),
     ("Shadow Temple MQ Dead Hand II Pot 2", ("Collectable", 0x07, 0x33, None, 'Bombs (5)', ("Shadow Temple", "Master Quest", "Pot"))),
     ("Shadow Temple MQ Spike Walls Pot", ("Collectable", 0x07, 0x26, None, 'Rupees (5)', ("Shadow Temple", "Master Quest", "Pot"))),
     ("Shadow Temple MQ Truth Spinner Small Wooden Crate 1", ("Collectable", 0x07, 0x30, None, 'Arrows (10)', ("Shadow Temple", "Master Quest", "SmallCrate"))),
