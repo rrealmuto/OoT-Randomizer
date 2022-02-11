@@ -2186,6 +2186,7 @@
     },
     {
         "region_name": "Ganondorf Fight",
+        "dungeon" : "Ganons Castle",
         "hint": "Ganondorf Fight",
         "locations": {
             "Ganondorf Hint": "Boss_Key_Ganons_Castle",
