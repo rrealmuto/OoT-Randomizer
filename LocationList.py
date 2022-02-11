@@ -1470,6 +1470,16 @@ location_table = OrderedDict([
     ("Shadow Temple MQ GS After Wind",                               ("GS Token",     0x07,  0x08, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Master Quest", "Skulltulas",))),
     ("Shadow Temple MQ GS After Ship",                               ("GS Token",     0x07,  0x10, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Master Quest", "Skulltulas",))),
     ("Shadow Temple MQ GS Near Boss",                                ("GS Token",     0x07,  0x04, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Master Quest", "Skulltulas",))),
+    ("Shadow Temple MQ 3 Spinning Pots Rupee 1", ("Collectable", 0x7, 0x40, ([0x28127b8, 0x28127c8, 0x28127d8], None), 'Rupees (5)', ("Shadow Temple", "Vanilla", "RupeeTower"))),
+    ("Shadow Temple MQ 3 Spinning Pots Rupee 2", ("Collectable", 0x7, 0x41, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "RupeeTower"))),
+    ("Shadow Temple MQ 3 Spinning Pots Rupee 3", ("Collectable", 0x7, 0x42, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "RupeeTower"))),
+    ("Shadow Temple MQ 3 Spinning Pots Rupee 4", ("Collectable", 0x7, 0x43, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "RupeeTower"))),
+    ("Shadow Temple MQ 3 Spinning Pots Rupee 5", ("Collectable", 0x7, 0x44, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "RupeeTower"))),
+    ("Shadow Temple MQ 3 Spinning Pots Rupee 6", ("Collectable", 0x7, 0x45, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "RupeeTower"))),
+    ("Shadow Temple MQ 3 Spinning Pots Rupee 7", ("Collectable", 0x7, 0x46, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "RupeeTower"))),
+    ("Shadow Temple MQ 3 Spinning Pots Rupee 8", ("Collectable", 0x7, 0x47, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "RupeeTower"))),
+    ("Shadow Temple MQ 3 Spinning Pots Rupee 9", ("Collectable", 0x7, 0x48, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "RupeeTower"))),
+    
     # Shadow Temple MQ Pots
     ("Shadow Temple MQ Whispering Walls Pot 1", ("Collectable", 0x07, 0x28, ([0x27cb110],None), 'Recovery Heart', ("Shadow Temple", "Master Quest", "Pot"))),
     ("Shadow Temple MQ Whispering Walls Pot 2", ("Collectable", 0x07, 0x39, None, 'Recovery Heart', ("Shadow Temple", "Master Quest", "Pot"))),
