@@ -101,6 +101,8 @@ RANDO_CONTEXT:
 .include "misc_colors.asm"
 .include "door_of_time_col_fix.asm"
 .include "save.asm"
+.include "obj_mure3.asm"
+.include "bg_haka_tubo.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"
