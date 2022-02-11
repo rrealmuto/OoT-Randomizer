@@ -446,6 +446,13 @@ nop
 jal obj_mure3_redrupee_hack
 lwc1 f8, 0x002c(s2)
 
+;Hack bg_haka_tubo (shadow spinning pots) to drop flagged collectibles
+;replaces
+;or a0, s6, r0
+;addiu a1, sp, 0x005c
+.orga 0xD30FDC
+jal bg_haka_tubo_hack
+or a0, s6, r0
 
 ; Runs when storing an incoming item to the player instance
 ; Replaces:

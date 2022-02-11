@@ -143,11 +143,15 @@
     "AUDIO_THREAD_INFO_MEM_SIZE": "03483244",
     "AUDIO_THREAD_INFO_MEM_START": "03483240",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "AUDIO_THREAD_MEM_START": "03497F50",
 >>>>>>> a30f1183 (Add hack to shuffle all the rupees in rupee towers)
 =======
     "AUDIO_THREAD_MEM_START": "03497F60",
 >>>>>>> 2179db90 (Rupee tower fix for when setting is disabled)
+=======
+    "AUDIO_THREAD_MEM_START": "03497F90",
+>>>>>>> 027dc9d0 (Add shadow temple spinning pots)
     "AUTO_TRACKER_CONTEXT": "03480CD0",
     "AUTO_TRACKER_VERSION": "03480CD0",
     "BOMBCHUS_IN_LOGIC": "03480CAC",
@@ -356,6 +360,7 @@
 =======
     "CHAIN_HBA_REWARDS": "03483BB8",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "CHEST_SIZE_MATCH_CONTENTS": "0348C93C",
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348C940",
     "COMPLETE_MASK_QUEST": "0348C991",
@@ -365,6 +370,11 @@
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348C950",
     "COMPLETE_MASK_QUEST": "0348C9A1",
 >>>>>>> 2179db90 (Rupee tower fix for when setting is disabled)
+=======
+    "CHEST_SIZE_MATCH_CONTENTS": "0348C97C",
+    "CHEST_TEXTURE_MATCH_CONTENTS": "0348C980",
+    "COMPLETE_MASK_QUEST": "0348C9D1",
+>>>>>>> 027dc9d0 (Add shadow temple spinning pots)
     "COOP_CONTEXT": "03480020",
     "COOP_VERSION": "03480020",
     "COSMETIC_CONTEXT": "03480834",
@@ -372,6 +382,7 @@
     "CURRENT_GROTTO_ID": "034830E6",
     "DEBUG_OFFSET": "03482B04",
     "DISABLE_TIMERS": "03480CCC",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -481,11 +492,15 @@
 =======
     "DPAD_TEXTURE": "03491F58",
 >>>>>>> 2179db90 (Rupee tower fix for when setting is disabled)
+=======
+    "DPAD_TEXTURE": "03491F88",
+>>>>>>> 027dc9d0 (Add shadow temple spinning pots)
     "DUNGEONS_SHUFFLED": "03480CCD",
     "EXTENDED_OBJECT_TABLE": "03480C8C",
     "EXTERN_DAMAGE_MULTIPLYER": "03482F15",
     "FAST_BUNNY_HOOD_ENABLED": "03480CCF",
     "FAST_CHESTS": "03480CC6",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -738,11 +753,15 @@
 =======
     "FONT_TEXTURE": "03490A90",
 >>>>>>> 2179db90 (Rupee tower fix for when setting is disabled)
+=======
+    "FONT_TEXTURE": "03490AC0",
+>>>>>>> 027dc9d0 (Add shadow temple spinning pots)
     "FREE_SCARECROW_ENABLED": "03480CBC",
-    "GANON_BOSS_KEY_CONDITION": "0348C960",
-    "GANON_BOSS_KEY_CONDITION_COUNT": "0348C95E",
+    "GANON_BOSS_KEY_CONDITION": "0348C990",
+    "GANON_BOSS_KEY_CONDITION_COUNT": "0348C98E",
     "GET_CHEST_OVERRIDE_WRAPPER": "0348297C",
     "GET_ITEM_TRIGGERED": "03481698",
+<<<<<<< HEAD
 <<<<<<< HEAD
     "GILDED_CHEST_BASE_TEXTURE": "03494748",
     "GILDED_CHEST_FRONT_TEXTURE": "03493748",
@@ -751,6 +770,10 @@
     "GILDED_CHEST_BASE_TEXTURE": "03494758",
     "GILDED_CHEST_FRONT_TEXTURE": "03493758",
 >>>>>>> 2179db90 (Rupee tower fix for when setting is disabled)
+=======
+    "GILDED_CHEST_BASE_TEXTURE": "03494788",
+    "GILDED_CHEST_FRONT_TEXTURE": "03493788",
+>>>>>>> 027dc9d0 (Add shadow temple spinning pots)
     "GOSSIP_HINT_CONDITION": "03480CB8",
     "GROTTO_EXIT_LIST": "034830A4",
     "GROTTO_LOAD_TABLE": "03483020",
@@ -758,6 +781,7 @@
     "INCOMING_PLAYER": "03480026",
     "INITIAL_SAVE_DATA": "0348088C",
     "JABU_ELEVATOR_ENABLE": "03480CC4",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -871,10 +895,14 @@
 =======
     "KAKARIKO_WEATHER_FORECAST": "0348C9C0",
 >>>>>>> 2179db90 (Rupee tower fix for when setting is disabled)
+=======
+    "KAKARIKO_WEATHER_FORECAST": "0348C9F0",
+>>>>>>> 027dc9d0 (Add shadow temple spinning pots)
     "LACS_CONDITION": "03480CB4",
     "LACS_CONDITION_COUNT": "03480CC2",
     "MALON_GAVE_ICETRAP": "034838F4",
     "MALON_TEXT_ID": "03480CCB",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1095,19 +1123,27 @@
 =======
     "MAX_RUPEES": "0348C9A3",
 >>>>>>> 2179db90 (Rupee tower fix for when setting is disabled)
+=======
+    "MAX_RUPEES": "0348C9D3",
+>>>>>>> 027dc9d0 (Add shadow temple spinning pots)
     "MOVED_ADULT_KING_ZORA": "03483264",
-    "NO_ESCAPE_SEQUENCE": "0348C95C",
+    "NO_ESCAPE_SEQUENCE": "0348C98C",
     "OCARINAS_SHUFFLED": "03480CC5",
+<<<<<<< HEAD
 <<<<<<< HEAD
     "OPEN_KAKARIKO": "0348C992",
 >>>>>>> a30f1183 (Add hack to shuffle all the rupees in rupee towers)
 =======
     "OPEN_KAKARIKO": "0348C9A2",
 >>>>>>> 2179db90 (Rupee tower fix for when setting is disabled)
+=======
+    "OPEN_KAKARIKO": "0348C9D2",
+>>>>>>> 027dc9d0 (Add shadow temple spinning pots)
     "OUTGOING_ITEM": "03480030",
     "OUTGOING_KEY": "0348002C",
     "OUTGOING_PLAYER": "03480032",
     "OVERWORLD_SHUFFLED": "03480CCE",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1217,6 +1253,9 @@
 =======
     "PAYLOAD_END": "03497F60",
 >>>>>>> 2179db90 (Rupee tower fix for when setting is disabled)
+=======
+    "PAYLOAD_END": "03497F90",
+>>>>>>> 027dc9d0 (Add shadow temple spinning pots)
     "PAYLOAD_START": "03480000",
     "PLAYED_WARP_SONG": "0348149C",
     "PLAYER_ID": "03480024",
@@ -1458,6 +1497,7 @@
 =======
     "SHUFFLE_MEDIGORON": "03483CCC",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "SILVER_CHEST_BASE_TEXTURE": "03495F48",
     "SILVER_CHEST_FRONT_TEXTURE": "03494F48",
     "SKULL_CHEST_BASE_TEXTURE": "03497748",
@@ -1469,15 +1509,22 @@
     "SKULL_CHEST_BASE_TEXTURE": "03497758",
     "SKULL_CHEST_FRONT_TEXTURE": "03496758",
 >>>>>>> 2179db90 (Rupee tower fix for when setting is disabled)
+=======
+    "SILVER_CHEST_BASE_TEXTURE": "03495F88",
+    "SILVER_CHEST_FRONT_TEXTURE": "03494F88",
+    "SKULL_CHEST_BASE_TEXTURE": "03497788",
+    "SKULL_CHEST_FRONT_TEXTURE": "03496788",
+>>>>>>> 027dc9d0 (Add shadow temple spinning pots)
     "SONGS_AS_ITEMS": "03480CC8",
     "SOS_ITEM_GIVEN": "03481764",
     "SPEED_MULTIPLIER": "034829C4",
     "START_TWINROVA_FIGHT": "034832E4",
     "TIME_TRAVEL_SAVED_EQUIPS": "03481CF0",
-    "TRIFORCE_ICON_TEXTURE": "03492758",
+    "TRIFORCE_ICON_TEXTURE": "03492788",
     "TWINROVA_ACTION_TIMER": "034832E8",
     "WINDMILL_SONG_ID": "03480CC9",
     "WINDMILL_TEXT_ID": "03480CCA",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -3629,4 +3676,84 @@
     "triforce_pieces_requied": "0348C94A",
     "triforce_sprite": "0348B518"
 >>>>>>> 2179db90 (Rupee tower fix for when setting is disabled)
+=======
+    "a_button": "0348C958",
+    "a_note_b": "0348C944",
+    "a_note_font_glow_base": "0348C92C",
+    "a_note_font_glow_max": "0348C928",
+    "a_note_g": "0348C948",
+    "a_note_glow_base": "0348C934",
+    "a_note_glow_max": "0348C930",
+    "a_note_r": "0348C94C",
+    "active_item_action_id": "0348C9B4",
+    "active_item_fast_chest": "0348C9A4",
+    "active_item_graphic_id": "0348C9A8",
+    "active_item_object_id": "0348C9AC",
+    "active_item_row": "0348C9B8",
+    "active_item_text_id": "0348C9B0",
+    "active_override": "0348C9C0",
+    "active_override_is_outgoing": "0348C9BC",
+    "b_button": "0348C954",
+    "beating_dd": "0348C960",
+    "beating_no_dd": "0348C968",
+    "c_button": "0348C950",
+    "c_note_b": "0348C938",
+    "c_note_font_glow_base": "0348C91C",
+    "c_note_font_glow_max": "0348C918",
+    "c_note_g": "0348C93C",
+    "c_note_glow_base": "0348C924",
+    "c_note_glow_max": "0348C920",
+    "c_note_r": "0348C940",
+    "cfg_file_select_hash": "0348C988",
+    "cfg_item_overrides": "0348DA00",
+    "collectible_mutex": "0348C99C",
+    "collectible_override": "0348C994",
+    "collectible_override_flags": "0348D6C0",
+    "defaultDDHeart": "0348C96C",
+    "defaultHeart": "0348C974",
+    "dpad_sprite": "0348B558",
+    "dropped_collectible_override_flags": "0348CA20",
+    "dummy_actor": "0348C9C8",
+    "dungeon_count": "0348C8E8",
+    "dungeons": "0348B3B0",
+    "empty_dlist": "0348C900",
+    "extern_ctxt": "0348B44C",
+    "font_sprite": "0348B568",
+    "freecam_modes": "0348B11C",
+    "hash_sprites": "0348C8F4",
+    "hash_symbols": "0348B460",
+    "heap_next": "0348C9EC",
+    "heart_sprite": "0348B4F8",
+    "icon_sprites": "0348B2E0",
+    "item_digit_sprite": "0348B518",
+    "item_overrides_count": "0348C9CC",
+    "item_table": "0348B5E0",
+    "items": "0348B4E0",
+    "items_sprite": "0348B588",
+    "key_rupee_clock_sprite": "0348B528",
+    "last_fog_distance": "0348C8EC",
+    "linkhead_skull_sprite": "0348B508",
+    "medal_colors": "0348B39C",
+    "medals_sprite": "0348B598",
+    "normal_dd": "0348C95C",
+    "normal_no_dd": "0348C964",
+    "num_to_bits": "0348B4A0",
+    "object_slots": "03490A00",
+    "pending_freezes": "0348C9D0",
+    "pending_item_queue": "0348D9E8",
+    "quest_items_sprite": "0348B578",
+    "rupee_colors": "0348B2EC",
+    "satisified_pending_frames": "0348C9A0",
+    "scene_fog_distance": "0348C8F0",
+    "setup_db": "0348B5B8",
+    "song_note_sprite": "0348B538",
+    "stones_sprite": "0348B5A8",
+    "text_cursor_border_base": "0348C90C",
+    "text_cursor_border_max": "0348C908",
+    "text_cursor_inner_base": "0348C914",
+    "text_cursor_inner_max": "0348C910",
+    "triforce_hunt_enabled": "0348C9E0",
+    "triforce_pieces_requied": "0348C97A",
+    "triforce_sprite": "0348B548"
+>>>>>>> 027dc9d0 (Add shadow temple spinning pots)
 }
