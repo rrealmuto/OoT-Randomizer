@@ -214,14 +214,24 @@ get_override_drop_id_hook:
     jr ra
     addiu sp, sp, 0x10
 
-
+;hooks Item_DropCollectible to store additional flag data in the variable passed to the EnItem00 spawn.
+;0x4000 gets set to indicate that its being dropped, which we use to index a second table that we called the dropped_collectible table
+;0x00C0 bits get set to extend the flag 
 drop_collectible_hook:
-    ori t4, t4, 0x4000
-    lw  t3, 0x60(sp)
-    andi t3, t3, 0x00C0
-    or t4, t4, t3
+    ori t4, t4, 0x4000 ;set the drop flag
+    lw  t3, 0x60(sp)   ;get the original params variable passed into the function
+    andi t3, t3, 0x00C0 ;get the extended flag bits
+    or t4, t4, t3 ;combine it all together
     jr ra
-    sw t4, 0x0024(sp)
+    sw t4, 0x0024(sp) ;store it where it needs to go to get passed into the actorspawn function
+
+drop_collectible2_hook:
+    ori t4, t4, 0x4000 ;set the drop flag
+    lw  t3, 0x58(sp)   ;get the original params variable passed into the function
+    andi t3, t3, 0x00C0 ;get the extended flag bits
+    or t4, t4, t3 ;combine it all together
+    jr ra
+    sw t4, 0x0024(sp) ;store it where it needs to go to get passed into the actorspawn function
 
 item_give_hook:
     addiu sp, sp, -0x80
