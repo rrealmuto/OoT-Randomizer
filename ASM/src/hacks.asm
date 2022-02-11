@@ -644,11 +644,24 @@ nop
 jal get_override_drop_id_hook
 sh T1, 0x0046(sp)
 
-;Hack Item_DropCollectible to add a flag that this was a dropped collectible (vs spawned).
+;Hack Item_DropCollectible2 to call custom function to determine what item should be dropped based on our override.
+;replaces
+;jal 0x80013530
+;sh T1, 0x0042(sp)
+.orga 0xA898F8; in memory 0x80013998
+
+;Hack Item_DropCollectible to add a flag that this was a dropped collectible (vs spawned) and extended flag
 ;replaces or t4, t3, t1
 ;sw t4, 0x0024(sp)
 .orga 0xA89708; in memory 0x800137A8
 jal drop_collectible_hook
+or t4, t3, t1
+
+;Hack Item_DropCollectible2 to add dropped collectible flag and extended flag
+;replaces or t4, t3, t1
+;sw t4, 0x0024(sp)
+.orga 0xA89934; in memory 0x800139D4
+jal drop_collectible2_hook
 or t4, t3, t1
 
 ;Hack ObjKibako2_SpawnCollectible (Large crates) to call our overridden spawn function
@@ -660,6 +673,22 @@ nop
 ;Hack ObjKibako2_Init (Large Crates) to not delete our extended flag
 .orga 0xEC832C
 or T8, T7, R0
+
+;Hack ObjMure3 Function that spawns the rupee circle (6 green + 1 red in the center)
+;replaces
+;or a1, s6, r0
+;addiu a2, r0, 0x4000
+.orga 0xED0AEC
+jal obj_mure3_hack
+nop
+;Hack the red rupee part
+;replaces 
+;lwc1 f8, 0x002c(s2)
+;addiu a2, r0, 0x4002
+.orga 0xED0B48
+jal obj_mure3_redrupee_hack
+lwc1 f8, 0x002c(s2)
+
 
 ; Runs when storing an incoming item to the player instance
 ; Replaces:
