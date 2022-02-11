@@ -100,7 +100,7 @@ float scale_factor(int8_t graphic_id, z64_actor_t *actor, float base_scale) {
     //if (actor->actor_id == 0x15 && (actor->variable & 0xFF) == 0x11) {
         // Draw small key actors smaller, so they don't stick out of places
         //return base_scale * 0.5;
-    }
+    //}
     return base_scale;
 }
 

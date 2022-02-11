@@ -129,8 +129,12 @@
     "AUDIO_THREAD_INFO": "0348320C",
     "AUDIO_THREAD_INFO_MEM_SIZE": "0348322C",
     "AUDIO_THREAD_INFO_MEM_START": "03483228",
+<<<<<<< HEAD
     "AUDIO_THREAD_MEM_START": "03497F10",
 >>>>>>> 05b5493c (Fix wrong flags getting set when picking up item without fanfare)
+=======
+    "AUDIO_THREAD_MEM_START": "03497EF0",
+>>>>>>> 443f4554 (Hopefully fix shopsanity not building and crashes)
     "AUTO_TRACKER_CONTEXT": "03480CD0",
     "AUTO_TRACKER_VERSION": "03480CD0",
     "BOMBCHUS_IN_LOGIC": "03480CAC",
@@ -325,10 +329,16 @@
 >>>>>>> 6182b30e (Make junk collectibles not play fanfare/pause. Fix ordering of giving items/displaying textbox in order to display heart piece text properly.)
 =======
     "CHAIN_HBA_REWARDS": "03483BA0",
+<<<<<<< HEAD
     "CHEST_SIZE_MATCH_CONTENTS": "0348C904",
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348C908",
     "COMPLETE_MASK_QUEST": "0348C959",
 >>>>>>> 05b5493c (Fix wrong flags getting set when picking up item without fanfare)
+=======
+    "CHEST_SIZE_MATCH_CONTENTS": "0348C8DC",
+    "CHEST_TEXTURE_MATCH_CONTENTS": "0348C8E0",
+    "COMPLETE_MASK_QUEST": "0348C931",
+>>>>>>> 443f4554 (Hopefully fix shopsanity not building and crashes)
     "COOP_CONTEXT": "03480020",
     "COOP_VERSION": "03480020",
     "COSMETIC_CONTEXT": "03480834",
@@ -336,6 +346,7 @@
     "CURRENT_GROTTO_ID": "034830CE",
     "DEBUG_OFFSET": "03482AEC",
     "DISABLE_TIMERS": "03480CCC",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -433,11 +444,15 @@
 =======
     "DPAD_TEXTURE": "03491F10",
 >>>>>>> 05b5493c (Fix wrong flags getting set when picking up item without fanfare)
+=======
+    "DPAD_TEXTURE": "03491EE8",
+>>>>>>> 443f4554 (Hopefully fix shopsanity not building and crashes)
     "DUNGEONS_SHUFFLED": "03480CCD",
     "EXTENDED_OBJECT_TABLE": "03480C8C",
     "EXTERN_DAMAGE_MULTIPLYER": "03482EFD",
     "FAST_BUNNY_HOOD_ENABLED": "03480CCF",
     "FAST_CHESTS": "03480CC6",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -666,14 +681,22 @@
 >>>>>>> 6182b30e (Make junk collectibles not play fanfare/pause. Fix ordering of giving items/displaying textbox in order to display heart piece text properly.)
 =======
     "FONT_TEXTURE": "03490A48",
+=======
+    "FONT_TEXTURE": "03490A20",
+>>>>>>> 443f4554 (Hopefully fix shopsanity not building and crashes)
     "FREE_SCARECROW_ENABLED": "03480CBC",
-    "GANON_BOSS_KEY_CONDITION": "0348C918",
-    "GANON_BOSS_KEY_CONDITION_COUNT": "0348C916",
+    "GANON_BOSS_KEY_CONDITION": "0348C8F0",
+    "GANON_BOSS_KEY_CONDITION_COUNT": "0348C8EE",
     "GET_CHEST_OVERRIDE_WRAPPER": "03482964",
     "GET_ITEM_TRIGGERED": "03481680",
+<<<<<<< HEAD
     "GILDED_CHEST_BASE_TEXTURE": "03494710",
     "GILDED_CHEST_FRONT_TEXTURE": "03493710",
 >>>>>>> 05b5493c (Fix wrong flags getting set when picking up item without fanfare)
+=======
+    "GILDED_CHEST_BASE_TEXTURE": "034946E8",
+    "GILDED_CHEST_FRONT_TEXTURE": "034936E8",
+>>>>>>> 443f4554 (Hopefully fix shopsanity not building and crashes)
     "GOSSIP_HINT_CONDITION": "03480CB8",
     "GROTTO_EXIT_LIST": "0348308C",
     "GROTTO_LOAD_TABLE": "03483008",
@@ -681,6 +704,7 @@
     "INCOMING_PLAYER": "03480026",
     "INITIAL_SAVE_DATA": "0348088C",
     "JABU_ELEVATOR_ENABLE": "03480CC4",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -782,10 +806,14 @@
 =======
     "KAKARIKO_WEATHER_FORECAST": "0348C978",
 >>>>>>> 05b5493c (Fix wrong flags getting set when picking up item without fanfare)
+=======
+    "KAKARIKO_WEATHER_FORECAST": "0348C950",
+>>>>>>> 443f4554 (Hopefully fix shopsanity not building and crashes)
     "LACS_CONDITION": "03480CB4",
     "LACS_CONDITION_COUNT": "03480CC2",
     "MALON_GAVE_ICETRAP": "034838DC",
     "MALON_TEXT_ID": "03480CCB",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -986,15 +1014,23 @@
 >>>>>>> 6182b30e (Make junk collectibles not play fanfare/pause. Fix ordering of giving items/displaying textbox in order to display heart piece text properly.)
 =======
     "MAX_RUPEES": "0348C95B",
+=======
+    "MAX_RUPEES": "0348C933",
+>>>>>>> 443f4554 (Hopefully fix shopsanity not building and crashes)
     "MOVED_ADULT_KING_ZORA": "0348324C",
-    "NO_ESCAPE_SEQUENCE": "0348C914",
+    "NO_ESCAPE_SEQUENCE": "0348C8EC",
     "OCARINAS_SHUFFLED": "03480CC5",
+<<<<<<< HEAD
     "OPEN_KAKARIKO": "0348C95A",
 >>>>>>> 05b5493c (Fix wrong flags getting set when picking up item without fanfare)
+=======
+    "OPEN_KAKARIKO": "0348C932",
+>>>>>>> 443f4554 (Hopefully fix shopsanity not building and crashes)
     "OUTGOING_ITEM": "03480030",
     "OUTGOING_KEY": "0348002C",
     "OUTGOING_PLAYER": "03480032",
     "OVERWORLD_SHUFFLED": "03480CCE",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1092,6 +1128,9 @@
 =======
     "PAYLOAD_END": "03497F10",
 >>>>>>> 05b5493c (Fix wrong flags getting set when picking up item without fanfare)
+=======
+    "PAYLOAD_END": "03497EF0",
+>>>>>>> 443f4554 (Hopefully fix shopsanity not building and crashes)
     "PAYLOAD_START": "03480000",
     "PLAYED_WARP_SONG": "03481484",
     "PLAYER_ID": "03480024",
@@ -1317,20 +1356,28 @@
 >>>>>>> 6182b30e (Make junk collectibles not play fanfare/pause. Fix ordering of giving items/displaying textbox in order to display heart piece text properly.)
 =======
     "SHUFFLE_MEDIGORON": "03483CB4",
+<<<<<<< HEAD
     "SILVER_CHEST_BASE_TEXTURE": "03495F10",
     "SILVER_CHEST_FRONT_TEXTURE": "03494F10",
     "SKULL_CHEST_BASE_TEXTURE": "03497710",
     "SKULL_CHEST_FRONT_TEXTURE": "03496710",
 >>>>>>> 05b5493c (Fix wrong flags getting set when picking up item without fanfare)
+=======
+    "SILVER_CHEST_BASE_TEXTURE": "03495EE8",
+    "SILVER_CHEST_FRONT_TEXTURE": "03494EE8",
+    "SKULL_CHEST_BASE_TEXTURE": "034976E8",
+    "SKULL_CHEST_FRONT_TEXTURE": "034966E8",
+>>>>>>> 443f4554 (Hopefully fix shopsanity not building and crashes)
     "SONGS_AS_ITEMS": "03480CC8",
     "SOS_ITEM_GIVEN": "0348174C",
     "SPEED_MULTIPLIER": "034829AC",
     "START_TWINROVA_FIGHT": "034832CC",
     "TIME_TRAVEL_SAVED_EQUIPS": "03481CD8",
-    "TRIFORCE_ICON_TEXTURE": "03492710",
+    "TRIFORCE_ICON_TEXTURE": "034926E8",
     "TWINROVA_ACTION_TIMER": "034832D0",
     "WINDMILL_SONG_ID": "03480CC9",
     "WINDMILL_TEXT_ID": "03480CCA",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -3239,4 +3286,84 @@
     "triforce_pieces_requied": "0348C902",
     "triforce_sprite": "0348B4D0"
 >>>>>>> 05b5493c (Fix wrong flags getting set when picking up item without fanfare)
+=======
+    "a_button": "0348C8B8",
+    "a_note_b": "0348C8A4",
+    "a_note_font_glow_base": "0348C88C",
+    "a_note_font_glow_max": "0348C888",
+    "a_note_g": "0348C8A8",
+    "a_note_glow_base": "0348C894",
+    "a_note_glow_max": "0348C890",
+    "a_note_r": "0348C8AC",
+    "active_item_action_id": "0348C914",
+    "active_item_fast_chest": "0348C904",
+    "active_item_graphic_id": "0348C908",
+    "active_item_object_id": "0348C90C",
+    "active_item_row": "0348C918",
+    "active_item_text_id": "0348C910",
+    "active_override": "0348C920",
+    "active_override_is_outgoing": "0348C91C",
+    "b_button": "0348C8B4",
+    "beating_dd": "0348C8C0",
+    "beating_no_dd": "0348C8C8",
+    "c_button": "0348C8B0",
+    "c_note_b": "0348C898",
+    "c_note_font_glow_base": "0348C87C",
+    "c_note_font_glow_max": "0348C878",
+    "c_note_g": "0348C89C",
+    "c_note_glow_base": "0348C884",
+    "c_note_glow_max": "0348C880",
+    "c_note_r": "0348C8A0",
+    "cfg_file_select_hash": "0348C8E8",
+    "cfg_item_overrides": "0348D960",
+    "collectible_mutex": "0348C8FC",
+    "collectible_override": "0348C8F4",
+    "collectible_override_flags": "0348D620",
+    "defaultDDHeart": "0348C8CC",
+    "defaultHeart": "0348C8D4",
+    "dpad_sprite": "0348B4B8",
+    "dropped_collectible_override_flags": "0348C980",
+    "dummy_actor": "0348C928",
+    "dungeon_count": "0348C848",
+    "dungeons": "0348B310",
+    "empty_dlist": "0348C860",
+    "extern_ctxt": "0348B3AC",
+    "font_sprite": "0348B4C8",
+    "freecam_modes": "0348B07C",
+    "hash_sprites": "0348C854",
+    "hash_symbols": "0348B3C0",
+    "heap_next": "0348C94C",
+    "heart_sprite": "0348B458",
+    "icon_sprites": "0348B240",
+    "item_digit_sprite": "0348B478",
+    "item_overrides_count": "0348C92C",
+    "item_table": "0348B540",
+    "items": "0348B440",
+    "items_sprite": "0348B4E8",
+    "key_rupee_clock_sprite": "0348B488",
+    "last_fog_distance": "0348C84C",
+    "linkhead_skull_sprite": "0348B468",
+    "medal_colors": "0348B2FC",
+    "medals_sprite": "0348B4F8",
+    "normal_dd": "0348C8BC",
+    "normal_no_dd": "0348C8C4",
+    "num_to_bits": "0348B400",
+    "object_slots": "03490960",
+    "pending_freezes": "0348C930",
+    "pending_item_queue": "0348D948",
+    "quest_items_sprite": "0348B4D8",
+    "rupee_colors": "0348B24C",
+    "satisified_pending_frames": "0348C900",
+    "scene_fog_distance": "0348C850",
+    "setup_db": "0348B518",
+    "song_note_sprite": "0348B498",
+    "stones_sprite": "0348B508",
+    "text_cursor_border_base": "0348C86C",
+    "text_cursor_border_max": "0348C868",
+    "text_cursor_inner_base": "0348C874",
+    "text_cursor_inner_max": "0348C870",
+    "triforce_hunt_enabled": "0348C940",
+    "triforce_pieces_requied": "0348C8DA",
+    "triforce_sprite": "0348B4A8"
+>>>>>>> 443f4554 (Hopefully fix shopsanity not building and crashes)
 }
