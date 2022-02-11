@@ -1383,7 +1383,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     messages = read_messages(rom)
     remove_unused_messages(messages)
     shop_items = read_shop_items(rom, shop_item_file.start + 0x1DEC)
-
+    logger = logging.getLogger('')
+    for s in shop_items:
+        logger.info(s)
     # Set Big Poe count to get reward from buyer
     poe_points = world.settings.big_poe_count * 100
     rom.write_int16(0xEE69CE, poe_points)
@@ -1974,17 +1976,20 @@ def add_to_extended_object_table(rom, object_id, object_file):
     rom.write_int32s(extended_object_table + extended_id * 8, [object_file.start, object_file.end])
 
 
-item_row_struct = struct.Struct('>BBHHBBIIhh') # Match item_row_t in item_table.h
+item_row_struct = struct.Struct('>BBBxHHBBxxIIhh') # Match item_row_t in item_table.h
 item_row_fields = [
-    'base_item_id', 'action_id', 'text_id', 'object_id', 'graphic_id', 'chest_type',
+    'base_item_id', 'action_id', 'collectible', 'text_id', 'object_id', 'graphic_id', 'chest_type',
     'upgrade_fn', 'effect_fn', 'effect_arg1', 'effect_arg2',
 ]
 
 
 def read_rom_item(rom, item_id):
+    logger = logging.getLogger('')
     addr = rom.sym('item_table') + (item_id * item_row_struct.size)
     row_bytes = rom.read_bytes(addr, item_row_struct.size)
     row = item_row_struct.unpack(row_bytes)
+    logger.info(item_row_struct.size)
+    logger.info(row)
     return { item_row_fields[i]: row[i] for i in range(len(item_row_fields)) }
 
 
@@ -2314,11 +2319,13 @@ def place_shop_items(rom, world, shop_items, messages, locations, init_shop_id=F
             else:
                 item_display = location.item
 
+            logger = logging.getLogger('')
             # bottles in shops should look like empty bottles
             # so that that are different than normal shop refils
             if 'shop_object' in item_display.special:
                 rom_item = read_rom_item(rom, item_display.special['shop_object'])
             else:
+                logger.info(item_display.index)
                 rom_item = read_rom_item(rom, item_display.index)
 
             shop_objs.add(rom_item['object_id'])
