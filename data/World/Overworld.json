@@ -717,9 +717,9 @@
             "Wasteland Near GS Pot 1" : "True",
             "Wasteland Near GS Pot 2" : "True",
             "Wasteland Near GS Pot 3" : "True",
-            "wasteland Crate After Quicksand 1" : "True",
-            "wasteland Crate After Quicksand 2" : "True",
-            "wasteland Crate After Quicksand 3" : "True",
+            "Wasteland Crate After Quicksand 1" : "True",
+            "Wasteland Crate After Quicksand 2" : "True",
+            "Wasteland Crate After Quicksand 3" : "True",
             "Fairy Pot": "has_bottle",
             "Nut Pot": "True"
         },

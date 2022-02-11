@@ -608,11 +608,11 @@ location_table = OrderedDict([
     ("Wasteland Near GS Pot 2",                                      ("Collectable",  0x5E,  0x21, None,                        'Deku Nuts (5)',                            ("Haunted Wasteland", "Pot"))),
     #("Wasteland Near GS Pot 3",                                      ("Collectable",  0x5E,  0x22, None,                        'Rupees (5)',                            ("Haunted Wasteland", "Pot"))),
     ("Wasteland Near GS Pot 3",                                      ("Collectable",  0x5E,  0x23, None,                        'Rupees (5)',                            ("Haunted Wasteland", "Pot"))),
-    ("Wasteland Crate Before Quicksand", ("Collectable", 0x5E, 0x40, ([0x21e32B0],None), 'Rupee (1)', ("Haunted Wasteland", "", "Crate"))),
-    ("Wasteland Crate After Quicksand 1", ("Collectable", 0x5E, 0x41, ([0x21e3280],None), 'Rupee (1)', ("Haunted Wasteland", "", "Crate"))),
-    ("Wasteland Crate After Quicksand 2", ("Collectable", 0x5E, 0x42, ([0x21e3290],None), 'Rupee (1)', ("Haunted Wasteland", "", "Crate"))),
-    ("Wasteland Crate After Quicksand 3", ("Collectable", 0x5E, 0x43, ([0x21e32A0],None), 'Rupee (1)', ("Haunted Wasteland", "", "Crate"))),
-    ("Wasteland Crate Near Colossus", ("Collectable", 0x5E, 0x44, ([0x21e3270],None), 'Rupee (1)', ("Haunted Wasteland", "", "Crate"))),
+    ("Wasteland Crate Before Quicksand", ("Collectable", 0x5E, 0x40, ([0x21e32B0],None), 'Rupee (1)', ("Haunted Wasteland", "Crate"))),
+    ("Wasteland Crate After Quicksand 1", ("Collectable", 0x5E, 0x41, ([0x21e3280],None), 'Rupee (1)', ("Haunted Wasteland", "Crate"))),
+    ("Wasteland Crate After Quicksand 2", ("Collectable", 0x5E, 0x42, ([0x21e3290],None), 'Rupee (1)', ("Haunted Wasteland","Crate"))),
+    ("Wasteland Crate After Quicksand 3", ("Collectable", 0x5E, 0x43, ([0x21e32A0],None), 'Rupee (1)', ("Haunted Wasteland","Crate"))),
+    ("Wasteland Crate Near Colossus", ("Collectable", 0x5E, 0x44, ([0x21e3270],None), 'Rupee (1)', ("Haunted Wasteland", "Crate"))),
 
     # Colossus
     ("Colossus Great Fairy Reward",                                  ("Cutscene",     0xFF,  0x12, None,                        'Nayrus Love',                           ("Desert Colossus", "Fairies",))),
