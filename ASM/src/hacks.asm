@@ -968,8 +968,36 @@ skip_GS_BGS_text:
 ; Required as la t8, APPLY_BONK_DAMAGE gets expanded to two commands.
     b       0xBE0494
 
-;.org 0x8039B484  ; vram 0x80842AE4
-;END_ROLL_FRAME:
+; Prevent set and reset of player state3 flag 4, which is re-used for storing bonk state if the
+; player manages to cancel the roll/bonk animation before the last frame.
+; The flag does not appear to be used by the vanilla game.
+; Replaces:
+;   sb      t4, 0x0682(s0)
+.orga 0xBE3798
+    nop
+; Replaces:
+;   sb      t5, 0x0682(s0)
+.orga 0xBE55E4
+    nop
+
+; Hook to set flag if player starts bonk animation
+; Flag is unset on player death
+; Replaces:
+;   or      a0, s0, $zero
+;   addiu   a1, $zero, 0x00FF
+.orga 0xBE035C
+    jal     SET_BONK_FLAG
+    nop
+
+; Hook into Player_UpdateCommon to check if bonk animation was canceled.
+; If so, kill the dirty cheater.
+; Replaces:
+;   lbu     v0, 0x0A63(s0)
+;   or      a1, s0, $zero
+.orga 0xBE4AC8
+    jal     CHECK_FOR_BONK_CANCEL
+    nop
+
 
 ;==================================================================================================
 ; Skip Scarecrow Song

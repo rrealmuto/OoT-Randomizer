@@ -1,7 +1,8 @@
 CFG_DEADLY_BONKS:
 	.word 0x00000000
 
-APPLY_BONK_DAMAGE:
+
+BONK_LAST_FRAME:
     addiu   sp, sp, -0x18
     sw      ra, 0x10($sp)
 
@@ -12,8 +13,61 @@ APPLY_BONK_DAMAGE:
 
     ; One Bonk KO setting enabled
     lw      t0, CFG_DEADLY_BONKS
-    beqz    t0, @@return_bonk
+    beqz    t0, @@return_bonk_frame
     nop
+    ; Set player health to zero
+    jal     APPLY_BONK_DAMAGE
+    nop
+
+@@return_bonk_frame:
+    lw      ra, 0x10($sp)
+    jr      ra
+    addiu   sp, sp, 0x18
+
+
+SET_BONK_FLAG:
+    ; displaced code
+    or      a0, s0, $zero
+    addiu   a1, $zero, 0x00FF
+
+    ; set flag
+    lbu     t0, 0x0682(s0)   ; Player state3 flag 4
+    ori     t1, t0, 0x0010
+    sb      t1, 0x0682(s0)
+    jr      ra
+    nop
+
+CHECK_FOR_BONK_CANCEL:
+    addiu   sp, sp, -0x18
+    sw      ra, 0x10($sp)
+
+    ; displaced code
+    lbu     v0, 0x0A63(s0)
+    or      a1, s0, $zero
+
+    ; Check if bonk flag was set and
+    ; bonk animation flag (??) was cleared
+    lbu     t0, 0x0682(s0)   ; Player state3 flag 4
+    andi    t1, t0, 0x0010
+    beqz    t1, @@return_bonk_check
+    nop
+    lh      t1, 0x0840(s0)   ; this->unk_850
+    bnez    t1, @@return_bonk_check
+    nop
+    jal     APPLY_BONK_DAMAGE
+    nop
+
+@@return_bonk_check:
+    lw      ra, 0x10($sp)
+    jr      ra
+    addiu   sp, sp, 0x18
+
+
+APPLY_BONK_DAMAGE:
+    ; Unset bonk kill flag
+    lbu     t0, 0x0682(s0)   ; Player state3 flag 4
+    andi    t1, t0, 0xFFEF
+    sb      t1, 0x0682(s0)
 
     ; Set player health to zero
     lui     t1, 0x8012       ; Save Context (upper half)
@@ -24,6 +78,4 @@ APPLY_BONK_DAMAGE:
     sh      $zero, 0x30(t1)  ; Player Health
 
 @@return_bonk:
-    lw      ra, 0x10($sp)
     jr      ra
-    addiu   sp, sp, 0x18
