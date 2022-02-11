@@ -151,15 +151,15 @@
             "Shadow Temple Near Boss Pot 1" : "(Bow or can_use(Distant_Scarecrow) or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts)",
             "Shadow Temple Near Boss Pot 2" : "(Bow or can_use(Distant_Scarecrow) or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts)",
             "Shadow Temple GS Triple Giant Pot": "True",
-            "Shadow Temple 3 Spinning Pots Rupee 1": "True",
-            "Shadow Temple 3 Spinning Pots Rupee 2": "True",
-            "Shadow Temple 3 Spinning Pots Rupee 3": "True",
-            "Shadow Temple 3 Spinning Pots Rupee 4": "True",
-            "Shadow Temple 3 Spinning Pots Rupee 5": "True",
-            "Shadow Temple 3 Spinning Pots Rupee 6": "True",
-            "Shadow Temple 3 Spinning Pots Rupee 7": "True",
-            "Shadow Temple 3 Spinning Pots Rupee 8": "True",
-            "Shadow Temple 3 Spinning Pots Rupee 9": "True"
+            "Shadow Temple 3 Spinning Pots Rupee 1": "Bomb_Bag or Progressive_Strength_Upgrade",
+            "Shadow Temple 3 Spinning Pots Rupee 2": "Bomb_Bag or Progressive_Strength_Upgrade",
+            "Shadow Temple 3 Spinning Pots Rupee 3": "Bomb_Bag or Progressive_Strength_Upgrade",
+            "Shadow Temple 3 Spinning Pots Rupee 4": "Bomb_Bag or Progressive_Strength_Upgrade",
+            "Shadow Temple 3 Spinning Pots Rupee 5": "Bomb_Bag or Progressive_Strength_Upgrade",
+            "Shadow Temple 3 Spinning Pots Rupee 6": "Bomb_Bag or Progressive_Strength_Upgrade",
+            "Shadow Temple 3 Spinning Pots Rupee 7": "Bomb_Bag or Progressive_Strength_Upgrade",
+            "Shadow Temple 3 Spinning Pots Rupee 8": "Bomb_Bag or Progressive_Strength_Upgrade",
+            "Shadow Temple 3 Spinning Pots Rupee 9": "Bomb_Bag or Progressive_Strength_Upgrade"
         },
         "exits": {
             "Shadow Temple Boss Room": "
