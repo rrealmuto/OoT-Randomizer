@@ -357,7 +357,7 @@ location_table = OrderedDict([
     ("Grave Dampe Pot 5",                                            ("Collectable",  0x48,  0x26, None, 'Rupees (20)',                        ("the Graveyard", "Kakariko", "Pot"))),
     ("Grave Dampe Pot 6",                                            ("Collectable",  0x48,  0x27, None, 'Rupees (20)',                        ("the Graveyard", "Kakariko", "Pot"))),
     ("Graveyard Hookshot Chest",                                     ("Chest",        0x48,  0x00, None,                        'Progressive Hookshot',                  ("the Graveyard", "Kakariko",))),
-    ("Graveyard Dampe Race Freestanding PoH",                        ("Collectable",  0x48,  0x07, None,                        'Piece of Heart',                        ("the Graveyard", "Kakariko", "Minigames"))),
+    ("Graveyard Dampe Race Freestanding PoH",                        ("Collectable",  0x48,  0x07, None,                        'Piece of Heart',                        ("the Graveyard", "Kakariko", "Minigames", "Drop"))),
     ("Graveyard GS Bean Patch",                                      ("GS Token",     0x10,  0x01, None,                        'Gold Skulltula Token',                  ("the Graveyard", "Skulltulas",))),
     ("Graveyard GS Wall",                                            ("GS Token",     0x10,  0x80, None,                        'Gold Skulltula Token',                  ("the Graveyard", "Skulltulas",))),
 
