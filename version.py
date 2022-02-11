@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 __version__ = '6.2.29 f.LUM'
 =======
 __version__ = '6.2.19.rreal-1.0'
@@ -11,3 +12,6 @@ __version__ = '6.2.19.rreal-1.1'
 =======
 __version__ = '6.2.19.rreal-1.2'
 >>>>>>> d5aeb1ec (Update version)
+=======
+__version__ = '6.2.19.rreal-1.3'
+>>>>>>> 0b3dd4e8 (Update to v1.3)
