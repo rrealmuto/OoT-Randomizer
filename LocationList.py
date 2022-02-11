@@ -1418,6 +1418,17 @@ location_table = OrderedDict([
     ("Shadow Temple After Wind Flying Pot 1", ("Collectable", 0x7, 0x36, None, 'Recovery Heart', ("Shadow Temple", "Vanilla", "FlyingPot"))),
     ("Shadow Temple After Wind Flying Pot 2", ("Collectable", 0x7, 0x37, None, 'Recovery Heart', ("Shadow Temple", "Vanilla", "FlyingPot"))),
     ("Shadow Temple After Boat Pot 1",                               ("Collectable",  0x07,  0x38, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
+    ("Shadow Temple 3 Spinning Pots Rupee 1", ("Collectable", 0x7, 0x40, ([0x280D0D4, 0x280D0E4, 0x280D0F4], None), 'Rupees (5)', ("Shadow Temple", "Vanilla", "Crate"))),
+    ("Shadow Temple 3 Spinning Pots Rupee 2", ("Collectable", 0x7, 0x41, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "Crate"))),
+    ("Shadow Temple 3 Spinning Pots Rupee 3", ("Collectable", 0x7, 0x42, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "Crate"))),
+    ("Shadow Temple 3 Spinning Pots Rupee 4", ("Collectable", 0x7, 0x43, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "Crate"))),
+    ("Shadow Temple 3 Spinning Pots Rupee 5", ("Collectable", 0x7, 0x44, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "Crate"))),
+    ("Shadow Temple 3 Spinning Pots Rupee 6", ("Collectable", 0x7, 0x45, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "Crate"))),
+    ("Shadow Temple 3 Spinning Pots Rupee 7", ("Collectable", 0x7, 0x46, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "Crate"))),
+    ("Shadow Temple 3 Spinning Pots Rupee 8", ("Collectable", 0x7, 0x47, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "Crate"))),
+    ("Shadow Temple 3 Spinning Pots Rupee 9", ("Collectable", 0x7, 0x48, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "Crate"))),
+
+    
     #("Shadow Temple After Boat Pot 2"                               ("Collectable",  0x07,  0x3B, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
     ("Shadow Temple Near Boss Pot 1",                                ("Collectable",  0x07,  0x3D, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
     ("Shadow Temple Near Boss Pot 2",                                ("Collectable",  0x07,  0x3E, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
