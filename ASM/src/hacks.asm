@@ -331,6 +331,16 @@ Gameplay_InitSkybox:
     j		item_give_hook
     or      A2, S0, R0
 
+; Hack save slot table offsets to only use 2 saves
+; save slot table is stored at B71E60 in ROM
+.orga 0xB71E60
+.halfword 0x0020 ; slot 1
+.halfword 0x1470 ; slot 2
+.halfword 0x0000 ;remove slot 3
+.halfword 0x28C0 ; slot 1 backup
+.halfword 0x3D10 ; slot 2 backup
+.halfword 0x0000 ; remove slot 3 backup
+
 ; Hack Write_Save function to store additional collectible flags
 .orga 0xB065F4 ; In memory: 0x80090694
     jal Save_Write_Hook
@@ -365,6 +375,23 @@ slti at, s4, 0x0002
 jal  item00_init_hook
 nop
 
+;Hack EnItem00_Init when it checks the scene flags to prevent killing the actor if its being overridden.
+;replaces
+;jal 0x80020EB4
+;.orga 0x0A87B10; In Memory 0x80011BB0
+;jal Item00_KillActorIfFlagIsSet
+.headersize(0x80011B98 - 0xA87AF8)
+.orga 0xA87AF8; In Memory 0x80011B98
+jal Item00_KillActorIfFlagIsSet
+or a0, s0, r0
+bnez v0, 0x800121A4
+lw RA, 0x001c(sp)
+b 0x80011Bc0
+nop
+nop
+nop
+nop
+
 ;Hack Item_DropCollectible to call custom function to determine what item should be dropped based on our override.
 ;overriding call at 0x8001376C to function 0x80013530
 ;replaces
@@ -380,6 +407,16 @@ sh T1, 0x0046(sp)
 .orga 0xA89708; in memory 0x800137A8
 jal drop_collectible_hook
 or t4, t3, t1
+
+;Hack ObjKibako2_SpawnCollectible (Large crates) to call our overridden spawn function
+;
+.orga 0xEC8264
+j ObjKibako2_SpawnCollectible_Hack
+nop
+
+;Hack ObjKibako2_Init (Large Crates) to not delete our extended flag
+.orga 0xEC832C
+or T8, T7, R0
 
 ; Runs when storing an incoming item to the player instance
 ; Replaces:

@@ -1311,6 +1311,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         mq_scenes.append(4)
     if world.dungeon_mq['Water Temple']:
         mq_scenes.append(5)
+        tex = open('data/water_texture.bin', 'rb')
+        bytes = tex.read()
+        rom.write_bytes(0x1990000, bytes)
     if world.dungeon_mq['Spirit Temple']:
         mq_scenes.append(6)
     if world.dungeon_mq['Shadow Temple']:
@@ -1454,18 +1457,32 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Get actor_override locations
         actor_override_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'ActorOverride' ]
         freestanding_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and 'Freestanding' in location.filter_tags]
-        pot_crate_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and ('Pot' in location.filter_tags or 'Crate' in location.filter_tags)]
         
-        for location in actor_override_locations + freestanding_locations + pot_crate_locations:
-                addresses = location.address
-                patch = location.address2
-                if addresses is not None and patch is not None:
-                    for address in addresses:
-                        rom.write_bytes(address, patch)
+        for location in actor_override_locations:
+            patch_actor_override(location, rom)
+        for location in freestanding_locations:
+            patch_freestanding_collectible(location, rom)
 
+
+    if world.settings.shuffle_pots:
+        pot_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and ('Pot' in location.filter_tags)]
+        flying_pot_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and ('FlyingPot' in location.filter_tags)]
+        crate_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and ('Crate' in location.filter_tags)]
+        smallcrate_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and ('SmallCrate' in location.filter_tags)]
+        for location in pot_locations:
+            patch_pot(location, rom)
+        for location in flying_pot_locations:
+            patch_flying_pot(location, rom)
+        for location in crate_locations:
+            patch_crate(location, rom)
+        for location in smallcrate_locations:
+            patch_small_crate(location, rom)
+            
 
     # Write item overrides
     override_table = get_override_table(world)
+    if len(override_table) >= 1536:
+        raise(RuntimeError("Exceeded override table size: " + str(len(override_table))))
     rom.write_bytes(rom.sym('cfg_item_overrides'), get_override_table_bytes(override_table))
     rom.write_byte(rom.sym('PLAYER_ID'), world.id + 1) # Write player ID
 
@@ -1718,6 +1735,21 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         rom.write_bytes(0x33650CA, [0xFE, 0xD3, 0x00, 0x00, 0x00, 0x6E, 0x00, 0x00, 0x4A, 0x34]) # LLR Tower right cow
         rom.write_bytes(0x2C550AE, [0x00, 0x82]) # LLR Stable right cow
         set_cow_id_data(rom, world)
+
+    if world.settings.plant_beans:
+        save_context.write_permanent_flag(Scenes.GRAVEYARD, FlagType.SWITCH, 0x3, 0x08) # Plant Graveyard bean
+        save_context.write_permanent_flag(Scenes.ZORAS_RIVER, FlagType.SWITCH, 0x3, 0x08) # Plant Zora's River bean
+        save_context.write_permanent_flag(Scenes.KOKIRI_FOREST, FlagType.SWITCH, 0x2, 0x02) # Plant Kokiri Forest bean
+        save_context.write_permanent_flag(Scenes.LAKE_HYLIA, FlagType.SWITCH, 0x3, 0x02) # Plant Lake Hylia bean
+        save_context.write_permanent_flag(Scenes.GERUDO_VALLEY, FlagType.SWITCH, 0x3, 0x08) # Plant Gerudo Valley bean
+        save_context.write_permanent_flag(Scenes.LOST_WOODS, FlagType.SWITCH, 0x3, 0x10) # Plant Lost Woods bridge bean
+        save_context.write_permanent_flag(Scenes.LOST_WOODS, FlagType.SWITCH, 0x1, 0x04) # Plant Lost Woods theater bean
+        save_context.write_permanent_flag(Scenes.DESERT_COLOSSUS, FlagType.SWITCH, 0x0, 0x1) # Plant Desert Colossus bean
+        save_context.write_permanent_flag(Scenes.DEATH_MOUNTAIN_TRAIL, FlagType.SWITCH, 0x3, 0x40) # Plant Death Mountain Trail bean
+        save_context.write_permanent_flag(Scenes.DEATH_MOUNTAIN_CRATER, FlagType.SWITCH, 0x3, 0x08) # Plant Death Mountain Crater bean
+        world.distribution.give_item('Magic Bean', 0) # Place Magic Bean into starting_items for the spoiler log
+        save_context.give_item('Magic Bean', 0) # 0 magic beans in inventory
+        save_context.addresses['magic_beans_sold'].value = 10 # 10 magic beans sold
 
     if world.settings.shuffle_beans:
         rom.write_byte(rom.sym('SHUFFLE_BEANS'), 0x01)
@@ -2018,7 +2050,7 @@ def get_override_entry(location):
     elif location.type == 'ActorOverride':
         type = 2
     elif location.type == 'Collectable':
-        if "Pot" in location.filter_tags or "Crate" in location.filter_tags or "Drop" in location.filter_tags:
+        if "Pot" in location.filter_tags or "Crate" in location.filter_tags or "Drop" in location.filter_tags or "FlyingPot" in location.filter_tags or "SmallCrate" in location.filter_tags:
             type = 6
         else:
             type = 2
@@ -2372,3 +2404,47 @@ def configure_dungeon_info(rom, world):
     rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_NEED_ALTAR'), int(not enhance_map_compass))
     rom.write_bytes(rom.sym('CFG_DUNGEON_REWARDS'), dungeon_rewards)
     rom.write_bytes(rom.sym('CFG_DUNGEON_IS_MQ'), dungeon_is_mq)
+
+#Overwrite an actor in rom w/ the actor data from LocationList
+def patch_actor_override(location, rom: Rom):
+    addresses = location.address
+    patch = location.address2
+    if addresses is not None and patch is not None:
+        for address in addresses:
+            rom.write_bytes(address, patch)
+
+#Patch the flag of a freestanding collectible
+def patch_freestanding_collectible(location, rom: Rom):
+    if location.address:
+        for address in location.address:
+            rom.write_byte(address + 14, location.default)
+
+#Patch the collectible flag used by a crate
+def patch_crate(location, rom : Rom):
+    if location.address:
+        for address in location.address:
+            rom.write_byte(address + 13, location.default)
+
+#Patch the collectible flag used by a flying pot
+def patch_flying_pot(location, rom : Rom):
+    if location.address:
+        for address in location.address:
+            byte = rom.read_byte(address + 15)
+            byte = byte & 0xC0
+            byte |= (location.default & 0x3F)
+            rom.write_byte(address + 15, byte)
+
+#Patch the collectible flag used by a small crate
+def patch_small_crate(location, rom : Rom):
+    if location.address:
+        for address in location.address:
+            rom.write_byte(address + 14, location.default)
+
+#Patch the collectible flag used by a pot
+def patch_pot(location, rom : Rom):
+    if location.address:
+        for address in location.address:
+            byte = rom.read_byte(address + 14)
+            byte = byte & 0x01
+            byte |= location.default << 1
+            rom.write_byte(address + 14, byte)

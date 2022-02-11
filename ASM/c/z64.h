@@ -25,6 +25,8 @@
 
 
 #define NA_BGM_SMALL_ITEM_GET 0x39
+#define NA_SE_SY_GET_RUPY 0x4803
+#define NA_SE_SY_GET_ITEM 0x4824
 
 typedef struct
 {
@@ -798,6 +800,7 @@ struct z64_actor_s
                                     /* 0x013C */
 };
 
+
 typedef struct
 {
   z64_actor_t  common;               /* 0x0000 */
@@ -824,6 +827,19 @@ typedef struct
   int16_t      drop_distance;        /* 0x0886 */
                                      /* 0x0888 */
 } z64_link_t;
+
+
+typedef struct DynaPolyActor {
+    /* 0x000 */ z64_actor_t actor;
+    /* 0x14C */ int32_t bgId;
+    /* 0x150 */ float unk_150;
+    /* 0x154 */ float unk_154;
+    /* 0x158 */ int16_t unk_158; // y rotation?
+    /* 0x15A */ uint16_t unk_15A;
+    /* 0x15C */ uint32_t unk_15C;
+    /* 0x160 */ uint8_t unk_160;
+    /* 0x162 */ int16_t unk_162;
+} DynaPolyActor; // size = 0x164
 
 typedef struct
 {
@@ -1517,6 +1533,7 @@ typedef enum {
 #define z64_ActorKill_addr                      0x80020EB4
 #define z64_Message_GetState_addr               0x800DD464
 #define z64_SetCollectibleFlags_addr            0x8002071C
+#define z64_GetCollectibleFlags_addr            0x800206E8
 #define z64_Audio_PlaySoundGeneral_addr         0x800C806C
 #define z64_Audio_PlayFanFare_addr              0x800C69A0
 #define z64_osSendMesg_addr                     0x80001E20
@@ -1571,6 +1588,7 @@ typedef enum {
 #define SsSram_ReadWrite_addr                   0x80091474
 #define z64_memcopy_addr                        0x80057030
 #define z64_bzero_addr                          0x80002E80
+#define z64_Item_DropCollectible_addr           0x80013678
 
 /* rom addresses */
 #define z64_icon_item_static_vaddr              0x007BD000
@@ -1597,7 +1615,8 @@ typedef enum {
 typedef void(*z64_EnItem00ActionFunc)(struct EnItem00*, z64_game_t*);
 typedef void(*z64_ActorKillFunc)(z64_actor_t*);
 typedef uint8_t(*z64_Message_GetStateFunc)(uint8_t*);
-typedef void(*z64_Flags_SetCollectibleFunc)(z64_game_t* game, uint16_t flag);
+typedef void(*z64_Flags_SetCollectibleFunc)(z64_game_t* game, uint32_t flag);
+typedef int32_t (*z64_Flags_GetCollectibleFunc)(z64_game_t* game, uint32_t flag);
 typedef void(*z64_Audio_PlaySoundGeneralFunc)(uint16_t sfxId, void* pos, uint8_t token, float* freqScale, float* a4, uint8_t* reverbAdd);
 typedef void(*z64_Audio_PlayFanFareFunc)(uint16_t);
 typedef void (*z64_DrawActors_proc)       (z64_game_t *game, void *actor_ctxt);
@@ -1631,6 +1650,7 @@ typedef float *(*z64_GetMatrixStackTop_proc)();
 typedef void (*SsSram_ReadWrite_proc)(uint32_t addr, void* dramAddr, size_t size, uint32_t direction);
 typedef void* (*z64_memcopy_proc)(void* dest, void* src, uint32_t size);
 typedef void (*z64_bzero_proc)(void* __s, uint32_t __n);
+typedef EnItem00* (*z64_Item_DropCollectible_proc)(z64_game_t* globalCtx, z64_xyzf_t* spawnPos, int16_t params);
 
 /* data */
 #define z64_file_mq             (*(OSMesgQueue*)      z64_file_mq_addr)
@@ -1662,6 +1682,7 @@ typedef void (*z64_bzero_proc)(void* __s, uint32_t __n);
 #define z64_ActorKill               ((z64_ActorKillFunc)    z64_ActorKill_addr)
 #define z64_MessageGetState         ((z64_Message_GetStateFunc)z64_Message_GetState_addr)
 #define z64_SetCollectibleFlags     ((z64_Flags_SetCollectibleFunc)z64_SetCollectibleFlags_addr)
+#define z64_Flags_GetCollectible    ((z64_Flags_GetCollectibleFunc)z64_GetCollectibleFlags_addr)
 #define z64_Audio_PlaySoundGeneral  ((z64_Audio_PlaySoundGeneralFunc)z64_Audio_PlaySoundGeneral_addr)
 #define z64_Audio_PlayFanFare       ((z64_Audio_PlayFanFareFunc)z64_Audio_PlayFanFare_addr)
 
@@ -1695,4 +1716,5 @@ typedef void (*z64_bzero_proc)(void* __s, uint32_t __n);
 #define SsSram_ReadWrite ((SsSram_ReadWrite_proc)SsSram_ReadWrite_addr)
 #define z64_memcopy ((z64_memcopy_proc)z64_memcopy_addr)
 #define z64_bzero ((z64_bzero_proc)z64_bzero_addr)
+#define z64_Item_DropCollectible ((z64_Item_DropCollectible_proc)z64_Item_DropCollectible_addr)
 #endif

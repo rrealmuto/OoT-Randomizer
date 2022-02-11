@@ -8,7 +8,7 @@
 
 extern uint8_t OCARINAS_SHUFFLED;
 
-override_t cfg_item_overrides[1024] = {0};
+override_t cfg_item_overrides[1536] = {0};
 int item_overrides_count = 0;
 
 override_t pending_item_queue[3] = {0};
@@ -78,7 +78,9 @@ override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_
 			return (override_key_t){.all = 0};
 		}*/
 		//Check if it was a dropped collectable and use a separate override for that
-		if(actor->dropFlag)
+		EnItem00* item = (EnItem00*)actor;
+		uint8_t flag = ((item->actor.dropFlag & 0x06) << 5) + item->collectibleFlag;
+		if(item->actor.dropFlag)
 		{
 			//Use the same override flags for the pots in ganon's tower
 			if(scene == 0x0A)
@@ -86,14 +88,14 @@ override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_
 			return (override_key_t){
 				.scene = scene,
 				.type = OVR_DROPPEDCOLLECTABLE,
-				.flag = *(((uint8_t *)actor) + 0x141),
+				.flag = flag,
 			};
 		}
 
 		return (override_key_t){
 			.scene = scene,
 			.type = OVR_COLLECTABLE,
-			.flag = *(((uint8_t *)actor) + 0x141),
+			.flag = flag
 		};
 	}
 	else if (actor->actor_id == 0x19C)
@@ -419,6 +421,8 @@ void get_item(z64_actor_t *from_actor, z64_link_t *link, int8_t incoming_item_id
 #define GIVEITEM_MAGIC_LARGE 121
 #define GIVEITEM_RUPEE_PURPLE 135
 
+
+#define LEN_ITEMS  21
 uint8_t items[] = {
 	GIVEITEM_RUPEE_GREEN, 
 	GIVEITEM_RUPEE_BLUE, 
@@ -472,43 +476,72 @@ void Collectible_WaitForMessageBox(EnItem00 *this, z64_game_t *game)
 }
 
 uint32_t collectible_override_flags[202] = {0x00};
-uint32_t dropped_collectible_override_flags[202] = {0x00};
+uint32_t dropped_collectible_override_flags[808] = {0x00};
+
+uint8_t get_extended_flag(EnItem00* item00)
+{
+	return ((item00->actor.dropFlag & 0xFE) << 5) + item00->collectibleFlag;
+}
 
 bool Get_CollectibleOverrideFlag(EnItem00* item00)
 {
 	uint32_t* flag_table = &collectible_override_flags;
 	uint16_t scene = z64_game.scene_index;
-	if(item00->actor.dropFlag) //we set this if it's dropped
+	bool dropFlag = item00->actor.dropFlag & 0x0001;
+
+	if(item00->actor.variable == ITEM00_HEART_PIECE || item00->actor.variable == ITEM00_SMALL_KEY || item00->actor.variable == ITEM00_HEART_CONTAINER)
+	{
+		return z64_Flags_GetCollectible(&z64_game, item00->collectibleFlag) > 0;
+	}
+
+	uint16_t extended_flag = get_extended_flag(item00);
+	if(dropFlag) //we set this if it's dropped
 	{
 		flag_table = &dropped_collectible_override_flags;
 		if(scene == 0x0A)
 			scene = 0x19;
 	}
+
+	//uint16_t extended_flag = item00->collectibleFlag; //Update this to make the flag bigger
+
+	return (flag_table[(dropFlag ? 8 : 2)*scene + (extended_flag/0x20)] & (1 << (extended_flag % 0x20)));
+	/*
 	if(item00->collectibleFlag < 0x20)
 	{
 		return (flag_table[2*scene] & (1 << item00->collectibleFlag)) > 0;
 	}
 	return (flag_table[2*scene + 1] & (1 << (item00->collectibleFlag - 0x20))) > 0;
+	*/
 }
 
 void Set_CollectibleOverrideFlag(EnItem00* item00)
 {
 	uint32_t* flag_table = &collectible_override_flags;
 	uint16_t scene = z64_game.scene_index;
-	if(item00->actor.dropFlag)
+	bool dropFlag = item00->actor.dropFlag & 0x0001;
+	uint16_t extended_flag = get_extended_flag(item00);
+	if(dropFlag)
 	{
 		flag_table = &dropped_collectible_override_flags;
+		
 		if(scene == 0x0A)
 			scene = 0x19;
+		
 	}
-	if(item00->collectibleFlag < 0x20)
+	flag_table[(dropFlag ? 8 : 2)*scene + (extended_flag/0x20)] |= (1 << (extended_flag % 0x20));
+
+	//uint16_t extended_flag = item00->collectibleFlag; //Update this to make the flag bigger
+
+	
+	return;
+	/*if(item00->collectibleFlag < 0x20)
 	{
 		flag_table[2 * scene] |= (1 << item00->collectibleFlag);
 	}
 	else
 	{
 		flag_table[2 * scene + 1] |= (1 << (item00->collectibleFlag -0x20));
-	}
+	}*/
 }
 
 bool should_override_collectible(EnItem00* item00)
@@ -519,6 +552,21 @@ bool should_override_collectible(EnItem00* item00)
 		return 0;
 	}
 	return 1;
+}
+
+bool Item00_KillActorIfFlagIsSet(z64_actor_t* actor)
+{
+	EnItem00* this = (EnItem00*)actor;
+	if(should_override_collectible(this))
+		return 0;
+	if(get_extended_flag(this) >= 0x40)
+		return 0;
+	if(z64_Flags_GetCollectible(&z64_game, this->collectibleFlag))
+	{
+		z64_ActorKill(actor);
+		return 1;
+	}
+	
 }
 
 //Hack for keeping freestanding overrides alive when they spawn from crates/pots.
@@ -536,14 +584,14 @@ void Item00_KeepAlive(EnItem00* item00)
 	}
 }
 
-int16_t get_override_drop_id(int16_t dropId, int16_t collectible_flag)
+int16_t get_override_drop_id(int16_t dropId, uint16_t params)
 {
 	//make our a dummy enitem00 with enough info to get the override
 	EnItem00 dummy;
-	dummy.collectibleFlag = collectible_flag >> 8;
+	dummy.collectibleFlag = (params & 0x3F00) >> 8;
 	dummy.actor.actor_id = 0x15;
 	dummy.actor.dropFlag = 1;
-
+	dummy.actor.dropFlag |= (params & 0x00C0) >> 5;
 	if(should_override_collectible(&dummy) && 
 		(dropId != ITEM00_HEART_PIECE) &&
 		(dropId != ITEM00_SMALL_KEY) &&
@@ -601,6 +649,11 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
 	if (override.key.all == 0 || Get_CollectibleOverrideFlag(pItem))
 	{
 		z64_GiveItem(&z64_game, items[item]); //Give the regular item (this is what is normally called by the non-hacked function)
+		if(get_extended_flag(pItem) > 0x3F) //If our extended collectible flag is outside the range of normal collectibles, set the flag to 0 so it doesn't write something wrong. We should only ever be using this for things that normally are 0 anyway
+		{
+			pItem->collectibleFlag = 0;
+			pItem->actor.dropFlag &= 0x01;
+		}
 		return 0;
 	}
 
@@ -625,6 +678,33 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
 
 		PLAYER_NAME_ID = player;
 
+		//If it's a junk item (aka a regular collectible) don't do the fanfare music/message box.
+		if(item_row->collectible > 0) //Item is one of our base collectibles
+		{
+			collectible_mutex = NULL;
+			pItem->actor.health = 1;
+			z64_GiveItem(&z64_game, item_row->action_id);
+			//pItem->actor.variable = item_row->collectible; 
+			//Pick the correct sound effect for rupees or other items.
+			uint16_t sfxId = NA_SE_SY_GET_ITEM;
+			if(item_row->collectible <= ITEM00_RUPEE_RED || item_row->collectible == ITEM00_RUPEE_PURPLE || item_row->collectible == ITEM00_RUPEE_ORANGE)
+				sfxId = NA_SE_SY_GET_RUPY;
+			z64_Audio_PlaySoundGeneral(sfxId, 0x80104394, 4, 0x801043A0, 0x801043A0, 0x801043A8);
+			return 3; //Return to the original function so it can draw the collectible above our head.
+		}
+
+		//draw message box and play get item sound (like when a skull is picked up)
+		z64_Audio_PlayFanFare(NA_BGM_SMALL_ITEM_GET);
+
+		z64_DisplayTextbox(&z64_game, item_row->text_id, 0);
+
+		//Set up
+		pItem->timeToLive = 15; //unk_15A is a frame timer that is decremented each frame by the main actor code.
+		pItem->unk_154 = 35; //not quite sure but this is what the vanilla game does.
+		pItem->getItemId = 0;
+		z64_link.common.frozen = 10;					   //freeze link (like when picking up a skull)
+		pItem->actionFunc = Collectible_WaitForMessageBox; //Set up the EnItem00 action function to wait for the message box to close.
+		
 		//Give the item to the right place
 		if (resolved_item_id == 0xCA)
 		{
@@ -643,18 +723,7 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
 			z64_GiveItem(&z64_game, item_row->action_id);
 			call_effect_function(item_row);
 		}
-		//draw message box and play get item sound (like when a skull is picked up)
-
-		z64_Audio_PlayFanFare(NA_BGM_SMALL_ITEM_GET);
-
-		z64_DisplayTextbox(&z64_game, item_row->text_id, 0);
-
-		//Set up
-		pItem->timeToLive = 15; //unk_15A is a frame timer that is decremented each frame by the main actor code.
-		pItem->unk_154 = 35; //not quite sure but this is what the vanilla game does.
-		pItem->getItemId = 0;
-		z64_link.common.frozen = 10;					   //freeze link (like when picking up a skull)
-		pItem->actionFunc = Collectible_WaitForMessageBox; //Set up the EnItem00 action function to wait for the message box to close.
+		
 		return 1;
 	}
 	return 2; //

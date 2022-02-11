@@ -865,7 +865,7 @@ def get_pool_core(world):
             placed_items['Jabu Jabus Belly MQ Cow'] = 'Milk'
 
     if world.settings.shuffle_beans:
-        if world.distribution.get_starting_item('Magic Bean') < 10:
+        if not world.settings.plant_beans and world.distribution.get_starting_item('Magic Bean') < 10:
             pool.append('Magic Bean Pack')
             if world.settings.item_pool_value == 'plentiful':
                 pending_junk_pool.append('Magic Bean Pack')
@@ -907,7 +907,7 @@ def get_pool_core(world):
             location.disabled = DisableType.DISABLED
 
     #shuffle pots/crates
-    pot_locations = [location for location in world.get_locations() if(location.type == 'Collectable' and ('Pot' in location.filter_tags or 'Crate' in location.filter_tags))]
+    pot_locations = [location for location in world.get_locations() if(location.type == 'Collectable' and ('Pot' in location.filter_tags or 'Crate' in location.filter_tags or 'FlyingPot' in location.filter_tags or 'SmallCrate' in location.filter_tags))]
     if world.settings.shuffle_pots == 'all':        
         for location in pot_locations:
             pool.extend(get_junk_item())

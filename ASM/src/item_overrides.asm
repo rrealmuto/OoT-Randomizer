@@ -192,17 +192,22 @@ get_item_hook:
 
 ;Set actors dropFlag to indicate that it was dropped from something.
 item00_init_hook:
-    andi t8, v0, 0x4000
-    sra t8, t8, 14
-    sb t8, 0x116(a0)
-    andi T9, V0, 0x00FF
+    andi t8, v0, 0x4000   ;get the second highest bit (thats where we stored the flag) in drop_collectible_hook
+    sra t8, t8, 14        ;shift it over
+    andi t9, v0, 0x00C0   ;get the 2 highest bits in the lower byte (thats where were storing our extra flag info).
+    sra t9, t9, 5         ;shift it over
+    or  t8, t8, t9        ; or the two together
+    sb t8, 0x116(a0)      ;store it in drop_flag at offset 0x116
+    andi T9, V0, 0x003F   ;replaced code  but change it to only use 0x3F
     jr ra
-    sh  T9, 0x001c(S0)
+    sh  T9, 0x001c(S0)    ;replaced code
+
+
 
 get_override_drop_id_hook:
     addiu sp, sp, -0x10
     sw ra, 0x00(sp)
-    or a1, r0, t1 ;our collectible flag should be in t1 (<< 8)
+    or a1, r0, a2 ;pass params which should be in a2 right now.
     jal get_override_drop_id
     nop
     lw ra, 0x00(sp)
@@ -212,6 +217,9 @@ get_override_drop_id_hook:
 
 drop_collectible_hook:
     ori t4, t4, 0x4000
+    lw  t3, 0x60(sp)
+    andi t3, t3, 0x00C0
+    or t4, t4, t3
     jr ra
     sw t4, 0x0024(sp)
 
@@ -248,9 +256,8 @@ return_to_func:
 	j 0x80012E28 ; jump back where the OG function would have
 	addiu sp, sp, 0x80
 exit_func:
+    addiu v1, r0, 0x03
     lw	ra, 0x10(sp)
-	lw	v0, 0x14(sp)
-	lw	v1, 0x18(sp)
     lw	a0, 0x1C(sp)
 	lw	a1, 0x20(sp) 
 	lw	a2, 0x24(sp)
@@ -258,9 +265,18 @@ exit_func:
 	lw	s0, 0x2c(sp)
 	lw	s1, 0x30(sp)
 	lw	at, 0x34(sp)
+    beq v0, v1, return_to_func_near_end  ;check if our function returned 3. This means that it didnt play the fanfare. Jump back into function near the end so it sets up the proper animation
+    nop
+	lw	v0, 0x14(sp)
+	lw	v1, 0x18(sp)
     ;jr	ra
     j 0x80012FA4
     addiu	sp, sp, 0x80
+return_to_func_near_end:
+    lw	v0, 0x14(sp)
+	lw	v1, 0x18(sp)
+    j 0x80012F58
+    addiu   sp, sp, 0x80
 
 rupee_draw_hook:
 ;push things on the stack

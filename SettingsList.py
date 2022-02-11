@@ -2788,7 +2788,7 @@ setting_infos = [
     ),
     Combobox(
         name = 'shuffle_pots',
-        gui_text = 'Breakable Pot Shuffle',
+        gui_text = 'Pot & Crate Shuffle',
         default = 'off',
         choices = {
             'off': 'Off',
@@ -2797,12 +2797,14 @@ setting_infos = [
             'dungeons' : 'Dungeons Only'
         },
         gui_tooltip    = '''\
-            Shuffles breakable pots into the location pool.
+            Shuffles pots, flying pots, and large/small crates into the location pool.
 
-            Off: Pots are not shuffled.
-            All: All pots are shuffled.
-            Overworld Only: Only overworld pots are shuffled.
-            Dungeons Only: Only dungeon pots are shuffled.
+            Off: Not shuffled.
+            All: All pots/flying pots/crates are shuffled.
+            Overworld Only: Only overworld pots/flying pots/crates are shuffled.
+            Dungeons Only: Only dungeon pots/flying pots/crates are shuffled.
+
+            Note: Only pots/crates which normally drop an item are shuffled. Empty pots/crates are not included.
         ''',
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -2830,6 +2832,21 @@ setting_infos = [
             Enabling this adds a pack of 10 beans to the item pool
             and changes the Magic Bean Salesman to sell a random
             item once at the price of 60 Rupees.
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    ),
+    Checkbutton(
+        name           = 'plant_beans',
+        gui_text       = 'Plant Magic Beans',
+        gui_tooltip    = '''\
+            Enabling this plants all 10 magic beans in soft soil
+            causing the bean plants to be available as adult. You
+            will start with 0 magic beans in your inventory and
+            not be able to buy beans from the Magic Bean Salesman.
         ''',
         default        = False,
         shared         = True,
