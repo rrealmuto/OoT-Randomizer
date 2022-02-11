@@ -316,11 +316,12 @@ def get_hint_area(spot):
         else:
             parent_region = current_spot.parent_region
 
-        if parent_region.hint and (original_parent.name == 'Root' or parent_region.name != 'Root'):
-            return parent_region.hint, parent_region.font_color or 'White'
-
         if parent_region.dungeon:
+            if(parent_region.hint):
+                return parent_region.hint, parent_region.dungeon.font_color or 'White'
             return parent_region.dungeon.hint, parent_region.dungeon.font_color
+        elif parent_region.hint and (original_parent.name == 'Root' or parent_region.name != 'Root'):
+            return parent_region.hint, parent_region.font_color or 'White'
         
         spot_queue.extend(list(filter(lambda ent: ent not in already_checked, parent_region.entrances)))
 
