@@ -962,7 +962,7 @@ skip_GS_BGS_text:
 ; The original function is called in the new function before applying damage.
 ; Since the player actor always ends up in the same location in RAM, the jump
 ; address there is hardcoded.
-    jal     APPLY_BONK_DAMAGE
+    jal     BONK_LAST_FRAME
     lw      a1, 0x0054($sp)
 ; The branch address is shifted to an alternate location where lw $ra... is run.
 ; Required as la t8, APPLY_BONK_DAMAGE gets expanded to two commands.
