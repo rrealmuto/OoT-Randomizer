@@ -518,8 +518,8 @@ be4a14,c100e4a
 be4a40,c100e64
 be4a60,8100e7c
 be4a64,0
-be4ac8,c100b5a
-be4acc,0
+be4ac4,c100b5a
+be4ac8,0
 be55e4,0
 be5d8c,c100ea6
 be5d90,0

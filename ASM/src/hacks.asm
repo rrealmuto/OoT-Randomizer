@@ -994,7 +994,7 @@ skip_GS_BGS_text:
 ; Replaces:
 ;   lbu     v0, 0x0A63(s0)
 ;   or      a1, s0, $zero
-.orga 0xBE4AC8
+.orga 0xBE4AC4
     jal     CHECK_FOR_BONK_CANCEL
     nop
 
