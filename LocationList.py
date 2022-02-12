@@ -410,6 +410,10 @@ location_table = OrderedDict([
     ("GC Shop Item 6",                                               ("Shop",         0x2E,  0x35, (shop_address(8, 5), None),  'Buy Heart',                             ("Goron City", "Shops",))),
     ("GC Shop Item 7",                                               ("Shop",         0x2E,  0x36, (shop_address(8, 6), None),  'Buy Red Potion [40]',                   ("Goron City", "Shops",))),
     ("GC Shop Item 8",                                               ("Shop",         0x2E,  0x37, (shop_address(8, 7), None),  'Buy Heart',                             ("Goron City", "Shops",))),
+    ("GC Spinning Pot Bomb Drop 1", ("Collectable", 0x62, 0x41, ([0x22A82F4], None), 'Bombs (5)', ("Goron City", "RupeeTower"))),
+    ("GC Spinning Pot Bomb Drop 2", ("Collectable", 0x62, 0x42, None, 'Bombs (5)', ("Goron City", "RupeeTower"))),
+    ("GC Spinning Pot Bomb Drop 3", ("Collectable", 0x62, 0x43, None, 'Bombs (5)', ("Goron City", "RupeeTower"))),
+    
     # Goron City Pots. Reassign some flags because nintendo decided adult pots should share flags... 
     ("GC Darunia Pot 1",                                     ("Collectable",  0x62,  0x38, None,                    'Deku Stick (1)',                        ("Goron City", "Pot"))),
     ("GC Darunia Pot 2",                                     ("Collectable",  0x62,  0x39, None,                    'Rupee (1)',                             ("Goron City", "Pot"))),

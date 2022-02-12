@@ -103,6 +103,7 @@ RANDO_CONTEXT:
 .include "save.asm"
 .include "drop_overrides/obj_mure3.asm"
 .include "drop_overrides/bg_haka_tubo.asm"
+.include "drop_overrides/bg_spot18_basket.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"
