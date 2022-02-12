@@ -454,6 +454,27 @@ lwc1 f8, 0x002c(s2)
 jal bg_haka_tubo_hack
 or a0, s6, r0
 
+;Hack bg_spot18_basket (goron city spinning pot), bomb drops
+;the actor pointer starts in s0, gets deleted so s0 can be used for the loop variable need to move the branch point up to make a little room
+;replaces
+;mtc1 at, f20
+;or s0, r0, r0 ;outside the loop
+;or a0, s4, r0 ;outside the loop
+;or a1, s3, r0 ;inside the loop
+.orga 0xE47C08
+or s7, r0, r0 ;use s7 as our loop variable
+bg_spot18_basket_bombs_loopstart:
+jal bg_spot18_basket_bombs_hack
+or a0, s4, r0
+.skip 4
+ori a2, a2, 0x0004
+.skip 4
+sll t6, s7, 1
+.skip 16
+addiu s7, s7, 0x0001
+bnel s7, s1, bg_spot18_basket_bombs_loopstart ;move the branch point up a little bit
+
+
 ; Runs when storing an incoming item to the player instance
 ; Replaces:
 ;   sb      a2, 0x0424 (a3)

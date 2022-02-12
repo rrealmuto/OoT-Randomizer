@@ -144,6 +144,7 @@
     "AUDIO_THREAD_INFO_MEM_START": "03483240",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "AUDIO_THREAD_MEM_START": "03497F50",
 >>>>>>> a30f1183 (Add hack to shuffle all the rupees in rupee towers)
 =======
@@ -152,6 +153,9 @@
 =======
     "AUDIO_THREAD_MEM_START": "03497F90",
 >>>>>>> 027dc9d0 (Add shadow temple spinning pots)
+=======
+    "AUDIO_THREAD_MEM_START": "03497FC0",
+>>>>>>> 2df60f7a (Add spinning goron pot bomb drops. FML. still need to add green rupees)
     "AUTO_TRACKER_CONTEXT": "03480CD0",
     "AUTO_TRACKER_VERSION": "03480CD0",
     "BOMBCHUS_IN_LOGIC": "03480CAC",
@@ -361,6 +365,7 @@
     "CHAIN_HBA_REWARDS": "03483BB8",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "CHEST_SIZE_MATCH_CONTENTS": "0348C93C",
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348C940",
     "COMPLETE_MASK_QUEST": "0348C991",
@@ -375,6 +380,11 @@
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348C980",
     "COMPLETE_MASK_QUEST": "0348C9D1",
 >>>>>>> 027dc9d0 (Add shadow temple spinning pots)
+=======
+    "CHEST_SIZE_MATCH_CONTENTS": "0348C9AC",
+    "CHEST_TEXTURE_MATCH_CONTENTS": "0348C9B0",
+    "COMPLETE_MASK_QUEST": "0348CA01",
+>>>>>>> 2df60f7a (Add spinning goron pot bomb drops. FML. still need to add green rupees)
     "COOP_CONTEXT": "03480020",
     "COOP_VERSION": "03480020",
     "COSMETIC_CONTEXT": "03480834",
@@ -382,6 +392,7 @@
     "CURRENT_GROTTO_ID": "034830E6",
     "DEBUG_OFFSET": "03482B04",
     "DISABLE_TIMERS": "03480CCC",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -495,11 +506,15 @@
 =======
     "DPAD_TEXTURE": "03491F88",
 >>>>>>> 027dc9d0 (Add shadow temple spinning pots)
+=======
+    "DPAD_TEXTURE": "03491FB8",
+>>>>>>> 2df60f7a (Add spinning goron pot bomb drops. FML. still need to add green rupees)
     "DUNGEONS_SHUFFLED": "03480CCD",
     "EXTENDED_OBJECT_TABLE": "03480C8C",
     "EXTERN_DAMAGE_MULTIPLYER": "03482F15",
     "FAST_BUNNY_HOOD_ENABLED": "03480CCF",
     "FAST_CHESTS": "03480CC6",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -756,11 +771,15 @@
 =======
     "FONT_TEXTURE": "03490AC0",
 >>>>>>> 027dc9d0 (Add shadow temple spinning pots)
+=======
+    "FONT_TEXTURE": "03490AF0",
+>>>>>>> 2df60f7a (Add spinning goron pot bomb drops. FML. still need to add green rupees)
     "FREE_SCARECROW_ENABLED": "03480CBC",
-    "GANON_BOSS_KEY_CONDITION": "0348C990",
-    "GANON_BOSS_KEY_CONDITION_COUNT": "0348C98E",
+    "GANON_BOSS_KEY_CONDITION": "0348C9C0",
+    "GANON_BOSS_KEY_CONDITION_COUNT": "0348C9BE",
     "GET_CHEST_OVERRIDE_WRAPPER": "0348297C",
     "GET_ITEM_TRIGGERED": "03481698",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     "GILDED_CHEST_BASE_TEXTURE": "03494748",
@@ -774,6 +793,10 @@
     "GILDED_CHEST_BASE_TEXTURE": "03494788",
     "GILDED_CHEST_FRONT_TEXTURE": "03493788",
 >>>>>>> 027dc9d0 (Add shadow temple spinning pots)
+=======
+    "GILDED_CHEST_BASE_TEXTURE": "034947B8",
+    "GILDED_CHEST_FRONT_TEXTURE": "034937B8",
+>>>>>>> 2df60f7a (Add spinning goron pot bomb drops. FML. still need to add green rupees)
     "GOSSIP_HINT_CONDITION": "03480CB8",
     "GROTTO_EXIT_LIST": "034830A4",
     "GROTTO_LOAD_TABLE": "03483020",
@@ -781,6 +804,7 @@
     "INCOMING_PLAYER": "03480026",
     "INITIAL_SAVE_DATA": "0348088C",
     "JABU_ELEVATOR_ENABLE": "03480CC4",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -898,10 +922,14 @@
 =======
     "KAKARIKO_WEATHER_FORECAST": "0348C9F0",
 >>>>>>> 027dc9d0 (Add shadow temple spinning pots)
+=======
+    "KAKARIKO_WEATHER_FORECAST": "0348CA20",
+>>>>>>> 2df60f7a (Add spinning goron pot bomb drops. FML. still need to add green rupees)
     "LACS_CONDITION": "03480CB4",
     "LACS_CONDITION_COUNT": "03480CC2",
     "MALON_GAVE_ICETRAP": "034838F4",
     "MALON_TEXT_ID": "03480CCB",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1126,9 +1154,13 @@
 =======
     "MAX_RUPEES": "0348C9D3",
 >>>>>>> 027dc9d0 (Add shadow temple spinning pots)
+=======
+    "MAX_RUPEES": "0348CA03",
+>>>>>>> 2df60f7a (Add spinning goron pot bomb drops. FML. still need to add green rupees)
     "MOVED_ADULT_KING_ZORA": "03483264",
-    "NO_ESCAPE_SEQUENCE": "0348C98C",
+    "NO_ESCAPE_SEQUENCE": "0348C9BC",
     "OCARINAS_SHUFFLED": "03480CC5",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     "OPEN_KAKARIKO": "0348C992",
@@ -1139,10 +1171,14 @@
 =======
     "OPEN_KAKARIKO": "0348C9D2",
 >>>>>>> 027dc9d0 (Add shadow temple spinning pots)
+=======
+    "OPEN_KAKARIKO": "0348CA02",
+>>>>>>> 2df60f7a (Add spinning goron pot bomb drops. FML. still need to add green rupees)
     "OUTGOING_ITEM": "03480030",
     "OUTGOING_KEY": "0348002C",
     "OUTGOING_PLAYER": "03480032",
     "OVERWORLD_SHUFFLED": "03480CCE",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1256,6 +1292,9 @@
 =======
     "PAYLOAD_END": "03497F90",
 >>>>>>> 027dc9d0 (Add shadow temple spinning pots)
+=======
+    "PAYLOAD_END": "03497FC0",
+>>>>>>> 2df60f7a (Add spinning goron pot bomb drops. FML. still need to add green rupees)
     "PAYLOAD_START": "03480000",
     "PLAYED_WARP_SONG": "0348149C",
     "PLAYER_ID": "03480024",
@@ -1498,6 +1537,7 @@
     "SHUFFLE_MEDIGORON": "03483CCC",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "SILVER_CHEST_BASE_TEXTURE": "03495F48",
     "SILVER_CHEST_FRONT_TEXTURE": "03494F48",
     "SKULL_CHEST_BASE_TEXTURE": "03497748",
@@ -1515,15 +1555,22 @@
     "SKULL_CHEST_BASE_TEXTURE": "03497788",
     "SKULL_CHEST_FRONT_TEXTURE": "03496788",
 >>>>>>> 027dc9d0 (Add shadow temple spinning pots)
+=======
+    "SILVER_CHEST_BASE_TEXTURE": "03495FB8",
+    "SILVER_CHEST_FRONT_TEXTURE": "03494FB8",
+    "SKULL_CHEST_BASE_TEXTURE": "034977B8",
+    "SKULL_CHEST_FRONT_TEXTURE": "034967B8",
+>>>>>>> 2df60f7a (Add spinning goron pot bomb drops. FML. still need to add green rupees)
     "SONGS_AS_ITEMS": "03480CC8",
     "SOS_ITEM_GIVEN": "03481764",
     "SPEED_MULTIPLIER": "034829C4",
     "START_TWINROVA_FIGHT": "034832E4",
     "TIME_TRAVEL_SAVED_EQUIPS": "03481CF0",
-    "TRIFORCE_ICON_TEXTURE": "03492788",
+    "TRIFORCE_ICON_TEXTURE": "034927B8",
     "TWINROVA_ACTION_TIMER": "034832E8",
     "WINDMILL_SONG_ID": "03480CC9",
     "WINDMILL_TEXT_ID": "03480CCA",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -3756,4 +3803,84 @@
     "triforce_pieces_requied": "0348C97A",
     "triforce_sprite": "0348B548"
 >>>>>>> 027dc9d0 (Add shadow temple spinning pots)
+=======
+    "a_button": "0348C988",
+    "a_note_b": "0348C974",
+    "a_note_font_glow_base": "0348C95C",
+    "a_note_font_glow_max": "0348C958",
+    "a_note_g": "0348C978",
+    "a_note_glow_base": "0348C964",
+    "a_note_glow_max": "0348C960",
+    "a_note_r": "0348C97C",
+    "active_item_action_id": "0348C9E4",
+    "active_item_fast_chest": "0348C9D4",
+    "active_item_graphic_id": "0348C9D8",
+    "active_item_object_id": "0348C9DC",
+    "active_item_row": "0348C9E8",
+    "active_item_text_id": "0348C9E0",
+    "active_override": "0348C9F0",
+    "active_override_is_outgoing": "0348C9EC",
+    "b_button": "0348C984",
+    "beating_dd": "0348C990",
+    "beating_no_dd": "0348C998",
+    "c_button": "0348C980",
+    "c_note_b": "0348C968",
+    "c_note_font_glow_base": "0348C94C",
+    "c_note_font_glow_max": "0348C948",
+    "c_note_g": "0348C96C",
+    "c_note_glow_base": "0348C954",
+    "c_note_glow_max": "0348C950",
+    "c_note_r": "0348C970",
+    "cfg_file_select_hash": "0348C9B8",
+    "cfg_item_overrides": "0348DA30",
+    "collectible_mutex": "0348C9CC",
+    "collectible_override": "0348C9C4",
+    "collectible_override_flags": "0348D6F0",
+    "defaultDDHeart": "0348C99C",
+    "defaultHeart": "0348C9A4",
+    "dpad_sprite": "0348B588",
+    "dropped_collectible_override_flags": "0348CA50",
+    "dummy_actor": "0348C9F8",
+    "dungeon_count": "0348C918",
+    "dungeons": "0348B3E0",
+    "empty_dlist": "0348C930",
+    "extern_ctxt": "0348B47C",
+    "font_sprite": "0348B598",
+    "freecam_modes": "0348B14C",
+    "hash_sprites": "0348C924",
+    "hash_symbols": "0348B490",
+    "heap_next": "0348CA1C",
+    "heart_sprite": "0348B528",
+    "icon_sprites": "0348B310",
+    "item_digit_sprite": "0348B548",
+    "item_overrides_count": "0348C9FC",
+    "item_table": "0348B610",
+    "items": "0348B510",
+    "items_sprite": "0348B5B8",
+    "key_rupee_clock_sprite": "0348B558",
+    "last_fog_distance": "0348C91C",
+    "linkhead_skull_sprite": "0348B538",
+    "medal_colors": "0348B3CC",
+    "medals_sprite": "0348B5C8",
+    "normal_dd": "0348C98C",
+    "normal_no_dd": "0348C994",
+    "num_to_bits": "0348B4D0",
+    "object_slots": "03490A30",
+    "pending_freezes": "0348CA00",
+    "pending_item_queue": "0348DA18",
+    "quest_items_sprite": "0348B5A8",
+    "rupee_colors": "0348B31C",
+    "satisified_pending_frames": "0348C9D0",
+    "scene_fog_distance": "0348C920",
+    "setup_db": "0348B5E8",
+    "song_note_sprite": "0348B568",
+    "stones_sprite": "0348B5D8",
+    "text_cursor_border_base": "0348C93C",
+    "text_cursor_border_max": "0348C938",
+    "text_cursor_inner_base": "0348C944",
+    "text_cursor_inner_max": "0348C940",
+    "triforce_hunt_enabled": "0348CA10",
+    "triforce_pieces_requied": "0348C9AA",
+    "triforce_sprite": "0348B578"
+>>>>>>> 2df60f7a (Add spinning goron pot bomb drops. FML. still need to add green rupees)
 }
