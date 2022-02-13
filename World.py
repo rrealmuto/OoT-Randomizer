@@ -878,7 +878,7 @@ class World(object):
 
 
     def get_itempool_with_dungeon_items(self):
-        return self.get_restricted_dungeon_items() + self.get_unrestricted_dungeon_items() + self.itempool
+        return self.get_restricted_dungeon_items() + self.itempool
 
 
     # get a list of items that should stay in their proper dungeon
