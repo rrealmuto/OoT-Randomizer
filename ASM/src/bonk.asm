@@ -87,3 +87,22 @@ APPLY_BONK_DAMAGE:
 
 @@return_bonk:
     jr      ra
+
+KING_DODONGO_BONKS:
+    ; displaced code
+    lh      t2, 0x0032(s1)
+    mtc1    $zero, $f16
+
+    ; One Bonk KO setting enabled
+    lw      t0, CFG_DEADLY_BONKS
+    beqz    t0, @@return_bonk_kd
+    nop
+
+    ; Set King Dodongo health to zero
+    lh      t1, 0x0198(s0)          ; this->numWallCollisions
+    beqz    t1, @@return_bonk_kd
+    nop
+    sh      $zero, 0x0184(s0)       ; this->health
+
+@@return_bonk_kd:
+    jr      ra

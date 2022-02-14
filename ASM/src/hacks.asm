@@ -1000,6 +1000,20 @@ skip_GS_BGS_text:
 
 
 ;==================================================================================================
+; Roll Collision / Bonks Kills King Dodongo
+;==================================================================================================
+
+; King Dodongo tracks the number of wall hits when rolling in order to transition from
+; the rolling animation to walking. Add a hook to the actor update function to check
+; this variable and set actor health to zero if bonks are not zero.
+; Replaces:
+;   lh      t2, 0x0032(s1)
+;   mtc1    $zero, $f16
+.orga 0xC3DC04
+    jal     KING_DODONGO_BONKS
+    nop
+
+;==================================================================================================
 ; Skip Scarecrow Song
 ;==================================================================================================
 
