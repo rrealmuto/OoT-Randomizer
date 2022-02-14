@@ -146,6 +146,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "AUDIO_THREAD_MEM_START": "03497F50",
 >>>>>>> a30f1183 (Add hack to shuffle all the rupees in rupee towers)
 =======
@@ -160,6 +161,9 @@
 =======
     "AUDIO_THREAD_MEM_START": "03498000",
 >>>>>>> ac556e4d (Add goron city spinning pot green rupees)
+=======
+    "AUDIO_THREAD_MEM_START": "03498090",
+>>>>>>> 8abecce6 (Add goron spinning pot heartpiece rupees)
     "AUTO_TRACKER_CONTEXT": "03480CD0",
     "AUTO_TRACKER_VERSION": "03480CD0",
     "BOMBCHUS_IN_LOGIC": "03480CAC",
@@ -371,6 +375,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "CHEST_SIZE_MATCH_CONTENTS": "0348C93C",
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348C940",
     "COMPLETE_MASK_QUEST": "0348C991",
@@ -395,6 +400,11 @@
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348C9F0",
     "COMPLETE_MASK_QUEST": "0348CA41",
 >>>>>>> ac556e4d (Add goron city spinning pot green rupees)
+=======
+    "CHEST_SIZE_MATCH_CONTENTS": "0348CA7C",
+    "CHEST_TEXTURE_MATCH_CONTENTS": "0348CA80",
+    "COMPLETE_MASK_QUEST": "0348CAD1",
+>>>>>>> 8abecce6 (Add goron spinning pot heartpiece rupees)
     "COOP_CONTEXT": "03480020",
     "COOP_VERSION": "03480020",
     "COSMETIC_CONTEXT": "03480834",
@@ -402,6 +412,7 @@
     "CURRENT_GROTTO_ID": "034830E6",
     "DEBUG_OFFSET": "03482B04",
     "DISABLE_TIMERS": "03480CCC",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -523,11 +534,15 @@
 =======
     "DPAD_TEXTURE": "03491FF8",
 >>>>>>> ac556e4d (Add goron city spinning pot green rupees)
+=======
+    "DPAD_TEXTURE": "03492088",
+>>>>>>> 8abecce6 (Add goron spinning pot heartpiece rupees)
     "DUNGEONS_SHUFFLED": "03480CCD",
     "EXTENDED_OBJECT_TABLE": "03480C8C",
     "EXTERN_DAMAGE_MULTIPLYER": "03482F15",
     "FAST_BUNNY_HOOD_ENABLED": "03480CCF",
     "FAST_CHESTS": "03480CC6",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -792,11 +807,15 @@
 =======
     "FONT_TEXTURE": "03490B30",
 >>>>>>> ac556e4d (Add goron city spinning pot green rupees)
+=======
+    "FONT_TEXTURE": "03490BC0",
+>>>>>>> 8abecce6 (Add goron spinning pot heartpiece rupees)
     "FREE_SCARECROW_ENABLED": "03480CBC",
-    "GANON_BOSS_KEY_CONDITION": "0348CA00",
-    "GANON_BOSS_KEY_CONDITION_COUNT": "0348C9FE",
+    "GANON_BOSS_KEY_CONDITION": "0348CA90",
+    "GANON_BOSS_KEY_CONDITION_COUNT": "0348CA8E",
     "GET_CHEST_OVERRIDE_WRAPPER": "0348297C",
     "GET_ITEM_TRIGGERED": "03481698",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -820,6 +839,10 @@
     "GILDED_CHEST_BASE_TEXTURE": "034947F8",
     "GILDED_CHEST_FRONT_TEXTURE": "034937F8",
 >>>>>>> ac556e4d (Add goron city spinning pot green rupees)
+=======
+    "GILDED_CHEST_BASE_TEXTURE": "03494888",
+    "GILDED_CHEST_FRONT_TEXTURE": "03493888",
+>>>>>>> 8abecce6 (Add goron spinning pot heartpiece rupees)
     "GOSSIP_HINT_CONDITION": "03480CB8",
     "GROTTO_EXIT_LIST": "034830A4",
     "GROTTO_LOAD_TABLE": "03483020",
@@ -827,6 +850,7 @@
     "INCOMING_PLAYER": "03480026",
     "INITIAL_SAVE_DATA": "0348088C",
     "JABU_ELEVATOR_ENABLE": "03480CC4",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -952,10 +976,14 @@
 =======
     "KAKARIKO_WEATHER_FORECAST": "0348CA60",
 >>>>>>> ac556e4d (Add goron city spinning pot green rupees)
+=======
+    "KAKARIKO_WEATHER_FORECAST": "0348CAF0",
+>>>>>>> 8abecce6 (Add goron spinning pot heartpiece rupees)
     "LACS_CONDITION": "03480CB4",
     "LACS_CONDITION_COUNT": "03480CC2",
     "MALON_GAVE_ICETRAP": "034838F4",
     "MALON_TEXT_ID": "03480CCB",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1188,9 +1216,13 @@
 =======
     "MAX_RUPEES": "0348CA43",
 >>>>>>> ac556e4d (Add goron city spinning pot green rupees)
+=======
+    "MAX_RUPEES": "0348CAD3",
+>>>>>>> 8abecce6 (Add goron spinning pot heartpiece rupees)
     "MOVED_ADULT_KING_ZORA": "03483264",
-    "NO_ESCAPE_SEQUENCE": "0348C9FC",
+    "NO_ESCAPE_SEQUENCE": "0348CA8C",
     "OCARINAS_SHUFFLED": "03480CC5",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1209,10 +1241,14 @@
 =======
     "OPEN_KAKARIKO": "0348CA42",
 >>>>>>> ac556e4d (Add goron city spinning pot green rupees)
+=======
+    "OPEN_KAKARIKO": "0348CAD2",
+>>>>>>> 8abecce6 (Add goron spinning pot heartpiece rupees)
     "OUTGOING_ITEM": "03480030",
     "OUTGOING_KEY": "0348002C",
     "OUTGOING_PLAYER": "03480032",
     "OVERWORLD_SHUFFLED": "03480CCE",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1334,6 +1370,9 @@
 =======
     "PAYLOAD_END": "03498000",
 >>>>>>> ac556e4d (Add goron city spinning pot green rupees)
+=======
+    "PAYLOAD_END": "03498090",
+>>>>>>> 8abecce6 (Add goron spinning pot heartpiece rupees)
     "PAYLOAD_START": "03480000",
     "PLAYED_WARP_SONG": "0348149C",
     "PLAYER_ID": "03480024",
@@ -1578,6 +1617,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "SILVER_CHEST_BASE_TEXTURE": "03495F48",
     "SILVER_CHEST_FRONT_TEXTURE": "03494F48",
     "SKULL_CHEST_BASE_TEXTURE": "03497748",
@@ -1607,15 +1647,22 @@
     "SKULL_CHEST_BASE_TEXTURE": "034977F8",
     "SKULL_CHEST_FRONT_TEXTURE": "034967F8",
 >>>>>>> ac556e4d (Add goron city spinning pot green rupees)
+=======
+    "SILVER_CHEST_BASE_TEXTURE": "03496088",
+    "SILVER_CHEST_FRONT_TEXTURE": "03495088",
+    "SKULL_CHEST_BASE_TEXTURE": "03497888",
+    "SKULL_CHEST_FRONT_TEXTURE": "03496888",
+>>>>>>> 8abecce6 (Add goron spinning pot heartpiece rupees)
     "SONGS_AS_ITEMS": "03480CC8",
     "SOS_ITEM_GIVEN": "03481764",
     "SPEED_MULTIPLIER": "034829C4",
     "START_TWINROVA_FIGHT": "034832E4",
     "TIME_TRAVEL_SAVED_EQUIPS": "03481CF0",
-    "TRIFORCE_ICON_TEXTURE": "034927F8",
+    "TRIFORCE_ICON_TEXTURE": "03492888",
     "TWINROVA_ACTION_TIMER": "034832E8",
     "WINDMILL_SONG_ID": "03480CC9",
     "WINDMILL_TEXT_ID": "03480CCA",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -4010,4 +4057,84 @@
     "triforce_pieces_requied": "0348C9EA",
     "triforce_sprite": "0348B5B8"
 >>>>>>> ac556e4d (Add goron city spinning pot green rupees)
+=======
+    "a_button": "0348CA58",
+    "a_note_b": "0348CA44",
+    "a_note_font_glow_base": "0348CA2C",
+    "a_note_font_glow_max": "0348CA28",
+    "a_note_g": "0348CA48",
+    "a_note_glow_base": "0348CA34",
+    "a_note_glow_max": "0348CA30",
+    "a_note_r": "0348CA4C",
+    "active_item_action_id": "0348CAB4",
+    "active_item_fast_chest": "0348CAA4",
+    "active_item_graphic_id": "0348CAA8",
+    "active_item_object_id": "0348CAAC",
+    "active_item_row": "0348CAB8",
+    "active_item_text_id": "0348CAB0",
+    "active_override": "0348CAC0",
+    "active_override_is_outgoing": "0348CABC",
+    "b_button": "0348CA54",
+    "beating_dd": "0348CA60",
+    "beating_no_dd": "0348CA68",
+    "c_button": "0348CA50",
+    "c_note_b": "0348CA38",
+    "c_note_font_glow_base": "0348CA1C",
+    "c_note_font_glow_max": "0348CA18",
+    "c_note_g": "0348CA3C",
+    "c_note_glow_base": "0348CA24",
+    "c_note_glow_max": "0348CA20",
+    "c_note_r": "0348CA40",
+    "cfg_file_select_hash": "0348CA88",
+    "cfg_item_overrides": "0348DB00",
+    "collectible_mutex": "0348CA9C",
+    "collectible_override": "0348CA94",
+    "collectible_override_flags": "0348D7C0",
+    "defaultDDHeart": "0348CA6C",
+    "defaultHeart": "0348CA74",
+    "dpad_sprite": "0348B658",
+    "dropped_collectible_override_flags": "0348CB20",
+    "dummy_actor": "0348CAC8",
+    "dungeon_count": "0348C9E8",
+    "dungeons": "0348B4B0",
+    "empty_dlist": "0348CA00",
+    "extern_ctxt": "0348B54C",
+    "font_sprite": "0348B668",
+    "freecam_modes": "0348B21C",
+    "hash_sprites": "0348C9F4",
+    "hash_symbols": "0348B560",
+    "heap_next": "0348CAEC",
+    "heart_sprite": "0348B5F8",
+    "icon_sprites": "0348B3E0",
+    "item_digit_sprite": "0348B618",
+    "item_overrides_count": "0348CACC",
+    "item_table": "0348B6E0",
+    "items": "0348B5E0",
+    "items_sprite": "0348B688",
+    "key_rupee_clock_sprite": "0348B628",
+    "last_fog_distance": "0348C9EC",
+    "linkhead_skull_sprite": "0348B608",
+    "medal_colors": "0348B49C",
+    "medals_sprite": "0348B698",
+    "normal_dd": "0348CA5C",
+    "normal_no_dd": "0348CA64",
+    "num_to_bits": "0348B5A0",
+    "object_slots": "03490B00",
+    "pending_freezes": "0348CAD0",
+    "pending_item_queue": "0348DAE8",
+    "quest_items_sprite": "0348B678",
+    "rupee_colors": "0348B3EC",
+    "satisified_pending_frames": "0348CAA0",
+    "scene_fog_distance": "0348C9F0",
+    "setup_db": "0348B6B8",
+    "song_note_sprite": "0348B638",
+    "stones_sprite": "0348B6A8",
+    "text_cursor_border_base": "0348CA0C",
+    "text_cursor_border_max": "0348CA08",
+    "text_cursor_inner_base": "0348CA14",
+    "text_cursor_inner_max": "0348CA10",
+    "triforce_hunt_enabled": "0348CAE0",
+    "triforce_pieces_requied": "0348CA7A",
+    "triforce_sprite": "0348B648"
+>>>>>>> 8abecce6 (Add goron spinning pot heartpiece rupees)
 }

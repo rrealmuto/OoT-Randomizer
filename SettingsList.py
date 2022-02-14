@@ -2816,6 +2816,7 @@ setting_infos = [
         gui_params     = {
             'randomize_key': 'randomize_settings',
         },
+        shared         = True,
     ),
     Combobox(
         name = 'shuffle_pots',
@@ -2840,6 +2841,7 @@ setting_infos = [
         gui_params     = {
             'randomize_key': 'randomize_settings',
         },
+        shared         = True,
     ),
     
     Checkbutton(
