@@ -474,7 +474,7 @@ sll t6, s7, 1
 addiu s7, s7, 0x0001
 bnel s7, s1, bg_spot18_basket_bombs_loopstart ;move the branch point up a little bit
 
-;Hack bg_spot18_basket (Goron city spinning pot), rupee drops
+;Hack bg_spot18_basket (Goron city spinning pot), 3 green rupee drops
 ;the actor pointer starts in s0, gets deleted so s0 can be used for the loop variable.
 ;Need to use a different loop variable and need to move the branch point up to make a little room for the hack
 ;replaces
@@ -492,6 +492,30 @@ sll t9, s7, 1
 .skip 16
 addiu s7, s7, 0x0001
 bnel s7, s1, bg_spot18_basket_rupees_loopstart
+
+;Hack bg_spot18_basket (Goron city spinning pot), rupee drops with heart piece
+;Replaces 
+;or a0, s4, r0
+;or a1, s3, r0
+.orga 0xE47D6C
+jal bg_spot18_basket_drop_heartpiece_rupees
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+lw ra, 0x0034(sp)
+.skip 4
+nop
 
 ; Runs when storing an incoming item to the player instance
 ; Replaces:
