@@ -218,6 +218,206 @@ Gameplay_InitSkybox:
 .orga 0xE2F093 :: .byte 0x34 ; Market Bombchu Bowling Bomb Bag
 .orga 0xEC9CE7 :: .byte 0x7A ; Deku Theater Mask of Truth
 
+; en_item00_update() hacks - 0x80012938
+; Hack to keep collectibles alive if we are overriding them
+;.orga 0xA888BC; in Memory 0x8001295C
+;    jal Item00_KeepAlive
+;    nop
+;    nop
+;    LH V0, 0x014A (S0)
+
+; Runs when player collides w/ Collectible (inside en_item00_update()) start of switch case at 0x80012CA4
+
+; Override Item_Give(RUPEE_GREEN)
+; Replaces:
+;OR	A0, S1, R0
+;JAL	0x8006FDCC
+;addiu	a1, r0, 0x0084
+.orga 0xA88C0C ; In memory: 80012CAC
+	j item_give_hook
+	or A2, S0, R0
+
+; Override Item_Give(RUPEE_BLUE)
+; Replaces:
+;OR	A0, S1, R0
+;JAL	0x8006FDCC
+;addiu	a1, r0, 0x0084
+.orga 0xA88C20 ; In memory: 80012CC0)
+	j item_give_hook
+	or A2, S0, R0
+
+; Override Item_Give(RUPEE_RED)
+; Replaces:
+;OR	A0, S1, R0
+;JAL	0x8006FDCC
+;addiu	a1, r0, 0x0084
+.orga 0xA88C34 ; In memory: 80012CD4)
+	j item_give_hook
+	or A2, S0, R0
+
+; Override Item_Give(RUPEE_PURPLE)
+; Replaces:
+;OR	A0, S1, R0
+;JAL	0x8006FDCC
+;addiu	a1, r0, 0x0084
+.orga 0xA88C48 ; In memory: 80012CE8)
+	j item_give_hook
+	or A2, S0, R0
+
+; Override Stick Collectible
+.orga 0xA88C70 ; In memory: 0x80012D10
+    j   item_give_hook
+    or  A2, S0, R0
+    
+
+; Override Nut Collectible
+.orga 0xA88C7C ; In memory: 0x80012D1C
+    j   item_give_hook
+    or  A2, S0, R0
+    
+
+; Override Item_Give(ITEM_HEART)
+; Replaces:
+;or	A0, S1, R0
+;JAL	0x8006FDCC
+;ADDIU	A1, R0, 0x0083
+.orga 0xA88C88 ; In memory: 0x80012D28
+    j	item_give_hook
+    or	A2, S0, R0 ;pass actor pointer to function
+
+
+; Override Bombs Collectible
+.orga 0xA88CB0 ; In memory 0x80012D50
+    j	item_give_hook
+    or      A2, S0, R0
+
+; Override Arrows Single Collectible
+.orga 0xA88CC4 ; In memory 0x80012D64
+    j	item_give_hook
+    or      A2, S0, R0
+    
+
+
+; Override Arrows Small Collectible
+.orga 0xA88CD8 ; In memory 0x80012D78
+    j	item_give_hook
+    or      A2, S0, R0
+
+; Override Arrows Medium Collectible
+.orga 0xA88CEC ; In memory  0x80012D8C
+    j	item_give_hook
+    or      A2, S0, R0
+    
+
+
+; Override Arrows Large Collectible
+.orga 0xA88D00 ; In memory  0x80012DA0
+    j	item_give_hook
+    or      A2, S0, R0
+    
+
+; Override Seeds Collectible (as adult: 0x80012D78 and calls item_give, as child: 0x80012DB4 and uses getitemid)
+.orga 0xA88D14 ; In memory: 0x80012DB4
+    j		item_give_hook
+    or      A2, S0, R0
+
+; Override Magic Large Collectible
+.orga 0xA88D44 ; In memory: 0x80012DE4
+    j		item_give_hook
+    or      A2, S0, R0
+
+; Override Magic Small Collectible
+.orga 0xA88D50 ; In memory: 0x80012DF0
+    j		item_give_hook
+    or      A2, S0, R0
+
+; Hack save slot table offsets to only use 2 saves
+; save slot table is stored at B71E60 in ROM
+.orga 0xB71E60
+.halfword 0x0020 ; slot 1
+.halfword 0x1470 ; slot 2
+.halfword 0x0000 ;remove slot 3
+.halfword 0x28C0 ; slot 1 backup
+.halfword 0x3D10 ; slot 2 backup
+.halfword 0x0000 ; remove slot 3 backup
+
+; Hack Write_Save function to store additional collectible flags
+.orga 0xB065F4 ; In memory: 0x80090694
+    jal Save_Write_Hook
+.orga 0xB06668 ; In memory: 0x80090708
+    jal Save_Write_Hook
+
+; Hack Open_Save function to retrieve additional collectible flags
+; At the start of the Sram_OpenSave function, SramContext address is stored in A0 and also on the stack at 0x20(SP)
+; Overwrite the memcpy function at 0x800902E8
+; jal   0x80057030
+; addu  A1, T9, A3
+.orga 0xB06248 ;In memory: 0x800902E8
+jal open_save_hook
+nop
+
+; Hack Init_Save function to zero the additional collectible flags
+; Overwrite the SsSram_Read_Write call at 0x80090D84
+.orga 0xB06CE4 ; In Memory: 0x80090D84
+jal Save_Init_Write_Hook
+
+; Verify And Load all saves function to only check slots 1 and 2.
+; Overwrite the loop calculation at 0x80090974
+; slti at, s4, 0x0003
+.orga  0xB068D4 ; In memory: 0x80090974  
+slti at, s4, 0x0002
+
+;Hack to EnItem00_Init to store if it was dropped by a pot
+;replaces
+;ANDI t9, v0, 0x00FF
+;SH  T9, 0x001c(S0)
+.orga 0xA87AF0; In memory 0x80011B90
+jal  item00_init_hook
+nop
+
+;Hack EnItem00_Init when it checks the scene flags to prevent killing the actor if its being overridden.
+;replaces
+;jal 0x80020EB4
+;.orga 0x0A87B10; In Memory 0x80011BB0
+;jal Item00_KillActorIfFlagIsSet
+.headersize(0x80011B98 - 0xA87AF8)
+.orga 0xA87AF8; In Memory 0x80011B98
+jal Item00_KillActorIfFlagIsSet
+or a0, s0, r0
+bnez v0, 0x800121A4
+lw RA, 0x001c(sp)
+b 0x80011Bc0
+nop
+nop
+nop
+nop
+
+;Hack Item_DropCollectible to call custom function to determine what item should be dropped based on our override.
+;overriding call at 0x8001376C to function 0x80013530
+;replaces
+;jal 0x80013530
+;sh T1, 0x0046(sp)
+.orga 0xA896CC; in memory 0x8001376C
+jal get_override_drop_id_hook
+sh T1, 0x0046(sp)
+
+;Hack Item_DropCollectible to add a flag that this was a dropped collectible (vs spawned).
+;replaces or t4, t3, t1
+;sw t4, 0x0024(sp)
+.orga 0xA89708; in memory 0x800137A8
+jal drop_collectible_hook
+or t4, t3, t1
+
+;Hack ObjKibako2_SpawnCollectible (Large crates) to call our overridden spawn function
+;
+.orga 0xEC8264
+j ObjKibako2_SpawnCollectible_Hack
+nop
+
+;Hack ObjKibako2_Init (Large Crates) to not delete our extended flag
+.orga 0xEC832C
+or T8, T7, R0
+
 ; Runs when storing an incoming item to the player instance
 ; Replaces:
 ;   sb      a2, 0x0424 (a3)
@@ -351,6 +551,28 @@ Gameplay_InitSkybox:
 ; Freestanding models
 ;==================================================================================================
 
+
+;Replaces:
+;   who knows ; Draw Rupee Function
+.headersize(0x80013004 - 0xA88F64)
+.orga 0xA88F64 ; In memory: 0x80013004
+    jal     rupee_draw_hook
+.headersize(0)    
+
+;Replaces:
+;   	LH	V0, 0x014a(A2)
+;	ADDIU	AT, R0, 0xFFFF
+.headersize(0x8001303C - 0xA88F9C)
+.orga 0xA88F9C ; In memory: 0x8001303C
+;    or    A0, A2, R0
+     jal     recovery_heart_draw_hook
+     nop
+after_recovery_heart_hook:
+    .skip 0x6C
+end_of_recovery_draw:
+ .headersize(0)
+
+
 ; Replaces:
 ;   jal     0x80013498 ; Piece of Heart draw function
 .orga 0xA88F78 ; In memory: 0x80013018
@@ -359,7 +581,7 @@ Gameplay_InitSkybox:
 ; Replaces:
 ;   jal     0x80013498 ; Collectable draw function
 .orga 0xA89048 ; In memory: 0x800130E8
-    jal     small_key_draw
+    jal     collectible_draw_other
 
 ; Replaces:
 ;   addiu   sp, sp, -0x48

@@ -43,6 +43,7 @@
 # the floor map data is missing a vertex pointer that would point within kaleido_scope.
 # As such, if the file moves, the patch will break.
 
+import logging
 from Utils import data_path
 from Rom import Rom
 import json
@@ -377,12 +378,12 @@ class Room(object):
             self.file.relocate(rom)
 
         headcur = self.file.start
-
+        logger = logging.getLogger('')
         code = rom.read_byte(headcur)
         loop = 0x20
         while loop != 0 and code != 0x14: #terminator
             loop -= 1
-
+            logger.info(self.file.name)    
             if code == 0x01: # actors
                 offset = self.file.end - self.file.start
                 write_actor_data(rom, self.file.end, self.actors)
@@ -536,7 +537,9 @@ def update_scene_table(rom:Rom, sceneId, start, end):
 
 
 def write_actor_data(rom:Rom, cur, actors):
+    logger = logging.getLogger('')
     for actor in actors:
+        logger.info(str(hex(cur)) + ": " + str(list(map(hex,actor))))
         rom.write_int16s(cur, actor)
         cur += 0x10
 

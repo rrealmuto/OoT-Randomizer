@@ -38,7 +38,9 @@
             "Forest Trial Clear": "can_use(Light_Arrows) and (Fire_Arrows or Dins_Fire)"
         },
         "locations": {
-            "Ganons Castle Forest Trial Chest": "True"
+            "Ganons Castle Forest Trial Chest": "True",
+            "Ganons Castle Forest Trial Pot 1" : "can_use(Fire_Arrows) or can_use(Dins_Fire)",
+            "Ganons Castle Forest Trial Pot 2" : "can_use(Fire_Arrows) or can_use(Dins_Fire)"
         }
     },
     {
@@ -48,6 +50,11 @@
             "Fire Trial Clear": "
                 can_use(Goron_Tunic) and can_use(Golden_Gauntlets) and 
                 can_use(Light_Arrows) and can_use(Longshot)"
+        },
+        "locations": {
+            "Ganons Castle Fire Trial Recovery Heart": "True",
+            "Ganons Castle Fire Trial Pot 1": "can_use(Goron_Tunic) and can_use(Golden_Gauntlets) and can_use(Longshot)",
+            "Ganons Castle Fire Trial Pot 2": "can_use(Goron_Tunic) and can_use(Golden_Gauntlets) and can_use(Longshot)"
         }
     },
     {
@@ -59,6 +66,8 @@
         "locations": {
             "Ganons Castle Water Trial Left Chest": "True",
             "Ganons Castle Water Trial Right Chest": "True",
+            "Ganons Castle Water Trial Pot 1" : "Blue_Fire and Megaton_Hammer",
+            "Ganons Castle Water Trial Pot 2" : "Blue_Fire and Megaton_Hammer",
             "Fairy Pot": "Blue_Fire and has_bottle",
             "Blue Fire": "has_bottle"
         }
@@ -78,7 +87,27 @@
                 Hover_Boots or can_play(Song_of_Time)",
             "Ganons Castle Shadow Trial Golden Gauntlets Chest": "
                 can_use(Fire_Arrows) or 
-                (can_use(Longshot) and (Hover_Boots or can_use(Dins_Fire)))"
+                (can_use(Longshot) and (Hover_Boots or can_use(Dins_Fire)))",
+            "Ganons Castle Shadow Trial Recovery Heart 1": 
+                "can_use(Lens_of_Truth) and (
+                    can_use(Fire_Arrows) or 
+                    (can_use(Longshot) and (Hover_Boots or can_use(Dins_Fire))))",
+            "Ganons Castle Shadow Trial Recovery Heart 2": 
+                    "can_use(Lens_of_Truth) and (
+                    can_use(Fire_Arrows) or 
+                    (can_use(Longshot) and (Hover_Boots or can_use(Dins_Fire))))",
+            "Ganons Castle Shadow Trial Recovery Heart 3": 
+                    "can_use(Lens_of_Truth) and (
+                    can_use(Fire_Arrows) or 
+                    (can_use(Longshot) and (Hover_Boots or can_use(Dins_Fire))))",
+            "Ganons Castle Shadow Trial Like-Like Pot 1" : "can_use(Fire_Arrows) or can_use(Longshot)",
+            "Ganons Castle Shadow Trial Like-Like Pot 2" : "can_use(Fire_Arrows) or can_use(Longshot)",
+            "Ganons Castle Shadow Trial Pot 1" : "can_use(Megaton_Hammer) and 
+                ((Fire_Arrows and (logic_lens_castle or can_use(Lens_of_Truth))) or 
+                (can_use(Longshot) and (Hover_Boots or (Dins_Fire and (logic_lens_castle or can_use(Lens_of_Truth))))))",
+            "Ganons Castle Shadow Trial Pot 2" : "can_use(Megaton_Hammer) and 
+                ((Fire_Arrows and (logic_lens_castle or can_use(Lens_of_Truth))) or 
+                (can_use(Longshot) and (Hover_Boots or (Dins_Fire and (logic_lens_castle or can_use(Lens_of_Truth))))))"
         }
     },
     {
@@ -97,7 +126,12 @@
                 has_bombchus and (logic_lens_castle or can_use(Lens_of_Truth))",
             "Nut Pot": "
                 (logic_spirit_trial_hookshot or Progressive_Hookshot) and
-                has_bombchus and Bow and Mirror_Shield"
+                has_bombchus and Bow and Mirror_Shield",
+            "Ganons Castle Spirit Trial Recovery Heart": "True",
+            "Ganons Castle Spirit Trial Pot 1" : "can_use(Mirror_Shield) and has_bombchus and
+                (logic_spirit_trial_hookshot or Progressive_Hookshot)",
+            "Ganons Castle Spirit Trial Pot 2" : "can_use(Mirror_Shield) and has_bombchus and
+                (logic_spirit_trial_hookshot or Progressive_Hookshot)"
         }
     },
     {
@@ -117,7 +151,10 @@
             "Ganons Castle Light Trial Third Right Chest": "True",
             "Ganons Castle Light Trial Invisible Enemies Chest": "logic_lens_castle or can_use(Lens_of_Truth)",
             "Ganons Castle Light Trial Lullaby Chest": "
-                can_play(Zeldas_Lullaby) and (Small_Key_Ganons_Castle, 1)"
+                can_play(Zeldas_Lullaby) and (Small_Key_Ganons_Castle, 1)",
+            "Ganons Castle Light Trial Boulder Pot" : "(Small_Key_Ganons_Castle, 2)",
+            "Ganons Castle Light Trial Pot 1" : "(Small_Key_Ganons_Castle, 2) and Progressive_Hookshot and (logic_lens_castle or can_use(Lens_of_Truth))",
+            "Ganons Castle Light Trial Pot 2" : "(Small_Key_Ganons_Castle, 2) and Progressive_Hookshot and (logic_lens_castle or can_use(Lens_of_Truth))"
         }
     }
 ]
