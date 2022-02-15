@@ -1623,7 +1623,7 @@
             "GC Upper Staircase Pot 2": "True",
             "GC Upper Staircase Pot 3": "True",
             "GC Medigoron Pot": "can_blast_or_smash or Progressive_Strength_Upgrade",
-            "GC Boulder Maze Crate as Adult" : "is_adult and (can_blast_or_smash or can_use(Silver_Gauntlets))",
+            "GC Boulder Maze Crate" : "(can_blast_or_smash or can_use(Silver_Gauntlets))",
             "GC GS Boulder Maze": "is_child and has_explosives",
             "GC GS Center Platform": "is_adult",
             "GC Maze Gossip Stone": "
