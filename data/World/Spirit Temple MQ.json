@@ -68,10 +68,10 @@
                 (Small_Key_Spirit_Temple, 5) and can_play(Song_of_Time) and Mirror_Shield and (has_explosives or Nuts)",
             "Spirit Temple MQ GS Nine Thrones Room West": "(Small_Key_Spirit_Temple, 7)",
             "Spirit Temple MQ GS Nine Thrones Room North": "(Small_Key_Spirit_Temple, 7)",
-            "Spirit Temple MQ Shifting Wall Pot 1": "Small_Key_Spirit_Temple, 6",
-            "Spirit Temple MQ Shifting Wall Pot 2": "Small_Key_Spirit_Temple, 6",
-            "Spirit Temple MQ After Shifting Wall Room Pot 1": "Small_Key_Spirit_Temple, 6",
-            "Spirit Temple MQ After Shifting Wall Room Pot 2": "Small_Key_Spirit_Temple, 6",
+            "Spirit Temple MQ Shifting Wall Pot 1": "(Small_Key_Spirit_Temple, 6)",
+            "Spirit Temple MQ Shifting Wall Pot 2": "(Small_Key_Spirit_Temple, 6)",
+            "Spirit Temple MQ After Shifting Wall Room Pot 1": "(Small_Key_Spirit_Temple, 6)",
+            "Spirit Temple MQ After Shifting Wall Room Pot 2": "(Small_Key_Spirit_Temple, 6)",
             "Spirit Temple MQ Lower Boss Platform Pot 1": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
             "Spirit Temple MQ Lower Boss Platform Pot 2": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
             "Spirit Temple MQ Lower Boss Platform Pot 3": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
@@ -115,7 +115,7 @@
                 (logic_spirit_mq_sun_block_gs and Boomerang and
                     (can_play(Song_of_Time) or logic_spirit_mq_sun_block_sot)) or
                 is_adult",
-            "Spirit Temple MQ Child Climb Pot": "Small_Key_Spirit_Temple, 6",
+            "Spirit Temple MQ Child Climb Pot": "(Small_Key_Spirit_Temple, 6)",
             "Spirit Temple MQ Central Chamber Floor Pot 1": "True",
             "Spirit Temple MQ Central Chamber Floor Pot 2": "True",
             "Spirit Temple MQ Central Chamber Floor Pot 3": "True",
