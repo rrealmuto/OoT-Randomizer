@@ -90,6 +90,7 @@ class Location(object):
     # Can the player see what's placed at this location without collecting it?
     # Used to reduce JSON spoiler noise
     def has_preview(self):
+        # TODO: PTMC
         return location_is_viewable(self.name, self.world.settings.correct_chest_appearances)
 
 

@@ -333,6 +333,7 @@
           "settings": [
             "ocarina_songs",
             "correct_chest_appearances",
+            "correct_pot_appearances",
             "clearer_hints",
             "hints",
             "hint_dist",
