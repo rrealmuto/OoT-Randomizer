@@ -2611,6 +2611,21 @@ setting_infos = [
         shared         = True,
     ),
     Checkbutton(
+        name           = 'plant_beans',
+        gui_text       = 'Plant Magic Beans',
+        gui_tooltip    = '''\
+            Enabling this plants all 10 magic beans in soft soil
+            causing the bean plants to be available as adult. You
+            will start with 0 magic beans in your inventory and
+            not be able to buy beans from the Magic Bean Salesman.
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    ),
+    Checkbutton(
         name           = 'chicken_count_random',
         gui_text       = 'Random Cucco Count',
         gui_tooltip    = '''\
@@ -2832,21 +2847,6 @@ setting_infos = [
             Enabling this adds a pack of 10 beans to the item pool
             and changes the Magic Bean Salesman to sell a random
             item once at the price of 60 Rupees.
-        ''',
-        default        = False,
-        shared         = True,
-        gui_params     = {
-            'randomize_key': 'randomize_settings',
-        },
-    ),
-    Checkbutton(
-        name           = 'plant_beans',
-        gui_text       = 'Plant Magic Beans',
-        gui_tooltip    = '''\
-            Enabling this plants all 10 magic beans in soft soil
-            causing the bean plants to be available as adult. You
-            will start with 0 magic beans in your inventory and
-            not be able to buy beans from the Magic Bean Salesman.
         ''',
         default        = False,
         shared         = True,
