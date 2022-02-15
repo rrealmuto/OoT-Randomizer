@@ -1155,7 +1155,9 @@ class Distribution(object):
 
         if not output_spoiler:
             return
+
         spoiler.parse_data()
+
         for world in spoiler.worlds:
             world_dist = self.world_dists[world.id]
             world_dist.randomized_settings = {randomized_item: getattr(world.settings, randomized_item) for randomized_item in world.randomized_list}

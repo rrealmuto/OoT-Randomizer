@@ -2764,53 +2764,6 @@ setting_infos = [
         },
         shared         = True,
     ),
-    Combobox(
-        name = 'shuffle_freestanding_items',
-        gui_text = 'Rupee & Heart Shuffle',
-        default = 'off',
-        choices = {
-            'off': 'Off',
-            'all': 'All',
-            'overworld' : 'Overworld Only',
-            'dungeons' : 'Dungeons Only'
-        },
-        gui_tooltip    = '''\
-            Shuffles freestanding rupees and recovery hearts.
-
-            Off: No freestanding rupees/recovery hearts are shuffled.
-            All: All Visible freestanding rupees/recovery hearts are shuffled.
-            Overworld Only: Freestanding rupees/recovery hearts in the overworld are shuffled.
-            Dungeons Only: Freestanding rupees/recovery hearts in dungeons are shuffled.
-        ''',
-        gui_params     = {
-            'randomize_key': 'randomize_settings',
-        },
-    ),
-    Combobox(
-        name = 'shuffle_pots',
-        gui_text = 'Pot & Crate Shuffle',
-        default = 'off',
-        choices = {
-            'off': 'Off',
-            'all': 'All',
-            'overworld' : 'Overworld Only',
-            'dungeons' : 'Dungeons Only'
-        },
-        gui_tooltip    = '''\
-            Shuffles pots, flying pots, and large/small crates into the location pool.
-
-            Off: Not shuffled.
-            All: All pots/flying pots/crates are shuffled.
-            Overworld Only: Only overworld pots/flying pots/crates are shuffled.
-            Dungeons Only: Only dungeon pots/flying pots/crates are shuffled.
-
-            Note: Only pots/crates which normally drop an item are shuffled. Empty pots/crates are not included.
-        ''',
-        gui_params     = {
-            'randomize_key': 'randomize_settings',
-        },
-    ),
-    
     Checkbutton(
         name           = 'shuffle_cows',
         gui_text       = 'Shuffle Cows',
@@ -2912,8 +2865,6 @@ setting_infos = [
             'randomize_key': 'randomize_settings',
         },
     ),
-    
-
     Checkbutton(
         name           = 'shuffle_dungeon_entrances',
         gui_text       = 'Shuffle Dungeon Entrances',

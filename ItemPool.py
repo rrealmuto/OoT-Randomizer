@@ -2,7 +2,6 @@ from collections import namedtuple
 import logging
 import random
 from itertools import chain
-from Location import DisableType
 from Utils import random_choices
 from Item import ItemFactory
 from ItemList import item_table
@@ -50,7 +49,6 @@ alwaysitems = ([
     + ['Deku Stick Capacity'] * 2
     + ['Deku Nut Capacity'] * 2
     + ['Piece of Heart (Treasure Chest Game)'])
-
 
 
 easy_items = ([
@@ -766,16 +764,13 @@ def generate_itempool(world):
         world.push_item(drop_location, ItemFactory(item, world))
         drop_location.locked = True
 
-    logger = logging.getLogger('')
     # set up item pool
     (pool, placed_items) = get_pool_core(world)
-    for item in placed_items:
-        logger.info(str(item) + ": " + placed_items[item])
     world.itempool = ItemFactory(pool, world)
     for (location, item) in placed_items.items():
         world.push_item(location, ItemFactory(item, world))
         world.get_location(location).locked = True
-    
+
     world.initialize_items()
     world.distribution.set_complete_itempool(world.itempool)
 
@@ -817,7 +812,6 @@ def collect_heart_container(world, pool):
 
 
 def get_pool_core(world):
-    logger = logging.getLogger('')
     pool = []
     placed_items = {
         'HC Zeldas Letter': 'Zeldas Letter',
@@ -865,7 +859,7 @@ def get_pool_core(world):
             placed_items['Jabu Jabus Belly MQ Cow'] = 'Milk'
 
     if world.settings.shuffle_beans:
-        if not world.settings.plant_beans and world.distribution.get_starting_item('Magic Bean') < 10:
+        if world.distribution.get_starting_item('Magic Bean') < 10:
             pool.append('Magic Bean Pack')
             if world.settings.item_pool_value == 'plentiful':
                 pending_junk_pool.append('Magic Bean Pack')
@@ -878,57 +872,6 @@ def get_pool_core(world):
         pool.append('Giants Knife')
     else:
         placed_items['GC Medigoron'] = 'Giants Knife'
-
-    actor_override_locations = [location for location in world.get_locations() if location.type == 'ActorOverride']
-    freestanding_locations = [location for location in world.get_locations() if (location.type == 'Collectable' and 'Freestanding' in location.filter_tags) ]
-    
-
-    #shuffle freestanding
-    if world.settings.shuffle_freestanding_items == 'all':        
-        for location in actor_override_locations + freestanding_locations:
-            pool.extend(get_junk_item())
-    elif world.settings.shuffle_freestanding_items == 'dungeons':
-        for location in actor_override_locations + freestanding_locations:
-            if location.scene <= 0x0B:
-                pool.extend(get_junk_item())
-            else:
-                placed_items[location.name] = location.vanilla_item
-                location.disabled = DisableType.DISABLED
-    elif world.settings.shuffle_freestanding_items == 'overworld':
-         for location in actor_override_locations + freestanding_locations:
-            if location.scene <= 0x0B:
-                placed_items[location.name] = location.vanilla_item
-                location.disabled = DisableType.DISABLED
-            else:
-                pool.extend(get_junk_item())
-    else:
-        for location in actor_override_locations + freestanding_locations:
-            placed_items[location.name] = location.vanilla_item
-            location.disabled = DisableType.DISABLED
-
-    #shuffle pots/crates
-    pot_locations = [location for location in world.get_locations() if(location.type == 'Collectable' and ('Pot' in location.filter_tags or 'Crate' in location.filter_tags or 'FlyingPot' in location.filter_tags or 'SmallCrate' in location.filter_tags))]
-    if world.settings.shuffle_pots == 'all':        
-        for location in pot_locations:
-            pool.extend(get_junk_item())
-    elif world.settings.shuffle_pots == 'dungeons':
-        for location in pot_locations:
-            if location.scene <= 0x0B:
-                pool.extend(get_junk_item())
-            else:
-                placed_items[location.name] = location.vanilla_item
-                location.disabled = DisableType.DISABLED
-    elif world.settings.shuffle_pots == 'overworld':
-         for location in pot_locations:
-            if location.scene <= 0x0B:
-                placed_items[location.name] = location.vanilla_item
-                location.disabled = DisableType.DISABLED
-            else:
-                pool.extend(get_junk_item())
-    else:
-        for location in pot_locations:
-            placed_items[location.name] = location.vanilla_item
-            location.disabled = DisableType.DISABLED
 
     if world.dungeon_mq['Deku Tree']:
         skulltula_locations_final = skulltula_locations + [
@@ -1320,7 +1263,7 @@ def get_pool_core(world):
         for item in [item for dungeon in world.dungeons if dungeon.name != 'Ganons Castle' for item in dungeon.boss_key]:
             world.state.collect(item)
             pool.extend(get_junk_item())
-    if world.settings.shuffle_ganon_bosskey in ['remove']:
+    if world.settings.shuffle_ganon_bosskey in ['remove', 'triforce']:
         for item in [item for dungeon in world.dungeons if dungeon.name == 'Ganons Castle' for item in dungeon.boss_key]:
             world.state.collect(item)
             pool.extend(get_junk_item())
@@ -1375,7 +1318,7 @@ def get_pool_core(world):
     elif world.settings.shuffle_ganon_bosskey == 'vanilla':
         placed_items['Ganons Tower Boss Key Chest'] = 'Boss Key (Ganons Castle)'
 
-    if world.settings.shuffle_ganon_bosskey in ['stones', 'medallions', 'dungeons', 'tokens', 'triforce']:
+    if world.settings.shuffle_ganon_bosskey in ['stones', 'medallions', 'dungeons', 'tokens']:
         placed_items['Gift from Sages'] = 'Boss Key (Ganons Castle)'
         pool.extend(get_junk_item())
     else:
@@ -1397,6 +1340,7 @@ def get_pool_core(world):
 
     for item,max in item_difficulty_max[world.settings.item_pool_value].items():
         replace_max_item(pool, item, max)
+
     world.distribution.alter_pool(world, pool)
 
     # Make sure our pending_junk_pool is empty. If not, remove some random junk here.

@@ -51,5 +51,4 @@ void after_scene_init() {
     clear_twinrova_vars();
     models_reset();
     extern_scene_init();
-    reset_collectible_mutex();
 }

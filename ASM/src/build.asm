@@ -100,7 +100,6 @@ RANDO_CONTEXT:
 .include "medigoron.asm"
 .include "misc_colors.asm"
 .include "door_of_time_col_fix.asm"
-.include "save.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"
