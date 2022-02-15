@@ -1,6 +1,6 @@
 {
     "entrances": {
-        
+        "Child Spawn -> KF Links House" : {"region": "Goron City", "from":"Death Mountain"}
     },
     "locations": {
         "Ganons Tower Pot 1" : "Light Arrows"

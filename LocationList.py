@@ -420,7 +420,7 @@ location_table = OrderedDict([
     ("GC Upper Staircase Pot 1",                             ("Collectable",  0x62,  0x35, ([0x22A84E8], None),  'Rupees (5)',                            ("Goron City", "Pot"))),
     ("GC Upper Staircase Pot 2",                             ("Collectable",  0x62,  0x36, ([0x22A84F8], None),  'Rupee (1)',                             ("Goron City", "Pot"))),
     ("GC Upper Staircase Pot 3",                             ("Collectable",  0x62,  0x3B, ([0x22A8508], None),  'Rupees (5)',                            ("Goron City", "Pot"))),
-    ("GC Boulder Maze Crate as Adult", ("Collectable", 0x62, 0x40, ([0x227c6ec],None), 'Rupee (1)', ("Goron City", "Crate"))),
+    ("GC Boulder Maze Crate", ("Collectable", 0x62, 0x40, ([0x227c6ec, 0x227C37C],None), 'Rupee (1)', ("Goron City", "Crate"))),
 
     # Death Mountain Crater
     ("DMC Volcano Freestanding PoH",                                 ("Collectable",  0x61,  0x08, None,                        'Piece of Heart',                        ("Death Mountain Crater", "Death Mountain",))),
