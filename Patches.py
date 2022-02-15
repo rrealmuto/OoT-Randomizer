@@ -1854,6 +1854,11 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
                 rom.write_int16(chest_address_0 + 6, 0x0172)  # Z pos
                 rom.write_int16(chest_address_2 + 6, 0x0172)  # Z pos
 
+    # Update pot type appearance
+    if world.settings.correct_pot_appearances == 'textures':
+        symbol = rom.sym('POT_TEXTURE_MATCH_CONTENTS')
+        rom.write_int32(symbol, 0x00000001)
+
     # give dungeon items the correct messages
     add_item_messages(messages, shop_items, world)
     if world.settings.enhance_map_compass:

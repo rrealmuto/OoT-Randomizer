@@ -3903,6 +3903,19 @@ setting_infos = [
         ''',
         shared         = True,
     ),
+    Combobox(
+        name           = 'correct_pot_appearances',
+        gui_text       = 'Pot Appearance Matches Contents',
+        default        = 'off',
+        choices        = {
+            'off': 'Off',
+            'textures': 'Texture',
+        },
+        gui_tooltip    = '''\
+            If enabled, pot texture will reflect its contents.
+        ''',
+        shared         = True,
+    ),
     Checkbutton(
         name           = 'clearer_hints',
         gui_text       = 'Clearer Hints',
