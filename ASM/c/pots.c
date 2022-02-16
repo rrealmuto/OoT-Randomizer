@@ -38,11 +38,12 @@ void get_pot_override(z64_actor_t *actor) {
 
 void draw_pot(z64_actor_t *actor, z64_game_t* game) {
     z64_gfx_t *gfx = game->common.gfx;
+    Gfx *opa_ptr = gfx->poly_opa.p;
     int chest_type = ((uint8_t*)actor)[0x01ED];
 
     //write matrix
     Mtx_t *mtx = write_matrix_stack_top(gfx);
-    gSPMatrix((*opa_ptr)++, mtx, G_MTX_MODELVIEW | G_MTX_LOAD);
+    gSPMatrix(opa_ptr++, mtx, G_MTX_MODELVIEW | G_MTX_LOAD);
 
     if (chest_type != GOLD_CHEST) {
         //set texture type
@@ -66,7 +67,7 @@ void draw_pot(z64_actor_t *actor, z64_game_t* game) {
         gDPSetTextureImage(gfx->poly_opa.d, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, frontTexture);
         gSPEndDisplayList(gfx->poly_opa.d + 1);
 
-        gMoveWd((*opa_ptr)++, G_MW_SEGMENT, 9 * sizeof(int), gfx->poly_opa.d);
+        gMoveWd(opa_ptr++, G_MW_SEGMENT, 9 * sizeof(int), gfx->poly_opa.d);
     }
-    gSPDisplayList((*opa_ptr)++, 0x060017C0); //object_tsubo_DL_0017C0
+    gSPDisplayList(opa_ptr++, 0x060017C0); //object_tsubo_DL_0017C0
 }
