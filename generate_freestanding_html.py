@@ -8,7 +8,7 @@ mq_files = ['Deku Tree MQ.json', 'Dodongos Cavern MQ.json', 'Jabu Jabus Belly MQ
 i = 0
 
 
-new_check_file = open('newchecks.txt', 'w')
+new_check_file = open('freestanding_html', 'w')
 
 locations = []
 count = 0
@@ -24,15 +24,18 @@ for file in files:
                 locations.append(location)
                 if location_table.get(location):
                     if location_table.get(location)[5]:
-                        if 'ActorOverride' in location_table.get(location)[0] or 'Freestanding' in location_table.get(location)[5] or 'ActorOverride' in location_table.get(location)[5] or 'RupeeTower' in location_table.get(location)[5]:
+                        if 'ActorOverride' in location_table.get(location)[0] or 'Freestanding' in location_table.get(location)[5] or 'RupeeTower' in location_table.get(location)[5]:
                             if not printed_region_name:
                                 print(region.get("region_name"))
-                                new_check_file.write(region.get("region_name") + "\n")
+                                new_check_file.write("== " + region.get("region_name") + " ==\n")
+                                new_check_file.write('{| border="0" cellpadding="1" cellspacing="1" width=100%\n !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes\n|-\n')
                                 printed_region_name = True
                             print(str(i) + ": " + location + ": " + region["locations"].get(location))
-                            new_check_file.write(str(i) + ": " + location + ": " + region["locations"].get(location) + "\n")
+                            new_check_file.write("|| " + location + " || IMAGE_URL_HERE ||style=\"text-align:center\"|" + region["locations"].get(location) + "\n|-\n")
                             i = i + 1
                             count += 1
+            if printed_region_name:
+                new_check_file.write("|}\n")
 new_check_file.write("Total Count: " + str(count)+ "\n")
 
 count = 0
@@ -52,13 +55,16 @@ for file in files:
                         if 'Pot' in location_table.get(location)[5] or 'Crate' in location_table.get(location)[5] or 'FlyingPot' in location_table.get(location)[5] or 'SmallCrate' in location_table.get(location)[5]:
                             if not printed_region_name:
                                 print(region.get("region_name"))
-                                new_check_file.write(region.get("region_name") + "\n")
+                                new_check_file.write("== " + region.get("region_name") + " ==\n")
+                                new_check_file.write('{| border="0" cellpadding="1" cellspacing="1" width=100%\n !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes\n|-\n')
                                 printed_region_name = True
                             print(str(i) + ": " + location + ": " + region["locations"].get(location))
-                            new_check_file.write(str(i) + ": " + location + ": " + region["locations"].get(location) + "\n")
+                            new_check_file.write("|| " + location + " || IMAGE_URL_HERE ||style=\"text-align:center\"|" + region["locations"].get(location) + "\n|-\n")
                             i = i + 1
                             count += 1
-new_check_file.write("Total Count: " + str(count) + "\n")
+            if printed_region_name:
+                new_check_file.write("|}\n")
+new_check_file.write("Total Count: " + str(count)+ "\n")
 
 count = 0
 print ("*** MQ ***")
@@ -77,10 +83,13 @@ for file in mq_files:
                         if 'Freestanding' in location_table.get(location)[5] or 'Pot' in location_table.get(location)[5] or 'Crate' in location_table.get(location)[5] or 'FlyingPot' in location_table.get(location)[5] or 'SmallCrate' in location_table.get(location)[5]:
                             if not printed_region_name:
                                 print(region.get("region_name"))
-                                new_check_file.write(region.get("region_name") + "\n")
+                                new_check_file.write("== " + region.get("region_name") + " ==\n")
+                                new_check_file.write('{| border="0" cellpadding="1" cellspacing="1" width=100%\n !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes\n|-\n')
                                 printed_region_name = True
                             print(str(i) + ": " + location + ": " + region["locations"].get(location))
-                            new_check_file.write(str(i) + ": " + location + ": " + region["locations"].get(location) + "\n")
+                            new_check_file.write("|| " + location + " || IMAGE_URL_HERE ||style=\"text-align:center\"|" + region["locations"].get(location) + "\n|-\n")
                             i = i + 1
                             count += 1
-new_check_file.write("Total Count: " + str(count))
+            if printed_region_name:
+                new_check_file.write("|}\n")
+new_check_file.write("Total Count: " + str(count)+ "\n")
