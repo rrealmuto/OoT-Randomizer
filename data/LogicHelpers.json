@@ -49,7 +49,7 @@
     "can_summon_gossip_fairy": "Ocarina and (Zeldas_Lullaby or Eponas_Song or Song_of_Time or Suns_Song)",
     "can_summon_gossip_fairy_without_suns": "Ocarina and (Zeldas_Lullaby or Eponas_Song or Song_of_Time)",
     "can_take_damage": "damage_multiplier != 'ohko' or Fairy or can_use(Nayrus_Love)",
-    "can_plant_bean": "is_child and (Magic_Bean or Magic_Bean_Pack)",
+    "can_plant_bean": "plant_beans or (is_child and (Magic_Bean or Magic_Bean_Pack))",
     "can_play(song)": "Ocarina and song",
     "can_open_bomb_grotto": "can_blast_or_smash and (Stone_of_Agony or logic_grottos_without_agony)",
     "can_open_storm_grotto": "can_play(Song_of_Storms) and (Stone_of_Agony or logic_grottos_without_agony)",
@@ -117,5 +117,14 @@
         (shuffle_ganon_bosskey == 'dungeons' and has_dungeon_rewards(ganon_bosskey_rewards)) or
         (shuffle_ganon_bosskey == 'tokens' and (Gold_Skulltula_Token, ganon_bosskey_tokens))) or
         (shuffle_ganon_bosskey != 'stones' and shuffle_ganon_bosskey != 'medallions' and
-         shuffle_ganon_bosskey != 'dungeons' and shuffle_ganon_bosskey != 'tokens')"
+         shuffle_ganon_bosskey != 'dungeons' and shuffle_ganon_bosskey != 'tokens')",
+
+    # Dungeon Shortcuts
+    "deku_tree_shortcuts": "'deku_tree' in dungeon_shortcuts",
+    "dodongos_cavern_shortcuts": "'dodongos_cavern' in dungeon_shortcuts",
+    "jabu_shortcuts": "'jabu_jabus_belly' in dungeon_shortcuts",
+    "forest_temple_shortcuts": "'forest_temple' in dungeon_shortcuts",
+    "fire_temple_shortcuts": "'fire_temple' in dungeon_shortcuts",
+    "shadow_temple_shortcuts": "'shadow_temple' in dungeon_shortcuts",
+    "spirit_temple_shortcuts": "'spirit_temple' in dungeon_shortcuts"
 }

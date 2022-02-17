@@ -844,7 +844,7 @@ def get_pool_core(world):
     if world.settings.zora_fountain == 'open':
         ruto_bottles = 0
     elif world.settings.item_pool_value == 'plentiful':
-        ruto_bottles += 1
+        pending_junk_pool.append('Rutos Letter')
 
     if world.settings.skip_child_zelda:
         placed_items['HC Malon Egg'] = 'Recovery Heart'
@@ -1089,9 +1089,16 @@ def get_pool_core(world):
             placed_items['Hideout Jail Guard (3 Torches)'] = 'Recovery Heart'
             placed_items['Hideout Jail Guard (4 Torches)'] = 'Recovery Heart'
         else:
-            pool.extend(['Small Key (Thieves Hideout)'] * 4)
+            if 'Thieves Hideout' in world.settings.key_rings:
+                pool.extend(['Small Key Ring (Thieves Hideout)'])
+                pool.extend(get_junk_item(3))
+            else:
+                pool.extend(['Small Key (Thieves Hideout)'] * 4)
         if world.settings.item_pool_value == 'plentiful':
-            pending_junk_pool.append('Small Key (Thieves Hideout)')
+            if 'Thieves Hideout' in world.settings.key_rings and world.settings.gerudo_fortress != "fast":
+                pending_junk_pool.extend(['Small Key Ring (Thieves Hideout)'])
+            else:
+                pending_junk_pool.append('Small Key (Thieves Hideout)')
     else:
         if world.settings.gerudo_fortress == 'fast':
             placed_items['Hideout Jail Guard (1 Torch)'] = 'Small Key (Thieves Hideout)'
@@ -1114,15 +1121,57 @@ def get_pool_core(world):
     if world.settings.shuffle_gerudo_card and world.settings.item_pool_value == 'plentiful':
         pending_junk_pool.append('Gerudo Membership Card')
 
+    if world.settings.shuffle_smallkeys != "vanilla":
+        if 'Bottom of the Well' in world.settings.key_rings:
+            pool.extend(get_junk_item(1 if world.dungeon_mq['Bottom of the Well'] else 2))
+        if 'Forest Temple' in world.settings.key_rings:
+            pool.extend(get_junk_item(5 if world.dungeon_mq['Forest Temple'] else 4))
+        if 'Fire Temple' in world.settings.key_rings:
+            pool.extend(get_junk_item(4 if world.dungeon_mq['Fire Temple'] else 7))
+        if 'Water Temple' in world.settings.key_rings:
+            pool.extend(get_junk_item(1 if world.dungeon_mq['Water Temple'] else 5))
+        if 'Shadow Temple' in world.settings.key_rings:
+            pool.extend(get_junk_item(5 if world.dungeon_mq['Shadow Temple'] else 4))
+        if 'Spirit Temple' in world.settings.key_rings:
+            pool.extend(get_junk_item(6 if world.dungeon_mq['Spirit Temple'] else 4))
+        if 'Gerudo Training Ground' in world.settings.key_rings:
+            pool.extend(get_junk_item(2 if world.dungeon_mq['Gerudo Training Ground'] else 8))
+        if 'Ganons Castle' in world.settings.key_rings:
+            pool.extend(get_junk_item(2 if world.dungeon_mq['Ganons Castle'] else 1))
+
     if world.settings.item_pool_value == 'plentiful' and world.settings.shuffle_smallkeys in ['any_dungeon', 'overworld', 'keysanity']:
-        pending_junk_pool.append('Small Key (Bottom of the Well)')
-        pending_junk_pool.append('Small Key (Forest Temple)')
-        pending_junk_pool.append('Small Key (Fire Temple)')
-        pending_junk_pool.append('Small Key (Water Temple)')
-        pending_junk_pool.append('Small Key (Shadow Temple)')
-        pending_junk_pool.append('Small Key (Spirit Temple)')
-        pending_junk_pool.append('Small Key (Gerudo Training Ground)')
-        pending_junk_pool.append('Small Key (Ganons Castle)')
+        if 'Bottom of the Well' in world.settings.key_rings:
+            pending_junk_pool.append('Small Key Ring (Bottom of the Well)')
+        else:
+            pending_junk_pool.append('Small Key (Bottom of the Well)')
+        if 'Forest Temple' in world.settings.key_rings:
+            pending_junk_pool.append('Small Key Ring (Forest Temple)')
+        else:
+            pending_junk_pool.append('Small Key (Forest Temple)')
+        if 'Fire Temple' in world.settings.key_rings:
+            pending_junk_pool.append('Small Key Ring (Fire Temple)')
+        else:
+            pending_junk_pool.append('Small Key (Fire Temple)')
+        if 'Water Temple' in world.settings.key_rings:
+            pending_junk_pool.append('Small Key Ring (Water Temple)')
+        else:
+            pending_junk_pool.append('Small Key (Water Temple)')
+        if 'Shadow Temple' in world.settings.key_rings:
+            pending_junk_pool.append('Small Key Ring (Shadow Temple)')
+        else:
+            pending_junk_pool.append('Small Key (Shadow Temple)')
+        if 'Spirit Temple' in world.settings.key_rings:
+            pending_junk_pool.append('Small Key Ring (Spirit Temple)')
+        else:
+            pending_junk_pool.append('Small Key (Spirit Temple)')
+        if 'Gerudo Training Ground' in world.settings.key_rings:
+            pending_junk_pool.append('Small Key Ring (Gerudo Training Ground)')
+        else:
+            pending_junk_pool.append('Small Key (Gerudo Training Ground)')
+        if 'Ganons Castle' in world.settings.key_rings:
+            pending_junk_pool.append('Small Key Ring (Ganons Castle)')
+        else:
+            pending_junk_pool.append('Small Key (Ganons Castle)')
 
     if world.settings.item_pool_value == 'plentiful' and world.settings.shuffle_bosskeys in ['any_dungeon', 'overworld', 'keysanity']:
         pending_junk_pool.append('Boss Key (Forest Temple)')
@@ -1309,6 +1358,10 @@ def get_pool_core(world):
             world.state.collect(ItemFactory('Small Key (Spirit Temple)'))
             world.state.collect(ItemFactory('Small Key (Spirit Temple)'))
             world.state.collect(ItemFactory('Small Key (Spirit Temple)'))
+        if 'shadow_temple' in world.settings.dungeon_shortcuts:
+            # Reverse Shadow is broken with vanilla keys in both vanilla/MQ
+            world.state.collect(ItemFactory('Small Key (Shadow Temple)'))
+            world.state.collect(ItemFactory('Small Key (Shadow Temple)'))
         #if not world.dungeon_mq['Fire Temple']:
         #    world.state.collect(ItemFactory('Small Key (Fire Temple)'))
     if world.settings.shuffle_bosskeys == 'vanilla':

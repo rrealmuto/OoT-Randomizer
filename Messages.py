@@ -3,6 +3,7 @@
 import logging
 import random
 from TextBox import line_wrap
+from Utils import find_last
 
 TEXT_START = 0x92D000
 ENG_TEXT_SIZE_LIMIT = 0x39000
@@ -286,6 +287,15 @@ KEYSANITY_MESSAGES = {
     0x00A5: "\x13\x76\x08You found the \x05\x41Dungeon Map\x05\x40\x01for the \x05\x45Bottom of the Well\x05\x40!\x09",
     0x00A6: "\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for the \x05\x46Spirit Temple\x05\x40!\x09",
     0x00A9: "\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for the \x05\x45Shadow Temple\x05\x40!\x09",
+    0x9010: "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x42Forest Temple\x05\x40!\x09",
+    0x9011: "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x41Fire Temple\x05\x40!\x09",
+    0x9012: "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x43Water Temple\x05\x40!\x09",
+    0x9013: "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x46Spirit Temple\x05\x40!\x09",
+    0x9014: "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x45Shadow Temple\x05\x40!\x09",
+    0x9015: "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x45Bottom of the Well\x05\x40!\x09",
+    0x9016: "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x46Gerudo Training\x01Ground\x05\x40!\x09",
+    0x9017: "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x46Thieves' Hideout\x05\x40!\x09",
+    0x9018: "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for \x05\x41Ganon's Castle\x05\x40!\x09",
 }
 
 COLOR_MAP = {
@@ -531,12 +541,14 @@ class Message:
         ending_codes = [0x02, 0x07, 0x0A, 0x0B, 0x0E, 0x10]
         box_breaks = [0x04, 0x0C]
         slows_text = [0x08, 0x09, 0x14]
+        slow_icons = [0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x04, 0x02]
 
         text_codes = []
+        instant_text_code = Text_Code(0x08, 0)
 
         # # speed the text
         if speed_up_text:
-            text_codes.append(Text_Code(0x08, 0)) # allow instant
+            text_codes.append(instant_text_code) # allow instant
 
         # write the message
         for code in self.text_codes:
@@ -557,10 +569,14 @@ class Message:
                     self.id == 0x7070
                 ):   # zelda ending text
                     text_codes.append(code)
-                    text_codes.append(Text_Code(0x08, 0))  # allow instant
+                    text_codes.append(instant_text_code)  # allow instant
                 else:
                     text_codes.append(Text_Code(0x04, 0))  # un-delayed break
-                    text_codes.append(Text_Code(0x08, 0))  # allow instant
+                    text_codes.append(instant_text_code)  # allow instant
+            elif speed_up_text and code.code == 0x13 and code.data in slow_icons:
+                text_codes.append(code)
+                text_codes.pop(find_last(text_codes, instant_text_code))  # remove last instance of instant text
+                text_codes.append(instant_text_code)  # allow instant
             else:
                 text_codes.append(code)
 
@@ -981,6 +997,8 @@ def shuffle_messages(messages, except_hints=True, always_allow_skip=True):
 
 # Update warp song text boxes for ER
 def update_warp_song_text(messages, world):
+    from Hints import get_hint_area
+
     msg_list = {
         0x088D: 'Minuet of Forest Warp -> Sacred Forest Meadow',
         0x088E: 'Bolero of Fire Warp -> DMC Central Local',
@@ -992,16 +1010,8 @@ def update_warp_song_text(messages, world):
 
     for id, entr in msg_list.items():
         destination = world.get_entrance(entr).connected_region
+        destination_name, color = get_hint_area(destination)
+        color = COLOR_MAP[color]
 
-        if destination.pretty_name:
-            destination_name = destination.pretty_name
-        elif destination.hint:
-            destination_name = destination.hint
-        elif destination.dungeon:
-            destination_name = destination.dungeon.hint
-        else:
-            destination_name = destination.name
-        color = COLOR_MAP[destination.font_color or 'White']
-
-        new_msg = f"\x08\x05{color}Warp to {destination_name}?\x05\40\x09\x01\x01\x1b\x05{color}OK\x01No\x05\40"
+        new_msg = f"\x08\x05{color}Warp to {destination_name}?\x05\40\x09\x01\x01\x1b\x05\x42OK\x01No\x05\40"
         update_message_by_id(messages, id, new_msg)
