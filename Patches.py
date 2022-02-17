@@ -1543,6 +1543,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     if world.settings.damage_multiplier == 'ohko':
         rom.write_byte(rom.sym('CFG_DAMAGE_MULTIPLYER'), 3)
 
+    if world.settings.deadly_bonks:
+        rom.write_int32(rom.sym('CFG_DEADLY_BONKS'), 1)
+
     # Patch songs and boss rewards
     for location in world.get_filled_locations():
         item = location.item
