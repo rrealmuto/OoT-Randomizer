@@ -737,8 +737,8 @@ Forest Temple Bow Region
 9: Forest Temple MQ Frozen Eye Switch Room Small Wooden Crate 2: (Small_Key_Forest_Temple, 6)
 10: Forest Temple MQ Frozen Eye Switch Room Small Wooden Crate 3: (Small_Key_Forest_Temple, 6)
 Forest Temple Falling Room
-1: Forest Temple MQ Green Poe Room Pot 1: Small_Key_Forest_Temple, 6
-2: Forest Temple MQ Green Poe Room Pot 2: Small_Key_Forest_Temple, 6
+1: Forest Temple MQ Green Poe Room Pot 1: (Small_Key_Forest_Temple, 6)
+2: Forest Temple MQ Green Poe Room Pot 2: (Small_Key_Forest_Temple, 6)
 Forest Temple Boss Region
 1: Forest Temple MQ Basement Pot 1: True
 2: Forest Temple MQ Basement Pot 2: True
@@ -774,10 +774,10 @@ Fire Lower Maze
 2: Fire Temple MQ Lower Lizalfos Maze Crate 2: True
 3: Fire Temple MQ Lower Lizalfos Maze Crate 3: True
 Fire Upper Maze
-1: Fire Temple MQ Narrow Path Room Pot 1: Small_Key_Fire_Temple, 3
-2: Fire Temple MQ Narrow Path Room Pot 2: Small_Key_Fire_Temple, 3
-3: Fire Temple MQ Shoot Torch On Wall Room Pot 1: Small_Key_Fire_Temple, 3
-4: Fire Temple MQ Shoot Torch On Wall Room Pot 2: Small_Key_Fire_Temple, 3
+1: Fire Temple MQ Narrow Path Room Pot 1: (Small_Key_Fire_Temple, 3)
+2: Fire Temple MQ Narrow Path Room Pot 2: (Small_Key_Fire_Temple, 3)
+3: Fire Temple MQ Shoot Torch On Wall Room Pot 1: (Small_Key_Fire_Temple, 3)
+4: Fire Temple MQ Shoot Torch On Wall Room Pot 2: (Small_Key_Fire_Temple, 3)
 5: Fire Temple MQ Shortcut Crate 1: has_explosives
 6: Fire Temple MQ Shortcut Crate 2: has_explosives
 7: Fire Temple MQ Shortcut Crate 3: has_explosives
@@ -787,11 +787,11 @@ Fire Upper Maze
 11: Fire Temple MQ Upper Lizalfos Maze Crate 1: True
 12: Fire Temple MQ Upper Lizalfos Maze Crate 2: True
 13: Fire Temple MQ Upper Lizalfos Maze Crate 3: True
-14: Fire Temple MQ Shoot Torch On Wall Right Crate 1: Small_Key_Fire_Temple, 3
-15: Fire Temple MQ Shoot Torch On Wall Right Crate 2: Small_Key_Fire_Temple, 3
-16: Fire Temple MQ Shoot Torch On Wall Center Crate: Small_Key_Fire_Temple, 3
-17: Fire Temple MQ Shoot Torch On Wall Left Crate 1: Small_Key_Fire_Temple, 3
-18: Fire Temple MQ Shoot Torch On Wall Left Crate 2: Small_Key_Fire_Temple, 3
+14: Fire Temple MQ Shoot Torch On Wall Right Crate 1: (Small_Key_Fire_Temple, 3)
+15: Fire Temple MQ Shoot Torch On Wall Right Crate 2: (Small_Key_Fire_Temple, 3)
+16: Fire Temple MQ Shoot Torch On Wall Center Crate: (Small_Key_Fire_Temple, 3)
+17: Fire Temple MQ Shoot Torch On Wall Left Crate 1: (Small_Key_Fire_Temple, 3)
+18: Fire Temple MQ Shoot Torch On Wall Left Crate 2: (Small_Key_Fire_Temple, 3)
 Fire Temple Upper
 1: Fire Temple MQ Flame Maze Left Pot 1: True
 2: Fire Temple MQ Flame Maze Right Pot 1: can_use(Hookshot) or logic_fire_mq_flame_maze
@@ -950,7 +950,7 @@ Shadow Temple Beyond Boat
 Shadow Temple Invisible Maze
 1: Shadow Temple MQ Dead Hand II Pot 1: True
 2: Shadow Temple MQ Dead Hand II Pot 2: True
-3: Shadow Temple MQ Spike Walls Pot: Small_Key_Shadow_Temple, 6
+3: Shadow Temple MQ Spike Walls Pot: (Small_Key_Shadow_Temple, 6)
 Shadow Temple Near Boss
 1: Shadow Temple MQ Near Boss Upper Recovery Heart 1: Bow and can_play(Song_of_Time) and Longshot
 2: Shadow Temple MQ Near Boss Upper Recovery Heart 2: Bow and can_play(Song_of_Time) and Longshot
@@ -972,10 +972,10 @@ Child Spirit Temple
 7: Spirit Temple MQ Child Stalfos Fight Pot 2: (Sticks or Kokiri_Sword) and has_bombchus and Slingshot
 8: Spirit Temple MQ Child Stalfos Fight Pot 3: (Sticks or Kokiri_Sword) and has_bombchus and Slingshot
 Adult Spirit Temple
-1: Spirit Temple MQ Shifting Wall Pot 1: Small_Key_Spirit_Temple, 6
-2: Spirit Temple MQ Shifting Wall Pot 2: Small_Key_Spirit_Temple, 6
-3: Spirit Temple MQ After Shifting Wall Room Pot 1: Small_Key_Spirit_Temple, 6
-4: Spirit Temple MQ After Shifting Wall Room Pot 2: Small_Key_Spirit_Temple, 6
+1: Spirit Temple MQ Shifting Wall Pot 1: (Small_Key_Spirit_Temple, 6)
+2: Spirit Temple MQ Shifting Wall Pot 2: (Small_Key_Spirit_Temple, 6)
+3: Spirit Temple MQ After Shifting Wall Room Pot 1: (Small_Key_Spirit_Temple, 6)
+4: Spirit Temple MQ After Shifting Wall Room Pot 2: (Small_Key_Spirit_Temple, 6)
 5: Spirit Temple MQ Lower Boss Platform Pot 1: (Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)
 6: Spirit Temple MQ Lower Boss Platform Pot 2: (Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)
 7: Spirit Temple MQ Lower Boss Platform Pot 3: (Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)
@@ -985,7 +985,7 @@ Adult Spirit Temple
 11: Spirit Temple MQ Lower Boss Platform Crate 3: (Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)
 12: Spirit Temple MQ Lower Boss Platform Crate 4: (Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)
 Spirit Temple Shared
-1: Spirit Temple MQ Child Climb Pot: Small_Key_Spirit_Temple, 6
+1: Spirit Temple MQ Child Climb Pot: (Small_Key_Spirit_Temple, 6)
 2: Spirit Temple MQ Central Chamber Floor Pot 1: True
 3: Spirit Temple MQ Central Chamber Floor Pot 2: True
 4: Spirit Temple MQ Central Chamber Floor Pot 3: True
@@ -1039,7 +1039,7 @@ Gerudo Training Ground Lobby
 2: Gerudo Training Ground MQ Lobby Left Pot 2: True
 3: Gerudo Training Ground MQ Lobby Right Pot 1: True
 4: Gerudo Training Ground MQ Lobby Right Pot 2: True
-5: Gerudo Training Ground MQ Maze Crate: Small_Key_Gerudo_Training_Ground, 3
+5: Gerudo Training Ground MQ Maze Crate: (Small_Key_Gerudo_Training_Ground, 3)
 Ice Cavern Beginning
 1: Ice Cavern MQ First Hall Pot: True
 2: Ice Cavern MQ Tektite Room Pot 1: True
