@@ -379,8 +379,8 @@ def replace_songs(world, rom, *, frog, warp):
         if str(song) == SONG_TABLE[name][2]:
             continue # song activation is vanilla (possibly because this row wasn't randomized), don't randomize playback
 
-        # fix the song of time
-        if name == 'Song of Time':
+        # fix the song of time and sun's song
+        if name == 'Song of Time' or name == 'Suns Song':
             song.increase_duration_to(260)
 
         # write the song to the activation table

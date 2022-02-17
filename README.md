@@ -8,6 +8,9 @@ Instead, you can open an issue on this fork [here](https://github.com/fenhl/OoT-
 
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
+* Changes in Dev not yet in Dev-R:
+  * New setting `Plant Magic Beans` automatically plants all the Magic Beans from the start.
+  * New setting `Key Rings` which can be enabled per-dungeon to replace all of its individual Small Keys into a singular Small Key Ring containing all the small keys for that dungeon.
 * The convenience patch for floor switches now applies to more MQ switches ([#1459](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1459))
 * The “Randomize Ocarina Song Notes” setting has new options “Frog Songs Only” and “Warp Songs Only” ([#1423](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1423))
 * Automatically advances credits text ([#1412](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1412))
@@ -35,6 +38,7 @@ Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https:
   * [Settings](#settings)
   * [Known Issues](#known-issues)
 * [Changelog](#changelog)
+  * [6.2](#62)
   * [6.1](#61)
   * [6.0](#60)
   * [5.2](#52)
@@ -130,7 +134,9 @@ do that.
   * New setting `Dungeon Shortcuts` opens shortcuts in blue warp dungeons to the boss room. This is toggleable per-dungeon, and affects glitchless logic.
   * New setting `Shopsanity Prices` adds additional price range options when Shopsanity is enabled, including "Affordable" which sets all prices to 10 rupees (to match the same option in Scrub Shuffle).
   * `Chest Size Matches Content` has been replaced with `Chest Appearance Matches Content`. Unique textures are applied to chests containing major items, small keys, boss keys, skulltula tokens, and remaining items. An additional option also changes chest sizes like the previous setting.
-  * New cosmetic setting `Disable battle music` turns off the battle music from being near enemies, allowing the background music to continue uninterrupted.
+  * New cosmetic setting `Disable Battle Music` turns off the battle music from being near enemies, allowing the background music to continue uninterrupted.
+  * New setting `Plant Magic Beans` automatically plants all the Magic Beans from the start.
+  * New setting `Key Rings` which can be enabled per-dungeon to replace all of its individual Small Keys into a singular Small Key Ring containing all the small keys for that dungeon.
 
 * **Gameplay**
   * Shortened the animation for equipping magic arrows.
@@ -145,11 +151,16 @@ do that.
   * Fix MQ Shadow Temple making use of shared flags.
   * Fix MQ Fire Temple missing the Hammer chest from the map and minimap.
   * Add correct default Goals for Ganon's Boss Key when Light Arrow Cutscene is non-vanilla.
+  * Fix a softlock caused by 8-note Sun's Songs when using `Randomize Ocarina Song Notes`.
+  * Fix slow text when acquiring certain items (Hookshot, Bombchus, etc.)
+  * Using Farore's Wind as both ages should no longer result in the wrong temporary flags being loaded.
 
 #### Other changes
   * Added an auto-tracker context area to memory, so auto-trackers can find certain symbols much easier.
   * Improve some error messages when running the generator.
   * Fix logic parser shortcuts not working right in newer Python versions.
+  * `Goron Bracelet` is no longer greyed out as adult on the Equipment subscreen of the pause menu.
+  * Plandomizer: You can now specify an arbitrary 4-character hexadecimal text ID as a "Gossip Stone" to overwrite text in the game.
 
 ### 6.2
 
