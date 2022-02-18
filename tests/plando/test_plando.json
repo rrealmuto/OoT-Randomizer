@@ -1,12 +1,19 @@
 {
     "entrances": {
 <<<<<<< HEAD
+<<<<<<< HEAD
         "Child Spawn -> KF Links House" : {"region": "Goron City", "from":"Death Mountain"}
 =======
         "Child Spawn -> KF Links House" : {"region" : "Goron City", "from" : "Death Mountain"}
 >>>>>>> ac556e4d (Add goron city spinning pot green rupees)
+=======
+        "Child Spawn -> KF Links House": {
+            "region": "ZD Behind King Zora",
+            "from": "Zoras Fountain"
+        }
+>>>>>>> 1c25fedb (More beehive nonsense)
     },
     "locations": {
-        "Ganons Tower Pot 1" : "Light Arrows"
+        "Ganons Tower Pot 1": "Light Arrows"
     }
 }

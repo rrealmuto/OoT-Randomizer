@@ -502,7 +502,10 @@ location_table = OrderedDict([
     ("ZD Pot 3",                                                     ("Collectable",  0x58,  0x22, None,                        'Deku Stick (1)',                        ("Zora's Domain", "Pot"))),
     ("ZD Pot 4",                                                     ("Collectable",  0x58,  0x21, None,                        'Deku Stick (1)',                        ("Zora's Domain", "Pot"))),
     ("ZD Pot 5",                                                     ("Collectable",  0x58,  0x20, None,                        'Deku Stick (1)',                        ("Zora's Domain", "Pot"))),
-
+    ("ZD In Front of King Zora Beehive 1",                           ("Collectable",  0x58, 0x40, ([0x20FC0F8], None),                         'Rupees (20)',                            ("Zora's Domain", "Beehive"))),
+    ("ZD In Front of King Zora Beehive 2",                           ("Collectable",  0x58, 0x41, ([0x20FC108], None),                         'Rupees (20)',                            ("Zora's Domain", "Beehive"))),
+    ("ZD Behind King Zora Beehive",                                  ("Collectable",  0x58, 0x42, ([0x20FC118], None),                         'Rupees (20)',                            ("Zora's Domain", "Beehive"))),
+    
 
     # Zora's Fountain
     ("ZF Great Fairy Reward",                                        ("Cutscene",     0xFF,  0x10, None,                        'Farores Wind',                          ("Zora's Fountain", "Fairies",))),
@@ -658,20 +661,38 @@ location_table = OrderedDict([
     ("OGC GS",                                                       ("GS Token",     0x0E,  0x01, None,                        'Gold Skulltula Token',                  ("Outside Ganon's Castle", "Skulltulas",))),
 
     # Grotto Beehives
-    ("HF Near Market Grotto Beehive",                                ("Collectable",  0x3E, 0x60, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("HF Open Grotto Beehive",                                       ("Collectable",  0x3E, 0x63, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("HF Southeast Grotto Beehive",                                  ("Collectable",  0x3E, 0x62, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("HF Inside Fence Grotto Beehive",                               ("Collectable",  0x3E, 0x66, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("KF Storms Grotto Beehive",                                     ("Collectable",  0x3E, 0x6C, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("LW Near Shortcuts Grotto Beehive",                             ("Collectable",  0x3E, 0x74, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("LLR Grotto Beehive",                                           ("Collectable",  0x3E, 0x7C, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("Kak Open Grotto Beehive",                                      ("Collectable",  0x3E, 0x68, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("DMT Cow Grotto Beehive",                                       ("Collectable",  0x3E, 0x78, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("DMT Storms Grotto Beehive",                                    ("Collectable",  0x3E, 0x77, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("DMC Upper Grotto Beehive",                                     ("Collectable",  0x3E, 0x7A, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("DMC Hammer Grotto Beehive",                                    ("Collectable",  0x3E, 0x79, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("ZR Open Grotto Beehive",                                       ("Collectable",  0x3E, 0x69, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("LH Grotto Beehive",                                            ("Collectable",  0x3E, 0x6F, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("HF Near Market Grotto Beehive 1",                                ("Collectable",  0x3E, 0x60 + (0x00*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("HF Near Market Grotto Beehive 2",                                ("Collectable",  0x3E, 0x60 + (0x00*2 + 1), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("HF Open Grotto Beehive 1",                                       ("Collectable",  0x3E, 0x60 + (0x03*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("HF Open Grotto Beehive 2",                                       ("Collectable",  0x3E, 0x60 + (0x03*2 + 1), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("HF Southeast Grotto Beehive 1",                                  ("Collectable",  0x3E, 0x60 + (0x02*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("HF Southeast Grotto Beehive 2",                                  ("Collectable",  0x3E, 0x60 + (0x02*2 + 1), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("HF Inside Fence Grotto Beehive",                                 ("Collectable",  0x3E, 0x60 + (0x06*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("KF Storms Grotto Beehive 1",                                     ("Collectable",  0x3E, 0x60 + (0x0C*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("KF Storms Grotto Beehive 2",                                     ("Collectable",  0x3E, 0x60 + (0x0C*2 + 1), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("LW Near Shortcuts Grotto Beehive 1",                             ("Collectable",  0x3E, 0x60 + (0x14*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("LW Near Shortcuts Grotto Beehive 2",                             ("Collectable",  0x3E, 0x60 + (0x14*2 + 1), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("LW Scrubs Grotto Beehive",                                       ("Collectable",  0x3E, 0x60 + (0x15*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("SFM Storms Grotto Beehive",                                      ("Collectable",  0x3E, 0x60 + (0x0E*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("LLR Grotto Beehive",                                             ("Collectable",  0x3E, 0x60 + (0x1C*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("Kak Open Grotto Beehive 1",                                      ("Collectable",  0x3E, 0x60 + (0x08*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("Kak Open Grotto Beehive 2",                                      ("Collectable",  0x3E, 0x60 + (0x08*2 + 1), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("DMT Cow Grotto Beehive",                                         ("Collectable",  0x3E, 0x60 + (0x18*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("DMT Storms Grotto Beehive 1",                                    ("Collectable",  0x3E, 0x60 + (0x17*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("DMT Storms Grotto Beehive 2",                                    ("Collectable",  0x3E, 0x60 + (0x17*2 + 1), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("DMC Upper Grotto Beehive 1",                                     ("Collectable",  0x3E, 0x60 + (0x1A*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("DMC Upper Grotto Beehive 2",                                     ("Collectable",  0x3E, 0x60 + (0x1A*2+1), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("DMC Hammer Grotto Beehive",                                      ("Collectable",  0x3E, 0x60 + (0x19*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("ZR Open Grotto Beehive 1",                                       ("Collectable",  0x3E, 0x60 + (0x09*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("ZR Open Grotto Beehive 2",                                       ("Collectable",  0x3E, 0x60 + (0x09*2+1), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("ZR Storms Grotto Beehive",                                       ("Collectable",  0x3E, 0x60 + (0x0B*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("GV Storms Grotto Beehive",                                       ("Collectable",  0x3E, 0x60 + (0x10*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("Colossus Grotto Beehive",                                 ("Collectable",  0x3E, 0x60 + (0x1D*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    
+    
+    
+
+    ("LH Grotto Beehive",                                              ("Collectable",  0x3E, 0x60+(0x0F*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
     
 
     ## Dungeons

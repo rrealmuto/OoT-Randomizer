@@ -533,7 +533,7 @@ nop
 ;nop
 ;addiu a2, r0, 0xffff
 .orga 0xec746c
-jal obj_comb_hack
+j obj_comb_hook
 nop
 nop
 nop
