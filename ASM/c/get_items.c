@@ -7,7 +7,7 @@
 #include "z64.h"
 
 extern uint8_t OCARINAS_SHUFFLED;
-
+extern uint8_t NO_COLLECTIBLE_HEARTS;
 override_t cfg_item_overrides[1536] = {0};
 int item_overrides_count = 0;
 
@@ -629,7 +629,7 @@ int16_t get_override_drop_id(int16_t dropId, uint16_t params)
     }
 
 
-    if ((dropId == ITEM00_HEART) && (z64_file.energy_capacity == z64_file.energy)) {
+    if ((dropId == ITEM00_HEART) && ((z64_file.energy_capacity == z64_file.energy) || (NO_COLLECTIBLE_HEARTS))) {
         return ITEM00_RUPEE_GREEN;
     }
 
