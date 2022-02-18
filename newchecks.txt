@@ -86,6 +86,11 @@ Zora River
 2: ZR Waterfall Rupee 2: is_adult
 3: ZR Waterfall Rupee 3: is_adult
 4: ZR Waterfall Rupee 4: is_adult
+Zoras Domain
+1: ZD In Front of King Zora Beehive 1: is_child and can_break_beehive
+2: ZD In Front of King Zora Beehive 2: is_child and can_break_beehive
+ZD Behind King Zora
+1: ZD Behind King Zora Beehive: is_child and can_break_beehive
 Zoras Fountain
 1: ZF Bottom Freestanding Rupee 1: is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))
 2: ZF Bottom Freestanding Rupee 2: is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))
@@ -105,6 +110,32 @@ Zoras Fountain
 16: ZF Bottom Freestanding Rupee 16: is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))
 17: ZF Bottom Freestanding Rupee 17: is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))
 18: ZF Bottom Freestanding Rupee 18: is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))
+KF Storms Grotto
+1: KF Storms Grotto Beehive 1: can_break_beehive
+2: KF Storms Grotto Beehive 2: can_break_beehive
+LW Near Shortcuts Grotto
+1: LW Near Shortcuts Grotto Beehive 1: can_break_beehive
+2: LW Near Shortcuts Grotto Beehive 2: can_break_beehive
+LW Scrubs Grotto
+1: LW Scrubs Grotto Beehive: can_break_beehive
+SFM Storms Grotto
+1: SFM Storms Grotto Beehive: can_break_beehive
+LLR Grotto
+1: LLR Grotto Beehive: can_break_beehive
+HF Southeast Grotto
+1: HF Southeast Grotto Beehive 1: can_break_beehive
+2: HF Southeast Grotto Beehive 2: can_break_beehive
+HF Open Grotto
+1: HF Open Grotto Beehive 1: can_break_beehive
+2: HF Open Grotto Beehive 2: can_break_beehive
+HF Inside Fence Grotto
+1: HF Inside Fence Grotto Beehive: can_break_beehive
+HF Near Market Grotto
+1: HF Near Market Grotto Beehive 1: can_break_beehive
+2: HF Near Market Grotto Beehive 2: can_break_beehive
+Kak Open Grotto
+1: Kak Open Grotto Beehive 1: can_break_beehive
+2: Kak Open Grotto Beehive 2: can_break_beehive
 DMT Cow Grotto
 1: DMT Cow Grotto Rupee Circle Green Rupee 1: True
 2: DMT Cow Grotto Rupee Circle Green Rupee 2: True
@@ -117,6 +148,24 @@ DMT Cow Grotto
 9: DMT Cow Grotto Recovery Heart 2: True
 10: DMT Cow Grotto Recovery Heart 3: True
 11: DMT Cow Grotto Recovery Heart 4: True
+12: DMT Cow Grotto Beehive: can_break_beehive
+DMT Storms Grotto
+1: DMT Storms Grotto Beehive 1: can_break_beehive
+2: DMT Storms Grotto Beehive 2: can_break_beehive
+DMC Upper Grotto
+1: DMC Upper Grotto Beehive 1: can_break_beehive
+2: DMC Upper Grotto Beehive 2: can_break_beehive
+DMC Hammer Grotto
+1: DMC Hammer Grotto Beehive: can_break_beehive
+ZR Open Grotto
+1: ZR Open Grotto Beehive 1: can_break_beehive
+2: ZR Open Grotto Beehive 2: can_break_beehive
+ZR Storms Grotto
+1: ZR Storms Grotto Beehive: can_break_beehive
+LH Grotto
+1: LH Grotto Beehive: can_break_beehive
+Colossus Grotto
+1: Colossus Grotto Beehive: can_break_beehive
 GV Octorok Grotto
 1: GV Octorok Grotto Red Rupee: True
 2: GV Octorok Grotto Blue Rupee 1: True
@@ -126,6 +175,8 @@ GV Octorok Grotto
 6: GV Octorok Grotto Green Rupee 2: True
 7: GV Octorok Grotto Green Rupee 3: True
 8: GV Octorok Grotto Green Rupee 4: True
+GV Storms Grotto
+1: GV Storms Grotto Beehive: can_break_beehive
 Deku Tree Lobby
 1: Deku Tree Walk the Plank Recovery Heart: True
 2: Deku Tree Leap Recovery Heart: is_adult or can_child_attack or Nuts
@@ -210,7 +261,7 @@ Ice Cavern
 5: Ice Cavern Block Room Red Rupee 1: (is_adult and can_play(Song_of_Time)) or (is_child and can_use(Boomerang))
 6: Ice Cavern Block Room Red Rupee 2: (is_adult and can_play(Song_of_Time)) or (is_child and can_use(Boomerang))
 7: Ice Cavern Block Room Red Rupee 3: (is_adult and can_play(Song_of_Time)) or (is_child and can_use(Boomerang))
-Total Count: 177
+Total Count: 208
 ***Pots/Crates***
 KF Links House
 1: KF Links House Pot: True

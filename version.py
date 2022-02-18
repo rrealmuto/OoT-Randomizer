@@ -5,6 +5,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 __version__ = '6.2.29 f.LUM'
 =======
 __version__ = '6.2.19.rreal-1.0'
@@ -27,3 +28,6 @@ __version__ = '6.2.19 rreal-1.5'
 =======
 __version__ = '6.2.19 rreal-1.5.1'
 >>>>>>> a18f8320 (Update version to 1.5.1)
+=======
+__version__ = '6.2.19 rreal-1.7.0'
+>>>>>>> dc7927cc (Update version to 1.7. update newchecks.txt)
