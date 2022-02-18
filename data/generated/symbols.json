@@ -148,6 +148,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "AUDIO_THREAD_MEM_START": "03497F50",
 >>>>>>> a30f1183 (Add hack to shuffle all the rupees in rupee towers)
 =======
@@ -165,6 +166,9 @@
 =======
     "AUDIO_THREAD_MEM_START": "03498090",
 >>>>>>> 8abecce6 (Add goron spinning pot heartpiece rupees)
+=======
+    "AUDIO_THREAD_MEM_START": "034980D0",
+>>>>>>> 0e0b7637 (Beehives basically working. Need to fix logic for ones that are higher up. Also sometimes the drop either isnt dropping or is getting stuck?)
     "AUTO_TRACKER_CONTEXT": "03480CD0",
     "AUTO_TRACKER_VERSION": "03480CD0",
 =======
@@ -388,6 +392,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "CHEST_SIZE_MATCH_CONTENTS": "0348C93C",
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348C940",
     "COMPLETE_MASK_QUEST": "0348C991",
@@ -422,6 +427,11 @@
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348CA98",
     "COMPLETE_MASK_QUEST": "0348CAE9",
 >>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
+=======
+    "CHEST_SIZE_MATCH_CONTENTS": "0348CABC",
+    "CHEST_TEXTURE_MATCH_CONTENTS": "0348CAC0",
+    "COMPLETE_MASK_QUEST": "0348CB11",
+>>>>>>> 0e0b7637 (Beehives basically working. Need to fix logic for ones that are higher up. Also sometimes the drop either isnt dropping or is getting stuck?)
     "COOP_CONTEXT": "03480020",
     "COOP_VERSION": "03480020",
     "COSMETIC_CONTEXT": "03480834",
@@ -429,6 +439,7 @@
     "CURRENT_GROTTO_ID": "034830EA",
     "DEBUG_OFFSET": "03482B08",
     "DISABLE_TIMERS": "03480CCC",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -558,11 +569,15 @@
 =======
     "DPAD_TEXTURE": "034920A0",
 >>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
+=======
+    "DPAD_TEXTURE": "034920C8",
+>>>>>>> 0e0b7637 (Beehives basically working. Need to fix logic for ones that are higher up. Also sometimes the drop either isnt dropping or is getting stuck?)
     "DUNGEONS_SHUFFLED": "03480CCD",
     "EXTENDED_OBJECT_TABLE": "03480C8C",
     "EXTERN_DAMAGE_MULTIPLYER": "03482F19",
     "FAST_BUNNY_HOOD_ENABLED": "03480CCF",
     "FAST_CHESTS": "03480CC6",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -832,11 +847,15 @@
 =======
     "FONT_TEXTURE": "03490BC0",
 >>>>>>> 8abecce6 (Add goron spinning pot heartpiece rupees)
+=======
+    "FONT_TEXTURE": "03490C00",
+>>>>>>> 0e0b7637 (Beehives basically working. Need to fix logic for ones that are higher up. Also sometimes the drop either isnt dropping or is getting stuck?)
     "FREE_SCARECROW_ENABLED": "03480CBC",
-    "GANON_BOSS_KEY_CONDITION": "0348CA90",
-    "GANON_BOSS_KEY_CONDITION_COUNT": "0348CA8E",
+    "GANON_BOSS_KEY_CONDITION": "0348CAD0",
+    "GANON_BOSS_KEY_CONDITION_COUNT": "0348CACE",
     "GET_CHEST_OVERRIDE_WRAPPER": "0348297C",
     "GET_ITEM_TRIGGERED": "03481698",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -875,6 +894,10 @@
     "GILDED_CHEST_BASE_TEXTURE": "034948A0",
     "GILDED_CHEST_FRONT_TEXTURE": "034938A0",
 >>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
+=======
+    "GILDED_CHEST_BASE_TEXTURE": "034948C8",
+    "GILDED_CHEST_FRONT_TEXTURE": "034938C8",
+>>>>>>> 0e0b7637 (Beehives basically working. Need to fix logic for ones that are higher up. Also sometimes the drop either isnt dropping or is getting stuck?)
     "GOSSIP_HINT_CONDITION": "03480CB8",
     "GROTTO_EXIT_LIST": "034830A8",
     "GROTTO_LOAD_TABLE": "03483024",
@@ -882,6 +905,7 @@
     "INCOMING_PLAYER": "03480026",
     "INITIAL_SAVE_DATA": "0348088C",
     "JABU_ELEVATOR_ENABLE": "03480CC4",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1015,10 +1039,14 @@
 =======
     "KAKARIKO_WEATHER_FORECAST": "0348CB08",
 >>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
+=======
+    "KAKARIKO_WEATHER_FORECAST": "0348CB30",
+>>>>>>> 0e0b7637 (Beehives basically working. Need to fix logic for ones that are higher up. Also sometimes the drop either isnt dropping or is getting stuck?)
     "LACS_CONDITION": "03480CB4",
     "LACS_CONDITION_COUNT": "03480CC2",
     "MALON_GAVE_ICETRAP": "034838F4",
     "MALON_TEXT_ID": "03480CCB",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1289,10 +1317,18 @@
 =======
     "OPEN_KAKARIKO": "0348CAEA",
 >>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
+=======
+    "MAX_RUPEES": "0348CB13",
+    "MOVED_ADULT_KING_ZORA": "03483264",
+    "NO_ESCAPE_SEQUENCE": "0348CACC",
+    "OCARINAS_SHUFFLED": "03480CC5",
+    "OPEN_KAKARIKO": "0348CB12",
+>>>>>>> 0e0b7637 (Beehives basically working. Need to fix logic for ones that are higher up. Also sometimes the drop either isnt dropping or is getting stuck?)
     "OUTGOING_ITEM": "03480030",
     "OUTGOING_KEY": "0348002C",
     "OUTGOING_PLAYER": "03480032",
     "OVERWORLD_SHUFFLED": "03480CCE",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1422,6 +1458,9 @@
 =======
     "PAYLOAD_END": "034980A0",
 >>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
+=======
+    "PAYLOAD_END": "034980D0",
+>>>>>>> 0e0b7637 (Beehives basically working. Need to fix logic for ones that are higher up. Also sometimes the drop either isnt dropping or is getting stuck?)
     "PAYLOAD_START": "03480000",
     "PLAYED_WARP_SONG": "034814A0",
     "PLAYER_ID": "03480024",
@@ -1668,6 +1707,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "SILVER_CHEST_BASE_TEXTURE": "03495F48",
     "SILVER_CHEST_FRONT_TEXTURE": "03494F48",
     "SKULL_CHEST_BASE_TEXTURE": "03497748",
@@ -1709,10 +1749,17 @@
     "SKULL_CHEST_BASE_TEXTURE": "034978A0",
     "SKULL_CHEST_FRONT_TEXTURE": "034968A0",
 >>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
+=======
+    "SILVER_CHEST_BASE_TEXTURE": "034960C8",
+    "SILVER_CHEST_FRONT_TEXTURE": "034950C8",
+    "SKULL_CHEST_BASE_TEXTURE": "034978C8",
+    "SKULL_CHEST_FRONT_TEXTURE": "034968C8",
+>>>>>>> 0e0b7637 (Beehives basically working. Need to fix logic for ones that are higher up. Also sometimes the drop either isnt dropping or is getting stuck?)
     "SONGS_AS_ITEMS": "03480CC8",
     "SOS_ITEM_GIVEN": "03481768",
     "SPEED_MULTIPLIER": "034829C8",
     "START_TWINROVA_FIGHT": "034832E4",
+<<<<<<< HEAD
     "TIME_TRAVEL_SAVED_EQUIPS": "03481CF4",
     "TRIFORCE_ICON_TEXTURE": "034928A0",
     "TWINROVA_ACTION_TIMER": "034832E8",
@@ -4274,4 +4321,89 @@
     "triforce_pieces_requied": "0348CA92",
     "triforce_sprite": "0348B660"
 >>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
+=======
+    "TIME_TRAVEL_SAVED_EQUIPS": "03481CF0",
+    "TRIFORCE_ICON_TEXTURE": "034928C8",
+    "TWINROVA_ACTION_TIMER": "034832E8",
+    "WINDMILL_SONG_ID": "03480CC9",
+    "WINDMILL_TEXT_ID": "03480CCA",
+    "a_button": "0348CA98",
+    "a_note_b": "0348CA84",
+    "a_note_font_glow_base": "0348CA6C",
+    "a_note_font_glow_max": "0348CA68",
+    "a_note_g": "0348CA88",
+    "a_note_glow_base": "0348CA74",
+    "a_note_glow_max": "0348CA70",
+    "a_note_r": "0348CA8C",
+    "active_item_action_id": "0348CAF4",
+    "active_item_fast_chest": "0348CAE4",
+    "active_item_graphic_id": "0348CAE8",
+    "active_item_object_id": "0348CAEC",
+    "active_item_row": "0348CAF8",
+    "active_item_text_id": "0348CAF0",
+    "active_override": "0348CB00",
+    "active_override_is_outgoing": "0348CAFC",
+    "b_button": "0348CA94",
+    "beating_dd": "0348CAA0",
+    "beating_no_dd": "0348CAA8",
+    "c_button": "0348CA90",
+    "c_note_b": "0348CA78",
+    "c_note_font_glow_base": "0348CA5C",
+    "c_note_font_glow_max": "0348CA58",
+    "c_note_g": "0348CA7C",
+    "c_note_glow_base": "0348CA64",
+    "c_note_glow_max": "0348CA60",
+    "c_note_r": "0348CA80",
+    "cfg_file_select_hash": "0348CAC8",
+    "cfg_item_overrides": "0348DB40",
+    "collectible_mutex": "0348CADC",
+    "collectible_override": "0348CAD4",
+    "collectible_override_flags": "0348D800",
+    "defaultDDHeart": "0348CAAC",
+    "defaultHeart": "0348CAB4",
+    "dpad_sprite": "0348B698",
+    "dropped_collectible_override_flags": "0348CB60",
+    "dummy_actor": "0348CB08",
+    "dungeon_count": "0348CA28",
+    "dungeons": "0348B4F0",
+    "empty_dlist": "0348CA40",
+    "extern_ctxt": "0348B58C",
+    "font_sprite": "0348B6A8",
+    "freecam_modes": "0348B25C",
+    "hash_sprites": "0348CA34",
+    "hash_symbols": "0348B5A0",
+    "heap_next": "0348CB2C",
+    "heart_sprite": "0348B638",
+    "icon_sprites": "0348B420",
+    "item_digit_sprite": "0348B658",
+    "item_overrides_count": "0348CB0C",
+    "item_table": "0348B720",
+    "items": "0348B620",
+    "items_sprite": "0348B6C8",
+    "key_rupee_clock_sprite": "0348B668",
+    "last_fog_distance": "0348CA2C",
+    "linkhead_skull_sprite": "0348B648",
+    "medal_colors": "0348B4DC",
+    "medals_sprite": "0348B6D8",
+    "normal_dd": "0348CA9C",
+    "normal_no_dd": "0348CAA4",
+    "num_to_bits": "0348B5E0",
+    "object_slots": "03490B40",
+    "pending_freezes": "0348CB10",
+    "pending_item_queue": "0348DB28",
+    "quest_items_sprite": "0348B6B8",
+    "rupee_colors": "0348B42C",
+    "satisified_pending_frames": "0348CAE0",
+    "scene_fog_distance": "0348CA30",
+    "setup_db": "0348B6F8",
+    "song_note_sprite": "0348B678",
+    "stones_sprite": "0348B6E8",
+    "text_cursor_border_base": "0348CA4C",
+    "text_cursor_border_max": "0348CA48",
+    "text_cursor_inner_base": "0348CA54",
+    "text_cursor_inner_max": "0348CA50",
+    "triforce_hunt_enabled": "0348CB20",
+    "triforce_pieces_requied": "0348CABA",
+    "triforce_sprite": "0348B688"
+>>>>>>> 0e0b7637 (Beehives basically working. Need to fix logic for ones that are higher up. Also sometimes the drop either isnt dropping or is getting stuck?)
 }

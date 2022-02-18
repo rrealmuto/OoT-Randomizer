@@ -2051,10 +2051,10 @@ def get_override_entry(location):
 
     #Don't add pots to the override table if they're disabled. We use this check to dtermine how to draw and interact with them
     if not location.world.settings.shuffle_pots:
-        if (location.type == "Collectable" and ("Pot" in location.filter_tags or "Crate" in location.filter_tags or "FlyingPot" in location.filter_tags or "SmallCrate" in location.filter_tags)) :
+        if (location.type == "Collectable" and ("Pot" in location.filter_tags or "Crate" in location.filter_tags or "FlyingPot" in location.filter_tags or "SmallCrate" in location.filter_tags or "Beehive" in location.filter_tags)) :
             return None
     else:
-        if (location.type == "Collectable" and ("Pot" in location.filter_tags or "Crate" in location.filter_tags or "FlyingPot" in location.filter_tags or "SmallCrate" in location.filter_tags)) and location.disabled != DisableType.ENABLED :
+        if (location.type == "Collectable" and ("Pot" in location.filter_tags or "Crate" in location.filter_tags or "FlyingPot" in location.filter_tags or "SmallCrate" in location.filter_tags or "Beehive" in location.filter_tags)) and location.disabled != DisableType.ENABLED :
             return None
 
     player_id = location.item.world.id + 1
@@ -2071,7 +2071,7 @@ def get_override_entry(location):
     elif location.type == 'ActorOverride':
         type = 2
     elif location.type == 'Collectable':
-        if "Pot" in location.filter_tags or "Crate" in location.filter_tags or "Drop" in location.filter_tags or "FlyingPot" in location.filter_tags or "SmallCrate" in location.filter_tags or "RupeeTower" in location.filter_tags:
+        if "Pot" in location.filter_tags or "Crate" in location.filter_tags or "Drop" in location.filter_tags or "FlyingPot" in location.filter_tags or "SmallCrate" in location.filter_tags or "RupeeTower" in location.filter_tags or "Beehive" in location.filter_tags:
             type = 6
         else:
             type = 2

@@ -29,7 +29,6 @@
     "Fish": "'Fish' or Buy_Fish",
     "Fairy": "'Fairy' or Buy_Fairys_Spirit",
     # "Big_Poe": "'Big Poe'",
-
     "has_bombchus": "(Buy_Bombchu_5 or Buy_Bombchu_10 or Buy_Bombchu_20 or Bombchu_Drop) and (bombchus_in_logic or Bomb_Bag)",
     "found_bombchus": "(bombchus_in_logic and (Bombchus or Bombchus_5 or Bombchus_10 or Bombchus_20)) or (not bombchus_in_logic and Bomb_Bag)",
     "has_explosives": "Bombs or (bombchus_in_logic and has_bombchus)",
@@ -61,6 +60,7 @@
             or (for_age == adult and (Bow or Hookshot))
             or (for_age == both and (Slingshot or Boomerang) and (Bow or Hookshot))
             or (for_age == either and (Slingshot or Boomerang or Bow or Hookshot))",
+    "can_break_beehive": "has_explosives or can_use(Boomerang) or can_use(Bow) or can_use(Hookshot)",
 
     # can_use and helpers
     # The parser reduces this to smallest form based on item category.
