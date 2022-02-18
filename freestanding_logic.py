@@ -24,7 +24,7 @@ for file in files:
                 locations.append(location)
                 if location_table.get(location):
                     if location_table.get(location)[5]:
-                        if 'ActorOverride' in location_table.get(location)[0] or 'Freestanding' in location_table.get(location)[5] or 'ActorOverride' in location_table.get(location)[5] or 'RupeeTower' in location_table.get(location)[5]:
+                        if 'ActorOverride' in location_table.get(location)[0] or 'Freestanding' in location_table.get(location)[5] or 'ActorOverride' in location_table.get(location)[5] or 'RupeeTower' in location_table.get(location)[5] or 'Beehive' in location_table.get(location)[5]:
                             if not printed_region_name:
                                 print(region.get("region_name"))
                                 new_check_file.write(region.get("region_name") + "\n")
