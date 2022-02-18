@@ -657,6 +657,23 @@ location_table = OrderedDict([
     ("OGC Great Fairy Reward",                                       ("Cutscene",     0xFF,  0x15, None,                        'Double Defense',                        ("Outside Ganon's Castle", "Market", "Fairies"))),
     ("OGC GS",                                                       ("GS Token",     0x0E,  0x01, None,                        'Gold Skulltula Token',                  ("Outside Ganon's Castle", "Skulltulas",))),
 
+    # Grotto Beehives
+    ("HF Near Market Grotto Beehive",                                ("Collectable",  0x3E, 0x60, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("HF Open Grotto Beehive",                                       ("Collectable",  0x3E, 0x63, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("HF Southeast Grotto Beehive",                                  ("Collectable",  0x3E, 0x62, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("HF Inside Fence Grotto Beehive",                               ("Collectable",  0x3E, 0x66, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("KF Storms Grotto Beehive",                                     ("Collectable",  0x3E, 0x6C, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("LW Near Shortcuts Grotto Beehive",                             ("Collectable",  0x3E, 0x74, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("LLR Grotto Beehive",                                           ("Collectable",  0x3E, 0x7C, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("Kak Open Grotto Beehive",                                      ("Collectable",  0x3E, 0x68, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("DMT Cow Grotto Beehive",                                       ("Collectable",  0x3E, 0x78, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("DMT Storms Grotto Beehive",                                    ("Collectable",  0x3E, 0x77, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("DMC Upper Grotto Beehive",                                     ("Collectable",  0x3E, 0x7A, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("DMC Hammer Grotto Beehive",                                    ("Collectable",  0x3E, 0x79, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("ZR Open Grotto Beehive",                                       ("Collectable",  0x3E, 0x69, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("LH Grotto Beehive",                                            ("Collectable",  0x3E, 0x6F, None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    
+
     ## Dungeons
     # Deku Tree vanilla
     ("Deku Tree Map Chest",                                          ("Chest",        0x00,  0x03, None,                        'Map (Deku Tree)',                       ("Deku Tree", "Vanilla",))),

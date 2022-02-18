@@ -186,14 +186,13 @@
         "exits": {
             "Kokiri Forest": "True"
         }
-        
     },
     {
         "region_name": "KF House of Twins",
         "scene": "KF House of Twins",
         "locations": {
-            "KF Twins House Pot 1" : "True",
-            "KF Twins House Pot 2" : "True"
+            "KF Twins House Pot 1": "True",
+            "KF Twins House Pot 2": "True"
         },
         "exits": {
             "Kokiri Forest": "True"
@@ -203,8 +202,8 @@
         "region_name": "KF Know It All House",
         "scene": "KF Know it All House",
         "locations": {
-            "KF Know-it-all Brothers House Pot 1" : "True",
-            "KF Know-it-all Brothers House Pot 2" : "True"
+            "KF Know-it-all Brothers House Pot 1": "True",
+            "KF Know-it-all Brothers House Pot 2": "True"
         },
         "exits": {
             "Kokiri Forest": "True"
@@ -276,14 +275,14 @@
         "hint": "the Lost Woods",
         "locations": {
             "LW Under Boulder Rupee": "here(can_blast_or_smash)",
-            "LW Water Rupee 1" : "is_child and (can_dive or can_use(Boomerang))",
-            "LW Water Rupee 2" : "is_child and (can_dive or can_use(Boomerang))",
-            "LW Water Rupee 3" : "is_child and (can_dive or can_use(Boomerang))",
-            "LW Water Rupee 4" : "is_child and (can_dive or can_use(Boomerang))",
-            "LW Water Rupee 5" : "is_child and (can_dive or can_use(Boomerang))",
-            "LW Water Rupee 6" : "is_child and (can_dive or can_use(Boomerang))",
-            "LW Water Rupee 7" : "is_child and (can_dive or can_use(Boomerang))",
-            "LW Water Rupee 8" : "is_child and (can_dive or can_use(Boomerang))",
+            "LW Water Rupee 1": "is_child and (can_dive or can_use(Boomerang))",
+            "LW Water Rupee 2": "is_child and (can_dive or can_use(Boomerang))",
+            "LW Water Rupee 3": "is_child and (can_dive or can_use(Boomerang))",
+            "LW Water Rupee 4": "is_child and (can_dive or can_use(Boomerang))",
+            "LW Water Rupee 5": "is_child and (can_dive or can_use(Boomerang))",
+            "LW Water Rupee 6": "is_child and (can_dive or can_use(Boomerang))",
+            "LW Water Rupee 7": "is_child and (can_dive or can_use(Boomerang))",
+            "LW Water Rupee 8": "is_child and (can_dive or can_use(Boomerang))",
             "LW Deku Scrub Near Deku Theater Right": "is_child and can_stun_deku",
             "LW Deku Scrub Near Deku Theater Left": "is_child and can_stun_deku",
             "LW GS Above Theater": "
@@ -455,7 +454,8 @@
             "Water Temple Lobby": "
                 can_use(Hookshot) and
                 (can_use(Iron_Boots) or
-                    ((can_use(Longshot) or logic_water_hookshot_entry) and (Progressive_Scale, 2)))",
+                    ((can_use(Longshot) or logic_water_hookshot_entry) and (Progressive_Scale,
+            2)))",
             "LH Grotto": "True"
         }
     },
@@ -487,7 +487,8 @@
         },
         "locations": {
             "LH Lab Dive": "
-                (Progressive_Scale, 2) or
+                (Progressive_Scale,
+            2) or
                 (logic_lab_diving and Iron_Boots and can_use(Hookshot))",
             "LH Lab Dive Rupee 1": "(Progressive_Scale, 2) or can_use(Iron_Boots)",
             "LH Lab Dive Rupee 2": "(Progressive_Scale, 2) or can_use(Iron_Boots)",
@@ -539,7 +540,7 @@
             "GV Waterfall Freestanding PoH": "True",
             "GV GS Bean Patch": "can_plant_bugs and can_child_attack",
             "GV Cow": "is_child and can_play(Eponas_Song)",
-            "GV Crate Near Cow" : "is_child",
+            "GV Crate Near Cow": "is_child",
             "GV Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Bean Plant Fairy": "can_plant_bean and can_play(Song_of_Storms) and has_bottle"
@@ -647,36 +648,36 @@
                 is_adult and at_night and 
                 (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or
                     can_use(Hover_Boots) or logic_gerudo_kitchen)",
-            "GF Adult Crate Purple Rupee" : "can_use(Hookshot)",
-            "Hideout Break Room Pot 1" : "(can_use(Hover_Boots) or can_use(Scarecrow) or can_use(Longshot)) and (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot))",
-            "Hideout Break Room Pot 2" : "(can_use(Hover_Boots) or can_use(Scarecrow) or can_use(Longshot)) and (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot))",
-            "Hideout Break Room Crate 1":"(can_use(Hover_Boots) or can_use(Scarecrow) or can_use(Longshot)) and (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot))",
-            "Hideout Break Room Crate 2":"(can_use(Hover_Boots) or can_use(Scarecrow) or can_use(Longshot)) and (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot))",
-            "Hideout Break Room Crate 3":"(can_use(Hover_Boots) or can_use(Scarecrow) or can_use(Longshot)) and (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot))",
-            "Hideout Break Room Crate 4":"(can_use(Hover_Boots) or can_use(Scarecrow) or can_use(Longshot)) and (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot))",
-            "Hideout 1 Torch Jail Pot 1" : "True",
-            "Hideout 1 Torch Jail Pot 2" : "True",
-            "Hideout 1 Torch Jail Pot 3" : "True",
-            "Hideout 1 Torch Crate" : "True",
-            "Hideout Kitchen Pot 1" : "Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)",
-            "Hideout Kitchen Pot 2" : "Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)",
-            "Hideout Near Kitchen Crate 1" : "Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)",
-            "Hideout Near Kitchen Crate 2" : "True",
-            "Hideout Near Kitchen Crate 3" : "True",
-            "Hideout Near Kitchen Crate 4" : "True",
-            "Hideout Near Kitchen Crate 5" : "True",
-            "Hideout 4 Torch Jail Pot 1" : "True",
-            "Hideout 4 Torch Jail Pot 2" : "True",
-            "Hideout 3 Torch Crate" : "(Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or can_use(Hover_Boots) or logic_gerudo_kitchen)",
-            "Hideout 2 Torch Jail Pot 1" : "True",
-            "Hideout 2 Torch Jail Pot 2" : "True",
-            "Hideout 2 Torch Jail Pot 3" : "True",
-            "Hideout 2 Torch Jail In Cell Pot 1" : "True",
-            "Hideout 2 Torch Jail In Cell Pot 2" : "True",
-            "Hideout 2 Torch Jail In Cell Pot 3" : "True",
-            "Hideout 2 Torch Jail In Cell Pot 4" : "True",
-            "Hideout 2 Torch Crate 1" : "True",
-            "Hideout 2 Torch Crate 2" : "True"
+            "GF Adult Crate Purple Rupee": "can_use(Hookshot)",
+            "Hideout Break Room Pot 1": "(can_use(Hover_Boots) or can_use(Scarecrow) or can_use(Longshot)) and (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot))",
+            "Hideout Break Room Pot 2": "(can_use(Hover_Boots) or can_use(Scarecrow) or can_use(Longshot)) and (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot))",
+            "Hideout Break Room Crate 1": "(can_use(Hover_Boots) or can_use(Scarecrow) or can_use(Longshot)) and (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot))",
+            "Hideout Break Room Crate 2": "(can_use(Hover_Boots) or can_use(Scarecrow) or can_use(Longshot)) and (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot))",
+            "Hideout Break Room Crate 3": "(can_use(Hover_Boots) or can_use(Scarecrow) or can_use(Longshot)) and (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot))",
+            "Hideout Break Room Crate 4": "(can_use(Hover_Boots) or can_use(Scarecrow) or can_use(Longshot)) and (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot))",
+            "Hideout 1 Torch Jail Pot 1": "True",
+            "Hideout 1 Torch Jail Pot 2": "True",
+            "Hideout 1 Torch Jail Pot 3": "True",
+            "Hideout 1 Torch Crate": "True",
+            "Hideout Kitchen Pot 1": "Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)",
+            "Hideout Kitchen Pot 2": "Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)",
+            "Hideout Near Kitchen Crate 1": "Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)",
+            "Hideout Near Kitchen Crate 2": "True",
+            "Hideout Near Kitchen Crate 3": "True",
+            "Hideout Near Kitchen Crate 4": "True",
+            "Hideout Near Kitchen Crate 5": "True",
+            "Hideout 4 Torch Jail Pot 1": "True",
+            "Hideout 4 Torch Jail Pot 2": "True",
+            "Hideout 3 Torch Crate": "(Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or can_use(Hover_Boots) or logic_gerudo_kitchen)",
+            "Hideout 2 Torch Jail Pot 1": "True",
+            "Hideout 2 Torch Jail Pot 2": "True",
+            "Hideout 2 Torch Jail Pot 3": "True",
+            "Hideout 2 Torch Jail In Cell Pot 1": "True",
+            "Hideout 2 Torch Jail In Cell Pot 2": "True",
+            "Hideout 2 Torch Jail In Cell Pot 3": "True",
+            "Hideout 2 Torch Jail In Cell Pot 4": "True",
+            "Hideout 2 Torch Crate 1": "True",
+            "Hideout 2 Torch Crate 2": "True"
         },
         "exits": {
             "GV Fortress Side": "True",
@@ -720,12 +721,12 @@
                 Progressive_Wallet and 
                 (is_adult or Sticks or Kokiri_Sword)",
             "Wasteland GS": "can_use(Hookshot) or can_use(Boomerang)",
-            "Wasteland Near GS Pot 1" : "True",
-            "Wasteland Near GS Pot 2" : "True",
-            "Wasteland Near GS Pot 3" : "True",
-            "Wasteland Crate After Quicksand 1" : "True",
-            "Wasteland Crate After Quicksand 2" : "True",
-            "Wasteland Crate After Quicksand 3" : "True",
+            "Wasteland Near GS Pot 1": "True",
+            "Wasteland Near GS Pot 2": "True",
+            "Wasteland Near GS Pot 3": "True",
+            "Wasteland Crate After Quicksand 1": "True",
+            "Wasteland Crate After Quicksand 2": "True",
+            "Wasteland Crate After Quicksand 3": "True",
             "Fairy Pot": "has_bottle",
             "Nut Pot": "True"
         },
@@ -740,8 +741,8 @@
         "font_color": "Yellow",
         "scene": "Haunted Wasteland",
         "hint": "the Haunted Wasteland",
-        "locations" : {
-            "Wasteland Crate Near Colossus" : "True"
+        "locations": {
+            "Wasteland Crate Near Colossus": "True"
         },
         "exits": {
             "Desert Colossus": "True",
@@ -824,11 +825,11 @@
             "Market Back Alley": "is_child"
         },
         "locations": {
-            "Market Night Crate Red Rupee" : "is_child and at_night",
-            "Market Night Crate Green Rupee 1" : "is_child and at_night",
-            "Market Night Crate Green Rupee 2" : "is_child and at_night",
-            "Market Night Crate Green Rupee 3" : "is_child and at_night",
-            "Market Richards House Crate Rupee 1" : "is_child"
+            "Market Night Crate Red Rupee": "is_child and at_night",
+            "Market Night Crate Green Rupee 1": "is_child and at_night",
+            "Market Night Crate Green Rupee 2": "is_child and at_night",
+            "Market Night Crate Green Rupee 3": "is_child and at_night",
+            "Market Richards House Crate Rupee 1": "is_child"
         }
     },
     {
@@ -983,29 +984,29 @@
             "Market 10 Big Poes": "
                 is_adult and 
                 (Big_Poe or (Bottle_with_Big_Poe, big_poe_count))",
-            "Market Guard House Crate Rupee" : "is_child",
-            "Market Guard House Child Pot 1": "is_child", 
-            "Market Guard House Child Pot 2": "is_child", 
-            "Market Guard House Child Pot 3": "is_child", 
-            "Market Guard House Child Pot 4": "is_child", 
-            "Market Guard House Child Pot 5": "is_child", 
-            "Market Guard House Child Pot 6": "is_child", 
-            "Market Guard House Child Pot 7": "is_child", 
-            "Market Guard House Child Pot 8": "is_child", 
-            "Market Guard House Child Pot 9": "is_child", 
-            "Market Guard House Child Pot 10": "is_child", 
-            "Market Guard House Child Pot 11": "is_child", 
-            "Market Guard House Child Pot 12": "is_child", 
-            "Market Guard House Child Pot 13": "is_child", 
-            "Market Guard House Child Pot 14": "is_child", 
-            "Market Guard House Child Pot 15": "is_child", 
-            "Market Guard House Child Pot 16": "is_child", 
-            "Market Guard House Child Pot 17": "is_child", 
-            "Market Guard House Child Pot 18": "is_child", 
-            "Market Guard House Child Pot 19": "is_child", 
-            "Market Guard House Child Pot 20": "is_child", 
-            "Market Guard House Child Pot 21": "is_child", 
-            "Market Guard House Child Pot 22": "is_child", 
+            "Market Guard House Crate Rupee": "is_child",
+            "Market Guard House Child Pot 1": "is_child",
+            "Market Guard House Child Pot 2": "is_child",
+            "Market Guard House Child Pot 3": "is_child",
+            "Market Guard House Child Pot 4": "is_child",
+            "Market Guard House Child Pot 5": "is_child",
+            "Market Guard House Child Pot 6": "is_child",
+            "Market Guard House Child Pot 7": "is_child",
+            "Market Guard House Child Pot 8": "is_child",
+            "Market Guard House Child Pot 9": "is_child",
+            "Market Guard House Child Pot 10": "is_child",
+            "Market Guard House Child Pot 11": "is_child",
+            "Market Guard House Child Pot 12": "is_child",
+            "Market Guard House Child Pot 13": "is_child",
+            "Market Guard House Child Pot 14": "is_child",
+            "Market Guard House Child Pot 15": "is_child",
+            "Market Guard House Child Pot 16": "is_child",
+            "Market Guard House Child Pot 17": "is_child",
+            "Market Guard House Child Pot 18": "is_child",
+            "Market Guard House Child Pot 19": "is_child",
+            "Market Guard House Child Pot 20": "is_child",
+            "Market Guard House Child Pot 21": "is_child",
+            "Market Guard House Child Pot 22": "is_child",
             "Market Guard House Adult Pot 1": "is_adult",
             "Market Guard House Adult Pot 2": "is_adult",
             "Market Guard House Adult Pot 3": "is_adult",
@@ -1162,19 +1163,19 @@
                     (logic_kakariko_tower_gs and (Sticks or Kokiri_Sword) and
                     can_take_damage)) and at_night",
             "Bug Rock": "has_bottle",
-            "Kak Near Potion Shop Pot 1" : "is_child",
-            "Kak Near Potion Shop Pot 2" : "is_child",
-            "Kak Near Potion Shop Pot 3" : "is_child",
-            "Kak Near Impas House Pot 1" : "is_child",
-            "Kak Near Impas House Pot 2" : "is_child",
-            "Kak Near Impas House Pot 3" : "is_child",
-            "Kak Near Guards House Pot 1" : "is_child",
-            "Kak Near Guards House Pot 2" : "is_child",
-            "Kak Near Guards House Pot 3" : "is_child",
-            "Kak Near Odd Medicine Building Pot 1" : "is_child",
-            "Kak Near Odd Medicine Building Pot 2" : "is_child",
+            "Kak Near Potion Shop Pot 1": "is_child",
+            "Kak Near Potion Shop Pot 2": "is_child",
+            "Kak Near Potion Shop Pot 3": "is_child",
+            "Kak Near Impas House Pot 1": "is_child",
+            "Kak Near Impas House Pot 2": "is_child",
+            "Kak Near Impas House Pot 3": "is_child",
+            "Kak Near Guards House Pot 1": "is_child",
+            "Kak Near Guards House Pot 2": "is_child",
+            "Kak Near Guards House Pot 3": "is_child",
+            "Kak Near Odd Medicine Building Pot 1": "is_child",
+            "Kak Near Odd Medicine Building Pot 2": "is_child",
             "Kak Adult Crate Red Rupee": "is_adult",
-            "Kak Adult Crate Arrows" : "is_adult"
+            "Kak Adult Crate Arrows": "is_adult"
         },
         "exits": {
             "Hyrule Field": "True",
@@ -1456,12 +1457,12 @@
             "Graveyard Dampe Race Rupee 6": "True",
             "Graveyard Dampe Race Rupee 7": "True",
             "Graveyard Dampe Race Rupee 8": "True",
-            "Grave Dampe Pot 1" : "True",
-            "Grave Dampe Pot 2" : "True",
-            "Grave Dampe Pot 3" : "True",
-            "Grave Dampe Pot 4" : "True",
-            "Grave Dampe Pot 5" : "True",
-            "Grave Dampe Pot 6" : "True",
+            "Grave Dampe Pot 1": "True",
+            "Grave Dampe Pot 2": "True",
+            "Grave Dampe Pot 3": "True",
+            "Grave Dampe Pot 4": "True",
+            "Grave Dampe Pot 5": "True",
+            "Grave Dampe Pot 6": "True",
             "Graveyard Hookshot Chest": "True",
             "Graveyard Dampe Race Freestanding PoH": "is_adult or logic_child_dampe_race_poh",
             "Nut Pot": "True"
@@ -1628,10 +1629,10 @@
             "GC Spinning Pot Rupee Drop 3": "
             is_child and 'Goron City Child Fire' and
             (Bombs or (Progressive_Strength_Upgrade and logic_goron_city_pot_with_strength) or (has_bombchus and logic_goron_city_pot))",
-            "GC Spinning Pot PoH Drop Rupee 1" : "
+            "GC Spinning Pot PoH Drop Rupee 1": "
             is_child and 'Goron City Child Fire' and
             (Bombs or (Progressive_Strength_Upgrade and logic_goron_city_pot_with_strength) or (has_bombchus and logic_goron_city_pot))",
-            "GC Spinning Pot PoH Drop Rupee 2" : "
+            "GC Spinning Pot PoH Drop Rupee 2": "
             is_child and 'Goron City Child Fire' and
             (Bombs or (Progressive_Strength_Upgrade and logic_goron_city_pot_with_strength) or (has_bombchus and logic_goron_city_pot))",
             "GC Rolling Goron as Child": "
@@ -1647,7 +1648,7 @@
             "GC Upper Staircase Pot 2": "True",
             "GC Upper Staircase Pot 3": "True",
             "GC Medigoron Pot": "can_blast_or_smash or Progressive_Strength_Upgrade",
-            "GC Boulder Maze Crate" : "(can_blast_or_smash or can_use(Silver_Gauntlets))",
+            "GC Boulder Maze Crate": "(can_blast_or_smash or can_use(Silver_Gauntlets))",
             "GC GS Boulder Maze": "is_child and has_explosives",
             "GC GS Center Platform": "is_adult",
             "GC Maze Gossip Stone": "
@@ -1703,9 +1704,9 @@
         },
         "locations": {
             "GC Darunias Joy": "is_child and can_play(Sarias_Song)",
-            "GC Darunia Pot 1" : "True",
-            "GC Darunia Pot 2" : "True",
-            "GC Darunia Pot 3" : "True"
+            "GC Darunia Pot 1": "True",
+            "GC Darunia Pot 2": "True",
+            "GC Darunia Pot 3": "True"
         },
         "exits": {
             "Goron City": "True",
@@ -1768,7 +1769,7 @@
         "exits": {
             "DMC Upper Nearby": "True",
             "DMC Ladder Area Nearby": "True",
-            "DMC Pierre Platform":"True",
+            "DMC Pierre Platform": "True",
             "DMC Central Nearby": "
                 can_use(Goron_Tunic) and can_use(Longshot) and 
                 ((damage_multiplier != 'ohko' and damage_multiplier != 'quadruple') or 
@@ -1776,18 +1777,18 @@
         }
     },
     {
-        "region_name" : "DMC Pierre Platform",
+        "region_name": "DMC Pierre Platform",
         "font_color": "Red",
-        "scene" : "Death Mountain Crater",
+        "scene": "Death Mountain Crater",
         "hint": "Death Mountain Crater",
         "locations": {
-            "DMC Pierre Rupee Circle Green Rupee 1" : "here(is_adult)",
-            "DMC Pierre Rupee Circle Green Rupee 2" : "here(is_adult)",
-            "DMC Pierre Rupee Circle Green Rupee 3" : "here(is_adult)",
-            "DMC Pierre Rupee Circle Green Rupee 4" : "here(is_adult)",
-            "DMC Pierre Rupee Circle Green Rupee 5" : "here(is_adult)",
-            "DMC Pierre Rupee Circle Green Rupee 6" : "here(is_adult)",
-            "DMC Pierre Rupee Circle Red Rupee" : "here(is_adult)"
+            "DMC Pierre Rupee Circle Green Rupee 1": "here(is_adult)",
+            "DMC Pierre Rupee Circle Green Rupee 2": "here(is_adult)",
+            "DMC Pierre Rupee Circle Green Rupee 3": "here(is_adult)",
+            "DMC Pierre Rupee Circle Green Rupee 4": "here(is_adult)",
+            "DMC Pierre Rupee Circle Green Rupee 5": "here(is_adult)",
+            "DMC Pierre Rupee Circle Green Rupee 6": "here(is_adult)",
+            "DMC Pierre Rupee Circle Red Rupee": "here(is_adult)"
         }
     },
     {
@@ -1811,10 +1812,10 @@
         "scene": "Death Mountain Crater",
         "hint": "Death Mountain Crater",
         "locations": {
-            "DMC Near GC Pot 1" : "is_adult",
-            "DMC Near GC Pot 2" : "is_adult",
-            "DMC Near GC Pot 3" : "is_adult",
-            "DMC Near GC Pot 4" : "is_adult"
+            "DMC Near GC Pot 1": "is_adult",
+            "DMC Near GC Pot 2": "is_adult",
+            "DMC Near GC Pot 3": "is_adult",
+            "DMC Near GC Pot 4": "is_adult"
         },
         "exits": {
             "DMC Lower Local": "can_use(Goron_Tunic)",
@@ -1847,8 +1848,8 @@
                 is_adult and
                 (here(can_plant_bean) or 
                     (logic_crater_bean_poh_with_hovers and Hover_Boots))",
-            "DMC Lower Red Rupee 1" : "here(is_child)",
-            "DMC Lower Red Rupee 2" : "here(is_child)",
+            "DMC Lower Red Rupee 1": "here(is_child)",
+            "DMC Lower Red Rupee 2": "here(is_child)",
             "DMC Lower Blue Rupee 1": "here(is_child)",
             "DMC Lower Blue Rupee 2": "here(is_child)",
             "DMC Lower Blue Rupee 3": "here(is_child)",
@@ -1943,10 +1944,10 @@
                 is_child or can_use(Hover_Boots) or (is_adult and logic_zora_river_lower)",
             "ZR Near Domain Freestanding PoH": "
                 is_child or can_use(Hover_Boots) or (is_adult and logic_zora_river_upper)",
-            "ZR Waterfall Rupee 1":"is_adult",
-            "ZR Waterfall Rupee 2":"is_adult",
-            "ZR Waterfall Rupee 3":"is_adult",
-            "ZR Waterfall Rupee 4":"is_adult",
+            "ZR Waterfall Rupee 1": "is_adult",
+            "ZR Waterfall Rupee 2": "is_adult",
+            "ZR Waterfall Rupee 3": "is_adult",
+            "ZR Waterfall Rupee 4": "is_adult",
             "ZR GS Ladder": "is_child and at_night and can_child_attack",
             "ZR GS Near Raised Grottos": "can_use(Hookshot) and at_night",
             "ZR GS Above Bridge": "can_use(Hookshot) and at_night",
@@ -2013,11 +2014,11 @@
             "ZD Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle",
             "Fish Group": "is_child and has_bottle",
-            "ZD Pot 1" : "True",
-            "ZD Pot 2" : "True",
-            "ZD Pot 3" : "True",
-            "ZD Pot 4" : "True",
-            "ZD Pot 5" : "True",
+            "ZD Pot 1": "True",
+            "ZD Pot 2": "True",
+            "ZD Pot 3": "True",
+            "ZD Pot 4": "True",
+            "ZD Pot 5": "True",
             "Stick Pot": "is_child",
             "Nut Pot": "True"
         },
@@ -2062,31 +2063,31 @@
             "ZF Iceberg Freestanding PoH": "is_adult",
             "ZF Bottom Freestanding PoH": "
                 is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Freestanding Rupee 1" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Freestanding Rupee 2" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Freestanding Rupee 3" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Freestanding Rupee 4" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Freestanding Rupee 5" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Freestanding Rupee 6" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Freestanding Rupee 7" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Freestanding Rupee 8" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Freestanding Rupee 9" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Freestanding Rupee 10" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Freestanding Rupee 11" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Freestanding Rupee 12" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Freestanding Rupee 13" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Freestanding Rupee 14" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Freestanding Rupee 15" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Freestanding Rupee 16" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Freestanding Rupee 17" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Freestanding Rupee 18" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Hidden Cave Pot 1" : "can_use(Silver_Gauntlets) and can_blast_or_smash",
-            "ZF Hidden Cave Pot 2" : "can_use(Silver_Gauntlets) and can_blast_or_smash",
-            "ZF Hidden Cave Pot 3" : "can_use(Silver_Gauntlets) and can_blast_or_smash",
-            "ZF Near Jabu Pot 1" : "is_child",
-            "ZF Near Jabu Pot 2" : "is_child",
-            "ZF Near Jabu Pot 3" : "is_child",
-            "ZF Near Jabu Pot 4" : "is_child",
+            "ZF Bottom Freestanding Rupee 1": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 2": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 3": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 4": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 5": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 6": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 7": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 8": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 9": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 10": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 11": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 12": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 13": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 14": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 15": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 16": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 17": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 18": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Hidden Cave Pot 1": "can_use(Silver_Gauntlets) and can_blast_or_smash",
+            "ZF Hidden Cave Pot 2": "can_use(Silver_Gauntlets) and can_blast_or_smash",
+            "ZF Hidden Cave Pot 3": "can_use(Silver_Gauntlets) and can_blast_or_smash",
+            "ZF Near Jabu Pot 1": "is_child",
+            "ZF Near Jabu Pot 2": "is_child",
+            "ZF Near Jabu Pot 3": "is_child",
+            "ZF Near Jabu Pot 4": "is_child",
             "ZF GS Tree": "is_child",
             "ZF GS Above the Log": "can_use(Boomerang) and at_night",
             "ZF GS Hidden Cave": "
@@ -2156,13 +2157,13 @@
             "LLR GS Rain Shed": "is_child and at_night",
             "LLR GS House Window": "can_use(Boomerang) and at_night",
             "LLR GS Back Wall": "can_use(Boomerang) and at_night",
-            "LLR Front Pot 1" : "is_child",
-            "LLR Front Pot 2" : "is_child",
-            "LLR Front Pot 3" : "is_child",
-            "LLR Front Pot 4" : "is_child",
-            "LLR Rain Shed Pot 1" : "is_child",
-            "LLR Rain Shed Pot 2" : "is_child",
-            "LLR Rain Shed Pot 3" : "is_child",
+            "LLR Front Pot 1": "is_child",
+            "LLR Front Pot 2": "is_child",
+            "LLR Front Pot 3": "is_child",
+            "LLR Front Pot 4": "is_child",
+            "LLR Rain Shed Pot 1": "is_child",
+            "LLR Rain Shed Pot 2": "is_child",
+            "LLR Rain Shed Pot 3": "is_child",
             "LLR Child Crate": "is_child"
         },
         "exits": {
@@ -2178,9 +2179,9 @@
         "scene": "LLR Talons House",
         "locations": {
             "LLR Talons Chickens": "is_child and at_day and Zeldas_Letter",
-            "LLR Talons House Pot 1" : "True",
-            "LLR Talons House Pot 2" : "True",
-            "LLR Talons House Pot 3" : "True"
+            "LLR Talons House Pot 1": "True",
+            "LLR Talons House Pot 2": "True",
+            "LLR Talons House Pot 3": "True"
         },
         "exits": {
             "Lon Lon Ranch": "True"
@@ -2215,31 +2216,31 @@
         "locations": {
             "Ganons Tower Boss Key Chest": "True"
         },
-        "exits" : {
-            "Ganons Castle Lobby" : "True",
-            "Ganondorf Fight" : "Boss_Key_Ganons_Castle"
+        "exits": {
+            "Ganons Castle Lobby": "True",
+            "Ganondorf Fight": "Boss_Key_Ganons_Castle"
         }
     },
     {
         "region_name": "Ganondorf Fight",
-        "dungeon" : "Ganons Castle",
+        "dungeon": "Ganons Castle",
         "hint": "Ganondorf Fight",
         "locations": {
             "Ganondorf Hint": "Boss_Key_Ganons_Castle",
-            "Ganons Tower Pot 1" : "Boss_Key_Ganons_Castle",
-            "Ganons Tower Pot 2" : "Boss_Key_Ganons_Castle",
-            "Ganons Tower Pot 3" : "Boss_Key_Ganons_Castle",
-            "Ganons Tower Pot 4" : "Boss_Key_Ganons_Castle",
-            "Ganons Tower Pot 5" : "Boss_Key_Ganons_Castle",
-            "Ganons Tower Pot 6" : "Boss_Key_Ganons_Castle",
-            "Ganons Tower Pot 7" : "Boss_Key_Ganons_Castle",
-            "Ganons Tower Pot 8" : "Boss_Key_Ganons_Castle",
-            "Ganons Tower Pot 9" : "Boss_Key_Ganons_Castle",
-            "Ganons Tower Pot 10" : "Boss_Key_Ganons_Castle",
-            "Ganons Tower Pot 11" : "Boss_Key_Ganons_Castle",
-            "Ganons Tower Pot 12" : "Boss_Key_Ganons_Castle",
-            "Ganons Tower Pot 13" : "Boss_Key_Ganons_Castle",
-            "Ganons Tower Pot 14" : "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 1": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 2": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 3": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 4": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 5": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 6": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 7": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 8": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 9": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 10": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 11": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 12": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 13": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 14": "Boss_Key_Ganons_Castle",
             "Ganon": "Boss_Key_Ganons_Castle and can_use(Light_Arrows)"
         }
     },
@@ -2268,6 +2269,7 @@
         "scene": "KF Storms Grotto",
         "locations": {
             "KF Storms Grotto Chest": "True",
+            "KF Storms Grotto Beehive": "can_break_beehive",
             "KF Storms Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2283,6 +2285,7 @@
         "scene": "LW Near Shortcuts Grotto",
         "locations": {
             "LW Near Shortcuts Grotto Chest": "True",
+            "LW Near Shortcuts Grotto Beehive": "can_break_beehive",
             "LW Near Shortcuts Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2354,7 +2357,8 @@
         "locations": {
             "LLR Deku Scrub Grotto Left": "can_stun_deku",
             "LLR Deku Scrub Grotto Right": "can_stun_deku",
-            "LLR Deku Scrub Grotto Center": "can_stun_deku"
+            "LLR Deku Scrub Grotto Center": "can_stun_deku",
+            "LLR Grotto Beehive": "can_break_beehive"
         },
         "exits": {
             "Lon Lon Ranch": "True"
@@ -2365,6 +2369,7 @@
         "scene": "HF Southeast Grotto",
         "locations": {
             "HF Southeast Grotto Chest": "True",
+            "HF Southeast Grotto Beehive": "can_break_beehive",
             "HF Southeast Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2380,6 +2385,7 @@
         "scene": "HF Open Grotto",
         "locations": {
             "HF Open Grotto Chest": "True",
+            "HF Open Grotto Beehive": "can_break_beehive",
             "HF Open Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2394,7 +2400,8 @@
         "region_name": "HF Inside Fence Grotto",
         "scene": "HF Inside Fence Grotto",
         "locations": {
-            "HF Deku Scrub Grotto": "can_stun_deku"
+            "HF Deku Scrub Grotto": "can_stun_deku",
+            "HF Inside Fence Grotto Beehive": "can_break_beehive"
         },
         "exits": {
             "Hyrule Field": "True"
@@ -2407,8 +2414,8 @@
             "HF GS Cow Grotto": "
                 has_fire_source and (can_use(Hookshot) or can_use(Boomerang))",
             "HF Cow Grotto Cow": "has_fire_source and can_play(Eponas_Song)",
-            "HF Cow Grotto Pot 1" : "has_fire_source",
-            "HF Cow Grotto Pot 2" : "has_fire_source",
+            "HF Cow Grotto Pot 1": "has_fire_source",
+            "HF Cow Grotto Pot 2": "has_fire_source",
             "HF Cow Grotto Gossip Stone": "has_fire_source",
             "Gossip Stone Fairy": "has_fire_source and can_summon_gossip_fairy and has_bottle",
             "Bug Shrub": "has_fire_source and can_cut_shrubs and has_bottle",
@@ -2423,6 +2430,7 @@
         "scene": "HF Near Market Grotto",
         "locations": {
             "HF Near Market Grotto Chest": "True",
+            "HF Near Market Grotto Beehive": "can_break_beehive",
             "HF Near Market Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2458,7 +2466,8 @@
         "scene": "HF Tektite Grotto",
         "locations": {
             "HF Tektite Grotto Freestanding PoH": "
-                (Progressive_Scale, 2) or can_use(Iron_Boots)"
+                (Progressive_Scale,
+            2) or can_use(Iron_Boots)"
         },
         "exits": {
             "Hyrule Field": "True"
@@ -2471,10 +2480,10 @@
             "HC GS Storms Grotto": "
                 (can_blast_or_smash or (is_child and logic_castle_storms_gs)) and
                 (can_use(Boomerang) or can_use(Hookshot))",
-            "HC Storms Grotto Pot 1" : "can_blast_or_smash",
-            "HC Storms Grotto Pot 2" : "can_blast_or_smash",
-            "HC Storms Grotto Pot 3" : "can_blast_or_smash",
-            "HC Storms Grotto Pot 4" : "can_blast_or_smash",
+            "HC Storms Grotto Pot 1": "can_blast_or_smash",
+            "HC Storms Grotto Pot 2": "can_blast_or_smash",
+            "HC Storms Grotto Pot 3": "can_blast_or_smash",
+            "HC Storms Grotto Pot 4": "can_blast_or_smash",
             "HC Storms Grotto Gossip Stone": "can_blast_or_smash",
             "Gossip Stone Fairy": "can_blast_or_smash and can_summon_gossip_fairy and has_bottle",
             "Wandering Bugs": "can_blast_or_smash and has_bottle",
@@ -2502,6 +2511,7 @@
         "locations": {
             "Kak Open Grotto Chest": "True",
             "Kak Open Grotto Gossip Stone": "True",
+            "Kak Open Grotto Beehive": "can_break_beehive",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
             "Bug Shrub": "can_cut_shrubs and has_bottle",
@@ -2526,7 +2536,8 @@
             "DMT Cow Grotto Recovery Heart 1": "True",
             "DMT Cow Grotto Recovery Heart 2": "True",
             "DMT Cow Grotto Recovery Heart 3": "True",
-            "DMT Cow Grotto Recovery Heart 4": "True"
+            "DMT Cow Grotto Recovery Heart 4": "True",
+            "DMT Cow Grotto Beehive": "can_break_beehive"
         },
         "exits": {
             "Death Mountain Summit": "True"
@@ -2564,6 +2575,7 @@
         "scene": "DMC Upper Grotto",
         "locations": {
             "DMC Upper Grotto Chest": "True",
+            "DMC Upper Grotto Beehive": "can_break_beehive",
             "DMC Upper Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2580,7 +2592,8 @@
         "locations": {
             "DMC Deku Scrub Grotto Left": "can_stun_deku",
             "DMC Deku Scrub Grotto Right": "can_stun_deku",
-            "DMC Deku Scrub Grotto Center": "can_stun_deku"
+            "DMC Deku Scrub Grotto Center": "can_stun_deku",
+            "DMC Hammer Grotto Beehive": "can_break_beehive"
         },
         "exits": {
             "DMC Lower Local": "True"
@@ -2591,6 +2604,7 @@
         "scene": "ZR Open Grotto",
         "locations": {
             "ZR Open Grotto Chest": "True",
+            "ZR Open Grotto Beehive": "can_break_beehive",
             "ZR Open Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2628,7 +2642,8 @@
         "locations": {
             "LH Deku Scrub Grotto Left": "can_stun_deku",
             "LH Deku Scrub Grotto Right": "can_stun_deku",
-            "LH Deku Scrub Grotto Center": "can_stun_deku"
+            "LH Deku Scrub Grotto Center": "can_stun_deku",
+            "LH Grotto Beehive": "can_break_beehive"
         },
         "exits": {
             "Lake Hylia": "True"
@@ -2648,8 +2663,8 @@
     {
         "region_name": "GV Octorok Grotto",
         "scene": "GV Octorok Grotto",
-        "locations":{
-            "GV Octorok Grotto Red Rupee" : "True",
+        "locations": {
+            "GV Octorok Grotto Red Rupee": "True",
             "GV Octorok Grotto Blue Rupee 1": "True",
             "GV Octorok Grotto Blue Rupee 2": "True",
             "GV Octorok Grotto Blue Rupee 3": "True",
