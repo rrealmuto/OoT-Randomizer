@@ -6,6 +6,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "ADULT_INIT_ITEMS": "03481D50",
     "ADULT_VALID_ITEMS": "03481D58",
     "AUDIO_THREAD_INFO": "03482FA8",
@@ -166,6 +167,16 @@
 >>>>>>> 8abecce6 (Add goron spinning pot heartpiece rupees)
     "AUTO_TRACKER_CONTEXT": "03480CD0",
     "AUTO_TRACKER_VERSION": "03480CD0",
+=======
+    "ADULT_INIT_ITEMS": "03481FD0",
+    "ADULT_VALID_ITEMS": "03481FD8",
+    "AUDIO_THREAD_INFO": "03483228",
+    "AUDIO_THREAD_INFO_MEM_SIZE": "03483244",
+    "AUDIO_THREAD_INFO_MEM_START": "03483240",
+    "AUDIO_THREAD_MEM_START": "034980A0",
+    "AUTO_TRACKER_CONTEXT": "03480CD4",
+    "AUTO_TRACKER_VERSION": "03480CD4",
+>>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
     "BOMBCHUS_IN_LOGIC": "03480CAC",
     "CFG_A_BUTTON_COLOR": "03480844",
     "CFG_A_NOTE_COLOR": "03480862",
@@ -176,16 +187,16 @@
     "CFG_B_BUTTON_COLOR": "0348084A",
     "CFG_C_BUTTON_COLOR": "03480850",
     "CFG_C_NOTE_COLOR": "03480868",
-    "CFG_DAMAGE_MULTIPLYER": "03482F14",
+    "CFG_DAMAGE_MULTIPLYER": "03482F18",
     "CFG_DISPLAY_DPAD": "0348087A",
-    "CFG_DUNGEON_INFO_ENABLE": "03480CD4",
-    "CFG_DUNGEON_INFO_MQ_ENABLE": "03480CD8",
-    "CFG_DUNGEON_INFO_MQ_NEED_MAP": "03480CDC",
-    "CFG_DUNGEON_INFO_REWARD_ENABLE": "03480CE0",
-    "CFG_DUNGEON_INFO_REWARD_NEED_ALTAR": "03480CE8",
-    "CFG_DUNGEON_INFO_REWARD_NEED_COMPASS": "03480CE4",
-    "CFG_DUNGEON_IS_MQ": "03480CFA",
-    "CFG_DUNGEON_REWARDS": "03480CEC",
+    "CFG_DUNGEON_INFO_ENABLE": "03480CD8",
+    "CFG_DUNGEON_INFO_MQ_ENABLE": "03480CDC",
+    "CFG_DUNGEON_INFO_MQ_NEED_MAP": "03480CE0",
+    "CFG_DUNGEON_INFO_REWARD_ENABLE": "03480CE4",
+    "CFG_DUNGEON_INFO_REWARD_NEED_ALTAR": "03480CEC",
+    "CFG_DUNGEON_INFO_REWARD_NEED_COMPASS": "03480CE8",
+    "CFG_DUNGEON_IS_MQ": "03480CFE",
+    "CFG_DUNGEON_REWARDS": "03480CF0",
     "CFG_HEART_COLOR": "0348083E",
     "CFG_MAGIC_COLOR": "03480838",
     "CFG_RAINBOW_BOMBCHU_TRAIL_INNER_ENABLED": "0348087F",
@@ -376,6 +387,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "CHEST_SIZE_MATCH_CONTENTS": "0348C93C",
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348C940",
     "COMPLETE_MASK_QUEST": "0348C991",
@@ -405,13 +417,19 @@
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348CA80",
     "COMPLETE_MASK_QUEST": "0348CAD1",
 >>>>>>> 8abecce6 (Add goron spinning pot heartpiece rupees)
+=======
+    "CHEST_SIZE_MATCH_CONTENTS": "0348CA94",
+    "CHEST_TEXTURE_MATCH_CONTENTS": "0348CA98",
+    "COMPLETE_MASK_QUEST": "0348CAE9",
+>>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
     "COOP_CONTEXT": "03480020",
     "COOP_VERSION": "03480020",
     "COSMETIC_CONTEXT": "03480834",
     "COSMETIC_FORMAT_VERSION": "03480834",
-    "CURRENT_GROTTO_ID": "034830E6",
-    "DEBUG_OFFSET": "03482B04",
+    "CURRENT_GROTTO_ID": "034830EA",
+    "DEBUG_OFFSET": "03482B08",
     "DISABLE_TIMERS": "03480CCC",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -537,11 +555,15 @@
 =======
     "DPAD_TEXTURE": "03492088",
 >>>>>>> 8abecce6 (Add goron spinning pot heartpiece rupees)
+=======
+    "DPAD_TEXTURE": "034920A0",
+>>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
     "DUNGEONS_SHUFFLED": "03480CCD",
     "EXTENDED_OBJECT_TABLE": "03480C8C",
-    "EXTERN_DAMAGE_MULTIPLYER": "03482F15",
+    "EXTERN_DAMAGE_MULTIPLYER": "03482F19",
     "FAST_BUNNY_HOOD_ENABLED": "03480CCF",
     "FAST_CHESTS": "03480CC6",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -843,13 +865,24 @@
     "GILDED_CHEST_BASE_TEXTURE": "03494888",
     "GILDED_CHEST_FRONT_TEXTURE": "03493888",
 >>>>>>> 8abecce6 (Add goron spinning pot heartpiece rupees)
+=======
+    "FONT_TEXTURE": "03490BD8",
+    "FREE_SCARECROW_ENABLED": "03480CBC",
+    "GANON_BOSS_KEY_CONDITION": "0348CAA8",
+    "GANON_BOSS_KEY_CONDITION_COUNT": "0348CAA6",
+    "GET_CHEST_OVERRIDE_WRAPPER": "03482980",
+    "GET_ITEM_TRIGGERED": "0348169C",
+    "GILDED_CHEST_BASE_TEXTURE": "034948A0",
+    "GILDED_CHEST_FRONT_TEXTURE": "034938A0",
+>>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
     "GOSSIP_HINT_CONDITION": "03480CB8",
-    "GROTTO_EXIT_LIST": "034830A4",
-    "GROTTO_LOAD_TABLE": "03483020",
+    "GROTTO_EXIT_LIST": "034830A8",
+    "GROTTO_LOAD_TABLE": "03483024",
     "INCOMING_ITEM": "03480028",
     "INCOMING_PLAYER": "03480026",
     "INITIAL_SAVE_DATA": "0348088C",
     "JABU_ELEVATOR_ENABLE": "03480CC4",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -979,10 +1012,14 @@
 =======
     "KAKARIKO_WEATHER_FORECAST": "0348CAF0",
 >>>>>>> 8abecce6 (Add goron spinning pot heartpiece rupees)
+=======
+    "KAKARIKO_WEATHER_FORECAST": "0348CB08",
+>>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
     "LACS_CONDITION": "03480CB4",
     "LACS_CONDITION_COUNT": "03480CC2",
     "MALON_GAVE_ICETRAP": "034838F4",
     "MALON_TEXT_ID": "03480CCB",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1219,9 +1256,14 @@
 =======
     "MAX_RUPEES": "0348CAD3",
 >>>>>>> 8abecce6 (Add goron spinning pot heartpiece rupees)
+=======
+    "MAX_RUPEES": "0348CAEB",
+>>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
     "MOVED_ADULT_KING_ZORA": "03483264",
-    "NO_ESCAPE_SEQUENCE": "0348CA8C",
+    "NO_COLLECTIBLE_HEARTS": "03480CD0",
+    "NO_ESCAPE_SEQUENCE": "0348CAA4",
     "OCARINAS_SHUFFLED": "03480CC5",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1244,10 +1286,14 @@
 =======
     "OPEN_KAKARIKO": "0348CAD2",
 >>>>>>> 8abecce6 (Add goron spinning pot heartpiece rupees)
+=======
+    "OPEN_KAKARIKO": "0348CAEA",
+>>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
     "OUTGOING_ITEM": "03480030",
     "OUTGOING_KEY": "0348002C",
     "OUTGOING_PLAYER": "03480032",
     "OVERWORLD_SHUFFLED": "03480CCE",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1373,15 +1419,18 @@
 =======
     "PAYLOAD_END": "03498090",
 >>>>>>> 8abecce6 (Add goron spinning pot heartpiece rupees)
+=======
+    "PAYLOAD_END": "034980A0",
+>>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
     "PAYLOAD_START": "03480000",
-    "PLAYED_WARP_SONG": "0348149C",
+    "PLAYED_WARP_SONG": "034814A0",
     "PLAYER_ID": "03480024",
     "PLAYER_NAMES": "03480034",
     "PLAYER_NAME_ID": "03480025",
     "RAINBOW_BRIDGE_CONDITION": "03480CB0",
     "RAINBOW_BRIDGE_COUNT": "03480CC0",
     "RANDO_CONTEXT": "03480000",
-    "SHUFFLE_BEANS": "03482F7C",
+    "SHUFFLE_BEANS": "03482F80",
     "SHUFFLE_CARPET_SALESMAN": "03483C70",
     "SHUFFLE_COWS": "03480CC7",
 <<<<<<< HEAD
@@ -1618,6 +1667,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "SILVER_CHEST_BASE_TEXTURE": "03495F48",
     "SILVER_CHEST_FRONT_TEXTURE": "03494F48",
     "SKULL_CHEST_BASE_TEXTURE": "03497748",
@@ -1653,15 +1703,22 @@
     "SKULL_CHEST_BASE_TEXTURE": "03497888",
     "SKULL_CHEST_FRONT_TEXTURE": "03496888",
 >>>>>>> 8abecce6 (Add goron spinning pot heartpiece rupees)
+=======
+    "SILVER_CHEST_BASE_TEXTURE": "034960A0",
+    "SILVER_CHEST_FRONT_TEXTURE": "034950A0",
+    "SKULL_CHEST_BASE_TEXTURE": "034978A0",
+    "SKULL_CHEST_FRONT_TEXTURE": "034968A0",
+>>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
     "SONGS_AS_ITEMS": "03480CC8",
-    "SOS_ITEM_GIVEN": "03481764",
-    "SPEED_MULTIPLIER": "034829C4",
+    "SOS_ITEM_GIVEN": "03481768",
+    "SPEED_MULTIPLIER": "034829C8",
     "START_TWINROVA_FIGHT": "034832E4",
-    "TIME_TRAVEL_SAVED_EQUIPS": "03481CF0",
-    "TRIFORCE_ICON_TEXTURE": "03492888",
+    "TIME_TRAVEL_SAVED_EQUIPS": "03481CF4",
+    "TRIFORCE_ICON_TEXTURE": "034928A0",
     "TWINROVA_ACTION_TIMER": "034832E8",
     "WINDMILL_SONG_ID": "03480CC9",
     "WINDMILL_TEXT_ID": "03480CCA",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -4137,4 +4194,84 @@
     "triforce_pieces_requied": "0348CA7A",
     "triforce_sprite": "0348B648"
 >>>>>>> 8abecce6 (Add goron spinning pot heartpiece rupees)
+=======
+    "a_button": "0348CA70",
+    "a_note_b": "0348CA5C",
+    "a_note_font_glow_base": "0348CA44",
+    "a_note_font_glow_max": "0348CA40",
+    "a_note_g": "0348CA60",
+    "a_note_glow_base": "0348CA4C",
+    "a_note_glow_max": "0348CA48",
+    "a_note_r": "0348CA64",
+    "active_item_action_id": "0348CACC",
+    "active_item_fast_chest": "0348CABC",
+    "active_item_graphic_id": "0348CAC0",
+    "active_item_object_id": "0348CAC4",
+    "active_item_row": "0348CAD0",
+    "active_item_text_id": "0348CAC8",
+    "active_override": "0348CAD8",
+    "active_override_is_outgoing": "0348CAD4",
+    "b_button": "0348CA6C",
+    "beating_dd": "0348CA78",
+    "beating_no_dd": "0348CA80",
+    "c_button": "0348CA68",
+    "c_note_b": "0348CA50",
+    "c_note_font_glow_base": "0348CA34",
+    "c_note_font_glow_max": "0348CA30",
+    "c_note_g": "0348CA54",
+    "c_note_glow_base": "0348CA3C",
+    "c_note_glow_max": "0348CA38",
+    "c_note_r": "0348CA58",
+    "cfg_file_select_hash": "0348CAA0",
+    "cfg_item_overrides": "0348DB18",
+    "collectible_mutex": "0348CAB4",
+    "collectible_override": "0348CAAC",
+    "collectible_override_flags": "0348D7D8",
+    "defaultDDHeart": "0348CA84",
+    "defaultHeart": "0348CA8C",
+    "dpad_sprite": "0348B670",
+    "dropped_collectible_override_flags": "0348CB38",
+    "dummy_actor": "0348CAE0",
+    "dungeon_count": "0348CA00",
+    "dungeons": "0348B4C8",
+    "empty_dlist": "0348CA18",
+    "extern_ctxt": "0348B564",
+    "font_sprite": "0348B680",
+    "freecam_modes": "0348B230",
+    "hash_sprites": "0348CA0C",
+    "hash_symbols": "0348B578",
+    "heap_next": "0348CB04",
+    "heart_sprite": "0348B610",
+    "icon_sprites": "0348B3F4",
+    "item_digit_sprite": "0348B630",
+    "item_overrides_count": "0348CAE4",
+    "item_table": "0348B6F8",
+    "items": "0348B5F8",
+    "items_sprite": "0348B6A0",
+    "key_rupee_clock_sprite": "0348B640",
+    "last_fog_distance": "0348CA04",
+    "linkhead_skull_sprite": "0348B620",
+    "medal_colors": "0348B4B4",
+    "medals_sprite": "0348B6B0",
+    "normal_dd": "0348CA74",
+    "normal_no_dd": "0348CA7C",
+    "num_to_bits": "0348B5B8",
+    "object_slots": "03490B18",
+    "pending_freezes": "0348CAE8",
+    "pending_item_queue": "0348DB00",
+    "quest_items_sprite": "0348B690",
+    "rupee_colors": "0348B400",
+    "satisified_pending_frames": "0348CAB8",
+    "scene_fog_distance": "0348CA08",
+    "setup_db": "0348B6D0",
+    "song_note_sprite": "0348B650",
+    "stones_sprite": "0348B6C0",
+    "text_cursor_border_base": "0348CA24",
+    "text_cursor_border_max": "0348CA20",
+    "text_cursor_inner_base": "0348CA2C",
+    "text_cursor_inner_max": "0348CA28",
+    "triforce_hunt_enabled": "0348CAF8",
+    "triforce_pieces_requied": "0348CA92",
+    "triforce_sprite": "0348B660"
+>>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
 }
