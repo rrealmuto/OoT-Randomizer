@@ -17,6 +17,6 @@ void obj_comb_drop_collectible(z64_actor_t *actor, int16_t params)
     {
         // set up params for Item_DropCollectible
         params |= ((flag & 0x3F) << 8) + (flag & 0xC0);
-        z64_Item_DropCollectible(&z64_game, &actor->pos_2, params);
+        z64_Item_DropCollectible2(&z64_game, &actor->pos_2, params);
     }
 }

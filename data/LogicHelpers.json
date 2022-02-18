@@ -60,7 +60,7 @@
             or (for_age == adult and (Bow or Hookshot))
             or (for_age == both and (Slingshot or Boomerang) and (Bow or Hookshot))
             or (for_age == either and (Slingshot or Boomerang or Bow or Hookshot))",
-    "can_break_beehive": "has_explosives or can_use(Boomerang) or can_use(Bow) or can_use(Hookshot)",
+    "can_break_beehive": "can_use(Boomerang) or can_use(Hookshot)",
 
     # can_use and helpers
     # The parser reduces this to smallest form based on item category.
