@@ -1,8 +1,11 @@
 {
     "entrances": {
-        "Child Spawn -> KF Links House" : {"region": "Goron City", "from":"Death Mountain"}
+        "Child Spawn -> KF Links House": {
+            "region": "ZD Behind King Zora",
+            "from": "Zoras Fountain"
+        }
     },
     "locations": {
-        "Ganons Tower Pot 1" : "Light Arrows"
+        "Ganons Tower Pot 1": "Light Arrows"
     }
 }
