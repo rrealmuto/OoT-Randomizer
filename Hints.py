@@ -155,9 +155,11 @@ def add_hint(spoiler, world, groups, gossip_text, count, location=None, force_re
         for group in groups:
             gossip_names = [gossipLocations[id].name for id in group]
             if any(map(lambda name: name in removed_stones, gossip_names)):
-                groups.remove(group)
                 skipped_groups.append(group)
-    
+        
+        for group in skipped_groups:
+            groups.remove(group)
+
     # early failure if not enough
     if len(groups) < int(count):
         return False
