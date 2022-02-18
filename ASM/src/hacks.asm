@@ -517,6 +517,32 @@ lw ra, 0x0034(sp)
 .skip 4
 nop
 
+
+;Hack obj_comb (beehives) to drop flagged collectibles. Get rid of the random 50% drop
+;replaces
+;sh a2, 0x001e(sp) <- keep
+;jal 0xb00cdccc    <- keep
+;sw a3, 0x0020(sp) <- keep
+;lui at, 0x3F00   
+;mtc at, f4
+;lh a2, 0x001e(sp)
+;lw a3, 0x0020(sp)
+;c.lt.s f0, f4
+;nop
+;bc1f 0xb0ec7490
+;nop
+;addiu a2, r0, 0xffff
+.orga 0xec746c
+j obj_comb_hook
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+
 ; Runs when storing an incoming item to the player instance
 ; Replaces:
 ;   sb      a2, 0x0424 (a3)

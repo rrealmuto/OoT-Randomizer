@@ -1462,12 +1462,18 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         actor_override_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'ActorOverride' ]
         freestanding_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and 'Freestanding' in location.filter_tags]
         rupeetower_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and 'RupeeTower' in location.filter_tags]
+        beehive_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and 'Beehive' in location.filter_tags]
+        
         for location in actor_override_locations:
             patch_actor_override(location, rom)
         for location in freestanding_locations:
             patch_freestanding_collectible(location, rom)
         for location in rupeetower_locations:
             patch_rupee_tower(location, rom)
+        for location in beehive_locations:
+            patch_beehive(location, rom)
+            
+        patch_grotto_beehive_2(rom)
 
 
     if world.settings.shuffle_pots:
@@ -2039,10 +2045,10 @@ def get_override_entry(location):
 
     #Don't add pots to the override table if they're disabled. We use this check to dtermine how to draw and interact with them
     if not location.world.settings.shuffle_pots:
-        if (location.type == "Collectable" and ("Pot" in location.filter_tags or "Crate" in location.filter_tags or "FlyingPot" in location.filter_tags or "SmallCrate" in location.filter_tags)) :
+        if (location.type == "Collectable" and ("Pot" in location.filter_tags or "Crate" in location.filter_tags or "FlyingPot" in location.filter_tags or "SmallCrate" in location.filter_tags or "Beehive" in location.filter_tags)) :
             return None
     else:
-        if (location.type == "Collectable" and ("Pot" in location.filter_tags or "Crate" in location.filter_tags or "FlyingPot" in location.filter_tags or "SmallCrate" in location.filter_tags)) and location.disabled != DisableType.ENABLED :
+        if (location.type == "Collectable" and ("Pot" in location.filter_tags or "Crate" in location.filter_tags or "FlyingPot" in location.filter_tags or "SmallCrate" in location.filter_tags or "Beehive" in location.filter_tags)) and location.disabled != DisableType.ENABLED :
             return None
 
     player_id = location.item.world.id + 1
@@ -2059,7 +2065,7 @@ def get_override_entry(location):
     elif location.type == 'ActorOverride':
         type = 2
     elif location.type == 'Collectable':
-        if "Pot" in location.filter_tags or "Crate" in location.filter_tags or "Drop" in location.filter_tags or "FlyingPot" in location.filter_tags or "SmallCrate" in location.filter_tags or "RupeeTower" in location.filter_tags:
+        if "Pot" in location.filter_tags or "Crate" in location.filter_tags or "Drop" in location.filter_tags or "FlyingPot" in location.filter_tags or "SmallCrate" in location.filter_tags or "RupeeTower" in location.filter_tags or "Beehive" in location.filter_tags:
             type = 6
         else:
             type = 2
@@ -2464,3 +2470,14 @@ def patch_pot(location, rom : Rom):
             byte = byte & 0x01
             byte |= location.default << 1
             rom.write_byte(address + 14, byte)
+
+
+#patch the second beehive in generic grottos to distinguish it from the first.
+def patch_grotto_beehive_2(rom: Rom):
+     rom.write_byte(0x26C10C4+13, 1) 
+
+#Patch collectible flag used by a beehive. Only used outside of grottos.
+def patch_beehive(location, rom: Rom):
+    if location.address:
+        for address in location.address:
+            rom.write_byte(address + 13, location.default)

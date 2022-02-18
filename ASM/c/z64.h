@@ -1589,6 +1589,7 @@ typedef enum {
 #define z64_memcopy_addr                        0x80057030
 #define z64_bzero_addr                          0x80002E80
 #define z64_Item_DropCollectible_addr           0x80013678
+#define z64_Item_DropCollectible2_addr          0x800138B0
 
 /* rom addresses */
 #define z64_icon_item_static_vaddr              0x007BD000
@@ -1717,4 +1718,5 @@ typedef EnItem00* (*z64_Item_DropCollectible_proc)(z64_game_t* globalCtx, z64_xy
 #define z64_memcopy ((z64_memcopy_proc)z64_memcopy_addr)
 #define z64_bzero ((z64_bzero_proc)z64_bzero_addr)
 #define z64_Item_DropCollectible ((z64_Item_DropCollectible_proc)z64_Item_DropCollectible_addr)
+#define z64_Item_DropCollectible2 ((z64_Item_DropCollectible_proc)z64_Item_DropCollectible2_addr)
 #endif
