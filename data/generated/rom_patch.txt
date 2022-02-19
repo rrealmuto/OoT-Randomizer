@@ -25,6 +25,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 10,107b127a
 14,b014ed35
 d1b0,3480000
@@ -219,6 +220,12 @@ d1b4,34980d0
 d1b0,3480000
 d1b4,3498130
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+10,107b6f7a
+14,9970fe2c
+d1b0,3480000
+d1b4,3498130
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 d1b8,3480000
 d1c0,0
 d1c4,0
@@ -409,6 +416,7 @@ d288,0
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 a88f78,c10246f
 a89048,c102488
 =======
@@ -429,6 +437,9 @@ a87af0,c1003dc
 =======
 a87af0,c1003dd
 >>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
+=======
+a87af0,c1003dc
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 a87af4,0
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -497,6 +508,7 @@ a87b14,0
 a87b18,0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 7e0c5de7 (Fix issue w/ new flags)
 a88c0c,81003f3
 >>>>>>> 93e32b2c (Hopefully fix extended flags)
@@ -506,35 +518,39 @@ a88c0c,81003f9
 =======
 a88c0c,81003fa
 >>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
+=======
+a88c0c,81003f9
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 a88c10,2003025
-a88c20,81003fa
+a88c20,81003f9
 a88c24,2003025
-a88c34,81003fa
+a88c34,81003f9
 a88c38,2003025
-a88c48,81003fa
+a88c48,81003f9
 a88c4c,2003025
-a88c70,81003fa
+a88c70,81003f9
 a88c74,2003025
-a88c7c,81003fa
+a88c7c,81003f9
 a88c80,2003025
-a88c88,81003fa
+a88c88,81003f9
 a88c8c,2003025
-a88cb0,81003fa
+a88cb0,81003f9
 a88cb4,2003025
-a88cc4,81003fa
+a88cc4,81003f9
 a88cc8,2003025
-a88cd8,81003fa
+a88cd8,81003f9
 a88cdc,2003025
-a88cec,81003fa
+a88cec,81003f9
 a88cf0,2003025
-a88d00,81003fa
+a88d00,81003f9
 a88d04,2003025
-a88d14,81003fa
+a88d14,81003f9
 a88d18,2003025
-a88d44,81003fa
+a88d44,81003f9
 a88d48,2003025
-a88d50,81003fa
+a88d50,81003f9
 a88d54,2003025
+<<<<<<< HEAD
 <<<<<<< HEAD
 a88f64,c10042b
 a88f78,c1027b0
@@ -688,23 +704,39 @@ ac7ad4,c10034f
 a89048,c1027c9
 a896cc,c1003e6
 a89708,c1003ee
+=======
+a88f64,c10042a
+a88f78,c1027b3
+a88f9c,c100451
+a88fa0,0
+a89048,c1027cc
+a896cc,c1003e5
+a89708,c1003ed
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 a8970c,1696025
-a89934,c1003f4
+a89934,c1003f3
 a89938,1696025
+<<<<<<< HEAD
 a98c30,c1003d0
 a9e838,8100820
 ac7ad4,c100350
 >>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
+=======
+a98c30,c1003cf
+a9e838,810081f
+ac7ad4,c10034f
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 ac8608,902025
 ac860c,848e00a4
 ac8610,34010043
 ac8614,0
 ac8618,0
 ac91b4,0
-ac9abc,c1004b0
+ac9abc,c1004af
 ac9ac0,0
-accd34,c100565
+accd34,c100564
 accd38,8e190000
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -835,6 +867,10 @@ acce18,c100979
 accde0,c101f8c
 acce18,c10097a
 >>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
+=======
+accde0,c101f8f
+acce18,c100979
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 acce1c,8e0200a4
 acce20,1060001e
 acce24,0
@@ -929,26 +965,27 @@ adaa78,0
 adaba8,0
 adabcc,0
 adabe4,0
-ae5764,8100746
+ae5764,8100745
 ae5768,0
-ae59e0,8100762
-ae5df8,c1004a8
+ae59e0,8100761
+ae5df8,c1004a7
 ae5e04,0
 ae74d8,340e0000
 ae807c,6010007
 ae8080,84b80030
-ae8084,c100bc7
+ae8084,c100bc6
 ae8088,0
 ae8090,0
 ae8094,0
 ae8098,0
-ae986c,8100ba7
+ae986c,8100ba6
 ae9870,3c01800f
 ae9ed8,35ee0000
-aeb67c,c100a57
+aeb67c,c100a56
 aeb680,0
 aeb764,26380008
 aeb768,ae9802b0
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1070,24 +1107,28 @@ aeb76c,c1021d3
 =======
 aeb76c,c1021cb
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+aeb76c,c1021cb
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 aeb778,400821
 af1814,c100f08
 af1818,0
 af74f8,afbf0044
-af74fc,c100ad8
+af74fc,c100ad7
 af7500,0
 af7504,8fbf0044
 af7650,afbf0034
-af7654,c100ae6
+af7654,c100ae5
 af7658,0
 af765c,8fbf0034
 af76b8,afbf000c
-af76bc,c100acd
+af76bc,c100acc
 af76c4,8fbf000c
 b06248,c100f64
 b0624c,0
 b06400,820f0ede
 b0640c,31f80002
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 b065f4,c102967
@@ -1100,10 +1141,15 @@ b06668,c102972
 b065f4,c10298b
 b06668,c10298b
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+b065f4,c10298b
+b06668,c10298b
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 b068d4,2a810002
 b06bb8,34190000
-b06c2c,c100861
+b06c2c,c100860
 b06c30,a2280020
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 b06ce4,c1029b3
@@ -1113,6 +1159,9 @@ b06ce4,c1029be
 =======
 b06ce4,c1029d7
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+b06ce4,c1029d7
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 b10218,afa40020
 b1021c,30a8fffe
 b10220,3401000e
@@ -1163,10 +1212,11 @@ b10320,242983fc
 b10324,242a82c4
 b10328,242b83e4
 b1032c,242c83d8
-b10cc0,c10054d
+b10cc0,c10054c
 b10cc4,3c010001
-b12a34,c1006f9
+b12a34,c1006f8
 b12a38,0
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1470,10 +1520,16 @@ b12a60,81023ad
 b12e30,c1023be
 b12e44,81023cd
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+b12a60,81023ad
+b12e30,c1023be
+b12e44,81023cd
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 b17bb4,afbf001c
 b17bb8,afa40140
 b17bbc,3c048040
 b17bc0,3c060002
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1492,9 +1548,12 @@ b17bc4,24c680d0
 =======
 b17bc4,24c68130
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+b17bc4,24c68130
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 b17bc8,c00037c
 b17bcc,3c050348
-b17bd0,c100343
+b17bd0,c100342
 b17bd4,0
 b2b488,c100c92
 b2b48c,0
@@ -1505,7 +1564,7 @@ b2b49c,0
 b2b4f0,3c048013
 b2b4f4,24848a50
 b2b4f8,3c058040
-b2b4fc,24a53228
+b2b4fc,24a53224
 b2b500,c015c0c
 b2b504,34060018
 b2b508,3c048013
@@ -1531,19 +1590,19 @@ b3dd44,c02e195
 b3dd48,8c253244
 b3dd4c,8fbf0014
 b3dd54,27bd0018
-b51694,c100874
-b516c4,c10087b
-b52784,c100895
+b51694,c100873
+b516c4,c10087a
+b52784,c100894
 b52788,0
 b5278c,8fbf003c
 b5293c,10000018
-b54b38,c10080f
-b54e5c,c1007fc
+b54b38,c10080e
+b54e5c,c1007fb
 b55428,a42063ed
-b55a64,c100846
+b55a64,c100845
 b575c8,acae0000
 b58320,afbf0000
-b58324,c100a92
+b58324,c100a91
 b58328,0
 b5832c,8fbf0000
 b58330,0
@@ -1676,8 +1735,9 @@ bb6134,0
 bb6138,0
 bb61e0,0
 bb61e4,0
-bb6688,c100708
+bb6688,c100707
 bb668c,0
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1712,18 +1772,21 @@ bb67c4,c100707
 =======
 bb67c4,c100708
 >>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
+=======
+bb67c4,c100707
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 bb67c8,1826021
-bb6cf0,c100737
+bb6cf0,c100736
 bb6cf4,0
 bb77b4,0
 bb7894,0
 bb7ba0,0
 bb7bfc,0
-bb7c88,c100702
+bb7c88,c100701
 bb7c8c,1cf8821
-bb7d10,c100702
+bb7d10,c100701
 bb7d14,0
-bc088c,c100715
+bc088c,c100714
 bc0890,0
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1755,40 +1818,44 @@ bcdbd8,c100dd5
 =======
 bcdbd8,c100ddb
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> a30f1183 (Add hack to shuffle all the rupees in rupee towers)
 bcecbc,8100380
 =======
 bcecbc,8100381
 >>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
+=======
+bcecbc,8100380
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 bcecc0,0
 bcecc4,0
 bcecc8,0
 bceccc,0
 bcecd0,0
 bcf73c,afbf0000
-bcf740,c1008b3
+bcf740,c1008b2
 bcf744,0
 bcf748,8fbf0000
-bcf914,c1008ab
+bcf914,c1008aa
 bcf918,0
-bd4c58,c100c3b
+bd4c58,c100c3a
 bd4c5c,270821
-bd5c58,c100664
+bd5c58,c100663
 bd5c5c,301c825
-bd6958,c100ac3
+bd6958,c100ac2
 bd695c,0
-bd9a04,c100a73
+bd9a04,c100a72
 bd9a08,0
-bda0a0,c100354
-bda0d8,c100371
+bda0a0,c100353
+bda0d8,c100370
 bda0e4,0
-bda264,c100374
+bda264,c100373
 bda270,0
-bda2e8,c10038f
+bda2e8,c10038e
 bda2ec,812a0002
 bda2f0,5600018
 bda2f4,0
-be1bc8,c100675
+be1bc8,c100674
 be1bcc,afa50034
 be1c98,3c014218
 be4a14,c100eb6
@@ -1797,25 +1864,25 @@ be4a60,8100ee8
 be4a64,0
 be5d8c,c100f12
 be5d90,0
-be9ac0,c1003ab
-be9ad8,c1003b6
+be9ac0,c1003aa
+be9ad8,c1003b5
 be9adc,8fa20024
 be9ae4,8fa40028
 be9bdc,24018383
-bea044,c100529
+bea044,c100528
 bea048,0
-c004ec,810069e
+c004ec,810069d
 c0067c,28610064
 c0082c,340e0018
 c00830,8c4f00a0
-c01078,c1008e8
+c01078,c1008e7
 c0107c,0
 c01080,0
 c01084,0
 c01088,0
 c0108c,0
-c018a0,c1006b3
-c06198,c100a60
+c018a0,c1006b2
+c06198,c100a5f
 c064bc,920201ec
 c06e5c,920201ec
 c07230,920201ec
@@ -1823,11 +1890,11 @@ c07494,920201ec
 c0754c,81010b9
 c07550,0
 c0796c,1f0
-c0e77c,c10085b
+c0e77c,c10085a
 c0e780,ac400428
 c5a9f0,c100d61
-c6c7a8,c1006c3
-c6c920,c1006c3
+c6c7a8,c1006c2
+c6c920,c1006c2
 c6cedc,340b0001
 c6ed84,946f00a2
 c6ed88,31f80018
@@ -1837,7 +1904,7 @@ c6ff38,4600848d
 c6ff3c,44069000
 c6ff44,27bdffe8
 c6ff48,afbf0004
-c6ff4c,c100a9e
+c6ff4c,c100a9d
 c6ff50,0
 c6ff54,8fbf0004
 c6ff58,27bd0018
@@ -1848,7 +1915,7 @@ c6ff68,0
 c6ff6c,0
 c6ff70,0
 c6ff74,0
-c72c64,c100c79
+c72c64,c100c78
 c72c68,2002021
 c72c70,15e00006
 c72c74,0
@@ -1862,12 +1929,13 @@ c7bd08,0
 c82550,0
 c892dc,340e0001
 c8931c,340a0001
-c89744,c10047c
+c89744,c10047b
 c89868,920e1d28
 c898a4,92191d29
 c898c8,920a1d2a
-c8b24c,c1005a8
+c8b24c,c1005a7
 c8b250,2002025
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -2001,16 +2069,19 @@ ca6dc0,81027ff
 =======
 ca6dc0,81027f7
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+ca6dc0,81027f7
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 ca6dc4,0
-cb6874,c100740
-cc0038,c100509
+cb6874,c10073f
+cc0038,c100508
 cc003c,8fa40018
 cc3fa8,a20101f8
 cc4024,0
-cc4038,c100a46
+cc4038,c100a45
 cc403c,240c0004
 cc453c,806
-cc8594,c100688
+cc8594,c100687
 cc8598,24180006
 cc85b8,c100e9b
 cc85bc,afa50064
@@ -2018,8 +2089,8 @@ cce9a4,c100f5a
 cce9a8,8e04011c
 cdf3ec,0
 cdf404,0
-cdf420,c100658
-cdf638,c10066c
+cdf420,c100657
+cdf638,c10066b
 cdf63c,e7a40034
 cdf790,2405001e
 cf1ab8,0
@@ -2028,23 +2099,23 @@ cf1ac0,31280040
 cf1ac4,35390040
 cf1ac8,af19b4a8
 cf1acc,34090006
-cf73c8,c100c53
+cf73c8,c100c52
 cf73cc,3c010001
-cf7ad4,c100652
+cf7ad4,c100651
 cf7ad8,afa50044
 d12f78,340f0000
 d30fdc,c100f98
 d30fe0,2c02025
-d357d4,c100bb5
+d357d4,c100bb4
 d35efc,0
 d35f54,10000008
 d4bcb0,c100e76
 d4bcb4,8619001c
-d4be6c,c100a2a
-d52698,c100584
+d4be6c,c100a29
+d52698,c100583
 d5269c,8e190024
-d5b264,c100b43
-d5b660,8100b46
+d5b264,c100b42
+d5b660,8100b45
 d5b664,0
 d5ff94,c100f50
 d5ff98,44d9f800
@@ -2152,6 +2223,7 @@ d7ec54,0
 d7ec60,8100e18
 d7ec70,8100e3e
 db13d0,24090076
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -2294,14 +2366,18 @@ db53e8,8102831
 =======
 db53e8,8102829
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+db532c,c1004d8
+db53e8,8102829
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 db53ec,0
 dbec80,34020000
-dbf428,c10089d
+dbf428,c10089c
 dbf434,44989000
 dbf438,e652019c
 dbf484,0
 dbf4a8,0
-dc7090,c1008bd
+dc7090,c1008bc
 dc7094,c60a0198
 dc87a0,0
 dc87bc,0
@@ -2321,6 +2397,7 @@ dd3754,3c064000
 dd375c,3c074000
 dd3760,0
 dd3764,0
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -2454,6 +2531,9 @@ de1018,c10284a
 =======
 de1018,c102842
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+de1018,c102842
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 de101c,0
 de1020,0
 de1024,0
@@ -2463,6 +2543,7 @@ de1030,0
 de1034,0
 de1038,0
 de103c,0
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -2596,18 +2677,21 @@ de1050,810284a
 =======
 de1050,8102842
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+de1050,8102842
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 de1054,0
 df2644,76
 df7a90,340e0018
 df7a94,8c4f00a0
-df7cb0,c1006e3
+df7cb0,c1006e2
 dfec3c,3c188012
 dfec40,8f18ae8c
 dfec48,33190010
 dfec4c,0
 e09f68,806f0ede
 e09f74,31f80004
-e09fb0,c1004cb
+e09fb0,c1004ca
 e0ec50,c100ca9
 e0ec54,2202825
 e11e98,9442a674
@@ -2623,7 +2707,7 @@ e11ebc,0
 e11ec0,0
 e11ec4,0
 e11ec8,0
-e11f90,c10058f
+e11f90,c10058e
 e11f94,0
 e12a04,c100eef
 e12a20,ac8302a4
@@ -2638,20 +2722,20 @@ e1f748,14200012
 e1f74c,24010005
 e1feac,c100f46
 e1feb0,3c0743cf
-e20410,c100be1
+e20410,c100be0
 e20414,0
-e206dc,c100bef
+e206dc,c100bee
 e206e0,0
-e2076c,c100bff
+e2076c,c100bfe
 e20770,afa40020
-e20798,c100bf7
+e20798,c100bf6
 e2079c,0
-e24e7c,c10055c
+e24e7c,c10055b
 e24e80,0
-e29388,81004e7
-e2a044,c1004f0
-e2b0b4,c1004f8
-e2b434,c1008fb
+e29388,81004e6
+e2a044,c1004ef
+e2b0b4,c1004f7
+e2b434,c1008fa
 e2b438,0
 e2b43c,0
 e2b440,0
@@ -2663,28 +2747,28 @@ e2b454,0
 e2b458,0
 e2b45c,0
 e2b460,0
-e2c03c,c100a1d
+e2c03c,c100a1c
 e2c040,2442a5d0
 e2cc1c,3c058012
 e2cc20,24a5a5d0
 e2cc24,86080270
 e2cc28,15000009
 e2cc2c,90b9008a
-e2d714,c1008ca
+e2d714,c1008c9
 e2d71c,340900bf
 e2d720,0
-e2d890,c1008d9
+e2d890,c1008d8
 e2d894,0
 e2f090,34
-e429dc,c1005fd
+e429dc,c1005fc
 e429e0,0
 e429e4,10000053
 e429e8,0
-e42b5c,c1005e3
+e42b5c,c1005e2
 e42b64,1000000d
 e42b68,0
-e42c00,c1005db
-e42c44,c100644
+e42c00,c1005da
+e42c44,c100643
 e42c48,860e008a
 e42c4c,15400045
 e47c08,b825
@@ -2726,6 +2810,7 @@ e565d0,c100c9a
 e565d4,0
 e565d8,2002025
 e571d0,3c038041
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -2867,10 +2952,14 @@ e571d4,906dcb30
 =======
 e571d4,906dcb98
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+e571d4,906dcb98
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 e571d8,340c0001
 e571dc,11ac0004
 e571e0,0
 e57208,3c038041
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -3012,6 +3101,9 @@ e5720c,906dcb30
 =======
 e5720c,906dcb98
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+e5720c,906dcb98
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 e57210,340c0002
 e57214,11ac000d
 e57218,0
@@ -3026,6 +3118,7 @@ e57238,0
 e5723c,0
 e59cd4,0
 e59cd8,0
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -3227,6 +3320,11 @@ e59e68,810287b
 e59e6c,0
 e59ecc,81028a4
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+e59e68,810287b
+e59e6c,0
+e59ecc,81028a4
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 e59ed0,0
 e5b2f4,c100f1d
 e5b2f8,afa5001c
@@ -3306,18 +3404,19 @@ e9f5b0,3e00008
 e9f5b4,0
 e9f5b8,0
 e9f5bc,0
-e9f678,c10058f
+e9f678,c10058e
 e9f67c,0
-e9f7a8,c10058f
+e9f7a8,c10058e
 e9f7ac,0
-ebb85c,c1006ce
+ebb85c,c1006cd
 ebb864,14400012
 ebb86c,10000014
-ec1120,c10058f
+ec1120,c10058e
 ec1124,0
 ec68bc,8fad002c
 ec68c0,340c000a
 ec68c4,a5ac0110
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -3439,6 +3538,9 @@ ec68c8,c101f4f
 =======
 ec68c8,c101f47
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+ec68c8,c101f47
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 ec68cc,2002021
 ec68d0,0
 ec68d4,0
@@ -3448,6 +3550,7 @@ ec68e0,0
 ec69ac,8fad002c
 ec69b0,340c000a
 ec69b4,a5ac0110
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -3569,12 +3672,16 @@ ec69b8,c101f4f
 =======
 ec69b8,c101f47
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+ec69b8,c101f47
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 ec69bc,2002021
 ec69c0,0
 ec69c4,0
 ec69c8,0
 ec69cc,0
 ec69d0,0
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -3709,6 +3816,9 @@ ec6b04,8102818
 =======
 ec6b04,8102810
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+ec6b04,8102810
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 ec6b08,0
 ec746c,8100fe4
 ec7470,0
@@ -3718,11 +3828,15 @@ ec747c,0
 ec7484,0
 ec748c,0
 <<<<<<< HEAD
+<<<<<<< HEAD
 ec8264,81028c5
 >>>>>>> 0e0b7637 (Beehives basically working. Need to fix logic for ones that are higher up. Also sometimes the drop either isnt dropping or is getting stuck?)
 =======
 ec8264,81028de
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+ec8264,81028de
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 ec8268,0
 ec832c,1e0c025
 ec9ce4,2419007a
@@ -3735,9 +3849,9 @@ ed2fac,806e0f18
 ed2fec,340a0000
 ed5a28,340e0018
 ed5a2c,8ccf00a0
-ed645c,c1008c6
+ed645c,c1008c5
 ed6460,0
-ee7b84,c1009f4
+ee7b84,c1009f3
 ee7b8c,0
 ee7b90,0
 ee7b94,0
@@ -3745,14 +3859,14 @@ ee7b98,0
 ee7b9c,0
 ee7ba0,0
 ee7ba4,0
-ee7e4c,c100b29
-ef32b8,c100b1e
+ee7e4c,c100b28
+ef32b8,c100b1d
 ef32bc,0
 ef32c0,8fbf003c
-ef36e4,c100af4
+ef36e4,c100af3
 ef36e8,0
-ef373c,c100b06
-ef4f98,c100839
+ef373c,c100b05
+ef4f98,c100838
 ef4f9c,0
 feb708,de000000
 feb70c,9000000
@@ -3771,6 +3885,7 @@ fec1fc,9000000
 26c10e0,38ff
 3480000,80400020
 3480004,80400834
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -3914,6 +4029,10 @@ fec1fc,9000000
 3480008,8040b564
 348000c,80400cd4
 >>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
+=======
+3480008,8040b5f4
+348000c,80400cd0
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3480020,2
 3480034,dfdfdfdf
 3480038,dfdfdfdf
@@ -4446,10 +4565,12 @@ fec1fc,9000000
 3480878,100
 3480cc0,640000
 3480cc4,100
+3480cd0,1
 3480cd4,1
-3480cd8,1
+3480cec,ffffffff
 3480cf0,ffffffff
 3480cf4,ffffffff
+<<<<<<< HEAD
 <<<<<<< HEAD
 3480cf8,ffff0000
 3480d08,27bdffe8
@@ -4571,6 +4692,12 @@ fec1fc,9000000
 =======
 3480d10,c10238f
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+3480cf8,ffff0000
+3480d08,27bdffe8
+3480d0c,afbf0010
+3480d10,c10238f
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3480d18,3c028012
 3480d1c,2442d2a0
 3480d20,240e0140
@@ -4619,6 +4746,7 @@ fec1fc,9000000
 3480dd0,8100376
 3480dd4,87250004
 3480dd8,3c0a8041
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -4767,6 +4895,9 @@ fec1fc,9000000
 =======
 3480ddc,254acb60
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+3480ddc,254acb60
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3480de0,8d4a0000
 3480de4,11400004
 3480dec,3c058041
@@ -4778,6 +4909,7 @@ fec1fc,9000000
 3480e08,8d080000
 3480e0c,11000004
 3480e14,3c038041
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -4912,6 +5044,9 @@ fec1fc,9000000
 =======
 3480e18,2463cb50
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+3480e18,2463cb50
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3480e1c,8c630000
 3480e20,30fc3
 3480e24,614026
@@ -4924,6 +5059,7 @@ fec1fc,9000000
 3480e44,1500000c
 3480e48,240bffff
 3480e4c,3c088041
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -5061,10 +5197,14 @@ fec1fc,9000000
 =======
 3480e50,2508cb60
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+3480e50,2508cb60
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3480e54,8d080000
 3480e58,11000007
 3480e5c,1405821
 3480e60,3c088041
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -5202,6 +5342,9 @@ fec1fc,9000000
 =======
 3480e64,2508cb4c
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+3480e64,2508cb4c
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3480e68,8d080000
 3480e6c,15000002
 3480e70,240bffff
@@ -5217,6 +5360,7 @@ fec1fc,9000000
 3480ea0,3e00008
 3480ea8,90450003
 3480eac,3c088041
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -5488,18 +5632,24 @@ fec1fc,9000000
 3480ec4,24a5caf0
 >>>>>>> 0e0b7637 (Beehives basically working. Need to fix logic for ones that are higher up. Also sometimes the drop either isnt dropping or is getting stuck?)
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3480eb0,2508cb60
 3480eb4,8d080000
 3480eb8,11000004
 3480ec0,3c058041
 3480ec4,24a5cb58
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3480ec8,8ca50000
 3480ecc,3e00008
 3480ed4,27bdffe8
 3480ed8,afb00010
 3480edc,afbf0014
 3480ee0,3c088041
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -5637,11 +5787,15 @@ fec1fc,9000000
 =======
 3480ee4,2508cb64
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+3480ee4,2508cb64
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3480ee8,8d080000
 3480eec,31080001
 3480ef0,1500000b
 3480ef4,34100041
 3480ef8,3c048041
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -5779,10 +5933,14 @@ fec1fc,9000000
 =======
 3480efc,2484cb60
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+3480efc,2484cb60
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3480f00,8c840000
 3480f04,10800006
 3480f08,90500000
 3480f0c,3c088041
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -5969,11 +6127,16 @@ fec1fc,9000000
 3480f20,c101c9d
 >>>>>>> 0e0b7637 (Beehives basically working. Need to fix logic for ones that are higher up. Also sometimes the drop either isnt dropping or is getting stuck?)
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3480f10,2508cb5c
 3480f14,8d100000
 3480f18,c1022e6
 3480f20,c101c95
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3480f28,2002821
 3480f2c,8fb00010
 3480f30,8fbf0014
@@ -5984,6 +6147,7 @@ fec1fc,9000000
 3480f44,afa20014
 3480f48,afa30018
 3480f4c,afbf001c
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -6053,6 +6217,9 @@ fec1fc,9000000
 =======
 3480f50,c101d20
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+3480f50,c101d20
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3480f54,e02821
 3480f58,8fa70010
 3480f5c,8fa20014
@@ -6060,6 +6227,7 @@ fec1fc,9000000
 3480f64,8fbf001c
 3480f68,3e00008
 3480f6c,27bd0020
+<<<<<<< HEAD
 <<<<<<< HEAD
 3480f70,27bdff80
 3480f74,afbf0010
@@ -12060,6 +12228,10 @@ fec1fc,9000000
 34829fc,97180838
 3482a00,a5d80794
 =======
+=======
+3480f70,30584000
+3480f74,18c383
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3480f78,305900c0
 3480f7c,19c943
 3480f80,319c025
@@ -12080,6 +12252,7 @@ fec1fc,9000000
 3480fc0,18b6025
 3480fc4,3e00008
 3480fc8,afac0024
+<<<<<<< HEAD
 <<<<<<< HEAD
 3480fcc,27bdff80
 3480fd0,afbf0010
@@ -13897,6 +14070,8 @@ fec1fc,9000000
 34816c4,4501001f
 34816cc,3c0b41c8
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3480fcc,358c4000
 3480fd0,8fab0058
 3480fd4,316b00c0
@@ -14315,7 +14490,10 @@ fec1fc,9000000
 34816c0,45000026
 34816c8,c5440024
 34816cc,3c0bc28a
+<<<<<<< HEAD
 >>>>>>> a30f1183 (Add hack to shuffle all the rupees in rupee towers)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 34816d0,448b3000
 34816d4,4606203c
 34816dc,4501001f
@@ -14660,6 +14838,7 @@ fec1fc,9000000
 3481cc8,8fa30004
 3481ccc,8fa40008
 3481cd0,3e00008
+<<<<<<< HEAD
 <<<<<<< HEAD
 3481ce4,3c088012
 3481ce8,2508a5d0
@@ -16275,6 +16454,8 @@ fec1fc,9000000
 34823bc,15400002
 34823c0,34020000
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3481cd4,27bd0010
 3481cd8,6d7024
 3481cdc,15c00002
@@ -16655,7 +16836,10 @@ fec1fc,9000000
 34823b8,114b0009
 34823bc,34020000
 34823c0,3e00008
+<<<<<<< HEAD
 >>>>>>> a30f1183 (Add hack to shuffle all the rupees in rupee towers)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 34823c4,34020002
 34823c8,3c098012
 34823cc,812aa673
@@ -17000,6 +17184,7 @@ fec1fc,9000000
 3482a38,44056000
 3482a3c,3e00008
 3482a44,3c188040
+<<<<<<< HEAD
 <<<<<<< HEAD
 3482a48,9718083c
 3482a4c,a5d80798
@@ -20637,6 +20822,8 @@ fec1fc,9000000
 34836b4,27bdffe8
 34836b8,afaa0004
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3482a48,97180838
 3482a4c,a5d80794
 3482a50,3c188040
@@ -21038,6 +21225,7 @@ fec1fc,9000000
 3483228,4800
 3483230,7000
 3483234,4800
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 3483240,80418090
@@ -21611,6 +21799,9 @@ fec1fc,9000000
 =======
 3483240,80418130
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+3483240,80418130
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3483244,42890
 3483248,34191000
 348324c,340a4800
@@ -21982,7 +22173,7 @@ fec1fc,9000000
 3483860,3c0a8040
 3483864,814a0cc8
 3483868,11400008
-3483870,c1004bb
+3483870,c1004ba
 3483878,3c08801e
 348387c,25088966
 3483880,34090004
@@ -35114,6 +35305,7 @@ fec1fc,9000000
 3483c34,3c0a8041
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 3483c38,254aca18
 =======
 3483c38,254aca40
@@ -35121,6 +35313,9 @@ fec1fc,9000000
 =======
 3483c38,254acaa8
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+3483c38,254acaa8
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3483c3c,24780008
 3483c40,3e00008
 3483c44,adf802c0
@@ -35131,6 +35326,7 @@ fec1fc,9000000
 3483c5c,3c0e8041
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 3483c60,25ceca18
 =======
 3483c60,25ceca40
@@ -35138,6 +35334,9 @@ fec1fc,9000000
 =======
 3483c60,25cecaa8
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+3483c60,25cecaa8
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3483c64,ac4e0004
 3483c68,3e00008
 3483c6c,820f013f
@@ -35195,6 +35394,7 @@ fec1fc,9000000
 3483d48,afbf0014
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 3483d4c,c102548
 =======
 3483d4c,c102553
@@ -35202,6 +35402,9 @@ fec1fc,9000000
 =======
 3483d4c,c10254b
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+3483d4c,c10254b
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3483d50,46000306
 3483d54,406821
 3483d58,8fa20010
@@ -35232,6 +35435,7 @@ fec1fc,9000000
 3483dbc,8fa40060
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 3483dc0,c102990
 =======
 3483dc0,c10299b
@@ -35239,6 +35443,9 @@ fec1fc,9000000
 =======
 3483dc0,c1029b4
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+3483dc0,c1029b4
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3483dc4,8c840000
 3483dc8,8fa20004
 3483dcc,8fa30008
@@ -42809,7 +43016,10 @@ fec1fc,9000000
 3483ff8,3c028041
 3483ffc,10000003
 3484000,2442b2b8
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3484004,3c028041
 3484008,2442b29a
 348400c,3c038041
@@ -52561,6 +52771,7 @@ fec1fc,9000000
 3488ac0,1040000c
 3488ac8,94820f06
 <<<<<<< HEAD
+<<<<<<< HEAD
 3488acc,94820ef4
 3488ad0,3042fb87
 3488ad4,3e00008
@@ -53411,6 +53622,8 @@ fec1fc,9000000
 3488c48,3e00008
 3488c4c,24420033
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3488acc,34420080
 3488ad0,a4820f06
 3488ad4,94820ef6
@@ -53504,7 +53717,10 @@ fec1fc,9000000
 3488c40,10400005
 3488c48,38420001
 3488c4c,2102b
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3488c50,3e00008
 3488c54,24420030
 3488c58,3e00008
@@ -54216,6 +54432,7 @@ fec1fc,9000000
 3489808,90510882
 348980c,90500883
 3489810,3c028040
+<<<<<<< HEAD
 <<<<<<< HEAD
 3489814,10000005
 3489818,3c028040
@@ -86013,6 +86230,8 @@ fec1fc,9000000
 34898ec,3c02801c
 34898f0,344284a0
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3489814,10000009
 3489818,90510884
 348981c,3c028040
@@ -86069,7 +86288,10 @@ fec1fc,9000000
 34898e8,a4431d04
 34898ec,93a30012
 34898f0,a0431d06
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 34898f4,97a30010
 34898f8,a4431d18
 34898fc,93a30012
@@ -87496,6 +87718,7 @@ fec1fc,9000000
 348afa0,8fb10028
 348afa4,8fb00024
 348afa8,3e00008
+<<<<<<< HEAD
 <<<<<<< HEAD
 348afac,ac64cb2c
 348afb0,27bdffe8
@@ -92132,6 +92355,8 @@ fec1fc,9000000
 348b17c,30630200
 348b180,1460002a
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 348afac,27bd0048
 348afb0,3c028040
 348afb4,a04032e4
@@ -92250,7 +92475,10 @@ fec1fc,9000000
 348b178,30420002
 348b17c,54400019
 348b180,30630200
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 348b184,3c02801c
 348b188,344284a0
 348b18c,944200a4
@@ -92510,6 +92738,7 @@ fec1fc,9000000
 348b5e8,dc04761
 348b5ec,6e6f6e00
 348b5f4,2
+<<<<<<< HEAD
 <<<<<<< HEAD
 348b5f8,2
 348b5fc,3
@@ -98820,6 +99049,50 @@ fec1fc,9000000
 348b6a8,a0301
 348b6ac,1000000
 348b6b4,100010
+=======
+348b5fc,3f800000
+348b608,1
+348b60c,30006
+348b610,70009
+348b614,b000e
+348b618,f0010
+348b61c,110019
+348b620,1a002b
+348b624,2c002e
+348b628,300032
+348b62c,35003c
+348b630,400041
+348b634,460051
+348b638,540109
+348b63c,10b010c
+348b640,10e010f
+348b644,1100113
+348b64c,1
+348b650,1
+348b654,2
+348b658,1
+348b65c,2
+348b660,2
+348b664,3
+348b668,1
+348b66c,2
+348b670,2
+348b674,3
+348b678,2
+348b67c,3
+348b680,3
+348b684,4
+348b688,84858683
+348b68c,8e030000
+348b690,9293948e
+348b694,8c007978
+348b698,58000000
+348b69c,87000000
+348b6a4,100010
+348b6a8,a0301
+348b6ac,1000000
+348b6b4,100010
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 348b6b8,20002
 348b6bc,2000000
 348b6c4,80008
@@ -100140,7 +100413,10 @@ fec1fc,9000000
 3490de0,8ded9ea
 3490df8,ca000
 3490dfc,ca000
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3490e00,ca000
 3490e04,ca000
 3490e28,c900
@@ -100845,6 +101121,7 @@ fec1fc,9000000
 3492070,cb000
 3492074,cb000
 <<<<<<< HEAD
+<<<<<<< HEAD
 3492078,da000
 349207c,da000
 3492080,5e8000
@@ -101509,6 +101786,8 @@ fec1fc,9000000
 349292c,f0cfcfcf
 3492930,cfcfcff0
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3492078,bd400
 349207c,5dea0
 3492088,ca000
@@ -101811,12 +102090,16 @@ fec1fc,9000000
 34928d0,990099
 34928d4,8c0030
 3492930,f0f0f0f0
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3492934,f0f0f0f0
 3492938,f0f0f0f0
 349293c,f0f0f0f0
 3492940,f0f0f0f0
 3492944,f0f0f0f0
+<<<<<<< HEAD
 <<<<<<< HEAD
 3492948,f0f0f0f0
 349294c,cfcfcfcf
@@ -101834,6 +102117,8 @@ fec1fc,9000000
 3492978,f0f0f0bf
 349297c,bfbff0f0
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3492948,dff0f0f0
 349294c,f0f0f0f0
 3492950,f0f0f0f0
@@ -101862,6 +102147,7 @@ fec1fc,9000000
 34929a8,cfcfcfcf
 34929ac,f0f0f0f0
 34929b0,f0f0f0f0
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 34929b4,f0f0f0cf
@@ -101917,6 +102203,15 @@ fec1fc,9000000
 34929c4,bfbfbfbf
 34929c8,bfbfbfbf
 34929cc,f0f0f0f0
+=======
+34929b4,cfcfcfcf
+34929b8,cfbfbfbf
+34929bc,f0f0f0f0
+34929c0,f0f0f0f0
+34929c4,bfbfbfbf
+34929c8,bfbfbfbf
+34929cc,f0f0f0f0
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 34929d0,f0f0f0bf
 34929d4,bfbfbfbf
 34929d8,bfbfbfbf
@@ -101945,6 +102240,7 @@ fec1fc,9000000
 3492a34,f0f0f0f0
 3492a38,f0f0f0f0
 <<<<<<< HEAD
+<<<<<<< HEAD
 3492a3c,bfbfbfbf
 3492a40,bfbfbfbf
 3492a44,f0f0f0f0
@@ -101964,6 +102260,8 @@ fec1fc,9000000
 3492a78,f0f0f0bf
 3492a7c,bfbfaff0
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3492a3c,f0f0f0f0
 3492a40,f0f0f0f0
 3492a44,f0f0f0cf
@@ -102085,6 +102383,7 @@ fec1fc,9000000
 3492b34,f0f0f0f0
 3492b38,f0f0f0f0
 <<<<<<< HEAD
+<<<<<<< HEAD
 3492b3c,dfdfafaf
 3492b40,afafaff0
 3492b44,f0f0f0f0
@@ -102104,6 +102403,8 @@ fec1fc,9000000
 3492b78,f0f0f0cf
 3492b7c,afafaf9f
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3492b3c,f0f0f0f0
 3492b40,f0f0f0f0
 3492b44,f0f0f0ef
@@ -102135,6 +102436,7 @@ fec1fc,9000000
 3492ba8,afafaff0
 3492bac,f0f0f0f0
 3492bb0,f0f0f0f0
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 3492bb4,f0f0f0ff
@@ -102200,6 +102502,15 @@ fec1fc,9000000
 3492bc4,cfafafaf
 3492bc8,afaf9f9f
 3492bcc,f0f0f0f0
+=======
+3492bb4,dfdfafaf
+3492bb8,afafaf9f
+3492bbc,f0f0f0f0
+3492bc0,f0f0f0f0
+3492bc4,cfafafaf
+3492bc8,afaf9f9f
+3492bcc,f0f0f0f0
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3492bd0,f0f0f0cf
 3492bd4,cfafafaf
 3492bd8,9f9ff0f0
@@ -102228,6 +102539,7 @@ fec1fc,9000000
 3492c34,f0f0f0f0
 3492c38,f0f0f0f0
 <<<<<<< HEAD
+<<<<<<< HEAD
 3492c3c,f0efef9f
 3492c40,9f8f8ff0
 3492c44,f0f0f0f0
@@ -102247,6 +102559,8 @@ fec1fc,9000000
 3492c7c,ef8f8f8f
 >>>>>>> 0e0b7637 (Beehives basically working. Need to fix logic for ones that are higher up. Also sometimes the drop either isnt dropping or is getting stuck?)
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3492c3c,f0f0f0f0
 3492c40,f0f0f0f0
 3492c44,f0f0f0ff
@@ -102288,6 +102602,7 @@ fec1fc,9000000
 3492ca8,9f8f8ff0
 3492cac,f0f0f0f0
 3492cb0,f0f0f0f0
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 3492cb4,f0f0f0ff
@@ -102351,6 +102666,15 @@ fec1fc,9000000
 3492cc4,efef9f8f
 3492cc8,8f8f8ff0
 3492ccc,f0f0f0f0
+=======
+3492cb4,efef9f9f
+3492cb8,8f8f8ff0
+3492cbc,f0f0f0f0
+3492cc0,f0f0f0f0
+3492cc4,efef9f8f
+3492cc8,8f8f8ff0
+3492ccc,f0f0f0f0
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3492cd0,f0f0f0ef
 3492cd4,efef8f8f
 3492cd8,8f8ff0f0
@@ -102379,6 +102703,7 @@ fec1fc,9000000
 3492d34,f0f0f0f0
 3492d38,f0f0f0f0
 <<<<<<< HEAD
+<<<<<<< HEAD
 3492d3c,f0ffff7f
 3492d40,7f7f7ff0
 3492d44,f0f0f0f0
@@ -102398,6 +102723,8 @@ fec1fc,9000000
 3492d78,f0f0f0f0
 3492d7c,ffff7f7f
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3492d3c,f0f0f0f0
 3492d40,f0f0f0f0
 3492d44,f0f0f0ff
@@ -102439,6 +102766,7 @@ fec1fc,9000000
 3492da8,7f7f7ff0
 3492dac,f0f0f0f0
 3492db0,f0f0f0f0
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 3492db4,f0f0ffff
@@ -102501,6 +102829,10 @@ fec1fc,9000000
 3492db4,ffffff7f
 3492db8,7f7f6ff0
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+3492db4,ffffff7f
+3492db8,7f7f6ff0
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3492dbc,f0f0f0f0
 3492dc0,f0f0f0f0
 3492dc4,ffffff7f
@@ -102533,6 +102865,7 @@ fec1fc,9000000
 3492e30,f0f0f0f0
 3492e34,f0f0f0f0
 3492e38,f0f0f0f0
+<<<<<<< HEAD
 <<<<<<< HEAD
 3492e3c,f0ffffff
 3492e40,5f5ff0f0
@@ -102622,6 +102955,8 @@ fec1fc,9000000
 =======
 3492e9c,ffffff5f
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3492e3c,f0f0f0f0
 3492e40,f0f0f0f0
 3492e44,f0f0ffff
@@ -102687,6 +103022,7 @@ fec1fc,9000000
 3492f30,f0f0f0f0
 3492f34,f0f0f0f0
 3492f38,f0f0f0f0
+<<<<<<< HEAD
 <<<<<<< HEAD
 3492f3c,f0f0ffff
 3492f40,ff3ff0f0
@@ -102783,6 +103119,8 @@ fec1fc,9000000
 3492fa8,f0f0f0f0
 3492fac,f0f0f0ff
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3492f3c,f0f0f0f0
 3492f40,f0f0f0f0
 3492f44,f0f0ffff
@@ -102849,6 +103187,7 @@ fec1fc,9000000
 3493034,f0f0f0f0
 3493038,f0f0f0f0
 <<<<<<< HEAD
+<<<<<<< HEAD
 349303c,f0f0ffff
 3493040,fffff0f0
 3493044,f0f0f0f0
@@ -102880,6 +103219,8 @@ fec1fc,9000000
 34930a8,f0f0f0f0
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 349303c,f0f0f0f0
 3493040,f0f0f0f0
 3493044,f0f0ffff
@@ -102940,24 +103281,39 @@ fec1fc,9000000
 3493118,fffff0f0
 349311c,f0f0f0f0
 3493120,f0f0f0f0
+<<<<<<< HEAD
 3493124,f0f03fff
 3493128,fffffff0
+=======
+3493124,f0f0f0f0
+3493128,f0f0f0f0
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 349312c,f0f0f0f0
 3493130,f0f0f0f0
 3493134,f0f0f0ff
 3493138,fffffff0
 349313c,f0f0f0f0
 3493140,f0f0f0f0
+<<<<<<< HEAD
 3493144,f0f0f0ff
 3493148,fffffff0
+=======
+3493144,f0f0ffff
+3493148,fffff0f0
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 349314c,f0f0f0f0
 3493150,f0f0f0f0
 3493154,f0f0f0ff
 3493158,fffffff0
 349315c,f0f0f0f0
 3493160,f0f0f0f0
+<<<<<<< HEAD
 3493164,f0f0f0ff
 3493168,fffffff0
+=======
+3493164,f0f03fff
+3493168,fffff0f0
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 349316c,f0f0f0f0
 3493170,f0f0f0f0
 3493174,f0f0f0ff
@@ -102972,6 +103328,7 @@ fec1fc,9000000
 3493198,f0f0f0f0
 349319c,f0f0f0f0
 34931a0,f0f0f0f0
+<<<<<<< HEAD
 34931a4,f0f0f0f0
 34931a8,f0f0f0f0
 <<<<<<< HEAD
@@ -103055,6 +103412,14 @@ fec1fc,9000000
 34931b4,f0f03fff
 34931b8,fffffff0
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+34931a4,f0f03fff
+34931a8,fffff0f0
+34931ac,f0f0f0f0
+34931b0,f0f0f0f0
+34931b4,f0f03fff
+34931b8,fffffff0
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 34931bc,f0f0f0f0
 34931c0,f0f0f0f0
 34931c4,f0f0f0ff
@@ -103079,6 +103444,7 @@ fec1fc,9000000
 3493210,f0f0f0f0
 3493214,f0f0f0f0
 <<<<<<< HEAD
+<<<<<<< HEAD
 3493218,f0f0f0f0
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -103093,6 +103459,13 @@ fec1fc,9000000
 3493224,f0f0f0f0
 3493228,f0f0f0f0
 <<<<<<< HEAD
+=======
+3493218,fff0f0f0
+349321c,f0f0f0f0
+3493220,f0f0f0f0
+3493224,f0f0f0f0
+3493228,f0f0f0f0
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 349322c,f0f0f0f0
 3493230,f0f0f0f0
 <<<<<<< HEAD
@@ -103174,6 +103547,7 @@ fec1fc,9000000
 3493238,fffff0f0
 349323c,f0f0f0f0
 3493240,f0f0f0f0
+<<<<<<< HEAD
 3493244,f0f09f9f
 3493248,fffff0f0
 349324c,f0f0f0f0
@@ -103343,6 +103717,8 @@ fec1fc,9000000
 =======
 349323c,f0f0f0f0
 3493240,f0f0f0f0
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3493244,f0f05fff
 3493248,fffff0f0
 349324c,f0f0f0f0
@@ -103547,6 +103923,7 @@ fec1fc,9000000
 34932cc,f0f0f0f0
 34932d0,f0f0f0f0
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 0e0b7637 (Beehives basically working. Need to fix logic for ones that are higher up. Also sometimes the drop either isnt dropping or is getting stuck?)
 34932d4,f0f0f0f0
 34932d8,f0f0f0f0
@@ -103599,6 +103976,8 @@ fec1fc,9000000
 34932fc,f0f07fff
 3493300,fffff0f0
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 34932d4,f0f0f05f
 34932d8,ffffffff
 34932dc,f0f0f0f0
@@ -103617,6 +103996,7 @@ fec1fc,9000000
 349330c,f0f0f0f0
 3493310,f0f0f0f0
 3493314,f0f0f0f0
+<<<<<<< HEAD
 <<<<<<< HEAD
 3493318,f0f0f0f0
 <<<<<<< HEAD
@@ -119082,12 +119462,17 @@ fec1fc,9000000
 3493320,fffffff0
 >>>>>>> 0e0b7637 (Beehives basically working. Need to fix logic for ones that are higher up. Also sometimes the drop either isnt dropping or is getting stuck?)
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3493318,f0fff0f0
 349331c,f0f0f0f0
 3493320,f0f0f0f0
 >>>>>>> 1c25fedb (More beehive nonsense)
 3493324,f0f0f0f0
+<<<<<<< HEAD
 >>>>>>> 027dc9d0 (Add shadow temple spinning pots)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3493328,f0f0f0f0
 349332c,f0f0f0f0
 3493330,f0f0f0f0
@@ -119135,6 +119520,7 @@ fec1fc,9000000
 >>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
 349333c,f0f0f0f0
 3493340,f0f0f0f0
+<<<<<<< HEAD
 3493344,f0f06f7f
 3493348,7fffffff
 349334c,f0f0f0f0
@@ -119168,6 +119554,8 @@ fec1fc,9000000
 =======
 349333c,f0f0f0f0
 3493340,f0f0f0f0
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3493344,f0f07fff
 3493348,fff0f0f0
 349334c,f0f0f0f0
@@ -119308,7 +119696,10 @@ fec1fc,9000000
 34933b0,f0f0f0f0
 34933b4,f06f7f7f
 34933b8,7fffffff
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 34933bc,f0f0f0f0
 34933c0,f0f0f0f0
 34933c4,f06f6f7f
@@ -119342,6 +119733,7 @@ fec1fc,9000000
 3493434,f0f0f0f0
 3493438,f0f0f0f0
 <<<<<<< HEAD
+<<<<<<< HEAD
 349343c,f08f8f9f
 3493440,9fefeff0
 3493444,f0f0f0f0
@@ -119360,6 +119752,8 @@ fec1fc,9000000
 3493478,f0f0f0f0
 >>>>>>> 0e0b7637 (Beehives basically working. Need to fix logic for ones that are higher up. Also sometimes the drop either isnt dropping or is getting stuck?)
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 349343c,f0f0f0f0
 3493440,f0f0f0f0
 3493444,f0f09fff
@@ -119457,7 +119851,10 @@ fec1fc,9000000
 34934b0,f0f0f0f0
 34934b4,f08f8f8f
 34934b8,9f9fefef
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 34934bc,f0f0f0f0
 34934c0,f0f0f0f0
 34934c4,f08f8f8f
@@ -119491,6 +119888,7 @@ fec1fc,9000000
 3493534,f0f0f0f0
 3493538,f0f0f0f0
 <<<<<<< HEAD
+<<<<<<< HEAD
 349353c,f0afafaf
 3493540,afafdfdf
 3493544,f0f0f0f0
@@ -119509,6 +119907,8 @@ fec1fc,9000000
 >>>>>>> 0e0b7637 (Beehives basically working. Need to fix logic for ones that are higher up. Also sometimes the drop either isnt dropping or is getting stuck?)
 3493578,f0f0f0f0
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 349353c,f0f0f0f0
 3493540,f0f0f0f0
 3493544,f0f0f0ef
@@ -119525,7 +119925,10 @@ fec1fc,9000000
 3493570,f0f0f0f0
 3493574,f0f0afbf
 3493578,bfdff0f0
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 349357c,f0f0f0f0
 3493580,f0f0f0f0
 3493584,f0afafaf
@@ -119540,6 +119943,7 @@ fec1fc,9000000
 34935a8,afafdfdf
 34935ac,f0f0f0f0
 34935b0,f0f0f0f0
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 34935b4,f0f0f0cf
@@ -119590,6 +119994,8 @@ fec1fc,9000000
 34935b4,f0f0f0f0
 34935b8,f0f0f0f0
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 34935b4,9fafafaf
 34935b8,afafdfdf
 >>>>>>> 1c25fedb (More beehive nonsense)
@@ -119626,6 +120032,7 @@ fec1fc,9000000
 3493634,f0f0f0f0
 3493638,f0f0f0f0
 <<<<<<< HEAD
+<<<<<<< HEAD
 349363c,bfbfbfbf
 3493640,bfbfbfbf
 3493644,f0f0f0f0
@@ -119644,6 +120051,8 @@ fec1fc,9000000
 3493674,aff0f0f0
 3493678,f0f0f0f0
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 349363c,f0f0f0f0
 3493640,f0f0f0f0
 3493644,f0f0f0cf
@@ -119791,7 +120200,10 @@ fec1fc,9000000
 3493770,f0f0f0f0
 3493774,f0f0cfcf
 3493778,cfcff0f0
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 349377c,f0f0f0f0
 3493780,f0f0f0f0
 3493784,f0cfcfcf
@@ -119802,6 +120214,7 @@ fec1fc,9000000
 3493798,cfcfcff0
 349379c,f0f0f0f0
 34937a0,f0f0f0f0
+<<<<<<< HEAD
 <<<<<<< HEAD
 34937a4,f0f0f0f0
 34937a8,f0f0f0f0
@@ -119816,13 +120229,18 @@ fec1fc,9000000
 34937b4,f0f0f0f0
 34937b8,f0f0f0f0
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 34937a4,cfcfcfcf
 34937a8,cfcfcff0
 34937ac,f0f0f0f0
 34937b0,f0f0f0f0
 34937b4,bfbfcfcf
 34937b8,cfcfcfcf
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 34937bc,f0f0f0f0
 34937c0,f0f0f0f0
 34937c4,bfbfbfbf
@@ -119838,6 +120256,7 @@ fec1fc,9000000
 34937ec,bff0f0f0
 34937f0,f0f0f0f0
 34937f4,f0f0f0f0
+<<<<<<< HEAD
 <<<<<<< HEAD
 34937f8,6381623f
 34937fc,623f623d
@@ -120205,6 +120624,8 @@ fec1fc,9000000
 34938c4,623d623d
 34938c8,623f623f
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 34937f8,f0f0f0f0
 34937fc,f0f0f0f0
 3493800,f0f0f0f0
@@ -120263,6 +120684,7 @@ fec1fc,9000000
 3493838,cfcfcfcf
 >>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
 349383c,f0f0f0f0
+<<<<<<< HEAD
 3493840,f0f0f0bf
 3493844,bfbfbfbf
 3493848,bfbfbfbf
@@ -120311,6 +120733,8 @@ fec1fc,9000000
 3493888,f0f0f0f0
 =======
 349383c,f0f0f0f0
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3493840,f0f0f0f0
 3493844,f0f0f0df
 3493848,dff0f0f0
@@ -120330,7 +120754,10 @@ fec1fc,9000000
 3493880,f0f0f0f0
 3493884,f0f0cfcf
 3493888,cfcff0f0
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 349388c,f0f0f0f0
 3493890,f0f0f0f0
 3493894,f0cfcfcf
@@ -120927,7 +121354,10 @@ fec1fc,9000000
 3493948,39f36b7f
 349394c,623d623d
 3493950,623d623d
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3493954,623d623d
 3493958,623d623d
 349395c,6bc318eb
@@ -120982,6 +121412,7 @@ fec1fc,9000000
 3493a20,623f637f
 3493a24,623f637f
 3493a28,623f623f
+<<<<<<< HEAD
 <<<<<<< HEAD
 3493a2c,5a3f623f
 3493a30,623f623f
@@ -122362,6 +122793,115 @@ fec1fc,9000000
 3493bd0,bdf8bd
 >>>>>>> 1c25fedb (More beehive nonsense)
 3493bd4,f8bdf8bd
+=======
+3493a2c,627f6381
+3493a30,6b7f637f
+3493a34,730339f3
+3493a38,6b81623d
+3493a3c,623d623d
+3493a40,623f623f
+3493a44,623f623d
+3493a48,623d623d
+3493a4c,623d623d
+3493a50,623d623d
+3493a54,623d623d
+3493a58,623d623f
+3493a5c,623f623f
+3493a60,623f637f
+3493a64,623f637f
+3493a68,623f623f
+3493a6c,627f6381
+3493a70,63816a3f
+3493a74,73c37303
+3493a78,6a81623d
+3493a7c,62816281
+3493a80,627f627f
+3493a84,627f623f
+3493a88,627f623f
+3493a8c,5a3f5a3f
+3493a90,623f623f
+3493a94,5a3f623f
+3493a98,623f623f
+3493a9c,63816381
+3493aa0,63816bc1
+3493aa4,63816bc1
+3493aa8,638163c1
+3493aac,63816381
+3493ab0,637f6381
+3493ab4,627f623d
+3493ab8,623d5a41
+3493abc,f8bdf8bd
+3493ac0,f8fdf8fd
+3493ac4,f8fdf8fd
+3493ac8,bdf8bd
+3493acc,f8bd00bd
+3493ad0,f8bdf8bd
+3493ad4,f8bdf8bd
+3493ad8,f8fdf8fd
+3493adc,f8fdf8bd
+3493ae0,f8bd00bd
+3493ae4,f8bdf8bd
+3493ae8,f8bdf8bd
+3493aec,6ac36381
+3493af0,637f637f
+3493af4,623f623d
+3493af8,5a4100fd
+3493afc,fd00ff
+3493b00,fd00ff
+3493b04,fd00ff
+3493b08,ff00fd
+3493b0c,fd00ff
+3493b10,ff00ff
+3493b14,ff00fd
+3493b18,f8bd00fd
+3493b1c,f8bdf8bd
+3493b20,f8bdf8bd
+3493b24,f8bdf8bd
+3493b28,f8bdf8bd
+3493b2c,63c16381
+3493b30,6381637f
+3493b34,623f5a41
+3493b38,ff00ff
+3493b3c,fd00ff
+3493b40,fd00fd
+3493b44,ff00ff
+3493b48,fff8bd
+3493b4c,f8bd00fd
+3493b50,fff8bd
+3493b54,f8fdf8bd
+3493b58,f8bdf8bd
+3493b5c,bd00bd
+3493b60,f8bdf8bd
+3493b64,f8bdf8bd
+3493b68,f8bd00ff
+3493b6c,6bc16381
+3493b70,6381623f
+3493b74,623ff8ff
+3493b78,f8bdf8bd
+3493b7c,f8bdf8bd
+3493b80,f8bdf8bd
+3493b84,f8bd00fd
+3493b88,f8fdf8bd
+3493b8c,bd00bd
+3493b90,f8fdf8bd
+3493b94,f8bdf8bd
+3493b98,f8bdf8bd
+3493b9c,bd00bd
+3493ba0,f8bdf8bd
+3493ba4,f8bdf8bd
+3493ba8,f8bdf8bd
+3493bac,6ac36381
+3493bb0,6381627f
+3493bb4,623ff8bf
+3493bb8,bd00bd
+3493bbc,f8bd00fd
+3493bc0,fdf8bd
+3493bc4,f8bdf8bd
+3493bc8,f8bd00bd
+3493bcc,f8fdf8bd
+3493bd0,bdf8bd
+3493bd4,f8bdf8bd
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3493bd8,bd00bd
 3493bdc,bd00bd
 3493be0,f8bdf8bd
@@ -123053,6 +123593,7 @@ fec1fc,9000000
 3494698,f8bdf8bf
 349469c,f8bff8bf
 <<<<<<< HEAD
+<<<<<<< HEAD
 34946a0,bd00bd
 34946a4,bdf8bd
 34946a8,f8bdf8bd
@@ -123731,6 +124272,8 @@ fec1fc,9000000
 34947f8,623f637f
 34947fc,623f637f
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 34946a0,f8bff8ff
 34946a4,f8fdf8ff
 34946a8,f8fff8bd
@@ -123819,7 +124362,10 @@ fec1fc,9000000
 34947f4,730339f1
 34947f8,6b81623d
 34947fc,623d623d
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3494800,623f623f
 3494804,623f623d
 3494808,623d623d
@@ -124371,6 +124917,7 @@ fec1fc,9000000
 3495090,bd00bd
 3495094,f8bdf8bd
 <<<<<<< HEAD
+<<<<<<< HEAD
 3495098,bd00bd
 349509c,bd00bd
 34950a0,f8bdf8ff
@@ -124428,6 +124975,53 @@ fec1fc,9000000
 3495140,6b5a6b5a
 3495144,6b5a6b5a
 3495148,6b5a6b5a
+=======
+3495098,bdf8bf
+349509c,bdf8bd
+34950a0,bd00bd
+34950a4,f8bd00bd
+34950a8,f8bdf8ff
+34950ac,f8bd00bd
+34950b0,7303637f
+34950b4,6381f8bd
+34950b8,f8fff8fd
+34950bc,f8fff8ff
+34950c0,f8bd00bd
+34950c4,f8bff8ff
+34950c8,f8bff8ff
+34950cc,f8fff8bf
+34950d0,f8fff8ff
+34950d4,f8bdf8bf
+34950d8,bd00bd
+34950dc,f8fdf8bf
+34950e0,bdf8ff
+34950e4,f8bdf8ff
+34950e8,f8bdf8bd
+34950ec,f8bdf8ff
+34950f0,4a777303
+34950f4,6b81f8fd
+34950f8,f8fff8ff
+34950fc,f8bdf8bd
+3495100,bd00bd
+3495104,bd00bd
+3495108,f8bdf8ff
+349510c,f8fff8ff
+3495110,f8fff8ff
+3495114,bdf8bd
+3495118,f8fff8ff
+349511c,bdf8bd
+3495120,bdf8bd
+3495124,bdf8bd
+3495128,f8bdf8ff
+349512c,bdf8bd
+3495130,6c5a6b5a
+3495134,6b5a6b5a
+3495138,6b5a6b5a
+349513c,6b5a6b5a
+3495140,6b5a6b5a
+3495144,6b5a739c
+3495148,62946b5a
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 349514c,6b5a6b5a
 3495150,6b5a6c5a
 3495154,6b5a6c5a
@@ -124484,12 +125078,20 @@ fec1fc,9000000
 349514c,6b5a6b5a
 3495150,6b5a6b5a
 3495154,6b5a6b5a
+<<<<<<< HEAD
 >>>>>>> 0e0b7637 (Beehives basically working. Need to fix logic for ones that are higher up. Also sometimes the drop either isnt dropping or is getting stuck?)
 3495158,6b5a6b5a
 349515c,749c418c
 3495160,6b5a6b5a
 3495164,735a6b5a
 3495168,735a6b5a
+=======
+3495158,6b5a6b5a
+349515c,749c418c
+3495160,6b5a6b5a
+3495164,6b5a6b5a
+3495168,6b5a6b5a
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 349516c,6b5a6b5a
 3495170,6c5a6b5a
 3495174,6b5a6b5a
@@ -124498,8 +125100,13 @@ fec1fc,9000000
 3495180,6b5a6b5a
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 3495184,6b5a6b5a
 3495188,6b5a6b5a
+=======
+3495184,6b5a749c
+3495188,749c735a
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 349518c,6b5a6b5a
 3495190,6b5a6c5a
 3495194,6b5a6c5a
@@ -124513,6 +125120,7 @@ fec1fc,9000000
 3495188,749c735a
 349518c,6b5a6b5a
 3495190,6b5a6b5a
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
 3495194,6b5a6b5a
 >>>>>>> 0e0b7637 (Beehives basically working. Need to fix logic for ones that are higher up. Also sometimes the drop either isnt dropping or is getting stuck?)
@@ -124522,6 +125130,10 @@ fec1fc,9000000
 34951a0,6b5a6c5a
 34951a4,739c6294
 =======
+=======
+3495194,6b5a6b5a
+3495198,6b5a6b5a
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 349519c,6b5a735a
 34951a0,6c5a6b5a
 34951a4,6b5a6b5a
@@ -124533,6 +125145,7 @@ fec1fc,9000000
 34951b8,6b5a6b5a
 34951bc,6b5a6b5a
 34951c0,6b5a6b5a
+<<<<<<< HEAD
 <<<<<<< HEAD
 34951c4,6b5a6b5a
 34951c8,6b5a6b5a
@@ -125343,6 +125956,14 @@ fec1fc,9000000
 34951f8,6b5a6c5a
 34951fc,6b5a6c5a
 =======
+=======
+34951c4,6b5a6c5a
+34951c8,6b5a6b5a
+34951cc,6b5a6b5a
+34951d0,6b5a6b5a
+34951d4,6b5a6b5a
+34951d8,6b5a6b5a
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 34951dc,6b5a6b5a
 34951e0,6b5a6c5a
 34951e4,6b5a6c5a
@@ -125352,7 +125973,10 @@ fec1fc,9000000
 34951f4,735a6b5a
 34951f8,735a6b5a
 34951fc,6b5a6b5a
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3495200,6b5a6b5a
 3495204,6b5a6b5a
 3495208,6b5a6b5a
@@ -125587,6 +126211,7 @@ fec1fc,9000000
 34955dc,33de4b20
 34955e0,190af7be
 34955e4,f8bef8be
+<<<<<<< HEAD
 <<<<<<< HEAD
 34955e8,f8be0000
 34955ec,f8be
@@ -126173,6 +126798,582 @@ fec1fc,9000000
 3495ffc,6b5a6b5a
 3496000,6b5a6b5a
 <<<<<<< HEAD
+=======
+34955e8,f7bef8be
+34955ec,f7be6c5a
+34955f0,6b5a735a
+34955f4,735a7426
+34955f8,64e453a4
+34955fc,5ca23ada
+3495600,5b626426
+3495604,7c664bdc
+3495608,10860000
+349560c,fef8be
+3495610,f7bef8be
+3495618,4232d2
+349561c,63a06424
+3495620,84e80844
+3495624,f7bef7be
+3495628,f7bef7be
+349562c,f7be6c5a
+3495630,6b5a6b5a
+3495634,6b5a7466
+3495638,64e453a4
+349563c,53624b60
+3495640,53a253a4
+3495644,3a560840
+3495648,fe
+349564c,f8bef8be
+3495650,f8be0000
+3495654,f8be
+3495658,f8c0f800
+349565c,9c84b60
+3495660,43204bda
+3495664,f8be
+3495668,f8bef8be
+349566c,f7be6c5a
+3495670,6b5a6b5a
+3495674,735a64e4
+3495678,53625362
+349567c,3b1e3b20
+3495680,43202216
+3495684,8420000
+3495688,f8be
+349568c,f8be00fe
+3495694,f8be
+3495698,f8bef8be
+349569c,f8be0046
+34956a0,2a58194e
+34956a4,2f7be
+34956a8,f8bef8be
+34956ac,f7be6c5a
+34956b0,6b5a6b5a
+34956b4,735a5be6
+34956b8,5ba45ba4
+34956bc,536254e4
+34956c0,4b601908
+34956c8,f7bef8be
+34956d4,f8be
+34956d8,f7bef8be
+34956dc,f8bef8be
+34956e0,2f800
+34956e4,f8c0f7be
+34956e8,f8bef8be
+34956ec,f7be6c5a
+34956f0,6b5a6b5a
+34956f4,735a6c28
+34956f8,5ba45ba4
+34956fc,64e67466
+3495700,3b9a0000
+3495704,be
+3495708,f8c000fe
+3495714,f8be
+3495718,f8bef8be
+349571c,f8bef8be
+3495720,6b186b18
+3495724,6b186b18
+3495728,6b186b18
+349572c,6b186c5a
+3495730,6b5a6b5a
+3495734,73186c26
+3495738,5be44b62
+349573c,4b645ca2
+3495740,190a0000
+3495744,f8be00fe
+349574c,190a64e4
+3495750,8d30966e
+3495754,64e618c8
+3495758,f7bef7be
+349575c,f7bef8be
+3495760,735a6b5a
+3495764,6b5a6b5a
+3495768,6b5a6b5a
+349576c,6b5a6b5a
+3495770,6b5a6c5a
+3495774,73187426
+3495778,5ba44362
+349577c,43202a16
+3495780,f8be
+3495788,11c6
+349578c,64284320
+3495790,53624b60
+3495794,436284ee
+3495798,18c8f8be
+349579c,f8bef8be
+34957a0,735a6b5a
+34957a4,6c5a6c5a
+34957a8,6b5a6b5a
+34957ac,6b5a6b5a
+34957b0,6b5a6c5a
+34957b4,6b586c26
+34957b8,4b624320
+34957bc,3b20110a
+34957c8,1ce
+34957cc,43207ca8
+34957d0,b5f29eb2
+34957d4,74685ce4
+34957d8,7468f8be
+34957dc,f8bef8be
+34957e0,735a6b5a
+34957e4,2108739c
+34957e8,6b5a6b5a
+34957ec,6b5a6b5a
+34957f0,6c5a6b5a
+34957f4,6c5a5be6
+34957f8,3b6233e0
+34957fc,2a9c0884
+3495808,f18c
+349580c,33deb632
+3495810,e77ca6f4
+3495814,95705ce4
+3495818,9d70f8be
+349581c,f8bef8be
+3495820,735a6b5a
+3495824,6b5a6b5a
+3495828,6b5a6b5a
+349582c,be0000
+3495830,6b5a735a
+3495834,7b9b5be6
+3495838,43203320
+349583c,239e0884
+3495840,8000000
+3495848,f98e
+349584c,43629d70
+3495850,c7b69d70
+3495854,74ac4b60
+3495858,8ceef8be
+349585c,f8bef8be
+3495860,735a6b5a
+3495864,6b5a6b5a
+3495868,6b5a00be
+3495870,6b5a735a
+3495874,739a64e4
+3495878,53624320
+349587c,33de1908
+3495880,8000000
+3495888,90e
+349588c,4ca25be4
+3495890,952e8d2e
+3495894,53a24320
+3495898,6c26f8be
+349589c,f8bef8be
+34958a0,735a6b5a
+34958a4,6b5a6b5a
+34958a8,6b5a0000
+34958b0,6b5a749c
+34958b4,735a7426
+34958b8,63e65be6
+34958bc,3b203356
+34958c0,8000000
+34958c8,44
+34958cc,f90e3b20
+34958d0,33de4320
+34958d4,4c603b9a
+34958d8,11c8f7be
+34958dc,f7bef7be
+34958e0,735a6b5a
+34958e4,6b5a6b5a
+34958e8,6b5a00be
+34958f0,6c5a749c
+34958f4,739c7426
+34958f8,64266c26
+34958fc,53a47568
+349590c,986090e
+3495910,f04cf08c
+3495914,8cc0886
+3495918,f8bef8be
+349591c,f8bef8be
+3495920,735a6b5a
+3495924,6b5a6c5a
+3495928,6c5a6b5a
+349592c,be0000
+3495930,749c735a
+3495934,739c7c66
+3495938,6c267c68
+349593c,6ce46c26
+3495940,32d00000
+3495948,bef7be
+349594c,f7bef8be
+3495950,f7bef7be
+3495954,f8bef7be
+3495958,f7bef8be
+349595c,f8bef8be
+3495960,735a6b5a
+3495964,6c5a6b5a
+3495968,6b5a6b5a
+349596c,749a0000
+3495970,6b5a6b5a
+3495974,739c7ca8
+3495978,74667468
+349597c,6c246424
+3495980,8dec1184
+3495984,c0
+3495988,f8bef7be
+349598c,f8bef8be
+3495990,f8bef8be
+3495994,f7bef7be
+3495998,f8bef8be
+349599c,f8bef8be
+34959a0,735a6c5a
+34959a4,6c5a6b5a
+34959a8,6b5a6b5a
+34959b0,6b5a6b5a
+34959b4,739a64e4
+34959b8,4ba44b62
+34959bc,43624362
+34959c0,3b205362
+34959c4,2f8be
+34959c8,f8bef7be
+34959cc,f8bef8be
+34959d0,f8bef8be
+34959d4,f8bef8be
+34959d8,f8bef8be
+34959dc,f8bef8be
+34959e0,735a6c5a
+34959e4,6b5a6b5a
+34959e8,6b5a735a
+34959f0,6b5a6b5a
+34959f4,739c4362
+34959f8,1a5c225a
+34959fc,225c121a
+3495a00,11d8121a
+3495a04,2a580000
+3495a08,f8bef7be
+3495a0c,f8bef8be
+3495a10,f8bef8be
+3495a14,f8bef8be
+3495a18,f8bef8be
+3495a1c,f8bef8be
+3495a20,735a6c5a
+3495a24,6b5a6c5a
+3495a28,6b5a0000
+3495a30,6b5a6b5a
+3495a34,6b5a5ce6
+3495a38,225a11c8
+3495a3c,146f18a
+3495a40,1a1a2b9c
+3495a44,121a3ade
+3495a48,8840000
+3495a4c,fef8be
+3495a50,f8bef8be
+3495a54,f8bef7be
+3495a58,f7bef8be
+3495a5c,f8bef8be
+3495a60,735a6c5a
+3495a64,6b58739c
+3495a68,6b5a0000
+3495a70,6b5a6b5a
+3495a74,6b5a5ce4
+3495a78,10c60000
+3495a7c,f800
+3495a80,f9883bde
+3495a84,33e033e0
+3495a88,339c43dc
+3495a8c,214e0000
+3495a90,f7bef7be
+3495a94,f8bef7be
+3495a98,f8bef8be
+3495a9c,f8bef7be
+3495aa0,735a6b5a
+3495aa4,6c5a6c5a
+3495aa8,6b5a6b5a
+3495aac,6b5a6b5a
+3495ab0,6b5a6c5a
+3495ab4,6b5a194e
+3495abc,f8bef8be
+3495ac0,842
+3495ac4,22904320
+3495ac8,3be04360
+3495acc,329a1908
+3495ad0,f7bef7be
+3495ad4,f8bef8be
+3495ad8,f7bef8be
+3495adc,f8bef7be
+3495ae0,735a6b5a
+3495ae4,6b5a6c5a
+3495ae8,6c5a6b5a
+3495aec,6b5a6b5a
+3495af0,6c5a6b5a
+3495af4,6b5a0000
+3495af8,f8bef8be
+3495afc,f8be0000
+3495b00,800
+3495b04,1186
+3495b08,11c831d2
+3495b0c,19080000
+3495b18,fef8be
+3495b1c,fe
+3495b20,739c739c
+3495b24,739c739c
+3495b28,739c739c
+3495b2c,739c6c5a
+3495b30,6b5a6b5a
+3495b34,6b5af7be
+3495b38,f8be0044
+3495b3c,43de531e
+3495b40,2ad2228e
+3495b44,18c60840
+3495b48,8400800
+3495b5c,11c8
+3495b60,6ce484ee
+3495b64,8dec6ba4
+3495b68,44f8be
+3495b6c,f8be6c5a
+3495b70,6b5a6b5a
+3495b74,6b5af8be
+3495b78,194c5428
+3495b7c,4320431e
+3495b80,432033de
+3495b84,4b1e0840
+3495b88,8400840
+3495b8c,9400840
+3495b90,9400940
+3495b94,8000000
+3495b9c,1cc
+3495ba0,3b603b20
+3495ba4,3bde3b1e
+3495ba8,84ac194e
+3495bac,f7be6c5a
+3495bb0,6b5a6b5a
+3495bb4,6b5a0000
+3495bb8,4ba43bde
+3495bbc,21903be0
+3495bc0,85ee3320
+3495bc4,54a40840
+3495bc8,10401042
+3495bcc,10401040
+3495bd0,8400840
+3495bd4,8000800
+3495bd8,8000800
+3495bdc,f9ce
+3495be0,33de9572
+3495be4,1a5a110c
+3495be8,2b9e6468
+3495bec,426c5a
+3495bf0,6b5a6b5a
+3495bf4,6b5a194e
+3495bf8,33de1290
+3495bfc,2a58339e
+3495c00,2b9c225c
+3495c04,329a0842
+3495c08,11821182
+3495c0c,11421040
+3495c10,8400840
+3495c14,9400940
+3495c18,9400800
+3495c1c,f98a
+3495c20,2b9e239c
+3495c24,239a1ad4
+3495c28,114e235c
+3495c2c,42526c5a
+3495c30,6b5a6b5a
+3495c34,6b5a3a9a
+3495c38,1a5a0882
+3495c3c,986e04a
+3495c40,229a0194
+3495c44,8c61082
+3495c48,108210c6
+3495c4c,21901142
+3495c50,11421142
+3495c54,8422190
+3495c58,9840000
+3495c5c,142
+3495c60,e98a2b5c
+3495c64,a54f802
+3495c68,f8002b9c
+3495c6c,6b9c6c5a
+3495c70,6b5a6b5a
+3495c74,6b5a5ce2
+3495c78,435e194a
+3495c7c,8400842
+3495c80,9c811c6
+3495c84,8401182
+3495c88,1082114e
+3495c8c,53a60940
+3495c90,10401142
+3495c94,1040f1cc
+3495c98,2ad20000
+3495ca0,1440046
+3495ca4,f800f8be
+3495ca8,4433de
+3495cac,74206c5a
+3495cb0,6b5a749c
+3495cb4,6b5a7ca8
+3495cb8,7da674e0
+3495cc4,18c60842
+3495cc8,2a8e54e6
+3495ccc,852c0940
+3495cd0,8000940
+3495cd4,5ca2
+3495cd8,9d702a8e
+3495cdc,8421186
+3495ce0,c0
+3495ce4,f8bef8be
+3495ce8,32144320
+3495cec,7c626c5a
+3495cf0,6c5a749c
+3495cf4,6b5a7c66
+3495cf8,85eab634
+3495cfc,6c9e32ce
+3495d04,635a7de8
+3495d08,64e46c24
+3495d0c,b634a56e
+3495d10,8dea8dea
+3495d14,adb096b0
+3495d18,75667424
+3495d1c,75669528
+3495d20,fef8be
+3495d24,210a4a98
+3495d28,74a85ca2
+3495d2c,74206c5a
+3495d30,749c735a
+3495d34,6b5a5ce4
+3495d38,6c6863a2
+3495d3c,3a1419c8
+3495d40,8000000
+3495d44,43987426
+3495d48,4b6254a2
+3495d4c,4b1e2ad4
+3495d50,2ad22292
+3495d54,12502a92
+3495d58,5ce45ca2
+3495d5c,5ce46c24
+3495d60,f8bef7be
+3495d64,44090e
+3495d68,1a924c60
+3495d6c,74206c5a
+3495d70,6b5a6b5a
+3495d74,6b5a5ca4
+3495d78,5ce44398
+3495d7c,8000800
+3495d80,8000000
+3495d84,8840940
+3495d88,9860950
+3495d8c,53620940
+3495d90,8000000
+3495d94,90e
+3495d98,2a580886
+3495d9c,2
+3495da0,f8bef8be
+3495da4,f8bef8be
+3495da8,c83b20
+3495dac,74206c5a
+3495db0,6c5a6b5a
+3495db4,6b5a5ca4
+3495db8,54a2318e
+3495dbc,8401084
+3495dc0,439632d0
+3495dc4,8000840
+3495dc8,84011ca
+3495dcc,6c280840
+3495dd0,800
+3495dd4,8000110
+3495dd8,194e0000
+3495ddc,fef8be
+3495de0,190a2ad0
+3495de4,42f8be
+3495de8,9c833de
+3495dec,6bde6c5a
+3495df0,6b5a6b5a
+3495df4,6c5a5360
+3495df8,53a41084
+3495dfc,298c6428
+3495e00,53627caa
+3495e04,19c60840
+3495e08,8400842
+3495e0c,9880800
+3495e10,800
+3495e14,80011c8
+3495e18,200c0
+3495e1c,f8be0944
+3495e20,54e43ade
+3495e24,852e190a
+3495e28,1424320
+3495e2c,74206c5a
+3495e30,6b5a6c5a
+3495e34,6c5a2ad0
+3495e38,5ce43214
+3495e3c,4b1c5362
+3495e40,64e464e4
+3495e44,64a20800
+3495e50,800
+3495e54,8000000
+3495e58,fef8be
+3495e5c,f8be194e
+3495e60,54a24b20
+3495e64,431e3b98
+3495e68,21504320
+3495e6c,5b186c5a
+3495e70,6c5a6b5a
+3495e74,6b5a0000
+3495e78,2ad46ce4
+3495e7c,32d25362
+3495e80,c6786c66
+3495e84,7daa0000
+3495e90,8000800
+3495e94,8000000
+3495e98,f8bef8be
+3495e9c,f8be110e
+3495ea0,54a2adf6
+3495ea4,431e194e
+3495ea8,3b2022d6
+3495eac,6c5a
+3495eb0,6c5a6b5a
+3495eb4,6b5a0000
+3495eb8,19c822d4
+3495ebc,5ce44b1e
+3495ec0,5ce45ce4
+3495ec4,63a20000
+3495ed8,f8bef8be
+3495edc,f8be194c
+3495ee0,5ce25460
+3495ee4,431e4ca2
+3495ee8,33580046
+3495eec,f7be6c5a
+3495ef0,6c5a6c5a
+3495ef4,6b5a0000
+3495ef8,842
+3495efc,1a4e090e
+3495f00,11101110
+3495f04,9840000
+3495f18,f8bef8be
+3495f1c,f8be0842
+3495f20,218e194e
+3495f24,2190194e
+3495f28,42f8be
+3495f2c,f7be6c5a
+3495f30,6b5a6b5a
+3495f34,6b5a6b5a
+3495f58,f8bef7be
+3495f5c,f8bef8be
+3495f60,f8bef8be
+3495f64,f8bef8be
+3495f68,f8bef8be
+3495f6c,f7be6c5a
+3495f70,6c5a6c5a
+3495f74,6b5a6b5a
+3495f78,6b5a0000
+3495f98,f7bef8be
+3495f9c,f8bef8be
+3495fa0,f7bef7be
+3495fa4,f7bef7be
+3495fa8,f7bef7be
+3495fac,f7be6c5a
+3495fb0,6c5a6b5a
+3495fb4,735a735a
+3495fb8,6b5a6b5a
+3495fd8,f8bef8be
+3495fdc,f8bef8be
+3495fe0,f8bef8be
+3495fe4,f8bef8be
+3495fe8,f8bef8be
+3495fec,f7be6c5a
+3495ff0,6b5a6c5a
+3495ff4,739c6292
+3495ff8,6b5a6b5a
+3495ffc,6b5a6b5a
+3496000,6b5a6b5a
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3496004,6b5a6b5a
 3496008,6b5a6b5a
 349600c,6b5a6b5a
@@ -126190,6 +127391,7 @@ fec1fc,9000000
 3496014,6b5a6b5a
 3496018,6b5a6b5a
 349601c,6b5a6b5a
+<<<<<<< HEAD
 3496020,6b5a6b5a
 3496024,6b5a6b5a
 >>>>>>> 0e0b7637 (Beehives basically working. Need to fix logic for ones that are higher up. Also sometimes the drop either isnt dropping or is getting stuck?)
@@ -126803,12 +128005,20 @@ fec1fc,9000000
 3496020,6b5a6c5a
 3496024,6b5a6c5a
 3496028,6b5a6b5a
+=======
+3496020,6b5a6c5a
+3496024,6b5a6c5a
+3496028,6b5a6b5a
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 349602c,6b5a6c5a
 3496030,6c5a6b5a
 3496034,739c6b5a
 3496038,6c5a6b5a
 349603c,6b5a6b5a
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3496040,6b5a6b5a
 3496044,6b5a6b5a
 3496048,6b5a6b5a
@@ -126824,11 +128034,15 @@ fec1fc,9000000
 3496070,6c5a6c5a
 3496074,735a6b5a
 3496078,735a6b5a
+<<<<<<< HEAD
 >>>>>>> 0e0b7637 (Beehives basically working. Need to fix logic for ones that are higher up. Also sometimes the drop either isnt dropping or is getting stuck?)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 349607c,6b5a6b5a
 3496080,6b5a6b5a
 3496084,6b5a6b5a
 3496088,6b5a6b5a
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 349608c,6b5a739c
@@ -127142,6 +128356,8 @@ fec1fc,9000000
 =======
 349608c,6c5a6b5a
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 349608c,6b5a6b5a
 >>>>>>> 1c25fedb (More beehive nonsense)
 3496090,6b5a6b5a
@@ -127447,6 +128663,7 @@ fec1fc,9000000
 3496540,f8bdf7bd
 3496544,f8bdf8bd
 <<<<<<< HEAD
+<<<<<<< HEAD
 3496548,749b739b
 349654c,739b6423
 3496550,194f0885
@@ -127487,6 +128704,8 @@ fec1fc,9000000
 3496598,2a9b00ff
 349659c,f7bdf8bd
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3496548,f7bdf7bd
 349654c,f7bdf8bd
 3496550,f7bdf7bd
@@ -127509,11 +128728,15 @@ fec1fc,9000000
 3496594,f7bdf7bd
 3496598,f7bdf7bd
 349659c,f8bdf8bd
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 34965a0,f8bdf8bd
 34965a4,f8bdf8bd
 34965a8,f8bdf8bd
 34965ac,f8bdf8bd
+<<<<<<< HEAD
 <<<<<<< HEAD
 34965b0,f8bdf8bd
 >>>>>>> 0e0b7637 (Beehives basically working. Need to fix logic for ones that are higher up. Also sometimes the drop either isnt dropping or is getting stuck?)
@@ -127569,12 +128792,17 @@ fec1fc,9000000
 =======
 34965c0,f8bdf7bd
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 34965b0,749b739b
 34965b4,739b6423
 34965b8,194f0885
 34965bc,431f3bdd
 34965c0,21d3f8bd
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 34965c4,f7bdf8bd
 34965c8,f8bdf8bd
 34965cc,f8bdf7bd
@@ -127616,6 +128844,7 @@ fec1fc,9000000
 349665c,f8bdf8bd
 3496660,f8bdf8bd
 3496664,f8bdf8bd
+<<<<<<< HEAD
 <<<<<<< HEAD
 3496668,f8bdf8bd
 349666c,f8bdf8bd
@@ -132381,14 +133610,30 @@ fec1fc,9000000
 3496688,883f7bd
 349668c,f8bdf8bd
 >>>>>>> ac556e4d (Add goron city spinning pot green rupees)
+=======
+3496668,f7bdf7bd
+349666c,f7bdf8bd
+3496670,739b739b
+3496674,739bf8bd
+3496678,110d0951
+349667c,19d31ad3
+3496680,43f8bd
+3496684,f8bdf8bd
+3496688,f7bdf7bd
+349668c,f7bdf8bd
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3496690,f8bdf8bd
 3496694,f8bdf8bd
 3496698,f8bdf8bd
 349669c,f8bdf8bd
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 34966a0,f8bdf8bd
-34966a4,f8bdf8bd
+34966a4,f8bdf7bd
 34966a8,f8bdf8bd
+<<<<<<< HEAD
 >>>>>>> 2df60f7a (Add spinning goron pot bomb drops. FML. still need to add green rupees)
 34966ac,f8bdf8bd
 =======
@@ -132522,6 +133767,21 @@ fec1fc,9000000
 34966d4,f8bdf8bd
 34966d8,f8bdf8bd
 34966dc,f8bdf8bd
+=======
+34966ac,f7bdf8bd
+34966b0,739b739b
+34966b4,739bf8bd
+34966b8,22913b1f
+34966bc,435f3b1d
+34966c0,11c7f8bd
+34966c4,f8bdf8bd
+34966c8,f8bdf8bd
+34966cc,f8bdf8bd
+34966d0,f8bdf8bd
+34966d4,f8bdf8bd
+34966d8,f8bdf8bd
+34966dc,f8bdf8bd
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 34966e0,f8bdf8bd
 34966e4,f8bdf7bd
 34966e8,f7bdf7bd
@@ -132542,6 +133802,7 @@ fec1fc,9000000
 <<<<<<< HEAD
 3496720,f8bdf8bd
 3496724,f8bdf8bd
+<<<<<<< HEAD
 <<<<<<< HEAD
 3496728,f8bdf8bd
 349672c,f8bdf8bd
@@ -136669,6 +137930,8 @@ fec1fc,9000000
 3496744,2a151a8f
 3496748,883f7bd
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3496728,f8bdf7bd
 349672c,f7bdf8bd
 3496730,749b739b
@@ -136678,11 +137941,15 @@ fec1fc,9000000
 3496740,f0cff8ff
 3496744,f7bdf7bd
 3496748,f7bdf8bd
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 349674c,f8bdf8bd
 3496750,f8bdf8bd
 3496754,f8bdf8bd
 3496758,f8bdf8bd
+<<<<<<< HEAD
 <<<<<<< HEAD
 349675c,f8bdf8bd
 =======
@@ -138817,12 +140084,22 @@ fec1fc,9000000
 3496764,f8bdf8bd
 3496768,f8bdf8bd
 349676c,f8bdf8bd
+=======
+349675c,f7bdf8bd
+3496760,f8bdf7bd
+3496764,f8bdf8bd
+3496768,f8bdf8bd
+349676c,f8bdf8bd
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3496770,739b749b
 3496774,749b6c25
 3496778,9c90143
 349677c,33db2b9b
 3496780,951f8bd
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3496784,f8bdf8bd
 3496788,f8bdf8bd
 349678c,f8bdf8bd
@@ -138866,6 +140143,7 @@ fec1fc,9000000
 3496824,f8bdf8bd
 3496828,f8bdf8bd
 349682c,f8bdf8bd
+<<<<<<< HEAD
 <<<<<<< HEAD
 3496830,f8bdf8bd
 3496834,f8bdf8bd
@@ -140531,6 +141809,8 @@ fec1fc,9000000
 3497924,394c087c
 3497928,87c087c
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 3496830,739b749b
 3496834,749b7465
 3496838,4b1d0843
@@ -141608,7 +142888,10 @@ fec1fc,9000000
 3497920,77a077c
 3497924,f3c0f3c
 3497928,77c077c
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 349792c,77c077c
 3497930,8bc087c
 3497934,87e107c
@@ -141625,6 +142908,7 @@ fec1fc,9000000
 3497960,87a
 3497964,7bc087c
 3497968,87c087c
+<<<<<<< HEAD
 <<<<<<< HEAD
 349796c,87c077c
 3497970,77c077c
@@ -143715,6 +144999,8 @@ fec1fc,9000000
 34980c4,22d82ad8
 >>>>>>> 0e0b7637 (Beehives basically working. Need to fix logic for ones that are higher up. Also sometimes the drop either isnt dropping or is getting stuck?)
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 349796c,87c087c
 3497970,87c087c
 3497974,107c087e
@@ -144212,4 +145498,7 @@ fec1fc,9000000
 3498124,22d83b5c
 3498128,3b5c2a1a
 349812c,22d82ad8
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)

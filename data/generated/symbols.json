@@ -7,6 +7,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "ADULT_INIT_ITEMS": "03481D50",
     "ADULT_VALID_ITEMS": "03481D58",
     "AUDIO_THREAD_INFO": "03482FA8",
@@ -185,6 +186,16 @@
     "AUTO_TRACKER_CONTEXT": "03480CD4",
     "AUTO_TRACKER_VERSION": "03480CD4",
 >>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
+=======
+    "ADULT_INIT_ITEMS": "03481FCC",
+    "ADULT_VALID_ITEMS": "03481FD4",
+    "AUDIO_THREAD_INFO": "03483224",
+    "AUDIO_THREAD_INFO_MEM_SIZE": "03483244",
+    "AUDIO_THREAD_INFO_MEM_START": "03483240",
+    "AUDIO_THREAD_MEM_START": "03498130",
+    "AUTO_TRACKER_CONTEXT": "03480CD0",
+    "AUTO_TRACKER_VERSION": "03480CD0",
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
     "BOMBCHUS_IN_LOGIC": "03480CAC",
     "CFG_A_BUTTON_COLOR": "03480844",
     "CFG_A_NOTE_COLOR": "03480862",
@@ -195,16 +206,16 @@
     "CFG_B_BUTTON_COLOR": "0348084A",
     "CFG_C_BUTTON_COLOR": "03480850",
     "CFG_C_NOTE_COLOR": "03480868",
-    "CFG_DAMAGE_MULTIPLYER": "03482F18",
+    "CFG_DAMAGE_MULTIPLYER": "03482F14",
     "CFG_DISPLAY_DPAD": "0348087A",
-    "CFG_DUNGEON_INFO_ENABLE": "03480CD8",
-    "CFG_DUNGEON_INFO_MQ_ENABLE": "03480CDC",
-    "CFG_DUNGEON_INFO_MQ_NEED_MAP": "03480CE0",
-    "CFG_DUNGEON_INFO_REWARD_ENABLE": "03480CE4",
-    "CFG_DUNGEON_INFO_REWARD_NEED_ALTAR": "03480CEC",
-    "CFG_DUNGEON_INFO_REWARD_NEED_COMPASS": "03480CE8",
-    "CFG_DUNGEON_IS_MQ": "03480CFE",
-    "CFG_DUNGEON_REWARDS": "03480CF0",
+    "CFG_DUNGEON_INFO_ENABLE": "03480CD4",
+    "CFG_DUNGEON_INFO_MQ_ENABLE": "03480CD8",
+    "CFG_DUNGEON_INFO_MQ_NEED_MAP": "03480CDC",
+    "CFG_DUNGEON_INFO_REWARD_ENABLE": "03480CE0",
+    "CFG_DUNGEON_INFO_REWARD_NEED_ALTAR": "03480CE8",
+    "CFG_DUNGEON_INFO_REWARD_NEED_COMPASS": "03480CE4",
+    "CFG_DUNGEON_IS_MQ": "03480CFA",
+    "CFG_DUNGEON_REWARDS": "03480CEC",
     "CFG_HEART_COLOR": "0348083E",
     "CFG_MAGIC_COLOR": "03480838",
     "CFG_RAINBOW_BOMBCHU_TRAIL_INNER_ENABLED": "0348087F",
@@ -398,6 +409,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "CHEST_SIZE_MATCH_CONTENTS": "0348C93C",
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348C940",
     "COMPLETE_MASK_QUEST": "0348C991",
@@ -442,13 +454,19 @@
     "CHEST_TEXTURE_MATCH_CONTENTS": "0348CB28",
     "COMPLETE_MASK_QUEST": "0348CB79",
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+    "CHEST_SIZE_MATCH_CONTENTS": "0348CB24",
+    "CHEST_TEXTURE_MATCH_CONTENTS": "0348CB28",
+    "COMPLETE_MASK_QUEST": "0348CB79",
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
     "COOP_CONTEXT": "03480020",
     "COOP_VERSION": "03480020",
     "COSMETIC_CONTEXT": "03480834",
     "COSMETIC_FORMAT_VERSION": "03480834",
-    "CURRENT_GROTTO_ID": "034830EA",
-    "DEBUG_OFFSET": "03482B08",
+    "CURRENT_GROTTO_ID": "034830E6",
+    "DEBUG_OFFSET": "03482B04",
     "DISABLE_TIMERS": "03480CCC",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -586,11 +604,15 @@
 =======
     "DPAD_TEXTURE": "03492130",
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+    "DPAD_TEXTURE": "03492130",
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
     "DUNGEONS_SHUFFLED": "03480CCD",
     "EXTENDED_OBJECT_TABLE": "03480C8C",
-    "EXTERN_DAMAGE_MULTIPLYER": "03482F19",
+    "EXTERN_DAMAGE_MULTIPLYER": "03482F15",
     "FAST_BUNNY_HOOD_ENABLED": "03480CCF",
     "FAST_CHESTS": "03480CC6",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -869,10 +891,15 @@
     "FONT_TEXTURE": "03490C68",
 >>>>>>> 1c25fedb (More beehive nonsense)
     "FREE_SCARECROW_ENABLED": "03480CBC",
+=======
+    "FONT_TEXTURE": "03490C68",
+    "FREE_SCARECROW_ENABLED": "03480CBC",
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
     "GANON_BOSS_KEY_CONDITION": "0348CB38",
     "GANON_BOSS_KEY_CONDITION_COUNT": "0348CB36",
     "GET_CHEST_OVERRIDE_WRAPPER": "0348297C",
     "GET_ITEM_TRIGGERED": "03481698",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -921,13 +948,18 @@
     "GILDED_CHEST_BASE_TEXTURE": "03494930",
     "GILDED_CHEST_FRONT_TEXTURE": "03493930",
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+    "GILDED_CHEST_BASE_TEXTURE": "03494930",
+    "GILDED_CHEST_FRONT_TEXTURE": "03493930",
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
     "GOSSIP_HINT_CONDITION": "03480CB8",
-    "GROTTO_EXIT_LIST": "034830A8",
-    "GROTTO_LOAD_TABLE": "03483024",
+    "GROTTO_EXIT_LIST": "034830A4",
+    "GROTTO_LOAD_TABLE": "03483020",
     "INCOMING_ITEM": "03480028",
     "INCOMING_PLAYER": "03480026",
     "INITIAL_SAVE_DATA": "0348088C",
     "JABU_ELEVATOR_ENABLE": "03480CC4",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1069,10 +1101,14 @@
 =======
     "KAKARIKO_WEATHER_FORECAST": "0348CB98",
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+    "KAKARIKO_WEATHER_FORECAST": "0348CB98",
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
     "LACS_CONDITION": "03480CB4",
     "LACS_CONDITION_COUNT": "03480CC2",
     "MALON_GAVE_ICETRAP": "034838F4",
     "MALON_TEXT_ID": "03480CCB",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1359,10 +1395,18 @@
 =======
     "OPEN_KAKARIKO": "0348CB7A",
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+    "MAX_RUPEES": "0348CB7B",
+    "MOVED_ADULT_KING_ZORA": "03483264",
+    "NO_ESCAPE_SEQUENCE": "0348CB34",
+    "OCARINAS_SHUFFLED": "03480CC5",
+    "OPEN_KAKARIKO": "0348CB7A",
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
     "OUTGOING_ITEM": "03480030",
     "OUTGOING_KEY": "0348002C",
     "OUTGOING_PLAYER": "03480032",
     "OVERWORLD_SHUFFLED": "03480CCE",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1500,15 +1544,18 @@
 =======
     "PAYLOAD_END": "03498130",
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+    "PAYLOAD_END": "03498130",
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
     "PAYLOAD_START": "03480000",
-    "PLAYED_WARP_SONG": "034814A0",
+    "PLAYED_WARP_SONG": "0348149C",
     "PLAYER_ID": "03480024",
     "PLAYER_NAMES": "03480034",
     "PLAYER_NAME_ID": "03480025",
     "RAINBOW_BRIDGE_CONDITION": "03480CB0",
     "RAINBOW_BRIDGE_COUNT": "03480CC0",
     "RANDO_CONTEXT": "03480000",
-    "SHUFFLE_BEANS": "03482F80",
+    "SHUFFLE_BEANS": "03482F7C",
     "SHUFFLE_CARPET_SALESMAN": "03483C70",
     "SHUFFLE_COWS": "03480CC7",
 <<<<<<< HEAD
@@ -1748,6 +1795,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "SILVER_CHEST_BASE_TEXTURE": "03495F48",
     "SILVER_CHEST_FRONT_TEXTURE": "03494F48",
     "SKULL_CHEST_BASE_TEXTURE": "03497748",
@@ -1796,15 +1844,21 @@
     "SKULL_CHEST_FRONT_TEXTURE": "034968C8",
 >>>>>>> 0e0b7637 (Beehives basically working. Need to fix logic for ones that are higher up. Also sometimes the drop either isnt dropping or is getting stuck?)
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
     "SILVER_CHEST_BASE_TEXTURE": "03496130",
     "SILVER_CHEST_FRONT_TEXTURE": "03495130",
     "SKULL_CHEST_BASE_TEXTURE": "03497930",
     "SKULL_CHEST_FRONT_TEXTURE": "03496930",
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
     "SONGS_AS_ITEMS": "03480CC8",
-    "SOS_ITEM_GIVEN": "03481768",
-    "SPEED_MULTIPLIER": "034829C8",
+    "SOS_ITEM_GIVEN": "03481764",
+    "SPEED_MULTIPLIER": "034829C4",
     "START_TWINROVA_FIGHT": "034832E4",
+<<<<<<< HEAD
 <<<<<<< HEAD
     "TIME_TRAVEL_SAVED_EQUIPS": "03481CF4",
     "TRIFORCE_ICON_TEXTURE": "034928A0",
@@ -4368,11 +4422,14 @@
     "triforce_sprite": "0348B660"
 >>>>>>> b32f575d (Fix hero mode not working because we got rid of that function)
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
     "TIME_TRAVEL_SAVED_EQUIPS": "03481CF0",
     "TRIFORCE_ICON_TEXTURE": "03492930",
     "TWINROVA_ACTION_TIMER": "034832E8",
     "WINDMILL_SONG_ID": "03480CC9",
     "WINDMILL_TEXT_ID": "03480CCA",
+<<<<<<< HEAD
 <<<<<<< HEAD
     "a_button": "0348CA98",
     "a_note_b": "0348CA84",
@@ -4454,6 +4511,8 @@
     "triforce_sprite": "0348B688"
 >>>>>>> 0e0b7637 (Beehives basically working. Need to fix logic for ones that are higher up. Also sometimes the drop either isnt dropping or is getting stuck?)
 =======
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
     "a_button": "0348CB00",
     "a_note_b": "0348CAEC",
     "a_note_font_glow_base": "0348CAD4",
@@ -4532,5 +4591,8 @@
     "triforce_hunt_enabled": "0348CB88",
     "triforce_pieces_requied": "0348CB22",
     "triforce_sprite": "0348B6F0"
+<<<<<<< HEAD
 >>>>>>> 1c25fedb (More beehive nonsense)
+=======
+>>>>>>> 02755650 (Revert the hero mode changes because of a weird audio bug)
 }
