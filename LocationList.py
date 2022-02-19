@@ -113,6 +113,8 @@ location_table = OrderedDict([
     ("KF Shop Item 6",                                               ("Shop",         0x2D,  0x35, (shop_address(0, 5), None),  'Buy Arrows (10)',                       ("Kokiri Forest", "Forest", "Shops"))),
     ("KF Shop Item 7",                                               ("Shop",         0x2D,  0x36, (shop_address(0, 6), None),  'Buy Arrows (30)',                       ("Kokiri Forest", "Forest", "Shops"))),
     ("KF Shop Item 8",                                               ("Shop",         0x2D,  0x37, (shop_address(0, 7), None),  'Buy Heart',                             ("Kokiri Forest", "Forest", "Shops"))),
+    ("KF Storms Grotto Beehive 1",                                     ("Collectable",  0x3E, 0x60 + (0x0C*2), None,                         'Rupees (20)',                            ("Kokiri Forest", "Forest", "Grottos", "Beehive"))),
+    ("KF Storms Grotto Beehive 2",                                     ("Collectable",  0x3E, 0x60 + (0x0C*2 + 1), None,                         'Rupees (20)',                            ("Kokiri Forest", "Forest", "Grottos", "Beehive"))),     
     #KF Pots
     ("KF Links House Pot",                                           ("Collectable",  0x34,  0x20, None,                        'Recovery Heart',                        ("Kokiri Forest", "Forest", "Pot"))),
     ("KF Know-it-all Brothers House Pot 1",                          ("Collectable",  0x26,  0x20, None,                        'Rupee (1)',                        ("Kokiri Forest", "Forest", "Pot"))),
@@ -147,13 +149,16 @@ location_table = OrderedDict([
     ("LW GS Bean Patch Near Bridge",                                 ("GS Token",     0x0D,  0x01, None,                        'Gold Skulltula Token',                  ("the Lost Woods", "Skulltulas",))),
     ("LW GS Bean Patch Near Theater",                                ("GS Token",     0x0D,  0x02, None,                        'Gold Skulltula Token',                  ("the Lost Woods", "Skulltulas",))),
     ("LW GS Above Theater",                                          ("GS Token",     0x0D,  0x04, None,                        'Gold Skulltula Token',                  ("the Lost Woods", "Skulltulas",))),
+    ("LW Near Shortcuts Grotto Beehive 1",                             ("Collectable",  0x3E, 0x60 + (0x14*2), None,                         'Rupees (20)',                            ("the Lost Woods", "Forest", "Grottos", "Beehive"))),
+    ("LW Near Shortcuts Grotto Beehive 2",                             ("Collectable",  0x3E, 0x60 + (0x14*2 + 1), None,                         'Rupees (20)',                            ("the Lost Woods", "Forest", "Grottos", "Beehive"))),
+    ("LW Scrubs Grotto Beehive",                                       ("Collectable",  0x3E, 0x60 + (0x15*2), None,                         'Rupees (20)',                            ("the Lost Woods", "Forest", "Grottos", "Beehive"))),
 
     # Sacred Forest Meadow
     ("SFM Wolfos Grotto Chest",                                      ("Chest",        0x3E,  0x11, None,                        'Rupees (50)',                           ("Sacred Forest Meadow", "Forest", "Grottos"))),
     ("SFM Deku Scrub Grotto Front",                                  ("GrottoNPC",    0xEE,  0x3A, None,                        'Buy Green Potion',                      ("Sacred Forest Meadow", "Forest", "Deku Scrub", "Grottos"))),
     ("SFM Deku Scrub Grotto Rear",                                   ("GrottoNPC",    0xEE,  0x39, None,                        'Buy Red Potion [30]',                   ("Sacred Forest Meadow", "Forest", "Deku Scrub", "Grottos"))),
     ("SFM GS",                                                       ("GS Token",     0x0D,  0x08, None,                        'Gold Skulltula Token',                  ("Sacred Forest Meadow", "Skulltulas",))),
-
+    ("SFM Storms Grotto Beehive",                                      ("Collectable",  0x3E, 0x60 + (0x0E*2), None,                         'Rupees (20)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "Beehive"))),
     # Hyrule Field
     ("HF Ocarina of Time Item",                                      ("NPC",          0x51,  0x0C, None,                        'Ocarina',                               ("Hyrule Field", "Need Spiritual Stones",))),
     ("HF Near Market Grotto Chest",                                  ("Chest",        0x3E,  0x00, None,                        'Rupees (5)',                            ("Hyrule Field", "Grottos",))),
@@ -164,8 +169,15 @@ location_table = OrderedDict([
     ("HF Cow Grotto Cow",                                            ("NPC",          0x3E,  0x16, None,                        'Milk',                                  ("Hyrule Field", "Cow", "Grottos"))),
     ("HF GS Cow Grotto",                                             ("GS Token",     0x0A,  0x01, None,                        'Gold Skulltula Token',                  ("Hyrule Field", "Skulltulas", "Grottos"))),
     ("HF GS Near Kak Grotto",                                        ("GS Token",     0x0A,  0x02, None,                        'Gold Skulltula Token',                  ("Hyrule Field", "Skulltulas", "Grottos"))),
-    ("HF Cow Grotto Pot 1",                                          ("Collectable",  0x3E,  0x20, None,                        'Recovery Heart',                        ("Hyrule Field", "Grotto", "Pot"))),
-    ("HF Cow Grotto Pot 2",                                          ("Collectable",  0x3E,  0x21, None,                        'Recovery Heart',                        ("Hyrule Field", "Grotto", "Pot"))),
+    ("HF Near Market Grotto Beehive 1",                                ("Collectable",  0x3E, 0x60 + (0x00*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("HF Near Market Grotto Beehive 2",                                ("Collectable",  0x3E, 0x60 + (0x00*2 + 1), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("HF Open Grotto Beehive 1",                                       ("Collectable",  0x3E, 0x60 + (0x03*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("HF Open Grotto Beehive 2",                                       ("Collectable",  0x3E, 0x60 + (0x03*2 + 1), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("HF Southeast Grotto Beehive 1",                                  ("Collectable",  0x3E, 0x60 + (0x02*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("HF Southeast Grotto Beehive 2",                                  ("Collectable",  0x3E, 0x60 + (0x02*2 + 1), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("HF Inside Fence Grotto Beehive",                                 ("Collectable",  0x3E, 0x60 + (0x06*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
+    ("HF Cow Grotto Pot 1",                                          ("Collectable",  0x3E,  0x20, None,                        'Recovery Heart',                        ("Hyrule Field", "Grottos", "Pot"))),
+    ("HF Cow Grotto Pot 2",                                          ("Collectable",  0x3E,  0x21, None,                        'Recovery Heart',                        ("Hyrule Field", "Grottos", "Pot"))),
 
     # Market
     #("Market Night Crate Rupee",                                     ("ActorOverride",0x21,  0x03, ([0x022D21B8], [0x00, 0x06, 0x00, 0x00, 0x00, 0x03]) ,                        'Rupees (20)',                           ("the market", "Market",))),
@@ -283,7 +295,9 @@ location_table = OrderedDict([
     ("LLR Talons House Pot 2",                                       ("Collectable",  0x4C,  0x2A, None,                        'Rupees (5)',                            ("Lon Lon Ranch", "Pot"))),
     ("LLR Talons House Pot 3",                                       ("Collectable",  0x4C,  0x2B, None,                        'Rupees (5)',                            ("Lon Lon Ranch", "Pot"))),
     ("LLR Child Crate", ("Collectable", 0x63, 0x40, ([0x29ce204, 0x29ce84c],None), 'Rupee (1)', ("Lon Lon Ranch", "Crate"))),
+    ("LLR Grotto Beehive",                                             ("Collectable",  0x3E, 0x60 + (0x1C*2), None,                         'Rupees (20)',                            ("Lon Lon Ranch", "Grottos", "Beehive"))),
 
+    
     # Kakariko
     ("Kak Anju as Child",                                            ("NPC",          0x52,  0x0F, None,                        'Bottle',                                ("Kakariko Village", "Kakariko", "Minigames"))),
     ("Kak Anju as Adult",                                            ("NPC",          0x52,  0x1D, None,                        'Pocket Egg',                            ("Kakariko Village", "Kakariko",))),
@@ -321,6 +335,8 @@ location_table = OrderedDict([
     ("Kak Potion Shop Item 6",                                       ("Shop",         0x30,  0x35, (shop_address(1, 5), None),  'Buy Bottle Bug',                        ("Kakariko Village", "Kakariko", "Shops"))),
     ("Kak Potion Shop Item 7",                                       ("Shop",         0x30,  0x36, (shop_address(1, 6), None),  'Buy Poe',                               ("Kakariko Village", "Kakariko", "Shops"))),
     ("Kak Potion Shop Item 8",                                       ("Shop",         0x30,  0x37, (shop_address(1, 7), None),  'Buy Fairy\'s Spirit',                   ("Kakariko Village", "Kakariko", "Shops"))),
+        ("Kak Open Grotto Beehive 1",                                      ("Collectable",  0x3E, 0x60 + (0x08*2), None,                         'Rupees (20)',                            ("Kakariko Village", "Kakariko", "Grottos", "Beehive"))),
+    ("Kak Open Grotto Beehive 2",                                      ("Collectable",  0x3E, 0x60 + (0x08*2 + 1), None,                         'Rupees (20)',                            ("Kakariko Village", "Kakariko", "Grottos", "Beehive"))),
     #Kak Pots
     ("Kak Near Potion Shop Pot 1",                                                    ("Collectable",  0x52,  0x20, None,                        'Recovery Heart',                        ("Kakariko Village", "Kakariko", "Pot"))),
     ("Kak Near Potion Shop Pot 2",                                                    ("Collectable",  0x52,  0x21, None,                        'Recovery Heart',                        ("Kakariko Village", "Kakariko", "Pot"))),
@@ -387,7 +403,11 @@ location_table = OrderedDict([
     ("DMT GS Bean Patch",                                            ("GS Token",     0x0F,  0x02, None,                        'Gold Skulltula Token',                  ("Death Mountain Trail", "Skulltulas",))),
     ("DMT GS Above Dodongos Cavern",                                 ("GS Token",     0x0F,  0x08, None,                        'Gold Skulltula Token',                  ("Death Mountain Trail", "Skulltulas",))),
     ("DMT GS Falling Rocks Path",                                    ("GS Token",     0x0F,  0x10, None,                        'Gold Skulltula Token',                  ("Death Mountain Trail", "Skulltulas",))),
+    ("DMT Cow Grotto Beehive",                                         ("Collectable",  0x3E, 0x60 + (0x18*2), None,                         'Rupees (20)',                            ("Death Mountain Trail", "Death Mountain", "Grottos", "Beehive"))),
+    ("DMT Storms Grotto Beehive 1",                                    ("Collectable",  0x3E, 0x60 + (0x17*2), None,                         'Rupees (20)',                            ("Death Mountain Trail", "Death Mountain", "Grottos", "Beehive"))),
+    ("DMT Storms Grotto Beehive 2",                                    ("Collectable",  0x3E, 0x60 + (0x17*2 + 1), None,                         'Rupees (20)',                            ("Death Mountain Trail", "Death Mountain", "Grottos", "Beehive"))),
 
+    
     # Goron City
     ("GC Darunias Joy",                                              ("NPC",          0x62,  0x54, None,                        'Progressive Strength Upgrade',          ("Goron City",))),
     ("GC Pot Freestanding PoH",                                      ("Collectable",  0x62,  0x1F, None,                        'Piece of Heart',                        ("Goron City", "Goron City", "Drop"))),
@@ -441,8 +461,6 @@ location_table = OrderedDict([
     ("DMC Pierre Rupee Circle Green Rupee 5",                         ("Collectable",0x61,  0x44, None, 'Rupees (20)',                           ("Death Mountain Crater", "Death Mountain", "RupeeTower"))),    
     ("DMC Pierre Rupee Circle Green Rupee 6",                         ("Collectable",0x61,  0x45, None, 'Rupees (20)',                           ("Death Mountain Crater", "Death Mountain", "RupeeTower"))),    
     ("DMC Pierre Rupee Circle Red Rupee",                         ("Collectable",0x61,  0x46, None, 'Rupees (20)',                           ("Death Mountain Crater", "Death Mountain", "RupeeTower"))),    
-    
-
     ("DMC Lower Red Rupee 1",                                        ("Collectable",0x61,   0x20, None, 'Rupees (20)',                           ("Death Mountain Crater", "Death Mountain","Freestanding",))),    
     ("DMC Lower Red Rupee 2",                                        ("Collectable",0x61,   0x21, None, 'Rupees (20)',                           ("Death Mountain Crater", "Death Mountain", "Freestanding",))),    
     ("DMC Lower Blue Rupee 1",                                        ("Collectable",0x61,  0x22, None, 'Rupees (5)',                           ("Death Mountain Crater", "Death Mountain", "Freestanding",))),    
@@ -456,7 +474,6 @@ location_table = OrderedDict([
     ("DMC Near GC Pot 3",                                             ("Collectable",0x61,  0x22, None, 'Rupees (5)',                           ("Death Mountain Crater", "Death Mountain", "Pot",))),    
     ("DMC Near GC Pot 4",                                             ("Collectable",0x61,  0x23, None, 'Rupees (5)',                           ("Death Mountain Crater", "Death Mountain", "Pot",))),    
 
-
     ("DMC Upper Grotto Chest",                                       ("Chest",        0x3E,  0x1A, None,                        'Bombs (20)',                            ("Death Mountain Crater", "Death Mountain", "Grottos"))),
     ("DMC Great Fairy Reward",                                       ("Cutscene",     0xFF,  0x14, None,                        'Magic Meter',                           ("Death Mountain Crater", "Death Mountain", "Fairies",))),
     ("DMC Deku Scrub",                                               ("NPC",          0x61,  0x37, None,                        'Buy Bombs (5) [35]',                    ("Death Mountain Crater", "Death Mountain", "Deku Scrub"))),
@@ -465,6 +482,9 @@ location_table = OrderedDict([
     ("DMC Deku Scrub Grotto Right",                                  ("GrottoNPC",    0xF9,  0x37, None,                        'Buy Bombs (5) [35]',                    ("Death Mountain Crater", "Death Mountain", "Deku Scrub", "Grottos"))),
     ("DMC GS Crate",                                                 ("GS Token",     0x0F,  0x80, None,                        'Gold Skulltula Token',                  ("Death Mountain Crater", "Skulltulas",))),
     ("DMC GS Bean Patch",                                            ("GS Token",     0x0F,  0x01, None,                        'Gold Skulltula Token',                  ("Death Mountain Crater", "Skulltulas",))),
+    ("DMC Upper Grotto Beehive 1",                                     ("Collectable",  0x3E, 0x60 + (0x1A*2), None,                         'Rupees (20)',                            ("Death Mountain Crater", "Death Mountain", "Grottos", "Beehive"))),
+    ("DMC Upper Grotto Beehive 2",                                     ("Collectable",  0x3E, 0x60 + (0x1A*2+1), None,                         'Rupees (20)',                            ("Death Mountain Crater", "Death Mountain", "Grottos", "Beehive"))),
+    ("DMC Hammer Grotto Beehive",                                      ("Collectable",  0x3E, 0x60 + (0x19*2), None,                         'Rupees (20)',                            ("Death Mountain Crater", "Death Mountain", "Grottos", "Beehive"))),
 
     # Zora's River
     ("ZR Magic Bean Salesman",                                       ("NPC",          0x54,  0x16, None,                        'Magic Bean',                            ("Zora's River",))),
@@ -483,7 +503,10 @@ location_table = OrderedDict([
     ("ZR GS Ladder",                                                 ("GS Token",     0x11,  0x01, None,                        'Gold Skulltula Token',                  ("Zora's River", "Skulltulas",))),
     ("ZR GS Near Raised Grottos",                                    ("GS Token",     0x11,  0x10, None,                        'Gold Skulltula Token',                  ("Zora's River", "Skulltulas",))),
     ("ZR GS Above Bridge",                                           ("GS Token",     0x11,  0x08, None,                        'Gold Skulltula Token',                  ("Zora's River", "Skulltulas",))),
-
+    ("ZR Open Grotto Beehive 1",                                       ("Collectable",  0x3E, 0x60 + (0x09*2), None,                         'Rupees (20)',                            ("Zora's River", "Grottos", "Beehive"))),
+    ("ZR Open Grotto Beehive 2",                                       ("Collectable",  0x3E, 0x60 + (0x09*2+1), None,                         'Rupees (20)',                            ("Zora's River", "Grottos", "Beehive"))),
+    ("ZR Storms Grotto Beehive",                                       ("Collectable",  0x3E, 0x60 + (0x0B*2), None,                         'Rupees (20)',                            ("Zora's River", "Grottos", "Beehive"))),
+    
     # Zora's Domain
     ("ZD Diving Minigame",                                           ("NPC",          0x58,  0x37, None,                        'Progressive Scale',                     ("Zora's Domain", "Minigames",))),
     ("ZD Chest",                                                     ("Chest",        0x58,  0x00, None,                        'Piece of Heart',                        ("Zora's Domain", ))),
@@ -561,7 +584,8 @@ location_table = OrderedDict([
     ("LH GS Small Island",                                           ("GS Token",     0x12,  0x02, None,                        'Gold Skulltula Token',                  ("Lake Hylia", "Skulltulas",))),
     ("LH GS Lab Crate",                                              ("GS Token",     0x12,  0x08, None,                        'Gold Skulltula Token',                  ("Lake Hylia", "Skulltulas",))),
     ("LH GS Tree",                                                   ("GS Token",     0x12,  0x10, None,                        'Gold Skulltula Token',                  ("Lake Hylia", "Skulltulas",))),
-
+    ("LH Grotto Beehive",                                              ("Collectable",  0x3E, 0x60+(0x0F*2), None,                         'Rupees (20)',                            ("Lake Hylia", "Grottos", "Beehive"))),
+    
     # Gerudo Valley
     ("GV Crate Freestanding PoH",                                    ("Collectable",  0x5A,  0x02, None,                        'Piece of Heart',                        ("Gerudo Valley", "Gerudo",))),
     ("GV Waterfall Freestanding PoH",                                ("Collectable",  0x5A,  0x01, None,                        'Piece of Heart',                        ("Gerudo Valley", "Gerudo",))),
@@ -584,7 +608,7 @@ location_table = OrderedDict([
     ("GV Octorok Grotto Green Rupee 2",                              ("Collectable",  0x3E,  0x3C, None,                        'Rupees (20)',                          ("Gerudo Valley", "Gerudo", "Grottos", "Freestanding"))),
     ("GV Octorok Grotto Green Rupee 3",                              ("Collectable",  0x3E,  0x3D, None,                        'Rupees (20)',                          ("Gerudo Valley", "Gerudo", "Grottos", "Freestanding"))),
     ("GV Octorok Grotto Green Rupee 4",                              ("Collectable",  0x3E,  0x3E, None,                        'Rupees (20)',                          ("Gerudo Valley", "Gerudo", "Grottos", "Freestanding"))),
-
+    ("GV Storms Grotto Beehive",                                       ("Collectable",  0x3E, 0x60 + (0x10*2), None,                         'Rupees (20)',                            ("Gerudo Valley", "Gerudo", "Grottos", "Beehive"))),
 
     # Gerudo's Fortress
     ("GF Chest",                                                     ("Chest",        0x5D,  0x00, None,                        'Piece of Heart',                        ("Gerudo's Fortress", "Gerudo",))),
@@ -655,45 +679,11 @@ location_table = OrderedDict([
     ("Colossus GS Bean Patch",                                       ("GS Token",     0x15,  0x01, None,                        'Gold Skulltula Token',                  ("Desert Colossus", "Skulltulas",))),
     ("Colossus GS Tree",                                             ("GS Token",     0x15,  0x08, None,                        'Gold Skulltula Token',                  ("Desert Colossus", "Skulltulas",))),
     ("Colossus GS Hill",                                             ("GS Token",     0x15,  0x04, None,                        'Gold Skulltula Token',                  ("Desert Colossus", "Skulltulas",))),
-
+("Colossus Grotto Beehive",                                 ("Collectable",  0x3E, 0x60 + (0x1D*2), None,                         'Rupees (20)',                            ("Desert Colossus", "Grottos", "Beehive"))),
+    
     # Outside Ganon's Castle
     ("OGC Great Fairy Reward",                                       ("Cutscene",     0xFF,  0x15, None,                        'Double Defense',                        ("Outside Ganon's Castle", "Market", "Fairies"))),
     ("OGC GS",                                                       ("GS Token",     0x0E,  0x01, None,                        'Gold Skulltula Token',                  ("Outside Ganon's Castle", "Skulltulas",))),
-
-    # Grotto Beehives
-    ("HF Near Market Grotto Beehive 1",                                ("Collectable",  0x3E, 0x60 + (0x00*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("HF Near Market Grotto Beehive 2",                                ("Collectable",  0x3E, 0x60 + (0x00*2 + 1), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("HF Open Grotto Beehive 1",                                       ("Collectable",  0x3E, 0x60 + (0x03*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("HF Open Grotto Beehive 2",                                       ("Collectable",  0x3E, 0x60 + (0x03*2 + 1), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("HF Southeast Grotto Beehive 1",                                  ("Collectable",  0x3E, 0x60 + (0x02*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("HF Southeast Grotto Beehive 2",                                  ("Collectable",  0x3E, 0x60 + (0x02*2 + 1), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("HF Inside Fence Grotto Beehive",                                 ("Collectable",  0x3E, 0x60 + (0x06*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("KF Storms Grotto Beehive 1",                                     ("Collectable",  0x3E, 0x60 + (0x0C*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("KF Storms Grotto Beehive 2",                                     ("Collectable",  0x3E, 0x60 + (0x0C*2 + 1), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("LW Near Shortcuts Grotto Beehive 1",                             ("Collectable",  0x3E, 0x60 + (0x14*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("LW Near Shortcuts Grotto Beehive 2",                             ("Collectable",  0x3E, 0x60 + (0x14*2 + 1), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("LW Scrubs Grotto Beehive",                                       ("Collectable",  0x3E, 0x60 + (0x15*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("SFM Storms Grotto Beehive",                                      ("Collectable",  0x3E, 0x60 + (0x0E*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("LLR Grotto Beehive",                                             ("Collectable",  0x3E, 0x60 + (0x1C*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("Kak Open Grotto Beehive 1",                                      ("Collectable",  0x3E, 0x60 + (0x08*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("Kak Open Grotto Beehive 2",                                      ("Collectable",  0x3E, 0x60 + (0x08*2 + 1), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("DMT Cow Grotto Beehive",                                         ("Collectable",  0x3E, 0x60 + (0x18*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("DMT Storms Grotto Beehive 1",                                    ("Collectable",  0x3E, 0x60 + (0x17*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("DMT Storms Grotto Beehive 2",                                    ("Collectable",  0x3E, 0x60 + (0x17*2 + 1), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("DMC Upper Grotto Beehive 1",                                     ("Collectable",  0x3E, 0x60 + (0x1A*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("DMC Upper Grotto Beehive 2",                                     ("Collectable",  0x3E, 0x60 + (0x1A*2+1), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("DMC Hammer Grotto Beehive",                                      ("Collectable",  0x3E, 0x60 + (0x19*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("ZR Open Grotto Beehive 1",                                       ("Collectable",  0x3E, 0x60 + (0x09*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("ZR Open Grotto Beehive 2",                                       ("Collectable",  0x3E, 0x60 + (0x09*2+1), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("ZR Storms Grotto Beehive",                                       ("Collectable",  0x3E, 0x60 + (0x0B*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("GV Storms Grotto Beehive",                                       ("Collectable",  0x3E, 0x60 + (0x10*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("Colossus Grotto Beehive",                                 ("Collectable",  0x3E, 0x60 + (0x1D*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    
-    
-    
-
-    ("LH Grotto Beehive",                                              ("Collectable",  0x3E, 0x60+(0x0F*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    
 
     ## Dungeons
     # Deku Tree vanilla
