@@ -91,105 +91,105 @@ SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 twinrova.c
 00000000 l    df *ABS*	00000000 util.c
 00000000 l    df *ABS*	00000000 weather.c
-00005cc8 g     F .text	00000054 scale_factor
-00004a3c g     F .text	0000001c give_defense
-00004c34 g     F .text	0000002c call_effect_function
+00005cdc g     F .text	00000054 scale_factor
+00004a50 g     F .text	0000001c give_defense
+00004c48 g     F .text	0000002c call_effect_function
 00001b30 g     F .text	0000037c read_file_data
 00000000         *UND*	00000000 PLAYER_ID
-000047ec g     F .text	00000080 give_ice_trap
-00005354 g     F .text	00000274 update_bombchu_trail_colors
+00004800 g     F .text	00000080 give_ice_trap
+00005368 g     F .text	00000274 update_bombchu_trail_colors
 00002ca4 g     F .text	0000007c item_overrides_init
-00004d5c g     F .text	00000018 scale_upgrade
-0000704c g     F .text	00000014 clear_twinrova_vars
+00004d70 g     F .text	00000018 scale_upgrade
+00007060 g     F .text	00000014 clear_twinrova_vars
 00000048 g     O .sdata	00000004 a_note_glow_max
 00000004 g     O .sbss	00000004 CHEST_TEXTURE_MATCH_CONTENTS
 00000000         *UND*	00000000 CFG_HEART_COLOR
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_ENEMY_INNER_ENABLED
-0000477c g     F .text	0000004c rupee_hud_color
+00004790 g     F .text	0000004c rupee_hud_color
 00002c30 g     F .text	00000074 Collectible_WaitForMessageBox
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_IDLE_OUTER_ENABLED
-00004c68 g     F .text	00000014 hookshot_upgrade
-0000510c g     F .text	000000a4 update_sword_trail_colors
+00004c7c g     F .text	00000014 hookshot_upgrade
+00005120 g     F .text	000000a4 update_sword_trail_colors
 00002f00 g     F .text	0000004c lookup_override
-00004d90 g     F .text	0000001c stick_upgrade
-000068c4 g     F .text	0000002c text_init
+00004da4 g     F .text	0000001c stick_upgrade
+000068d8 g     F .text	0000002c text_init
 00000000         *UND*	00000000 INCOMING_PLAYER
 00000080 g     O .sdata	00000004 beating_no_dd
 00000030 g     O .sdata	00000004 c_note_font_glow_max
 00001730 g     F .text	00000290 process_extern_ctxt
 00000040 g     O .sbss	00000004 active_override_is_outgoing
-00004a74 g     F .text	00000024 give_double_magic
+00004a88 g     F .text	00000024 give_double_magic
 00000074 g     O .sdata	00000004 normal_dd
-000043e0 g     F .text	0000039c update_hud_colors
+000043f4 g     F .text	0000039c update_hud_colors
 00000000         *UND*	00000000 CFG_DUNGEON_REWARDS
-00004e68 g     F .text	00000070 letter_to_bottle
+00004e7c g     F .text	00000070 letter_to_bottle
 00000000         *UND*	00000000 CFG_B_BUTTON_COLOR
-00005ebc g     F .text	000000ac collectible_draw
-00006140 g     F .text	00000064 ocarina_of_time_draw
+00005ed0 g     F .text	000000ac collectible_draw
+00006154 g     F .text	00000064 ocarina_of_time_draw
 00002a4c g     F .text	00000048 check_ganon_entry
 000001f0 g     O .data	00000010 items_sprite
-00005fcc g     F .text	000000ac collectible_draw_other
+00005fe0 g     F .text	000000ac collectible_draw_other
 00000000         *UND*	00000000 CFG_DISPLAY_DPAD
-00004f94 g     F .text	0000003c before_skybox_init
+00004fa8 g     F .text	0000003c before_skybox_init
 0000002c g     O .sbss	00000004 active_item_graphic_id
 000001c0 g     O .data	00000010 dpad_sprite
 00000070 g     O .sdata	00000004 a_button
 0000000c g     O .sdata	00000008 hash_sprites
 00002f4c g     F .text	000000e4 activate_override
-00004f14 g     F .text	0000003c before_game_state_update
-0000687c g     F .text	00000048 store_scarecrow_fix
-00006390 g     F .text	00000084 obj_comb_drop_collectible
-00006aec g     F .text	00000028 set_triforce_render
+00004f28 g     F .text	0000003c before_game_state_update
+00006890 g     F .text	00000048 store_scarecrow_fix
+000063a4 g     F .text	00000084 obj_comb_drop_collectible
+00006b00 g     F .text	00000028 set_triforce_render
 00000064 g     O .sdata	00000004 a_note_r
 00000000         *UND*	00000000 CFG_C_NOTE_COLOR
 00000000         *UND*	00000000 OUTGOING_PLAYER
-000070f4 g     F .text	00000240 override_weather_state
+00007108 g     F .text	00000240 override_weather_state
 00003164 g     F .text	00000040 push_delayed_item
-00004cfc g     F .text	00000030 slingshot_upgrade
+00004d10 g     F .text	00000030 slingshot_upgrade
 000007f4 g     F .text	000004dc draw_dpad
 0000000c g     O .sbss	00000004 cfg_file_select_hash
-000066a0 g     F .text	00000028 health_and_magic_refill
+000066b4 g     F .text	00000028 health_and_magic_refill
 00000054 g     O .sbss	00000001 pending_freezes
-0000486c g     F .text	00000008 no_effect
-00006998 g     F .text	00000154 text_flush
+00004880 g     F .text	00000008 no_effect
+000069ac g     F .text	00000154 text_flush
 00000000         *UND*	00000000 CFG_RAINBOW_SWORD_INNER_ENABLED
 00000092 g     O .sdata	00000002 triforce_pieces_requied
 00000200 g     O .data	00000010 medals_sprite
 000016b4 g     F .text	00000064 interpolate
-00004cd4 g     F .text	00000028 bow_upgrade
+00004ce8 g     F .text	00000028 bow_upgrade
 00000034 g     F .text	00000034 agony_vibrate_setup
 00000180 g     O .data	00000010 item_digit_sprite
 00000000         *UND*	00000000 SILVER_CHEST_BASE_TEXTURE
 000037e8 g     F .text	00000084 Item00_KillActorIfFlagIsSet
 000032a4 g     F .text	0000006c after_item_received
-00004c60 g     F .text	00000008 no_upgrade
-0000583c g     F .text	00000224 update_navi_colors
+00004c74 g     F .text	00000008 no_upgrade
+00005850 g     F .text	00000224 update_navi_colors
 00002ae8 g     F .text	00000148 give_ganon_boss_key
-00004e0c g     F .text	0000001c arrows_to_rupee
+00004e20 g     F .text	0000001c arrows_to_rupee
 00000040 g     O .sdata	00000004 a_note_font_glow_max
 00000044 g     O .sbss	00000008 active_override
 00000018 g     O .sdata	00000008 empty_dlist
 00000000         *UND*	00000000 INCOMING_ITEM
 00000068 g     O .sdata	00000004 c_button
 00000000 g     O .sdata	00000004 dungeon_count
-000049b8 g     F .text	00000014 give_dungeon_item
-00004d74 g     F .text	0000001c nut_upgrade
+000049cc g     F .text	00000014 give_dungeon_item
+00004d88 g     F .text	0000001c nut_upgrade
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_PROP_OUTER_ENABLED
 00003104 g     F .text	00000060 push_coop_item
 00000000         *UND*	00000000 GILDED_CHEST_BASE_TEXTURE
 00000008 g     O .sdata	00000004 scene_fog_distance
 00000000         *UND*	00000000 CFG_BOMBCHU_TRAIL_OUTER_COLOR
-00005dfc g     F .text	00000024 models_reset
+00005e10 g     F .text	00000024 models_reset
 00000000 g     F .text	00000008 agony_inside_radius_setup
 000001e0 g     O .data	00000010 quest_items_sprite
 000031d8 g     F .text	00000064 after_key_received
 00000074 g     O .sbss	00000001 KAKARIKO_WEATHER_FORECAST
-00007074 g     F .text	0000003c heap_alloc
+00007088 g     F .text	0000003c heap_alloc
 0000003c g     O .sbss	00000004 active_item_row
-00004f50 g     F .text	00000044 after_game_state_update
+00004f64 g     F .text	00000044 after_game_state_update
 00000cd0 g     F .text	000009e4 draw_dungeon_info
 000035e8 g     F .text	00000020 get_extended_flag
-00004fd0 g     F .text	0000003c after_scene_init
+00004fe4 g     F .text	0000003c after_scene_init
 00000000         *UND*	00000000 FONT_TEXTURE
 000001ec g     O .rodata	0000000c icon_sprites
 00000000         *UND*	00000000 OCARINAS_SHUFFLED
@@ -201,21 +201,21 @@ SYMBOL TABLE:
 0000002c g     O .bss	00000ca0 dropped_collectible_override_flags
 00000000         *UND*	00000000 CFG_RAINBOW_BOMBCHU_TRAIL_OUTER_ENABLED
 00000000         *UND*	00000000 CFG_RAINBOW_SWORD_OUTER_ENABLED
-00004a58 g     F .text	0000001c give_magic
+00004a6c g     F .text	0000001c give_magic
 00000170 g     O .data	00000010 linkhead_skull_sprite
 00000034 g     O .sbss	00000004 active_item_text_id
-000047c8 g     F .text	00000010 ice_trap_is_pending
+000047dc g     F .text	00000010 ice_trap_is_pending
 0000100c g     O .bss	00003000 cfg_item_overrides
 00000020 g     O .sdata	00000004 text_cursor_border_max
 00003790 g     F .text	00000058 should_override_collectible
 00000000         *UND*	00000000 DPAD_TEXTURE
 000030a4 g     F .text	00000060 push_pending_item
-000049f0 g     F .text	0000004c give_small_key_ring
+00004a04 g     F .text	0000004c give_small_key_ring
 00000008 g     F .text	0000002c agony_outside_radius_setup
 0000307c g     F .text	00000028 set_outgoing_override
 00000030 g     O .sbss	00000004 active_item_object_id
 00000000         *UND*	00000000 CFG_RAINBOW_BOOM_TRAIL_INNER_ENABLED
-00004d2c g     F .text	00000030 wallet_upgrade
+00004d40 g     F .text	00000030 wallet_upgrade
 00000028 g     O .sbss	00000004 active_item_fast_chest
 00000054 g     O .sdata	00000004 c_note_g
 00002818 g     F .text	00000234 draw_file_select_hash
@@ -223,70 +223,71 @@ SYMBOL TABLE:
 00000260 g     F .text	000000d4 get_chest_override
 00000500 g     F .text	000002f4 handle_dpad
 00000000         *UND*	00000000 START_TWINROVA_FIGHT
-000040f8 g     F .text	000000f8 sprite_draw
+0000410c g     F .text	000000f8 sprite_draw
 00000000         *UND*	00000000 CFG_BOOM_TRAIL_OUTER_COLOR
 00000190 g     O .data	00000010 key_rupee_clock_sprite
-00004974 g     F .text	0000000c give_biggoron_sword
-00003e8c g     F .text	00000070 give_sarias_gift
+00004988 g     F .text	0000000c give_biggoron_sword
+00003ea0 g     F .text	00000070 give_sarias_gift
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_ENEMY_OUTER_ENABLED
 000036ec g     F .text	000000a4 Set_CollectibleOverrideFlag
 00000038 g     O .sdata	00000004 c_note_glow_max
-00005f68 g     F .text	00000064 heart_piece_draw
+00005f7c g     F .text	00000064 heart_piece_draw
 00000000         *UND*	00000000 CFG_RAINBOW_BOMBCHU_TRAIL_INNER_ENABLED
-00003f58 g     F .text	000001a0 sprite_load
+00003f6c g     F .text	000001a0 sprite_load
 00000210 g     O .data	00000010 stones_sprite
+00000000         *UND*	00000000 NO_COLLECTIBLE_HEARTS
 00000000         *UND*	00000000 OUTGOING_KEY
 000000b4 g     O .data	00000014 extern_ctxt
-00004e28 g     F .text	0000001c bombs_to_rupee
+00004e3c g     F .text	0000001c bombs_to_rupee
 00000028 g     O .sdata	00000004 text_cursor_inner_max
 0000005c g     O .sdata	00000004 a_note_b
 00000000         *UND*	00000000 Gameplay_InitSkybox
 00000108 g     O .data	00000040 num_to_bits
 00000220 g     O .data	00000028 setup_db
-00005b34 g     F .text	00000060 get_object
-00004880 g     F .text	000000bc give_triforce_piece
+00005b48 g     F .text	00000060 get_object
+00004894 g     F .text	000000bc give_triforce_piece
 00000264 g     O .data	000013e0 item_table
 000001d0 g     O .data	00000010 font_sprite
 00000024 g     O .sbss	00000001 satisified_pending_frames
-00005be0 g     F .text	00000068 scale_top_matrix
+00005bf4 g     F .text	00000068 scale_top_matrix
 0000323c g     F .text	00000068 pop_ice_trap
 00000018 g     O .sbss	00000008 collectible_override
 00000000         *UND*	00000000 TWINROVA_ACTION_TIMER
-00005a60 g     F .text	00000040 update_misc_colors
+00005a74 g     F .text	00000040 update_misc_colors
 00000014 g     O .sbss	00000001 GANON_BOSS_KEY_CONDITION
-00003f28 g     F .text	00000030 sprite_bytes
+00003f3c g     F .text	00000030 sprite_bytes
 00000058 g     O .sdata	00000004 c_note_r
 00000000         *UND*	00000000 CFG_C_BUTTON_COLOR
-00004ca8 g     F .text	0000002c bomb_bag_upgrade
-00004dac g     F .text	00000010 magic_upgrade
-00004c7c g     F .text	0000002c strength_upgrade
-00004b1c g     F .text	0000007c open_mask_shop
-00005b0c g     F .text	00000028 load_object
-000066c8 g     F .text	000000a4 Save_Write_Hook
-00004dec g     F .text	00000020 ocarina_upgrade
-00004bd4 g     F .text	00000060 resolve_upgrades
+00004cbc g     F .text	0000002c bomb_bag_upgrade
+00004dc0 g     F .text	00000010 magic_upgrade
+00004c90 g     F .text	0000002c strength_upgrade
+00004b30 g     F .text	0000007c open_mask_shop
+00005b20 g     F .text	00000028 load_object
+000066dc g     F .text	000000a4 Save_Write_Hook
+00004e00 g     F .text	00000020 ocarina_upgrade
+00004be8 g     F .text	00000060 resolve_upgrades
 000001a0 g     O .data	00000010 song_note_sprite
 00000000         *UND*	00000000 CFG_A_NOTE_COLOR
 0000007c g     O .sdata	00000004 normal_no_dd
 0000006c g     O .sdata	00000004 b_button
-0000632c g     F .text	00000064 bowling_heart_piece_draw
-0000676c g     F .text	0000008c Save_Open
-000041f0 g     F .text	000001f0 gfx_init
+00006340 g     F .text	00000064 bowling_heart_piece_draw
+00006780 g     F .text	0000008c Save_Open
+00004204 g     F .text	000001f0 gfx_init
 00000084 g     O .sdata	00000006 defaultDDHeart
 00000028 g     O .rodata	00000042 freecam_modes
-00004874 g     F .text	0000000c full_heal
+00004888 g     F .text	0000000c full_heal
 00000050 g     O .sdata	00000004 c_note_b
-00003d6c g     F .text	00000120 get_skulltula_token
+00003d80 g     F .text	00000120 get_skulltula_token
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_IDLE_INNER_ENABLED
-000047d8 g     F .text	00000014 push_pending_ice_trap
+000047ec g     F .text	00000014 push_pending_ice_trap
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_REWARD_ENABLE
-00006288 g     F .text	000000a4 bowling_bomb_bag_draw
+0000629c g     F .text	000000a4 bowling_bomb_bag_draw
 00000000         *UND*	00000000 GILDED_CHEST_FRONT_TEXTURE
 00000078 g     O .sdata	00000004 beating_dd
 00000068 g     F .text	00000158 draw_agony_graphic
-00004e44 g     F .text	00000024 seeds_to_rupee
-00004a98 g     F .text	0000000c give_fairy_ocarina
-00005e7c g     F .text	00000040 lookup_model
+00004e58 g     F .text	00000024 seeds_to_rupee
+00004aac g     F .text	0000000c give_fairy_ocarina
+00005e90 g     F .text	00000040 lookup_model
 00000056 g     O .sbss	00000001 OPEN_KAKARIKO
 00000ccc g     O .bss	00000328 collectible_override_flags
 00000018 g     O .data	0000009c dungeons
@@ -294,78 +295,78 @@ SYMBOL TABLE:
 00000004 g     O .data	00000012 medal_colors
 00000000         *UND*	00000000 CFG_DUNGEON_IS_MQ
 0000004c g     O .sbss	00000004 dummy_actor
-000051b0 g     F .text	000001a4 update_boomerang_trail_colors
+000051c4 g     F .text	000001a4 update_boomerang_trail_colors
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_NPC_OUTER_ENABLED
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_REWARD_NEED_COMPASS
 0000002c g     O .sdata	00000004 text_cursor_inner_base
-000068f0 g     F .text	000000a8 text_print
-00005e20 g     F .text	0000005c lookup_model_by_override
+00006904 g     F .text	000000a8 text_print
+00005e34 g     F .text	0000005c lookup_model_by_override
 0000003c g     O .sdata	00000004 c_note_glow_base
 00002a94 g     F .text	00000054 countSetBitsRec
 00000012 g     O .sbss	00000002 GANON_BOSS_KEY_CONDITION_COUNT
-0000493c g     F .text	00000038 give_tycoon_wallet
+00004950 g     F .text	00000038 give_tycoon_wallet
 00000024 g     O .sdata	00000004 text_cursor_border_base
 00000050 g     O .sbss	00000004 item_overrides_count
 00000000         *UND*	00000000 CFG_BOOM_TRAIL_INNER_COLOR
 000033c8 g     F .text	00000108 handle_pending_items
-00004dbc g     F .text	00000030 bombchu_upgrade
+00004dd0 g     F .text	00000030 bombchu_upgrade
 00000000         *UND*	00000000 SILVER_CHEST_FRONT_TEXTURE
-00005d1c g     F .text	00000094 draw_model
-000067f8 g     F .text	00000084 Save_Init_Write_Hook
-00004ad8 g     F .text	00000018 give_bean_pack
-000055c8 g     F .text	00000274 get_bombchu_back_color
-00004aa4 g     F .text	00000018 give_song
+00005d30 g     F .text	00000094 draw_model
+0000680c g     F .text	00000084 Save_Init_Write_Hook
+00004aec g     F .text	00000018 give_bean_pack
+000055dc g     F .text	00000274 get_bombchu_back_color
+00004ab8 g     F .text	00000018 give_song
 00000004 g     O .sdata	00000004 last_fog_distance
 0000008c g     O .sdata	00000006 defaultHeart
 00000060 g     O .sdata	00000004 a_note_g
-00004ed8 g     F .text	0000003c c_init
+00004eec g     F .text	0000003c c_init
 00000000         *UND*	00000000 CFG_RAINBOW_BOOM_TRAIL_OUTER_ENABLED
 000001b0 g     O .data	00000010 triforce_sprite
 00000000         *UND*	00000000 EXTERN_DAMAGE_MULTIPLYER
 00000057 g     O .sbss	00000001 MAX_RUPEES
-000061a4 g     F .text	000000e4 item_etcetera_draw
+000061b8 g     F .text	000000e4 item_etcetera_draw
 00000000         *UND*	00000000 SPEED_MULTIPLIER
 00001eac g     F .text	0000096c draw_file_icons
 00000038 g     O .sbss	00000004 active_item_action_id
 00003310 g     F .text	000000b8 try_pending_item
-00004af0 g     F .text	0000002c fill_wallet_upgrade
+00004b04 g     F .text	0000002c fill_wallet_upgrade
 00000070 g     O .sbss	00000004 heap_next
 00000000         *UND*	00000000 SKULL_CHEST_BASE_TEXTURE
 00000000         *UND*	00000000 TRIFORCE_ICON_TEXTURE
-00004abc g     F .text	0000001c ice_trap_effect
-0000500c g     F .text	00000100 c_equipment_menu_slot_filled
+00004ad0 g     F .text	0000001c ice_trap_effect
+00005020 g     F .text	00000100 c_equipment_menu_slot_filled
 00003608 g     F .text	000000e4 Get_CollectibleOverrideFlag
-00004980 g     F .text	00000038 give_bottle
+00004994 g     F .text	00000038 give_bottle
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_REWARD_NEED_ALTAR
 00000160 g     O .data	00000010 heart_sprite
 00002e60 g     F .text	000000a0 lookup_override_by_key
 000035dc g     F .text	0000000c reset_collectible_mutex
-00005aa0 g     F .text	0000006c load_object_file
-000038d4 g     F .text	000001e8 get_override_drop_id
+00005ab4 g     F .text	0000006c load_object_file
+000038d4 g     F .text	000001fc get_override_drop_id
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_NPC_INNER_ENABLED
-00005c48 g     F .text	00000080 draw_model_low_level
-00006414 g     F .text	00000060 ObjKibako2_SpawnCollectible_Hack
+00005c5c g     F .text	00000080 draw_model_low_level
+00006428 g     F .text	00000060 ObjKibako2_SpawnCollectible_Hack
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_MQ_NEED_MAP
 00000000         *UND*	00000000 OUTGOING_ITEM
 00000ff4 g     O .bss	00000018 pending_item_queue
 00000055 g     O .sbss	00000001 COMPLETE_MASK_QUEST
-000060dc g     F .text	00000064 skull_token_draw
+000060f0 g     F .text	00000064 skull_token_draw
 00000000         *UND*	00000000 CFG_TEXT_CURSOR_COLOR
 000000c8 g     O .data	00000040 hash_symbols
 00001718 g     F .text	00000018 extern_scene_init
-00005b94 g     F .text	0000004c set_object_segment
+00005ba8 g     F .text	0000004c set_object_segment
 000001c0 g     F .text	000000a0 draw_agony
-00007060 g     F .text	00000014 heap_init
+00007074 g     F .text	00000014 heap_init
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_PROP_INNER_ENABLED
-00006078 g     F .text	00000064 heart_container_draw
+0000608c g     F .text	00000064 heart_container_draw
 0000400c g     O .bss	000000c0 object_slots
-000049cc g     F .text	00000024 give_small_key
+000049e0 g     F .text	00000024 give_small_key
 00000064 g     O .sbss	00000002 triforce_hunt_enabled
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_MQ_ENABLE
 00000148 g     O .data	00000015 items
 00000000         *UND*	00000000 C_HEAP
-00003abc g     F .text	000002b0 item_give_collectible
-00006474 g     F .text	0000022c get_rainbow_color
+00003ad0 g     F .text	000002b0 item_give_collectible
+00006488 g     F .text	0000022c get_rainbow_color
 00000000         *UND*	00000000 CFG_BOMBCHU_TRAIL_INNER_COLOR
 00002d20 g     F .text	00000140 get_override_search_key
 00000010 g     O .sbss	00000001 NO_ESCAPE_SEQUENCE
@@ -374,15 +375,15 @@ SYMBOL TABLE:
 00000334 g     F .text	000001cc draw_chest
 0000386c g     F .text	00000068 Item00_KeepAlive
 00000000         *UND*	00000000 CFG_A_BUTTON_COLOR
-00003efc g     F .text	0000002c sprite_bytes_per_tile
-00004b98 g     F .text	0000003c get_item_row
-000070b0 g     F .text	00000044 file_init
+00003f10 g     F .text	0000002c sprite_bytes_per_tile
+00004bac g     F .text	0000003c get_item_row
+000070c4 g     F .text	00000044 file_init
 00000020 g     O .sbss	00000004 collectible_mutex
 000001f8 g     O .rodata	0000000c rupee_colors
 00000000         *UND*	00000000 EXTENDED_OBJECT_TABLE
-00006b14 g     F .text	00000538 draw_triforce_count
+00006b28 g     F .text	00000538 draw_triforce_count
 00000000         *UND*	00000000 PLAYER_NAME_ID
-00005db0 g     F .text	0000004c models_init
+00005dc4 g     F .text	0000004c models_init
 00000248 g     O .data	0000001c key_counts
 
 

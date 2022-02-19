@@ -391,6 +391,7 @@ nop
 nop
 nop
 nop
+.headersize(0)
 
 ;Hack Item_DropCollectible to call custom function to determine what item should be dropped based on our override.
 ;overriding call at 0x8001376C to function 0x80013530
@@ -406,6 +407,8 @@ sh T1, 0x0046(sp)
 ;jal 0x80013530
 ;sh T1, 0x0042(sp)
 .orga 0xA898F8; in memory 0x80013998
+jal get_override_drop_id_hook
+sh T1, 0x0042(sp)
 
 ;Hack Item_DropCollectible to add a flag that this was a dropped collectible (vs spawned) and extended flag
 ;replaces or t4, t3, t1
