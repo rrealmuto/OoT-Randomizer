@@ -1,10 +1,9 @@
 {
     "name":                  "triforce-blitz",
     "gui_name":              "Triforce Blitz",
-    "description":           "Hint Distribution for the S5 Tournament. 5 Goal Hints, 3 Barren Hints, 5 Sometimes hints, 7 Always hints (including skull mask).",
+    "description":           "Hint Distribution for Triforce Blitz. 3 Path Count Hints, 10 Goal Hints, 5 Barren Hints, 3 Always hints.",
     "add_locations":         [
-                                { "location": "Kak 20 Gold Skulltula Reward", "types": ["always"]},
-                                { "location": "Deku Theater Skull Mask", "types": ["always"]}
+                                { "location": "Kak 20 Gold Skulltula Reward", "types": ["always"]}
                              ],
     "remove_locations":      [{"location": "Ganons Castle Shadow Trial Golden Gauntlets Chest", "types": "sometimes"}],
     "add_items":             [],
@@ -14,6 +13,7 @@
     "named_items_required":  true,
     "vague_named_items":     false,
     "use_default_goals":     false,
+    "prioritize_dungeons":   true,
     "custom_goals":          [{
         "category":          "triforce_hunt",
         "priority":          30,
