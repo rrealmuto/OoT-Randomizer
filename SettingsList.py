@@ -2806,7 +2806,10 @@ setting_infos = [
             'dungeons' : 'Dungeons Only'
         },
         gui_tooltip    = '''\
-            Shuffles freestanding rupees and recovery hearts.
+            Shuffles freestanding rupees and recovery hearts, also shuffles:
+                Beehives
+                Shadow Temple Spinning Pot Drop
+                All Goron Pot faces
 
             Off: No freestanding rupees/recovery hearts are shuffled.
             All: All Visible freestanding rupees/recovery hearts are shuffled.

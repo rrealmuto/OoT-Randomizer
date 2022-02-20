@@ -349,8 +349,8 @@ location_table = OrderedDict([
     ("Kak Near Guards House Pot 3",                                                    ("Collectable",  0x52,  0x28, None,                        'Recovery Heart',                        ("Kakariko Village", "Kakariko", "Pot"))),
     ("Kak Near Odd Medicine Building Pot 1",                                                   ("Collectable",  0x52,  0x29, None,                        'Recovery Heart',                        ("Kakariko Village", "Kakariko", "Pot"))),
     ("Kak Near Odd Medicine Building Pot 2",                                                   ("Collectable",  0x52,  0x2A, None,                        'Recovery Heart',                        ("Kakariko Village", "Kakariko", "Pot"))),
-    ("Kak Adult Crate Red Rupee", ("Collectable", 0x52, 0x2B, ([0x201680C, 0x2016BFC], None), 'Rupees (20)', ("Kakariko Village", "Kakariko", "Crate"))), #update crate flags to not conflict w/ child pots. These move day/night
-    ("Kak Adult Crate Arrows", ("Collectable", 0x52, 0x2C, ([0x201689C, 0x2016BCC],None), 'Arrows (10)', ("Kakariko Village", "Kakariko", "Crate"))), #update crate flags to not conflict w/ child pots. These move day/night
+    ("Kak Adult Crate Red Rupee", ("Collectable", 0x52, 0x2B, ([0x201689C, 0x2016BFC], None), 'Rupees (20)', ("Kakariko Village", "Kakariko", "Crate"))), #update crate flags to not conflict w/ child pots. These move day/night
+    ("Kak Adult Crate Arrows", ("Collectable", 0x52, 0x2C, ([0x201680C, 0x2016BCC],None), 'Arrows (10)', ("Kakariko Village", "Kakariko", "Crate"))), #update crate flags to not conflict w/ child pots. These move day/night
 
     # Graveyard
     ("Graveyard Shield Grave Chest",                                 ("Chest",        0x40,  0x00, None,                        'Hylian Shield',                         ("the Graveyard", "Kakariko",))),
