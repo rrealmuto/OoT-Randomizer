@@ -2048,10 +2048,10 @@ def get_override_entry(location):
 
     #Don't add freestanding items to the override table if they're disabled. We use this check to determine how to draw and interact with them.
     if not location.world.settings.shuffle_freestanding_items:
-        if (location.type == "ActorOverride" or (location.type == "Collectable" and ("Freestanding" in location.filter_tags or "RupeeTower" in location.filter_tags))) :
+        if (location.type == "ActorOverride" or (location.type == "Collectable" and ("Freestanding" in location.filter_tags or "RupeeTower" in location.filter_tags or "Beehive" in location.filter_tags))) :
             return None
     else:
-        if (location.type == "ActorOverride" or (location.type == "Collectable" and ("Freestanding" in location.filter_tags or "RupeeTower" in location.filter_tags))) and location.disabled != DisableType.ENABLED :
+        if (location.type == "ActorOverride" or (location.type == "Collectable" and ("Freestanding" in location.filter_tags or "RupeeTower" in location.filter_tags or "Beehive" in location.filter_tags))) and location.disabled != DisableType.ENABLED :
             return None
 
     #Don't add pots to the override table if they're disabled. We use this check to dtermine how to draw and interact with them

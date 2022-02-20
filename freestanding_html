@@ -209,6 +209,22 @@
 || ZR Waterfall Rupee 4 || IMAGE_URL_HERE ||style="text-align:center"|is_adult
 |-
 |}
+== Zoras Domain ==
+{| border="0" cellpadding="1" cellspacing="1" width=100%
+ !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
+|-
+|| ZD In Front of King Zora Beehive 1 || IMAGE_URL_HERE ||style="text-align:center"|is_child and can_break_beehive
+|-
+|| ZD In Front of King Zora Beehive 2 || IMAGE_URL_HERE ||style="text-align:center"|is_child and can_break_beehive
+|-
+|}
+== ZD Behind King Zora ==
+{| border="0" cellpadding="1" cellspacing="1" width=100%
+ !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
+|-
+|| ZD Behind King Zora Beehive || IMAGE_URL_HERE ||style="text-align:center"|is_child and can_break_beehive
+|-
+|}
 == Zoras Fountain ==
 {| border="0" cellpadding="1" cellspacing="1" width=100%
  !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
@@ -250,6 +266,88 @@
 || ZF Bottom Freestanding Rupee 18 || IMAGE_URL_HERE ||style="text-align:center"|is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))
 |-
 |}
+== KF Storms Grotto ==
+{| border="0" cellpadding="1" cellspacing="1" width=100%
+ !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
+|-
+|| KF Storms Grotto Beehive 1 || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|| KF Storms Grotto Beehive 2 || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|}
+== LW Near Shortcuts Grotto ==
+{| border="0" cellpadding="1" cellspacing="1" width=100%
+ !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
+|-
+|| LW Near Shortcuts Grotto Beehive 1 || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|| LW Near Shortcuts Grotto Beehive 2 || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|}
+== LW Scrubs Grotto ==
+{| border="0" cellpadding="1" cellspacing="1" width=100%
+ !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
+|-
+|| LW Scrubs Grotto Beehive || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|}
+== SFM Storms Grotto ==
+{| border="0" cellpadding="1" cellspacing="1" width=100%
+ !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
+|-
+|| SFM Storms Grotto Beehive || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|}
+== LLR Grotto ==
+{| border="0" cellpadding="1" cellspacing="1" width=100%
+ !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
+|-
+|| LLR Grotto Beehive || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|}
+== HF Southeast Grotto ==
+{| border="0" cellpadding="1" cellspacing="1" width=100%
+ !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
+|-
+|| HF Southeast Grotto Beehive 1 || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|| HF Southeast Grotto Beehive 2 || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|}
+== HF Open Grotto ==
+{| border="0" cellpadding="1" cellspacing="1" width=100%
+ !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
+|-
+|| HF Open Grotto Beehive 1 || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|| HF Open Grotto Beehive 2 || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|}
+== HF Inside Fence Grotto ==
+{| border="0" cellpadding="1" cellspacing="1" width=100%
+ !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
+|-
+|| HF Inside Fence Grotto Beehive || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|}
+== HF Near Market Grotto ==
+{| border="0" cellpadding="1" cellspacing="1" width=100%
+ !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
+|-
+|| HF Near Market Grotto Beehive 1 || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|| HF Near Market Grotto Beehive 2 || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|}
+== Kak Open Grotto ==
+{| border="0" cellpadding="1" cellspacing="1" width=100%
+ !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
+|-
+|| Kak Open Grotto Beehive 1 || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|| Kak Open Grotto Beehive 2 || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|}
 == DMT Cow Grotto ==
 {| border="0" cellpadding="1" cellspacing="1" width=100%
  !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
@@ -276,6 +374,63 @@
 |-
 || DMT Cow Grotto Recovery Heart 4 || IMAGE_URL_HERE ||style="text-align:center"|True
 |-
+|| DMT Cow Grotto Beehive || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|}
+== DMT Storms Grotto ==
+{| border="0" cellpadding="1" cellspacing="1" width=100%
+ !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
+|-
+|| DMT Storms Grotto Beehive 1 || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|| DMT Storms Grotto Beehive 2 || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|}
+== DMC Upper Grotto ==
+{| border="0" cellpadding="1" cellspacing="1" width=100%
+ !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
+|-
+|| DMC Upper Grotto Beehive 1 || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|| DMC Upper Grotto Beehive 2 || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|}
+== DMC Hammer Grotto ==
+{| border="0" cellpadding="1" cellspacing="1" width=100%
+ !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
+|-
+|| DMC Hammer Grotto Beehive || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|}
+== ZR Open Grotto ==
+{| border="0" cellpadding="1" cellspacing="1" width=100%
+ !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
+|-
+|| ZR Open Grotto Beehive 1 || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|| ZR Open Grotto Beehive 2 || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|}
+== ZR Storms Grotto ==
+{| border="0" cellpadding="1" cellspacing="1" width=100%
+ !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
+|-
+|| ZR Storms Grotto Beehive || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|}
+== LH Grotto ==
+{| border="0" cellpadding="1" cellspacing="1" width=100%
+ !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
+|-
+|| LH Grotto Beehive || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|}
+== Colossus Grotto ==
+{| border="0" cellpadding="1" cellspacing="1" width=100%
+ !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
+|-
+|| Colossus Grotto Beehive || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
 |}
 == GV Octorok Grotto ==
 {| border="0" cellpadding="1" cellspacing="1" width=100%
@@ -296,6 +451,13 @@
 || GV Octorok Grotto Green Rupee 3 || IMAGE_URL_HERE ||style="text-align:center"|True
 |-
 || GV Octorok Grotto Green Rupee 4 || IMAGE_URL_HERE ||style="text-align:center"|True
+|-
+|}
+== GV Storms Grotto ==
+{| border="0" cellpadding="1" cellspacing="1" width=100%
+ !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
+|-
+|| GV Storms Grotto Beehive || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
 |-
 |}
 == Deku Tree Lobby ==
@@ -523,7 +685,7 @@
 || Ice Cavern Block Room Red Rupee 3 || IMAGE_URL_HERE ||style="text-align:center"|(is_adult and can_play(Song_of_Time)) or (is_child and can_use(Boomerang))
 |-
 |}
-Total Count: 177
+Total Count: 208
 ***Pots/Crates***
 == KF Links House ==
 {| border="0" cellpadding="1" cellspacing="1" width=100%
@@ -1807,9 +1969,9 @@ Total Count: 341
 {| border="0" cellpadding="1" cellspacing="1" width=100%
  !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
 |-
-|| Forest Temple MQ Green Poe Room Pot 1 || IMAGE_URL_HERE ||style="text-align:center"|Small_Key_Forest_Temple, 6
+|| Forest Temple MQ Green Poe Room Pot 1 || IMAGE_URL_HERE ||style="text-align:center"|(Small_Key_Forest_Temple, 6)
 |-
-|| Forest Temple MQ Green Poe Room Pot 2 || IMAGE_URL_HERE ||style="text-align:center"|Small_Key_Forest_Temple, 6
+|| Forest Temple MQ Green Poe Room Pot 2 || IMAGE_URL_HERE ||style="text-align:center"|(Small_Key_Forest_Temple, 6)
 |-
 |}
 == Forest Temple Boss Region ==
@@ -1902,13 +2064,13 @@ Total Count: 341
 {| border="0" cellpadding="1" cellspacing="1" width=100%
  !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
 |-
-|| Fire Temple MQ Narrow Path Room Pot 1 || IMAGE_URL_HERE ||style="text-align:center"|Small_Key_Fire_Temple, 3
+|| Fire Temple MQ Narrow Path Room Pot 1 || IMAGE_URL_HERE ||style="text-align:center"|(Small_Key_Fire_Temple, 3)
 |-
-|| Fire Temple MQ Narrow Path Room Pot 2 || IMAGE_URL_HERE ||style="text-align:center"|Small_Key_Fire_Temple, 3
+|| Fire Temple MQ Narrow Path Room Pot 2 || IMAGE_URL_HERE ||style="text-align:center"|(Small_Key_Fire_Temple, 3)
 |-
-|| Fire Temple MQ Shoot Torch On Wall Room Pot 1 || IMAGE_URL_HERE ||style="text-align:center"|Small_Key_Fire_Temple, 3
+|| Fire Temple MQ Shoot Torch On Wall Room Pot 1 || IMAGE_URL_HERE ||style="text-align:center"|(Small_Key_Fire_Temple, 3)
 |-
-|| Fire Temple MQ Shoot Torch On Wall Room Pot 2 || IMAGE_URL_HERE ||style="text-align:center"|Small_Key_Fire_Temple, 3
+|| Fire Temple MQ Shoot Torch On Wall Room Pot 2 || IMAGE_URL_HERE ||style="text-align:center"|(Small_Key_Fire_Temple, 3)
 |-
 || Fire Temple MQ Shortcut Crate 1 || IMAGE_URL_HERE ||style="text-align:center"|has_explosives
 |-
@@ -1928,15 +2090,15 @@ Total Count: 341
 |-
 || Fire Temple MQ Upper Lizalfos Maze Crate 3 || IMAGE_URL_HERE ||style="text-align:center"|True
 |-
-|| Fire Temple MQ Shoot Torch On Wall Right Crate 1 || IMAGE_URL_HERE ||style="text-align:center"|Small_Key_Fire_Temple, 3
+|| Fire Temple MQ Shoot Torch On Wall Right Crate 1 || IMAGE_URL_HERE ||style="text-align:center"|(Small_Key_Fire_Temple, 3)
 |-
-|| Fire Temple MQ Shoot Torch On Wall Right Crate 2 || IMAGE_URL_HERE ||style="text-align:center"|Small_Key_Fire_Temple, 3
+|| Fire Temple MQ Shoot Torch On Wall Right Crate 2 || IMAGE_URL_HERE ||style="text-align:center"|(Small_Key_Fire_Temple, 3)
 |-
-|| Fire Temple MQ Shoot Torch On Wall Center Crate || IMAGE_URL_HERE ||style="text-align:center"|Small_Key_Fire_Temple, 3
+|| Fire Temple MQ Shoot Torch On Wall Center Crate || IMAGE_URL_HERE ||style="text-align:center"|(Small_Key_Fire_Temple, 3)
 |-
-|| Fire Temple MQ Shoot Torch On Wall Left Crate 1 || IMAGE_URL_HERE ||style="text-align:center"|Small_Key_Fire_Temple, 3
+|| Fire Temple MQ Shoot Torch On Wall Left Crate 1 || IMAGE_URL_HERE ||style="text-align:center"|(Small_Key_Fire_Temple, 3)
 |-
-|| Fire Temple MQ Shoot Torch On Wall Left Crate 2 || IMAGE_URL_HERE ||style="text-align:center"|Small_Key_Fire_Temple, 3
+|| Fire Temple MQ Shoot Torch On Wall Left Crate 2 || IMAGE_URL_HERE ||style="text-align:center"|(Small_Key_Fire_Temple, 3)
 |-
 |}
 == Fire Temple Upper ==
@@ -2296,7 +2458,7 @@ Total Count: 341
 |-
 || Shadow Temple MQ Dead Hand II Pot 2 || IMAGE_URL_HERE ||style="text-align:center"|True
 |-
-|| Shadow Temple MQ Spike Walls Pot || IMAGE_URL_HERE ||style="text-align:center"|Small_Key_Shadow_Temple, 6
+|| Shadow Temple MQ Spike Walls Pot || IMAGE_URL_HERE ||style="text-align:center"|(Small_Key_Shadow_Temple, 6)
 |-
 |}
 == Shadow Temple Near Boss ==
@@ -2352,13 +2514,13 @@ Total Count: 341
 {| border="0" cellpadding="1" cellspacing="1" width=100%
  !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
 |-
-|| Spirit Temple MQ Shifting Wall Pot 1 || IMAGE_URL_HERE ||style="text-align:center"|Small_Key_Spirit_Temple, 6
+|| Spirit Temple MQ Shifting Wall Pot 1 || IMAGE_URL_HERE ||style="text-align:center"|(Small_Key_Spirit_Temple, 6)
 |-
-|| Spirit Temple MQ Shifting Wall Pot 2 || IMAGE_URL_HERE ||style="text-align:center"|Small_Key_Spirit_Temple, 6
+|| Spirit Temple MQ Shifting Wall Pot 2 || IMAGE_URL_HERE ||style="text-align:center"|(Small_Key_Spirit_Temple, 6)
 |-
-|| Spirit Temple MQ After Shifting Wall Room Pot 1 || IMAGE_URL_HERE ||style="text-align:center"|Small_Key_Spirit_Temple, 6
+|| Spirit Temple MQ After Shifting Wall Room Pot 1 || IMAGE_URL_HERE ||style="text-align:center"|(Small_Key_Spirit_Temple, 6)
 |-
-|| Spirit Temple MQ After Shifting Wall Room Pot 2 || IMAGE_URL_HERE ||style="text-align:center"|Small_Key_Spirit_Temple, 6
+|| Spirit Temple MQ After Shifting Wall Room Pot 2 || IMAGE_URL_HERE ||style="text-align:center"|(Small_Key_Spirit_Temple, 6)
 |-
 || Spirit Temple MQ Lower Boss Platform Pot 1 || IMAGE_URL_HERE ||style="text-align:center"|(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)
 |-
@@ -2381,7 +2543,7 @@ Total Count: 341
 {| border="0" cellpadding="1" cellspacing="1" width=100%
  !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
 |-
-|| Spirit Temple MQ Child Climb Pot || IMAGE_URL_HERE ||style="text-align:center"|Small_Key_Spirit_Temple, 6
+|| Spirit Temple MQ Child Climb Pot || IMAGE_URL_HERE ||style="text-align:center"|(Small_Key_Spirit_Temple, 6)
 |-
 || Spirit Temple MQ Central Chamber Floor Pot 1 || IMAGE_URL_HERE ||style="text-align:center"|True
 |-
@@ -2519,7 +2681,7 @@ Total Count: 341
 |-
 || Gerudo Training Ground MQ Lobby Right Pot 2 || IMAGE_URL_HERE ||style="text-align:center"|True
 |-
-|| Gerudo Training Ground MQ Maze Crate || IMAGE_URL_HERE ||style="text-align:center"|Small_Key_Gerudo_Training_Ground, 3
+|| Gerudo Training Ground MQ Maze Crate || IMAGE_URL_HERE ||style="text-align:center"|(Small_Key_Gerudo_Training_Ground, 3)
 |-
 |}
 == Ice Cavern Beginning ==
