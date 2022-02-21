@@ -124,7 +124,6 @@ location_table = OrderedDict([
 
 
 
-
     # Lost Woods
     ("LW Gift from Saria",                                           ("Cutscene",     0xFF,  0x02, None,                        'Ocarina',                               ("the Lost Woods", "Forest",))),
     ("LW Under Boulder Rupee",                                       ("Collectable",  0x5B,  0x13, None,                        'Rupees (5)',                            ("the Lost Woods", "Forest","Freestanding",))),
@@ -860,10 +859,6 @@ location_table = OrderedDict([
     ("Jabu Jabus Belly Boomerang Chest",                             ("Chest",        0x02,  0x01, None,                        'Boomerang',                             ("Jabu Jabu's Belly", "Vanilla",))),
     ("Jabu Jabus Belly Map Chest",                                   ("Chest",        0x02,  0x02, None,                        'Map (Jabu Jabus Belly)',                ("Jabu Jabu's Belly", "Vanilla",))),
     ("Jabu Jabus Belly Compass Chest",                               ("Chest",        0x02,  0x04, None,                        'Compass (Jabu Jabus Belly)',            ("Jabu Jabu's Belly", "Vanilla",))),
-    ("Jabu Jabus Belly Breakable Pot 1",                             ("Collectable",  0x02,  0x21, None,                        'Rupees (5)',                            ("Jabu Jabu's Belly", "Vanilla", "Freestanding"))),
-    ("Jabu Jabus Belly Breakable Pot 2",                             ("Collectable",  0x02,  0x22, None,                        'Rupees (20)',                            ("Jabu Jabu's Belly", "Vanilla", "Freestanding"))),
-    ("Jabu Jabus Belly Breakable Pot 3",                             ("Collectable",  0x02,  0x23, None,                        'Rupees (20)',                            ("Jabu Jabu's Belly", "Vanilla", "Freestanding"))),
-    ("Jabu Jabus Belly Breakable Pot 4",                             ("Collectable",  0x02,  0x24, None,                        'Rupees (5)',                            ("Jabu Jabu's Belly", "Vanilla", "Freestanding"))),
     ("Jabu Jabus Belly Deku Scrub",                                  ("NPC",          0x02,  0x30, None,                        'Buy Deku Nut (5)',                      ("Jabu Jabu's Belly", "Vanilla", "Deku Scrub",))),
     ("Jabu Jabus Belly GS Water Switch Room",                        ("GS Token",     0x02,  0x08, None,                        'Gold Skulltula Token',                  ("Jabu Jabu's Belly", "Vanilla", "Skulltulas",))),
     ("Jabu Jabus Belly GS Lobby Basement Lower",                     ("GS Token",     0x02,  0x01, None,                        'Gold Skulltula Token',                  ("Jabu Jabu's Belly", "Vanilla", "Skulltulas",))),

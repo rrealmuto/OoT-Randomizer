@@ -2848,18 +2848,6 @@ setting_infos = [
     ),
     
     Checkbutton(
-        name           = 'shuffle_freestanding_items',
-        gui_text       = 'Shuffle Freestanding items',
-        gui_tooltip    = '''\
-            Shuffle a whole bunch of shit.
-        ''',
-        default        = False,
-        shared         = True,
-        gui_params     = {
-            'randomize_key': 'randomize_settings',
-        },
-    ),
-    Checkbutton(
         name           = 'shuffle_cows',
         gui_text       = 'Shuffle Cows',
         gui_tooltip    = '''\
