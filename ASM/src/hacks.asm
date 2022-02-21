@@ -1592,7 +1592,7 @@ skip_GS_BGS_text:
 ; Draw Pot Textures
 ;==================================================================================================
 
-; makes instructions [DE8A04, DE8A40) unused
+; makes instructions in address range [DE8A04, DE8A40) unused
 .org 0xDE89FC
     j   draw_pot
     nop
