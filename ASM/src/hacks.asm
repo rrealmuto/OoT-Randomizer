@@ -607,6 +607,14 @@ nop
     or      A2, S0, R0
     nop
 
+; Hack Write_Save function to store additional collectible flags
+.orga 0xB065F4 ; In memory: 0x80090694
+    jal Save_Write_Hook
+.orga 0xB06668 ; In memory: 0x80090708
+    jal Save_Write_Hook
+
+
+
 ; Runs when storing an incoming item to the player instance
 ; Replaces:
 ;   sb      a2, 0x0424 (a3)
@@ -1648,6 +1656,22 @@ skip_GS_BGS_text:
 ; set chest_lid base texture
 .org 0xFEB000 + 0x10C0 - 0x32A090 + 0x32A158
 .word   0xDE000000, 0x09000010
+
+;==================================================================================================
+; Draw Pot Textures
+;==================================================================================================
+
+; makes instructions [DE8A04, DE8A40) unused
+.org 0xDE89FC
+    j   draw_pot
+    nop
+
+; set pot front texture
+.org 0xFEB000 + 0x0 - 0x3296C0 + 0x3296D8 ; todo figure this out
+.word   0xDE000000, 0x09000000
+
+.org 0xFEB000 + 0x0 - 0x3296C0 + 0x3297B8 ; todo figure this out
+.word   0xDE000000, 0x09000000
 
 ;==================================================================================================
 ; Cast Fishing Rod without B Item
