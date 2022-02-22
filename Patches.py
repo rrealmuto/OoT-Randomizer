@@ -1248,7 +1248,8 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Add a gate-opening guard on the Wasteland side of the Gerudo gate when the card is shuffled or certain levels of ER.
     # Overrides the generic guard at the bottom of the ladder in Gerudo Fortress
     if world.settings.shuffle_gerudo_card or world.settings.shuffle_overworld_entrances or \
-       world.shuffle_special_interior_entrances or world.settings.spawn_positions:
+       world.shuffle_special_interior_entrances or world.settings.spawn_positions or \
+       world.settings.spawn_gerudo_guard_outside_gate:
         # Add a gate opening guard on the Wasteland side of the Gerudo Fortress' gate
         new_gate_opening_guard = [0x0138, 0xFAC8, 0x005D, 0xF448, 0x0000, 0x95B0, 0x0000, 0x0301]
         rom.write_int16s(0x21BD3EC, new_gate_opening_guard)  # Adult Day
