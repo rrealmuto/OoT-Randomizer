@@ -152,6 +152,8 @@ DMT Cow Grotto
 DMT Storms Grotto
 1: DMT Storms Grotto Beehive 1: can_break_beehive
 2: DMT Storms Grotto Beehive 2: can_break_beehive
+GC Grotto
+1: GC Grotto Beehive: can_break_beehive
 DMC Upper Grotto
 1: DMC Upper Grotto Beehive 1: can_break_beehive
 2: DMC Upper Grotto Beehive 2: can_break_beehive
@@ -261,7 +263,7 @@ Ice Cavern
 5: Ice Cavern Block Room Red Rupee 1: (is_adult and can_play(Song_of_Time)) or (is_child and can_use(Boomerang))
 6: Ice Cavern Block Room Red Rupee 2: (is_adult and can_play(Song_of_Time)) or (is_child and can_use(Boomerang))
 7: Ice Cavern Block Room Red Rupee 3: (is_adult and can_play(Song_of_Time)) or (is_child and can_use(Boomerang))
-Total Count: 208
+Total Count: 209
 ***Pots/Crates***
 KF Links House
 1: KF Links House Pot: True

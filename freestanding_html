@@ -386,6 +386,13 @@
 || DMT Storms Grotto Beehive 2 || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
 |-
 |}
+== GC Grotto ==
+{| border="0" cellpadding="1" cellspacing="1" width=100%
+ !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
+|-
+|| GC Grotto Beehive || IMAGE_URL_HERE ||style="text-align:center"|can_break_beehive
+|-
+|}
 == DMC Upper Grotto ==
 {| border="0" cellpadding="1" cellspacing="1" width=100%
  !width="40%"|Location!!width="30%"|Image!!style="text-align:center"|Logic Notes
@@ -685,7 +692,7 @@
 || Ice Cavern Block Room Red Rupee 3 || IMAGE_URL_HERE ||style="text-align:center"|(is_adult and can_play(Song_of_Time)) or (is_child and can_use(Boomerang))
 |-
 |}
-Total Count: 208
+Total Count: 209
 ***Pots/Crates***
 == KF Links House ==
 {| border="0" cellpadding="1" cellspacing="1" width=100%

@@ -2579,7 +2579,8 @@
         "locations": {
             "GC Deku Scrub Grotto Left": "can_stun_deku",
             "GC Deku Scrub Grotto Right": "can_stun_deku",
-            "GC Deku Scrub Grotto Center": "can_stun_deku"
+            "GC Deku Scrub Grotto Center": "can_stun_deku",
+            "GC Grotto Beehive" : "can_break_beehive"
         },
         "exits": {
             "GC Grotto Platform": "True"
