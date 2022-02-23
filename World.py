@@ -692,11 +692,11 @@ class World(object):
                     b.add_goal(Goal(self, 'Skulls', 'path of Skulls', 'Light Blue', items=[{'name': 'Gold Skulltula Token', 'quantity': 100, 'minimum': self.settings.bridge_tokens, 'hintable': False}]))
                     b.goal_count = round(self.settings.bridge_tokens / 10)
                     b.minimum_goals = 1
-                if (self.settings.bridge_hearts > 3
+                if (self.settings.bridge_hearts > self.settings.starting_hearts
                     and self.settings.bridge == 'hearts'
                     and (self.settings.shuffle_ganon_bosskey != 'hearts'
                             or self.settings.bridge_hearts >= self.settings.ganon_bosskey_hearts)):
-                    b.add_goal(Goal(self, 'hearts', 'path of hearts', 'Light Blue', items=[{'name': 'Piece of Heart', 'quantity': 17 * 4, 'minimum': (self.settings.bridge_hearts - 3) * 4, 'hintable': False}])) #TODO adjust quantity based on starting_hearts?
+                    b.add_goal(Goal(self, 'hearts', 'path of hearts', 'Light Blue', items=[{'name': 'Piece of Heart', 'quantity': (20 - self.settings.starting_hearts) * 4, 'minimum': (self.settings.bridge_hearts - self.settings.starting_hearts) * 4, 'hintable': False}]))
                     b.goal_count = round((self.settings.bridge_hearts - 3) / 2)
                     b.minimum_goals = 1
                 self.goal_categories[b.name] = b
@@ -784,18 +784,18 @@ class World(object):
                 gbk.add_goal(Goal(self, 'Skulls', 'path of Skulls', 'Light Blue', items=[{'name': 'Gold Skulltula Token', 'quantity': 100, 'minimum': self.settings.lacs_tokens, 'hintable': False}]))
                 gbk.goal_count = round(self.settings.lacs_tokens / 10)
                 gbk.minimum_goals = 1
-            if (self.settings.ganon_bosskey_hearts > 3
+            if (self.settings.ganon_bosskey_hearts > self.settings.starting_hearts
                 and self.settings.shuffle_ganon_bosskey == 'hearts'
                 and (self.settings.bridge != 'hearts'
                         or self.settings.bridge_hearts < self.settings.ganon_bosskey_hearts)):
-                gbk.add_goal(Goal(self, 'hearts', 'path of hearts', 'Light Blue', items=[{'name': 'Piece of Heart', 'quantity': 17 * 4, 'minimum': (self.settings.ganon_bosskey_hearts - 3) * 4, 'hintable': False}])) #TODO adjust quantity based on item_pool_value and starting_hearts?
+                gbk.add_goal(Goal(self, 'hearts', 'path of hearts', 'Light Blue', items=[{'name': 'Piece of Heart', 'quantity': (20 - self.settings.starting_hearts) * 4, 'minimum': (self.settings.ganon_bosskey_hearts - self.settings.starting_hearts) * 4, 'hintable': False}]))
                 gbk.goal_count = round((self.settings.ganon_bosskey_hearts - 3) / 2)
                 gbk.minimum_goals = 1
-            if (self.settings.lacs_hearts > 3
+            if (self.settings.lacs_hearts > self.settings.starting_hearts
                 and self.settings.shuffle_ganon_bosskey == 'on_lacs' and self.settings.lacs_condition == 'hearts'
                 and (self.settings.bridge != 'hearts'
                         or self.settings.bridge_hearts < self.settings.lacs_hearts)):
-                gbk.add_goal(Goal(self, 'hearts', 'path of hearts', 'Light Blue', items=[{'name': 'Piece of Heart', 'quantity': 17 * 4, 'minimum': (self.settings.lacs_hearts - 3) * 4, 'hintable': False}])) #TODO adjust quantity based on item_pool_value and starting_hearts?
+                gbk.add_goal(Goal(self, 'hearts', 'path of hearts', 'Light Blue', items=[{'name': 'Piece of Heart', 'quantity': (20 - self.settings.starting_hearts) * 4, 'minimum': (self.settings.lacs_hearts - self.settings.starting_hearts) * 4, 'hintable': False}]))
                 gbk.goal_count = round((self.settings.lacs_hearts - 3) / 2)
                 gbk.minimum_goals = 1
 
