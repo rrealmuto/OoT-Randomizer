@@ -64,6 +64,7 @@
 00FEC0D8 .dbl:0008
 00FEC188 .dbl:0008
 00FEC1F8 .dbl:0008
+017397D8 .dbl:0008
 026C10E3 .byt:0001
 80013044 after_recovery_heart_hook
 800130B0 end_of_recovery_draw

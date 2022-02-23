@@ -1597,11 +1597,8 @@ skip_GS_BGS_text:
     j   draw_pot
     nop
 
-; set pot front texture
-.org 0xFEB000 + 0x0 - 0x3296C0 + 0x3296D8 ; todo figure this out
-.word   0xDE000000, 0x09000000
-
-.org 0xFEB000 + 0x0 - 0x3296C0 + 0x3297B8 ; todo figure this out
+; set pot side texture
+.org 0x1738000 + 0x17C0 + 0x18 ; object_tsubo file start + dlist offset + gDPSetTextureImage offset
 .word   0xDE000000, 0x09000000
 
 ;==================================================================================================
