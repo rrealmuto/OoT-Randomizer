@@ -202,6 +202,16 @@ class World(object):
                 max_tokens = max(max_tokens, t)
                 break
         self.max_progressions['Gold Skulltula Token'] = max_tokens
+        max_hearts = 0
+        if self.settings.bridge == 'hearts':
+            max_hearts = max(max_hearts, self.settings.bridge_hearts)
+        if self.settings.lacs_condition == 'hearts':
+            max_hearts = max(max_hearts, self.settings.lacs_hearts)
+        if self.settings.shuffle_ganon_bosskey == 'hearts':
+            max_hearts = max(max_hearts, self.settings.ganon_bosskey_hearts)
+        self.max_progressions['Heart Container'] = max_hearts
+        self.max_progressions['Piece of Heart'] = max_hearts * 4
+        self.max_progressions['Piece of Heart (Treasure Chest Game)'] = max_hearts * 4
         # Additional Ruto's Letter become Bottle, so we may have to collect two.
         self.max_progressions['Rutos Letter'] = 2
 
@@ -315,14 +325,17 @@ class World(object):
                         or (setting == 'bridge_stones' and self.settings.bridge != 'stones') \
                         or (setting == 'bridge_rewards' and self.settings.bridge != 'dungeons') \
                         or (setting == 'bridge_tokens' and self.settings.bridge != 'tokens') \
+                        or (setting == 'bridge_hearts' and self.settings.bridge != 'hearts') \
                         or (setting == 'lacs_medallions' and self.settings.lacs_condition != 'medallions') \
                         or (setting == 'lacs_stones' and self.settings.lacs_condition != 'stones') \
                         or (setting == 'lacs_rewards' and self.settings.lacs_condition != 'dungeons') \
                         or (setting == 'lacs_tokens' and self.settings.lacs_condition != 'tokens') \
+                        or (setting == 'lacs_hearts' and self.settings.lacs_condition != 'hearts') \
                         or (setting == 'ganon_bosskey_medallions' and self.settings.shuffle_ganon_bosskey != 'medallions') \
                         or (setting == 'ganon_bosskey_stones' and self.settings.shuffle_ganon_bosskey != 'stones') \
                         or (setting == 'ganon_bosskey_rewards' and self.settings.shuffle_ganon_bosskey != 'dungeons') \
-                        or (setting == 'ganon_bosskey_tokens' and self.settings.shuffle_ganon_bosskey != 'tokens'):
+                        or (setting == 'ganon_bosskey_tokens' and self.settings.shuffle_ganon_bosskey != 'tokens') \
+                        or (setting == 'ganon_bosskey_hearts' and self.settings.shuffle_ganon_bosskey != 'hearts'):
                     self.randomized_list.remove(setting)
         if self.settings.big_poe_count_random and 'big_poe_count' not in dist_keys:
             self.settings.big_poe_count = random.randint(1, 10)
@@ -686,6 +699,13 @@ class World(object):
                     b.add_goal(Goal(self, 'Skulls', 'path of Skulls', 'Light Blue', items=[{'name': 'Gold Skulltula Token', 'quantity': 100, 'minimum': self.settings.bridge_tokens, 'hintable': False}]))
                     b.goal_count = round(self.settings.bridge_tokens / 10)
                     b.minimum_goals = 1
+                if (self.settings.bridge_hearts > self.settings.starting_hearts
+                    and self.settings.bridge == 'hearts'
+                    and (self.settings.shuffle_ganon_bosskey != 'hearts'
+                            or self.settings.bridge_hearts >= self.settings.ganon_bosskey_hearts)):
+                    b.add_goal(Goal(self, 'hearts', 'path of hearts', 'Light Blue', items=[{'name': 'Piece of Heart', 'quantity': (20 - self.settings.starting_hearts) * 4, 'minimum': (self.settings.bridge_hearts - self.settings.starting_hearts) * 4, 'hintable': False}]))
+                    b.goal_count = round((self.settings.bridge_hearts - 3) / 2)
+                    b.minimum_goals = 1
                 self.goal_categories[b.name] = b
 
             # If the Ganon's Boss Key condition is the same or similar conditions
@@ -770,6 +790,20 @@ class World(object):
                         or self.settings.bridge_tokens < self.settings.lacs_tokens)):
                 gbk.add_goal(Goal(self, 'Skulls', 'path of Skulls', 'Light Blue', items=[{'name': 'Gold Skulltula Token', 'quantity': 100, 'minimum': self.settings.lacs_tokens, 'hintable': False}]))
                 gbk.goal_count = round(self.settings.lacs_tokens / 10)
+                gbk.minimum_goals = 1
+            if (self.settings.ganon_bosskey_hearts > self.settings.starting_hearts
+                and self.settings.shuffle_ganon_bosskey == 'hearts'
+                and (self.settings.bridge != 'hearts'
+                        or self.settings.bridge_hearts < self.settings.ganon_bosskey_hearts)):
+                gbk.add_goal(Goal(self, 'hearts', 'path of hearts', 'Light Blue', items=[{'name': 'Piece of Heart', 'quantity': (20 - self.settings.starting_hearts) * 4, 'minimum': (self.settings.ganon_bosskey_hearts - self.settings.starting_hearts) * 4, 'hintable': False}]))
+                gbk.goal_count = round((self.settings.ganon_bosskey_hearts - 3) / 2)
+                gbk.minimum_goals = 1
+            if (self.settings.lacs_hearts > self.settings.starting_hearts
+                and self.settings.shuffle_ganon_bosskey == 'on_lacs' and self.settings.lacs_condition == 'hearts'
+                and (self.settings.bridge != 'hearts'
+                        or self.settings.bridge_hearts < self.settings.lacs_hearts)):
+                gbk.add_goal(Goal(self, 'hearts', 'path of hearts', 'Light Blue', items=[{'name': 'Piece of Heart', 'quantity': (20 - self.settings.starting_hearts) * 4, 'minimum': (self.settings.lacs_hearts - self.settings.starting_hearts) * 4, 'hintable': False}]))
+                gbk.goal_count = round((self.settings.lacs_hearts - 3) / 2)
                 gbk.minimum_goals = 1
 
             # Ganon's Boss Key shuffled directly in the world will always

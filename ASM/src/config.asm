@@ -121,6 +121,7 @@ RAINBOW_BRIDGE_CONDITION:
 ; 3 = Stones
 ; 4 = Vanilla
 ; 5 = Tokens
+; 6 = Hearts
 
 LACS_CONDITION:
 .word 0x00
@@ -128,6 +129,8 @@ LACS_CONDITION:
 ; 1 = Medallions
 ; 2 = Dungeons
 ; 3 = Stones
+; 4 = Tokens
+; 5 = Hearts
 
 GOSSIP_HINT_CONDITION:
 .word 0x00

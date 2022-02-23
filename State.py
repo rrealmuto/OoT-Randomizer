@@ -74,15 +74,14 @@ class State(object):
 
 
     def has_hearts(self, count):
-        # Warning: This only considers items that are marked as advancement items
+        # Warning: This is limited by World.max_progressions so it currently only works if hearts are required for LACS, bridge, or Ganon bk
         return self.heart_count() >= count
 
 
     def heart_count(self):
-        # Warning: This only considers items that are marked as advancement items
+        # Warning: This is limited by World.max_progressions so it currently only works if hearts are required for LACS, bridge, or Ganon bk
         return (
-            self.item_count('Heart Container')
-            + self.item_count('Piece of Heart') // 4
+            self.item_count('Piece of Heart') // 4 # aliases ensure Heart Container and Piece of Heart (Treasure Chest Game) are included in this
             + 3 # starting hearts
         )
 

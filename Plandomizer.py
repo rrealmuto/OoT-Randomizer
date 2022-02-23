@@ -306,6 +306,11 @@ class WorldDistribution(object):
                             self.distribution.settings.shuffle_ganon_bosskey == 'tokens' or self.distribution.settings.bridge == 'tokens')
                     if self.distribution.settings.tokensanity == 'all' and major_tokens:
                         self.major_group.append('Gold Skulltula Token')
+                    major_hearts = ((self.distribution.settings.shuffle_ganon_bosskey == 'on_lacs' and
+                            self.distribution.settings.lacs_condition == 'hearts') or
+                            self.distribution.settings.shuffle_ganon_bosskey == 'hearts' or self.distribution.settings.bridge == 'hearts')
+                    if major_hearts:
+                        self.major_group += ['Heart Container', 'Piece of Heart', 'Piece of Heart (Treasure Chest Game)']
                     if self.distribution.settings.shuffle_smallkeys == 'keysanity':
                         if 'Bottom of the Well' in self.distribution.settings.key_rings:
                             self.major_group.append('Small Key Ring (Bottom of the Well)')
@@ -1226,11 +1231,13 @@ class Distribution(object):
                         goal = spoiler.goal_categories[world.id][cat_name].get_goal(goal_name)
                         goal_text = goal.hint_text.replace('#', '')
                         goal_text = goal_text[0].upper() + goal_text[1:]
-                        # Add Token/Triforce Piece reachability data
+                        # Add Token/Triforce Piece/heart reachability data
                         if goal.items[0]['name'] == 'Triforce Piece':
                             goal_text +=  ' (' + str(goal.items[0]['quantity']) + '/' + str(world.triforce_count) + ' reachable)'
                         if goal.items[0]['name'] == 'Gold Skulltula Token':
                             goal_text +=  ' (' + str(goal.items[0]['quantity']) + '/100 reachable)'
+                        if goal.items[0]['name'] == 'Piece of Heart':
+                            goal_text +=  ' (' + str(goal.items[0]['quantity']) + '/68 reachable)' #TODO adjust total based on starting_hearts?
                         world_dist.goal_locations[cat_name][goal_text] = {}
                         for location_world, locations in location_worlds.items():
                             if len(self.world_dists) == 1:

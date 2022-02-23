@@ -2,6 +2,7 @@ from collections import OrderedDict, defaultdict
 import logging
 
 from HintList import goalTable, getHintGroup, hintExclusions
+from ItemList import item_table
 from Search import Search
 
 
@@ -55,7 +56,10 @@ class Goal(object):
 
     def requires(self, item):
         # Prevent direct hints for certain items that can have many duplicates, such as tokens and Triforce Pieces
-        return any(i['name'] == item and not i['hintable'] for i in self.items)
+        names = [item]
+        if item_table[item][3] is not None and 'alias' in item_table[item][3]:
+            names.append(item_table[item][3]['alias'][0])
+        return any(i['name'] in names and not i['hintable'] for i in self.items)
 
 
 class GoalCategory(object):

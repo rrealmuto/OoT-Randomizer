@@ -1218,6 +1218,8 @@ def buildBridgeReqsString(world):
             item_req_string = str(world.settings.bridge_rewards) + ' ' + item_req_string
         elif world.settings.bridge == 'tokens':
             item_req_string = str(world.settings.bridge_tokens) + ' ' + item_req_string
+        elif world.settings.bridge == 'hearts':
+            item_req_string = str(world.settings.bridge_hearts) + ' ' + item_req_string
         if '#' not in item_req_string:
             item_req_string = '#%s#' % item_req_string
         string += "The awakened ones will await for the Hero to collect %s." % item_req_string
@@ -1239,10 +1241,12 @@ def buildGanonBossKeyString(world):
                 item_req_string = str(world.settings.lacs_rewards) + ' ' + item_req_string
             elif world.settings.lacs_condition == 'tokens':
                 item_req_string = str(world.settings.lacs_tokens) + ' ' + item_req_string
+            elif world.settings.lacs_condition == 'hearts':
+                item_req_string = str(world.settings.lacs_hearts) + ' ' + item_req_string
             if '#' not in item_req_string:
                 item_req_string = '#%s#' % item_req_string
             bk_location_string = "provided by Zelda once %s are retrieved" % item_req_string
-        elif world.settings.shuffle_ganon_bosskey in ['stones', 'medallions', 'dungeons', 'tokens']:
+        elif world.settings.shuffle_ganon_bosskey in ['stones', 'medallions', 'dungeons', 'tokens', 'hearts']:
             item_req_string = getHint('ganonBK_' + world.settings.shuffle_ganon_bosskey, world.settings.clearer_hints).text
             if world.settings.shuffle_ganon_bosskey == 'medallions':
                 item_req_string = str(world.settings.ganon_bosskey_medallions) + ' ' + item_req_string
@@ -1252,6 +1256,8 @@ def buildGanonBossKeyString(world):
                 item_req_string = str(world.settings.ganon_bosskey_rewards) + ' ' + item_req_string
             elif world.settings.shuffle_ganon_bosskey == 'tokens':
                 item_req_string = str(world.settings.ganon_bosskey_tokens) + ' ' + item_req_string
+            elif world.settings.shuffle_ganon_bosskey == 'hearts':
+                item_req_string = str(world.settings.ganon_bosskey_hearts) + ' ' + item_req_string
             if '#' not in item_req_string:
                 item_req_string = '#%s#' % item_req_string
             bk_location_string = "automatically granted once %s are retrieved" % item_req_string

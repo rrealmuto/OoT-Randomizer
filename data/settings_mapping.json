@@ -160,6 +160,7 @@
             "bridge_stones",
             "bridge_rewards",
             "bridge_tokens",
+            "bridge_hearts",
             "triforce_hunt",
             "triforce_count_per_world",
             "triforce_goal_per_world",
@@ -222,6 +223,7 @@
             "ganon_bosskey_stones",
             "ganon_bosskey_rewards",
             "ganon_bosskey_tokens",
+            "ganon_bosskey_hearts",
             "enhance_map_compass"
           ]
         }

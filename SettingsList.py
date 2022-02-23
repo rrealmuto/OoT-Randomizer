@@ -2187,6 +2187,7 @@ setting_infos = [
             'medallions': 'Medallions',
             'dungeons':   'Dungeons',
             'tokens':     'Gold Skulltula Tokens',
+            'hearts':     'Hearts',
             'random':     'Random'
         },
         gui_tooltip    = '''\
@@ -2196,6 +2197,7 @@ setting_infos = [
             'Medallions': A configurable amount of Medallions.
             'Dungeons': A configurable amount of Dungeon Rewards.
             'Gold Skulltula Tokens': A configurable amount of Gold Skulltula Tokens.
+            'Hearts': A configurable amount of hearts.
             'Random': A random Rainbow Bridge requirement excluding Gold Skulltula Tokens.
         ''',
         shared         = True,
@@ -2204,6 +2206,7 @@ setting_infos = [
             '!medallions': {'settings': ['bridge_medallions']},
             '!dungeons':   {'settings': ['bridge_rewards']},
             '!tokens':     {'settings': ['bridge_tokens']},
+            '!hearts':     {'settings': ['bridge_hearts']},
         },
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -2283,6 +2286,21 @@ setting_infos = [
             "hide_when_disabled": True,
         },
     ),
+    Scale(
+        name           = 'bridge_hearts',
+        gui_text       = "Hearts Required for Bridge",
+        default        = 20,
+        min            = 4,
+        max            = 20,
+        gui_tooltip    = '''\
+            Select the amount of hearts required to spawn the rainbow bridge.
+        ''',
+        shared         = True,
+        disabled_default = 0,
+        gui_params     = {
+            "hide_when_disabled": True,
+        },
+    ),
     Checkbutton(
         name           = 'triforce_hunt',
         gui_text       = 'Triforce Hunt',
@@ -2298,7 +2316,7 @@ setting_infos = [
             'randomize_key': 'randomize_settings',
         },
         disable        = {
-            True  : {'settings' : ['shuffle_ganon_bosskey', 'ganon_bosskey_stones', 'ganon_bosskey_medallions', 'ganon_bosskey_rewards', 'ganon_bosskey_tokens']},
+            True  : {'settings' : ['shuffle_ganon_bosskey', 'ganon_bosskey_stones', 'ganon_bosskey_medallions', 'ganon_bosskey_rewards', 'ganon_bosskey_tokens', 'ganon_bosskey_hearts']},
             False : {'settings' : ['triforce_count_per_world', 'triforce_goal_per_world']}
         },
     ),
@@ -2445,6 +2463,10 @@ setting_infos = [
             GS Tokens only count as major items if the 
             bridge or LACS requirements are set to 
             "GS Tokens".
+
+            Heart Containers and Pieces of Heart only
+            count as major items if the bridge or LACS
+            requirements are set to "Hearts".
 
             Bombchus only count as major items if they
             are considered in logic.
@@ -3525,6 +3547,7 @@ setting_infos = [
             'medallions':      "Medallions",
             'dungeons':        "Dungeons",
             'tokens':          "Tokens",
+            'hearts':          "Hearts",
         },
         gui_tooltip    = '''\
             'Remove': Ganon's Castle Boss Key is removed
@@ -3559,6 +3582,9 @@ setting_infos = [
             
             'Tokens': Ganon's Castle Boss Key will be awarded
             when reaching the target number of Gold Skulltula Tokens.
+
+            'Hearts': Ganon's Castle Boss Key will be awarded
+            when reaching the target number of hearts.
         ''',
         shared         = True,
         disable        = {
@@ -3566,6 +3592,7 @@ setting_infos = [
             '!medallions':  {'settings': ['ganon_bosskey_medallions']},
             '!dungeons':  {'settings': ['ganon_bosskey_rewards']},
             '!tokens':  {'settings': ['ganon_bosskey_tokens']},
+            '!hearts':  {'settings': ['ganon_bosskey_hearts']},
         },
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -3646,6 +3673,22 @@ setting_infos = [
             "hide_when_disabled": True,
         },
     ),
+    Scale(
+        name           = 'ganon_bosskey_hearts',
+        gui_text       = "Hearts Required for Ganon's BK",
+        default        = 20,
+        min            = 4,
+        max            = 20,
+        gui_tooltip    = '''\
+            Select the amount of hearts
+            required to receive Ganon's Castle Boss Key.
+        ''',
+        shared         = True,
+        disabled_default = 0,
+        gui_params     = {
+            "hide_when_disabled": True,
+        },
+    ),
     Combobox(
         name           = 'lacs_condition',
         gui_text       = 'LACS Condition',
@@ -3656,6 +3699,7 @@ setting_infos = [
             'medallions': "Medallions",
             'dungeons':   "Dungeons",
             'tokens':     "Tokens",
+            'hearts':     "Hearts",
         },
         gui_tooltip    = '''\
             Sets the condition for the Light Arrow Cutscene
@@ -3666,6 +3710,7 @@ setting_infos = [
             'Medallions': A configurable amount of Medallions.
             'Dungeons': A configurable amount of Dungeon Rewards.
             'Tokens': A configurable amount of Gold Skulltula Tokens.
+            'Hearts': A configurable amount of hearts.
         ''',
         shared         = True,
         disable        = {
@@ -3673,6 +3718,7 @@ setting_infos = [
             '!medallions':  {'settings': ['lacs_medallions']},
             '!dungeons':  {'settings': ['lacs_rewards']},
             '!tokens':  {'settings': ['lacs_tokens']},
+            '!hearts':  {'settings': ['lacs_hearts']},
         },
         gui_params     = {
             'optional': True,
@@ -3744,6 +3790,23 @@ setting_infos = [
         max            = 100,
         gui_tooltip    = '''\
             Select the amount of Gold Skulltula Tokens
+            required to trigger the Light Arrow Cutscene.
+        ''',
+        shared         = True,
+        disabled_default = 0,
+        gui_params     = {
+            'optional': True,
+            "hide_when_disabled": True,
+        },
+    ),
+    Scale(
+        name           = 'lacs_hearts',
+        gui_text       = "Hearts Required for LACS",
+        default        = 20,
+        min            = 4,
+        max            = 20,
+        gui_tooltip    = '''\
+            Select the amount of hearts
             required to trigger the Light Arrow Cutscene.
         ''',
         shared         = True,
