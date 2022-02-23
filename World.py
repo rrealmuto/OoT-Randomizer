@@ -233,12 +233,7 @@ class World(object):
                 else:
                     cat = GoalCategory(category['category'], category['priority'], minimum_goals=category['minimum_goals'])
                 for goal in category['goals']:
-                    items = []
-                    for i in goal['items']:
-                        items.append({'name': i['name'], 'quantity': i['quantity'], 'minimum': i['minimum'], 'hintable': i['hintable']})
-                        if 'weights' in i:
-                            items[-1]['weights'] = i['weights']
-                    cat.add_goal(Goal(self, goal['name'], goal['hint_text'], goal['color'], items=items))
+                    cat.add_goal(Goal(self, goal['name'], goal['hint_text'], goal['color'], items=list({'name': i['name'], 'quantity': i['quantity'], 'minimum': i['minimum'], 'hintable': i['hintable']} for i in goal['items'])))
                 if 'count_override' in category:
                     cat.goal_count = category['count_override']
                 else:
@@ -701,7 +696,7 @@ class World(object):
                     and self.settings.bridge == 'hearts'
                     and (self.settings.shuffle_ganon_bosskey != 'hearts'
                             or self.settings.bridge_hearts >= self.settings.ganon_bosskey_hearts)):
-                    b.add_goal(Goal(self, 'hearts', 'path of hearts', 'Light Blue', items=[{'name': 'hearts', 'weights': {'Heart Container': 1, 'Piece of Heart': 0.25, 'Piece of Heart (Treasure Chest Game)': 0.25}, 'quantity': 17, 'minimum': self.settings.bridge_hearts - 3, 'hintable': False}])) #TODO adjust quantity based on item_pool_value and starting_hearts?
+                    b.add_goal(Goal(self, 'hearts', 'path of hearts', 'Light Blue', items=[{'name': 'Piece of Heart', 'quantity': 17 * 4, 'minimum': (self.settings.bridge_hearts - 3) * 4, 'hintable': False}])) #TODO adjust quantity based on starting_hearts?
                     b.goal_count = round((self.settings.bridge_hearts - 3) / 2)
                     b.minimum_goals = 1
                 self.goal_categories[b.name] = b
@@ -793,14 +788,14 @@ class World(object):
                 and self.settings.shuffle_ganon_bosskey == 'hearts'
                 and (self.settings.bridge != 'hearts'
                         or self.settings.bridge_hearts < self.settings.ganon_bosskey_hearts)):
-                gbk.add_goal(Goal(self, 'hearts', 'path of hearts', 'Light Blue', items=[{'name': 'hearts', 'weights': {'Heart Container': 1, 'Piece of Heart': 0.25, 'Piece of Heart (Treasure Chest Game)': 0.25}, 'quantity': 17, 'minimum': self.settings.ganon_bosskey_hearts - 3, 'hintable': False}])) #TODO adjust quantity based on item_pool_value and starting_hearts?
+                gbk.add_goal(Goal(self, 'hearts', 'path of hearts', 'Light Blue', items=[{'name': 'Piece of Heart', 'quantity': 17 * 4, 'minimum': (self.settings.ganon_bosskey_hearts - 3) * 4, 'hintable': False}])) #TODO adjust quantity based on item_pool_value and starting_hearts?
                 gbk.goal_count = round((self.settings.ganon_bosskey_hearts - 3) / 2)
                 gbk.minimum_goals = 1
             if (self.settings.lacs_hearts > 3
                 and self.settings.shuffle_ganon_bosskey == 'on_lacs' and self.settings.lacs_condition == 'hearts'
                 and (self.settings.bridge != 'hearts'
                         or self.settings.bridge_hearts < self.settings.lacs_hearts)):
-                gbk.add_goal(Goal(self, 'hearts', 'path of hearts', 'Light Blue', items=[{'name': 'hearts', 'weights': {'Heart Container': 1, 'Piece of Heart': 0.25, 'Piece of Heart (Treasure Chest Game)': 0.25}, 'quantity': 17, 'minimum': self.settings.lacs_hearts - 3, 'hintable': False}])) #TODO adjust quantity based on item_pool_value and starting_hearts?
+                gbk.add_goal(Goal(self, 'hearts', 'path of hearts', 'Light Blue', items=[{'name': 'Piece of Heart', 'quantity': 17 * 4, 'minimum': (self.settings.lacs_hearts - 3) * 4, 'hintable': False}])) #TODO adjust quantity based on item_pool_value and starting_hearts?
                 gbk.goal_count = round((self.settings.lacs_hearts - 3) / 2)
                 gbk.minimum_goals = 1
 

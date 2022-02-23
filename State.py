@@ -81,8 +81,7 @@ class State(object):
     def heart_count(self):
         # Warning: This is limited by World.max_progressions so it currently only works if hearts are required for LACS, bridge, or Ganon bk
         return (
-            self.item_count('Heart Container')
-            + (self.item_count('Piece of Heart') + self.item_count('Piece of Heart (Treasure Chest Game)')) // 4
+            self.item_count('Piece of Heart') // 4 # aliases ensure Heart Container and Piece of Heart (Treasure Chest Game) are included in this
             + 3 # starting hearts
         )
 
@@ -99,19 +98,13 @@ class State(object):
 
 
     def has_item_goal(self, item_goal):
-        if 'weights' in item_goal:
-            return sum(self.prog_items[name] * weight for name, weight in item_goal['weights'].items()) >= item_goal['minimum']
-        else:
-            return self.prog_items[item_goal['name']] >= item_goal['minimum']
+        return self.prog_items[item_goal['name']] >= item_goal['minimum']
 
 
     def has_full_item_goal(self, category, goal, item_goal):
         local_goal = self.world.goal_categories[category.name].get_goal(goal.name)
         per_world_max_quantity = local_goal.get_item(item_goal['name'])['quantity']
-        if 'weights' in item_goal:
-            return sum(self.prog_items[name] * weight for name, weight in item_goal['weights'].items()) >= per_world_max_quantity
-        else:
-            return self.prog_items[item_goal['name']] >= per_world_max_quantity
+        return self.prog_items[item_goal['name']] >= per_world_max_quantity
 
 
     def has_all_item_goals(self):
