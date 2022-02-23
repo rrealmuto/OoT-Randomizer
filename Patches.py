@@ -1966,10 +1966,10 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         lines_in_section = 1
         for code in get_message_by_id(messages, message_id).text_codes:
             if code.code == 0x04: # box-break
-                text_codes.append(Text_Code(0x0c, 30 * lines_in_section))
+                text_codes.append(Text_Code(0x0c, 40 * lines_in_section))
                 lines_in_section = 1
             elif code.code == 0x02: # end
-                text_codes.append(Text_Code(0x0e, 30 * lines_in_section))
+                text_codes.append(Text_Code(0x0e, 40 * lines_in_section))
                 text_codes.append(code)
             else:
                 if code.code == 0x01: # line-break
