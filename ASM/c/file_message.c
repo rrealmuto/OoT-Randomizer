@@ -11,8 +11,8 @@ extern char TIME_STRING_TXT[];
 extern uint8_t SPOILER_AVAILABLE;
 extern uint8_t PLANDOMIZER_USED;
 
-#define TEXT_WIDTH 5
-#define TEXT_HEIGHT 6
+#define TEXT_WIDTH 8
+#define TEXT_HEIGHT 9
 
 static int string_length(const char* txt) {
     const char* pos = txt;
@@ -60,7 +60,7 @@ void draw_file_message(z64_disp_buf_t* db, const z64_menudata_t* menu_data) {
         uint8_t alpha = get_alpha(menu_data);
         if (alpha > 0) {
             gDPSetPrimColor(db->p++, 0, 0, 255, 255, 255, alpha);
-            int top = 0x85;
+            int top = 0x71;
             int doblank = 0;
             if (*CFG_CUSTOM_MESSAGE_1) {
                 print_msg(CFG_CUSTOM_MESSAGE_1, &top);

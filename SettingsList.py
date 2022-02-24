@@ -1854,7 +1854,7 @@ setting_infos = [
         default        = "",
         gui_params     = {
             "size"               : "full",
-            "max_length"         : 48,
+            "max_length"         : 42,
             "hide_when_disabled" : True,
         }
     ),
