@@ -2807,7 +2807,6 @@ setting_infos = [
         },
         gui_tooltip    = '''\
             Shuffles freestanding rupees and recovery hearts, also shuffles:
-                Beehives
                 Shadow Temple Spinning Pot Drop
                 All Goron Pot faces
 
