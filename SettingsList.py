@@ -2924,26 +2924,28 @@ setting_infos = [
             'randomize_key': 'randomize_settings',
         },
     ),
-    Combobox(
+    Setting_Info(
         name           = 'mix_entrance_pools',
+        type           = list,
         gui_text       = 'Mix Entrance Pools',
-        default        = 'off',
+        gui_type       = "MultipleSelect",
         choices        = {
-            'off':       'Off',
-            'indoor':    'Indoor Entrances',
-            'all':       'All Entrances',
+            'Interior': 'Interiors',
+            'GrottoGrave': 'Grottos',
+            'Dungeon': 'Dungeons',
+            'Overworld': 'Overworld',
         },
         gui_tooltip    = '''\
-            Shuffle entrances into a mixed pool instead of separate ones.
+            Shuffle the selected entrances into a mixed pool
+            instead of separate ones. Has no effect on pools
+            whose entrances aren't shuffled.
 
-            'Indoor Entrances':
-            Mixes "Indoor" entrance pools, which correspond to entrances
-            of type Dungeon, Grotto, or Interior. Overworld entrances
-            are kept in their own separate pool if randomized.
-
-            'All Entrances':
-            Mixes all entrance pools, including both "Indoor" and
-            Overworld entrances.
+            For example, enabling the settings to shuffle
+            grotto, dungeon, and overworld entrances and
+            selecting grotto and dungeon entrances here will
+            allow a dungeon to be inside a grotto or vice
+            versa, while overworld entrances are shuffled in
+            their own separate pool and indoors stay vanilla.
         ''',
         shared         = True,
         gui_params     = {

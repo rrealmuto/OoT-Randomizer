@@ -37,7 +37,7 @@ def assume_entrance_pool(entrance_pool):
         if entrance.reverse != None and not entrance.world.settings.decouple_entrances:
             assumed_return = entrance.reverse.assume_reachable()
             world = entrance.world
-            if not ((world.settings.mix_entrance_pools != 'off') and (world.settings.shuffle_overworld_entrances or world.shuffle_special_interior_entrances)):
+            if not (len(world.settings.mix_entrance_pools) > 1 and (world.settings.shuffle_overworld_entrances or world.shuffle_special_interior_entrances)):
                 if (entrance.type in ('Dungeon', 'Grotto', 'Grave') and entrance.reverse.name != 'Spirit Temple Lobby -> Desert Colossus From Spirit Lobby') or \
                    (entrance.type == 'Interior' and world.shuffle_special_interior_entrances):
                     # In most cases, Dungeon, Grotto/Grave and Simple Interior exits shouldn't be assumed able to give access to their parent region
@@ -424,7 +424,7 @@ def shuffle_random_entrances(worlds):
                 entrance_pools['GrottoGraveReverse'] = [entrance.reverse for entrance in entrance_pools['GrottoGrave']]
 
         if worlds[0].settings.shuffle_overworld_entrances:
-            exclude_overworld_reverse = (worlds[0].settings.mix_entrance_pools == 'all') and not worlds[0].settings.decouple_entrances
+            exclude_overworld_reverse = ('Overworld' in worlds[0].settings.mix_entrance_pools) and not worlds[0].settings.decouple_entrances
             entrance_pools['Overworld'] = world.get_shufflable_entrances(type='Overworld', only_primary=exclude_overworld_reverse)
             if not worlds[0].settings.decouple_entrances:
                 entrance_pools['Overworld'].remove(world.get_entrance('GV Lower Stream -> Lake Hylia'))
@@ -436,14 +436,10 @@ def shuffle_random_entrances(worlds):
                 entrance.reverse.shuffled = True
 
         # Combine all entrance pools into one when mixing entrance pools
-        if worlds[0].settings.mix_entrance_pools == 'all':
-            entrance_pools = {'Mixed': list(chain.from_iterable(entrance_pools.values()))}
-        elif worlds[0].settings.mix_entrance_pools == 'indoor':
-            if worlds[0].settings.shuffle_overworld_entrances:
-                ow_entrance_pool = entrance_pools['Overworld']
-            entrance_pools = {'Mixed': list(filter(lambda entrance: entrance.type != 'Overworld', chain.from_iterable(entrance_pools.values())))}
-            if worlds[0].settings.shuffle_overworld_entrances:
-                entrance_pools['Overworld'] = ow_entrance_pool
+        if len(worlds[0].settings.mix_entrance_pools) > 1:
+            entrance_pools['Mixed'] = []
+            for pool in worlds[0].settings.mix_entrance_pools:
+                entrance_pools['Mixed'] += entrance_pools.pop(pool, [])
 
         # Build target entrance pools and set the assumption for entrances being reachable
         one_way_target_entrance_pools = {}
