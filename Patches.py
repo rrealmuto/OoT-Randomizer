@@ -1473,7 +1473,6 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         actor_override_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'ActorOverride' ]
         freestanding_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and 'Freestanding' in location.filter_tags]
         rupeetower_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and 'RupeeTower' in location.filter_tags]
-        beehive_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and 'Beehive' in location.filter_tags]
         
         for location in actor_override_locations:
             patch_actor_override(location, rom)
@@ -1481,13 +1480,15 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             patch_freestanding_collectible(location, rom)
         for location in rupeetower_locations:
             patch_rupee_tower(location, rom)
+        
+
+    if world.settings.shuffle_beehives:
+        beehive_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and 'Beehive' in location.filter_tags]
         for location in beehive_locations:
             patch_beehive(location, rom)
-            
         patch_grotto_beehive_2(rom)
 
-
-    if world.settings.shuffle_pots:
+    if world.settings.shuffle_pots_crates:
         pot_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and ('Pot' in location.filter_tags)]
         flying_pot_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and ('FlyingPot' in location.filter_tags)]
         crate_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and ('Crate' in location.filter_tags)]
@@ -2054,12 +2055,20 @@ def get_override_entry(location):
         if (location.type == "ActorOverride" or (location.type == "Collectable" and ("Freestanding" in location.filter_tags or "RupeeTower" in location.filter_tags or "Beehive" in location.filter_tags))) and location.disabled != DisableType.ENABLED :
             return None
 
-    #Don't add pots to the override table if they're disabled. We use this check to dtermine how to draw and interact with them
-    if not location.world.settings.shuffle_pots:
-        if (location.type == "Collectable" and ("Pot" in location.filter_tags or "Crate" in location.filter_tags or "FlyingPot" in location.filter_tags or "SmallCrate" in location.filter_tags or "Beehive" in location.filter_tags)) :
+    #Don't add beehive items to the override table if they're disabled.
+    if not location.world.settings.shuffle_beehives:
+        if (location.type == "Collectable" and "Beehive" in location.filter_tags):
             return None
     else:
-        if (location.type == "Collectable" and ("Pot" in location.filter_tags or "Crate" in location.filter_tags or "FlyingPot" in location.filter_tags or "SmallCrate" in location.filter_tags or "Beehive" in location.filter_tags)) and location.disabled != DisableType.ENABLED :
+        if (location.type == "Collectable" and "Beehive" in location.filter_tags and location.disabled != DisableType.ENABLED):
+            return None
+
+    #Don't add pots to the override table if they're disabled. We use this check to dtermine how to draw and interact with them
+    if not location.world.settings.shuffle_pots_crates:
+        if (location.type == "Collectable" and ("Pot" in location.filter_tags or "Crate" in location.filter_tags or "FlyingPot" in location.filter_tags or "SmallCrate" in location.filter_tags)) :
+            return None
+    else:
+        if (location.type == "Collectable" and ("Pot" in location.filter_tags or "Crate" in location.filter_tags or "FlyingPot" in location.filter_tags or "SmallCrate" in location.filter_tags)) and location.disabled != DisableType.ENABLED :
             return None
 
     player_id = location.item.world.id + 1

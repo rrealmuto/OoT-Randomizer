@@ -2822,7 +2822,7 @@ setting_infos = [
         shared         = True,
     ),
     Combobox(
-        name = 'shuffle_pots',
+        name = 'shuffle_pots_crates',
         gui_text = 'Pot & Crate Shuffle',
         default = 'off',
         choices = {
@@ -2854,6 +2854,18 @@ setting_infos = [
             Enabling this will let cows give you items
             upon performing Epona's song in front of them.
             There are 9 cows, and an extra in MQ Jabu.
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    ),
+    Checkbutton(
+        name           = 'shuffle_beehives',
+        gui_text       = 'Shuffle Beehives',
+        gui_tooltip    = '''\
+            Enabling this will let beehives drop items.
         ''',
         default        = False,
         shared         = True,
