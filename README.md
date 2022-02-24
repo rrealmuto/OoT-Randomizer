@@ -10,6 +10,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
 
 * Changes in Dev not yet in Dev-R:
   * The `League` preset has been updated for League Season 2 ([#1512](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1512))
+* The “Mix Entrance Pools” setting has new options to allow individually selecting entrance pools to be mixed ([Dev-R #67](https://github.com/Roman971/OoT-Randomizer/pull/67))
 * New settings to require heart containers for the rainbow bridge, LACS (for plando), and/or Ganon's boss key ([#1517](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1517))
 * New “One Bonk KO” setting ([#1503](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1503))
 * The convenience patch for floor switches now applies to more MQ switches ([#1459](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1459))
