@@ -191,8 +191,8 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         rom.write_byte(rom.sym('CFG_SHOW_SETTING_INFO'), 0x01)
     else:
         rom.write_byte(rom.sym('CFG_SHOW_SETTING_INFO'), 0x00)
-    line_len = 26
-    custom_msg = world.settings.user_message.strip()[:48]
+    line_len = 21
+    custom_msg = world.settings.user_message.strip()[:42]
     if len(custom_msg) <= line_len:
         msg = [custom_msg, ""]
     else:
