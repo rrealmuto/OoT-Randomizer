@@ -169,7 +169,10 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             txt = txt[:size-3] + "..."
         return txt
 
+    line_len = 21
     version_str = "version " + __version__
+    if len(version_str) > line_len:
+        version_str = "ver. " + __version__
     rom.write_bytes(rom.sym('VERSION_STRING_TXT'), makebytes(version_str, 25))
 
     if world.settings.create_spoiler:
@@ -191,7 +194,6 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         rom.write_byte(rom.sym('CFG_SHOW_SETTING_INFO'), 0x01)
     else:
         rom.write_byte(rom.sym('CFG_SHOW_SETTING_INFO'), 0x00)
-    line_len = 21
     custom_msg = world.settings.user_message.strip()[:42]
     if len(custom_msg) <= line_len:
         msg = [custom_msg, ""]
