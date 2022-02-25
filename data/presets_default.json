@@ -473,7 +473,7 @@
     "chicken_count_random":                    true,
     "big_poe_count_random":                    true,
     "shuffle_kokiri_sword":                    true,
-    "shuffle_ocarinas":                        false,
+    "shuffle_ocarinas":                        true,
     "shuffle_gerudo_card":                     true,
     "shuffle_song_items":                      "any",
     "shuffle_cows":                            true,
