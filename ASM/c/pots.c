@@ -2,6 +2,9 @@
 #include "n64.h"
 #include "gfx.h"
 
+#define DUNGEON_POT_SIDE_TEXTURE 0x060108A0
+#define DUNGEON_POT_DLIST 0x06017870
+
 #define POT_SIDE_TEXTURE 0x06000000
 #define POT_DLIST 0x060017C0
 
@@ -19,6 +22,7 @@ override_t get_pot_override(z64_actor_t *actor, z64_game_t *game) {
     EnItem00 dummy;
     dummy.collectibleFlag = (actor->variable & 0x7E00) >> 8;
     dummy.actor.actor_id = 0x15;
+    dummy.actor.dropFlag = 1;
 
     return lookup_override(&dummy, game->scene_index, 0);
 }
@@ -38,8 +42,14 @@ void draw_pot(z64_actor_t *actor, z64_game_t *game) {
 
     gSPMatrix(opa_ptr++, mtx, G_MTX_MODELVIEW | G_MTX_LOAD);
 
-    //set texture type
-    void *sideTexture = (void *)POT_SIDE_TEXTURE;
+    //get dlist and texture
+    int dlist = DUNGEON_POT_DLIST;
+    void *sideTexture = (void *)DUNGEON_POT_SIDE_TEXTURE;
+
+    if ((actor->variable >> 8) & 1) {
+        dlist = POT_DLIST;
+        sideTexture = POT_SIDE_TEXTURE;
+    }
 
     if (POT_TEXTURE_MATCH_CONTENTS) {
         if (chest_type == GILDED_CHEST) {
@@ -62,5 +72,5 @@ void draw_pot(z64_actor_t *actor, z64_game_t *game) {
     gMoveWd(opa_ptr++, G_MW_SEGMENT, 9 * sizeof(int), gfx->poly_opa.d);
 
     //jump to the custom display list
-    gSPDisplayList(opa_ptr++, POT_DLIST);
+    gSPDisplayList(opa_ptr++, dlist);
 }
