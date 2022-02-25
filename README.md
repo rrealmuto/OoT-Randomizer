@@ -22,7 +22,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
 * New hidden “Generate Vanilla Seed” setting (used for `vanilla` and `fast-vanilla` presets)
 * The “Misc. Hints” setting is split into 3 toggles: Ganondorf, Temple of Time altar, and a new feature to disable warp song destination hints
 * New `chaos` hint distribution
-* New `allsanity-casual`, `debug`, `vanilla`, and `fast-vanilla` presets
+* New presets: `Standard Anti-Weekly Settings (S5)`, `allsanity-casual`, `debug`, `vanilla`, and `fast-vanilla`
 
 Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):
 
