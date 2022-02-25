@@ -1598,6 +1598,13 @@ skip_GS_BGS_text:
     nop
 
 ; set pot side texture
+.org 0xF6D000 + 0x17870 + 0x18 ; gameplay_dangeon_keep file start + dlist offset + gDPSetTextureImage offset
+.word   0xDE000000, 0x09000000
+
+; todo fix this offset
+.org 0xF6D000 + 0x17870 + 0xD8 ; gameplay_dangeon_keep file start + dlist offset + gDPSetTextureImage offset
+.word   0xDE000000, 0x09000000
+
 .org 0x1738000 + 0x17C0 + 0x18 ; object_tsubo file start + dlist offset + gDPSetTextureImage offset
 .word   0xDE000000, 0x09000000
 
