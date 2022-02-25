@@ -288,7 +288,8 @@ class Search(object):
     def collect_pseudo_starting_items(self):
         for state in self.state_list:
             # Skip Child Zelda and Link's Pocket are not technically starting items, so collect them now
-            if state.world.settings.skip_child_zelda:
+            # However, in Triforce Blitz, we want the starting song to be included in the path count
+            if state.world.settings.skip_child_zelda and not state.world.settings.triforce_blitz:
                 self.collect(state.world.get_location('Song from Impa').item)
             self.collect(state.world.get_location('Links Pocket').item)
 
