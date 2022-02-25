@@ -19,10 +19,10 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
 * New “Triforces Per World” setting ([#1403](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1403/files))
 * New “Full” options for the “Randomize Owl Drops”, “Randomize Warp Song Destinations”, and “Randomize Overworld Spawns” settings that include more types of entrances (based on [#1179](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1179) and [#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
 * New “Show seed info on file screen” and “User-configurable message” settings ([#1253](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1253))
-* New hidden “Generate Vanilla Seed” setting (used for `vanilla` preset)
+* New hidden “Generate Vanilla Seed” setting (used for `vanilla` and `fast-vanilla` presets)
 * The “Misc. Hints” setting is split into 3 toggles: Ganondorf, Temple of Time altar, and a new feature to disable warp song destination hints
 * New `chaos` hint distribution
-* New `allsanity-casual`, `debug`, and `vanilla` presets
+* New `allsanity-casual`, `debug`, `vanilla`, and `fast-vanilla` presets
 
 Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):
 
