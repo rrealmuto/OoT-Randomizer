@@ -24,6 +24,10 @@ override_t get_pot_override(z64_actor_t *actor, z64_game_t *game) {
     dummy.actor.actor_id = 0x15;
     dummy.actor.dropFlag = 1;
 
+    if (!should_override_collectible(&dummy)) {
+        return (override_t){0};
+    }
+
     return lookup_override(&dummy, game->scene_index, 0);
 }
 
@@ -36,9 +40,15 @@ void draw_pot(z64_actor_t *actor, z64_game_t *game) {
 
     //get chest_type
     override_t override = get_pot_override(actor, game);
-    uint16_t resolved_item_id = resolve_upgrades(override.value.item_id);
-    item_row_t *item_row = get_item_row(resolved_item_id);
-    uint8_t chest_type = item_row->chest_type;
+    uint16_t resolved_item_id = 0;
+    item_row_t *item_row = NULL;
+    uint8_t chest_type = BROWN_CHEST;
+
+    if (override.value.item_id != 0) {
+        resolved_item_id = resolve_upgrades(override.value.item_id);
+        item_row = get_item_row(resolved_item_id);
+        chest_type = item_row->chest_type;
+    }
 
     gSPMatrix(opa_ptr++, mtx, G_MTX_MODELVIEW | G_MTX_LOAD);
 
