@@ -1600,7 +1600,7 @@ skip_GS_BGS_text:
 .orga 0xDFAFC4
     j   draw_flying_pot_hack
     nop
-    
+
 ; set pot side texture
 .org 0xF6D000 + 0x17870 + 0x18 ; gameplay_dangeon_keep file start + dlist offset + gDPSetTextureImage offset
 .word   0xDE000000, 0x09000000 ; jump to the custom dlist at segment 09
@@ -1643,6 +1643,10 @@ skip_GS_BGS_text:
 
 .orga 0x18B6A48 ;hack settile (side)
 .word 0xF5480800, 0x00098100
+
+;==================================================================================================
+; Draw Small Crate Textures
+;==================================================================================================
 
 
 ;==================================================================================================
