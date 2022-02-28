@@ -1594,9 +1594,13 @@ skip_GS_BGS_text:
 
 ; makes instructions in address range [DE8A04, DE8A40) unused
 .org 0xDE89FC
-    j   draw_pot
+    j   draw_pot_hack
     nop
 
+.orga 0xDFAFC4
+    j   draw_flying_pot_hack
+    nop
+    
 ; set pot side texture
 .org 0xF6D000 + 0x17870 + 0x18 ; gameplay_dangeon_keep file start + dlist offset + gDPSetTextureImage offset
 .word   0xDE000000, 0x09000000 ; jump to the custom dlist at segment 09

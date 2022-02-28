@@ -2,8 +2,8 @@
 #include "n64.h"
 #include "gfx.h"
 
-#define DUNGEON_POT_SIDE_TEXTURE 0x060108A0
-#define DUNGEON_POT_DLIST 0x06017870
+#define DUNGEON_POT_SIDE_TEXTURE 0x050108A0
+#define DUNGEON_POT_DLIST 0x05017870
 
 #define POT_SIDE_TEXTURE 0x06000000
 #define POT_DLIST 0x060017C0
@@ -44,7 +44,30 @@ override_t get_pot_override(z64_actor_t *actor, z64_game_t *game) {
     return lookup_override(&dummy, game->scene_index, 0);
 }
 
-void draw_pot(z64_actor_t *actor, z64_game_t *game) {
+override_t get_flying_pot_override(z64_actor_t *actor, z64_game_t* game)
+{
+    EnItem00 dummy;
+    dummy.collectibleFlag = (actor->variable & 0x3F);
+    dummy.actor.actor_id = 0x15;
+    dummy.actor.dropFlag = 1;
+    if (!should_override_collectible(&dummy)) {
+        return (override_t){0};
+    }
+
+    return lookup_override(&dummy, game->scene_index, 0);
+}
+
+void draw_flying_pot_hack(z64_actor_t *actor, z64_game_t *game)
+{
+    draw_pot(actor, game, get_flying_pot_override(actor, game));
+}
+
+void draw_pot_hack(z64_actor_t *actor, z64_game_t *game)
+{
+    draw_pot(actor, game, get_pot_override(actor, game));
+}
+
+void draw_pot(z64_actor_t *actor, z64_game_t *game, override_t potOverride) {
     z64_gfx_t *gfx = game->common.gfx;
 
     func_8007E298(gfx);
@@ -64,7 +87,6 @@ void draw_pot(z64_actor_t *actor, z64_game_t *game) {
         
     }
     
-    override_t potOverride = get_pot_override(actor, game);
     if(POTCRATE_TEXTURES_MATCH_CONTENTS && potOverride.key.all != 0)
     {
         uint16_t itemID = resolve_upgrades(potOverride.value.item_id);

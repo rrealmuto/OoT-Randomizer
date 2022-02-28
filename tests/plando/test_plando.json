@@ -1,12 +1,16 @@
 {
     "entrances": {
-        "Adult Spawn -> Temple of Time" : {"region": "Market Guard House", "from":"Market Entrance"}
+        "Adult Spawn -> Temple of Time" : {"region": "Death Mountain", "from":"Kak Behind Gate"}
     },
     "locations": {
-        "Market Guard House Child Pot 5" : "Triforce Piece",
-        "Market Guard House Child Pot 14" : "Triforce Piece",
-        "Market Guard House Child Pot 18" : "Triforce Piece",
-        "Market Guard House Child Pot 20" : "Triforce Piece",
-        "Market Guard House Child Pot 22" : "Triforce Piece"
+        "Hideout Break Room Crate 1" : "Triforce Piece",
+        "Hideout Break Room Crate 2" : "Gold Skulltula Token",
+        "Hideout Break Room Crate 3" : "Small Key (Forest Temple)",
+        "Hideout Break Room Crate 4" : "Boss Key (Water Temple)",
+        "Market Guard House Child Pot 1" : "Triforce Piece",
+        "Market Guard House Child Pot 2" : "Gold Skulltula Token",
+        "Market Guard House Child Pot 3" : "Small Key (Water Temple)",
+        "Market Guard House Child Pot 4" : "Boss Key (Forest Temple)",
+        "Market Guard House Child Pot 5" : "Triforce Piece"
     }
 }
