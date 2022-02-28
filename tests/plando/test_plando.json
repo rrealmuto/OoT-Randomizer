@@ -1,12 +1,12 @@
 {
     "entrances": {
-        "Child Spawn -> KF Links House" : {"region": "Market Guard House", "from":"Market Entrance"}
+        "Adult Spawn -> Temple of Time" : {"region": "Market Guard House", "from":"Market Entrance"}
     },
     "locations": {
-        "Market Guard House Adult Pot 1": "Progressive Hookshot",
-        "Market Guard House Adult Pot 2": "Small Key (Fire Temple)",
-        "Market Guard House Adult Pot 3" : "Boss Key (Fire Temple)",
-        "Market Guard House Adult Pot 4" : "Gold Skulltula Token",
-        "Market Guard House Crate Rupee" : "Boss Key (Water Temple)"
+        "Market Guard House Child Pot 5" : "Triforce Piece",
+        "Market Guard House Child Pot 14" : "Triforce Piece",
+        "Market Guard House Child Pot 18" : "Triforce Piece",
+        "Market Guard House Child Pot 20" : "Triforce Piece",
+        "Market Guard House Child Pot 22" : "Triforce Piece"
     }
 }
