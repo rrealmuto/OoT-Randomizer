@@ -1,8 +1,9 @@
 #ifndef Z_OBJ_KIBAKO2_H
 #define Z_OBJ_KIBAKO2_H
 
+#include "item_table.h"
+#include "get_items.h"
 #include "z64.h"
-
 struct ObjKibako2;
 
 typedef void (*ObjKibako2ActionFunc)(struct ObjKibako2*, z64_game_t*);

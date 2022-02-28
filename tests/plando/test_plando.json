@@ -3,7 +3,10 @@
         "Child Spawn -> KF Links House" : {"region": "Market Guard House", "from":"Market Entrance"}
     },
     "locations": {
-        
-
+        "Market Guard House Adult Pot 1": "Progressive Hookshot",
+        "Market Guard House Adult Pot 2": "Small Key (Fire Temple)",
+        "Market Guard House Adult Pot 3" : "Boss Key (Fire Temple)",
+        "Market Guard House Adult Pot 4" : "Gold Skulltula Token",
+        "Market Guard House Crate Rupee" : "Boss Key (Water Temple)"
     }
 }

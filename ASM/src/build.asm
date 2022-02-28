@@ -35,7 +35,7 @@
 .headersize (0x80400000 - 0x03480000)
 
 .org 0x80400000
-.area 0x20000 //payload max memory
+.area 0x25000 //payload max memory
 PAYLOAD_START:
 
 .area 0x20, 0
@@ -127,6 +127,40 @@ SKULL_CHEST_FRONT_TEXTURE:
 .incbin("../resources/skull_chest_front.bin")
 SKULL_CHEST_BASE_TEXTURE:
 .incbin("../resources/skull_chest_base.bin")
+GILDED_POT_SIDE_TEXTURE:
+.incbin("../resources/pot/gilded_pot_side.bin")
+KEY_POT_SIDE_TEXTURE:
+.incbin("../resources/pot/pot_key.bin")
+GOLD_POT_SIDE_TEXTURE:
+.incbin("../resources/pot/pot_gold.bin")
+SKULL_POT_SIDE_TEXTURE:
+.incbin("../resources/pot/pot_web.bin")
+CRATE_TOP_TEXTURE_DEFAULT:
+.incbin("../resources/crate/crate_default_top_ci8.bin")
+CRATE_SIDE_TEXTURE_DEFAULT:
+.incbin("../resources/crate/crate_default_side_ci8.bin")
+CRATE_TOP_TEXTURE_GOLD:
+.incbin("../resources/crate/crate_gold_top_ci8.bin")
+CRATE_SIDE_TEXTURE_GOLD:
+.incbin("../resources/crate/crate_gold_side_ci8.bin")
+CRATE_TOP_TEXTURE_WEB:
+.incbin("../resources/crate/crate_web_top_ci8.bin")
+CRATE_SIDE_TEXTURE_WEB:
+.incbin("../resources/crate/crate_web_side_ci8.bin")
+CRATE_TOP_TEXTURE_BOSSKEY:
+.incbin("../resources/crate/crate_top_bosskey_ci8.bin")
+CRATE_SIDE_TEXTURE_BOSSKEY:
+.incbin("../resources/crate/crate_side_bosskey_ci8.bin")
+CRATE_PALETTE_DEFAULT:
+.incbin("../resources/crate/crate_palette_default_ci8.bin")
+CRATE_PALETTE_GOLD:
+.incbin("../resources/crate/crate_palette_gold_ci8.bin")
+CRATE_PALETTE_SILVER:
+.incbin("../resources/crate/crate_palette_silver_ci8.bin")
+CRATE_PALETTE_WEB:
+.incbin("../resources/crate/crate_palette_web_ci8.bin")
+CRATE_PALETTE_BOSSKEY:
+.incbin("../resources/crate/crate_palette_bosskey_ci8.bin")
 
 .align 0x10
 PAYLOAD_END:

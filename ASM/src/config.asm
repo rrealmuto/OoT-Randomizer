@@ -146,6 +146,8 @@ OVERWORLD_SHUFFLED:
 .byte 0x00
 FAST_BUNNY_HOOD_ENABLED:
 .byte 0x00
+POTCRATE_TEXTURES_MATCH_CONTENTS:
+.byte 0x00
 .align 4
 
 ; These configuration values are given fixed addresses to aid auto-trackers.

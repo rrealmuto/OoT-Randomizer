@@ -3902,6 +3902,19 @@ setting_infos = [
         ''',
         shared         = True,
     ),
+    Combobox(
+        name           = 'correct_potcrate_appearances',
+        gui_text       = 'Pot & Crate Appearance Matches Contents',
+        default        = 'off',
+        choices        = {
+            'off': 'Off',
+            'textures': 'Texture',
+        },
+        gui_tooltip    = '''\
+            If enabled, pot/crate textures will reflect its contents.
+        ''',
+        shared         = True,
+    ),
     Checkbutton(
         name           = 'clearer_hints',
         gui_text       = 'Clearer Hints',

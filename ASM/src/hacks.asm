@@ -1609,6 +1609,39 @@ skip_GS_BGS_text:
 .word   0xDE000000, 0x09000000 ; jump to the custom dlist at segment 09
 
 ;==================================================================================================
+; Draw Crate Textures
+;==================================================================================================
+
+.orga 0xEC8528
+    j ObjKibako2_Draw
+    nop
+
+.orga 0x18B6000 + 0x960 + 0x18  ; load top texture
+.word   0xDE000000, 0x09000000
+.orga 0x18B6000 + 0x960 + 0x50 ; load palette
+.word   0xDE000000, 0x09000010
+.orga 0x18B6000 + 0x960 + 0xC0  ; load side texture
+.word   0xDE000000, 0x09000020
+
+;hacks to use ci8 textures instead of ci4.
+;not exactly sure why all of this works
+.orga 0x18B6990 ;hack loadblock (top)
+.word 0xF3000000, 0x073FF200
+
+.orga 0x18B69A0 ;hack settile (side)
+.word 0xF5480800, 0x00098100
+
+.orga 0x18B69D0 ;loadTLUT
+.word 0xF0000000,  0x073FF000
+
+.orga 0x18B6A38 ;hack loadblock (side)
+.word 0xF3000000, 0x073FF200
+
+.orga 0x18B6A48 ;hack settile (side)
+.word 0xF5480800, 0x00098100
+
+
+;==================================================================================================
 ; Cast Fishing Rod without B Item
 ;==================================================================================================
 
