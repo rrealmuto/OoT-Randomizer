@@ -80,7 +80,7 @@ void draw_pot(z64_actor_t *actor, z64_game_t *game, override_t potOverride) {
     int dlist = DUNGEON_POT_DLIST;
     void* texture = DUNGEON_POT_SIDE_TEXTURE;
 
-    if((actor->variable >> 8) & 1)
+    if((actor->actor_id != 0x11D) && (actor->variable >> 8) & 1)
     {
         dlist = POT_DLIST;
         texture = POT_SIDE_TEXTURE;
