@@ -58,12 +58,12 @@ override_t get_flying_pot_override(z64_actor_t *actor, z64_game_t *game)
 
 void draw_pot(z64_actor_t *actor, z64_game_t *game, override_t override)
 {
-    // get default dlist and side texture
+    // get original dlist and texture
     void *dlist = (void *)DUNGEON_POT_DLIST;
     void *side_texture = (void *)DUNGEON_POT_SIDE_TEXTURE;
 
-    // not a flying pot or dungeon pot
-    if ((actor->actor_id != 0x11D) && (actor->variable >> 8) & 1)
+    // overworld pot or hba pot
+    if ((actor->actor_id == 0x111 && (actor->variable >> 8) & 1) || actor->actor_id == 0x117)
     {
         dlist = (void *)POT_DLIST;
         side_texture = (void *)POT_SIDE_TEXTURE;
@@ -92,20 +92,25 @@ void draw_pot(z64_actor_t *actor, z64_game_t *game, override_t override)
         }
     }
 
-    // push custom dlist to segment 09, ASM hack causes jump to this dlist
+    // push custom dlist (that sets the texture) to segment 09
     z64_gfx_t *gfx = game->common.gfx;
     gfx->poly_opa.d -= 2;
     gDPSetTextureImage(gfx->poly_opa.d, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, side_texture);
     gSPEndDisplayList(gfx->poly_opa.d + 1);
     gMoveWd(gfx->poly_opa.p++, G_MW_SEGMENT, 9 * sizeof(int), gfx->poly_opa.d);
 
-    // draw the dlist
+    // draw the original dlist that has been hacked in ASM to jump to the custom dlist
     Gfx_DrawDListOpa(game, dlist);
 }
 
 void draw_pot_hack(z64_actor_t *actor, z64_game_t *game)
 {
     draw_pot(actor, game, get_pot_override(actor, game));
+}
+
+void draw_hba_pot_hack(z64_actor_t *actor, z64_game_t *game)
+{
+    draw_pot(actor, game, (override_t){0});
 }
 
 void draw_flying_pot_hack(z64_actor_t *actor, z64_game_t *game)
