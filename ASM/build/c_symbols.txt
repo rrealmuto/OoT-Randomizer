@@ -73,8 +73,7 @@ SYMBOL TABLE:
 8007e298 l       *ABS*	00000000 func_8007E298
 800ab900 l       *ABS*	00000000 write_matrix_stack_top
 00000000 l    df *ABS*	00000000 pots.c
-8007e298 l       *ABS*	00000000 func_8007E298
-800ab900 l       *ABS*	00000000 write_matrix_stack_top
+80028048 l       *ABS*	00000000 Gfx_DrawDListOpa
 00000000 l    df *ABS*	00000000 rainbow.c
 00000214 l     O .rodata	00000015 cycle_colors
 00000000 l       .rodata.cst8	00000000 $LC0
@@ -86,7 +85,6 @@ SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 text.c
 0000005c l     O .sbss	00000004 text_buf
 00000060 l     O .sbss	00000004 text_end
-00000000 l    df *ABS*	00000000 textures.c
 00000000 l    df *ABS*	00000000 triforce.c
 00000068 l     O .sbss	00000004 render_triforce_flag
 0000006c l     O .sbss	00000004 frames
@@ -105,9 +103,9 @@ SYMBOL TABLE:
 00004800 g     F .text	00000080 give_ice_trap
 00005368 g     F .text	00000274 update_bombchu_trail_colors
 00002ca4 g     F .text	0000007c item_overrides_init
-00006a0c g     F .text	00000050 draw_pot_hack
+00006980 g     F .text	00000050 draw_pot_hack
 00004d70 g     F .text	00000018 scale_upgrade
-00007654 g     F .text	00000014 clear_twinrova_vars
+000075f8 g     F .text	00000014 clear_twinrova_vars
 00000048 g     O .sdata	00000004 a_note_glow_max
 00000004 g     O .sbss	00000004 CHEST_TEXTURE_MATCH_CONTENTS
 00000000         *UND*	00000000 CFG_HEART_COLOR
@@ -120,7 +118,7 @@ SYMBOL TABLE:
 00005120 g     F .text	000000a4 update_sword_trail_colors
 00002f00 g     F .text	0000004c lookup_override
 00004da4 g     F .text	0000001c stick_upgrade
-00006eac g     F .text	0000002c text_init
+00006e70 g     F .text	0000002c text_init
 00000000         *UND*	00000000 INCOMING_PLAYER
 00000080 g     O .sdata	00000004 beating_no_dd
 00000030 g     O .sdata	00000004 c_note_font_glow_max
@@ -141,7 +139,6 @@ SYMBOL TABLE:
 00004fa8 g     F .text	0000003c before_skybox_init
 00000000         *UND*	00000000 CRATE_TOP_TEXTURE_BOSSKEY
 00000000         *UND*	00000000 SKULL_POT_SIDE_TEXTURE
-000040cc g     O .bss	0000000c TEXTURE_FILE
 00000000         *UND*	00000000 CRATE_SIDE_TEXTURE_DEFAULT
 0000002c g     O .sbss	00000004 active_item_graphic_id
 000001c0 g     O .data	00000010 dpad_sprite
@@ -149,25 +146,25 @@ SYMBOL TABLE:
 0000000c g     O .sdata	00000008 hash_sprites
 00002f4c g     F .text	000000e4 activate_override
 00004f28 g     F .text	0000003c before_game_state_update
-00006e64 g     F .text	00000048 store_scarecrow_fix
+00006e28 g     F .text	00000048 store_scarecrow_fix
 000063a4 g     F .text	00000084 obj_comb_drop_collectible
-000070f4 g     F .text	00000028 set_triforce_render
+00007098 g     F .text	00000028 set_triforce_render
 00000000         *UND*	00000000 CRATE_TOP_TEXTURE_WEB
 00000064 g     O .sdata	00000004 a_note_r
 00000000         *UND*	00000000 CFG_C_NOTE_COLOR
 00000000         *UND*	00000000 OUTGOING_PLAYER
-000076fc g     F .text	00000240 override_weather_state
+000076a0 g     F .text	00000240 override_weather_state
 00003164 g     F .text	00000040 push_delayed_item
 00004d10 g     F .text	00000030 slingshot_upgrade
 000007f4 g     F .text	000004dc draw_dpad
 00000000         *UND*	00000000 CRATE_TOP_TEXTURE_DEFAULT
 0000000c g     O .sbss	00000004 cfg_file_select_hash
-00006c88 g     F .text	00000028 health_and_magic_refill
+00006c4c g     F .text	00000028 health_and_magic_refill
 00000000         *UND*	00000000 CRATE_SIDE_TEXTURE_BOSSKEY
 00000054 g     O .sbss	00000001 pending_freezes
 00004880 g     F .text	00000008 no_effect
 00000000         *UND*	00000000 GILDED_POT_SIDE_TEXTURE
-00006f80 g     F .text	00000154 text_flush
+00006f44 g     F .text	00000154 text_flush
 00000000         *UND*	00000000 CFG_RAINBOW_SWORD_INNER_ENABLED
 00000092 g     O .sdata	00000002 triforce_pieces_requied
 00000000         *UND*	00000000 CRATE_PALETTE_SILVER
@@ -196,17 +193,17 @@ SYMBOL TABLE:
 00003104 g     F .text	00000060 push_coop_item
 00000000         *UND*	00000000 GILDED_CHEST_BASE_TEXTURE
 00000008 g     O .sdata	00000004 scene_fog_distance
-00006824 g     F .text	00000198 draw_pot
+00006824 g     F .text	0000015c draw_pot
 00000000         *UND*	00000000 CFG_BOMBCHU_TRAIL_OUTER_COLOR
 00005e10 g     F .text	00000024 models_reset
 00000000 g     F .text	00000008 agony_inside_radius_setup
 000001e0 g     O .data	00000010 quest_items_sprite
 000031d8 g     F .text	00000064 after_key_received
 00000074 g     O .sbss	00000001 KAKARIKO_WEATHER_FORECAST
-0000767c g     F .text	0000003c heap_alloc
+00007620 g     F .text	0000003c heap_alloc
 0000003c g     O .sbss	00000004 active_item_row
 00004f64 g     F .text	00000044 after_game_state_update
-000069bc g     F .text	00000050 draw_flying_pot_hack
+000069d0 g     F .text	00000050 draw_flying_pot_hack
 00000cd0 g     F .text	000009e4 draw_dungeon_info
 000035e8 g     F .text	00000020 get_extended_flag
 00004fe4 g     F .text	0000003c after_scene_init
@@ -288,7 +285,7 @@ SYMBOL TABLE:
 00004c90 g     F .text	0000002c strength_upgrade
 00004b30 g     F .text	0000007c open_mask_shop
 00005b20 g     F .text	00000028 load_object
-00006cb0 g     F .text	000000a4 Save_Write_Hook
+00006c74 g     F .text	000000a4 Save_Write_Hook
 00004e00 g     F .text	00000020 ocarina_upgrade
 00004be8 g     F .text	00000060 resolve_upgrades
 000001a0 g     O .data	00000010 song_note_sprite
@@ -296,7 +293,7 @@ SYMBOL TABLE:
 0000007c g     O .sdata	00000004 normal_no_dd
 0000006c g     O .sdata	00000004 b_button
 00006340 g     F .text	00000064 bowling_heart_piece_draw
-00006d54 g     F .text	0000008c Save_Open
+00006d18 g     F .text	0000008c Save_Open
 00004204 g     F .text	000001f0 gfx_init
 00000084 g     O .sdata	00000006 defaultDDHeart
 00000028 g     O .rodata	00000042 freecam_modes
@@ -325,7 +322,7 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_NPC_OUTER_ENABLED
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_REWARD_NEED_COMPASS
 0000002c g     O .sdata	00000004 text_cursor_inner_base
-00006ed8 g     F .text	000000a8 text_print
+00006e9c g     F .text	000000a8 text_print
 00005e34 g     F .text	0000005c lookup_model_by_override
 0000003c g     O .sdata	00000004 c_note_glow_base
 00002a94 g     F .text	00000054 countSetBitsRec
@@ -338,7 +335,7 @@ SYMBOL TABLE:
 00004dd0 g     F .text	00000030 bombchu_upgrade
 00000000         *UND*	00000000 SILVER_CHEST_FRONT_TEXTURE
 00005d30 g     F .text	00000094 draw_model
-00006de0 g     F .text	00000084 Save_Init_Write_Hook
+00006da4 g     F .text	00000084 Save_Init_Write_Hook
 00004aec g     F .text	00000018 give_bean_pack
 00000000         *UND*	00000000 CRATE_PALETTE_DEFAULT
 000055dc g     F .text	00000274 get_bombchu_back_color
@@ -384,7 +381,7 @@ SYMBOL TABLE:
 00001718 g     F .text	00000018 extern_scene_init
 00005ba8 g     F .text	0000004c set_object_segment
 000001c0 g     F .text	000000a0 draw_agony
-00007668 g     F .text	00000014 heap_init
+0000760c g     F .text	00000014 heap_init
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_PROP_INNER_ENABLED
 0000608c g     F .text	00000064 heart_container_draw
 0000400c g     O .bss	000000c0 object_slots
@@ -395,7 +392,7 @@ SYMBOL TABLE:
 00000148 g     O .data	00000015 items
 00000000         *UND*	00000000 C_HEAP
 00003ad0 g     F .text	000002b0 item_give_collectible
-00006a5c g     F .text	0000022c get_rainbow_color
+00006a20 g     F .text	0000022c get_rainbow_color
 00000000         *UND*	00000000 CFG_BOMBCHU_TRAIL_INNER_COLOR
 00002d20 g     F .text	00000140 get_override_search_key
 00000010 g     O .sbss	00000001 NO_ESCAPE_SEQUENCE
@@ -407,14 +404,13 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 CFG_A_BUTTON_COLOR
 00003f10 g     F .text	0000002c sprite_bytes_per_tile
 00004bac g     F .text	0000003c get_item_row
-000076b8 g     F .text	00000044 file_init
+0000765c g     F .text	00000044 file_init
 000067ac g     F .text	00000078 get_flying_pot_override
 00000020 g     O .sbss	00000004 collectible_mutex
-000070d4 g     F .text	00000020 textures_init
 000001f8 g     O .rodata	0000000c rupee_colors
 00000000         *UND*	00000000 EXTENDED_OBJECT_TABLE
 00000000         *UND*	00000000 KEY_POT_SIDE_TEXTURE
-0000711c g     F .text	00000538 draw_triforce_count
+000070c0 g     F .text	00000538 draw_triforce_count
 00000000         *UND*	00000000 PLAYER_NAME_ID
 00005dc4 g     F .text	0000004c models_init
 00000248 g     O .data	0000001c key_counts
