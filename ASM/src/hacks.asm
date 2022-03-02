@@ -1597,13 +1597,9 @@ skip_GS_BGS_text:
     j   draw_pot_hack
     nop
 
-; replaces draw commands in EnGSwitch_DrawPot
-.orga 0xDF3FD8
-    jal draw_hba_pot_hack
-    nop
-    lw    ra, 0x14(sp)
-    addiu sp, sp, 0x30
-    jr    ra
+; replaces EnGSwitch_DrawPot
+.orga 0xDF3FC0
+    j   draw_hba_pot_hack
     nop
 
 ; replaces EnTuboTrap_Draw

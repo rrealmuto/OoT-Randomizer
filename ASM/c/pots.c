@@ -110,7 +110,12 @@ void draw_pot_hack(z64_actor_t *actor, z64_game_t *game)
 
 void draw_hba_pot_hack(z64_actor_t *actor, z64_game_t *game)
 {
-    draw_pot(actor, game, (override_t){0});
+    EnGSwitch *switch_actor = (EnGSwitch *)actor;
+
+    if (!switch_actor->broken)
+    {
+        draw_pot(actor, game, (override_t){0});
+    }
 }
 
 void draw_flying_pot_hack(z64_actor_t *actor, z64_game_t *game)
