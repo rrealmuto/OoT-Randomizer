@@ -15,9 +15,6 @@ extern uint64_t KEY_POT_SIDE_TEXTURE;
 extern uint64_t GOLD_POT_SIDE_TEXTURE;
 extern uint64_t SKULL_POT_SIDE_TEXTURE;
 
-extern void Gfx_DrawDListOpa(z64_game_t *game, z64_gfx_t *dlist);
-asm(".equ Gfx_DrawDListOpa, 0x80028048");
-
 override_t get_pot_override(z64_actor_t *actor, z64_game_t *game)
 {
     // make sure that the pot is actually supposed to drop something
@@ -100,7 +97,7 @@ void draw_pot(z64_actor_t *actor, z64_game_t *game, override_t override)
     gMoveWd(gfx->poly_opa.p++, G_MW_SEGMENT, 9 * sizeof(int), gfx->poly_opa.d);
 
     // draw the original dlist that has been hacked in ASM to jump to the custom dlist
-    Gfx_DrawDListOpa(game, dlist);
+    z64_Gfx_DrawDListOpa(game, dlist);
 }
 
 void draw_pot_hack(z64_actor_t *actor, z64_game_t *game)
