@@ -63,9 +63,9 @@ override_t get_crate_override(z64_actor_t *actor, z64_game_t *game)
 void ObjKibako2_Draw(z64_actor_t *actor, z64_game_t *game)
 {
     // get original palette and textures
-    uint64_t *palette = &CRATE_PALETTE_DEFAULT;
-    uint64_t *top_texture = &CRATE_TOP_TEXTURE_DEFAULT;
-    uint64_t *side_texture = &CRATE_SIDE_TEXTURE_DEFAULT;
+    uint64_t *palette = CRATE_PALETTE;
+    uint64_t *top_texture = CRATE_TOP_TEXTURE;
+    uint64_t *side_texture = CRATE_SIDE_TEXTURE;
 
     // // get override palette and textures
     // override_t crate_override = get_crate_override(actor, game);
