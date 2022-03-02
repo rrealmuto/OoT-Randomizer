@@ -1629,20 +1629,20 @@ skip_GS_BGS_text:
 
 ;hacks to use ci8 textures instead of ci4.
 ;not exactly sure why all of this works
-.orga 0x18B6990 ;hack loadblock (top)
-.word 0xF3000000, 0x073FF200
+;.orga 0x18B6990 ;hack loadblock (top)
+;.word 0xF3000000, 0x073FF200
 
-.orga 0x18B69A0 ;hack settile (side)
-.word 0xF5480800, 0x00098100
+;.orga 0x18B69A0 ;hack settile (side)
+;.word 0xF5480800, 0x00098100
 
-.orga 0x18B69D0 ;loadTLUT
-.word 0xF0000000,  0x073FF000
+;.orga 0x18B69D0 ;loadTLUT
+;.word 0xF0000000,  0x073FF000
 
-.orga 0x18B6A38 ;hack loadblock (side)
-.word 0xF3000000, 0x073FF200
+;.orga 0x18B6A38 ;hack loadblock (side)
+;.word 0xF3000000, 0x073FF200
 
-.orga 0x18B6A48 ;hack settile (side)
-.word 0xF5480800, 0x00098100
+;.orga 0x18B6A48 ;hack settile (side)
+;.word 0xF5480800, 0x00098100
 
 ;==================================================================================================
 ; Draw Small Crate Textures
