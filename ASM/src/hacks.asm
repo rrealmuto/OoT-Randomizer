@@ -1624,29 +1624,28 @@ skip_GS_BGS_text:
     j ObjKibako2_Draw
     nop
 
-.orga 0x18B6000 + 0x960 + 0x18  ; load top texture
+.orga 0x18B6000 + 0x960 + 0x18 ; load top texture
 .word   0xDE000000, 0x09000000
 .orga 0x18B6000 + 0x960 + 0x50 ; load palette
 .word   0xDE000000, 0x09000010
-.orga 0x18B6000 + 0x960 + 0xC0  ; load side texture
+.orga 0x18B6000 + 0x960 + 0xC0 ; load side texture
 .word   0xDE000000, 0x09000020
 
-;hacks to use ci8 textures instead of ci4.
-;not exactly sure why all of this works
-;.orga 0x18B6990 ;hack loadblock (top)
-;.word 0xF3000000, 0x073FF200
+; hacks to use ci8 textures instead of ci4
+.orga 0x18B6990 ; hack loadblock (top)
+.word 0xF3000000, 0x073FF200 ; load 1024 texels to tmem, 512b per line (8 words)
 
-;.orga 0x18B69A0 ;hack settile (side)
-;.word 0xF5480800, 0x00098100
+.orga 0x18B69A0 ; hack settile (top)
+.word 0xF5480800, 0x00098100 ; texel size G_IM_SIZ_8b, 256b per line (4 words)
 
-;.orga 0x18B69D0 ;loadTLUT
-;.word 0xF0000000,  0x073FF000
+.orga 0x18B69D0 ; loadTLUT
+.word 0xF0000000, 0x073FF000 ; 256 color palette
 
-;.orga 0x18B6A38 ;hack loadblock (side)
-;.word 0xF3000000, 0x073FF200
+.orga 0x18B6A38 ; hack loadblock (side)
+.word 0xF3000000, 0x073FF200
 
-;.orga 0x18B6A48 ;hack settile (side)
-;.word 0xF5480800, 0x00098100
+.orga 0x18B6A48 ; hack settile (side)
+.word 0xF5480800, 0x00098100
 
 ;==================================================================================================
 ; Draw Small Crate Textures

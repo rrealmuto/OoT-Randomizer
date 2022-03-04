@@ -1,29 +1,8 @@
 #include "obj_kibako2.h"
 
-#define CRATE_TOP_TEXTURE (uint64_t *)0x06000020
-#define CRATE_SIDE_TEXTURE (uint64_t *)0x06000420
-
-#define CRATE_PALETTE (uint64_t *)0x06000000
-
 #define CRATE_DLIST (z64_gfx_t *)0x06000960
 
 extern bool POTCRATE_TEXTURES_MATCH_CONTENTS;
-
-extern uint64_t CRATE_TOP_TEXTURE_DEFAULT;
-extern uint64_t CRATE_TOP_TEXTURE_GOLD;
-extern uint64_t CRATE_TOP_TEXTURE_WEB;
-extern uint64_t CRATE_TOP_TEXTURE_BOSSKEY;
-
-extern uint64_t CRATE_SIDE_TEXTURE_DEFAULT;
-extern uint64_t CRATE_SIDE_TEXTURE_GOLD;
-extern uint64_t CRATE_SIDE_TEXTURE_WEB;
-extern uint64_t CRATE_SIDE_TEXTURE_BOSSKEY;
-
-extern uint64_t CRATE_PALETTE_DEFAULT;
-extern uint64_t CRATE_PALETTE_GOLD;
-extern uint64_t CRATE_PALETTE_SILVER;
-extern uint64_t CRATE_PALETTE_WEB;
-extern uint64_t CRATE_PALETTE_BOSSKEY;
 
 // Hacks the regular crate spawn collectible function to use more flag space
 // The additional flag info is stored in the actors dropFlag variable (unused by collectibles)
@@ -42,6 +21,22 @@ void ObjKibako2_SpawnCollectible_Hack(ObjKibako2 *this, z64_game_t *globalCtx)
         // spawned->actor.dropFlag |= (extendedCollectibleFlag << 1) & 0xFE;
     }
 }
+
+extern uint64_t CRATE_TOP_TEXTURE_DEFAULT;
+extern uint64_t CRATE_TOP_TEXTURE_GOLD;
+extern uint64_t CRATE_TOP_TEXTURE_WEB;
+extern uint64_t CRATE_TOP_TEXTURE_BOSSKEY;
+
+extern uint64_t CRATE_SIDE_TEXTURE_DEFAULT;
+extern uint64_t CRATE_SIDE_TEXTURE_GOLD;
+extern uint64_t CRATE_SIDE_TEXTURE_WEB;
+extern uint64_t CRATE_SIDE_TEXTURE_BOSSKEY;
+
+extern uint64_t CRATE_PALETTE_DEFAULT;
+extern uint64_t CRATE_PALETTE_GOLD;
+extern uint64_t CRATE_PALETTE_SILVER;
+extern uint64_t CRATE_PALETTE_WEB;
+extern uint64_t CRATE_PALETTE_BOSSKEY;
 
 override_t get_crate_override(z64_actor_t *actor, z64_game_t *game)
 {
@@ -63,41 +58,41 @@ override_t get_crate_override(z64_actor_t *actor, z64_game_t *game)
 void ObjKibako2_Draw(z64_actor_t *actor, z64_game_t *game)
 {
     // get original palette and textures
-    uint64_t *palette = CRATE_PALETTE;
-    uint64_t *top_texture = CRATE_TOP_TEXTURE;
-    uint64_t *side_texture = CRATE_SIDE_TEXTURE;
+    uint64_t *palette = &CRATE_PALETTE_DEFAULT;
+    uint64_t *top_texture = &CRATE_TOP_TEXTURE_DEFAULT;
+    uint64_t *side_texture = &CRATE_SIDE_TEXTURE_DEFAULT;
 
-    // // get override palette and textures
-    // override_t crate_override = get_crate_override(actor, game);
-    // if (POTCRATE_TEXTURES_MATCH_CONTENTS && crate_override.key.all != 0)
-    // {
-    //     uint16_t item_id = resolve_upgrades(crate_override.value.item_id);
-    //     item_row_t *row = get_item_row(item_id);
-    //     if (row->chest_type == GILDED_CHEST)
-    //     {
-    //         palette = &CRATE_PALETTE_GOLD;
-    //         top_texture = &CRATE_TOP_TEXTURE_GOLD;
-    //         side_texture = &CRATE_SIDE_TEXTURE_GOLD;
-    //     }
-    //     else if (row->chest_type == SILVER_CHEST)
-    //     {
-    //         palette = &CRATE_PALETTE_SILVER;
-    //         top_texture = &CRATE_TOP_TEXTURE_GOLD;
-    //         side_texture = &CRATE_SIDE_TEXTURE_GOLD;
-    //     }
-    //     else if (row->chest_type == GOLD_CHEST)
-    //     {
-    //         palette = &CRATE_PALETTE_BOSSKEY;
-    //         top_texture = &CRATE_TOP_TEXTURE_BOSSKEY;
-    //         side_texture = &CRATE_SIDE_TEXTURE_BOSSKEY;
-    //     }
-    //     else if (row->chest_type == SKULL_CHEST_SMALL || row->chest_type == SKULL_CHEST_BIG)
-    //     {
-    //         palette = &CRATE_PALETTE_WEB;
-    //         top_texture = &CRATE_TOP_TEXTURE_WEB;
-    //         side_texture = &CRATE_SIDE_TEXTURE_WEB;
-    //     }
-    // }
+    // get override palette and textures
+    override_t crate_override = get_crate_override(actor, game);
+    if (POTCRATE_TEXTURES_MATCH_CONTENTS && crate_override.key.all != 0)
+    {
+        uint16_t item_id = resolve_upgrades(crate_override.value.item_id);
+        item_row_t *row = get_item_row(item_id);
+        if (row->chest_type == GILDED_CHEST)
+        {
+            palette = &CRATE_PALETTE_GOLD;
+            top_texture = &CRATE_TOP_TEXTURE_GOLD;
+            side_texture = &CRATE_SIDE_TEXTURE_GOLD;
+        }
+        else if (row->chest_type == SILVER_CHEST)
+        {
+            palette = &CRATE_PALETTE_SILVER;
+            top_texture = &CRATE_TOP_TEXTURE_GOLD;
+            side_texture = &CRATE_SIDE_TEXTURE_GOLD;
+        }
+        else if (row->chest_type == GOLD_CHEST)
+        {
+            palette = &CRATE_PALETTE_BOSSKEY;
+            top_texture = &CRATE_TOP_TEXTURE_BOSSKEY;
+            side_texture = &CRATE_SIDE_TEXTURE_BOSSKEY;
+        }
+        else if (row->chest_type == SKULL_CHEST_SMALL || row->chest_type == SKULL_CHEST_BIG)
+        {
+            palette = &CRATE_PALETTE_WEB;
+            top_texture = &CRATE_TOP_TEXTURE_WEB;
+            side_texture = &CRATE_SIDE_TEXTURE_WEB;
+        }
+    }
 
     // push custom dlists (that set the palette and textures) to segment 09
     z64_gfx_t *gfx = game->common.gfx;
@@ -108,6 +103,7 @@ void ObjKibako2_Draw(z64_actor_t *actor, z64_game_t *game)
     gSPEndDisplayList(gfx->poly_opa.d + 3);
     gDPSetTextureImage(gfx->poly_opa.d + 4, G_IM_FMT_CI, G_IM_SIZ_8b, 1, side_texture);
     gSPEndDisplayList(gfx->poly_opa.d + 5);
+
     gMoveWd(gfx->poly_opa.p++, G_MW_SEGMENT, 9 * sizeof(int), gfx->poly_opa.d);
 
     // draw the original dlist that has been hacked in ASM to jump to the custom dlists
