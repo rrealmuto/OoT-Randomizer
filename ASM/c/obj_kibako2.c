@@ -108,6 +108,7 @@ void ObjKibako2_Draw(z64_actor_t *actor, z64_game_t *game)
     gSPEndDisplayList(gfx->poly_opa.d + 3);
     gDPSetTextureImage(gfx->poly_opa.d + 4, G_IM_FMT_CI, G_IM_SIZ_8b, 1, side_texture);
     gSPEndDisplayList(gfx->poly_opa.d + 5);
+    gMoveWd(gfx->poly_opa.p++, G_MW_SEGMENT, 9 * sizeof(int), gfx->poly_opa.d);
 
     // draw the original dlist that has been hacked in ASM to jump to the custom dlists
     z64_Gfx_DrawDListOpa(game, CRATE_DLIST);
