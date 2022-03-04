@@ -1523,6 +1523,30 @@ typedef enum {
     /* 0xFF */ ITEM_NONE = 0xFF
 } ItemID;
 
+typedef struct EnGSwitch
+{
+  /* 0x0000 */ z64_actor_t actor;
+  /* 0x014C */ void *actionFunc;   // EnGSwitchActionFunc
+  /* 0x0150 */ int16_t type;
+  /* 0x0152 */ int16_t silverCount;
+  /* 0x0154 */ int16_t switchFlag;
+  /* 0x0156 */ int16_t killTimer;
+  /* 0x0158 */ int16_t colorIdx;
+  /* 0x015A */ int16_t broken;
+  /* 0x015C */ int16_t numEffects;
+  /* 0x015E */ int16_t objId;
+  /* 0x0160 */ int16_t index;      // first or second rupee in two-rupee patterns
+  /* 0x0162 */ int16_t delayTimer; // delay between the two blue rupees appearing
+  /* 0x0164 */ int16_t waitTimer;  // time rupee waits before retreating
+  /* 0x0166 */ int16_t moveMode;   // Type of movement in the shooting gallery
+  /* 0x0168 */ int16_t moveState;  // Appear or retreat (for blue rupees and the stationary green one)
+  /* 0x016A */ int16_t noteIndex;
+  /* 0x016C */ z64_xyzf_t targetPos;
+  /* 0x0178 */ int8_t objIndex;
+  /* 0x017C */ uint8_t collider[0x4C];  // ColliderCylinder
+  /* 0x01C8 */ uint8_t effects[0x1130]; // EnGSwitchEffect[100]
+} EnGSwitch; // size = 0x12F8
+
 /* helper macros */
 #define LINK_IS_ADULT (z64_file.link_age == 0)
 #define SLOT(item) gItemSlots[item]
@@ -1590,6 +1614,7 @@ typedef enum {
 #define z64_bzero_addr                          0x80002E80
 #define z64_Item_DropCollectible_addr           0x80013678
 #define z64_Item_DropCollectible2_addr          0x800138B0
+#define z64_Gfx_DrawDListOpa_addr               0x80028048
 
 /* rom addresses */
 #define z64_icon_item_static_vaddr              0x007BD000
@@ -1652,6 +1677,7 @@ typedef void (*SsSram_ReadWrite_proc)(uint32_t addr, void* dramAddr, size_t size
 typedef void* (*z64_memcopy_proc)(void* dest, void* src, uint32_t size);
 typedef void (*z64_bzero_proc)(void* __s, uint32_t __n);
 typedef EnItem00* (*z64_Item_DropCollectible_proc)(z64_game_t* globalCtx, z64_xyzf_t* spawnPos, int16_t params);
+typedef void (*z64_Gfx_DrawDListOpa_proc)(z64_game_t *game, z64_gfx_t *dlist);
 
 /* data */
 #define z64_file_mq             (*(OSMesgQueue*)      z64_file_mq_addr)
@@ -1719,4 +1745,5 @@ typedef EnItem00* (*z64_Item_DropCollectible_proc)(z64_game_t* globalCtx, z64_xy
 #define z64_bzero ((z64_bzero_proc)z64_bzero_addr)
 #define z64_Item_DropCollectible ((z64_Item_DropCollectible_proc)z64_Item_DropCollectible_addr)
 #define z64_Item_DropCollectible2 ((z64_Item_DropCollectible_proc)z64_Item_DropCollectible2_addr)
+#define z64_Gfx_DrawDListOpa ((z64_Gfx_DrawDListOpa_proc)z64_Gfx_DrawDListOpa_addr)
 #endif

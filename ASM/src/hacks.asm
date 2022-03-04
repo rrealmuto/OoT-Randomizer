@@ -1592,20 +1592,24 @@ skip_GS_BGS_text:
 ; Draw Pot Textures
 ;==================================================================================================
 
-; makes instructions in address range [DE8A04, DE8A40) unused
+; replaces ObjTsubo_Draw
 .org 0xDE89FC
     j   draw_pot_hack
     nop
 
+; replaces EnGSwitch_DrawPot
+.orga 0xDF3FC0
+    j   draw_hba_pot_hack
+    nop
+
+; replaces EnTuboTrap_Draw
 .orga 0xDFAFC4
     j   draw_flying_pot_hack
     nop
 
-; set pot side texture
 .org 0xF6D000 + 0x17870 + 0x18 ; gameplay_dangeon_keep file start + dlist offset + gDPSetTextureImage offset
 .word   0xDE000000, 0x09000000 ; jump to the custom dlist at segment 09
 
-; todo fix this offset
 .org 0xF6D000 + 0x17870 + 0x138 ; gameplay_dangeon_keep file start + dlist offset + gDPSetTextureImage offset
 .word   0xDE000000, 0x09000000 ; jump to the custom dlist at segment 09
 
