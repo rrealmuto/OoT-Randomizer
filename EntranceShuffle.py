@@ -46,6 +46,10 @@ def assume_entrance_pool(entrance_pool):
 
 
 def build_one_way_targets(world, types_to_include, exclude=(), target_region_names=()):
+    if world.settings.open_forest == 'closed':
+        # The logic assumes that this entrance places Link outside the circle on which the Kokiri boy moves,
+        # but this is not the case if you spawn or warp here.
+        exclude = ('LW Bridge -> Kokiri Forest', *exclude)
     one_way_entrances = []
     for pool_type in types_to_include:
         one_way_entrances += world.get_shufflable_entrances(type=pool_type)
@@ -400,8 +404,8 @@ def shuffle_random_entrances(worlds):
             entrance_pools['Dungeon'] = world.get_shufflable_entrances(type='Dungeon', only_primary=True)
             # The fill algorithm will already make sure gohma is reachable, however it can end up putting
             # a forest escape via the hands of spirit on Deku leading to Deku on spirit in logic. This is
-            # not really a closed forest anymore, so specifically remove Deku Tree from closed forest.
-            if worlds[0].settings.open_forest == 'closed':
+            # contrary to the idea of Require Gohma, so specifically place Deku Tree in its vanilla location.
+            if worlds[0].settings.logic_require_gohma:
                 entrance_pools['Dungeon'].remove(world.get_entrance('KF Outside Deku Tree -> Deku Tree Lobby'))
 
         if worlds[0].shuffle_interior_entrances:

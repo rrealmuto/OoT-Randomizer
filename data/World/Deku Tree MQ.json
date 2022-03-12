@@ -87,17 +87,11 @@
         "dungeon": "Deku Tree",
         "locations": {
             "Deku Tree MQ Deku Scrub": "can_stun_deku",
-            "Deku Tree Queen Gohma Heart": "
-                ((here(has_fire_source_with_torch) and here(has_shield)) or
-                deku_tree_shortcuts) and
-                (is_adult or Kokiri_Sword or Sticks)",
-            "Queen Gohma": "
-                ((here(has_fire_source_with_torch) and here(has_shield)) or
-                deku_tree_shortcuts) and
-                (is_adult or Kokiri_Sword or Sticks)"
+            "Deku Tree Queen Gohma Heart": "Defeat_Gohma",
+            "Queen Gohma": "Defeat_Gohma"
         },
         "events": {
-            "Deku Tree Clear": "
+            "Defeat Gohma": "
                 ((here(has_fire_source_with_torch) and here(has_shield)) or
                 deku_tree_shortcuts) and
                 (is_adult or Kokiri_Sword or Sticks)"
