@@ -297,6 +297,12 @@ class Settings:
 
     # add the settings as fields, and calculate information based on them
     def __init__(self, settings_dict, strict=False):
+        if settings_dict.get('compress_rom', None):
+            # Old compress_rom setting is set, so set the individual output settings using it.
+            settings_dict['create_patch_file'] = settings_dict['compress_rom'] == 'Patch' or settings_dict.get('create_patch_file', False)
+            settings_dict['create_compressed_rom'] = settings_dict['compress_rom'] == 'True' or settings_dict.get('create_compressed_rom', False)
+            settings_dict['create_uncompressed_rom'] = settings_dict['compress_rom'] == 'False' or settings_dict.get('create_uncompressed_rom', False)
+            del settings_dict['compress_rom']
         if strict:
             validate_settings(settings_dict)
         self.__dict__.update(settings_dict)

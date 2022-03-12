@@ -1164,11 +1164,6 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         rom.write_byte(rom.sym('COMPLETE_MASK_QUEST'), 1)
 
     if world.settings.skip_child_zelda:
-        save_context.give_item('Zeldas Letter')
-        for w in spoiler.worlds:
-            item = w.get_location('Song from Impa').item
-            if world.id == item.world.id:
-                save_context.give_raw_item(item.name)
         save_context.write_bits(0x0ED7, 0x04) # "Obtained Malon's Item"
         save_context.write_bits(0x0ED7, 0x08) # "Woke Talon in castle"
         save_context.write_bits(0x0ED7, 0x10) # "Talon has fled castle"
@@ -1602,20 +1597,17 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
                 rom.write_byte(0x2000FED, special['text_id']) #Fix text box
             elif location.name == 'Sheik at Colossus':
                 rom.write_byte(0x218C589, special['text_id']) #Fix text box
-        elif location.type == 'Boss':
-            if location.name == 'Links Pocket':
-                save_context.give_item(item.name)
-            else:
-                rom.write_byte(locationaddress, special['item_id'])
-                rom.write_byte(secondaryaddress, special['addr2_data'])
-                bit_mask_hi = special['bit_mask'] >> 16
-                bit_mask_lo = special['bit_mask'] & 0xFFFF
-                if location.name == 'Bongo Bongo':
-                    rom.write_int16(0xCA3F32, bit_mask_hi)
-                    rom.write_int16(0xCA3F36, bit_mask_lo)
-                elif location.name == 'Twinrova':
-                    rom.write_int16(0xCA3EA2, bit_mask_hi)
-                    rom.write_int16(0xCA3EA6, bit_mask_lo)
+        elif location.type == 'Boss' and location.name != 'Links Pocket':
+            rom.write_byte(locationaddress, special['item_id'])
+            rom.write_byte(secondaryaddress, special['addr2_data'])
+            bit_mask_hi = special['bit_mask'] >> 16
+            bit_mask_lo = special['bit_mask'] & 0xFFFF
+            if location.name == 'Bongo Bongo':
+                rom.write_int16(0xCA3F32, bit_mask_hi)
+                rom.write_int16(0xCA3F36, bit_mask_lo)
+            elif location.name == 'Twinrova':
+                rom.write_int16(0xCA3EA2, bit_mask_hi)
+                rom.write_int16(0xCA3EA6, bit_mask_lo)
 
     # add a cheaper bombchu pack to the bombchu shop
     # describe
@@ -1905,7 +1897,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
                 else:
                     map_message = "\x13\x76\x08You found the \x05\x41Dungeon Map\x05\x40\x01for %s\x05\x40!\x01It\'s %s!\x09" % (dungeon_name, "masterful" if world.dungeon_mq[dungeon] else "ordinary")
 
-                if world.settings.mq_dungeons_random or world.settings.mq_dungeons != 0 and world.settings.mq_dungeons != 12:
+                if world.settings.mq_dungeons_mode == 'random' or world.settings.mq_dungeons_count != 0 and world.settings.mq_dungeons_count != 12:
                     update_message_by_id(messages, map_id, map_message)
             else:
                 dungeon_name, boss_name, compass_id, map_id = dungeon_list[dungeon]
@@ -1915,7 +1907,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
                 else:
                     compass_message = "\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for %s\x05\x40!\x01It holds the %s!\x09" % (dungeon_name, dungeon_reward)
                 update_message_by_id(messages, compass_id, compass_message)
-                if world.settings.mq_dungeons_random or world.settings.mq_dungeons != 0 and world.settings.mq_dungeons != 12:
+                if world.settings.mq_dungeons_mode == 'random' or world.settings.mq_dungeons_count != 0 and world.settings.mq_dungeons_count != 12:
                     if world.settings.world_count > 1:
                         map_message = "\x13\x76\x08\x05\x42\x0F\x05\x40 found the \x05\x41Dungeon Map\x05\x40\x01for %s\x05\x40!\x09" % (dungeon_name)
                     else:
@@ -2028,6 +2020,10 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         symbol = rom.sym('FAST_BUNNY_HOOD_ENABLED')
         rom.write_byte(symbol, 0x01)
 
+    # Have the Gold Skulltula Count in the pause menu turn red when equal to the
+    # available number of skulls in the world instead of 100.
+    rom.write_int16(0xBB340E, world.available_tokens)
+
     replace_songs(world, rom,
         frog=world.settings.ocarina_songs in ('frog', 'all'),
         warp=world.settings.ocarina_songs in ('warp', 'all'),
@@ -2095,7 +2091,7 @@ def get_override_entry(location):
     else:
         looks_like_item_id = 0
 
-    if location.type in ['NPC', 'BossHeart']:
+    if location.type in ['NPC', 'Scrub', 'BossHeart']:
         type = 0
     elif location.type == 'Chest':
         type = 1
@@ -2106,7 +2102,7 @@ def get_override_entry(location):
         type = 3
     elif location.type == 'Shop' and location.item.type != 'Shop':
         type = 0
-    elif location.type == 'GrottoNPC' and location.item.type != 'Shop':
+    elif location.type == 'GrottoScrub' and location.item.type != 'Shop':
         type = 4
     elif location.type in ['Song', 'Cutscene']:
         type = 5
@@ -2431,7 +2427,7 @@ def boss_reward_index(world, boss_name):
 
 
 def configure_dungeon_info(rom, world):
-    mq_enable = (world.settings.mq_dungeons_random or world.settings.mq_dungeons != 0 and world.settings.mq_dungeons != 12)
+    mq_enable = (world.settings.mq_dungeons_mode == 'random' or world.settings.mq_dungeons_count != 0 and world.settings.mq_dungeons_count != 12)
     enhance_map_compass = world.settings.enhance_map_compass
 
     bosses = ['Queen Gohma', 'King Dodongo', 'Barinade', 'Phantom Ganon',

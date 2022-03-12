@@ -1,22 +1,14 @@
 class Dungeon(object):
 
-    def __init__(self, world, name, hint, font_color, boss_key, small_keys, dungeon_items):
-        def to_array(obj):
-            if obj == None:
-                return []
-            if isinstance(obj, list):
-                return obj
-            else:
-                return [obj]
-
+    def __init__(self, world, name, hint, font_color, boss_key=None, small_keys=None, dungeon_items=None):
         self.world = world
         self.name = name
         self.hint = hint
         self.font_color = font_color
         self.regions = []
-        self.boss_key = to_array(boss_key)
-        self.small_keys = to_array(small_keys)
-        self.dungeon_items = to_array(dungeon_items)
+        self.boss_key = boss_key if boss_key is not None else []
+        self.small_keys = small_keys if small_keys is not None else []
+        self.dungeon_items = dungeon_items if dungeon_items is not None else []
 
         for region in world.regions:
             if region.dungeon == self.name:
@@ -42,6 +34,10 @@ class Dungeon(object):
     @property
     def all_items(self):
         return self.dungeon_items + self.keys
+
+
+    def item_name(self, text):
+        return f"{text} ({self.name})"
 
 
     def is_dungeon_item(self, item):

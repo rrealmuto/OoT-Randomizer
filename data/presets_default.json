@@ -828,8 +828,7 @@
     "spawn_positions": "off",
     "bombchus_in_logic": false,
     "one_item_per_dungeon": false,
-    "mq_dungeons_random": false,
-    "mq_dungeons": 0,
+    "mq_dungeons_mode": "vanilla",
     "shuffle_song_items": "song",
     "shopsanity": "off",
     "tokensanity": "off",
@@ -954,8 +953,7 @@
     "shuffle_ganon_bosskey":                   "remove",
     "lacs_condition":                          "vanilla",
     "enhance_map_compass":                     false,
-    "mq_dungeons_random":                      false,
-    "mq_dungeons":                             0,
+    "mq_dungeons_mode":                        "vanilla",
     "disabled_locations":                      [
       "Deku Theater Mask of Truth"
     ],
@@ -1067,8 +1065,7 @@
     "shuffle_ganon_bosskey":                   "remove",
     "lacs_condition":                          "vanilla",
     "enhance_map_compass":                     false,
-    "mq_dungeons_random":                      false,
-    "mq_dungeons":                             0,
+    "mq_dungeons_mode":                        "vanilla",
     "disabled_locations":                      [
       "Deku Theater Mask of Truth"
     ],
@@ -1179,8 +1176,7 @@
     "shuffle_ganon_bosskey":                   "medallions",
     "ganon_bosskey_medallions":                5,
     "enhance_map_compass":                     false,
-    "mq_dungeons_random":                      false,
-    "mq_dungeons":                             0,
+    "mq_dungeons_mode":                        "vanilla",
     "disabled_locations":                      [
       "Deku Theater Mask of Truth"
     ],
@@ -1253,8 +1249,7 @@
     "triforce_goal_per_world": 20,
     "bombchus_in_logic": false,
     "one_item_per_dungeon": false,
-    "mq_dungeons_random": false,
-    "mq_dungeons": 0,
+    "mq_dungeons_mode": "vanilla",
     "shuffle_song_items": "song",
     "shopsanity": "off",
     "tokensanity": "off",
@@ -1402,8 +1397,7 @@
     "shuffle_ganon_bosskey":                   "medallions",
     "ganon_bosskey_medallions":                6,
     "enhance_map_compass":                     true,
-    "mq_dungeons_random":                      false,
-    "mq_dungeons":                             0,
+    "mq_dungeons_mode":                        "vanilla",
     "disabled_locations":                      [
       "Deku Theater Mask of Truth",
       "Kak 40 Gold Skulltula Reward",
@@ -1480,8 +1474,7 @@
     "spawn_positions": "full",
     "bombchus_in_logic": true,
     "one_item_per_dungeon": false,
-    "mq_dungeons_random": true,
-    "mq_dungeons": 0,
+    "mq_dungeons_mode": "random",
     "shuffle_song_items": "any",
     "shopsanity": "0",
     "tokensanity": "all",
@@ -1744,8 +1737,7 @@
     "shuffle_bosskeys":                        "dungeon",
     "shuffle_ganon_bosskey":                   "dungeon",
     "enhance_map_compass":                     false,
-    "mq_dungeons_random":                      false,
-    "mq_dungeons":                             0,
+    "mq_dungeons_mode":                        "vanilla",
     "disabled_locations":                      [
       "Deku Theater Mask of Truth",
       "ZR Frogs Ocarina Game",
@@ -1846,8 +1838,7 @@
     "shuffle_ganon_bosskey":                   "remove",
     "lacs_condition":                          "vanilla",
     "enhance_map_compass":                     false,
-    "mq_dungeons_random":                      false,
-    "mq_dungeons":                             0,
+    "mq_dungeons_mode":                        "vanilla",
     "disabled_locations":                      [
       "Deku Theater Mask of Truth"
     ],
@@ -1950,8 +1941,7 @@
     "shuffle_ganon_bosskey":                   "medallions",
     "ganon_bosskey_medallions":                6, 
     "enhance_map_compass":                     false,
-    "mq_dungeons_random":                      false,
-    "mq_dungeons":                             0,
+    "mq_dungeons_mode":                        "vanilla",
     "disabled_locations":                      [
       "Deku Theater Mask of Truth",
       "Kak 40 Gold Skulltula Reward",

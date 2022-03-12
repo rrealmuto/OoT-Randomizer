@@ -8,15 +8,15 @@ Instead, you can open an issue on this fork [here](https://github.com/fenhl/OoT-
 
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
-* Changes in Dev not yet in Dev-R:
+* Changes in Dev not yet in Dev-R, including:
   * The `League` preset has been updated for League Season 2 ([#1512](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1512))
+  * The “Randomize Ocarina Song Notes” setting has new options “Frog Songs Only” and “Warp Songs Only” ([#1423](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1423))
+  * New “Triforces Per World” setting ([#1403](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1403))
 * The “Mix Entrance Pools” setting has new options to allow individually selecting entrance pools to be mixed ([Dev-R #67](https://github.com/Roman971/OoT-Randomizer/pull/67))
 * New settings to require heart containers for the rainbow bridge, LACS (for plando), and/or Ganon's boss key ([#1517](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1517))
 * New “One Bonk KO” setting ([#1503](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1503))
 * The convenience patch for floor switches now applies to more MQ switches ([#1459](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1459))
-* The “Randomize Ocarina Song Notes” setting has new options “Frog Songs Only” and “Warp Songs Only” ([#1423](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1423))
 * Automatically advances credits text (based on [#1412](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1412))
-* New “Triforces Per World” setting ([#1403](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1403/files))
 * New “Full” options for the “Randomize Owl Drops”, “Randomize Warp Song Destinations”, and “Randomize Overworld Spawns” settings that include more types of entrances (based on [#1179](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1179) and [#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
 * New “Show seed info on file screen” and “User-configurable message” settings ([#1253](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1253))
 * New hidden “Generate Vanilla Seed” setting (used for `vanilla` and `fast-vanilla` presets)
@@ -139,30 +139,39 @@ do that.
   * New cosmetic setting `Disable Battle Music` turns off the battle music from being near enemies, allowing the background music to continue uninterrupted.
   * New setting `Plant Magic Beans` automatically plants all the Magic Beans from the start.
   * New setting `Key Rings` which can be enabled per-dungeon to replace all of its individual Small Keys into a singular Small Key Ring containing all the small keys for that dungeon.
+  * Setting `Randomize Ocarina Song Notes` can now be set to either "row" of songs individually, i.e. "Frog Songs" or "Warp Songs", in additional to the "Off" and "All Songs" options.
+  * MQ Dungeon settings have been replaced with `MQ Dungeons Mode` which allows finer selection of which dungeons are MQ, or how many are at random.
 
 * **Gameplay**
   * Shortened the animation for equipping magic arrows.
 
 
 #### Bug fixes
-  * Return the color of the "OK" and "No" options of the warp song prompts to their correct colors in Warp Song Shuffle.
-  * Horseback Archery will no longer delay ending based on the fanfare.
-  * Prevent Dead Hand from spawning outside the room collision.
-  * Magic arrows equipped as adult no longer revert to the Bow after traveling through time to child and back.
-  * Rainbow Bridge set to vanilla no longer spawns without Light Arrows.
-  * Fix MQ Shadow Temple making use of shared flags.
-  * Fix MQ Fire Temple missing the Hammer chest from the map and minimap.
-  * Add correct default Goals for Ganon's Boss Key when Light Arrow Cutscene is non-vanilla.
-  * Fix a softlock caused by 8-note Sun's Songs when using `Randomize Ocarina Song Notes`.
-  * Fix slow text when acquiring certain items (Hookshot, Bombchus, etc.)
-  * Using Farore's Wind as both ages should no longer result in the wrong temporary flags being loaded.
+* Return the color of the "OK" and "No" options of the warp song prompts to their correct colors in Warp Song Shuffle.
+* Horseback Archery will no longer delay ending based on the fanfare.
+* Prevent Dead Hand from spawning outside the room collision.
+* Magic arrows equipped as adult no longer revert to the Bow after traveling through time to child and back.
+* Rainbow Bridge set to vanilla no longer spawns without Light Arrows.
+* Fix MQ Shadow Temple making use of shared flags.
+* Fix MQ Fire Temple missing the Hammer chest from the map and minimap.
+* Add correct default Goals for Ganon's Boss Key when Light Arrow Cutscene is non-vanilla.
+* Fix a softlock caused by 8-note Sun's Songs when using `Randomize Ocarina Song Notes`.
+* Fix slow text when acquiring certain items (Hookshot, Bombchus, etc.)
+* Using Farore's Wind as both ages should no longer result in the wrong temporary flags being loaded.
+* Fixed issues where `Skip Child Zelda` could give a weapon with no ammo or overwrite starting Triforce Pieces.
 
 #### Other changes
-  * Added an auto-tracker context area to memory, so auto-trackers can find certain symbols much easier.
-  * Improve some error messages when running the generator.
-  * Fix logic parser shortcuts not working right in newer Python versions.
-  * `Goron Bracelet` is no longer greyed out as adult on the Equipment subscreen of the pause menu.
-  * Plandomizer: You can now specify an arbitrary 4-character hexadecimal text ID as a "Gossip Stone" to overwrite text in the game.
+* Added an auto-tracker context area to memory, so auto-trackers can find certain symbols much easier.
+* Improve some error messages when running the generator.
+* Fix logic parser shortcuts not working right in newer Python versions.
+* `Goron Bracelet` is no longer greyed out as adult on the Equipment subscreen of the pause menu.
+* Plandomizer
+  * You can now specify an arbitrary 4-character hexadecimal text ID as a "Gossip Stone" to overwrite text in the game.
+  * Adjusted how `starting_items` works in order to remove some redundancy. Spoiler output now includes a section `:skipped_locations` instead which is not used by Plandomizer.
+  * Gold Skulltula Token requirements can be increased above 100 (the pool must also have at least that many).
+* Triforce Hunt changes
+  * The number of Triforce pieces available per world, which was previously tied to the item pool setting, is now a separate setting.
+* Replaced old output option `compress_rom` with four separate options for outputting a patch file, compressed ROM, uncompressed ROM, and a WAD file.
 
 ### 6.2
 
@@ -355,8 +364,6 @@ do that.
   * Many locations that did not previously have item hints now have hints, in case a custom hint distribution makes use of them.
   * Using the hint distribution "Bingo" allows setting a "Bingosync URL" to build hints for the specific OoTR Bingo board. Otherwise it's a generic hint distribution for OoTR Bingo.
 * Hint distributions can configure groups of stones to all have the same hint, and can also disable stones from receiving useful hints (give them junk hints instead).
-* Triforce Hunt changes
-  * The number of Triforce pieces available per world, which was previously tied to the item pool setting, is now a separate setting.
 * Tournament hint distribution changes
   * Grotto stones are disabled and only provide junk hints.
   * Zelda's Lullaby is never considered for Way of the Hero hints.
