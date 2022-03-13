@@ -19,6 +19,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
 * The “Misc. Hints” setting is split into 3 toggles: Ganondorf, Temple of Time altar, and a new feature to disable warp song destination hints
 * New `chaos` hint distribution
 * New presets: `Standard Anti-Weekly Settings (S5)`, `allsanity-casual`, `debug`, `vanilla`, and `fast-vanilla`
+* The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
 
 Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):
 

@@ -147,7 +147,6 @@
           "col_span": 4,
           "row_span": [2,2,2],
           "settings": [
-            "randomize_settings",
             "logic_rules"
           ]
         },
