@@ -2097,31 +2097,6 @@ setting_infos = [
             'optional': True,
         },
     ),
-    Checkbutton(
-        name           = 'randomize_settings',
-        gui_text       = 'Randomize Main Rule Settings',
-        gui_tooltip    = '''\
-                         Randomizes all settings on the 'Main Rules' tab, except:
-
-                         - Logic Rules
-                         - (Random) Number of MQ Dungeons
-                         - Rainbow Bridge/LACS Requirements: Gold Skulltula Tokens
-                         - Variable numbers of Spiritual Stones, Medallions, or Dungeons
-                         for Rainbow Bridge and Ganon's Boss Key on LACS 
-                         (you will always be required to obtain all the relevant rewards)
-                         - Scrub Shuffle will either be "Off" or "On (Affordable)"
-                         ''',
-        default        = False,
-        disable        = {
-            True : {
-                'sections' : ['various_section', 'shuffle_section', 'shuffle_dungeon_section'],
-                'settings': ['starting_age', 'shuffle_interior_entrances', 'shuffle_grotto_entrances', 'shuffle_dungeon_entrances',
-                             'shuffle_overworld_entrances', 'mix_entrance_pools', 'decouple_entrances',
-                             'owl_drops', 'warp_songs', 'spawn_positions'],
-            }
-        },
-        shared         = True,
-    ),
     Combobox(
         name           = 'open_forest',
         gui_text       = 'Forest',
@@ -2478,9 +2453,9 @@ setting_infos = [
         disable        = {
             'glitchless': {'settings' : ['tricks_list_msg']},
             'glitched'  : {'settings' : ['allowed_tricks', 'shuffle_interior_entrances', 'shuffle_grotto_entrances',
-                                         'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'owl_drops', 'warp_songs',
-                                         'spawn_positions', 'mq_dungeons_random', 'mq_dungeons_specific', 'mq_dungeons_count', 'dungeon_shortcuts',
-                                         'deadly_bonks', 'mix_entrance_pools', 'decouple_entrances']},
+                                         'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'owl_drops', 'warp_songs', 'mix_entrance_pools', 'decouple_entrances',
+                                         'spawn_positions', 'mq_dungeons_mode', 'mq_dungeons_specific', 'mq_dungeons_count', 'dungeon_shortcuts',
+                                         'deadly_bonks']},
             'none'      : {'settings' : ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
         },
         shared         = True,

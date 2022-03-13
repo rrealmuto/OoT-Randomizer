@@ -1927,15 +1927,6 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         rom.write_int32s(0xEC69B0, [0x00000000, 0x00000000])
         rom.write_int32(0xEC6A10, 0x34020002) # li v0, 2
 
-    # Set Dungeon Reward Actor in Jabu Jabu to be accurate
-    # Vanilla and MQ Jabu Jabu addresses are the same for this object and actor
-    jabu_stone_object = world.get_location('Barinade').item.special['object_id']
-    rom.write_int16(0x277D068, jabu_stone_object)
-    rom.write_int16(0x277D168, jabu_stone_object)
-    jabu_stone_type = world.get_location('Barinade').item.special['actor_type']
-    rom.write_byte(0x277D0BB, jabu_stone_type)
-    rom.write_byte(0x277D19B, jabu_stone_type)
-
     # Set Dungeon Reward actors in Jabu Jabu to be accurate
     jabu_actor_type = world.get_location('Barinade').item.special['actor_type']
     set_jabu_stone_actors(rom, jabu_actor_type)

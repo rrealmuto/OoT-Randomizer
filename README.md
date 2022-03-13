@@ -8,10 +8,6 @@ Instead, you can open an issue on this fork [here](https://github.com/fenhl/OoT-
 
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
-* Changes in Dev not yet in Dev-R, including:
-  * The `League` preset has been updated for League Season 2 ([#1512](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1512))
-  * The “Randomize Ocarina Song Notes” setting has new options “Frog Songs Only” and “Warp Songs Only” ([#1423](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1423))
-  * New “Triforces Per World” setting ([#1403](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1403))
 * The “Mix Entrance Pools” setting has new options to allow individually selecting entrance pools to be mixed ([Dev-R #67](https://github.com/Roman971/OoT-Randomizer/pull/67))
 * New settings to require heart containers for the rainbow bridge, LACS (for plando), and/or Ganon's boss key ([#1517](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1517))
 * New “One Bonk KO” setting ([#1503](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1503))
