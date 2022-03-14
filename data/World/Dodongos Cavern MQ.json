@@ -16,6 +16,12 @@
             "Dodongos Cavern MQ Map Chest": "can_blast_or_smash or Progressive_Strength_Upgrade",
             "Dodongos Cavern MQ Deku Scrub Lobby Rear": "can_stun_deku",
             "Dodongos Cavern MQ Deku Scrub Lobby Front": "can_stun_deku",
+            "Dodongos Cavern Lizalfos Hidden Recovery Heart" : "
+                is_adult or 
+                    (can_use(Slingshot) and
+                        (can_use(explosives) or 
+                        Progressive_Strength_Upgrade or
+                        can_use(Dins_Fire)))",
             "Dodongos Cavern Gossip Stone": "here(can_blast_or_smash or Progressive_Strength_Upgrade)",
             "Gossip Stone Fairy": "
                 (can_blast_or_smash or Progressive_Strength_Upgrade) and
@@ -42,7 +48,61 @@
                 can_play(Song_of_Time) and (can_child_attack or is_adult)",
             "Dodongos Cavern MQ GS Larvae Room": "can_use(Sticks) or has_fire_source",
             "Dodongos Cavern MQ GS Lizalfos Room": "can_blast_or_smash",
-            "Dodongos Cavern MQ Deku Scrub Staircase": "can_stun_deku"
+            "Dodongos Cavern MQ Deku Scrub Staircase": "can_stun_deku",
+            "Dodongos Cavern MQ Block Room Recovery Heart": "can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire)",
+            "Dodongos Cavern MQ Staircase Room Pot 1": "True",
+            "Dodongos Cavern MQ Staircase Room Pot 2": "True",
+            "Dodongos Cavern MQ Staircase Room Pot 3": "True",
+            "Dodongos Cavern MQ Staircase Room Pot 4": "True",
+            "Dodongos Cavern MQ Upper Lizalfos Pot 1": "
+                can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or 
+                (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
+            "Dodongos Cavern MQ Upper Lizalfos Pot 2": "
+                can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or 
+                (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
+            "Dodongos Cavern MQ Upper Lizalfos Pot 3": "
+                can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or 
+                (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
+            "Dodongos Cavern MQ Upper Lizalfos Pot 4": "
+                can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or 
+                (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
+            "Dodongos Cavern MQ 3 Torch Room Pot 1": "
+                can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or 
+                (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
+            "Dodongos Cavern MQ 3 Torch Room Pot 2": "
+                can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or 
+                (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
+            "Dodongos Cavern MQ Before Upper Lizalfos Pot 1": "
+                can_blast_or_smash or can_use(Sticks) or has_fire_source or 
+                (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
+            "Dodongos Cavern MQ Before Upper Lizalfos Pot 2": "
+                can_blast_or_smash or can_use(Sticks) or has_fire_source or 
+                (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
+            "Dodongos Cavern MQ After Upper Lizalfos Pot 1": "
+                can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or 
+                (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
+            "Dodongos Cavern MQ After Upper Lizalfos Pot 2": "
+                can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or 
+                (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
+            "Dodongos Cavern MQ Staircase Crate Bottom Left": "True",
+            "Dodongos Cavern MQ Staircase Crate Bottom Right": "True",
+            #whatever was used to destroy the boulder to activate the elevator can be used to access the top of the staircase
+            "Dodongos Cavern MQ Staircase Crate Mid Left": "True",
+            "Dodongos Cavern MQ Staircase Crate Mid Right": "True",
+            "Dodongos Cavern MQ Staircase Crate Top Left": "True",
+            "Dodongos Cavern MQ Staircase Crate Top Right": "True",
+            "Dodongos Cavern MQ Larvae Room Crate 1": "can_use(Sticks) or has_fire_source",
+            "Dodongos Cavern MQ Larvae Room Crate 2": "can_use(Sticks) or has_fire_source",
+            "Dodongos Cavern MQ Larvae Room Crate 3": "can_use(Sticks) or has_fire_source",
+            "Dodongos Cavern MQ Larvae Room Crate 4": "can_use(Sticks) or has_fire_source",
+            "Dodongos Cavern MQ Larvae Room Crate 5": "can_use(Sticks) or has_fire_source",
+            "Dodongos Cavern MQ Larvae Room Crate 6": "can_use(Sticks) or has_fire_source",
+            "Dodongos Cavern MQ After Upper Lizalfos Crate 1": "
+                can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or 
+                (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
+            "Dodongos Cavern MQ After Upper Lizalfos Crate 2": "
+                can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or 
+                (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))"
         },
         "exits": {
             "Dodongos Cavern Lower Right Side": "
@@ -64,7 +124,11 @@
         "dungeon": "Dodongos Cavern",
         "locations": {
             "Dodongos Cavern MQ Deku Scrub Side Room Near Lower Lizalfos": "
-                (can_blast_or_smash or Progressive_Strength_Upgrade) and can_stun_deku"
+                (can_blast_or_smash or Progressive_Strength_Upgrade) and can_stun_deku",
+            "Dodongos Cavern MQ Right Side Pot 1": "True",
+            "Dodongos Cavern MQ Right Side Pot 2": "True",
+            "Dodongos Cavern MQ Right Side Pot 3": "True",
+            "Dodongos Cavern MQ Right Side Pot 4": "True"
         },
         "exits": {
             "Dodongos Cavern Bomb Bag Area": "
@@ -81,7 +145,19 @@
             "Dodongos Cavern MQ GS Scrub Room": "
                 (here(can_use(Bow)) or Progressive_Strength_Upgrade or
                     can_use(Dins_Fire) or has_explosives) and
-                (can_use(Hookshot) or can_use(Boomerang))"
+                (can_use(Hookshot) or can_use(Boomerang))",
+            "Dodongos Cavern MQ Poes Room Pot 1": "True",
+            "Dodongos Cavern MQ Poes Room Pot 2": "True",
+            "Dodongos Cavern MQ Poes Room Pot 3": "True",
+            "Dodongos Cavern MQ Poes Room Pot 4": "True",
+            "Dodongos Cavern MQ Poes Room Crate 1": "True",
+            "Dodongos Cavern MQ Poes Room Crate 2": "True",
+            "Dodongos Cavern MQ Poes Room Crate 3": "True",
+            "Dodongos Cavern MQ Poes Room Crate 4": "True",
+            "Dodongos Cavern MQ Poes Room Crate 5": "True",
+            "Dodongos Cavern MQ Poes Room Crate 6": "True",
+            "Dodongos Cavern MQ Poes Room Crate 7": "True",
+            "Dodongos Cavern MQ Poes Room Crate 8": "True"
         },
         "exits": {
             "Dodongos Cavern Lower Right Side": "True"
@@ -104,7 +180,17 @@
             "Dodongos Cavern MQ GS Back Area": "
                 is_adult or has_explosives or Boomerang or can_use(Dins_Fire) or
                 (dodongos_cavern_shortcuts and (can_child_attack or Progressive_Strength_Upgrade)) or
-                (Sticks or ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))"
+                (Sticks or ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))",
+            "Dodongos Cavern MQ Before Boss Room Pot 1": "True",
+            "Dodongos Cavern MQ Before Boss Room Pot 2": "True",
+            "Dodongos Cavern MQ Armos Army Room Pot 1" : "
+                is_adult or has_explosives or Boomerang or can_use(Dins_Fire) or
+                (dodongos_cavern_shortcuts and (can_child_attack or Progressive_Strength_Upgrade)) or
+                (Sticks or ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))",
+            "Dodongos Cavern MQ Armos Army Room Pot 2": "True",
+            "Dodongos Cavern MQ Armos Army Room Pot 3": "True",
+            "Dodongos Cavern MQ Back Poe Room Pot 1": "True",
+            "Dodongos Cavern MQ Back Poe Room Pot 2": "True"
         },
         "exits": {
             "Dodongos Cavern Boss Room": "

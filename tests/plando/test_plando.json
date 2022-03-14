@@ -1,0 +1,8 @@
+{
+    "entrances": {
+        "Child Spawn -> KF Links House" : {"region": "Market Guard House", "from":"Market Entrance"}
+    },
+    "locations": {
+
+    }
+}

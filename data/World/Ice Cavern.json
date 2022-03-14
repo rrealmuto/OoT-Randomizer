@@ -22,7 +22,25 @@
                 Blue_Fire and 
                 (is_adult or Slingshot or Sticks or 
                     Kokiri_Sword or can_use(Dins_Fire))",
+            "Ice Cavern Freestanding Blue Rupee": "Blue_Fire",
+            "Ice Cavern Map Room Recovery Heart 1": "is_adult",
+            "Ice Cavern Map Room Recovery Heart 2": "is_adult",
+            "Ice Cavern Map Room Recovery Heart 3": "is_adult",
+            "Ice Cavern Block Room Red Rupee 1": "(is_adult and can_play(Song_of_Time)) or (is_child and can_use(Boomerang))",
+            "Ice Cavern Block Room Red Rupee 2": "(is_adult and can_play(Song_of_Time)) or (is_child and can_use(Boomerang))",
+            "Ice Cavern Block Room Red Rupee 3": "(is_adult and can_play(Song_of_Time)) or (is_child and can_use(Boomerang))",
             "Ice Cavern Freestanding PoH": "Blue_Fire",
+            "Ice Cavern Hall Pot 1": "is_adult or (is_child and can_child_attack)",
+            "Ice Cavern Hall Pot 2": "is_adult or (is_child and can_child_attack)",
+            "Ice Cavern Spinning Blade Pot 1": "is_adult or (is_child and can_child_attack)",
+            "Ice Cavern Spinning Blade Pot 2": "is_adult or (is_child and can_child_attack)",
+            "Ice Cavern Spinning Blade Pot 3": "is_adult or (is_child and can_child_attack)",
+            "Ice Cavern Spinning Blade Flying Pot":  "is_adult or (is_child and can_child_attack)",
+            "Ice Cavern Near End Pot 1" : "Blue_Fire and 
+                (is_adult or (can_child_attack))",
+            "Ice Cavern Near End Pot 2" : "Blue_Fire and 
+                (is_adult or (can_child_attack))",
+            "Ice Cavern Frozen Pot" : "is_adult and Blue_Fire",
             "Ice Cavern GS Spinning Scythe Room": "can_use(Hookshot) or can_use(Boomerang)",
             "Ice Cavern GS Heart Piece Room": "
                 Blue_Fire and (can_use(Hookshot) or can_use(Boomerang))",

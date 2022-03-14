@@ -81,7 +81,25 @@
             "Showed Mido Sword & Shield": "is_child and Kokiri_Sword and Buy_Deku_Shield"
         },
         "locations": {
+            "KF Behind Midos Blue Rupee": "is_child",
+            "KF Boulder Maze Blue Rupee 1": "is_child",
+            "KF Boulder Maze Blue Rupee 2": "is_child",
+            "KF End of Bridge Blue Rupee": "is_child",
+            "KF Top of Sarias Recovery Heart 1": "is_child",
+            "KF Top of Sarias Recovery Heart 2": "is_child",
+            "KF Top of Sarias Recovery Heart 3": "is_child",
+            "KF Near Ramp Green Rupee 1": "is_child",
+            "KF Near Ramp Green Rupee 2": "is_child",
+            "KF Near Midos Green Rupee 1": "is_child",
+            "KF Near Midos Green Rupee 2": "is_child",
             "KF Kokiri Sword Chest": "is_child",
+            "KF Bean Platform Rupee Circle Green Rupee 1": "is_adult and (can_plant_bean or can_use(Hover_Boots))",
+            "KF Bean Platform Rupee Circle Green Rupee 2": "is_adult and (can_plant_bean or can_use(Hover_Boots))",
+            "KF Bean Platform Rupee Circle Green Rupee 3": "is_adult and (can_plant_bean or can_use(Hover_Boots))",
+            "KF Bean Platform Rupee Circle Green Rupee 4": "is_adult and (can_plant_bean or can_use(Hover_Boots))",
+            "KF Bean Platform Rupee Circle Green Rupee 5": "is_adult and (can_plant_bean or can_use(Hover_Boots))",
+            "KF Bean Platform Rupee Circle Green Rupee 6": "is_adult and (can_plant_bean or can_use(Hover_Boots))",
+            "KF Bean Platform Rupee Circle Red Rupee": "is_adult and (can_plant_bean or can_use(Hover_Boots))",
             "KF GS Know It All House": "
                 is_child and can_child_attack and at_night and
                 (had_night_start or can_leave_forest or can_play(Suns_Song))",
@@ -136,7 +154,8 @@
         "region_name": "KF Links House",
         "scene": "KF Links House",
         "locations": {
-            "KF Links House Cow": "is_adult and can_play(Eponas_Song) and 'Links Cow'"
+            "KF Links House Cow": "is_adult and can_play(Eponas_Song) and 'Links Cow'",
+            "KF Links House Pot": "True"
         },
         "exits": {
             "Kokiri Forest": "True"
@@ -158,6 +177,12 @@
     {
         "region_name": "KF Sarias House",
         "scene": "KF Sarias House",
+        "locations": {
+            "KF Sarias Recovery Heart 1": "True",
+            "KF Sarias Recovery Heart 2": "True",
+            "KF Sarias Recovery Heart 3": "True",
+            "KF Sarias Recovery Heart 4": "True"
+        },
         "exits": {
             "Kokiri Forest": "True"
         }
@@ -165,6 +190,10 @@
     {
         "region_name": "KF House of Twins",
         "scene": "KF House of Twins",
+        "locations": {
+            "KF Twins House Pot 1": "True",
+            "KF Twins House Pot 2": "True"
+        },
         "exits": {
             "Kokiri Forest": "True"
         }
@@ -172,6 +201,10 @@
     {
         "region_name": "KF Know It All House",
         "scene": "KF Know it All House",
+        "locations": {
+            "KF Know-it-all Brothers House Pot 1": "True",
+            "KF Know-it-all Brothers House Pot 2": "True"
+        },
         "exits": {
             "Kokiri Forest": "True"
         }
@@ -180,6 +213,7 @@
         "region_name": "KF Kokiri Shop",
         "scene": "KF Kokiri Shop",
         "locations": {
+            "KF Shop Invisible Rupee": "True",
             "KF Shop Item 1": "True",
             "KF Shop Item 2": "True",
             "KF Shop Item 3": "True",
@@ -240,6 +274,15 @@
         "scene": "Lost Woods",
         "hint": "the Lost Woods",
         "locations": {
+            "LW Under Boulder Rupee": "here(can_blast_or_smash)",
+            "LW Water Rupee 1": "is_child and (can_dive or can_use(Boomerang))",
+            "LW Water Rupee 2": "is_child and (can_dive or can_use(Boomerang))",
+            "LW Water Rupee 3": "is_child and (can_dive or can_use(Boomerang))",
+            "LW Water Rupee 4": "is_child and (can_dive or can_use(Boomerang))",
+            "LW Water Rupee 5": "is_child and (can_dive or can_use(Boomerang))",
+            "LW Water Rupee 6": "is_child and (can_dive or can_use(Boomerang))",
+            "LW Water Rupee 7": "is_child and (can_dive or can_use(Boomerang))",
+            "LW Water Rupee 8": "is_child and (can_dive or can_use(Boomerang))",
             "LW Deku Scrub Near Deku Theater Right": "is_child and can_stun_deku",
             "LW Deku Scrub Near Deku Theater Left": "is_child and can_stun_deku",
             "LW GS Above Theater": "
@@ -378,6 +421,9 @@
         "locations": {
             "Pierre": "is_adult and Bonooru and not free_scarecrow",
             "LH Underwater Item": "is_child and can_dive",
+            "LH Underwater Rupee 1": "is_child",
+            "LH Underwater Rupee 2": "is_child and can_dive",
+            "LH Underwater Rupee 3": "is_child and can_dive",
             "LH Sun": "
                 is_adult and 
                 (can_use(Distant_Scarecrow) or 'Water Temple Clear') and can_use(Bow)",
@@ -408,7 +454,8 @@
             "Water Temple Lobby": "
                 can_use(Hookshot) and
                 (can_use(Iron_Boots) or
-                    ((can_use(Longshot) or logic_water_hookshot_entry) and (Progressive_Scale, 2)))",
+                    ((can_use(Longshot) or logic_water_hookshot_entry) and (Progressive_Scale,
+            2)))",
             "LH Grotto": "True"
         }
     },
@@ -440,8 +487,12 @@
         },
         "locations": {
             "LH Lab Dive": "
-                (Progressive_Scale, 2) or
+                (Progressive_Scale,
+            2) or
                 (logic_lab_diving and Iron_Boots and can_use(Hookshot))",
+            "LH Lab Dive Rupee 1": "(Progressive_Scale, 2) or can_use(Iron_Boots)",
+            "LH Lab Dive Rupee 2": "(Progressive_Scale, 2) or can_use(Iron_Boots)",
+            "LH Lab Dive Rupee 3": "(Progressive_Scale, 2) or can_use(Iron_Boots)",
             "LH GS Lab Crate": "Iron_Boots and can_use(Hookshot)"
         },
         "exits": {
@@ -489,6 +540,7 @@
             "GV Waterfall Freestanding PoH": "True",
             "GV GS Bean Patch": "can_plant_bugs and can_child_attack",
             "GV Cow": "is_child and can_play(Eponas_Song)",
+            "GV Crate Near Cow": "is_child",
             "GV Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Bean Plant Fairy": "can_plant_bean and can_play(Song_of_Storms) and has_bottle"
@@ -526,7 +578,8 @@
         "hint": "Gerudo Valley",
         "time_passes": true,
         "locations": {
-            "GV Crate Freestanding PoH": "True"
+            "GV Crate Freestanding PoH": "True",
+            "GV Freestanding PoH Crate Rupee": "True"
         },
         "exits": {
             "GV Lower Stream": "True"
@@ -594,7 +647,37 @@
             "GF GS Top Floor": "
                 is_adult and at_night and 
                 (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or
-                    can_use(Hover_Boots) or logic_gerudo_kitchen)"
+                    can_use(Hover_Boots) or logic_gerudo_kitchen)",
+            "GF Adult Crate Purple Rupee": "can_use(Hookshot)",
+            "Hideout Break Room Pot 1": "(can_use(Hover_Boots) or can_use(Scarecrow) or can_use(Longshot)) and (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot))",
+            "Hideout Break Room Pot 2": "(can_use(Hover_Boots) or can_use(Scarecrow) or can_use(Longshot)) and (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot))",
+            "Hideout Break Room Crate 1": "(can_use(Hover_Boots) or can_use(Scarecrow) or can_use(Longshot)) and (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot))",
+            "Hideout Break Room Crate 2": "(can_use(Hover_Boots) or can_use(Scarecrow) or can_use(Longshot)) and (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot))",
+            "Hideout Break Room Crate 3": "(can_use(Hover_Boots) or can_use(Scarecrow) or can_use(Longshot)) and (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot))",
+            "Hideout Break Room Crate 4": "(can_use(Hover_Boots) or can_use(Scarecrow) or can_use(Longshot)) and (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot))",
+            "Hideout 1 Torch Jail Pot 1": "True",
+            "Hideout 1 Torch Jail Pot 2": "True",
+            "Hideout 1 Torch Jail Pot 3": "True",
+            "Hideout 1 Torch Crate": "True",
+            "Hideout Kitchen Pot 1": "Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)",
+            "Hideout Kitchen Pot 2": "Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)",
+            "Hideout Near Kitchen Crate 1": "Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)",
+            "Hideout Near Kitchen Crate 2": "True",
+            "Hideout Near Kitchen Crate 3": "True",
+            "Hideout Near Kitchen Crate 4": "True",
+            "Hideout Near Kitchen Crate 5": "True",
+            "Hideout 4 Torch Jail Pot 1": "True",
+            "Hideout 4 Torch Jail Pot 2": "True",
+            "Hideout 3 Torch Crate": "(Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or can_use(Hover_Boots) or logic_gerudo_kitchen)",
+            "Hideout 2 Torch Jail Pot 1": "True",
+            "Hideout 2 Torch Jail Pot 2": "True",
+            "Hideout 2 Torch Jail Pot 3": "True",
+            "Hideout 2 Torch Jail In Cell Pot 1": "True",
+            "Hideout 2 Torch Jail In Cell Pot 2": "True",
+            "Hideout 2 Torch Jail In Cell Pot 3": "True",
+            "Hideout 2 Torch Jail In Cell Pot 4": "True",
+            "Hideout 2 Torch Crate 1": "True",
+            "Hideout 2 Torch Crate 2": "True"
         },
         "exits": {
             "GV Fortress Side": "True",
@@ -618,6 +701,9 @@
         "font_color": "Yellow",
         "scene": "Haunted Wasteland",
         "hint": "the Haunted Wasteland",
+        "locations": {
+            "Wasteland Crate Before Quicksand": "True"
+        },
         "exits": {
             "GF Outside Gate": "True",
             "Haunted Wasteland": "
@@ -635,6 +721,12 @@
                 Progressive_Wallet and 
                 (is_adult or Sticks or Kokiri_Sword)",
             "Wasteland GS": "can_use(Hookshot) or can_use(Boomerang)",
+            "Wasteland Near GS Pot 1": "True",
+            "Wasteland Near GS Pot 2": "True",
+            "Wasteland Near GS Pot 3": "True",
+            "Wasteland Crate After Quicksand 1": "True",
+            "Wasteland Crate After Quicksand 2": "True",
+            "Wasteland Crate After Quicksand 3": "True",
             "Fairy Pot": "has_bottle",
             "Nut Pot": "True"
         },
@@ -649,6 +741,9 @@
         "font_color": "Yellow",
         "scene": "Haunted Wasteland",
         "hint": "the Haunted Wasteland",
+        "locations": {
+            "Wasteland Crate Near Colossus": "True"
+        },
         "exits": {
             "Desert Colossus": "True",
             "Haunted Wasteland": "logic_reverse_wasteland"
@@ -728,6 +823,13 @@
             "Market Potion Shop": "is_child and at_day",
             "Market Treasure Chest Game": "is_child and at_night",
             "Market Back Alley": "is_child"
+        },
+        "locations": {
+            "Market Night Crate Red Rupee": "is_child and at_night",
+            "Market Night Crate Green Rupee 1": "is_child and at_night",
+            "Market Night Crate Green Rupee 2": "is_child and at_night",
+            "Market Night Crate Green Rupee 3": "is_child and at_night",
+            "Market Richards House Crate Rupee 1": "is_child"
         }
     },
     {
@@ -882,6 +984,36 @@
             "Market 10 Big Poes": "
                 is_adult and 
                 (Big_Poe or (Bottle_with_Big_Poe, big_poe_count))",
+            "Market Guard House Crate Rupee": "is_child",
+            "Market Guard House Child Pot 1": "is_child",
+            "Market Guard House Child Pot 2": "is_child",
+            "Market Guard House Child Pot 3": "is_child",
+            "Market Guard House Child Pot 4": "is_child",
+            "Market Guard House Child Pot 5": "is_child",
+            "Market Guard House Child Pot 6": "is_child",
+            "Market Guard House Child Pot 7": "is_child",
+            "Market Guard House Child Pot 8": "is_child",
+            "Market Guard House Child Pot 9": "is_child",
+            "Market Guard House Child Pot 10": "is_child",
+            "Market Guard House Child Pot 11": "is_child",
+            "Market Guard House Child Pot 12": "is_child",
+            "Market Guard House Child Pot 13": "is_child",
+            "Market Guard House Child Pot 14": "is_child",
+            "Market Guard House Child Pot 15": "is_child",
+            "Market Guard House Child Pot 16": "is_child",
+            "Market Guard House Child Pot 17": "is_child",
+            "Market Guard House Child Pot 18": "is_child",
+            "Market Guard House Child Pot 19": "is_child",
+            "Market Guard House Child Pot 20": "is_child",
+            "Market Guard House Child Pot 21": "is_child",
+            "Market Guard House Child Pot 22": "is_child",
+            "Market Guard House Adult Pot 1": "is_adult",
+            "Market Guard House Adult Pot 2": "is_adult",
+            "Market Guard House Adult Pot 3": "is_adult",
+            "Market Guard House Adult Pot 4": "is_adult",
+            "Market Guard House Adult Pot 5": "is_adult",
+            "Market Guard House Adult Pot 6": "is_adult",
+            "Market Guard House Adult Pot 7": "is_adult",
             "Market GS Guard House": "is_child"
         },
         "exits": {
@@ -999,6 +1131,11 @@
     {
         "region_name": "Market Man in Green House",
         "scene": "Market Man in Green House",
+        "locations": {
+            "Market Back Alley House Pot 1": "is_child and at_night",
+            "Market Back Alley House Pot 2": "is_child and at_night",
+            "Market Back Alley House Pot 3": "is_child and at_night"
+        },
         "exits": {
             "Market Back Alley": "True"
         }
@@ -1025,7 +1162,20 @@
                 is_child and (Slingshot or has_bombchus or 
                     (logic_kakariko_tower_gs and (Sticks or Kokiri_Sword) and
                     can_take_damage)) and at_night",
-            "Bug Rock": "has_bottle"
+            "Bug Rock": "has_bottle",
+            "Kak Near Potion Shop Pot 1": "is_child",
+            "Kak Near Potion Shop Pot 2": "is_child",
+            "Kak Near Potion Shop Pot 3": "is_child",
+            "Kak Near Impas House Pot 1": "is_child",
+            "Kak Near Impas House Pot 2": "is_child",
+            "Kak Near Impas House Pot 3": "is_child",
+            "Kak Near Guards House Pot 1": "is_child",
+            "Kak Near Guards House Pot 2": "is_child",
+            "Kak Near Guards House Pot 3": "is_child",
+            "Kak Near Odd Medicine Building Pot 1": "is_child",
+            "Kak Near Odd Medicine Building Pot 2": "is_child",
+            "Kak Adult Crate Red Rupee": "is_adult",
+            "Kak Adult Crate Arrows": "is_adult"
         },
         "exits": {
             "Hyrule Field": "True",
@@ -1299,6 +1449,20 @@
             "Dampes Windmill Access": "is_adult and can_play(Song_of_Time)"
         },
         "locations": {
+            "Graveyard Dampe Race Rupee 1": "True",
+            "Graveyard Dampe Race Rupee 2": "True",
+            "Graveyard Dampe Race Rupee 3": "True",
+            "Graveyard Dampe Race Rupee 4": "True",
+            "Graveyard Dampe Race Rupee 5": "True",
+            "Graveyard Dampe Race Rupee 6": "True",
+            "Graveyard Dampe Race Rupee 7": "True",
+            "Graveyard Dampe Race Rupee 8": "True",
+            "Grave Dampe Pot 1": "True",
+            "Grave Dampe Pot 2": "True",
+            "Grave Dampe Pot 3": "True",
+            "Grave Dampe Pot 4": "True",
+            "Grave Dampe Pot 5": "True",
+            "Grave Dampe Pot 6": "True",
             "Graveyard Hookshot Chest": "True",
             "Graveyard Dampe Race Freestanding PoH": "is_adult or logic_child_dampe_race_poh",
             "Nut Pot": "True"
@@ -1355,6 +1519,9 @@
             "DMT Freestanding PoH": "
                 can_take_damage or can_use(Hover_Boots) or
                 (is_adult and here(can_plant_bean and (has_explosives or Progressive_Strength_Upgrade)))",
+            "DMT Rock Red Rupee": "(here(is_child) and has_explosives) or
+                (here(is_child) and (here(is_adult) and can_use(Megaton_Hammer)))",
+            "DMT Rock Blue Rupee": "here(is_child) and has_explosives",
             "DMT GS Bean Patch": "
                 can_plant_bugs and can_child_attack and
                     (has_explosives or Progressive_Strength_Upgrade or
@@ -1444,6 +1611,30 @@
             "GC Pot Freestanding PoH": "
                 is_child and 'Goron City Child Fire' and
                 (Bombs or (Progressive_Strength_Upgrade and logic_goron_city_pot_with_strength) or (has_bombchus and logic_goron_city_pot))",
+            "GC Spinning Pot Bomb Drop 1": "
+            is_child and 'Goron City Child Fire' and
+            (Bombs or (Progressive_Strength_Upgrade and logic_goron_city_pot_with_strength) or (has_bombchus and logic_goron_city_pot))",
+            "GC Spinning Pot Bomb Drop 2": "
+            is_child and 'Goron City Child Fire' and
+            (Bombs or (Progressive_Strength_Upgrade and logic_goron_city_pot_with_strength) or (has_bombchus and logic_goron_city_pot))",
+            "GC Spinning Pot Bomb Drop 3": "
+            is_child and 'Goron City Child Fire' and
+            (Bombs or (Progressive_Strength_Upgrade and logic_goron_city_pot_with_strength) or (has_bombchus and logic_goron_city_pot))",
+            "GC Spinning Pot Rupee Drop 1": "
+            is_child and 'Goron City Child Fire' and
+            (Bombs or (Progressive_Strength_Upgrade and logic_goron_city_pot_with_strength) or (has_bombchus and logic_goron_city_pot))",
+            "GC Spinning Pot Rupee Drop 2": "
+            is_child and 'Goron City Child Fire' and
+            (Bombs or (Progressive_Strength_Upgrade and logic_goron_city_pot_with_strength) or (has_bombchus and logic_goron_city_pot))",
+            "GC Spinning Pot Rupee Drop 3": "
+            is_child and 'Goron City Child Fire' and
+            (Bombs or (Progressive_Strength_Upgrade and logic_goron_city_pot_with_strength) or (has_bombchus and logic_goron_city_pot))",
+            "GC Spinning Pot PoH Drop Rupee 1": "
+            is_child and 'Goron City Child Fire' and
+            (Bombs or (Progressive_Strength_Upgrade and logic_goron_city_pot_with_strength) or (has_bombchus and logic_goron_city_pot))",
+            "GC Spinning Pot PoH Drop Rupee 2": "
+            is_child and 'Goron City Child Fire' and
+            (Bombs or (Progressive_Strength_Upgrade and logic_goron_city_pot_with_strength) or (has_bombchus and logic_goron_city_pot))",
             "GC Rolling Goron as Child": "
                 is_child and 
                 (has_explosives or (Progressive_Strength_Upgrade and logic_child_rolling_with_strength))",
@@ -1451,6 +1642,13 @@
                 is_adult and Progressive_Wallet and 
                 (can_blast_or_smash or Progressive_Strength_Upgrade)",
             "GC Rolling Goron as Adult": "'Stop GC Rolling Goron as Adult'",
+            "GC Lower Staircase Pot 1": "True",
+            "GC Lower Staircase Pot 2": "True",
+            "GC Upper Staircase Pot 1": "True",
+            "GC Upper Staircase Pot 2": "True",
+            "GC Upper Staircase Pot 3": "True",
+            "GC Medigoron Pot": "can_blast_or_smash or Progressive_Strength_Upgrade",
+            "GC Boulder Maze Crate": "(can_blast_or_smash or can_use(Silver_Gauntlets))",
             "GC GS Boulder Maze": "is_child and has_explosives",
             "GC GS Center Platform": "is_adult",
             "GC Maze Gossip Stone": "
@@ -1505,7 +1703,10 @@
             "Goron City Child Fire": "can_use(Sticks)"
         },
         "locations": {
-            "GC Darunias Joy": "is_child and can_play(Sarias_Song)"
+            "GC Darunias Joy": "is_child and can_play(Sarias_Song)",
+            "GC Darunia Pot 1": "True",
+            "GC Darunia Pot 2": "True",
+            "GC Darunia Pot 3": "True"
         },
         "exits": {
             "Goron City": "True",
@@ -1568,10 +1769,26 @@
         "exits": {
             "DMC Upper Nearby": "True",
             "DMC Ladder Area Nearby": "True",
+            "DMC Pierre Platform": "True",
             "DMC Central Nearby": "
                 can_use(Goron_Tunic) and can_use(Longshot) and 
                 ((damage_multiplier != 'ohko' and damage_multiplier != 'quadruple') or 
                     (Fairy and not entrance_shuffle) or can_use(Nayrus_Love))"
+        }
+    },
+    {
+        "region_name": "DMC Pierre Platform",
+        "font_color": "Red",
+        "scene": "Death Mountain Crater",
+        "hint": "Death Mountain Crater",
+        "locations": {
+            "DMC Pierre Rupee Circle Green Rupee 1": "here(is_adult)",
+            "DMC Pierre Rupee Circle Green Rupee 2": "here(is_adult)",
+            "DMC Pierre Rupee Circle Green Rupee 3": "here(is_adult)",
+            "DMC Pierre Rupee Circle Green Rupee 4": "here(is_adult)",
+            "DMC Pierre Rupee Circle Green Rupee 5": "here(is_adult)",
+            "DMC Pierre Rupee Circle Green Rupee 6": "here(is_adult)",
+            "DMC Pierre Rupee Circle Red Rupee": "here(is_adult)"
         }
     },
     {
@@ -1594,6 +1811,12 @@
         "font_color": "Red",
         "scene": "Death Mountain Crater",
         "hint": "Death Mountain Crater",
+        "locations": {
+            "DMC Near GC Pot 1": "is_adult",
+            "DMC Near GC Pot 2": "is_adult",
+            "DMC Near GC Pot 3": "is_adult",
+            "DMC Near GC Pot 4": "is_adult"
+        },
         "exits": {
             "DMC Lower Local": "can_use(Goron_Tunic)",
             "GC Darunias Chamber": "True",
@@ -1625,10 +1848,19 @@
                 is_adult and
                 (here(can_plant_bean) or 
                     (logic_crater_bean_poh_with_hovers and Hover_Boots))",
+            "DMC Lower Red Rupee 1": "here(is_child)",
+            "DMC Lower Red Rupee 2": "here(is_child)",
+            "DMC Lower Blue Rupee 1": "here(is_child)",
+            "DMC Lower Blue Rupee 2": "here(is_child)",
+            "DMC Lower Blue Rupee 3": "here(is_child)",
+            "DMC Lower Blue Rupee 4": "here(is_child)",
+            "DMC Lower Blue Rupee 5": "here(is_child)",
+            "DMC Lower Blue Rupee 6": "here(is_child)",
             "Sheik in Crater": "is_adult"
         },
         "exits": {
-            "DMC Central Local": "can_use(Goron_Tunic)"
+            "DMC Central Local": "can_use(Goron_Tunic)",
+            "DMC Pierre Platform": "can_use(Distant_Scarecrow)"
         }
     },
     {
@@ -1712,6 +1944,10 @@
                 is_child or can_use(Hover_Boots) or (is_adult and logic_zora_river_lower)",
             "ZR Near Domain Freestanding PoH": "
                 is_child or can_use(Hover_Boots) or (is_adult and logic_zora_river_upper)",
+            "ZR Waterfall Rupee 1": "is_adult",
+            "ZR Waterfall Rupee 2": "is_adult",
+            "ZR Waterfall Rupee 3": "is_adult",
+            "ZR Waterfall Rupee 4": "is_adult",
             "ZR GS Ladder": "is_child and at_night and can_child_attack",
             "ZR GS Near Raised Grottos": "can_use(Hookshot) and at_night",
             "ZR GS Above Bridge": "can_use(Hookshot) and at_night",
@@ -1778,6 +2014,13 @@
             "ZD Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle",
             "Fish Group": "is_child and has_bottle",
+            "ZD Pot 1": "True",
+            "ZD Pot 2": "True",
+            "ZD Pot 3": "True",
+            "ZD Pot 4": "True",
+            "ZD Pot 5": "True",
+            "ZD In Front of King Zora Beehive 1": "is_child and can_break_beehive",
+            "ZD In Front of King Zora Beehive 2": "is_child and can_break_beehive",
             "Stick Pot": "is_child",
             "Nut Pot": "True"
         },
@@ -1797,6 +2040,9 @@
         "font_color": "Blue",
         "scene": "Zoras Domain",
         "hint": "Zora's Domain",
+        "locations": {
+            "ZD Behind King Zora Beehive": "is_child and can_break_beehive"
+        },
         "exits": {
             "Zoras Domain": "
                 Deliver_Letter or zora_fountain == 'open' or
@@ -1822,6 +2068,31 @@
             "ZF Iceberg Freestanding PoH": "is_adult",
             "ZF Bottom Freestanding PoH": "
                 is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 1": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 2": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 3": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 4": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 5": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 6": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 7": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 8": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 9": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 10": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 11": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 12": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 13": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 14": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 15": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 16": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 17": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Bottom Freestanding Rupee 18": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
+            "ZF Hidden Cave Pot 1": "can_use(Silver_Gauntlets) and can_blast_or_smash",
+            "ZF Hidden Cave Pot 2": "can_use(Silver_Gauntlets) and can_blast_or_smash",
+            "ZF Hidden Cave Pot 3": "can_use(Silver_Gauntlets) and can_blast_or_smash",
+            "ZF Near Jabu Pot 1": "is_child",
+            "ZF Near Jabu Pot 2": "is_child",
+            "ZF Near Jabu Pot 3": "is_child",
+            "ZF Near Jabu Pot 4": "is_child",
             "ZF GS Tree": "is_child",
             "ZF GS Above the Log": "can_use(Boomerang) and at_night",
             "ZF GS Hidden Cave": "
@@ -1890,7 +2161,15 @@
             "LLR GS Tree": "is_child",
             "LLR GS Rain Shed": "is_child and at_night",
             "LLR GS House Window": "can_use(Boomerang) and at_night",
-            "LLR GS Back Wall": "can_use(Boomerang) and at_night"
+            "LLR GS Back Wall": "can_use(Boomerang) and at_night",
+            "LLR Front Pot 1": "is_child",
+            "LLR Front Pot 2": "is_child",
+            "LLR Front Pot 3": "is_child",
+            "LLR Front Pot 4": "is_child",
+            "LLR Rain Shed Pot 1": "is_child",
+            "LLR Rain Shed Pot 2": "is_child",
+            "LLR Rain Shed Pot 3": "is_child",
+            "LLR Child Crate": "is_child"
         },
         "exits": {
             "Hyrule Field": "True",
@@ -1904,7 +2183,10 @@
         "region_name": "LLR Talons House",
         "scene": "LLR Talons House",
         "locations": {
-            "LLR Talons Chickens": "is_child and at_day and Zeldas_Letter"
+            "LLR Talons Chickens": "is_child and at_day and Zeldas_Letter",
+            "LLR Talons House Pot 1": "True",
+            "LLR Talons House Pot 2": "True",
+            "LLR Talons House Pot 3": "True"
         },
         "exits": {
             "Lon Lon Ranch": "True"
@@ -1937,8 +2219,33 @@
         "region_name": "Ganons Castle Tower",
         "dungeon": "Ganons Castle",
         "locations": {
-            "Ganons Tower Boss Key Chest": "True",
+            "Ganons Tower Boss Key Chest": "True"
+        },
+        "exits": {
+            "Ganons Castle Lobby": "True",
+            "Ganondorf Fight": "Boss_Key_Ganons_Castle"
+        }
+    },
+    {
+        "region_name": "Ganondorf Fight",
+        "dungeon": "Ganons Castle",
+        "hint": "Ganondorf Fight",
+        "locations": {
             "Ganondorf Hint": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 1": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 2": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 3": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 4": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 5": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 6": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 7": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 8": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 9": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 10": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 11": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 12": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 13": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Pot 14": "Boss_Key_Ganons_Castle",
             "Ganon": "Boss_Key_Ganons_Castle and can_use(Light_Arrows)"
         }
     },
@@ -1967,6 +2274,8 @@
         "scene": "KF Storms Grotto",
         "locations": {
             "KF Storms Grotto Chest": "True",
+            "KF Storms Grotto Beehive 1": "can_break_beehive",
+            "KF Storms Grotto Beehive 2": "can_break_beehive",
             "KF Storms Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -1982,6 +2291,8 @@
         "scene": "LW Near Shortcuts Grotto",
         "locations": {
             "LW Near Shortcuts Grotto Chest": "True",
+            "LW Near Shortcuts Grotto Beehive 1": "can_break_beehive",
+            "LW Near Shortcuts Grotto Beehive 2": "can_break_beehive",
             "LW Near Shortcuts Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2008,7 +2319,8 @@
         "scene": "LW Scrubs Grotto",
         "locations": {
             "LW Deku Scrub Grotto Rear": "can_stun_deku",
-            "LW Deku Scrub Grotto Front": "can_stun_deku"
+            "LW Deku Scrub Grotto Front": "can_stun_deku",
+            "LW Scrubs Grotto Beehive": "can_break_beehive"
         },
         "exits": {
             "LW Beyond Mido": "True"
@@ -2029,7 +2341,8 @@
         "scene": "SFM Storms Grotto",
         "locations": {
             "SFM Deku Scrub Grotto Rear": "can_stun_deku",
-            "SFM Deku Scrub Grotto Front": "can_stun_deku"
+            "SFM Deku Scrub Grotto Front": "can_stun_deku",
+            "SFM Storms Grotto Beehive": "can_break_beehive"
         },
         "exits": {
             "Sacred Forest Meadow": "True"
@@ -2053,7 +2366,8 @@
         "locations": {
             "LLR Deku Scrub Grotto Left": "can_stun_deku",
             "LLR Deku Scrub Grotto Right": "can_stun_deku",
-            "LLR Deku Scrub Grotto Center": "can_stun_deku"
+            "LLR Deku Scrub Grotto Center": "can_stun_deku",
+            "LLR Grotto Beehive": "can_break_beehive"
         },
         "exits": {
             "Lon Lon Ranch": "True"
@@ -2064,6 +2378,8 @@
         "scene": "HF Southeast Grotto",
         "locations": {
             "HF Southeast Grotto Chest": "True",
+            "HF Southeast Grotto Beehive 1": "can_break_beehive",
+            "HF Southeast Grotto Beehive 2": "can_break_beehive",
             "HF Southeast Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2079,6 +2395,8 @@
         "scene": "HF Open Grotto",
         "locations": {
             "HF Open Grotto Chest": "True",
+            "HF Open Grotto Beehive 1": "can_break_beehive",
+            "HF Open Grotto Beehive 2": "can_break_beehive",
             "HF Open Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2093,7 +2411,8 @@
         "region_name": "HF Inside Fence Grotto",
         "scene": "HF Inside Fence Grotto",
         "locations": {
-            "HF Deku Scrub Grotto": "can_stun_deku"
+            "HF Deku Scrub Grotto": "can_stun_deku",
+            "HF Inside Fence Grotto Beehive": "can_break_beehive"
         },
         "exits": {
             "Hyrule Field": "True"
@@ -2106,6 +2425,8 @@
             "HF GS Cow Grotto": "
                 has_fire_source and (can_use(Hookshot) or can_use(Boomerang))",
             "HF Cow Grotto Cow": "has_fire_source and can_play(Eponas_Song)",
+            "HF Cow Grotto Pot 1": "has_fire_source",
+            "HF Cow Grotto Pot 2": "has_fire_source",
             "HF Cow Grotto Gossip Stone": "has_fire_source",
             "Gossip Stone Fairy": "has_fire_source and can_summon_gossip_fairy and has_bottle",
             "Bug Shrub": "has_fire_source and can_cut_shrubs and has_bottle",
@@ -2120,6 +2441,8 @@
         "scene": "HF Near Market Grotto",
         "locations": {
             "HF Near Market Grotto Chest": "True",
+            "HF Near Market Grotto Beehive 1": "can_break_beehive",
+            "HF Near Market Grotto Beehive 2": "can_break_beehive",
             "HF Near Market Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2155,7 +2478,8 @@
         "scene": "HF Tektite Grotto",
         "locations": {
             "HF Tektite Grotto Freestanding PoH": "
-                (Progressive_Scale, 2) or can_use(Iron_Boots)"
+                (Progressive_Scale,
+            2) or can_use(Iron_Boots)"
         },
         "exits": {
             "Hyrule Field": "True"
@@ -2168,6 +2492,10 @@
             "HC GS Storms Grotto": "
                 (can_blast_or_smash or (is_child and logic_castle_storms_gs)) and
                 (can_use(Boomerang) or can_use(Hookshot))",
+            "HC Storms Grotto Pot 1": "can_blast_or_smash",
+            "HC Storms Grotto Pot 2": "can_blast_or_smash",
+            "HC Storms Grotto Pot 3": "can_blast_or_smash",
+            "HC Storms Grotto Pot 4": "can_blast_or_smash",
             "HC Storms Grotto Gossip Stone": "can_blast_or_smash",
             "Gossip Stone Fairy": "can_blast_or_smash and can_summon_gossip_fairy and has_bottle",
             "Wandering Bugs": "can_blast_or_smash and has_bottle",
@@ -2195,6 +2523,8 @@
         "locations": {
             "Kak Open Grotto Chest": "True",
             "Kak Open Grotto Gossip Stone": "True",
+            "Kak Open Grotto Beehive 1": "can_break_beehive",
+            "Kak Open Grotto Beehive 2": "can_break_beehive",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
             "Bug Shrub": "can_cut_shrubs and has_bottle",
@@ -2208,7 +2538,19 @@
         "region_name": "DMT Cow Grotto",
         "scene": "DMT Cow Grotto",
         "locations": {
-            "DMT Cow Grotto Cow": "can_play(Eponas_Song)"
+            "DMT Cow Grotto Cow": "can_play(Eponas_Song)",
+            "DMT Cow Grotto Rupee Circle Green Rupee 1": "True",
+            "DMT Cow Grotto Rupee Circle Green Rupee 2": "True",
+            "DMT Cow Grotto Rupee Circle Green Rupee 3": "True",
+            "DMT Cow Grotto Rupee Circle Green Rupee 4": "True",
+            "DMT Cow Grotto Rupee Circle Green Rupee 5": "True",
+            "DMT Cow Grotto Rupee Circle Green Rupee 6": "True",
+            "DMT Cow Grotto Rupee Circle Red Rupee": "True",
+            "DMT Cow Grotto Recovery Heart 1": "True",
+            "DMT Cow Grotto Recovery Heart 2": "True",
+            "DMT Cow Grotto Recovery Heart 3": "True",
+            "DMT Cow Grotto Recovery Heart 4": "True",
+            "DMT Cow Grotto Beehive": "can_break_beehive"
         },
         "exits": {
             "Death Mountain Summit": "True"
@@ -2219,6 +2561,8 @@
         "scene": "DMT Storms Grotto",
         "locations": {
             "DMT Storms Grotto Chest": "True",
+            "DMT Storms Grotto Beehive 1": "can_break_beehive",
+            "DMT Storms Grotto Beehive 2": "can_break_beehive",
             "DMT Storms Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2235,7 +2579,8 @@
         "locations": {
             "GC Deku Scrub Grotto Left": "can_stun_deku",
             "GC Deku Scrub Grotto Right": "can_stun_deku",
-            "GC Deku Scrub Grotto Center": "can_stun_deku"
+            "GC Deku Scrub Grotto Center": "can_stun_deku",
+            "GC Grotto Beehive" : "can_break_beehive"
         },
         "exits": {
             "GC Grotto Platform": "True"
@@ -2246,6 +2591,8 @@
         "scene": "DMC Upper Grotto",
         "locations": {
             "DMC Upper Grotto Chest": "True",
+            "DMC Upper Grotto Beehive 1": "can_break_beehive",
+            "DMC Upper Grotto Beehive 2": "can_break_beehive",
             "DMC Upper Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2262,7 +2609,8 @@
         "locations": {
             "DMC Deku Scrub Grotto Left": "can_stun_deku",
             "DMC Deku Scrub Grotto Right": "can_stun_deku",
-            "DMC Deku Scrub Grotto Center": "can_stun_deku"
+            "DMC Deku Scrub Grotto Center": "can_stun_deku",
+            "DMC Hammer Grotto Beehive": "can_break_beehive"
         },
         "exits": {
             "DMC Lower Local": "True"
@@ -2273,6 +2621,8 @@
         "scene": "ZR Open Grotto",
         "locations": {
             "ZR Open Grotto Chest": "True",
+            "ZR Open Grotto Beehive 1": "can_break_beehive",
+            "ZR Open Grotto Beehive 2": "can_break_beehive",
             "ZR Open Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2298,7 +2648,8 @@
         "scene": "ZR Storms Grotto",
         "locations": {
             "ZR Deku Scrub Grotto Rear": "can_stun_deku",
-            "ZR Deku Scrub Grotto Front": "can_stun_deku"
+            "ZR Deku Scrub Grotto Front": "can_stun_deku",
+            "ZR Storms Grotto Beehive": "can_break_beehive"
         },
         "exits": {
             "Zora River": "True"
@@ -2310,7 +2661,8 @@
         "locations": {
             "LH Deku Scrub Grotto Left": "can_stun_deku",
             "LH Deku Scrub Grotto Right": "can_stun_deku",
-            "LH Deku Scrub Grotto Center": "can_stun_deku"
+            "LH Deku Scrub Grotto Center": "can_stun_deku",
+            "LH Grotto Beehive": "can_break_beehive"
         },
         "exits": {
             "Lake Hylia": "True"
@@ -2321,7 +2673,8 @@
         "scene": "Colossus Grotto",
         "locations": {
             "Colossus Deku Scrub Grotto Rear": "can_stun_deku",
-            "Colossus Deku Scrub Grotto Front": "can_stun_deku"
+            "Colossus Deku Scrub Grotto Front": "can_stun_deku",
+            "Colossus Grotto Beehive": "can_break_beehive"
         },
         "exits": {
             "Desert Colossus": "True"
@@ -2330,6 +2683,16 @@
     {
         "region_name": "GV Octorok Grotto",
         "scene": "GV Octorok Grotto",
+        "locations": {
+            "GV Octorok Grotto Red Rupee": "True",
+            "GV Octorok Grotto Blue Rupee 1": "True",
+            "GV Octorok Grotto Blue Rupee 2": "True",
+            "GV Octorok Grotto Blue Rupee 3": "True",
+            "GV Octorok Grotto Green Rupee 1": "True",
+            "GV Octorok Grotto Green Rupee 2": "True",
+            "GV Octorok Grotto Green Rupee 3": "True",
+            "GV Octorok Grotto Green Rupee 4": "True"
+        },
         "exits": {
             "GV Grotto Ledge": "True"
         }
@@ -2339,7 +2702,8 @@
         "scene": "GV Storms Grotto",
         "locations": {
             "GV Deku Scrub Grotto Rear": "can_stun_deku",
-            "GV Deku Scrub Grotto Front": "can_stun_deku"
+            "GV Deku Scrub Grotto Front": "can_stun_deku",
+            "GV Storms Grotto Beehive": "can_break_beehive"
         },
         "exits": {
             "GV Fortress Side": "True"

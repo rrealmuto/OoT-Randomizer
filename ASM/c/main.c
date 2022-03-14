@@ -16,6 +16,7 @@
 #include "ganon_boss_key.h"
 #include "extern_ctxt.h"
 #include "weather.h"
+#include "textures.h"
 
 void Gameplay_InitSkybox(z64_game_t* globalCtx, int16_t skyboxId);
 
@@ -25,6 +26,7 @@ void c_init() {
     text_init();
     item_overrides_init();
     models_init();
+    init_textures();
 }
 
 void before_game_state_update() {
@@ -51,4 +53,5 @@ void after_scene_init() {
     clear_twinrova_vars();
     models_reset();
     extern_scene_init();
+    reset_collectible_mutex();
 }

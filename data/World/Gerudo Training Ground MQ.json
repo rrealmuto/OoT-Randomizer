@@ -8,7 +8,12 @@
             "Gerudo Training Ground MQ Hidden Ceiling Chest": "logic_lens_gtg_mq or can_use(Lens_of_Truth)",
             "Gerudo Training Ground MQ Maze Path First Chest": "True",
             "Gerudo Training Ground MQ Maze Path Second Chest": "True",
-            "Gerudo Training Ground MQ Maze Path Third Chest": "(Small_Key_Gerudo_Training_Ground, 1)"
+            "Gerudo Training Ground MQ Maze Path Third Chest": "(Small_Key_Gerudo_Training_Ground, 1)",
+            "Gerudo Training Ground MQ Lobby Left Pot 1": "True",
+            "Gerudo Training Ground MQ Lobby Left Pot 2": "True",
+            "Gerudo Training Ground MQ Lobby Right Pot 1": "True",
+            "Gerudo Training Ground MQ Lobby Right Pot 2": "True",
+            "Gerudo Training Ground MQ Maze Crate": "(Small_Key_Gerudo_Training_Ground, 3)"
         },
         "exits": {
             "Gerudo Fortress": "True",

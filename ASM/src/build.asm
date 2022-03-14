@@ -100,6 +100,11 @@ RANDO_CONTEXT:
 .include "medigoron.asm"
 .include "misc_colors.asm"
 .include "door_of_time_col_fix.asm"
+.include "save.asm"
+.include "drop_overrides/obj_mure3.asm"
+.include "drop_overrides/bg_haka_tubo.asm"
+.include "drop_overrides/bg_spot18_basket.asm"
+.include "drop_overrides/obj_comb.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"

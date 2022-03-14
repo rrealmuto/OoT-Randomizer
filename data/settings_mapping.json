@@ -203,7 +203,10 @@
             "shopsanity_prices",
             "tokensanity",
             "shuffle_scrubs",
+            "shuffle_freestanding_items",
+            "shuffle_pots_crates",
             "shuffle_cows",
+            "shuffle_beehives",
             "shuffle_kokiri_sword",
             "shuffle_ocarinas",
             "shuffle_weird_egg",
@@ -345,6 +348,7 @@
           "settings": [
             "ocarina_songs",
             "correct_chest_appearances",
+            "correct_potcrate_appearances",
             "clearer_hints",
             "hints",
             "hint_dist",

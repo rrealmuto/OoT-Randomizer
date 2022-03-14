@@ -11,7 +11,25 @@
                     (can_use(Hookshot) and (can_use(Fire_Arrows) or
                         (can_use(Dins_Fire) and 
                             ((damage_multiplier != 'ohko' and damage_multiplier != 'quadruple') or
-                                can_use(Goron_Tunic) or can_use(Bow) or can_use(Longshot))))))"
+                                can_use(Goron_Tunic) or can_use(Bow) or can_use(Longshot))))))",
+            "Fire Temple MQ First Room Pot 1": "True",
+            "Fire Temple MQ First Room Pot 2": "True",
+            "Fire Temple MQ Near Boss Pot 1": "
+                (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source and ((can_use(Hookshot)) or can_use(Hover_Boots))",
+            "Fire Temple MQ Near Boss Pot 2": "
+                (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source and ((can_use(Hookshot)) or can_use(Hover_Boots))",
+            "Fire Temple MQ Before Boss Left Crate 1": "
+                (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source",
+            "Fire Temple MQ Before Boss Left Crate 2": "
+                (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source",
+            "Fire Temple MQ Before Boss Right Lower Crate 1": "
+                (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source and ((can_use(Hookshot)) or can_use(Hover_Boots))",
+            "Fire Temple MQ Before Boss Right Lower Crate 2": "
+                (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source and ((can_use(Hookshot)) or can_use(Hover_Boots))",
+                "Fire Temple MQ Before Boss Right Mid Crate": "
+                (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source and ((can_use(Hookshot)) or can_use(Hover_Boots))",
+                "Fire Temple MQ Before Boss Right Upper Crate": "
+                (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source and ((can_use(Hookshot)) or can_use(Hover_Boots))"
         },
         "exits": {
             "DMC Fire Temple Entrance": "True",
@@ -30,6 +48,10 @@
         "locations": {
             "Fire Temple MQ Megaton Hammer Chest": "is_adult and (has_explosives or Megaton_Hammer or Hookshot)",
             "Fire Temple MQ Map Chest": "can_use(Megaton_Hammer)",
+            "Fire Temple MQ Iron Knuckle Room Pot 1": "True",
+            "Fire Temple MQ Iron Knuckle Room Pot 2": "True",
+            "Fire Temple MQ Iron Knuckle Room Pot 3": "True",
+            "Fire Temple MQ Iron Knuckle Room Pot 4": "True",
             "Fairy Pot": "has_bottle"
         }
     },
@@ -43,15 +65,30 @@
                 has_fire_source and has_explosives and
                 (can_use(Hookshot) or logic_fire_mq_blocked_chest)",
             "Fire Temple MQ GS Big Lava Room Open Door": "True",
+            "Fire Temple MQ Big Lava Room Left Pot": "True",
+            "Fire Temple MQ Big Lava Room Right Pot": "(can_use(Hookshot) or logic_fire_mq_blocked_chest)",
+            "Fire Temple MQ Big Lava Room Alcove Pot": "True",
+            "Fire Temple MQ Boss Key Chest Room Pot 1": "
+                has_fire_source and (Bow or logic_fire_mq_bk_chest) and can_use(Hookshot)",
             "Fairy Pot": "
                 has_bottle and has_fire_source and (Bow or logic_fire_mq_bk_chest) and
                 (can_use(Hookshot) or logic_fire_song_of_time)"
 
         },
         "exits": {
-            "Fire Lower Maze": "
-                can_use(Goron_Tunic) and (Small_Key_Fire_Temple, 2) and
-                (has_fire_source or (logic_fire_mq_climb and Hover_Boots))"
+            "Fire Elevator Room": "can_use(Goron_Tunic) and (Small_Key_Fire_Temple, 2)"
+        }
+    },
+    {
+        "region_name": "Fire Elevator Room",
+        "dungeon": "Fire Temple",
+        "locations": {
+            "Fire Temple MQ Elevator Room Recovery Heart 1" : "True",
+            "Fire Temple MQ Elevator Room Recovery Heart 2" : "True",
+            "Fire Temple MQ Elevator Room Recovery Heart 3" : "True"
+        },
+        "exits": {
+            "Fire Lower Maze": "(has_fire_source or (logic_fire_mq_climb and Hover_Boots))"
         }
     },
     {
@@ -60,7 +97,10 @@
         "locations": {
             "Fire Temple MQ Lizalfos Maze Lower Chest": "True",
             "Fire Temple MQ Lizalfos Maze Side Room Chest": "
-                has_explosives and (logic_fire_mq_maze_side_room or at('Fire Upper Maze', True))"
+                has_explosives and (logic_fire_mq_maze_side_room or at('Fire Upper Maze', True))",
+            "Fire Temple MQ Lower Lizalfos Maze Crate 1": "True",
+            "Fire Temple MQ Lower Lizalfos Maze Crate 2": "True",
+            "Fire Temple MQ Lower Lizalfos Maze Crate 3": "True"
         },
         "exits": {
             "Fire Upper Maze": "
@@ -77,6 +117,24 @@
             "Fire Temple MQ GS Skull On Fire": "
                 (can_play(Song_of_Time) and can_use(Hookshot) and (has_explosives or logic_rusted_switches)) or
                 can_use(Longshot)",
+            "Fire Temple MQ Narrow Path Room Pot 1": "(Small_Key_Fire_Temple, 3)",
+            "Fire Temple MQ Narrow Path Room Pot 2": "(Small_Key_Fire_Temple, 3)",
+            "Fire Temple MQ Shoot Torch On Wall Room Pot 1": "(Small_Key_Fire_Temple, 3)",
+            "Fire Temple MQ Shoot Torch On Wall Room Pot 2": "(Small_Key_Fire_Temple, 3)",
+            "Fire Temple MQ Shortcut Crate 1": "has_explosives",
+            "Fire Temple MQ Shortcut Crate 2": "has_explosives",
+            "Fire Temple MQ Shortcut Crate 3": "has_explosives",
+            "Fire Temple MQ Shortcut Crate 4": "has_explosives",
+            "Fire Temple MQ Shortcut Crate 5": "has_explosives",
+            "Fire Temple MQ Shortcut Crate 6": "has_explosives",
+            "Fire Temple MQ Upper Lizalfos Maze Crate 1": "True",
+            "Fire Temple MQ Upper Lizalfos Maze Crate 2": "True",
+            "Fire Temple MQ Upper Lizalfos Maze Crate 3": "True",
+            "Fire Temple MQ Shoot Torch On Wall Right Crate 1": "(Small_Key_Fire_Temple, 3)",
+            "Fire Temple MQ Shoot Torch On Wall Right Crate 2": "(Small_Key_Fire_Temple, 3)",
+            "Fire Temple MQ Shoot Torch On Wall Center Crate": "(Small_Key_Fire_Temple, 3)",
+            "Fire Temple MQ Shoot Torch On Wall Left Crate 1": "(Small_Key_Fire_Temple, 3)",
+            "Fire Temple MQ Shoot Torch On Wall Left Crate 2": "(Small_Key_Fire_Temple, 3)",
             "Wall Fairy": "
                 has_bottle and
                 ((can_play(Song_of_Time) and can_use(Hookshot) and (has_explosives or logic_rusted_switches)) or
@@ -101,7 +159,12 @@
             "Fire Temple MQ GS Fire Wall Maze Center": "has_explosives",
             "Fire Temple MQ GS Above Fire Wall Maze": "
                 (can_use(Hookshot) and (Small_Key_Fire_Temple, 5)) or
-                (logic_fire_mq_above_maze_gs and can_use(Longshot))"
+                (logic_fire_mq_above_maze_gs and can_use(Longshot))",
+            "Fire Temple MQ Flame Maze Left Pot 1": "True",
+            "Fire Temple MQ Flame Maze Right Pot 1": "can_use(Hookshot) or logic_fire_mq_flame_maze",
+            "Fire Temple MQ Flame Maze Right Pot 2": "can_use(Hookshot) or logic_fire_mq_flame_maze",
+            "Fire Temple MQ Flame Maze Right Pot 3": "can_play(Song_of_Time) or Hover_Boots or logic_fire_mq_flame_maze",
+            "Fire Temple MQ Flame Maze Right Pot 4": "can_play(Song_of_Time) or Hover_Boots or logic_fire_mq_flame_maze"
         }
     },
     {

@@ -3,6 +3,8 @@
         "region_name": "Deku Tree Lobby",
         "dungeon": "Deku Tree",
         "locations": {
+            "Deku Tree Walk the Plank Recovery Heart": "True",
+            "Deku Tree Leap Recovery Heart": "is_adult or can_child_attack or Nuts",
             "Deku Tree Map Chest": "True",
             "Deku Tree Compass Chest": "True",
             "Deku Tree Compass Room Side Chest": "True",
@@ -64,6 +66,9 @@
         },
         "locations": {
             # Implicit Deku Nuts from the dungeon lobby or basement for stunning Gohma
+            "Deku Tree 2-3-1 Scrubs Recovery Heart 1" : "True",
+            "Deku Tree 2-3-1 Scrubs Recovery Heart 2" : "True",
+            "Deku Tree 2-3-1 Scrubs Recovery Heart 3" : "True",
             "Deku Tree Queen Gohma Heart": "
                 (here(has_shield) or deku_tree_shortcuts) and (is_adult or Kokiri_Sword or Sticks)",
             "Queen Gohma": "
