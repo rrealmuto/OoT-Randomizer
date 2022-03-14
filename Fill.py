@@ -331,6 +331,7 @@ def fill_ownworld_restrictive(window, worlds, search, locations, ownpool, itempo
                 logger.info("Failed to place %s items for world %s. Will retry %s more times.", description, (world.id+1), world_attempts)
                 for location in prize_locs_dict[world.id]:
                     location.item = None
+                    location.price = None
                     if location.disabled == DisableType.DISABLED:
                         location.disabled = DisableType.PENDING
                 logger.info('\t%s' % str(e))
