@@ -2136,7 +2136,7 @@ setting_infos = [
         disabled_default = False,
         shared         = True,
         disable        = {
-            True : {'settings' : ['starting_age']}
+            True : {'settings' : ['open_forest', 'starting_age', 'shuffle_interior_entrances', 'shuffle_overworld_entrances', 'warp_songs', 'spawn_positions']}
         },
     ),
     Combobox(
@@ -4332,6 +4332,9 @@ setting_infos = [
             Only the child option is compatible with
             "Closed Forest Requires Gohma".
         ''',
+        disable        = {
+            '!child' : {'settings' : ['require_gohma']}
+        },
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
