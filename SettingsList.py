@@ -3150,9 +3150,9 @@ setting_infos = [
         gui_params     = {
             'randomize_key': 'randomize_settings',
             'distribution':  [
-                ('off', 2),
-                ('indoor', 1),
-                ('all', 1),
+                ([], 2),
+                (['Interior', 'GrottoGrave', 'Dungeon'], 1),
+                (['Interior', 'GrottoGrave', 'Dungeon', 'Overworld'], 1),
             ],
         },
     ),
