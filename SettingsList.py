@@ -4458,14 +4458,15 @@ setting_infos = [
         gui_text       = 'Item Pool',
         default        = 'balanced',
         choices        = {
+            'ludicrous': 'Ludicrous',
             'plentiful': 'Plentiful',
             'balanced':  'Balanced',
             'scarce':    'Scarce',
             'minimal':   'Minimal'
         },
         gui_tooltip    = '''\
-            Changes the amount of major items that are 
-            available in the game.
+            'Ludicrous': Every item in the game is a major
+            item.
 
             'Plentiful': One additional copy of each major 
             item is added.
