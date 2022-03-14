@@ -85,7 +85,7 @@ class DungeonRecord(SimpleRecord({'mq': None})):
         return 'mq' if self.mq else 'vanilla'
 
 
-class GossipRecord(SimpleRecord({'text': None, 'colors': None})):
+class GossipRecord(SimpleRecord({'text': None, 'colors': None, 'hinted_location': None, 'hinted_item': None})):
     def to_json(self):
         if self.colors is not None:
             self.colors = CollapseList(self.colors)
