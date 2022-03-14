@@ -155,6 +155,7 @@
           "row_span": [6,6,9],
           "settings": [
             "open_forest",
+            "require_gohma",
             "open_kakariko",
             "open_door_of_time",
             "zora_fountain",
@@ -244,8 +245,7 @@
           "row_span": [2,2,2],
           "settings": [
             "reachable_locations",
-            "logic_no_night_tokens_without_suns_song",
-            "logic_require_gohma"
+            "logic_no_night_tokens_without_suns_song"
           ]
         },
         {

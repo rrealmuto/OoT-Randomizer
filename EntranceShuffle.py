@@ -405,7 +405,7 @@ def shuffle_random_entrances(worlds):
             # The fill algorithm will already make sure gohma is reachable, however it can end up putting
             # a forest escape via the hands of spirit on Deku leading to Deku on spirit in logic. This is
             # contrary to the idea of Require Gohma, so specifically place Deku Tree in its vanilla location.
-            if worlds[0].settings.logic_require_gohma:
+            if worlds[0].settings.require_gohma:
                 entrance_pools['Dungeon'].remove(world.get_entrance('KF Outside Deku Tree -> Deku Tree Lobby'))
 
         if worlds[0].shuffle_interior_entrances:

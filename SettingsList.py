@@ -2106,7 +2106,7 @@ setting_infos = [
         ''',
         shared         = True,
         disable        = {
-            '!closed' : {'settings': ['logic_require_gohma']},
+            '!closed' : {'settings': ['require_gohma']},
         },
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -2115,6 +2115,28 @@ setting_infos = [
                 ('closed_deku', 1),
                 ('closed', 1),
             ],
+        },
+    ),
+    Checkbutton(
+        name           = 'require_gohma',
+        gui_text       = 'Closed Forest Requires Gohma',
+        gui_tooltip    = '''\
+            Defeating Queen Gohma is logically required to leave the forest
+            area (Kokiri Forest/Lost Woods/Sacred Forest Meadow/Deku Tree).
+            Items needed for this will be guaranteed inside the forest area,
+            and "Shuffle Dungeon Entrances" does not affect the Deku Tree.
+            This setting is incompatible with starting as adult, and so
+            Starting Age will be locked to Child. With either "Shuffle
+            Interior Entrances" set to "All", "Shuffle Overworld Entrances"
+            on, "Randomize Warp Song Destinations" on, or "Randomize Overworld
+            Spawns" on, this setting is automatically disabled and WILL NOT
+            guarantee that these items are available in the forest area.
+        ''',
+        default        = True,
+        disabled_default = False,
+        shared         = True,
+        disable        = {
+            True : {'settings' : ['starting_age']}
         },
     ),
     Combobox(
@@ -2702,32 +2724,9 @@ setting_infos = [
             to wait until night for some locations.
         ''',
         gui_params={
-            "no_line_break": True,
-            "web:no_line_break": False,
             "hide_when_disabled": True,
         },
         shared         = True,
-    ),
-    Checkbutton(
-        name           = 'logic_require_gohma',
-        gui_text       = 'Closed Forest Requires Gohma',
-        gui_tooltip    = '''\
-            Defeating Queen Gohma is logically required to leave the forest
-            area (Kokiri Forest/Lost Woods/Sacred Forest Meadow/Deku Tree).
-            Items needed for this will be guaranteed inside the forest area.
-            This setting is incompatible with starting as adult, and so
-            Starting Age will be locked to Child. With either "Shuffle
-            Interior Entrances" set to "All", "Shuffle Overworld Entrances"
-            on, "Randomize Warp Song Destinations" on, or "Randomize Overworld
-            Spawns" on, this setting is automatically disabled and WILL NOT
-            guarantee that these items are available in the forest area.
-        ''',
-        default        = True,
-        disabled_default = False,
-        shared         = True,
-        disable        = {
-            True : {'settings' : ['starting_age']}
-        },
     ),
     Checkbutton(
         name           = 'free_scarecrow',
@@ -3012,7 +3011,7 @@ setting_infos = [
             and items never revert, even when dying or loading a save.
         ''',
         disable        = {
-            'all' : {'settings': ['logic_require_gohma']},
+            'all' : {'settings': ['require_gohma']},
         },
         shared         = True,
         gui_params     = {
@@ -3072,7 +3071,7 @@ setting_infos = [
         ''',
         default        = False,
         disable        = {
-            True : {'settings': ['logic_require_gohma']},
+            True : {'settings': ['require_gohma']},
         },
         shared         = True,
         gui_params     = {
@@ -3101,7 +3100,7 @@ setting_infos = [
         ''',
         default        = False,
         disable        = {
-            True : {'settings': ['logic_require_gohma']},
+            True : {'settings': ['require_gohma']},
         },
         shared         = True,
         gui_params     = {
@@ -3120,7 +3119,7 @@ setting_infos = [
         ''',
         default        = False,
         disable        = {
-            True : {'settings': ['logic_require_gohma']},
+            True : {'settings': ['require_gohma']},
         },
         shared         = True,
         gui_params     = {
