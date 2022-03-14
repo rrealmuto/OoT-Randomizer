@@ -1018,7 +1018,6 @@ class SaveContext():
                 'bombchu',
                 'nayrus_love',
                 'beans',
-                'child_trade',
                 'bottle_1',
                 'bottle_2',
                 'bottle_3',

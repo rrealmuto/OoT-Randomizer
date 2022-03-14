@@ -14,6 +14,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
 * New “Ludicrous” option for the “Item Pool” setting that makes everything a major item ([#1507](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1507))
 * A bug where items in shops would sometimes have wrong prices is fixed ([#1505](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1505))
 * New “One Bonk KO” setting ([#1503](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1503))
+* The child trade item is bound to D-pad right ([#1489](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1489))
 * The convenience patch for floor switches now applies to more MQ switches ([#1459](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1459))
 * Automatically advances credits text (based on [#1412](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1412))
 * New “Full” options for the “Randomize Owl Drops”, “Randomize Warp Song Destinations”, and “Randomize Overworld Spawns” settings that include more types of entrances (based on [#1179](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1179) and [#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
