@@ -232,7 +232,7 @@ class Settings:
     def get_dependency(self, setting_name, check_random=True):
         info = get_setting_info(setting_name)
         not_in_dist = '_settings' not in self.distribution.src_dict or info.name not in self.distribution.src_dict['_settings'].keys()
-        if check_random and 'randomize_key' in info.gui_params and self.__dict__[info.gui_params['randomize_key']] and not_in_dist:
+        if check_random and 'randomize_key' in info.gui_params and self.__dict__.get(info.gui_params['randomize_key']) and not_in_dist:
             return info.disabled_default
         elif info.dependency != None:
             return info.disabled_default if info.dependency(self) and not_in_dist else None
@@ -275,7 +275,7 @@ class Settings:
             # Make sure the setting is meant to be randomized and not specified in distribution
             # We that check it's not specified in the distribution so that plando can override randomized settings
             not_in_dist = '_settings' not in self.distribution.src_dict or info.name not in self.distribution.src_dict['_settings'].keys()
-            if self.__dict__[info.gui_params['randomize_key']] and not_in_dist:
+            if self.__dict__.get(info.gui_params['randomize_key']) and not_in_dist:
                 randomize_keys_enabled.add(info.gui_params['randomize_key'])
                 choices, weights = zip(*info.gui_params['distribution'])
                 self.__dict__[info.name] = random_choices(choices, weights=weights)[0]
