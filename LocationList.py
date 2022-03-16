@@ -1,5 +1,4 @@
 from collections import OrderedDict
-from ItemPool import IGNORE_LOCATION
 
 
 def shop_address(shop_id, shelf_id):
@@ -49,7 +48,7 @@ location_table = OrderedDict([
     ("Bongo Bongo",                                                  ("Boss",         None,  0x6A, (0x0CA3F43, 0x0D13E19),      'Shadow Medallion',                      None)),
     ("Twinrova",                                                     ("Boss",         None,  0x69, (0x0CA3EB3, 0x0D39FF1),      'Spirit Medallion',                      None)),
     ("Ganon",                                                        ("Event",        None,  None, None,                        'Triforce',                              None)),
-    ("Gift from Sages",                                              ("Cutscene",     0xFF,  0x03, None,                        IGNORE_LOCATION,                         None)),
+    ("Gift from Sages",                                              ("Cutscene",     0xFF,  0x03, None,                         None,                                   None)),
 
     ## Songs
     ("Song from Impa",                                               ("Song",         0xFF,  0x26, (0x2E8E925, 0x2E8E925),      'Zeldas Lullaby',                        ("Hyrule Castle", "Market", "Songs"))),
