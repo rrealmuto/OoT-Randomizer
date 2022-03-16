@@ -527,6 +527,9 @@ def get_pool_core(world):
             placed_items[location.name] = item
     # End of Locations loop.
 
+    # add unrestricted dungeon items to main item pool
+    pool.extend([item.name for item in world.get_unrestricted_dungeon_items()])
+
     if world.settings.shopsanity != 'off':
         pool.extend(min_shop_items)
         for item in min_shop_items:
