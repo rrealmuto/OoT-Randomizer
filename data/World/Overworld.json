@@ -1311,6 +1311,9 @@
     {
         "region_name": "Graveyard Dampes House",
         "scene": "Graveyard Dampes House",
+        "locations": {
+            "Dampe Diary Hint": "is_adult"
+        },
         "exits": {
             "Graveyard": "True"
         }

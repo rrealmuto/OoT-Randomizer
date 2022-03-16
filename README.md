@@ -9,6 +9,7 @@ Instead, you can open an issue on this fork [here](https://github.com/fenhl/OoT-
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
 * The “Mix Entrance Pools” setting has new options to allow individually selecting entrance pools to be mixed ([Dev-R #67](https://github.com/Roman971/OoT-Randomizer/pull/67))
+* The “Misc. Hints” setting is split into 4 toggles: Ganondorf, Temple of Time altar, and new options to hint the Hookshot location in Dampé's diary and/or disable warp song destination hints (based on [#1534](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1534)
 * “Closed Forest Requires Gohma” is a separate setting, making “Closed Forest” compatible with more settings if disabled ([#1531](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1531))
 * The `gossip_stones` section of the spoiler log includes info about which item and location was hinted where applicable ([#1520](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1520))
 * New settings to require heart containers for the rainbow bridge, LACS (for plando), and/or Ganon's boss key ([#1517](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1517))
@@ -22,7 +23,6 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
 * New “Full” options for the “Randomize Owl Drops”, “Randomize Warp Song Destinations”, and “Randomize Overworld Spawns” settings that include more types of entrances (based on [#1179](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1179) and [#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
 * New “Show seed info on file screen” and “User-configurable message” settings ([#1253](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1253))
 * New hidden “Generate Vanilla Seed” setting (used for `vanilla` and `fast-vanilla` presets)
-* The “Misc. Hints” setting is split into 3 toggles: Ganondorf, Temple of Time altar, and a new feature to disable warp song destination hints
 * New `chaos` hint distribution
 * New presets: `Standard Anti-Weekly Settings (S5)`, `allsanity-casual`, `debug`, `vanilla`, and `fast-vanilla`
 * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.

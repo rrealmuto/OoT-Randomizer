@@ -10,6 +10,7 @@ from Entrance import Entrance
 from State import State
 from Item import ItemFactory
 from Hints import get_hint_area, HintAreaNotFound
+from HintList import misc_item_hint_table
 
 
 def set_all_entrances_data(world):
@@ -775,7 +776,7 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
                 if not max_search.visited(location):
                     raise EntranceShuffleError('%s is unreachable' % location.name)
 
-    if world.shuffle_interior_entrances and ('ganondorf' in world.settings.misc_hints or world.settings.hints != 'none') and \
+    if world.shuffle_interior_entrances and (any(hint_type in world.settings.misc_hints for hint_type in misc_item_hint_table) or world.settings.hints != 'none') and \
        (entrance_placed == None or entrance_placed.type in ['Interior', 'SpecialInterior']):
         # When cows are shuffled, ensure both Impa's House entrances are in the same hint area because the cow is reachable from both sides
         if world.settings.shuffle_cows:

@@ -36,7 +36,7 @@ class World(object):
         self.shop_prices = {}
         self.scrub_prices = {}
         self.maximum_wallets = 0
-        self.light_arrow_location = None
+        self.misc_hint_item_locations = {}
         self.triforce_count = 0
         self.total_starting_triforce_count = 0
         self.bingosync_url = None
