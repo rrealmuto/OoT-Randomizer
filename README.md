@@ -13,7 +13,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
 * The `gossip_stones` section of the spoiler log includes info about which item and location was hinted where applicable ([#1520](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1520))
 * New settings to require heart containers for the rainbow bridge, LACS (for plando), and/or Ganon's boss key ([#1517](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1517))
 * The dungeon info screen in the pause menu shows an icon for dungeons in which all gold skulltulas have been checked ([#1508](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1508))
-* New “Ludicrous” option for the “Item Pool” setting that makes everything a major item ([#1507](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1507))
+* New “Ludicrous” option for the “Item Pool” setting that makes everything a major item (based on [#1507](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1507) but heart containers aren't removed)
 * A bug where items in shops would sometimes have wrong prices is fixed ([#1505](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1505))
 * New “One Bonk KO” setting ([#1503](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1503))
 * The child trade item is bound to D-pad right ([#1489](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1489))

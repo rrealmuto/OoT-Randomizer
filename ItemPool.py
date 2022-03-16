@@ -110,7 +110,9 @@ ludicrous_items = [
 
 
 item_difficulty_max = {
-    'ludicrous': {},
+    'ludicrous': {
+        'Piece of Heart': 3,
+    },
     'plentiful': {
         'Piece of Heart': 3,
     },
@@ -632,6 +634,7 @@ def get_pool_core(world):
             pool.append(pending_item)
 
     if world.settings.item_pool_value == 'ludicrous':
+        pending_junk_pool.extend(['Heart Container'] * 8)
         # Replace all junk items with major items
         # Overrides plando'd junk items
         # Songs are in the unrestricted pool even if their fill is restricted. Filter from candidates
@@ -643,7 +646,9 @@ def get_pool_core(world):
                                     and item != 'Triforce Piece'
                                     and item != 'Gold Skulltula Token'
                                     and item not in normal_bottles
-                                    and item != 'Rutos Letter']
+                                    and item != 'Rutos Letter'
+                                    and item != 'Piece of Heart'
+                                    and item != 'Piece of Heart (Treasure Chest Game)']
         max_extra_copies = int(Decimal(len(junk_items) / len(duplicate_candidates)).to_integral_value(rounding=ROUND_UP))
         duplicate_items = [item for item in duplicate_candidates for _ in range(max_extra_copies)]
         pool = [item if item not in junk_items else duplicate_items.pop(0) for item in pool]
