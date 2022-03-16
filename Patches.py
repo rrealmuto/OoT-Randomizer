@@ -22,7 +22,7 @@ from Messages import read_messages, update_message_by_id, read_shop_items, updat
 from OcarinaSongs import replace_songs
 from MQ import patch_files, File, update_dmadata, insert_space, add_relocations
 from SaveContext import SaveContext, Scenes, FlagType
-from texture_util import ci4_texture_apply_rgba16patch_and_convert_to_ci8
+from texture_util import ci4_texture_apply_rgba16patch_and_convert_to_ci8, rgba16_patch
 import StartingItems
 
 
@@ -89,6 +89,10 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     #ci4 to ci8 textures w/ patches
     #(texture_id, texture_name, rom_address_base, rom_address_palette (for ci4), size (pixels), patch file (None for default))
     crate_textures = [
+        (1, 'texture_pot_gold', 0x01738000, None, 4096, rgba16_patch, 'textures/pot/texture_pot_gold.bin'),
+        (2, 'texture_pot_key', 0x01738000, None, 4096, rgba16_patch, 'textures/pot/texture_pot_key.bin'),
+        (3, 'texture_pot_bosskey', 0x01738000, None, 4096, rgba16_patch, 'textures/pot/texture_pot_bosskey.bin'),
+        (4, 'texture_pot_skull', 0x01738000, None, 4096, rgba16_patch, 'textures/pot/texture_pot_skull.bin'),
         (5, 'texture_crate_default', 0x18B6000 + 0x20, 0x018B6000, 4096, ci4_texture_apply_rgba16patch_and_convert_to_ci8, None),
         (6, 'texture_crate_gold'   , 0x18B6000 + 0x20, 0x018B6000, 4096, ci4_texture_apply_rgba16patch_and_convert_to_ci8, 'textures/crate/crate_gold_rgba16_patch.bin'),
         (7, 'texture_crate_key', 0x18B6000 + 0x20, 0x018B6000, 4096, ci4_texture_apply_rgba16patch_and_convert_to_ci8, 'textures/crate/crate_key_rgba16_patch.bin'),
@@ -117,10 +121,10 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         write_rom_texture(rom, texture_id, entry)
 
     textures = [
-        (1, 'texture_pot_gold', 'textures/pot/texture_pot_gold.bin'),
-        (2, 'texture_pot_key', 'textures/pot/texture_pot_key.bin'),
-        (3, 'texture_pot_bosskey', 'textures/pot/texture_pot_bosskey.bin'),
-        (4, 'texture_pot_skull', 'textures/pot/texture_pot_skull.bin'),
+        #(1, 'texture_pot_gold', 'textures/pot/texture_pot_gold.bin'),
+        #(2, 'texture_pot_key', 'textures/pot/texture_pot_key.bin'),
+        #(3, 'texture_pot_bosskey', 'textures/pot/texture_pot_bosskey.bin'),
+        #(4, 'texture_pot_skull', 'textures/pot/texture_pot_skull.bin'),
         #(5, 'texture_crate_top_default', 'textures/crate/crate_top_default_ci8.bin'),
         #(6, 'texture_crate_top_gold', 'textures/crate/crate_top_gold_ci8.bin'),
         #(7, 'texture_crate_top_key', 'textures/crate/crate_top_key_ci8.bin'),

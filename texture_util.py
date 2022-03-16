@@ -67,6 +67,12 @@ def save_ci8_texture(ci8_texture, fileStr):
     file.write(bytes)
     file.close()
 
+def load_rgba16_texture_from_rom(rom: Rom, base_texture_address, size):
+    texture = []
+    for i in range(0, size):
+        texture.append(int.from_bytes(rom.read_bytes(2), 'big'))
+    return texture
+
 def load_rgba16_texture(fileStr, size):
     texture = []
     file = open(fileStr, 'rb')
@@ -75,6 +81,17 @@ def load_rgba16_texture(fileStr, size):
 
     file.close()
     return(texture)
+
+def rgba16_patch(rom: Rom, base_texture_address, base_palette_address, size, patchfile):
+    base_texture_rgba16 = load_rgba16_texture_from_rom(rom, base_texture_address, size)
+    patch_rgba16 = None
+    if patchfile:
+        patch_rgba16 = load_rgba16_texture(patchfile, size)
+    new_texture_rgba16 = apply_rgba16_patch(base_texture_rgba16, patch_rgba16)
+    bytes = bytearray()
+    for pixel in new_texture_rgba16:
+        bytes.extend(int.to_bytes(pixel, 2, 'big'))
+    return bytes
 
 def ci4_texture_apply_rgba16patch_and_convert_to_ci8(rom, base_texture_address, base_palette_address, size, patchfile):
     palette = load_palette(rom, base_palette_address, 16) #load the original palette from rom
@@ -158,4 +175,4 @@ def build_crate_ci8_patches():
         file.close()
         print(texture)
 
-build_crate_ci8_patches()
+#build_crate_ci8_patches()
