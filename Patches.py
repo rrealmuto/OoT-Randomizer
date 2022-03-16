@@ -81,18 +81,21 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Add it to the extended object table
     add_to_extended_object_table(rom, 0x194, dd_obj_file)
 
-    # Add new textures to files
+
+    # Create the textures for pots/crates. Note: No copyrighted material can be distributed w/ the randomizer. Because of this, patch files are used to create the new textures from the original texture in ROM.
+    # Apply patches for custom textures for pots and crates and add as new files in rom
+    # Crates are ci4 textures in the normal ROM but for pot/crate textures match contents were upgraded to ci8 to support more colors
+    # Pot textures are rgba16
+    # Get the texture table from rom (see textures.c)
     texture_table_start = rom.sym('texture_table') #Get the address of the texture table
 
-    #texture list. See textures.h for texture IDs
-    
-    #ci4 to ci8 textures w/ patches
-    #(texture_id, texture_name, rom_address_base, rom_address_palette (for ci4), size (pixels), patch file (None for default))
+    #texture list. See textures.h for texture IDs    
+    #(texture_id, texture_name, rom_address_base, rom_address_palette (for ci4), size (pixels), patching function, patch file (None for default))
     crate_textures = [
-        (1, 'texture_pot_gold', 0x01738000, None, 4096, rgba16_patch, 'textures/pot/texture_pot_gold.bin'),
-        (2, 'texture_pot_key', 0x01738000, None, 4096, rgba16_patch, 'textures/pot/texture_pot_key.bin'),
-        (3, 'texture_pot_bosskey', 0x01738000, None, 4096, rgba16_patch, 'textures/pot/texture_pot_bosskey.bin'),
-        (4, 'texture_pot_skull', 0x01738000, None, 4096, rgba16_patch, 'textures/pot/texture_pot_skull.bin'),
+        (1, 'texture_pot_gold', 0x01738000, None, 2048, rgba16_patch, 'textures/pot/pot_gold_rgba16_patch.bin'),
+        (2, 'texture_pot_key', 0x01738000, None, 2048, rgba16_patch, 'textures/pot/pot_key_rgba16_patch.bin'),
+        (3, 'texture_pot_bosskey', 0x01738000, None, 2048, rgba16_patch, 'textures/pot/pot_bosskey_rgba16_patch.bin'),
+        (4, 'texture_pot_skull', 0x01738000, None, 2048, rgba16_patch, 'textures/pot/pot_skull_rgba16_patch.bin'),
         (5, 'texture_crate_default', 0x18B6000 + 0x20, 0x018B6000, 4096, ci4_texture_apply_rgba16patch_and_convert_to_ci8, None),
         (6, 'texture_crate_gold'   , 0x18B6000 + 0x20, 0x018B6000, 4096, ci4_texture_apply_rgba16patch_and_convert_to_ci8, 'textures/crate/crate_gold_rgba16_patch.bin'),
         (7, 'texture_crate_key', 0x18B6000 + 0x20, 0x018B6000, 4096, ci4_texture_apply_rgba16patch_and_convert_to_ci8, 'textures/crate/crate_key_rgba16_patch.bin'),
@@ -101,64 +104,23 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     ]
     logger = logging.getLogger('')
 
+    # Loop through the textures and apply the patch. Add the new texture as a new file in rom.
     for texture_id, texture_name, rom_address_base, rom_address_palette, size,func, patchfile in crate_textures:
-        logger.info("Creating texture: " + texture_name)
-        texture_file = File({'Name':texture_name})
-        texture_file.copy(rom)
-        texture_data = func(rom, rom_address_base, rom_address_palette, size, data_path(patchfile) if patchfile else None)
-        rom.write_bytes(texture_file.start, texture_data)
-        texture_file.end = texture_file.start + len(texture_data)
-        update_dmadata(rom, texture_file)
+        texture_file = File({'Name':texture_name}) # Create a new file for the texture
+        texture_file.copy(rom)  # Relocate this file to free space is the rom
+        texture_data = func(rom, rom_address_base, rom_address_palette, size, data_path(patchfile) if patchfile else None) # Apply the texture patch. Resulting texture will be stored in texture_data as a bytearray
+        rom.write_bytes(texture_file.start, texture_data) # write the bytes to our new file
+        texture_file.end = texture_file.start + len(texture_data) # Get size of the new texture
+        update_dmadata(rom, texture_file) # Update DMA table with new file
 
         #update the texture table with the rom addresses of the texture files
         entry_addr = texture_table_start + (texture_id * texture_struct.size)
         entry = read_rom_texture(rom, texture_id )
-        
         entry['file_vrom_start'] = texture_file.start
         entry['file_size'] = texture_file.end - texture_file.start
         logger.info(entry['file_vrom_start'])
         logger.info(entry['file_size'])
         write_rom_texture(rom, texture_id, entry)
-
-    textures = [
-        #(1, 'texture_pot_gold', 'textures/pot/texture_pot_gold.bin'),
-        #(2, 'texture_pot_key', 'textures/pot/texture_pot_key.bin'),
-        #(3, 'texture_pot_bosskey', 'textures/pot/texture_pot_bosskey.bin'),
-        #(4, 'texture_pot_skull', 'textures/pot/texture_pot_skull.bin'),
-        #(5, 'texture_crate_top_default', 'textures/crate/crate_top_default_ci8.bin'),
-        #(6, 'texture_crate_top_gold', 'textures/crate/crate_top_gold_ci8.bin'),
-        #(7, 'texture_crate_top_key', 'textures/crate/crate_top_key_ci8.bin'),
-        #(8, 'texture_crate_top_bosskey', 'textures/crate/crate_top_bosskey_ci8.bin'),
-        #(9, 'texture_crate_top_skull', 'textures/crate/crate_top_skull_ci8.bin'),
-        #(10, 'texture_crate_side_default', 'textures/crate/crate_side_default_ci8.bin'),
-        #(11, 'texture_crate_side_gold', 'textures/crate/crate_side_gold_ci8.bin'),
-        #(12, 'texture_crate_side_key', 'textures/crate/crate_side_key_ci8.bin'),
-        #(13, 'texture_crate_side_bosskey', 'textures/crate/crate_side_bosskey_ci8.bin'),
-        #(14, 'texture_crate_side_skull', 'textures/crate/crate_side_skull_ci8.bin'),
-        #(15, 'texture_crate_palette_default', 'textures/crate/crate_palette_default_ci8.bin'),
-        #(16, 'texture_crate_palette_gold', 'textures/crate/crate_palette_gold_ci8.bin'),
-        #(17, 'texture_crate_palette_key', 'textures/crate/crate_palette_key_ci8.bin'),
-        #(18, 'texture_crate_palette_bosskey', 'textures/crate/crate_palette_bosskey_ci8.bin'),
-        #(19, 'texture_crate_palette_skull', 'textures/crate/crate_palette_skull_ci8.bin'),
-
-    ]
-    for texture in textures:
-        texture_id, texture_name, texture_path = texture
-        texture_file = File({'Name':texture_name})
-        texture_file.copy(rom)
-        with open(data_path(texture_path), 'rb') as stream:
-            obj_data = stream.read()
-            rom.write_bytes(texture_file.start, obj_data)
-            texture_file.end = texture_file.start + len(obj_data)
-        update_dmadata(rom, texture_file)
-
-        #update the texture table with the rom addresses of the texture files
-        entry_addr = texture_table_start + (texture_id * texture_struct.size)
-        entry = read_rom_texture(rom, texture_id )
-        entry['file_vrom_start'] = texture_file.start
-        entry['file_size'] = texture_file.end - texture_file.start
-        write_rom_texture(rom, texture_id, entry)
-    
 
     # Apply chest texture diffs to vanilla wooden chest texture for Chest Texture Matches Content setting
     # new texture, vanilla texture, num bytes
