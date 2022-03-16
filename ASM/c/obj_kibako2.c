@@ -2,6 +2,10 @@
 #include "textures.h"
 #define CRATE_DLIST (z64_gfx_t *)0x06000960
 
+#define CRATE_CI8_TEXTURE_PALETTE_OFFSET 0x00
+#define CRATE_CI8_TEXTURE_TOP_OFFSET 0x200
+#define CRATE_CI8_TEXTURE_SIDE_OFFSET 0xA00
+
 extern bool POTCRATE_TEXTURES_MATCH_CONTENTS;
 
 // Hacks the regular crate spawn collectible function to use more flag space
@@ -41,10 +45,11 @@ override_t get_crate_override(z64_actor_t *actor, z64_game_t *game)
 
 void ObjKibako2_Draw(z64_actor_t *actor, z64_game_t *game)
 {
+    uint8_t* texture = get_texture(TEXTURE_ID_CRATE_DEFAULT);
     // get original palette and textures
-    uint64_t *palette = get_texture(TEXTURE_ID_CRATE_PALETTE_DEFAULT);
-    uint64_t *top_texture = get_texture(TEXTURE_ID_CRATE_TOP_DEFAULT);
-    uint64_t *side_texture = get_texture(TEXTURE_ID_CRATE_SIDE_DEFAULT);
+    //uint64_t *palette = get_texture(TEXTURE_ID_CRATE_PALETTE_DEFAULT);
+    //uint64_t *top_texture = get_texture(TEXTURE_ID_CRATE_TOP_DEFAULT);
+    //uint64_t *side_texture = get_texture(TEXTURE_ID_CRATE_SIDE_DEFAULT);
 
     // get override palette and textures
     override_t crate_override = get_crate_override(actor, game);
@@ -57,38 +62,42 @@ void ObjKibako2_Draw(z64_actor_t *actor, z64_game_t *game)
         }
         if (row->chest_type == GILDED_CHEST)
         {
-            palette = get_texture(TEXTURE_ID_CRATE_PALETTE_GOLD);
-            top_texture = get_texture(TEXTURE_ID_CRATE_TOP_GOLD);
-            side_texture = get_texture(TEXTURE_ID_CRATE_SIDE_GOLD);
+            texture = get_texture(TEXTURE_ID_CRATE_GOLD);
+            //palette = get_texture(TEXTURE_ID_CRATE_PALETTE_GOLD);
+            //top_texture = get_texture(TEXTURE_ID_CRATE_TOP_GOLD);
+            //side_texture = get_texture(TEXTURE_ID_CRATE_SIDE_GOLD);
         }
         else if (row->chest_type == SILVER_CHEST)
         {
-            palette = get_texture(TEXTURE_ID_CRATE_PALETTE_KEY);
-            top_texture = get_texture(TEXTURE_ID_CRATE_TOP_KEY);
-            side_texture = get_texture(TEXTURE_ID_CRATE_SIDE_KEY);
+            texture = get_texture(TEXTURE_ID_CRATE_KEY);
+            //palette = get_texture(TEXTURE_ID_CRATE_PALETTE_KEY);
+            //top_texture = get_texture(TEXTURE_ID_CRATE_TOP_KEY);
+            //side_texture = get_texture(TEXTURE_ID_CRATE_SIDE_KEY);
         }
         else if (row->chest_type == GOLD_CHEST)
         {
-            palette = get_texture(TEXTURE_ID_CRATE_PALETTE_BOSSKEY);
-            top_texture = get_texture(TEXTURE_ID_CRATE_TOP_BOSSKEY);
-            side_texture = get_texture(TEXTURE_ID_CRATE_SIDE_BOSSKEY);
+            texture = get_texture(TEXTURE_ID_CRATE_BOSSKEY);
+            //palette = get_texture(TEXTURE_ID_CRATE_PALETTE_BOSSKEY);
+            //top_texture = get_texture(TEXTURE_ID_CRATE_TOP_BOSSKEY);
+            //side_texture = get_texture(TEXTURE_ID_CRATE_SIDE_BOSSKEY);
         }
         else if (row->chest_type == SKULL_CHEST_SMALL || row->chest_type == SKULL_CHEST_BIG)
         {
-            palette = get_texture(TEXTURE_ID_CRATE_PALETTE_SKULL);
-            top_texture = get_texture(TEXTURE_ID_CRATE_TOP_SKULL);
-            side_texture = get_texture(TEXTURE_ID_CRATE_SIDE_SKULL);
+            texture = get_texture(TEXTURE_ID_CRATE_SKULL);
+            //palette = get_texture(TEXTURE_ID_CRATE_PALETTE_SKULL);
+            //top_texture = get_texture(TEXTURE_ID_CRATE_TOP_SKULL);
+            //side_texture = get_texture(TEXTURE_ID_CRATE_SIDE_SKULL);
         }
     }
 
     // push custom dlists (that set the palette and textures) to segment 09
     z64_gfx_t *gfx = game->common.gfx;
     gfx->poly_opa.d -= 6;
-    gDPSetTextureImage(gfx->poly_opa.d, G_IM_FMT_CI, G_IM_SIZ_16b, 1, top_texture);
+    gDPSetTextureImage(gfx->poly_opa.d, G_IM_FMT_CI, G_IM_SIZ_16b, 1, texture + CRATE_CI8_TEXTURE_TOP_OFFSET);
     gSPEndDisplayList(gfx->poly_opa.d + 1);
-    gDPSetTextureImage(gfx->poly_opa.d + 2, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, palette);
+    gDPSetTextureImage(gfx->poly_opa.d + 2, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, texture + CRATE_CI8_TEXTURE_PALETTE_OFFSET);
     gSPEndDisplayList(gfx->poly_opa.d + 3);
-    gDPSetTextureImage(gfx->poly_opa.d + 4, G_IM_FMT_CI, G_IM_SIZ_16b, 1, side_texture);
+    gDPSetTextureImage(gfx->poly_opa.d + 4, G_IM_FMT_CI, G_IM_SIZ_16b, 1, texture + CRATE_CI8_TEXTURE_SIDE_OFFSET);
     gSPEndDisplayList(gfx->poly_opa.d + 5);
 
     gMoveWd(gfx->poly_opa.p++, G_MW_SEGMENT, 9 * sizeof(int), gfx->poly_opa.d);

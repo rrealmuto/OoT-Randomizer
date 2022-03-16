@@ -22,6 +22,7 @@ from Messages import read_messages, update_message_by_id, read_shop_items, updat
 from OcarinaSongs import replace_songs
 from MQ import patch_files, File, update_dmadata, insert_space, add_relocations
 from SaveContext import SaveContext, Scenes, FlagType
+from texture_util import ci4_texture_apply_rgba16patch_and_convert_to_ci8
 import StartingItems
 
 
@@ -84,26 +85,57 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     texture_table_start = rom.sym('texture_table') #Get the address of the texture table
 
     #texture list. See textures.h for texture IDs
+    
+    #ci4 to ci8 textures w/ patches
+    #(texture_id, texture_name, rom_address_base, rom_address_palette (for ci4), size (pixels), patch file (None for default))
+    crate_textures = [
+        (5, 'texture_crate_default', 0x18B6000 + 0x20, 0x018B6000, 4096, ci4_texture_apply_rgba16patch_and_convert_to_ci8, None),
+        (6, 'texture_crate_gold'   , 0x18B6000 + 0x20, 0x018B6000, 4096, ci4_texture_apply_rgba16patch_and_convert_to_ci8, 'textures/crate/crate_gold_rgba16_patch.bin'),
+        (7, 'texture_crate_key', 0x18B6000 + 0x20, 0x018B6000, 4096, ci4_texture_apply_rgba16patch_and_convert_to_ci8, 'textures/crate/crate_key_rgba16_patch.bin'),
+        (8, 'texture_crate_skull',  0x18B6000 + 0x20, 0x018B6000, 4096, ci4_texture_apply_rgba16patch_and_convert_to_ci8, 'textures/crate/crate_skull_rgba16_patch.bin'),
+        (9, 'texture_crate_bosskey', 0x18B6000 + 0x20, 0x018B6000, 4096, ci4_texture_apply_rgba16patch_and_convert_to_ci8, 'textures/crate/crate_bosskey_rgba16_patch.bin')
+    ]
+    logger = logging.getLogger('')
+
+    for texture_id, texture_name, rom_address_base, rom_address_palette, size,func, patchfile in crate_textures:
+        logger.info("Creating texture: " + texture_name)
+        texture_file = File({'Name':texture_name})
+        texture_file.copy(rom)
+        texture_data = func(rom, rom_address_base, rom_address_palette, size, data_path(patchfile) if patchfile else None)
+        rom.write_bytes(texture_file.start, texture_data)
+        texture_file.end = texture_file.start + len(texture_data)
+        update_dmadata(rom, texture_file)
+
+        #update the texture table with the rom addresses of the texture files
+        entry_addr = texture_table_start + (texture_id * texture_struct.size)
+        entry = read_rom_texture(rom, texture_id )
+        
+        entry['file_vrom_start'] = texture_file.start
+        entry['file_size'] = texture_file.end - texture_file.start
+        logger.info(entry['file_vrom_start'])
+        logger.info(entry['file_size'])
+        write_rom_texture(rom, texture_id, entry)
+
     textures = [
         (1, 'texture_pot_gold', 'textures/pot/texture_pot_gold.bin'),
         (2, 'texture_pot_key', 'textures/pot/texture_pot_key.bin'),
         (3, 'texture_pot_bosskey', 'textures/pot/texture_pot_bosskey.bin'),
         (4, 'texture_pot_skull', 'textures/pot/texture_pot_skull.bin'),
-        (5, 'texture_crate_top_default', 'textures/crate/crate_top_default_ci8.bin'),
-        (6, 'texture_crate_top_gold', 'textures/crate/crate_top_gold_ci8.bin'),
-        (7, 'texture_crate_top_key', 'textures/crate/crate_top_key_ci8.bin'),
-        (8, 'texture_crate_top_bosskey', 'textures/crate/crate_top_bosskey_ci8.bin'),
-        (9, 'texture_crate_top_skull', 'textures/crate/crate_top_skull_ci8.bin'),
-        (10, 'texture_crate_side_default', 'textures/crate/crate_side_default_ci8.bin'),
-        (11, 'texture_crate_side_gold', 'textures/crate/crate_side_gold_ci8.bin'),
-        (12, 'texture_crate_side_key', 'textures/crate/crate_side_key_ci8.bin'),
-        (13, 'texture_crate_side_bosskey', 'textures/crate/crate_side_bosskey_ci8.bin'),
-        (14, 'texture_crate_side_skull', 'textures/crate/crate_side_skull_ci8.bin'),
-        (15, 'texture_crate_palette_default', 'textures/crate/crate_palette_default_ci8.bin'),
-        (16, 'texture_crate_palette_gold', 'textures/crate/crate_palette_gold_ci8.bin'),
-        (17, 'texture_crate_palette_key', 'textures/crate/crate_palette_key_ci8.bin'),
-        (18, 'texture_crate_palette_bosskey', 'textures/crate/crate_palette_bosskey_ci8.bin'),
-        (19, 'texture_crate_palette_skull', 'textures/crate/crate_palette_skull_ci8.bin'),
+        #(5, 'texture_crate_top_default', 'textures/crate/crate_top_default_ci8.bin'),
+        #(6, 'texture_crate_top_gold', 'textures/crate/crate_top_gold_ci8.bin'),
+        #(7, 'texture_crate_top_key', 'textures/crate/crate_top_key_ci8.bin'),
+        #(8, 'texture_crate_top_bosskey', 'textures/crate/crate_top_bosskey_ci8.bin'),
+        #(9, 'texture_crate_top_skull', 'textures/crate/crate_top_skull_ci8.bin'),
+        #(10, 'texture_crate_side_default', 'textures/crate/crate_side_default_ci8.bin'),
+        #(11, 'texture_crate_side_gold', 'textures/crate/crate_side_gold_ci8.bin'),
+        #(12, 'texture_crate_side_key', 'textures/crate/crate_side_key_ci8.bin'),
+        #(13, 'texture_crate_side_bosskey', 'textures/crate/crate_side_bosskey_ci8.bin'),
+        #(14, 'texture_crate_side_skull', 'textures/crate/crate_side_skull_ci8.bin'),
+        #(15, 'texture_crate_palette_default', 'textures/crate/crate_palette_default_ci8.bin'),
+        #(16, 'texture_crate_palette_gold', 'textures/crate/crate_palette_gold_ci8.bin'),
+        #(17, 'texture_crate_palette_key', 'textures/crate/crate_palette_key_ci8.bin'),
+        #(18, 'texture_crate_palette_bosskey', 'textures/crate/crate_palette_bosskey_ci8.bin'),
+        #(19, 'texture_crate_palette_skull', 'textures/crate/crate_palette_skull_ci8.bin'),
 
     ]
     for texture in textures:
