@@ -9,7 +9,8 @@ Instead, you can open an issue on this fork [here](https://github.com/fenhl/OoT-
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
 * The “Mix Entrance Pools” setting has new options to allow individually selecting entrance pools to be mixed ([Dev-R #67](https://github.com/Roman971/OoT-Randomizer/pull/67))
-* The “Misc. Hints” setting is split into 4 toggles: Ganondorf, Temple of Time altar, and new options to hint the Hookshot location in Dampé's diary and/or disable warp song destination hints (based on [#1534](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1534)
+* New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1536))
+* The “Misc. Hints” setting is split into 4 toggles: Ganondorf, Temple of Time altar, and new options to hint the Hookshot location in Dampé's diary and/or disable warp song destination hints (based on [#1534](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1534))
 * “Closed Forest Requires Gohma” is a separate setting, making “Closed Forest” compatible with more settings if disabled ([#1531](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1531))
 * The `gossip_stones` section of the spoiler log includes info about which item and location was hinted where applicable ([#1520](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1520))
 * New settings to require heart containers for the rainbow bridge, LACS (for plando), and/or Ganon's boss key ([#1517](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1517))
