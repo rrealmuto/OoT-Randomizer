@@ -2469,7 +2469,7 @@ setting_infos = [
         disable        = {
             'glitchless': {'settings' : ['tricks_list_msg']},
             'glitched'  : {'settings' : ['allowed_tricks', 'shuffle_interior_entrances', 'shuffle_grotto_entrances',
-                                         'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'owl_drops', 'warp_songs', 'mix_entrance_pools', 'decouple_entrances',
+                                         'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops', 'warp_songs', 'mix_entrance_pools', 'decouple_entrances',
                                          'spawn_positions', 'mq_dungeons_mode', 'mq_dungeons_specific', 'mq_dungeons_count', 'dungeon_shortcuts',
                                          'deadly_bonks']},
             'none'      : {'settings' : ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
@@ -3106,7 +3106,9 @@ setting_infos = [
             Some entrances are kept unshuffled to avoid issues:
             - Hyrule Castle Courtyard and Garden entrances
             - Both Market Back Alley entrances
-            - Gerudo Valley to Lake Hylia (unless entrances are decoupled)
+
+            The entrance from Gerudo Valley to Lake Hylia is a one-way
+            entrance and has its own setting below.
 
             Just like when shuffling interior entrances, shuffling overworld 
             entrances disables trade timers and trade items never revert, 
@@ -3172,6 +3174,40 @@ setting_infos = [
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
+        },
+    ),
+    Combobox(
+        name           = 'shuffle_gerudo_valley_river_exit',
+        gui_text       = 'Shuffle Gerudo Valley River Exit',
+        choices        = {
+            'off':       'Off',
+            'balanced':  'Balanced',
+            'full':      'Full',
+        },
+        gui_tooltip    = '''\
+            Randomize where the the one-way entrance
+            down the river in Gerudo Valley leads to.
+
+            'Off':
+            The entrance leads to Lake Hylia.
+
+            'Balanced':
+            The destinations are randomly chosen from overworld,
+            interior, and a few special entrances.
+
+            'Full':
+            It can also take you inside or outside of a grave
+            or dungeon, potentially bypassing item requirements.
+        ''',
+        default        = 'off',
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+            'distribution':  [
+                ('off', 2),
+                ('balanced', 1),
+                ('full', 1),
+            ],
         },
     ),
     Combobox(

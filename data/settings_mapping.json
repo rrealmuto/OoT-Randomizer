@@ -194,6 +194,7 @@
             "shuffle_overworld_entrances",
             "mix_entrance_pools",
             "decouple_entrances",
+            "shuffle_gerudo_valley_river_exit",
             "owl_drops",
             "warp_songs",
             "spawn_positions"

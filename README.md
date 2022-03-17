@@ -27,6 +27,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
 * Automatically advances credits text (based on [#1412](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1412))
 * New “Full” options for the “Randomize Owl Drops”, “Randomize Warp Song Destinations”, and “Randomize Overworld Spawns” settings that include more types of entrances (based on [#1179](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1179) and [#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
 * New “Show seed info on file screen” and “User-configurable message” settings ([#1253](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1253))
+* New “Shuffle Gerudo Valley River Exit” setting
 * New hidden “Generate Vanilla Seed” setting (used for `vanilla` and `fast-vanilla` presets)
 * New `chaos` hint distribution
 * New presets: `Standard Anti-Weekly Settings (S5)`, `allsanity-casual`, `debug`, `vanilla`, and `fast-vanilla`

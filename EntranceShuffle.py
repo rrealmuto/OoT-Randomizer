@@ -322,7 +322,7 @@ entrance_shuffle_table = [
     ('Overworld',       ('ZD Behind King Zora -> Zoras Fountain',                           { 'index': 0x0225 }),
                         ('Zoras Fountain -> ZD Behind King Zora',                           { 'index': 0x01A1 })),
 
-    ('Overworld',       ('GV Lower Stream -> Lake Hylia',                                   { 'index': 0x0219 })),
+    ('OverworldOneWay', ('GV Lower Stream -> Lake Hylia',                                   { 'index': 0x0219 })),
 
     ('OwlDrop',         ('LH Owl Flight -> Hyrule Field',                                   { 'index': 0x027E, 'addresses': [0xAC9F26] })),
     ('OwlDrop',         ('DMT Owl Flight -> Kak Impas Rooftop',                             { 'index': 0x0554, 'addresses': [0xAC9EF2] })),
@@ -350,9 +350,9 @@ entrance_shuffle_table = [
 # if shuffling warp songs (depending on other settings).
 # Table maps: short key -> ([target regions], [allowed types])
 priority_entrance_table = {
-    'Bolero': (['DMC Central Local'], ['OwlDrop', 'WarpSong']),
-    'Nocturne': (['Graveyard Warp Pad Region'], ['OwlDrop', 'Spawn', 'WarpSong']),
-    'Requiem': (['Desert Colossus', 'Desert Colossus From Spirit Lobby'], ['OwlDrop', 'Spawn', 'WarpSong']),
+    'Bolero': (['DMC Central Local'], ['OwlDrop', 'WarpSong', 'OverworldOneWay']),
+    'Nocturne': (['Graveyard Warp Pad Region'], ['OwlDrop', 'Spawn', 'WarpSong', 'OverworldOneWay']),
+    'Requiem': (['Desert Colossus', 'Desert Colossus From Spirit Lobby'], ['OwlDrop', 'Spawn', 'WarpSong', 'OverworldOneWay']),
 }
 
 
@@ -391,6 +391,9 @@ def shuffle_random_entrances(worlds):
         one_way_entrance_pools = OrderedDict()
         entrance_pools = OrderedDict()
         one_way_priorities = {}
+
+        if worlds[0].settings.shuffle_gerudo_valley_river_exit != 'off':
+            one_way_entrance_pools['OverworldOneWay'] = world.get_shufflable_entrances(type='OverworldOneWay')
 
         if worlds[0].settings.owl_drops != 'off':
             one_way_entrance_pools['OwlDrop'] = world.get_shufflable_entrances(type='OwlDrop')
@@ -433,8 +436,6 @@ def shuffle_random_entrances(worlds):
         if worlds[0].settings.shuffle_overworld_entrances:
             exclude_overworld_reverse = ('Overworld' in worlds[0].settings.mix_entrance_pools) and not worlds[0].settings.decouple_entrances
             entrance_pools['Overworld'] = world.get_shufflable_entrances(type='Overworld', only_primary=exclude_overworld_reverse)
-            if not worlds[0].settings.decouple_entrances:
-                entrance_pools['Overworld'].remove(world.get_entrance('GV Lower Stream -> Lake Hylia'))
 
         # Set shuffled entrances as such
         for entrance in list(chain.from_iterable(one_way_entrance_pools.values())) + list(chain.from_iterable(entrance_pools.values())):
@@ -452,8 +453,15 @@ def shuffle_random_entrances(worlds):
         one_way_target_entrance_pools = {}
         for pool_type, entrance_pool in one_way_entrance_pools.items():
             # One way entrances are extra entrances that will be connected to entrance positions from a selection of entrance pools
-            if pool_type == 'OwlDrop':
-                valid_target_types = ('WarpSong', 'OwlDrop', 'Overworld', 'Extra')
+            if pool_type == 'OverworldOneWay':
+                valid_target_types = ('Spawn', 'WarpSong', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
+                valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
+                if worlds[0].settings.shuffle_gerudo_valley_river_exit == 'full':
+                    valid_target_types = ('Dungeon', 'Grave', *valid_target_types) # grotto entrances don't work properly (the lead to the Deku Tree instead)
+                    valid_target_types_reverse = ('Dungeon', 'Grave', *valid_target_types_reverse)
+                one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
+            elif pool_type == 'OwlDrop':
+                valid_target_types = ('WarpSong', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Extra')
                 valid_target_types_reverse = ('Overworld',)
                 exclude = ['OGC Great Fairy Fountain -> Castle Grounds']
                 if worlds[0].settings.owl_drops == 'full':
@@ -465,14 +473,14 @@ def shuffle_random_entrances(worlds):
                 for target in one_way_target_entrance_pools[pool_type]:
                     target.set_rule(lambda state, age=None, **kwargs: age == 'child')
             elif pool_type == 'Spawn':
-                valid_target_types = ('Spawn', 'WarpSong', 'OwlDrop', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
+                valid_target_types = ('Spawn', 'WarpSong', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
                 valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
                 if worlds[0].full_spawn_positions:
                     valid_target_types = ('Dungeon', *valid_target_types) # there may be issues with Grotto and Grave entrances so these are excluded for now
                     valid_target_types_reverse = ('Dungeon', 'Grotto', 'Grave', *valid_target_types_reverse)
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
             elif pool_type == 'WarpSong':
-                valid_target_types = ('Spawn', 'WarpSong', 'OwlDrop', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
+                valid_target_types = ('Spawn', 'WarpSong', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
                 valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
                 if worlds[0].settings.warp_songs == 'full':
                     valid_target_types = ('Dungeon', 'Grave', *valid_target_types)
@@ -737,7 +745,7 @@ def check_entrances_compatibility(entrance, target, rollbacks=(), placed_one_way
         raise EntranceShuffleError('Self scene connections are forbidden')
 
     # One way entrances shouldn't lead to the same hint area as other already chosen one way entrances
-    if entrance.type in ('OwlDrop', 'Spawn', 'WarpSong'):
+    if entrance.type in ('OverworldOneWay', 'OwlDrop', 'Spawn', 'WarpSong'):
         try:
             hint_area = get_hint_area(target.connected_region)[0]
         except HintAreaNotFound:

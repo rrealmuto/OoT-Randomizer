@@ -60,7 +60,7 @@ class World(object):
         self.shuffle_interior_entrances = settings.shuffle_interior_entrances in ['simple', 'all']
 
         self.entrance_shuffle = self.shuffle_interior_entrances or settings.shuffle_grotto_entrances or settings.shuffle_dungeon_entrances or \
-                                settings.shuffle_overworld_entrances or settings.owl_drops != 'off' or settings.warp_songs != 'off' or self.spawn_positions
+            settings.shuffle_overworld_entrances or settings.shuffle_gerudo_valley_river_exit or settings.owl_drops != 'off' or settings.warp_songs != 'off' or self.spawn_positions
 
         self.ensure_tod_access = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or self.spawn_positions
         self.disable_trade_revert = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances
