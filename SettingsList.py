@@ -2076,48 +2076,48 @@ setting_infos = [
         },
         shared         = True,
     ),
-    Combobox(
-        name           = 'open_forest',
-        gui_text       = 'Forest',
-        default        = 'closed',
-        choices        = {
-            'open':        'Open Forest',
-            'closed_deku': 'Closed Deku',
-            'closed':      'Closed Forest',
-            },
+    Checkbutton(
+        name           = 'open_deku',
+        gui_text       = 'Open Deku Tree',
         gui_tooltip    = '''\
-            'Open Forest': Mido no longer blocks the path to the
-            Deku Tree, and the Kokiri boy no longer blocks the path
-            out of the forest.
-            
-            'Closed Deku': The Kokiri boy no longer blocks the path
-            out of the forest, but Mido still blocks the path to the
-            Deku Tree, requiring Kokiri Sword and Deku Shield to access
-            the Deku Tree.
+            In the child era, Mido no longer blocks the path
+            to the Deku Tree, so you can access the area without
+            requiring Kokiri Sword and Deku Shield.
 
-            'Closed Forest': Beating Deku Tree is logically required
-            to leave the forest area (Kokiri Forest/Lost Woods/Sacred Forest
-            Meadow/Deku Tree), while the Kokiri Sword and a Deku Shield are
-            required to access the Deku Tree. Items needed for this will be
-            guaranteed inside the forest area. This setting is incompatible
-            with starting as adult, and so Starting Age will be locked to Child.
-            With either "Shuffle Interior Entrances" set to "All", "Shuffle 
-            Overworld Entrances" on, "Randomize Warp Song Destinations" on 
-            or "Randomize Overworld Spawns" on, Closed Forest will instead 
-            be treated as Closed Deku with starting age Child and WILL NOT 
-            guarantee that these items are available in the forest area.
+            If "Shuffle Dungeon Entrances" is enabled, the
+            Deku Tree's mouth is also open in the adult era.
         ''',
         shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    ),
+    Checkbutton(
+        name           = 'open_forest',
+        gui_text       = 'Open Forest',
+        gui_tooltip    = '''\
+            'Open Forest': The Kokiri boy no longer blocks the path out
+            of the forest.
+
+            'Closed Forest': Beating Deku Tree is logically required to
+            leave the forest area (Kokiri Forest/Lost Woods/Sacred
+            Forest Meadow/Deku Tree). Items needed for this will be
+            guaranteed inside the forest area. This setting is
+            incompatible with starting as adult, and so Starting Age
+            will be locked to Child. With either "Shuffle Interior
+            Entrances" set to "All", "Shuffle Overworld Entrances" on,
+            "Randomize Warp Song Destinations" on, or "Randomize
+            Overworld Spawns" on, "Open Forest" is automatically
+            enabled and WILL NOT guarantee that these items are
+            available in the forest area.
+        ''',
+        disabled_default = True,
+        shared         = True,
         disable        = {
-            'closed' : {'settings' : ['starting_age']}
+            False : {'settings' : ['starting_age', 'shuffle_interior_entrances', 'shuffle_overworld_entrances', 'warp_songs', 'spawn_positions']}
         },
         gui_params     = {
             'randomize_key': 'randomize_settings',
-            'distribution': [
-                ('open', 1),
-                ('closed_deku', 1),
-                ('closed', 1),
-            ],
         },
     ),
     Combobox(
@@ -2991,6 +2991,9 @@ setting_infos = [
             When shuffling any interior entrances, trade quest timers are disabled 
             and items never revert, even when dying or loading a save.
         ''',
+        disable        = {
+            'all' : {'settings': ['open_forest']},
+        },
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -3049,6 +3052,9 @@ setting_infos = [
         ''',
         default        = False,
         shared         = True,
+        disable        = {
+            True : {'settings': ['open_forest']},
+        },
         gui_params     = {
             'randomize_key': 'randomize_settings',
         },
@@ -3075,6 +3081,9 @@ setting_infos = [
         ''',
         default        = False,
         shared         = True,
+        disable        = {
+            True : {'settings': ['open_forest']},
+        },
         gui_params     = {
             'randomize_key': 'randomize_settings',
         },
@@ -3091,6 +3100,9 @@ setting_infos = [
         ''',
         default        = False,
         shared         = True,
+        disable        = {
+            True : {'settings': ['open_forest']},
+        },
         gui_params     = {
             'randomize_key': 'randomize_settings',
         },

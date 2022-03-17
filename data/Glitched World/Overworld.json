@@ -29,7 +29,7 @@
         "region_name": "Kokiri Forest",
         "hint": "Kokiri Forest",
         "events": {
-            "Showed Mido Sword & Shield": "open_forest == 'open' or (is_child and Kokiri_Sword and Buy_Deku_Shield)"
+            "Showed Mido Sword & Shield": "open_deku or (is_child and Kokiri_Sword and Buy_Deku_Shield)"
         },
         "locations": {
             "KF Kokiri Sword Chest": "is_child",

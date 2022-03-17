@@ -154,6 +154,7 @@
           "text": "Open",
           "row_span": [6,6,9],
           "settings": [
+            "open_deku",
             "open_forest",
             "open_kakariko",
             "open_door_of_time",
