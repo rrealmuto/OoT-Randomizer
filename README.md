@@ -15,6 +15,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
 * “Closed Forest Requires Gohma” is a separate setting, making “Closed Forest” compatible with more settings if disabled ([#1531](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1531))
 * Opening the Door of Time is a separate goal category when required by the settings ([#1529](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1529))
 * A logic bug in Dodongo's Cavern causing potentially unbeatable seeds has been fixed ([#1528](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1528))
+* The file select screen correctly displays reverted trade sequence items ([#1527](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1527))
 * The `gossip_stones` section of the spoiler log includes info about which item and location was hinted where applicable ([#1520](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1520))
 * New settings to require heart containers for the rainbow bridge, LACS (for plando), and/or Ganon's boss key ([#1517](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1517))
 * The dungeon info screen in the pause menu shows an icon for dungeons in which all gold skulltulas have been checked ([#1508](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1508))
