@@ -3235,7 +3235,8 @@ setting_infos = [
             'Full':
             The Owl can also drop you off outside of buildings,
             inside the Temple of Time, or inside or outside of
-            dungeons, potentially bypassing item requirements.
+            graves or dungeons, potentially bypassing item
+            requirements.
         ''',
         default        = 'off',
         shared         = True,
@@ -3306,7 +3307,7 @@ setting_infos = [
             and a few special entrances.
 
             'Full':
-            Link can also spawn inside or outside of dungeons,
+            Link can also spawn inside or outside of graves or dungeons,
             potentially bypassing item requirements.
         ''',
         default        = 'off',
