@@ -22,7 +22,7 @@ from Messages import read_messages, update_message_by_id, read_shop_items, updat
 from OcarinaSongs import replace_songs
 from MQ import patch_files, File, update_dmadata, insert_space, add_relocations
 from SaveContext import SaveContext, Scenes, FlagType
-from texture_util import ci4_texture_apply_rgba16patch_and_convert_to_ci8, rgba16_patch
+from texture_util import ci4_texture_apply_rgba16patch_and_convert_to_ci8, rgba16_patch, rgba16_from_file
 import StartingItems
 
 
@@ -100,7 +100,12 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         (6, 'texture_crate_gold'   , 0x18B6000 + 0x20, 0x018B6000, 4096, ci4_texture_apply_rgba16patch_and_convert_to_ci8, 'textures/crate/crate_gold_rgba16_patch.bin'),
         (7, 'texture_crate_key', 0x18B6000 + 0x20, 0x018B6000, 4096, ci4_texture_apply_rgba16patch_and_convert_to_ci8, 'textures/crate/crate_key_rgba16_patch.bin'),
         (8, 'texture_crate_skull',  0x18B6000 + 0x20, 0x018B6000, 4096, ci4_texture_apply_rgba16patch_and_convert_to_ci8, 'textures/crate/crate_skull_rgba16_patch.bin'),
-        (9, 'texture_crate_bosskey', 0x18B6000 + 0x20, 0x018B6000, 4096, ci4_texture_apply_rgba16patch_and_convert_to_ci8, 'textures/crate/crate_bosskey_rgba16_patch.bin')
+        (9, 'texture_crate_bosskey', 0x18B6000 + 0x20, 0x018B6000, 4096, ci4_texture_apply_rgba16patch_and_convert_to_ci8, 'textures/crate/crate_bosskey_rgba16_patch.bin'),
+        (10, 'texture_smallcrate_gold', 0xF7ECA0, None, 2048, rgba16_patch, 'textures/crate/smallcrate_gold_rgba16_patch.bin' ),
+        (11, 'texture_smallcrate_key', 0xF7ECA0, None, 2048, rgba16_patch, 'textures/crate/smallcrate_key_rgba16_patch.bin'),
+        (12, 'texture_smallcrate_skull', 0xF7ECA0, None, 2048, rgba16_patch, 'textures/crate/smallcrate_skull_rgba16_patch.bin'),
+        (13, 'texture_smallcrate_bosskey', 0xF7ECA0, None, 2048, rgba16_patch, 'textures/crate/smallcrate_bosskey_rgba16_patch.bin'),
+        
     ]
     logger = logging.getLogger('')
 

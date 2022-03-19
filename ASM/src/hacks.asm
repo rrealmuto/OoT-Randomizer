@@ -1651,6 +1651,12 @@ skip_GS_BGS_text:
 ; Draw Small Crate Textures
 ;==================================================================================================
 
+.orga 0xDE7AC8
+    j ObjKibako_Draw
+    nop
+
+.orga 0xF6D000 + 0x5290 + 0x18 ; gameplay_dangeon_keep file start + dlist offset + gDPSetTextureImage offset
+.word   0xDE000000, 0x09000000 ; jump to the custom dlist at segment 09
 
 ;==================================================================================================
 ; Cast Fishing Rod without B Item

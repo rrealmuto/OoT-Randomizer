@@ -91,7 +91,7 @@ def save_ci8_texture(ci8_texture, fileStr):
 def load_rgba16_texture_from_rom(rom: Rom, base_texture_address, size):
     texture = []
     for i in range(0, size):
-        texture.append(int.from_bytes(rom.read_bytes(2), 'big'))
+        texture.append(int.from_bytes(rom.read_bytes(base_texture_address + 2*i,2), 'big'))
     return texture
 
 # Load an rgba16 texture from a binary file.
@@ -251,5 +251,34 @@ def build_pot_patches():
     save_rgba16_texture(skull_patch, 'pot_skull_rgba16_patch.bin')
     save_rgba16_texture(bosskey_patch, 'pot_bosskey_rgba16_patch.bin')
 
+def build_smallcrate_patches():
+    #load small crate texture from rom
+    object_kibako_texture_addr = 0xF7ECA0
+
+    SIZE_32X64 = 2048
+    rom = Rom("ZOOTDEC.z64")
+
+    #Load textures
+    smallcrate_default_rgba16 = load_rgba16_texture_from_rom(rom, object_kibako_texture_addr, SIZE_32X64)
+    smallcrate_gold_rgba16 = load_rgba16_texture('smallcrate_gold_rgba16.bin', SIZE_32X64)
+    smallcrate_key_rgba16 = load_rgba16_texture('smallcrate_key_rgba16.bin', SIZE_32X64)
+    smallcrate_skull_rgba16 = load_rgba16_texture('smallcrate_skull_rgba16.bin', SIZE_32X64)
+    smallcrate_bosskey_rgba16 = load_rgba16_texture('smallcrate_bosskey_rgba16.bin', SIZE_32X64)
+
+    save_rgba16_texture(smallcrate_default_rgba16, 'smallcrate_default_rgba16.bin')
+    #Create patches
+    gold_patch = apply_rgba16_patch(smallcrate_default_rgba16, smallcrate_gold_rgba16)
+    key_patch = apply_rgba16_patch(smallcrate_default_rgba16, smallcrate_key_rgba16)
+    skull_patch = apply_rgba16_patch(smallcrate_default_rgba16, smallcrate_skull_rgba16)
+    bosskey_patch = apply_rgba16_patch(smallcrate_default_rgba16, smallcrate_bosskey_rgba16)
+
+    #save patches
+    save_rgba16_texture(gold_patch, 'smallcrate_gold_rgba16_patch.bin')
+    save_rgba16_texture(key_patch, 'smallcrate_key_rgba16_patch.bin')
+    save_rgba16_texture(skull_patch, 'smallcrate_skull_rgba16_patch.bin')
+    save_rgba16_texture(bosskey_patch, 'smallcrate_bosskey_rgba16_patch.bin')
+
+
 #build_crate_ci8_patches()
 #build_pot_patches()
+#build_smallcrate_patches()

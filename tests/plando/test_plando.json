@@ -1,9 +1,10 @@
 {
     "entrances": {
-        "Child Spawn -> KF Links House" : {"region": "Market Guard House", "from":"Market Entrance"}
-    
+        "Child Spawn -> KF Links House" : {"region": "Zoras Fountain", "from":"ZD Behind King Zora"}
+        
     },
     "locations": {
-        "Market Guard House Crate Rupee" : "Gold Skulltula Token"
+        "Spirit Temple Before Child Climb Small Wooden Crate 1" : "Gold Skulltula Token",
+        "Spirit Temple Before Child Climb Small Wooden Crate 2" : "Slingshot"
     }
 }
