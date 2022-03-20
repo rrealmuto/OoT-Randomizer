@@ -171,6 +171,10 @@ item_groups = {
     'FireWater': ('Fire Medallion', 'Water Medallion'),
 }
 
+def get_new_junk():
+    junk = list(junk_pool_base)
+    junk_items, junk_weights = zip(*junk)
+    return random_choices(junk_items, weights=junk_weights, k=1)[0]
 
 def get_junk_item(count=1, pool=None, plando_pool=None):
     if count < 1:
@@ -402,36 +406,42 @@ def get_pool_core(world):
         elif location.type == 'ActorOverride' or (location.type == 'Collectable' and ('Freestanding' in location.filter_tags or 'RupeeTower' in location.filter_tags)):
             if world.settings.shuffle_freestanding_items == 'all':
                 shuffle_item = True
+                item = get_new_junk()
             elif world.settings.shuffle_freestanding_items == 'dungeons' and location.dungeon is not None:
                 shuffle_item = True
+                item = get_new_junk()
             elif world.settings.shuffle_freestanding_items == 'overworld' and location.dungeon is None:
                 shuffle_item = True
+                item = get_new_junk()
             else:
                 shuffle_item = False
                 location.disabled = DisableType.DISABLED
-            item = get_junk_item()[0]
 
         # Pots and Crates
         elif location.type == 'Collectable' and ('Pot' in location.filter_tags or 'Crate' in location.filter_tags or 'FlyingPot' in location.filter_tags or 'SmallCrate' in location.filter_tags):
             if world.settings.shuffle_pots_crates == 'all':
                 shuffle_item = True
+                item = get_new_junk()
             elif world.settings.shuffle_pots_crates == 'dungeons' and location.dungeon is not None:
                 shuffle_item = True
+                item = get_new_junk()
             elif world.settings.shuffle_pots_crates == 'overworld' and location.dungeon is None:
                 shuffle_item = True
+                item = get_new_junk()
             else:
                 shuffle_item = False
                 location.disabled = DisableType.DISABLED
-            item = get_junk_item()[0]
+            
 
         # Beehives
         elif location.type == 'Collectable' and 'Beehive' in location.filter_tags:
             if world.settings.shuffle_beehives:
                 shuffle_item = True
+                item = get_new_junk()
             else:
                 shuffle_item = False
                 location.disabled = DisableType.DISABLED
-            item = get_junk_item()[0]
+            
             
 
 
