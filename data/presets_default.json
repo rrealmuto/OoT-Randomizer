@@ -207,6 +207,10 @@
     "gerudo_fortress":                          "fast",
     "bridge":                                   "dungeons",
     "bridge_rewards":                           2,
+    "dungeon_shortcuts":                        [
+      "jabu_jabus_belly",
+      "forest_temple"
+    ],
     "triforce_hunt":                            false,
     "triforce_blitz":                           true,
     "logic_rules":                              "glitchless",
@@ -255,7 +259,7 @@
     "shuffle_mapcompass":                       "startwith",
     "shuffle_smallkeys":                        "dungeon",
     "shuffle_hideoutkeys":                      "vanilla",
-    "shuffle_bosskeys":                         "dungeon",
+    "shuffle_bosskeys":                         "remove",
     "shuffle_ganon_bosskey":                    "remove",
     "lacs_condition":                           "vanilla",
     "enhance_map_compass":                      false,
