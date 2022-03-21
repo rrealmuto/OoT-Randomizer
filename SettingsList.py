@@ -1864,7 +1864,7 @@ setting_infos = [
             "file_types": [
                 {
                   "name": "Patch File Archive",
-                  "extensions": [ "zpfz", "zpf" ]
+                  "extensions": [ "zpfz", "zpf", "patch" ]
                 },
                 {
                   "name": "All Files",
@@ -2408,7 +2408,7 @@ setting_infos = [
         gui_text       = 'Triforces Per World',
         default        = 30,
         min            = 1,
-        max            = 200,
+        max            = 999,
         shared         = True,
         gui_tooltip    = '''\
             Select the amount of Triforce Pieces placed in each world.
@@ -2422,6 +2422,8 @@ setting_infos = [
         ''',
         gui_params     = {
             "hide_when_disabled": True,
+            'web:max': 200,
+            'electron:max': 200,
         },
     ),
     Scale(
@@ -2429,7 +2431,7 @@ setting_infos = [
         gui_text       = 'Required Triforces Per World',
         default        = 20,
         min            = 1,
-        max            = 100,
+        max            = 999,
         shared         = True,
         gui_tooltip    = '''\
             Select the amount of Triforce Pieces required to beat the game.
@@ -2440,6 +2442,8 @@ setting_infos = [
         ''',
         gui_params     = {
             "hide_when_disabled": True,
+            'web:max': 100,
+            'electron:max': 100,
         },
     ),
     Combobox(
@@ -2621,9 +2625,9 @@ setting_infos = [
         default        = 'off',
         choices        = {
             'off':       'Off',
-            'choice':    'Choose dungeons',
-            'all':       'All dungeons',
-            'random':    'Random dungeons'
+            'choice':    'Specific Dungeons',
+            'all':       'All Dungeons',
+            'random':    'Random Dungeons'
         },
         gui_tooltip    = '''\
             Shortcuts to dungeon bosses are available

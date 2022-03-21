@@ -8,13 +8,14 @@ Instead, you can open an issue on this fork [here](https://github.com/fenhl/OoT-
 
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
+* Changes in Dev not yet in Dev-R, including:
+    * A logic bug in Dodongo's Cavern causing potentially unbeatable seeds has been fixed ([#1528](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1528))
 * The “Mix Entrance Pools” setting has new options to allow individually selecting entrance pools to be mixed ([Dev-R #67](https://github.com/Roman971/OoT-Randomizer/pull/67))
 * One-way entrances can no longer target the same hint area ([#1537](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1537))
 * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1536))
 * The “Misc. Hints” setting is split into 4 toggles: Ganondorf, Temple of Time altar, and new options to hint the Hookshot location in Dampé's diary and/or disable warp song destination hints (based on [#1534](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1534))
 * “Closed Forest Requires Gohma” is a separate setting, making “Closed Forest” compatible with more settings if disabled ([#1531](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1531))
 * Opening the Door of Time is a separate goal category when required by the settings ([#1529](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1529))
-* A logic bug in Dodongo's Cavern causing potentially unbeatable seeds has been fixed ([#1528](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1528))
 * The file select screen correctly displays reverted trade sequence items ([#1527](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1527))
 * The `gossip_stones` section of the spoiler log includes info about which item and location was hinted where applicable ([#1520](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1520))
 * New settings to require heart containers for the rainbow bridge, LACS (for plando), and/or Ganon's boss key ([#1517](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1517))
@@ -168,6 +169,7 @@ do that.
 * Fix slow text when acquiring certain items (Hookshot, Bombchus, etc.)
 * Using Farore's Wind as both ages should no longer result in the wrong temporary flags being loaded.
 * Fixed issues where `Skip Child Zelda` could give a weapon with no ammo or overwrite starting Triforce Pieces.
+* Fixed an issue where `Plentiful` item pool combined with `Starting Hearts` would result in more Heart Containers being in the item pool than intended.
 
 #### Other changes
 * Added an auto-tracker context area to memory, so auto-trackers can find certain symbols much easier.
@@ -181,6 +183,7 @@ do that.
 * Triforce Hunt changes
   * The number of Triforce pieces available per world, which was previously tied to the item pool setting, is now a separate setting.
 * Replaced old output option `compress_rom` with four separate options for outputting a patch file, compressed ROM, uncompressed ROM, and a WAD file.
+* Patch files from the web version of OoT Randomizer version 3.0 can now be used in the offline build. A `.zpf` patch file will be output in addition to the selected output types.
 
 ### 6.2
 

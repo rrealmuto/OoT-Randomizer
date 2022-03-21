@@ -1117,7 +1117,7 @@
     "clearer_hints":                           true,
     "no_collectible_hearts":                   false,
     "hints":                                   "always",
-    "hint_dist":                               "league",
+    "hint_dist":                               "tournament",
     "item_hints":                              [],
     "hint_dist_user":                          {},
     "text_shuffle":                            "none",
