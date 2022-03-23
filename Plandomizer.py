@@ -1,6 +1,6 @@
 import itertools
 import json
-import logging
+import math
 import re
 import random
 
@@ -1147,17 +1147,16 @@ class Distribution(object):
         # add hearts
         if self.settings.starting_hearts > 3:
             num_hearts_to_collect = self.settings.starting_hearts - 3
-            if num_hearts_to_collect % 2 == 1:
-                data['Piece of Heart'].count += 4
-                num_hearts_to_collect -= 1
-            for i in range(0, num_hearts_to_collect, 2):
-                data['Piece of Heart'].count += 4
-                data['Heart Container'].count += 1
-            if self.settings.starting_hearts >= 20:
-                data['Piece of Heart'].count -= 1
             if self.settings.item_pool_value in ('plentiful', 'ludicrous'):
-                data['Heart Container'].count += data['Piece of Heart'].count // 4
-                data['Piece of Heart'].count = data['Piece of Heart'].count % 4
+                if self.settings.starting_hearts >= 20:
+                    num_hearts_to_collect -= 1
+                    data['Piece of Heart'].count += 4
+                data['Heart Container'].count += num_hearts_to_collect
+            else:
+                # evenly split the difference between heart pieces and heart containers removed from the pool,
+                # removing an extra 4 pieces in case of an odd number since there's 9*4 of them but only 8 containers
+                data['Piece of Heart'].count += 4 * math.ceil(num_hearts_to_collect / 2)
+                data['Heart Container'].count += math.floor(num_hearts_to_collect / 2)
 
         return data
 

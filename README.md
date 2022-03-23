@@ -9,6 +9,7 @@ Instead, you can open an issue on this fork [here](https://github.com/fenhl/OoT-
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
 * The “Mix Entrance Pools” setting has new options to allow individually selecting entrance pools to be mixed ([Dev-R #67](https://github.com/Roman971/OoT-Randomizer/pull/67))
+* A bug where setting “Starting Hearts” to 20 would only give you 19 hearts is fixed. As a side effect, “Plentiful” and “Ludicrous” item pools no longer remove the 4 heart pieces when starting with 4–19 hearts ([#1541](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1541))
 * One-way entrances can no longer target the same hint area ([#1537](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1537))
 * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1536))
 * The “Misc. Hints” setting is split into 4 toggles: Ganondorf, Temple of Time altar, and new options to hint the Hookshot location in Dampé's diary and/or disable warp song destination hints (based on [#1534](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1534))
