@@ -8,8 +8,6 @@ Instead, you can open an issue on this fork [here](https://github.com/fenhl/OoT-
 
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
-* Changes in Dev not yet in Dev-R, including:
-    * A logic bug in Dodongo's Cavern causing potentially unbeatable seeds has been fixed ([#1528](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1528))
 * The “Mix Entrance Pools” setting has new options to allow individually selecting entrance pools to be mixed ([Dev-R #67](https://github.com/Roman971/OoT-Randomizer/pull/67))
 * One-way entrances can no longer target the same hint area ([#1537](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1537))
 * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1536))
