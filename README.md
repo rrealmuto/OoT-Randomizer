@@ -6,6 +6,8 @@ This is a randomizer for _The Legend of Zelda: Ocarina of Time_ for the Nintendo
 Please refrain from asking questions and from reporting issues in the main Randomizer Discord when using this branch.
 Instead, you can open an issue on this fork [here](https://github.com/fenhl/OoT-Randomizer/issues) or contact me directly on discord (Fenhl#4813) for any help, report or request.
 
+This branch is available to use online at <https://ootrandomizer.com/generatorDev?version=devFenhl_> (may be outdated).
+
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
 * The “Mix Entrance Pools” setting has new options to allow individually selecting entrance pools to be mixed ([Dev-R #67](https://github.com/Roman971/OoT-Randomizer/pull/67))
