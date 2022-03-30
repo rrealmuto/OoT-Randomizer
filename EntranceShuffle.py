@@ -49,7 +49,7 @@ def assume_entrance_pool(entrance_pool):
 
 
 def build_one_way_targets(world, types_to_include, types_to_include_reverse, exclude=(), target_region_names=()):
-    if world.settings.open_forest == 'closed':
+    if not world.settings.open_forest:
         # The logic assumes that this entrance places Link outside the circle on which the Kokiri boy moves,
         # but this is not the case if you spawn or warp here.
         exclude = ('LW Bridge -> Kokiri Forest', *exclude)
