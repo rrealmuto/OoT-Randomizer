@@ -164,6 +164,11 @@ class Item(object):
         return self.name in self.world.goal_items
 
 
+    @property
+    def triforce_piece(self):
+        return self.name in ('Triforce Piece', 'Easter Egg')
+
+
     def __str__(self):
         return str(self.__unicode__())
 

@@ -94,7 +94,7 @@ class Region(object):
         if is_overworld_restricted and not manual:
             return not self.dungeon
 
-        if item.name == 'Triforce Piece':
+        if item.triforce_piece:
             return item.world.id == self.world.id
 
         return True

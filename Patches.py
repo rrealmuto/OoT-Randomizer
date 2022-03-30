@@ -79,6 +79,22 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Add it to the extended object table
     add_to_extended_object_table(rom, 0x194, dd_obj_file)
 
+    # Build an Easter Egg model from the Weird Egg model
+    easter_egg_obj_file = File({
+        'Name': 'object_gi_egg',
+        'Start': '015B6000',
+        'End': '015B7320',
+    })
+    easter_egg_obj_file.copy(rom)
+    primColor = [0xFA, 0x00, 0x00, 0x00, 0xDB, 0xA9, 0xD8, 0xFF]
+    rom.write_bytes(easter_egg_obj_file.start + 0xFF0, primColor)
+    envColor = [0xFB, 0x00, 0x00, 0x00, 0xD1, 0x7B, 0xCC, 0xFF]
+    rom.write_bytes(easter_egg_obj_file.start + 0xFF8, envColor)
+
+    update_dmadata(rom, easter_egg_obj_file)
+    # Add it to the extended object table
+    add_to_extended_object_table(rom, 0x196, easter_egg_obj_file)
+
     # Apply chest texture diffs to vanilla wooden chest texture for Chest Texture Matches Content setting
     # new texture, vanilla texture, num bytes
     textures = [(rom.sym('SILVER_CHEST_FRONT_TEXTURE'), 0xFEC798, 4096),

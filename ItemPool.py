@@ -231,7 +231,8 @@ exclude_from_major = [
     'Bombchus (10)',
     'Bombchus (20)',
     'Odd Potion',
-    'Triforce Piece'
+    'Triforce Piece',
+    'Easter Egg',
 ]
 
 item_groups = {
@@ -361,7 +362,11 @@ def get_pool_core(world):
             pending_junk_pool.extend(song_list)
 
     if world.settings.triforce_hunt:
-        pending_junk_pool.extend(['Triforce Piece'] * world.settings.triforce_count_per_world)
+        if world.settings.easter_egg_hunt:
+            #TODO different colors of Easter egg?
+            pending_junk_pool.extend(['Easter Egg'] * world.settings.triforce_count_per_world)
+        else:
+            pending_junk_pool.extend(['Triforce Piece'] * world.settings.triforce_count_per_world)
 
     # Use the vanilla items in the world's locations when appropriate.
     for location in world.get_locations():
@@ -644,6 +649,7 @@ def get_pool_core(world):
                                     and ItemInfo.items[item].type != 'Shop'
                                     and not ItemInfo.items[item].trade
                                     and item != 'Triforce Piece'
+                                    and item != 'Easter Egg'
                                     and item != 'Gold Skulltula Token'
                                     and item not in normal_bottles
                                     and item != 'Rutos Letter'
