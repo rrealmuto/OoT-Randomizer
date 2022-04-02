@@ -20,19 +20,19 @@
         "minimum_goals":     3,
         "goals":             [{
             "name":          "power",
-            "hint_text":     "the path of power",
+            "hint_text":     "the \u0023path of power\u0023",
             "color":         "Red",
             "items":         [{"name": "Triforce of Power", "quantity": 1, "minimum": 1, "hintable": false}]
         },
         {
             "name":          "wisdom",
-            "hint_text":     "the path of wisdom",
+            "hint_text":     "the \u0023path of wisdom\u0023",
             "color":         "Pink",
             "items":         [{"name": "Triforce of Wisdom", "quantity": 1, "minimum": 1, "hintable": false}]
         },
         {
             "name":          "courage",
-            "hint_text":     "the path of courage",
+            "hint_text":     "the \u0023path of courage\u0023",
             "color":         "Green",
             "items":         [{"name": "Triforce of Courage", "quantity": 1, "minimum": 1, "hintable": false}]
         }]
