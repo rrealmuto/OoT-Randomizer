@@ -167,9 +167,12 @@ def add_hint(spoiler, world, groups, gossip_text, count, location=None, force_re
     # move all priority stones to the front of the list so they get picked first
     if 'priority_stones' in world.hint_dist_user:
         priority_stones = world.hint_dist_user['priority_stones']
-        priority_groups = list(map(lambda group: list(set(priority_stones) & set([gossipLocations[id].name for id in group])), groups))
-        for index, group in enumerate(priority_groups):
-            if group:
+        
+        # iterate in reverse so that the top priority stone gets inserted at index 0 last
+        for priority_stone in reversed(priority_stones):
+            matching_groups = list(filter(lambda group: list(set([priority_stone]) & set([gossipLocations[id].name for id in group])), groups))
+            if len(matching_groups) > 0:
+                index = groups.index(matching_groups[0])
                 priority_group = groups.pop(index)
                 groups.insert(0, priority_group)
 
@@ -525,7 +528,9 @@ def get_goal_count_hint(spoiler, world, checked):
                 zero_weights = False
             weights.append(goal.weight)
 
-        if zero_weights:
+        if world.settings.triforce_blitz:
+            goal = unchecked_goals[0]
+        elif zero_weights:
             goal = random.choice(unchecked_goals)
         else:
             goal = random.choices(unchecked_goals, weights=weights)[0]
