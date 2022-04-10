@@ -1915,6 +1915,24 @@ setting_infos = [
             which have the potential to require the player to perform difficult techniques. 
             Expect a long playthrough, even with good note-taking.
 
+            'allsanity-casual' is Fenhl's preferred flavor of allsanity, including full entrance
+            randomizer, chaos hints, and warp song note shuffle, but with half damage, no Master Quest,
+            and no tricks enabled. The rainbow bridge requires all dungeon rewards and Ganon's boss key
+            requires all 100 gold skulltula tokens.
+
+            'debug' is similar to Default/Beginner but gives you most starting items for testing.
+
+            'vanilla' generates a seed that's as close to the vanilla game as possible with current
+            randomizer features. Unlike the vanilla seed available on ootrandomizer.com, this preset
+            uses glitchless logic to produce a useful spoiler log playthrough.
+
+            'fast-vanilla' is 'vanilla' but with speed-ups like fast bunny hood, fast chest cutscenes,
+            or "Skip Some Minigame Phases" enabled.
+
+            'Standard Anti-Weekly Settings (S5)' disables every location that's enabled in 'S5
+            Tournament' and enables every location that's disabled there, as well as changing some
+            miscellaneous settings.
+
             The other presets are for racing and/or touranments. 
 
             After a preset is loaded, the settings can be viewed/changed in the other tabs before
