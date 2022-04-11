@@ -568,7 +568,7 @@ def shuffle_random_entrances(worlds):
     # Validate the worlds one last time to ensure all special conditions are still valid
     for world in worlds:
         try:
-            validate_world(world, worlds, None, locations_to_ensure_reachable, complete_itempool)
+            validate_world(world, worlds, None, locations_to_ensure_reachable, complete_itempool, placed_one_way_entrances=placed_one_way_entrances)
         except EntranceShuffleError as error:
             raise EntranceShuffleError('Worlds are not valid after shuffling entrances, Reason: %s' % error)
 
@@ -618,7 +618,7 @@ def shuffle_entrance_pool(world, worlds, entrance_pool, target_entrances, locati
 
             # Fully validate the resulting world to ensure everything is still fine after shuffling this pool
             complete_itempool = [item for world in worlds for item in world.get_itempool_with_dungeon_items()]
-            validate_world(world, worlds, None, locations_to_ensure_reachable, complete_itempool)
+            validate_world(world, worlds, None, locations_to_ensure_reachable, complete_itempool, placed_one_way_entrances=placed_one_way_entrances)
 
             # If all entrances could be connected without issues, log connections and continue
             for entrance, target in rollbacks:
@@ -674,7 +674,7 @@ def replace_entrance(worlds, entrance, target, rollbacks, locations_to_ensure_re
     try:
         check_entrances_compatibility(entrance, target, rollbacks, placed_one_way_entrances)
         change_connections(entrance, target)
-        validate_world(entrance.world, worlds, entrance, locations_to_ensure_reachable, itempool)
+        validate_world(entrance.world, worlds, entrance, locations_to_ensure_reachable, itempool, placed_one_way_entrances=placed_one_way_entrances)
         rollbacks.append((entrance, target))
         return True
     except EntranceShuffleError as error:
@@ -761,25 +761,10 @@ def check_entrances_compatibility(entrance, target, rollbacks=(), placed_one_way
                         raise EntranceShuffleError(f'Another one-way entrance already leads to {hint_area}')
                 except HintAreaNotFound:
                     pass
-    else:
-        # placing a two-way entrance can connect a one-way entrance to a hint area,
-        # so the restriction also needs to be checked here
-        for idx1 in range(len(placed_one_way_entrances)):
-            try:
-                hint_area1 = get_hint_area(placed_one_way_entrances[idx1][0].connected_region)[0]
-            except HintAreaNotFound:
-                pass
-            else:
-                for idx2 in range(idx1):
-                    try:
-                        if hint_area1 == get_hint_area(placed_one_way_entrances[idx2][0].connected_region)[0]:
-                            raise EntranceShuffleError(f'Multiple one-way entrances lead to {hint_area1}')
-                    except HintAreaNotFound:
-                        pass
 
 
 # Validate the provided worlds' structures, raising an error if it's not valid based on our criterias
-def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable, itempool):
+def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable, itempool, placed_one_way_entrances=()):
 
     if not world.settings.decouple_entrances:
         # Unless entrances are decoupled, we don't want the player to end up through certain entrances as the wrong age
@@ -855,6 +840,20 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
         if not time_travel_search.can_reach(world.get_region('Market Guard House'), age='adult'):
             raise EntranceShuffleError('Big Poe Shop access is not guaranteed as adult')
 
+    # placing a two-way entrance can connect a one-way entrance to a hint area,
+    # so the restriction also needs to be checked here
+    for idx1 in range(len(placed_one_way_entrances)):
+        try:
+            hint_area1 = get_hint_area(placed_one_way_entrances[idx1][0].connected_region)[0]
+        except HintAreaNotFound:
+            pass
+        else:
+            for idx2 in range(idx1):
+                try:
+                    if hint_area1 == get_hint_area(placed_one_way_entrances[idx2][0].connected_region)[0]:
+                        raise EntranceShuffleError(f'Multiple one-way entrances lead to {hint_area1}')
+                except HintAreaNotFound:
+                    pass
 
 # Returns whether or not we can affirm the entrance can never be accessed as the given age
 def entrance_unreachable_as(entrance, age, already_checked=None):
