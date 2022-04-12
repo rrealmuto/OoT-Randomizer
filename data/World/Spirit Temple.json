@@ -91,7 +91,7 @@
                 has_projectile(both)",
             "Spirit Temple GS Sun on Floor Room": "
                 (is_child and has_projectile(child) and
-                    ((Small_Key_Spirit_Temple, 5) or vanilla_seed))) or
+                    ((Small_Key_Spirit_Temple, 5) or vanilla_seed)) or
                 (is_adult and (has_projectile(adult) or can_take_damage) and
                     ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
                     ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle))) or
