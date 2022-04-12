@@ -109,6 +109,15 @@ class Region(object):
             return None
 
 
+    def change_dungeon(self, new_dungeon):
+        # Change the dungeon of this region, removing it from the old dungeon list and adding it to the new one.
+        if new_dungeon == self.dungeon:
+            return
+        self.dungeon.regions.remove(self)
+        self.dungeon = new_dungeon
+        new_dungeon.regions.append(self)
+
+
     def __str__(self):
         return str(self.__unicode__())
 

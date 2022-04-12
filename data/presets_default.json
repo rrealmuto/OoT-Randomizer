@@ -986,6 +986,7 @@
       "logic_lens_gtg",
       "logic_lens_shadow",
       "logic_lens_shadow_platform",
+      "logic_lens_bongo",
       "logic_lens_spirit"
     ],
     "logic_earliest_adult_trade":              "prescription",
@@ -998,7 +999,7 @@
     ],
     "starting_songs":                          [],
     "ocarina_songs":                           "off",
-    "correct_chest_appearances":               "sizes",
+    "correct_chest_appearances":               "classic",
     "clearer_hints":                           true,
     "no_collectible_hearts":                   false,
     "hints":                                   "always",
@@ -1100,6 +1101,7 @@
       "logic_lens_gtg",
       "logic_lens_shadow",
       "logic_lens_shadow_platform",
+      "logic_lens_bongo",
       "logic_lens_spirit"
     ],
     "logic_earliest_adult_trade":              "prescription",
@@ -1440,6 +1442,7 @@
       "logic_lens_gtg",
       "logic_lens_shadow",
       "logic_lens_shadow_platform",
+      "logic_lens_bongo",
       "logic_lens_spirit",
       "logic_dc_scarecrow_gs"
     ],
@@ -1619,7 +1622,7 @@
       "logic_zora_river_upper",
       "logic_shadow_mq_gap",
       "logic_lost_woods_gs_bean",
-      "logic_jabu_boss_gs_adult",
+      "logic_jabu_boss_hover",
       "logic_kakariko_rooftop_gs",
       "logic_graveyard_poh",
       "logic_castle_storms_gs",
@@ -1669,6 +1672,7 @@
       "logic_lens_shadow_mq_platform",
       "logic_lens_shadow",
       "logic_lens_shadow_platform",
+      "logic_lens_bongo",
       "logic_lens_spirit_mq",
       "logic_lens_spirit"
     ],
@@ -1778,6 +1782,7 @@
       "logic_lens_gtg",
       "logic_lens_shadow",
       "logic_lens_shadow_platform",
+      "logic_lens_bongo",
       "logic_lens_spirit"
     ],
     "logic_earliest_adult_trade":              "prescription",
@@ -1881,6 +1886,7 @@
       "logic_lens_gtg",
       "logic_lens_shadow",
       "logic_lens_shadow_platform",
+      "logic_lens_bongo",
       "logic_lens_spirit"
     ],
     "logic_earliest_adult_trade":              "prescription",
@@ -1993,6 +1999,7 @@
       "logic_lens_gtg",
       "logic_lens_shadow",
       "logic_lens_shadow_platform",
+      "logic_lens_bongo",
       "logic_lens_spirit"
     ],
     "logic_earliest_adult_trade":              "prescription",

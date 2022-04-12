@@ -151,7 +151,7 @@ def update_goal_items(spoiler):
     # item_locations: only the ones that should appear as "required"/WotH
     all_locations = [location for world in worlds for location in world.get_filled_locations()]
     # Set to test inclusion against
-    item_locations = {location for location in all_locations if location.item.majoritem and not location.locked and not location.item.triforce_piece}
+    item_locations = {location for location in all_locations if location.item.majoritem and not location.locked}
 
     # required_locations[category.name][goal.name][world_id] = [...]
     required_locations = defaultdict(lambda: defaultdict(lambda: defaultdict(list)))

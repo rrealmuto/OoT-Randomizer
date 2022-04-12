@@ -165,9 +165,9 @@ min_shop_items = (
     ['Buy Deku Seeds (30)'] +
     ['Buy Arrows (10)'] * 2 + ['Buy Arrows (30)'] + ['Buy Arrows (50)'] +
     ['Buy Bombchu (5)'] + ['Buy Bombchu (10)'] * 2 + ['Buy Bombchu (20)'] +
-    ['Buy Bombs (5) [25]'] + ['Buy Bombs (5) [35]'] + ['Buy Bombs (10)'] + ['Buy Bombs (20)'] +
+    ['Buy Bombs (5) for 25 Rupees'] + ['Buy Bombs (5) for 35 Rupees'] + ['Buy Bombs (10)'] + ['Buy Bombs (20)'] +
     ['Buy Green Potion'] +
-    ['Buy Red Potion [30]'] +
+    ['Buy Red Potion for 30 Rupees'] +
     ['Buy Blue Fire'] +
     ["Buy Fairy's Spirit"] +
     ['Buy Bottle Bug'] +
@@ -178,8 +178,8 @@ deku_scrubs_items = {
     'Buy Deku Shield':     'Deku Shield',
     'Buy Deku Nut (5)':    'Deku Nuts (5)',
     'Buy Deku Stick (1)':  'Deku Stick (1)',
-    'Buy Bombs (5) [35]':  'Bombs (5)',
-    'Buy Red Potion [30]': 'Recovery Heart',
+    'Buy Bombs (5) for 35 Rupees':  'Bombs (5)',
+    'Buy Red Potion for 30 Rupees': 'Recovery Heart',
     'Buy Green Potion':    'Rupees (5)',
     'Buy Arrows (30)':     [('Arrows (30)', 3), ('Deku Seeds (30)', 1)],
     'Buy Deku Seeds (30)': [('Arrows (30)', 3), ('Deku Seeds (30)', 1)],

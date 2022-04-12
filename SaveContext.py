@@ -259,10 +259,10 @@ class SaveContext():
 
         self.addresses['health_capacity'].value       = int(health) * 0x10
         self.addresses['health'].value                = int(health) * 0x10
-        self.addresses['quest']['heart_pieces'].value = int((health % 1) * 4)
+        self.addresses['quest']['heart_pieces'].value = int((health % 1) * 4) * 0x10
 
 
-    def give_item(self, item, count=1):
+    def give_item(self, world, item, count=1):
         if item.endswith(')'):
             item_base, implicit_count = item[:-1].split(' (', 1)
             if implicit_count.isdigit():
@@ -276,11 +276,26 @@ class SaveContext():
         elif item == "Heart Container":
             self.give_health(count)
         elif item == "Bombchu Item":
-            self.give_bombchu_item()
+            self.give_bombchu_item(world)
         elif item == IGNORE_LOCATION:
             pass # used to disable some skipped and inaccessible locations
         elif item in SaveContext.save_writes_table:
-            for address, value in SaveContext.save_writes_table[item].items():
+            if item.startswith('Small Key Ring ('):
+                dungeon = item[:-1].split(' (', 1)[1]
+                save_writes = {
+                    "Forest Temple"          : {'keys.forest': 6 if world.dungeon_mq[dungeon] else 5},
+                    "Fire Temple"            : {'keys.fire': 5 if world.dungeon_mq[dungeon] else 8},
+                    "Water Temple"           : {'keys.water': 2 if world.dungeon_mq[dungeon] else 6},
+                    "Spirit Temple"          : {'keys.spirit': 7 if world.dungeon_mq[dungeon] else 5},
+                    "Shadow Temple"          : {'keys.shadow': 6 if world.dungeon_mq[dungeon] else 5},
+                    "Bottom of the Well"     : {'keys.botw': 2 if world.dungeon_mq[dungeon] else 3},
+                    "Gerudo Training Ground" : {'keys.gtg': 3 if world.dungeon_mq[dungeon] else 9},
+                    "Thieves Hideout"        : {'keys.fortress': 4},
+                    "Ganons Castle"          : {'keys.gc': 3 if world.dungeon_mq[dungeon] else 2},
+                }[dungeon]
+            else:
+                save_writes = SaveContext.save_writes_table[item]
+            for address, value in save_writes.items():
                 if value is None:
                     value = count
                 elif isinstance(value, list):
@@ -310,8 +325,8 @@ class SaveContext():
             raise ValueError("Cannot give unknown starting item %s" % item)
 
 
-    def give_bombchu_item(self):
-        self.give_item("Bombchus", 0)
+    def give_bombchu_item(self, world):
+        self.give_item(world, "Bombchus", 0)
 
 
     def equip_default_items(self, age):
@@ -830,6 +845,11 @@ class SaveContext():
             'item_slot.stick'            : 'stick',
             'upgrades.stick_upgrade'     : [2,3],
         },
+        "Deku Stick": {
+            'item_slot.stick'            : 'stick',
+            'upgrades.stick_upgrade'     : 1,
+            'ammo.stick'                 : None,
+        },
         "Deku Sticks": {
             'item_slot.stick'            : 'stick',
             'upgrades.stick_upgrade'     : 1,
@@ -957,16 +977,60 @@ class SaveContext():
             'double_magic'          : [False, True],
         },
         "Rupee"                     : {'rupees' : None},
+        "Rupee (Treasure Chest Game)" : {'rupees' : None},
         "Rupees"                    : {'rupees' : None},
         "Magic Bean Pack" : {
             'item_slot.beans'       : 'beans',
             'ammo.beans'            : 10
         },
         "Triforce Piece"            : {'triforce_pieces': None},
+        "Boss Key (Forest Temple)"                : {'dungeon_items.forest.boss_key': True},
+        "Boss Key (Fire Temple)"                  : {'dungeon_items.fire.boss_key': True},
+        "Boss Key (Water Temple)"                 : {'dungeon_items.water.boss_key': True},
+        "Boss Key (Spirit Temple)"                : {'dungeon_items.spirit.boss_key': True},
+        "Boss Key (Shadow Temple)"                : {'dungeon_items.shadow.boss_key': True},
+        "Boss Key (Ganons Castle)"                : {'dungeon_items.gt.boss_key': True},
+        "Compass (Deku Tree)"                     : {'dungeon_items.deku.compass': True},
+        "Compass (Dodongos Cavern)"               : {'dungeon_items.dodongo.compass': True},
+        "Compass (Jabu Jabus Belly)"              : {'dungeon_items.jabu.compass': True},
+        "Compass (Forest Temple)"                 : {'dungeon_items.forest.compass': True},
+        "Compass (Fire Temple)"                   : {'dungeon_items.fire.compass': True},
+        "Compass (Water Temple)"                  : {'dungeon_items.water.compass': True},
+        "Compass (Spirit Temple)"                 : {'dungeon_items.spirit.compass': True},
+        "Compass (Shadow Temple)"                 : {'dungeon_items.shadow.compass': True},
+        "Compass (Bottom of the Well)"            : {'dungeon_items.botw.compass': True},
+        "Compass (Ice Cavern)"                    : {'dungeon_items.ice.compass': True},
+        "Map (Deku Tree)"                         : {'dungeon_items.deku.map': True},
+        "Map (Dodongos Cavern)"                   : {'dungeon_items.dodongo.map': True},
+        "Map (Jabu Jabus Belly)"                  : {'dungeon_items.jabu.map': True},
+        "Map (Forest Temple)"                     : {'dungeon_items.forest.map': True},
+        "Map (Fire Temple)"                       : {'dungeon_items.fire.map': True},
+        "Map (Water Temple)"                      : {'dungeon_items.water.map': True},
+        "Map (Spirit Temple)"                     : {'dungeon_items.spirit.map': True},
+        "Map (Shadow Temple)"                     : {'dungeon_items.shadow.map': True},
+        "Map (Bottom of the Well)"                : {'dungeon_items.botw.map': True},
+        "Map (Ice Cavern)"                        : {'dungeon_items.ice.map': True},
+        "Small Key (Forest Temple)"               : {'keys.forest': None},
+        "Small Key (Fire Temple)"                 : {'keys.fire': None},
+        "Small Key (Water Temple)"                : {'keys.water': None},
+        "Small Key (Spirit Temple)"               : {'keys.spirit': None},
+        "Small Key (Shadow Temple)"               : {'keys.shadow': None},
+        "Small Key (Bottom of the Well)"          : {'keys.botw': None},
+        "Small Key (Gerudo Training Ground)"      : {'keys.gtg': None},
+        "Small Key (Thieves Hideout)"             : {'keys.fortress': None},
+        "Small Key (Ganons Castle)"               : {'keys.gc': None},
+        #HACK: these counts aren't used since exact counts based on whether the dungeon is MQ are defined above,
+        # but the entries need to be there for key rings to be valid starting items
+        "Small Key Ring (Forest Temple)"          : {'keys.forest': 6},
+        "Small Key Ring (Fire Temple)"            : {'keys.fire': 8},
+        "Small Key Ring (Water Temple)"           : {'keys.water': 6},
+        "Small Key Ring (Spirit Temple)"          : {'keys.spirit': 7},
+        "Small Key Ring (Shadow Temple)"          : {'keys.shadow': 6},
+        "Small Key Ring (Bottom of the Well)"     : {'keys.botw': 3},
+        "Small Key Ring (Gerudo Training Ground)" : {'keys.gtg': 9},
+        "Small Key Ring (Thieves Hideout)"        : {'keys.fortress': 4},
+        "Small Key Ring (Ganons Castle)"          : {'keys.gc': 3},
     }
-
-    giveable_items = set(chain(save_writes_table.keys(), bottle_types.keys(),
-        ["Piece of Heart", "Piece of Heart (Treasure Chest Game)", "Heart Container", "Rupee (1)", "Recovery Heart"]))
 
 
     equipable_items = {

@@ -35,7 +35,7 @@ def assume_entrance_pool(entrance_pool):
     assumed_pool = []
     for entrance in entrance_pool:
         assumed_forward = entrance.assume_reachable()
-        if entrance.reverse != None and not entrance.world.settings.decouple_entrances:
+        if entrance.reverse != None and (entrance.type in ('ChildBoss', 'AdultBoss') or not entrance.world.settings.decouple_entrances):
             assumed_return = entrance.reverse.assume_reachable()
             world = entrance.world
             if not (len(world.settings.mix_entrance_pools) > 1 and (world.settings.shuffle_overworld_entrances or world.shuffle_special_interior_entrances)):
@@ -341,6 +341,72 @@ entrance_shuffle_table = [
     ('Extra',           ('ZR Top of Waterfall -> Zora River',                               { 'index': 0x0199 })),
 ]
 
+def _add_boss_entrances():
+    # Compute this at load time to save a lot of duplication
+    dungeon_data = {}
+    for type, forward, *reverse in entrance_shuffle_table:
+        if type != 'Dungeon':
+            continue
+        if not reverse:
+            continue
+        name, forward = forward
+        reverse = reverse[0][1]
+        if 'blue_warp' not in reverse:
+            continue
+        dungeon_data[name] = {
+            'dungeon_index': forward['index'],
+            'exit_index': reverse['index'],
+            'exit_blue_warp': reverse['blue_warp']
+        }
+
+    for type, source, target, boss, dungeon, index, rindex, addresses in [
+        (
+            'ChildBoss', 'Deku Tree Boss Door', 'Gohma Boss Room', 'Queen Gohma',
+            'KF Outside Deku Tree -> Deku Tree Lobby',
+            0x040f, 0x0252, [ 0xB06292, 0xBC6162, 0xBC60AE ]
+        ),
+        (
+            'ChildBoss', 'Dodongos Cavern Boss Door', 'King Dodongo Boss Room', 'King Dodongo',
+            'Death Mountain -> Dodongos Cavern Beginning',
+            0x040b, 0x00c5, [ 0xB062B6, 0xBC616E ]
+        ),
+        (
+            'ChildBoss', 'Jabu Jabus Belly Boss Door', 'Barinade Boss Room', 'Barinade',
+            'Zoras Fountain -> Jabu Jabus Belly Beginning',
+            0x0301, 0x0407, [ 0xB062C2, 0xBC60C2 ]
+        ),
+        (
+            'AdultBoss', 'Forest Temple Boss Door', 'Phantom Ganon Boss Room', 'Phantom Ganon',
+            'SFM Forest Temple Entrance Ledge -> Forest Temple Lobby',
+            0x000c, 0x024E, [ 0xB062CE, 0xBC6182 ]
+        ),
+        (
+            'AdultBoss', 'Fire Temple Boss Door', 'Volvagia Boss Room', 'Volvagia',
+            'DMC Fire Temple Entrance -> Fire Temple Lower',
+            0x0305, 0x0175, [ 0xB062DA, 0xBC60CE ]
+        ),
+        (
+            'AdultBoss', 'Water Temple Boss Door', 'Morpha Boss Room', 'Morpha',
+            'Lake Hylia -> Water Temple Lobby',
+            0x0417, 0x0423, [ 0xB062E6, 0xBC6196 ]
+        ),
+        (
+            'AdultBoss', 'Spirit Temple Boss Door', 'Twinrova Boss Room', 'Twinrova',
+            'Desert Colossus -> Spirit Temple Lobby',
+            0x008D, 0x02F5, [ 0xB062F2, 0xBC6122 ]
+        ),
+        (
+            'AdultBoss', 'Shadow Temple Boss Door', 'Bongo Bongo Boss Room', 'Bongo Bongo',
+            'Graveyard Warp Pad Region -> Shadow Temple Entryway',
+            0x0413, 0x02B2, [ 0xB062FE, 0xBC61AA ]
+        )
+    ]:
+        d = {'index': index, 'patch_addresses': addresses, 'boss': boss}
+        d.update(dungeon_data[dungeon])
+        entrance_shuffle_table.append(
+            (type, (f"{source} -> {target}", d), (f"{target} -> {source}", {'index': rindex}))
+        )
+_add_boss_entrances()
 
 # Basically, the entrances in the list above that go to:
 # - DMC Central Local (child access for the bean and skull)
@@ -409,6 +475,13 @@ def shuffle_random_entrances(worlds):
                 one_way_priorities['Nocturne'] = priority_entrance_table['Nocturne']
                 if not worlds[0].settings.shuffle_dungeon_entrances and not worlds[0].settings.shuffle_overworld_entrances:
                     one_way_priorities['Requiem'] = priority_entrance_table['Requiem']
+
+        if worlds[0].settings.shuffle_bosses == 'full':
+            entrance_pools['Boss'] = world.get_shufflable_entrances(type='ChildBoss', only_primary=True)
+            entrance_pools['Boss'] += world.get_shufflable_entrances(type='AdultBoss', only_primary=True)
+        elif worlds[0].settings.shuffle_bosses == 'limited':
+            entrance_pools['ChildBoss'] = world.get_shufflable_entrances(type='ChildBoss', only_primary=True)
+            entrance_pools['AdultBoss'] = world.get_shufflable_entrances(type='AdultBoss', only_primary=True)
 
         if worlds[0].settings.shuffle_dungeon_entrances:
             entrance_pools['Dungeon'] = world.get_shufflable_entrances(type='Dungeon', only_primary=True)
@@ -545,6 +618,11 @@ def shuffle_random_entrances(worlds):
 
         for pool_type, entrance_pool in entrance_pools.items():
             shuffle_entrance_pool(world, worlds, entrance_pool, target_entrance_pools[pool_type], locations_to_ensure_reachable, placed_one_way_entrances=placed_one_way_entrances)
+
+            if pool_type in ('Boss', 'ChildBoss', 'AdultBoss'):
+                for entrance in entrance_pool:
+                    entrance.connected_region.change_dungeon(entrance.parent_region.dungeon)
+
 
     # Multiple checks after shuffling entrances to make sure everything went fine
     max_search = Search.max_explore([world.state for world in worlds], complete_itempool)
@@ -911,7 +989,7 @@ def get_entrance_replacing(region, entrance_name):
 def change_connections(entrance, target_entrance):
     entrance.connect(target_entrance.disconnect())
     entrance.replaces = target_entrance.replaces
-    if entrance.reverse and not entrance.world.settings.decouple_entrances:
+    if entrance.reverse and (entrance.type in ('ChildBoss', 'AdultBoss') or not entrance.world.settings.decouple_entrances):
         target_entrance.replaces.reverse.connect(entrance.reverse.assumed.disconnect())
         target_entrance.replaces.reverse.replaces = entrance.reverse
 
@@ -920,7 +998,7 @@ def change_connections(entrance, target_entrance):
 def restore_connections(entrance, target_entrance):
     target_entrance.connect(entrance.disconnect())
     entrance.replaces = None
-    if entrance.reverse and not entrance.world.settings.decouple_entrances:
+    if entrance.reverse and (entrance.type in ('ChildBoss', 'AdultBoss') or not entrance.world.settings.decouple_entrances):
         entrance.reverse.assumed.connect(target_entrance.replaces.reverse.disconnect())
         target_entrance.replaces.reverse.replaces = None
 
@@ -929,7 +1007,7 @@ def restore_connections(entrance, target_entrance):
 def confirm_replacement(entrance, target_entrance):
     delete_target_entrance(target_entrance)
     logging.getLogger('').debug('Connected %s To %s [World %d]', entrance, entrance.connected_region, entrance.world.id)
-    if entrance.reverse and not entrance.world.settings.decouple_entrances:
+    if entrance.reverse and (entrance.type in ('ChildBoss', 'AdultBoss') or not entrance.world.settings.decouple_entrances):
         replaced_reverse = target_entrance.replaces.reverse
         delete_target_entrance(entrance.reverse.assumed)
         logging.getLogger('').debug('Connected %s To %s [World %d]', replaced_reverse, replaced_reverse.connected_region, replaced_reverse.world.id)

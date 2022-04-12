@@ -147,13 +147,17 @@ def build_world_graphs(settings, window=dummy_window()):
         window.update_progress(0 + 1*(id + 1)/settings.world_count)
         logger.info('Creating Overworld')
 
+        # Load common json rule files (those used regardless of MQ status)
         if settings.logic_rules == 'glitched':
-            overworld_data = os.path.join(data_path('Glitched World'), 'Overworld.json')
+            path = 'Glitched World'
         else:
-            overworld_data = os.path.join(data_path('World'), 'Overworld.json')
+            path = 'World'
+        path = data_path(path)
+
+        for filename in ('Overworld.json', 'Bosses.json'):
+            world.load_regions_from_json(os.path.join(path, filename))
 
         # Compile the json rules based on settings
-        world.load_regions_from_json(overworld_data)
         create_dungeons(world)
         world.create_internal_locations()
 

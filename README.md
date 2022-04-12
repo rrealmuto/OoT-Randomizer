@@ -10,21 +10,23 @@ This branch is available to use online at <https://ootrandomizer.com/generatorDe
 
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
+* Changes in Dev not yet in Dev-R, including:
+  * Ganondorf will hint light arrows on `Song from Impa` in “Skip Child Zelda” as “your pocket” rather than “Hyrule Castle” ([#1538](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1538))
+  * The “Misc. Hints” setting is split into 3 toggles: Ganondorf, Temple of Time altar, and a new option to disable warp song destination hints ([#1534](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1534))
+  * The file select screen correctly displays reverted trade sequence items ([#1527](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1527))
+  * The dungeon info screen in the pause menu shows an icon for dungeons in which all gold skulltulas have been checked ([#1508](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1508))
+  * A bug where items in shops would sometimes have wrong prices is fixed ([#1505](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1505))
+  * The child trade item is bound to D-pad right ([#1489](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1489))
 * The “Mix Entrance Pools” setting has new options to allow individually selecting entrance pools to be mixed ([Dev-R #67](https://github.com/Roman971/OoT-Randomizer/pull/67))
 * A bug where setting “Starting Hearts” to 20 would only give you 19 hearts is fixed. As a side effect, “Plentiful” and “Ludicrous” item pools no longer remove the 4 heart pieces when starting with 4–19 hearts ([#1541](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1541))
 * One-way entrances can no longer target the same hint area ([#1537](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1537))
 * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1536))
-* The “Misc. Hints” setting is split into 4 toggles: Ganondorf, Temple of Time altar, and new options to hint the Hookshot location in Dampé's diary and/or disable warp song destination hints (based on [#1534](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1534))
 * “Closed Forest Requires Gohma” is a separate setting, making “Closed Forest” compatible with more settings if disabled ([#1531](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1531))
 * Opening the Door of Time is a separate goal category when required by the settings ([#1529](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1529))
-* The file select screen correctly displays reverted trade sequence items ([#1527](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1527))
 * The `gossip_stones` section of the spoiler log includes info about which item and location was hinted where applicable ([#1520](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1520))
 * New settings to require heart containers for the rainbow bridge, LACS (for plando), and/or Ganon's boss key ([#1517](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1517))
-* The dungeon info screen in the pause menu shows an icon for dungeons in which all gold skulltulas have been checked ([#1508](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1508))
 * New “Ludicrous” option for the “Item Pool” setting that makes everything a major item (based on [#1507](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1507) but heart containers aren't removed)
-* A bug where items in shops would sometimes have wrong prices is fixed ([#1505](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1505))
 * New “One Bonk KO” setting ([#1503](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1503))
-* The child trade item is bound to D-pad right ([#1489](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1489))
 * The convenience patch for floor switches now applies to more MQ switches ([#1459](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1459))
 * Automatically advances credits text (based on [#1412](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1412))
 * New “Full” options for the “Randomize Owl Drops”, “Randomize Warp Song Destinations”, and “Randomize Overworld Spawns” settings that include more types of entrances (based on [#1179](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1179) and [#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
@@ -32,6 +34,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
 * New hidden “Easter Egg Hunt” setting (based on [KevinPal's `triforce_easteregg` branch](https://github.com/KevinPal/OoT-Randomizer/tree/triforce_easteregg))
 * New “Shuffle Gerudo Valley River Exit” setting
 * New hidden “Generate Vanilla Seed” setting (used for `vanilla` and `fast-vanilla` presets)
+* A 4th option is added to the “Misc. Hints” setting to hint the Hookshot location in Dampé's diary
 * New `chaos` hint distribution
 * New settings presets:
   * `allsanity-casual` is my preferred flavor of allsanity, including full entrance randomizer, chaos hints, and warp song note shuffle, but with half damage, no Master Quest, and no tricks enabled. The rainbow bridge requires all dungeon rewards and Ganon's boss key requires all 100 gold skulltula tokens.
@@ -158,9 +161,12 @@ do that.
   * New setting `Key Rings` which can be enabled per-dungeon to replace all of its individual Small Keys into a singular Small Key Ring containing all the small keys for that dungeon.
   * Setting `Randomize Ocarina Song Notes` can now be set to either "row" of songs individually, i.e. "Frog Songs" or "Warp Songs", in additional to the "Off" and "All Songs" options.
   * MQ Dungeon settings have been replaced with `MQ Dungeons Mode` which allows finer selection of which dungeons are MQ, or how many are at random.
+  * New setting `Shuffle Boss Entrances` allows boss rooms to be shuffled between dungeons. This is only available in glitchless logic.
+  * `Misc. Hints` has been expanded to a multiple select setting allowing you to fine-tune which set of misc hints to enable or disable.
 
 * **Gameplay**
   * Shortened the animation for equipping magic arrows.
+  * You can now use the child trade item (Zelda's Letter, masks, etc) as child using D-Pad Right.
 
 
 #### Bug fixes
@@ -177,6 +183,7 @@ do that.
 * Using Farore's Wind as both ages should no longer result in the wrong temporary flags being loaded.
 * Fixed issues where `Skip Child Zelda` could give a weapon with no ammo or overwrite starting Triforce Pieces.
 * Fixed an issue where `Plentiful` item pool combined with `Starting Hearts` would result in more Heart Containers being in the item pool than intended.
+* The Like Like in Master Quest Fire Temple will now return the player's shield when defeated.
 
 #### Other changes
 * Added an auto-tracker context area to memory, so auto-trackers can find certain symbols much easier.
@@ -191,6 +198,13 @@ do that.
   * The number of Triforce pieces available per world, which was previously tied to the item pool setting, is now a separate setting.
 * Replaced old output option `compress_rom` with four separate options for outputting a patch file, compressed ROM, uncompressed ROM, and a WAD file.
 * Patch files from the web version of OoT Randomizer version 3.0 can now be used in the offline build. A `.zpf` patch file will be output in addition to the selected output types.
+* On the randomizer dungeon info screen, a Gold Skulltula icon appears for dungeons where you have collected all the Gold Skulltulas.
+* Maximum heart containers is now capped at 20. Pieces of Heart and Heart Containers collected after 20 will still restore your health but will not add to your hearts.
+* Many more "Junk" hints have been added.
+* `Song from Impa` is no longer restricted to a smaller set of items when `Skip Child Zelda` is enabled.
+* On the File Select screen, trade items that will be reverted on load now show as the item they will revert to.
+* Ganondorf will now say that the Light Arrows are in your pocket if they are an effective starting item (e.g. the item given from `Skip Child Zelda`).
+* The "WINNER!" Piece of Heart will now show the proper player name in Multiworld.
 
 ### 6.2
 

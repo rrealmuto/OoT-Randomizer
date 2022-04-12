@@ -25,7 +25,7 @@
             "Dodongos Cavern Elevator": "here(can_blast_or_smash or Progressive_Strength_Upgrade)",
             "Dodongos Cavern Lower Right Side": "here(can_blast_or_smash)",
             "Dodongos Cavern Bomb Bag Area": "is_adult",
-            "Dodongos Cavern Boss Area": "dodongos_cavern_shortcuts"
+            "Dodongos Cavern Before Boss": "dodongos_cavern_shortcuts"
         }
     },
     {
@@ -51,7 +51,7 @@
             "Dodongos Cavern Bomb Bag Area": "
                 (at('Dodongos Cavern Bomb Bag Area', is_adult) and has_explosives) or
                 (logic_dc_mq_child_bombs and (Kokiri_Sword or Sticks) and can_take_damage)",
-            "Dodongos Cavern Boss Area": "
+            "Dodongos Cavern Before Boss": "
                 has_explosives or
                 (Progressive_Strength_Upgrade and
                     here((logic_dc_mq_eyes_adult and is_adult) or (logic_dc_mq_eyes_child and is_child)) and
@@ -88,7 +88,7 @@
         }
     },
     {
-        "region_name": "Dodongos Cavern Boss Area",
+        "region_name": "Dodongos Cavern Before Boss",
         "dungeon": "Dodongos Cavern",
         "locations": {
             "Dodongos Cavern MQ Under Grave Chest": "True",
@@ -104,30 +104,17 @@
             "Dodongos Cavern MQ GS Back Area": "
                 is_adult or has_explosives or Boomerang or can_use(Dins_Fire) or
                 (dodongos_cavern_shortcuts and (can_child_attack or Progressive_Strength_Upgrade)) or
-                (Sticks or ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))"
+                (Sticks or ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))",
+            "Fairy Pot": "
+                has_bottle and (
+                    is_adult or has_explosives or can_use(Dins_Fire) or dodongos_cavern_shortcuts or
+                    (Sticks or ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))
+                )"
         },
         "exits": {
-            "Dodongos Cavern Boss Room": "
+            "Dodongos Cavern Boss Door": "
                 is_adult or has_explosives or can_use(Dins_Fire) or dodongos_cavern_shortcuts or
                 (Sticks or ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))"
-        }
-    },
-    {
-        "region_name": "Dodongos Cavern Boss Room",
-        "dungeon": "Dodongos Cavern",
-        "locations": {
-            "Dodongos Cavern Boss Room Chest": "True",
-            "Dodongos Cavern King Dodongo Heart": "
-                ((can_use(Megaton_Hammer) and logic_dc_mq_hammer_floor) or
-                has_explosives or dodongos_cavern_shortcuts) and
-                (Bombs or Progressive_Strength_Upgrade) and 
-                (is_adult or Sticks or Kokiri_Sword)",
-            "King Dodongo": "
-                ((can_use(Megaton_Hammer) and logic_dc_mq_hammer_floor) or
-                has_explosives or dodongos_cavern_shortcuts) and
-                (Bombs or Progressive_Strength_Upgrade) and 
-                (is_adult or Sticks or Kokiri_Sword)",
-            "Fairy Pot": "has_bottle"
         }
     }
 ]

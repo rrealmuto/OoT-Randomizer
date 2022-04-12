@@ -923,13 +923,22 @@ logic_tricks = {
                     needing a Bow.
                     Applies in both vanilla and MQ Shadow.
                     '''},
-    'Shadow Temple Bongo Bongo with Nothing': {
+    'Shadow Temple Bongo Bongo without projectiles': {
         'name'    : 'logic_shadow_bongo',
         'tags'    : ("Shadow Temple",),
         'tooltip' : '''\
-                    If Shadow Temple dungeon shortcuts are enabled, 
-                    Bongo Bongo can be fought without projectiles
-                    using precise sword slashes.
+                    Using precise sword slashes, Bongo Bongo can be
+                    defeated without using projectiles.  This is
+                    only relevant in conjunction with Shadow Temple
+                    dungeon shortcuts or shuffled dungeon bosses.
+                    '''},
+    'Shadow Temple Bongo Bongo without Lens of Truth': {
+        'name'    : 'logic_lens_bongo',
+        'tags'    : ("Shadow Temple", "Entrance"),
+        'tooltip' : '''\
+                    Bongo Bongo can be defeated without the use of
+                    Lens of Truth, as the hands give a pretty good
+                    idea of where the eye is.
                     '''},
     'Stop Link the Goron with Din\'s Fire': {
         'name'    : 'logic_link_goron_dins',
@@ -1044,8 +1053,8 @@ logic_tricks = {
                     Skulltula somehow first. It can be killed
                     using Longshot, Bow, Bombchus or Din's Fire.
                     '''},
-    'Jabu Near Boss GS without Boomerang as Adult': {
-        'name'    : 'logic_jabu_boss_gs_adult',
+    'Jabu Near Boss Room with Hover Boots': {
+        'name'    : 'logic_jabu_boss_hover',
         'tags'    : ("Jabu Jabu's Belly", "Skulltulas", "Entrance",),
         'tooltip' : '''\
                     You can easily get over to the door to the
@@ -1055,6 +1064,28 @@ logic_tricks = {
                     switch pressed. One way is to quickly roll
                     from the switch and open the door before it
                     closes.
+                    '''},
+    'Jabu Boss Door Switch with Bombchus': {
+        'name'    : 'logic_jabu_boss_door_chus',
+        'tags'    : ("Jabu Jabu's Belly", "Entrance",),
+        'tooltip' : '''\
+                    You can trigger the switch that opens the 
+                    final door before the Jabu boss room with
+                    a precisely aimed bombchu. 
+                    Since a boomerang is still required to
+                    defeat Barinade, this trick is only useful
+                    in conjunction with shuffled dungeon bosses.
+                    '''},
+    'Jabu Boss Door Switch with Slingshot or Bow': {
+        'name'    : 'logic_jabu_boss_door_bow',
+        'tags'    : ("Jabu Jabu's Belly", "Entrance",),
+        'tooltip' : '''\
+                    You can trigger the switch that opens the 
+                    final door before the Jabu boss room with
+                    a precisely aimed slingshot or bow shot.
+                    Since a boomerang is still required to
+                    defeat Barinade, this trick is only useful
+                    in conjunction with shuffled dungeon bosses.
                     '''},
     'Kakariko Rooftop GS with Hover Boots': {
         'name'    : 'logic_kakariko_rooftop_gs',
@@ -1327,6 +1358,16 @@ logic_tricks = {
                     you also enable the Adult variant: "Dodongo's
                     Cavern Spike Trap Room Jump without Hover Boots".
                     '''},
+    'Dodongo\'s Cavern Smash the Boss Lobby Floor': {
+        'name'    : 'logic_dc_hammer_floor',
+        'tags'    : ("Dodongo's Cavern" "Entrance",),
+        'tooltip' : '''\
+                    The bombable floor before King Dodongo can be destroyed
+                    with Hammer if hit in the very center. This is only
+                    relevant with Shuffle Boss Entrances or if Dodongo's Cavern
+                    is MQ and either variant of "Dodongo's Cavern MQ Light the
+                    Eyes with Strength" is on.
+                    '''},
     'Dodongo\'s Cavern MQ Light the Eyes with Strength as Adult': {
         'name'    : 'logic_dc_mq_eyes_adult',
         'tags'    : ("Dodongo's Cavern",),
@@ -1334,15 +1375,6 @@ logic_tricks = {
                     If you move very quickly, it is possible to use
                     the bomb flower at the top of the room to light
                     the eyes.
-                    '''},
-    'Dodongo\'s Cavern MQ Smash the Boss Lobby Floor': {
-        'name'    : 'logic_dc_mq_hammer_floor',
-        'tags'    : ("Dodongo's Cavern",),
-        'tooltip' : '''\
-                    The bombable floor before King Dodongo can be destroyed
-                    with Hammer if hit in the very center. This is only
-                    relevant if either the adult or child variant of
-                    "Dodongo's Cavern MQ Light the Eyes with Strength" are on.
                     '''},
     'Dodongo\'s Cavern MQ Light the Eyes with Strength as Child': {
         'name'    : 'logic_dc_mq_eyes_child',
@@ -2172,7 +2204,7 @@ setting_infos = [
         disabled_default = False,
         shared         = True,
         disable        = {
-            True : {'settings' : ['open_forest', 'starting_age', 'shuffle_interior_entrances', 'shuffle_overworld_entrances', 'warp_songs', 'spawn_positions', 'mix_entrance_pools', 'decouple_entrances']}
+            True : {'settings' : ['open_forest', 'starting_age', 'shuffle_interior_entrances', 'shuffle_overworld_entrances', 'warp_songs', 'spawn_positions', 'shuffle_bosses', 'mix_entrance_pools', 'decouple_entrances']}
         },
     ),
     Combobox(
@@ -2504,7 +2536,7 @@ setting_infos = [
             'glitchless': {'settings' : ['tricks_list_msg']},
             'glitched'  : {'settings' : ['allowed_tricks', 'shuffle_interior_entrances', 'shuffle_grotto_entrances',
                                          'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops', 'warp_songs', 'mix_entrance_pools', 'decouple_entrances',
-                                         'spawn_positions', 'mq_dungeons_mode', 'mq_dungeons_specific', 'mq_dungeons_count', 'dungeon_shortcuts',
+                                         'spawn_positions', 'mq_dungeons_mode', 'mq_dungeons_specific', 'mq_dungeons_count', 'shuffle_bosses', 'dungeon_shortcuts',
                                          'deadly_bonks']},
             'none'      : {'settings' : ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
         },
@@ -3125,6 +3157,32 @@ setting_infos = [
             Bottom of the Well are opened for both adult and child.
         ''',
         default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    ),
+    Combobox(
+        name           = 'shuffle_bosses',
+        gui_text       = 'Shuffle Boss Entrances',
+        gui_tooltip    = '''\
+            Shuffle dungeon boss rooms.  This affects the boss rooms of all stone and medallion dungeons.
+
+            'Age-Restricted':
+            Shuffle the locations of child boss rooms and adult boss rooms separately.
+
+            'Full':
+            Shuffle the locations of all boss rooms together.  Child may be expected to defeat Phantom Ganon and/or Bongo Bongo.
+        ''',
+        default        = 'off',
+        choices        = {
+            'off':       'Off',
+            'limited':   'Age-Restricted',
+            'full':      'Full',
+        },
+        disable        = {
+            '!off' : {'settings': ['require_gohma']},
+        },
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -4295,10 +4353,13 @@ setting_infos = [
         choices        = {
             'off': 'Off',
             'textures': 'Texture',
-            'sizes': 'Size and Texture'
+            'both':  'Both Size and Texture',
+            'classic': 'Classic'
         },
         gui_tooltip    = '''\
-            If enabled, chest texture will reflect its contents
+            
+			
+            If "Texture" is enabled, chest texture will reflect its contents
             regardless of size.  Fancy chests will contain keys,
             Gilded chests will contain major items, shuffled
             tokens will be in Webbed chests, and Wooden chests
@@ -4306,9 +4367,15 @@ setting_infos = [
             This allows skipping chests if they are wooden. 
             However, skipping wooden chests will mean having 
             low health, ammo, and rupees, so doing so is a risk.
+            
             "Size and Texture" will change chests with major
             items and boss keys into big chests, and everything
             else into small chests.
+            
+            "Classic" is the behavior of CSMC in previous versions of the randomizer.
+            This will change chests with major items and boss keys into big chests.
+            Boss keys will remain in their fancy chest, while small key will be in a
+            smaller version of the fancy chest.
         ''',
         shared         = True,
     ),
@@ -4441,7 +4508,6 @@ setting_infos = [
             'ganondorf':   'Ganondorf (Light Arrows)',
             'warp_songs':  'Warp Songs',
         },
-        default        = ['altar', 'ganondorf', 'warp_songs'],
         gui_tooltip    = '''\
             This setting adds some hints at locations
             other than Gossip Stones:
@@ -4473,6 +4539,7 @@ setting_infos = [
             are vanilla, the vanilla text is used.)
         ''',
         shared         = True,
+        default        = ['altar', 'ganondorf', 'warp_songs'],
     ),
     Combobox(
         name           = 'ice_trap_appearance',

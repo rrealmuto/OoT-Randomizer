@@ -120,3 +120,14 @@ uint16_t letter_to_bottle(z64_file_t *save, uint16_t item_id) {
         return 0xC8; // Redundant Letter Bottle
     return item_id;
 }
+
+uint16_t health_upgrade_cap(z64_file_t *save, uint16_t item_id) {
+    if (save->energy_capacity >= 20 * 0x10) {  // Already at capped health.
+        if (item_id == 0x76)  // Piece of Heart (Chest Game)
+            return 0x7F;
+        if (item_id == 0x3D)  // Heart Container
+            return 0x7E;
+        return 0x7D;          // Piece of Heart / Fallthrough
+    }
+    return item_id;
+}

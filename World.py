@@ -59,8 +59,11 @@ class World(object):
         self.shuffle_special_interior_entrances = settings.shuffle_interior_entrances == 'all'
         self.shuffle_interior_entrances = settings.shuffle_interior_entrances in ['simple', 'all']
 
-        self.entrance_shuffle = self.shuffle_interior_entrances or settings.shuffle_grotto_entrances or settings.shuffle_dungeon_entrances or \
-            settings.shuffle_overworld_entrances or settings.shuffle_gerudo_valley_river_exit or settings.owl_drops != 'off' or settings.warp_songs != 'off' or self.spawn_positions
+        self.entrance_shuffle = (
+            self.shuffle_interior_entrances or settings.shuffle_grotto_entrances or settings.shuffle_dungeon_entrances
+            or settings.shuffle_overworld_entrances or settings.shuffle_gerudo_valley_river_exit or (settings.owl_drops != 'off') or (settings.warp_songs != 'off')
+            or self.spawn_positions or (settings.shuffle_bosses != 'off')
+        )
 
         self.ensure_tod_access = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or self.spawn_positions
         self.disable_trade_revert = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances
@@ -240,7 +243,7 @@ class World(object):
                 if 'lock_entrances' in category:
                     cat.lock_entrances = list(category['lock_entrances'])
                 self.goal_categories[cat.name] = cat
-        
+
         # Sort goal hint categories by priority
         # For most settings this will be Bridge, GBK
         self.goal_categories = OrderedDict(sorted(self.goal_categories.items(), key=lambda kv: kv[1].priority))
@@ -254,7 +257,7 @@ class World(object):
             for goal in category.goals:
                 for item in goal.items:
                     self.goal_items.append(item['name'])
-        
+
         # Separate goal categories into locked and unlocked for search optimization
         self.locked_goal_categories = dict(filter(lambda category: category[1].lock_entrances, self.goal_categories.items()))
         self.unlocked_goal_categories = dict(filter(lambda category: not category[1].lock_entrances, self.goal_categories.items()))
@@ -314,14 +317,14 @@ class World(object):
             self.randomized_list.append('big_poe_count')
         # If set to random in GUI, we don't want to randomize if it was specified as non-random in the distribution
         if (self.settings.starting_tod == 'random'
-            and ('starting_tod' not in dist_keys 
+            and ('starting_tod' not in dist_keys
              or self.distribution.distribution.src_dict['_settings']['starting_tod'] == 'random')):
             setting_info = get_setting_info('starting_tod')
             choices = [ch for ch in setting_info.choices if ch not in ['default', 'random']]
             self.settings.starting_tod = random.choice(choices)
             self.randomized_list.append('starting_tod')
         if (self.settings.starting_age == 'random'
-            and ('starting_age' not in dist_keys 
+            and ('starting_age' not in dist_keys
              or self.distribution.distribution.src_dict['_settings']['starting_age'] == 'random')):
             self.settings.starting_age = random.choice(['child', 'adult'])
             self.randomized_list.append('starting_age')
@@ -339,7 +342,7 @@ class World(object):
 
         # Handle random Rainbow Bridge condition
         if (self.settings.bridge == 'random'
-            and ('bridge' not in dist_keys 
+            and ('bridge' not in dist_keys
              or self.distribution.distribution.src_dict['_settings']['bridge'] == 'random')):
             possible_bridge_requirements = ["open", "medallions", "dungeons", "stones", "vanilla"]
             self.settings.bridge = random.choice(possible_bridge_requirements)
@@ -581,7 +584,7 @@ class World(object):
         # Bridge, Ganon's Boss Key, and Trials
         # The Triforce Hunt goal is mutually exclusive with
         # these categories given the vastly different playstyle.
-        # 
+        #
         # Goal priorities determine where hintable locations are placed.
         # For example, an item required for both trials and bridge would
         # be hinted only for bridge. This accomplishes two objectives:
@@ -589,7 +592,7 @@ class World(object):
         #      of the game
         #   2) Later category location lists are not diluted by early
         #      to mid game locations
-        # 
+        #
         # Entrance locks set restrictions on all goals in a category to
         # ensure unreachable goals are not hintable. This is only used
         # for the Rainbow Bridge to filter out goals hard-locked by
@@ -668,8 +671,8 @@ class World(object):
                     # item pool value with a minimum quantity of 1 attempts to hint all items
                     # required to get all copies of Light Arrows, but will fall back to just
                     # one copy if the other is unreachable.
-                    # 
-                    # Similar criteria is used for Ganon's Boss Key in plentiful keysanity. 
+                    #
+                    # Similar criteria is used for Ganon's Boss Key in plentiful keysanity.
                     if not 'Light Arrows' in self.item_added_hint_types['always']:
                         if self.settings.item_pool_value == 'plentiful':
                             arrows = 2
@@ -989,6 +992,22 @@ class World(object):
         return [entrance for entrance in self.get_shufflable_entrances(type=type, only_primary=only_primary) if entrance.shuffled]
 
 
+    def get_boss_map(self):
+        map = dict((boss, boss) for boss in self.boss_location_names)
+        if self.settings.shuffle_bosses == 'off':
+            return map
+
+        for type in ('ChildBoss', 'AdultBoss'):
+            for entrance in self.get_shuffled_entrances(type, True):
+                if 'boss' not in entrance.data:
+                    continue
+                map[entrance.data['boss']] = entrance.replaces.data['boss']
+        return map
+
+    def reverse_boss_map(self):
+        return {y: x for x, y in self.get_boss_map().items()}
+
+
     def has_beaten_game(self, state):
         return state.has('Triforce')
 
@@ -1049,7 +1068,7 @@ class World(object):
             'Double Defense',
             'Ice Arrows',
         ]
-        if (self.settings.damage_multiplier != 'ohko' and self.settings.damage_multiplier != 'quadruple' and 
+        if (self.settings.damage_multiplier != 'ohko' and self.settings.damage_multiplier != 'quadruple' and
             self.settings.shuffle_scrubs == 'off' and not self.settings.shuffle_grotto_entrances):
             # nayru's love may be required to prevent forced damage
             exclude_item_list.append('Nayrus Love')
@@ -1064,6 +1083,10 @@ class World(object):
             # Both two-handed swords can be required in glitch logic, so only consider them foolish in glitchless
             exclude_item_list.append('Biggoron Sword')
             exclude_item_list.append('Giants Knife')
+        if self.settings.plant_beans:
+            # Magic Beans are useless if beans are already planted
+            exclude_item_list.append('Magic Bean')
+            exclude_item_list.append('Magic Bean Pack')
 
         for i in self.item_hint_type_overrides['barren']:
             if i in exclude_item_list:

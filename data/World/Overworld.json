@@ -704,6 +704,7 @@
     },
     {
         "region_name": "Market Entrance",
+        "font_color": "Light Blue",
         "scene": "Market Entrance",
         "hint": "the Market",
         "exits": {
@@ -744,6 +745,7 @@
     },
     {
         "region_name": "ToT Entrance",
+        "font_color": "Light Blue",
         "scene": "ToT Entrance",
         "hint": "the Market",
         "locations": {

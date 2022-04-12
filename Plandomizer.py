@@ -397,8 +397,11 @@ class WorldDistribution(object):
 
     # Add randomized_settings defined in distribution to world's randomized settings list
     def configure_randomized_settings(self, world):
+        settings = world.settings
         for name, record in self.randomized_settings.items():
-            setattr(world, name, record)
+            if not hasattr(settings, name):
+                raise RuntimeError(f"Unknown random setting in world {self.id + 1}: '{name}'")
+            setattr(settings, name, record)
             if name not in world.randomized_list:
                 world.randomized_list.append(name)
 
@@ -956,7 +959,7 @@ class WorldDistribution(object):
             spoiler.hints[self.id][stoneID] = GossipText(text=record.text, colors=record.colors, prefix='')
 
 
-    def give_items(self, save_context):
+    def give_items(self, world, save_context):
         # copy Triforce pieces to all worlds
         triforce_count = sum(
             world_dist.effective_starting_items[triforce_piece].count
@@ -965,12 +968,12 @@ class WorldDistribution(object):
             if triforce_piece in world_dist.effective_starting_items
         )
         if triforce_count > 0:
-            save_context.give_item('Triforce Piece', triforce_count)
+            save_context.give_item(world, 'Triforce Piece', triforce_count)
 
         for (name, record) in self.effective_starting_items.items():
             if name in ('Triforce Piece', 'Easter Egg') or record.count == 0:
                 continue
-            save_context.give_item(name, record.count)
+            save_context.give_item(world, name, record.count)
 
 
     def get_starting_item(self, item):

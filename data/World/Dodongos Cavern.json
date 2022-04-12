@@ -33,7 +33,7 @@
                 here(is_adult or ((has_explosives or Progressive_Strength_Upgrade) and (Sticks or
                     (can_use(Dins_Fire) and (Slingshot or Bombs or Kokiri_Sword)))))",
             "Dodongos Cavern Far Bridge": "at('Dodongos Cavern Far Bridge', True)",
-            "Dodongos Cavern Boss Area": "dodongos_cavern_shortcuts"
+            "Dodongos Cavern Before Boss": "dodongos_cavern_shortcuts"
         }
     },
     {
@@ -84,26 +84,20 @@
             "Dodongos Cavern GS Alcove Above Stairs": "can_use(Hookshot) or can_use(Boomerang)"
         },
         "exits": {
-            "Dodongos Cavern Boss Area": "has_explosives",
+            "Dodongos Cavern Before Boss": "has_explosives",
             "Dodongos Cavern Lobby": "True"
         }
     },
     {
-        "region_name": "Dodongos Cavern Boss Area",
+        "region_name": "Dodongos Cavern Before Boss",
         "dungeon": "Dodongos Cavern",
         "locations": {
-            "Dodongos Cavern Boss Room Chest": "True",
-            "Dodongos Cavern King Dodongo Heart": "
-                (Bombs or Progressive_Strength_Upgrade) and 
-                (is_adult or Sticks or Kokiri_Sword)",
-            "King Dodongo": "
-                (Bombs or Progressive_Strength_Upgrade) and 
-                (is_adult or Sticks or Kokiri_Sword)",
             "Dodongos Cavern GS Back Room": "can_blast_or_smash",
             "Fairy Pot": "has_bottle"
         },
         "exits": {
-            "Dodongos Cavern Lobby": "True"
+            "Dodongos Cavern Lobby": "True",
+            "Dodongos Cavern Boss Door": "True"
         }
     }
 ]

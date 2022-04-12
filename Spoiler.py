@@ -1,10 +1,6 @@
 from collections import OrderedDict
-import json
-import re
 import random
 
-from Hints import gossipLocations
-from Item import Item
 from LocationList import location_sort_order
 
 HASH_ICONS = [

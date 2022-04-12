@@ -1,4 +1,4 @@
-[    
+[
     {
         "region_name": "Shadow Temple Entryway",
         "dungeon": "Shadow Temple",
@@ -66,7 +66,7 @@
         "locations": {
             "Shadow Temple Invisible Spikes Chest": "True",
             "Shadow Temple Freestanding Key": "
-                Progressive_Hookshot and 
+                Progressive_Hookshot and
                 (Bombs or Progressive_Strength_Upgrade or
                     (logic_shadow_freestanding_key and has_bombchus))",
             "Shadow Temple GS Single Giant Pot": "Progressive_Hookshot"
@@ -109,11 +109,11 @@
         },
         "exits": {
             "Shadow Temple After Wind": "(Small_Key_Shadow_Temple, 4)",
-            "Shadow Temple Beyond Boat": "can_play(Zeldas_Lullaby)"
+            "Shadow Temple Before Boss": "can_play(Zeldas_Lullaby)"
         }
     },
     {
-        "region_name": "Shadow Temple Beyond Boat",
+        "region_name": "Shadow Temple Before Boss",
         "dungeon": "Shadow Temple",
         "locations": {
             "Shadow Temple Spike Walls Left Chest": "can_use(Dins_Fire)",
@@ -122,18 +122,10 @@
             "Shadow Temple GS Triple Giant Pot": "True"
         },
         "exits": {
-            "Shadow Temple Boss Room": "
-                (Small_Key_Shadow_Temple, 5) and Boss_Key_Shadow_Temple and
+            "Shadow Temple Boss Door": "
+                (Small_Key_Shadow_Temple, 5) and
                 (Bow or can_use(Distant_Scarecrow) or (logic_shadow_statue and has_bombchus) or
                 shadow_temple_shortcuts)"
-        }
-    },
-    {
-        "region_name": "Shadow Temple Boss Room",
-        "dungeon": "Shadow Temple",
-        "locations": {
-            "Shadow Temple Bongo Bongo Heart": "logic_shadow_bongo or Bow or Hookshot",
-            "Bongo Bongo": "logic_shadow_bongo or Bow or Hookshot"
         }
     }
 ]
