@@ -1,11 +1,11 @@
 #include "models.h"
-
+#include <stdbool.h>
 #include "get_items.h"
 #include "item_table.h"
 #include "util.h"
 #include "z64.h"
 
-#define slot_count 8
+#define slot_count 24
 #define object_size 0x1E70
 #define num_vanilla_objects 0x192
 
@@ -20,6 +20,7 @@ typedef struct {
 } loaded_object_t;
 
 extern uint32_t EXTENDED_OBJECT_TABLE;
+extern EnItem00* collectible_mutex;
 
 loaded_object_t object_slots[slot_count] = { 0 };
 
@@ -96,18 +97,22 @@ float scale_factor(int8_t graphic_id, z64_actor_t *actor, float base_scale) {
         // Draw ocarinas in the moat at vanilla size
         return 1.0;
     }
-    if (actor->actor_id == 0x15 && (actor->variable & 0xFF) == 0x11) {
+    //if (actor->actor_id == 0x15 && (actor->variable & 0xFF) == 0x11) {
         // Draw small key actors smaller, so they don't stick out of places
-        return base_scale * 0.5;
-    }
+        //return base_scale * 0.5;
+    //}
     return base_scale;
 }
 
 void draw_model(model_t model, z64_actor_t *actor, z64_game_t *game, float base_scale) {
     loaded_object_t *object = get_object(model.object_id);
-    set_object_segment(object);
-    scale_top_matrix(scale_factor(model.graphic_id, actor, base_scale));
-    draw_model_low_level(model.graphic_id - 1, actor, game);
+    if(object != NULL)
+    {
+        set_object_segment(object);
+        scale_top_matrix(scale_factor(model.graphic_id, actor, base_scale));
+        draw_model_low_level(model.graphic_id - 1, actor, game);
+    }
+    
 }
 
 void models_init() {
@@ -140,6 +145,24 @@ void lookup_model(model_t *model, z64_actor_t *actor, z64_game_t *game, uint16_t
     lookup_model_by_override(model, override);
 }
 
+//Collectible draw function for rupees/recovery hearts
+bool collectible_draw(z64_actor_t *actor, z64_game_t *game) {
+    EnItem00* this = (EnItem00*)actor;
+    model_t model = {
+        .object_id = 0x0000,
+        .graphic_id = 0x00,
+    };
+    lookup_model(&model, actor, game, 0);
+    if(model.object_id != 0x0000 && (this->actor.health==1 || !Get_CollectibleOverrideFlag(this) || (collectible_mutex == this)))
+    {
+        if(!(collectible_mutex == this))
+            draw_model(model, actor, game, 25.0);
+        return true;
+    }
+    return false;
+}
+
+
 void heart_piece_draw(z64_actor_t *actor, z64_game_t *game) {
     model_t model = {
         .object_id = 0x00BD,
@@ -149,18 +172,22 @@ void heart_piece_draw(z64_actor_t *actor, z64_game_t *game) {
     draw_model(model, actor, game, 25.0);
 }
 
-void small_key_draw(z64_actor_t *actor, z64_game_t *game) {
-    if ((actor->variable & 0xFF) != 0x11) {
+//collectible draw function for common items (sticks, nuts, arrows/seeds/etc. and keys)
+void collectible_draw_other(z64_actor_t *actor, z64_game_t *game) {
+    EnItem00* this = (EnItem00*)actor;
+    
+    if (!should_override_collectible(actor) && !(collectible_mutex == this) && (this->actor.health!=1)) {
         base_collectable_draw(actor, game);
         return;
     }
 
     model_t model = {
-        .object_id = 0x00AA,
-        .graphic_id = 0x02,
-     };
+        .object_id = 0x0000,
+        .graphic_id = 0x00,
+    };
     lookup_model(&model, actor, game, 0);
-    draw_model(model, actor, game, 25.0);
+    if(!(collectible_mutex == this))
+        draw_model(model, actor, game, 10.0);
 }
 
 void heart_container_draw(z64_actor_t *actor, z64_game_t *game) {

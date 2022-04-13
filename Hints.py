@@ -319,6 +319,8 @@ def get_hint_area(spot):
             parent_region = current_spot.parent_region
 
         if parent_region.dungeon:
+            if(parent_region.hint):
+                return parent_region.hint, parent_region.dungeon.font_color or 'White'
             return parent_region.dungeon.hint, parent_region.dungeon.font_color
         elif parent_region.hint and (original_parent.name == 'Root' or parent_region.name != 'Root'):
             return parent_region.hint, parent_region.font_color or 'White'
@@ -1285,7 +1287,7 @@ def buildGanonText(world, messages):
         if world.id != location.world.id:
             text += "\x05\x42Player %d's\x05\x40 %s" % (location.world.id +1, get_raw_text(location_hint))
         else:
-            location_hint = location_hint.replace('Ganon\'s Castle', 'my castle')
+            location_hint = location_hint.replace('Ganon\'s Castle', 'my castle').replace('Ganondorf Fight', 'those pots over there')
             text += get_raw_text(location_hint)
     else:
         text = get_raw_text(getHint('Validation Line', world.settings.clearer_hints).text)

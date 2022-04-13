@@ -2,6 +2,15 @@
 
 This is a randomizer for _The Legend of Zelda: Ocarina of Time_ for the Nintendo 64.
 
+**WARNING:** This branch is a modified version of the randomizer. It is **not** officially supported and may be **very unstable**.
+Please refrain from asking questions and from reporting issues in the main Randomizer Discord when using this branch.
+Instead, you can open an issue on this fork [here](https://github.com/rrealmuto/OoT-Randomizer/issues) or contact me directly on discord (RealRob#4093) for any help, report or request.
+
+Differences between this branch and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):
+* Shuffle Freestanding Hearts/Rupees
+* Shuffle Pots/Crates
+* Pot/Crate Textures Match Contents
+
 * [Installation](#installation)
 * [General Description](#general-description)
   * [Getting Stuck](#getting-stuck)

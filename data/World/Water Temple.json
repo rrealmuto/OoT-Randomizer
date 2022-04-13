@@ -12,7 +12,15 @@
                 # Ensure that the water level can be raised if it were to be lowered.
         },
         "locations": {
-            "Fairy Pot": "Raise_Water_Level and has_bottle and can_use(Longshot)"
+            "Fairy Pot": "Raise_Water_Level and has_bottle and can_use(Longshot)",
+            "Water Temple Main Room L2 Pot 1" : "at('Water Temple Middle Water Level', 'True') or
+                ((can_use(Iron_Boots) or (Progressive_Scale, 2)) and (can_use(Bow) or can_use(Hookshot))) or
+                can_use(Boomerang)", 
+            "Water Temple Main Room L2 Pot 2" : "at('Water Temple Middle Water Level', 'True') or
+                ((can_use(Iron_Boots) or (Progressive_Scale, 2)) and (can_use(Bow) or can_use(Hookshot))) or
+                can_use(Boomerang)",
+            "Water Temple L1 Torch Pot 1" : "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))",
+            "Water Temple L1 Torch Pot 2" : "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))"
         },
         "exits": {
             "Lake Hylia": "True",
@@ -30,6 +38,9 @@
             "Water Temple Map Chest": "Raise_Water_Level",
             "Water Temple Compass Chest": "
                 (can_play(Zeldas_Lullaby) or Iron_Boots) and can_use(Hookshot)",
+            "Water Temple Near Compass Pot 1" : "(can_play(Zeldas_Lullaby) or can_use(Iron_Boots)) and can_use(Hookshot)",
+            "Water Temple Near Compass Pot 2" : "(can_play(Zeldas_Lullaby) or can_use(Iron_Boots)) and can_use(Hookshot)",
+            "Water Temple Near Compass Pot 3" : "(can_play(Zeldas_Lullaby) or can_use(Iron_Boots)) and can_use(Hookshot)",
             "Water Temple Torches Chest": "
                 (Bow or can_use(Dins_Fire) or 
                     (Child_Water_Temple and Sticks and Kokiri_Sword and Magic_Meter)) and
@@ -38,6 +49,30 @@
                 Progressive_Strength_Upgrade and can_play(Zeldas_Lullaby) and 
                 ((Bow and (logic_water_central_bow or Hover_Boots or can_use(Longshot))) or
                     (logic_water_central_bow and Child_Water_Temple and Slingshot and at('Water Temple Middle Water Level', True)))",
+            "Water Temple Central Bow Target Pot 1": "
+                Progressive_Strength_Upgrade and can_play(Zeldas_Lullaby) and 
+                ((Bow and (logic_water_central_bow or Hover_Boots or can_use(Longshot))) or
+                    (logic_water_central_bow and Child_Water_Temple and Slingshot and at('Water Temple Middle Water Level', True)))",
+            "Water Temple Central Bow Target Pot 2": "
+                Progressive_Strength_Upgrade and can_play(Zeldas_Lullaby) and 
+                ((Bow and (logic_water_central_bow or Hover_Boots or can_use(Longshot))) or
+                    (logic_water_central_bow and Child_Water_Temple and Slingshot and at('Water Temple Middle Water Level', True)))",
+            "Water Temple Behind Gate Pot 1": "
+                (can_use(Hookshot) or can_use(Hover_Boots)) and 
+                has_explosives and can_play(Zeldas_Lullaby) and
+                (can_use(Iron_Boots) or can_dive)",
+            "Water Temple Behind Gate Pot 2": "
+                (can_use(Hookshot) or can_use(Hover_Boots)) and 
+                has_explosives and can_play(Zeldas_Lullaby) and
+                (can_use(Iron_Boots) or can_dive)",
+            "Water Temple Behind Gate Pot 3": "
+                (can_use(Hookshot) or can_use(Hover_Boots)) and 
+                has_explosives and can_play(Zeldas_Lullaby) and
+                (can_use(Iron_Boots) or can_dive)",
+            "Water Temple Behind Gate Pot 4": "
+                (can_use(Hookshot) or can_use(Hover_Boots)) and 
+                has_explosives and can_play(Zeldas_Lullaby) and
+                (can_use(Iron_Boots) or can_dive)",
             "Water Temple GS Behind Gate": "
                 (can_use(Hookshot) or can_use(Hover_Boots)) and 
                 has_explosives and can_play(Zeldas_Lullaby) and
@@ -80,6 +115,8 @@
                 (Small_Key_Water_Temple, 5) and 
                 (logic_water_bk_jump_dive or can_use(Iron_Boots)) and
                 (logic_water_north_basement_ledge_jump or (has_explosives and Progressive_Strength_Upgrade) or Hover_Boots)",
+            "Water Temple North Basement Block Puzzle Pot 1": "True",
+            "Water Temple North Basement Block Puzzle Pot 2": "True",
             "Water Temple GS Near Boss Key Chest": "True",
                 # Longshot just reaches without the need to actually go near,
                 # Otherwise you have hovers and just hover over and collect with a jump slash
@@ -133,6 +170,13 @@
         "dungeon": "Water Temple",
         "locations": {
             "Water Temple Longshot Chest": "True",
+            "Water Temple River Recovery Heart 1": "can_play(Song_of_Time)",
+            "Water Temple River Recovery Heart 2": "can_play(Song_of_Time)",
+            "Water Temple River Recovery Heart 3": "can_play(Song_of_Time)",
+            "Water Temple River Recovery Heart 4": "can_play(Song_of_Time)",
+            "Water Temple River Pot 1" : "can_play(Song_of_Time)",
+            "Water Temple Like Like Pot 1": "True",
+            "Water Temple Like Like Pot 2": "True",
             "Water Temple River Chest": "can_play(Song_of_Time) and Bow",
             "Water Temple GS River": "
                 can_play(Song_of_Time) and 

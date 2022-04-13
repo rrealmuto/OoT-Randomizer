@@ -410,6 +410,7 @@ def patch_and_output(settings, window, spoiler, rom):
 
     window.update_progress(95)
 
+    
     if not settings.create_spoiler or settings.output_settings:
         settings.distribution.update_spoiler(spoiler, False)
         window.update_status('Creating Settings Log')

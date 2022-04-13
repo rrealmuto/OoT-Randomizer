@@ -72,6 +72,12 @@
         "dungeon": "Jabu Jabus Belly",
         "scene": "Jabu Jabus Belly Boss",
         "locations": {
+            "Jabu Jabus Belly Barinade Pot 1" : "can_use(Boomerang)",
+            "Jabu Jabus Belly Barinade Pot 2" : "can_use(Boomerang)",
+            "Jabu Jabus Belly Barinade Pot 3" : "can_use(Boomerang)",
+            "Jabu Jabus Belly Barinade Pot 4" : "can_use(Boomerang)",
+            "Jabu Jabus Belly Barinade Pot 5" : "can_use(Boomerang)",
+            "Jabu Jabus Belly Barinade Pot 6" : "can_use(Boomerang)",
             "Jabu Jabus Belly Barinade Heart": "can_use(Boomerang) and (Sticks or Kokiri_Sword)",
             "Barinade": "can_use(Boomerang) and (Sticks or Kokiri_Sword)"
         },

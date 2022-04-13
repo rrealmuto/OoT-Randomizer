@@ -8,8 +8,12 @@
                 here(can_blast_or_smash) and
                 (can_use(Slingshot) or can_use(Bow))",
             "Spirit Temple MQ Entrance Back Right Chest": "
-                has_bombchus or can_use(Bow) or can_use(Hookshot) or
-                can_use(Slingshot) or can_use(Boomerang)"
+                has_bombchus or can_use(Bow) or can_use(Hookshot) or 
+                can_use(Slingshot) or can_use(Boomerang)",
+            "Spirit Temple MQ Lobby Pot 1": "True",
+            "Spirit Temple MQ Lobby Pot 2": "True",
+            "Spirit Temple MQ Lobby Pot 3": "True",
+            "Spirit Temple MQ Lobby Pot 4": "True"            
         },
         "exits": {
             "Desert Colossus From Spirit Lobby": "True",
@@ -22,6 +26,8 @@
         "region_name": "Child Spirit Temple",
         "dungeon": "Spirit Temple",
         "locations": {
+            "Spirit Temple MQ Child Recovery Heart 1" : "can_use(Slingshot)",
+            "Spirit Temple MQ Child Recovery Heart 2" : "can_use(Slingshot)",
             "Spirit Temple MQ Child Hammer Switch Chest": "
                 at('Adult Spirit Temple', (Small_Key_Spirit_Temple, 7) and Megaton_Hammer)",
             "Spirit Temple MQ Map Room Enemy Chest": "
@@ -31,8 +37,14 @@
             "Spirit Temple MQ Silver Block Hallway Chest": "
                 has_bombchus and (Small_Key_Spirit_Temple, 7) and Slingshot and
                 (can_use(Dins_Fire) or
-                at('Adult Spirit Temple', (can_use(Fire_Arrows) or
-                (logic_spirit_mq_frozen_eye and can_use(Bow) and can_play(Song_of_Time)))))",
+                    at('Adult Spirit Temple', (can_use(Fire_Arrows) or
+                        (logic_spirit_mq_frozen_eye and can_use(Bow) and can_play(Song_of_Time)))))",
+            "Spirit Temple MQ Child Torch Slugs Room Pot": "True",
+            "Spirit Temple MQ Child 3 Gibdo Room Pot 1": "(Sticks or Kokiri_Sword) and has_bombchus and Slingshot",
+            "Spirit Temple MQ Child 3 Gibdo Room Pot 2": "(Sticks or Kokiri_Sword) and has_bombchus and Slingshot",
+            "Spirit Temple MQ Child Stalfos Fight Pot 1": "(Sticks or Kokiri_Sword) and has_bombchus and Slingshot",
+            "Spirit Temple MQ Child Stalfos Fight Pot 2": "(Sticks or Kokiri_Sword) and has_bombchus and Slingshot",
+            "Spirit Temple MQ Child Stalfos Fight Pot 3": "(Sticks or Kokiri_Sword) and has_bombchus and Slingshot",
             "Fairy Pot": "
                 has_bottle and (Sticks or Kokiri_Sword) and
                 has_bombchus and Slingshot"
@@ -54,7 +66,19 @@
             "Spirit Temple MQ Boss Key Chest": "
                 (Small_Key_Spirit_Temple, 5) and can_play(Song_of_Time) and Mirror_Shield and (has_explosives or Nuts)",
             "Spirit Temple MQ GS Nine Thrones Room West": "(Small_Key_Spirit_Temple, 7)",
-            "Spirit Temple MQ GS Nine Thrones Room North": "(Small_Key_Spirit_Temple, 7)"
+            "Spirit Temple MQ GS Nine Thrones Room North": "(Small_Key_Spirit_Temple, 7)",
+            "Spirit Temple MQ Shifting Wall Pot 1": "(Small_Key_Spirit_Temple, 6)",
+            "Spirit Temple MQ Shifting Wall Pot 2": "(Small_Key_Spirit_Temple, 6)",
+            "Spirit Temple MQ After Shifting Wall Room Pot 1": "(Small_Key_Spirit_Temple, 6)",
+            "Spirit Temple MQ After Shifting Wall Room Pot 2": "(Small_Key_Spirit_Temple, 6)",
+            "Spirit Temple MQ Lower Boss Platform Pot 1": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
+            "Spirit Temple MQ Lower Boss Platform Pot 2": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
+            "Spirit Temple MQ Lower Boss Platform Pot 3": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
+            "Spirit Temple MQ Lower Boss Platform Pot 4": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
+            "Spirit Temple MQ Lower Boss Platform Crate 1": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
+            "Spirit Temple MQ Lower Boss Platform Crate 2": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
+            "Spirit Temple MQ Lower Boss Platform Crate 3": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
+            "Spirit Temple MQ Lower Boss Platform Crate 4": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)"
         },
         "exits": {
             "Lower Adult Spirit Temple": "
@@ -88,7 +112,21 @@
                 is_adult",
             "Spirit Temple MQ GS Sun Block Room": "
                 (logic_spirit_mq_sun_block_gs and Boomerang and
-                (can_play(Song_of_Time) or logic_spirit_mq_sun_block_sot)) or
+                    (can_play(Song_of_Time) or logic_spirit_mq_sun_block_sot)) or
+                is_adult",
+            "Spirit Temple MQ Child Climb Pot": "(Small_Key_Spirit_Temple, 6)",
+            "Spirit Temple MQ Central Chamber Floor Pot 1": "True",
+            "Spirit Temple MQ Central Chamber Floor Pot 2": "True",
+            "Spirit Temple MQ Central Chamber Floor Pot 3": "True",
+            "Spirit Temple MQ Central Chamber Top Left Pot 1": "can_use(Hover_Boots) or can_play(Song_of_Time)",
+            "Spirit Temple MQ Central Chamber Top Left Pot 2": "can_use(Hover_Boots) or can_play(Song_of_Time)",
+            "Spirit Temple MQ Central Chamber Crate 1": "True",
+            "Spirit Temple MQ Central Chamber Crate 2": "True",
+            "Spirit Temple MQ Sun Block Room Pot 1": "
+                can_play(Song_of_Time) or logic_spirit_mq_sun_block_sot or
+                is_adult",
+            "Spirit Temple MQ Sun Block Room Pot 2": "
+                can_play(Song_of_Time) or logic_spirit_mq_sun_block_sot or
                 is_adult"
         },
         "exits": {
@@ -116,9 +154,11 @@
             "Spirit Temple MQ Entrance Front Right Chest": "Megaton_Hammer",
             "Spirit Temple MQ GS Leever Room": "True",
             "Spirit Temple MQ GS Symphony Room": "
-                (Small_Key_Spirit_Temple, 7) and Megaton_Hammer and Ocarina and
-                Song_of_Time and Eponas_Song and Suns_Song and
-                Song_of_Storms and Zeldas_Lullaby"
+                (Small_Key_Spirit_Temple, 7) and Megaton_Hammer and Ocarina and 
+                Song_of_Time and Eponas_Song and Suns_Song and 
+                Song_of_Storms and Zeldas_Lullaby",
+            "Spirit Temple MQ Below 4 Wallmasters Pot 1": "True",
+            "Spirit Temple MQ Below 4 Wallmasters Pot 2": "True"
         }
     },
     {

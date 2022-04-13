@@ -1,0 +1,8 @@
+{
+    "entrances": {
+        "Child Spawn -> KF Links House": {"region":"Zoras Domain", "from":"ZR Behind Waterfall"}
+    },
+    "locations": {
+        "ToT Light Arrows Cutscene" : "Light Arrows"
+    }
+}

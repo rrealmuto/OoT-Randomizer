@@ -4,8 +4,14 @@
         "dungeon": "Deku Tree",
         "locations": {
             "Deku Tree MQ Map Chest": "True",
+            "Deku Tree MQ Plank Recovery Heart": "True",
+            "Deku Tree MQ Lobby Crate": "True",
             "Deku Tree MQ Slingshot Chest": "is_adult or can_child_attack",
             "Deku Tree MQ Slingshot Room Back Chest": "has_fire_source_with_torch or can_use(Bow)",
+            "Deku Tree MQ Slingshot Room Recovery Heart": "True",
+            "Deku Tree MQ Slingshot Room Crate 1": "True",
+            "Deku Tree MQ Slingshot Room Crate 2": "True",
+            "Deku Tree MQ Near Compass Room Recovery Heart": "has_fire_source_with_torch",
             "Deku Tree MQ Basement Chest": "has_fire_source_with_torch or can_use(Bow)",
             "Deku Tree MQ GS Lobby": "is_adult or can_child_attack",
             "Deku Baba Sticks": "is_adult or Kokiri_Sword or Boomerang",
@@ -30,6 +36,10 @@
             "Deku Tree MQ Compass Chest": "True",
             "Deku Tree MQ GS Compass Room": "
                 (can_use(Hookshot) or can_use(Boomerang)) and
+                here(has_bombchus or
+                    (Bombs and (can_play(Song_of_Time) or is_adult)) or
+                    (can_use(Megaton_Hammer) and (can_play(Song_of_Time) or logic_deku_mq_compass_gs)))",
+            "Deku Tree MQ Compass Room Recovery Heart": "
                 here(has_bombchus or
                     (Bombs and (can_play(Song_of_Time) or is_adult)) or
                     (can_use(Megaton_Hammer) and (can_play(Song_of_Time) or logic_deku_mq_compass_gs)))"
@@ -86,7 +96,18 @@
         "region_name": "Deku Tree Basement Ledge",
         "dungeon": "Deku Tree",
         "locations": {
-            "Deku Tree MQ Deku Scrub": "can_stun_deku"
+            "Deku Tree MQ Deku Scrub": "can_stun_deku",
+            "Deku Tree MQ Basement Recovery Heart 1" : "here(has_fire_source_with_torch) or deku_tree_shortcuts",
+            "Deku Tree MQ Basement Recovery Heart 2" : "here(has_fire_source_with_torch) or deku_tree_shortcuts",
+            "Deku Tree MQ Basement Recovery Heart 3" : "here(has_fire_source_with_torch) or deku_tree_shortcuts",
+            "Deku Tree Queen Gohma Heart": "
+                ((here(has_fire_source_with_torch) and here(has_shield)) or
+                deku_tree_shortcuts) and
+                (is_adult or Kokiri_Sword or Sticks)",
+            "Queen Gohma": "
+                ((here(has_fire_source_with_torch) and here(has_shield)) or
+                deku_tree_shortcuts) and
+                (is_adult or Kokiri_Sword or Sticks)"
         },
         "exits" : {
             "Deku Tree Basement Back Room": "is_child",

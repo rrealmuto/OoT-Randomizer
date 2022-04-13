@@ -15,6 +15,15 @@
         "locations": {
             "Shadow Temple Map Chest": "True",
             "Shadow Temple Hover Boots Chest": "True",
+            "Shadow Temple Whispering Walls Near Dead Hand Pot" : "True",
+            "Shadow Temple Whispering Walls Left Pot 1" : "True",
+            "Shadow Temple Whispering Walls Left Pot 2" : "True",
+            "Shadow Temple Whispering Walls Left Pot 3" : "True",
+            "Shadow Temple Whispering Walls Front Pot 1" : "True",
+            "Shadow Temple Whispering Walls Front Pot 2" : "True",
+            "Shadow Temple Map Chest Room Pot 1": "True",
+            "Shadow Temple Map Chest Room Pot 2": "True",
+            "Shadow Temple Whispering Walls Flying Pot" : "True",
             "Nut Pot": "True"
         },
         "exits": {
@@ -49,9 +58,15 @@
         "locations": {
             "Shadow Temple Invisible Blades Visible Chest": "True",
             "Shadow Temple Invisible Blades Invisible Chest": "True",
+            "Shadow Temple Invisible Blades Recovery Heart 1": "can_play(Song_of_Time)",
+            "Shadow Temple Invisible Blades Recovery Heart 2": "can_play(Song_of_Time)",
             "Shadow Temple Falling Spikes Lower Chest": "True",
             "Shadow Temple Falling Spikes Upper Chest": "logic_shadow_umbrella or Progressive_Strength_Upgrade",
             "Shadow Temple Falling Spikes Switch Chest": "logic_shadow_umbrella or Progressive_Strength_Upgrade",
+            "Shadow Temple Falling Spikes Lower Pot 1": "True",
+            "Shadow Temple Falling Spikes Lower Pot 2": "True",
+            "Shadow Temple Falling Spikes Upper Pot 3": "logic_shadow_umbrella or Progressive_Strength_Upgrade",
+            "Shadow Temple Falling Spikes Upper Pot 4": "logic_shadow_umbrella or Progressive_Strength_Upgrade",
             "Shadow Temple GS Like Like Room": "True",
             "Shadow Temple GS Falling Spikes Room": "logic_shadow_umbrella_gs or Progressive_Hookshot"
         },
@@ -94,7 +109,12 @@
         "dungeon": "Shadow Temple",
         "locations": {
             "Shadow Temple After Wind Enemy Chest": "True",
-            "Shadow Temple After Wind Hidden Chest": "has_explosives"
+            "Shadow Temple After Wind Hidden Chest": "has_explosives",
+            "Shadow Temple After Wind Pot 1" : "True",
+            "Shadow Temple After Wind Pot 2" : "True",
+            "Shadow Temple After Wind Flying Pot 1" : "True",
+            "Shadow Temple After Wind Flying Pot 2" : "True"
+            
         },
         "exits": {
             "Shadow Temple Boat": "(Small_Key_Shadow_Temple, 4)",
@@ -105,7 +125,9 @@
         "region_name": "Shadow Temple Boat",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple GS Near Ship": "can_use(Longshot)"
+            "Shadow Temple GS Near Ship": "can_use(Longshot)",
+            "Shadow Temple Before Boat Freestanding Recovery Heart 1": "can_use(Distant_Scarecrow) and (Small_Key_Shadow_Temple, 4)",
+            "Shadow Temple Before Boat Freestanding Recovery Heart 2": "can_use(Distant_Scarecrow) and (Small_Key_Shadow_Temple, 4)"
         },
         "exits": {
             "Shadow Temple After Wind": "(Small_Key_Shadow_Temple, 4)",
@@ -116,10 +138,28 @@
         "region_name": "Shadow Temple Before Boss",
         "dungeon": "Shadow Temple",
         "locations": {
+            "Shadow Temple After Boat Freestanding Recovery Heart Upper 1" : "can_use(Distant_Scarecrow)",
+            "Shadow Temple After Boat Freestanding Recovery Heart Upper 2" : "can_use(Distant_Scarecrow) ",
+            "Shadow Temple After Boat Freestanding Recovery Heart Lower" : "can_use(Distant_Scarecrow) or ((Bow or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts) and can_play(Song_of_Time))",
             "Shadow Temple Spike Walls Left Chest": "can_use(Dins_Fire)",
             "Shadow Temple Boss Key Chest": "can_use(Dins_Fire)",
+            "Shadow Temple Spike Walls Pot": "True",
             "Shadow Temple Invisible Floormaster Chest": "True",
-            "Shadow Temple GS Triple Giant Pot": "True"
+            "Shadow Temple Invisible Floormaster Pot 1" : "True",
+            "Shadow Temple Invisible Floormaster Pot 2" : "True",
+            "Shadow Temple After Boat Pot 1" : "True",
+            "Shadow Temple Near Boss Pot 1" : "(Bow or can_use(Distant_Scarecrow) or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts)",
+            "Shadow Temple Near Boss Pot 2" : "(Bow or can_use(Distant_Scarecrow) or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts)",
+            "Shadow Temple GS Triple Giant Pot": "True",
+            "Shadow Temple 3 Spinning Pots Rupee 1": "Bomb_Bag or Progressive_Strength_Upgrade",
+            "Shadow Temple 3 Spinning Pots Rupee 2": "Bomb_Bag or Progressive_Strength_Upgrade",
+            "Shadow Temple 3 Spinning Pots Rupee 3": "Bomb_Bag or Progressive_Strength_Upgrade",
+            "Shadow Temple 3 Spinning Pots Rupee 4": "Bomb_Bag or Progressive_Strength_Upgrade",
+            "Shadow Temple 3 Spinning Pots Rupee 5": "Bomb_Bag or Progressive_Strength_Upgrade",
+            "Shadow Temple 3 Spinning Pots Rupee 6": "Bomb_Bag or Progressive_Strength_Upgrade",
+            "Shadow Temple 3 Spinning Pots Rupee 7": "Bomb_Bag or Progressive_Strength_Upgrade",
+            "Shadow Temple 3 Spinning Pots Rupee 8": "Bomb_Bag or Progressive_Strength_Upgrade",
+            "Shadow Temple 3 Spinning Pots Rupee 9": "Bomb_Bag or Progressive_Strength_Upgrade"
         },
         "exits": {
             "Shadow Temple Boss Door": "
