@@ -666,6 +666,7 @@ class SaveContext():
             },
             'defense_hearts'             : Address(size=1, max=20),
             'gs_tokens'                  : Address(size=2, max=100),
+            'pending_freezes'            : Address(0xD4 + 0x1C * 0x00 + 0x10, size=4), # Unused word in scene x00
             'triforce_pieces'            : Address(0xD4 + 0x1C * 0x48 + 0x10, size=4), # Unused word in scene x48
         }
 
@@ -983,6 +984,7 @@ class SaveContext():
             'item_slot.beans'       : 'beans',
             'ammo.beans'            : 10
         },
+        "Ice Trap"                  : {'pending_freezes': None},
         "Triforce Piece"            : {'triforce_pieces': None},
         "Boss Key (Forest Temple)"                : {'dungeon_items.forest.boss_key': True},
         "Boss Key (Fire Temple)"                  : {'dungeon_items.fire.boss_key': True},
