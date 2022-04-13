@@ -100,10 +100,6 @@ class Settings:
                 i_bits = [1 if digit=='1' else 0 for digit in bin(value)[2:]]
                 i_bits.reverse()
             if setting.type == list:
-                if not isinstance(value, (list, tuple, set)):
-                    # If the setting type is list but the value of the setting is not, use an empty list.
-                    # TODO: Add sanity checks for 'MultipleSelect' in the GUI function 'applySettingsObject'.
-                    value = []
                 if len(value) > len(setting.choice_list) / 2:
                     value = [item for item in setting.choice_list if item not in value]
                     terminal = [1] * setting.bitwidth

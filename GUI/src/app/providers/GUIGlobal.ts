@@ -719,6 +719,10 @@ export class GUIGlobal {
               this.verifyNumericSetting(settingsObj, setting, false);
               this.generator_settingsMap[setting.name] = settingsObj[setting.name];
             }
+            else if (setting.type == "MultipleSelect") { //Validate list types before applying them
+              if (Array.isArray(settingsObj[setting.name]))
+                this.generator_settingsMap[setting.name] = settingsObj[setting.name];
+            }
             else { //Everything else
               this.generator_settingsMap[setting.name] = settingsObj[setting.name];
             }
