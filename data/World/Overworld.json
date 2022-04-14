@@ -408,7 +408,8 @@
             "Water Temple Lobby": "
                 can_use(Hookshot) and
                 (can_use(Iron_Boots) or
-                    ((can_use(Longshot) or logic_water_hookshot_entry) and (Progressive_Scale, 2)))",
+                    ((can_use(Longshot) or logic_water_hookshot_entry) and 
+                    ((Progressive_Scale, 2) and not logic_water_gold_scale_no_entry)))",
             "LH Grotto": "True"
         }
     },

@@ -840,6 +840,13 @@ logic_tricks = {
                     standing in a particular spot, the switch can be hit
                     with only the reach of the Hookshot.
                     '''},
+    'Water Temple Disable Entry With Gold Scale': {
+    'name'    : 'logic_water_gold_scale_no_entry',
+    'tags'    : ("Lake Hylia",),
+    'tooltip' : '''\
+                Require Iron Boots for entering the Water Temple
+                instead of using Gold Scale with the Longshot.
+                '''},
     'Death Mountain Trail Climb with Hover Boots': {
         'name'    : 'logic_dmt_climb_hovers',
         'tags'    : ("Death Mountain Trail",),
