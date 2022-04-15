@@ -47,7 +47,7 @@ void ObjKibako_Draw(z64_actor_t *actor, z64_game_t *game)
         {
             texture = get_texture(TEXTURE_ID_SMALLCRATE_GOLD);
         }
-        else if (row->chest_type == SILVER_CHEST)
+        else if (row->chest_type == SILVER_CHEST || row->chest_type == GOLD_CHEST_SMALL)
         {
             texture = get_texture(TEXTURE_ID_SMALLCRATE_KEY);
         }

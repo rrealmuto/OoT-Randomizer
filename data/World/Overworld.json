@@ -2225,13 +2225,13 @@
         },
         "exits": {
             "Ganons Castle Lobby": "True",
-            "Ganondorf Fight": "Boss_Key_Ganons_Castle"
+            "Ganondorfs Chamber": "Boss_Key_Ganons_Castle"
         }
     },
     {
-        "region_name": "Ganondorf Fight",
+        "region_name": "Ganondorfs Chamber",
         "dungeon": "Ganons Castle",
-        "hint": "Ganondorf Fight",
+        "hint": "Ganondorfs Chamber",
         "locations": {
             "Ganondorf Hint": "Boss_Key_Ganons_Castle",
             "Ganons Tower Pot 1": "Boss_Key_Ganons_Castle",

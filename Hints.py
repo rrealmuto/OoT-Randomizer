@@ -301,7 +301,8 @@ class HintAreaNotFound(RuntimeError):
 # Peforms a breadth first search to find the closest hint area from a given spot (region, location, or entrance)
 # and returns the name and color of that area.
 # May fail to find a hint if the given spot is only accessible from the root and not from any other region with a hint area
-def get_hint_area(spot):
+# Set use_dungeon_hint True to allow getting a hint for a sub-region within a dungeon. The sub-region needs to have its own hint text. This is used for the Ganondorf Chamber pots.
+def get_hint_area(spot, use_dungeon_hint =False):
     if isinstance(spot, Region):
         original_parent = spot
     else:
@@ -319,7 +320,8 @@ def get_hint_area(spot):
             parent_region = current_spot.parent_region
 
         if parent_region.dungeon:
-            if(parent_region.hint):
+            #check if the region within the dungeon has its own hint, and if the use_dungeon_hint param is set.
+            if(parent_region.hint and use_dungeon_hint):
                 return parent_region.hint, parent_region.dungeon.font_color or 'White'
             return parent_region.dungeon.hint, parent_region.dungeon.font_color
         elif parent_region.hint and (original_parent.name == 'Root' or parent_region.name != 'Root'):
@@ -467,7 +469,12 @@ def get_barren_hint(spoiler, world, checked):
     if not hasattr(world, 'get_barren_hint_prev'):
         world.get_barren_hint_prev = RegionRestriction.NONE
 
+    
+    logger = logging.getLogger('')
+    logger.info("***HINTS***")
+
     checked_areas = get_checked_areas(world, checked)
+    logger.info(checked_areas)
     areas = list(filter(lambda area:
         area not in checked_areas
         and area not in world.hint_type_overrides['barren']
@@ -480,6 +487,9 @@ def get_barren_hint(spoiler, world, checked):
     # Randomly choose between overworld or dungeon
     dungeon_areas = list(filter(lambda area: world.empty_areas[area]['dungeon'], areas))
     overworld_areas = list(filter(lambda area: not world.empty_areas[area]['dungeon'], areas))
+
+    for loc in world.empty_areas:
+        logger.info(loc)
     if not dungeon_areas:
         # no dungeons left, default to overworld
         world.get_barren_hint_prev = RegionRestriction.OVERWORLD
@@ -1283,11 +1293,11 @@ def buildGanonText(world, messages):
     elif world.light_arrow_location:
         text = get_raw_text(getHint('Light Arrow Location', world.settings.clearer_hints).text)
         location = world.light_arrow_location
-        location_hint, _ = get_hint_area(location)
+        location_hint, _ = get_hint_area(location, use_dungeon_hint=True)
         if world.id != location.world.id:
             text += "\x05\x42Player %d's\x05\x40 %s" % (location.world.id +1, get_raw_text(location_hint))
         else:
-            location_hint = location_hint.replace('Ganon\'s Castle', 'my castle').replace('Ganondorf Fight', 'those pots over there')
+            location_hint = location_hint.replace('Ganon\'s Castle', 'my castle').replace('Ganondorfs Chamber', 'those pots over there')
             text += get_raw_text(location_hint)
     else:
         text = get_raw_text(getHint('Validation Line', world.settings.clearer_hints).text)
