@@ -193,7 +193,10 @@ conditional_sometimes = {
 
 hintTable = {
     'Triforce Piece':                                           (["a triumph fork", "cheese", "a gold fragment"], "a Piece of the Triforce", "item"),
-    'Easter Egg':                                               ("an Easter Egg", None, "item"),
+    'Easter Egg (Pink)':                                        ("an Easter Egg", None, "item"),
+    'Easter Egg (Orange)':                                      ("an Easter Egg", None, "item"),
+    'Easter Egg (Green)':                                       ("an Easter Egg", None, "item"),
+    'Easter Egg (Blue)':                                        ("an Easter Egg", None, "item"),
     'Magic Meter':                                              (["mystic training", "pixie dust", "a green rectangle"], "a Magic Meter", 'item'),
     'Double Defense':                                           (["a white outline", "damage decrease", "strengthened love"], "Double Defense", 'item'),
     'Slingshot':                                                (["a seed shooter", "a rubberband", "a child's catapult"], "a Slingshot", 'item'),

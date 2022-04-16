@@ -222,6 +222,13 @@ IGNORE_LOCATION = 'Recovery Heart'
 pending_junk_pool = []
 junk_pool = []
 
+eggs = [
+    'Easter Egg (Pink)',
+    'Easter Egg (Orange)',
+    'Easter Egg (Green)',
+    'Easter Egg (Blue)',
+]
+
 exclude_from_major = [ 
     'Deliver Letter',
     'Sell Big Poe',
@@ -231,9 +238,8 @@ exclude_from_major = [
     'Bombchus (10)',
     'Bombchus (20)',
     'Odd Potion',
-    'Triforce Piece',
-    'Easter Egg',
-]
+    'Triforce Piece'
+] + eggs
 
 item_groups = {
     'Junk': remove_junk_items,
@@ -363,8 +369,8 @@ def get_pool_core(world):
 
     if world.settings.triforce_hunt:
         if world.settings.easter_egg_hunt:
-            #TODO different colors of Easter egg?
-            pending_junk_pool.extend(['Easter Egg'] * world.settings.triforce_count_per_world)
+            pending_junk_pool.extend(eggs * (world.settings.triforce_count_per_world // len(eggs)))
+            pending_junk_pool.extend(eggs[:world.settings.triforce_count_per_world % len(eggs)])
         else:
             pending_junk_pool.extend(['Triforce Piece'] * world.settings.triforce_count_per_world)
 
@@ -649,7 +655,7 @@ def get_pool_core(world):
                                     and ItemInfo.items[item].type != 'Shop'
                                     and not ItemInfo.items[item].trade
                                     and item != 'Triforce Piece'
-                                    and item != 'Easter Egg'
+                                    and item not in eggs
                                     and item != 'Gold Skulltula Token'
                                     and item not in normal_bottles
                                     and item != 'Rutos Letter'

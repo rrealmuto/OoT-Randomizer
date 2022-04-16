@@ -11,7 +11,7 @@ from Fill import FillError
 from EntranceShuffle import EntranceShuffleError, change_connections, confirm_replacement, validate_world, check_entrances_compatibility
 from Hints import gossipLocations, GossipText
 from Item import ItemFactory, ItemInfo, ItemIterator, IsItem
-from ItemPool import item_groups, get_junk_item
+from ItemPool import item_groups, get_junk_item, eggs
 from Location import LocationIterator, LocationFactory, IsLocation
 from LocationList import location_groups, location_table
 from Search import Search
@@ -308,7 +308,7 @@ class WorldDistribution(object):
                     # Special handling for things not included in base_pool
                     if self.distribution.settings.triforce_hunt:
                         if self.distribution.settings.easter_egg_hunt:
-                            self.major_group.append('Easter Egg')
+                            self.major_group.extend(eggs)
                         else:
                             self.major_group.append('Triforce Piece')
                     major_tokens = ((self.distribution.settings.shuffle_ganon_bosskey == 'on_lacs' and
@@ -964,14 +964,14 @@ class WorldDistribution(object):
         triforce_count = sum(
             world_dist.effective_starting_items[triforce_piece].count
             for world_dist in self.distribution.world_dists
-            for triforce_piece in ('Triforce Piece', 'Easter Egg')
+            for triforce_piece in ('Triforce Piece', *eggs)
             if triforce_piece in world_dist.effective_starting_items
         )
         if triforce_count > 0:
             save_context.give_item(world, 'Triforce Piece', triforce_count)
 
         for (name, record) in self.effective_starting_items.items():
-            if name in ('Triforce Piece', 'Easter Egg') or record.count == 0:
+            if name in ('Triforce Piece', *eggs) or record.count == 0:
                 continue
             save_context.give_item(world, name, record.count)
 
@@ -1070,9 +1070,9 @@ class Distribution(object):
         total_count = 0
         total_starting_count = 0
         for world in worlds:
-            for triforce_piece in ('Triforce Piece', 'Easter Egg'):
+            for triforce_piece in ('Triforce Piece', *eggs):
                 if triforce_piece in world.distribution.item_pool:
-                    world.triforce_count = world.distribution.item_pool[triforce_piece].count
+                    world.triforce_count += world.distribution.item_pool[triforce_piece].count
                 if triforce_piece in world.distribution.starting_items:
                     world.triforce_count += world.distribution.starting_items[triforce_piece].count
                     total_starting_count += world.distribution.starting_items[triforce_piece].count
