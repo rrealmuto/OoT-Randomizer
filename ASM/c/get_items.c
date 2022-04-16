@@ -429,7 +429,7 @@ uint8_t get_extended_flag(EnItem00 *item00) {
 
 bool Get_CollectibleOverrideFlag(EnItem00 *item00) {
     uint32_t *flag_table = collectible_override_flags;
-    uint8_t *scene_table = &collectible_scene_flags_table;
+    uint8_t *scene_table = &collectible_scene_flags_table[0];
     uint16_t scene = z64_game.scene_index;
     bool dropFlag = item00->actor.dropFlag & 0x0001;
 
@@ -441,7 +441,7 @@ bool Get_CollectibleOverrideFlag(EnItem00 *item00) {
     if (dropFlag)  // we set this if it's dropped
     {
         flag_table = dropped_collectible_override_flags;
-        scene_table = &dropped_collectible_scene_flags_table;
+        scene_table = &dropped_collectible_scene_flags_table[0];
         if (scene == 0x0A)
             scene = 0x19;
     }
@@ -460,13 +460,13 @@ bool Get_CollectibleOverrideFlag(EnItem00 *item00) {
 
 void Set_CollectibleOverrideFlag(EnItem00 *item00) {
     uint32_t *flag_table = collectible_override_flags;
-    uint8_t *scene_table = &collectible_scene_flags_table;
+    uint8_t *scene_table = &collectible_scene_flags_table[0];
     uint16_t scene = z64_game.scene_index;
     bool dropFlag = item00->actor.dropFlag & 0x0001;
     uint16_t extended_flag = get_extended_flag(item00);
     if (dropFlag) {
         flag_table = dropped_collectible_override_flags;
-        scene_table = &dropped_collectible_scene_flags_table;
+        scene_table = &dropped_collectible_scene_flags_table[0];
         if (scene == 0x0A)
             scene = 0x19;
     }
@@ -486,7 +486,7 @@ void Set_CollectibleOverrideFlag(EnItem00 *item00) {
 }
 
 bool should_override_collectible(EnItem00 *item00) {
-    override_t override = lookup_override(item00, z64_game.scene_index, 0);
+    override_t override = lookup_override(&(item00->actor), z64_game.scene_index, 0);
     if (override.key.all == 0 || Get_CollectibleOverrideFlag(item00)) {
         return 0;
     }
@@ -507,7 +507,7 @@ bool Item00_KillActorIfFlagIsSet(z64_actor_t *actor) {
 
 // Hack for keeping freestanding overrides alive when they spawn from crates/pots.
 void Item00_KeepAlive(EnItem00 *item00) {
-    if (should_override_collectible(item00) && (item00->actionFunc != (EnItem00ActionFunc *)0x800127E0)) {
+    if (should_override_collectible(item00) && (item00->actionFunc != (EnItem00ActionFunc)0x800127E0)) {
         if (item00->unk_156)
             item00->timeToLive = 0xFF;
     } else {
@@ -585,7 +585,7 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
 
     if (!collectible_mutex && pItem->actor.main_proc != NULL)  // Check our mutex so that only one collectible can run at a time (if 2 run on the same frame you lose the message). Also make sure that this actor hasn't already been killed.
     {
-        collectible_mutex = from_actor;
+        collectible_mutex = (EnItem00*)from_actor;
         collectible_override = override;
         // resolve upgrades and figure out what item to give.
         uint16_t item_id = collectible_override.value.item_id;
@@ -612,7 +612,7 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
             uint16_t sfxId = NA_SE_SY_GET_ITEM;
             if (item_row->collectible <= ITEM00_RUPEE_RED || item_row->collectible == ITEM00_RUPEE_PURPLE || item_row->collectible == ITEM00_RUPEE_ORANGE)
                 sfxId = NA_SE_SY_GET_RUPY;
-            z64_Audio_PlaySoundGeneral(sfxId, 0x80104394, 4, 0x801043A0, 0x801043A0, 0x801043A8);
+            z64_Audio_PlaySoundGeneral(sfxId, (void*)0x80104394, 4, (float*)0x801043A0, (float*)0x801043A0, (uint8_t*)0x801043A8);
             return 3;  // Return to the original function so it can draw the collectible above our head.
         }
 

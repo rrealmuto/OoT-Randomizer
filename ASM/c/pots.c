@@ -3,10 +3,10 @@
 #include "gfx.h"
 #include "textures.h"
 
-#define DUNGEON_POT_SIDE_TEXTURE (uint64_t *)0x050108A0
+#define DUNGEON_POT_SIDE_TEXTURE (uint8_t *)0x050108A0
 #define DUNGEON_POT_DLIST (z64_gfx_t *)0x05017870
 
-#define POT_SIDE_TEXTURE (uint64_t *)0x06000000
+#define POT_SIDE_TEXTURE (uint8_t *)0x06000000
 #define POT_DLIST (z64_gfx_t *)0x060017C0
 
 extern bool POTCRATE_TEXTURES_MATCH_CONTENTS;
@@ -55,7 +55,7 @@ void draw_pot(z64_actor_t *actor, z64_game_t *game, override_t override)
 {
     // get original dlist and texture
     z64_gfx_t *dlist = DUNGEON_POT_DLIST;
-    uint64_t *side_texture = DUNGEON_POT_SIDE_TEXTURE;
+    uint8_t *side_texture = DUNGEON_POT_SIDE_TEXTURE;
 
     // overworld pot or hba pot
     if ((actor->actor_id == 0x111 && (actor->variable >> 8) & 1) || actor->actor_id == 0x117)
