@@ -2,6 +2,9 @@
     {
         "region_name": "Ice Cavern Beginning",
         "dungeon": "Ice Cavern",
+        "locations":{
+            "Ice Cavern Freestanding Blue Rupee": "Blue_Fire"
+        },
         "exits": {
             "ZF Ice Ledge": "True",
             #Frezzards are weird, they are immune to KS completely. Leave sticks out as 8/10 is a lot
@@ -22,7 +25,6 @@
                 Blue_Fire and 
                 (is_adult or Slingshot or Sticks or 
                     Kokiri_Sword or can_use(Dins_Fire))",
-            "Ice Cavern Freestanding Blue Rupee": "Blue_Fire",
             "Ice Cavern Map Room Recovery Heart 1": "is_adult",
             "Ice Cavern Map Room Recovery Heart 2": "is_adult",
             "Ice Cavern Map Room Recovery Heart 3": "is_adult",
