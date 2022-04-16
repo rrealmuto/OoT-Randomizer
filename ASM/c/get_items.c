@@ -11,7 +11,7 @@ extern uint8_t NO_COLLECTIBLE_HEARTS;
 override_t cfg_item_overrides[1536] = {0};
 int item_overrides_count = 0;
 
-override_t pending_item_queue[3] = {0};
+override_t pending_item_queue[3] = { 0 };
 z64_actor_t *dummy_actor = NULL;
 
 // Co-op state
@@ -23,7 +23,7 @@ extern override_key_t OUTGOING_KEY;
 extern uint16_t OUTGOING_ITEM;
 extern uint16_t OUTGOING_PLAYER;
 
-override_t active_override = {0};
+override_t active_override = { 0 };
 int active_override_is_outgoing = 0;
 item_row_t *active_item_row = NULL;
 // Split active_item_row into variables for convenience in ASM
@@ -69,7 +69,7 @@ override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_
         if (scene == 0x10) {
             int chest_item_id = (actor->variable >> 5) & 0x7F;
             if (chest_item_id == 0x75) {
-                return (override_key_t){.all = 0};
+                return (override_key_t){ .all = 0 };
             }
         }
 
@@ -118,7 +118,7 @@ override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_
             .flag = item_id,
         };
     } else {
-        return (override_key_t){
+        return (override_key_t) {
             .scene = scene,
             .type = OVR_BASE_ITEM,
             .flag = item_id,
@@ -140,13 +140,13 @@ override_t lookup_override_by_key(override_key_t key) {
             return mid_entry;
         }
     }
-    return (override_t){0};
+    return (override_t){ 0 };
 }
 
 override_t lookup_override(z64_actor_t *actor, uint8_t scene, uint8_t item_id) {
     override_key_t search_key = get_override_search_key(actor, scene, item_id);
     if (search_key.all == 0) {
-        return (override_t){0};
+        return (override_t){ 0 };
     }
 
     return lookup_override_by_key(search_key);
@@ -158,7 +158,7 @@ void activate_override(override_t override) {
 
     active_override = override;
     if (resolved_item_id == 0xCA)
-        active_override_is_outgoing = 2;  // Send to everyone
+        active_override_is_outgoing = 2; // Send to everyone
     else
         active_override_is_outgoing = override.value.player != PLAYER_ID;
     active_item_row = item_row;
@@ -171,7 +171,7 @@ void activate_override(override_t override) {
 }
 
 void clear_override() {
-    active_override = (override_t){0};
+    active_override = (override_t){ 0 };
     active_override_is_outgoing = 0;
     active_item_row = NULL;
     active_item_action_id = 0;
@@ -202,7 +202,7 @@ void push_pending_item(override_t override) {
 
 void push_coop_item() {
     if (INCOMING_ITEM != 0) {
-        override_t override = {0};
+        override_t override = { 0 };
         override.key.scene = 0xFF;
         override.key.type = OVR_DELAYED;
         override.key.flag = 0xFF;
@@ -213,7 +213,7 @@ void push_coop_item() {
 }
 
 void push_delayed_item(uint8_t flag) {
-    override_key_t search_key = {.all = 0};
+    override_key_t search_key = { .all = 0 };
     search_key.scene = 0xFF;
     search_key.type = OVR_DELAYED;
     search_key.flag = flag;
@@ -240,9 +240,9 @@ void after_key_received(override_key_t key) {
     }
 
     override_key_t fire_arrow_key = {
-        .scene = 0x57,  // Lake hylia
+        .scene = 0x57, // Lake hylia
         .type = OVR_BASE_ITEM,
-        .flag = 0x58,  // Fire arrows item ID
+        .flag = 0x58, // Fire arrows item ID
     };
     if (key.all == fire_arrow_key.all) {
         // Mark fire arrow location as obtained
@@ -284,7 +284,8 @@ inline uint32_t link_is_ready() {
         (z64_event_state_1 & 0x20) == 0 &&
         (z64_game.camera_2 == 0)) {
         satisified_pending_frames++;
-    } else {
+    }
+    else {
         satisified_pending_frames = 0;
     }
     if (satisified_pending_frames >= 2) {
@@ -297,7 +298,7 @@ inline uint32_t link_is_ready() {
 void try_pending_item() {
     override_t override = pending_item_queue[0];
 
-    if (override.key.all == 0) {
+    if(override.key.all == 0) {
         return;
     }
 
@@ -330,7 +331,7 @@ void handle_pending_items() {
 }
 
 void get_item(z64_actor_t *from_actor, z64_link_t *link, int8_t incoming_item_id) {
-    override_t override = {0};
+    override_t override = { 0 };
     int incoming_negative = incoming_item_id < 0;
 
     if (from_actor && incoming_item_id != 0) {
