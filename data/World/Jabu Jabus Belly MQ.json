@@ -105,13 +105,7 @@
         "locations": {
             "Jabu Jabus Belly MQ Near Boss Chest": "can_use(Slingshot)",
             "Jabu Jabus Belly MQ GS Near Boss": "can_use(Boomerang) or can_use(Longshot)",
-            "Fairy Pot": "has_bottle",
-            "Jabu Jabus Belly Barinade Pot 1": "True",
-            "Jabu Jabus Belly Barinade Pot 2": "True",
-            "Jabu Jabus Belly Barinade Pot 3": "True",
-            "Jabu Jabus Belly Barinade Pot 4": "True",
-            "Jabu Jabus Belly Barinade Pot 5": "True",
-            "Jabu Jabus Belly Barinade Pot 6": "True"
+            "Fairy Pot": "has_bottle"
         },
         "exits": {
             "Jabu Jabus Belly Main": "True",
