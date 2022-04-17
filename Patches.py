@@ -1614,6 +1614,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     rom.write_bytes(rom.sym('num_drop_override_flags'), num_drop_flags.to_bytes(2, 'big'))
 
     # Write item overrides
+    check_location_dupes(world)
     override_table = get_override_table(world)
     if len(override_table) >= 1536:
         raise(RuntimeError("Exceeded override table size: " + str(len(override_table))))
@@ -2168,6 +2169,15 @@ def get_override_table(world):
         logger.info(location)
     return list(filter(lambda val: val != None, map(get_override_entry, world.get_filled_locations())))
 
+def check_location_dupes(world):
+    locations = list(world.get_filled_locations())
+    for i in range(0, len(locations)):
+        for j in range(0, len(locations)):
+            check_i = locations[i]
+            check_j = locations[j]
+            if(check_i.name == check_j.name and i != j):
+                raise(Exception("Discovered duplicate location: " + check_i.name))
+            
 
 override_struct = struct.Struct('>xBBBHBB') # match override_t in get_items.c
     
