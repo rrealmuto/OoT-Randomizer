@@ -885,7 +885,6 @@ def update_item_messages(messages, world):
         update_message_by_id(messages, id, text, opt)
 
 
-# run all keysanity related patching to add messages for dungeon specific items
 def add_item_messages(messages, shop_items, world):
     move_shop_item_messages(messages, shop_items)
     update_item_messages(messages, world)
