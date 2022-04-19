@@ -187,7 +187,7 @@ def distribute_items_restrictive(worlds: list[World], fill_locations: Optional[l
         fill_dungeon_unique_item(worlds, search, fill_locations, progitempool)
         search.collect_locations()
 
-    # Place all progression items. This will include keys in keysanity.
+    # Place all progression items from the main item pool.
     # Items in this group will check for reachability and will be placed
     # such that the game is guaranteed beatable.
     logger.info('Placing progression items.')
