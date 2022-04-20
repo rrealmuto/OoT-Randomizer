@@ -3455,7 +3455,7 @@ setting_infos = [
     ),
     Combobox(
         name           = 'shopsanity',
-        gui_text       = 'Shopsanity',
+        gui_text       = 'Shuffle Shops',
         default        = 'off',
         choices        = {
             'off':    'Off',
@@ -3510,7 +3510,7 @@ setting_infos = [
     ),
     Combobox(
         name           = 'shopsanity_prices',
-        gui_text       = 'Shopsanity Prices',
+        gui_text       = 'Special Deal Prices',
         default        = 'random',
         choices        = {
             'random':          'Random',
@@ -3523,19 +3523,19 @@ setting_infos = [
         disable        = {
         },
         gui_tooltip    = '''\
-            Controls the randomization of prices for shopsanity items.
-            For more control, utilize the plandomizer.
+            Controls the randomization of prices for Special Deal
+            items in shops. For more control, utilize the plandomizer.
 
             'Random': The default randomization. Shop prices for
-            shopsanity items will range between 0 to 300 rupees,
+            Special Deals will range between 0 to 300 rupees,
             with a bias towards values slightly below the middle of the
             range, in multiples of 5.
 
-            'X Wallet': Shop prices for shopsanity items will range
+            'X Wallet': Shop prices for Special Deals will range
             between 0 and the specified wallet's maximum capacity,
             in multiples of 5.
 
-            'Affordable': Shop prices for shopsanity items will be
+            'Affordable': Shop prices for Special Deals will be
             fixed to 10 rupees.
         ''',
         disabled_default =  'random',
@@ -3546,7 +3546,7 @@ setting_infos = [
     ),
     Combobox(
         name           = 'tokensanity',
-        gui_text       = 'Tokensanity',
+        gui_text       = 'Shuffle Gold Skulltula Tokens',
         default        = 'off',
         choices        = {
             'off':       'Off',
@@ -4454,8 +4454,8 @@ setting_infos = [
             to beat the board. Goals which are completed simply
             by finding a specific item are not hinted
             (e.g. "Boomerang"). 
-            In addition, overworld tokensanity will always
-            hint the location of Sun's Song, and shopsanity
+            In addition, overworld token shuffle will always
+            hint the location of Sun's Song, and shop shuffle
             will always hint the location of a wallet.
 
             Leaving this entry blank or providing an
