@@ -1895,7 +1895,6 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     SILVER_CHEST = 13
     SKULL_CHEST_SMALL = 14
     SKULL_CHEST_BIG =  15
-    GOLD_CHEST_SMALL = 16
     if world.settings.bombchus_in_logic:
         bombchu_ids = [0x6A, 0x03, 0x6B]
         for i in bombchu_ids:
@@ -1911,12 +1910,6 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         for i in heart_ids:
             item = read_rom_item(rom, i)
             item['chest_type'] = GILDED_CHEST
-            write_rom_item(rom, i, item)
-    if world.settings.correct_chest_appearances == 'classic':
-        key_ids = [0xAF, 0xB0, 0xB1, 0xB2, 0xB3, 0xB4, 0xB5, 0xB6, 0xB7]
-        for i in key_ids:
-            item = read_rom_item (rom, i)
-            item['chest_type'] = GOLD_CHEST_SMALL
             write_rom_item(rom, i, item)
 
     # Update chest type appearance
@@ -1944,7 +1937,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             chest_address = 0x2B6B07C
             location = world.get_location(chest_name)
             item = read_rom_item(rom, location.item.index)
-            if item['chest_type'] in (BROWN_CHEST, SILVER_CHEST, SKULL_CHEST_SMALL, GOLD_CHEST_SMALL):
+            if item['chest_type'] in (BROWN_CHEST, SILVER_CHEST, SKULL_CHEST_SMALL):
                 rom.write_int16(chest_address + 2, 0x0190) # X pos
                 rom.write_int16(chest_address + 6, 0xFABC) # Z pos
 
@@ -1955,7 +1948,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             chest_address_2 = 0x21A06E4  # Address in setup 2
             location = world.get_location(chest_name)
             item = read_rom_item(rom, location.item.index)
-            if item['chest_type'] in (BROWN_CHEST, SILVER_CHEST, SKULL_CHEST_SMALL, GOLD_CHEST_SMALL):
+            if item['chest_type'] in (BROWN_CHEST, SILVER_CHEST, SKULL_CHEST_SMALL):
                 rom.write_int16(chest_address_0 + 6, 0x0172)  # Z pos
                 rom.write_int16(chest_address_2 + 6, 0x0172)  # Z pos
 

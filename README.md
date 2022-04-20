@@ -21,6 +21,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
 * Plandos with conflicting settings are now errors ([#1562](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1562))
 * The “Special Deal Prices” setting is disabled if “Shuffle Shops” is set to “0 Items Per Shop”, since it does nothing ([#1561](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1561))
 * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
+* A bug where key rings would appear in brown chests with “Chest Appearance Matches Contents” set to “Classic” is fixed ([#1559](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1559))
 * Support is added for ice traps as starting items ([#1555](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1555))
 * A bug where setting “Starting Hearts” to 20 would only give you 19 hearts is fixed. As a side effect, “Plentiful” and “Ludicrous” item pools no longer remove the 4 heart pieces when starting with 4–19 hearts ([#1541](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1541))
 * One-way entrances can no longer target the same hint area ([#1537](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1537))
