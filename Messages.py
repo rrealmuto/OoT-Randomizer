@@ -282,18 +282,9 @@ KEYSANITY_MESSAGES = {
     0x008E: "\x13\x76\x08You found the \x05\x41Dungeon Map\x05\x40\x01for the \x05\x43Water Temple\x05\x40!\x09",
     0x008F: "\x13\x76\x08You found the \x05\x41Dungeon Map\x05\x40\x01for the \x05\x46Spirit Temple\x05\x40!\x09",
     0x0092: "\x13\x76\x08You found the \x05\x41Dungeon Map\x05\x40\x01for the \x05\x44Ice Cavern\x05\x40!\x09",
-    0x0093: "\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for the \x05\x42Forest Temple\x05\x40!\x09",
-    0x0094: "\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for the \x05\x41Fire Temple\x05\x40!\x09",
-    0x0095: "\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for the \x05\x43Water Temple\x05\x40!\x09",
-    0x009B: "\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for the \x05\x45Bottom of the Well\x05\x40!\x09",
-    0x009F: "\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for the \x05\x46Gerudo Training\x01Ground\x05\x40!\x09",
-    0x00A0: "\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for the \x05\x46Thieves' Hideout\x05\x40!\x09",
-    0x00A1: "\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for \x05\x41Ganon's Castle\x05\x40!\x09",
     0x00A2: "\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for the \x05\x45Bottom of the Well\x05\x40!\x09",
     0x00A3: "\x13\x76\x08You found the \x05\x41Dungeon Map\x05\x40\x01for the \x05\x45Shadow Temple\x05\x40!\x09",
     0x00A5: "\x13\x76\x08You found the \x05\x41Dungeon Map\x05\x40\x01for the \x05\x45Bottom of the Well\x05\x40!\x09",
-    0x00A6: "\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for the \x05\x46Spirit Temple\x05\x40!\x09",
-    0x00A9: "\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for the \x05\x45Shadow Temple\x05\x40!\x09",
     0x9010: "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x42Forest Temple\x05\x40!\x09",
     0x9011: "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x41Fire Temple\x05\x40!\x09",
     0x9012: "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x43Water Temple\x05\x40!\x09",
@@ -304,6 +295,25 @@ KEYSANITY_MESSAGES = {
     0x9017: "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x46Thieves' Hideout\x05\x40!\x09",
     0x9018: "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for \x05\x41Ganon's Castle\x05\x40!\x09",
 }
+i = 0x9101
+for dungeon_name, max_keys in (
+    ("the \x05\x42Forest Temple\x05\x40", 6),
+    ("the \x05\x41Fire Temple\x05\x40", 8),
+    ("the \x05\x43Water Temple\x05\x40", 6),
+    ("the \x05\x46Spirit Temple\x05\x40", 7),
+    ("the \x05\x45Shadow Temple\x05\x40", 6),
+    ("the \x05\x45Bottom of the Well\x05\x40", 3),
+    ("the \x05\x46Gerudo Training\x01Ground\x05\x40", 9),
+    ("the \x05\x46Thieves' Hideout\x05\x40", 4),
+    ("\x05\x41Ganon's Castle\x05\x40", 3),
+):
+    KEYSANITY_MESSAGES[i] = f"\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for {dungeon_name}!\x09"
+    i += 1
+    for num_keys in range(2, max_keys + 1):
+        KEYSANITY_MESSAGES[i] = f"\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for {dungeon_name}!\x01You've collected \x05\x41{num_keys}\x05\x40 of them.\x09"
+        i += 1
+    KEYSANITY_MESSAGES[i] = f"\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for {dungeon_name}!\x01You already have enough keys.\x09"
+    i += 1
 
 COLOR_MAP = {
     'White':      '\x40',

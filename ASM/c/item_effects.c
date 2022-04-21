@@ -80,17 +80,20 @@ char key_counts[14][2] = {
 };
 
 void give_small_key(z64_file_t *save, int16_t dungeon_id, int16_t arg2) {
-    int8_t current_keys = save->dungeon_keys[dungeon_id] > 0 ? save->dungeon_keys[dungeon_id] : 0;
-    save->dungeon_keys[dungeon_id] = current_keys + 1;
     int8_t total_keys = save->scene_flags[dungeon_id].unk_00_;
-    save->scene_flags[dungeon_id].unk_00_ = total_keys + 1;
+    if (total_keys < key_counts[dungeon_id][CFG_DUNGEON_IS_MQ[dungeon_id]]) {
+        int8_t current_keys = save->dungeon_keys[dungeon_id] > 0 ? save->dungeon_keys[dungeon_id] : 0;
+        save->dungeon_keys[dungeon_id] = current_keys + 1;
+        save->scene_flags[dungeon_id].unk_00_ = total_keys + 1;
+    }
 }
 
 void give_small_key_ring(z64_file_t *save, int16_t dungeon_id, int16_t arg2) {
-    int8_t current_keys = save->dungeon_keys[dungeon_id] > 0 ? save->dungeon_keys[dungeon_id] : 0;
-    save->dungeon_keys[dungeon_id] = current_keys + key_counts[dungeon_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
     int8_t total_keys = save->scene_flags[dungeon_id].unk_00_;
-    save->scene_flags[dungeon_id].unk_00_ = total_keys + key_counts[dungeon_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
+    if (total_keys < key_counts[dungeon_id][CFG_DUNGEON_IS_MQ[dungeon_id]]) {
+        save->dungeon_keys[dungeon_id] = key_counts[dungeon_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
+        save->scene_flags[dungeon_id].unk_00_ = key_counts[dungeon_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
+    }
 }
 
 void give_defense(z64_file_t *save, int16_t arg1, int16_t arg2) {
