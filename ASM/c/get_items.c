@@ -123,7 +123,7 @@ void activate_override(override_t override) {
     item_row_t *item_row = get_item_row(resolved_item_id);
 
     active_override = override;
-    if (resolved_item_id == 0xCA)
+    if (resolved_item_id == 0xCA || (resolved_item_id >= 0xD4 && resolved_item_id < 0xD8))
         active_override_is_outgoing = 2; // Send to everyone
     else
         active_override_is_outgoing = override.value.player != PLAYER_ID;
@@ -268,7 +268,7 @@ void try_pending_item() {
         return;
     }
 
-    if (override.value.item_id == 0xCA && override.value.player != PLAYER_ID) {
+    if ((override.value.item_id == 0xCA || (override.value.item_id >= 0xD4 && override.value.item_id < 0xD8)) && override.value.player != PLAYER_ID) {
         uint16_t resolved_item_id = resolve_upgrades(override.value.item_id);
         item_row_t *item_row = get_item_row(resolved_item_id);
         call_effect_function(item_row);
@@ -350,7 +350,7 @@ void get_skulltula_token(z64_actor_t *token_actor) {
     PLAYER_NAME_ID = player;
     z64_DisplayTextbox(&z64_game, item_row->text_id, 0);
 
-    if (resolved_item_id == 0xCA) {
+    if (resolved_item_id == 0xCA || (resolved_item_id >= 0xD4 && resolved_item_id < 0xD8)) {
         // Send triforce to everyone
         set_outgoing_override(&override);
         z64_GiveItem(&z64_game, item_row->action_id);
