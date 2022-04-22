@@ -1,6 +1,7 @@
 #ifndef DPAD_H
 #define DPAD_H
 
+#include "dungeon_info.h"
 #include "z64.h"
 
 #define BLOCK_DPAD (0x00000001 | \
@@ -22,7 +23,8 @@
 #define CAN_USE_DPAD        (((z64_link.state_flags_1 & BLOCK_DPAD) == 0) && \
                             ((uint32_t)z64_ctxt.state_dtor==z64_state_ovl_tab[3].vram_dtor) && \
                             (z64_file.game_mode == 0) && \
-                            ((z64_event_state_1 & 0x20) == 0))
+                            ((z64_event_state_1 & 0x20) == 0) && \
+                            !CAN_DRAW_DUNGEON_INFO)
 
 #define CAN_USE_OCARINA     (z64_game.pause_ctxt.state == 0 && (z64_file.items[Z64_SLOT_OCARINA] == Z64_ITEM_FAIRY_OCARINA || z64_file.items[Z64_SLOT_OCARINA] == Z64_ITEM_OCARINA_OF_TIME) && !z64_game.restriction_flags.ocarina && ((z64_link.state_flags_1 & BLOCK_ITEMS) == 0))
 #define CAN_USE_CHILD_TRADE (z64_game.pause_ctxt.state == 0 && z64_file.items[Z64_SLOT_CHILD_TRADE] >= Z64_ITEM_WEIRD_EGG && z64_file.items[Z64_SLOT_CHILD_TRADE] <= Z64_ITEM_MASK_OF_TRUTH && !z64_game.restriction_flags.trade_items && ((z64_link.state_flags_1 & BLOCK_ITEMS) == 0))

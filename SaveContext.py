@@ -283,15 +283,42 @@ class SaveContext():
             if item.startswith('Small Key Ring ('):
                 dungeon = item[:-1].split(' (', 1)[1]
                 save_writes = {
-                    "Forest Temple"          : {'keys.forest': 6 if world.dungeon_mq[dungeon] else 5},
-                    "Fire Temple"            : {'keys.fire': 5 if world.dungeon_mq[dungeon] else 8},
-                    "Water Temple"           : {'keys.water': 2 if world.dungeon_mq[dungeon] else 6},
-                    "Spirit Temple"          : {'keys.spirit': 7 if world.dungeon_mq[dungeon] else 5},
-                    "Shadow Temple"          : {'keys.shadow': 6 if world.dungeon_mq[dungeon] else 5},
-                    "Bottom of the Well"     : {'keys.botw': 2 if world.dungeon_mq[dungeon] else 3},
-                    "Gerudo Training Ground" : {'keys.gtg': 3 if world.dungeon_mq[dungeon] else 9},
-                    "Thieves Hideout"        : {'keys.fortress': 4},
-                    "Ganons Castle"          : {'keys.gc': 3 if world.dungeon_mq[dungeon] else 2},
+                    "Forest Temple"          : {
+                        'keys.forest': 6 if world.dungeon_mq[dungeon] else 5,
+                        'total_keys.forest': 6 if world.dungeon_mq[dungeon] else 5,
+                    },
+                    "Fire Temple"            : {
+                        'keys.fire': 5 if world.dungeon_mq[dungeon] else 8,
+                        'total_keys.fire': 5 if world.dungeon_mq[dungeon] else 8,
+                    },
+                    "Water Temple"           : {
+                        'keys.water': 2 if world.dungeon_mq[dungeon] else 6,
+                        'total_keys.water': 2 if world.dungeon_mq[dungeon] else 6,
+                    },
+                    "Spirit Temple"          : {
+                        'keys.spirit': 7 if world.dungeon_mq[dungeon] else 5,
+                        'total_keys.spirit': 7 if world.dungeon_mq[dungeon] else 5,
+                    },
+                    "Shadow Temple"          : {
+                        'keys.shadow': 6 if world.dungeon_mq[dungeon] else 5,
+                        'total_keys.shadow': 6 if world.dungeon_mq[dungeon] else 5,
+                    },
+                    "Bottom of the Well"     : {
+                        'keys.botw': 2 if world.dungeon_mq[dungeon] else 3,
+                        'total_keys.botw': 2 if world.dungeon_mq[dungeon] else 3,
+                    },
+                    "Gerudo Training Ground" : {
+                        'keys.gtg': 3 if world.dungeon_mq[dungeon] else 9,
+                        'total_keys.gtg': 3 if world.dungeon_mq[dungeon] else 9,
+                    },
+                    "Thieves Hideout"        : {
+                        'keys.fortress': 4,
+                        'total_keys.fortress': 4,
+                    },
+                    "Ganons Castle"          : {
+                        'keys.gc': 3 if world.dungeon_mq[dungeon] else 2,
+                        'total_keys.gc': 3 if world.dungeon_mq[dungeon] else 2,
+                    },
                 }[dungeon]
             else:
                 save_writes = SaveContext.save_writes_table[item]
@@ -666,6 +693,22 @@ class SaveContext():
             },
             'defense_hearts'             : Address(size=1, max=20),
             'gs_tokens'                  : Address(size=2, max=100),
+            'total_keys' : { # Unused word in own scene
+                'deku'                   : Address(0xD4 + 0x1C * 0x00 + 0x10, size=4),
+                'dodongo'                : Address(0xD4 + 0x1C * 0x01 + 0x10, size=4),
+                'jabu'                   : Address(0xD4 + 0x1C * 0x02 + 0x10, size=4),
+                'forest'                 : Address(0xD4 + 0x1C * 0x03 + 0x10, size=4),
+                'fire'                   : Address(0xD4 + 0x1C * 0x04 + 0x10, size=4),
+                'water'                  : Address(0xD4 + 0x1C * 0x05 + 0x10, size=4),
+                'spirit'                 : Address(0xD4 + 0x1C * 0x06 + 0x10, size=4),
+                'shadow'                 : Address(0xD4 + 0x1C * 0x07 + 0x10, size=4),
+                'botw'                   : Address(0xD4 + 0x1C * 0x08 + 0x10, size=4),
+                'ice'                    : Address(0xD4 + 0x1C * 0x09 + 0x10, size=4),
+                'gt'                     : Address(0xD4 + 0x1C * 0x0A + 0x10, size=4),
+                'gtg'                    : Address(0xD4 + 0x1C * 0x0B + 0x10, size=4),
+                'fortress'               : Address(0xD4 + 0x1C * 0x0C + 0x10, size=4),
+                'gc'                     : Address(0xD4 + 0x1C * 0x0D + 0x10, size=4),
+            },
             'triforce_pieces'            : Address(0xD4 + 0x1C * 0x48 + 0x10, size=4), # Unused word in scene x48
             'pending_freezes'            : Address(0xD4 + 0x1C * 0x49 + 0x10, size=4), # Unused word in scene x49
         }
@@ -1012,26 +1055,80 @@ class SaveContext():
         "Map (Shadow Temple)"                     : {'dungeon_items.shadow.map': True},
         "Map (Bottom of the Well)"                : {'dungeon_items.botw.map': True},
         "Map (Ice Cavern)"                        : {'dungeon_items.ice.map': True},
-        "Small Key (Forest Temple)"               : {'keys.forest': None},
-        "Small Key (Fire Temple)"                 : {'keys.fire': None},
-        "Small Key (Water Temple)"                : {'keys.water': None},
-        "Small Key (Spirit Temple)"               : {'keys.spirit': None},
-        "Small Key (Shadow Temple)"               : {'keys.shadow': None},
-        "Small Key (Bottom of the Well)"          : {'keys.botw': None},
-        "Small Key (Gerudo Training Ground)"      : {'keys.gtg': None},
-        "Small Key (Thieves Hideout)"             : {'keys.fortress': None},
-        "Small Key (Ganons Castle)"               : {'keys.gc': None},
+        "Small Key (Forest Temple)"               : {
+            'keys.forest': None,
+            'total_keys.forest': None,
+        },
+        "Small Key (Fire Temple)"                 : {
+            'keys.fire': None,
+            'total_keys.fire': None,
+        },
+        "Small Key (Water Temple)"                : {
+            'keys.water': None,
+            'total_keys.water': None,
+        },
+        "Small Key (Spirit Temple)"               : {
+            'keys.spirit': None,
+            'total_keys.spirit': None,
+        },
+        "Small Key (Shadow Temple)"               : {
+            'keys.shadow': None,
+            'total_keys.shadow': None,
+        },
+        "Small Key (Bottom of the Well)"          : {
+            'keys.botw': None,
+            'total_keys.botw': None,
+        },
+        "Small Key (Gerudo Training Ground)"      : {
+            'keys.gtg': None,
+            'total_keys.gtg': None,
+        },
+        "Small Key (Thieves Hideout)"             : {
+            'keys.fortress': None,
+            'total_keys.fortress': None,
+        },
+        "Small Key (Ganons Castle)"               : {
+            'keys.gc': None,
+            'total_keys.gc': None,
+        },
         #HACK: these counts aren't used since exact counts based on whether the dungeon is MQ are defined above,
         # but the entries need to be there for key rings to be valid starting items
-        "Small Key Ring (Forest Temple)"          : {'keys.forest': 6},
-        "Small Key Ring (Fire Temple)"            : {'keys.fire': 8},
-        "Small Key Ring (Water Temple)"           : {'keys.water': 6},
-        "Small Key Ring (Spirit Temple)"          : {'keys.spirit': 7},
-        "Small Key Ring (Shadow Temple)"          : {'keys.shadow': 6},
-        "Small Key Ring (Bottom of the Well)"     : {'keys.botw': 3},
-        "Small Key Ring (Gerudo Training Ground)" : {'keys.gtg': 9},
-        "Small Key Ring (Thieves Hideout)"        : {'keys.fortress': 4},
-        "Small Key Ring (Ganons Castle)"          : {'keys.gc': 3},
+        "Small Key Ring (Forest Temple)"          : {
+            'keys.forest': 6,
+            'total_keys.forest': 6,
+        },
+        "Small Key Ring (Fire Temple)"            : {
+            'keys.fire': 8,
+            'total_keys.fire': 8,
+        },
+        "Small Key Ring (Water Temple)"           : {
+            'keys.water': 6,
+            'total_keys.water': 6,
+        },
+        "Small Key Ring (Spirit Temple)"          : {
+            'keys.spirit': 7,
+            'total_keys.spirit': 7,
+        },
+        "Small Key Ring (Shadow Temple)"          : {
+            'keys.shadow': 6,
+            'total_keys.shadow': 6,
+        },
+        "Small Key Ring (Bottom of the Well)"     : {
+            'keys.botw': 3,
+            'total_keys.botw': 3,
+        },
+        "Small Key Ring (Gerudo Training Ground)" : {
+            'keys.gtg': 9,
+            'total_keys.gtg': 9,
+        },
+        "Small Key Ring (Thieves Hideout)"        : {
+            'keys.fortress': 4,
+            'total_keys.fortress': 4,
+        },
+        "Small Key Ring (Ganons Castle)"          : {
+            'keys.gc': 3,
+            'total_keys.gc': 3,
+        },
     }
 
 

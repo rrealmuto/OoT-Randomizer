@@ -19,6 +19,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * The child trade item is bound to D-pad right ([#1489](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1489))
 * The “Mix Entrance Pools” setting has new options to allow individually selecting entrance pools to be mixed ([Dev-R #67](https://github.com/Roman971/OoT-Randomizer/pull/67))
 * Plandos with conflicting settings are now errors ([#1562](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1562))
+* The total number of small keys collected for a dungeon is displayed on text boxes and in the pause menu ([#1563](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1563))
 * The “Special Deal Prices” setting is disabled if “Shuffle Shops” is set to “0 Items Per Shop”, since it does nothing ([#1561](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1561))
 * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
 * A bug where key rings would appear in brown chests with “Chest Appearance Matches Contents” set to “Classic” is fixed ([#1559](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1559))

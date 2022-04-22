@@ -129,7 +129,10 @@ void activate_override(override_t override) {
         active_override_is_outgoing = override.value.player != PLAYER_ID;
     active_item_row = item_row;
     active_item_action_id = item_row->action_id;
-    active_item_text_id = item_row->text_id;
+    if (resolved_item_id >= 0xAF && resolved_item_id < 0xB8 && !active_override_is_outgoing)
+        active_item_text_id = item_row->text_id + z64_file.scene_flags[item_row->effect_arg1].unk_00_; // Dynamically select the text box based on key count
+    else
+        active_item_text_id = item_row->text_id;
     active_item_object_id = item_row->object_id;
     active_item_graphic_id = item_row->graphic_id;
     active_item_fast_chest = item_row->chest_type == BROWN_CHEST || item_row->chest_type == SILVER_CHEST || item_row->chest_type == SKULL_CHEST_SMALL;
