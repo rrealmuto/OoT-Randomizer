@@ -4,7 +4,7 @@ from State import State
 from Rules import set_shop_rules
 from Location import DisableType
 from LocationList import location_table
-from ItemPool import IGNORE_LOCATION, remove_junk_items
+from ItemPool import remove_junk_items
 from Item import ItemFactory, ItemInfo
 from Search import Search
 
