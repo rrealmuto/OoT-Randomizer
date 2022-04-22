@@ -71,14 +71,14 @@
             "Spirit Temple MQ Shifting Wall Pot 2": "(Small_Key_Spirit_Temple, 6)",
             "Spirit Temple MQ After Shifting Wall Room Pot 1": "(Small_Key_Spirit_Temple, 6)",
             "Spirit Temple MQ After Shifting Wall Room Pot 2": "(Small_Key_Spirit_Temple, 6)",
-            "Spirit Temple MQ Lower Boss Platform Pot 1": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
-            "Spirit Temple MQ Lower Boss Platform Pot 2": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
-            "Spirit Temple MQ Lower Boss Platform Pot 3": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
-            "Spirit Temple MQ Lower Boss Platform Pot 4": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
-            "Spirit Temple MQ Lower Boss Platform Crate 1": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
-            "Spirit Temple MQ Lower Boss Platform Crate 2": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
-            "Spirit Temple MQ Lower Boss Platform Crate 3": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
-            "Spirit Temple MQ Lower Boss Platform Crate 4": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)"
+            "Spirit Temple MQ Big Mirror Pot 1": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
+            "Spirit Temple MQ Big Mirror Pot 2": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
+            "Spirit Temple MQ Big Mirror Pot 3": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
+            "Spirit Temple MQ Big Mirror Pot 4": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
+            "Spirit Temple MQ Big Mirror Crate 1": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
+            "Spirit Temple MQ Big Mirror Crate 2": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
+            "Spirit Temple MQ Big Mirror Crate 3": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
+            "Spirit Temple MQ Big Mirror Crate 4": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)"
         },
         "exits": {
             "Lower Adult Spirit Temple": "

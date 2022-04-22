@@ -16,12 +16,6 @@
             "Dodongos Cavern MQ Map Chest": "can_blast_or_smash or Progressive_Strength_Upgrade",
             "Dodongos Cavern MQ Deku Scrub Lobby Rear": "can_stun_deku",
             "Dodongos Cavern MQ Deku Scrub Lobby Front": "can_stun_deku",
-            "Dodongos Cavern Lizalfos Hidden Recovery Heart" : "
-                is_adult or 
-                    (can_use(Slingshot) and
-                        (can_use(explosives) or 
-                        Progressive_Strength_Upgrade or
-                        can_use(Dins_Fire)))",
             "Dodongos Cavern Gossip Stone": "here(can_blast_or_smash or Progressive_Strength_Upgrade)",
             "Gossip Stone Fairy": "
                 (can_blast_or_smash or Progressive_Strength_Upgrade) and
@@ -49,11 +43,11 @@
             "Dodongos Cavern MQ GS Larvae Room": "can_use(Sticks) or has_fire_source",
             "Dodongos Cavern MQ GS Lizalfos Room": "can_blast_or_smash",
             "Dodongos Cavern MQ Deku Scrub Staircase": "can_stun_deku",
-            "Dodongos Cavern MQ Block Room Recovery Heart": "can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire)",
-            "Dodongos Cavern MQ Staircase Room Pot 1": "True",
-            "Dodongos Cavern MQ Staircase Room Pot 2": "True",
-            "Dodongos Cavern MQ Staircase Room Pot 3": "True",
-            "Dodongos Cavern MQ Staircase Room Pot 4": "True",
+            "Dodongos Cavern MQ Torch Puzzle Room Recovery Heart": "can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire)",
+            "Dodongos Cavern MQ Staircase Pot 1": "True",
+            "Dodongos Cavern MQ Staircase Pot 2": "True",
+            "Dodongos Cavern MQ Staircase Pot 3": "True",
+            "Dodongos Cavern MQ Staircase Pot 4": "True",
             "Dodongos Cavern MQ Upper Lizalfos Pot 1": "
                 can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or 
                 (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
@@ -66,10 +60,10 @@
             "Dodongos Cavern MQ Upper Lizalfos Pot 4": "
                 can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or 
                 (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
-            "Dodongos Cavern MQ 3 Torch Room Pot 1": "
+            "Dodongos Cavern MQ Torch Puzzle Room Pot 1": "
                 can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or 
                 (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
-            "Dodongos Cavern MQ 3 Torch Room Pot 2": "
+            "Dodongos Cavern MQ Torch Puzzle Room Pot 2": "
                 can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or 
                 (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
             "Dodongos Cavern MQ Before Upper Lizalfos Pot 1": "
@@ -157,7 +151,8 @@
             "Dodongos Cavern MQ Poes Room Crate 5": "True",
             "Dodongos Cavern MQ Poes Room Crate 6": "True",
             "Dodongos Cavern MQ Poes Room Crate 7": "True",
-            "Dodongos Cavern MQ Poes Room Crate 8": "True"
+            "Dodongos Cavern MQ Poes Room Crate 8": "True",
+            "Dodongos Cavern Lower Lizalfos Hidden Recovery Heart" : "True"
         },
         "exits": {
             "Dodongos Cavern Lower Right Side": "True"
@@ -186,8 +181,8 @@
                     is_adult or has_explosives or can_use(Dins_Fire) or dodongos_cavern_shortcuts or
                     (Sticks or ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))
                 )",
-            "Dodongos Cavern MQ Before Boss Room Pot 1": "True",
-            "Dodongos Cavern MQ Before Boss Room Pot 2": "True",
+            "Dodongos Cavern MQ Room Before Boss Pot 1": "True",
+            "Dodongos Cavern MQ Room Before Boss Pot 2": "True",
             "Dodongos Cavern MQ Armos Army Room Pot 1" : "
                 is_adult or has_explosives or Boomerang or can_use(Dins_Fire) or
                 (dodongos_cavern_shortcuts and (can_child_attack or Progressive_Strength_Upgrade)) or

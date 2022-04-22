@@ -5,7 +5,18 @@
 
         "locations": {
             "Water Temple MQ L1 Torch Pot 1": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))",
-            "Water Temple MQ L1 Torch Pot 2": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))"
+            "Water Temple MQ L1 Torch Pot 2": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))",
+            "Water Temple MQ Lizalfos Hallway Pot 1": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))",
+            "Water Temple MQ Lizalfos Hallway Pot 2": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))",
+            "Water Temple MQ Lizalfos Hallway Pot 3": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))",
+            "Water Temple MQ Lizalfos Hallway Room Crate 1": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) or can_play(Zeldas_Lullaby))",
+            "Water Temple MQ Lizalfos Hallway Room Crate 2": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) or can_play(Zeldas_Lullaby))",
+            "Water Temple MQ Lizalfos Hallway Room Crate 3": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) or can_play(Zeldas_Lullaby))",
+            "Water Temple MQ Lizalfos Hallway Room Crate 4": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) or can_play(Zeldas_Lullaby))",
+            "Water Temple MQ Lizalfos Hallway Room Crate 5": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) or can_play(Zeldas_Lullaby))",
+            "Water Temple MQ Lizalfos Hallway Hall Crate 1": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) or can_play(Zeldas_Lullaby))",
+            "Water Temple MQ Lizalfos Hallway Hall Crate 2": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) or can_play(Zeldas_Lullaby))",
+            "Water Temple MQ Lizalfos Hallway Hall Crate 3": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) or can_play(Zeldas_Lullaby))"
         },
         "exits": {
             "Lake Hylia": "True",
@@ -111,9 +122,6 @@
             "Water Temple MQ Before Upper Water Switch Pot 1": "can_use(Hookshot)",
             "Water Temple MQ Before Upper Water Switch Pot 2": "can_use(Hookshot)",
             "Water Temple MQ Before Upper Water Switch Pot 3": "can_use(Hookshot)",
-            "Water Temple MQ Lizalfos Hallway Pot 1": "True",
-            "Water Temple MQ Lizalfos Hallway Pot 2": "True",
-            "Water Temple MQ Lizalfos Hallway Pot 3": "True",
             "Water Temple MQ Lizalfos Hallway Gate Pot 1": "can_use(Dins_Fire)",
             "Water Temple MQ Lizalfos Hallway Gate Pot 2": "can_use(Dins_Fire)",
             "Water Temple MQ Before Upper Water Switch Lower Crate 1": "can_use(Hookshot)",
@@ -125,15 +133,7 @@
             "Water Temple MQ Before Upper Water Switch Upper Crate 1": "can_use(Longshot)",
             "Water Temple MQ Before Upper Water Switch Upper Crate 2": "can_use(Longshot)",
             "Water Temple MQ Lizalfos Hallway Gate Crate 1": "can_use(Dins_Fire)",
-            "Water Temple MQ Lizalfos Hallway Gate Crate 2": "can_use(Dins_Fire)",
-            "Water Temple MQ Lizalfos Hallway Room Crate 1": "True",
-            "Water Temple MQ Lizalfos Hallway Room Crate 2": "True",
-            "Water Temple MQ Lizalfos Hallway Room Crate 3": "True",
-            "Water Temple MQ Lizalfos Hallway Room Crate 4": "True",
-            "Water Temple MQ Lizalfos Hallway Room Crate 5": "True",
-            "Water Temple MQ Lizalfos Hallway Hall Crate 1": "True",
-            "Water Temple MQ Lizalfos Hallway Hall Crate 2": "True",
-            "Water Temple MQ Lizalfos Hallway Hall Crate 3": "True"
+            "Water Temple MQ Lizalfos Hallway Gate Crate 2": "can_use(Dins_Fire)"
         }
     },
     {
@@ -164,7 +164,7 @@
             "Water Temple MQ Before BK Submerged Crate 4": "((can_use(Zora_Tunic) or logic_fewer_tunic_requirements) and can_use(Iron_Boots))",
             "Water Temple MQ Before BK Near Door Crate 1": "True",
             "Water Temple MQ Before BK Near Door Crate 2": "True",
-            "Water Temple MQ Boss Key Chest Room Upper Crate 1": "
+            "Water Temple MQ Boss Key Chest Room Upper Crate": "
                 (can_use(Zora_Tunic) or logic_fewer_tunic_requirements) and has_fire_source and
                 (logic_water_dragon_jump_dive or can_dive or can_use(Iron_Boots))",
             "Water Temple MQ Boss Key Chest Room Lower Crate 1": "
@@ -207,13 +207,13 @@
             "Water Temple MQ GS Freestanding Key Area": "
                 logic_water_mq_locked_gs or ((Small_Key_Water_Temple, 2) and
                     (Hover_Boots or can_use(Scarecrow) or logic_water_north_basement_ledge_jump))",
-            "Water Temple MQ Dodongo Orgy Room Pot 1": "
+            "Water Temple MQ Dodongo Room Pot 1": "
                 logic_water_mq_locked_gs or ((Small_Key_Water_Temple, 2) and
                     (Hover_Boots or can_use(Scarecrow) or logic_water_north_basement_ledge_jump))",
-            "Water Temple MQ Dodongo Orgy Room Pot 2": "
+            "Water Temple MQ Dodongo Room Pot 2": "
                 logic_water_mq_locked_gs or ((Small_Key_Water_Temple, 2) and
                     (Hover_Boots or can_use(Scarecrow) or logic_water_north_basement_ledge_jump))",
-            "Water Temple MQ Freestanding Item Room Pot": "
+            "Water Temple MQ Freestanding Key Room Pot": "
                 Hover_Boots or can_use(Scarecrow) or logic_water_north_basement_ledge_jump",
             "Water Temple MQ Triple Wall Torch Submerged Crate 1": "True",
             "Water Temple MQ Triple Wall Torch Submerged Crate 2": "True",
@@ -247,30 +247,30 @@
             "Water Temple MQ Freestanding Key Area Submerged Crate 4": "True",
             "Water Temple MQ Freestanding Key Area Submerged Crate 5": "True",
             "Water Temple MQ Freestanding Key Area Submerged Crate 6": "True",
-            "Water Temple MQ Dodongo Orgy Lower Crate 1": "
+            "Water Temple MQ Dodongo Room Lower Crate 1": "
                 logic_water_mq_locked_gs or ((Small_Key_Water_Temple, 2) and
                     (Hover_Boots or can_use(Scarecrow) or logic_water_north_basement_ledge_jump))",
-            "Water Temple MQ Dodongo Orgy Lower Crate 2": "
+            "Water Temple MQ Dodongo Room Lower Crate 2": "
                 logic_water_mq_locked_gs or ((Small_Key_Water_Temple, 2) and
                     (Hover_Boots or can_use(Scarecrow) or logic_water_north_basement_ledge_jump))",
-            "Water Temple MQ Dodongo Orgy Lower Crate 3": "
+            "Water Temple MQ Dodongo Room Lower Crate 3": "
                 logic_water_mq_locked_gs or ((Small_Key_Water_Temple, 2) and
                     (Hover_Boots or can_use(Scarecrow) or logic_water_north_basement_ledge_jump))",
-            "Water Temple MQ Dodongo Orgy Upper Crate": "
+            "Water Temple MQ Dodongo Room Upper Crate": "
                 logic_water_mq_locked_gs or ((Small_Key_Water_Temple, 2) and
                     (Hover_Boots or can_use(Scarecrow) or logic_water_north_basement_ledge_jump))",
-            "Water Temple MQ Dodongo Orgy Hall Crate": "
+            "Water Temple MQ Dodongo Room Hall Crate": "
                 logic_water_mq_locked_gs or ((Small_Key_Water_Temple, 2) and
                     (Hover_Boots or can_use(Scarecrow) or logic_water_north_basement_ledge_jump))",
-            "Water Temple MQ Freestanding Item Room Crate 1": "
+            "Water Temple MQ Freestanding Key Room Crate 1": "
                 Hover_Boots or can_use(Scarecrow) or logic_water_north_basement_ledge_jump",
-            "Water Temple MQ Freestanding Item Room Crate 2": "
+            "Water Temple MQ Freestanding Key Room Crate 2": "
                 Hover_Boots or can_use(Scarecrow) or logic_water_north_basement_ledge_jump",
-            "Water Temple MQ Freestanding Item Room Crate 3": "
+            "Water Temple MQ Freestanding Key Room Crate 3": "
                 Hover_Boots or can_use(Scarecrow) or logic_water_north_basement_ledge_jump",
-            "Water Temple MQ Freestanding Item Room Crate 4": "
+            "Water Temple MQ Freestanding Key Room Crate 4": "
                 Hover_Boots or can_use(Scarecrow) or logic_water_north_basement_ledge_jump",
-            "Water Temple MQ Freestanding Item Room Crate 5": "
+            "Water Temple MQ Freestanding Key Room Crate 5": "
                 Hover_Boots or can_use(Scarecrow) or logic_water_north_basement_ledge_jump"
         }
     }
