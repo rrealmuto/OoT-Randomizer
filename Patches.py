@@ -2395,7 +2395,10 @@ def configure_dungeon_info(rom, world):
     boss_map = world.get_boss_map()
     bosses = ['Queen Gohma', 'King Dodongo', 'Barinade', 'Phantom Ganon',
             'Volvagia', 'Morpha', 'Twinrova', 'Bongo Bongo']
-    dungeon_rewards = [boss_reward_index(world, boss_map[boss]) for boss in bosses]
+    dungeon_rewards = [
+        *(boss_reward_index(world, boss_map[boss]) for boss in bosses),
+        boss_reward_index(world, 'Links Pocket'),
+    ]
 
     codes = ['Deku Tree', 'Dodongos Cavern', 'Jabu Jabus Belly', 'Forest Temple',
              'Fire Temple', 'Water Temple', 'Spirit Temple', 'Shadow Temple',
