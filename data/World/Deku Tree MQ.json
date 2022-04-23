@@ -4,7 +4,7 @@
         "dungeon": "Deku Tree",
         "locations": {
             "Deku Tree MQ Map Chest": "True",
-            "Deku Tree MQ Plank Recovery Heart": "True",
+            "Deku Tree MQ Lower Lobby Recovery Heart": "True",
             "Deku Tree MQ Lobby Crate": "True",
             "Deku Tree MQ Slingshot Chest": "is_adult or can_child_attack",
             "Deku Tree MQ Slingshot Room Back Chest": "has_fire_source_with_torch or can_use(Bow)",

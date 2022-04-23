@@ -185,7 +185,15 @@
         "locations": {
             "Shadow Temple MQ GS After Ship": "Hookshot",
             "Shadow Temple MQ After Boat Pot 1": "True",
-            "Shadow Temple MQ After Boat Pot 2": "True"
+            "Shadow Temple MQ After Boat Pot 2": "True",
+            "Shadow Temple MQ After Boat Upper Recovery Heart 1" : "Bow and can_play(Song_of_Time) and Longshot",
+            "Shadow Temple MQ After Boat Upper Recovery Heart 2" : "Bow and can_play(Song_of_Time) and Longshot",
+            "Shadow Temple MQ After Boat Lower Recovery Heart" : "
+                (Bow or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts)",
+            "Shadow Temple MQ Near Boss Pot 1": "
+                (Bow or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts)",
+            "Shadow Temple MQ Near Boss Pot 2": "
+                (Bow or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts)"
         },
         "exits": {
             "Shadow Temple Invisible Maze": "Bow and can_play(Song_of_Time) and Longshot",
@@ -222,11 +230,7 @@
         "region_name": "Shadow Temple Before Boss",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple MQ Near Boss Upper Recovery Heart 1" : "Bow and can_play(Song_of_Time) and Longshot",
-            "Shadow Temple MQ Near Boss Upper Recovery Heart 2" : "Bow and can_play(Song_of_Time) and Longshot",
-            "Shadow Temple MQ Near Boss Lower Recovery Heart" : "True",
-            "Shadow Temple MQ Near Boss Pot 1": "True",
-            "Shadow Temple MQ Near Boss Pot 2": "True"
+            "Shadow Temple MQ GS Near Boss": "has_projectile(adult) or can_use(Dins_Fire)"
         },
         "exits": {
             "Shadow Temple Boss Door": "True"

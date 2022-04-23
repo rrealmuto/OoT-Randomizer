@@ -36,9 +36,9 @@
         "locations": {
             "Fire Temple Big Lava Room Lower Open Door Chest": "True",
             "Fire Temple Big Lava Room Blocked Door Chest": "is_adult and has_explosives",
-            "Fire Temple Elevator Room Recovery Heart 1": "(Small_Key_Fire_Temple, 3)",
-            "Fire Temple Elevator Room Recovery Heart 2": "(Small_Key_Fire_Temple, 3)",
-            "Fire Temple Elevator Room Recovery Heart 3": "(Small_Key_Fire_Temple, 3)",
+            "Fire Temple Elevator Room Recovery Heart 1": "(Small_Key_Fire_Temple, 3) and can_use(Goron_Tunic)",
+            "Fire Temple Elevator Room Recovery Heart 2": "(Small_Key_Fire_Temple, 3) and can_use(Goron_Tunic)",
+            "Fire Temple Elevator Room Recovery Heart 3": "(Small_Key_Fire_Temple, 3) and can_use(Goron_Tunic)",
             "Fire Temple Big Lava Room Pot 1" : "True",
             "Fire Temple Big Lava Room Pot 2" : "True",
             "Fire Temple Big Lava Room Pot 3" : "True",

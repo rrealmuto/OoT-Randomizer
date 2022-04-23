@@ -201,7 +201,8 @@
                 (Hookshot or Hover_Boots or logic_spirit_lobby_jump)",
             
             "Spirit Temple Adult Climb Flying Pot 1" : "True",
-            "Spirit Temple Adult Climb Flying Pot 2" : "True"
+            "Spirit Temple Adult Climb Flying Pot 2" : "True",
+            "Spirit Temple Beamos Hall Pot" : "(Small_Key_Spirit_Temple, 4)"
         },
         "exits": {
             "Early Adult Spirit Temple": "(Small_Key_Spirit_Temple, 5)",
@@ -223,8 +224,7 @@
                 logic_lens_spirit or can_use(Lens_of_Truth)",
             "Spirit Temple Hallway Right Invisible Chest": "
                 logic_lens_spirit or can_use(Lens_of_Truth)",
-            "Spirit Temple Mirror Shield Chest": "True",
-            "Spirit Temple Beamos Hall Pot" : "True"
+            "Spirit Temple Mirror Shield Chest": "True"
         }
     },
     {

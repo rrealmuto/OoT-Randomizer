@@ -70,7 +70,7 @@
             "Fire Temple MQ Big Lava Room Left Pot": "True",
             "Fire Temple MQ Big Lava Room Right Pot": "(can_use(Hookshot) or logic_fire_mq_blocked_chest)",
             "Fire Temple MQ Big Lava Room Alcove Pot": "True",
-            "Fire Temple MQ Boss Key Chest Room Pot 1": "
+            "Fire Temple MQ Boss Key Chest Room Pot": "
                 has_fire_source and (Bow or logic_fire_mq_bk_chest) and can_use(Hookshot)",
             "Fairy Pot": "
                 has_bottle and has_fire_source and (Bow or logic_fire_mq_bk_chest) and
@@ -132,11 +132,11 @@
             "Fire Temple MQ Upper Lizalfos Maze Crate 1": "True",
             "Fire Temple MQ Upper Lizalfos Maze Crate 2": "True",
             "Fire Temple MQ Upper Lizalfos Maze Crate 3": "True",
-            "Fire Temple MQ Shoot Torch On Wall Right Crate 1": "(Small_Key_Fire_Temple, 3)",
-            "Fire Temple MQ Shoot Torch On Wall Right Crate 2": "(Small_Key_Fire_Temple, 3)",
-            "Fire Temple MQ Shoot Torch On Wall Center Crate": "(Small_Key_Fire_Temple, 3)",
-            "Fire Temple MQ Shoot Torch On Wall Left Crate 1": "(Small_Key_Fire_Temple, 3)",
-            "Fire Temple MQ Shoot Torch On Wall Left Crate 2": "(Small_Key_Fire_Temple, 3)",
+            "Fire Temple MQ Shoot Torch On Wall Room Right Crate 1": "(Small_Key_Fire_Temple, 3)",
+            "Fire Temple MQ Shoot Torch On Wall Room Right Crate 2": "(Small_Key_Fire_Temple, 3)",
+            "Fire Temple MQ Shoot Torch On Wall Room Center Crate": "(Small_Key_Fire_Temple, 3)",
+            "Fire Temple MQ Shoot Torch On Wall Room Left Crate 1": "(Small_Key_Fire_Temple, 3)",
+            "Fire Temple MQ Shoot Torch On Wall Room Left Crate 2": "(Small_Key_Fire_Temple, 3)",
             "Wall Fairy": "
                 has_bottle and
                 ((can_play(Song_of_Time) and can_use(Hookshot) and (has_explosives or logic_rusted_switches)) or

@@ -20,7 +20,7 @@
                 (can_use(Scarecrow) or can_use(Longshot) or (logic_dc_scarecrow_gs and (is_adult or
                 (can_child_attack and (can_blast_or_smash or Progressive_Strength_Upgrade)))))",
 
-            "Dodongos Cavern Lizalfos Hidden Recovery Heart": "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
+            "Dodongos Cavern Lower Lizalfos Hidden Recovery Heart": "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
             "Dodongos Cavern Lower Lizalfos Pot 1" : "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
             "Dodongos Cavern Lower Lizalfos Pot 2" : "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
             "Dodongos Cavern Lower Lizalfos Pot 3" : "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
@@ -31,10 +31,18 @@
             "Dodongos Cavern Right Side Pot 4": "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
             "Dodongos Cavern Right Side Pot 5": "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
             "Dodongos Cavern Right Side Pot 6": "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
-            "Dodongos Cavern Torch Room Pot 1": "((here(can_blast_or_smash) or Progressive_Strength_Upgrade) and can_child_attack) or is_adult",
-            "Dodongos Cavern Torch Room Pot 2": "((here(can_blast_or_smash) or Progressive_Strength_Upgrade) and can_child_attack) or is_adult",
-            "Dodongos Cavern Torch Room Pot 3": "((here(can_blast_or_smash) or Progressive_Strength_Upgrade) and can_child_attack) or is_adult",
-            "Dodongos Cavern Torch Room Pot 4": "((here(can_blast_or_smash) or Progressive_Strength_Upgrade) and can_child_attack) or is_adult",
+            "Dodongos Cavern Torch Room Pot 1": "
+                ((has_explosives or Progressive_Strength_Upgrade) and
+                (Slingshot or Sticks or Bombs or Kokiri_Sword)) or is_adult",
+            "Dodongos Cavern Torch Room Pot 2": "
+                ((has_explosives or Progressive_Strength_Upgrade) and
+                (Slingshot or Sticks or Bombs or Kokiri_Sword)) or is_adult",
+            "Dodongos Cavern Torch Room Pot 3": "
+                ((has_explosives or Progressive_Strength_Upgrade) and
+                (Slingshot or Sticks or Bombs or Kokiri_Sword)) or is_adult",
+            "Dodongos Cavern Torch Room Pot 4": "
+                ((has_explosives or Progressive_Strength_Upgrade) and
+                (Slingshot or Sticks or Bombs or Kokiri_Sword)) or is_adult",
             "Dodongos Cavern Deku Scrub Side Room Near Dodongos": "
                 (can_blast_or_smash or Progressive_Strength_Upgrade) and
                 (is_adult or Slingshot or Sticks or
@@ -75,9 +83,19 @@
         "dungeon": "Dodongos Cavern",
         "locations": {
             "Dodongos Cavern Bomb Flower Platform Chest": "True",
-            "Dodongos Cavern Lizalfos Recovery Heart 1": "True",
-            "Dodongos Cavern Lizalfos Recovery Heart 2": "True",
-            "Dodongos Cavern Behind Block Recovery Heart" : "True",
+            "Dodongos Cavern Lizalfos Upper Recovery Heart 1": "
+                (is_adult and (Hover_Boots or can_use(Longshot) or logic_dc_jump)) or
+                ((here(can_blast_or_smash) or Progressive_Strength_Upgrade) and
+                    ((is_child and (Slingshot or
+                        (logic_dc_slingshot_skip))) or
+                    (is_adult and Bow)))",
+            "Dodongos Cavern Lizalfos Upper Recovery Heart 2": "
+                (is_adult and (Hover_Boots or can_use(Longshot) or logic_dc_jump)) or
+                ((here(can_blast_or_smash) or Progressive_Strength_Upgrade) and
+                    ((is_child and (Slingshot or
+                        (logic_dc_slingshot_skip))) or
+                    (is_adult and Bow)))",
+            "Dodongos Cavern Blade Room Behind Block Recovery Heart" : "True",
             "Dodongos Cavern Staircase Pot 1" : "True",
             "Dodongos Cavern Staircase Pot 2" : "True",
             "Dodongos Cavern Staircase Pot 3" : "True",

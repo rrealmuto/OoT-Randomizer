@@ -23,8 +23,8 @@
             "Bottom of the Well MQ Basement Recovery Heart 3": "True",
             "Bottom of the Well MQ Coffin Recovery Heart 1": "(Small_Key_Bottom_of_the_Well, 2) and (Sticks or can_use(Dins_Fire))",
             "Bottom of the Well MQ Coffin Recovery Heart 2": "(Small_Key_Bottom_of_the_Well, 2) and (Sticks or can_use(Dins_Fire))",
-            "Bottom of the Well MQ Bomb Recovery Heart 1": "has_explosives",
-            "Bottom of the Well MQ Bomb Recovery Heart 2": "has_explosives",
+            "Bottom of the Well MQ Bombable Recovery Heart 1": "has_explosives",
+            "Bottom of the Well MQ Bombable Recovery Heart 2": "has_explosives",
             "Wall Fairy": "has_bottle and Slingshot" # The fairy pot is obsolete
         },
         "exits": {
