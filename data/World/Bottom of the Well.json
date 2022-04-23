@@ -42,7 +42,7 @@
             "Bottom of the Well Left Side Pot 3": "True",
             "Bottom of the Well Near Entrance Pot 1": "True",
             "Bottom of the Well Near Entrance Pot 2": "True",
-            "Bottom of the Well Fire Keese Pot" : "(Small_Key_Bottom_of_the_Well, 3)",
+            "Bottom of the Well Fire Keese Pot" : "(Small_Key_Bottom_of_the_Well, 3) and (logic_lens_botw or can_use(Lens_of_Truth))"",
             "Bottom of the Well Underwater Pot" : "can_play(Zeldas_Lullaby) or can_use(Slingshot) or can_use(Boomerang) or has_bombchus",
             "Bottom of the Well Lens of Truth Chest": "
                 can_play(Zeldas_Lullaby) and 
