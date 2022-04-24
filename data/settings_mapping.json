@@ -337,6 +337,7 @@
           "settings": [
             "ocarina_songs",
             "correct_chest_appearances",
+            "bombchus_gilded_chest_appearance",
             "clearer_hints",
             "hints",
             "hint_dist",

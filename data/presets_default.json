@@ -303,6 +303,7 @@
     "starting_songs":                          [],
     "ocarina_songs":                           false,
     "correct_chest_appearances":               "sizes",
+    "bombchus_gilded_chest_appearance":        true,
     "clearer_hints":                           true,
     "no_collectible_hearts":                   false,
     "hints":                                   "always",
