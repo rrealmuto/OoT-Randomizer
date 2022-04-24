@@ -3866,6 +3866,25 @@ setting_infos = [
             items and boss keys into big chests, and everything
             else into small chests.
         ''',
+        disable    = {
+            'off' : {'settings' : ['bombchus_gilded_chest_appearance'] },
+            'textures' : {'settings' : ['bombchus_gilded_chest_appearance'] }
+        },
+        shared         = True,
+    ),
+    Checkbutton(
+        name           = 'bombchus_gilded_chest_appearance',
+        gui_text       = 'Bombchus in Gilded Chests',
+        gui_tooltip    = '''\
+                         If enabled, bombchus will appear inside 
+                         Gilded chests instead of Wooden chests.
+
+                         Requires "Size and Texture" selected for the
+                         "Chest Appearance Matches Contents" setting.
+                         ''',
+        gui_params={
+            "hide_when_disabled": True,
+        },
         shared         = True,
     ),
     Checkbutton(
