@@ -1610,7 +1610,16 @@ logic_tricks = {
                     Removes the requirements for the Lens of Truth
                     in Spirit Temple.
                     '''},
-}
+    'Beehives with Bombs/Bombchus' : {
+        'name'    : 'logic_beehives_bombs',
+        'tags'    : ("Beehives",),
+        'tooltip' : '''\
+                    Puts breaking beehives with bombs or bombchus into logic.
+                    Beehives in generic grottos can be reached with just bombs.
+                    All other beehives would require bombchus.
+                    '''},
+    }
+
 
 
 # a list of the possible settings

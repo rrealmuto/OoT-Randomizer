@@ -2025,8 +2025,8 @@
             "ZD Pot 3": "True",
             "ZD Pot 4": "True",
             "ZD Pot 5": "True",
-            "ZD In Front of King Zora Beehive 1": "is_child and can_break_beehive",
-            "ZD In Front of King Zora Beehive 2": "is_child and can_break_beehive",
+            "ZD In Front of King Zora Beehive 1": "is_child and can_break_upper_beehive",
+            "ZD In Front of King Zora Beehive 2": "is_child and can_break_upper_beehive",
             "Stick Pot": "is_child",
             "Nut Pot": "True"
         },
@@ -2047,7 +2047,7 @@
         "scene": "Zoras Domain",
         "hint": "Zora's Domain",
         "locations": {
-            "ZD Behind King Zora Beehive": "is_child and can_break_beehive"
+            "ZD Behind King Zora Beehive": "is_child and can_break_upper_beehive"
         },
         "exits": {
             "Zoras Domain": "
@@ -2280,8 +2280,8 @@
         "scene": "KF Storms Grotto",
         "locations": {
             "KF Storms Grotto Chest": "True",
-            "KF Storms Grotto Beehive 1": "can_break_beehive",
-            "KF Storms Grotto Beehive 2": "can_break_beehive",
+            "KF Storms Grotto Beehive 1": "can_break_lower_beehive",
+            "KF Storms Grotto Beehive 2": "can_break_lower_beehive",
             "KF Storms Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2297,8 +2297,8 @@
         "scene": "LW Near Shortcuts Grotto",
         "locations": {
             "LW Near Shortcuts Grotto Chest": "True",
-            "LW Near Shortcuts Grotto Beehive 1": "can_break_beehive",
-            "LW Near Shortcuts Grotto Beehive 2": "can_break_beehive",
+            "LW Near Shortcuts Grotto Beehive 1": "can_break_lower_beehive",
+            "LW Near Shortcuts Grotto Beehive 2": "can_break_lower_beehive",
             "LW Near Shortcuts Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2326,7 +2326,7 @@
         "locations": {
             "LW Deku Scrub Grotto Rear": "can_stun_deku",
             "LW Deku Scrub Grotto Front": "can_stun_deku",
-            "LW Scrubs Grotto Beehive": "can_break_beehive"
+            "LW Scrubs Grotto Beehive": "can_break_upper_beehive"
         },
         "exits": {
             "LW Beyond Mido": "True"
@@ -2348,7 +2348,7 @@
         "locations": {
             "SFM Deku Scrub Grotto Rear": "can_stun_deku",
             "SFM Deku Scrub Grotto Front": "can_stun_deku",
-            "SFM Storms Grotto Beehive": "can_break_beehive"
+            "SFM Storms Grotto Beehive": "can_break_upper_beehive"
         },
         "exits": {
             "Sacred Forest Meadow": "True"
@@ -2373,7 +2373,7 @@
             "LLR Deku Scrub Grotto Left": "can_stun_deku",
             "LLR Deku Scrub Grotto Right": "can_stun_deku",
             "LLR Deku Scrub Grotto Center": "can_stun_deku",
-            "LLR Grotto Beehive": "can_break_beehive"
+            "LLR Grotto Beehive": "can_break_upper_beehive"
         },
         "exits": {
             "Lon Lon Ranch": "True"
@@ -2384,8 +2384,8 @@
         "scene": "HF Southeast Grotto",
         "locations": {
             "HF Southeast Grotto Chest": "True",
-            "HF Southeast Grotto Beehive 1": "can_break_beehive",
-            "HF Southeast Grotto Beehive 2": "can_break_beehive",
+            "HF Southeast Grotto Beehive 1": "can_break_lower_beehive",
+            "HF Southeast Grotto Beehive 2": "can_break_lower_beehive",
             "HF Southeast Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2401,8 +2401,8 @@
         "scene": "HF Open Grotto",
         "locations": {
             "HF Open Grotto Chest": "True",
-            "HF Open Grotto Beehive 1": "can_break_beehive",
-            "HF Open Grotto Beehive 2": "can_break_beehive",
+            "HF Open Grotto Beehive 1": "can_break_lower_beehive",
+            "HF Open Grotto Beehive 2": "can_break_lower_beehive",
             "HF Open Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2418,7 +2418,7 @@
         "scene": "HF Inside Fence Grotto",
         "locations": {
             "HF Deku Scrub Grotto": "can_stun_deku",
-            "HF Inside Fence Grotto Beehive": "can_break_beehive"
+            "HF Inside Fence Grotto Beehive": "can_break_upper_beehive"
         },
         "exits": {
             "Hyrule Field": "True"
@@ -2447,8 +2447,8 @@
         "scene": "HF Near Market Grotto",
         "locations": {
             "HF Near Market Grotto Chest": "True",
-            "HF Near Market Grotto Beehive 1": "can_break_beehive",
-            "HF Near Market Grotto Beehive 2": "can_break_beehive",
+            "HF Near Market Grotto Beehive 1": "can_break_lower_beehive",
+            "HF Near Market Grotto Beehive 2": "can_break_lower_beehive",
             "HF Near Market Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2529,8 +2529,8 @@
         "locations": {
             "Kak Open Grotto Chest": "True",
             "Kak Open Grotto Gossip Stone": "True",
-            "Kak Open Grotto Beehive 1": "can_break_beehive",
-            "Kak Open Grotto Beehive 2": "can_break_beehive",
+            "Kak Open Grotto Beehive 1": "can_break_lower_beehive",
+            "Kak Open Grotto Beehive 2": "can_break_lower_beehive",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
             "Bug Shrub": "can_cut_shrubs and has_bottle",
@@ -2556,7 +2556,7 @@
             "DMT Cow Grotto Recovery Heart 2": "True",
             "DMT Cow Grotto Recovery Heart 3": "True",
             "DMT Cow Grotto Recovery Heart 4": "True",
-            "DMT Cow Grotto Beehive": "can_break_beehive"
+            "DMT Cow Grotto Beehive": "can_break_upper_beehive"
         },
         "exits": {
             "Death Mountain Summit": "True"
@@ -2567,8 +2567,8 @@
         "scene": "DMT Storms Grotto",
         "locations": {
             "DMT Storms Grotto Chest": "True",
-            "DMT Storms Grotto Beehive 1": "can_break_beehive",
-            "DMT Storms Grotto Beehive 2": "can_break_beehive",
+            "DMT Storms Grotto Beehive 1": "can_break_lower_beehive",
+            "DMT Storms Grotto Beehive 2": "can_break_lower_beehive",
             "DMT Storms Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2586,7 +2586,7 @@
             "GC Deku Scrub Grotto Left": "can_stun_deku",
             "GC Deku Scrub Grotto Right": "can_stun_deku",
             "GC Deku Scrub Grotto Center": "can_stun_deku",
-            "GC Grotto Beehive" : "can_break_beehive"
+            "GC Grotto Beehive" : "can_break_upper_beehive"
         },
         "exits": {
             "GC Grotto Platform": "True"
@@ -2597,8 +2597,8 @@
         "scene": "DMC Upper Grotto",
         "locations": {
             "DMC Upper Grotto Chest": "True",
-            "DMC Upper Grotto Beehive 1": "can_break_beehive",
-            "DMC Upper Grotto Beehive 2": "can_break_beehive",
+            "DMC Upper Grotto Beehive 1": "can_break_lower_beehive",
+            "DMC Upper Grotto Beehive 2": "can_break_lower_beehive",
             "DMC Upper Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2616,7 +2616,7 @@
             "DMC Deku Scrub Grotto Left": "can_stun_deku",
             "DMC Deku Scrub Grotto Right": "can_stun_deku",
             "DMC Deku Scrub Grotto Center": "can_stun_deku",
-            "DMC Hammer Grotto Beehive": "can_break_beehive"
+            "DMC Hammer Grotto Beehive": "can_break_upper_beehive"
         },
         "exits": {
             "DMC Lower Local": "True"
@@ -2627,8 +2627,8 @@
         "scene": "ZR Open Grotto",
         "locations": {
             "ZR Open Grotto Chest": "True",
-            "ZR Open Grotto Beehive 1": "can_break_beehive",
-            "ZR Open Grotto Beehive 2": "can_break_beehive",
+            "ZR Open Grotto Beehive 1": "can_break_lower_beehive",
+            "ZR Open Grotto Beehive 2": "can_break_lower_beehive",
             "ZR Open Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2655,7 +2655,7 @@
         "locations": {
             "ZR Deku Scrub Grotto Rear": "can_stun_deku",
             "ZR Deku Scrub Grotto Front": "can_stun_deku",
-            "ZR Storms Grotto Beehive": "can_break_beehive"
+            "ZR Storms Grotto Beehive": "can_break_upper_beehive"
         },
         "exits": {
             "Zora River": "True"
@@ -2668,7 +2668,7 @@
             "LH Deku Scrub Grotto Left": "can_stun_deku",
             "LH Deku Scrub Grotto Right": "can_stun_deku",
             "LH Deku Scrub Grotto Center": "can_stun_deku",
-            "LH Grotto Beehive": "can_break_beehive"
+            "LH Grotto Beehive": "can_break_upper_beehive"
         },
         "exits": {
             "Lake Hylia": "True"
@@ -2680,7 +2680,7 @@
         "locations": {
             "Colossus Deku Scrub Grotto Rear": "can_stun_deku",
             "Colossus Deku Scrub Grotto Front": "can_stun_deku",
-            "Colossus Grotto Beehive": "can_break_beehive"
+            "Colossus Grotto Beehive": "can_break_upper_beehive"
         },
         "exits": {
             "Desert Colossus": "True"
@@ -2709,7 +2709,7 @@
         "locations": {
             "GV Deku Scrub Grotto Rear": "can_stun_deku",
             "GV Deku Scrub Grotto Front": "can_stun_deku",
-            "GV Storms Grotto Beehive": "can_break_beehive"
+            "GV Storms Grotto Beehive": "can_break_upper_beehive"
         },
         "exits": {
             "GV Fortress Side": "True"
