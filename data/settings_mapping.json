@@ -9,7 +9,7 @@
           "name": "general_section",
           "text": "",
           "col_span": 4,
-          "row_span": [2,2,2],
+          "row_span": [2,2,3],
           "settings": [
             "rom",
             "output_dir",
@@ -20,7 +20,14 @@
             "count",
             "create_spoiler",
             "create_cosmetics_log",
-            "compress_rom",
+            "output_types",
+            "create_patch_file",
+            "create_compressed_rom",
+            "create_wad_file",
+            "create_uncompressed_rom",
+            "wad_file",
+            "wad_channel_id",
+            "wad_channel_title",
             "open_output_dir",
             "open_python_dir"
           ]
@@ -152,6 +159,7 @@
             "open_door_of_time",
             "zora_fountain",
             "gerudo_fortress",
+            "dungeon_shortcuts_choice",
             "dungeon_shortcuts",
             "bridge",
             "bridge_medallions",
@@ -168,20 +176,23 @@
           "row_span": [6,6,9],
           "settings": [
             "starting_age",
+            "mq_dungeons_mode",
+            "mq_dungeons_specific",
+            "mq_dungeons_count",
             "shuffle_interior_entrances",
             "shuffle_grotto_entrances",
             "shuffle_dungeon_entrances",
+            "shuffle_bosses",
             "shuffle_overworld_entrances",
             "owl_drops",
             "warp_songs",
             "spawn_positions",
             "triforce_hunt",
+            "triforce_count_per_world",
             "triforce_goal_per_world",
             "triforce_blitz",
             "bombchus_in_logic",
-            "one_item_per_dungeon",
-            "mq_dungeons_random",
-            "mq_dungeons"
+            "one_item_per_dungeon"
           ]
         },
         {

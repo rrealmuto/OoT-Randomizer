@@ -9,14 +9,6 @@
                 ((Small_Key_Fire_Temple, 8) or not keysanity) and can_use(Megaton_Hammer)",
             "Fire Temple Boss Key Chest": "
                 ((Small_Key_Fire_Temple, 8) or not keysanity) and can_use(Megaton_Hammer)",
-            "Fire Temple Volvagia Heart": "
-                can_use(Goron_Tunic) and can_use(Megaton_Hammer) and Boss_Key_Fire_Temple and 
-                (logic_fire_boss_door_jump or Hover_Boots or fire_temple_shortcuts or
-                    at('Fire Temple Upper', can_play(Song_of_Time) or has_explosives))",
-            "Volvagia": "
-                can_use(Goron_Tunic) and can_use(Megaton_Hammer) and Boss_Key_Fire_Temple and 
-                (logic_fire_boss_door_jump or Hover_Boots or fire_temple_shortcuts or
-                    at('Fire Temple Upper', can_play(Song_of_Time) or has_explosives))",
             "Fire Temple GS Boss Key Loop": "
                 ((Small_Key_Fire_Temple, 8) or not keysanity) and can_use(Megaton_Hammer)",
             "Fairy Pot": "
@@ -25,6 +17,12 @@
         },
         "exits": {
             "DMC Fire Temple Entrance": "True",
+            "Fire Temple Boss Door": "
+                is_adult and (can_use(Goron_Tunic) or logic_fewer_tunic_requirements)
+                and (
+                    fire_temple_shortcuts or logic_fire_boss_door_jump or Hover_Boots
+                    or at('Fire Temple Upper', can_play(Song_of_Time) or has_explosives)
+                )",
             "Fire Temple Big Lava Room":"
                 (Small_Key_Fire_Temple, 2) and
                 (logic_fewer_tunic_requirements or can_use(Goron_Tunic))"

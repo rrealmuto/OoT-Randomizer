@@ -22,9 +22,9 @@
         "exits": {
             "Jabu Jabus Belly Beginning": "True",
             "Jabu Jabus Belly Depths": "can_use(Boomerang)",
-            "Jabu Jabus Belly Boss Area": "
-                (logic_jabu_boss_gs_adult and can_use(Hover_Boots)) or
-                jabu_shortcuts"
+            "Jabu Jabus Belly Before Boss": "
+                (logic_jabu_boss_hover and can_use(Hover_Boots))
+                or jabu_shortcuts or 'Jabu Jabus Belly Floor Lowered'"
         }
     },
     {
@@ -36,20 +36,23 @@
             "Nut Pot": "Sticks or Kokiri_Sword"
         },
         "exits": {
-            "Jabu Jabus Belly Main": "True",
-            "Jabu Jabus Belly Boss Area": "Sticks or Kokiri_Sword"
+            "Jabu Jabus Belly Main": "True"
+        },
+        "events": {
+            "Jabu Jabus Belly Floor Lowered": "Sticks or Kokiri_Sword"
         }
     },
     {
-        "region_name": "Jabu Jabus Belly Boss Area",
+        "region_name": "Jabu Jabus Belly Before Boss",
         "dungeon": "Jabu Jabus Belly",
         "locations": {
-            "Jabu Jabus Belly Barinade Heart": "can_use(Boomerang) and (Sticks or Kokiri_Sword)",
-            "Barinade": "can_use(Boomerang) and (Sticks or Kokiri_Sword)",
             "Jabu Jabus Belly GS Near Boss": "True"
         },
         "exits": {
-            "Jabu Jabus Belly Main": "True"
+            "Jabu Jabus Belly Main": "True",
+            "Jabu Jabus Belly Boss Door": "
+                can_use(Boomerang) or (logic_jabu_boss_door_bow and (can_use(Bow) or can_use(Slingshot)) or
+                (logic_jabu_boss_door_chus and has_bombchus))"
         }
     }
 ]

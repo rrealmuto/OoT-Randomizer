@@ -2316,3 +2316,9 @@ skip_GS_BGS_text:
     sh      zero, 0x025E(s6) ; Replaces: sh      v1, 0x025E(s6)
 .orga 0xBC780C
     .byte 0x09               ; Replaces: 0x01
+
+;==================================================================================================
+; Prevent Mask de-equip if not on a C-button
+;==================================================================================================
+.orga 0xBCF8CC
+    jal     mask_check_trade_slot   ; sb      zero, 0x014F(t0)
