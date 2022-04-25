@@ -12,6 +12,7 @@
 
 uint32_t CHEST_TEXTURE_MATCH_CONTENTS = 0;
 uint32_t CHEST_SIZE_MATCH_CONTENTS = 0;
+uint32_t CHEST_SIZE_TEXTURE = 0;
 
 extern void* GILDED_CHEST_FRONT_TEXTURE;
 extern void* GILDED_CHEST_BASE_TEXTURE;
@@ -27,7 +28,7 @@ void get_chest_override(z64_actor_t *actor) {
     uint8_t size  = ((uint8_t*)actor)[0x01E9];
     uint8_t color = size;
 
-    if (CHEST_SIZE_MATCH_CONTENTS || CHEST_TEXTURE_MATCH_CONTENTS) {
+    if (CHEST_SIZE_MATCH_CONTENTS || CHEST_SIZE_TEXTURE || CHEST_TEXTURE_MATCH_CONTENTS) {
         uint8_t scene = z64_game.scene_index;
         uint8_t item_id = (actor->variable & 0x0FE0) >> 5;
 
@@ -37,8 +38,8 @@ void get_chest_override(z64_actor_t *actor) {
             if (item_row == NULL) {
                 item_row = get_item_row(override.value.item_id);
             }
-            if (CHEST_SIZE_MATCH_CONTENTS) {
-                if (item_row->chest_type == BROWN_CHEST || item_row->chest_type == SILVER_CHEST || item_row->chest_type == SKULL_CHEST_SMALL) {
+            if (CHEST_SIZE_MATCH_CONTENTS || CHEST_SIZE_TEXTURE) {
+                if (item_row->chest_type == BROWN_CHEST || item_row->chest_type == SILVER_CHEST || item_row->chest_type == SKULL_CHEST_SMALL || item_row->chest_type == GOLD_CHEST_SMALL) {
                     // Small chest
                     size = 5;
                 }
@@ -71,25 +72,25 @@ void draw_chest(z64_game_t* game, int part, void* unk, void* unk2,
     int dlist;
 
     if (part == CHEST_BASE) {
-        if (chest_type == GOLD_CHEST)
+        if (chest_type == GOLD_CHEST || chest_type == GOLD_CHEST_SMALL)
             dlist = 0x06000AE8;
         else
             dlist = 0x060006F0;
 
     }
     else { //(part == CHEST_LID)
-        if (chest_type == GOLD_CHEST)
+        if (chest_type == GOLD_CHEST || chest_type == GOLD_CHEST_SMALL)
             dlist = 0x06001678;
         else
             dlist = 0x060010C0;
     }
 
-    if (chest_type != GOLD_CHEST) {
+    if (chest_type != GOLD_CHEST && chest_type != GOLD_CHEST_SMALL) {
         //set texture type
         void* frontTexture = (void*)BROWN_FRONT_TEXTURE;
         void* baseTexture = (void*)BROWN_BASE_TEXTURE;
 
-        if (CHEST_SIZE_MATCH_CONTENTS || CHEST_TEXTURE_MATCH_CONTENTS) {
+        if (CHEST_SIZE_TEXTURE || CHEST_TEXTURE_MATCH_CONTENTS) {
             if (chest_type == GILDED_CHEST) {
                 frontTexture = &GILDED_CHEST_FRONT_TEXTURE;
                 baseTexture = &GILDED_CHEST_BASE_TEXTURE;

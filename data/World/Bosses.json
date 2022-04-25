@@ -1,0 +1,194 @@
+[
+    # Boss and boss door logic.
+    # This is separated from individual dungeons because region names must match between normal/MQ
+    # And there are no differences in boss rooms between normal/MQ as they are separate areas.
+    #
+    # Key requirements (i.e. the only requirements for actually opening the boss door)
+    # belong on the door->boss connection.  Any other requirements for reaching the boss door
+    # belong in the respective dungeon's logic json
+    {
+        "region_name": "Deku Tree Boss Door",
+        "scene": "Deku Tree",
+        "dungeon": "Deku Tree",
+        "exits": {
+            "Gohma Boss Room": "True"
+        }
+    },
+    {
+        "region_name": "Gohma Boss Room",
+        "scene": "Deku Tree Boss",
+        "dungeon": "Deku Tree",
+        "events": {
+            "Deku Tree Clear": "(Nuts or can_use(Slingshot)) and can_jumpslash"
+        },
+        "locations": {
+            "Deku Tree Queen Gohma Heart": "'Deku Tree Clear'",
+            "Queen Gohma": "'Deku Tree Clear'"
+        },
+        "exits": {
+            "Deku Tree Boss Door": "True"
+        }
+    },
+
+    {
+        "region_name": "Dodongos Cavern Boss Door",
+        "scene": "Dodongos Cavern",
+        "dungeon": "Dodongos Cavern",
+        "exits": {
+            "King Dodongo Boss Room": "True"
+        }
+    },
+    {
+        "region_name": "King Dodongo Boss Room",
+        "scene": "Dodongos Cavern Boss",
+        "dungeon": "Dodongos Cavern",
+        "locations": {
+            "Dodongos Cavern Boss Room Chest": "True",
+            "Dodongos Cavern King Dodongo Heart": "
+                ((can_use(Megaton_Hammer) and logic_dc_hammer_floor) or
+                    has_explosives or king_dodongo_shortcuts) and
+                (Bombs or Progressive_Strength_Upgrade) and can_jumpslash",
+            "King Dodongo": "
+                ((can_use(Megaton_Hammer) and logic_dc_hammer_floor) or
+                    has_explosives or king_dodongo_shortcuts) and
+                (Bombs or Progressive_Strength_Upgrade) and can_jumpslash",
+            "Fairy Pot": "has_bottle"
+        },
+        "exits": {
+            "Dodongos Cavern Boss Door": "True"
+        }
+    },
+
+    {
+        "region_name": "Jabu Jabus Belly Boss Door",
+        "scene": "Jabu Jabus Belly",
+        "dungeon": "Jabu Jabus Belly",
+        "exits": {
+            "Barinade Boss Room": "True"
+        }
+    },
+    {
+        "region_name": "Barinade Boss Room",
+        "dungeon": "Jabu Jabus Belly",
+        "scene": "Jabu Jabus Belly Boss",
+        "locations": {
+            "Jabu Jabus Belly Barinade Heart": "can_use(Boomerang) and (Sticks or Kokiri_Sword)",
+            "Barinade": "can_use(Boomerang) and (Sticks or Kokiri_Sword)"
+        },
+        "exits": {
+            "Jabu Jabus Belly Boss Door": "True"
+        }
+    },
+
+    {
+        "region_name": "Forest Temple Boss Door",
+        "scene": "Forest Temple",
+        "dungeon": "Forest Temple",
+        "exits": {
+            "Phantom Ganon Boss Room": "Boss_Key_Forest_Temple"
+        }
+    },
+    {
+        "region_name": "Phantom Ganon Boss Room",
+        "dungeon": "Forest Temple",
+        "scene": "Forest Temple Boss",
+        "locations": {
+            "Forest Temple Phantom Ganon Heart": "(can_use(Hookshot) or can_use(Bow)) or
+                (can_use(Slingshot) and Kokiri_Sword)",
+            "Phantom Ganon": "(can_use(Hookshot) or can_use(Bow)) or
+                (can_use(Slingshot) and Kokiri_Sword)"
+        },
+        "exits": {
+            "Forest Temple Boss Door": "True"
+        }
+    },
+
+    {
+        "region_name": "Fire Temple Boss Door",
+        "scene": "Fire Temple",
+        "dungeon": "Fire Temple",
+        "exits": {
+            "Volvagia Boss Room": "Boss_Key_Fire_Temple"
+        }
+    },
+    {
+        "region_name": "Volvagia Boss Room",
+        "dungeon": "Fire Temple",
+        "locations": {
+            "Fire Temple Volvagia Heart": "can_use(Goron_Tunic) and can_use(Megaton_Hammer)",
+            "Volvagia": "can_use(Goron_Tunic) and can_use(Megaton_Hammer)"
+        },
+        "exits": {
+            "Fire Temple Boss Door": "True"
+        }
+    },
+    {
+        "region_name": "Water Temple Boss Door",
+        "scene": "Water Temple",
+        "dungeon": "Water Temple",
+        "exits": {
+            "Morpha Boss Room": "Boss_Key_Water_Temple"
+        }
+    },
+    {
+        "region_name": "Morpha Boss Room",
+        "scene": "Water Temple Boss",
+        "dungeon":  "Water Temple",
+        "events": {
+            "Water Temple Clear": "can_use(Hookshot)"
+        },
+        "locations": {
+            "Morpha": "'Water Temple Clear'",
+            "Water Temple Morpha Heart": "'Water Temple Clear'"
+        },
+        "exits": {
+            "Water Temple Boss Door": "True"
+        }
+    },
+
+    {
+        "region_name": "Shadow Temple Boss Door",
+        "scene": "Shadow Temple",
+        "dungeon": "Shadow Temple",
+        "exits": {
+            "Bongo Bongo Boss Room": "Boss_Key_Shadow_Temple"
+        }
+    },
+    {
+        "region_name": "Bongo Bongo Boss Room",
+        "dungeon": "Shadow Temple",
+        "scene": "Shadow Temple Boss",
+        "locations": {
+            "Shadow Temple Bongo Bongo Heart": "
+                (Kokiri_Sword or is_adult) and (can_use(Hookshot) or can_use(Bow) or can_use(Slingshot) or
+                logic_shadow_bongo) and (can_use(Lens_of_Truth) or logic_lens_bongo)",
+            "Bongo Bongo": "
+                (Kokiri_Sword or is_adult) and (can_use(Hookshot) or can_use(Bow) or can_use(Slingshot) or
+                logic_shadow_bongo) and (can_use(Lens_of_Truth) or logic_lens_bongo)"
+        },
+        "exits": {
+            "Shadow Temple Boss Door": "True"
+        }
+    },
+
+    {
+        "region_name": "Spirit Temple Boss Door",
+        "scene": "Spirit Temple",
+        "dungeon": "Spirit Temple",
+        "exits": {
+            "Twinrova Boss Room": "Boss_Key_Spirit_Temple"
+        }
+    },
+    {
+        "region_name": "Twinrova Boss Room",
+        "dungeon": "Spirit Temple",
+        "scene": "Spirit Temple Boss",
+        "locations": {
+            "Spirit Temple Twinrova Heart": "can_use(Mirror_Shield)",
+            "Twinrova": "can_use(Mirror_Shield)"
+        },
+        "exits": {
+            "Spirit Temple Boss Door": "True"
+        }
+    }
+]

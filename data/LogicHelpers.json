@@ -126,5 +126,6 @@
     "forest_temple_shortcuts": "'forest_temple' in dungeon_shortcuts",
     "fire_temple_shortcuts": "'fire_temple' in dungeon_shortcuts",
     "shadow_temple_shortcuts": "'shadow_temple' in dungeon_shortcuts",
-    "spirit_temple_shortcuts": "'spirit_temple' in dungeon_shortcuts"
+    "spirit_temple_shortcuts": "'spirit_temple' in dungeon_shortcuts",
+    "king_dodongo_shortcuts": "region_has_shortcuts('King Dodongo Boss Room', 'Dodongos Cavern')"
 }

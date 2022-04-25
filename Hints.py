@@ -31,6 +31,8 @@ defaultHintDists = [
     'balanced.json', 'bingo.json', 'ddr.json', 'scrubs.json', 'strong.json', 'tournament.json', 'useless.json', 'very_strong.json'
 ]
 
+unHintableWothItems = ['Triforce Piece', 'Gold Skulltula Token']
+
 class RegionRestriction(Enum):
     NONE = 0,
     DUNGEON = 1,
@@ -359,7 +361,8 @@ def get_woth_hint(spoiler, world, checked):
         and not (world.woth_dungeon >= world.hint_dist_user['dungeons_woth_limit'] and location.parent_region.dungeon)
         and location.name not in world.hint_exclusions
         and location.name not in world.hint_type_overrides['woth']
-        and location.item.name not in world.item_hint_type_overrides['woth'],
+        and location.item.name not in world.item_hint_type_overrides['woth']
+        and location.item.name not in unHintableWothItems,
         locations))
 
     if not locations:
@@ -453,7 +456,8 @@ def get_goal_hint(spoiler, world, checked):
             location[0].name not in checked
             and location[0].name not in world.hint_exclusions
             and location[0].name not in world.hint_type_overrides['goal']
-            and location[0].item.name not in world.item_hint_type_overrides['goal'],
+            and location[0].item.name not in world.item_hint_type_overrides['goal']
+            and location[0].item.name not in unHintableWothItems,
             goal.required_locations))
 
         if not goal_locations:
@@ -606,9 +610,10 @@ def is_not_checked(location, checked):
 def get_good_item_hint(spoiler, world, checked):
     locations = list(filter(lambda location:
         is_not_checked(location, checked)
-        and (location.item.majoritem
-            or location.name in world.added_hint_types['item']
-            or location.item.name in world.item_added_hint_types['item'])
+        and ((location.item.majoritem
+            and location.item.name not in unHintableWothItems)
+                or location.name in world.added_hint_types['item']
+                or location.item.name in world.item_added_hint_types['item'])
         and not location.locked
         and location.name not in world.hint_exclusions
         and location.name not in world.hint_type_overrides['item']
@@ -971,7 +976,7 @@ def buildGossipHints(spoiler, worlds):
         location = world.light_arrow_location
         if location is None:
             continue
-        if world.settings.misc_hints and can_reach_hint(worlds, world.get_location("Ganondorf Hint"), location):
+        if 'ganondorf' in world.settings.misc_hints and can_reach_hint(worlds, world.get_location("Ganondorf Hint"), location):
             light_arrow_world = location.world
             if light_arrow_world.id not in checkedLocations:
                 checkedLocations[light_arrow_world.id] = set()
@@ -1059,18 +1064,11 @@ def buildWorldGossipHints(spoiler, world, checkedLocations=None):
     #Removes items from item_hints list if they are included in starting gear.
     #This method ensures that the right number of copies are removed, e.g.
     #if you start with one strength and hints call for two, you still get
-    #one hint for strength
-    for item in itertools.chain(world.settings.starting_items, world.settings.starting_equipment, world.settings.starting_songs):
-        itemname = everything[item].itemname
-        if itemname in world.item_hints:
-            world.item_hints.remove(itemname)
-
-    #Skip_child_zelda can cause the same problem, but needs to be handled separately since
-    #it doesn't update the starting gear lists
-    if world.settings.skip_child_zelda:
-        itemname = world.get_location('Song from Impa').item.name 
-        if itemname in world.item_hints:
-            world.item_hints.remove(itemname)
+    #one hint for strength. This also handles items from Skip Child Zelda.
+    for itemname, record in world.distribution.effective_starting_items.items():
+        for _ in range(record.count):
+            if itemname in world.item_hints:
+                world.item_hints.remove(itemname)
 
     world.named_item_pool = list(world.item_hints)
 
@@ -1252,6 +1250,8 @@ def buildWorldGossipHints(spoiler, world, checkedLocations=None):
 
 # builds text that is displayed at the temple of time altar for child and adult, rewards pulled based off of item in a fixed order.
 def buildAltarHints(world, messages, include_rewards=True, include_wincons=True):
+    boss_map = world.reverse_boss_map()
+
     # text that appears at altar as a child.
     child_text = '\x08'
     if include_rewards:
@@ -1262,7 +1262,7 @@ def buildAltarHints(world, messages, include_rewards=True, include_wincons=True)
         ]
         child_text += getHint('Spiritual Stone Text Start', world.settings.clearer_hints).text + '\x04'
         for (reward, color) in bossRewardsSpiritualStones:
-            child_text += buildBossString(reward, color, world)
+            child_text += buildBossString(reward, color, world, boss_map)
     child_text += getHint('Child Altar Text End', world.settings.clearer_hints).text
     child_text += '\x0B'
     update_message_by_id(messages, 0x707A, get_raw_text(child_text), 0x20)
@@ -1280,7 +1280,7 @@ def buildAltarHints(world, messages, include_rewards=True, include_wincons=True)
             ('Spirit Medallion', 'Yellow'),
         ]
         for (reward, color) in bossRewardsMedallions:
-            adult_text += buildBossString(reward, color, world)
+            adult_text += buildBossString(reward, color, world, boss_map)
     if include_wincons:
         adult_text += buildBridgeReqsString(world)
         adult_text += '\x04'
@@ -1292,11 +1292,11 @@ def buildAltarHints(world, messages, include_rewards=True, include_wincons=True)
 
 
 # pulls text string from hintlist for reward after sending the location to hintlist.
-def buildBossString(reward, color, world):
+def buildBossString(reward, color, world, boss_map):
     for location in world.get_filled_locations():
         if location.item.name == reward:
             item_icon = chr(location.item.special['item_id'])
-            location_text = getHint(location.name, world.settings.clearer_hints).text
+            location_text = getHint(boss_map.get(location.name, location.name), world.settings.clearer_hints).text
             return str(GossipText("\x08\x13%s%s" % (item_icon, location_text), [color], prefix='')) + '\x04'
     return ''
 
@@ -1372,7 +1372,7 @@ def buildGanonText(world, messages):
     update_message_by_id(messages, 0x70CB, text)
 
     # light arrow hint or validation chest item
-    if world.distribution.get_starting_item('Light Arrows') > 0:
+    if 'Light Arrows' in world.distribution.effective_starting_items and world.distribution.effective_starting_items['Light Arrows'].count > 0:
         text = get_raw_text(getHint('Light Arrow Location', world.settings.clearer_hints).text)
         text += "\x05\x42your pocket\x05\x40"
     elif world.light_arrow_location:

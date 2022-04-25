@@ -15,10 +15,12 @@
         },
         "exits": {
             "DMC Fire Temple Entrance": "True",
-            "Fire Boss Room": "
-                can_use(Goron_Tunic) and can_use(Megaton_Hammer) and Boss_Key_Fire_Temple and
-                ((has_fire_source and (logic_fire_boss_door_jump or Hover_Boots or fire_temple_shortcuts))
-                or at('Fire Temple Upper', True))",
+            "Fire Temple Boss Door": "
+                is_adult and (
+                    ((can_use(Goron_Tunic) or logic_fewer_tunic_requirements))
+                    and ((has_fire_source and (logic_fire_boss_door_jump or Hover_Boots or fire_temple_shortcuts))
+                    or at('Fire Temple Upper', can_use(Megaton_Hammer)))
+                )",
             "Fire Lower Locked Door": "(Small_Key_Fire_Temple, 5) and (is_adult or Kokiri_Sword)",
             "Fire Big Lava Room": "
                 (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and can_use(Megaton_Hammer)"
@@ -102,14 +104,6 @@
             "Fire Temple MQ GS Above Fire Wall Maze": "
                 (can_use(Hookshot) and (Small_Key_Fire_Temple, 5)) or
                 (logic_fire_mq_above_maze_gs and can_use(Longshot))"
-        }
-    },
-    {
-        "region_name": "Fire Boss Room",
-        "dungeon": "Fire Temple",
-        "locations": {
-            "Fire Temple Volvagia Heart": "True",
-            "Volvagia": "True"
         }
     }
 ]

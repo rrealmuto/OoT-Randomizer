@@ -82,7 +82,7 @@
                 ((logic_lens_shadow_mq_platform or can_use(Lens_of_Truth)) and Hover_Boots and
                     (has_fire_source or logic_shadow_mq_huge_pit))",
             "Shadow Temple Invisible Spikes": "
-                (logic_lens_shadow_mq_platform or can_use(Lens_of_Truth)) and 
+                (logic_lens_shadow_mq_platform or can_use(Lens_of_Truth)) and
                 Hover_Boots and (Small_Key_Shadow_Temple, 3)",
             "Shadow Temple Upper Huge Pit": "Longshot"
         }
@@ -157,7 +157,7 @@
         },
         "exits": {
             "Shadow Temple Invisible Maze": "Bow and can_play(Song_of_Time) and Longshot",
-            "Shadow Temple Near Boss": "
+            "Shadow Temple Before Boss": "
                 (Bow or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts) and Hover_Boots"
         }
     },
@@ -175,14 +175,13 @@
         }
     },
     {
-        "region_name": "Shadow Temple Near Boss",
+        "region_name": "Shadow Temple Before Boss",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple Bongo Bongo Heart": "
-                Boss_Key_Shadow_Temple and (logic_shadow_bongo or Bow or Hookshot)",
-            "Bongo Bongo": "
-                Boss_Key_Shadow_Temple and (logic_shadow_bongo or Bow or Hookshot)",
             "Shadow Temple MQ GS Near Boss": "has_projectile(adult) or can_use(Dins_Fire)"
+        },
+        "exits": {
+            "Shadow Temple Boss Door": "True"
         }
     }
 ]

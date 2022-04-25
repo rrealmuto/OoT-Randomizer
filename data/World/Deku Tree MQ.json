@@ -86,25 +86,12 @@
         "region_name": "Deku Tree Basement Ledge",
         "dungeon": "Deku Tree",
         "locations": {
-            "Deku Tree MQ Deku Scrub": "can_stun_deku",
-            "Deku Tree Queen Gohma Heart": "
-                ((here(has_fire_source_with_torch) and here(has_shield)) or
-                deku_tree_shortcuts) and
-                (is_adult or Kokiri_Sword or Sticks)",
-            "Queen Gohma": "
-                ((here(has_fire_source_with_torch) and here(has_shield)) or
-                deku_tree_shortcuts) and
-                (is_adult or Kokiri_Sword or Sticks)"
-        },
-        "events": {
-            "Deku Tree Clear": "
-                ((here(has_fire_source_with_torch) and here(has_shield)) or
-                deku_tree_shortcuts) and
-                (is_adult or Kokiri_Sword or Sticks)"
+            "Deku Tree MQ Deku Scrub": "can_stun_deku"
         },
         "exits" : {
             "Deku Tree Basement Back Room": "is_child",
-            "Deku Tree Lobby": "True"
+            "Deku Tree Lobby": "True",
+            "Deku Tree Boss Door": "deku_tree_shortcuts or (here(has_shield) and here(has_fire_source_with_torch))"
         }
     }
 ]

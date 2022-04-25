@@ -20,15 +20,10 @@
         "exits": {
             "KF Outside Deku Tree": "True",
             "Deku Tree Slingshot Room": "here(has_shield)",
-            "Deku Tree Basement Backroom": "
+            "Deku Tree Basement Back Room": "
                 (here(has_fire_source_with_torch or can_use(Bow)) and
-                    here(can_use(Slingshot) or can_use(Bow))) or
-                (is_child and (logic_deku_b1_skip or here(is_adult) or deku_tree_shortcuts))",
-            "Deku Tree Boss Room": "
-                (here(has_fire_source_with_torch or
-                     (logic_deku_b1_webs_with_bow and can_use(Bow))) and
-                (logic_deku_b1_skip or here(is_adult or can_use(Slingshot)))) or
-                deku_tree_shortcuts"
+                    here(can_use(Slingshot) or can_use(Bow)))",
+            "Deku Tree Basement Ledge": "here(is_adult) or logic_deku_b1_skip or deku_tree_shortcuts"
         }
     },
     {
@@ -43,7 +38,7 @@
         }
     },
     {
-        "region_name": "Deku Tree Basement Backroom",
+        "region_name": "Deku Tree Basement Back Room",
         "dungeon": "Deku Tree",
         "locations": {
             "Deku Tree GS Basement Back Room": "
@@ -52,25 +47,19 @@
                 (can_use(Boomerang) or can_use(Hookshot))"
         },
         "exits": {
-            "Deku Tree Lobby": "True"
+            "Deku Tree Lobby": "True",
+            "Deku Tree Basement Ledge": "is_child"
         }
     },
     {
-        "region_name": "Deku Tree Boss Room",
+        "region_name": "Deku Tree Basement Ledge",
         "dungeon": "Deku Tree",
-        "events": {
-            "Deku Tree Clear": "
-                (here(has_shield) or deku_tree_shortcuts) and (is_adult or Kokiri_Sword or Sticks)"
-        },
-        "locations": {
-            # Implicit Deku Nuts from the dungeon lobby or basement for stunning Gohma
-            "Deku Tree Queen Gohma Heart": "
-                (here(has_shield) or deku_tree_shortcuts) and (is_adult or Kokiri_Sword or Sticks)",
-            "Queen Gohma": "
-                (here(has_shield) or deku_tree_shortcuts) and (is_adult or Kokiri_Sword or Sticks)"
-        },
         "exits": {
-            "Deku Tree Lobby": "True"
+            "Deku Tree Basement Back Room": "is_child",
+            "Deku Tree Lobby": "True",
+            "Deku Tree Boss Door": "
+                deku_tree_shortcuts
+                or (here(has_shield) and here(has_fire_source_with_torch or (logic_deku_b1_webs_with_bow and can_use(Bow))))"
         }
     }
 ]
