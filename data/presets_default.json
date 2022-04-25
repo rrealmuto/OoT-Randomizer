@@ -206,6 +206,7 @@
     "gerudo_fortress":                          "fast",
     "bridge":                                   "dungeons",
     "bridge_rewards":                           2,
+    "dungeon_shortcuts_choice":                 "choice",
     "dungeon_shortcuts":                        [
       "jabu_jabus_belly",
       "forest_temple"
@@ -301,7 +302,7 @@
     ],
     "starting_songs":                          [],
     "ocarina_songs":                           false,
-    "correct_chest_appearances":               "sizes",
+    "correct_chest_appearances":               "classic",
     "bombchus_gilded_chest_appearance":        true,
     "clearer_hints":                           true,
     "no_collectible_hearts":                   false,
