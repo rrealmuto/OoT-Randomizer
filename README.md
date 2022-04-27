@@ -41,12 +41,13 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
 * New “Shuffle Gerudo Valley River Exit” setting
 * New hidden “Generate Vanilla Seed” setting (used for `vanilla` and `fast-vanilla` presets)
 * A 4th option is added to the “Misc. Hints” setting to hint the Hookshot location in Dampé's diary
-* New `chaos` hint distribution
+* New “Chaos” and “Mixed Pools Tournament” hint distributions
 * New settings presets:
   * `allsanity-casual` is my preferred flavor of allsanity, including full entrance randomizer, chaos hints, and warp song note shuffle, but with half damage, no Master Quest, and no tricks enabled. The rainbow bridge requires all dungeon rewards and Ganon's boss key requires all 100 gold skulltula tokens.
   * `debug` is similar to Default/Beginner but gives you most starting items for testing.
   * `vanilla` generates a seed that's as close to the vanilla game as possible with current randomizer features. Unlike the vanilla seed available on <https://ootrandomizer.com/>, this preset uses glitchless logic to produce a useful spoiler log playthrough.
   * `fast-vanilla` is `vanilla` but with speed-ups like fast bunny hood, fast chest cutscenes, or “Skip Some Minigame Phases” enabled.
+  * “Mixed Pools Tournament”, the settings that will be used for an upcoming tournament with full mixed pools entrance randomizer.
   * “Standard Anti-Weekly Settings (S5)” disables every location that's enabled in “S5 Tournament” and enables every location that's disabled there, as well as changing some miscellaneous settings. See [the official document](https://docs.google.com/document/d/1sbL6Zju943F5qyx4QbTLUsqZqOTMmvqKVbDwJl08SGc/edit) for details.
 * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
 
