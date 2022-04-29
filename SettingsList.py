@@ -2585,6 +2585,25 @@ setting_infos = [
         disabled_default = 0,
     ),
     Checkbutton(
+        name           = 'unlock_ganons_first_boss_door',
+        gui_text       = "Unlock Ganon's Tower First Boss Door",
+        default        = False,
+        gui_tooltip    = '''\
+            Unlocks the first boss key door in Ganon's Tower
+            to give access to the pots in the room.
+
+            The door leading to the upper stairway to
+            Ganondorf will still be locked.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+            "hide_when_disabled": True
+        },
+        shared         = True,
+        disabled_default = False
+        
+    ),
+    Checkbutton(
         name           = 'skip_child_zelda',
         gui_text       = 'Skip Child Zelda',
         gui_tooltip    = '''\
@@ -3021,6 +3040,7 @@ setting_infos = [
         gui_params     = {
             'randomize_key': 'randomize_settings',
         },
+        disable = {'off':  {'settings': ['unlock_ganons_first_boss_door']}},
         shared         = True,
     ),
     

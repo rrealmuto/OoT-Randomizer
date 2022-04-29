@@ -1889,10 +1889,13 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         update_message_by_id(messages, 0x304D, "How do you like it?\x02")
         update_message_by_id(messages, 0x304F, "How about buying this cool item for \x01200 Rupees?\x01\x1B\x05\x42Buy\x01Don't buy\x05\x40\x02")
 
-    if world.settings.shuffle_smallkeys == 'remove' or world.settings.shuffle_bosskeys == 'remove' or world.settings.shuffle_ganon_bosskey == 'remove':
-        locked_doors = get_locked_doors(rom, world)
-        for _,[door_byte, door_bits] in locked_doors.items():
-            save_context.write_bits(door_byte, door_bits)
+    logger.info("Patching locked doors")
+    if(world.settings.unlock_ganons_first_boss_door): #Update the first BK door in ganon's castle to use a separate flag so it can be unlocked to get to the pots
+        patch_ganons_tower_bk_door(rom, 0x15) #Using flag 0x15 for the door. GBK doors normally use 0x14.
+    locked_doors = get_doors_to_unlock(rom, world)
+    logger.info(locked_doors)
+    for _,[door_byte, door_bits] in locked_doors.items():
+        save_context.write_bits(door_byte, door_bits)
 
     # Fix chest animations
     BROWN_CHEST = 0
@@ -2439,30 +2442,38 @@ def set_spirit_shortcut_actors(rom):
     get_actor_list(rom, set_spirit_shortcut)
 
 
-
-def get_locked_doors(rom, world):
-    def locked_door(rom, actor_id, actor, scene):
+# Gets a dict of doors to unlock based on settings
+# Returns: dict with entries address: [byte_offset, bit]
+# Where:    address = rom address of the door
+#           byte_offset = the offset, in bytes, of the door flag in the SaveContext
+#           bit = the bit offset within the byte for the door flag
+# If small keys are set to remove, returns all small key doors
+# If boss keys are set to remove, returns boss key doors
+# If ganons boss key is set to remove, returns ganons boss key doors
+# If pot/crate shuffle is enabled, returns the first ganon's boss key door so that it can be unlocked separately to allow access to the room w/ the pots..
+def get_doors_to_unlock(rom, world):
+    def get_door_to_unlock(rom, actor_id, actor, scene):
         actor_var = rom.read_int16(actor + 14)
-        actor_type = actor_var >> 6
-        actor_flag = actor_var & 0x003F
+        door_type = actor_var >> 6
+        switch_flag = actor_var & 0x003F
 
-        flag_id = (1 << actor_flag)
-        flag_byte = 3 - (actor_flag >> 3)
-        flag_bits = 1 << (actor_flag & 0x07)
+        flag_id = (1 << switch_flag)
+        flag_byte = 3 - (switch_flag >> 3)
+        flag_bits = 1 << (switch_flag & 0x07)
 
-        # If locked door, set the door's unlock flag
+        # Return small key doors that should be unlocked
         if world.settings.shuffle_smallkeys == 'remove':
-            if actor_id == 0x0009 and actor_type == 0x02:
+            if actor_id == 0x0009 and door_type == 0x02:
                 return [0x00D4 + scene * 0x1C + 0x04 + flag_byte, flag_bits]
-            if actor_id == 0x002E and actor_type == 0x0B:
-                return [0x00D4 + scene * 0x1C + 0x04 + flag_byte, flag_bits]
-
-        # If boss door, set the door's unlock flag
-        if (world.settings.shuffle_bosskeys == 'remove' and scene != 0x0A) or (world.settings.shuffle_ganon_bosskey == 'remove' and scene == 0x0A):
-            if actor_id == 0x002E and actor_type == 0x05:
+            if actor_id == 0x002E and door_type == 0x0B:
                 return [0x00D4 + scene * 0x1C + 0x04 + flag_byte, flag_bits]
 
-    return get_actor_list(rom, locked_door)
+        # Return Boss Doors that should be unlocked
+        if (world.settings.shuffle_bosskeys == 'remove' and scene != 0x0A) or (world.settings.shuffle_ganon_bosskey == 'remove' and scene == 0x0A) or (world.settings.unlock_ganons_first_boss_door and scene == 0x0A and switch_flag == 0x15):
+            if actor_id == 0x002E and door_type == 0x05:
+                return [0x00D4 + scene * 0x1C + 0x04 + flag_byte, flag_bits]
+
+    return get_actor_list(rom, get_door_to_unlock)
 
 
 def create_fake_name(name):
@@ -2651,3 +2662,10 @@ def patch_beehive(location, rom: Rom):
     if location.address:
         for address in location.address:
             rom.write_byte(address + 13, location.default)
+
+
+#Patch the first boss key door in ganons tower that leads to the room w/ the pots
+def patch_ganons_tower_bk_door(rom: Rom, flag):
+    var = (0x05 << 6) + (flag & 0x3F)
+    bytes = [(var & 0xFF00) >> 8, var & 0xFF]
+    rom.write_bytes(0x2EE30FE, bytes)

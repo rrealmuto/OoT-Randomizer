@@ -167,7 +167,8 @@
             "bridge_rewards",
             "bridge_tokens",
             "trials_random",
-            "trials"
+            "trials",
+            "unlock_ganons_first_boss_door"
           ]
         },
         {

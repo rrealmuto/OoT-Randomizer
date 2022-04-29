@@ -2229,7 +2229,7 @@
         },
         "exits": {
             "Ganons Castle Lobby": "True",
-            "Ganondorfs Chamber": "Boss_Key_Ganons_Castle"
+            "Ganondorfs Chamber": "Boss_Key_Ganons_Castle or unlock_ganons_first_boss_door"
         }
     },
     {
@@ -2238,21 +2238,21 @@
         "hint": "Ganondorfs Chamber",
         "locations": {
             "Ganondorf Hint": "True",
-            "Ganons Tower Pot 1": "True",
-            "Ganons Tower Pot 2": "True",
-            "Ganons Tower Pot 3": "True",
-            "Ganons Tower Pot 4": "True",
-            "Ganons Tower Pot 5": "True",
-            "Ganons Tower Pot 6": "True",
-            "Ganons Tower Pot 7": "True",
-            "Ganons Tower Pot 8": "True",
-            "Ganons Tower Pot 9": "True",
-            "Ganons Tower Pot 10": "True",
-            "Ganons Tower Pot 11": "True",
-            "Ganons Tower Pot 12": "True",
-            "Ganons Tower Pot 13": "True",
-            "Ganons Tower Pot 14": "True",
-            "Ganon": "can_use(Light_Arrows)"
+            "Ganons Tower Pot 1": "unlock_ganons_first_boss_door or (shuffle_ganon_bosskey != 'triforce')",
+            "Ganons Tower Pot 2": "unlock_ganons_first_boss_door or (shuffle_ganon_bosskey != 'triforce')",
+            "Ganons Tower Pot 3": "unlock_ganons_first_boss_door or (shuffle_ganon_bosskey != 'triforce')",
+            "Ganons Tower Pot 4": "unlock_ganons_first_boss_door or (shuffle_ganon_bosskey != 'triforce')",
+            "Ganons Tower Pot 5": "unlock_ganons_first_boss_door or (shuffle_ganon_bosskey != 'triforce')",
+            "Ganons Tower Pot 6": "unlock_ganons_first_boss_door or (shuffle_ganon_bosskey != 'triforce')",
+            "Ganons Tower Pot 7": "unlock_ganons_first_boss_door or (shuffle_ganon_bosskey != 'triforce')",
+            "Ganons Tower Pot 8": "unlock_ganons_first_boss_door or (shuffle_ganon_bosskey != 'triforce')",
+            "Ganons Tower Pot 9": "unlock_ganons_first_boss_door or (shuffle_ganon_bosskey != 'triforce')",
+            "Ganons Tower Pot 10": "unlock_ganons_first_boss_door or (shuffle_ganon_bosskey != 'triforce')",
+            "Ganons Tower Pot 11": "unlock_ganons_first_boss_door or (shuffle_ganon_bosskey != 'triforce')",
+            "Ganons Tower Pot 12": "unlock_ganons_first_boss_door or (shuffle_ganon_bosskey != 'triforce')",
+            "Ganons Tower Pot 13": "unlock_ganons_first_boss_door or (shuffle_ganon_bosskey != 'triforce')",
+            "Ganons Tower Pot 14": "unlock_ganons_first_boss_door or (shuffle_ganon_bosskey != 'triforce')",
+            "Ganon": "Boss_Key_Ganons_Castle and can_use(Light_Arrows)"
         }
     },
     {
