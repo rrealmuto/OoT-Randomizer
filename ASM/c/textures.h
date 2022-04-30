@@ -19,6 +19,11 @@
 #define TEXTURE_ID_SMALLCRATE_KEY        11
 #define TEXTURE_ID_SMALLCRATE_SKULL      12
 #define TEXTURE_ID_SMALLCRATE_BOSSKEY    13
+#define TEXTURE_ID_BEEHIVE_GOLD          14
+#define TEXTURE_ID_BEEHIVE_KEY           15
+#define TEXTURE_ID_BEEHIVE_SKULL         16
+#define TEXTURE_ID_BEEHIVE_BOSSKEY       17
+
 
 
 uint8_t* get_texture(uint16_t textureID);

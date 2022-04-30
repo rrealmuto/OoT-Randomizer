@@ -1675,41 +1675,26 @@ skip_GS_BGS_text:
 ; Draw Beehive Textures
 ;==================================================================================================
 
+;Hook ObjComb_Update to use our new function
+.orga 0xEC764C
+    j ObjComb_Update
+    nop
+
+
 ;Hook ObjComb_Draw call to set up custom dlist stuff
 ;Replaces:
 ;addiu  sp, sp, -0x30
 ;sw s0, 0x0014(sp)
 ;sw ra, 0x001c(sp)
 ;sw s1, 0x0018(sp)
-.orga 0xEC76C4
-addiu  sp, sp, -0x30
-sw     ra, 0x001c(sp)
-jal   ObjComb_Draw_Hook
-nop
+;.orga 0xEC76C4
+;addiu  sp, sp, -0x30
+;sw     ra, 0x001c(sp)
+;jal   ObjComb_Draw_Hook
+;nop
 
-.orga 0xF5F000 + 0x95B0 + 0x18 ; gameplay_field_keep file start + beehive dlist offset + gDPSetTextureImage offset
-.word   0xDE000000, 0x09000000 ; jump to the custom dlist at segment 09
-
-;Hook ObjComb Draw where it actually draws the display list gFieldBeehiveDL
-;Need to rearrange the instructions a bit here.
-; * is the asm related to the gSPDisplayList 
-;Replaces:
-;   lui t4, 0xDE00  *
-;   or  a0, r0, r0 
-;   sw  v0, 0x0004(a3)
-;   lw  v1, 0x02C0 (s1)
-;   lui t5, 0x0501
-;   addiu   t5, t5, 0x95B0
-;   addiu   t3, v1, 0x0008
-;   sw  t3, 0x02C0(s1)
-;   sw  t5, 0x0004(v1)  * 
-;   sw  t4, 0x0000(v1)  *
-;.orga 0xEC77E4
-;    j ObjComb_Draw_Hook
-;    nop
-
-.orga 0xF6D000 + 0x5290 + 0x18 ; gameplay_dangeon_keep file start + dlist offset + gDPSetTextureImage offset
-.word   0xDE000000, 0x09000000 ; jump to the custom dlist at segment 09
+;.orga 0xF5F000 + 0x95B0 + 0x18 ; gameplay_field_keep file start + beehive dlist offset + gDPSetTextureImage offset
+;.word   0xDE000000, 0x09000000 ; jump to the custom dlist at segment 09
 
 ;==================================================================================================
 ; Cast Fishing Rod without B Item

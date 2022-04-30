@@ -105,8 +105,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         (10, 'texture_smallcrate_gold', 0xF7ECA0, None, 2048, rgba16_patch, 'textures/crate/smallcrate_gold_rgba16_patch.bin' ),
         (11, 'texture_smallcrate_key', 0xF7ECA0, None, 2048, rgba16_patch, 'textures/crate/smallcrate_key_rgba16_patch.bin'),
         (12, 'texture_smallcrate_skull', 0xF7ECA0, None, 2048, rgba16_patch, 'textures/crate/smallcrate_skull_rgba16_patch.bin'),
-        (13, 'texture_smallcrate_bosskey', 0xF7ECA0, None, 2048, rgba16_patch, 'textures/crate/smallcrate_bosskey_rgba16_patch.bin'),
-        
+        (13, 'texture_smallcrate_bosskey', 0xF7ECA0, None, 2048, rgba16_patch, 'textures/crate/smallcrate_bosskey_rgba16_patch.bin')
     ]
     logger = logging.getLogger('')
 

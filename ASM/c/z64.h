@@ -1652,6 +1652,7 @@ typedef struct EnGSwitch
 #define z64_Item_DropCollectible_addr           0x80013678
 #define z64_Item_DropCollectible2_addr          0x800138B0
 #define z64_Gfx_DrawDListOpa_addr               0x80028048
+#define z64_Math_SinS_addr                      0x800636C4
 
 /* rom addresses */
 #define z64_icon_item_static_vaddr              0x007BD000
@@ -1715,6 +1716,7 @@ typedef void* (*z64_memcopy_proc)(void* dest, void* src, uint32_t size);
 typedef void (*z64_bzero_proc)(void* __s, uint32_t __n);
 typedef EnItem00* (*z64_Item_DropCollectible_proc)(z64_game_t* globalCtx, z64_xyzf_t* spawnPos, int16_t params);
 typedef void (*z64_Gfx_DrawDListOpa_proc)(z64_game_t *game, z64_gfx_t *dlist);
+typedef float (*z64_Math_SinS_proc)(int16_t angle);
 
 /* data */
 #define z64_file_mq             (*(OSMesgQueue*)      z64_file_mq_addr)
@@ -1783,4 +1785,6 @@ typedef void (*z64_Gfx_DrawDListOpa_proc)(z64_game_t *game, z64_gfx_t *dlist);
 #define z64_Item_DropCollectible ((z64_Item_DropCollectible_proc)z64_Item_DropCollectible_addr)
 #define z64_Item_DropCollectible2 ((z64_Item_DropCollectible_proc)z64_Item_DropCollectible2_addr)
 #define z64_Gfx_DrawDListOpa ((z64_Gfx_DrawDListOpa_proc)z64_Gfx_DrawDListOpa_addr)
+#define z64_Math_SinS ((z64_Math_SinS_proc)z64_Math_SinS_addr)
+
 #endif
