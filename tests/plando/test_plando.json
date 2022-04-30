@@ -1,7 +1,7 @@
 {
     "entrances": {
+        "Child Spawn -> KF Links House" : {"region":"Zoras Domain", "from":"ZR Behind Waterfall"}
     },
     "locations": {
-        "Ganons Tower Pot 1" : "Triforce Piece"
     }
 }
