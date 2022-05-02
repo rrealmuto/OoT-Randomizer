@@ -1,13 +1,21 @@
 [
-    {
+	{
+        "region_name": "Ganons Castle Lobby",
+        "dungeon": "Ganons Castle",
+        "exits": {
+            "Castle Grounds": "True",
+            "Ganons Castle Main": "here(is_adult or (Kokiri_Sword and (Sticks or has_explosives or Nuts or Boomerang)) or (has_explosives and (Sticks or ((Nuts or Boomerang) and Slingshot))))"
+        }
+    },
+	{
         "region_name": "Ganons Castle Main",
         "dungeon": "Ganons Castle",
         "exits": {
             "Ganons Castle Forest Trial": "True",
             "Ganons Castle Fire Trial": "True",
             "Ganons Castle Water Trial": "True",
-            "Ganons Castle Shadow Trial": "True",
-            "Ganons Castle Spirit Trial": "True",
+            "Ganons Castle Shadow Trial": "is_adult",
+            "Ganons Castle Spirit Trial": "is_adult",
             "Ganons Castle Light Trial": "can_use(Golden_Gauntlets)",
             "Ganons Castle Tower": "
                 (skipped_trials[Forest] or 'Forest Trial Clear') and 
@@ -19,15 +27,8 @@
             "Ganons Castle Deku Scrubs": "logic_lens_castle_mq or can_use(Lens_of_Truth)"
         }
     },
-    {
-        "region_name": "Ganons Castle Lobby",
-        "dungeon": "Ganons Castle",
-        "exits": {
-            "Castle Grounds": "True",
-            "Ganons Castle Main": "here(is_adult or (is_child and 
-                (Kokiri_Sword and (Sticks or has_explosives or Nuts or Boomerang)) or (has_explosives and (Sticks or ((Nuts or Boomerang) and Slingshot)))))"
-        }
-    },
+
+
     {
         "region_name": "Ganons Castle Deku Scrubs",
         "dungeon": "Ganons Castle",
@@ -48,7 +49,7 @@
         },
         "locations": {
             "Ganons Castle MQ Forest Trial Eye Switch Chest": "can_use(Bow) or (can_use(Slingshot) and Kokiri_Sword)",
-            "Ganons Castle MQ Forest Trial Frozen Eye Switch Chest": "has_fire_source and (is_adult or (is_child and (Kokiri_Sword)))",
+            "Ganons Castle MQ Forest Trial Frozen Eye Switch Chest": "has_fire_source and (is_adult or Kokiri_Sword)",
             "Ganons Castle MQ Forest Trial Freestanding Key": "can_use(Progressive_Hookshot) or (can_use(Boomerang) and Kokiri_Sword)"
         }
     },
@@ -118,7 +119,7 @@
                 Megaton_Hammer and has_bombchus and 
                 can_use(Fire_Arrows) and Mirror_Shield",
             "Nut Pot": "
-                Megaton_Hammer and has_bombchus and
+                is_adult and Megaton_Hammer and has_bombchus and
                 can_use(Fire_Arrows) and Mirror_Shield"
         }
     },
