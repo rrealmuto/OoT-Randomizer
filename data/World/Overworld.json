@@ -74,7 +74,6 @@
     },
     {
         "region_name": "Kokiri Forest",
-        "font_color": "Green",
         "scene": "Kokiri Forest",
         "hint": "Kokiri Forest",
         "events": {
@@ -109,7 +108,6 @@
     },
     {
         "region_name": "KF Outside Deku Tree",
-        "font_color": "Green",
         "scene": "Kokiri Forest",
         "hint": "Kokiri Forest",
         "events": {
@@ -195,7 +193,6 @@
     },
     {
         "region_name": "LW Forest Exit",
-        "font_color": "Green",
         "scene": "Lost Woods",
         "hint": "the Lost Woods",
         "exits": {
@@ -204,7 +201,6 @@
     },
     {
         "region_name": "Lost Woods",
-        "font_color": "Green",
         "scene": "Lost Woods",
         "hint": "the Lost Woods",
         "events": {
@@ -236,7 +232,6 @@
     },
     {
         "region_name": "LW Beyond Mido",
-        "font_color": "Green",
         "scene": "Lost Woods",
         "hint": "the Lost Woods",
         "locations": {
@@ -262,7 +257,6 @@
     },
     {
         "region_name": "Lost Woods Mushroom Timeout",
-        "font_color": "Green",
         "scene": "Lost Woods",
         "hint": "the Lost Woods",
         "exits": {
@@ -271,9 +265,8 @@
     },
     {
         "region_name": "SFM Entryway",
-        "font_color": "Green",
         "scene": "Sacred Forest Meadow",
-        "hint": "the Sacred Forest Meadow",
+        "hint": "Sacred Forest Meadow",
         "exits": {
             "LW Beyond Mido": "True",
             "Sacred Forest Meadow": "
@@ -284,9 +277,8 @@
     },
     {
         "region_name": "Sacred Forest Meadow",
-        "font_color": "Green",
         "scene": "Sacred Forest Meadow",
-        "hint": "the Sacred Forest Meadow",
+        "hint": "Sacred Forest Meadow",
         "locations": {
             "Song from Saria": "is_child and Zeldas_Letter",
             "Sheik in Forest": "is_adult",
@@ -305,9 +297,8 @@
     },
     {
         "region_name": "SFM Forest Temple Entrance Ledge",
-        "font_color": "Green",
         "scene": "Sacred Forest Meadow",
-        "hint": "the Sacred Forest Meadow",
+        "hint": "Sacred Forest Meadow",
         "exits": {
             "Sacred Forest Meadow": "True",
             "Forest Temple Lobby": "True"
@@ -315,7 +306,6 @@
     },
     {
         "region_name": "LW Bridge From Forest",
-        "font_color": "Green",
         "scene": "Lost Woods",
         "hint": "the Lost Woods",
         "locations": {
@@ -327,7 +317,6 @@
     },
     {
         "region_name": "LW Bridge",
-        "font_color": "Green",
         "scene": "Lost Woods",
         "hint": "the Lost Woods",
         "exits": {
@@ -338,7 +327,6 @@
     },
     {
         "region_name": "Hyrule Field",
-        "font_color": "Light Blue",
         "scene": "Hyrule Field",
         "hint": "Hyrule Field",
         "time_passes": true,
@@ -368,7 +356,6 @@
     },
     {
         "region_name": "Lake Hylia",
-        "font_color": "Blue",
         "scene": "Lake Hylia",
         "hint": "Lake Hylia",
         "time_passes": true,
@@ -414,7 +401,6 @@
     },
     {
         "region_name": "LH Fishing Island",
-        "font_color": "Blue",
         "scene": "Lake Hylia",
         "hint": "Lake Hylia",
         "exits": {
@@ -461,7 +447,6 @@
     },
     {
         "region_name": "Gerudo Valley",
-        "font_color": "Yellow",
         "scene": "Gerudo Valley",
         "hint": "Gerudo Valley",
         "time_passes": true,
@@ -481,7 +466,6 @@
     },
     {
         "region_name": "GV Upper Stream",
-        "font_color": "Yellow",
         "scene": "Gerudo Valley",
         "hint": "Gerudo Valley",
         "time_passes": true,
@@ -499,7 +483,6 @@
     },
     {
         "region_name": "GV Lower Stream",
-        "font_color": "Yellow",
         "scene": "Gerudo Valley",
         "hint": "Gerudo Valley",
         "time_passes": true,
@@ -509,7 +492,6 @@
     },
     {
         "region_name": "GV Grotto Ledge",
-        "font_color": "Yellow",
         "scene": "Gerudo Valley",
         "hint": "Gerudo Valley",
         "time_passes": true,
@@ -521,7 +503,6 @@
     },
     {
         "region_name": "GV Crate Ledge",
-        "font_color": "Yellow",
         "scene": "Gerudo Valley",
         "hint": "Gerudo Valley",
         "time_passes": true,
@@ -534,7 +515,6 @@
     },
     {
         "region_name": "GV Fortress Side",
-        "font_color": "Yellow",
         "scene": "Gerudo Valley",
         "hint": "Gerudo Valley",
         "time_passes": true,
@@ -567,7 +547,6 @@
     },
     {
         "region_name": "Gerudo Fortress",
-        "font_color": "Yellow",
         "scene": "Gerudo Fortress",
         "hint": "Gerudo's Fortress",
         "events": {
@@ -605,7 +584,6 @@
     },
     {
         "region_name": "GF Outside Gate",
-        "font_color": "Yellow",
         "scene": "Gerudo Fortress",
         "hint": "Gerudo's Fortress",
         "exits": {
@@ -615,9 +593,8 @@
     },
     {
         "region_name": "Wasteland Near Fortress",
-        "font_color": "Yellow",
         "scene": "Haunted Wasteland",
-        "hint": "the Haunted Wasteland",
+        "hint": "Haunted Wasteland",
         "exits": {
             "GF Outside Gate": "True",
             "Haunted Wasteland": "
@@ -626,9 +603,8 @@
     },
     {
         "region_name": "Haunted Wasteland",
-        "font_color": "Yellow",
         "scene": "Haunted Wasteland",
-        "hint": "the Haunted Wasteland",
+        "hint": "Haunted Wasteland",
         "locations": {
             "Wasteland Chest": "has_fire_source",
             "Wasteland Bombchu Salesman": "
@@ -646,9 +622,8 @@
     },
     {
         "region_name": "Wasteland Near Colossus",
-        "font_color": "Yellow",
         "scene": "Haunted Wasteland",
-        "hint": "the Haunted Wasteland",
+        "hint": "Haunted Wasteland",
         "exits": {
             "Desert Colossus": "True",
             "Haunted Wasteland": "logic_reverse_wasteland"
@@ -656,9 +631,8 @@
     },
     {
         "region_name": "Desert Colossus",
-        "font_color": "Yellow",
         "scene": "Desert Colossus",
-        "hint": "the Desert Colossus",
+        "hint": "Desert Colossus",
         "time_passes": true,
         "locations": {
             "Colossus Freestanding PoH": "is_adult and here(can_plant_bean)",
@@ -682,9 +656,8 @@
     },
     {
         "region_name": "Desert Colossus From Spirit Lobby",
-        "font_color": "Yellow",
         "scene": "Desert Colossus",
-        "hint": "the Desert Colossus",
+        "hint": "Desert Colossus",
         "locations": {
             "Sheik at Colossus": "True"
         },
@@ -715,7 +688,6 @@
     },
     {
         "region_name": "Market",
-        "font_color": "Light Blue",
         "scene": "Market",
         "hint": "the Market",
         "exits": {
@@ -733,7 +705,6 @@
     },
     {
         "region_name": "Market Back Alley",
-        "font_color": "Light Blue",
         "scene": "Market",
         "hint": "the Market",
         "exits": {
@@ -764,9 +735,8 @@
     },
     {
         "region_name": "Temple of Time",
-        "font_color": "Light Blue",
         "scene": "Temple of Time",
-        "hint": "the Temple of Time",
+        "hint": "Temple of Time",
         "locations": {
             "ToT Light Arrows Cutscene": "is_adult and can_trigger_lacs"
         },
@@ -777,9 +747,8 @@
     },
     {
         "region_name": "Beyond Door of Time",
-        "font_color": "Light Blue",
         "scene": "Temple of Time",
-        "hint": "the Temple of Time",
+        "hint": "Temple of Time",
         "locations": {
             "Master Sword Pedestal": "True",
             "Sheik at Temple": "Forest_Medallion and is_adult"
@@ -790,9 +759,7 @@
     },
     {
         "region_name": "Castle Grounds",
-        "font_color": "Light Blue",
         "scene": "Castle Grounds",
-        "hint": "the Castle Grounds",
         "exits": {
             "Market": "is_child or at_dampe_time",
             "Hyrule Castle Grounds": "is_child",
@@ -801,7 +768,6 @@
     },
     {
         "region_name": "Hyrule Castle Grounds",
-        "font_color": "Light Blue",
         "scene": "Castle Grounds",
         "hint": "Hyrule Castle",
         "time_passes": true,
@@ -823,7 +789,6 @@
     },
     {
         "region_name": "HC Garden",
-        "font_color": "Light Blue",
         "scene": "Castle Grounds",
         "hint": "Hyrule Castle",
         "exits": {
@@ -834,7 +799,6 @@
     {
         # Directly reachable from Root in "Free Zelda"
         "region_name": "HC Garden Locations",
-        "font_color": "Light Blue",
         "scene": "Castle Grounds",
         "hint": "Hyrule Castle",
         "locations": {
@@ -854,7 +818,6 @@
     },
     {
         "region_name": "Ganons Castle Grounds",
-        "font_color": "Light Blue",
         "scene": "Castle Grounds",
         "hint": "outside Ganon's Castle",
         "locations": {
@@ -1009,7 +972,6 @@
     },
     {
         "region_name": "Kakariko Village",
-        "font_color": "Pink",
         "scene": "Kakariko Village",
         "hint": "Kakariko Village",
         "events": {
@@ -1058,7 +1020,6 @@
     },
     {
         "region_name": "Kak Impas Ledge",
-        "font_color": "Pink",
         "scene": "Kakariko Village",
         "hint": "Kakariko Village",
         "exits": {
@@ -1068,7 +1029,6 @@
     },
     {
         "region_name": "Kak Impas Rooftop",
-        "font_color": "Pink",
         "scene": "Kakariko Village",
         "hint": "Kakariko Village",
         "locations": {
@@ -1081,7 +1041,6 @@
     },
     {
         "region_name": "Kak Odd Medicine Rooftop",
-        "font_color": "Pink",
         "scene": "Kakariko Village",
         "hint": "Kakariko Village",
         "locations": {
@@ -1094,7 +1053,6 @@
     },
     {
         "region_name": "Kak Backyard",
-        "font_color": "Pink",
         "scene": "Kakariko Village",
         "hint": "Kakariko Village",
         "exits": {
@@ -1237,7 +1195,6 @@
     },
     {
         "region_name": "Graveyard",
-        "font_color": "Pink",
         "scene": "Graveyard",
         "hint": "the Graveyard",
         "locations": {
@@ -1320,7 +1277,6 @@
     },
     {
         "region_name": "Graveyard Warp Pad Region",
-        "font_color": "Pink",
         "scene": "Graveyard",
         "hint": "the Graveyard",
         "locations": {
@@ -1336,7 +1292,6 @@
     },
     {
         "region_name": "Kak Behind Gate",
-        "font_color": "Pink",
         "scene": "Kakariko Village",
         "hint": "Kakariko Village",
         "exits": {
@@ -1347,7 +1302,6 @@
     },
     {
         "region_name": "Death Mountain",
-        "font_color": "Red",
         "scene": "Death Mountain",
         "hint": "Death Mountain Trail",
         "time_passes": true,
@@ -1388,7 +1342,6 @@
     },
     {
         "region_name": "Death Mountain Summit",
-        "font_color": "Red",
         "scene": "Death Mountain",
         "hint": "Death Mountain Trail",
         "time_passes": true,
@@ -1424,7 +1377,6 @@
     },
     {
         "region_name": "Goron City",
-        "font_color": "Red",
         "scene": "Goron City",
         "hint": "Goron City",
         "events": {
@@ -1489,7 +1441,6 @@
     },
     {
         "region_name": "GC Woods Warp",
-        "font_color": "Red",
         "scene": "Goron City",
         "hint": "Goron City",
         "events": {
@@ -1502,7 +1453,6 @@
     },
     {
         "region_name": "GC Darunias Chamber",
-        "font_color": "Red",
         "scene": "Goron City",
         "hint": "Goron City",
         "events": {
@@ -1518,7 +1468,6 @@
     },
     {
         "region_name": "GC Grotto Platform",
-        "font_color": "Red",
         "scene": "Goron City",
         "hint": "Goron City",
         "exits": {
@@ -1547,7 +1496,6 @@
     },
     {
         "region_name": "DMC Upper Nearby",
-        "font_color": "Red",
         "scene": "Death Mountain Crater",
         "hint": "Death Mountain Crater",
         "exits": {
@@ -1558,7 +1506,6 @@
     },
     {
         "region_name": "DMC Upper Local",
-        "font_color": "Red",
         "scene": "Death Mountain Crater",
         "hint": "Death Mountain Crater",
         "locations": {
@@ -1580,7 +1527,6 @@
     },
     {
         "region_name": "DMC Ladder Area Nearby",
-        "font_color": "Red",
         "scene": "Death Mountain Crater",
         "hint": "Death Mountain Crater",
         "locations": {
@@ -1596,7 +1542,6 @@
     },
     {
         "region_name": "DMC Lower Nearby",
-        "font_color": "Red",
         "scene": "Death Mountain Crater",
         "hint": "Death Mountain Crater",
         "exits": {
@@ -1608,7 +1553,6 @@
     },
     {
         "region_name": "DMC Lower Local",
-        "font_color": "Red",
         "scene": "Death Mountain Crater",
         "hint": "Death Mountain Crater",
         "exits": {
@@ -1624,7 +1568,6 @@
     },
     {
         "region_name": "DMC Central Nearby",
-        "font_color": "Red",
         "scene": "Death Mountain Crater",
         "hint": "Death Mountain Crater",
         "locations": {
@@ -1640,7 +1583,6 @@
     },
     {
         "region_name": "DMC Central Local",
-        "font_color": "Red",
         "scene": "Death Mountain Crater",
         "hint": "Death Mountain Crater",
         "locations": {
@@ -1660,7 +1602,6 @@
     },
     {
         "region_name": "DMC Fire Temple Entrance",
-        "font_color": "Red",
         "scene": "Death Mountain Crater",
         "hint": "Death Mountain Crater",
         "exits": {
@@ -1690,7 +1631,6 @@
     },
     {
         "region_name": "ZR Front",
-        "font_color": "Blue",
         "scene": "Zora River",
         "hint": "Zora's River",
         "time_passes": true,
@@ -1704,7 +1644,6 @@
     },
     {
         "region_name": "Zora River",
-        "font_color": "Blue",
         "scene": "Zora River",
         "hint": "Zora's River",
         "time_passes": true,
@@ -1750,7 +1689,6 @@
     },
     {
         "region_name": "ZR Behind Waterfall",
-        "font_color": "Blue",
         "scene": "Zora River",
         "hint": "Zora's River",
         "exits": {
@@ -1760,7 +1698,6 @@
     },
     {
         "region_name": "ZR Top of Waterfall",
-        "font_color": "Blue",
         "scene": "Zora River",
         "hint": "Zora's River",
         "exits": {
@@ -1769,7 +1706,6 @@
     },
     {
         "region_name": "Zoras Domain",
-        "font_color": "Blue",
         "scene": "Zoras Domain",
         "hint": "Zora's Domain",
         "events": {
@@ -1806,7 +1742,6 @@
     },
     {
         "region_name": "ZD Behind King Zora",
-        "font_color": "Blue",
         "scene": "Zoras Domain",
         "hint": "Zora's Domain",
         "exits": {
@@ -1818,7 +1753,6 @@
     },
     {
         "region_name": "ZD Eyeball Frog Timeout",
-        "font_color": "Blue",
         "scene": "Zoras Domain",
         "hint": "Zora's Domain",
         "exits": {
@@ -1827,7 +1761,6 @@
     },
     {
         "region_name": "Zoras Fountain",
-        "font_color": "Blue",
         "scene": "Zoras Fountain",
         "hint": "Zora's Fountain",
         "locations": {
@@ -1853,7 +1786,6 @@
     },
     {
         "region_name": "ZF Ice Ledge",
-        "font_color": "Blue",
         "scene": "Zoras Fountain",
         "hint": "Zora's Fountain",
         "exits": {
@@ -1890,7 +1822,6 @@
     },
     {
         "region_name": "Lon Lon Ranch",
-        "font_color": "Light Blue",
         "scene": "Lon Lon Ranch",
         "hint": "Lon Lon Ranch",
         "events": {

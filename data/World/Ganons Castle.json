@@ -92,12 +92,12 @@
         },
         "locations": {
             "Ganons Castle Spirit Trial Crystal Switch Chest": "
-                (logic_spirit_trial_hookshot or Progressive_Hookshot)",
+                ((logic_spirit_trial_hookshot and (is_adult or Kokiri_Sword or Sticks)) or can_use(Progressive_Hookshot))",
             "Ganons Castle Spirit Trial Invisible Chest": "
-                (logic_spirit_trial_hookshot or Progressive_Hookshot) and
+                ((logic_spirit_trial_hookshot and (is_adult or Kokiri_Sword or Sticks)) or can_use(Progressive_Hookshot)) and
                 has_bombchus and (logic_lens_castle or can_use(Lens_of_Truth))",
             "Nut Pot": "
-                (logic_spirit_trial_hookshot or Progressive_Hookshot) and
+                is_adult and (logic_spirit_trial_hookshot or Progressive_Hookshot) and
                 has_bombchus and Bow and Mirror_Shield"
         }
     },
