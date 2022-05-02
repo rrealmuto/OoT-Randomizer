@@ -580,7 +580,7 @@ class WorldDistribution(object):
             entrance_found = False
             for pool_type, entrance_pool in entrance_pools.items():
                 try:
-                    matched_entrance = next(filter(lambda entrance: (entrance.name == name or (entrance.reverse and entrance.reverse.name == name and not worlds[self.id].settings.decouple_entrances)), entrance_pool))
+                    matched_entrance = next(filter(lambda entrance: (entrance.name == name or (entrance.reverse and entrance.reverse.name == name and not entrance.decoupled)), entrance_pool))
                 except StopIteration:
                     continue
 
@@ -599,7 +599,7 @@ class WorldDistribution(object):
                 target_region = record.region
                 
                 matched_targets_to_region = list(filter(lambda target: (target.connected_region and target.connected_region.name == target_region)
-                                                        or (target.reverse and target.reverse.connected_region and target.reverse.connected_region.name == target_region and not worlds[self.id].settings.decouple_entrances), 
+                                                        or (target.reverse and target.reverse.connected_region and target.reverse.connected_region.name == target_region and not target.decoupled), 
                                                         target_entrance_pools[pool_type]))
                 if not matched_targets_to_region:
                     raise RuntimeError('No entrance found to replace with %s that leads to %s in world %d' % 

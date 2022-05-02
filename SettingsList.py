@@ -2537,7 +2537,7 @@ setting_infos = [
             'glitchless': {'settings' : ['tricks_list_msg']},
             'glitched'  : {'settings' : ['allowed_tricks', 'shuffle_interior_entrances', 'shuffle_grotto_entrances',
                                          'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops', 'warp_songs', 'mix_entrance_pools', 'decouple_entrances',
-                                         'spawn_positions', 'mq_dungeons_mode', 'mq_dungeons_specific', 'mq_dungeons_count', 'shuffle_bosses', 'dungeon_shortcuts',
+                                         'shuffle_bosses', 'spawn_positions', 'mq_dungeons_mode', 'mq_dungeons_specific', 'mq_dungeons_count', 'dungeon_shortcuts',
                                          'deadly_bonks']},
             'none'      : {'settings' : ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
         },
@@ -3167,13 +3167,15 @@ setting_infos = [
         name           = 'shuffle_bosses',
         gui_text       = 'Shuffle Boss Entrances',
         gui_tooltip    = '''\
-            Shuffle dungeon boss rooms.  This affects the boss rooms of all stone and medallion dungeons.
+            Shuffle the pool of dungeon boss entrances.
+            This affects the boss rooms of all stone and medallion dungeons.
 
             'Age-Restricted':
-            Shuffle the locations of child boss rooms and adult boss rooms separately.
+            Shuffle the entrances of child and adult boss rooms separately.
 
             'Full':
-            Shuffle the locations of all boss rooms together.  Child may be expected to defeat Phantom Ganon and/or Bongo Bongo.
+            Shuffle the entrances of all boss rooms together.
+            Child may be expected to defeat Phantom Ganon and/or Bongo Bongo.
         ''',
         default        = 'off',
         choices        = {
@@ -3256,6 +3258,9 @@ setting_infos = [
             Decouple entrances when shuffling them.
             This means you are no longer guaranteed to end up back where you
             came from when you go back through an entrance.
+
+            Boss entrances are currently excluded from this setting and remain
+            coupled regardless.
         ''',
         default        = False,
         disable        = {

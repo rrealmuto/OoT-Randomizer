@@ -87,7 +87,7 @@ class Spoiler(object):
 
         self.entrances = {}
         for world in self.worlds:
-            spoiler_entrances = [entrance for entrance in world.get_shuffled_entrances() if entrance.primary or entrance.type == 'Overworld' or world.settings.decouple_entrances]
+            spoiler_entrances = [entrance for entrance in world.get_shuffled_entrances() if entrance.primary or entrance.type == 'Overworld' or entrance.decoupled]
             spoiler_entrances.sort(key=lambda entrance: entrance.name)
             spoiler_entrances.sort(key=lambda entrance: entrance_sort_order.get(entrance.type, -1))
             self.entrances[world.id] = spoiler_entrances

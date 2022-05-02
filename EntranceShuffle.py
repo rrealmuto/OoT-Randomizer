@@ -21,6 +21,8 @@ def set_all_entrances_data(world):
         forward_entrance.primary = True
         if type == 'Grotto':
             forward_entrance.data['index'] = 0x1000 + forward_entrance.data['grotto_id']
+        if world.settings.decouple_entrances and type not in ('ChildBoss', 'AdultBoss'):
+            forward_entrance.decoupled = True
         if return_entry:
             return_entry = return_entry[0]
             return_entrance = world.get_entrance(return_entry[0])
@@ -29,13 +31,15 @@ def set_all_entrances_data(world):
             forward_entrance.bind_two_way(return_entrance)
             if type == 'Grotto':
                 return_entrance.data['index'] = 0x2000 + return_entrance.data['grotto_id']
+            if world.settings.decouple_entrances and type not in ('ChildBoss', 'AdultBoss'):
+                return_entrance.decoupled = True
 
 
 def assume_entrance_pool(entrance_pool):
     assumed_pool = []
     for entrance in entrance_pool:
         assumed_forward = entrance.assume_reachable()
-        if entrance.reverse != None and (entrance.type in ('ChildBoss', 'AdultBoss') or not entrance.world.settings.decouple_entrances):
+        if entrance.reverse != None and not entrance.decoupled:
             assumed_return = entrance.reverse.assume_reachable()
             world = entrance.world
             if not (len(world.settings.mix_entrance_pools) > 1 and (world.settings.shuffle_overworld_entrances or world.shuffle_special_interior_entrances)):
@@ -989,7 +993,7 @@ def get_entrance_replacing(region, entrance_name):
 def change_connections(entrance, target_entrance):
     entrance.connect(target_entrance.disconnect())
     entrance.replaces = target_entrance.replaces
-    if entrance.reverse and (entrance.type in ('ChildBoss', 'AdultBoss') or not entrance.world.settings.decouple_entrances):
+    if entrance.reverse and not entrance.decoupled:
         target_entrance.replaces.reverse.connect(entrance.reverse.assumed.disconnect())
         target_entrance.replaces.reverse.replaces = entrance.reverse
 
@@ -998,7 +1002,7 @@ def change_connections(entrance, target_entrance):
 def restore_connections(entrance, target_entrance):
     target_entrance.connect(entrance.disconnect())
     entrance.replaces = None
-    if entrance.reverse and (entrance.type in ('ChildBoss', 'AdultBoss') or not entrance.world.settings.decouple_entrances):
+    if entrance.reverse and not entrance.decoupled:
         entrance.reverse.assumed.connect(target_entrance.replaces.reverse.disconnect())
         target_entrance.replaces.reverse.replaces = None
 
@@ -1007,7 +1011,7 @@ def restore_connections(entrance, target_entrance):
 def confirm_replacement(entrance, target_entrance):
     delete_target_entrance(target_entrance)
     logging.getLogger('').debug('Connected %s To %s [World %d]', entrance, entrance.connected_region, entrance.world.id)
-    if entrance.reverse and (entrance.type in ('ChildBoss', 'AdultBoss') or not entrance.world.settings.decouple_entrances):
+    if entrance.reverse and not entrance.decoupled:
         replaced_reverse = target_entrance.replaces.reverse
         delete_target_entrance(entrance.reverse.assumed)
         logging.getLogger('').debug('Connected %s To %s [World %d]', replaced_reverse, replaced_reverse.connected_region, replaced_reverse.world.id)

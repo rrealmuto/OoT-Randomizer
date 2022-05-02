@@ -10,16 +10,8 @@ This branch is available to use online at <https://ootrandomizer.com/generatorDe
 
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
-* Changes in Dev not yet in Dev-R, including:
-  * Ganondorf will hint light arrows on `Song from Impa` in “Skip Child Zelda” as “your pocket” rather than “Hyrule Castle” ([#1538](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1538))
-  * The “Misc. Hints” setting is split into 3 toggles: Ganondorf, Temple of Time altar, and a new option to disable warp song destination hints ([#1534](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1534))
-  * The file select screen correctly displays reverted trade sequence items ([#1527](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1527))
-  * The dungeon info screen in the pause menu shows an icon for dungeons in which all gold skulltulas have been checked ([#1508](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1508))
-  * A bug where items in shops would sometimes have wrong prices is fixed ([#1505](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1505))
-  * The child trade item is bound to D-pad right ([#1489](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1489))
-* The “Mix Entrance Pools” setting has new options to allow individually selecting entrance pools to be mixed ([Dev-R #67](https://github.com/Roman971/OoT-Randomizer/pull/67))
-* Plandos with conflicting settings are now errors ([#1562](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1562))
 * The total number of small keys collected for a dungeon is displayed on text boxes and in the pause menu ([#1563](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1563))
+* Plandos with conflicting settings are now errors ([#1562](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1562))
 * The “Special Deal Prices” setting is disabled if “Shuffle Shops” is set to “0 Items Per Shop”, since it does nothing ([#1561](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1561))
 * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
 * A bug where key rings would appear in brown chests with “Chest Appearance Matches Contents” set to “Classic” is fixed ([#1559](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1559))
