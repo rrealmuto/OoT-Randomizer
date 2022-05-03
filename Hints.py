@@ -547,6 +547,32 @@ def get_goal_count_hint(spoiler, world, checked):
 
     return (GossipText('%s requires #%d# %s.' % (goal.hint_text, item_count, item_text), ['Light Blue', goal.color]), None)
 
+def get_playthrough_location_hint(spoiler, world, checked):
+
+    locations = dict(filter(lambda locations: 
+        locations[0].world.id == world.id, 
+        spoiler.playthrough_locations.items()))
+
+    locations = list(filter(lambda location:
+        location.name not in checked
+        and location.name not in world.hint_exclusions
+        and location.name not in world.hint_type_overrides['playthrough-location']
+        and location.item.name not in world.item_hint_type_overrides['playthrough-location'],
+        locations))
+
+    if not locations:
+        return None
+
+    location = random.choice(locations)
+    checked.add(location.name)
+
+    if location.parent_region.dungeon:
+        location_text = getHint(location.parent_region.dungeon.name, world.settings.clearer_hints).text
+    else:
+        location_text, _ = get_hint_area(location)
+
+    return (GossipText('#%s# is on the way of the wanderer.' % location_text, ['Light Blue']), location)
+
 def get_barren_hint(spoiler, world, checked):
     if not hasattr(world, 'get_barren_hint_prev'):
         world.get_barren_hint_prev = RegionRestriction.NONE
@@ -892,19 +918,20 @@ def get_junk_hint(spoiler, world, checked):
 hint_func = {
     'trial':      lambda spoiler, world, checked: None,
     'always':     lambda spoiler, world, checked: None,
-    'woth':             get_woth_hint,
-    'goal':             get_goal_hint,
-    'goal-count':       get_goal_count_hint,
-    'barren':           get_barren_hint,
-    'item':             get_good_item_hint,
-    'sometimes':        get_sometimes_hint,
-    'song':             get_song_hint,
-    'overworld':        get_overworld_hint,
-    'dungeon':          get_dungeon_hint,
-    'entrance':         get_entrance_hint,
-    'random':           get_random_location_hint,
-    'junk':             get_junk_hint,
-    'named-item':       get_specific_item_hint
+    'woth':                 get_woth_hint,
+    'goal':                 get_goal_hint,
+    'goal-count':           get_goal_count_hint,
+    'playthrough-location': get_playthrough_location_hint,
+    'barren':               get_barren_hint,
+    'item':                 get_good_item_hint,
+    'sometimes':            get_sometimes_hint,
+    'song':                 get_song_hint,
+    'overworld':            get_overworld_hint,
+    'dungeon':              get_dungeon_hint,
+    'entrance':             get_entrance_hint,
+    'random':               get_random_location_hint,
+    'junk':                 get_junk_hint,
+    'named-item':           get_specific_item_hint
 }
 
 hint_dist_keys = {
@@ -913,6 +940,7 @@ hint_dist_keys = {
     'woth',
     'goal',
     'goal-count',
+    'playthrough-location',
     'barren',
     'item',
     'song',
