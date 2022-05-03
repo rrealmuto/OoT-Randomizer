@@ -47,15 +47,17 @@ static void print_msg(const char* s, int* top) {
 void draw_file_message(z64_disp_buf_t* db, const z64_menudata_t* menu_data) {
     if (WORLD_STRING_TXT[0] != '\0') {
         gDPSetPrimColor(db->p++, 0, 0, 255, 255, 255, 255);
-        int length = 6 + string_length(WORLD_STRING_TXT);
-        int left = (Z64_SCREEN_WIDTH - (length * TEXT_WIDTH)) / 2;
-        int top = 0x04;
-        
-        text_print_size("World", left, top, TEXT_WIDTH);
-        text_print_size(WORLD_STRING_TXT, left + 6 * TEXT_WIDTH, top, TEXT_WIDTH);
+        int icon_count = 5;
+        int icon_size = 24;
+        int padding = 8;
+        int width = (icon_count * icon_size) + ((icon_count - 1) * padding);
+        int left = (Z64_SCREEN_WIDTH + width) / 2 + padding;
+
+        text_print_size("World", left, 24 - TEXT_HEIGHT, TEXT_WIDTH);
+        text_print_size(WORLD_STRING_TXT, left, 24, TEXT_WIDTH);
         text_flush_size(db, TEXT_WIDTH, TEXT_HEIGHT, 0, 0);
     }
-    
+
     if (CFG_SHOW_SETTING_INFO) {
         uint8_t alpha = get_alpha(menu_data);
         if (alpha > 0) {
