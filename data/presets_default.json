@@ -160,14 +160,14 @@
     "skip_child_zelda": true,
     "dungeon_shortcuts_choice": "all",
     "dungeon_shortcuts": [
-      "deku_tree",
-      "dodongos_cavern",
-      "jabu_jabus_belly",
-      "forest_temple",
-      "fire_temple",
-      "water_temple",
-      "shadow_temple",
-      "spirit_temple"
+      "Deku Tree",
+      "Dodongos Cavern",
+      "Jabu Jabus Belly",
+      "Forest Temple",
+      "Fire Temple",
+      "Water Temple",
+      "Shadow Temple",
+      "Spirit Temple"
     ],
     "no_escape_sequence": true,
     "no_guard_stealth": true,

@@ -10,6 +10,7 @@ This branch is available to use online at <https://ootrandomizer.com/generatorDe
 
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
+* The internal names for the “Dungeon Boss Shortcuts” setting's options are changed to fix a logic bug ([#1566](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1566))
 * The total number of small keys collected for a dungeon is displayed in the pause menu (based on [#1563](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1563) but without the changes to text boxes)
 * Plandos with conflicting settings are now errors ([#1562](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1562))
 * The “Special Deal Prices” setting is disabled if “Shuffle Shops” is set to “0 Items Per Shop”, since it does nothing ([#1561](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1561))

@@ -2730,14 +2730,14 @@ setting_infos = [
         multiple_select = True,
         gui_text        = 'Dungeon Boss Shortcuts',
         choices         = {
-            'deku_tree':        "Deku Tree",
-            'dodongos_cavern':  "Dodongo's Cavern",
-            'jabu_jabus_belly': "Jabu Jabu's Belly",
-            'forest_temple':    "Forest Temple",
-            'fire_temple':      "Fire Temple",
-            'water_temple':     "Water Temple",  # doesn't do anything, but added to prevent confusion
-            'shadow_temple':    "Shadow Temple",
-            'spirit_temple':    "Spirit Temple",
+            'Deku Tree':        "Deku Tree",
+            'Dodongos Cavern':  "Dodongo's Cavern",
+            'Jabu Jabus Belly': "Jabu Jabu's Belly",
+            'Forest Temple':    "Forest Temple",
+            'Fire Temple':      "Fire Temple",
+            'Water Temple':     "Water Temple",  # doesn't do anything, but added to prevent confusion
+            'Shadow Temple':    "Shadow Temple",
+            'Spirit Temple':    "Spirit Temple",
         },
         default        = [],
         gui_params     = {
