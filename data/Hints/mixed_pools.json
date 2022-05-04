@@ -5,7 +5,6 @@
     "add_locations":         [
         { "location": "Deku Theater Skull Mask", "types": ["always"] }
     ],
-    "add_locations":         [],
     "remove_locations":      [],
     "add_items":             [],
     "remove_items":          [{"types": ["woth"], "item": "Zeldas Lullaby"}],
