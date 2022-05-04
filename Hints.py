@@ -553,8 +553,11 @@ def get_playthrough_location_hint(spoiler, world, checked):
         locations[0].world.id == world.id, 
         spoiler.playthrough_locations.items()))
 
+    required_location_names = list(map(lambda location: location.name, spoiler.required_locations[world.id]))
+
     locations = list(filter(lambda location:
         location.name not in checked
+        and location.name not in required_location_names
         and location.name not in world.hint_exclusions
         and location.name not in world.hint_type_overrides['playthrough-location']
         and location.item.name not in world.item_hint_type_overrides['playthrough-location'],
