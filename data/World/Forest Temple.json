@@ -16,7 +16,7 @@
             "Forest Temple Center Room Pot 4": "(is_adult or can_child_attack or Nuts)",
             "Forest Temple Center Room Pot 5": "(is_adult or can_child_attack or Nuts)",
             "Forest Temple Center Room Pot 6": "(is_adult or can_child_attack or Nuts)",
-            "Forest Temple Lower Stalfos Pot 1": "(is_adult or can_child_attack or Nuts)",
+            "Forest Temple Lower Stalfos Pot": "(is_adult or can_child_attack or Nuts)",
             "Fairy Pot": "has_bottle and (is_adult or can_child_attack or Nuts)"
         },
         "exits": {

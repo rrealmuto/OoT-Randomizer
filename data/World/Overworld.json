@@ -1174,7 +1174,6 @@
             "Kak Near Guards House Pot 1": "is_child",
             "Kak Near Guards House Pot 2": "is_child",
             "Kak Near Guards House Pot 3": "is_child",
-            "Kak Adult Red Rupee Crate": "is_adult",
             "Kak Adult Arrows Crate": "is_adult"
         },
         "exits": {
@@ -1246,7 +1245,8 @@
         "hint": "Kakariko Village",
         "locations": {
             "Kak Near Odd Medicine Building Pot 1": "is_child",
-            "Kak Near Odd Medicine Building Pot 2": "is_child"
+            "Kak Near Odd Medicine Building Pot 2": "is_child",
+            "Kak Adult Red Rupee Crate": "is_adult"
     },
         "exits": {
             "Kakariko Village": "True",

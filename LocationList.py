@@ -1030,7 +1030,7 @@ location_table = OrderedDict([
     ("Forest Temple Center Room Pot 4",                        ("Collectable",  0x03,  0x23, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
     ("Forest Temple Center Room Pot 5",                        ("Collectable",  0x03,  0x24, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
     ("Forest Temple Center Room Pot 6",                        ("Collectable",  0x03,  0x25, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
-    ("Forest Temple Lower Stalfos Pot 1",                      ("Collectable",  0x03,  0x31, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
+    ("Forest Temple Lower Stalfos Pot",                      ("Collectable",  0x03,  0x31, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
     #("Forest Temple Lower Stalfos Pot 2",                      ("Collectable",  0x03,  0x32, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
     ("Forest Temple Upper Stalfos Pot 1",                      ("Collectable",  0x03,  0x33, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
     ("Forest Temple Upper Stalfos Pot 2",                      ("Collectable",  0x03,  0x34, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
@@ -1315,7 +1315,7 @@ location_table = OrderedDict([
     ("Water Temple MQ Lizalfos Hallway Pot 3", ("Collectable", 0x05, 0x2A, None, 'Rupees (5)', ("Water Temple", "Master Quest", "Pot"))),
     ("Water Temple MQ Lizalfos Hallway Gate Pot 1", ("Collectable", 0x05, 0x3F, None, 'Recovery Heart', ("Water Temple", "Master Quest", "Pot"))),
     ("Water Temple MQ Lizalfos Hallway Gate Pot 2", ("Collectable", 0x05, 0x37, None, 'Recovery Heart', ("Water Temple", "Master Quest", "Pot"))),
-    ("Water Temple MQ River Pot 1", ("Collectable", 0x05, 0x2F, None, 'Arrows (10)', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Temple MQ River Pot", ("Collectable", 0x05, 0x2F, None, 'Arrows (10)', ("Water Temple", "Master Quest", "Pot"))),
     #("Water Temple MQ River Pot 2", ("Collectable", 0x05, 0x31, None, 'N/A', ("Water Temple", "Master Quest", "Pot")))
     # Water Temple MQ Crates
     ("Water Temple MQ Central Pillar Upper Crate 1", ("Collectable", 0x5, 0x40, ([0x25ee1a0],None), 'Rupee (1)', ("Water Temple", "Master Quest", "Crate"))),

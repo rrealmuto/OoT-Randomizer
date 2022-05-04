@@ -89,15 +89,15 @@
                 can_use(Fire_Arrows) or 
                 (can_use(Longshot) and (Hover_Boots or can_use(Dins_Fire)))",
             "Ganons Castle Shadow Trial Recovery Heart 1": 
-                "can_use(Lens_of_Truth) and (
+                "(logic_lens_castle or can_use(Lens_of_Truth)) and (
                     can_use(Fire_Arrows) or 
                     (can_use(Longshot) and (Hover_Boots or can_use(Dins_Fire))))",
             "Ganons Castle Shadow Trial Recovery Heart 2": 
-                    "can_use(Lens_of_Truth) and (
+                    "(logic_lens_castle or can_use(Lens_of_Truth)) and (
                     can_use(Fire_Arrows) or 
                     (can_use(Longshot) and (Hover_Boots or can_use(Dins_Fire))))",
             "Ganons Castle Shadow Trial Recovery Heart 3": 
-                    "can_use(Lens_of_Truth) and (
+                    "(logic_lens_castle or can_use(Lens_of_Truth)) and (
                     can_use(Fire_Arrows) or 
                     (can_use(Longshot) and (Hover_Boots or can_use(Dins_Fire))))",
             "Ganons Castle Shadow Trial Like Like Pot 1" : "can_use(Fire_Arrows) or can_use(Longshot)",
