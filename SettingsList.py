@@ -2706,6 +2706,8 @@ setting_infos = [
             <b>Forest Temple</b>: elevator raised and
             basement gates open
             <b>Fire Temple</b>: pillar knocked down
+            <b>Water Temple</b>: no change, but see the
+            note on "Shuffle Boss Entrances" below
             <b>Shadow Temple</b>: Truthspinner solved, boat
             block moved, and statue bridge moved. You start
             with 2 small keys if Shuffle Small Keys is set
@@ -2713,6 +2715,12 @@ setting_infos = [
             <b>Spirit Temple</b>: lobby elevator activated,
             shortcut silver blocks moved, central room
             platform lowered, and statue face melted
+
+            With "Shuffle Boss Entrances", the floor above
+            King Dodongo's arena is opened based on the
+            shortcut setting for the dungeon that contains
+            the entrance to King Dodongo's boss room, not
+            necessarily Dodongo's Cavern.
 
             Choose: Select dungeons with shortcuts
             All: Enable all dungeons shortcuts

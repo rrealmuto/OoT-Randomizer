@@ -166,11 +166,7 @@ class State(object):
 
 
     def region_has_shortcuts(self, region_name, fallback_dungeon):
-        region = self.world.get_region(region_name)
-        dungeon_name = (region.dungeon and region.dungeon.name) or fallback_dungeon
-        if not dungeon_name:
-            return False
-        return dungeon_name in self.world.settings.dungeon_shortcuts
+        return self.world.region_has_shortcuts(region_name, fallback_dungeon)
 
 
     def __getstate__(self):

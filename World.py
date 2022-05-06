@@ -1007,6 +1007,13 @@ class World(object):
     def reverse_boss_map(self):
         return {y: x for x, y in self.get_boss_map().items()}
 
+    def region_has_shortcuts(self, region_name, fallback_dungeon):
+        region = self.get_region(region_name)
+        dungeon_name = (region.dungeon and region.dungeon.name) or fallback_dungeon
+        if not dungeon_name:
+            return False
+        return dungeon_name in self.settings.dungeon_shortcuts
+
 
     def has_beaten_game(self, state):
         return state.has('Triforce')

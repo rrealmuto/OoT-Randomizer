@@ -1086,7 +1086,6 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         # Dodongo's Cavern, flags are the same between vanilla/MQ
         save_context.write_permanent_flag(Scenes.DODONGOS_CAVERN, FlagType.SWITCH, 0x3, 0x80) # DC Entrance Mud Wall
         save_context.write_permanent_flag(Scenes.DODONGOS_CAVERN, FlagType.SWITCH, 0x0, 0x04) # DC Mouth
-        save_context.write_permanent_flag(Scenes.KING_DODONGO_LOBBY, FlagType.SWITCH, 0x3, 0x02) # DC Boss Floor
         # Extra permanent flag in MQ for the child route
         if world.dungeon_mq['Dodongos Cavern']:
             save_context.write_permanent_flag(Scenes.DODONGOS_CAVERN, FlagType.SWITCH, 0x0, 0x02) # Armos wall switch
@@ -1136,6 +1135,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             save_context.write_permanent_flag(Scenes.SHADOW_TEMPLE, FlagType.CLEAR,  0x3, 0x40) # Shadow Spinning Blades room Skulltulas defeated
             save_context.write_permanent_flag(Scenes.SHADOW_TEMPLE, FlagType.SWITCH, 0x0, 0x20) # Shadow Boat Block
             save_context.write_permanent_flag(Scenes.SHADOW_TEMPLE, FlagType.SWITCH, 0x1, 0x01) # Shadow Bird Bridge
+
+    if world.region_has_shortcuts('King Dodongo Boss Room', 'Dodongos Cavern'):
+        save_context.write_permanent_flag(Scenes.KING_DODONGO_LOBBY, FlagType.SWITCH, 0x3, 0x02) # DC Boss Floor
 
     set_spirit_shortcut_actors(rom) # Change elevator starting position to avoid waiting a half cycle from the temple entrance
 
