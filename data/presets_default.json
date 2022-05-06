@@ -627,7 +627,7 @@
     "shuffle_interior_entrances": "all",
     "shuffle_grotto_entrances": true,
     "shuffle_dungeon_entrances": true,
-    "shuffle_bosses": false,
+    "shuffle_bosses": "off",
     "shuffle_overworld_entrances": true,
     "mix_entrance_pools": [
       "Interior",
