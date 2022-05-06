@@ -636,7 +636,7 @@
       "Overworld"
     ],
     "decouple_entrances": false,
-    "shuffle_gerudo_valley_river_exit": false,
+    "shuffle_gerudo_valley_river_exit": "off",
     "owl_drops": "balanced",
     "warp_songs": "balanced",
     "spawn_positions": "balanced",
