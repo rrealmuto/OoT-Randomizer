@@ -3062,7 +3062,7 @@ setting_infos = [
         name           = 'shuffle_beehives',
         gui_text       = 'Shuffle Beehives',
         gui_tooltip    = '''\
-            Enabling this will let beehives drop items.
+            Enabling this will let beehives drop items. Beehives will shake if they contain anything important.
             There are 32 Beehives located in:
                 Generic Grottos (x2 per grotto)
                 2 Scrub Grottos (x1 per grotto)
