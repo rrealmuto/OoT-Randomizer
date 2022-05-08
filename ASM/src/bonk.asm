@@ -87,6 +87,7 @@ APPLY_BONK_DAMAGE:
 
 @@return_bonk:
     jr      ra
+    nop
 
 KING_DODONGO_BONKS:
     ; displaced code
@@ -106,3 +107,31 @@ KING_DODONGO_BONKS:
 
 @@return_bonk_kd:
     jr      ra
+    nop
+
+CHECK_ROOM_MESH_TYPE:
+    ; displaced code
+    sll     a2, v0, 16
+    sra     a2, a2, 16
+
+    ; globalCtx->roomCtx.curRoom
+    lui     $at, 0x0001
+    ori     $at, $at, 0x1CBC
+    addu    t6, a0, $at
+
+    ; room->mesh->polygon.type
+    lw      t7, 0x0008(t6)
+    lbu     t8, 0x0000(t7)
+    
+    ; Room mesh type 1 is fixed camera areas
+    ; Room mesh type 2 is follow camera areas
+    ; Room mesh type 0 is ???
+    ori     t7, $zero, 0x0001
+    bne     t7, t8, @@return_death_subcamera
+    nop
+    j       0x8038D008 ; skips jal 0x8006B6FC (OnePointCutscene_Init), static location as part of player overlay
+    nop
+
+@@return_death_subcamera:
+    jr      ra
+    nop
