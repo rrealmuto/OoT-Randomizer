@@ -1007,6 +1007,7 @@ class Distribution(object):
         update_dict = {
             'file_hash': (self.src_dict.get('file_hash', []) + [None, None, None, None, None])[0:5],
             'playthrough': None,
+            'playthrough_locations': None,
             'entrance_playthrough': None,
             '_settings': self.src_dict.get('settings', {}),
         }
@@ -1187,6 +1188,11 @@ class Distribution(object):
                     })
                     for (sphere_nr, sphere) in self.playthrough.items()
                 }, depth=2)
+            
+            if self.playthrough_locations is not None:
+                self_dict[':playthrough_locations'] = {
+                    name: [rec.to_json() for rec in record] if is_pattern(name) else record.to_json() for (name, record) in self.playthrough_locations.items()
+                }
 
             if self.entrance_playthrough is not None and len(self.entrance_playthrough) > 0:
                 self_dict[':entrance_playthrough'] = AlignedDict({
@@ -1267,6 +1273,15 @@ class Distribution(object):
                     location_key = location.name
 
                 loc_rec_sphere[location_key] = LocationRecord.from_item(location.item)
+
+
+        self.playthrough_locations = {}
+        for (location, item) in spoiler.playthrough_locations.items():
+            if spoiler.settings.world_count > 1:
+                location_key = '%s [W%d]' % (location.name, location.world.id + 1)
+            else:
+                location_key = location.name
+            self.playthrough_locations[location_key] = LocationRecord.from_item(location.item)
 
         self.entrance_playthrough = {}
         for (sphere_nr, sphere) in spoiler.entrance_playthrough.items():

@@ -22,7 +22,7 @@ from Cosmetics import patch_cosmetics
 from DungeonList import create_dungeons
 from Fill import distribute_items_restrictive, ShuffleError
 from Item import Item
-from ItemPool import generate_itempool
+from ItemPool import generate_itempool, item_groups
 from Hints import buildGossipHints
 from HintList import clearHintExclusionCache
 from Utils import default_output_path, is_bundled, run_process, data_path
@@ -197,15 +197,16 @@ def place_items(settings, worlds, window=dummy_window()):
 def make_spoiler(settings, worlds, window=dummy_window()):
     logger = logging.getLogger('')
     spoiler = Spoiler(worlds)
-    if settings.create_spoiler:
-        window.update_status('Calculating Spoiler Data')
+    if settings.create_spoiler or settings.hints != 'none':
+        window.update_status('Calculating Playthrough Data')
         logger.info('Calculating playthrough.')
         create_playthrough(spoiler)
         window.update_progress(50)
-    if settings.create_spoiler or settings.hints != 'none':
+
         window.update_status('Calculating Hint Data')
         logger.info('Calculating hint data.')
         update_goal_items(spoiler)
+        calculate_playthrough_locations(spoiler)
         buildGossipHints(spoiler, worlds)
         window.update_progress(55)
     elif 'ganondorf' in settings.misc_hints:
@@ -791,3 +792,15 @@ def create_playthrough(spoiler):
 
     if worlds[0].entrance_shuffle:
         spoiler.entrance_playthrough = OrderedDict((str(i + 1), list(sphere)) for i, sphere in enumerate(entrance_spheres))
+
+def calculate_playthrough_locations(spoiler):
+
+    playthrough_locations = {}
+    for sphere, sphere_locations in spoiler.playthrough.items():
+        locations = dict(filter(lambda locations: 
+            locations[1].name in item_groups["MajorItem"], 
+            sphere_locations.items()))
+        playthrough_locations.update(locations)
+    
+    spoiler.playthrough_locations = playthrough_locations
+        
