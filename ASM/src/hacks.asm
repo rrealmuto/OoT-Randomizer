@@ -999,6 +999,16 @@ skip_GS_BGS_text:
     jal     CHECK_FOR_BONK_CANCEL
     nop
 
+; Hook to Game Over cutscene init in Player actor to prevent adding a subcamera
+; in scenes with fixed cameras like Link's House or outside Temple of Time.
+; The game crashes in these areas if the cutscene subcamera to rotate around
+; Link as he dies is added.
+; Replaces
+;   sll     a2, v0, 16
+;   sra     a2, a2, 16
+.orga 0xBD200C
+    jal     CHECK_ROOM_MESH_TYPE
+    nop
 
 ;==================================================================================================
 ; Roll Collision / Bonks Kills King Dodongo
