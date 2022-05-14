@@ -684,7 +684,9 @@
       "logic_lens_shadow",
       "logic_lens_shadow_platform",
       "logic_lens_bongo",
-      "logic_lens_spirit"
+      "logic_lens_spirit",
+      "logic_deku_b1_webs_with_bow",
+      "logic_visible_collisions"
     ],
     "logic_earliest_adult_trade": "prescription",
     "logic_latest_adult_trade": "claim_check",
