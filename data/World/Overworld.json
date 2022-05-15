@@ -421,9 +421,9 @@
         "locations": {
             "Pierre": "is_adult and Bonooru and not free_scarecrow",
             "LH Underwater Item": "is_child and can_dive",
-            "LH Underwater Green Rupee 1": "is_child",
+            "LH Underwater Near Shore Green Rupee": "is_child",
+            "LH Underwater Green Rupee 1": "is_child and can_dive",
             "LH Underwater Green Rupee 2": "is_child and can_dive",
-            "LH Underwater Green Rupee 3": "is_child and can_dive",
             "LH Sun": "
                 is_adult and 
                 (can_use(Distant_Scarecrow) or 'Water Temple Clear') and can_use(Bow)",

@@ -566,9 +566,9 @@ location_table = OrderedDict([
     
     # Lake Hylia
     ("LH Underwater Item",                                           ("NPC",          0x57,  0x15, None,                        'Rutos Letter',                          ("Lake Hylia",))),
-    ("LH Underwater Green Rupee 1",                                        ("Collectable",  0x57,  0x20, None,        'Rupee (1)',                            ("Lake Hylia", "Freestanding"))),
-    ("LH Underwater Green Rupee 2",                                        ("Collectable",  0x57,  0x21, None,        'Rupee (1)',                            ("Lake Hylia","Freestanding"))),
-    ("LH Underwater Green Rupee 3",                                        ("Collectable",  0x57,  0x22, None,        'Rupee (1)',                            ("Lake Hylia","Freestanding"))),
+    ("LH Underwater Near Shore Green Rupee",                         ("Collectable",  0x57,  0x20, None,        'Rupee (1)',                            ("Lake Hylia", "Freestanding"))),
+    ("LH Underwater Green Rupee 1",                                  ("Collectable",  0x57,  0x21, None,        'Rupee (1)',                            ("Lake Hylia","Freestanding"))),
+    ("LH Underwater Green Rupee 2",                                  ("Collectable",  0x57,  0x22, None,        'Rupee (1)',                            ("Lake Hylia","Freestanding"))),
     ("LH Child Fishing",                                             ("NPC",          0x49,  0x3E, None,                        'Piece of Heart',                        ("Lake Hylia", "Minigames",))),
     ("LH Adult Fishing",                                             ("NPC",          0x49,  0x38, None,                        'Progressive Scale',                     ("Lake Hylia", "Minigames",))),
     ("LH Lab Dive Red Rupee 1",                                          ("Collectable",  0x38,  0x01, None,                        'Rupees (20)',                           ("Lake Hylia","Freestanding"))),
