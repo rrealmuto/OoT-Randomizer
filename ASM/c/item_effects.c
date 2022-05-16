@@ -126,7 +126,7 @@ void give_silver_rupee(z64_file_t *save, int16_t dungeon_id, int16_t silver_rupe
     extended_savectx.silver_rupee_counts[silver_rupee_id]++;
 
     if (extended_savectx.silver_rupee_counts[silver_rupee_id] == var.needed_count) {
-        if (silver_rupee_id == 7) { // GTG Boulder room needs to set room clear flag as well in order to make the timer go away. Maybe others?
+        if (silver_rupee_id == 8) { // GTG Boulder room needs to set room clear flag as well in order to make the timer go away. Maybe others?
             if (z64_game.scene_index == dungeon_id)
                 z64_game.clear_flags |= 1 << 2;
             else
