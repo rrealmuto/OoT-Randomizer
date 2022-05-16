@@ -1,6 +1,6 @@
 #include "item_effects.h"
 #include "dungeon_info.h"
-
+#include "save.h"
 #define rupee_cap ((uint16_t*)0x800F8CEC)
 volatile uint8_t MAX_RUPEES = 0;
 
@@ -89,7 +89,7 @@ void give_small_key_ring(z64_file_t *save, int16_t dungeon_id, int16_t arg2) {
     save->dungeon_keys[dungeon_id] = keys + key_counts[dungeon_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
 }
 
-char silver_rupee_counts[10] = {0,0,0,0,0,0,0,0,0,0};
+
 
 uint16_t silver_rupee_vars[10] = {
     0x0149, //Shadow Temple Huge Pit
@@ -109,9 +109,9 @@ void give_silver_rupee(z64_file_t *save, int16_t dungeon_id, int16_t silver_rupe
     uint16_t needed_count = (var & 0x0FC0) >> 6;
     uint16_t switch_flag = (var & 0x3F);
 
-    silver_rupee_counts[silver_rupee_id]++;
+    extended_savectx.silver_rupee_counts[silver_rupee_id]++;
     
-    if(silver_rupee_counts[silver_rupee_id] == needed_count)
+    if(extended_savectx.silver_rupee_counts[silver_rupee_id] == needed_count)
     {
         if(silver_rupee_id == 7) //GTG Boulder room needs to set room clear flag as well in order to make the timer go away. Maybe others?
         {   

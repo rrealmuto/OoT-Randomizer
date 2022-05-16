@@ -1807,11 +1807,11 @@ location_table = OrderedDict([
     ("Gerudo Training Ground Underwater Silver Rupee 4",             ("Collectable",  0x0B,  0x48, ([0x28D9188], None),                        'Silver Rupee (GTG Underwater)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
     ("Gerudo Training Ground Underwater Silver Rupee 5",             ("Collectable",  0x0B,  0x49, ([0x28D9198], None),                        'Silver Rupee (GTG Underwater)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
 
-    ("Gerudo Training Ground Boulder Room Silver Rupee 1",           ("Collectable",  0x0B,  0x4A, ([0x28A10E0], None),                        'Silver Rupee (GTG Underwater)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground Boulder Room Silver Rupee 2",           ("Collectable",  0x0B,  0x4B, ([0x28A10F0], None),                        'Silver Rupee (GTG Underwater)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground Boulder Room Silver Rupee 3",           ("Collectable",  0x0B,  0x4C, ([0x28A1100], None),                        'Silver Rupee (GTG Underwater)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground Boulder Room Silver Rupee 4",           ("Collectable",  0x0B,  0x4D, ([0x28A1110], None),                        'Silver Rupee (GTG Underwater)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground Boulder Room Silver Rupee 5",           ("Collectable",  0x0B,  0x4E, ([0x28A1120], None),                        'Silver Rupee (GTG Underwater)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Boulder Room Silver Rupee 1",           ("Collectable",  0x0B,  0x4A, ([0x28A10E0], None),                        'Silver Rupee (GTG Boulder Room)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Boulder Room Silver Rupee 2",           ("Collectable",  0x0B,  0x4B, ([0x28A10F0], None),                        'Silver Rupee (GTG Boulder Room)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Boulder Room Silver Rupee 3",           ("Collectable",  0x0B,  0x4C, ([0x28A1100], None),                        'Silver Rupee (GTG Boulder Room)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Boulder Room Silver Rupee 4",           ("Collectable",  0x0B,  0x4D, ([0x28A1110], None),                        'Silver Rupee (GTG Boulder Room)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Boulder Room Silver Rupee 5",           ("Collectable",  0x0B,  0x4E, ([0x28A1120], None),                        'Silver Rupee (GTG Boulder Room)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
 
     # Gerudo Training Ground MQ
     ("Gerudo Training Ground MQ Lobby Left Chest",                   ("Chest",        0x0B,  0x13, None,                        'Arrows (10)',                           ("Gerudo Training Ground", "Master Quest",))),
