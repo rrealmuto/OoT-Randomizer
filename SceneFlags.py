@@ -12,7 +12,7 @@ def get_scene_flag_table(world):
         for location in world.get_locations():
             if(location.type == "Collectable"):
                 if(location.scene == i):
-                    if("Freestanding" in location.filter_tags or "ActorOverride" in location.filter_tags or "Silver Rupee"):
+                    if("Freestanding" in location.filter_tags or "ActorOverride" in location.filter_tags or "Silver Rupee" in location.filter_tags):
                         if location.default > max_freestanding_flag:
                             max_freestanding_flag = location.default
                     if("Crate" in location.filter_tags or "SmallCrate" in location.filter_tags or "Pot" in location.filter_tags or "FlyingPot" in location.filter_tags or "Beehive" in location.filter_tags or "Drop" in location.filter_tags or "RupeeTower" in location.filter_tags):
