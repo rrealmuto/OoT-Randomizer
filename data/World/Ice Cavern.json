@@ -18,11 +18,11 @@
             "Ice Cavern Map Chest": "Blue_Fire and is_adult",
             "Ice Cavern Compass Chest": "Blue_Fire",
             "Ice Cavern Iron Boots Chest": "
-            (Silver_Rupee_Ice_Cavern_Block_Push, 5) and Blue_Fire and 
+            (Silver_Rupee_Ice_Cavern_Push_Block, 5) and Blue_Fire and 
                 (is_adult or Slingshot or Sticks or 
                     Kokiri_Sword or can_use(Dins_Fire))",
             "Sheik in Ice Cavern": "
-            (Silver_Rupee_Ice_Cavern_Block_Push, 5) and Blue_Fire and 
+            (Silver_Rupee_Ice_Cavern_Push_Block, 5) and Blue_Fire and 
                 (is_adult or Slingshot or Sticks or 
                     Kokiri_Sword or can_use(Dins_Fire))",
             "Ice Cavern Map Room Recovery Heart 1": "is_adult",
@@ -48,8 +48,8 @@
             "Ice Cavern Block Push Silver Rupee 3": "True",
             "Ice Cavern Block Push Silver Rupee 4": "True",
             "Ice Cavern Block Push Silver Rupee 5": "True",
-            "Ice Cavern Near End Pot 1" : "(Silver_Rupee_Ice_Cavern_Block_Push, 5) and Blue_Fire",
-            "Ice Cavern Near End Pot 2" : "(Silver_Rupee_Ice_Cavern_Block_Push, 5) and Blue_Fire",
+            "Ice Cavern Near End Pot 1" : "(Silver_Rupee_Ice_Cavern_Push_Block, 5) and Blue_Fire",
+            "Ice Cavern Near End Pot 2" : "(Silver_Rupee_Ice_Cavern_Push_Block, 5) and Blue_Fire",
             "Ice Cavern Frozen Pot" : "is_adult and Blue_Fire and (Silver_Rupee_Ice_Cavern_Spinning_Blade, 5)",
             "Ice Cavern GS Spinning Scythe Room": "can_use(Hookshot) or can_use(Boomerang)",
             "Ice Cavern GS Heart Piece Room": "

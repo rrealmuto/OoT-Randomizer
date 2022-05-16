@@ -4,13 +4,13 @@
         "Adult Spawn -> Temple of Time" : {"region":"Gerudo Fortress", "from":"GV Fortress Side"}
     },
     "locations": {
-        "Market Guard House Child Pot 1" : "Silver Rupee (GTG Lava Room)",
-        "Market Guard House Child Pot 2" : "Silver Rupee (Shadow Temple Spinner Room)",
-        "Gerudo Training Ground Lobby Left Chest" : "Silver Rupee (GTG Boulder Room)",
-        "Gerudo Training Ground Lobby Right Chest" : "Silver Rupee (GTG Boulder Room)",
-        "Gerudo Training Ground Maze Path First Chest" : "Silver Rupee (GTG Boulder Room)",
-        "Gerudo Training Ground Maze Path Second Chest" : "Silver Rupee (GTG Boulder Room)",
-        "Gerudo Training Ground Stalfos Chest" : "Silver Rupee (GTG Boulder Room)",
-        "Gerudo Training Ground Underwater Silver Rupee 1" : "Silver Rupee (GTG Lava Room)"
+        "Market Guard House Child Pot 1" : "Silver Rupee (Gerudo Training Ground Lava)",
+        "Market Guard House Child Pot 2" : "Silver Rupee (Shadow Temple Scythe Shortcut)",
+        "Gerudo Training Ground Lobby Left Chest" : "Silver Rupee (Gerudo Training Ground Slopes)",
+        "Gerudo Training Ground Lobby Right Chest" : "Silver Rupee (Gerudo Training Ground Slopes)",
+        "Gerudo Training Ground Maze Path First Chest" : "Silver Rupee (Gerudo Training Ground Slopes)",
+        "Gerudo Training Ground Maze Path Second Chest" : "Silver Rupee (Gerudo Training Ground Slopes)",
+        "Gerudo Training Ground Stalfos Chest" : "Silver Rupee (Gerudo Training Ground Slopes)",
+        "Gerudo Training Ground Underwater Silver Rupee 1" : "Silver Rupee (Gerudo Training Ground Lava)"
     }
 }

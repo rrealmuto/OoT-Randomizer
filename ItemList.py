@@ -155,7 +155,7 @@ item_table = {
     'Small Key Ring (Ganons Castle)':                  ('SmallKey', True,  0xD3, {'alias': ('Small Key (Ganons Castle)', 10), 'progressive': float('Inf')}),
 
     'Silver Rupee (Dodongos Cavern Staircase)':                 ('Item',     True,  0xD4, {'progressive': 5}),
-    'Silver Rupee (Ice Cavern Spinning Scythe)':                ('Item',     True,  0xD5, {'progressive': 5}),
+    'Silver Rupee (Ice Cavern Spinning Blade)':                ('Item',     True,  0xD5, {'progressive': 5}),
     'Silver Rupee (Ice Cavern Push Block)':                     ('Item',     True,  0xD6, {'progressive': 5}),
     'Silver Rupee (Bottom of the Well Basement)':               ('Item',     True,  0xD7, {'progressive': 5}),
     'Silver Rupee (Shadow Temple Scythe Shortcut)':             ('Item',     True,  0xD8, {'progressive': 5}),

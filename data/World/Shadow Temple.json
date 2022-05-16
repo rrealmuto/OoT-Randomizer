@@ -36,12 +36,12 @@
         "dungeon": "Shadow Temple",
         "locations": {
             "Shadow Temple Compass Chest": "True",
-            "Shadow Temple Spinner Room Silver Rupee 1" : "True",
-            "Shadow Temple Spinner Room Silver Rupee 2" : "can_use(Hookshot)",
-            "Shadow Temple Spinner Room Silver Rupee 3" : "True",
-            "Shadow Temple Spinner Room Silver Rupee 4" : "True",
-            "Shadow Temple Spinner Room Silver Rupee 5" : "True",
-            "Shadow Temple Early Silver Rupee Chest": "(Silver_Rupee_Shadow_Temple_Spinner_Room, 5)"
+            "Shadow Temple Scythe Shortcut Silver Rupee 1" : "True",
+            "Shadow Temple Scythe Shortcut Silver Rupee 2" : "can_use(Hookshot)",
+            "Shadow Temple Scythe Shortcut Silver Rupee 3" : "True",
+            "Shadow Temple Scythe Shortcut Silver Rupee 4" : "True",
+            "Shadow Temple Scythe Shortcut Silver Rupee 5" : "True",
+            "Shadow Temple Early Silver Rupee Chest": "(Silver_Rupee_Shadow_Temple_Scythe_Shortcut, 5)"
         },
         "exits": {
             # If the shortcut is open, reverse shadow becomes an option, so we need to check for 4 keys with Lens/trick
