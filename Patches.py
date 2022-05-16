@@ -82,6 +82,22 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Add it to the extended object table
     add_to_extended_object_table(rom, 0x194, dd_obj_file)
 
+    # Build a Silver Rupee model from the Huge Rupee model
+    silver_rupee_obj_file = File({
+        'Name': 'object_gi_rupy',
+        'Start': '01914000',
+        'End': '01914800',
+    })
+    silver_rupee_obj_file.copy(rom)
+    # Update colors for the Silver Rupee variant
+    rom.write_bytes(silver_rupee_obj_file.start + 0x052C, [0xAA, 0xAA, 0xAA]) # Inner Primary Color?
+    rom.write_bytes(silver_rupee_obj_file.start + 0x0534, [0x5A, 0x5A, 0x5A]) # Inner Env Color?
+    rom.write_bytes(silver_rupee_obj_file.start + 0x05CC, [0xFF, 0xFF, 0xFF]) # Outer Primary Color?
+    rom.write_bytes(silver_rupee_obj_file.start + 0x05D4, [0xFF, 0xFF, 0xFF]) # Outer Env Color?
+    update_dmadata(rom, silver_rupee_obj_file)
+    # Add it to the extended object table
+    add_to_extended_object_table(rom, 0x195, silver_rupee_obj_file)
+
 
     # Create the textures for pots/crates. Note: No copyrighted material can be distributed w/ the randomizer. Because of this, patch files are used to create the new textures from the original texture in ROM.
     # Apply patches for custom textures for pots and crates and add as new files in rom
@@ -1603,7 +1619,12 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             patch_crate(location, rom)
         for location in smallcrate_locations:
             patch_small_crate(location, rom)
-            
+    
+    if world.settings.shuffle_silver_rupees:
+        silver_rupee_locations = [location for location in world.get_locations() if location.type == 'Collectable' and 'Silver Rupee' in location.filter_tags]
+        for silver_rupee_location in silver_rupee_locations:
+            patch_silver_rupee(silver_rupee_location, rom)
+
     # Write flag table data
     scene_flag_table = get_scene_flag_table(world)
     freestanding_flag_table_bytes, drop_flag_table_bytes, num_freestanding_flags, num_drop_flags = get_scene_flag_table_bytes(scene_flag_table)
@@ -2662,9 +2683,21 @@ def patch_beehive(location, rom: Rom):
         for address in location.address:
             rom.write_byte(address + 13, location.default)
 
+#Patches a silver rupee to be a collectible item for silver rupee shuffle
+def patch_silver_rupee(location, rom: Rom):
+    if location.address:
+        for address in location.address:
+            actor_bytes = rom.read_bytes(address, 16) #Read the actor
+            actor_bytes[0] = 0x00
+            actor_bytes[1] = 0x15 #Patch the actor to a collectible
+             
+            actor_bytes[14] = (location.default & 0x3F) #Patch the flag
+            actor_bytes[15] = (location.default & 0xC0)
+            rom.write_bytes(address, actor_bytes)
 
 #Patch the first boss key door in ganons tower that leads to the room w/ the pots
 def patch_ganons_tower_bk_door(rom: Rom, flag):
     var = (0x05 << 6) + (flag & 0x3F)
     bytes = [(var & 0xFF00) >> 8, var & 0xFF]
     rom.write_bytes(0x2EE30FE, bytes)
+

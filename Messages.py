@@ -256,6 +256,14 @@ ITEM_MESSAGES = {
     0x90FA: "\x08\x06\x49\x05\x41WINNER\x05\x40!\x04\x08\x13\x73You got a \x05\x41Piece of Heart\x05\x40!\x01You are already at\x01maximum health.",
     0x9002: "\x08You are a \x05\x43FOOL\x05\x40!",
     0x9003: "\x08You found a piece of the \x05\x41Triforce\x05\x40!",
+    0x9019: "\x08You found a \x05\x41Silver Rupee\x05\x40\x01for \x05\x41Shadow Temple Pit\x05\x40!\x09",
+    0x901A: "\x08You found a \x05\x41Silver Rupee\x05\x40\x01for \x05\x41Shadow Temple Spinner Room\x05\x40!\x09",
+    0x901B: "\x08You found a \x05\x41Silver Rupee\x05\x40\x01for \x05\x41Shadow Temple Invisible Spikes Room\x05\x40!\x09",
+    0x901C: "\x08You found a \x05\x41Silver Rupee\x05\x40\x01for \x05\x41Ice Cavern Spinning Blade Room\x05\x40!\x09",
+    0x901D: "\x08You found a \x05\x41Silver Rupee\x05\x40\x01for \x05\x41Ice Cavern Block Push Room\x05\x40!\x09",
+    0x901E: "\x08You found a \x05\x41Silver Rupee\x05\x40\x01for \x05\x41Gerudo Training Ground Lava Room\x05\x40!\x09",
+    0x901F: "\x08You found a \x05\x41Silver Rupee\x05\x40\x01for \x05\x41Gerudo Training Ground Underwater Room\x05\x40!\x09",
+    0x9020: "\x08You found a \x05\x41Silver Rupee\x05\x40\x01for \x05\x41Gerudo Training Ground Boulder Room\x05\x40!\x09",
 }
 
 KEYSANITY_MESSAGES = {

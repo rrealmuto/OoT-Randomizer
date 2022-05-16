@@ -244,6 +244,15 @@ item_row_t item_table[] = {
     [0xD2] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, 0, 0x9017, 0x00AA, 0x02, no_upgrade, give_small_key_ring, FORT_ID,   -1), // Gerudo Fortress Small Key Ring
     [0xD3] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, 0, 0x9018, 0x00AA, 0x02, no_upgrade, give_small_key_ring, CASTLE_ID, -1), // Ganon's Castle Small Key Ring
 
+    [0xD4] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, 0, 0x9019, 0x0195, 0x72, no_upgrade, give_silver_rupee, SHADOW_ID, 0), // Silver Rupee Shadow Temple Pit
+    [0xD5] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, 0, 0x901A, 0x0195, 0x72, no_upgrade, give_silver_rupee, SHADOW_ID, 1), // Silver Rupee Shadow Temple Spinner Room
+    [0xD6] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, 0, 0x901B, 0x0195, 0x72, no_upgrade, give_silver_rupee, SHADOW_ID, 2), // Silver Rupee Shadow Temple Invisible Spikes Room
+    [0xD7] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, 0, 0x901C, 0x0195, 0x72, no_upgrade, give_silver_rupee, ICE_ID, 3), // Ice Cavern Spinning Blade Room
+    [0xD8] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, 0, 0x901D, 0x0195, 0x72, no_upgrade, give_silver_rupee, ICE_ID, 4), // Ice Cavern Block Push Room
+    [0xD9] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, 0, 0x901E, 0x0195, 0x72, no_upgrade, give_silver_rupee, GTG_ID, 5), // GTG Lava Room
+    [0xDA] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, 0, 0x901F, 0x0195, 0x72, no_upgrade, give_silver_rupee, GTG_ID, 6), // GTG Underwater
+    [0xDB] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, 0, 0x9020, 0x0195, 0x72, no_upgrade, give_silver_rupee, GTG_ID, 7), // GTG Boulder Room
+
 };
 
 item_row_t *get_item_row(uint16_t item_id) {

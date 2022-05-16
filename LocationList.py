@@ -1448,6 +1448,26 @@ location_table = OrderedDict([
     ("Shadow Temple 3 Spinning Pots Rupee 8",       ("Collectable", 0x7, 0x47, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "RupeeTower"))),
     ("Shadow Temple 3 Spinning Pots Rupee 9",       ("Collectable", 0x7, 0x48, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "RupeeTower"))),
    
+    #Shadow Temple Silver Rupees
+    ("Shadow Temple Huge Pit Silver Rupee 1",                ("Collectable", 0x07, 0x49, ([0x27F40B0], None), 'Silver Rupee (Shadow Temple Huge Pit)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
+    ("Shadow Temple Huge Pit Silver Rupee 2",                ("Collectable", 0x07, 0x4A, ([0x27F40C0], None), 'Silver Rupee (Shadow Temple Huge Pit)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
+    ("Shadow Temple Huge Pit Silver Rupee 3",                ("Collectable", 0x07, 0x4B, ([0x27F40D0], None), 'Silver Rupee (Shadow Temple Huge Pit)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
+    ("Shadow Temple Huge Pit Silver Rupee 4",                ("Collectable", 0x07, 0x4C, ([0x27F40E0], None), 'Silver Rupee (Shadow Temple Huge Pit)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
+    ("Shadow Temple Huge Pit Silver Rupee 5",                ("Collectable", 0x07, 0x4D, ([0x27F40F0], None), 'Silver Rupee (Shadow Temple Huge Pit)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
+
+    ("Shadow Temple Spinner Room Silver Rupee 1",            ("Collectable", 0x07, 0x4E, ([0x27E4048], None), 'Silver Rupee (Shadow Temple Spinner Room)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
+    ("Shadow Temple Spinner Room Silver Rupee 2",            ("Collectable", 0x07, 0x4F, ([0x27E4058], None), 'Silver Rupee (Shadow Temple Spinner Room)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
+    ("Shadow Temple Spinner Room Silver Rupee 3",            ("Collectable", 0x07, 0x50, ([0x27E4068], None), 'Silver Rupee (Shadow Temple Spinner Room)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
+    ("Shadow Temple Spinner Room Silver Rupee 4",            ("Collectable", 0x07, 0x51, ([0x27E4078], None), 'Silver Rupee (Shadow Temple Spinner Room)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
+    ("Shadow Temple Spinner Room Silver Rupee 5",            ("Collectable", 0x07, 0x52, ([0x27E4088], None), 'Silver Rupee (Shadow Temple Spinner Room)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
+
+    ("Shadow Temple Invisible Spikes Silver Rupee 1",        ("Collectable", 0x07, 0x53, ([0x2809070], None), 'Silver Rupee (Shadow Temple Invisible Spikes)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
+    ("Shadow Temple Invisible Spikes Silver Rupee 2",        ("Collectable", 0x07, 0x54, ([0x2809080], None), 'Silver Rupee (Shadow Temple Invisible Spikes)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
+    ("Shadow Temple Invisible Spikes Silver Rupee 3",        ("Collectable", 0x07, 0x55, ([0x2809090], None), 'Silver Rupee (Shadow Temple Invisible Spikes)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
+    ("Shadow Temple Invisible Spikes Silver Rupee 4",        ("Collectable", 0x07, 0x56, ([0x28090A0], None), 'Silver Rupee (Shadow Temple Invisible Spikes)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
+    ("Shadow Temple Invisible Spikes Silver Rupee 5",        ("Collectable", 0x07, 0x57, ([0x28090B0], None), 'Silver Rupee (Shadow Temple Invisible Spikes)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
+
+
     #Shadow Temple Vanilla Pots
     ("Shadow Temple Whispering Walls Near Dead Hand Pot",                         ("Collectable",  0x07,  0x28, None,                        'Rupees (5)',                            ("Shadow Temple", "Vanilla", "Pot"))),
     ("Shadow Temple Whispering Walls Left Pot 1",                         ("Collectable",  0x07,  0x29, None,                        'Rupees (5)',                            ("Shadow Temple", "Vanilla", "Pot"))),
@@ -1703,6 +1723,19 @@ location_table = OrderedDict([
     ("Ice Cavern GS Spinning Scythe Room",                           ("GS Token",     0x09,  0x02, None,                        'Gold Skulltula Token',                  ("Ice Cavern", "Vanilla", "Skulltulas",))),
     ("Ice Cavern GS Heart Piece Room",                               ("GS Token",     0x09,  0x04, None,                        'Gold Skulltula Token',                  ("Ice Cavern", "Vanilla", "Skulltulas",))),
     ("Ice Cavern GS Push Block Room",                                ("GS Token",     0x09,  0x01, None,                        'Gold Skulltula Token',                  ("Ice Cavern", "Vanilla", "Skulltulas",))),
+    
+    #Ice Cavern Silver Rupees
+    ("Ice Cavern Spinning Blade Silver Rupee 1",                    ("Collectable",   0x09,  0x40, ([0x2C19084], None),        'Silver Rupee (Ice Cavern Spinning Blade)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
+    ("Ice Cavern Spinning Blade Silver Rupee 2",                    ("Collectable",   0x09,  0x41, ([0x2C19094], None),        'Silver Rupee (Ice Cavern Spinning Blade)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
+    ("Ice Cavern Spinning Blade Silver Rupee 3",                    ("Collectable",   0x09,  0x42, ([0x2C190A4], None),        'Silver Rupee (Ice Cavern Spinning Blade)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
+    ("Ice Cavern Spinning Blade Silver Rupee 4",                    ("Collectable",   0x09,  0x43, ([0x2C190B4], None),        'Silver Rupee (Ice Cavern Spinning Blade)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
+    ("Ice Cavern Spinning Blade Silver Rupee 5",                    ("Collectable",   0x09,  0x44, ([0x2C190C4], None),        'Silver Rupee (Ice Cavern Spinning Blade)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
+    
+    ("Ice Cavern Block Push Silver Rupee 1",                        ("Collectable",   0x09,  0x45, ([0x2C2A108], None),        'Silver Rupee (Ice Cavern Block Push)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
+    ("Ice Cavern Block Push Silver Rupee 2",                        ("Collectable",   0x09,  0x46, ([0x2C2A108], None),        'Silver Rupee (Ice Cavern Block Push)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
+    ("Ice Cavern Block Push Silver Rupee 3",                        ("Collectable",   0x09,  0x47, ([0x2C2A108], None),        'Silver Rupee (Ice Cavern Block Push)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
+    ("Ice Cavern Block Push Silver Rupee 4",                        ("Collectable",   0x09,  0x48, ([0x2C2A108], None),        'Silver Rupee (Ice Cavern Block Push)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
+    ("Ice Cavern Block Push Silver Rupee 5",                        ("Collectable",   0x09,  0x49, ([0x2C2A108], None),        'Silver Rupee (Ice Cavern Block Push)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
     #Ice Cavern Vanilla Pots
     ("Ice Cavern Hall Pot 1",                                        ("Collectable",   0x09,  0x25, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
     ("Ice Cavern Hall Pot 2",                                        ("Collectable",   0x09,  0x26, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
@@ -1760,6 +1793,26 @@ location_table = OrderedDict([
     ("Gerudo Training Ground Maze Path Second Chest",                ("Chest",        0x0B,  0x0A, None,                        'Rupees (20)',                           ("Gerudo Training Ground", "Vanilla",))),
     ("Gerudo Training Ground Maze Path Third Chest",                 ("Chest",        0x0B,  0x09, None,                        'Arrows (30)',                           ("Gerudo Training Ground", "Vanilla",))),
     ("Gerudo Training Ground Maze Path Final Chest",                 ("Chest",        0x0B,  0x0C, None,                        'Ice Arrows',                            ("Gerudo Training Ground", "Vanilla",))),
+    
+    # Gerudo Training Ground Silver Rupees
+    ("Gerudo Training Ground Lava Room Silver Rupee 1",              ("Collectable",  0x0B,  0x40, ([0x28BF0F4], None),                        'Silver Rupee (GTG Lava Room)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Lava Room Silver Rupee 2",              ("Collectable",  0x0B,  0x41, ([0x28BF104], None),                        'Silver Rupee (GTG Lava Room)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Lava Room Silver Rupee 3",              ("Collectable",  0x0B,  0x42, ([0x28BF114], None),                        'Silver Rupee (GTG Lava Room)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Lava Room Silver Rupee 4",              ("Collectable",  0x0B,  0x43, ([0x28BF124], None),                        'Silver Rupee (GTG Lava Room)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Lava Room Silver Rupee 5",              ("Collectable",  0x0B,  0x44, ([0x28BF134], None),                        'Silver Rupee (GTG Lava Room)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    
+    ("Gerudo Training Ground Underwater Silver Rupee 1",             ("Collectable",  0x0B,  0x45, ([0x28D9158], None),                        'Silver Rupee (GTG Underwater)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Underwater Silver Rupee 2",             ("Collectable",  0x0B,  0x46, ([0x28D9168], None),                        'Silver Rupee (GTG Underwater)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Underwater Silver Rupee 3",             ("Collectable",  0x0B,  0x47, ([0x28D9178], None),                        'Silver Rupee (GTG Underwater)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Underwater Silver Rupee 4",             ("Collectable",  0x0B,  0x48, ([0x28D9188], None),                        'Silver Rupee (GTG Underwater)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Underwater Silver Rupee 5",             ("Collectable",  0x0B,  0x49, ([0x28D9198], None),                        'Silver Rupee (GTG Underwater)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+
+    ("Gerudo Training Ground Boulder Room Silver Rupee 1",           ("Collectable",  0x0B,  0x4A, ([0x28A10E0], None),                        'Silver Rupee (GTG Underwater)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Boulder Room Silver Rupee 2",           ("Collectable",  0x0B,  0x4B, ([0x28A10F0], None),                        'Silver Rupee (GTG Underwater)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Boulder Room Silver Rupee 3",           ("Collectable",  0x0B,  0x4C, ([0x28A1100], None),                        'Silver Rupee (GTG Underwater)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Boulder Room Silver Rupee 4",           ("Collectable",  0x0B,  0x4D, ([0x28A1110], None),                        'Silver Rupee (GTG Underwater)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Boulder Room Silver Rupee 5",           ("Collectable",  0x0B,  0x4E, ([0x28A1120], None),                        'Silver Rupee (GTG Underwater)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+
     # Gerudo Training Ground MQ
     ("Gerudo Training Ground MQ Lobby Left Chest",                   ("Chest",        0x0B,  0x13, None,                        'Arrows (10)',                           ("Gerudo Training Ground", "Master Quest",))),
     ("Gerudo Training Ground MQ Lobby Right Chest",                  ("Chest",        0x0B,  0x07, None,                        'Bombchus (5)',                          ("Gerudo Training Ground", "Master Quest",))),

@@ -89,6 +89,45 @@ void give_small_key_ring(z64_file_t *save, int16_t dungeon_id, int16_t arg2) {
     save->dungeon_keys[dungeon_id] = keys + key_counts[dungeon_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
 }
 
+char silver_rupee_counts[10] = {0,0,0,0,0,0,0,0,0,0};
+
+uint16_t silver_rupee_vars[10] = {
+    0x0149, //Shadow Temple Huge Pit
+    0x0141, //Shadow Temple Spinner Room
+    0x0148, //Shadow Temple Invisible Spikes Room
+    0x0148, //Ice Cavern Spinning Blade Room
+    0x0149, //Ice Cavern Block Push Room
+    0x014C, //GTG Lava Room
+    0x015B, //GTG Underwater
+    0x015C, //GTG Boulder Room
+    0x0000,
+    0x0000
+};
+
+void give_silver_rupee(z64_file_t *save, int16_t dungeon_id, int16_t silver_rupee_id) {
+    uint16_t var = silver_rupee_vars[silver_rupee_id];
+    uint16_t needed_count = (var & 0x0FC0) >> 6;
+    uint16_t switch_flag = (var & 0x3F);
+
+    silver_rupee_counts[silver_rupee_id]++;
+    
+    if(silver_rupee_counts[silver_rupee_id] == needed_count)
+    {
+        if(silver_rupee_id == 7) //GTG Boulder room needs to set room clear flag as well in order to make the timer go away. Maybe others?
+        {   
+            if(z64_game.scene_index == dungeon_id)
+                z64_game.clear_flags |= 1 << 2;
+            else 
+                save->scene_flags[dungeon_id].clear |= 1 << 2;
+        }
+        if(z64_game.scene_index == dungeon_id)
+            z64_game.swch_flags |= 1 << switch_flag;
+        else 
+            save->scene_flags[dungeon_id].swch |= 1 << switch_flag;
+    }
+
+}
+
 void give_defense(z64_file_t *save, int16_t arg1, int16_t arg2) {
     save->double_defense = 1;
     save->defense_hearts = 20;

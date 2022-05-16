@@ -90,7 +90,7 @@ override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_
         // Check if it was a dropped collectable and use a separate override for that
         EnItem00 *item = (EnItem00 *)actor;
         uint8_t flag = ((item->actor.dropFlag & 0x06) << 5) + item->collectibleFlag;
-        if (item->actor.dropFlag) {
+        if (item->actor.dropFlag & 0x01) {
             // Use the same override flags for the pots in ganon's tower
             if (scene == 0x0A)
                 scene = 0x19;

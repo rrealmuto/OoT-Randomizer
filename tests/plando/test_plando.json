@@ -1,8 +1,14 @@
 {
     "entrances": {
-        "Child Spawn -> KF Links House" : {"region":"Zoras Domain", "from":"ZR Behind Waterfall"},
-        "Adult Spawn -> Temple of Time" : {"region":"Hyrule Field", "from":"Market Entrance"}
+        "Child Spawn -> KF Links House" : {"region":"Market Guard House", "from":"Market Entrance"},
+        "Adult Spawn -> Temple of Time" : {"region":"Gerudo Fortress", "from":"GV Fortress Side"}
     },
     "locations": {
+        "Gerudo Training Ground Lobby Left Chest" : "Silver Rupee (GTG Boulder Room)",
+        "Gerudo Training Ground Lobby Right Chest" : "Silver Rupee (GTG Boulder Room)",
+        "Gerudo Training Ground Maze Path First Chest" : "Silver Rupee (GTG Boulder Room)",
+        "Gerudo Training Ground Maze Path Second Chest" : "Silver Rupee (GTG Boulder Room)",
+        "Gerudo Training Ground Stalfos Chest" : "Silver Rupee (GTG Boulder Room)",
+        "Gerudo Training Ground Underwater Silver Rupee 2" : "Light Arrows"
     }
 }

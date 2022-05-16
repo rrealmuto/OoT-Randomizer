@@ -440,6 +440,13 @@ def get_pool_core(world):
                 shuffle_item = False
                 location.disabled = DisableType.DISABLED
 
+        # Silver Rupees
+        elif location.type == 'Collectable' and 'Silver Rupee' in location.filter_tags:
+            if world.settings.shuffle_silver_rupees:
+                shuffle_item = True
+            else:
+                shuffle_item = False
+
         # Dungeon Items
         elif location.dungeon is not None:
             dungeon = location.dungeon
@@ -493,6 +500,8 @@ def get_pool_core(world):
         elif shuffle_item is not None:
             placed_items[location.name] = item
     # End of Locations loop.
+
+
 
     if world.settings.shopsanity != 'off':
         pool.extend(min_shop_items)

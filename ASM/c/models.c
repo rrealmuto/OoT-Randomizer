@@ -30,7 +30,7 @@ void load_object_file(uint32_t object_id, uint8_t *buf) {
         entry = &(z64_object_table[object_id]);
     } else {
         z64_object_table_t *extended_table = (z64_object_table_t *) (&EXTENDED_OBJECT_TABLE);
-        entry = extended_table + (object_id - num_vanilla_objects) * sizeof(z64_object_table) / 8;
+        entry = &extended_table[object_id - num_vanilla_objects - 1];
     }
     uint32_t vrom_start = entry->vrom_start;
     uint32_t size = entry->vrom_end - vrom_start;

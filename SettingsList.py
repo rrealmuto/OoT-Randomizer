@@ -3077,6 +3077,18 @@ setting_infos = [
         },
     ),
     Checkbutton(
+        name           = 'shuffle_silver_rupees',
+        gui_text       = 'Shuffle Silver Rupees',
+        gui_tooltip    = '''\
+            Enabling this shuffle silver rupee puzzles.
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    ),
+    Checkbutton(
         name           = 'shuffle_beans',
         gui_text       = 'Shuffle Magic Beans',
         gui_tooltip    = '''\
