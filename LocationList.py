@@ -1634,7 +1634,21 @@ location_table = OrderedDict([
     ("Spirit Temple MQ GS Nine Thrones Room North",                  ("GS Token",     0x06,  0x10, None,                        'Gold Skulltula Token',                  ("Spirit Temple", "Master Quest", "Skulltulas",))),
 
     ("Spirit Temple Twinrova Heart",                                 ("BossHeart",    0x17,  0x4F, None,                        'Heart Container',                       ("Spirit Temple", "Vanilla", "Master Quest",))),
- #Spirit Temple Pots
+ 
+    #Spirit Temple Silver Rupees
+    ("Spirit Temple Adult Boulder Silver Rupee 1",                   ("Collectable", 0x06, 0x50, ([0x2B650B0], None),                    'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    ("Spirit Temple Adult Boulder Silver Rupee 2",                   ("Collectable", 0x06, 0x51, ([0x2B650C0], None),                    'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    ("Spirit Temple Adult Boulder Silver Rupee 3",                   ("Collectable", 0x06, 0x52, ([0x2B650D0], None),                    'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    ("Spirit Temple Adult Boulder Silver Rupee 4",                   ("Collectable", 0x06, 0x53, ([0x2B650E0], None),                    'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    ("Spirit Temple Adult Boulder Silver Rupee 5",                   ("Collectable", 0x06, 0x54, ([0x2B650F0], None),                    'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    ("Spirit Temple Sun Block Room Silver Rupee 1",                  ("Collectable", 0x06, 0x55, ([0x2B48114], None),                    'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    ("Spirit Temple Sun Block Room Silver Rupee 2",                  ("Collectable", 0x06, 0x56, ([0x2B48124], None),                    'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    ("Spirit Temple Sun Block Room Silver Rupee 3",                  ("Collectable", 0x06, 0x57, ([0x2B48134], None),                    'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    ("Spirit Temple Sun Block Room Silver Rupee 4",                  ("Collectable", 0x06, 0x58, ([0x2B48144], None),                    'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    ("Spirit Temple Sun Block Room Silver Rupee 5",                  ("Collectable", 0x06, 0x59, ([0x2B48154], None),                    'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    
+
+    #Spirit Temple Pots
     ("Spirit Temple Lobby Pot 1",                                    ("Collectable",  0x06,  0x21, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
     ("Spirit Temple Lobby Pot 2",                                    ("Collectable",  0x06,  0x22, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
     ("Spirit Temple Child Climb Pot",                                ("Collectable",  0x06,  0x23, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
@@ -1666,7 +1680,7 @@ location_table = OrderedDict([
     ("Spirit Temple Big Mirror Flying Pot 4", ("Collectable", 0x6, 0x3C, None, 'Recovery Heart', ("Spirit Temple", "Vanilla", "FlyingPot"))),
     ("Spirit Temple Big Mirror Flying Pot 5", ("Collectable", 0x6, 0x3D, None, 'Recovery Heart', ("Spirit Temple", "Vanilla", "FlyingPot"))),
     ("Spirit Temple Big Mirror Flying Pot 6", ("Collectable", 0x6, 0x3E, None, 'Recovery Heart', ("Spirit Temple", "Vanilla", "FlyingPot"))),
-    
+
     # Spirit Temple MQ Pots
     ("Spirit Temple MQ Lobby Pot 1", ("Collectable", 0x06, 0x31, None, 'Bombs (5)', ("Spirit Temple", "Master Quest", "Pot"))),
     ("Spirit Temple MQ Lobby Pot 2", ("Collectable", 0x06, 0x21, None, 'Recovery Heart', ("Spirit Temple", "Master Quest", "Pot"))),
@@ -1881,6 +1895,29 @@ location_table = OrderedDict([
     ("Ganons Castle Spirit Trial Pot 1",                             ("Collectable",  0x0D,  0x33, None,                        'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Pot"))),
     ("Ganons Castle Spirit Trial Pot 2",                             ("Collectable",  0x0D,  0x34, None,                        'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Pot"))),
     
+    # Ganons Castle Silver Rupees
+    ("Ganons Castle Spirit Trial Silver Rupee 1",                    ("Collectable",  0x0D,  0x40, ([0x325F1A0], None),                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
+    ("Ganons Castle Spirit Trial Silver Rupee 2",                    ("Collectable",  0x0D,  0x41, ([0x325F1B0], None),                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
+    ("Ganons Castle Spirit Trial Silver Rupee 3",                    ("Collectable",  0x0D,  0x42, ([0x325F1C0], None),                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
+    ("Ganons Castle Spirit Trial Silver Rupee 4",                    ("Collectable",  0x0D,  0x43, ([0x325F1D0], None),                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
+    ("Ganons Castle Spirit Trial Silver Rupee 5",                    ("Collectable",  0x0D,  0x44, ([0x325F1E0], None),                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
+    ("Ganons Castle Light Trial Silver Rupee 1",                     ("Collectable",  0x0D,  0x45, ([0x3211090], None),                   'Silver Rupee (Ganons Castle Light Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
+    ("Ganons Castle Light Trial Silver Rupee 2",                     ("Collectable",  0x0D,  0x46, ([0x32110A0], None),                   'Silver Rupee (Ganons Castle Light Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
+    ("Ganons Castle Light Trial Silver Rupee 3",                     ("Collectable",  0x0D,  0x47, ([0x32110B0], None),                   'Silver Rupee (Ganons Castle Light Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
+    ("Ganons Castle Light Trial Silver Rupee 4",                     ("Collectable",  0x0D,  0x48, ([0x32110C0], None),                   'Silver Rupee (Ganons Castle Light Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
+    ("Ganons Castle Light Trial Silver Rupee 5",                     ("Collectable",  0x0D,  0x49, ([0x32110D0], None),                   'Silver Rupee (Ganons Castle Light Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
+    ("Ganons Castle Fire Trial Silver Rupee 1",                      ("Collectable",  0x0D,  0x49, ([0x3249114], None),                   'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
+    ("Ganons Castle Fire Trial Silver Rupee 2",                      ("Collectable",  0x0D,  0x4A, ([0x3249124], None),                   'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
+    ("Ganons Castle Fire Trial Silver Rupee 3",                      ("Collectable",  0x0D,  0x4B, ([0x3249134], None),                   'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
+    ("Ganons Castle Fire Trial Silver Rupee 4",                      ("Collectable",  0x0D,  0x4C, ([0x3249144], None),                   'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
+    ("Ganons Castle Fire Trial Silver Rupee 5",                      ("Collectable",  0x0D,  0x4D, ([0x3249154], None),                   'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
+    ("Ganons Castle Forest Trial Silver Rupee 1",                    ("Collectable",  0x0D,  0x4E, ([0x31F90AC], None),                   'Silver Rupee (Ganons Castle Forest Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
+    ("Ganons Castle Forest Trial Silver Rupee 2",                    ("Collectable",  0x0D,  0x4F, ([0x31F90BC], None),                   'Silver Rupee (Ganons Castle Forest Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
+    ("Ganons Castle Forest Trial Silver Rupee 3",                    ("Collectable",  0x0D,  0x50, ([0x31F90CC], None),                   'Silver Rupee (Ganons Castle Forest Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
+    ("Ganons Castle Forest Trial Silver Rupee 4",                    ("Collectable",  0x0D,  0x51, ([0x31F90DC], None),                   'Silver Rupee (Ganons Castle Forest Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
+    ("Ganons Castle Forest Trial Silver Rupee 5",                    ("Collectable",  0x0D,  0x52, ([0x31F90EC], None),                   'Silver Rupee (Ganons Castle Forest Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
+
+
     # Ganon's Castle MQ
     ("Ganons Castle MQ Forest Trial Freestanding Key",               ("Collectable",  0x0D,  0x01, None,                        'Small Key (Ganons Castle)',             ("Ganon's Castle", "Master Quest",))),
     ("Ganons Castle MQ Forest Trial Eye Switch Chest",               ("Chest",        0x0D,  0x02, None,                        'Arrows (10)',                           ("Ganon's Castle", "Master Quest",))),

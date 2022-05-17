@@ -66,7 +66,22 @@
         "locations": {
             "Spirit Temple Compass Chest": "Hookshot and can_play(Zeldas_Lullaby)",
             #The mid-air silver rupee can be collected with a jumpslash.
-            "Spirit Temple Early Adult Right Chest": "
+            "Spirit Temple Early Adult Right Chest": "(Silver_Rupee_Spirit_Temple_Adult_Boulders, 5) and
+                (Bow or Hookshot or has_bombchus or
+                (Bombs and logic_spirit_lower_adult_switch))",
+            "Spirit Temple Adult Boulder Silver Rupee 1" : "
+                Bow or Hookshot or has_bombchus or
+                (Bombs and logic_spirit_lower_adult_switch)",
+            "Spirit Temple Adult Boulder Silver Rupee 2" : "
+                Bow or Hookshot or has_bombchus or
+                (Bombs and logic_spirit_lower_adult_switch)",
+            "Spirit Temple Adult Boulder Silver Rupee 3" : "
+                Bow or Hookshot or has_bombchus or
+                (Bombs and logic_spirit_lower_adult_switch)",
+            "Spirit Temple Adult Boulder Silver Rupee 4" : "
+                Bow or Hookshot or has_bombchus or
+                (Bombs and logic_spirit_lower_adult_switch)",
+            "Spirit Temple Adult Boulder Silver Rupee 5" : "
                 Bow or Hookshot or has_bombchus or
                 (Bombs and logic_spirit_lower_adult_switch)",
             "Spirit Temple GS Boulder Room": "
@@ -140,11 +155,16 @@
                     (has_explosives or ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)))",
             "Spirit Temple Sun Block Room Chest": "
                 (is_child and Sticks and
-                    (Small_Key_Spirit_Temple, 5)) or
+                    (Small_Key_Spirit_Temple, 5) and (Silver_Rupee_Spirit_Temple_Sun_Block, 5)) or
                 (is_adult and (has_fire_source or (logic_spirit_sun_chest and Bow)) and
                     ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts)) or
                 ((can_use(Dins_Fire) or (((Magic_Meter and Fire_Arrows) or logic_spirit_sun_chest) and Bow and Sticks)) and
                     (has_explosives or ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)))",
+            "Spirit Temple Sun Block Room Silver Rupee 1" : "True",
+            "Spirit Temple Sun Block Room Silver Rupee 2" : "True",
+            "Spirit Temple Sun Block Room Silver Rupee 3" : "True",
+            "Spirit Temple Sun Block Room Silver Rupee 4" : "True",
+            "Spirit Temple Sun Block Room Silver Rupee 5" : "True",
             #With longshot and explosives, right hand is reachable as adult after opening either
             #upper door. Because some of the keys cannot be spent without adult accessing the
             #main body of the dungeon, this route is able to be age-unknown, where child can be
