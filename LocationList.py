@@ -1739,11 +1739,11 @@ location_table = OrderedDict([
     ("Ice Cavern GS Push Block Room",                                ("GS Token",     0x09,  0x01, None,                        'Gold Skulltula Token',                  ("Ice Cavern", "Vanilla", "Skulltulas",))),
     
     #Ice Cavern Silver Rupees
-    ("Ice Cavern Spinning Blade Silver Rupee 1",                    ("Collectable",   0x09,  0x40, ([0x2C19084], None),        'Silver Rupee (Ice Cavern Spinning Blade)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
-    ("Ice Cavern Spinning Blade Silver Rupee 2",                    ("Collectable",   0x09,  0x41, ([0x2C19094], None),        'Silver Rupee (Ice Cavern Spinning Blade)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
-    ("Ice Cavern Spinning Blade Silver Rupee 3",                    ("Collectable",   0x09,  0x42, ([0x2C190A4], None),        'Silver Rupee (Ice Cavern Spinning Blade)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
-    ("Ice Cavern Spinning Blade Silver Rupee 4",                    ("Collectable",   0x09,  0x43, ([0x2C190B4], None),        'Silver Rupee (Ice Cavern Spinning Blade)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
-    ("Ice Cavern Spinning Blade Silver Rupee 5",                    ("Collectable",   0x09,  0x44, ([0x2C190C4], None),        'Silver Rupee (Ice Cavern Spinning Blade)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
+    ("Ice Cavern Spinning Scythe Silver Rupee 1",                    ("Collectable",  0x09,  0x40, ([0x2C19084], None),        'Silver Rupee (Ice Cavern Spinning Scythe)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
+    ("Ice Cavern Spinning Scythe Silver Rupee 2",                    ("Collectable",  0x09,  0x41, ([0x2C19094], None),        'Silver Rupee (Ice Cavern Spinning Scythe)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
+    ("Ice Cavern Spinning Scythe Silver Rupee 3",                    ("Collectable",  0x09,  0x42, ([0x2C190A4], None),        'Silver Rupee (Ice Cavern Spinning Scythe)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
+    ("Ice Cavern Spinning Scythe Silver Rupee 4",                    ("Collectable",  0x09,  0x43, ([0x2C190B4], None),        'Silver Rupee (Ice Cavern Spinning Scythe)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
+    ("Ice Cavern Spinning Scythe Silver Rupee 5",                    ("Collectable",  0x09,  0x44, ([0x2C190C4], None),        'Silver Rupee (Ice Cavern Spinning Scythe)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
     
     ("Ice Cavern Block Push Silver Rupee 1",                        ("Collectable",   0x09,  0x45, ([0x2C2A108], None),        'Silver Rupee (Ice Cavern Push Block)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
     ("Ice Cavern Block Push Silver Rupee 2",                        ("Collectable",   0x09,  0x46, ([0x2C2A118], None),        'Silver Rupee (Ice Cavern Push Block)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
@@ -1753,13 +1753,13 @@ location_table = OrderedDict([
     #Ice Cavern Vanilla Pots
     ("Ice Cavern Hall Pot 1",                                        ("Collectable",   0x09,  0x25, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
     ("Ice Cavern Hall Pot 2",                                        ("Collectable",   0x09,  0x26, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
-    ("Ice Cavern Spinning Blade Pot 1",                              ("Collectable",   0x09,  0x27, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
-    ("Ice Cavern Spinning Blade Pot 2",                              ("Collectable",   0x09,  0x28, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
-    ("Ice Cavern Spinning Blade Pot 3",                              ("Collectable",   0x09,  0x29, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
+    ("Ice Cavern Spinning Scythe Pot 1",                              ("Collectable",   0x09,  0x27, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
+    ("Ice Cavern Spinning Scythe Pot 2",                              ("Collectable",   0x09,  0x28, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
+    ("Ice Cavern Spinning Scythe Pot 3",                              ("Collectable",   0x09,  0x29, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
     ("Ice Cavern Near End Pot 1",                                    ("Collectable",   0x09,  0x2A, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
     ("Ice Cavern Near End Pot 2",                                    ("Collectable",   0x09,  0x2B, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
     ("Ice Cavern Frozen Pot",                                        ("Collectable",   0x09,  0x2D, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
-    ("Ice Cavern Spinning Blade Flying Pot", ("Collectable", 0x9, 0x2C, None, 'Recovery Heart', ("Ice Cavern", "Vanilla", "FlyingPot"))),
+    ("Ice Cavern Spinning Scythe Flying Pot", ("Collectable", 0x9, 0x2C, None, 'Recovery Heart', ("Ice Cavern", "Vanilla", "FlyingPot"))),
     
     # Ice Cavern MQ
     ("Ice Cavern MQ Map Chest",                                      ("Chest",        0x09,  0x01, None,                        'Map (Ice Cavern)',                      ("Ice Cavern", "Master Quest",))),

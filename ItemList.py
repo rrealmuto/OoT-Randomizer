@@ -155,7 +155,7 @@ item_table = {
     'Small Key Ring (Ganons Castle)':                  ('SmallKey', True,  0xD3, {'alias': ('Small Key (Ganons Castle)', 10), 'progressive': float('Inf')}),
 
     'Silver Rupee (Dodongos Cavern Staircase)':                 ('Item',     True,  0xD4, {'progressive': 5}),
-    'Silver Rupee (Ice Cavern Spinning Blade)':                ('Item',     True,  0xD5, {'progressive': 5}),
+    'Silver Rupee (Ice Cavern Spinning Scythe)':                ('Item',     True,  0xD5, {'progressive': 5}),
     'Silver Rupee (Ice Cavern Push Block)':                     ('Item',     True,  0xD6, {'progressive': 5}),
     'Silver Rupee (Bottom of the Well Basement)':               ('Item',     True,  0xD7, {'progressive': 5}),
     'Silver Rupee (Shadow Temple Scythe Shortcut)':             ('Item',     True,  0xD8, {'progressive': 5}),
@@ -178,7 +178,7 @@ item_table = {
     'Silver Rupee (Ganons Castle Forest Trial)':                ('Item',     True,  0xE9, {'progressive': 5}),
 
     'Silver Rupee Pouch (Dodongos Cavern Staircase)':           ('Item',     True,  0xEA, {'alias': ('Silver Rupee (Dodongos Cavern Staircase)', 10), 'progressive': 1}),
-    'Silver Rupee Pouch (Ice Cavern Spinning Blade)':          ('Item',     True,  0xEB, {'alias': ('Silver Rupee (Ice Cavern Spinning Blade)', 10), 'progressive': 1}),
+    'Silver Rupee Pouch (Ice Cavern Spinning Scythe)':          ('Item',     True,  0xEB, {'alias': ('Silver Rupee (Ice Cavern Spinning Scythe)', 10), 'progressive': 1}),
     'Silver Rupee Pouch (Ice Cavern Push Block)':               ('Item',     True,  0xEC, {'alias': ('Silver Rupee (Ice Cavern Push Block)', 10), 'progressive': 1}),
     'Silver Rupee Pouch (Bottom of the Well Basement)':         ('Item',     True,  0xED, {'alias': ('Silver Rupee (Bottom of the Well Basement)', 10), 'progressive': 1}),
     'Silver Rupee Pouch (Shadow Temple Scythe Shortcut)':       ('Item',     True,  0xEE, {'alias': ('Silver Rupee (Shadow Temple Scythe Shortcut)', 10), 'progressive': 1}),
