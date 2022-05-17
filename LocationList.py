@@ -1746,10 +1746,10 @@ location_table = OrderedDict([
     ("Ice Cavern Spinning Blade Silver Rupee 5",                    ("Collectable",   0x09,  0x44, ([0x2C190C4], None),        'Silver Rupee (Ice Cavern Spinning Blade)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
     
     ("Ice Cavern Block Push Silver Rupee 1",                        ("Collectable",   0x09,  0x45, ([0x2C2A108], None),        'Silver Rupee (Ice Cavern Push Block)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
-    ("Ice Cavern Block Push Silver Rupee 2",                        ("Collectable",   0x09,  0x46, ([0x2C2A108], None),        'Silver Rupee (Ice Cavern Push Block)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
-    ("Ice Cavern Block Push Silver Rupee 3",                        ("Collectable",   0x09,  0x47, ([0x2C2A108], None),        'Silver Rupee (Ice Cavern Push Block)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
-    ("Ice Cavern Block Push Silver Rupee 4",                        ("Collectable",   0x09,  0x48, ([0x2C2A108], None),        'Silver Rupee (Ice Cavern Push Block)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
-    ("Ice Cavern Block Push Silver Rupee 5",                        ("Collectable",   0x09,  0x49, ([0x2C2A108], None),        'Silver Rupee (Ice Cavern Push Block)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
+    ("Ice Cavern Block Push Silver Rupee 2",                        ("Collectable",   0x09,  0x46, ([0x2C2A118], None),        'Silver Rupee (Ice Cavern Push Block)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
+    ("Ice Cavern Block Push Silver Rupee 3",                        ("Collectable",   0x09,  0x47, ([0x2C2A128], None),        'Silver Rupee (Ice Cavern Push Block)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
+    ("Ice Cavern Block Push Silver Rupee 4",                        ("Collectable",   0x09,  0x48, ([0x2C2A138], None),        'Silver Rupee (Ice Cavern Push Block)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
+    ("Ice Cavern Block Push Silver Rupee 5",                        ("Collectable",   0x09,  0x49, ([0x2C2A148], None),        'Silver Rupee (Ice Cavern Push Block)', ("Ice Cavern", "Vanilla", "Silver Rupee"))),
     #Ice Cavern Vanilla Pots
     ("Ice Cavern Hall Pot 1",                                        ("Collectable",   0x09,  0x25, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
     ("Ice Cavern Hall Pot 2",                                        ("Collectable",   0x09,  0x26, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
