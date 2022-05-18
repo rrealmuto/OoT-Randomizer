@@ -294,7 +294,60 @@ class SaveContext():
         elif item == IGNORE_LOCATION:
             pass # used to disable some skipped and inaccessible locations
         elif item in SaveContext.save_writes_table:
-            if item.startswith('Small Key Ring ('):
+            if item.startswith('Silver Rupee ('):
+                puzzle = item[:-1].split(' (', 1)[1]
+                needed_count = {
+                    "Dodongos Cavern Staircase": 5,
+                    "Ice Cavern Spinning Scythe": 5,
+                    "Ice Cavern Push Block": 5,
+                    "Bottom of the Well Basement": 5,
+                    "Shadow Temple Scythe Shortcut": 5,
+                    "Shadow Temple Invisible Blades": 10,
+                    "Shadow Temple Huge Pit": 5,
+                    "Shadow Temple Invisible Spikes": 10 if world.dungeon_mq["Shadow Temple"] else 5,
+                    "Gerudo Training Ground Slopes": 5,
+                    "Gerudo Training Ground Lava": 6 if world.dungeon_mq["Gerudo Training Ground"] else 5,
+                    "Gerudo Training Ground Water": 3 if world.dungeon_mq["Gerudo Training Ground"] else 5,
+                    "Spirit Temple Child Early Torches": 5,
+                    "Spirit Temple Adult Boulders": 5,
+                    "Spirit Temple Lobby and Lower Adult": 5,
+                    "Spirit Temple Sun Block": 5,
+                    "Spirit Temple Adult Climb": 5,
+                    "Ganons Castle Spirit Trial": 5,
+                    "Ganons Castle Light Trial": 5,
+                    "Ganons Castle Fire Trial": 5,
+                    "Ganons Castle Shadow Trial": 5,
+                    "Ganons Castle Water Trial": 5,
+                    "Ganons Castle Forest Trial": 5,
+                }[puzzle]
+                if count >= needed_count:
+                    save_writes = {
+                        "Dodongos Cavern Staircase":           {'silver_rupee_counts.dc_staircase': needed_count}, #TODO flag
+                        "Ice Cavern Spinning Scythe":          {'silver_rupee_counts.ice_scythe': needed_count, 'scene_flags.ice.swch.silver_rupees_scythe': True},
+                        "Ice Cavern Push Block":               {'silver_rupee_counts.ice_block': needed_count, 'scene_flags.ice.swch.silver_rupees_block': True},
+                        "Bottom of the Well Basement":         {'silver_rupee_counts.botw_basement': needed_count, 'scene_flags.botw.swch.silver_rupees_basement': True},
+                        "Shadow Temple Scythe Shortcut":       {'silver_rupee_counts.shadow_scythe': needed_count, 'scene_flags.shadow.swch.silver_rupees_scythe': True},
+                        "Shadow Temple Invisible Blades":      {'silver_rupee_counts.shadow_blades': needed_count, 'scene_flags.shadow.swch.silver_rupees_blades': True},
+                        "Shadow Temple Huge Pit":              {'silver_rupee_counts.shadow_pit': needed_count, 'scene_flags.shadow.swch.silver_rupees_mq_pit' if world.dungeon_mq["Shadow Temple"] else 'scene_flags.shadow.swch.silver_rupees_vanilla_pit': True},
+                        "Shadow Temple Invisible Spikes":      {'silver_rupee_counts.shadow_spikes': needed_count, 'scene_flags.shadow.swch.silver_rupees_spikes': True},
+                        "Gerudo Training Ground Slopes":       {'silver_rupee_counts.gtg_slopes': needed_count, 'scene_flags.gtg.swch.silver_rupees_slopes': True},
+                        "Gerudo Training Ground Lava":         {'silver_rupee_counts.gtg_lava': needed_count, 'scene_flags.gtg.swch.silver_rupees_lava': True},
+                        "Gerudo Training Ground Water":        {'silver_rupee_counts.gtg_water': needed_count, 'scene_flags.gtg.swch.silver_rupees_water': True},
+                        "Spirit Temple Child Early Torches":   {'silver_rupee_counts.spirit_torches': needed_count, 'scene_flags.spirit.swch.silver_rupees_torches': True},
+                        "Spirit Temple Adult Boulders":        {'silver_rupee_counts.spirit_boulders': needed_count, 'scene_flags.spirit.swch.silver_rupees_boulders': True},
+                        "Spirit Temple Lobby and Lower Adult": {'silver_rupee_counts.spirit_lobby': needed_count}, #TODO flag
+                        "Spirit Temple Sun Block":             {'silver_rupee_counts.spirit_sun': needed_count, 'scene_flags.spirit.swch.silver_rupees_sun': True},
+                        "Spirit Temple Adult Climb":           {'silver_rupee_counts.spirit_adult_climb': needed_count, 'scene_flags.spirit.swch.silver_rupees_adult_climb': True},
+                        "Ganons Castle Spirit Trial":          {'silver_rupee_counts.trials_spirit': needed_count, 'scene_flags.gc.swch.silver_rupees_spirit': True},
+                        "Ganons Castle Light Trial":           {'silver_rupee_counts.trials_light': needed_count, 'scene_flags.gc.swch.silver_rupees_light': True},
+                        "Ganons Castle Fire Trial":            {'silver_rupee_counts.trials_fire': needed_count, 'scene_flags.gc.swch.silver_rupees_mq_fire' if world.dungeon_mq["Ganons Castle"] else 'scene_flags.gc.swch.silver_rupees_vanilla_fire': True},
+                        "Ganons Castle Shadow Trial":          {'silver_rupee_counts.trials_shadow': needed_count, 'scene_flags.gc.swch.silver_rupees_shadow': True},
+                        "Ganons Castle Water Trial":           {'silver_rupee_counts.trials_water': needed_count, 'scene_flags.gc.swch.silver_rupees_water': True},
+                        "Ganons Castle Forest Trial":          {'silver_rupee_counts.trials_forest': needed_count, 'scene_flags.gc.swch.silver_rupees_forest': True},
+                    }[puzzle]
+                else:
+                    save_writes = SaveContext.save_writes_table[item]
+            elif item.startswith('Small Key Ring ('):
                 dungeon = item[:-1].split(' (', 1)[1]
                 save_writes = {
                     "Forest Temple"          : {'keys.forest': 6 if world.dungeon_mq[dungeon] else 5},
@@ -680,6 +733,54 @@ class SaveContext():
             },
             'defense_hearts'             : Address(size=1, max=20),
             'gs_tokens'                  : Address(size=2, max=100),
+            'scene_flags' : {
+                'spirit' : {
+                    'swch' : {
+                        'silver_rupees_adult_climb': Address(0xD1 + 0x1C * 0x06 + 0x04, mask=0x00000001),
+                        'silver_rupees_boulders': Address(0xD1 + 0x1C * 0x06 + 0x04, mask=0x00000004),
+                        'silver_rupees_torches': Address(0xD1 + 0x1C * 0x06 + 0x04, mask=0x00000020),
+                        'silver_rupees_sun': Address(0xD1 + 0x1C * 0x06 + 0x04, mask=0x00000400),
+                    },
+                },
+                'shadow' : {
+                    'swch' : {
+                        'silver_rupees_scythe': Address(0xD4 + 0x1C * 0x07 + 0x04, mask=0x00000002),
+                        'silver_rupees_blades': Address(0xD4 + 0x1C * 0x07 + 0x04, mask=0x00000008),
+                        'silver_rupees_spikes': Address(0xD4 + 0x1C * 0x07 + 0x04, mask=0x00000100),
+                        'silver_rupees_vanilla_pit': Address(0xD4 + 0x1C * 0x07 + 0x04, mask=0x00000200),
+                        'silver_rupees_mq_pit': Address(0xD4 + 0x1C * 0x07 + 0x04, mask=0x00020000),
+                    },
+                },
+                'botw' : {
+                    'swch' : {
+                        'silver_rupees_basement': Address(0xD4 + 0x1C * 0x08 + 0x04, mask=0x80000000),
+                    },
+                },
+                'ice' : {
+                    'swch' : {
+                        'silver_rupees_scythe': Address(0xD4 + 0x1C * 0x09 + 0x04, mask=0x00000100),
+                        'silver_rupees_block': Address(0xD4 + 0x1C * 0x09 + 0x04, mask=0x00000200),
+                    },
+                },
+                'gtg' : {
+                    'swch' : {
+                        'silver_rupees_lava': Address(0xD4 + 0x1C * 0x0B + 0x04, mask=0x00001000),
+                        'silver_rupees_water': Address(0xD4 + 0x1C * 0x0B + 0x04, mask=0x08000000),
+                        'silver_rupees_slopes': Address(0xD4 + 0x1C * 0x0B + 0x04, mask=0x10000000),
+                    },
+                },
+                'gc' : {
+                    'swch' : {
+                        'silver_rupees_mq_fire': Address(0xD4 + 0x1C * 0x0D + 0x04, mask=0x00000002),
+                        'silver_rupees_water': Address(0xD4 + 0x1C * 0x0D + 0x04, mask=0x00000004),
+                        'silver_rupees_vanilla_fire': Address(0xD4 + 0x1C * 0x0D + 0x04, mask=0x00000200),
+                        'silver_rupees_spirit': Address(0xD4 + 0x1C * 0x0D + 0x04, mask=0x00000800),
+                        'silver_rupees_forest': Address(0xD4 + 0x1C * 0x0D + 0x04, mask=0x00004000),
+                        'silver_rupees_light': Address(0xD4 + 0x1C * 0x0D + 0x04, mask=0x00040000),
+                        'silver_rupees_shadow': Address(0xD4 + 0x1C * 0x0D + 0x04, mask=0x08000000),
+                    },
+                },
+            },
             'triforce_pieces'            : Address(0xD4 + 0x1C * 0x48 + 0x10, size=4), # Unused word in scene x48
             #begin extended save data items
             'silver_rupee_counts' : {
@@ -1070,7 +1171,7 @@ class SaveContext():
         "Small Key Ring (Thieves Hideout)"        : {'keys.fortress': 4},
         "Small Key Ring (Ganons Castle)"          : {'keys.gc': 3},
         'Silver Rupee (Dodongos Cavern Staircase)':            {'silver_rupee_counts.dc_staircase': None},
-        'Silver Rupee (Ice Cavern Spinning Scythe)':            {'silver_rupee_counts.ice_scythe': None},
+        'Silver Rupee (Ice Cavern Spinning Scythe)':           {'silver_rupee_counts.ice_scythe': None},
         'Silver Rupee (Ice Cavern Push Block)':                {'silver_rupee_counts.ice_block': None},
         'Silver Rupee (Bottom of the Well Basement)':          {'silver_rupee_counts.botw_basement': None},
         'Silver Rupee (Shadow Temple Scythe Shortcut)':        {'silver_rupee_counts.shadow_scythe': None},
