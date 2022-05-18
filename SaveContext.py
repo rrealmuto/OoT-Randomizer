@@ -684,7 +684,7 @@ class SaveContext():
             #begin extended save data items
             'silver_rupee_counts' : {
                 'dc_staircase'           : Address(address=0x00, extended=True, size=1),
-                'ice_blade': Address(extended=True, size=1),
+                'ice_scythe': Address(extended=True, size=1),
                 'ice_block': Address(extended=True, size=1),
                 'botw_basement': Address(extended=True, size=1),
                 'shadow_scythe': Address(extended=True, size=1),
@@ -1070,7 +1070,7 @@ class SaveContext():
         "Small Key Ring (Thieves Hideout)"        : {'keys.fortress': 4},
         "Small Key Ring (Ganons Castle)"          : {'keys.gc': 3},
         'Silver Rupee (Dodongos Cavern Staircase)':            {'silver_rupee_counts.dc_staircase': None},
-        'Silver Rupee (Ice Cavern Spinning Blade)':            {'silver_rupee_counts.ice_blade': None},
+        'Silver Rupee (Ice Cavern Spinning Scythe)':            {'silver_rupee_counts.ice_scythe': None},
         'Silver Rupee (Ice Cavern Push Block)':                {'silver_rupee_counts.ice_block': None},
         'Silver Rupee (Bottom of the Well Basement)':          {'silver_rupee_counts.botw_basement': None},
         'Silver Rupee (Shadow Temple Scythe Shortcut)':        {'silver_rupee_counts.shadow_scythe': None},
