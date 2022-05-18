@@ -35,12 +35,14 @@ class FlagType(IntEnum):
 
 class Address():
     prev_address = None
-
-    def __init__(self, address=None, size=4, mask=0xFFFFFFFF, max=None, choices=None, value=None):
+    EXTENDED_CONTEXT_START = 0x1450
+    def __init__(self, address=None, extended=False, size=4, mask=0xFFFFFFFF, max=None, choices=None, value=None):
         if address is None:
             self.address = Address.prev_address
         else:
-            self.address = address           
+            self.address = address  
+        if extended and address is not None:
+            self.address += Address.EXTENDED_CONTEXT_START         
         self.value = value
         self.size = size
         self.choices = choices
@@ -161,7 +163,6 @@ class SaveContext():
         else:
             self.save_bits[address] = value
 
-
     # will overwrite the byte at offset with the given value
     def write_byte(self, address, value, predicate=None):
         if predicate and not predicate(value):
@@ -227,18 +228,31 @@ class SaveContext():
             self.write_save_entry(address)
 
         save_table = []
+        extended_table = []
         for address, value in self.save_bits.items():
+            table = save_table
+            if(address >= Address.EXTENDED_CONTEXT_START):
+                table = extended_table
+                address -= Address.EXTENDED_CONTEXT_START
             if value != 0:
-                save_table += [(address & 0xFF00) >> 8, address & 0xFF, 0x00, value]
+                table += [(address & 0xFF00) >> 8, address & 0xFF, 0x00, value]
         for address, value in self.save_bytes.items():
-            save_table += [(address & 0xFF00) >> 8, address & 0xFF, 0x01, value]
+            table = save_table
+            if(address >= Address.EXTENDED_CONTEXT_START):
+                table = extended_table
+                address -= Address.EXTENDED_CONTEXT_START
+            table += [(address & 0xFF00) >> 8, address & 0xFF, 0x01, value]
         save_table += [0x00,0x00,0x00,0x00]
+        extended_table += [0x00,0x00, 0x00,0x00]
 
         table_len = len(save_table)
         if table_len > 0x400:
             raise Exception("The Initial Save Table has exceeded its maximum capacity: 0x%03X/0x400" % table_len)
         rom.write_bytes(rom.sym('INITIAL_SAVE_DATA'), save_table)
-
+        extended_table_len = len(extended_table)
+        if extended_table_len > 0x100:
+            raise Exception("The Initial Extended Save Table has exceeded its maximum capacity: 0x%03X/0x100" % extended_table_len)
+        rom.write_bytes(rom.sym('EXTENDED_INITIAL_SAVE_DATA'), extended_table)
 
     def give_bottle(self, item, count):
         for bottle_id in range(4):
@@ -667,6 +681,31 @@ class SaveContext():
             'defense_hearts'             : Address(size=1, max=20),
             'gs_tokens'                  : Address(size=2, max=100),
             'triforce_pieces'            : Address(0xD4 + 0x1C * 0x48 + 0x10, size=4), # Unused word in scene x48
+            #begin extended save data items
+            'silver_rupee_counts' : {
+                'dc_staircase'           : Address(address=0x00, extended=True, size=1),
+                'ice_blade': Address(extended=True, size=1),
+                'ice_block': Address(extended=True, size=1),
+                'botw_basement': Address(extended=True, size=1),
+                'shadow_scythe': Address(extended=True, size=1),
+                'shadow_blades': Address(extended=True, size=1),
+                'shadow_pit': Address(extended=True, size=1),
+                'shadow_spikes': Address(extended=True, size=1),
+                'gtg_slopes': Address(extended=True, size=1),
+                'gtg_lava': Address(extended=True, size=1),
+                'gtg_water': Address(extended=True, size=1),
+                'spirit_torches': Address(extended=True, size=1),
+                'spirit_boulders': Address(extended=True, size=1),
+                'spirit_lobby': Address(extended=True, size=1),
+                'spirit_sun': Address(extended=True, size=1),
+                'spirit_adult_climb': Address(extended=True, size=1),
+                'trials_spirit': Address(extended=True, size=1),
+                'trials_light': Address(extended=True, size=1),
+                'trials_fire': Address(extended=True, size=1),
+                'trials_shadow': Address(extended=True, size=1),
+                'trials_water': Address(extended=True, size=1),
+                'trials_forest': Address(extended=True, size=1),
+            }
         }
 
 
@@ -1030,6 +1069,28 @@ class SaveContext():
         "Small Key Ring (Gerudo Training Ground)" : {'keys.gtg': 9},
         "Small Key Ring (Thieves Hideout)"        : {'keys.fortress': 4},
         "Small Key Ring (Ganons Castle)"          : {'keys.gc': 3},
+        'Silver Rupee (Dodongos Cavern Staircase)':            {'silver_rupee_counts.dc_staircase': None},
+        'Silver Rupee (Ice Cavern Spinning Blade)':            {'silver_rupee_counts.ice_blade': None},
+        'Silver Rupee (Ice Cavern Push Block)':                {'silver_rupee_counts.ice_block': None},
+        'Silver Rupee (Bottom of the Well Basement)':          {'silver_rupee_counts.botw_basement': None},
+        'Silver Rupee (Shadow Temple Scythe Shortcut)':        {'silver_rupee_counts.shadow_scythe': None},
+        'Silver Rupee (Shadow Temple Invisible Blades)':       {'silver_rupee_counts.shadow_blades': None},
+        'Silver Rupee (Shadow Temple Huge Pit)':               {'silver_rupee_counts.shadow_pit': None},
+        'Silver Rupee (Shadow Temple Invisible Spikes)':       {'silver_rupee_counts.shadow_spikes': None},
+        'Silver Rupee (Gerudo Training Ground Slopes)':        {'silver_rupee_counts.gtg_slopes': None},
+        'Silver Rupee (Gerudo Training Ground Lava)':          {'silver_rupee_counts.gtg_lava': None},
+        'Silver Rupee (Gerudo Training Ground Water)':         {'silver_rupee_counts.gtg_water': None},
+        'Silver Rupee (Spirit Temple Child Early Torches)':    {'silver_rupee_counts.spirit_torches': None},
+        'Silver Rupee (Spirit Temple Adult Boulders)':         {'silver_rupee_counts.spirit_boulders': None},
+        'Silver Rupee (Spirit Temple Lobby and Lower Adult)':  {'silver_rupee_counts.spirit_lobby': None},
+        'Silver Rupee (Spirit Temple Sun Block)':              {'silver_rupee_counts.spirit_sun': None},
+        'Silver Rupee (Spirit Temple Adult Climb)':            {'silver_rupee_counts.spirit_adult_climb': None},
+        'Silver Rupee (Ganons Castle Spirit Trial)':           {'silver_rupee_counts.trials_spirit': None},
+        'Silver Rupee (Ganons Castle Light Trial)':            {'silver_rupee_counts.trials_light': None},
+        'Silver Rupee (Ganons Castle Fire Trial)':             {'silver_rupee_counts.trials_fire': None},
+        'Silver Rupee (Ganons Castle Shadow Trial)':           {'silver_rupee_counts.trials_shadow': None},
+        'Silver Rupee (Ganons Castle Water Trial)':            {'silver_rupee_counts.trials_water': None},
+        'Silver Rupee (Ganons Castle Forest Trial)':           {'silver_rupee_counts.trials_forest': None},
     }
 
 

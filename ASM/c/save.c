@@ -30,6 +30,8 @@ Sram_InitNewSave_Func Sram_InitNewSave = (Sram_InitNewSave_Func)(0x8008FFC0);
 
 extended_savecontext_static_t extended_savectx;
 
+
+
 //Override Sram_WriteSave to include the collectible flags in the checksum calculation.
 void Sram_WriteSave(SramContext* sramCtx)
 {
@@ -307,6 +309,15 @@ void Save_Init_Write_Hook(uint32_t addr, void* dramAddr, size_t size, uint32_t d
     uint16_t slot_offset = SRAM_SLOTS[z64_file.file_index];
     z64_bzero(dramAddr + slot_offset + SRAM_ORIGINAL_SLOT_SIZE, SLOT_SIZE - SRAM_ORIGINAL_SLOT_SIZE);
     
+    uint8_t* extended_slot = dramAddr + slot_offset + SRAM_ORIGINAL_SLOT_SIZE;
+    //write initial extended save data.
+    extended_initial_save_entry* entry = &EXTENDED_INITIAL_SAVE_DATA;
+    while(entry->all != 0)
+    {
+        extended_slot[entry->offset] = entry->value;
+        entry++;
+    }
+
     //uint16_t slot_offset = SRAM_SLOTS[z64_file.file_index] + SLOT_SIZE - (4*num_override_flags + 4*num_drop_override_flags);
     //z64_bzero(dramAddr + slot_offset, 4*num_override_flags + 4*num_drop_override_flags);
     

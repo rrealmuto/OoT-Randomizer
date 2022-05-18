@@ -1,4 +1,11 @@
 {
+    "settings" : {
+        
+        "starting_equipment": [],
+        "starting_items": {
+            "Silver Rupee (Gerudo Training Ground Slopes)" : 1
+        }
+    },
     "entrances": {
         "Child Spawn -> KF Links House" : {"region":"Market Guard House", "from":"Market Entrance"},
         "Adult Spawn -> Temple of Time" : {"region":"Gerudo Fortress", "from":"GV Fortress Side"}
@@ -9,13 +16,11 @@
         "Gerudo Training Ground Lobby Left Chest" : "Silver Rupee (Gerudo Training Ground Slopes)",
         "Gerudo Training Ground Lobby Right Chest" : "Silver Rupee (Gerudo Training Ground Slopes)",
         "Gerudo Training Ground Maze Path First Chest" : "Silver Rupee (Gerudo Training Ground Slopes)",
-        "Gerudo Training Ground Maze Path Second Chest" : "Silver Rupee (Gerudo Training Ground Slopes)",
         "Gerudo Training Ground Stalfos Chest" : "Silver Rupee (Gerudo Training Ground Slopes)",
         "Gerudo Training Ground Underwater Silver Rupee 1" : "Silver Rupee (Gerudo Training Ground Lava)",
         "Spirit Temple Lobby Pot 1" : "Silver Rupee (Spirit Temple Sun Block)",
         "Spirit Temple Lobby Pot 2" : "Silver Rupee (Spirit Temple Sun Block)",
         "Spirit Temple Lobby Flying Pot 1" : "Silver Rupee (Spirit Temple Sun Block)",
-        "Spirit Temple Lobby Flying Pot 2" : "Silver Rupee (Spirit Temple Sun Block)",
-        "Spirit Temple Adult Boulder Silver Rupee 1" : "Silver Rupee (Spirit Temple Sun Block)"
+        "Spirit Temple Lobby Flying Pot 2" : "Silver Rupee (Spirit Temple Sun Block)"
     }
 }
