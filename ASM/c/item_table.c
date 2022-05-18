@@ -245,7 +245,7 @@ item_row_t item_table[] = {
     [0xD3] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, 0, 0x9018, 0x00AA, 0x02, no_upgrade, give_small_key_ring, CASTLE_ID, -1), // Ganon's Castle Small Key Ring
 
     [0xD4] = ITEM_ROW(0x4D,      SILVER_CHEST, 0x85, 0, 0x9019, 0x0195, 0x72, no_upgrade, give_silver_rupee, DODONGO_ID, 0x00), // Silver Rupee (Dodongos Cavern Staircase)
-    [0xD5] = ITEM_ROW(0x4D,      SILVER_CHEST, 0x85, 0, 0x901A, 0x0195, 0x72, no_upgrade, give_silver_rupee, ICE_ID,     0x01), // Silver Rupee (Ice Cavern Spinning Blade)
+    [0xD5] = ITEM_ROW(0x4D,      SILVER_CHEST, 0x85, 0, 0x901A, 0x0195, 0x72, no_upgrade, give_silver_rupee, ICE_ID,     0x01), // Silver Rupee (Ice Cavern Spinning Scythe)
     [0xD6] = ITEM_ROW(0x4D,      SILVER_CHEST, 0x85, 0, 0x901B, 0x0195, 0x72, no_upgrade, give_silver_rupee, ICE_ID,     0x02), // Silver Rupee (Ice Cavern Push Block)
     [0xD7] = ITEM_ROW(0x4D,      SILVER_CHEST, 0x85, 0, 0x901C, 0x0195, 0x72, no_upgrade, give_silver_rupee, BOTW_ID,    0x03), // Silver Rupee (Bottom of the Well Basement)
     [0xD8] = ITEM_ROW(0x4D,      SILVER_CHEST, 0x85, 0, 0x901D, 0x0195, 0x72, no_upgrade, give_silver_rupee, SHADOW_ID,  0x04), // Silver Rupee (Shadow Temple Scythe Shortcut)
@@ -268,7 +268,7 @@ item_row_t item_table[] = {
     [0xE9] = ITEM_ROW(0x4D,      SILVER_CHEST, 0x85, 0, 0x902E, 0x0195, 0x72, no_upgrade, give_silver_rupee, CASTLE_ID,  0x15), // Silver Rupee (Ganons Castle Forest Trial)
 
     [0xEA] = ITEM_ROW(0x4D,      SILVER_CHEST, 0x86, 0, 0x902F, 0x0195, 0x72, no_upgrade, give_silver_rupee_pouch, DODONGO_ID, 0x00), // Silver Rupee Pouch (Dodongos Cavern Staircase)
-    [0xEB] = ITEM_ROW(0x4D,      SILVER_CHEST, 0x86, 0, 0x9030, 0x0195, 0x72, no_upgrade, give_silver_rupee_pouch, ICE_ID,     0x01), // Silver Rupee Pouch (Ice Cavern Spinning Blade)
+    [0xEB] = ITEM_ROW(0x4D,      SILVER_CHEST, 0x86, 0, 0x9030, 0x0195, 0x72, no_upgrade, give_silver_rupee_pouch, ICE_ID,     0x01), // Silver Rupee Pouch (Ice Cavern Spinning Scythe)
     [0xEC] = ITEM_ROW(0x4D,      SILVER_CHEST, 0x86, 0, 0x9031, 0x0195, 0x72, no_upgrade, give_silver_rupee_pouch, ICE_ID,     0x02), // Silver Rupee Pouch (Ice Cavern Push Block)
     [0xED] = ITEM_ROW(0x4D,      SILVER_CHEST, 0x86, 0, 0x9032, 0x0195, 0x72, no_upgrade, give_silver_rupee_pouch, BOTW_ID,    0x03), // Silver Rupee Pouch (Bottom of the Well Basement)
     [0xEE] = ITEM_ROW(0x4D,      SILVER_CHEST, 0x86, 0, 0x9033, 0x0195, 0x72, no_upgrade, give_silver_rupee_pouch, SHADOW_ID,  0x04), // Silver Rupee Pouch (Shadow Temple Scythe Shortcut)

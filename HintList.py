@@ -327,7 +327,7 @@ hintTable = {
     'Small Key Ring (Ganons Castle)':                           (["a toolbox for unlocking a conquered citadel", "a dungeon season pass for a conquered citadel", "a jingling ring for a conquered citadel", "a skeleton key for a conquered citadel"], "a Ganon's Castle Small Key Ring", 'item'),
     'Small Key Ring (Thieves Hideout)':                         (["a deck of get out of jail free cards"], "a Jail Key Ring", 'item'),
     'Silver Rupee (Dodongos Cavern Staircase)':                 (["an entry fee for an immense cavern", "a priced artifact from an immense cavern"], "a Silver Rupee for Dodongo's Cavern", 'item'),
-    'Silver Rupee (Ice Cavern Spinning Blade)':                 (["an entry fee for a frozen maze", "a priced artifact from a frozen maze"], "a Silver Rupee for the Ice Cavern", 'item'),
+    'Silver Rupee (Ice Cavern Spinning Scythe)':                (["an entry fee for a frozen maze", "a priced artifact from a frozen maze"], "a Silver Rupee for the Ice Cavern", 'item'),
     'Silver Rupee (Ice Cavern Push Block)':                     (["an entry fee for a frozen maze", "a priced artifact from a frozen maze"], "a Silver Rupee for the Ice Cavern", 'item'),
     'Silver Rupee (Bottom of the Well Basement)':               (["an entry fee for a shadow's prison", "a priced artifact from a shadow's prison"], "a Silver Rupee for the Bottom of the Well", 'item'),
     'Silver Rupee (Shadow Temple Scythe Shortcut)':             (["an entry fee for the house of the dead", "a priced artifact from the house of the dead"], "a Silver Rupee for the Shadow Temple", 'item'),
