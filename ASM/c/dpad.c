@@ -48,7 +48,7 @@ void handle_dpad() {
 }
 void draw_dpad() {
     z64_disp_buf_t *db = &(z64_ctxt.gfx->overlay);
-    if (DISPLAY_DPAD && CFG_DISPLAY_DPAD) {
+    if (CAN_DRAW_DUNGEON_INFO || (DISPLAY_DPAD && CFG_DISPLAY_DPAD)) {
         gSPDisplayList(db->p++, &setup_db);
         gDPPipeSync(db->p++);
         gDPSetCombineMode(db->p++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
