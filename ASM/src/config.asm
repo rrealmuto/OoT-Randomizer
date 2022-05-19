@@ -152,7 +152,7 @@ AUTO_TRACKER_VERSION:
 .word 1 ; Increment this if the auto-tracker context layout changes
 
 CFG_DUNGEON_INFO_ENABLE:
-.word 1
+.word 0
 CFG_DUNGEON_INFO_MQ_ENABLE:
 .word 0
 CFG_DUNGEON_INFO_MQ_NEED_MAP:

@@ -1586,7 +1586,6 @@ fec1fc,9000000
 3480cc0,640000
 3480cc4,100
 3480cd0,1
-3480cd4,1
 3480cec,ffffffff
 3480cf0,ffffffff
 3480cf4,ffffffff
