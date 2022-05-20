@@ -93,13 +93,13 @@
             "KF Grass Near Midos Green Rupee 1": "is_child",
             "KF Grass Near Midos Green Rupee 2": "is_child",
             "KF Kokiri Sword Chest": "is_child",
-            "KF Bean Platform Green Rupee 1": "is_adult and (can_plant_bean or can_use(Hover_Boots))",
-            "KF Bean Platform Green Rupee 2": "is_adult and (can_plant_bean or can_use(Hover_Boots))",
-            "KF Bean Platform Green Rupee 3": "is_adult and (can_plant_bean or can_use(Hover_Boots))",
-            "KF Bean Platform Green Rupee 4": "is_adult and (can_plant_bean or can_use(Hover_Boots))",
-            "KF Bean Platform Green Rupee 5": "is_adult and (can_plant_bean or can_use(Hover_Boots))",
-            "KF Bean Platform Green Rupee 6": "is_adult and (can_plant_bean or can_use(Hover_Boots))",
-            "KF Bean Platform Red Rupee": "is_adult and (can_plant_bean or can_use(Hover_Boots))",
+            "KF Bean Platform Green Rupee 1": "is_adult and (here(can_plant_bean) or can_use(Hover_Boots))",
+            "KF Bean Platform Green Rupee 2": "is_adult and (here(can_plant_bean) or can_use(Hover_Boots))",
+            "KF Bean Platform Green Rupee 3": "is_adult and (here(can_plant_bean) or can_use(Hover_Boots))",
+            "KF Bean Platform Green Rupee 4": "is_adult and (here(can_plant_bean) or can_use(Hover_Boots))",
+            "KF Bean Platform Green Rupee 5": "is_adult and (here(can_plant_bean) or can_use(Hover_Boots))",
+            "KF Bean Platform Green Rupee 6": "is_adult and (here(can_plant_bean) or can_use(Hover_Boots))",
+            "KF Bean Platform Red Rupee": "is_adult and (here(can_plant_bean) or can_use(Hover_Boots))",
             "KF GS Know It All House": "
                 is_child and can_child_attack and at_night and
                 (had_night_start or can_leave_forest or can_play(Suns_Song))",
@@ -282,7 +282,7 @@
         "scene": "Lost Woods",
         "hint": "the Lost Woods",
         "locations": {
-            "LW Under Boulder Blue Rupee": "here(can_blast_or_smash)",
+            "LW Under Boulder Blue Rupee": "can_blast_or_smash",
             "LW Deku Scrub Near Deku Theater Right": "is_child and can_stun_deku",
             "LW Deku Scrub Near Deku Theater Left": "is_child and can_stun_deku",
             "LW GS Above Theater": "
@@ -454,8 +454,7 @@
             "Water Temple Lobby": "
                 can_use(Hookshot) and
                 (can_use(Iron_Boots) or
-                    ((can_use(Longshot) or logic_water_hookshot_entry) and (Progressive_Scale,
-            2)))",
+                    ((can_use(Longshot) or logic_water_hookshot_entry) and (Progressive_Scale, 2)))",
             "LH Grotto": "True"
         }
     },
@@ -487,8 +486,7 @@
         },
         "locations": {
             "LH Lab Dive": "
-                (Progressive_Scale,
-            2) or
+                (Progressive_Scale, 2) or
                 (logic_lab_diving and Iron_Boots and can_use(Hookshot))",
             "LH Lab Dive Red Rupee 1": "(Progressive_Scale, 2) or can_use(Iron_Boots)",
             "LH Lab Dive Red Rupee 2": "(Progressive_Scale, 2) or can_use(Iron_Boots)",
@@ -1523,9 +1521,8 @@
             "DMT Freestanding PoH": "
                 can_take_damage or can_use(Hover_Boots) or
                 (is_adult and here(can_plant_bean and (has_explosives or Progressive_Strength_Upgrade)))",
-            "DMT Rock Red Rupee": "(here(is_child) and has_explosives) or
-                (here(is_child) and (here(is_adult) and can_use(Megaton_Hammer)))",
-            "DMT Rock Blue Rupee": "here(is_child) and has_explosives",
+            "DMT Rock Red Rupee": "is_child and here(can_blast_or_smash)",
+            "DMT Rock Blue Rupee": "is_child and has_explosives",
             "DMT GS Bean Patch": "
                 can_plant_bugs and can_child_attack and
                     (has_explosives or Progressive_Strength_Upgrade or
@@ -1788,13 +1785,13 @@
         "scene": "Death Mountain Crater",
         "hint": "Death Mountain Crater",
         "locations": {
-            "DMC Adult Green Rupee 1": "here(is_adult)",
-            "DMC Adult Green Rupee 2": "here(is_adult)",
-            "DMC Adult Green Rupee 3": "here(is_adult)",
-            "DMC Adult Green Rupee 4": "here(is_adult)",
-            "DMC Adult Green Rupee 5": "here(is_adult)",
-            "DMC Adult Green Rupee 6": "here(is_adult)",
-            "DMC Adult Red Rupee": "here(is_adult)"
+            "DMC Adult Green Rupee 1": "is_adult",
+            "DMC Adult Green Rupee 2": "is_adult",
+            "DMC Adult Green Rupee 3": "is_adult",
+            "DMC Adult Green Rupee 4": "is_adult",
+            "DMC Adult Green Rupee 5": "is_adult",
+            "DMC Adult Green Rupee 6": "is_adult",
+            "DMC Adult Red Rupee": "is_adult"
         }
     },
     {
@@ -1857,8 +1854,7 @@
             "Sheik in Crater": "is_adult"
         },
         "exits": {
-            "DMC Central Local": "can_use(Goron_Tunic)",
-            "DMC Pierre Platform": "(logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and can_use(Distant_Scarecrow)"
+            "DMC Central Local": "can_use(Goron_Tunic)"
         }
     },
     {
@@ -1886,7 +1882,8 @@
             "DMC Upper Nearby": "is_adult and here(can_plant_bean)",
             "DMC Fire Temple Entrance": "
                 (is_child and shuffle_dungeon_entrances) or
-                (is_adult and (logic_fewer_tunic_requirements or can_use(Goron_Tunic)))"
+                (is_adult and (logic_fewer_tunic_requirements or can_use(Goron_Tunic)))",
+            "DMC Pierre Platform": "can_use(Distant_Scarecrow)"
         }
     },
     {
@@ -2072,26 +2069,6 @@
         "hint": "Zora's Fountain",
         "locations": {
             "ZF Iceberg Freestanding PoH": "is_adult",
-            "ZF Bottom Freestanding PoH": "
-                is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Green Rupee 1": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Green Rupee 2": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Green Rupee 3": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Green Rupee 4": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Green Rupee 5": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Green Rupee 6": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Green Rupee 7": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Green Rupee 8": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Green Rupee 9": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Green Rupee 10": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Green Rupee 11": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Green Rupee 12": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Green Rupee 13": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Green Rupee 14": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Green Rupee 15": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Green Rupee 16": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Green Rupee 17": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
-            "ZF Bottom Green Rupee 18": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
             "ZF Hidden Cave Pot 1": "can_use(Silver_Gauntlets) and can_blast_or_smash",
             "ZF Hidden Cave Pot 2": "can_use(Silver_Gauntlets) and can_blast_or_smash",
             "ZF Hidden Cave Pot 3": "can_use(Silver_Gauntlets) and can_blast_or_smash",
@@ -2113,7 +2090,33 @@
             "ZD Behind King Zora": "True",
             "Jabu Jabus Belly Beginning": "is_child and Fish",
             "ZF Ice Ledge": "is_adult",
-            "ZF Great Fairy Fountain": "has_explosives"
+            "ZF Great Fairy Fountain": "has_explosives",
+            "ZF Underwater" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or can_use(Zora_Tunic))"
+        }
+    },
+    {
+        "region_name": "ZF Underwater",
+        "scene" : "Zoras Fountain",
+        "locations": {
+            "ZF Bottom Freestanding PoH": "True",
+            "ZF Bottom Green Rupee 1": "True",
+            "ZF Bottom Green Rupee 2": "True",
+            "ZF Bottom Green Rupee 3": "True",
+            "ZF Bottom Green Rupee 4": "True",
+            "ZF Bottom Green Rupee 5": "True",
+            "ZF Bottom Green Rupee 6": "True",
+            "ZF Bottom Green Rupee 7": "True",
+            "ZF Bottom Green Rupee 8": "True",
+            "ZF Bottom Green Rupee 9": "True",
+            "ZF Bottom Green Rupee 10": "True",
+            "ZF Bottom Green Rupee 11": "True",
+            "ZF Bottom Green Rupee 12": "True",
+            "ZF Bottom Green Rupee 13": "True",
+            "ZF Bottom Green Rupee 14": "True",
+            "ZF Bottom Green Rupee 15": "True",
+            "ZF Bottom Green Rupee 16": "True",
+            "ZF Bottom Green Rupee 17": "True",
+            "ZF Bottom Green Rupee 18": "True"
         }
     },
     {
@@ -2418,7 +2421,7 @@
         "scene": "HF Inside Fence Grotto",
         "locations": {
             "HF Deku Scrub Grotto": "can_stun_deku",
-            "HF Inside Fence Grotto Beehive": "can_break_upper_beehive"
+            "HF Inside Fence Grotto Beehive": "can_break_lower_beehive"
         },
         "exits": {
             "Hyrule Field": "True"
@@ -2484,8 +2487,7 @@
         "scene": "HF Tektite Grotto",
         "locations": {
             "HF Tektite Grotto Freestanding PoH": "
-                (Progressive_Scale,
-            2) or can_use(Iron_Boots)"
+                (Progressive_Scale, 2) or can_use(Iron_Boots)"
         },
         "exits": {
             "Hyrule Field": "True"
@@ -2556,7 +2558,7 @@
             "DMT Cow Grotto Recovery Heart 2": "True",
             "DMT Cow Grotto Recovery Heart 3": "True",
             "DMT Cow Grotto Recovery Heart 4": "True",
-            "DMT Cow Grotto Beehive": "can_break_upper_beehive"
+            "DMT Cow Grotto Beehive": "can_break_lower_beehive"
         },
         "exits": {
             "Death Mountain Summit": "True"
