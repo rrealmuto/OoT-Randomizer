@@ -37,7 +37,7 @@
         "locations": {
             "Shadow Temple Compass Chest": "True",
             "Shadow Temple Scythe Shortcut Silver Rupee 1" : "True",
-            "Shadow Temple Scythe Shortcut Silver Rupee 2" : "can_use(Hookshot)",
+            "Shadow Temple Scythe Shortcut Silver Rupee 2" : "True",
             "Shadow Temple Scythe Shortcut Silver Rupee 3" : "True",
             "Shadow Temple Scythe Shortcut Silver Rupee 4" : "True",
             "Shadow Temple Scythe Shortcut Silver Rupee 5" : "True",

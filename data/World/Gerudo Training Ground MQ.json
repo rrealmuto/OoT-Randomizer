@@ -29,16 +29,36 @@
             "Wall Fairy": "has_bottle and can_use(Bow)" #in the Dinalfos room shoot the Gerudo symbol above the door to the lava room.
         },
         "exits": {
-            # Still requires has_fire_source in the room
-            "Gerudo Training Ground Underwater": "
-                (Bow or can_use(Longshot)) and can_use(Hover_Boots)"
+            "Gerudo Training Ground Lava Room" : "True" #Does logic need us to kill the enemies?
+        }
+    },
+    {
+        "region_name" : "Gerudo Training Ground Lava Room",
+        "dungeon": "Gerudo Training Ground",
+        "locations": {
+            "Gerudo Training Ground MQ Lava Room Silver Rupee Far 1" : "(Bow or (can_use(Longshot) and has_fire_source)) and can_use(Hover_Boots)",
+            "Gerudo Training Ground MQ Lava Room Silver Rupee Far 2" : "(Bow or (can_use(Longshot) and has_fire_source)) and can_use(Hover_Boots)",
+            "Gerudo Training Ground MQ Lava Room Silver Rupee Far 3" : "(Bow or (can_use(Longshot) and has_fire_source)) and can_use(Hover_Boots)",
+            "Gerudo Training Ground MQ Lava Room Silver Rupee Near 1" : "(Bow or can_use(Longshot) and has_fire_source)",
+            "Gerudo Training Ground MQ Lava Room Silver Rupee Near 2" : "(Bow or can_use(Longshot) and has_fire_source)",
+            "Gerudo Training Ground MQ Lava Room Silver Rupee Near 3" : "(Bow or can_use(Longshot) and has_fire_source)"
+        },
+        "exits" : {
+            "Gerudo Training Ground Underwater": "(Silver_Rupee_Gerudo_Training_Ground_Lava, 6) and (Bow or can_use(Longshot))"
         }
     },
     {
         "region_name": "Gerudo Training Ground Underwater",
         "dungeon": "Gerudo Training Ground",
         "locations": {
-            "Gerudo Training Ground MQ Underwater Silver Rupee Chest": "
+            "Gerudo Training Ground MQ Underwater Silver Rupee Chest": "(Silver_Rupee_Gerudo_Training_Ground_Water, 3)",
+            "Gerudo Training Ground MQ Underwater Silver Rupee 1": "
+                has_fire_source and can_use(Iron_Boots) and
+                (logic_fewer_tunic_requirements or can_use(Zora_Tunic)) and can_take_damage",
+            "Gerudo Training Ground MQ Underwater Silver Rupee 2": "
+                has_fire_source and can_use(Iron_Boots) and
+                (logic_fewer_tunic_requirements or can_use(Zora_Tunic)) and can_take_damage",
+            "Gerudo Training Ground MQ Underwater Silver Rupee 3": "
                 has_fire_source and can_use(Iron_Boots) and
                 (logic_fewer_tunic_requirements or can_use(Zora_Tunic)) and can_take_damage"
         }
@@ -50,9 +70,22 @@
             "Gerudo Training Ground MQ First Iron Knuckle Chest": "is_adult or Kokiri_Sword or has_explosives"
         },
         "exits": {
-            "Gerudo Training Ground Stalfos Room": "
-                can_use(Longshot) or logic_gtg_mq_without_hookshot or
-                (logic_gtg_mq_with_hookshot and can_use(Hookshot))"
+            "Gerudo Training Ground Boulder Room" : "is_adult or Kokiri_Sword or has_explosives"
+        }
+    },
+    {
+        "region_name" : "Gerudo Training Ground Boulder Room",
+        "dungeon": "Gerudo Training Ground",
+        "locations":{
+            "Gerudo Training Ground MQ Boulder Room Silver Rupee 1" : "True",
+            "Gerudo Training Ground MQ Boulder Room Silver Rupee 2" : "True",
+            "Gerudo Training Ground MQ Boulder Room Silver Rupee 3" : "True",
+            "Gerudo Training Ground MQ Boulder Room Silver Rupee 4" : "can_use(Longshot) or logic_gtg_mq_without_hookshot or
+            (logic_gtg_mq_with_hookshot and can_use(Hookshot))",
+            "Gerudo Training Ground MQ Boulder Room Silver Rupee 5" : "True"
+        },
+        "exits": {
+            "Gerudo Training Ground Stalfos Room": "(Silver_Rupee_Gerudo_Training_Ground_Slopes, 5)"
         }
     },
     {
