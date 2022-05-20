@@ -36,11 +36,11 @@
         "dungeon": "Shadow Temple",
         "locations": {
             "Shadow Temple Compass Chest": "True",
-            "Shadow Temple Scythe Shortcut Silver Rupee 1" : "True",
-            "Shadow Temple Scythe Shortcut Silver Rupee 2" : "can_use(Hookshot)",
-            "Shadow Temple Scythe Shortcut Silver Rupee 3" : "True",
-            "Shadow Temple Scythe Shortcut Silver Rupee 4" : "True",
-            "Shadow Temple Scythe Shortcut Silver Rupee 5" : "True",
+            "Shadow Temple Scythe Shortcut Silver Rupee Center Left" : "True",
+            "Shadow Temple Scythe Shortcut Silver Rupee Ledge" : "can_use(Hookshot)",
+            "Shadow Temple Scythe Shortcut Silver Rupee Back Alcove" : "True",
+            "Shadow Temple Scythe Shortcut Silver Rupee Left Alcove" : "True",
+            "Shadow Temple Scythe Shortcut Silver Rupee Center Right" : "True",
             "Shadow Temple Early Silver Rupee Chest": "(Silver_Rupee_Shadow_Temple_Scythe_Shortcut, 5)"
         },
         "exits": {

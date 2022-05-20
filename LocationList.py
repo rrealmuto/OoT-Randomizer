@@ -1462,11 +1462,11 @@ location_table = OrderedDict([
     ("Shadow Temple Huge Pit Silver Rupee 4",                ("Collectable", 0x07, 0x4C, ([0x27F40E0], None), 'Silver Rupee (Shadow Temple Huge Pit)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
     ("Shadow Temple Huge Pit Silver Rupee 5",                ("Collectable", 0x07, 0x4D, ([0x27F40F0], None), 'Silver Rupee (Shadow Temple Huge Pit)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
 
-    ("Shadow Temple Scythe Shortcut Silver Rupee 1",         ("Collectable", 0x07, 0x4E, ([0x27E4048], None), 'Silver Rupee (Shadow Temple Scythe Shortcut)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
-    ("Shadow Temple Scythe Shortcut Silver Rupee 2",         ("Collectable", 0x07, 0x4F, ([0x27E4058], None), 'Silver Rupee (Shadow Temple Scythe Shortcut)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
-    ("Shadow Temple Scythe Shortcut Silver Rupee 3",         ("Collectable", 0x07, 0x50, ([0x27E4068], None), 'Silver Rupee (Shadow Temple Scythe Shortcut)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
-    ("Shadow Temple Scythe Shortcut Silver Rupee 4",         ("Collectable", 0x07, 0x51, ([0x27E4078], None), 'Silver Rupee (Shadow Temple Scythe Shortcut)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
-    ("Shadow Temple Scythe Shortcut Silver Rupee 5",         ("Collectable", 0x07, 0x52, ([0x27E4088], None), 'Silver Rupee (Shadow Temple Scythe Shortcut)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
+    ("Shadow Temple Scythe Shortcut Silver Rupee Center Left",       ("Collectable", 0x07, 0x4E, ([0x27E4048], None), 'Silver Rupee (Shadow Temple Scythe Shortcut)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
+    ("Shadow Temple Scythe Shortcut Silver Rupee Ledge",             ("Collectable", 0x07, 0x4F, ([0x27E4058], None), 'Silver Rupee (Shadow Temple Scythe Shortcut)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
+    ("Shadow Temple Scythe Shortcut Silver Rupee Back Alcove",       ("Collectable", 0x07, 0x50, ([0x27E4068], None), 'Silver Rupee (Shadow Temple Scythe Shortcut)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
+    ("Shadow Temple Scythe Shortcut Silver Rupee Left Alcove",       ("Collectable", 0x07, 0x51, ([0x27E4078], None), 'Silver Rupee (Shadow Temple Scythe Shortcut)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
+    ("Shadow Temple Scythe Shortcut Silver Rupee Center Right",      ("Collectable", 0x07, 0x52, ([0x27E4088], None), 'Silver Rupee (Shadow Temple Scythe Shortcut)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
 
     ("Shadow Temple Invisible Spikes Silver Rupee 1",        ("Collectable", 0x07, 0x53, ([0x2809070], None), 'Silver Rupee (Shadow Temple Invisible Spikes)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
     ("Shadow Temple Invisible Spikes Silver Rupee 2",        ("Collectable", 0x07, 0x54, ([0x2809080], None), 'Silver Rupee (Shadow Temple Invisible Spikes)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
