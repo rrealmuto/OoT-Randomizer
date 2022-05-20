@@ -3,7 +3,12 @@
         
         "starting_equipment": [],
         "starting_items": {
-            "Silver Rupee (Gerudo Training Ground Slopes)" : 1
+            "Silver Rupee (Gerudo Training Ground Slopes)" : 5,
+            "Silver Rupee (Shadow Temple Invisible Spikes)" : 1,
+            "Silver Rupee (Shadow Temple Scythe Shortcut)": 1,
+            "Progressive Hookshot": 2,
+            "Hylian Shield":1,
+            "Biggoron Sword": 1
         }
     },
     "entrances": {
@@ -11,16 +16,5 @@
         "Adult Spawn -> Temple of Time" : {"region":"Gerudo Fortress", "from":"GV Fortress Side"}
     },
     "locations": {
-        "Market Guard House Child Pot 1" : "Silver Rupee (Gerudo Training Ground Lava)",
-        "Market Guard House Child Pot 2" : "Silver Rupee (Shadow Temple Scythe Shortcut)",
-        "Gerudo Training Ground Lobby Left Chest" : "Silver Rupee (Gerudo Training Ground Slopes)",
-        "Gerudo Training Ground Lobby Right Chest" : "Silver Rupee (Gerudo Training Ground Slopes)",
-        "Gerudo Training Ground Maze Path First Chest" : "Silver Rupee (Gerudo Training Ground Slopes)",
-        "Gerudo Training Ground Stalfos Chest" : "Silver Rupee (Gerudo Training Ground Slopes)",
-        "Gerudo Training Ground Underwater Silver Rupee 1" : "Silver Rupee (Gerudo Training Ground Lava)",
-        "Spirit Temple Lobby Pot 1" : "Silver Rupee (Spirit Temple Sun Block)",
-        "Spirit Temple Lobby Pot 2" : "Silver Rupee (Spirit Temple Sun Block)",
-        "Spirit Temple Lobby Flying Pot 1" : "Silver Rupee (Spirit Temple Sun Block)",
-        "Spirit Temple Lobby Flying Pot 2" : "Silver Rupee (Spirit Temple Sun Block)"
     }
 }

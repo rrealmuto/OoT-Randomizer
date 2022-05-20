@@ -330,7 +330,7 @@ class SaveContext():
                         "Shadow Temple Invisible Blades":      {'silver_rupee_counts.shadow_blades': needed_count, 'scene_flags.shadow.swch.silver_rupees_blades': True},
                         "Shadow Temple Huge Pit":              {'silver_rupee_counts.shadow_pit': needed_count, 'scene_flags.shadow.swch.silver_rupees_mq_pit' if world.dungeon_mq["Shadow Temple"] else 'scene_flags.shadow.swch.silver_rupees_vanilla_pit': True},
                         "Shadow Temple Invisible Spikes":      {'silver_rupee_counts.shadow_spikes': needed_count, 'scene_flags.shadow.swch.silver_rupees_spikes': True},
-                        "Gerudo Training Ground Slopes":       {'silver_rupee_counts.gtg_slopes': needed_count, 'scene_flags.gtg.swch.silver_rupees_slopes': True},
+                        "Gerudo Training Ground Slopes":       {'silver_rupee_counts.gtg_slopes': needed_count, 'scene_flags.gtg.swch.silver_rupees_slopes': True, 'scene_flags.gtg.clear.slopes_room': True},
                         "Gerudo Training Ground Lava":         {'silver_rupee_counts.gtg_lava': needed_count, 'scene_flags.gtg.swch.silver_rupees_lava': True},
                         "Gerudo Training Ground Water":        {'silver_rupee_counts.gtg_water': needed_count, 'scene_flags.gtg.swch.silver_rupees_water': True},
                         "Spirit Temple Child Early Torches":   {'silver_rupee_counts.spirit_torches': needed_count, 'scene_flags.spirit.swch.silver_rupees_torches': True},
@@ -768,6 +768,9 @@ class SaveContext():
                         'silver_rupees_water': Address(0xD4 + 0x1C * 0x0B + 0x04, mask=0x08000000),
                         'silver_rupees_slopes': Address(0xD4 + 0x1C * 0x0B + 0x04, mask=0x10000000),
                     },
+                    'clear' : {
+                        'slopes_room' : Address(0xD4 + 0x1C*0x0B + 0x08, mask=0x00000004)
+                    }
                 },
                 'gc' : {
                     'swch' : {
