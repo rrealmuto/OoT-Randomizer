@@ -68,43 +68,16 @@ location_table = OrderedDict([
 
     ## Overworld
     # Kokiri Forest
-    ("KF Behind Midos Blue Rupee",								         ("Collectable",  0x55, 0x12, None,                          'Rupees (5)',						("Kokiri Forest", "Forest", "Freestanding",))),
-    ("KF Boulder Maze Blue Rupee 1",                                     ("Collectable",  0x55,  0x0F, None,                       'Rupees (5)',                            ("Kokiri Forest", "Forest", "Freestanding"))),
-    ("KF Boulder Maze Blue Rupee 2",                                     ("Collectable",  0x55,  0x0E, None,                       'Rupees (5)',                            ("Kokiri Forest", "Forest", "Freestanding"))),
-    ("KF End of Bridge Blue Rupee",                                      ("Collectable",  0x55,  0x11, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest", "Freestanding"))),
-    ("KF Top of Sarias Recovery Heart 1",                                     ("Collectable", 0x55, 0x1C, None,                          'Recovery Heart', ("Kokiri Forest", "Forest", "Freestanding"))),
-    ("KF Top of Sarias Recovery Heart 2",                                     ("Collectable", 0x55, 0x1E, None,                          'Recovery Heart', ("Kokiri Forest", "Forest", "Freestanding"))),
-    ("KF Top of Sarias Recovery Heart 3",                                     ("Collectable", 0x55, 0x1D, None,                          'Recovery Heart', ("Kokiri Forest", "Forest", "Freestanding"))),
-    ("KF Bean Platform Green Rupee 1",                           ("Collectable", 0x55, 0x40, ([0x020816A0, 0x2081910], None), 'Rupees (20)', ("Kokiri Forest", "Forest", "RupeeTower"))),
-    ("KF Bean Platform Green Rupee 2",                           ("Collectable", 0x55, 0x41, None, 'Rupees (20)', ("Kokiri Forest", "Forest", "RupeeTower"))),
-    ("KF Bean Platform Green Rupee 3",                           ("Collectable", 0x55, 0x42, None, 'Rupees (20)', ("Kokiri Forest", "Forest", "RupeeTower"))),
-    ("KF Bean Platform Green Rupee 4",                           ("Collectable", 0x55, 0x43, None, 'Rupees (20)', ("Kokiri Forest", "Forest", "RupeeTower"))),
-    ("KF Bean Platform Green Rupee 5",                           ("Collectable", 0x55, 0x44, None, 'Rupees (20)', ("Kokiri Forest", "Forest", "RupeeTower"))),
-    ("KF Bean Platform Green Rupee 6",                           ("Collectable", 0x55, 0x45, None, 'Rupees (20)', ("Kokiri Forest", "Forest", "RupeeTower"))),
-    ("KF Bean Platform Red Rupee",                               ("Collectable", 0x55, 0x46, None, 'Rupees (20)', ("Kokiri Forest", "Forest", "RupeeTower"))),
-    #("KF Near Ramp Green Rupee 1",                                   ("Collectable", 0x55, 0x1B, ([0x20810A4 + 14],[0x1B]),     'Rupee (1)',      ("Kokiri Forest", "Forest", "Freestanding"))),
-    #("KF Near Ramp Green Rupee 2",                                   ("Collectable", 0x55, 0x1A, ([0x20810B4 + 14],[0x1A]),     'Rupee (1)',      ("Kokiri Forest", "Forest", "Freestanding"))),
-    #("KF Near Midos Green Rupee 1",                                  ("Collectable", 0x55, 0x19, ([0x20810C4 + 14],[0x19]),     'Rupee (1)',      ("Kokiri Forest", "Forest", "Freestanding"))),
-    #("KF Near Midos Green Rupee 2",                                  ("Collectable", 0x55, 0x18, ([0x20810D4 + 14],[0x18]),     'Rupee (1)',      ("Kokiri Forest", "Forest", "Freestanding"))),
-    ("KF Grass Near Ramp Green Rupee 1",                                   ("Collectable", 0x55, 0x24, None,     'Rupee (1)',      ("Kokiri Forest", "Forest", "Freestanding"))),
-    ("KF Grass Near Ramp Green Rupee 2",                                   ("Collectable", 0x55, 0x27, None,     'Rupee (1)',      ("Kokiri Forest", "Forest", "Freestanding"))),
-    ("KF Grass Near Midos Green Rupee 1",                                  ("Collectable", 0x55, 0x25, None,     'Rupee (1)',      ("Kokiri Forest", "Forest", "Freestanding"))),
-    ("KF Grass Near Midos Green Rupee 2",                                  ("Collectable", 0x55, 0x26, None,     'Rupee (1)',      ("Kokiri Forest", "Forest", "Freestanding"))),
     ("KF Midos Top Left Chest",                                      ("Chest",        0x28,  0x00, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
     ("KF Midos Top Right Chest",                                     ("Chest",        0x28,  0x01, None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest",))),
     ("KF Midos Bottom Left Chest",                                   ("Chest",        0x28,  0x02, None,                        'Rupee (1)',                             ("Kokiri Forest", "Forest",))),
     ("KF Midos Bottom Right Chest",                                  ("Chest",        0x28,  0x03, None,                        'Recovery Heart',                        ("Kokiri Forest", "Forest",))),
-    ("KF Sarias House Recovery Heart 1",                               ("Collectable", 0x29, 0x38, None,                       'Recovery Heart', ("Kokiri Forest", "Forest","Freestanding",))),
-    ("KF Sarias House Recovery Heart 2",                               ("Collectable", 0x29, 0x39, None,                       'Recovery Heart', ("Kokiri Forest", "Forest","Freestanding",))),
-    ("KF Sarias House Recovery Heart 3",                               ("Collectable", 0x29, 0x3A, None,                       'Recovery Heart', ("Kokiri Forest", "Forest","Freestanding",))),
-    ("KF Sarias House Recovery Heart 4",                               ("Collectable", 0x29, 0x3B, None,                       'Recovery Heart', ("Kokiri Forest", "Forest", "Freestanding",))),
     ("KF Kokiri Sword Chest",                                        ("Chest",        0x55,  0x00, None,                        'Kokiri Sword',                          ("Kokiri Forest", "Forest",))),
     ("KF Storms Grotto Chest",                                       ("Chest",        0x3E,  0x0C, None,                        'Rupees (20)',                           ("Kokiri Forest", "Forest", "Grottos"))),
     ("KF Links House Cow",                                           ("NPC",          0x34,  0x15, None,                        'Milk',                                  ("Kokiri Forest", "Forest", "Cow", "Minigames"))),
     ("KF GS Know It All House",                                      ("GS Token",     0x0C,  0x02, None,                        'Gold Skulltula Token',                  ("Kokiri Forest", "Skulltulas",))),
     ("KF GS Bean Patch",                                             ("GS Token",     0x0C,  0x01, None,                        'Gold Skulltula Token',                  ("Kokiri Forest", "Skulltulas",))),
     ("KF GS House of Twins",                                         ("GS Token",     0x0C,  0x04, None,                        'Gold Skulltula Token',                  ("Kokiri Forest", "Skulltulas",))),
-    ("KF Shop Blue Rupee",                                      ("ActorOverride",  0x2D,  0x01, ([0x02587098], [0x00, 0x15, 0x00, 0x92, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x06]),                        "Rupees (5)",                            ("Kokiri Forest", "Forest", "Freestanding"))),
     ("KF Shop Item 1",                                               ("Shop",         0x2D,  0x30, (shop_address(0, 0), None),  'Buy Deku Shield',                       ("Kokiri Forest", "Forest", "Shops"))),
     ("KF Shop Item 2",                                               ("Shop",         0x2D,  0x31, (shop_address(0, 1), None),  'Buy Deku Nut (5)',                      ("Kokiri Forest", "Forest", "Shops"))),
     ("KF Shop Item 3",                                               ("Shop",         0x2D,  0x32, (shop_address(0, 2), None),  'Buy Deku Nut (10)',                     ("Kokiri Forest", "Forest", "Shops"))),
@@ -113,28 +86,42 @@ location_table = OrderedDict([
     ("KF Shop Item 6",                                               ("Shop",         0x2D,  0x35, (shop_address(0, 5), None),  'Buy Arrows (10)',                       ("Kokiri Forest", "Forest", "Shops"))),
     ("KF Shop Item 7",                                               ("Shop",         0x2D,  0x36, (shop_address(0, 6), None),  'Buy Arrows (30)',                       ("Kokiri Forest", "Forest", "Shops"))),
     ("KF Shop Item 8",                                               ("Shop",         0x2D,  0x37, (shop_address(0, 7), None),  'Buy Heart',                             ("Kokiri Forest", "Forest", "Shops"))),
-    ("KF Storms Grotto Beehive 1",                                     ("Collectable",  0x3E, 0x60 + (0x0C*2), None,                         'Rupees (20)',                            ("Kokiri Forest", "Forest", "Grottos", "Beehive"))),
-    ("KF Storms Grotto Beehive 2",                                     ("Collectable",  0x3E, 0x60 + (0x0C*2 + 1), None,                         'Rupees (20)',                            ("Kokiri Forest", "Forest", "Grottos", "Beehive"))),     
-    #KF Pots
-    ("KF Links House Pot",                                           ("Collectable",  0x34,  0x20, None,                        'Recovery Heart',                        ("Kokiri Forest", "Forest", "Pot"))),
-    ("KF Know it All House Pot 1",                          ("Collectable",  0x26,  0x20, None,                        'Rupee (1)',                        ("Kokiri Forest", "Forest", "Pot"))),
-    ("KF Know it All House Pot 2",                          ("Collectable",  0x26,  0x21, None,                        'Rupee (1)',                        ("Kokiri Forest", "Forest", "Pot"))),
-    ("KF House of Twins Pot 1",                                         ("Collectable",  0x27,  0x21, None,                        'Rupee (1)',                        ("Kokiri Forest", "Forest", "Pot"))),
-    ("KF House of Twins Pot 2",                                         ("Collectable",  0x27,  0x22, None,                        'Rupees (5)',                        ("Kokiri Forest", "Forest", "Pot"))),
-
-
-
+    # Kokiri Forest Freestanding
+    ("KF Behind Midos Blue Rupee",                              ("Collectable", 0x55, 0x12, None,                               'Rupees (5)',						    ("Kokiri Forest", "Forest", "Freestanding",))),
+    ("KF Boulder Maze Blue Rupee 1",                            ("Collectable", 0x55, 0x0F, None,                               'Rupees (5)',                           ("Kokiri Forest", "Forest", "Freestanding"))),
+    ("KF Boulder Maze Blue Rupee 2",                            ("Collectable", 0x55, 0x0E, None,                               'Rupees (5)',                           ("Kokiri Forest", "Forest", "Freestanding"))),
+    ("KF End of Bridge Blue Rupee",                             ("Collectable", 0x55, 0x11, None,                               'Rupees (5)',                           ("Kokiri Forest", "Forest", "Freestanding"))),
+    ("KF Top of Sarias Recovery Heart 1",                       ("Collectable", 0x55, 0x1C, None,                               'Recovery Heart',                       ("Kokiri Forest", "Forest", "Freestanding"))),
+    ("KF Top of Sarias Recovery Heart 2",                       ("Collectable", 0x55, 0x1E, None,                               'Recovery Heart',                       ("Kokiri Forest", "Forest", "Freestanding"))),
+    ("KF Top of Sarias Recovery Heart 3",                       ("Collectable", 0x55, 0x1D, None,                               'Recovery Heart',                       ("Kokiri Forest", "Forest", "Freestanding"))),
+    ("KF Bean Platform Green Rupee 1",                          ("Collectable", 0x55, 0x40, ([0x020816A0, 0x2081910], None),    'Rupees (20)',                          ("Kokiri Forest", "Forest", "RupeeTower"))),
+    ("KF Bean Platform Green Rupee 2",                          ("Collectable", 0x55, 0x41, None,                               'Rupees (20)',                          ("Kokiri Forest", "Forest", "RupeeTower"))),
+    ("KF Bean Platform Green Rupee 3",                          ("Collectable", 0x55, 0x42, None,                               'Rupees (20)',                          ("Kokiri Forest", "Forest", "RupeeTower"))),
+    ("KF Bean Platform Green Rupee 4",                          ("Collectable", 0x55, 0x43, None,                               'Rupees (20)',                          ("Kokiri Forest", "Forest", "RupeeTower"))),
+    ("KF Bean Platform Green Rupee 5",                          ("Collectable", 0x55, 0x44, None,                               'Rupees (20)',                          ("Kokiri Forest", "Forest", "RupeeTower"))),
+    ("KF Bean Platform Green Rupee 6",                          ("Collectable", 0x55, 0x45, None,                               'Rupees (20)',                          ("Kokiri Forest", "Forest", "RupeeTower"))),
+    ("KF Bean Platform Red Rupee",                              ("Collectable", 0x55, 0x46, None,                               'Rupees (20)',                          ("Kokiri Forest", "Forest", "RupeeTower"))),
+    ("KF Grass Near Ramp Green Rupee 1",                        ("Collectable", 0x55, 0x24, None,                               'Rupee (1)',                            ("Kokiri Forest", "Forest", "Freestanding"))),
+    ("KF Grass Near Ramp Green Rupee 2",                        ("Collectable", 0x55, 0x27, None,                               'Rupee (1)',                            ("Kokiri Forest", "Forest", "Freestanding"))),
+    ("KF Grass Near Midos Green Rupee 1",                       ("Collectable", 0x55, 0x25, None,                               'Rupee (1)',                            ("Kokiri Forest", "Forest", "Freestanding"))),
+    ("KF Grass Near Midos Green Rupee 2",                       ("Collectable", 0x55, 0x26, None,                               'Rupee (1)',                            ("Kokiri Forest", "Forest", "Freestanding"))),
+    ("KF Sarias House Recovery Heart 1",                        ("Collectable", 0x29, 0x38, None,                               'Recovery Heart',                       ("Kokiri Forest", "Forest", "Freestanding",))),
+    ("KF Sarias House Recovery Heart 2",                        ("Collectable", 0x29, 0x39, None,                               'Recovery Heart',                       ("Kokiri Forest", "Forest", "Freestanding",))),
+    ("KF Sarias House Recovery Heart 3",                        ("Collectable", 0x29, 0x3A, None,                               'Recovery Heart',                       ("Kokiri Forest", "Forest", "Freestanding",))),
+    ("KF Sarias House Recovery Heart 4",                        ("Collectable", 0x29, 0x3B, None,                               'Recovery Heart',                       ("Kokiri Forest", "Forest", "Freestanding",))),
+    ("KF Shop Blue Rupee",                                      ("ActorOverride",  0x2D,  0x01, ([0x02587098], [0x00, 0x15, 0x00, 0x92, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x06]),                        "Rupees (5)",                            ("Kokiri Forest", "Forest", "Freestanding"))),
+    # Kokiri Forest Pots
+    ("KF Links House Pot",                                      ("Collectable",  0x34,  0x20, None,                             'Recovery Heart',                       ("Kokiri Forest", "Forest", "Pot"))),
+    ("KF Know it All House Pot 1",                              ("Collectable",  0x26,  0x20, None,                             'Rupee (1)',                            ("Kokiri Forest", "Forest", "Pot"))),
+    ("KF Know it All House Pot 2",                              ("Collectable",  0x26,  0x21, None,                             'Rupee (1)',                            ("Kokiri Forest", "Forest", "Pot"))),
+    ("KF House of Twins Pot 1",                                 ("Collectable",  0x27,  0x21, None,                             'Rupee (1)',                            ("Kokiri Forest", "Forest", "Pot"))),
+    ("KF House of Twins Pot 2",                                 ("Collectable",  0x27,  0x22, None,                             'Rupees (5)',                           ("Kokiri Forest", "Forest", "Pot"))),
+    # Kokiri Forest Beehives
+    ("KF Storms Grotto Beehive 1",                              ("Collectable",  0x3E, 0x60 + (0x0C*2), None,                   'Rupees (20)',                          ("Kokiri Forest", "Forest", "Grottos", "Beehive"))),
+    ("KF Storms Grotto Beehive 2",                              ("Collectable",  0x3E, 0x60 + (0x0C*2 + 1), None,               'Rupees (20)',                          ("Kokiri Forest", "Forest", "Grottos", "Beehive"))),     
+    
     # Lost Woods
     ("LW Gift from Saria",                                           ("Cutscene",     0xFF,  0x02, None,                        'Ocarina',                               ("the Lost Woods", "Forest",))),
-    ("LW Under Boulder Blue Rupee",                                  ("Collectable",  0x5B,  0x13, None,                        'Rupees (5)',                            ("the Lost Woods", "Forest","Freestanding",))),
-    ("LW Underwater Green Rupee 1",                                  ("Collectable",  0x5B,  0x34, None, 'Rupee (1)',                            ("the Lost Woods", "Forest","Freestanding",))),
-    ("LW Underwater Green Rupee 2",                                  ("Collectable",  0x5B,  0x35, None, 'Rupee (1)',                            ("the Lost Woods", "Forest","Freestanding",))),
-    ("LW Underwater Green Rupee 3",                                  ("Collectable",  0x5B,  0x36, None, 'Rupee (1)',                            ("the Lost Woods", "Forest","Freestanding",))),
-    ("LW Underwater Green Rupee 4",                                  ("Collectable",  0x5B,  0x37, None, 'Rupee (1)',                            ("the Lost Woods", "Forest","Freestanding",))),
-    ("LW Underwater Green Rupee 5",                                  ("Collectable",  0x5B,  0x39, None, 'Rupee (1)',                            ("the Lost Woods", "Forest","Freestanding",))),
-    ("LW Underwater Green Rupee 6",                                  ("Collectable",  0x5B,  0x3A, None, 'Rupee (1)',                            ("the Lost Woods", "Forest","Freestanding",))),
-    ("LW Underwater Green Rupee 7",                                  ("Collectable",  0x5B,  0x3B, None, 'Rupee (1)',                            ("the Lost Woods", "Forest","Freestanding",))),
-    ("LW Underwater Green Rupee 8",                                  ("Collectable",  0x5B,  0x3C, None, 'Rupee (1)',                            ("the Lost Woods", "Forest", "Freestanding",))),
     ("LW Ocarina Memory Game",                                       ("NPC",          0x5B,  0x76, None,                        'Piece of Heart',                        ("the Lost Woods", "Forest", "Minigames"))),
     ("LW Target in Woods",                                           ("NPC",          0x5B,  0x60, None,                        'Slingshot',                             ("the Lost Woods", "Forest",))),
     ("LW Near Shortcuts Grotto Chest",                               ("Chest",        0x3E,  0x14, None,                        'Rupees (5)',                            ("the Lost Woods", "Forest", "Grottos"))),
@@ -149,16 +136,29 @@ location_table = OrderedDict([
     ("LW GS Bean Patch Near Bridge",                                 ("GS Token",     0x0D,  0x01, None,                        'Gold Skulltula Token',                  ("the Lost Woods", "Skulltulas",))),
     ("LW GS Bean Patch Near Theater",                                ("GS Token",     0x0D,  0x02, None,                        'Gold Skulltula Token',                  ("the Lost Woods", "Skulltulas",))),
     ("LW GS Above Theater",                                          ("GS Token",     0x0D,  0x04, None,                        'Gold Skulltula Token',                  ("the Lost Woods", "Skulltulas",))),
-    ("LW Near Shortcuts Grotto Beehive 1",                             ("Collectable",  0x3E, 0x60 + (0x14*2), None,                         'Rupees (20)',                            ("the Lost Woods", "Forest", "Grottos", "Beehive"))),
-    ("LW Near Shortcuts Grotto Beehive 2",                             ("Collectable",  0x3E, 0x60 + (0x14*2 + 1), None,                         'Rupees (20)',                            ("the Lost Woods", "Forest", "Grottos", "Beehive"))),
-    ("LW Scrubs Grotto Beehive",                                       ("Collectable",  0x3E, 0x60 + (0x15*2), None,                         'Rupees (20)',                            ("the Lost Woods", "Forest", "Grottos", "Beehive"))),
-
+    # Lost Woods Freestanding 
+    ("LW Under Boulder Blue Rupee",                                  ("Collectable",  0x5B,  0x13, None, 'Rupees (5)',                           ("the Lost Woods", "Forest","Freestanding",))),
+    ("LW Underwater Green Rupee 1",                                  ("Collectable",  0x5B,  0x34, None, 'Rupee (1)',                            ("the Lost Woods", "Forest","Freestanding",))),
+    ("LW Underwater Green Rupee 2",                                  ("Collectable",  0x5B,  0x35, None, 'Rupee (1)',                            ("the Lost Woods", "Forest","Freestanding",))),
+    ("LW Underwater Green Rupee 3",                                  ("Collectable",  0x5B,  0x36, None, 'Rupee (1)',                            ("the Lost Woods", "Forest","Freestanding",))),
+    ("LW Underwater Green Rupee 4",                                  ("Collectable",  0x5B,  0x37, None, 'Rupee (1)',                            ("the Lost Woods", "Forest","Freestanding",))),
+    ("LW Underwater Green Rupee 5",                                  ("Collectable",  0x5B,  0x39, None, 'Rupee (1)',                            ("the Lost Woods", "Forest","Freestanding",))),
+    ("LW Underwater Green Rupee 6",                                  ("Collectable",  0x5B,  0x3A, None, 'Rupee (1)',                            ("the Lost Woods", "Forest","Freestanding",))),
+    ("LW Underwater Green Rupee 7",                                  ("Collectable",  0x5B,  0x3B, None, 'Rupee (1)',                            ("the Lost Woods", "Forest","Freestanding",))),
+    ("LW Underwater Green Rupee 8",                                  ("Collectable",  0x5B,  0x3C, None, 'Rupee (1)',                            ("the Lost Woods", "Forest", "Freestanding",))),
+    # Lost Woods Beehives
+    ("LW Near Shortcuts Grotto Beehive 1",                           ("Collectable",  0x3E, 0x60 + (0x14*2), None,               'Rupees (20)',                            ("the Lost Woods", "Forest", "Grottos", "Beehive"))),
+    ("LW Near Shortcuts Grotto Beehive 2",                           ("Collectable",  0x3E, 0x60 + (0x14*2 + 1), None,           'Rupees (20)',                            ("the Lost Woods", "Forest", "Grottos", "Beehive"))),
+    ("LW Scrubs Grotto Beehive",                                     ("Collectable",  0x3E, 0x60 + (0x15*2), None,               'Rupees (20)',                            ("the Lost Woods", "Forest", "Grottos", "Beehive"))),
+    
     # Sacred Forest Meadow
     ("SFM Wolfos Grotto Chest",                                      ("Chest",        0x3E,  0x11, None,                        'Rupees (50)',                           ("Sacred Forest Meadow", "Forest", "Grottos"))),
     ("SFM Deku Scrub Grotto Front",                                  ("GrottoScrub",  0xEE,  0x3A, None,                        'Buy Green Potion',                      ("Sacred Forest Meadow", "Forest", "Deku Scrub", "Grottos"))),
     ("SFM Deku Scrub Grotto Rear",                                   ("GrottoScrub",  0xEE,  0x39, None,                        'Buy Red Potion for 30 Rupees',                   ("Sacred Forest Meadow", "Forest", "Deku Scrub", "Grottos"))),
     ("SFM GS",                                                       ("GS Token",     0x0D,  0x08, None,                        'Gold Skulltula Token',                  ("Sacred Forest Meadow", "Skulltulas",))),
-    ("SFM Storms Grotto Beehive",                                      ("Collectable",  0x3E, 0x60 + (0x0E*2), None,                         'Rupees (20)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "Beehive"))),
+    # Sacred Forest Meadow Beehives
+    ("SFM Storms Grotto Beehive",                                    ("Collectable",  0x3E, 0x60 + (0x0E*2), None,                         'Rupees (20)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "Beehive"))),
+    
     # Hyrule Field
     ("HF Ocarina of Time Item",                                      ("NPC",          0x51,  0x0C, None,                        'Ocarina',                               ("Hyrule Field", "Need Spiritual Stones",))),
     ("HF Near Market Grotto Chest",                                  ("Chest",        0x3E,  0x00, None,                        'Rupees (5)',                            ("Hyrule Field", "Grottos",))),
@@ -169,6 +169,10 @@ location_table = OrderedDict([
     ("HF Cow Grotto Cow",                                            ("NPC",          0x3E,  0x16, None,                        'Milk',                                  ("Hyrule Field", "Cow", "Grottos"))),
     ("HF GS Cow Grotto",                                             ("GS Token",     0x0A,  0x01, None,                        'Gold Skulltula Token',                  ("Hyrule Field", "Skulltulas", "Grottos"))),
     ("HF GS Near Kak Grotto",                                        ("GS Token",     0x0A,  0x02, None,                        'Gold Skulltula Token',                  ("Hyrule Field", "Skulltulas", "Grottos"))),
+    # Hyrule Field Pots
+    ("HF Cow Grotto Pot 1",                                          ("Collectable",  0x3E,  0x20, None,                        'Recovery Heart',                        ("Hyrule Field", "Grottos", "Pot"))),
+    ("HF Cow Grotto Pot 2",                                          ("Collectable",  0x3E,  0x21, None,                        'Recovery Heart',                        ("Hyrule Field", "Grottos", "Pot"))),
+    # Hyrule Field Beehives
     ("HF Near Market Grotto Beehive 1",                                ("Collectable",  0x3E, 0x60 + (0x00*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
     ("HF Near Market Grotto Beehive 2",                                ("Collectable",  0x3E, 0x60 + (0x00*2 + 1), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
     ("HF Open Grotto Beehive 1",                                       ("Collectable",  0x3E, 0x60 + (0x03*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
@@ -176,17 +180,8 @@ location_table = OrderedDict([
     ("HF Southeast Grotto Beehive 1",                                  ("Collectable",  0x3E, 0x60 + (0x02*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
     ("HF Southeast Grotto Beehive 2",                                  ("Collectable",  0x3E, 0x60 + (0x02*2 + 1), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
     ("HF Inside Fence Grotto Beehive",                                 ("Collectable",  0x3E, 0x60 + (0x06*2), None,                         'Rupees (20)',                            ("Hyrule Field", "Grottos", "Beehive"))),
-    ("HF Cow Grotto Pot 1",                                          ("Collectable",  0x3E,  0x20, None,                        'Recovery Heart',                        ("Hyrule Field", "Grottos", "Pot"))),
-    ("HF Cow Grotto Pot 2",                                          ("Collectable",  0x3E,  0x21, None,                        'Recovery Heart',                        ("Hyrule Field", "Grottos", "Pot"))),
-
-    # Market
-    #("Market Night Crate Rupee",                                     ("ActorOverride",0x21,  0x03, ([0x022D21B8], [0x00, 0x06, 0x00, 0x00, 0x00, 0x03]) ,                        'Rupees (20)',                           ("the market", "Market",))),
-    ("Market Night Red Rupee Crate",                                     ("Collectable",  0x21,  0x03, None,                        'Rupees (20)',                           ("the market", "Market", "Crate"))),
-    ("Market Night Green Rupee Crate 1",           ("Collectable", 0x21, 0x21, None, 'Rupee (1)', ("the market", "Market", "Crate"))),
-    ("Market Night Green Rupee Crate 2",           ("Collectable", 0x21, 0x22, None, 'Rupee (1)', ("the market", "Market", "Crate"))),
-    ("Market Night Green Rupee Crate 3",           ("Collectable", 0x21, 0x23, None, 'Rupee (1)', ("the market", "Market", "Crate"))),
-    ("Market Dog Lady House Crate",                 ("Collectable", 0x35, 0x20, None, 'Rupees (5)', ("Market", "Market", "Crate"))),
     
+    # Market
     ("Market Shooting Gallery Reward",                               ("NPC",          0x42,  0x60, None,                        'Slingshot',                             ("the Market", "Market", "Minigames"))),
     ("Market Bombchu Bowling First Prize",                           ("NPC",          0x4B,  0x34, None,                        'Bomb Bag',                              ("the Market", "Market", "Minigames"))),
     ("Market Bombchu Bowling Second Prize",                          ("NPC",          0x4B,  0x3E, None,                        'Piece of Heart',                        ("the Market", "Market", "Minigames"))),
@@ -221,44 +216,49 @@ location_table = OrderedDict([
     ("Market Bombchu Shop Item 6",                                   ("Shop",         0x32,  0x35, (shop_address(2, 5), None),  'Buy Bombchu (20)',                      ("the Market", "Market", "Shops"))),
     ("Market Bombchu Shop Item 7",                                   ("Shop",         0x32,  0x36, (shop_address(2, 6), None),  'Buy Bombchu (20)',                      ("the Market", "Market", "Shops"))),
     ("Market Bombchu Shop Item 8",                                   ("Shop",         0x32,  0x37, (shop_address(2, 7), None),  'Buy Bombchu (20)',                      ("the Market", "Market", "Shops"))),
-
-    ("Market Guard House Child Crate",                                     ("Collectable",  0x4D,  0x3C, None,                         'Rupee (1)',                            ("the Market", "Market", "Crate"))),
-    ("Market Guard House Child Pot 1",                                     ("Collectable",  0x4D,  0x20, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Child Pot 2",                                     ("Collectable",  0x4D,  0x21, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Child Pot 3",                                     ("Collectable",  0x4D,  0x22, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Child Pot 4",                                     ("Collectable",  0x4D,  0x23, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Child Pot 5",                                     ("Collectable",  0x4D,  0x24, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Child Pot 6",                                     ("Collectable",  0x4D,  0x25, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Child Pot 7",                                     ("Collectable",  0x4D,  0x27, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Child Pot 8",                                     ("Collectable",  0x4D,  0x28, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Child Pot 9",                                     ("Collectable",  0x4D,  0x29, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Child Pot 10",                                    ("Collectable",  0x4D,  0x2B, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Child Pot 11",                                    ("Collectable",  0x4D,  0x2C, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Child Pot 12",                                    ("Collectable",  0x4D,  0x2D, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Child Pot 13",                                    ("Collectable",  0x4D,  0x2E, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Child Pot 14",                                    ("Collectable",  0x4D,  0x30, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Child Pot 15",                                    ("Collectable",  0x4D,  0x31, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Child Pot 16",                                    ("Collectable",  0x4D,  0x32, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Child Pot 17",                                    ("Collectable",  0x4D,  0x33, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Child Pot 18",                                    ("Collectable",  0x4D,  0x34, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Child Pot 19",                                    ("Collectable",  0x4D,  0x35, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Child Pot 20",                                    ("Collectable",  0x4D,  0x36, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Child Pot 21",                                    ("Collectable",  0x4D,  0x37, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Child Pot 22",                                    ("Collectable",  0x4D,  0x3B, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
     
-    ("Market Guard House Adult Pot 1",                                     ("Collectable",  0x4D,  0x2F, ([0x33904C4],None),                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Adult Pot 2",                                     ("Collectable",  0x4D,  0x38, ([0x33904E4],None),                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Adult Pot 3",                                     ("Collectable",  0x4D,  0x39, ([0x33904F4],None),                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Adult Pot 4",                                     ("Collectable",  0x4D,  0x3A, ([0x3390514],None),                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Adult Pot 5",                                     ("Collectable",  0x4D,  0x26, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Adult Pot 6",                                     ("Collectable",  0x4D,  0x3D, ([0x3390544],None),                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    ("Market Guard House Adult Pot 7",                                     ("Collectable",  0x4D,  0x2A, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
-    
-    ("Market Man in Green House Pot 1",                                ("Collectable",  0x2B,  0x21, None,                        'Recovery Heart',                        ("the market", "Market", "Pot"))),
-    ("Market Man in Green House Pot 2",                                ("Collectable",  0x2B,  0x22, None,                        'Recovery Heart',                        ("the market", "Market", "Pot"))),
-    ("Market Man in Green House Pot 3",                                ("Collectable",  0x2B,  0x23, None,                        'Recovery Heart',                        ("the market", "Market", "Pot"))),
     ("ToT Light Arrows Cutscene",                                    ("Cutscene",     0xFF,  0x01, None,                        'Light Arrows',                          ("Temple of Time", "Market",))),
 
+    # Market Pots/Crates
+    ("Market Night Red Rupee Crate",                                ("Collectable", 0x21,  0x03, None,                        'Rupees (20)',                           ("the market", "Market", "Crate"))),
+    ("Market Night Green Rupee Crate 1",                            ("Collectable", 0x21, 0x21, None, 'Rupee (1)', ("the market", "Market", "Crate"))),
+    ("Market Night Green Rupee Crate 2",                            ("Collectable", 0x21, 0x22, None, 'Rupee (1)', ("the market", "Market", "Crate"))),
+    ("Market Night Green Rupee Crate 3",                            ("Collectable", 0x21, 0x23, None, 'Rupee (1)', ("the market", "Market", "Crate"))),
+    ("Market Dog Lady House Crate",                                 ("Collectable", 0x35, 0x20, None, 'Rupees (5)', ("Market", "Market", "Crate"))),
+    ("Market Guard House Child Crate",                              ("Collectable", 0x4D,  0x3C, None,                        'Rupee (1)',                            ("the Market", "Market", "Crate"))),
+    ("Market Guard House Child Pot 1",                              ("Collectable", 0x4D,  0x20, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Child Pot 2",                              ("Collectable", 0x4D,  0x21, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Child Pot 3",                              ("Collectable", 0x4D,  0x22, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Child Pot 4",                              ("Collectable", 0x4D,  0x23, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Child Pot 5",                              ("Collectable", 0x4D,  0x24, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Child Pot 6",                              ("Collectable", 0x4D,  0x25, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Child Pot 7",                              ("Collectable", 0x4D,  0x27, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Child Pot 8",                              ("Collectable", 0x4D,  0x28, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Child Pot 9",                              ("Collectable", 0x4D,  0x29, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Child Pot 10",                             ("Collectable", 0x4D,  0x2B, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Child Pot 11",                             ("Collectable", 0x4D,  0x2C, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Child Pot 12",                             ("Collectable", 0x4D,  0x2D, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Child Pot 13",                             ("Collectable", 0x4D,  0x2E, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Child Pot 14",                             ("Collectable", 0x4D,  0x30, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Child Pot 15",                             ("Collectable", 0x4D,  0x31, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Child Pot 16",                             ("Collectable", 0x4D,  0x32, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Child Pot 17",                             ("Collectable", 0x4D,  0x33, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Child Pot 18",                             ("Collectable", 0x4D,  0x34, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Child Pot 19",                             ("Collectable", 0x4D,  0x35, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Child Pot 20",                             ("Collectable", 0x4D,  0x36, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Child Pot 21",                             ("Collectable", 0x4D,  0x37, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Child Pot 22",                             ("Collectable", 0x4D,  0x3B, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Adult Pot 1",                              ("Collectable",  0x4D,  0x2F, ([0x33904C4],None),                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Adult Pot 2",                              ("Collectable",  0x4D,  0x38, ([0x33904E4],None),                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Adult Pot 3",                              ("Collectable",  0x4D,  0x39, ([0x33904F4],None),                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Adult Pot 4",                              ("Collectable",  0x4D,  0x3A, ([0x3390514],None),                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Adult Pot 5",                              ("Collectable",  0x4D,  0x26, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Adult Pot 6",                              ("Collectable",  0x4D,  0x3D, ([0x3390544],None),                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Guard House Adult Pot 7",                              ("Collectable",  0x4D,  0x2A, None,                        'Rupee (1)',                             ("the Market", "Market", "Pot"))),
+    ("Market Man in Green House Pot 1",                             ("Collectable",  0x2B,  0x21, None,                        'Recovery Heart',                        ("the market", "Market", "Pot"))),
+    ("Market Man in Green House Pot 2",                             ("Collectable",  0x2B,  0x22, None,                        'Recovery Heart',                        ("the market", "Market", "Pot"))),
+    ("Market Man in Green House Pot 3",                             ("Collectable",  0x2B,  0x23, None,                        'Recovery Heart',                        ("the market", "Market", "Pot"))),
+    
     # Hyrule Castle
     ("HC Malon Egg",                                                 ("NPC",          0x5F,  0x47, None,                        'Weird Egg',                             ("Hyrule Castle", "Market",))),
     ("HC Zeldas Letter",                                             ("NPC",          0x4A,  0x0B, None,                        'Zeldas Letter',                         ("Hyrule Castle", "Market",))),
@@ -284,17 +284,19 @@ location_table = OrderedDict([
     ("LLR GS Tree",                                                  ("GS Token",     0x0B,  0x08, None,                        'Gold Skulltula Token',                  ("Lon Lon Ranch", "Skulltulas",))),
     ("LLR GS Rain Shed",                                             ("GS Token",     0x0B,  0x02, None,                        'Gold Skulltula Token',                  ("Lon Lon Ranch", "Skulltulas",))),
     ("LLR GS Back Wall",                                             ("GS Token",     0x0B,  0x01, None,                        'Gold Skulltula Token',                  ("Lon Lon Ranch", "Skulltulas",))),
-    ("LLR Front Pot 1",                                                    ("Collectable",  0x63,  0x20, None,                        'Recovery Heart',                        ("Lon Lon Ranch", "Pot"))),
-    ("LLR Front Pot 2",                                                    ("Collectable",  0x63,  0x21, None,                        'Recovery Heart',                        ("Lon Lon Ranch", "Pot"))),
-    ("LLR Front Pot 3",                                                    ("Collectable",  0x63,  0x22, None,                        'Rupee (1)',                        ("Lon Lon Ranch", "Pot"))),
-    ("LLR Front Pot 4",                                                    ("Collectable",  0x63,  0x23, None,                        'Rupee (1)',                        ("Lon Lon Ranch", "Pot"))),
-    ("LLR Rain Shed Pot 1",                                                    ("Collectable",  0x63,  0x26, None,                        'Recovery Heart',                        ("Lon Lon Ranch", "Pot"))),
-    ("LLR Rain Shed Pot 2",                                                    ("Collectable",  0x63,  0x27, None,                        'Recovery Heart',                        ("Lon Lon Ranch", "Pot"))),
-    ("LLR Rain Shed Pot 3",                                                    ("Collectable",  0x63,  0x28, None,                        'Recovery Heart',                        ("Lon Lon Ranch", "Pot"))),
+    # Lon Lon Ranch Pots/Crates
+    ("LLR Front Pot 1",                                              ("Collectable",  0x63,  0x20, None,                        'Recovery Heart',                        ("Lon Lon Ranch", "Pot"))),
+    ("LLR Front Pot 2",                                              ("Collectable",  0x63,  0x21, None,                        'Recovery Heart',                        ("Lon Lon Ranch", "Pot"))),
+    ("LLR Front Pot 3",                                              ("Collectable",  0x63,  0x22, None,                        'Rupee (1)',                        ("Lon Lon Ranch", "Pot"))),
+    ("LLR Front Pot 4",                                              ("Collectable",  0x63,  0x23, None,                        'Rupee (1)',                        ("Lon Lon Ranch", "Pot"))),
+    ("LLR Rain Shed Pot 1",                                          ("Collectable",  0x63,  0x26, None,                        'Recovery Heart',                        ("Lon Lon Ranch", "Pot"))),
+    ("LLR Rain Shed Pot 2",                                          ("Collectable",  0x63,  0x27, None,                        'Recovery Heart',                        ("Lon Lon Ranch", "Pot"))),
+    ("LLR Rain Shed Pot 3",                                          ("Collectable",  0x63,  0x28, None,                        'Recovery Heart',                        ("Lon Lon Ranch", "Pot"))),
     ("LLR Talons House Pot 1",                                       ("Collectable",  0x4C,  0x29, None,                        'Rupees (5)',                            ("Lon Lon Ranch", "Pot"))),
     ("LLR Talons House Pot 2",                                       ("Collectable",  0x4C,  0x2A, None,                        'Rupees (5)',                            ("Lon Lon Ranch", "Pot"))),
     ("LLR Talons House Pot 3",                                       ("Collectable",  0x4C,  0x2B, None,                        'Rupees (5)',                            ("Lon Lon Ranch", "Pot"))),
     ("LLR Child Crate", ("Collectable", 0x63, 0x40, ([0x29ce204, 0x29ce84c],None), 'Rupee (1)', ("Lon Lon Ranch", "Crate"))),
+    # Lon Lon Ranch Beehives
     ("LLR Grotto Beehive",                                             ("Collectable",  0x3E, 0x60 + (0x1C*2), None,                         'Rupees (20)',                            ("Lon Lon Ranch", "Grottos", "Beehive"))),
 
     
@@ -335,9 +337,7 @@ location_table = OrderedDict([
     ("Kak Potion Shop Item 6",                                       ("Shop",         0x30,  0x35, (shop_address(1, 5), None),  'Buy Bottle Bug',                        ("Kakariko Village", "Kakariko", "Shops"))),
     ("Kak Potion Shop Item 7",                                       ("Shop",         0x30,  0x36, (shop_address(1, 6), None),  'Buy Poe',                               ("Kakariko Village", "Kakariko", "Shops"))),
     ("Kak Potion Shop Item 8",                                       ("Shop",         0x30,  0x37, (shop_address(1, 7), None),  'Buy Fairy\'s Spirit',                   ("Kakariko Village", "Kakariko", "Shops"))),
-        ("Kak Open Grotto Beehive 1",                                      ("Collectable",  0x3E, 0x60 + (0x08*2), None,                         'Rupees (20)',                            ("Kakariko Village", "Kakariko", "Grottos", "Beehive"))),
-    ("Kak Open Grotto Beehive 2",                                      ("Collectable",  0x3E, 0x60 + (0x08*2 + 1), None,                         'Rupees (20)',                            ("Kakariko Village", "Kakariko", "Grottos", "Beehive"))),
-    #Kak Pots
+    # Kak Pots
     ("Kak Near Potion Shop Pot 1",                                                    ("Collectable",  0x52,  0x20, None,                        'Recovery Heart',                        ("Kakariko Village", "Kakariko", "Pot"))),
     ("Kak Near Potion Shop Pot 2",                                                    ("Collectable",  0x52,  0x21, None,                        'Recovery Heart',                        ("Kakariko Village", "Kakariko", "Pot"))),
     ("Kak Near Potion Shop Pot 3",                                                    ("Collectable",  0x52,  0x22, None,                        'Recovery Heart',                        ("Kakariko Village", "Kakariko", "Pot"))),
@@ -351,6 +351,9 @@ location_table = OrderedDict([
     ("Kak Near Odd Medicine Building Pot 2",                                                   ("Collectable",  0x52,  0x2A, None,                        'Recovery Heart',                        ("Kakariko Village", "Kakariko", "Pot"))),
     ("Kak Adult Red Rupee Crate", ("Collectable", 0x52, 0x2B, ([0x201689C, 0x2016BFC], None), 'Rupees (20)', ("Kakariko Village", "Kakariko", "Crate"))), #update crate flags to not conflict w/ child pots. These move day/night
     ("Kak Adult Arrows Crate", ("Collectable", 0x52, 0x2C, ([0x201680C, 0x2016BCC],None), 'Arrows (10)', ("Kakariko Village", "Kakariko", "Crate"))), #update crate flags to not conflict w/ child pots. These move day/night
+    # Kak Beehives
+    ("Kak Open Grotto Beehive 1",                                      ("Collectable",  0x3E, 0x60 + (0x08*2), None,                         'Rupees (20)',                            ("Kakariko Village", "Kakariko", "Grottos", "Beehive"))),
+    ("Kak Open Grotto Beehive 2",                                      ("Collectable",  0x3E, 0x60 + (0x08*2 + 1), None,                         'Rupees (20)',                            ("Kakariko Village", "Kakariko", "Grottos", "Beehive"))),
 
     # Graveyard
     ("Graveyard Shield Grave Chest",                                 ("Chest",        0x40,  0x00, None,                        'Hylian Shield',                         ("the Graveyard", "Kakariko",))),
@@ -358,24 +361,27 @@ location_table = OrderedDict([
     ("Graveyard Royal Familys Tomb Chest",                           ("Chest",        0x41,  0x00, None,                        'Bombs (5)',                             ("the Graveyard", "Kakariko",))),
     ("Graveyard Freestanding PoH",                                   ("Collectable",  0x53,  0x04, None,                        'Piece of Heart',                        ("the Graveyard", "Kakariko",))),
     ("Graveyard Dampe Gravedigging Tour",                            ("Collectable",  0x53,  0x08, None,                        'Piece of Heart',                        ("the Graveyard", "Kakariko", "Drop"))),
-    ("Graveyard Dampe Race Green Rupee 1",                                 ("Collectable",  0x48,  0x38, None, 'Rupee (1)',                             ("the Graveyard", "Kakariko", "Freestanding",))),
-    ("Graveyard Dampe Race Green Rupee 2",                                 ("Collectable",  0x48,  0x39, None, 'Rupee (1)',                             ("the Graveyard", "Kakariko", "Freestanding",))),
-    ("Graveyard Dampe Race Green Rupee 3",                                 ("Collectable",  0x48,  0x3A, None, 'Rupee (1)',                             ("the Graveyard", "Kakariko", "Freestanding",))),
-    ("Graveyard Dampe Race Green Rupee 4",                                 ("Collectable",  0x48,  0x3B, None, 'Rupee (1)',                             ("the Graveyard", "Kakariko", "Freestanding",))),
-    ("Graveyard Dampe Race Green Rupee 5",                                 ("Collectable",  0x48,  0x3C, None, 'Rupee (1)',                             ("the Graveyard", "Kakariko", "Freestanding",))),
-    ("Graveyard Dampe Race Green Rupee 6",                                 ("Collectable",  0x48,  0x3D, None, 'Rupee (1)',                             ("the Graveyard", "Kakariko", "Freestanding",))),
-    ("Graveyard Dampe Race Green Rupee 7",                                 ("Collectable",  0x48,  0x3E, None, 'Rupee (1)',                             ("the Graveyard", "Kakariko", "Freestanding",))),
-    ("Graveyard Dampe Race Green Rupee 8",                                 ("Collectable",  0x48,  0x3F, None, 'Rupee (1)',                             ("the Graveyard", "Kakariko", "Freestanding",))),
-    ("Graveyard Dampe Race Pot 1",                                            ("Collectable",  0x48,  0x22, None, 'Recovery Heart',                        ("the Graveyard", "Kakariko", "Pot"))),
-    ("Graveyard Dampe Race Pot 2",                                            ("Collectable",  0x48,  0x23, None, 'Deku Nuts (5)',                        ("the Graveyard", "Kakariko", "Pot"))),
-    ("Graveyard Dampe Race Pot 3",                                            ("Collectable",  0x48,  0x24, None, 'Bombs (5)',                        ("the Graveyard", "Kakariko", "Pot"))),
-    ("Graveyard Dampe Race Pot 4",                                            ("Collectable",  0x48,  0x25, None, 'Arrows (10)',                        ("the Graveyard", "Kakariko", "Pot"))),
-    ("Graveyard Dampe Race Pot 5",                                            ("Collectable",  0x48,  0x26, None, 'Rupees (20)',                        ("the Graveyard", "Kakariko", "Pot"))),
-    ("Graveyard Dampe Race Pot 6",                                            ("Collectable",  0x48,  0x27, None, 'Rupees (20)',                        ("the Graveyard", "Kakariko", "Pot"))),
     ("Graveyard Hookshot Chest",                                     ("Chest",        0x48,  0x00, None,                        'Progressive Hookshot',                  ("the Graveyard", "Kakariko",))),
     ("Graveyard Dampe Race Freestanding PoH",                        ("Collectable",  0x48,  0x07, None,                        'Piece of Heart',                        ("the Graveyard", "Kakariko", "Minigames", "Drop"))),
     ("Graveyard GS Bean Patch",                                      ("GS Token",     0x10,  0x01, None,                        'Gold Skulltula Token',                  ("the Graveyard", "Skulltulas",))),
     ("Graveyard GS Wall",                                            ("GS Token",     0x10,  0x80, None,                        'Gold Skulltula Token',                  ("the Graveyard", "Skulltulas",))),
+    #Graveyard Freestanding
+    ("Graveyard Dampe Race Green Rupee 1",                           ("Collectable",  0x48,  0x38, None, 'Rupee (1)',                             ("the Graveyard", "Kakariko", "Freestanding",))),
+    ("Graveyard Dampe Race Green Rupee 2",                           ("Collectable",  0x48,  0x39, None, 'Rupee (1)',                             ("the Graveyard", "Kakariko", "Freestanding",))),
+    ("Graveyard Dampe Race Green Rupee 3",                           ("Collectable",  0x48,  0x3A, None, 'Rupee (1)',                             ("the Graveyard", "Kakariko", "Freestanding",))),
+    ("Graveyard Dampe Race Green Rupee 4",                           ("Collectable",  0x48,  0x3B, None, 'Rupee (1)',                             ("the Graveyard", "Kakariko", "Freestanding",))),
+    ("Graveyard Dampe Race Green Rupee 5",                           ("Collectable",  0x48,  0x3C, None, 'Rupee (1)',                             ("the Graveyard", "Kakariko", "Freestanding",))),
+    ("Graveyard Dampe Race Green Rupee 6",                           ("Collectable",  0x48,  0x3D, None, 'Rupee (1)',                             ("the Graveyard", "Kakariko", "Freestanding",))),
+    ("Graveyard Dampe Race Green Rupee 7",                           ("Collectable",  0x48,  0x3E, None, 'Rupee (1)',                             ("the Graveyard", "Kakariko", "Freestanding",))),
+    ("Graveyard Dampe Race Green Rupee 8",                           ("Collectable",  0x48,  0x3F, None, 'Rupee (1)',                             ("the Graveyard", "Kakariko", "Freestanding",))),
+    #Graveyard Pots/Crates
+    ("Graveyard Dampe Race Pot 1",                                   ("Collectable",  0x48,  0x22, None, 'Recovery Heart',                        ("the Graveyard", "Kakariko", "Pot"))),
+    ("Graveyard Dampe Race Pot 2",                                   ("Collectable",  0x48,  0x23, None, 'Deku Nuts (5)',                        ("the Graveyard", "Kakariko", "Pot"))),
+    ("Graveyard Dampe Race Pot 3",                                   ("Collectable",  0x48,  0x24, None, 'Bombs (5)',                        ("the Graveyard", "Kakariko", "Pot"))),
+    ("Graveyard Dampe Race Pot 4",                                   ("Collectable",  0x48,  0x25, None, 'Arrows (10)',                        ("the Graveyard", "Kakariko", "Pot"))),
+    ("Graveyard Dampe Race Pot 5",                                   ("Collectable",  0x48,  0x26, None, 'Rupees (20)',                        ("the Graveyard", "Kakariko", "Pot"))),
+    ("Graveyard Dampe Race Pot 6",                                   ("Collectable",  0x48,  0x27, None, 'Rupees (20)',                        ("the Graveyard", "Kakariko", "Pot"))),
+    
 
     # Death Mountain Trail
     ("DMT Freestanding PoH",                                         ("Collectable",  0x60,  0x1E, None,                        'Piece of Heart',                        ("Death Mountain Trail", "Death Mountain",))),
@@ -383,19 +389,6 @@ location_table = OrderedDict([
     ("DMT Rock Red Rupee",                                           ("Collectable",  0x60,  0x0A, None,                        'Rupees (20)',                             ("Death Mountain Trail", "Death Mountain", "Freestanding"))),
     ("DMT Rock Blue Rupee",                                          ("Collectable",  0x60,  0x07, None,                        'Rupees (5)',                              ("Death Mountain Trail", "Death Mountain", "Freestanding" ))),
     ("DMT Storms Grotto Chest",                                      ("Chest",        0x3E,  0x17, None,                        'Rupees (200)',                          ("Death Mountain Trail", "Death Mountain", "Grottos"))),
-    ("DMT Cow Grotto Green Rupee 1",                   ("Collectable",0x3E,  0x40, ([0x026D2098], None),                        'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos", "RupeeTower"))),
-    ("DMT Cow Grotto Green Rupee 2",                   ("Collectable",0x3E,  0x41, None,                        'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos", "RupeeTower"))),
-    ("DMT Cow Grotto Green Rupee 3",                   ("Collectable",0x3E,  0x42, None,                        'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos", "RupeeTower"))),
-    ("DMT Cow Grotto Green Rupee 4",                   ("Collectable",0x3E,  0x43, None,                        'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos", "RupeeTower"))),
-    ("DMT Cow Grotto Green Rupee 5",                   ("Collectable",0x3E,  0x44, None,                        'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos", "RupeeTower"))),
-    ("DMT Cow Grotto Green Rupee 6",                   ("Collectable",0x3E,  0x45, None,                        'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos", "RupeeTower"))),
-    ("DMT Cow Grotto Red Rupee",                       ("Collectable",0x3E,  0x46, None,                        'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos", "RupeeTower"))),
-    
-    ("DMT Cow Grotto Recovery Heart 1",                              ("Collectable",0x3E,  0x28, None,'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos","Freestanding",))),
-    ("DMT Cow Grotto Recovery Heart 2",                              ("Collectable",0x3E,  0x29, None,'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos","Freestanding",))),
-    ("DMT Cow Grotto Recovery Heart 3",                              ("Collectable",0x3E,  0x2A, None,'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos","Freestanding",))),
-    ("DMT Cow Grotto Recovery Heart 4",                              ("Collectable",0x3E,  0x2B, None,'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos","Freestanding",))),
-    
     ("DMT Great Fairy Reward",                                       ("Cutscene",     0xFF,  0x13, None,                        'Magic Meter',                           ("Death Mountain Trail", "Death Mountain", "Fairies"))),
     ("DMT Biggoron",                                                 ("NPC",          0x60,  0x57, None,                        'Biggoron Sword',                        ("Death Mountain Trail", "Death Mountain",))),
     ("DMT Cow Grotto Cow",                                           ("NPC",          0x3E,  0x15, None,                        'Milk',                                  ("Death Mountain Trail", "Death Mountain", "Cow", "Grottos"))),
@@ -403,11 +396,23 @@ location_table = OrderedDict([
     ("DMT GS Bean Patch",                                            ("GS Token",     0x0F,  0x02, None,                        'Gold Skulltula Token',                  ("Death Mountain Trail", "Skulltulas",))),
     ("DMT GS Above Dodongos Cavern",                                 ("GS Token",     0x0F,  0x08, None,                        'Gold Skulltula Token',                  ("Death Mountain Trail", "Skulltulas",))),
     ("DMT GS Falling Rocks Path",                                    ("GS Token",     0x0F,  0x10, None,                        'Gold Skulltula Token',                  ("Death Mountain Trail", "Skulltulas",))),
+    # Death Mountain Trail Freestanding
+    ("DMT Cow Grotto Green Rupee 1",                   ("Collectable",0x3E,  0x40, ([0x026D2098], None),                        'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos", "RupeeTower"))),
+    ("DMT Cow Grotto Green Rupee 2",                   ("Collectable",0x3E,  0x41, None,                        'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos", "RupeeTower"))),
+    ("DMT Cow Grotto Green Rupee 3",                   ("Collectable",0x3E,  0x42, None,                        'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos", "RupeeTower"))),
+    ("DMT Cow Grotto Green Rupee 4",                   ("Collectable",0x3E,  0x43, None,                        'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos", "RupeeTower"))),
+    ("DMT Cow Grotto Green Rupee 5",                   ("Collectable",0x3E,  0x44, None,                        'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos", "RupeeTower"))),
+    ("DMT Cow Grotto Green Rupee 6",                   ("Collectable",0x3E,  0x45, None,                        'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos", "RupeeTower"))),
+    ("DMT Cow Grotto Red Rupee",                       ("Collectable",0x3E,  0x46, None,                        'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos", "RupeeTower"))),
+    ("DMT Cow Grotto Recovery Heart 1",                              ("Collectable",0x3E,  0x28, None,'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos","Freestanding",))),
+    ("DMT Cow Grotto Recovery Heart 2",                              ("Collectable",0x3E,  0x29, None,'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos","Freestanding",))),
+    ("DMT Cow Grotto Recovery Heart 3",                              ("Collectable",0x3E,  0x2A, None,'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos","Freestanding",))),
+    ("DMT Cow Grotto Recovery Heart 4",                              ("Collectable",0x3E,  0x2B, None,'Rupees (20)',                          ("Death Mountain Trail", "Death Mountain", "Grottos","Freestanding",))),
+    # Death Mountain Trial Beehives
     ("DMT Cow Grotto Beehive",                                         ("Collectable",  0x3E, 0x60 + (0x18*2), None,                         'Rupees (20)',                            ("Death Mountain Trail", "Death Mountain", "Grottos", "Beehive"))),
     ("DMT Storms Grotto Beehive 1",                                    ("Collectable",  0x3E, 0x60 + (0x17*2), None,                         'Rupees (20)',                            ("Death Mountain Trail", "Death Mountain", "Grottos", "Beehive"))),
     ("DMT Storms Grotto Beehive 2",                                    ("Collectable",  0x3E, 0x60 + (0x17*2 + 1), None,                         'Rupees (20)',                            ("Death Mountain Trail", "Death Mountain", "Grottos", "Beehive"))),
 
-    
     # Goron City
     ("GC Darunias Joy",                                              ("NPC",          0x62,  0x54, None,                        'Progressive Strength Upgrade',          ("Goron City",))),
     ("GC Pot Freestanding PoH",                                      ("Collectable",  0x62,  0x1F, None,                        'Piece of Heart',                        ("Goron City", "Goron City", "Drop"))),
@@ -438,7 +443,6 @@ location_table = OrderedDict([
     ("GC Spinning Pot Rupee Drop 3", ("Collectable", 0x62, 0x46, None, 'Rupee (1)', ("Goron City", "RupeeTower"))),
     ("GC Spinning Pot PoH Drop Rupee 1", ("Collectable", 0x62, 0x47, None, 'Rupee (1)', ("Goron City", "RupeeTower"))),
     ("GC Spinning Pot PoH Drop Rupee 2", ("Collectable", 0x62, 0x48, None, 'Rupee (1)', ("Goron City", "RupeeTower"))),
-    ("GC Grotto Beehive", ("Collectable", 0x3E, 0x60 + (0x1B*2), None, 'Rupees (20)', ("Goron City", "Grottos", "Beehive"))),
     # Goron City Pots. Reassign some flags because nintendo decided adult pots should share flags... 
     ("GC Darunia Pot 1",                                     ("Collectable",  0x62,  0x38, None,                    'Deku Stick (1)',                        ("Goron City", "Pot"))),
     ("GC Darunia Pot 2",                                     ("Collectable",  0x62,  0x39, None,                    'Rupee (1)',                             ("Goron City", "Pot"))),
@@ -450,10 +454,21 @@ location_table = OrderedDict([
     ("GC Upper Staircase Pot 2",                             ("Collectable",  0x62,  0x36, ([0x22A84F8], None),  'Rupee (1)',                             ("Goron City", "Pot"))),
     ("GC Upper Staircase Pot 3",                             ("Collectable",  0x62,  0x3B, ([0x22A8508], None),  'Rupees (5)',                            ("Goron City", "Pot"))),
     ("GC Boulder Maze Crate", ("Collectable", 0x62, 0x40, ([0x227c6ec, 0x227C37C],None), 'Rupee (1)', ("Goron City", "Crate"))),
+    # Goron City Beehives
+    ("GC Grotto Beehive", ("Collectable", 0x3E, 0x60 + (0x1B*2), None, 'Rupees (20)', ("Goron City", "Grottos", "Beehive"))),
 
     # Death Mountain Crater
     ("DMC Volcano Freestanding PoH",                                 ("Collectable",  0x61,  0x08, None,                        'Piece of Heart',                        ("Death Mountain Crater", "Death Mountain",))),
     ("DMC Wall Freestanding PoH",                                    ("Collectable",  0x61,  0x02, None,                        'Piece of Heart',                        ("Death Mountain Crater", "Death Mountain",))),
+    ("DMC Upper Grotto Chest",                                       ("Chest",        0x3E,  0x1A, None,                        'Bombs (20)',                            ("Death Mountain Crater", "Death Mountain", "Grottos"))),
+    ("DMC Great Fairy Reward",                                       ("Cutscene",     0xFF,  0x14, None,                        'Magic Meter',                           ("Death Mountain Crater", "Death Mountain", "Fairies",))),
+    ("DMC Deku Scrub",                                               ("Scrub",        0x61,  0x37, None,                        'Buy Bombs (5) for 35 Rupees',                    ("Death Mountain Crater", "Death Mountain", "Deku Scrub"))),
+    ("DMC Deku Scrub Grotto Left",                                   ("GrottoScrub",  0xF9,  0x30, None,                        'Buy Deku Nut (5)',                      ("Death Mountain Crater", "Death Mountain", "Deku Scrub", "Grottos"))),
+    ("DMC Deku Scrub Grotto Center",                                 ("GrottoScrub",  0xF9,  0x33, None,                        'Buy Arrows (30)',                       ("Death Mountain Crater", "Death Mountain", "Deku Scrub", "Grottos"))),
+    ("DMC Deku Scrub Grotto Right",                                  ("GrottoScrub",  0xF9,  0x37, None,                        'Buy Bombs (5) for 35 Rupees',                    ("Death Mountain Crater", "Death Mountain", "Deku Scrub", "Grottos"))),
+    ("DMC GS Crate",                                                 ("GS Token",     0x0F,  0x80, None,                        'Gold Skulltula Token',                  ("Death Mountain Crater", "Skulltulas",))),
+    ("DMC GS Bean Patch",                                            ("GS Token",     0x0F,  0x01, None,                        'Gold Skulltula Token',                  ("Death Mountain Crater", "Skulltulas",))),
+    # Death Mountain Crater Freestanding
     ("DMC Adult Green Rupee 1",                         ("Collectable",0x61,  0x40,([0x0225E63C], None ), 'Rupees (20)',                           ("Death Mountain Crater", "Death Mountain", "RupeeTower"))),    
     ("DMC Adult Green Rupee 2",                         ("Collectable",0x61,  0x41, None, 'Rupees (20)',                           ("Death Mountain Crater", "Death Mountain", "RupeeTower"))),    
     ("DMC Adult Green Rupee 3",                         ("Collectable",0x61,  0x42, None, 'Rupees (20)',                           ("Death Mountain Crater", "Death Mountain", "RupeeTower"))),    
@@ -469,19 +484,12 @@ location_table = OrderedDict([
     ("DMC Child Blue Rupee 4",                                        ("Collectable",0x61,  0x25, None, 'Rupees (5)',                           ("Death Mountain Crater", "Death Mountain", "Freestanding",))),    
     ("DMC Child Blue Rupee 5",                                        ("Collectable",0x61,  0x26, None, 'Rupees (5)',                           ("Death Mountain Crater", "Death Mountain", "Freestanding",))),    
     ("DMC Child Blue Rupee 6",                                        ("Collectable",0x61,  0x27, None, 'Rupees (5)',                           ("Death Mountain Crater", "Death Mountain", "Freestanding",))),    
+    # Death Mountain Crater Pots
     ("DMC Near GC Pot 1",                                             ("Collectable",0x61,  0x20, None, 'Recovery Heart',                           ("Death Mountain Crater", "Death Mountain", "Pot",))),    
     ("DMC Near GC Pot 2",                                             ("Collectable",0x61,  0x21, None, 'Arrows (10)',                           ("Death Mountain Crater", "Death Mountain", "Pot",))),    
     ("DMC Near GC Pot 3",                                             ("Collectable",0x61,  0x22, None, 'Rupees (5)',                           ("Death Mountain Crater", "Death Mountain", "Pot",))),    
     ("DMC Near GC Pot 4",                                             ("Collectable",0x61,  0x23, None, 'Rupees (5)',                           ("Death Mountain Crater", "Death Mountain", "Pot",))),    
-
-    ("DMC Upper Grotto Chest",                                       ("Chest",        0x3E,  0x1A, None,                        'Bombs (20)',                            ("Death Mountain Crater", "Death Mountain", "Grottos"))),
-    ("DMC Great Fairy Reward",                                       ("Cutscene",     0xFF,  0x14, None,                        'Magic Meter',                           ("Death Mountain Crater", "Death Mountain", "Fairies",))),
-    ("DMC Deku Scrub",                                               ("Scrub",        0x61,  0x37, None,                        'Buy Bombs (5) for 35 Rupees',                    ("Death Mountain Crater", "Death Mountain", "Deku Scrub"))),
-    ("DMC Deku Scrub Grotto Left",                                   ("GrottoScrub",  0xF9,  0x30, None,                        'Buy Deku Nut (5)',                      ("Death Mountain Crater", "Death Mountain", "Deku Scrub", "Grottos"))),
-    ("DMC Deku Scrub Grotto Center",                                 ("GrottoScrub",  0xF9,  0x33, None,                        'Buy Arrows (30)',                       ("Death Mountain Crater", "Death Mountain", "Deku Scrub", "Grottos"))),
-    ("DMC Deku Scrub Grotto Right",                                  ("GrottoScrub",  0xF9,  0x37, None,                        'Buy Bombs (5) for 35 Rupees',                    ("Death Mountain Crater", "Death Mountain", "Deku Scrub", "Grottos"))),
-    ("DMC GS Crate",                                                 ("GS Token",     0x0F,  0x80, None,                        'Gold Skulltula Token',                  ("Death Mountain Crater", "Skulltulas",))),
-    ("DMC GS Bean Patch",                                            ("GS Token",     0x0F,  0x01, None,                        'Gold Skulltula Token',                  ("Death Mountain Crater", "Skulltulas",))),
+    # Death mountain Crater Beehives
     ("DMC Upper Grotto Beehive 1",                                     ("Collectable",  0x3E, 0x60 + (0x1A*2), None,                         'Rupees (20)',                            ("Death Mountain Crater", "Death Mountain", "Grottos", "Beehive"))),
     ("DMC Upper Grotto Beehive 2",                                     ("Collectable",  0x3E, 0x60 + (0x1A*2+1), None,                         'Rupees (20)',                            ("Death Mountain Crater", "Death Mountain", "Grottos", "Beehive"))),
     ("DMC Hammer Grotto Beehive",                                      ("Collectable",  0x3E, 0x60 + (0x19*2), None,                         'Rupees (20)',                            ("Death Mountain Crater", "Death Mountain", "Grottos", "Beehive"))),
@@ -495,15 +503,16 @@ location_table = OrderedDict([
     ("ZR Near Domain Freestanding PoH",                              ("Collectable",  0x54,  0x0B, None,                        'Piece of Heart',                        ("Zora's River",))),
     ("ZR Deku Scrub Grotto Front",                                   ("GrottoScrub",  0xEB,  0x3A, None,                        'Buy Green Potion',                      ("Zora's River", "Deku Scrub", "Grottos"))),
     ("ZR Deku Scrub Grotto Rear",                                    ("GrottoScrub",  0xEB,  0x39, None,                        'Buy Red Potion for 30 Rupees',                   ("Zora's River", "Deku Scrub", "Grottos"))),
-    ("ZR Waterfall Red Rupee 1",                                         ("Collectable",  0x54,  0x20, None,   'Rupees (20)',                           ("Zora's River", "Freestanding"))),
-    ("ZR Waterfall Red Rupee 2",                                         ("Collectable",  0x54,  0x21, None,   'Rupees (20)',                           ("Zora's River", "Freestanding"))),
-    ("ZR Waterfall Red Rupee 3",                                         ("Collectable",  0x54,  0x22, None,   'Rupees (20)',                           ("Zora's River", "Freestanding"))),
-    ("ZR Waterfall Red Rupee 4",                                         ("Collectable",  0x54,  0x23, None,   'Rupees (20)',                           ("Zora's River", "Freestanding"))),
-    
     ("ZR GS Tree",                                                   ("GS Token",     0x11,  0x02, None,                        'Gold Skulltula Token',                  ("Zora's River", "Skulltulas",))),
     ("ZR GS Ladder",                                                 ("GS Token",     0x11,  0x01, None,                        'Gold Skulltula Token',                  ("Zora's River", "Skulltulas",))),
     ("ZR GS Near Raised Grottos",                                    ("GS Token",     0x11,  0x10, None,                        'Gold Skulltula Token',                  ("Zora's River", "Skulltulas",))),
     ("ZR GS Above Bridge",                                           ("GS Token",     0x11,  0x08, None,                        'Gold Skulltula Token',                  ("Zora's River", "Skulltulas",))),
+    # Zora's River Freestanding
+    ("ZR Waterfall Red Rupee 1",                                         ("Collectable",  0x54,  0x20, None,   'Rupees (20)',                           ("Zora's River", "Freestanding"))),
+    ("ZR Waterfall Red Rupee 2",                                         ("Collectable",  0x54,  0x21, None,   'Rupees (20)',                           ("Zora's River", "Freestanding"))),
+    ("ZR Waterfall Red Rupee 3",                                         ("Collectable",  0x54,  0x22, None,   'Rupees (20)',                           ("Zora's River", "Freestanding"))),
+    ("ZR Waterfall Red Rupee 4",                                         ("Collectable",  0x54,  0x23, None,   'Rupees (20)',                           ("Zora's River", "Freestanding"))),
+    # Zora's River Beehives
     ("ZR Open Grotto Beehive 1",                                       ("Collectable",  0x3E, 0x60 + (0x09*2), None,                         'Rupees (20)',                            ("Zora's River", "Grottos", "Beehive"))),
     ("ZR Open Grotto Beehive 2",                                       ("Collectable",  0x3E, 0x60 + (0x09*2+1), None,                         'Rupees (20)',                            ("Zora's River", "Grottos", "Beehive"))),
     ("ZR Storms Grotto Beehive",                                       ("Collectable",  0x3E, 0x60 + (0x0B*2), None,                         'Rupees (20)',                            ("Zora's River", "Grottos", "Beehive"))),
@@ -521,20 +530,25 @@ location_table = OrderedDict([
     ("ZD Shop Item 6",                                               ("Shop",         0x2F,  0x35, (shop_address(7, 5), None),  'Buy Arrows (50)',                       ("Zora's Domain", "Shops",))),
     ("ZD Shop Item 7",                                               ("Shop",         0x2F,  0x36, (shop_address(7, 6), None),  'Buy Fish',                              ("Zora's Domain", "Shops",))),
     ("ZD Shop Item 8",                                               ("Shop",         0x2F,  0x37, (shop_address(7, 7), None),  'Buy Red Potion for 50 Rupees',          ("Zora's Domain", "Shops",))),
+    # Zora's Domain Pots
     ("ZD Pot 1",                                                     ("Collectable",  0x58,  0x24, None,                        'Deku Stick (1)',                        ("Zora's Domain", "Pot"))),
     ("ZD Pot 2",                                                     ("Collectable",  0x58,  0x23, None,                        'Deku Stick (1)',                        ("Zora's Domain", "Pot"))),
     ("ZD Pot 3",                                                     ("Collectable",  0x58,  0x22, None,                        'Deku Stick (1)',                        ("Zora's Domain", "Pot"))),
     ("ZD Pot 4",                                                     ("Collectable",  0x58,  0x21, None,                        'Deku Stick (1)',                        ("Zora's Domain", "Pot"))),
     ("ZD Pot 5",                                                     ("Collectable",  0x58,  0x20, None,                        'Deku Stick (1)',                        ("Zora's Domain", "Pot"))),
+    # Zora's Domain Beehives
     ("ZD In Front of King Zora Beehive 1",                           ("Collectable",  0x58, 0x40, ([0x20FC0F8], None),                         'Rupees (20)',                            ("Zora's Domain", "Beehive"))),
     ("ZD In Front of King Zora Beehive 2",                           ("Collectable",  0x58, 0x41, ([0x20FC108], None),                         'Rupees (20)',                            ("Zora's Domain", "Beehive"))),
     ("ZD Behind King Zora Beehive",                                  ("Collectable",  0x58, 0x42, ([0x20FC118], None),                         'Rupees (20)',                            ("Zora's Domain", "Beehive"))),
     
-
     # Zora's Fountain
     ("ZF Great Fairy Reward",                                        ("Cutscene",     0xFF,  0x10, None,                        'Farores Wind',                          ("Zora's Fountain", "Fairies",))),
     ("ZF Iceberg Freestanding PoH",                                  ("Collectable",  0x59,  0x01, None,                        'Piece of Heart',                        ("Zora's Fountain",))),
     ("ZF Bottom Freestanding PoH",                                   ("Collectable",  0x59,  0x14, None,                        'Piece of Heart',                        ("Zora's Fountain",))),
+    ("ZF GS Above the Log",                                          ("GS Token",     0x11,  0x04, None,                        'Gold Skulltula Token',                  ("Zora's Fountain", "Skulltulas",))),
+    ("ZF GS Tree",                                                   ("GS Token",     0x11,  0x80, None,                        'Gold Skulltula Token',                  ("Zora's Fountain", "Skulltulas",))),
+    ("ZF GS Hidden Cave",                                            ("GS Token",     0x11,  0x20, None,                        'Gold Skulltula Token',                  ("Zora's Fountain", "Skulltulas",))),
+    # Zora's Fountain Freestanding
     ("ZF Bottom Green Rupee 1",                               ("Collectable",  0x59,  0x20, None,       'Rupee (1)',                             ("Zora's Fountain", "Freestanding"))),
     ("ZF Bottom Green Rupee 2",                               ("Collectable",  0x59,  0x21, None,       'Rupee (1)',                             ("Zora's Fountain", "Freestanding"))),
     ("ZF Bottom Green Rupee 3",                               ("Collectable",  0x59,  0x22, None,       'Rupee (1)',                             ("Zora's Fountain", "Freestanding"))),
@@ -553,9 +567,7 @@ location_table = OrderedDict([
     ("ZF Bottom Green Rupee 16",                              ("Collectable",  0x59,  0x2F, None,       'Rupee (1)',                             ("Zora's Fountain", "Freestanding"))),
     ("ZF Bottom Green Rupee 17",                              ("Collectable",  0x59,  0x30, None,       'Rupee (1)',                             ("Zora's Fountain", "Freestanding"))),
     ("ZF Bottom Green Rupee 18",                              ("Collectable",  0x59,  0x31, None,       'Rupee (1)',                             ("Zora's Fountain", "Freestanding"))),
-    ("ZF GS Above the Log",                                          ("GS Token",     0x11,  0x04, None,                        'Gold Skulltula Token',                  ("Zora's Fountain", "Skulltulas",))),
-    ("ZF GS Tree",                                                   ("GS Token",     0x11,  0x80, None,                        'Gold Skulltula Token',                  ("Zora's Fountain", "Skulltulas",))),
-    ("ZF GS Hidden Cave",                                            ("GS Token",     0x11,  0x20, None,                        'Gold Skulltula Token',                  ("Zora's Fountain", "Skulltulas",))),
+    # Zora's Fountain Pots
     ("ZF Hidden Cave Pot 1",                                         ("Collectable",  0x59,  0x3F, ([0x2122624],None),        'Rupees (5)',                            ("Zora's Fountain", "Pot"))),
     ("ZF Hidden Cave Pot 2",                                         ("Collectable",  0x59,  0x3C, None,        'Rupees (5)',                            ("Zora's Fountain", "Pot"))),
     ("ZF Hidden Cave Pot 3",                                         ("Collectable",  0x59,  0x3E, ([0x2122644],None),        'Rupees (5)',                            ("Zora's Fountain", "Pot"))),
@@ -563,17 +575,11 @@ location_table = OrderedDict([
     ("ZF Near Jabu Pot 2",                                           ("Collectable",  0x59,  0x39, None,        'Rupees (5)',                            ("Zora's Fountain", "Pot"))),
     ("ZF Near Jabu Pot 3",                                           ("Collectable",  0x59,  0x3B, None,        'Rupees (5)',                            ("Zora's Fountain", "Pot"))),
     ("ZF Near Jabu Pot 4",                                           ("Collectable",  0x59,  0x3D, None,        'Rupees (5)',                            ("Zora's Fountain", "Pot"))),
-    
+
     # Lake Hylia
     ("LH Underwater Item",                                           ("NPC",          0x57,  0x15, None,                        'Rutos Letter',                          ("Lake Hylia",))),
-    ("LH Underwater Near Shore Green Rupee",                         ("Collectable",  0x57,  0x20, None,        'Rupee (1)',                            ("Lake Hylia", "Freestanding"))),
-    ("LH Underwater Green Rupee 1",                                  ("Collectable",  0x57,  0x21, None,        'Rupee (1)',                            ("Lake Hylia","Freestanding"))),
-    ("LH Underwater Green Rupee 2",                                  ("Collectable",  0x57,  0x22, None,        'Rupee (1)',                            ("Lake Hylia","Freestanding"))),
     ("LH Child Fishing",                                             ("NPC",          0x49,  0x3E, None,                        'Piece of Heart',                        ("Lake Hylia", "Minigames",))),
     ("LH Adult Fishing",                                             ("NPC",          0x49,  0x38, None,                        'Progressive Scale',                     ("Lake Hylia", "Minigames",))),
-    ("LH Lab Dive Red Rupee 1",                                          ("Collectable",  0x38,  0x01, None,                        'Rupees (20)',                           ("Lake Hylia","Freestanding"))),
-    ("LH Lab Dive Red Rupee 2",                                          ("Collectable",  0x38,  0x02, None,                        'Rupees (20)',                           ("Lake Hylia","Freestanding"))),
-    ("LH Lab Dive Red Rupee 3",                                          ("Collectable",  0x38,  0x03, None,                        'Rupees (20)',                           ("Lake Hylia","Freestanding"))),
     ("LH Lab Dive",                                                  ("NPC",          0x38,  0x3E, None,                        'Piece of Heart',                        ("Lake Hylia",))),
     ("LH Freestanding PoH",                                          ("Collectable",  0x57,  0x1E, None,                        'Piece of Heart',                        ("Lake Hylia",))),
     ("LH Sun",                                                       ("NPC",          0x57,  0x58, None,                        'Fire Arrows',                           ("Lake Hylia",))),
@@ -585,14 +591,19 @@ location_table = OrderedDict([
     ("LH GS Small Island",                                           ("GS Token",     0x12,  0x02, None,                        'Gold Skulltula Token',                  ("Lake Hylia", "Skulltulas",))),
     ("LH GS Lab Crate",                                              ("GS Token",     0x12,  0x08, None,                        'Gold Skulltula Token',                  ("Lake Hylia", "Skulltulas",))),
     ("LH GS Tree",                                                   ("GS Token",     0x12,  0x10, None,                        'Gold Skulltula Token',                  ("Lake Hylia", "Skulltulas",))),
+    # Lake Hylia Freestanding
+    ("LH Underwater Near Shore Green Rupee",                         ("Collectable",  0x57,  0x20, None,        'Rupee (1)',                            ("Lake Hylia", "Freestanding"))),
+    ("LH Underwater Green Rupee 1",                                  ("Collectable",  0x57,  0x21, None,        'Rupee (1)',                            ("Lake Hylia","Freestanding"))),
+    ("LH Underwater Green Rupee 2",                                  ("Collectable",  0x57,  0x22, None,        'Rupee (1)',                            ("Lake Hylia","Freestanding"))),
+    ("LH Lab Dive Red Rupee 1",                                          ("Collectable",  0x38,  0x01, None,                        'Rupees (20)',                           ("Lake Hylia","Freestanding"))),
+    ("LH Lab Dive Red Rupee 2",                                          ("Collectable",  0x38,  0x02, None,                        'Rupees (20)',                           ("Lake Hylia","Freestanding"))),
+    ("LH Lab Dive Red Rupee 3",                                          ("Collectable",  0x38,  0x03, None,                        'Rupees (20)',                           ("Lake Hylia","Freestanding"))),
+    #Lake Hylia Beehives
     ("LH Grotto Beehive",                                              ("Collectable",  0x3E, 0x60+(0x0F*2), None,                         'Rupees (20)',                            ("Lake Hylia", "Grottos", "Beehive"))),
     
     # Gerudo Valley
     ("GV Crate Freestanding PoH",                                    ("Collectable",  0x5A,  0x02, None,                        'Piece of Heart',                        ("Gerudo Valley", "Gerudo",))),
     ("GV Waterfall Freestanding PoH",                                ("Collectable",  0x5A,  0x01, None,                        'Piece of Heart',                        ("Gerudo Valley", "Gerudo",))),
-    #("GV Crate Near Cow",                                            ("Collectable",  0x5A,  0x19, ([0x0213D2CC], [0x01, 0xA0, 0xFE, 0x3F, 0xF7, 0xFD, 0x00, 0x7B, 0x00, 0x06, 0x00, 0x00, 0x00, 0x19, 0xFF, 0xFF]), 'Rupee (1)',                            ("Gerudo Valley", "Gerudo", "Freestanding"))),
-    ("GV Crate Near Cow",                                            ("Collectable",  0x5A,  0x40, ([0x213D2CC],None),                        'Rupee (1)',                            ("Gerudo Valley", "Gerudo", "Crate"))),
-    ("GV Freestanding PoH Crate",                              ("Collectable",  0x5A,  0x41, ([0x213D2DC, 0x213d548],None),                        'Rupee (1)',                            ("Gerudo Valley", "Gerudo", "Crate"))),
     ("GV Chest",                                                     ("Chest",        0x5A,  0x00, None,                        'Rupees (50)',                           ("Gerudo Valley", "Gerudo",))),
     ("GV Deku Scrub Grotto Front",                                   ("GrottoScrub",  0xF0,  0x3A, None,                        'Buy Green Potion',                      ("Gerudo Valley", "Gerudo", "Deku Scrub", "Grottos"))),
     ("GV Deku Scrub Grotto Rear",                                    ("GrottoScrub",  0xF0,  0x39, None,                        'Buy Red Potion for 30 Rupees',                   ("Gerudo Valley", "Gerudo", "Deku Scrub", "Grottos"))),
@@ -601,6 +612,7 @@ location_table = OrderedDict([
     ("GV GS Bean Patch",                                             ("GS Token",     0x13,  0x01, None,                        'Gold Skulltula Token',                  ("Gerudo Valley", "Skulltulas",))),
     ("GV GS Behind Tent",                                            ("GS Token",     0x13,  0x08, None,                        'Gold Skulltula Token',                  ("Gerudo Valley", "Skulltulas",))),
     ("GV GS Pillar",                                                 ("GS Token",     0x13,  0x04, None,                        'Gold Skulltula Token',                  ("Gerudo Valley", "Skulltulas",))),
+    # Gerudo Valley Freestanding
     ("GV Octorok Grotto Red Rupee",                                  ("Collectable",  0x3E,  0x3F, None,                        'Rupees (20)',                          ("Gerudo Valley", "Gerudo", "Grottos", "Freestanding"))),
     ("GV Octorok Grotto Blue Rupee 1",                               ("Collectable",  0x3E,  0x38, None,                        'Rupees (20)',                          ("Gerudo Valley", "Gerudo", "Grottos", "Freestanding"))),
     ("GV Octorok Grotto Blue Rupee 2",                               ("Collectable",  0x3E,  0x39, None,                        'Rupees (20)',                          ("Gerudo Valley", "Gerudo", "Grottos", "Freestanding"))),
@@ -609,8 +621,12 @@ location_table = OrderedDict([
     ("GV Octorok Grotto Green Rupee 2",                              ("Collectable",  0x3E,  0x3C, None,                        'Rupees (20)',                          ("Gerudo Valley", "Gerudo", "Grottos", "Freestanding"))),
     ("GV Octorok Grotto Green Rupee 3",                              ("Collectable",  0x3E,  0x3D, None,                        'Rupees (20)',                          ("Gerudo Valley", "Gerudo", "Grottos", "Freestanding"))),
     ("GV Octorok Grotto Green Rupee 4",                              ("Collectable",  0x3E,  0x3E, None,                        'Rupees (20)',                          ("Gerudo Valley", "Gerudo", "Grottos", "Freestanding"))),
+    # Gerudo Valley Pots/Crates
+    ("GV Crate Near Cow",                                            ("Collectable",  0x5A,  0x40, ([0x213D2CC],None),                        'Rupee (1)',                            ("Gerudo Valley", "Gerudo", "Crate"))),
+    ("GV Freestanding PoH Crate",                              ("Collectable",  0x5A,  0x41, ([0x213D2DC, 0x213d548],None),                        'Rupee (1)',                            ("Gerudo Valley", "Gerudo", "Crate"))),
+    # Gerudo Valley Beehives
     ("GV Storms Grotto Beehive",                                       ("Collectable",  0x3E, 0x60 + (0x10*2), None,                         'Rupees (20)',                            ("Gerudo Valley", "Gerudo", "Grottos", "Beehive"))),
-
+    
     # Gerudo's Fortress
     ("GF Chest",                                                     ("Chest",        0x5D,  0x00, None,                        'Piece of Heart',                        ("Gerudo's Fortress", "Gerudo",))),
     ("GF HBA 1000 Points",                                           ("NPC",          0x5D,  0x3E, None,                        'Piece of Heart',                        ("Gerudo's Fortress", "Gerudo", "Minigames"))),
@@ -626,7 +642,6 @@ location_table = OrderedDict([
     ("Hideout Jail Guard (3 Torches)",                               ("Collectable",  0x0C,  0x0A, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo", "Drop"))),
     ("Hideout Jail Guard (4 Torches)",                               ("Collectable",  0x0C,  0x0E, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo", "Drop"))),
     ("Hideout Gerudo Membership Card",                               ("NPC",          0x0C,  0x3A, None,                        'Gerudo Membership Card',                ("Thieves' Hideout", "Gerudo",))),
-    
     # Thieve's Hideout Pots/Crates
     ("Hideout Break Room Pot 1",                                                ("Collectable",  0x0C,  0x2A, None,                        'Recovery Heart',                        ("Thieves' Hideout", "Gerudo", "Pot"))),
     ("Hideout Break Room Pot 2",                                                ("Collectable",  0x0C,  0x2B, None,                        'Recovery Heart',                        ("Thieves' Hideout", "Gerudo", "Pot"))),
@@ -662,6 +677,7 @@ location_table = OrderedDict([
     ("Wasteland Bombchu Salesman",                                   ("NPC",          0x5E,  0x03, None,                        'Bombchus (10)',                         ("Haunted Wasteland",))),
     ("Wasteland Chest",                                              ("Chest",        0x5E,  0x00, None,                        'Rupees (50)',                           ("Haunted Wasteland",))),
     ("Wasteland GS",                                                 ("GS Token",     0x15,  0x02, None,                        'Gold Skulltula Token',                  ("Haunted Wasteland", "Skulltulas",))),
+    # Wasteland Pots/Crates
     ("Wasteland Near GS Pot 1",                                      ("Collectable",  0x5E,  0x20, None,                        'Recovery Heart',                            ("Haunted Wasteland", "Pot"))),
     ("Wasteland Near GS Pot 2",                                      ("Collectable",  0x5E,  0x21, None,                        'Deku Nuts (5)',                            ("Haunted Wasteland", "Pot"))),
     #("Wasteland Near GS Pot 3",                                      ("Collectable",  0x5E,  0x22, None,                        'Rupees (5)',                            ("Haunted Wasteland", "Pot"))),
@@ -680,7 +696,8 @@ location_table = OrderedDict([
     ("Colossus GS Bean Patch",                                       ("GS Token",     0x15,  0x01, None,                        'Gold Skulltula Token',                  ("Desert Colossus", "Skulltulas",))),
     ("Colossus GS Tree",                                             ("GS Token",     0x15,  0x08, None,                        'Gold Skulltula Token',                  ("Desert Colossus", "Skulltulas",))),
     ("Colossus GS Hill",                                             ("GS Token",     0x15,  0x04, None,                        'Gold Skulltula Token',                  ("Desert Colossus", "Skulltulas",))),
-("Colossus Grotto Beehive",                                 ("Collectable",  0x3E, 0x60 + (0x1D*2), None,                         'Rupees (20)',                            ("Desert Colossus", "Grottos", "Beehive"))),
+    # Colossus Beehives
+    ("Colossus Grotto Beehive",                                 ("Collectable",  0x3E, 0x60 + (0x1D*2), None,                         'Rupees (20)',                            ("Desert Colossus", "Grottos", "Beehive"))),
     
     # Outside Ganon's Castle
     ("OGC Great Fairy Reward",                                       ("Cutscene",     0xFF,  0x15, None,                        'Double Defense',                        ("Outside Ganon's Castle", "Market", "Fairies"))),
@@ -689,11 +706,6 @@ location_table = OrderedDict([
     ## Dungeons
     # Deku Tree vanilla
     ("Deku Tree Map Chest",                                          ("Chest",        0x00,  0x03, None,                        'Map (Deku Tree)',                       ("Deku Tree", "Vanilla",))),
-    ("Deku Tree Lower Lobby Recovery Heart",                      ("Collectable",  0x00,  0x2C, None,  'Recovery Heart',     ("Deku Tree", "Vanilla", "Freestanding"))),
-    ("Deku Tree Upper Lobby Recovery Heart",                                ("Collectable",  0x00,  0x2D, None,  'Recovery Heart',                        ("Deku Tree", "Vanilla", "Freestanding"))),
-    ("Deku Tree Basement Recovery Heart 1",                      ("Collectable",  0x00,  0x2E, None,  'Recovery Heart',                        ("Deku Tree", "Vanilla", "Freestanding"))),
-    ("Deku Tree Basement Recovery Heart 2",                      ("Collectable",  0x00,  0x30, None,  'Recovery Heart',                        ("Deku Tree", "Vanilla", "Freestanding"))),
-    ("Deku Tree Basement Recovery Heart 3",                      ("Collectable",  0x00,  0x31, None,  'Recovery Heart',                        ("Deku Tree", "Vanilla", "Freestanding"))),
     ("Deku Tree Slingshot Room Side Chest",                          ("Chest",        0x00,  0x05, None,                        'Recovery Heart',                        ("Deku Tree", "Vanilla",))),
     ("Deku Tree Slingshot Chest",                                    ("Chest",        0x00,  0x01, None,                        'Slingshot',                             ("Deku Tree", "Vanilla",))),
     ("Deku Tree Compass Chest",                                      ("Chest",        0x00,  0x02, None,                        'Compass (Deku Tree)',                   ("Deku Tree", "Vanilla",))),
@@ -703,6 +715,13 @@ location_table = OrderedDict([
     ("Deku Tree GS Basement Vines",                                  ("GS Token",     0x00,  0x04, None,                        'Gold Skulltula Token',                  ("Deku Tree", "Vanilla", "Skulltulas",))),
     ("Deku Tree GS Basement Gate",                                   ("GS Token",     0x00,  0x02, None,                        'Gold Skulltula Token',                  ("Deku Tree", "Vanilla", "Skulltulas",))),
     ("Deku Tree GS Basement Back Room",                              ("GS Token",     0x00,  0x01, None,                        'Gold Skulltula Token',                  ("Deku Tree", "Vanilla", "Skulltulas",))),
+    # Deku Tree Freestanding
+    ("Deku Tree Lower Lobby Recovery Heart",                      ("Collectable",  0x00,  0x2C, None,  'Recovery Heart',     ("Deku Tree", "Vanilla", "Freestanding"))),
+    ("Deku Tree Upper Lobby Recovery Heart",                                ("Collectable",  0x00,  0x2D, None,  'Recovery Heart',                        ("Deku Tree", "Vanilla", "Freestanding"))),
+    ("Deku Tree Basement Recovery Heart 1",                      ("Collectable",  0x00,  0x2E, None,  'Recovery Heart',                        ("Deku Tree", "Vanilla", "Freestanding"))),
+    ("Deku Tree Basement Recovery Heart 2",                      ("Collectable",  0x00,  0x30, None,  'Recovery Heart',                        ("Deku Tree", "Vanilla", "Freestanding"))),
+    ("Deku Tree Basement Recovery Heart 3",                      ("Collectable",  0x00,  0x31, None,  'Recovery Heart',                        ("Deku Tree", "Vanilla", "Freestanding"))),
+    
     # Deku Tree MQ
     ("Deku Tree MQ Map Chest",                                       ("Chest",        0x00,  0x03, None,                        'Map (Deku Tree)',                       ("Deku Tree", "Master Quest",))),
     ("Deku Tree MQ Slingshot Chest",                                 ("Chest",        0x00,  0x06, None,                        'Slingshot',                             ("Deku Tree", "Master Quest",))),
@@ -712,6 +731,11 @@ location_table = OrderedDict([
     ("Deku Tree MQ Before Spinning Log Chest",                       ("Chest",        0x00,  0x05, None,                        'Recovery Heart',                        ("Deku Tree", "Master Quest",))),
     ("Deku Tree MQ After Spinning Log Chest",                        ("Chest",        0x00,  0x00, None,                        'Rupees (50)',                           ("Deku Tree", "Master Quest",))),
     ("Deku Tree MQ Deku Scrub",                                      ("Scrub",        0x00,  0x34, None,                        'Buy Deku Shield',                       ("Deku Tree", "Master Quest", "Deku Scrub",))),
+    ("Deku Tree MQ GS Lobby",                                        ("GS Token",     0x00,  0x02, None,                        'Gold Skulltula Token',                  ("Deku Tree", "Master Quest", "Skulltulas",))),
+    ("Deku Tree MQ GS Compass Room",                                 ("GS Token",     0x00,  0x08, None,                        'Gold Skulltula Token',                  ("Deku Tree", "Master Quest", "Skulltulas",))),
+    ("Deku Tree MQ GS Basement Graves Room",                         ("GS Token",     0x00,  0x04, None,                        'Gold Skulltula Token',                  ("Deku Tree", "Master Quest", "Skulltulas",))),
+    ("Deku Tree MQ GS Basement Back Room",                           ("GS Token",     0x00,  0x01, None,                        'Gold Skulltula Token',                  ("Deku Tree", "Master Quest", "Skulltulas",))),
+    # Deku Tree MQ Freestanding
     ("Deku Tree MQ Lower Lobby Recovery Heart",                      ("Collectable",  0x00,  0x24, None,                        'Recovery Heart',                        ("Deku Tree", "Master Quest", "Freestanding"))),
     ("Deku Tree MQ Near Compass Room Recovery Heart",                ("Collectable",  0x00,  0x23, None,                        'Recovery Heart',                        ("Deku Tree", "Master Quest", "Freestanding"))),
     ("Deku Tree MQ Compass Room Recovery Heart",                     ("Collectable",  0x00,  0x22, None,                        'Recovery Heart',                        ("Deku Tree", "Master Quest", "Freestanding"))),
@@ -719,12 +743,7 @@ location_table = OrderedDict([
     ("Deku Tree MQ Basement Recovery Heart 2",                       ("Collectable",  0x00,  0x30, None,                        'Recovery Heart',                        ("Deku Tree", "Master Quest", "Freestanding"))),
     ("Deku Tree MQ Basement Recovery Heart 3",                       ("Collectable",  0x00,  0x31, None,                        'Recovery Heart',                        ("Deku Tree", "Master Quest", "Freestanding"))),
     ("Deku Tree MQ Slingshot Room Recovery Heart",                   ("Collectable",  0x00,  0x26, None,                        'Recovery Heart',                        ("Deku Tree", "Master Quest", "Freestanding"))),
-    
-    ("Deku Tree MQ GS Lobby",                                        ("GS Token",     0x00,  0x02, None,                        'Gold Skulltula Token',                  ("Deku Tree", "Master Quest", "Skulltulas",))),
-    ("Deku Tree MQ GS Compass Room",                                 ("GS Token",     0x00,  0x08, None,                        'Gold Skulltula Token',                  ("Deku Tree", "Master Quest", "Skulltulas",))),
-    ("Deku Tree MQ GS Basement Graves Room",                         ("GS Token",     0x00,  0x04, None,                        'Gold Skulltula Token',                  ("Deku Tree", "Master Quest", "Skulltulas",))),
-    ("Deku Tree MQ GS Basement Back Room",                           ("GS Token",     0x00,  0x01, None,                        'Gold Skulltula Token',                  ("Deku Tree", "Master Quest", "Skulltulas",))),
-    # Deku Tree MQ Pots
+    # Deku Tree MQ Pots/Crates
     ("Deku Tree MQ Lobby Crate", ("Collectable", 0x0, 0x40, ([0x24bc4cc],None), 'Rupee (1)', ("Deku Tree", "Master Quest", "Crate"))),
     ("Deku Tree MQ Slingshot Room Crate 1", ("Collectable", 0x0, 0x41, ([0x2508e94],None), 'Rupee (1)', ("Deku Tree", "Master Quest", "Crate"))),
     ("Deku Tree MQ Slingshot Room Crate 2", ("Collectable", 0x0, 0x42, ([0x2508ea4],None), 'Rupee (1)', ("Deku Tree", "Master Quest", "Crate"))),
@@ -742,17 +761,16 @@ location_table = OrderedDict([
     ("Dodongos Cavern Deku Scrub Lobby",                             ("Scrub",        0x01,  0x34, None,                        'Buy Deku Shield',                       ("Dodongo's Cavern", "Vanilla", "Deku Scrub",))),
     ("Dodongos Cavern Deku Scrub Near Bomb Bag Left",                ("Scrub",        0x01,  0x30, None,                        'Buy Deku Nut (5)',                      ("Dodongo's Cavern", "Vanilla", "Deku Scrub",))),
     ("Dodongos Cavern Deku Scrub Near Bomb Bag Right",               ("Scrub",        0x01,  0x33, None,                        'Buy Deku Seeds (30)',                   ("Dodongo's Cavern", "Vanilla", "Deku Scrub",))),
-    ("Dodongos Cavern Lizalfos Upper Recovery Heart 1",                    ("Collectable",  0x01,  0x24, None,                        'Recovery Heart',                        ("Dodongo's Cavern", "Vanilla", "Freestanding",))),
-    ("Dodongos Cavern Lizalfos Upper Recovery Heart 2",                    ("Collectable",  0x01,  0x25, None,                        'Recovery Heart',                        ("Dodongo's Cavern", "Vanilla", "Freestanding",))),
-    ("Dodongos Cavern Blade Room Behind Block Recovery Heart",                                 ("Collectable",  0x01,  0x30, None,                        'Recovery Heart',                        ("Dodongo's Cavern", "Vanilla", "Freestanding",))),
-
     ("Dodongos Cavern GS Side Room Near Lower Lizalfos",             ("GS Token",     0x01,  0x10, None,                        'Gold Skulltula Token',                  ("Dodongo's Cavern", "Vanilla", "Skulltulas",))),
     ("Dodongos Cavern GS Scarecrow",                                 ("GS Token",     0x01,  0x02, None,                        'Gold Skulltula Token',                  ("Dodongo's Cavern", "Vanilla", "Skulltulas",))),
     ("Dodongos Cavern GS Alcove Above Stairs",                       ("GS Token",     0x01,  0x04, None,                        'Gold Skulltula Token',                  ("Dodongo's Cavern", "Vanilla", "Skulltulas",))),
     ("Dodongos Cavern GS Vines Above Stairs",                        ("GS Token",     0x01,  0x01, None,                        'Gold Skulltula Token',                  ("Dodongo's Cavern", "Vanilla", "Skulltulas",))),
     ("Dodongos Cavern GS Back Room",                                 ("GS Token",     0x01,  0x08, None,                        'Gold Skulltula Token',                  ("Dodongo's Cavern", "Vanilla", "Skulltulas",))),
-    
-    #Dodongo's Cavern Vanilla Pots
+    # Dodongo's Cavern Vanilla Freestanding
+    ("Dodongos Cavern Lizalfos Upper Recovery Heart 1",                    ("Collectable",  0x01,  0x24, None,                        'Recovery Heart',                        ("Dodongo's Cavern", "Vanilla", "Freestanding",))),
+    ("Dodongos Cavern Lizalfos Upper Recovery Heart 2",                    ("Collectable",  0x01,  0x25, None,                        'Recovery Heart',                        ("Dodongo's Cavern", "Vanilla", "Freestanding",))),
+    ("Dodongos Cavern Blade Room Behind Block Recovery Heart",             ("Collectable",  0x01,  0x30, None,                        'Recovery Heart',                        ("Dodongo's Cavern", "Vanilla", "Freestanding",))),
+    # Dodongo's Cavern Vanilla Pots
     ("Dodongos Cavern Right Side Pot 1",                             ("Collectable",  0x01,  0x22, None,                        'Rupee (1)',                           ("Dodongo's Cavern", "Vanilla", "Pot"))),
     ("Dodongos Cavern Right Side Pot 2",                             ("Collectable",  0x01,  0x23, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Vanilla", "Pot"))),
     ("Dodongos Cavern Right Side Pot 3",                             ("Collectable",  0x01,  0x26, None,                        'Rupee (1)',                           ("Dodongo's Cavern", "Vanilla", "Pot"))),
@@ -794,13 +812,13 @@ location_table = OrderedDict([
     ("Dodongos Cavern MQ Deku Scrub Lobby Rear",                     ("Scrub",        0x01,  0x31, None,                        'Buy Deku Stick (1)',                    ("Dodongo's Cavern", "Master Quest", "Deku Scrub",))),
     ("Dodongos Cavern MQ Deku Scrub Side Room Near Lower Lizalfos",  ("Scrub",        0x01,  0x39, None,                        'Buy Red Potion for 30 Rupees',                   ("Dodongo's Cavern", "Master Quest", "Deku Scrub",))),
     ("Dodongos Cavern MQ Deku Scrub Staircase",                      ("Scrub",        0x01,  0x34, None,                        'Buy Deku Shield',                       ("Dodongo's Cavern", "Master Quest", "Deku Scrub",))),
-    ("Dodongos Cavern MQ Torch Puzzle Room Recovery Heart",          ("Collectable",  0x01,  0x30, None,                        'Recovery Heart',                        ("Dodongo's Cavern", "Master Quest", "Freestanding"))),
-    
     ("Dodongos Cavern MQ GS Scrub Room",                             ("GS Token",     0x01,  0x02, None,                        'Gold Skulltula Token',                  ("Dodongo's Cavern", "Master Quest", "Skulltulas",))),
     ("Dodongos Cavern MQ GS Larvae Room",                            ("GS Token",     0x01,  0x10, None,                        'Gold Skulltula Token',                  ("Dodongo's Cavern", "Master Quest", "Skulltulas",))),
     ("Dodongos Cavern MQ GS Lizalfos Room",                          ("GS Token",     0x01,  0x04, None,                        'Gold Skulltula Token',                  ("Dodongo's Cavern", "Master Quest", "Skulltulas",))),
     ("Dodongos Cavern MQ GS Song of Time Block Room",                ("GS Token",     0x01,  0x08, None,                        'Gold Skulltula Token',                  ("Dodongo's Cavern", "Master Quest", "Skulltulas",))),
     ("Dodongos Cavern MQ GS Back Area",                              ("GS Token",     0x01,  0x01, None,                        'Gold Skulltula Token',                  ("Dodongo's Cavern", "Master Quest", "Skulltulas",))),
+    # Dodongo's Cavern MQ Freestanding
+    ("Dodongos Cavern MQ Torch Puzzle Room Recovery Heart",          ("Collectable",  0x01,  0x30, None,                        'Recovery Heart',                        ("Dodongo's Cavern", "Master Quest", "Freestanding"))),
     # Dodongo's Cavern MQ Pots
     ("Dodongos Cavern MQ Right Side Pot 1",                             ("Collectable",  0x01,  0x22, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
     ("Dodongos Cavern MQ Right Side Pot 2",                             ("Collectable",  0x01,  0x23, None,                        'Rupees (5)',                           ("Dodongo's Cavern", "Master Quest", "Pot"))),
@@ -894,16 +912,17 @@ location_table = OrderedDict([
     ("Jabu Jabus Belly MQ Falling Like Like Room Chest",             ("Chest",        0x02,  0x09, None,                        'Deku Stick (1)',                        ("Jabu Jabu's Belly", "Master Quest",))),
     ("Jabu Jabus Belly MQ Second Room Upper Chest",                  ("Chest",        0x02,  0x07, None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest",))),
     ("Jabu Jabus Belly MQ Near Boss Chest",                          ("Chest",        0x02,  0x0A, None,                        'Deku Shield',                           ("Jabu Jabu's Belly", "Master Quest",))),
-    ("Jabu Jabus Belly MQ Underwater Green Rupee 1",                 ("Collectable",  0x02,  0x01, None,                        'Rupee (1)',                             ("Jabu Jabu's Belly", "Master Quest", "Freestanding"))),
-    ("Jabu Jabus Belly MQ Underwater Green Rupee 2",                 ("Collectable",  0x02,  0x02, None,                        'Rupee (1)',                             ("Jabu Jabu's Belly", "Master Quest", "Freestanding"))),
-    ("Jabu Jabus Belly MQ Underwater Green Rupee 3",                 ("Collectable",  0x02,  0x03, None,                        'Rupee (1)',                             ("Jabu Jabu's Belly", "Master Quest", "Freestanding"))),
-    ("Jabu Jabus Belly MQ Recovery Heart 1",                         ("Collectable",  0x02,  0x27, None,        'Rupee (1)',                             ("Jabu Jabu's Belly", "Master Quest", "Freestanding"))),
-    ("Jabu Jabus Belly MQ Recovery Heart 2",                         ("Collectable",  0x02,  0x28, None,       'Rupee (1)',                             ("Jabu Jabu's Belly", "Master Quest", "Freestanding"))),
     ("Jabu Jabus Belly MQ Cow",                                      ("NPC",          0x02,  0x15, None,                        'Milk',                                  ("Jabu Jabu's Belly", "Master Quest", "Cow",))),
     ("Jabu Jabus Belly MQ GS Boomerang Chest Room",                  ("GS Token",     0x02,  0x01, None,                        'Gold Skulltula Token',                  ("Jabu Jabu's Belly", "Master Quest", "Skulltulas",))),
     ("Jabu Jabus Belly MQ GS Tailpasaran Room",                      ("GS Token",     0x02,  0x04, None,                        'Gold Skulltula Token',                  ("Jabu Jabu's Belly", "Master Quest", "Skulltulas",))),
     ("Jabu Jabus Belly MQ GS Invisible Enemies Room",                ("GS Token",     0x02,  0x08, None,                        'Gold Skulltula Token',                  ("Jabu Jabu's Belly", "Master Quest", "Skulltulas",))),
     ("Jabu Jabus Belly MQ GS Near Boss",                             ("GS Token",     0x02,  0x02, None,                        'Gold Skulltula Token',                  ("Jabu Jabu's Belly", "Master Quest", "Skulltulas",))),
+    # Jabu Jabu's Belly MQ Freestanding
+    ("Jabu Jabus Belly MQ Underwater Green Rupee 1",                 ("Collectable",  0x02,  0x01, None,                        'Rupee (1)',                             ("Jabu Jabu's Belly", "Master Quest", "Freestanding"))),
+    ("Jabu Jabus Belly MQ Underwater Green Rupee 2",                 ("Collectable",  0x02,  0x02, None,                        'Rupee (1)',                             ("Jabu Jabu's Belly", "Master Quest", "Freestanding"))),
+    ("Jabu Jabus Belly MQ Underwater Green Rupee 3",                 ("Collectable",  0x02,  0x03, None,                        'Rupee (1)',                             ("Jabu Jabu's Belly", "Master Quest", "Freestanding"))),
+    ("Jabu Jabus Belly MQ Recovery Heart 1",                         ("Collectable",  0x02,  0x27, None,        'Rupee (1)',                             ("Jabu Jabu's Belly", "Master Quest", "Freestanding"))),
+    ("Jabu Jabus Belly MQ Recovery Heart 2",                         ("Collectable",  0x02,  0x28, None,       'Rupee (1)',                             ("Jabu Jabu's Belly", "Master Quest", "Freestanding"))),
     # Jabu Jabu's Belly MQ Pots
     ("Jabu Jabus Belly MQ First Room Pot 1", ("Collectable", 0x02, 0x3C, None, 'Bombs (5)', ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
     ("Jabu Jabus Belly MQ First Room Pot 2", ("Collectable", 0x02, 0x32, None, 'Deku Nuts (5)', ("Jabu Jabu's Belly", "Master Quest", "Pot"))),
@@ -922,7 +941,6 @@ location_table = OrderedDict([
     ("Jabu Jabus Belly Barinade Pot 4",                              ("Collectable",     0x13,  0x23, None,                        'Recovery Heart',                   ("Jabu Jabu's Belly", "Vanilla", "Master Quest", "Pot"))),
     ("Jabu Jabus Belly Barinade Pot 5",                              ("Collectable",     0x13,  0x24, None,                        'Recovery Heart',                   ("Jabu Jabu's Belly", "Vanilla", "Master Quest", "Pot"))),
     ("Jabu Jabus Belly Barinade Pot 6",                              ("Collectable",     0x13,  0x25, None,                        'Recovery Heart',                   ("Jabu Jabu's Belly", "Vanilla", "Master Quest", "Pot"))),
-    
 
     # Bottom of the Well vanilla
     ("Bottom of the Well Front Left Fake Wall Chest",                ("Chest",        0x08,  0x08, None,                        'Small Key (Bottom of the Well)',        ("Bottom of the Well", "Vanilla",))),
@@ -930,14 +948,6 @@ location_table = OrderedDict([
     ("Bottom of the Well Back Left Bombable Chest",                  ("Chest",        0x08,  0x04, None,                        'Deku Nuts (10)',                        ("Bottom of the Well", "Vanilla",))),
     ("Bottom of the Well Underwater Left Chest",                     ("Chest",        0x08,  0x09, None,                        'Recovery Heart',                        ("Bottom of the Well", "Vanilla",))),
     ("Bottom of the Well Freestanding Key",                          ("Collectable",  0x08,  0x01, None,                        'Small Key (Bottom of the Well)',        ("Bottom of the Well", "Vanilla",))),
-    ("Bottom of the Well Center Room Pit Fall Blue Rupee 1",         ("Collectable",  0x08,  0x02, None,                        'Rupees (5)',                            ("Bottom of the Well", "Vanilla", "Freestanding"))),
-    ("Bottom of the Well Center Room Pit Fall Blue Rupee 2",         ("Collectable",  0x08,  0x03, None,                        'Rupees (5)',                            ("Bottom of the Well", "Vanilla", "Freestanding"))),
-    ("Bottom of the Well Center Room Pit Fall Blue Rupee 3",         ("Collectable",  0x08,  0x04, None,                        'Rupees (5)',                            ("Bottom of the Well", "Vanilla", "Freestanding"))),
-    ("Bottom of the Well Center Room Pit Fall Blue Rupee 4",         ("Collectable",  0x08,  0x05, None,                        'Rupees (5)',                            ("Bottom of the Well", "Vanilla", "Freestanding"))),
-    ("Bottom of the Well Center Room Pit Fall Blue Rupee 5",         ("Collectable",  0x08,  0x06, None,                        'Rupees (5)',                            ("Bottom of the Well", "Vanilla", "Freestanding"))),
-    ("Bottom of the Well Coffin Recovery Heart 1",                   ("Collectable",  0x08,  0x1F, None,     'Recovery Heart',                            ("Bottom of the Well", "Vanilla", "Freestanding"))),
-    ("Bottom of the Well Coffin Recovery Heart 2",                   ("Collectable",  0x08,  0x20, None,     'Recovery Heart',                            ("Bottom of the Well", "Vanilla", "Freestanding"))),
-    
     ("Bottom of the Well Compass Chest",                             ("Chest",        0x08,  0x01, None,                        'Compass (Bottom of the Well)',          ("Bottom of the Well", "Vanilla",))),
     ("Bottom of the Well Center Skulltula Chest",                    ("Chest",        0x08,  0x0E, None,                        'Deku Nuts (5)',                         ("Bottom of the Well", "Vanilla",))),
     ("Bottom of the Well Right Bottom Fake Wall Chest",              ("Chest",        0x08,  0x05, None,                        'Small Key (Bottom of the Well)',        ("Bottom of the Well", "Vanilla",))),
@@ -950,6 +960,14 @@ location_table = OrderedDict([
     ("Bottom of the Well GS West Inner Room",                        ("GS Token",     0x08,  0x04, None,                        'Gold Skulltula Token',                  ("Bottom of the Well", "Vanilla", "Skulltulas",))),
     ("Bottom of the Well GS East Inner Room",                        ("GS Token",     0x08,  0x02, None,                        'Gold Skulltula Token',                  ("Bottom of the Well", "Vanilla", "Skulltulas",))),
     ("Bottom of the Well GS Like Like Cage",                         ("GS Token",     0x08,  0x01, None,                        'Gold Skulltula Token',                  ("Bottom of the Well", "Vanilla", "Skulltulas",))),
+    # Bottom of the Well Vanilla Freestanding
+    ("Bottom of the Well Center Room Pit Fall Blue Rupee 1",         ("Collectable",  0x08,  0x02, None,                        'Rupees (5)',                            ("Bottom of the Well", "Vanilla", "Freestanding"))),
+    ("Bottom of the Well Center Room Pit Fall Blue Rupee 2",         ("Collectable",  0x08,  0x03, None,                        'Rupees (5)',                            ("Bottom of the Well", "Vanilla", "Freestanding"))),
+    ("Bottom of the Well Center Room Pit Fall Blue Rupee 3",         ("Collectable",  0x08,  0x04, None,                        'Rupees (5)',                            ("Bottom of the Well", "Vanilla", "Freestanding"))),
+    ("Bottom of the Well Center Room Pit Fall Blue Rupee 4",         ("Collectable",  0x08,  0x05, None,                        'Rupees (5)',                            ("Bottom of the Well", "Vanilla", "Freestanding"))),
+    ("Bottom of the Well Center Room Pit Fall Blue Rupee 5",         ("Collectable",  0x08,  0x06, None,                        'Rupees (5)',                            ("Bottom of the Well", "Vanilla", "Freestanding"))),
+    ("Bottom of the Well Coffin Recovery Heart 1",                   ("Collectable",  0x08,  0x1F, None,     'Recovery Heart',                            ("Bottom of the Well", "Vanilla", "Freestanding"))),
+    ("Bottom of the Well Coffin Recovery Heart 2",                   ("Collectable",  0x08,  0x20, None,     'Recovery Heart',                            ("Bottom of the Well", "Vanilla", "Freestanding"))),
     # Bottom of the Well Vanilla Pots
     ("Bottom of the Well Left Side Pot 1",                           ("Collectable",  0x08,  0x21, None,                        'Recovery Heart',                        ("Bottom of the Well", "Vanilla", "Pot"))),
     ("Bottom of the Well Left Side Pot 2",                           ("Collectable",  0x08,  0x22, None,                        'Rupees (5)',                        ("Bottom of the Well", "Vanilla", "Pot"))),
@@ -980,6 +998,10 @@ location_table = OrderedDict([
     ("Bottom of the Well MQ Compass Chest",                          ("Chest",        0x08,  0x02, None,                        'Compass (Bottom of the Well)',          ("Bottom of the Well", "Master Quest",))),
     ("Bottom of the Well MQ Dead Hand Freestanding Key",             ("Collectable",  0x08,  0x02, None,                        'Small Key (Bottom of the Well)',        ("Bottom of the Well", "Master Quest",))),
     ("Bottom of the Well MQ Lens of Truth Chest",                    ("Chest",        0x08,  0x01, None,                        'Lens of Truth',                         ("Bottom of the Well", "Master Quest",))),
+    ("Bottom of the Well MQ GS Coffin Room",                         ("GS Token",     0x08,  0x04, None,                        'Gold Skulltula Token',                  ("Bottom of the Well", "Master Quest", "Skulltulas",))),
+    ("Bottom of the Well MQ GS West Inner Room",                     ("GS Token",     0x08,  0x02, None,                        'Gold Skulltula Token',                  ("Bottom of the Well", "Master Quest", "Skulltulas",))),
+    ("Bottom of the Well MQ GS Basement",                            ("GS Token",     0x08,  0x01, None,                        'Gold Skulltula Token',                  ("Bottom of the Well", "Master Quest", "Skulltulas",))),
+    # Bottom of the Well MQ Freestanding
     ("Bottom of the Well MQ Bombable Recovery Heart 1",                  ("Collectable",  0x08,  0x21, None,                     'Recovery Heart',                        ("Bottom of the Well", "Master Quest", "Freestanding"))),
     ("Bottom of the Well MQ Bombable Recovery Heart 2",                  ("Collectable",  0x08,  0x22, None,                     'Recovery Heart',                        ("Bottom of the Well", "Master Quest", "Freestanding"))),
     ("Bottom of the Well MQ Basement Recovery Heart 1",              ("Collectable",  0x08,  0x3C, None,                     'Recovery Heart',                        ("Bottom of the Well", "Master Quest", "Freestanding"))),
@@ -987,10 +1009,6 @@ location_table = OrderedDict([
     ("Bottom of the Well MQ Basement Recovery Heart 3",              ("Collectable",  0x08,  0x3E, None,                     'Recovery Heart',                        ("Bottom of the Well", "Master Quest", "Freestanding"))),
     ("Bottom of the Well MQ Coffin Recovery Heart 1",                ("Collectable",  0x08,  0x20, None,                     'Recovery Heart',                        ("Bottom of the Well", "Master Quest", "Freestanding"))),
     ("Bottom of the Well MQ Coffin Recovery Heart 2",                ("Collectable",  0x08,  0x23, None,                     'Recovery Heart',                        ("Bottom of the Well", "Master Quest", "Freestanding"))),
-
-    ("Bottom of the Well MQ GS Coffin Room",                         ("GS Token",     0x08,  0x04, None,                        'Gold Skulltula Token',                  ("Bottom of the Well", "Master Quest", "Skulltulas",))),
-    ("Bottom of the Well MQ GS West Inner Room",                     ("GS Token",     0x08,  0x02, None,                        'Gold Skulltula Token',                  ("Bottom of the Well", "Master Quest", "Skulltulas",))),
-    ("Bottom of the Well MQ GS Basement",                            ("GS Token",     0x08,  0x01, None,                        'Gold Skulltula Token',                  ("Bottom of the Well", "Master Quest", "Skulltulas",))),
     # Bottom of the Well MQ Pots
     ("Bottom of the Well MQ Center Room Right Pot 1", ("Collectable", 0x08, 0x29, None, 'Recovery Heart', ("Bottom of the Well", "Master Quest", "Pot"))),
     ("Bottom of the Well MQ Center Room Right Pot 2", ("Collectable", 0x08, 0x27, None, 'Arrows (10)', ("Bottom of the Well", "Master Quest", "Pot"))),
@@ -1014,15 +1032,16 @@ location_table = OrderedDict([
     ("Forest Temple Blue Poe Chest",                                 ("Chest",        0x03,  0x0F, None,                        'Compass (Forest Temple)',               ("Forest Temple", "Vanilla",))),
     ("Forest Temple Falling Ceiling Room Chest",                     ("Chest",        0x03,  0x07, None,                        'Arrows (10)',                           ("Forest Temple", "Vanilla",))),
     ("Forest Temple Basement Chest",                                 ("Chest",        0x03,  0x0B, None,                        'Arrows (5)',                            ("Forest Temple", "Vanilla",))),
-    ("Forest Temple Courtyard Recovery Heart 1",                     ("Collectable",  0x03,  0x2D, None,                     'Recovery Heart',                        ("Forest Temple", "Vanilla", "Freestanding"))),
-    ("Forest Temple Courtyard Recovery Heart 2",                     ("Collectable",  0x03,  0x2E, None,                     'Recovery Heart',                        ("Forest Temple", "Vanilla", "Freestanding"))),
-    ("Forest Temple Well Recovery Heart 1",                          ("Collectable",  0x03,  0x2F, None,                     'Recovery Heart',                        ("Forest Temple", "Vanilla", "Freestanding"))),
-    ("Forest Temple Well Recovery Heart 2",                          ("Collectable",  0x03,  0x30, None,                     'Recovery Heart',                        ("Forest Temple", "Vanilla", "Freestanding"))),
     ("Forest Temple GS First Room",                                  ("GS Token",     0x03,  0x02, None,                        'Gold Skulltula Token',                  ("Forest Temple", "Vanilla", "Skulltulas",))),
     ("Forest Temple GS Lobby",                                       ("GS Token",     0x03,  0x08, None,                        'Gold Skulltula Token',                  ("Forest Temple", "Vanilla", "Skulltulas",))),
     ("Forest Temple GS Raised Island Courtyard",                     ("GS Token",     0x03,  0x01, None,                        'Gold Skulltula Token',                  ("Forest Temple", "Vanilla", "Skulltulas",))),
     ("Forest Temple GS Level Island Courtyard",                      ("GS Token",     0x03,  0x04, None,                        'Gold Skulltula Token',                  ("Forest Temple", "Vanilla", "Skulltulas",))),
     ("Forest Temple GS Basement",                                    ("GS Token",     0x03,  0x10, None,                        'Gold Skulltula Token',                  ("Forest Temple", "Vanilla", "Skulltulas",))),
+    # Forest Temple Vanilla Freestanding
+    ("Forest Temple Courtyard Recovery Heart 1",                     ("Collectable",  0x03,  0x2D, None,                     'Recovery Heart',                        ("Forest Temple", "Vanilla", "Freestanding"))),
+    ("Forest Temple Courtyard Recovery Heart 2",                     ("Collectable",  0x03,  0x2E, None,                     'Recovery Heart',                        ("Forest Temple", "Vanilla", "Freestanding"))),
+    ("Forest Temple Well Recovery Heart 1",                          ("Collectable",  0x03,  0x2F, None,                     'Recovery Heart',                        ("Forest Temple", "Vanilla", "Freestanding"))),
+    ("Forest Temple Well Recovery Heart 2",                          ("Collectable",  0x03,  0x30, None,                     'Recovery Heart',                        ("Forest Temple", "Vanilla", "Freestanding"))),
     # Forest Temple Vanilla Pots
     ("Forest Temple Center Room Pot 1",                        ("Collectable",  0x03,  0x20, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
     ("Forest Temple Center Room Pot 2",                        ("Collectable",  0x03,  0x21, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
@@ -1044,8 +1063,6 @@ location_table = OrderedDict([
     ("Forest Temple Green Poe Room Pot 1",                  ("Collectable",  0x03,  0x2B, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
     ("Forest Temple Green Poe Room Pot 2",                  ("Collectable",  0x03,  0x2C, None,                        'Rupees (20)',                           ("Forest Temple", "Vanilla", "Pot"))),
  
-
-
     # Forest Temple MQ
     ("Forest Temple MQ First Room Chest",                            ("Chest",        0x03,  0x03, None,                        'Small Key (Forest Temple)',             ("Forest Temple", "Master Quest",))),
     ("Forest Temple MQ Wolfos Chest",                                ("Chest",        0x03,  0x00, None,                        'Small Key (Forest Temple)',             ("Forest Temple", "Master Quest",))),
@@ -1059,17 +1076,18 @@ location_table = OrderedDict([
     ("Forest Temple MQ Compass Chest",                               ("Chest",        0x03,  0x0F, None,                        'Compass (Forest Temple)',               ("Forest Temple", "Master Quest",))),
     ("Forest Temple MQ Falling Ceiling Room Chest",                  ("Chest",        0x03,  0x06, None,                        'Arrows (5)',                            ("Forest Temple", "Master Quest",))),
     ("Forest Temple MQ Basement Chest",                              ("Chest",        0x03,  0x0B, None,                        'Arrows (5)',                            ("Forest Temple", "Master Quest",))),
+    ("Forest Temple MQ GS First Hallway",                            ("GS Token",     0x03,  0x02, None,                        'Gold Skulltula Token',                  ("Forest Temple", "Master Quest", "Skulltulas",))),
+    ("Forest Temple MQ GS Raised Island Courtyard",                  ("GS Token",     0x03,  0x01, None,                        'Gold Skulltula Token',                  ("Forest Temple", "Master Quest", "Skulltulas",))),
+    ("Forest Temple MQ GS Level Island Courtyard",                   ("GS Token",     0x03,  0x04, None,                        'Gold Skulltula Token',                  ("Forest Temple", "Master Quest", "Skulltulas",))),
+    ("Forest Temple MQ GS Well",                                     ("GS Token",     0x03,  0x08, None,                        'Gold Skulltula Token',                  ("Forest Temple", "Master Quest", "Skulltulas",))),
+    ("Forest Temple MQ GS Block Push Room",                          ("GS Token",     0x03,  0x10, None,                        'Gold Skulltula Token',                  ("Forest Temple", "Master Quest", "Skulltulas",))),
+    # Forest Temple MQ Freestanding
     ("Forest Temple MQ Courtyard Recovery Heart 1",                  ("Collectable",  0x03,  0x2D, None,                     'Recovery Heart',                        ("Forest Temple", "Master Quest", "Freestanding"))),
     ("Forest Temple MQ Courtyard Recovery Heart 2",                  ("Collectable",  0x03,  0x2E, None,                     'Recovery Heart',                        ("Forest Temple", "Master Quest", "Freestanding"))),
     ("Forest Temple MQ Courtyard Recovery Heart 3",                  ("Collectable",  0x03,  0x2F, None,                     'Recovery Heart',                        ("Forest Temple", "Master Quest", "Freestanding"))),
     ("Forest Temple MQ Well Recovery Heart 1",                       ("Collectable",  0x03,  0x38, None,                     'Recovery Heart',                        ("Forest Temple", "Master Quest", "Freestanding"))),
     ("Forest Temple MQ Well Recovery Heart 2",                       ("Collectable",  0x03,  0x39, None,                     'Recovery Heart',                        ("Forest Temple", "Master Quest", "Freestanding"))),
     ("Forest Temple MQ Well Recovery Heart 3",                       ("Collectable",  0x03,  0x3A, None,                     'Recovery Heart',                        ("Forest Temple", "Master Quest", "Freestanding"))),  
-    ("Forest Temple MQ GS First Hallway",                            ("GS Token",     0x03,  0x02, None,                        'Gold Skulltula Token',                  ("Forest Temple", "Master Quest", "Skulltulas",))),
-    ("Forest Temple MQ GS Raised Island Courtyard",                  ("GS Token",     0x03,  0x01, None,                        'Gold Skulltula Token',                  ("Forest Temple", "Master Quest", "Skulltulas",))),
-    ("Forest Temple MQ GS Level Island Courtyard",                   ("GS Token",     0x03,  0x04, None,                        'Gold Skulltula Token',                  ("Forest Temple", "Master Quest", "Skulltulas",))),
-    ("Forest Temple MQ GS Well",                                     ("GS Token",     0x03,  0x08, None,                        'Gold Skulltula Token',                  ("Forest Temple", "Master Quest", "Skulltulas",))),
-    ("Forest Temple MQ GS Block Push Room",                          ("GS Token",     0x03,  0x10, None,                        'Gold Skulltula Token',                  ("Forest Temple", "Master Quest", "Skulltulas",))),
     # Forest Temple MQ Pots
     ("Forest Temple MQ Center Room Right Pot 1", ("Collectable", 0x03, 0x20, None, 'Rupees (5)', ("Forest Temple", "Master Quest", "Pot"))),
     ("Forest Temple MQ Center Room Right Pot 2", ("Collectable", 0x03, 0x22, None, 'Recovery Heart', ("Forest Temple", "Master Quest", "Pot"))),
@@ -1105,12 +1123,6 @@ location_table = OrderedDict([
     ("Fire Temple Boss Key Chest",                                   ("Chest",        0x04,  0x0C, None,                        'Boss Key (Fire Temple)',                ("Fire Temple", "Vanilla",))),
     ("Fire Temple Big Lava Room Lower Open Door Chest",              ("Chest",        0x04,  0x04, None,                        'Small Key (Fire Temple)',               ("Fire Temple", "Vanilla",))),
     ("Fire Temple Big Lava Room Blocked Door Chest",                 ("Chest",        0x04,  0x02, None,                        'Small Key (Fire Temple)',               ("Fire Temple", "Vanilla",))),
-    ("Fire Temple Elevator Room Recovery Heart 1",                   ("Collectable",  0x04,  0x2F, None,                          'Recovery Heart',                        ("Fire Temple", "Vanilla", "Freestanding"))),
-    ("Fire Temple Elevator Room Recovery Heart 2",                   ("Collectable",  0x04,  0x30, None,                          'Recovery Heart',                        ("Fire Temple", "Vanilla", "Freestanding"))),
-    ("Fire Temple Elevator Room Recovery Heart 3",                   ("Collectable",  0x04,  0x34, None,                          'Recovery Heart',                        ("Fire Temple", "Vanilla", "Freestanding"))),
-    ("Fire Temple Eye Switch Room Recovery Heart 1",                 ("Collectable",  0x04,  0x35, None,                          'Recovery Heart',                        ("Fire Temple", "Vanilla", "Freestanding"))),
-    ("Fire Temple Eye Switch Room Recovery Heart 2",                 ("Collectable",  0x04,  0x36, None,                          'Recovery Heart',                        ("Fire Temple", "Vanilla", "Freestanding"))),
-    ("Fire Temple Eye Switch Room Recovery Heart 3",                 ("Collectable",  0x04,  0x37, None,                          'Recovery Heart',                        ("Fire Temple", "Vanilla", "Freestanding"))),
     ("Fire Temple Boulder Maze Lower Chest",                         ("Chest",        0x04,  0x03, None,                        'Small Key (Fire Temple)',               ("Fire Temple", "Vanilla",))),
     ("Fire Temple Boulder Maze Side Room Chest",                     ("Chest",        0x04,  0x08, None,                        'Small Key (Fire Temple)',               ("Fire Temple", "Vanilla",))),
     ("Fire Temple Map Chest",                                        ("Chest",        0x04,  0x0A, None,                        'Map (Fire Temple)',                     ("Fire Temple", "Vanilla",))),
@@ -1118,9 +1130,6 @@ location_table = OrderedDict([
     ("Fire Temple Boulder Maze Upper Chest",                         ("Chest",        0x04,  0x06, None,                        'Small Key (Fire Temple)',               ("Fire Temple", "Vanilla",))),
     ("Fire Temple Scarecrow Chest",                                  ("Chest",        0x04,  0x0D, None,                        'Rupees (200)',                          ("Fire Temple", "Vanilla",))),
     ("Fire Temple Compass Chest",                                    ("Chest",        0x04,  0x07, None,                        'Compass (Fire Temple)',                 ("Fire Temple", "Vanilla",))),
-    ("Fire Temple Moving Fire Room Recovery Heart 1",                ("Collectable",  0x04,  0x31, None,                         'Recovery Heart',                        ("Fire Temple", "Vanilla", "Freestanding"))),
-    ("Fire Temple Moving Fire Room Recovery Heart 2",                ("Collectable",  0x04,  0x32, None,                         'Recovery Heart',                        ("Fire Temple", "Vanilla", "Freestanding"))),
-    ("Fire Temple Moving Fire Room Recovery Heart 3",                ("Collectable",  0x04,  0x33, None,                         'Recovery Heart',                        ("Fire Temple", "Vanilla", "Freestanding"))),
     ("Fire Temple Megaton Hammer Chest",                             ("Chest",        0x04,  0x05, None,                        'Megaton Hammer',                        ("Fire Temple", "Vanilla",))),
     ("Fire Temple Highest Goron Chest",                              ("Chest",        0x04,  0x09, None,                        'Small Key (Fire Temple)',               ("Fire Temple", "Vanilla",))),
     ("Fire Temple GS Boss Key Loop",                                 ("GS Token",     0x04,  0x02, None,                        'Gold Skulltula Token',                  ("Fire Temple", "Vanilla", "Skulltulas",))),
@@ -1128,6 +1137,16 @@ location_table = OrderedDict([
     ("Fire Temple GS Boulder Maze",                                  ("GS Token",     0x04,  0x04, None,                        'Gold Skulltula Token',                  ("Fire Temple", "Vanilla", "Skulltulas",))),
     ("Fire Temple GS Scarecrow Climb",                               ("GS Token",     0x04,  0x10, None,                        'Gold Skulltula Token',                  ("Fire Temple", "Vanilla", "Skulltulas",))),
     ("Fire Temple GS Scarecrow Top",                                 ("GS Token",     0x04,  0x08, None,                        'Gold Skulltula Token',                  ("Fire Temple", "Vanilla", "Skulltulas",))),
+    # Fire Temple Vanilla Freestanding
+    ("Fire Temple Elevator Room Recovery Heart 1",                   ("Collectable",  0x04,  0x2F, None,                          'Recovery Heart',                        ("Fire Temple", "Vanilla", "Freestanding"))),
+    ("Fire Temple Elevator Room Recovery Heart 2",                   ("Collectable",  0x04,  0x30, None,                          'Recovery Heart',                        ("Fire Temple", "Vanilla", "Freestanding"))),
+    ("Fire Temple Elevator Room Recovery Heart 3",                   ("Collectable",  0x04,  0x34, None,                          'Recovery Heart',                        ("Fire Temple", "Vanilla", "Freestanding"))),
+    ("Fire Temple Eye Switch Room Recovery Heart 1",                 ("Collectable",  0x04,  0x35, None,                          'Recovery Heart',                        ("Fire Temple", "Vanilla", "Freestanding"))),
+    ("Fire Temple Eye Switch Room Recovery Heart 2",                 ("Collectable",  0x04,  0x36, None,                          'Recovery Heart',                        ("Fire Temple", "Vanilla", "Freestanding"))),
+    ("Fire Temple Eye Switch Room Recovery Heart 3",                 ("Collectable",  0x04,  0x37, None,                          'Recovery Heart',                        ("Fire Temple", "Vanilla", "Freestanding"))),
+    ("Fire Temple Moving Fire Room Recovery Heart 1",                ("Collectable",  0x04,  0x31, None,                         'Recovery Heart',                        ("Fire Temple", "Vanilla", "Freestanding"))),
+    ("Fire Temple Moving Fire Room Recovery Heart 2",                ("Collectable",  0x04,  0x32, None,                         'Recovery Heart',                        ("Fire Temple", "Vanilla", "Freestanding"))),
+    ("Fire Temple Moving Fire Room Recovery Heart 3",                ("Collectable",  0x04,  0x33, None,                         'Recovery Heart',                        ("Fire Temple", "Vanilla", "Freestanding"))),
     # Fire Temple Vanilla Pots
     ("Fire Temple Big Lava Room Pot 1",                              ("Collectable",  0x04,  0x20, None,                        'Arrows (10)',                           ("Fire Temple", "Vanilla", "Pot"))),
     ("Fire Temple Big Lava Room Pot 2",                              ("Collectable",  0x04,  0x21, None,                        'Recovery Heart',                           ("Fire Temple", "Vanilla", "Pot"))),
@@ -1143,7 +1162,6 @@ location_table = OrderedDict([
     ("Fire Temple Flame Maze Left Side Pot 3",                       ("Collectable",  0x04,  0x29, None,                        'Recovery Heart',                           ("Fire Temple", "Vanilla", "Pot"))),
     ("Fire Temple Flame Maze Left Side Pot 4",                       ("Collectable",  0x04,  0x2A, None,                        'Recovery Heart',                           ("Fire Temple", "Vanilla", "Pot"))),
     
-
     # Fire Temple MQ
     ("Fire Temple MQ Map Room Side Chest",                           ("Chest",        0x04,  0x02, None,                        'Hylian Shield',                         ("Fire Temple", "Master Quest",))),
     ("Fire Temple MQ Megaton Hammer Chest",                          ("Chest",        0x04,  0x00, None,                        'Megaton Hammer',                        ("Fire Temple", "Master Quest",))),
@@ -1156,16 +1174,17 @@ location_table = OrderedDict([
     ("Fire Temple MQ Lizalfos Maze Upper Chest",                     ("Chest",        0x04,  0x06, None,                        'Bombs (10)',                            ("Fire Temple", "Master Quest",))),
     ("Fire Temple MQ Lizalfos Maze Lower Chest",                     ("Chest",        0x04,  0x03, None,                        'Bombs (10)',                            ("Fire Temple", "Master Quest",))),
     ("Fire Temple MQ Freestanding Key",                              ("Collectable",  0x04,  0x1C, None,                        'Small Key (Fire Temple)',               ("Fire Temple", "Master Quest",))),
-    ("Fire Temple MQ Elevator Room Recovery Heart 1",                ("Collectable",  0x04,  0x2F, None,                    'Recovery Heart',                        ("Fire Temple", "Master Quest", "Freestanding"))),
-    ("Fire Temple MQ Elevator Room Recovery Heart 2",                ("Collectable",  0x04,  0x30, None,                    'Recovery Heart',                        ("Fire Temple", "Master Quest", "Freestanding"))),
-    ("Fire Temple MQ Elevator Room Recovery Heart 3",                ("Collectable",  0x04,  0x34, None,                    'Recovery Heart',                        ("Fire Temple", "Master Quest", "Freestanding"))),
     ("Fire Temple MQ Chest On Fire",                                 ("Chest",        0x04,  0x05, None,                        'Small Key (Fire Temple)',               ("Fire Temple", "Master Quest",))),
     ("Fire Temple MQ GS Big Lava Room Open Door",                    ("GS Token",     0x04,  0x01, None,                        'Gold Skulltula Token',                  ("Fire Temple", "Master Quest", "Skulltulas",))),
     ("Fire Temple MQ GS Skull On Fire",                              ("GS Token",     0x04,  0x04, None,                        'Gold Skulltula Token',                  ("Fire Temple", "Master Quest", "Skulltulas",))),
     ("Fire Temple MQ GS Fire Wall Maze Center",                      ("GS Token",     0x04,  0x08, None,                        'Gold Skulltula Token',                  ("Fire Temple", "Master Quest", "Skulltulas",))),
     ("Fire Temple MQ GS Fire Wall Maze Side Room",                   ("GS Token",     0x04,  0x10, None,                        'Gold Skulltula Token',                  ("Fire Temple", "Master Quest", "Skulltulas",))),
     ("Fire Temple MQ GS Above Fire Wall Maze",                       ("GS Token",     0x04,  0x02, None,                        'Gold Skulltula Token',                  ("Fire Temple", "Master Quest", "Skulltulas",))),
-    # Fire Temple MQ Pots
+    # Fire Temple MQ Freestanding
+    ("Fire Temple MQ Elevator Room Recovery Heart 1",                ("Collectable",  0x04,  0x2F, None,                    'Recovery Heart',                        ("Fire Temple", "Master Quest", "Freestanding"))),
+    ("Fire Temple MQ Elevator Room Recovery Heart 2",                ("Collectable",  0x04,  0x30, None,                    'Recovery Heart',                        ("Fire Temple", "Master Quest", "Freestanding"))),
+    ("Fire Temple MQ Elevator Room Recovery Heart 3",                ("Collectable",  0x04,  0x34, None,                    'Recovery Heart',                        ("Fire Temple", "Master Quest", "Freestanding"))),
+    # Fire Temple MQ Pots/Crates
     ("Fire Temple MQ First Room Pot 1", ("Collectable", 0x04, 0x2B, None, 'Rupees (5)', ("Fire Temple", "Master Quest", "Pot"))),
     ("Fire Temple MQ First Room Pot 2", ("Collectable", 0x04, 0x2C, None, 'Rupees (5)', ("Fire Temple", "Master Quest", "Pot"))),
     ("Fire Temple MQ Big Lava Room Left Pot", ("Collectable", 0x04, 0x20, None, 'Arrows (10)', ("Fire Temple", "Master Quest", "Pot"))),
@@ -1239,16 +1258,17 @@ location_table = OrderedDict([
     ("Water Temple Central Bow Target Chest",                        ("Chest",        0x05,  0x08, None,                        'Small Key (Water Temple)',              ("Water Temple", "Vanilla",))),
     ("Water Temple Longshot Chest",                                  ("Chest",        0x05,  0x07, None,                        'Progressive Hookshot',                  ("Water Temple", "Vanilla",))),
     ("Water Temple River Chest",                                     ("Chest",        0x05,  0x03, None,                        'Small Key (Water Temple)',              ("Water Temple", "Vanilla",))),
-    ("Water Temple River Recovery Heart 1",                          ("Collectable",  0x05,  0x2A, None,                     'Recovery Heart',                        ("Water Temple", "Vanilla", "Freestanding"))),
-    ("Water Temple River Recovery Heart 2",                          ("Collectable",  0x05,  0x2D, None,                     'Recovery Heart',                        ("Water Temple", "Vanilla", "Freestanding"))),
-    ("Water Temple River Recovery Heart 3",                          ("Collectable",  0x05,  0x32, None,                     'Recovery Heart',                        ("Water Temple", "Vanilla", "Freestanding"))),
-    ("Water Temple River Recovery Heart 4",                          ("Collectable",  0x05,  0x34, None,                     'Recovery Heart',                        ("Water Temple", "Vanilla", "Freestanding"))),
     ("Water Temple Dragon Chest",                                    ("Chest",        0x05,  0x0A, None,                        'Small Key (Water Temple)',              ("Water Temple", "Vanilla",))),
     ("Water Temple GS Behind Gate",                                  ("GS Token",     0x05,  0x01, None,                        'Gold Skulltula Token',                  ("Water Temple", "Vanilla", "Skulltulas",))),
     ("Water Temple GS Near Boss Key Chest",                          ("GS Token",     0x05,  0x08, None,                        'Gold Skulltula Token',                  ("Water Temple", "Vanilla", "Skulltulas",))),
     ("Water Temple GS Central Pillar",                               ("GS Token",     0x05,  0x04, None,                        'Gold Skulltula Token',                  ("Water Temple", "Vanilla", "Skulltulas",))),
     ("Water Temple GS Falling Platform Room",                        ("GS Token",     0x05,  0x02, None,                        'Gold Skulltula Token',                  ("Water Temple", "Vanilla", "Skulltulas",))),
     ("Water Temple GS River",                                        ("GS Token",     0x05,  0x10, None,                        'Gold Skulltula Token',                  ("Water Temple", "Vanilla", "Skulltulas",))),
+    # Water Temple Vanilla Freestanding
+    ("Water Temple River Recovery Heart 1",                          ("Collectable",  0x05,  0x2A, None,                     'Recovery Heart',                        ("Water Temple", "Vanilla", "Freestanding"))),
+    ("Water Temple River Recovery Heart 2",                          ("Collectable",  0x05,  0x2D, None,                     'Recovery Heart',                        ("Water Temple", "Vanilla", "Freestanding"))),
+    ("Water Temple River Recovery Heart 3",                          ("Collectable",  0x05,  0x32, None,                     'Recovery Heart',                        ("Water Temple", "Vanilla", "Freestanding"))),
+    ("Water Temple River Recovery Heart 4",                          ("Collectable",  0x05,  0x34, None,                     'Recovery Heart',                        ("Water Temple", "Vanilla", "Freestanding"))),
     # Water Temple Vanilla Pots
     ("Water Temple Main Room L2 Pot 1",                              ("Collectable",  0x05,  0x22, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
     ("Water Temple Main Room L2 Pot 2",                              ("Collectable",  0x05,  0x23, None,                        'Recovery Heart',                        ("Water Temple", "Vanilla", "Pot"))),
@@ -1284,7 +1304,6 @@ location_table = OrderedDict([
     ("Water Temple MQ GS River",                                     ("GS Token",     0x05,  0x02, None,                        'Gold Skulltula Token',                  ("Water Temple", "Master Quest", "Skulltulas",))),
     ("Water Temple MQ GS Freestanding Key Area",                     ("GS Token",     0x05,  0x08, None,                        'Gold Skulltula Token',                  ("Water Temple", "Master Quest", "Skulltulas",))),
     ("Water Temple MQ GS Triple Wall Torch",                         ("GS Token",     0x05,  0x10, None,                        'Gold Skulltula Token',                  ("Water Temple", "Master Quest", "Skulltulas",))),
-    
     # Water Temple MQ Pots
     ("Water Temple MQ Triple Wall Torch Pot 1", ("Collectable", 0x05, 0x29, None, 'Arrows (10)', ("Water Temple", "Master Quest", "Pot"))),
     ("Water Temple MQ Triple Wall Torch Pot 2", ("Collectable", 0x05, 0x35, None, 'Arrows (10)', ("Water Temple", "Master Quest", "Pot"))),
@@ -1404,7 +1423,6 @@ location_table = OrderedDict([
     ("Water Temple MQ Lizalfos Hallway Hall Crate 2", ("Collectable", 0x5, 0x93, ([0x2673810],None), 'Rupee (1)', ("Water Temple", "Master Quest", "Crate"))),
     ("Water Temple MQ Lizalfos Hallway Hall Crate 3", ("Collectable", 0x5, 0x94, ([0x2673820],None), 'Rupee (1)', ("Water Temple", "Master Quest", "Crate"))),
 
-
     # Water Temple shared
     ("Water Temple Morpha Heart",                                    ("BossHeart",    0x16,  0x4F, None,                        'Heart Container',                       ("Water Temple", "Vanilla", "Master Quest",))),
 
@@ -1415,8 +1433,6 @@ location_table = OrderedDict([
     ("Shadow Temple Early Silver Rupee Chest",                       ("Chest",        0x07,  0x02, None,                        'Small Key (Shadow Temple)',             ("Shadow Temple", "Vanilla",))),
     ("Shadow Temple Invisible Blades Visible Chest",                 ("Chest",        0x07,  0x0C, None,                        'Rupees (5)',                            ("Shadow Temple", "Vanilla",))),
     ("Shadow Temple Invisible Blades Invisible Chest",               ("Chest",        0x07,  0x16, None,                        'Arrows (30)',                           ("Shadow Temple", "Vanilla",))),
-    ("Shadow Temple Invisible Blades Recovery Heart 1",              ("Collectable",           0x07,  0x20, None,            'Recovery Heart',                        ("Shadow Temple", "Vanilla", "Freestanding"))),
-    ("Shadow Temple Invisible Blades Recovery Heart 2",              ("Collectable",           0x07,  0x21, None,            'Recovery Heart',                        ("Shadow Temple", "Vanilla", "Freestanding"))),
     ("Shadow Temple Falling Spikes Lower Chest",                     ("Chest",        0x07,  0x05, None,                        'Arrows (10)',                           ("Shadow Temple", "Vanilla",))),
     ("Shadow Temple Falling Spikes Upper Chest",                     ("Chest",        0x07,  0x06, None,                        'Rupees (5)',                            ("Shadow Temple", "Vanilla",))),
     ("Shadow Temple Falling Spikes Switch Chest",                    ("Chest",        0x07,  0x04, None,                        'Small Key (Shadow Temple)',             ("Shadow Temple", "Vanilla",))),
@@ -1425,11 +1441,6 @@ location_table = OrderedDict([
     ("Shadow Temple Wind Hint Chest",                                ("Chest",        0x07,  0x15, None,                        'Arrows (10)',                           ("Shadow Temple", "Vanilla",))),
     ("Shadow Temple After Wind Enemy Chest",                         ("Chest",        0x07,  0x08, None,                        'Rupees (5)',                            ("Shadow Temple", "Vanilla",))),
     ("Shadow Temple After Wind Hidden Chest",                        ("Chest",        0x07,  0x14, None,                        'Small Key (Shadow Temple)',             ("Shadow Temple", "Vanilla",))),
-    ("Shadow Temple Before Boat Recovery Heart 1",                   ("Collectable",  0x07,  0x22, None,                        'Recovery Heart',                        ("Shadow Temple", "Vanilla", "Freestanding"))),
-    ("Shadow Temple Before Boat Recovery Heart 2",                   ("Collectable",  0x07,  0x23, None,                        'Recovery Heart',                        ("Shadow Temple", "Vanilla", "Freestanding"))),
-    ("Shadow Temple After Boat Upper Recovery Heart 1",              ("Collectable",  0x07,  0x39, None,                        'Recovery Heart',                        ("Shadow Temple", "Vanilla", "Freestanding"))),
-    ("Shadow Temple After Boat Upper Recovery Heart 2",              ("Collectable",  0x07,  0x3A, None,                        'Recovery Heart',                        ("Shadow Temple", "Vanilla", "Freestanding"))),
-    ("Shadow Temple After Boat Lower Recovery Heart",                ("Collectable",  0x07,  0x3C, None,                        'Recovery Heart',                        ("Shadow Temple", "Vanilla", "Freestanding"))),
     ("Shadow Temple Spike Walls Left Chest",                         ("Chest",        0x07,  0x0A, None,                        'Rupees (5)',                            ("Shadow Temple", "Vanilla",))),
     ("Shadow Temple Boss Key Chest",                                 ("Chest",        0x07,  0x0B, None,                        'Boss Key (Shadow Temple)',              ("Shadow Temple", "Vanilla",))),
     ("Shadow Temple Invisible Floormaster Chest",                    ("Chest",        0x07,  0x0D, None,                        'Small Key (Shadow Temple)',             ("Shadow Temple", "Vanilla",))),
@@ -1438,6 +1449,14 @@ location_table = OrderedDict([
     ("Shadow Temple GS Single Giant Pot",                            ("GS Token",     0x07,  0x01, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Vanilla", "Skulltulas",))),
     ("Shadow Temple GS Near Ship",                                   ("GS Token",     0x07,  0x10, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Vanilla", "Skulltulas",))),
     ("Shadow Temple GS Triple Giant Pot",                            ("GS Token",     0x07,  0x04, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Vanilla", "Skulltulas",))),  
+    # Shadow Temple Vanilla Freestanding
+    ("Shadow Temple Invisible Blades Recovery Heart 1",              ("Collectable",           0x07,  0x20, None,            'Recovery Heart',                        ("Shadow Temple", "Vanilla", "Freestanding"))),
+    ("Shadow Temple Invisible Blades Recovery Heart 2",              ("Collectable",           0x07,  0x21, None,            'Recovery Heart',                        ("Shadow Temple", "Vanilla", "Freestanding"))),
+    ("Shadow Temple Before Boat Recovery Heart 1",                   ("Collectable",  0x07,  0x22, None,                        'Recovery Heart',                        ("Shadow Temple", "Vanilla", "Freestanding"))),
+    ("Shadow Temple Before Boat Recovery Heart 2",                   ("Collectable",  0x07,  0x23, None,                        'Recovery Heart',                        ("Shadow Temple", "Vanilla", "Freestanding"))),
+    ("Shadow Temple After Boat Upper Recovery Heart 1",              ("Collectable",  0x07,  0x39, None,                        'Recovery Heart',                        ("Shadow Temple", "Vanilla", "Freestanding"))),
+    ("Shadow Temple After Boat Upper Recovery Heart 2",              ("Collectable",  0x07,  0x3A, None,                        'Recovery Heart',                        ("Shadow Temple", "Vanilla", "Freestanding"))),
+    ("Shadow Temple After Boat Lower Recovery Heart",                ("Collectable",  0x07,  0x3C, None,                        'Recovery Heart',                        ("Shadow Temple", "Vanilla", "Freestanding"))),
     ("Shadow Temple 3 Spinning Pots Rupee 1",       ("Collectable", 0x7, 0x40, ([0x280D0D4, 0x280D0E4, 0x280D0F4], None), 'Rupees (5)', ("Shadow Temple", "Vanilla", "RupeeTower"))),
     ("Shadow Temple 3 Spinning Pots Rupee 2",       ("Collectable", 0x7, 0x41, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "RupeeTower"))),
     ("Shadow Temple 3 Spinning Pots Rupee 3",       ("Collectable", 0x7, 0x42, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "RupeeTower"))),
@@ -1447,7 +1466,6 @@ location_table = OrderedDict([
     ("Shadow Temple 3 Spinning Pots Rupee 7",       ("Collectable", 0x7, 0x46, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "RupeeTower"))),
     ("Shadow Temple 3 Spinning Pots Rupee 8",       ("Collectable", 0x7, 0x47, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "RupeeTower"))),
     ("Shadow Temple 3 Spinning Pots Rupee 9",       ("Collectable", 0x7, 0x48, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "RupeeTower"))),
-   
     #Shadow Temple Vanilla Pots
     ("Shadow Temple Whispering Walls Near Dead Hand Pot",                         ("Collectable",  0x07,  0x28, None,                        'Rupees (5)',                            ("Shadow Temple", "Vanilla", "Pot"))),
     ("Shadow Temple Whispering Walls Left Pot 1",                         ("Collectable",  0x07,  0x29, None,                        'Rupees (5)',                            ("Shadow Temple", "Vanilla", "Pot"))),
@@ -1469,16 +1487,12 @@ location_table = OrderedDict([
     ("Shadow Temple After Wind Flying Pot 1", ("Collectable", 0x7, 0x36, None, 'Recovery Heart', ("Shadow Temple", "Vanilla", "FlyingPot"))),
     ("Shadow Temple After Wind Flying Pot 2", ("Collectable", 0x7, 0x37, None, 'Recovery Heart', ("Shadow Temple", "Vanilla", "FlyingPot"))),
     ("Shadow Temple After Boat Pot",                               ("Collectable",  0x07,  0x38, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
-
-
-    
     #("Shadow Temple After Boat Pot 2"                               ("Collectable",  0x07,  0x3B, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
     ("Shadow Temple Near Boss Pot 1",                                ("Collectable",  0x07,  0x3D, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
     ("Shadow Temple Near Boss Pot 2",                                ("Collectable",  0x07,  0x3E, None,                        'Recovery Heart',                            ("Shadow Temple", "Vanilla", "Pot"))),
     ("Shadow Temple Whispering Walls Flying Pot", ("Collectable", 0x7, 0x35, None, 'Recovery Heart', ("Shadow Temple", "Vanilla", "FlyingPot"))),
 
-
-# Shadow Temple MQ
+    # Shadow Temple MQ
     ("Shadow Temple MQ Early Gibdos Chest",                          ("Chest",        0x07,  0x03, None,                        'Small Key (Shadow Temple)',             ("Shadow Temple", "Master Quest",))),
     ("Shadow Temple MQ Map Chest",                                   ("Chest",        0x07,  0x02, None,                        'Map (Shadow Temple)',                   ("Shadow Temple", "Master Quest",))),
     ("Shadow Temple MQ Near Ship Invisible Chest",                   ("Chest",        0x07,  0x0E, None,                        'Small Key (Shadow Temple)',             ("Shadow Temple", "Master Quest",))),
@@ -1498,6 +1512,13 @@ location_table = OrderedDict([
     ("Shadow Temple MQ Boss Key Chest",                              ("Chest",        0x07,  0x0B, None,                        'Boss Key (Shadow Temple)',              ("Shadow Temple", "Master Quest",))),
     ("Shadow Temple MQ Spike Walls Left Chest",                      ("Chest",        0x07,  0x0A, None,                        'Rupees (5)',                            ("Shadow Temple", "Master Quest",))),
     ("Shadow Temple MQ Freestanding Key",                            ("Collectable",  0x07,  0x06, None,                        'Small Key (Shadow Temple)',             ("Shadow Temple", "Master Quest",))),
+    ("Shadow Temple MQ Bomb Flower Chest",                           ("Chest",        0x07,  0x0D, None,                        'Arrows (10)',                           ("Shadow Temple", "Master Quest",))),
+    ("Shadow Temple MQ GS Falling Spikes Room",                      ("GS Token",     0x07,  0x02, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Master Quest", "Skulltulas",))),
+    ("Shadow Temple MQ GS Wind Hint Room",                           ("GS Token",     0x07,  0x01, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Master Quest", "Skulltulas",))),
+    ("Shadow Temple MQ GS After Wind",                               ("GS Token",     0x07,  0x08, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Master Quest", "Skulltulas",))),
+    ("Shadow Temple MQ GS After Ship",                               ("GS Token",     0x07,  0x10, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Master Quest", "Skulltulas",))),
+    ("Shadow Temple MQ GS Near Boss",                                ("GS Token",     0x07,  0x04, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Master Quest", "Skulltulas",))),
+    # Shadow Temple MQ Freestanding
     ("Shadow Temple MQ Invisible Blades Recovery Heart 1",           ("Collectable",  0x07,  0x20, None,                     'Recovery Heart',                        ("Shadow Temple", "Master Quest", "Freestanding"))),
     ("Shadow Temple MQ Invisible Blades Recovery Heart 2",           ("Collectable",  0x07,  0x21, None,                     'Recovery Heart',                        ("Shadow Temple", "Master Quest", "Freestanding"))),
     ("Shadow Temple MQ Before Boat Recovery Heart 1",                ("Collectable",  0x07,  0x22, None,                     'Recovery Heart',                        ("Shadow Temple", "Master Quest", "Freestanding"))),
@@ -1505,12 +1526,6 @@ location_table = OrderedDict([
     ("Shadow Temple MQ After Boat Upper Recovery Heart 1",            ("Collectable",  0x07,  0x39, None,                     'Recovery Heart',                        ("Shadow Temple", "Master Quest", "Freestanding"))),
     ("Shadow Temple MQ After Boat Upper Recovery Heart 2",            ("Collectable",  0x07,  0x3A, None,                     'Recovery Heart',                        ("Shadow Temple", "Master Quest", "Freestanding"))),
     ("Shadow Temple MQ After Boat Lower Recovery Heart",              ("Collectable",  0x07,  0x3C, None,                     'Recovery Heart',                        ("Shadow Temple", "Master Quest", "Freestanding"))),
-    ("Shadow Temple MQ Bomb Flower Chest",                           ("Chest",        0x07,  0x0D, None,                        'Arrows (10)',                           ("Shadow Temple", "Master Quest",))),
-    ("Shadow Temple MQ GS Falling Spikes Room",                      ("GS Token",     0x07,  0x02, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Master Quest", "Skulltulas",))),
-    ("Shadow Temple MQ GS Wind Hint Room",                           ("GS Token",     0x07,  0x01, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Master Quest", "Skulltulas",))),
-    ("Shadow Temple MQ GS After Wind",                               ("GS Token",     0x07,  0x08, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Master Quest", "Skulltulas",))),
-    ("Shadow Temple MQ GS After Ship",                               ("GS Token",     0x07,  0x10, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Master Quest", "Skulltulas",))),
-    ("Shadow Temple MQ GS Near Boss",                                ("GS Token",     0x07,  0x04, None,                        'Gold Skulltula Token',                  ("Shadow Temple", "Master Quest", "Skulltulas",))),
     ("Shadow Temple MQ 3 Spinning Pots Rupee 1", ("Collectable", 0x7, 0x40, ([0x28127b8, 0x28127c8, 0x28127d8], None), 'Rupees (5)', ("Shadow Temple", "Vanilla", "RupeeTower"))),
     ("Shadow Temple MQ 3 Spinning Pots Rupee 2", ("Collectable", 0x7, 0x41, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "RupeeTower"))),
     ("Shadow Temple MQ 3 Spinning Pots Rupee 3", ("Collectable", 0x7, 0x42, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "RupeeTower"))),
@@ -1520,8 +1535,7 @@ location_table = OrderedDict([
     ("Shadow Temple MQ 3 Spinning Pots Rupee 7", ("Collectable", 0x7, 0x46, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "RupeeTower"))),
     ("Shadow Temple MQ 3 Spinning Pots Rupee 8", ("Collectable", 0x7, 0x47, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "RupeeTower"))),
     ("Shadow Temple MQ 3 Spinning Pots Rupee 9", ("Collectable", 0x7, 0x48, None, 'Rupees (5)', ("Shadow Temple", "Vanilla", "RupeeTower"))),
-    
-    # Shadow Temple MQ Pots
+    # Shadow Temple MQ Pots/Crates
     ("Shadow Temple MQ Whispering Walls Pot 1", ("Collectable", 0x07, 0x28, ([0x27cb110],None), 'Recovery Heart', ("Shadow Temple", "Master Quest", "Pot"))),
     ("Shadow Temple MQ Whispering Walls Pot 2", ("Collectable", 0x07, 0x39, None, 'Recovery Heart', ("Shadow Temple", "Master Quest", "Pot"))),
     ("Shadow Temple MQ Whispering Walls Flying Pot 1", ("Collectable", 0x07, 0x20, ([0x27cb130],None), 'Recovery Heart', ("Shadow Temple", "Master Quest", "FlyingPot"))),
@@ -1597,24 +1611,26 @@ location_table = OrderedDict([
     ("Spirit Temple Topmost Chest",                                  ("Chest",        0x06,  0x12, None,                        'Bombs (20)',                            ("Spirit Temple", "Vanilla",))),
     ("Spirit Temple MQ Mirror Puzzle Invisible Chest",               ("Chest",        0x06,  0x12, None,                        'Small Key (Spirit Temple)',             ("Spirit Temple", "Master Quest",))),
 
-    ("Spirit Temple Shifting Wall Recovery Heart 1",                 ("Collectable",  0x06,  0x01, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Freestanding"))),
-    ("Spirit Temple Shifting Wall Recovery Heart 2",                 ("Collectable",  0x06,  0x02, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Freestanding"))),
-
     ("Spirit Temple GS Metal Fence",                                 ("GS Token",     0x06,  0x10, None,                        'Gold Skulltula Token',                  ("Spirit Temple", "Vanilla", "Skulltulas",))),
     ("Spirit Temple GS Sun on Floor Room",                           ("GS Token",     0x06,  0x08, None,                        'Gold Skulltula Token',                  ("Spirit Temple", "Vanilla", "Skulltulas",))),
     ("Spirit Temple GS Hall After Sun Block Room",                   ("GS Token",     0x06,  0x01, None,                        'Gold Skulltula Token',                  ("Spirit Temple", "Vanilla", "Skulltulas",))),
     ("Spirit Temple GS Lobby",                                       ("GS Token",     0x06,  0x04, None,                        'Gold Skulltula Token',                  ("Spirit Temple", "Vanilla", "Skulltulas",))),
     ("Spirit Temple GS Boulder Room",                                ("GS Token",     0x06,  0x02, None,                        'Gold Skulltula Token',                  ("Spirit Temple", "Vanilla", "Skulltulas",))),
-    ("Spirit Temple MQ Child Recovery Heart 1",                      ("Collectable",  0x06,  0x2C, None,                     'Recovery Heart',                        ("Spirit Temple", "Master Quest", "Freestanding"))),
-    ("Spirit Temple MQ Child Recovery Heart 2",                      ("Collectable",  0x06,  0x2E, None,                     'Recovery Heart',                        ("Spirit Temple", "Master Quest", "Freestanding"))),
     ("Spirit Temple MQ GS Sun Block Room",                           ("GS Token",     0x06,  0x01, None,                        'Gold Skulltula Token',                  ("Spirit Temple", "Master Quest", "Skulltulas",))),
     ("Spirit Temple MQ GS Leever Room",                              ("GS Token",     0x06,  0x02, None,                        'Gold Skulltula Token',                  ("Spirit Temple", "Master Quest", "Skulltulas",))),
     ("Spirit Temple MQ GS Symphony Room",                            ("GS Token",     0x06,  0x08, None,                        'Gold Skulltula Token',                  ("Spirit Temple", "Master Quest", "Skulltulas",))),
     ("Spirit Temple MQ GS Nine Thrones Room West",                   ("GS Token",     0x06,  0x04, None,                        'Gold Skulltula Token',                  ("Spirit Temple", "Master Quest", "Skulltulas",))),
     ("Spirit Temple MQ GS Nine Thrones Room North",                  ("GS Token",     0x06,  0x10, None,                        'Gold Skulltula Token',                  ("Spirit Temple", "Master Quest", "Skulltulas",))),
-
+    
     ("Spirit Temple Twinrova Heart",                                 ("BossHeart",    0x17,  0x4F, None,                        'Heart Container',                       ("Spirit Temple", "Vanilla", "Master Quest",))),
- #Spirit Temple Pots
+ 
+    # Spirit Temple Freestanding
+    ("Spirit Temple Shifting Wall Recovery Heart 1",                 ("Collectable",  0x06,  0x01, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Freestanding"))),
+    ("Spirit Temple Shifting Wall Recovery Heart 2",                 ("Collectable",  0x06,  0x02, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Freestanding"))),
+    ("Spirit Temple MQ Child Recovery Heart 1",                      ("Collectable",  0x06,  0x2C, None,                     'Recovery Heart',                        ("Spirit Temple", "Master Quest", "Freestanding"))),
+    ("Spirit Temple MQ Child Recovery Heart 2",                      ("Collectable",  0x06,  0x2E, None,                     'Recovery Heart',                        ("Spirit Temple", "Master Quest", "Freestanding"))),
+    
+    # Spirit Temple Vanilla Pots/Crates
     ("Spirit Temple Lobby Pot 1",                                    ("Collectable",  0x06,  0x21, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
     ("Spirit Temple Lobby Pot 2",                                    ("Collectable",  0x06,  0x22, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
     ("Spirit Temple Child Climb Pot",                                ("Collectable",  0x06,  0x23, None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
@@ -1691,6 +1707,11 @@ location_table = OrderedDict([
     # Ice Cavern vanilla
     ("Ice Cavern Map Chest",                                         ("Chest",        0x09,  0x00, None,                        'Map (Ice Cavern)',                      ("Ice Cavern", "Vanilla",))),
     ("Ice Cavern Compass Chest",                                     ("Chest",        0x09,  0x01, None,                        'Compass (Ice Cavern)',                  ("Ice Cavern", "Vanilla",))),
+    ("Ice Cavern Iron Boots Chest",                                  ("Chest",        0x09,  0x02, None,                        'Iron Boots',                            ("Ice Cavern", "Vanilla",))),
+    ("Ice Cavern GS Spinning Scythe Room",                           ("GS Token",     0x09,  0x02, None,                        'Gold Skulltula Token',                  ("Ice Cavern", "Vanilla", "Skulltulas",))),
+    ("Ice Cavern GS Heart Piece Room",                               ("GS Token",     0x09,  0x04, None,                        'Gold Skulltula Token',                  ("Ice Cavern", "Vanilla", "Skulltulas",))),
+    ("Ice Cavern GS Push Block Room",                                ("GS Token",     0x09,  0x01, None,                        'Gold Skulltula Token',                  ("Ice Cavern", "Vanilla", "Skulltulas",))),
+    # Ice Cavern Vanilla Freestanding
     ("Ice Cavern Frozen Blue Rupee",                                 ("Collectable",  0x09,  0x21, None,    'Rupees (5)',                            ("Ice Cavern", "Vanilla", "Freestanding"))),
     ("Ice Cavern Map Room Recovery Heart 1",                         ("Collectable",  0x09,  0x22, None,    'Recovery Heart',                        ("Ice Cavern", "Vanilla","Freestanding"))),
     ("Ice Cavern Map Room Recovery Heart 2",                         ("Collectable",  0x09,  0x23, None,    'Recovery Heart',                        ("Ice Cavern", "Vanilla","Freestanding"))),
@@ -1699,11 +1720,7 @@ location_table = OrderedDict([
     ("Ice Cavern Block Room Red Rupee 2",                            ("Collectable",  0x09,  0x2F, None,    'Rupees (20)',                           ("Ice Cavern", "Vanilla","Freestanding"))),
     ("Ice Cavern Block Room Red Rupee 3",                            ("Collectable",  0x09,  0x30, None,    'Rupees (20)',                           ("Ice Cavern", "Vanilla","Freestanding"))),
     ("Ice Cavern Freestanding PoH",                                  ("Collectable",  0x09,  0x01, None,                        'Piece of Heart',                        ("Ice Cavern", "Vanilla",))),
-    ("Ice Cavern Iron Boots Chest",                                  ("Chest",        0x09,  0x02, None,                        'Iron Boots',                            ("Ice Cavern", "Vanilla",))),
-    ("Ice Cavern GS Spinning Scythe Room",                           ("GS Token",     0x09,  0x02, None,                        'Gold Skulltula Token',                  ("Ice Cavern", "Vanilla", "Skulltulas",))),
-    ("Ice Cavern GS Heart Piece Room",                               ("GS Token",     0x09,  0x04, None,                        'Gold Skulltula Token',                  ("Ice Cavern", "Vanilla", "Skulltulas",))),
-    ("Ice Cavern GS Push Block Room",                                ("GS Token",     0x09,  0x01, None,                        'Gold Skulltula Token',                  ("Ice Cavern", "Vanilla", "Skulltulas",))),
-    #Ice Cavern Vanilla Pots
+    # Ice Cavern Vanilla Pots
     ("Ice Cavern Hall Pot 1",                                        ("Collectable",   0x09,  0x25, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
     ("Ice Cavern Hall Pot 2",                                        ("Collectable",   0x09,  0x26, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
     ("Ice Cavern Spinning Blade Pot 1",                              ("Collectable",   0x09,  0x27, None,                       'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),
@@ -1753,13 +1770,15 @@ location_table = OrderedDict([
     ("Gerudo Training Ground Maze Right Side Chest",                 ("Chest",        0x0B,  0x08, None,                        'Arrows (30)',                           ("Gerudo Training Ground", "Vanilla",))),
     ("Gerudo Training Ground Underwater Silver Rupee Chest",         ("Chest",        0x0B,  0x0D, None,                        'Small Key (Gerudo Training Ground)',    ("Gerudo Training Ground", "Vanilla",))),
     ("Gerudo Training Ground Beamos Chest",                          ("Chest",        0x0B,  0x01, None,                        'Small Key (Gerudo Training Ground)',    ("Gerudo Training Ground", "Vanilla",))),
-    ("Gerudo Training Ground Beamos Recovery Heart 1",               ("Collectable",  0x0B,  0x22, None,     'Recovery Heart',                        ("Gerudo Training Ground", "Vanilla", "Freestanding"))),
-    ("Gerudo Training Ground Beamos Recovery Heart 2",               ("Collectable",  0x0B,  0x23, None,     'Recovery Heart',                        ("Gerudo Training Ground", "Vanilla", "Freestanding"))),
     ("Gerudo Training Ground Hidden Ceiling Chest",                  ("Chest",        0x0B,  0x0B, None,                        'Small Key (Gerudo Training Ground)',    ("Gerudo Training Ground", "Vanilla",))),
     ("Gerudo Training Ground Maze Path First Chest",                 ("Chest",        0x0B,  0x06, None,                        'Rupees (50)',                           ("Gerudo Training Ground", "Vanilla",))),
     ("Gerudo Training Ground Maze Path Second Chest",                ("Chest",        0x0B,  0x0A, None,                        'Rupees (20)',                           ("Gerudo Training Ground", "Vanilla",))),
     ("Gerudo Training Ground Maze Path Third Chest",                 ("Chest",        0x0B,  0x09, None,                        'Arrows (30)',                           ("Gerudo Training Ground", "Vanilla",))),
     ("Gerudo Training Ground Maze Path Final Chest",                 ("Chest",        0x0B,  0x0C, None,                        'Ice Arrows',                            ("Gerudo Training Ground", "Vanilla",))),
+    # Gerudo Training Ground Vanilla Freestanding
+    ("Gerudo Training Ground Beamos Recovery Heart 1",               ("Collectable",  0x0B,  0x22, None,     'Recovery Heart',                        ("Gerudo Training Ground", "Vanilla", "Freestanding"))),
+    ("Gerudo Training Ground Beamos Recovery Heart 2",               ("Collectable",  0x0B,  0x23, None,     'Recovery Heart',                        ("Gerudo Training Ground", "Vanilla", "Freestanding"))),
+
     # Gerudo Training Ground MQ
     ("Gerudo Training Ground MQ Lobby Left Chest",                   ("Chest",        0x0B,  0x13, None,                        'Arrows (10)',                           ("Gerudo Training Ground", "Master Quest",))),
     ("Gerudo Training Ground MQ Lobby Right Chest",                  ("Chest",        0x0B,  0x07, None,                        'Bombchus (5)',                          ("Gerudo Training Ground", "Master Quest",))),
@@ -1791,11 +1810,6 @@ location_table = OrderedDict([
     ("Ganons Castle Water Trial Right Chest",                        ("Chest",        0x0D,  0x06, None,                        'Recovery Heart',                        ("Ganon's Castle", "Vanilla",))),
     ("Ganons Castle Shadow Trial Front Chest",                       ("Chest",        0x0D,  0x08, None,                        'Rupees (5)',                            ("Ganon's Castle", "Vanilla",))),
     ("Ganons Castle Shadow Trial Golden Gauntlets Chest",            ("Chest",        0x0D,  0x05, None,                        'Progressive Strength Upgrade',          ("Ganon's Castle", "Vanilla",))),
-    ("Ganons Castle Shadow Trial Recovery Heart 1",                  ("Collectable",  0x0D,  0x21, None,     'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Freestanding"))),
-    ("Ganons Castle Shadow Trial Recovery Heart 2",                  ("Collectable",  0x0D,  0x22, None,     'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Freestanding"))),
-    ("Ganons Castle Shadow Trial Recovery Heart 3",                  ("Collectable",  0x0D,  0x23, None,     'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Freestanding"))),
-    ("Ganons Castle Fire Trial Recovery Heart",                      ("Collectable",  0x0D,  0x24, None,     'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Freestanding"))),
-    ("Ganons Castle Spirit Trial Recovery Heart",                    ("Collectable",  0x0D,  0x26, None,     'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Freestanding"))),
     ("Ganons Castle Light Trial First Left Chest",                   ("Chest",        0x0D,  0x0C, None,                        'Rupees (5)',                            ("Ganon's Castle", "Vanilla",))),
     ("Ganons Castle Light Trial Second Left Chest",                  ("Chest",        0x0D,  0x0B, None,                        'Ice Trap',                              ("Ganon's Castle", "Vanilla",))),
     ("Ganons Castle Light Trial Third Left Chest",                   ("Chest",        0x0D,  0x0D, None,                        'Recovery Heart',                        ("Ganon's Castle", "Vanilla",))),
@@ -1810,7 +1824,12 @@ location_table = OrderedDict([
     ("Ganons Castle Deku Scrub Center-Left",                         ("Scrub",        0x0D,  0x37, None,                        'Buy Bombs (5) for 35 Rupees',                    ("Ganon's Castle", "Vanilla", "Deku Scrub",))),
     ("Ganons Castle Deku Scrub Center-Right",                        ("Scrub",        0x0D,  0x33, None,                        'Buy Arrows (30)',                       ("Ganon's Castle", "Vanilla", "Deku Scrub",))),
     ("Ganons Castle Deku Scrub Right",                               ("Scrub",        0x0D,  0x39, None,                        'Buy Red Potion for 30 Rupees',                   ("Ganon's Castle", "Vanilla", "Deku Scrub",))),
-    
+    # Ganons Castle Vanilla Freestanding
+    ("Ganons Castle Shadow Trial Recovery Heart 1",                  ("Collectable",  0x0D,  0x21, None,     'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Freestanding"))),
+    ("Ganons Castle Shadow Trial Recovery Heart 2",                  ("Collectable",  0x0D,  0x22, None,     'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Freestanding"))),
+    ("Ganons Castle Shadow Trial Recovery Heart 3",                  ("Collectable",  0x0D,  0x23, None,     'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Freestanding"))),
+    ("Ganons Castle Fire Trial Recovery Heart",                      ("Collectable",  0x0D,  0x24, None,     'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Freestanding"))),
+    ("Ganons Castle Spirit Trial Recovery Heart",                    ("Collectable",  0x0D,  0x26, None,     'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Freestanding"))),
     # Ganons Castle Vanilla Pots
     ("Ganons Castle Water Trial Pot 1",                              ("Collectable",  0x0D,  0x39, None,                        'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Pot"))),
     ("Ganons Castle Water Trial Pot 2",                              ("Collectable",  0x0D,  0x3A, None,                        'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Pot"))),
@@ -1833,12 +1852,9 @@ location_table = OrderedDict([
     ("Ganons Castle MQ Forest Trial Eye Switch Chest",               ("Chest",        0x0D,  0x02, None,                        'Arrows (10)',                           ("Ganon's Castle", "Master Quest",))),
     ("Ganons Castle MQ Forest Trial Frozen Eye Switch Chest",        ("Chest",        0x0D,  0x03, None,                        'Bombs (5)',                             ("Ganon's Castle", "Master Quest",))),
     ("Ganons Castle MQ Water Trial Chest",                           ("Chest",        0x0D,  0x01, None,                        'Rupees (20)',                           ("Ganon's Castle", "Master Quest",))),
-    ("Ganons Castle MQ Water Trial Recovery Heart",                  ("Collectable",  0x0D,  0x3F, None,    'Recovery Heart',                        ("Ganon's Castle", "Master Quest", "Freestanding"))),
     ("Ganons Castle MQ Shadow Trial Bomb Flower Chest",              ("Chest",        0x0D,  0x00, None,                        'Arrows (10)',                           ("Ganon's Castle", "Master Quest",))),
     ("Ganons Castle MQ Shadow Trial Eye Switch Chest",               ("Chest",        0x0D,  0x05, None,                        'Small Key (Ganons Castle)',             ("Ganon's Castle", "Master Quest",))),
     ("Ganons Castle MQ Light Trial Lullaby Chest",                   ("Chest",        0x0D,  0x04, None,                        'Recovery Heart',                        ("Ganon's Castle", "Master Quest",))),
-    ("Ganons Castle MQ Light Trial Recovery Heart 1",                ("Collectable",  0x0D,  0x3D, None,    'Recovery Heart',                        ("Ganon's Castle", "Master Quest", "Freestanding"))),
-    ("Ganons Castle MQ Light Trial Recovery Heart 2",                ("Collectable",  0x0D,  0x3E, None,    'Recovery Heart',                        ("Ganon's Castle", "Master Quest", "Freestanding"))),
     ("Ganons Castle MQ Spirit Trial First Chest",                    ("Chest",        0x0D,  0x0A, None,                        'Bombchus (10)',                         ("Ganon's Castle", "Master Quest",))),
     ("Ganons Castle MQ Spirit Trial Invisible Chest",                ("Chest",        0x0D,  0x14, None,                        'Arrows (10)',                           ("Ganon's Castle", "Master Quest",))),
     ("Ganons Castle MQ Spirit Trial Sun Front Left Chest",           ("Chest",        0x0D,  0x09, None,                        'Recovery Heart',                        ("Ganon's Castle", "Master Quest",))),
@@ -1850,7 +1866,10 @@ location_table = OrderedDict([
     ("Ganons Castle MQ Deku Scrub Center",                           ("Scrub",        0x0D,  0x33, None,                        'Buy Arrows (30)',                       ("Ganon's Castle", "Master Quest", "Deku Scrub",))),
     ("Ganons Castle MQ Deku Scrub Center-Right",                     ("Scrub",        0x0D,  0x39, None,                        'Buy Red Potion for 30 Rupees',                   ("Ganon's Castle", "Master Quest", "Deku Scrub",))),
     ("Ganons Castle MQ Deku Scrub Right",                            ("Scrub",        0x0D,  0x30, None,                        'Buy Deku Nut (5)',                      ("Ganon's Castle", "Master Quest", "Deku Scrub",))),
-
+    # Ganon's Castle MQ Freestanding
+    ("Ganons Castle MQ Water Trial Recovery Heart",                  ("Collectable",  0x0D,  0x3F, None,    'Recovery Heart',                        ("Ganon's Castle", "Master Quest", "Freestanding"))),
+    ("Ganons Castle MQ Light Trial Recovery Heart 1",                ("Collectable",  0x0D,  0x3D, None,    'Recovery Heart',                        ("Ganon's Castle", "Master Quest", "Freestanding"))),
+    ("Ganons Castle MQ Light Trial Recovery Heart 2",                ("Collectable",  0x0D,  0x3E, None,    'Recovery Heart',                        ("Ganon's Castle", "Master Quest", "Freestanding"))),
     # Ganon's Castle MQ Pots
     ("Ganons Castle MQ Water Trial Pot 1", ("Collectable", 0x0D, 0x39, None, 'Recovery Heart', ("Ganon's Castle", "Master Quest", "Pot"))),
     ("Ganons Castle MQ Water Trial Pot 2", ("Collectable", 0x0D, 0x3A, None, 'Arrows (10)', ("Ganon's Castle", "Master Quest", "Pot"))),
@@ -1868,7 +1887,7 @@ location_table = OrderedDict([
     # Ganon's Castle shared
     ("Ganons Tower Boss Key Chest",                                  ("Chest",        0x0A,  0x0B, None,                        'Boss Key (Ganons Castle)',              ("Ganon's Castle", "Vanilla", "Master Quest",))),
 
-    # Ganon's Tower
+    # Ganon's Tower Pots
     ("Ganons Tower Pot 1",                                           ("Collectable",  0x19,  0x20, None,                        'Recovery Heart',                        ("Ganon's Tower", "Pot"))),
     ("Ganons Tower Pot 2",                                           ("Collectable",  0x19,  0x21, None,                        'Recovery Heart',                        ("Ganon's Tower", "Pot"))),
     ("Ganons Tower Pot 3",                                           ("Collectable",  0x19,  0x25, None,                        'Recovery Heart',                        ("Ganon's Tower", "Pot"))),
