@@ -104,12 +104,12 @@
                 (Silver_Rupee_Shadow_Temple_Invisible_Spikes, 5) and
                 (Bombs or Progressive_Strength_Upgrade or
                     (logic_shadow_freestanding_key and has_bombchus))",
-            "Shadow Temple Invisible Spikes Silver Rupee 1" : "Progressive_Hookshot",
-            "Shadow Temple Invisible Spikes Silver Rupee 2" : "Progressive_Hookshot",
-            "Shadow Temple Invisible Spikes Silver Rupee 3" : "True",
-            "Shadow Temple Invisible Spikes Silver Rupee 4" : "Progressive_Hookshot",
-            "Shadow Temple Invisible Spikes Silver Rupee 5" : "Progressive_Hookshot",
-            "Shadow Temple GS Single Giant Pot": "Progressive_Hookshot"
+            "Shadow Temple Invisible Spikes Silver Rupee Ledge" : "Progressive_Hookshot",
+            "Shadow Temple Invisible Spikes Silver Rupee Right" : "Progressive_Hookshot",
+            "Shadow Temple Invisible Spikes Silver Rupee Center" : "True",
+            "Shadow Temple Invisible Spikes Silver Rupee Left" : "Progressive_Hookshot",
+            "Shadow Temple Invisible Spikes Silver Rupee Near Ledge" : "Progressive_Hookshot",
+            "Shadow Temple GS Single Giant Pot": "(Silver_Rupee_Shadow_Temple_Invisible_Spikes, 5) and Progressive_Hookshot"
         },
         "exits": {
             "Shadow Temple Wind Tunnel": "
