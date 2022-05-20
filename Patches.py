@@ -1624,6 +1624,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         silver_rupee_locations = [location for location in world.get_locations() if location.type == 'Collectable' and 'Silver Rupee' in location.filter_tags]
         for silver_rupee_location in silver_rupee_locations:
             patch_silver_rupee(silver_rupee_location, rom)
+        
+        if world.dungeon_mq['Dodongos Cavern']: #Patch DC MQ Staircase Transition Actor to use permanent switch flag 0x1F
+            rom.write_byte(0x1F12190+15, 0x9F)
 
     # Write flag table data
     scene_flag_table = get_scene_flag_table(world)

@@ -854,6 +854,13 @@ location_table = OrderedDict([
     ("Dodongos Cavern MQ Larvae Room Crate 6", ("Collectable", 0x1, 0x53, ([0x1f764bc],None), 'Rupee (1)', ("Dodongos Cavern", "Master Quest", "Crate"))),
     ("Dodongos Cavern MQ After Upper Lizalfos Crate 1", ("Collectable", 0x1, 0x54, ([0x1fa87f0],None), 'Rupee (1)', ("Dodongos Cavern", "Master Quest", "Crate"))),
     ("Dodongos Cavern MQ After Upper Lizalfos Crate 2", ("Collectable", 0x1, 0x55, ([0x1fa8800],None), 'Rupee (1)', ("Dodongos Cavern", "Master Quest", "Crate"))),
+    # Dodongo's Cavern MQ Silver Rupees
+    ("Dodongos Cavern MQ Staircase Silver Rupee 1", ("Collectable", 0x1, 0x60, ([0x1f55b24], None), 'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongos Cavern", "Master Quest", "Silver Rupee"))),
+    ("Dodongos Cavern MQ Staircase Silver Rupee 2", ("Collectable", 0x1, 0x61, ([0x1f55b34], None), 'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongos Cavern", "Master Quest", "Silver Rupee"))),
+    ("Dodongos Cavern MQ Staircase Silver Rupee 3", ("Collectable", 0x1, 0x62, ([0x1f55b44], None), 'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongos Cavern", "Master Quest", "Silver Rupee"))),
+    ("Dodongos Cavern MQ Staircase Silver Rupee 4", ("Collectable", 0x1, 0x63, ([0x1f55b54], None), 'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongos Cavern", "Master Quest", "Silver Rupee"))),
+    ("Dodongos Cavern MQ Staircase Silver Rupee 5", ("Collectable", 0x1, 0x64, ([0x1f55b64], None), 'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongos Cavern", "Master Quest", "Silver Rupee"))),
+    
     # Dodongo's Cavern shared
     ("Dodongos Cavern Lower Lizalfos Hidden Recovery Heart",               ("Collectable",   0x01,  0x18, None,                       'Recovery Heart',                        ("Dodongo's Cavern", "Vanilla", "Master Quest", "Freestanding",))),
     ("Dodongos Cavern Boss Room Chest",                              ("Chest",        0x12,  0x00, None,                        'Bombs (5)',                             ("Dodongo's Cavern", "Vanilla", "Master Quest",))),

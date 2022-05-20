@@ -1,29 +1,14 @@
 {
-    "settings" : {
-        
-        "starting_equipment": [],
-        "starting_items": {
-            "Silver Rupee (Gerudo Training Ground Slopes)" : 5,
-            "Silver Rupee (Shadow Temple Invisible Spikes)" : 1,
-            "Silver Rupee (Shadow Temple Scythe Shortcut)": 1,
-            "Progressive Hookshot": 2,
-            "Hylian Shield":1,
-            "Biggoron Sword": 1,
-            "Nocturne of Shadow": 1,
-            "Song of Storms" : 1,
-            "Ocarina" : 1
-        }
-    },
     "entrances": {
         "Child Spawn -> KF Links House" : {"region":"Market Guard House", "from":"Market Entrance"},
         "Adult Spawn -> Temple of Time" : {"region":"Gerudo Fortress", "from":"GV Fortress Side"}
         
     },
     "locations": {
-        "Bottom of the Well Basement Pot 1" : "Silver Rupee (Bottom of the Well Basement)",
-        "Bottom of the Well Basement Pot 2" : "Silver Rupee (Bottom of the Well Basement)",
-        "Bottom of the Well Basement Pot 3" : "Silver Rupee (Bottom of the Well Basement)",
-        "Bottom of the Well Basement Pot 4" : "Silver Rupee (Bottom of the Well Basement)",
-        "Bottom of the Well Basement Pot 5" : "Silver Rupee (Bottom of the Well Basement)"
+        "Dodongos Cavern MQ Staircase Pot 1" : "Silver Rupee (Dodongos Cavern Staircase)",
+        "Dodongos Cavern MQ Staircase Pot 2" : "Silver Rupee (Dodongos Cavern Staircase)",
+        "Dodongos Cavern MQ Staircase Pot 3" : "Silver Rupee (Dodongos Cavern Staircase)",
+        "Dodongos Cavern MQ Staircase Pot 4" : "Silver Rupee (Dodongos Cavern Staircase)",
+        "Dodongos Cavern MQ Staircase Crate Mid Left" : "Silver Rupee (Dodongos Cavern Staircase)"
     }
 }
