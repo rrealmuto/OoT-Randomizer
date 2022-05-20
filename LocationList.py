@@ -974,6 +974,13 @@ location_table = OrderedDict([
     ("Bottom of the Well West Inner Room Flying Pot 2", ("Collectable", 0x8, 0x35, None, 'Recovery Heart', ("Bottom of the Well", "Vanilla", "FlyingPot"))),
     ("Bottom of the Well West Inner Room Flying Pot 3", ("Collectable", 0x8, 0x36, None, 'Recovery Heart', ("Bottom of the Well", "Vanilla", "FlyingPot"))),
 
+    # Bottom of the Well Silver Rupees
+    ("Bottom of the Well Basement Silver Rupee 1", ("Collectable", 0x08, 0x40, ([0x32E92B4], None), 'Silver Rupee (Bottom of the Well Basement)', ("Bottom of the Well", "Vanilla", "Silver Rupee"))),
+    ("Bottom of the Well Basement Silver Rupee 2", ("Collectable", 0x08, 0x41, ([0x32E92C4], None), 'Silver Rupee (Bottom of the Well Basement)', ("Bottom of the Well", "Vanilla", "Silver Rupee"))),
+    ("Bottom of the Well Basement Silver Rupee 3", ("Collectable", 0x08, 0x42, ([0x32E92D4], None), 'Silver Rupee (Bottom of the Well Basement)', ("Bottom of the Well", "Vanilla", "Silver Rupee"))),
+    ("Bottom of the Well Basement Silver Rupee 4", ("Collectable", 0x08, 0x43, ([0x32E92E4], None), 'Silver Rupee (Bottom of the Well Basement)', ("Bottom of the Well", "Vanilla", "Silver Rupee"))),
+    ("Bottom of the Well Basement Silver Rupee 5", ("Collectable", 0x08, 0x44, ([0x32E92F4], None), 'Silver Rupee (Bottom of the Well Basement)', ("Bottom of the Well", "Vanilla", "Silver Rupee"))),
+
     # Bottom of the Well MQ
     ("Bottom of the Well MQ Map Chest",                              ("Chest",        0x08,  0x03, None,                        'Map (Bottom of the Well)',              ("Bottom of the Well", "Master Quest",))),
     ("Bottom of the Well MQ East Inner Room Freestanding Key",       ("Collectable",  0x08,  0x01, None,                        'Small Key (Bottom of the Well)',        ("Bottom of the Well", "Master Quest",))),
