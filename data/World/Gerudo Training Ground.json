@@ -50,9 +50,11 @@
         "region_name": "Gerudo Training Ground Lava Room Front",
         "dungeon": "Gerudo Training Ground",
         "locations": {
-            "Gerudo Training Ground Lava Room Silver Rupee Front Left": "True",
-            "Gerudo Training Ground Lava Room Silver Rupee Front Right": "True",
-            "Gerudo Training Ground Lava Room Silver Rupee Flame Circle": "can_play(Song_of_Time) or is_child or Hover_Boots"
+            # If silver rupees aren't shuffled, they must be collected in one go.
+            # This is enforced via is_adult requirements, since the water room silver rupees require adult access.
+            "Gerudo Training Ground Lava Room Silver Rupee Front Left": "is_adult or shuffle_silver_rupees",
+            "Gerudo Training Ground Lava Room Silver Rupee Front Right": "is_adult or shuffle_silver_rupees",
+            "Gerudo Training Ground Lava Room Silver Rupee Flame Circle": "(is_child and shuffle_silver_rupees) or (is_adult and (can_play(Song_of_Time) or Hover_Boots)"
         },
         "exits": {
             "Gerudo Training Ground Central Maze Right": "can_play(Song_of_Time) or is_child",
@@ -64,7 +66,7 @@
         "region_name": "Gerudo Training Ground Lava Room Back",
         "dungeon": "Gerudo Training Ground",
         "locations": {
-            "Gerudo Training Ground Lava Room Silver Rupee Center Right": "True",
+            "Gerudo Training Ground Lava Room Silver Rupee Center Right": "is_adult or shuffle_silver_rupees",
             "Gerudo Training Ground Lava Room Silver Rupee Hookshot Target": "can_use(Hookshot) or (shuffle_silver_rupees and can_use(Boomerang))"
         },
         "exits": {
