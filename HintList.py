@@ -302,6 +302,7 @@ hintTable = {
     'GanonBossKey':                                             (["a master of unlocking", "a dungeon's master pass"], "a Boss Key", 'item'),
     'SmallKey':                                                 (["a tool for unlocking", "a dungeon pass", "a lock remover", "a lockpick"], "a Small Key", 'item'),
     'HideoutSmallKey':                                          (["a get out of jail free card"], "a Jail Key", 'item'),
+    'SilverRupee':                                              (["an entry fee", "a priced artifact"], "a Silver Rupee", 'item'),
     'Boss Key (Forest Temple)':                                 (["a master of unlocking for a deep forest", "a master pass for a deep forest"], "the Forest Temple Boss Key", 'item'),
     'Boss Key (Fire Temple)':                                   (["a master of unlocking for a high mountain", "a master pass for a high mountain"], "the Fire Temple Boss Key", 'item'),
     'Boss Key (Water Temple)':                                  (["a master of unlocking for under a vast lake", "a master pass for under a vast lake"], "the Water Temple Boss Key", 'item'),
