@@ -154,7 +154,7 @@
         "dungeon": "Ganons Castle",
         "events": {
             "Light Trial Clear": "
-                can_use(Light_Arrows) and (Silver_Rupee_Ganons_Castle_Light_Trial, 5) and 
+                can_use(Light_Arrows) and (Silver_Rupee_Ganons_Castle_Light_Trial, 5) and
                 (Small_Key_Ganons_Castle, 2) and (logic_lens_castle or can_use(Lens_of_Truth))"
         },
         "locations": {
@@ -167,11 +167,11 @@
             "Ganons Castle Light Trial Invisible Enemies Chest": "logic_lens_castle or can_use(Lens_of_Truth)",
             "Ganons Castle Light Trial Lullaby Chest": "
                 can_play(Zeldas_Lullaby) and (Small_Key_Ganons_Castle, 1)",
-            "Ganons Castle Light Trial Silver Rupee 1": "(Small_Key_Ganons_Castle, 2)",
-            "Ganons Castle Light Trial Silver Rupee 2": "(Small_Key_Ganons_Castle, 2)",
-            "Ganons Castle Light Trial Silver Rupee 3": "(Small_Key_Ganons_Castle, 2) and Progressive_Hookshot",
-            "Ganons Castle Light Trial Silver Rupee 4": "(Small_Key_Ganons_Castle, 2)",
-            "Ganons Castle Light Trial Silver Rupee 5": "(Small_Key_Ganons_Castle, 2)",
+            "Ganons Castle Light Trial Silver Rupee Right Alcove": "(Small_Key_Ganons_Castle, 2)",
+            "Ganons Castle Light Trial Silver Rupee Left Alcove": "(Small_Key_Ganons_Castle, 2)",
+            "Ganons Castle Light Trial Silver Rupee Center Top": "(Small_Key_Ganons_Castle, 2) and Progressive_Hookshot",
+            "Ganons Castle Light Trial Silver Rupee Center Right": "(Small_Key_Ganons_Castle, 2)",
+            "Ganons Castle Light Trial Silver Rupee Center Left": "(Small_Key_Ganons_Castle, 2)",
             "Ganons Castle Light Trial Boulder Pot" : "(Small_Key_Ganons_Castle, 2)",
             "Ganons Castle Light Trial Pot 1" : "(Small_Key_Ganons_Castle, 2) and (Silver_Rupee_Ganons_Castle_Light_Trial, 5) and (logic_lens_castle or can_use(Lens_of_Truth))",
             "Ganons Castle Light Trial Pot 2" : "(Small_Key_Ganons_Castle, 2) and (Silver_Rupee_Ganons_Castle_Light_Trial, 5) and (logic_lens_castle or can_use(Lens_of_Truth))"
