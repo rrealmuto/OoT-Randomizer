@@ -48,6 +48,11 @@
             "Dodongos Cavern MQ Staircase Pot 2": "True",
             "Dodongos Cavern MQ Staircase Pot 3": "True",
             "Dodongos Cavern MQ Staircase Pot 4": "True",
+            "Dodongos Cavern MQ Staircase Silver Rupee 1": "True",
+            "Dodongos Cavern MQ Staircase Silver Rupee 2": "True",
+            "Dodongos Cavern MQ Staircase Silver Rupee 3": "True",
+            "Dodongos Cavern MQ Staircase Silver Rupee 4": "True",
+            "Dodongos Cavern MQ Staircase Silver Rupee 5": "True",
             "Dodongos Cavern MQ Upper Lizalfos Pot 1": "
                 can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or 
                 (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",

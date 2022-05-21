@@ -97,7 +97,7 @@ typedef struct {
 
 silver_rupee_data_t silver_rupee_vars[0x16][2] = {
     //Vanilla,   Master Quest
-    {{-1, 0xFF}, { 5, 0x25}}, // Dodongos Cavern Staircase
+    {{-1, 0xFF}, { 5, 0x1F}}, // Dodongos Cavern Staircase. Patched to use switch flag 0x1F
     {{ 5, 0x08}, {-1, 0xFF}}, // Ice Cavern Spinning Scythe
     {{ 5, 0x09}, {-1, 0xFF}}, // Ice Cavern Push Block
     {{ 5, 0x1F}, {-1, 0xFF}}, // Bottom of the Well Basement

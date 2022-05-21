@@ -1,29 +1,39 @@
 {
-    "settings" : {
-        
-        "starting_equipment": [],
-        "starting_items": {
-            "Silver Rupee (Gerudo Training Ground Slopes)" : 5,
-            "Silver Rupee (Shadow Temple Invisible Spikes)" : 1,
-            "Silver Rupee (Shadow Temple Scythe Shortcut)": 1,
-            "Progressive Hookshot": 2,
-            "Hylian Shield":1,
-            "Biggoron Sword": 1,
-            "Nocturne of Shadow": 1,
-            "Song of Storms" : 1,
-            "Ocarina" : 1
-        }
-    },
     "entrances": {
         "Child Spawn -> KF Links House" : {"region":"Market Guard House", "from":"Market Entrance"},
         "Adult Spawn -> Temple of Time" : {"region":"Gerudo Fortress", "from":"GV Fortress Side"}
         
     },
     "locations": {
-        "Bottom of the Well Basement Pot 1" : "Silver Rupee (Bottom of the Well Basement)",
-        "Bottom of the Well Basement Pot 2" : "Silver Rupee (Bottom of the Well Basement)",
-        "Bottom of the Well Basement Pot 3" : "Silver Rupee (Bottom of the Well Basement)",
-        "Bottom of the Well Basement Pot 4" : "Silver Rupee (Bottom of the Well Basement)",
-        "Bottom of the Well Basement Pot 5" : "Silver Rupee (Bottom of the Well Basement)"
+        "Shadow Temple MQ Whispering Walls Pot 1" : "Silver Rupee (Shadow Temple Scythe Shortcut)",
+        "Shadow Temple MQ Whispering Walls Pot 2" : "Silver Rupee (Shadow Temple Scythe Shortcut)",
+        "Shadow Temple MQ Whispering Walls Flying Pot 1" : "Silver Rupee (Shadow Temple Scythe Shortcut)",
+        "Shadow Temple MQ Whispering Walls Flying Pot 2" : "Silver Rupee (Shadow Temple Scythe Shortcut)",
+        "Shadow Temple MQ Whispering Walls Flying Pot 3" : "Silver Rupee (Shadow Temple Scythe Shortcut)",
+        "Shadow Temple MQ Whispering Walls Flying Pot 4" : "Silver Rupee (Shadow Temple Huge Pit)",
+        "Shadow Temple MQ Scythe Shortcut Silver Rupee 1" : "Silver Rupee (Shadow Temple Huge Pit)",
+        "Shadow Temple MQ Scythe Shortcut Silver Rupee 2" : "Silver Rupee (Shadow Temple Huge Pit)",
+        "Shadow Temple MQ Scythe Shortcut Silver Rupee 3" : "Silver Rupee (Shadow Temple Huge Pit)",
+        "Shadow Temple MQ Scythe Shortcut Silver Rupee 4" : "Silver Rupee (Shadow Temple Huge Pit)",
+        "Shadow Temple MQ Scythe Shortcut Silver Rupee 5" : "Silver Rupee (Shadow Temple Invisible Blades)",
+        "Shadow Temple MQ Truth Spinner Small Wooden Crate 1" : "Silver Rupee (Shadow Temple Invisible Blades)",
+        "Shadow Temple MQ Truth Spinner Small Wooden Crate 2" : "Silver Rupee (Shadow Temple Invisible Blades)",
+        "Shadow Temple MQ Truth Spinner Small Wooden Crate 3" : "Silver Rupee (Shadow Temple Invisible Blades)",
+        "Shadow Temple MQ Truth Spinner Small Wooden Crate 4" : "Silver Rupee (Shadow Temple Invisible Blades)",
+        "Shadow Temple MQ Invisible Blades Silver Rupee 1" : "Silver Rupee (Shadow Temple Invisible Blades)",
+        "Shadow Temple MQ Invisible Blades Silver Rupee 2" : "Silver Rupee (Shadow Temple Invisible Blades)",
+        "Shadow Temple MQ Invisible Blades Silver Rupee 3" : "Silver Rupee (Shadow Temple Invisible Blades)",
+        "Shadow Temple MQ Invisible Blades Silver Rupee 4" : "Silver Rupee (Shadow Temple Invisible Blades)",
+        "Shadow Temple MQ Invisible Blades Silver Rupee 5" : "Silver Rupee (Shadow Temple Invisible Blades)",
+
+        "Gerudo Training Ground MQ Lobby Left Chest":  "Silver Rupee (Gerudo Training Ground Slopes)",
+        "Gerudo Training Ground MQ Lobby Right Chest": "Silver Rupee (Gerudo Training Ground Slopes)",
+        "Gerudo Training Ground MQ Lobby Left Pot 1":  "Silver Rupee (Gerudo Training Ground Slopes)",
+        "Gerudo Training Ground MQ Lobby Left Pot 2":  "Silver Rupee (Gerudo Training Ground Slopes)",
+        "Gerudo Training Ground MQ Lobby Right Pot 1": "Silver Rupee (Gerudo Training Ground Slopes)",
+        "Gerudo Training Ground MQ Lobby Right Pot 2": "Silver Rupee (Gerudo Training Ground Slopes)"
+        
+
+
     }
 }
