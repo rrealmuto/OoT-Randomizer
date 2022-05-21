@@ -1865,11 +1865,11 @@ location_table = OrderedDict([
     ("Gerudo Training Ground Maze Path Final Chest",                 ("Chest",        0x0B,  0x0C, None,                        'Ice Arrows',                            ("Gerudo Training Ground", "Vanilla",))),
     
     # Gerudo Training Ground Silver Rupees
-    ("Gerudo Training Ground Lava Room Silver Rupee 1",              ("Collectable",  0x0B,  0x40, ([0x28BF0F4], None),                        'Silver Rupee (Gerudo Training Ground Lava)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground Lava Room Silver Rupee 2",              ("Collectable",  0x0B,  0x41, ([0x28BF104], None),                        'Silver Rupee (Gerudo Training Ground Lava)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground Lava Room Silver Rupee 3",              ("Collectable",  0x0B,  0x42, ([0x28BF114], None),                        'Silver Rupee (Gerudo Training Ground Lava)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground Lava Room Silver Rupee 4",              ("Collectable",  0x0B,  0x43, ([0x28BF124], None),                        'Silver Rupee (Gerudo Training Ground Lava)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground Lava Room Silver Rupee 5",              ("Collectable",  0x0B,  0x44, ([0x28BF134], None),                        'Silver Rupee (Gerudo Training Ground Lava)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Lava Room Silver Rupee Front Left",     ("Collectable",  0x0B,  0x40, ([0x28BF0F4], None),                        'Silver Rupee (Gerudo Training Ground Lava)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Lava Room Silver Rupee Front Right",    ("Collectable",  0x0B,  0x41, ([0x28BF104], None),                        'Silver Rupee (Gerudo Training Ground Lava)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Lava Room Silver Rupee Flame Circle",   ("Collectable",  0x0B,  0x42, ([0x28BF114], None),                        'Silver Rupee (Gerudo Training Ground Lava)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Lava Room Silver Rupee Center Right",   ("Collectable",  0x0B,  0x44, ([0x28BF134], None),                        'Silver Rupee (Gerudo Training Ground Lava)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Lava Room Silver Rupee Hookshot Target",("Collectable",  0x0B,  0x43, ([0x28BF124], None),                        'Silver Rupee (Gerudo Training Ground Lava)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
     
     ("Gerudo Training Ground Underwater Silver Rupee 1",             ("Collectable",  0x0B,  0x45, ([0x28D9158], None),                        'Silver Rupee (Gerudo Training Ground Water)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
     ("Gerudo Training Ground Underwater Silver Rupee 2",             ("Collectable",  0x0B,  0x46, ([0x28D9168], None),                        'Silver Rupee (Gerudo Training Ground Water)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),

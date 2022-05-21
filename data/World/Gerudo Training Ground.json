@@ -14,7 +14,7 @@
         "exits": {
             "Gerudo Fortress": "True",
             "Gerudo Training Ground Boulder Room": "is_adult or Kokiri_Sword",
-            "Gerudo Training Ground Lava Room": "
+            "Gerudo Training Ground Lava Room Front": "
                 here(has_explosives and (is_adult or Kokiri_Sword))",
             "Gerudo Training Ground Central Maze": "True"
         }
@@ -42,27 +42,35 @@
             "Gerudo Training Ground Freestanding Key": "True"
         },
         "exits": {
-            "Gerudo Training Ground Hammer Room": "can_use(Hookshot)",
-            "Gerudo Training Ground Lava Room": "True"
+            "Gerudo Training Ground Lava Room Front": "True",
+            "Gerudo Training Ground Lava Room Back": "True"
         }
     },
     {
-        "region_name": "Gerudo Training Ground Lava Room",
+        "region_name": "Gerudo Training Ground Lava Room Front",
         "dungeon": "Gerudo Training Ground",
         "locations": {
-            "Gerudo Training Ground Lava Room Silver Rupee 1": "True",
-            "Gerudo Training Ground Lava Room Silver Rupee 2": "True",
-            "Gerudo Training Ground Lava Room Silver Rupee 3": "can_play(Song_of_Time) or can_use(Hover_Boots)",
-            "Gerudo Training Ground Lava Room Silver Rupee 4": "can_use(Longshot) or (can_use(Hookshot) and can_use(Hover_Boots))",
-            "Gerudo Training Ground Lava Room Silver Rupee 5": "(can_play(Song_of_Time) or can_use(Hover_Boots) or can_use(Longshot)) or
-                (at('Gerudo Training Ground Central Maze Right', True)) or
-                (at('Gerudo Training Ground Hammer Room', True))"
+            "Gerudo Training Ground Lava Room Silver Rupee Front Left": "True",
+            "Gerudo Training Ground Lava Room Silver Rupee Front Right": "True",
+            "Gerudo Training Ground Lava Room Silver Rupee Flame Circle": "can_play(Song_of_Time) or is_child or Hover_Boots"
         },
         "exits": {
             "Gerudo Training Ground Central Maze Right": "can_play(Song_of_Time) or is_child",
-            "Gerudo Training Ground Hammer Room": "
-                can_use(Longshot) or (can_use(Hookshot) and can_use(Hover_Boots))",
-            "Gerudo Training Ground Underwater Silver Rupee Room" : "(Silver_Rupee_Gerudo_Training_Ground_Lava, 5) and can_use(Hookshot)"
+            "Gerudo Training Ground Lava Room Back": "can_use(Hover_Boots) or can_use(Longshot)",
+            "Gerudo Training Ground Underwater Silver Rupee Room": "(Silver_Rupee_Gerudo_Training_Ground_Lava, 5)"
+        }
+    },
+    {
+        "region_name": "Gerudo Training Ground Lava Room Back",
+        "dungeon": "Gerudo Training Ground",
+        "locations": {
+            "Gerudo Training Ground Lava Room Silver Rupee Center Right": "True",
+            "Gerudo Training Ground Lava Room Silver Rupee Hookshot Target": "can_use(Hookshot) or (shuffle_silver_rupees and can_use(Boomerang))"
+        },
+        "exits": {
+            "Gerudo Training Ground Central Maze Right": "can_play(Song_of_Time) or is_child",
+            "Gerudo Training Ground Lava Room Front": "can_use(Hover_Boots) or can_use(Hookshot)",
+            "Gerudo Training Ground Hammer Room": "can_use(Hookshot)"
         }
     },
     {
@@ -71,23 +79,20 @@
         "locations": {
             "Gerudo Training Ground Underwater Silver Rupee Chest": "(Silver_Rupee_Gerudo_Training_Ground_Water, 5)",
             "Gerudo Training Ground Underwater Silver Rupee 1": "
-                can_play(Song_of_Time) and Iron_Boots and 
+                can_play(Song_of_Time) and Iron_Boots and
                     (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
             "Gerudo Training Ground Underwater Silver Rupee 2": "
-                can_play(Song_of_Time) and Iron_Boots and 
+                can_play(Song_of_Time) and Iron_Boots and
                         (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
             "Gerudo Training Ground Underwater Silver Rupee 3": "
-                can_play(Song_of_Time) and Iron_Boots and 
+                can_play(Song_of_Time) and Iron_Boots and
                     (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
             "Gerudo Training Ground Underwater Silver Rupee 4": "
-                can_play(Song_of_Time) and Iron_Boots and 
+                can_play(Song_of_Time) and Iron_Boots and
                     (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
             "Gerudo Training Ground Underwater Silver Rupee 5": "
-                can_play(Song_of_Time) and Iron_Boots and 
+                can_play(Song_of_Time) and Iron_Boots and
                     (logic_fewer_tunic_requirements or can_use(Zora_Tunic))"
-        },
-        "exits" : {
-            "Gerudo Training Ground Lava Room" : "True"
         }
     },
     {
@@ -99,7 +104,7 @@
         },
         "exits": {
             "Gerudo Training Ground Eye Statue Lower": "can_use(Megaton_Hammer) and Bow",
-            "Gerudo Training Ground Lava Room": "True"
+            "Gerudo Training Ground Lava Room Back": "True"
         }
     },
     {
