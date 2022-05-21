@@ -79,19 +79,19 @@
         "locations": {
             "Gerudo Training Ground Underwater Silver Rupee Chest": "(Silver_Rupee_Gerudo_Training_Ground_Water, 5)",
             "Gerudo Training Ground Underwater Silver Rupee Bottom Center": "
-                can_play(Song_of_Time) and Iron_Boots and
+                can_play(Song_of_Time) and can_use(Iron_Boots) and
                     (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
             "Gerudo Training Ground Underwater Silver Rupee Top": "
-                can_play(Song_of_Time) and Iron_Boots and
+                can_play(Song_of_Time) and can_use(Iron_Boots) and
                         (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
             "Gerudo Training Ground Underwater Silver Rupee Bottom Back Left": "
-                can_play(Song_of_Time) and Iron_Boots and
+                can_play(Song_of_Time) and can_use(Iron_Boots) and
                     (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
             "Gerudo Training Ground Underwater Silver Rupee Middle": "
-                can_play(Song_of_Time) and Iron_Boots and
+                can_play(Song_of_Time) and can_use(Iron_Boots) and
                     (logic_fewer_tunic_requirements or can_use(Zora_Tunic))",
             "Gerudo Training Ground Underwater Silver Rupee Bottom Front Right": "
-                can_play(Song_of_Time) and Iron_Boots and
+                can_play(Song_of_Time) and can_use(Iron_Boots) and
                     (logic_fewer_tunic_requirements or can_use(Zora_Tunic))"
         }
     },
