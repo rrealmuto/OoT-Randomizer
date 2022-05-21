@@ -54,7 +54,7 @@
             # This is enforced via is_adult requirements, since the water room silver rupees require adult access.
             "Gerudo Training Ground Lava Room Silver Rupee Front Left": "is_adult or shuffle_silver_rupees",
             "Gerudo Training Ground Lava Room Silver Rupee Front Right": "is_adult or shuffle_silver_rupees",
-            "Gerudo Training Ground Lava Room Silver Rupee Flame Circle": "(is_child and shuffle_silver_rupees) or (is_adult and (can_play(Song_of_Time) or Hover_Boots)"
+            "Gerudo Training Ground Lava Room Silver Rupee Flame Circle": "(is_child and shuffle_silver_rupees) or (is_adult and (can_play(Song_of_Time) or Hover_Boots))"
         },
         "exits": {
             "Gerudo Training Ground Central Maze Right": "can_play(Song_of_Time) or is_child",
