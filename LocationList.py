@@ -1970,11 +1970,11 @@ location_table = OrderedDict([
     ("Ganons Castle Spirit Trial Pot 2",                             ("Collectable",  0x0D,  0x34, None,                        'Recovery Heart',                        ("Ganon's Castle", "Vanilla", "Pot"))),
     
     # Ganons Castle Silver Rupees
-    ("Ganons Castle Spirit Trial Silver Rupee 1",                    ("Collectable",  0x0D,  0x40, ([0x325F1A0], None),                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
-    ("Ganons Castle Spirit Trial Silver Rupee 2",                    ("Collectable",  0x0D,  0x41, ([0x325F1B0], None),                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
-    ("Ganons Castle Spirit Trial Silver Rupee 3",                    ("Collectable",  0x0D,  0x42, ([0x325F1C0], None),                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
-    ("Ganons Castle Spirit Trial Silver Rupee 4",                    ("Collectable",  0x0D,  0x43, ([0x325F1D0], None),                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
-    ("Ganons Castle Spirit Trial Silver Rupee 5",                    ("Collectable",  0x0D,  0x44, ([0x325F1E0], None),                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
+    ("Ganons Castle Spirit Trial Silver Rupee Ceiling",              ("Collectable",  0x0D,  0x40, ([0x325F1A0], None),                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
+    ("Ganons Castle Spirit Trial Silver Rupee Front Right",          ("Collectable",  0x0D,  0x41, ([0x325F1B0], None),                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
+    ("Ganons Castle Spirit Trial Silver Rupee Center",               ("Collectable",  0x0D,  0x42, ([0x325F1C0], None),                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
+    ("Ganons Castle Spirit Trial Silver Rupee Back Left",            ("Collectable",  0x0D,  0x43, ([0x325F1D0], None),                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
+    ("Ganons Castle Spirit Trial Silver Rupee Back Right",           ("Collectable",  0x0D,  0x44, ([0x325F1E0], None),                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
     ("Ganons Castle Light Trial Silver Rupee 1",                     ("Collectable",  0x0D,  0x45, ([0x3211090], None),                   'Silver Rupee (Ganons Castle Light Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
     ("Ganons Castle Light Trial Silver Rupee 2",                     ("Collectable",  0x0D,  0x46, ([0x32110A0], None),                   'Silver Rupee (Ganons Castle Light Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),
     ("Ganons Castle Light Trial Silver Rupee 3",                     ("Collectable",  0x0D,  0x47, ([0x32110B0], None),                   'Silver Rupee (Ganons Castle Light Trial)', ("Ganon's Castle", "Vanilla", "Silver Rupee"))),

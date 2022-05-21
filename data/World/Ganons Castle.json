@@ -138,11 +138,11 @@
                 (Silver_Rupee_Ganons_Castle_Spirit_Trial, 5) and
                 has_bombchus and Bow and Mirror_Shield",
             "Ganons Castle Spirit Trial Recovery Heart": "True",
-            "Ganons Castle Spirit Trial Silver Rupee 1": "can_use(Hookshot) or logic_spirit_trial_hookshot",
-            "Ganons Castle Spirit Trial Silver Rupee 2": "True",
-            "Ganons Castle Spirit Trial Silver Rupee 3": "True",
-            "Ganons Castle Spirit Trial Silver Rupee 4": "True",
-            "Ganons Castle Spirit Trial Silver Rupee 5": "True",
+            "Ganons Castle Spirit Trial Silver Rupee Ceiling": "logic_spirit_trial_hookshot or Progressive_Hookshot",
+            "Ganons Castle Spirit Trial Silver Rupee Front Right": "True",
+            "Ganons Castle Spirit Trial Silver Rupee Center": "True",
+            "Ganons Castle Spirit Trial Silver Rupee Back Left": "True",
+            "Ganons Castle Spirit Trial Silver Rupee Back Right": "True",
             "Ganons Castle Spirit Trial Pot 1" : "can_use(Mirror_Shield) and has_bombchus and
                 (Silver_Rupee_Ganons_Castle_Spirit_Trial, 5)",
             "Ganons Castle Spirit Trial Pot 2" : "can_use(Mirror_Shield) and has_bombchus and
