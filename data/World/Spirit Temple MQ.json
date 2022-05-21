@@ -9,11 +9,15 @@
                 (can_use(Slingshot) or can_use(Bow))",
             "Spirit Temple MQ Entrance Back Right Chest": "
                 has_bombchus or can_use(Bow) or can_use(Hookshot) or 
-                can_use(Slingshot) or can_use(Boomerang)",
+                can_use(Slingshot) or can_use(Boomerang)",    
+            "Spirit Temple MQ Entrance Front Right Chest": "(Silver_Rupee_Spirit_Temple_Lobby_and_Lower_Adult, 5)",
             "Spirit Temple MQ Lobby Pot 1": "True",
             "Spirit Temple MQ Lobby Pot 2": "True",
             "Spirit Temple MQ Lobby Pot 3": "True",
-            "Spirit Temple MQ Lobby Pot 4": "True"            
+            "Spirit Temple MQ Lobby Pot 4": "True",
+            "Spirit Temple MQ Lobby and Lower Adult Silver Rupee 2": "can_blast_or_smash", #Right side boulder in the lobby
+            "Spirit Temple MQ Lobby and Lower Adult Silver Rupee 3": "can_blast_or_smash", #Left side boulder in the lobby
+            
         },
         "exits": {
             "Desert Colossus From Spirit Lobby": "True",
@@ -78,7 +82,12 @@
             "Spirit Temple MQ Big Mirror Crate 1": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
             "Spirit Temple MQ Big Mirror Crate 2": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
             "Spirit Temple MQ Big Mirror Crate 3": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
-            "Spirit Temple MQ Big Mirror Crate 4": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)"
+            "Spirit Temple MQ Big Mirror Crate 4": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
+            "Spirit Temple MQ Adult Climb Silver Rupee 1" : "True",
+            "Spirit Temple MQ Adult Climb Silver Rupee 2" : "True",
+            "Spirit Temple MQ Adult Climb Silver Rupee 3" : "True",
+            "Spirit Temple MQ Adult Climb Silver Rupee 4" : "True",
+            "Spirit Temple MQ Adult Climb Silver Rupee 5" : "True"
         },
         "exits": {
             "Lower Adult Spirit Temple": "
@@ -151,14 +160,16 @@
                 (Small_Key_Spirit_Temple, 7) and Megaton_Hammer and Ocarina and
                 Song_of_Time and Eponas_Song and Suns_Song and
                 Song_of_Storms and Zeldas_Lullaby",
-            "Spirit Temple MQ Entrance Front Right Chest": "Megaton_Hammer",
             "Spirit Temple MQ GS Leever Room": "True",
             "Spirit Temple MQ GS Symphony Room": "
                 (Small_Key_Spirit_Temple, 7) and Megaton_Hammer and Ocarina and 
                 Song_of_Time and Eponas_Song and Suns_Song and 
                 Song_of_Storms and Zeldas_Lullaby",
             "Spirit Temple MQ Below 4 Wallmasters Pot 1": "True",
-            "Spirit Temple MQ Below 4 Wallmasters Pot 2": "True"
+            "Spirit Temple MQ Below 4 Wallmasters Pot 2": "True",
+            "Spirit Temple MQ Lobby and Lower Adult Silver Rupee 1": "True", #The one right behind the water jet. Need logic
+            "Spirit Temple MQ Lobby and Lower Adult Silver Rupee 4": "True", #By the door to upstairs. Need logic
+            "Spirit Temple MQ Lobby and Lower Adult Silver Rupee 5": "Megaton_Hammer" #The one inside the water jet. Need logic
         }
     },
     {

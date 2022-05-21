@@ -110,7 +110,7 @@ silver_rupee_data_t silver_rupee_vars[0x16][2] = {
     {{ 5, 0x1B}, { 3, 0x1B}}, // Gerudo Training Ground Water
     {{ 5, 0x05}, {-1, 0xFF}}, // Spirit Temple Child Early Torches
     {{ 5, 0x02}, {-1, 0xFF}}, // Spirit Temple Adult Boulders
-    {{-1, 0xFF}, { 5, 0x37}}, // Spirit Temple Lobby and Lower Adult
+    {{-1, 0xFF}, { 5, 0x1F}}, // Spirit Temple Lobby and Lower Adult. Patched to use switch flag 0x1F
     {{ 5, 0x0A}, {-1, 0xFF}}, // Spirit Temple Sun Block
     {{-1, 0xFF}, { 5, 0x00}}, // Spirit Temple Adult Climb
     {{ 5, 0x0B}, {-1, 0xFF}}, // Ganons Castle Spirit Trial

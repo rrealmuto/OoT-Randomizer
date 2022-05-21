@@ -1680,7 +1680,7 @@ location_table = OrderedDict([
 
     ("Spirit Temple Twinrova Heart",                                 ("BossHeart",    0x17,  0x4F, None,                        'Heart Container',                       ("Spirit Temple", "Vanilla", "Master Quest",))),
  
-    #Spirit Temple Silver Rupees
+    #Spirit Temple Vanilla Silver Rupees
     ("Spirit Temple Adult Boulder Silver Rupee 1",                   ("Collectable", 0x06, 0x50, ([0x2B650B0], None),                    'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
     ("Spirit Temple Adult Boulder Silver Rupee 2",                   ("Collectable", 0x06, 0x51, ([0x2B650C0], None),                    'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
     ("Spirit Temple Adult Boulder Silver Rupee 3",                   ("Collectable", 0x06, 0x52, ([0x2B650D0], None),                    'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
@@ -1691,6 +1691,17 @@ location_table = OrderedDict([
     ("Spirit Temple Sun Block Room Silver Rupee 3",                  ("Collectable", 0x06, 0x57, ([0x2B48134], None),                    'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
     ("Spirit Temple Sun Block Room Silver Rupee 4",                  ("Collectable", 0x06, 0x58, ([0x2B48144], None),                    'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
     ("Spirit Temple Sun Block Room Silver Rupee 5",                  ("Collectable", 0x06, 0x59, ([0x2B48154], None),                    'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    # Spirit Temple MQ Silver Rupees
+    ("Spirit Temple MQ Lobby and Lower Adult Silver Rupee 1",        ("Collectable", 0x06, 0x50, ([0x2b08be4], None),                    'Silver Rupee (Spirit Temple Lobby and Lower Adult)', ("Spirit Temple", "Master Quest", "Silver Rupee",))),
+    ("Spirit Temple MQ Lobby and Lower Adult Silver Rupee 2",        ("Collectable", 0x06, 0x51, ([0x2b08bf4], None),                    'Silver Rupee (Spirit Temple Lobby and Lower Adult)', ("Spirit Temple", "Master Quest", "Silver Rupee",))),
+    ("Spirit Temple MQ Lobby and Lower Adult Silver Rupee 3",        ("Collectable", 0x06, 0x52, ([0x2b08c04], None),                    'Silver Rupee (Spirit Temple Lobby and Lower Adult)', ("Spirit Temple", "Master Quest", "Silver Rupee",))),
+    ("Spirit Temple MQ Lobby and Lower Adult Silver Rupee 4",        ("Collectable", 0x06, 0x53, ([0x2b08c14], None),                    'Silver Rupee (Spirit Temple Lobby and Lower Adult)', ("Spirit Temple", "Master Quest", "Silver Rupee",))),
+    ("Spirit Temple MQ Lobby and Lower Adult Silver Rupee 5",        ("Collectable", 0x06, 0x54, ([0x2b08c24], None),                    'Silver Rupee (Spirit Temple Lobby and Lower Adult)', ("Spirit Temple", "Master Quest", "Silver Rupee",))),
+    ("Spirit Temple MQ Adult Climb Silver Rupee 1",                  ("Collectable", 0x06, 0x55, ([0x2bb123c], None),                    'Silver Rupee (Spirit Temple Adult Climb)', ("Spirit Temple", "Master Quest", "Silver Rupee",))),
+    ("Spirit Temple MQ Adult Climb Silver Rupee 2",                  ("Collectable", 0x06, 0x56, ([0x2bb124c], None),                    'Silver Rupee (Spirit Temple Adult Climb)', ("Spirit Temple", "Master Quest", "Silver Rupee",))),
+    ("Spirit Temple MQ Adult Climb Silver Rupee 3",                  ("Collectable", 0x06, 0x57, ([0x2bb125c], None),                    'Silver Rupee (Spirit Temple Adult Climb)', ("Spirit Temple", "Master Quest", "Silver Rupee",))),
+    ("Spirit Temple MQ Adult Climb Silver Rupee 4",                  ("Collectable", 0x06, 0x58, ([0x2bb126c], None),                    'Silver Rupee (Spirit Temple Adult Climb)', ("Spirit Temple", "Master Quest", "Silver Rupee",))),
+    ("Spirit Temple MQ Adult Climb Silver Rupee 5",                  ("Collectable", 0x06, 0x59, ([0x2bb127c], None),                    'Silver Rupee (Spirit Temple Adult Climb)', ("Spirit Temple", "Master Quest", "Silver Rupee",))),
     
 
     #Spirit Temple Pots
