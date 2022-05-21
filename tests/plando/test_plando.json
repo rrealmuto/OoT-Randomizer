@@ -5,39 +5,11 @@
         
     },
     "locations": {
-        "Shadow Temple MQ Whispering Walls Pot 1" : "Silver Rupee (Shadow Temple Scythe Shortcut)",
-        "Shadow Temple MQ Whispering Walls Pot 2" : "Silver Rupee (Shadow Temple Scythe Shortcut)",
-        "Shadow Temple MQ Whispering Walls Flying Pot 1" : "Silver Rupee (Shadow Temple Scythe Shortcut)",
-        "Shadow Temple MQ Whispering Walls Flying Pot 2" : "Silver Rupee (Shadow Temple Scythe Shortcut)",
-        "Shadow Temple MQ Whispering Walls Flying Pot 3" : "Silver Rupee (Shadow Temple Scythe Shortcut)",
-        "Shadow Temple MQ Whispering Walls Flying Pot 4" : "Silver Rupee (Shadow Temple Huge Pit)",
-        "Shadow Temple MQ Scythe Shortcut Silver Rupee 1" : "Silver Rupee (Shadow Temple Huge Pit)",
-        "Shadow Temple MQ Scythe Shortcut Silver Rupee 2" : "Silver Rupee (Shadow Temple Huge Pit)",
-        "Shadow Temple MQ Scythe Shortcut Silver Rupee 3" : "Silver Rupee (Shadow Temple Huge Pit)",
-        "Shadow Temple MQ Scythe Shortcut Silver Rupee 4" : "Silver Rupee (Shadow Temple Huge Pit)",
-        "Shadow Temple MQ Scythe Shortcut Silver Rupee 5" : "Silver Rupee (Shadow Temple Invisible Blades)",
-        "Shadow Temple MQ Truth Spinner Small Wooden Crate 1" : "Silver Rupee (Shadow Temple Invisible Blades)",
-        "Shadow Temple MQ Truth Spinner Small Wooden Crate 2" : "Silver Rupee (Shadow Temple Invisible Blades)",
-        "Shadow Temple MQ Truth Spinner Small Wooden Crate 3" : "Silver Rupee (Shadow Temple Invisible Blades)",
-        "Shadow Temple MQ Truth Spinner Small Wooden Crate 4" : "Silver Rupee (Shadow Temple Invisible Blades)",
-        "Shadow Temple MQ Invisible Blades Silver Rupee 1" : "Silver Rupee (Shadow Temple Invisible Blades)",
-        "Shadow Temple MQ Invisible Blades Silver Rupee 2" : "Silver Rupee (Shadow Temple Invisible Blades)",
-        "Shadow Temple MQ Invisible Blades Silver Rupee 3" : "Silver Rupee (Shadow Temple Invisible Blades)",
-        "Shadow Temple MQ Invisible Blades Silver Rupee 4" : "Silver Rupee (Shadow Temple Invisible Blades)",
-        "Shadow Temple MQ Invisible Blades Silver Rupee 5" : "Silver Rupee (Shadow Temple Invisible Blades)",
-
-        "Gerudo Training Ground MQ Lobby Left Chest":  "Silver Rupee (Gerudo Training Ground Slopes)",
-        "Gerudo Training Ground MQ Lobby Right Chest": "Silver Rupee (Gerudo Training Ground Slopes)",
-        "Gerudo Training Ground MQ Lobby Left Pot 1":  "Silver Rupee (Gerudo Training Ground Slopes)",
-        "Gerudo Training Ground MQ Lobby Left Pot 2":  "Silver Rupee (Gerudo Training Ground Slopes)",
-        "Gerudo Training Ground MQ Lobby Right Pot 1": "Silver Rupee (Gerudo Training Ground Slopes)",
-        "Gerudo Training Ground MQ Lobby Right Pot 2": "Silver Rupee (Gerudo Training Ground Slopes)",
-
-        "Spirit Temple MQ Lobby Pot 1" : "Silver Rupee (Spirit Temple Adult Climb)",
-        "Spirit Temple MQ Lobby Pot 2" : "Silver Rupee (Spirit Temple Adult Climb)",
-        "Spirit Temple MQ Lobby Pot 3" : "Silver Rupee (Spirit Temple Adult Climb)",
-        "Spirit Temple MQ Lobby Pot 4" : "Silver Rupee (Spirit Temple Adult Climb)",
-        "Spirit Temple MQ Entrance Front Left Chest" : "Silver Rupee (Spirit Temple Adult Climb)"
+        "Gerudo Training Ground Lobby Left Chest" : "Silver Rupee (Gerudo Training Ground Slopes)",
+        "Gerudo Training Ground Lobby Right Chest" : "Silver Rupee (Gerudo Training Ground Slopes)",
+        "Gerudo Training Ground Boulder Room Silver Rupee 1": "Silver Rupee (Gerudo Training Ground Slopes)",
+        "Gerudo Training Ground Boulder Room Silver Rupee 2": "Silver Rupee (Gerudo Training Ground Slopes)",
+        "Gerudo Training Ground Boulder Room Silver Rupee 3": "Silver Rupee (Gerudo Training Ground Slopes)"
         
 
 
