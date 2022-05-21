@@ -51,6 +51,7 @@ class World(object):
 
         # rename a few attributes...
         self.keysanity = settings.shuffle_smallkeys in ['keysanity', 'remove', 'any_dungeon', 'overworld']
+        self.shuffle_silver_rupees = settings.shuffle_silver_rupees != 'vanilla'
         self.check_beatable_only = settings.reachable_locations != 'all'
 
         self.shuffle_special_interior_entrances = settings.shuffle_interior_entrances == 'all'
@@ -900,6 +901,8 @@ class World(object):
             itempool.extend([item for dungeon in self.dungeons if dungeon.name != 'Ganons Castle' for item in dungeon.boss_key])
         if self.settings.shuffle_ganon_bosskey == 'dungeon':
             itempool.extend([item for dungeon in self.dungeons if dungeon.name == 'Ganons Castle' for item in dungeon.boss_key])
+        if self.settings.shuffle_silver_rupees == 'dungeon':
+            itempool.extend([item for dungeon in self.dungeons for item in dungeon.silver_rupees])
 
         for item in itempool:
             item.world = self
@@ -917,6 +920,8 @@ class World(object):
             itempool.extend([item for dungeon in self.dungeons if dungeon.name != 'Ganons Castle' for item in dungeon.boss_key])
         if self.settings.shuffle_ganon_bosskey in ['any_dungeon', 'overworld', 'keysanity']:
             itempool.extend([item for dungeon in self.dungeons if dungeon.name == 'Ganons Castle' for item in dungeon.boss_key])
+        if self.settings.shuffle_silver_rupees in ['any_dungeon', 'overworld', 'anywhere']:
+            itempool.extend([item for dungeon in self.dungeons for item in dungeon.silver_rupees])
 
         for item in itempool:
             item.world = self

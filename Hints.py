@@ -141,6 +141,8 @@ def isRestrictedDungeonItem(dungeon, item):
         return item in dungeon.boss_key
     if item.type == 'GanonBossKey' and dungeon.world.settings.shuffle_ganon_bosskey == 'dungeon':
         return item in dungeon.boss_key
+    if item.type == 'SilverRupee' and dungeon.world.settings.shuffle_silver_rupees == 'dungeon':
+        return item in dungeon.silver_rupees
     return False
 
 
