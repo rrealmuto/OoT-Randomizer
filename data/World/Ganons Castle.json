@@ -39,11 +39,11 @@
         },
         "locations": {
             "Ganons Castle Forest Trial Chest": "True",
-            "Ganons Castle Forest Trial Silver Rupee 1": "can_use(Fire_Arrows) or (can_use(Dins_Fire) and can_use(Bow))",
-            "Ganons Castle Forest Trial Silver Rupee 2": "can_use(Fire_Arrows) or (can_use(Dins_Fire) and can_use(Bow))",
-            "Ganons Castle Forest Trial Silver Rupee 3": "can_use(Fire_Arrows) or (can_use(Dins_Fire) and can_use(Bow))",
-            "Ganons Castle Forest Trial Silver Rupee 4": "can_use(Fire_Arrows) or (can_use(Dins_Fire) and can_use(Bow))",
-            "Ganons Castle Forest Trial Silver Rupee 5": "can_use(Fire_Arrows) or (can_use(Dins_Fire) and can_use(Bow))",
+            "Ganons Castle Forest Trial Silver Rupee Front Right": "can_use(Fire_Arrows) or (can_use(Dins_Fire) and can_use(Bow))",
+            "Ganons Castle Forest Trial Silver Rupee Front Left": "can_use(Fire_Arrows) or (can_use(Dins_Fire) and can_use(Bow))",
+            "Ganons Castle Forest Trial Silver Rupee Back Right": "can_use(Fire_Arrows) or (can_use(Dins_Fire) and can_use(Bow))",
+            "Ganons Castle Forest Trial Silver Rupee Back Center": "can_use(Fire_Arrows) or (can_use(Dins_Fire) and can_use(Bow))",
+            "Ganons Castle Forest Trial Silver Rupee Center Left": "can_use(Fire_Arrows) or (can_use(Dins_Fire) and can_use(Bow))",
             "Ganons Castle Forest Trial Pot 1" : "(Silver_Rupee_Ganons_Castle_Forest_Trial,5) and (can_use(Fire_Arrows) or (can_use(Dins_Fire) and can_use(Bow)))",
             "Ganons Castle Forest Trial Pot 2" : "(Silver_Rupee_Ganons_Castle_Forest_Trial,5) and (can_use(Fire_Arrows) or (can_use(Dins_Fire) and can_use(Bow)))"
         }
