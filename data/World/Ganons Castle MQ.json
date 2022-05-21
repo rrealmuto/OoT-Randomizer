@@ -51,16 +51,25 @@
         "dungeon": "Ganons Castle",
         "events": {
             "Fire Trial Clear": "
-                can_use(Goron_Tunic) and can_use(Golden_Gauntlets) and can_use(Light_Arrows) and
+                (Silver_Rupee_Ganons_Castle_Fire_Trial, 5) and 
+                can_use(Goron_Tunic) and 
+                can_use(Light_Arrows) and
                 (can_use(Longshot) or Hover_Boots or (logic_fire_trial_mq and can_use(Hookshot)))"
         },
         "locations" : {
             "Ganons Castle MQ Fire Trial Pot 1" : "
-            can_use(Goron_Tunic) and can_use(Golden_Gauntlets) and
-            (can_use(Longshot) or Hover_Boots or (logic_fire_trial_mq and can_use(Hookshot)))",
+                (Silver_Rupee_Ganons_Castle_Fire_Trial, 5) and 
+                can_use(Goron_Tunic) and can_use(Golden_Gauntlets) and
+                (can_use(Longshot) or Hover_Boots or (logic_fire_trial_mq and can_use(Hookshot)))",
             "Ganons Castle MQ Fire Trial Pot 2" : "
-            can_use(Goron_Tunic) and can_use(Golden_Gauntlets) and
-            (can_use(Longshot) or Hover_Boots or (logic_fire_trial_mq and can_use(Hookshot)))"
+                (Silver_Rupee_Ganons_Castle_Fire_Trial, 5) and 
+                can_use(Goron_Tunic) and can_use(Golden_Gauntlets) and
+                (can_use(Longshot) or Hover_Boots or (logic_fire_trial_mq and can_use(Hookshot)))",
+            "Ganons Castle MQ Fire Trial Silver Rupee 1": "can_use(Goron_Tunic) and can_use(Golden_Gauntlets)",
+            "Ganons Castle MQ Fire Trial Silver Rupee 2": "can_use(Goron_Tunic)",
+            "Ganons Castle MQ Fire Trial Silver Rupee 3": "can_use(Goron_Tunic) and can_use(Golden_Gauntlets)",
+            "Ganons Castle MQ Fire Trial Silver Rupee 4": "can_use(Goron_Tunic)",
+            "Ganons Castle MQ Fire Trial Silver Rupee 5": "can_use(Goron_Tunic)"
         }
     },
     {
@@ -68,14 +77,19 @@
         "dungeon": "Ganons Castle",
         "events": {
             "Water Trial Clear": "
-                Blue_Fire and can_use(Light_Arrows) and 
+                (Silver_Rupee_Ganons_Castle_Water_Trial, 5) and Blue_Fire and can_use(Light_Arrows) and 
                 (Small_Key_Ganons_Castle, 3)"
         },
         "locations": {
             "Ganons Castle MQ Water Trial Chest": "Blue_Fire",
             "Ganons Castle MQ Water Trial Recovery Heart": "Blue_Fire",
-            "Ganons Castle MQ Water Trial Pot 1" : "Blue_Fire and (Small_Key_Ganons_Castle, 3)",
-            "Ganons Castle MQ Water Trial Pot 2" : "Blue_Fire and (Small_Key_Ganons_Castle, 3)",
+            "Ganons Castle MQ Water Trial Pot 1" : "(Silver_Rupee_Ganons_Castle_Water_Trial, 5) and Blue_Fire and (Small_Key_Ganons_Castle, 3)",
+            "Ganons Castle MQ Water Trial Pot 2" : "(Silver_Rupee_Ganons_Castle_Water_Trial, 5) and Blue_Fire and (Small_Key_Ganons_Castle, 3)",
+            "Ganons Castle MQ Water Trial Silver Rupee 1" : "Blue_Fire",
+            "Ganons Castle MQ Water Trial Silver Rupee 2" : "Blue_Fire",
+            "Ganons Castle MQ Water Trial Silver Rupee 3" : "Blue_Fire",
+            "Ganons Castle MQ Water Trial Silver Rupee 4" : "Blue_Fire",
+            "Ganons Castle MQ Water Trial Silver Rupee 5" : "Blue_Fire",
             "Blue Fire": "has_bottle"
         }
     },
@@ -84,7 +98,7 @@
         "dungeon": "Ganons Castle",
         "events": {
             "Shadow Trial Clear": "
-                can_use(Light_Arrows) and (logic_lens_castle_mq or can_use(Lens_of_Truth)) and 
+                (Silver_Rupee_Ganons_Castle_Shadow_Trial, 5) and can_use(Light_Arrows) and (logic_lens_castle_mq or can_use(Lens_of_Truth)) and 
                 (Hover_Boots or (Progressive_Hookshot and (has_fire_source or logic_shadow_trial_mq)))"
         },
         "locations": {
@@ -95,10 +109,25 @@
             "Ganons Castle MQ Shadow Trial Eye Switch Chest": "
                 Bow and (logic_lens_castle_mq or can_use(Lens_of_Truth)) and 
                 (Hover_Boots or (Progressive_Hookshot and (has_fire_source or logic_shadow_trial_mq)))",
-            "Ganons Castle MQ Shadow Trial Pot 1" : "(logic_lens_castle_mq or can_use(Lens_of_Truth)) and 
-            (Hover_Boots or (Progressive_Hookshot and (has_fire_source or logic_shadow_trial_mq)))",
-            "Ganons Castle MQ Shadow Trial Pot 2" : "(logic_lens_castle_mq or can_use(Lens_of_Truth)) and 
-            (Hover_Boots or (Progressive_Hookshot and (has_fire_source or logic_shadow_trial_mq)))"
+            "Ganons Castle MQ Shadow Trial Pot 1" : "(Silver_Rupee_Ganons_Castle_Shadow_Trial, 5) and 
+                (logic_lens_castle_mq or can_use(Lens_of_Truth)) and 
+                (Hover_Boots or (Progressive_Hookshot and (has_fire_source or logic_shadow_trial_mq)))",
+            "Ganons Castle MQ Shadow Trial Pot 2" : "(Silver_Rupee_Ganons_Castle_Shadow_Trial, 5) and
+                (logic_lens_castle_mq or can_use(Lens_of_Truth)) and 
+                (Hover_Boots or (Progressive_Hookshot and (has_fire_source or logic_shadow_trial_mq)))",
+            "Ganons Castle MQ Shadow Trial Silver Rupee 1" : "
+                (logic_lens_castle_mq or can_use(Lens_of_Truth)) and 
+                    ((Bow and can_use(Hookshot)) or can_use(Hover_Boots))",
+            "Ganons Castle MQ Shadow Trial Silver Rupee 2" : "
+                (logic_lens_castle_mq or can_use(Lens_of_Truth)) and 
+                    ((Bow and can_use(Hookshot)) or can_use(Hover_Boots))",
+            "Ganons Castle MQ Shadow Trial Silver Rupee 3" : "(logic_lens_castle_mq or can_use(Lens_of_Truth)) and 
+                (can_use(Hover_Boots) or (can_use(Hookshot) and (has_fire_source or logic_shadow_trial_mq)))",
+            "Ganons Castle MQ Shadow Trial Silver Rupee 4" : "(logic_lens_castle_mq or can_use(Lens_of_Truth)) and 
+                (can_use(Hover_Boots) or (can_use(Hookshot) and (has_fire_source or logic_shadow_trial_mq)))",
+            "Ganons Castle MQ Shadow Trial Silver Rupee 5" : "
+                (logic_lens_castle_mq or can_use(Lens_of_Truth)) and
+                    ((Bow and can_use(Hookshot)) or can_use(Hover_Boots))"
         }
     },
     {

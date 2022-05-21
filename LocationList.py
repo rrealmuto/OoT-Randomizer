@@ -2018,6 +2018,24 @@ location_table = OrderedDict([
     ("Ganons Castle MQ Spirit Trial Pot 1", ("Collectable", 0x0D, 0x34, None, 'Rupees (5)', ("Ganon's Castle", "Master Quest", "Pot"))),
     ("Ganons Castle MQ Spirit Trial Pot 2", ("Collectable", 0x0D, 0x33, None, 'Deku Nuts (5)', ("Ganon's Castle", "Master Quest", "Pot"))),
 
+    # Ganons Castle MQ Silver Rupees
+    ("Ganons Castle MQ Fire Trial Silver Rupee 1", ("Collectable", 0x0D, 0x40, ([0x32532d0], None), 'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle", "Master Quest", "Silver Rupee"))),
+    ("Ganons Castle MQ Fire Trial Silver Rupee 2", ("Collectable", 0x0D, 0x41, ([0x32532e0], None), 'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle", "Master Quest", "Silver Rupee"))),
+    ("Ganons Castle MQ Fire Trial Silver Rupee 3", ("Collectable", 0x0D, 0x42, ([0x32532f0], None), 'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle", "Master Quest", "Silver Rupee"))),
+    ("Ganons Castle MQ Fire Trial Silver Rupee 4", ("Collectable", 0x0D, 0x43, ([0x3253300], None), 'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle", "Master Quest", "Silver Rupee"))),
+    ("Ganons Castle MQ Fire Trial Silver Rupee 5", ("Collectable", 0x0D, 0x44, ([0x3253310], None), 'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle", "Master Quest", "Silver Rupee"))),
+    ("Ganons Castle MQ Shadow Trial Silver Rupee 1", ("Collectable", 0x0D, 0x45, ([0x3240450], None), 'Silver Rupee (Ganons Castle Shadow Trial)', ("Ganon's Castle", "Master Quest", "Silver Rupee"))),
+    ("Ganons Castle MQ Shadow Trial Silver Rupee 2", ("Collectable", 0x0D, 0x46, ([0x3240460], None), 'Silver Rupee (Ganons Castle Shadow Trial)', ("Ganon's Castle", "Master Quest", "Silver Rupee"))),
+    ("Ganons Castle MQ Shadow Trial Silver Rupee 3", ("Collectable", 0x0D, 0x47, ([0x3240470], None), 'Silver Rupee (Ganons Castle Shadow Trial)', ("Ganon's Castle", "Master Quest", "Silver Rupee"))),
+    ("Ganons Castle MQ Shadow Trial Silver Rupee 4", ("Collectable", 0x0D, 0x48, ([0x3240480], None), 'Silver Rupee (Ganons Castle Shadow Trial)', ("Ganon's Castle", "Master Quest", "Silver Rupee"))),
+    ("Ganons Castle MQ Shadow Trial Silver Rupee 5", ("Collectable", 0x0D, 0x49, ([0x3240490], None), 'Silver Rupee (Ganons Castle Shadow Trial)', ("Ganon's Castle", "Master Quest", "Silver Rupee"))),
+    ("Ganons Castle MQ Water Trial Silver Rupee 1", ("Collectable", 0x0D, 0x4A, ([0x31e8a0c], None), 'Silver Rupee (Ganons Castle Water Trial)', ("Ganon's Castle", "Master Quest", "Silver Rupee"))),
+    ("Ganons Castle MQ Water Trial Silver Rupee 2", ("Collectable", 0x0D, 0x4B, ([0x31e8a1c], None), 'Silver Rupee (Ganons Castle Water Trial)', ("Ganon's Castle", "Master Quest", "Silver Rupee"))),
+    ("Ganons Castle MQ Water Trial Silver Rupee 3", ("Collectable", 0x0D, 0x4C, ([0x31e8a2c], None), 'Silver Rupee (Ganons Castle Water Trial)', ("Ganon's Castle", "Master Quest", "Silver Rupee"))),
+    ("Ganons Castle MQ Water Trial Silver Rupee 4", ("Collectable", 0x0D, 0x4D, ([0x31e8a3c], None), 'Silver Rupee (Ganons Castle Water Trial)', ("Ganon's Castle", "Master Quest", "Silver Rupee"))),
+    ("Ganons Castle MQ Water Trial Silver Rupee 5", ("Collectable", 0x0D, 0x4E, ([0x31e8a4c], None), 'Silver Rupee (Ganons Castle Water Trial)', ("Ganon's Castle", "Master Quest", "Silver Rupee"))),
+    
+
     # Ganon's Castle shared
     ("Ganons Tower Boss Key Chest",                                  ("Chest",        0x0A,  0x0B, None,                        'Boss Key (Ganons Castle)',              ("Ganon's Castle", "Vanilla", "Master Quest",))),
 
