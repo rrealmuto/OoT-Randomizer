@@ -1378,7 +1378,7 @@ hintTable = {
     '1189':                                                     ("Did you know that you can access the Fire Temple boss door without dropping the pillar by using the Hover boots?", None, 'junk'),
     '1190':                                                     ("Key-locked in Fire Temple? Maybe Volvagia has your Small Key.", None, 'junk'),
     '1191':                                                     ("Expired Spoiler Log? Don't worry! The OoTR Discord staff can help you out.", None, 'junk'),
-    '1192':                                                     ("Try holding A on the item screen.", None, 'junk'),
+    '1192':                                                     ("Try holding a D-pad button on the item screen.", None, 'junk'),
     '1193':                                                     ("Did you know that in the Forest Temple you can reach the alcove in the block push room with Hover Boots?", None, 'junk'),
     '1194':                                                     ("Dodongo's Cavern is much easier and faster to clear as Adult.", None, 'junk'),
     '1195':                                                     ("Did you know that the solution to the Truth Spinner in Shadow Temple is never one of the two positions closest to the initial position?", None, 'junk'),
