@@ -1863,25 +1863,25 @@ location_table = OrderedDict([
     ("Gerudo Training Ground Maze Path Second Chest",                ("Chest",        0x0B,  0x0A, None,                        'Rupees (20)',                           ("Gerudo Training Ground", "Vanilla",))),
     ("Gerudo Training Ground Maze Path Third Chest",                 ("Chest",        0x0B,  0x09, None,                        'Arrows (30)',                           ("Gerudo Training Ground", "Vanilla",))),
     ("Gerudo Training Ground Maze Path Final Chest",                 ("Chest",        0x0B,  0x0C, None,                        'Ice Arrows',                            ("Gerudo Training Ground", "Vanilla",))),
-    
-    # Gerudo Training Ground Silver Rupees
-    ("Gerudo Training Ground Lava Room Silver Rupee 1",              ("Collectable",  0x0B,  0x40, ([0x28BF0F4], None),                        'Silver Rupee (Gerudo Training Ground Lava)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground Lava Room Silver Rupee 2",              ("Collectable",  0x0B,  0x41, ([0x28BF104], None),                        'Silver Rupee (Gerudo Training Ground Lava)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground Lava Room Silver Rupee 3",              ("Collectable",  0x0B,  0x42, ([0x28BF114], None),                        'Silver Rupee (Gerudo Training Ground Lava)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground Lava Room Silver Rupee 4",              ("Collectable",  0x0B,  0x43, ([0x28BF124], None),                        'Silver Rupee (Gerudo Training Ground Lava)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground Lava Room Silver Rupee 5",              ("Collectable",  0x0B,  0x44, ([0x28BF134], None),                        'Silver Rupee (Gerudo Training Ground Lava)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    
-    ("Gerudo Training Ground Underwater Silver Rupee 1",             ("Collectable",  0x0B,  0x45, ([0x28D9158], None),                        'Silver Rupee (Gerudo Training Ground Water)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground Underwater Silver Rupee 2",             ("Collectable",  0x0B,  0x46, ([0x28D9168], None),                        'Silver Rupee (Gerudo Training Ground Water)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground Underwater Silver Rupee 3",             ("Collectable",  0x0B,  0x47, ([0x28D9178], None),                        'Silver Rupee (Gerudo Training Ground Water)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground Underwater Silver Rupee 4",             ("Collectable",  0x0B,  0x48, ([0x28D9188], None),                        'Silver Rupee (Gerudo Training Ground Water)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground Underwater Silver Rupee 5",             ("Collectable",  0x0B,  0x49, ([0x28D9198], None),                        'Silver Rupee (Gerudo Training Ground Water)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
 
-    ("Gerudo Training Ground Boulder Room Silver Rupee 1",           ("Collectable",  0x0B,  0x4A, ([0x28A10E0], None),                        'Silver Rupee (Gerudo Training Ground Slopes)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground Boulder Room Silver Rupee 2",           ("Collectable",  0x0B,  0x4B, ([0x28A10F0], None),                        'Silver Rupee (Gerudo Training Ground Slopes)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground Boulder Room Silver Rupee 3",           ("Collectable",  0x0B,  0x4C, ([0x28A1100], None),                        'Silver Rupee (Gerudo Training Ground Slopes)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground Boulder Room Silver Rupee 4",           ("Collectable",  0x0B,  0x4D, ([0x28A1110], None),                        'Silver Rupee (Gerudo Training Ground Slopes)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground Boulder Room Silver Rupee 5",           ("Collectable",  0x0B,  0x4E, ([0x28A1120], None),                        'Silver Rupee (Gerudo Training Ground Slopes)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    # Gerudo Training Ground Silver Rupees
+    ("Gerudo Training Ground Lava Room Silver Rupee Front Left",     ("Collectable",  0x0B,  0x40, ([0x28BF0F4], None),                        'Silver Rupee (Gerudo Training Ground Lava)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Lava Room Silver Rupee Front Right",    ("Collectable",  0x0B,  0x41, ([0x28BF104], None),                        'Silver Rupee (Gerudo Training Ground Lava)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Lava Room Silver Rupee Flame Circle",   ("Collectable",  0x0B,  0x42, ([0x28BF114], None),                        'Silver Rupee (Gerudo Training Ground Lava)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Lava Room Silver Rupee Center Right",   ("Collectable",  0x0B,  0x44, ([0x28BF134], None),                        'Silver Rupee (Gerudo Training Ground Lava)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Lava Room Silver Rupee Hookshot Target",("Collectable",  0x0B,  0x43, ([0x28BF124], None),                        'Silver Rupee (Gerudo Training Ground Lava)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+
+    ("Gerudo Training Ground Underwater Silver Rupee Top",                 ("Collectable",  0x0B,  0x46, ([0x28D9168], None),                        'Silver Rupee (Gerudo Training Ground Water)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Underwater Silver Rupee Middle",              ("Collectable",  0x0B,  0x48, ([0x28D9188], None),                        'Silver Rupee (Gerudo Training Ground Water)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Underwater Silver Rupee Bottom Front Right",  ("Collectable",  0x0B,  0x49, ([0x28D9198], None),                        'Silver Rupee (Gerudo Training Ground Water)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Underwater Silver Rupee Bottom Center",       ("Collectable",  0x0B,  0x45, ([0x28D9158], None),                        'Silver Rupee (Gerudo Training Ground Water)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Underwater Silver Rupee Bottom Back Left",    ("Collectable",  0x0B,  0x47, ([0x28D9178], None),                        'Silver Rupee (Gerudo Training Ground Water)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+
+    ("Gerudo Training Ground Boulder Room Silver Rupee Bottom Right",("Collectable",  0x0B,  0x4A, ([0x28A10E0], None),                        'Silver Rupee (Gerudo Training Ground Slopes)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Boulder Room Silver Rupee Bottom Left", ("Collectable",  0x0B,  0x4B, ([0x28A10F0], None),                        'Silver Rupee (Gerudo Training Ground Slopes)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Boulder Room Silver Rupee Ceiling",     ("Collectable",  0x0B,  0x4C, ([0x28A1100], None),                        'Silver Rupee (Gerudo Training Ground Slopes)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Boulder Room Silver Rupee Ledge",       ("Collectable",  0x0B,  0x4D, ([0x28A1110], None),                        'Silver Rupee (Gerudo Training Ground Slopes)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground Boulder Room Silver Rupee Top Left",    ("Collectable",  0x0B,  0x4E, ([0x28A1120], None),                        'Silver Rupee (Gerudo Training Ground Slopes)',          ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
 
     # Gerudo Training Ground MQ
     ("Gerudo Training Ground MQ Lobby Left Chest",                   ("Chest",        0x0B,  0x13, None,                        'Arrows (10)',                           ("Gerudo Training Ground", "Master Quest",))),
