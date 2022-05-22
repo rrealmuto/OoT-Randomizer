@@ -1691,6 +1691,13 @@ location_table = OrderedDict([
     ("Spirit Temple Sun Block Room Silver Rupee 3",                  ("Collectable", 0x06, 0x57, ([0x2B48134], None),                    'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
     ("Spirit Temple Sun Block Room Silver Rupee 4",                  ("Collectable", 0x06, 0x58, ([0x2B48144], None),                    'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
     ("Spirit Temple Sun Block Room Silver Rupee 5",                  ("Collectable", 0x06, 0x59, ([0x2B48154], None),                    'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    ("Spirit Temple Child Early Torches Silver Rupee 1",             ("Collectable", 0x06, 0x5A, ([0x2B13114], None),                    'Silver Rupee (Spirit Temple Child Early Torches)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    ("Spirit Temple Child Early Torches Silver Rupee 2",             ("Collectable", 0x06, 0x5B, ([0x2B13124], None),                    'Silver Rupee (Spirit Temple Child Early Torches)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    ("Spirit Temple Child Early Torches Silver Rupee 3",             ("Collectable", 0x06, 0x5C, ([0x2B13134], None),                    'Silver Rupee (Spirit Temple Child Early Torches)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    ("Spirit Temple Child Early Torches Silver Rupee 4",             ("Collectable", 0x06, 0x5D, ([0x2B13144], None),                    'Silver Rupee (Spirit Temple Child Early Torches)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    ("Spirit Temple Child Early Torches Silver Rupee 5",             ("Collectable", 0x06, 0x5E, ([0x2B13154], None),                    'Silver Rupee (Spirit Temple Child Early Torches)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    
+    
     # Spirit Temple MQ Silver Rupees
     ("Spirit Temple MQ Lobby and Lower Adult Silver Rupee 1",        ("Collectable", 0x06, 0x50, ([0x2b08be4], None),                    'Silver Rupee (Spirit Temple Lobby and Lower Adult)', ("Spirit Temple", "Master Quest", "Silver Rupee",))),
     ("Spirit Temple MQ Lobby and Lower Adult Silver Rupee 2",        ("Collectable", 0x06, 0x51, ([0x2b08bf4], None),                    'Silver Rupee (Spirit Temple Lobby and Lower Adult)', ("Spirit Temple", "Master Quest", "Silver Rupee",))),

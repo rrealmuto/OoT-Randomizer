@@ -35,10 +35,30 @@
                         (Kokiri_Sword or Slingshot)))",
             
             "Spirit Temple Child Early Torches Chest": "
-                (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and
+                ((Silver_Rupee_Spirit_Temple_Child_Early_Torches, 5) or (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu))) and
                 (Sticks or has_explosives or
                     ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot))) and
                 (Sticks or can_use(Dins_Fire))",
+            "Spirit Temple Child Early Torches Silver Rupee 1": "
+                (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and
+                (Sticks or has_explosives or
+                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))",
+            "Spirit Temple Child Early Torches Silver Rupee 2": "
+                (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and
+                (Sticks or has_explosives or
+                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))",
+            "Spirit Temple Child Early Torches Silver Rupee 3": "
+                (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and
+                (Sticks or has_explosives or
+                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))",
+            "Spirit Temple Child Early Torches Silver Rupee 4": "
+                (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and
+                (Sticks or has_explosives or
+                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))",
+            "Spirit Temple Child Early Torches Silver Rupee 5": "
+                (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and
+                (Sticks or has_explosives or
+                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))",
             "Spirit Temple GS Metal Fence": "
                 (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and
                 (Sticks or has_explosives or
