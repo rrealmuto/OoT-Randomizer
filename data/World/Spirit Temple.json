@@ -39,23 +39,23 @@
                 (Sticks or has_explosives or
                     ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot))) and
                 (Sticks or can_use(Dins_Fire))",
-            "Spirit Temple Child Early Torches Silver Rupee 1": "
+            "Spirit Temple Child Early Torches Silver Rupee Top Right": "
                 (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and
                 (Sticks or has_explosives or
                     ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))",
-            "Spirit Temple Child Early Torches Silver Rupee 2": "
+            "Spirit Temple Child Early Torches Silver Rupee Bottom Right": "
                 (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and
                 (Sticks or has_explosives or
                     ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))",
-            "Spirit Temple Child Early Torches Silver Rupee 3": "
+            "Spirit Temple Child Early Torches Silver Rupee Bottom Left": "
                 (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and
                 (Sticks or has_explosives or
                     ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))",
-            "Spirit Temple Child Early Torches Silver Rupee 4": "
+            "Spirit Temple Child Early Torches Silver Rupee Top Left": "
                 (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and
                 (Sticks or has_explosives or
                     ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))",
-            "Spirit Temple Child Early Torches Silver Rupee 5": "
+            "Spirit Temple Child Early Torches Silver Rupee Near Torch": "
                 (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and
                 (Sticks or has_explosives or
                     ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))",
