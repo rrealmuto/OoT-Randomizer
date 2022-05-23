@@ -66,34 +66,27 @@
         "region_name": "Early Adult Spirit Temple",
         "dungeon": "Spirit Temple",
         "locations": {
-            "Spirit Temple Compass Chest": "Hookshot and can_play(Zeldas_Lullaby)",
-            #The mid-air silver rupee can be collected with a jumpslash.
-            "Spirit Temple Early Adult Right Chest": "(Silver_Rupee_Spirit_Temple_Adult_Boulders, 5) and
-                (Bow or Hookshot or has_bombchus or
-                (Bombs and logic_spirit_lower_adult_switch))",
-            "Spirit Temple Adult Boulder Silver Rupee 1" : "
-                Bow or Hookshot or has_bombchus or
-                (Bombs and logic_spirit_lower_adult_switch)",
-            "Spirit Temple Adult Boulder Silver Rupee 2" : "
-                Bow or Hookshot or has_bombchus or
-                (Bombs and logic_spirit_lower_adult_switch)",
-            "Spirit Temple Adult Boulder Silver Rupee 3" : "
-                Bow or Hookshot or has_bombchus or
-                (Bombs and logic_spirit_lower_adult_switch)",
-            "Spirit Temple Adult Boulder Silver Rupee 4" : "
-                Bow or Hookshot or has_bombchus or
-                (Bombs and logic_spirit_lower_adult_switch)",
-            "Spirit Temple Adult Boulder Silver Rupee 5" : "
-                Bow or Hookshot or has_bombchus or
-                (Bombs and logic_spirit_lower_adult_switch)",
-            "Spirit Temple GS Boulder Room": "
-                can_play(Song_of_Time) and
-                (Bow or Hookshot or has_bombchus or
-                    (Bombs and logic_spirit_lower_adult_switch))"
+            "Spirit Temple Compass Chest": "Hookshot and can_play(Zeldas_Lullaby)"
         },
         "exits": {
+            "Spirit Temple Boulder Room": "
+                Bow or Hookshot or has_bombchus or
+                (Bombs and logic_spirit_lower_adult_switch)",
             "Spirit Temple Central Chamber": "(Small_Key_Spirit_Temple, 1)",
             "Adult Spirit Temple Climb": "(Small_Key_Spirit_Temple, 3)"
+        }
+    },
+    {
+        "region_name": "Spirit Temple Boulder Room",
+        "dungeon": "Spirit Temple",
+        "locations": {
+            "Spirit Temple Early Adult Right Chest": "(Silver_Rupee_Spirit_Temple_Adult_Boulders, 5)",
+            "Spirit Temple Adult Boulder Silver Rupee Ledge": "True", # Can be collected with a jumpslash.
+            "Spirit Temple Adult Boulder Silver Rupee Front Left": "True",
+            "Spirit Temple Adult Boulder Silver Rupee Front Right": "True",
+            "Spirit Temple Adult Boulder Silver Rupee Back Right": "True",
+            "Spirit Temple Adult Boulder Silver Rupee Back Left": "True",
+            "Spirit Temple GS Boulder Room": "can_play(Song_of_Time)"
         }
     },
     #In the following two regions, child and adult reachability actually means age-unknown, but with
