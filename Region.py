@@ -84,6 +84,10 @@ class Region(object):
             is_self_dungeon_restricted = self.world.settings.shuffle_ganon_bosskey in ['dungeon', 'vanilla']
             is_dungeon_restricted = self.world.settings.shuffle_ganon_bosskey == 'any_dungeon'
             is_overworld_restricted = self.world.settings.shuffle_ganon_bosskey == 'overworld'
+        elif item.type == 'SilverRupee':
+            is_self_dungeon_restricted = self.world.settings.shuffle_silver_rupees in ['dungeon', 'vanilla']
+            is_dungeon_restricted = self.world.settings.shuffle_silver_rupees == 'any_dungeon'
+            is_overworld_restricted = self.world.settings.shuffle_silver_rupees == 'overworld'
 
         if is_self_dungeon_restricted and not manual:
             return self.dungeon and self.dungeon.is_dungeon_item(item) and item.world.id == self.world.id

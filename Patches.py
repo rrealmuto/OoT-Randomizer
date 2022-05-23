@@ -1376,6 +1376,11 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             save_context.addresses['dungeon_items'][dungeon]['compass'].value = True
             save_context.addresses['dungeon_items'][dungeon]['map'].value = True
 
+    # start with silver rupees
+    if world.settings.shuffle_silver_rupees == 'remove':
+        for puzzle in world.silver_rupee_puzzles():
+            save_context.give_item(world, f'Silver Rupee ({puzzle})', float('inf'))
+
     if world.settings.shuffle_smallkeys == 'vanilla':
         if world.dungeon_mq['Spirit Temple']:
             save_context.addresses['keys']['spirit'].value = 3
@@ -1620,7 +1625,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         for location in smallcrate_locations:
             patch_small_crate(location, rom)
     
-    if world.settings.shuffle_silver_rupees:
+    if world.shuffle_silver_rupees:
         silver_rupee_locations = [location for location in world.get_locations() if location.type == 'Collectable' and 'Silver Rupee' in location.filter_tags]
         for silver_rupee_location in silver_rupee_locations:
             patch_silver_rupee(silver_rupee_location, rom)
