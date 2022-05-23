@@ -1679,25 +1679,25 @@ location_table = OrderedDict([
     ("Spirit Temple MQ GS Nine Thrones Room North",                  ("GS Token",     0x06,  0x10, None,                        'Gold Skulltula Token',                  ("Spirit Temple", "Master Quest", "Skulltulas",))),
 
     ("Spirit Temple Twinrova Heart",                                 ("BossHeart",    0x17,  0x4F, None,                        'Heart Container',                       ("Spirit Temple", "Vanilla", "Master Quest",))),
- 
+
     #Spirit Temple Vanilla Silver Rupees
-    ("Spirit Temple Adult Boulder Silver Rupee 1",                   ("Collectable", 0x06, 0x50, ([0x2B650B0], None),                    'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
-    ("Spirit Temple Adult Boulder Silver Rupee 2",                   ("Collectable", 0x06, 0x51, ([0x2B650C0], None),                    'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
-    ("Spirit Temple Adult Boulder Silver Rupee 3",                   ("Collectable", 0x06, 0x52, ([0x2B650D0], None),                    'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
-    ("Spirit Temple Adult Boulder Silver Rupee 4",                   ("Collectable", 0x06, 0x53, ([0x2B650E0], None),                    'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
-    ("Spirit Temple Adult Boulder Silver Rupee 5",                   ("Collectable", 0x06, 0x54, ([0x2B650F0], None),                    'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
-    ("Spirit Temple Sun Block Room Silver Rupee 1",                  ("Collectable", 0x06, 0x55, ([0x2B48114], None),                    'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
-    ("Spirit Temple Sun Block Room Silver Rupee 2",                  ("Collectable", 0x06, 0x56, ([0x2B48124], None),                    'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
-    ("Spirit Temple Sun Block Room Silver Rupee 3",                  ("Collectable", 0x06, 0x57, ([0x2B48134], None),                    'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
-    ("Spirit Temple Sun Block Room Silver Rupee 4",                  ("Collectable", 0x06, 0x58, ([0x2B48144], None),                    'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
-    ("Spirit Temple Sun Block Room Silver Rupee 5",                  ("Collectable", 0x06, 0x59, ([0x2B48154], None),                    'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    ("Spirit Temple Adult Boulder Silver Rupee Ledge",               ("Collectable", 0x06, 0x54, ([0x2B650F0], None),                    'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    ("Spirit Temple Adult Boulder Silver Rupee Front Left",          ("Collectable", 0x06, 0x51, ([0x2B650C0], None),                    'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    ("Spirit Temple Adult Boulder Silver Rupee Front Right",         ("Collectable", 0x06, 0x52, ([0x2B650D0], None),                    'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    ("Spirit Temple Adult Boulder Silver Rupee Back Right",          ("Collectable", 0x06, 0x53, ([0x2B650E0], None),                    'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    ("Spirit Temple Adult Boulder Silver Rupee Back Left",           ("Collectable", 0x06, 0x50, ([0x2B650B0], None),                    'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    ("Spirit Temple Sun Block Room Silver Rupee Left",               ("Collectable", 0x06, 0x58, ([0x2B48144], None),                    'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    ("Spirit Temple Sun Block Room Silver Rupee Center Front",       ("Collectable", 0x06, 0x57, ([0x2B48134], None),                    'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    ("Spirit Temple Sun Block Room Silver Rupee Center Back",        ("Collectable", 0x06, 0x56, ([0x2B48124], None),                    'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    ("Spirit Temple Sun Block Room Silver Rupee Right Front",        ("Collectable", 0x06, 0x59, ([0x2B48154], None),                    'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
+    ("Spirit Temple Sun Block Room Silver Rupee Right Back",         ("Collectable", 0x06, 0x55, ([0x2B48114], None),                    'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
     ("Spirit Temple Child Early Torches Silver Rupee Top Right",     ("Collectable", 0x06, 0x5A, ([0x2B13114], None),                    'Silver Rupee (Spirit Temple Child Early Torches)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
     ("Spirit Temple Child Early Torches Silver Rupee Bottom Right",  ("Collectable", 0x06, 0x5B, ([0x2B13124], None),                    'Silver Rupee (Spirit Temple Child Early Torches)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
     ("Spirit Temple Child Early Torches Silver Rupee Bottom Left",   ("Collectable", 0x06, 0x5C, ([0x2B13134], None),                    'Silver Rupee (Spirit Temple Child Early Torches)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
     ("Spirit Temple Child Early Torches Silver Rupee Top Left",      ("Collectable", 0x06, 0x5D, ([0x2B13144], None),                    'Silver Rupee (Spirit Temple Child Early Torches)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
     ("Spirit Temple Child Early Torches Silver Rupee Near Torch",    ("Collectable", 0x06, 0x5E, ([0x2B13154], None),                    'Silver Rupee (Spirit Temple Child Early Torches)', ("Spirit Temple", "Vanilla", "Silver Rupee",))),
-    
-    
+
+
     # Spirit Temple MQ Silver Rupees
     ("Spirit Temple MQ Lobby and Lower Adult Silver Rupee 1",        ("Collectable", 0x06, 0x50, ([0x2b08be4], None),                    'Silver Rupee (Spirit Temple Lobby and Lower Adult)', ("Spirit Temple", "Master Quest", "Silver Rupee",))),
     ("Spirit Temple MQ Lobby and Lower Adult Silver Rupee 2",        ("Collectable", 0x06, 0x51, ([0x2b08bf4], None),                    'Silver Rupee (Spirit Temple Lobby and Lower Adult)', ("Spirit Temple", "Master Quest", "Silver Rupee",))),
