@@ -322,7 +322,7 @@ class SaveContext():
                 }[puzzle]
                 if count >= needed_count:
                     save_writes = {
-                        "Dodongos Cavern Staircase":           {'silver_rupee_counts.dc_staircase': needed_count}, #TODO flag
+                        "Dodongos Cavern Staircase":           {'silver_rupee_counts.dc_staircase': needed_count, 'scene_flags.dodongo.swch.silver_rupees_staircase': True},
                         "Ice Cavern Spinning Scythe":          {'silver_rupee_counts.ice_scythe': needed_count, 'scene_flags.ice.swch.silver_rupees_scythe': True},
                         "Ice Cavern Push Block":               {'silver_rupee_counts.ice_block': needed_count, 'scene_flags.ice.swch.silver_rupees_block': True},
                         "Bottom of the Well Basement":         {'silver_rupee_counts.botw_basement': needed_count, 'scene_flags.botw.swch.silver_rupees_basement': True},
@@ -335,7 +335,7 @@ class SaveContext():
                         "Gerudo Training Ground Water":        {'silver_rupee_counts.gtg_water': needed_count, 'scene_flags.gtg.swch.silver_rupees_water': True},
                         "Spirit Temple Child Early Torches":   {'silver_rupee_counts.spirit_torches': needed_count, 'scene_flags.spirit.swch.silver_rupees_torches': True},
                         "Spirit Temple Adult Boulders":        {'silver_rupee_counts.spirit_boulders': needed_count, 'scene_flags.spirit.swch.silver_rupees_boulders': True},
-                        "Spirit Temple Lobby and Lower Adult": {'silver_rupee_counts.spirit_lobby': needed_count}, #TODO flag
+                        "Spirit Temple Lobby and Lower Adult": {'silver_rupee_counts.spirit_lobby': needed_count, 'scene_flags.spirit_swch.silver_rupees_lobby': True},
                         "Spirit Temple Sun Block":             {'silver_rupee_counts.spirit_sun': needed_count, 'scene_flags.spirit.swch.silver_rupees_sun': True},
                         "Spirit Temple Adult Climb":           {'silver_rupee_counts.spirit_adult_climb': needed_count, 'scene_flags.spirit.swch.silver_rupees_adult_climb': True},
                         "Ganons Castle Spirit Trial":          {'silver_rupee_counts.trials_spirit': needed_count, 'scene_flags.gc.swch.silver_rupees_spirit': True},
@@ -734,12 +734,18 @@ class SaveContext():
             'defense_hearts'             : Address(size=1, max=20),
             'gs_tokens'                  : Address(size=2, max=100),
             'scene_flags' : {
+                'dodongo' : {
+                    'swch' : {
+                        'silver_rupees_staircase': Address(0xD1 + 0x1C * 0x01 + 0x04, mask=0x80000000),
+                    },
+                },
                 'spirit' : {
                     'swch' : {
                         'silver_rupees_adult_climb': Address(0xD1 + 0x1C * 0x06 + 0x04, mask=0x00000001),
                         'silver_rupees_boulders': Address(0xD1 + 0x1C * 0x06 + 0x04, mask=0x00000004),
                         'silver_rupees_torches': Address(0xD1 + 0x1C * 0x06 + 0x04, mask=0x00000020),
                         'silver_rupees_sun': Address(0xD1 + 0x1C * 0x06 + 0x04, mask=0x00000400),
+                        'silver_rupees_lobby': Address(0xD1 + 0x1C * 0x06 + 0x04, mask=0x80000000),
                     },
                 },
                 'shadow' : {
