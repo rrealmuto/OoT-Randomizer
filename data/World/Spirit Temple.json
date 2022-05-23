@@ -18,54 +18,36 @@
     {
         "region_name": "Child Spirit Temple",
         "dungeon": "Spirit Temple",
+        "exits": {
+            "Child Spirit Temple Loop": "Sticks or has_explosives or ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot))",
+            "Child Spirit Before Locked Door": "True"
+        }
+    },
+    {
+        "region_name": "Child Spirit Temple Loop",
+        "dungeon": "Spirit Temple",
         "locations": {
-            "Spirit Temple Child Bridge Chest": "
-                (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and
-                (Sticks or has_explosives or
-                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))",
-            "Spirit Temple Child Bridge Flying Pot" : "
-                (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and 
-                (Sticks or has_explosives or 
-                    ((Nuts or Boomerang) and 
-                        (Kokiri_Sword or Slingshot)))",
-            "Spirit Temple Child Anubis Pot" : "
-                (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and 
-                (Sticks or has_explosives or 
-                    ((Nuts or Boomerang) and 
-                        (Kokiri_Sword or Slingshot)))",
-            
-            "Spirit Temple Child Early Torches Chest": "
-                ((Silver_Rupee_Spirit_Temple_Child_Early_Torches, 5) or (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu))) and
-                (Sticks or has_explosives or
-                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot))) and
-                (Sticks or can_use(Dins_Fire))",
-            "Spirit Temple Child Early Torches Silver Rupee Top Right": "
-                (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and
-                (Sticks or has_explosives or
-                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))",
-            "Spirit Temple Child Early Torches Silver Rupee Bottom Right": "
-                (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and
-                (Sticks or has_explosives or
-                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))",
-            "Spirit Temple Child Early Torches Silver Rupee Bottom Left": "
-                (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and
-                (Sticks or has_explosives or
-                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))",
-            "Spirit Temple Child Early Torches Silver Rupee Top Left": "
-                (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and
-                (Sticks or has_explosives or
-                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))",
-            "Spirit Temple Child Early Torches Silver Rupee Near Torch": "
-                (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and
-                (Sticks or has_explosives or
-                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))",
-            "Spirit Temple GS Metal Fence": "
-                (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and
-                (Sticks or has_explosives or
-                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))"
+            "Spirit Temple GS Metal Fence": "Boomerang or ((Silver_Rupee_Spirit_Temple_Child_Early_Torches, 5) and has_projectile(child))"
         },
         "exits": {
-            "Child Spirit Before Locked Door": "True"
+            "Child Spirit Beyond Metal Bridges": "Boomerang or Slingshot or
+                (has_bombchus and logic_spirit_child_bombchu) or
+                (Silver_Rupee_Spirit_Temple_Child_Early_Torches, 5)"
+        }
+    },
+    {
+        "region_name": "Child Spirit Beyond Metal Bridges",
+        "dungeon": "Spirit Temple",
+        "locations": {
+            "Spirit Temple Child Bridge Chest": "True",
+            "Spirit Temple Child Bridge Flying Pot": "True",
+            "Spirit Temple Child Anubis Pot": "True",
+            "Spirit Temple Child Early Torches Chest": "Sticks or can_use(Dins_Fire)",
+            "Spirit Temple Child Early Torches Silver Rupee Top Right": "True",
+            "Spirit Temple Child Early Torches Silver Rupee Bottom Right": "True",
+            "Spirit Temple Child Early Torches Silver Rupee Bottom Left": "True",
+            "Spirit Temple Child Early Torches Silver Rupee Top Left": "True",
+            "Spirit Temple Child Early Torches Silver Rupee Near Torch": "True"
         }
     },
     {
