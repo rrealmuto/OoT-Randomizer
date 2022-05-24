@@ -138,8 +138,14 @@
         "region_name": "Shadow Temple Before Boss",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple After Boat Upper Recovery Heart 1" : "can_use(Distant_Scarecrow)",
-            "Shadow Temple After Boat Upper Recovery Heart 2" : "can_use(Distant_Scarecrow) ",
+            "Shadow Temple After Boat Upper Recovery Heart 1" : "
+                can_use(Distant_Scarecrow) or 
+                ((Bow or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts) and 
+                    can_play(Song_of_Time) and can_use(Scarecrow))",
+            "Shadow Temple After Boat Upper Recovery Heart 2" : "
+                can_use(Distant_Scarecrow) or 
+                ((Bow or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts) and 
+                    can_play(Song_of_Time) and can_use(Scarecrow))",
             "Shadow Temple After Boat Lower Recovery Heart" : "can_use(Distant_Scarecrow) or ((Bow or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts) and can_play(Song_of_Time))",
             "Shadow Temple Spike Walls Left Chest": "can_use(Dins_Fire)",
             "Shadow Temple Boss Key Chest": "can_use(Dins_Fire)",
