@@ -19,7 +19,6 @@
             "Dodongos Cavern GS Scarecrow": "
                 (can_use(Scarecrow) or can_use(Longshot) or (logic_dc_scarecrow_gs and (is_adult or
                 (can_child_attack and (can_blast_or_smash or Progressive_Strength_Upgrade)))))",
-
             "Dodongos Cavern Lower Lizalfos Hidden Recovery Heart": "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
             "Dodongos Cavern Lower Lizalfos Pot 1" : "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
             "Dodongos Cavern Lower Lizalfos Pot 2" : "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
@@ -69,7 +68,6 @@
                 has_explosives or Progressive_Strength_Upgrade or can_use(Dins_Fire) or
                 (logic_dc_staircase and can_use(Bow)) or
                 (logic_dc_vines_gs and can_use(Longshot))"
-            
         },
         "exits": {
             "Dodongos Cavern Lobby": "True",
