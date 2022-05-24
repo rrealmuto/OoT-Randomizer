@@ -18,10 +18,10 @@
             "Jabu Jabus Belly Deku Scrub": "
                 can_dive or is_child or logic_jabu_alcove_jump_dive or can_use(Iron_Boots)",
             "Jabu Jabus Belly Small Wooden Crate" : "True",
-            "Jabu Jabus Belly Basement 2 Octoroks Pot 1" : "can_use(Boomerang)",
-            "Jabu Jabus Belly Basement 2 Octoroks Pot 2" : "can_use(Boomerang)",
-            "Jabu Jabus Belly Basement 2 Octoroks Pot 3" : "can_use(Boomerang)",
-            "Jabu Jabus Belly Basement 2 Octoroks Pot 4" : "can_use(Boomerang)",
+            "Jabu Jabus Belly Basement 2 Octoroks Pot 1" : "can_use(Boomerang) or can_use(Hover_Boots)",
+            "Jabu Jabus Belly Basement 2 Octoroks Pot 2" : "can_use(Boomerang) or can_use(Hover_Boots)",
+            "Jabu Jabus Belly Basement 2 Octoroks Pot 3" : "can_use(Boomerang) or can_use(Hover_Boots)",
+            "Jabu Jabus Belly Basement 2 Octoroks Pot 4" : "can_use(Boomerang) or can_use(Hover_Boots)",
             "Jabu Jabus Belly Basement Switch Room Pot 1" : "True",
             "Jabu Jabus Belly Basement Switch Room Pot 2" : "True",
             "Fairy Pot": "has_bottle"
