@@ -108,11 +108,7 @@
                     ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
                     ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle))) or
                 has_projectile(both)",
-            "Spirit Temple Child Climb Pot": "(spirit_temple_shortcuts and is_adult) or
-                (((Small_Key_Spirit_Temple, 3) or 
-                    ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)) and 
-                is_adult) or 
-                ((Small_Key_Spirit_Temple, 5) and is_child)",
+            "Spirit Temple Child Climb Pot": "True",
             "Spirit Temple GS Sun on Floor Room": "
                 (is_child and has_projectile(child) and
                     (Small_Key_Spirit_Temple, 5)) or
@@ -153,12 +149,12 @@
             "Spirit Temple Silver Gauntlets Chest": "
                 (Small_Key_Spirit_Temple, 5) or
                 (has_explosives and Longshot and (Small_Key_Spirit_Temple, 3))",
-            "Spirit Temple Hall After Sun Block Room Pot 1" : "(((Small_Key_Spirit_Temple, 3) and is_adult) or (is_adult and spirit_temple_shortcuts)) or
-                (has_explosives or (Small_Key_Spirit_Temple, 3) or ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)) or
-                ((Small_Key_Spirit_Temple, 5) and has_explosives)",
-            "Spirit Temple Hall After Sun Block Room Pot 2" : "(((Small_Key_Spirit_Temple, 3) and is_adult) or (is_adult and spirit_temple_shortcuts)) or
-                (has_explosives or (Small_Key_Spirit_Temple, 3) or ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)) or
-                ((Small_Key_Spirit_Temple, 5) and has_explosives)",
+            "Spirit Temple Hall After Sun Block Room Pot 1" : "
+                (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
+                has_explosives or ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)",
+            "Spirit Temple Hall After Sun Block Room Pot 2" : "
+                (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
+                has_explosives or ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)",
             "Spirit Temple GS Hall After Sun Block Room": "
                 (is_child and Boomerang and
                     (Small_Key_Spirit_Temple, 5)) or
@@ -173,8 +169,12 @@
                     ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts)) or
                 (logic_spirit_lobby_gs and Boomerang and (Hookshot or Hover_Boots or logic_spirit_lobby_jump) and
                     (has_explosives or ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)))",
-            "Spirit Temple Central Chamber Flying Pot 1" : "True",
-            "Spirit Temple Central Chamber Flying Pot 2" : "True" 
+            "Spirit Temple Central Chamber Flying Pot 1" : "
+                (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
+                has_explosives or ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)",
+            "Spirit Temple Central Chamber Flying Pot 2" : "
+                (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
+                has_explosives or ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)"
         },
         "exits": {
             "Child Spirit Temple Climb": "True",
