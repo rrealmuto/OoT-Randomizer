@@ -60,7 +60,7 @@ class World(object):
         self.shuffle_dungeon_entrances = settings.shuffle_dungeon_entrances in ['simple', 'all']
 
         self.entrance_shuffle = (
-            self.shuffle_interior_entrances or settings.shuffle_grotto_entrances or settings.shuffle_dungeon_entrances
+            self.shuffle_interior_entrances or settings.shuffle_grotto_entrances or self.shuffle_dungeon_entrances
             or settings.shuffle_overworld_entrances or settings.owl_drops or settings.warp_songs
             or settings.spawn_positions or (settings.shuffle_bosses != 'off')
         )

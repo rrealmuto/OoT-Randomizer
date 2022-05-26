@@ -461,7 +461,7 @@ def shuffle_random_entrances(worlds):
                 # In glitchless, there aren't any other ways to access these areas
                 one_way_priorities['Bolero'] = priority_entrance_table['Bolero']
                 one_way_priorities['Nocturne'] = priority_entrance_table['Nocturne']
-                if not worlds[0].settings.shuffle_dungeon_entrances and not worlds[0].settings.shuffle_overworld_entrances:
+                if not worlds[0].shuffle_dungeon_entrances and not worlds[0].settings.shuffle_overworld_entrances:
                     one_way_priorities['Requiem'] = priority_entrance_table['Requiem']
 
         if worlds[0].settings.shuffle_bosses == 'full':
@@ -471,7 +471,7 @@ def shuffle_random_entrances(worlds):
             entrance_pools['ChildBoss'] = world.get_shufflable_entrances(type='ChildBoss', only_primary=True)
             entrance_pools['AdultBoss'] = world.get_shufflable_entrances(type='AdultBoss', only_primary=True)
 
-        if worlds[0].settings.shuffle_dungeon_entrances:
+        if worlds[0].shuffle_dungeon_entrances:
             entrance_pools['Dungeon'] = world.get_shufflable_entrances(type='Dungeon', only_primary=True)
             # The fill algorithm will already make sure gohma is reachable, however it can end up putting
             # a forest escape via the hands of spirit on Deku leading to Deku on spirit in logic. This is
@@ -741,7 +741,7 @@ def place_one_way_priority_entrance(worlds, world, priority_name, allowed_region
             if priority_name != 'Nocturne' or entrance.world.settings.hints == "mask":
                 continue
         # If not shuffling dungeons, Nocturne requires adult access.
-        if not entrance.world.settings.shuffle_dungeon_entrances and priority_name == 'Nocturne':
+        if not entrance.world.shuffle_dungeon_entrances and priority_name == 'Nocturne':
             if entrance.type != 'WarpSong' and entrance.parent_region.name != 'Adult Spawn':
                 continue
         for target in one_way_target_entrance_pools[entrance.type]:
