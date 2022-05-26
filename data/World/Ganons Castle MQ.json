@@ -1,5 +1,5 @@
 [
-	{
+    {
         "region_name": "Ganons Castle Lobby",
         "dungeon": "Ganons Castle",
         "exits": {
@@ -7,7 +7,7 @@
             "Ganons Castle Main": "here(is_adult or (Kokiri_Sword and (Sticks or has_explosives or Nuts or Boomerang)) or (has_explosives and (Sticks or ((Nuts or Boomerang) and Slingshot))))"
         }
     },
-	{
+    {
         "region_name": "Ganons Castle Main",
         "dungeon": "Ganons Castle",
         "exits": {
@@ -27,8 +27,6 @@
             "Ganons Castle Deku Scrubs": "logic_lens_castle_mq or can_use(Lens_of_Truth)"
         }
     },
-
-
     {
         "region_name": "Ganons Castle Deku Scrubs",
         "dungeon": "Ganons Castle",
