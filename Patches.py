@@ -993,7 +993,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         rom.write_int16(0xACAA2E, 0x0138) # 1st Impa escort
         rom.write_int16(0xD12D6E, 0x0138) # 2nd+ Impa escort
 
-    if world.settings.shuffle_dungeon_entrances:
+    if world.shuffle_dungeon_entrances:
         rom.write_byte(rom.sym('DUNGEONS_SHUFFLED'), 1)
 
         # Connect lake hylia fill exit to revisit exit
@@ -1016,7 +1016,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         rom.write_byte(0x021862E3, 0xC2)
 
     if (
-            world.settings.shuffle_overworld_entrances or world.settings.shuffle_dungeon_entrances
+            world.settings.shuffle_overworld_entrances or world.shuffle_dungeon_entrances
             or (world.settings.shuffle_bosses != 'off')
     ):
         # Remove deku sprout and drop player at SFM after forest completion
