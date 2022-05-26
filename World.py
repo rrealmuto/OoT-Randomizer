@@ -55,7 +55,7 @@ class World(object):
 
         self.shuffle_special_interior_entrances = settings.shuffle_interior_entrances == 'all'
         self.shuffle_interior_entrances = settings.shuffle_interior_entrances in ['simple', 'all']
-		
+
         self.shuffle_special_dungeon_entrances = settings.shuffle_dungeon_entrances == 'all'
         self.shuffle_dungeon_entrances = settings.shuffle_dungeon_entrances in ['simple', 'all']
 
