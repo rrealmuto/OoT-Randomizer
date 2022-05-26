@@ -19,17 +19,17 @@
             "Dodongos Cavern GS Scarecrow": "
                 (can_use(Scarecrow) or can_use(Longshot) or (logic_dc_scarecrow_gs and (is_adult or
                 (can_child_attack and (can_blast_or_smash or Progressive_Strength_Upgrade)))))",
-            "Dodongos Cavern Lower Lizalfos Hidden Recovery Heart": "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
-            "Dodongos Cavern Lower Lizalfos Pot 1" : "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
-            "Dodongos Cavern Lower Lizalfos Pot 2" : "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
-            "Dodongos Cavern Lower Lizalfos Pot 3" : "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
-            "Dodongos Cavern Lower Lizalfos Pot 4" : "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
-            "Dodongos Cavern Right Side Pot 1": "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
-            "Dodongos Cavern Right Side Pot 2": "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
-            "Dodongos Cavern Right Side Pot 3": "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
-            "Dodongos Cavern Right Side Pot 4": "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
-            "Dodongos Cavern Right Side Pot 5": "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
-            "Dodongos Cavern Right Side Pot 6": "here(can_blast_or_smash or Progressive_Strength_Upgrade) or is_adult",
+            "Dodongos Cavern Lower Lizalfos Hidden Recovery Heart": "is_adult or has_explosives or Progressive_Strength_Upgrade",
+            "Dodongos Cavern Lower Lizalfos Pot 1" : "is_adult or has_explosives or Progressive_Strength_Upgrade",
+            "Dodongos Cavern Lower Lizalfos Pot 2" : "is_adult or has_explosives or Progressive_Strength_Upgrade",
+            "Dodongos Cavern Lower Lizalfos Pot 3" : "is_adult or has_explosives or Progressive_Strength_Upgrade",
+            "Dodongos Cavern Lower Lizalfos Pot 4" : "is_adult or has_explosives or Progressive_Strength_Upgrade",
+            "Dodongos Cavern Right Side Pot 1": "is_adult or has_explosives or Progressive_Strength_Upgrade",
+            "Dodongos Cavern Right Side Pot 2": "is_adult or has_explosives or Progressive_Strength_Upgrade",
+            "Dodongos Cavern Right Side Pot 3": "is_adult or has_explosives or Progressive_Strength_Upgrade",
+            "Dodongos Cavern Right Side Pot 4": "is_adult or has_explosives or Progressive_Strength_Upgrade",
+            "Dodongos Cavern Right Side Pot 5": "is_adult or has_explosives or Progressive_Strength_Upgrade",
+            "Dodongos Cavern Right Side Pot 6": "is_adult or has_explosives or Progressive_Strength_Upgrade",
             "Dodongos Cavern Torch Room Pot 1": "
                 ((has_explosives or Progressive_Strength_Upgrade) and
                 (Slingshot or Sticks or Bombs or Kokiri_Sword)) or is_adult",
