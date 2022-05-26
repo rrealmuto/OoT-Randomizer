@@ -39,8 +39,8 @@
         },
         "locations": {
             "Ganons Castle Forest Trial Chest": "True",
-            "Ganons Castle Forest Trial Pot 1" : "can_use(Fire_Arrows) or (can_use(Dins_Fire) and can_use(Bow))",
-            "Ganons Castle Forest Trial Pot 2" : "can_use(Fire_Arrows) or (can_use(Dins_Fire) and can_use(Bow))"
+            "Ganons Castle Forest Trial Pot 1" : "can_use(Fire_Arrows) or (can_use(Dins_Fire) and (can_use(Bow) or can_use(Hookshot)))",
+            "Ganons Castle Forest Trial Pot 2" : "can_use(Fire_Arrows) or (can_use(Dins_Fire) and (can_use(Bow) or can_use(Hookshot)))"
         }
     },
     {
@@ -89,22 +89,25 @@
                 can_use(Fire_Arrows) or 
                 (can_use(Longshot) and (Hover_Boots or can_use(Dins_Fire)))",
             "Ganons Castle Shadow Trial Recovery Heart 1": 
-                "(logic_lens_castle or can_use(Lens_of_Truth)) and (
+                "((can_use(Longshot) or can_use(Fire_Arrows)) and can_use(Hover_Boots)) or
+                ((logic_lens_castle or can_use(Lens_of_Truth)) and (
                     can_use(Fire_Arrows) or 
-                    (can_use(Longshot) and (Hover_Boots or can_use(Dins_Fire))))",
+                    (can_use(Longshot) and can_use(Dins_Fire))))",
             "Ganons Castle Shadow Trial Recovery Heart 2": 
-                    "(logic_lens_castle or can_use(Lens_of_Truth)) and (
+                "((can_use(Longshot) or can_use(Fire_Arrows)) and can_use(Hover_Boots)) or
+                ((logic_lens_castle or can_use(Lens_of_Truth)) and (
                     can_use(Fire_Arrows) or 
-                    (can_use(Longshot) and (Hover_Boots or can_use(Dins_Fire))))",
+                    (can_use(Longshot) and can_use(Dins_Fire))))",
             "Ganons Castle Shadow Trial Recovery Heart 3": 
-                    "(logic_lens_castle or can_use(Lens_of_Truth)) and (
+                "((can_use(Longshot) or can_use(Fire_Arrows)) and can_use(Hover_Boots)) or
+                ((logic_lens_castle or can_use(Lens_of_Truth)) and (
                     can_use(Fire_Arrows) or 
-                    (can_use(Longshot) and (Hover_Boots or can_use(Dins_Fire))))",
+                    (can_use(Longshot) and can_use(Dins_Fire))))",
             "Ganons Castle Shadow Trial Like Like Pot 1" : "can_use(Fire_Arrows) or can_use(Longshot)",
             "Ganons Castle Shadow Trial Like Like Pot 2" : "can_use(Fire_Arrows) or can_use(Longshot)",
             "Ganons Castle Shadow Trial Pot 1" : "can_use(Megaton_Hammer) and 
-                ((Fire_Arrows and (logic_lens_castle or can_use(Lens_of_Truth))) or 
-                (can_use(Longshot) and (Hover_Boots or (Dins_Fire and (logic_lens_castle or can_use(Lens_of_Truth))))))",
+                ((can_use(Fire_Arrows) and (logic_lens_castle or can_use(Lens_of_Truth))) or 
+                (can_use(Longshot) and (can_use(Hover_Boots) or (can_use(Dins_Fire) and (logic_lens_castle or can_use(Lens_of_Truth))))))",
             "Ganons Castle Shadow Trial Pot 2" : "can_use(Megaton_Hammer) and 
                 ((Fire_Arrows and (logic_lens_castle or can_use(Lens_of_Truth))) or 
                 (can_use(Longshot) and (Hover_Boots or (Dins_Fire and (logic_lens_castle or can_use(Lens_of_Truth))))))"
