@@ -19,9 +19,9 @@
             "Fire Temple MQ Near Boss Pot 2": "
                 (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source and ((can_use(Hookshot)) or can_use(Hover_Boots))",
             "Fire Temple MQ Before Boss Left Crate 1": "
-                (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source",
+                is_adult and (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source",
             "Fire Temple MQ Before Boss Left Crate 2": "
-                (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source",
+                is_adult and (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source",
             "Fire Temple MQ Before Boss Right Lower Crate 1": "
                 (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source and ((can_use(Hookshot)) or can_use(Hover_Boots))",
             "Fire Temple MQ Before Boss Right Lower Crate 2": "
@@ -163,10 +163,10 @@
                 (can_use(Hookshot) and (Small_Key_Fire_Temple, 5)) or
                 (logic_fire_mq_above_maze_gs and can_use(Longshot))",
             "Fire Temple MQ Flame Maze Left Pot 1": "True",
-            "Fire Temple MQ Flame Maze Right Pot 1": "can_use(Hookshot) or logic_fire_mq_flame_maze",
-            "Fire Temple MQ Flame Maze Right Pot 2": "can_use(Hookshot) or logic_fire_mq_flame_maze",
-            "Fire Temple MQ Flame Maze Right Pot 3": "can_play(Song_of_Time) or Hover_Boots or logic_fire_mq_flame_maze",
-            "Fire Temple MQ Flame Maze Right Pot 4": "can_play(Song_of_Time) or Hover_Boots or logic_fire_mq_flame_maze"
+            "Fire Temple MQ Flame Maze Right Upper Pot 1": "can_use(Hookshot) or logic_fire_mq_flame_maze",
+            "Fire Temple MQ Flame Maze Right Upper Pot 2": "can_use(Hookshot) or logic_fire_mq_flame_maze",
+            "Fire Temple MQ Flame Maze Right Pot 1": "can_play(Song_of_Time) or Hover_Boots or logic_fire_mq_flame_maze",
+            "Fire Temple MQ Flame Maze Right Pot 2": "can_play(Song_of_Time) or Hover_Boots or logic_fire_mq_flame_maze"
         }
     }
 ]
