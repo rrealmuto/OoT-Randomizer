@@ -1086,8 +1086,8 @@ location_table = OrderedDict([
     ("Forest Temple MQ Courtyard Recovery Heart 2",                  ("Collectable",  0x03,  0x2E, None,                     'Recovery Heart',                        ("Forest Temple", "Master Quest", "Freestanding"))),
     ("Forest Temple MQ Courtyard Recovery Heart 3",                  ("Collectable",  0x03,  0x2F, None,                     'Recovery Heart',                        ("Forest Temple", "Master Quest", "Freestanding"))),
     ("Forest Temple MQ Well Recovery Heart 1",                       ("Collectable",  0x03,  0x38, None,                     'Recovery Heart',                        ("Forest Temple", "Master Quest", "Freestanding"))),
-    ("Forest Temple MQ Well Recovery Heart 2",                       ("Collectable",  0x03,  0x39, None,                     'Recovery Heart',                        ("Forest Temple", "Master Quest", "Freestanding"))),
-    ("Forest Temple MQ Well Recovery Heart 3",                       ("Collectable",  0x03,  0x3A, None,                     'Recovery Heart',                        ("Forest Temple", "Master Quest", "Freestanding"))),  
+    ("Forest Temple MQ Well Recovery Heart 2",                       ("Collectable",  0x03,  0x3F, ([0x24541f4],None),       'Recovery Heart',                        ("Forest Temple", "Master Quest", "Freestanding"))),
+    ("Forest Temple MQ Well Recovery Heart 3",                       ("Collectable",  0x03,  0x37, ([0x2454204],None),       'Recovery Heart',                        ("Forest Temple", "Master Quest", "Freestanding"))),  
     # Forest Temple MQ Pots
     ("Forest Temple MQ Center Room Right Pot 1", ("Collectable", 0x03, 0x20, None, 'Rupees (5)', ("Forest Temple", "Master Quest", "Pot"))),
     ("Forest Temple MQ Center Room Right Pot 2", ("Collectable", 0x03, 0x22, None, 'Recovery Heart', ("Forest Temple", "Master Quest", "Pot"))),
