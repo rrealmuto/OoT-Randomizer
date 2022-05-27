@@ -1018,7 +1018,7 @@
             "Sheik in Kakariko": "
                 is_adult and Forest_Medallion and Fire_Medallion and Water_Medallion",
             "Kak Anju as Adult": "is_adult and at_day",
-            "Kak Anju as Child": "is_child and at_day and can_bonk_crate",
+            "Kak Anju as Child": "is_child and at_day and (can_bonk_crate or chicken_count < 7)",
             "Kak GS House Under Construction": "is_child and at_night",
             "Kak GS Skulltula House": "is_child and at_night",
             "Kak GS Guards House": "is_child and at_night",
