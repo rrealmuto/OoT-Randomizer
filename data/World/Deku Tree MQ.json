@@ -40,9 +40,9 @@
                     (Bombs and (can_play(Song_of_Time) or is_adult)) or
                     (can_use(Megaton_Hammer) and (can_play(Song_of_Time) or logic_deku_mq_compass_gs)))",
             "Deku Tree MQ Compass Room Recovery Heart": "
-                here(has_bombchus or
+                has_bombchus or
                     (Bombs and (can_play(Song_of_Time) or is_adult)) or
-                    (can_use(Megaton_Hammer) and (can_play(Song_of_Time) or logic_deku_mq_compass_gs)))"
+                    (can_use(Megaton_Hammer) and (can_play(Song_of_Time) or logic_deku_mq_compass_gs))"
         },
         "exits": {
             "Deku Tree Lobby": "True"
@@ -97,9 +97,9 @@
         "dungeon": "Deku Tree",
         "locations": {
             "Deku Tree MQ Deku Scrub": "can_stun_deku",
-            "Deku Tree MQ Basement Recovery Heart 1" : "here(has_fire_source_with_torch) or deku_tree_shortcuts",
-            "Deku Tree MQ Basement Recovery Heart 2" : "here(has_fire_source_with_torch) or deku_tree_shortcuts",
-            "Deku Tree MQ Basement Recovery Heart 3" : "here(has_fire_source_with_torch) or deku_tree_shortcuts"
+            "Deku Tree MQ Basement Recovery Heart 1" : "has_fire_source_with_torch or deku_tree_shortcuts",
+            "Deku Tree MQ Basement Recovery Heart 2" : "has_fire_source_with_torch or deku_tree_shortcuts",
+            "Deku Tree MQ Basement Recovery Heart 3" : "has_fire_source_with_torch or deku_tree_shortcuts"
         },
         "exits" : {
             "Deku Tree Basement Back Room": "is_child",
