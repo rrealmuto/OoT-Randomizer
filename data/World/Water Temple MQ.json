@@ -4,19 +4,19 @@
         "dungeon": "Water Temple",
 
         "locations": {
-            "Water Temple MQ L1 Torch Pot 1": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))",
-            "Water Temple MQ L1 Torch Pot 2": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))",
-            "Water Temple MQ Lizalfos Hallway Pot 1": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))",
-            "Water Temple MQ Lizalfos Hallway Pot 2": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))",
-            "Water Temple MQ Lizalfos Hallway Pot 3": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))",
-            "Water Temple MQ Lizalfos Hallway Room Crate 1": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) or can_play(Zeldas_Lullaby))",
-            "Water Temple MQ Lizalfos Hallway Room Crate 2": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) or can_play(Zeldas_Lullaby))",
-            "Water Temple MQ Lizalfos Hallway Room Crate 3": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) or can_play(Zeldas_Lullaby))",
-            "Water Temple MQ Lizalfos Hallway Room Crate 4": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) or can_play(Zeldas_Lullaby))",
-            "Water Temple MQ Lizalfos Hallway Room Crate 5": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) or can_play(Zeldas_Lullaby))",
-            "Water Temple MQ Lizalfos Hallway Hall Crate 1": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) or can_play(Zeldas_Lullaby))",
-            "Water Temple MQ Lizalfos Hallway Hall Crate 2": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) or can_play(Zeldas_Lullaby))",
-            "Water Temple MQ Lizalfos Hallway Hall Crate 3": "at('Water Temple Dive', 'True') and (can_use(Iron_Boots) or can_play(Zeldas_Lullaby))"
+            "Water Temple MQ L1 Torch Pot 1": "at('Water Temple Dive', True) and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))",
+            "Water Temple MQ L1 Torch Pot 2": "at('Water Temple Dive', True) and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))",
+            "Water Temple MQ Lizalfos Hallway Pot 1": "at('Water Temple Dive', True) and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))",
+            "Water Temple MQ Lizalfos Hallway Pot 2": "at('Water Temple Dive', True) and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))",
+            "Water Temple MQ Lizalfos Hallway Pot 3": "at('Water Temple Dive', True) and (can_use(Iron_Boots) and (can_use(Hookshot) or can_play(Zeldas_Lullaby)))",
+            "Water Temple MQ Lizalfos Hallway Room Crate 1": "at('Water Temple Dive', True) and (can_use(Iron_Boots) or can_play(Zeldas_Lullaby))",
+            "Water Temple MQ Lizalfos Hallway Room Crate 2": "at('Water Temple Dive', True) and (can_use(Iron_Boots) or can_play(Zeldas_Lullaby))",
+            "Water Temple MQ Lizalfos Hallway Room Crate 3": "at('Water Temple Dive', True) and (can_use(Iron_Boots) or can_play(Zeldas_Lullaby))",
+            "Water Temple MQ Lizalfos Hallway Room Crate 4": "at('Water Temple Dive', True) and (can_use(Iron_Boots) or can_play(Zeldas_Lullaby))",
+            "Water Temple MQ Lizalfos Hallway Room Crate 5": "at('Water Temple Dive', True) and (can_use(Iron_Boots) or can_play(Zeldas_Lullaby))",
+            "Water Temple MQ Lizalfos Hallway Hall Crate 1": "at('Water Temple Dive', True) and (can_use(Iron_Boots) or can_play(Zeldas_Lullaby))",
+            "Water Temple MQ Lizalfos Hallway Hall Crate 2": "at('Water Temple Dive', True) and (can_use(Iron_Boots) or can_play(Zeldas_Lullaby))",
+            "Water Temple MQ Lizalfos Hallway Hall Crate 3": "at('Water Temple Dive', True) and (can_use(Iron_Boots) or can_play(Zeldas_Lullaby))"
         },
         "exits": {
             "Lake Hylia": "True",
