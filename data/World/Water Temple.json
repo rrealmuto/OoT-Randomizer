@@ -14,11 +14,11 @@
         "locations": {
             "Fairy Pot": "Raise_Water_Level and has_bottle and can_use(Longshot)",
             "Water Temple Main Room L2 Pot 1" : "
-                at('Water Temple Dive', 'can_play(Zeldas_Lullaby') or
+                at('Water Temple Dive', can_play(Zeldas_Lullaby)) or
                 ((can_use(Iron_Boots) or (Progressive_Scale, 2)) and (can_use(Bow) or can_use(Hookshot) or can_use(Slingshot)))
                 or can_use(Boomerang)", 
             "Water Temple Main Room L2 Pot 2" : "
-                at('Water Temple Dive', 'can_play(Zeldas_Lullaby') or
+                at('Water Temple Dive', can_play(Zeldas_Lullaby)) or
                 ((can_use(Iron_Boots) or (Progressive_Scale, 2)) and (can_use(Bow) or can_use(Hookshot) or can_use(Slingshot)))
                 or can_use(Boomerang)"
         },
