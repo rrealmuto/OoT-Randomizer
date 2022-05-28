@@ -144,10 +144,10 @@
                 (can_use(Zora_Tunic) or logic_fewer_tunic_requirements) and can_use(Dins_Fire) and
                 (logic_water_dragon_jump_dive or can_dive or can_use(Iron_Boots))",
             "Water Temple MQ GS River": "True",
-            "Water Tempe MQ Before Dark Link Top Pot 1": "True",
-            "Water Tempe MQ Before Dark Link Top Pot 2": "True",
-            "Water Tempe MQ Before Dark Link Lower Pot": "True",
-            "Water Tempe MQ Room After Dark Link Pot": "True",
+            "Water Temple MQ Before Dark Link Top Pot 1": "True",
+            "Water Temple MQ Before Dark Link Top Pot 2": "True",
+            "Water Temple MQ Before Dark Link Lower Pot": "True",
+            "Water Temple MQ Room After Dark Link Pot": "True",
             "Water Temple MQ Boss Key Chest Room Pot": "
                 (can_use(Zora_Tunic) or logic_fewer_tunic_requirements) and has_fire_source and
                 (logic_water_dragon_jump_dive or can_dive or can_use(Iron_Boots))",

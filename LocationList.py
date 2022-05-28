@@ -1312,12 +1312,12 @@ location_table = OrderedDict([
     ("Water Temple MQ Storage Room Pot 1", ("Collectable", 0x05, 0x20, None, 'Recovery Heart', ("Water Temple", "Master Quest", "Pot"))),
     ("Water Temple MQ Storage Room Pot 2", ("Collectable", 0x05, 0x28, None, 'Recovery Heart', ("Water Temple", "Master Quest", "Pot"))),
     ("Water Temple MQ Storage Room Pot 3", ("Collectable", 0x05, 0x27, None, 'Recovery Heart', ("Water Temple", "Master Quest", "Pot"))),
-    ("Water Tempe MQ Before Dark Link Top Pot 1", ("Collectable", 0x05, 0x2B, None, 'Rupees (5)', ("Water Temple", "Master Quest", "Pot"))),
-    ("Water Tempe MQ Before Dark Link Top Pot 2", ("Collectable", 0x05, 0x2C, None, 'Rupees (5)', ("Water Temple", "Master Quest", "Pot"))),
-    ("Water Tempe MQ Before Dark Link Lower Pot", ("Collectable", 0x05, 0x2D, None, 'Deku Nuts (5)', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Temple MQ Before Dark Link Top Pot 1", ("Collectable", 0x05, 0x2B, None, 'Rupees (5)', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Temple MQ Before Dark Link Top Pot 2", ("Collectable", 0x05, 0x2C, None, 'Rupees (5)', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Temple MQ Before Dark Link Lower Pot", ("Collectable", 0x05, 0x2D, None, 'Deku Nuts (5)', ("Water Temple", "Master Quest", "Pot"))),
     #("Water Tempe MQ Before Dark Link Lower Pot 2", ("Collectable", 0x05, 0x2E, None, 'N/A', ("Water Temple", "Master Quest", "Pot")))
     #("Water Tempe MQ Before Dark Link Lower Pot 3", ("Collectable", 0x05, 0x30, None, 'N/A', ("Water Temple", "Master Quest", "Pot")))
-    ("Water Tempe MQ Room After Dark Link Pot", ("Collectable", 0x05, 0x32, None, 'Arrows (30)', ("Water Temple", "Master Quest", "Pot"))),
+    ("Water Temple MQ Room After Dark Link Pot", ("Collectable", 0x05, 0x32, None, 'Arrows (30)', ("Water Temple", "Master Quest", "Pot"))),
     #("Water Tempe MQ Room After Dark Link Pot 2", ("Collectable", 0x05, 0x33, None, 'N/A', ("Water Temple", "Master Quest", "Pot")))
     ("Water Temple MQ Boss Key Chest Room Pot", ("Collectable", 0x05, 0x34, None, 'Rupees (5)', ("Water Temple", "Master Quest", "Pot"))),
     ("Water Temple MQ Before Upper Water Switch Pot 1", ("Collectable", 0x05, 0x38, None, 'Recovery Heart', ("Water Temple", "Master Quest", "Pot"))),
