@@ -233,9 +233,6 @@ class WorldDistribution(object):
 
 
     def update(self, src_dict, update_all=False):
-        if 'starting_items' in src_dict:
-            raise ValueError('"starting_items" at the top level is no longer supported, please move it into "settings"')
-
         update_dict = {
             'randomized_settings': {name: record for (name, record) in src_dict.get('randomized_settings', {}).items()},
             'dungeons': {name: DungeonRecord(record) for (name, record) in src_dict.get('dungeons', {}).items()},
@@ -1018,10 +1015,13 @@ class Distribution(object):
         self.search_groups = {
             **location_groups,
             **item_groups,
-        } 
-        if self.src_dict and 'custom_groups' in self.src_dict:
-            self.search_groups.update(self.src_dict['custom_groups'])
-        
+        }
+        if self.src_dict:
+            if 'custom_groups' in self.src_dict:
+                self.search_groups.update(self.src_dict['custom_groups'])
+            if 'starting_items' in self.src_dict:
+                raise ValueError('"starting_items" at the top level is no longer supported, please move it into "settings"')
+
         self.world_dists = [WorldDistribution(self, id) for id in range(settings.world_count)]
         # One-time init
         update_dict = {
