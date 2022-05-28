@@ -10,6 +10,7 @@ This branch is available to use online at <https://ootrandomizer.com/generatorDe
 
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
+* Missing goal hints with some combinations of win conditions are added ([#1578](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1578))
 * A bug that caused seeds with gold skulltula tokens plando'd as starting items to fail is fixed ([#1568](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1568))
 * The behavior of the “Dungeon Boss Shortcuts” setting with respect to the bombable floor in King Dodongo's boss room is fixed ([#1566](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1566))
 * The total number of small keys collected for a dungeon is displayed in the pause menu ([#1563](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1563))

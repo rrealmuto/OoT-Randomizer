@@ -719,16 +719,16 @@ class World(object):
                     and (self.settings.lacs_stones > self.settings.bridge_stones or self.settings.bridge != 'stones'))
                 or (self.settings.ganon_bosskey_rewards > 0
                     and self.settings.shuffle_ganon_bosskey == 'dungeons'
-                    and ((self.settings.ganon_bosskey_rewards > self.settings.bridge_medallions and self.settings.bridge == 'medallions')
-                            or (self.settings.ganon_bosskey_rewards > self.settings.bridge_stones and self.settings.bridge == 'stones')
-                            or (self.settings.ganon_bosskey_rewards > self.settings.bridge_rewards and self.settings.bridge == 'dungeons')
-                            or (self.settings.ganon_bosskey_rewards > 2 and self.settings.bridge == 'vanilla')))
+                    and (self.settings.ganon_bosskey_rewards > self.settings.bridge_medallions or self.settings.bridge != 'medallions')
+                    and (self.settings.ganon_bosskey_rewards > self.settings.bridge_stones or self.settings.bridge != 'stones')
+                    and (self.settings.ganon_bosskey_rewards > self.settings.bridge_rewards or self.settings.bridge != 'dungeons')
+                    and (self.settings.ganon_bosskey_rewards > 2 or self.settings.bridge != 'vanilla'))
                 or (self.settings.lacs_rewards > 0
                     and self.settings.shuffle_ganon_bosskey == 'on_lacs' and self.settings.lacs_condition == 'dungeons'
-                    and ((self.settings.lacs_rewards > self.settings.bridge_medallions and self.settings.bridge == 'medallions')
-                            or (self.settings.lacs_rewards > self.settings.bridge_stones and self.settings.bridge == 'stones')
-                            or (self.settings.lacs_rewards > self.settings.bridge_rewards and self.settings.bridge == 'dungeons')
-                            or (self.settings.lacs_rewards > 2 and self.settings.bridge == 'vanilla')))):
+                    and (self.settings.lacs_rewards > self.settings.bridge_medallions or self.settings.bridge != 'medallions')
+                    and (self.settings.lacs_rewards > self.settings.bridge_stones or self.settings.bridge != 'stones')
+                    and (self.settings.lacs_rewards > self.settings.bridge_rewards or self.settings.bridge != 'dungeons')
+                    and (self.settings.lacs_rewards > 2 or self.settings.bridge != 'vanilla'))):
                 gbk.add_goal(Goal(self, 'Kokiri Emerald', { 'replace': 'Kokiri Emerald' }, 'Yellow', items=[{'name': 'Kokiri Emerald', 'quantity': 1, 'minimum': 1, 'hintable': True}]))
                 gbk.add_goal(Goal(self, 'Goron Ruby', { 'replace': 'Goron Ruby' }, 'Yellow', items=[{'name': 'Goron Ruby', 'quantity': 1, 'minimum': 1, 'hintable': True}]))
                 gbk.add_goal(Goal(self, 'Zora Sapphire', { 'replace': 'Zora Sapphire' }, 'Yellow', items=[{'name': 'Zora Sapphire', 'quantity': 1, 'minimum': 1, 'hintable': True}]))
@@ -746,16 +746,16 @@ class World(object):
                     and (self.settings.lacs_medallions > 2 or self.settings.bridge != 'vanilla'))
                 or (self.settings.ganon_bosskey_rewards > 0
                     and self.settings.shuffle_ganon_bosskey == 'dungeons'
-                    and ((self.settings.ganon_bosskey_rewards > self.settings.bridge_medallions and self.settings.bridge == 'medallions')
-                            or (self.settings.ganon_bosskey_rewards > self.settings.bridge_stones and self.settings.bridge == 'stones')
-                            or (self.settings.ganon_bosskey_rewards > self.settings.bridge_rewards and self.settings.bridge == 'dungeons')
-                            or (self.settings.ganon_bosskey_rewards > 2 and self.settings.bridge == 'vanilla')))
+                    and (self.settings.ganon_bosskey_rewards > self.settings.bridge_medallions or self.settings.bridge != 'medallions')
+                    and (self.settings.ganon_bosskey_rewards > self.settings.bridge_stones or self.settings.bridge != 'stones')
+                    and (self.settings.ganon_bosskey_rewards > self.settings.bridge_rewards or self.settings.bridge != 'dungeons')
+                    and (self.settings.ganon_bosskey_rewards > 2 or self.settings.bridge != 'vanilla'))
                 or (self.settings.lacs_rewards > 0
                     and self.settings.shuffle_ganon_bosskey == 'on_lacs' and self.settings.lacs_condition == 'dungeons'
-                    and ((self.settings.lacs_rewards > self.settings.bridge_medallions and self.settings.bridge == 'medallions')
-                            or (self.settings.lacs_rewards > self.settings.bridge_stones and self.settings.bridge == 'stones')
-                            or (self.settings.lacs_rewards > self.settings.bridge_rewards and self.settings.bridge == 'dungeons')
-                            or (self.settings.lacs_rewards > 2 and self.settings.bridge == 'vanilla')))):
+                    and (self.settings.lacs_rewards > self.settings.bridge_medallions or self.settings.bridge != 'medallions')
+                    and (self.settings.lacs_rewards > self.settings.bridge_stones or self.settings.bridge != 'stones')
+                    and (self.settings.lacs_rewards > self.settings.bridge_rewards or self.settings.bridge != 'dungeons')
+                    and (self.settings.lacs_rewards > 2 or self.settings.bridge != 'vanilla'))):
                 gbk.add_goal(Goal(self, 'Forest Medallion', { 'replace': 'Forest Medallion' }, 'Green', items=[{'name': 'Forest Medallion', 'quantity': 1, 'minimum': 1, 'hintable': True}]))
                 gbk.add_goal(Goal(self, 'Fire Medallion', { 'replace': 'Fire Medallion' }, 'Red', items=[{'name': 'Fire Medallion', 'quantity': 1, 'minimum': 1, 'hintable': True}]))
                 gbk.add_goal(Goal(self, 'Water Medallion', { 'replace': 'Water Medallion' }, 'Blue', items=[{'name': 'Water Medallion', 'quantity': 1, 'minimum': 1, 'hintable': True}]))
