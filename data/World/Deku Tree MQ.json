@@ -11,7 +11,7 @@
             "Deku Tree MQ Slingshot Room Recovery Heart": "True",
             "Deku Tree MQ Slingshot Room Crate 1": "True",
             "Deku Tree MQ Slingshot Room Crate 2": "True",
-            "Deku Tree MQ Near Compass Room Recovery Heart": "has_fire_source_with_torch",
+            "Deku Tree MQ Near Compass Room Recovery Heart": "has_fire_source_with_torch or can_use(Bow)",
             "Deku Tree MQ Basement Chest": "has_fire_source_with_torch or can_use(Bow)",
             "Deku Tree MQ GS Lobby": "is_adult or can_child_attack",
             "Deku Baba Sticks": "is_adult or Kokiri_Sword or Boomerang",
