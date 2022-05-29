@@ -120,10 +120,10 @@
             "Spirit Temple MQ Central Chamber Floor Pot 3": "True",
             "Spirit Temple MQ Central Chamber Top Left Pot (Left)": "can_use(Hover_Boots) or can_play(Song_of_Time) or logic_spirit_lobby_jump",
             "Spirit Temple MQ Central Chamber Top Left Pot (Right)": "
-                can_use(Hover_Boots) or 
-                can_play(Song_of_Time) or 
-                ((Small_Key_Spirit_Temple, 7) and (can_use(Kokiri_Sword) or can_use(Deku_Sticks)) and can_use(Boomerang)) or 
-                logic_spirit_lobby_jump",
+                (is_child and Boomerang and (Kokiri_Sword or Sticks) and (Small_Key_Spirit_Temple, 7)) or
+                (is_adult and (Hover_Boots or logic_spirit_lobby_jump)) or
+                can_play(Song_of_Time) or
+                (Boomerang and (Kokiri_Sword or Sticks) and (Hover_Boots or logic_spirit_lobby_jump))",
             "Spirit Temple MQ Central Chamber Crate 1": "True",
             "Spirit Temple MQ Central Chamber Crate 2": "True",
             "Spirit Temple MQ Sun Block Room Pot 1": "
