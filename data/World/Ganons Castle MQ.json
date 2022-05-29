@@ -96,9 +96,9 @@
                 Bow and (logic_lens_castle_mq or can_use(Lens_of_Truth)) and 
                 (Hover_Boots or (Progressive_Hookshot and (has_fire_source or logic_shadow_trial_mq)))",
             "Ganons Castle MQ Shadow Trial Pot 1" : "(logic_lens_castle_mq or can_use(Lens_of_Truth)) and 
-            (Hover_Boots or (Progressive_Hookshot and (has_fire_source or logic_shadow_trial_mq)))",
+            (Hover_Boots or (Progressive_Hookshot and (has_fire_source or (Bow and logic_shadow_trial_mq))))",
             "Ganons Castle MQ Shadow Trial Pot 2" : "(logic_lens_castle_mq or can_use(Lens_of_Truth)) and 
-            (Hover_Boots or (Progressive_Hookshot and (has_fire_source or logic_shadow_trial_mq)))"
+            (Hover_Boots or (Progressive_Hookshot and (has_fire_source or (Bow and logic_shadow_trial_mq))))"
         }
     },
     {
@@ -126,8 +126,8 @@
             "Ganons Castle MQ Spirit Trial Sun Back Right Chest": "
                 Megaton_Hammer and has_bombchus and 
                 can_use(Fire_Arrows) and Mirror_Shield",
-            "Ganons Castle MQ Spirit Trial Pot 1": "Megaton_Hammer and has_bombchus and Fire_Arrows and Mirror_Shield",
-            "Ganons Castle MQ Spirit Trial Pot 2": "Megaton_Hammer and has_bombchus and Fire_Arrows and Mirror_Shield",
+            "Ganons Castle MQ Spirit Trial Pot 1": "Megaton_Hammer and has_bombchus and can_use(Fire_Arrows) and Mirror_Shield",
+            "Ganons Castle MQ Spirit Trial Pot 2": "Megaton_Hammer and has_bombchus and can_use(Fire_Arrows) and Mirror_Shield",
             "Nut Pot": "
                 Megaton_Hammer and has_bombchus and
                 can_use(Fire_Arrows) and Mirror_Shield"
@@ -144,8 +144,8 @@
         },
         "locations": {
             "Ganons Castle MQ Light Trial Lullaby Chest": "can_play(Zeldas_Lullaby)",
-            "Ganons Castle MQ Light Trial Recovery Heart 1": "(Small_Key_Ganons_Castle, 3) and (Progressive_Hookshot or logic_light_trial_mq)",
-            "Ganons Castle MQ Light Trial Recovery Heart 2": "(Small_Key_Ganons_Castle, 3) and (Progressive_Hookshot or logic_light_trial_mq)",
+            "Ganons Castle MQ Light Trial Recovery Heart 1": "(Small_Key_Ganons_Castle, 2) and (Progressive_Hookshot or logic_light_trial_mq)",
+            "Ganons Castle MQ Light Trial Recovery Heart 2": "(Small_Key_Ganons_Castle, 2) and (Progressive_Hookshot or logic_light_trial_mq)",
             "Ganons Castle MQ Light Trial Pot 1" : " (Small_Key_Ganons_Castle, 3) and
             (logic_lens_castle_mq or can_use(Lens_of_Truth)) and
             (Progressive_Hookshot or logic_light_trial_mq)",
