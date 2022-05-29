@@ -35,10 +35,10 @@
             "Shadow Temple MQ Whispering Walls Pot 2": "True",
             "Shadow Temple MQ Compass Room Pot 1": "True",
             "Shadow Temple MQ Compass Room Pot 2": "True",
-            "Shadow Temple MQ Whispering Walls Flying Pot 1": "can_play(Song_of_Time)",
-            "Shadow Temple MQ Whispering Walls Flying Pot 2": "True",
-            "Shadow Temple MQ Whispering Walls Flying Pot 3": "can_play(Song_of_Time)",
-            "Shadow Temple MQ Whispering Walls Flying Pot 4": "True"
+            "Shadow Temple MQ Whispering Walls After Time Block Flying Pot 1": "can_play(Song_of_Time)",
+            "Shadow Temple MQ Whispering Walls After Time Block Flying Pot 2": "can_play(Song_of_Time)",
+            "Shadow Temple MQ Whispering Walls Before Time Block Flying Pot 1": "True",
+            "Shadow Temple MQ Whispering Walls Before Time Block Flying Pot 2": "True"
         }
     },
     {
@@ -73,9 +73,7 @@
                 (not shadow_temple_shortcuts or (Small_Key_Shadow_Temple, 6) or
                     ((logic_lens_shadow_mq_platform or can_use(Lens_of_Truth)) and Hover_Boots)) and
                 (can_play(Song_of_Time) or
-                    (logic_shadow_mq_invisible_blades and damage_multiplier != 'ohko')) and
-                (logic_lens_shadow_mq_invisible_blades or can_use(Lens_of_Truth) or
-                    can_use(Nayrus_Love))",
+                    (logic_shadow_mq_invisible_blades and damage_multiplier != 'ohko'))",
             "Shadow Temple Lower Huge Pit": "has_fire_source or logic_shadow_mq_huge_pit"
         }
     },
@@ -83,10 +81,14 @@
         "region_name": "Shadow Temple Invisible Blades",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple MQ Invisible Blades Visible Chest": "True",
-            "Shadow Temple MQ Invisible Blades Invisible Chest": "True",
-            "Shadow Temple MQ Invisible Blades Recovery Heart 1": "can_play(Song_of_Time)",
-            "Shadow Temple MQ Invisible Blades Recovery Heart 2": "can_play(Song_of_Time)"
+            "Shadow Temple MQ Invisible Blades Visible Chest": "
+            (logic_lens_shadow_mq_invisible_blades or can_use(Lens_of_Truth) or
+            can_use(Nayrus_Love))",
+            "Shadow Temple MQ Invisible Blades Invisible Chest": "
+            (logic_lens_shadow_mq_invisible_blades or can_use(Lens_of_Truth) or
+            can_use(Nayrus_Love))",
+            "Shadow Temple MQ Invisible Blades Recovery Heart 1": "True",
+            "Shadow Temple MQ Invisible Blades Recovery Heart 2": "True"
         }
     },
     {
