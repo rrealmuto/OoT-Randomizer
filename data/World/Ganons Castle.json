@@ -131,9 +131,9 @@
                 (logic_spirit_trial_hookshot or Progressive_Hookshot) and
                 has_bombchus and Bow and Mirror_Shield",
             "Ganons Castle Spirit Trial Recovery Heart": "True",
-            "Ganons Castle Spirit Trial Pot 1" : "can_use(Mirror_Shield) and has_bombchus and
+            "Ganons Castle Spirit Trial Pot 1" : "can_use(Bow) and can_use(Mirror_Shield) and has_bombchus and
                 (logic_spirit_trial_hookshot or Progressive_Hookshot)",
-            "Ganons Castle Spirit Trial Pot 2" : "can_use(Mirror_Shield) and has_bombchus and
+            "Ganons Castle Spirit Trial Pot 2" : "can_use(Bow) and can_use(Mirror_Shield) and has_bombchus and
                 (logic_spirit_trial_hookshot or Progressive_Hookshot)"
         }
     },
