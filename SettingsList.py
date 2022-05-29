@@ -439,6 +439,8 @@ logic_tricks = {
                     without needing one of Hookshot or Hover Boots:
                     - Spirit Temple Statue Room Northeast Chest
                     - Spirit Temple GS Lobby
+                    - Spirit Temple MQ Central Chamber Top Left Pot 1
+                    - Spirit Temple MQ Central Chamber Top Left Pot 2
                     '''},
     'Spirit Temple Main Room Hookshot to Boss Platform': {
         'name'    : 'logic_spirit_platform_hookshot',

@@ -26,8 +26,8 @@
         "region_name": "Child Spirit Temple",
         "dungeon": "Spirit Temple",
         "locations": {
-            "Spirit Temple MQ Child Recovery Heart 1" : "can_use(Slingshot)",
-            "Spirit Temple MQ Child Recovery Heart 2" : "can_use(Slingshot)",
+            "Spirit Temple MQ Child Recovery Heart 1" : "can_use(Slingshot) or can_use(Boomerang)",
+            "Spirit Temple MQ Child Recovery Heart 2" : "can_use(Slingshot) or can_use(Boomerang)",
             "Spirit Temple MQ Child Hammer Switch Chest": "
                 at('Adult Spirit Temple', (Small_Key_Spirit_Temple, 7) and Megaton_Hammer)",
             "Spirit Temple MQ Map Room Enemy Chest": "
@@ -118,8 +118,12 @@
             "Spirit Temple MQ Central Chamber Floor Pot 1": "True",
             "Spirit Temple MQ Central Chamber Floor Pot 2": "True",
             "Spirit Temple MQ Central Chamber Floor Pot 3": "True",
-            "Spirit Temple MQ Central Chamber Top Left Pot 1": "can_use(Hover_Boots) or can_play(Song_of_Time)",
-            "Spirit Temple MQ Central Chamber Top Left Pot 2": "can_use(Hover_Boots) or can_play(Song_of_Time)",
+            "Spirit Temple MQ Central Chamber Top Left Pot (Left)": "can_use(Hover_Boots) or can_play(Song_of_Time) or logic_spirit_lobby_jump",
+            "Spirit Temple MQ Central Chamber Top Left Pot (Right)": "
+            can_use(Hover_Boots) or 
+            can_play(Song_of_Time) or 
+            ((Small_Key_Spirit_Temple, 7) and (can_use(Kokiri_Sword) or can_use(Deku_Sticks)) and can_use(Boomerang)) or 
+            logic_spirit_lobby_jump",
             "Spirit Temple MQ Central Chamber Crate 1": "True",
             "Spirit Temple MQ Central Chamber Crate 2": "True",
             "Spirit Temple MQ Sun Block Room Pot 1": "
