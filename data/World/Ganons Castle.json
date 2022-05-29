@@ -109,8 +109,8 @@
                 ((can_use(Fire_Arrows) and (logic_lens_castle or can_use(Lens_of_Truth))) or 
                 (can_use(Longshot) and (can_use(Hover_Boots) or (can_use(Dins_Fire) and (logic_lens_castle or can_use(Lens_of_Truth))))))",
             "Ganons Castle Shadow Trial Pot 2" : "can_use(Megaton_Hammer) and 
-                ((Fire_Arrows and (logic_lens_castle or can_use(Lens_of_Truth))) or 
-                (can_use(Longshot) and (Hover_Boots or (Dins_Fire and (logic_lens_castle or can_use(Lens_of_Truth))))))"
+                ((can_use(Fire_Arrows) and (logic_lens_castle or can_use(Lens_of_Truth))) or 
+                (can_use(Longshot) and (Hover_Boots or (can_use(Dins_Fire) and (logic_lens_castle or can_use(Lens_of_Truth))))))"
         }
     },
     {
