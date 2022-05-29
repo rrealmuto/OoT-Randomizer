@@ -59,21 +59,21 @@ void Sram_WriteSave(SramContext* sramCtx)
 
     //Write the base SaveContext data to the main slot
     offset = SRAM_SLOTS[z64_file.file_index];
-    SsSram_ReadWrite(SRAM_BASE + offset, &z64_file, SRAM_ORIGINAL_SLOT_SIZE, OS_WRITE);
+    SsSram_ReadWrite_Safe(SRAM_BASE + offset, &z64_file, SRAM_ORIGINAL_SLOT_SIZE, OS_WRITE);
 
     //Write the base SaveContext data to the backup slot
     offset = SRAM_SLOTS[z64_file.file_index + 3];
-    SsSram_ReadWrite(SRAM_BASE + offset, &z64_file, SRAM_ORIGINAL_SLOT_SIZE, OS_WRITE);
+    SsSram_ReadWrite_Safe(SRAM_BASE + offset, &z64_file, SRAM_ORIGINAL_SLOT_SIZE, OS_WRITE);
 
     //Write the collectible flags to the back of the main slot
     uint16_t slot_offset = SRAM_SLOTS[z64_file.file_index] + SLOT_SIZE - (4*num_override_flags + 4*num_drop_override_flags);
-    SsSram_ReadWrite(SRAM_BASE + slot_offset, collectible_override_flags, 4*num_override_flags, OS_WRITE);
-    SsSram_ReadWrite(SRAM_BASE + slot_offset + 4*num_override_flags, dropped_collectible_override_flags, 4*num_drop_override_flags, OS_WRITE);
+    SsSram_ReadWrite_Safe(SRAM_BASE + slot_offset, collectible_override_flags, 4*num_override_flags, OS_WRITE);
+    SsSram_ReadWrite_Safe(SRAM_BASE + slot_offset + 4*num_override_flags, dropped_collectible_override_flags, 4*num_drop_override_flags, OS_WRITE);
 
     //Write the collectible flags to the back of the backup slot
     slot_offset = SRAM_SLOTS[z64_file.file_index + 3] + SLOT_SIZE - (4*num_override_flags + 4*num_drop_override_flags);
-    SsSram_ReadWrite(SRAM_BASE + slot_offset, collectible_override_flags, 4*num_override_flags, OS_WRITE);
-    SsSram_ReadWrite(SRAM_BASE + slot_offset + 4*num_override_flags, dropped_collectible_override_flags, 4*num_drop_override_flags, OS_WRITE);
+    SsSram_ReadWrite_Safe(SRAM_BASE + slot_offset, collectible_override_flags, 4*num_override_flags, OS_WRITE);
+    SsSram_ReadWrite_Safe(SRAM_BASE + slot_offset + 4*num_override_flags, dropped_collectible_override_flags, 4*num_drop_override_flags, OS_WRITE);
 }
 
 //Override the Sram_VerifyAndLoadAllSaves function. Only check our new 2 slots (and their backups).
@@ -91,7 +91,7 @@ void Sram_VerifyAndLoadAllSaves(z64_FileChooseContext_t* fileChooseCtx, SramCont
 
     //Read SRAM to RAM buffer
     z64_bzero(sramCtx->readBuff, SRAM_SIZE);
-    SsSram_ReadWrite(SRAM_BASE, sramCtx->readBuff, SRAM_SIZE, OS_READ);
+    SsSram_ReadWrite_Safe(SRAM_BASE, sramCtx->readBuff, SRAM_SIZE, OS_READ);
 
     dayTime = ((void)0, z64_file.day_time);
 
@@ -165,22 +165,22 @@ void Sram_VerifyAndLoadAllSaves(z64_FileChooseContext_t* fileChooseCtx, SramCont
                 z64_file.checksum = newChecksum;
 
                 i = SRAM_SLOTS[slotNum + 3];
-                SsSram_ReadWrite(SRAM_BASE + i, &z64_file, SRAM_ORIGINAL_SLOT_SIZE, OS_WRITE);
+                SsSram_ReadWrite_Safe(SRAM_BASE + i, &z64_file, SRAM_ORIGINAL_SLOT_SIZE, OS_WRITE);
                 z64_bzero(collectible_override_flags, 4*num_override_flags);
                 z64_bzero(dropped_collectible_override_flags, 4*num_drop_override_flags);
             }
 
             i = SRAM_SLOTS[slotNum];
-            SsSram_ReadWrite(SRAM_BASE + i, &z64_file, SRAM_ORIGINAL_SLOT_SIZE, OS_WRITE);
+            SsSram_ReadWrite_Safe(SRAM_BASE + i, &z64_file, SRAM_ORIGINAL_SLOT_SIZE, OS_WRITE);
 
             uint16_t slot_offset = i + SLOT_SIZE - (4*num_override_flags + 4*num_drop_override_flags);
-            SsSram_ReadWrite(SRAM_BASE + slot_offset, collectible_override_flags, 4*num_override_flags, OS_WRITE);
-            SsSram_ReadWrite(SRAM_BASE + slot_offset + 4*num_override_flags, dropped_collectible_override_flags, 4*num_drop_override_flags, OS_WRITE);
+            SsSram_ReadWrite_Safe(SRAM_BASE + slot_offset, collectible_override_flags, 4*num_override_flags, OS_WRITE);
+            SsSram_ReadWrite_Safe(SRAM_BASE + slot_offset + 4*num_override_flags, dropped_collectible_override_flags, 4*num_drop_override_flags, OS_WRITE);
         } 
     }
 
     z64_bzero(sramCtx->readBuff, SRAM_SIZE);
-    SsSram_ReadWrite(SRAM_BASE, sramCtx->readBuff, SRAM_SIZE, OS_READ);
+    SsSram_ReadWrite_Safe(SRAM_BASE, sramCtx->readBuff, SRAM_SIZE, OS_READ);
     z64_file.day_time = dayTime;
 
     
@@ -222,7 +222,7 @@ void Sram_CopySave(z64_FileChooseContext_t* fileChooseCtx, SramContext* sramCtx)
     dst_offset = SRAM_SLOTS[fileChooseCtx->copyDestFileIndex + 3];
     z64_memcopy(sramCtx->readBuff + dst_offset,sramCtx->readBuff + src_offset, SLOT_SIZE);
 
-    SsSram_ReadWrite(SRAM_BASE, sramCtx->readBuff, SRAM_SIZE, OS_WRITE);
+    SsSram_ReadWrite_Safe(SRAM_BASE, sramCtx->readBuff, SRAM_SIZE, OS_WRITE);
 
     dst_offset = SRAM_SLOTS[fileChooseCtx->copyDestFileIndex];
 
@@ -245,12 +245,12 @@ void Sram_CopySave(z64_FileChooseContext_t* fileChooseCtx, SramContext* sramCtx)
 void Save_Write_Hook(uint32_t addr, void* dramAddr, size_t size, uint32_t direction)
 {
     //Save the original data to SRAM
-    SsSram_ReadWrite(addr, dramAddr, size, direction);
+    SsSram_ReadWrite_Safe(addr, dramAddr, size, direction);
     
     //Save some additional data to the end of the slot SRAM
     uint16_t slot_offset = SRAM_SLOTS[z64_file.file_index] + SLOT_SIZE - (4*num_override_flags + 4*num_drop_override_flags);
-    SsSram_ReadWrite(SRAM_BASE + slot_offset, collectible_override_flags, 4*num_override_flags, direction);
-    SsSram_ReadWrite(SRAM_BASE + slot_offset + 4*num_override_flags, dropped_collectible_override_flags, 4*num_drop_override_flags, direction);
+    SsSram_ReadWrite_Safe(SRAM_BASE + slot_offset, collectible_override_flags, 4*num_override_flags, direction);
+    SsSram_ReadWrite_Safe(SRAM_BASE + slot_offset + 4*num_override_flags, dropped_collectible_override_flags, 4*num_drop_override_flags, direction);
     //SsSram_ReadWrite(SRAM_BASE + SRAM_NEWDATA_START + ((z64_file.file_index) * sizeof(uint32_t)*808), &collectible_override_flags, sizeof(uint32_t) *808, 1);
     //SsSram_ReadWrite(SRAM_BASE + SRAM_NEWDATA_START + (2*sizeof(uint32_t) *808) + ((z64_file.file_index) * sizeof(uint32_t)*808), &dropped_collectible_override_flags, sizeof(uint32_t) *808, 1);
 }
@@ -275,5 +275,13 @@ void Save_Init_Write_Hook(uint32_t addr, void* dramAddr, size_t size, uint32_t d
     //z64_bzero(dramAddr + SRAM_NEWDATA_START + (2*sizeof(uint32_t) *808) + ((z64_file.file_index) * sizeof(uint32_t)*808),sizeof(uint32_t) *808);
     
     //write to sram
-    SsSram_ReadWrite(SRAM_BASE, dramAddr, SRAM_SIZE, direction);
+    SsSram_ReadWrite_Safe(SRAM_BASE, dramAddr, SRAM_SIZE, direction);
+}
+
+void SsSram_ReadWrite_Safe(uint32_t addr, void* dramAddr, size_t size, uint32_t direction)
+{
+    if(size > 0)
+    {
+        SsSram_ReadWrite(addr, dramAddr, size, direction);
+    }
 }
