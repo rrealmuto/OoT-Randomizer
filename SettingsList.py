@@ -4185,10 +4185,25 @@ setting_infos = [
         default        = 'off',
         choices        = {
             'off': 'Off',
-            'textures': 'Texture',
+            'textures_content': 'Texture (Match Content)',
+            'textures_unchecked' : 'Texture (Unchecked)',
         },
         gui_tooltip    = '''\
             If enabled, pot/crate textures will reflect its contents.
+
+            Off - Pot and crates will appear as vanilla
+
+            Texture (Match Content) - Pot and crate textures will reflect the contents.
+            Golden Pots/crates will contain major items. 
+            Pots/crates with keys on them will contain small keys.
+            Pots/crates containing boss keys will use a variation of the boss key crate texture. 
+            Pots/crates with a spider web on them contain Gold Skulltula tokens.
+            All other items will use the original texture.
+            The texture will revert to the original texture once the item is collected.
+            
+            Texture (Unchecked) - All pots/crates containing shuffled items 
+            will appear with a golden texture. The texture will revert to the 
+            original texture once the item is collected.
         ''',
         shared         = True,
     ),

@@ -9,7 +9,7 @@
 #define POT_SIDE_TEXTURE (uint8_t *)0x06000000
 #define POT_DLIST (z64_gfx_t *)0x060017C0
 
-extern bool POTCRATE_TEXTURES_MATCH_CONTENTS;
+extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
 
 
 override_t get_pot_override(z64_actor_t *actor, z64_game_t *game)
@@ -65,7 +65,11 @@ void draw_pot(z64_actor_t *actor, z64_game_t *game, override_t override)
     }
 
     // get override texture
-    if (POTCRATE_TEXTURES_MATCH_CONTENTS && override.key.all != 0)
+    if(POTCRATE_TEXTURES_MATCH_CONTENTS == PTMC_UNCHECKED && override.key.all != 0)
+    {
+        side_texture = get_texture(TEXTURE_ID_POT_GOLD);
+    }
+    else if (POTCRATE_TEXTURES_MATCH_CONTENTS == PTMC_CONTENTS && override.key.all != 0)
     {
         uint16_t item_id = resolve_upgrades(override.value.item_id);
         item_row_t *row = get_item_row(override.value.looks_like_item_id);

@@ -1962,9 +1962,13 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
                 rom.write_int16(chest_address_2 + 6, 0x0172)  # Z pos
 
     # Update pot type appearance
-    if world.settings.correct_potcrate_appearances == 'textures':
-        symbol = rom.sym('POTCRATE_TEXTURES_MATCH_CONTENTS')
-        rom.write_byte(symbol, 0x01)
+    ptmc_options = {
+        'off': 0,
+        'textures_content' : 1,
+        'textures_unchecked': 2
+    }
+    symbol = rom.sym('POTCRATE_TEXTURES_MATCH_CONTENTS')
+    rom.write_byte(symbol, ptmc_options[world.settings.correct_potcrate_appearances])
 
     # give dungeon items the correct messages
     add_item_messages(messages, shop_items, world)
