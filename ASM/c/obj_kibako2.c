@@ -6,7 +6,8 @@
 #define CRATE_CI8_TEXTURE_TOP_OFFSET 0x200
 #define CRATE_CI8_TEXTURE_SIDE_OFFSET 0xA00
 
-extern bool POTCRATE_TEXTURES_MATCH_CONTENTS;
+
+extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
 
 // Hacks the regular crate spawn collectible function to use more flag space
 // The additional flag info is stored in the actors dropFlag variable (unused by collectibles)
@@ -53,7 +54,11 @@ void ObjKibako2_Draw(z64_actor_t *actor, z64_game_t *game)
 
     // get override palette and textures
     override_t crate_override = get_crate_override(actor, game);
-    if (POTCRATE_TEXTURES_MATCH_CONTENTS && crate_override.key.all != 0)
+    if(POTCRATE_TEXTURES_MATCH_CONTENTS == PTMC_UNCHECKED && crate_override.key.all != 0)
+    {
+        texture = get_texture(TEXTURE_ID_CRATE_GOLD);
+    }
+    else if (POTCRATE_TEXTURES_MATCH_CONTENTS == PTMC_CONTENTS && crate_override.key.all != 0)
     {
         uint16_t item_id = resolve_upgrades(crate_override.value.item_id);
         item_row_t *row = get_item_row(crate_override.value.looks_like_item_id);

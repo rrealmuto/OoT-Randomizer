@@ -24,7 +24,9 @@
 #define TEXTURE_ID_BEEHIVE_SKULL         16
 #define TEXTURE_ID_BEEHIVE_BOSSKEY       17
 
-
+#define PTMC_OFF        0
+#define PTMC_CONTENTS   1
+#define PTMC_UNCHECKED  2
 
 uint8_t* get_texture(uint16_t textureID);
 void init_textures();
