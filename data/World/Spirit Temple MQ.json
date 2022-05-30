@@ -118,7 +118,9 @@
             "Spirit Temple MQ Central Chamber Floor Pot 1": "True",
             "Spirit Temple MQ Central Chamber Floor Pot 2": "True",
             "Spirit Temple MQ Central Chamber Floor Pot 3": "True",
-            "Spirit Temple MQ Central Chamber Top Left Pot (Left)": "can_use(Hover_Boots) or can_play(Song_of_Time) or logic_spirit_lobby_jump",
+            "Spirit Temple MQ Central Chamber Top Left Pot (Left)": "
+                (is_adult and (Hover_Boots or logic_spirit_lobby_jump)) or 
+                can_play(Song_of_Time)",
             "Spirit Temple MQ Central Chamber Top Left Pot (Right)": "
                 (is_child and Boomerang and (Kokiri_Sword or Sticks) and (Small_Key_Spirit_Temple, 7)) or
                 (is_adult and (Hover_Boots or logic_spirit_lobby_jump)) or
