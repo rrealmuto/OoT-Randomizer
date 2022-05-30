@@ -27,7 +27,7 @@ void fill_wallet_upgrade(z64_file_t *save, int16_t arg1, int16_t arg2);
 void clear_excess_hearts(z64_file_t *save, int16_t arg1, int16_t arg2);
 void open_mask_shop(z64_file_t *save, int16_t arg1, int16_t arg2);
 
-enum dungeon {
+typedef enum dungeon {
     DEKU_ID    = 0,
     DODONGO_ID = 1,
     JABU_ID    = 2,
@@ -42,6 +42,11 @@ enum dungeon {
     GTG_ID     = 11,
     FORT_ID    = 12,
     CASTLE_ID  = 13,
-};
+} dungeon;
+
+typedef struct {
+    uint8_t needed_count;
+    uint8_t switch_flag;
+} silver_rupee_data_t;
 
 #endif

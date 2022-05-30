@@ -89,10 +89,6 @@ void give_small_key_ring(z64_file_t *save, int16_t dungeon_id, int16_t arg2) {
     save->dungeon_keys[dungeon_id] = keys + key_counts[dungeon_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
 }
 
-typedef struct {
-    uint8_t needed_count;
-    uint8_t switch_flag;
-} silver_rupee_data_t;
 
 
 silver_rupee_data_t silver_rupee_vars[0x16][2] = {
