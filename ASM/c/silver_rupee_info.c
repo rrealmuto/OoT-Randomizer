@@ -32,7 +32,6 @@ silver_rupee_info_t silver_rupee_info[] = {
     {CASTLE_ID, "Spirit Trial"},
     {CASTLE_ID, "Light Trial"},
     {CASTLE_ID, "Fire Trial"},
-    {CASTLE_ID, "Fire Trial"},
     {CASTLE_ID, "Shadow Trial"},
     {CASTLE_ID, "Water Trial"},
     {CASTLE_ID, "Forest Trial"}
@@ -115,7 +114,7 @@ void draw_silver_rupee_info(z64_disp_buf_t *db)
             text_print(count_str, text_left + name_length * font_sprite.tile_w, top);
             name_length += text_len(count_str);
             
-            if(name_length > max_name_length)
+            if(name_length > max_name_length && i < 13)
             {
                 max_name_length = name_length;
             }
