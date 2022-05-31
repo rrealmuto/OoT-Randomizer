@@ -6,8 +6,8 @@
 #include "text.h"
 #include "util.h"
 
-extern uint16_t triforce_hunt_enabled;
-extern uint16_t triforce_pieces_requied;
+extern uint16_t TRIFORCE_HUNT_ENABLED;
+extern uint16_t TRIFORCE_PIECES_REQUIRED;
 
 void draw_triforce_count(z64_disp_buf_t* db);
 void set_triforce_render();

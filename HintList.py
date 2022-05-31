@@ -514,6 +514,12 @@ hintTable = {
     'Hideout Jail Guard (3 Torches)':                              ("#defeating Gerudo guards# reveals", None, 'exclude'),
     'Hideout Jail Guard (4 Torches)':                              ("#defeating Gerudo guards# reveals", None, 'exclude'),
 
+    'ZR Frogs Zeldas Lullaby':                                     ("after hearing #Zelda's Lullaby, frogs gift#", None, 'exclude'),
+    'ZR Frogs Eponas Song':                                        ("after hearing #Epona's Song, frogs gift#", None, 'exclude'),
+    'ZR Frogs Sarias Song':                                        ("after hearing #Saria's Song, frogs gift#", None, 'exclude'),
+    'ZR Frogs Suns Song':                                          ("after hearing #Sun's Song, frogs gift#", None, 'exclude'),
+    'ZR Frogs Song of Time':                                       ("after hearing #Song of Time, frogs gift#", None, 'exclude'),
+
     'Deku Tree Map Chest':                                         ("in the #center of the Deku Tree# lies", None, 'exclude'),
     'Deku Tree Slingshot Chest':                                   ("the #treasure guarded by a scrub# in the Deku Tree is", None, 'exclude'),
     'Deku Tree Slingshot Room Side Chest':                         ("the #treasure guarded by a scrub# in the Deku Tree is", None, 'exclude'),

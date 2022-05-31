@@ -79,6 +79,7 @@
             "web_common_key_string",
             "web_wad_channel_id",
             "web_wad_channel_title",
+            "web_wad_legacy_mode",
             "show_seed_info",
             "user_message"
           ]
@@ -124,7 +125,8 @@
             "web_common_key_file",
             "web_common_key_string",
             "web_wad_channel_id",
-            "web_wad_channel_title"
+            "web_wad_channel_title",
+            "web_wad_legacy_mode"
           ]
         },
         {
@@ -219,7 +221,8 @@
             "shuffle_weird_egg",
             "shuffle_gerudo_card",
             "shuffle_beans",
-            "shuffle_medigoron_carpet_salesman"
+            "shuffle_medigoron_carpet_salesman",
+            "shuffle_frog_song_rupees"
           ]
         },
         {

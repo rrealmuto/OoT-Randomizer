@@ -474,6 +474,10 @@ def get_pool_core(world):
                 item = 'Magic Bean Pack' if world.distribution.get_starting_item('Magic Bean') < 10 else get_junk_item()[0]
             shuffle_item = world.settings.shuffle_beans
 
+        # Frogs Purple Rupees
+        elif location.scene == 0x54 and location.vanilla_item == 'Rupees (50)':
+            shuffle_item = world.settings.shuffle_frog_song_rupees
+
         # Adult Trade Item
         elif location.vanilla_item == 'Pocket Egg':
             trade_item_options = list(trade_items.keys())

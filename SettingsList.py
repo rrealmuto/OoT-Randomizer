@@ -1057,13 +1057,12 @@ logic_tricks = {
         'name'    : 'logic_jabu_boss_hover',
         'tags'    : ("Jabu Jabu's Belly", "Skulltulas", "Entrance",),
         'tooltip' : '''\
-                    You can easily get over to the door to the
-                    near boss area early with Hover Boots. The
-                    tricky part is getting through the door
-                    without being able to use a box to keep the
-                    switch pressed. One way is to quickly roll
-                    from the switch and open the door before it
-                    closes.
+                    A box for the blue switch can be carried over 
+		    by backwalking with one while the elevator is
+		    at its peak. Alternatively, you can skip transporting
+		    a box by quickly rolling from the switch and 
+		    opening the door before it closes. However, 
+		    the timing for this is very tight.
                     '''},
     'Jabu Boss Door Switch with Bombchus': {
         'name'    : 'logic_jabu_boss_door_chus',
@@ -1714,6 +1713,17 @@ setting_infos = [
             "hide_when_disabled" : True,
         }
     ),
+	Checkbutton(
+        name           = 'web_wad_legacy_mode',
+        gui_text       = 'WAD Legacy Mode',
+		shared		   = False,
+        default        = False,
+		gui_tooltip	   = "Enabling this will avoid any patching of the VC emulator in case your Wii does not have support for it. Recommended to be left unchecked.",
+		gui_params  = {
+			"no_line_break"		 : False,
+            "hide_when_disabled" : True,
+        }
+    ),
     Setting_Info(
         name       = 'web_output_type',
         type       = str,
@@ -1734,7 +1744,8 @@ setting_infos = [
                 'web_common_key_file',
                 'web_common_key_string',
                 'web_wad_channel_id',
-                'web_wad_channel_title']
+                'web_wad_channel_title',
+				'web_wad_legacy_mode']
             }
         }
     ),
@@ -1759,7 +1770,7 @@ setting_infos = [
             True : {
                 'tabs' : ['main_tab', 'detailed_tab', 'starting_tab', 'other_tab'],
                 'sections' : ['preset_section'],
-                'settings' : ['count', 'create_spoiler', 'world_count', 'enable_distribution_file', 'distribution_file', 'create_patch_file'],
+                'settings' : ['count', 'create_spoiler', 'world_count', 'enable_distribution_file', 'distribution_file', 'create_patch_file', 'show_seed_info', 'user_message'],
             },
             False : {
                 'settings' : ['repatch_cosmetics'],
@@ -1771,7 +1782,7 @@ setting_infos = [
                     'settings' : [
                         'rom','web_output_type','player_num',
                         'web_wad_file', 'web_common_key_file', 'web_common_key_string',
-                        'web_wad_channel_id','web_wad_channel_title'
+                        'web_wad_channel_id','web_wad_channel_title','web_wad_legacy_mode'
                     ],
                 },
             }
@@ -1871,6 +1882,9 @@ setting_infos = [
         default        = True,
         disable        = {
             False : {'settings' : ["user_message"]}
+        },
+		gui_params = {
+            "hide_when_disabled" : True,
         }
     ),
     Setting_Info(
@@ -2600,29 +2614,29 @@ setting_infos = [
         name           = 'one_item_per_dungeon',
         gui_text       = 'Dungeons Have One Major Item',
         gui_tooltip    = '''\
-            Dungeons have exactly one major item. 
+            Dungeons have exactly one major item.
             This naturally makes each dungeon similar in value
             rather than vary based on shuffled locations.
 
-            Spirit Temple Colossus hands count as part 
-            of the dungeon. Spirit Temple has TWO items 
+            Spirit Temple Colossus hands count as part
+            of the dungeon. Spirit Temple has TWO items
             to match vanilla distribution.
 
-            Boss Keys and Fortress Keys only count as 
-            major items if they are shuffled Anywhere 
-            (Keysanity) or in Any Dungeon, and Small 
-            Keys only count as major items if they are 
-            shuffled Anywhere (Keysanity). This setting 
-            is disabled if Small Keys are shuffled in 
+            Boss Keys and Fortress Keys only count as
+            major items if they are shuffled Anywhere
+            (Keysanity) or in Any Dungeon, and Small
+            Keys only count as major items if they are
+            shuffled Anywhere (Keysanity). This setting
+            is disabled if Small Keys are shuffled in
             Any Dungeon.
 
-            GS Tokens only count as major items if the 
-            bridge or LACS requirements are set to 
-            "GS Tokens".
+            GS Tokens only count as major items if the
+            bridge or Ganon Boss Key requirements are
+            set to "GS Tokens".
 
             Heart Containers and Pieces of Heart only
-            count as major items if the bridge or LACS
-            requirements are set to "Hearts".
+            count as major items if the bridge or Ganon
+            Boss Key requirements are set to "Hearts".
 
             Bombchus only count as major items if they
             are considered in logic.
@@ -2743,7 +2757,7 @@ setting_infos = [
             'Jabu Jabus Belly': "Jabu Jabu's Belly",
             'Forest Temple':    "Forest Temple",
             'Fire Temple':      "Fire Temple",
-            'Water Temple':     "Water Temple",  # doesn't do anything, but added to prevent confusion
+            'Water Temple':     "Water Temple",  # affects King Dodongo if he's in Water
             'Shadow Temple':    "Shadow Temple",
             'Spirit Temple':    "Spirit Temple",
         },
@@ -2906,9 +2920,6 @@ setting_infos = [
         ''',
         default        = False,
         shared         = True,
-        gui_params     = {
-            'randomize_key': 'randomize_settings',
-        },
     ),
     Checkbutton(
         name           = 'chicken_count_random',
@@ -3100,6 +3111,21 @@ setting_infos = [
             to the item pool and changes both Medigoron and the 
             Haunted Wasteland Carpet Salesman to sell a random item 
             once at the price of 200 Rupees.
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    ),
+    Checkbutton(
+        name           = 'shuffle_frog_song_rupees',
+        gui_text       = 'Shuffle Frog Song Rupees',
+        gui_tooltip    = '''\
+            Enabling this adds 5 Purple Rupees to the item pool 
+            and shuffles the rewards from playing Zelda's Lullaby,
+            Epona's Song, Saria's Song, Sun's Song, and Song of Time
+            to the frogs in Zora's River.
         ''',
         default        = False,
         shared         = True,

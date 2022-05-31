@@ -1293,8 +1293,8 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         rom.write_int16(count_symbol, world.settings.bridge_hearts * 0x10)
 
     if world.settings.triforce_hunt:
-        rom.write_int16(rom.sym('triforce_pieces_requied'), world.triforce_goal)
-        rom.write_int16(rom.sym('triforce_hunt_enabled'), 1)
+        rom.write_int16(rom.sym('TRIFORCE_PIECES_REQUIRED'), world.triforce_goal)
+        rom.write_int16(rom.sym('TRIFORCE_HUNT_ENABLED'), 1)
 
     # Set up Ganon's Boss Key conditions.
     symbol = rom.sym('GANON_BOSS_KEY_CONDITION')
@@ -1527,6 +1527,12 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     rom.write_int16s(0x28E3080, [0x0000, 0x0001]) # entrance list
     rom.write_int16(0x28E4076, 0x0005) # Change shop to Kakariko Bazaar
     #rom.write_int16(0x3489076, 0x0005) # Change shop to Kakariko Bazaar
+
+    # write shop info to auto-tracker context
+    rom.write_bytes(rom.sym('SPECIAL_DEAL_COUNTS'), [
+        sum(f'{shop} Item {idx}' in world.shop_prices for idx in ('7', '5', '8', '6')) # number of special deals in this shop
+        for shop in ('KF Shop', 'Market Bazaar', 'Market Potion Shop', 'Market Bombchu Shop', 'Kak Bazaar', 'Kak Potion Shop', 'GC Shop', 'ZD Shop')
+    ])
 
     # Load Message and Shop Data
     messages = read_messages(rom)

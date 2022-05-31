@@ -696,7 +696,9 @@ class World(object):
                 if (self.settings.bridge_hearts > self.settings.starting_hearts
                     and self.settings.bridge == 'hearts'
                     and (self.settings.shuffle_ganon_bosskey != 'hearts'
-                            or self.settings.bridge_hearts >= self.settings.ganon_bosskey_hearts)):
+                            or self.settings.bridge_hearts >= self.settings.ganon_bosskey_hearts)
+                    and (self.settings.shuffle_ganon_bosskey != 'on_lacs' or self.settings.lacs_condition != 'hearts'
+                            or self.settings.bridge_hearts >= self.settings.lacs_hearts)):
                     b.add_goal(Goal(self, 'hearts', 'path of hearts', 'Light Blue', items=[{'name': 'Piece of Heart', 'quantity': (20 - self.settings.starting_hearts) * 4, 'minimum': (self.settings.bridge_hearts - self.settings.starting_hearts) * 4, 'hintable': False}]))
                     b.goal_count = round((self.settings.bridge_hearts - 3) / 2)
                     b.minimum_goals = 1

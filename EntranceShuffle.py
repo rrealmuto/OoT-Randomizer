@@ -937,6 +937,7 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
                 except HintAreaNotFound:
                     pass
 
+
 # Returns whether or not we can affirm the entrance can never be accessed as the given age
 def entrance_unreachable_as(entrance, age, already_checked=None):
     if already_checked == None:

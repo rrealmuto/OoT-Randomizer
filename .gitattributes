@@ -12,6 +12,7 @@
 *.bin  binary
 *.o    binary
 
+/ASM/build/*.txt text -diff linguist-generated=true
 /data/generated/* text -diff linguist-generated=true
 /Decompress/* binary
 /Compress/*   binary

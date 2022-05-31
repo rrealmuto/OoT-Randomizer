@@ -37,7 +37,7 @@
 "decouple_entrances": false,
 "owl_drops": false,
 "warp_songs": false,
-"spawn_positions": "off",
+"spawn_positions": false,
 "shuffle_scrubs": "off",
 "shopsanity": "off",
 "tokensanity": "off",
