@@ -44,7 +44,7 @@ void draw_silver_rupee_info(z64_disp_buf_t *db)
         z64_game.pause_ctxt.state == 6 &&
         z64_game.pause_ctxt.screen_idx == 0 &&
         !z64_game.pause_ctxt.changing &&
-        z64_ctxt.input[0].raw.pad.du;
+        z64_ctxt.input[0].raw.pad.dd;
     if (!draw) {
         return;
     }
