@@ -17,6 +17,7 @@ from LocationList import location_table
 import Sounds as sfx
 import StartingItems
 from Utils import data_path
+from version import __version__
 
 # holds the info for a single setting
 class Setting_Info():
@@ -1788,6 +1789,14 @@ setting_infos = [
             }
         },
         shared         = False,
+    ),
+    Setting_Info(
+        name           = 'version_msg',
+        type           = str,
+        gui_text       = f"Ocarina of Time Randomizer version {__version__}",
+        gui_type       = "Textbox",
+        shared         = False,
+        choices        = {},
     ),
     Checkbutton(
         name           = 'enable_distribution_file',

@@ -67,6 +67,7 @@
           "col_span": 4,
           "row_span": [1,1,1],
           "settings": [
+            "version_msg",
             "enable_distribution_file",
             "enable_cosmetic_file",
             "distribution_file",
@@ -117,6 +118,7 @@
           "col_span": 4,
           "row_span": [1,1,1],
           "settings": [
+            "version_msg",
             "enable_cosmetic_file",
             "cosmetic_file",
             "web_output_type",
