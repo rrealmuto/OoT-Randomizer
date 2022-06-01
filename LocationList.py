@@ -927,8 +927,9 @@ location_groups = {
 }
 
 
-def location_is_viewable(loc_name, correct_chest_appearances):
-    return correct_chest_appearances in ['textures', 'both', 'classic'] and loc_name in location_groups['Chest'] or loc_name in location_groups['CanSee']
+def location_is_viewable(loc_name, correct_chest_appearances, fast_chests):
+    return (((correct_chest_appearances in ['textures', 'both', 'classic'] or not fast_chests) and loc_name in location_groups['Chest'])
+        or loc_name in location_groups['CanSee'])
 
 
 # Function to run exactly once after after placing items in drop locations for each world

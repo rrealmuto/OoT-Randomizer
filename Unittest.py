@@ -214,8 +214,9 @@ class TestPlandomizer(unittest.TestCase):
             with self.subTest(filename):
                 distribution_file, spoiler = generate_with_plandomizer(filename)
                 csmc = spoiler['settings'].get('correct_chest_appearances')
+                fast_chests = spoiler['settings'].get('fast_chests')
                 for location in spoiler['locations']:
-                    if location_is_viewable(location, csmc):
+                    if location_is_viewable(location, csmc, fast_chests):
                         item = spoiler['locations'][location]
                         if isinstance(item, dict):
                             if item['item'] == "Ice Trap":
