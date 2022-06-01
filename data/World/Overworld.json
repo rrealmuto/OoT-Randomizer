@@ -851,6 +851,15 @@
         }
     },
     {
+        "region_name": "Castle Grounds From Ganons Castle",
+        "font_color": "Light Blue",
+        "scene": "Castle Grounds",
+        "hint": "outside Ganon's Castle",
+        "exits": {
+            "Ganons Castle Grounds": "is_adult and bridge == 'open'"
+        }
+    },
+    {
         "region_name": "Ganons Castle Grounds",
         "font_color": "Light Blue",
         "scene": "Castle Grounds",
@@ -1948,8 +1957,8 @@
         "region_name": "Ganons Castle Tower",
         "dungeon": "Ganons Castle",
         "locations": {
-            "Ganons Tower Boss Key Chest": "True",
-            "Ganondorf Hint": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Boss Key Chest": "is_adult or Kokiri_Sword",
+            "Ganondorf Hint": "(is_adult or Kokiri_Sword) and Boss_Key_Ganons_Castle",
             "Ganon": "Boss_Key_Ganons_Castle and can_use(Light_Arrows)"
         }
     },

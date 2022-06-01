@@ -11,10 +11,11 @@ This branch is available to use online at <https://ootrandomizer.com/generatorDe
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
 * A bug where very small amounts of damage would not kill Link with “Damage Multiplier” set to “OHKO” is fixed ([#1585](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1585))
-* The cutscenes used for ice traps with “Fast Chest Cutscenes” disabled now match whether they're disguised as major items ([#1583](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1583)
+* The cutscenes used for ice traps with “Fast Chest Cutscenes” disabled now match whether they're disguised as major items ([#1583](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1583))
 * Missing goal hints with some combinations of win conditions are added ([#1578](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1578))
 * The total number of small keys collected for a dungeon is displayed in the pause menu ([#1563](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1563))
 * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
+* New “Dungeon and Ganon” option for the “Shuffle Dungeon Entrances” setting (based on [#1546](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1546))
 * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1536))
 * “Closed Forest Requires Gohma” is a separate setting, making “Closed Forest” compatible with more settings if disabled ([#1531](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1531))
 * Opening the Door of Time is a separate goal category when required by the settings ([#1529](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1529))

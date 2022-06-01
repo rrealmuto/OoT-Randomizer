@@ -112,6 +112,8 @@ entrance_shuffle_table = [
                         ('Ice Cavern Beginning -> ZF Ice Ledge',                            { 'index': 0x03D4 })),
     ('Dungeon',         ('Gerudo Fortress -> Gerudo Training Ground Lobby',                 { 'index': 0x0008 }),
                         ('Gerudo Training Ground Lobby -> Gerudo Fortress',                 { 'index': 0x03A8 })),
+    ('DungeonSpecial',  ('Ganons Castle Grounds -> Ganons Castle Lobby',                    { 'index': 0x0467 }),
+                        ('Ganons Castle Lobby -> Castle Grounds From Ganons Castle',        { 'index': 0x023D })),
 
     ('Interior',        ('Kokiri Forest -> KF Midos House',                                 { 'index': 0x0433 }),
                         ('KF Midos House -> Kokiri Forest',                                 { 'index': 0x0443 })),
@@ -477,7 +479,7 @@ def shuffle_random_entrances(worlds):
                 # In glitchless, there aren't any other ways to access these areas
                 one_way_priorities['Bolero'] = priority_entrance_table['Bolero']
                 one_way_priorities['Nocturne'] = priority_entrance_table['Nocturne']
-                if not worlds[0].settings.shuffle_dungeon_entrances and not worlds[0].settings.shuffle_overworld_entrances:
+                if not worlds[0].shuffle_dungeon_entrances and not worlds[0].settings.shuffle_overworld_entrances:
                     one_way_priorities['Requiem'] = priority_entrance_table['Requiem']
 
         if worlds[0].settings.shuffle_bosses == 'full':
@@ -487,13 +489,15 @@ def shuffle_random_entrances(worlds):
             entrance_pools['ChildBoss'] = world.get_shufflable_entrances(type='ChildBoss', only_primary=True)
             entrance_pools['AdultBoss'] = world.get_shufflable_entrances(type='AdultBoss', only_primary=True)
 
-        if worlds[0].settings.shuffle_dungeon_entrances:
+        if worlds[0].shuffle_dungeon_entrances:
             entrance_pools['Dungeon'] = world.get_shufflable_entrances(type='Dungeon', only_primary=True)
             # The fill algorithm will already make sure gohma is reachable, however it can end up putting
             # a forest escape via the hands of spirit on Deku leading to Deku on spirit in logic. This is
             # contrary to the idea of Require Gohma, so specifically place Deku Tree in its vanilla location.
             if worlds[0].settings.require_gohma:
                 entrance_pools['Dungeon'].remove(world.get_entrance('KF Outside Deku Tree -> Deku Tree Lobby'))
+            if worlds[0].shuffle_special_dungeon_entrances:
+                entrance_pools['Dungeon'] += world.get_shufflable_entrances(type='DungeonSpecial', only_primary=True)
             if worlds[0].settings.decouple_entrances:
                 entrance_pools['DungeonReverse'] = [entrance.reverse for entrance in entrance_pools['Dungeon']]
 
@@ -787,7 +791,7 @@ def place_one_way_priority_entrance(worlds, world, priority_name, allowed_region
             if priority_name != 'Nocturne' or entrance.world.settings.hints == "mask":
                 continue
         # If not shuffling dungeons, Nocturne requires adult access.
-        if not entrance.world.settings.shuffle_dungeon_entrances and priority_name == 'Nocturne':
+        if not entrance.world.shuffle_dungeon_entrances and priority_name == 'Nocturne':
             if entrance.type != 'WarpSong' and entrance.parent_region.name != 'Adult Spawn':
                 continue
         for target in one_way_target_entrance_pools[entrance.type]:
@@ -848,26 +852,28 @@ def check_entrances_compatibility(entrance, target, rollbacks=(), placed_one_way
 # Validate the provided worlds' structures, raising an error if it's not valid based on our criterias
 def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable, itempool, placed_one_way_entrances=()):
 
+    # For various reasons, we don't want the player to end up through certain entrances as the wrong age
+    # This means we need to hard check that none of the relevant entrances are ever reachable as that age
+    # This is mostly relevant when mixing entrance pools or shuffling special interiors (such as windmill or kak potion shop)
+    # Warp Songs and Overworld Spawns can also end up inside certain indoors so those need to be handled as well
+    CHILD_FORBIDDEN = ['Ganons Castle Lobby -> Castle Grounds']
+    ADULT_FORBIDDEN = []
     if not world.settings.decouple_entrances:
-        # Unless entrances are decoupled, we don't want the player to end up through certain entrances as the wrong age
-        # This means we need to hard check that none of the relevant entrances are ever reachable as that age
-        # This is mostly relevant when mixing entrance pools or shuffling special interiors (such as windmill or kak potion shop)
-        # Warp Songs and Overworld Spawns can also end up inside certain indoors so those need to be handled as well
-        CHILD_FORBIDDEN = ['OGC Great Fairy Fountain -> Castle Grounds', 'GV Carpenter Tent -> GV Fortress Side']
-        ADULT_FORBIDDEN = ['HC Great Fairy Fountain -> Castle Grounds', 'HC Storms Grotto -> Castle Grounds']
+        CHILD_FORBIDDEN += ['OGC Great Fairy Fountain -> Castle Grounds', 'GV Carpenter Tent -> GV Fortress Side']
+        ADULT_FORBIDDEN += ['HC Great Fairy Fountain -> Castle Grounds', 'HC Storms Grotto -> Castle Grounds']
 
-        for entrance in world.get_shufflable_entrances():
-            if entrance.shuffled:
-                if entrance.replaces:
-                    if entrance.replaces.name in CHILD_FORBIDDEN and not entrance_unreachable_as(entrance, 'child', already_checked=[entrance.replaces.reverse]):
-                        raise EntranceShuffleError('%s is replaced by an entrance with a potential child access' % entrance.replaces.name)
-                    elif entrance.replaces.name in ADULT_FORBIDDEN and not entrance_unreachable_as(entrance, 'adult', already_checked=[entrance.replaces.reverse]):
-                        raise EntranceShuffleError('%s is replaced by an entrance with a potential adult access' % entrance.replaces.name)
-            else:
-                if entrance.name in CHILD_FORBIDDEN and not entrance_unreachable_as(entrance, 'child', already_checked=[entrance.reverse]):
-                    raise EntranceShuffleError('%s is potentially accessible as child' % entrance.name)
-                elif entrance.name in ADULT_FORBIDDEN and not entrance_unreachable_as(entrance, 'adult', already_checked=[entrance.reverse]):
-                    raise EntranceShuffleError('%s is potentially accessible as adult' % entrance.name)
+    for entrance in world.get_shufflable_entrances():
+        if entrance.shuffled:
+            if entrance.replaces:
+                if entrance.replaces.name in CHILD_FORBIDDEN and not entrance_unreachable_as(entrance, 'child', already_checked=[entrance.replaces.reverse]):
+                    raise EntranceShuffleError('%s is replaced by an entrance with a potential child access' % entrance.replaces.name)
+                elif entrance.replaces.name in ADULT_FORBIDDEN and not entrance_unreachable_as(entrance, 'adult', already_checked=[entrance.replaces.reverse]):
+                    raise EntranceShuffleError('%s is replaced by an entrance with a potential adult access' % entrance.replaces.name)
+        else:
+            if entrance.name in CHILD_FORBIDDEN and not entrance_unreachable_as(entrance, 'child', already_checked=[entrance.reverse]):
+                raise EntranceShuffleError('%s is potentially accessible as child' % entrance.name)
+            elif entrance.name in ADULT_FORBIDDEN and not entrance_unreachable_as(entrance, 'adult', already_checked=[entrance.reverse]):
+                raise EntranceShuffleError('%s is potentially accessible as adult' % entrance.name)
 
     if locations_to_ensure_reachable:
         max_search = Search.max_explore([w.state for w in worlds], itempool)
