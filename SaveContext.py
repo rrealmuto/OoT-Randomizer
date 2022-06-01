@@ -335,7 +335,7 @@ class SaveContext():
                         "Gerudo Training Ground Water":        {'silver_rupee_counts.gtg_water': needed_count, 'scene_flags.gtg.swch.silver_rupees_water': True},
                         "Spirit Temple Child Early Torches":   {'silver_rupee_counts.spirit_torches': needed_count, 'scene_flags.spirit.swch.silver_rupees_torches': True},
                         "Spirit Temple Adult Boulders":        {'silver_rupee_counts.spirit_boulders': needed_count, 'scene_flags.spirit.swch.silver_rupees_boulders': True},
-                        "Spirit Temple Lobby and Lower Adult": {'silver_rupee_counts.spirit_lobby': needed_count, 'scene_flags.spirit_swch.silver_rupees_lobby': True},
+                        "Spirit Temple Lobby and Lower Adult": {'silver_rupee_counts.spirit_lobby': needed_count, 'scene_flags.spirit.swch.silver_rupees_lobby': True},
                         "Spirit Temple Sun Block":             {'silver_rupee_counts.spirit_sun': needed_count, 'scene_flags.spirit.swch.silver_rupees_sun': True},
                         "Spirit Temple Adult Climb":           {'silver_rupee_counts.spirit_adult_climb': needed_count, 'scene_flags.spirit.swch.silver_rupees_adult_climb': True},
                         "Ganons Castle Spirit Trial":          {'silver_rupee_counts.trials_spirit': needed_count, 'scene_flags.gc.swch.silver_rupees_spirit': True},
