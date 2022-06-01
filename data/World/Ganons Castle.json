@@ -38,7 +38,7 @@
             "Forest Trial Clear": "can_use(Light_Arrows) and (Fire_Arrows or Dins_Fire)"
         },
         "locations": {
-            "Ganons Castle Forest Trial Chest": "is_adult or (is_child and (Slingshot or Sticks or 
+            "Ganons Castle Forest Trial Chest": "is_adult or (is_child and (Slingshot or Sticks or
                 Kokiri_Sword or can_use(Dins_Fire)))"
         }
     },
