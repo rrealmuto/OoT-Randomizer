@@ -736,16 +736,16 @@ class SaveContext():
             'scene_flags' : {
                 'dodongo' : {
                     'swch' : {
-                        'silver_rupees_staircase': Address(0xD1 + 0x1C * 0x01 + 0x04, mask=0x80000000),
+                        'silver_rupees_staircase': Address(0xD4 + 0x1C * 0x01 + 0x04, mask=0x80000000),
                     },
                 },
                 'spirit' : {
                     'swch' : {
-                        'silver_rupees_adult_climb': Address(0xD1 + 0x1C * 0x06 + 0x04, mask=0x00000001),
-                        'silver_rupees_boulders': Address(0xD1 + 0x1C * 0x06 + 0x04, mask=0x00000004),
-                        'silver_rupees_torches': Address(0xD1 + 0x1C * 0x06 + 0x04, mask=0x00000020),
-                        'silver_rupees_sun': Address(0xD1 + 0x1C * 0x06 + 0x04, mask=0x00000400),
-                        'silver_rupees_lobby': Address(0xD1 + 0x1C * 0x06 + 0x04, mask=0x80000000),
+                        'silver_rupees_adult_climb': Address(0xD4 + 0x1C * 0x06 + 0x04, mask=0x00000001),
+                        'silver_rupees_boulders': Address(0xD4 + 0x1C * 0x06 + 0x04, mask=0x00000004),
+                        'silver_rupees_torches': Address(0xD4 + 0x1C * 0x06 + 0x04, mask=0x00000020),
+                        'silver_rupees_sun': Address(0xD4 + 0x1C * 0x06 + 0x04, mask=0x00000400),
+                        'silver_rupees_lobby': Address(0xD4 + 0x1C * 0x06 + 0x04, mask=0x80000000),
                     },
                 },
                 'shadow' : {
