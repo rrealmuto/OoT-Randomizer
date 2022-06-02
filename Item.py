@@ -119,7 +119,7 @@ class Item(object):
 
     @property
     def dungeonitem(self):
-        return self.smallkey or self.bosskey or self.map or self.compass
+        return self.smallkey or self.bosskey or self.map or self.compass or self.type == 'SilverRupee'
 
     @property
     def unshuffled_dungeon_item(self):
