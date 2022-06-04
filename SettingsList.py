@@ -1058,12 +1058,12 @@ logic_tricks = {
         'name'    : 'logic_jabu_boss_hover',
         'tags'    : ("Jabu Jabu's Belly", "Skulltulas", "Entrance",),
         'tooltip' : '''\
-                    A box for the blue switch can be carried over 
-		    by backwalking with one while the elevator is
-		    at its peak. Alternatively, you can skip transporting
-		    a box by quickly rolling from the switch and 
-		    opening the door before it closes. However, 
-		    the timing for this is very tight.
+                    A box for the blue switch can be carried over
+                    by backwalking with one while the elevator is
+                    at its peak. Alternatively, you can skip transporting
+                    a box by quickly rolling from the switch and
+                    opening the door before it closes. However,
+                    the timing for this is very tight.
                     '''},
     'Jabu Boss Door Switch with Bombchus': {
         'name'    : 'logic_jabu_boss_door_chus',

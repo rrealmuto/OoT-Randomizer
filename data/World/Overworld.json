@@ -1030,7 +1030,7 @@
             "Kak Anju as Child": "is_child and at_day and (can_bonk_crate or chicken_count < 7)",
             "Kak GS House Under Construction": "is_child and at_night",
             "Kak GS Skulltula House": "is_child and at_night",
-            "Kak GS Guards House": "is_child and at_night",
+            "Kak GS Near Gate Guard": "is_child and at_night",
             "Kak GS Tree": "is_child and at_night and can_bonk_tree",
             "Kak GS Watchtower": "
                 is_child and (Slingshot or has_bombchus or 
@@ -1310,7 +1310,7 @@
             "Dampes Windmill Access": "is_adult and can_play(Song_of_Time)"
         },
         "locations": {
-            "Graveyard Hookshot Chest": "True",
+            "Graveyard Dampe Race Hookshot Chest": "True",
             "Graveyard Dampe Race Freestanding PoH": "is_adult or logic_child_dampe_race_poh",
             "Nut Pot": "True"
         },

@@ -443,7 +443,7 @@ hintTable = {
     'GC Maze Right Chest':                                         ("in #Goron City# explosives unlock", None, 'exclude'),
     'GC Maze Center Chest':                                        ("in #Goron City# explosives unlock", None, 'exclude'),
     'ZD Chest':                                                    ("fire #beyond a waterfall# reveals", None, 'exclude'),
-    'Graveyard Hookshot Chest':                                    ("a chest hidden by a #speedy spectre# holds", "#dead Dampé's first prize# is", 'exclude'),
+    'Graveyard Dampe Race Hookshot Chest':                         ("a chest hidden by a #speedy spectre# holds", "#dead Dampé's first prize# is", 'exclude'),
     'GF Chest':                                                    ("on a #rooftop in the desert# lies", None, 'exclude'),
     'Kak Redead Grotto Chest':                                     ("#zombies beneath the earth# guard", None, 'exclude'),
     'SFM Wolfos Grotto Chest':                                     ("#wolves beneath the earth# guard", None, 'exclude'),
@@ -939,7 +939,7 @@ hintTable = {
 
     'Kak GS House Under Construction':                             ("night in the past reveals a #spider in a town# holding", None, 'exclude'),
     'Kak GS Skulltula House':                                      ("night in the past reveals a #spider in a town# holding", None, 'exclude'),
-    'Kak GS Guards House':                                         ("night in the past reveals a #spider in a town# holding", None, 'exclude'),
+    'Kak GS Near Gate Guard':                                      ("night in the past reveals a #spider in a town# holding", None, 'exclude'),
     'Kak GS Tree':                                                 ("night in the past reveals a #spider in a town# holding", None, 'exclude'),
     'Kak GS Watchtower':                                           ("night in the past reveals a #spider in a town# holding", None, 'exclude'),
     'Kak GS Above Impas House':                                    ("night in the future reveals a #spider in a town# holding", None, 'exclude'),

@@ -590,7 +590,7 @@
                 is_adult and Forest_Medallion and Fire_Medallion and Water_Medallion",
             "Kak GS House Under Construction": "is_child and at_night",
             "Kak GS Skulltula House": "is_child and at_night",
-            "Kak GS Guards House": "is_child and at_night",
+            "Kak GS Near Gate Guard": "is_child and at_night",
             "Kak GS Tree": "is_child and at_night",
             "Kak GS Watchtower": "at_night and 
                 is_child and (Slingshot or has_bombchus or 
@@ -742,7 +742,7 @@
         "region_name": "Graveyard Dampes Grave",
         "hint": "the Graveyard",
         "locations": {
-            "Graveyard Hookshot Chest": "True",
+            "Graveyard Dampe Race Hookshot Chest": "True",
             "Graveyard Dampe Race Freestanding PoH": "True",
             "Nut Pot": "True"
         }
