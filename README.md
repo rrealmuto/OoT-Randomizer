@@ -10,25 +10,18 @@ This branch is available to use online at <https://ootrandomizer.com/generatorDe
 
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
-* A bug where very small amounts of damage would not kill Link with “Damage Multiplier” set to “OHKO” is fixed ([#1585](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1585))
-* The cutscenes used for ice traps with “Fast Chest Cutscenes” disabled now match whether they're disguised as major items ([#1583](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1583))
-* Missing goal hints with some combinations of win conditions are added ([#1578](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1578))
-* The total number of small keys collected for a dungeon is displayed in the pause menu ([#1563](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1563))
-* Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
-* New “Dungeon and Ganon” option for the “Shuffle Dungeon Entrances” setting (based on [#1546](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1546))
-* New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1536))
-* “Closed Forest Requires Gohma” is a separate setting, making “Closed Forest” compatible with more settings if disabled ([#1531](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1531))
-* Opening the Door of Time is a separate goal category when required by the settings ([#1529](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1529))
-* New “Ludicrous” option for the “Item Pool” setting that makes everything a major item (based on [#1507](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1507) but heart containers aren't removed)
-* New “One Bonk KO” setting ([#1503](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1503))
-* The convenience patch for floor switches now applies to more MQ switches ([#1459](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1459))
-* Automatically advances credits text (based on [#1412](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1412))
-* New “Full” options for the “Randomize Owl Drops”, “Randomize Warp Song Destinations”, and “Randomize Overworld Spawns” settings that include more types of entrances (based on [#1179](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1179) and [#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
-* New hidden “Easter Egg Hunt” setting (based on [KevinPal's `triforce_easteregg` branch](https://github.com/KevinPal/OoT-Randomizer/tree/triforce_easteregg))
-* New “Shuffle Gerudo Valley River Exit” setting
-* New hidden “Generate Vanilla Seed” setting (used for `vanilla` and `fast-vanilla` presets)
-* A 4th option is added to the “Misc. Hints” setting to hint the Hookshot location in Dampé's diary
-* New “Chaos” and “Mixed Pools Tournament” hint distributions
+* New settings and options:
+  * New “Dungeon and Ganon” option for the “Shuffle Dungeon Entrances” setting (based on [#1546](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1546))
+  * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1536))
+  * “Closed Forest Requires Gohma” is a separate setting, making “Closed Forest” compatible with more settings if disabled ([#1531](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1531))
+  * New “Ludicrous” option for the “Item Pool” setting that makes everything a major item (based on [#1507](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1507) but heart containers aren't removed)
+  * New “One Bonk KO” setting ([#1503](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1503))
+  * New “Full” options for the “Randomize Owl Drops”, “Randomize Warp Song Destinations”, and “Randomize Overworld Spawns” settings that include more types of entrances (based on [#1179](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1179) and [#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
+  * New hidden “Easter Egg Hunt” setting (based on [KevinPal's `triforce_easteregg` branch](https://github.com/KevinPal/OoT-Randomizer/tree/triforce_easteregg))
+  * New “Shuffle Gerudo Valley River Exit” setting
+  * New hidden “Generate Vanilla Seed” setting (used for `vanilla` and `fast-vanilla` presets)
+  * A 4th option is added to the “Misc. Hints” setting to hint the Hookshot location in Dampé's diary
+  * New “Chaos” and “Mixed Pools Tournament” hint distributions
 * New settings presets:
   * `allsanity-casual` is my preferred flavor of allsanity, including full entrance randomizer, chaos hints, and warp song note shuffle, but with half damage, no Master Quest, and no tricks enabled. The rainbow bridge requires all dungeon rewards and Ganon's boss key requires all 100 gold skulltula tokens.
   * `debug` is similar to Default/Beginner but gives you most starting items for testing.
@@ -36,7 +29,17 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * `fast-vanilla` is `vanilla` but with speed-ups like fast bunny hood, fast chest cutscenes, or “Skip Some Minigame Phases” enabled.
   * “Mixed Pools Tournament”, the settings that will be used for an upcoming tournament with full mixed pools entrance randomizer.
   * “Standard Anti-Weekly Settings (S5)” disables every location that's enabled in “S5 Tournament” and enables every location that's disabled there, as well as changing some miscellaneous settings. See [the official document](https://docs.google.com/document/d/1sbL6Zju943F5qyx4QbTLUsqZqOTMmvqKVbDwJl08SGc/edit) for details.
-* The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
+* Other changes:
+  * The total number of small keys collected for a dungeon is displayed in the pause menu ([#1563](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1563))
+  * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
+  * Opening the Door of Time is a separate goal category when required by the settings ([#1529](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1529))
+  * The convenience patch for floor switches now applies to more MQ switches ([#1459](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1459))
+  * Automatically advances credits text (based on [#1412](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1412))
+  * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
+* Bug fixes:
+  * Very small amounts of damage will properly kill Link with “Damage Multiplier” set to “OHKO” ([#1585](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1585))
+  * The cutscenes used for ice traps with “Fast Chest Cutscenes” disabled now match whether they're disguised as major items ([#1583](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1583))
+  * Missing goal hints with some combinations of win conditions are added ([#1578](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1578))
 
 Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):
 

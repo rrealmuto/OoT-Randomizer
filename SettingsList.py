@@ -5788,7 +5788,7 @@ def build_close_match(name, value_type, source_list=None):
     return "" # No matches
 
 
-def validate_settings(settings_dict):
+def validate_settings(settings_dict, *, check_conflicts=True):
     for setting, choice in settings_dict.items():
         # Ensure the supplied setting name is a real setting
         if setting not in [x.name for x in setting_infos]:
@@ -5810,7 +5810,7 @@ def validate_settings(settings_dict):
         elif info.choice_list and choice not in info.choice_list:
             raise ValueError('%r is not a valid choice for setting %r. %s' % (choice, setting, build_close_match(choice, 'choice', info.choice_list)))
         # Ensure no conflicting settings are specified
-        if info.disable != None:
+        if check_conflicts and info.disable != None:
             for option, disabling in info.disable.items():
                 negative = False
                 if isinstance(option, str) and option[0] == '!':
