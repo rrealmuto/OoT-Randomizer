@@ -463,7 +463,7 @@ def get_goal_hint(spoiler, world, checked):
     return (GossipText('#%s# is on %s %s.' % (location_text, player_text, goal_text), [goal.color, 'Light Blue'], location.name, location.item.name), location)
 
 
-def get_barren_hint(spoiler, world, checked):
+def get_barren_hint(spoiler, world, checked, allChecked):
     if not hasattr(world, 'get_barren_hint_prev'):
         world.get_barren_hint_prev = RegionRestriction.NONE
 
@@ -471,8 +471,15 @@ def get_barren_hint(spoiler, world, checked):
     areas = list(filter(lambda area:
         area not in checked_areas
         and area not in world.hint_type_overrides['barren']
-        and not (world.barren_dungeon >= world.hint_dist_user['dungeons_barren_limit'] and world.empty_areas[area]['dungeon']),
-        world.empty_areas.keys()))
+        and not (world.barren_dungeon >= world.hint_dist_user['dungeons_barren_limit'] and world.empty_areas[area]['dungeon'])
+        and any(
+            location.name not in allChecked
+            and location.name not in world.hint_exclusions
+            and location.name not in hintExclusions(world)
+            and get_hint_area(location)[0] == area
+            for location in world.get_locations()
+        ),
+        world.empty_areas))
 
     if not areas:
         return None
@@ -1126,7 +1133,7 @@ def buildWorldGossipHints(spoiler, world, checkedLocations=None):
 
         allCheckedLocations = checkedLocations | checkedAlwaysLocations
         if hint_type == 'barren':
-            hint = hint_func[hint_type](spoiler, world, checkedLocations)
+            hint = hint_func[hint_type](spoiler, world, checkedLocations, allCheckedLocations)
         else:
             hint = hint_func[hint_type](spoiler, world, allCheckedLocations)
             checkedLocations.update(allCheckedLocations - checkedAlwaysLocations)
