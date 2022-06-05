@@ -574,7 +574,7 @@
     "show_seed_info": true,
     "user_message": "Mixed Pools Tournament",
     "world_count": 1,
-    "create_spoiler": true,
+    "create_spoiler": false,
     "vanilla_seed": false,
     "open_deku": false,
     "open_forest": true,
