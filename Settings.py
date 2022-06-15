@@ -319,6 +319,7 @@ class Settings:
         self.settings_string = self.get_settings_string()
         self.distribution = Distribution(self)
         self.update_seed(self.seed)
+        self.custom_seed = False
 
 
     def to_json(self):
@@ -382,6 +383,7 @@ def get_settings_from_command_line_args():
 
     if args.seed is not None:
         settings.update_seed(args.seed)
+        settings.custom_seed = True
 
     if args.convert_settings:
         if args.settings_string is not None:

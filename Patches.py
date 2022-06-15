@@ -209,7 +209,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         world_str = ""
     rom.write_bytes(rom.sym('WORLD_STRING_TXT'), makebytes(world_str, 12))
 
-    time_str = "at " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+    time_str = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M") + " UTC"
     rom.write_bytes(rom.sym('TIME_STRING_TXT'), makebytes(time_str, 25))
 
     if world.settings.show_seed_info:

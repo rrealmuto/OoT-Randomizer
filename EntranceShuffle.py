@@ -679,8 +679,11 @@ def shuffle_one_way_priority_entrances(worlds, world, one_way_priorities, one_wa
             logging.getLogger('').info('Failed to place all priority one-way entrances for world %d. Will retry %d more times', world.id, retry_count)
             logging.getLogger('').info('\t%s' % error)
 
-    raise EntranceShuffleError('Priority one-way entrance placement attempt count exceeded for world %d' % world.id)
-
+    if world.settings.custom_seed:   
+        raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d. Ensure the \"Seed\" field is empty and retry a few times.' % entrance_pool[0].world.id)
+    if world.settings.distribution_file:      
+        raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d. Some entrances in the Plandomizer File may have to be changed to create a valid seed. Reach out to Support on Discord for help.' % entrance_pool[0].world.id)
+    raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d. Retry a few times or reach out to Support on Discord for help.' % entrance_pool[0].world.id)
 
 # Shuffle all entrances within a provided pool
 def shuffle_entrance_pool(world, worlds, entrance_pool, target_entrances, locations_to_ensure_reachable, check_all=False, retry_count=20, placed_one_way_entrances=()):
@@ -717,7 +720,11 @@ def shuffle_entrance_pool(world, worlds, entrance_pool, target_entrances, locati
             logging.getLogger('').info('Failed to place all entrances in a pool for world %d. Will retry %d more times', entrance_pool[0].world.id, retry_count)
             logging.getLogger('').info('\t%s' % error)
 
-    raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d' % entrance_pool[0].world.id)
+    if world.settings.custom_seed:   
+        raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d. Ensure the \"Seed\" field is empty and retry a few times.' % entrance_pool[0].world.id)
+    if world.settings.distribution_file:      
+        raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d. Some entrances in the Plandomizer File may have to be changed to create a valid seed. Reach out to Support on Discord for help.' % entrance_pool[0].world.id)
+    raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d. Retry a few times or reach out to Support on Discord for help.' % entrance_pool[0].world.id)
 
 
 # Split entrances based on their requirements to figure out how each entrance should be handled when shuffling them

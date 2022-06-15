@@ -491,6 +491,7 @@ hintTable = {
     'LH Underwater Item':                                          ("the #sunken treasure in a lake# is", None, 'exclude'),
     'Hideout Gerudo Membership Card':                              ("#rescuing captured carpenters# is rewarded with", None, 'exclude'),
     'Wasteland Bombchu Salesman':                                  ("a #carpet guru# sells", None, 'exclude'),
+    'GC Medigoron':                                                ("#Medigoron# sells", None, 'exclude'),
 
     'Kak Impas House Freestanding PoH':                            ("#imprisoned in a house# lies", None, 'exclude'),
     'HF Tektite Grotto Freestanding PoH':                          ("#deep underwater in a hole# is", None, 'exclude'),
