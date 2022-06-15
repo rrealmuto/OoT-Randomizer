@@ -37,7 +37,6 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * Automatically advances credits text (based on [#1412](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1412))
   * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
 * Bug fixes:
-  * An area can no longer be hinted foolish if all locations in the area are hinted or disabled ([#1594](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1594))
   * Very small amounts of damage will properly kill Link with “Damage Multiplier” set to “OHKO” ([#1585](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1585))
   * The cutscenes used for ice traps with “Fast Chest Cutscenes” disabled now match whether they're disguised as major items ([#1583](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1583))
   * Missing goal hints with some combinations of win conditions are added ([#1578](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1578))
