@@ -28,7 +28,7 @@ bingoBottlesForHints = (
 )
 
 defaultHintDists = [
-    'balanced.json', 'bingo.json', 'ddr.json', 'scrubs.json', 'strong.json', 'tournament.json', 'useless.json', 'very_strong.json', 'chaos.json', 'mixed_pools.json'
+    'balanced.json', 'bingo.json', 'ddr.json', 'scrubs.json', 'strong.json', 'tournament.json', 'useless.json', 'very_strong.json', 'very_strong_magic.json', 'weekly.json', 'chaos.json', 'mixed_pools.json'
 ]
 
 unHintableWothItems = ['Triforce Piece', 'Easter Egg', 'Gold Skulltula Token']
@@ -452,7 +452,7 @@ def get_goal_hint(spoiler, world, checked):
         location_text = getHint(location.parent_region.dungeon.name, world.settings.clearer_hints).text
     else:
         location_text, _ = get_hint_area(location)
-    
+
     if world_id == world.id:
         player_text = "the"
         goal_text = goal.hint_text
@@ -1088,7 +1088,7 @@ def buildWorldGossipHints(spoiler, world, checkedLocations=None):
                     place_ok = add_hint(spoiler, world, stoneGroups, gossip_text, hint_dist['named-item'][1], location)
                     if not place_ok:
                         raise Exception('Not enough gossip stones for user-provided item hints')
-    
+
     # Shuffle named items hints
     # When all items are not required to be hinted, this allows for
     # opportunity-style hints to be drawn at random from the defined list.

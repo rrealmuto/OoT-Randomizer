@@ -5779,7 +5779,7 @@ setting_infos = [
             Fire Arrow Entry.
 
             Note that this setting does not affect logic.
-            Whether it's used or not, the trick "Shadow Temple 
+            Whether it's used or not, the trick "Shadow Temple
             Entry with Fire Arrows" must be enabled for it to be
             in logic.
         ''',

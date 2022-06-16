@@ -32,19 +32,23 @@
         "region_name": "Dodongos Cavern Elevator",
         "dungeon": "Dodongos Cavern",
         "locations": {
-            "Deku Baba Sticks": "is_adult or Kokiri_Sword or can_use(Boomerang)",
-            "Dodongos Cavern MQ Compass Chest": "is_adult or can_child_attack or Nuts",
-            "Dodongos Cavern MQ Larvae Room Chest": "can_use(Sticks) or has_fire_source",
-            "Dodongos Cavern MQ Torch Puzzle Room Chest": "
-                can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or 
-                (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
             "Dodongos Cavern MQ GS Song of Time Block Room": "
-                can_play(Song_of_Time) and (can_child_attack or is_adult)",
-            "Dodongos Cavern MQ GS Larvae Room": "can_use(Sticks) or has_fire_source",
-            "Dodongos Cavern MQ GS Lizalfos Room": "can_blast_or_smash",
-            "Dodongos Cavern MQ Deku Scrub Staircase": "can_stun_deku"
+                can_play(Song_of_Time) and (can_child_attack or is_adult)"
         },
         "exits": {
+            # Two routes available to get to upper level checks:
+            #   - Break the boulders near the elevator
+            #   - Collect the silver rupees in the staircase room
+            # If access to this region was accomplished with just strength, the only
+            # available route is through the staircase room, which requires bonking a
+            # few crates for silver rupees. If explosives were used to get to
+            # this region, both paths through the boulders and collecting silver rupees
+            # are accessible as explosives can break crates. If hammer was used, the
+            # staircase can't be lowered, but the boulders can be broken. The boulders
+            # are permanent even though the staircase is not, so child gets access once
+            # adult opens the way.
+            "Dodongos Cavern Upper Level": "here(can_bonk_crate and (is_adult or can_child_attack or Nuts))",
+            # Other exits are not affected by one bonk ko
             "Dodongos Cavern Lower Right Side": "
                 here((can_use(Sticks) or can_use(Dins_Fire)) and
                     Progressive_Strength_Upgrade and can_take_damage)",
@@ -57,6 +61,24 @@
                     here((logic_dc_mq_eyes_adult and is_adult) or (logic_dc_mq_eyes_child and is_child)) and
                     here(can_use(Sticks) or can_use(Dins_Fire) or
                         (is_adult and (logic_dc_jump or Megaton_Hammer or Hover_Boots or Hookshot))))"
+        }
+    },
+    {
+        "region_name": "Dodongos Cavern Upper Level",
+        "dungeon": "Dodongos Cavern",
+        "locations": {
+            "Deku Baba Sticks": "is_adult or Kokiri_Sword or can_use(Boomerang)",
+            "Dodongos Cavern MQ Compass Chest": "is_adult or can_child_attack or Nuts",
+            "Dodongos Cavern MQ Larvae Room Chest": "can_use(Sticks) or has_fire_source",
+            "Dodongos Cavern MQ Torch Puzzle Room Chest": "
+                can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or 
+                (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
+            "Dodongos Cavern MQ GS Larvae Room": "can_use(Sticks) or has_fire_source",
+            "Dodongos Cavern MQ GS Lizalfos Room": "can_blast_or_smash",
+            "Dodongos Cavern MQ Deku Scrub Staircase": "can_stun_deku"
+        },
+        "exits": {
+            "Dodongos Cavern Elevator": "True"
         }
     },
     {

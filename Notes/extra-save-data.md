@@ -6,7 +6,7 @@ This file documents parts of the OoT save data that go unused in vanilla but are
 
 The unused field (offset 0x10) of the permanent scene flags (save context + 0xd4 + 0x1c * scene ID) is used for the following purposes:
 
-* Scenes 0x00–0x0F are reserved for features related to dungeons, so each dungeon can use its own unused field
+* Total small key count: Scenes 0x00–0x0F (Each dungeon uses its own unused field. There's still room here for other dungeon-specific features.)
 * Scrub Shuffle: Scenes 0x10–0x27
 * Shopsanity: Scene 0x2C
 * FW in both ages: Scenes 0x3E–0x47

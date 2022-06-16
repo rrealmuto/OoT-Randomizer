@@ -679,9 +679,9 @@ def shuffle_one_way_priority_entrances(worlds, world, one_way_priorities, one_wa
             logging.getLogger('').info('Failed to place all priority one-way entrances for world %d. Will retry %d more times', world.id, retry_count)
             logging.getLogger('').info('\t%s' % error)
 
-    if world.settings.custom_seed:   
+    if world.settings.custom_seed:
         raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d. Ensure the \"Seed\" field is empty and retry a few times.' % entrance_pool[0].world.id)
-    if world.settings.distribution_file:      
+    if world.settings.distribution_file:
         raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d. Some entrances in the Plandomizer File may have to be changed to create a valid seed. Reach out to Support on Discord for help.' % entrance_pool[0].world.id)
     raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d. Retry a few times or reach out to Support on Discord for help.' % entrance_pool[0].world.id)
 
@@ -720,9 +720,9 @@ def shuffle_entrance_pool(world, worlds, entrance_pool, target_entrances, locati
             logging.getLogger('').info('Failed to place all entrances in a pool for world %d. Will retry %d more times', entrance_pool[0].world.id, retry_count)
             logging.getLogger('').info('\t%s' % error)
 
-    if world.settings.custom_seed:   
+    if world.settings.custom_seed:
         raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d. Ensure the \"Seed\" field is empty and retry a few times.' % entrance_pool[0].world.id)
-    if world.settings.distribution_file:      
+    if world.settings.distribution_file:
         raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d. Some entrances in the Plandomizer File may have to be changed to create a valid seed. Reach out to Support on Discord for help.' % entrance_pool[0].world.id)
     raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d. Retry a few times or reach out to Support on Discord for help.' % entrance_pool[0].world.id)
 

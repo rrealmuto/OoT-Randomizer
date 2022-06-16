@@ -50,17 +50,22 @@ CHECK_FOR_BONK_CANCEL:
     sw      ra, 0x10($sp)
 
     ; displaced code
-    lbu     v0, 0x0A63(s0)
-    or      a1, s0, $zero
+    addiu   $at, $zero, 0x0002
+    lui     t1, 0x8012
+
+    ; One Bonk KO setting enabled
+    lw      t8, CFG_DEADLY_BONKS
+    beqz    t8, @@return_bonk_check
+    nop
 
     ; Check if bonk flag was set and
     ; bonk animation flag (??) was cleared
-    lbu     t0, 0x0682(s0)   ; Player state3 flag 4
-    andi    t1, t0, 0x0010
-    beqz    t1, @@return_bonk_check
+    lbu     t8, 0x0682(s0)   ; Player state3 flag 4
+    andi    t3, t8, 0x0010
+    beqz    t3, @@return_bonk_check
     nop
-    lh      t1, 0x0840(s0)   ; this->unk_850
-    bnez    t1, @@return_bonk_check
+    lh      t3, 0x0840(s0)   ; this->unk_850
+    bnez    t3, @@return_bonk_check
     nop
     jal     APPLY_BONK_DAMAGE
     nop
@@ -73,17 +78,17 @@ CHECK_FOR_BONK_CANCEL:
 
 APPLY_BONK_DAMAGE:
     ; Unset bonk kill flag
-    lbu     t0, 0x0682(s0)   ; Player state3 flag 4
-    andi    t1, t0, 0xFFEF
-    sb      t1, 0x0682(s0)
+    lbu     t8, 0x0682(s0)   ; Player state3 flag 4
+    andi    t3, t8, 0xFFEF
+    sb      t3, 0x0682(s0)
 
     ; Set player health to zero
-    lui     t1, 0x8012       ; Save Context (upper half)
-    addiu   t1, t1, 0xA5D0   ; Save Context (lower half)
-    lh      t2, 0x13C8(t1)   ; Nayru's Love Timer, range 0 - 1200
-    bnez    t2, @@return_bonk
+    lui     t8, 0x8012       ; Save Context (upper half)
+    addiu   t8, t8, 0xA5D0   ; Save Context (lower half)
+    lh      t3, 0x13C8(t8)   ; Nayru's Love Timer, range 0 - 1200
+    bnez    t3, @@return_bonk
     nop
-    sh      $zero, 0x30(t1)  ; Player Health
+    sh      $zero, 0x30(t8)  ; Player Health
 
 @@return_bonk:
     jr      ra
@@ -129,8 +134,8 @@ CHECK_ROOM_MESH_TYPE:
     ori     t7, $zero, 0x0001
     bne     t7, t8, @@return_death_subcamera
     nop
-    j       0x8038D008 ; skips jal 0x8006B6FC (OnePointCutscene_Init), static location as part of player overlay
-    nop
+    j       0x8038D018 ; skips jal 0x8006B6FC (OnePointCutscene_Init), static location as part of player overlay
+    lw      ra, 0x0024($sp)
 
 @@return_death_subcamera:
     jr      ra

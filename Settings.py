@@ -391,5 +391,5 @@ def get_settings_from_command_line_args():
         else:
             print(settings.get_settings_string())
         sys.exit(0)
-        
+
     return settings, args.gui, args.loglevel, args.no_log, args.diff_rom

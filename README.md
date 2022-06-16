@@ -15,7 +15,6 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1536))
   * “Closed Forest Requires Gohma” is a separate setting, making “Closed Forest” compatible with more settings if disabled ([#1531](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1531))
   * New “Ludicrous” option for the “Item Pool” setting that makes everything a major item (based on [#1507](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1507) but heart containers aren't removed)
-  * New “One Bonk KO” setting ([#1503](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1503))
   * New “Full” options for the “Randomize Owl Drops”, “Randomize Warp Song Destinations”, and “Randomize Overworld Spawns” settings that include more types of entrances (based on [#1179](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1179) and [#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
   * New hidden “Easter Egg Hunt” setting (based on [KevinPal's `triforce_easteregg` branch](https://github.com/KevinPal/OoT-Randomizer/tree/triforce_easteregg))
   * New “Shuffle Gerudo Valley River Exit” setting
@@ -161,6 +160,7 @@ do that.
   * New setting `Easier Fire Arrow Entry` allows you to set the amount of torches that must be lit to open Shadow Temple.
   * The pause screen info menu has been split into 3 menus, which show icons on the D-Pad indicating which direction leads to which menu. In addition, the menu now tracks the total keys you've found for a dungeon, not just how many you have remaining.
   * New setting `Invisible Chests` makes all chests in the game invisible.
+  * New setting `One Bonk KO` will instantly kill Link when he hits his head while rolling.
 
 * **Gameplay**
   * Shortened the animation for equipping magic arrows.

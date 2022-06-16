@@ -965,6 +965,9 @@ skip_GS_BGS_text:
 ;   lw      a1, 0x0054($sp)
 ;   b       lbl_80842AE8
 ;   lw      $ra, 0x0024($sp)
+;   lwc1    $f4, 0x0828(s0)
+;   mtc1    $at, $f6
+;   nop
 .orga 0xBE0228
 ; Load APPLY_BONK_DAMAGE address as throwaway instructions. Replacing the jump call causes
 ; problems when overlay relocation is applied, breaking both replacement jump calls and nop'ing
@@ -981,6 +984,9 @@ skip_GS_BGS_text:
 ; The branch address is shifted to an alternate location where lw $ra... is run.
 ; Required as la t8, APPLY_BONK_DAMAGE gets expanded to two commands.
     b       0xBE0494
+    lw      $ra, 0x0024($sp)
+    lwc1    $f4, 0x0828(s0)
+    mtc1    $at, $f6
 
 ; Prevent set and reset of player state3 flag 4, which is re-used for storing bonk state if the
 ; player manages to cancel the roll/bonk animation before the last frame.
@@ -1006,9 +1012,9 @@ skip_GS_BGS_text:
 ; Hook into Player_UpdateCommon to check if bonk animation was canceled.
 ; If so, kill the dirty cheater.
 ; Replaces:
-;   lbu     v0, 0x0A63(s0)
-;   or      a1, s0, $zero
-.orga 0xBE4AC4
+;   addiu   $at, $zero, 0x0002
+;   lui     t1, 0x8012
+.orga 0xBE5328
     jal     CHECK_FOR_BONK_CANCEL
     nop
 

@@ -55,11 +55,11 @@ void get_chest_override(z64_actor_t *actor) {
 
     ((uint8_t*)actor)[0x01EC] = size;
     ((uint8_t*)actor)[0x01ED] = color;
-	if (CHEST_LENS_ONLY) {
-		// Actor flag 7 makes actors invisible
-		// Usually only applies to chest types 4 and 6
-		actor->flags |= 0x80;
-	}
+    if (CHEST_LENS_ONLY) {
+        // Actor flag 7 makes actors invisible
+        // Usually only applies to chest types 4 and 6
+        actor->flags |= 0x80;
+    }
 }
 
 void draw_chest(z64_game_t* game, int part, void* unk, void* unk2,
