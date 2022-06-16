@@ -36,10 +36,6 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * The convenience patch for floor switches now applies to more MQ switches ([#1459](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1459))
   * Automatically advances credits text (based on [#1412](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1412))
   * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
-* Bug fixes:
-  * Very small amounts of damage will properly kill Link with “Damage Multiplier” set to “OHKO” ([#1585](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1585))
-  * The cutscenes used for ice traps with “Fast Chest Cutscenes” disabled now match whether they're disguised as major items ([#1583](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1583))
-  * Missing goal hints with some combinations of win conditions are added ([#1578](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1578))
 
 Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):
 
@@ -185,7 +181,9 @@ do that.
 * Fixed an issue where `Plentiful` item pool combined with `Starting Hearts` would result in more Heart Containers being in the item pool than intended.
 * The Like Like in Master Quest Fire Temple will now return the player's shield when defeated.
 * Junk can now be placed on excluded song locations when Songs are set to `Song Locations` and a song is started with.
-* Fixed `GC Medigoron` not being a hintable location.
+* Fix `GC Medigoron` not being a hintable location.
+* Fix 1/16th damage not always killing Link when `One Hit KO` is enabled.
+* Fix ice traps cloaked as major items not giving the slow chest opening cutscenes when `Fast Chest Cutscenes` is disabled.
 
 #### Other changes
 * Added an auto-tracker context area to memory, so auto-trackers can find certain symbols much easier.
