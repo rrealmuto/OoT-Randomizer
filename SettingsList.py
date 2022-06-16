@@ -137,7 +137,7 @@ class Scale(Setting_Info):
 logic_tricks = {
     'Fewer Tunic Requirements': {
         'name'    : 'logic_fewer_tunic_requirements',
-        'tags'    : ("General", "Fire Temple", "Water Temple", "Gerudo Training Ground", "Zora's Fountain",),
+        'tags'    : ("General", "Fire Temple", "Water Temple", "Gerudo Training Ground", "Zora's Fountain", "Death Mountain Crater",),
         'tooltip' : '''\
                     Allows the following possible without Tunics:
                     - Enter Water Temple. The key below the center
@@ -349,8 +349,8 @@ logic_tricks = {
         'tags'    : ("Forest Temple", "Entrance", "Skulltulas",),
         'tooltip' : '''\
                     Allows killing this Skulltula with Sword or Sticks by
-                    jump slashing it as you let go from the vines. You will
-                    take fall damage.
+                    jump slashing it as you let go from the vines. You can
+                    avoid taking fall damage by recoiling onto the tree.
                     Also allows killing it as Child with a Bomb throw. It's
                     much more difficult to use a Bomb as child due to
                     Child Link's shorter height.
@@ -374,6 +374,8 @@ logic_tricks = {
                     front of the switch, either use the Hover Boots
                     or hit the shortcut switch at the top of the
                     room and jump from the glass blocks that spawn.
+                    Sticks can be used as child, but the Kokiri
+                    Sword is too short to reach through the glass.
                     '''},
     #'Forest Temple MQ Twisted Hallway Switch with Hookshot': {
     #    'name'    : 'logic_forest_mq_hallway_switch_hookshot',
@@ -383,6 +385,16 @@ logic_tricks = {
     #                and the wall. Through that gap you can hookshot
     #                the target on the ceiling.
     #                '''},
+    'Forest Temple MQ Twisted Hallway Switch with Boomerang': {
+        'name'    : 'logic_forest_mq_hallway_switch_boomerang',
+        'tags'    : ("Forest Temple", "Entrance",),
+        'tooltip' : '''\
+                    The Boomerang can return to Link through walls,
+                    allowing child to hit the hallway switch. This
+                    can be used to allow adult to pass through later,
+                    or in conjuction with "Forest Temple Outside
+                    Backdoor with Jump Slash".
+                    '''},
     'Death Mountain Trail Chest with Strength': {
         'name'    : 'logic_dmt_bombable',
         'tags'    : ("Death Mountain Trail",),
@@ -447,7 +459,7 @@ logic_tricks = {
         'tooltip' : '''\
                     Precise hookshot aiming at the platform chains can be
                     used to reach the boss platform from the middle landings.
-                    Using a jumpslash immediately after reaching a chain
+                    Using a jump slash immediately after reaching a chain
                     makes aiming more lenient. Relevant only when Spirit
                     Temple boss shortcuts are on.
                     '''},
@@ -624,7 +636,7 @@ logic_tricks = {
                     '''},
     'Shadow Temple MQ After Wind Gold Skulltula with Nothing': {
         'name'    : 'logic_shadow_mq_after_wind_gs',
-        'tags'    : ("Shadow Temple","Skulltulas",),
+        'tags'    : ("Shadow Temple", "Skulltulas",),
         'tooltip' : '''\
                     The Gold Skulltula in the rubble pile can be killed
                     with a sword slash without blowing up the rubble. The
@@ -667,7 +679,8 @@ logic_tricks = {
                     expire. You can get extra time to show the Eye Drops if
                     you warp immediately upon receiving them. If you don't
                     have many hearts, you may have to reset the heat timer
-                    by quickly dipping in and out of Darunia's chamber.
+                    by quickly dipping in and out of Darunia's chamber or
+                    quickly equipping and unequipping the Goron Tunic.
                     This trick does not apply if "Randomize Warp Song
                     Destinations" is enabled, or if the settings are such
                     that trade items do not need to be delivered within a
@@ -706,8 +719,10 @@ logic_tricks = {
         'tooltip' : '''\
                     Climb the tower as high as you can without
                     touching the Gold Skulltula, then let go and
-                    jump slash immediately. You will take fall
-                    damage.
+                    jump slash immediately. By jump-slashing from
+                    as low on the ladder as possible to still
+                    hit the Skulltula, this trick can be done
+                    without taking fall damage.
                     '''},
     'Deku Tree MQ Compass Room GS Boulders with Just Hammer': {
         'name'    : 'logic_deku_mq_compass_gs',
@@ -729,11 +744,10 @@ logic_tricks = {
         'name'    : 'logic_spirit_mq_lower_adult',
         'tags'    : ("Spirit Temple",),
         'tooltip' : '''\
-                    It can be done with Din\'s Fire and Bow.
-                    Whenever an arrow passes through a lit torch, it
-                    resets the timer. It's finicky but it's also
-                    possible to stand on the pillar next to the center
-                    torch, which makes it easier.
+                    By standing in a precise position it is possible to
+                    light two of the torches with a single use of Din\'s
+                    Fire. This saves enough time to be able to light all
+                    three torches with only Din\'s.
                     '''},
     'Spirit Temple Map Chest with Bow': {
         'name'    : 'logic_spirit_map_chest',
@@ -802,11 +816,8 @@ logic_tricks = {
         'tooltip' : '''\
                     There is an invisible Hookshot target that can be used
                     to get over the gate that blocks you from going to this
-                    Skulltula early. This avoids going through some rooms
-                    that normally require a Small Key to access. If "Water
-                    Temple North Basement Ledge with Precise Jump" is not
-                    enabled, this also skips needing Hover Boots or
-                    Scarecrow's Song to reach the locked door.
+                    Skulltula early, skipping a small key as well as
+                    needing Hovers or Scarecrow to reach the locked door.
                     '''},
     'Water Temple Falling Platform Room GS with Hookshot': {
         'name'    : 'logic_water_falling_platform_gs_hookshot',
@@ -885,12 +896,30 @@ logic_tricks = {
                     midflight, with precise timing and positioning.
                     '''},
     'Death Mountain Crater Upper to Lower with Hammer': {
-        'name'    : 'logic_crater_upper_to_lower',
+        'name'    : 'logic_crater_boulder_jumpslash',
         'tags'    : ("Death Mountain Crater",),
         'tooltip' : '''\
                     With the Hammer, you can jump slash the rock twice
                     in the same jump in order to destroy it before you
                     fall into the lava.
+                    '''},
+    'Death Mountain Crater Upper to Lower Boulder Skip': {
+        'name'    : 'logic_crater_boulder_skip',
+        'tags'    : ("Death Mountain Crater",),
+        'tooltip' : '''\
+                    With careful positioning, you can jump to the ledge
+                    where the boulder is, then use repeated ledge grabs
+                    to shimmy to a climbable ledge. This trick supersedes
+                    "Death Mountain Crater Upper to Lower with Hammer".
+                    '''},
+    'Death Mountain Crater Jump to Bolero': {
+        'name'    : 'logic_crater_bolero_jump',
+        'tags'    : ("Death Mountain Crater",),
+        'tooltip' : '''\
+                    Using a shield to drop a pot while you have
+                    the perfect speed and position, the pot can
+                    push you that little extra distance you
+                    need to jump across the gap in the bridge.
                     '''},
     'Zora\'s Domain Entry with Hover Boots': {
         'name'    : 'logic_zora_with_hovers',
@@ -1065,27 +1094,32 @@ logic_tricks = {
                     opening the door before it closes. However,
                     the timing for this is very tight.
                     '''},
-    'Jabu Boss Door Switch with Bombchus': {
-        'name'    : 'logic_jabu_boss_door_chus',
+    'Jabu Near Boss Ceiling Switch with Explosives': {
+        'name'    : 'logic_jabu_near_boss_explosives',
         'tags'    : ("Jabu Jabu's Belly", "Entrance",),
         'tooltip' : '''\
-                    You can trigger the switch that opens the 
-                    final door before the Jabu boss room with
-                    a precisely aimed bombchu. 
-                    Since a boomerang is still required to
-                    defeat Barinade, this trick is only useful
-                    in conjunction with shuffled dungeon bosses.
+                    You can hit the switch that opens the door to the boss
+                    room using a precisely-aimed Bombchu. Also, using the
+                    Hover Boots, adult can throw a Bomb at the switch. This
+                    trick is only relevant if "Shuffle Boss Entrances" is
+                    enabled.
                     '''},
-    'Jabu Boss Door Switch with Slingshot or Bow': {
-        'name'    : 'logic_jabu_boss_door_bow',
-        'tags'    : ("Jabu Jabu's Belly", "Entrance",),
+    'Jabu Near Boss Ceiling Switch/GS without Boomerang or Explosives': {
+        'name'    : 'logic_jabu_near_boss_ranged',
+        'tags'    : ("Jabu Jabu's Belly", "Skulltulas", "Entrance"),
         'tooltip' : '''\
-                    You can trigger the switch that opens the 
-                    final door before the Jabu boss room with
-                    a precisely aimed slingshot or bow shot.
-                    Since a boomerang is still required to
-                    defeat Barinade, this trick is only useful
-                    in conjunction with shuffled dungeon bosses.
+                    Vanilla Jabu: From near the entrance into the room, you can
+                    hit the switch that opens the door to the boss room using a
+                    precisely-aimed use of the Slingshot, Bow, or Longshot. As well,
+                    if you climb to the top of the vines you can stand on the right
+                    edge of the platform and shoot around the glass. From this
+                    distance, even the Hookshot can reach the switch. This trick is
+                    only relevant if "Shuffle Boss Entrances" is enabled.
+
+                    MQ Jabu: A Gold Skulltula Token can be collected with the
+                    Hookshot or Longshot using the same methods as hitting the switch
+                    in vanilla. This trick is usually only relevant if Jabu dungeon
+                    shortcuts are enabled.
                     '''},
     'Kakariko Rooftop GS with Hover Boots': {
         'name'    : 'logic_kakariko_rooftop_gs',
@@ -1312,10 +1346,12 @@ logic_tricks = {
         'name'    : 'logic_forest_outside_backdoor',
         'tags'    : ("Forest Temple",),
         'tooltip' : '''\
-                    With a precise jump slash from above,
-                    you can reach the backdoor to the west
-                    courtyard without Hover Boots. Applies
-                    to both Vanilla and Master Quest.
+                    A jump slash recoil can be used to reach the
+                    ledge in the block puzzle room that leads to
+                    the west courtyard. This skips a potential
+                    Hover Boots requirement in vanilla, and it
+                    can sometimes apply in MQ as well. This trick
+                    can be performed as both ages.
                     '''},
     'Forest Temple East Courtyard Door Frame with Hover Boots': {
         'name'    : 'logic_forest_door_frame',
@@ -1360,7 +1396,7 @@ logic_tricks = {
                     '''},
     'Dodongo\'s Cavern Smash the Boss Lobby Floor': {
         'name'    : 'logic_dc_hammer_floor',
-        'tags'    : ("Dodongo's Cavern" "Entrance",),
+        'tags'    : ("Dodongo's Cavern", "Entrance",),
         'tooltip' : '''\
                     The bombable floor before King Dodongo can be destroyed
                     with Hammer if hit in the very center. This is only
@@ -1492,7 +1528,7 @@ logic_tricks = {
                     '''},
     'Lensless Wasteland': {
         'name'    : 'logic_lens_wasteland',
-        'tags'    : ("Lens of Truth","Haunted Wasteland",),
+        'tags'    : ("Lens of Truth", "Haunted Wasteland",),
         'tooltip' : '''\
                     By memorizing the path, you can travel through the
                     Wasteland without using the Lens of Truth to see
@@ -1502,61 +1538,62 @@ logic_tricks = {
                     '''},
     'Bottom of the Well without Lens of Truth': {
         'name'    : 'logic_lens_botw',
-        'tags'    : ("Lens of Truth","Bottom of the Well",),
+        'tags'    : ("Lens of Truth", "Bottom of the Well",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Bottom of the Well.
                     '''},
     'Ganon\'s Castle MQ without Lens of Truth': {
         'name'    : 'logic_lens_castle_mq',
-        'tags'    : ("Lens of Truth","Ganon's Castle",),
+        'tags'    : ("Lens of Truth", "Ganon's Castle",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Ganon's Castle MQ.
                     '''},
     'Ganon\'s Castle without Lens of Truth': {
         'name'    : 'logic_lens_castle',
-        'tags'    : ("Lens of Truth","Ganon's Castle",),
+        'tags'    : ("Lens of Truth", "Ganon's Castle",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Ganon's Castle.
                     '''},
     'Gerudo Training Ground MQ without Lens of Truth': {
         'name'    : 'logic_lens_gtg_mq',
-        'tags'    : ("Lens of Truth","Gerudo Training Ground",),
+        'tags'    : ("Lens of Truth", "Gerudo Training Ground",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Gerudo Training Ground MQ.
                     '''},
     'Gerudo Training Ground without Lens of Truth': {
         'name'    : 'logic_lens_gtg',
-        'tags'    : ("Lens of Truth","Gerudo Training Ground",),
+        'tags'    : ("Lens of Truth", "Gerudo Training Ground",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Gerudo Training Ground.
                     '''},
     'Jabu MQ without Lens of Truth': {
         'name'    : 'logic_lens_jabu_mq',
-        'tags'    : ("Lens of Truth","Jabu Jabu's Belly",),
+        'tags'    : ("Lens of Truth", "Jabu Jabu's Belly",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Jabu MQ.
                     '''},
     'Shadow Temple MQ Stationary Objects without Lens of Truth': {
         'name'    : 'logic_lens_shadow_mq',
-        'tags'    : ("Lens of Truth","Shadow Temple",),
+        'tags'    : ("Lens of Truth", "Shadow Temple",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Shadow Temple MQ for most areas in the dungeon.
                     See "Shadow Temple MQ Invisible Moving Platform
                     without Lens of Truth", "Shadow Temple MQ Invisible
-                    Blades Silver Rupees without Lens of Truth", and
-                    "Shadow Temple MQ 2nd Dead Hand without Lens of Truth"
+                    Blades Silver Rupees without Lens of Truth",
+                    "Shadow Temple MQ 2nd Dead Hand without Lens of Truth",
+                    and "Shadow Temple Bongo Bongo without Lens of Truth"
                     for exceptions.
                     '''},
     'Shadow Temple MQ Invisible Moving Platform without Lens of Truth': {
         'name'    : 'logic_lens_shadow_mq_platform',
-        'tags'    : ("Lens of Truth","Shadow Temple",),
+        'tags'    : ("Lens of Truth", "Shadow Temple",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Shadow Temple MQ to cross the invisible moving
@@ -1564,7 +1601,7 @@ logic_tricks = {
                     '''},
     'Shadow Temple MQ Invisible Blades Silver Rupees without Lens of Truth': {
         'name'    : 'logic_lens_shadow_mq_invisible_blades',
-        'tags'    : ("Lens of Truth","Shadow Temple",),
+        'tags'    : ("Lens of Truth", "Shadow Temple",),
         'tooltip' : '''\
                     Removes the requirement for the Lens of Truth or
                     Nayru's Love in Shadow Temple MQ for the Invisible
@@ -1572,25 +1609,24 @@ logic_tricks = {
                     '''},
     'Shadow Temple MQ 2nd Dead Hand without Lens of Truth': {
         'name'    : 'logic_lens_shadow_mq_dead_hand',
-        'tags'    : ("Lens of Truth","Shadow Temple",),
+        'tags'    : ("Lens of Truth", "Shadow Temple",),
         'tooltip' : '''\
-                    Dead Hand can spawn out of bounds in the back room of
-                    Shadow Temple, making him unreachable until the room
-                    is reloaded. The only way to tell if this happened is
-                    with Lens of Truth. This trick removes that safety net.
+                    Dead Hand spawns in a random spot within the room.
+                    Having Lens removes the hassle of having to comb
+                    the room looking for his spawn location.
                     '''},
     'Shadow Temple Stationary Objects without Lens of Truth': {
         'name'    : 'logic_lens_shadow',
-        'tags'    : ("Lens of Truth","Shadow Temple",),
+        'tags'    : ("Lens of Truth", "Shadow Temple",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Shadow Temple for most areas in the dungeon
                     except for crossing the moving platform in the huge
-                    pit room.
+                    pit room and for fighting Bongo Bongo.
                     '''},
     'Shadow Temple Invisible Moving Platform without Lens of Truth': {
         'name'    : 'logic_lens_shadow_platform',
-        'tags'    : ("Lens of Truth","Shadow Temple",),
+        'tags'    : ("Lens of Truth", "Shadow Temple",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Shadow Temple to cross the invisible moving
@@ -1598,14 +1634,14 @@ logic_tricks = {
                     '''},
     'Spirit Temple MQ without Lens of Truth': {
         'name'    : 'logic_lens_spirit_mq',
-        'tags'    : ("Lens of Truth","Spirit Temple",),
+        'tags'    : ("Lens of Truth", "Spirit Temple",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Spirit Temple MQ.
                     '''},
     'Spirit Temple without Lens of Truth': {
         'name'    : 'logic_lens_spirit',
-        'tags'    : ("Lens of Truth","Spirit Temple",),
+        'tags'    : ("Lens of Truth", "Spirit Temple",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Spirit Temple.
@@ -4437,6 +4473,16 @@ setting_infos = [
             This will change chests with major items and boss keys into big chests.
             Boss keys will remain in their fancy chest, while small key will be in a
             smaller version of the fancy chest.
+        ''',
+        shared         = True,
+    ),
+    Checkbutton(
+        name           = 'invisible_chests',
+        gui_text       = 'Invisible Chests',
+        gui_tooltip    = '''\
+            Chests will be only be visible with
+            the Lens of Truth. Lens is not logically
+            required for normally visible chests.
         ''',
         shared         = True,
     ),

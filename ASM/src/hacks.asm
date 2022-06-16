@@ -1380,6 +1380,28 @@ skip_GS_BGS_text:
 .word   0xDE000000, 0x09000010
 
 ;==================================================================================================
+; Invisible Chests
+;==================================================================================================
+
+; z_actor, offset 0x5F58
+; Hooks into actor draw logic for invisible actors and lens of truth.
+; If invisible chests is enabled, chests in rooms with inverted lens
+; functionality (hide instead of show) will not be drawn at all unless
+; lens is active.
+; replaces
+;   lw      v0, 0x0004(s0)
+;   andi    t3, v0, 0x0060
+.orga 0xA9AAF0
+    jal     SHOW_CHEST_WITH_INVERTED_LENS
+    nop
+; replaces
+;   sll     t9, s2,  2
+;   addu    t0, s7, t9
+.orga 0xA9AB0C
+    jal     HIDE_CHEST_WITH_INVERTED_LENS
+    nop
+
+;==================================================================================================
 ; Cast Fishing Rod without B Item
 ;==================================================================================================
 

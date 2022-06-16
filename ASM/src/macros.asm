@@ -23,3 +23,7 @@
 .macro beq_a, reg1, reg2, addr
 	beq		reg1, reg2, (org() + addr - orga())
 .endmacro
+
+.macro bnezl_a, reg1, addr
+	bnezl	reg1, (org() + addr - orga())
+.endmacro

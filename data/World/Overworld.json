@@ -92,7 +92,7 @@
                 (can_use(Hookshot) or (logic_adult_kokiri_gs and can_use(Hover_Boots)))",
             "KF Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle",
-            "Bean Plant Fairy": "can_plant_bean and can_play(Song_of_Storms) and has_bottle"
+            "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle"
         },
         "exits": {
             "KF Links House": "True",
@@ -219,7 +219,7 @@
             "LW GS Bean Patch Near Bridge": "can_plant_bugs and can_child_attack",
             "LW Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle",
-            "Bean Plant Fairy": "can_plant_bean and can_play(Song_of_Storms) and has_bottle",
+            "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle",
             "Bug Shrub": "is_child and can_cut_shrubs and has_bottle"
         },
         "exits": {
@@ -393,7 +393,7 @@
             "LH Gossip Stone (Southeast)": "True",
             "LH Gossip Stone (Southwest)": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
-            "Bean Plant Fairy": "can_plant_bean and can_play(Song_of_Storms) and has_bottle",
+            "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
             "Bug Shrub": "is_child and can_cut_shrubs and has_bottle"
         },
@@ -491,7 +491,7 @@
             "GV Cow": "is_child and can_play(Eponas_Song)",
             "GV Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
-            "Bean Plant Fairy": "can_plant_bean and can_play(Song_of_Storms) and has_bottle"
+            "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle"
         },
         "exits": {
             "GV Lower Stream": "True"
@@ -753,7 +753,9 @@
             "ToT Gossip Stone (Left-Center)": "True",
             "ToT Gossip Stone (Right)": "True",
             "ToT Gossip Stone (Right-Center)": "True",
-            "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle"
+            "Gossip Stone Fairy": "
+                (can_summon_gossip_fairy_without_suns or (is_adult and can_play(Suns_Song))) and
+                has_bottle"
         },
         "exits": {
             "Market": "True",
@@ -1033,9 +1035,8 @@
             "Kak GS Near Gate Guard": "is_child and at_night",
             "Kak GS Tree": "is_child and at_night and can_bonk_tree",
             "Kak GS Watchtower": "
-                is_child and (Slingshot or has_bombchus or 
-                    (logic_kakariko_tower_gs and (Sticks or Kokiri_Sword) and
-                    can_take_damage)) and at_night",
+                is_child and at_night and (Slingshot or has_bombchus or
+                    (logic_kakariko_tower_gs and (Sticks or Kokiri_Sword)))",
             "Bug Rock": "has_bottle"
         },
         "exits": {
@@ -1058,7 +1059,7 @@
                 can_use(Hookshot) or 
                 (logic_man_on_roof and 
                     (is_adult or at_day or Slingshot or has_bombchus or 
-                        (logic_kakariko_tower_gs and (Sticks or Kokiri_Sword) and can_take_damage)))",
+                        (logic_kakariko_tower_gs and (Sticks or Kokiri_Sword))))",
             "Kak Backyard": "is_adult or at_day",
             "Graveyard": "True",
             "Kak Behind Gate": "is_adult or 'Kakariko Village Gate Open'"
@@ -1256,7 +1257,7 @@
             "Graveyard GS Wall": "can_use(Boomerang) and at_night",
             "Graveyard GS Bean Patch": "can_plant_bugs and can_child_attack",
             "Butterfly Fairy": "can_use(Sticks) and at_day and has_bottle",
-            "Bean Plant Fairy": "can_plant_bean and can_play(Song_of_Storms) and has_bottle",
+            "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle",
             "Bug Rock": "has_bottle"
         },
         "exits": {
@@ -1368,7 +1369,7 @@
                 (logic_dmt_bombable and is_child and Progressive_Strength_Upgrade)",
             "DMT Freestanding PoH": "
                 can_take_damage or can_use(Hover_Boots) or
-                (is_adult and here(can_plant_bean and (has_explosives or Progressive_Strength_Upgrade)))",
+                (is_adult and here(can_plant_bean and (plant_beans or has_explosives or Progressive_Strength_Upgrade)))",
             "DMT GS Bean Patch": "
                 can_plant_bugs and can_child_attack and
                     (has_explosives or Progressive_Strength_Upgrade or
@@ -1379,9 +1380,10 @@
                 (can_use(Megaton_Hammer) or
                     (logic_trail_gs_lower_hookshot and can_use(Hookshot)) or
                     (logic_trail_gs_lower_hovers and can_use(Hover_Boots)) or
-                    (logic_trail_gs_lower_bean and here(can_plant_bean and (has_explosives or Progressive_Strength_Upgrade))))",
+                    (logic_trail_gs_lower_bean and
+                        here(can_plant_bean and (plant_beans or has_explosives or Progressive_Strength_Upgrade))))",
             "Bean Plant Fairy": "
-                can_plant_bean and can_play(Song_of_Storms) and has_bottle and
+                is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle and
                 (has_explosives or Progressive_Strength_Upgrade)"
         },
         "exits": {
@@ -1389,8 +1391,8 @@
             "Goron City": "True",
             "Death Mountain Summit": "
                 here(can_blast_or_smash) or
-                    (is_adult and here(can_plant_bean and Progressive_Strength_Upgrade)) or
-                    (logic_dmt_climb_hovers and can_use(Hover_Boots))",
+                (is_adult and here(can_plant_bean and (plant_beans or Progressive_Strength_Upgrade))) or
+                (logic_dmt_climb_hovers and can_use(Hover_Boots))",
             "Dodongos Cavern Beginning": "
                 has_explosives or Progressive_Strength_Upgrade or is_adult",
             "DMT Storms Grotto": "can_open_storm_grotto"
@@ -1534,9 +1536,8 @@
         "exits": {
             "GC Grotto": "True",
             "Goron City": "
-                (damage_multiplier != 'ohko' and damage_multiplier != 'quadruple') or 
-                can_use(Goron_Tunic) or can_use(Nayrus_Love) or 
-                (can_play(Song_of_Time) and can_use(Longshot))"
+                (damage_multiplier != 'ohko' and (damage_multiplier != 'quadruple' or can_use(Goron_Tunic))) or
+                can_use(Nayrus_Love) or (can_play(Song_of_Time) and can_use(Longshot))"
         }
     },
     {
@@ -1600,8 +1601,9 @@
         "exits": {
             "DMC Upper Nearby": "is_adult",
             "DMC Lower Nearby": "
-                can_use(Hover_Boots) or
-                (logic_crater_upper_to_lower and can_use(Megaton_Hammer))"
+                can_use(Hover_Boots) or at('DMC Lower Nearby', can_use(Megaton_Hammer)) or
+                ((logic_crater_boulder_jumpslash or logic_crater_boulder_skip) and can_use(Megaton_Hammer)) or
+                (logic_crater_boulder_skip and can_use(Goron_Tunic))"
         }
     },
     {
@@ -1624,7 +1626,9 @@
         "exits": {
             "DMC Lower Nearby": "True",
             "DMC Ladder Area Nearby": "True",
-            "DMC Central Nearby": "can_use(Hover_Boots) or can_use(Hookshot)",
+            "DMC Central Nearby": "
+                can_use(Hover_Boots) or can_use(Hookshot) or
+                (logic_crater_bolero_jump and can_use(Goron_Tunic) and (is_adult and can_shield))",
             "DMC Fire Temple Entrance": "
                 (can_use(Hover_Boots) or can_use(Hookshot)) and
                 (logic_fewer_tunic_requirements or can_use(Goron_Tunic))"
@@ -1653,7 +1657,7 @@
         "hint": "Death Mountain Crater",
         "locations": {
             "DMC GS Bean Patch": "can_plant_bugs and can_child_attack",
-            "Bean Plant Fairy": "can_plant_bean and can_play(Song_of_Storms) and has_bottle"
+            "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle"
         },
         "exits": {
             "DMC Central Nearby": "True",
@@ -1729,19 +1733,19 @@
             "ZR Frogs Song of Time": "is_child and can_play(Song_of_Time)",
             "ZR Frogs in the Rain": "is_child and can_play(Song_of_Storms)",
             "ZR Near Open Grotto Freestanding PoH": "
-                is_child or (is_adult and (plant_beans or Hover_Boots or logic_zora_river_lower))",
+                is_child or here(can_plant_bean) or Hover_Boots or logic_zora_river_lower",
             "ZR Near Domain Freestanding PoH": "
-                is_child or can_use(Hover_Boots) or (is_adult and logic_zora_river_upper)",
+                is_child or Hover_Boots or logic_zora_river_upper",
             "ZR GS Ladder": "is_child and at_night and can_child_attack",
             "ZR GS Near Raised Grottos": "can_use(Hookshot) and at_night",
             "ZR GS Above Bridge": "can_use(Hookshot) and at_night",
             "ZR Near Grottos Gossip Stone": "True",
             "ZR Near Domain Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
-            "Bean Plant Fairy": "can_plant_bean and can_play(Song_of_Storms) and has_bottle",
+            "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
             "Bug Shrub": "
-                (is_child or (is_adult and (plant_beans or Hover_Boots or logic_zora_river_lower))) and
+                (is_child or here(can_plant_bean) or Hover_Boots or logic_zora_river_lower) and
                 can_cut_shrubs and has_bottle"
         },
         "exits": {
@@ -1951,15 +1955,6 @@
         },
         "exits": {
             "Lon Lon Ranch": "True"
-        }
-    },
-    {
-        "region_name": "Ganons Castle Tower",
-        "dungeon": "Ganons Castle",
-        "locations": {
-            "Ganons Tower Boss Key Chest": "is_adult or Kokiri_Sword",
-            "Ganondorf Hint": "(is_adult or Kokiri_Sword) and Boss_Key_Ganons_Castle",
-            "Ganon": "Boss_Key_Ganons_Castle and can_use(Light_Arrows)"
         }
     },
     {

@@ -59,7 +59,9 @@
         "dungeon": "Water Temple",
         "locations": {
             "Water Temple MQ Freestanding Key": "
-                ((Hover_Boots or can_use(Scarecrow) or logic_water_north_basement_ledge_jump) and can_bonk_crate)",
+                can_bonk_crate and
+                    (Hover_Boots or can_use(Scarecrow) or logic_water_north_basement_ledge_jump or
+                        (logic_water_mq_locked_gs and (Small_Key_Water_Temple, 2))",
             "Water Temple MQ GS Triple Wall Torch": "
                 can_use(Fire_Arrows) and (Hover_Boots or can_use(Scarecrow))",
             "Water Temple MQ GS Freestanding Key Area": "

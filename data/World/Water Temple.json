@@ -54,7 +54,7 @@
         },
         "exits": {
             "Water Temple Cracked Wall": "
-                can_play(Zeldas_Lullaby) and (can_use(Hookshot) or can_use(Hover_Boots)) and
+                can_play(Zeldas_Lullaby) and Raise_Water_Level and
                 (logic_water_cracked_wall_nothing or (logic_water_cracked_wall_hovers and can_use(Hover_Boots)))",
             "Water Temple Middle Water Level": "
                 (Bow or can_use(Dins_Fire) or
