@@ -5720,6 +5720,43 @@ setting_infos = [
             ]
         }
     ),
+    Checkbutton(
+        name           = 'easier_fire_arrow_entry',
+        gui_text       = 'Easier Fire Arrow Entry',
+        gui_tooltip    = '''\
+            It is possible to open the Shadow Temple entrance
+            by lighting the torches with Fire Arrows, but
+            can be difficult to light all 24 torches in time.
+            Enabling this setting allows you to reduce the
+            number of torches that need to be lit to open
+            the entrance, making it easier to perform
+            Fire Arrow Entry.
+
+            Note that this setting does not affect logic.
+            Whether it's used or not, the trick "Shadow Temple 
+            Entry with Fire Arrows" must be enabled for it to be
+            in logic.
+        ''',
+        disable        = {
+            False : {'settings' : ['fae_torch_count']}
+        },
+        shared         = True,
+    ),
+    Scale(
+        name           = 'fae_torch_count',
+        gui_text       = 'Fire Arrow Entry Torch Count',
+        default        = 3,
+        min            = 1,
+        max            = 23,
+        gui_tooltip    = '''\
+            The entrance to Shadow Temple will open
+            after the chosen number of torches are lit.
+        ''',
+        shared         = True,
+        gui_params     = {
+            "hide_when_disabled": True,
+        }
+    ),
 ]
 
 

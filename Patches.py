@@ -2110,6 +2110,11 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         warp=world.settings.ocarina_songs in ('warp', 'all'),
     )
 
+    # Sets the torch count to open the entrance to Shadow Temple
+    if world.settings.easier_fire_arrow_entry:
+        torch_count = world.settings.fae_torch_count
+        rom.write_byte(0xCA61E3, torch_count)
+
     # actually write the save table to rom
     world.distribution.give_items(world, save_context)
     if world.settings.starting_age == 'adult':

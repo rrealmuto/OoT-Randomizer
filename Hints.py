@@ -557,7 +557,7 @@ def get_specific_item_hint(spoiler, world, checked):
     if len(world.named_item_pool) == 0:
         logger = logging.getLogger('')
         logger.info("Named item hint requested, but pool is empty.")
-        return None  
+        return None
     if world.settings.world_count == 1:
         while True:
             itemname = world.named_item_pool.pop(0)
@@ -1073,9 +1073,17 @@ def buildWorldGossipHints(spoiler, world, checkedLocations=None):
         if hint_dist['named-item'][1] == 0:
             raise Exception('User-provided item hints were requested, but copies per named-item hint is zero')
         else:
+            # Prevent conflict between Ganondorf Light Arrows hint and required named item hints.
+            # Assumes that a "wasted" hint is desired since Light Arrows have to be added
+            # explicitly to the list for named item hints.
+            filtered_checked = set(checkedLocations | checkedAlwaysLocations)
+            for location in (checkedLocations | checkedAlwaysLocations):
+                if world.get_location(location).item.name == 'Light Arrows':
+                    filtered_checked.remove(location)
             for i in range(0, len(world.named_item_pool)):
-                hint = get_specific_item_hint(spoiler, world, checkedLocations | checkedAlwaysLocations)
+                hint = get_specific_item_hint(spoiler, world, filtered_checked)
                 if hint:
+                    checkedLocations.update(filtered_checked - checkedAlwaysLocations)
                     gossip_text, location = hint
                     place_ok = add_hint(spoiler, world, stoneGroups, gossip_text, hint_dist['named-item'][1], location)
                     if not place_ok:

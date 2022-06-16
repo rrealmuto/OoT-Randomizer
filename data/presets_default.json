@@ -127,7 +127,9 @@
     "damage_multiplier": "half",
     "deadly_bonks": false,
     "starting_tod": "random",
-    "starting_age": "child"
+    "starting_age": "child",
+    "easier_fire_arrow_entry": false,
+    "fae_torch_count": 3
   },
   "debug": {
     "show_seed_info": true,
@@ -328,7 +330,9 @@
     "damage_multiplier": "half",
     "deadly_bonks": false,
     "starting_tod": "default",
-    "starting_age": "child"
+    "starting_age": "child",
+    "easier_fire_arrow_entry": false,
+    "fae_torch_count": 3
   },
   "vanilla": {
     "show_seed_info": true,
@@ -448,7 +452,9 @@
     "damage_multiplier": "normal",
     "deadly_bonks": false,
     "starting_tod": "default",
-    "starting_age": "child"
+    "starting_age": "child",
+    "easier_fire_arrow_entry": false,
+    "fae_torch_count": 3
   },
   "fast-vanilla": {
     "show_seed_info": true,
@@ -568,7 +574,9 @@
     "damage_multiplier": "normal",
     "deadly_bonks": false,
     "starting_tod": "default",
-    "starting_age": "child"
+    "starting_age": "child",
+    "easier_fire_arrow_entry": false,
+    "fae_torch_count": 3
   },
   "Mixed Pools Tournament": {
     "show_seed_info": true,
@@ -722,7 +730,9 @@
     "damage_multiplier": "normal",
     "deadly_bonks": false,
     "starting_tod": "default",
-    "starting_age": "random"
+    "starting_age": "random",
+    "easier_fire_arrow_entry": false,
+    "fae_torch_count": 3
   },
   "Standard Anti-Weekly Settings (S5)": {
     "show_seed_info": true,
@@ -1123,7 +1133,9 @@
     "damage_multiplier": "normal",
     "deadly_bonks": false,
     "starting_tod": "sunset",
-    "starting_age": "random"
+    "starting_age": "random",
+    "easier_fire_arrow_entry": false,
+    "fae_torch_count": 3
   },
   "Easy Mode": {
     "show_seed_info": true,
@@ -1252,7 +1264,9 @@
     "damage_multiplier": "normal",
     "deadly_bonks": false,
     "starting_tod": "default",
-    "starting_age": "child"
+    "starting_age": "child",
+    "easier_fire_arrow_entry": false,
+    "fae_torch_count": 3
   },
   "S5 Tournament": {
     "show_seed_info": true,
@@ -1399,7 +1413,9 @@
     "damage_multiplier": "normal",
     "deadly_bonks": false,
     "starting_tod": "default",
-    "starting_age": "random"
+    "starting_age": "random",
+    "easier_fire_arrow_entry": false,
+    "fae_torch_count": 3
   },
   "Standard Weekly (Latest)": {
     "show_seed_info": true,
@@ -1548,7 +1564,9 @@
     "damage_multiplier": "normal",
     "deadly_bonks": false,
     "starting_tod": "default",
-    "starting_age": "random"
+    "starting_age": "random",
+    "easier_fire_arrow_entry": false,
+    "fae_torch_count": 3
   },
   "DDR Weekly (2021-01-19)": {
     "show_seed_info": true,
@@ -1691,7 +1709,9 @@
     "damage_multiplier": "normal",
     "deadly_bonks": false,
     "starting_tod": "default",
-    "starting_age": "child"
+    "starting_age": "child",
+    "easier_fire_arrow_entry": false,
+    "fae_torch_count": 3
   },
   "Scrub Tournament": {
     "show_seed_info": true,
@@ -1843,7 +1863,9 @@
     "damage_multiplier": "normal",
     "deadly_bonks": false,
     "starting_tod": "default",
-    "starting_age": "random"
+    "starting_age": "random",
+    "easier_fire_arrow_entry": false,
+    "fae_torch_count": 3
   },
   "Multiworld Tournament Season 2": {
     "show_seed_info": true,
@@ -1993,7 +2015,9 @@
     "damage_multiplier": "normal",
     "deadly_bonks": false,
     "starting_tod": "default",
-    "starting_age": "adult"
+    "starting_age": "adult",
+    "easier_fire_arrow_entry": false,
+    "fae_torch_count": 3
   },
   "Hell Mode": {
     "show_seed_info": true,
@@ -2269,7 +2293,9 @@
     "damage_multiplier": "ohko",
     "deadly_bonks": true,
     "starting_tod": "random",
-    "starting_age": "random"
+    "starting_age": "random",
+    "easier_fire_arrow_entry": false,
+    "fae_torch_count": 3
   },
   "Bingo": {
     "show_seed_info": true,
@@ -2407,7 +2433,9 @@
     "damage_multiplier": "normal",
     "deadly_bonks": false,
     "starting_tod": "default",
-    "starting_age": "child"
+    "starting_age": "child",
+    "easier_fire_arrow_entry": false,
+    "fae_torch_count": 3
   },
   "League": {
     "show_seed_info": true,
@@ -2548,7 +2576,9 @@
     "damage_multiplier": "normal",
     "deadly_bonks": false,
     "starting_tod": "default",
-    "starting_age": "random"
+    "starting_age": "random",
+    "easier_fire_arrow_entry": false,
+    "fae_torch_count": 3
   },
   "Co-Op Tournament Season 2": {
     "show_seed_info": true,
@@ -2695,6 +2725,8 @@
     "damage_multiplier": "normal",
     "deadly_bonks": false,
     "starting_tod": "default",
-    "starting_age": "adult"
+    "starting_age": "adult",
+    "easier_fire_arrow_entry": false,
+    "fae_torch_count": 3
   }
 }

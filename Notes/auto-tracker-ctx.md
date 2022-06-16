@@ -5,7 +5,7 @@ The starting address of the auto-tracker context is listed at address `0x8040_00
 |Offset|Name|Min version|Size|Description|
 |--:|---|--:|--:|---|
 |`0x00`|`AUTO_TRACKER_VERSION`|1|`0x4`|Defines which entries in this table are available. Future versions may also change the layout of this table in an incompatible manner.|
-|`0x04`|`CFG_DUNGEON_INFO_ENABLE`|1|`0x4`|`1` if pressing A on the inventory screen on the pause menu will display information about dungeons.|
+|`0x04`|`CFG_DUNGEON_INFO_ENABLE`|1|`0x4`|Defines how information about dungeons will be displayed on the inventory screen on the pause menu. `0` = disabled, `1` = a single menu shown when holding A, `2` = separate menus shown when holding D-pad buttons.|
 |`0x08`|`CFG_DUNGEON_INFO_MQ_ENABLE`|1|`0x4`|`1` if the dungeon info in the pause menu should include info about which dungeons are in Master Quest mode.|
 |`0x0c`|`CFG_DUNGEON_INFO_MQ_NEED_MAP`|1|`0x4`|`1` if the Master Quest info should only be displayed for dungeons whose maps have been obtained or which don't have maps.|
 |`0x10`|`CFG_DUNGEON_INFO_REWARD_ENABLE`|1|`0x4`|`1` if the dungeon info in the pause menu should include info about which medallions and stones are in which dungeon.|

@@ -348,6 +348,19 @@ Gameplay_InitSkybox:
     move    a0, s0
 .endarea
 
+;Hack to EnItem00_Init to spawn deku shield, hylian shield, and tunic objects
+.orga 0xA87DC8 ;In memory 0x80011E68
+    jal object_index_or_spawn ;Replace call to z64_ObjectIndex
+.orga 0xA87E24 ;In memory 0x80011EC4
+    jal object_index_or_spawn ;Replace call to z64_ObjectIndex
+.orga 0xA87E80 ;In memory 0x80011F20
+    jal object_index_or_spawn ;Replace call to z64_ObjectIndex
+
+; Remove deku shield drop from spirit pot because it's "vanilla behavior"
+; Replace actor parameters in scene 06, room 27 actor list
+.orga 0x2BDC0C6
+    .halfword 0x603F
+
 ;==================================================================================================
 ; Freestanding models
 ;==================================================================================================
