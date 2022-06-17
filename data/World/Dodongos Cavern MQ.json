@@ -71,7 +71,7 @@
             "Dodongos Cavern MQ Compass Chest": "is_adult or can_child_attack or Nuts",
             "Dodongos Cavern MQ Larvae Room Chest": "can_use(Sticks) or has_fire_source",
             "Dodongos Cavern MQ Torch Puzzle Room Chest": "
-                can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or 
+                can_blast_or_smash or can_use(Sticks) or can_use(Dins_Fire) or
                 (is_adult and (logic_dc_jump or Hover_Boots or Progressive_Hookshot))",
             "Dodongos Cavern MQ GS Larvae Room": "can_use(Sticks) or has_fire_source",
             "Dodongos Cavern MQ GS Lizalfos Room": "can_blast_or_smash",

@@ -20,7 +20,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * New “Shuffle Gerudo Valley River Exit” setting
   * New hidden “Generate Vanilla Seed” setting (used for `vanilla` and `fast-vanilla` presets)
   * A 4th option is added to the “Misc. Hints” setting to hint the Hookshot location in Dampé's diary
-  * New “Chaos” and “Mixed Pools Tournament” hint distributions
+  * New “Mixed Pools Tournament” hint distribution
 * New settings presets:
   * `allsanity-casual` is my preferred flavor of allsanity, including full entrance randomizer, chaos hints, and warp song note shuffle, but with half damage, no Master Quest, and no tricks enabled. The rainbow bridge requires all dungeon rewards and Ganon's boss key requires all 100 gold skulltula tokens.
   * `debug` is similar to Default/Beginner but gives you most starting items for testing.
@@ -162,6 +162,7 @@ do that.
   * New setting `Invisible Chests` makes all chests in the game invisible.
   * New setting `One Bonk KO` will instantly kill Link when he hits his head while rolling.
   * New hint type `Dual Hint` which allows multiple locations to be hinted in the same hint.
+  * New `Chaos` hint distribution which gives all hint types equal likelihood.
 
 * **Gameplay**
   * Shortened the animation for equipping magic arrows.

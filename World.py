@@ -145,7 +145,7 @@ class World(object):
                                           sometimes, dual, random, junk, named-item, goal). If a hint type should not be
                                           shuffled, set its order to 0. Hint type format is \"type\": { 
                                           \"order\": 0, \"weight\": 0.0, \"fixed\": 0, \"copies\": 0 }""")
-        
+
         self.added_hint_types = {}
         self.item_added_hint_types = {}
         self.hint_exclusions = set()
@@ -153,7 +153,7 @@ class World(object):
             self.hint_exclusions.add('Song from Impa')
         self.hint_type_overrides = {}
         self.item_hint_type_overrides = {}
-                
+
         for dist in hint_dist_keys:
             self.added_hint_types[dist] = []
             for loc in self.hint_dist_user['add_locations']:
@@ -172,7 +172,7 @@ class World(object):
             for i in self.hint_dist_user['remove_items']:
                 if dist in i['types']:
                     self.item_hint_type_overrides[dist].append(i['item'])
-                    
+
 
         self.hint_text_overrides = {}
         for loc in self.hint_dist_user['add_locations']:
@@ -189,7 +189,7 @@ class World(object):
         self.named_item_pool = list(self.item_hints)
 
         self.always_hints = [hint.name for hint in getRequiredHints(self)]
-        
+
         self.state = State(self)
 
         # Allows us to cut down on checking whether some items are required

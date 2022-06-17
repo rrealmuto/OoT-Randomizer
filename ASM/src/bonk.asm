@@ -1,5 +1,5 @@
 CFG_DEADLY_BONKS:
-	.word 0x00000000
+    .word 0x00000000
 
 
 BONK_LAST_FRAME:
@@ -127,7 +127,7 @@ CHECK_ROOM_MESH_TYPE:
     ; room->mesh->polygon.type
     lw      t7, 0x0008(t6)
     lbu     t8, 0x0000(t7)
-    
+
     ; Room mesh type 1 is fixed camera areas
     ; Room mesh type 2 is follow camera areas
     ; Room mesh type 0 is ???

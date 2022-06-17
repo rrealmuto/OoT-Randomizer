@@ -39,7 +39,7 @@ class Hint(object):
 
 class Multi(object):
     locations = []
-    
+
     def __init__(self, locations):
         self.locations = locations
 
@@ -184,6 +184,7 @@ conditional_always = {
 conditional_dual_always = {
     'HF Ocarina of Time Retrieval': lambda world: stones_required_by_settings(world) < 2,
     'Deku Theater Rewards':         lambda world: not world.settings.complete_mask_quest,
+    'ZR Frogs Rewards':             lambda world: not world.settings.shuffle_frog_song_rupees,
 }
 
 # Some sometimes and dual hints should only be enabled under certain settings
@@ -191,7 +192,7 @@ conditional_sometimes = {
     # Conditionnal sometimes hints
     'HC Great Fairy Reward':                    lambda world: world.settings.shuffle_interior_entrances == 'off',
     'OGC Great Fairy Reward':                   lambda world: world.settings.shuffle_interior_entrances == 'off',
-    
+
     # Conditionnal dual hints
     'GV Pieces of Heart Ledges':                lambda world: not world.settings.shuffle_cows and world.settings.tokensanity not in ['overworld', 'all'],
 
@@ -202,7 +203,7 @@ conditional_sometimes = {
     'Spirit Temple Adult Lower':                lambda world: world.settings.tokensanity not in ['dungeon', 'all'],
     'Shadow Temple Invisible Blades Chests':    lambda world: world.settings.tokensanity not in ['dungeon', 'all'],
 }
-    
+
 # Table of hints, format is (name, hint text, clear hint text, type of hint) there are special characters that are read for certain in game commands:
 # ^ is a box break
 # & is a new line
@@ -387,8 +388,6 @@ hintTable = {
     'ZR Frogs Ocarina Game':                                       (["an #amphibian feast# yields", "the #croaking choir's magnum opus# awards", "the #froggy finale# yields"], "the final reward from the #Frogs of Zora's River# is", 'always'),
     'KF Links House Cow':                                          ("the #bovine bounty of a horseback hustle# gifts", "#Malon's obstacle course# leads to", 'always'),
 
-    'ZR Frogs Rewards':                                            ("the #Frogs of Zora River#, for giving them rain and a great performance, will reward you with...", None, 'dual_always'),
-
     'Song from Ocarina of Time':                                   ("the #Ocarina of Time# teaches", None, ['song', 'sometimes']),
     'Song from Royal Familys Tomb':                                (["#ReDead in the royal tomb# guard", "the #Composer Brothers wrote#"], None, ['song', 'sometimes']),
     'Sheik in Forest':                                             ("#in a meadow# Sheik teaches", None, ['song', 'sometimes']),
@@ -474,6 +473,7 @@ hintTable = {
     'HF Ocarina of Time Retrieval':                                ("during her escape, #Princess Zelda# entrusted you with both...^", None, 'dual'),
     'HF Valley Grotto':                                            ("in a grotto full of #spider webs# a cow and a spider hold respectively...^", None, 'dual'),
     'Market Bombchu Bowling Rewards':                              ("at the #Bombchu Bowling Alley#, the first and second prizes are...^", None, 'dual'),
+    'ZR Frogs Rewards':                                            ("the #Frogs of Zora River#, for giving them rain and a great performance, will reward you with...", None, 'dual'),
     'LH Lake Lab Pool':                                            ("inside a #lakeside lab# a person and a spider hold respectively...^", None, 'dual'),
     'LH Adult Bean Destination Checks':                            ("#riding the bean platform# of the lake to the lab's roof and the fishing hole leads to...^", None, 'dual'),
     'GV Pieces of Heart Ledges':                                   ("within the #valley#, the crate and waterfall conceal respectively...^", None, 'dual'),
@@ -1587,12 +1587,11 @@ hintTable = {
 # Table containing the groups of locations for the multi hints (dual, etc.)
 # The is used in order to add the locations to the checked list
 multiTable = {
-    'ZR Frogs Rewards':                                         ['ZR Frogs in the Rain', 'ZR Frogs Ocarina Game'],
-
     'Deku Theater Rewards':                                     ['Deku Theater Skull Mask', 'Deku Theater Mask of Truth'],
     'HF Ocarina of Time Retrieval':                             ['HF Ocarina of Time Item', 'Song from Ocarina of Time'],
     'HF Valley Grotto':                                         ['HF Cow Grotto Cow', 'HF GS Cow Grotto'],
     'Market Bombchu Bowling Rewards':                           ['Market Bombchu Bowling First Prize', 'Market Bombchu Bowling Second Prize'],
+    'ZR Frogs Rewards':                                         ['ZR Frogs in the Rain', 'ZR Frogs Ocarina Game'],
     'LH Lake Lab Pool':                                         ['LH Lab Dive', 'LH GS Lab Crate'],
     'LH Adult Bean Destination Checks':                         ['LH Freestanding PoH', 'LH Adult Fishing'],
     'GV Pieces of Heart Ledges':                                ['GV Crate Freestanding PoH', 'GV Waterfall Freestanding PoH'],
@@ -1706,7 +1705,7 @@ def hintExclusions(world, clear_cache=False):
             location_hints.append(hint)
 
     for hint in location_hints:
-        if any(item in hint.type for item in 
+        if any(item in hint.type for item in
                 ['dual',
                  'dual_always']):
             multi = getMulti(hint.name)

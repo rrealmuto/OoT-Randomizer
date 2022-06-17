@@ -3,9 +3,9 @@
       "gui_name":              "DDR",
       "description":           "DDR weekly race hints. Duplicates of each hint, 2 WotH, 3 Barren, 3 Named-Item, remainder of hints are Sometimes. Prevents some items from being hinted in WotH or Sometimes.",
       "add_locations":         [
-          { "location": "Deku Theater Skull Mask",	"types": ["always"]}
-          ],     
-      "remove_locations":      [],    
+          { "location": "Deku Theater Skull Mask", "types": ["always"]}
+      ],
+      "remove_locations":      [],
       "add_items": [
             {"item":"Hover Boots", "types":["named-item"]},
             {"item":"Progressive Hookshot", "types":["named-item"]},
@@ -19,16 +19,16 @@
             {"item":"Mirror Shield", "types":["named-item"]},
             {"item":"Fire Arrows", "types":["named-item"]},
             {"item":"Progressive Strength Upgrade", "types":["named-item"]}
-      ],  
+      ],
       "remove_items":          [
           { "item": "Zeldas Lullaby",     "types": ["woth", "sometimes"] },
-	  { "item": "Rutos Letter",   	  "types": ["woth", "sometimes"] },
-	  { "item": "Goron Tunic",   	  "types": ["woth", "sometimes"] },
-	  { "item": "Zora Tunic",   	  "types": ["woth", "sometimes"] },
-	  { "item": "Bow",		  "types": ["barren"]},
-	  { "item": "Bomb Bag",	          "types": ["barren"]},
-	  { "item": "Magic Meter",	  "types": ["barren"]}
-          ],
+          { "item": "Rutos Letter",       "types": ["woth", "sometimes"] },
+          { "item": "Goron Tunic",        "types": ["woth", "sometimes"] },
+          { "item": "Zora Tunic",         "types": ["woth", "sometimes"] },
+          { "item": "Bow",                "types": ["barren"]},
+          { "item": "Bomb Bag",           "types": ["barren"]},
+          { "item": "Magic Meter",        "types": ["barren"]}
+      ],
       "dungeons_woth_limit":   1,
       "dungeons_barren_limit": 1,
       "named_items_required":  false,

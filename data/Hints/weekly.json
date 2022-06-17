@@ -8,7 +8,7 @@
     ],
     "remove_locations":      [],
     "add_items":             [],
-    "remove_items":          [],
+    "remove_items":          [{ "item": "Zeldas Lullaby", "types": ["woth"]}],
     "dungeons_woth_limit":   2,
     "dungeons_barren_limit": 1,
     "named_items_required":  true,
