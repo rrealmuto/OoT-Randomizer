@@ -125,8 +125,8 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         entry = read_rom_texture(rom, texture_id )
         entry['file_vrom_start'] = texture_file.start
         entry['file_size'] = texture_file.end - texture_file.start
-        logger.info(entry['file_vrom_start'])
-        logger.info(entry['file_size'])
+        logger.debug(entry['file_vrom_start'])
+        logger.debug(entry['file_size'])
         write_rom_texture(rom, texture_id, entry)
 
     # Apply chest texture diffs to vanilla wooden chest texture for Chest Texture Matches Content setting
@@ -1572,7 +1572,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     shop_items = read_shop_items(rom, shop_item_file.start + 0x1DEC)
     logger = logging.getLogger('')
     for s in shop_items:
-        logger.info(s)
+        logger.debug(s)
     # Set Big Poe count to get reward from buyer
     poe_points = world.settings.big_poe_count * 100
     rom.write_int16(0xEE69CE, poe_points)
@@ -1965,11 +1965,11 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         update_message_by_id(messages, 0x304D, "How do you like it?\x02")
         update_message_by_id(messages, 0x304F, "How about buying this cool item for \x01200 Rupees?\x01\x1B\x05\x42Buy\x01Don't buy\x05\x40\x02")
 
-    logger.info("Patching locked doors")
+    logger.debug("Patching locked doors")
     if(world.settings.unlock_ganons_first_boss_door): #Update the first BK door in ganon's castle to use a separate flag so it can be unlocked to get to the pots
         patch_ganons_tower_bk_door(rom, 0x15) #Using flag 0x15 for the door. GBK doors normally use 0x14.
     locked_doors = get_doors_to_unlock(rom, world)
-    logger.info(locked_doors)
+    logger.debug(locked_doors)
     for _,[door_byte, door_bits] in locked_doors.items():
         save_context.write_bits(door_byte, door_bits)
 
@@ -2241,8 +2241,8 @@ def read_rom_texture(rom, texture_id):
     row_bytes = rom.read_bytes(addr, texture_struct.size)
     row = texture_struct.unpack(row_bytes)
     logger = logging.getLogger('')
-    logger.info(texture_struct.size)
-    logger.info(row)
+    logger.debug(texture_struct.size)
+    logger.debug(row)
     return { texture_fields[i]: row[i] for i in range(len(texture_fields)) }
 
 def write_rom_texture(rom, texture_id, texture):
@@ -2251,14 +2251,14 @@ def write_rom_texture(rom, texture_id, texture):
     row_bytes = texture_struct.pack(*row)
     
     logger = logging.getLogger('')
-    logger.info(texture_struct.size)
-    logger.info(texture)
+    logger.debug(texture_struct.size)
+    logger.debug(texture)
     rom.write_bytes(addr, row_bytes)
 
 def get_override_table(world):
     logger = logging.getLogger('')
     for location in world.get_filled_locations():
-        logger.info(location)
+        logger.debug(location)
     return list(filter(lambda val: val != None, map(get_override_entry, world.get_filled_locations())))
 
 def check_location_dupes(world):
@@ -2604,7 +2604,7 @@ def place_shop_items(rom, world, shop_items, messages, locations, init_shop_id=F
             if 'shop_object' in item_display.special:
                 rom_item = read_rom_item(rom, item_display.special['shop_object'])
             else:
-                logger.info(item_display.index)
+                logger.debug(item_display.index)
                 rom_item = read_rom_item(rom, item_display.index)
 
             shop_objs.add(rom_item['object_id'])

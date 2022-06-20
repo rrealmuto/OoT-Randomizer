@@ -780,9 +780,9 @@ def read_shop_items(rom, shop_table_address):
 # writes each of the shop item back into rom
 def write_shop_items(rom, shop_table_address, shop_items):
     logger = logging.getLogger('')
-    logger.info("Shop items***")
+    logger.debug("Shop items***")
     for s in shop_items:
-        logger.info(s)
+        logger.debug(s)
         s.write(rom, shop_table_address, s.index)
 
 # these are unused shop items, and contain text ids that are used elsewhere, and should not be moved
