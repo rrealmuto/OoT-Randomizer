@@ -1717,6 +1717,7 @@ typedef void (*z64_bzero_proc)(void *__s, uint32_t __n);
 typedef EnItem00 *(*z64_Item_DropCollectible_proc)(z64_game_t *globalCtx, z64_xyzf_t *spawnPos, int16_t params);
 typedef void (*z64_Gfx_DrawDListOpa_proc)(z64_game_t *game, z64_gfx_t *dlist);
 typedef float (*z64_Math_SinS_proc)(int16_t angle);
+typedef float (*z64_Rand_ZeroOne_proc)();
 
 typedef int32_t(*z64_ObjectSpawn_proc)    (z64_obj_ctxt_t* object_ctx, int16_t object_id);
 typedef int32_t(*z64_ObjectIndex_proc)    (z64_obj_ctxt_t* object_ctx, int16_t object_id);
