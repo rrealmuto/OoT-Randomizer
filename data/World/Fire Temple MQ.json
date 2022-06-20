@@ -19,17 +19,17 @@
             "Fire Temple MQ Near Boss Pot 2": "
                 (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source and ((can_use(Hookshot)) or can_use(Hover_Boots))",
             "Fire Temple MQ Before Boss Left Crate 1": "
-                is_adult and (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source",
+                is_adult and (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source and can_bonk_crate",
             "Fire Temple MQ Before Boss Left Crate 2": "
-                is_adult and (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source",
+                is_adult and (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source and can_bonk_crate",
             "Fire Temple MQ Before Boss Right Lower Crate 1": "
-                (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source and ((can_use(Hookshot)) or can_use(Hover_Boots))",
+                (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source and ((can_use(Hookshot)) or can_use(Hover_Boots)) and can_bonk_crate",
             "Fire Temple MQ Before Boss Right Lower Crate 2": "
-                (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source and ((can_use(Hookshot)) or can_use(Hover_Boots))",
-                "Fire Temple MQ Before Boss Right Mid Crate": "
-                (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source and ((can_use(Hookshot)) or can_use(Hover_Boots))",
-                "Fire Temple MQ Before Boss Right Upper Crate": "
-                (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source and ((can_use(Hookshot)) or can_use(Hover_Boots))"
+                (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source and ((can_use(Hookshot)) or can_use(Hover_Boots)) and can_bonk_crate",
+            "Fire Temple MQ Before Boss Right Mid Crate": "
+                (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source and ((can_use(Hookshot)) or can_use(Hover_Boots)) and can_bonk_crate",
+            "Fire Temple MQ Before Boss Right Upper Crate": "
+                (logic_fewer_tunic_requirements or can_use(Goron_Tunic)) and has_fire_source and ((can_use(Hookshot)) or can_use(Hover_Boots)) and can_bonk_crate"
         },
         "exits": {
             "DMC Fire Temple Entrance": "True",
@@ -100,9 +100,9 @@
             "Fire Temple MQ Lizalfos Maze Lower Chest": "True",
             "Fire Temple MQ Lizalfos Maze Side Room Chest": "
                 has_explosives and (logic_fire_mq_maze_side_room or at('Fire Upper Maze', True))",
-            "Fire Temple MQ Lower Lizalfos Maze Crate 1": "True",
-            "Fire Temple MQ Lower Lizalfos Maze Crate 2": "True",
-            "Fire Temple MQ Lower Lizalfos Maze Crate 3": "True"
+            "Fire Temple MQ Lower Lizalfos Maze Crate 1": "can_bonk_crate",
+            "Fire Temple MQ Lower Lizalfos Maze Crate 2": "can_bonk_crate",
+            "Fire Temple MQ Lower Lizalfos Maze Crate 3": "can_bonk_crate"
         },
         "exits": {
             "Fire Upper Maze": "
@@ -123,20 +123,21 @@
             "Fire Temple MQ Narrow Path Room Pot 2": "(Small_Key_Fire_Temple, 3)",
             "Fire Temple MQ Shoot Torch On Wall Room Pot 1": "(Small_Key_Fire_Temple, 3)",
             "Fire Temple MQ Shoot Torch On Wall Room Pot 2": "(Small_Key_Fire_Temple, 3)",
+            # explosives implicitly allow breaking crates with deadly bonks
             "Fire Temple MQ Shortcut Crate 1": "has_explosives",
             "Fire Temple MQ Shortcut Crate 2": "has_explosives",
             "Fire Temple MQ Shortcut Crate 3": "has_explosives",
             "Fire Temple MQ Shortcut Crate 4": "has_explosives",
             "Fire Temple MQ Shortcut Crate 5": "has_explosives",
             "Fire Temple MQ Shortcut Crate 6": "has_explosives",
-            "Fire Temple MQ Upper Lizalfos Maze Crate 1": "True",
-            "Fire Temple MQ Upper Lizalfos Maze Crate 2": "True",
-            "Fire Temple MQ Upper Lizalfos Maze Crate 3": "True",
-            "Fire Temple MQ Shoot Torch On Wall Room Right Crate 1": "(Small_Key_Fire_Temple, 3)",
-            "Fire Temple MQ Shoot Torch On Wall Room Right Crate 2": "(Small_Key_Fire_Temple, 3)",
-            "Fire Temple MQ Shoot Torch On Wall Room Center Crate": "(Small_Key_Fire_Temple, 3)",
-            "Fire Temple MQ Shoot Torch On Wall Room Left Crate 1": "(Small_Key_Fire_Temple, 3)",
-            "Fire Temple MQ Shoot Torch On Wall Room Left Crate 2": "(Small_Key_Fire_Temple, 3)",
+            "Fire Temple MQ Upper Lizalfos Maze Crate 1": "can_bonk_crate",
+            "Fire Temple MQ Upper Lizalfos Maze Crate 2": "can_bonk_crate",
+            "Fire Temple MQ Upper Lizalfos Maze Crate 3": "can_bonk_crate",
+            "Fire Temple MQ Shoot Torch On Wall Room Right Crate 1": "(Small_Key_Fire_Temple, 3) and can_bonk_crate",
+            "Fire Temple MQ Shoot Torch On Wall Room Right Crate 2": "(Small_Key_Fire_Temple, 3) and can_bonk_crate",
+            "Fire Temple MQ Shoot Torch On Wall Room Center Crate": "(Small_Key_Fire_Temple, 3) and can_bonk_crate",
+            "Fire Temple MQ Shoot Torch On Wall Room Left Crate 1": "(Small_Key_Fire_Temple, 3) and can_bonk_crate",
+            "Fire Temple MQ Shoot Torch On Wall Room Left Crate 2": "(Small_Key_Fire_Temple, 3) and can_bonk_crate",
             "Wall Fairy": "
                 has_bottle and
                 (can_use(Longshot) or (can_play(Song_of_Time) and can_use(Hookshot))) and

@@ -75,10 +75,10 @@
             "Spirit Temple MQ Big Mirror Pot 2": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
             "Spirit Temple MQ Big Mirror Pot 3": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
             "Spirit Temple MQ Big Mirror Pot 4": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
-            "Spirit Temple MQ Big Mirror Crate 1": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
-            "Spirit Temple MQ Big Mirror Crate 2": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
-            "Spirit Temple MQ Big Mirror Crate 3": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)",
-            "Spirit Temple MQ Big Mirror Crate 4": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby)"
+            "Spirit Temple MQ Big Mirror Crate 1": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby) and can_bonk_crate",
+            "Spirit Temple MQ Big Mirror Crate 2": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby) and can_bonk_crate",
+            "Spirit Temple MQ Big Mirror Crate 3": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby) and can_bonk_crate",
+            "Spirit Temple MQ Big Mirror Crate 4": "(Small_Key_Spirit_Temple, 6) and can_play(Zeldas_Lullaby) and can_bonk_crate"
         },
         "exits": {
             "Lower Adult Spirit Temple": "
@@ -126,8 +126,8 @@
                 (is_adult and (Hover_Boots or logic_spirit_lobby_jump)) or
                 can_play(Song_of_Time) or
                 (Boomerang and (Kokiri_Sword or Sticks) and (Hover_Boots or logic_spirit_lobby_jump))",
-            "Spirit Temple MQ Central Chamber Crate 1": "True",
-            "Spirit Temple MQ Central Chamber Crate 2": "True",
+            "Spirit Temple MQ Central Chamber Crate 1": "can_bonk_crate",
+            "Spirit Temple MQ Central Chamber Crate 2": "can_bonk_crate",
             "Spirit Temple MQ Sun Block Room Pot 1": "
                 can_play(Song_of_Time) or logic_spirit_mq_sun_block_sot or
                 is_adult",

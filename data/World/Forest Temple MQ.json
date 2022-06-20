@@ -22,7 +22,7 @@
                 (can_play(Song_of_Time) or is_child) and
                 (is_adult or can_use(Dins_Fire) or
                     can_use(Sticks) or can_use(Slingshot) or Kokiri_Sword)",
-            "Fairy Pot": "has_bottle and (can_play(Song_of_Time) or is_child)"
+            "Fairy Pot": "has_bottle and (can_play(Song_of_Time) or is_child)",
             "Forest Temple MQ Center Room Right Pot 1": "True",
             "Forest Temple MQ Center Room Right Pot 2": "True",
             "Forest Temple MQ Center Room Right Pot 3": "True",

@@ -13,7 +13,10 @@
             "Gerudo Training Ground MQ Lobby Left Pot 2": "True",
             "Gerudo Training Ground MQ Lobby Right Pot 1": "True",
             "Gerudo Training Ground MQ Lobby Right Pot 2": "True",
-            "Gerudo Training Ground MQ Maze Crate": "(Small_Key_Gerudo_Training_Ground, 3)"
+            # Spawning the Ice Arrows chest requires breaking a crate covering a rusted switch. Since this already
+            # requires hammer, breaking the crate to activate the switch with deadly bonks is also implicitly satisfied.
+            # For the crate item itself however, hammer is not guaranteed, requiring checking for can_bonk_crate.
+            "Gerudo Training Ground MQ Maze Crate": "(Small_Key_Gerudo_Training_Ground, 3) and can_bonk_crate"
         },
         "exits": {
             "Gerudo Fortress": "True",
