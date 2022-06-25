@@ -61,6 +61,9 @@
             or (for_age == adult and (Bow or Hookshot))
             or (for_age == both and (Slingshot or Boomerang) and (Bow or Hookshot))
             or (for_age == either and (Slingshot or Boomerang or Bow or Hookshot))",
+    "can_bonk_tree": "deadly_bonks == False or Fairy or can_use(Nayrus_Love)",
+    "can_bonk_crate": "deadly_bonks == False or Fairy or can_use(Nayrus_Love) or can_blast_or_smash",
+    "can_bonk_underwater_crate": "deadly_bonks == False or Fairy or can_use(Nayrus_Love)",
 
     # can_use and helpers
     # The parser reduces this to smallest form based on item category.
@@ -104,28 +107,32 @@
         (bridge == 'stones' and has_stones(bridge_stones)) or
         (bridge == 'medallions' and has_medallions(bridge_medallions)) or
         (bridge == 'dungeons' and has_dungeon_rewards(bridge_rewards)) or
-        (bridge == 'tokens' and (Gold_Skulltula_Token, bridge_tokens)))",
+        (bridge == 'tokens' and (Gold_Skulltula_Token, bridge_tokens)) or
+        (bridge == 'hearts' and has_hearts(bridge_hearts)))",
     "can_trigger_lacs": "(
         (lacs_condition == 'vanilla' and Shadow_Medallion and Spirit_Medallion) or
         (lacs_condition == 'stones' and has_stones(lacs_stones)) or
         (lacs_condition == 'medallions' and has_medallions(lacs_medallions)) or
         (lacs_condition == 'dungeons' and has_dungeon_rewards(lacs_rewards)) or
-        (lacs_condition == 'tokens' and (Gold_Skulltula_Token, lacs_tokens)))",
+        (lacs_condition == 'tokens' and (Gold_Skulltula_Token, lacs_tokens)) or
+        (lacs_condition == 'hearts' and has_hearts(lacs_hearts)))",
     "can_receive_ganon_bosskey": "(
         (shuffle_ganon_bosskey == 'stones' and has_stones(ganon_bosskey_stones)) or
         (shuffle_ganon_bosskey == 'medallions' and has_medallions(ganon_bosskey_medallions)) or
         (shuffle_ganon_bosskey == 'dungeons' and has_dungeon_rewards(ganon_bosskey_rewards)) or
-        (shuffle_ganon_bosskey == 'tokens' and (Gold_Skulltula_Token, ganon_bosskey_tokens))) or
+        (shuffle_ganon_bosskey == 'tokens' and (Gold_Skulltula_Token, ganon_bosskey_tokens)) or
+        (shuffle_ganon_bosskey == 'hearts' and has_hearts(ganon_bosskey_hearts))) or
         (shuffle_ganon_bosskey != 'stones' and shuffle_ganon_bosskey != 'medallions' and
-         shuffle_ganon_bosskey != 'dungeons' and shuffle_ganon_bosskey != 'tokens')",
+        shuffle_ganon_bosskey != 'dungeons' and shuffle_ganon_bosskey != 'tokens' and
+        shuffle_ganon_bosskey != 'hearts')",
 
     # Dungeon Shortcuts
-    "deku_tree_shortcuts": "'deku_tree' in dungeon_shortcuts",
-    "dodongos_cavern_shortcuts": "'dodongos_cavern' in dungeon_shortcuts",
-    "jabu_shortcuts": "'jabu_jabus_belly' in dungeon_shortcuts",
-    "forest_temple_shortcuts": "'forest_temple' in dungeon_shortcuts",
-    "fire_temple_shortcuts": "'fire_temple' in dungeon_shortcuts",
-    "shadow_temple_shortcuts": "'shadow_temple' in dungeon_shortcuts",
-    "spirit_temple_shortcuts": "'spirit_temple' in dungeon_shortcuts",
+    "deku_tree_shortcuts": "'Deku Tree' in dungeon_shortcuts",
+    "dodongos_cavern_shortcuts": "'Dodongos Cavern' in dungeon_shortcuts",
+    "jabu_shortcuts": "'Jabu Jabus Belly' in dungeon_shortcuts",
+    "forest_temple_shortcuts": "'Forest Temple' in dungeon_shortcuts",
+    "fire_temple_shortcuts": "'Fire Temple' in dungeon_shortcuts",
+    "shadow_temple_shortcuts": "'Shadow Temple' in dungeon_shortcuts",
+    "spirit_temple_shortcuts": "'Spirit Temple' in dungeon_shortcuts",
     "king_dodongo_shortcuts": "region_has_shortcuts('King Dodongo Boss Room', 'Dodongos Cavern')"
 }

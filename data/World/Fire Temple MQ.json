@@ -77,12 +77,12 @@
             "Fire Temple MQ Lizalfos Maze Upper Chest": "True",
             "Fire Temple MQ Compass Chest": "has_explosives",
             "Fire Temple MQ GS Skull On Fire": "
-                (can_play(Song_of_Time) and can_use(Hookshot) and (has_explosives or logic_rusted_switches)) or
-                can_use(Longshot)",
+                (can_use(Longshot) or (can_play(Song_of_Time) and can_use(Hookshot))) and
+                (has_explosives or logic_rusted_switches or (can_use(Longshot) and logic_fire_scarecrow))",
             "Wall Fairy": "
                 has_bottle and
-                ((can_play(Song_of_Time) and can_use(Hookshot) and (has_explosives or logic_rusted_switches)) or
-                    can_use(Longshot))",
+                (can_use(Longshot) or (can_play(Song_of_Time) and can_use(Hookshot))) and
+                (has_explosives or logic_rusted_switches or (can_use(Longshot) and logic_fire_scarecrow))",
             "Fairy Pot": "has_bottle and (Small_Key_Fire_Temple, 3)"
         },
         "exits": {

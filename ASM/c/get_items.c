@@ -5,6 +5,7 @@
 #include "util.h"
 #include "z64.h"
 
+extern uint8_t FAST_CHESTS;
 extern uint8_t OCARINAS_SHUFFLED;
 
 override_t cfg_item_overrides[512] = { 0 };
@@ -132,7 +133,10 @@ void activate_override(override_t override) {
     active_item_text_id = item_row->text_id;
     active_item_object_id = item_row->object_id;
     active_item_graphic_id = item_row->graphic_id;
-    active_item_fast_chest = item_row->chest_type == BROWN_CHEST || item_row->chest_type == SILVER_CHEST || item_row->chest_type == SKULL_CHEST_SMALL || item_row->chest_type == GOLD_CHEST_SMALL;
+    if (override.value.looks_like_item_id) {
+        item_row = get_item_row(override.value.looks_like_item_id);
+    }
+    active_item_fast_chest = item_row->chest_type == BROWN_CHEST || item_row->chest_type == SILVER_CHEST || item_row->chest_type == SKULL_CHEST_SMALL;
     PLAYER_NAME_ID = override.value.player;
 }
 
@@ -318,8 +322,8 @@ void get_item(z64_actor_t *from_actor, z64_link_t *link, int8_t incoming_item_id
 
     if (from_actor->actor_id == 0x0A) {
         // Update chest contents
-        if (override.value.item_id == 0x7C && override.value.player == PLAYER_ID) {
-            // Use ice trap base item ID
+        if (override.value.item_id == 0x7C && override.value.player == PLAYER_ID && (FAST_CHESTS || active_item_fast_chest)) {
+            // Use ice trap base item ID to freeze Link as the chest opens rather than playing the full item get animation
             base_item_id = 0x7C;
         }
         from_actor->variable = (from_actor->variable & 0xF01F) | (base_item_id << 5);

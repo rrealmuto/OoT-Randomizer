@@ -173,7 +173,7 @@ item_groups = {
     'Song': song_list,
     'NonWarpSong': song_list[6:],
     'WarpSong': song_list[0:6],
-    'HealthUpgrade': ('Heart Container', 'Piece of Heart'),
+    'HealthUpgrade': ('Heart Container', 'Piece of Heart', 'Piece of Heart (Treasure Chest Game)'),
     'ProgressItem': sorted([name for name, item in ItemInfo.items.items() if item.type == 'Item' and item.advancement]),
     'MajorItem': sorted([name for name, item in ItemInfo.items.items() if item.type in ['Item', 'Song'] and item.advancement and name not in exclude_from_major]),
     'DungeonReward': [item.name for item in sorted([i for n, i in ItemInfo.items.items() if i.type == 'DungeonReward'], key=lambda x: x.special['item_id'])],
@@ -240,7 +240,7 @@ def generate_itempool(world):
     # make sure that there are enough gold skulltulas for bridge/ganon boss key/lacs
     world.available_tokens = placed_items_count.get("Gold Skulltula Token", 0) \
                            + pool.count("Gold Skulltula Token") \
-                           + world.distribution.starting_items.get("Gold Skulltula Token", 0)
+                           + world.distribution.get_starting_item("Gold Skulltula Token")
     if world.max_progressions["Gold Skulltula Token"] > world.available_tokens:
         raise ValueError(f"Not enough available Gold Skulltula Tokens to meet requirements. Available: {world.available_tokens}, Required: {world.max_progressions['Gold Skulltula Token']}.")
 
@@ -390,6 +390,10 @@ def get_pool_core(world):
                 item = 'Magic Bean Pack' if world.distribution.get_starting_item('Magic Bean') < 10 else get_junk_item()[0]
             shuffle_item = world.settings.shuffle_beans
 
+        # Frogs Purple Rupees
+        elif location.scene == 0x54 and location.vanilla_item == 'Rupees (50)':
+            shuffle_item = world.settings.shuffle_frog_song_rupees
+
         # Adult Trade Item
         elif location.vanilla_item == 'Pocket Egg':
             trade_item_options = list(trade_items.keys())
@@ -502,7 +506,7 @@ def get_pool_core(world):
             world.state.collect(ItemFactory('Small Key (Spirit Temple)'))
             world.state.collect(ItemFactory('Small Key (Spirit Temple)'))
             world.state.collect(ItemFactory('Small Key (Spirit Temple)'))
-        if 'shadow_temple' in world.settings.dungeon_shortcuts:
+        if 'Shadow Temple' in world.settings.dungeon_shortcuts:
             # Reverse Shadow is broken with vanilla keys in both vanilla/MQ
             world.state.collect(ItemFactory('Small Key (Shadow Temple)'))
             world.state.collect(ItemFactory('Small Key (Shadow Temple)'))
@@ -513,7 +517,7 @@ def get_pool_core(world):
     if world.settings.shuffle_ganon_bosskey == 'on_lacs':
         placed_items['ToT Light Arrows Cutscene'] = 'Boss Key (Ganons Castle)'
 
-    if world.settings.shuffle_ganon_bosskey in ['stones', 'medallions', 'dungeons', 'tokens']:
+    if world.settings.shuffle_ganon_bosskey in ['stones', 'medallions', 'dungeons', 'tokens', 'hearts']:
         placed_items['Gift from Sages'] = 'Boss Key (Ganons Castle)'
         pool.extend(get_junk_item())
     else:

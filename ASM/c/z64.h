@@ -558,7 +558,8 @@ typedef struct
   uint16_t        inf_table[30];            /* 0x0EF8 */
   char            unk_0D_[0x041E];          /* 0x0F34 */
   uint16_t        checksum;                 /* 0x1352 */
-  int32_t         file_index;               /* 0x1354 */
+  char            unk_0E_[0x0003];          /* 0x1354 */
+  int8_t          file_index;               /* 0x1357 */
   char            unk_0F_[0x0004];          /* 0x1358 */
   int32_t         game_mode;                /* 0x135C */
   uint32_t        scene_setup_index;        /* 0x1360 */
@@ -886,7 +887,7 @@ typedef struct
   void         *obj_space_start;
   void         *obj_space_end;
   uint8_t       n_objects;
-  char          unk_00_;
+  uint8_t       n_spawned_objects;
   uint8_t       keep_index;
   uint8_t       skeep_index;
   z64_mem_obj_t objects[19];
@@ -1317,6 +1318,8 @@ typedef struct
 #define z64_event_state_1_addr                  0x800EF1B0
 #define z64_LinkInvincibility_addr              0x8038E578
 #define z64_LinkDamage_addr                     0x8038E6A8
+#define z64_ObjectSpawn_addr                    0x800812F0
+#define z64_ObjectIndex_addr                    0x80081628
 
 /* rom addresses */
 #define z64_icon_item_static_vaddr              0x007BD000
@@ -1367,6 +1370,9 @@ typedef void(*z64_LinkDamage_proc)        (z64_game_t *ctxt, z64_link_t *link,
                                            uint16_t unk_02);
 typedef void(*z64_LinkInvincibility_proc) (z64_link_t *link, uint8_t frames);
 typedef float *(*z64_GetMatrixStackTop_proc)();
+
+typedef int32_t(*z64_ObjectSpawn_proc)    (z64_obj_ctxt_t* object_ctx, int16_t object_id);
+typedef int32_t(*z64_ObjectIndex_proc)    (z64_obj_ctxt_t* object_ctx, int16_t object_id);
 
 /* data */
 #define z64_file_mq             (*(OSMesgQueue*)      z64_file_mq_addr)
@@ -1422,5 +1428,8 @@ typedef float *(*z64_GetMatrixStackTop_proc)();
                                                       z64_LinkInvincibility_addr)
 #define z64_GetMatrixStackTop   ((z64_GetMatrixStackTop_proc) \
                                                       z64_GetMatrixStackTop_addr)
+
+#define z64_ObjectSpawn         ((z64_ObjectSpawn_proc)z64_ObjectSpawn_addr)
+#define z64_ObjectIndex         ((z64_ObjectIndex_proc)z64_ObjectIndex_addr)
 
 #endif

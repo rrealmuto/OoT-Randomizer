@@ -21,7 +21,7 @@ void give_triforce_piece(z64_file_t *save, int16_t arg1, int16_t arg2) {
     set_triforce_render();
 
     // Trigger win when the target is hit
-    if (save->scene_flags[0x48].unk_00_ == triforce_pieces_requied) {
+    if (save->scene_flags[0x48].unk_00_ == TRIFORCE_PIECES_REQUIRED) {
         // Give GC boss key to allow beating the game again afterwards
         give_dungeon_item(save, 0x01, 10);
 
@@ -80,13 +80,17 @@ char key_counts[14][2] = {
 };
 
 void give_small_key(z64_file_t *save, int16_t dungeon_id, int16_t arg2) {
-    int8_t keys = save->dungeon_keys[dungeon_id] > 0 ? save->dungeon_keys[dungeon_id] : 0;
-    save->dungeon_keys[dungeon_id] = keys + 1;
+    int8_t current_keys = save->dungeon_keys[dungeon_id] > 0 ? save->dungeon_keys[dungeon_id] : 0;
+    save->dungeon_keys[dungeon_id] = current_keys + 1;
+    int8_t total_keys = save->scene_flags[dungeon_id].unk_00_;
+    save->scene_flags[dungeon_id].unk_00_ = total_keys + 1;
 }
 
 void give_small_key_ring(z64_file_t *save, int16_t dungeon_id, int16_t arg2) {
-    int8_t keys = save->dungeon_keys[dungeon_id] > 0 ? save->dungeon_keys[dungeon_id] : 0;
-    save->dungeon_keys[dungeon_id] = keys + key_counts[dungeon_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
+    int8_t current_keys = save->dungeon_keys[dungeon_id] > 0 ? save->dungeon_keys[dungeon_id] : 0;
+    save->dungeon_keys[dungeon_id] = current_keys + key_counts[dungeon_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
+    int8_t total_keys = save->scene_flags[dungeon_id].unk_00_;
+    save->scene_flags[dungeon_id].unk_00_ = total_keys + key_counts[dungeon_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
 }
 
 void give_defense(z64_file_t *save, int16_t arg1, int16_t arg2) {

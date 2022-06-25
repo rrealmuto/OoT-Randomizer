@@ -22,20 +22,39 @@
                 (can_play(Song_of_Time) or is_child) and
                 (is_adult or can_use(Dins_Fire) or
                     can_use(Sticks) or can_use(Slingshot) or Kokiri_Sword)",
-            "Forest Temple MQ GS Block Push Room": "is_adult or Kokiri_Sword",
             "Fairy Pot": "has_bottle and (can_play(Song_of_Time) or is_child)"
         },
         "exits": {
             "Forest Temple NW Outdoors": "can_use(Bow) or can_use(Slingshot)",
             "Forest Temple NE Outdoors": "can_use(Bow) or can_use(Slingshot)",
-            # End of the road for child
-            "Forest Temple After Block Puzzle": "
-                is_adult and (Progressive_Strength_Upgrade or
-                    (logic_forest_mq_block_puzzle and has_bombchus and can_use(Hookshot)))",
-            "Forest Temple Outdoor Ledge": "
-                (logic_forest_mq_hallway_switch_jumpslash and can_use(Hover_Boots))",
+            "Forest Temple Before Block Puzzle": "here(is_adult or Kokiri_Sword)",
             "Forest Temple Before Boss": "
                 (Forest_Temple_Jo_and_Beth and Forest_Temple_Amy_and_Meg) or forest_temple_shortcuts"
+        }
+    },
+    {
+        "region_name": "Forest Temple Before Block Puzzle",
+        "dungeon": "Forest Temple",
+        "locations": {
+            "Forest Temple MQ GS Block Push Room": "True"
+        },
+        "exits": {
+            "Forest Temple After Block Puzzle": "
+                is_adult and (Progressive_Strength_Upgrade or
+                    (logic_forest_mq_block_puzzle and has_bombchus and Hookshot))",
+            # Child cannot climb these large blocks
+            "Forest Temple Outdoor Ledge": "
+                (at('Forest Temple Outdoor Ledge', True) or
+                    here((logic_forest_mq_hallway_switch_boomerang and can_use(Boomerang)) or
+                        (logic_forest_mq_hallway_switch_jumpslash and
+                        (can_use(Hover_Boots) or
+                            (((logic_forest_mq_block_puzzle and has_bombchus) or
+                                (Progressive_Strength_Upgrade and (is_adult or Slingshot))) and
+                            (Progressive_Strength_Upgrade or can_use(Hookshot)) and
+                            (is_adult or Sticks)))))) and
+                (can_use(Hover_Boots) or can_use(Hookshot) or
+                    (Progressive_Strength_Upgrade and
+                    logic_forest_outside_backdoor and can_jumpslash))"
         }
     },
     {
@@ -46,10 +65,7 @@
         },
         "exits": {
             "Forest Temple Bow Region": "(Small_Key_Forest_Temple, 4)",
-            "Forest Temple Outdoor Ledge": "
-                (Small_Key_Forest_Temple, 3) or
-                (logic_forest_mq_hallway_switch_jumpslash and
-                    (can_use(Hookshot) or logic_forest_outside_backdoor))",
+            "Forest Temple Outdoor Ledge": "(Small_Key_Forest_Temple, 3)",
             "Forest Temple NW Outdoors": "(Small_Key_Forest_Temple, 2)"
             # Only 2 keys because you must have had access to falling ceiling room to have wasted a key there
             # and access to falling ceiling room means you must also have had to access to the lower area of this courtyard

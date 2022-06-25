@@ -347,6 +347,19 @@ Gameplay_InitSkybox:
     move    a0, s0
 .endarea
 
+;Hack to EnItem00_Init to spawn deku shield, hylian shield, and tunic objects
+.orga 0xA87DC8 ;In memory 0x80011E68
+    jal object_index_or_spawn ;Replace call to z64_ObjectIndex
+.orga 0xA87E24 ;In memory 0x80011EC4
+    jal object_index_or_spawn ;Replace call to z64_ObjectIndex
+.orga 0xA87E80 ;In memory 0x80011F20
+    jal object_index_or_spawn ;Replace call to z64_ObjectIndex
+
+; Remove deku shield drop from spirit pot because it's "vanilla behavior"
+; Replace actor parameters in scene 06, room 27 actor list
+.orga 0x2BDC0C6
+    .halfword 0x603F
+
 ;==================================================================================================
 ; Freestanding models
 ;==================================================================================================
@@ -940,6 +953,96 @@ skip_GS_BGS_text:
 @@continue:
 
 ;==================================================================================================
+; Roll Collision / Bonks Kill Player
+;==================================================================================================
+
+; Set player health to zero on last frame of bonk animation
+; z_player func_80844708, conditional where this->unk_850 != 0 and temp >= 0 || sp44
+; Replaces:
+;   or      a0, s0, $zero
+;   jal     func_80838178
+;   lw      a1, 0x0054($sp)
+;   b       lbl_80842AE8
+;   lw      $ra, 0x0024($sp)
+;   lwc1    $f4, 0x0828(s0)
+;   mtc1    $at, $f6
+;   nop
+.orga 0xBE0228
+; Load APPLY_BONK_DAMAGE address as throwaway instructions. Replacing the jump call causes
+; problems when overlay relocation is applied, breaking both replacement jump calls and nop'ing
+; the instruction. By chance, these two instructions (equivalent to `la APPLY_BONK_DAMAGE`) do
+; not crash after relocation, and so are kept here even though they do nothing.
+    lui     t8, 0x8040
+    addiu   t8, t8, 0x2D04
+; Replace original function call with hook to apply damage if the setting is on.
+; The original function is called in the new function before applying damage.
+; Since the player actor always ends up in the same location in RAM, the jump
+; address there is hardcoded.
+    jal     BONK_LAST_FRAME
+    lw      a1, 0x0054($sp)
+; The branch address is shifted to an alternate location where lw $ra... is run.
+; Required as la t8, APPLY_BONK_DAMAGE gets expanded to two commands.
+    b       0xBE0494
+    lw      $ra, 0x0024($sp)
+    lwc1    $f4, 0x0828(s0)
+    mtc1    $at, $f6
+
+; Prevent set and reset of player state3 flag 4, which is re-used for storing bonk state if the
+; player manages to cancel the roll/bonk animation before the last frame.
+; The flag does not appear to be used by the vanilla game.
+; Replaces:
+;   sb      t4, 0x0682(s0)
+.orga 0xBE3798
+    nop
+; Replaces:
+;   sb      t5, 0x0682(s0)
+.orga 0xBE55E4
+    nop
+
+; Hook to set flag if player starts bonk animation
+; Flag is unset on player death
+; Replaces:
+;   or      a0, s0, $zero
+;   addiu   a1, $zero, 0x00FF
+.orga 0xBE035C
+    jal     SET_BONK_FLAG
+    nop
+
+; Hook into Player_UpdateCommon to check if bonk animation was canceled.
+; If so, kill the dirty cheater.
+; Replaces:
+;   addiu   $at, $zero, 0x0002
+;   lui     t1, 0x8012
+.orga 0xBE5328
+    jal     CHECK_FOR_BONK_CANCEL
+    nop
+
+; Hook to Game Over cutscene init in Player actor to prevent adding a subcamera
+; in scenes with fixed cameras like Link's House or outside Temple of Time.
+; The game crashes in these areas if the cutscene subcamera to rotate around
+; Link as he dies is added.
+; Replaces
+;   sll     a2, v0, 16
+;   sra     a2, a2, 16
+.orga 0xBD200C
+    jal     CHECK_ROOM_MESH_TYPE
+    nop
+
+;==================================================================================================
+; Roll Collision / Bonks Kills King Dodongo
+;==================================================================================================
+
+; King Dodongo tracks the number of wall hits when rolling in order to transition from
+; the rolling animation to walking. Add a hook to the actor update function to check
+; this variable and set actor health to zero if bonks are not zero.
+; Replaces:
+;   lh      t2, 0x0032(s1)
+;   mtc1    $zero, $f16
+.orga 0xC3DC04
+    jal     KING_DODONGO_BONKS
+    nop
+
+;==================================================================================================
 ; Skip Scarecrow Song
 ;==================================================================================================
 
@@ -1237,6 +1340,28 @@ skip_GS_BGS_text:
 ; set chest_lid base texture
 .org 0xFEB000 + 0x10C0 - 0x32A090 + 0x32A158
 .word   0xDE000000, 0x09000010
+
+;==================================================================================================
+; Invisible Chests
+;==================================================================================================
+
+; z_actor, offset 0x5F58
+; Hooks into actor draw logic for invisible actors and lens of truth.
+; If invisible chests is enabled, chests in rooms with inverted lens
+; functionality (hide instead of show) will not be drawn at all unless
+; lens is active.
+; replaces
+;   lw      v0, 0x0004(s0)
+;   andi    t3, v0, 0x0060
+.orga 0xA9AAF0
+    jal     SHOW_CHEST_WITH_INVERTED_LENS
+    nop
+; replaces
+;   sll     t9, s2,  2
+;   addu    t0, s7, t9
+.orga 0xA9AB0C
+    jal     HIDE_CHEST_WITH_INVERTED_LENS
+    nop
 
 ;==================================================================================================
 ; Cast Fishing Rod without B Item
@@ -2322,3 +2447,10 @@ skip_GS_BGS_text:
 ;==================================================================================================
 .orga 0xBCF8CC
     jal     mask_check_trade_slot   ; sb      zero, 0x014F(t0)
+
+;===================================================================================================
+; Randomize Frog Song Purple Rupees
+;===================================================================================================
+; Replaces: addiu   t1, zero, 0x55
+.orga 0xDB1338
+    addiu   t1, v0, 0x65

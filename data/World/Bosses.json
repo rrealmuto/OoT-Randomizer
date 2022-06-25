@@ -138,8 +138,8 @@
             "Water Temple Clear": "can_use(Hookshot)"
         },
         "locations": {
-            "Morpha": "'Water Temple Clear'",
-            "Water Temple Morpha Heart": "'Water Temple Clear'"
+            "Morpha": "can_use(Hookshot)",
+            "Water Temple Morpha Heart": "can_use(Hookshot)"
         },
         "exits": {
             "Water Temple Boss Door": "True"
@@ -189,6 +189,15 @@
         },
         "exits": {
             "Spirit Temple Boss Door": "True"
+        }
+    },
+    {
+        "region_name": "Ganons Castle Tower",
+        "dungeon": "Ganons Castle",
+        "locations": {
+            "Ganons Tower Boss Key Chest": "True",
+            "Ganondorf Hint": "Boss_Key_Ganons_Castle",
+            "Ganon": "Boss_Key_Ganons_Castle and can_use(Light_Arrows)"
         }
     }
 ]

@@ -27,24 +27,24 @@ graphical interface or ```OoTRandomizer.py``` for the command line version. They
 but the seeds you generate will have different random factors than the bundled release.
 To use the GUI, [NodeJS](https://nodejs.org/download/release/v14.15.1/) (v14, with npm) will additionally need to be installed. NodeJS v16+ is currently not supported.
 The first time ```Gui.py``` is run it will need to install necessary components, which could take a few minutes. Subsequent instances will run much quicker.
-Built-in WAD injection is only supported on the website. To create a WAD from a seed created locally, either use 
-[gzinject](https://github.com/krimtonz/gzinject/tree/0.2.0) or output a patch file and run that through the website.
+Supported output formats are .z64 (N64/Emulator), .wad (Wii VC, channel IDs NICE/NRKE recommended), Uncompressed ROM (for developmental purposes, offline build only)
+and .zpf/.zpfz (patch files, for sharing seeds with others).
 
 This randomizer requires The Legend of Zelda: Ocarina of Time version ```1.0 NTSC-US```. This randomizer includes an in-built decompressor, but if
 the user wishes a pre-decompressed ROM may be supplied as input. Please be sure your input ROM filename is either a .n64 or .z64 file. For users
 playing via any means other than on real N64 hardware, the use of the "Compress patched ROM" flag is strongly encouraged as uncompressed ROMs are
 impossible to inject for the Virtual Console and have random crashing problems on all emulators.
 
-For general use, there are three recommended emulators: [Project 64 (v3.0+)](https://wiki.ootrandomizer.com/index.php?title=Project64), [Bizhawk](https://wiki.ootrandomizer.com/index.php?title=Bizhawk), and [RetroArch](https://wiki.ootrandomizer.com/index.php?title=Retroarch).
+For general use, there are four recommended emulators: [Project 64 (v3.0+)](https://wiki.ootrandomizer.com/index.php?title=Project64), [Bizhawk](https://wiki.ootrandomizer.com/index.php?title=Bizhawk), [RetroArch](https://wiki.ootrandomizer.com/index.php?title=Retroarch) and [Dolphin (latest beta)](https://wiki.ootrandomizer.com/index.php?title=Dolphin). All are race-legal when configured appropriately.
 In a nutshell the differences are:
 * Project64 is the lightest emulator and the easiest to setup, however, you will need the 3.0.0 version or later to run OoTR well (and earlier versions are not permitted for use in OoTR races).
 * Bizhawk is the most resource-intensive, but easier to set up than RetroArch and the only race-legal emulator to support [Multiworld](https://wiki.ootrandomizer.com/index.php?title=Multiworld).
-* RetroArch is less resource-intensive than Bizhawk and the only of these three to work on platforms other than Windows, but it can be frustrating to set up.
+* RetroArch is less resource-intensive than Bizhawk and the only of the three N64 emulators to work on platforms other than Windows, but it can be frustrating to set up.
+* Dolphin lets you emulate Wii VC, giving you access to faster pauses. It's also lightweight, available on other platforms than Windows, easy to setup (on Windows at least) and offers good native support with most Gamecube Controller Adapters. It does come with more lag, although that can be mitigated through overclocking (this is not permitted for racing).
 
 Please follow [the guides on our wiki](https://wiki.ootrandomizer.com/index.php?title=Setup#Emulators) carefully to ensure a stable game experience and that
 [the settings requirements for races](https://wiki.ootrandomizer.com/index.php?title=Racing#Emulator_Settings_Requirements) are met. OoTR can also be run on
-an N64 using an [EverDrive](https://wiki.ootrandomizer.com/index.php?title=Everdrive), or on Wii Virtual Console. For questions and tech support we kindly
-refer you to our [Discord](https://discord.gg/q6m6kzK).
+an N64 using an [EverDrive](https://wiki.ootrandomizer.com/index.php?title=Everdrive), or on [Wii Virtual Console](https://wiki.ootrandomizer.com/index.php?title=Wii_Virtual_Console). For questions and tech support we kindly refer you to our [Discord](https://discord.gg/q6m6kzK).
 
 ## General Description
 
@@ -116,6 +116,15 @@ do that.
   * New setting `Shuffle Boss Entrances` allows boss rooms to be shuffled between dungeons. This is only available in glitchless logic.
   * `Misc. Hints` has been expanded to a multiple select setting allowing you to fine-tune which set of misc hints to enable or disable.
   * New setting `Gate-Opening Gerudo Guard` adds a guard outside Gerudo Fortress to open the gate when entering from Haunted Wasteland.
+  * New setting `Shuffle Frog Song Rupees` allows you to shuffle the rupees you receive from the Zora's River frogs.
+  * New setting `Show Seed Info on File Screen` which also allows a user-set message to be displayed.
+  * New settings allow for Rainbow Bridge and Ganon's Boss Key to be obtained upon reaching a certain amount of total heart containers.
+  * New setting `Easier Fire Arrow Entry` allows you to set the amount of torches that must be lit to open Shadow Temple.
+  * The pause screen info menu has been split into 3 menus, which show icons on the D-Pad indicating which direction leads to which menu. In addition, the menu now tracks the total keys you've found for a dungeon, not just how many you have remaining.
+  * New setting `Invisible Chests` makes all chests in the game invisible.
+  * New setting `One Bonk KO` will instantly kill Link when he hits his head while rolling.
+  * New hint type `Dual Hint` which allows multiple locations to be hinted in the same hint.
+  * New `Chaos` hint distribution which gives all hint types equal likelihood.
 
 * **Gameplay**
   * Shortened the animation for equipping magic arrows.
@@ -137,6 +146,13 @@ do that.
 * Fixed issues where `Skip Child Zelda` could give a weapon with no ammo or overwrite starting Triforce Pieces.
 * Fixed an issue where `Plentiful` item pool combined with `Starting Hearts` would result in more Heart Containers being in the item pool than intended.
 * The Like Like in Master Quest Fire Temple will now return the player's shield when defeated.
+* Junk can now be placed on excluded song locations when Songs are set to `Song Locations` and a song is started with.
+* Fix `GC Medigoron` not being a hintable location.
+* Fix 1/16th damage not always killing Link when `One Hit KO` is enabled.
+* Fix ice traps cloaked as major items not giving the slow chest opening cutscenes when `Fast Chest Cutscenes` is disabled.
+* Tunics and shields can now spawn in any room when the game attempts to spawn them.
+* Fix a crash when certain settings related to Light Arrow hints are combined.
+* Many minor logic bugs have been corrected.
 
 #### Other changes
 * Added an auto-tracker context area to memory, so auto-trackers can find certain symbols much easier.
@@ -145,7 +161,7 @@ do that.
 * `Goron Bracelet` is no longer greyed out as adult on the Equipment subscreen of the pause menu.
 * Plandomizer
   * You can now specify an arbitrary 4-character hexadecimal text ID as a "Gossip Stone" to overwrite text in the game.
-  * Adjusted how `starting_items` works in order to remove some redundancy. Spoiler output now includes a section `:skipped_locations` instead which is not used by Plandomizer.
+  * Adjusted how `starting_items` works in order to remove some redundancy, where it is now placed within the settings dictionary.. Spoiler output now includes a section `:skipped_locations` instead which is not used by Plandomizer.
   * Gold Skulltula Token requirements can be increased above 100 (the pool must also have at least that many).
 * Triforce Hunt changes
   * The number of Triforce pieces available per world, which was previously tied to the item pool setting, is now a separate setting.
@@ -158,6 +174,11 @@ do that.
 * On the File Select screen, trade items that will be reverted on load now show as the item they will revert to.
 * Ganondorf will now say that the Light Arrows are in your pocket if they are an effective starting item (e.g. the item given from `Skip Child Zelda`).
 * The "WINNER!" Piece of Heart will now show the proper player name in Multiworld.
+* Hinted item and location for a Gossip Stone hint are now included in the spoiler log.
+* One-way entrances are now restricted to one per hint area rather than one per scene.
+* You can now receive starting ice traps, either from Impa's item with Skip Child Zelda or with plando.
+* Plandomizer will now display an error and inform the user if they have specified conflicting settings within the plando.
+* Common ER error messages are now more helpful to solving the issue.
 
 ### 6.2
 

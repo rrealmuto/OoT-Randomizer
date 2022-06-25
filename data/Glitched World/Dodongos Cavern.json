@@ -63,12 +63,12 @@
                 or (can_live_dmg(0.5) and can_use(Hover_Boots)) or can_hover"
         },
         "exits": {
-            "Dodongos Cavern Boss Area": "has_explosives",
+            "King Dodongo Boss Room": "has_explosives",
             "Dodongos Cavern Lobby": "True"
         }
     },
     {
-        "region_name": "Dodongos Cavern Boss Area",
+        "region_name": "King Dodongo Boss Room",
         "dungeon": "Dodongos Cavern",
         "locations": {
             "Dodongos Cavern Boss Room Chest": "True",

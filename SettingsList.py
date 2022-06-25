@@ -136,7 +136,7 @@ class Scale(Setting_Info):
 logic_tricks = {
     'Fewer Tunic Requirements': {
         'name'    : 'logic_fewer_tunic_requirements',
-        'tags'    : ("General", "Fire Temple", "Water Temple", "Gerudo Training Ground", "Zora's Fountain",),
+        'tags'    : ("General", "Fire Temple", "Water Temple", "Gerudo Training Ground", "Zora's Fountain", "Death Mountain Crater",),
         'tooltip' : '''\
                     Allows the following possible without Tunics:
                     - Enter Water Temple. The key below the center
@@ -348,8 +348,8 @@ logic_tricks = {
         'tags'    : ("Forest Temple", "Entrance", "Skulltulas",),
         'tooltip' : '''\
                     Allows killing this Skulltula with Sword or Sticks by
-                    jump slashing it as you let go from the vines. You will
-                    take fall damage.
+                    jump slashing it as you let go from the vines. You can
+                    avoid taking fall damage by recoiling onto the tree.
                     Also allows killing it as Child with a Bomb throw. It's
                     much more difficult to use a Bomb as child due to
                     Child Link's shorter height.
@@ -373,6 +373,8 @@ logic_tricks = {
                     front of the switch, either use the Hover Boots
                     or hit the shortcut switch at the top of the
                     room and jump from the glass blocks that spawn.
+                    Sticks can be used as child, but the Kokiri
+                    Sword is too short to reach through the glass.
                     '''},
     #'Forest Temple MQ Twisted Hallway Switch with Hookshot': {
     #    'name'    : 'logic_forest_mq_hallway_switch_hookshot',
@@ -382,6 +384,16 @@ logic_tricks = {
     #                and the wall. Through that gap you can hookshot
     #                the target on the ceiling.
     #                '''},
+    'Forest Temple MQ Twisted Hallway Switch with Boomerang': {
+        'name'    : 'logic_forest_mq_hallway_switch_boomerang',
+        'tags'    : ("Forest Temple", "Entrance",),
+        'tooltip' : '''\
+                    The Boomerang can return to Link through walls,
+                    allowing child to hit the hallway switch. This
+                    can be used to allow adult to pass through later,
+                    or in conjuction with "Forest Temple Outside
+                    Backdoor with Jump Slash".
+                    '''},
     'Death Mountain Trail Chest with Strength': {
         'name'    : 'logic_dmt_bombable',
         'tags'    : ("Death Mountain Trail",),
@@ -446,7 +458,7 @@ logic_tricks = {
         'tooltip' : '''\
                     Precise hookshot aiming at the platform chains can be
                     used to reach the boss platform from the middle landings.
-                    Using a jumpslash immediately after reaching a chain
+                    Using a jump slash immediately after reaching a chain
                     makes aiming more lenient. Relevant only when Spirit
                     Temple boss shortcuts are on.
                     '''},
@@ -623,7 +635,7 @@ logic_tricks = {
                     '''},
     'Shadow Temple MQ After Wind Gold Skulltula with Nothing': {
         'name'    : 'logic_shadow_mq_after_wind_gs',
-        'tags'    : ("Shadow Temple","Skulltulas",),
+        'tags'    : ("Shadow Temple", "Skulltulas",),
         'tooltip' : '''\
                     The Gold Skulltula in the rubble pile can be killed
                     with a sword slash without blowing up the rubble. The
@@ -666,7 +678,8 @@ logic_tricks = {
                     expire. You can get extra time to show the Eye Drops if
                     you warp immediately upon receiving them. If you don't
                     have many hearts, you may have to reset the heat timer
-                    by quickly dipping in and out of Darunia's chamber.
+                    by quickly dipping in and out of Darunia's chamber or
+                    quickly equipping and unequipping the Goron Tunic.
                     This trick does not apply if "Randomize Warp Song
                     Destinations" is enabled, or if the settings are such
                     that trade items do not need to be delivered within a
@@ -705,8 +718,10 @@ logic_tricks = {
         'tooltip' : '''\
                     Climb the tower as high as you can without
                     touching the Gold Skulltula, then let go and
-                    jump slash immediately. You will take fall
-                    damage.
+                    jump slash immediately. By jump-slashing from
+                    as low on the ladder as possible to still
+                    hit the Skulltula, this trick can be done
+                    without taking fall damage.
                     '''},
     'Deku Tree MQ Compass Room GS Boulders with Just Hammer': {
         'name'    : 'logic_deku_mq_compass_gs',
@@ -728,11 +743,10 @@ logic_tricks = {
         'name'    : 'logic_spirit_mq_lower_adult',
         'tags'    : ("Spirit Temple",),
         'tooltip' : '''\
-                    It can be done with Din\'s Fire and Bow.
-                    Whenever an arrow passes through a lit torch, it
-                    resets the timer. It's finicky but it's also
-                    possible to stand on the pillar next to the center
-                    torch, which makes it easier.
+                    By standing in a precise position it is possible to
+                    light two of the torches with a single use of Din\'s
+                    Fire. This saves enough time to be able to light all
+                    three torches with only Din\'s.
                     '''},
     'Spirit Temple Map Chest with Bow': {
         'name'    : 'logic_spirit_map_chest',
@@ -801,11 +815,8 @@ logic_tricks = {
         'tooltip' : '''\
                     There is an invisible Hookshot target that can be used
                     to get over the gate that blocks you from going to this
-                    Skulltula early. This avoids going through some rooms
-                    that normally require a Small Key to access. If "Water
-                    Temple North Basement Ledge with Precise Jump" is not
-                    enabled, this also skips needing Hover Boots or
-                    Scarecrow's Song to reach the locked door.
+                    Skulltula early, skipping a small key as well as
+                    needing Hovers or Scarecrow to reach the locked door.
                     '''},
     'Water Temple Falling Platform Room GS with Hookshot': {
         'name'    : 'logic_water_falling_platform_gs_hookshot',
@@ -891,12 +902,30 @@ logic_tricks = {
                     midflight, with precise timing and positioning.
                     '''},
     'Death Mountain Crater Upper to Lower with Hammer': {
-        'name'    : 'logic_crater_upper_to_lower',
+        'name'    : 'logic_crater_boulder_jumpslash',
         'tags'    : ("Death Mountain Crater",),
         'tooltip' : '''\
                     With the Hammer, you can jump slash the rock twice
                     in the same jump in order to destroy it before you
                     fall into the lava.
+                    '''},
+    'Death Mountain Crater Upper to Lower Boulder Skip': {
+        'name'    : 'logic_crater_boulder_skip',
+        'tags'    : ("Death Mountain Crater",),
+        'tooltip' : '''\
+                    With careful positioning, you can jump to the ledge
+                    where the boulder is, then use repeated ledge grabs
+                    to shimmy to a climbable ledge. This trick supersedes
+                    "Death Mountain Crater Upper to Lower with Hammer".
+                    '''},
+    'Death Mountain Crater Jump to Bolero': {
+        'name'    : 'logic_crater_bolero_jump',
+        'tags'    : ("Death Mountain Crater",),
+        'tooltip' : '''\
+                    Using a shield to drop a pot while you have
+                    the perfect speed and position, the pot can
+                    push you that little extra distance you
+                    need to jump across the gap in the bridge.
                     '''},
     'Zora\'s Domain Entry with Hover Boots': {
         'name'    : 'logic_zora_with_hovers',
@@ -1064,35 +1093,39 @@ logic_tricks = {
         'name'    : 'logic_jabu_boss_hover',
         'tags'    : ("Jabu Jabu's Belly", "Skulltulas", "Entrance",),
         'tooltip' : '''\
-                    You can easily get over to the door to the
-                    near boss area early with Hover Boots. The
-                    tricky part is getting through the door
-                    without being able to use a box to keep the
-                    switch pressed. One way is to quickly roll
-                    from the switch and open the door before it
-                    closes.
+                    A box for the blue switch can be carried over
+                    by backwalking with one while the elevator is
+                    at its peak. Alternatively, you can skip transporting
+                    a box by quickly rolling from the switch and
+                    opening the door before it closes. However,
+                    the timing for this is very tight.
                     '''},
-    'Jabu Boss Door Switch with Bombchus': {
-        'name'    : 'logic_jabu_boss_door_chus',
+    'Jabu Near Boss Ceiling Switch with Explosives': {
+        'name'    : 'logic_jabu_near_boss_explosives',
         'tags'    : ("Jabu Jabu's Belly", "Entrance",),
         'tooltip' : '''\
-                    You can trigger the switch that opens the 
-                    final door before the Jabu boss room with
-                    a precisely aimed bombchu. 
-                    Since a boomerang is still required to
-                    defeat Barinade, this trick is only useful
-                    in conjunction with shuffled dungeon bosses.
+                    You can hit the switch that opens the door to the boss
+                    room using a precisely-aimed Bombchu. Also, using the
+                    Hover Boots, adult can throw a Bomb at the switch. This
+                    trick is only relevant if "Shuffle Boss Entrances" is
+                    enabled.
                     '''},
-    'Jabu Boss Door Switch with Slingshot or Bow': {
-        'name'    : 'logic_jabu_boss_door_bow',
-        'tags'    : ("Jabu Jabu's Belly", "Entrance",),
+    'Jabu Near Boss Ceiling Switch/GS without Boomerang or Explosives': {
+        'name'    : 'logic_jabu_near_boss_ranged',
+        'tags'    : ("Jabu Jabu's Belly", "Skulltulas", "Entrance"),
         'tooltip' : '''\
-                    You can trigger the switch that opens the 
-                    final door before the Jabu boss room with
-                    a precisely aimed slingshot or bow shot.
-                    Since a boomerang is still required to
-                    defeat Barinade, this trick is only useful
-                    in conjunction with shuffled dungeon bosses.
+                    Vanilla Jabu: From near the entrance into the room, you can
+                    hit the switch that opens the door to the boss room using a
+                    precisely-aimed use of the Slingshot, Bow, or Longshot. As well,
+                    if you climb to the top of the vines you can stand on the right
+                    edge of the platform and shoot around the glass. From this
+                    distance, even the Hookshot can reach the switch. This trick is
+                    only relevant if "Shuffle Boss Entrances" is enabled.
+
+                    MQ Jabu: A Gold Skulltula Token can be collected with the
+                    Hookshot or Longshot using the same methods as hitting the switch
+                    in vanilla. This trick is usually only relevant if Jabu dungeon
+                    shortcuts are enabled.
                     '''},
     'Kakariko Rooftop GS with Hover Boots': {
         'name'    : 'logic_kakariko_rooftop_gs',
@@ -1319,10 +1352,12 @@ logic_tricks = {
         'name'    : 'logic_forest_outside_backdoor',
         'tags'    : ("Forest Temple",),
         'tooltip' : '''\
-                    With a precise jump slash from above,
-                    you can reach the backdoor to the west
-                    courtyard without Hover Boots. Applies
-                    to both Vanilla and Master Quest.
+                    A jump slash recoil can be used to reach the
+                    ledge in the block puzzle room that leads to
+                    the west courtyard. This skips a potential
+                    Hover Boots requirement in vanilla, and it
+                    can sometimes apply in MQ as well. This trick
+                    can be performed as both ages.
                     '''},
     'Forest Temple East Courtyard Door Frame with Hover Boots': {
         'name'    : 'logic_forest_door_frame',
@@ -1367,7 +1402,7 @@ logic_tricks = {
                     '''},
     'Dodongo\'s Cavern Smash the Boss Lobby Floor': {
         'name'    : 'logic_dc_hammer_floor',
-        'tags'    : ("Dodongo's Cavern" "Entrance",),
+        'tags'    : ("Dodongo's Cavern", "Entrance",),
         'tooltip' : '''\
                     The bombable floor before King Dodongo can be destroyed
                     with Hammer if hit in the very center. This is only
@@ -1499,7 +1534,7 @@ logic_tricks = {
                     '''},
     'Lensless Wasteland': {
         'name'    : 'logic_lens_wasteland',
-        'tags'    : ("Lens of Truth","Haunted Wasteland",),
+        'tags'    : ("Lens of Truth", "Haunted Wasteland",),
         'tooltip' : '''\
                     By memorizing the path, you can travel through the
                     Wasteland without using the Lens of Truth to see
@@ -1509,61 +1544,62 @@ logic_tricks = {
                     '''},
     'Bottom of the Well without Lens of Truth': {
         'name'    : 'logic_lens_botw',
-        'tags'    : ("Lens of Truth","Bottom of the Well",),
+        'tags'    : ("Lens of Truth", "Bottom of the Well",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Bottom of the Well.
                     '''},
     'Ganon\'s Castle MQ without Lens of Truth': {
         'name'    : 'logic_lens_castle_mq',
-        'tags'    : ("Lens of Truth","Ganon's Castle",),
+        'tags'    : ("Lens of Truth", "Ganon's Castle",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Ganon's Castle MQ.
                     '''},
     'Ganon\'s Castle without Lens of Truth': {
         'name'    : 'logic_lens_castle',
-        'tags'    : ("Lens of Truth","Ganon's Castle",),
+        'tags'    : ("Lens of Truth", "Ganon's Castle",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Ganon's Castle.
                     '''},
     'Gerudo Training Ground MQ without Lens of Truth': {
         'name'    : 'logic_lens_gtg_mq',
-        'tags'    : ("Lens of Truth","Gerudo Training Ground",),
+        'tags'    : ("Lens of Truth", "Gerudo Training Ground",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Gerudo Training Ground MQ.
                     '''},
     'Gerudo Training Ground without Lens of Truth': {
         'name'    : 'logic_lens_gtg',
-        'tags'    : ("Lens of Truth","Gerudo Training Ground",),
+        'tags'    : ("Lens of Truth", "Gerudo Training Ground",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Gerudo Training Ground.
                     '''},
     'Jabu MQ without Lens of Truth': {
         'name'    : 'logic_lens_jabu_mq',
-        'tags'    : ("Lens of Truth","Jabu Jabu's Belly",),
+        'tags'    : ("Lens of Truth", "Jabu Jabu's Belly",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Jabu MQ.
                     '''},
     'Shadow Temple MQ Stationary Objects without Lens of Truth': {
         'name'    : 'logic_lens_shadow_mq',
-        'tags'    : ("Lens of Truth","Shadow Temple",),
+        'tags'    : ("Lens of Truth", "Shadow Temple",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Shadow Temple MQ for most areas in the dungeon.
                     See "Shadow Temple MQ Invisible Moving Platform
                     without Lens of Truth", "Shadow Temple MQ Invisible
-                    Blades Silver Rupees without Lens of Truth", and
-                    "Shadow Temple MQ 2nd Dead Hand without Lens of Truth"
+                    Blades Silver Rupees without Lens of Truth",
+                    "Shadow Temple MQ 2nd Dead Hand without Lens of Truth",
+                    and "Shadow Temple Bongo Bongo without Lens of Truth"
                     for exceptions.
                     '''},
     'Shadow Temple MQ Invisible Moving Platform without Lens of Truth': {
         'name'    : 'logic_lens_shadow_mq_platform',
-        'tags'    : ("Lens of Truth","Shadow Temple",),
+        'tags'    : ("Lens of Truth", "Shadow Temple",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Shadow Temple MQ to cross the invisible moving
@@ -1571,7 +1607,7 @@ logic_tricks = {
                     '''},
     'Shadow Temple MQ Invisible Blades Silver Rupees without Lens of Truth': {
         'name'    : 'logic_lens_shadow_mq_invisible_blades',
-        'tags'    : ("Lens of Truth","Shadow Temple",),
+        'tags'    : ("Lens of Truth", "Shadow Temple",),
         'tooltip' : '''\
                     Removes the requirement for the Lens of Truth or
                     Nayru's Love in Shadow Temple MQ for the Invisible
@@ -1579,25 +1615,24 @@ logic_tricks = {
                     '''},
     'Shadow Temple MQ 2nd Dead Hand without Lens of Truth': {
         'name'    : 'logic_lens_shadow_mq_dead_hand',
-        'tags'    : ("Lens of Truth","Shadow Temple",),
+        'tags'    : ("Lens of Truth", "Shadow Temple",),
         'tooltip' : '''\
-                    Dead Hand can spawn out of bounds in the back room of
-                    Shadow Temple, making him unreachable until the room
-                    is reloaded. The only way to tell if this happened is
-                    with Lens of Truth. This trick removes that safety net.
+                    Dead Hand spawns in a random spot within the room.
+                    Having Lens removes the hassle of having to comb
+                    the room looking for his spawn location.
                     '''},
     'Shadow Temple Stationary Objects without Lens of Truth': {
         'name'    : 'logic_lens_shadow',
-        'tags'    : ("Lens of Truth","Shadow Temple",),
+        'tags'    : ("Lens of Truth", "Shadow Temple",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Shadow Temple for most areas in the dungeon
                     except for crossing the moving platform in the huge
-                    pit room.
+                    pit room and for fighting Bongo Bongo.
                     '''},
     'Shadow Temple Invisible Moving Platform without Lens of Truth': {
         'name'    : 'logic_lens_shadow_platform',
-        'tags'    : ("Lens of Truth","Shadow Temple",),
+        'tags'    : ("Lens of Truth", "Shadow Temple",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Shadow Temple to cross the invisible moving
@@ -1605,14 +1640,14 @@ logic_tricks = {
                     '''},
     'Spirit Temple MQ without Lens of Truth': {
         'name'    : 'logic_lens_spirit_mq',
-        'tags'    : ("Lens of Truth","Spirit Temple",),
+        'tags'    : ("Lens of Truth", "Spirit Temple",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Spirit Temple MQ.
                     '''},
     'Spirit Temple without Lens of Truth': {
         'name'    : 'logic_lens_spirit',
-        'tags'    : ("Lens of Truth","Spirit Temple",),
+        'tags'    : ("Lens of Truth", "Spirit Temple",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Spirit Temple.
@@ -1721,6 +1756,17 @@ setting_infos = [
             "hide_when_disabled" : True,
         }
     ),
+	Checkbutton(
+        name           = 'web_wad_legacy_mode',
+        gui_text       = 'WAD Legacy Mode',
+		shared		   = False,
+        default        = False,
+		gui_tooltip	   = "Enabling this will avoid any patching of the VC emulator in case your Wii does not have support for it. Recommended to be left unchecked.",
+		gui_params  = {
+			"no_line_break"		 : False,
+            "hide_when_disabled" : True,
+        }
+    ),
     Setting_Info(
         name       = 'web_output_type',
         type       = str,
@@ -1741,7 +1787,8 @@ setting_infos = [
                 'web_common_key_file',
                 'web_common_key_string',
                 'web_wad_channel_id',
-                'web_wad_channel_title']
+                'web_wad_channel_title',
+				'web_wad_legacy_mode']
             }
         }
     ),
@@ -1766,7 +1813,7 @@ setting_infos = [
             True : {
                 'tabs' : ['main_tab', 'detailed_tab', 'starting_tab', 'other_tab'],
                 'sections' : ['preset_section'],
-                'settings' : ['count', 'create_spoiler', 'world_count', 'enable_distribution_file', 'distribution_file', 'create_patch_file'],
+                'settings' : ['count', 'create_spoiler', 'world_count', 'enable_distribution_file', 'distribution_file', 'create_patch_file', 'show_seed_info', 'user_message'],
             },
             False : {
                 'settings' : ['repatch_cosmetics'],
@@ -1778,7 +1825,7 @@ setting_infos = [
                     'settings' : [
                         'rom','web_output_type','player_num',
                         'web_wad_file', 'web_common_key_file', 'web_common_key_string',
-                        'web_wad_channel_id','web_wad_channel_title'
+                        'web_wad_channel_id','web_wad_channel_title','web_wad_legacy_mode'
                     ],
                 },
             }
@@ -1867,6 +1914,39 @@ setting_infos = [
         }),
     Setting_Info('output_dir',        str, "Output Directory", "Directoryinput", False, {}),
     Setting_Info('output_file',       str, None, None, False, {}),
+    Checkbutton(
+        name           = 'show_seed_info',
+        gui_text       = 'Show seed info on file screen',
+        shared         = True,
+        gui_tooltip    = '''\
+            Display the version number, generation time, and user
+            message on the file screen.
+        ''',
+        default        = True,
+        disable        = {
+            False : {'settings' : ["user_message"]}
+        },
+		gui_params = {
+            "hide_when_disabled" : True,
+        }
+    ),
+    Setting_Info(
+        name           = 'user_message',
+        type           = str,
+        gui_text       = "User-configurable message",
+        shared         = True,
+        gui_type       = "Textinput",
+        choices        = {},
+        gui_tooltip    = """\
+            Add a custom message to the seed info.
+        """,
+        default        = "",
+        gui_params     = {
+            "size"               : "full",
+            "max_length"         : 42,
+            "hide_when_disabled" : True,
+        }
+    ),
     Setting_Info('seed',              str, None, None, False, {}),
     Setting_Info('patch_file',        str, "Patch File", "Fileinput", False, {},
         gui_params = {
@@ -2098,9 +2178,9 @@ setting_infos = [
 
                          - Logic Rules
                          - (Random) Number of MQ Dungeons
-                         - Rainbow Bridge/LACS Requirements: Gold Skulltula Tokens
+                         - Rainbow Bridge/Ganon Boss Key Requirements: Gold Skulltula Tokens
                          - Variable numbers of Spiritual Stones, Medallions, or Dungeons
-                         for Rainbow Bridge and Ganon's Boss Key on LACS 
+                         for Rainbow Bridge and Ganon's Boss Key
                          (you will always be required to obtain all the relevant rewards)
                          - Scrub Shuffle will either be "Off" or "On (Affordable)"
                          ''',
@@ -2270,6 +2350,7 @@ setting_infos = [
             'medallions': 'Medallions',
             'dungeons':   'Dungeons',
             'tokens':     'Gold Skulltula Tokens',
+            'hearts':     'Hearts',
             'random':     'Random'
         },
         gui_tooltip    = '''\
@@ -2279,6 +2360,7 @@ setting_infos = [
             'Medallions': A configurable amount of Medallions.
             'Dungeons': A configurable amount of Dungeon Rewards.
             'Gold Skulltula Tokens': A configurable amount of Gold Skulltula Tokens.
+            'Hearts': A configurable amount of hearts.
             'Random': A random Rainbow Bridge requirement excluding Gold Skulltula Tokens.
         ''',
         shared         = True,
@@ -2287,6 +2369,7 @@ setting_infos = [
             '!medallions': {'settings': ['bridge_medallions']},
             '!dungeons':   {'settings': ['bridge_rewards']},
             '!tokens':     {'settings': ['bridge_tokens']},
+            '!hearts':     {'settings': ['bridge_hearts']},
         },
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -2368,6 +2451,21 @@ setting_infos = [
             'electron:max': 100,
         },
     ),
+    Scale(
+        name           = 'bridge_hearts',
+        gui_text       = "Hearts Required for Bridge",
+        default        = 20,
+        min            = 4,
+        max            = 20,
+        gui_tooltip    = '''\
+            Select the amount of hearts required to spawn the rainbow bridge.
+        ''',
+        shared         = True,
+        disabled_default = 0,
+        gui_params     = {
+            "hide_when_disabled": True,
+        },
+    ),
     Checkbutton(
         name           = 'triforce_hunt',
         gui_text       = 'Triforce Hunt',
@@ -2383,7 +2481,7 @@ setting_infos = [
             'randomize_key': 'randomize_settings',
         },
         disable        = {
-            True  : {'settings' : ['shuffle_ganon_bosskey', 'ganon_bosskey_stones', 'ganon_bosskey_medallions', 'ganon_bosskey_rewards', 'ganon_bosskey_tokens', 'triforce_blitz']},
+            True  : {'settings' : ['shuffle_ganon_bosskey', 'ganon_bosskey_stones', 'ganon_bosskey_medallions', 'ganon_bosskey_rewards', 'ganon_bosskey_tokens', 'ganon_bosskey_hearts', 'triforce_blitz']},
             False : {'settings' : ['triforce_count_per_world', 'triforce_goal_per_world']}
         },
     ),
@@ -2474,7 +2572,7 @@ setting_infos = [
             'glitched'  : {'settings' : ['allowed_tricks', 'shuffle_interior_entrances', 'shuffle_grotto_entrances',
                                          'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'owl_drops',
                                          'warp_songs', 'spawn_positions', 'mq_dungeons_mode', 'mq_dungeons_specific',
-                                         'mq_dungeons_count', 'shuffle_bosses', 'dungeon_shortcuts']},
+                                         'mq_dungeons_count', 'shuffle_bosses', 'dungeon_shortcuts', 'deadly_bonks']},
             'none'      : {'settings' : ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
         },
         shared         = True,
@@ -2534,25 +2632,29 @@ setting_infos = [
         name           = 'one_item_per_dungeon',
         gui_text       = 'Dungeons Have One Major Item',
         gui_tooltip    = '''\
-            Dungeons have exactly one major item. 
+            Dungeons have exactly one major item.
             This naturally makes each dungeon similar in value
             rather than vary based on shuffled locations.
 
-            Spirit Temple Colossus hands count as part 
-            of the dungeon. Spirit Temple has TWO items 
+            Spirit Temple Colossus hands count as part
+            of the dungeon. Spirit Temple has TWO items
             to match vanilla distribution.
 
-            Boss Keys and Fortress Keys only count as 
-            major items if they are shuffled Anywhere 
-            (Keysanity) or in Any Dungeon, and Small 
-            Keys only count as major items if they are 
-            shuffled Anywhere (Keysanity). This setting 
-            is disabled if Small Keys are shuffled in 
+            Boss Keys and Fortress Keys only count as
+            major items if they are shuffled Anywhere
+            (Keysanity) or in Any Dungeon, and Small
+            Keys only count as major items if they are
+            shuffled Anywhere (Keysanity). This setting
+            is disabled if Small Keys are shuffled in
             Any Dungeon.
 
-            GS Tokens only count as major items if the 
-            bridge or LACS requirements are set to 
-            "GS Tokens".
+            GS Tokens only count as major items if the
+            bridge or Ganon Boss Key requirements are
+            set to "GS Tokens".
+
+            Heart Containers and Pieces of Heart only
+            count as major items if the bridge or Ganon
+            Boss Key requirements are set to "Hearts".
 
             Bombchus only count as major items if they
             are considered in logic.
@@ -2636,6 +2738,8 @@ setting_infos = [
             <b>Forest Temple</b>: elevator raised and
             basement gates open
             <b>Fire Temple</b>: pillar knocked down
+            <b>Water Temple</b>: no change, but see the
+            note on "Shuffle Boss Entrances" below
             <b>Shadow Temple</b>: Truthspinner solved, boat
             block moved, and statue bridge moved. You start
             with 2 small keys if Shuffle Small Keys is set
@@ -2643,6 +2747,12 @@ setting_infos = [
             <b>Spirit Temple</b>: lobby elevator activated,
             shortcut silver blocks moved, central room
             platform lowered, and statue face melted
+
+            With "Shuffle Boss Entrances", the floor above
+            King Dodongo's arena is opened based on the
+            shortcut setting for the dungeon that contains
+            the entrance to King Dodongo's boss room, not
+            necessarily Dodongo's Cavern.
 
             Choose: Select dungeons with shortcuts
             All: Enable all dungeons shortcuts
@@ -2660,14 +2770,14 @@ setting_infos = [
         multiple_select = True,
         gui_text        = 'Dungeon Boss Shortcuts',
         choices         = {
-            'deku_tree':        "Deku Tree",
-            'dodongos_cavern':  "Dodongo's Cavern",
-            'jabu_jabus_belly': "Jabu Jabu's Belly",
-            'forest_temple':    "Forest Temple",
-            'fire_temple':      "Fire Temple",
-            'water_temple':     "Water Temple",  # doesn't do anything, but added to prevent confusion
-            'shadow_temple':    "Shadow Temple",
-            'spirit_temple':    "Spirit Temple",
+            'Deku Tree':        "Deku Tree",
+            'Dodongos Cavern':  "Dodongo's Cavern",
+            'Jabu Jabus Belly': "Jabu Jabu's Belly",
+            'Forest Temple':    "Forest Temple",
+            'Fire Temple':      "Fire Temple",
+            'Water Temple':     "Water Temple",  # affects King Dodongo if he's in Water
+            'Shadow Temple':    "Shadow Temple",
+            'Spirit Temple':    "Spirit Temple",
         },
         default        = [],
         gui_params     = {
@@ -2828,9 +2938,6 @@ setting_infos = [
         ''',
         default        = False,
         shared         = True,
-        gui_params     = {
-            'randomize_key': 'randomize_settings',
-        },
     ),
     Checkbutton(
         name           = 'spawn_gerudo_guard_outside_gate',
@@ -3046,6 +3153,21 @@ setting_infos = [
             'randomize_key': 'randomize_settings',
         },
     ),
+    Checkbutton(
+        name           = 'shuffle_frog_song_rupees',
+        gui_text       = 'Shuffle Frog Song Rupees',
+        gui_tooltip    = '''\
+            Enabling this adds 5 Purple Rupees to the item pool 
+            and shuffles the rewards from playing Zelda's Lullaby,
+            Epona's Song, Saria's Song, Sun's Song, and Song of Time
+            to the frogs in Zora's River.
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    ),
     Combobox(
         name           = 'shuffle_interior_entrances',
         gui_text       = 'Shuffle Interior Entrances',
@@ -3251,6 +3373,7 @@ setting_infos = [
         },
         disable        = {
             'off':  {'settings': ['shopsanity_prices']},
+            '0':    {'settings': ['shopsanity_prices']},
         },
         gui_tooltip    = '''\
             Randomizes Shop contents.
@@ -3591,6 +3714,7 @@ setting_infos = [
             'medallions':      "Medallions",
             'dungeons':        "Dungeons",
             'tokens':          "Tokens",
+            'hearts':          "Hearts",
         },
         gui_tooltip    = '''\
             'Remove': Ganon's Castle Boss Key is removed
@@ -3625,6 +3749,9 @@ setting_infos = [
             
             'Tokens': Ganon's Castle Boss Key will be awarded
             when reaching the target number of Gold Skulltula Tokens.
+
+            'Hearts': Ganon's Castle Boss Key will be awarded
+            when reaching the target number of hearts.
         ''',
         shared         = True,
         disable        = {
@@ -3632,6 +3759,7 @@ setting_infos = [
             '!medallions':  {'settings': ['ganon_bosskey_medallions']},
             '!dungeons':  {'settings': ['ganon_bosskey_rewards']},
             '!tokens':  {'settings': ['ganon_bosskey_tokens']},
+            '!hearts':  {'settings': ['ganon_bosskey_hearts']},
         },
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -3714,6 +3842,22 @@ setting_infos = [
             'electron:max': 100,
         },
     ),
+    Scale(
+        name           = 'ganon_bosskey_hearts',
+        gui_text       = "Hearts Required for Ganon's BK",
+        default        = 20,
+        min            = 4,
+        max            = 20,
+        gui_tooltip    = '''\
+            Select the amount of hearts
+            required to receive Ganon's Castle Boss Key.
+        ''',
+        shared         = True,
+        disabled_default = 0,
+        gui_params     = {
+            "hide_when_disabled": True,
+        },
+    ),
     Combobox(
         name           = 'lacs_condition',
         gui_text       = 'LACS Condition',
@@ -3724,6 +3868,7 @@ setting_infos = [
             'medallions': "Medallions",
             'dungeons':   "Dungeons",
             'tokens':     "Tokens",
+            'hearts':     "Hearts",
         },
         gui_tooltip    = '''\
             Sets the condition for the Light Arrow Cutscene
@@ -3734,6 +3879,7 @@ setting_infos = [
             'Medallions': A configurable amount of Medallions.
             'Dungeons': A configurable amount of Dungeon Rewards.
             'Tokens': A configurable amount of Gold Skulltula Tokens.
+            'Hearts': A configurable amount of hearts.
         ''',
         shared         = True,
         disable        = {
@@ -3741,6 +3887,7 @@ setting_infos = [
             '!medallions':  {'settings': ['lacs_medallions']},
             '!dungeons':  {'settings': ['lacs_rewards']},
             '!tokens':  {'settings': ['lacs_tokens']},
+            '!hearts':  {'settings': ['lacs_hearts']},
         },
         gui_params     = {
             'optional': True,
@@ -3821,6 +3968,23 @@ setting_infos = [
             "hide_when_disabled": True,
             'web:max': 100,
             'electron:max': 100,
+        },
+    ),
+    Scale(
+        name           = 'lacs_hearts',
+        gui_text       = "Hearts Required for LACS",
+        default        = 20,
+        min            = 4,
+        max            = 20,
+        gui_tooltip    = '''\
+            Select the amount of hearts
+            required to trigger the Light Arrow Cutscene.
+        ''',
+        shared         = True,
+        disabled_default = 0,
+        gui_params     = {
+            'optional': True,
+            "hide_when_disabled": True,
         },
     ),
     Checkbutton(
@@ -4142,6 +4306,16 @@ setting_infos = [
         shared         = True,
     ),
     Checkbutton(
+        name           = 'invisible_chests',
+        gui_text       = 'Invisible Chests',
+        gui_tooltip    = '''\
+            Chests will be only be visible with
+            the Lens of Truth. Lens is not logically
+            required for normally visible chests.
+        ''',
+        shared         = True,
+    ),
+    Checkbutton(
         name           = 'clearer_hints',
         gui_text       = 'Clearer Hints',
         gui_tooltip    = '''\
@@ -4400,6 +4574,16 @@ setting_infos = [
             'OHKO': Link dies in one hit.
         ''',
         shared         = True,
+    ),
+    Checkbutton(
+        name           = 'deadly_bonks',
+        gui_text       = 'One Bonk KO',
+        gui_tooltip    = '''\
+            When rolling, hitting a wall or object
+            will kill Link.
+        ''',
+        shared         = True,
+        default        = False,
     ),
     Combobox(
         name           = 'starting_tod',
@@ -5388,6 +5572,43 @@ setting_infos = [
             ]
         }
     ),
+    Checkbutton(
+        name           = 'easier_fire_arrow_entry',
+        gui_text       = 'Easier Fire Arrow Entry',
+        gui_tooltip    = '''\
+            It is possible to open the Shadow Temple entrance
+            by lighting the torches with Fire Arrows, but
+            can be difficult to light all 24 torches in time.
+            Enabling this setting allows you to reduce the
+            number of torches that need to be lit to open
+            the entrance, making it easier to perform
+            Fire Arrow Entry.
+
+            Note that this setting does not affect logic.
+            Whether it's used or not, the trick "Shadow Temple
+            Entry with Fire Arrows" must be enabled for it to be
+            in logic.
+        ''',
+        disable        = {
+            False : {'settings' : ['fae_torch_count']}
+        },
+        shared         = True,
+    ),
+    Scale(
+        name           = 'fae_torch_count',
+        gui_text       = 'Fire Arrow Entry Torch Count',
+        default        = 3,
+        min            = 1,
+        max            = 23,
+        gui_tooltip    = '''\
+            The entrance to Shadow Temple will open
+            after the chosen number of torches are lit.
+        ''',
+        shared         = True,
+        gui_params     = {
+            "hide_when_disabled": True,
+        }
+    ),
 ]
 
 
@@ -5477,6 +5698,28 @@ def validate_settings(settings_dict):
         # Ensure that the given choice is a valid choice for the setting
         elif info.choice_list and choice not in info.choice_list:
             raise ValueError('%r is not a valid choice for setting %r. %s' % (choice, setting, build_close_match(choice, 'choice', info.choice_list)))
+        # Ensure no conflicting settings are specified
+        if info.disable != None:
+            for option, disabling in info.disable.items():
+                negative = False
+                if isinstance(option, str) and option[0] == '!':
+                    negative = True
+                    option = option[1:]
+                if (choice == option) != negative:
+                    for other_setting in disabling.get('settings', []):
+                        validate_disabled_setting(settings_dict, setting, choice, other_setting)
+                    for section in disabling.get('sections', []):
+                        for other_setting in get_settings_from_section(section):
+                            validate_disabled_setting(settings_dict, setting, choice, other_setting)
+                    for tab in disabling.get('tabs', []):
+                        for other_setting in get_settings_from_tab(tab):
+                            validate_disabled_setting(settings_dict, setting, choice, other_setting)
+
+def validate_disabled_setting(settings_dict, setting, choice, other_setting):
+    if other_setting in settings_dict:
+        disabled_default = get_setting_info(other_setting).disabled_default
+        if settings_dict[other_setting] != disabled_default:
+            raise ValueError(f'{other_setting!r} must be set to {disabled_default!r} since {setting!r} is set to {choice!r}')
 
 class UnmappedSettingError(Exception):
     pass
