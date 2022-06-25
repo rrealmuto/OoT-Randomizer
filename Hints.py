@@ -545,7 +545,7 @@ def get_goal_count_hint(spoiler, world, checked):
     item_count = len(goal_locations)
     item_text = 'step' if item_count == 1 else 'steps'
 
-    return (GossipText('%s requires #%d# %s.' % (goal.hint_text, item_count, item_text), ['Light Blue', goal.color]), None)
+    return (GossipText('the %s requires #%d# %s.' % (goal.hint_text, item_count, item_text), ['Light Blue', goal.color]), None)
 
 def get_playthrough_location_hint(spoiler, world, checked):
 
