@@ -2595,9 +2595,10 @@ setting_infos = [
         disable        = {
             'glitchless': {'settings' : ['tricks_list_msg']},
             'glitched'  : {'settings' : ['allowed_tricks', 'shuffle_interior_entrances', 'shuffle_grotto_entrances',
-                                         'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops', 'warp_songs', 'mix_entrance_pools', 'decouple_entrances',
-                                         'shuffle_bosses', 'spawn_positions', 'mq_dungeons_mode', 'mq_dungeons_specific', 'mq_dungeons_count', 'dungeon_shortcuts',
-                                         'deadly_bonks']},
+                                         'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops',
+                                         'warp_songs', 'spawn_positions', 'mq_dungeons_mode', 'mq_dungeons_specific',
+                                         'mq_dungeons_count', 'shuffle_bosses', 'dungeon_shortcuts', 'deadly_bonks',
+                                         'mix_entrance_pools', 'decouple_entrances']},
             'none'      : {'settings' : ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
         },
         shared         = True,
