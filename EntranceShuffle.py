@@ -539,7 +539,8 @@ def shuffle_random_entrances(worlds):
                 valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
                 if worlds[0].settings.shuffle_gerudo_valley_river_exit == 'full':
                     # grotto entrances don't work properly (they lead to the Deku Tree instead)
-                    valid_target_types = ('Dungeon', 'Grave', *valid_target_types)
+                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'Grave', *valid_target_types)
+                    # GV→lake is most likely reachable as child, so don't include oGC from castle
                     valid_target_types_reverse = ('Dungeon', 'Grave', *valid_target_types_reverse)
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
             elif pool_type == 'OwlDrop':
@@ -548,7 +549,8 @@ def shuffle_random_entrances(worlds):
                 exclude = ['OGC Great Fairy Fountain -> Castle Grounds']
                 if worlds[0].settings.owl_drops == 'full':
                     # grotto entrances don't work properly (they lead to the Deku Tree instead)
-                    valid_target_types = ('Spawn', 'Dungeon', 'Grave', *valid_target_types)
+                    valid_target_types = ('Spawn', 'Dungeon', 'DungeonSpecial', 'Grave', *valid_target_types)
+                    # owls are child-only, so don't include oGC from castle
                     valid_target_types_reverse = ('Dungeon', 'Interior', 'SpecialInterior', 'Grave', *valid_target_types_reverse)
                 else:
                     exclude.append('Prelude of Light Warp -> Temple of Time')
@@ -560,7 +562,8 @@ def shuffle_random_entrances(worlds):
                 valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
                 if worlds[0].full_spawn_positions:
                     # grotto entrances don't work properly (they cause a black screen on file load)
-                    valid_target_types = ('Dungeon', 'Grave', *valid_target_types)
+                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'Grave', *valid_target_types)
+                    # don't spawn at oGC from castle to avoid softlocking
                     valid_target_types_reverse = ('Dungeon', 'Grave', *valid_target_types_reverse)
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
             elif pool_type == 'WarpSong':
@@ -568,7 +571,8 @@ def shuffle_random_entrances(worlds):
                 valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
                 if worlds[0].settings.warp_songs == 'full':
                     # grotto entrances don't work properly (they lead to the Deku Tree instead)
-                    valid_target_types = ('Dungeon', 'Grave', *valid_target_types)
+                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'Grave', *valid_target_types)
+                    # warp songs can most likely be used as child, so don't include oGC from castle
                     valid_target_types_reverse = ('Dungeon', 'Grave', *valid_target_types_reverse)
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
             # Ensure that when trying to place the last entrance of a one way pool, we don't assume the rest of the targets are reachable
