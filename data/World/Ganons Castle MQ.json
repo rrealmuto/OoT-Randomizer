@@ -3,7 +3,7 @@
         "region_name": "Ganons Castle Lobby",
         "dungeon": "Ganons Castle",
         "exits": {
-            "Castle Grounds": "True",
+            "Castle Grounds From Ganons Castle": "True",
             "Ganons Castle Main": "here(is_adult or
                 (Kokiri_Sword and (Sticks or has_explosives or Nuts or Boomerang)) or
                 (has_explosives and (Sticks or ((Nuts or Boomerang) and Slingshot))))"
