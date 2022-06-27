@@ -2191,22 +2191,6 @@ setting_infos = [
         }
     ),
     Checkbutton(
-        name           = 'vanilla_seed',
-        gui_text       = 'Generate Vanilla Seed',
-        gui_tooltip    = '''\
-                         Locks all items to their vanilla locations and
-                         adjusts logic to allow such a seed to generate.
-
-                         This currently does not work with
-                         glitched logic or Master Quest.
-                         ''',
-        default        = False,
-        shared         = True,
-        gui_params     = {
-            'optional': True,
-        },
-    ),
-    Checkbutton(
         name           = 'open_deku',
         gui_text       = 'Open Deku Tree',
         gui_tooltip    = '''\
@@ -2393,6 +2377,7 @@ setting_infos = [
         ''',
         shared         = True,
         disable        = {
+            '!vanilla':    {'settings': ['shuffle_base_item_pool']},
             '!stones':     {'settings': ['bridge_stones']},
             '!medallions': {'settings': ['bridge_medallions']},
             '!dungeons':   {'settings': ['bridge_rewards']},
@@ -2598,7 +2583,7 @@ setting_infos = [
                                          'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops',
                                          'warp_songs', 'spawn_positions', 'mq_dungeons_mode', 'mq_dungeons_specific',
                                          'mq_dungeons_count', 'shuffle_bosses', 'dungeon_shortcuts', 'deadly_bonks',
-                                         'mix_entrance_pools', 'decouple_entrances']},
+                                         'mix_entrance_pools', 'decouple_entrances', 'shuffle_base_item_pool']},
             'none'      : {'settings' : ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
         },
         shared         = True,
@@ -3020,6 +3005,34 @@ setting_infos = [
         shared         = True,
     ),
     Checkbutton(
+        name           = 'shuffle_base_item_pool',
+        gui_text       = 'Shuffle Other Items',
+        gui_tooltip    = '''\
+            Enabling this shuffles items not controlled by
+            other settings. This includes most chests, NPCs,
+            freestanding heart pieces, and boss heart containers.
+
+            Medallions and Spiritual Stones will be shuffled
+            among each other.
+
+            If this setting is enabled, the contents of bottles
+            found in the world (other than Ruto's letter) are
+            also randomized.
+
+            Turning this off currently does not work with
+            glitched logic, Master Quest, Ganon's Castle
+            Entrance Randomizer, or non-vanilla Rainbow Bridge.
+        ''',
+        default        = True,
+        disable        = {
+            True : {'settings': ['item_pool_value', 'mq_dungeons_mode']},
+        },
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    ),
+    Checkbutton(
         name           = 'shuffle_kokiri_sword',
         gui_text       = 'Shuffle Kokiri Sword',
         gui_tooltip    = '''\
@@ -3089,12 +3102,16 @@ setting_infos = [
         gui_text       = 'Shuffle Songs',
         default        = 'song',
         choices        = {
+            'vanilla': 'Vanilla Locations',
             'song':    'Song Locations',
             'dungeon': 'Dungeon Rewards',
             'any':     'Anywhere',
             },
         gui_tooltip    = '''\
             This restricts where song items can appear.
+
+            'Vanilla Locations': Songs will appear in
+            their vanilla locations.
 
             'Song Locations': Song will only appear at locations that
             normally teach songs. In Multiworld, songs will only 
@@ -3247,6 +3264,9 @@ setting_infos = [
 
             Thieves' Hideout is not shuffled.
         ''',
+        disable        = {
+            'all' : {'settings': ['shuffle_base_item_pool']},
+        },
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',

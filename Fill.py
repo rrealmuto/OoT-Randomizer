@@ -3,7 +3,6 @@ import logging
 from State import State
 from Rules import set_shop_rules
 from Location import DisableType
-from LocationList import location_table
 from ItemPool import remove_junk_items
 from Item import ItemFactory, ItemInfo
 from Search import Search
@@ -504,12 +503,7 @@ def fill_restrictive_fast(window, worlds, locations, itempool):
 def fast_fill(window, locations, itempool):
     random.shuffle(locations)
     while itempool and locations:
-        spot_to_fill = locations.pop()
-        if spot_to_fill.world.settings.vanilla_seed:
-            item_to_place = next(item for item in itempool if item.name == location_table[spot_to_fill.name][4])
-            itempool.remove(item_to_place)
-        else:
-            item_to_place = itempool.pop()
+        item_to_place = itempool.pop()
         spot_to_fill.world.push_item(spot_to_fill, item_to_place)
         window.fillcount += 1
         window.update_progress(5 + ((window.fillcount / window.locationcount) * 30))

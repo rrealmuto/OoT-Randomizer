@@ -224,7 +224,8 @@
             "shuffle_gerudo_card",
             "shuffle_beans",
             "shuffle_medigoron_carpet_salesman",
-            "shuffle_frog_song_rupees"
+            "shuffle_frog_song_rupees",
+            "shuffle_base_item_pool"
           ]
         },
         {

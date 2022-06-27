@@ -18,7 +18,8 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * New “Full” options for the “Randomize Owl Drops”, “Randomize Warp Song Destinations”, and “Randomize Overworld Spawns” settings that include more types of entrances (based on [#1179](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1179) and [#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
   * New hidden “Easter Egg Hunt” setting (based on [KevinPal's `triforce_easteregg` branch](https://github.com/KevinPal/OoT-Randomizer/tree/triforce_easteregg))
   * New “Shuffle Gerudo Valley River Exit” setting
-  * New hidden “Generate Vanilla Seed” setting (used for `vanilla` and `fast-vanilla` presets)
+  * New “Vanilla” option for the “Shuffle Songs” setting
+  * New “Shuffle Other Items” setting which can be disabled to generate vanilla seeds, only shuffle entrances, etc.
   * A 4th option is added to the “Misc. Hints” setting to hint the Hookshot location in Dampé's diary
   * New “Mixed Pools Tournament” hint distribution
 * New settings presets:

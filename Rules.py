@@ -1,8 +1,6 @@
 import collections
 import logging
-from ItemPool import IGNORE_LOCATION
 from Location import DisableType
-from LocationList import location_table
 from SaveContext import SaveContext
 from Search import Search
 from State import State
@@ -18,13 +16,7 @@ def set_rules(world):
     is_child = world.parser.parse_rule('is_child')
 
     for location in world.get_locations():
-        if world.settings.vanilla_seed and location.name in location_table:
-            if location_table[location.name][4] is None:
-                add_item_rule(location, lambda location, item: item.name == IGNORE_LOCATION and item.world.id == location.world.id)
-            else:
-                add_item_rule(location, lambda location, item: item.name == location_table[location.name][4] and item.world.id == location.world.id)
-
-        if world.settings.shuffle_song_items == 'song':
+        if world.settings.shuffle_song_items in ('vanilla', 'song'):
             if location.type == 'Song':
                 # allow junk items, but songs must still have matching world
                 add_item_rule(location, lambda location, item: 

@@ -582,11 +582,11 @@ class World(object):
             random.shuffle(prizepool)
             random.shuffle(prize_locs)
             loc = prize_locs.pop()
-            if self.settings.vanilla_seed:
+            if self.settings.shuffle_base_item_pool:
+                item = prizepool.pop()
+            else:
                 item = next(item for item in prizepool if item.name == location_table[loc.name][4])
                 prizepool.remove(item)
-            else:
-                item = prizepool.pop()
             self.push_item(loc, item)
 
     def set_goals(self):

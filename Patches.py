@@ -172,7 +172,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     rom.write_bytes(0x94FCDD, [0x08, 0x39, 0x39])
 
     # Remove locked door to Boss Key Chest in Fire Temple
-    if not world.keysanity and not world.dungeon_mq['Fire Temple']:
+    if not world.keysanity and (world.settings.shuffle_base_item_pool or world.settings.shuffle_smallkeys != 'vanilla') and not world.dungeon_mq['Fire Temple']:
         rom.write_byte(0x22D82B7, 0x3F)
     # Remove the unused locked door in water temple
     if not world.dungeon_mq['Water Temple']:
@@ -264,7 +264,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     rom.write_bytes(0x1FC0CF8, Block_code)
 
     # songs as items flag
-    songs_as_items = world.settings.shuffle_song_items != 'song' or \
+    songs_as_items = world.settings.shuffle_song_items not in ('vanilla', 'song') or \
                      world.distribution.song_as_items or \
                      world.settings.starting_songs
 

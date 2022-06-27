@@ -6,11 +6,11 @@
             "Fire Temple Near Boss Chest" : "
                 logic_fewer_tunic_requirements or can_use(Goron_Tunic)",
             "Fire Temple Flare Dancer Chest": "
-                ((Small_Key_Fire_Temple, 8) or not keysanity) and can_use(Megaton_Hammer)",
+                ((Small_Key_Fire_Temple, 8) or ((not keysanity) and (not vanilla_progression))) and can_use(Megaton_Hammer)",
             "Fire Temple Boss Key Chest": "
-                ((Small_Key_Fire_Temple, 8) or not keysanity) and can_use(Megaton_Hammer)",
+                ((Small_Key_Fire_Temple, 8) or ((not keysanity) and (not vanilla_progression))) and can_use(Megaton_Hammer)",
             "Fire Temple GS Boss Key Loop": "
-                ((Small_Key_Fire_Temple, 8) or not keysanity) and can_use(Megaton_Hammer)",
+                ((Small_Key_Fire_Temple, 8) or ((not keysanity) and (not vanilla_progression))) and can_use(Megaton_Hammer)",
             "Fairy Pot": "
                 has_bottle and (can_use(Hover_Boots) or can_use(Hookshot)) and
                 (logic_fewer_tunic_requirements or can_use(Goron_Tunic))"
@@ -24,7 +24,7 @@
                     or at('Fire Temple Upper', can_play(Song_of_Time) or has_explosives)
                 )",
             "Fire Temple Big Lava Room":"
-                ((Small_Key_Fire_Temple, 2) or (vanilla_seed and (Small_Key_Fire_Temple, 1))) and
+                ((Small_Key_Fire_Temple, 2) or (vanilla_progression and (Small_Key_Fire_Temple, 1))) and
                 (logic_fewer_tunic_requirements or can_use(Goron_Tunic))"
         }
     },
@@ -40,7 +40,7 @@
         "exits": {
             "Fire Temple Lower":  "True",
             "Fire Temple Middle": "
-                can_use(Goron_Tunic) and ((Small_Key_Fire_Temple, 4) or (vanilla_seed and (Small_Key_Fire_Temple, 3))) and
+                can_use(Goron_Tunic) and ((Small_Key_Fire_Temple, 4) or (vanilla_progression and (Small_Key_Fire_Temple, 3))) and
                 (Progressive_Strength_Upgrade or logic_fire_strength) and 
                 (has_explosives or Bow or Progressive_Hookshot)"
         }
@@ -50,28 +50,28 @@
         "dungeon": "Fire Temple",
         "locations": {
             "Fire Temple Boulder Maze Lower Chest": "True",
-            "Fire Temple Boulder Maze Upper Chest": "(Small_Key_Fire_Temple, 6) or (vanilla_seed and (Small_Key_Fire_Temple, 5))",
+            "Fire Temple Boulder Maze Upper Chest": "(Small_Key_Fire_Temple, 6) or (vanilla_progression and (Small_Key_Fire_Temple, 5))",
             "Fire Temple Boulder Maze Side Room Chest": "True",
             "Fire Temple Boulder Maze Shortcut Chest": "
-                ((Small_Key_Fire_Temple, 6) or (vanilla_seed and (Small_Key_Fire_Temple, 5))) and has_explosives",
+                ((Small_Key_Fire_Temple, 6) or (vanilla_progression and (Small_Key_Fire_Temple, 5))) and has_explosives",
             "Fire Temple Scarecrow Chest": "
-                ((Small_Key_Fire_Temple, 6) or (vanilla_seed and (Small_Key_Fire_Temple, 5))) and
+                ((Small_Key_Fire_Temple, 6) or (vanilla_progression and (Small_Key_Fire_Temple, 5))) and
                 (can_use(Scarecrow) or (logic_fire_scarecrow and can_use(Longshot)))",
             "Fire Temple Map Chest": "
-                (Small_Key_Fire_Temple, 6) or (vanilla_seed and (Small_Key_Fire_Temple, 5)) or ((Small_Key_Fire_Temple, 5) and can_use(Bow)) or (vanilla_seed and (Small_Key_Fire_Temple, 4) and can_use(Bow))",
-            "Fire Temple Compass Chest": "(Small_Key_Fire_Temple, 7) or (vanilla_seed and (Small_Key_Fire_Temple, 6))",
-            "Fire Temple GS Boulder Maze": "((Small_Key_Fire_Temple, 4) or (vanilla_seed and (Small_Key_Fire_Temple, 3))) and has_explosives",
+                (Small_Key_Fire_Temple, 6) or (vanilla_progression and (Small_Key_Fire_Temple, 5)) or ((Small_Key_Fire_Temple, 5) and can_use(Bow)) or (vanilla_progression and (Small_Key_Fire_Temple, 4) and can_use(Bow))",
+            "Fire Temple Compass Chest": "(Small_Key_Fire_Temple, 7) or (vanilla_progression and (Small_Key_Fire_Temple, 6))",
+            "Fire Temple GS Boulder Maze": "((Small_Key_Fire_Temple, 4) or (vanilla_progression and (Small_Key_Fire_Temple, 3))) and has_explosives",
             "Fire Temple GS Scarecrow Climb": "
-                ((Small_Key_Fire_Temple, 6) or (vanilla_seed and (Small_Key_Fire_Temple, 5))) and
+                ((Small_Key_Fire_Temple, 6) or (vanilla_progression and (Small_Key_Fire_Temple, 5))) and
                 (can_use(Scarecrow) or (logic_fire_scarecrow and can_use(Longshot)))",
             "Fire Temple GS Scarecrow Top": "
-                ((Small_Key_Fire_Temple, 6) or vanilla_seed and (Small_Key_Fire_Temple, 5)) and
+                ((Small_Key_Fire_Temple, 6) or vanilla_progression and (Small_Key_Fire_Temple, 5)) and
                 (can_use(Scarecrow) or (logic_fire_scarecrow and can_use(Longshot)))"
         },
         "exits": {
             "Fire Temple Upper": "
-                (Small_Key_Fire_Temple, 8) or (vanilla_seed and (Small_Key_Fire_Temple, 7)) or
-                (((Small_Key_Fire_Temple, 7) or (vanilla_seed and (Small_Key_Fire_Temple, 6))) and
+                (Small_Key_Fire_Temple, 8) or (vanilla_progression and (Small_Key_Fire_Temple, 7)) or
+                (((Small_Key_Fire_Temple, 7) or (vanilla_progression and (Small_Key_Fire_Temple, 6))) and
                     ((can_use(Hover_Boots) and can_use(Megaton_Hammer)) or logic_fire_flame_maze))"
         }
     },
