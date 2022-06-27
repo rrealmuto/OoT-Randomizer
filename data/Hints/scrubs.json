@@ -1,7 +1,7 @@
 {
     "name":                  "scrubs",
     "gui_name":              "Scrubs",
-    "description":           "Tournament hints used for Scrubs Races. Duplicates of each hint, Skull Mask is an always hint, 5 WotH, 3 Foolish, 8 sometimes. Can also be used to simulate S3 Tournament hints.",
+    "description":           "Tournament hints used for Scrubs Races. Duplicates of each hint, Sheik at Temple is an always hint, 5 WotH, 5 Foolish, 6 sometimes.",
     "add_locations":         [
         { "location": "Sheik at Temple", "types": ["always"] },
         { "location": "Deku Theater Skull Mask", "types": ["always"] },

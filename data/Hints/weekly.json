@@ -1,7 +1,7 @@
 {
     "name":                  "weekly",
     "gui_name":              "Weekly",
-    "description":           "Hint distribution used for weekly races. Duplicates of each hint, Skull Mask is an always hint, 5 WotH, 3 Foolish, 8 sometimes.",
+    "description":           "Hint distribution used for weekly races. Duplicates of each hint, Skull Mask is an always hint, 5 WotH, 3 Foolish, 5 sometimes.",
     "add_locations":         [
         { "location": "Deku Theater Skull Mask", "types": ["always"] },
         { "location": "Deku Theater Mask of Truth", "types": ["always"] }
