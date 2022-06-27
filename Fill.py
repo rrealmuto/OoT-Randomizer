@@ -503,6 +503,7 @@ def fill_restrictive_fast(window, worlds, locations, itempool):
 def fast_fill(window, locations, itempool):
     random.shuffle(locations)
     while itempool and locations:
+        spot_to_fill = locations.pop()
         item_to_place = itempool.pop()
         spot_to_fill.world.push_item(spot_to_fill, item_to_place)
         window.fillcount += 1
