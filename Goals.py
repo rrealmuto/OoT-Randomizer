@@ -344,6 +344,7 @@ def search_goals(categories, reachable_goals, search, priority_locations, all_lo
 
 def maybe_set_misc_item_hints(location):
     for hint_type, data in misc_item_hint_table.items():
-        if hint_type not in location.item.world.misc_hint_item_locations and location.item and location.item.name == data['default_item']: #TODO make hinted item customizable via plando
+        item = location.item.world.misc_hint_items[hint_type]
+        if hint_type not in location.item.world.misc_hint_item_locations and location.item and location.item.name == item:
             location.item.world.misc_hint_item_locations[hint_type] = location
-            logging.getLogger('').debug(f'{data["default_item"]} [{location.item.world.id}] set to [{location.name}]') #TODO make hinted item customizable via plando
+            logging.getLogger('').debug(f'{item} [{location.item.world.id}] set to [{location.name}]')

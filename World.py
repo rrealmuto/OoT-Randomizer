@@ -8,7 +8,7 @@ import os
 from DungeonList import create_dungeons
 from Entrance import Entrance
 from Goals import Goal, GoalCategory
-from HintList import getRequiredHints
+from HintList import getRequiredHints, misc_item_hint_table
 from Hints import get_hint_area, hint_dist_keys, HintDistFiles
 from Item import ItemFactory, ItemInfo, MakeEventItem
 from Location import Location, LocationFactory
@@ -189,6 +189,8 @@ class World(object):
         self.named_item_pool = list(self.item_hints)
 
         self.always_hints = [hint.name for hint in getRequiredHints(self)]
+
+        self.misc_hint_items = {hint_type: self.distribution.misc_hint_items.get(hint_type, data['default_item']) for hint_type, data in misc_item_hint_table.items()}
 
         self.state = State(self)
 

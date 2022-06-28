@@ -1635,6 +1635,24 @@ multiTable = {
     'Ganons Castle Spirit Trial Chests':                        ['Ganons Castle Spirit Trial Crystal Switch Chest', 'Ganons Castle Spirit Trial Invisible Chest'],
 }
 
+def dampe_diary_custom_item_text(location):
+    from Hints import get_hint_area, getItemGenericName
+
+    return "Whoever reads this, please enter #{}{}#. I will let you have {}.^I'm waiting for you.&--Dampé".format(
+        "" if location.world.id == location.item.world.id else f"#Player {location.world.id + 1}'s ",
+        get_hint_area(location)[0],
+        getHint(getItemGenericName(location.item), location.item.world.settings.clearer_hints).text,
+    )
+
+def ganondorf_hint_custom_item_text(location):
+    from Hints import get_hint_area, getItemGenericName
+
+    return "Ha ha ha... You'll never find {} from #{}{}#!".format(
+        getHint(getItemGenericName(location.item), location.item.world.settings.clearer_hints).text,
+        "" if location.world.id == location.item.world.id else f"#Player {location.world.id + 1}'s ",
+        get_hint_area(location)[0],
+    )
+
 misc_item_hint_table = {
     'dampe_diary': {
         'id': 0x5003,
@@ -1645,7 +1663,10 @@ misc_item_hint_table = {
         'replace': {
             "enter #your pocket#. I will let you have": "check #your pocket#. You will find",
         },
+        'custom_item_text': dampe_diary_custom_item_text,
+        'custom_pocket_text': lambda item: f"Whoever reads this, please check #your pocket#. You will find {item}.^I'm waiting for you.&--Dampé",
         'fallback': "Whoever reads this, I'm sorry, but I seem to have #misplaced# my stretching, shrinking keepsake.&--Dampé",
+        'custom_fallback': lambda item: f"Whoever reads this, I'm sorry, but I seem to have #misplaced# {item}.&--Dampé",
     },
     'ganondorf': {
         'id': 0x70CC,
@@ -1656,6 +1677,8 @@ misc_item_hint_table = {
         'replace': {
             "from #Ganon's Castle#": "from #my castle#",
         },
+        'custom_item_text': ganondorf_hint_custom_item_text,
+        'custom_pocket_text': lambda item: f"Ha ha ha... You'll never find {item} from #your pocket#!",
     },
 }
 

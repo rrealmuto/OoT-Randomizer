@@ -1376,27 +1376,39 @@ def buildGanonText(world, messages):
 def buildMiscItemHints(world, messages):
     for hint_type, data in misc_item_hint_table.items():
         if hint_type in world.settings.misc_hints:
+            item = world.misc_hint_items[hint_type]
             text = ''
-            if data['default_item'] in world.distribution.effective_starting_items and world.distribution.effective_starting_items[data['default_item']].count > 0: #TODO allow customizing the item
-                text += data['prefix'] #TODO different text if the hinted item is changed via plando
-                text += "#your pocket#"
-            elif hint_type in world.misc_hint_item_locations:
-                text += data['prefix'] #TODO different text if the hinted item is changed via plando
-                location = world.misc_hint_item_locations[hint_type]
-                location_hint, _ = get_hint_area(location)
-                if world.id != location.world.id:
-                    text += f"#Player {location.world.id + 1}'s {location_hint}#"
+            if item in world.distribution.effective_starting_items and world.distribution.effective_starting_items[item].count > 0:
+                if item == data['default_item']:
+                    text += data['prefix']
+                    text += "#your pocket#"
+                    text += data['suffix']
                 else:
-                    text += f"#{location_hint}#"
+                    text += data['custom_pocket_text'](item)
+            elif hint_type in world.misc_hint_item_locations:
+                location = world.misc_hint_item_locations[hint_type]
+                if item == data['default_item']:
+                    text += data['prefix']
+                    location_hint, _ = get_hint_area(location)
+                    if world.id != location.world.id:
+                        text += f"#Player {location.world.id + 1}'s {location_hint}#"
+                    else:
+                        text += f"#{location_hint}#"
+                    text += data['suffix']
+                else:
+                    text += data['custom_item_text'](location)
             elif 'fallback' in data:
-                text = data['fallback']
+                if item == data['default_item']:
+                    text += data['fallback']
+                    text += data['suffix']
+                else:
+                    text = data['custom_fallback'](item)
             else:
                 text = getHint('Validation Line', world.settings.clearer_hints).text
                 for location in world.get_filled_locations():
                     if location.name == 'Ganons Tower Boss Key Chest':
                         text += f"#{getHint(getItemGenericName(location.item), world.settings.clearer_hints).text}#"
                         break
-            text += data['suffix'] #TODO different text if the hinted item is changed via plando
             for find, replace in data.get('replace', {}).items():
                 text = text.replace(find, replace)
 
