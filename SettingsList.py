@@ -3020,12 +3020,12 @@ setting_infos = [
             also randomized.
 
             Turning this off currently does not work with
-            glitched logic, Master Quest, Ganon's Castle
+            glitched logic, Master Quest, Ganon's Castle or boss
             Entrance Randomizer, or non-vanilla Rainbow Bridge.
         ''',
         default        = True,
         disable        = {
-            True : {'settings': ['item_pool_value', 'mq_dungeons_mode']},
+            True : {'settings': ['item_pool_value', 'mq_dungeons_mode', 'shuffle_bosses']},
         },
         shared         = True,
         gui_params     = {
@@ -3298,7 +3298,7 @@ setting_infos = [
             'full':      'Full',
         },
         disable        = {
-            '!off' : {'settings': ['require_gohma']},
+            '!off' : {'settings': ['require_gohma', 'shuffle_base_item_pool']},
         },
         shared         = True,
         gui_params     = {
