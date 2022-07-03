@@ -857,9 +857,10 @@ def get_junk_hint(spoiler, world, checked):
 
 
 hint_func = {
-    'trial':        lambda spoiler, world, checked: None,
-    'always':       lambda spoiler, world, checked: None,
-    'dual_always':  lambda spoiler, world, checked: None,
+    'trial':            lambda spoiler, world, checked: None,
+    'always':           lambda spoiler, world, checked: None,
+    'dual_always':      lambda spoiler, world, checked: None,
+    'entrance_always':  lambda spoiler, world, checked: None,
     'woth':             get_woth_hint,
     'goal':             get_goal_hint,
     'barren':           get_barren_hint,
@@ -879,6 +880,7 @@ hint_dist_keys = {
     'trial',
     'always',
     'dual_always',
+    'entrance_always',
     'woth',
     'goal',
     'barren',
@@ -1129,6 +1131,28 @@ def buildWorldGossipHints(spoiler, world, checkedLocations=None):
             item_text = getHint(getItemGenericName(location.item), world.settings.clearer_hints).text
             add_hint(spoiler, world, stoneGroups, GossipText('%s #%s#.' % (location_text, item_text), ['Green', 'Red'], [location.name], [location.item.name]), hint_dist['always'][1], [location], force_reachable=True)
             logging.getLogger('').debug('Placed always hint for %s.', location.name)
+
+    # Add required entrance hints, only if hint copies > 0
+    if world.entrance_shuffle and 'entrance_always' in hint_dist and hint_dist['entrance_always'][1] > 0:
+        alwaysEntrances = getHintGroup('entrance_always', world)
+        for entrance_hint in alwaysEntrances:
+            entrance = world.get_entrance(entrance_hint.name)
+            connected_region = entrance.connected_region
+            if entrance.shuffled and (connected_region.dungeon or any(hint.name == connected_region.name for hint in getHintGroup('region', world))):
+                checkedAlwaysLocations.add(entrance.name)
+
+                entrance_text = entrance_hint.text
+                if '#' not in entrance_text:
+                    entrance_text = '#%s#' % entrance_text
+
+                if connected_region.dungeon:
+                    region_text = getHint(connected_region.dungeon.name, world.settings.clearer_hints).text
+                else:
+                    region_text = getHint(connected_region.name, world.settings.clearer_hints).text
+                if '#' not in region_text:
+                    region_text = '#%s#' % region_text
+
+                add_hint(spoiler, world, stoneGroups, GossipText('%s %s.' % (entrance_text, region_text), ['Light Blue', 'Green']), hint_dist['entrance_always'][1], None, force_reachable=True)
 
     # Add trial hints, only if hint copies > 0
     if hint_dist['trial'][1] > 0:

@@ -858,7 +858,9 @@
         "scene": "Castle Grounds",
         "hint": "outside Ganon's Castle",
         "exits": {
+            # the rainbow bridge cutscene trigger doesn't extend to the castle entrance
             "Ganons Castle Grounds": "is_adult and bridge == 'open'"
+            # no exit back into the castle because the entrance places Link in midair if the bridge isn't spawned
         }
     },
     {

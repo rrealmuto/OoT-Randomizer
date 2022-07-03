@@ -68,9 +68,12 @@ def getHintGroup(group, world):
         if group == 'dual_always' and hint.name in conditional_dual_always and conditional_dual_always[hint.name](world):
             hint.type = 'dual_always'
 
+        if group == 'entrance_always' and hint.name in conditional_entrance_always and conditional_entrance_always[hint.name](world):
+            hint.type = 'entrance_always'
+
         conditional_keep = True
         type_append = False
-        if group in ['overworld', 'dungeon', 'sometimes', 'dual'] and hint.name in conditional_sometimes.keys():
+        if group in ['overworld', 'dungeon', 'sometimes', 'dual', 'entrance'] and hint.name in conditional_sometimes.keys():
             conditional_keep = conditional_sometimes[hint.name](world)
 
         # Hint inclusion override from distribution
@@ -121,13 +124,13 @@ def getRequiredHints(world):
 # Helpers for conditional always hints
 def stones_required_by_settings(world):
     stones = 0
-    if world.settings.bridge == 'stones':
+    if world.settings.bridge == 'stones' and not world.shuffle_special_dungeon_entrances:
         stones = max(stones, world.settings.bridge_stones)
     if world.settings.shuffle_ganon_bosskey == 'on_lacs' and world.settings.lacs_condition == 'stones':
         stones = max(stones, world.settings.lacs_stones)
     if world.settings.shuffle_ganon_bosskey == 'stones':
         stones = max(stones, world.settings.ganon_bosskey_stones)
-    if world.settings.bridge == 'dungeons':
+    if world.settings.bridge == 'dungeons' and not world.shuffle_special_dungeon_entrances:
         stones = max(stones, world.settings.bridge_rewards - 6)
     if world.settings.shuffle_ganon_bosskey == 'on_lacs' and world.settings.lacs_condition == 'dungeons':
         stones = max(stones, world.settings.lacs_rewards - 6)
@@ -139,13 +142,13 @@ def stones_required_by_settings(world):
 
 def medallions_required_by_settings(world):
     medallions = 0
-    if world.settings.bridge == 'medallions':
+    if world.settings.bridge == 'medallions' and not world.shuffle_special_dungeon_entrances:
         medallions = max(medallions, world.settings.bridge_medallions)
     if world.settings.shuffle_ganon_bosskey == 'on_lacs' and world.settings.lacs_condition == 'medallions':
         medallions = max(medallions, world.settings.lacs_medallions)
     if world.settings.shuffle_ganon_bosskey == 'medallions':
         medallions = max(medallions, world.settings.ganon_bosskey_medallions)
-    if world.settings.bridge == 'dungeons':
+    if world.settings.bridge == 'dungeons' and not world.shuffle_special_dungeon_entrances:
         medallions = max(medallions, max(world.settings.bridge_rewards - 3, 0))
     if world.settings.shuffle_ganon_bosskey == 'on_lacs' and world.settings.lacs_condition == 'dungeons':
         medallions = max(medallions, max(world.settings.lacs_rewards - 3, 0))
@@ -157,7 +160,7 @@ def medallions_required_by_settings(world):
 
 def tokens_required_by_settings(world):
     tokens = 0
-    if world.settings.bridge == 'tokens':
+    if world.settings.bridge == 'tokens' and not world.shuffle_special_dungeon_entrances:
         tokens = max(tokens, world.settings.bridge_tokens)
     if world.settings.shuffle_ganon_bosskey == 'on_lacs' and world.settings.lacs_condition == 'tokens':
         tokens = max(tokens, world.settings.lacs_tokens)
@@ -180,6 +183,16 @@ conditional_always = {
     'Kak 50 Gold Skulltula Reward': lambda world: tokens_required_by_settings(world) < 50,
 }
 
+# Entrance hints required under certain settings
+conditional_entrance_always = {
+    'Ganons Castle Grounds -> Ganons Castle Lobby': lambda world: (world.settings.bridge != 'open'
+        and (world.settings.bridge != 'stones' or world.settings.bridge_stones > 1)
+        and (world.settings.bridge != 'medallions' or world.settings.bridge_medallions > 1)
+        and (world.settings.bridge != 'dungeons' or world.settings.bridge_rewards > 2)
+        and (world.settings.bridge != 'tokens' or world.settings.bridge_tokens > 20)
+        and (world.settings.bridge != 'hearts' or world.settings.bridge_hearts > world.settings.starting_hearts + 1)),
+}
+
 # Dual hints required under certain settings
 conditional_dual_always = {
     'HF Ocarina of Time Retrieval': lambda world: stones_required_by_settings(world) < 2,
@@ -187,7 +200,11 @@ conditional_dual_always = {
     'ZR Frogs Rewards':             lambda world: not world.settings.shuffle_frog_song_rupees,
 }
 
-# Some sometimes and dual hints should only be enabled under certain settings
+# Some entrance hints should only be enabled under certain settings
+conditional_entrance_sometimes = {
+}
+
+# Some sometimes, dual, and entrance hints should only be enabled under certain settings
 conditional_sometimes = {
     # Conditionnal sometimes hints
     'HC Great Fairy Reward':                    lambda world: world.settings.shuffle_interior_entrances == 'off',
@@ -202,6 +219,12 @@ conditional_sometimes = {
     'Spirit Temple Child Lower':                lambda world: world.settings.tokensanity not in ['dungeon', 'all'],
     'Spirit Temple Adult Lower':                lambda world: world.settings.tokensanity not in ['dungeon', 'all'],
     'Shadow Temple Invisible Blades Chests':    lambda world: world.settings.tokensanity not in ['dungeon', 'all'],
+
+    # Conditional entrance hints
+    'Ganons Castle Grounds -> Ganons Castle Lobby': lambda world: (world.settings.bridge != 'open'
+        and (world.settings.bridge != 'dungeons' or world.settings.bridge_rewards > 1)
+        and (world.settings.bridge != 'tokens' or world.settings.bridge_tokens > 10)
+        and (world.settings.bridge != 'hearts' or world.settings.bridge_hearts > world.settings.starting_hearts)),
 }
 
 # Table of hints, format is (name, hint text, clear hint text, type of hint) there are special characters that are read for certain in game commands:
@@ -1212,6 +1235,8 @@ hintTable = {
     'Gerudo Fortress -> Gerudo Training Ground Lobby':          ("paying a #fee to the Gerudos# grants access to", None, 'entrance'),
     'Zoras Fountain -> Jabu Jabus Belly Beginning':             ("inside #Jabu Jabu#, one can find", None, 'entrance'),
     'Kakariko Village -> Bottom of the Well':                   ("a #village well# leads to", None, 'entrance'),
+
+    'Ganons Castle Grounds -> Ganons Castle Lobby':             ("the #rainbow bridge# leads to", None, 'entrance'),
 
     'KF Links House':                                           ("Link's House", None, 'region'),
     'Temple of Time':                                           ("the #Temple of Time#", None, 'region'),
