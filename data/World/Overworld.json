@@ -1603,9 +1603,10 @@
         "exits": {
             "DMC Upper Nearby": "is_adult",
             "DMC Lower Nearby": "
-                can_use(Hover_Boots) or at('DMC Lower Nearby', can_use(Megaton_Hammer)) or
-                ((logic_crater_boulder_jumpslash or logic_crater_boulder_skip) and can_use(Megaton_Hammer)) or
-                (logic_crater_boulder_skip and can_use(Goron_Tunic))"
+                is_adult and
+                    (Hover_Boots or at('DMC Lower Nearby', can_use(Megaton_Hammer)) or
+                    ((logic_crater_boulder_jumpslash or logic_crater_boulder_skip) and Megaton_Hammer) or
+                    (logic_crater_boulder_skip and Goron_Tunic))"
         }
     },
     {
