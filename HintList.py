@@ -200,10 +200,6 @@ conditional_dual_always = {
     'ZR Frogs Rewards':             lambda world: not world.settings.shuffle_frog_song_rupees,
 }
 
-# Some entrance hints should only be enabled under certain settings
-conditional_entrance_sometimes = {
-}
-
 # Some sometimes, dual, and entrance hints should only be enabled under certain settings
 conditional_sometimes = {
     # Conditionnal sometimes hints
