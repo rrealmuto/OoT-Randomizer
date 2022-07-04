@@ -33,7 +33,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
   * Opening the Door of Time is a separate goal category when required by the settings ([#1529](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1529))
   * The convenience patch for floor switches now applies to more MQ switches ([#1459](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1459))
-  * Automatically advances credits text (based on [#1412](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1412))
+  * Automatically advances credits text ([#1412](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1412))
   * The items hinted by Dampé's diary and Ganondorf can be customized using the new `misc_hint_items` entry in plandomizer.
   * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
 
