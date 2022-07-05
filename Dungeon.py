@@ -1,27 +1,31 @@
-class Dungeon(object):
+import os
 
-    def __init__(self, world, name, hint, font_color, boss_key=None, small_keys=None, dungeon_items=None):
+from Hints import HintArea
+from Utils import data_path
+
+
+class Dungeon:
+    def __init__(self, world, name, hint):
         self.world = world
         self.name = name
         self.hint = hint
-        self.font_color = font_color
         self.regions = []
-        self.boss_key = boss_key if boss_key is not None else []
-        self.small_keys = small_keys if small_keys is not None else []
-        self.dungeon_items = dungeon_items if dungeon_items is not None else []
+        self.boss_key = []
+        self.small_keys = []
+        self.dungeon_items = []
 
         for region in world.regions:
             if region.dungeon == self.name:
                 region.dungeon = self
-                self.regions.append(region)                
+                self.regions.append(region)
 
 
     def copy(self, new_world):
-        new_boss_key = [item.copy(new_world) for item in self.boss_key]
-        new_small_keys = [item.copy(new_world) for item in self.small_keys]
-        new_dungeon_items = [item.copy(new_world) for item in self.dungeon_items]
+        new_dungeon = Dungeon(new_world, self.name, self.hint)
 
-        new_dungeon = Dungeon(new_world, self.name, self.hint, self.font_color, new_boss_key, new_small_keys, new_dungeon_items)
+        new_dungeon.boss_key = [item.copy(new_world) for item in self.boss_key]
+        new_dungeon.small_keys = [item.copy(new_world) for item in self.small_keys]
+        new_dungeon.dungeon_items = [item.copy(new_world) for item in self.dungeon_items]
 
         return new_dungeon
 
@@ -51,3 +55,22 @@ class Dungeon(object):
     def __unicode__(self):
         return '%s' % self.name
 
+
+def create_dungeons(world):
+    for hint_area in HintArea:
+        if hint_area.is_dungeon:
+            name = hint_area.dungeon_name
+
+            if world.settings.logic_rules == 'glitched':
+                if not world.dungeon_mq[name]:
+                    dungeon_json = os.path.join(data_path('Glitched World'), name + '.json')
+                else:
+                    dungeon_json = os.path.join(data_path('Glitched World'), name + ' MQ.json')
+            else:
+                if not world.dungeon_mq[name]:
+                    dungeon_json = os.path.join(data_path('World'), name + '.json')
+                else:
+                    dungeon_json = os.path.join(data_path('World'), name + ' MQ.json')
+
+            world.load_regions_from_json(dungeon_json)
+            world.dungeons.append(Dungeon(world, name, hint_area))

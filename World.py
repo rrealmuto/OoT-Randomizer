@@ -1,25 +1,21 @@
 from collections import OrderedDict
 import copy
-from decimal import Decimal, ROUND_HALF_UP
 import logging
 import random
-import os
 
-from DungeonList import create_dungeons
 from Entrance import Entrance
 from Goals import Goal, GoalCategory
 from HintList import getRequiredHints, misc_item_hint_table
-from Hints import get_hint_area, hint_dist_keys, HintDistFiles
+from Hints import HintArea, hint_dist_keys, HintDistFiles
 from Item import ItemFactory, ItemInfo, MakeEventItem
 from Location import Location, LocationFactory
 from LocationList import business_scrubs, location_table
 from Plandomizer import InvalidFileException
 from Region import Region, TimeOfDay
-from Rules import set_rules, set_shop_rules
 from RuleParser import Rule_AST_Transformer
 from SettingsList import get_setting_info, get_settings_from_section
 from State import State
-from Utils import read_json, data_path
+from Utils import read_json
 
 class World(object):
 
@@ -401,16 +397,14 @@ class World(object):
 
     def load_regions_from_json(self, file_path):
         region_json = read_json(file_path)
-            
+
         for region in region_json:
             new_region = Region(region['region_name'])
             new_region.world = self
-            if 'font_color' in region:
-                new_region.font_color = region['font_color']
             if 'scene' in region:
                 new_region.scene = region['scene']
             if 'hint' in region:
-                new_region.hint = region['hint']
+                new_region.hint_name = region['hint']
             if 'dungeon' in region:
                 new_region.dungeon = region['dungeon']
             if 'time_passes' in region:
@@ -1023,14 +1017,9 @@ class World(object):
                 map[entrance.data['boss']] = entrance.replaces.data['boss']
         return map
 
-    def reverse_boss_map(self):
-        return {y: x for x, y in self.get_boss_map().items()}
-
-    def region_has_shortcuts(self, region_name, fallback_dungeon):
+    def region_has_shortcuts(self, region_name):
         region = self.get_region(region_name)
-        dungeon_name = (region.dungeon and region.dungeon.name) or fallback_dungeon
-        if not dungeon_name:
-            return False
+        dungeon_name = HintArea.at(region).dungeon_name
         return dungeon_name in self.settings.dungeon_shortcuts
 
 
@@ -1049,9 +1038,9 @@ class World(object):
     def update_useless_areas(self, spoiler):
         areas = {}
         # Link's Pocket and None are not real areas
-        excluded_areas = [None, "Link's Pocket"]
+        excluded_areas = [None, HintArea.ROOT]
         for location in self.get_locations():
-            location_hint, _ = get_hint_area(location)
+            location_hint = HintArea.at(location)
 
             # We exclude event and locked locations. This means that medallions
             # and stones are not considered here. This is not really an accurate

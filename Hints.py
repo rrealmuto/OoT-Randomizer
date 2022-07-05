@@ -1,8 +1,5 @@
-import io
-import hashlib
 import logging
 import os
-import struct
 import random
 from collections import OrderedDict
 import urllib.request
@@ -11,12 +8,11 @@ import json
 from enum import Enum
 import itertools
 
-from HintList import getHint, getMulti, getHintGroup, Hint, hintExclusions, misc_item_hint_table
+from HintList import getHint, getMulti, getHintGroup, hintExclusions, misc_item_hint_table
 from Item import MakeEventItem
 from Messages import COLOR_MAP, update_message_by_id
 from Region import Region
 from Search import Search
-from StartingItems import everything
 from TextBox import line_wrap
 from Utils import random_choices, data_path, read_json
 
@@ -134,16 +130,13 @@ def getItemGenericName(item):
         return item.name
 
 
-def isRestrictedDungeonItem(dungeon, item):
-    if (item.map or item.compass) and dungeon.world.settings.shuffle_mapcompass == 'dungeon':
-        return item in dungeon.dungeon_items
-    if item.type == 'SmallKey' and dungeon.world.settings.shuffle_smallkeys == 'dungeon':
-        return item in dungeon.small_keys
-    if item.type == 'BossKey' and dungeon.world.settings.shuffle_bosskeys == 'dungeon':
-        return item in dungeon.boss_key
-    if item.type == 'GanonBossKey' and dungeon.world.settings.shuffle_ganon_bosskey == 'dungeon':
-        return item in dungeon.boss_key
-    return False
+def is_restricted_dungeon_item(item):
+    return (
+        ((item.map or item.compass) and item.world.settings.shuffle_mapcompass == 'dungeon') or
+        (item.type == 'SmallKey' and item.world.settings.shuffle_smallkeys == 'dungeon') or
+        (item.type == 'BossKey' and item.world.settings.shuffle_bosskeys == 'dungeon') or
+        (item.type == 'GanonBossKey' and item.world.settings.shuffle_ganon_bosskey == 'dungeon')
+    )
 
 
 def add_hint(spoiler, world, groups, gossip_text, count, locations=[], force_reachable=False):
@@ -308,41 +301,131 @@ class HintAreaNotFound(RuntimeError):
     pass
 
 
-# Peforms a breadth first search to find the closest hint area from a given spot (region, location, or entrance)
-# and returns the name and color of that area.
-# May fail to find a hint if the given spot is only accessible from the root and not from any other region with a hint area
-def get_hint_area(spot):
-    if isinstance(spot, Region):
-        original_parent = spot
-    else:
-        original_parent = spot.parent_region
-    already_checked = []
-    spot_queue = [spot]
+class HintArea(Enum):
+    # internal name          prepositions        display name                  color         internal dungeon name
+    #                        vague     clear
+    ROOT                   = 'in',     'in',     "Link's Pocket",              'White',      None
+    HYRULE_FIELD           = 'in',     'in',     'Hyrule Field',               'Light Blue', None
+    LON_LON_RANCH          = 'at',     'at',     'Lon Lon Ranch',              'Light Blue', None
+    MARKET                 = 'in',     'in',     'the market',                 'Light Blue', None
+    TEMPLE_OF_TIME         = 'inside', 'inside', 'the Temple of Time',         'Light Blue', None
+    CASTLE_GROUNDS         = 'on',     'on',     'the castle grounds',         'Light Blue', None # required for warp songs
+    HYRULE_CASTLE          = 'at',     'at',     'Hyrule Castle',              'Light Blue', None
+    OUTSIDE_GANONS_CASTLE  = None,     None,     "outside Ganon's Castle",     'Light Blue', None
+    INSIDE_GANONS_CASTLE   = 'inside', None,     "inside Ganon's Castle",      'Light Blue', 'Ganons Castle'
+    KOKIRI_FOREST          = 'in',     'in',     'Kokiri Forest',              'Green',      None
+    DEKU_TREE              = 'inside', 'inside', 'the Deku Tree',              'Green',      'Deku Tree'
+    LOST_WOODS             = 'in',     'in',     'the Lost Woods',             'Green',      None
+    SACRED_FOREST_MEADOW   = 'at',     'at',     'the Sacred Forest Meadow',   'Green',      None
+    FOREST_TEMPLE          = 'in',     'in',     'the Forest Temple',          'Green',      'Forest Temple'
+    DEATH_MOUNTAIN_TRAIL   = 'on',     'on',     'the Death Mountain Trail',   'Red',        None
+    DODONGOS_CAVERN        = 'within', 'in',     "Dodongo's Cavern",           'Red',        'Dodongos Cavern'
+    GORON_CITY             = 'in',     'in',     'Goron City',                 'Red',        None
+    DEATH_MOUNTAIN_CRATER  = 'in',     'in',     'the Death Mountain Crater',  'Red',        None
+    FIRE_TEMPLE            = 'on',     'in',     'the Fire Temple',            'Red',        'Fire Temple'
+    ZORA_RIVER             = 'at',     'at',     "Zora's River",               'Blue',       None
+    ZORAS_DOMAIN           = 'at',     'at',     "Zora's Domain",              'Blue',       None
+    ZORAS_FOUNTAIN         = 'at',     'at',     "Zora's Fountain",            'Blue',       None
+    JABU_JABUS_BELLY       = 'in',     'inside', "Jabu Jabu's Belly",          'Blue',       'Jabu Jabus Belly'
+    ICE_CAVERN             = 'inside', 'in'    , 'the Ice Cavern',             'Blue',       'Ice Cavern'
+    LAKE_HYLIA             = 'at',     'at',     'Lake Hylia',                 'Blue',       None
+    WATER_TEMPLE           = 'under',  'in',     'the Water Temple',           'Blue',       'Water Temple'
+    KAKARIKO_VILLAGE       = 'in',     'in',     'Kakariko Village',           'Pink',       None
+    BOTTOM_OF_THE_WELL     = 'within', 'at',     'the Bottom of the Well',     'Pink',       'Bottom of the Well'
+    GRAVEYARD              = 'in',     'in',     'the graveyard',              'Pink',       None
+    SHADOW_TEMPLE          = 'within', 'in',     'the Shadow Temple',          'Pink',       'Shadow Temple'
+    GERUDO_VALLEY          = 'at',     'at',     'Gerudo Valley',              'Yellow',     None
+    GERUDO_FORTRESS        = 'at',     'at',     "Gerudo's Fortress",          'Yellow',     None
+    THIEVES_HIDEOUT        = 'in',     'in',     "the Thieves' Hideout",       'Yellow',     None
+    GERUDO_TRAINING_GROUND = 'within', 'on',     'the Gerudo Training Ground', 'Yellow',     'Gerudo Training Ground'
+    HAUNTED_WASTELAND      = 'in',     'in',     'the Haunted Wasteland',      'Yellow',     None
+    DESERT_COLOSSUS        = 'at',     'at',     'the Desert Colossus',        'Yellow',     None
+    SPIRIT_TEMPLE          = 'inside', 'in',     'the Spirit Temple',          'Yellow',     'Spirit Temple'
 
-    while spot_queue:
-        current_spot = spot_queue.pop(0)
-        already_checked.append(current_spot)
-
-        if isinstance(current_spot, Region):
-            parent_region = current_spot
+    # Peforms a breadth first search to find the closest hint area from a given spot (region, location, or entrance).
+    # May fail to find a hint if the given spot is only accessible from the root and not from any other region with a hint area
+    @staticmethod
+    def at(spot):
+        if isinstance(spot, Region):
+            original_parent = spot
         else:
-            parent_region = current_spot.parent_region
+            original_parent = spot.parent_region
+        already_checked = []
+        spot_queue = [spot]
 
-        if parent_region.dungeon:
-            return parent_region.dungeon.hint, parent_region.dungeon.font_color
-        elif parent_region.hint and (original_parent.name == 'Root' or parent_region.name != 'Root'):
-            return parent_region.hint, parent_region.font_color or 'White'
+        while spot_queue:
+            current_spot = spot_queue.pop(0)
+            already_checked.append(current_spot)
 
-        spot_queue.extend(list(filter(lambda ent: ent not in already_checked, parent_region.entrances)))
+            if isinstance(current_spot, Region):
+                parent_region = current_spot
+            else:
+                parent_region = current_spot.parent_region
 
-    raise HintAreaNotFound('No hint area could be found for %s [World %d]' % (spot, spot.world.id))
+            if parent_region.hint and (original_parent.name == 'Root' or parent_region.name != 'Root'):
+                return parent_region.hint
+
+            spot_queue.extend(list(filter(lambda ent: ent not in already_checked, parent_region.entrances)))
+
+        raise HintAreaNotFound('No hint area could be found for %s [World %d]' % (spot, spot.world.id))
+
+    def __str__(self):
+        return self.value[2]
+
+    # Hint areas are further grouped into colored sections of the map by association with the medallions.
+    # These colors are used to generate the text boxes for shuffled warp songs.
+    @property
+    def color(self):
+        return self.value[3]
+
+    @property
+    def dungeon_name(self):
+        return self.value[4]
+
+    @property
+    def is_dungeon(self):
+        return self.dungeon_name is not None
+
+    def is_dungeon_item(self, item):
+        for dungeon in item.world.dungeons:
+            if dungeon.name == self.dungeon_name:
+                return dungeon.is_dungeon_item(item)
+        return False
+
+    def preposition(self, clearer_hints):
+        return self.value[1 if clearer_hints else 0]
+
+    # Formats the hint text for this area with proper grammar.
+    # Dungeons are hinted differently depending on the clearer_hints setting.
+    def text(self, clearer_hints, preposition=False, world=None):
+        if self.is_dungeon:
+            text = getHint(self.dungeon_name, clearer_hints).text
+        else:
+            text = str(self)
+        if '#' not in text:
+            text = f'#{text}#'
+        if world is not None:
+            replace_prefixes = ('a', 'an', 'the')
+            move_prefixes = ('outside', 'inside')
+            prefix, suffix = text.split(' ', 1)
+            if prefix in replace_prefixes:
+                text = f"#world {world}'s {suffix.replace('#', '')}#"
+            elif prefix in move_prefixes:
+                text = f"#{prefix} world {world}'s {suffix.replace('#', '')}#"
+            elif prefix == "Link's":
+                text = f"#player {world}'s {suffix.replace('#', '')}#"
+            else:
+                text = f"#world {world}'s {text.replace('#', '')}#"
+        if preposition and self.preposition(clearer_hints) is not None:
+            text = f'{self.preposition(clearer_hints)} {text}'
+        return text
 
 
 def get_woth_hint(spoiler, world, checked):
     locations = spoiler.required_locations[world.id]
     locations = list(filter(lambda location:
         location.name not in checked
-        and not (world.woth_dungeon >= world.hint_dist_user['dungeons_woth_limit'] and location.parent_region.dungeon)
+        and not (world.woth_dungeon >= world.hint_dist_user['dungeons_woth_limit'] and HintArea.at(location).is_dungeon)
         and location.name not in world.hint_exclusions
         and location.name not in world.hint_type_overrides['woth']
         and location.item.name not in world.item_hint_type_overrides['woth']
@@ -355,21 +438,20 @@ def get_woth_hint(spoiler, world, checked):
     location = random.choice(locations)
     checked.add(location.name)
 
-    if location.parent_region.dungeon:
+    hint_area = HintArea.at(location)
+    if hint_area.is_dungeon:
         world.woth_dungeon += 1
-        location_text = getHint(location.parent_region.dungeon.name, world.settings.clearer_hints).text
-    else:
-        location_text, _ = get_hint_area(location)
+    location_text = hint_area.text(world.settings.clearer_hints)
 
-    return (GossipText('#%s# is on the way of the hero.' % location_text, ['Light Blue'], [location.name], [location.item.name]), [location])
+    return (GossipText('%s is on the way of the hero.' % location_text, ['Light Blue'], [location.name], [location.item.name]), [location])
 
 def get_checked_areas(world, checked):
     def get_area_from_name(check):
         try:
             location = world.get_location(check)
-        except Exception as e:
+        except Exception:
             return check
-        return get_hint_area(location)[0]
+        return HintArea.at(location)
 
     return set(get_area_from_name(check) for check in checked)
 
@@ -456,11 +538,7 @@ def get_goal_hint(spoiler, world, checked):
     world_id = random.choice(world_ids)
     checked.add(location.name)
 
-    if location.parent_region.dungeon:
-        location_text = getHint(location.parent_region.dungeon.name, world.settings.clearer_hints).text
-    else:
-        location_text, _ = get_hint_area(location)
-
+    location_text = HintArea.at(location).text(world.settings.clearer_hints)
     if world_id == world.id:
         player_text = "the"
         goal_text = goal.hint_text
@@ -468,7 +546,7 @@ def get_goal_hint(spoiler, world, checked):
         player_text = "Player %s's" % (world_id + 1)
         goal_text = spoiler.goal_categories[world_id][goal_category.name].get_goal(goal.name).hint_text
 
-    return (GossipText('#%s# is on %s %s.' % (location_text, player_text, goal_text), [goal.color, 'Light Blue'], [location.name], [location.item.name]), [location])
+    return (GossipText('%s is on %s %s.' % (location_text, player_text, goal_text), [goal.color, 'Light Blue'], [location.name], [location.item.name]), [location])
 
 
 def get_barren_hint(spoiler, world, checked, allChecked):
@@ -484,7 +562,7 @@ def get_barren_hint(spoiler, world, checked, allChecked):
             location.name not in allChecked
             and location.name not in world.hint_exclusions
             and location.name not in hintExclusions(world)
-            and get_hint_area(location)[0] == area
+            and HintArea.at(location) == area
             for location in world.get_locations()
         ),
         world.empty_areas))
@@ -527,17 +605,11 @@ def get_barren_hint(spoiler, world, checked, allChecked):
 
     checked.add(area)
 
-    return (GossipText("plundering #%s# is a foolish choice." % area, ['Pink']), None)
+    return (GossipText("plundering %s is a foolish choice." % area.text(world.settings.clearer_hints), ['Pink']), None)
 
 
 def is_not_checked(locations, checked):
-    not_checked = True
-
-    for location in locations:
-        if location.name in checked or get_hint_area(location)[0] in checked:
-            not_checked = False
-
-    return not_checked
+    return not any(location.name in checked or HintArea.at(location) in checked for location in locations)
 
 
 def get_good_item_hint(spoiler, world, checked):
@@ -559,12 +631,13 @@ def get_good_item_hint(spoiler, world, checked):
     checked.add(location.name)
 
     item_text = getHint(getItemGenericName(location.item), world.settings.clearer_hints).text
-    if location.parent_region.dungeon:
-        location_text = getHint(location.parent_region.dungeon.name, world.settings.clearer_hints).text
-        return (GossipText('#%s# hoards #%s#.' % (location_text, item_text), ['Green', 'Red'], [location.name], [location.item.name]), [location])
+    hint_area = HintArea.at(location)
+    if hint_area.is_dungeon:
+        location_text = hint_area.text(world.settings.clearer_hints)
+        return (GossipText('%s hoards #%s#.' % (location_text, item_text), ['Green', 'Red'], [location.name], [location.item.name]), [location])
     else:
-        location_text, _ = get_hint_area(location)
-        return (GossipText('#%s# can be found at #%s#.' % (item_text, location_text), ['Red', 'Green'], [location.name], [location.item.name]), [location])
+        location_text = hint_area.text(world.settings.clearer_hints, preposition=True)
+        return (GossipText('#%s# can be found %s.' % (item_text, location_text), ['Red', 'Green'], [location.name], [location.item.name]), [location])
 
 
 def get_specific_item_hint(spoiler, world, checked):
@@ -613,18 +686,16 @@ def get_specific_item_hint(spoiler, world, checked):
         checked.add(location.name)
         item_text = getHint(getItemGenericName(location.item), world.settings.clearer_hints).text
 
-        if location.parent_region.dungeon:
-            location_text = getHint(location.parent_region.dungeon.name, world.settings.clearer_hints).text
-            if world.hint_dist_user.get('vague_named_items', False):
-                return (GossipText('#%s# may be on the hero\'s path.' % (location_text), ['Green'], [location.name], [location.item.name]), [location])
-            else:
-                return (GossipText('#%s# hoards #%s#.' % (location_text, item_text), ['Green', 'Red'], [location.name], [location.item.name]), [location])
+        hint_area = HintArea.at(location)
+        if world.hint_dist_user.get('vague_named_items', False):
+            location_text = hint_area.text(world.settings.clearer_hints)
+            return (GossipText('%s may be on the hero\'s path.' % (location_text), ['Green'], [location.name], [location.item.name]), [location])
+        elif hint_area.is_dungeon:
+            location_text = hint_area.text(world.settings.clearer_hints)
+            return (GossipText('%s hoards #%s#.' % (location_text, item_text), ['Green', 'Red'], [location.name], [location.item.name]), [location])
         else:
-            location_text, _ = get_hint_area(location)
-            if world.hint_dist_user.get('vague_named_items', False):
-                return (GossipText('#%s# may be on the hero\'s path.' % (location_text), ['Green'], [location.name], [location.item.name]), [location])
-            else:
-                return (GossipText('#%s# can be found at #%s#.' % (item_text, location_text), ['Red', 'Green'], [location.name], [location.item.name]), [location])
+            location_text = hint_area.text(world.settings.clearer_hints, preposition=True)
+            return (GossipText('#%s# can be found %s.' % (item_text, location_text), ['Red', 'Green'], [location.name], [location.item.name]), [location])
 
     else:
         while True:
@@ -697,25 +768,23 @@ def get_specific_item_hint(spoiler, world, checked):
         checked.add(location.name)
         item_text = getHint(getItemGenericName(location.item), world.settings.clearer_hints).text
 
-        if location.parent_region.dungeon:
-            location_text = getHint(location.parent_region.dungeon.name, world.settings.clearer_hints).text
-            if world.hint_dist_user.get('vague_named_items', False):
-                return (GossipText('#Player %d\'s %s# may be on the hero\'s path.' % (location.world.id+1, location_text), ['Green'], [location.name], [location.item.name]), [location])
-            else:
-                return (GossipText('#Player %d\'s %s# hoards #%s#.' % (location.world.id+1, location_text, item_text), ['Green', 'Red'], [location.name], [location.item.name]), [location])
+        hint_area = HintArea.at(location)
+        if world.hint_dist_user.get('vague_named_items', False):
+            location_text = hint_area.text(world.settings.clearer_hints, world=location.world.id + 1)
+            return (GossipText('%s may be on the hero\'s path.' % (location_text), ['Green'], [location.name], [location.item.name]), [location])
+        elif hint_area.is_dungeon:
+            location_text = hint_area.text(world.settings.clearer_hints, world=location.world.id + 1)
+            return (GossipText('%s hoards #%s#.' % (location_text, item_text), ['Green', 'Red'], [location.name], [location.item.name]), [location])
         else:
-            location_text, _ = get_hint_area(location)
-            if world.hint_dist_user.get('vague_named_items', False):
-                return (GossipText('#Player %d\'s %s# may be on the hero\'s path.' % (location.world.id+1 , location_text), ['Green'], [location.name], [location.item.name]), [location])
-            else:
-                return (GossipText('#%s# can be found in #Player %d\'s %s#.' % (item_text, location.world.id+1, location_text), ['Red', 'Green'], [location.name], [location.item.name]), [location])
+            location_text = hint_area.text(world.settings.clearer_hints, preposition=True, world=location.world.id + 1)
+            return (GossipText('#%s# can be found %s.' % (item_text, location_text), ['Red', 'Green'], [location.name], [location.item.name]), [location])
 
 
 def get_random_location_hint(spoiler, world, checked):
     locations = list(filter(lambda location:
         is_not_checked([location], checked)
         and location.item.type not in ('Drop', 'Event', 'Shop', 'DungeonReward')
-        and not (location.parent_region.dungeon and isRestrictedDungeonItem(location.parent_region.dungeon, location.item))
+        and not is_restricted_dungeon_item(location.item)
         and not location.locked
         and location.name not in world.hint_exclusions
         and location.name not in world.hint_type_overrides['item']
@@ -726,15 +795,15 @@ def get_random_location_hint(spoiler, world, checked):
 
     location = random.choice(locations)
     checked.add(location.name)
-    dungeon = location.parent_region.dungeon
-
     item_text = getHint(getItemGenericName(location.item), world.settings.clearer_hints).text
-    if dungeon:
-        location_text = getHint(dungeon.name, world.settings.clearer_hints).text
-        return (GossipText('#%s# hoards #%s#.' % (location_text, item_text), ['Green', 'Red'], [location.name], [location.item.name]), [location])
+
+    hint_area = HintArea.at(location)
+    if hint_area.is_dungeon:
+        location_text = hint_area.text(world.settings.clearer_hints)
+        return (GossipText('%s hoards #%s#.' % (location_text, item_text), ['Green', 'Red'], [location.name], [location.item.name]), [location])
     else:
-        location_text, _ = get_hint_area(location)
-        return (GossipText('#%s# can be found at #%s#.' % (item_text, location_text), ['Red', 'Green'], [location.name], [location.item.name]), [location])
+        location_text = hint_area.text(world.settings.clearer_hints, preposition=True)
+        return (GossipText('#%s# can be found %s.' % (item_text, location_text), ['Red', 'Green'], [location.name], [location.item.name]), [location])
 
 
 def get_specific_hint(spoiler, world, checked, type):
@@ -1270,8 +1339,6 @@ def buildWorldGossipHints(spoiler, world, checkedLocations=None):
 
 # builds text that is displayed at the temple of time altar for child and adult, rewards pulled based off of item in a fixed order.
 def buildAltarHints(world, messages, include_rewards=True, include_wincons=True):
-    boss_map = world.reverse_boss_map()
-
     # text that appears at altar as a child.
     child_text = '\x08'
     if include_rewards:
@@ -1282,7 +1349,7 @@ def buildAltarHints(world, messages, include_rewards=True, include_wincons=True)
         ]
         child_text += getHint('Spiritual Stone Text Start', world.settings.clearer_hints).text + '\x04'
         for (reward, color) in bossRewardsSpiritualStones:
-            child_text += buildBossString(reward, color, world, boss_map)
+            child_text += buildBossString(reward, color, world)
     child_text += getHint('Child Altar Text End', world.settings.clearer_hints).text
     child_text += '\x0B'
     update_message_by_id(messages, 0x707A, get_raw_text(child_text), 0x20)
@@ -1300,7 +1367,7 @@ def buildAltarHints(world, messages, include_rewards=True, include_wincons=True)
             ('Spirit Medallion', 'Yellow'),
         ]
         for (reward, color) in bossRewardsMedallions:
-            adult_text += buildBossString(reward, color, world, boss_map)
+            adult_text += buildBossString(reward, color, world)
     if include_wincons:
         adult_text += buildBridgeReqsString(world)
         adult_text += '\x04'
@@ -1312,12 +1379,12 @@ def buildAltarHints(world, messages, include_rewards=True, include_wincons=True)
 
 
 # pulls text string from hintlist for reward after sending the location to hintlist.
-def buildBossString(reward, color, world, boss_map):
+def buildBossString(reward, color, world):
     for location in world.get_filled_locations():
         if location.item.name == reward:
             item_icon = chr(location.item.special['item_id'])
-            location_text = getHint(boss_map.get(location.name, location.name), world.settings.clearer_hints).text
-            return str(GossipText("\x08\x13%s%s" % (item_icon, location_text), [color], prefix='')) + '\x04'
+            location_text = HintArea.at(location).text(world.settings.clearer_hints, preposition=True)
+            return str(GossipText("\x08\x13%sOne %s..." % (item_icon, location_text), [color], prefix='')) + '\x04'
     return ''
 
 
@@ -1408,25 +1475,24 @@ def buildMiscItemHints(world, messages):
                     text += "#your pocket#"
                     text += data['suffix']
                 else:
-                    text += data['custom_pocket_text'](item)
+                    text += data['custom_pocket_text'].format(item=item)
             elif hint_type in world.misc_hint_item_locations:
                 location = world.misc_hint_item_locations[hint_type]
                 if item == data['default_item']:
                     text += data['prefix']
-                    location_hint, _ = get_hint_area(location)
-                    if world.id != location.world.id:
-                        text += f"#Player {location.world.id + 1}'s {location_hint}#"
-                    else:
-                        text += f"#{location_hint}#"
+                    text += HintArea.at(location).text(world.settings.clearer_hints, world=None if location.world.id == world.id else location.world.id + 1)
                     text += data['suffix']
                 else:
-                    text += data['custom_item_text'](location)
+                    text += data['custom_item_text'].format(
+                        area=HintArea.at(location).text(world.settings.clearer_hints, world=None if location.world.id == world.id else location.world.id + 1),
+                        item=getHint(getItemGenericName(location.item), world.settings.clearer_hints).text,
+                    )
             elif 'fallback' in data:
                 if item == data['default_item']:
                     text += data['fallback']
                     text += data['suffix']
                 else:
-                    text = data['custom_fallback'](item)
+                    text = data['custom_fallback'].format(item=item)
             else:
                 text = getHint('Validation Line', world.settings.clearer_hints).text
                 for location in world.get_filled_locations():

@@ -909,6 +909,16 @@ hintTable = {
     'Spirit Temple Twinrova Heart':                                ("the #Sorceress Sisters# hold", "#Twinrova# holds", 'exclude'),
     'Shadow Temple Bongo Bongo Heart':                             ("the #Phantom Shadow Beast# holds", "#Bongo Bongo# holds", 'exclude'),
 
+    'Queen Gohma':                                                 ("the #Parasitic Armored Arachnid# holds", "#Queen Gohma# holds", 'exclude'),
+    'King Dodongo':                                                ("the #Infernal Dinosaur# holds", "#King Dodongo# holds", 'exclude'),
+    'Barinade':                                                    ("the #Bio-Electric Anemone# holds", "#Barinade# holds", 'exclude'),
+    'Phantom Ganon':                                               ("the #Evil Spirit from Beyond# holds", "#Phantom Ganon# holds", 'exclude'),
+    'Volvagia':                                                    ("the #Subterranean Lava Dragon# holds", "#Volvagia# holds", 'exclude'),
+    'Morpha':                                                      ("the #Giant Aquatic Amoeba# holds", "#Morpha# holds", 'exclude'),
+    'Bongo Bongo':                                                 ("the #Sorceress Sisters# hold", "#Twinrova# holds", 'exclude'),
+    'Twinrova':                                                    ("the #Phantom Shadow Beast# holds", "#Bongo Bongo# holds", 'exclude'),
+    'Links Pocket':                                                ("#@'s pocket# holds", "@ already has", 'exclude'),
+
     'Deku Tree GS Basement Back Room':                             ("a #spider deep within the Deku Tree# hides", None, 'exclude'),
     'Deku Tree GS Basement Gate':                                  ("a #web protects a spider# within the Deku Tree holding", None, 'exclude'),
     'Deku Tree GS Basement Vines':                                 ("a #web protects a spider# within the Deku Tree holding", None, 'exclude'),
@@ -1537,28 +1547,18 @@ hintTable = {
     '1234':                                                     ("Ganondorf doesn't specialize in hiding items, nor in keeping secrets for that matter.", None, 'junk'),
     '1235':                                                     ("While you're wasting time reading this hint, the others are playing the seed.", None, 'junk'),
 
-    'Deku Tree':                                                ("an ancient tree", "Deku Tree", 'dungeonName'),
+    'Deku Tree':                                                ("an ancient tree", "the Deku Tree", 'dungeonName'),
     'Dodongos Cavern':                                          ("an immense cavern", "Dodongo's Cavern", 'dungeonName'),
     'Jabu Jabus Belly':                                         ("the belly of a deity", "Jabu Jabu's Belly", 'dungeonName'),
-    'Forest Temple':                                            ("a deep forest", "Forest Temple", 'dungeonName'),
-    'Fire Temple':                                              ("a high mountain", "Fire Temple", 'dungeonName'),
-    'Water Temple':                                             ("a vast lake", "Water Temple", 'dungeonName'),
-    'Shadow Temple':                                            ("the house of the dead", "Shadow Temple", 'dungeonName'),
-    'Spirit Temple':                                            ("the goddess of the sand", "Spirit Temple", 'dungeonName'),
-    'Ice Cavern':                                               ("a frozen maze", "Ice Cavern", 'dungeonName'),
-    'Bottom of the Well':                                       ("a shadow's prison", "Bottom of the Well", 'dungeonName'),
-    'Gerudo Training Ground':                                   ("the test of thieves", "Gerudo Training Ground", 'dungeonName'),
+    'Forest Temple':                                            ("a deep forest", "the Forest Temple", 'dungeonName'),
+    'Fire Temple':                                              ("a high mountain", "the Fire Temple", 'dungeonName'),
+    'Water Temple':                                             ("a vast lake", "the Water Temple", 'dungeonName'),
+    'Shadow Temple':                                            ("the house of the dead", "the Shadow Temple", 'dungeonName'),
+    'Spirit Temple':                                            ("the goddess of the sand", "the Spirit Temple", 'dungeonName'),
+    'Ice Cavern':                                               ("a frozen maze", "the Ice Cavern", 'dungeonName'),
+    'Bottom of the Well':                                       ("a shadow's prison", "the Bottom of the Well", 'dungeonName'),
+    'Gerudo Training Ground':                                   ("the test of thieves", "the Gerudo Training Ground", 'dungeonName'),
     'Ganons Castle':                                            ("a conquered citadel", "inside Ganon's Castle", 'dungeonName'),
-    
-    'Queen Gohma':                                              ("One inside an #ancient tree#...", "One in the #Deku Tree#...", 'boss'),
-    'King Dodongo':                                             ("One within an #immense cavern#...", "One in #Dodongo's Cavern#...", 'boss'),
-    'Barinade':                                                 ("One in the #belly of a deity#...", "One in #Jabu Jabu's Belly#...", 'boss'),
-    'Phantom Ganon':                                            ("One in a #deep forest#...", "One in the #Forest Temple#...", 'boss'),
-    'Volvagia':                                                 ("One on a #high mountain#...", "One in the #Fire Temple#...", 'boss'),
-    'Morpha':                                                   ("One under a #vast lake#...", "One in the #Water Temple#...", 'boss'),
-    'Bongo Bongo':                                              ("One within the #house of the dead#...", "One in the #Shadow Temple#...", 'boss'),
-    'Twinrova':                                                 ("One inside a #goddess of the sand#...", "One in the #Spirit Temple#...", 'boss'),
-    'Links Pocket':                                             ("One in #@'s pocket#...", "One #@ already has#...", 'boss'),
 
     'bridge_vanilla':                                           ("the #Shadow and Spirit Medallions# as well as the #Light Arrows#", None, 'bridge'),
     'bridge_stones':                                            ("Spiritual Stones", None, 'bridge'),
@@ -1656,24 +1656,6 @@ multiTable = {
     'Ganons Castle Spirit Trial Chests':                        ['Ganons Castle Spirit Trial Crystal Switch Chest', 'Ganons Castle Spirit Trial Invisible Chest'],
 }
 
-def dampe_diary_custom_item_text(location):
-    from Hints import get_hint_area, getItemGenericName
-
-    return "Whoever reads this, please enter #{}{}#. I will let you have {}.^I'm waiting for you.&--Dampé".format(
-        "" if location.world.id == location.item.world.id else f"#Player {location.world.id + 1}'s ",
-        get_hint_area(location)[0],
-        getHint(getItemGenericName(location.item), location.item.world.settings.clearer_hints).text,
-    )
-
-def ganondorf_hint_custom_item_text(location):
-    from Hints import get_hint_area, getItemGenericName
-
-    return "Ha ha ha... You'll never find {} from #{}{}#!".format(
-        getHint(getItemGenericName(location.item), location.item.world.settings.clearer_hints).text,
-        "" if location.world.id == location.item.world.id else f"#Player {location.world.id + 1}'s ",
-        get_hint_area(location)[0],
-    )
-
 misc_item_hint_table = {
     'dampe_diary': {
         'id': 0x5003,
@@ -1684,10 +1666,10 @@ misc_item_hint_table = {
         'replace': {
             "enter #your pocket#. I will let you have": "check #your pocket#. You will find",
         },
-        'custom_item_text': dampe_diary_custom_item_text,
-        'custom_pocket_text': lambda item: f"Whoever reads this, please check #your pocket#. You will find {item}.^I'm waiting for you.&--Dampé",
+        'custom_item_text': "Whoever reads this, please enter {area}. I will let you have {item}.^I'm waiting for you.&--Dampé",
+        'custom_pocket_text': "Whoever reads this, please check #your pocket#. You will find {item}.^I'm waiting for you.&--Dampé",
         'fallback': "Whoever reads this, I'm sorry, but I seem to have #misplaced# my stretching, shrinking keepsake.&--Dampé",
-        'custom_fallback': lambda item: f"Whoever reads this, I'm sorry, but I seem to have #misplaced# {item}.&--Dampé",
+        'custom_fallback': "Whoever reads this, I'm sorry, but I seem to have #misplaced# {item}.&--Dampé",
     },
     'ganondorf': {
         'id': 0x70CC,
@@ -1698,8 +1680,8 @@ misc_item_hint_table = {
         'replace': {
             "from #Ganon's Castle#": "from #my castle#",
         },
-        'custom_item_text': ganondorf_hint_custom_item_text,
-        'custom_pocket_text': lambda item: f"Ha ha ha... You'll never find {item} from #your pocket#!",
+        'custom_item_text': "Ha ha ha... You'll never find {item} from {area}!",
+        'custom_pocket_text': "Ha ha ha... You'll never find {item} from #your pocket#!",
     },
 }
 

@@ -19,7 +19,7 @@ from Spoiler import Spoiler
 from Rom import Rom
 from Patches import patch_rom
 from Cosmetics import patch_cosmetics
-from DungeonList import create_dungeons
+from Dungeon import create_dungeons
 from Fill import distribute_items_restrictive, ShuffleError
 from Item import Item
 from ItemPool import generate_itempool

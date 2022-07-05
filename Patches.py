@@ -1136,7 +1136,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             save_context.write_permanent_flag(Scenes.SHADOW_TEMPLE, FlagType.SWITCH, 0x0, 0x20) # Shadow Boat Block
             save_context.write_permanent_flag(Scenes.SHADOW_TEMPLE, FlagType.SWITCH, 0x1, 0x01) # Shadow Bird Bridge
 
-    if world.region_has_shortcuts('King Dodongo Boss Room', 'Dodongos Cavern'):
+    if world.region_has_shortcuts('King Dodongo Boss Room'):
         save_context.write_permanent_flag(Scenes.KING_DODONGO_LOBBY, FlagType.SWITCH, 0x3, 0x02) # DC Boss Floor
 
     set_spirit_shortcut_actors(rom) # Change elevator starting position to avoid waiting a half cycle from the temple entrance

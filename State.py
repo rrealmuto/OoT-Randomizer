@@ -2,8 +2,6 @@ from collections import Counter
 import copy
 
 from Item import ItemInfo
-from Region import Region, TimeOfDay
-
 
 
 class State(object):
@@ -165,8 +163,8 @@ class State(object):
                 del self.prog_items[item.name]
 
 
-    def region_has_shortcuts(self, region_name, fallback_dungeon):
-        return self.world.region_has_shortcuts(region_name, fallback_dungeon)
+    def region_has_shortcuts(self, region_name):
+        return self.world.region_has_shortcuts(region_name)
 
 
     def __getstate__(self):

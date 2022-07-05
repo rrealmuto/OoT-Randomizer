@@ -6,10 +6,9 @@ from collections import OrderedDict
 from Search import Search
 from Region import TimeOfDay
 from Rules import set_entrances_based_rules
-from Entrance import Entrance
 from State import State
 from Item import ItemFactory
-from Hints import get_hint_area, HintAreaNotFound
+from Hints import HintArea, HintAreaNotFound
 from HintList import misc_item_hint_table
 
 
@@ -660,10 +659,6 @@ def shuffle_random_entrances(worlds):
         for pool_type, entrance_pool in entrance_pools.items():
             shuffle_entrance_pool(world, worlds, entrance_pool, target_entrance_pools[pool_type], locations_to_ensure_reachable, placed_one_way_entrances=placed_one_way_entrances)
 
-            if pool_type in ('Boss', 'ChildBoss', 'AdultBoss'):
-                for entrance in entrance_pool:
-                    entrance.connected_region.change_dungeon(entrance.parent_region.dungeon)
-
 
     # Multiple checks after shuffling entrances to make sure everything went fine
     max_search = Search.max_explore([world.state for world in worlds], complete_itempool)
@@ -877,13 +872,13 @@ def check_entrances_compatibility(entrance, target, rollbacks=(), placed_one_way
     # One way entrances shouldn't lead to the same hint area as other already chosen one way entrances
     if entrance.type in ('OverworldOneWay', 'OwlDrop', 'Spawn', 'WarpSong'):
         try:
-            hint_area = get_hint_area(target.connected_region)[0]
+            hint_area = HintArea.at(target.connected_region)
         except HintAreaNotFound:
             pass # not connected to a hint area yet, will be checked when shuffling two-way entrances
         else:
             for placed_entrance in (*rollbacks, *placed_one_way_entrances):
                 try:
-                    if get_hint_area(placed_entrance[0].connected_region)[0] == hint_area:
+                    if HintArea.at(placed_entrance[0].connected_region) == hint_area:
                         raise EntranceShuffleError(f'Another one-way entrance already leads to {hint_area}')
                 except HintAreaNotFound:
                     pass
@@ -972,13 +967,13 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
     # so the restriction also needs to be checked here
     for idx1 in range(len(placed_one_way_entrances)):
         try:
-            hint_area1 = get_hint_area(placed_one_way_entrances[idx1][0].connected_region)[0]
+            hint_area1 = HintArea.at(placed_one_way_entrances[idx1][0].connected_region)
         except HintAreaNotFound:
             pass
         else:
             for idx2 in range(idx1):
                 try:
-                    if hint_area1 == get_hint_area(placed_one_way_entrances[idx2][0].connected_region)[0]:
+                    if hint_area1 == HintArea.at(placed_one_way_entrances[idx2][0].connected_region):
                         raise EntranceShuffleError(f'Multiple one-way entrances lead to {hint_area1}')
                 except HintAreaNotFound:
                     pass
@@ -1016,7 +1011,7 @@ def entrance_unreachable_as(entrance, age, already_checked=None):
 # Returns whether two entrances are in the same hint area
 def same_hint_area(first, second):
     try:
-        return get_hint_area(first) == get_hint_area(second)
+        return HintArea.at(first) == HintArea.at(second)
     except HintAreaNotFound:
         return False
 
