@@ -222,12 +222,12 @@
             # Getting the right angle for bombchus on the lower platform could lead to excessive
             # chu waste. Require access to the upper level which spans the full width of the room
             # for straight chu shots.
-            "Water Temple MQ Triple Wall Torch Submerged Crate 1": "can_bonk_underwater_crate or (bombchus_in_logic and has_bombchusand (Hover_Boots or can_use(Scarecrow)))",
-            "Water Temple MQ Triple Wall Torch Submerged Crate 2": "can_bonk_underwater_crate or (bombchus_in_logic and has_bombchusand (Hover_Boots or can_use(Scarecrow)))",
-            "Water Temple MQ Triple Wall Torch Submerged Crate 3": "can_bonk_underwater_crate or (bombchus_in_logic and has_bombchusand (Hover_Boots or can_use(Scarecrow)))",
-            "Water Temple MQ Triple Wall Torch Submerged Crate 4": "can_bonk_underwater_crate or (bombchus_in_logic and has_bombchusand (Hover_Boots or can_use(Scarecrow)))",
-            "Water Temple MQ Triple Wall Torch Submerged Crate 5": "can_bonk_underwater_crate or (bombchus_in_logic and has_bombchusand (Hover_Boots or can_use(Scarecrow)))",
-            "Water Temple MQ Triple Wall Torch Submerged Crate 6": "can_bonk_underwater_crate or (bombchus_in_logic and has_bombchusand (Hover_Boots or can_use(Scarecrow)))",
+            "Water Temple MQ Triple Wall Torch Submerged Crate 1": "can_bonk_underwater_crate or (bombchus_in_logic and has_bombchus and (Hover_Boots or can_use(Scarecrow)))",
+            "Water Temple MQ Triple Wall Torch Submerged Crate 2": "can_bonk_underwater_crate or (bombchus_in_logic and has_bombchus and (Hover_Boots or can_use(Scarecrow)))",
+            "Water Temple MQ Triple Wall Torch Submerged Crate 3": "can_bonk_underwater_crate or (bombchus_in_logic and has_bombchus and (Hover_Boots or can_use(Scarecrow)))",
+            "Water Temple MQ Triple Wall Torch Submerged Crate 4": "can_bonk_underwater_crate or (bombchus_in_logic and has_bombchus and (Hover_Boots or can_use(Scarecrow)))",
+            "Water Temple MQ Triple Wall Torch Submerged Crate 5": "can_bonk_underwater_crate or (bombchus_in_logic and has_bombchus and (Hover_Boots or can_use(Scarecrow)))",
+            "Water Temple MQ Triple Wall Torch Submerged Crate 6": "can_bonk_underwater_crate or (bombchus_in_logic and has_bombchus and (Hover_Boots or can_use(Scarecrow)))",
             "Water Temple MQ Triple Wall Torch Behind Gate Crate 1": "
                 can_use(Fire_Arrows) and (Hover_Boots or can_use(Scarecrow)) and can_bonk_crate",
             "Water Temple MQ Triple Wall Torch Behind Gate Crate 2": "
