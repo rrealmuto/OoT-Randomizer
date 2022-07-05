@@ -455,6 +455,10 @@ class World(object):
                         logging.getLogger('').debug('Dropping unreachable exit: %s', new_exit.name)
                     else:
                         new_region.exits.append(new_exit)
+            if 'savewarp' in region:
+                new_exit = Entrance('%s -> %s' % (new_region.name, region['savewarp']), new_region)
+                new_exit.connected_region = region['savewarp']
+                new_region.exits.append(new_exit)
             self.regions.append(new_region)
 
 

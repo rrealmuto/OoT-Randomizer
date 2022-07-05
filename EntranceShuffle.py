@@ -199,6 +199,33 @@ entrance_shuffle_table = [
     ('SpecialInterior', ('Kak Backyard -> Kak Potion Shop Back',                            { 'index': 0x03EC }),
                         ('Kak Potion Shop Back -> Kak Backyard',                            { 'index': 0x04FF })),
 
+    ('Hideout',         ('Gerudo Fortress -> Hideout 1 Torch Jail',                         { 'index': 0x0486 }),
+                        ('Hideout 1 Torch Jail -> Gerudo Fortress',                         { 'index': 0x0231 })),
+    ('Hideout',         ('GF Entrances Behind Crates -> Hideout 1 Torch Jail',              { 'index': 0x048A }),
+                        ('Hideout 1 Torch Jail -> GF Entrances Behind Crates',              { 'index': 0x0235 })),
+    ('Hideout',         ('GF Entrances Behind Crates -> Hideout Kitchen Hallway',           { 'index': 0x048E }),
+                        ('Hideout Kitchen Hallway -> GF Entrances Behind Crates',           { 'index': 0x0239 })),
+    ('Hideout',         ('Gerudo Fortress -> Hideout Kitchen Hallway',                      { 'index': 0x0492 }),
+                        ('Hideout Kitchen Hallway -> Gerudo Fortress',                      { 'index': 0x02AA })),
+    ('Hideout',         ('Gerudo Fortress -> Hideout 4 Torches Jail',                       { 'index': 0x0496 }),
+                        ('Hideout 4 Torches Jail -> Gerudo Fortress',                       { 'index': 0x02BA })),
+    ('Hideout',         ('GF Roof Entrance Cluster -> Hideout 4 Torches Jail',              { 'index': 0x049A }),
+                        ('Hideout 4 Torches Jail -> GF Roof Entrance Cluster',              { 'index': 0x02BE })),
+    ('Hideout',         ('Gerudo Fortress -> Hideout 2 Torches Jail',                       { 'index': 0x049E }),
+                        ('Hideout 2 Torches Jail -> Gerudo Fortress',                       { 'index': 0x02C2 })),
+    ('Hideout',         ('GF Roof Entrance Cluster -> Hideout 2 Torches Jail',              { 'index': 0x04A2 }),
+                        ('Hideout 2 Torches Jail -> GF Roof Entrance Cluster',              { 'index': 0x02C6 })),
+    ('Hideout',         ('GF Roof Entrance Cluster -> Hideout Kitchen Front',               { 'index': 0x04A6 }),
+                        ('Hideout Kitchen Front -> GF Roof Entrance Cluster',               { 'index': 0x02D2 })),
+    ('Hideout',         ('GF Kitchen Roof Access -> Hideout Kitchen Rear',                  { 'index': 0x04AA }),
+                        ('Hideout Kitchen Rear -> GF Kitchen Roof Access',                  { 'index': 0x02D6 })),
+    ('Hideout',         ('GF Hall to Balcony Entrance -> Hideout Hall to Balcony Lower',    { 'index': 0x04AE }),
+                        ('Hideout Hall to Balcony Lower -> GF Hall to Balcony Entrance',    { 'index': 0x02DA })),
+    ('Hideout',         ('GF Balcony -> Hideout Hall to Balcony Upper',                     { 'index': 0x04B2 }),
+                        ('Hideout Hall to Balcony Upper -> GF Balcony',                     { 'index': 0x02DE })),
+    ('Hideout',         ('GF 3 Torches Jail Exterior -> Hideout 3 Torches Jail',            { 'index': 0x0570 }),
+                        ('Hideout 3 Torches Jail -> GF 3 Torches Jail Exterior',            { 'index': 0x03A4 })),
+
     ('Grotto',          ('Desert Colossus -> Colossus Grotto',                              { 'grotto_id': 0x00, 'entrance': 0x05BC, 'content': 0xFD, 'scene': 0x5C }),
                         ('Colossus Grotto -> Desert Colossus',                              { 'grotto_id': 0x00, 'entrance': 0x0123, 'room': 0x00, 'angle': 0xA71C, 'pos': (0x427A0800, 0xC2000000, 0xC4A20666) })),
     ('Grotto',          ('Lake Hylia -> LH Grotto',                                         { 'grotto_id': 0x01, 'entrance': 0x05A4, 'content': 0xEF, 'scene': 0x57 }),
@@ -257,8 +284,8 @@ entrance_shuffle_table = [
                         ('KF Storms Grotto -> Kokiri Forest',                               { 'grotto_id': 0x1B, 'entrance': 0x0286, 'room': 0x00, 'angle': 0x4000, 'pos': (0xC3FD8856, 0x43BE0000, 0xC4988DA8) })),
     ('Grotto',          ('Zoras Domain -> ZD Storms Grotto',                                { 'grotto_id': 0x1C, 'entrance': 0x036D, 'content': 0xFF, 'scene': 0x58 }),
                         ('ZD Storms Grotto -> Zoras Domain',                                { 'grotto_id': 0x1C, 'entrance': 0x0108, 'room': 0x01, 'angle': 0xD555, 'pos': (0xC455EB8D, 0x41600000, 0xC3ED3602) })),
-    ('Grotto',          ('Gerudo Fortress -> GF Storms Grotto',                             { 'grotto_id': 0x1D, 'entrance': 0x036D, 'content': 0xFF, 'scene': 0x5D }),
-                        ('GF Storms Grotto -> Gerudo Fortress',                             { 'grotto_id': 0x1D, 'entrance': 0x0129, 'room': 0x00, 'angle': 0x4000, 'pos': (0x43BE42C0, 0x43A68000, 0xC4C317B1) })),
+    ('Grotto',          ('GF Entrances Behind Crates -> GF Storms Grotto',                  { 'grotto_id': 0x1D, 'entrance': 0x036D, 'content': 0xFF, 'scene': 0x5D }),
+                        ('GF Storms Grotto -> GF Entrances Behind Crates',                  { 'grotto_id': 0x1D, 'entrance': 0x0129, 'room': 0x00, 'angle': 0x4000, 'pos': (0x43BE42C0, 0x43A68000, 0xC4C317B1) })),
     ('Grotto',          ('GV Fortress Side -> GV Storms Grotto',                            { 'grotto_id': 0x1E, 'entrance': 0x05BC, 'content': 0xF0, 'scene': 0x5A }),
                         ('GV Storms Grotto -> GV Fortress Side',                            { 'grotto_id': 0x1E, 'entrance': 0x022D, 'room': 0x00, 'angle': 0x9555, 'pos': (0xC4A5CAD2, 0x41700000, 0xC475FF9B) })),
     ('Grotto',          ('GV Grotto Ledge -> GV Octorok Grotto',                            { 'grotto_id': 0x1F, 'entrance': 0x05AC, 'content': 0xF2, 'scene': 0x5A }),
@@ -505,6 +532,8 @@ def shuffle_random_entrances(worlds):
             entrance_pools['Interior'] = world.get_shufflable_entrances(type='Interior', only_primary=True)
             if worlds[0].shuffle_special_interior_entrances:
                 entrance_pools['Interior'] += world.get_shufflable_entrances(type='SpecialInterior', only_primary=True)
+            if worlds[0].settings.shuffle_hideout_entrances:
+                entrance_pools['Interior'] += world.get_shufflable_entrances(type='Hideout', only_primary=True)
             if worlds[0].settings.decouple_entrances:
                 entrance_pools['InteriorReverse'] = [entrance.reverse for entrance in entrance_pools['Interior']]
 
@@ -539,9 +568,9 @@ def shuffle_random_entrances(worlds):
                 valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
                 if worlds[0].settings.shuffle_gerudo_valley_river_exit == 'full':
                     # grotto entrances don't work properly (they lead to the Deku Tree instead)
-                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'Grave', *valid_target_types)
+                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grave', *valid_target_types)
                     # GV→lake is most likely reachable as child, so don't include oGC from castle
-                    valid_target_types_reverse = ('Dungeon', 'Grave', *valid_target_types_reverse)
+                    valid_target_types_reverse = ('Dungeon', 'Hideout', 'Grave', *valid_target_types_reverse)
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
             elif pool_type == 'OwlDrop':
                 valid_target_types = ('WarpSong', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Extra')
@@ -549,9 +578,9 @@ def shuffle_random_entrances(worlds):
                 exclude = ['OGC Great Fairy Fountain -> Castle Grounds']
                 if worlds[0].settings.owl_drops == 'full':
                     # grotto entrances don't work properly (they lead to the Deku Tree instead)
-                    valid_target_types = ('Spawn', 'Dungeon', 'DungeonSpecial', 'Grave', *valid_target_types)
+                    valid_target_types = ('Spawn', 'Dungeon', 'DungeonSpecial', 'Hideout', 'Grave', *valid_target_types)
                     # owls are child-only, so don't include oGC from castle
-                    valid_target_types_reverse = ('Dungeon', 'Interior', 'SpecialInterior', 'Grave', *valid_target_types_reverse)
+                    valid_target_types_reverse = ('Dungeon', 'Interior', 'SpecialInterior', 'Hideout', 'Grave', *valid_target_types_reverse)
                 else:
                     exclude.append('Prelude of Light Warp -> Temple of Time')
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse, exclude=exclude)
@@ -562,18 +591,18 @@ def shuffle_random_entrances(worlds):
                 valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
                 if worlds[0].full_spawn_positions:
                     # grotto entrances don't work properly (they cause a black screen on file load)
-                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'Grave', *valid_target_types)
+                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grave', *valid_target_types)
                     # don't spawn at oGC from castle to avoid softlocking
-                    valid_target_types_reverse = ('Dungeon', 'Grave', *valid_target_types_reverse)
+                    valid_target_types_reverse = ('Dungeon', 'Hideout', 'Grave', *valid_target_types_reverse)
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
             elif pool_type == 'WarpSong':
                 valid_target_types = ('Spawn', 'WarpSong', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
                 valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
                 if worlds[0].settings.warp_songs == 'full':
                     # grotto entrances don't work properly (they lead to the Deku Tree instead)
-                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'Grave', *valid_target_types)
+                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grave', *valid_target_types)
                     # warp songs can most likely be used as child, so don't include oGC from castle
-                    valid_target_types_reverse = ('Dungeon', 'Grave', *valid_target_types_reverse)
+                    valid_target_types_reverse = ('Dungeon', 'Hideout', 'Grave', *valid_target_types_reverse)
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
             # Ensure that when trying to place the last entrance of a one way pool, we don't assume the rest of the targets are reachable
             for target in one_way_target_entrance_pools[pool_type]:

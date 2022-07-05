@@ -209,6 +209,20 @@ logic_tricks = {
                     from below, by shooting it through the vines,
                     bypassing the need to lower the staircase.
                     '''},
+    'Gerudo\'s Fortress Ledge Jump': {
+        'name'    : 'logic_gf_jump',
+        'tags'    : ("Gerudo's Fortress",),
+        'tooltip' : '''\
+                    From the southern roof with the guard, a jump
+                    can reach the second floor of the fortress.
+                    '''},
+    'Gerudo\'s Fortress Roof Ledge Jump': {
+        'name'    : 'logic_gf_jump_roof',
+        'tags'    : ("Gerudo's Fortress",),
+        'tooltip' : '''\
+                    Adult can use an autojump to climb onto the roof
+                    without going through the upper "Kitchen".
+                    '''},
     'Thieves\' Hideout "Kitchen" with No Additional Items': {
         'name'    : 'logic_gerudo_kitchen',
         'tags'    : ("Thieves' Hideout", "Gerudo's Fortress",),
@@ -2579,7 +2593,7 @@ setting_infos = [
         ''',
         disable        = {
             'glitchless': {'settings' : ['tricks_list_msg']},
-            'glitched'  : {'settings' : ['allowed_tricks', 'shuffle_interior_entrances', 'shuffle_grotto_entrances',
+            'glitched'  : {'settings' : ['allowed_tricks', 'shuffle_interior_entrances', 'shuffle_hideout_entrances', 'shuffle_grotto_entrances',
                                          'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops',
                                          'warp_songs', 'spawn_positions', 'mq_dungeons_mode', 'mq_dungeons_specific',
                                          'mq_dungeons_count', 'shuffle_bosses', 'dungeon_shortcuts', 'deadly_bonks',
@@ -3218,6 +3232,7 @@ setting_infos = [
             and items never revert, even when dying or loading a save.
         ''',
         disable        = {
+            'off' : {'settings' : ['shuffle_hideout_entrances']},
             'all' : {'settings': ['require_gohma']},
         },
         shared         = True,
@@ -3228,6 +3243,28 @@ setting_infos = [
                 ('simple', 1),
                 ('all', 1),
             ],
+        },
+    ),
+    Checkbutton(
+        name           = 'shuffle_hideout_entrances',
+        gui_text       = 'Shuffle Thieves\' Hideout Entrances',
+        gui_tooltip    = '''\
+            Shuffle the pool of entrances to Thieves' Hideout
+            into the pool of interior entrances.
+
+            Note that savewarping in any room of Thieves' Hideout
+            always takes you to the first room (with 1 torch).
+
+            There is an extra heart piece on the balcony above the jail in
+            Gerudo's Fortress if accessed as child. This is not shuffled.
+        ''',
+        default        = False,
+        disable        = {
+            True : {'settings': ['require_gohma']},
+        },
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
         },
     ),
     Checkbutton(
@@ -3262,7 +3299,7 @@ setting_infos = [
             With Dungeon and Ganon selected, all dungeons including Ganon's
             castle will be shuffled.
 
-            Thieves' Hideout is not shuffled.
+            Thieves' Hideout is controlled by a separate setting.
         ''',
         disable        = {
             'all' : {'settings': ['shuffle_base_item_pool']},
