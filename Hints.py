@@ -10,6 +10,7 @@ import itertools
 
 from HintList import getHint, getMulti, getHintGroup, hintExclusions, misc_item_hint_table
 from Item import MakeEventItem
+from ItemPool import eggs
 from Messages import COLOR_MAP, update_message_by_id
 from Region import Region
 from Search import Search
@@ -27,7 +28,7 @@ defaultHintDists = [
     'balanced.json', 'bingo.json', 'chaos.json', 'ddr.json', 'scrubs.json', 'strong.json', 'tournament.json', 'useless.json', 'very_strong.json', 'very_strong_magic.json', 'weekly.json', 'mixed_pools.json'
 ]
 
-unHintableWothItems = ['Triforce Piece', 'Easter Egg', 'Gold Skulltula Token']
+unHintableWothItems = ['Triforce Piece', *eggs, 'Gold Skulltula Token']
 
 class RegionRestriction(Enum):
     NONE = 0,
