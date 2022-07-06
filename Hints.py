@@ -856,7 +856,10 @@ def get_multi_hint(spoiler, world, checked, type):
     for location in locations:
         checked.add(location.name)
 
-    multi_text = hint.text
+    if hint.name in world.hint_text_overrides:
+        multi_text = world.hint_text_overrides[hint.name]
+    else:
+        multi_text = hint.text
     if '#' not in multi_text:
         multi_text = '#%s#' % multi_text
 
@@ -1174,7 +1177,10 @@ def buildWorldGossipHints(spoiler, world, checkedLocations=None):
 
             alwaysNamedItem(world, [firstLocation, secondLocation])
 
-            location_text = getHint(hint.name, world.settings.clearer_hints).text
+            if hint.name in world.hint_text_overrides:
+                location_text = world.hint_text_overrides[hint.name]
+            else:
+                location_text = getHint(hint.name, world.settings.clearer_hints).text
             if '#' not in location_text:
                 location_text = '#%s#' % location_text
             first_item_text = getHint(getItemGenericName(firstLocation.item), world.settings.clearer_hints).text

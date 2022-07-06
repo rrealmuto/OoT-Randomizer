@@ -5861,6 +5861,17 @@ setting_infos = [
             "hide_when_disabled": True,
         }
     ),
+    Checkbutton(
+        name           = 'blue_fire_arrows',
+        gui_text       = 'Blue Fire Arrows',
+        gui_tooltip    = '''\
+            Ice arrows gain the power of blue fire.
+            They can be used to melt red ice
+            and break the mud walls in Dodongo's Cavern.
+        ''',
+        default        = False,
+        shared         = True,
+    ),
 ]
 
 

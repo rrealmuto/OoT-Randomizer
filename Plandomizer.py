@@ -832,6 +832,12 @@ class WorldDistribution(object):
             # location.price will be None for Shop Buy items
             if location.type == 'Shop' and location.price is None:
                 ignore_pools = [i for i in range(len(item_pools)) if i != 0]
+            else:
+                # Prevent assigning Shop Buy items to non-Shop locations
+                if ignore_pools is None:
+                    ignore_pools = [0]
+                else:
+                    ignore_pools.append(0)
 
             item = self.get_item(ignore_pools, item_pools, location, player_id, record, worlds)
 
@@ -994,6 +1000,11 @@ class WorldDistribution(object):
     def configure_effective_starting_items(self, worlds, world):
         items = {item_name: record.copy() for item_name, record in self.starting_items.items()}
 
+        # Add ammo for each starting item that needs it
+        item_names = [x for x in items.keys()]
+        for item_name in item_names:
+            add_starting_ammo(items, item_name)
+
         if world.settings.start_with_rupees:
             add_starting_item_with_ammo(items, 'Rupees', 999)
         if world.settings.start_with_consumables:
@@ -1045,6 +1056,9 @@ class Distribution(object):
             del self.src_dict['settings']
 
         self.__dict__.update(update_dict)
+
+        # Combine all starting lists into one dict, if necessary
+        startingListsToDict(self.settings)
 
         # Init we have to do every time we retry
         self.reset()
@@ -1126,9 +1140,9 @@ class Distribution(object):
     def starting_items_from_settings(self, world_id):
         data = defaultdict(lambda: StarterRecord(0))
         if isinstance(self.settings.starting_items, dict):
-            if self.settings.starting_equipment:
+            if "starting_equipment" in self.settings.distribution._settings:
                 raise ValueError('Incompatible starting item settings. Either move starting_equipment into starting_items or make starting_items a list')
-            if self.settings.starting_songs:
+            if "starting_songs" in self.settings.distribution._settings:
                 raise ValueError('Incompatible starting item settings. Either move starting_songs into starting_items or make starting_items a list')
 
             world_names = ['World %d' % (i + 1) for i in range(len(self.world_dists))]
@@ -1320,6 +1334,50 @@ class Distribution(object):
         with open(filename, 'w', encoding='utf-8') as outfile:
             outfile.write(json)
 
+
+def startingListsToDict(settings):
+    starting_dict = {}
+    # If starting items is a list, convert it to a dictionary
+    if not isinstance(settings.starting_items, dict):
+        for list_item in settings.starting_items:
+            list_item = "".join([x for x in list_item if not x.isdigit()])
+            item = StartingItems.inventory[list_item].itemname
+            if item == "Rutos Letter" and settings.zora_fountain == "open":
+                item = "Bottle"
+            if item in starting_dict:
+                starting_dict[item] += 1
+            else:
+                starting_dict[item] = 1
+    else:
+        # Otherwise, use the existing dictionary as the initial value
+        starting_dict = settings.starting_items
+    # Add starting equipment and song lists to the dictionary
+    for list_equipment in settings.starting_equipment:
+        list_equipment = "".join([x for x in list_equipment if not x.isdigit()])
+        item = StartingItems.equipment[list_equipment].itemname
+        if item in starting_dict:
+            starting_dict[item] += 1
+        else:
+            starting_dict[item] = 1
+    for list_song in settings.starting_songs:
+        item = StartingItems.songs[list_song].itemname
+        if item in starting_dict:
+            starting_dict[item] += 1
+        else:
+            starting_dict[item] = 1
+    # Set the full dictionary to be starting items
+    settings.starting_items = starting_dict
+
+
+def add_starting_ammo(starting_items, item_name):
+    for item in StartingItems.inventory.values():
+        if item.itemname == item_name and item.ammo:
+            for ammo, qty in item.ammo.items():
+                # Add ammo to starter record, but not overriding existing count if present
+                if ammo not in starting_items:
+                    starting_items[ammo] = StarterRecord(0)
+                    starting_items[ammo].count = qty[starting_items[item_name].count - 1]
+            break
 
 def add_starting_item_with_ammo(starting_items, item_name, count=1):
     if item_name not in starting_items:

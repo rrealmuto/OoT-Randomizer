@@ -272,6 +272,8 @@ class TestPlandomizer(unittest.TestCase):
             "plando-boss-shuffle-allmq",
             "plando-boss-shuffle-limited-dungeon-shuffle",
             "dual-hints",
+            "negative-pattern-test",
+            "dual-hints-custom-text",
         ]
         for filename in filenames:
             with self.subTest(filename):

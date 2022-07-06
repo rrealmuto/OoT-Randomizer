@@ -275,7 +275,7 @@ location_table = OrderedDict([
     ("DMC GS Bean Patch",                                            ("GS Token",     0x0F,  0x01, None,                        'Gold Skulltula Token',                  ("Death Mountain Crater", "Skulltulas",))),
 
     # Zora's River
-    ("ZR Magic Bean Salesman",                                       ("NPC",          0x54,  0x16, None,                        'Magic Bean',                            ("Zora's River",))),
+    ("ZR Magic Bean Salesman",                                       ("NPC",          0x54,  0x16, None,                        'Buy Magic Bean',                        ("Zora's River",))),
     ("ZR Open Grotto Chest",                                         ("Chest",        0x3E,  0x09, None,                        'Rupees (20)',                           ("Zora's River", "Grottos",))),
     ("ZR Frogs Zeldas Lullaby",                                      ("NPC",          0x54,  0x65, None,                        'Rupees (50)',                           ("Zora's River", "Minigames",))),
     ("ZR Frogs Eponas Song",                                         ("NPC",          0x54,  0x66, None,                        'Rupees (50)',                           ("Zora's River", "Minigames",))),

@@ -2091,6 +2091,24 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     if world.settings.warp_songs != 'off':
         update_warp_song_text(messages, world)
 
+    if world.settings.blue_fire_arrows:
+        rom.write_byte(0xC230C1, 0x29) #Adds AT_TYPE_OTHER to arrows to allow collision with red ice
+        rom.write_byte(0xDB38FE, 0xEF) #disables ice arrow collision on secondary cylinder for red ice crystals
+        rom.write_byte(0xC9F036, 0x10) #enable ice arrow collision on mud walls
+        #increase cylinder radius/height for red ice sheets
+        rom.write_byte(0xDB391B, 0x50)
+        rom.write_byte(0xDB3927, 0x5A)
+
+        bfa_message = "\x08\x13\x0CYou got the \x05\x43Blue Fire Arrow\x05\x40!\x01This is a cool arrow you can\x01use on red ice."
+        if world.settings.world_count > 1:
+            bfa_message = make_player_message(bfa_message)
+        update_message_by_id(messages, 0x0071, bfa_message, 0x23)
+
+        with open(data_path('blue_fire_arrow_item_name_eng.ia4'), 'rb') as stream:
+            bfa_name_bytes = stream.read()
+            rom.write_bytes(0x8a1c00, bfa_name_bytes)
+
+
     repack_messages(rom, messages, permutation)
 
     if world.settings.free_scarecrow:
@@ -2118,6 +2136,14 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     if world.settings.easier_fire_arrow_entry:
         torch_count = world.settings.fae_torch_count
         rom.write_byte(0xCA61E3, torch_count)
+
+    if world.settings.blue_fire_arrows:
+        rom.write_byte(0xC230C1, 0x29) #Adds AT_TYPE_OTHER to arrows to allow collision with red ice
+        rom.write_byte(0xDB38FE, 0xEF) #disables ice arrow collision on secondary cylinder for red ice crystals
+        rom.write_byte(0xC9F036, 0x10) #enable ice arrow collision on mud walls
+        #increase cylinder radius/height for red ice sheets
+        rom.write_byte(0xDB391B, 0x50)
+        rom.write_byte(0xDB3927, 0x5A)
 
     # actually write the save table to rom
     world.distribution.give_items(world, save_context)

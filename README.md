@@ -34,7 +34,6 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
   * Opening the Door of Time is a separate goal category when required by the settings ([#1529](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1529))
   * The convenience patch for floor switches now applies to more MQ switches ([#1459](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1459))
-  * Automatically advances credits text ([#1412](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1412))
   * The items hinted by Dampé's diary and Ganondorf can be customized using the new `misc_hint_items` entry in plandomizer.
   * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
 
@@ -166,10 +165,13 @@ do that.
   * New setting `One Bonk KO` will instantly kill Link when he hits his head while rolling.
   * New hint type `Dual Hint` which allows multiple locations to be hinted in the same hint.
   * New `Chaos` hint distribution which gives all hint types equal likelihood.
+  * New setting `Blue Fire Arrows` gives Ice Arrows the power to melt red ice and mud walls to give them more utility.
 
 * **Gameplay**
   * Shortened the animation for equipping magic arrows.
   * You can now use the child trade item (Zelda's Letter, masks, etc) as child using D-Pad Right.
+  * Red Ice transparency is increased when any Chest Appearance setting is enabled.
+  * Zelda's text after defeating Ganon now advances automatically.
 
 
 #### Bug fixes
@@ -194,6 +196,8 @@ do that.
 * Tunics and shields can now spawn in any room when the game attempts to spawn them.
 * Fix a crash when certain settings related to Light Arrow hints are combined.
 * Many minor logic bugs have been corrected.
+* Fix a softlock when plandoing starting with less than 10 beans.
+* Fix plando negative locations (ex. "!Gold Skulltula Token") choosing Buy items for non-Buy locations.
 
 #### Other changes
 * Added an auto-tracker context area to memory, so auto-trackers can find certain symbols much easier.

@@ -233,6 +233,7 @@ exclude_from_major = [
     'Deliver Letter',
     'Sell Big Poe',
     'Magic Bean',
+    'Buy Magic Bean',
     'Zeldas Letter',
     'Bombchus (5)',
     'Bombchus (10)',
@@ -465,7 +466,7 @@ def get_pool_core(world):
             shuffle_item = world.settings.shuffle_base_item_pool
 
         # Magic Beans
-        elif location.vanilla_item == 'Magic Bean':
+        elif location.vanilla_item == 'Buy Magic Bean':
             if world.settings.shuffle_beans:
                 item = 'Magic Bean Pack' if world.distribution.get_starting_item('Magic Bean') < 10 else get_junk_item()[0]
             shuffle_item = world.settings.shuffle_beans

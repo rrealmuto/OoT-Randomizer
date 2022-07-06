@@ -131,7 +131,8 @@
     "starting_tod": "random",
     "starting_age": "child",
     "easier_fire_arrow_entry": false,
-    "fae_torch_count": 3
+    "fae_torch_count": 3,
+    "blue_fire_arrows": true
   },
   "debug": {
     "show_seed_info": true,
@@ -336,7 +337,8 @@
     "starting_tod": "default",
     "starting_age": "child",
     "easier_fire_arrow_entry": false,
-    "fae_torch_count": 3
+    "fae_torch_count": 3,
+    "blue_fire_arrows": false
   },
   "vanilla": {
     "show_seed_info": true,
@@ -460,7 +462,8 @@
     "starting_tod": "default",
     "starting_age": "child",
     "easier_fire_arrow_entry": false,
-    "fae_torch_count": 3
+    "fae_torch_count": 3,
+    "blue_fire_arrows": false
   },
   "fast-vanilla": {
     "show_seed_info": true,
@@ -584,7 +587,8 @@
     "starting_tod": "default",
     "starting_age": "child",
     "easier_fire_arrow_entry": false,
-    "fae_torch_count": 3
+    "fae_torch_count": 3,
+    "blue_fire_arrows": false
   },
   "Mixed Pools Tournament": {
     "show_seed_info": true,
@@ -742,7 +746,8 @@
     "starting_tod": "default",
     "starting_age": "random",
     "easier_fire_arrow_entry": false,
-    "fae_torch_count": 3
+    "fae_torch_count": 3,
+    "blue_fire_arrows": false
   },
   "Standard Anti-Weekly Settings (S5)": {
     "show_seed_info": true,
@@ -1147,7 +1152,8 @@
     "starting_tod": "sunset",
     "starting_age": "random",
     "easier_fire_arrow_entry": false,
-    "fae_torch_count": 3
+    "fae_torch_count": 3,
+    "blue_fire_arrows": false
   },
   "Easy Mode": {
     "show_seed_info": true,
@@ -1280,7 +1286,8 @@
     "starting_tod": "default",
     "starting_age": "child",
     "easier_fire_arrow_entry": false,
-    "fae_torch_count": 3
+    "fae_torch_count": 3,
+    "blue_fire_arrows": false
   },
   "S5 Tournament": {
     "show_seed_info": true,
@@ -1431,7 +1438,8 @@
     "starting_tod": "default",
     "starting_age": "random",
     "easier_fire_arrow_entry": false,
-    "fae_torch_count": 3
+    "fae_torch_count": 3,
+    "blue_fire_arrows": false
   },
   "Standard Weekly (Latest)": {
     "show_seed_info": true,
@@ -1584,7 +1592,8 @@
     "starting_tod": "default",
     "starting_age": "random",
     "easier_fire_arrow_entry": false,
-    "fae_torch_count": 3
+    "fae_torch_count": 3,
+    "blue_fire_arrows": false
   },
   "DDR Weekly (2021-01-19)": {
     "show_seed_info": true,
@@ -1731,7 +1740,8 @@
     "starting_tod": "default",
     "starting_age": "child",
     "easier_fire_arrow_entry": false,
-    "fae_torch_count": 3
+    "fae_torch_count": 3,
+    "blue_fire_arrows": false
   },
   "Scrub Tournament": {
     "show_seed_info": true,
@@ -1887,7 +1897,8 @@
     "starting_tod": "default",
     "starting_age": "random",
     "easier_fire_arrow_entry": false,
-    "fae_torch_count": 3
+    "fae_torch_count": 3,
+    "blue_fire_arrows": false
   },
   "Multiworld Tournament Season 2": {
     "show_seed_info": true,
@@ -2041,7 +2052,8 @@
     "starting_tod": "default",
     "starting_age": "adult",
     "easier_fire_arrow_entry": false,
-    "fae_torch_count": 3
+    "fae_torch_count": 3,
+    "blue_fire_arrows": false
   },
   "Hell Mode": {
     "show_seed_info": true,
@@ -2326,7 +2338,8 @@
     "starting_tod": "random",
     "starting_age": "random",
     "easier_fire_arrow_entry": false,
-    "fae_torch_count": 3
+    "fae_torch_count": 3,
+    "blue_fire_arrows": false
   },
   "Bingo": {
     "show_seed_info": true,
@@ -2468,7 +2481,8 @@
     "starting_tod": "default",
     "starting_age": "child",
     "easier_fire_arrow_entry": false,
-    "fae_torch_count": 3
+    "fae_torch_count": 3,
+    "blue_fire_arrows": false
   },
   "League": {
     "show_seed_info": true,
@@ -2613,7 +2627,8 @@
     "starting_tod": "default",
     "starting_age": "random",
     "easier_fire_arrow_entry": false,
-    "fae_torch_count": 3
+    "fae_torch_count": 3,
+    "blue_fire_arrows": false
   },
   "Co-Op Tournament Season 2": {
     "show_seed_info": true,
@@ -2764,6 +2779,7 @@
     "starting_tod": "default",
     "starting_age": "adult",
     "easier_fire_arrow_entry": false,
-    "fae_torch_count": 3
+    "fae_torch_count": 3,
+    "blue_fire_arrows": false
   }
 }

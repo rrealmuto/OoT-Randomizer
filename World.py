@@ -169,9 +169,6 @@ class World(object):
 
         self.hint_text_overrides = {}
         for loc in self.hint_dist_user['add_locations']:
-            if 'types' in loc:
-                if any(type in ['dual', 'dual_always'] for type in loc['types']):
-                    raise Exception('Custom dual hints are not yet supported')
             if 'text' in loc:
                 # Arbitrarily throw an error at 80 characters to prevent overfilling the text box.
                 if len(loc['text']) > 80:
@@ -1081,7 +1078,6 @@ class World(object):
         # these are items that can never be required but are still considered major items
         exclude_item_list = [
             'Double Defense',
-            'Ice Arrows',
         ]
         if (self.settings.damage_multiplier != 'ohko' and self.settings.damage_multiplier != 'quadruple' and
             self.settings.shuffle_scrubs == 'off' and not self.settings.shuffle_grotto_entrances):
@@ -1101,7 +1097,11 @@ class World(object):
         if self.settings.plant_beans:
             # Magic Beans are useless if beans are already planted
             exclude_item_list.append('Magic Bean')
+            exclude_item_list.append('Buy Magic Bean')
             exclude_item_list.append('Magic Bean Pack')
+        if not self.settings.blue_fire_arrows:
+            # Ice Arrows can only be required when the Blue Fire Arrows setting is enabled
+            exclude_item_list.append('Ice Arrows')
 
         for i in self.item_hint_type_overrides['barren']:
             if i in exclude_item_list:

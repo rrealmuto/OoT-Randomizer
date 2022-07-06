@@ -326,7 +326,9 @@ class Settings:
         return {setting.name: self.__dict__[setting.name] for setting in setting_infos
                 if setting.shared and (setting.name not in self._disabled or
                 # We want to still include settings disabled by randomized settings options if they're specified in distribution
-                ('_settings' in self.distribution.src_dict and setting.name in self.distribution.src_dict['_settings'].keys()))}
+                ('_settings' in self.distribution.src_dict and setting.name in self.distribution.src_dict['_settings'].keys()))
+                # Don't want to include list starting equipment and songs, these are consolidated into starting_items
+                and not (setting.name == "starting_equipment" or setting.name == "starting_songs")}
 
 
     def to_json_cosmetics(self):

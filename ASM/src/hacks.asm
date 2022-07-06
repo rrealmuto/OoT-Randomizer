@@ -1386,6 +1386,20 @@ skip_GS_BGS_text:
 .word   0xDE000000, 0x09000010
 
 ;==================================================================================================
+; Increase transparency of red ice in CTMC
+;==================================================================================================
+
+; In a function called by red ice init
+; Replaces addiu    t7, $zero, 0x00FF
+.orga 0xDB3244
+    j       red_ice_alpha
+;   sw      t6, 0x0154(a0) ; delay slot unchanged, sets the idle action function
+; Next 3 instructions are skipped, now done in red_ice_alpha instead.
+;   sh      t7, 0x01F0(a0)
+;   jr      ra
+;   nop
+
+;==================================================================================================
 ; Invisible Chests
 ;==================================================================================================
 
@@ -2557,3 +2571,9 @@ skip_GS_BGS_text:
 ; Replaces: addiu   t1, zero, 0x55
 .orga 0xDB1338
     addiu   t1, v0, 0x65
+
+;===================================================================================================
+; Allow ice arrows to melt red ice
+;===================================================================================================
+.orga 0xDB32C8
+    jal blue_fire_arrows ; replaces addiu at, zero, 0x00F0
