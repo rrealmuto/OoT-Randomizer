@@ -11,6 +11,7 @@ This branch is available to use online at <https://ootrandomizer.com/generatorDe
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
 * New settings and options:
+  * A 4th option is added to the “Misc. Hints” setting to hint the Hookshot location in Dampé's diary. The items hinted by Dampé's diary and Ganondorf can be customized using the new `misc_hint_items` entry in hint distributions. ([#1621](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1621))
   * New “Shuffle Thieves' Hideout Entrances” setting ([#1616](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1616))
   * New “Dungeon and Ganon” option for the “Shuffle Dungeon Entrances” setting (based on [#1546](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1546))
   * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1536))
@@ -21,7 +22,6 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * New “Shuffle Gerudo Valley River Exit” setting
   * New “Vanilla” option for the “Shuffle Songs” setting
   * New “Shuffle Other Items” setting which can be disabled to generate vanilla seeds, only shuffle entrances, etc.
-  * A 4th option is added to the “Misc. Hints” setting to hint the Hookshot location in Dampé's diary
   * New “Mixed Pools Tournament” hint distribution
 * New settings presets:
   * `allsanity-casual` is my preferred flavor of allsanity, including full entrance randomizer, chaos hints, and warp song note shuffle, but with half damage, no Master Quest, and no tricks enabled. The rainbow bridge requires all dungeon rewards and Ganon's boss key requires all 100 gold skulltula tokens.
@@ -34,7 +34,6 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
   * Opening the Door of Time is a separate goal category when required by the settings ([#1529](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1529))
   * The convenience patch for floor switches now applies to more MQ switches ([#1459](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1459))
-  * The items hinted by Dampé's diary and Ganondorf can be customized using the new `misc_hint_items` entry in plandomizer.
   * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
 
 Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):

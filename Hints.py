@@ -1470,35 +1470,28 @@ def buildGanonText(world, messages):
     text = get_raw_text(ganonLines.pop().text)
     update_message_by_id(messages, 0x70CB, text)
 
+
 def buildMiscItemHints(world, messages):
     for hint_type, data in misc_item_hint_table.items():
         if hint_type in world.settings.misc_hints:
             item = world.misc_hint_items[hint_type]
-            text = ''
             if item in world.distribution.effective_starting_items and world.distribution.effective_starting_items[item].count > 0:
                 if item == data['default_item']:
-                    text += data['prefix']
-                    text += "#your pocket#"
-                    text += data['suffix']
+                    text = data['default_item_text'].format(area='#your pocket#')
                 else:
-                    text += data['custom_pocket_text'].format(item=item)
+                    text = data['custom_item_text'].format(area='#your pocket#', item=item)
             elif hint_type in world.misc_hint_item_locations:
                 location = world.misc_hint_item_locations[hint_type]
+                area = HintArea.at(location).text(world.settings.clearer_hints, world=None if location.world.id == world.id else location.world.id + 1)
                 if item == data['default_item']:
-                    text += data['prefix']
-                    text += HintArea.at(location).text(world.settings.clearer_hints, world=None if location.world.id == world.id else location.world.id + 1)
-                    text += data['suffix']
+                    text = data['default_item_text'].format(area=area)
                 else:
-                    text += data['custom_item_text'].format(
-                        area=HintArea.at(location).text(world.settings.clearer_hints, world=None if location.world.id == world.id else location.world.id + 1),
-                        item=getHint(getItemGenericName(location.item), world.settings.clearer_hints).text,
-                    )
+                    text = data['custom_item_text'].format(area=area, item=getHint(getItemGenericName(location.item), world.settings.clearer_hints).text)
             elif 'fallback' in data:
                 if item == data['default_item']:
-                    text += data['fallback']
-                    text += data['suffix']
+                    text = data['default_item_fallback']
                 else:
-                    text = data['custom_fallback'].format(item=item)
+                    text = data['custom_item_fallback'].format(item=item)
             else:
                 text = getHint('Validation Line', world.settings.clearer_hints).text
                 for location in world.get_filled_locations():

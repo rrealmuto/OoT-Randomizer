@@ -1662,27 +1662,23 @@ misc_item_hint_table = {
         'id': 0x5003,
         'hint_location': 'Dampe Diary Hint',
         'default_item': 'Progressive Hookshot',
-        'prefix': "Whoever reads this, please enter ",
-        'suffix': ". I will let you have my stretching, shrinking keepsake.^I'm waiting for you.&--Dampé",
+        'default_item_text': "Whoever reads this, please enter {area}. I will let you have my stretching, shrinking keepsake.^I'm waiting for you.&--Dampé",
+        'custom_item_text': "Whoever reads this, please enter {area}. I will let you have {item}.^I'm waiting for you.&--Dampé",
+        'default_item_fallback': "Whoever reads this, I'm sorry, but I seem to have #misplaced# my stretching, shrinking keepsake.&--Dampé",
+        'custom_item_fallback': "Whoever reads this, I'm sorry, but I seem to have #misplaced# {item}.&--Dampé",
         'replace': {
             "enter #your pocket#. I will let you have": "check #your pocket#. You will find",
         },
-        'custom_item_text': "Whoever reads this, please enter {area}. I will let you have {item}.^I'm waiting for you.&--Dampé",
-        'custom_pocket_text': "Whoever reads this, please check #your pocket#. You will find {item}.^I'm waiting for you.&--Dampé",
-        'fallback': "Whoever reads this, I'm sorry, but I seem to have #misplaced# my stretching, shrinking keepsake.&--Dampé",
-        'custom_fallback': "Whoever reads this, I'm sorry, but I seem to have #misplaced# {item}.&--Dampé",
     },
     'ganondorf': {
         'id': 0x70CC,
         'hint_location': 'Ganondorf Hint',
         'default_item': 'Light Arrows',
-        'prefix': "Ha ha ha... You'll never beat me by reflecting my lightning bolts and unleashing the arrows from ",
-        'suffix': "!",
+        'default_item_text': "Ha ha ha... You'll never beat me by reflecting my lightning bolts and unleashing the arrows from {area}!",
+        'custom_item_text': "Ha ha ha... You'll never find {item} from {area}!",
         'replace': {
             "from #Ganon's Castle#": "from #my castle#",
         },
-        'custom_item_text': "Ha ha ha... You'll never find {item} from {area}!",
-        'custom_pocket_text': "Ha ha ha... You'll never find {item} from #your pocket#!",
     },
 }
 

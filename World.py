@@ -180,7 +180,7 @@ class World(object):
 
         self.always_hints = [hint.name for hint in getRequiredHints(self)]
 
-        self.misc_hint_items = {hint_type: self.distribution.misc_hint_items.get(hint_type, data['default_item']) for hint_type, data in misc_item_hint_table.items()}
+        self.misc_hint_items = {hint_type: self.hint_dist_user.get('misc_hint_items', {}).get(hint_type, data['default_item']) for hint_type, data in misc_item_hint_table.items()}
 
         self.state = State(self)
 

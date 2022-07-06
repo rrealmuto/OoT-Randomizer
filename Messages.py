@@ -1,6 +1,5 @@
 # text details: https://wiki.cloudmodding.com/oot/Text_Format
 
-import logging
 import random
 from HintList import misc_item_hint_table
 from TextBox import line_wrap

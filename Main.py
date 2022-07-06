@@ -780,7 +780,7 @@ def create_playthrough(spoiler):
 
     # Then we can finally output our playthrough
     spoiler.playthrough = OrderedDict((str(i + 1), {location: location.item for location in sphere}) for i, sphere in enumerate(collection_spheres))
-    # Copy our light arrows, since we set them in the world copy
+    # Copy our misc. hint items, since we set them in the world copy
     for w, sw in zip(worlds, spoiler.worlds):
         for hint_type, item_location in w.misc_hint_item_locations.items():
             # But the actual location saved here may be in a different world
