@@ -923,6 +923,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     def set_entrance_updates(entrances):
         blue_warp_remaps = {}
+        blue_warp_address_remaps = {}
         if (world.settings.shuffle_bosses != 'off'):
             # Connect lake hylia fill exit to revisit exit
             rom.write_int16(0xAC995A, 0x060C)
@@ -952,6 +953,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
                 # If dungeons are shuffled but their bosses are moved, they're going to refer to the wrong blue warp
                 # slots.  Create a table to remap them for later.
                 blue_warp_remaps[original_boss['exit_blue_warp']] = new_boss['exit_blue_warp']
+                blue_warp_address_remaps[original_boss['exit_blue_warp']] = original_boss['exit_blue_warp_addresses']
 
         # Boss shuffle done(?)
         for entrance in entrances:
@@ -971,6 +973,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             if "blue_warp" in new_entrance:
                 blue_warp = new_entrance["blue_warp"]
                 blue_warp = blue_warp_remaps.get(blue_warp, blue_warp)
+                blue_warp_addresses = blue_warp_address_remaps.get(blue_warp, new_entrance['blue_warp_addresses'])
                 if "blue_warp" in replaced_entrance:
                     blue_out_data = replaced_entrance["blue_warp"]
                 else:
@@ -983,8 +986,21 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
                 # vanilla as it never took you to the exit and the lake fill is handled
                 # above by removing the cutscene completely. Child has problems with Adult
                 # blue warps, so always use the return entrance if a child.
-                copy_entrance_record(blue_out_data + 2, blue_warp + 2, 2)
-                copy_entrance_record(replaced_entrance["index"], blue_warp, 2)
+                #
+                # This method does not work with mixed entrance pools between dungeons
+                # and grottos as grotto entrances are not in the entrance table.
+                # Grotto entrance indices always have the format 0x1000 + grotto ID or
+                # 0x2000 + grotto ID, which is greater than any entrance table index.
+                # If the dungeon is in a grotto, edit the blue warp hardcodes to the grotto
+                # entrance index, otherwise use the "normal" entrance table method.
+                # This runs after and overrides the cutscene edits for Forest Temple
+                # and Water Temple if needed.
+                if blue_out_data >= 0x1000:
+                    for address in blue_warp_addresses:
+                        rom.write_int16(address, blue_out_data)
+                else:
+                    copy_entrance_record(blue_out_data + 2, blue_warp + 2, 2)
+                    copy_entrance_record(replaced_entrance["index"], blue_warp, 2)
 
     exit_table = generate_exit_lookup_table()
 
