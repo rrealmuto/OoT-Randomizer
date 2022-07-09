@@ -3039,7 +3039,7 @@ setting_infos = [
         ''',
         default        = True,
         disable        = {
-            True : {'settings': ['item_pool_value', 'mq_dungeons_mode', 'shuffle_bosses']},
+            False : {'settings': ['item_pool_value', 'mq_dungeons_mode', 'shuffle_bosses']},
         },
         shared         = True,
         gui_params     = {
