@@ -21,7 +21,7 @@ from OcarinaSongs import replace_songs
 from MQ import patch_files, File, update_dmadata, insert_space, add_relocations
 from SaveContext import SaveContext, Scenes, FlagType
 from version import __version__
-import StartingItems
+from ItemPool import song_list
 
 
 def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
@@ -266,7 +266,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # songs as items flag
     songs_as_items = world.settings.shuffle_song_items not in ('vanilla', 'song') or \
                      world.distribution.song_as_items or \
-                     world.settings.starting_songs
+                     any(name in song_list and record.count for name, record in world.settings.starting_items.items())
 
     if songs_as_items:
         rom.write_byte(rom.sym('SONGS_AS_ITEMS'), 1)
