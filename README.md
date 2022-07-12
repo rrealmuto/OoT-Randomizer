@@ -28,7 +28,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * `debug` is similar to Default/Beginner but gives you most starting items for testing.
   * `vanilla` generates a seed that's as close to the vanilla game as possible with current randomizer features. Unlike the vanilla seed available on <https://ootrandomizer.com/>, this preset uses glitchless logic to produce a useful spoiler log playthrough.
   * `fast-vanilla` is `vanilla` but with speed-ups like fast bunny hood, fast chest cutscenes, or “Skip Some Minigame Phases” enabled.
-  * “Mixed Pools Tournament”, the settings that will be used for an upcoming tournament with full mixed pools entrance randomizer.
+  * “Mixed Pools Tournament”, the settings being used for an ongoing tournament with full mixed pools entrance randomizer. Note that the tournament itself uses [a previous version](https://ootrandomizer.com/generatorDev?version=devFenhl_6.2.100) of this branch.
   * “Standard Anti-Weekly Settings (S5)” disables every location that's enabled in “S5 Tournament” and enables every location that's disabled there, as well as changing some miscellaneous settings. See [the official document](https://docs.google.com/document/d/1sbL6Zju943F5qyx4QbTLUsqZqOTMmvqKVbDwJl08SGc/edit) for details.
 * Other changes:
   * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))

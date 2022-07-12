@@ -451,9 +451,12 @@ def get_pool_core(world):
         # Gerudo Card
         elif location.vanilla_item == 'Gerudo Membership Card':
             shuffle_item = world.settings.shuffle_gerudo_card and world.settings.gerudo_fortress != 'open'
-            if world.settings.shuffle_gerudo_card and world.settings.gerudo_fortress == 'open':
-                pending_junk_pool.append(item)
-                item = IGNORE_LOCATION
+            if world.settings.gerudo_fortress == 'open':
+                if world.settings.shuffle_gerudo_card:
+                    pending_junk_pool.append(item)
+                    item = IGNORE_LOCATION
+                else:
+                    world.state.collect(ItemFactory(item))
 
         # Bottles
         elif location.vanilla_item in ['Bottle', 'Bottle with Milk', 'Rutos Letter']:

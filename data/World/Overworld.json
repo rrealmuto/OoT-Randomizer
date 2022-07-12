@@ -613,7 +613,7 @@
             "Hideout 2 Torches Jail": "True",
             "Hideout Kitchen Front": "True",
             "GF Entrances Behind Crates": "True",
-            "GF Southeast Roof": "logic_gf_jump_roof and is_adult"
+            "GF Southeast Roof": "logic_gf_jump and is_adult"
         }
     },
     {
@@ -697,11 +697,7 @@
         },
         "locations": {
             "Hideout 1 Torch Jail Gerudo Key": "'Hideout 1 Torch Jail Gerudo'",
-            "Hideout Gerudo Membership Card": "
-                (gerudo_fortress == 'normal' and
-                    'Hideout 1 Torch Jail Carpenter' and 'Hideout 2 Torches Jail Carpenter'
-                    and 'Hideout 3 Torches Jail Carpenter' and 'Hideout 4 Torches Jail Carpenter')
-                or (gerudo_fortress == 'fast' and 'Hideout 1 Torch Jail Carpenter')"
+            "Hideout Gerudo Membership Card": "can_finish_GerudoFortress"
         },
         "exits": {
             "Gerudo Fortress": "True",

@@ -209,26 +209,25 @@ logic_tricks = {
                     from below, by shooting it through the vines,
                     bypassing the need to lower the staircase.
                     '''},
-    'Gerudo\'s Fortress Ledge Jump': {
+    'Gerudo\'s Fortress Ledge Jumps': {
         'name'    : 'logic_gf_jump',
         'tags'    : ("Gerudo's Fortress",),
         'tooltip' : '''\
-                    From the southern roof with the guard, a jump
-                    can reach the second floor of the fortress.
-                    '''},
-    'Gerudo\'s Fortress Roof Ledge Jump': {
-        'name'    : 'logic_gf_jump_roof',
-        'tags'    : ("Gerudo's Fortress",),
-        'tooltip' : '''\
-                    Adult can use an autojump to climb onto the roof
-                    without going through the upper "Kitchen".
+                    Allows both ages to use a jump to reach the second
+                    floor of the fortress from the southern roof with
+                    the guard, and adult to jump to the top roof from
+                    there, without going through the interiors of the
+                    Thieves' Hideout.
                     '''},
     'Thieves\' Hideout "Kitchen" with No Additional Items': {
         'name'    : 'logic_gerudo_kitchen',
         'tags'    : ("Thieves' Hideout", "Gerudo's Fortress",),
         'tooltip' : '''\
-                    The logic normally guarantees one of Bow, Hookshot,
-                    or Hover Boots.
+                    Allows passing through the kitchen by avoiding being
+                    seen by the guards. The logic normally guarantees
+                    Bow or Hookshot to stun them from a distance, or
+                    Hover Boots to cross the room without needing to
+                    deal with the guards.
                     '''},
     'Deku Tree Basement Vines GS with Jump Slash': {
         'name'    : 'logic_deku_basement_gs',
