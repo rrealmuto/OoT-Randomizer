@@ -921,6 +921,535 @@ export class GUIGlobal {
       }
     });
   }
+  
+
+  get_keyrings_string(key_rings_selection)
+  {
+    if(key_rings_selection === "")
+    {
+      return undefined;
+    }
+    var key_rings_list = key_rings_selection.split(",");
+    
+    if(key_rings_list.length == 9)
+    {
+      return "Small Key Rings";
+    }
+    const keyRingMap = {
+      'Forest Temple': "Forest",
+      'Fire Temple': "Fire",
+      'Water Temple': "Water",
+      'Shadow Temple': "Shadow",
+      'Spirit Temple': "Spirit",
+      'Bottom of the Well': "BOTW",
+      'Gerudo Training Ground': "GTG",
+      'Thieves Hideout': "Hideout",
+      'Ganons Castle': "Ganons Castle"
+    };
+    let display = "Small Key Rings (";
+    key_rings_list.forEach(element => {
+      display += keyRingMap[element] + ", ";
+    });
+    display = display.substring(0, display.length - 2);
+    display += ")";
+    return display;
+  }
+
+  //Priorities:
+  //Lowest: bridge condition and GBK requirement
+  //MQ, Boss shortcuts
+  //Open
+  //Shuffled entrances
+  //Shuffled items
+  //Shuffled keys
+  
+
+  settings_paragraph_conversion_dictionary = {
+    'bridge' : { 
+      choices : {
+        'open': 'Open Bridge',
+        'vanilla': 'Vanilla Bridge Requirement',
+        'stones' : '{bridge_stones} stones bridge',
+        'medallions' : "{bridge_medallions} medallion bridge",
+        'dungeons' : "{bridge_rewards} dungeon bridge",
+        'tokens' : "{bridge_tokens} skull token bridge",
+        'hearts' : "{bridge_hearts} heart bridge",
+        'random' : 'Random Bridge Requirement'
+      },
+      priority : 0
+    },
+    'open_forest' : { 
+      choices : {
+      'open':        'Open Forest',
+      'closed_deku': 'Closed Deku',
+      'closed':      'Closed Forest'
+      },
+      priority : 2
+    },
+    'open_door_of_time' : { 
+      choices : {
+        true : 'Open DoT',
+        false: 'Closed DoT'
+      },
+      priority : 2
+    },
+    'zora_fountain' : { 
+      choices : {
+        'closed' : undefined,
+        'adult' : 'ZF Open for Adult',
+        'open' : 'Open Fountain'
+      },
+      priority : 2
+    },
+    'gerudo_fortress' : { 
+      choices : {
+        'normal' : undefined,
+        'fast': 'Rescue one carpenter',
+        'open': 'Open Fortress'
+      },
+      priority : 2
+    },
+    'triforce_hunt': { 
+      choices : {
+        true : '{triforce_goal_per_world} piece Triforce Hunt',
+        false : undefined
+      },
+      priority : 0
+    },
+    'bombchus_in_logic': { 
+      choices : {
+        true : 'Bombchus in logic',
+        false : undefined
+      },
+      priority : 7
+    },
+    'one_item_per_dungeon' : { 
+      choices : {
+        true: "Dungeons have 1 major item",
+        false: undefined
+      },
+      priority : 3
+    },
+    'plant_beans' : { 
+      choices : {
+        true : "Plant Magic Beans",
+        false: undefined
+      },
+      priority : 6
+    },
+    'shuffle_ocarinas' : { 
+      choices : {
+        true: "Shuffle ocarinas",
+        false: undefined
+      },
+      priority : 5
+    },
+    'shuffle_weird_egg' : { 
+      choices : {
+        true: "Shuffle weird egg",
+        false: undefined
+      },
+      priority : 5
+    },
+    'shuffle_gerudo_card': { 
+      choices : {
+        true: "Shuffle Gerudo Card",
+        false: undefined
+      },
+      priority : 5
+    },
+    'shuffle_song_items' : { 
+      choices : {
+        'song' : undefined,
+        'dungeon' : "Songs on dungeon rewards",
+        'any' : "Songsanity"
+      },
+      priority : 5
+    },
+    'shuffle_freestanding_items' : { 
+      choices : {
+        'off': undefined,
+        'all' : "Shuffle freestanding items",
+        'overworld': "Shuffle overworld freestanding items",
+        'dungeons': "Shuffle dungeon freestanding items"
+      },
+      priority : 5
+    },
+    'shuffle_pots_crates' : { 
+      choices : {
+        'off': undefined,
+        'all': "Shuffle pots/crates",
+        'overworld': "Shuffle overworld pots/crates",
+        'dungeons': "Shuffle dungeon pots/crates"
+      },
+      priority : 5
+    },
+    'shuffle_cows' : { 
+      choices : {
+        true : "Shuffle cows",
+        false: undefined
+      },
+      priority : 5
+    },
+    'shuffle_beehives' : { 
+      choices : {
+        true: "Shuffle beehives",
+        false: undefined
+      },
+      priority : 5
+    },
+    'shuffle_kokiri_sword': { 
+      choices : {
+        true: "Shuffle Kokiri Sword",
+        false: undefined
+      },
+      priority : 5
+    },
+    'shuffle_beans' : { 
+      choices : {
+        true: "Shuffle magic beans",
+        false: undefined
+      },
+      priority : 5
+    },
+    'shuffle_medigoron_carpet_salesman' : { 
+      choices : {
+        true: "Shuffle Medigoron/Carpet Salesman",
+        false: undefined
+      },
+      priority : 5
+    },
+    'shuffle_frog_song_rupees' : { 
+      choices : {
+        true: "Shuffle frog song rupees",
+        false: undefined
+      },
+      priority : 5
+    },
+    'shuffle_interior_entrances' : { 
+      choices : {
+        'off': undefined,
+        'simple': "Shuffle interior entrances (simple)",
+        'all': "Shuffle interior entrances"
+      },
+      priority: 4
+    },
+    'shuffle_grotto_entrances': { 
+      choices : {
+        true: "Shuffle grotto entrances",
+        false: undefined
+      },
+      priority: 4
+    },
+    'shuffle_dungeon_entrances': { 
+      choices : {
+        true: "Shuffle dungeon entrances",
+        false: undefined
+      },
+      priority : 4
+    },
+    'shuffle_bosses' : { 
+      choices : {
+        'off': undefined,
+        'limited' : 'Age-restricted Boss Shuffle',
+        'full' : 'Boss shuffle'
+      },
+      priority: 4
+    },
+    'shuffle_overworld_entrances' : { 
+      choices : {
+        true: "Shuffle overworld entrances",
+        false: undefined
+      },
+      priority: 4
+    },
+    'owl_drops': { 
+      choices : {
+        true: "Random owl drops",
+        false: undefined
+      },
+      priority: 4
+    },
+    'warp_songs' : { 
+      choices : {
+        true: "Random warp song destinations",
+        false: undefined
+      },
+      priority: 4
+    },
+    'spawn_positions' : { 
+      choices : {
+        true: "Randomize overworld spawns",
+        false: undefined
+      },
+      priority: 4
+    },
+    'mq_dungeons_mode': { 
+      choices : {
+        'vanilla': undefined,
+        'mq': 'MQ Dungeons',
+        'specific':"MQ Dungeons: {mq_dungeons_specific}",
+        'count':"{mq_dungeons_count} MQ dungeons",
+        'random':"Random # of MQ dungeons"
+      },
+      priority: 1
+    },
+    'shuffle_scrubs': { 
+      choices : {
+        'off': undefined,
+        'low': 'Scrubsanity (Affordable)',
+        'regular' : 'Scrubsanity (Expensive)',
+        'random' : 'Scrubsanity (Random Prices)'
+      },
+      priority: 5
+    },
+    'shopsanity': { 
+      choices : {
+        'off': undefined,
+        '1' : '1 item Shopsanity',
+        '2' : '2 item Shopsanity',
+        '3' : '3 item Shopsanity',
+        '4' : 'Shopsanity'
+      },
+      priority: 5
+    },
+    'tokensanity': { 
+      choices : {
+        'off' : undefined,
+        'dungeons' : "Shuffle dungeon skulls",
+        'overworld' : "Shuffle overworld skulls",
+        'all': "Skullsanity"
+      },
+      priority: 5
+    },
+    'shuffle_mapcompass': { 
+      choices : {
+        'remove' : "Remove maps/compasses",
+        'startwith': "Start with maps/compasses",
+        'vanilla': undefined,
+        'dungeon': "Shuffle maps/compasses (Own Dungeon)",
+        'overworld': "Shuffle maps/compasses (Overworld)",
+        'any_dungeon': "Shuffle maps/compasses (Dungeons)",
+        'keysanity': "Shuffle maps/compasses",
+      },
+      priority: 3
+    },
+    'shuffle_smallkeys' : { 
+      choices : {
+        'remove' : "Remove small keys",
+        "vanilla" : undefined,
+        "dungeon" : "Small keys in own dungeon",
+        "overworld" : "Small keys in overworld",
+        "any_dungeon" : "Small keys in any dungeon",
+        "keysanity" : "Small Keysanity"
+      },
+      priority : 3
+    },
+    'shuffle_hideoutkeys' : { 
+      choices : {
+        'vanilla' : undefined,
+        'overworld' : "Shuffle Hideout Keys (Overworld)",
+        'any_dungeon' : "Shuffle Hideout Keys (Dungeons)",
+        'keysanity': "Shuffle Hideout Keys"
+      },
+      priority: 5
+    },
+    'key_rings' : { 
+      choices : 
+        this.get_keyrings_string,
+      priority: 3
+    },
+    'shuffle_bosskeys' : { 
+      choices : {
+        'remove' : "Remove boss keys",
+        "vanilla" : undefined,
+        "dungeon" : "Boss keys in own dungeon",
+        "overworld" : "Boss keys in overworld",
+        "any_dungeon" : "Boss keys in any dungeon",
+        "keysanity" : "Boss Keysanity"
+      },
+      priority: 3
+    },
+    'shuffle_ganon_bosskey' : { 
+      choices : {
+        'remove' : "Remove GBK",
+        'vanilla' : 'Vanilla GBK',
+        'dungeon' : 'GBK in Ganons Castle',
+        'overworld' : 'GBK in Overworld',
+        'any_dungeon' : 'GBK in any dungeon',
+        'keysanity' : 'Shuffle GBK anywhere',
+        'on_lacs' : 'GBK on LACS',
+        'stones' : '{ganon_bosskey_stones} stones GBK',
+        'medallions': '{ganon_bosskey_medallions} medallions GBK',
+        'dungeons': '{ganon_bosskey_rewards} dungeon GBK',
+        'tokens': '{ganon_bosskey_tokens} skull GBK',
+        'hearts': '{ganon_bosskey_hearts} heart GBK'
+      },
+      priority: 0
+    },
+    'dungeon_shortcuts_choice':{ 
+      choices : {
+        'off':undefined,
+        'choice':"Dungeon Shortcuts: {dungeon_shortcuts}",
+        'all': "Dungeon Shortcuts",
+        'random': "Random # of Dungeon Shortcuts"
+      },
+      priority: 1
+    },
+    'trials_random': { 
+      choices : {
+        true: "Random # of Trials",
+        false: undefined
+      },
+      priority: 1
+    },
+    'trials' : { 
+      choices : {
+        0: "Trials off",
+        1: "1 Trial",
+        2: "2 Trials",
+        3: "3 Trials",
+        4: "4 Trials",
+        5: "5 Trials",
+        6: "6 Trials"
+      },
+      priority: 1
+    },
+    'skip_child_zelda': { 
+      choices : {
+        true: "Skip Child Zelda",
+        false: undefined
+      },
+      priority: 5
+    },
+    'free_scarecrow': { 
+      choices : {
+        true: "Free Scarecrow's Song",
+        false: undefined
+      },
+      priority: 5
+    },
+    'correct_chest_appearances': { 
+      choices : {
+        'off': undefined,
+        'textures': "Chest texture matches contents",
+        'both': "Chest size/texture matches contents",
+        'classic': "Chest size matches contents"
+      },
+      priority: 6
+    },
+    'correct_potcrate_appearances': { 
+      choices : {
+        'off' : undefined,
+        'textures_content': "Pot/Crate textures match contents",
+        'textures_unchecked': "Unchecked pot/crate textures"
+      },
+      priority: 6
+    },
+    'junk_ice_traps': { 
+      choices : {
+        'off' : undefined,
+        'normal': undefined,
+        'on' : "Extra ice traps",
+        'mayhem': "Ice trap mayhem",
+        'onslaught': "Ice trap onslaught"
+      },
+      priority: 6
+    },
+    'item_pool_value': { 
+      choices : {
+        'plentiful' : "Plentiful item pool",
+        'balanced' : undefined,
+        'scarce': "Scarce item pool",
+        'minimal': "Minimal item pool"
+      },
+      priority: 7
+    },
+    'deadly_bonks': { 
+      choices : {
+        true: "One Bonk KO",
+        false: undefined
+      },
+      priority: 7
+    },
+    'no_collectible_hearts': { 
+      choices : {
+        true: "Hero mode",
+        false: undefined
+      },
+      priority: 7
+    },
+    'blue_fire_arrows': { 
+      choices : {
+        true: "Blue fire arrows",
+        false: undefined
+      },
+      priority: 8
+    }
+  };
+
+  //Generate a paragraph of settings using the conversion dictionary. Order by priority
+  convertSettingsToParagraphClient(settingsObj) {
+    var paragraph = '';
+    var paragraph_array = [];
+    //Loop through every setting
+    for(var setting_name in settingsObj){
+      //Check if the setting is in our conversion dictionary
+      if(setting_name in this.settings_paragraph_conversion_dictionary)
+      {
+        //extract the setting details
+        var setting_value = settingsObj[setting_name].toString();
+        var setting_options = this.settings_paragraph_conversion_dictionary[setting_name]['choices'];
+        var priority = this.settings_paragraph_conversion_dictionary[setting_name]['priority'];
+        //ignore GBK setting if triforce hunt
+        if(setting_name  === 'shuffle_ganon_bosskey' && settingsObj['triforce_hunt'] == true)
+        {
+          continue;
+        }
+        if(paragraph_array[priority] == undefined)
+        {
+          paragraph_array[priority] = [];
+        }
+        var display_as = "";
+        
+        if(typeof(setting_options) === 'function')
+        {
+          display_as = setting_options(setting_value);
+        }
+        else
+        {
+          display_as = setting_options[setting_value];
+        }
+        if(display_as != undefined)
+          {
+            var start_index = display_as.indexOf("{");
+            var end_index = display_as.indexOf("}");
+            if(start_index >= 0 && end_index >= 0)
+            {
+              var sub_setting = display_as.substring(start_index + 1, end_index);
+              var sub_setting_value = settingsObj[sub_setting];
+              display_as = display_as.replace('{' + sub_setting + '}', sub_setting_value);
+            }
+            paragraph_array[priority].push(display_as);
+          }
+      }
+        
+    }
+    //Build our paragraph
+    for(const l1 of paragraph_array)
+    {
+      if(l1 != undefined)
+      {
+        for(const l2 of l1)
+        {
+          paragraph += l2 + ', ';
+        }
+      }
+    }
+    //Remove the final , 
+    paragraph = paragraph.substring(0, paragraph.length - 2);
+    return paragraph;
+  }
 
   convertStringToSettings(settingsString: string) {
     var self = this;

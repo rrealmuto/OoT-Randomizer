@@ -413,9 +413,15 @@ export class GeneratorComponent implements OnInit {
     this.global.copyToClipboard(this.global.generator_settingsMap["settings_string"]);
   }
 
+  copySettingsParagraph() {
+    this.global.generator_settingsMap["settings_paragraph"] = this.global.convertSettingsToParagraphClient(this.global.createSettingsFileObject(false, true));
+    this.global.copyToClipboard(this.global.generator_settingsMap["settings_paragraph"]);
+  }
+
   getSettingsString() {
 
     this.settingsLocked = true;
+
 
     this.global.convertSettingsToString().then(res => {
 
@@ -452,7 +458,7 @@ export class GeneratorComponent implements OnInit {
       });
     });
   }
-
+  
   importSettingsString() {
 
     this.generatorBusy = true;
