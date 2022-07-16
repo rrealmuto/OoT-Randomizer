@@ -1,7 +1,6 @@
-import logging
 import random
 from collections import OrderedDict
-from decimal import Decimal, ROUND_HALF_UP, ROUND_UP
+from decimal import Decimal, ROUND_UP
 
 from Item import ItemFactory, ItemInfo
 from Utils import random_choices
@@ -689,13 +688,15 @@ def get_pool_core(world):
         # Songs are in the unrestricted pool even if their fill is restricted. Filter from candidates
         duplicate_candidates = [item for item in ludicrous_items_extended if item in pool and (ItemInfo.items[item].type != 'Song' or world.settings.shuffle_song_items == 'any')]
         duplicate_candidates.extend(ludicrous_items_base)
-        junk_items = [item for item in pool \
-                                    if item not in duplicate_candidates
-                                    and ItemInfo.items[item].type != 'Shop'
-                                    and ItemInfo.items[item].type != 'Song'
-                                    and not ItemInfo.items[item].trade
-                                    and item not in normal_bottles
-                                    and item not in ludicrous_exclusions]
+        junk_items = [
+            item for item in pool
+            if item not in duplicate_candidates
+            and ItemInfo.items[item].type != 'Shop'
+            and ItemInfo.items[item].type != 'Song'
+            and not ItemInfo.items[item].trade
+            and item not in normal_bottles
+            and item not in ludicrous_exclusions
+        ]
         max_extra_copies = int(Decimal(len(junk_items) / len(duplicate_candidates)).to_integral_value(rounding=ROUND_UP))
         duplicate_items = [item for item in duplicate_candidates for _ in range(max_extra_copies)]
         pool = [item if item not in junk_items else duplicate_items.pop(0) for item in pool]

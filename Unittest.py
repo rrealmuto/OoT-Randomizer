@@ -3,7 +3,6 @@
 # See `python -m unittest -h` or `pytest -h` for more options.
 
 from collections import Counter, defaultdict
-from fileinput import filename
 import json
 import logging
 import os
@@ -13,10 +12,9 @@ import unittest
 
 from EntranceShuffle import EntranceShuffleError
 from Item import ItemInfo
-from ItemPool import remove_junk_items, remove_junk_ludicrous_items, ludicrous_items_base, ludicrous_items_extended, trade_items, ludicrous_exclusions, item_groups
-from LocationList import location_groups, location_is_viewable
-from Main import main, resolve_settings, build_world_graphs, place_items
-from Search import Search
+from ItemPool import remove_junk_items, remove_junk_ludicrous_items, ludicrous_items_base, ludicrous_items_extended, trade_items, ludicrous_exclusions
+from LocationList import location_is_viewable
+from Main import main, resolve_settings, build_world_graphs
 from Settings import Settings, get_preset_files
 
 test_dir = os.path.join(os.path.dirname(__file__), 'tests')

@@ -21,7 +21,7 @@ def error(msg):
 # Run Unit Tests
 stream = StringIO()
 runner = unittest.TextTestRunner(stream=stream)
-tests = ([cls for name, cls in Tests.__dict__.items() if isinstance(cls, type) and issubclass(cls, unittest.TestCase)])
+tests = filter(lambda cls: isinstance(cls, type) and issubclass(cls, unittest.TestCase), Tests.__dict__.values())
 suite = unittest.TestSuite()
 for test in tests:
     suite.addTests(unittest.makeSuite(test))

@@ -2,8 +2,12 @@
     "name":                  "tournament",
     "gui_name":              "Tournament",
     "description":           "Hint Distribution for the S5 Tournament. 5 Goal Hints, 3 Barren Hints, 5 Sometimes hints, 7 Always hints (including skull mask).",
-    "add_locations":         [{ "location": "Deku Theater Skull Mask", "types": ["always"]}],
-    "remove_locations":      [{"location": "Ganons Castle Shadow Trial Golden Gauntlets Chest", "types": ["sometimes"]}],
+    "add_locations":         [
+        { "location": "Deku Theater Skull Mask", "types": ["always"] }
+    ],
+    "remove_locations":      [
+        {"location": "Ganons Castle Shadow Trial Golden Gauntlets Chest", "types": ["sometimes"] }
+    ],
     "add_items":             [],
     "remove_items":          [
         { "item": "Zeldas Lullaby", "types": ["goal"] }

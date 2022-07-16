@@ -814,7 +814,7 @@ def get_specific_hint(spoiler, world, checked, type):
         return None
 
     hint = random.choice(hintGroup)
-    
+
     if world.hint_dist_user['upgrade_hints'] in ['on', 'limited']:
         upgrade_list = getUpgradeHintList(world, [hint.name])
         upgrade_list = list(filter(lambda upgrade: is_not_checked([world.get_location(location) for location in getMulti(upgrade.name).locations], checked), upgrade_list))
@@ -832,7 +832,7 @@ def get_specific_hint(spoiler, world, checked, type):
             if multi:
                 return get_specific_multi_hint(spoiler, world, checked, hint)
 
-    
+
     location = world.get_location(hint.name)
     checked.add(location.name)
 
@@ -1150,7 +1150,7 @@ def buildWorldGossipHints(spoiler, world, checkedLocations=None):
 
         if world.settings.shopsanity != "off" and "Progressive Wallet" not in world.item_hints:
             world.item_hints.append("Progressive Wallet")
-                
+
 
     #Removes items from item_hints list if they are included in starting gear.
     #This method ensures that the right number of copies are removed, e.g.
@@ -1170,7 +1170,7 @@ def buildWorldGossipHints(spoiler, world, checkedLocations=None):
             world.hint_dist_user['distribution']['always']['copies'] = 1
             world.hint_dist_user['distribution']['trial']['copies'] = 1
 
-            
+
     # Load hint distro from distribution file or pre-defined settings
     #
     # 'fixed' key is used to mimic the tournament distribution, creating a list of fixed hint types to fill
