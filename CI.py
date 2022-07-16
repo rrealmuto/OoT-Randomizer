@@ -2,6 +2,10 @@
 
 import json
 import sys
+from io import StringIO
+import unittest
+
+import Unittest as Tests
 from SettingsList import logic_tricks
 from Utils import data_path
 
@@ -13,6 +17,22 @@ def error(msg):
     print(msg, file=sys.stderr)
     num_errors += 1
 
+
+# Run Unit Tests
+stream = StringIO()
+runner = unittest.TextTestRunner(stream=stream)
+tests = ([cls for name, cls in Tests.__dict__.items() if isinstance(cls, type) and issubclass(cls, unittest.TestCase)])
+suite = unittest.TestSuite()
+for test in tests:
+    suite.addTests(unittest.makeSuite(test))
+result = runner.run(suite)
+print(f'Tests run: {result.testsRun}.')
+stream.seek(0)
+print(f'Test output:\n{stream.read()}')
+if result.errors:
+    error('Unit Tests had an error, see output above.')
+
+# Check for tricks missing from Hell Mode preset.
 with open(data_path('presets_default.json'), encoding='utf-8') as f:
     presets = json.load(f)
     for trick in logic_tricks.values():

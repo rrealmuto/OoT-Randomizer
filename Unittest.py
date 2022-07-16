@@ -190,6 +190,8 @@ class TestPlandomizer(unittest.TestCase):
 
     def test_rom_patching(self):
         # This makes sure there are no crashes while patching.
+        if not os.path.exists('./ZOOTDEC.z64'):
+            self.skipTest("Base ROM file not available.")
         filename = "plando-ammo-max-out-of-bounds"
         logic_rules_settings = ['glitchless', 'glitched', 'none']
         for logic_rules_setting in logic_rules_settings:
@@ -451,6 +453,8 @@ class TestHints(unittest.TestCase):
         self.assertIn('Hyrule Castle', woth)
 
     def test_ganondorf(self):
+        if not os.path.exists('./ZOOTDEC.z64'):
+            self.skipTest("Base ROM file not available.")
         filenames = [
             "light-arrows-1",
             "light-arrows-2",
