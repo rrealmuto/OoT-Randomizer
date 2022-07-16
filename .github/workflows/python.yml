@@ -2,9 +2,9 @@ name: Python
 
 on:
   push:
-    branches: [ "Dev" ]
+    branches: [ "Dev", "Dev-R", "dev-fenhl" ]
   pull_request:
-    branches: [ "Dev" ]
+    branches: [ "Dev", "Dev-R", "dev-fenhl" ]
 
 jobs:
   build:
