@@ -350,49 +350,49 @@ def _add_boss_entrances():
             'exit_blue_warp': reverse['blue_warp']
         }
 
-    for type, source, target, boss, dungeon, index, rindex, addresses in [
+    for type, source, target, dungeon, index, rindex, addresses in [
         (
-            'ChildBoss', 'Deku Tree Boss Door', 'Gohma Boss Room', 'Queen Gohma',
+            'ChildBoss', 'Deku Tree Boss Door', 'Gohma Boss Room',
             'KF Outside Deku Tree -> Deku Tree Lobby',
             0x040f, 0x0252, [ 0xB06292, 0xBC6162, 0xBC60AE ]
         ),
         (
-            'ChildBoss', 'Dodongos Cavern Boss Door', 'King Dodongo Boss Room', 'King Dodongo',
+            'ChildBoss', 'Dodongos Cavern Boss Door', 'King Dodongo Boss Room',
             'Death Mountain -> Dodongos Cavern Beginning',
             0x040b, 0x00c5, [ 0xB062B6, 0xBC616E ]
         ),
         (
-            'ChildBoss', 'Jabu Jabus Belly Boss Door', 'Barinade Boss Room', 'Barinade',
+            'ChildBoss', 'Jabu Jabus Belly Boss Door', 'Barinade Boss Room',
             'Zoras Fountain -> Jabu Jabus Belly Beginning',
             0x0301, 0x0407, [ 0xB062C2, 0xBC60C2 ]
         ),
         (
-            'AdultBoss', 'Forest Temple Boss Door', 'Phantom Ganon Boss Room', 'Phantom Ganon',
+            'AdultBoss', 'Forest Temple Boss Door', 'Phantom Ganon Boss Room',
             'SFM Forest Temple Entrance Ledge -> Forest Temple Lobby',
             0x000c, 0x024E, [ 0xB062CE, 0xBC6182 ]
         ),
         (
-            'AdultBoss', 'Fire Temple Boss Door', 'Volvagia Boss Room', 'Volvagia',
+            'AdultBoss', 'Fire Temple Boss Door', 'Volvagia Boss Room',
             'DMC Fire Temple Entrance -> Fire Temple Lower',
             0x0305, 0x0175, [ 0xB062DA, 0xBC60CE ]
         ),
         (
-            'AdultBoss', 'Water Temple Boss Door', 'Morpha Boss Room', 'Morpha',
+            'AdultBoss', 'Water Temple Boss Door', 'Morpha Boss Room',
             'Lake Hylia -> Water Temple Lobby',
             0x0417, 0x0423, [ 0xB062E6, 0xBC6196 ]
         ),
         (
-            'AdultBoss', 'Spirit Temple Boss Door', 'Twinrova Boss Room', 'Twinrova',
+            'AdultBoss', 'Spirit Temple Boss Door', 'Twinrova Boss Room',
             'Desert Colossus -> Spirit Temple Lobby',
             0x008D, 0x02F5, [ 0xB062F2, 0xBC6122 ]
         ),
         (
-            'AdultBoss', 'Shadow Temple Boss Door', 'Bongo Bongo Boss Room', 'Bongo Bongo',
+            'AdultBoss', 'Shadow Temple Boss Door', 'Bongo Bongo Boss Room',
             'Graveyard Warp Pad Region -> Shadow Temple Entryway',
             0x0413, 0x02B2, [ 0xB062FE, 0xBC61AA ]
         )
     ]:
-        d = {'index': index, 'patch_addresses': addresses, 'boss': boss}
+        d = {'index': index, 'patch_addresses': addresses}
         d.update(dungeon_data[dungeon])
         entrance_shuffle_table.append(
             (type, (f"{source} -> {target}", d), (f"{target} -> {source}", {'index': rindex}))

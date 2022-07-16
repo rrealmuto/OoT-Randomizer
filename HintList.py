@@ -263,10 +263,10 @@ conditional_sometimes = {
 # & is a new line
 # @ will print the player name
 # # sets color to white (currently only used for dungeon reward hints).
-# 
+#
 # sfx IDs (see junk hints 1090 and 1174 for examples of how to use them): https://wiki.cloudmodding.com/oot/Sound_Effect_Ids
 # Some sound effects loop infinitely, like child link drinking from a bottle, so make sure you test them.
-# 
+#
 # How to use button icons in hints (see junk hint 1180 for an example):
 #   \u009F      A
 #   \u00A0      B
@@ -282,7 +282,16 @@ conditional_sometimes = {
 #   \u00AA      Joystick
 
 hintTable = {
-    'Triforce Piece':                                           (["a triumph fork", "cheese", "a gold fragment"], "a Piece of the Triforce", "item"),
+    'Kokiri Emerald':                                           (["a tree's farewell", "the Spiritual Stone of the Forest"], "the Kokiri Emerald", 'item'),
+    'Goron Ruby':                                               (["the Gorons' hidden treasure", "the Spiritual Stone of Fire"], "the Goron Ruby", 'item'),
+    'Zora Sapphire':                                            (["an engagement ring", "the Spiritual Stone of Water"], "the Zora Sapphire", 'item'),
+    'Light Medallion':                                          (["Rauru's sagely power", "a yellow disc"], "the Light Medallion", 'item'),
+    'Forest Medallion':                                         (["Saria's sagely power", "a green disc"], "the Forest Medallion", 'item'),
+    'Fire Medallion':                                           (["Darunia's sagely power", "a red disc"], "the Fire Medallion", 'item'),
+    'Water Medallion':                                          (["Ruto's sagely power", "a blue disc"], "the Water Medallion", 'item'),
+    'Shadow Medallon':                                          (["Impa's sagely power", "a purple disc"], "the Shadow Medallion", 'item'),
+    'Spirit Medallion':                                         (["Nabooru's sagely power", "an orange disc"], "the Spirit Medallion", 'item'),
+    'Triforce Piece':                                           (["a triumph fork", "cheese", "a gold fragment"], "a Piece of the Triforce", 'item'),
     'Magic Meter':                                              (["mystic training", "pixie dust", "a green rectangle"], "a Magic Meter", 'item'),
     'Double Defense':                                           (["a white outline", "damage decrease", "strengthened love"], "Double Defense", 'item'),
     'Slingshot':                                                (["a seed shooter", "a rubberband", "a child's catapult"], "a Slingshot", 'item'),

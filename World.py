@@ -564,10 +564,7 @@ class World(object):
                     new_exit.rule_string = rule
                     if self.settings.logic_rules != 'none':
                         self.parser.parse_spot_rule(new_exit)
-                    if new_exit.never:
-                        logging.getLogger('').debug('Dropping unreachable exit: %s', new_exit.name)
-                    else:
-                        new_region.exits.append(new_exit)
+                    new_region.exits.append(new_exit)
             self.regions.append(new_region)
 
 
@@ -1110,18 +1107,6 @@ class World(object):
     def get_shuffled_entrances(self, type=None, only_primary=False):
         return [entrance for entrance in self.get_shufflable_entrances(type=type, only_primary=only_primary) if entrance.shuffled]
 
-
-    def get_boss_map(self):
-        map = dict((boss, boss) for boss in self.boss_location_names)
-        if self.settings.shuffle_bosses == 'off':
-            return map
-
-        for type in ('ChildBoss', 'AdultBoss'):
-            for entrance in self.get_shuffled_entrances(type, True):
-                if 'boss' not in entrance.data:
-                    continue
-                map[entrance.data['boss']] = entrance.replaces.data['boss']
-        return map
 
     def region_has_shortcuts(self, region_name):
         region = self.get_region(region_name)
