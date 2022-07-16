@@ -38,9 +38,11 @@ class Hint(object):
                 self.text = text[choice]
 
 class Multi(object):
+    name = ""
     locations = []
 
-    def __init__(self, locations):
+    def __init__(self, name, locations):
+        self.name = name
         self.locations = locations
 
 def getHint(name, clearer_hint=False):
@@ -54,7 +56,7 @@ def getHint(name, clearer_hint=False):
 
 def getMulti(name):
     locations = multiTable[name]
-    return Multi(locations)
+    return Multi(name, locations)
 
 def getHintGroup(group, world):
     ret = []
@@ -120,6 +122,38 @@ def getRequiredHints(world):
             ret.append(hint)
     return ret
 
+# Get the multi hints containing the list of locations for a possible hint upgrade.
+def getUpgradeHintList(world, locations):
+    ret = []
+    for name in multiTable:
+        if name not in hintExclusions(world):
+            hint = getHint(name, world.settings.clearer_hints)
+            multi = getMulti(name)
+
+            if len(locations) < len(multi.locations) and all(location in multi.locations for location in locations) and (hint.name not in conditional_sometimes.keys() or conditional_sometimes[hint.name](world)):
+                accepted_type = False
+
+                for hint_type in hint.type:
+                    type_override = False
+                    if hint_type in world.hint_type_overrides:
+                        if name in world.hint_type_overrides[hint_type]:
+                            type_override = True
+                    if hint_type in world.item_hint_type_overrides:
+                        for locationName in multi.locations:
+                            if locationName not in hintExclusions(world):
+                                location = world.get_location(locationName)
+                                if location.item.name in world.item_hint_type_overrides[hint_type]:
+                                    type_override = True
+
+                    if world.hint_dist_user['upgrade_hints'] == 'limited':
+                        if world.hint_dist_user['distribution'][hint_type]['copies'] > 0:
+                            accepted_type = True
+                    if not type_override:
+                        accepted_type = True
+
+                if accepted_type:
+                    ret.append(hint)
+    return ret
 
 # Helpers for conditional always hints
 def stones_required_by_settings(world):
@@ -493,7 +527,7 @@ hintTable = {
     'HF Ocarina of Time Retrieval':                                ("during her escape, #Princess Zelda# entrusted you with both...^", None, 'dual'),
     'HF Valley Grotto':                                            ("in a grotto full of #spider webs# a cow and a spider hold respectively...^", None, 'dual'),
     'Market Bombchu Bowling Rewards':                              ("at the #Bombchu Bowling Alley#, the first and second prizes are...^", None, 'dual'),
-    'ZR Frogs Rewards':                                            ("the #Frogs of Zora River#, for giving them rain and a great performance, will reward you with...", None, 'dual'),
+    'ZR Frogs Rewards':                                            ("the #Frogs of Zora River#, for giving them rain and a great performance, will reward you with...^", None, 'dual'),
     'LH Lake Lab Pool':                                            ("inside a #lakeside lab# a person and a spider hold respectively...^", None, 'dual'),
     'LH Adult Bean Destination Checks':                            ("#riding the bean platform# of the lake to the lab's roof and the fishing hole leads to...^", None, 'dual'),
     'GV Pieces of Heart Ledges':                                   ("within the #valley#, the crate and waterfall conceal respectively...^", None, 'dual'),
@@ -1641,7 +1675,6 @@ multiTable = {
     'Spirit Temple MQ Child Top':                               ['Spirit Temple MQ Sun Block Room Chest', 'Spirit Temple MQ GS Sun Block Room'],
     'Spirit Temple MQ Symphony Room':                           ['Spirit Temple MQ Symphony Room Chest', 'Spirit Temple MQ GS Symphony Room'],
     'Spirit Temple MQ Throne Room GS':                          ['Spirit Temple MQ GS Nine Thrones Room West', 'Spirit Temple MQ GS Nine Thrones Room North'],
-    'Shadow Temple Upper Checks':                               ['Shadow Temple Map Chest', 'Shadow Temple Hover Boots Chest'],
     'Shadow Temple Invisible Blades Chests':                    ['Shadow Temple Invisible Blades Visible Chest', 'Shadow Temple Invisible Blades Invisible Chest'],
     'Shadow Temple Single Pot Room':                            ['Shadow Temple Freestanding Key', 'Shadow Temple GS Single Giant Pot'],
     'Shadow Temple Spike Walls Room':                           ['Shadow Temple Spike Walls Left Chest', 'Shadow Temple Boss Key Chest'],

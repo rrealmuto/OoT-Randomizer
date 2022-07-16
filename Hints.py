@@ -8,14 +8,14 @@ import json
 from enum import Enum
 import itertools
 
-from HintList import getHint, getMulti, getHintGroup, hintExclusions, misc_item_hint_table
+from HintList import getHint, getMulti, getHintGroup, getUpgradeHintList, hintExclusions, misc_item_hint_table
 from Item import MakeEventItem
 from ItemPool import eggs
 from Messages import COLOR_MAP, update_message_by_id
 from Region import Region
 from Search import Search
 from TextBox import line_wrap
-from Utils import random_choices, data_path, read_json
+from Utils import random_choices, data_path
 
 
 bingoBottlesForHints = (
@@ -814,6 +814,25 @@ def get_specific_hint(spoiler, world, checked, type):
         return None
 
     hint = random.choice(hintGroup)
+    
+    if world.hint_dist_user['upgrade_hints'] in ['on', 'limited']:
+        upgrade_list = getUpgradeHintList(world, [hint.name])
+        upgrade_list = list(filter(lambda upgrade: is_not_checked([world.get_location(location) for location in getMulti(upgrade.name).locations], checked), upgrade_list))
+
+        if upgrade_list is not None:
+            multi = None
+
+            for upgrade in upgrade_list:
+                upgrade_multi = getMulti(upgrade.name)
+
+                if not multi or len(multi.locations) < len(upgrade_multi.locations):
+                    hint = upgrade
+                    multi = getMulti(hint.name)
+
+            if multi:
+                return get_specific_multi_hint(spoiler, world, checked, hint)
+
+    
     location = world.get_location(hint.name)
     checked.add(location.name)
 
@@ -843,7 +862,7 @@ def get_overworld_hint(spoiler, world, checked):
 def get_dungeon_hint(spoiler, world, checked):
     return get_specific_hint(spoiler, world, checked, 'dungeon')
 
-def get_multi_hint(spoiler, world, checked, type):
+def get_random_multi_hint(spoiler, world, checked, type):
     hint_group = getHintGroup(type, world)
     multi_hints = list(filter(lambda hint: is_not_checked([world.get_location(location) for location in getMulti(hint.name).locations], checked), hint_group))
 
@@ -851,6 +870,24 @@ def get_multi_hint(spoiler, world, checked, type):
         return None
 
     hint = random.choice(multi_hints)
+
+    if world.hint_dist_user['upgrade_hints'] in ['on', 'limited']:
+        multi = getMulti(hint.name)
+
+        upgrade_list = getUpgradeHintList(world, multi.locations)
+        upgrade_list = list(filter(lambda upgrade: is_not_checked([world.get_location(location) for location in getMulti(upgrade.name).locations], checked), upgrade_list))
+
+        if upgrade_list:
+            for upgrade in upgrade_list:
+                upgrade_multi = getMulti(upgrade.name)
+
+                if len(multi.locations) < len(upgrade_multi.locations):
+                    hint = upgrade
+                    multi = getMulti(hint.name)
+
+    return get_specific_multi_hint(spoiler, world, checked, hint)
+
+def get_specific_multi_hint(spoiler, world, checked, hint):
     multi = getMulti(hint.name)
     locations = [world.get_location(location) for location in multi.locations]
 
@@ -879,7 +916,7 @@ def get_multi_hint(spoiler, world, checked, type):
     return (GossipText(gossip_string % tuple(text_segments), colors, [location.name for location in locations], [item.name for item in items]), locations)
 
 def get_dual_hint(spoiler, world, checked):
-    return get_multi_hint(spoiler, world, checked, 'dual')
+    return get_random_multi_hint(spoiler, world, checked, 'dual')
 
 def get_entrance_hint(spoiler, world, checked):
     if not world.entrance_shuffle:
@@ -982,13 +1019,15 @@ def buildBingoHintList(boardURL):
     except (URLError, HTTPError) as e:
         logger = logging.getLogger('')
         logger.info(f"Could not retrieve board info. Using default bingo hints instead: {e}")
-        genericBingo = read_json(data_path('Bingo/generic_bingo_hints.json'))
+        with open(data_path('Bingo/generic_bingo_hints.json'), 'r') as bingoFile:
+            genericBingo = json.load(bingoFile)
         return genericBingo['settings']['item_hints']
 
     # Goal list returned from Bingosync is a sequential list of all of the goals on the bingo board, starting at top-left and moving to the right.
     # Each goal is a dictionary with attributes for name, slot, and colours. The only one we use is the name
     goalList = [goal['name'] for goal in json.loads(goalList)]
-    goalHintRequirements = read_json(data_path('Bingo/bingo_goals.json'))
+    with open(data_path('Bingo/bingo_goals.json'), 'r') as bingoFile:
+        goalHintRequirements = json.load(bingoFile)
 
     hintsToAdd = {}
     for goal in goalList:
@@ -1097,7 +1136,8 @@ def buildWorldGossipHints(spoiler, world, checkedLocations=None):
     # Create list of items for which we want hints. If Bingosync URL is supplied, include items specific to that bingo.
     # If not (or if the URL is invalid), use generic bingo hints
     if world.settings.hint_dist == "bingo":
-        bingoDefaults = read_json(data_path('Bingo/generic_bingo_hints.json'))
+        with open(data_path('Bingo/generic_bingo_hints.json'), 'r') as bingoFile:
+            bingoDefaults = json.load(bingoFile)
         if world.bingosync_url is not None and world.bingosync_url.startswith("https://bingosync.com/"): # Verify that user actually entered a bingosync URL
             logger = logging.getLogger('')
             logger.info("Got Bingosync URL. Building board-specific goals.")
@@ -1531,7 +1571,8 @@ def HintDistFiles():
 def HintDistList():
     dists = {}
     for d in HintDistFiles():
-        dist = read_json(d)
+        with open(d, 'r') as dist_file:
+            dist = json.load(dist_file)
         dist_name = dist['name']
         gui_name = dist['gui_name']
         dists.update({ dist_name: gui_name })
@@ -1547,7 +1588,8 @@ def HintDistTips():
             tips = tips + "\n"
         else:
             first_dist = False
-        dist = read_json(d)
+        with open(d, 'r') as dist_file:
+            dist = json.load(dist_file)
         gui_name = dist['gui_name']
         desc = dist['description']
         i = 0

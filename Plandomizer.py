@@ -1145,13 +1145,9 @@ class Distribution(object):
                         world.update({k: self.src_dict[k]})
 
         # normalize starting items to use the dictionary format
+        starting_items = itertools.chain(self.settings.starting_equipment, self.settings.starting_songs)
         data = defaultdict(lambda: StarterRecord(0))
         if isinstance(self.settings.starting_items, dict) and self.settings.starting_items:
-            if self.settings.starting_equipment:
-                raise ValueError('Incompatible starting item settings. Either move starting_equipment into starting_items or make starting_items a list')
-            if self.settings.starting_songs:
-                raise ValueError('Incompatible starting item settings. Either move starting_songs into starting_items or make starting_items a list')
-
             world_names = ['World %d' % (i + 1) for i in range(len(self.world_dists))]
             for name, record in self.settings.starting_items.items():
                 if name in world_names:
@@ -1161,22 +1157,23 @@ class Distribution(object):
                     data[name] = record if isinstance(record, StarterRecord) else StarterRecord(record)
             add_starting_ammo(data)
         else:
-            for itemsetting in itertools.chain(self.settings.starting_equipment, self.settings.starting_items, self.settings.starting_songs):
-                if itemsetting in StartingItems.everything:
-                    item = StartingItems.everything[itemsetting]
-                    if not item.special:
-                        add_starting_item_with_ammo(data, item.itemname)
-                    else:
-                        if item.itemname == 'Rutos Letter' and self.settings.zora_fountain != 'open':
-                            data['Rutos Letter'].count += 1
-                        elif item.itemname in ['Bottle', 'Rutos Letter']:
-                            data['Bottle'].count += 1
-                        else:
-                            raise KeyError("invalid special item: {}".format(item.itemname))
+            starting_items = itertools.chain(self.settings.starting_equipment, self.settings.starting_items, self.settings.starting_songs)
+        for itemsetting in starting_items:
+            if itemsetting in StartingItems.everything:
+                item = StartingItems.everything[itemsetting]
+                if not item.special:
+                    add_starting_item_with_ammo(data, item.itemname)
                 else:
-                    raise KeyError("invalid starting item: {}".format(itemsetting))
-            self.settings.starting_equipment = []
-            self.settings.starting_songs = []
+                    if item.itemname == 'Rutos Letter' and self.settings.zora_fountain != 'open':
+                        data['Rutos Letter'].count += 1
+                    elif item.itemname in ['Bottle', 'Rutos Letter']:
+                        data['Bottle'].count += 1
+                    else:
+                        raise KeyError("invalid special item: {}".format(item.itemname))
+            else:
+                raise KeyError("invalid starting item: {}".format(itemsetting))
+        self.settings.starting_equipment = []
+        self.settings.starting_songs = []
         # add hearts
         if self.settings.starting_hearts > 3:
             num_hearts_to_collect = self.settings.starting_hearts - 3

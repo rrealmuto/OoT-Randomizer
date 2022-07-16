@@ -54,7 +54,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Load Triforce model into a file
     triforce_obj_file = File({ 'Name': 'object_gi_triforce' })
     triforce_obj_file.copy(rom)
-    with open(data_path('triforce.bin'), 'rb') as stream:
+    with open(data_path('Triforce.zobj'), 'rb') as stream:
         obj_data = stream.read()
         rom.write_bytes(triforce_obj_file.start, obj_data)
         triforce_obj_file.end = triforce_obj_file.start + len(obj_data)
@@ -78,6 +78,17 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     update_dmadata(rom, dd_obj_file)
     # Add it to the extended object table
     add_to_extended_object_table(rom, 0x194, dd_obj_file)
+
+    # Load Key Ring model into a file
+    keyring_obj_file = File({ 'Name': 'object_gi_keyring' })
+    keyring_obj_file.copy(rom)
+    with open(data_path('KeyRing.zobj'), 'rb') as stream:
+        obj_data = stream.read()
+        rom.write_bytes(keyring_obj_file.start, obj_data)
+        keyring_obj_file.end = keyring_obj_file.start + len(obj_data)
+    update_dmadata(rom, keyring_obj_file)
+    # Add it to the extended object table
+    add_to_extended_object_table(rom, 0x195, keyring_obj_file)
 
     # Build Easter Egg models in several colors from the Weird Egg model
     for egg_idx, (primary_color, env_color) in enumerate((
@@ -125,6 +136,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Create an option so that recovery hearts no longer drop by changing the code which checks Link's health when an item is spawned.
     if world.settings.no_collectible_hearts:
         rom.write_byte(0xA895B7, 0x2E)
+    # Remove color commands inside certain object display lists
+    rom.write_int32s(0x1455818, [0x00000000, 0x00000000, 0x00000000, 0x00000000]) # Small Key
+    rom.write_int32s(0x14B9F20, [0x00000000, 0x00000000, 0x00000000, 0x00000000]) # Boss Key
 
     # Force language to be English in the event a Japanese rom was submitted
     rom.write_byte(0x3E, 0x45)
@@ -1661,8 +1675,18 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     if world.settings.damage_multiplier == 'ohko':
         rom.write_byte(rom.sym('CFG_DAMAGE_MULTIPLYER'), 3)
 
-    if world.settings.deadly_bonks:
+    if world.settings.deadly_bonks != 'none':
         rom.write_int32(rom.sym('CFG_DEADLY_BONKS'), 1)
+        if world.settings.deadly_bonks == 'half':
+            rom.write_int16(rom.sym('CFG_BONK_DAMAGE'), 0x0004)
+        if world.settings.deadly_bonks == 'normal':
+            rom.write_int16(rom.sym('CFG_BONK_DAMAGE'), 0x0008)
+        if world.settings.deadly_bonks == 'double':
+            rom.write_int16(rom.sym('CFG_BONK_DAMAGE'), 0x0010)
+        if world.settings.deadly_bonks == 'quadruple':
+            rom.write_int16(rom.sym('CFG_BONK_DAMAGE'), 0x0020)
+        if world.settings.deadly_bonks == 'ohko':
+            rom.write_int16(rom.sym('CFG_BONK_DAMAGE'), 0xFFFE)
 
     # Patch songs and boss rewards
     for location in world.get_filled_locations():

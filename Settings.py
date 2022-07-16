@@ -83,7 +83,14 @@ class Settings:
             i_bits = []
             if setting.name in ('starting_equipment', 'starting_items', 'starting_songs'):
                 items = {'starting_equipment': StartingItems.equipment, 'starting_items': StartingItems.inventory, 'starting_songs': StartingItems.songs}[setting.name]
-                value = [entry.settingname for entry in items.values() if entry.itemname in self.starting_items and self.starting_items[entry.itemname].count > entry.i]
+                value = []
+                for entry in items.values():
+                    if entry.itemname in self.starting_items:
+                        count = self.starting_items[entry.itemname]
+                        if not isinstance(count, int):
+                            count = count.count
+                        if count > entry.i:
+                            value.append(entry.settingname)
             if setting.type == bool:
                 i_bits = [ 1 if value else 0 ]
             elif setting.type == str:

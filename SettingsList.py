@@ -647,14 +647,6 @@ logic_tricks = {
                     Note that jumps of this distance are inconsistent, but
                     still possible.
                     '''},
-    'Shadow Temple MQ After Wind Gold Skulltula with Nothing': {
-        'name'    : 'logic_shadow_mq_after_wind_gs',
-        'tags'    : ("Shadow Temple", "Skulltulas",),
-        'tooltip' : '''\
-                    The Gold Skulltula in the rubble pile can be killed
-                    with a sword slash without blowing up the rubble. The
-                    reward will appear above the rubble pile.
-                    '''},
     'Backflip over Mido as Adult': {
         'name'    : 'logic_mido_backflip',
         'tags'    : ("the Lost Woods",),
@@ -4771,7 +4763,7 @@ setting_infos = [
         },
         gui_tooltip    = '''\
             'Ludicrous': Every item in the game is a major
-            item.
+            item. Incompatible with one major item per dungeon.
 
             'Plentiful': One additional copy of each major 
             item is added.
@@ -4790,6 +4782,9 @@ setting_infos = [
             available.
         ''',
         shared         = True,
+        disable        = {
+            'ludicrous':  {'settings': ['one_item_per_dungeon']}
+        }
     ),
     Combobox(
         name           = 'damage_multiplier',
@@ -4809,15 +4804,24 @@ setting_infos = [
         ''',
         shared         = True,
     ),
-    Checkbutton(
+    Combobox(
         name           = 'deadly_bonks',
-        gui_text       = 'One Bonk KO',
+        gui_text       = 'Bonks Do Damage',
+        default        = 'none',
+        choices        = {
+            'none':      'No Damage',
+            'half':      'Quarter Heart',
+            'normal':    'Half Heart',
+            'double':    'Whole Heart',
+            'quadruple': 'Two Hearts',
+            'ohko':      'One Bonk KO',
+        },
         gui_tooltip    = '''\
             When rolling, hitting a wall or object
-            will kill Link.
+            will hurt Link. Damage is unaffected
+            by the damage multiplier setting.
         ''',
         shared         = True,
-        default        = False,
     ),
     Combobox(
         name           = 'starting_tod',

@@ -9,6 +9,13 @@ from Utils import random_choices
 
 # Generates item pools and places fixed items based on settings.
 
+eggs = [
+    'Easter Egg (Pink)',
+    'Easter Egg (Orange)',
+    'Easter Egg (Green)',
+    'Easter Egg (Blue)',
+]
+
 plentiful_items = ([
     'Biggoron Sword',
     'Boomerang',
@@ -36,30 +43,22 @@ plentiful_items = ([
     ['Heart Container'] * 8
 )
 
+# Ludicrous replaces all health upgrades with heart containers
+# as done in plentiful. The item list is used separately to
+# dynamically replace all junk with even levels of each item.
+ludicrous_health = ['Heart Container'] * 8
+
 # List of items that can be multiplied in ludicrous mode.
 # Used to filter the pre-plando pool for candidates instead
 # of appending directly, making this list settings-independent.
-# Excludes Gold Skulltula Tokens and Triforce Pieces as they
-# are directly tied to win conditions and already have a large
-# count relative to available locations in the game.
+# Excludes Gold Skulltula Tokens, Triforce Pieces, and health
+# upgrades as they are directly tied to win conditions and
+# already have a large count relative to available locations
+# in the game.
 #
-# Item order is arranged to maximize subjectively useful item
-# duplicates when remaining available locations is less than
-# a full duplicate set.
-ludicrous_items = [
-    'Zeldas Lullaby',
-    'Eponas Song',
-    'Suns Song',
-    'Sarias Song',
-    'Song of Time',
-    'Song of Storms',
-    'Minuet of Forest',
-    'Prelude of Light',
-    'Bolero of Fire',
-    'Serenade of Water',
-    'Nocturne of Shadow',
-    'Requiem of Spirit',
-    'Ocarina',
+# Base items will always be candidates to replace junk items,
+# even if the player starts with all "normal" copies of an item.
+ludicrous_items_base = [
     'Light Arrows',
     'Megaton Hammer',
     'Progressive Hookshot',
@@ -69,24 +68,7 @@ ludicrous_items = [
     'Mirror Shield',
     'Boomerang',
     'Iron Boots',
-    'Kokiri Sword',
     'Fire Arrows',
-    'Boss Key (Ganons Castle)',
-    'Boss Key (Forest Temple)',
-    'Boss Key (Fire Temple)',
-    'Boss Key (Water Temple)',
-    'Boss Key (Shadow Temple)',
-    'Boss Key (Spirit Temple)',
-    'Gerudo Membership Card',
-    'Small Key (Thieves Hideout)',
-    'Small Key (Shadow Temple)',
-    'Small Key (Ganons Castle)',
-    'Small Key (Forest Temple)',
-    'Small Key (Spirit Temple)',
-    'Small Key (Fire Temple)',
-    'Small Key (Water Temple)',
-    'Small Key (Bottom of the Well)',
-    'Small Key (Gerudo Training Ground)',
     'Progressive Scale',
     'Progressive Wallet',
     'Magic Meter',
@@ -103,11 +85,61 @@ ludicrous_items = [
     'Nayrus Love',
     'Stone of Agony',
     'Ice Arrows',
-    'Magic Bean Pack',
     'Deku Stick Capacity',
     'Deku Nut Capacity'
 ]
 
+ludicrous_items_extended = [
+    'Zeldas Lullaby',
+    'Eponas Song',
+    'Suns Song',
+    'Sarias Song',
+    'Song of Time',
+    'Song of Storms',
+    'Minuet of Forest',
+    'Prelude of Light',
+    'Bolero of Fire',
+    'Serenade of Water',
+    'Nocturne of Shadow',
+    'Requiem of Spirit',
+    'Ocarina',
+    'Kokiri Sword',
+    'Boss Key (Ganons Castle)',
+    'Boss Key (Forest Temple)',
+    'Boss Key (Fire Temple)',
+    'Boss Key (Water Temple)',
+    'Boss Key (Shadow Temple)',
+    'Boss Key (Spirit Temple)',
+    'Gerudo Membership Card',
+    'Small Key (Thieves Hideout)',
+    'Small Key (Shadow Temple)',
+    'Small Key (Ganons Castle)',
+    'Small Key (Forest Temple)',
+    'Small Key (Spirit Temple)',
+    'Small Key (Fire Temple)',
+    'Small Key (Water Temple)',
+    'Small Key (Bottom of the Well)',
+    'Small Key (Gerudo Training Ground)',
+    'Small Key Ring (Thieves Hideout)',
+    'Small Key Ring (Shadow Temple)',
+    'Small Key Ring (Ganons Castle)',
+    'Small Key Ring (Forest Temple)',
+    'Small Key Ring (Spirit Temple)',
+    'Small Key Ring (Fire Temple)',
+    'Small Key Ring (Water Temple)',
+    'Small Key Ring (Bottom of the Well)',
+    'Small Key Ring (Gerudo Training Ground)',
+    'Magic Bean Pack'
+]
+
+ludicrous_exclusions = [
+    'Triforce Piece',
+    'Gold Skulltula Token',
+    'Rutos Letter',
+    'Heart Container',
+    'Piece of Heart',
+    'Piece of Heart (Treasure Chest Game)'
+] + eggs
 
 item_difficulty_max = {
     'ludicrous': {
@@ -221,13 +253,6 @@ IGNORE_LOCATION = 'Recovery Heart'
 
 pending_junk_pool = []
 junk_pool = []
-
-eggs = [
-    'Easter Egg (Pink)',
-    'Easter Egg (Orange)',
-    'Easter Egg (Green)',
-    'Easter Egg (Blue)',
-]
 
 exclude_from_major = [ 
     'Deliver Letter',
@@ -367,6 +392,9 @@ def get_pool_core(world):
             pending_junk_pool.append('Boss Key (Ganons Castle)')
         if world.settings.shuffle_song_items == 'any':
             pending_junk_pool.extend(song_list)
+
+    if world.settings.item_pool_value == 'ludicrous':
+        pending_junk_pool.extend(ludicrous_health)
 
     if world.settings.triforce_hunt:
         if world.settings.easter_egg_hunt:
@@ -656,42 +684,51 @@ def get_pool_core(world):
             pool.append(pending_item)
 
     if world.settings.item_pool_value == 'ludicrous':
-        pending_junk_pool.extend(['Heart Container'] * 8)
         # Replace all junk items with major items
         # Overrides plando'd junk items
         # Songs are in the unrestricted pool even if their fill is restricted. Filter from candidates
-        duplicate_candidates = [item for item in ludicrous_items if item in pool and (ItemInfo.items[item].type != 'Song' or world.settings.shuffle_song_items == 'any')]
+        duplicate_candidates = [item for item in ludicrous_items_extended if item in pool and (ItemInfo.items[item].type != 'Song' or world.settings.shuffle_song_items == 'any')]
+        duplicate_candidates.extend(ludicrous_items_base)
         junk_items = [item for item in pool \
-                                    if item not in ludicrous_items
+                                    if item not in duplicate_candidates
                                     and ItemInfo.items[item].type != 'Shop'
+                                    and ItemInfo.items[item].type != 'Song'
                                     and not ItemInfo.items[item].trade
-                                    and item != 'Triforce Piece'
-                                    and item not in eggs
-                                    and item != 'Gold Skulltula Token'
                                     and item not in normal_bottles
-                                    and item != 'Rutos Letter'
-                                    and item != 'Piece of Heart'
-                                    and item != 'Piece of Heart (Treasure Chest Game)']
+                                    and item not in ludicrous_exclusions]
         max_extra_copies = int(Decimal(len(junk_items) / len(duplicate_candidates)).to_integral_value(rounding=ROUND_UP))
         duplicate_items = [item for item in duplicate_candidates for _ in range(max_extra_copies)]
         pool = [item if item not in junk_items else duplicate_items.pop(0) for item in pool]
         # Handle bottles separately since only 4 can be obtained
-        if world.settings.zora_fountain != 'open':
-            removed_bottles = []
-            for item in pool:
-                if item in normal_bottles:
-                    removed_bottles.append(item)
-            for item in removed_bottles:
+        pool_bottles = 0
+        pool_letters = 0
+        for item in pool:
+            if item == 'Rutos Letter':
                 pool.remove(item)
-            for i in range(min(len(removed_bottles), max_extra_copies)):
+                pool_bottles += 1
+                pool_letters += 1
+            if item in normal_bottles:
+                pool.remove(item)
+                pool_bottles += 1
+        letter_adds = 0
+        # No Rutos Letters in the pool could be due to open fountain or starting with one
+        if pool_letters > 0:
+            # Enforce max 2 Rutos Letters to balance out regular bottle availability
+            letter_adds = min(2, max_extra_copies)
+            for _ in range(letter_adds):
                 pool.append('Rutos Letter')
-            for i in range(max(len(removed_bottles) - max_extra_copies, 0)):
-                bottle = random.choice(normal_bottles)
-                pool.append(bottle)
+        # Dynamically add bottles back to pool, accounting for starting items
+        for _ in range(pool_bottles - letter_adds):
+            bottle = random.choice(normal_bottles)
+            pool.append(bottle)
         # Disabled locations use the #Junk group for fill.
         # Update pattern matcher since all normal junk is removed.
         item_groups['Junk'] = remove_junk_ludicrous_items
         world.distribution.distribution.search_groups['Junk'] = remove_junk_ludicrous_items
+    else:
+        # Fix for unit tests reusing globals after ludicrous pool mutates them
+        item_groups['Junk'] = remove_junk_items
+        world.distribution.distribution.search_groups['Junk'] = remove_junk_items
 
     world.distribution.collect_starters(world.state)
 
