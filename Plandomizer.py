@@ -1175,7 +1175,7 @@ class Distribution(object):
         self.settings.starting_equipment = []
         self.settings.starting_songs = []
         # add hearts
-        if self.settings.starting_hearts > 3:
+        if self.settings.starting_hearts > 3 and 'Piece of Heart' not in self.settings.starting_items and 'Heart Container' not in self.settings.starting_items:
             num_hearts_to_collect = self.settings.starting_hearts - 3
             if self.settings.item_pool_value in ('plentiful', 'ludicrous'):
                 if self.settings.starting_hearts >= 20:

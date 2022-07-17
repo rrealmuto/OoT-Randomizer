@@ -1923,7 +1923,7 @@ setting_infos = [
     Setting_Info('output_file',       str, None, None, False, {}),
     Checkbutton(
         name           = 'show_seed_info',
-        gui_text       = 'Show seed info on file screen',
+        gui_text       = 'Show Seed Info on File Screen',
         shared         = True,
         gui_tooltip    = '''\
             Display the version number, generation time, and user
@@ -1940,7 +1940,7 @@ setting_infos = [
     Setting_Info(
         name           = 'user_message',
         type           = str,
-        gui_text       = "User-configurable message",
+        gui_text       = "User-Configurable Message",
         shared         = True,
         gui_type       = "Textinput",
         choices        = {},

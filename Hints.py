@@ -403,20 +403,23 @@ class HintArea(Enum):
             text = getHint(self.dungeon_name, clearer_hints).text
         else:
             text = str(self)
-        if '#' not in text:
-            text = f'#{text}#'
-        if world is not None:
+        prefix, suffix = text.replace('#', '').split(' ', 1)
+        if world is None:
+            if prefix == "Link's":
+                text = f"@'s {suffix}"
+        else:
             replace_prefixes = ('a', 'an', 'the')
             move_prefixes = ('outside', 'inside')
-            prefix, suffix = text.split(' ', 1)
             if prefix in replace_prefixes:
-                text = f"#world {world}'s {suffix.replace('#', '')}#"
+                text = f"world {world}'s {suffix}"
             elif prefix in move_prefixes:
-                text = f"#{prefix} world {world}'s {suffix.replace('#', '')}#"
+                text = f"{prefix} world {world}'s {suffix}"
             elif prefix == "Link's":
-                text = f"#player {world}'s {suffix.replace('#', '')}#"
+                text = f"player {world}'s {suffix}"
             else:
-                text = f"#world {world}'s {text.replace('#', '')}#"
+                text = f"world {world}'s {text}"
+        if '#' not in text:
+            text = f'#{text}#'
         if preposition and self.preposition(clearer_hints) is not None:
             text = f'{self.preposition(clearer_hints)} {text}'
         return text
