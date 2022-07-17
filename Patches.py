@@ -2056,7 +2056,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
                     compass_message = "\x13\x75\x08\x05\x42\x0F\x05\x40 found the \x05\x41Compass\x05\x40\x01for %s\x05\x40!\x09" % (dungeon_name)
                 elif False: #TODO enable if boss reward shuffle and/or mixed pools bosses are on
                     vanilla_reward = world.get_location(boss_name).vanilla_item
-                    vanilla_reward_location = next(filter(lambda loc: loc.item.name == vanilla_reward.name, world.get_filled_locations()))
+                    vanilla_reward_location = world.hinted_dungeon_reward_locations[vanilla_reward.name]
                     area = HintArea.at(vanilla_reward_location).text(world.settings.clearer_hints, preposition=True)
                     compass_message = "\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for %s\x05\x40!\x01The %s can be found\x01%s!\x09" % (dungeon_name, vanilla_reward, area)
                 else:
