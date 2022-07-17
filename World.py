@@ -33,6 +33,7 @@ class World(object):
         self.shop_prices = {}
         self.scrub_prices = {}
         self.maximum_wallets = 0
+        self.hinted_dungeon_reward_locations = {}
         self.misc_hint_item_locations = {}
         self.triforce_count = 0
         self.total_starting_triforce_count = 0
@@ -225,6 +226,7 @@ class World(object):
 
         self.always_hints = [hint.name for hint in getRequiredHints(self)]
 
+        self.dungeon_rewards_hinted = 'altar' in settings.misc_hints or settings.enhance_map_compass
         self.misc_hint_items = {hint_type: self.hint_dist_user.get('misc_hint_items', {}).get(hint_type, data['default_item']) for hint_type, data in misc_item_hint_table.items()}
 
         self.state = State(self)

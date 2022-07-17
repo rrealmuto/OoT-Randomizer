@@ -410,7 +410,9 @@
         "region_name": "Temple of Time",
         "hint": "TEMPLE_OF_TIME",
         "locations": {
-            "ToT Light Arrows Cutscene": "is_adult and can_trigger_lacs"
+            "ToT Light Arrows Cutscene": "is_adult and can_trigger_lacs",
+            "ToT Child Altar Hint": "is_child",
+            "ToT Adult Altar Hint": "is_adult"
         },
         "exits": {
             "Market": "True",

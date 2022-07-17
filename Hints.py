@@ -304,7 +304,7 @@ class HintAreaNotFound(RuntimeError):
 class HintArea(Enum):
     # internal name          prepositions        display name                  short name                color         internal dungeon name
     #                        vague     clear
-    ROOT                   = 'in',     'in',     "Link's Pocket",              'Free',                   'White',      None
+    ROOT                   = 'in',     'in',     "Link's pocket",              'Free',                   'White',      None
     HYRULE_FIELD           = 'in',     'in',     'Hyrule Field',               'Hyrule Field',           'Light Blue', None
     LON_LON_RANCH          = 'at',     'at',     'Lon Lon Ranch',              'Lon Lon Ranch',          'Light Blue', None
     MARKET                 = 'in',     'in',     'the market',                 'Market',                 'Light Blue', None
@@ -1077,6 +1077,12 @@ def buildGossipHints(spoiler, worlds):
     checkedLocations = dict()
     # Add misc. item hint locations to "checked" locations if the respective hint is reachable without the hinted item.
     for world in worlds:
+        for location in world.hinted_dungeon_reward_locations.values():
+            if 'altar' in world.settings.misc_hints and not world.settings.enhance_map_compass and can_reach_hint(worlds, world.get_location('ToT Child Altar Hint' if location.item.info.stone else 'ToT Adult Altar Hint'), location):
+                item_world = location.world
+                if item_world.id not in checkedLocations:
+                    checkedLocations[item_world.id] = set()
+                checkedLocations[item_world.id].add(location.name)
         for hint_type, location in world.misc_hint_item_locations.items():
             if hint_type in world.settings.misc_hints and can_reach_hint(worlds, world.get_location(misc_item_hint_table[hint_type]['hint_location']), location):
                 item_world = location.world
@@ -1402,8 +1408,8 @@ def buildAltarHints(world, messages, include_rewards=True, include_wincons=True)
     child_text = '\x08'
     if include_rewards:
         bossRewardsSpiritualStones = [
-            ('Kokiri Emerald',   'Green'), 
-            ('Goron Ruby',       'Red'), 
+            ('Kokiri Emerald',   'Green'),
+            ('Goron Ruby',       'Red'),
             ('Zora Sapphire',    'Blue'),
         ]
         child_text += getHint('Spiritual Stone Text Start', world.settings.clearer_hints).text + '\x04'
@@ -1439,12 +1445,17 @@ def buildAltarHints(world, messages, include_rewards=True, include_wincons=True)
 
 # pulls text string from hintlist for reward after sending the location to hintlist.
 def buildBossString(reward, color, world):
-    for location in world.get_filled_locations():
-        if location.item.name == reward:
-            item_icon = chr(location.item.special['item_id'])
-            location_text = HintArea.at(location).text(world.settings.clearer_hints, preposition=True)
-            return str(GossipText("\x08\x13%sOne %s..." % (item_icon, location_text), [color], prefix='')) + '\x04'
-    return ''
+    location = world.hinted_dungeon_reward_locations[reward]
+    item_icon = chr(location.item.special['item_id'])
+    if reward in world.distribution.effective_starting_items and world.distribution.effective_starting_items[reward].count > 0:
+        if world.settings.clearer_hints:
+            text = GossipText(f"\x08\x13{item_icon}One #@ already has#...", [color], prefix='')
+        else:
+            text = GossipText(f"\x08\x13{item_icon}One in #@'s pocket#...", [color], prefix='')
+    else:
+        location_text = HintArea.at(location).text(world.settings.clearer_hints, preposition=True)
+        text = GossipText(f"\x08\x13{item_icon}One {location_text}...", [color], prefix='')
+    return str(text) + '\x04'
 
 
 def buildBridgeReqsString(world):
