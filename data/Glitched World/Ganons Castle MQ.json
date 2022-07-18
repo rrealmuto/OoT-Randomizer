@@ -2,7 +2,7 @@
     {
         "region_name": "Ganons Castle Lobby",
         "exits": {
-            "Ganons Castle Grounds": "True",
+            "Ganons Castle Ledge": "True",
             "Ganons Castle Forest Trial": "True",
             "Ganons Castle Fire Trial": "True",
             "Ganons Castle Water Trial": "True",

@@ -1077,6 +1077,23 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         # Remove deku sprout and drop player at SFM after forest completion
         rom.write_int16(0xAC9F96, 0x0608)
 
+    if world.shuffle_special_dungeon_entrances:
+        # Move Hyrule's Castle Courtyard exit spawn to be before the crates so players don't skip Talon
+        rom.write_int16(0x21F607A, 0x033A) # Position X
+        rom.write_int16(0x21F607C, 0x0623) # Position Y
+        rom.write_int16(0x21F607E, 0xFF22) # Position Z
+
+        # Move Ganon's Castle exit spawn to be on the small ledge near the castle and not over the void
+        rom.write_int16(0x292B082, 0xFEA8) # Position X
+        rom.write_int16(0x292B084, 0x065C) # Position Y
+        rom.write_int16(0x292B086, 0x0290) # Position Z
+        rom.write_int16(0x292B08A, 0x0700) # Rotation Y
+        rom.write_int16(0x292B08E, 0x0DFF) # Init Params (Stationary spawn)
+
+        # Change the Rainbow Bridge cutscene trigger area to include Ganon's Castle exit
+        rom.write_int16(0xE2B46A, 0xC3C8) # Min X = -400.0f
+        rom.write_int32(0xE2B7A0, 0x44160000) # Min Y = 600.0f
+
     if world.spawn_positions:
         # Fix save warping inside Link's House to not be a special case
         rom.write_int32(0xB06318, 0x00000000)
