@@ -164,6 +164,7 @@
             <input class="footerInput" nbInput type="text" maxlength="1000" fieldSize="small" (focus)="inputFocusIn('settings_string')" (focusout)="inputFocusOut('settings_string', true)" [(ngModel)]="global.generator_settingsMap['settings_string']">
             <button class="footerButton" nbButton status="info" size="small" (click)="copySettingsString()">Copy</button>
             <button class="footerButton" nbButton status="info" size="small" (click)="importSettingsString()">Import</button>
+            <button class="footerButton" nbButton status="info" size="small" (click)="copySettingsParagraph()">!Settings</button>
             <!--Padding-->
             <div class="settingPadding"></div>
             <p class="footerInputLabel">Seed</p>
@@ -178,6 +179,7 @@
             <button class="footerButton" nbButton status="info" size="small" (click)="copySettingsString()">Copy</button>
             <button class="footerButton" nbButton status="info" size="small" (click)="settingsBusy = true; getSettingsString()">Get</button>
             <button class="footerButton" nbButton status="info" size="small" (click)="importSettingsString()">Import</button>
+            <button class="footerButton" nbButton status="info" size="small" (click)="copySettingsParagraph()">!Settings</button>
             <!--Padding-->
             <div class="settingPadding"></div>
             <p class="footerInputLabel">Seed</p>
