@@ -470,8 +470,14 @@ def get_goal_category(spoiler, world, goal_categories):
             # Build lists for weighted choice
             if category.weight > 0:
                 zero_weights = False
-            cat_sizes.append(category.weight)
-            cat_names.append(category.name)
+            # If one hint per goal is on, only add a category for random selection if:
+            #   1. Unhinted goals exist in the category, or
+            #   2. All goals in all categories have been hinted at least once
+            if (not world.one_hint_per_goal or
+               len([goal for goal in category.goals if goal.weight > 0]) > 0 or
+               len([goal for cat in world.goal_categories.values() for goal in cat.goals if goal.weight == 0]) == len([goal for cat in world.goal_categories.values() for goal in cat.goals])):
+                cat_sizes.append(category.weight)
+                cat_names.append(category.name)
             # Depends on category order to choose next in the priority list
             # Each category is guaranteed a hint first round, then weighted based on goal count
             if not goal_category and category.name not in world.hinted_categories:

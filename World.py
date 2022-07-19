@@ -254,6 +254,16 @@ class World(object):
         # For most settings this will be Bridge, GBK
         self.goal_categories = OrderedDict(sorted(self.goal_categories.items(), key=lambda kv: kv[1].priority))
 
+        # Turn on one hint per goal if all goal categories contain the same goals.
+        # Reduces the changes of randomly choosing one smaller category over and
+        # over again after the first round through the categories.
+        if len(self.goal_categories) > 0:
+            self.one_hint_per_goal = True
+            goal_list1 = [goal.name for goal in list(self.goal_categories.values())[0].goals]
+            for category in self.goal_categories.values():
+                if goal_list1 != [goal.name for goal in category.goals]:
+                    self.one_hint_per_goal = False
+
         # initialize category check for first rounds of goal hints
         self.hinted_categories = []
 
