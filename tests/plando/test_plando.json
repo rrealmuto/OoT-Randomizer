@@ -1,0 +1,9 @@
+{
+    "entrances": {
+        "Child Spawn -> KF Links House" : {"region":"Zoras Domain", "from":"ZR Behind Waterfall"},
+        "Adult Spawn -> Temple of Time" : {"region":"Hyrule Field", "from":"Market Entrance"}
+    },
+    "locations": {
+        "Ganons Tower Boss Key Chest" : "Light Arrows"
+    }
+}

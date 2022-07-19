@@ -6,7 +6,15 @@
             "Forest Temple First Room Chest": "True",
             "Forest Temple GS First Room": "
                 (is_adult and (Hookshot or Bow or Bombs)) or (is_child and (Boomerang or Slingshot)) or
-                has_bombchus or can_use(Dins_Fire) or (logic_forest_first_gs and (Bombs or can_jumpslash))"
+                has_bombchus or can_use(Dins_Fire) or (logic_forest_first_gs and (Bombs or can_jumpslash))",
+            "Forest Temple Center Room Pot 1": "(is_adult or can_child_attack or Nuts)",
+            "Forest Temple Center Room Pot 2": "(is_adult or can_child_attack or Nuts)",
+            "Forest Temple Center Room Pot 3": "(is_adult or can_child_attack or Nuts)",
+            "Forest Temple Center Room Pot 4": "(is_adult or can_child_attack or Nuts)",
+            "Forest Temple Center Room Pot 5": "(is_adult or can_child_attack or Nuts)",
+            "Forest Temple Center Room Pot 6": "(is_adult or can_child_attack or Nuts)",
+            "Forest Temple Lower Stalfos Pot": "(is_adult or can_child_attack or Nuts)",
+            "Fairy Pot": "has_bottle and (is_adult or can_child_attack or Nuts)"
         },
         "exits": {
             "SFM Forest Temple Entrance Ledge": "True",
@@ -30,6 +38,18 @@
         }
     },
     {
+        "region_name": "Forest Temple Well",
+        "dungeon": "Forest Temple",
+        "locations": {
+            "Forest Temple Well Recovery Heart 1": "True",
+            "Forest Temple Well Recovery Heart 2": "True"
+        },
+        "exits" : {
+            "Forest Temple NE Outdoors" : "True",
+            "Forest Temple NW Outdoors" : "True"
+        }
+    },
+    {
         "region_name": "Forest Temple NW Outdoors",
         "dungeon": "Forest Temple",
         "locations": {
@@ -44,6 +64,7 @@
         "exits": {
             "Forest Temple NE Outdoors": "(Progressive_Scale, 2)",
             # Other methods of crossing through the well are not currently relevant.
+            "Forest Temple Well" : "can_use(Iron_Boots) or at('Forest Temple Outdoors High Balconies', True)",
             "Forest Temple Outdoors High Balconies": "
                 here(is_adult or has_explosives or
                     ((Boomerang or Nuts or Deku_Shield) and (Sticks or Kokiri_Sword or Slingshot)))"
@@ -68,6 +89,8 @@
         "exits": {
             "Forest Temple Outdoors High Balconies": "
                 can_use(Longshot) or (logic_forest_vines and can_use(Hookshot))",
+                #Longshot can grab some very high up vines to drain the well.
+            "Forest Temple Well" : "can_use(Iron_Boots) or at('Forest Temple Outdoors High Balconies', True)",
             "Forest Temple NW Outdoors": "can_use(Iron_Boots) or (Progressive_Scale, 2)",
             "Forest Temple Lobby": "True"
         }
@@ -93,7 +116,9 @@
             "Forest Temple Amy and Meg": "can_use(Bow)"
         },
         "locations": {
-            "Forest Temple Falling Ceiling Room Chest": "True"
+            "Forest Temple Falling Ceiling Room Chest": "True",
+            "Forest Temple Green Poe Room Pot 1" : "True",
+            "Forest Temple Green Poe Room Pot 2" : "True"
         },
         "exits": {
             "Forest Temple NE Outdoors": "True"
@@ -131,7 +156,9 @@
         "region_name": "Forest Temple Outside Upper Ledge",
         "dungeon": "Forest Temple",
         "locations": {
-            "Forest Temple Floormaster Chest": "True"
+            "Forest Temple Floormaster Chest": "True",
+            "Forest Temple Courtyard Recovery Heart 1": "True",
+            "Forest Temple Courtyard Recovery Heart 2": "True"
         },
         "exits": {
             "Forest Temple NW Outdoors": "True"
@@ -146,7 +173,16 @@
         "locations": {
             "Forest Temple Bow Chest": "True",
             "Forest Temple Red Poe Chest": "can_use(Bow)",
-            "Forest Temple Blue Poe Chest": "can_use(Bow)"
+            "Forest Temple Blue Poe Chest": "can_use(Bow)",
+            "Forest Temple Upper Stalfos Pot 1" : "True",
+            "Forest Temple Upper Stalfos Pot 2" : "True",
+            "Forest Temple Upper Stalfos Pot 3" : "True",
+            "Forest Temple Upper Stalfos Pot 4" : "True",
+            "Forest Temple Blue Poe Room Pot 1" : "True",
+            "Forest Temple Blue Poe Room Pot 2" : "True",
+            "Forest Temple Blue Poe Room Pot 3" : "True",
+            "Forest Temple Frozen Eye Switch Room Pot 1" : "(Small_Key_Forest_Temple, 5)",
+            "Forest Temple Frozen Eye Switch Room Pot 2" : "(Small_Key_Forest_Temple, 5)"
         },
         "exits": {
             "Forest Temple Falling Room": "

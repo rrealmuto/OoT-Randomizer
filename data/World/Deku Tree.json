@@ -3,6 +3,8 @@
         "region_name": "Deku Tree Lobby",
         "dungeon": "Deku Tree",
         "locations": {
+            "Deku Tree Lower Lobby Recovery Heart": "True",
+            "Deku Tree Upper Lobby Recovery Heart": "is_adult or can_child_attack or Nuts",
             "Deku Tree Map Chest": "True",
             "Deku Tree Compass Chest": "True",
             "Deku Tree Compass Room Side Chest": "True",
@@ -54,6 +56,20 @@
     {
         "region_name": "Deku Tree Basement Ledge",
         "dungeon": "Deku Tree",
+        "locations": {
+            "Deku Tree Basement Recovery Heart 1" : "
+                deku_tree_shortcuts or 
+                has_fire_source_with_torch or 
+                (logic_deku_b1_webs_with_bow and can_use(Bow))",
+            "Deku Tree Basement Recovery Heart 2" : "
+                deku_tree_shortcuts or 
+                has_fire_source_with_torch or 
+                (logic_deku_b1_webs_with_bow and can_use(Bow))",
+            "Deku Tree Basement Recovery Heart 3" : "
+                deku_tree_shortcuts or 
+                has_fire_source_with_torch or 
+                (logic_deku_b1_webs_with_bow and can_use(Bow))"
+        },
         "exits": {
             "Deku Tree Basement Back Room": "is_child",
             "Deku Tree Lobby": "True",

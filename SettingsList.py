@@ -451,6 +451,8 @@ logic_tricks = {
                     without needing one of Hookshot or Hover Boots:
                     - Spirit Temple Statue Room Northeast Chest
                     - Spirit Temple GS Lobby
+                    - Spirit Temple MQ Central Chamber Top Left Pot 1
+                    - Spirit Temple MQ Central Chamber Top Left Pot 2
                     '''},
     'Spirit Temple Main Room Hookshot to Boss Platform': {
         'name'    : 'logic_spirit_platform_hookshot',
@@ -1637,7 +1639,16 @@ logic_tricks = {
                     Removes the requirements for the Lens of Truth
                     in Spirit Temple.
                     '''},
-}
+    'Beehives with Bombs/Bombchus' : {
+        'name'    : 'logic_beehives_bombs',
+        'tags'    : ("Beehives",),
+        'tooltip' : '''\
+                    Puts breaking beehives with bombs or bombchus into logic.
+                    Beehives in generic grottos can be reached with just bombs.
+                    All other beehives would require bombchus.
+                    '''},
+    }
+
 
 
 # a list of the possible settings
@@ -2542,7 +2553,8 @@ setting_infos = [
             'glitched'  : {'settings' : ['allowed_tricks', 'shuffle_interior_entrances', 'shuffle_grotto_entrances',
                                          'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'owl_drops',
                                          'warp_songs', 'spawn_positions', 'mq_dungeons_mode', 'mq_dungeons_specific',
-                                         'mq_dungeons_count', 'shuffle_bosses', 'dungeon_shortcuts', 'deadly_bonks']},
+                                         'mq_dungeons_count', 'shuffle_bosses', 'dungeon_shortcuts', 'deadly_bonks', 
+                                         'shuffle_freestanding_items', 'shuffle_pots_crates', 'shuffle_beehives']},
             'none'      : {'settings' : ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
         },
         shared         = True,
@@ -2668,6 +2680,25 @@ setting_infos = [
         ''',
         shared         = True,
         disabled_default = 0,
+    ),
+    Checkbutton(
+        name           = 'unlock_ganons_first_boss_door',
+        gui_text       = "Unlock Ganon's Tower First Boss Door",
+        default        = False,
+        gui_tooltip    = '''\
+            Unlocks the first boss key door in Ganon's Tower
+            to give access to the pots in the room.
+
+            The door leading out of the room to the 
+            upper stairway to Ganondorf will be locked.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+            "hide_when_disabled": True
+        },
+        shared         = True,
+        disabled_default = False
+        
     ),
     Checkbutton(
         name           = 'skip_child_zelda',
@@ -3063,6 +3094,58 @@ setting_infos = [
         },
         shared         = True,
     ),
+    Combobox(
+        name = 'shuffle_freestanding_items',
+        gui_text = 'Rupee & Heart Shuffle',
+        default = 'off',
+        choices = {
+            'off': 'Off',
+            'all': 'All',
+            'overworld' : 'Overworld Only',
+            'dungeons' : 'Dungeons Only'
+        },
+        gui_tooltip    = '''\
+            Shuffles freestanding rupees and recovery hearts, also shuffles:
+                Shadow Temple Spinning Pot Drop
+                All Goron Pot faces
+
+            Off: No freestanding rupees/recovery hearts are shuffled.
+            All: All Visible freestanding rupees/recovery hearts are shuffled.
+            Overworld Only: Freestanding rupees/recovery hearts in the overworld are shuffled.
+            Dungeons Only: Freestanding rupees/recovery hearts in dungeons are shuffled.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+        shared         = True,
+    ),
+    Combobox(
+        name = 'shuffle_pots_crates',
+        gui_text = 'Pot & Crate Shuffle',
+        default = 'off',
+        choices = {
+            'off': 'Off',
+            'all': 'All',
+            'overworld' : 'Overworld Only',
+            'dungeons' : 'Dungeons Only'
+        },
+        gui_tooltip    = '''\
+            Shuffles pots, flying pots, and large/small crates into the location pool.
+
+            Off: Not shuffled.
+            All: All pots/flying pots/crates are shuffled.
+            Overworld Only: Only overworld pots/flying pots/crates are shuffled.
+            Dungeons Only: Only dungeon pots/flying pots/crates are shuffled.
+
+            Note: Only pots/crates which normally drop an item are shuffled. Empty pots/crates are not included.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+        disable = {'off':  {'settings': ['unlock_ganons_first_boss_door']}},
+        shared         = True,
+    ),
+    
     Checkbutton(
         name           = 'shuffle_cows',
         gui_text       = 'Shuffle Cows',
@@ -3070,6 +3153,24 @@ setting_infos = [
             Enabling this will let cows give you items
             upon performing Epona's song in front of them.
             There are 9 cows, and an extra in MQ Jabu.
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    ),
+    Checkbutton(
+        name           = 'shuffle_beehives',
+        gui_text       = 'Shuffle Beehives',
+        gui_tooltip    = '''\
+            Enabling this will let beehives drop items. Beehives will shake if they contain anything important.
+            There are 32 Beehives located in:
+                Generic Grottos (x2 per grotto)
+                2 Scrub Grottos (x1 per grotto)
+                3 Scrub Grottos (x1 per grotto)
+                DMT Cow Grotto (x1)
+                Zora's Domain (x3 child only)
         ''',
         default        = False,
         shared         = True,
@@ -4244,6 +4345,34 @@ setting_infos = [
             This will change chests with major items and boss keys into big chests.
             Boss keys will remain in their fancy chest, while small key will be in a
             smaller version of the fancy chest.
+        ''',
+        shared         = True,
+    ),
+    Combobox(
+        name           = 'correct_potcrate_appearances',
+        gui_text       = 'Pot & Crate Appearance Matches Contents',
+        default        = 'off',
+        choices        = {
+            'off': 'Off',
+            'textures_content': 'Texture (Match Content)',
+            'textures_unchecked' : 'Texture (Unchecked)',
+        },
+        gui_tooltip    = '''\
+            If enabled, pot/crate textures will reflect its contents.
+
+            Off - Pot and crates will appear as vanilla
+
+            Texture (Match Content) - Pot and crate textures will reflect the contents.
+            Golden Pots/crates will contain major items. 
+            Pots/crates with keys on them will contain small keys.
+            Pots/crates containing boss keys will use a variation of the boss key crate texture. 
+            Pots/crates with a spider web on them contain Gold Skulltula tokens.
+            All other items will use the original texture.
+            The texture will revert to the original texture once the item is collected.
+            
+            Texture (Unchecked) - All pots/crates containing shuffled items 
+            will appear with a golden texture. The texture will revert to the 
+            original texture once the item is collected.
         ''',
         shared         = True,
     ),

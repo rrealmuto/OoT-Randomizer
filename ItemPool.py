@@ -1,6 +1,13 @@
 import random
 from collections import OrderedDict
 from decimal import Decimal, ROUND_UP
+from itertools import chain
+from Location import DisableType, Location
+from Utils import random_choices
+from Item import ItemFactory
+from ItemList import item_table
+from LocationList import location_groups
+from decimal import Decimal, ROUND_HALF_UP
 
 from Item import ItemFactory, ItemInfo
 from Utils import random_choices
@@ -274,6 +281,10 @@ item_groups = {
     'FireWater': ('Fire Medallion', 'Water Medallion'),
 }
 
+def get_new_junk():
+    junk = list(junk_pool_base)
+    junk_items, junk_weights = zip(*junk)
+    return random_choices(junk_items, weights=junk_weights, k=1)[0]
 
 def get_junk_item(count=1, pool=None, plando_pool=None):
     if count < 1:
@@ -507,6 +518,45 @@ def get_pool_core(world):
             if shuffle_item and world.settings.gerudo_fortress == 'normal' and 'Thieves Hideout' in world.settings.key_rings:
                 item = get_junk_item()[0] if location.name != 'Hideout Jail Guard (1 Torch)' else 'Small Key Ring (Thieves Hideout)'
 
+        # Freestanding Rupees and Hearts
+        elif location.type == 'ActorOverride' or (location.type == 'Collectable' and ('Freestanding' in location.filter_tags or 'RupeeTower' in location.filter_tags)):
+            if world.settings.shuffle_freestanding_items == 'all':
+                shuffle_item = True
+                item = get_new_junk()
+            elif world.settings.shuffle_freestanding_items == 'dungeons' and location.dungeon is not None:
+                shuffle_item = True
+                item = get_new_junk()
+            elif world.settings.shuffle_freestanding_items == 'overworld' and location.dungeon is None:
+                shuffle_item = True
+                item = get_new_junk()
+            else:
+                shuffle_item = False
+                location.disabled = DisableType.DISABLED
+
+        # Pots and Crates
+        elif location.type == 'Collectable' and ('Pot' in location.filter_tags or 'Crate' in location.filter_tags or 'FlyingPot' in location.filter_tags or 'SmallCrate' in location.filter_tags):
+            if world.settings.shuffle_pots_crates == 'all':
+                shuffle_item = True
+                item = get_new_junk()
+            elif world.settings.shuffle_pots_crates == 'dungeons' and location.dungeon is not None:
+                shuffle_item = True
+                item = get_new_junk()
+            elif world.settings.shuffle_pots_crates == 'overworld' and location.dungeon is None:
+                shuffle_item = True
+                item = get_new_junk()
+            else:
+                shuffle_item = False
+                location.disabled = DisableType.DISABLED
+
+        # Beehives
+        elif location.type == 'Collectable' and 'Beehive' in location.filter_tags:
+            if world.settings.shuffle_beehives:
+                shuffle_item = True
+                item = get_new_junk()
+            else:
+                shuffle_item = False
+                location.disabled = DisableType.DISABLED
+
         # Dungeon Items
         elif location.dungeon is not None:
             dungeon = location.dungeon
@@ -537,13 +587,13 @@ def get_pool_core(world):
                     item = get_junk_item()[0]
                     shuffle_item = True
             # Any other item in a dungeon.
-            elif location.type in ["Chest", "NPC", "Song", "Collectable", "Cutscene", "BossHeart"]:
+            elif location.type in ["Chest", "NPC", "Song", "Collectable", "Cutscene", "BossHeart"] and not is_freestanding_or_potcrate_or_beehive_location(location):
                 shuffle_item = True
 
             # Handle dungeon item.
             if shuffle_setting is not None and not shuffle_item:
                 dungeon_collection.append(ItemFactory(item))
-                if shuffle_setting in ['remove', 'startwith', 'triforce']:
+                if shuffle_setting in ['remove', 'startwith']:
                     world.state.collect(dungeon_collection[-1])
                     item = get_junk_item()[0]
                     shuffle_item = True
@@ -551,7 +601,7 @@ def get_pool_core(world):
                     dungeon_collection[-1].priority = True
 
         # The rest of the overworld items.
-        elif location.type in ["Chest", "NPC", "Song", "Collectable", "Cutscene", "BossHeart"]:
+        elif location.type in ["Chest", "NPC", "Song", "Collectable", "Cutscene", "BossHeart"] and not is_freestanding_or_potcrate_or_beehive_location(location):
             shuffle_item = True
 
         # Now, handle the item as necessary.
@@ -612,7 +662,7 @@ def get_pool_core(world):
     if world.settings.shuffle_ganon_bosskey == 'on_lacs':
         placed_items['ToT Light Arrows Cutscene'] = 'Boss Key (Ganons Castle)'
 
-    if world.settings.shuffle_ganon_bosskey in ['stones', 'medallions', 'dungeons', 'tokens', 'hearts']:
+    if world.settings.shuffle_ganon_bosskey in ['stones', 'medallions', 'dungeons', 'tokens', 'hearts', 'triforce']:
         placed_items['Gift from Sages'] = 'Boss Key (Ganons Castle)'
         pool.extend(get_junk_item())
     else:
@@ -708,3 +758,18 @@ def get_pool_core(world):
     world.distribution.collect_starters(world.state)
 
     return pool, placed_items
+
+def is_freestanding_or_potcrate_or_beehive_location(location : Location):
+    if 'Pot' in location.filter_tags:
+        return True
+    if 'Crate' in location.filter_tags:
+        return True
+    if 'FlyingPot' in location.filter_tags:
+        return True
+    if 'SmallCrate' in location.filter_tags:
+        return True
+    if 'Freestanding' in location.filter_tags:
+        return True
+    if 'Beehive' in location.filter_tags:
+        return True
+    return False

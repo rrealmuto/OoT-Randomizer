@@ -2,6 +2,9 @@
     {
         "region_name": "Ice Cavern Beginning",
         "dungeon": "Ice Cavern",
+        "locations":{
+            "Ice Cavern Frozen Blue Rupee": "Blue_Fire"
+        },
         "exits": {
             "ZF Ice Ledge": "True",
             #Frezzards are weird, they are immune to KS completely. Leave sticks out as 8/10 is a lot
@@ -22,7 +25,22 @@
                 Blue_Fire and 
                 (is_adult or Slingshot or Sticks or 
                     Kokiri_Sword or can_use(Dins_Fire))",
+            "Ice Cavern Map Room Recovery Heart 1": "is_adult",
+            "Ice Cavern Map Room Recovery Heart 2": "is_adult",
+            "Ice Cavern Map Room Recovery Heart 3": "is_adult",
+            "Ice Cavern Block Room Red Rupee 1": "Blue_Fire and (can_play(Song_of_Time) or (is_child and can_use(Boomerang)))",
+            "Ice Cavern Block Room Red Rupee 2": "Blue_Fire and (can_play(Song_of_Time) or (is_child and can_use(Boomerang)))",
+            "Ice Cavern Block Room Red Rupee 3": "Blue_Fire and (can_play(Song_of_Time) or (is_child and can_use(Boomerang)))",
             "Ice Cavern Freestanding PoH": "Blue_Fire",
+            "Ice Cavern Hall Pot 1": "True",
+            "Ice Cavern Hall Pot 2": "True",
+            "Ice Cavern Spinning Blade Pot 1": "True",
+            "Ice Cavern Spinning Blade Pot 2": "True",
+            "Ice Cavern Spinning Blade Pot 3": "True",
+            "Ice Cavern Spinning Blade Flying Pot":  "True",
+            "Ice Cavern Near End Pot 1" : "Blue_Fire",
+            "Ice Cavern Near End Pot 2" : "Blue_Fire",
+            "Ice Cavern Frozen Pot" : "is_adult and Blue_Fire",
             "Ice Cavern GS Spinning Scythe Room": "can_use(Hookshot) or can_use(Boomerang)",
             "Ice Cavern GS Heart Piece Room": "
                 Blue_Fire and (can_use(Hookshot) or can_use(Boomerang))",

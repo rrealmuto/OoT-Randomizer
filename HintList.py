@@ -1707,6 +1707,7 @@ misc_item_hint_table = {
         'custom_item_text': "Ha ha ha... You'll never find {item} from {area}!",
         'replace': {
             "from #Ganon's Castle#": "from #my castle#",
+            "from #Ganondorf's Chamber#": "from #those pots over there#"
         },
     },
 }

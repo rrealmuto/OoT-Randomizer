@@ -69,6 +69,12 @@
         "region_name": "Barinade Boss Room",
         "scene": "Jabu Jabus Belly Boss",
         "locations": {
+            "Jabu Jabus Belly Barinade Pot 1" : "True",
+            "Jabu Jabus Belly Barinade Pot 2" : "True",
+            "Jabu Jabus Belly Barinade Pot 3" : "True",
+            "Jabu Jabus Belly Barinade Pot 4" : "True",
+            "Jabu Jabus Belly Barinade Pot 5" : "True",
+            "Jabu Jabus Belly Barinade Pot 6" : "True",
             "Jabu Jabus Belly Barinade Heart": "can_use(Boomerang) and (Sticks or Kokiri_Sword)",
             "Barinade": "can_use(Boomerang) and (Sticks or Kokiri_Sword)"
         },
@@ -188,9 +194,10 @@
         "region_name": "Ganons Castle Tower",
         "dungeon": "Ganons Castle",
         "locations": {
-            "Ganons Tower Boss Key Chest": "is_adult or Kokiri_Sword",
-            "Ganondorf Hint": "(is_adult or Kokiri_Sword) and Boss_Key_Ganons_Castle",
-            "Ganon": "Boss_Key_Ganons_Castle and can_use(Light_Arrows)"
+            "Ganons Tower Boss Key Chest": "True"
+        },
+        "exits" : {
+            "Ganondorfs Chamber": "Boss_Key_Ganons_Castle or unlock_ganons_first_boss_door"
         }
     }
 ]
