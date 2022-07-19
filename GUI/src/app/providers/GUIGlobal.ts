@@ -1367,8 +1367,12 @@ export class GUIGlobal {
     },
     'deadly_bonks': { 
       choices : {
-        true: "One Bonk KO",
-        false: undefined
+        'ohko':      "One Bonk KO",
+        'half':      'Bonks deal damage',
+        'normal':    'Bonks deal damage',
+        'double':    'Bonks deal damage',
+        'quadruple': 'Bonks deal damage',
+        'none': undefined
       },
       priority: 7
     },
