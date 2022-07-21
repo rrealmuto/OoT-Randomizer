@@ -1,4 +1,5 @@
 import argparse
+import copy
 import hashlib
 import json
 import logging
@@ -13,6 +14,8 @@ from Utils import random_choices, local_path, data_path
 from SettingsList import setting_infos, get_setting_info, validate_settings
 from Plandomizer import Distribution
 import StartingItems
+
+LEGACY_STARTING_ITEM_SETTINGS = {'starting_equipment': StartingItems.equipment, 'starting_items': StartingItems.inventory, 'starting_songs': StartingItems.songs}
 
 class ArgumentDefaultsHelpFormatter(argparse.RawTextHelpFormatter):
 
@@ -81,8 +84,8 @@ class Settings:
         for setting in filter(lambda s: s.shared and s.bitwidth > 0, setting_infos):
             value = self.__dict__[setting.name]
             i_bits = []
-            if setting.name in ('starting_equipment', 'starting_items', 'starting_songs'):
-                items = {'starting_equipment': StartingItems.equipment, 'starting_items': StartingItems.inventory, 'starting_songs': StartingItems.songs}[setting.name]
+            if setting.name in LEGACY_STARTING_ITEM_SETTINGS:
+                items = LEGACY_STARTING_ITEM_SETTINGS[setting.name]
                 value = []
                 for entry in items.values():
                     if entry.itemname in self.starting_items:
@@ -337,14 +340,27 @@ class Settings:
         self.custom_seed = False
 
 
-    def to_json(self):
+    def to_json(self, *, legacy_starting_items=False):
+        if legacy_starting_items:
+            settings = copy.copy(self)
+            for setting_name, items in LEGACY_STARTING_ITEM_SETTINGS.items():
+                settings.__dict__[setting_name] = []
+                for entry in items.values():
+                    if entry.itemname in self.starting_items:
+                        count = self.starting_items[entry.itemname]
+                        if not isinstance(count, int):
+                            count = count.count
+                        if count > entry.i:
+                            settings.__dict__[setting_name].append(entry.settingname)
+        else:
+            settings = self
         return {
             setting.name: (
                 {name: (
                     {name: record.to_json() for name, record in record.items()} if isinstance(record, dict) else record.to_json()
-                ) for name, record in self.__dict__[setting.name].items()}
-                if setting.name == 'starting_items' else
-                self.__dict__[setting.name]
+                ) for name, record in settings.__dict__[setting.name].items()}
+                if setting.name == 'starting_items' and not legacy_starting_items else
+                settings.__dict__[setting.name]
             )
             for setting in setting_infos
             if setting.shared and (
@@ -353,7 +369,7 @@ class Settings:
                 ('_settings' in self.distribution.src_dict and setting.name in self.distribution.src_dict['_settings'].keys())
             )
             # Don't want to include list starting equipment and songs, these are consolidated into starting_items
-            and not (setting.name == "starting_equipment" or setting.name == "starting_songs")
+            and (legacy_starting_items or not (setting.name == "starting_equipment" or setting.name == "starting_songs"))
         }
 
     def to_json_cosmetics(self):
@@ -414,7 +430,8 @@ def get_settings_from_command_line_args():
 
     if args.convert_settings:
         if args.settings_string is not None:
-            print(json.dumps(settings.to_json()))
+            # used by the GUI which doesn't support the new dict-style starting items yet
+            print(json.dumps(settings.to_json(legacy_starting_items=True)))
         else:
             print(settings.get_settings_string())
         sys.exit(0)

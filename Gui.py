@@ -39,7 +39,7 @@ def guiMain():
         args = ["node", "run.js", "web"]
     else:
         args = ["node", "run.js", "release", "python", sys.executable]
-    subprocess.Popen(args,shell=False,cwd=local_path("GUI"))
+    subprocess.run(args,shell=False,cwd=local_path("GUI"),check=True)
 
 def version_check(name, version, URL):
     try:
