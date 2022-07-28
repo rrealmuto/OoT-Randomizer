@@ -1003,6 +1003,8 @@ class WorldDistribution(object):
         skipped_locations = ['Links Pocket']
         if world.settings.skip_child_zelda:
             skipped_locations += ['HC Malon Egg', 'HC Zeldas Letter', 'Song from Impa']
+        if world.settings.gerudo_fortress == 'open' and not world.settings.shuffle_gerudo_card:
+            skipped_locations.append('Hideout Gerudo Membership Card')
         for iter_world in worlds:
             for location in skipped_locations:
                 loc = iter_world.get_location(location)

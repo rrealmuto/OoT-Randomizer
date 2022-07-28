@@ -28,7 +28,6 @@
             "Deku Tree Boss Door": "True"
         }
     },
-
     {
         "region_name": "Dodongos Cavern Boss Door",
         "scene": "Dodongos Cavern",
@@ -49,14 +48,12 @@
             "King Dodongo": "
                 ((can_use(Megaton_Hammer) and logic_dc_hammer_floor) or
                     has_explosives or king_dodongo_shortcuts) and
-                (((Bombs or Progressive_Strength_Upgrade) and can_jumpslash) or deadly_bonks)",
-            "Fairy Pot": "has_bottle"
+                (((Bombs or Progressive_Strength_Upgrade) and can_jumpslash) or deadly_bonks)"
         },
         "exits": {
             "Dodongos Cavern Boss Door": "True"
         }
     },
-
     {
         "region_name": "Jabu Jabus Belly Boss Door",
         "scene": "Jabu Jabus Belly",
@@ -69,20 +66,19 @@
         "region_name": "Barinade Boss Room",
         "scene": "Jabu Jabus Belly Boss",
         "locations": {
-            "Jabu Jabus Belly Barinade Pot 1" : "True",
-            "Jabu Jabus Belly Barinade Pot 2" : "True",
-            "Jabu Jabus Belly Barinade Pot 3" : "True",
-            "Jabu Jabus Belly Barinade Pot 4" : "True",
-            "Jabu Jabus Belly Barinade Pot 5" : "True",
-            "Jabu Jabus Belly Barinade Pot 6" : "True",
             "Jabu Jabus Belly Barinade Heart": "can_use(Boomerang) and (Sticks or Kokiri_Sword)",
-            "Barinade": "can_use(Boomerang) and (Sticks or Kokiri_Sword)"
+            "Barinade": "can_use(Boomerang) and (Sticks or Kokiri_Sword)",
+            "Jabu Jabus Belly Barinade Pot 1": "True",
+            "Jabu Jabus Belly Barinade Pot 2": "True",
+            "Jabu Jabus Belly Barinade Pot 3": "True",
+            "Jabu Jabus Belly Barinade Pot 4": "True",
+            "Jabu Jabus Belly Barinade Pot 5": "True",
+            "Jabu Jabus Belly Barinade Pot 6": "True"
         },
         "exits": {
             "Jabu Jabus Belly Boss Door": "True"
         }
     },
-
     {
         "region_name": "Forest Temple Boss Door",
         "scene": "Forest Temple",
@@ -95,16 +91,15 @@
         "region_name": "Phantom Ganon Boss Room",
         "scene": "Forest Temple Boss",
         "locations": {
-            "Forest Temple Phantom Ganon Heart": "(can_use(Hookshot) or can_use(Bow)) or
-                (can_use(Slingshot) and Kokiri_Sword)",
-            "Phantom Ganon": "(can_use(Hookshot) or can_use(Bow)) or
-                (can_use(Slingshot) and Kokiri_Sword)"
+            "Forest Temple Phantom Ganon Heart": "
+                can_use(Hookshot) or can_use(Bow) or (can_use(Slingshot) and Kokiri_Sword)",
+            "Phantom Ganon": "
+                can_use(Hookshot) or can_use(Bow) or (can_use(Slingshot) and Kokiri_Sword)"
         },
         "exits": {
             "Forest Temple Boss Door": "True"
         }
     },
-
     {
         "region_name": "Fire Temple Boss Door",
         "scene": "Fire Temple",
@@ -146,7 +141,6 @@
             "Water Temple Boss Door": "True"
         }
     },
-
     {
         "region_name": "Shadow Temple Boss Door",
         "scene": "Shadow Temple",
@@ -160,17 +154,18 @@
         "scene": "Shadow Temple Boss",
         "locations": {
             "Shadow Temple Bongo Bongo Heart": "
-                (Kokiri_Sword or is_adult) and (can_use(Hookshot) or can_use(Bow) or can_use(Slingshot) or
-                logic_shadow_bongo) and (can_use(Lens_of_Truth) or logic_lens_bongo)",
+                (Kokiri_Sword or is_adult) and
+                (can_use(Hookshot) or can_use(Bow) or can_use(Slingshot) or logic_shadow_bongo) and
+                (can_use(Lens_of_Truth) or logic_lens_bongo)",
             "Bongo Bongo": "
-                (Kokiri_Sword or is_adult) and (can_use(Hookshot) or can_use(Bow) or can_use(Slingshot) or
-                logic_shadow_bongo) and (can_use(Lens_of_Truth) or logic_lens_bongo)"
+                (Kokiri_Sword or is_adult) and
+                (can_use(Hookshot) or can_use(Bow) or can_use(Slingshot) or logic_shadow_bongo) and
+                (can_use(Lens_of_Truth) or logic_lens_bongo)"
         },
         "exits": {
             "Shadow Temple Boss Door": "True"
         }
     },
-
     {
         "region_name": "Spirit Temple Boss Door",
         "scene": "Spirit Temple",
@@ -194,10 +189,47 @@
         "region_name": "Ganons Castle Tower",
         "dungeon": "Ganons Castle",
         "locations": {
-            "Ganons Tower Boss Key Chest": "True"
+            "Ganons Tower Boss Key Chest": "is_adult or Kokiri_Sword"
         },
-        "exits" : {
-            "Ganondorfs Chamber": "Boss_Key_Ganons_Castle or unlock_ganons_first_boss_door"
+        "exits": {
+            "Ganons Castle Tower Below Boss": "
+                (is_adult or Kokiri_Sword) and
+                (Boss_Key_Ganons_Castle or unlock_ganons_first_boss_door)"
+        }
+    },
+    {
+        "region_name": "Ganons Castle Tower Below Boss",
+        "dungeon": "Ganons Castle",
+        "hint": "INSIDE_GANONS_CASTLE",
+        "alt_hint": "GANONDORFS_CHAMBER",
+        "locations": {
+            "Ganons Tower Pot 1": "unlock_ganons_first_boss_door or shuffle_ganon_bosskey != 'triforce'",
+            "Ganons Tower Pot 2": "unlock_ganons_first_boss_door or shuffle_ganon_bosskey != 'triforce'",
+            "Ganons Tower Pot 3": "unlock_ganons_first_boss_door or shuffle_ganon_bosskey != 'triforce'",
+            "Ganons Tower Pot 4": "unlock_ganons_first_boss_door or shuffle_ganon_bosskey != 'triforce'",
+            "Ganons Tower Pot 5": "unlock_ganons_first_boss_door or shuffle_ganon_bosskey != 'triforce'",
+            "Ganons Tower Pot 6": "unlock_ganons_first_boss_door or shuffle_ganon_bosskey != 'triforce'",
+            "Ganons Tower Pot 7": "unlock_ganons_first_boss_door or shuffle_ganon_bosskey != 'triforce'",
+            "Ganons Tower Pot 8": "unlock_ganons_first_boss_door or shuffle_ganon_bosskey != 'triforce'",
+            "Ganons Tower Pot 9": "unlock_ganons_first_boss_door or shuffle_ganon_bosskey != 'triforce'",
+            "Ganons Tower Pot 10": "unlock_ganons_first_boss_door or shuffle_ganon_bosskey != 'triforce'",
+            "Ganons Tower Pot 11": "unlock_ganons_first_boss_door or shuffle_ganon_bosskey != 'triforce'",
+            "Ganons Tower Pot 12": "unlock_ganons_first_boss_door or shuffle_ganon_bosskey != 'triforce'",
+            "Ganons Tower Pot 13": "unlock_ganons_first_boss_door or shuffle_ganon_bosskey != 'triforce'",
+            "Ganons Tower Pot 14": "unlock_ganons_first_boss_door or shuffle_ganon_bosskey != 'triforce'"
+        },
+        "exits": {
+            "Ganondorf Boss Room": "Boss_Key_Ganons_Castle"
+        }
+    },
+    {
+        "region_name": "Ganondorf Boss Room",
+        "dungeon": "Ganons Castle",
+        "hint": "INSIDE_GANONS_CASTLE",
+        "alt_hint": "GANONDORFS_CHAMBER",
+        "locations": {
+            "Ganondorf Hint": "True",
+            "Ganon": "can_use(Light_Arrows)"
         }
     }
 ]

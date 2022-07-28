@@ -208,12 +208,22 @@ logic_tricks = {
                     from below, by shooting it through the vines,
                     bypassing the need to lower the staircase.
                     '''},
+    'Gerudo\'s Fortress Ledge Jumps': {
+        'name'    : 'logic_gf_jump',
+        'tags'    : ("Gerudo's Fortress",),
+        'tooltip' : '''\
+                    Adult can jump onto the top roof of the fortress
+                    without going through the interior of the hideout.
+                    '''},
     'Thieves\' Hideout "Kitchen" with No Additional Items': {
         'name'    : 'logic_gerudo_kitchen',
         'tags'    : ("Thieves' Hideout", "Gerudo's Fortress",),
         'tooltip' : '''\
-                    The logic normally guarantees one of Bow, Hookshot,
-                    or Hover Boots.
+                    Allows passing through the kitchen by avoiding being
+                    seen by the guards. The logic normally guarantees
+                    Bow or Hookshot to stun them from a distance, or
+                    Hover Boots to cross the room without needing to
+                    deal with the guards.
                     '''},
     'Deku Tree Basement Vines GS with Jump Slash': {
         'name'    : 'logic_deku_basement_gs',
@@ -285,6 +295,14 @@ logic_tricks = {
         'tooltip' : '''\
                     A carefully-timed Bombchu can hit the switch.
                     '''},
+    'Beehives with Bombchus' : {
+        'name'    : 'logic_beehives_bombchus',
+        'tags'    : ("Beehives",),
+        'tooltip' : '''\
+                    Puts breaking beehives with bombchus into logic.
+                    Using bombs is already expected on beehives that
+                    that are low enough that a bomb throw will reach.
+                    '''},
     'Windmill PoH as Adult with Nothing': {
         'name'    : 'logic_windmill_poh',
         'tags'    : ("Kakariko Village",),
@@ -299,6 +317,13 @@ logic_tricks = {
                     Hover from the base of the bridge
                     near Goron City and walk up the
                     very steep slope.
+                    '''},
+    'Zora\'s River Rupees with Jump Dive': {
+        'name'    : 'logic_zora_river_rupees',
+        'tags'    : ("Zora's River", "Freestandings",),
+        'tooltip' : '''\
+                    You can jump down onto them from
+                    above to skip needing Iron Boots.
                     '''},
     'Zora\'s Domain Entry with Cucco': {
         'name'    : 'logic_zora_with_cucco',
@@ -448,7 +473,8 @@ logic_tricks = {
         'tags'    : ("Spirit Temple", "Skulltulas",),
         'tooltip' : '''\
                     A precise jump to obtain the following as adult
-                    without needing one of Hookshot or Hover Boots:
+                    without needing one of Hover Boots, or Hookshot
+                    (in vanilla) or Song of Time (in MQ):
                     - Spirit Temple Statue Room Northeast Chest
                     - Spirit Temple GS Lobby
                     - Spirit Temple MQ Central Chamber Top Left Pot 1
@@ -605,14 +631,15 @@ logic_tricks = {
                     Release the Bombchu with good timing so that
                     it explodes near the bottom of the pot.
                     '''},
-    'Shadow Temple MQ Invisible Blades Silver Rupees without Song of Time': {
+    'Shadow Temple MQ Invisible Blades without Song of Time': {
         'name'    : 'logic_shadow_mq_invisible_blades',
         'tags'    : ("Shadow Temple",),
         'tooltip' : '''\
                     The Like Like can be used to boost you into the
-                    silver rupee that normally requires Song of Time.
-                    This cannot be performed on OHKO since the Like
-                    Like does not boost you high enough if you die.
+                    silver rupee or recovery hearts that normally
+                    require Song of Time. This cannot be performed
+                    on OHKO since the Like Like does not boost you
+                    high enough if you die.
                     '''},
     'Shadow Temple MQ Lower Huge Pit without Fire Source': {
         'name'    : 'logic_shadow_mq_huge_pit',
@@ -951,9 +978,9 @@ logic_tricks = {
         'tags'    : ("Shadow Temple",),
         'tooltip' : '''\
                     Using precise sword slashes, Bongo Bongo can be
-                    defeated without using projectiles.  This is
+                    defeated without using projectiles. This is
                     only relevant in conjunction with Shadow Temple
-                    dungeon shortcuts or shuffled dungeon bosses.
+                    dungeon shortcuts or shuffled boss entrances.
                     '''},
     'Shadow Temple Bongo Bongo without Lens of Truth': {
         'name'    : 'logic_lens_bongo',
@@ -1082,10 +1109,10 @@ logic_tricks = {
         'tooltip' : '''\
                     A box for the blue switch can be carried over
                     by backwalking with one while the elevator is
-                    at its peak. Alternatively, you can skip transporting
-                    a box by quickly rolling from the switch and
-                    opening the door before it closes. However,
-                    the timing for this is very tight.
+                    at its peak. Alternatively, you can skip
+                    transporting a box by quickly rolling from the
+                    switch and opening the door before it closes.
+                    However, the timing for this is very tight.
                     '''},
     'Jabu Near Boss Ceiling Switch with Explosives': {
         'name'    : 'logic_jabu_near_boss_explosives',
@@ -1638,14 +1665,6 @@ logic_tricks = {
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Spirit Temple.
-                    '''},
-    'Beehives with Bombs/Bombchus' : {
-        'name'    : 'logic_beehives_bombs',
-        'tags'    : ("Beehives",),
-        'tooltip' : '''\
-                    Puts breaking beehives with bombs or bombchus into logic.
-                    Beehives in generic grottos can be reached with just bombs.
-                    All other beehives would require bombchus.
                     '''},
     }
 
