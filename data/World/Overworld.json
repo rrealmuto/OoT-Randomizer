@@ -1047,7 +1047,7 @@
     {
         "region_name": "Castle Grounds From Ganons Castle",
         "scene": "Castle Grounds",
-        "hint": "OUTSIDE_GANONS_CASTLE",
+        "hint": "CASTLE_GROUNDS",
         "exits": {
             "Hyrule Castle Grounds": "is_child",
             "Ganons Castle Ledge": "is_adult"
