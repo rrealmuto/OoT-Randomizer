@@ -3433,7 +3433,7 @@ setting_infos = [
             interior, and a few special entrances.
 
             'Full':
-            It can also take you inside or outside of a grave
+            It can also take you inside or outside of a grotto
             or dungeon, potentially bypassing item requirements.
         ''',
         default        = 'off',
@@ -3472,7 +3472,7 @@ setting_infos = [
             'Full':
             The Owl can also drop you off outside of buildings,
             inside the Temple of Time, or inside or outside of
-            graves or dungeons, potentially bypassing item
+            grottos or dungeons, potentially bypassing item
             requirements.
         ''',
         default        = 'off',
@@ -3506,7 +3506,7 @@ setting_infos = [
             interior, and a few special entrances.
 
             'Full':
-            Warp songs can also take you inside or outside of graves
+            Warp songs can also take you inside or outside of grottos
             or dungeons, potentially bypassing item requirements.
         ''',
         default        = 'off',
