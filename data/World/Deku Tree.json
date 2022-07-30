@@ -21,6 +21,14 @@
         }
     },
     {
+        "region_name": "Deku Tree Slingshot Room",
+        "dungeon": "Deku Tree",
+        "locations": {
+            "Deku Tree Slingshot Chest": "True",
+            "Deku Tree Slingshot Room Side Chest": "True"
+        }
+    },
+    {
         "region_name": "Deku Tree Basement",
         "dungeon": "Deku Tree",
         "locations": {
@@ -31,19 +39,10 @@
                 (logic_deku_basement_gs and (is_adult or Sticks or Kokiri_Sword))"
         },
         "exits": {
-            "Deku Tree Lobby": "True",
             "Deku Tree Basement Back Room": "
                 here(has_fire_source_with_torch or can_use(Bow)) and
                 here(can_use(Slingshot) or can_use(Bow))",
             "Deku Tree Basement Ledge": "deku_tree_shortcuts or here(is_adult) or logic_deku_b1_skip"
-        }
-    },
-    {
-        "region_name": "Deku Tree Slingshot Room",
-        "dungeon": "Deku Tree",
-        "locations": {
-            "Deku Tree Slingshot Chest": "True",
-            "Deku Tree Slingshot Room Side Chest": "True"
         }
     },
     {
@@ -63,7 +62,6 @@
         "region_name": "Deku Tree Basement Ledge",
         "dungeon": "Deku Tree",
         "exits": {
-            "Deku Tree Basement": "True",
             "Deku Tree Basement Back Room": "is_child",
             "Deku Tree Before Boss": "
                 deku_tree_shortcuts or
@@ -79,7 +77,6 @@
             "Deku Tree Basement Recovery Heart 3" : "True"
         },
         "exits": {
-            "Deku Tree Basement Ledge": "True",
             "Deku Tree Boss Door": "deku_tree_shortcuts or here(has_shield)"
         }
     }

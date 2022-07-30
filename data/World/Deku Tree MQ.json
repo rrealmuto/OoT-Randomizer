@@ -102,7 +102,6 @@
             "Deku Tree MQ Deku Scrub": "can_stun_deku"
         },
         "exits" : {
-            "Deku Tree Lobby": "True",
             "Deku Tree Basement Back Room": "is_child",
             "Deku Tree Before Boss": "deku_tree_shortcuts or here(has_fire_source_with_torch)"
         }
@@ -116,7 +115,6 @@
             "Deku Tree MQ Basement Recovery Heart 3" : "True"
         },
         "exits" : {
-            "Deku Tree Basement Ledge": "True",
             "Deku Tree Boss Door": "deku_tree_shortcuts or here(has_shield)"
         }
     }
