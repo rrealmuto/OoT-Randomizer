@@ -10,7 +10,7 @@ from HintList import getRequiredHints, misc_item_hint_table
 from Hints import HintArea, hint_dist_keys, HintDistFiles
 from Item import ItemFactory, ItemInfo, MakeEventItem
 from Location import Location, LocationFactory
-from LocationList import business_scrubs
+from LocationList import business_scrubs, location_groups
 from Plandomizer import InvalidFileException
 from Region import Region, TimeOfDay
 from RuleParser import Rule_AST_Transformer
@@ -665,20 +665,9 @@ class World(object):
         'Shadow Medallion',
         'Light Medallion'
     )
-    boss_location_names = (
-        'Queen Gohma',
-        'King Dodongo',
-        'Barinade',
-        'Phantom Ganon',
-        'Volvagia',
-        'Morpha',
-        'Bongo Bongo',
-        'Twinrova',
-        'Links Pocket'
-    )
     def fill_bosses(self, bossCount=9):
         boss_rewards = ItemFactory(self.rewardlist, self)
-        boss_locations = [self.get_location(loc) for loc in self.boss_location_names]
+        boss_locations = [self.get_location(loc) for loc in location_groups['Boss']]
 
         placed_prizes = [loc.item.name for loc in boss_locations if loc.item is not None]
         unplaced_prizes = [item for item in boss_rewards if item.name not in placed_prizes]

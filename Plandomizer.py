@@ -1027,17 +1027,19 @@ class WorldDistribution(object):
         if world.settings.skip_child_zelda:
             skipped_locations += ['HC Malon Egg', 'HC Zeldas Letter', 'Song from Impa']
         if world.settings.empty_dungeons_mode != 'none':
-            boss_map = world.get_boss_map()
-            for info in world.empty_dungeons.values():
-                if info.empty:
-                    skipped_locations.append(boss_map[info.boss_name])
-            if world.settings.shuffle_song_items == 'dungeon':
-                for location_name in location_groups['BossHeart']:
-                    location = world.get_location(location_name)
-                    hint_area = HintArea.at(location)
-                    if hint_area.is_dungeon and world.empty_dungeons[hint_area.dungeon_name].empty:
-                        skipped_locations.append(location.name)
-                        world.item_added_hint_types['barren'].append(location.item.name)
+            skipped_locations_from_dungeons = []
+            if True: #TODO dungeon rewards not shuffled
+                skipped_locations_from_dungeons += location_groups['Boss']
+            if world.settings.shuffle_song_items == 'song':
+                skipped_locations_from_dungeons += location_groups['Song']
+            elif world.settings.shuffle_song_items == 'dungeon':
+                skipped_locations_from_dungeons += location_groups['BossHeart']
+            for location_name in skipped_locations_from_dungeons:
+                location = world.get_location(location_name)
+                hint_area = HintArea.at(location)
+                if hint_area.is_dungeon and world.empty_dungeons[hint_area.dungeon_name].empty:
+                    skipped_locations.append(location.name)
+                    world.item_added_hint_types['barren'].append(location.item.name)
         for iter_world in worlds:
             for location in skipped_locations:
                 loc = iter_world.get_location(location)
