@@ -828,8 +828,12 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
                 if not max_search.visited(location):
                     raise EntranceShuffleError('%s is unreachable' % location.name)
 
-    if world.shuffle_interior_entrances and (world.dungeon_rewards_hinted or any(hint_type in world.settings.misc_hints for hint_type in misc_item_hint_table) or world.settings.hints != 'none') and \
-       (entrance_placed == None or entrance_placed.type in ['Interior', 'SpecialInterior']):
+    if (
+        world.shuffle_interior_entrances and (
+            (world.dungeon_rewards_hinted and False) or #TODO enable if boss reward shuffle and/or mixed pools bosses are on
+            any(hint_type in world.settings.misc_hints for hint_type in misc_item_hint_table) or world.settings.hints != 'none'
+        ) and (entrance_placed == None or entrance_placed.type in ['Interior', 'SpecialInterior'])
+    ):
         # Ensure Kak Potion Shop entrances are in the same hint area so there is no ambiguity as to which entrance is used for hints
         potion_front_entrance = get_entrance_replacing(world.get_region('Kak Potion Shop Front'), 'Kakariko Village -> Kak Potion Shop Front')
         potion_back_entrance = get_entrance_replacing(world.get_region('Kak Potion Shop Back'), 'Kak Backyard -> Kak Potion Shop Back')
