@@ -892,7 +892,7 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
         # This means we need to hard check that none of the relevant entrances are ever reachable as that age
         # This is mostly relevant when mixing entrance pools or shuffling special interiors (such as windmill or kak potion shop)
         # Warp Songs and Overworld Spawns can also end up inside certain indoors so those need to be handled as well
-        CHILD_FORBIDDEN = ['OGC Great Fairy Fountain -> Castle Grounds', 'GV Carpenter Tent -> GV Fortress Side']
+        CHILD_FORBIDDEN = ['OGC Great Fairy Fountain -> Castle Grounds', 'Ganons Castle Lobby -> Castle Grounds From Ganons Castle', 'GV Carpenter Tent -> GV Fortress Side']
         ADULT_FORBIDDEN = ['HC Great Fairy Fountain -> Castle Grounds', 'HC Storms Grotto -> Castle Grounds']
 
         for entrance in world.get_shufflable_entrances():
