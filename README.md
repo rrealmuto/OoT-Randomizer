@@ -164,13 +164,15 @@ do that.
   * New setting `Blue Fire Arrows` gives Ice Arrows the power to melt red ice and mud walls to give them more utility.
   * New Misc. Hint `Dampé's Diary` which reveals the location of a hookshot.
   * New item pool setting `Ludicrous` makes it so every check will be a major item.
-  * `Shuffle Dungeon Entrances` has new setting `Dungeons and Ganon` which puts Ganon's Castle into the pool of dungeons which can be shuffled. 
+  * `Shuffle Dungeon Entrances` has new setting `Dungeons and Ganon` which puts Ganon's Castle into the pool of dungeons which can be shuffled.
+  * New setting `Pre-Completed Dungeons` which allows some dungeons to be filled with junk and their dungeon rewards given as a starting item.
 
 * **Gameplay**
   * Shortened the animation for equipping magic arrows.
   * You can now use the child trade item (Zelda's Letter, masks, etc) as child using D-Pad Right.
   * Red Ice transparency is increased when any Chest Appearance setting is enabled.
   * Zelda's text after defeating Ganon now advances automatically.
+  * Health and Magic potion models in shops will now match your health and magic colors when `Item Model Colors Match Cosmetics` is enabled.
 
 
 #### Bug fixes

@@ -163,11 +163,6 @@ def update_goal_items(spoiler):
 
     # getHintGroup relies on hint exclusion list
     always_locations = [location.name for world in worlds for location in getHintGroup('always', world)]
-    if spoiler.playthrough:
-        # Skip even the checks
-        _maybe_set_misc_item_hints = lambda _: None
-    else:
-        _maybe_set_misc_item_hints = maybe_set_misc_item_hints
 
     if worlds[0].enable_goal_hints:
         # References first world for goal categories only
@@ -189,7 +184,7 @@ def update_goal_items(spoiler):
                 # Goals are changed for beatable-only accessibility per-world
                 category.update_reachable_goals(search, full_search)
                 reachable_goals = full_search.beatable_goals_fast({ cat_name: category }, cat_world.id)
-                identified_locations = search_goals({ cat_name: category }, reachable_goals, search, priority_locations, all_locations, item_locations, always_locations, _maybe_set_misc_item_hints)
+                identified_locations = search_goals({ cat_name: category }, reachable_goals, search, priority_locations, all_locations, item_locations, always_locations)
                 # Multiworld can have all goals for one player's bridge entirely
                 # locked by another player's bridge. Therefore, we can't assume
                 # accurate required location lists by locking every world's
@@ -213,7 +208,7 @@ def update_goal_items(spoiler):
         for cat_name, category in worlds[0].unlocked_goal_categories.items():
             category.update_reachable_goals(search, full_search)
         reachable_goals = full_search.beatable_goals_fast(worlds[0].unlocked_goal_categories)
-    identified_locations = search_goals(worlds[0].unlocked_goal_categories, reachable_goals, search, priority_locations, all_locations, item_locations, always_locations, _maybe_set_misc_item_hints, search_woth=True)
+    identified_locations = search_goals(worlds[0].unlocked_goal_categories, reachable_goals, search, priority_locations, all_locations, item_locations, always_locations, search_woth=True)
     required_locations.update(identified_locations)
     woth_locations = list(required_locations['way of the hero'])
     del required_locations['way of the hero']
@@ -291,7 +286,7 @@ def unlock_category_entrances(category_locks, state_list):
             exit.access_rule = access_rule
 
 
-def search_goals(categories, reachable_goals, search, priority_locations, all_locations, item_locations, always_locations, _maybe_set_misc_item_hints, search_woth=False):
+def search_goals(categories, reachable_goals, search, priority_locations, all_locations, item_locations, always_locations, search_woth=False):
     # required_locations[category.name][goal.name][world_id] = [...]
     required_locations = defaultdict(lambda: defaultdict(lambda: defaultdict(list)))
     world_ids = [state.world.id for state in search.state_list]
@@ -337,7 +332,7 @@ def search_goals(categories, reachable_goals, search, priority_locations, all_lo
             if search_woth and not valid_goals['way of the hero']:
                 required_locations['way of the hero'].append(location)
             location.item = old_item
-            _maybe_set_misc_item_hints(location)
+        maybe_set_misc_item_hints(location)
         search.state_list[location.item.world.id].collect(location.item)
     return required_locations
 

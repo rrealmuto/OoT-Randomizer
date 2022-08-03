@@ -1537,8 +1537,8 @@ def buildMiscItemHints(world, messages):
                     text = data['default_item_text'].format(area=area)
                 else:
                     text = data['custom_item_text'].format(area=area, item=getHint(getItemGenericName(location.item), world.settings.clearer_hints).text)
-            elif 'fallback' in data:
-                if item == data['default_item']:
+            elif 'custom_item_fallback' in data:
+                if 'default_item_fallback' in data and item == data['default_item']:
                     text = data['default_item_fallback']
                 else:
                     text = data['custom_item_fallback'].format(item=item)

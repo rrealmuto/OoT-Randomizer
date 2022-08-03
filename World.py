@@ -87,6 +87,35 @@ class World(object):
             'Light': False
         }
 
+        # empty dungeons will be decided later
+        class EmptyDungeons(dict):
+
+            class EmptyDungeonInfo:
+                def __init__(self, boss_name):
+                    self.empty = False
+                    self.boss_name = boss_name
+                    self.hint_name = None
+
+            def __init__(self):
+                super().__init__()
+                self['Deku Tree'] = self.EmptyDungeonInfo('Queen Gohma')
+                self['Dodongos Cavern'] = self.EmptyDungeonInfo('King Dodongo')
+                self['Jabu Jabus Belly'] = self.EmptyDungeonInfo('Barinade')
+                self['Forest Temple'] = self.EmptyDungeonInfo('Phantom Ganon')
+                self['Fire Temple'] = self.EmptyDungeonInfo('Volvagia')
+                self['Water Temple'] = self.EmptyDungeonInfo('Morpha')
+                self['Spirit Temple'] = self.EmptyDungeonInfo('Twinrova')
+                self['Shadow Temple'] = self.EmptyDungeonInfo('Bongo Bongo')
+
+                for area in HintArea:
+                    if area.is_dungeon and area.dungeon_name in self:
+                        self[area.dungeon_name].hint_name = str(area)
+            
+            def __missing__(self, dungeon_name):
+                return self.EmptyDungeonInfo(None)
+
+        self.empty_dungeons = EmptyDungeons()
+
         # dungeon forms will be decided later
         self.dungeon_mq = {
             'Deku Tree': False,
@@ -170,6 +199,12 @@ class World(object):
                 if dist in i['types']:
                     self.item_hint_type_overrides[dist].append(i['item'])
 
+        # Make empty dungeons non-hintable as barren dungeons
+        if settings.empty_dungeons_mode != 'none':
+            for info in self.empty_dungeons.values():
+                if info.empty:
+                    self.hint_type_overrides['barren'].append(info.hint_name)
+        
 
         self.hint_text_overrides = {}
         for loc in self.hint_dist_user['add_locations']:
@@ -282,6 +317,7 @@ class World(object):
         new_world = World(self.id, self.settings, False)
         new_world.skipped_trials = copy.copy(self.skipped_trials)
         new_world.dungeon_mq = copy.copy(self.dungeon_mq)
+        new_world.empty_dungeons = copy.copy(self.empty_dungeons)
         new_world.shop_prices = copy.copy(self.shop_prices)
         new_world.triforce_goal = self.triforce_goal
         new_world.triforce_count = self.triforce_count
@@ -380,28 +416,66 @@ class World(object):
         for trial in self.skipped_trials:
             if trial not in chosen_trials and trial not in dist_chosen:
                 self.skipped_trials[trial] = True
+        
 
-        # Determine MQ Dungeons
-        dungeon_pool = list(self.dungeon_mq)
-        dist_num_mq = self.distribution.configure_dungeons(self, dungeon_pool)
+        # Determine empty and MQ Dungeons (avoid having both empty & MQ dungeons unless necessary)
+        mq_dungeon_pool = list(self.dungeon_mq)
+        empty_dungeon_pool = list(self.empty_dungeons)
+        dist_num_mq, dist_num_empty = self.distribution.configure_dungeons(self, mq_dungeon_pool, empty_dungeon_pool)
+
+        if self.settings.empty_dungeons_mode == 'specific':
+            for dung in self.settings.empty_dungeons_specific:
+                self.empty_dungeons[dung].empty = True
+
+        if self.settings.mq_dungeons_mode == 'specific':
+            for dung in self.settings.mq_dungeons_specific:
+                self.dungeon_mq[dung] = True
+
+        if self.settings.empty_dungeons_mode == 'count':
+            nb_to_pick = self.settings.empty_dungeons_count - dist_num_empty
+            if nb_to_pick < 0:
+                raise RuntimeError(f"{dist_num_empty} dungeons are set to empty on world {self.id+1}, but only {self.settings.empty_dungeons_count} empty dungeons allowed")
+            if len(empty_dungeon_pool) < nb_to_pick:
+                non_empty = 8 - dist_num_empty - len(empty_dungeon_pool)
+                raise RuntimeError(f"On world {self.id+1}, {dist_num_empty} dungeons are set to empty and {non_empty} to non-empty. Can't reach {self.settings.empty_dungeons_count} empty dungeons.")
+            
+            # Prioritize non-MQ dungeons
+            non_mq, mq = [], []
+            for dung in empty_dungeon_pool:
+                (mq if self.dungeon_mq[dung] else non_mq).append(dung)
+            for dung in random.sample(non_mq, min(nb_to_pick, len(non_mq))):
+                self.empty_dungeons[dung].empty = True
+                nb_to_pick -= 1
+            if nb_to_pick > 0:
+                for dung in random.sample(mq, nb_to_pick):
+                    self.empty_dungeons[dung].empty = True
 
         if self.settings.mq_dungeons_mode == 'random' and 'mq_dungeons_count' not in dist_keys:
-            for dungeon in dungeon_pool:
+            for dungeon in mq_dungeon_pool:
                 self.dungeon_mq[dungeon] = random.choice([True, False])
             self.randomized_list.append('mq_dungeons_count')
         elif self.settings.mq_dungeons_mode in ['mq', 'vanilla']:
             for dung in self.dungeon_mq.keys():
-                self.dungeon_mq[dung] = True if self.settings.mq_dungeons_mode == 'mq' else False
-        elif self.settings.mq_dungeons_mode == 'specific':
-            for dung in self.settings.mq_dungeons_specific:
+                self.dungeon_mq[dung] = (self.settings.mq_dungeons_mode == 'mq')
+        elif self.settings.mq_dungeons_mode != 'specific':
+            nb_to_pick = self.settings.mq_dungeons_count - dist_num_mq
+            if nb_to_pick < 0:
+                raise RuntimeError("%d dungeons are set to MQ on world %d, but only %d MQ dungeons allowed." % (dist_num_mq, self.id+1, self.settings.mq_dungeons_count))
+            if len(mq_dungeon_pool) < nb_to_pick:
+                non_mq = 8 - dist_num_mq - len(mq_dungeon_pool)
+                raise RuntimeError(f"On world {self.id+1}, {dist_num_mq} dungeons are set to MQ and {non_mq} to non-MQ. Can't reach {self.settings.mq_dungeons_count} MQ dungeons.")
+       
+            # Prioritize non-empty dungeons
+            non_empty, empty = [], []
+            for dung in mq_dungeon_pool:
+                (empty if self.empty_dungeons[dung].empty else non_empty).append(dung)
+            for dung in random.sample(non_empty, min(nb_to_pick, len(non_empty))):
                 self.dungeon_mq[dung] = True
-        else:
-            if self.settings.mq_dungeons_count < dist_num_mq:
-                raise RuntimeError("%d dungeons are set to MQ on world %d, but only %d MQ dungeons allowed." % (dist_num_mq, self.id, self.settings.mq_dungeons_count))
-            mqd_picks = random.sample(dungeon_pool, self.settings.mq_dungeons_count - dist_num_mq)
-            for dung in mqd_picks:
-                self.dungeon_mq[dung] = True
-
+                nb_to_pick -= 1
+            if nb_to_pick > 0:
+                for dung in random.sample(empty, nb_to_pick):
+                    self.dungeon_mq[dung] = True
+            
         self.settings.mq_dungeons_count = list(self.dungeon_mq.values()).count(True)
         self.distribution.configure_randomized_settings(self)
 
@@ -929,12 +1003,22 @@ class World(object):
     # get a list of items that should stay in their proper dungeon
     def get_restricted_dungeon_items(self):
         itempool = []
+
         if self.settings.shuffle_mapcompass == 'dungeon':
             itempool.extend([item for dungeon in self.dungeons for item in dungeon.dungeon_items])
+        elif self.settings.shuffle_mapcompass in ['any_dungeon', 'overworld', 'keysanity']:
+            itempool.extend([item for dungeon in self.dungeons if self.empty_dungeons[dungeon.name].empty for item in dungeon.dungeon_items])
+
         if self.settings.shuffle_smallkeys == 'dungeon':
             itempool.extend([item for dungeon in self.dungeons for item in dungeon.small_keys])
+        elif self.settings.shuffle_smallkeys in ['any_dungeon', 'overworld', 'keysanity']:
+            itempool.extend([item for dungeon in self.dungeons if self.empty_dungeons[dungeon.name].empty for item in dungeon.small_keys])
+
         if self.settings.shuffle_bosskeys == 'dungeon':
             itempool.extend([item for dungeon in self.dungeons if dungeon.name != 'Ganons Castle' for item in dungeon.boss_key])
+        elif self.settings.shuffle_bosskeys in ['any_dungeon', 'overworld', 'keysanity']:
+            itempool.extend([item for dungeon in self.dungeons if self.empty_dungeons[dungeon.name].empty for item in dungeon.boss_key])
+
         if self.settings.shuffle_ganon_bosskey == 'dungeon':
             itempool.extend([item for dungeon in self.dungeons if dungeon.name == 'Ganons Castle' for item in dungeon.boss_key])
 
@@ -947,11 +1031,11 @@ class World(object):
     def get_unrestricted_dungeon_items(self):
         itempool = []
         if self.settings.shuffle_mapcompass in ['any_dungeon', 'overworld', 'keysanity']:
-            itempool.extend([item for dungeon in self.dungeons for item in dungeon.dungeon_items])
+            itempool.extend([item for dungeon in self.dungeons if not self.empty_dungeons[dungeon.name].empty for item in dungeon.dungeon_items])
         if self.settings.shuffle_smallkeys in ['any_dungeon', 'overworld', 'keysanity']:
-            itempool.extend([item for dungeon in self.dungeons for item in dungeon.small_keys])
+            itempool.extend([item for dungeon in self.dungeons if not self.empty_dungeons[dungeon.name].empty for item in dungeon.small_keys])
         if self.settings.shuffle_bosskeys in ['any_dungeon', 'overworld', 'keysanity']:
-            itempool.extend([item for dungeon in self.dungeons if dungeon.name != 'Ganons Castle' for item in dungeon.boss_key])
+            itempool.extend([item for dungeon in self.dungeons if (dungeon.name != 'Ganons Castle' and not self.empty_dungeons[dungeon.name].empty) for item in dungeon.boss_key])
         if self.settings.shuffle_ganon_bosskey in ['any_dungeon', 'overworld', 'keysanity']:
             itempool.extend([item for dungeon in self.dungeons if dungeon.name == 'Ganons Castle' for item in dungeon.boss_key])
 

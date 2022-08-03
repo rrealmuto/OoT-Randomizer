@@ -70,6 +70,15 @@ class Region(object):
 
 
     def can_fill(self, item, manual=False):
+        if not manual and self.world.settings.empty_dungeons_mode != 'none' and item.dungeonitem:
+            # An empty dungeon can only store its own dungeon items
+            if self.dungeon and self.dungeon.world.empty_dungeons[self.dungeon.name].empty:
+                return self.dungeon.is_dungeon_item(item) and item.world.id == self.world.id
+            # Items from empty dungeons can only be in their own dungeons
+            for dungeon in item.world.dungeons:
+                if item.world.empty_dungeons[dungeon.name].empty and dungeon.is_dungeon_item(item):
+                    return False
+        
         from Hints import HintArea
 
         is_self_dungeon_restricted = False

@@ -2677,6 +2677,9 @@ setting_infos = [
             Bombchus only count as major items if they
             are considered in logic.
 
+            Pre-completed dungeons (if any) won't have
+            a major item.
+
             This setting has potential to conflict with
             other randomizer settings. Should seeds continuously
             fail to generate, consider turning this option off.
@@ -3130,6 +3133,10 @@ setting_infos = [
             - Ice Cavern's Serenade of Water Location
             - Bottom of the Well's Lens of Truth Location
             - Gerudo Training Ground's Ice Arrow Location
+
+            If some dungeons are pre-completed, songs that would have
+            been located inside these dungeons are given for free along
+            with the free dungeon rewards.
 
             'Anywhere': Songs can appear in any location.
         ''',
@@ -3735,32 +3742,31 @@ setting_infos = [
         },
         gui_tooltip    = '''\
             'Remove': Maps and Compasses are removed.
-            This will add a small amount of money and
-            refill items to the pool.
+            This will add a small amount of money and refill items to the pool.
 
-            'Start With': Maps and Compasses are given to
-            you from the start. This will add a small
-            amount of money and refill items to the pool.
+            'Start With': Maps and Compasses are given to you from the start.
+            This will add a small amount of money and refill items to the pool.
 
-            'Vanilla': Maps and Compasses will appear in
-            their vanilla locations.
+            'Vanilla': Maps and Compasses will appear in their vanilla locations.
 
-            'Own Dungeon': Maps and Compasses can only appear
-            in their respective dungeon.
+            'Own Dungeon': Maps and Compasses can only appear in their respective
+            dungeon.
             
-            'Overworld Only': Maps and Compasses can only appear
-            outside of dungeons.
+            'Overworld Only': Maps and Compasses can only appear outside of
+            dungeons.
 
-            'Any Dungeon': Maps and Compasses can only appear in a
-            dungeon, but not necessarily the dungeon they are for.            
+            'Any Dungeon': Maps and Compasses can only appear in a dungeon, but
+            not necessarily the dungeon they are for.            
 
-            'Anywhere': Maps and Compasses can appear
-            anywhere in the world.
+            'Anywhere': Maps and Compasses can appear anywhere in the world.
 
-            Setting 'Remove', 'Start With, 'Overworld', or 'Anywhere'
-            will add 2 more possible locations to each Dungeons.
-            This makes dungeons more profitable, especially
-            Ice Cavern, Water Temple, and Jabu Jabu's Belly.
+            Setting 'Remove', 'Start With, 'Overworld', or 'Anywhere' will add 2
+            more possible locations to each Dungeons. This makes dungeons more
+            profitable, especially Ice Cavern, Water Temple, and Jabu Jabu's Belly.
+            
+            Regardless of the selected option, maps and compasses from pre-completed
+            dungeons won't be placed outside their respective dungeons and maps and
+            compasses from other dungeons won't be placed inside pre-completed dungeons.
         ''',
         shared         = True,
         gui_params     = {
@@ -3780,41 +3786,36 @@ setting_infos = [
             'keysanity':   'Anywhere (Keysanity)',
         },
         gui_tooltip    = '''\
-            'Remove': Small Keys are removed. All locked
-            doors in dungeons will be unlocked. An easier
-            mode.
+            'Remove': Small Keys are removed. All locked doors in dungeons
+            will be unlocked. An easier mode.
 
-            'Vanilla': Small Keys will appear in their 
-            vanilla locations. You start with 3 keys in 
-            Spirit Temple MQ because the vanilla key 
-            layout is not beatable in logic. You start with
-            2 keys in Vanilla/MQ Shadow Temple with its
-            dungeon shortcut enabled to prevent softlocks.
+            'Vanilla': Small Keys will appear in their vanilla locations. You start
+            with 3 keys in Spirit Temple MQ because the vanilla key layout is
+            not beatable in logic. You start with 2 keys in Vanilla/MQ Shadow
+            Temple with its dungeon shortcut enabled to prevent softlocks.
 
-            'Own Dungeon': Small Keys can only appear in their
-            respective dungeon. If Fire Temple is not a
-            Master Quest dungeon, the door to the Boss Key
-            chest will be unlocked.
+            'Own Dungeon': Small Keys can only appear in their respective
+            dungeon. If Fire Temple is not a Master Quest dungeon, the door to
+            the Boss Key chest will be unlocked.
             
-            'Overworld Only': Small Keys can only appear outside
-            of dungeons. You may need to enter a dungeon multiple
-            times to gain items to access the overworld locations
-            with the keys required to finish a dungeon.
+            'Overworld Only': Small Keys can only appear outside of dungeons. You
+            may need to enter a dungeon multiple times to gain items to access the
+            overworld locations with the keys required to finish a dungeon.
             
-            'Any Dungeon': Small Keys can only appear inside
-            of any dungeon, but won't necessarily be in the
-            dungeon that the key is for. A difficult mode since
-            it is more likely to need to enter a dungeon
-            multiple times.
+            'Any Dungeon': Small Keys can only appear inside of any dungeon, but
+            won't necessarily be in the dungeon that the key is for. A difficult mode
+            since it is more likely to need to enter a dungeon multiple times.
 
-            'Anywhere': Small Keys can appear
-            anywhere in the world. A difficult mode since
-            it is more likely to need to enter a dungeon
-            multiple times.
+            'Anywhere': Small Keys can appear anywhere in the world. A difficult
+            mode since it is more likely to need to enter a dungeon multiple times.
 
             Try different combination out, such as:
             'Small Keys: Dungeon' + 'Boss Keys: Anywhere'
             for a milder Keysanity experience.
+
+            Regardless of the selected option, small keys from pre-completed dungeons
+            won't be placed outside their respective dungeons and small keys from
+            other dungeons won't be placed inside pre-completed dungeons.
         ''',
         disable        = {
             'any_dungeon': {'settings': ['one_item_per_dungeon']}
@@ -3930,6 +3931,11 @@ setting_infos = [
             Try different combination out, such as:
             'Small Keys: Dungeon' + 'Boss Keys: Anywhere'
             for a milder Keysanity experience.
+
+            Regardless of the selected option, boss keys from
+            pre-completed dungeons won't be placed outside their
+            respective dungeons and boss keys from other dungeons
+            won't be placed inside pre-completed dungeons.
         ''',
         shared         = True,
         gui_params     = {
@@ -4318,6 +4324,93 @@ setting_infos = [
         max            = 12,
         gui_tooltip    = '''\
             Specify the number of Master Quest
+            dungeons to appear in the game.
+        ''',
+        shared         = True,
+        gui_params     = {
+            "hide_when_disabled": True,
+        },
+    ),
+    Combobox(
+        name           = 'empty_dungeons_mode',
+        gui_text       = 'Pre-completed dungeons',
+        default        = 'none',
+        choices        = {
+            'none':       'Off',
+            'specific':   'Specific Dungeons',
+            'count':      'Count',
+        },
+        gui_tooltip    = '''\
+            Pre-completed dungeons are dungeons guaranteed to be barren and whose
+            dungeon rewards are given for free to the player before the beginning
+            of the game. This setting only applies to dungeons with dungeon rewards
+            (blue warps).
+
+            - 'None': No dungeon will be pre-completed. Some dungeons may still be
+            randomly rolled with no major items, but their dungeon rewards won't
+            be given for free.
+            - 'Specific Dungeons': Choose which specific dungeons will be pre-completed.
+            - 'Count': Choose how many pre-completed dungeons will be randomly chosen.
+
+            A same dungeon won't be both MQ and pre-completed unless it has been
+            explicitly specified as such or unless it is the only way to fulfill both MQ and
+            pre-completed selected settings.
+
+            Pre-completed dungeons won't contain major items even if "Dungeons Have
+            One Major Item" is on.
+
+            Regardless of "Shuffle Dungeon Items" settings, dungeon items from
+            pre-completed dungeons won't be placed outside their respective dungeons
+            and dungeon items from other dungeons won't be placed inside pre-completed
+            dungeons.
+
+            If "Shuffle Songs" is set to "Dungeon rewards", then songs that would have
+            been placed in pre-completed dungeons are given for free along with the
+            free dungeon rewards.
+        ''',
+        shared         = True,
+        disable        = {
+            '!specific': {'settings': ['empty_dungeons_specific']},
+            '!count':    {'settings': ['empty_dungeons_count']}
+        },
+        gui_params     = {
+            'distribution':  [
+                ('none', 1)
+            ],
+        },   
+    ),
+    Combobox(
+        name            = 'empty_dungeons_specific',
+        multiple_select = True,
+        gui_text        = 'Pre-completed Dungeons',
+        choices         = {
+            'Deku Tree':              "Deku Tree",
+            'Dodongos Cavern':        "Dodongo's Cavern",
+            'Jabu Jabus Belly':       "Jabu Jabu's Belly",
+            'Forest Temple':          "Forest Temple",
+            'Fire Temple':            "Fire Temple",
+            'Water Temple':           "Water Temple",
+            'Shadow Temple':          "Shadow Temple",
+            'Spirit Temple':          "Spirit Temple"
+        },
+        default         = [],
+        gui_tooltip     = '''\
+            Select the specific dungeons you would
+            like to be pre-completed.
+        ''',
+        shared          = True,
+        gui_params     = {
+            "hide_when_disabled": True,
+        },
+    ),
+    Scale(
+        name           = 'empty_dungeons_count',
+        gui_text       = "Pre-completed Dungeon Count",
+        default        = 2,
+        min            = 1,
+        max            = 8,
+        gui_tooltip    = '''\
+            Specify the number of pre-completed
             dungeons to appear in the game.
         ''',
         shared         = True,

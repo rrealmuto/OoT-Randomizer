@@ -1,5 +1,6 @@
 import random
 import logging
+from Hints import HintArea
 from State import State
 from Rules import set_shop_rules
 from Location import DisableType
@@ -141,6 +142,33 @@ def distribute_items_restrictive(window, worlds, fill_locations=None):
         fill_dungeons_restrictive(window, worlds, search, fill_locations, dungeon_items, itempool + songitempool)
         search.collect_locations()
 
+
+    # If some dungeons are supposed to be empty, fill them with useless items.
+    if worlds[0].settings.empty_dungeons_mode != 'none':
+        empty_locations = [location for location in fill_locations \
+            if world.empty_dungeons[HintArea.at(location).dungeon_name].empty]
+        for location in empty_locations:
+            fill_locations.remove(location)
+            location.world.hint_type_overrides['sometimes'].append(location.name)
+            location.world.hint_type_overrides['random'].append(location.name)
+        
+        if worlds[0].settings.shuffle_mapcompass in ['any_dungeon', 'overworld', 'keysanity']:
+            # Non-empty dungeon items are present in restitempool but yet we 
+            # don't want to place them in an empty dungeon
+            restdungeon, restother = [], []
+            for item in restitempool:
+                if item.dungeonitem:
+                    restdungeon.append(item)
+                else:
+                    restother.append(item)
+            fast_fill(window, empty_locations, restother)
+            restitempool = restdungeon + restother
+            random.shuffle(restitempool)
+        else:
+            # We don't have to worry about this if dungeon items stay in their own dungeons
+            fast_fill(window, empty_locations, restitempool)
+
+
     # places the songs into the world
     # Currently places songs only at song locations. if there's an option
     # to allow at other locations then they should be in the main pool.
@@ -240,8 +268,12 @@ def fill_dungeon_unique_item(window, worlds, search, fill_locations, itempool):
     # since the rest are already placed.
     major_items = [item for item in itempool if item.majoritem]
     minor_items = [item for item in itempool if not item.majoritem]
+  
+    if worlds[0].settings.empty_dungeons_mode != 'none':
+        dungeons = [dungeon for world in worlds for dungeon in world.dungeons if not world.empty_dungeons[dungeon.name].empty]
+    else:
+        dungeons = [dungeon for world in worlds for dungeon in world.dungeons]
 
-    dungeons = [dungeon for world in worlds for dungeon in world.dungeons]
     double_dungeons = []
     for dungeon in dungeons:
         # we will count spirit temple twice so that it gets 2 items to match vanilla

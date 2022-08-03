@@ -100,6 +100,9 @@
     "mq_dungeons_mode": "vanilla",
     "mq_dungeons_specific": [],
     "mq_dungeons_count": 0,
+    "empty_dungeons_mode": "none",
+    "empty_dungeons_specific": [],
+    "empty_dungeons_count": 2,
     "disabled_locations": [],
     "allowed_tricks": [],
     "logic_earliest_adult_trade": "pocket_egg",
@@ -239,6 +242,9 @@
     "mq_dungeons_mode": "vanilla",
     "mq_dungeons_specific": [],
     "mq_dungeons_count": 0,
+    "empty_dungeons_mode": "none",
+    "empty_dungeons_specific": [],
+    "empty_dungeons_count": 2,
     "disabled_locations": [],
     "allowed_tricks": [],
     "logic_earliest_adult_trade": "claim_check",
@@ -436,6 +442,9 @@
     "mq_dungeons_mode": "vanilla",
     "mq_dungeons_specific": [],
     "mq_dungeons_count": 0,
+    "empty_dungeons_mode": "none",
+    "empty_dungeons_specific": [],
+    "empty_dungeons_count": 2,
     "disabled_locations": [],
     "allowed_tricks": [],
     "logic_earliest_adult_trade": "pocket_egg",
@@ -561,6 +570,9 @@
     "mq_dungeons_mode": "vanilla",
     "mq_dungeons_specific": [],
     "mq_dungeons_count": 0,
+    "empty_dungeons_mode": "none",
+    "empty_dungeons_specific": [],
+    "empty_dungeons_count": 2,
     "disabled_locations": [],
     "allowed_tricks": [],
     "logic_earliest_adult_trade": "pocket_egg",
@@ -691,6 +703,9 @@
     "mq_dungeons_mode": "vanilla",
     "mq_dungeons_specific": [],
     "mq_dungeons_count": 0,
+    "empty_dungeons_mode": "none",
+    "empty_dungeons_specific": [],
+    "empty_dungeons_count": 2,
     "disabled_locations": [
       "Deku Theater Mask of Truth"
     ],
@@ -845,6 +860,9 @@
     "mq_dungeons_mode": "vanilla",
     "mq_dungeons_specific": [],
     "mq_dungeons_count": 0,
+    "empty_dungeons_mode": "none",
+    "empty_dungeons_specific": [],
+    "empty_dungeons_count": 2,
     "disabled_locations": [
       "Song from Impa",
       "Song from Malon",
@@ -1251,6 +1269,9 @@
     "mq_dungeons_mode": "vanilla",
     "mq_dungeons_specific": [],
     "mq_dungeons_count": 0,
+    "empty_dungeons_mode": "none",
+    "empty_dungeons_specific": [],
+    "empty_dungeons_count": 2,
     "disabled_locations": [
       "Deku Theater Mask of Truth",
       "Kak 40 Gold Skulltula Reward",
@@ -1386,6 +1407,9 @@
     "mq_dungeons_mode": "vanilla",
     "mq_dungeons_specific": [],
     "mq_dungeons_count": 0,
+    "empty_dungeons_mode": "none",
+    "empty_dungeons_specific": [],
+    "empty_dungeons_count": 2,
     "disabled_locations": [
       "Deku Theater Mask of Truth"
     ],
@@ -1538,6 +1562,9 @@
     "mq_dungeons_mode": "vanilla",
     "mq_dungeons_specific": [],
     "mq_dungeons_count": 0,
+    "empty_dungeons_mode": "none",
+    "empty_dungeons_specific": [],
+    "empty_dungeons_count": 2,
     "disabled_locations": [
       "Deku Theater Mask of Truth"
     ],
@@ -1692,6 +1719,9 @@
     "mq_dungeons_mode": "vanilla",
     "mq_dungeons_specific": [],
     "mq_dungeons_count": 0,
+    "empty_dungeons_mode": "none",
+    "empty_dungeons_specific": [],
+    "empty_dungeons_count": 2,
     "disabled_locations": [
       "Deku Theater Mask of Truth"
     ],
@@ -1840,6 +1870,9 @@
     "mq_dungeons_mode": "vanilla",
     "mq_dungeons_specific": [],
     "mq_dungeons_count": 0,
+    "empty_dungeons_mode": "none",
+    "empty_dungeons_specific": [],
+    "empty_dungeons_count": 2,
     "disabled_locations": [
       "Sheik in Kakariko",
       "Deku Theater Mask of Truth",
@@ -1997,6 +2030,9 @@
     "mq_dungeons_mode": "vanilla",
     "mq_dungeons_specific": [],
     "mq_dungeons_count": 0,
+    "empty_dungeons_mode": "none",
+    "empty_dungeons_specific": [],
+    "empty_dungeons_count": 2,
     "disabled_locations": [
       "Deku Theater Mask of Truth",
       "Kak 40 Gold Skulltula Reward",
@@ -2157,6 +2193,9 @@
     "mq_dungeons_mode": "random",
     "mq_dungeons_specific": [],
     "mq_dungeons_count": 6,
+    "empty_dungeons_mode": "none",
+    "empty_dungeons_specific": [],
+    "empty_dungeons_count": 2,
     "disabled_locations": [],
     "allowed_tricks": [
       "logic_fewer_tunic_requirements",
@@ -2446,6 +2485,9 @@
     "mq_dungeons_mode": "vanilla",
     "mq_dungeons_specific": [],
     "mq_dungeons_count": 0,
+    "empty_dungeons_mode": "none",
+    "empty_dungeons_specific": [],
+    "empty_dungeons_count": 2,
     "disabled_locations": [
       "Deku Theater Mask of Truth",
       "ZR Frogs Ocarina Game",
@@ -2589,6 +2631,9 @@
     "mq_dungeons_mode": "vanilla",
     "mq_dungeons_specific": [],
     "mq_dungeons_count": 0,
+    "empty_dungeons_mode": "none",
+    "empty_dungeons_specific": [],
+    "empty_dungeons_count": 2,
     "disabled_locations": [
       "Deku Theater Mask of Truth"
     ],
@@ -2739,6 +2784,9 @@
     "mq_dungeons_mode": "vanilla",
     "mq_dungeons_specific": [],
     "mq_dungeons_count": 0,
+    "empty_dungeons_mode": "none",
+    "empty_dungeons_specific": [],
+    "empty_dungeons_count": 2,
     "disabled_locations": [
       "Deku Theater Mask of Truth",
       "Kak 40 Gold Skulltula Reward",

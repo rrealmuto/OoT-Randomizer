@@ -632,7 +632,11 @@ def get_pool_core(world):
             world.state.collect(ItemFactory('Small Key (Shadow Temple)'))
             world.state.collect(ItemFactory('Small Key (Shadow Temple)'))
 
-    if not world.keysanity and (world.settings.shuffle_base_item_pool or world.settings.shuffle_smallkeys != 'vanilla') and not world.dungeon_mq['Fire Temple']:
+    if (
+        (not world.keysanity or (world.empty_dungeons['Fire Temple'].empty and world.settings.shuffle_smallkeys != 'remove'))
+        and (world.settings.shuffle_base_item_pool or world.settings.shuffle_smallkeys != 'vanilla')
+        and not world.dungeon_mq['Fire Temple']
+    ):
         world.state.collect(ItemFactory('Small Key (Fire Temple)'))
 
     if world.settings.shuffle_ganon_bosskey == 'on_lacs':
