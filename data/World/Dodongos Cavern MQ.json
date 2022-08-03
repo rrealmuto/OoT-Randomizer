@@ -47,7 +47,7 @@
             "Dodongos Cavern MQ Staircase Crate Top Right": "can_bonk_crate",
             "Dodongos Cavern MQ GS Song of Time Block Room": "
                 can_play(Song_of_Time) and (can_child_attack or is_adult)",
-            "Deku Baba Sticks": "is_adult or Kokiri_Sword or can_use(Boomerang)"
+            "Deku Baba Sticks": "is_adult or Kokiri_Sword or Boomerang"
         },
         "exits": {
             "Dodongos Cavern Torch Puzzle Lower": "
