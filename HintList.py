@@ -997,10 +997,10 @@ hintTable = {
     'Fire Temple GS Scarecrow Top':                                ("a #spider-friendly scarecrow# atop a volcano hides", "a #spider-friendly scarecrow# atop the Fire Temple hides", 'exclude'),
     'Fire Temple GS Scarecrow Climb':                              ("a #spider-friendly scarecrow# atop a volcano hides", "a #spider-friendly scarecrow# atop the Fire Temple hides", 'exclude'),
 
-    'Fire Temple MQ GS Above Fire Wall Maze':                      ("a #spider above a fiery maze# holds", None, 'exclude'),
-    'Fire Temple MQ GS Fire Wall Maze Center':                     ("a #spider within a fiery maze# holds", None, 'exclude'),
+    'Fire Temple MQ GS Above Flame Maze':                          ("a #spider above a fiery maze# holds", None, 'exclude'),
+    'Fire Temple MQ GS Flame Maze Center':                         ("a #spider within a fiery maze# holds", None, 'exclude'),
     'Fire Temple MQ GS Big Lava Room Open Door':                   ("a #Goron trapped near lava# befriended a spider with", None, 'exclude'),
-    'Fire Temple MQ GS Fire Wall Maze Side Room':                  ("a #spider beside a fiery maze# holds", None, 'exclude'),
+    'Fire Temple MQ GS Flame Maze Side Room':                      ("a #spider beside a fiery maze# holds", None, 'exclude'),
 
     'Water Temple GS Falling Platform Room':                       ("a #spider over a waterfall# in the Water Temple holds", None, 'exclude'),
     'Water Temple GS Central Pillar':                              ("a #spider in the center of the Water Temple# holds", None, 'exclude'),
