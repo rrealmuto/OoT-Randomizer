@@ -11,7 +11,7 @@
         },
         "exits": {
             "Zoras Fountain": "True",
-            "Jabu Jabus Belly Main": "here(is_child and can_use(Slingshot)) or jabu_shortcuts"
+            "Jabu Jabus Belly Elevator Room": "here(can_use(Slingshot)) or jabu_shortcuts"
         }
     },
     {
