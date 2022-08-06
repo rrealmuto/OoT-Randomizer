@@ -1025,7 +1025,7 @@ hintTable = {
     'Shadow Temple GS Single Giant Pot':                           ("#beyond a burning skull# lies a spider with", None, 'exclude'),
     'Shadow Temple GS Falling Spikes Room':                        ("a #spider beyond falling spikes# holds", None, 'exclude'),
     'Shadow Temple GS Triple Giant Pot':                           ("#beyond three burning skulls# lies a spider with", None, 'exclude'),
-    'Shadow Temple GS Like Like Room':                             ("a spider guarded by #invisible blades# holds", None, 'exclude'),
+    'Shadow Temple GS Invisible Blades Room':                      ("a spider guarded by #invisible blades# holds", None, 'exclude'),
     'Shadow Temple GS Near Ship':                                  ("a spider near a #docked ship# hoards", None, 'exclude'),
 
     'Shadow Temple MQ GS Falling Spikes Room':                     ("a #spider beyond falling spikes# holds", None, 'exclude'),
