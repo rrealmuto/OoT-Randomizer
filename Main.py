@@ -19,12 +19,12 @@ from Spoiler import Spoiler
 from Rom import Rom
 from Patches import patch_rom
 from Cosmetics import patch_cosmetics
-from DungeonList import create_dungeons
+from Dungeon import create_dungeons
 from Fill import distribute_items_restrictive, ShuffleError
 from Item import Item
 from ItemPool import generate_itempool, item_groups
 from Hints import buildGossipHints
-from HintList import clearHintExclusionCache
+from HintList import clearHintExclusionCache, misc_item_hint_table
 from Utils import default_output_path, is_bundled, run_process, data_path
 from N64Patch import create_patch_file, apply_patch_file
 from MBSDIFFPatch import apply_ootr_3_web_patch
@@ -34,7 +34,7 @@ from Plandomizer import Distribution
 from Search import Search, RewindableSearch
 from EntranceShuffle import set_entrances
 from LocationList import set_drop_location_names
-from Goals import update_goal_items, maybe_set_light_arrows, replace_goal_names
+from Goals import update_goal_items, maybe_set_misc_item_hints, replace_goal_names
 from version import __version__
 
 
@@ -209,9 +209,8 @@ def make_spoiler(settings, worlds, window=dummy_window()):
         calculate_playthrough_locations(spoiler)
         buildGossipHints(spoiler, worlds)
         window.update_progress(55)
-    elif 'ganondorf' in settings.misc_hints:
-        # Ganon may still provide the Light Arrows hint
-        find_light_arrows(spoiler)
+    elif any(hint_type in settings.misc_hints for hint_type in misc_item_hint_table):
+        find_misc_hint_items(spoiler)
     spoiler.build_file_hash()
     return spoiler
 
@@ -652,11 +651,11 @@ def copy_worlds(worlds):
     return worlds
 
 
-def find_light_arrows(spoiler):
+def find_misc_hint_items(spoiler):
     search = Search([world.state for world in spoiler.worlds])
     for location in search.iter_reachable_locations(search.progression_locations()):
         search.collect(location.item)
-        maybe_set_light_arrows(location)
+        maybe_set_misc_item_hints(location)
 
 
 def create_playthrough(spoiler):
@@ -699,7 +698,7 @@ def create_playthrough(spoiler):
         for location in collected:
             # Collect the item for the state world it is for
             search.state_list[location.item.world.id].collect(location.item)
-            maybe_set_light_arrows(location)
+            maybe_set_misc_item_hints(location)
     logger.info('Collected %d spheres', len(collection_spheres))
     spoiler.full_playthrough = dict((location.name, i + 1) for i, sphere in enumerate(collection_spheres) for location in sphere)
     spoiler.max_sphere = len(collection_spheres)
@@ -784,11 +783,11 @@ def create_playthrough(spoiler):
 
     # Then we can finally output our playthrough
     spoiler.playthrough = OrderedDict((str(i + 1), {location: location.item for location in sphere}) for i, sphere in enumerate(collection_spheres))
-    # Copy our light arrows, since we set them in the world copy
+    # Copy our misc. hint items, since we set them in the world copy
     for w, sw in zip(worlds, spoiler.worlds):
-        if w.light_arrow_location:
+        for hint_type, item_location in w.misc_hint_item_locations.items():
             # But the actual location saved here may be in a different world
-            sw.light_arrow_location = spoiler.worlds[w.light_arrow_location.world.id].get_location(w.light_arrow_location.name)
+            sw.misc_hint_item_locations[hint_type] = spoiler.worlds[item_location.world.id].get_location(item_location.name)
 
     if worlds[0].entrance_shuffle:
         spoiler.entrance_playthrough = OrderedDict((str(i + 1), list(sphere)) for i, sphere in enumerate(entrance_spheres))

@@ -1,7 +1,7 @@
 [
     {
         "region_name": "Root",
-        "hint": "Link's Pocket",
+        "hint": "ROOT",
         "locations": {
             "Links Pocket": "True",
             "Gift from Sages": "can_receive_ganon_bosskey"
@@ -27,7 +27,7 @@
     },
     {
         "region_name": "Kokiri Forest",
-        "hint": "Kokiri Forest",
+        "hint": "KOKIRI_FOREST",
         "events": {
             "Showed Mido Sword & Shield": "open_forest == 'open' or (is_child and Kokiri_Sword and Buy_Deku_Shield)"
         },
@@ -59,7 +59,7 @@
     },
     {
         "region_name": "KF Outside Deku Tree",
-        "hint": "Kokiri Forest",
+        "hint": "KOKIRI_FOREST",
         "locations": {
             "Deku Baba Sticks": "is_adult or Kokiri_Sword or Boomerang",
             "Deku Baba Nuts": "
@@ -76,7 +76,7 @@
     },
     {
         "region_name": "KF Links House",
-        "hint": "Kokiri Forest",
+        "hint": "KOKIRI_FOREST",
         "locations": {
             "KF Links House Cow": "is_adult and can_play(Eponas_Song) and 'Links Cow'"
         },
@@ -117,7 +117,7 @@
     },
     {
         "region_name": "Lost Woods",
-        "hint": "the Lost Woods",
+        "hint": "LOST_WOODS",
         "locations": {
             "LW Skull Kid": "is_child and can_play(Sarias_Song)",
             "LW Ocarina Memory Game": "is_child and Ocarina",
@@ -138,7 +138,7 @@
     },
     {
         "region_name": "LW Beyond Mido",
-        "hint": "the Lost Woods",
+        "hint": "LOST_WOODS",
         "locations": {
             "LW Deku Scrub Near Deku Theater Right": "is_child and can_stun_deku",
             "LW Deku Scrub Near Deku Theater Left": "is_child and can_stun_deku",
@@ -156,7 +156,7 @@
     },
     {
         "region_name": "SFM Entryway",
-        "hint": "Sacred Forest Meadow",
+        "hint": "SACRED_FOREST_MEADOW",
         "exits": {
             "LW Beyond Mido": "True",
             "Sacred Forest Meadow": "
@@ -167,7 +167,7 @@
     },
     {
         "region_name": "Sacred Forest Meadow",
-        "hint": "Sacred Forest Meadow",
+        "hint": "SACRED_FOREST_MEADOW",
         "locations": {
             "Song from Saria": "is_child and Zeldas_Letter",
             "Sheik in Forest": "is_adult",
@@ -185,7 +185,7 @@
     },
     {
         "region_name": "LW Bridge",
-        "hint": "the Lost Woods",
+        "hint": "LOST_WOODS",
         "locations": {
             "LW Gift from Saria": "True"
         },
@@ -196,7 +196,7 @@
     },
     {
         "region_name": "Hyrule Field",
-        "hint": "Hyrule Field",
+        "hint": "HYRULE_FIELD",
         "time_passes": true,
         "locations": {
             "HF Ocarina of Time Item": "is_child and has_all_stones",
@@ -224,7 +224,7 @@
     },
     {
         "region_name": "Lake Hylia",
-        "hint": "Lake Hylia",
+        "hint": "LAKE_HYLIA",
         "time_passes": true,
         "events": {
             "Bonooru": "is_child and Ocarina"
@@ -277,7 +277,7 @@
     },
     { 
         "region_name": "Gerudo Valley",
-        "hint": "Gerudo Valley",
+        "hint": "GERUDO_VALLEY",
         "time_passes": true,
         "locations": {
             "GV Waterfall Freestanding PoH": "True",
@@ -298,7 +298,7 @@
     },
     {
         "region_name": "GV Fortress Side",
-        "hint": "Gerudo Valley",
+        "hint": "GERUDO_VALLEY",
         "time_passes": true,
         "locations": {
             "GV Chest": "can_use(Megaton_Hammer)",
@@ -312,7 +312,7 @@
     },
     {
         "region_name": "Gerudo Fortress",
-        "hint": "Gerudo's Fortress",
+        "hint": "GERUDO_FORTRESS",
         "events": {
             "Carpenter Rescue": "can_finish_GerudoFortress",
             "GF Gate Open": "is_adult and Gerudo_Membership_Card"
@@ -341,7 +341,7 @@
     },
     {
         "region_name": "Haunted Wasteland",
-        "hint": "Haunted Wasteland",
+        "hint": "HAUNTED_WASTELAND",
         "locations": {
             "Wasteland Chest": "has_fire_source",
             "Wasteland Bombchu Salesman": "Progressive_Wallet and can_jumpslash",
@@ -354,7 +354,7 @@
     },
     {
         "region_name": "Desert Colossus",
-        "hint": "Desert Colossus",
+        "hint": "DESERT_COLOSSUS",
         "time_passes": true,
         "locations": {
             "Colossus Freestanding PoH": "
@@ -382,7 +382,7 @@
     },
     {
         "region_name": "Market",
-        "hint": "the Market",
+        "hint": "MARKET",
         "locations": {
             "ToT Gossip Stone (Left)": "True",
             "ToT Gossip Stone (Left-Center)": "True",
@@ -408,7 +408,7 @@
     },
     {
         "region_name": "Temple of Time",
-        "hint": "Temple of Time",
+        "hint": "TEMPLE_OF_TIME",
         "locations": {
             "ToT Light Arrows Cutscene": "is_adult and can_trigger_lacs"
         },
@@ -420,7 +420,7 @@
     },
     {
         "region_name": "Beyond Door of Time",
-        "hint": "Temple of Time",
+        "hint": "TEMPLE_OF_TIME",
         "locations": {
             "Master Sword Pedestal": "True",
             "Sheik at Temple": "Forest_Medallion and is_adult"
@@ -431,7 +431,7 @@
     },
     {
         "region_name": "Hyrule Castle Grounds",
-        "hint": "Hyrule Castle",
+        "hint": "HYRULE_CASTLE",
         "time_passes": true,
         "locations": {
             "HC Malon Egg": "True",
@@ -449,7 +449,7 @@
     },
     {
         "region_name": "HC Garden",
-        "hint": "Hyrule Castle",
+        "hint": "HYRULE_CASTLE",
         "exits": {
             "HC Garden Locations": "True",
             "Hyrule Castle Grounds": "True"
@@ -458,7 +458,7 @@
     {
         # Directly reachable from Root in "Free Zelda"
         "region_name": "HC Garden Locations",
-        "hint": "Hyrule Castle",
+        "hint": "HYRULE_CASTLE",
         "locations": {
             "HC Zeldas Letter": "True",
             "Song from Impa": "True"
@@ -472,7 +472,7 @@
     },
     {
         "region_name": "Ganons Castle Grounds",
-        "hint": "outside Ganon's Castle",
+        "hint": "OUTSIDE_GANONS_CASTLE",
         "locations": {
             "OGC GS": "True"
         },
@@ -581,7 +581,7 @@
     },
     {
         "region_name": "Kakariko Village",
-        "hint": "Kakariko Village",
+        "hint": "KAKARIKO_VILLAGE",
         "locations": {
             "Kak Man on Roof": "True",
             "Kak Anju as Adult": "is_adult",
@@ -647,7 +647,7 @@
     },
     {
         "region_name": "Kak Windmill",
-        "hint": "Kakariko Village",
+        "hint": "KAKARIKO_VILLAGE",
         "events": {
             "Drain Well": "is_child and can_play(Song_of_Storms)"
         },
@@ -677,7 +677,7 @@
     },
     {
         "region_name": "Kak Potion Shop Front",
-        "hint": "Kakariko Village",
+        "hint": "KAKARIKO_VILLAGE",
         "locations": {
             "Kak Potion Shop Item 1": "True",
             "Kak Potion Shop Item 2": "True",
@@ -697,7 +697,7 @@
     },
     {
         "region_name": "Graveyard",
-        "hint": "the Graveyard",
+        "hint": "GRAVEYARD",
         "locations": {
             "Graveyard Freestanding PoH": "
                 (is_adult and here(can_plant_bean)) or
@@ -740,7 +740,7 @@
     },
     {
         "region_name": "Graveyard Dampes Grave",
-        "hint": "the Graveyard",
+        "hint": "GRAVEYARD",
         "locations": {
             "Graveyard Dampe Race Hookshot Chest": "True",
             "Graveyard Dampe Race Freestanding PoH": "True",
@@ -748,11 +748,14 @@
         }
     },
     {
-        "region_name": "Graveyard Dampes House"
+        "region_name": "Graveyard Dampes House",
+        "locations": {
+            "Dampe Diary Hint": "is_adult"
+        }
     },
     {
         "region_name": "Graveyard Warp Pad Region",
-        "hint": "the Graveyard",
+        "hint": "GRAVEYARD",
         "locations": {
             "Graveyard Gossip Stone": "True"
         },
@@ -763,7 +766,7 @@
     },
     {
         "region_name": "Death Mountain",
-        "hint": "Death Mountain Trail",
+        "hint": "DEATH_MOUNTAIN_TRAIL",
         "time_passes": true,
         "locations": {
             "DMT Chest": "
@@ -790,7 +793,7 @@
     },
     {
         "region_name": "Death Mountain Summit",
-        "hint": "Death Mountain Trail",
+        "hint": "DEATH_MOUNTAIN_TRAIL",
         "time_passes": true,
         "locations": {
             "DMT Biggoron": "
@@ -818,7 +821,7 @@
     },
     {
         "region_name": "Goron City",
-        "hint": "Goron City",
+        "hint": "GORON_CITY",
         "events": {
             "GC Woods Warp Open": "
                 can_blast_or_smash or can_use(Dins_Fire) or can_use(Bow) or Progressive_Strength_Upgrade"
@@ -882,7 +885,7 @@
 
     {
         "region_name": "GC Darunias Chamber",
-        "hint": "Goron City",
+        "hint": "GORON_CITY",
         "events": {
             "GC Woods Warp Open": "is_child and Sticks"
         },
@@ -911,7 +914,7 @@
     },
     {
         "region_name": "DMC Upper",
-        "hint": "Death Mountain Crater",
+        "hint": "DEATH_MOUNTAIN_CRATER",
         "locations": {
             "DMC Wall Freestanding PoH": "True",
             "DMC GS Crate": "
@@ -931,7 +934,7 @@
     },
     {
         "region_name": "DMC Lower",
-        "hint": "Death Mountain Crater",
+        "hint": "DEATH_MOUNTAIN_CRATER",
         "exits": {
             "GC Darunias Chamber": "True",
             "DMC Great Fairy Fountain": "can_use(Megaton_Hammer) or can_mega or is_child",
@@ -943,7 +946,7 @@
     },
     {
         "region_name": "DMC Central",
-        "hint": "Death Mountain Crater",
+        "hint": "DEATH_MOUNTAIN_CRATER",
         "locations": {
             "DMC Volcano Freestanding PoH": "
                 (is_adult and here(can_plant_bean)) or
@@ -972,7 +975,7 @@
     },
     {
         "region_name": "ZR Front",
-        "hint": "Zora's River",
+        "hint": "ZORA_RIVER",
         "time_passes": true,
         "locations": {
             "ZR GS Tree": "is_child and can_child_attack"
@@ -984,7 +987,7 @@
     },
     {
         "region_name": "Zora River",
-        "hint": "Zora's River",
+        "hint": "ZORA_RIVER",
         "time_passes": true,
         "locations": {
             "ZR Magic Bean Salesman": "is_child",
@@ -1017,7 +1020,7 @@
     },
     {
         "region_name": "Zoras Domain",
-        "hint": "Zora's Domain",
+        "hint": "ZORAS_DOMAIN",
         "locations": {
             "ZD Diving Minigame": "is_child",
             "ZD Chest": "can_use(Sticks)",
@@ -1042,7 +1045,7 @@
     },
     {
         "region_name": "Zoras Fountain",
-        "hint": "Zora's Fountain",
+        "hint": "ZORAS_FOUNTAIN",
         "locations": {
             "ZF Iceberg Freestanding PoH": "is_adult",
             "ZF Bottom Freestanding PoH": "is_adult and Iron_Boots",
@@ -1085,7 +1088,7 @@
     },
     {
         "region_name": "Lon Lon Ranch",
-        "hint": "Lon Lon Ranch",
+        "hint": "LON_LON_RANCH",
         "events": {
             "Epona": "(can_play(Eponas_Song) or can_hover) and is_adult",
             "Links Cow": "(can_play(Eponas_Song) or can_hover) and is_adult"

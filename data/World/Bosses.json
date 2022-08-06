@@ -17,7 +17,6 @@
     {
         "region_name": "Gohma Boss Room",
         "scene": "Deku Tree Boss",
-        "dungeon": "Deku Tree",
         "events": {
             "Deku Tree Clear": "(Nuts or can_use(Slingshot)) and can_jumpslash"
         },
@@ -41,17 +40,16 @@
     {
         "region_name": "King Dodongo Boss Room",
         "scene": "Dodongos Cavern Boss",
-        "dungeon": "Dodongos Cavern",
         "locations": {
             "Dodongos Cavern Boss Room Chest": "True",
             "Dodongos Cavern King Dodongo Heart": "
                 ((can_use(Megaton_Hammer) and logic_dc_hammer_floor) or
                     has_explosives or king_dodongo_shortcuts) and
-                (Bombs or Progressive_Strength_Upgrade) and can_jumpslash",
+                (((Bombs or Progressive_Strength_Upgrade) and can_jumpslash) or deadly_bonks)",
             "King Dodongo": "
                 ((can_use(Megaton_Hammer) and logic_dc_hammer_floor) or
                     has_explosives or king_dodongo_shortcuts) and
-                (Bombs or Progressive_Strength_Upgrade) and can_jumpslash",
+                (((Bombs or Progressive_Strength_Upgrade) and can_jumpslash) or deadly_bonks)",
             "Fairy Pot": "has_bottle"
         },
         "exits": {
@@ -69,7 +67,6 @@
     },
     {
         "region_name": "Barinade Boss Room",
-        "dungeon": "Jabu Jabus Belly",
         "scene": "Jabu Jabus Belly Boss",
         "locations": {
             "Jabu Jabus Belly Barinade Heart": "can_use(Boomerang) and (Sticks or Kokiri_Sword)",
@@ -90,7 +87,6 @@
     },
     {
         "region_name": "Phantom Ganon Boss Room",
-        "dungeon": "Forest Temple",
         "scene": "Forest Temple Boss",
         "locations": {
             "Forest Temple Phantom Ganon Heart": "(can_use(Hookshot) or can_use(Bow)) or
@@ -113,7 +109,7 @@
     },
     {
         "region_name": "Volvagia Boss Room",
-        "dungeon": "Fire Temple",
+        "scene": "Fire Temple Boss",
         "locations": {
             "Fire Temple Volvagia Heart": "can_use(Goron_Tunic) and can_use(Megaton_Hammer)",
             "Volvagia": "can_use(Goron_Tunic) and can_use(Megaton_Hammer)"
@@ -133,7 +129,6 @@
     {
         "region_name": "Morpha Boss Room",
         "scene": "Water Temple Boss",
-        "dungeon":  "Water Temple",
         "events": {
             "Water Temple Clear": "can_use(Hookshot)"
         },
@@ -156,7 +151,6 @@
     },
     {
         "region_name": "Bongo Bongo Boss Room",
-        "dungeon": "Shadow Temple",
         "scene": "Shadow Temple Boss",
         "locations": {
             "Shadow Temple Bongo Bongo Heart": "
@@ -181,7 +175,6 @@
     },
     {
         "region_name": "Twinrova Boss Room",
-        "dungeon": "Spirit Temple",
         "scene": "Spirit Temple Boss",
         "locations": {
             "Spirit Temple Twinrova Heart": "can_use(Mirror_Shield)",
@@ -195,8 +188,8 @@
         "region_name": "Ganons Castle Tower",
         "dungeon": "Ganons Castle",
         "locations": {
-            "Ganons Tower Boss Key Chest": "True",
-            "Ganondorf Hint": "Boss_Key_Ganons_Castle",
+            "Ganons Tower Boss Key Chest": "is_adult or Kokiri_Sword",
+            "Ganondorf Hint": "(is_adult or Kokiri_Sword) and Boss_Key_Ganons_Castle",
             "Ganon": "Boss_Key_Ganons_Castle and can_use(Light_Arrows)"
         }
     }

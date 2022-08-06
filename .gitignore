@@ -1,14 +1,14 @@
 .sw*
-/.vs
-/.vscode
-/.idea
+.vs
+.vscode
+.idea
 /ASM/build/bin
 /Output
 /build
 /dist
 /Logs
 /testlogs
-/__pycache__
+__pycache__
 ARCHIVE.bin
 
 **/.DS_Store

@@ -71,6 +71,7 @@ RANDO_CONTEXT:
 .include "dampe.asm"
 .include "dpad.asm"
 .include "chests.asm"
+.include "red_ice.asm"
 .include "bunny_hood.asm"
 .include "colors.asm"
 .include "debug.asm"
@@ -102,6 +103,7 @@ RANDO_CONTEXT:
 .include "misc_colors.asm"
 .include "door_of_time_col_fix.asm"
 .include "mask_deequip.asm"
+.include "blue_fire_arrows.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"

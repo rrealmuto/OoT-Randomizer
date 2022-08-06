@@ -25,7 +25,7 @@
     "Nuts": "Buy_Deku_Nut_5 or Buy_Deku_Nut_10 or Deku_Nut_Drop",
     "Sticks": "Buy_Deku_Stick_1 or Deku_Stick_Drop",
     "Bugs": "'Bugs' or Buy_Bottle_Bug",
-    "Blue_Fire": "'Blue Fire' or Buy_Blue_Fire",
+    "Blue_Fire": "'Blue Fire' or Buy_Blue_Fire or (blue_fire_arrows and can_use(Ice_Arrows))",
     "Fish": "'Fish' or Buy_Fish",
     "Fairy": "'Fairy' or Buy_Fairys_Spirit",
     # "Big_Poe": "'Big Poe'",
@@ -49,7 +49,7 @@
     "can_summon_gossip_fairy": "Ocarina and (Zeldas_Lullaby or Eponas_Song or Song_of_Time or Suns_Song)",
     "can_summon_gossip_fairy_without_suns": "Ocarina and (Zeldas_Lullaby or Eponas_Song or Song_of_Time)",
     "can_take_damage": "damage_multiplier != 'ohko' or Fairy or can_use(Nayrus_Love)",
-    "can_plant_bean": "plant_beans or (is_child and (Magic_Bean or Magic_Bean_Pack))",
+    "can_plant_bean": "plant_beans or (is_child and (Magic_Bean, 10))",
     "can_play(song)": "Ocarina and song",
     "can_open_bomb_grotto": "can_blast_or_smash and (Stone_of_Agony or logic_grottos_without_agony)",
     "can_open_storm_grotto": "can_play(Song_of_Storms) and (Stone_of_Agony or logic_grottos_without_agony)",
@@ -61,9 +61,10 @@
             or (for_age == adult and (Bow or Hookshot))
             or (for_age == both and (Slingshot or Boomerang) and (Bow or Hookshot))
             or (for_age == either and (Slingshot or Boomerang or Bow or Hookshot))",
-    "can_bonk_tree": "deadly_bonks == False or Fairy or can_use(Nayrus_Love)",
-    "can_bonk_crate": "deadly_bonks == False or Fairy or can_use(Nayrus_Love) or can_blast_or_smash",
-    "can_bonk_underwater_crate": "deadly_bonks == False or Fairy or can_use(Nayrus_Love)",
+    "can_bonk_tree": "deadly_bonks != 'ohko' or Fairy or can_use(Nayrus_Love)",
+    "can_bonk_crate": "deadly_bonks != 'ohko' or Fairy or can_use(Nayrus_Love) or can_blast_or_smash",
+    "can_bonk_underwater_crate": "deadly_bonks != 'ohko' or Fairy or can_use(Nayrus_Love)",
+    "can_bonk_heated_crate": "(deadly_bonks != 'ohko' or (Fairy and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or can_use(Nayrus_Love) or can_blast_or_smash)",
 
     # can_use and helpers
     # The parser reduces this to smallest form based on item category.
@@ -75,7 +76,7 @@
     "_is_magic_item(item)": "item == Dins_Fire or item == Farores_Wind or item == Nayrus_Love or item == Lens_of_Truth",
     "_is_adult_item(item)": "item == Bow or item == Megaton_Hammer or item == Iron_Boots or item == Hover_Boots or item == Hookshot or item == Longshot or item == Silver_Gauntlets or item == Golden_Gauntlets or item == Goron_Tunic or item == Zora_Tunic or item == Scarecrow or item == Distant_Scarecrow or item == Mirror_Shield",
     "_is_child_item(item)": "item == Slingshot or item == Boomerang or item == Kokiri_Sword or item == Sticks or item == Deku_Shield",
-    "_is_magic_arrow(item)": "item == Fire_Arrows or item == Light_Arrows",
+    "_is_magic_arrow(item)": "item == Fire_Arrows or item == Light_Arrows or (blue_fire_arrows and item == Ice_Arrows)",
 
     # Biggoron's trade path
     # ER with certain settings disables timers and prevents items from reverting on save warp.
@@ -134,5 +135,5 @@
     "fire_temple_shortcuts": "'Fire Temple' in dungeon_shortcuts",
     "shadow_temple_shortcuts": "'Shadow Temple' in dungeon_shortcuts",
     "spirit_temple_shortcuts": "'Spirit Temple' in dungeon_shortcuts",
-    "king_dodongo_shortcuts": "region_has_shortcuts('King Dodongo Boss Room', 'Dodongos Cavern')"
+    "king_dodongo_shortcuts": "region_has_shortcuts('King Dodongo Boss Room')"
 }

@@ -267,6 +267,19 @@ Gameplay_InitSkybox:
     nop
     nop
 
+; Change graphic ID to be treated as unsigned
+; Replaces: lb      t9, 0x0852(s0)
+.orga 0xBE6538
+    lbu     t9, 0x0852(s0)
+
+; Replaces: lb      v0, 0x0852(s0)
+.orga 0xAF1398
+    lbu     v0, 0x0852(s0)
+
+; Replaces: lb      v0, 0x0852(s0)
+.orga 0xAF13AC
+    lbu     v0, 0x0852(s0)
+
 ; Override chest speed
 ; Replaces:
 ;   lb      t2, 0x0002 (t1)
@@ -1340,6 +1353,20 @@ skip_GS_BGS_text:
 ; set chest_lid base texture
 .org 0xFEB000 + 0x10C0 - 0x32A090 + 0x32A158
 .word   0xDE000000, 0x09000010
+
+;==================================================================================================
+; Increase transparency of red ice in CTMC
+;==================================================================================================
+
+; In a function called by red ice init
+; Replaces addiu    t7, $zero, 0x00FF
+.orga 0xDB3244
+    j       red_ice_alpha
+;   sw      t6, 0x0154(a0) ; delay slot unchanged, sets the idle action function
+; Next 3 instructions are skipped, now done in red_ice_alpha instead.
+;   sh      t7, 0x01F0(a0)
+;   jr      ra
+;   nop
 
 ;==================================================================================================
 ; Invisible Chests
@@ -2454,3 +2481,31 @@ skip_GS_BGS_text:
 ; Replaces: addiu   t1, zero, 0x55
 .orga 0xDB1338
     addiu   t1, v0, 0x65
+
+;===================================================================================================
+; Allow ice arrows to melt red ice
+;===================================================================================================
+.orga 0xDB32C8
+    jal blue_fire_arrows ; replaces addiu at, zero, 0x00F0
+
+;==================================================================================================
+; Base Get Item Draw Override
+;==================================================================================================
+.orga 0xACD020
+.area 0x44
+    addiu   sp, sp, -0x18
+    sw      ra, 0x0014(sp)
+    jal     base_draw_gi_model
+    nop
+    lw      ra, 0x0014(sp)
+    jr      ra
+    addiu   sp, sp, 0x18
+.endarea
+
+;==================================================================================================
+; TEMPORARILY COMMENTED OUT: Until issues with increasing the allocation size of the model are resolved
+; Increases max size of GI Models
+;==================================================================================================
+; Replaces: addiu   a0, $zero, 0x2008
+; .orga 0xBE2930
+;    addiu   a0, $zero, 0x6000

@@ -370,7 +370,8 @@
             "damage_multiplier",
             "deadly_bonks",
             "no_collectible_hearts",
-            "starting_tod"
+            "starting_tod",
+            "blue_fire_arrows"
           ]
         },
         {

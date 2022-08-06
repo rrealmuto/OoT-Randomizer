@@ -11,17 +11,17 @@ from Rom import Rom
 from Spoiler import Spoiler
 from LocationList import business_scrubs
 from Hints import writeGossipStoneHints, buildAltarHints, \
-        buildGanonText, getSimpleHintNoPrefix
+        buildGanonText, buildMiscItemHints, getSimpleHintNoPrefix
 from Utils import data_path
 from Messages import read_messages, update_message_by_id, read_shop_items, update_warp_song_text, \
         write_shop_items, remove_unused_messages, make_player_message, \
         add_item_messages, repack_messages, shuffle_messages, \
-        get_message_by_id
+        get_message_by_id, Text_Code
 from OcarinaSongs import replace_songs
 from MQ import patch_files, File, update_dmadata, insert_space, add_relocations
 from SaveContext import SaveContext, Scenes, FlagType
 from version import __version__
-import StartingItems
+from ItemPool import song_list
 
 
 def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
@@ -54,7 +54,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Load Triforce model into a file
     triforce_obj_file = File({ 'Name': 'object_gi_triforce' })
     triforce_obj_file.copy(rom)
-    with open(data_path('triforce.bin'), 'rb') as stream:
+    with open(data_path('Triforce.zobj'), 'rb') as stream:
         obj_data = stream.read()
         rom.write_bytes(triforce_obj_file.start, obj_data)
         triforce_obj_file.end = triforce_obj_file.start + len(obj_data)
@@ -78,6 +78,17 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     update_dmadata(rom, dd_obj_file)
     # Add it to the extended object table
     add_to_extended_object_table(rom, 0x194, dd_obj_file)
+
+    # Load Key Ring model into a file
+    keyring_obj_file = File({ 'Name': 'object_gi_keyring' })
+    keyring_obj_file.copy(rom)
+    with open(data_path('KeyRing.zobj'), 'rb') as stream:
+        obj_data = stream.read()
+        rom.write_bytes(keyring_obj_file.start, obj_data)
+        keyring_obj_file.end = keyring_obj_file.start + len(obj_data)
+    update_dmadata(rom, keyring_obj_file)
+    # Add it to the extended object table
+    add_to_extended_object_table(rom, 0x195, keyring_obj_file)
 
     # Apply chest texture diffs to vanilla wooden chest texture for Chest Texture Matches Content setting
     # new texture, vanilla texture, num bytes
@@ -103,6 +114,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Create an option so that recovery hearts no longer drop by changing the code which checks Link's health when an item is spawned.
     if world.settings.no_collectible_hearts:
         rom.write_byte(0xA895B7, 0x2E)
+    # Remove color commands inside certain object display lists
+    rom.write_int32s(0x1455818, [0x00000000, 0x00000000, 0x00000000, 0x00000000]) # Small Key
+    rom.write_int32s(0x14B9F20, [0x00000000, 0x00000000, 0x00000000, 0x00000000]) # Boss Key
 
     # Force language to be English in the event a Japanese rom was submitted
     rom.write_byte(0x3E, 0x45)
@@ -244,7 +258,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # songs as items flag
     songs_as_items = world.settings.shuffle_song_items != 'song' or \
                      world.distribution.song_as_items or \
-                     world.settings.starting_songs
+                     any(name in song_list and record.count for name, record in world.settings.starting_items.items())
 
     if songs_as_items:
         rom.write_byte(rom.sym('SONGS_AS_ITEMS'), 1)
@@ -993,7 +1007,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         rom.write_int16(0xACAA2E, 0x0138) # 1st Impa escort
         rom.write_int16(0xD12D6E, 0x0138) # 2nd+ Impa escort
 
-    if world.settings.shuffle_dungeon_entrances:
+    if world.shuffle_dungeon_entrances:
         rom.write_byte(rom.sym('DUNGEONS_SHUFFLED'), 1)
 
         # Connect lake hylia fill exit to revisit exit
@@ -1016,7 +1030,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         rom.write_byte(0x021862E3, 0xC2)
 
     if (
-            world.settings.shuffle_overworld_entrances or world.settings.shuffle_dungeon_entrances
+            world.settings.shuffle_overworld_entrances or world.shuffle_dungeon_entrances
             or (world.settings.shuffle_bosses != 'off')
     ):
         # Remove deku sprout and drop player at SFM after forest completion
@@ -1114,7 +1128,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             save_context.write_permanent_flag(Scenes.SHADOW_TEMPLE, FlagType.SWITCH, 0x0, 0x20) # Shadow Boat Block
             save_context.write_permanent_flag(Scenes.SHADOW_TEMPLE, FlagType.SWITCH, 0x1, 0x01) # Shadow Bird Bridge
 
-    if world.region_has_shortcuts('King Dodongo Boss Room', 'Dodongos Cavern'):
+    if world.region_has_shortcuts('King Dodongo Boss Room'):
         save_context.write_permanent_flag(Scenes.KING_DODONGO_LOBBY, FlagType.SWITCH, 0x3, 0x02) # DC Boss Floor
 
     set_spirit_shortcut_actors(rom) # Change elevator starting position to avoid waiting a half cycle from the temple entrance
@@ -1590,6 +1604,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     if 'ganondorf' in world.settings.misc_hints:
         buildGanonText(world, messages)
 
+    # build misc. item hints
+    buildMiscItemHints(world, messages)
+
     # Write item overrides
     override_table = get_override_table(world)
     rom.write_bytes(rom.sym('cfg_item_overrides'), get_override_table_bytes(override_table))
@@ -1622,8 +1639,18 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     if world.settings.damage_multiplier == 'ohko':
         rom.write_byte(rom.sym('CFG_DAMAGE_MULTIPLYER'), 3)
 
-    if world.settings.deadly_bonks:
+    if world.settings.deadly_bonks != 'none':
         rom.write_int32(rom.sym('CFG_DEADLY_BONKS'), 1)
+        if world.settings.deadly_bonks == 'half':
+            rom.write_int16(rom.sym('CFG_BONK_DAMAGE'), 0x0004)
+        if world.settings.deadly_bonks == 'normal':
+            rom.write_int16(rom.sym('CFG_BONK_DAMAGE'), 0x0008)
+        if world.settings.deadly_bonks == 'double':
+            rom.write_int16(rom.sym('CFG_BONK_DAMAGE'), 0x0010)
+        if world.settings.deadly_bonks == 'quadruple':
+            rom.write_int16(rom.sym('CFG_BONK_DAMAGE'), 0x0020)
+        if world.settings.deadly_bonks == 'ohko':
+            rom.write_int16(rom.sym('CFG_BONK_DAMAGE'), 0xFFFE)
 
     # Patch songs and boss rewards
     for location in world.get_filled_locations():
@@ -2034,6 +2061,23 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     write_shop_items(rom, shop_item_file.start + 0x1DEC, shop_items)
 
+    # set end credits text to automatically fade without player input,
+    # with timing depending on the number of lines in the text box
+    for message_id in (0x706F, 0x7091, 0x7092, 0x7093, 0x7094, 0x7095):
+        text_codes = []
+        chars_in_section = 1
+        for code in get_message_by_id(messages, message_id).text_codes:
+            if code.code == 0x04: # box-break
+                text_codes.append(Text_Code(0x0c, 80 + chars_in_section))
+                chars_in_section = 1
+            elif code.code == 0x02: # end
+                text_codes.append(Text_Code(0x0e, 80 + chars_in_section))
+                text_codes.append(code)
+            else:
+                chars_in_section += 1
+                text_codes.append(code)
+        update_message_by_id(messages, message_id, ''.join(code.get_string() for code in text_codes))
+
     permutation = None
 
     # text shuffle
@@ -2045,6 +2089,24 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # If Warp Song ER is on, update text boxes
     if world.settings.warp_songs:
         update_warp_song_text(messages, world)
+
+    if world.settings.blue_fire_arrows:
+        rom.write_byte(0xC230C1, 0x29) #Adds AT_TYPE_OTHER to arrows to allow collision with red ice
+        rom.write_byte(0xDB38FE, 0xEF) #disables ice arrow collision on secondary cylinder for red ice crystals
+        rom.write_byte(0xC9F036, 0x10) #enable ice arrow collision on mud walls
+        #increase cylinder radius/height for red ice sheets
+        rom.write_byte(0xDB391B, 0x50)
+        rom.write_byte(0xDB3927, 0x5A)
+
+        bfa_message = "\x08\x13\x0CYou got the \x05\x43Blue Fire Arrow\x05\x40!\x01This is a cool arrow you can\x01use on red ice."
+        if world.settings.world_count > 1:
+            bfa_message = make_player_message(bfa_message)
+        update_message_by_id(messages, 0x0071, bfa_message, 0x23)
+
+        with open(data_path('blue_fire_arrow_item_name_eng.ia4'), 'rb') as stream:
+            bfa_name_bytes = stream.read()
+            rom.write_bytes(0x8a1c00, bfa_name_bytes)
+
 
     repack_messages(rom, messages, permutation)
 
@@ -2081,6 +2143,14 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     if world.settings.easier_fire_arrow_entry:
         torch_count = world.settings.fae_torch_count
         rom.write_byte(0xCA61E3, torch_count)
+
+    if world.settings.blue_fire_arrows:
+        rom.write_byte(0xC230C1, 0x29) #Adds AT_TYPE_OTHER to arrows to allow collision with red ice
+        rom.write_byte(0xDB38FE, 0xEF) #disables ice arrow collision on secondary cylinder for red ice crystals
+        rom.write_byte(0xC9F036, 0x10) #enable ice arrow collision on mud walls
+        #increase cylinder radius/height for red ice sheets
+        rom.write_byte(0xDB391B, 0x50)
+        rom.write_byte(0xDB3927, 0x5A)
 
     # actually write the save table to rom
     world.distribution.give_items(world, save_context)

@@ -35,24 +35,22 @@ class Region(object):
         self.locations = []
         self.dungeon = None
         self.world = None
-        self.hint = None
+        self.hint_name = None
         self.price = None
         self.world = None
         self.time_passes = False
         self.provides_time = TimeOfDay.NONE
         self.scene = None
-        self.font_color = None
 
 
     def copy(self, new_world):
         new_region = Region(self.name, self.type)
         new_region.world = new_world
         new_region.price = self.price
-        new_region.hint = self.hint
+        new_region.hint_name = self.hint_name
         new_region.time_passes = self.time_passes
         new_region.provides_time = self.provides_time
         new_region.scene = self.scene
-        new_region.font_color = self.font_color
 
         if self.dungeon:
             new_region.dungeon = self.dungeon.name
@@ -62,7 +60,19 @@ class Region(object):
         return new_region
 
 
+    @property
+    def hint(self):
+        from Hints import HintArea
+
+        if self.hint_name is not None:
+            return HintArea[self.hint_name]
+        if self.dungeon:
+            return self.dungeon.hint
+
+
     def can_fill(self, item, manual=False):
+        from Hints import HintArea
+
         is_self_dungeon_restricted = False
         is_dungeon_restricted = False
         is_overworld_restricted = False
@@ -87,13 +97,14 @@ class Region(object):
             is_overworld_restricted = self.world.settings.shuffle_ganon_bosskey == 'overworld'
 
         if is_self_dungeon_restricted and not manual:
-            return self.dungeon and self.dungeon.is_dungeon_item(item) and item.world.id == self.world.id
+            hint_area = HintArea.at(self)
+            return hint_area.is_dungeon and hint_area.is_dungeon_item(item) and item.world.id == self.world.id
 
         if is_dungeon_restricted and not manual:
-            return self.dungeon
+            return HintArea.at(self).is_dungeon
 
         if is_overworld_restricted and not manual:
-            return not self.dungeon
+            return not HintArea.at(self).is_dungeon
 
         if item.name in triforce_items:
             return item.world.id == self.world.id
@@ -108,15 +119,6 @@ class Region(object):
             return self.dungeon.name
         else: 
             return None
-
-
-    def change_dungeon(self, new_dungeon):
-        # Change the dungeon of this region, removing it from the old dungeon list and adding it to the new one.
-        if new_dungeon == self.dungeon:
-            return
-        self.dungeon.regions.remove(self)
-        self.dungeon = new_dungeon
-        new_dungeon.regions.append(self)
 
 
     def __str__(self):
