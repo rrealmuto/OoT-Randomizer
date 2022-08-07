@@ -234,7 +234,7 @@ item_row_t item_table[] = {
     [0xC7] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, 0, 0x00F8, 0x00D1, 0x23, no_upgrade, give_tycoon_wallet, 3, -1), // Tycoon's Wallet
     [0xC8] = ITEM_ROW(0x53,      GILDED_CHEST, 0x14, 0, 0x9099, 0x010B, 0x45, no_upgrade, no_effect, -1, -1), // Redundant Letter Bottle
     [0xC9] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, 0, 0x9048, 0x00F3, 0x3E, no_upgrade, give_bean_pack, -1, -1), // Magic Bean Pack
-    [0xCA] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, 0, 0x9003, 0x0193, 0x35, no_upgrade, give_triforce_piece, -1, -1), // Triforce piece
+    [0xCA] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, 0, 0x9003, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1), // Triforce piece
 
     [0xCB] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, 0, 0x9010, 0x0195, 0x77, no_upgrade, give_small_key_ring, FOREST_ID, -1), // Forest Temple Small Key Ring
     [0xCC] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, 0, 0x9011, 0x0195, 0x77, no_upgrade, give_small_key_ring, FIRE_ID,   -1), // Fire Temple Small Key Ring
