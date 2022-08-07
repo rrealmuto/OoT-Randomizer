@@ -877,7 +877,8 @@
       "logic_lens_shadow_platform",
       "logic_lens_bongo",
       "logic_lens_spirit_mq",
-      "logic_lens_spirit"
+      "logic_lens_spirit",
+      "logic_beehives_bombs"
     ],
     "no_escape_sequence": false,
     "no_guard_stealth": false,
