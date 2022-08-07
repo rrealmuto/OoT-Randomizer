@@ -283,15 +283,6 @@ class TestPlandomizer(unittest.TestCase):
             "negative-pattern-test",
             "dual-hints-custom-text",
             "dual-hints-with-upgrade",
-            "plando-freestanding-vanilla",
-            "plando-freestanding-mq"
-        ]
-        for filename in filenames:
-            with self.subTest(filename):
-                generate_with_plandomizer(filename)
-
-    def test_should_not_throw_exception_potscratesfreestanding(self):
-        filenames = [
             "plando-freestanding-nomq",
             "plando-freestanding-allmq",
             "plando-potscrates-nomq",
@@ -301,7 +292,7 @@ class TestPlandomizer(unittest.TestCase):
         ]
         for filename in filenames:
             with self.subTest(filename):
-                distribution_file, spoiler = generate_with_plandomizer(filename)
+                generate_with_plandomizer(filename)
 
     def test_boss_item_list(self):
         filenames = [
