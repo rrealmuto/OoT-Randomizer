@@ -10,7 +10,7 @@ from HintList import getRequiredHints, misc_item_hint_table
 from Hints import HintArea, hint_dist_keys, HintDistFiles
 from Item import ItemFactory, ItemInfo, MakeEventItem
 from Location import Location, LocationFactory
-from LocationList import business_scrubs, location_table
+from LocationList import business_scrubs, location_groups, location_table
 from Plandomizer import InvalidFileException
 from Region import Region, TimeOfDay
 from RuleParser import Rule_AST_Transformer
@@ -33,6 +33,7 @@ class World(object):
         self.shop_prices = {}
         self.scrub_prices = {}
         self.maximum_wallets = 0
+        self.hinted_dungeon_reward_locations = {}
         self.misc_hint_item_locations = {}
         self.triforce_count = 0
         self.total_starting_triforce_count = 0
@@ -219,6 +220,7 @@ class World(object):
 
         self.always_hints = [hint.name for hint in getRequiredHints(self)]
 
+        self.dungeon_rewards_hinted = 'altar' in settings.misc_hints or settings.enhance_map_compass
         self.misc_hint_items = {hint_type: self.hint_dist_user.get('misc_hint_items', {}).get(hint_type, data['default_item']) for hint_type, data in misc_item_hint_table.items()}
 
         self.state = State(self)
@@ -530,10 +532,7 @@ class World(object):
                     new_exit.rule_string = rule
                     if self.settings.logic_rules != 'none':
                         self.parser.parse_spot_rule(new_exit)
-                    if new_exit.never:
-                        logging.getLogger('').debug('Dropping unreachable exit: %s', new_exit.name)
-                    else:
-                        new_region.exits.append(new_exit)
+                    new_region.exits.append(new_exit)
             if 'savewarp' in region:
                 new_exit = Entrance('%s -> %s' % (new_region.name, region['savewarp']), new_region)
                 new_exit.connected_region = region['savewarp']
@@ -636,20 +635,9 @@ class World(object):
         'Shadow Medallion',
         'Light Medallion'
     )
-    boss_location_names = (
-        'Queen Gohma',
-        'King Dodongo',
-        'Barinade',
-        'Phantom Ganon',
-        'Volvagia',
-        'Morpha',
-        'Bongo Bongo',
-        'Twinrova',
-        'Links Pocket'
-    )
     def fill_bosses(self, bossCount=9):
         boss_rewards = ItemFactory(self.rewardlist, self)
-        boss_locations = [self.get_location(loc) for loc in self.boss_location_names]
+        boss_locations = [self.get_location(loc) for loc in location_groups['Boss']]
 
         placed_prizes = [loc.item.name for loc in boss_locations if loc.item is not None]
         unplaced_prizes = [item for item in boss_rewards if item.name not in placed_prizes]
@@ -1099,18 +1087,6 @@ class World(object):
     def get_shuffled_entrances(self, type=None, only_primary=False):
         return [entrance for entrance in self.get_shufflable_entrances(type=type, only_primary=only_primary) if entrance.shuffled]
 
-
-    def get_boss_map(self):
-        map = dict((boss, boss) for boss in self.boss_location_names)
-        if self.settings.shuffle_bosses == 'off':
-            return map
-
-        for type in ('ChildBoss', 'AdultBoss'):
-            for entrance in self.get_shuffled_entrances(type, True):
-                if 'boss' not in entrance.data:
-                    continue
-                map[entrance.data['boss']] = entrance.replaces.data['boss']
-        return map
 
     def region_has_shortcuts(self, region_name):
         region = self.get_region(region_name)

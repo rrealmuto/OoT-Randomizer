@@ -316,7 +316,7 @@ def search_goals(categories, reachable_goals, search, priority_locations, all_lo
                                 for world_id in hintable_states:
                                     # Placeholder weights to be set for future bottleneck targeting.
                                     # 0 weights for always-hinted locations isn't relevant currently
-                                    # but is intended to screen out contributions to the overall 
+                                    # but is intended to screen out contributions to the overall
                                     # goal/category weights
                                     if location.name in always_locations or location.name in location.world.hint_exclusions:
                                         location_weights = (location, 0, 0)
@@ -338,8 +338,14 @@ def search_goals(categories, reachable_goals, search, priority_locations, all_lo
 
 
 def maybe_set_misc_item_hints(location):
+    if not location.item:
+        return
+    if location.item.world.dungeon_rewards_hinted and location.item.name in location.item.world.rewardlist:
+        if location.item.name not in location.item.world.hinted_dungeon_reward_locations:
+            location.item.world.hinted_dungeon_reward_locations[location.item.name] = location
+            logging.getLogger('').debug(f'{location.item.name} [{location.item.world.id}] set to [{location.name}]')
     for hint_type in misc_item_hint_table:
         item = location.item.world.misc_hint_items[hint_type]
-        if hint_type not in location.item.world.misc_hint_item_locations and location.item and location.item.name == item:
+        if hint_type not in location.item.world.misc_hint_item_locations and location.item.name == item:
             location.item.world.misc_hint_item_locations[hint_type] = location
             logging.getLogger('').debug(f'{item} [{location.item.world.id}] set to [{location.name}]')

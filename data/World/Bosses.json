@@ -73,7 +73,7 @@
             "Barinade": "can_use(Boomerang) and (Sticks or Kokiri_Sword)"
         },
         "exits": {
-            "Jabu Jabus Belly Boss Door": "True"
+            "Jabu Jabus Belly Boss Door": "False"
         }
     },
 
@@ -95,7 +95,7 @@
                 (can_use(Slingshot) and Kokiri_Sword)"
         },
         "exits": {
-            "Forest Temple Boss Door": "True"
+            "Forest Temple Boss Door": "False"
         }
     },
 
@@ -115,7 +115,7 @@
             "Volvagia": "can_use(Goron_Tunic) and can_use(Megaton_Hammer)"
         },
         "exits": {
-            "Fire Temple Boss Door": "True"
+            "Fire Temple Boss Door": "False"
         }
     },
     {
@@ -137,7 +137,7 @@
             "Water Temple Morpha Heart": "can_use(Hookshot)"
         },
         "exits": {
-            "Water Temple Boss Door": "True"
+            "Water Temple Boss Door": "False"
         }
     },
 
@@ -161,7 +161,7 @@
                 logic_shadow_bongo) and (can_use(Lens_of_Truth) or logic_lens_bongo)"
         },
         "exits": {
-            "Shadow Temple Boss Door": "True"
+            "Shadow Temple Boss Door": "False"
         }
     },
 
@@ -181,7 +181,7 @@
             "Twinrova": "can_use(Mirror_Shield)"
         },
         "exits": {
-            "Spirit Temple Boss Door": "True"
+            "Spirit Temple Boss Door": "False"
         }
     },
     {

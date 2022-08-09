@@ -4,6 +4,7 @@ from Hints import HintArea
 from State import State
 from Rules import set_shop_rules
 from Location import DisableType
+from LocationList import location_groups
 from ItemPool import remove_junk_items
 from Item import ItemFactory, ItemInfo
 from Search import Search
@@ -22,10 +23,7 @@ class FillError(ShuffleError):
 # Places all items into the world
 def distribute_items_restrictive(window, worlds, fill_locations=None):
     if worlds[0].settings.shuffle_song_items == 'song':
-        song_location_names = [
-            'Song from Royal Familys Tomb', 'Song from Impa', 'Song from Malon', 'Song from Saria',
-            'Song from Ocarina of Time', 'Song from Windmill', 'Sheik in Forest', 'Sheik at Temple',
-            'Sheik in Crater', 'Sheik in Ice Cavern', 'Sheik in Kakariko', 'Sheik at Colossus']
+        song_location_names = location_groups['Song']
     elif worlds[0].settings.shuffle_song_items == 'dungeon':
         song_location_names = [
             'Deku Tree Queen Gohma Heart', 'Dodongos Cavern King Dodongo Heart',

@@ -28,10 +28,13 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * “Mixed Pools Tournament”, the settings being used for an ongoing tournament with full mixed pools entrance randomizer. Note that the tournament itself uses [a previous version](https://ootrandomizer.com/generatorDev?version=devFenhl_6.2.100) of this branch.
   * “Standard Anti-Weekly Settings (S5)” disables every location that's enabled in “S5 Tournament” and enables every location that's disabled there, as well as changing some miscellaneous settings. See [the official document](https://docs.google.com/document/d/1sbL6Zju943F5qyx4QbTLUsqZqOTMmvqKVbDwJl08SGc/edit) for details.
 * Other changes:
+  * The dungeon reward location menu is now slightly more verbose to prepare for some planned features ([#1641](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1641))
   * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
   * Opening the Door of Time is a separate goal category when required by the settings ([#1529](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1529))
   * The convenience patch for floor switches now applies to more MQ switches ([#1459](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1459))
   * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
+* Bug fixes:
+  * Hint distributions with both `entrance_always` hints and the `named_items_required` option no longer fail to generate ([#1662](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1662))
 
 Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):
 
