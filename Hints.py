@@ -1305,8 +1305,11 @@ def buildWorldGossipHints(spoiler, world, checkedLocations=None):
             # explicitly to the list for named item hints.
             filtered_checked = set(checkedLocations | checkedAlwaysLocations)
             for location in (checkedLocations | checkedAlwaysLocations):
-                if world.get_location(location).item.name == 'Light Arrows':
-                    filtered_checked.remove(location)
+                try:
+                    if world.get_location(location).item.name == 'Light Arrows':
+                        filtered_checked.remove(location)
+                except KeyError:
+                    pass # checkedAlwaysLocations can also contain entrances from entrance_always hints, ignore those here
             for i in range(0, len(world.named_item_pool)):
                 hint = get_specific_item_hint(spoiler, world, filtered_checked)
                 if hint:
