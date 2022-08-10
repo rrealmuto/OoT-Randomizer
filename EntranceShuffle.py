@@ -352,7 +352,7 @@ def _add_boss_entrances():
 
     for type, source, target, dungeon, index, rindex, addresses in [
         (
-            'ChildBoss', 'Deku Tree Boss Door', 'Gohma Boss Room',
+            'ChildBoss', 'Deku Tree Boss Door', 'Queen Gohma Boss Room',
             'KF Outside Deku Tree -> Deku Tree Lobby',
             0x040f, 0x0252, [ 0xB06292, 0xBC6162, 0xBC60AE ]
         ),
