@@ -355,7 +355,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
 
         if (show_mq) {
             for (int i = 0; i < 12; i++) {
-                dungeon_entry_t *d = &(dungeons[i + (i > 9 ? 2 : 1)]); // skip Hideout
+                dungeon_entry_t *d = &(dungeons[i + (i > 9 ? 1 : 0)]); // skip Hideout
                 if (CFG_DUNGEON_INFO_MQ_NEED_MAP && d->has_map &&
                         !z64_file.dungeon_items[d->index].map) {
                     continue;
