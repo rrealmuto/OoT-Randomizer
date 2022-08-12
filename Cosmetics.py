@@ -43,7 +43,7 @@ def patch_music(rom, settings, log, symbols):
 
 
 def patch_model_colors(rom, color, model_addresses):
-    main_addresses, dark_addresses = model_addresses
+    main_addresses, dark_addresses, light_addresses = model_addresses
 
     if color is None:
         for address in main_addresses + dark_addresses:
@@ -54,9 +54,13 @@ def patch_model_colors(rom, color, model_addresses):
     for address in main_addresses:
         rom.write_bytes(address, color)
 
-    darkened_color = list(map(lambda light: int(max((light - 0x32) * 0.6, 0)), color))
+    darkened_color = list(map(lambda main_color: int(max((main_color - 0x32) * 0.6, 0)), color))
     for address in dark_addresses:
         rom.write_bytes(address, darkened_color)
+
+    lightened_color = list(map(lambda main_color: int(min((main_color / 0.6) + 0x32, 255)), color))
+    for address in light_addresses:
+        rom.write_bytes(address, lightened_color)
 
 
 def patch_tunic_icon(rom, tunic, color):
@@ -435,9 +439,9 @@ def patch_gauntlet_colors(rom, settings, log, symbols):
     # patch gauntlet colors
     gauntlets = [
         ('Silver Gauntlets', 'silver_gauntlets_color', 0x00B6DA44,
-            ([0x173B4CC], [0x173B4D4, 0x173B50C, 0x173B514])), # GI Model DList colors
+            ([0x173B4CC], [0x173B4D4, 0x173B50C, 0x173B514], [])), # GI Model DList colors
         ('Gold Gauntlets', 'golden_gauntlets_color',  0x00B6DA47,
-            ([0x173B4EC], [0x173B4F4, 0x173B52C, 0x173B534])), # GI Model DList colors
+            ([0x173B4EC], [0x173B4F4, 0x173B52C, 0x173B534], [])), # GI Model DList colors
     ]
     gauntlet_color_list = get_gauntlet_colors()
 
@@ -476,7 +480,7 @@ def patch_shield_frame_colors(rom, settings, log, symbols):
     shield_frames = [
         ('Mirror Shield Frame', 'mirror_shield_frame_color',
             [0xFA7274, 0xFA776C, 0xFAA27C, 0xFAC564, 0xFAC984, 0xFAEDD4],
-            ([0x1616FCC], [0x1616FD4])),
+            ([0x1616FCC], [0x1616FD4], [])),
     ]
     shield_frame_color_list = get_shield_frame_colors()
 
@@ -517,9 +521,10 @@ def patch_heart_colors(rom, settings, log, symbols):
     # patch heart colors
     hearts = [
         ('Heart Color', 'heart_color', symbols['CFG_HEART_COLOR'], 0xBB0994,
-            ([0x14DA474, 0x14DA594, 0x14B701C, 0x14B70DC],
+            ([0x14DA474, 0x14DA594, 0x14B701C, 0x14B70DC, 0x160929C, 0x1609304, 0x160939C],
              [0x14B70FC, 0x14DA494, 0x14DA5B4, 0x14B700C, 0x14B702C, 0x14B703C, 0x14B704C, 0x14B705C,
-              0x14B706C, 0x14B707C, 0x14B708C, 0x14B709C, 0x14B70AC, 0x14B70BC, 0x14B70CC])), # GI Model DList colors
+              0x14B706C, 0x14B707C, 0x14B708C, 0x14B709C, 0x14B70AC, 0x14B70BC, 0x14B70CC, 0x16092A4],
+             [0x16092FC, 0x1609394])), # GI Model and Potion DList colors
     ]
     heart_color_list = get_heart_colors()
 
@@ -565,7 +570,9 @@ def patch_magic_colors(rom, settings, log, symbols):
     # patch magic colors
     magic = [
         ('Magic Meter Color', 'magic_color', symbols["CFG_MAGIC_COLOR"],
-            ([0x154C654, 0x154CFB4], [0x154C65C, 0x154CFBC])), # GI Model DList colors
+            ([0x154C654, 0x154CFB4, 0x160927C, 0x160927C, 0x16092E4, 0x1609344],
+             [0x154C65C, 0x154CFBC, 0x1609284],
+             [0x16092DC, 0x160933C])), # GI Model and Potion DList colors
     ]
     magic_color_list = get_magic_colors()
 

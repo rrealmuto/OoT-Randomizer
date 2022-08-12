@@ -236,12 +236,13 @@ conditional_dual_always = {
 
 # Some sometimes, dual, and entrance hints should only be enabled under certain settings
 conditional_sometimes = {
-    # Conditionnal sometimes hints
+    # Conditional sometimes hints
     'HC Great Fairy Reward':                    lambda world: world.settings.shuffle_interior_entrances == 'off',
     'OGC Great Fairy Reward':                   lambda world: world.settings.shuffle_interior_entrances == 'off',
 
-    # Conditionnal dual hints
+    # Conditional dual hints
     'GV Pieces of Heart Ledges':                lambda world: not world.settings.shuffle_cows and world.settings.tokensanity not in ['overworld', 'all'],
+    'LH Adult Bean Destination Checks':         lambda world: world.settings.shuffle_interior_entrances == 'off',
 
     'Fire Temple Lower Loop':                   lambda world: world.settings.tokensanity not in ['dungeon', 'all'],
     'Water Temple River Loop Chests':           lambda world: world.settings.tokensanity not in ['dungeon', 'all'],

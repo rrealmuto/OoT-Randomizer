@@ -11,6 +11,7 @@ import re
 import unittest
 
 from EntranceShuffle import EntranceShuffleError
+from Hints import HintArea
 from Item import ItemInfo
 from ItemPool import remove_junk_items, remove_junk_ludicrous_items, ludicrous_items_base, ludicrous_items_extended, trade_items, ludicrous_exclusions
 from LocationList import location_is_viewable
@@ -441,6 +442,58 @@ class TestPlandomizer(unittest.TestCase):
         self.assertNotIn('Small Key Ring (Forest Temple)', spoiler['locations'].values())
         self.assertGreater(get_actual_pool(spoiler)['Small Key (Thieves Hideout)'], 5)
         self.assertNotIn('Small Key Ring (Thieves Hideout)', spoiler['locations'].values())
+    
+    def test_empty_dungeons(self):
+        filenames = [
+            "empty-dungeons-all-dungeon-er",
+            "empty-dungeons-all-dungeon-item-any-dungeon",
+            "empty-dungeons-all-dungeon-item-anywhere",
+            "empty-dungeons-all-dungeon-item-remove",
+            "empty-dungeons-all-mq-all",
+            "empty-dungeons-all-mq-random",
+            "empty-dungeons-all-plentiful",
+            "empty-dungeons-all-songs-dungeon",
+            "empty-dungeons-half-boss-shuffle",
+            "empty-dungeons-half-dungeon-er",
+            "empty-dungeons-half-dungeon-item-any-dungeon",
+            "empty-dungeons-half-dungeon-item-anywhere",
+            "empty-dungeons-half-dungeon-item-remove",
+            "empty-dungeons-half-mq-all",
+            "empty-dungeons-half-mq-random",
+            "empty-dungeons-half-plentiful",
+            "empty-dungeons-half-songs-dungeon"
+        ]
+        dungeons = {
+            HintArea.DEKU_TREE: "Queen Gohma",
+            HintArea.DODONGOS_CAVERN: "King Dodongo",
+            HintArea.JABU_JABUS_BELLY: "Barinade",
+            HintArea.FOREST_TEMPLE: "Phantom Ganon",
+            HintArea.FIRE_TEMPLE: "Volvagia",
+            HintArea.WATER_TEMPLE: "Morpha",
+            HintArea.SHADOW_TEMPLE: "Bongo Bongo",
+            HintArea.SPIRIT_TEMPLE: "Twinrova"
+        }
+        for filename in filenames:
+            with self.subTest(filename):
+                distribution_file, spoiler = generate_with_plandomizer(filename)
+                # Proper rewards should be given on file select
+                if spoiler['settings']['shuffle_bosses'] == 'off':
+                    for dungeon, boss in dungeons.items():
+                        if spoiler['empty_dungeons'][dungeon.dungeon_name]:
+                            self.assertIn(boss, spoiler[':skipped_locations'])
+                # Empty dungeons should be barren (except in settings where keys or tokens are major items)
+                if spoiler['settings']['shuffle_smallkeys'] not in ['dungeon', 'vanilla']:
+                    continue
+                if spoiler['settings']['shuffle_bosskeys'] not in ['dungeon', 'vanilla']:
+                    continue
+                if spoiler['settings']['bridge'] == 'tokens' or spoiler['settings']['shuffle_ganon_bosskey'] == 'tokens':
+                    continue
+                if spoiler['settings']['shuffle_ganon_bosskey'] == 'on_lacs' and spoiler['settings']['lacs_condition'] == 'tokens':
+                    continue
+                for dungeon in dungeons:
+                    if spoiler['empty_dungeons'][dungeon.dungeon_name]:
+                        self.assertIn(str(dungeon), spoiler[':barren_regions'])
+
 
 class TestHints(unittest.TestCase):
     def test_skip_zelda(self):

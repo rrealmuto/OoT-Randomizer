@@ -415,7 +415,36 @@ export class GUIGlobal {
 
       this.generator_tabsVisibilityMap[tab.name] = true;
 
-      tab.sections.forEach(section => {
+      for (let sectionIndex = 0; sectionIndex < tab.sections.length; sectionIndex++) {
+
+        let section = tab.sections[sectionIndex];
+
+        //Skip sections that don't belong to this app and delete them from the guiSettings
+        if ("app_type" in section && section.app_type && section.app_type.indexOf(this.getGlobalVar("appType")) == -1) {
+
+          tab.sections.splice(sectionIndex, 1);
+          sectionIndex--;
+
+          let foundInCosmeticsTab = guiSettings.cosmeticsArray.find(entryTab => {
+
+            let index = entryTab.sections.findIndex(entry => entry.name == section.name);
+
+            if (index != -1) {
+              entryTab.sections.splice(index, 1);
+              return true;
+            }
+
+            return false;
+          });
+
+          delete guiSettings.settingsObj[tab.name].sections[section.name];
+
+          if (foundInCosmeticsTab) {
+            delete guiSettings.cosmeticsObj[foundInCosmeticsTab.name].sections[section.name];
+          }
+
+          continue;
+        }
         section.settings.forEach(setting => {
 
           this.generator_settingsVisibilityMap[setting.name] = true;
@@ -474,7 +503,7 @@ export class GUIGlobal {
             }
           }
         });
-      });
+      }
     }
 
     //Add GUI only options
