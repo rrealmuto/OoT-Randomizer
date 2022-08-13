@@ -434,7 +434,7 @@
     "clearer_hints":                           true,
     "no_collectible_hearts":                   false,
     "hints":                                   "always",
-    "hint_dist":                               "weekly",
+    "hint_dist":                               "blitz-percent",
     "item_hints":                              [],
     "hint_dist_user":                          {},
     "text_shuffle":                            "none",
