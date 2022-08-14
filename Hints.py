@@ -472,6 +472,13 @@ def get_woth_hint(spoiler, world, checked):
 
     return (GossipText('%s is on the way of the hero.' % location_text, ['Light Blue'], [location.name], [location.item.name]), [location])
 
+def get_woth_count_hint(spoiler, world, checked):
+    woth_locations = spoiler.required_locations[world.id]
+    item_count = len(woth_locations)
+    item_text = 'step' if item_count == 1 else 'steps'
+
+    return (GossipText('walking the way of the hero requires #%d# %s.' % (item_count, item_text), ['Light Blue']), None)
+
 def get_checked_areas(world, checked):
     def get_area_from_name(check):
         try:
@@ -1095,6 +1102,7 @@ hint_func = {
     'dual_always':      lambda spoiler, world, checked: None,
     'entrance_always':  lambda spoiler, world, checked: None,
     'woth':             get_woth_hint,
+    'woth-count':       get_woth_count_hint,
     'goal':             get_goal_hint,
     'goal-count':       	get_goal_count_hint,
     'playthrough-location': get_playthrough_location_hint,
@@ -1117,6 +1125,7 @@ hint_dist_keys = {
     'dual_always',
     'entrance_always',
     'woth',
+    'woth-count',
     'goal',
     'goal-count',
     'playthrough-location',
