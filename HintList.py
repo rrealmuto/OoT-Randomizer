@@ -537,6 +537,10 @@ hintTable = {
     'Graveyard Royal Family Tomb Contents':                        ("inside the #Royal Family Tomb#, darkness and Redeads guard respectively...^", None, 'dual'),
     'DMC Child Upper Checks':                                      ("at #the crater# a spider in a crate and a single scrub hold respectively...^", None, 'dual'),
     'Haunted Wasteland Checks':                                    ("#deep in the wasteland# a chest and a spider hold respectively...^", None, 'dual'),
+    'Kak 20 and 30 Gold Skulltula Rewards':                        ("#in a peaceful village# collecting 20 and 30 spider tokens will reward you with...^", None, 'dual_always'),
+    'Kak 40 and 50 Gold Skulltula Rewards':                        ("#in a peaceful village# collecting 40 and 50 spider tokens will reward you with...^", None, 'dual_always'),
+    'DMT Biggoron and ZR Frogs Ocarina Game':                      ("#Biggoron and the Frogs of Zora River#, for retinal relief and a proud performance reward respectively...^", None, 'dual_always'),
+    'HF and Kak Dungeon Reward Songs':                             ("the #Ocarina of Time and ravaged village# teach respectively...^", None, 'dual_always'),
 
     'Deku Tree MQ Basement GS':                                    ("in the back of the #basement of the Great Deku Tree# two spiders hold...^", None, 'dual'),
     'Dodongos Cavern Upper Business Scrubs':                       ("in the #upper parts of Dodongo's Cavern# a pair of scrubs sell...^", None, 'dual'),
@@ -1657,6 +1661,10 @@ multiTable = {
     'Graveyard Royal Family Tomb Contents':                     ['Graveyard Royal Familys Tomb Chest', 'Song from Royal Familys Tomb'],
     'DMC Child Upper Checks':                                   ['DMC GS Crate', 'DMC Deku Scrub'],
     'Haunted Wasteland Checks':                                 ['Wasteland Chest', 'Wasteland GS'],
+    'Kak 20 and 30 Gold Skulltula Rewards':                     ['Kak 20 Gold Skulltula Reward', 'Kak 30 Gold Skulltula Reward'],
+    'Kak 40 and 50 Gold Skulltula Rewards':                     ['Kak 40 Gold Skulltula Reward', 'Kak 50 Gold Skulltula Reward'],
+    'DMT Biggoron and ZR Frogs Ocarina Game':                   ['DMT Biggoron', 'ZR Frogs Ocarina Game'],
+    'HF and Kak Dungeon Reward Songs':                          ['Song from Ocarina of Time', 'Sheik in Kakariko'],
 
     'Deku Tree MQ Basement GS':                                 ['Deku Tree MQ GS Basement Graves Room','Deku Tree MQ GS Basement Back Room'],
     'Dodongos Cavern Upper Business Scrubs':                    ['Dodongos Cavern Deku Scrub Near Bomb Bag Left', 'Dodongos Cavern Deku Scrub Near Bomb Bag Right'],

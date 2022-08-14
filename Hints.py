@@ -147,7 +147,7 @@ def add_hint(spoiler, world, groups, gossip_text, count, locations=[], force_rea
     success = True
 
     # Prevent randomizer from placing always hints in specified locations
-    if hint_type == 'always' and 'remove_always_stones' in world.hint_dist_user:
+    if hint_type in ['always', 'dual_always'] and 'remove_always_stones' in world.hint_dist_user:
         removed_stones = world.hint_dist_user['remove_always_stones']
         for group in groups:
             gossip_names = [gossipLocations[id].name for id in group]
@@ -1362,7 +1362,8 @@ def buildWorldGossipHints(spoiler, world, checkedLocations=None):
                 location_text = '#%s#' % location_text
             first_item_text = getHint(getItemGenericName(firstLocation.item), world.settings.clearer_hints).text
             second_item_text = getHint(getItemGenericName(secondLocation.item), world.settings.clearer_hints).text
-            add_hint(spoiler, world, stoneGroups, GossipText('%s #%s# and #%s#.' % (location_text, first_item_text, second_item_text), ['Green', 'Green', 'Red'], [firstLocation.name, secondLocation.name], [firstLocation.item.name, secondLocation.item.name]), hint_dist['dual_always'][1], [firstLocation, secondLocation], force_reachable=True)
+            add_hint(spoiler, world, stoneGroups, GossipText('%s #%s# and #%s#.' % (location_text, first_item_text, second_item_text), ['Green', 'Green', 'Red'], [firstLocation.name, secondLocation.name], [firstLocation.item.name, secondLocation.item.name]), 
+                hint_dist['dual_always'][1], [firstLocation, secondLocation], force_reachable=True, hint_type='dual_always')
             logging.getLogger('').debug('Placed dual_always hint for %s.', hint.name)
 
     # Add required location hints, only if hint copies > 0
