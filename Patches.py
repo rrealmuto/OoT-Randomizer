@@ -1682,21 +1682,26 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             patch_beehive(location, rom)
         patch_grotto_beehive_2(rom)
 
-    # Patch pots/crates
-    if world.settings.shuffle_pots_crates:
+    # Patch pots
+    if world.settings.shuffle_pots:
         pot_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and ('Pot' in location.filter_tags)]
         flying_pot_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and ('FlyingPot' in location.filter_tags)]
-        crate_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and ('Crate' in location.filter_tags)]
-        smallcrate_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and ('SmallCrate' in location.filter_tags)]
+        
         for location in pot_locations:
             patch_pot(location, rom)
         for location in flying_pot_locations:
             patch_flying_pot(location, rom)
+
+    # Patch crates
+    if world.settings.shuffle_crates:
+        crate_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and ('Crate' in location.filter_tags)]
+        smallcrate_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and ('SmallCrate' in location.filter_tags)]
+
         for location in crate_locations:
             patch_crate(location, rom)
         for location in smallcrate_locations:
             patch_small_crate(location, rom)
-            
+
     # Write flag table data
     scene_flag_table = get_scene_flag_table(world)
     freestanding_flag_table_bytes, drop_flag_table_bytes, num_freestanding_flags, num_drop_flags = get_scene_flag_table_bytes(scene_flag_table)
@@ -2376,13 +2381,13 @@ def get_override_entry(location):
         if (location.type == "Collectable" and "Beehive" in location.filter_tags and location.disabled != DisableType.ENABLED):
             return None
 
-    #Don't add pots to the override table if they're disabled. We use this check to dtermine how to draw and interact with them
-    if not location.world.settings.shuffle_pots_crates:
-        if (location.type == "Collectable" and ("Pot" in location.filter_tags or "Crate" in location.filter_tags or "FlyingPot" in location.filter_tags or "SmallCrate" in location.filter_tags)) :
-            return None
-    else:
-        if (location.type == "Collectable" and ("Pot" in location.filter_tags or "Crate" in location.filter_tags or "FlyingPot" in location.filter_tags or "SmallCrate" in location.filter_tags)) and location.disabled != DisableType.ENABLED :
-            return None
+    #Don't add pots to the override table if they're disabled. We use this check to determine how to draw and interact with them
+    if not location.world.settings.shuffle_pots and (location.type == "Collectable" and ("Pot" in location.filter_tags or "FlyingPot" in location.filter_tags)):
+        return None
+    if not location.world.settings.shuffle_crates and (location.type == "Collectable" and ("Crate" in location.filter_tags or "SmallCrate in location.filter_tags")):
+        return None
+    if (location.type == "Collectable" and ("Pot" in location.filter_tags or "Crate" in location.filter_tags or "FlyingPot" in location.filter_tags or "SmallCrate" in location.filter_tags)) and location.disabled != DisableType.ENABLED :
+        return None
 
     player_id = location.item.world.id + 1
     if location.item.looks_like_item is not None:

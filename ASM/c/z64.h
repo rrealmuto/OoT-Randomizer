@@ -780,7 +780,7 @@ struct z64_actor_s
   uint8_t         actor_type;       /* 0x0002 */
   int8_t          room_index;       /* 0x0003 */
   uint32_t        flags;            /* 0x0004 */
-  z64_xyzf_t      pos_1;            /* 0x0008 */
+  z64_xyzf_t      pos_init;         /* 0x0008 */
   z64_rot_t       rot_init;         /* 0x0014 */
   char            unk_01_[0x0002];  /* 0x001A */
   uint16_t        variable;         /* 0x001C */
@@ -788,12 +788,11 @@ struct z64_actor_s
   char            navi_tgt_dist;    /* 0x001F */
   uint16_t        sound_effect;     /* 0x0020 */
   char            unk_03_[0x0002];  /* 0x0022 */
-  z64_xyzf_t      pos_2;            /* 0x0024 */
-  char            unk_04_[0x0002];  /* 0x0030 */
-  uint16_t        xz_dir;           /* 0x0032 */
-  char            unk_05_[0x0004];  /* 0x0034 */
-  z64_xyzf_t      pos_3;            /* 0x0038 */
-  z64_rot_t       rot_1;            /* 0x0044 */
+  z64_xyzf_t      pos_world;        /* 0x0024 */
+  z64_rot_t       rot_world;        /* 0x0030 */
+  char            unk_04_[0x0002];  /* 0x0036 */
+  z64_xyzf_t      pos_focus;        /* 0x0038 */
+  z64_rot_t       rot_focus;        /* 0x0044 */
   char            unk_06_[0x0002];  /* 0x004A */
   float           unk_07_;          /* 0x004C */
   z64_xyzf_t      scale;            /* 0x0050 */

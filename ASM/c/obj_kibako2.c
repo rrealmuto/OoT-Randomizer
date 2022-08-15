@@ -22,7 +22,7 @@ void ObjKibako2_SpawnCollectible_Hack(ObjKibako2 *this, z64_game_t *globalCtx)
     itemDropped = this->dyna.actor.rot_init.x & 0x1F;
     if (itemDropped >= 0 && itemDropped < 0x1A)
     {
-        EnItem00 *spawned = z64_Item_DropCollectible(globalCtx, &this->dyna.actor.pos_2, itemDropped | (collectibleFlagTemp << 8) | extendedCollectibleFlag);
+        EnItem00 *spawned = z64_Item_DropCollectible(globalCtx, &this->dyna.actor.pos_world, itemDropped | (collectibleFlagTemp << 8) | extendedCollectibleFlag);
         // spawned->actor.dropFlag |= (extendedCollectibleFlag << 1) & 0xFE;
     }
 }

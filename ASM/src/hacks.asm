@@ -559,6 +559,12 @@ nop
 nop
 nop
 
+; Hook at the end of Actor_SetWorldToHome to zeroize anything we use to store additional flag data
+.orga 0xA96E5C ; In memory: 0x80020EFC
+; Replaces:
+;   jr      ra
+    j       Actor_SetWorldToHome_Hook
+
 ; Runs when storing an incoming item to the player instance
 ; Replaces:
 ;   sb      a2, 0x0424 (a3)

@@ -84,10 +84,9 @@ override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_
         int collectable_type = actor->variable & 0xFF;
         if (collectable_type == 0x12)  // don't override fairies
             return (override_key_t){.all = 0};
-        /*if (collectable_type != 0x06 && collectable_type != 0x11 && collectable_type != 0x03 && collectable_type != 2 && collectable_type != 0x01 && collectable_type != 0x00 && collectable_type != 13)
-        {
-            return (override_key_t){.all = 0};
-        }*/
+        
+        
+
         // Check if it was a dropped collectable and use a separate override for that
         EnItem00 *item = (EnItem00 *)actor;
         uint8_t flag = ((item->actor.dropFlag & 0x06) << 5) + item->collectibleFlag;

@@ -2554,7 +2554,7 @@ setting_infos = [
                                          'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'owl_drops',
                                          'warp_songs', 'spawn_positions', 'mq_dungeons_mode', 'mq_dungeons_specific',
                                          'mq_dungeons_count', 'shuffle_bosses', 'dungeon_shortcuts', 'deadly_bonks', 
-                                         'shuffle_freestanding_items', 'shuffle_pots_crates', 'shuffle_beehives']},
+                                         'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_beehives']},
             'none'      : {'settings' : ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
         },
         shared         = True,
@@ -3120,8 +3120,8 @@ setting_infos = [
         shared         = True,
     ),
     Combobox(
-        name = 'shuffle_pots_crates',
-        gui_text = 'Pot & Crate Shuffle',
+        name = 'shuffle_pots',
+        gui_text = 'Pot Shuffle',
         default = 'off',
         choices = {
             'off': 'Off',
@@ -3130,19 +3130,45 @@ setting_infos = [
             'dungeons' : 'Dungeons Only'
         },
         gui_tooltip    = '''\
-            Shuffles pots, flying pots, and large/small crates into the location pool.
+            Shuffles pots, flying pots into the location pool.
 
             Off: Not shuffled.
-            All: All pots/flying pots/crates are shuffled.
-            Overworld Only: Only overworld pots/flying pots/crates are shuffled.
-            Dungeons Only: Only dungeon pots/flying pots/crates are shuffled.
+            All: All pots/flying pots are shuffled.
+            Overworld Only: Only overworld pots/flying pots are shuffled.
+            Dungeons Only: Only dungeon pots/flying pots are shuffled.
 
-            Note: Only pots/crates which normally drop an item are shuffled. Empty pots/crates are not included.
+            Note: Only pots which normally drop an item are shuffled. 
+            Empty pots are not shuffled. Pots containing fairies are not shuffled.
         ''',
         gui_params     = {
             'randomize_key': 'randomize_settings',
         },
         disable = {'off':  {'settings': ['unlock_ganons_first_boss_door']}},
+        shared         = True,
+    ),
+    Combobox(
+        name = 'shuffle_crates',
+        gui_text = 'Crate Shuffle',
+        default = 'off',
+        choices = {
+            'off': 'Off',
+            'all': 'All',
+            'overworld' : 'Overworld Only',
+            'dungeons' : 'Dungeons Only'
+        },
+        gui_tooltip    = '''\
+            Shuffles large and small crates into the location pool.
+
+            Off: Not shuffled.
+            All: crates are shuffled.
+            Overworld Only: Only overworld crates are shuffled.
+            Dungeons Only: Only dungeon crates are shuffled.
+
+            Note: Only crates which normally drop an item are shuffled. Empty crates are not included.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
         shared         = True,
     ),
     

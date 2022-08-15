@@ -23,7 +23,7 @@ void obj_comb_drop_collectible(z64_actor_t *actor, int16_t params)
     {
         // set up params for Item_DropCollectible
         params |= ((flag & 0x3F) << 8) + (flag & 0xC0);
-        z64_Item_DropCollectible2(&z64_game, &actor->pos_2, params);
+        z64_Item_DropCollectible2(&z64_game, &actor->pos_world, params);
     }
 }
 
@@ -59,7 +59,7 @@ void ObjComb_Update(z64_actor_t* thisx, z64_game_t* game)
         this->actor.dropFlag --;
     this->unk_1B2 += 0x2EE0;
     this->actionFunc(this, game);
-    this->actor.rot_2.x = z64_Math_SinS(this->unk_1B2) * this->unk_1B0 + this->actor.rot_1.x;
+    this->actor.rot_2.x = z64_Math_SinS(this->unk_1B2) * this->unk_1B0 + this->actor.rot_init.x;
 
     override_t override = get_beehive_override(thisx, game);
 
