@@ -472,6 +472,44 @@ def get_woth_hint(spoiler, world, checked):
 
     return (GossipText('%s is on the way of the hero.' % location_text, ['Light Blue'], [location.name], [location.item.name]), [location])
 
+def get_dual_woth_hint(spoiler, world, checked):
+    locations = spoiler.required_locations[world.id]
+    locations = list(filter(lambda location:
+        location.name not in checked
+        and not (world.woth_dungeon >= world.hint_dist_user['dungeons_woth_limit'] and HintArea.at(location).is_dungeon)
+        and location.name not in world.hint_exclusions
+        and location.name not in world.hint_type_overrides['woth']
+        and location.item.name not in world.item_hint_type_overrides['woth']
+        and location.item.name not in unHintableWothItems,
+        locations))
+
+    dual_woth_filter = 'dual_woth_filter' in world.hint_dist_user and world.hint_dist_user['dual_woth_filter']
+    if dual_woth_filter == 'dungeons':
+        locations = list(filter(lambda location: HintArea.at(location).is_dungeon, locations))
+
+    if not locations:
+        return None
+
+    if len(locations) == 1:
+        return get_woth_hint(spoiler, world, checked)
+
+    random.shuffle(locations)
+    selected = locations[:2]
+
+    checked.update(selected)
+
+    hint_areas = list(map(lambda location: HintArea.at(location), selected))
+    for area in hint_areas:
+        if area.is_dungeon:
+            world.woth_dungeon += 1
+    location_texts = list(map(lambda area: area.text(world.settings.clearer_hints), hint_areas))
+    location_names = list(map(lambda location: location.name, selected))
+    location_item_names = list(map(lambda location: location.item.name, selected))
+    location_colors = list(map(lambda location: 'Light Blue', selected))
+
+    return (GossipText('%s and %s are on the way of the hero.' % tuple(location_texts), 
+        location_colors, location_names, location_item_names), selected)
+
 def get_woth_count_hint(spoiler, world, checked):
     woth_locations = spoiler.required_locations[world.id]
     item_count = len(woth_locations)
@@ -1102,6 +1140,7 @@ hint_func = {
     'dual_always':      lambda spoiler, world, checked: None,
     'entrance_always':  lambda spoiler, world, checked: None,
     'woth':             get_woth_hint,
+    'dual-woth':        get_dual_woth_hint,
     'woth-count':       get_woth_count_hint,
     'goal':             get_goal_hint,
     'goal-count':       	get_goal_count_hint,
@@ -1125,6 +1164,7 @@ hint_dist_keys = {
     'dual_always',
     'entrance_always',
     'woth',
+    'dual-woth',
     'woth-count',
     'goal',
     'goal-count',
