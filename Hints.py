@@ -447,6 +447,14 @@ class HintArea(Enum):
             text = f'{self.preposition(clearer_hints)} {text}'
         return text
 
+def get_blitz_percent_hint(spoiler, world, checked):
+    hint = get_dual_woth_hint(spoiler, world, checked)
+    if not hint:
+        hint = get_goal_hint(spoiler, world, checked)
+    if not hint:
+        hint = get_playthrough_location_hint(spoiler, world, checked)
+    
+    return hint
 
 def get_woth_hint(spoiler, world, checked):
     locations = spoiler.required_locations[world.id]
@@ -496,14 +504,14 @@ def get_dual_woth_hint(spoiler, world, checked):
     random.shuffle(locations)
     selected = locations[:2]
 
-    checked.update(selected)
+    location_names = list(map(lambda location: location.name, selected))
+    checked.update(location_names)
 
     hint_areas = list(map(lambda location: HintArea.at(location), selected))
     for area in hint_areas:
         if area.is_dungeon:
             world.woth_dungeon += 1
     location_texts = list(map(lambda area: area.text(world.settings.clearer_hints), hint_areas))
-    location_names = list(map(lambda location: location.name, selected))
     location_item_names = list(map(lambda location: location.item.name, selected))
     location_colors = list(map(lambda location: 'Light Blue', selected))
 
@@ -1139,6 +1147,7 @@ hint_func = {
     'always':           lambda spoiler, world, checked: None,
     'dual_always':      lambda spoiler, world, checked: None,
     'entrance_always':  lambda spoiler, world, checked: None,
+    'blitz%':           get_blitz_percent_hint,
     'woth':             get_woth_hint,
     'dual-woth':        get_dual_woth_hint,
     'woth-count':       get_woth_count_hint,
@@ -1163,6 +1172,7 @@ hint_dist_keys = {
     'always',
     'dual_always',
     'entrance_always',
+    'blitz%',
     'woth',
     'dual-woth',
     'woth-count',
