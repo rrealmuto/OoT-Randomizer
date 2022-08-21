@@ -314,7 +314,17 @@
         "region_name": "Gerudo Fortress",
         "hint": "GERUDO_FORTRESS",
         "events": {
-            "Carpenter Rescue": "can_finish_GerudoFortress",
+            "Hideout 1 Torch Jail Gerudo": "is_adult or (is_child and can_child_damage)",
+            "Hideout 2 Torches Jail Gerudo": "is_adult or (is_child and can_child_damage)",
+            "Hideout 3 Torches Jail Gerudo": "is_adult or (is_child and can_child_damage)",
+            "Hideout 4 Torches Jail Gerudo": "is_adult or (is_child and can_child_damage)",
+            "Hideout 1 Torch Jail Carpenter": "
+                'Hideout 1 Torch Jail Gerudo' and
+                ((gerudo_fortress == 'normal' and (Small_Key_Thieves_Hideout, 4))
+                    or (gerudo_fortress == 'fast' and Small_Key_Thieves_Hideout))",
+            "Hideout 2 Torches Jail Carpenter": "'Hideout 2 Torches Jail Gerudo' and gerudo_fortress == 'normal' and (Small_Key_Thieves_Hideout, 4)",
+            "Hideout 3 Torches Jail Carpenter": "'Hideout 3 Torches Jail Gerudo' and gerudo_fortress == 'normal' and (Small_Key_Thieves_Hideout, 4)",
+            "Hideout 4 Torches Jail Carpenter": "'Hideout 4 Torches Jail Gerudo' and gerudo_fortress == 'normal' and (Small_Key_Thieves_Hideout, 4)",
             "GF Gate Open": "is_adult and Gerudo_Membership_Card"
         },
         "locations": {
@@ -325,10 +335,10 @@
                 Gerudo_Membership_Card and can_ride_epona and Bow and is_adult",
             "GF HBA 1500 Points": "
                 Gerudo_Membership_Card and can_ride_epona and Bow and is_adult",
-            "Hideout Jail Guard (1 Torch)": "is_adult or (is_child and can_child_damage)",
-            "Hideout Jail Guard (2 Torches)": "is_adult or (is_child and can_child_damage)",
-            "Hideout Jail Guard (3 Torches)": "is_adult or (is_child and can_child_damage)",
-            "Hideout Jail Guard (4 Torches)": "is_adult or (is_child and can_child_damage)",
+            "Hideout 1 Torch Jail Gerudo Key": "'Hideout 1 Torch Jail Gerudo'",
+            "Hideout 2 Torches Jail Gerudo Key": "'Hideout 2 Torches Jail Gerudo'",
+            "Hideout 3 Torches Jail Gerudo Key": "'Hideout 3 Torches Jail Gerudo'",
+            "Hideout 4 Torches Jail Gerudo Key": "'Hideout 4 Torches Jail Gerudo'",
             "Hideout Gerudo Membership Card": "can_finish_GerudoFortress",
             "GF GS Archery Range": "can_use(Hookshot) and at_night",
             "GF GS Top Floor": "at_night and is_adult"
