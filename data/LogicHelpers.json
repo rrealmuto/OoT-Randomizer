@@ -87,9 +87,11 @@
     "has_fire_source_with_torch": "has_fire_source or (is_child and Sticks)",
 
     # Gerudo Fortress
-    "can_finish_GerudoFortress": "(gerudo_fortress == 'normal' and (Small_Key_Thieves_Hideout, 4) and (is_adult or Kokiri_Sword or is_glitched) and (is_adult and (Bow or Hookshot or Hover_Boots) or Gerudo_Membership_Card or logic_gerudo_kitchen or is_glitched))
-            or (gerudo_fortress == 'fast' and Small_Key_Thieves_Hideout and (is_adult or Kokiri_Sword or is_glitched))
-            or (gerudo_fortress != 'normal' and gerudo_fortress != 'fast')",
+    "can_finish_GerudoFortress": "(gerudo_fortress == 'normal' and
+            'Hideout 1 Torch Jail Carpenter' and 'Hideout 2 Torches Jail Carpenter'
+            and 'Hideout 3 Torches Jail Carpenter' and 'Hideout 4 Torches Jail Carpenter')
+        or (gerudo_fortress == 'fast' and 'Hideout 1 Torch Jail Carpenter')
+        or (gerudo_fortress != 'normal' and gerudo_fortress != 'fast')",
     # Mirror shield does not count because it cannot reflect scrub attack.
     "has_shield": "(is_adult and Hylian_Shield) or (is_child and Deku_Shield)",
     "can_shield": "(is_adult and (Hylian_Shield or Mirror_Shield)) or (is_child and Deku_Shield)",
