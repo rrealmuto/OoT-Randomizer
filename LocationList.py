@@ -642,10 +642,10 @@ location_table = OrderedDict([
     ("GF Above Jail Crate",                                          ("Collectable",  0x5D,  0x1F, None,                        'Rupees (50)',                           ("Gerudo's Fortress", "Gerudo", "Crate"))),
 
     # Thieves' Hideout
-    ("Hideout Jail Guard (1 Torch)",                                 ("Collectable",  0x0C,  0x0C, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo", "Drop"))),
-    ("Hideout Jail Guard (2 Torches)",                               ("Collectable",  0x0C,  0x0F, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo", "Drop"))),
-    ("Hideout Jail Guard (3 Torches)",                               ("Collectable",  0x0C,  0x0A, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo", "Drop"))),
-    ("Hideout Jail Guard (4 Torches)",                               ("Collectable",  0x0C,  0x0E, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo", "Drop"))),
+    ("Hideout 1 Torch Jail Gerudo Key",                              ("Collectable",  0x0C,  0x0C, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo",))),
+    ("Hideout 2 Torches Jail Gerudo Key",                            ("Collectable",  0x0C,  0x0F, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo",))),
+    ("Hideout 3 Torches Jail Gerudo Key",                            ("Collectable",  0x0C,  0x0A, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo",))),
+    ("Hideout 4 Torches Jail Gerudo Key",                            ("Collectable",  0x0C,  0x0E, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo",))),
     ("Hideout Gerudo Membership Card",                               ("NPC",          0x0C,  0x3A, None,                        'Gerudo Membership Card',                ("Thieves' Hideout", "Gerudo",))),
     # Thieve's Hideout Pots/Crates
     ("Hideout Break Room Pot 1",                                     ("Collectable",  0x0C,  0x2A, None,                        'Recovery Heart',                        ("Thieves' Hideout", "Gerudo", "Pot"))),
