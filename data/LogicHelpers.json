@@ -62,6 +62,7 @@
             or (for_age == either and (Slingshot or Boomerang or Bow or Hookshot))",
     "can_bonk_tree": "deadly_bonks != 'ohko' or Fairy or can_use(Nayrus_Love)",
     "can_bonk_crate": "deadly_bonks != 'ohko' or Fairy or can_use(Nayrus_Love) or can_blast_or_smash",
+    "can_bonk_market_crate": "deadly_bonks != 'ohko' or Fairy or can_use(Nayrus_Love)",
     "can_bonk_underwater_crate": "deadly_bonks != 'ohko' or Fairy or can_use(Nayrus_Love)",
     "can_bonk_heated_crate": "deadly_bonks != 'ohko' or (Fairy and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or can_use(Nayrus_Love) or can_blast_or_smash",
     "can_break_lower_beehive": "can_use(Boomerang) or can_use(Hookshot) or Bombs or (logic_beehives_bombchus and has_bombchus)",
