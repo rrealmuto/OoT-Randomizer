@@ -318,6 +318,13 @@ logic_tricks = {
                     near Goron City and walk up the
                     very steep slope.
                     '''},
+    'Zora\'s River Rupees with Jump Dive': {
+        'name'    : 'logic_zora_river_rupees',
+        'tags'    : ("Zora's River", "Freestandings",),
+        'tooltip' : '''\
+                    You can jump down onto them from
+                    above to skip needing Iron Boots.
+                    '''},
     'Zora\'s Domain Entry with Cucco': {
         'name'    : 'logic_zora_with_cucco',
         'tags'    : ("Zora's River",),
