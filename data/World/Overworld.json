@@ -519,7 +519,7 @@
             "GV Waterfall Freestanding PoH": "True",
             "GV GS Bean Patch": "can_plant_bugs and can_child_attack",
             "GV Cow": "is_child and can_play(Eponas_Song)",
-            "GV Crate Near Cow": "is_child and can_bonk_crate",
+            "GV Crate Near Cow": "is_child and can_break_crate",
             "GV Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle"
@@ -554,8 +554,8 @@
         "hint": "GERUDO_VALLEY",
         "time_passes": true,
         "locations": {
-            "GV Crate Freestanding PoH": "can_bonk_crate",
-            "GV Freestanding PoH Crate": "can_bonk_crate"
+            "GV Crate Freestanding PoH": "can_break_crate",
+            "GV Freestanding PoH Crate": "can_break_crate"
         },
         "exits": {
             "GV Lower Stream": "True"
@@ -707,7 +707,7 @@
             "GF Hall to Balcony Entrance": "can_take_damage or can_use(Hookshot)"
         },
         "locations": {
-            "GF Above Jail Crate": "can_bonk_crate"
+            "GF Above Jail Crate": "can_break_crate"
         }
     },
     {
@@ -736,7 +736,7 @@
             "Hideout 1 Torch Jail Pot 1": "True",
             "Hideout 1 Torch Jail Pot 2": "True",
             "Hideout 1 Torch Jail Pot 3": "True",
-            "Hideout 1 Torch Jail Crate": "can_bonk_crate"
+            "Hideout 1 Torch Jail Crate": "can_break_crate"
         },
         "exits": {
             "Gerudo Fortress": "True",
@@ -762,8 +762,8 @@
             "Hideout 2 Torch Jail In Cell Pot 2": "True",
             "Hideout 2 Torch Jail In Cell Pot 3": "True",
             "Hideout 2 Torch Jail In Cell Pot 4": "True",
-            "Hideout 2 Torch Jail Crate 1": "can_bonk_crate",
-            "Hideout 2 Torch Jail Crate 2": "can_bonk_crate"
+            "Hideout 2 Torch Jail Crate 1": "can_break_crate",
+            "Hideout 2 Torch Jail Crate 2": "can_break_crate"
         },
         "exits": {
             "Gerudo Fortress": "True",
@@ -782,7 +782,7 @@
         },
         "locations": {
             "Hideout 3 Torches Jail Gerudo Key": "'Hideout 3 Torches Jail Gerudo'",
-            "Hideout 3 Torch Jail Crate": "can_bonk_crate"
+            "Hideout 3 Torch Jail Crate": "can_break_crate"
         },
         "exits": {
             "GF 3 Torches Jail Exterior": "True"
@@ -815,11 +815,11 @@
         "locations": {
             "Hideout Near Kitchen Crate 1": "
                 (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or logic_gerudo_kitchen) and
-                can_bonk_crate",
-            "Hideout Near Kitchen Crate 2": "can_bonk_crate",
-            "Hideout Near Kitchen Crate 3": "can_bonk_crate",
-            "Hideout Near Kitchen Crate 4": "can_bonk_crate",
-            "Hideout Near Kitchen Crate 5": "can_bonk_crate"
+                can_break_crate",
+            "Hideout Near Kitchen Crate 2": "can_break_crate",
+            "Hideout Near Kitchen Crate 3": "can_break_crate",
+            "Hideout Near Kitchen Crate 4": "can_break_crate",
+            "Hideout Near Kitchen Crate 5": "can_break_crate"
         },
         "exits": {
             "GF Entrances Behind Crates": "True",
@@ -878,12 +878,12 @@
         "locations": {
             "Hideout Break Room Pot 1": "Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)",
             "Hideout Break Room Pot 2": "Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)",
-            "Hideout Break Room Hallway Crate 1": "can_bonk_crate",
-            "Hideout Break Room Hallway Crate 2": "can_bonk_crate",
+            "Hideout Break Room Hallway Crate 1": "can_break_crate",
+            "Hideout Break Room Hallway Crate 2": "can_break_crate",
             "Hideout Break Room Crate 1": "
-                (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)) and can_bonk_crate",
+                (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)) and can_break_crate",
             "Hideout Break Room Crate 2": "
-                (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)) and can_bonk_crate"
+                (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)) and can_break_crate"
         }
     },
     {
@@ -900,7 +900,7 @@
         "scene": "Haunted Wasteland",
         "hint": "HAUNTED_WASTELAND",
         "locations": {
-            "Wasteland Crate Before Quicksand": "can_bonk_crate"
+            "Wasteland Crate Before Quicksand": "can_break_crate"
         },
         "exits": {
             "GF Outside Gate": "True",
@@ -918,9 +918,9 @@
             "Wasteland Near GS Pot 1": "True",
             "Wasteland Near GS Pot 2": "True",
             "Wasteland Near GS Pot 3": "True",
-            "Wasteland Crate After Quicksand 1": "can_bonk_crate",
-            "Wasteland Crate After Quicksand 2": "can_bonk_crate",
-            "Wasteland Crate After Quicksand 3": "can_bonk_crate",
+            "Wasteland Crate After Quicksand 1": "can_break_crate",
+            "Wasteland Crate After Quicksand 2": "can_break_crate",
+            "Wasteland Crate After Quicksand 3": "can_break_crate",
             "Wasteland GS": "can_use(Hookshot) or can_use(Boomerang)",
             "Fairy Pot": "has_bottle",
             "Nut Pot": "True"
@@ -936,7 +936,7 @@
         "scene": "Haunted Wasteland",
         "hint": "HAUNTED_WASTELAND",
         "locations": {
-            "Wasteland Crate Near Colossus": "can_bonk_crate"
+            "Wasteland Crate Near Colossus": "can_break_crate"
         },
         "exits": {
             "Haunted Wasteland": "True",
@@ -1012,10 +1012,10 @@
         "scene": "Market",
         "hint": "MARKET",
         "locations": {
-            "Market Night Red Rupee Crate": "is_child and at_night and can_bonk_market_crate",
-            "Market Night Green Rupee Crate 1": "is_child and at_night and can_bonk_market_crate",
-            "Market Night Green Rupee Crate 2": "is_child and at_night and can_bonk_market_crate",
-            "Market Night Green Rupee Crate 3": "is_child and at_night and can_bonk_market_crate"
+            "Market Night Red Rupee Crate": "is_child and at_night and can_bonk",
+            "Market Night Green Rupee Crate 1": "is_child and at_night and can_bonk",
+            "Market Night Green Rupee Crate 2": "is_child and at_night and can_bonk",
+            "Market Night Green Rupee Crate 3": "is_child and at_night and can_bonk"
         },
         "exits": {
             "Market Entrance": "True",
@@ -1100,7 +1100,7 @@
         "time_passes": true,
         "locations": {
             "HC Malon Egg": "True",
-            "HC GS Tree": "can_child_attack and can_bonk_tree",
+            "HC GS Tree": "can_child_attack and can_bonk",
             "HC Malon Gossip Stone": "True",
             "HC Rock Wall Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
@@ -1185,7 +1185,7 @@
         "locations": {
             "Market 10 Big Poes": "
                 is_adult and (Big_Poe or (Bottle_with_Big_Poe, big_poe_count))",
-            "Market Guard House Child Crate": "is_child and can_bonk_crate",
+            "Market Guard House Child Crate": "is_child and can_break_crate",
             "Market Guard House Child Pot 1": "is_child",
             "Market Guard House Child Pot 2": "is_child",
             "Market Guard House Child Pot 3": "is_child",
@@ -1215,7 +1215,7 @@
             "Market Guard House Adult Pot 5": "is_adult",
             "Market Guard House Adult Pot 6": "is_adult",
             "Market Guard House Adult Pot 7": "is_adult",
-            "Market GS Guard House": "is_child and can_bonk_crate"
+            "Market GS Guard House": "is_child and can_break_crate"
         },
         "exits": {
             "Market Entrance": "True"
@@ -1324,7 +1324,7 @@
         "scene": "Market Dog Lady House",
         "locations": {
             "Market Lost Dog": "is_child and at_night",
-            "Market Dog Lady House Crate": "can_bonk_market_crate"
+            "Market Dog Lady House Crate": "can_bonk"
         },
         "exits": {
             "Market Back Alley": "True"
@@ -1354,7 +1354,7 @@
             "Sheik in Kakariko": "
                 is_adult and Forest_Medallion and Fire_Medallion and Water_Medallion",
             "Kak Anju as Adult": "is_adult and at_day",
-            "Kak Anju as Child": "is_child and at_day and (can_bonk_crate or chicken_count < 7)",
+            "Kak Anju as Child": "is_child and at_day and (can_break_crate or chicken_count < 7)",
             "Kak Near Guards House Pot 1": "is_child",
             "Kak Near Guards House Pot 2": "is_child",
             "Kak Near Guards House Pot 3": "is_child",
@@ -1364,11 +1364,11 @@
             "Kak Near Impas House Pot 1": "is_child",
             "Kak Near Impas House Pot 2": "is_child",
             "Kak Near Impas House Pot 3": "is_child",
-            "Kak Adult Arrows Crate": "is_adult and can_bonk_crate",
+            "Kak Adult Arrows Crate": "is_adult and can_break_crate",
             "Kak GS House Under Construction": "is_child and at_night",
             "Kak GS Skulltula House": "is_child and at_night",
             "Kak GS Near Gate Guard": "is_child and at_night",
-            "Kak GS Tree": "is_child and at_night and can_bonk_tree",
+            "Kak GS Tree": "is_child and at_night and can_bonk",
             "Kak GS Watchtower": "
                 is_child and at_night and
                 (Slingshot or has_bombchus or (logic_kakariko_tower_gs and (Sticks or Kokiri_Sword)))",
@@ -1438,7 +1438,7 @@
         "locations": {
             "Kak Near Odd Medicine Building Pot 1": "is_child",
             "Kak Near Odd Medicine Building Pot 2": "is_child",
-            "Kak Adult Red Rupee Crate": "is_adult and can_bonk_crate"
+            "Kak Adult Red Rupee Crate": "is_adult and can_break_crate"
     },
         "exits": {
             "Kakariko Village": "True",
@@ -1584,7 +1584,7 @@
         "hint": "GRAVEYARD",
         "locations": {
             "Graveyard Freestanding PoH": "
-                (is_adult and can_bonk_crate and (here(can_plant_bean) or Longshot)) or
+                (is_adult and can_break_crate and (here(can_plant_bean) or Longshot)) or
                 (logic_graveyard_poh and can_use(Boomerang))",
             "Graveyard Dampe Gravedigging Tour": "is_child and at_dampe_time",
             "Graveyard GS Wall": "can_use(Boomerang) and at_night",
@@ -1811,7 +1811,7 @@
             "GC Upper Staircase Pot 2": "True",
             "GC Upper Staircase Pot 3": "True",
             "GC Medigoron Pot": "can_blast_or_smash or Progressive_Strength_Upgrade",
-            "GC Boulder Maze Crate": "(can_blast_or_smash or can_use(Silver_Gauntlets)) and can_bonk_crate",
+            "GC Boulder Maze Crate": "(can_blast_or_smash or can_use(Silver_Gauntlets)) and can_break_crate",
             "GC GS Boulder Maze": "is_child and has_explosives",
             "GC GS Center Platform": "is_adult",
             "GC Maze Gossip Stone": "
@@ -1937,7 +1937,7 @@
         "hint": "DEATH_MOUNTAIN_CRATER",
         "locations": {
             "DMC Wall Freestanding PoH": "True",
-            "DMC GS Crate": "is_child and can_child_attack and can_bonk_heated_crate",
+            "DMC GS Crate": "is_child and can_child_attack and can_break_heated_crate",
             "DMC Gossip Stone": "has_explosives",
             "Gossip Stone Fairy": "
                 has_explosives and can_summon_gossip_fairy_without_suns and has_bottle"
@@ -2094,7 +2094,7 @@
         "hint": "ZORA_RIVER",
         "time_passes": true,
         "locations": {
-            "ZR GS Tree": "is_child and can_child_attack and can_bonk_tree"
+            "ZR GS Tree": "is_child and can_child_attack and can_bonk"
         },
         "exits": {
             "Zora River": "is_adult or has_explosives",
@@ -2239,7 +2239,7 @@
             "ZF Near Jabu Pot 2": "is_child",
             "ZF Near Jabu Pot 3": "is_child",
             "ZF Near Jabu Pot 4": "is_child",
-            "ZF GS Tree": "is_child and can_bonk_tree",
+            "ZF GS Tree": "is_child and can_bonk",
             "ZF GS Above the Log": "can_use(Boomerang) and at_night",
             "ZF Fairy Gossip Stone": "True",
             "ZF Jabu Gossip Stone": "True",
@@ -2345,8 +2345,8 @@
             "LLR Rain Shed Pot 1": "is_child",
             "LLR Rain Shed Pot 2": "is_child",
             "LLR Rain Shed Pot 3": "is_child",
-            "LLR Child Crate": "is_child and can_bonk_crate",
-            "LLR GS Tree": "is_child and can_bonk_tree",
+            "LLR Child Crate": "is_child and can_break_crate",
+            "LLR GS Tree": "is_child and can_bonk",
             "LLR GS Rain Shed": "is_child and at_night",
             "LLR GS House Window": "can_use(Boomerang) and at_night",
             "LLR GS Back Wall": "can_use(Boomerang) and at_night"

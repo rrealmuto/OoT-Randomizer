@@ -27,22 +27,22 @@
                 is_adult and
                 ((logic_fire_mq_near_boss and has_fire_source and Bow) or
                     ((Hover_Boots or Hookshot) and
-                        ((can_use(Fire_Arrows) and can_bonk_heated_crate) or
+                        ((can_use(Fire_Arrows) and can_break_heated_crate) or
                             (can_use(Dins_Fire) and
                                 ((damage_multiplier != 'ohko' and damage_multiplier != 'quadruple') or
                                     Goron_Tunic or Hover_Boots or Bow or Longshot)))))",
             "Fire Temple MQ Near Boss Pot 1": "can_use(Hookshot) or can_use(Hover_Boots)",
             "Fire Temple MQ Near Boss Pot 2": "can_use(Hookshot) or can_use(Hover_Boots)",
-            "Fire Temple MQ Near Boss Left Crate 1": "can_bonk_heated_crate",
-            "Fire Temple MQ Near Boss Left Crate 2": "can_bonk_heated_crate",
+            "Fire Temple MQ Near Boss Left Crate 1": "can_break_heated_crate",
+            "Fire Temple MQ Near Boss Left Crate 2": "can_break_heated_crate",
             "Fire Temple MQ Near Boss Right Lower Crate 1": "
-                (can_use(Hookshot) or can_use(Hover_Boots)) and can_bonk_heated_crate",
+                (can_use(Hookshot) or can_use(Hover_Boots)) and can_break_heated_crate",
             "Fire Temple MQ Near Boss Right Lower Crate 2": "
-                (can_use(Hookshot) or can_use(Hover_Boots)) and can_bonk_heated_crate",
+                (can_use(Hookshot) or can_use(Hover_Boots)) and can_break_heated_crate",
             "Fire Temple MQ Near Boss Right Mid Crate": "
-                (can_use(Hookshot) or can_use(Hover_Boots)) and can_bonk_heated_crate",
+                (can_use(Hookshot) or can_use(Hover_Boots)) and can_break_heated_crate",
             "Fire Temple MQ Near Boss Right Upper Crate": "
-                (can_use(Hookshot) or can_use(Hover_Boots)) and can_bonk_heated_crate"
+                (can_use(Hookshot) or can_use(Hover_Boots)) and can_break_heated_crate"
         },
         "exits": {
             "Fire Temple Boss Door": "

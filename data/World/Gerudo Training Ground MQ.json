@@ -13,7 +13,7 @@
             "Gerudo Training Ground MQ Lobby Left Pot 2": "True",
             "Gerudo Training Ground MQ Lobby Right Pot 1": "True",
             "Gerudo Training Ground MQ Lobby Right Pot 2": "True",
-            "Gerudo Training Ground MQ Maze Crate": "(Small_Key_Gerudo_Training_Ground, 3) and can_bonk_crate"
+            "Gerudo Training Ground MQ Maze Crate": "(Small_Key_Gerudo_Training_Ground, 3) and can_break_crate"
         },
         "exits": {
             "Gerudo Fortress": "True",

@@ -41,10 +41,10 @@
             "Dodongos Cavern MQ Staircase Pot 4": "True",
             "Dodongos Cavern MQ Staircase Crate Bottom Left": "True",
             "Dodongos Cavern MQ Staircase Crate Bottom Right": "True",
-            "Dodongos Cavern MQ Staircase Crate Mid Left": "can_bonk_crate",
-            "Dodongos Cavern MQ Staircase Crate Mid Right": "can_bonk_crate",
-            "Dodongos Cavern MQ Staircase Crate Top Left": "can_bonk_crate",
-            "Dodongos Cavern MQ Staircase Crate Top Right": "can_bonk_crate",
+            "Dodongos Cavern MQ Staircase Crate Mid Left": "can_break_crate",
+            "Dodongos Cavern MQ Staircase Crate Mid Right": "can_break_crate",
+            "Dodongos Cavern MQ Staircase Crate Top Left": "can_break_crate",
+            "Dodongos Cavern MQ Staircase Crate Top Right": "can_break_crate",
             "Dodongos Cavern MQ GS Song of Time Block Room": "
                 can_play(Song_of_Time) and (can_child_attack or is_adult)",
             "Deku Baba Sticks": "is_adult or Kokiri_Sword or Boomerang"
@@ -82,12 +82,12 @@
         "dungeon": "Dodongos Cavern",
         "locations": {
             "Dodongos Cavern MQ Larvae Room Chest": "True",
-            "Dodongos Cavern MQ Larvae Room Crate 1": "can_bonk_crate",
-            "Dodongos Cavern MQ Larvae Room Crate 2": "can_bonk_crate",
-            "Dodongos Cavern MQ Larvae Room Crate 3": "can_bonk_crate",
-            "Dodongos Cavern MQ Larvae Room Crate 4": "can_bonk_crate",
-            "Dodongos Cavern MQ Larvae Room Crate 5": "can_bonk_crate",
-            "Dodongos Cavern MQ Larvae Room Crate 6": "can_bonk_crate",
+            "Dodongos Cavern MQ Larvae Room Crate 1": "can_break_crate",
+            "Dodongos Cavern MQ Larvae Room Crate 2": "can_break_crate",
+            "Dodongos Cavern MQ Larvae Room Crate 3": "can_break_crate",
+            "Dodongos Cavern MQ Larvae Room Crate 4": "can_break_crate",
+            "Dodongos Cavern MQ Larvae Room Crate 5": "can_break_crate",
+            "Dodongos Cavern MQ Larvae Room Crate 6": "can_break_crate",
             "Dodongos Cavern MQ GS Larvae Room": "True"
         }
     },
@@ -167,15 +167,15 @@
             "Dodongos Cavern MQ Poes Room Pot 2": "True",
             "Dodongos Cavern MQ Poes Room Pot 3": "True",
             "Dodongos Cavern MQ Poes Room Pot 4": "True",
-            "Dodongos Cavern MQ Poes Room Crate 1": "can_bonk_crate or Progressive_Strength_Upgrade",
-            "Dodongos Cavern MQ Poes Room Crate 2": "can_bonk_crate or Progressive_Strength_Upgrade",
-            "Dodongos Cavern MQ Poes Room Crate 3": "can_bonk_crate or Progressive_Strength_Upgrade",
-            "Dodongos Cavern MQ Poes Room Crate 4": "can_bonk_crate or Progressive_Strength_Upgrade",
-            "Dodongos Cavern MQ Poes Room Crate 5": "can_bonk_crate or Progressive_Strength_Upgrade",
-            "Dodongos Cavern MQ Poes Room Crate 6": "can_bonk_crate or Progressive_Strength_Upgrade",
-            "Dodongos Cavern MQ Poes Room Crate 7": "can_bonk_crate or Progressive_Strength_Upgrade",
+            "Dodongos Cavern MQ Poes Room Crate 1": "can_break_crate or Progressive_Strength_Upgrade",
+            "Dodongos Cavern MQ Poes Room Crate 2": "can_break_crate or Progressive_Strength_Upgrade",
+            "Dodongos Cavern MQ Poes Room Crate 3": "can_break_crate or Progressive_Strength_Upgrade",
+            "Dodongos Cavern MQ Poes Room Crate 4": "can_break_crate or Progressive_Strength_Upgrade",
+            "Dodongos Cavern MQ Poes Room Crate 5": "can_break_crate or Progressive_Strength_Upgrade",
+            "Dodongos Cavern MQ Poes Room Crate 6": "can_break_crate or Progressive_Strength_Upgrade",
+            "Dodongos Cavern MQ Poes Room Crate 7": "can_break_crate or Progressive_Strength_Upgrade",
             "Dodongos Cavern MQ Poes Room Crate Near Bombflower": "
-                can_bonk_crate or Progressive_Strength_Upgrade or can_use(Bow) or can_use(Dins_Fire)",
+                can_break_crate or Progressive_Strength_Upgrade or can_use(Bow) or can_use(Dins_Fire)",
             "Dodongos Cavern MQ GS Scrub Room": "
                 (here(can_use(Bow)) or Progressive_Strength_Upgrade or
                     can_use(Dins_Fire) or has_explosives) and

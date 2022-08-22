@@ -61,7 +61,7 @@
         "dungeon": "Spirit Temple",
         "locations": {
             "Spirit Temple MQ Child Climb South Chest": "(Small_Key_Spirit_Temple, 7) and has_explosives",
-            "Spirit Temple MQ Statue Room Lullaby Chest": "can_play(Zeldas_Lullaby) and can_bonk_crate",
+            "Spirit Temple MQ Statue Room Lullaby Chest": "can_play(Zeldas_Lullaby) and can_break_crate",
             "Spirit Temple MQ Statue Room Invisible Chest": "logic_lens_spirit_mq or can_use(Lens_of_Truth)"
         },
         "exits": {
@@ -111,8 +111,8 @@
             "Spirit Temple MQ Sun Block Room Pot 2": "
                 can_play(Song_of_Time) or logic_spirit_mq_sun_block_sot or
                 is_adult",
-            "Spirit Temple MQ Central Chamber Crate 1": "can_bonk_crate",
-            "Spirit Temple MQ Central Chamber Crate 2": "can_bonk_crate",
+            "Spirit Temple MQ Central Chamber Crate 1": "can_break_crate",
+            "Spirit Temple MQ Central Chamber Crate 2": "can_break_crate",
             "Spirit Temple MQ GS Sun Block Room": "
                 (logic_spirit_mq_sun_block_gs and Boomerang and
                     (can_play(Song_of_Time) or logic_spirit_mq_sun_block_sot)) or
@@ -186,10 +186,10 @@
             "Spirit Temple MQ Big Mirror Pot 2": "True",
             "Spirit Temple MQ Big Mirror Pot 3": "True",
             "Spirit Temple MQ Big Mirror Pot 4": "True",
-            "Spirit Temple MQ Big Mirror Crate 1": "can_bonk_crate",
-            "Spirit Temple MQ Big Mirror Crate 2": "can_bonk_crate",
-            "Spirit Temple MQ Big Mirror Crate 3": "can_bonk_crate",
-            "Spirit Temple MQ Big Mirror Crate 4": "can_bonk_crate"
+            "Spirit Temple MQ Big Mirror Crate 1": "can_break_crate",
+            "Spirit Temple MQ Big Mirror Crate 2": "can_break_crate",
+            "Spirit Temple MQ Big Mirror Crate 3": "can_break_crate",
+            "Spirit Temple MQ Big Mirror Crate 4": "can_break_crate"
         },
         "exits": {
             "Spirit Temple Mirror Puzzle": "Megaton_Hammer"

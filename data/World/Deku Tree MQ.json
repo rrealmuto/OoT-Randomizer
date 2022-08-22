@@ -9,12 +9,12 @@
             "Deku Tree MQ Basement Chest": "has_fire_source_with_torch or can_use(Bow)",
             "Deku Tree MQ Lower Lobby Recovery Heart": "True",
             "Deku Tree MQ Slingshot Room Recovery Heart": "True",
-            "Deku Tree MQ Lobby Crate": "can_bonk_crate",
-            "Deku Tree MQ Slingshot Room Crate 1": "can_bonk_crate",
-            "Deku Tree MQ Slingshot Room Crate 2": "can_bonk_crate",
+            "Deku Tree MQ Lobby Crate": "can_break_crate",
+            "Deku Tree MQ Slingshot Room Crate 1": "can_break_crate",
+            "Deku Tree MQ Slingshot Room Crate 2": "can_break_crate",
             "Deku Tree MQ GS Lobby": "
                 is_adult or Sticks or Kokiri_Sword or has_explosives or can_use(Dins_Fire) or
-                ((Slingshot or Boomerang) and can_bonk_crate)",
+                ((Slingshot or Boomerang) and can_break_crate)",
             "Deku Baba Sticks": "is_adult or Kokiri_Sword or Boomerang",
             "Deku Baba Nuts": "
                 is_adult or Slingshot or Sticks or 

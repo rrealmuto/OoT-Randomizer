@@ -19,24 +19,24 @@
             "Water Temple MQ Lizalfos Hallway Pot 1": "Hookshot or can_play(Zeldas_Lullaby)",
             "Water Temple MQ Lizalfos Hallway Pot 2": "Hookshot or can_play(Zeldas_Lullaby)",
             "Water Temple MQ Lizalfos Hallway Pot 3": "Hookshot or can_play(Zeldas_Lullaby)",
-            "Water Temple MQ Central Pillar Upper Crate 1": "can_bonk_crate",
-            "Water Temple MQ Central Pillar Upper Crate 2": "can_bonk_crate",
+            "Water Temple MQ Central Pillar Upper Crate 1": "can_break_crate",
+            "Water Temple MQ Central Pillar Upper Crate 2": "can_break_crate",
             "Water Temple MQ Lizalfos Hallway Hall Crate 1": "
-                can_bonk_underwater_crate or (can_play(Zeldas_Lullaby) and can_blast_or_smash)",
+                can_bonk or (can_play(Zeldas_Lullaby) and can_blast_or_smash)",
             "Water Temple MQ Lizalfos Hallway Hall Crate 2": "
-                can_bonk_underwater_crate or (can_play(Zeldas_Lullaby) and can_blast_or_smash)",
+                can_bonk or (can_play(Zeldas_Lullaby) and can_blast_or_smash)",
             "Water Temple MQ Lizalfos Hallway Hall Crate 3": "
-                can_bonk_underwater_crate or (can_play(Zeldas_Lullaby) and can_blast_or_smash)",
+                can_bonk or (can_play(Zeldas_Lullaby) and can_blast_or_smash)",
             "Water Temple MQ Lizalfos Hallway Room Crate 1": "
-                can_bonk_underwater_crate or (can_play(Zeldas_Lullaby) and can_blast_or_smash)",
+                can_bonk or (can_play(Zeldas_Lullaby) and can_blast_or_smash)",
             "Water Temple MQ Lizalfos Hallway Room Crate 2": "
-                can_bonk_underwater_crate or (can_play(Zeldas_Lullaby) and can_blast_or_smash)",
+                can_bonk or (can_play(Zeldas_Lullaby) and can_blast_or_smash)",
             "Water Temple MQ Lizalfos Hallway Room Crate 3": "
-                can_bonk_underwater_crate or (can_play(Zeldas_Lullaby) and can_blast_or_smash)",
+                can_bonk or (can_play(Zeldas_Lullaby) and can_blast_or_smash)",
             "Water Temple MQ Lizalfos Hallway Room Crate 4": "
-                can_bonk_underwater_crate or (can_play(Zeldas_Lullaby) and can_blast_or_smash)",
+                can_bonk or (can_play(Zeldas_Lullaby) and can_blast_or_smash)",
             "Water Temple MQ Lizalfos Hallway Room Crate 5": "
-                can_bonk_underwater_crate or (can_play(Zeldas_Lullaby) and can_blast_or_smash)"
+                can_bonk or (can_play(Zeldas_Lullaby) and can_blast_or_smash)"
         },
         "exits": {
             "Water Temple Below Central Pillar": "
@@ -51,20 +51,20 @@
         "dungeon": "Water Temple",
         "locations": {
             "Water Temple MQ Central Pillar Chest": "Hookshot",
-            "Water Temple MQ Central Pillar Lower Crate 1": "can_bonk_underwater_crate",
-            "Water Temple MQ Central Pillar Lower Crate 2": "can_bonk_underwater_crate",
-            "Water Temple MQ Central Pillar Lower Crate 3": "can_bonk_underwater_crate",
-            "Water Temple MQ Central Pillar Lower Crate 4": "can_bonk_underwater_crate",
-            "Water Temple MQ Central Pillar Lower Crate 5": "can_bonk_underwater_crate",
-            "Water Temple MQ Central Pillar Lower Crate 6": "can_bonk_underwater_crate",
-            "Water Temple MQ Central Pillar Lower Crate 7": "can_bonk_underwater_crate",
-            "Water Temple MQ Central Pillar Lower Crate 8": "can_bonk_underwater_crate",
-            "Water Temple MQ Central Pillar Lower Crate 9": "can_bonk_underwater_crate",
-            "Water Temple MQ Central Pillar Lower Crate 10": "can_bonk_underwater_crate",
-            "Water Temple MQ Central Pillar Lower Crate 11": "can_bonk_underwater_crate",
-            "Water Temple MQ Central Pillar Lower Crate 12": "can_bonk_underwater_crate",
-            "Water Temple MQ Central Pillar Lower Crate 13": "can_bonk_underwater_crate",
-            "Water Temple MQ Central Pillar Lower Crate 14": "can_bonk_underwater_crate"
+            "Water Temple MQ Central Pillar Lower Crate 1": "can_bonk",
+            "Water Temple MQ Central Pillar Lower Crate 2": "can_bonk",
+            "Water Temple MQ Central Pillar Lower Crate 3": "can_bonk",
+            "Water Temple MQ Central Pillar Lower Crate 4": "can_bonk",
+            "Water Temple MQ Central Pillar Lower Crate 5": "can_bonk",
+            "Water Temple MQ Central Pillar Lower Crate 6": "can_bonk",
+            "Water Temple MQ Central Pillar Lower Crate 7": "can_bonk",
+            "Water Temple MQ Central Pillar Lower Crate 8": "can_bonk",
+            "Water Temple MQ Central Pillar Lower Crate 9": "can_bonk",
+            "Water Temple MQ Central Pillar Lower Crate 10": "can_bonk",
+            "Water Temple MQ Central Pillar Lower Crate 11": "can_bonk",
+            "Water Temple MQ Central Pillar Lower Crate 12": "can_bonk",
+            "Water Temple MQ Central Pillar Lower Crate 13": "can_bonk",
+            "Water Temple MQ Central Pillar Lower Crate 14": "can_bonk"
         }
     },
     {
@@ -74,13 +74,13 @@
             "Water Temple MQ Storage Room Pot 1": "True",
             "Water Temple MQ Storage Room Pot 2": "True",
             "Water Temple MQ Storage Room Pot 3": "True",
-            "Water Temple MQ Storage Room Crate 1": "can_bonk_crate",
-            "Water Temple MQ Storage Room Crate 2": "can_bonk_crate",
-            "Water Temple MQ Storage Room Crate 3": "can_bonk_crate",
-            "Water Temple MQ Storage Room Crate 4": "can_bonk_crate",
-            "Water Temple MQ Storage Room Crate 5": "can_bonk_crate",
-            "Water Temple MQ Storage Room Crate 6": "can_bonk_crate",
-            "Water Temple MQ Storage Room Crate 7": "can_bonk_crate"
+            "Water Temple MQ Storage Room Crate 1": "can_break_crate",
+            "Water Temple MQ Storage Room Crate 2": "can_break_crate",
+            "Water Temple MQ Storage Room Crate 3": "can_break_crate",
+            "Water Temple MQ Storage Room Crate 4": "can_break_crate",
+            "Water Temple MQ Storage Room Crate 5": "can_break_crate",
+            "Water Temple MQ Storage Room Crate 6": "can_break_crate",
+            "Water Temple MQ Storage Room Crate 7": "can_break_crate"
         }
     },
     {
@@ -92,8 +92,8 @@
             "Water Temple MQ Longshot Chest": "Hookshot",
             "Water Temple MQ Lizalfos Hallway Gate Pot 1": "can_use(Dins_Fire)",
             "Water Temple MQ Lizalfos Hallway Gate Pot 2": "can_use(Dins_Fire)",
-            "Water Temple MQ Lizalfos Hallway Gate Crate 1": "can_use(Dins_Fire) and can_bonk_crate",
-            "Water Temple MQ Lizalfos Hallway Gate Crate 2": "can_use(Dins_Fire) and can_bonk_crate",
+            "Water Temple MQ Lizalfos Hallway Gate Crate 1": "can_use(Dins_Fire) and can_break_crate",
+            "Water Temple MQ Lizalfos Hallway Gate Crate 2": "can_use(Dins_Fire) and can_break_crate",
             "Water Temple MQ GS Lizalfos Hallway": "can_use(Dins_Fire)"
         },
         "exits": {
@@ -107,14 +107,14 @@
             "Water Temple MQ Before Upper Water Switch Pot 1": "True",
             "Water Temple MQ Before Upper Water Switch Pot 2": "True",
             "Water Temple MQ Before Upper Water Switch Pot 3": "True",
-            "Water Temple MQ Before Upper Water Switch Lower Crate 1": "can_bonk_crate",
-            "Water Temple MQ Before Upper Water Switch Lower Crate 2": "can_bonk_crate",
-            "Water Temple MQ Before Upper Water Switch Lower Crate 3": "can_bonk_crate",
-            "Water Temple MQ Before Upper Water Switch Lower Crate 4": "can_bonk_crate",
-            "Water Temple MQ Before Upper Water Switch Lower Crate 5": "can_bonk_crate",
-            "Water Temple MQ Before Upper Water Switch Lower Crate 6": "can_bonk_crate",
-            "Water Temple MQ Before Upper Water Switch Upper Crate 1": "Longshot and can_bonk_crate",
-            "Water Temple MQ Before Upper Water Switch Upper Crate 2": "Longshot and can_bonk_crate",
+            "Water Temple MQ Before Upper Water Switch Lower Crate 1": "can_break_crate",
+            "Water Temple MQ Before Upper Water Switch Lower Crate 2": "can_break_crate",
+            "Water Temple MQ Before Upper Water Switch Lower Crate 3": "can_break_crate",
+            "Water Temple MQ Before Upper Water Switch Lower Crate 4": "can_break_crate",
+            "Water Temple MQ Before Upper Water Switch Lower Crate 5": "can_break_crate",
+            "Water Temple MQ Before Upper Water Switch Lower Crate 6": "can_break_crate",
+            "Water Temple MQ Before Upper Water Switch Upper Crate 1": "Longshot and can_break_crate",
+            "Water Temple MQ Before Upper Water Switch Upper Crate 2": "Longshot and can_break_crate",
             "Water Temple MQ GS Before Upper Water Switch": "Longshot"
         }
     },
@@ -127,8 +127,8 @@
             "Water Temple MQ Before Dark Link Top Pot 2": "True",
             "Water Temple MQ Room After Dark Link Pot": "True",
             "Water Temple MQ River Pot": "True",
-            "Water Temple MQ Dragon Statue Near Door Crate 1": "can_bonk_crate",
-            "Water Temple MQ Dragon Statue Near Door Crate 2": "can_bonk_crate",
+            "Water Temple MQ Dragon Statue Near Door Crate 1": "can_break_crate",
+            "Water Temple MQ Dragon Statue Near Door Crate 2": "can_break_crate",
             "Water Temple MQ GS River": "True",
             "Fairy Pot": "has_bottle",
             "Nut Pot": "True"
@@ -143,16 +143,16 @@
         "region_name": "Water Temple Dragon Statue",
         "dungeon": "Water Temple",
         "locations": {
-            "Water Temple MQ Dragon Statue By Torches Crate 1": "can_bonk_crate",
-            "Water Temple MQ Dragon Statue By Torches Crate 2": "can_bonk_crate",
+            "Water Temple MQ Dragon Statue By Torches Crate 1": "can_break_crate",
+            "Water Temple MQ Dragon Statue By Torches Crate 2": "can_break_crate",
             "Water Temple MQ Dragon Statue Submerged Crate 1": "
-                (Iron_Boots and can_bonk_underwater_crate) or (has_bombchus and (can_dive or Iron_Boots))",
+                (Iron_Boots and can_bonk) or (has_bombchus and (can_dive or Iron_Boots))",
             "Water Temple MQ Dragon Statue Submerged Crate 2": "
-                (Iron_Boots and can_bonk_underwater_crate) or (has_bombchus and (can_dive or Iron_Boots))",
+                (Iron_Boots and can_bonk) or (has_bombchus and (can_dive or Iron_Boots))",
             "Water Temple MQ Dragon Statue Submerged Crate 3": "
-                (Iron_Boots and can_bonk_underwater_crate) or (has_bombchus and (can_dive or Iron_Boots))",
+                (Iron_Boots and can_bonk) or (has_bombchus and (can_dive or Iron_Boots))",
             "Water Temple MQ Dragon Statue Submerged Crate 4": "
-                (Iron_Boots and can_bonk_underwater_crate) or (has_bombchus and (can_dive or Iron_Boots))"
+                (Iron_Boots and can_bonk) or (has_bombchus and (can_dive or Iron_Boots))"
         },
         "exits": {
             "Water Temple Boss Key Chest Room": "has_fire_source"
@@ -164,11 +164,11 @@
         "locations": {
             "Water Temple MQ Boss Key Chest": "can_use(Dins_Fire)",
             "Water Temple MQ Boss Key Chest Room Pot": "True",
-            "Water Temple MQ Boss Key Chest Room Upper Crate": "can_bonk_crate",
-            "Water Temple MQ Boss Key Chest Room Lower Crate 1": "can_bonk_crate",
-            "Water Temple MQ Boss Key Chest Room Lower Crate 2": "can_bonk_crate",
-            "Water Temple MQ Boss Key Chest Room Lower Crate 3": "can_bonk_crate",
-            "Water Temple MQ Boss Key Chest Room Lower Crate 4": "can_bonk_crate"
+            "Water Temple MQ Boss Key Chest Room Upper Crate": "can_break_crate",
+            "Water Temple MQ Boss Key Chest Room Lower Crate 1": "can_break_crate",
+            "Water Temple MQ Boss Key Chest Room Lower Crate 2": "can_break_crate",
+            "Water Temple MQ Boss Key Chest Room Lower Crate 3": "can_break_crate",
+            "Water Temple MQ Boss Key Chest Room Lower Crate 4": "can_break_crate"
         },
         "exits": {
             "Water Temple Basement Gated Areas": "can_use(Dins_Fire) and Iron_Boots"
@@ -178,20 +178,20 @@
         "region_name": "Water Temple Basement Gated Areas",
         "dungeon": "Water Temple",
         "locations": {
-            "Water Temple MQ Freestanding Key Area Front Crate 1": "can_bonk_crate",
-            "Water Temple MQ Freestanding Key Area Front Crate 2": "can_bonk_crate",
-            "Water Temple MQ Freestanding Key Area Submerged Crate 1": "can_bonk_underwater_crate or has_bombchus",
-            "Water Temple MQ Freestanding Key Area Submerged Crate 2": "can_bonk_underwater_crate or has_bombchus",
-            "Water Temple MQ Freestanding Key Area Submerged Crate 3": "can_bonk_underwater_crate or has_bombchus",
-            "Water Temple MQ Freestanding Key Area Submerged Crate 4": "can_bonk_underwater_crate or has_bombchus",
-            "Water Temple MQ Freestanding Key Area Submerged Crate 5": "can_bonk_underwater_crate or has_bombchus",
-            "Water Temple MQ Freestanding Key Area Submerged Crate 6": "can_bonk_underwater_crate or has_bombchus",
-            "Water Temple MQ Triple Wall Torch Submerged Crate 1": "can_bonk_underwater_crate or has_bombchus",
-            "Water Temple MQ Triple Wall Torch Submerged Crate 2": "can_bonk_underwater_crate or has_bombchus",
-            "Water Temple MQ Triple Wall Torch Submerged Crate 3": "can_bonk_underwater_crate or has_bombchus",
-            "Water Temple MQ Triple Wall Torch Submerged Crate 4": "can_bonk_underwater_crate or has_bombchus",
-            "Water Temple MQ Triple Wall Torch Submerged Crate 5": "can_bonk_underwater_crate or has_bombchus",
-            "Water Temple MQ Triple Wall Torch Submerged Crate 6": "can_bonk_underwater_crate or has_bombchus"
+            "Water Temple MQ Freestanding Key Area Front Crate 1": "can_break_crate",
+            "Water Temple MQ Freestanding Key Area Front Crate 2": "can_break_crate",
+            "Water Temple MQ Freestanding Key Area Submerged Crate 1": "can_bonk or has_bombchus",
+            "Water Temple MQ Freestanding Key Area Submerged Crate 2": "can_bonk or has_bombchus",
+            "Water Temple MQ Freestanding Key Area Submerged Crate 3": "can_bonk or has_bombchus",
+            "Water Temple MQ Freestanding Key Area Submerged Crate 4": "can_bonk or has_bombchus",
+            "Water Temple MQ Freestanding Key Area Submerged Crate 5": "can_bonk or has_bombchus",
+            "Water Temple MQ Freestanding Key Area Submerged Crate 6": "can_bonk or has_bombchus",
+            "Water Temple MQ Triple Wall Torch Submerged Crate 1": "can_bonk or has_bombchus",
+            "Water Temple MQ Triple Wall Torch Submerged Crate 2": "can_bonk or has_bombchus",
+            "Water Temple MQ Triple Wall Torch Submerged Crate 3": "can_bonk or has_bombchus",
+            "Water Temple MQ Triple Wall Torch Submerged Crate 4": "can_bonk or has_bombchus",
+            "Water Temple MQ Triple Wall Torch Submerged Crate 5": "can_bonk or has_bombchus",
+            "Water Temple MQ Triple Wall Torch Submerged Crate 6": "can_bonk or has_bombchus"
         },
         "exits": {
             "Water Temple Freestanding Key Room": "
@@ -204,13 +204,13 @@
         "region_name": "Water Temple Freestanding Key Room",
         "dungeon": "Water Temple",
         "locations": {
-            "Water Temple MQ Freestanding Key": "can_bonk_crate",
+            "Water Temple MQ Freestanding Key": "can_break_crate",
             "Water Temple MQ Freestanding Key Room Pot": "True",
-            "Water Temple MQ Freestanding Key Room Crate 1": "can_bonk_crate",
-            "Water Temple MQ Freestanding Key Room Crate 2": "can_bonk_crate",
-            "Water Temple MQ Freestanding Key Room Crate 3": "can_bonk_crate",
-            "Water Temple MQ Freestanding Key Room Crate 4": "can_bonk_crate",
-            "Water Temple MQ Freestanding Key Room Crate 5": "can_bonk_crate"
+            "Water Temple MQ Freestanding Key Room Crate 1": "can_break_crate",
+            "Water Temple MQ Freestanding Key Room Crate 2": "can_break_crate",
+            "Water Temple MQ Freestanding Key Room Crate 3": "can_break_crate",
+            "Water Temple MQ Freestanding Key Room Crate 4": "can_break_crate",
+            "Water Temple MQ Freestanding Key Room Crate 5": "can_break_crate"
         },
         "exits": {
             "Water Temple Dodongo Room": "(Small_Key_Water_Temple, 2)"
@@ -222,15 +222,15 @@
         "locations": {
             "Water Temple MQ Dodongo Room Pot 1": "True",
             "Water Temple MQ Dodongo Room Pot 2": "True",
-            "Water Temple MQ Dodongo Room Lower Crate 1": "can_bonk_crate",
-            "Water Temple MQ Dodongo Room Lower Crate 2": "can_bonk_crate",
-            "Water Temple MQ Dodongo Room Lower Crate 3": "can_bonk_crate",
-            "Water Temple MQ Dodongo Room Upper Crate": "can_bonk_crate",
-            "Water Temple MQ Dodongo Room Hall Crate": "can_bonk_crate",
-            "Water Temple MQ Freestanding Key Area Behind Gate Crate 1": "can_bonk_crate",
-            "Water Temple MQ Freestanding Key Area Behind Gate Crate 2": "can_bonk_crate",
-            "Water Temple MQ Freestanding Key Area Behind Gate Crate 3": "can_bonk_crate",
-            "Water Temple MQ Freestanding Key Area Behind Gate Crate 4": "can_bonk_crate",
+            "Water Temple MQ Dodongo Room Lower Crate 1": "can_break_crate",
+            "Water Temple MQ Dodongo Room Lower Crate 2": "can_break_crate",
+            "Water Temple MQ Dodongo Room Lower Crate 3": "can_break_crate",
+            "Water Temple MQ Dodongo Room Upper Crate": "can_break_crate",
+            "Water Temple MQ Dodongo Room Hall Crate": "can_break_crate",
+            "Water Temple MQ Freestanding Key Area Behind Gate Crate 1": "can_break_crate",
+            "Water Temple MQ Freestanding Key Area Behind Gate Crate 2": "can_break_crate",
+            "Water Temple MQ Freestanding Key Area Behind Gate Crate 3": "can_break_crate",
+            "Water Temple MQ Freestanding Key Area Behind Gate Crate 4": "can_break_crate",
             "Water Temple MQ GS Freestanding Key Area": "True"
         },
         "exits": {
@@ -245,9 +245,9 @@
             "Water Temple MQ Triple Wall Torch Pot 2": "True",
             "Water Temple MQ Triple Wall Torch Pot 3": "True",
             "Water Temple MQ Triple Wall Torch Pot 4": "True",
-            "Water Temple MQ Triple Wall Torch Behind Gate Crate 1": "can_bonk_crate",
-            "Water Temple MQ Triple Wall Torch Behind Gate Crate 2": "can_bonk_crate",
-            "Water Temple MQ Triple Wall Torch Behind Gate Crate 3": "can_bonk_crate",
+            "Water Temple MQ Triple Wall Torch Behind Gate Crate 1": "can_break_crate",
+            "Water Temple MQ Triple Wall Torch Behind Gate Crate 2": "can_break_crate",
+            "Water Temple MQ Triple Wall Torch Behind Gate Crate 3": "can_break_crate",
             "Water Temple MQ GS Triple Wall Torch": "True"
         }
     }
