@@ -88,7 +88,7 @@
         "dungeon": "Water Temple",
         "locations": {
             "Water Temple MQ Compass Chest": "
-                Bow or can_use(Dins_Fire) or at('Water Temple Lobby', can_use(Sticks) and has_explosives)",
+                Bow or can_use(Dins_Fire) or at('Water Temple Lobby', can_use(Sticks))",
             "Water Temple MQ Longshot Chest": "Hookshot",
             "Water Temple MQ Lizalfos Hallway Gate Pot 1": "can_use(Dins_Fire)",
             "Water Temple MQ Lizalfos Hallway Gate Pot 2": "can_use(Dins_Fire)",

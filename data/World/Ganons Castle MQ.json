@@ -41,7 +41,7 @@
             "Ganons Castle MQ Forest Trial Frozen Eye Switch Chest": "has_fire_source"
         },
         "exits": {
-            "Ganons Castle Forest Trial Ending": "can_play(Song_of_Time)"
+            "Ganons Castle Forest Trial Ending": "is_adult and can_play(Song_of_Time)"
         }
     },
     {

@@ -825,11 +825,11 @@
             "GF Entrances Behind Crates": "True",
             "Gerudo Fortress": "True",
             "Hideout Kitchen Front": "
-                Gerudo_Membership_Card or can_use(Bow) or can_use(Longshot) or logic_gerudo_kitchen",
+                Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or logic_gerudo_kitchen",
             "Hideout Kitchen Rear": "
-                Gerudo_Membership_Card or can_use(Bow) or can_use(Longshot) or logic_gerudo_kitchen",
+                Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or logic_gerudo_kitchen",
             "Hideout Kitchen Pots": "
-                Gerudo_Membership_Card or can_use(Bow) or can_use(Longshot) or logic_gerudo_kitchen"
+                Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or logic_gerudo_kitchen"
         }
     },
     {
@@ -839,9 +839,10 @@
         "exits": {
             "GF Roof Entrance Cluster": "True",
             "Hideout Kitchen Rear": "
-                can_use(Hookshot) or can_use(Hover_Boots) or
-                Gerudo_Membership_Card or can_use(Bow) or logic_gerudo_kitchen",
-            "Hideout Kitchen Hallway": "Gerudo_Membership_Card or can_use(Bow) or logic_gerudo_kitchen",
+                Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or
+                can_use(Hover_Boots) or logic_gerudo_kitchen",
+            "Hideout Kitchen Hallway": "
+                Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or logic_gerudo_kitchen",
             "Hideout Kitchen Pots": "can_use(Boomerang)"
         }
     },
@@ -852,9 +853,10 @@
         "exits": {
             "GF Kitchen Roof Access": "True",
             "Hideout Kitchen Front": "
-                can_use(Hookshot) or can_use(Hover_Boots) or
-                Gerudo_Membership_Card or can_use(Bow) or logic_gerudo_kitchen",
-            "Hideout Kitchen Hallway": "Gerudo_Membership_Card or can_use(Bow) or logic_gerudo_kitchen",
+                Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or
+                can_use(Hover_Boots) or logic_gerudo_kitchen",
+            "Hideout Kitchen Hallway": "
+                Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or logic_gerudo_kitchen",
             "Hideout Kitchen Pots": "can_use(Boomerang)"
         }
     },
@@ -880,10 +882,15 @@
             "Hideout Break Room Pot 2": "Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)",
             "Hideout Break Room Hallway Crate 1": "can_break_crate",
             "Hideout Break Room Hallway Crate 2": "can_break_crate",
+            # Child Link is too short to seen over the table as you go for these crates.
             "Hideout Break Room Crate 1": "
-                (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)) and can_break_crate",
+                can_break_crate and
+                (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or
+                    can_use(Sticks) or can_use(Kokiri_Sword))",
             "Hideout Break Room Crate 2": "
-                (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)) and can_break_crate"
+                can_break_crate and
+                (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or
+                    can_use(Sticks) or can_use(Kokiri_Sword))"
         }
     },
     {
