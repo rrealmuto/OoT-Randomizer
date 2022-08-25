@@ -269,7 +269,7 @@ entrance_shuffle_table = [
     ('Overworld',       ('Lost Woods -> GC Woods Warp',                                     { 'index': 0x04E2 }),
                         ('GC Woods Warp -> Lost Woods',                                     { 'index': 0x04D6 })),
     ('Overworld',       ('Lost Woods -> Zora River',                                        { 'index': 0x01DD }),
-                        ('Zora River -> Lost Woods',                                        { 'index': 0x04DA })),
+                        ('Zora River -> LW Underwater Entrance',                            { 'index': 0x04DA })),
     ('Overworld',       ('LW Beyond Mido -> SFM Entryway',                                  { 'index': 0x00FC }),
                         ('SFM Entryway -> LW Beyond Mido',                                  { 'index': 0x01A9 })),
     ('Overworld',       ('LW Bridge -> Hyrule Field',                                       { 'index': 0x0185 }),

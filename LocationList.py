@@ -138,14 +138,14 @@ location_table = OrderedDict([
     ("LW GS Above Theater",                                          ("GS Token",     0x0D,  0x04, None,                        'Gold Skulltula Token',                  ("the Lost Woods", "Skulltulas",))),
     # Lost Woods Freestanding 
     ("LW Under Boulder Blue Rupee",                                  ("Collectable",  0x5B,  0x13, None,                        'Rupees (5)',                            ("the Lost Woods", "Forest","Freestanding",))),
-    ("LW Underwater Green Rupee 1",                                  ("Collectable",  0x5B,  0x34, None,                        'Rupee (1)',                             ("the Lost Woods", "Forest","Freestanding",))),
-    ("LW Underwater Green Rupee 2",                                  ("Collectable",  0x5B,  0x35, None,                        'Rupee (1)',                             ("the Lost Woods", "Forest","Freestanding",))),
-    ("LW Underwater Green Rupee 3",                                  ("Collectable",  0x5B,  0x36, None,                        'Rupee (1)',                             ("the Lost Woods", "Forest","Freestanding",))),
-    ("LW Underwater Green Rupee 4",                                  ("Collectable",  0x5B,  0x37, None,                        'Rupee (1)',                             ("the Lost Woods", "Forest","Freestanding",))),
-    ("LW Underwater Green Rupee 5",                                  ("Collectable",  0x5B,  0x39, None,                        'Rupee (1)',                             ("the Lost Woods", "Forest","Freestanding",))),
-    ("LW Underwater Green Rupee 6",                                  ("Collectable",  0x5B,  0x3A, None,                        'Rupee (1)',                             ("the Lost Woods", "Forest","Freestanding",))),
-    ("LW Underwater Green Rupee 7",                                  ("Collectable",  0x5B,  0x3B, None,                        'Rupee (1)',                             ("the Lost Woods", "Forest","Freestanding",))),
-    ("LW Underwater Green Rupee 8",                                  ("Collectable",  0x5B,  0x3C, None,                        'Rupee (1)',                             ("the Lost Woods", "Forest", "Freestanding",))),
+    ("LW Underwater Green Rupee 1",                                  ("Collectable",  0x5B,  0x35, None,                        'Rupee (1)',                             ("the Lost Woods", "Forest","Freestanding",))),
+    ("LW Underwater Green Rupee 2",                                  ("Collectable",  0x5B,  0x36, None,                        'Rupee (1)',                             ("the Lost Woods", "Forest","Freestanding",))),
+    ("LW Underwater Green Rupee 3",                                  ("Collectable",  0x5B,  0x37, None,                        'Rupee (1)',                             ("the Lost Woods", "Forest","Freestanding",))),
+    ("LW Underwater Green Rupee 4",                                  ("Collectable",  0x5B,  0x39, None,                        'Rupee (1)',                             ("the Lost Woods", "Forest","Freestanding",))),
+    ("LW Underwater Green Rupee 5",                                  ("Collectable",  0x5B,  0x3A, None,                        'Rupee (1)',                             ("the Lost Woods", "Forest","Freestanding",))),
+    ("LW Underwater Green Rupee 6",                                  ("Collectable",  0x5B,  0x3B, None,                        'Rupee (1)',                             ("the Lost Woods", "Forest","Freestanding",))),
+    ("LW Underwater Green Rupee 7",                                  ("Collectable",  0x5B,  0x3C, None,                        'Rupee (1)',                             ("the Lost Woods", "Forest", "Freestanding",))),
+    ("LW Underwater Green Rupee Nearest Exit",                       ("Collectable",  0x5B,  0x34, None,                        'Rupee (1)',                             ("the Lost Woods", "Forest","Freestanding",))),
     # Lost Woods Beehives
     ("LW Near Shortcuts Grotto Beehive 1",                           ("Collectable",  0x3E, 0x60 + (0x14*2), None,              'Rupees (20)',                           ("the Lost Woods", "Forest", "Grottos", "Beehive"))),
     ("LW Near Shortcuts Grotto Beehive 2",                           ("Collectable",  0x3E, 0x60 + (0x14*2 + 1), None,          'Rupees (20)',                           ("the Lost Woods", "Forest", "Grottos", "Beehive"))),
@@ -642,10 +642,10 @@ location_table = OrderedDict([
     ("GF Above Jail Crate",                                          ("Collectable",  0x5D,  0x1F, None,                        'Rupees (50)',                           ("Gerudo's Fortress", "Gerudo", "Crate"))),
 
     # Thieves' Hideout
-    ("Hideout 1 Torch Jail Gerudo Key",                              ("Collectable",  0x0C,  0x0C, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo",))),
-    ("Hideout 2 Torches Jail Gerudo Key",                            ("Collectable",  0x0C,  0x0F, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo",))),
-    ("Hideout 3 Torches Jail Gerudo Key",                            ("Collectable",  0x0C,  0x0A, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo",))),
-    ("Hideout 4 Torches Jail Gerudo Key",                            ("Collectable",  0x0C,  0x0E, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo",))),
+    ("Hideout 1 Torch Jail Gerudo Key",                              ("Collectable",  0x0C,  0x0C, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo", "Drop"))),
+    ("Hideout 2 Torches Jail Gerudo Key",                            ("Collectable",  0x0C,  0x0F, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo", "Drop"))),
+    ("Hideout 3 Torches Jail Gerudo Key",                            ("Collectable",  0x0C,  0x0A, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo", "Drop"))),
+    ("Hideout 4 Torches Jail Gerudo Key",                            ("Collectable",  0x0C,  0x0E, None,                        'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo", "Drop"))),
     ("Hideout Gerudo Membership Card",                               ("NPC",          0x0C,  0x3A, None,                        'Gerudo Membership Card',                ("Thieves' Hideout", "Gerudo",))),
     # Thieve's Hideout Pots/Crates
     ("Hideout Break Room Pot 1",                                     ("Collectable",  0x0C,  0x2A, None,                        'Recovery Heart',                        ("Thieves' Hideout", "Gerudo", "Pot"))),
