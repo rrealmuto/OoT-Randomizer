@@ -226,14 +226,6 @@
         }
     },
     {
-        "region_name": "LW Forest Exit",
-        "scene": "Lost Woods",
-        "hint": "LOST_WOODS",
-        "exits": {
-            "Kokiri Forest": "True"
-        }
-    },
-    {
         "region_name": "Lost Woods",
         "scene": "Lost Woods",
         "hint": "LOST_WOODS",
@@ -253,7 +245,6 @@
             "LW Underwater Green Rupee 5": "is_child and (can_dive or Boomerang)",
             "LW Underwater Green Rupee 6": "is_child and (can_dive or Boomerang)",
             "LW Underwater Green Rupee 7": "is_child and (can_dive or Boomerang)",
-            "LW Underwater Green Rupee 8": "is_child and (can_dive or Boomerang)",
             "LW GS Bean Patch Near Bridge": "can_plant_bugs and can_child_attack",
             "LW Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle",
@@ -266,6 +257,7 @@
             "LW Bridge": "
                 is_adult and
                 (Hover_Boots or Longshot or here(can_plant_bean) or logic_lost_woods_bridge)",
+            "LW Underwater Entrance": "is_child and (can_dive or Boomerang)",
             "Zora River": "can_leave_forest and (can_dive or can_use(Iron_Boots))",
             "LW Beyond Mido": "is_child or logic_mido_backflip or can_play(Sarias_Song)",
             "LW Near Shortcuts Grotto": "here(can_blast_or_smash)"
@@ -295,6 +287,25 @@
             "SFM Entryway": "True",
             "Deku Theater": "True",
             "LW Scrubs Grotto": "here(can_blast_or_smash)"
+        }
+    },
+    {
+        "region_name": "LW Forest Exit",
+        "scene": "Lost Woods",
+        "hint": "LOST_WOODS",
+        "exits": {
+            "Kokiri Forest": "True"
+        }
+    },
+    {
+        "region_name": "LW Underwater Entrance",
+        "scene": "Lost Woods",
+        "hint": "LOST_WOODS",
+        "locations": {
+            "LW Underwater Green Rupee Nearest Exit": "is_child"
+        },
+        "exits": {
+            "Lost Woods": "True"
         }
     },
     {
@@ -700,14 +711,14 @@
         "region_name": "GF Balcony",
         "scene": "Gerudo Fortress",
         "hint": "GERUDO_FORTRESS",
+        "locations": {
+            "GF Above Jail Crate": "can_break_crate"
+        },
         "exits": {
             "Hideout Hall to Balcony Upper": "True",
             "Gerudo Fortress": "True",
             "GF Chest Roof": "can_use(Longshot)",
             "GF Hall to Balcony Entrance": "can_take_damage or can_use(Hookshot)"
-        },
-        "locations": {
-            "GF Above Jail Crate": "can_break_crate"
         }
     },
     {
@@ -2147,7 +2158,7 @@
             "ZR Front": "True",
             "ZR Open Grotto": "True",
             "ZR Fairy Grotto": "here(can_blast_or_smash)",
-            "Lost Woods": "can_dive or can_use(Iron_Boots)",
+            "LW Underwater Entrance": "can_dive or can_use(Iron_Boots)",
             "ZR Storms Grotto": "can_open_storm_grotto",
             "ZR Behind Waterfall": "
                 can_play(Zeldas_Lullaby) or
