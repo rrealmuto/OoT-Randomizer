@@ -1380,15 +1380,11 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         save_context.write_bits(0x00D4 + 0x0C * 0x1C + 0x04 + 0x3, 0xDC) # Thieves' Hideout switch flags (heard yells/unlocked doors)
         save_context.write_bits(0x00D4 + 0x0C * 0x1C + 0x0C + 0x2, 0xC4) # Thieves' Hideout collection flags (picked up keys, marks fights finished as well)
 
-    # Add a gate-opening guard on the Wasteland side of the Gerudo gate when the card is shuffled or certain levels of ER.
+    # Add a gate opening guard on the Wasteland side of the Gerudo Fortress' gate
     # Overrides the generic guard at the bottom of the ladder in Gerudo Fortress
-    if world.settings.shuffle_gerudo_card or world.settings.shuffle_overworld_entrances or \
-       world.shuffle_special_interior_entrances or world.settings.spawn_positions or \
-       world.settings.spawn_gerudo_guard_outside_gate:
-        # Add a gate opening guard on the Wasteland side of the Gerudo Fortress' gate
-        new_gate_opening_guard = [0x0138, 0xFAC8, 0x005D, 0xF448, 0x0000, 0x95B0, 0x0000, 0x0301]
-        rom.write_int16s(0x21BD3EC, new_gate_opening_guard)  # Adult Day
-        rom.write_int16s(0x21BD62C, new_gate_opening_guard)  # Adult Night
+    new_gate_opening_guard = [0x0138, 0xFAC8, 0x005D, 0xF448, 0x0000, 0x95B0, 0x0000, 0x0301]
+    rom.write_int16s(0x21BD3EC, new_gate_opening_guard)  # Adult Day
+    rom.write_int16s(0x21BD62C, new_gate_opening_guard)  # Adult Night
 
     # start with maps/compasses
     if world.settings.shuffle_mapcompass == 'startwith':
@@ -2086,9 +2082,8 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     elif world.settings.text_shuffle == 'complete':
         permutation = shuffle_messages(messages, except_hints=False)
 
-    # If Warp Song ER is on, update text boxes
-    if world.settings.warp_songs:
-        update_warp_song_text(messages, world)
+    # update warp song preview text boxes
+    update_warp_song_text(messages, world)
 
     if world.settings.blue_fire_arrows:
         rom.write_byte(0xC230C1, 0x29) #Adds AT_TYPE_OTHER to arrows to allow collision with red ice
@@ -2573,5 +2568,7 @@ def configure_dungeon_info(rom, world):
     rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_ENABLE'), int('altar' in world.settings.misc_hints or enhance_map_compass))
     rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_NEED_COMPASS'), int(enhance_map_compass))
     rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_NEED_ALTAR'), int(not enhance_map_compass))
+    if hasattr(world.settings, 'mix_entrance_pools'):
+        rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_SUMMARY_ENABLE'), int('Boss' not in world.settings.mix_entrance_pools))
     rom.write_bytes(rom.sym('CFG_DUNGEON_REWARDS'), dungeon_rewards)
     rom.write_bytes(rom.sym('CFG_DUNGEON_IS_MQ'), dungeon_is_mq)

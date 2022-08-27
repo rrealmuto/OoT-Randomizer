@@ -1015,16 +1015,17 @@ def update_warp_song_text(messages, world):
         0x0892: 'Prelude of Light Warp -> Temple of Time',
     }
 
-    for id, entr in msg_list.items():
-        if 'warp_songs' in world.settings.misc_hints:
-            destination = world.get_entrance(entr).connected_region
-            destination_name = HintArea.at(destination)
-            color = COLOR_MAP[destination_name.color]
-            if destination_name.preposition(True) is not None:
-                destination_name = f'to {destination_name}'
-        else:
-            destination_name = 'to a mysterious place'
-            color = COLOR_MAP['White']
+    if world.settings.logic_rules != "glitched": # Entrances not set on glitched logic so following code will error
+        for id, entr in msg_list.items():
+            if 'warp_songs' in world.settings.misc_hints or not world.settings.warp_songs:
+                destination = world.get_entrance(entr).connected_region
+                destination_name = HintArea.at(destination)
+                color = COLOR_MAP[destination_name.color]
+                if destination_name.preposition(True) is not None:
+                    destination_name = f'to {destination_name}'
+            else:
+                destination_name = 'to a mysterious place'
+                color = COLOR_MAP['White']
 
         new_msg = f"\x08\x05{color}Warp {destination_name}?\x05\40\x09\x01\x01\x1b\x05\x42OK\x01No\x05\40"
         update_message_by_id(messages, id, new_msg)

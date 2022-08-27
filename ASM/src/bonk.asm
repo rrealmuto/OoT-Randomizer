@@ -103,12 +103,30 @@ APPLY_BONK_DAMAGE:
     
 @@normal_defense:
     sub     t4, t4, t3
+    bltz    t4, @@bonks_kill
+    nop
     sh      t4, 0x30(t8)
-    b       @@return_bonk
+    b       @@cmg_entrance_hack
     nop
 
 @@bonks_kill:
     sh      $zero, 0x30(t8)  ; Player Health
+
+@@cmg_entrance_hack:
+    lh      t3, 0x30(t8)                ; Skip scene check if player will survive the damage
+    bnez    t3, @@return_bonk
+    nop
+    la      t7, GLOBAL_CONTEXT          ; Only change flags if we're in the Treasure Box Shop
+    lh      t3, 0x00A4(t7)              ; current scene number
+    li      t4, 0x0010                  ; Treasure Box Shop scene number
+    bne     t3, t4, @@return_bonk
+    nop
+    ; Set scene temp flags to zero to re-lock doors
+    sw      $zero, 0x1D2C(t7)
+    ; Chests should be reset on scene load, but just in case
+    sw      $zero, 0x1D38(t7)
+    ; Remove any keys in the player's inventory for Treasure Box Shop
+    sb      $zero, 0x00CC(t8)
 
 @@return_bonk:
     jr      ra
