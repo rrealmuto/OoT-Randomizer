@@ -9,7 +9,6 @@
 #define SILVER_CHEST 13
 #define SKULL_CHEST_SMALL 14
 #define SKULL_CHEST_BIG 15
-#define GOLD_CHEST_SMALL 16
 
 typedef uint16_t (*upgrade_fn)(z64_file_t *save, uint16_t item_id);
 typedef void (*effect_fn)(z64_file_t *save, int16_t arg1, int16_t arg2);
@@ -20,7 +19,7 @@ typedef struct {
     uint16_t    text_id;
 
     uint16_t    object_id;
-    int8_t      graphic_id;
+    uint8_t     graphic_id;
     uint8_t     chest_type;
 
     upgrade_fn  upgrade;

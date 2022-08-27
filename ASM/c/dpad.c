@@ -48,52 +48,65 @@ void handle_dpad() {
 }
 void draw_dpad() {
     z64_disp_buf_t *db = &(z64_ctxt.gfx->overlay);
-    if (DISPLAY_DPAD && CFG_DISPLAY_DPAD) {
+    if (CAN_DRAW_DUNGEON_INFO || (DISPLAY_DPAD && CFG_DISPLAY_DPAD)) {
         gSPDisplayList(db->p++, &setup_db);
         gDPPipeSync(db->p++);
         gDPSetCombineMode(db->p++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
-        uint16_t alpha = z64_game.hud_alpha_channels.minimap;
-        
-        if (alpha == 0xAA) alpha = 0xFF;
+        uint16_t alpha = z64_game.hud_alpha_channels.rupees_keys_magic;
+
         gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, alpha);
         sprite_load(db, &dpad_sprite, 0, 1);
         sprite_draw(db, &dpad_sprite, 0, 271, 64, 16, 16);
 
-        if (alpha == 0xFF && !CAN_USE_DPAD)
-            gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0x46);
+        if (CAN_DRAW_DUNGEON_INFO) {
+            // Zora sapphire on D-down
+            sprite_load(db, &stones_sprite, 2, 1);
+            sprite_draw(db, &stones_sprite, 0, 273, 77, 12, 12);
 
-        if (z64_file.iron_boots && z64_file.link_age==0) {
-            sprite_load(db, &items_sprite, 69, 1);
-            if (z64_file.equip_boots == 2) {
-                sprite_draw(db, &items_sprite, 0, 258, 64, 16, 16);
-            }
-            else {
-                sprite_draw(db, &items_sprite, 0, 260, 66, 12, 12);
-            }
-        }
+            // small key on D-right
+            sprite_load(db, &quest_items_sprite, 17, 1);
+            sprite_draw(db, &quest_items_sprite, 0, 285, 66, 12, 12);
 
-        if (z64_file.hover_boots && z64_file.link_age == 0) {
-            sprite_load(db, &items_sprite, 70, 1);
-            if (z64_file.equip_boots == 3) {
-                sprite_draw(db, &items_sprite, 0, 283, 64, 16, 16);
+            // map on D-left
+            sprite_load(db, &quest_items_sprite, 16, 1);
+            sprite_draw(db, &quest_items_sprite, 0, 260, 66, 12, 12);
+        } else {
+            if (!CAN_USE_DPAD)
+                gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, alpha * 0x46 / 0xFF);
+
+            if (z64_file.iron_boots && z64_file.link_age==0) {
+                sprite_load(db, &items_sprite, 69, 1);
+                if (z64_file.equip_boots == 2) {
+                    sprite_draw(db, &items_sprite, 0, 258, 64, 16, 16);
+                }
+                else {
+                    sprite_draw(db, &items_sprite, 0, 260, 66, 12, 12);
+                }
             }
-            else {
+
+            if (z64_file.hover_boots && z64_file.link_age == 0) {
+                sprite_load(db, &items_sprite, 70, 1);
+                if (z64_file.equip_boots == 3) {
+                    sprite_draw(db, &items_sprite, 0, 283, 64, 16, 16);
+                }
+                else {
+                    sprite_draw(db, &items_sprite, 0, 285, 66, 12, 12);
+                }
+            }
+
+            if (z64_file.items[Z64_SLOT_CHILD_TRADE] >= Z64_ITEM_WEIRD_EGG && z64_file.items[Z64_SLOT_CHILD_TRADE] <= Z64_ITEM_MASK_OF_TRUTH && z64_file.link_age == 1) {
+                if(!CAN_USE_DPAD || !CAN_USE_CHILD_TRADE) gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, alpha * 0x46 / 0xFF);
+                else gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, alpha);
+                sprite_load(db, &items_sprite, z64_file.items[Z64_SLOT_CHILD_TRADE], 1);
                 sprite_draw(db, &items_sprite, 0, 285, 66, 12, 12);
             }
-        }
 
-        if (z64_file.items[Z64_SLOT_CHILD_TRADE] >= Z64_ITEM_WEIRD_EGG && z64_file.items[Z64_SLOT_CHILD_TRADE] <= Z64_ITEM_MASK_OF_TRUTH && z64_file.link_age == 1) {
-            if(alpha==0xFF && !CAN_USE_CHILD_TRADE) gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0x46);
-            else gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, alpha);
-            sprite_load(db, &items_sprite, z64_file.items[Z64_SLOT_CHILD_TRADE], 1);
-            sprite_draw(db, &items_sprite, 0, 285, 66, 12, 12);
-        }
-
-        if (z64_file.items[Z64_SLOT_OCARINA] == Z64_ITEM_FAIRY_OCARINA || z64_file.items[Z64_SLOT_OCARINA] == Z64_ITEM_OCARINA_OF_TIME) {
-            if(alpha==0xFF && !CAN_USE_OCARINA) gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0x46);
-            else gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, alpha);
-            sprite_load(db, &items_sprite, z64_file.items[Z64_SLOT_OCARINA], 1);
-            sprite_draw(db, &items_sprite, 0, 273, 77, 12,12);
+            if (z64_file.items[Z64_SLOT_OCARINA] == Z64_ITEM_FAIRY_OCARINA || z64_file.items[Z64_SLOT_OCARINA] == Z64_ITEM_OCARINA_OF_TIME) {
+                if(!CAN_USE_DPAD || !CAN_USE_OCARINA) gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, alpha * 0x46 / 0xFF);
+                else gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, alpha);
+                sprite_load(db, &items_sprite, z64_file.items[Z64_SLOT_OCARINA], 1);
+                sprite_draw(db, &items_sprite, 0, 273, 77, 12,12);
+            }
         }
 
         gDPPipeSync(db->p++);

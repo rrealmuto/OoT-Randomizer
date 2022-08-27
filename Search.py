@@ -2,6 +2,7 @@ import copy
 from collections import defaultdict
 import itertools
 
+from LocationList import location_groups
 from Region import TimeOfDay
 from State import State
 
@@ -285,14 +286,41 @@ class Search(object):
         return valid_goals
 
 
-    def collect_pseudo_starting_items(self):
+    def iter_pseudo_starting_locations(self):
         for state in self.state_list:
             # Skip Child Zelda and Link's Pocket are not technically starting items, so collect them now
-            # However, in Triforce Blitz, we want the starting song to be included in the path count
+			# However, in Triforce Blitz, we want the starting song to be included in the path count
             if state.world.settings.skip_child_zelda and not state.world.settings.triforce_blitz:
-                self.collect(state.world.get_location('Song from Impa').item)
-            self.collect(state.world.get_location('Links Pocket').item)
+                location = state.world.get_location('Song from Impa')
+                self._cache['visited_locations'].add(location)
+                yield location
 
+            location = state.world.get_location('Links Pocket')
+            self._cache['visited_locations'].add(location)
+            yield location
+
+            # Rewards from empty dungeons are also given for free
+            if state.world.settings.empty_dungeons_mode != 'none':
+                boss_map = state.world.get_boss_map()
+                for info in state.world.empty_dungeons.values():
+                    if info.empty:
+                        location = state.world.get_location(boss_map[info.boss_name])
+                        self._cache['visited_locations'].add(location)
+                        yield location
+                # If songs are shuffled inside dungeons, collect them too
+                if state.world.settings.shuffle_song_items == 'dungeon':
+                    from Hints import HintArea
+                    for location_name in location_groups['BossHeart']:
+                        location = state.world.get_location(location_name)
+                        hint_area = HintArea.at(location)
+                        if hint_area.is_dungeon and state.world.empty_dungeons[hint_area.dungeon_name].empty:
+                            self._cache['visited_locations'].add(location)
+                            yield location
+                    
+
+    def collect_pseudo_starting_items(self):
+        for location in self.iter_pseudo_starting_locations():
+            self.collect(location.item)
 
     # Use the cache in the search to determine region reachability.
     # Implicitly requires is_starting_age or Time_Travel.

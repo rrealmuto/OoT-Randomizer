@@ -51,8 +51,11 @@
         "exits": {
             "Jabu Jabus Belly Main": "True",
             "Jabu Jabus Belly Boss Door": "
-                can_use(Boomerang) or (logic_jabu_boss_door_bow and (can_use(Bow) or can_use(Slingshot)) or
-                (logic_jabu_boss_door_chus and has_bombchus))"
+                can_use(Boomerang) or
+                (logic_jabu_near_boss_ranged and
+                    (can_use(Hookshot) or can_use(Bow) or can_use(Slingshot))) or
+                (logic_jabu_near_boss_explosives and
+                    (has_bombchus or (Bombs and can_use(Hover_Boots))))"
         }
     }
 ]

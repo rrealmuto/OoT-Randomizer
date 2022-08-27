@@ -28,6 +28,8 @@
             "wad_file",
             "wad_channel_id",
             "wad_channel_title",
+            "show_seed_info",
+            "user_message",
             "open_output_dir",
             "open_python_dir"
           ]
@@ -76,7 +78,10 @@
             "web_common_key_file",
             "web_common_key_string",
             "web_wad_channel_id",
-            "web_wad_channel_title"
+            "web_wad_channel_title",
+            "web_wad_legacy_mode",
+            "show_seed_info",
+            "user_message"
           ]
         },
         {
@@ -120,7 +125,8 @@
             "web_common_key_file",
             "web_common_key_string",
             "web_wad_channel_id",
-            "web_wad_channel_title"
+            "web_wad_channel_title",
+            "web_wad_legacy_mode"
           ]
         },
         {
@@ -166,6 +172,7 @@
             "bridge_stones",
             "bridge_rewards",
             "bridge_tokens",
+            "bridge_hearts",
             "trials_random",
             "trials"
           ]
@@ -179,6 +186,9 @@
             "mq_dungeons_mode",
             "mq_dungeons_specific",
             "mq_dungeons_count",
+            "empty_dungeons_mode",
+            "empty_dungeons_specific",
+            "empty_dungeons_count",
             "shuffle_interior_entrances",
             "shuffle_grotto_entrances",
             "shuffle_dungeon_entrances",
@@ -211,7 +221,8 @@
             "shuffle_weird_egg",
             "shuffle_gerudo_card",
             "shuffle_beans",
-            "shuffle_medigoron_carpet_salesman"
+            "shuffle_medigoron_carpet_salesman",
+            "shuffle_frog_song_rupees"
           ]
         },
         {
@@ -222,6 +233,7 @@
             "shuffle_mapcompass",
             "shuffle_smallkeys",
             "shuffle_hideoutkeys",
+            "key_rings_choice",
             "key_rings",
             "shuffle_bosskeys",
             "shuffle_ganon_bosskey",
@@ -229,6 +241,7 @@
             "ganon_bosskey_stones",
             "ganon_bosskey_rewards",
             "ganon_bosskey_tokens",
+            "ganon_bosskey_hearts",
             "enhance_map_compass"
           ]
         }
@@ -338,7 +351,9 @@
             "spawn_gerudo_guard_outside_gate",
             "chicken_count",
             "big_poe_count_random",
-            "big_poe_count"
+            "big_poe_count",
+            "easier_fire_arrow_entry",
+            "fae_torch_count"
           ]
         },
         {
@@ -348,6 +363,7 @@
           "settings": [
             "ocarina_songs",
             "correct_chest_appearances",
+            "invisible_chests",
             "bombchus_gilded_chest_appearance",
             "clearer_hints",
             "hints",
@@ -356,8 +372,10 @@
             "misc_hints",
             "text_shuffle",
             "damage_multiplier",
-			"no_collectible_hearts",
-            "starting_tod"
+            "deadly_bonks",
+            "no_collectible_hearts",
+            "starting_tod",
+            "blue_fire_arrows"
           ]
         },
         {
@@ -457,9 +475,10 @@
           "name": "sfx_main_section",
           "is_sfx": true,
           "col_span": 4,
-          "row_span": [1,1,1],
+          "row_span": [2,2,2],
           "settings": [
-            "randomize_all_sfx"
+            "randomize_all_sfx",
+            "disable_battle_music"
           ]
         },
         {
@@ -469,7 +488,6 @@
           "row_span": [6,6,13],
           "settings": [
             "background_music",
-            "disable_battle_music",
             "fanfares",
             "ocarina_fanfares",
             "sfx_low_hp",

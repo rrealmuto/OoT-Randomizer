@@ -32,6 +32,11 @@ run_dir = root_dir
 # Compile code
 
 os.chdir(run_dir)
+
+base_rom_size = os.stat('roms/base.z64').st_size
+if base_rom_size != 0x400_0000:
+    sys.exit(f'build.py: roms/base.z64 should be 0x4000000 bytes (64 MiB), but yours is 0x{base_rom_size:x} bytes ({base_rom_size / (1024 ** 2)} MiB). Make sure you have an uncompressed base ROM (see ../bin/Decompress).')
+
 if compile_c:
     clist = ['make']
     if dump_obj:

@@ -39,7 +39,7 @@ void get_chest_override(z64_actor_t *actor) {
                 item_row = get_item_row(override.value.item_id);
             }
             if (CHEST_SIZE_MATCH_CONTENTS || CHEST_SIZE_TEXTURE) {
-                if (item_row->chest_type == BROWN_CHEST || item_row->chest_type == SILVER_CHEST || item_row->chest_type == SKULL_CHEST_SMALL || item_row->chest_type == GOLD_CHEST_SMALL) {
+                if (item_row->chest_type == BROWN_CHEST || item_row->chest_type == SILVER_CHEST || item_row->chest_type == SKULL_CHEST_SMALL) {
                     // Small chest
                     size = 5;
                 }
@@ -55,6 +55,11 @@ void get_chest_override(z64_actor_t *actor) {
 
     ((uint8_t*)actor)[0x01EC] = size;
     ((uint8_t*)actor)[0x01ED] = color;
+    if (CHEST_LENS_ONLY) {
+        // Actor flag 7 makes actors invisible
+        // Usually only applies to chest types 4 and 6
+        actor->flags |= 0x80;
+    }
 }
 
 void draw_chest(z64_game_t* game, int part, void* unk, void* unk2,
@@ -64,6 +69,9 @@ void draw_chest(z64_game_t* game, int part, void* unk, void* unk2,
 
     z64_gfx_t *gfx = game->common.gfx;
     int chest_type = ((uint8_t*)actor)[0x01ED];
+    if (CHEST_SIZE_MATCH_CONTENTS && chest_type == SILVER_CHEST) {
+        chest_type = GOLD_CHEST;
+    }
 
     //write matrix
     Mtx_t *mtx = write_matrix_stack_top(gfx);
@@ -72,20 +80,20 @@ void draw_chest(z64_game_t* game, int part, void* unk, void* unk2,
     int dlist;
 
     if (part == CHEST_BASE) {
-        if (chest_type == GOLD_CHEST || chest_type == GOLD_CHEST_SMALL)
+        if (chest_type == GOLD_CHEST)
             dlist = 0x06000AE8;
         else
             dlist = 0x060006F0;
 
     }
     else { //(part == CHEST_LID)
-        if (chest_type == GOLD_CHEST || chest_type == GOLD_CHEST_SMALL)
+        if (chest_type == GOLD_CHEST)
             dlist = 0x06001678;
         else
             dlist = 0x060010C0;
     }
 
-    if (chest_type != GOLD_CHEST && chest_type != GOLD_CHEST_SMALL) {
+    if (chest_type != GOLD_CHEST) {
         //set texture type
         void* frontTexture = (void*)BROWN_FRONT_TEXTURE;
         void* baseTexture = (void*)BROWN_BASE_TEXTURE;

@@ -5,6 +5,7 @@
 #include "util.h"
 #include "z64.h"
 
+extern uint8_t FAST_CHESTS;
 extern uint8_t OCARINAS_SHUFFLED;
 
 override_t cfg_item_overrides[512] = { 0 };
@@ -132,7 +133,10 @@ void activate_override(override_t override) {
     active_item_text_id = item_row->text_id;
     active_item_object_id = item_row->object_id;
     active_item_graphic_id = item_row->graphic_id;
-    active_item_fast_chest = item_row->chest_type == BROWN_CHEST || item_row->chest_type == SILVER_CHEST || item_row->chest_type == SKULL_CHEST_SMALL || item_row->chest_type == GOLD_CHEST_SMALL;
+    if (override.value.looks_like_item_id) {
+        item_row = get_item_row(override.value.looks_like_item_id);
+    }
+    active_item_fast_chest = item_row->chest_type == BROWN_CHEST || item_row->chest_type == SILVER_CHEST || item_row->chest_type == SKULL_CHEST_SMALL;
     PLAYER_NAME_ID = override.value.player;
 }
 
@@ -273,7 +277,7 @@ void try_pending_item() {
         item_row_t *item_row = get_item_row(resolved_item_id);
         call_effect_function(item_row);
         pop_pending_item();
-        after_key_received(override.key);        
+        after_key_received(override.key);
         clear_override();
         return;
     }
@@ -288,10 +292,11 @@ void handle_pending_items() {
     push_coop_item();
     if (link_is_ready()) {
         pop_ice_trap();
-        if (ice_trap_is_pending()) {
+        // don't apply ice traps while playing the treasure chest game, since that would allow cheesing it
+        // (dying there lets you buy another key but doesn't lock already unlocked doors)
+        if (ice_trap_is_pending() && (z64_game.scene_index != 0x0010 || z64_game.chest_flags & 0x00000400)) {
             give_ice_trap();
-        }
-        else {
+        } else {
             try_pending_item();
         }
     }
@@ -318,8 +323,8 @@ void get_item(z64_actor_t *from_actor, z64_link_t *link, int8_t incoming_item_id
 
     if (from_actor->actor_id == 0x0A) {
         // Update chest contents
-        if (override.value.item_id == 0x7C && override.value.player == PLAYER_ID) {
-            // Use ice trap base item ID
+        if (override.value.item_id == 0x7C && override.value.player == PLAYER_ID && (FAST_CHESTS || active_item_fast_chest)) {
+            // Use ice trap base item ID to freeze Link as the chest opens rather than playing the full item get animation
             base_item_id = 0x7C;
         }
         from_actor->variable = (from_actor->variable & 0xF01F) | (base_item_id << 5);

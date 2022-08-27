@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 from Hints import HintDistFiles
 from SettingsList import setting_infos, setting_map, get_setting_info, get_settings_from_section, get_settings_from_tab
-from Utils import data_path, read_json
+from Utils import data_path
 import sys
 import json
 import copy
 
 
 tab_keys     = ['text', 'app_type', 'footer']
-section_keys = ['text', 'is_colors', 'is_sfx', 'col_span', 'row_span', 'subheader']
+section_keys = ['text', 'app_type', 'is_colors', 'is_sfx', 'col_span', 'row_span', 'subheader']
 setting_keys = ['hide_when_disabled', 'min', 'max', 'size', 'max_length', 'file_types', 'no_line_break', 'function', 'option_remove']
 types_with_options = ['Checkbutton', 'Radiobutton', 'Combobox', 'SearchBox', 'MultipleSelect']
 
@@ -221,6 +221,11 @@ def GetTabJson(tab, web_version, as_array=False):
 
     for section in tab['sections']:
         sectionJson = GetSectionJson(section, web_version, as_array)
+        if section.get('exclude_from_web', False) and web_version:
+            continue
+        elif section.get('exclude_from_electron', False) and not web_version:
+            continue
+        
         if as_array:
             tabJson['sections'].append(sectionJson)
         else:
@@ -254,7 +259,8 @@ def CreateJSON(path, web_version=False):
             settingOutputJson['cosmeticsArray'].append(tabJsonArr)
     
     for d in HintDistFiles():
-        dist = read_json(d)
+        with open(d, 'r') as dist_file:
+            dist = json.load(dist_file)
         if ('distribution' in dist and
            'goal' in dist['distribution'] and
            (dist['distribution']['goal']['fixed'] != 0 or

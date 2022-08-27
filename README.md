@@ -27,24 +27,24 @@ graphical interface or ```OoTRandomizer.py``` for the command line version. They
 but the seeds you generate will have different random factors than the bundled release.
 To use the GUI, [NodeJS](https://nodejs.org/download/release/v14.15.1/) (v14, with npm) will additionally need to be installed. NodeJS v16+ is currently not supported.
 The first time ```Gui.py``` is run it will need to install necessary components, which could take a few minutes. Subsequent instances will run much quicker.
-Built-in WAD injection is only supported on the website. To create a WAD from a seed created locally, either use 
-[gzinject](https://github.com/krimtonz/gzinject/tree/0.2.0) or output a patch file and run that through the website.
+Supported output formats are .z64 (N64/Emulator), .wad (Wii VC, channel IDs NICE/NRKE recommended), Uncompressed ROM (for developmental purposes, offline build only)
+and .zpf/.zpfz (patch files, for sharing seeds with others).
 
 This randomizer requires The Legend of Zelda: Ocarina of Time version ```1.0 NTSC-US```. This randomizer includes an in-built decompressor, but if
 the user wishes a pre-decompressed ROM may be supplied as input. Please be sure your input ROM filename is either a .n64 or .z64 file. For users
 playing via any means other than on real N64 hardware, the use of the "Compress patched ROM" flag is strongly encouraged as uncompressed ROMs are
 impossible to inject for the Virtual Console and have random crashing problems on all emulators.
 
-For general use, there are three recommended emulators: [Project 64 (v3.0+)](https://wiki.ootrandomizer.com/index.php?title=Project64), [Bizhawk](https://wiki.ootrandomizer.com/index.php?title=Bizhawk), and [RetroArch](https://wiki.ootrandomizer.com/index.php?title=Retroarch).
+For general use, there are four recommended emulators: [Project 64 (v3.0+)](https://wiki.ootrandomizer.com/index.php?title=Project64), [Bizhawk](https://wiki.ootrandomizer.com/index.php?title=Bizhawk), [RetroArch](https://wiki.ootrandomizer.com/index.php?title=Retroarch) and [Dolphin (latest beta)](https://wiki.ootrandomizer.com/index.php?title=Dolphin). All are race-legal when configured appropriately.
 In a nutshell the differences are:
 * Project64 is the lightest emulator and the easiest to setup, however, you will need the 3.0.0 version or later to run OoTR well (and earlier versions are not permitted for use in OoTR races).
 * Bizhawk is the most resource-intensive, but easier to set up than RetroArch and the only race-legal emulator to support [Multiworld](https://wiki.ootrandomizer.com/index.php?title=Multiworld).
-* RetroArch is less resource-intensive than Bizhawk and the only of these three to work on platforms other than Windows, but it can be frustrating to set up.
+* RetroArch is less resource-intensive than Bizhawk and the only of the three N64 emulators to work on platforms other than Windows, but it can be frustrating to set up.
+* Dolphin lets you emulate Wii VC, giving you access to faster pauses. It's also lightweight, available on other platforms than Windows, easy to setup (on Windows at least) and offers good native support with most Gamecube Controller Adapters. It does come with more lag, although that can be mitigated through overclocking (this is not permitted for racing).
 
 Please follow [the guides on our wiki](https://wiki.ootrandomizer.com/index.php?title=Setup#Emulators) carefully to ensure a stable game experience and that
 [the settings requirements for races](https://wiki.ootrandomizer.com/index.php?title=Racing#Emulator_Settings_Requirements) are met. OoTR can also be run on
-an N64 using an [EverDrive](https://wiki.ootrandomizer.com/index.php?title=Everdrive), or on Wii Virtual Console. For questions and tech support we kindly
-refer you to our [Discord](https://discord.gg/q6m6kzK).
+an N64 using an [EverDrive](https://wiki.ootrandomizer.com/index.php?title=Everdrive), or on [Wii Virtual Console](https://wiki.ootrandomizer.com/index.php?title=Wii_Virtual_Console). For questions and tech support we kindly refer you to our [Discord](https://discord.gg/q6m6kzK).
 
 ## General Description
 
@@ -55,7 +55,7 @@ The randomizer will ensure a glitchless path through the seed will exist, but th
 Glitchless can still mean that clever or unintuitive strategies may be required involving the use of things like Hover Boots, the Hookshot, or other items that may not have been as important in the original game.
 
 Each major dungeon will earn you a random Spiritual Stone or Medallion once completed.
-The particular dungeons where these can be found, as well as other relevant dungeon information can be viewed in the pause menu by holding the "A" button on the C-Item Menu.
+The particular dungeons where these can be found, as well as other relevant dungeon information can be viewed in the pause menu by holding the D-Pad buttons on the C-Item Menu.
 Note, however, that the unlock conditions for dungeon information are settings-dependent.
 
 As a service to the player in this very long game, many cutscenes have been greatly shortened or removed, and text is as often as possible either omitted or sped up. It is likely that someone somewhere will miss the owl's interjections; to that person, I'm sorry I guess?
@@ -110,16 +110,36 @@ do that.
   * `Chest Size Matches Content` has been replaced with `Chest Appearance Matches Content`. Unique textures are applied to chests containing major items, small keys, boss keys, skulltula tokens, and remaining items. An additional option also changes chest sizes like the previous setting.
   * New cosmetic setting `Disable Battle Music` turns off the battle music from being near enemies, allowing the background music to continue uninterrupted.
   * New setting `Plant Magic Beans` automatically plants all the Magic Beans from the start.
-  * New setting `Key Rings` which can be enabled per-dungeon to replace all of its individual Small Keys into a singular Small Key Ring containing all the small keys for that dungeon.
+  * New setting `Key Rings` which can be enabled per-dungeon to replace all of its individual Small Keys into a singular Small Key Ring containing all the small keys for that dungeon. Key Rings also have their own model.
   * Setting `Randomize Ocarina Song Notes` can now be set to either "row" of songs individually, i.e. "Frog Songs" or "Warp Songs", in additional to the "Off" and "All Songs" options.
   * MQ Dungeon settings have been replaced with `MQ Dungeons Mode` which allows finer selection of which dungeons are MQ, or how many are at random.
   * New setting `Shuffle Boss Entrances` allows boss rooms to be shuffled between dungeons. This is only available in glitchless logic.
   * `Misc. Hints` has been expanded to a multiple select setting allowing you to fine-tune which set of misc hints to enable or disable.
   * New setting `Gate-Opening Gerudo Guard` adds a guard outside Gerudo Fortress to open the gate when entering from Haunted Wasteland.
+  * New setting `Shuffle Frog Song Rupees` allows you to shuffle the rupees you receive from the Zora's River frogs.
+  * New setting `Show Seed Info on File Screen` which also allows a user-set message to be displayed.
+  * New settings allow for Rainbow Bridge and Ganon's Boss Key to be obtained upon reaching a certain amount of total heart containers.
+  * New setting `Easier Fire Arrow Entry` allows you to set the amount of torches that must be lit to open Shadow Temple.
+  * The pause screen info menu has been split into 3 menus, which show icons on the D-Pad indicating which direction leads to which menu. In addition, the menu now tracks the total keys you've found for a dungeon, not just how many you have remaining. The old menu from pressing A still exists as well.
+  * New setting `Invisible Chests` makes all chests in the game invisible.
+  * New setting `Bonks Do Damage` will deal damage to Link when bonking, including `One Bonk KO` which will instantly kill him from bonking.
+  * New hint type `Dual Hint` which allows multiple locations to be hinted in the same hint. Hint distros can also use new option `upgrade_hints` to upgrade some hints to Dual Hints.
+  * New `Chaos` hint distribution which gives all hint types equal likelihood.
+  * New setting `Blue Fire Arrows` gives Ice Arrows the power to melt red ice and mud walls to give them more utility.
+  * New Misc. Hint `Dampé's Diary` which reveals the location of a hookshot.
+  * New item pool setting `Ludicrous` makes it so every check will be a major item.
+  * `Shuffle Dungeon Entrances` has new setting `Dungeons and Ganon` which puts Ganon's Castle into the pool of dungeons which can be shuffled.
+  * New setting `Pre-Completed Dungeons` which allows some dungeons to be filled with junk and their dungeon rewards given as a starting item.
+  * New setting `Regional` for dungeon items makes it so dungeon items such as keys will be placed in the same region as their dungeon. For example, if Small Keys are set to Regional, then Small keys for Forest Temple can be found in the temple itself, Sacred Forest Meadow, Lost Woods, Kokiri Forest, or Deku Tree.
 
 * **Gameplay**
   * Shortened the animation for equipping magic arrows.
   * You can now use the child trade item (Zelda's Letter, masks, etc) as child using D-Pad Right.
+  * Red Ice transparency is increased when any Chest Appearance setting is enabled.
+  * Zelda's text after defeating Ganon now advances automatically.
+  * Health and Magic potion models in shops will now match your health and magic colors when `Item Model Colors Match Cosmetics` is enabled.
+  * The Gerudo guard on the Wasteland side of the gate will now spawn regardless of settings.
+  * Several vanilla warp destination messages have been updated to keep consistency with our custom warp destination messages.
 
 
 #### Bug fixes
@@ -137,6 +157,17 @@ do that.
 * Fixed issues where `Skip Child Zelda` could give a weapon with no ammo or overwrite starting Triforce Pieces.
 * Fixed an issue where `Plentiful` item pool combined with `Starting Hearts` would result in more Heart Containers being in the item pool than intended.
 * The Like Like in Master Quest Fire Temple will now return the player's shield when defeated.
+* Junk can now be placed on excluded song locations when Songs are set to `Song Locations` and a song is started with.
+* Fix `GC Medigoron` not being a hintable location.
+* Fix 1/16th damage not always killing Link when `One Hit KO` is enabled.
+* Fix ice traps cloaked as major items not giving the slow chest opening cutscenes when `Fast Chest Cutscenes` is disabled.
+* Tunics and shields can now spawn in any room when the game attempts to spawn them.
+* Fix a crash when certain settings related to Light Arrow hints are combined.
+* Many minor logic bugs have been corrected.
+* Fix a softlock when plandoing starting with less than 10 beans.
+* Fix plando negative locations (ex. "!Gold Skulltula Token") choosing Buy items for non-Buy locations.
+* Ice traps will no longer be sent to players in the Treasure Chest Game to prevent using deaths to circumvent the game.
+* Fixed dragging list items in the GUI not working when the target is empty.
 
 #### Other changes
 * Added an auto-tracker context area to memory, so auto-trackers can find certain symbols much easier.
@@ -145,7 +176,7 @@ do that.
 * `Goron Bracelet` is no longer greyed out as adult on the Equipment subscreen of the pause menu.
 * Plandomizer
   * You can now specify an arbitrary 4-character hexadecimal text ID as a "Gossip Stone" to overwrite text in the game.
-  * Adjusted how `starting_items` works in order to remove some redundancy. Spoiler output now includes a section `:skipped_locations` instead which is not used by Plandomizer.
+  * Adjusted how `starting_items` works in order to remove some redundancy, where it is now placed within the settings dictionary.. Spoiler output now includes a section `:skipped_locations` instead which is not used by Plandomizer.
   * Gold Skulltula Token requirements can be increased above 100 (the pool must also have at least that many).
 * Triforce Hunt changes
   * The number of Triforce pieces available per world, which was previously tied to the item pool setting, is now a separate setting.
@@ -158,6 +189,13 @@ do that.
 * On the File Select screen, trade items that will be reverted on load now show as the item they will revert to.
 * Ganondorf will now say that the Light Arrows are in your pocket if they are an effective starting item (e.g. the item given from `Skip Child Zelda`).
 * The "WINNER!" Piece of Heart will now show the proper player name in Multiworld.
+* Hinted item and location for a Gossip Stone hint are now included in the spoiler log.
+* One-way entrances are now restricted to one per hint area rather than one per scene.
+* You can now receive starting ice traps, either from Impa's item with Skip Child Zelda or with plando.
+* Plandomizer will now display an error and inform the user if they have specified conflicting settings within the plando.
+* Common ER error messages are now more helpful to solving the issue.
+* Corrected some goal hint colors.
+* Triforce Piece model has been updated so that it is shinier and centered.
 
 ### 6.2
 

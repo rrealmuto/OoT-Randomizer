@@ -8,9 +8,6 @@ static uint32_t render_triforce_flag = 0;
 #define TRIFORCE_FRAMES_FADE_AWAY 80 
 #define TRIFORCE_FRAMES_FADE_INTO 5 
 
-uint16_t triforce_hunt_enabled = 0;
-uint16_t triforce_pieces_requied = 0xFFFF;
-
 void set_triforce_render() {
     render_triforce_flag = 1;
     frames = frames > TRIFORCE_FRAMES_FADE_INTO ? TRIFORCE_FRAMES_FADE_INTO : frames;
@@ -19,7 +16,7 @@ void set_triforce_render() {
 void draw_triforce_count(z64_disp_buf_t *db) {
 
     // Must be triforce hunt and triforce should be drawable, and we should either be on the pause screen or the render triforce flag should be set
-    if (!(triforce_hunt_enabled && CAN_DRAW_TRIFORCE && (render_triforce_flag == 1 || z64_game.pause_ctxt.state == 6))) {
+    if (!(TRIFORCE_HUNT_ENABLED && CAN_DRAW_TRIFORCE && (render_triforce_flag == 1 || z64_game.pause_ctxt.state == 6))) {
         return;
     }
     
@@ -58,7 +55,7 @@ void draw_triforce_count(z64_disp_buf_t *db) {
     }
     pieces_digits = pieces_digits == 0 ? 1 : pieces_digits;
     int required_digits = 0;
-    int required_copy = triforce_pieces_requied;
+    int required_copy = TRIFORCE_PIECES_REQUIRED;
     while(required_copy >= 1) {
         required_digits++;
         required_copy /= 10;
@@ -81,7 +78,7 @@ void draw_triforce_count(z64_disp_buf_t *db) {
         pieces_copy /= 10;
     }
     text[pieces_digits] = 0x2F; // writes a slash (/)
-    required_copy = triforce_pieces_requied;
+    required_copy = TRIFORCE_PIECES_REQUIRED;
     for(int i = str_len - 1; i > pieces_digits; i--) {
         text[i] = (required_copy % 10) + '0';
         required_copy /= 10;

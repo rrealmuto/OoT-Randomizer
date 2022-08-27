@@ -30,6 +30,7 @@ class ItemInfo(object):
         self.stone = self.special.get('stone', False)
         self.alias = self.special.get('alias', None)
         self.junk = self.special.get('junk', None)
+        self.trade = self.special.get('trade', False)
 
 
 for item_name in item_table:
@@ -139,6 +140,10 @@ class Item(object):
 
         if self.name.startswith('Bombchus') and not self.world.settings.bombchus_in_logic:
             return False
+
+        if self.name == 'Heart Container' or self.name.startswith('Piece of Heart'):
+            return (self.world.settings.bridge == 'hearts' or self.world.settings.shuffle_ganon_bosskey == 'hearts' or
+                (self.world.settings.shuffle_ganon_bosskey == 'on_lacs' and self.world.settings.lacs_condition == 'hearts'))
 
         if self.map or self.compass:
             return False
