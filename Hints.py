@@ -332,9 +332,9 @@ class HintArea(Enum):
     ROOT                   = 'in',     'in',     "Link's Pocket",              'White',      None
     HYRULE_FIELD           = 'in',     'in',     'Hyrule Field',               'Light Blue', None
     LON_LON_RANCH          = 'at',     'at',     'Lon Lon Ranch',              'Light Blue', None
-    MARKET                 = 'in',     'in',     'the market',                 'Light Blue', None
+    MARKET                 = 'in',     'in',     'the Market',                 'Light Blue', None
     TEMPLE_OF_TIME         = 'inside', 'inside', 'the Temple of Time',         'Light Blue', None
-    CASTLE_GROUNDS         = 'on',     'on',     'the castle grounds',         'Light Blue', None # required for warp songs
+    CASTLE_GROUNDS         = 'on',     'on',     'the Castle Grounds',         'Light Blue', None # required for warp songs
     HYRULE_CASTLE          = 'at',     'at',     'Hyrule Castle',              'Light Blue', None
     OUTSIDE_GANONS_CASTLE  = None,     None,     "outside Ganon's Castle",     'Light Blue', None
     INSIDE_GANONS_CASTLE   = 'inside', None,     "inside Ganon's Castle",      'Light Blue', 'Ganons Castle'
@@ -357,7 +357,7 @@ class HintArea(Enum):
     WATER_TEMPLE           = 'under',  'in',     'the Water Temple',           'Blue',       'Water Temple'
     KAKARIKO_VILLAGE       = 'in',     'in',     'Kakariko Village',           'Pink',       None
     BOTTOM_OF_THE_WELL     = 'within', 'at',     'the Bottom of the Well',     'Pink',       'Bottom of the Well'
-    GRAVEYARD              = 'in',     'in',     'the graveyard',              'Pink',       None
+    GRAVEYARD              = 'in',     'in',     'the Graveyard',              'Pink',       None
     SHADOW_TEMPLE          = 'within', 'in',     'the Shadow Temple',          'Pink',       'Shadow Temple'
     GERUDO_VALLEY          = 'at',     'at',     'Gerudo Valley',              'Yellow',     None
     GERUDO_FORTRESS        = 'at',     'at',     "Gerudo's Fortress",          'Yellow',     None
@@ -366,7 +366,7 @@ class HintArea(Enum):
     DESERT_COLOSSUS        = 'at',     'at',     'the Desert Colossus',        'Yellow',     None
     SPIRIT_TEMPLE          = 'inside', 'in',     'the Spirit Temple',          'Yellow',     'Spirit Temple'
 
-    # Peforms a breadth first search to find the closest hint area from a given spot (region, location, or entrance).
+    # Performs a breadth first search to find the closest hint area from a given spot (region, location, or entrance).
     # May fail to find a hint if the given spot is only accessible from the root and not from any other region with a hint area
     @staticmethod
     def at(spot):
@@ -392,6 +392,21 @@ class HintArea(Enum):
             spot_queue.extend(list(filter(lambda ent: ent not in already_checked, parent_region.entrances)))
 
         raise HintAreaNotFound('No hint area could be found for %s [World %d]' % (spot, spot.world.id))
+
+    @classmethod
+    def get_dungeon_hint_area(cls, dungeon_name: str):
+        if dungeon_name.find("(") != -1 and dungeon_name.find(")") != -1:
+            # A dungeon item name was passed in - get the name of the dungeon from it.
+            dungeon_name = dungeon_name[dungeon_name.index("(")+1:dungeon_name.index(")")]
+
+        if dungeon_name == "Thieves Hideout":
+            # Special case for Thieves' Hideout - change this if it gets its own hint area.
+            return HintArea.GERUDO_FORTRESS
+
+        for hint_area in cls:
+            if hint_area.dungeon_name == dungeon_name:
+                return hint_area
+        return None
 
     def __str__(self):
         return self.value[2]
@@ -1428,8 +1443,11 @@ def buildWorldGossipHints(spoiler, world, checkedLocations=None):
             # explicitly to the list for named item hints.
             filtered_checked = set(checkedLocations | checkedAlwaysLocations)
             for location in (checkedLocations | checkedAlwaysLocations):
-                if world.get_location(location).item.name == 'Light Arrows':
-                    filtered_checked.remove(location)
+                try:
+                    if world.get_location(location).item.name == 'Light Arrows':
+                        filtered_checked.remove(location)
+                except KeyError:
+                    pass # checkedAlwaysLocations can also contain entrances from entrance_always hints, ignore those here
             for i in range(0, len(world.named_item_pool)):
                 hint = get_specific_item_hint(spoiler, world, filtered_checked)
                 if hint:

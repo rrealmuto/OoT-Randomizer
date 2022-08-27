@@ -244,12 +244,12 @@ conditional_sometimes = {
     'GV Pieces of Heart Ledges':                lambda world: not world.settings.shuffle_cows and world.settings.tokensanity not in ['overworld', 'all'],
     'LH Adult Bean Destination Checks':         lambda world: world.settings.shuffle_interior_entrances == 'off',
 
-    'Fire Temple Lower Loop':                   lambda world: world.settings.tokensanity not in ['dungeon', 'all'],
-    'Water Temple River Loop Chests':           lambda world: world.settings.tokensanity not in ['dungeon', 'all'],
-    'Water Temple MQ Lower Checks':             lambda world: world.settings.tokensanity not in ['dungeon', 'all'],
-    'Spirit Temple Child Lower':                lambda world: world.settings.tokensanity not in ['dungeon', 'all'],
-    'Spirit Temple Adult Lower':                lambda world: world.settings.tokensanity not in ['dungeon', 'all'],
-    'Shadow Temple Invisible Blades Chests':    lambda world: world.settings.tokensanity not in ['dungeon', 'all'],
+    'Fire Temple Lower Loop':                   lambda world: world.settings.tokensanity not in ['dungeons', 'all'],
+    'Water Temple River Loop Chests':           lambda world: world.settings.tokensanity not in ['dungeons', 'all'],
+    'Water Temple MQ Lower Checks':             lambda world: world.settings.tokensanity not in ['dungeons', 'all'],
+    'Spirit Temple Child Lower':                lambda world: world.settings.tokensanity not in ['dungeons', 'all'],
+    'Spirit Temple Adult Lower':                lambda world: world.settings.tokensanity not in ['dungeons', 'all'],
+    'Shadow Temple Invisible Blades Chests':    lambda world: world.settings.tokensanity not in ['dungeons', 'all'],
 
     # Conditional entrance hints
     'Ganons Castle Grounds -> Ganons Castle Lobby': lambda world: (world.settings.bridge != 'open'
@@ -1603,6 +1603,7 @@ hintTable = {
     'bridge_hearts':                                            ("hearts", None, 'bridge'),
 
     'ganonBK_dungeon':                                          ("hidden somewhere #inside its castle#", None, 'ganonBossKey'),
+    'ganonBK_regional':                                         ("hidden somewhere #inside or nearby its castle#", None, 'ganonBossKey'),
     'ganonBK_vanilla':                                          ("kept in a big chest #inside its tower#", None, 'ganonBossKey'),
     'ganonBK_overworld':                                        ("hidden #outside of dungeons# in Hyrule", None, 'ganonBossKey'),
     'ganonBK_any_dungeon':                                      ("hidden #inside a dungeon# in Hyrule", None, 'ganonBossKey'),

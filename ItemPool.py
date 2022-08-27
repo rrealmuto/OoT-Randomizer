@@ -270,6 +270,9 @@ exclude_from_major = [
     'Triforce of Power',
     'Triforce of Wisdom',
     'Triforce of Courage',
+    'Heart Container', 
+    'Piece of Heart', 
+    'Piece of Heart (Treasure Chest Game)',
 ]
 
 item_groups = {
@@ -376,24 +379,24 @@ def get_pool_core(world):
         if world.settings.shuffle_beans and world.distribution.get_starting_item('Magic Bean') < 10:
             pending_junk_pool.append('Magic Bean Pack')
         if (world.settings.gerudo_fortress != "open"
-                and world.settings.shuffle_hideoutkeys in ['any_dungeon', 'overworld', 'keysanity']):
+                and world.settings.shuffle_hideoutkeys in ['any_dungeon', 'overworld', 'keysanity', 'regional']):
             if 'Thieves Hideout' in world.settings.key_rings and world.settings.gerudo_fortress != "fast":
                 pending_junk_pool.extend(['Small Key Ring (Thieves Hideout)'])
             else:
                 pending_junk_pool.append('Small Key (Thieves Hideout)')
         if world.settings.shuffle_gerudo_card:
             pending_junk_pool.append('Gerudo Membership Card')
-        if world.settings.shuffle_smallkeys in ['any_dungeon', 'overworld', 'keysanity']:
+        if world.settings.shuffle_smallkeys in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
             for dungeon in ['Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple',
                             'Bottom of the Well', 'Gerudo Training Ground', 'Ganons Castle']:
                 if dungeon in world.settings.key_rings:
                     pending_junk_pool.append(f"Small Key Ring ({dungeon})")
                 else:
                     pending_junk_pool.append(f"Small Key ({dungeon})")
-        if world.settings.shuffle_bosskeys in ['any_dungeon', 'overworld', 'keysanity']:
+        if world.settings.shuffle_bosskeys in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
             for dungeon in ['Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple']:
                 pending_junk_pool.append(f"Boss Key ({dungeon})")
-        if world.settings.shuffle_ganon_bosskey in ['any_dungeon', 'overworld', 'keysanity']:
+        if world.settings.shuffle_ganon_bosskey in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
             pending_junk_pool.append('Boss Key (Ganons Castle)')
         if world.settings.shuffle_song_items == 'any':
             pending_junk_pool.extend(song_list)
@@ -519,7 +522,7 @@ def get_pool_core(world):
 
         # Thieves' Hideout
         elif location.vanilla_item == 'Small Key (Thieves Hideout)':
-            shuffle_item = world.settings.shuffle_hideoutkeys in ['any_dungeon', 'overworld', 'keysanity']
+            shuffle_item = world.settings.shuffle_hideoutkeys != 'vanilla'
             if (world.settings.gerudo_fortress == 'open'
                     or world.settings.gerudo_fortress == 'fast' and location.name != 'Hideout Jail Guard (1 Torch)'):
                 item = IGNORE_LOCATION
@@ -567,7 +570,7 @@ def get_pool_core(world):
                     world.state.collect(dungeon_collection[-1])
                     item = get_junk_item()[0]
                     shuffle_item = True
-                elif shuffle_setting in ['any_dungeon', 'overworld']:
+                elif shuffle_setting in ['any_dungeon', 'overworld', 'regional']:
                     dungeon_collection[-1].priority = True
 
         # The rest of the overworld items.
