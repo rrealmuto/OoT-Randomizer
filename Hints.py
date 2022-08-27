@@ -147,7 +147,7 @@ def add_hint(spoiler, world, groups, gossip_text, count, locations=[], force_rea
     success = True
 
     # Prevent randomizer from placing always hints in specified locations
-    if hint_type == 'always' and 'remove_always_stones' in world.hint_dist_user:
+    if hint_type in ['always', 'dual_always'] and 'remove_always_stones' in world.hint_dist_user:
         removed_stones = world.hint_dist_user['remove_always_stones']
         for group in groups:
             gossip_names = [gossipLocations[id].name for id in group]
@@ -462,6 +462,14 @@ class HintArea(Enum):
             text = f'{self.preposition(clearer_hints)} {text}'
         return text
 
+def get_blitz_percent_hint(spoiler, world, checked):
+    hint = get_dual_woth_hint(spoiler, world, checked)
+    if not hint:
+        hint = get_goal_hint(spoiler, world, checked)
+    if not hint:
+        hint = get_playthrough_location_hint(spoiler, world, checked)
+    
+    return hint
 
 def get_woth_hint(spoiler, world, checked):
     locations = spoiler.required_locations[world.id]
@@ -486,6 +494,51 @@ def get_woth_hint(spoiler, world, checked):
     location_text = hint_area.text(world.settings.clearer_hints)
 
     return (GossipText('%s is on the way of the hero.' % location_text, ['Light Blue'], [location.name], [location.item.name]), [location])
+
+def get_dual_woth_hint(spoiler, world, checked):
+    locations = spoiler.required_locations[world.id]
+    locations = list(filter(lambda location:
+        location.name not in checked
+        and not (world.woth_dungeon >= world.hint_dist_user['dungeons_woth_limit'] and HintArea.at(location).is_dungeon)
+        and location.name not in world.hint_exclusions
+        and location.name not in world.hint_type_overrides['woth']
+        and location.item.name not in world.item_hint_type_overrides['woth']
+        and location.item.name not in unHintableWothItems,
+        locations))
+
+    dual_woth_filter = 'dual_woth_filter' in world.hint_dist_user and world.hint_dist_user['dual_woth_filter']
+    if dual_woth_filter == 'dungeons':
+        locations = list(filter(lambda location: HintArea.at(location).is_dungeon, locations))
+
+    if not locations:
+        return None
+
+    if len(locations) == 1:
+        return get_woth_hint(spoiler, world, checked)
+
+    random.shuffle(locations)
+    selected = locations[:2]
+
+    location_names = list(map(lambda location: location.name, selected))
+    checked.update(location_names)
+
+    hint_areas = list(map(lambda location: HintArea.at(location), selected))
+    for area in hint_areas:
+        if area.is_dungeon:
+            world.woth_dungeon += 1
+    location_texts = list(map(lambda area: area.text(world.settings.clearer_hints), hint_areas))
+    location_item_names = list(map(lambda location: location.item.name, selected))
+    location_colors = list(map(lambda location: 'Light Blue', selected))
+
+    return (GossipText('%s and %s are on the way of the hero.' % tuple(location_texts), 
+        location_colors, location_names, location_item_names), selected)
+
+def get_woth_count_hint(spoiler, world, checked):
+    woth_locations = spoiler.required_locations[world.id]
+    item_count = len(woth_locations)
+    item_text = 'step' if item_count == 1 else 'steps'
+
+    return (GossipText('walking the way of the hero requires #%d# %s.' % (item_count, item_text), ['Light Blue']), None)
 
 def get_checked_areas(world, checked):
     def get_area_from_name(check):
@@ -1109,7 +1162,10 @@ hint_func = {
     'always':           lambda spoiler, world, checked: None,
     'dual_always':      lambda spoiler, world, checked: None,
     'entrance_always':  lambda spoiler, world, checked: None,
+    'blitz%':           get_blitz_percent_hint,
     'woth':             get_woth_hint,
+    'dual-woth':        get_dual_woth_hint,
+    'woth-count':       get_woth_count_hint,
     'goal':             get_goal_hint,
     'goal-count':       	get_goal_count_hint,
     'playthrough-location': get_playthrough_location_hint,
@@ -1131,7 +1187,10 @@ hint_dist_keys = {
     'always',
     'dual_always',
     'entrance_always',
+    'blitz%',
     'woth',
+    'dual-woth',
+    'woth-count',
     'goal',
     'goal-count',
     'playthrough-location',
@@ -1368,7 +1427,8 @@ def buildWorldGossipHints(spoiler, world, checkedLocations=None):
                 location_text = '#%s#' % location_text
             first_item_text = getHint(getItemGenericName(firstLocation.item), world.settings.clearer_hints).text
             second_item_text = getHint(getItemGenericName(secondLocation.item), world.settings.clearer_hints).text
-            add_hint(spoiler, world, stoneGroups, GossipText('%s #%s# and #%s#.' % (location_text, first_item_text, second_item_text), ['Green', 'Green', 'Red'], [firstLocation.name, secondLocation.name], [firstLocation.item.name, secondLocation.item.name]), hint_dist['dual_always'][1], [firstLocation, secondLocation], force_reachable=True)
+            add_hint(spoiler, world, stoneGroups, GossipText('%s #%s# and #%s#.' % (location_text, first_item_text, second_item_text), ['Green', 'Green', 'Red'], [firstLocation.name, secondLocation.name], [firstLocation.item.name, secondLocation.item.name]), 
+                hint_dist['dual_always'][1], [firstLocation, secondLocation], force_reachable=True, hint_type='dual_always')
             logging.getLogger('').debug('Placed dual_always hint for %s.', hint.name)
 
     # Add required location hints, only if hint copies > 0
