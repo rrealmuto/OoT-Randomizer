@@ -97,7 +97,7 @@
             "Jabu Jabus Belly Floor Lowered": "True"
         },
         "locations": {
-            "Jabu Jabus Belly MQ Cow" : "can_play(Eponas_Song)"
+            "Jabu Jabus Belly MQ Cow": "can_play(Eponas_Song)"
         }
     },
     {

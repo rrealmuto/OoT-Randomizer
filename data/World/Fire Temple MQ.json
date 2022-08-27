@@ -90,9 +90,9 @@
         "region_name": "Fire Temple Elevator Room",
         "dungeon": "Fire Temple",
         "locations": {
-            "Fire Temple MQ Elevator Room Recovery Heart 1" : "True",
-            "Fire Temple MQ Elevator Room Recovery Heart 2" : "True",
-            "Fire Temple MQ Elevator Room Recovery Heart 3" : "True"
+            "Fire Temple MQ Elevator Room Recovery Heart 1": "True",
+            "Fire Temple MQ Elevator Room Recovery Heart 2": "True",
+            "Fire Temple MQ Elevator Room Recovery Heart 3": "True"
         },
         "exits": {
             "Fire Temple Lower Lizalfos Maze": "has_fire_source or (logic_fire_mq_climb and Hover_Boots)"

@@ -1,4 +1,4 @@
-[    
+[
     {
         "region_name": "Water Temple Lobby",
         "dungeon": "Water Temple",
@@ -12,12 +12,12 @@
                 # Use to ensure the water level can be raised if it were to be lowered.
         },
         "locations": {
-            "Water Temple Main Room L2 Pot 1" : "
+            "Water Temple Main Room L2 Pot 1": "
                 at('Water Temple Lowered Water Levels', True) or can_use(Boomerang) or
                 ((can_use(Iron_Boots) or (Progressive_Scale, 2)) and
                     (can_use(Bow) or can_use(Hookshot) or can_use(Slingshot)) and
                     (can_use(Zora_Tunic) or logic_fewer_tunic_requirements))", 
-            "Water Temple Main Room L2 Pot 2" : "
+            "Water Temple Main Room L2 Pot 2": "
                 at('Water Temple Lowered Water Levels', True) or can_use(Boomerang) or
                 ((can_use(Iron_Boots) or (Progressive_Scale, 2)) and
                     (can_use(Bow) or can_use(Hookshot) or can_use(Slingshot)) and
@@ -39,11 +39,11 @@
         "locations": {
             "Water Temple Map Chest": "Raise_Water_Level",
             "Water Temple Compass Chest": "(can_play(Zeldas_Lullaby) or Iron_Boots) and Hookshot",
-            "Water Temple L1 Torch Pot 1" : "(Iron_Boots and Hookshot) or can_play(Zeldas_Lullaby)",
-            "Water Temple L1 Torch Pot 2" : "(Iron_Boots and Hookshot) or can_play(Zeldas_Lullaby)",
-            "Water Temple Near Compass Pot 1" : "(can_play(Zeldas_Lullaby) or Iron_Boots) and Hookshot",
-            "Water Temple Near Compass Pot 2" : "(can_play(Zeldas_Lullaby) or Iron_Boots) and Hookshot",
-            "Water Temple Near Compass Pot 3" : "(can_play(Zeldas_Lullaby) or Iron_Boots) and Hookshot"
+            "Water Temple L1 Torch Pot 1": "(Iron_Boots and Hookshot) or can_play(Zeldas_Lullaby)",
+            "Water Temple L1 Torch Pot 2": "(Iron_Boots and Hookshot) or can_play(Zeldas_Lullaby)",
+            "Water Temple Near Compass Pot 1": "(can_play(Zeldas_Lullaby) or Iron_Boots) and Hookshot",
+            "Water Temple Near Compass Pot 2": "(can_play(Zeldas_Lullaby) or Iron_Boots) and Hookshot",
+            "Water Temple Near Compass Pot 3": "(can_play(Zeldas_Lullaby) or Iron_Boots) and Hookshot"
         },
         "exits": {
             "Water Temple Lowered Water Levels": "can_play(Zeldas_Lullaby)",
@@ -191,7 +191,7 @@
             "Water Temple River Recovery Heart 2": "True",
             "Water Temple River Recovery Heart 3": "True",
             "Water Temple River Recovery Heart 4": "True",
-            "Water Temple River Pot 1" : "True",
+            "Water Temple River Pot 1": "True",
             "Water Temple GS River": "
                 (Iron_Boots and (Zora_Tunic or logic_fewer_tunic_requirements)) or
                 (logic_water_river_gs and Longshot and (Bow or has_bombchus))",

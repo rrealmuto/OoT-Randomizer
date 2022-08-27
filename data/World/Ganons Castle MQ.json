@@ -111,7 +111,7 @@
         "events": {
             "Fire Trial Clear": "can_use(Light_Arrows)"
         },
-        "locations" : {
+        "locations": {
             "Ganons Castle MQ Fire Trial Pot 1": "True",
             "Ganons Castle MQ Fire Trial Pot 2": "True"
         }

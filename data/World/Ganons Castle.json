@@ -65,8 +65,8 @@
             "Water Trial Clear": "can_use(Light_Arrows)"
         },
         "locations": {
-            "Ganons Castle Water Trial Pot 1" : "True",
-            "Ganons Castle Water Trial Pot 2" : "True"
+            "Ganons Castle Water Trial Pot 1": "True",
+            "Ganons Castle Water Trial Pot 2": "True"
         }
     },
     {

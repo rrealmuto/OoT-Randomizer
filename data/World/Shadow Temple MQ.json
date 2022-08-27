@@ -13,10 +13,10 @@
         "region_name": "Shadow Temple Beginning",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple MQ Truth Spinner Small Wooden Crate 1" : "True",
-            "Shadow Temple MQ Truth Spinner Small Wooden Crate 2" : "True",
-            "Shadow Temple MQ Truth Spinner Small Wooden Crate 3" : "True",
-            "Shadow Temple MQ Truth Spinner Small Wooden Crate 4" : "True"
+            "Shadow Temple MQ Truth Spinner Small Wooden Crate 1": "True",
+            "Shadow Temple MQ Truth Spinner Small Wooden Crate 2": "True",
+            "Shadow Temple MQ Truth Spinner Small Wooden Crate 3": "True",
+            "Shadow Temple MQ Truth Spinner Small Wooden Crate 4": "True"
         },
         "exits": {
             "Shadow Temple First Beamos": "
@@ -195,7 +195,7 @@
         "region_name": "Shadow Temple Across Chasm",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple MQ After Boat Lower Recovery Heart" : "True",
+            "Shadow Temple MQ After Boat Lower Recovery Heart": "True",
             "Shadow Temple MQ Near Boss Pot 1": "True",
             "Shadow Temple MQ Near Boss Pot 2": "True"
         },
@@ -215,8 +215,8 @@
                 (Small_Key_Shadow_Temple, 6) and can_use(Dins_Fire)",
             "Shadow Temple MQ Boss Key Chest": "
                 (Small_Key_Shadow_Temple, 6) and can_use(Dins_Fire)",
-            "Shadow Temple MQ After Boat Upper Recovery Heart 1" : "True",
-            "Shadow Temple MQ After Boat Upper Recovery Heart 2" : "True",
+            "Shadow Temple MQ After Boat Upper Recovery Heart 1": "True",
+            "Shadow Temple MQ After Boat Upper Recovery Heart 2": "True",
             "Shadow Temple MQ Bomb Flower Room Pot 1": "True",
             "Shadow Temple MQ Bomb Flower Room Pot 2": "True",
             "Shadow Temple MQ Spike Walls Pot": "(Small_Key_Shadow_Temple, 6)"

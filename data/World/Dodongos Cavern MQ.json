@@ -122,7 +122,7 @@
             "Dodongos Cavern Torch Puzzle Lower": "True",
             "Dodongos Cavern Before Upper Lizalfos": "is_adult or Slingshot or Bombs or Kokiri_Sword",
             "Dodongos Cavern Lower Right Side": "Progressive_Strength_Upgrade and can_take_damage",
-            "Dodongos Cavern Lower Lizalfos" : "has_explosives",
+            "Dodongos Cavern Lower Lizalfos": "has_explosives",
             "Dodongos Cavern Mouth": "
                 Progressive_Strength_Upgrade and
                 here((logic_dc_mq_eyes_adult and is_adult) or (logic_dc_mq_eyes_child and is_child))"
@@ -147,10 +147,10 @@
         }
     },
     {
-        "region_name" : "Dodongos Cavern Lower Lizalfos",
-        "dungeon" : "Dodongos Cavern",
-        "locations" : {
-            "Dodongos Cavern Lower Lizalfos Hidden Recovery Heart" : "True"
+        "region_name": "Dodongos Cavern Lower Lizalfos",
+        "dungeon": "Dodongos Cavern",
+        "locations": {
+            "Dodongos Cavern Lower Lizalfos Hidden Recovery Heart": "True"
         },
         "exits": {
             # Child can fall down from above to reach Poes room, but Adult must defeat the
@@ -183,7 +183,7 @@
         },
         "exits": {
             "Dodongos Cavern Lower Right Side": "True",
-            "Dodongos Cavern Lower Lizalfos" : "True"
+            "Dodongos Cavern Lower Lizalfos": "True"
         }
     },
     {
@@ -213,7 +213,7 @@
         "region_name": "Dodongos Cavern Before Boss",
         "dungeon": "Dodongos Cavern",
         "locations": {
-            "Dodongos Cavern MQ Armos Army Room Upper Pot" : "True",
+            "Dodongos Cavern MQ Armos Army Room Upper Pot": "True",
             "Fairy Pot": "has_bottle"
         },
         "exits": {

@@ -105,8 +105,8 @@
             "KF GS Bean Patch": "
                 can_plant_bugs and can_child_attack",
             "KF GS House of Twins": "
-                is_adult and at_night and 
-                (can_use(Hookshot) or (logic_adult_kokiri_gs and can_use(Hover_Boots)))",
+                is_adult and at_night and
+                (Hookshot or (logic_adult_kokiri_gs and Hover_Boots))",
             "KF Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle",
             "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle"
@@ -277,7 +277,7 @@
                     (logic_lost_woods_gs_bean and Hookshot and
                         (Longshot or Bow or has_bombchus or can_use(Dins_Fire))))",
             "LW GS Bean Patch Near Theater": "
-                can_plant_bugs and 
+                can_plant_bugs and
                 (can_child_attack or (shuffle_scrubs == 'off' and Buy_Deku_Shield))",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle"
         },
@@ -473,7 +473,7 @@
         "scene": "LH Lab",
         "events": {
             "Eyedrops Access": "
-                is_adult and 
+                is_adult and
                 ('Eyeball Frog Access' or (Eyeball_Frog and disable_trade_revert))"
         },
         "locations": {
@@ -485,7 +485,7 @@
             "LH Lab Dive Red Rupee 3": "(Progressive_Scale, 2) or can_use(Iron_Boots)",
             "LH GS Lab Crate": "
                 is_adult and Iron_Boots and Hookshot and
-                ((not deadly_bonks) or Fairy or (can_use(Nayrus_Love) and shuffle_interior_entrances == 'off'))"
+                (deadly_bonks != 'ohko' or Fairy or (can_use(Nayrus_Love) and shuffle_interior_entrances == 'off'))"
         },
         "exits": {
             "Lake Hylia": "True"
@@ -1407,9 +1407,9 @@
             "Kak Impas Rooftop": "
                 can_use(Hookshot) or (logic_kakariko_rooftop_gs and can_use(Hover_Boots))",
             "Kak Odd Medicine Rooftop": "
-                can_use(Hookshot) or 
-                (logic_man_on_roof and 
-                    (is_adult or at_day or Slingshot or has_bombchus or 
+                can_use(Hookshot) or
+                (logic_man_on_roof and
+                    (is_adult or at_day or Slingshot or has_bombchus or
                         (logic_kakariko_tower_gs and (Sticks or Kokiri_Sword))))",
             "Kak Backyard": "is_adult or at_day",
             "Graveyard": "True",
@@ -1457,7 +1457,7 @@
             "Kak Near Odd Medicine Building Pot 1": "is_child",
             "Kak Near Odd Medicine Building Pot 2": "is_child",
             "Kak Adult Red Rupee Crate": "is_adult and can_break_crate"
-    },
+        },
         "exits": {
             "Kakariko Village": "True",
             "Kak Open Grotto": "True",
@@ -1768,9 +1768,9 @@
         },
         "locations": {
             "DMT Biggoron": "
-                is_adult and 
-                (Claim_Check or 
-                    (guarantee_trade_path and 
+                is_adult and
+                (Claim_Check or
+                    (guarantee_trade_path and
                     ('Eyedrops Access' or (Eyedrops and disable_trade_revert))))",
             "DMT GS Falling Rocks Path": "
                 is_adult and (Megaton_Hammer or logic_trail_gs_upper) and at_night",
@@ -1801,7 +1801,7 @@
         "events": {
             "Goron City Child Fire": "is_child and can_use(Dins_Fire)",
             "GC Woods Warp Open": "
-                can_blast_or_smash or can_use(Dins_Fire) or can_use(Bow) or 
+                can_blast_or_smash or can_use(Dins_Fire) or can_use(Bow) or
                 Progressive_Strength_Upgrade or 'Goron City Child Fire'",
             "Stop GC Rolling Goron as Adult": "
                 is_adult and 
@@ -1812,15 +1812,13 @@
             "GC Maze Left Chest": "
                 can_use(Megaton_Hammer) or can_use(Silver_Gauntlets) or
                 (logic_goron_city_leftmost and has_explosives and can_use(Hover_Boots))",
-            "GC Maze Center Chest": "
-                can_blast_or_smash or can_use(Silver_Gauntlets)",
-            "GC Maze Right Chest": "
-                can_blast_or_smash or can_use(Silver_Gauntlets)",
+            "GC Maze Center Chest": "can_blast_or_smash or can_use(Silver_Gauntlets)",
+            "GC Maze Right Chest": "can_blast_or_smash or can_use(Silver_Gauntlets)",
             "GC Rolling Goron as Child": "
                 is_child and 
                 (has_explosives or (Progressive_Strength_Upgrade and logic_child_rolling_with_strength))",
             "GC Medigoron": "
-                is_adult and Progressive_Wallet and 
+                is_adult and Progressive_Wallet and
                 (can_blast_or_smash or Progressive_Strength_Upgrade)",
             "GC Rolling Goron as Adult": "'Stop GC Rolling Goron as Adult'",
             "GC Lower Staircase Pot 1": "True",
@@ -1832,10 +1830,8 @@
             "GC Boulder Maze Crate": "(can_blast_or_smash or can_use(Silver_Gauntlets)) and can_break_crate",
             "GC GS Boulder Maze": "is_child and has_explosives",
             "GC GS Center Platform": "is_adult",
-            "GC Maze Gossip Stone": "
-                can_blast_or_smash or can_use(Silver_Gauntlets)",
-            "GC Medigoron Gossip Stone": "
-                can_blast_or_smash or Progressive_Strength_Upgrade",
+            "GC Maze Gossip Stone": "can_blast_or_smash or can_use(Silver_Gauntlets)",
+            "GC Medigoron Gossip Stone": "can_blast_or_smash or Progressive_Strength_Upgrade",
             "Gossip Stone Fairy": "
                 can_summon_gossip_fairy_without_suns and has_bottle and
                 (can_blast_or_smash or Progressive_Strength_Upgrade)",
@@ -1846,16 +1842,16 @@
             "Death Mountain": "True",
             "GC Woods Warp": "'GC Woods Warp Open'",
             "GC Shop": "
-                (is_adult and 'Stop GC Rolling Goron as Adult') or 
+                (is_adult and 'Stop GC Rolling Goron as Adult') or
                 (is_child and (has_explosives or Progressive_Strength_Upgrade or 'Goron City Child Fire'))",
             "GC Darunias Chamber": "
                 (is_adult and 'Stop GC Rolling Goron as Adult') or
                 (is_child and can_play(Zeldas_Lullaby))",
             "GC Grotto Platform": "
-                is_adult and 
-                ((can_play(Song_of_Time) and 
-                        ((damage_multiplier != 'ohko' and damage_multiplier != 'quadruple') or 
-                            Goron_Tunic or Longshot or can_use(Nayrus_Love))) or 
+                is_adult and
+                ((can_play(Song_of_Time) and
+                        ((damage_multiplier != 'ohko' and damage_multiplier != 'quadruple') or
+                            Goron_Tunic or Longshot or can_use(Nayrus_Love))) or
                     (Hookshot and
                         ((damage_multiplier != 'ohko' and Goron_Tunic) or
                             can_use(Nayrus_Love) or
@@ -1908,9 +1904,9 @@
         }
     },
     {
-        "region_name" : "GC Spinning Pot",
-        "scene" : "Goron City",
-        "locations" : {
+        "region_name": "GC Spinning Pot",
+        "scene": "Goron City",
+        "locations": {
             "GC Pot Freestanding PoH": "True",
             "GC Spinning Pot Bomb Drop 1": "True",
             "GC Spinning Pot Bomb Drop 2": "True",
@@ -1964,11 +1960,11 @@
             "DMC Upper Nearby": "True",
             "DMC Ladder Area Nearby": "True",
             "DMC Pierre Platform": "
-                (damage_multiplier != 'ohko' and damage_multiplier != 'quadruple') or 
+                (damage_multiplier != 'ohko' and damage_multiplier != 'quadruple') or
                 (Fairy and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or can_use(Nayrus_Love)",
             "DMC Central Nearby": "
-                can_use(Goron_Tunic) and can_use(Longshot) and 
-                ((damage_multiplier != 'ohko' and damage_multiplier != 'quadruple') or 
+                can_use(Goron_Tunic) and can_use(Longshot) and
+                ((damage_multiplier != 'ohko' and damage_multiplier != 'quadruple') or
                     (Fairy and not entrance_shuffle) or can_use(Nayrus_Love))"
         }
     },
@@ -2127,7 +2123,7 @@
         "locations": {
             "ZR Magic Bean Salesman": "is_child",
             "ZR Frogs Ocarina Game": "
-                is_child and Ocarina and Zeldas_Lullaby and Eponas_Song and 
+                is_child and Ocarina and Zeldas_Lullaby and Eponas_Song and
                 Sarias_Song and Suns_Song and Song_of_Time and Song_of_Storms",
             "ZR Frogs Zeldas Lullaby": "is_child and can_play(Zeldas_Lullaby)",
             "ZR Frogs Eponas Song": "is_child and can_play(Eponas_Song)",
@@ -2190,7 +2186,7 @@
         "events": {
             "King Zora Thawed": "is_adult and Blue_Fire",
             "Eyeball Frog Access": "
-                is_adult and 'King Zora Thawed' and 
+                is_adult and 'King Zora Thawed' and
                 (Eyedrops or Eyeball_Frog or Prescription or 'Prescription Access')"
         },
         "locations": {
@@ -2269,8 +2265,8 @@
             "Jabu Jabus Belly Beginning": "is_child and Fish",
             "ZF Ice Ledge": "is_adult",
             "ZF Great Fairy Fountain": "has_explosives",
-            "ZF Underwater" : "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or Zora_Tunic)",
-            "ZF Hidden Cave" : "can_use(Silver_Gauntlets) and can_blast_or_smash"
+            "ZF Underwater": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or Zora_Tunic)",
+            "ZF Hidden Cave": "can_use(Silver_Gauntlets) and can_blast_or_smash"
         }
     },
     {
@@ -2738,7 +2734,7 @@
             "GC Deku Scrub Grotto Left": "can_stun_deku",
             "GC Deku Scrub Grotto Right": "can_stun_deku",
             "GC Deku Scrub Grotto Center": "can_stun_deku",
-            "GC Grotto Beehive" : "can_break_upper_beehive"
+            "GC Grotto Beehive": "can_break_upper_beehive"
         },
         "exits": {
             "GC Grotto Platform": "True"

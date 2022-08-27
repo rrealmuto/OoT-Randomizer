@@ -191,7 +191,7 @@
         "locations": {
             "Ganons Tower Boss Key Chest": "is_adult or Kokiri_Sword"
         },
-        "exits" : {
+        "exits": {
             "Ganons Castle Tower Below Boss": "
                 (is_adult or Kokiri_Sword) and
                 (Boss_Key_Ganons_Castle or unlock_ganons_first_boss_door)"
@@ -218,7 +218,7 @@
             "Ganons Tower Pot 13": "unlock_ganons_first_boss_door or shuffle_ganon_bosskey != 'triforce'",
             "Ganons Tower Pot 14": "unlock_ganons_first_boss_door or shuffle_ganon_bosskey != 'triforce'"
         },
-        "exits" : {
+        "exits": {
             "Ganondorf Boss Room": "Boss_Key_Ganons_Castle"
         }
     },

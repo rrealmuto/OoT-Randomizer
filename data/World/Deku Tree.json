@@ -72,9 +72,9 @@
         "region_name": "Deku Tree Before Boss",
         "dungeon": "Deku Tree",
         "locations": {
-            "Deku Tree Basement Recovery Heart 1" : "True",
-            "Deku Tree Basement Recovery Heart 2" : "True",
-            "Deku Tree Basement Recovery Heart 3" : "True"
+            "Deku Tree Basement Recovery Heart 1": "True",
+            "Deku Tree Basement Recovery Heart 2": "True",
+            "Deku Tree Basement Recovery Heart 3": "True"
         },
         "exits": {
             "Deku Tree Boss Door": "deku_tree_shortcuts or here(has_shield)"

@@ -2,7 +2,7 @@
     {
         "region_name": "Spirit Temple Lobby",
         "dungeon": "Spirit Temple",
-        "locations" : {
+        "locations": {
             "Spirit Temple Lobby Pot 1": "True",
             "Spirit Temple Lobby Pot 2": "True",
             "Spirit Temple Lobby Flying Pot 1": "True",

@@ -1,10 +1,10 @@
-[    
+[
     {
         "region_name": "Bottom of the Well",
         "dungeon": "Bottom of the Well",
         "exits": {
             "Kakariko Village": "True",
-            "Bottom of the Well Main Area" : "is_child and (can_child_attack or Nuts)"
+            "Bottom of the Well Main Area": "is_child and (can_child_attack or Nuts)"
         }
     },
     {
@@ -15,34 +15,34 @@
             "Bottom of the Well Freestanding Key": "Sticks or can_use(Dins_Fire)",
             "Bottom of the Well Underwater Left Chest": "can_play(Zeldas_Lullaby)",
             "Bottom of the Well Underwater Front Chest": "can_play(Zeldas_Lullaby)",
-            "Bottom of the Well Map Chest": " 
+            "Bottom of the Well Map Chest": "
                 has_explosives or
                 (Progressive_Strength_Upgrade and
                     (at('Bottom of the Well Behind Locked Doors', True) or 
-                    can_use(Dins_Fire) or (logic_botw_basement and Sticks)))",
+                        can_use(Dins_Fire) or (logic_botw_basement and Sticks)))",
             "Bottom of the Well Invisible Chest": "
                 can_play(Zeldas_Lullaby) and (logic_lens_botw or can_use(Lens_of_Truth))",
             # Sword not strictly necessary but being forced to do this with sticks isn't fair
             "Bottom of the Well Lens of Truth Chest": "
-                can_play(Zeldas_Lullaby) and (Kokiri_Sword or (Sticks and logic_child_deadhand))", 
-            "Bottom of the Well Coffin Recovery Heart 1" : "Sticks or can_use(Dins_Fire)",
-            "Bottom of the Well Coffin Recovery Heart 2" : "True",
+                can_play(Zeldas_Lullaby) and (Kokiri_Sword or (Sticks and logic_child_deadhand))",
+            "Bottom of the Well Coffin Recovery Heart 1": "Sticks or can_use(Dins_Fire)",
+            "Bottom of the Well Coffin Recovery Heart 2": "True",
             "Bottom of the Well Near Entrance Pot 1": "True",
             "Bottom of the Well Near Entrance Pot 2": "True",
-            "Bottom of the Well Underwater Pot" : "
+            "Bottom of the Well Underwater Pot": "
                 can_play(Zeldas_Lullaby) or can_use(Slingshot) or can_use(Boomerang) or has_bombchus",
-            "Bottom of the Well Basement Pot 1" : "True",
-            "Bottom of the Well Basement Pot 2" : "True",
-            "Bottom of the Well Basement Pot 3" : "True",
-            "Bottom of the Well Basement Pot 4" : "True",
-            "Bottom of the Well Basement Pot 5" : "True",
-            "Bottom of the Well Basement Pot 6" : "True",
-            "Bottom of the Well Basement Pot 7" : "True",
-            "Bottom of the Well Basement Pot 8" : "True",
-            "Bottom of the Well Basement Pot 9" : "True",
-            "Bottom of the Well Basement Pot 10" : "True",
-            "Bottom of the Well Basement Pot 11" : "True",
-            "Bottom of the Well Basement Pot 12" : "True",
+            "Bottom of the Well Basement Pot 1": "True",
+            "Bottom of the Well Basement Pot 2": "True",
+            "Bottom of the Well Basement Pot 3": "True",
+            "Bottom of the Well Basement Pot 4": "True",
+            "Bottom of the Well Basement Pot 5": "True",
+            "Bottom of the Well Basement Pot 6": "True",
+            "Bottom of the Well Basement Pot 7": "True",
+            "Bottom of the Well Basement Pot 8": "True",
+            "Bottom of the Well Basement Pot 9": "True",
+            "Bottom of the Well Basement Pot 10": "True",
+            "Bottom of the Well Basement Pot 11": "True",
+            "Bottom of the Well Basement Pot 12": "True",
             "Bottom of the Well Left Side Pot 1": "True",
             "Bottom of the Well Left Side Pot 2": "True",
             "Bottom of the Well Left Side Pot 3": "True",
@@ -50,7 +50,7 @@
             "Nut Pot": "True"
         },
         "exits": {
-            "Bottom of the Well Behind Fake Walls" : "logic_lens_botw or can_use(Lens_of_Truth)"
+            "Bottom of the Well Behind Fake Walls": "logic_lens_botw or can_use(Lens_of_Truth)"
         }
     },
     {
@@ -69,7 +69,7 @@
             "Bottom of the Well Center Room Pit Fall Blue Rupee 5": "True"
         },
         "exits": {
-            "Bottom of the Well Behind Locked Doors" : "(Small_Key_Bottom_of_the_Well, 3)"
+            "Bottom of the Well Behind Locked Doors": "(Small_Key_Bottom_of_the_Well, 3)"
         }
     },
     {
@@ -82,7 +82,7 @@
             "Bottom of the Well West Inner Room Flying Pot 1": "True",
             "Bottom of the Well West Inner Room Flying Pot 2": "True",
             "Bottom of the Well West Inner Room Flying Pot 3": "True",
-            "Bottom of the Well Fire Keese Pot" : "True",
+            "Bottom of the Well Fire Keese Pot": "True",
             "Bottom of the Well GS West Inner Room": "Boomerang",
             "Bottom of the Well GS East Inner Room": "Boomerang",
             "Bottom of the Well GS Like Like Cage": "Boomerang"
