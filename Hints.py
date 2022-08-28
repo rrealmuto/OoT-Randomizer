@@ -482,6 +482,10 @@ def get_woth_hint(spoiler, world, checked):
         and location.item.name not in unHintableWothItems,
         locations))
 
+    woth_filter = 'woth_filter' in world.hint_dist_user and world.hint_dist_user['woth_filter']
+    if woth_filter == 'dungeons':
+        locations = list(filter(lambda location: HintArea.at(location).is_dungeon, locations))
+
     if not locations:
         return None
 
