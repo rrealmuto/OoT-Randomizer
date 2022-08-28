@@ -1141,7 +1141,7 @@ class Distribution(object):
                 total_count += world.distribution.item_pool[item].count 
             
             world.triforce_count = total_count
-
+            world.triforce_goal = total_count * len(worlds)
 
     def reset(self):
         for world in self.world_dists:

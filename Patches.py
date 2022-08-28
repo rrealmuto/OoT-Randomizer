@@ -1284,13 +1284,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         rom.write_int32(symbol, 6)
         rom.write_int16(count_symbol, world.settings.bridge_hearts * 0x10)
 
-    if world.settings.triforce_hunt:
+    if world.settings.triforce_hunt or world.settings.triforce_blitz:
         rom.write_int16(rom.sym('TRIFORCE_PIECES_REQUIRED'), world.triforce_goal)
         rom.write_int16(rom.sym('TRIFORCE_HUNT_ENABLED'), 1)
-
-    if world.settings.triforce_blitz:
-        rom.write_int16(rom.sym('triforce_pieces_requied'), 3)
-        rom.write_int16(rom.sym('triforce_hunt_enabled'), 1)
 
     # Set up Ganon's Boss Key conditions.
     symbol = rom.sym('GANON_BOSS_KEY_CONDITION')
