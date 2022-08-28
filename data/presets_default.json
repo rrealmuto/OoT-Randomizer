@@ -214,8 +214,8 @@
     "bridge_rewards":                           2,
     "dungeon_shortcuts_choice":                 "choice",
     "dungeon_shortcuts":                        [
-      "jabu_jabus_belly",
-      "forest_temple"
+      "Jabu Jabus Belly",
+      "Forest Temple"
     ],
     "triforce_hunt":                            false,
     "triforce_blitz":                           true,
