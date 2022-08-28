@@ -19,6 +19,7 @@
     "use_default_goals":     true,
     "prioritize_dungeons":   true,
     "dual_woth_filter":      "dungeons",
+    "woth_filter":           "dungeons",
     "distribution":          {
         "trial":                    {"order":  1, "weight": 0.0, "fixed":   0, "copies": 2},
         "dual_always":              {"order":  2, "weight": 0.0, "fixed":   4, "copies": 1},
