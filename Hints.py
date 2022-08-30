@@ -639,7 +639,7 @@ def get_goal_hint(spoiler, world, checked):
     goal.weight = 0
 
     prioritize_dungeon_hints = 'prioritize_dungeons' in world.hint_dist_user and world.hint_dist_user['prioritize_dungeons']
-    dungeon_goal_locations = list(filter(lambda loc: loc[0].parent_region.dungeon, goal_locations))
+    dungeon_goal_locations = list(filter(lambda location: HintArea.at(location[0]).is_dungeon, goal_locations))
     if prioritize_dungeon_hints and len(dungeon_goal_locations) > 0:
         location_tuple = random.choice(dungeon_goal_locations)
     else:
