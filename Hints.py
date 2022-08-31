@@ -9,7 +9,7 @@ from enum import Enum
 import itertools
 
 from HintList import getHint, getMulti, getHintGroup, getUpgradeHintList, hintExclusions, misc_item_hint_table
-from Item import MakeEventItem
+from Item import Item, MakeEventItem
 from ItemPool import eggs
 from Messages import COLOR_MAP, update_message_by_id
 from Region import Region
@@ -308,9 +308,9 @@ class HintArea(Enum):
     ROOT                   = 'in',     'in',     "Link's pocket",              'Free',                   'White',      None
     HYRULE_FIELD           = 'in',     'in',     'Hyrule Field',               'Hyrule Field',           'Light Blue', None
     LON_LON_RANCH          = 'at',     'at',     'Lon Lon Ranch',              'Lon Lon Ranch',          'Light Blue', None
-    MARKET                 = 'in',     'in',     'the market',                 'Market',                 'Light Blue', None
+    MARKET                 = 'in',     'in',     'the Market',                 'Market',                 'Light Blue', None
     TEMPLE_OF_TIME         = 'inside', 'inside', 'the Temple of Time',         'Temple of Time',         'Light Blue', None
-    CASTLE_GROUNDS         = 'on',     'on',     'the castle grounds',         None,                     'Light Blue', None # required for warp songs
+    CASTLE_GROUNDS         = 'on',     'on',     'the Castle Grounds',         None,                     'Light Blue', None # required for warp songs
     HYRULE_CASTLE          = 'at',     'at',     'Hyrule Castle',              'Hyrule Castle',          'Light Blue', None
     OUTSIDE_GANONS_CASTLE  = None,     None,     "outside Ganon's Castle",     "Outside Ganon's Castle", 'Light Blue', None
     INSIDE_GANONS_CASTLE   = 'inside', None,     "inside Ganon's Castle",      "Inside Ganon's Castle",  'Light Blue', 'Ganons Castle'
@@ -333,7 +333,7 @@ class HintArea(Enum):
     WATER_TEMPLE           = 'under',  'in',     'the Water Temple',           "Water Temple",           'Blue',       'Water Temple'
     KAKARIKO_VILLAGE       = 'in',     'in',     'Kakariko Village',           "Kakariko Village",       'Pink',       None
     BOTTOM_OF_THE_WELL     = 'within', 'at',     'the Bottom of the Well',     "Bottom of the Well",     'Pink',       'Bottom of the Well'
-    GRAVEYARD              = 'in',     'in',     'the graveyard',              "Graveyard",              'Pink',       None
+    GRAVEYARD              = 'in',     'in',     'the Graveyard',              "Graveyard",              'Pink',       None
     SHADOW_TEMPLE          = 'within', 'in',     'the Shadow Temple',          "Shadow Temple",          'Pink',       'Shadow Temple'
     GERUDO_VALLEY          = 'at',     'at',     'Gerudo Valley',              "Gerudo Valley",          'Yellow',     None
     GERUDO_FORTRESS        = 'at',     'at',     "Gerudo's Fortress",          "Gerudo's Fortress",      'Yellow',     None
@@ -343,7 +343,7 @@ class HintArea(Enum):
     DESERT_COLOSSUS        = 'at',     'at',     'the Desert Colossus',        "Desert Colossus",        'Yellow',     None
     SPIRIT_TEMPLE          = 'inside', 'in',     'the Spirit Temple',          "Spirit Temple",          'Yellow',     'Spirit Temple'
 
-    # Peforms a breadth first search to find the closest hint area from a given spot (region, location, or entrance).
+    # Performs a breadth first search to find the closest hint area from a given spot (region, location, or entrance).
     # May fail to find a hint if the given spot is only accessible from the root and not from any other region with a hint area
     @staticmethod
     def at(spot):
@@ -369,6 +369,17 @@ class HintArea(Enum):
             spot_queue.extend(list(filter(lambda ent: ent not in already_checked, parent_region.entrances)))
 
         raise HintAreaNotFound('No hint area could be found for %s [World %d]' % (spot, spot.world.id))
+
+    @classmethod
+    def for_dungeon(cls, dungeon_name: str):
+        if '(' in dungeon_name and ')' in dungeon_name:
+            # A dungeon item name was passed in - get the name of the dungeon from it.
+            dungeon_name = dungeon_name[dungeon_name.index('(') + 1:dungeon_name.index(')')]
+
+        for hint_area in cls:
+            if hint_area.dungeon_name == dungeon_name:
+                return hint_area
+        return None
 
     def preposition(self, clearer_hints):
         return self.value[1 if clearer_hints else 0]
@@ -1450,14 +1461,14 @@ def buildAltarHints(world, messages, include_rewards=True, include_wincons=True)
 
 # pulls text string from hintlist for reward after sending the location to hintlist.
 def buildBossString(reward, color, world):
-    location = world.hinted_dungeon_reward_locations[reward]
-    item_icon = chr(location.item.special['item_id'])
+    item_icon = chr(Item(reward).special['item_id'])
     if reward in world.distribution.effective_starting_items and world.distribution.effective_starting_items[reward].count > 0:
         if world.settings.clearer_hints:
             text = GossipText(f"\x08\x13{item_icon}One #@ already has#...", [color], prefix='')
         else:
             text = GossipText(f"\x08\x13{item_icon}One in #@'s pocket#...", [color], prefix='')
     else:
+        location = world.hinted_dungeon_reward_locations[reward]
         location_text = HintArea.at(location).text(world.settings.clearer_hints, preposition=True)
         text = GossipText(f"\x08\x13{item_icon}One {location_text}...", [color], prefix='')
     return str(text) + '\x04'

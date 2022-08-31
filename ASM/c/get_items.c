@@ -277,7 +277,7 @@ void try_pending_item() {
         item_row_t *item_row = get_item_row(resolved_item_id);
         call_effect_function(item_row);
         pop_pending_item();
-        after_key_received(override.key);        
+        after_key_received(override.key);
         clear_override();
         return;
     }
@@ -292,10 +292,11 @@ void handle_pending_items() {
     push_coop_item();
     if (link_is_ready()) {
         pop_ice_trap();
-        if (ice_trap_is_pending()) {
+        // don't apply ice traps while playing the treasure chest game, since that would allow cheesing it
+        // (dying there lets you buy another key but doesn't lock already unlocked doors)
+        if (ice_trap_is_pending() && (z64_game.scene_index != 0x0010 || z64_game.chest_flags & 0x00000400)) {
             give_ice_trap();
-        }
-        else {
+        } else {
             try_pending_item();
         }
     }

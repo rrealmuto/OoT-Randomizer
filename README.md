@@ -25,7 +25,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * `debug` is similar to Default/Beginner but gives you most starting items for testing.
   * `vanilla` generates a seed that's as close to the vanilla game as possible with current randomizer features. Unlike the vanilla seed available on <https://ootrandomizer.com/>, this preset uses glitchless logic to produce a useful spoiler log playthrough.
   * `fast-vanilla` is `vanilla` but with speed-ups like fast bunny hood, fast chest cutscenes, or “Skip Some Minigame Phases” enabled.
-  * “Mixed Pools Tournament”, the settings being used for an ongoing tournament with full mixed pools entrance randomizer. Note that the tournament itself uses [a previous version](https://ootrandomizer.com/generatorDev?version=devFenhl_6.2.100) of this branch.
+  * “Mixed Pools Tournament”, the settings used for a tournament that had full mixed pools entrance randomizer. Note that the tournament itself used [a previous version](https://ootrandomizer.com/generatorDev?version=devFenhl_6.2.100) of this branch.
   * “Standard Anti-Weekly Settings (S5)” disables every location that's enabled in “S5 Tournament” and enables every location that's disabled there, as well as changing some miscellaneous settings. See [the official document](https://docs.google.com/document/d/1sbL6Zju943F5qyx4QbTLUsqZqOTMmvqKVbDwJl08SGc/edit) for details.
 * Other changes:
   * The dungeon reward location menu is now slightly more verbose to prepare for some planned features ([#1641](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1641))
@@ -33,8 +33,6 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * Opening the Door of Time is a separate goal category when required by the settings ([#1529](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1529))
   * The convenience patch for floor switches now applies to more MQ switches ([#1459](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1459))
   * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
-* Bug fixes:
-  * Hint distributions with both `entrance_always` hints and the `named_items_required` option no longer fail to generate ([#1662](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1662))
 
 Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):
 
@@ -159,7 +157,7 @@ do that.
   * New setting `Show Seed Info on File Screen` which also allows a user-set message to be displayed.
   * New settings allow for Rainbow Bridge and Ganon's Boss Key to be obtained upon reaching a certain amount of total heart containers.
   * New setting `Easier Fire Arrow Entry` allows you to set the amount of torches that must be lit to open Shadow Temple.
-  * The pause screen info menu has been split into 3 menus, which show icons on the D-Pad indicating which direction leads to which menu. In addition, the menu now tracks the total keys you've found for a dungeon, not just how many you have remaining.
+  * The pause screen info menu has been split into 3 menus, which show icons on the D-Pad indicating which direction leads to which menu. In addition, the menu now tracks the total keys you've found for a dungeon, not just how many you have remaining. The old menu from pressing A still exists as well.
   * New setting `Invisible Chests` makes all chests in the game invisible.
   * New setting `Bonks Do Damage` will deal damage to Link when bonking, including `One Bonk KO` which will instantly kill him from bonking.
   * New hint type `Dual Hint` which allows multiple locations to be hinted in the same hint. Hint distros can also use new option `upgrade_hints` to upgrade some hints to Dual Hints.
@@ -169,6 +167,7 @@ do that.
   * New item pool setting `Ludicrous` makes it so every check will be a major item.
   * `Shuffle Dungeon Entrances` has new setting `Dungeons and Ganon` which puts Ganon's Castle into the pool of dungeons which can be shuffled.
   * New setting `Pre-Completed Dungeons` which allows some dungeons to be filled with junk and their dungeon rewards given as a starting item.
+  * New setting `Regional` for dungeon items makes it so dungeon items such as keys will be placed in the same region as their dungeon. For example, if Small Keys are set to Regional, then Small keys for Forest Temple can be found in the temple itself, Sacred Forest Meadow, Lost Woods, Kokiri Forest, or Deku Tree.
 
 * **Gameplay**
   * Shortened the animation for equipping magic arrows.
@@ -176,6 +175,8 @@ do that.
   * Red Ice transparency is increased when any Chest Appearance setting is enabled.
   * Zelda's text after defeating Ganon now advances automatically.
   * Health and Magic potion models in shops will now match your health and magic colors when `Item Model Colors Match Cosmetics` is enabled.
+  * The Gerudo guard on the Wasteland side of the gate will now spawn regardless of settings.
+  * Several vanilla warp destination messages have been updated to keep consistency with our custom warp destination messages.
 
 
 #### Bug fixes
@@ -202,6 +203,8 @@ do that.
 * Many minor logic bugs have been corrected.
 * Fix a softlock when plandoing starting with less than 10 beans.
 * Fix plando negative locations (ex. "!Gold Skulltula Token") choosing Buy items for non-Buy locations.
+* Ice traps will no longer be sent to players in the Treasure Chest Game to prevent using deaths to circumvent the game.
+* Fixed dragging list items in the GUI not working when the target is empty.
 
 #### Other changes
 * Added an auto-tracker context area to memory, so auto-trackers can find certain symbols much easier.

@@ -48,7 +48,7 @@ class World(object):
         self.distribution = settings.distribution.world_dists[id]
 
         # rename a few attributes...
-        self.keysanity = settings.shuffle_smallkeys in ['keysanity', 'remove', 'any_dungeon', 'overworld']
+        self.keysanity = settings.shuffle_smallkeys in ['keysanity', 'remove', 'any_dungeon', 'overworld', 'regional']
         self.check_beatable_only = settings.reachable_locations != 'all'
 
         self.full_spawn_positions = settings.spawn_positions == 'full'
@@ -110,8 +110,8 @@ class World(object):
 
                 for area in HintArea:
                     if area.is_dungeon and area.dungeon_name in self:
-                        self[area.dungeon_name].hint_name = str(area)
-            
+                        self[area.dungeon_name].hint_name = area
+
             def __missing__(self, dungeon_name):
                 return self.EmptyDungeonInfo(None)
 
@@ -385,7 +385,7 @@ class World(object):
         if self.settings.chicken_count_random and 'chicken_count' not in dist_keys:
             self.settings.chicken_count = random.randint(0, 7)
             self.randomized_list.append('chicken_count')
-        
+
         # Determine dungeons with shortcuts
         dungeons = ['Deku Tree', 'Dodongos Cavern', 'Jabu Jabus Belly', 'Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple']
         if (self.settings.dungeon_shortcuts_choice == 'random'):
@@ -393,6 +393,14 @@ class World(object):
             self.randomized_list.append('dungeon_shortcuts')
         elif (self.settings.dungeon_shortcuts_choice == 'all'):
             self.settings.dungeon_shortcuts = dungeons
+
+        # Determine areas with keyrings
+        areas = ['Thieves Hideout', 'Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple', 'Bottom of the Well', 'Gerudo Training Ground', 'Ganons Castle']
+        if (self.settings.key_rings_choice == 'random'):
+            self.settings.key_rings = random.sample(areas, random.randint(0, len(areas)))
+            self.randomized_list.append('key_rings')
+        elif (self.settings.key_rings_choice == 'all'):
+            self.settings.key_rings = areas
 
         # Handle random Rainbow Bridge condition
         if (self.settings.bridge == 'random'
@@ -562,6 +570,8 @@ class World(object):
     def initialize_items(self):
         for item in self.itempool:
             item.world = self
+            if self.settings.shuffle_hideoutkeys in ['fortress', 'regional'] and item.type == 'HideoutSmallKey':
+                item.priority = True
         for region in self.regions:
             for location in region.locations:
                 if location.item != None:
@@ -890,7 +900,7 @@ class World(object):
             # generate a category/goal pair, though locations are not
             # guaranteed if the higher priority Bridge category contains
             # all required locations for GBK
-            if self.settings.shuffle_ganon_bosskey in ['dungeon', 'overworld', 'any_dungeon', 'keysanity']:
+            if self.settings.shuffle_ganon_bosskey in ['dungeon', 'overworld', 'any_dungeon', 'keysanity', 'regional']:
                 # Make priority even with trials as the goal is no longer centered around dungeon completion or collectibles
                 gbk.priority = 30
                 gbk.goal_count = 1
@@ -994,17 +1004,17 @@ class World(object):
 
         if self.settings.shuffle_mapcompass == 'dungeon':
             itempool.extend([item for dungeon in self.dungeons for item in dungeon.dungeon_items])
-        elif self.settings.shuffle_mapcompass in ['any_dungeon', 'overworld', 'keysanity']:
+        elif self.settings.shuffle_mapcompass in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
             itempool.extend([item for dungeon in self.dungeons if self.empty_dungeons[dungeon.name].empty for item in dungeon.dungeon_items])
 
         if self.settings.shuffle_smallkeys == 'dungeon':
             itempool.extend([item for dungeon in self.dungeons for item in dungeon.small_keys])
-        elif self.settings.shuffle_smallkeys in ['any_dungeon', 'overworld', 'keysanity']:
+        elif self.settings.shuffle_smallkeys in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
             itempool.extend([item for dungeon in self.dungeons if self.empty_dungeons[dungeon.name].empty for item in dungeon.small_keys])
 
         if self.settings.shuffle_bosskeys == 'dungeon':
             itempool.extend([item for dungeon in self.dungeons if dungeon.name != 'Ganons Castle' for item in dungeon.boss_key])
-        elif self.settings.shuffle_bosskeys in ['any_dungeon', 'overworld', 'keysanity']:
+        elif self.settings.shuffle_bosskeys in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
             itempool.extend([item for dungeon in self.dungeons if self.empty_dungeons[dungeon.name].empty for item in dungeon.boss_key])
 
         if self.settings.shuffle_ganon_bosskey == 'dungeon':
@@ -1018,13 +1028,13 @@ class World(object):
     # get a list of items that don't have to be in their proper dungeon
     def get_unrestricted_dungeon_items(self):
         itempool = []
-        if self.settings.shuffle_mapcompass in ['any_dungeon', 'overworld', 'keysanity']:
+        if self.settings.shuffle_mapcompass in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
             itempool.extend([item for dungeon in self.dungeons if not self.empty_dungeons[dungeon.name].empty for item in dungeon.dungeon_items])
-        if self.settings.shuffle_smallkeys in ['any_dungeon', 'overworld', 'keysanity']:
+        if self.settings.shuffle_smallkeys in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
             itempool.extend([item for dungeon in self.dungeons if not self.empty_dungeons[dungeon.name].empty for item in dungeon.small_keys])
-        if self.settings.shuffle_bosskeys in ['any_dungeon', 'overworld', 'keysanity']:
+        if self.settings.shuffle_bosskeys in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
             itempool.extend([item for dungeon in self.dungeons if (dungeon.name != 'Ganons Castle' and not self.empty_dungeons[dungeon.name].empty) for item in dungeon.boss_key])
-        if self.settings.shuffle_ganon_bosskey in ['any_dungeon', 'overworld', 'keysanity']:
+        if self.settings.shuffle_ganon_bosskey in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
             itempool.extend([item for dungeon in self.dungeons if dungeon.name == 'Ganons Castle' for item in dungeon.boss_key])
 
         for item in itempool:

@@ -2029,7 +2029,7 @@ setting_infos = [
             Tournament' and enables every location that's disabled there, as well as changing some
             miscellaneous settings.
 
-            The other presets are for racing and/or touranments. 
+            The other presets are for racing and/or tournaments.
 
             After a preset is loaded, the settings can be viewed/changed in the other tabs before
             generating a seed.
@@ -3736,6 +3736,7 @@ setting_infos = [
             'startwith':   'Start With',
             'vanilla':     'Vanilla Locations',
             'dungeon':     'Own Dungeon',
+            'regional':    'Regional',
             'overworld':   'Overworld Only',
             'any_dungeon': 'Any Dungeon',
             'keysanity':   'Anywhere',
@@ -3752,15 +3753,19 @@ setting_infos = [
             'Own Dungeon': Maps and Compasses can only appear in their respective
             dungeon.
             
-            'Overworld Only': Maps and Compasses can only appear outside of
-            dungeons.
+            'Regional': Maps and Compasses can only appear in regions near the
+            original dungeon (including the dungeon itself or other dungeons in
+            the region). <a href="https://wiki.ootrandomizer.com/index.php?title=Hints#Hint_Regions" target="_blank">The Wiki has a list of corresponding regions here.</a>
+            
+            'Overworld Only': Maps and Compasses can only appear
+            outside of dungeons.
 
             'Any Dungeon': Maps and Compasses can only appear in a dungeon, but
             not necessarily the dungeon they are for.            
 
             'Anywhere': Maps and Compasses can appear anywhere in the world.
 
-            Setting 'Remove', 'Start With, 'Overworld', or 'Anywhere' will add 2
+            Setting 'Remove', 'Start With', 'Overworld', or 'Anywhere' will add 2
             more possible locations to each Dungeons. This makes dungeons more
             profitable, especially Ice Cavern, Water Temple, and Jabu Jabu's Belly.
             
@@ -3781,6 +3786,7 @@ setting_infos = [
             'remove':      'Remove (Keysy)',
             'vanilla':     'Vanilla Locations',
             'dungeon':     'Own Dungeon',
+            'regional':    'Regional',
             'overworld':   'Overworld Only',
             'any_dungeon': 'Any Dungeon',
             'keysanity':   'Anywhere (Keysanity)',
@@ -3797,11 +3803,17 @@ setting_infos = [
             'Own Dungeon': Small Keys can only appear in their respective
             dungeon. If Fire Temple is not a Master Quest dungeon, the door to
             the Boss Key chest will be unlocked.
-            
-            'Overworld Only': Small Keys can only appear outside of dungeons. You
-            may need to enter a dungeon multiple times to gain items to access the
-            overworld locations with the keys required to finish a dungeon.
-            
+
+            'Regional': Small Keys can only appear
+            in regions near the original dungeon (including
+            the dungeon itself or other dungeons in the region).
+            <a href="https://wiki.ootrandomizer.com/index.php?title=Hints#Hint_Regions" target="_blank">The Wiki has a list of corresponding regions here.</a>
+
+            'Overworld Only': Small Keys can only appear outside
+            of dungeons. You may need to enter a dungeon multiple
+            times to gain items to access the overworld locations
+            with the keys required to finish a dungeon.
+
             'Any Dungeon': Small Keys can only appear inside of any dungeon, but
             won't necessarily be in the dungeon that the key is for. A difficult mode
             since it is more likely to need to enter a dungeon multiple times.
@@ -3831,28 +3843,69 @@ setting_infos = [
         default        = 'vanilla',
         disabled_default = 'remove',
         choices        = {
-            'vanilla':     'Vanilla Locations',
-            'overworld':   'Overworld Only',
-            'any_dungeon': 'Any Dungeon',
-            'keysanity':   'Anywhere (Keysanity)',
+            'vanilla':     "Vanilla Locations",
+            'fortress':    "Gerudo Fortress Region",
+            'regional':    "Regional",
+            'overworld':   "Overworld Only",
+            'any_dungeon': "Any Dungeon",
+            'keysanity':   "Anywhere (Keysanity)",
         },
         gui_tooltip    = '''\
-            'Vanilla': Thieves' Hideout Keys will appear in their
+            "Vanilla": Thieves' Hideout Keys will appear in their
             vanilla location, dropping from fighting Gerudo guards
             that attack when trying to free the jailed carpenters.
-            
-            'Overworld Only': Thieves' Hideout Keys can only appear
+
+            "Regional": Thieves' Hideout Keys can only appear in
+            Gerudo Valley, Gerudo Fortress, Thieves' Hideout, Gerudo
+            Training Ground, Haunted Wasteland, Desert Colossus, or
+            Spirit Temple.
+
+            "Overworld Only": Thieves' Hideout Keys can only appear
             outside of dungeons.
-            
-            'Any Dungeon': Thieves' Hideout Keys can only appear
+
+            "Any Dungeon": Thieves' Hideout Keys can only appear
             inside of dungeons.
 
-            'Anywhere': Thieves' Hideout Keys can appear anywhere
+            "Anywhere": Thieves' Hideout Keys can appear anywhere
             in the world.
         ''',
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
+            'option_remove': ['fortress'],
+        },
+    ),
+    Combobox(
+        name           = 'key_rings_choice',
+        gui_text       = 'Key Rings Mode',
+        default        = 'off',
+        choices        = {
+            'off':       'Off',
+            'choice':    'Choose dungeons',
+            'all':       'All dungeons',
+            'random':    'Random dungeons'
+        },
+        gui_tooltip     = '''\
+            Selected dungeons will have all of their keys found 
+            at once in a ring rather than individually. 
+
+            For example, instead of shuffling 5 Forest Temple 
+            small keys into the pool, you will find a single
+            key ring which will give you all 5 keys at once.
+
+            Selecting key ring for dungeons will have no effect
+            if Small Keys are set to Remove or Vanilla.
+
+            Selecting key ring for Thieves' Hideout will have 
+            no effect if Thieves' Hideout keys are in vanilla 
+            locations or Gerudo's Fortress is set to Rescue
+            One Carpenter.
+        ''',
+        shared         = True,
+        disable={
+            'off': {'settings' : ['key_rings']},
+            'all': {'settings' : ['key_rings']},
+            'random': {'settings' : ['key_rings']},
         },
     ),
     Combobox(
@@ -3871,21 +3924,11 @@ setting_infos = [
             'Ganons Castle':          "Ganon's Castle"
         },
         default         = [],
-        gui_tooltip     = '''\
-            Selected dungeons will have all of their keys found 
-            at once in a ring rather than individually. 
-
-            For example, instead of shuffling 5 Forest Temple 
-            small keys into the pool, you will find a single
-            key ring which will give you all 5 keys at once.
-
-            Selecting key ring for dungeons will have no effect
-            if Small Keys are set to Remove or Vanilla.
-
-            Selecting key ring for Thieves' Hideout will have 
-            no effect if Thieves' Hideout keys are in vanilla 
-            locations or Gerudo's Fortress is set to Rescue
-            One Carpenter.
+        gui_params     = {
+            "hide_when_disabled": True,
+        },
+        gui_tooltip    = '''\
+            Select areas with keyring instead of multiple keys
         ''',
         shared          = True,
     ),
@@ -3897,6 +3940,7 @@ setting_infos = [
             'remove':      'Remove (Keysy)',
             'vanilla':     'Vanilla Locations',
             'dungeon':     'Own Dungeon',
+            'regional':    'Regional',
             'overworld':   'Overworld Only',
             'any_dungeon': 'Any Dungeon',
             'keysanity':   'Anywhere (Keysanity)',
@@ -3911,12 +3955,17 @@ setting_infos = [
 
             'Own Dungeon': Boss Keys can only appear in their
             respective dungeon.
-            
+
+            'Regional': Boss Keys can only appear in regions
+            near the original dungeon (including the dungeon
+            itself or other dungeons in the region).
+            <a href="https://wiki.ootrandomizer.com/index.php?title=Hints#Hint_Regions" target="_blank">The Wiki has a list of corresponding regions here.</a>
+
             'Overworld Only': Boss Keys can only appear outside
             of dungeons. You may need to enter a dungeon without
             the boss key to get items required to find the key
             in the overworld.
-            
+
             'Any Dungeon': Boss Keys can only appear inside
             of any dungeon, but won't necessarily be in the
             dungeon that the key is for. A difficult mode since
@@ -3951,6 +4000,7 @@ setting_infos = [
             'remove':          "Remove (Keysy)",
             'vanilla':         "Vanilla Location",
             'dungeon':         "Own Dungeon",
+            'regional':        "Regional",
             'overworld':       "Overworld Only",
             'any_dungeon':     "Any Dungeon",
             'keysanity':       "Anywhere (Keysanity)",
@@ -3965,15 +4015,19 @@ setting_infos = [
             'Remove': Ganon's Castle Boss Key is removed
             and the boss door in Ganon's Tower starts unlocked.
 
+            'Vanilla': Ganon's Castle Boss Key will appear in
+            the vanilla location.
+
             'Own Dungeon': Ganon's Castle Boss Key can only appear
             inside Ganon's Castle.
 
-            'Vanilla': Ganon's Castle Boss Key will appear in 
-            the vanilla location.
-            
+            'Regional': Ganon's Castle Boss Key can only appear
+            in Hyrule Field, Lon Lon Ranch, Market, Temple of Time, Hyrule Castle,
+            (Outside) Ganon's Castle, and Inside Ganon's Castle.
+
             'Overworld Only': Ganon's Castle Boss Key can only appear
             outside of dungeons.
-            
+
             'Any Dungeon': Ganon's Castle Boss Key can only appear
             inside of a dungeon, but not necessarily Ganon's Castle.
 
@@ -3982,16 +4036,16 @@ setting_infos = [
 
             'Light Arrow Cutscene': Ganon's Castle Boss Key will
             appear on the Light Arrow Cutscene.
-            
+
             'Stones': Ganon's Castle Boss Key will be awarded
             when reaching the target number of Spiritual Stones.
-            
+
             'Medallions': Ganon's Castle Boss Key will be awarded
             when reaching the target number of Medallions.
-                        
+
             'Dungeons': Ganon's Castle Boss Key will be awarded
             when reaching the target number of Dungeon Rewards.
-            
+
             'Tokens': Ganon's Castle Boss Key will be awarded
             when reaching the target number of Gold Skulltula Tokens.
 
@@ -4785,7 +4839,7 @@ setting_infos = [
 
             Playing a warp song will tell you where
             it leads. (If warp song destinations
-            are vanilla, the vanilla text is used.)
+            are vanilla, this is always enabled.)
         ''',
         shared         = True,
         default        = ['altar', 'ganondorf', 'warp_songs'],

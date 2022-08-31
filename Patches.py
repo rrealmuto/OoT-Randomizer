@@ -1434,14 +1434,11 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         save_context.write_bits(0x00D4 + 0x0C * 0x1C + 0x04 + 0x3, 0xDC) # Thieves' Hideout switch flags (heard yells/unlocked doors)
         save_context.write_bits(0x00D4 + 0x0C * 0x1C + 0x0C + 0x2, 0xC4) # Thieves' Hideout collection flags (picked up keys, marks fights finished as well)
 
-    # Add a gate-opening guard on the Wasteland side of the Gerudo gate when the card is shuffled or certain levels of ER.
+    # Add a gate opening guard on the Wasteland side of the Gerudo Fortress' gate
     # Overrides the generic guard at the bottom of the ladder in Gerudo Fortress
-    if world.settings.shuffle_gerudo_card or world.settings.shuffle_overworld_entrances or \
-       world.shuffle_special_interior_entrances or world.spawn_positions:
-        # Add a gate opening guard on the Wasteland side of the Gerudo Fortress' gate
-        new_gate_opening_guard = [0x0138, 0xFAC8, 0x005D, 0xF448, 0x0000, 0x95B0, 0x0000, 0x0301]
-        rom.write_int16s(0x21BD3EC, new_gate_opening_guard)  # Adult Day
-        rom.write_int16s(0x21BD62C, new_gate_opening_guard)  # Adult Night
+    new_gate_opening_guard = [0x0138, 0xFAC8, 0x005D, 0xF448, 0x0000, 0x95B0, 0x0000, 0x0301]
+    rom.write_int16s(0x21BD3EC, new_gate_opening_guard)  # Adult Day
+    rom.write_int16s(0x21BD62C, new_gate_opening_guard)  # Adult Night
 
     # start with maps/compasses
     if world.settings.shuffle_mapcompass == 'startwith':
@@ -2121,7 +2118,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
                 dungeon_name, boss_name, compass_id, map_id = dungeon_list[dungeon]
                 if world.settings.world_count > 1:
                     compass_message = "\x13\x75\x08\x05\x42\x0F\x05\x40 found the \x05\x41Compass\x05\x40\x01for %s\x05\x40!\x09" % (dungeon_name)
-                elif False: #TODO enable if boss reward shuffle and/or mixed pools bosses are on
+                elif 'Boss' in world.settings.mix_entrance_pools: #TODO also enable if boss reward shuffle is on
                     vanilla_reward = world.get_location(boss_name).vanilla_item
                     vanilla_reward_location = world.hinted_dungeon_reward_locations[vanilla_reward.name]
                     area = HintArea.at(vanilla_reward_location).text(world.settings.clearer_hints, preposition=True)
@@ -2198,9 +2195,8 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     elif world.settings.text_shuffle == 'complete':
         permutation = shuffle_messages(messages, except_hints=False)
 
-    # If Warp Song ER is on, update text boxes
-    if world.settings.warp_songs != 'off':
-        update_warp_song_text(messages, world)
+    # update warp song preview text boxes
+    update_warp_song_text(messages, world)
 
     if world.settings.blue_fire_arrows:
         rom.write_byte(0xC230C1, 0x29) #Adds AT_TYPE_OTHER to arrows to allow collision with red ice
@@ -2677,8 +2673,9 @@ def configure_dungeon_info(rom, world):
     rom.write_int32(rom.sym('CFG_DUNGEON_INFO_MQ_ENABLE'), int(mq_enable))
     rom.write_int32(rom.sym('CFG_DUNGEON_INFO_MQ_NEED_MAP'), int(enhance_map_compass))
     rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_ENABLE'), int('altar' in world.settings.misc_hints or enhance_map_compass))
-    rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_NEED_COMPASS'), (2 if False else 1) if enhance_map_compass else 0) #TODO set to 2 if boss reward shuffle and/or mixed pools bosses are on
+    rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_NEED_COMPASS'), (2 if 'Boss' in world.settings.mix_entrance_pools else 1) if enhance_map_compass else 0) #TODO also set to 2 if boss reward shuffle is on
     rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_NEED_ALTAR'), int(not enhance_map_compass))
+    rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_SUMMARY_ENABLE'), int('Boss' not in world.settings.mix_entrance_pools)) #TODO also set to 0 if boss reward shuffle is on
     rom.write_bytes(rom.sym('CFG_DUNGEON_REWARDS'), dungeon_rewards)
     rom.write_bytes(rom.sym('CFG_DUNGEON_IS_MQ'), dungeon_is_mq)
     rom.write_bytes(rom.sym('CFG_DUNGEON_REWARD_AREAS'), dungeon_reward_areas)

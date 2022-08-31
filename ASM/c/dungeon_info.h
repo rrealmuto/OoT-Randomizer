@@ -11,6 +11,7 @@ extern uint32_t CFG_DUNGEON_INFO_ENABLE;
 #define CAN_DRAW_DUNGEON_INFO (CFG_DUNGEON_INFO_ENABLE != 0 && \
         z64_game.pause_ctxt.state == 6 && \
         z64_game.pause_ctxt.screen_idx == 0 && \
-        !z64_game.pause_ctxt.changing)
+        (!z64_game.pause_ctxt.changing || \
+        z64_game.pause_ctxt.changing == 3))
 
 #endif

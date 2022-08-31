@@ -920,7 +920,7 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
 
     if (
         world.shuffle_interior_entrances and (
-            (world.dungeon_rewards_hinted and False) or #TODO enable if boss reward shuffle and/or mixed pools bosses are on
+            (world.dungeon_rewards_hinted and 'Boss' in world.settings.mix_entrance_pools) or #TODO also enable if boss reward shuffle is on
             any(hint_type in world.settings.misc_hints for hint_type in misc_item_hint_table) or world.settings.hints != 'none'
         ) and (entrance_placed == None or entrance_placed.type in ['Interior', 'SpecialInterior'])
     ):

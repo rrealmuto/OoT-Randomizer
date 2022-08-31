@@ -240,6 +240,7 @@
             "shuffle_mapcompass",
             "shuffle_smallkeys",
             "shuffle_hideoutkeys",
+            "key_rings_choice",
             "key_rings",
             "shuffle_bosskeys",
             "shuffle_ganon_bosskey",
@@ -480,9 +481,10 @@
           "name": "sfx_main_section",
           "is_sfx": true,
           "col_span": 4,
-          "row_span": [1,1,1],
+          "row_span": [2,2,2],
           "settings": [
-            "randomize_all_sfx"
+            "randomize_all_sfx",
+            "disable_battle_music"
           ]
         },
         {
@@ -492,7 +494,6 @@
           "row_span": [6,6,13],
           "settings": [
             "background_music",
-            "disable_battle_music",
             "fanfares",
             "ocarina_fanfares",
             "sfx_low_hp",

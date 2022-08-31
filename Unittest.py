@@ -48,7 +48,7 @@ ludicrous_junk = set(remove_junk_ludicrous_items)
 ludicrous_set = set(ludicrous_items_base) | set(ludicrous_items_extended) | ludicrous_junk | {i for t, i in trade_items.items()} | set(bottles) | set(ludicrous_exclusions) | set(['Bottle with Big Poe']) | shop_items
 
 
-def make_settings_for_test(settings_dict, seed=None, outfilename=None):
+def make_settings_for_test(settings_dict, seed=None, outfilename=None, strict=True):
     # Some consistent settings for testability
     settings_dict.update({
         'create_patch_file': False,
@@ -61,7 +61,7 @@ def make_settings_for_test(settings_dict, seed=None, outfilename=None):
     })
     if seed and 'seed' not in settings_dict:
         settings_dict['seed'] = seed
-    return Settings(settings_dict, strict=True)
+    return Settings(settings_dict, strict=strict)
 
 
 def load_settings(settings_file, seed=None, filename=None):
@@ -738,7 +738,7 @@ class TestValidSpoilers(unittest.TestCase):
                 ofile = 'preset_' + re.sub(r'[^a-zA-Z0-9_-]+', '_', name)
                 with self.subTest(name, filename=ofile):
                     settings = make_settings_for_test(
-                            settings_dict, seed='TESTTESTTEST', outfilename=ofile)
+                            settings_dict, seed='TESTTESTTEST', outfilename=ofile, strict=False)
                     main(settings)
                     spoiler = load_spoiler('%s_Spoiler.json' % settings.output_file)
                     self.verify_woth(spoiler)
