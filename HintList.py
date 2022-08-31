@@ -289,7 +289,7 @@ hintTable = {
     'Forest Medallion':                                         (["Saria's sagely power", "a green disc"], "the Forest Medallion", 'item'),
     'Fire Medallion':                                           (["Darunia's sagely power", "a red disc"], "the Fire Medallion", 'item'),
     'Water Medallion':                                          (["Ruto's sagely power", "a blue disc"], "the Water Medallion", 'item'),
-    'Shadow Medallon':                                          (["Impa's sagely power", "a purple disc"], "the Shadow Medallion", 'item'),
+    'Shadow Medallion':                                         (["Impa's sagely power", "a purple disc"], "the Shadow Medallion", 'item'),
     'Spirit Medallion':                                         (["Nabooru's sagely power", "an orange disc"], "the Spirit Medallion", 'item'),
     'Triforce Piece':                                           (["a triumph fork", "cheese", "a gold fragment"], "a Piece of the Triforce", 'item'),
     'Easter Egg (Pink)':                                        ("an Easter Egg", None, 'item'),

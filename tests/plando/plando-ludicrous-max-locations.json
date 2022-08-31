@@ -2,7 +2,9 @@
   "settings": {
     "item_pool_value":                         "ludicrous",
     "skip_child_zelda":                        false,
-    "open_forest":                             "closed_deku",
+    "open_deku":                               false,
+    "open_forest":                             true,
+    "require_gohma":                           false,
     "zora_fountain":                           "closed",
     "gerudo_fortress":                         "normal",
     "triforce_hunt":                           false,

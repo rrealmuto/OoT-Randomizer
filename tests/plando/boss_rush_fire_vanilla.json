@@ -1,8 +1,10 @@
 {
   "settings":                  {
-  "spawn_positions":                         true,
+  "spawn_positions":                         "balanced",
   "shuffle_dungeon_entrances":               "simple",
-  "open_forest":                             "open",
+  "open_deku":                               true,
+  "open_forest":                             true,
+  "require_gohma":                           false,
   "mq_dungeons_mode":                        "vanilla",
   "dungeon_shortcuts_choice":                "choice",
   "dungeon_shortcuts":                       ["fire_temple"],

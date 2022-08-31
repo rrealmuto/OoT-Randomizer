@@ -3,8 +3,8 @@
     "logic_rules":                             "glitchless",
     "shuffle_interior_entrances":              "off",
     "shuffle_overworld_entrances":             false,
-    "warp_songs":                              false,
-    "spawn_positions":                         true,
+    "warp_songs":                              "off",
+    "spawn_positions":                         "balanced",
     "starting_items":                          [
       "ocarina"
     ],

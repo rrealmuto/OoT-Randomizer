@@ -1,6 +1,8 @@
 {
   "settings": {
-    "open_forest": "open",
+    "open_deku": true,
+    "open_forest": true,
+    "require_gohma": false,
     "shopsanity": "4"
   },
   "locations": {
