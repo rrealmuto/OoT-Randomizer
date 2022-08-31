@@ -46,7 +46,7 @@ def patch_model_colors(rom, color, model_addresses):
     main_addresses, dark_addresses, light_addresses = model_addresses
 
     if color is None:
-        for address in main_addresses + dark_addresses:
+        for address in main_addresses + dark_addresses + light_addresses:
             original = rom.original.read_bytes(address, 3)
             rom.write_bytes(address, original)
         return
