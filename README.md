@@ -28,6 +28,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * “Mixed Pools Tournament”, the settings used for a tournament that had full mixed pools entrance randomizer. Note that the tournament itself used [a previous version](https://ootrandomizer.com/generatorDev?version=devFenhl_6.2.100) of this branch.
   * “Standard Anti-Weekly Settings (S5)” disables every location that's enabled in “S5 Tournament” and enables every location that's disabled there, as well as changing some miscellaneous settings. See [the official document](https://docs.google.com/document/d/1sbL6Zju943F5qyx4QbTLUsqZqOTMmvqKVbDwJl08SGc/edit) for details.
 * Other changes:
+  * Multiworld plugins can request to be informed when a player finds their own item ([#1691](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1691))
   * The dungeon reward location menu is now slightly more verbose to prepare for some planned features ([#1641](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1641))
   * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
   * Opening the Door of Time is a separate goal category when required by the settings ([#1529](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1529))
