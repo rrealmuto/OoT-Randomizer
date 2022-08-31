@@ -410,7 +410,7 @@ gerudo_caught_entrance:
 
 @@hideout:
     lb      t3, HIDEOUT_SHUFFLED
-    beqz    t3, @@return                ; else (if adult), only rectify entrances from inside the fortress in Overworld ER
+    beqz    t3, @@fortress              ; if hideout shuffle is off, treat hideout the same as fortress
     la      t4, SAVE_CONTEXT
     lw      t3, 0x0000(t4)              ; last entrance index
     sh      t3, 0x1E1A(at)

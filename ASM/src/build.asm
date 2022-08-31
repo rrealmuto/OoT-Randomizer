@@ -104,6 +104,7 @@ RANDO_CONTEXT:
 .include "door_of_time_col_fix.asm"
 .include "mask_deequip.asm"
 .include "blue_fire_arrows.asm"
+.include "gerudo_guard.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"
