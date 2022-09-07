@@ -651,8 +651,13 @@ def copy_worlds(worlds):
 def find_misc_hint_items(spoiler):
     search = Search([world.state for world in spoiler.worlds])
     all_locations = [location for world in spoiler.worlds for location in world.get_filled_locations()]
-    for location in search.iter_reachable_locations(all_locations):
+    for location in search.iter_reachable_locations(all_locations[:]):
         search.collect(location.item)
+        # include locations that are reachable but not part of the spoiler log playthrough in misc. item hints
+        maybe_set_misc_item_hints(location)
+        all_locations.remove(location)
+    for location in all_locations:
+        # finally, collect unreachable locations for misc. item hints
         maybe_set_misc_item_hints(location)
 
 
