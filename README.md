@@ -37,6 +37,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
 * Bug fixes:
   * Savewarping immediately before checking certain locations (such as the light arrow cutscene) no longer deletes the item ([#1695](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1695))
   * Non-required starting items are no longer listed in the spoiler log playthrough ([#1694](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1694))
+  * The text box when collecting a “WINNER!” heart piece in multiworld no longer appears glitchy ([#1685](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1685))
 
 Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):
 
