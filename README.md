@@ -35,6 +35,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * The convenience patch for floor switches now applies to more MQ switches ([#1459](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1459))
   * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
 * Bug fixes:
+  * Ganondorf will once again say “my castle” instead of “Ganon's Castle” in the light arrow hint ([#1702](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1702))
   * Savewarping immediately before checking certain locations (such as the light arrow cutscene) no longer deletes the item ([#1695](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1695))
   * Non-required starting items are no longer listed in the spoiler log playthrough ([#1694](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1694))
   * The text box when collecting a “WINNER!” heart piece in multiworld no longer appears glitchy ([#1685](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1685))

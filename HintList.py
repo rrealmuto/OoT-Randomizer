@@ -1721,7 +1721,8 @@ misc_item_hint_table = {
         'default_item_text': "Ha ha ha... You'll never beat me by reflecting my lightning bolts and unleashing the arrows from {area}!",
         'custom_item_text': "Ha ha ha... You'll never find {item} from {area}!",
         'replace': {
-            "from #Ganon's Castle#": "from #my castle#",
+            "from #inside Ganon's Castle#": "from #inside my castle#",
+            "from #outside Ganon's Castle#": "from #outside my castle#",
         },
     },
 }
