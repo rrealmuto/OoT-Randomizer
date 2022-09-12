@@ -313,6 +313,7 @@ class HintArea(Enum):
     HYRULE_CASTLE          = 'at',     'at',     'Hyrule Castle',              'Hyrule Castle',          'Light Blue', None
     OUTSIDE_GANONS_CASTLE  = None,     None,     "outside Ganon's Castle",     "Outside Ganon's Castle", 'Light Blue', None
     INSIDE_GANONS_CASTLE   = 'inside', None,     "inside Ganon's Castle",      "Inside Ganon's Castle",  'Light Blue', 'Ganons Castle'
+    GANONDORFS_CHAMBER     = 'in',     'in',      "Ganondorf's Chamber",       "Ganondorf's Chamber",    'Light Blue', None
     KOKIRI_FOREST          = 'in',     'in',     'Kokiri Forest',              "Kokiri Forest",          'Green',      None
     DEKU_TREE              = 'inside', 'inside', 'the Deku Tree',              "Deku Tree",              'Green',      'Deku Tree'
     LOST_WOODS             = 'in',     'in',     'the Lost Woods',             "Lost Woods",             'Green',      None
@@ -344,7 +345,7 @@ class HintArea(Enum):
     # Performs a breadth first search to find the closest hint area from a given spot (region, location, or entrance).
     # May fail to find a hint if the given spot is only accessible from the root and not from any other region with a hint area
     @staticmethod
-    def at(spot):
+    def at(spot, use_alt_hint=False):
         if isinstance(spot, Region):
             original_parent = spot
         else:
@@ -362,6 +363,8 @@ class HintArea(Enum):
                 parent_region = current_spot.parent_region
 
             if parent_region.hint and (original_parent.name == 'Root' or parent_region.name != 'Root'):
+                if(use_alt_hint and parent_region.alt_hint):
+                    return parent_region.alt_hint
                 return parent_region.hint
 
             spot_queue.extend(list(filter(lambda ent: ent not in already_checked, parent_region.entrances)))
@@ -581,7 +584,12 @@ def get_barren_hint(spoiler, world, checked, allChecked):
     if not hasattr(world, 'get_barren_hint_prev'):
         world.get_barren_hint_prev = RegionRestriction.NONE
 
+    
+    logger = logging.getLogger('')
+    logger.debug("***HINTS***")
+
     checked_areas = get_checked_areas(world, checked)
+    logger.debug(checked_areas)
     areas = list(filter(lambda area:
         area not in checked_areas
         and area not in world.hint_type_overrides['barren']
@@ -601,6 +609,9 @@ def get_barren_hint(spoiler, world, checked, allChecked):
     # Randomly choose between overworld or dungeon
     dungeon_areas = list(filter(lambda area: world.empty_areas[area]['dungeon'], areas))
     overworld_areas = list(filter(lambda area: not world.empty_areas[area]['dungeon'], areas))
+
+    for loc in world.empty_areas:
+        logger.debug(loc)
     if not dungeon_areas:
         # no dungeons left, default to overworld
         world.get_barren_hint_prev = RegionRestriction.OVERWORLD
@@ -1564,7 +1575,7 @@ def buildMiscItemHints(world, messages):
                     text = data['custom_item_text'].format(area='#your pocket#', item=item)
             elif hint_type in world.misc_hint_item_locations:
                 location = world.misc_hint_item_locations[hint_type]
-                area = HintArea.at(location).text(world.settings.clearer_hints, world=None if location.world.id == world.id else location.world.id + 1)
+                area = HintArea.at(location, use_alt_hint=True).text(world.settings.clearer_hints, world=None if location.world.id == world.id else location.world.id + 1)
                 if item == data['default_item']:
                     text = data['default_item_text'].format(area=area)
                 else:
