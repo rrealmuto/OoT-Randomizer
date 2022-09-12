@@ -104,6 +104,12 @@ RANDO_CONTEXT:
 .include "door_of_time_col_fix.asm"
 .include "mask_deequip.asm"
 .include "blue_fire_arrows.asm"
+.include "save.asm"
+.include "drop_overrides/obj_mure3.asm"
+.include "drop_overrides/bg_haka_tubo.asm"
+.include "drop_overrides/bg_spot18_basket.asm"
+.include "drop_overrides/obj_comb.asm"
+.include "drop_overrides/actor.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"
