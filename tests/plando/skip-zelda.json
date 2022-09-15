@@ -1,6 +1,6 @@
 {
 "settings": {
-    "skip_child_zelda": true,
+    "shuffle_child_trade": "skip_child_zelda",
     "tokensanity": "overworld",
     "hint_dist": "tournament",
     "disabled_locations": [

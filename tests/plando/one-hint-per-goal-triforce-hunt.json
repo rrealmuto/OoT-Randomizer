@@ -9,7 +9,7 @@
         "bombchus_in_logic":                       false,
         "trials_random":                           false,
         "trials":                                  0,
-        "skip_child_zelda":                        false,
+        "shuffle_child_trade":                     "vanilla",
         "dungeon_shortcuts_choice":                "off",
         "open_forest":                             "closed_deku",
         "shuffle_kokiri_sword":                    true,

@@ -1,5 +1,9 @@
 This file documents parts of the OoT save data that go unused in vanilla but are used by the randomizer. **It may be incomplete.**
 
+# Ammo counts
+
+The ammunition count fields for fire arrows (save context + 0x90) and Din's Fire (save context + 0x91) are repurposed as a single unsigned 16-bit integer field representing the number of items received from the network in a multiworld seed.
+
 # Scene flags
 
 ## Unused field
@@ -9,6 +13,7 @@ The unused field (offset 0x10) of the permanent scene flags (save context + 0xd4
 * Total small key count: Scenes 0x00–0x0F (Each dungeon uses the upper halfword of its own unused field.)
 * Scrub Shuffle: Scenes 0x00–0x27 and 0x5B (Scrubs in grottos store their “sold out” flag in the scene corresponding to the grotto ID minus 0xD6, and other scrubs store it in their own scene. Each scrub uses [the item it sells in vanilla](https://wiki.cloudmodding.com/oot/Actor_List_(Variables)#En_Shopnuts) as a bit mask. These are all in the lower halfword, so there is no collision with total small key count.)
 * Shopsanity: Scene 0x2C
+* Pending item queue: Scenes 0x30–0x35 (Even-numbered scenes are used for override keys and odd-numbered scenes for their values.)
 * FW in both ages: Scenes 0x3E–0x47
 * Triforce Hunt: Scene 0x48
 * Pending ice traps: Scene 0x49

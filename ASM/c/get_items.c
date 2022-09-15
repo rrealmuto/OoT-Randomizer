@@ -11,7 +11,6 @@ extern uint8_t OCARINAS_SHUFFLED;
 override_t cfg_item_overrides[512] = { 0 };
 int item_overrides_count = 0;
 
-override_t pending_item_queue[3] = { 0 };
 z64_actor_t *dummy_actor = NULL;
 
 // Co-op state
@@ -19,6 +18,7 @@ extern uint8_t PLAYER_ID;
 extern uint8_t PLAYER_NAME_ID;
 extern uint16_t INCOMING_PLAYER;
 extern uint16_t INCOMING_ITEM;
+extern uint8_t MW_SEND_OWN_ITEMS;
 extern override_key_t OUTGOING_KEY;
 extern uint16_t OUTGOING_ITEM;
 extern uint16_t OUTGOING_PLAYER;
@@ -152,18 +152,21 @@ void clear_override() {
 }
 
 void set_outgoing_override(override_t *override) {
-    OUTGOING_KEY = override->key;
-    OUTGOING_ITEM = override->value.item_id;
-    OUTGOING_PLAYER = override->value.player;
+    if (override->key.type != OVR_DELAYED || override->key.flag != 0xFF) { // don't send items received from incoming back to outgoing
+        OUTGOING_KEY = override->key;
+        OUTGOING_ITEM = override->value.item_id;
+        OUTGOING_PLAYER = override->value.player;
+    }
 }
 
 void push_pending_item(override_t override) {
-    for (int i = 0; i < array_size(pending_item_queue); i++) {
-        if (pending_item_queue[i].key.all == 0) {
-            pending_item_queue[i] = override;
+    for (int key_scene = 0x30; key_scene < 0x36; key_scene += 2) {
+        if (z64_file.scene_flags[key_scene].unk_00_ == 0) {
+            z64_file.scene_flags[key_scene].unk_00_ = override.key.all;
+            z64_file.scene_flags[key_scene + 1].unk_00_ = override.value.all;
             break;
         }
-        if (pending_item_queue[i].key.all == override.key.all) {
+        if (z64_file.scene_flags[key_scene].unk_00_ == override.key.all) {
             // Prevent duplicate entries
             break;
         }
@@ -194,10 +197,11 @@ void push_delayed_item(uint8_t flag) {
 }
 
 void pop_pending_item() {
-    pending_item_queue[0] = pending_item_queue[1];
-    pending_item_queue[1] = pending_item_queue[2];
-    pending_item_queue[2].key.all = 0;
-    pending_item_queue[2].value.all = 0;
+    for (int scene = 0x30; scene < 0x34; scene++) {
+        z64_file.scene_flags[scene].unk_00_ = z64_file.scene_flags[scene + 2].unk_00_;
+    }
+    z64_file.scene_flags[0x34].unk_00_ = 0;
+    z64_file.scene_flags[0x35].unk_00_ = 0;
 }
 
 void after_key_received(override_key_t key) {
@@ -221,8 +225,8 @@ void after_key_received(override_key_t key) {
 }
 
 void pop_ice_trap() {
-    override_key_t key = pending_item_queue[0].key;
-    override_value_t value = pending_item_queue[0].value;
+    override_key_t key = { .all = z64_file.scene_flags[0x30].unk_00_ };
+    override_value_t value = { .all = z64_file.scene_flags[0x31].unk_00_ };
     if (value.item_id == 0x7C && value.player == PLAYER_ID) {
         push_pending_ice_trap();
         pop_pending_item();
@@ -236,11 +240,11 @@ void after_item_received() {
         return;
     }
 
-    if (active_override_is_outgoing) {
+    if (MW_SEND_OWN_ITEMS || active_override_is_outgoing) {
         set_outgoing_override(&active_override);
     }
 
-    if (key.all == pending_item_queue[0].key.all) {
+    if (key.all == z64_file.scene_flags[0x30].unk_00_) {
         pop_pending_item();
     }
     after_key_received(key);
@@ -266,7 +270,10 @@ inline uint32_t link_is_ready() {
 }
 
 void try_pending_item() {
-    override_t override = pending_item_queue[0];
+    override_t override = {
+        .key.all = z64_file.scene_flags[0x30].unk_00_,
+        .value.all = z64_file.scene_flags[0x31].unk_00_,
+    };
 
     if(override.key.all == 0) {
         return;
@@ -363,6 +370,9 @@ void get_skulltula_token(z64_actor_t *token_actor) {
     } else if (player != PLAYER_ID) {
         set_outgoing_override(&override);
     } else {
+        if (MW_SEND_OWN_ITEMS) {
+            set_outgoing_override(&override);
+        }
         z64_GiveItem(&z64_game, item_row->action_id);
         call_effect_function(item_row);
     }

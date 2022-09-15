@@ -22,7 +22,7 @@
     "shuffle_song_items": "song",
     "shuffle_kokiri_sword": false,
     "shuffle_ocarinas": false,
-    "shuffle_weird_egg": false,
+    "shuffle_child_trade": "vanilla",
     "shuffle_gerudo_card": false,
     "shuffle_beans": false,
     "shuffle_mapcompass": "startwith",
@@ -56,6 +56,16 @@
     "starting_tod": "default",
     "item_pool_value": "balanced",
     "junk_ice_traps": "normal",
-    "logic_earliest_adult_trade": "pocket_egg",
-    "logic_latest_adult_trade": "claim_check"
+    "adult_trade_start":                       [
+      "Pocket Egg",
+      "Pocket Cucco",
+      "Cojiro",
+      "Odd Mushroom",
+      "Poachers Saw",
+      "Broken Sword",
+      "Prescription",
+      "Eyeball Frog",
+      "Eyedrops",
+      "Claim Check"
+    ]
 }

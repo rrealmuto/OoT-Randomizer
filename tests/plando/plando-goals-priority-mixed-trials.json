@@ -18,7 +18,7 @@
     "one_item_per_dungeon":                    false,
     "trials_random":                           false,
     "trials":                                  3,
-    "skip_child_zelda":                        true,
+    "shuffle_child_trade":                     "skip_child_zelda",
     "no_escape_sequence":                      true,
     "no_guard_stealth":                        true,
     "no_epona_race":                           true,
@@ -84,8 +84,12 @@
       "logic_lens_bongo",
       "logic_lens_spirit"
     ],
-    "logic_earliest_adult_trade":              "prescription",
-    "logic_latest_adult_trade":                "claim_check",
+    "adult_trade_start":                       [
+      "Prescription",
+      "Eyeball Frog",
+      "Eyedrops",
+      "Claim Check"
+    ],
     "starting_equipment":                      [],
     "starting_songs":                          [],
     "correct_chest_appearances":               "off",

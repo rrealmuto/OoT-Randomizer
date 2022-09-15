@@ -865,7 +865,7 @@ def make_player_message(text):
 
     wrapped_text = line_wrap(new_text, False, False, False)
     if wrapped_text != new_text:
-        new_text = line_wrap(new_text, True, True, False)
+        new_text = line_wrap(new_text, True, False, False)
 
     return new_text
 

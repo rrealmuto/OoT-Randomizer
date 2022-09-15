@@ -8,7 +8,7 @@
         },
         "exits": {
             "Root Exits": "is_starting_age or Time_Travel",
-            "HC Garden Locations": "skip_child_zelda"
+            "HC Garden Locations": "shuffle_child_trade == 'skip_child_zelda'"
         }
     },
     {
@@ -410,7 +410,9 @@
         "region_name": "Temple of Time",
         "hint": "TEMPLE_OF_TIME",
         "locations": {
-            "ToT Light Arrows Cutscene": "is_adult and can_trigger_lacs"
+            "ToT Light Arrows Cutscene": "is_adult and can_trigger_lacs",
+            "ToT Child Altar Hint": "is_child",
+            "ToT Adult Altar Hint": "is_adult"
         },
         "exits": {
             "Market": "True",
@@ -442,7 +444,7 @@
         "exits": {
             "Market": "True",
             #// garden will logically need weird-egg as letter first can screw over the mask quest
-            "HC Garden": "Weird_Egg or skip_child_zelda or (not shuffle_weird_egg)",
+            "HC Garden": "Weird_Egg",
             "HC Great Fairy Fountain": "True",
             "HC Storms Grotto": "can_play(Song_of_Storms)"
         }

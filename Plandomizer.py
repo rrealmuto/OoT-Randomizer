@@ -501,7 +501,7 @@ class WorldDistribution(object):
             if record.type == 'set':
                 if item_name == '#Junk':
                     raise ValueError('#Junk item group cannot have a set number of items')
-                elif item_name == 'Weird Egg' and not self.distribution.settings.shuffle_weird_egg:
+                elif item_name == 'Weird Egg' and self.distribution.settings.shuffle_child_trade != 'shuffle':
                     remove_egg = True
                     continue
                 elif item_name == 'Weird Egg' and self.item_pool['Weird Egg'].count > 1:
@@ -1026,20 +1026,22 @@ class WorldDistribution(object):
             add_starting_item_with_ammo(items, 'Deku Nuts', 99)
 
         skipped_locations = ['Links Pocket']
-        if world.settings.skip_child_zelda:
+        if world.settings.shuffle_child_trade == 'skip_child_zelda':
             skipped_locations += ['HC Malon Egg', 'HC Zeldas Letter', 'Song from Impa']
         if world.settings.empty_dungeons_mode != 'none':
-            boss_map = world.get_boss_map()
-            for info in world.empty_dungeons.values():
-                if info.empty:
-                    skipped_locations.append(boss_map[info.boss_name])
-            if world.settings.shuffle_song_items == 'dungeon':
-                for location_name in location_groups['BossHeart']:
-                    location = world.get_location(location_name)
-                    hint_area = HintArea.at(location)
-                    if hint_area.is_dungeon and world.empty_dungeons[hint_area.dungeon_name].empty:
-                        skipped_locations.append(location.name)
-                        world.item_added_hint_types['barren'].append(location.item.name)
+            skipped_locations_from_dungeons = []
+            if True: #TODO dungeon rewards not shuffled
+                skipped_locations_from_dungeons += location_groups['Boss']
+            if world.settings.shuffle_song_items == 'song':
+                skipped_locations_from_dungeons += location_groups['Song']
+            elif world.settings.shuffle_song_items == 'dungeon':
+                skipped_locations_from_dungeons += location_groups['BossHeart']
+            for location_name in skipped_locations_from_dungeons:
+                location = world.get_location(location_name)
+                hint_area = HintArea.at(location)
+                if hint_area.is_dungeon and world.empty_dungeons[hint_area.dungeon_name].empty:
+                    skipped_locations.append(location.name)
+                    world.item_added_hint_types['barren'].append(location.item.name)
         for iter_world in worlds:
             for location in skipped_locations:
                 loc = iter_world.get_location(location)
@@ -1119,7 +1121,7 @@ class Distribution(object):
             if 'Triforce Piece' in world.distribution.starting_items:
                 world.triforce_count += world.distribution.starting_items['Triforce Piece'].count
                 total_starting_count += world.distribution.starting_items['Triforce Piece'].count
-            if world.settings.skip_child_zelda and 'Song from Impa' in world.distribution.locations and world.distribution.locations['Song from Impa'].item == 'Triforce Piece':
+            if world.settings.shuffle_child_trade == 'skip_child_zelda' and 'Song from Impa' in world.distribution.locations and world.distribution.locations['Song from Impa'].item == 'Triforce Piece':
                 total_starting_count += 1
             total_count += world.triforce_count
 

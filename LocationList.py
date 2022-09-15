@@ -888,6 +888,8 @@ location_table = OrderedDict([
     ("DMT Storms Grotto Gossip Stone",                               ("HintStone",    None,  None, None,                        None,                                    None)),
     ("DMC Upper Grotto Gossip Stone",                                ("HintStone",    None,  None, None,                        None,                                    None)),
 
+    ("ToT Child Altar Hint",                                         ("Hint",         None,  None, None,                        None,                                    None)),
+    ("ToT Adult Altar Hint",                                         ("Hint",         None,  None, None,                        None,                                    None)),
     ("Dampe Diary Hint",                                             ("Hint",         None,  None, None,                        None,                                    None)),
     ("Ganondorf Hint",                                               ("Hint",         None,  None, None,                        None,                                    None)),
 ])
@@ -917,6 +919,7 @@ location_groups = {
     'Song': [name for (name, data) in location_table.items() if data[0] == 'Song'],
     'Chest': [name for (name, data) in location_table.items() if data[0] == 'Chest'],
     'Collectable': [name for (name, data) in location_table.items() if data[0] == 'Collectable'],
+    'Boss': [name for (name, data) in location_table.items() if data[0] == 'Boss'],
     'BossHeart': [name for (name, data) in location_table.items() if data[0] == 'BossHeart'],
     'CollectableLike': [name for (name, data) in location_table.items() if data[0] in ('Collectable', 'BossHeart', 'GS Token')],
     'CanSee': [name for (name, data) in location_table.items()

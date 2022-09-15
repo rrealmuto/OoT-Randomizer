@@ -153,5 +153,13 @@
     "typescript": "3.2.4",
     "web-animations-js": "2.2.5",
     "zone.js": "0.8.29"
+  },
+  "overrides": {
+    "browserslist": {
+      "caniuse-lite": "1.0.30001393"
+    },
+    "autoprefixer": {
+      "caniuse-lite": "1.0.30001393"
+    }
   }
 }
