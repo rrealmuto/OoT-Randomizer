@@ -1719,13 +1719,13 @@ misc_item_hint_table = {
         'replace': {
             "from #inside Ganon's Castle#": "from #inside my castle#",
             "from #outside Ganon's Castle#": "from #outside my castle#",
-            "from #Ganondorf's Chamber#": "from #those pots over there#"
+            "from #Ganondorf's Chamber#": "from #those pots over there#",
         },
     },
 }
 
 # Separate table for goal names to avoid duplicates in the hint table.
-# Link's Pocket will always be an empty goal, but it's included here to 
+# Link's Pocket will always be an empty goal, but it's included here to
 # prevent key errors during the dungeon reward lookup.
 goalTable = {
     'Queen Gohma':                                              ("path to the #Spider#", "path to #Queen Gohma#", "Green"),

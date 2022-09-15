@@ -12,23 +12,19 @@ extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
 // Hacks the regular crate spawn collectible function to use more flag space
 // The additional flag info is stored in the actors dropFlag variable (unused by collectibles)
 
-void ObjKibako2_SpawnCollectible_Hack(ObjKibako2 *this, z64_game_t *globalCtx)
-{
+void ObjKibako2_SpawnCollectible_Hack(ObjKibako2 *this, z64_game_t *globalCtx) {
     int16_t itemDropped;
     int16_t collectibleFlagTemp;
 
     collectibleFlagTemp = this->collectibleFlag & 0x3F;                  // Get the vanilla part of the collectible flag
     uint16_t extendedCollectibleFlag = (this->collectibleFlag & 0x00C0); // Get the upper part of the collectible flag that we'll store elsewhere
     itemDropped = this->dyna.actor.rot_init.x & 0x1F;
-    if (itemDropped >= 0 && itemDropped < 0x1A)
-    {
+    if (itemDropped >= 0 && itemDropped < 0x1A) {
         EnItem00 *spawned = z64_Item_DropCollectible(globalCtx, &this->dyna.actor.pos_world, itemDropped | (collectibleFlagTemp << 8) | extendedCollectibleFlag);
-        // spawned->actor.dropFlag |= (extendedCollectibleFlag << 1) & 0xFE;
     }
 }
 
-override_t get_crate_override(z64_actor_t *actor, z64_game_t *game)
-{
+override_t get_crate_override(z64_actor_t *actor, z64_game_t *game) {
     // make a dummy EnItem00 with enough info to get the override
     ObjKibako2 *this = (ObjKibako2 *)actor;
     EnItem00 dummy;
@@ -36,62 +32,34 @@ override_t get_crate_override(z64_actor_t *actor, z64_game_t *game)
     dummy.actor.actor_id = 0x15;
     dummy.actor.dropFlag = 1;
     dummy.actor.variable = 0;
-    if (!should_override_collectible(&dummy))
-    {
-        return (override_t){0};
+    if (!should_override_collectible(&dummy)) {
+        return (override_t){ 0 };
     }
 
     return lookup_override((z64_actor_t *)&dummy, game->scene_index, 0);
 }
 
-void ObjKibako2_Draw(z64_actor_t *actor, z64_game_t *game)
-{
+void ObjKibako2_Draw(z64_actor_t *actor, z64_game_t *game) {
     uint8_t* texture = get_texture(TEXTURE_ID_CRATE_DEFAULT);
-    // get original palette and textures
-    //uint64_t *palette = get_texture(TEXTURE_ID_CRATE_PALETTE_DEFAULT);
-    //uint64_t *top_texture = get_texture(TEXTURE_ID_CRATE_TOP_DEFAULT);
-    //uint64_t *side_texture = get_texture(TEXTURE_ID_CRATE_SIDE_DEFAULT);
 
     // get override palette and textures
     override_t crate_override = get_crate_override(actor, game);
-    if(POTCRATE_TEXTURES_MATCH_CONTENTS == PTMC_UNCHECKED && crate_override.key.all != 0)
-    {
+    if (POTCRATE_TEXTURES_MATCH_CONTENTS == PTMC_UNCHECKED && crate_override.key.all != 0) {
         texture = get_texture(TEXTURE_ID_CRATE_GOLD);
-    }
-    else if (POTCRATE_TEXTURES_MATCH_CONTENTS == PTMC_CONTENTS && crate_override.key.all != 0)
-    {
+    } else if (POTCRATE_TEXTURES_MATCH_CONTENTS == PTMC_CONTENTS && crate_override.key.all != 0) {
         uint16_t item_id = resolve_upgrades(crate_override.value.item_id);
         item_row_t *row = get_item_row(crate_override.value.looks_like_item_id);
         if (row == NULL) {
             row = get_item_row(crate_override.value.item_id);
         }
-        if (row->chest_type == GILDED_CHEST)
-        {
+        if (row->chest_type == GILDED_CHEST) {
             texture = get_texture(TEXTURE_ID_CRATE_GOLD);
-            //palette = get_texture(TEXTURE_ID_CRATE_PALETTE_GOLD);
-            //top_texture = get_texture(TEXTURE_ID_CRATE_TOP_GOLD);
-            //side_texture = get_texture(TEXTURE_ID_CRATE_SIDE_GOLD);
-        }
-        else if (row->chest_type == SILVER_CHEST)
-        {
+        } else if (row->chest_type == SILVER_CHEST) {
             texture = get_texture(TEXTURE_ID_CRATE_KEY);
-            //palette = get_texture(TEXTURE_ID_CRATE_PALETTE_KEY);
-            //top_texture = get_texture(TEXTURE_ID_CRATE_TOP_KEY);
-            //side_texture = get_texture(TEXTURE_ID_CRATE_SIDE_KEY);
-        }
-        else if (row->chest_type == GOLD_CHEST)
-        {
+        } else if (row->chest_type == GOLD_CHEST) {
             texture = get_texture(TEXTURE_ID_CRATE_BOSSKEY);
-            //palette = get_texture(TEXTURE_ID_CRATE_PALETTE_BOSSKEY);
-            //top_texture = get_texture(TEXTURE_ID_CRATE_TOP_BOSSKEY);
-            //side_texture = get_texture(TEXTURE_ID_CRATE_SIDE_BOSSKEY);
-        }
-        else if (row->chest_type == SKULL_CHEST_SMALL || row->chest_type == SKULL_CHEST_BIG)
-        {
+        } else if (row->chest_type == SKULL_CHEST_SMALL || row->chest_type == SKULL_CHEST_BIG) {
             texture = get_texture(TEXTURE_ID_CRATE_SKULL);
-            //palette = get_texture(TEXTURE_ID_CRATE_PALETTE_SKULL);
-            //top_texture = get_texture(TEXTURE_ID_CRATE_TOP_SKULL);
-            //side_texture = get_texture(TEXTURE_ID_CRATE_SIDE_SKULL);
         }
     }
 

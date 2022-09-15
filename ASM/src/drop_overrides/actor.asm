@@ -4,5 +4,5 @@ Actor_SetWorldToHome_Hook:
     jal     Actor_SetWorldToHome_End
     nop
     lw      ra, 0x1C (sp)
-    jr ra
+    jr      ra
     addiu   sp, sp, 0x20

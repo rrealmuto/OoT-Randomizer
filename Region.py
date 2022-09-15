@@ -87,7 +87,7 @@ class Region(object):
             for dungeon in item.world.dungeons:
                 if item.world.empty_dungeons[dungeon.name].empty and dungeon.is_dungeon_item(item):
                     return False
-        
+
         from Hints import HintArea
 
         is_self_dungeon_restricted = False
@@ -132,11 +132,11 @@ class Region(object):
 
 
     def get_scene(self):
-        if self.scene: 
+        if self.scene:
             return self.scene
         elif self.dungeon:
             return self.dungeon.name
-        else: 
+        else:
             return None
 
 

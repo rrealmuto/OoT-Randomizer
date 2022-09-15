@@ -174,7 +174,7 @@
             "Dodongos Cavern MQ Poes Room Crate 5": "can_break_crate or Progressive_Strength_Upgrade",
             "Dodongos Cavern MQ Poes Room Crate 6": "can_break_crate or Progressive_Strength_Upgrade",
             "Dodongos Cavern MQ Poes Room Crate 7": "can_break_crate or Progressive_Strength_Upgrade",
-            "Dodongos Cavern MQ Poes Room Crate Near Bombflower": "
+            "Dodongos Cavern MQ Poes Room Crate Near Bomb Flower": "
                 can_break_crate or Progressive_Strength_Upgrade or can_use(Bow) or can_use(Dins_Fire)",
             "Dodongos Cavern MQ GS Scrub Room": "
                 (here(can_use(Bow)) or Progressive_Strength_Upgrade or
