@@ -156,7 +156,7 @@ PLANDOMIZER_USED:
 ; Any changes made here should be documented in Notes/auto-tracker-ctx.md
 AUTO_TRACKER_CONTEXT:
 AUTO_TRACKER_VERSION:
-.word 2 ; Increment this if the auto-tracker context layout changes
+.word 3 ; Increment this if the auto-tracker context layout changes
 
 CFG_DUNGEON_INFO_ENABLE:
 .word 0
@@ -212,6 +212,10 @@ TRIFORCE_PIECES_REQUIRED:
 
 .area 8, 0x00
 SPECIAL_DEAL_COUNTS:
+.endarea
+
+.area 9 * 0x17, 0x20
+CFG_DUNGEON_REWARD_AREAS:
 .endarea
 
 .align 4

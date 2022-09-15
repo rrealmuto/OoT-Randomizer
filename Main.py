@@ -209,7 +209,7 @@ def make_spoiler(settings, worlds, window=dummy_window()):
         calculate_playthrough_locations(spoiler)
         buildGossipHints(spoiler, worlds)
         window.update_progress(55)
-    elif any(hint_type in settings.misc_hints for hint_type in misc_item_hint_table):
+    elif any(world.dungeon_rewards_hinted for world in worlds) or any(hint_type in settings.misc_hints for hint_type in misc_item_hint_table):
         find_misc_hint_items(spoiler)
     spoiler.build_file_hash()
     return spoiler
@@ -654,8 +654,13 @@ def copy_worlds(worlds):
 def find_misc_hint_items(spoiler):
     search = Search([world.state for world in spoiler.worlds])
     all_locations = [location for world in spoiler.worlds for location in world.get_filled_locations()]
-    for location in search.iter_reachable_locations(all_locations):
+    for location in search.iter_reachable_locations(all_locations[:]):
         search.collect(location.item)
+        # include locations that are reachable but not part of the spoiler log playthrough in misc. item hints
+        maybe_set_misc_item_hints(location)
+        all_locations.remove(location)
+    for location in all_locations:
+        # finally, collect unreachable locations for misc. item hints
         maybe_set_misc_item_hints(location)
 
 
@@ -687,7 +692,7 @@ def create_playthrough(spoiler):
 
     search.checkpoint()
     search.collect_pseudo_starting_items()
-    
+
     while True:
         search.checkpoint()
         # Not collecting while the generator runs means we only get one sphere at a time
@@ -758,7 +763,7 @@ def create_playthrough(spoiler):
     # Regenerate the spheres as we might not reach places the same way anymore.
     search.reset() # search state has no items, okay to reuse sphere 0 cache
     collection_spheres = []
-    collection_spheres.append(list(search.iter_pseudo_starting_locations()))
+    collection_spheres.append(list(filter(lambda loc: loc.item.advancement and loc.item.world.max_progressions[loc.item.name] > 0, search.iter_pseudo_starting_locations())))
     entrance_spheres = []
     remaining_entrances = set(required_entrances)
     collected = set()
@@ -790,8 +795,10 @@ def create_playthrough(spoiler):
     spoiler.playthrough = OrderedDict((str(i), {location: location.item for location in sphere}) for i, sphere in enumerate(collection_spheres))
     # Copy our misc. hint items, since we set them in the world copy
     for w, sw in zip(worlds, spoiler.worlds):
+        # But the actual location saved here may be in a different world
+        for item_name, item_location in w.hinted_dungeon_reward_locations.items():
+            sw.hinted_dungeon_reward_locations[item_name] = spoiler.worlds[item_location.world.id].get_location(item_location.name)
         for hint_type, item_location in w.misc_hint_item_locations.items():
-            # But the actual location saved here may be in a different world
             sw.misc_hint_item_locations[hint_type] = spoiler.worlds[item_location.world.id].get_location(item_location.name)
 
     if worlds[0].entrance_shuffle:
