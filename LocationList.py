@@ -1637,7 +1637,7 @@ location_table = OrderedDict([
     # Spirit Temple Vanilla Pots/Crates
     ("Spirit Temple Lobby Pot 1",                                    ("Collectable",  0x06,  0x21, None,                            'Recovery Heart',                        ("Spirit Temple", "Vanilla", "Pot"))),
     ("Spirit Temple Lobby Pot 2",                                    ("Collectable",  0x06,  0x22, None,                            'Rupees (5)',                            ("Spirit Temple", "Vanilla", "Pot"))),
-    ("Spirit Temple Child Climb Pot",                                ("Collectable",  0x06,  0x23, None,                            'Deku Seeds (5)',                        ("Spirit Temple", "Vanilla", "Pot"))),
+    ("Spirit Temple Child Climb Pot",                                ("Collectable",  0x06,  0x23, None,                            'Deku Seeds (30)',                        ("Spirit Temple", "Vanilla", "Pot"))),
    #("Spirit Temple Statue Room Pot 1",                              ("Collectable",  0x06,  0x24, None,                             'Recovery Heart'                        ("Spirit Temple", "Vanilla", "Pot"))),
    #("Spirit Temple Statue Room Pot 2",                              ("Collectable",  0x06,  0x25, None,                             'Recovery Heart'                        ("Spirit Temple", "Vanilla", "Pot"))),
    #("Spirit Temple Statue Room Pot 3",                              ("Collectable",  0x06,  0x26, None,                             'Recovery Heart'                        ("Spirit Temple", "Vanilla", "Pot"))),
