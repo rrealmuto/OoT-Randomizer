@@ -1709,6 +1709,7 @@ misc_item_hint_table = {
         'replace': {
             "enter #your pocket#. I will let you have": "check #your pocket#. You will find",
         },
+        'use_alt_hint': False,
     },
     'ganondorf': {
         'id': 0x70CC,
@@ -1721,6 +1722,7 @@ misc_item_hint_table = {
             "from #outside Ganon's Castle#": "from #outside my castle#",
             "from #Ganondorf's Chamber#": "from #those pots over there#",
         },
+        'use_alt_hint': True,
     },
 }
 
