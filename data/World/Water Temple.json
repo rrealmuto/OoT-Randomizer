@@ -3,13 +3,13 @@
         "region_name": "Water Temple Lobby",
         "dungeon": "Water Temple",
         "events": {
+            # Child can access only falling platform room and L2 pots as the sole entrant into the temple
+            # Use Child_Water_Temple for cases where child assists after the water is lowered
             "Child Water Temple": "is_child",
-                # Child can access only falling platform room and L2 pots as the sole entrant into the temple
-                # Use Child_Water_Temple for cases where child assists after the water is lowered
+            # Use Raise_Water_Level to ensure the water level can be raised if it were to be lowered.
             "Raise Water Level": "
                 (is_adult and (Hookshot or Hover_Boots or Bow)) or
                 (has_fire_source_with_torch and can_use_projectile)"
-                # Use to ensure the water level can be raised if it were to be lowered.
         },
         "locations": {
             "Water Temple Main Room L2 Pot 1": "
@@ -137,9 +137,9 @@
         "locations": {
             "Water Temple North Basement Block Puzzle Pot 1": "True",
             "Water Temple North Basement Block Puzzle Pot 2": "True",
+            # Longshot reaches without the need to actually go near
+            # Otherwise you have Hovers and can you hover over and collect with a jumpslash
             "Water Temple GS Near Boss Key Chest": "True"
-                # Longshot reaches without the need to actually go near
-                # Otherwise you have Hovers and can you hover over and collect with a jumpslash
         },
         "exits": {
             "Water Temple Boss Key Chest Room": "
