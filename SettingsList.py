@@ -1669,8 +1669,7 @@ logic_tricks = {
                     Removes the requirements for the Lens of Truth
                     in Spirit Temple.
                     '''},
-    }
-
+}
 
 
 # a list of the possible settings
@@ -3124,14 +3123,14 @@ setting_infos = [
         shared         = True,
     ),
     Combobox(
-        name = 'shuffle_freestanding_items',
-        gui_text = 'Rupee & Heart Shuffle',
-        default = 'off',
-        choices = {
-            'off': 'Off',
-            'all': 'All',
-            'overworld' : 'Overworld Only',
-            'dungeons' : 'Dungeons Only'
+        name           = 'shuffle_freestanding_items',
+        gui_text       = 'Rupee & Heart Shuffle',
+        default        = 'off',
+        choices        = {
+            'off':       'Off',
+            'all':       'All',
+            'overworld': 'Overworld Only',
+            'dungeons':  'Dungeons Only',
         },
         gui_tooltip    = '''\
             Shuffles freestanding rupees and recovery hearts, also shuffles:
@@ -3149,14 +3148,14 @@ setting_infos = [
         shared         = True,
     ),
     Combobox(
-        name = 'shuffle_pots',
-        gui_text = 'Pot Shuffle',
-        default = 'off',
-        choices = {
-            'off': 'Off',
-            'all': 'All',
-            'overworld' : 'Overworld Only',
-            'dungeons' : 'Dungeons Only'
+        name           = 'shuffle_pots',
+        gui_text       = 'Pot Shuffle',
+        default        = 'off',
+        choices        = {
+            'off':       'Off',
+            'all':       'All',
+            'overworld': 'Overworld Only',
+            'dungeons':  'Dungeons Only',
         },
         gui_tooltip    = '''\
             Shuffles pots, flying pots into the location pool.
@@ -3166,7 +3165,7 @@ setting_infos = [
             Overworld Only: Only overworld pots/flying pots are shuffled.
             Dungeons Only: Only dungeon pots/flying pots are shuffled.
 
-            Note: Only pots which normally drop an item are shuffled. 
+            Note: Only pots which normally drop an item are shuffled.
             Empty pots are not shuffled. Pots containing fairies are not shuffled.
 
             When this setting is enabled, the pots in Ganon's Tower will be
@@ -3179,14 +3178,14 @@ setting_infos = [
         shared         = True,
     ),
     Combobox(
-        name = 'shuffle_crates',
-        gui_text = 'Crate Shuffle',
-        default = 'off',
-        choices = {
-            'off': 'Off',
-            'all': 'All',
-            'overworld' : 'Overworld Only',
-            'dungeons' : 'Dungeons Only'
+        name           = 'shuffle_crates',
+        gui_text       = 'Crate Shuffle',
+        default        = 'off',
+        choices        = {
+            'off':       'Off',
+            'all':       'All',
+            'overworld': 'Overworld Only',
+            'dungeons':  'Dungeons Only',
         },
         gui_tooltip    = '''\
             Shuffles large and small crates into the location pool.
@@ -3203,7 +3202,6 @@ setting_infos = [
         },
         shared         = True,
     ),
-    
     Checkbutton(
         name           = 'shuffle_cows',
         gui_text       = 'Shuffle Cows',
@@ -4578,9 +4576,9 @@ setting_infos = [
         gui_text       = 'Pot & Crate Appearance Matches Contents',
         default        = 'off',
         choices        = {
-            'off': 'Off',
-            'textures_content': 'Texture (Match Content)',
-            'textures_unchecked' : 'Texture (Unchecked)',
+            'off':                'Off',
+            'textures_content':   'Texture (Match Content)',
+            'textures_unchecked': 'Texture (Unchecked)',
         },
         gui_tooltip    = '''\
             If enabled, pot/crate textures will reflect its contents.
@@ -4588,15 +4586,15 @@ setting_infos = [
             Off - Pot and crates will appear as vanilla
 
             Texture (Match Content) - Pot and crate textures will reflect the contents.
-            Golden Pots/crates will contain major items. 
+            Golden Pots/crates will contain major items.
             Pots/crates with keys on them will contain small keys.
-            Pots/crates containing boss keys will use a variation of the boss key crate texture. 
+            Pots/crates containing boss keys will use a variation of the boss key crate texture.
             Pots/crates with a spider web on them contain Gold Skulltula tokens.
             All other items will use the original texture.
             The texture will revert to the original texture once the item is collected.
-            
-            Texture (Unchecked) - All pots/crates containing shuffled items 
-            will appear with a golden texture. The texture will revert to the 
+
+            Texture (Unchecked) - All pots/crates containing shuffled items
+            will appear with a golden texture. The texture will revert to the
             original texture once the item is collected.
         ''',
         shared         = True,

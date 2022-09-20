@@ -28,6 +28,7 @@
             "Deku Tree Boss Door": "True"
         }
     },
+
     {
         "region_name": "Dodongos Cavern Boss Door",
         "scene": "Dodongos Cavern",
@@ -54,6 +55,7 @@
             "Dodongos Cavern Boss Door": "True"
         }
     },
+
     {
         "region_name": "Jabu Jabus Belly Boss Door",
         "scene": "Jabu Jabus Belly",
@@ -79,6 +81,7 @@
             "Jabu Jabus Belly Boss Door": "False"
         }
     },
+
     {
         "region_name": "Forest Temple Boss Door",
         "scene": "Forest Temple",
@@ -100,6 +103,7 @@
             "Forest Temple Boss Door": "False"
         }
     },
+
     {
         "region_name": "Fire Temple Boss Door",
         "scene": "Fire Temple",
@@ -141,6 +145,7 @@
             "Water Temple Boss Door": "False"
         }
     },
+
     {
         "region_name": "Shadow Temple Boss Door",
         "scene": "Shadow Temple",
@@ -166,6 +171,7 @@
             "Shadow Temple Boss Door": "False"
         }
     },
+
     {
         "region_name": "Spirit Temple Boss Door",
         "scene": "Spirit Temple",

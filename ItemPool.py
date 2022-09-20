@@ -1,15 +1,8 @@
 import random
-from collections import OrderedDict
 from decimal import Decimal, ROUND_UP
-from itertools import chain
-from Location import DisableType, Location
-from Utils import random_choices
-from Item import ItemFactory
-from ItemList import item_table
-from LocationList import location_groups
-from decimal import Decimal, ROUND_HALF_UP
 
 from Item import ItemFactory, ItemInfo
+from Location import DisableType, Location
 from Utils import random_choices
 
 
@@ -548,7 +541,7 @@ def get_pool_core(world):
             else:
                 shuffle_item = False
                 location.disabled = DisableType.DISABLED
-        
+
         # Crates
         elif location.type == 'Collectable' and ('Crate' in location.filter_tags or 'SmallCrate' in location.filter_tags):
             if world.settings.shuffle_crates == 'all':
@@ -776,7 +769,7 @@ def get_pool_core(world):
 
     return pool, placed_items
 
-def is_freestanding_or_potcrate_or_beehive_location(location : Location):
+def is_freestanding_or_potcrate_or_beehive_location(location: Location):
     if 'Pot' in location.filter_tags:
         return True
     if 'Crate' in location.filter_tags:

@@ -18,9 +18,8 @@ from Item import ItemInfo
 from ItemPool import remove_junk_items, remove_junk_ludicrous_items, ludicrous_items_base, ludicrous_items_extended, trade_items, ludicrous_exclusions
 from LocationList import location_is_viewable
 from Main import main, resolve_settings, build_world_graphs
+from Messages import Message
 from Settings import Settings, get_preset_files
-from Messages import Message, read_messages
-from Rom import Rom
 
 test_dir = os.path.join(os.path.dirname(__file__), 'tests')
 output_dir = os.path.join(test_dir, 'Output')
@@ -293,7 +292,7 @@ class TestPlandomizer(unittest.TestCase):
             "plando-potscrates-nomq",
             "plando-potscrates-allmq",
             "plando-beehives",
-            "plando-freestanding-pots-crates-beehives-triforcehunt"
+            "plando-freestanding-pots-crates-beehives-triforcehunt",
         ]
         for filename in filenames:
             with self.subTest(filename):
@@ -592,17 +591,15 @@ class TestHints(unittest.TestCase):
         filename = "those_pots_over_there"
         # Ganondorf should say "those pots over there" when light arrows are in a pot below
         _, spoiler = generate_with_plandomizer(filename, live_copy=True)
-                
         world = spoiler.worlds[0]
         location = spoiler.worlds[0].misc_hint_item_locations["ganondorf"]
         area = HintArea.at(location, use_alt_hint=True).text(world.settings.clearer_hints, world=None if location.world.id == world.id else location.world.id + 1)
         self.assertEqual(area, "#Ganondorf's Chamber#")
-        #messages = read_messages(Rom)
-        #Build a test message with the same ID as the ganondorf hint (0x70CC)
-        messages = [ Message("Test", 0, 0x70CC, 0,0,0) ]
+        # Build a test message with the same ID as the ganondorf hint (0x70CC)
+        messages = [Message("Test", 0, 0x70CC, 0,0,0)]
         buildMiscItemHints(spoiler.worlds[0], messages)
         for message in messages:
-            if(message.id == 0x70CC): #Ganondorf hint message
+            if(message.id == 0x70CC): # Ganondorf hint message
                 self.assertTrue("thosepotsoverthere" in message.text.replace('\n', '').replace(' ', ''))
 
 class TestEntranceRandomizer(unittest.TestCase):

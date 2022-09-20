@@ -26,7 +26,7 @@
         "dungeon": "Gerudo Training Ground",
         "locations": {
             "Gerudo Training Ground MQ Dinolfos Chest": "is_adult",
-            # In the Dinalfos, room shoot the Gerudo symbol above the door to the lava room.
+            # In the Dinalfos room, shoot the Gerudo symbol above the door to the lava room.
             "Wall Fairy": "has_bottle and can_use(Bow)"
         },
         "exits": {

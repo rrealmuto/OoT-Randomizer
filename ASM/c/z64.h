@@ -23,12 +23,11 @@
 
 #define Z64_ETAB_LENGTH       0x0614
 
-
 #define NA_BGM_SMALL_ITEM_GET 0x39
-#define NA_SE_SY_GET_RUPY 0x4803
-#define NA_SE_SY_GET_ITEM 0x4824
+#define NA_SE_SY_GET_RUPY     0x4803
+#define NA_SE_SY_GET_ITEM     0x4824
 
-#define OFFSETOF(structure, member) ((size_t)&(((structure*)0)->member))
+#define OFFSETOF(structure, member) ((size_t)&(((structure *)0)->member))
 
 typedef struct
 {
@@ -36,8 +35,6 @@ typedef struct
   int16_t y;
   int16_t z;
 } z64_xyz_t;
-
-
 
 typedef struct
 {
@@ -386,22 +383,21 @@ typedef struct
                                     /* 0x0FBC */
 } z64_gameinfo_t;
 
-typedef struct 
+typedef struct
 {
   /* data */
-  uint8_t unk_00_[0x1C9EE];  /* 0x0000 */
-  uint16_t deaths[3];       /* 0x1C9EE */
-  char fileNames[3][8];     /* 0x1C9F4 */
-  uint16_t healthCapacities[3]; /* 0x1CA0C */
-  uint32_t questItems[3];  /* 0x1CA14 */
-  int16_t n64ddFlags[3];   /* 0x1CA20 */
-  int8_t defense[3];      /* 0x1CA26 */
-  uint8_t unk_01_[0x0F];    /* 0x1CA29 */
-  int16_t selectedFileIndex; /* 0x1CA38 */
-  uint8_t unk_02_[0x16];       /* 0x1CA3A */
-  int16_t copyDestFileIndex;     /* 0x1CA50 */
+  uint8_t   unk_00_[0x1C9EE];     /* 0x0000 */
+  uint16_t  deaths[3];            /* 0x1C9EE */
+  char      fileNames[3][8];      /* 0x1C9F4 */
+  uint16_t  healthCapacities[3];  /* 0x1CA0C */
+  uint32_t  questItems[3];        /* 0x1CA14 */
+  int16_t   n64ddFlags[3];        /* 0x1CA20 */
+  int8_t    defense[3];           /* 0x1CA26 */
+  uint8_t   unk_01_[0x0F];        /* 0x1CA29 */
+  int16_t   selectedFileIndex;    /* 0x1CA38 */
+  uint8_t   unk_02_[0x16];        /* 0x1CA3A */
+  int16_t   copyDestFileIndex;    /* 0x1CA50 */
 } z64_FileChooseContext_t;
-
 
 typedef struct
 {
@@ -637,9 +633,8 @@ typedef struct
 } z64_file_t;
 
 typedef struct {
-    /* 0x00 */ uint8_t* readBuff;
+  uint8_t *readBuff;  /* 0x00 */
 } SramContext; // size = 0x4
-
 
 typedef struct {
   uint8_t data[0xBA8];
@@ -650,20 +645,17 @@ typedef struct {
   extended_save_data_t additional_save_data;
 } extended_sram_file_t;
 
-
 typedef struct
 {
-    uint8_t       sound_options;            /* 0x0000 */
-    uint8_t       z_target_options;         /* 0x0001 */
-    uint8_t       language_options;         /* 0x0002 */
-    char          verification_string[9];   /* 0x0003 */
-    char          unk_00_[0x0014];          /* 0x000C */
-    extended_sram_file_t    primary_saves[2];         /* 0x0020 */
-    extended_sram_file_t    backup_saves[2];          /* 0x3D10 */
-                                            /* 0x7A00 */
+    uint8_t               sound_options;           /* 0x0000 */
+    uint8_t               z_target_options;        /* 0x0001 */
+    uint8_t               language_options;        /* 0x0002 */
+    char                  verification_string[9];  /* 0x0003 */
+    char                  unk_00_[0x0014];         /* 0x000C */
+    extended_sram_file_t  primary_saves[2];        /* 0x0020 */
+    extended_sram_file_t  backup_saves[2];         /* 0x3D10 */
+                                                   /* 0x7A00 */
 } z64_sram_data_t;
-
-
 
 typedef struct
 {
@@ -839,7 +831,6 @@ struct z64_actor_s
                                     /* 0x013C */
 };
 
-
 typedef struct
 {
   z64_actor_t  common;               /* 0x0000 */
@@ -867,17 +858,16 @@ typedef struct
                                      /* 0x0888 */
 } z64_link_t;
 
-
 typedef struct DynaPolyActor {
-    /* 0x000 */ z64_actor_t actor;
-    /* 0x14C */ int32_t bgId;
-    /* 0x150 */ float unk_150;
-    /* 0x154 */ float unk_154;
-    /* 0x158 */ int16_t unk_158; // y rotation?
-    /* 0x15A */ uint16_t unk_15A;
-    /* 0x15C */ uint32_t unk_15C;
-    /* 0x160 */ uint8_t unk_160;
-    /* 0x162 */ int16_t unk_162;
+  z64_actor_t  actor;    /* 0x000 */
+  int32_t      bgId;     /* 0x14C */
+  float        unk_150;  /* 0x150 */
+  float        unk_154;  /* 0x154 */
+  int16_t      unk_158;  /* 0x158 */  // y rotation?
+  uint16_t     unk_15A;  /* 0x15A */
+  uint32_t     unk_15C;  /* 0x15C */
+  uint8_t      unk_160;  /* 0x160 */
+  int16_t      unk_162;  /* 0x162 */
 } DynaPolyActor; // size = 0x164
 
 typedef struct
@@ -1332,18 +1322,18 @@ typedef struct
 
 struct EnItem00;
 
-typedef void(*EnItem00ActionFunc)(struct EnItem00*, z64_game_t*);
+typedef void(*EnItem00ActionFunc)(struct EnItem00 *, z64_game_t *);
 
 typedef struct EnItem00 {
-	z64_actor_t actor;
-	EnItem00ActionFunc actionFunc;
-	uint16_t collectibleFlag;
-	uint16_t getItemId;
-	uint16_t unk_154;
-	uint16_t unk_156;
-	uint16_t unk_158;
-	uint16_t timeToLive; //0x15A
-	float scale;
+  z64_actor_t actor;
+  EnItem00ActionFunc actionFunc;
+  uint16_t collectibleFlag;
+  uint16_t getItemId;
+  uint16_t unk_154;
+  uint16_t unk_156;
+  uint16_t unk_158;
+  uint16_t timeToLive; //0x15A
+  float scale;
 } EnItem00;
 
 typedef enum {
@@ -1374,6 +1364,7 @@ typedef enum {
     /* 0x18 */ ITEM00_TUNIC_GORON,
     /* 0x19 */ ITEM00_BOMBS_SPECIAL
 } Item00Type;
+
 typedef enum {
     /* 0x00 */ SLOT_STICK,
     /* 0x01 */ SLOT_NUT,
@@ -1684,12 +1675,12 @@ typedef struct EnGSwitch
 #define z64_ctxt_game_size                      0x00012518
 
 /* function prototypes */
-typedef void(*z64_EnItem00ActionFunc)(struct EnItem00*, z64_game_t*);
-typedef void(*z64_ActorKillFunc)(z64_actor_t*);
-typedef uint8_t(*z64_Message_GetStateFunc)(uint8_t*);
-typedef void(*z64_Flags_SetCollectibleFunc)(z64_game_t* game, uint32_t flag);
-typedef int32_t (*z64_Flags_GetCollectibleFunc)(z64_game_t* game, uint32_t flag);
-typedef void(*z64_Audio_PlaySoundGeneralFunc)(uint16_t sfxId, void* pos, uint8_t token, float* freqScale, float* a4, uint8_t* reverbAdd);
+typedef void(*z64_EnItem00ActionFunc)(struct EnItem00 *, z64_game_t *);
+typedef void(*z64_ActorKillFunc)(z64_actor_t *);
+typedef uint8_t(*z64_Message_GetStateFunc)(uint8_t *);
+typedef void(*z64_Flags_SetCollectibleFunc)(z64_game_t *game, uint32_t flag);
+typedef int32_t (*z64_Flags_GetCollectibleFunc)(z64_game_t *game, uint32_t flag);
+typedef void(*z64_Audio_PlaySoundGeneralFunc)(uint16_t sfxId, void *pos, uint8_t token, float *freqScale, float *a4, uint8_t *reverbAdd);
 typedef void(*z64_Audio_PlayFanFareFunc)(uint16_t);
 typedef void (*z64_DrawActors_proc)       (z64_game_t *game, void *actor_ctxt);
 typedef void (*z64_DeleteActor_proc)      (z64_game_t *game, void *actor_ctxt,
@@ -1713,16 +1704,15 @@ typedef void (*z64_DisplayTextbox_proc)   (z64_game_t *game, uint16_t text_id,
                                            int unknown_);
 typedef void (*z64_GiveItem_proc)         (z64_game_t *game, uint8_t item);
 
-
 typedef void(*z64_LinkDamage_proc)        (z64_game_t *ctxt, z64_link_t *link,
                                            uint8_t damage_type, float unk_00, uint32_t unk_01,
                                            uint16_t unk_02);
 typedef void(*z64_LinkInvincibility_proc) (z64_link_t *link, uint8_t frames);
 typedef float *(*z64_GetMatrixStackTop_proc)();
-typedef void (*SsSram_ReadWrite_proc)(uint32_t addr, void* dramAddr, size_t size, uint32_t direction);
-typedef void* (*z64_memcopy_proc)(void* dest, void* src, uint32_t size);
-typedef void (*z64_bzero_proc)(void* __s, uint32_t __n);
-typedef EnItem00* (*z64_Item_DropCollectible_proc)(z64_game_t* globalCtx, z64_xyzf_t* spawnPos, int16_t params);
+typedef void (*SsSram_ReadWrite_proc)(uint32_t addr, void *dramAddr, size_t size, uint32_t direction);
+typedef void *(*z64_memcopy_proc)(void *dest, void *src, uint32_t size);
+typedef void (*z64_bzero_proc)(void *__s, uint32_t __n);
+typedef EnItem00 *(*z64_Item_DropCollectible_proc)(z64_game_t *globalCtx, z64_xyzf_t *spawnPos, int16_t params);
 typedef void (*z64_Gfx_DrawDListOpa_proc)(z64_game_t *game, z64_gfx_t *dlist);
 typedef float (*z64_Math_SinS_proc)(int16_t angle);
 
@@ -1732,7 +1722,6 @@ typedef int32_t(*z64_ObjectIndex_proc)    (z64_obj_ctxt_t *object_ctx, int16_t o
 typedef int32_t(*z64_ActorSetLinkIncomingItemId_proc) (z64_actor_t *actor, z64_game_t *game,
                                                        int32_t get_item_id, float xz_range, float y_range);
 typedef float (*z64_Rand_ZeroOne_proc)();
-
 
 /* data */
 #define z64_file_mq             (*(OSMesgQueue*)      z64_file_mq_addr)
@@ -1768,7 +1757,6 @@ typedef float (*z64_Rand_ZeroOne_proc)();
 #define z64_Audio_PlaySoundGeneral  ((z64_Audio_PlaySoundGeneralFunc)z64_Audio_PlaySoundGeneral_addr)
 #define z64_Audio_PlayFanFare       ((z64_Audio_PlayFanFareFunc)z64_Audio_PlayFanFare_addr)
 
-
 #define z64_osSendMesg          ((osSendMesg_t)       z64_osSendMesg_addr)
 #define z64_osRecvMesg          ((osRecvMesg_t)       z64_osRecvMesg_addr)
 #define z64_osCreateMesgQueue   ((osCreateMesgQueue_t)                        \
@@ -1790,6 +1778,7 @@ typedef float (*z64_Rand_ZeroOne_proc)();
 #define z64_DisplayTextbox      ((z64_DisplayTextbox_proc)                    \
                                                       z64_DisplayTextbox_addr)
 #define z64_GiveItem            ((z64_GiveItem_proc)  z64_GiveItem_addr)
+
 #define z64_LinkDamage          ((z64_LinkDamage_proc)z64_LinkDamage_addr)
 #define z64_LinkInvincibility   ((z64_LinkInvincibility_proc)                 \
                                                       z64_LinkInvincibility_addr)
