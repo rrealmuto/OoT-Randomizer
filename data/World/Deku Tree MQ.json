@@ -17,14 +17,14 @@
                 ((Slingshot or Boomerang) and can_break_crate)",
             "Deku Baba Sticks": "is_adult or Kokiri_Sword or Boomerang",
             "Deku Baba Nuts": "
-                is_adult or Slingshot or Sticks or 
+                is_adult or Slingshot or Sticks or
                 has_explosives or Kokiri_Sword or can_use(Dins_Fire)"
         },
         "exits": {
             "KF Outside Deku Tree": "True",
             "Deku Tree Near Compass Room": "here(has_fire_source_with_torch or can_use(Bow))",
             "Deku Tree Basement Water Room Front": "
-                 here(can_use(Slingshot) or can_use(Bow)) and here(has_fire_source_with_torch)",
+                here(can_use(Slingshot) or can_use(Bow)) and here(has_fire_source_with_torch)",
             "Deku Tree Basement Ledge": "deku_tree_shortcuts or here(is_adult) or logic_deku_b1_skip"
         }
     },

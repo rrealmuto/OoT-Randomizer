@@ -106,7 +106,7 @@
         },
         "exits": {
             "Forest Temple NE Outdoors": "
-                can_use(Iron_Boots) or can_use(Longshot) or 
+                can_use(Iron_Boots) or can_use(Longshot) or
                 (Progressive_Scale, 2) or (logic_forest_well_swim and can_use(Hookshot))",
             "Forest Temple Outdoors High Balconies": "can_use(Fire_Arrows)"
         }
@@ -127,13 +127,13 @@
                 (can_use(Iron_Boots) and can_use(Hookshot)) or can_use(Bow) or can_use(Slingshot)",
             "Deku Baba Sticks": "is_adult or Kokiri_Sword or Boomerang",
             "Deku Baba Nuts": "
-                is_adult or Slingshot or Sticks or 
+                is_adult or Slingshot or Sticks or
                 has_explosives or Kokiri_Sword or can_use(Dins_Fire)"
         },
         "exits": {
             "Forest Temple Outdoors High Balconies": "
                 can_use(Hookshot) and 
-                (can_use(Longshot) or can_use(Hover_Boots) or can_play(Song_of_Time) or 
+                (can_use(Longshot) or can_use(Hover_Boots) or can_play(Song_of_Time) or
                     logic_forest_vines)",
             "Forest Temple NE Outdoors Ledge": "can_use(Longshot)"
         }
