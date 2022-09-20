@@ -516,13 +516,13 @@ def get_pool_core(world):
         elif location.type == 'ActorOverride' or (location.type == 'Collectable' and ('Freestanding' in location.filter_tags or 'RupeeTower' in location.filter_tags)):
             if world.settings.shuffle_freestanding_items == 'all':
                 shuffle_item = True
-                item = get_new_junk()
+                #item = get_new_junk()
             elif world.settings.shuffle_freestanding_items == 'dungeons' and location.dungeon is not None:
                 shuffle_item = True
-                item = get_new_junk()
+                #item = get_new_junk()
             elif world.settings.shuffle_freestanding_items == 'overworld' and location.dungeon is None:
                 shuffle_item = True
-                item = get_new_junk()
+                #item = get_new_junk()
             else:
                 shuffle_item = False
                 location.disabled = DisableType.DISABLED
@@ -531,13 +531,13 @@ def get_pool_core(world):
         elif location.type == 'Collectable' and ('Pot' in location.filter_tags or 'FlyingPot' in location.filter_tags):
             if world.settings.shuffle_pots == 'all':
                 shuffle_item = True
-                item = get_new_junk()
+                #item = get_new_junk()
             elif world.settings.shuffle_pots == 'dungeons' and location.dungeon is not None:
                 shuffle_item = True
-                item = get_new_junk()
+                #item = get_new_junk()
             elif world.settings.shuffle_pots == 'overworld' and location.dungeon is None:
                 shuffle_item = True
-                item = get_new_junk()
+                #item = get_new_junk()
             else:
                 shuffle_item = False
                 location.disabled = DisableType.DISABLED
@@ -546,13 +546,13 @@ def get_pool_core(world):
         elif location.type == 'Collectable' and ('Crate' in location.filter_tags or 'SmallCrate' in location.filter_tags):
             if world.settings.shuffle_crates == 'all':
                 shuffle_item = True
-                item = get_new_junk()
+                #item = get_new_junk()
             elif world.settings.shuffle_crates == 'dungeons' and location.dungeon is not None:
                 shuffle_item = True
-                item = get_new_junk()
+                #item = get_new_junk()
             elif world.settings.shuffle_crates == 'overworld' and location.dungeon is None:
                 shuffle_item = True
-                item = get_new_junk()
+                #item = get_new_junk()
             else:
                 shuffle_item = False
                 location.disabled = DisableType.DISABLED
@@ -561,7 +561,7 @@ def get_pool_core(world):
         elif location.type == 'Collectable' and 'Beehive' in location.filter_tags:
             if world.settings.shuffle_beehives:
                 shuffle_item = True
-                item = get_new_junk()
+                #item = get_new_junk()
             else:
                 shuffle_item = False
                 location.disabled = DisableType.DISABLED

@@ -604,7 +604,7 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
         PLAYER_NAME_ID = player;
 
         // If it's a junk item (aka a regular collectible) don't do the fanfare music/message box.
-        if (item_row->collectible > 0) { // Item is one of our base collectibles
+        if (item_row->collectible >= 0) { // Item is one of our base collectibles
             collectible_mutex = NULL;
             pItem->actor.health = 1;
             z64_GiveItem(&z64_game, item_row->action_id);
