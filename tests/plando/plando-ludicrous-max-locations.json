@@ -1,7 +1,7 @@
 {
   "settings": {
     "item_pool_value":                         "ludicrous",
-    "skip_child_zelda":                        false,
+    "shuffle_child_trade":                     "vanilla",
     "open_deku":                               false,
     "open_forest":                             true,
     "require_gohma":                           false,

@@ -221,10 +221,10 @@
             "shopsanity_prices",
             "tokensanity",
             "shuffle_scrubs",
+            "shuffle_child_trade",
             "shuffle_cows",
             "shuffle_kokiri_sword",
             "shuffle_ocarinas",
-            "shuffle_weird_egg",
             "shuffle_gerudo_card",
             "shuffle_beans",
             "shuffle_medigoron_carpet_salesman",
@@ -343,7 +343,6 @@
           "text": "Timesavers",
           "row_span": [1,1,1],
           "settings": [
-            "skip_child_zelda",
             "no_escape_sequence",
             "no_guard_stealth",
             "no_epona_race",
@@ -391,8 +390,7 @@
             "item_pool_value",
             "junk_ice_traps",
             "ice_trap_appearance",
-            "logic_earliest_adult_trade",
-            "logic_latest_adult_trade"
+            "adult_trade_start"
           ]
         }
       ]

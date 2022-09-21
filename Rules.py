@@ -48,7 +48,7 @@ def set_rules(world):
         else:
             add_item_rule(location, lambda location, item: item.type != 'Shop')
 
-        if world.settings.skip_child_zelda and location.name == 'Song from Impa':
+        if world.settings.shuffle_child_trade == 'skip_child_zelda' and location.name == 'Song from Impa':
             if world.settings.triforce_hunt and world.total_starting_triforce_count >= world.triforce_goal - world.settings.world_count:
                 # We have enough starting Triforce pieces that putting a piece on every world's Song from Impa would hit the goal count
                 # and render the game unbeatable, so for simplicity's sake we forbid putting pieces on any world's Song from Impa.

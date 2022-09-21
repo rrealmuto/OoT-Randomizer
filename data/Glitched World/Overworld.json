@@ -8,7 +8,7 @@
         },
         "exits": {
             "Root Exits": "is_starting_age or Time_Travel",
-            "HC Garden Locations": "skip_child_zelda"
+            "HC Garden Locations": "shuffle_child_trade == 'skip_child_zelda'"
         }
     },
     {
@@ -454,7 +454,7 @@
         "exits": {
             "Market": "True",
             #// garden will logically need weird-egg as letter first can screw over the mask quest
-            "HC Garden": "Weird_Egg or skip_child_zelda or (not shuffle_weird_egg)",
+            "HC Garden": "Weird_Egg",
             "HC Great Fairy Fountain": "True",
             "HC Storms Grotto": "can_play(Song_of_Storms)"
         }

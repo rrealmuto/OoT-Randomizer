@@ -27,7 +27,6 @@
     "one_item_per_dungeon": false,
     "trials_random": false,
     "trials": 6,
-    "skip_child_zelda": false,
     "dungeon_shortcuts_choice": "off",
     "dungeon_shortcuts": [],
     "no_escape_sequence": true,
@@ -51,7 +50,7 @@
     "shuffle_base_item_pool": true,
     "shuffle_kokiri_sword": true,
     "shuffle_ocarinas": true,
-    "shuffle_weird_egg": true,
+    "shuffle_child_trade": "shuffle",
     "shuffle_gerudo_card": true,
     "shuffle_song_items": "any",
     "shuffle_cows": true,
@@ -106,8 +105,9 @@
     "empty_dungeons_count": 2,
     "disabled_locations": [],
     "allowed_tricks": [],
-    "logic_earliest_adult_trade": "pocket_egg",
-    "logic_latest_adult_trade": "pocket_egg",
+    "adult_trade_start": [
+      "Pocket Egg"
+    ],
     "starting_equipment": [],
     "starting_items": [],
     "starting_songs": [],
@@ -166,7 +166,6 @@
     "one_item_per_dungeon": false,
     "trials_random": false,
     "trials": 0,
-    "skip_child_zelda": true,
     "dungeon_shortcuts_choice": "all",
     "dungeon_shortcuts": [
       "Deku Tree",
@@ -199,7 +198,7 @@
     "shuffle_base_item_pool": true,
     "shuffle_kokiri_sword": false,
     "shuffle_ocarinas": false,
-    "shuffle_weird_egg": false,
+    "shuffle_child_trade": "skip_child_zelda",
     "shuffle_gerudo_card": false,
     "shuffle_song_items": "song",
     "shuffle_cows": false,
@@ -249,8 +248,9 @@
     "empty_dungeons_count": 2,
     "disabled_locations": [],
     "allowed_tricks": [],
-    "logic_earliest_adult_trade": "claim_check",
-    "logic_latest_adult_trade": "claim_check",
+    "adult_trade_start": [
+      "Claim Check"
+    ],
     "starting_equipment": [
       "kokiri_sword",
       "biggoron_sword",
@@ -376,7 +376,6 @@
     "one_item_per_dungeon": false,
     "trials_random": false,
     "trials": 6,
-    "skip_child_zelda": false,
     "dungeon_shortcuts_choice": "off",
     "dungeon_shortcuts": [],
     "no_escape_sequence": false,
@@ -400,7 +399,7 @@
     "shuffle_base_item_pool": false,
     "shuffle_kokiri_sword": false,
     "shuffle_ocarinas": false,
-    "shuffle_weird_egg": false,
+    "shuffle_child_trade": "vanilla",
     "shuffle_gerudo_card": false,
     "shuffle_song_items": "vanilla",
     "shuffle_cows": false,
@@ -450,8 +449,9 @@
     "empty_dungeons_count": 2,
     "disabled_locations": [],
     "allowed_tricks": [],
-    "logic_earliest_adult_trade": "pocket_egg",
-    "logic_latest_adult_trade": "pocket_egg",
+    "adult_trade_start": [
+      "Pocket Egg"
+    ],
     "starting_equipment": [],
     "starting_items": [],
     "starting_songs": [],
@@ -505,7 +505,6 @@
     "one_item_per_dungeon": false,
     "trials_random": false,
     "trials": 6,
-    "skip_child_zelda": false,
     "dungeon_shortcuts_choice": "off",
     "dungeon_shortcuts": [],
     "no_escape_sequence": true,
@@ -529,7 +528,7 @@
     "shuffle_base_item_pool": false,
     "shuffle_kokiri_sword": false,
     "shuffle_ocarinas": false,
-    "shuffle_weird_egg": false,
+    "shuffle_child_trade": "vanilla",
     "shuffle_gerudo_card": false,
     "shuffle_song_items": "vanilla",
     "shuffle_cows": false,
@@ -579,8 +578,9 @@
     "empty_dungeons_count": 2,
     "disabled_locations": [],
     "allowed_tricks": [],
-    "logic_earliest_adult_trade": "pocket_egg",
-    "logic_latest_adult_trade": "pocket_egg",
+    "adult_trade_start": [
+      "Pocket Egg"
+    ],
     "starting_equipment": [],
     "starting_items": [],
     "starting_songs": [],
@@ -634,7 +634,6 @@
     "one_item_per_dungeon": false,
     "trials_random": false,
     "trials": 0,
-    "skip_child_zelda": true,
     "dungeon_shortcuts_choice": "off",
     "dungeon_shortcuts": [],
     "no_escape_sequence": true,
@@ -658,7 +657,7 @@
     "shuffle_base_item_pool": true,
     "shuffle_kokiri_sword": true,
     "shuffle_ocarinas": false,
-    "shuffle_weird_egg": false,
+    "shuffle_child_trade": "skip_child_zelda",
     "shuffle_gerudo_card": false,
     "shuffle_song_items": "song",
     "shuffle_cows": false,
@@ -734,8 +733,12 @@
       "logic_deku_b1_webs_with_bow",
       "logic_visible_collisions"
     ],
-    "logic_earliest_adult_trade": "prescription",
-    "logic_latest_adult_trade": "claim_check",
+    "adult_trade_start": [
+      "Prescription",
+      "Eyeball Frog",
+      "Eyedrops",
+      "Claim Check"
+    ],
     "starting_equipment": [
       "deku_shield"
     ],
@@ -797,7 +800,6 @@
     "one_item_per_dungeon": false,
     "trials_random": false,
     "trials": 6,
-    "skip_child_zelda": false,
     "dungeon_shortcuts_choice": "off",
     "dungeon_shortcuts": [],
     "no_escape_sequence": false,
@@ -821,7 +823,7 @@
     "shuffle_base_item_pool": true,
     "shuffle_kokiri_sword": true,
     "shuffle_ocarinas": true,
-    "shuffle_weird_egg": false,
+    "shuffle_child_trade": "vanilla",
     "shuffle_gerudo_card": true,
     "shuffle_song_items": "any",
     "shuffle_cows": true,
@@ -1144,8 +1146,9 @@
       "logic_lens_shadow_platform",
       "logic_lens_spirit"
     ],
-    "logic_earliest_adult_trade": "claim_check",
-    "logic_latest_adult_trade": "claim_check",
+    "adult_trade_start": [
+      "Claim Check"
+    ],
     "starting_equipment": [
       "kokiri_sword",
       "wallet"
@@ -1208,7 +1211,6 @@
     "one_item_per_dungeon": false,
     "trials_random": false,
     "trials": 0,
-    "skip_child_zelda": true,
     "dungeon_shortcuts_choice": "off",
     "dungeon_shortcuts": [],
     "no_escape_sequence": true,
@@ -1232,7 +1234,7 @@
     "shuffle_base_item_pool": true,
     "shuffle_kokiri_sword": false,
     "shuffle_ocarinas": false,
-    "shuffle_weird_egg": false,
+    "shuffle_child_trade": "skip_child_zelda",
     "shuffle_gerudo_card": false,
     "shuffle_song_items": "song",
     "shuffle_cows": false,
@@ -1287,8 +1289,12 @@
       "GF HBA 1500 Points"
     ],
     "allowed_tricks": [],
-    "logic_earliest_adult_trade": "prescription",
-    "logic_latest_adult_trade": "claim_check",
+    "adult_trade_start": [
+      "Prescription",
+      "Eyeball Frog",
+      "Eyedrops",
+      "Claim Check"
+    ],
     "starting_equipment": [],
     "starting_items": [],
     "starting_songs": [],
@@ -1347,7 +1353,6 @@
     "one_item_per_dungeon": false,
     "trials_random": false,
     "trials": 0,
-    "skip_child_zelda": true,
     "dungeon_shortcuts_choice": "off",
     "dungeon_shortcuts": [],
     "no_escape_sequence": true,
@@ -1371,7 +1376,7 @@
     "shuffle_base_item_pool": true,
     "shuffle_kokiri_sword": true,
     "shuffle_ocarinas": false,
-    "shuffle_weird_egg": false,
+    "shuffle_child_trade": "skip_child_zelda",
     "shuffle_gerudo_card": false,
     "shuffle_song_items": "song",
     "shuffle_cows": false,
@@ -1440,8 +1445,12 @@
       "logic_lens_bongo",
       "logic_lens_spirit"
     ],
-    "logic_earliest_adult_trade": "prescription",
-    "logic_latest_adult_trade": "claim_check",
+    "adult_trade_start": [
+      "Prescription",
+      "Eyeball Frog",
+      "Eyedrops",
+      "Claim Check"
+    ],
     "starting_equipment": [
       "deku_shield"
     ],
@@ -1503,7 +1512,6 @@
     "one_item_per_dungeon": false,
     "trials_random": false,
     "trials": 0,
-    "skip_child_zelda": true,
     "dungeon_shortcuts_choice": "off",
     "dungeon_shortcuts": [],
     "no_escape_sequence": true,
@@ -1527,7 +1535,7 @@
     "shuffle_base_item_pool": true,
     "shuffle_kokiri_sword": true,
     "shuffle_ocarinas": false,
-    "shuffle_weird_egg": false,
+    "shuffle_child_trade": "skip_child_zelda",
     "shuffle_gerudo_card": false,
     "shuffle_song_items": "song",
     "shuffle_cows": false,
@@ -1596,8 +1604,12 @@
       "logic_lens_bongo",
       "logic_lens_spirit"
     ],
-    "logic_earliest_adult_trade": "prescription",
-    "logic_latest_adult_trade": "claim_check",
+    "adult_trade_start": [
+      "Prescription",
+      "Eyeball Frog",
+      "Eyedrops",
+      "Claim Check"
+    ],
     "starting_equipment": [
       "deku_shield"
     ],
@@ -1661,7 +1673,6 @@
     "one_item_per_dungeon": false,
     "trials_random": false,
     "trials": 0,
-    "skip_child_zelda": false,
     "dungeon_shortcuts_choice": "off",
     "dungeon_shortcuts": [],
     "no_escape_sequence": true,
@@ -1685,7 +1696,7 @@
     "shuffle_base_item_pool": true,
     "shuffle_kokiri_sword": true,
     "shuffle_ocarinas": false,
-    "shuffle_weird_egg": false,
+    "shuffle_child_trade": "vanilla",
     "shuffle_gerudo_card": false,
     "shuffle_song_items": "song",
     "shuffle_cows": false,
@@ -1754,8 +1765,12 @@
       "logic_lens_shadow_platform",
       "logic_lens_spirit"
     ],
-    "logic_earliest_adult_trade": "prescription",
-    "logic_latest_adult_trade": "claim_check",
+    "adult_trade_start": [
+      "Prescription",
+      "Eyeball Frog",
+      "Eyedrops",
+      "Claim Check"
+    ],
     "starting_equipment": [],
     "starting_items": [],
     "starting_songs": [],
@@ -1813,7 +1828,6 @@
     "one_item_per_dungeon": false,
     "trials_random": false,
     "trials": 0,
-    "skip_child_zelda": true,
     "dungeon_shortcuts_choice": "off",
     "dungeon_shortcuts": [],
     "no_escape_sequence": true,
@@ -1837,7 +1851,7 @@
     "shuffle_base_item_pool": true,
     "shuffle_kokiri_sword": true,
     "shuffle_ocarinas": false,
-    "shuffle_weird_egg": false,
+    "shuffle_child_trade": "skip_child_zelda",
     "shuffle_gerudo_card": false,
     "shuffle_song_items": "song",
     "shuffle_cows": false,
@@ -1908,8 +1922,9 @@
       "logic_lens_shadow",
       "logic_lens_spirit"
     ],
-    "logic_earliest_adult_trade": "claim_check",
-    "logic_latest_adult_trade": "claim_check",
+    "adult_trade_start": [
+      "Claim Check"
+    ],
     "starting_equipment": [
       "deku_shield"
     ],
@@ -1974,7 +1989,6 @@
     "one_item_per_dungeon": false,
     "trials_random": false,
     "trials": 0,
-    "skip_child_zelda": true,
     "dungeon_shortcuts_choice": "off",
     "dungeon_shortcuts": [],
     "no_escape_sequence": true,
@@ -1998,7 +2012,7 @@
     "shuffle_base_item_pool": true,
     "shuffle_kokiri_sword": true,
     "shuffle_ocarinas": false,
-    "shuffle_weird_egg": false,
+    "shuffle_child_trade": "skip_child_zelda",
     "shuffle_gerudo_card": false,
     "shuffle_song_items": "song",
     "shuffle_cows": false,
@@ -2070,8 +2084,9 @@
       "logic_lens_spirit",
       "logic_dc_scarecrow_gs"
     ],
-    "logic_earliest_adult_trade": "claim_check",
-    "logic_latest_adult_trade": "claim_check",
+    "adult_trade_start": [
+      "Claim Check"
+    ],
     "starting_equipment": [],
     "starting_items": [
       "ocarina",
@@ -2133,7 +2148,6 @@
     "one_item_per_dungeon": false,
     "trials_random": false,
     "trials": 6,
-    "skip_child_zelda": false,
     "dungeon_shortcuts_choice": "off",
     "dungeon_shortcuts": [],
     "no_escape_sequence": false,
@@ -2157,7 +2171,7 @@
     "shuffle_base_item_pool": true,
     "shuffle_kokiri_sword": true,
     "shuffle_ocarinas": true,
-    "shuffle_weird_egg": true,
+    "shuffle_child_trade": "shuffle",
     "shuffle_gerudo_card": true,
     "shuffle_song_items": "any",
     "shuffle_cows": true,
@@ -2376,8 +2390,9 @@
       "logic_lens_spirit_mq",
       "logic_lens_spirit"
     ],
-    "logic_earliest_adult_trade": "pocket_egg",
-    "logic_latest_adult_trade": "pocket_egg",
+    "adult_trade_start": [
+      "Pocket Egg"
+    ],
     "starting_equipment": [],
     "starting_items": [],
     "starting_songs": [],
@@ -2431,7 +2446,6 @@
     "one_item_per_dungeon": false,
     "trials_random": false,
     "trials": 6,
-    "skip_child_zelda": false,
     "dungeon_shortcuts_choice": "off",
     "dungeon_shortcuts": [],
     "no_escape_sequence": true,
@@ -2455,7 +2469,7 @@
     "shuffle_base_item_pool": true,
     "shuffle_kokiri_sword": true,
     "shuffle_ocarinas": false,
-    "shuffle_weird_egg": false,
+    "shuffle_child_trade": "vanilla",
     "shuffle_gerudo_card": false,
     "shuffle_song_items": "song",
     "shuffle_cows": false,
@@ -2519,8 +2533,12 @@
       "logic_lens_bongo",
       "logic_lens_spirit"
     ],
-    "logic_earliest_adult_trade": "prescription",
-    "logic_latest_adult_trade": "claim_check",
+    "adult_trade_start": [
+      "Prescription",
+      "Eyeball Frog",
+      "Eyedrops",
+      "Claim Check"
+    ],
     "starting_equipment": [],
     "starting_items": [],
     "starting_songs": [],
@@ -2578,7 +2596,6 @@
     "one_item_per_dungeon": false,
     "trials_random": false,
     "trials": 0,
-    "skip_child_zelda": true,
     "dungeon_shortcuts_choice": "off",
     "dungeon_shortcuts": [],
     "no_escape_sequence": true,
@@ -2602,7 +2619,7 @@
     "shuffle_base_item_pool": true,
     "shuffle_kokiri_sword": true,
     "shuffle_ocarinas": false,
-    "shuffle_weird_egg": false,
+    "shuffle_child_trade": "skip_child_zelda",
     "shuffle_gerudo_card": false,
     "shuffle_song_items": "song",
     "shuffle_cows": false,
@@ -2667,8 +2684,12 @@
       "logic_lens_bongo",
       "logic_lens_spirit"
     ],
-    "logic_earliest_adult_trade": "prescription",
-    "logic_latest_adult_trade": "claim_check",
+    "adult_trade_start": [
+      "Prescription",
+      "Eyeball Frog",
+      "Eyedrops",
+      "Claim Check"
+    ],
     "starting_equipment": [
       "deku_shield"
     ],
@@ -2732,7 +2753,6 @@
     "one_item_per_dungeon": false,
     "trials_random": false,
     "trials": 0,
-    "skip_child_zelda": true,
     "dungeon_shortcuts_choice": "off",
     "dungeon_shortcuts": [],
     "no_escape_sequence": true,
@@ -2756,7 +2776,7 @@
     "shuffle_base_item_pool": true,
     "shuffle_kokiri_sword": true,
     "shuffle_ocarinas": false,
-    "shuffle_weird_egg": false,
+    "shuffle_child_trade": "skip_child_zelda",
     "shuffle_gerudo_card": false,
     "shuffle_song_items": "song",
     "shuffle_cows": false,
@@ -2827,8 +2847,12 @@
       "logic_lens_bongo",
       "logic_lens_spirit"
     ],
-    "logic_earliest_adult_trade": "prescription",
-    "logic_latest_adult_trade": "claim_check",
+    "adult_trade_start": [
+      "Prescription",
+      "Eyeball Frog",
+      "Eyedrops",
+      "Claim Check"
+    ],
     "starting_equipment": [],
     "starting_items": [
       "ocarina"

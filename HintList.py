@@ -211,7 +211,7 @@ conditional_always = {
     'Song from Ocarina of Time':    lambda world: stones_required_by_settings(world) < 2,
     'HF Ocarina of Time Item':      lambda world: stones_required_by_settings(world) < 2,
     'Sheik in Kakariko':            lambda world: medallions_required_by_settings(world) < 5,
-    'DMT Biggoron':                 lambda world: world.settings.logic_earliest_adult_trade != 'claim_check' or world.settings.logic_latest_adult_trade != 'claim_check',
+    'DMT Biggoron':                 lambda world: 'claim_check' not in world.settings.adult_trade_start or len(world.settings.adult_trade_start) != 1,
     'Kak 30 Gold Skulltula Reward': lambda world: tokens_required_by_settings(world) < 30,
     'Kak 40 Gold Skulltula Reward': lambda world: tokens_required_by_settings(world) < 40,
     'Kak 50 Gold Skulltula Reward': lambda world: tokens_required_by_settings(world) < 50,

@@ -1295,7 +1295,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     if world.settings.complete_mask_quest:
         rom.write_byte(rom.sym('COMPLETE_MASK_QUEST'), 1)
 
-    if world.settings.skip_child_zelda:
+    if world.settings.shuffle_child_trade == 'skip_child_zelda':
         save_context.write_bits(0x0ED7, 0x04) # "Obtained Malon's Item"
         save_context.write_bits(0x0ED7, 0x08) # "Woke Talon in castle"
         save_context.write_bits(0x0ED7, 0x10) # "Talon has fled castle"
@@ -1660,7 +1660,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         new_message = f"\x08Princess Ruto got \x01{reward_text}!\x01But why Princess Ruto?\x02"
     update_message_by_id(messages, 0x4050, new_message)
 
-    # Set Dungeon Reward actors in Jabu Jabu to be accurate
+    # Set Dungeon Reward Actor in Jabu Jabu to be accurate
     if location is not None: #TODO make actor invisible if no item?
         jabu_item = location.item
         jabu_actor_type = jabu_item.special['actor_type']

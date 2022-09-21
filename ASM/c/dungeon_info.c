@@ -34,7 +34,7 @@ dungeon_entry_t dungeons[] = {
     { 13, 1, 1, 0, 0, 0x00, "Ganon"   },
 };
 
-int dungeon_count = 14;
+int dungeon_count = 13;
 
 typedef struct {
     uint8_t idx;
@@ -140,16 +140,9 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
         if (show_medals) {
             sprite_load(db, &medals_sprite, 0, medals_sprite.tile_count);
 
-            for (int i = 1; i < dungeon_count; i++) {
+            for (int i = 0; i < dungeon_count; i++) {
                 dungeon_entry_t *d = &(dungeons[i]);
-                // The free reward and Bottom of the Well share a 
-                // dungeon index since well is dungeon 9 and the 
-                // free reward is appended after the 8 boss rewards.
-                // This wasn't a problem before since the free reward
-                // wasn't in CFG_DUNGEON_REWARDS.
-                if ((CFG_DUNGEON_INFO_REWARD_NEED_COMPASS &&
-                        !z64_file.dungeon_items[d->index].compass) ||
-                        d->index >= 8) {
+                if (CFG_DUNGEON_INFO_REWARD_NEED_COMPASS && !z64_file.dungeon_items[d->index].compass) {
                     continue;
                 }
                 int reward = CFG_DUNGEON_REWARDS[d->index];
@@ -172,7 +165,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
                 medal_t *c = &(medals[reward_index]);
                 gDPSetPrimColor(db->p++, 0, 0, c->r, c->g, c->b, 0xFF);
 
-                int top = start_top + ((icon_size + padding) * (i - 1));
+                int top = start_top + ((icon_size + padding) * i);
                 sprite_draw(db, &medals_sprite, reward,
                         left, top, icon_size, icon_size);
             }
@@ -185,17 +178,15 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
         if (show_stones) {
             sprite_load(db, &stones_sprite, 0, stones_sprite.tile_count);
 
-            for (int i = 1; i < dungeon_count; i++) {
+            for (int i = 0; i < dungeon_count; i++) {
                 dungeon_entry_t *d = &(dungeons[i]);
-                if ((CFG_DUNGEON_INFO_REWARD_NEED_COMPASS &&
-                        !z64_file.dungeon_items[d->index].compass) ||
-                        d->index >= 8) {
+                if (CFG_DUNGEON_INFO_REWARD_NEED_COMPASS && !z64_file.dungeon_items[d->index].compass) {
                     continue;
                 }
                 int reward = CFG_DUNGEON_REWARDS[d->index];
                 if (reward < 0 || reward >= 3) continue;
 
-                int top = start_top + ((icon_size + padding) * (i - 1));
+                int top = start_top + ((icon_size + padding) * i);
                 sprite_draw(db, &stones_sprite, reward,
                         left, top, icon_size, icon_size);
             }
@@ -205,9 +196,9 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
 
         // Draw dungeon names
 
-        for (int i = 1; i < dungeon_count; i++) {
+        for (int i = 0; i < dungeon_count; i++) {
             dungeon_entry_t *d = &(dungeons[i]);
-            int top = start_top + ((icon_size + padding) * (i - 1)) + 1;
+            int top = start_top + ((icon_size + padding) * i) + 1;
             text_print_size(d->name, left, top, font_width);
         }
         text_flush_size(db, font_width, font_height, 0, 0);
@@ -221,7 +212,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
 
             sprite_load(db, &quest_items_sprite, 17, 1);
 
-            for (int i = 1; i < dungeon_count; i++) {
+            for (int i = 0; i < dungeon_count; i++) {
                 dungeon_entry_t *d = &(dungeons[i]);
                 if (!d->has_keys) continue;
 
@@ -236,7 +227,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
                 char count[5] = "O(O)";
                 if (current_keys > 0) count[0] = current_keys + '0';
                 if (total_keys > 0) count[2] = total_keys + '0';
-                int top = start_top + ((icon_size + padding) * (i - 1)) + 1;
+                int top = start_top + ((icon_size + padding) * i) + 1;
                 text_print_size(count, left, top, font_width);
             }
             text_flush_size(db, font_width, font_height, 0, 0);
@@ -247,13 +238,13 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
 
             sprite_load(db, &quest_items_sprite, 14, 1);
 
-            for (int i = 1; i < dungeon_count; i++) {
+            for (int i = 0; i < dungeon_count; i++) {
                 dungeon_entry_t *d = &(dungeons[i]);
                 // Replace index 13 (Ganon's Castle) with 10 (Ganon's Tower)
                 int index = d->index == 13 ? 10 : d->index;
 
                 if (d->has_boss_key && z64_file.dungeon_items[index].boss_key) {
-                    int top = start_top + ((icon_size + padding) * (i - 1));
+                    int top = start_top + ((icon_size + padding) * i);
                     sprite_draw(db, &quest_items_sprite, 0,
                             left, top, icon_size, icon_size);
                 }
@@ -263,10 +254,10 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
 
             sprite_load(db, &quest_items_sprite, 10, 1);
 
-            for (int i = 1; i < dungeon_count; i++) {
+            for (int i = 0; i < dungeon_count; i++) {
                 dungeon_entry_t *d = &(dungeons[i]);
                 if (d->has_card && z64_file.gerudos_card) {
-                    int top = start_top + ((icon_size + padding) * (i - 1));
+                    int top = start_top + ((icon_size + padding) * i);
                     sprite_draw(db, &quest_items_sprite, 0,
                             left, top, icon_size, icon_size);
                 }
@@ -282,10 +273,10 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
 
             sprite_load(db, &quest_items_sprite, 16, 1);
 
-            for (int i = 1; i < dungeon_count; i++) {
+            for (int i = 0; i < dungeon_count; i++) {
                 dungeon_entry_t *d = &(dungeons[i]);
                 if (d->has_map && z64_file.dungeon_items[d->index].map) {
-                    int top = start_top + ((icon_size + padding) * (i - 1));
+                    int top = start_top + ((icon_size + padding) * i);
                     sprite_draw(db, &quest_items_sprite, 0,
                             left, top, icon_size, icon_size);
                 }
@@ -297,10 +288,10 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
 
             sprite_load(db, &quest_items_sprite, 15, 1);
 
-            for (int i = 1; i < dungeon_count; i++) {
+            for (int i = 0; i < dungeon_count; i++) {
                 dungeon_entry_t *d = &(dungeons[i]);
                 if (d->has_map && z64_file.dungeon_items[d->index].compass) {
-                    int top = start_top + ((icon_size + padding) * (i - 1));
+                    int top = start_top + ((icon_size + padding) * i);
                     sprite_draw(db, &quest_items_sprite, 0,
                             left, top, icon_size, icon_size);
                 }
@@ -314,10 +305,10 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
 
             sprite_load(db, &quest_items_sprite, 11, 1);
 
-            for (int i = 1; i < dungeon_count; i++) {
+            for (int i = 0; i < dungeon_count; i++) {
                 dungeon_entry_t *d = &(dungeons[i]);
                 if (d->skulltulas && z64_file.gs_flags[d->index ^ 0x03] == d->skulltulas) {
-                    int top = start_top + ((icon_size + padding) * (i - 1));
+                    int top = start_top + ((icon_size + padding) * i);
                     sprite_draw(db, &quest_items_sprite, 0,
                             left, top, icon_size, icon_size);
                 }
@@ -329,14 +320,14 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
         // Draw master quest dungeons
 
         if (show_mq) {
-            for (int i = 1; i < dungeon_count; i++) {
+            for (int i = 0; i < dungeon_count; i++) {
                 dungeon_entry_t *d = &(dungeons[i]);
                 if (CFG_DUNGEON_INFO_MQ_NEED_MAP && d->has_map &&
                         !z64_file.dungeon_items[d->index].map) {
                     continue;
                 }
                 char *str = CFG_DUNGEON_IS_MQ[d->index] ? "MQ" : "Normal";
-                int top = start_top + ((icon_size + padding) * (i - 1)) + 1;
+                int top = start_top + ((icon_size + padding) * i) + 1;
                 text_print_size(str, left, top, font_width);
             }
 

@@ -176,7 +176,7 @@ class World(object):
         self.added_hint_types = {}
         self.item_added_hint_types = {}
         self.hint_exclusions = set()
-        if settings.skip_child_zelda:
+        if settings.shuffle_child_trade == 'skip_child_zelda':
             self.hint_exclusions.add('Song from Impa')
         self.hint_type_overrides = {}
         self.item_hint_type_overrides = {}

@@ -1,5 +1,9 @@
 This file documents parts of the OoT save data that go unused in vanilla but are used by the randomizer. **It may be incomplete.**
 
+# Ammo counts
+
+The ammunition count fields for fire arrows (save context + 0x90) and Din's Fire (save context + 0x91) are repurposed as a single unsigned 16-bit integer field representing the number of items received from the network in a multiworld seed.
+
 # Scene flags
 
 ## Unused field
