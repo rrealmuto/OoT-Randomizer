@@ -3075,7 +3075,7 @@ setting_infos = [
             This restricts where song items can appear.
 
             'Song Locations': Song will only appear at locations that
-            normally teach songs. In Multiworld, songs will only 
+            normally teach songs. In Multiworld, songs will only
             appear in their own world.
 
             'Dungeon Rewards': Songs appear at the end of dungeons.
@@ -3105,7 +3105,7 @@ setting_infos = [
     ),
     Combobox(
         name           = 'shuffle_freestanding_items',
-        gui_text       = 'Rupee & Heart Shuffle',
+        gui_text       = 'Shuffle Rupees & Hearts',
         default        = 'off',
         choices        = {
             'off':       'Off',
@@ -3130,7 +3130,7 @@ setting_infos = [
     ),
     Combobox(
         name           = 'shuffle_pots',
-        gui_text       = 'Pot Shuffle',
+        gui_text       = 'Shuffle Pots',
         default        = 'off',
         choices        = {
             'off':       'Off',
@@ -3160,7 +3160,7 @@ setting_infos = [
     ),
     Combobox(
         name           = 'shuffle_crates',
-        gui_text       = 'Crate Shuffle',
+        gui_text       = 'Shuffle Crates',
         default        = 'off',
         choices        = {
             'off':       'Off',
