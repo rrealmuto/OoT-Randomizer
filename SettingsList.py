@@ -4389,7 +4389,7 @@ setting_infos = [
     ),
     Combobox(
         name           = 'empty_dungeons_mode',
-        gui_text       = 'Pre-completed dungeons',
+        gui_text       = 'Pre-completed Dungeons Mode',
         default        = 'none',
         choices        = {
             'none':       'Off',

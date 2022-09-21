@@ -213,10 +213,16 @@ def make_spoiler(settings, worlds, window=dummy_window()):
 
 
 def prepare_rom(spoiler, world, rom, settings, rng_state=None, restore=True):
-    if restore:
-        rom.restore()
     if rng_state:
         random.setstate(rng_state)
+        # Use different seeds for each world when patching.
+        seed = int(random.getrandbits(256))
+        for i in range(0, world.id):
+            seed = int(random.getrandbits(256))
+        random.seed(seed)
+
+    if restore:
+        rom.restore()
     patch_rom(spoiler, world, rom)
     cosmetics_log = patch_cosmetics(settings, rom)
     rom.update_header()
@@ -323,16 +329,16 @@ def patch_and_output(settings, window, spoiler, rom):
         window.update_progress(65)
         restore_rom = False
         for world in worlds:
+            # If we aren't creating a patch file and this world isn't the one being outputted, move to the next world.
+            if not (settings.create_patch_file or world.id == settings.player_num - 1):
+                continue
+
             if settings.world_count > 1:
                 log_and_update_window(window, f"Patching ROM: Player {world.id + 1}")
                 player_filename_suffix = f"P{world.id + 1}"
             else:
                 log_and_update_window(window, 'Patching ROM')
                 player_filename_suffix = ""
-
-            # If we aren't creating a patch file and this world isn't the one being outputted, move to the next world.
-            if not (settings.create_patch_file or world.id == settings.player_num - 1):
-                continue
 
             settings.disable_custom_music = settings.create_patch_file
             patch_cosmetics_log = prepare_rom(spoiler, world, rom, settings, rng_state, restore_rom)

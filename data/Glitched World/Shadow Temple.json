@@ -16,7 +16,7 @@
         "exits": {
             "Shadow Temple Entryway": "True",
             "Shadow Temple First Beamos": "can_use(Hover_Boots) or can_mega",
-            "Shadow Boss": "can_hover and has_explosives and can_use(Hover_Boots) and 
+            "Shadow Temple Boss Door": "can_hover and has_explosives and can_use(Hover_Boots) and
                 can_live_dmg(2.0)"
         }
     },
@@ -91,14 +91,22 @@
             "Shadow Temple GS Triple Giant Pot": "True"
         },
         "exits": {
-            "Shadow Boss": "(has_bombchus or can_use(Distant_Scarecrow) or Bow or 
+            "Shadow Temple Boss Door": "(has_bombchus or can_use(Distant_Scarecrow) or Bow or
                 (can_mega and can_use(Hover_Boots)) or can_hover) and 
                 (Boss_Key_Shadow_Temple or (has_explosives and is_adult)) and
                 (can_mega or can_use(Hover_Boots)) and (Small_Key_Shadow_Temple, 5)"
         }
     },
     {
-        "region_name": "Shadow Boss",
+        "region_name": "Shadow Temple Boss Door",
+        "scene": "Shadow Temple",
+        "dungeon": "Shadow Temple",
+        "exits": {
+            "Bongo Bongo Boss Room": "True"
+        }
+    },
+    {
+        "region_name": "Bongo Bongo Boss Room",
         "dungeon": "Shadow Temple",
         "locations": {
             "Shadow Temple Bongo Bongo Heart": "True",

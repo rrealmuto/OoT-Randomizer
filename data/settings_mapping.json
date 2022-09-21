@@ -1,13 +1,14 @@
 {
   "Tabs": [
     {
-      "name": "general_tab_electron",
+      "name": "general_tab",
       "text": "ROM Options",
-      "exclude_from_web": true,
+      "app_type": ["generator"],
       "sections": [
         {
-          "name": "general_section",
+          "name": "general_section_electron",
           "text": "",
+          "exclude_from_web": true,
           "col_span": 4,
           "row_span": [2,2,3],
           "settings": [
@@ -35,35 +36,9 @@
           ]
         },
         {
-          "name": "multiworld_section",
-          "text": "Multi-World Generation",
-          "subheader": "This is used for co-op generations. Increasing Player Count will drastically increase the generation time.<br>For more information, see:<br><a href='https://github.com/TestRunnerSRL/bizhawk-co-op' target='_blank'>https://github.com/TestRunnerSRL/bizhawk-co-op</a>",
-          "row_span": [1,1,1],
-          "settings": [
-            "world_count",
-            "player_num"
-          ]
-        },
-        {
-          "name": "preset_section",
-          "text": "Settings Presets",
-          "subheader": "Presets are settings that can be saved and loaded from.<br>Loading a preset will overwrite all settings that affect the seed.",
-          "row_span": [1,1,1],
-          "settings": [
-            "presets"
-          ]
-        }
-      ]
-    },
-    {
-      "name": "general_tab_web_generator",
-      "text": "ROM Options",
-      "app_type": ["generator"],
-      "exclude_from_electron": true,
-      "sections": [
-        {
-          "name": "general_section",
+          "name": "general_section_web_generator",
           "text": "",
+          "exclude_from_electron": true,
           "col_span": 4,
           "row_span": [1,1,1],
           "settings": [

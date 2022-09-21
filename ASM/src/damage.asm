@@ -13,13 +13,16 @@ Apply_Damage_Multiplier:
 
     bltz    t7, @@DivDamage
     li      at, 3
-    blt     t7, at, @@MulDamage
+    bge     t7, at, @@ohko
     nop
-    li      t7, 10
 
 @@MulDamage:
     b       @@DoubleDefence
     sllv    s0, s0, t7     ; damage multiplier
+
+@@ohko:
+    b       @@return
+    sh      zero, 0x30(a1)
 
 @@DivDamage:
     sub     t7, zero, t7
