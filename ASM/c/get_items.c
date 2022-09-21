@@ -638,7 +638,9 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
         } else if (player != PLAYER_ID) {
             set_outgoing_override(&collectible_override);
         } else {
-            // push_pending_item(override);
+            if (MW_SEND_OWN_ITEMS) {
+                set_outgoing_override(&collectible_override);
+            }
             z64_GiveItem(&z64_game, item_row->action_id);
             call_effect_function(item_row);
         }
