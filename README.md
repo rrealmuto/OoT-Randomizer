@@ -28,17 +28,11 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * “Mixed Pools Tournament”, the settings used for a tournament that had full mixed pools entrance randomizer. Note that the tournament itself used [a previous version](https://ootrandomizer.com/generatorDev?version=devFenhl_6.2.100) of this branch.
   * “Standard Anti-Weekly Settings (S5)” disables every location that's enabled in “S5 Tournament” and enables every location that's disabled there, as well as changing some miscellaneous settings. See [the official document](https://docs.google.com/document/d/1sbL6Zju943F5qyx4QbTLUsqZqOTMmvqKVbDwJl08SGc/edit) for details.
 * Other changes:
-  * Multiworld plugins can request to be informed when a player finds their own item ([#1691](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1691))
-  * The dungeon reward location menu is now slightly more verbose to prepare for some planned features ([#1641](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1641))
+  * Multiworld plugins can now read the file hash icons to make sure all players are on the same seed ([#1705](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1705))
   * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
   * Opening the Door of Time is a separate goal category when required by the settings ([#1529](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1529))
   * The convenience patch for floor switches now applies to more MQ switches ([#1459](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1459))
   * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
-* Bug fixes:
-  * Ganondorf will once again say “my castle” instead of “Ganon's Castle” in the light arrow hint ([#1702](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1702))
-  * Savewarping immediately before checking certain locations (such as the light arrow cutscene) no longer deletes the item ([#1695](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1695))
-  * Non-required starting items are no longer listed in the spoiler log playthrough ([#1694](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1694))
-  * The text box when collecting a “WINNER!” heart piece in multiworld no longer appears glitchy ([#1685](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1685))
 
 Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):
 
