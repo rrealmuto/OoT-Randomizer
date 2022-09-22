@@ -24,6 +24,7 @@ export class FooterComponent {
 
   localVersion: string = "";
   remoteVersion: string = "";
+  branchUrl: string = "";
   hasUpdate: boolean = false;
 
   constructor(public global: GUIGlobal, private dialogService: NbDialogService) { }
@@ -39,7 +40,8 @@ export class FooterComponent {
         }
         else if (eventObj.name == "local_version_checked") {
           this.localVersion = eventObj.version;
-        }      
+          this.branchUrl = eventObj.branchUrl;
+        }
       });
 
       if (this.global.getGlobalVar("appReady")) {
@@ -65,7 +67,7 @@ export class FooterComponent {
     }).onClose.subscribe(confirmed => {
 
       if (confirmed) {
-        let link = this.remoteVersion.includes("Release") ? "https://www.ootrandomizer.com/downloads" : "https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev";
+        let link = this.remoteVersion.includes("Release") ? "https://www.ootrandomizer.com/downloads" : this.branchUrl;
         (<any>window).open(link, "_blank");
       }
     });
