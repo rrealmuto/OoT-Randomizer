@@ -2172,7 +2172,7 @@ setting_infos = [
 
                          - Logic Rules
                          - (Random) Number of MQ Dungeons
-                         - Pre-completed dungeons
+                         - Pre-completed Dungeons
                          - Rainbow Bridge/Ganon Boss Key Requirements: Gold Skulltula Tokens
                          - Variable numbers of Spiritual Stones, Medallions, or Dungeons
                          for Rainbow Bridge and Ganon's Boss Key
@@ -4157,7 +4157,7 @@ setting_infos = [
     ),
     Combobox(
         name           = 'empty_dungeons_mode',
-        gui_text       = 'Pre-completed dungeons',
+        gui_text       = 'Pre-completed Dungeons Mode',
         default        = 'none',
         choices        = {
             'none':       'Off',

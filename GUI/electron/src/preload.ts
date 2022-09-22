@@ -50,7 +50,7 @@ electron.remote.getCurrentWindow().on('leave-html-full-screen', () => {
 
 //FUNCTIONS
 function dumpSettingsToFile(settingsObj) {
-  settingsObj["check_version"] = true;    
+  settingsObj["check_version"] = true;
   fs.writeFileSync(pythonSourcePath + "settings.sav", JSON.stringify(settingsObj, null, 4));
 }
 
@@ -83,17 +83,36 @@ function readSettingsFromFile() {
 
 //POST ROBOT
 post.on('getCurrentSourceVersion', function (event) {
+  type VersionData = {
+    baseVersion: string;
+    supplementaryVersion: number;
+    fullVersion: string;
+    branchUrl: string;
+  };
 
   let versionFilePath = pythonSourcePath + "version.py"; //Read version.py from the python source
+  let data: VersionData = { baseVersion : "", supplementaryVersion : 0, fullVersion : "", branchUrl : "" }
 
   if (fs.existsSync(versionFilePath)) {
-    let versionString = fs.readFileSync(versionFilePath, 'utf8');
-    versionString = versionString.substr(versionString.indexOf("'") + 1);
-   
-    return versionString.substr(0, versionString.indexOf("'"));
+    let versionFile = fs.readFileSync(versionFilePath, 'utf8');
+
+    let baseMatch = versionFile.match(/^[ \t]*__version__ = ['"](.+)['"]/m);
+    let supplementaryMatch = versionFile.match(/^[ \t]*supplementary_version = (\d+)$/m);
+    let fullMatch = versionFile.match(/^[ \t]*__version__ = f['"]*(.+)['"]/m);
+    let urlMatch = versionFile.match(/^[ \t]*branch_url = ['"](.+)['"]/m);
+
+    data.baseVersion = baseMatch != null && baseMatch[1] !== undefined ? baseMatch[1] : "";
+    data.supplementaryVersion = supplementaryMatch != null && supplementaryMatch[1] !== undefined ? parseInt(supplementaryMatch[1]) : 0;
+    data.fullVersion = fullMatch != null && fullMatch[1] !== undefined ? fullMatch[1] : data.baseVersion;
+    data.fullVersion = data.fullVersion
+      .replace('{base_version}', data.baseVersion)
+      .replace('{supplementary_version}', data.supplementaryVersion.toString())
+    data.branchUrl = urlMatch != null && urlMatch[1] !== undefined ? urlMatch[1] : "";
+
+    return data;
   }
   else {
-    return false;
+    return null;
   }
 });
 
@@ -291,7 +310,7 @@ post.on('generateSeed', function (event) {
     }
 
     if (err.short == "user_cancelled")
-      post.send(window, 'generateSeedCancelled'); 
+      post.send(window, 'generateSeedCancelled');
     else
       post.send(window, 'generateSeedError', err);
   });

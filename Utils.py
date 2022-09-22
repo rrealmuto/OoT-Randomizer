@@ -6,7 +6,7 @@ import sys
 import urllib.request
 from urllib.error import URLError, HTTPError
 import re
-from version import __version__
+from version import __version__, base_version, supplementary_version, branch_url
 import random
 import itertools
 import bisect
@@ -84,10 +84,12 @@ def close_console():
         except Exception:
             pass
 
-def get_version_bytes(a):
-    version_bytes = [0x00, 0x00, 0x00]
+def get_version_bytes(a, b=0x00, c=0x00):
+    version_bytes = [0x00, 0x00, 0x00, b, c]
+
     if not a:
-        return version_bytes;
+        return version_bytes
+
     sa = a.replace('v', '').replace(' ', '.').split('.')
 
     for i in range(0,3):
@@ -124,12 +126,30 @@ class VersionError(Exception):
 def check_version(checked_version):
     if compare_version(checked_version, __version__) < 0:
         try:
-            with urllib.request.urlopen('https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/version.py') as versionurl:
-                version = versionurl.read()
-                version = re.search(".__version__ = '(.+)'", str(version)).group(1)
+            with urllib.request.urlopen(f'{branch_url.replace("https://github.com", "https://raw.githubusercontent.com").replace("tree/", "")}/version.py') as versionurl:
+                version_file = versionurl.read().decode("utf-8")
 
-                if compare_version(version, __version__) > 0:
-                    raise VersionError("You are on version " + __version__ + ", and the latest is version " + version + ".")
+                base_match = re.search("""^[ \t]*__version__ = ['"](.+)['"]""", version_file, re.MULTILINE)
+                supplementary_match = re.search(r"^[ \t]*supplementary_version = (\d+)$", version_file, re.MULTILINE)
+                full_match = re.search("""^[ \t]*__version__ = f['"]*(.+)['"]""", version_file, re.MULTILINE)
+                url_match = re.search("""^[ \t]*branch_url = ['"](.+)['"]""", version_file, re.MULTILINE)
+
+                remote_base_version = base_match.group(1) if base_match else ""
+                remote_supplementary_version = int(supplementary_match.group(1)) if supplementary_match else 0
+                remote_full_version = full_match.group(1) if full_match else remote_base_version
+                remote_full_version = remote_full_version \
+                    .replace('{base_version}', remote_base_version) \
+                    .replace('{supplementary_version}', str(remote_supplementary_version))
+                remote_branch_url = url_match.group(1) if url_match else ""
+
+                upgrade_available = False
+                if compare_version(remote_base_version, base_version) > 0:
+                    upgrade_available = True
+                elif compare_version(remote_base_version, base_version) == 0 and remote_supplementary_version > supplementary_version:
+                    upgrade_available = True
+
+                if upgrade_available:
+                    raise VersionError("You are on version " + __version__ + ", and the latest is version " + remote_full_version + ".")
         except (URLError, HTTPError) as e:
             logger = logging.getLogger('')
             logger.warning("Could not fetch latest version: " + str(e))
