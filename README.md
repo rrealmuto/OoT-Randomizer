@@ -32,6 +32,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
   * Opening the Door of Time is a separate goal category when required by the settings ([#1529](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1529))
   * The convenience patch for floor switches now applies to more MQ switches ([#1459](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1459))
+  * Tokens can be on excluded locations if there are no checks requiring them (such as in SAWS)
   * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
 
 Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):

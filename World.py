@@ -227,19 +227,19 @@ class World(object):
 
         # Allows us to cut down on checking whether some items are required
         self.max_progressions = {name: item.special.get('progressive', 1) for name, item in ItemInfo.items.items()}
-        max_tokens = 0
+        self.max_tokens = 0
         if self.settings.bridge == 'tokens':
-            max_tokens = max(max_tokens, self.settings.bridge_tokens)
+            self.max_tokens = max(self.max_tokens, self.settings.bridge_tokens)
         if self.settings.lacs_condition == 'tokens':
-            max_tokens = max(max_tokens, self.settings.lacs_tokens)
+            self.max_tokens = max(self.max_tokens, self.settings.lacs_tokens)
         if self.settings.shuffle_ganon_bosskey == 'tokens':
-            max_tokens = max(max_tokens, self.settings.ganon_bosskey_tokens)
+            self.max_tokens = max(self.max_tokens, self.settings.ganon_bosskey_tokens)
         tokens = [50, 40, 30, 20, 10]
         for t in tokens:
             if f'Kak {t} Gold Skulltula Reward' not in self.settings.disabled_locations:
-                max_tokens = max(max_tokens, t)
+                self.max_tokens = max(self.max_tokens, t)
                 break
-        self.max_progressions['Gold Skulltula Token'] = max_tokens
+        self.max_progressions['Gold Skulltula Token'] = self.max_tokens
         max_hearts = 0
         if self.settings.bridge == 'hearts':
             max_hearts = max(max_hearts, self.settings.bridge_hearts)

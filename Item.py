@@ -60,7 +60,6 @@ class Item(object):
         self.price = self.info.special.get('price')
         self.world = world
         self.looks_like_item = None
-        self.advancement = self.info.advancement
         self.priority = self.info.priority
         self.type = self.info.type
         self.special = self.info.special
@@ -169,6 +168,13 @@ class Item(object):
         from ItemPool import eggs
 
         return self.name in ('Triforce Piece', *eggs)
+
+
+    @property
+    def advancement(self):
+        if self.name == 'Gold Skulltula Token' and self.world is not None and self.world.max_tokens == 0:
+            return False
+        return self.info.advancement
 
 
     def __str__(self):
