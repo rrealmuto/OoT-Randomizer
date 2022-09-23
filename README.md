@@ -27,6 +27,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * `fast-vanilla` is `vanilla` but with speed-ups like fast bunny hood, fast chest cutscenes, or “Skip Some Minigame Phases” enabled.
   * “Mixed Pools Tournament”, the settings used for a tournament that had full mixed pools entrance randomizer. Note that the tournament itself used [a previous version](https://ootrandomizer.com/generatorDev?version=devFenhl_6.2.100) of this branch.
   * “Standard Anti-Weekly Settings (S5)” disables every location that's enabled in “S5 Tournament” and enables every location that's disabled there, as well as changing some miscellaneous settings. See [the official document](https://docs.google.com/document/d/1sbL6Zju943F5qyx4QbTLUsqZqOTMmvqKVbDwJl08SGc/edit) for details.
+  * “Standard Anti-Weekly Settings (Latest)” is similar to the above but based on the current weekly preset. Differences are closed Deku, new hint distribution, and dungeon shortcuts.
 * Other changes:
   * Multiworld plugins can now read the file hash icons to make sure all players are on the same seed ([#1705](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1705))
   * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
