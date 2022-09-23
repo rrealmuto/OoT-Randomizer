@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 __version__ = '6.2.201'
 
 # This is a supplementary version number for branches based off of main dev.
@@ -16,6 +15,3 @@ base_version = __version__
 
 # And finally, the completed version string. This is what is displayed and used for salting seeds.
 __version__ = f'{base_version} f.LUM'
-=======
-__version__ = '6.2.195 f.LUM'
->>>>>>> Code style review for pots branch (#49)
