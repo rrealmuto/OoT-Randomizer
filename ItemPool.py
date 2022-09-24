@@ -509,7 +509,7 @@ def get_pool_core(world):
                 item = get_junk_item()[0] if location.name != 'Hideout 1 Torch Jail Gerudo Key' else 'Small Key Ring (Thieves Hideout)'
 
         # Freestanding Rupees and Hearts
-        elif location.type == 'ActorOverride' or (location.type == 'Collectable' and ('Freestanding' in location.filter_tags or 'RupeeTower' in location.filter_tags)):
+        elif location.type in ['ActorOverride', 'Freestanding', 'RupeeTower']:
             if world.settings.shuffle_freestanding_items == 'all':
                 shuffle_item = True
             elif world.settings.shuffle_freestanding_items == 'dungeons' and location.dungeon is not None:
@@ -521,7 +521,7 @@ def get_pool_core(world):
                 location.disabled = DisableType.DISABLED
 
         # Pots
-        elif location.type == 'Collectable' and ('Pot' in location.filter_tags or 'FlyingPot' in location.filter_tags):
+        elif location.type in ['Pot', 'FlyingPot']:
             if world.settings.shuffle_pots == 'all':
                 shuffle_item = True
             elif world.settings.shuffle_pots == 'dungeons' and location.dungeon is not None:
@@ -533,7 +533,7 @@ def get_pool_core(world):
                 location.disabled = DisableType.DISABLED
 
         # Crates
-        elif location.type == 'Collectable' and ('Crate' in location.filter_tags or 'SmallCrate' in location.filter_tags):
+        elif location.type in ['Crate', 'SmallCrate']:
             if world.settings.shuffle_crates == 'all':
                 shuffle_item = True
             elif world.settings.shuffle_crates == 'dungeons' and location.dungeon is not None:
@@ -545,7 +545,7 @@ def get_pool_core(world):
                 location.disabled = DisableType.DISABLED
 
         # Beehives
-        elif location.type == 'Collectable' and 'Beehive' in location.filter_tags:
+        elif location.type == 'Beehive':
             if world.settings.shuffle_beehives:
                 shuffle_item = True
             else:
@@ -582,7 +582,7 @@ def get_pool_core(world):
                     item = get_junk_item()[0]
                     shuffle_item = True
             # Any other item in a dungeon.
-            elif location.type in ["Chest", "NPC", "Song", "Collectable", "Cutscene", "BossHeart"]:
+            elif location.type in ["Chest", "NPC", "Song", "Collectable", "Dropped" "Cutscene", "BossHeart"]:
                 shuffle_item = True
 
             # Handle dungeon item.
@@ -596,7 +596,7 @@ def get_pool_core(world):
                     dungeon_collection[-1].priority = True
 
         # The rest of the overworld items.
-        elif location.type in ["Chest", "NPC", "Song", "Collectable", "Cutscene", "BossHeart"]:
+        elif location.type in ["Chest", "NPC", "Song", "Collectable", "Dropped", "Cutscene", "BossHeart"]:
             shuffle_item = True
 
         # Now, handle the item as necessary.

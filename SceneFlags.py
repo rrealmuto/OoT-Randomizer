@@ -11,14 +11,14 @@ def get_scene_flag_table(world):
         max_freestanding_flag = 0
         max_drop_flag = 0
         for location in world.get_locations():
-            if location.type == "Collectable" and location.scene == i:
+            if location.type in ['Freestanding', 'ActorOverride', 'RupeeTower', 'Crate', 'SmallCrate', 'Pot', 'FlyingPot', 'Beehive'] and location.scene == i:
                 if (
-                    ("Freestanding" in location.filter_tags or "ActorOverride" in location.filter_tags)
+                    location.type in ["Freestanding", "ActorOverride"]
                     and location.default > max_freestanding_flag
                 ):
                     max_freestanding_flag = location.default
                 if (
-                    any(kind in location.filter_tags for kind in ("Crate", "SmallCrate", "Pot", "FlyingPot", "Beehive", "Drop", "RupeeTower"))
+                    location.type in ["Crate", "SmallCrate", "Pot", "FlyingPot", "Beehive", "Drop", "RupeeTower"]
                     and location.default > max_drop_flag
                 ):
                     max_drop_flag = location.default
