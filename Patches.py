@@ -1606,7 +1606,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             if locations:
                 # Location types later in the list will be preferred over earlier ones or ones not in the list.
                 # This ensures that if the region behind the boss door is a boss arena, the medallion or stone will be used.
-                priority_types = ("GS Token", "GrottoScrub", "Scrub", "Shop", "NPC", "Collectable", "Chest", "Cutscene", "Song", "BossHeart", "Boss")
+                priority_types = ("GS Token", "GrottoScrub", "Scrub", "Shop", "NPC", "Collectable", "Dropped", "Freestanding", "ActorOverride", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive", "Chest", "Cutscene", "Song", "BossHeart", "Boss")
                 best_type = max((location.type for location in locations), key=lambda type: priority_types.index(type) if type in priority_types else -1)
                 location = random.choice(list(filter(lambda loc: loc.type == best_type, locations)))
                 break
@@ -1708,8 +1708,8 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     if world.settings.shuffle_freestanding_items:
     # Get freestanding item locations
         actor_override_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'ActorOverride']
-        freestanding_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and 'Freestanding' in location.filter_tags]
-        rupeetower_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and 'RupeeTower' in location.filter_tags]
+        freestanding_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Freestanding']
+        rupeetower_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'RupeeTower']
 
         for location in actor_override_locations:
             patch_actor_override(location, rom)
@@ -1720,15 +1720,15 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     # Patch beehives
     if world.settings.shuffle_beehives:
-        beehive_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and 'Beehive' in location.filter_tags]
+        beehive_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Beehive']
         for location in beehive_locations:
             patch_beehive(location, rom)
         patch_grotto_beehive_2(rom)
 
     # Patch pots
     if world.settings.shuffle_pots:
-        pot_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and 'Pot' in location.filter_tags]
-        flying_pot_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and 'FlyingPot' in location.filter_tags]
+        pot_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Pot']
+        flying_pot_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'FlyingPot']
 
         for location in pot_locations:
             patch_pot(location, rom)
@@ -1737,8 +1737,8 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     # Patch crates
     if world.settings.shuffle_crates:
-        crate_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and 'Crate' in location.filter_tags]
-        smallcrate_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Collectable' and 'SmallCrate' in location.filter_tags]
+        crate_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Crate']
+        smallcrate_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'SmallCrate']
 
         for location in crate_locations:
             patch_crate(location, rom)
@@ -2373,15 +2373,15 @@ def get_override_entry(location):
         return None
 
     # Don't add freestanding items to the override table if they're disabled. We use this check to determine how to draw and interact with them.
-    if (location.type == "ActorOverride" or (location.type == "Collectable" and ("Freestanding" in location.filter_tags or "RupeeTower" in location.filter_tags))) and location.disabled != DisableType.ENABLED:
+    if location.type in ["ActorOverride", "Freestanding", "RupeeTower"] and location.disabled != DisableType.ENABLED:
         return None
 
     # Don't add beehive items to the override table if they're disabled.
-    if location.type == "Collectable" and "Beehive" in location.filter_tags and location.disabled != DisableType.ENABLED:
+    if location.type == "Beehive" and location.disabled != DisableType.ENABLED:
         return None
 
     # Don't add pots/crates to the override table if they're disabled. We use this check to determine how to draw and interact with them
-    if location.type == "Collectable" and any(kind in location.filter_tags for kind in ("Pot", "Crate", "FlyingPot", "SmallCrate")) and location.disabled != DisableType.ENABLED:
+    if location.type in ["Pot", "Crate", "FlyingPot", "SmallCrate"] and location.disabled != DisableType.ENABLED:
         return None
 
     player_id = location.item.world.id + 1
@@ -2397,11 +2397,10 @@ def get_override_entry(location):
         default &= 0x1F
     elif location.type == 'ActorOverride':
         type = 2
-    elif location.type == 'Collectable':
-        if any(kind in location.filter_tags for kind in ("Pot", "Crate", "Drop", "FlyingPot", "SmallCrate", "RupeeTower", "Beehive")):
-            type = 6
-        else:
+    elif location.type in ['Collectable', 'Freestanding', 'ActorOverride']:
             type = 2
+    elif location.type in ["Pot", "Crate", "FlyingPot", "SmallCrate", "RupeeTower", "Beehive", "Dropped"]:
+            type = 6
     elif location.type == 'GS Token':
         type = 3
     elif location.type == 'Shop' and location.item.type != 'Shop':
