@@ -2390,16 +2390,8 @@ def get_override_entry(location):
     if None in [scene, default, item_id]:
         return None
 
-    # Don't add freestanding items to the override table if they're disabled. We use this check to determine how to draw and interact with them.
-    if location.type in ["ActorOverride", "Freestanding", "RupeeTower"] and location.disabled != DisableType.ENABLED:
-        return None
-
-    # Don't add beehive items to the override table if they're disabled.
-    if location.type == "Beehive" and location.disabled != DisableType.ENABLED:
-        return None
-
-    # Don't add pots/crates to the override table if they're disabled. We use this check to determine how to draw and interact with them
-    if location.type in ["Pot", "Crate", "FlyingPot", "SmallCrate"] and location.disabled != DisableType.ENABLED:
+    # Don't add freestanding items, pots/crates, beehives to the override table if they're disabled. We use this check to determine how to draw and interact with them
+    if location.type in ["ActorOverride", "Freestanding", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive"] and location.disabled != DisableType.ENABLED:
         return None
 
     player_id = location.item.world.id + 1
