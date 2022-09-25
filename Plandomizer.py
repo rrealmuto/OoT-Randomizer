@@ -41,7 +41,6 @@ per_world_keys = (
     ':goal_locations',
     ':barren_regions',
     'gossip_stones',
-    'misc_hint_items',
 )
 
 
@@ -266,7 +265,6 @@ class WorldDistribution(object):
             'goal_locations': None,
             'barren_regions': None,
             'gossip_stones': {name: [GossipRecord(rec) for rec in record] if is_pattern(name) else GossipRecord(record) for (name, record) in src_dict.get('gossip_stones', {}).items()},
-            'misc_hint_items': {name: record for (name, record) in src_dict.get('misc_hint_items', {}).items()},
         }
 
         if update_all:
@@ -300,7 +298,6 @@ class WorldDistribution(object):
             ':goal_locations': self.goal_locations,
             ':barren_regions': self.barren_regions,
             'gossip_stones': SortedDict({name: [rec.to_json() for rec in record] if is_pattern(name) else record.to_json() for (name, record) in self.gossip_stones.items()}),
-            'misc_hint_items': self.misc_hint_items,
         }
 
 
@@ -1327,7 +1324,6 @@ class Distribution(object):
                     world_dist.gossip_stones[gossipLocations[loc].name] = hint
                 else:
                     world_dist.gossip_stones["0x{:04X}".format(loc)] = hint
-            world_dist.misc_hint_items = {hint_type: item_name for hint_type, item_name in world.misc_hint_items.items() if hint_type in world.settings.misc_hints}
 
         self.playthrough = {}
         for (sphere_nr, sphere) in spoiler.playthrough.items():
