@@ -876,10 +876,15 @@ def check_entrances_compatibility(entrance, target, rollbacks=(), placed_one_way
         except HintAreaNotFound:
             pass # not connected to a hint area yet, will be checked when shuffling two-way entrances
         else:
-            for placed_entrance in (*rollbacks, *placed_one_way_entrances):
+            for rollback in (*rollbacks, *placed_one_way_entrances):
                 try:
-                    if HintArea.at(placed_entrance[0].connected_region) == hint_area:
-                        raise EntranceShuffleError(f'Another one-way entrance already leads to {hint_area}')
+                    placed_entrance = rollback[0]
+                    if entrance.world.settings.exclusive_one_ways:
+                        if HintArea.at(placed_entrance.connected_region) == hint_area:
+                            raise EntranceShuffleError(f'Another one-way entrance already leads to {hint_area}')
+                    else:
+                        if entrance.type == placed_entrance.type and HintArea.at(placed_entrance.connected_region) == hint_area:
+                            raise EntranceShuffleError(f'Another {entrance.type} entrance already leads to {hint_area}')
                 except HintAreaNotFound:
                     pass
 
@@ -969,14 +974,20 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
     # so the restriction also needs to be checked here
     for idx1 in range(len(placed_one_way_entrances)):
         try:
-            hint_area1 = HintArea.at(placed_one_way_entrances[idx1][0].connected_region)
+            entrance1 = placed_one_way_entrances[idx1][0]
+            hint_area1 = HintArea.at(entrance1.connected_region)
         except HintAreaNotFound:
             pass
         else:
             for idx2 in range(idx1):
                 try:
-                    if hint_area1 == HintArea.at(placed_one_way_entrances[idx2][0].connected_region):
-                        raise EntranceShuffleError(f'Multiple one-way entrances lead to {hint_area1}')
+                    entrance2 = placed_one_way_entrances[idx2][0]
+                    if world.settings.exclusive_one_ways:
+                        if hint_area1 == HintArea.at(entrance2.connected_region):
+                            raise EntranceShuffleError(f'Multiple one-way entrances lead to {hint_area1}')
+                    else:
+                        if entrance1.type == entrance2.type and hint_area1 == HintArea.at(entrance2.connected_region):
+                            raise EntranceShuffleError(f'Multiple {entrance1.type} entrances lead to {hint_area1}')
                 except HintAreaNotFound:
                     pass
 

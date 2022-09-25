@@ -3465,8 +3465,8 @@ setting_infos = [
             'full':      'Full',
         },
         gui_tooltip    = '''\
-            Randomize where Kaepora Gaebora (the Owl) drops you at 
-            when you talk to him at Lake Hylia or at the top of 
+            Randomize where Kaepora Gaebora (the Owl) drops you at
+            when you talk to him at Lake Hylia or at the top of
             Death Mountain Trail.
 
             'Off':
@@ -3568,6 +3568,22 @@ setting_infos = [
                 ('balanced', 1),
                 ('full', 1),
             ],
+        },
+    ),
+    Checkbutton(
+        name           = 'exclusive_one_ways',
+        gui_text       = 'Mutually Exclusive One-Ways',
+        gui_tooltip    = '''\
+            No two shuffled one-ways (overworld spawns, warp songs, owl drops,
+            or the river exit in Gerudo Valley) can lead to the same hint area.
+
+            If this setting is off, this restriction only applies to entrances
+            of the same type.
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
         },
     ),
     Combobox(
@@ -4433,7 +4449,7 @@ setting_infos = [
             'distribution':  [
                 ('none', 1)
             ],
-        },   
+        },
     ),
     Combobox(
         name            = 'empty_dungeons_specific',
@@ -4484,10 +4500,10 @@ setting_infos = [
         default        = [],
         gui_tooltip    = '''
             Locations in the left column may contain items
-            required to complete the game. 
-            
-            Locations in the right column will never have 
-            items that are required to complete the game, 
+            required to complete the game.
+
+            Locations in the right column will never have
+            items that are required to complete the game,
             and will only contain junk.
 
             Most dungeon locations have a MQ alternative.
