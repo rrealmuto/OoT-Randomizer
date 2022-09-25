@@ -2029,7 +2029,8 @@ setting_infos = [
 
             'Standard Anti-Weekly Settings (S5)' disables every location that's enabled in 'S5
             Tournament' and enables every location that's disabled there, as well as changing some
-            miscellaneous settings.
+            miscellaneous settings. 'Standard Anti-Weekly Settings (Latest)' is similar but based on
+            'Standard Weekly (Latest)'.
 
             The other presets are for racing and/or tournaments.
 
