@@ -39,7 +39,7 @@ class Goal(object):
         self.weight = 0
         self.category = None
         self._item_cache = {}
-    
+
     def copy(self):
         new_goal = Goal(self.world, self.name, self.hint_text, self.color, self.items, self.locations, self.lock_locations, self.lock_entrances, self.required_locations, True)
         return new_goal
@@ -156,7 +156,7 @@ def update_goal_items(spoiler):
     # required_locations[category.name][goal.name][world_id] = [...]
     required_locations = defaultdict(lambda: defaultdict(lambda: defaultdict(list)))
     priority_locations = {(world.id): {} for world in worlds}
-    
+
     # rebuild hint exclusion list
     for world in worlds:
         hintExclusions(world, clear_cache=True)
@@ -212,7 +212,7 @@ def update_goal_items(spoiler):
     required_locations.update(identified_locations)
     woth_locations = list(required_locations['way of the hero'])
     del required_locations['way of the hero']
-    
+
     # Update WOTH items
     woth_locations_dict = {}
     for world in worlds:
@@ -259,7 +259,7 @@ def update_goal_items(spoiler):
                             goal_locations[location[0]].append(goal_world)
                     goal.required_locations = [(location, 1, 1, world_ids) for location, world_ids in goal_locations.items()]
         # Copy of goal categories for the spoiler log to reference
-        # since the hint algorithm mutates the world copy 
+        # since the hint algorithm mutates the world copy
         for world in worlds:
             spoiler.goal_categories[world.id] = {cat_name: category.copy() for cat_name, category in world.goal_categories.items()}
     spoiler.goal_locations = required_locations_dict
@@ -292,6 +292,7 @@ def search_goals(categories, reachable_goals, search, priority_locations, all_lo
     world_ids = [state.world.id for state in search.state_list]
     if search_woth:
         required_locations['way of the hero'] = []
+    remaining_locations = all_locations[:]
     for location in search.iter_reachable_locations(all_locations):
         # Try to remove items one at a time and see if the goal is still reachable
         if location in item_locations:
@@ -333,7 +334,11 @@ def search_goals(categories, reachable_goals, search, priority_locations, all_lo
                 required_locations['way of the hero'].append(location)
             location.item = old_item
         maybe_set_misc_item_hints(location)
+        remaining_locations.remove(location)
         search.state_list[location.item.world.id].collect(location.item)
+    for location in remaining_locations:
+        # finally, collect unreachable locations for misc. item hints
+        maybe_set_misc_item_hints(location)
     return required_locations
 
 
