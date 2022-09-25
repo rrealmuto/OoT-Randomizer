@@ -154,14 +154,11 @@ PLANDOMIZER_USED:
 .byte 0x00
 .align 4
 
-CFG_DUNGEON_INFO_REWARD_SUMMARY_ENABLE:
-.word 1
-
 ; These configuration values are given fixed addresses to aid auto-trackers.
 ; Any changes made here should be documented in Notes/auto-tracker-ctx.md
 AUTO_TRACKER_CONTEXT:
 AUTO_TRACKER_VERSION:
-.word 3 ; Increment this if the auto-tracker context layout changes
+.word 4 ; Increment this if the auto-tracker context layout changes
 
 CFG_DUNGEON_INFO_ENABLE:
 .word 0
@@ -175,6 +172,8 @@ CFG_DUNGEON_INFO_REWARD_NEED_COMPASS:
 .word 0
 CFG_DUNGEON_INFO_REWARD_NEED_ALTAR:
 .word 0
+CFG_DUNGEON_INFO_REWARD_SUMMARY_ENABLE:
+.word 1
 .area 14, 0xff
 CFG_DUNGEON_REWARDS:
 .endarea
