@@ -726,10 +726,12 @@ class World(object):
         # wording is used to distinguish the hint type even though the hintable location
         # set is identical to WOTH.
         if not self.settings.triforce_hunt:
-            if self.settings.starting_age == 'child' and not self.settings.open_door_of_time:
-                dot_items = [{'name': 'Song of Time', 'quantity': 2 if self.settings.shuffle_song_items == 'any' and self.settings.item_pool_value == 'plentiful' else 1, 'minimum': 1, 'hintable': True}]
-                if self.settings.shuffle_ocarinas:
-                    dot_items.append({'name': 'Ocarina', 'quantity': 3 if self.settings.item_pool_value == 'plentiful' else 2, 'minimum': 1, 'hintable': True})
+            if self.settings.starting_age == 'child':
+                dot_items = [{'name': 'Temple of Time Access', 'quantity': 1, 'minimum': 1, 'hintable': True}]
+                if not self.settings.open_door_of_time:
+                    dot_items.append({'name': 'Song of Time', 'quantity': 2 if self.settings.shuffle_song_items == 'any' and self.settings.item_pool_value == 'plentiful' else 1, 'minimum': 1, 'hintable': True})
+                    if self.settings.shuffle_ocarinas:
+                        dot_items.append({'name': 'Ocarina', 'quantity': 3 if self.settings.item_pool_value == 'plentiful' else 2, 'minimum': 1, 'hintable': True})
                 dot.add_goal(Goal(self, 'Door of Time', 'path of time', 'Light Blue', items=dot_items))
                 self.goal_categories[dot.name] = dot
 
