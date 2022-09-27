@@ -743,7 +743,8 @@ class TestValidSpoilers(unittest.TestCase):
                     spoiler = load_spoiler('%s_Spoiler.json' % settings.output_file)
                     self.verify_woth(spoiler)
                     self.verify_playthrough(spoiler)
-                    self.verify_disables(spoiler)
+                    if 'Standard Anti-Weekly Settings' not in name:
+                        self.verify_disables(spoiler)
 
     # remove this to run the fuzzer
     @unittest.skip("generally slow and failures can be ignored")

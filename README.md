@@ -30,14 +30,11 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * “Standard Anti-Weekly Settings (S5)” disables every location that's enabled in “S5 Tournament” and enables every location that's disabled there, as well as changing some miscellaneous settings. See [the official document](https://docs.google.com/document/d/1sbL6Zju943F5qyx4QbTLUsqZqOTMmvqKVbDwJl08SGc/edit) for details.
   * “Standard Anti-Weekly Settings (Latest)” is similar to the above but based on the current weekly preset. Differences are closed Deku, new hint distribution, and dungeon shortcuts.
 * Other changes:
-  * Multiworld plugins can now read the file hash icons to make sure all players are on the same seed ([#1705](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1705))
   * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
   * Opening the Door of Time is a separate goal category when required by the settings ([#1529](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1529))
   * The convenience patch for floor switches now applies to more MQ switches ([#1459](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1459))
   * Tokens can be on excluded locations if there are no checks requiring them (such as in SAWS)
   * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
-* Bug fixes:
-  * An ambiguity in the auto-tracker context versioning is fixed ([#1720](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1720))
 
 Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):
 
