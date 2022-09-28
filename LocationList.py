@@ -360,9 +360,9 @@ location_table = OrderedDict([
     ("Graveyard Heart Piece Grave Chest",                            ("Chest",        0x3F,  0x00, None,                            'Piece of Heart',                        ("the Graveyard", "Kakariko"))),
     ("Graveyard Royal Familys Tomb Chest",                           ("Chest",        0x41,  0x00, None,                            'Bombs (5)',                             ("the Graveyard", "Kakariko"))),
     ("Graveyard Freestanding PoH",                                   ("Collectable",  0x53,  0x04, None,                            'Piece of Heart',                        ("the Graveyard", "Kakariko"))),
-    ("Graveyard Dampe Gravedigging Tour",                            ("Dropped",      0x53,  0x08, None,                            'Piece of Heart',                        ("the Graveyard", "Kakariko"))),
+    ("Graveyard Dampe Gravedigging Tour",                            ("Collectable",      0x53,  0x08, None,                            'Piece of Heart',                        ("the Graveyard", "Kakariko"))),
     ("Graveyard Dampe Race Hookshot Chest",                          ("Chest",        0x48,  0x00, None,                            'Progressive Hookshot',                  ("the Graveyard", "Kakariko"))),
-    ("Graveyard Dampe Race Freestanding PoH",                        ("Dropped",      0x48,  0x07, None,                            'Piece of Heart',                        ("the Graveyard", "Kakariko", "Minigames"))),
+    ("Graveyard Dampe Race Freestanding PoH",                        ("Collectable",      0x48,  0x07, None,                            'Piece of Heart',                        ("the Graveyard", "Kakariko", "Minigames"))),
     ("Graveyard GS Bean Patch",                                      ("GS Token",     0x10,  0x01, None,                            'Gold Skulltula Token',                  ("the Graveyard", "Skulltulas"))),
     ("Graveyard GS Wall",                                            ("GS Token",     0x10,  0x80, None,                            'Gold Skulltula Token',                  ("the Graveyard", "Skulltulas"))),
     # Graveyard Freestanding
@@ -415,7 +415,7 @@ location_table = OrderedDict([
 
     # Goron City
     ("GC Darunias Joy",                                              ("NPC",          0x62,  0x54, None,                            'Progressive Strength Upgrade',          ("Goron City"))),
-    ("GC Pot Freestanding PoH",                                      ("Dropped",      0x62,  0x1F, None,                            'Piece of Heart',                        ("Goron City", "Goron City"))),
+    ("GC Pot Freestanding PoH",                                      ("Collectable",      0x62,  0x1F, None,                            'Piece of Heart',                        ("Goron City", "Goron City"))),
     ("GC Rolling Goron as Child",                                    ("NPC",          0x62,  0x34, None,                            'Bomb Bag',                              ("Goron City"))),
     ("GC Rolling Goron as Adult",                                    ("NPC",          0x62,  0x2C, None,                            'Goron Tunic',                           ("Goron City"))),
     ("GC Medigoron",                                                 ("NPC",          0x62,  0x28, None,                            'Giants Knife',                          ("Goron City"))),
@@ -642,10 +642,10 @@ location_table = OrderedDict([
     ("GF Above Jail Crate",                                          ("Crate",        0x5D,  0x1F, None,                            'Rupees (50)',                           ("Gerudo's Fortress", "Gerudo", "Crate"))),
 
     # Thieves' Hideout
-    ("Hideout 1 Torch Jail Gerudo Key",                              ("Dropped",  0x0C,  0x0C, None,                            'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo"))),
-    ("Hideout 2 Torches Jail Gerudo Key",                            ("Dropped",  0x0C,  0x0F, None,                            'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo"))),
-    ("Hideout 3 Torches Jail Gerudo Key",                            ("Dropped",  0x0C,  0x0A, None,                            'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo"))),
-    ("Hideout 4 Torches Jail Gerudo Key",                            ("Dropped",  0x0C,  0x0E, None,                            'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo"))),
+    ("Hideout 1 Torch Jail Gerudo Key",                              ("Collectable",  0x0C,  0x0C, None,                            'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo"))),
+    ("Hideout 2 Torches Jail Gerudo Key",                            ("Collectable",  0x0C,  0x0F, None,                            'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo"))),
+    ("Hideout 3 Torches Jail Gerudo Key",                            ("Collectable",  0x0C,  0x0A, None,                            'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo"))),
+    ("Hideout 4 Torches Jail Gerudo Key",                            ("Collectable",  0x0C,  0x0E, None,                            'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo"))),
     ("Hideout Gerudo Membership Card",                               ("NPC",          0x0C,  0x3A, None,                            'Gerudo Membership Card',                ("Thieves' Hideout", "Gerudo"))),
     # Thieves' Hideout Pots/Crates
     ("Hideout Break Room Pot 1",                                     ("Pot",          0x0C,  0x2A, None,                            'Arrows (10)',                           ("Thieves' Hideout", "Gerudo", "Pot"))),
@@ -1441,7 +1441,7 @@ location_table = OrderedDict([
     ("Shadow Temple Falling Spikes Upper Chest",                     ("Chest",        0x07,  0x06, None,                            'Rupees (5)',                            ("Shadow Temple", "Vanilla"))),
     ("Shadow Temple Falling Spikes Switch Chest",                    ("Chest",        0x07,  0x04, None,                            'Small Key (Shadow Temple)',             ("Shadow Temple", "Vanilla"))),
     ("Shadow Temple Invisible Spikes Chest",                         ("Chest",        0x07,  0x09, None,                            'Rupees (5)',                            ("Shadow Temple", "Vanilla"))),
-    ("Shadow Temple Freestanding Key",                               ("Dropped",      0x07,  0x01, None,                            'Small Key (Shadow Temple)',             ("Shadow Temple", "Vanilla"))),
+    ("Shadow Temple Freestanding Key",                               ("Collectable",      0x07,  0x01, None,                            'Small Key (Shadow Temple)',             ("Shadow Temple", "Vanilla"))),
     ("Shadow Temple Wind Hint Chest",                                ("Chest",        0x07,  0x15, None,                            'Arrows (10)',                           ("Shadow Temple", "Vanilla"))),
     ("Shadow Temple After Wind Enemy Chest",                         ("Chest",        0x07,  0x08, None,                            'Rupees (5)',                            ("Shadow Temple", "Vanilla"))),
     ("Shadow Temple After Wind Hidden Chest",                        ("Chest",        0x07,  0x14, None,                            'Small Key (Shadow Temple)',             ("Shadow Temple", "Vanilla"))),
@@ -2007,11 +2007,11 @@ dungeons = ('Deku Tree', 'Dodongo\'s Cavern', 'Jabu Jabu\'s Belly', 'Forest Temp
 location_groups = {
     'Song': [name for (name, data) in location_table.items() if data[0] == 'Song'],
     'Chest': [name for (name, data) in location_table.items() if data[0] == 'Chest'],
-    'Collectable': [name for (name, data) in location_table.items() if data[0] in ['Collectable', 'Dropped']],
+    'Collectable': [name for (name, data) in location_table.items() if data[0] in ['Collectable']],
     'Boss': [name for (name, data) in location_table.items() if data[0] == 'Boss'],
     'ActorOverride': [name for (name, data) in location_table.items() if data[0] == 'ActorOverride'],
     'BossHeart': [name for (name, data) in location_table.items() if data[0] == 'BossHeart'],
-    'CollectableLike': [name for (name, data) in location_table.items() if data[0] in ('Collectable', 'BossHeart', 'Dropped', 'GS Token')],
+    'CollectableLike': [name for (name, data) in location_table.items() if data[0] in ('Collectable', 'BossHeart', 'GS Token')],
     'CanSee': [name for (name, data) in location_table.items()
                if data[0] in ('Collectable', 'BossHeart', 'GS Token', 'Shop')
                # Treasure Box Shop, Bombchu Bowling, Hyrule Field (OoT), Lake Hylia (RL/FA)

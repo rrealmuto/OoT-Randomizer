@@ -1603,7 +1603,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             if locations:
                 # Location types later in the list will be preferred over earlier ones or ones not in the list.
                 # This ensures that if the region behind the boss door is a boss arena, the medallion or stone will be used.
-                priority_types = ("GS Token", "GrottoScrub", "Scrub", "Shop", "NPC", "Collectable", "Dropped", "Freestanding", "ActorOverride", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive", "Chest", "Cutscene", "Song", "BossHeart", "Boss")
+                priority_types = ("GS Token", "GrottoScrub", "Scrub", "Shop", "NPC", "Collectable", "Freestanding", "ActorOverride", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive", "Chest", "Cutscene", "Song", "BossHeart", "Boss")
                 best_type = max((location.type for location in locations), key=lambda type: priority_types.index(type) if type in priority_types else -1)
                 location = random.choice(list(filter(lambda loc: loc.type == best_type, locations)))
                 break
@@ -2409,7 +2409,7 @@ def get_override_entry(location):
         type = 2
     elif location.type in ['Collectable', 'Freestanding', 'ActorOverride']:
             type = 2
-    elif location.type in ["Pot", "Crate", "FlyingPot", "SmallCrate", "RupeeTower", "Beehive", "Dropped"]:
+    elif location.type in ["Pot", "Crate", "FlyingPot", "SmallCrate", "RupeeTower", "Beehive"]:
             type = 6
     elif location.type == 'GS Token':
         type = 3

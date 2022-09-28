@@ -80,14 +80,23 @@ override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_
             .flag = actor->variable & 0x1F,
         };
     } else if (actor->actor_id == 0x15) {
-        // Override heart pieces, keys, red, blue, green rupees, and recovery hearts
-        int collectable_type = actor->variable & 0xFF;
-        if (collectable_type == 0x12) { // don't override fairies
+        // Override En_Item00 collectibles
+        int collectible_type = actor->variable & 0xFF;
+        if (collectible_type == 0x12) { // don't override fairies. Honestly don't think this is even necessary
             return (override_key_t){ .all = 0 };
         }
-
-        // Check if it was a dropped collectable and use a separate override for that
         EnItem00 *item = (EnItem00 *)actor;
+
+        if(collectible_type == 0x06 || collectible_type == 0x11) //heart pieces and keys
+        {
+            return (override_key_t) {
+                .scene = scene,
+                .type = OVR_COLLECTABLE,
+                .flag = item->collectibleFlag,
+            };
+        }
+
+        // Check if it was a dropped collectable and use a separate override type for that
         uint8_t flag = ((item->actor.dropFlag & 0x06) << 5) + item->collectibleFlag;
         if (item->actor.dropFlag) {
             // Use the same override flags for the pots in ganon's tower
@@ -447,7 +456,7 @@ bool Get_CollectibleOverrideFlag(EnItem00 *item00) {
     uint8_t *scene_table = &collectible_scene_flags_table[0];
     uint16_t scene = z64_game.scene_index;
     bool dropFlag = item00->actor.dropFlag & 0x0001;
-
+    // Use the regular collectible flag for heart pieces, heart containers, small keys.
     if (item00->actor.variable == ITEM00_HEART_PIECE || item00->actor.variable == ITEM00_SMALL_KEY || item00->actor.variable == ITEM00_HEART_CONTAINER) {
         return z64_Flags_GetCollectible(&z64_game, item00->collectibleFlag) > 0;
     }
@@ -569,7 +578,7 @@ int16_t get_override_drop_id(int16_t dropId, uint16_t params) {
     return dropId;
 }
 
-// Override hack for freestanding collectibles (green, blue, red rupees, recovery hearts)
+// Override hack for freestanding collectibles (rupees, recovery hearts, sticks, nuts, seeds, bombs, arrows, magic jars. Pieces of heart, heart containers, small keys handled by the regular get_item function)
 uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_actor) {
     EnItem00 *pItem = (EnItem00 *)from_actor;
 
@@ -595,15 +604,15 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
 
         // Set the collectible flag
         Set_CollectibleOverrideFlag(pItem);
-        if (item == ITEM00_HEART_PIECE || item == ITEM00_SMALL_KEY) { // Don't allow heart pieces or small keys to be collected a second time. This is really just for the "Drop" types.
-            z64_SetCollectibleFlags(&z64_game, pItem->collectibleFlag);
-        }
+        //if (item == ITEM00_HEART_PIECE || item == ITEM00_SMALL_KEY) { // Don't allow heart pieces or small keys to be collected a second time. This is really just for the "Drop" types.
+        //    z64_SetCollectibleFlags(&z64_game, pItem->collectibleFlag);
+        //}
         item_id = collectible_override.value.item_id;
         uint8_t player = collectible_override.value.player;
 
         PLAYER_NAME_ID = player;
 
-        // If it's a junk item (aka a regular collectible) don't do the fanfare music/message box.
+        // If it's a collectible item don't do the fanfare music/message box. 
         if (item_row->collectible >= 0) { // Item is one of our base collectibles
             collectible_mutex = NULL;
             pItem->actor.health = 1;
@@ -636,8 +645,10 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
             z64_GiveItem(&z64_game, item_row->action_id);
             call_effect_function(item_row);
         } else if (player != PLAYER_ID) {
+            // Item is for another world. Set outgoing item.
             set_outgoing_override(&collectible_override);
         } else {
+            // Item is for this player
             if (MW_SEND_OWN_ITEMS) {
                 set_outgoing_override(&collectible_override);
             }
