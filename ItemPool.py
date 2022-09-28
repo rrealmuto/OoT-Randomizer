@@ -582,7 +582,7 @@ def get_pool_core(world):
                     item = get_junk_item()[0]
                     shuffle_item = True
             # Any other item in a dungeon.
-            elif location.type in ["Chest", "NPC", "Song", "Collectable", "Dropped", "Cutscene", "BossHeart"]:
+            elif location.type in ["Chest", "NPC", "Song", "Collectable", "Cutscene", "BossHeart"]:
                 shuffle_item = True
 
             # Handle dungeon item.
@@ -596,7 +596,7 @@ def get_pool_core(world):
                     dungeon_collection[-1].priority = True
 
         # The rest of the overworld items.
-        elif location.type in ["Chest", "NPC", "Song", "Collectable", "Dropped", "Cutscene", "BossHeart"]:
+        elif location.type in ["Chest", "NPC", "Song", "Collectable", "Cutscene", "BossHeart"]:
             shuffle_item = True
 
         # Now, handle the item as necessary.
