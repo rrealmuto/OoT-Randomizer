@@ -31,3 +31,4 @@ PLAYER_NAMES:
 .area 5, 0x00
 CFG_FILE_SELECT_HASH:
 .endarea
+.align 4

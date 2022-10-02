@@ -596,8 +596,8 @@ export class GUIGlobal {
     if (newVersion.startsWith("dev") && newVersion.includes("_"))
       newVersion = newVersion.split("_")[1];
 
-    let oldSplit = oldVersion.replace('R-', '').replace('Fenhl-', '').replace('v', '').replace(' ', '.').split('.');
-    let newSplit = newVersion.replace('R-', '').replace('Fenhl-', '').replace(' ', '.').split('.');
+    let oldSplit = oldVersion.replace('v', '').replace(' ', '.').split('.');
+    let newSplit = newVersion.replace(' ', '.').split('.');
 
     //Version is not newer if the new version doesn't satisfy the format
     if (newSplit.length < 4)
