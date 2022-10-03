@@ -1773,14 +1773,14 @@ setting_infos = [
             "hide_when_disabled" : True,
         }
     ),
-	Checkbutton(
+    Checkbutton(
         name           = 'web_wad_legacy_mode',
         gui_text       = 'WAD Legacy Mode',
-		shared		   = False,
+        shared         = False,
         default        = False,
-		gui_tooltip	   = "Enabling this will avoid any patching of the VC emulator in case your Wii does not have support for it. Recommended to be left unchecked.",
-		gui_params  = {
-			"no_line_break"		 : False,
+        gui_tooltip    = "Enabling this will avoid any patching of the VC emulator in case your Wii does not have support for it. Recommended to be left unchecked.",
+        gui_params  = {
+            "no_line_break"      : False,
             "hide_when_disabled" : True,
         }
     ),
@@ -1861,7 +1861,7 @@ setting_infos = [
         name           = 'enable_distribution_file',
         gui_text       = 'Enable Plandomizer (Advanced)',
         gui_tooltip    = '''\
-            Optional. Use a plandomizer JSON file to get 
+            Optional. Use a plandomizer JSON file to get
             total control over the item placement.
         ''',
         gui_params     = {
@@ -1951,7 +1951,7 @@ setting_infos = [
         disable        = {
             False : {'settings' : ["user_message"]}
         },
-		gui_params = {
+        gui_params = {
             "hide_when_disabled" : True,
         }
     ),
@@ -2283,21 +2283,21 @@ setting_infos = [
             'open':   'Open Gate',
             'zelda':  "Zelda's Letter Opens Gate",
             'closed': 'Closed Gate',
-            },
+        },
         gui_tooltip    = '''\
             This changes the behavior of the Kakariko Gate to
             Death Mountain Trail as child. The gate is always
             open as adult.
-            
+
             "Open Gate": The gate is always open instead of
             needing Zelda's Letter. The Happy Mask Shop opens
             upon obtaining Zelda's Letter without needing to
             show it to the guard.
-            
+
             "Zelda's Letter Opens Gate": The gate is closed at
             the start, but opens automatically along with the
             Happy Mask Shop upon obtaining Zelda's Letter.
-            
+
             "Closed": The gate and the Happy Mask Shop both remain closed
             until showing Zelda's Letter to the guard in Kakariko.
         ''',
@@ -2334,12 +2334,12 @@ setting_infos = [
             Zora's Fountain. Ruto's Letter must be shown as
             child in order to move him for both eras.
 
-            'Open For Adult': King Zora is always moved in 
+            'Open For Adult': King Zora is always moved in
             the adult era. This means Ruto's Letter is only
             required to access Zora's Fountain as child.
 
             'Always Open': King Zora starts as moved in
-            both the child and adult eras. This also removes 
+            both the child and adult eras. This also removes
             Ruto's Letter from the pool since it can't be used.
         ''',
         shared         = True,
@@ -2364,7 +2364,7 @@ setting_infos = [
 
             'Open Gerudo's Fortress': The carpenters are rescued from
             the start of the game, and if 'Shuffle Gerudo Card' is disabled,
-            the player starts with the Gerudo Card in the inventory 
+            the player starts with the Gerudo Card in the inventory
             allowing access to Gerudo Training Ground.
         ''',
         shared         = True,
@@ -2382,7 +2382,7 @@ setting_infos = [
         choices        = {
             'open':       'Always Open',
             'vanilla':    'Vanilla Requirements',
-            'stones':	  'Spiritual Stones',
+            'stones':     'Spiritual Stones',
             'medallions': 'Medallions',
             'dungeons':   'Dungeons',
             'tokens':     'Gold Skulltula Tokens',
@@ -2401,7 +2401,6 @@ setting_infos = [
         ''',
         shared         = True,
         disable        = {
-            '!vanilla':    {'settings': ['shuffle_base_item_pool']},
             '!stones':     {'settings': ['bridge_stones']},
             '!medallions': {'settings': ['bridge_medallions']},
             '!dungeons':   {'settings': ['bridge_rewards']},
@@ -3025,25 +3024,47 @@ setting_infos = [
             other settings. This includes most chests, NPCs,
             freestanding heart pieces, and boss heart containers.
 
-            Medallions and Spiritual Stones will be shuffled
-            among each other.
-
             If this setting is enabled, the contents of bottles
             found in the world (other than Ruto's letter) are
             also randomized.
 
             Turning this off currently does not work with
-            glitched logic, Master Quest, Ganon's Castle or boss
-            Entrance Randomizer, or non-vanilla Rainbow Bridge.
+            glitched logic or Master Quest.
         ''',
         default        = True,
         disable        = {
-            False : {'settings': ['item_pool_value', 'mq_dungeons_mode', 'shuffle_bosses']},
+            False : {'settings': ['item_pool_value', 'mq_dungeons_mode']},
         },
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
         },
+    ),
+    Combobox(
+        name           = 'shuffle_dungeon_rewards',
+        gui_text       = 'Shuffle Dungeon Rewards',
+        default        = 'reward',
+        choices        = {
+            'vanilla': 'Vanilla Locations',
+            'reward':  'Dungeon Reward Locations',
+        },
+        gui_tooltip    = '''\
+            This controls where Medallions and Spiritual Stones can
+            appear.
+
+            'Vanilla Locations': Medallions and Spiritual Stones will
+            appear in their vanilla locations.
+
+            'Dungeon Reward Locations': Medallions and Spiritual
+            Stones will be awarded when stepping into the blue warps
+            of boss rooms, but not necessarily the boss's vanilla
+            reward. In Multiworld, dungeon rewards will only appear
+            in their own world.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+        shared         = True,
     ),
     Checkbutton(
         name           = 'shuffle_kokiri_sword',
@@ -3084,7 +3105,7 @@ setting_infos = [
             'vanilla':          'Vanilla Locations',
             'shuffle':          'Shuffle Weird Egg',
             'skip_child_zelda': 'Skip Child Zelda',
-            },
+        },
         gui_tooltip    = '''\
             This changes the beginning of the child trade quest.
 
@@ -3134,7 +3155,7 @@ setting_infos = [
             'song':    'Song Locations',
             'dungeon': 'Dungeon Rewards',
             'any':     'Anywhere',
-            },
+        },
         gui_tooltip    = '''\
             This restricts where song items can appear.
 
@@ -3163,7 +3184,8 @@ setting_infos = [
         gui_params     = {
             'randomize_key': 'randomize_settings',
             'distribution':  [
-                ('song', 2),
+                ('vanilla', 1),
+                ('song', 1),
                 ('dungeon', 1),
                 ('any', 1),
             ],
@@ -3315,7 +3337,7 @@ setting_infos = [
         name           = 'shuffle_frog_song_rupees',
         gui_text       = 'Shuffle Frog Song Rupees',
         gui_tooltip    = '''\
-            Enabling this adds 5 Purple Rupees to the item pool 
+            Enabling this adds 5 Purple Rupees to the item pool
             and shuffles the rewards from playing Zelda's Lullaby,
             Epona's Song, Saria's Song, Sun's Song, and Song of Time
             to the frogs in Zora's River.
@@ -3336,15 +3358,15 @@ setting_infos = [
             'all':       'All Interiors',
         },
         gui_tooltip    = '''\
-            'Simple Interiors': 
-            Shuffle the pool of interior entrances which contains most Houses 
+            'Simple Interiors':
+            Shuffle the pool of interior entrances which contains most Houses
             and all Great Fairies.
-    
+
             'All Interiors':
             Extended version of 'Simple Interiors' with some extra places:
             Windmill, Link's House, Temple of Time and Kakariko Potion Shop.
 
-            When shuffling any interior entrances, trade quest timers are disabled 
+            When shuffling any interior entrances, trade quest timers are disabled
             and items never revert, even when dying or loading a save.
         ''',
         disable        = {
@@ -3387,7 +3409,7 @@ setting_infos = [
         name           = 'shuffle_grotto_entrances',
         gui_text       = 'Shuffle Grotto Entrances',
         gui_tooltip    = '''\
-            Shuffle the pool of grotto entrances, including all graves, 
+            Shuffle the pool of grotto entrances, including all graves,
             small Fairy Fountains and the Lost Woods Stage.
         ''',
         default        = False,
@@ -3417,9 +3439,6 @@ setting_infos = [
 
             Thieves' Hideout is controlled by a separate setting.
         ''',
-        disable        = {
-            'all' : {'settings': ['shuffle_base_item_pool']},
-        },
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -3451,7 +3470,7 @@ setting_infos = [
             'full':      'Full',
         },
         disable        = {
-            '!off' : {'settings': ['require_gohma', 'shuffle_base_item_pool']},
+            '!off' : {'settings': ['require_gohma']},
         },
         shared         = True,
         gui_params     = {
@@ -3472,8 +3491,8 @@ setting_infos = [
             The entrance from Gerudo Valley to Lake Hylia is a one-way
             entrance and has its own setting below.
 
-            Just like when shuffling interior entrances, shuffling overworld 
-            entrances disables trade timers and trade items never revert, 
+            Just like when shuffling interior entrances, shuffling overworld
+            entrances disables trade timers and trade items never revert,
             even when dying or loading a save.
         ''',
         default        = False,
@@ -3757,7 +3776,7 @@ setting_infos = [
         },
         gui_tooltip    = '''\
             Randomizes Shop contents.
-            
+
             'X Items Per Shop': Each shop will have the
             specified number of items randomized and they
             will always appear on the left side
@@ -3838,7 +3857,7 @@ setting_infos = [
             'dungeons':  'Dungeons Only',
             'overworld': 'Overworld Only',
             'all':       'All Tokens',
-            },
+        },
         gui_tooltip    = '''\
             Token reward from Gold Skulltulas are
             shuffled into the pool.
@@ -3902,7 +3921,7 @@ setting_infos = [
             Setting 'Remove', 'Start With', 'Overworld', or 'Anywhere' will add 2
             more possible locations to each Dungeons. This makes dungeons more
             profitable, especially Ice Cavern, Water Temple, and Jabu Jabu's Belly.
-            
+
             Regardless of the selected option, maps and compasses from pre-completed
             dungeons won't be placed outside their respective dungeons and maps and
             compasses from other dungeons won't be placed inside pre-completed dungeons.
@@ -4020,18 +4039,18 @@ setting_infos = [
             'random':    'Random dungeons'
         },
         gui_tooltip     = '''\
-            Selected dungeons will have all of their keys found 
-            at once in a ring rather than individually. 
+            Selected dungeons will have all of their keys found
+            at once in a ring rather than individually.
 
-            For example, instead of shuffling 5 Forest Temple 
+            For example, instead of shuffling 5 Forest Temple
             small keys into the pool, you will find a single
             key ring which will give you all 5 keys at once.
 
             Selecting key ring for dungeons will have no effect
             if Small Keys are set to Remove or Vanilla.
 
-            Selecting key ring for Thieves' Hideout will have 
-            no effect if Thieves' Hideout keys are in vanilla 
+            Selecting key ring for Thieves' Hideout will have
+            no effect if Thieves' Hideout keys are in vanilla
             locations or Gerudo's Fortress is set to Rescue
             One Carpenter.
         ''',
@@ -4084,7 +4103,7 @@ setting_infos = [
             doors in dungeons will be unlocked. An easier
             mode.
 
-            'Vanilla': Boss Keys will appear in their 
+            'Vanilla': Boss Keys will appear in their
             vanilla locations.
 
             'Own Dungeon': Boss Keys can only appear in their
@@ -4306,7 +4325,7 @@ setting_infos = [
         gui_tooltip    = '''\
             Sets the condition for the Light Arrow Cutscene
             check to give you the item from Zelda.
-            
+
             'Vanilla': Shadow and Spirit Medallions.
             'Stones': A configurable amount of Spiritual Stones.
             'Medallions': A configurable amount of Medallions.
@@ -4649,9 +4668,9 @@ setting_infos = [
         gui_tooltip='''
             Tricks moved to the right column are in-logic
             and MAY be required to complete the game.
-            
+
             Tricks in the left column are NEVER required.
-            
+
             Tricks are only relevant for Glitchless logic.
         '''
     ),
@@ -4920,7 +4939,7 @@ setting_infos = [
         gui_type       = None,
         gui_text       = None,
         shared         = True,
-        choices        = [name for name, item in ItemInfo.items.items() if item.type == 'Item']
+        choices        = [name for name, item in ItemInfo.items.items() if item.type == 'Item'],
     ),
     Setting_Info('hint_dist_user',    dict, None, None, True, {}),
     Combobox(
@@ -4999,7 +5018,7 @@ setting_infos = [
         gui_tooltip    = '''\
             Changes the categories of items Ice Traps may
             appear as, both when freestanding and when in
-            chests with Chest Size Matches Contents enabled. 
+            chests with Chest Size Matches Contents enabled.
 
             'Major Items Only': Ice Traps appear as Major
             Items (and in large chests if CSMC enabled).
@@ -5055,20 +5074,20 @@ setting_infos = [
             'Ludicrous': Every item in the game is a major
             item. Incompatible with one major item per dungeon.
 
-            'Plentiful': One additional copy of each major 
+            'Plentiful': One additional copy of each major
             item is added.
 
             'Balanced': Original item pool.
 
-            'Scarce': An extra copy of major item upgrades 
-            that are not required to open location checks 
-            is removed (e.g. Bow upgrade, Magic upgrade). 
+            'Scarce': An extra copy of major item upgrades
+            that are not required to open location checks
+            is removed (e.g. Bow upgrade, Magic upgrade).
             Heart Containers are removed as well. Number
             of Bombchu items is reduced.
 
-            'Minimal': All major item upgrades not used to 
-            open location checks are removed. All health 
-            upgrades are removed. Only one Bombchu item is 
+            'Minimal': All major item upgrades not used to
+            open location checks are removed. All health
+            upgrades are removed. Only one Bombchu item is
             available.
         ''',
         shared         = True,
@@ -5207,9 +5226,9 @@ setting_infos = [
         cosmetic       = True,
         gui_tooltip    = '''\
             Disable standard battle music.
-	        This prevents background music from being
-	        interrupted by the battle theme when being
-	        near enemies.
+            This prevents background music from being
+            interrupted by the battle theme when being
+            near enemies.
         ''',
         default        = False,
     ),

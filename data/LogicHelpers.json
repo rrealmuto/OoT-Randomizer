@@ -87,7 +87,10 @@
     "has_fire_source": "can_use(Dins_Fire) or can_use(Fire_Arrows)",
     "has_fire_source_with_torch": "has_fire_source or (is_child and Sticks)",
 
-    "vanilla_progression": "(not shuffle_base_item_pool) and shuffle_smallkeys == 'vanilla'",
+    # Ensures that all logically relevant items in the current scene are in their vanilla locations, which allows fewer key requirements in vanilla Fire and Water temple.
+    "local_vanilla_progression": "(not shuffle_base_item_pool) and shuffle_smallkeys == 'vanilla'",
+    # Ensures that all logically relevant items are in their vanilla locations, which allows fewer key requirements in vanilla Spirit temple.
+    "global_vanilla_progression": "local_vanilla_progression and shuffle_dungeon_rewards == 'vanilla' and bridge == 'vanilla' and shuffle_bosses == 'off' and shuffle_dungeon_entrances != 'all'",
 
     # Gerudo Fortress
     "can_finish_GerudoFortress": "(gerudo_fortress == 'normal' and

@@ -20,6 +20,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * New “Shuffle Gerudo Valley River Exit” setting
   * New “Mutually Exclusive One-Ways” setting which makes the hint area restriction apply to one-way entrances of different types
   * New “Vanilla” option for the “Shuffle Songs” setting
+  * New “Shuffle Dungeon Rewards” setting with “Vanilla Locations” and “Dungeon Reward Locations” options
   * New “Shuffle Other Items” setting which can be disabled to generate vanilla seeds, only shuffle entrances, etc.
   * New “Mixed Pools Tournament” hint distribution
 * New settings presets:

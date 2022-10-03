@@ -664,11 +664,11 @@ class World(object):
             random.shuffle(prizepool)
             random.shuffle(prize_locs)
             loc = prize_locs.pop()
-            if self.settings.shuffle_base_item_pool:
-                item = prizepool.pop()
-            else:
+            if self.settings.shuffle_dungeon_rewards == 'vanilla':
                 item = next(item for item in prizepool if item.name == location_table[loc.name][4])
                 prizepool.remove(item)
+            elif self.settings.shuffle_dungeon_rewards == 'reward':
+                item = prizepool.pop()
             self.push_item(loc, item)
 
     def set_goals(self):
