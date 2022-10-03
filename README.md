@@ -12,6 +12,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
 
 * New settings and options:
   * New “Shuffle Thieves' Hideout Entrances” setting ([#1616](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1616))
+  * New “Shuffle Rupees & Hearts”, “Shuffle Pots”, “Shuffle Crates”, “Shuffle Beehives”, and “Pot & Crate Appearance Matches Contents” settings ([#1558](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1558))
   * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1536))
   * “Closed Forest Requires Gohma” is a separate setting, making “Closed Forest” compatible with more settings if disabled ([#1531](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1531))
   * New “Full” options for the “Randomize Owl Drops”, “Randomize Warp Song Destinations”, and “Randomize Overworld Spawns” settings that include more types of entrances (based on [#1179](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1179) and [#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
@@ -28,7 +29,8 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * `fast-vanilla` is `vanilla` but with speed-ups like fast bunny hood, fast chest cutscenes, or “Skip Some Minigame Phases” enabled.
   * “Mixed Pools Tournament”, the settings used for a tournament that had full mixed pools entrance randomizer. Note that the tournament itself used [a previous version](https://ootrandomizer.com/generatorDev?version=devFenhl_6.2.100) of this branch.
   * “Standard Anti-Weekly Settings (S5)” disables every location that's enabled in “S5 Tournament” and enables every location that's disabled there, as well as changing some miscellaneous settings. See [the official document](https://docs.google.com/document/d/1sbL6Zju943F5qyx4QbTLUsqZqOTMmvqKVbDwJl08SGc/edit) for details.
-  * “Standard Anti-Weekly Settings (Latest)” is similar to the above but based on the current weekly preset. Differences are closed Deku, new hint distribution, and dungeon shortcuts.
+  * “Standard Anti-Weekly Settings (Beginner)” is similar to the above but based on the current weekly preset. Differences are closed Deku, new hint distribution, dungeon shortcuts, blue fire arrows, and balanced item pool.
+  * “Standard Anti-Weekly Settings (Advanced)” is like the Beginner variant but with minimal item pool, pots, crates, freestandings, and beehives.
 * Other changes:
   * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
   * Opening the Door of Time is a separate goal category when required by the settings ([#1529](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1529))

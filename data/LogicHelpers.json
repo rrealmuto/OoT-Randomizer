@@ -62,11 +62,11 @@
             or (for_age == adult and (Bow or Hookshot))
             or (for_age == both and (Slingshot or Boomerang) and (Bow or Hookshot))
             or (for_age == either and (Slingshot or Boomerang or Bow or Hookshot))",
-    "can_bonk_tree": "deadly_bonks != 'ohko' or Fairy or can_use(Nayrus_Love)",
-    "can_bonk_crate": "deadly_bonks != 'ohko' or Fairy or can_use(Nayrus_Love) or can_blast_or_smash",
-    "can_bonk_underwater_crate": "deadly_bonks != 'ohko' or Fairy or can_use(Nayrus_Love)",
-    "can_bonk_heated_crate": "(deadly_bonks != 'ohko' or (Fairy and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or can_use(Nayrus_Love) or can_blast_or_smash)",
-
+    "can_bonk": "deadly_bonks != 'ohko' or Fairy or can_use(Nayrus_Love)",
+    "can_break_crate": "can_bonk or can_blast_or_smash",
+    "can_break_heated_crate": "deadly_bonks != 'ohko' or (Fairy and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or can_use(Nayrus_Love) or can_blast_or_smash",
+    "can_break_lower_beehive": "can_use(Boomerang) or can_use(Hookshot) or Bombs or (logic_beehives_bombchus and has_bombchus)",
+    "can_break_upper_beehive": "can_use(Boomerang) or can_use(Hookshot) or (logic_beehives_bombchus and has_bombchus)",
     # can_use and helpers
     # The parser reduces this to smallest form based on item category.
     # Note that can_use(item) is False for any item not covered here.
@@ -128,9 +128,10 @@
         (shuffle_ganon_bosskey == 'dungeons' and has_dungeon_rewards(ganon_bosskey_rewards)) or
         (shuffle_ganon_bosskey == 'tokens' and (Gold_Skulltula_Token, ganon_bosskey_tokens)) or
         (shuffle_ganon_bosskey == 'hearts' and has_hearts(ganon_bosskey_hearts))) or
+        (shuffle_ganon_bosskey == 'triforce' and (Triforce_Piece, triforce_goal_per_world)) or
         (shuffle_ganon_bosskey != 'stones' and shuffle_ganon_bosskey != 'medallions' and
         shuffle_ganon_bosskey != 'dungeons' and shuffle_ganon_bosskey != 'tokens' and
-        shuffle_ganon_bosskey != 'hearts')",
+        shuffle_ganon_bosskey != 'hearts' and shuffle_ganon_bosskey != 'triforce')",
 
     # Dungeon Shortcuts
     "deku_tree_shortcuts": "'Deku Tree' in dungeon_shortcuts",

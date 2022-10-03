@@ -35,6 +35,7 @@ class Region(object):
         self.dungeon = None
         self.world = None
         self.hint_name = None
+        self.alt_hint_name = None
         self.price = None
         self.world = None
         self.time_passes = False
@@ -47,6 +48,7 @@ class Region(object):
         new_region.world = new_world
         new_region.price = self.price
         new_region.hint_name = self.hint_name
+        new_region.alt_hint_name = self.alt_hint_name
         new_region.time_passes = self.time_passes
         new_region.provides_time = self.provides_time
         new_region.scene = self.scene
@@ -68,6 +70,13 @@ class Region(object):
         if self.dungeon:
             return self.dungeon.hint
 
+    @property
+    def alt_hint(self):
+        from Hints import HintArea
+
+        if self.alt_hint_name is not None:
+            return HintArea[self.alt_hint_name]
+
 
     def can_fill(self, item, manual=False):
         if not manual and self.world.settings.empty_dungeons_mode != 'none' and item.dungeonitem:
@@ -78,7 +87,7 @@ class Region(object):
             for dungeon in item.world.dungeons:
                 if item.world.empty_dungeons[dungeon.name].empty and dungeon.is_dungeon_item(item):
                     return False
-        
+
         from Hints import HintArea
 
         is_self_dungeon_restricted = False
@@ -123,11 +132,11 @@ class Region(object):
 
 
     def get_scene(self):
-        if self.scene: 
+        if self.scene:
             return self.scene
         elif self.dungeon:
             return self.dungeon.name
-        else: 
+        else:
             return None
 
 

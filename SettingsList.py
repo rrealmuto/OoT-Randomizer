@@ -161,8 +161,8 @@ logic_tricks = {
         'name'    : 'logic_visible_collisions',
         'tags'    : ("Entrance", "Kakariko Village",),
         'tooltip' : '''\
-                    Allows climbing through the platform to reach 
-                    Impa's House Back as adult with no items and 
+                    Allows climbing through the platform to reach
+                    Impa's House Back as adult with no items and
                     going through the Kakariko Village Gate as child
                     when coming from the Mountain Trail side.
                     '''},
@@ -215,11 +215,8 @@ logic_tricks = {
         'name'    : 'logic_gf_jump',
         'tags'    : ("Gerudo's Fortress",),
         'tooltip' : '''\
-                    Allows both ages to use a jump to reach the second
-                    floor of the fortress from the southern roof with
-                    the guard, and adult to jump to the top roof from
-                    there, without going through the interiors of the
-                    Thieves' Hideout.
+                    Adult can jump onto the top roof of the fortress
+                    without going through the interior of the hideout.
                     '''},
     'Thieves\' Hideout "Kitchen" with No Additional Items': {
         'name'    : 'logic_gerudo_kitchen',
@@ -301,6 +298,14 @@ logic_tricks = {
         'tooltip' : '''\
                     A carefully-timed Bombchu can hit the switch.
                     '''},
+    'Beehives with Bombchus' : {
+        'name'    : 'logic_beehives_bombchus',
+        'tags'    : ("Beehives",),
+        'tooltip' : '''\
+                    Puts breaking beehives with bombchus into logic.
+                    Using bombs is already expected on beehives that
+                    that are low enough that a bomb throw will reach.
+                    '''},
     'Windmill PoH as Adult with Nothing': {
         'name'    : 'logic_windmill_poh',
         'tags'    : ("Kakariko Village",),
@@ -315,6 +320,13 @@ logic_tricks = {
                     Hover from the base of the bridge
                     near Goron City and walk up the
                     very steep slope.
+                    '''},
+    'Zora\'s River Rupees with Jump Dive': {
+        'name'    : 'logic_zora_river_rupees',
+        'tags'    : ("Zora's River", "Freestandings",),
+        'tooltip' : '''\
+                    You can jump down onto them from
+                    above to skip needing Iron Boots.
                     '''},
     'Zora\'s Domain Entry with Cucco': {
         'name'    : 'logic_zora_with_cucco',
@@ -464,9 +476,12 @@ logic_tricks = {
         'tags'    : ("Spirit Temple", "Skulltulas",),
         'tooltip' : '''\
                     A precise jump to obtain the following as adult
-                    without needing one of Hookshot or Hover Boots:
+                    without needing one of Hover Boots, or Hookshot
+                    (in vanilla) or Song of Time (in MQ):
                     - Spirit Temple Statue Room Northeast Chest
                     - Spirit Temple GS Lobby
+                    - Spirit Temple MQ Central Chamber Top Left Pot 1
+                    - Spirit Temple MQ Central Chamber Top Left Pot 2
                     '''},
     'Spirit Temple Main Room Hookshot to Boss Platform': {
         'name'    : 'logic_spirit_platform_hookshot',
@@ -619,14 +634,15 @@ logic_tricks = {
                     Release the Bombchu with good timing so that
                     it explodes near the bottom of the pot.
                     '''},
-    'Shadow Temple MQ Invisible Blades Silver Rupees without Song of Time': {
+    'Shadow Temple MQ Invisible Blades without Song of Time': {
         'name'    : 'logic_shadow_mq_invisible_blades',
         'tags'    : ("Shadow Temple",),
         'tooltip' : '''\
                     The Like Like can be used to boost you into the
-                    silver rupee that normally requires Song of Time.
-                    This cannot be performed on OHKO since the Like
-                    Like does not boost you high enough if you die.
+                    silver rupee or recovery hearts that normally
+                    require Song of Time. This cannot be performed
+                    on OHKO since the Like Like does not boost you
+                    high enough if you die.
                     '''},
     'Shadow Temple MQ Lower Huge Pit without Fire Source': {
         'name'    : 'logic_shadow_mq_huge_pit',
@@ -965,9 +981,9 @@ logic_tricks = {
         'tags'    : ("Shadow Temple",),
         'tooltip' : '''\
                     Using precise sword slashes, Bongo Bongo can be
-                    defeated without using projectiles.  This is
+                    defeated without using projectiles. This is
                     only relevant in conjunction with Shadow Temple
-                    dungeon shortcuts or shuffled dungeon bosses.
+                    dungeon shortcuts or shuffled boss entrances.
                     '''},
     'Shadow Temple Bongo Bongo without Lens of Truth': {
         'name'    : 'logic_lens_bongo',
@@ -1096,10 +1112,10 @@ logic_tricks = {
         'tooltip' : '''\
                     A box for the blue switch can be carried over
                     by backwalking with one while the elevator is
-                    at its peak. Alternatively, you can skip transporting
-                    a box by quickly rolling from the switch and
-                    opening the door before it closes. However,
-                    the timing for this is very tight.
+                    at its peak. Alternatively, you can skip
+                    transporting a box by quickly rolling from the
+                    switch and opening the door before it closes.
+                    However, the timing for this is very tight.
                     '''},
     'Jabu Near Boss Ceiling Switch with Explosives': {
         'name'    : 'logic_jabu_near_boss_explosives',
@@ -2001,16 +2017,16 @@ setting_infos = [
             Select a setting preset to apply.
 
             Default/Beginner is aimed at those familiar with vanilla who desire a similar progression.
-            Uses base glitchless logic. No timesavers (See the tab "Other") are enabled in this preset 
+            Uses base glitchless logic. No timesavers (See the tab "Other") are enabled in this preset
             and the world begins closed. Expect a long playthrough.
 
-            Easy Mode is aimed and those who have perhaps seen a few randomizer runs previously and/or 
-            wish to dive right in. Uses base glitchless logic. Most timesavers (See the tab "Other") 
+            Easy Mode is aimed and those who have perhaps seen a few randomizer runs previously and/or
+            wish to dive right in. Uses base glitchless logic. Most timesavers (See the tab "Other")
             are enabled and the world is more open after leaving Kokiri Forest.
 
             Hell Mode enables every setting to provide maximum randomness, but still uses glitchless
             logic to ensure a beatable seed. However, be aware that all glitchless "tricks" are enabled
-            which have the potential to require the player to perform difficult techniques. 
+            which have the potential to require the player to perform difficult techniques.
             Expect a long playthrough, even with good note-taking.
 
             'allsanity-casual' is Fenhl's preferred flavor of allsanity, including full entrance
@@ -2029,8 +2045,8 @@ setting_infos = [
 
             'Standard Anti-Weekly Settings (S5)' disables every location that's enabled in 'S5
             Tournament' and enables every location that's disabled there, as well as changing some
-            miscellaneous settings. 'Standard Anti-Weekly Settings (Latest)' is similar but based on
-            'Standard Weekly (Latest)'.
+            miscellaneous settings. 'Standard Anti-Weekly Settings (Beginner)' and '(Advanced)' are
+            similar but based on 'Standard Weekly (Latest)'.
 
             The other presets are for racing and/or tournaments.
 
@@ -2551,9 +2567,9 @@ setting_infos = [
         gui_tooltip    = '''\
             Select the amount of Triforce Pieces required to beat the game.
 
-            In multiworld, the required amount will be per world collectively. 
-            For example, if this is set to 20 in a 2 player multiworld, players 
-            need 40 total, but one player could obtain 30 and the other 10. 
+            In multiworld, the required amount will be per world collectively.
+            For example, if this is set to 20 in a 2 player multiworld, players
+            need 40 total, but one player could obtain 30 and the other 10.
         ''',
         gui_params     = {
             "hide_when_disabled": True,
@@ -2572,17 +2588,17 @@ setting_infos = [
         },
         gui_tooltip    = '''\
             Logic provides guiding sets of rules for world generation
-            which the Randomizer uses to ensure the generated seeds 
+            which the Randomizer uses to ensure the generated seeds
             are beatable.
 
-            'Glitchless': No glitches are required, but may require 
+            'Glitchless': No glitches are required, but may require
             some minor tricks. Add minor tricks to consider for logic
             in the 'Detailed Logic' tab.
 
             'Glitched': Movement-oriented glitches are likely required.
             No locations excluded.
 
-            'No Logic': Maximize randomization, All locations are 
+            'No Logic': Maximize randomization, All locations are
             considered available. MAY BE IMPOSSIBLE TO BEAT.
         ''',
         disable        = {
@@ -2591,6 +2607,7 @@ setting_infos = [
                                          'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops',
                                          'warp_songs', 'spawn_positions', 'mq_dungeons_mode', 'mq_dungeons_specific',
                                          'mq_dungeons_count', 'shuffle_bosses', 'dungeon_shortcuts', 'deadly_bonks',
+                                         'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_beehives',
                                          'mix_entrance_pools', 'decouple_entrances', 'shuffle_base_item_pool']},
             'none'      : {'settings' : ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
         },
@@ -3125,7 +3142,7 @@ setting_infos = [
             their vanilla locations.
 
             'Song Locations': Song will only appear at locations that
-            normally teach songs. In Multiworld, songs will only 
+            normally teach songs. In Multiworld, songs will only
             appear in their own world.
 
             'Dungeon Rewards': Songs appear at the end of dungeons.
@@ -3153,6 +3170,86 @@ setting_infos = [
         },
         shared         = True,
     ),
+    Combobox(
+        name           = 'shuffle_freestanding_items',
+        gui_text       = 'Shuffle Rupees & Hearts',
+        default        = 'off',
+        choices        = {
+            'off':       'Off',
+            'all':       'All',
+            'overworld': 'Overworld Only',
+            'dungeons':  'Dungeons Only',
+        },
+        gui_tooltip    = '''\
+            Shuffles freestanding rupees and recovery hearts, also shuffles:
+                Shadow Temple Spinning Pot Drop
+                All Goron Pot faces
+
+            Off: No freestanding rupees/recovery hearts are shuffled.
+            All: All Visible freestanding rupees/recovery hearts are shuffled.
+            Overworld Only: Freestanding rupees/recovery hearts in the overworld are shuffled.
+            Dungeons Only: Freestanding rupees/recovery hearts in dungeons are shuffled.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+        shared         = True,
+    ),
+    Combobox(
+        name           = 'shuffle_pots',
+        gui_text       = 'Shuffle Pots',
+        default        = 'off',
+        choices        = {
+            'off':       'Off',
+            'all':       'All',
+            'overworld': 'Overworld Only',
+            'dungeons':  'Dungeons Only',
+        },
+        gui_tooltip    = '''\
+            Shuffles pots, flying pots into the location pool.
+
+            Off: Not shuffled.
+            All: All pots/flying pots are shuffled.
+            Overworld Only: Only overworld pots/flying pots are shuffled.
+            Dungeons Only: Only dungeon pots/flying pots are shuffled.
+
+            Note: Only pots which normally drop an item are shuffled.
+            Empty pots are not shuffled. Pots containing fairies are not shuffled.
+
+            When this setting is enabled, the pots in Ganon's Tower will be
+            accessible without Ganon's Boss Key. Proceeding up the tower out
+            of the room with the pots will require Ganon's Boss Key.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+        shared         = True,
+    ),
+    Combobox(
+        name           = 'shuffle_crates',
+        gui_text       = 'Shuffle Crates',
+        default        = 'off',
+        choices        = {
+            'off':       'Off',
+            'all':       'All',
+            'overworld': 'Overworld Only',
+            'dungeons':  'Dungeons Only',
+        },
+        gui_tooltip    = '''\
+            Shuffles large and small crates into the location pool.
+
+            Off: Not shuffled.
+            All: crates are shuffled.
+            Overworld Only: Only overworld crates are shuffled.
+            Dungeons Only: Only dungeon crates are shuffled.
+
+            Note: Only crates which normally drop an item are shuffled. Empty crates are not included.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+        shared         = True,
+    ),
     Checkbutton(
         name           = 'shuffle_cows',
         gui_text       = 'Shuffle Cows',
@@ -3160,6 +3257,24 @@ setting_infos = [
             Enabling this will let cows give you items
             upon performing Epona's song in front of them.
             There are 9 cows, and an extra in MQ Jabu.
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    ),
+    Checkbutton(
+        name           = 'shuffle_beehives',
+        gui_text       = 'Shuffle Beehives',
+        gui_tooltip    = '''\
+            Enabling this will let beehives drop items. Beehives will shake if they contain anything important.
+            There are 32 Beehives located in:
+                Generic Grottos (x2 per grotto)
+                2 Scrub Grottos (x1 per grotto)
+                3 Scrub Grottos (x1 per grotto)
+                DMT Cow Grotto (x1)
+                Zora's Domain (x3 child only)
         ''',
         default        = False,
         shared         = True,
@@ -4652,25 +4767,51 @@ setting_infos = [
             'classic': 'Classic'
         },
         gui_tooltip    = '''\
-            
-			
             If "Texture" is enabled, chest texture will reflect its contents
             regardless of size.  Fancy chests will contain keys,
             Gilded chests will contain major items, shuffled
             tokens will be in Webbed chests, and Wooden chests
             will contain the rest.
-            This allows skipping chests if they are wooden. 
-            However, skipping wooden chests will mean having 
+            This allows skipping chests if they are wooden.
+            However, skipping wooden chests will mean having
             low health, ammo, and rupees, so doing so is a risk.
-            
+
             "Size and Texture" will change chests with major
             items and boss keys into big chests, and everything
             else into small chests.
-            
+
             "Classic" is the behavior of CSMC in previous versions of the randomizer.
             This will change chests with major items and boss keys into big chests.
             Boss keys will remain in their fancy chest, while small key will be in a
             smaller version of the fancy chest.
+        ''',
+        shared         = True,
+    ),
+    Combobox(
+        name           = 'correct_potcrate_appearances',
+        gui_text       = 'Pot & Crate Appearance Matches Contents',
+        default        = 'off',
+        choices        = {
+            'off':                'Off',
+            'textures_content':   'Texture (Match Content)',
+            'textures_unchecked': 'Texture (Unchecked)',
+        },
+        gui_tooltip    = '''\
+            If enabled, pot/crate textures will reflect its contents.
+
+            Off - Pot and crates will appear as vanilla
+
+            Texture (Match Content) - Pot and crate textures will reflect the contents.
+            Golden Pots/crates will contain major items.
+            Pots/crates with keys on them will contain small keys.
+            Pots/crates containing boss keys will use a variation of the boss key crate texture.
+            Pots/crates with a spider web on them contain Gold Skulltula tokens.
+            All other items will use the original texture.
+            The texture will revert to the original texture once the item is collected.
+
+            Texture (Unchecked) - All pots/crates containing shuffled items
+            will appear with a golden texture. The texture will revert to the
+            original texture once the item is collected.
         ''',
         shared         = True,
     ),

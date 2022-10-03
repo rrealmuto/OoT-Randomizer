@@ -1011,10 +1011,10 @@ hintTable = {
     'Fire Temple GS Scarecrow Top':                                ("a #spider-friendly scarecrow# atop a volcano hides", "a #spider-friendly scarecrow# atop the Fire Temple hides", 'exclude'),
     'Fire Temple GS Scarecrow Climb':                              ("a #spider-friendly scarecrow# atop a volcano hides", "a #spider-friendly scarecrow# atop the Fire Temple hides", 'exclude'),
 
-    'Fire Temple MQ GS Above Fire Wall Maze':                      ("a #spider above a fiery maze# holds", None, 'exclude'),
-    'Fire Temple MQ GS Fire Wall Maze Center':                     ("a #spider within a fiery maze# holds", None, 'exclude'),
+    'Fire Temple MQ GS Above Flame Maze':                          ("a #spider above a fiery maze# holds", None, 'exclude'),
+    'Fire Temple MQ GS Flame Maze Center':                         ("a #spider within a fiery maze# holds", None, 'exclude'),
     'Fire Temple MQ GS Big Lava Room Open Door':                   ("a #Goron trapped near lava# befriended a spider with", None, 'exclude'),
-    'Fire Temple MQ GS Fire Wall Maze Side Room':                  ("a #spider beside a fiery maze# holds", None, 'exclude'),
+    'Fire Temple MQ GS Flame Maze Side Room':                      ("a #spider beside a fiery maze# holds", None, 'exclude'),
 
     'Water Temple GS Falling Platform Room':                       ("a #spider over a waterfall# in the Water Temple holds", None, 'exclude'),
     'Water Temple GS Central Pillar':                              ("a #spider in the center of the Water Temple# holds", None, 'exclude'),
@@ -1039,7 +1039,7 @@ hintTable = {
     'Shadow Temple GS Single Giant Pot':                           ("#beyond a burning skull# lies a spider with", None, 'exclude'),
     'Shadow Temple GS Falling Spikes Room':                        ("a #spider beyond falling spikes# holds", None, 'exclude'),
     'Shadow Temple GS Triple Giant Pot':                           ("#beyond three burning skulls# lies a spider with", None, 'exclude'),
-    'Shadow Temple GS Like Like Room':                             ("a spider guarded by #invisible blades# holds", None, 'exclude'),
+    'Shadow Temple GS Invisible Blades Room':                      ("a spider guarded by #invisible blades# holds", None, 'exclude'),
     'Shadow Temple GS Near Ship':                                  ("a spider near a #docked ship# hoards", None, 'exclude'),
 
     'Shadow Temple MQ GS Falling Spikes Room':                     ("a #spider beyond falling spikes# holds", None, 'exclude'),
@@ -1716,6 +1716,7 @@ misc_item_hint_table = {
         'replace': {
             "enter #your pocket#. I will let you have": "check #your pocket#. You will find",
         },
+        'use_alt_hint': False,
     },
     'ganondorf': {
         'id': 0x70CC,
@@ -1726,12 +1727,14 @@ misc_item_hint_table = {
         'replace': {
             "from #inside Ganon's Castle#": "from #inside my castle#",
             "from #outside Ganon's Castle#": "from #outside my castle#",
+            "from #Ganondorf's Chamber#": "from #those pots over there#",
         },
+        'use_alt_hint': True,
     },
 }
 
 # Separate table for goal names to avoid duplicates in the hint table.
-# Link's Pocket will always be an empty goal, but it's included here to 
+# Link's Pocket will always be an empty goal, but it's included here to
 # prevent key errors during the dungeon reward lookup.
 goalTable = {
     'Queen Gohma':                                              ("path to the #Spider#", "path to #Queen Gohma#", "Green"),
@@ -1764,7 +1767,7 @@ def hintExclusions(world, clear_cache=False):
     location_hints = []
     for name in hintTable:
         hint = getHint(name, world.settings.clearer_hints)
-        if any(item in hint.type for item in 
+        if any(item in hint.type for item in
                 ['always',
                  'dual_always',
                  'sometimes',
