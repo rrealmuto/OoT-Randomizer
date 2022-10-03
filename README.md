@@ -29,6 +29,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * `vanilla` generates a seed that's as close to the vanilla game as possible with current randomizer features. Unlike the vanilla seed available on <https://ootrandomizer.com/>, this preset uses glitchless logic to produce a useful spoiler log playthrough.
   * `fast-vanilla` is `vanilla` but with speed-ups like fast bunny hood, fast chest cutscenes, or “Skip Some Minigame Phases” enabled.
   * “Mixed Pools Tournament”, the settings used for a tournament that had full mixed pools entrance randomizer. Note that the tournament itself used [a previous version](https://ootrandomizer.com/generatorDev?version=devFenhl_6.2.100) of this branch.
+  * “6th Pictionary Spoiler Log Race”, the settings used for [an upcoming community race](https://midos.house/event/pic/6).
   * “Standard Anti-Weekly Settings (S5)” disables every location that's enabled in “S5 Tournament” and enables every location that's disabled there, as well as changing some miscellaneous settings. See [the official document](https://docs.google.com/document/d/1sbL6Zju943F5qyx4QbTLUsqZqOTMmvqKVbDwJl08SGc/edit) for details.
   * “Standard Anti-Weekly Settings (Beginner)” is similar to the above but based on the current weekly preset. Differences are closed Deku, new hint distribution, dungeon shortcuts, blue fire arrows, and balanced item pool.
   * “Standard Anti-Weekly Settings (Advanced)” is like the Beginner variant but with minimal item pool, pots, crates, freestandings, and beehives.
