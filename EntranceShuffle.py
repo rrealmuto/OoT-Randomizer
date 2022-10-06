@@ -822,9 +822,19 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
 
     if locations_to_ensure_reachable:
         max_search = Search.max_explore([w.state for w in worlds], itempool)
-        # If ALR is enabled, ensure all locations we want to keep reachable are indeed still reachable
-        # Otherwise, just continue if the game is still beatable
-        if not (world.check_beatable_only and max_search.can_beat_game(False)):
+        if world.check_beatable_only:
+            if worlds[0].settings.reachable_locations == 'goals':
+                # If this entrance is required for a goal, it must be placed somewhere reachable.
+                # We also need to check to make sure the game is beatable, since custom goals might not imply that.
+                predicate = lambda state: state.won() and state.has_all_item_goals()
+            else:
+                # If the game is not beatable without this entrance, it must be placed somewhere reachable.
+                predicate = State.won
+            perform_access_check = not max_search.can_beat_game(scan_for_items=False, predicate=predicate)
+        else:
+            # All entrances must be placed somewhere reachable.
+            perform_access_check = True
+        if perform_access_check:
             max_search.visit_locations(locations_to_ensure_reachable)
             for location in locations_to_ensure_reachable:
                 if not max_search.visited(location):
