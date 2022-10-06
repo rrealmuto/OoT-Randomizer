@@ -1056,10 +1056,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     configure_dungeon_info(rom, world)
 
-    hash_icons = 0
-    for i,icon in enumerate(spoiler.file_hash):
-        hash_icons |= (icon << (5 * i))
-    rom.write_int32(rom.sym('cfg_file_select_hash'), hash_icons)
+    rom.write_bytes(rom.sym('CFG_FILE_SELECT_HASH'), spoiler.file_hash)
 
     save_context = SaveContext()
 
