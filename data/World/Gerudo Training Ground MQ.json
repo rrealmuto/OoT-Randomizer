@@ -31,7 +31,7 @@
         },
         "exits": {
             "Gerudo Training Ground Lava Room Front": "is_adult and (Bow or (Longshot and has_fire_source))",
-            "Gerudo Training Ground Water Room": "can_use(Longshot) and (Silver_Rupee_Gerudo_Training_Ground_Lava_Room, 6)"
+            "Gerudo Training Ground Water Room": "can_use(Longshot) and (Silver_Rupee_Gerudo_Training_Ground_Lava, 6)"
         }
     },
     {
@@ -43,15 +43,15 @@
             "Gerudo Training Ground MQ Lava Room Silver Rupee Front Right": "True"
         },
         "exits": {
-            "Gerudo Training Ground Lava Room Back": "Hover_Boots or (Silver_Rupee_Gerudo_Training_Ground_Lava_Room, 6)",
-            "Gerudo Training Ground Water Room": "(Silver_Rupee_Gerudo_Training_Ground_Lava_Room, 6)"
+            "Gerudo Training Ground Lava Room Back": "Hover_Boots or (Silver_Rupee_Gerudo_Training_Ground_Lava, 6)",
+            "Gerudo Training Ground Water Room": "(Silver_Rupee_Gerudo_Training_Ground_Lava, 6)"
         }
     },
     {
         "region_name": "Gerudo Training Ground Lava Room Back",
         "dungeon": "Gerudo Training Ground",
         "locations": {
-            "Gerudo Training Ground MQ Lava Room Silver Rupee Back Left": "Hover_Boots or (Silver_Rupee_Gerudo_Training_Ground_Lava_Room, 6)",
+            "Gerudo Training Ground MQ Lava Room Silver Rupee Back Left": "Hover_Boots or (Silver_Rupee_Gerudo_Training_Ground_Lava, 6)",
             "Gerudo Training Ground MQ Lava Room Silver Rupee Back Center": "True",
             "Gerudo Training Ground MQ Lava Room Silver Rupee Back Right": "True"
         },
@@ -143,7 +143,7 @@
             "Gerudo Training Ground MQ Maze Right Side Chest": "True"
         },
         "exits": {
-            "Gerudo Training Ground Underwater": "Longshot or (Hookshot and Bow)",
+            "Gerudo Training Ground Water Room": "Longshot or (Hookshot and Bow)",
             "Gerudo Training Ground Right Side": "Hookshot"
         }
     }

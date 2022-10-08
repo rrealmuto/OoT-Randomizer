@@ -96,7 +96,7 @@
         "locations": {
             "Ganons Castle MQ Shadow Trial Bomb Flower Chest": "
                 (Bow and (Hookshot or Hover_Boots)) or
-                at('Ganons Castle Shadow Trial Moving Platform', has_explosives or Progressive_Strength_Upgrade or can_use(Dins_Fire)))"
+                at('Ganons Castle Shadow Trial Moving Platform', has_explosives or Progressive_Strength_Upgrade or can_use(Dins_Fire))"
         },
         "exits": {
             "Ganons Castle Shadow Trial Moving Platform": "
