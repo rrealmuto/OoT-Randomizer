@@ -36,7 +36,6 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
 * Other changes:
   * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
   * Opening the Door of Time is a separate goal category when required by the settings ([#1529](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1529))
-  * The convenience patch for floor switches now applies to more MQ switches ([#1459](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1459))
   * Tokens can be on excluded locations if there are no checks requiring them (such as in SAWS)
   * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
 
@@ -174,6 +173,8 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * New setting `Regional` for dungeon items makes it so dungeon items such as keys will be placed in the same region as their dungeon. For example, if Small Keys are set to Regional, then Small keys for Forest Temple can be found in the temple itself, Sacred Forest Meadow, Lost Woods, Kokiri Forest, or Deku Tree.
   * `Skip Child Zelda` and `Shuffle Weird Egg` have been combined into one setting `Shuffle Child Trade Item`.
   * The Adult earliest and latest trade item settings have been combined into a multiselect `Adult Trade Sequence Item` which allows you to choose whatever items you wish as the starting item for the adult trade quest.
+  * New setting `Minor Items in Big/Gold chests` places shields and bombchus in major item chests when any `Chest Appearance Matches Contents` setting is enabled along with it.
+  * New setting `Fix Broken Drops` adds a magic jar drop in GTG and a pot that drops a deku shield in Spirit Temple. These spawns were present in the code already but would not actually spawn due to the respective objects not being loaded.
 
 * **Gameplay**
   * Shortened the animation for equipping magic arrows.
@@ -183,6 +184,8 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * Health and Magic potion models in shops will now match your health and magic colors when `Item Model Colors Match Cosmetics` is enabled.
   * The Gerudo guard on the Wasteland side of the gate will now spawn regardless of settings.
   * Several vanilla warp destination messages have been updated to keep consistency with our custom warp destination messages.
+  * Removed the cutscenes when throwing a bomb at and blowing up the boulder in front of Dodongo's Cavern.
+  * Certain switches in MQ dungeons have been moved down 1 unit so they are less difficult for Link to walk onto.
 
 
 #### Bug fixes
@@ -211,6 +214,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Fix plando negative locations (ex. "!Gold Skulltula Token") choosing Buy items for non-Buy locations.
 * Ice traps will no longer be sent to players in the Treasure Chest Game to prevent using deaths to circumvent the game.
 * Fixed dragging list items in the GUI not working when the target is empty.
+* Recovery hearts in several scenes in MQ dungeon rooms have been fixed to no longer be invisible.
 
 #### Other changes
 * Added an auto-tracker context area to memory, so auto-trackers can find certain symbols much easier.
@@ -239,6 +243,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Common ER error messages are now more helpful to solving the issue.
 * Corrected some goal hint colors.
 * Triforce Piece model has been updated so that it is shinier and centered.
+* Goal hints are now selected based on their category rather than their parent goal.
 
 ### 6.2
 

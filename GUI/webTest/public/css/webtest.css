@@ -12,8 +12,9 @@ body {
   left: 0;
   top: 0;
   width: calc(100% - 30px);
-  height: 800px;
+  height: 1035px;
   margin: 0 auto;
+  margin-bottom: 80px !important;
   z-index: 1;
 }
 
@@ -666,7 +667,7 @@ textarea {
   margin: 0 auto;
   margin-top: 10px;
   width: 100%;
-  height: 800px;
+  height: 950px;;
   position: absolute;
   left: 0;
   top: 0;
@@ -688,4 +689,8 @@ textarea {
   font-size: 42px;
   font-weight: 800;
   letter-spacing: 0.25em;
+}
+
+.sbL {
+  margin-top: 30px !important;
 }

@@ -4710,6 +4710,20 @@ setting_infos = [
         ''',
         shared         = True,
     ),
+    Checkbutton(
+        name           = 'fix_broken_drops',
+        gui_text       = 'Fix Broken Drops',
+        gui_tooltip    = '''\
+            Enabling this fixes drops that are broken in the vanilla game.
+
+            There is a deku shield drop from a pot in the Spirit Temple child
+            side Anubis room that does not appear in the vanilla game, and
+            logic might require you to get a deku shield this way. There is a
+            magic jar on top of the Gerudo Training Ground eye statue that does
+            not always refill your magic in the vanilla game.
+        ''',
+        shared         = True,
+    ),
     Setting_Info(
         name           = 'starting_equipment',
         type           = list,
@@ -4805,6 +4819,25 @@ setting_infos = [
             smaller version of the fancy chest.
         ''',
         shared         = True,
+        disable        = {
+            'off' : {'settings' : ['minor_items_as_major_chest']},
+        },
+    ),
+    Checkbutton(
+        name           = 'minor_items_as_major_chest',
+        gui_text       = 'Minor Items in Big/Gold chests',
+        gui_tooltip    = '''\
+            Chests with Hylian Shield, Deku Shield
+            or Bombchus (regardless of the Bombchus
+            In Logic setting), will appear in
+            Big and/or Gold chests, depending on the
+            Chest Appearance Matches Contents setting.
+        ''',
+        shared         = True,
+        disabled_default = False,
+        gui_params       = {
+            "hide_when_disabled" : True
+        },
     ),
     Combobox(
         name           = 'correct_potcrate_appearances',

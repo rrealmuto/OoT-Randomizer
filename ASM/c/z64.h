@@ -267,6 +267,8 @@ typedef enum
   Z64_ITEM_COMPASS,
   Z64_ITEM_DUNGEON_MAP,
   Z64_ITEM_SMALL_KEY,
+  Z64_ITEM_MAGIC_SMALL,
+  Z64_ITEM_MAGIC_LARGE,
 } z64_item_t;
 
 typedef enum
@@ -1320,6 +1322,8 @@ typedef struct
 
 struct EnItem00;
 
+struct EnItem00;
+
 typedef void(*EnItem00ActionFunc)(struct EnItem00 *, z64_game_t *);
 
 typedef struct EnItem00 {
@@ -1649,6 +1653,7 @@ typedef struct EnGSwitch
 #define z64_Gfx_DrawDListOpa_addr               0x80028048
 #define z64_Math_SinS_addr                      0x800636C4
 #define z64_Rand_ZeroOne_addr                   0x800CDCCC
+#define z64_ActorSetLinkIncomingItemId_addr     0x80022CF4
 
 /* rom addresses */
 #define z64_icon_item_static_vaddr              0x007BD000
@@ -1716,6 +1721,9 @@ typedef float (*z64_Math_SinS_proc)(int16_t angle);
 typedef int32_t(*z64_ObjectSpawn_proc)    (z64_obj_ctxt_t* object_ctx, int16_t object_id);
 typedef int32_t(*z64_ObjectIndex_proc)    (z64_obj_ctxt_t* object_ctx, int16_t object_id);
 typedef float (*z64_Rand_ZeroOne_proc)();
+
+typedef int32_t(*z64_ActorSetLinkIncomingItemId_proc) (z64_actor_t *actor, z64_game_t *game,
+                                                       int32_t get_item_id, float xz_range, float y_range);
 
 /* data */
 #define z64_file_mq             (*(OSMesgQueue*)      z64_file_mq_addr)
@@ -1790,5 +1798,7 @@ typedef float (*z64_Rand_ZeroOne_proc)();
 #define z64_Gfx_DrawDListOpa ((z64_Gfx_DrawDListOpa_proc)z64_Gfx_DrawDListOpa_addr)
 #define z64_Math_SinS ((z64_Math_SinS_proc)z64_Math_SinS_addr)
 #define z64_Rand_ZeroOne ((z64_Rand_ZeroOne_proc)z64_Rand_ZeroOne_addr)
+
+#define z64_ActorSetLinkIncomingItemId ((z64_ActorSetLinkIncomingItemId_proc)z64_ActorSetLinkIncomingItemId_addr)
 
 #endif

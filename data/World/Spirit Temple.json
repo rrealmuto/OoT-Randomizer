@@ -28,7 +28,8 @@
             "Spirit Temple Child Early Torches Chest": "Sticks or can_use(Dins_Fire)",
             "Spirit Temple Child Bridge Flying Pot": "True",
             "Spirit Temple Child Anubis Pot": "True",
-            "Spirit Temple GS Metal Fence": "True"
+            "Spirit Temple GS Metal Fence": "True",
+            "Deku Shield Pot": "fix_broken_drops"
         }
     },
     {

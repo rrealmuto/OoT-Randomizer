@@ -114,11 +114,13 @@
     "adult_trade_start": [
       "Pocket Egg"
     ],
+    "fix_broken_drops": true,
     "starting_equipment": [],
     "starting_items": [],
     "starting_songs": [],
     "ocarina_songs": "warp",
     "correct_chest_appearances": "off",
+    "minor_items_as_major_chest": false,
     "correct_potcrate_appearances": "off",
     "invisible_chests": false,
     "clearer_hints": true,
@@ -264,6 +266,7 @@
     "adult_trade_start": [
       "Claim Check"
     ],
+    "fix_broken_drops": false,
     "starting_equipment": [
       "kokiri_sword",
       "biggoron_sword",
@@ -337,6 +340,7 @@
     ],
     "ocarina_songs": "off",
     "correct_chest_appearances": "textures",
+    "minor_items_as_major_chest": false,
     "correct_potcrate_appearances": "off",
     "invisible_chests": false,
     "clearer_hints": true,
@@ -472,11 +476,13 @@
     "adult_trade_start": [
       "Pocket Egg"
     ],
+    "fix_broken_drops": false,
     "starting_equipment": [],
     "starting_items": [],
     "starting_songs": [],
     "ocarina_songs": "off",
     "correct_chest_appearances": "off",
+    "minor_items_as_major_chest": false,
     "correct_potcrate_appearances": "off",
     "invisible_chests": false,
     "clearer_hints": false,
@@ -608,11 +614,13 @@
     "adult_trade_start": [
       "Pocket Egg"
     ],
+    "fix_broken_drops": false,
     "starting_equipment": [],
     "starting_items": [],
     "starting_songs": [],
     "ocarina_songs": "off",
     "correct_chest_appearances": "off",
+    "minor_items_as_major_chest": false,
     "correct_potcrate_appearances": "off",
     "invisible_chests": false,
     "clearer_hints": false,
@@ -773,6 +781,7 @@
       "Eyedrops",
       "Claim Check"
     ],
+    "fix_broken_drops": false,
     "starting_equipment": [
       "deku_shield"
     ],
@@ -782,6 +791,7 @@
     "starting_songs": [],
     "ocarina_songs": "off",
     "correct_chest_appearances": "both",
+    "minor_items_as_major_chest": false,
     "correct_potcrate_appearances": "off",
     "invisible_chests": false,
     "clearer_hints": true,
@@ -951,6 +961,7 @@
       "Eyedrops",
       "Claim Check"
     ],
+    "fix_broken_drops": false,
     "starting_equipment": [
       "deku_shield"
     ],
@@ -962,6 +973,7 @@
     ],
     "ocarina_songs": "off",
     "correct_chest_appearances": "off",
+    "minor_items_as_major_chest": false,
     "correct_potcrate_appearances": "off",
     "invisible_chests": false,
     "clearer_hints": true,
@@ -1366,6 +1378,7 @@
     "adult_trade_start": [
       "Claim Check"
     ],
+    "fix_broken_drops": false,
     "starting_equipment": [
       "kokiri_sword",
       "wallet"
@@ -1376,6 +1389,7 @@
     "starting_songs": [],
     "ocarina_songs": "off",
     "correct_chest_appearances": "off",
+    "minor_items_as_major_chest": false,
     "correct_potcrate_appearances": "off",
     "invisible_chests": false,
     "clearer_hints": false,
@@ -1793,6 +1807,7 @@
     "adult_trade_start": [
       "Claim Check"
     ],
+    "fix_broken_drops": true,
     "starting_equipment": [
       "kokiri_sword",
       "wallet"
@@ -1803,6 +1818,7 @@
     "starting_songs": [],
     "ocarina_songs": "off",
     "correct_chest_appearances": "off",
+    "minor_items_as_major_chest": false,
     "correct_potcrate_appearances": "off",
     "invisible_chests": false,
     "clearer_hints": false,
@@ -2220,6 +2236,7 @@
     "adult_trade_start": [
       "Claim Check"
     ],
+    "fix_broken_drops": true,
     "starting_equipment": [
       "kokiri_sword",
       "wallet"
@@ -2230,6 +2247,7 @@
     "starting_songs": [],
     "ocarina_songs": "off",
     "correct_chest_appearances": "off",
+    "minor_items_as_major_chest": false,
     "correct_potcrate_appearances": "textures_content",
     "invisible_chests": false,
     "clearer_hints": false,
@@ -2373,11 +2391,13 @@
       "Eyedrops",
       "Claim Check"
     ],
+    "fix_broken_drops": false,
     "starting_equipment": [],
     "starting_items": [],
     "starting_songs": [],
     "ocarina_songs": "off",
     "correct_chest_appearances": "off",
+    "minor_items_as_major_chest": false,
     "correct_potcrate_appearances": "off",
     "invisible_chests": false,
     "clearer_hints": true,
@@ -2536,6 +2556,7 @@
       "Eyedrops",
       "Claim Check"
     ],
+    "fix_broken_drops": false,
     "starting_equipment": [
       "deku_shield"
     ],
@@ -2545,6 +2566,7 @@
     "starting_songs": [],
     "ocarina_songs": "off",
     "correct_chest_appearances": "classic",
+    "minor_items_as_major_chest": false,
     "correct_potcrate_appearances": "off",
     "invisible_chests": false,
     "clearer_hints": true,
@@ -2702,6 +2724,7 @@
       "Eyedrops",
       "Claim Check"
     ],
+    "fix_broken_drops": false,
     "starting_equipment": [
       "deku_shield"
     ],
@@ -2713,6 +2736,7 @@
     ],
     "ocarina_songs": "off",
     "correct_chest_appearances": "both",
+    "minor_items_as_major_chest": false,
     "correct_potcrate_appearances": "off",
     "invisible_chests": false,
     "clearer_hints": true,
@@ -2870,11 +2894,13 @@
       "Eyedrops",
       "Claim Check"
     ],
+    "fix_broken_drops": false,
     "starting_equipment": [],
     "starting_items": [],
     "starting_songs": [],
     "ocarina_songs": "off",
     "correct_chest_appearances": "off",
+    "minor_items_as_major_chest": false,
     "correct_potcrate_appearances": "off",
     "invisible_chests": false,
     "clearer_hints": true,
@@ -3031,6 +3057,7 @@
     "adult_trade_start": [
       "Claim Check"
     ],
+    "fix_broken_drops": false,
     "starting_equipment": [
       "deku_shield"
     ],
@@ -3043,6 +3070,7 @@
     ],
     "ocarina_songs": "off",
     "correct_chest_appearances": "off",
+    "minor_items_as_major_chest": false,
     "correct_potcrate_appearances": "off",
     "invisible_chests": false,
     "clearer_hints": true,
@@ -3200,6 +3228,7 @@
     "adult_trade_start": [
       "Claim Check"
     ],
+    "fix_broken_drops": false,
     "starting_equipment": [],
     "starting_items": [
       "ocarina",
@@ -3209,6 +3238,7 @@
     "starting_songs": [],
     "ocarina_songs": "off",
     "correct_chest_appearances": "both",
+    "minor_items_as_major_chest": false,
     "correct_potcrate_appearances": "off",
     "invisible_chests": false,
     "clearer_hints": true,
@@ -3515,11 +3545,13 @@
     "adult_trade_start": [
       "Pocket Egg"
     ],
+    "fix_broken_drops": false,
     "starting_equipment": [],
     "starting_items": [],
     "starting_songs": [],
     "ocarina_songs": "all",
     "correct_chest_appearances": "off",
+    "minor_items_as_major_chest": false,
     "correct_potcrate_appearances": "off",
     "invisible_chests": false,
     "clearer_hints": false,
@@ -3668,11 +3700,13 @@
       "Eyedrops",
       "Claim Check"
     ],
+    "fix_broken_drops": false,
     "starting_equipment": [],
     "starting_items": [],
     "starting_songs": [],
     "ocarina_songs": "off",
     "correct_chest_appearances": "off",
+    "minor_items_as_major_chest": false,
     "correct_potcrate_appearances": "off",
     "invisible_chests": false,
     "clearer_hints": true,
@@ -3826,6 +3860,7 @@
       "Eyedrops",
       "Claim Check"
     ],
+    "fix_broken_drops": false,
     "starting_equipment": [
       "deku_shield"
     ],
@@ -3837,6 +3872,7 @@
     "starting_songs": [],
     "ocarina_songs": "off",
     "correct_chest_appearances": "classic",
+    "minor_items_as_major_chest": false,
     "correct_potcrate_appearances": "off",
     "invisible_chests": false,
     "clearer_hints": true,
@@ -3996,6 +4032,7 @@
       "Eyedrops",
       "Claim Check"
     ],
+    "fix_broken_drops": false,
     "starting_equipment": [],
     "starting_items": [
       "ocarina"
@@ -4003,6 +4040,7 @@
     "starting_songs": [],
     "ocarina_songs": "off",
     "correct_chest_appearances": "off",
+    "minor_items_as_major_chest": false,
     "correct_potcrate_appearances": "off",
     "invisible_chests": false,
     "clearer_hints": true,

@@ -77,7 +77,7 @@
         "scene": "Kokiri Forest",
         "hint": "KOKIRI_FOREST",
         "events": {
-            "Showed Mido Sword & Shield": "is_child and Kokiri_Sword and Buy_Deku_Shield"
+            "Showed Mido Sword & Shield": "is_child and Kokiri_Sword and Deku_Shield"
         },
         "locations": {
             "KF Kokiri Sword Chest": "is_child",
@@ -129,7 +129,7 @@
         "scene": "Kokiri Forest",
         "hint": "KOKIRI_FOREST",
         "events": {
-            "Showed Mido Sword & Shield": "is_child and Kokiri_Sword and Buy_Deku_Shield"
+            "Showed Mido Sword & Shield": "is_child and Kokiri_Sword and Deku_Shield"
         },
         "locations": {
             # The Babas despawn for Adult on forest temple completion. For vanilla forest temple
@@ -278,7 +278,7 @@
                         (Longshot or Bow or has_bombchus or can_use(Dins_Fire))))",
             "LW GS Bean Patch Near Theater": "
                 can_plant_bugs and
-                (can_child_attack or (shuffle_scrubs == 'off' and Buy_Deku_Shield))",
+                (can_child_attack or (shuffle_scrubs == 'off' and Deku_Shield))",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle"
         },
         "exits": {
