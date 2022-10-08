@@ -106,7 +106,11 @@ TIME_STRING_TXT:
 INITIAL_SAVE_DATA:
 .endarea
 
-.area 0x38, 0 ; size must be at least 8 * ((max object_id parameter Patches.add_to_extended_object_table is called with) - 0x192)
+.area 0x100, 0
+EXTENDED_INITIAL_SAVE_DATA:
+.endarea
+
+.area 0x40, 0 ; size must be at least 8 * ((max object_id parameter Patches.add_to_extended_object_table is called with) - 0x192)
 EXTENDED_OBJECT_TABLE:
 .endarea
 
@@ -155,6 +159,8 @@ SPOILER_AVAILABLE:
 PLANDOMIZER_USED:
 .byte 0x00
 POTCRATE_TEXTURES_MATCH_CONTENTS:
+.byte 0x00
+CFG_DUNGEON_INFO_SILVER_RUPEES:
 .byte 0x00
 .align 4
 

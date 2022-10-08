@@ -1,9 +1,9 @@
-import random
-import struct
-import itertools
-import re
-import zlib
 import datetime
+import itertools
+import random
+import re
+import struct
+import zlib
 
 from World import World
 from Rom import Rom
@@ -93,6 +93,22 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Add it to the extended object table
     add_to_extended_object_table(rom, 0x195, keyring_obj_file)
 
+    # Build a Silver Rupee model from the Huge Rupee model
+    silver_rupee_obj_file = File({
+        'Name': 'object_gi_rupy',
+        'Start': '01914000',
+        'End': '01914800',
+    })
+    silver_rupee_obj_file.copy(rom)
+    # Update colors for the Silver Rupee variant
+    rom.write_bytes(silver_rupee_obj_file.start + 0x052C, [0xAA, 0xAA, 0xAA]) # Inner Primary Color?
+    rom.write_bytes(silver_rupee_obj_file.start + 0x0534, [0x5A, 0x5A, 0x5A]) # Inner Env Color?
+    rom.write_bytes(silver_rupee_obj_file.start + 0x05CC, [0xFF, 0xFF, 0xFF]) # Outer Primary Color?
+    rom.write_bytes(silver_rupee_obj_file.start + 0x05D4, [0xFF, 0xFF, 0xFF]) # Outer Env Color?
+    update_dmadata(rom, silver_rupee_obj_file)
+    # Add it to the extended object table
+    add_to_extended_object_table(rom, 0x196, silver_rupee_obj_file)
+
     # Build Easter Egg models in several colors from the Weird Egg model
     for egg_idx, (primary_color, env_color) in enumerate((
         ((0xDB, 0xA9, 0xD8), (0xD1, 0x7B, 0xCC)), # pink
@@ -113,7 +129,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
         update_dmadata(rom, easter_egg_obj_file)
         # Add it to the extended object table
-        add_to_extended_object_table(rom, 0x196 + egg_idx, easter_egg_obj_file)
+        add_to_extended_object_table(rom, 0x197 + egg_idx, easter_egg_obj_file)
 
     # Create the textures for pots/crates. Note: No copyrighted material can be distributed w/ the randomizer. Because of this, patch files are used to create the new textures from the original texture in ROM.
     # Apply patches for custom textures for pots and crates and add as new files in rom
@@ -1488,6 +1504,11 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             save_context.addresses['dungeon_items'][dungeon]['compass'].value = True
             save_context.addresses['dungeon_items'][dungeon]['map'].value = True
 
+    # start with silver rupees
+    if world.settings.shuffle_silver_rupees == 'remove':
+        for puzzle in world.silver_rupee_puzzles():
+            save_context.give_item(world, f'Silver Rupee ({puzzle})', float('inf'))
+
     if world.settings.shuffle_smallkeys == 'vanilla':
         if world.dungeon_mq['Spirit Temple']:
             save_context.addresses['keys']['spirit'].value = 3
@@ -1794,6 +1815,21 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         for location in smallcrate_locations:
             patch_small_crate(location, rom)
 
+    # Patch silver rupees
+    if world.shuffle_silver_rupees:
+        if world.settings.shuffle_silver_rupees != 'remove':
+            rom.write_byte(rom.sym('CFG_DUNGEON_INFO_SILVER_RUPEES'), 1)
+
+        silver_rupee_locations = [location for location in world.get_locations() if location.type == 'Silver Rupee']
+        for silver_rupee_location in silver_rupee_locations:
+            patch_silver_rupee(silver_rupee_location, rom)
+
+        if world.dungeon_mq['Dodongos Cavern']: # Patch DC MQ Staircase Transition Actor to use permanent switch flag 0x1F
+            rom.write_byte(0x1F12190 + 15, 0x9F)
+
+        if world.dungeon_mq['Spirit Temple']: # Patch Spirit MQ Lobby front right chest to use permanent switch flag 0x1F
+            rom.write_byte(0x2b08ce4 + 13, 0x1F)
+
     # Write flag table data
     scene_flag_table = get_scene_flag_table(world)
     freestanding_flag_table_bytes, drop_flag_table_bytes, num_freestanding_flags, num_drop_flags = get_scene_flag_table_bytes(scene_flag_table)
@@ -1806,7 +1842,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     check_location_dupes(world)
     override_table = get_override_table(world)
     if len(override_table) >= 1536:
-        raise(RuntimeError(f'Exceeded override table size: {len(override_table)}'))
+        raise RuntimeError(f'Exceeded override table size: {len(override_table)}')
     rom.write_bytes(rom.sym('cfg_item_overrides'), get_override_table_bytes(override_table))
     rom.write_byte(rom.sym('PLAYER_ID'), world.id + 1) # Write player ID
 
@@ -2427,7 +2463,7 @@ def get_override_entry(location):
         return None
 
     # Don't add freestanding items, pots/crates, beehives to the override table if they're disabled. We use this check to determine how to draw and interact with them
-    if location.type in ["ActorOverride", "Freestanding", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive"] and location.disabled != DisableType.ENABLED:
+    if location.type in ["ActorOverride", "Freestanding", "RupeeTower", "Silver Rupee", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive"] and location.disabled != DisableType.ENABLED:
         return None
 
     player_id = location.item.world.id + 1
@@ -2441,12 +2477,10 @@ def get_override_entry(location):
     elif location.type == 'Chest':
         type = 1
         default &= 0x1F
-    elif location.type == 'ActorOverride':
+    elif location.type in ['Collectable', 'Freestanding', 'ActorOverride', 'Silver Rupee']:
         type = 2
-    elif location.type in ['Collectable', 'Freestanding', 'ActorOverride']:
-            type = 2
     elif location.type in ["Pot", "Crate", "FlyingPot", "SmallCrate", "RupeeTower", "Beehive"]:
-            type = 6
+        type = 6
     elif location.type == 'GS Token':
         type = 3
     elif location.type == 'Shop' and location.item.type != 'Shop':
@@ -2883,6 +2917,18 @@ def patch_beehive(location, rom: Rom):
     if location.address:
         for address in location.address:
             rom.write_byte(address + 13, location.default)
+
+# Patches a silver rupee to be a collectible item for silver rupee shuffle
+def patch_silver_rupee(location, rom: Rom):
+    if location.address:
+        for address in location.address:
+            actor_bytes = rom.read_bytes(address, 16) # Read the actor
+            actor_bytes[0] = 0x00
+            actor_bytes[1] = 0x15 # Patch the actor to a collectible
+
+            actor_bytes[14] = (location.default & 0x3F) # Patch the flag
+            actor_bytes[15] = (location.default & 0xC0)
+            rom.write_bytes(address, actor_bytes)
 
 
 # Patch the first boss key door in ganons tower that leads to the room w/ the pots

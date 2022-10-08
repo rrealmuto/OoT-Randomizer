@@ -357,6 +357,9 @@ class WorldDistribution(object):
                     if self.distribution.settings.shuffle_ganon_bosskey == 'keysanity':
                         keys = [name for name, item in ItemInfo.items.items() if item.type == 'GanonBossKey']
                         self.major_group.extend(keys)
+                    if self.distribution.settings.shuffle_silver_rupees == 'anywhere':
+                        rupees = [name for name, item in ItemInfo.items.items() if item.type == 'SilverRupee']
+                        self.major_group.extend(rupees)
                 group = self.major_group
             if pattern == '#Junk':
                 return lambda s, i=None: invert != (s in group or (i is not None and i.world is not None and i.world.max_tokens == 0 and i.name == 'Gold Skulltula Token'))

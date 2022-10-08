@@ -11,9 +11,9 @@ def get_scene_flag_table(world):
         max_freestanding_flag = 0
         max_drop_flag = 0
         for location in world.get_locations():
-            if location.type in ['Freestanding', 'ActorOverride', 'RupeeTower', 'Crate', 'SmallCrate', 'Pot', 'FlyingPot', 'Beehive'] and location.scene == i:
+            if location.scene == i:
                 if (
-                    location.type in ["Freestanding", "ActorOverride"]
+                    location.type in ["Freestanding", "ActorOverride", "Silver Rupee"]
                     and location.default > max_freestanding_flag
                 ):
                     max_freestanding_flag = location.default

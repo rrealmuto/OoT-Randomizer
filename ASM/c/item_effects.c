@@ -1,6 +1,6 @@
 #include "item_effects.h"
 #include "dungeon_info.h"
-
+#include "save.h"
 #define rupee_cap ((uint16_t*)0x800F8CEC)
 volatile uint8_t MAX_RUPEES = 0;
 
@@ -93,6 +93,75 @@ void give_small_key_ring(z64_file_t *save, int16_t dungeon_id, int16_t arg2) {
     uint32_t flag = save->scene_flags[dungeon_id].unk_00_;
     int8_t total_keys = flag >> 0x10;
     save->scene_flags[dungeon_id].unk_00_ = (flag & 0x0000ffff) | ((total_keys + key_counts[dungeon_id][CFG_DUNGEON_IS_MQ[dungeon_id]]) << 0x10);
+}
+
+silver_rupee_data_t silver_rupee_vars[0x16][2] = {
+    //Vanilla,   Master Quest
+    {{-1, 0xFF, 0x00, 0x00, 0x00}, { 5, 0x1F, 0xFF, 0xFF, 0xFF}}, // Dodongos Cavern Staircase. Patched to use switch flag 0x1F
+    {{ 5, 0x08, 0x00, 0xFF, 0xFF}, {-1, 0xFF, 0x00, 0x00, 0x00}}, // Ice Cavern Spinning Scythe
+    {{ 5, 0x09, 0x00, 0x64, 0xFF}, {-1, 0xFF, 0x00, 0x00, 0x00}}, // Ice Cavern Push Block
+    {{ 5, 0x1F, 0xFF, 0xFF, 0xFF}, {-1, 0xFF, 0x00, 0x00, 0x00}}, // Bottom of the Well Basement
+    {{ 5, 0x01, 0x00, 0xFF, 0x00}, { 5, 0x01, 0x00, 0xFF, 0x00}}, // Shadow Temple Scythe Shortcut
+    {{-1, 0xFF, 0x00, 0x00, 0x00}, {10, 0x03, 0x00, 0xFF, 0xFF}}, // Shadow Temple Invisible Blades
+    {{ 5, 0x09, 0xC8, 0xC8, 0x00}, { 5, 0x11, 0xC8, 0xC8, 0x00}}, // Shadow Temple Huge Pit
+    {{ 5, 0x08, 0xC8, 0x32, 0xFF}, {10, 0x08, 0xC8, 0x32, 0xFF}}, // Shadow Temple Invisible Spikes
+    {{ 5, 0x1C, 0xC8, 0xC8, 0x00}, { 5, 0x1C, 0xC8, 0xC8, 0x00}}, // Gerudo Training Ground Slopes
+    {{ 5, 0x0C, 0xFF, 0x3C, 0x00}, { 6, 0x0C, 0xFF, 0x3C, 0x00}}, // Gerudo Training Ground Lava
+    {{ 5, 0x1B, 0x00, 0x64, 0xFF}, { 3, 0x1B, 0x00, 0x64, 0xFF}}, // Gerudo Training Ground Water
+    {{ 5, 0x05, 0xFF, 0x3C, 0x00}, {-1, 0xFF, 0x00, 0x00, 0x00}}, // Spirit Temple Child Early Torches
+    {{ 5, 0x02, 0x00, 0xFF, 0x00}, {-1, 0xFF, 0x00, 0x00, 0x00}}, // Spirit Temple Adult Boulders
+    {{-1, 0xFF, 0x00, 0x00, 0x00}, { 5, 0x1F, 0x00, 0xFF, 0xFF}}, // Spirit Temple Lobby and Lower Adult. Patched to use switch flag 0x1F
+    {{ 5, 0x0A, 0xC8, 0xC8, 0x00}, {-1, 0xFF, 0x00, 0x00, 0x00}}, // Spirit Temple Sun Block
+    {{-1, 0xFF, 0x00, 0x00, 0x00}, { 5, 0x00, 0x00, 0x64, 0xFF}}, // Spirit Temple Adult Climb
+    {{ 5, 0x0B, 0xC8, 0xC8, 0x00}, {-1, 0xFF, 0x00, 0x00, 0x00}}, // Ganons Castle Spirit Trial
+    {{ 5, 0x12, 0x00, 0xFF, 0xFF}, {-1, 0xFF, 0x00, 0x00, 0x00}}, // Ganons Castle Light Trial
+    {{ 5, 0x09, 0xFF, 0x3C, 0x00}, { 5, 0x01, 0xFF, 0x3C, 0x00}}, // Ganons Castle Fire Trial
+    {{-1, 0xFF, 0x00, 0x00, 0x00}, { 5, 0x1B, 0xC8, 0x32, 0xFF}}, // Ganons Castle Shadow Trial
+    {{-1, 0xFF, 0x00, 0x00, 0x00}, { 5, 0x02, 0x00, 0x64, 0xFF}}, // Ganons Castle Water Trial
+    {{ 5, 0x0E, 0x00, 0xFF, 0x00}, {-1, 0xFF, 0x00, 0x00, 0x00}}, // Ganons Castle Forest Trial
+};
+
+void give_silver_rupee(z64_file_t *save, int16_t dungeon_id, int16_t silver_rupee_id) {
+    silver_rupee_data_t var = silver_rupee_vars[silver_rupee_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
+
+    if (extended_savectx.silver_rupee_counts[silver_rupee_id] == var.needed_count) return;
+    extended_savectx.silver_rupee_counts[silver_rupee_id]++;
+
+    if (extended_savectx.silver_rupee_counts[silver_rupee_id] == var.needed_count) {
+        if (silver_rupee_id == 8) { // GTG Boulder room needs to set room clear flag as well in order to make the timer go away. Maybe others?
+            if (z64_game.scene_index == dungeon_id)
+            {
+                z64_game.clear_flags |= 1 << 2;
+                z64_game.temp_clear_flags |= 1 << 2;
+            }
+            else
+            {
+                save->scene_flags[dungeon_id].clear |= 1 << 2;
+            }
+        }
+        if (z64_game.scene_index == dungeon_id)
+            z64_game.swch_flags |= 1 << var.switch_flag;
+        else
+            save->scene_flags[dungeon_id].swch |= 1 << var.switch_flag;
+    }
+}
+
+void give_silver_rupee_pouch(z64_file_t *save, int16_t dungeon_id, int16_t silver_rupee_id) {
+    silver_rupee_data_t var = silver_rupee_vars[silver_rupee_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
+
+    if (extended_savectx.silver_rupee_counts[silver_rupee_id] == var.needed_count) return;
+    extended_savectx.silver_rupee_counts[silver_rupee_id] = var.needed_count;
+
+    if (silver_rupee_id == 7) { // GTG Boulder room needs to set room clear flag as well in order to make the timer go away. Maybe others?
+        if (z64_game.scene_index == dungeon_id)
+            z64_game.clear_flags |= 1 << 2;
+        else
+            save->scene_flags[dungeon_id].clear |= 1 << 2;
+    }
+    if (z64_game.scene_index == dungeon_id)
+        z64_game.swch_flags |= 1 << var.switch_flag;
+    else
+        save->scene_flags[dungeon_id].swch |= 1 << var.switch_flag;
 }
 
 void give_defense(z64_file_t *save, int16_t arg1, int16_t arg2) {

@@ -2606,7 +2606,7 @@ setting_infos = [
                                          'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops',
                                          'warp_songs', 'spawn_positions', 'mq_dungeons_mode', 'mq_dungeons_specific',
                                          'mq_dungeons_count', 'shuffle_bosses', 'dungeon_shortcuts', 'deadly_bonks',
-                                         'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_beehives',
+                                         'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_beehives', 'shuffle_silver_rupees',
                                          'mix_entrance_pools', 'decouple_entrances', 'shuffle_base_item_pool']},
             'none'      : {'settings' : ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
         },
@@ -3782,16 +3782,16 @@ setting_infos = [
             will always appear on the left side
             (identified by the Special Deal! text).
             Remaining items will be shuffled between shops.
-            
+
             'Random # of Items Per Shop': Each shop will
             have 0 to 4 Special Deals.
-            
+
             The randomized items have no requirements
             except money, while the remaining items retain
             normal requirements. Tunics that aren't a
             Special Deal! will still require you to be an
             adult to purchase for example.
-            
+
             Bombchu Special Deals will unlock the Bombchu
             slot in your inventory and allow purchase of
             Bombchu Refills if "Bombchus are considered in
@@ -3905,16 +3905,16 @@ setting_infos = [
 
             'Own Dungeon': Maps and Compasses can only appear in their respective
             dungeon.
-            
+
             'Regional': Maps and Compasses can only appear in regions near the
             original dungeon (including the dungeon itself or other dungeons in
             the region). <a href="https://wiki.ootrandomizer.com/index.php?title=Hints#Hint_Regions" target="_blank">The Wiki has a list of corresponding regions here.</a>
-            
+
             'Overworld Only': Maps and Compasses can only appear
             outside of dungeons.
 
             'Any Dungeon': Maps and Compasses can only appear in a dungeon, but
-            not necessarily the dungeon they are for.            
+            not necessarily the dungeon they are for.
 
             'Anywhere': Maps and Compasses can appear anywhere in the world.
 
@@ -4437,6 +4437,60 @@ setting_infos = [
         gui_params     = {
             'optional': True,
             "hide_when_disabled": True,
+        },
+    ),
+    Combobox(
+        name           = 'shuffle_silver_rupees',
+        gui_text       = 'Shuffle Silver Rupees',
+        default        = 'vanilla',
+        choices        = {
+            'remove':      'Remove',
+            'vanilla':     'Vanilla Locations',
+            'dungeon':     'Own Dungeon',
+            'regional':    'Regional',
+            'overworld':   'Overworld Only',
+            'any_dungeon': 'Any Dungeon',
+            'anywhere':    'Anywhere',
+        },
+        gui_tooltip    = '''\
+            Enabling this shuffles the Silver Rupee puzzles into to the
+            item pool.
+
+            Silver Rupees are grouped into sets of 5 (except for some
+            Master Quest dungeons, which have sets of other amounts), each
+            of which permanently unlocks something in a dungeon once all
+            the rupees in that set are collected. Hints will only tell you
+            the dungeon a Silver Rupee corresponds to, but upon collecting
+            it, you will be told the exact room.
+            The vanilla locations of Silver Rupees hold shuffled items.
+
+            'Remove': Silver Rupees are removed and the puzzles are
+            solved.
+
+            'Vanilla': Silver Rupees will appear in their vanilla
+            locations. You will have to collect all of a set in one go to
+            to solve a puzzle.
+
+            'Own Dungeon': Silver Rupees can only appear
+            in their respective dungeon.
+
+            'Regional': Silver Rupees can only appear in regions
+            near the original dungeon (including the dungeon
+            itself or other dungeons in the region).
+            <a href="https://wiki.ootrandomizer.com/index.php?title=Hints#Hint_Regions" target="_blank">The Wiki has a list of corresponding regions here.</a>
+
+            'Overworld Only': Silver Rupees can only appear
+            outside of dungeons.
+
+            'Any Dungeon': Silver Rupees can only appear in a
+            dungeon, but not necessarily the dungeon they are for.
+
+            'Anywhere': Silver Rupees can appear
+            anywhere in the world.
+        ''',
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
         },
     ),
     Checkbutton(

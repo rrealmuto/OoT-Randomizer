@@ -39,20 +39,27 @@
             "Dodongos Cavern MQ Staircase Pot 2": "True",
             "Dodongos Cavern MQ Staircase Pot 3": "True",
             "Dodongos Cavern MQ Staircase Pot 4": "True",
+            # Entering the staircase room requires strength, hammer, or explosives.
+            # Strength can be used for the bottom crates near the staircase bomb flowers.
+            # The other crates above the staircase require another way to destroy with one bonk ko.
             "Dodongos Cavern MQ Staircase Crate Bottom Left": "True",
             "Dodongos Cavern MQ Staircase Crate Bottom Right": "True",
             "Dodongos Cavern MQ Staircase Crate Mid Left": "can_break_crate",
             "Dodongos Cavern MQ Staircase Crate Mid Right": "can_break_crate",
             "Dodongos Cavern MQ Staircase Crate Top Left": "can_break_crate",
             "Dodongos Cavern MQ Staircase Crate Top Right": "can_break_crate",
+            "Dodongos Cavern MQ Staircase Silver Rupee Beamos": "True",
+            "Dodongos Cavern MQ Staircase Silver Rupee Lower Crate": "True",
+            "Dodongos Cavern MQ Staircase Silver Rupee Mid Left Crate": "can_break_crate",
+            "Dodongos Cavern MQ Staircase Silver Rupee Vines": "True",
+            "Dodongos Cavern MQ Staircase Silver Rupee Top Right Crate": "can_break_crate",
             "Dodongos Cavern MQ GS Song of Time Block Room": "
                 can_play(Song_of_Time) and (can_child_attack or is_adult)",
             "Deku Baba Sticks": "is_adult or Kokiri_Sword or Boomerang"
         },
         "exits": {
             "Dodongos Cavern Torch Puzzle Lower": "
-                (deadly_bonks != 'ohko' or can_use(Nayrus_Love) or can_blast_or_smash) and
-                (is_adult or can_child_attack or Nuts)",
+                (Silver_Rupee_Dodongos_Cavern_Staircase, 5) and (is_adult or can_child_attack or Nuts)",
             "Dodongos Cavern Torch Puzzle Upper": "
                 here(can_blast_or_smash or can_use(Dins_Fire)) or
                 at('Dodongos Cavern Torch Puzzle Upper', Progressive_Strength_Upgrade)",
