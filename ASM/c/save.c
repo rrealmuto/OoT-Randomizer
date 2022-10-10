@@ -283,8 +283,10 @@ void Save_Open(char *sramBuffer) {
 // Hook the init save function's call to SsSram_ReadWrite in order to zeroize the the collectible flags.
 void Save_Init_Write_Hook(uint32_t addr, void *dramAddr, size_t size, uint32_t direction) {
     // zeroize the new collectible flags in the sram buffer (dramAddr)
-    uint16_t slot_offset = SRAM_SLOTS[z64_file.file_index] + SLOT_SIZE - (4 * num_override_flags + 4 * num_drop_override_flags);
-    z64_bzero(dramAddr + slot_offset, 4 * num_override_flags + 4 * num_drop_override_flags);
+    // zeroize the free space in the sram buffer (after the original slot up to the end of the slot)
+
+    uint16_t slot_offset = SRAM_SLOTS[z64_file.file_index];
+    z64_bzero(dramAddr + slot_offset + SRAM_ORIGINAL_SLOT_SIZE, SLOT_SIZE - SRAM_ORIGINAL_SLOT_SIZE);
 
     // write initial extended save data.
     uint8_t *extended_slot = dramAddr + slot_offset + SRAM_ORIGINAL_SLOT_SIZE;

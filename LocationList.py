@@ -2177,9 +2177,9 @@ location_groups = {
     'Boss': [name for (name, data) in location_table.items() if data[0] == 'Boss'],
     'ActorOverride': [name for (name, data) in location_table.items() if data[0] == 'ActorOverride'],
     'BossHeart': [name for (name, data) in location_table.items() if data[0] == 'BossHeart'],
-    'CollectableLike': [name for (name, data) in location_table.items() if data[0] in ('Collectable', 'BossHeart', 'GS Token')],
+    'CollectableLike': [name for (name, data) in location_table.items() if data[0] in ('Collectable', 'BossHeart', 'GS Token', 'SilverRupee')],
     'CanSee': [name for (name, data) in location_table.items()
-               if data[0] in ('Collectable', 'BossHeart', 'GS Token', 'Shop')
+               if data[0] in ('Collectable', 'BossHeart', 'GS Token', 'Shop', 'SilverRupee')
                # Treasure Box Shop, Bombchu Bowling, Hyrule Field (OoT), Lake Hylia (RL/FA)
                or data[0:2] in [('Chest', 0x10), ('NPC', 0x4B), ('NPC', 0x51), ('NPC', 0x57)]],
     'Dungeon': [name for (name, data) in location_table.items() if data[5] is not None and any(dungeon in data[5] for dungeon in dungeons)],

@@ -35,9 +35,6 @@
             "Gerudo Training Ground Lava Room Silver Rupee Front Left": "is_adult or shuffle_silver_rupees",
             "Gerudo Training Ground Lava Room Silver Rupee Front Right": "is_adult or shuffle_silver_rupees",
             "Gerudo Training Ground Lava Room Silver Rupee Flame Circle": "(is_child and shuffle_silver_rupees) or (is_adult and (can_play(Song_of_Time) or Hover_Boots))"
-            "Gerudo Training Ground Underwater Silver Rupee Chest": "
-                is_adult and Hookshot and can_play(Song_of_Time) and
-                Iron_Boots and (logic_fewer_tunic_requirements or Zora_Tunic)"
         },
         "exits": {
             "Gerudo Training Ground Central Maze Right": "can_play(Song_of_Time) or is_child",
@@ -158,7 +155,7 @@
             "Gerudo Training Ground Hammer Room Switch Chest": "Megaton_Hammer"
         },
         "exits": {
-            "Gerudo Training Ground Lava Room": "True",
+            "Gerudo Training Ground Lava Room Back": "True",
             "Gerudo Training Ground Eye Statue Lower": "Megaton_Hammer and Bow"
         }
     }

@@ -1,6 +1,7 @@
 #include "item_effects.h"
 #include "dungeon_info.h"
 #include "save.h"
+
 #define rupee_cap ((uint16_t*)0x800F8CEC)
 volatile uint8_t MAX_RUPEES = 0;
 
@@ -121,6 +122,24 @@ silver_rupee_data_t silver_rupee_vars[0x16][2] = {
     {{ 5, 0x0E, 0x00, 0xFF, 0x00}, {-1, 0xFF, 0x00, 0x00, 0x00}}, // Ganons Castle Forest Trial
 };
 
+void set_silver_rupee_flags(z64_file_t *save, int16_t dungeon_id, int16_t silver_rupee_id) {
+    silver_rupee_data_t var = silver_rupee_vars[silver_rupee_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
+
+    if (silver_rupee_id == 8) { // GTG Boulder room needs to set room clear flag as well in order to make the timer go away. Maybe others?
+        if (z64_game.scene_index == dungeon_id) {
+            z64_game.clear_flags |= 1 << 2;
+            z64_game.temp_clear_flags |= 1 << 2;
+        } else {
+            save->scene_flags[dungeon_id].clear |= 1 << 2;
+        }
+    }
+    if (z64_game.scene_index == dungeon_id) {
+        z64_game.swch_flags |= 1 << var.switch_flag;
+    } else {
+        save->scene_flags[dungeon_id].swch |= 1 << var.switch_flag;
+    }
+}
+
 void give_silver_rupee(z64_file_t *save, int16_t dungeon_id, int16_t silver_rupee_id) {
     silver_rupee_data_t var = silver_rupee_vars[silver_rupee_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
 
@@ -128,21 +147,7 @@ void give_silver_rupee(z64_file_t *save, int16_t dungeon_id, int16_t silver_rupe
     extended_savectx.silver_rupee_counts[silver_rupee_id]++;
 
     if (extended_savectx.silver_rupee_counts[silver_rupee_id] == var.needed_count) {
-        if (silver_rupee_id == 8) { // GTG Boulder room needs to set room clear flag as well in order to make the timer go away. Maybe others?
-            if (z64_game.scene_index == dungeon_id)
-            {
-                z64_game.clear_flags |= 1 << 2;
-                z64_game.temp_clear_flags |= 1 << 2;
-            }
-            else
-            {
-                save->scene_flags[dungeon_id].clear |= 1 << 2;
-            }
-        }
-        if (z64_game.scene_index == dungeon_id)
-            z64_game.swch_flags |= 1 << var.switch_flag;
-        else
-            save->scene_flags[dungeon_id].swch |= 1 << var.switch_flag;
+        set_silver_rupee_flags(save, dungeon_id, silver_rupee_id);
     }
 }
 
@@ -152,16 +157,7 @@ void give_silver_rupee_pouch(z64_file_t *save, int16_t dungeon_id, int16_t silve
     if (extended_savectx.silver_rupee_counts[silver_rupee_id] == var.needed_count) return;
     extended_savectx.silver_rupee_counts[silver_rupee_id] = var.needed_count;
 
-    if (silver_rupee_id == 7) { // GTG Boulder room needs to set room clear flag as well in order to make the timer go away. Maybe others?
-        if (z64_game.scene_index == dungeon_id)
-            z64_game.clear_flags |= 1 << 2;
-        else
-            save->scene_flags[dungeon_id].clear |= 1 << 2;
-    }
-    if (z64_game.scene_index == dungeon_id)
-        z64_game.swch_flags |= 1 << var.switch_flag;
-    else
-        save->scene_flags[dungeon_id].swch |= 1 << var.switch_flag;
+    set_silver_rupee_flags(save, dungeon_id, silver_rupee_id);
 }
 
 void give_defense(z64_file_t *save, int16_t arg1, int16_t arg2) {

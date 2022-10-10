@@ -4465,7 +4465,8 @@ setting_infos = [
             The vanilla locations of Silver Rupees hold shuffled items.
 
             'Remove': Silver Rupees are removed and the puzzles are
-            solved.
+            solved. This will add a small amount of money and
+            refill items to the pool.
 
             'Vanilla': Silver Rupees will appear in their vanilla
             locations. You will have to collect all of a set in one go to

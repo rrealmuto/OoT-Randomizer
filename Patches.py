@@ -1208,7 +1208,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             save_context.write_permanent_flag(Scenes.JABU_JABU, FlagType.CLEAR,  0x2, 0x01) # Jabu Red Slimy Thing defeated
             save_context.write_permanent_flag(Scenes.JABU_JABU, FlagType.SWITCH, 0x2, 0x08) # Jabu Red Slimy Thing not in front of boss lobby
             save_context.write_permanent_flag(Scenes.JABU_JABU, FlagType.SWITCH, 0x1, 0x10) # Jabu Boss Door Switch Activated
-        
+
     if 'Forest Temple' in world.settings.dungeon_shortcuts:
         # Forest, flags are the same between vanilla/MQ
         save_context.write_permanent_flag(Scenes.FOREST_TEMPLE, FlagType.SWITCH, 0x0, 0x10) # Forest Elevator up
@@ -1229,7 +1229,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             save_context.write_permanent_flag(Scenes.SPIRIT_TEMPLE, FlagType.SWITCH, 0x2, 0x02) # Spirit Silver Block
             save_context.write_permanent_flag(Scenes.SPIRIT_TEMPLE, FlagType.SWITCH, 0x1, 0x80) # Spirit Chains
             save_context.write_permanent_flag(Scenes.SPIRIT_TEMPLE, FlagType.SWITCH, 0x3, 0x10) # Spirit Face
-        
+
     if 'Shadow Temple' in world.settings.dungeon_shortcuts:
         # Shadow
         if not world.dungeon_mq['Shadow Temple']:
@@ -1682,7 +1682,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             if locations:
                 # Location types later in the list will be preferred over earlier ones or ones not in the list.
                 # This ensures that if the region behind the boss door is a boss arena, the medallion or stone will be used.
-                priority_types = ("Freestanding", "ActorOverride", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive", "GS Token", "GrottoScrub", "Scrub", "Shop", "NPC", "Collectable", "Chest", "Cutscene", "Song", "BossHeart", "Boss")
+                priority_types = ("Freestanding", "ActorOverride", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive", "Silver Rupee", "GS Token", "GrottoScrub", "Scrub", "Shop", "NPC", "Collectable", "Chest", "Cutscene", "Song", "BossHeart", "Boss")
                 best_type = max((location.type for location in locations), key=lambda type: priority_types.index(type) if type in priority_types else -1)
                 location = random.choice(list(filter(lambda loc: loc.type == best_type, locations)))
                 break
@@ -1820,7 +1820,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         if world.settings.shuffle_silver_rupees != 'remove':
             rom.write_byte(rom.sym('CFG_DUNGEON_INFO_SILVER_RUPEES'), 1)
 
-        silver_rupee_locations = [location for location in world.get_locations() if location.type == 'Silver Rupee']
+        silver_rupee_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Silver Rupee']
         for silver_rupee_location in silver_rupee_locations:
             patch_silver_rupee(silver_rupee_location, rom)
 
@@ -2484,7 +2484,7 @@ def get_override_entry(location):
         return None
 
     # Don't add freestanding items, pots/crates, beehives to the override table if they're disabled. We use this check to determine how to draw and interact with them
-    if location.type in ["ActorOverride", "Freestanding", "RupeeTower", "Silver Rupee", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive"] and location.disabled != DisableType.ENABLED:
+    if location.type in ["ActorOverride", "Freestanding", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive"] and location.disabled != DisableType.ENABLED:
         return None
 
     player_id = location.item.world.id + 1

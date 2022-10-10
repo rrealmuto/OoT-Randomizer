@@ -51,7 +51,9 @@
             "Dodongos Cavern MQ Staircase Silver Rupee Beamos": "True",
             "Dodongos Cavern MQ Staircase Silver Rupee Lower Crate": "True",
             "Dodongos Cavern MQ Staircase Silver Rupee Mid Left Crate": "can_break_crate",
-            "Dodongos Cavern MQ Staircase Silver Rupee Vines": "True",
+            # Reachable forwards through staircase or backwards through shortcut, both of which
+            # require adult or child attack to get through the skulltulas or the dodongos
+            "Dodongos Cavern MQ Staircase Silver Rupee Vines": "is_adult or Nuts or can_child_attack",
             "Dodongos Cavern MQ Staircase Silver Rupee Top Right Crate": "can_break_crate",
             "Dodongos Cavern MQ GS Song of Time Block Room": "
                 can_play(Song_of_Time) and (can_child_attack or is_adult)",

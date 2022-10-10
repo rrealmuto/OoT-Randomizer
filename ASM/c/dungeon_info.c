@@ -92,7 +92,7 @@ int d_right_dungeon_idx(int i) {
     int dungeon_idx = i + 1; // skip Deku
     if (!CFG_DUNGEON_INFO_SILVER_RUPEES || !CFG_DUNGEON_IS_MQ[DODONGO_ID]) dungeon_idx++; // skip DC
     if (dungeon_idx >= 2) dungeon_idx++; // skip Jabu
-    if (dungeon_idx >910 && (!CFG_DUNGEON_INFO_SILVER_RUPEES || CFG_DUNGEON_IS_MQ[ICE_ID])) dungeon_idx++; // skip Ice
+    if (dungeon_idx > 9 && (!CFG_DUNGEON_INFO_SILVER_RUPEES || CFG_DUNGEON_IS_MQ[ICE_ID])) dungeon_idx++; // skip Ice
     return dungeon_idx;
 }
 
@@ -149,7 +149,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
                 0,
                 0, 0,
                 1<<10, 1<<10);
-        
+
         gDPPipeSync(db->p++);
         gDPSetCombineMode(db->p++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
 
@@ -467,7 +467,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
         // Draw dungeon names
 
         for (int i = 0; i < rows; i++) {
-            dungeon_entry_t *d = &(dungeons[d_right_dungeon_idx(i)]);
+            dungeon_entry_t *d = &(dungeons[d_right_dungeon_idx(i)]); // skip Deku/DC/Jabu/Ice dynamically
             int top = start_top + ((icon_size + padding) * i) + 1;
             text_print(d->name, left, top);
         }
@@ -481,7 +481,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
         sprite_load(db, &quest_items_sprite, 17, 1);
 
         for (int i = 0; i < rows; i++) {
-            dungeon_entry_t *d = &(dungeons[d_right_dungeon_idx(i)]);
+            dungeon_entry_t *d = &(dungeons[d_right_dungeon_idx(i)]); // skip Deku/DC/Jabu/Ice dynamically
             if (!d->has_keys) continue;
 
             int8_t current_keys = z64_file.dungeon_keys[d->index];
@@ -506,7 +506,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
         sprite_load(db, &quest_items_sprite, 14, 1);
 
         for (int i = 0; i < rows; i++) {
-            dungeon_entry_t *d = &(dungeons[d_right_dungeon_idx(i)]);
+            dungeon_entry_t *d = &(dungeons[d_right_dungeon_idx(i)]); // skip Deku/DC/Jabu/Ice dynamically
             // Replace index 13 (Ganon's Castle) with 10 (Ganon's Tower)
             int index = d->index == 13 ? 10 : d->index;
 
@@ -517,12 +517,12 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
             }
         }
 
-        // Draw gerudo card
+        // Draw Gerudo card
 
         sprite_load(db, &quest_items_sprite, 10, 1);
 
-        for (int i = 0; i < 9; i++) {
-            dungeon_entry_t *d = &(dungeons[i + (i > 5 ? 5 : 4)]); // skip Deku/DC/Jabu/Ice
+        for (int i = 0; i < rows; i++) {
+            dungeon_entry_t *d = &(dungeons[d_right_dungeon_idx(i)]); // skip Deku/DC/Jabu/Ice dynamically
             if (d->has_card && z64_file.gerudos_card) {
                 int top = start_top + ((icon_size + padding) * i);
                 sprite_draw(db, &quest_items_sprite, 0,
@@ -538,7 +538,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
             sprite_load(db, &key_rupee_clock_sprite, 1, 1);
 
             for (int i = 0; i < rows; i++) {
-                dungeon_entry_t *d = &(dungeons[d_right_dungeon_idx(i)]);
+                dungeon_entry_t *d = &(dungeons[d_right_dungeon_idx(i)]); // skip Deku/DC/Jabu/Ice dynamically
                 bool show_silver_rupees = false;
                 uint8_t *silver_rupee_puzzles = CFG_DUNGEON_IS_MQ[d->index] ? d->silver_rupee_puzzles_mq : d->silver_rupee_puzzles_vanilla;
                 for (int puzzle_idx = 0; puzzle_idx < 4; puzzle_idx++) {
@@ -557,7 +557,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
             }
 
             // Draw silver rupee counts
-            sprite_load(db, &font_sprite, 16, 10);
+            sprite_load(db, &font_sprite, 16, 32); // load characters 0 through O
 
             for (int i = 0; i < rows; i++) {
                 dungeon_entry_t *d = &(dungeons[d_right_dungeon_idx(i)]);
@@ -580,11 +580,11 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
                         int puzzle_left = left + icon_size + padding + font_sprite.tile_w * (2 * puzzle_idx - 1);
                         // draw text manually instead of going through text_print/text_flush to get the right text colors
                         gDPSetPrimColor(db->p++, 0, 0, var.r, var.g, var.b, 0xFF);
-                        //TODO use O sprite instead of 0 since it's easier to read
                         if(count >= 10) {
                             sprite_draw(db, &font_sprite, count / 10, puzzle_left, top, font_sprite.tile_w, font_sprite.tile_h);
                         }
-                        sprite_draw(db, &font_sprite, count % 10, puzzle_left + font_sprite.tile_w, top, font_sprite.tile_w, font_sprite.tile_h);
+                        int tile_index = count % 10 > 0 ? count % 10 : 31;
+                        sprite_draw(db, &font_sprite, tile_index, puzzle_left + font_sprite.tile_w, top, font_sprite.tile_w, font_sprite.tile_h);
                     }
                 }
             }
