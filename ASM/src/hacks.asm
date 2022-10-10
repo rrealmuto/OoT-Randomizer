@@ -416,6 +416,10 @@ SRAM_SLOTS:
     jal     get_override_drop_id_hook
     sh      T1, 0x0042(sp)
 
+; Hack Item_DropCollectibleRandom to call custom drop override function (mostly just for chus in logic)
+.orga 0xA89D4C;
+    jal     get_override_drop_id_hook
+
 ; Hack Item_DropCollectible to add a flag that this was a dropped collectible (vs spawned) and extended flag
 ; replaces
 ;   or      t4, t3, t1
@@ -710,10 +714,11 @@ bg_spot18_basket_rupees_loopstart: ; our new loop branch target
 .orga 0xA87E80 ;In memory 0x80011F20
     jal object_index_or_spawn ;Replace call to z64_ObjectIndex
 
-; Remove deku shield drop from spirit pot because it's "vanilla behavior"
-; Replace actor parameters in scene 06, room 27 actor list
-.orga 0x2BDC0C6
-    .halfword 0x603F
+; Fix autocollect magic jar wonder items
+; Replaces:
+;   jal     func_80022CF4
+.orga 0xA880D4
+    jal     enitem00_set_link_incoming_item_id
 
 ;==================================================================================================
 ; Freestanding models
@@ -1601,21 +1606,6 @@ skip_GS_BGS_text:
     nop
     nop
     nop
-
-; Replaces: lbu     t7, 0x0002(a1)
-;           addiu   v1, zero, 0x00FF
-;           addu    t8, v0, t7
-;           lbu     t9, 0x0074(t8)
-;           beq     v1, t9, 0x80013640
-.orga 0xA89518
-    sw      ra, 0(sp)
-    jal     bomb_drop_convert
-    nop
-    lw      ra, 0(sp)
-    beqz    v1, @drop_nothing
-
-.orga 0xA895A0
-@drop_nothing:
 
 ;==================================================================================================
 ; Override Collectible 05 to be a Bombchus (5) drop instead of the unused Arrow (1) drop
@@ -3076,3 +3066,21 @@ skip_GS_BGS_text:
 ; Replaces: addiu   a0, $zero, 0x2008
 ; .orga 0xBE2930
 ;    addiu   a0, $zero, 0x6000
+
+;===================================================================================================
+; Remove the cutscene when throwing a bomb at the rock in front of Dodongo's cavern
+;===================================================================================================
+.orga 0xD55998
+    nop
+    nop
+    nop
+    nop
+    nop
+
+.orga 0xD55A80
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop

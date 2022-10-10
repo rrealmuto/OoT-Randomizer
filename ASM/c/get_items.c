@@ -9,6 +9,7 @@
 extern uint8_t FAST_CHESTS;
 extern uint8_t OCARINAS_SHUFFLED;
 extern uint8_t NO_COLLECTIBLE_HEARTS;
+extern uint32_t BOMBCHUS_IN_LOGIC;
 override_t cfg_item_overrides[1536] = { 0 };
 int item_overrides_count = 0;
 
@@ -404,6 +405,7 @@ void get_item(z64_actor_t *from_actor, z64_link_t *link, int8_t incoming_item_id
 #define GIVEITEM_MAGIC_SMALL 120
 #define GIVEITEM_MAGIC_LARGE 121
 #define GIVEITEM_RUPEE_PURPLE 135
+#define GIVEITEM_BOMBCHUS_5 0x96
 
 #define LEN_ITEMS 21
 uint8_t items[] = {
@@ -412,7 +414,7 @@ uint8_t items[] = {
     GIVEITEM_RUPEE_RED,
     GIVEITEM_HEART,
     GIVEITEM_BOMBS_5,
-    GIVEITEM_ARROWS_SINGLE,
+    GIVEITEM_BOMBCHUS_5,
     0,
     0,
     GIVEITEM_ARROWS_SMALL,
@@ -530,6 +532,25 @@ void Item00_KeepAlive(EnItem00 *item00) {
     }
 }
 
+// Check ammo counts for bombs/chus and drop correspondingly.
+int16_t drop_bombs_or_chus(int16_t dropId) {
+    // Get our ammo counts
+    int8_t bomb_count = z64_file.ammo[Z64_SLOT_BOMB];
+    int8_t chu_count = z64_file.ammo[Z64_SLOT_BOMBCHU];
+    if (bomb_count > 15 && chu_count > 15) {
+        // We have more than 15 of both so randomly drop one
+        if (z64_Rand_ZeroOne() < .5) {
+            return dropId;
+        }
+        return ITEM00_ARROWS_SINGLE;
+    }
+    if (bomb_count < chu_count) { // bomb count < chu count so drop bombs
+        return dropId;
+    } else {
+        return ITEM00_ARROWS_SINGLE; // drop chus (ARROWS_SINGLE is the dropId we use)
+    }
+}
+
 int16_t get_override_drop_id(int16_t dropId, uint16_t params) {
     // make our a dummy enitem00 with enough info to get the override
     EnItem00 dummy;
@@ -560,6 +581,26 @@ int16_t get_override_drop_id(int16_t dropId, uint16_t params) {
     } else {
         if (dropId == ITEM00_ARROWS_SMALL || dropId == ITEM00_ARROWS_MEDIUM || dropId == ITEM00_ARROWS_LARGE) {
             dropId = ITEM00_SEEDS;
+        }
+    }
+
+    // Chus in logic drops
+    if (dropId == ITEM00_BOMBS_A || dropId == ITEM00_BOMBS_SPECIAL || dropId == ITEM00_BOMBS_B) {
+        if (BOMBCHUS_IN_LOGIC) {
+            if (z64_file.items[Z64_SLOT_BOMB] == ITEM_BOMB && z64_file.items[Z64_SLOT_BOMBCHU] == ITEM_BOMBCHU) { // we have bombs and chus
+                return drop_bombs_or_chus(dropId);
+            } else if (z64_file.items[Z64_SLOT_BOMB] == ITEM_BOMB) { // only have bombs
+                // don't do anything because this is already the right drop ID
+                return dropId;
+            } else if (z64_file.items[Z64_SLOT_BOMBCHU] == ITEM_BOMBCHU) { // only have chus
+                return ITEM00_ARROWS_SINGLE; // override drop ID to use the one for chus
+            } else {
+                return -1;
+            }
+        } else {
+            if (z64_file.items[Z64_SLOT_BOMB] == -1) {
+                return -1;
+            }
         }
     }
 

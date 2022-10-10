@@ -18,6 +18,13 @@
                 (Sticks or has_explosives or 
                     ( (Nuts or can_use(Boomerang)) and 
                         (can_use(Kokiri_Sword) or Slingshot) ) ))",
+            "Deku Shield Pot": "
+                fix_broken_drops and
+                (is_adult or (
+                (can_use(Boomerang) or Slingshot or has_bombchus or can_mega) and 
+                (Sticks or has_explosives or 
+                    ( (Nuts or can_use(Boomerang)) and 
+                        (can_use(Kokiri_Sword) or Slingshot) ) )))",
             "Spirit Temple Child Early Torches Chest": "(is_adult and has_fire_source) or 
                 (has_fire_source_with_torch and (here(is_adult) or
                 (

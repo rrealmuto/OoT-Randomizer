@@ -31,7 +31,7 @@
         "region_name": "Deku Tree Boss Room",
         "dungeon": "Deku Tree",
         "events": {
-            "Defeat Gohma": "Buy_Deku_Shield and (Kokiri_Sword or Sticks)"
+            "Defeat Gohma": "Deku_Shield and (Kokiri_Sword or Sticks)"
         },
         "locations": {
             "Deku Tree MQ Before Spinning Log Chest": "True",

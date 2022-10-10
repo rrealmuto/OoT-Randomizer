@@ -350,6 +350,7 @@
           "settings": [
             "ocarina_songs",
             "correct_chest_appearances",
+            "minor_items_as_major_chest",
             "invisible_chests",
             "correct_potcrate_appearances",
             "clearer_hints",
@@ -362,7 +363,8 @@
             "deadly_bonks",
             "no_collectible_hearts",
             "starting_tod",
-            "blue_fire_arrows"
+            "blue_fire_arrows",
+            "fix_broken_drops"
           ]
         },
         {

@@ -224,6 +224,7 @@ item_table = {
     'Bugs':                             ('Drop',     True,  None, None),
     'Big Poe':                          ('Drop',     True,  None, None),
     'Bombchu Drop':                     ('Drop',     True,  None, None),
+    'Deku Shield Drop':                 ('Drop',     True,  None, None),
 
     # Consumable refills defined mostly to placate 'starting with' options
     'Arrows':                           ('Refill',   None,  None, None),

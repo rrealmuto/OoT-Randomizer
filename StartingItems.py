@@ -27,7 +27,7 @@ inventory = dict(chain(
     _entry('dins_fire', 'Dins Fire', guitext="Din's Fire"),
     _entry('slingshot', available=3, ammo={'Deku Seeds': (30, 40, 50)}),
     _entry('ocarina', available=2),
-    _entry('bombchus', ammo={'Bombchus': (19,)}), # start with additional bombchus
+    _entry('bombchus', ammo={'Bombchus': (20,)}), # start with additional bombchus
     _entry('hookshot', 'Progressive Hookshot', available=2),
     _entry('ice_arrow', 'Ice Arrows'),
     _entry('farores_wind', 'Farores Wind', guitext="Farore's Wind"),

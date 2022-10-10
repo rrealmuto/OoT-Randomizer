@@ -29,7 +29,7 @@
         "region_name": "Kokiri Forest",
         "hint": "KOKIRI_FOREST",
         "events": {
-            "Showed Mido Sword & Shield": "open_deku or (is_child and Kokiri_Sword and Buy_Deku_Shield)"
+            "Showed Mido Sword & Shield": "open_deku or (is_child and Kokiri_Sword and Deku_Shield)"
         },
         "locations": {
             "KF Kokiri Sword Chest": "is_child",
@@ -145,7 +145,7 @@
             "LW GS Above Theater": "is_adult and at_night and (here(can_plant_bean) or can_use(Longshot) or (has_bombchus and Progressive_Hookshot) or can_hover)",
             "LW GS Bean Patch Near Theater": "
                 can_plant_bugs and 
-                (can_child_attack or (shuffle_scrubs == 'off' and Buy_Deku_Shield))"
+                (can_child_attack or (shuffle_scrubs == 'off' and Deku_Shield))"
         },
         "exits": {
             "Lost Woods": "True",
