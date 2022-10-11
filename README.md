@@ -17,7 +17,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * “Closed Forest Requires Gohma” is a separate setting, making “Closed Forest” compatible with more settings if disabled ([#1531](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1531))
   * New “Full” options for the “Randomize Owl Drops”, “Randomize Warp Song Destinations”, and “Randomize Overworld Spawns” settings that include more types of entrances (based on [#1179](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1179) and [#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
   * New hidden “Easter Egg Hunt” setting (based on [KevinPal's `triforce_easteregg` branch](https://github.com/KevinPal/OoT-Randomizer/tree/triforce_easteregg))
-  * New “Shuffle Silver Rupees” setting (based on [rrealmuto's `rebase_silver_rupee` branch](https://github.com/rrealmuto/OoT-Randomizer/tree/rebase_silver_rupee))
+  * New “Shuffle Silver Rupees” setting (based on [mracsys's `silver-rupees-refactor` branch](https://github.com/mracsys/OoT-Randomizer/tree/silver-rupees-refactor))
   * New “Shuffle Gerudo Valley River Exit” setting
   * New “Mutually Exclusive One-Ways” setting which makes the hint area restriction apply to one-way entrances of different types
   * New “Vanilla” option for the “Shuffle Songs” setting
