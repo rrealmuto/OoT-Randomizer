@@ -35,11 +35,11 @@
         "dungeon": "Shadow Temple",
         "locations": {
             "Shadow Temple Compass Chest": "True",
-            "Shadow Temple Scythe Shortcut Silver Rupee Center Left" : "True",
-            "Shadow Temple Scythe Shortcut Silver Rupee Ledge" : "True",
-            "Shadow Temple Scythe Shortcut Silver Rupee Back Alcove" : "True",
-            "Shadow Temple Scythe Shortcut Silver Rupee Left Alcove" : "True",
-            "Shadow Temple Scythe Shortcut Silver Rupee Center Right" : "True",
+            "Shadow Temple Scythe Shortcut Silver Rupee Center Left": "True",
+            "Shadow Temple Scythe Shortcut Silver Rupee Ledge": "True",
+            "Shadow Temple Scythe Shortcut Silver Rupee Back Alcove": "True",
+            "Shadow Temple Scythe Shortcut Silver Rupee Left Alcove": "True",
+            "Shadow Temple Scythe Shortcut Silver Rupee Center Right": "True",
             "Shadow Temple Early Silver Rupee Chest": "(Silver_Rupee_Shadow_Temple_Scythe_Shortcut, 5)"
         },
         "exits": {
@@ -64,15 +64,15 @@
             "Shadow Temple Invisible Blades Invisible Chest": "True",
             "Shadow Temple Invisible Blades Recovery Heart 1": "can_play(Song_of_Time)",
             "Shadow Temple Invisible Blades Recovery Heart 2": "can_play(Song_of_Time)",
-            "Shadow Temple Huge Pit Silver Rupee Right" : "True",
-            "Shadow Temple Huge Pit Silver Rupee Left" : "True",
-            "Shadow Temple Huge Pit Silver Rupee Center" : "True",
-            "Shadow Temple Huge Pit Silver Rupee Center Front" : "True",
-            "Shadow Temple Huge Pit Silver Rupee Center Back" : "True",
-            "Shadow Temple GS Invisible Blades Room": "True",
+            "Shadow Temple Huge Pit Silver Rupee Right": "True",
+            "Shadow Temple Huge Pit Silver Rupee Left": "True",
+            "Shadow Temple Huge Pit Silver Rupee Center": "True",
+            "Shadow Temple Huge Pit Silver Rupee Center Front": "True",
+            "Shadow Temple Huge Pit Silver Rupee Center Back": "True",
+            "Shadow Temple GS Invisible Blades Room": "True"
         },
         "exits": {
-            "Shadow Temple Falling Spikes" : "(Silver_Rupee_Shadow_Temple_Huge_Pit, 5)",
+            "Shadow Temple Falling Spikes": "(Silver_Rupee_Shadow_Temple_Huge_Pit, 5)",
             "Shadow Temple Invisible Spikes": "
                 (Small_Key_Shadow_Temple, 2) and (logic_lens_shadow_platform or can_use(Lens_of_Truth))"
         }
@@ -100,11 +100,11 @@
                 (Silver_Rupee_Shadow_Temple_Invisible_Spikes, 5) and
                 (Bombs or Progressive_Strength_Upgrade or
                     (logic_shadow_freestanding_key and has_bombchus))",
-            "Shadow Temple Invisible Spikes Silver Rupee Ledge" : "Hookshot",
-            "Shadow Temple Invisible Spikes Silver Rupee Right" : "Hookshot",
-            "Shadow Temple Invisible Spikes Silver Rupee Center" : "True",
-            "Shadow Temple Invisible Spikes Silver Rupee Left" : "Hookshot",
-            "Shadow Temple Invisible Spikes Silver Rupee Near Ledge" : "Hookshot",
+            "Shadow Temple Invisible Spikes Silver Rupee Ledge": "Hookshot",
+            "Shadow Temple Invisible Spikes Silver Rupee Right": "Hookshot",
+            "Shadow Temple Invisible Spikes Silver Rupee Center": "True",
+            "Shadow Temple Invisible Spikes Silver Rupee Left": "Hookshot",
+            "Shadow Temple Invisible Spikes Silver Rupee Near Ledge": "Hookshot",
             "Shadow Temple GS Single Giant Pot": "(Silver_Rupee_Shadow_Temple_Invisible_Spikes, 5) and Hookshot"
         },
         "exits": {

@@ -1806,9 +1806,9 @@ location_table = OrderedDict([
     ("Ice Cavern Map Room Recovery Heart 1",                         ("Freestanding", 0x09,  0x22, None,                            'Recovery Heart',                        ("Ice Cavern", "Vanilla","Freestanding"))),
     ("Ice Cavern Map Room Recovery Heart 2",                         ("Freestanding", 0x09,  0x23, None,                            'Recovery Heart',                        ("Ice Cavern", "Vanilla","Freestanding"))),
     ("Ice Cavern Map Room Recovery Heart 3",                         ("Freestanding", 0x09,  0x24, None,                            'Recovery Heart',                        ("Ice Cavern", "Vanilla","Freestanding"))),
-    ("Ice Cavern Block Room Red Rupee 1",                            ("Freestanding", 0x09,  0x2E, None,                            'Rupees (20)',                           ("Ice Cavern", "Vanilla","Freestanding"))),
-    ("Ice Cavern Block Room Red Rupee 2",                            ("Freestanding", 0x09,  0x2F, None,                            'Rupees (20)',                           ("Ice Cavern", "Vanilla","Freestanding"))),
-    ("Ice Cavern Block Room Red Rupee 3",                            ("Freestanding", 0x09,  0x30, None,                            'Rupees (20)',                           ("Ice Cavern", "Vanilla","Freestanding"))),
+    ("Ice Cavern Push Block Room Red Rupee 1",                       ("Freestanding", 0x09,  0x2E, None,                            'Rupees (20)',                           ("Ice Cavern", "Vanilla","Freestanding"))),
+    ("Ice Cavern Push Block Room Red Rupee 2",                       ("Freestanding", 0x09,  0x2F, None,                            'Rupees (20)',                           ("Ice Cavern", "Vanilla","Freestanding"))),
+    ("Ice Cavern Push Block Room Red Rupee 3",                       ("Freestanding", 0x09,  0x30, None,                            'Rupees (20)',                           ("Ice Cavern", "Vanilla","Freestanding"))),
     ("Ice Cavern Freestanding PoH",                                  ("Collectable",  0x09,  0x01, None,                            'Piece of Heart',                        ("Ice Cavern", "Vanilla"))),
     # Ice Cavern Vanilla Pots
     ("Ice Cavern Hall Pot 1",                                        ("Pot",          0x09,  0x25, None,                            'Recovery Heart',                        ("Ice Cavern", "Vanilla", "Pot"))),

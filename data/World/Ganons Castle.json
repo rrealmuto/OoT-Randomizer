@@ -144,7 +144,7 @@
             "Ganons Castle Fire Trial Silver Rupee Flamethrower": "logic_fewer_tunic_requirements or can_use(Goron_Tunic)",
             "Ganons Castle Fire Trial Silver Rupee Right Center": "can_use(Golden_Gauntlets) and ((logic_fewer_tunic_requirements and can_use(Hover_Boots)) or can_use(Goron_Tunic))",
             "Ganons Castle Fire Trial Silver Rupee Right Front": "logic_fewer_tunic_requirements or can_use(Goron_Tunic)",
-            "Ganons Castle Fire Trial Silver Rupee Inside Pillar": "can_use(Golden_Gauntlets) and (logic_fewer_tunic_requirements or can_use(Goron_Tunic))",
+            "Ganons Castle Fire Trial Silver Rupee Inside Pillar": "can_use(Golden_Gauntlets) and (logic_fewer_tunic_requirements or can_use(Goron_Tunic))"
         },
         "exits": {
             "Ganons Castle Fire Trial Ending": "
