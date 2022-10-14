@@ -715,7 +715,7 @@
         "scene": "Gerudo Fortress",
         "hint": "GERUDO_FORTRESS",
         "locations": {
-            "GF Above Jail Crate": "can_break_crate"
+            "GF Above Jail Crate": "can_break_crate and is_adult"
         },
         "exits": {
             "Hideout Hall to Balcony Upper": "True",
