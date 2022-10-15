@@ -1,15 +1,11 @@
 from collections import OrderedDict
 import copy
 import hashlib
-import io
-import itertools
 import logging
 import os
 import platform
 import random
 import shutil
-import subprocess
-import sys
 import struct
 import time
 import zipfile
@@ -22,15 +18,14 @@ from Cosmetics import patch_cosmetics
 from Dungeon import create_dungeons
 from Fill import distribute_items_restrictive, ShuffleError
 from Item import Item
-from ItemPool import generate_itempool
+from ItemPool import generate_itempool, item_groups
 from Hints import buildGossipHints
 from HintList import clearHintExclusionCache, misc_item_hint_table
 from Utils import default_output_path, is_bundled, run_process, data_path
 from N64Patch import create_patch_file, apply_patch_file
 from MBSDIFFPatch import apply_ootr_3_web_patch
-from SettingsList import setting_infos, logic_tricks
+from SettingsList import logic_tricks
 from Rules import set_rules, set_shop_rules
-from Plandomizer import Distribution
 from Search import Search, RewindableSearch
 from EntranceShuffle import set_entrances
 from LocationList import set_drop_location_names
@@ -195,15 +190,16 @@ def place_items(settings, worlds, window=dummy_window()):
 def make_spoiler(settings, worlds, window=dummy_window()):
     logger = logging.getLogger('')
     spoiler = Spoiler(worlds)
-    if settings.create_spoiler:
+    if settings.create_spoiler or settings.hints != 'none':
         window.update_status('Calculating Spoiler Data')
         logger.info('Calculating playthrough.')
         create_playthrough(spoiler)
         window.update_progress(50)
-    if settings.create_spoiler or settings.hints != 'none':
+
         window.update_status('Calculating Hint Data')
         logger.info('Calculating hint data.')
         update_goal_items(spoiler)
+        calculate_playthrough_locations(spoiler)
         buildGossipHints(spoiler, worlds)
         window.update_progress(55)
     elif any(world.dungeon_rewards_hinted for world in worlds) or any(hint_type in settings.misc_hints for hint_type in misc_item_hint_table):
@@ -806,3 +802,14 @@ def create_playthrough(spoiler):
 
     if worlds[0].entrance_shuffle:
         spoiler.entrance_playthrough = OrderedDict((str(i + 1), list(sphere)) for i, sphere in enumerate(entrance_spheres))
+
+def calculate_playthrough_locations(spoiler):
+    playthrough_locations = {}
+    for sphere_locations in spoiler.playthrough.values():
+        locations = dict(filter(
+            lambda locations: locations[1].name in item_groups['MajorItem'],
+            sphere_locations.items(),
+        ))
+        playthrough_locations.update(locations)
+
+    spoiler.playthrough_locations = playthrough_locations

@@ -349,6 +349,9 @@ KEYSANITY_MESSAGES = {
     #0x9042: "\x08You found a \x05\x44Silver Rupee Pouch\x05\x40 for\x01the \x05\x45Shadow Trial\x05\x40 in \x05\x41Ganon's Castle\x05\x40!\x09",
     #0x9043: "\x08You found a \x05\x44Silver Rupee Pouch\x05\x40 for\x01the \x05\x43Water Trial\x05\x40 in \x05\x41Ganon's Castle\x05\x40!\x09",
     #0x9044: "\x08You found a \x05\x44Silver Rupee Pouch\x05\x40 for\x01the \x05\x42Forest Trial\x05\x40 in \x05\x41Ganon's Castle\x05\x40!\x09",
+    0x9046: "\x08You found the \x05\x41Triforce of Power\x05\x40!",
+    0x9047: "\x08You found the \x05\x43Triforce of Wisdom\x05\x40!",
+    0x9048: "\x08You found the \x05\x42Triforce of Courage\x05\x40!",
 }
 
 COLOR_MAP = {

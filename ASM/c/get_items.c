@@ -168,7 +168,7 @@ void activate_override(override_t override) {
     item_row_t *item_row = get_item_row(resolved_item_id);
 
     active_override = override;
-    if (resolved_item_id == 0xCA || (resolved_item_id >= 0x100 && resolved_item_id < 0x104)) // Triforce piece or Easter egg
+    if (resolved_item_id == 0xCA || (resolved_item_id >= 0x100 && resolved_item_id < 0x107)) // Triforce piece or Easter egg
         active_override_is_outgoing = 2; // Send to everyone
     else
         active_override_is_outgoing = override.value.player != PLAYER_ID;
@@ -198,9 +198,9 @@ void clear_override() {
 void set_outgoing_override(override_t *override) {
     if (override->key.type != OVR_DELAYED || override->key.flag != 0xFF) { // don't send items received from incoming back to outgoing
         OUTGOING_KEY = override->key;
-        if (override->value.item_id >= 0x100 && override->value.item_id < 0x104) {
+        if (override->value.item_id >= 0x100 && override->value.item_id < 0x107) {
             // Multiworld plugins (at least Bizhawk Shuffler 2 and Mido's House Multiworld) have special cases for Triforce pieces.
-            // To make sure Easter eggs are handled the same way, they're sent as Triforce pieces.
+            // To make sure Easter eggs and Triforce Blitz pieces are handled the same way, they're sent as Triforce pieces.
             OUTGOING_ITEM = 0xCA;
         } else {
             OUTGOING_ITEM = override->value.item_id;
@@ -329,7 +329,7 @@ void try_pending_item() {
         return;
     }
 
-    if ((override.value.item_id == 0xCA || (override.value.item_id >= 0x100 && override.value.item_id < 0x104)) && override.value.player != PLAYER_ID) { // Triforce piece or Easter egg
+    if ((override.value.item_id == 0xCA || (override.value.item_id >= 0x100 && override.value.item_id < 0x107)) && override.value.player != PLAYER_ID) { // Triforce piece or Easter egg
         uint16_t resolved_item_id = resolve_upgrades(override.value.item_id);
         item_row_t *item_row = get_item_row(resolved_item_id);
         call_effect_function(item_row);
@@ -686,7 +686,7 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
         pItem->actionFunc = Collectible_WaitForMessageBox;  // Set up the EnItem00 action function to wait for the message box to close.
 
         // Give the item to the right place
-        if (resolved_item_id == 0xCA || (resolved_item_id >= 0x100 && resolved_item_id < 0x104)) { // Triforce piece or Easter egg
+        if (resolved_item_id == 0xCA || (resolved_item_id >= 0x100 && resolved_item_id < 0x107)) { // Triforce piece or Easter egg
             // Send triforce to everyone
             set_outgoing_override(&collectible_override);
             z64_GiveItem(&z64_game, item_row->action_id);
@@ -729,7 +729,7 @@ void get_skulltula_token(z64_actor_t *token_actor) {
     PLAYER_NAME_ID = player;
     z64_DisplayTextbox(&z64_game, item_row->text_id, 0);
 
-    if (resolved_item_id == 0xCA || (resolved_item_id >= 0x100 && resolved_item_id < 0x104)) { // Triforce piece or Easter egg
+    if (resolved_item_id == 0xCA || (resolved_item_id >= 0x100 && resolved_item_id < 0x107)) { // Triforce piece or Easter egg
         // Send triforce to everyone
         set_outgoing_override(&override);
         z64_GiveItem(&z64_game, item_row->action_id);

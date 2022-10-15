@@ -2506,7 +2506,7 @@ setting_infos = [
         name           = 'triforce_hunt',
         gui_text       = 'Triforce Hunt',
         gui_tooltip    = '''\
-            Pieces of the Triforce have been scattered around the world. 
+            Pieces of the Triforce have been scattered around the world.
             Find some of them to beat the game.
 
             Game is saved on completion, and Ganon's Castle key is given
@@ -2518,25 +2518,37 @@ setting_infos = [
         },
         disable        = {
             True  : {'settings' : ['shuffle_ganon_bosskey', 'ganon_bosskey_stones', 'ganon_bosskey_medallions', 'ganon_bosskey_rewards', 'ganon_bosskey_tokens', 'ganon_bosskey_hearts']},
-            False : {'settings' : ['triforce_count_per_world', 'triforce_goal_per_world']}
+            False : {'settings' : ['triforce_hunt_mode', 'triforce_count_per_world', 'triforce_goal_per_world']}
         },
     ),
-    Checkbutton(
-        name           = 'easter_egg_hunt',
-        gui_text       = 'Easter Egg Hunt',
+    Combobox(
+        name           = 'triforce_hunt_mode',
+        gui_text       = 'Triforce Hunt Mode',
+        default        = 'normal',
+        choices        = {
+            'normal':          'Normal',
+            'easter_egg_hunt': 'Easter Egg Hunt',
+            'blitz':           'Triforce Blitz',
+        },
         gui_tooltip    = '''\
-            Changes Triforce Pieces to appear as Easter Eggs instead.
-            Has no effect if Triforce Hunt is disabled.
+            'Easter Egg Hunt': Changes Triforce Pieces to appear as
+            Easter Eggs instead. This is just cosmetic and has the
+            same gameplay as normal Triforce Hunt.
+
+            'Triforce Blitz': Find the Triforce pieces of Power,
+            Wisdom, and Courage to beat the game. They can only be
+            found inside dungeons.
         ''',
         shared         = True,
-        gui_params     = {
-            'optional': True,
+        disable        = {
+            'blitz': {'settings': ['triforce_count_per_world', 'triforce_goal_per_world']},
         },
     ),
     Scale(
         name           = 'triforce_count_per_world',
         gui_text       = 'Triforces Per World',
         default        = 30,
+        disabled_default = 3, # for Triforce Blitz
         min            = 1,
         max            = 999,
         shared         = True,
@@ -2560,6 +2572,7 @@ setting_infos = [
         name           = 'triforce_goal_per_world',
         gui_text       = 'Required Triforces Per World',
         default        = 20,
+        disabled_default = 3, # for Triforce Blitz
         min            = 1,
         max            = 999,
         shared         = True,
@@ -2607,8 +2620,8 @@ setting_infos = [
                                          'warp_songs', 'spawn_positions', 'mq_dungeons_mode', 'mq_dungeons_specific',
                                          'mq_dungeons_count', 'shuffle_bosses', 'dungeon_shortcuts', 'deadly_bonks',
                                          'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_beehives', 'shuffle_silver_rupees',
-                                         'mix_entrance_pools', 'decouple_entrances', 'shuffle_base_item_pool']},
-            'none'      : {'settings' : ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
+                                         'mix_entrance_pools', 'decouple_entrances', 'shuffle_base_item_pool', 'logic_water_gold_scale_no_entry']},
+            'none'      : {'settings' : ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'logic_water_gold_scale_no_entry', 'reachable_locations']},
         },
         shared         = True,
     ),
@@ -2847,14 +2860,14 @@ setting_infos = [
             Awards all eligible prizes after the first attempt for
             Dampe Race and Gerudo Horseback Archery.
 
-            Dampe will start with the second race so you can finish 
-            the race in under a minute and get both rewards at once. 
-            You still get the first reward from the chest even if you 
+            Dampe will start with the second race so you can finish
+            the race in under a minute and get both rewards at once.
+            You still get the first reward from the chest even if you
             don't complete the race in under a minute.
 
-            Both rewards at the Gerudo Horseback Archery will be 
-            available from the first time you play the minigame. 
-            This means you can get both rewards at once if you get 
+            Both rewards at the Gerudo Horseback Archery will be
+            available from the first time you play the minigame.
+            This means you can get both rewards at once if you get
             1500 points in a single attempt.
         ''',
         shared         = True,
@@ -2897,6 +2910,18 @@ setting_infos = [
             during the night expect you to have Sun's
             Song to collect them. This prevents needing
             to wait until night for some locations.
+        ''',
+        gui_params={
+            "hide_when_disabled": True,
+        },
+        shared         = True,
+    ),
+    Checkbutton(
+        name           = 'logic_water_gold_scale_no_entry',
+        gui_text       = 'Water Temple Disable Entry With Gold Scale',
+        gui_tooltip    = '''\
+            Require Iron Boots for entering the Water Temple
+            instead of using Gold Scale with the Longshot.
         ''',
         gui_params={
             "hide_when_disabled": True,
@@ -4878,20 +4903,25 @@ setting_infos = [
             'off' : {'settings' : ['minor_items_as_major_chest']},
         },
     ),
-    Checkbutton(
+    Combobox(
         name           = 'minor_items_as_major_chest',
+        multiple_select = True,
         gui_text       = 'Minor Items in Big/Gold chests',
+        choices        = {
+            'bombchus': 'Bombchus',
+            'shields':  'Deku & Hylian Shields',
+        },
         gui_tooltip    = '''\
-            Chests with Hylian Shield, Deku Shield
+            Chests with Hylian Shield, Deku Shield,
             or Bombchus (regardless of the Bombchus
-            In Logic setting), will appear in
+            In Logic setting) will appear in
             Big and/or Gold chests, depending on the
             Chest Appearance Matches Contents setting.
         ''',
         shared         = True,
-        disabled_default = False,
-        gui_params       = {
-            "hide_when_disabled" : True
+        default        = [],
+        gui_params     = {
+            "hide_when_disabled": True
         },
     ),
     Combobox(

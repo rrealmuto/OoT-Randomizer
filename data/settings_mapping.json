@@ -152,6 +152,7 @@
             "bridge_tokens",
             "bridge_hearts",
             "triforce_hunt",
+            "triforce_hunt_mode",
             "triforce_count_per_world",
             "triforce_goal_per_world",
             "bombchus_in_logic",
@@ -245,10 +246,11 @@
           "name": "main_section",
           "text": "",
           "col_span": 4,
-          "row_span": [2,2,2],
+          "row_span": [3,3,3],
           "settings": [
             "reachable_locations",
-            "logic_no_night_tokens_without_suns_song"
+            "logic_no_night_tokens_without_suns_song",
+            "logic_water_gold_scale_no_entry"
           ]
         },
         {

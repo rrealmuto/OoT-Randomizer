@@ -168,9 +168,9 @@ class Item(object):
 
     @property
     def triforce_piece(self):
-        from ItemPool import eggs
+        from ItemPool import triforce_pieces
 
-        return self.name in ('Triforce Piece', *eggs)
+        return self.name in triforce_pieces
 
 
     @property

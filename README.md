@@ -16,14 +16,15 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1536))
   * “Closed Forest Requires Gohma” is a separate setting, making “Closed Forest” compatible with more settings if disabled ([#1531](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1531))
   * New “Full” options for the “Randomize Owl Drops”, “Randomize Warp Song Destinations”, and “Randomize Overworld Spawns” settings that include more types of entrances (based on [#1179](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1179) and [#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
-  * New hidden “Easter Egg Hunt” setting (based on [KevinPal's `triforce_easteregg` branch](https://github.com/KevinPal/OoT-Randomizer/tree/triforce_easteregg))
+  * New “Triforce Hunt Mode” setting with “Normal”, “Easter Egg Hunt”, and “Triforce Blitz” options (based on [KevinPal's `triforce_easteregg` branch](https://github.com/KevinPal/OoT-Randomizer/tree/triforce_easteregg) and [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev))
   * New “Shuffle Silver Rupees” setting (based on [mracsys's `silver-rupees-refactor` branch](https://github.com/mracsys/OoT-Randomizer/tree/silver-rupees-refactor))
   * New “Shuffle Gerudo Valley River Exit” setting
   * New “Mutually Exclusive One-Ways” setting which makes the hint area restriction apply to one-way entrances of different types
   * New “Vanilla” option for the “Shuffle Songs” setting
   * New “Shuffle Dungeon Rewards” setting with “Vanilla Locations” and “Dungeon Reward Locations” options
   * New “Shuffle Other Items” setting which can be disabled to generate vanilla seeds, only shuffle entrances, etc.
-  * New “Mixed Pools Tournament” hint distribution
+  * New “Mixed Pools Tournament” and “Triforce Blitz” hint distributions
+  * New `goal-count` and `playthrough-location` hint types
 * New settings presets:
   * `allsanity-casual` is my preferred flavor of allsanity, including full entrance randomizer, chaos hints, and warp song note shuffle, but with half damage, no Master Quest, and no tricks enabled. The rainbow bridge requires all dungeon rewards and Ganon's boss key requires all 100 gold skulltula tokens.
   * `debug` is similar to Default/Beginner but gives you most starting items for testing.
@@ -34,6 +35,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * “Standard Anti-Weekly Settings (S5)” disables every location that's enabled in “S5 Tournament” and enables every location that's disabled there, as well as changing some miscellaneous settings. See [the official document](https://docs.google.com/document/d/1sbL6Zju943F5qyx4QbTLUsqZqOTMmvqKVbDwJl08SGc/edit) for details.
   * “Standard Anti-Weekly Settings (Beginner)” is similar to the above but based on the current weekly preset. Differences are closed Deku, new hint distribution, dungeon shortcuts, blue fire arrows, and balanced item pool.
   * “Standard Anti-Weekly Settings (Advanced)” is like the Beginner variant but with minimal item pool, pots, crates, freestandings, beehives, and silver rupees.
+  * “Triforce Blitz” is a fast-paced game mode with very powerful hints. See [the official website](https://www.triforceblitz.com/) for details.
 * Other changes:
   * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
   * Opening the Door of Time is a separate goal category when required by the settings ([#1529](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1529))

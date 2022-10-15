@@ -2,7 +2,7 @@ import random
 from decimal import Decimal, ROUND_UP
 
 from Item import ItemFactory, ItemInfo
-from Location import DisableType, Location
+from Location import DisableType
 from Utils import random_choices
 
 
@@ -13,6 +13,18 @@ eggs = [
     'Easter Egg (Orange)',
     'Easter Egg (Green)',
     'Easter Egg (Blue)',
+]
+
+triforce_blitz_items = [
+    'Triforce of Power',
+    'Triforce of Wisdom',
+    'Triforce of Courage',
+]
+
+triforce_pieces = [
+    'Triforce Piece',
+    *eggs,
+    *triforce_blitz_items,
 ]
 
 plentiful_items = ([
@@ -176,13 +188,13 @@ ludicrous_items_extended = [
 ]
 
 ludicrous_exclusions = [
-    'Triforce Piece',
+    *triforce_pieces,
     'Gold Skulltula Token',
     'Rutos Letter',
     'Heart Container',
     'Piece of Heart',
-    'Piece of Heart (Treasure Chest Game)'
-] + eggs
+    'Piece of Heart (Treasure Chest Game)',
+]
 
 item_difficulty_max = {
     'ludicrous': {
@@ -197,12 +209,12 @@ item_difficulty_max = {
         'Bombchus (5)': 1,
         'Bombchus (10)': 2,
         'Bombchus (20)': 0,
-        'Magic Meter': 1, 
-        'Double Defense': 0, 
-        'Deku Stick Capacity': 1, 
-        'Deku Nut Capacity': 1, 
-        'Bow': 2, 
-        'Slingshot': 2, 
+        'Magic Meter': 1,
+        'Double Defense': 0,
+        'Deku Stick Capacity': 1,
+        'Deku Nut Capacity': 1,
+        'Bow': 2,
+        'Slingshot': 2,
         'Bomb Bag': 2,
         'Heart Container': 0,
     },
@@ -211,13 +223,13 @@ item_difficulty_max = {
         'Bombchus (5)': 1,
         'Bombchus (10)': 0,
         'Bombchus (20)': 0,
-        'Magic Meter': 1, 
+        'Magic Meter': 1,
         'Nayrus Love': 1,
-        'Double Defense': 0, 
-        'Deku Stick Capacity': 0, 
-        'Deku Nut Capacity': 0, 
-        'Bow': 1, 
-        'Slingshot': 1, 
+        'Double Defense': 0,
+        'Deku Stick Capacity': 0,
+        'Deku Nut Capacity': 0,
+        'Bow': 1,
+        'Slingshot': 1,
         'Bomb Bag': 1,
         'Heart Container': 0,
         'Piece of Heart': 0,
@@ -308,11 +320,11 @@ exclude_from_major = [
     'Bombchus (10)',
     'Bombchus (20)',
     'Odd Potion',
-    'Triforce Piece',
+    *triforce_pieces,
     'Heart Container',
     'Piece of Heart',
     'Piece of Heart (Treasure Chest Game)',
-] + eggs
+]
 
 item_groups = {
     'Junk': remove_junk_items,
@@ -446,9 +458,11 @@ def get_pool_core(world):
         pending_junk_pool.extend(ludicrous_health)
 
     if world.settings.triforce_hunt:
-        if world.settings.easter_egg_hunt:
+        if world.settings.triforce_hunt_mode == 'easter_egg_hunt':
             pending_junk_pool.extend(eggs * (world.settings.triforce_count_per_world // len(eggs)))
             pending_junk_pool.extend(eggs[:world.settings.triforce_count_per_world % len(eggs)])
+        elif world.settings.triforce_hunt_mode == 'blitz':
+            pending_junk_pool.extend(triforce_blitz_items)
         else:
             pending_junk_pool.extend(['Triforce Piece'] * world.settings.triforce_count_per_world)
 

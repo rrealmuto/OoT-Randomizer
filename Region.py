@@ -89,6 +89,7 @@ class Region(object):
                     return False
 
         from Hints import HintArea
+        from ItemPool import triforce_blitz_items
 
         is_self_dungeon_restricted = False
         is_self_region_restricted = None
@@ -109,6 +110,8 @@ class Region(object):
             is_hint_color_restricted = [HintArea.for_dungeon(item.name).color] if shuffle_setting == 'regional' else None
             is_dungeon_restricted = shuffle_setting == 'any_dungeon'
             is_overworld_restricted = shuffle_setting == 'overworld'
+        elif item.name in triforce_blitz_items:
+            is_dungeon_restricted = True
 
         if is_self_dungeon_restricted and not manual:
             hint_area = HintArea.at(self)
