@@ -35,7 +35,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * “Standard Anti-Weekly Settings (S5)” disables every location that's enabled in “S5 Tournament” and enables every location that's disabled there, as well as changing some miscellaneous settings. See [the official document](https://docs.google.com/document/d/1sbL6Zju943F5qyx4QbTLUsqZqOTMmvqKVbDwJl08SGc/edit) for details.
   * “Standard Anti-Weekly Settings (Beginner)” is similar to the above but based on the current weekly preset. Differences are closed Deku, new hint distribution, dungeon shortcuts, blue fire arrows, and balanced item pool.
   * “Standard Anti-Weekly Settings (Advanced)” is like the Beginner variant but with minimal item pool, pots, crates, freestandings, beehives, and silver rupees.
-  * “Triforce Blitz” is a fast-paced game mode with very powerful hints. See [the official website](https://www.triforceblitz.com/) for details.
+  * “Triforce Blitz” is a fast-paced game mode with very powerful hints. See [the official website](https://www.triforceblitz.com/) for details. Differences from the official branch include each Triforce piece having its own distinct text box, and the starting song not being counted for goal counts.
 * Other changes:
   * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
   * Opening the Door of Time is a separate goal category when required by the settings ([#1529](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1529))
