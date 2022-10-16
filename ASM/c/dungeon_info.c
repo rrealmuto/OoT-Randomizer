@@ -557,7 +557,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
             }
 
             // Draw silver rupee counts
-            sprite_load(db, &font_sprite, 16, 32); // load characters 0 through O
+            sprite_load(db, &font_sprite, 16, 10); // load characters 0 through 9
 
             for (int i = 0; i < rows; i++) {
                 dungeon_entry_t *d = &(dungeons[d_right_dungeon_idx(i)]);
@@ -583,8 +583,14 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
                         if(count >= 10) {
                             sprite_draw(db, &font_sprite, count / 10, puzzle_left, top, font_sprite.tile_w, font_sprite.tile_h);
                         }
-                        int tile_index = count % 10 > 0 ? count % 10 : 31;
+                        int tile_index = count % 10;
+                        if (tile_index == 0) {
+                            sprite_load(db, &font_sprite, 47, 1); // load letter O
+                        }
                         sprite_draw(db, &font_sprite, tile_index, puzzle_left + font_sprite.tile_w, top, font_sprite.tile_w, font_sprite.tile_h);
+                        if (tile_index == 0) {
+                            sprite_load(db, &font_sprite, 16, 10); // load numbers 0 through 9
+                        }
                     }
                 }
             }
