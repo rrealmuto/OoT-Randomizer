@@ -89,7 +89,7 @@ class Region(object):
                     return False
 
         from Hints import HintArea
-        from ItemPool import triforce_blitz_items
+        from ItemPool import closed_forest_restricted_items, triforce_blitz_items
 
         is_self_dungeon_restricted = False
         is_self_region_restricted = None
@@ -112,6 +112,8 @@ class Region(object):
             is_overworld_restricted = shuffle_setting == 'overworld'
         elif item.name in triforce_blitz_items:
             is_dungeon_restricted = True
+        elif item.name in closed_forest_restricted_items and self.world.settings.require_gohma:
+            is_hint_color_restricted = ['Light Blue', 'Red', 'Blue', 'Pink', 'Yellow']
 
         if is_self_dungeon_restricted and not manual:
             hint_area = HintArea.at(self)

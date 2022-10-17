@@ -8,24 +8,39 @@ from Utils import random_choices
 
 # Generates item pools and places fixed items based on settings.
 
-eggs = [
+closed_forest_restricted_items = (
+    'Bomb Bag',
+    'Bombchus (5)',
+    'Bombchus (10)',
+    'Bombchus (20)',
+    'Bombchus',
+    'Dins Fire',
+    'Progressive Scale',
+    'Bolero of Fire',
+    'Serenade of Water',
+    'Nocturne of Shadow',
+    'Requiem of Spirit',
+    'Prelude of Light',
+)
+
+eggs = (
     'Easter Egg (Pink)',
     'Easter Egg (Orange)',
     'Easter Egg (Green)',
     'Easter Egg (Blue)',
-]
+)
 
-triforce_blitz_items = [
+triforce_blitz_items = (
     'Triforce of Power',
     'Triforce of Wisdom',
     'Triforce of Courage',
-]
+)
 
-triforce_pieces = [
+triforce_pieces = (
     'Triforce Piece',
     *eggs,
     *triforce_blitz_items,
-]
+)
 
 plentiful_items = ([
     'Biggoron Sword',
@@ -45,10 +60,10 @@ plentiful_items = ([
     'Progressive Scale',
     'Progressive Wallet',
     'Magic Meter',
-    'Deku Stick Capacity', 
-    'Deku Nut Capacity', 
-    'Bow', 
-    'Slingshot', 
+    'Deku Stick Capacity',
+    'Deku Nut Capacity',
+    'Bow',
+    'Slingshot',
     'Bomb Bag',
     'Double Defense'] +
     ['Heart Container'] * 8

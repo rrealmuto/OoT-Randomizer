@@ -2620,7 +2620,7 @@ setting_infos = [
                                          'warp_songs', 'shuffle_child_spawn', 'shuffle_adult_spawn', 'mq_dungeons_mode', 'mq_dungeons_specific',
                                          'mq_dungeons_count', 'shuffle_bosses', 'dungeon_shortcuts', 'deadly_bonks',
                                          'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_beehives', 'shuffle_silver_rupees',
-                                         'mix_entrance_pools', 'decouple_entrances', 'shuffle_base_item_pool', 'logic_water_gold_scale_no_entry']},
+                                         'mix_entrance_pools', 'decouple_entrances', 'shuffle_base_item_pool', 'logic_water_gold_scale_no_entry', 'require_gohma']},
             'none'      : {'settings' : ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'logic_water_gold_scale_no_entry', 'reachable_locations']},
         },
         shared         = True,

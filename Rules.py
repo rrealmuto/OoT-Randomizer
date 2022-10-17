@@ -1,5 +1,5 @@
 import logging
-from ItemPool import song_list
+from ItemPool import closed_forest_restricted_items, song_list
 from Location import DisableType
 from Search import Search
 from State import State
@@ -63,6 +63,9 @@ def set_rules(world):
 
         if location.name in world.always_hints:
             location.add_rule(guarantee_hint)
+
+        if world.settings.require_gohma and location in world.distribution.skipped_locations:
+            add_item_rule(location, lambda location, item: item.name not in closed_forest_restricted_items)
 
     for location in world.settings.disabled_locations:
         try:
