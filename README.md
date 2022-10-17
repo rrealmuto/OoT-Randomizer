@@ -11,11 +11,12 @@ This branch is available to use online at <https://ootrandomizer.com/generatorDe
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
 * New settings and options:
+  * The “Randomize Overworld Spawns” setting is split into “Randomize Child Overworld Spawn” and “Randomize Adult Overworld Spawn” (based on [#1732](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1732))
   * New “Shuffle Thieves' Hideout Entrances” setting ([#1616](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1616))
   * New “Shuffle Rupees & Hearts”, “Shuffle Pots”, “Shuffle Crates”, “Shuffle Beehives”, and “Pot & Crate Appearance Matches Contents” settings ([#1558](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1558))
   * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1536))
   * “Closed Forest Requires Gohma” is a separate setting, making “Closed Forest” compatible with more settings if disabled ([#1531](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1531))
-  * New “Full” options for the “Randomize Owl Drops”, “Randomize Warp Song Destinations”, and “Randomize Overworld Spawns” settings that include more types of entrances (based on [#1179](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1179) and [#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
+  * New “Full” options for the “Randomize Owl Drops”, “Randomize Warp Song Destinations”, “Randomize Child Overworld Spawn”, and “Randomize Adult Overworld Spawn” settings that include more types of entrances (based on [#1179](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1179) and [#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
   * New “Triforce Hunt Mode” setting with “Normal”, “Easter Egg Hunt”, and “Triforce Blitz” options (based on [KevinPal's `triforce_easteregg` branch](https://github.com/KevinPal/OoT-Randomizer/tree/triforce_easteregg) and [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev))
   * New “Shuffle Silver Rupees” setting (based on [mracsys's `silver-rupees-refactor` branch](https://github.com/mracsys/OoT-Randomizer/tree/silver-rupees-refactor))
   * New “Shuffle Gerudo Valley River Exit” setting

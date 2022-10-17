@@ -2272,7 +2272,7 @@ setting_infos = [
         disabled_default = False,
         shared         = True,
         disable        = {
-            True : {'settings' : ['open_forest', 'shuffle_interior_entrances', 'shuffle_overworld_entrances', 'warp_songs', 'spawn_positions', 'shuffle_bosses', 'mix_entrance_pools', 'decouple_entrances']}
+            True : {'settings' : ['open_forest', 'shuffle_interior_entrances', 'shuffle_overworld_entrances', 'warp_songs', 'shuffle_child_spawn', 'shuffle_adult_spawn', 'shuffle_bosses', 'mix_entrance_pools', 'decouple_entrances']}
         },
     ),
     Combobox(
@@ -2617,7 +2617,7 @@ setting_infos = [
             'glitchless': {'settings' : ['tricks_list_msg']},
             'glitched'  : {'settings' : ['allowed_tricks', 'shuffle_interior_entrances', 'shuffle_hideout_entrances', 'shuffle_grotto_entrances',
                                          'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops',
-                                         'warp_songs', 'spawn_positions', 'mq_dungeons_mode', 'mq_dungeons_specific',
+                                         'warp_songs', 'shuffle_child_spawn', 'shuffle_adult_spawn', 'mq_dungeons_mode', 'mq_dungeons_specific',
                                          'mq_dungeons_count', 'shuffle_bosses', 'dungeon_shortcuts', 'deadly_bonks',
                                          'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_beehives', 'shuffle_silver_rupees',
                                          'mix_entrance_pools', 'decouple_entrances', 'shuffle_base_item_pool', 'logic_water_gold_scale_no_entry']},
@@ -3693,23 +3693,61 @@ setting_infos = [
         },
     ),
     Combobox(
-        name           = 'spawn_positions',
-        gui_text       = 'Randomize Overworld Spawns',
+        name           = 'shuffle_child_spawn',
+        gui_text       = 'Randomize Child Overworld Spawn',
         choices        = {
             'off':       'Off',
             'balanced':  'Balanced',
             'full':      'Full',
         },
         gui_tooltip    = '''\
-            Randomize where you start as Child or Adult when loading
+            Randomize where you start as Child when loading
             a save in the Overworld. This stays consistent after
             saving and loading the game again.
 
             'Off':
-            Child will spawn in Link's House and Adult in the Temple of Time.
+            Child will spawn in Link's House.
 
             'Balanced':
-            The spawn positions are randomly chosen from overworld, interior,
+            The spawn position is randomly chosen from overworld, interior,
+            and a few special entrances.
+
+            'Full':
+            Link can also spawn inside or outside of graves or dungeons,
+            potentially bypassing item requirements.
+        ''',
+        default        = 'off',
+        disable        = {
+            '!off' : {'settings': ['require_gohma']},
+        },
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+            'distribution':  [
+                ('off', 2),
+                ('balanced', 1),
+                ('full', 1),
+            ],
+        },
+    ),
+    Combobox(
+        name           = 'shuffle_adult_spawn',
+        gui_text       = 'Randomize Adult Overworld Spawn',
+        choices        = {
+            'off':       'Off',
+            'balanced':  'Balanced',
+            'full':      'Full',
+        },
+        gui_tooltip    = '''\
+            Randomize where you start as Adult when loading
+            a save in the Overworld. This stays consistent after
+            saving and loading the game again.
+
+            'Off':
+            Adult will spawn in the Temple of Time.
+
+            'Balanced':
+            The spawn position is randomly chosen from overworld, interior,
             and a few special entrances.
 
             'Full':

@@ -52,8 +52,7 @@ class World(object):
         self.shuffle_silver_rupees = settings.shuffle_silver_rupees != 'vanilla'
         self.check_beatable_only = settings.reachable_locations != 'all'
 
-        self.full_spawn_positions = settings.spawn_positions == 'full'
-        self.spawn_positions = settings.spawn_positions in ['balanced', 'full']
+        self.spawn_positions = settings.shuffle_child_spawn in ('balanced', 'full') or settings.shuffle_adult_spawn in ('balanced', 'full')
 
         self.shuffle_special_interior_entrances = settings.shuffle_interior_entrances == 'all'
         self.shuffle_interior_entrances = settings.shuffle_interior_entrances in ['simple', 'all']
