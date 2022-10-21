@@ -4,7 +4,8 @@
     "shuffle_interior_entrances":              "off",
     "shuffle_overworld_entrances":             false,
     "warp_songs":                              "off",
-    "spawn_positions":                         "balanced",
+    "shuffle_child_spawn":                     "balanced",
+    "shuffle_adult_spawn":                     "balanced",
     "starting_items":                          [
       "ocarina"
     ],

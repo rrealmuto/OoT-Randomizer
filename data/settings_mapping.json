@@ -391,13 +391,42 @@
       "sections": [
         {
           "name": "generalcosmetics_section",
-          "col_span": 4,
+          "text": "General Cosmetics",
+          "col_span": 2,
           "row_span": [2,2,2],
           "settings": [
             "default_targeting",
             "display_dpad",
             "correct_model_colors",
             "randomize_all_cosmetics"
+          ]
+        },
+        {
+          "name": "playermodels_section_electron",
+          "text": "Player Models",
+          "exclude_from_web": true,
+          "app_type": ["generator", "patcher"],
+          "col_span": 2,
+          "row_span": [2,2,2],
+          "settings": [
+            "model_adult",
+            "model_adult_filepicker",
+            "model_child",
+            "model_child_filepicker"
+          ]
+        },
+        {
+          "name": "playermodels_section_web",
+          "text": "Player Models",
+          "exclude_from_electron": true,
+          "app_type": ["patcher"],
+          "col_span": 2,
+          "row_span": [2,2,2],
+          "settings": [
+            "model_adult",
+            "model_adult_filepicker",
+            "model_child",
+            "model_child_filepicker"
           ]
         },
         {
@@ -467,19 +496,20 @@
           "name": "sfx_main_section",
           "is_sfx": true,
           "col_span": 4,
-          "row_span": [2,2,2],
+          "row_span": [1,1,1],
           "settings": [
-            "randomize_all_sfx",
-            "disable_battle_music"
+            "randomize_all_sfx"
           ]
         },
         {
           "name": "generalsfx_section",
           "text": "General",
           "is_sfx": true,
-          "row_span": [6,6,13],
+          "col_span": 2,
+          "row_span": [6,6,12],
           "settings": [
             "background_music",
+            "disable_battle_music",
             "fanfares",
             "ocarina_fanfares",
             "sfx_low_hp",
@@ -493,7 +523,8 @@
           "name": "menusfx_section",
           "text": "Menu",
           "is_sfx": true,
-          "row_span": [6,6,13],
+          "col_span": 2,
+          "row_span": [6,6,3],
           "settings": [
             "sfx_menu_cursor",
             "sfx_menu_select"
@@ -503,10 +534,22 @@
           "name": "npcsfx_section",
           "text": "NPC",
           "is_sfx": true,
-          "row_span": [6,6,13],
+          "col_span": 2,
+          "row_span": [6,6,3],
           "settings": [
             "sfx_navi_overworld",
             "sfx_navi_enemy"
+          ]
+        },
+        {
+          "name": "linksfx_section",
+          "text": "Link",
+          "is_sfx": true,
+          "col_span": 2,
+          "row_span": [6,6,6],
+          "settings": [
+            "sfx_link_adult",
+            "sfx_link_child"
           ]
         }
       ]

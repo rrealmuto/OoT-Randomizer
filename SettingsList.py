@@ -14,6 +14,7 @@ from Hints import HintDistList, HintDistTips, gossipLocations
 from Item import ItemInfo
 from Location import LocationIterator
 from LocationList import location_table
+from Models import get_model_choices
 import Sounds as sfx
 import StartingItems
 from Utils import data_path
@@ -1805,7 +1806,7 @@ setting_infos = [
                 'web_common_key_string',
                 'web_wad_channel_id',
                 'web_wad_channel_title',
-				'web_wad_legacy_mode']
+                'web_wad_legacy_mode']
             }
         }
     ),
@@ -1842,7 +1843,25 @@ setting_infos = [
                     'settings' : [
                         'rom','web_output_type','player_num',
                         'web_wad_file', 'web_common_key_file', 'web_common_key_string',
-                        'web_wad_channel_id','web_wad_channel_title','web_wad_legacy_mode'
+                        'web_wad_channel_id','web_wad_channel_title', 'web_wad_legacy_mode',
+                        'model_adult', 'model_child'
+                    ],
+                },
+                True : {
+                    'settings' : [
+                        'model_adult', 'model_child'
+                    ],
+                },
+            },
+            'electron:disable' : {
+                False : {
+                    'settings' : [
+                        'model_adult_filepicker', 'model_child_filepicker'
+                    ],
+                },
+                True : {
+                    'settings' : [
+                        'model_adult_filepicker', 'model_child_filepicker'
                     ],
                 },
             }
@@ -1877,7 +1896,7 @@ setting_infos = [
         name           = 'enable_cosmetic_file',
         gui_text       = 'Enable Cosmetic Plandomizer (Advanced)',
         gui_tooltip    = '''\
-            Optional. Use a cosmetic plandomizer JSON file to get 
+            Optional. Use a cosmetic plandomizer JSON file to get
             more control over your cosmetic and sound settings.
         ''',
         default        = False,
@@ -1888,7 +1907,7 @@ setting_infos = [
     ),
     Setting_Info('distribution_file', str, "Plandomizer File", "Fileinput", False, {},
         gui_tooltip = """\
-            Optional. Place a plandomizer JSON file here 
+            Optional. Place a plandomizer JSON file here
             to get total control over the item placement.
         """,
         gui_params = {
@@ -1906,7 +1925,7 @@ setting_infos = [
         }),
     Setting_Info('cosmetic_file', str, "Cosmetic Plandomizer File", "Fileinput", False, {},
         gui_tooltip = """\
-            Optional. Use a cosmetic plandomizer JSON file to get 
+            Optional. Use a cosmetic plandomizer JSON file to get
             more control over your cosmetic and sound settings.
         """,
         gui_params = {
@@ -5458,11 +5477,79 @@ setting_infos = [
             colors matching the colors chosen for cosmetic settings.
             Heart and magic drop icons also have matching colors.
 
-            Tunic colors are excluded from this to prevent not being 
+            Tunic colors are excluded from this to prevent not being
             able to discern freestanding Tunics from each other.
         ''',
         default        = False,
     ),
+    Combobox(
+        name           = 'model_adult',
+        gui_text       = 'Adult Link Model',
+        shared         = False,
+        cosmetic       = True,
+        choices        = get_model_choices(0),
+        gui_tooltip    = '''\
+            Link's model will be replaced by the model selected.
+            To add more model options, save the .zobj file to
+            data/Models/Adult.
+            Caution: Any changes to Link's skeleton have the potential
+            to affect gameplay in significant ways and so are disallowed
+            for all recorded Racetime races. A note will appear at the top
+            of the pause screen if an irregular skeleton is detected.
+        ''',
+        default        = 'Default',
+        gui_params     = {
+            "hide_when_disabled": True,
+        }
+    ),
+    Setting_Info('model_adult_filepicker', str, "Adult Link Model", "Fileinput", False, {},
+        gui_params = {
+            "file_types": [
+                {
+                  "name": "Z64 Model Files",
+                  "extensions": [ "zobj" ]
+                },
+                {
+                  "name": "All Files",
+                  "extensions": [ "*" ]
+                }
+            ],
+            "hide_when_disabled": True,
+    }),
+    Combobox(
+        name           = 'model_child',
+        gui_text       = 'Child Link Model',
+        shared         = False,
+        cosmetic       = True,
+        choices        = get_model_choices(1),
+        gui_tooltip    = '''\
+            Link's model will be replaced by the model selected.
+            To add more model options, save the .zobj file to
+            data/Models/Child.
+            Caution: Any changes to Link's skeleton have the potential
+            to affect gameplay in significant ways and so are disallowed
+            for all recorded Racetime races. A note will appear at the top
+            of the pause screen if an irregular skeleton is detected.
+        ''',
+        default        = 'Default',
+        gui_params     = {
+            "hide_when_disabled": True,
+        }
+    ),
+    Setting_Info('model_child_filepicker', str, "Child Link Model", "Fileinput", False, {},
+        gui_params = {
+            "file_types": [
+                {
+                  "name": "Z64 Model Files",
+                  "extensions": [ "zobj" ]
+                },
+                {
+                  "name": "All Files",
+                  "extensions": [ "*" ]
+                }
+            ],
+            "hide_when_disabled": True,
+    }),
     Checkbutton(
         name           = 'randomize_all_cosmetics',
         gui_text       = 'Randomize All Cosmetics',
@@ -6291,6 +6378,38 @@ setting_infos = [
                 ('random-choice', 1),
             ]
         }
+    ),
+    Combobox(
+        name           = 'sfx_link_adult',
+        gui_text       = 'Adult Voice',
+        shared         = False,
+        cosmetic       = True,
+        choices        = {
+            'default':       'Default',
+            'feminine':      'Feminine',
+            'silent':        'Silent',
+            'random-choice': 'Random Choice',
+        },
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change Link's adult voice.
+        ''',
+    ),
+    Combobox(
+        name           = 'sfx_link_child',
+        gui_text       = 'Child Voice',
+        shared         = False,
+        cosmetic       = True,
+        choices        = {
+            'default':       'Default',
+            'feminine':      'Feminine',
+            'silent':        'Silent',
+            'random-choice': 'Random Choice',
+        },
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change Link's child voice.
+        ''',
     ),
     Checkbutton(
         name           = 'easier_fire_arrow_entry',

@@ -1,6 +1,7 @@
 {
   "settings":                  {
-    "spawn_positions":                         "balanced",
+    "shuffle_child_spawn":                     "balanced",
+    "shuffle_adult_spawn":                     "balanced",
     "starting_equipment":                      [
       "deku_shield",
       "kokiri_sword",

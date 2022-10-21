@@ -1,6 +1,7 @@
 {
     "settings":                  {
-    "spawn_positions":                         "balanced",
+    "shuffle_child_spawn":                     "balanced",
+    "shuffle_adult_spawn":                     "balanced",
     "shuffle_dungeon_entrances":               "simple",
     "open_deku":                               true,
     "open_forest":                             true,

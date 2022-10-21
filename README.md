@@ -133,6 +133,14 @@ Caveat: Plandomizer settings will override most settings in the main OoTR genera
 
 See [the Plandomizer wiki page](https://wiki.ootrandomizer.com/index.php?title=Plandomizer) for full details.
 
+#### Custom Models
+
+Save the .ZOBJ file of the desired model in `data/Models/Adult` or `data/Models/Child`. The file must be in .ZOBJ format (the compressed .PAK files are not compatible), but most Modloader64 models will work. Exceptions are models which are larger than the base Link models (the randomizer will give an error message) and those created on the new pipeline (technically load but the textures get wonky). Please see notes regarding known model files that are floating around [in this spreadsheet](https://docs.google.com/spreadsheets/d/1xbJnYw8lGR_qAkpvOQXlzvSUobWdX6phTm1SRbXy4TQ/edit#gid=1223582726) before asking why a model doesn't work.
+
+Once the models are saved, the program may be opened and the model(s) selected under the `Cosmetics` tab.
+
+If the model's skeleton is similar enough to Link, the randomizer will use Link's skeleton. If it is substantially different, then a note will be placed on the pause screen to make it clear that the skeleton was changed.
+
 ### Known issues
 
 Unfortunately, a few known issues exist. These will hopefully be addressed in future versions.
@@ -180,6 +188,8 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * The Adult earliest and latest trade item settings have been combined into a multiselect `Adult Trade Sequence Item` which allows you to choose whatever items you wish as the starting item for the adult trade quest.
   * New setting `Minor Items in Big/Gold chests` places shields and bombchus in major item chests when any `Chest Appearance Matches Contents` setting is enabled along with it.
   * New setting `Fix Broken Drops` adds a magic jar drop in GTG and a pot that drops a deku shield in Spirit Temple. These spawns were present in the code already but would not actually spawn due to the respective objects not being loaded.
+  * New settings `Adult Link Model` and `Child Link Model` allow you to select a .zobj model file to replace Link's look in-game. For more details see the [Custom Models section](#Custom-Models)
+  * New section under SFX labeled `Link` has options `Adult Voice` and `Child Voice`, allowing you to choose to either silence Link or change the voice to feminine to match your chosen player model. Adult and child female voices provided by Maple and shiroaeli in the Discord, respectively.
 
 * **Gameplay**
   * Shortened the animation for equipping magic arrows.
