@@ -33,9 +33,10 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * `fast-vanilla` is `vanilla` but with speed-ups like fast bunny hood, fast chest cutscenes, or “Skip Some Minigame Phases” enabled.
   * “Mixed Pools Tournament”, the settings used for a tournament that had full mixed pools entrance randomizer. Note that the tournament itself used [a previous version](https://ootrandomizer.com/generatorDev?version=devFenhl_6.2.100) of this branch.
   * “6th Pictionary Spoiler Log Race”, the settings used for [an upcoming community race](https://midos.house/event/pic/6).
-  * “Standard Anti-Weekly Settings (S5)” disables every location that's enabled in “S5 Tournament” and enables every location that's disabled there, as well as changing some miscellaneous settings. See [the official document](https://docs.google.com/document/d/1sbL6Zju943F5qyx4QbTLUsqZqOTMmvqKVbDwJl08SGc/edit) for details.
-  * “Standard Anti-Weekly Settings (Beginner)” is similar to the above but based on the current weekly preset. Differences are closed Deku, new hint distribution, dungeon shortcuts, blue fire arrows, and balanced item pool.
-  * “Standard Anti-Weekly Settings (Advanced)” is like the Beginner variant but with minimal item pool, pots, crates, freestandings, beehives, and silver rupees.
+  * The set of “Standard Anti-Weekly Settings” presets disables every location that's enabled in “Standard Weekly (Latest)” and enables every location that's disabled there, as well as changing some miscellaneous settings. See [the official document](https://docs.google.com/document/d/1sbL6Zju943F5qyx4QbTLUsqZqOTMmvqKVbDwJl08SGc/edit) for details.
+    * “Standard Anti-Weekly Settings (Beginner)” omits “Shuffle Rupees & Hearts”, “Shuffle Pots”, “Shuffle Crates”, and “Shuffle Beehives”, and keeps the balanced item pool.
+    * “Standard Anti-Weekly Settings (Advanced)” includes those shuffle settings, has a minimal item pool, and adds extra ice traps.
+    * “Standard Anti-Weekly Settings (S6)” is the inverse of “S6 Tournament” instead of weekly settings. It otherwise resembles the beginner preset. The only differences are open Deku, vanilla child spawn, and tournament hint distribution.
   * “Triforce Blitz” is a fast-paced game mode with very powerful hints. See [the official website](https://www.triforceblitz.com/) for details. Differences from the official branch include each Triforce piece having its own distinct text box, and the starting song not being counted for goal counts.
 * Other changes:
   * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))

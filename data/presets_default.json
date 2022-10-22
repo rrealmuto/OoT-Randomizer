@@ -1013,9 +1013,9 @@
     "fae_torch_count": 3,
     "blue_fire_arrows": false
   },
-  "Standard Anti-Weekly Settings (S5)": {
+  "Standard Anti-Weekly Settings (S6)": {
     "show_seed_info": true,
-    "user_message": "Standard Anti-Weekly Settings (S5)",
+    "user_message": "Standard Anti-Weekly Settings (S6)",
     "world_count": 1,
     "create_spoiler": true,
     "open_deku": true,
@@ -1041,8 +1041,17 @@
     "one_item_per_dungeon": false,
     "trials_random": false,
     "trials": 6,
-    "dungeon_shortcuts_choice": "off",
-    "dungeon_shortcuts": [],
+    "dungeon_shortcuts_choice": "all",
+    "dungeon_shortcuts": [
+      "Deku Tree",
+      "Dodongos Cavern",
+      "Jabu Jabus Belly",
+      "Forest Temple",
+      "Fire Temple",
+      "Water Temple",
+      "Shadow Temple",
+      "Spirit Temple"
+    ],
     "no_escape_sequence": false,
     "no_guard_stealth": false,
     "no_epona_race": false,
@@ -1088,7 +1097,7 @@
     "shuffle_gerudo_valley_river_exit": "off",
     "owl_drops": "off",
     "warp_songs": "off",
-    "shuffle_child_spawn": "balanced",
+    "shuffle_child_spawn": "off",
     "shuffle_adult_spawn": "balanced",
     "exclusive_one_ways": true,
     "shuffle_scrubs": "low",
@@ -1399,7 +1408,7 @@
     "adult_trade_start": [
       "Claim Check"
     ],
-    "fix_broken_drops": false,
+    "fix_broken_drops": true,
     "starting_equipment": [
       "kokiri_sword",
       "wallet"
@@ -1427,14 +1436,14 @@
     ],
     "ice_trap_appearance": "junk_only",
     "junk_ice_traps": "off",
-    "item_pool_value": "minimal",
+    "item_pool_value": "balanced",
     "damage_multiplier": "normal",
     "deadly_bonks": "none",
     "starting_tod": "sunset",
     "starting_age": "random",
     "easier_fire_arrow_entry": false,
     "fae_torch_count": 3,
-    "blue_fire_arrows": false
+    "blue_fire_arrows": true
   },
   "Standard Anti-Weekly Settings (Beginner)": {
     "show_seed_info": true,
@@ -2290,7 +2299,7 @@
       "warp_songs"
     ],
     "ice_trap_appearance": "junk_only",
-    "junk_ice_traps": "off",
+    "junk_ice_traps": "on",
     "item_pool_value": "minimal",
     "damage_multiplier": "normal",
     "deadly_bonks": "none",
