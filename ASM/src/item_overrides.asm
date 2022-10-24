@@ -192,13 +192,7 @@ get_item_hook:
 
 ; Set actors dropFlag to indicate that it was dropped from something.
 item00_init_hook:
-    andi    t8, v0, 0x4000   ; get the second highest bit (thats where we stored the flag) in drop_collectible_hook
-    sra     t8, t8, 14       ; shift it over
-    andi    t9, v0, 0x00C0   ; get the 2 highest bits in the lower byte (thats where were storing our extra flag info).
-    sra     t9, t9, 5        ; shift it over
-    or      t8, t8, t9       ; or the two together
-    sb      t8, 0x116(a0)    ; store it in drop_flag at offset 0x116
-    andi    T9, V0, 0x003F   ; replaced code  but change it to only use 0x3F
+    andi    T9, V0, 0x00FF   ; replaced code
     jr      ra
     sh      T9, 0x001c(S0)   ; replaced code
 
@@ -216,20 +210,41 @@ get_override_drop_id_hook:
 ; 0x4000 gets set to indicate that its being dropped, which we use to index a second table that we called the dropped_collectible table
 ; 0x00C0 bits get set to extend the flag
 drop_collectible_hook:
-    ori     t4, t4, 0x4000 ; set the drop flag
-    lw      t3, 0x60(sp)   ; get the original params variable passed into the function
-    andi    t3, t3, 0x00C0 ; get the extended flag bits
-    or      t4, t4, t3     ; combine it all together
+    li      t0, drop_collectible_override_flag	
+    lh      t1, 0x00(t0) ; get the current override flag
+    sh      r0, 0x00(t0) ; clear the override_flag
     jr      ra
-    sw      t4, 0x0024(sp) ; store it where it needs to go to get passed into the actorspawn function
+    sw      t1, 0x1C(sp) ; put the flag in the y rotation parameter which is at 0x1C(sp)
+
+; Hook Item_DropCollectible to not set the room to -1 if we are going to be overriding the collectible.
+; This will allow the collectible to despawn when switching rooms and allow us to keep track of the original room easier.
+drop_collectible_room_hook:
+    addiu   sp, sp, -0x20
+    sw      a0, 0x10(sp)
+    sw      ra, 0x14(sp)
+    jal     Item_DropCollectible_Room_Hack
+    or      a0, r0, s2
+
+    lw      a0, 0x10(sp)
+    lw      ra, 0x14(sp)
+    jr      ra
+    addiu   sp, sp, 0x20
+
+EnItem00_DropCollectibleFallAction_Hack:
+    lh      t6, 0x014A(s0)
+    bltz    t6, @@return
+    addiu   t6, t6, 0x0001
+    sh      t6, 0x014A(s0)
+@@return:
+    jr      ra
+    nop
 
 drop_collectible2_hook:
-    ori     t4, t4, 0x4000 ; set the drop flag
-    lw      t3, 0x58(sp)   ; get the original params variable passed into the function
-    andi    t3, t3, 0x00C0 ; get the extended flag bits
-    or      t4, t4, t3     ; combine it all together
+    li      t0, drop_collectible_override_flag	
+    lh      t1, 0x00(t0) ; get the current override flag
+    sh      r0, 0x00(t0) ; clear the override_flag
     jr      ra
-    sw      t4, 0x0024(sp) ; store it where it needs to go to get passed into the actorspawn function
+    sw      t1, 0x1C(sp) ; put the flag in the y rotation parameter which is at 0x1C(sp)
 
 item_give_hook:
     addiu sp, sp, -0x80

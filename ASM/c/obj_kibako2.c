@@ -8,6 +8,7 @@
 
 
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
+extern uint16_t drop_collectible_override_flag;
 
 // Hacks the regular crate spawn collectible function to use more flag space
 // The additional flag info is stored in the actors dropFlag variable (unused by collectibles)
@@ -16,11 +17,11 @@ void ObjKibako2_SpawnCollectible_Hack(ObjKibako2 *this, z64_game_t *globalCtx) {
     int16_t itemDropped;
     int16_t collectibleFlagTemp;
 
-    collectibleFlagTemp = this->collectibleFlag & 0x3F;                  // Get the vanilla part of the collectible flag
-    uint16_t extendedCollectibleFlag = (this->collectibleFlag & 0x00C0); // Get the upper part of the collectible flag that we'll store elsewhere
+    collectibleFlagTemp = this->collectibleFlag & 0x3F;             
     itemDropped = this->dyna.actor.rot_init.x & 0x1F;
     if (itemDropped >= 0 && itemDropped < 0x1A) {
-        EnItem00 *spawned = z64_Item_DropCollectible(globalCtx, &this->dyna.actor.pos_world, itemDropped | (collectibleFlagTemp << 8) | extendedCollectibleFlag);
+        drop_collectible_override_flag = this->dyna.actor.rot_init.y;
+        EnItem00 *spawned = z64_Item_DropCollectible(globalCtx, &this->dyna.actor.pos_world, itemDropped | (collectibleFlagTemp << 8));
     }
 }
 
@@ -28,10 +29,9 @@ override_t get_crate_override(z64_actor_t *actor, z64_game_t *game) {
     // make a dummy EnItem00 with enough info to get the override
     ObjKibako2 *this = (ObjKibako2 *)actor;
     EnItem00 dummy;
-    dummy.collectibleFlag = (this->collectibleFlag & 0x3F) | (this->collectibleFlag & 0x00C0);
     dummy.actor.actor_id = 0x15;
-    dummy.actor.dropFlag = 1;
-    dummy.actor.variable = 0;
+    dummy.actor.rot_init.y = actor->rot_init.y;
+    dummy.actor.variable = 0x0001;
     if (!should_override_collectible(&dummy)) {
         return (override_t){ 0 };
     }

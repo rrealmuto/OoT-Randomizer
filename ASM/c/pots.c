@@ -2,6 +2,7 @@
 #include "n64.h"
 #include "gfx.h"
 #include "textures.h"
+#include "z64.h"
 
 #define DUNGEON_POT_SIDE_TEXTURE (uint8_t *)0x050108A0
 #define DUNGEON_POT_DLIST (z64_gfx_t *)0x05017870
@@ -10,7 +11,7 @@
 #define POT_DLIST (z64_gfx_t *)0x060017C0
 
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
-
+extern uint16_t drop_collectible_override_flag;
 
 override_t get_pot_override(z64_actor_t *actor, z64_game_t *game) {
     // make sure that the pot is actually supposed to drop something
@@ -22,10 +23,9 @@ override_t get_pot_override(z64_actor_t *actor, z64_game_t *game) {
 
     // make a dummy EnItem00 with enough info to get the override
     EnItem00 dummy;
-    dummy.collectibleFlag = (actor->variable & 0x7E00) >> 9;
     dummy.actor.actor_id = 0x15;
-    dummy.actor.dropFlag = 1;
-    dummy.actor.variable = pot_item;
+    dummy.actor.rot_init.y = actor->rot_init.z;
+    dummy.actor.variable = 0x0000;
     if (!should_override_collectible(&dummy)) {
         return (override_t){ 0 };
     }
@@ -35,9 +35,9 @@ override_t get_pot_override(z64_actor_t *actor, z64_game_t *game) {
 
 override_t get_flying_pot_override(z64_actor_t *actor, z64_game_t *game) {
     EnItem00 dummy;
-    dummy.collectibleFlag = (actor->variable & 0x3F);
+    
     dummy.actor.actor_id = 0x15;
-    dummy.actor.dropFlag = 1;
+    dummy.actor.rot_init.y = actor->rot_init.z;
     dummy.actor.variable = 0;
     if (!should_override_collectible(&dummy)) {
         return (override_t){0};
@@ -100,6 +100,17 @@ void draw_hba_pot_hack(z64_actor_t *actor, z64_game_t *game) {
     }
 }
 
-void draw_flying_pot_hack(z64_actor_t *actor, z64_game_t *game) {
+void draw_flying_pot_hack(z64_actor_t* actor, z64_game_t *game) {
     draw_pot(actor, game, get_flying_pot_override(actor, game));
+}
+
+void EnTuboTrap_DropCollectible_Hack(z64_actor_t* this, z64_game_t* game)
+{
+    int16_t params = this->variable;
+    int16_t param3FF = (params >> 6) & 0x3FF;
+
+    if (param3FF >= 0 && param3FF < 0x1A) {
+        drop_collectible_override_flag = this->rot_init.z;
+        z64_Item_DropCollectible(game, &this->pos_world, param3FF | ((params & 0x3F) << 8));
+    }
 }

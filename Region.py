@@ -41,6 +41,7 @@ class Region(object):
         self.time_passes = False
         self.provides_time = TimeOfDay.NONE
         self.scene = None
+        self.is_boss_room = False
 
 
     def copy(self, new_world):

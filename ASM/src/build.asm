@@ -110,6 +110,7 @@ RANDO_CONTEXT:
 .include "drop_overrides/bg_spot18_basket.asm"
 .include "drop_overrides/obj_comb.asm"
 .include "drop_overrides/actor.asm"
+.include "drop_overrides/obj_tsubo.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"

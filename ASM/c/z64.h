@@ -943,6 +943,13 @@ typedef struct
   z64_mem_obj_t objects[19];
 } z64_obj_ctxt_t;
 
+typedef struct 
+{
+  uint8_t       code;
+  uint8_t       data1;
+  uint32_t      data2;
+} z64_scene_command;
+
 typedef struct
 {
     char              unk_00_[0x0128];          /* 0x0000 */
@@ -1054,7 +1061,10 @@ typedef struct
 {
   z64_ctxt_t       common;                 /* 0x00000 */
   uint16_t         scene_index;            /* 0x000A4 */
-  char             unk_00_[0x001A];        /* 0x000A6 */
+  uint8_t          scene_config;           /* 0x000A6  */
+  char             unk_00_[0x09];          /* 0x000A7 */
+  void*            scene_segment;          /* 0x000B0 */
+  char             unk_001_[0x0C];         /* 0x000B4 */
   uint32_t         screen_top;             /* 0x000C0 */
   uint32_t         screen_bottom;          /* 0x000C4 */
   uint32_t         screen_left;            /* 0x000C8 */
@@ -1332,7 +1342,7 @@ typedef struct EnItem00 {
   uint16_t unk_154;
   uint16_t unk_156;
   uint16_t unk_158;
-  uint16_t timeToLive; //0x15A
+  int16_t timeToLive; //0x15A
   float scale;
 } EnItem00;
 

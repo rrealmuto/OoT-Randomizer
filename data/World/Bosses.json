@@ -17,6 +17,7 @@
     {
         "region_name": "Queen Gohma Boss Room",
         "scene": "Deku Tree Boss",
+        "is_boss_room": "True",
         "events": {
             "Deku Tree Clear": "(Nuts or can_use(Slingshot)) and can_jumpslash"
         },
@@ -40,6 +41,7 @@
     {
         "region_name": "King Dodongo Boss Room",
         "scene": "Dodongos Cavern Boss",
+        "is_boss_room": "True",
         "locations": {
             "Dodongos Cavern Boss Room Chest": "True",
             "Dodongos Cavern King Dodongo Heart": "
@@ -67,6 +69,7 @@
     {
         "region_name": "Barinade Boss Room",
         "scene": "Jabu Jabus Belly Boss",
+        "is_boss_room": "True",
         "locations": {
             "Jabu Jabus Belly Barinade Heart": "can_use(Boomerang) and (Sticks or Kokiri_Sword)",
             "Barinade": "can_use(Boomerang) and (Sticks or Kokiri_Sword)",
@@ -93,6 +96,7 @@
     {
         "region_name": "Phantom Ganon Boss Room",
         "scene": "Forest Temple Boss",
+        "is_boss_room": "True",
         "locations": {
             "Forest Temple Phantom Ganon Heart": "
                 can_use(Hookshot) or can_use(Bow) or (can_use(Slingshot) and Kokiri_Sword)",
@@ -115,6 +119,7 @@
     {
         "region_name": "Volvagia Boss Room",
         "scene": "Fire Temple Boss",
+        "is_boss_room": "True",
         "locations": {
             "Fire Temple Volvagia Heart": "can_use(Goron_Tunic) and can_use(Megaton_Hammer)",
             "Volvagia": "can_use(Goron_Tunic) and can_use(Megaton_Hammer)"
@@ -134,6 +139,7 @@
     {
         "region_name": "Morpha Boss Room",
         "scene": "Water Temple Boss",
+        "is_boss_room": "True",
         "events": {
             "Water Temple Clear": "can_use(Hookshot)"
         },
@@ -157,6 +163,7 @@
     {
         "region_name": "Bongo Bongo Boss Room",
         "scene": "Shadow Temple Boss",
+        "is_boss_room": "True",
         "locations": {
             "Shadow Temple Bongo Bongo Heart": "
                 (Kokiri_Sword or is_adult) and
@@ -183,6 +190,7 @@
     {
         "region_name": "Twinrova Boss Room",
         "scene": "Spirit Temple Boss",
+        "is_boss_room": "True",
         "locations": {
             "Spirit Temple Twinrova Heart": "can_use(Mirror_Shield)",
             "Twinrova": "can_use(Mirror_Shield)"
