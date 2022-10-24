@@ -10,7 +10,7 @@ from Rom import Rom
 from Spoiler import Spoiler
 from LocationList import business_scrubs
 from HintList import getHint
-from Hints import HintArea, writeGossipStoneHints, buildAltarHints, \
+from Hints import GossipText, HintArea, writeGossipStoneHints, buildAltarHints, \
         buildGanonText, buildMiscItemHints, getSimpleHintNoPrefix, getItemGenericName
 from Location import DisableType
 from Utils import data_path
@@ -1017,18 +1017,19 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
                 original_boss = entrance.data
 
                 # Fixup save/quit and death warping entrance IDs on bosses.
-                for address in new_boss['patch_addresses']:
+                for address in new_boss.get('patch_addresses', []): #TODO also set savewarp/deathwarp for non-boss regions inside dungeons
                     rom.write_int16(address, original_boss['dungeon_index'])
 
                 # Update blue warps.
                 # If dungeons are shuffled, we'll this in the next step -- that's fine.
-                copy_entrance_record(original_boss['exit_index'], new_boss['exit_blue_warp'], 2)
-                copy_entrance_record(original_boss['exit_blue_warp'] + 2, new_boss['exit_blue_warp'] + 2, 2)
+                if 'exit_blue_warp' in new_boss: #TODO also set blue warp for boss rooms in the overworld
+                    copy_entrance_record(original_boss['exit_index'], new_boss['exit_blue_warp'], 2)
+                    copy_entrance_record(original_boss['exit_blue_warp'] + 2, new_boss['exit_blue_warp'] + 2, 2)
 
-                # If dungeons are shuffled but their bosses are moved, they're going to refer to the wrong blue warp
-                # slots.  Create a table to remap them for later.
-                blue_warp_remaps[original_boss['exit_blue_warp']] = new_boss['exit_blue_warp']
-                blue_warp_address_remaps[original_boss['exit_blue_warp']] = original_boss['exit_blue_warp_addresses']
+                    # If dungeons are shuffled but their bosses are moved, they're going to refer to the wrong blue warp
+                    # slots.  Create a table to remap them for later.
+                    blue_warp_remaps[original_boss['exit_blue_warp']] = new_boss['exit_blue_warp']
+                    blue_warp_address_remaps[original_boss['exit_blue_warp']] = original_boss['exit_blue_warp_addresses']
 
         # Boss shuffle done(?)
         for entrance in entrances:
@@ -1042,7 +1043,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
             patch_value = replaced_entrance.get('patch_value')
             if patch_value is not None:
-                for address in new_entrance['patch_addresses']:
+                for address in new_entrance.get('patch_addresses', []): #TODO what does this do?
                     rom.write_int16(address, patch_value)
 
             if "blue_warp" in new_entrance:
@@ -1726,12 +1727,12 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Set Dungeon Reward Actor in Jabu Jabu to be accurate
     if location is not None: #TODO make actor invisible if no item?
         jabu_item = location.item
-        jabu_actor_type = jabu_item.special['actor_type']
+        jabu_actor_type = jabu_item.special.get('actor_type', 0x15) #TODO handle non-dungeon-reward items
         set_jabu_stone_actors(rom, jabu_actor_type)
         # Also set the right object for the actor, since medallions and stones require different objects
         # MQ is handled separately, as we include both objects in the object list in mqu.json (Scene 2, Room 6)
         if not world.dungeon_mq['Jabu Jabus Belly']:
-            jabu_stone_object = jabu_item.special['object_id']
+            jabu_stone_object = jabu_item.special.get('object_id', 0x00AD) #TODO handle non-dungeon-reward items
             rom.write_int16(0x277D068, jabu_stone_object)
             rom.write_int16(0x277D168, jabu_stone_object)
 
@@ -2270,9 +2271,10 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
                     compass_message = "\x13\x75\x08\x05\x42\x0F\x05\x40 found the \x05\x41Compass\x05\x40\x01for %s\x05\x40!\x09" % (dungeon_name)
                 elif 'Boss' in world.settings.mix_entrance_pools: #TODO also enable if boss reward shuffle is on
                     vanilla_reward = world.get_location(boss_name).vanilla_item
-                    vanilla_reward_location = world.hinted_dungeon_reward_locations[vanilla_reward.name]
-                    area = HintArea.at(vanilla_reward_location).text(world.settings.clearer_hints, preposition=True)
-                    compass_message = "\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for %s\x05\x40!\x01The %s can be found\x01%s!\x09" % (dungeon_name, vanilla_reward, area)
+                    vanilla_reward_location = world.hinted_dungeon_reward_locations[vanilla_reward]
+                    area = HintArea.at(vanilla_reward_location)
+                    area = GossipText(area.text(world.settings.clearer_hints, preposition=True), [area.color], prefix='')
+                    compass_message = "\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for %s\x05\x40!\x01The %s can be found\x01%s!\x09" % (dungeon_name, vanilla_reward, area) #TODO figure out why the player name isn't being displayed
                 else:
                     boss_location = next(filter(lambda loc: loc.type == 'Boss', world.get_entrance(f'{dungeon} Boss Door -> {boss_name} Boss Room').connected_region.locations))
                     dungeon_reward = reward_list[boss_location.item.name]

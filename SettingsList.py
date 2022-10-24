@@ -3560,11 +3560,14 @@ setting_infos = [
             'GrottoGrave': 'Grottos',
             'Dungeon': 'Dungeons',
             'Overworld': 'Overworld',
+            'Boss': 'Bosses',
         },
         gui_tooltip    = '''\
             Shuffle the selected entrances into a mixed pool
             instead of separate ones. Has no effect on pools
-            whose entrances aren't shuffled.
+            whose entrances aren't shuffled, and "Shuffle
+            Boss Entrances" must be set to "Full" to include
+            them.
 
             For example, enabling the settings to shuffle
             grotto, dungeon, and overworld entrances and
