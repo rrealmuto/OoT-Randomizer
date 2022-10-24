@@ -589,7 +589,9 @@
             "Gerudo Fortress": "True",
             "GV Upper Stream": "True",
             "GV Crate Ledge": "
-                logic_valley_crate_hovers and can_use(Hover_Boots) and can_take_damage",
+                logic_valley_crate_hovers and can_use(Hover_Boots) and
+                (damage_multiplier != 'ohko' or can_use(Nayrus_Love) or
+                    (Fairy and (deadly_bonks != 'ohko' or can_blast_or_smash)))",
             "Gerudo Valley": "
                 is_child or can_ride_epona or Longshot or
                 gerudo_fortress == 'open' or can_finish_GerudoFortress",
@@ -718,7 +720,8 @@
             "Hideout Hall to Balcony Upper": "True",
             "Gerudo Fortress": "True",
             "GF Chest Roof": "can_use(Longshot)",
-            "GF Hall to Balcony Entrance": "can_take_damage or can_use(Hookshot)"
+            "GF Hall to Balcony Entrance": "
+                damage_multiplier != 'ohko' or can_use(Nayrus_Love) or can_use(Hookshot)"
         }
     },
     {
@@ -1366,7 +1369,7 @@
         "scene": "Market Dog Lady House",
         "locations": {
             "Market Lost Dog": "is_child and at_night",
-            "Market Dog Lady House Crate": "can_bonk"
+            "Market Dog Lady House Crate": "(deadly_bonks != 'ohko' or Fairy or (can_use(Nayrus_Love) and shuffle_overworld_entrances == 'off'))"
         },
         "exits": {
             "Market Back Alley": "True"
@@ -1988,8 +1991,7 @@
                 (Fairy and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or can_use(Nayrus_Love)",
             "DMC Central Nearby": "
                 can_use(Goron_Tunic) and can_use(Longshot) and
-                ((damage_multiplier != 'ohko' and damage_multiplier != 'quadruple') or
-                    (Fairy and not entrance_shuffle) or can_use(Nayrus_Love))"
+                ((damage_multiplier != 'ohko' and damage_multiplier != 'quadruple') or can_use(Nayrus_Love))"
         }
     },
     {
