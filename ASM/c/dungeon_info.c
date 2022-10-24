@@ -56,7 +56,7 @@ medal_t medals[] = {
     { 3, 0xFF, 0x82, 0x00 }, // Spirit
 };
 
-uint8_t reward_rows[] = { 0, 1, 2, 4, 5, 6, 8, 7, 3 };
+uint8_t reward_rows[] = { 0, 1, 2, 8, 3, 4, 5, 7, 6 };
 
 extern uint32_t CFG_DUNGEON_INFO_MQ_ENABLE;
 extern uint32_t CFG_DUNGEON_INFO_MQ_NEED_MAP;
