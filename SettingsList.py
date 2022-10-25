@@ -2035,37 +2035,40 @@ setting_infos = [
         gui_tooltip    = '''\
             Select a setting preset to apply.
 
-            Default/Beginner is aimed at those familiar with vanilla who desire a similar progression.
+            <b>Default/Beginner</b> is aimed at those familiar with vanilla who desire a similar progression.
             Uses base glitchless logic. No timesavers (See the tab "Other") are enabled in this preset
             and the world begins closed. Expect a long playthrough.
 
-            Easy Mode is aimed and those who have perhaps seen a few randomizer runs previously and/or
+            <b>Easy Mode</b> is aimed and those who have perhaps seen a few randomizer runs previously and/or
             wish to dive right in. Uses base glitchless logic. Most timesavers (See the tab "Other")
             are enabled and the world is more open after leaving Kokiri Forest.
 
-            Hell Mode enables every setting to provide maximum randomness, but still uses glitchless
+            <b>Hell Mode</b> enables every setting to provide maximum randomness, but still uses glitchless
             logic to ensure a beatable seed. However, be aware that all glitchless "tricks" are enabled
             which have the potential to require the player to perform difficult techniques.
             Expect a long playthrough, even with good note-taking.
 
-            'allsanity-casual' is Fenhl's preferred flavor of allsanity, including full entrance
+            <b>Fenhl's Casual</b> is Fenhl's preferred flavor of playing OoTR, including full entrance
             randomizer, chaos hints, and warp song note shuffle, but with half damage, no Master Quest,
             and no tricks enabled. The rainbow bridge requires all dungeon rewards and Ganon's boss key
             requires all 100 gold skulltula tokens.
 
-            'debug' is similar to Default/Beginner but gives you most starting items for testing.
+            <b>Debug</b> is similar to Default/Beginner but gives you most starting items for testing.
 
-            'vanilla' generates a seed that's as close to the vanilla game as possible with current
+            <b>Vanilla</b> generates a seed that's as close to the vanilla game as possible with current
             randomizer features. Unlike the vanilla seed available on ootrandomizer.com, this preset
             uses glitchless logic to produce a useful spoiler log playthrough.
 
-            'fast-vanilla' is 'vanilla' but with speed-ups like fast bunny hood, fast chest cutscenes,
+            <b>Fast Vanilla</b> is Vanilla but with speed-ups like fast bunny hood, fast chest cutscenes,
             or "Skip Some Minigame Phases" enabled.
 
-            'Standard Anti-Weekly Settings (S5)' disables every location that's enabled in 'S5
-            Tournament' and enables every location that's disabled there, as well as changing some
-            miscellaneous settings. 'Standard Anti-Weekly Settings (Beginner)' and '(Advanced)' are
-            similar but based on 'Standard Weekly (Latest)'.
+            <b>Vanilla (Master Quest)</b> and <b>Fast Vanilla (Master Quest)</b> are Vanilla and Fast Vanilla
+            but with all dungeons from Master Quest. Since logic for vanilla MQ hasn't been coded yet,
+            these use no logic.
+
+            The set of <b>Standard Anti-Weekly Settings</b> presets disables every location that's enabled in
+            “Standard Weekly (Latest)” and enables every location that's disabled there, as well as changing
+            some miscellaneous settings.
 
             The other presets are for racing and/or tournaments.
 
