@@ -62,6 +62,7 @@
         "region_name": "Deku Tree Basement Ledge",
         "dungeon": "Deku Tree",
         "exits": {
+            "Deku Tree Basement": "True",
             "Deku Tree Basement Back Room": "is_child",
             "Deku Tree Before Boss": "
                 deku_tree_shortcuts or
@@ -77,6 +78,7 @@
             "Deku Tree Basement Recovery Heart 3": "True"
         },
         "exits": {
+            "Deku Tree Basement Ledge": "True",
             "Deku Tree Boss Door": "deku_tree_shortcuts or here(has_shield)"
         }
     }

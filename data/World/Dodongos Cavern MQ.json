@@ -212,6 +212,7 @@
                     Progressive_Strength_Upgrade)"
         },
         "exits": {
+            "Dodongos Cavern Lobby": "True",
             # The final line of this exit is for using an Armos to explode the bomb flowers.
             "Dodongos Cavern Before Boss": "
                 is_adult or has_explosives or can_use(Dins_Fire) or dodongos_cavern_shortcuts or

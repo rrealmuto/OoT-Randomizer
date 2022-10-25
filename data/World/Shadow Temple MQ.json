@@ -214,7 +214,9 @@
         },
         "exits": {
             "Shadow Temple Across Chasm": "
-                Bow or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts"
+                Bow or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts",
+            "Shadow Temple Invisible Maze": "
+                at('Shadow Temple Across Chasm', Bow and can_play(Song_of_Time) and Longshot)"
         }
     },
     {
@@ -226,7 +228,7 @@
             "Shadow Temple MQ Near Boss Pot 2": "True"
         },
         "exits": {
-            "Shadow Temple Invisible Maze": "Bow and can_play(Song_of_Time) and Longshot",
+            "Shadow Temple Beyond Boat": "Progressive_Strength_Upgrade or has_explosives or Bow or can_use(Dins_Fire)",
             "Shadow Temple Before Boss": "Hover_Boots"
         }
     },
@@ -273,6 +275,7 @@
             "Shadow Temple MQ GS Near Boss": "has_projectile(adult) or can_use(Dins_Fire)"
         },
         "exits": {
+            "Shadow Temple Across Chasm": "(logic_lens_shadow or can_use(Lens_of_Truth)) and can_use(Hover_Boots)",
             "Shadow Temple Boss Door": "True"
         }
     }

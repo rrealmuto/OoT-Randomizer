@@ -93,8 +93,8 @@ class Search(object):
         raise Exception('Unimplemented for Search. Perhaps you want RewindableSearch.')
 
 
-    # Internal to the iteration. Modifies the exit_queue, regions. 
-    # Returns a queue of the exits whose access rule failed, 
+    # Internal to the iteration. Modifies the exit_queue, regions.
+    # Returns a queue of the exits whose access rule failed,
     # as a cache for the exits to try on the next iteration.
     def _expand_regions(self, exit_queue, regions, age):
         failed = []

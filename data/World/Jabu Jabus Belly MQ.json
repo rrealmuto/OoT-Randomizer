@@ -110,6 +110,7 @@
             "Fairy Pot": "has_bottle"
         },
         "exits": {
+            "Jabu Jabus Belly Elevator Room": "can_take_damage",
             "Jabu Jabus Belly Boss Door": "here(can_use(Slingshot)) or jabu_shortcuts"
         }
     }

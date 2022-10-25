@@ -66,6 +66,8 @@ class World(object):
             or self.spawn_positions or (settings.shuffle_bosses != 'off')
         )
 
+        self.mixed_pools_bosses = 'Boss' in settings.mix_entrance_pools
+
         self.ensure_tod_access = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or self.spawn_positions
         self.disable_trade_revert = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances
 

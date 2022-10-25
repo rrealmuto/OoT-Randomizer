@@ -734,18 +734,9 @@
         }
     },
     {
-        "region_name": "Hideout Savewarp",
-        "scene": "Hideout 1 Torch Jail",
-        "hint": "THIEVES_HIDEOUT",
-        "exits": {
-            "Hideout 1 Torch Jail": "True"
-        }
-    },
-    {
         "region_name": "Hideout 1 Torch Jail",
         "scene": "Hideout 1 Torch Jail",
         "hint": "THIEVES_HIDEOUT",
-        "savewarp": "Hideout Savewarp",
         "events": {
             "Hideout 1 Torch Jail Gerudo": "is_adult or Kokiri_Sword",
             "Hideout 1 Torch Jail Carpenter": "
@@ -770,7 +761,7 @@
         "region_name": "Hideout 2 Torches Jail",
         "scene": "Hideout 2 Torches Jail",
         "hint": "THIEVES_HIDEOUT",
-        "savewarp": "Hideout Savewarp",
+        "savewarp": "Hideout 1 Torch Jail",
         "events": {
             "Hideout 2 Torches Jail Gerudo": "is_adult or Kokiri_Sword",
             "Hideout 2 Torches Jail Carpenter": "
@@ -798,7 +789,7 @@
         "region_name": "Hideout 3 Torches Jail",
         "scene": "Hideout 3 Torches Jail",
         "hint": "THIEVES_HIDEOUT",
-        "savewarp": "Hideout Savewarp",
+        "savewarp": "Hideout 1 Torch Jail",
         "events": {
             "Hideout 3 Torches Jail Gerudo": "is_adult or Kokiri_Sword",
             "Hideout 3 Torches Jail Carpenter": "
@@ -817,7 +808,7 @@
         "region_name": "Hideout 4 Torches Jail",
         "scene": "Hideout 4 Torches Jail",
         "hint": "THIEVES_HIDEOUT",
-        "savewarp": "Hideout Savewarp",
+        "savewarp": "Hideout 1 Torch Jail",
         "events": {
             "Hideout 4 Torches Jail Gerudo": "is_adult or Kokiri_Sword",
             "Hideout 4 Torches Jail Carpenter": "
@@ -838,7 +829,7 @@
         "region_name": "Hideout Kitchen Hallway",
         "scene": "Hideout Kitchen",
         "hint": "THIEVES_HIDEOUT",
-        "savewarp": "Hideout Savewarp",
+        "savewarp": "Hideout 1 Torch Jail",
         "locations": {
             "Hideout Near Kitchen Crate 1": "
                 (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or logic_gerudo_kitchen) and
@@ -863,7 +854,7 @@
         "region_name": "Hideout Kitchen Front",
         "scene": "Hideout Kitchen",
         "hint": "THIEVES_HIDEOUT",
-        "savewarp": "Hideout Savewarp",
+        "savewarp": "Hideout 1 Torch Jail",
         "exits": {
             "GF Roof Entrance Cluster": "True",
             "Hideout Kitchen Rear": "
@@ -878,7 +869,7 @@
         "region_name": "Hideout Kitchen Rear",
         "scene": "Hideout Kitchen",
         "hint": "THIEVES_HIDEOUT",
-        "savewarp": "Hideout Savewarp",
+        "savewarp": "Hideout 1 Torch Jail",
         "exits": {
             "GF Kitchen Roof Access": "True",
             "Hideout Kitchen Front": "
@@ -893,7 +884,7 @@
         "region_name": "Hideout Kitchen Pots",
         "scene": "Hideout Kitchen",
         "hint": "THIEVES_HIDEOUT",
-        "savewarp": "Hideout Savewarp",
+        "savewarp": "Hideout 1 Torch Jail",
         "locations": {
             "Hideout Kitchen Pot 1": "True",
             "Hideout Kitchen Pot 2": "True"
@@ -903,7 +894,7 @@
         "region_name": "Hideout Hall to Balcony Lower",
         "scene": "Hideout Hall to Balcony",
         "hint": "THIEVES_HIDEOUT",
-        "savewarp": "Hideout Savewarp",
+        "savewarp": "Hideout 1 Torch Jail",
         "exits": {
             "GF Hall to Balcony Entrance": "True",
             "Hideout Hall to Balcony Upper": "can_use(Hookshot)"
@@ -928,7 +919,7 @@
         "region_name": "Hideout Hall to Balcony Upper",
         "scene": "Hideout Hall to Balcony",
         "hint": "THIEVES_HIDEOUT",
-        "savewarp": "Hideout Savewarp",
+        "savewarp": "Hideout 1 Torch Jail",
         "exits": {
             "Hideout Hall to Balcony Lower": "can_use(Hookshot)",
             "GF Balcony": "True"

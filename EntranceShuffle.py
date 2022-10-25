@@ -392,44 +392,44 @@ def _add_boss_entrances():
             'exit_blue_warp_addresses': reverse['blue_warp_addresses']
         }
 
-    for type, source, target, dungeon, index, rindex, addresses in [
+    for type, source, target, reverse, dungeon, index, rindex, addresses in [
         (
-            'ChildBoss', 'Deku Tree Boss Door', 'Queen Gohma Boss Room',
+            'ChildBoss', 'Deku Tree Boss Door', 'Queen Gohma Boss Room', None,
             'KF Outside Deku Tree -> Deku Tree Lobby',
             0x040f, 0x0252, [ 0xB06292, 0xBC6162, 0xBC60AE ]
         ),
         (
-            'ChildBoss', 'Dodongos Cavern Boss Door', 'King Dodongo Boss Room',
+            'ChildBoss', 'Dodongos Cavern Boss Door', 'King Dodongo Boss Room', None,
             'Death Mountain -> Dodongos Cavern Beginning',
             0x040b, 0x00c5, [ 0xB062B6, 0xBC616E ]
         ),
         (
-            'ChildBoss', 'Jabu Jabus Belly Boss Door', 'Barinade Boss Room',
+            'ChildBoss', 'Jabu Jabus Belly Boss Door', 'Barinade Boss Room', None,
             'Zoras Fountain -> Jabu Jabus Belly Beginning',
             0x0301, 0x0407, [ 0xB062C2, 0xBC60C2 ]
         ),
         (
-            'AdultBoss', 'Forest Temple Boss Door', 'Phantom Ganon Boss Room',
+            'AdultBoss', 'Forest Temple Boss Door', 'Phantom Ganon Boss Room', None,
             'SFM Forest Temple Entrance Ledge -> Forest Temple Lobby',
             0x000c, 0x024E, [ 0xB062CE, 0xBC6182 ]
         ),
         (
-            'AdultBoss', 'Fire Temple Boss Door', 'Volvagia Boss Room',
+            'AdultBoss', 'Fire Temple Boss Door', 'Volvagia Boss Room', None,
             'DMC Fire Temple Entrance -> Fire Temple Lower',
             0x0305, 0x0175, [ 0xB062DA, 0xBC60CE ]
         ),
         (
-            'AdultBoss', 'Water Temple Boss Door', 'Morpha Boss Room',
+            'AdultBoss', 'Water Temple Boss Door', 'Morpha Boss Room', 'Water Temple Lobby',
             'Lake Hylia -> Water Temple Lobby',
             0x0417, 0x0423, [ 0xB062E6, 0xBC6196 ]
         ),
         (
-            'AdultBoss', 'Spirit Temple Boss Door', 'Twinrova Boss Room',
+            'AdultBoss', 'Spirit Temple Boss Door', 'Twinrova Boss Room', None,
             'Desert Colossus -> Spirit Temple Lobby',
             0x008D, 0x02F5, [ 0xB062F2, 0xBC6122 ]
         ),
         (
-            'AdultBoss', 'Shadow Temple Boss Door', 'Bongo Bongo Boss Room',
+            'AdultBoss', 'Shadow Temple Boss Door', 'Bongo Bongo Boss Room', None,
             'Graveyard Warp Pad Region -> Shadow Temple Entryway',
             0x0413, 0x02B2, [ 0xB062FE, 0xBC61AA ]
         )
@@ -437,7 +437,7 @@ def _add_boss_entrances():
         d = {'index': index, 'patch_addresses': addresses}
         d.update(dungeon_data[dungeon])
         entrance_shuffle_table.append(
-            (type, (f"{source} -> {target}", d), (f"{target} -> {source}", {'index': rindex}))
+            (type, (f"{source} -> {target}", d), (f"{target} -> {reverse or source}", {'index': rindex}))
         )
 _add_boss_entrances()
 
@@ -913,7 +913,8 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
         # This means we need to hard check that none of the relevant entrances are ever reachable as that age
         # This is mostly relevant when mixing entrance pools or shuffling special interiors (such as windmill or kak potion shop)
         # Warp Songs and Overworld Spawns can also end up inside certain indoors so those need to be handled as well
-        CHILD_FORBIDDEN = ['OGC Great Fairy Fountain -> Castle Grounds', 'GV Carpenter Tent -> GV Fortress Side']
+        # Allowing child to enter Spirit from the boss would severely complicate key logic
+        CHILD_FORBIDDEN = ['OGC Great Fairy Fountain -> Castle Grounds', 'GV Carpenter Tent -> GV Fortress Side', 'Twinrova Boss Room -> Spirit Temple Boss Door']
         ADULT_FORBIDDEN = ['HC Great Fairy Fountain -> Castle Grounds', 'HC Storms Grotto -> Castle Grounds']
 
         for entrance in world.get_shufflable_entrances():
@@ -951,7 +952,7 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
 
     if (
         world.shuffle_interior_entrances and (
-            (world.dungeon_rewards_hinted and 'Boss' in world.settings.mix_entrance_pools) or #TODO also enable if boss reward shuffle is on
+            (world.dungeon_rewards_hinted and world.mixed_pools_bosses) or #TODO also enable if boss reward shuffle is on
             any(hint_type in world.settings.misc_hints for hint_type in misc_item_hint_table) or world.settings.hints != 'none'
         ) and (entrance_placed == None or entrance_placed.type in ['Interior', 'SpecialInterior'])
     ):

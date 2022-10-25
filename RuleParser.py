@@ -379,7 +379,7 @@ class Rule_AST_Transformer(ast.NodeTransformer):
 
             self.current_spot = event
             # This could, in theory, create further subrules.
-            access_rule = self.make_access_rule(self.visit(node))
+            access_rule = self.make_access_rule(self.visit(node), 'create_delayed_rules')
             if access_rule is self.rule_cache.get('NameConstant(False)') or access_rule is self.rule_cache.get('Constant(False)'):
                 event.access_rule = None
                 event.never = True
@@ -395,7 +395,7 @@ class Rule_AST_Transformer(ast.NodeTransformer):
         self.delayed_rules.clear()
 
 
-    def make_access_rule(self, body):
+    def make_access_rule(self, body, filename='make_access_rule'):
         rule_str = ast.dump(body, False)
         if rule_str not in self.rule_cache:
             # requires consistent iteration on dicts
@@ -412,7 +412,7 @@ class Rule_AST_Transformer(ast.NodeTransformer):
                                 kwonlyargs=kwargs,
                                 kw_defaults=kwd),
                             body=body))),
-                    '<string>', 'eval'),
+                    filename, 'eval'),
                     # globals/locals. if undefined, everything in the namespace *now* would be allowed
                     allowed_globals)
             except TypeError as e:
@@ -471,7 +471,7 @@ class Rule_AST_Transformer(ast.NodeTransformer):
     # If spot is None, here() rules won't work.
     def parse_rule(self, rule_string, spot=None):
         self.current_spot = spot
-        return self.make_access_rule(self.visit(ast.parse(rule_string, mode='eval').body))
+        return self.make_access_rule(self.visit(ast.parse(rule_string, mode='eval').body), str(spot or 'parse_rule'))
 
     def parse_spot_rule(self, spot):
         rule = spot.rule_string.split('#', 1)[0].strip()
