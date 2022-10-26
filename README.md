@@ -24,6 +24,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * New “Vanilla” option for the “Shuffle Songs” setting
   * New “Shuffle Dungeon Rewards” setting with “Vanilla Locations” and “Dungeon Reward Locations” options
   * New “Shuffle Other Items” setting which can be disabled to generate vanilla seeds, only shuffle entrances, etc.
+  * New “Bosses” option for the “Mix Entrance Pools” setting
   * New “Mixed Pools Tournament” and “Triforce Blitz” hint distributions
   * New `goal-count` and `playthrough-location` hint types
 * New settings presets:

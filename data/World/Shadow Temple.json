@@ -51,7 +51,7 @@
             "Shadow Temple Huge Pit": "
                 has_explosives and
                     (((Small_Key_Shadow_Temple, 1) and not shadow_temple_shortcuts and not mixed_pools_bosses) or
-                    ((Small_Key_Shadow_Temple, 2) and not shadow_temple_shortcuts)
+                    ((Small_Key_Shadow_Temple, 2) and not shadow_temple_shortcuts) or
                     (Small_Key_Shadow_Temple, 5) or
                     ((Small_Key_Shadow_Temple, 4) and (logic_lens_shadow_platform or can_use(Lens_of_Truth))))",
             "Shadow Temple Boat": "shadow_temple_shortcuts"
