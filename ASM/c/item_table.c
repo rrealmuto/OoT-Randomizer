@@ -298,7 +298,7 @@ item_row_t item_table[] = {
    [0x103] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9045, 0x0199, 0x29, no_upgrade, give_triforce_piece, -1, -1), // Easter egg (blue)
    [0x104] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9046, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1), // Triforce of Power
    [0x105] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9047, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1), // Triforce of Wisdom
-   [0x106] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9048, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1), // Triforce of Courage
+   [0x106] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9049, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1), // Triforce of Courage
 };
 
 item_row_t *get_item_row(uint16_t item_id) {
