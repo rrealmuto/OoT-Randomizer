@@ -39,8 +39,12 @@ z64_actor_t* Actor_SpawnEntry_Hack(void* actorCtx, ActorEntry* actorEntry, z64_g
         {
             if(SHUFFLE_SILVER_RUPEES)
             {
-                newParams = 0;
-                newID = EN_ITEM00;
+                uint8_t type = (actorEntry->params >> 0x0C) & 0xF;
+                if(type == 1) // only override actual silver rupees, not the switches or pots.
+                {
+                    newParams = 0;
+                    newID = EN_ITEM00;
+                }
                 break;
             }
         }
