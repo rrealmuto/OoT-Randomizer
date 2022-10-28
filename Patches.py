@@ -92,6 +92,22 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     update_dmadata(rom, keyring_obj_file)
     # Add it to the extended object table
     add_to_extended_object_table(rom, 0x195, keyring_obj_file)
+    # Build a Silver Rupee model from the Huge Rupee model
+    silver_rupee_obj_file = File({
+        'Name': 'object_gi_rupy',
+        'Start': '01914000',
+        'End': '01914800',
+    })
+    silver_rupee_obj_file.copy(rom)
+    # Update colors for the Silver Rupee variant
+    rom.write_bytes(silver_rupee_obj_file.start + 0x052C, [0xAA, 0xAA, 0xAA]) # Inner Primary Color?
+    rom.write_bytes(silver_rupee_obj_file.start + 0x0534, [0x5A, 0x5A, 0x5A]) # Inner Env Color?
+    rom.write_bytes(silver_rupee_obj_file.start + 0x05CC, [0xFF, 0xFF, 0xFF]) # Outer Primary Color?
+    rom.write_bytes(silver_rupee_obj_file.start + 0x05D4, [0xFF, 0xFF, 0xFF]) # Outer Env Color?
+    update_dmadata(rom, silver_rupee_obj_file)
+    # Add it to the extended object table
+    add_to_extended_object_table(rom, 0x196, silver_rupee_obj_file)
+
 
     # Create the textures for pots/crates. Note: No copyrighted material can be distributed w/ the randomizer. Because of this, patch files are used to create the new textures from the original texture in ROM.
     # Apply patches for custom textures for pots and crates and add as new files in rom
@@ -1430,6 +1446,11 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             save_context.addresses['dungeon_items'][dungeon]['compass'].value = True
             save_context.addresses['dungeon_items'][dungeon]['map'].value = True
 
+    # start with silver rupees
+    if world.settings.shuffle_silver_rupees == 'remove':
+        for puzzle in world.silver_rupee_puzzles():
+            save_context.give_item(world, f'Silver Rupee ({puzzle})', float('inf'))
+
     if world.settings.shuffle_smallkeys == 'vanilla':
         if world.dungeon_mq['Spirit Temple']:
             save_context.addresses['keys']['spirit'].value = 3
@@ -1711,6 +1732,16 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             patch_actor_override(location, rom)
         for location in rupeetower_locations:
             patch_rupee_tower(location, rom)
+
+    if world.shuffle_silver_rupees:
+        rom.write_byte(rom.sym('SHUFFLE_SILVER_RUPEES'), 1)
+        silver_rupee_locations = [location for location in world.get_locations() if location.type == 'SilverRupee']
+        
+        if world.dungeon_mq['Dodongos Cavern']: #Patch DC MQ Staircase Transition Actor to use permanent switch flag 0x1F
+            rom.write_byte(0x1F12190+15, 0x9F)
+
+        if world.dungeon_mq['Spirit Temple']: #Patch Spirit MQ Lobby front right chest to use permanent switch flag 0x1F
+            rom.write_byte(0x2b08ce4+13, 0x1F )
 
     # Write flag table data
     collectible_flag_table, alt_list = get_collectible_flag_table(world)
@@ -2380,7 +2411,7 @@ def get_override_entry(location):
     elif location.type == 'Chest':
         type = 1
         default &= 0x1F
-    elif location.type in ['Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive']:
+    elif location.type in ['Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive', 'SilverRupee']:
         type = 6
         if not (isinstance(location.default, list) or isinstance(location.default, tuple)):
             raise Exception("Not right")

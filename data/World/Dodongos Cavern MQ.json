@@ -45,6 +45,15 @@
             "Dodongos Cavern MQ Staircase Crate Mid Right": "can_break_crate",
             "Dodongos Cavern MQ Staircase Crate Top Left": "can_break_crate",
             "Dodongos Cavern MQ Staircase Crate Top Right": "can_break_crate",
+            "Dodongos Cavern MQ Staircase Beamos Silver Rupee": "True",
+            # Entering the staircase room requires strength, hammer, or explosives.
+            # Strength can be used for the bottom crate silver rupee near the
+            # staircase bomb flowers. The other two crates above the staircase require
+            # another way to destroy with one bonk ko.
+            "Dodongos Cavern MQ Staircase Lower Crate Silver Rupee": "True",
+            "Dodongos Cavern MQ Staircase Mid Left Crate Silver Rupee": "can_bonk_crate",
+            "Dodongos Cavern MQ Staircase Vines Silver Rupee": "True",
+            "Dodongos Cavern MQ Staircase Top Right Crate Silver Rupee": "can_bonk_crate",
             "Dodongos Cavern MQ GS Song of Time Block Room": "
                 can_play(Song_of_Time) and (can_child_attack or is_adult)",
             "Deku Baba Sticks": "is_adult or Kokiri_Sword or Boomerang"

@@ -45,9 +45,14 @@
         "region_name": "Shadow Temple First Beamos",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple MQ Map Chest": "True",
+            "Shadow Temple MQ Map Chest": "(Silver_Rupee_Shadow_Temple_Scythe_Shortcut, 5)",
             "Shadow Temple MQ Early Gibdos Chest": "True",
-            "Shadow Temple MQ Near Ship Invisible Chest": "True"
+            "Shadow Temple MQ Near Ship Invisible Chest": "True",
+            "Shadow Temple MQ Scythe Shortcut Silver Rupee 1": "True",
+            "Shadow Temple MQ Scythe Shortcut Silver Rupee 2": "True",
+            "Shadow Temple MQ Scythe Shortcut Silver Rupee 3": "True",
+            "Shadow Temple MQ Scythe Shortcut Silver Rupee 4": "True",
+            "Shadow Temple MQ Scythe Shortcut Silver Rupee 5": "True"
         },
         # When shadow shortcuts are on, the central areas of the dungeon will require all 6 keys to
         # access. However, the final locked door does not actually prevent you from reaching any area
@@ -82,11 +87,27 @@
         "dungeon": "Shadow Temple",
         "locations": {
             "Shadow Temple MQ Invisible Blades Visible Chest": "
-                logic_lens_shadow_mq_invisible_blades or can_use(Lens_of_Truth) or can_use(Nayrus_Love)",
+                (Silver_Rupee_Shadow_Temple_Invisible_Blades, 10) and 
+                    (logic_lens_shadow_mq_invisible_blades or 
+                    can_use(Lens_of_Truth) or
+                    can_use(Nayrus_Love))",
             "Shadow Temple MQ Invisible Blades Invisible Chest": "
-                logic_lens_shadow_mq_invisible_blades or can_use(Lens_of_Truth) or can_use(Nayrus_Love)",
+                (Silver_Rupee_Shadow_Temple_Invisible_Blades, 10) and 
+                    (logic_lens_shadow_mq_invisible_blades or 
+                    can_use(Lens_of_Truth) or
+                    can_use(Nayrus_Love))",
             "Shadow Temple MQ Invisible Blades Recovery Heart 1": "True",
-            "Shadow Temple MQ Invisible Blades Recovery Heart 2": "True"
+            "Shadow Temple MQ Invisible Blades Recovery Heart 2": "True",
+            "Shadow Temple MQ Invisible Blades Silver Rupee 1" : "True",
+            "Shadow Temple MQ Invisible Blades Silver Rupee 2" : "True",
+            "Shadow Temple MQ Invisible Blades Silver Rupee 3" : "True",
+            "Shadow Temple MQ Invisible Blades Silver Rupee 4" : "True",
+            "Shadow Temple MQ Invisible Blades Silver Rupee 5" : "True",
+            "Shadow Temple MQ Invisible Blades Silver Rupee 6" : "True",
+            "Shadow Temple MQ Invisible Blades Silver Rupee 7" : "True",
+            "Shadow Temple MQ Invisible Blades Silver Rupee 8" : "True",
+            "Shadow Temple MQ Invisible Blades Silver Rupee 9" : "True",
+            "Shadow Temple MQ Invisible Blades Silver Rupee 10" : "can_play(Song_of_Time)"
         }
     },
     {
@@ -107,7 +128,12 @@
         "region_name": "Shadow Temple Falling Spikes",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple MQ Beamos Silver Rupees Chest": "Longshot",
+            "Shadow Temple MQ Beamos Silver Rupees Chest": "(Silver_Rupee_Shadow_Temple_Huge_Pit, 5)",
+            "Shadow Temple MQ Huge Pit Silver Rupee 1" : "True",
+            "Shadow Temple MQ Huge Pit Silver Rupee 2" : "Longshot",
+            "Shadow Temple MQ Huge Pit Silver Rupee 3" : "Longshot",
+            "Shadow Temple MQ Huge Pit Silver Rupee 4" : "True",
+            "Shadow Temple MQ Huge Pit Silver Rupee 5" : "True",
             "Shadow Temple MQ Falling Spikes Lower Chest": "True",
             "Shadow Temple MQ Falling Spikes Upper Chest": "
                 (logic_shadow_umbrella and Hover_Boots) or Progressive_Strength_Upgrade",
@@ -127,8 +153,18 @@
         "region_name": "Shadow Temple Invisible Spikes",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple MQ Invisible Spikes Chest": "True",
-            "Shadow Temple MQ Stalfos Room Chest": "Hookshot"
+            "Shadow Temple MQ Invisible Spikes Chest": "(Silver_Rupee_Shadow_Temple_Invisible_Spikes, 10)",
+            "Shadow Temple MQ Stalfos Room Chest": "Hookshot",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee 1": "True",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee 2": "True",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee 3": "True",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee 4": "True",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee 5": "True",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee 6": "True",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee 7": "True",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee 8": "True",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee 9": "True",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee 10": "True"
         },
         "exits": {
             "Shadow Temple Wind Tunnel": "Hookshot and (Small_Key_Shadow_Temple, 4)",

@@ -23,30 +23,41 @@
     {
         "region_name": "Child Spirit Temple",
         "dungeon": "Spirit Temple",
+        "exits": {
+            "Child Spirit Temple Loop": "Sticks or has_explosives or ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot))",
+            "Child Spirit Before Locked Door": "True"
+        }
+    },
+    {
+        "region_name": "Child Spirit Temple Loop",
+        "dungeon": "Spirit Temple",
         "locations": {
-            "Spirit Temple Child Bridge Chest": "
-                (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and
-                (Sticks or has_explosives or
-                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))",
             "Deku Shield Pot": "
                 fix_broken_drops and
                 (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and
                 (Sticks or has_explosives or
                     ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))",
-            "Spirit Temple Child Early Torches Chest": "
-                (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and
-                (Sticks or has_explosives or
-                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot))) and
-                (Sticks or can_use(Dins_Fire))",
-            "Spirit Temple Child Bridge Flying Pot": "True",
-            "Spirit Temple Child Anubis Pot": "True",
-            "Spirit Temple GS Metal Fence": "
-                (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu)) and
-                (Sticks or has_explosives or
-                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))"
+            "Spirit Temple GS Metal Fence": "Boomerang or ((Silver_Rupee_Spirit_Temple_Child_Early_Torches, 5) and has_projectile(child))"
         },
         "exits": {
-            "Child Spirit Before Locked Door": "True"
+            "Child Spirit Beyond Metal Bridges": "Boomerang or Slingshot or
+                (has_bombchus and logic_spirit_child_bombchu) or
+                (Silver_Rupee_Spirit_Temple_Child_Early_Torches, 5)"
+        }
+    },
+    {
+        "region_name": "Child Spirit Beyond Metal Bridges",
+        "dungeon": "Spirit Temple",
+        "locations": {
+            "Spirit Temple Child Bridge Chest": "True",
+            "Spirit Temple Child Bridge Flying Pot": "True",
+            "Spirit Temple Child Anubis Pot": "True",
+            "Spirit Temple Child Early Torches Chest": "Sticks or can_use(Dins_Fire)",
+            "Spirit Temple Child Early Torches Silver Rupee Top Right": "True",
+            "Spirit Temple Child Early Torches Silver Rupee Bottom Right": "True",
+            "Spirit Temple Child Early Torches Silver Rupee Bottom Left": "True",
+            "Spirit Temple Child Early Torches Silver Rupee Top Left": "True",
+            "Spirit Temple Child Early Torches Silver Rupee Near Torch": "True"
         }
     },
     {
@@ -65,30 +76,40 @@
         "region_name": "Early Adult Spirit Temple",
         "dungeon": "Spirit Temple",
         "locations": {
-            "Spirit Temple Compass Chest": "Hookshot and can_play(Zeldas_Lullaby)",
-            # The mid-air silver rupee can be collected with a jumpslash.
-            "Spirit Temple Early Adult Right Chest": "
-                Bow or Hookshot or has_bombchus or (Bombs and logic_spirit_lower_adult_switch)",
-            "Spirit Temple GS Boulder Room": "
-                can_play(Song_of_Time) and
-                (Bow or Hookshot or has_bombchus or (Bombs and logic_spirit_lower_adult_switch))"
+            "Spirit Temple Compass Chest": "Hookshot and can_play(Zeldas_Lullaby)"
         },
         "exits": {
+            "Spirit Temple Boulder Room": "
+                Bow or Hookshot or has_bombchus or
+                (Bombs and logic_spirit_lower_adult_switch)",
             "Spirit Temple Central Chamber": "(Small_Key_Spirit_Temple, 1)",
             "Adult Spirit Temple Climb": "(Small_Key_Spirit_Temple, 3)"
         }
     },
-    # In the following two regions, child and adult reachability actually means age-unknown, but with
-    # the caveat that that age can potentially enter the area. Routes must be anded with 5 keys for
-    # child or 3 keys (or shortcuts on) for adult before they can use only items specific to that age.
-    # Age-unknown routes do not specify age and must include the necessary items for both ages, so
-    # that the checks can be collected regardless of which age actually has entered the area.
-    # Routes that use two keys are age-unknown, where the checks are expected to be collected as
-    # adult, but child might collect them instead if out-of-logic explosives have been found. Checking
-    # bombchus_in_logic on and entrance_shuffle off ensures that those explosives cannot be exhausted.
-    # Age-unknown logic is not deadend-proof in rare cases where some non-repeatable access is used
-    # to reach the temple (only possible with Entrance Randomizer). This trade-off is worth it to
-    # increase item placement variety, particularly when keys are shuffled within their own dungeons.
+    {
+        "region_name": "Spirit Temple Boulder Room",
+        "dungeon": "Spirit Temple",
+        "locations": {
+            "Spirit Temple Early Adult Right Chest": "(Silver_Rupee_Spirit_Temple_Adult_Boulders, 5)",
+            "Spirit Temple Adult Boulder Silver Rupee Ledge": "True", # Can be collected with a jumpslash.
+            "Spirit Temple Adult Boulder Silver Rupee Front Left": "True",
+            "Spirit Temple Adult Boulder Silver Rupee Front Right": "True",
+            "Spirit Temple Adult Boulder Silver Rupee Back Right": "True",
+            "Spirit Temple Adult Boulder Silver Rupee Back Left": "True",
+            "Spirit Temple GS Boulder Room": "can_play(Song_of_Time)"
+        }
+    },
+    #In the following two regions, child and adult reachability actually means age-unknown, but with
+    #the caveat that that age can potentially enter the area. Routes must be anded with 5 keys for
+    #child or 3 keys (or shortcuts on) for adult before they can use only items specific to that age.
+    #Age-unknown routes do not specify age and must include the necessary items for both ages, so
+    #that the checks can be collected regardless of which age actually has entered the area.
+    #Routes that use two keys are age-unknown, where the checks are expected to be collected as
+    #adult, but child might collect them instead if out-of-logic explosives have been found. Checking
+    #bombchus_in_logic on and entrance_shuffle off ensures that those explosives cannot be exhausted.
+    #Age-unknown logic is not deadend-proof in rare cases where some non-repeatable access is used
+    #to reach the temple (only possible with Entrance Randomizer). This trade-off is worth it to
+    #increase item placement variety, particularly when keys are shuffled within their own dungeons.
     {
         "region_name": "Child Spirit Temple Climb",
         "dungeon": "Spirit Temple",
@@ -135,16 +156,21 @@
                     (has_explosives or ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)))",
             "Spirit Temple Sun Block Room Chest": "
                 (is_child and Sticks and
-                    (Small_Key_Spirit_Temple, 5)) or
+                    (Small_Key_Spirit_Temple, 5) and (Silver_Rupee_Spirit_Temple_Sun_Block, 5)) or
                 (is_adult and (has_fire_source or (logic_spirit_sun_chest and Bow)) and
                     ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts)) or
-                ((can_use(Dins_Fire) or (((Magic_Meter and Fire_Arrows) or logic_spirit_sun_chest) and Bow and Sticks)) and
+                ((can_use(Dins_Fire) or (((Magic_Meter and Fire_Arrows) or logic_spirit_sun_chest) and Bow and Sticks and (Silver_Rupee_Spirit_Temple_Sun_Block, 5))) and
                     (has_explosives or ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)))",
-            # With longshot and explosives, right hand is reachable as adult after opening either
-            # upper door. Because some of the keys cannot be spent without adult accessing the
-            # main body of the dungeon, this route is able to be age-unknown, where child can be
-            # expected to reach it as long as adult cannot enter. Because we cannot truly know
-            # whether adult can enter, child must still possess the items that adult would use.
+            "Spirit Temple Sun Block Room Silver Rupee Left" : "True",
+            "Spirit Temple Sun Block Room Silver Rupee Center Front" : "True",
+            "Spirit Temple Sun Block Room Silver Rupee Center Back" : "True",
+            "Spirit Temple Sun Block Room Silver Rupee Right Front" : "True",
+            "Spirit Temple Sun Block Room Silver Rupee Right Back" : "True",
+            #With longshot and explosives, right hand is reachable as adult after opening either
+            #upper door. Because some of the keys cannot be spent without adult accessing the
+            #main body of the dungeon, this route is able to be age-unknown, where child can be
+            #expected to reach it as long as adult cannot enter. Because we cannot truly know
+            #whether adult can enter, child must still possess the items that adult would use.
             "Spirit Temple Silver Gauntlets Chest": "
                 (Small_Key_Spirit_Temple, 5) or
                 (has_explosives and Longshot and (Small_Key_Spirit_Temple, 3))",

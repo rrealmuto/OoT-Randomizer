@@ -6,6 +6,9 @@
 #define OBJ_MURE3           0x1AB
 #define OBJ_TSUBO           0x0111
 #define EN_ITEM00           0x0015
+#define EN_G_SWITCH         0x0117 //Silver Rupee
+
+extern uint8_t SHUFFLE_SILVER_RUPEES;
 
 void Actor_SetWorldToHome_End(z64_actor_t *actor) {
     // Reset rotations to 0 for any actors that it gets passed into the spawn params
@@ -24,4 +27,26 @@ void Actor_SetWorldToHome_End(z64_actor_t *actor) {
         default:
             break;
     } 
+}
+
+z64_actor_t* Actor_SpawnEntry_Hack(void* actorCtx, ActorEntry* actorEntry, z64_game_t* globalCtx){
+    uint16_t newParams = actorEntry->params;
+    uint16_t newID = actorEntry->id;
+
+    switch(actorEntry->id)
+    {
+        case(EN_G_SWITCH):
+        {
+            if(SHUFFLE_SILVER_RUPEES)
+            {
+                newParams = 0;
+                newID = EN_ITEM00;
+                break;
+            }
+        }
+        default:
+            break;
+    }
+    return z64_SpawnActor(actorCtx, globalCtx, newID, actorEntry->pos.x, actorEntry->pos.y, actorEntry->pos.z,
+                       actorEntry->rot.x, actorEntry->rot.y, actorEntry->rot.z, newParams);
 }

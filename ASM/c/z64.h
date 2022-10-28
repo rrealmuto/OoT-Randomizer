@@ -831,6 +831,13 @@ struct z64_actor_s
                                     /* 0x013C */
 };
 
+typedef struct {
+    /* 0x00 */ uint16_t   id;
+    /* 0x02 */ z64_xyz_t pos;
+    /* 0x08 */ z64_xyz_t rot;
+    /* 0x0E */ uint16_t   params;
+} ActorEntry; // size = 0x10
+
 typedef struct
 {
   z64_actor_t  common;               /* 0x0000 */
@@ -1695,7 +1702,7 @@ typedef void(*z64_Audio_PlayFanFareFunc)(uint16_t);
 typedef void (*z64_DrawActors_proc)       (z64_game_t *game, void *actor_ctxt);
 typedef void (*z64_DeleteActor_proc)      (z64_game_t *game, void *actor_ctxt,
                                            z64_actor_t *actor);
-typedef void (*z64_SpawnActor_proc)       (void *actor_ctxt, z64_game_t *game,
+typedef z64_actor_t* (*z64_SpawnActor_proc)       (void *actor_ctxt, z64_game_t *game,
                                            int actor_id, float x, float y,
                                            float z, uint16_t rx, uint16_t ry,
                                            uint16_t rz, uint16_t variable);

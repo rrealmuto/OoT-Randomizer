@@ -75,7 +75,12 @@
         },
         "locations": {
             "Ganons Castle MQ Water Trial Pot 1": "True",
-            "Ganons Castle MQ Water Trial Pot 2": "True"
+            "Ganons Castle MQ Water Trial Pot 2": "True",
+            "Ganons Castle MQ Water Trial Silver Rupee 1" : "Blue_Fire",
+            "Ganons Castle MQ Water Trial Silver Rupee 2" : "Blue_Fire",
+            "Ganons Castle MQ Water Trial Silver Rupee 3" : "Blue_Fire",
+            "Ganons Castle MQ Water Trial Silver Rupee 4" : "Blue_Fire",
+            "Ganons Castle MQ Water Trial Silver Rupee 5" : "Blue_Fire",
         }
     },
     {
@@ -85,7 +90,20 @@
             "Ganons Castle MQ Shadow Trial Bomb Flower Chest": "
                 (Bow and (Hookshot or Hover_Boots)) or
                 (Hover_Boots and (logic_lens_castle_mq or can_use(Lens_of_Truth)) and
-                    (has_explosives or Progressive_Strength_Upgrade or can_use(Dins_Fire)))"
+                    (has_explosives or Progressive_Strength_Upgrade or can_use(Dins_Fire)))",
+            "Ganons Castle MQ Shadow Trial Silver Rupee 1" : "
+                (logic_lens_castle_mq or can_use(Lens_of_Truth)) and 
+                    ((Bow and can_use(Hookshot)) or can_use(Hover_Boots))",
+            "Ganons Castle MQ Shadow Trial Silver Rupee 2" : "
+                (logic_lens_castle_mq or can_use(Lens_of_Truth)) and 
+                    ((Bow and can_use(Hookshot)) or can_use(Hover_Boots))",
+            "Ganons Castle MQ Shadow Trial Silver Rupee 3" : "(logic_lens_castle_mq or can_use(Lens_of_Truth)) and 
+                (can_use(Hover_Boots) or (can_use(Hookshot) and (has_fire_source or logic_shadow_trial_mq)))",
+            "Ganons Castle MQ Shadow Trial Silver Rupee 4" : "(logic_lens_castle_mq or can_use(Lens_of_Truth)) and 
+                (can_use(Hover_Boots) or (can_use(Hookshot) and (has_fire_source or logic_shadow_trial_mq)))",
+            "Ganons Castle MQ Shadow Trial Silver Rupee 5" : "
+                (logic_lens_castle_mq or can_use(Lens_of_Truth)) and
+                    ((Bow and can_use(Hookshot)) or can_use(Hover_Boots))"
         },
         "exits": {
             "Ganons Castle Shadow Trial Ending": "
@@ -113,7 +131,12 @@
         },
         "locations": {
             "Ganons Castle MQ Fire Trial Pot 1": "True",
-            "Ganons Castle MQ Fire Trial Pot 2": "True"
+            "Ganons Castle MQ Fire Trial Pot 2": "True",
+            "Ganons Castle MQ Fire Trial Silver Rupee 1": "can_use(Goron_Tunic) and can_use(Golden_Gauntlets)",
+            "Ganons Castle MQ Fire Trial Silver Rupee 2": "can_use(Goron_Tunic)",
+            "Ganons Castle MQ Fire Trial Silver Rupee 3": "can_use(Goron_Tunic) and can_use(Golden_Gauntlets)",
+            "Ganons Castle MQ Fire Trial Silver Rupee 4": "can_use(Goron_Tunic)",
+            "Ganons Castle MQ Fire Trial Silver Rupee 5": "can_use(Goron_Tunic)"
         }
     },
     {

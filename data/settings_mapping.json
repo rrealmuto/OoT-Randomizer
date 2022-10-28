@@ -220,6 +220,7 @@
             "ganon_bosskey_rewards",
             "ganon_bosskey_tokens",
             "ganon_bosskey_hearts",
+            "shuffle_silver_rupees",
             "enhance_map_compass"
           ]
         }

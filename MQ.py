@@ -212,6 +212,8 @@ class Scene(object):
         update_scene_table(rom, self.id, self.file.start, self.file.end)
 
         # write room file data
+        logger = logging.getLogger('')
+        logger.info(self.id)
         for room in self.rooms:
             room.write_data(rom)
             if self.id == 6 and room.id == 6:
@@ -380,6 +382,7 @@ class Room(object):
 
         code = rom.read_byte(headcur)
         loop = 0x20
+
         while loop != 0 and code != 0x14: #terminator
             loop -= 1
 

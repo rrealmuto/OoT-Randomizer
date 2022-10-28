@@ -5,7 +5,7 @@ from Utils import data_path
 
 
 class Dungeon:
-    def __init__(self, world, name, hint):
+    def __init__(self, world, name, hint, silver_rupees=None):
         self.world = world
         self.name = name
         self.hint = hint
@@ -13,6 +13,7 @@ class Dungeon:
         self.boss_key = []
         self.small_keys = []
         self.dungeon_items = []
+        self.silver_rupees = silver_rupees if silver_rupees is not None else []
 
         for region in world.regions:
             if region.dungeon == self.name:
@@ -26,6 +27,7 @@ class Dungeon:
         new_dungeon.boss_key = [item.copy(new_world) for item in self.boss_key]
         new_dungeon.small_keys = [item.copy(new_world) for item in self.small_keys]
         new_dungeon.dungeon_items = [item.copy(new_world) for item in self.dungeon_items]
+        new_dungeon.silver_rupees = [item.copy(new_world) for item in self.silver_rupees]
 
         return new_dungeon
 
@@ -37,7 +39,7 @@ class Dungeon:
 
     @property
     def all_items(self):
-        return self.dungeon_items + self.keys
+        return self.dungeon_items + self.keys + self.silver_rupees
 
 
     def item_name(self, text):

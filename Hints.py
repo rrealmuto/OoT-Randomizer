@@ -135,7 +135,8 @@ def is_restricted_dungeon_item(item):
         ((item.map or item.compass) and item.world.settings.shuffle_mapcompass == 'dungeon') or
         (item.type == 'SmallKey' and item.world.settings.shuffle_smallkeys == 'dungeon') or
         (item.type == 'BossKey' and item.world.settings.shuffle_bosskeys == 'dungeon') or
-        (item.type == 'GanonBossKey' and item.world.settings.shuffle_ganon_bosskey == 'dungeon')
+        (item.type == 'GanonBossKey' and item.world.settings.shuffle_ganon_bosskey == 'dungeon') or
+        (item.type == 'SilverRupee' and item.world.settings.shuffle_silver_rupees == 'dungeon')
     )
 
 
