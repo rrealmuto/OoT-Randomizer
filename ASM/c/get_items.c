@@ -160,6 +160,10 @@ override_t lookup_override(z64_actor_t *actor, uint8_t scene, uint8_t item_id) {
     return lookup_override_by_key(search_key);
 }
 
+
+//Checks for the existence of override_key within the alternative override table and returns it
+// override_key: The key to search for in the alternative override table
+// Returns: The primary key to use if an alternative override is found in the table. Otherwise returns override_key
 override_key_t resolve_alternative_override(override_key_t override_key)
 {
     alt_override_t* alt = &alt_overrides[0];

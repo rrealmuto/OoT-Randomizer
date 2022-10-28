@@ -104,8 +104,7 @@ void draw_flying_pot_hack(z64_actor_t* actor, z64_game_t *game) {
     draw_pot(actor, game, get_flying_pot_override(actor, game));
 }
 
-void EnTuboTrap_DropCollectible_Hack(z64_actor_t* this, z64_game_t* game)
-{
+void EnTuboTrap_DropCollectible_Hack(z64_actor_t* this, z64_game_t* game) {
     int16_t params = this->variable;
     int16_t param3FF = (params >> 6) & 0x3FF;
 

@@ -217,7 +217,7 @@ drop_collectible_hook:
     sw      t1, 0x1C(sp) ; put the flag in the y rotation parameter which is at 0x1C(sp)
 
 ; Hook Item_DropCollectible to not set the room to -1 if we are going to be overriding the collectible.
-; This will allow the collectible to despawn when switching rooms and allow us to keep track of the original room easier.
+; This will cause overridden collectibles to despawn when switching rooms. 
 drop_collectible_room_hook:
     addiu   sp, sp, -0x20
     sw      a0, 0x10(sp)
