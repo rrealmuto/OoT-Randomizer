@@ -66,6 +66,9 @@ bool spawn_override_silver_rupee(ActorEntry* actorEntry, z64_game_t* globalCtx){
         {
             actorEntry->params = 0;
             actorEntry->id = EN_ITEM00;
+            return true;
         }
+        return false;
     }
+    return true;
 }
