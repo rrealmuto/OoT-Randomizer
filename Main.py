@@ -24,7 +24,7 @@ from Fill import distribute_items_restrictive, ShuffleError
 from Item import Item
 from ItemPool import generate_itempool
 from Hints import buildGossipHints
-from HintList import clearHintExclusionCache, misc_item_hint_table
+from HintList import clearHintExclusionCache, misc_item_hint_table, misc_location_hint_table
 from Utils import default_output_path, is_bundled, run_process, data_path
 from Models import patch_model_adult, patch_model_child
 from N64Patch import create_patch_file, apply_patch_file
@@ -207,7 +207,7 @@ def make_spoiler(settings, worlds, window=dummy_window()):
         update_goal_items(spoiler)
         buildGossipHints(spoiler, worlds)
         window.update_progress(55)
-    elif any(world.dungeon_rewards_hinted for world in worlds) or any(hint_type in settings.misc_hints for hint_type in misc_item_hint_table):
+    elif any(world.dungeon_rewards_hinted for world in worlds) or any(hint_type in settings.misc_hints for hint_type in misc_item_hint_table) or any(hint_type in settings.misc_hints for hint_type in misc_location_hint_table):
         find_misc_hint_items(spoiler)
     spoiler.build_file_hash()
     return spoiler

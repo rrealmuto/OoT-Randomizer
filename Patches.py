@@ -11,7 +11,7 @@ from Spoiler import Spoiler
 from LocationList import business_scrubs
 from HintList import getHint
 from Hints import HintArea, writeGossipStoneHints, buildAltarHints, \
-        buildGanonText, buildMiscItemHints, getSimpleHintNoPrefix, getItemGenericName
+        buildGanonText, buildMiscItemHints, buildMiscLocationHints, getSimpleHintNoPrefix, getItemGenericName
 from Utils import data_path
 from Messages import read_messages, update_message_by_id, read_shop_items, update_warp_song_text, \
         write_shop_items, remove_unused_messages, make_player_message, \
@@ -1682,6 +1682,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     # build misc. item hints
     buildMiscItemHints(world, messages)
+
+    # build misc. location hints
+    buildMiscLocationHints(world, messages)
 
     # Write item overrides
     override_table = get_override_table(world)

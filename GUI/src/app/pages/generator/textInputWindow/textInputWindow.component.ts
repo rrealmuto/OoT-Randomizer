@@ -29,7 +29,7 @@ export class TextInputWindow {
 
   inputText: string = "";
 
-  @ViewChild("inputBar") inputBarRef: ElementRef;
+  @ViewChild("inputBar", { static: true }) inputBarRef: ElementRef;
 
   constructor(protected ref: NbDialogRef<TextInputWindow>) {
   }

@@ -45,11 +45,11 @@
             "Dodongos Cavern King Dodongo Heart": "
                 ((can_use(Megaton_Hammer) and logic_dc_hammer_floor) or
                     has_explosives or king_dodongo_shortcuts) and
-                (((Bombs or Progressive_Strength_Upgrade) and can_jumpslash) or deadly_bonks)",
+                (((Bombs or Progressive_Strength_Upgrade) and can_jumpslash) or deadly_bonks == 'ohko')",
             "King Dodongo": "
                 ((can_use(Megaton_Hammer) and logic_dc_hammer_floor) or
                     has_explosives or king_dodongo_shortcuts) and
-                (((Bombs or Progressive_Strength_Upgrade) and can_jumpslash) or deadly_bonks)",
+                (((Bombs or Progressive_Strength_Upgrade) and can_jumpslash) or deadly_bonks == 'ohko')",
             "Fairy Pot": "has_bottle"
         },
         "exits": {

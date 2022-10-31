@@ -95,6 +95,8 @@ div.record-picker {
 }
 
 .record-picker label {
+  display: inline-block;
+  line-height: 1.25;
   cursor: pointer;
   font-weight: inherit;
   font-size: 14px;
@@ -226,7 +228,7 @@ button.pull-left {
   width: 100%;
   padding-bottom: 0.3rem !important;
 
-  /deep/ button {
+  :host ::ng-deep button {
     max-width: 100% !important;
     width: 100% !important;
   }

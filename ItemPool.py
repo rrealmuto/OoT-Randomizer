@@ -243,7 +243,7 @@ IGNORE_LOCATION = 'Recovery Heart'
 pending_junk_pool = []
 junk_pool = []
 
-exclude_from_major = [ 
+exclude_from_major = [
     'Deliver Letter',
     'Sell Big Poe',
     'Magic Bean',
@@ -254,8 +254,8 @@ exclude_from_major = [
     'Bombchus (20)',
     'Odd Potion',
     'Triforce Piece',
-    'Heart Container', 
-    'Piece of Heart', 
+    'Heart Container',
+    'Piece of Heart',
     'Piece of Heart (Treasure Chest Game)',
 ]
 
@@ -273,6 +273,10 @@ item_groups = {
     'ProgressItem': sorted([name for name, item in ItemInfo.items.items() if item.type == 'Item' and item.advancement]),
     'MajorItem': sorted([name for name, item in ItemInfo.items.items() if item.type in ['Item', 'Song'] and item.advancement and name not in exclude_from_major]),
     'DungeonReward': [item.name for item in sorted([i for n, i in ItemInfo.items.items() if i.type == 'DungeonReward'], key=lambda x: x.special['item_id'])],
+    'Map': sorted([name for name, item in ItemInfo.items.items() if item.type == 'Map']),
+    'Compass': sorted([name for name, item in ItemInfo.items.items() if item.type == 'Compass']),
+    'BossKey': sorted([name for name, item in ItemInfo.items.items() if item.type == 'BossKey']),
+    'SmallKey': sorted([name for name, item in ItemInfo.items.items() if item.type == 'SmallKey']),
 
     'ForestFireWater': ('Forest Medallion', 'Fire Medallion', 'Water Medallion'),
     'FireWater': ('Fire Medallion', 'Water Medallion'),

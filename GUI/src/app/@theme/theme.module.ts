@@ -1,7 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import {
   NbActionsModule,
@@ -43,7 +42,6 @@ import {
 import {
   GUILayoutComponent
 } from './layouts';
-import { GUI_THEME } from './styles/theme.gui';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -60,7 +58,6 @@ const NB_MODULES = [
   NbCheckboxModule,
   NbPopoverModule,
   NbContextMenuModule,
-  NgbModule,
   NbProgressBarModule,
   NbCalendarModule,
   NbCalendarRangeModule,
@@ -90,9 +87,8 @@ const ENTRY_COMPONENTS = [];
 const NB_THEME_PROVIDERS = [
   ...NbThemeModule.forRoot(
     {
-      name: 'corporate',
+      name: 'default',
     },
-    [ GUI_THEME ],
   ).providers,
   ...NbSidebarModule.forRoot().providers,
   ...NbMenuModule.forRoot().providers,
