@@ -829,6 +829,11 @@ def patch_instrument(rom, settings, log, symbols):
     log.sfx['Ocarina'] = ocarina_options[choice]
 
 def patch_voices(rom, settings, log, symbols):
+    if settings.disable_custom_music:
+        if settings.sfx_link_child != 'default' or settings.sfx_link_adult != 'default':
+            log.errors.append("Link's Voice is not patched into outputted ZPF.")
+        return
+
     # Link's Voice Replacement Files
     override_voice(rom, settings)
     # Resolve random settings

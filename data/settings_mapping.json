@@ -403,30 +403,28 @@
           ]
         },
         {
-          "name": "playermodels_section_electron",
+          "name": "playermodels_section_generator",
           "text": "Player Models",
-          "exclude_from_web": true,
-          "app_type": ["generator", "patcher"],
+          "app_type": ["generator"],
           "col_span": 2,
           "row_span": [2,2,2],
           "settings": [
             "model_adult",
             "model_adult_filepicker",
             "model_child",
-            "model_child_filepicker"
+            "model_child_filepicker",
+            "model_unavailable_msg"
           ]
         },
         {
-          "name": "playermodels_section_web",
+          "name": "playermodels_section_patcher",
           "text": "Player Models",
           "exclude_from_electron": true,
           "app_type": ["patcher"],
           "col_span": 2,
           "row_span": [2,2,2],
           "settings": [
-            "model_adult",
             "model_adult_filepicker",
-            "model_child",
             "model_child_filepicker"
           ]
         },
@@ -543,8 +541,23 @@
           ]
         },
         {
-          "name": "linksfx_section",
+          "name": "linksfx_section_generator",
           "text": "Link",
+          "app_type": ["generator"],
+          "is_sfx": true,
+          "col_span": 2,
+          "row_span": [6,6,6],
+          "settings": [
+            "sfx_link_adult",
+            "sfx_link_child",
+            "sfx_link_unavailable_msg"
+          ]
+        },
+        {
+          "name": "linksfx_section_patcher",
+          "text": "Link",
+          "exclude_from_electron": true,
+          "app_type": ["patcher"],
           "is_sfx": true,
           "col_span": 2,
           "row_span": [6,6,6],
