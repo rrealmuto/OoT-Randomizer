@@ -11,12 +11,11 @@ This branch is available to use online at <https://ootrandomizer.com/generatorDe
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
 * New settings and options:
-  * The “Randomize Overworld Spawns” setting is split into “Randomize Child Overworld Spawn” and “Randomize Adult Overworld Spawn” (based on [#1732](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1732))
   * New “Shuffle Thieves' Hideout Entrances” setting ([#1616](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1616))
   * New “Shuffle Rupees & Hearts”, “Shuffle Pots”, “Shuffle Crates”, “Shuffle Beehives”, and “Pot & Crate Appearance Matches Contents” settings ([#1558](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1558))
   * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1536))
   * “Closed Forest Requires Gohma” is a separate setting, making “Closed Forest” compatible with more settings if disabled ([#1531](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1531))
-  * New “Full” options for the “Randomize Owl Drops”, “Randomize Warp Song Destinations”, “Randomize Child Overworld Spawn”, and “Randomize Adult Overworld Spawn” settings that include more types of entrances (based on [#1179](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1179) and [#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
+  * New “Full” options for the settings “Randomize Owl Drops”, “Randomize Warp Song Destinations”, and “Randomize Overworld Spawns” (which is split into “Randomize Child Overworld Spawn” and “Randomize Adult Overworld Spawn” for this reason) that include more types of entrances (based on [#1179](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1179) and [#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
   * New “Triforce Hunt Mode” setting with “Normal”, “Easter Egg Hunt”, and “Triforce Blitz” options (based on [KevinPal's `triforce_easteregg` branch](https://github.com/KevinPal/OoT-Randomizer/tree/triforce_easteregg) and [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev))
   * New “Shuffle Silver Rupees” setting (based on [mracsys's `silver-rupees-refactor` branch](https://github.com/mracsys/OoT-Randomizer/tree/silver-rupees-refactor))
   * New “Shuffle Gerudo Valley River Exit” setting
@@ -46,8 +45,6 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * Tokens can be on excluded locations if there are no checks requiring them (such as in SAWS)
   * With “Closed Forest Requires Gohma” enabled, items that can be used to escape the forest won't appear in the forest.
   * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
-* Bug fixes:
-  * The behavior of the dungeon reward info on D-pad down has been fixed when compasses give info ([#1736](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1736))
 
 Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):
 
@@ -175,10 +172,12 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * New setting `Shuffle Boss Entrances` allows boss rooms to be shuffled between dungeons. This is only available in glitchless logic.
   * `Misc. Hints` has been expanded to a multiple select setting allowing you to fine-tune which set of misc hints to enable or disable.
   * New setting `Shuffle Frog Song Rupees` allows you to shuffle the rupees you receive from the Zora's River frogs.
+    * These locations are considered "sometimes" hints.
   * New setting `Show Seed Info on File Screen` which also allows a user-set message to be displayed.
   * New settings allow for Rainbow Bridge and Ganon's Boss Key to be obtained upon reaching a certain amount of total heart containers.
   * New setting `Easier Fire Arrow Entry` allows you to set the amount of torches that must be lit to open Shadow Temple.
   * The pause screen info menu has been split into 3 menus, which show icons on the D-Pad indicating which direction leads to which menu. In addition, the menu now tracks the total keys you've found for a dungeon, not just how many you have remaining. The old menu from pressing A still exists as well.
+    * You can also make it so these menus only appear when holding A along with the D-Pad by disabling `Display D-Pad Dungeon Info`.
   * New setting `Invisible Chests` makes all chests in the game invisible.
   * New setting `Bonks Do Damage` will deal damage to Link when bonking, including `One Bonk KO` which will instantly kill him from bonking.
   * New hint type `Dual Hint` which allows multiple locations to be hinted in the same hint. Hint distros can also use new option `upgrade_hints` to upgrade some hints to Dual Hints.
@@ -195,6 +194,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * New setting `Fix Broken Drops` adds a magic jar drop in GTG and a pot that drops a deku shield in Spirit Temple. These spawns were present in the code already but would not actually spawn due to the respective objects not being loaded.
   * New settings `Adult Link Model` and `Child Link Model` allow you to select a .zobj model file to replace Link's look in-game. For more details see the [Custom Models section](#Custom-Models)
   * New section under SFX labeled `Link` has options `Adult Voice` and `Child Voice`, allowing you to choose to either silence Link or change the voice to feminine to match your chosen player model. Adult and child female voices provided by Maple and shiroaeli in the Discord, respectively.
+   * New Misc. Hints for each of the Skulltula rewards makes it so each of the cursed family members who give a randomized reward will tell you what the reward is before being rescued. This precludes those locations from being conditional always hints.
 
 * **Gameplay**
   * Shortened the animation for equipping magic arrows.
@@ -264,6 +264,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Corrected some goal hint colors.
 * Triforce Piece model has been updated so that it is shinier and centered.
 * Goal hints are now selected based on their category rather than their parent goal.
+* New plando item groups available: `#Map`, `#Compass`, `#BossKey`, and `#SmallKey` for placing a random one of these dungeon items in a specific location.
 
 ### 6.2
 

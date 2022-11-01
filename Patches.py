@@ -11,7 +11,7 @@ from Spoiler import Spoiler
 from LocationList import business_scrubs
 from HintList import getHint
 from Hints import GossipText, HintArea, writeGossipStoneHints, buildAltarHints, \
-        buildGanonText, buildMiscItemHints, getSimpleHintNoPrefix, getItemGenericName
+        buildGanonText, buildMiscItemHints, buildMiscLocationHints, getSimpleHintNoPrefix, getItemGenericName
 from Location import DisableType
 from Utils import data_path
 from Messages import read_messages, update_message_by_id, read_shop_items, update_warp_song_text, \
@@ -1774,6 +1774,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     # build misc. item hints
     buildMiscItemHints(world, messages)
+
+    # build misc. location hints
+    buildMiscLocationHints(world, messages)
 
     # Patch freestanding items
     if world.settings.shuffle_freestanding_items:

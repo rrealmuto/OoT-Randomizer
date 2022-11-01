@@ -3043,7 +3043,13 @@ skip_GS_BGS_text:
 ; Allow ice arrows to melt red ice
 ;===================================================================================================
 .orga 0xDB32C8
-    jal blue_fire_arrows ; replaces addiu at, zero, 0x00F0
+    jal     blue_fire_arrows ; replaces addiu at, zero, 0x00F0
+
+;===================================================================================================
+; Give each cursed skulltula house resident a different text ID, for skulltula reward hints
+;===================================================================================================
+.orga 0xEA2664
+    addiu   t1, t1, 0x9003
 
 ;==================================================================================================
 ; Base Get Item Draw Override

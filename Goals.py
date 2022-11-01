@@ -1,7 +1,7 @@
 from collections import OrderedDict, defaultdict
 import logging
 
-from HintList import goalTable, getHintGroup, hintExclusions, misc_item_hint_table
+from HintList import goalTable, getHintGroup, hintExclusions, misc_item_hint_table, misc_location_hint_table
 from ItemList import item_table
 from Search import Search
 
@@ -354,3 +354,8 @@ def maybe_set_misc_item_hints(location):
         if hint_type not in location.item.world.misc_hint_item_locations and location.item.name == item:
             location.item.world.misc_hint_item_locations[hint_type] = location
             logging.getLogger('').debug(f'{item} [{location.item.world.id}] set to [{location.name}]')
+    for hint_type in misc_location_hint_table:
+        the_location = location.item.world.misc_hint_locations[hint_type]
+        if hint_type not in location.item.world.misc_hint_location_items and location.name == the_location:
+            location.item.world.misc_hint_location_items[hint_type] = location.item
+            logging.getLogger('').debug(f'{the_location} [{location.item.world.id}] set to [{location.item.name}]')

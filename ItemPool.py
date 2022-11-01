@@ -355,6 +355,10 @@ item_groups = {
     'ProgressItem': sorted([name for name, item in ItemInfo.items.items() if item.type == 'Item' and item.advancement]),
     'MajorItem': sorted([name for name, item in ItemInfo.items.items() if item.type in ['Item', 'Song'] and item.advancement and name not in exclude_from_major]),
     'DungeonReward': [item.name for item in sorted([i for n, i in ItemInfo.items.items() if i.type == 'DungeonReward'], key=lambda x: x.special['item_id'])],
+    'Map': sorted([name for name, item in ItemInfo.items.items() if item.type == 'Map']),
+    'Compass': sorted([name for name, item in ItemInfo.items.items() if item.type == 'Compass']),
+    'BossKey': sorted([name for name, item in ItemInfo.items.items() if item.type == 'BossKey']),
+    'SmallKey': sorted([name for name, item in ItemInfo.items.items() if item.type == 'SmallKey']),
 
     'ForestFireWater': ('Forest Medallion', 'Fire Medallion', 'Water Medallion'),
     'FireWater': ('Fire Medallion', 'Water Medallion'),

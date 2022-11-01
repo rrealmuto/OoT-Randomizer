@@ -3,44 +3,84 @@
 // @nebular out of the box themes
 @import "~@nebular/theme/styles/themes";
 // which themes you what to enable (empty to enable all)
-$nb-enabled-themes: (corporate);
+$nb-enabled-themes: (default);
 
 $nb-themes: nb-register-theme(
-  (
-    // app wise variables for each theme
-      sidebar-header-gap: 2rem,
-    sidebar-header-height: initial,
-    layout-content-width: 1400px,
-    header-bg: #052F5F,
-    color-bg: rgb(208, 207, 211),
-    sidebar-bg: rgb(208, 207, 211),
-    layout-bg: black,
-    color-fg-text: black,
-    btn-info-bg: #052F5F,
-    btn-success-bg: #06A77D,
-    btn-danger-bg: #dd1122,
-    btn-primary-bg: #06A77D,
-    footer-bg: #052F5F,
-    link-color: blue,
-    link-color-hover: blue,
-    link-color-visited: blue,
-    font-main: Roboto,
-    font-secondary: Exo,
-    switcher-background: #052F5F,
-    switcher-background-percentage: 14%,
-    drops-icon-line-gadient: -webkit-linear-gradient(#e9e8eb, #a7a2be),
-    list-item-border-width: 1px,
-    slide-out-container-width: 30%,
-    slide-out-background: linear-gradient(270deg, #f7fafb 0%, #ecf2f5 100%),
-    slide-out-shadow-color: 0 4px 14px 0 #a2d2c8,
-    slide-out-shadow-color-rtl: 0 4px 14px 0 #a2d2c8,
-    chart-panel-summary-box-shadow: none,
-    chart-panel-summary-background-color: #f7fafb,
-    chart-panel-summary-border-color: #ebeff1,
-    chart-panel-summary-border-width: 1px,
-    ecommerce-card-border-width: 1px,
-    progress-bar-background: linear-gradient(90deg, #ff9f6f 0%, #ff8b97 100%)
-  ),
-  corporate,
-  corporate
+    (
+      color-basic-default: green,
+
+      color-basic-100: #ffffff,
+      color-basic-200: #92c3ba,
+      color-basic-300: #29b38f,
+      color-basic-400: #dde1eb,
+      color-basic-500: #06A77D,
+      color-basic-600: #181818,
+      color-basic-700: #d0cfd3,
+      color-basic-800: #ebecee,
+      color-basic-900: #9bcfc6,
+      color-basic-1000: #000000,
+      color-basic-1100: #37b364,
+
+      color-primary-100: #f2f6ff,
+      color-primary-200: #d9e4ff,
+      color-primary-300: #06a77d,
+      color-primary-400: #06a77d,
+      color-primary-500: #294C7A,
+      color-primary-600: #274bdb,
+      color-primary-700: #1a34b8,
+      color-primary-800: blue,
+      color-primary-900: #92c3ba,
+
+      color-info-100: #f2f6ff,
+      color-info-200: #d9e4ff,
+      color-info-300: #06a77d,
+      color-info-400: #06a77d,
+      color-info-500: #052f5f,
+      color-info-600: #274bdb,
+      color-info-700: #1a34b8,
+      color-info-800: #102694,
+      color-info-900: #091c7a,
+
+      color-warning-900: #dd1122,
+
+      color-primary-focus: color-primary-700,
+      color-primary-hover: color-primary-400,
+      color-primary-default: color-primary-500,
+      color-primary-active: color-primary-600,
+      color-primary-disabled: color-primary-300,
+
+      background-basic-color-1: color-basic-100,
+      background-basic-color-2: color-basic-500,
+      background-basic-color-3: color-basic-700,
+      background-basic-color-4: color-basic-400,
+
+      background-primary-color-1: color-basic-100,
+      background-primary-color-2: color-basic-500,
+      background-primary-color-3: color-basic-700,
+      background-primary-color-4: color-basic-400,
+
+      background-alternative-color-1: color-basic-100,
+      background-alternative-color-2: color-basic-200,
+      background-alternative-color-3: color-basic-300,
+      background-alternative-color-4: color-basic-400,
+
+      border-basic-color-1: color-basic-100,
+      border-basic-color-2: color-basic-200,
+      border-basic-color-3: color-basic-800,
+      border-basic-color-4: color-basic-400,
+      border-basic-color-5: color-basic-500,
+
+
+      text-basic-color: color-basic-1000,
+      text-alternate-color: color-basic-100,
+      text-control-color: color-basic-100,
+      text-disabled-color: color-basic-100,
+      text-hint-color: color-basic-700,
+
+      border-radius: 0.75em,
+      btn-border-radius: 0.75em,
+      scrollbar-width: 7px,
+    ),
+    default,
+    default
 );

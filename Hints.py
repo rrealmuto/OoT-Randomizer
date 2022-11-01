@@ -8,7 +8,7 @@ import json
 from enum import Enum
 import itertools
 
-from HintList import getHint, getMulti, getHintGroup, getUpgradeHintList, hintExclusions, misc_item_hint_table
+from HintList import getHint, getMulti, getHintGroup, getUpgradeHintList, hintExclusions, misc_item_hint_table, misc_location_hint_table
 from Item import Item, ItemInfo, MakeEventItem
 from ItemPool import triforce_pieces
 from Messages import COLOR_MAP, update_message_by_id
@@ -612,6 +612,25 @@ def get_goal_hint(spoiler, world, checked):
     # Once all goals in a category are 0, selection is true random
     goal = random.choice(location_reverse_map[location])
     goal.weight = 0
+
+    # Make sure this wasn't the last hintable location for other goals.
+    # If so, set weights to zero. This is important for one-hint-per-goal.
+    # Locations are unique per-category, so we don't have to check the others.
+    for other_goal in goals:
+        if zero_weights or other_goal.weight > 0:
+            goal_locations = list(filter(lambda location:
+                location[0].name not in checked
+                and location[0].name not in world.hint_exclusions
+                and location[0].name not in world.hint_type_overrides['goal']
+                and location[0].item.name not in world.item_hint_type_overrides['goal']
+                and location[0].item.name not in unHintableWothItems,
+                other_goal.required_locations))
+            if not goal_locations:
+                other_goal.weight = 0
+                # Replace randomly chosen goal with the goal that has all its locations
+                # hinted without being directly hinted itself.
+                if world.one_hint_per_goal:
+                    goal = other_goal
 
     location_text = HintArea.at(location).text(world.settings.clearer_hints)
     if world_id == world.id:
@@ -1707,6 +1726,19 @@ def buildMiscItemHints(world, messages):
                 text = text.replace(find, replace)
 
             update_message_by_id(messages, data['id'], str(GossipText(text, ['Green'], prefix='')))
+
+
+def buildMiscLocationHints(world, messages):
+    for hint_type, data in misc_location_hint_table.items():
+        if hint_type in world.settings.misc_hints:
+            location = world.misc_hint_locations[hint_type]
+            if hint_type in world.misc_hint_location_items:
+                item = world.misc_hint_location_items[hint_type]
+                text = data['location_text'].format(item=getHint(getItemGenericName(item), world.settings.clearer_hints).text)
+        else:
+            text = data['location_fallback']
+
+        update_message_by_id(messages, data['id'], str(GossipText(text, ['Green'], prefix='')), 0x23)
 
 
 def get_raw_text(string):

@@ -30,9 +30,8 @@
             "styles": [
               "node_modules/typeface-exo/index.css",
               "node_modules/roboto-fontface/css/roboto/roboto-fontface.css",
-              "node_modules/ionicons/scss/ionicons.scss",
+              "node_modules/ionicons/dist/scss/ionicons.scss",
               "node_modules/socicon/css/socicon.css",
-              "node_modules/nebular-icons/scss/nebular-icons.scss",
               "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
               "node_modules/@fortawesome/fontawesome-free/scss/brands.scss",
               "node_modules/pace-progress/templates/pace-theme-flash.tmpl.css",
@@ -81,7 +80,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ootr-electron-gui:build"
+            "browserTarget": "ootr-electron-gui:build",
+            "hmrWarning": false
           },
           "configurations": {
             "production": {
@@ -107,7 +107,6 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.scss"
             ],
             "scripts": [],
             "assets": [

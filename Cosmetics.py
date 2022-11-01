@@ -30,6 +30,15 @@ def patch_dpad(rom, settings, log, symbols):
     log.display_dpad = settings.display_dpad
 
 
+def patch_dpad_info(rom, settings, log, symbols):
+    # Display D-Pad HUD in pause menu for either dungeon info or equips
+    if settings.dpad_dungeon_menu:
+        rom.write_byte(symbols['CFG_DPAD_DUNGEON_INFO_ENABLE'], 0x01)
+    else:
+        rom.write_byte(symbols['CFG_DPAD_DUNGEON_INFO_ENABLE'], 0x00)
+    log.dpad_dungeon_menu = settings.dpad_dungeon_menu
+
+
 def patch_music(rom, settings, log, symbols):
     # patch music
     if settings.background_music != 'normal' or settings.fanfares != 'normal' or log.src_dict.get('bgm', {}):
@@ -967,6 +976,17 @@ patch_sets[0x1F073FD8] = {
         "CFG_RAINBOW_NAVI_NPC_OUTER_ENABLED": 0x0052,
         "CFG_RAINBOW_NAVI_PROP_INNER_ENABLED": 0x0053,
         "CFG_RAINBOW_NAVI_PROP_OUTER_ENABLED": 0x0054,
+    }
+}
+
+# 6.2.218
+patch_sets[0x1F073FD9] = {
+    "patches": patch_sets[0x1F073FD8]["patches"] + [
+        patch_dpad_info,
+    ],
+    "symbols": {
+        **patch_sets[0x1F073FD8]["symbols"],
+        "CFG_DPAD_DUNGEON_INFO_ENABLE": 0x0055,
     }
 }
 

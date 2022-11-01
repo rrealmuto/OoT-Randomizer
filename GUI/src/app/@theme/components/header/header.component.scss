@@ -1,5 +1,4 @@
 @import '../../styles/themes';
-@import '~bootstrap/scss/mixins/breakpoints';
 @import '~@nebular/theme/styles/global/breakpoints';
 
 @include nb-install-component() {
@@ -19,7 +18,7 @@
     flex-direction: row-reverse;
   }
 
-  .logo-containter {
+  .logo-container {
     align-items: center;
     width: calc(#{nb-theme(sidebar-width)} - #{nb-theme(header-padding)});
 
@@ -59,26 +58,11 @@
     width: auto;
 
     .navigation {
-      @include nb-ltr(padding-right, nb-theme(padding));
-      @include nb-rtl(padding-left, nb-theme(padding));
       font-size: 2.5rem;
       text-decoration: none;
 
       i {
         display: block;
-      }
-    }
-
-    .logo {
-      padding: 0;
-      font-size: 1.75rem;
-      font-weight: nb-theme(font-weight-bolder);
-      @include nb-ltr(border-left, 1px solid nb-theme(separator));
-      @include nb-rtl(border-right, 1px solid nb-theme(separator));
-      white-space: nowrap;
-
-      span {
-        font-weight: nb-theme(font-weight-normal);
       }
     }
   }
@@ -96,8 +80,8 @@
       @include nb-rtl(border, none);
     }
 
-    .header-container /deep/ ngx-theme-switcher .dropdown-toggle {
-      color: nb-theme(color-white);
+    .header-container :host ::ng-deep ngx-theme-switcher .dropdown-toggle {
+      color: nb-theme(color-basic-100);
       background: transparent;
     }
   }
@@ -107,9 +91,7 @@
   }
 
   ngx-theme-switcher {
-    margin: nb-theme(layout-padding);
-    margin-top: 0;
-    margin-bottom: 0;
+    margin: 0 nb-theme(layout-padding);
   }
 
   @include media-breakpoint-down(xl) {
@@ -118,13 +100,13 @@
     }
   }
 
-  .toggle-layout /deep/ a {
+  .toggle-layout :host ::ng-deep a {
     display: block;
     text-decoration: none;
     line-height: 1;
 
     i {
-      color: nb-theme(color-fg-highlight);
+      color: nb-theme(text-hint-color);
       font-size: 2.25rem;
       border-radius: 50%;
       position: relative;
@@ -153,15 +135,15 @@
 
   @include keyframes(pulse) {
     0% {
-      box-shadow: 0 0 1px 0 rgba(nb-theme(color-fg-highlight), 0);
+      box-shadow: 0 0 1px 0 rgba(nb-theme(text-hint-color), 0);
     }
 
     20% {
-      box-shadow: 0 0 3px 10px rgba(nb-theme(color-fg-highlight), 0.4);
+      box-shadow: 0 0 3px 10px rgba(nb-theme(text-hint-color), 0.4);
     }
 
     100% {
-      box-shadow: 0 0 5px 20px rgba(nb-theme(color-fg-highlight), 0);
+      box-shadow: 0 0 5px 20px rgba(nb-theme(text-hint-color), 0);
     }
   }
 
@@ -204,7 +186,7 @@
 
   @include media-breakpoint-down(sm) {
 
-    nb-user /deep/ .user-name {
+    nb-user :host ::ng-deep .user-name {
       display: none;
     }
   }
@@ -231,7 +213,7 @@
   }
 
   @include media-breakpoint-down(xs) {
-    .right /deep/ {
+    .right :host ::ng-deep {
       display: none;
     }
   }
