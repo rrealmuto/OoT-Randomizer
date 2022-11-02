@@ -1,0 +1,77 @@
+{
+    "name":                  "triforce-blitz-s2",
+    "gui_name":              "Triforce Blitz S2",
+    "description":           "Hint Distribution for Triforce Blitz S2. 3 Path Count Hints, 10 Goal Hints, 5 Barren Hints, 3 Always hints.",
+    "add_locations":         [
+                                { "location": "Kak 20 Gold Skulltula Reward", "types": ["always"]}
+                             ],
+    "remove_locations":      [{"location": "Ganons Castle Shadow Trial Golden Gauntlets Chest", "types": "sometimes"}],
+    "add_items":             [],
+    "remove_items":          [
+                                { "item": "Zeldas Lullaby", "types": ["goal", "playthrough-location"]},
+                                { "item": "Gerudo Membership Card", "types": ["playthrough-location"]}
+                            ],
+    "dungeons_woth_limit":   999,
+    "dungeons_barren_limit": 999,
+    "named_items_required":  true,
+    "vague_named_items":     false,
+    "use_default_goals":     false,
+    "prioritize_dungeons":   true,
+    "custom_goals":          [{
+        "category":          "triforce_hunt",
+        "priority":          30,
+        "minimum_goals":     3,
+        "goals":             [{
+            "name":          "power",
+            "hint_text":     "\u0023path of power\u0023",
+            "color":         "Red",
+            "items":         [{"name": "Triforce of Power", "quantity": 1, "minimum": 1, "hintable": false}]
+        },
+        {
+            "name":          "wisdom",
+            "hint_text":     "\u0023path of wisdom\u0023",
+            "color":         "Pink",
+            "items":         [{"name": "Triforce of Wisdom", "quantity": 1, "minimum": 1, "hintable": false}]
+        },
+        {
+            "name":          "courage",
+            "hint_text":     "\u0023path of courage\u0023",
+            "color":         "Green",
+            "items":         [{"name": "Triforce of Courage", "quantity": 1, "minimum": 1, "hintable": false}]
+        }]
+    }],
+    "distribution":          {
+        "trial":                    {"order":  1, "weight": 0.0, "fixed":   0, "copies": 2},
+        "always":                   {"order":  2, "weight": 0.0, "fixed":   0, "copies": 2},
+        "goal-count":               {"order":  3, "weight": 0.0, "fixed":   3, "copies": 1},
+        "block":                    {"order":  4, "weight": 0.0, "fixed":   3, "copies": 1},
+        "goal":                     {"order":  5, "weight": 0.0, "fixed":  10, "copies": 2},
+        "barren":                   {"order":  6, "weight": 0.0, "fixed":   5, "copies": 2},
+        "playthrough-location":     {"order":  7, "weight": 0.0, "fixed": 100, "copies": 2},
+        "sometimes":                {"order":  8, "weight": 0.0, "fixed": 100, "copies": 1},
+        "entrance":                 {"order":  0, "weight": 0.0, "fixed":   0, "copies": 2},
+        "random":                   {"order":  0, "weight": 9.0, "fixed":   0, "copies": 2},
+        "item":                     {"order":  0, "weight": 0.0, "fixed":   0, "copies": 2},
+        "song":                     {"order":  0, "weight": 0.0, "fixed":   0, "copies": 2},
+        "overworld":                {"order":  0, "weight": 0.0, "fixed":   0, "copies": 2},
+        "dungeon":                  {"order":  0, "weight": 0.0, "fixed":   0, "copies": 2},
+        "junk":                     {"order":  0, "weight": 0.0, "fixed":   0, "copies": 2},
+        "named-item":               {"order":  0, "weight": 0.0, "fixed":   0, "copies": 2},
+        "woth":                     {"order":  0, "weight": 0.0, "fixed":   0, "copies": 2},
+        "entrance_always":          {"order":  0, "weight": 0.0, "fixed":   0, "copies": 2}
+    },
+    "remove_always_stones": [
+        "ToT (Left)",
+        "ToT (Left-Center)",
+        "ToT (Right-Center)",
+        "ToT (Right)"
+    ],
+    "priority_stones": [
+        "ToT (Left)",
+        "ToT (Left-Center)",
+        "ToT (Right-Center)",
+        "ToT (Right)"
+    ],
+    "groups": [],
+    "disabled": []
+}

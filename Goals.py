@@ -214,6 +214,26 @@ def update_goal_items(spoiler):
     woth_locations = list(required_locations['way of the hero'])
     del required_locations['way of the hero']
 
+    requirements = {}
+    for location in woth_locations:
+        requirements[location.item] = []
+
+    for location in woth_locations:
+        search = Search([world.state for world in worlds])
+        search.collect_pseudo_starting_items()
+
+        old_item = location.item
+        location.item = None
+
+        search.collect_locations()
+        not_accessible = list(filter(lambda location: not search.spot_access(location), woth_locations))
+        location.item = old_item
+
+        for blocker in not_accessible:
+            requirements[blocker.item].append(location.item)
+
+    print(requirements)
+
     # Update WOTH items
     woth_locations_dict = {}
     for world in worlds:

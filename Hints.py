@@ -746,6 +746,22 @@ def get_playthrough_location_hint(spoiler, world, checked):
 
     return (GossipText('%s is on the way of the wanderer.' % location_text, ['Light Blue'], [location.name], [location.item.name]), [location])
 
+def get_block_hint(spoiler, world, checked):
+
+    locations = spoiler.required_locations[world.id]
+    locations = list(filter(lambda location:
+        location.name not in world.hint_exclusions
+        and location.name not in world.hint_type_overrides['block']
+        and location.item.name not in world.item_hint_type_overrides['block'],
+        locations))
+
+    location = random.choice(locations)
+
+    # 'X blocks the way to the X'
+    print(location)
+
+    return None
+
 def get_barren_hint(spoiler, world, checked, allChecked):
     if not hasattr(world, 'get_barren_hint_prev'):
         world.get_barren_hint_prev = RegionRestriction.NONE
@@ -1178,6 +1194,7 @@ hint_func = {
     'goal':             get_goal_hint,
     'goal-count':       	get_goal_count_hint,
     'playthrough-location': get_playthrough_location_hint,
+    'block':            get_block_hint,
     'barren':           get_barren_hint,
     'item':             get_good_item_hint,
     'sometimes':        get_sometimes_hint,
@@ -1203,6 +1220,7 @@ hint_dist_keys = {
     'goal',
     'goal-count',
     'playthrough-location',
+    'block',
     'barren',
     'item',
     'song',
