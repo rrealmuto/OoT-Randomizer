@@ -748,19 +748,23 @@ def get_playthrough_location_hint(spoiler, world, checked):
 
 def get_block_hint(spoiler, world, checked):
 
-    locations = spoiler.required_locations[world.id]
-    locations = list(filter(lambda location:
-        location.name not in world.hint_exclusions
+    required_locations = spoiler.required_location_requirements[world.id]
+    hintable_locations = list(filter(lambda location:
+        location.name not in checked
+        and len(required_locations[location]) > 0
+        and location.name not in world.hint_exclusions
         and location.name not in world.hint_type_overrides['block']
         and location.item.name not in world.item_hint_type_overrides['block'],
-        locations))
+        required_locations))
 
-    location = random.choice(locations)
+    location = random.choice(hintable_locations)
+    required_location = random.choice(required_locations[location])
+    checked.add(location.name)
 
-    # 'X blocks the way to the X'
-    print(location)
+    location_text = getHint(getItemGenericName(location.item), world.settings.clearer_hints).text
+    required_location_text = getHint(getItemGenericName(required_location.item), world.settings.clearer_hints).text
 
-    return None
+    return (GossipText('#%s# unlocks the way to #%s#.' % (required_location_text, location_text), ['Light Blue', 'Light Blue'], [required_location.name, location.name], [required_location.item.name, location.item.name]), [required_location, location])
 
 def get_barren_hint(spoiler, world, checked, allChecked):
     if not hasattr(world, 'get_barren_hint_prev'):

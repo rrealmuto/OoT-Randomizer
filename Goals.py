@@ -214,25 +214,12 @@ def update_goal_items(spoiler):
     woth_locations = list(required_locations['way of the hero'])
     del required_locations['way of the hero']
 
-    requirements = {}
-    for location in woth_locations:
-        requirements[location.item] = []
-
-    for location in woth_locations:
-        search = Search([world.state for world in worlds])
-        search.collect_pseudo_starting_items()
-
-        old_item = location.item
-        location.item = None
-
-        search.collect_locations()
-        not_accessible = list(filter(lambda location: not search.spot_access(location), woth_locations))
-        location.item = old_item
-
-        for blocker in not_accessible:
-            requirements[blocker.item].append(location.item)
-
-    print(requirements)
+    # Generate location requirements for each WOTH location
+    requirements_by_world = {}
+    requirements = search_required_locations(woth_locations, woth_locations, worlds)
+    for world in worlds:
+        requirements_by_world[world.id] = {loc: required for loc, required in requirements.items() if loc.world.id == world.id}
+    spoiler.required_location_requirements = requirements_by_world
 
     # Update WOTH items
     woth_locations_dict = {}
@@ -362,6 +349,26 @@ def search_goals(categories, reachable_goals, search, priority_locations, all_lo
         maybe_set_misc_item_hints(location)
     return required_locations
 
+def search_required_locations(locations, all_locations, worlds):
+    requirements = {}
+    for location in locations:
+        requirements[location] = []
+
+    for location in all_locations:
+        search = Search([world.state for world in worlds])
+        search.collect_pseudo_starting_items()
+
+        old_item = location.item
+        location.item = None
+
+        search.collect_locations()
+        not_accessible = list(filter(lambda location: not search.spot_access(location), locations))
+        location.item = old_item
+
+        for blocker in not_accessible:
+            requirements[blocker].append(location)
+
+    return requirements
 
 def maybe_set_misc_item_hints(location):
     if not location.item:
