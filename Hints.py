@@ -749,17 +749,23 @@ def get_playthrough_location_hint(spoiler, world, checked):
 def get_block_hint(spoiler, world, checked):
 
     required_locations = spoiler.required_location_requirements[world.id]
+    unchecked_required_locations = {
+        location: list(filter(lambda required_location: not (location.name + "-" + required_location.name) in checked, required_locations)) 
+        for location, required_locations in required_locations.items()
+    }
     hintable_locations = list(filter(lambda location:
-        location.name not in checked
-        and len(required_locations[location]) > 0
+        len(unchecked_required_locations[location]) > 0
         and location.name not in world.hint_exclusions
         and location.name not in world.hint_type_overrides['block']
         and location.item.name not in world.item_hint_type_overrides['block'],
-        required_locations))
+        unchecked_required_locations))
+
+    if not hintable_locations:
+        return None
 
     location = random.choice(hintable_locations)
-    required_location = random.choice(required_locations[location])
-    checked.add(location.name)
+    required_location = random.choice(unchecked_required_locations[location])
+    checked.add(location.name + "-" + required_location.name)
 
     location_text = getHint(getItemGenericName(location.item), world.settings.clearer_hints).text
     required_location_text = getHint(getItemGenericName(required_location.item), world.settings.clearer_hints).text
