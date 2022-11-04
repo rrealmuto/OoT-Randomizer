@@ -1981,22 +1981,22 @@ location_table = OrderedDict([
     ("Gerudo Training Ground MQ Maze Crate",                         ("Crate",        0x0B,  (8,0,2), None,                         'Rupee (1)',                             ("Gerudo Training Ground", "Master Quest", "Crate"))),
 
     # Gerudo Training Ground MQ Silver Rupees
-    ("Gerudo Training Ground MQ Icicle Room Silver Rupee Freezard",  ("SilverRupee",  0x0B,  (2,0,28), None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground MQ Icicle Room Silver Rupee Icicles",   ("SilverRupee",  0x0B,  (2,0,25), None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground MQ Icicle Room Silver Rupee Center",    ("SilverRupee",  0x0B,  (2,0,26), None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground MQ Icicle Room Silver Rupee Ceiling",   ("SilverRupee",  0x0B,  (2,0,27), None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground MQ Icicle Room Silver Rupee Above Void",("SilverRupee",  0x0B,  (2,0,29), None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground MQ Icicle Room Silver Rupee Freezard",  ("SilverRupee",  0x0B,  (2,0,28), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground MQ Icicle Room Silver Rupee Icicles",   ("SilverRupee",  0x0B,  (2,0,25), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground MQ Icicle Room Silver Rupee Center",    ("SilverRupee",  0x0B,  (2,0,26), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground MQ Icicle Room Silver Rupee Ceiling",   ("SilverRupee",  0x0B,  (2,0,27), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground MQ Icicle Room Silver Rupee Above Void",("SilverRupee",  0x0B,  (2,0,29), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
 
-    ("Gerudo Training Ground MQ Lava Room Silver Rupee Front Left",  ("SilverRupee",  0x0B,  (6,0,12), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground MQ Lava Room Silver Rupee Front Center",("SilverRupee",  0x0B,  (6,0,13), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground MQ Lava Room Silver Rupee Front Right", ("SilverRupee",  0x0B,  (6,0,11), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground MQ Lava Room Silver Rupee Back Left",   ("SilverRupee",  0x0B,  (6,0,9),  None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground MQ Lava Room Silver Rupee Back Center", ("SilverRupee",  0x0B,  (6,0,10), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground MQ Lava Room Silver Rupee Back Right",  ("SilverRupee",  0x0B,  (6,0,8),  None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground MQ Lava Room Silver Rupee Front Left",  ("SilverRupee",  0x0B,  (6,0,12), None,                 'Silver Rupee (Gerudo Training Ground Lava)',   ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground MQ Lava Room Silver Rupee Front Center",("SilverRupee",  0x0B,  (6,0,13), None,                 'Silver Rupee (Gerudo Training Ground Lava)',   ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground MQ Lava Room Silver Rupee Front Right", ("SilverRupee",  0x0B,  (6,0,11), None,                 'Silver Rupee (Gerudo Training Ground Lava)',   ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground MQ Lava Room Silver Rupee Back Left",   ("SilverRupee",  0x0B,  (6,0,9),  None,                 'Silver Rupee (Gerudo Training Ground Lava)',   ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground MQ Lava Room Silver Rupee Back Center", ("SilverRupee",  0x0B,  (6,0,10), None,                 'Silver Rupee (Gerudo Training Ground Lava)',   ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground MQ Lava Room Silver Rupee Back Right",  ("SilverRupee",  0x0B,  (6,0,8),  None,                 'Silver Rupee (Gerudo Training Ground Lava)',   ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
 
-    ("Gerudo Training Ground MQ Underwater Silver Rupee Middle",     ("SilverRupee",  0x0B,  (9,0,13), None,                  'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground MQ Underwater Silver Rupee Front Right",("SilverRupee",  0x0B,  (9,0,14), None,                  'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
-    ("Gerudo Training Ground MQ Underwater Silver Rupee Back Left",  ("SilverRupee",  0x0B,  (9,0,12), None,                  'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground MQ Underwater Silver Rupee Middle",     ("SilverRupee",  0x0B,  (9,0,13), None,                 'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground MQ Underwater Silver Rupee Front Right",("SilverRupee",  0x0B,  (9,0,14), None,                 'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
+    ("Gerudo Training Ground MQ Underwater Silver Rupee Back Left",  ("SilverRupee",  0x0B,  (9,0,12), None,                 'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground", "Vanilla", "Silver Rupee"))),
 
     # Ganon's Castle vanilla
     ("Ganons Castle Forest Trial Chest",                             ("Chest",        0x0D,  0x09, None,                            'Rupees (5)',                            ("Ganon's Castle", "Vanilla"))),
