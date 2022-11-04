@@ -8,19 +8,19 @@
         "exits": {
             "ZF Ice Ledge": "True",
             # Freezards are immune to Kokiri Sword. It would take a lot of sticks.
-            "Ice Cavern Spinning Blades": "here(is_adult or has_explosives or can_use(Dins_Fire))"
+            "Ice Cavern Spinning Scythe Room": "here(is_adult or has_explosives or can_use(Dins_Fire))"
         }
     },
     {
-        "region_name": "Ice Cavern Spinning Blades",
-        "dungeon": "Ice Cavern",
-        "locations": {
+    "region_name": "Ice Cavern Spinning Scythe Room",
+    "dungeon": "Ice Cavern",
+    "locations": {
             "Ice Cavern Hall Pot 1": "True",
             "Ice Cavern Hall Pot 2": "True",
-            "Ice Cavern Spinning Blade Pot 1": "True",
-            "Ice Cavern Spinning Blade Pot 2": "True",
-            "Ice Cavern Spinning Blade Pot 3": "True",
-            "Ice Cavern Spinning Blade Flying Pot":  "True",
+            "Ice Cavern Spinning Scythe Pot 1": "True",
+            "Ice Cavern Spinning Scythe Pot 2": "True",
+            "Ice Cavern Spinning Scythe Pot 3": "True",
+            "Ice Cavern Spinning Scythe Flying Pot":  "True",
             "Ice Cavern Spinning Scythe Silver Rupee Icicles": "True",
             "Ice Cavern Spinning Scythe Silver Rupee Center Left": "True",
             "Ice Cavern Spinning Scythe Silver Rupee Center Back": "True",
@@ -51,13 +51,13 @@
         "locations": {
             "Ice Cavern Compass Chest": "True",
             "Ice Cavern Freestanding PoH": "True",
-            "Ice Cavern Block Room Red Rupee 1": "can_play(Song_of_Time) or can_use(Boomerang)",
-            "Ice Cavern Block Room Red Rupee 2": "can_play(Song_of_Time) or can_use(Boomerang)",
-            "Ice Cavern Block Room Red Rupee 3": "can_play(Song_of_Time) or can_use(Boomerang)",
+            "Ice Cavern Push Block Room Red Rupee 1": "can_play(Song_of_Time) or can_use(Boomerang)",
+            "Ice Cavern Push Block Room Red Rupee 2": "can_play(Song_of_Time) or can_use(Boomerang)",
+            "Ice Cavern Push Block Room Red Rupee 3": "can_play(Song_of_Time) or can_use(Boomerang)",
             "Ice Cavern Push Block Silver Rupee Back Left": "True",
             "Ice Cavern Push Block Silver Rupee Back Center": "True",
             "Ice Cavern Push Block Silver Rupee Front Center": "True",
-            "Ice Cavern Push Block Silver Rupee Red Ice": "Blue_Fire",
+            "Ice Cavern Push Block Silver Rupee Red Ice": "True",
             "Ice Cavern Push Block Silver Rupee Front Left": "True",
             "Ice Cavern GS Heart Piece Room": "can_use(Hookshot) or can_use(Boomerang)",
             "Ice Cavern GS Push Block Room": "
@@ -73,15 +73,11 @@
         "dungeon": "Ice Cavern",
         "locations": {
             "Ice Cavern Iron Boots Chest": "
-                Blue_Fire and
-                (is_adult or Slingshot or Sticks or
-                    Kokiri_Sword or can_use(Dins_Fire))",
+                is_adult or Slingshot or Sticks or Kokiri_Sword or can_use(Dins_Fire)",
             "Sheik in Ice Cavern": "
-                Blue_Fire and
-                (is_adult or Slingshot or Sticks or
-                    Kokiri_Sword or can_use(Dins_Fire))",
-            "Ice Cavern Near End Pot 1" : "Blue_Fire",
-            "Ice Cavern Near End Pot 2" : "Blue_Fire"
+                is_adult or Slingshot or Sticks or Kokiri_Sword or can_use(Dins_Fire)",
+            "Ice Cavern Near End Pot 1": "True",
+            "Ice Cavern Near End Pot 2": "True"
         }
     }
 ]
