@@ -24,6 +24,7 @@ extern uint8_t MW_SEND_OWN_ITEMS;
 extern override_key_t OUTGOING_KEY;
 extern uint16_t OUTGOING_ITEM;
 extern uint16_t OUTGOING_PLAYER;
+uint16_t drop_collectible_override_flag = 0;
 
 override_t active_override = { 0 };
 int active_override_is_outgoing = 0;
@@ -37,22 +38,22 @@ uint32_t active_item_fast_chest = 0;
 
 uint8_t satisified_pending_frames = 0;
 
-// These tables contain the offset (in words) of the start of the variable-length scene flags in the flag override flag tables for a particular scene.
-uint8_t collectible_scene_flags_table[101];
-uint8_t dropped_collectible_scene_flags_table[101];
+// This table contains the offset (in bytes) of the start of a particular scene/room/setup flag space in collectible_override_flags.
+// Call get_collectible_flag_offset to retrieve the desired offset.
+uint8_t collectible_scene_flags_table[600];
+alt_override_t alt_overrides[64];
 
-// Total amount of memory required for each flag table (in words).
+extern int8_t curr_scene_setup;
+
+// Total amount of memory required for each flag table (in bytes).
 uint16_t num_override_flags;
-uint16_t num_drop_override_flags;
 
-// Pointer to a variable length array that will contain the collectible flags for each scene. Index of each scene in the array stored in the flags_tables above.
-uint32_t *collectible_override_flags;
-uint32_t *dropped_collectible_override_flags;
+// Pointer to a variable length array that will contain the collectible flags for each scene. 
+uint8_t *collectible_override_flags;
 
 // Initialize the override flag tables on the heap.
 void override_flags_init() {
-    collectible_override_flags = heap_alloc(4 * num_override_flags);
-    dropped_collectible_override_flags = heap_alloc(4 * num_drop_override_flags);
+    collectible_override_flags = heap_alloc(num_override_flags + 100);
 }
 
 void item_overrides_init() {
@@ -97,25 +98,22 @@ override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_
             };
         }
 
-        // Check if it was a dropped collectable and use a separate override type for that
-        uint8_t flag = ((item->actor.dropFlag & 0x06) << 5) + item->collectibleFlag;
-        if (item->actor.dropFlag & 0x01) {
-            // Use the same override flags for the pots in ganon's tower
-            if (scene == 0x0A) {
-                scene = 0x19;
+        // Get the collectible flag stored in the actor's initial y rotation field.
+        uint16_t flag = item->actor.rot_init.y;
+        if(flag > 0)
+        {
+            flag += curr_scene_setup << 14;
+            if (scene == 0x19) {
+                scene = 0x0A;
             }
-            return (override_key_t){
-                .scene = scene,
-                .type = OVR_DROPPEDCOLLECTABLE,
-                .flag = flag,
+            override_key_t key = {
+            .scene = scene,
+            .type = OVR_NEWFLAGCOLLECTIBLE,
+            .flag = flag,
             };
+            return resolve_alternative_override(key);
         }
 
-        return (override_key_t){
-            .scene = scene,
-            .type = OVR_COLLECTABLE,
-            .flag = flag,
-        };
     } else if (actor->actor_id == 0x19C) {
         return (override_key_t){
             .scene = (actor->variable >> 8) & 0x1F,
@@ -161,6 +159,21 @@ override_t lookup_override(z64_actor_t *actor, uint8_t scene, uint8_t item_id) {
     }
 
     return lookup_override_by_key(search_key);
+}
+
+
+// Checks for the existence of override_key within the alternative override table and returns it
+// override_key: The key to search for in the alternative override table
+// Returns: The primary key to use if an alternative override is found in the table. Otherwise returns override_key
+override_key_t resolve_alternative_override(override_key_t override_key) {
+    alt_override_t* alt = &alt_overrides[0];
+    while (alt->alt.all != 0) {
+        if (alt->alt.all == override_key.all) {
+            return alt->primary;
+        }
+        alt++;
+    }
+    return override_key;
 }
 
 void activate_override(override_t override) {
@@ -455,46 +468,79 @@ void Collectible_WaitForMessageBox(EnItem00 *this, z64_game_t *game) {
     }
 }
 
-uint8_t get_extended_flag(EnItem00 *item00) {
-    return ((item00->actor.dropFlag & 0xFE) << 5) + item00->collectibleFlag;
+uint16_t get_collectible_flag_offset(uint8_t scene, uint8_t room, uint8_t setup_id)
+{
+    uint8_t num_scenes = collectible_scene_flags_table[0];
+    uint16_t index = 1;
+    uint8_t i = 0;
+    uint8_t scene_id = 0;
+    uint8_t room_id = 0;
+    uint8_t setup_id_temp;
+    uint8_t room_count = 0;
+    uint16_t room_byte_offset = 0;
+    while(num_scenes > 0)
+    {
+        scene_id = collectible_scene_flags_table[index++];
+        room_count = collectible_scene_flags_table[index++];
+        if(scene_id == scene)
+        {
+            for(i = 0; i < room_count; i++)
+            {
+                room_id = collectible_scene_flags_table[index] & 0x3F;
+                setup_id_temp = (collectible_scene_flags_table[index++] & 0xC0) >> 6;
+                room_byte_offset = (collectible_scene_flags_table[index] << 8) + collectible_scene_flags_table[index+1];
+                index += 2;
+                if((room_id == room) && (setup_id_temp == setup_id))
+                {
+                    return room_byte_offset;
+                }
+            }
+        }
+        else
+        {
+            index += 3 * room_count;
+        }
+        num_scenes--;
+    }
+    return 0xFFFF;
 }
 
 bool Get_CollectibleOverrideFlag(EnItem00 *item00) {
-    uint32_t *flag_table = collectible_override_flags;
-    uint8_t *scene_table = &collectible_scene_flags_table[0];
     uint16_t scene = z64_game.scene_index;
-    bool dropFlag = item00->actor.dropFlag & 0x0001;
-    // Use the regular collectible flag for heart pieces, heart containers, small keys.
+
     if (item00->actor.variable == ITEM00_HEART_PIECE || item00->actor.variable == ITEM00_SMALL_KEY || item00->actor.variable == ITEM00_HEART_CONTAINER) {
         return z64_Flags_GetCollectible(&z64_game, item00->collectibleFlag) > 0;
     }
-
-    uint16_t extended_flag = get_extended_flag(item00);
-    if (dropFlag) { // we set this if it's dropped
-        flag_table = dropped_collectible_override_flags;
-        scene_table = &dropped_collectible_scene_flags_table[0];
-        if (scene == 0x0A) {
-            scene = 0x19;
+    override_key_t key = get_override_search_key(item00, scene, 0);
+    scene = key.scene;
+    uint16_t collectible_flag = key.flag & 0xFF;
+    uint8_t room = (key.flag & 0x3F00) >> 8;
+    uint8_t setup = (key.flag & 0xC000) >> 14;
+    if (collectible_flag > 0) //Check if this is one of our collectibles
+    {
+        uint16_t table_offset = get_collectible_flag_offset(scene, room, setup); //Get the offset into the enemy flag table for the current scene and room
+        if(table_offset != 0xFFFF) //get_enemy_flag_offset will return 0xFF is the flag is not found in the table
+        {
+            return collectible_override_flags[table_offset + collectible_flag / 8] & (1 << (collectible_flag % 8));
         }
     }
-
-    return flag_table[scene_table[scene] + (extended_flag / 0x20)] & (1 << (extended_flag % 0x20));
+    return false;
 }
 
 void Set_CollectibleOverrideFlag(EnItem00 *item00) {
-    uint32_t *flag_table = collectible_override_flags;
-    uint8_t *scene_table = &collectible_scene_flags_table[0];
     uint16_t scene = z64_game.scene_index;
-    bool dropFlag = item00->actor.dropFlag & 0x0001;
-    uint16_t extended_flag = get_extended_flag(item00);
-    if (dropFlag) {
-        flag_table = dropped_collectible_override_flags;
-        scene_table = &dropped_collectible_scene_flags_table[0];
-        if (scene == 0x0A) {
-            scene = 0x19;
+    override_key_t key = get_override_search_key(item00, scene, 0);
+    scene = key.scene;
+    uint8_t room = (key.flag & 0x3F00) >> 8;
+    uint16_t collectible_flag = key.flag & 0xFF;
+    uint8_t setup = (key.flag & 0xC000) >> 14;
+    if(collectible_flag > 0) {
+        uint16_t table_offset = get_collectible_flag_offset(scene, room, setup);
+        if(table_offset != 0xFFFF)
+        {
+            collectible_override_flags[table_offset + collectible_flag / 8] |= (1 << (collectible_flag % 8));
         }
     }
-    flag_table[scene_table[scene] + (extended_flag / 0x20)] |= 1 << (extended_flag % 0x20);
 }
 
 bool should_override_collectible(EnItem00 *item00) {
@@ -505,14 +551,27 @@ bool should_override_collectible(EnItem00 *item00) {
     return 1;
 }
 
+void Item_DropCollectible_Room_Hack(EnItem00 *spawnedActor)
+{
+    if(should_override_collectible(spawnedActor))
+    {
+        return;
+    }
+    spawnedActor->timeToLive = 220;
+    if((spawnedActor->actor.variable != ITEM00_SMALL_KEY) &&
+       (spawnedActor->actor.variable != ITEM00_HEART_PIECE) &&
+       (spawnedActor->actor.variable != ITEM00_HEART_CONTAINER))
+       {
+        spawnedActor->actor.room_index = -1;
+       }
+}
+
 bool Item00_KillActorIfFlagIsSet(z64_actor_t *actor) {
     EnItem00 *this = (EnItem00 *)actor;
     if (should_override_collectible(this)) {
         return 0;
     }
-    if (get_extended_flag(this) >= 0x40) {
-        return 0;
-    }
+
     if (z64_Flags_GetCollectible(&z64_game, this->collectibleFlag)) {
         z64_ActorKill(actor);
         return 1;
@@ -554,10 +613,8 @@ int16_t drop_bombs_or_chus(int16_t dropId) {
 int16_t get_override_drop_id(int16_t dropId, uint16_t params) {
     // make our a dummy enitem00 with enough info to get the override
     EnItem00 dummy;
-    dummy.collectibleFlag = (params & 0x3F00) >> 8;
     dummy.actor.actor_id = 0x15;
-    dummy.actor.dropFlag = 1;
-    dummy.actor.dropFlag |= (params & 0x00C0) >> 5;
+    dummy.actor.rot_init.y = drop_collectible_override_flag;
     dummy.actor.variable = dropId;
     if (should_override_collectible(&dummy) &&
         dropId != ITEM00_HEART_PIECE &&
@@ -634,10 +691,6 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
     // Check if we should override the item. We have logic in the randomizer to not include excluded items in the override table.
     if (override.key.all == 0 || Get_CollectibleOverrideFlag(pItem)) {
         z64_GiveItem(&z64_game, items[item]); // Give the regular item (this is what is normally called by the non-hacked function)
-        if (get_extended_flag(pItem) > 0x3F) { // If our extended collectible flag is outside the range of normal collectibles, set the flag to 0 so it doesn't write something wrong. We should only ever be using this for things that normally are 0 anyway
-            pItem->collectibleFlag = 0;
-            pItem->actor.dropFlag &= 0x01;
-        }
         return 0;
     }
 

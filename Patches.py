@@ -23,7 +23,7 @@ from MQ import patch_files, File, update_dmadata, insert_space, add_relocations
 from SaveContext import SaveContext, Scenes, FlagType
 from version import __version__
 from ItemPool import song_list
-from SceneFlags import get_scene_flag_table, get_scene_flag_table_bytes
+from SceneFlags import get_alt_list_bytes, get_collectible_flag_table, get_collectible_flag_table_bytes
 from texture_util import ci4_texture_apply_rgba16patch_and_convert_to_ci8, rgba16_patch
 
 
@@ -1683,7 +1683,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             if locations:
                 # Location types later in the list will be preferred over earlier ones or ones not in the list.
                 # This ensures that if the region behind the boss door is a boss arena, the medallion or stone will be used.
-                priority_types = ("Freestanding", "ActorOverride", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive", "Silver Rupee", "GS Token", "GrottoScrub", "Scrub", "Shop", "NPC", "Collectable", "Chest", "Cutscene", "Song", "BossHeart", "Boss")
+                priority_types = ("Freestanding", "ActorOverride", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive", "SilverRupee", "GS Token", "GrottoScrub", "Scrub", "Shop", "NPC", "Collectable", "Chest", "Cutscene", "Song", "BossHeart", "Boss")
                 best_type = max((location.type for location in locations), key=lambda type: priority_types.index(type) if type in priority_types else -1)
                 location = random.choice(list(filter(lambda loc: loc.type == best_type, locations)))
                 break
@@ -1782,65 +1782,36 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     if world.settings.shuffle_freestanding_items:
     # Get freestanding item locations
         actor_override_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'ActorOverride']
-        freestanding_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Freestanding']
         rupeetower_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'RupeeTower']
 
         for location in actor_override_locations:
             patch_actor_override(location, rom)
-        for location in freestanding_locations:
-            patch_freestanding_collectible(location, rom)
         for location in rupeetower_locations:
             patch_rupee_tower(location, rom)
 
-    # Patch beehives
-    if world.settings.shuffle_beehives:
-        beehive_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Beehive']
-        for location in beehive_locations:
-            patch_beehive(location, rom)
-        patch_grotto_beehive_2(rom)
-
-    # Patch pots
-    if world.settings.shuffle_pots:
-        pot_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Pot']
-        flying_pot_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'FlyingPot']
-
-        for location in pot_locations:
-            patch_pot(location, rom)
-        for location in flying_pot_locations:
-            patch_flying_pot(location, rom)
-
-    # Patch crates
-    if world.settings.shuffle_crates:
-        crate_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Crate']
-        smallcrate_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'SmallCrate']
-
-        for location in crate_locations:
-            patch_crate(location, rom)
-        for location in smallcrate_locations:
-            patch_small_crate(location, rom)
-
-    # Patch silver rupees
     if world.shuffle_silver_rupees:
+        rom.write_byte(rom.sym('SHUFFLE_SILVER_RUPEES'), 1)
         if world.settings.shuffle_silver_rupees != 'remove':
             rom.write_byte(rom.sym('CFG_DUNGEON_INFO_SILVER_RUPEES'), 1)
 
-        silver_rupee_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'Silver Rupee']
-        for silver_rupee_location in silver_rupee_locations:
-            patch_silver_rupee(silver_rupee_location, rom)
+        if world.dungeon_mq['Dodongos Cavern']: #Patch DC MQ Staircase Transition Actor to use permanent switch flag 0x1F
+            rom.write_byte(0x1F12190+15, 0x9F)
 
-        if world.dungeon_mq['Dodongos Cavern']: # Patch DC MQ Staircase Transition Actor to use permanent switch flag 0x1F
-            rom.write_byte(0x1F12190 + 15, 0x9F)
-
-        if world.dungeon_mq['Spirit Temple']: # Patch Spirit MQ Lobby front right chest to use permanent switch flag 0x1F
-            rom.write_byte(0x2b08ce4 + 13, 0x1F)
+        if world.dungeon_mq['Spirit Temple']: #Patch Spirit MQ Lobby front right chest to use permanent switch flag 0x1F
+            rom.write_byte(0x2b08ce4+13, 0x1F )
 
     # Write flag table data
-    scene_flag_table = get_scene_flag_table(world)
-    freestanding_flag_table_bytes, drop_flag_table_bytes, num_freestanding_flags, num_drop_flags = get_scene_flag_table_bytes(scene_flag_table)
-    rom.write_bytes(rom.sym('collectible_scene_flags_table'), freestanding_flag_table_bytes)
-    rom.write_bytes(rom.sym('dropped_collectible_scene_flags_table'), drop_flag_table_bytes)
-    rom.write_bytes(rom.sym('num_override_flags'), num_freestanding_flags.to_bytes(2, 'big'))
-    rom.write_bytes(rom.sym('num_drop_override_flags'), num_drop_flags.to_bytes(2, 'big'))
+    collectible_flag_table, alt_list = get_collectible_flag_table(world)
+    collectible_flag_table_bytes, num_collectible_flags = get_collectible_flag_table_bytes(collectible_flag_table)
+    alt_list_bytes = get_alt_list_bytes(alt_list)
+    if len(collectible_flag_table_bytes) > 600:
+        raise RuntimeError(f'Exceeded collectible override table size: {len(collectible_flag_table_bytes)}')
+    rom.write_bytes(rom.sym('collectible_scene_flags_table'), collectible_flag_table_bytes)
+    num_collectible_flags += num_collectible_flags % 8
+    rom.write_bytes(rom.sym('num_override_flags'), num_collectible_flags.to_bytes(2, 'big'))
+    if len(alt_list) > 64:
+        raise RuntimeError(f'Exceeded alt override table size: {len(alt_list)}')
+    rom.write_bytes(rom.sym('alt_overrides'), alt_list_bytes)
 
     # Write item overrides
     check_location_dupes(world)
@@ -2476,7 +2447,7 @@ def get_override_table(world):
     return list(filter(lambda val: val != None, map(get_override_entry, world.get_filled_locations())))
 
 
-override_struct = struct.Struct('>xBBBHBB') # match override_t in get_items.c
+override_struct = struct.Struct('>BBHHBB') # match override_t in get_items.c
 def get_override_table_bytes(override_table):
     return b''.join(sorted(itertools.starmap(override_struct.pack, override_table)))
 
@@ -2503,10 +2474,16 @@ def get_override_entry(location):
     elif location.type == 'Chest':
         type = 1
         default &= 0x1F
-    elif location.type in ['Collectable', 'Freestanding', 'ActorOverride', 'Silver Rupee']:
-        type = 2
-    elif location.type in ["Pot", "Crate", "FlyingPot", "SmallCrate", "RupeeTower", "Beehive"]:
+    elif location.type in ['Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive', 'SilverRupee']:
         type = 6
+        if not (isinstance(location.default, list) or isinstance(location.default, tuple)):
+            raise Exception("Not right")
+        if isinstance(location.default, list):
+            default = location.default[0]
+        room, scene_setup, flag = default
+        default = (room << 8) + (scene_setup << 14) + flag
+    elif location.type in ['Collectable', 'ActorOverride']:
+        type = 2
     elif location.type == 'GS Token':
         type = 3
     elif location.type == 'Shop' and location.item.type != 'Shop':
@@ -2893,69 +2870,15 @@ def patch_actor_override(location, rom: Rom):
             rom.write_bytes(address, patch)
 
 def patch_rupee_tower(location, rom: Rom):
+    flag = location.default
+    if isinstance(location.default, tuple):
+        room, scene_setup, flag = location.default
+    elif isinstance(location.default, list):
+        room, scene_setup, flag = location.default[0]
+    flag = flag + (room << 8)
     if location.address:
         for address in location.address:
-            rom.write_byte(address + 13, location.default)
-
-# Patch the flag of a freestanding collectible
-def patch_freestanding_collectible(location, rom: Rom):
-    if location.address:
-        for address in location.address:
-            rom.write_byte(address + 14, location.default)
-
-# Patch the collectible flag used by a crate
-def patch_crate(location, rom: Rom):
-    if location.address:
-        for address in location.address:
-            rom.write_byte(address + 13, location.default)
-
-# Patch the collectible flag used by a flying pot
-def patch_flying_pot(location, rom: Rom):
-    if location.address:
-        for address in location.address:
-            byte = rom.read_byte(address + 15)
-            byte = byte & 0xC0
-            byte |= (location.default & 0x3F)
-            rom.write_byte(address + 15, byte)
-
-# Patch the collectible flag used by a small crate
-def patch_small_crate(location, rom: Rom):
-    if location.address:
-        for address in location.address:
-            rom.write_byte(address + 14, location.default)
-
-# Patch the collectible flag used by a pot
-def patch_pot(location, rom: Rom):
-    if location.address:
-        for address in location.address:
-            byte = rom.read_byte(address + 14)
-            byte = byte & 0x01
-            byte |= location.default << 1
-            rom.write_byte(address + 14, byte)
-
-
-# patch the second beehive in generic grottos to distinguish it from the first.
-def patch_grotto_beehive_2(rom: Rom):
-     rom.write_byte(0x26C10C4 + 13, 1)
-
-# Patch collectible flag used by a beehive. Only used outside of grottos.
-def patch_beehive(location, rom: Rom):
-    if location.address:
-        for address in location.address:
-            rom.write_byte(address + 13, location.default)
-
-# Patches a silver rupee to be a collectible item for silver rupee shuffle
-def patch_silver_rupee(location, rom: Rom):
-    if location.address:
-        for address in location.address:
-            actor_bytes = rom.read_bytes(address, 16) # Read the actor
-            actor_bytes[0] = 0x00
-            actor_bytes[1] = 0x15 # Patch the actor to a collectible
-
-            actor_bytes[14] = (location.default & 0x3F) # Patch the flag
-            actor_bytes[15] = (location.default & 0xC0)
-            rom.write_bytes(address, actor_bytes)
-
+            rom.write_bytes(address + 12, flag.to_bytes(2, byteorder='big'))
 
 # Patch the first boss key door in ganons tower that leads to the room w/ the pots
 def patch_ganons_tower_bk_door(rom: Rom, flag):

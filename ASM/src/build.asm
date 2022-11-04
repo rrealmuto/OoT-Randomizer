@@ -1,7 +1,7 @@
 .n64
 .relativeinclude on
 
-// version guard, prevent people from building with older armips versions
+; version guard, prevent people from building with older armips versions
 .if (version() < 110)
 .notice version()
 .error   "Detected armips build is too old. Please install https://github.com/Kingcom/armips version 0.11 or later."
@@ -35,7 +35,7 @@
 .headersize (0x80400000 - 0x03480000)
 
 .org 0x80400000
-.area 0x20000 //payload max memory
+.area 0x000FF000 ; payload max memory
 PAYLOAD_START:
 
 .area 0x20, 0
@@ -111,6 +111,7 @@ RANDO_CONTEXT:
 .include "drop_overrides/bg_spot18_basket.asm"
 .include "drop_overrides/obj_comb.asm"
 .include "drop_overrides/actor.asm"
+.include "drop_overrides/obj_tsubo.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"
@@ -136,7 +137,7 @@ SKULL_CHEST_BASE_TEXTURE:
 
 .align 0x10
 PAYLOAD_END:
-.endarea //payload max memory
+.endarea ; payload max memory
 
 .skip 0x100 ; Temporary address bump to avoid audio issues
 

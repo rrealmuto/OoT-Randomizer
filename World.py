@@ -508,6 +508,8 @@ class World(object):
                 new_region.alt_hint_name = region['alt_hint']
             if 'dungeon' in region:
                 new_region.dungeon = region['dungeon']
+            if 'is_boss_room' in region:
+                new_region.is_boss_room = region['is_boss_room']
             if 'time_passes' in region:
                 new_region.time_passes = region['time_passes']
                 new_region.provides_time = TimeOfDay.ALL

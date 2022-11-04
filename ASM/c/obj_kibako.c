@@ -2,10 +2,12 @@
 #include "get_items.h"
 #include "z64.h"
 #include "textures.h"
+#include "z64.h"
 
 #define SMALLCRATE_DLIST (z64_gfx_t *)0x05005290
 #define SMALLCRATE_TEXTURE (uint8_t *)0x05011CA0
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
+extern uint16_t drop_collectible_override_flag;
 
 override_t get_smallcrate_override(z64_actor_t *actor, z64_game_t *game) {
     // make a dummy EnItem00 with enough info to get the override
@@ -16,10 +18,9 @@ override_t get_smallcrate_override(z64_actor_t *actor, z64_game_t *game) {
     }
 
     EnItem00 dummy;
-    dummy.collectibleFlag = (actor->variable & 0x3F00) >> 8;
     dummy.actor.actor_id = 0x15;
-    dummy.actor.dropFlag = 1;
-    dummy.actor.variable = item;
+    dummy.actor.rot_init.y = actor->rot_init.z;
+    dummy.actor.variable = 0x0000;
 
     if (!should_override_collectible(&dummy)) {
         return (override_t){ 0 };
@@ -61,4 +62,15 @@ void ObjKibako_Draw(z64_actor_t *actor, z64_game_t *game) {
 
     // draw the original dlist that has been hacked in ASM to jump to the custom dlists
     z64_Gfx_DrawDListOpa(game, SMALLCRATE_DLIST);
+}
+
+void ObjKibako_SpawnCollectible_Hack(z64_actor_t* this, z64_game_t* globalCtx) {
+    int16_t collectible;
+
+    collectible = this->variable & 0x1F;
+    if ((collectible >= 0) && (collectible <= 0x19)) {
+        drop_collectible_override_flag = this->rot_init.z;
+        z64_Item_DropCollectible(globalCtx, &this->pos_world,
+                             collectible | (((this->variable >> 8) & 0x3F) << 8));
+    }
 }

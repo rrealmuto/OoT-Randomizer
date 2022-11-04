@@ -63,7 +63,7 @@
         "region_name": "Adult Spirit Temple",
         "dungeon": "Spirit Temple",
         "locations": {
-            "Spirit Temple MQ Child Climb South Chest": "(Small_Key_Spirit_Temple, 7) and has_explosives and Hookshot",
+            "Spirit Temple MQ Child Climb South Chest": "Hookshot and (Small_Key_Spirit_Temple, 7) and has_explosives",
             "Spirit Temple MQ Statue Room Lullaby Chest": "Hookshot and can_play(Zeldas_Lullaby) and can_break_crate",
             "Spirit Temple MQ Statue Room Invisible Chest": "Longshot and logic_lens_spirit_mq or can_use(Lens_of_Truth)"
         },
@@ -174,11 +174,11 @@
         "locations": {
             "Spirit Temple MQ Shifting Wall Pot 1": "True",
             "Spirit Temple MQ Shifting Wall Pot 2": "True",
-            "Spirit Temple MQ Adult Climb Silver Rupee 1" : "True",
-            "Spirit Temple MQ Adult Climb Silver Rupee 2" : "True",
-            "Spirit Temple MQ Adult Climb Silver Rupee 3" : "True",
-            "Spirit Temple MQ Adult Climb Silver Rupee 4" : "True",
-            "Spirit Temple MQ Adult Climb Silver Rupee 5" : "True"
+            "Spirit Temple MQ Adult Climb Silver Rupee 1": "True",
+            "Spirit Temple MQ Adult Climb Silver Rupee 2": "True",
+            "Spirit Temple MQ Adult Climb Silver Rupee 3": "True",
+            "Spirit Temple MQ Adult Climb Silver Rupee 4": "True",
+            "Spirit Temple MQ Adult Climb Silver Rupee 5": "True"
         },
         "exits": {
             "Spirit Temple After Shifting Wall": "(Silver_Rupee_Spirit_Temple_Adult_Climb, 5)"

@@ -18,6 +18,7 @@
 #include "extern_ctxt.h"
 #include "weather.h"
 #include "textures.h"
+#include "scene.h"
 
 void Gameplay_InitSkybox(z64_game_t* globalCtx, int16_t skyboxId);
 
@@ -57,4 +58,5 @@ void after_scene_init() {
     models_reset();
     extern_scene_init();
     reset_collectible_mutex();
+    get_current_scene_setup_number();
 }

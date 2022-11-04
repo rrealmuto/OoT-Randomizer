@@ -622,9 +622,9 @@ def get_pool_core(world):
         elif location.type in ['Pot', 'FlyingPot']:
             if world.settings.shuffle_pots == 'all':
                 shuffle_item = True
-            elif world.settings.shuffle_pots == 'dungeons' and location.dungeon is not None:
+            elif world.settings.shuffle_pots == 'dungeons' and (location.dungeon is not None or location.parent_region.is_boss_room):
                 shuffle_item = True
-            elif world.settings.shuffle_pots == 'overworld' and location.dungeon is None:
+            elif world.settings.shuffle_pots == 'overworld' and not (location.dungeon is not None or location.parent_region.is_boss_room):
                 shuffle_item = True
             else:
                 shuffle_item = False
@@ -680,7 +680,7 @@ def get_pool_core(world):
                     item = get_junk_item()[0]
                     shuffle_item = True
             # Silver Rupee
-            elif location.type == 'Silver Rupee':
+            elif location.type == 'SilverRupee':
                 shuffle_setting = world.settings.shuffle_silver_rupees
                 dungeon_collection = dungeon.silver_rupees
                 if shuffle_setting == 'vanilla':

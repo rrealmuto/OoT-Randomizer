@@ -224,7 +224,6 @@ Gameplay_InitSkybox:
 ;    jal    Item00_KeepAlive
 ;    nop
 ;    nop
-;    LH     V0, 0x014A (S0)
 
 ; Runs when player collides w/ Collectible (inside en_item00_update()) start of switch case at 0x80012CA4
 
@@ -373,7 +372,7 @@ SRAM_SLOTS:
     j       Sram_CopySave
     nop
 
-; Hack to EnItem00_Init to store if it was dropped by a pot
+; Hack to EnItem00_Init
 ; replaces
 ;   ANDI    t9, v0, 0x00FF
 ;   SH      T9, 0x001c(S0)
@@ -399,6 +398,22 @@ SRAM_SLOTS:
     nop
 .headersize(0)
 
+; Hack EnItem00 Action Function (func_8001E304 from decomp, 0x8001251C in 1.0) used by Item_DropCollectible to not increment the time to live if its < 0
+; replaces
+;   lh      t6, 0x014A(s0)
+;   lh      v0, 0x001C(s0)
+;   addiu   at, r0, 0x0003
+;   addiu   t7, t6, 0x0001
+;   bne     v0, vt, 0x80012630
+;   sh      t7, 0x014A(s0)
+.orga 0xA88490 ; In Memory 0x80012530
+    jal     EnItem00_DropCollectibleFallAction_Hack
+    nop
+    lh      v0, 0x001C(s0)
+    addiu   at, r0, 0x0003
+.skip 4
+    nop
+
 ;Hack Item_DropCollectible to call custom function to determine what item should be dropped based on our override.
 ;overriding call at 0x8001376C to function 0x80013530
 ;replaces
@@ -416,30 +431,70 @@ SRAM_SLOTS:
     jal     get_override_drop_id_hook
     sh      T1, 0x0042(sp)
 
-; Hack Item_DropCollectibleRandom to call custom drop override function (mostly just for chus in logic)
-.orga 0xA89D4C;
-    jal     get_override_drop_id_hook
-
-; Hack Item_DropCollectible to add a flag that this was a dropped collectible (vs spawned) and extended flag
+; Hack Item_DropCollectible to set the y rotation to the drop_collectible_override_flag
 ; replaces
-;   or      t4, t3, t1
-;   sw      t4, 0x0024(sp)
-.orga 0xA89708; in memory 0x800137A8
+;   sw      r0, 0x0020(sp)
+;   sw      r0, 0x001C(sp)
+.orga 0xA89718 ; in memory 0x800137B8
     jal     drop_collectible_hook
-    or      t4, t3, t1
+    sw      r0, 0x0020(sp)
 
-; Hack Item_DropCollectible2 to add dropped collectible flag and extended flag
+; Hack Item_DropCollectible when room index of the spawned actor gets set to -1.
 ; replaces
-;   or      t4, t3, t1
-;   sw      t4, 0x0024(sp)
-.orga 0xA89934; in memory 0x800139D4
+;   addiu   t7, r0, 0x00DC
+;   addiu   at, r0, 0x0011
+;   beq     v0, at, 0x80013888
+;   sh      t7, 0x014a(s2)
+;   addiu   at, r0, 0x0006
+;   beq     v0, at, 0x80013888
+;   addiu   at, r0, 0x0007
+;   beq     v0, at, 0x80013888
+;   addiu   t8, r0, 0xFFFF
+;   sb      t8, 0x0003(s2)
+.orga 0xA897C0 ; in memory 0x80013860
+    jal     drop_collectible_room_hook
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+
+; Hack Item_DropCollectible2 to set the y rotation to the drop_collectible_override_flag
+; replaces
+;   sw      r0, 0x0020(sp)
+;   sw      r0, 0x001C(sp)
+.orga 0xA89940 ; in memory 0x800139E0
     jal     drop_collectible2_hook
-    or      t4, t3, t1
+    sw      r0, 0x0020(sp)
+
+; Hack ObjTsubo_SpawnCollectible (Pot) to store the collectible override flag from the z rotation
+; Replaces
+;   lw      a0, 0x001c(sp)
+;   sra     t6, v1, 9
+;   andi    t7,t6, 0x003F
+.orga 0xDE7C8C
+    nop
+    jal     obj_tsubo_spawn_hook
+    nop
 
 ; Hack ObjKibako2_SpawnCollectible (Large crates) to call our overridden spawn function
 ;
 .orga 0xEC8264
     j       ObjKibako2_SpawnCollectible_Hack
+    nop
+
+; Hack ObjKibako_SpawnCollectible (Small wooden crates) to call our overriden spawn function
+.orga 0xDE6F60
+    j       ObjKibako_SpawnCollectible_Hack
+    nop
+
+; Hack En_tubo_trap (flying pots) to call our overriden spawn function
+.orga 0xDFA520
+    j       EnTuboTrap_DropCollectible_Hack
     nop
 
 ; Hack ObjKibako2_Init (Large Crates) to not delete our extended flag
@@ -482,7 +537,7 @@ bg_spot18_basket_bombs_loopstart:
     jal     bg_spot18_basket_bombs_hack
     or      a0, s4, r0
 .skip 4
-    ori     a2, a2, 0x0004
+    ori     a2, r0, 0x0004
 .skip 4
     sll     t6, s7, 1
 .skip 16
@@ -562,6 +617,19 @@ bg_spot18_basket_rupees_loopstart: ; our new loop branch target
 ; Replaces:
 ;   jr      ra
     j       Actor_SetWorldToHome_Hook
+
+; Hook Actor_UpdateAll when each actor is being initialized. At the call to Actor_SpawnEntry
+; Used to set the flag (z-rotation) of the actor to its position in the actor table.
+.orga 0xA99D48 ; In memory: 0x80023DE8
+; Replaces:
+;   jal     0x800255C4
+    jal     Actor_UpdateAll_Hook
+
+; Hack Actor_SpawnEntry so we can override actors being spawned
+.orga 0xA9B524 ; In memory: 0x800255C4
+; Replaces: Entire function
+    j       Actor_SpawnEntry_Hack
+    nop
 
 ; Runs when storing an incoming item to the player instance
 ; Replaces:
