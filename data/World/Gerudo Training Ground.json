@@ -20,35 +20,10 @@
         },
         "exits": {
             "Gerudo Fortress": "True",
-            "Gerudo Training Ground Boulder Room": "is_adult or Kokiri_Sword",
             "Gerudo Training Ground Lava Room Front": "
                 here(has_explosives and (is_adult or Kokiri_Sword))",
             "Gerudo Training Ground Central Maze Right": "(Small_Key_Gerudo_Training_Ground, 9)",
-            "Gerudo Training Ground Heavy Block Room": "
-                (is_adult or Kokiri_Sword) and
-                (can_use(Hookshot) or logic_gtg_without_hookshot)"
-        }
-    },
-    {
-        "region_name": "Gerudo Training Ground Lava Room",
-        "dungeon": "Gerudo Training Ground",
-        "exits": {
-            "Gerudo Training Ground Central Maze Right": "can_play(Song_of_Time) or is_child",
-            "Gerudo Training Ground Hammer Room": "
-                is_adult and (Longshot or (Hookshot and Hover_Boots))"
-        }
-    },
-    {
-        "region_name": "Gerudo Training Ground Central Maze Right",
-        "dungeon": "Gerudo Training Ground",
-        "locations": {
-            "Gerudo Training Ground Maze Right Central Chest": "True",
-            "Gerudo Training Ground Maze Right Side Chest": "True",
-            "Gerudo Training Ground Freestanding Key": "True"
-        },
-        "exits": {
-            "Gerudo Training Ground Lava Room Front": "True",
-            "Gerudo Training Ground Lava Room Back": "True"
+            "Gerudo Training Ground Boulder Room": "is_adult or Kokiri_Sword"
         }
     },
     {
@@ -64,7 +39,7 @@
         "exits": {
             "Gerudo Training Ground Central Maze Right": "can_play(Song_of_Time) or is_child",
             "Gerudo Training Ground Lava Room Back": "can_use(Hover_Boots) or can_use(Longshot)",
-            "Gerudo Training Ground Underwater Silver Rupee Room": "(Silver_Rupee_Gerudo_Training_Ground_Lava, 5)"
+            "Gerudo Training Ground Water Room": "(Silver_Rupee_Gerudo_Training_Ground_Lava, 5)"
         }
     },
     {
@@ -81,7 +56,7 @@
         }
     },
     {
-        "region_name": "Gerudo Training Ground Underwater Silver Rupee Room",
+        "region_name": "Gerudo Training Ground Water Room",
         "dungeon" : "Gerudo Training Ground",
         "locations": {
             "Gerudo Training Ground Underwater Silver Rupee Chest": "(Silver_Rupee_Gerudo_Training_Ground_Water, 5)",
@@ -103,14 +78,53 @@
         }
     },
     {
+        "region_name": "Gerudo Training Ground Central Maze Right",
+        "dungeon": "Gerudo Training Ground",
+        "locations": {
+            "Gerudo Training Ground Maze Right Central Chest": "True",
+            "Gerudo Training Ground Maze Right Side Chest": "True",
+            "Gerudo Training Ground Freestanding Key": "True"
+        },
+        "exits": {
+            "Gerudo Training Ground Lava Room Front": "True",
+            "Gerudo Training Ground Lava Room Back": "True"
+        }
+    },
+    {
+        "region_name": "Gerudo Training Ground Boulder Room",
+        "dungeon": "Gerudo Training Ground",
+        "locations": {
+            "Gerudo Training Ground Boulder Room Silver Rupee Bottom Right": "True",
+            "Gerudo Training Ground Boulder Room Silver Rupee Bottom Left": "True",
+            "Gerudo Training Ground Boulder Room Silver Rupee Ceiling": "can_use(Hookshot) or logic_gtg_without_hookshot",
+            "Gerudo Training Ground Boulder Room Silver Rupee Ledge": "True",
+            "Gerudo Training Ground Boulder Room Silver Rupee Top Left": "True"
+        },
+        "exits": {
+            "Gerudo Training Ground Heavy Block Room": "(Silver_Rupee_Gerudo_Training_Ground_Slopes, 5) and (can_use(Hookshot) or logic_gtg_without_hookshot)"
+        }
+    },
+    {
+        "region_name": "Gerudo Training Ground Heavy Block Room",
+        "dungeon": "Gerudo Training Ground",
+        "locations": {
+            "Gerudo Training Ground Before Heavy Block Chest": "True"
+        },
+        "exits": {
+            "Gerudo Training Ground Eye Statue Upper": "
+                is_adult and (logic_lens_gtg or can_use(Lens_of_Truth)) and
+                (Hookshot or (logic_gtg_fake_wall and Hover_Boots))"
+        }
+    },
+    {
         "region_name": "Gerudo Training Ground Eye Statue Upper",
         "dungeon": "Gerudo Training Ground",
         "locations": {
             "Gerudo Training Ground Near Scarecrow Chest": "Bow"
         },
         "exits": {
-            "Gerudo Training Ground Eye Statue Lower": "can_use(Megaton_Hammer) and Bow",
-            "Gerudo Training Ground Lava Room Back": "True"
+            "Gerudo Training Ground Like Like Room": "Silver_Gauntlets",
+            "Gerudo Training Ground Eye Statue Lower": "True"
         }
     },
     {
@@ -131,32 +145,6 @@
         },
         "exits": {
             "Gerudo Training Ground Hammer Room": "True"
-        }
-    },
-    {
-        "region_name": "Gerudo Training Ground Boulder Room",
-        "dungeon": "Gerudo Training Ground",
-        "locations": {
-            "Gerudo Training Ground Boulder Room Silver Rupee Bottom Right": "True",
-            "Gerudo Training Ground Boulder Room Silver Rupee Bottom Left": "True",
-            "Gerudo Training Ground Boulder Room Silver Rupee Ceiling": "can_use(Hookshot) or logic_gtg_without_hookshot",
-            "Gerudo Training Ground Boulder Room Silver Rupee Ledge": "True",
-            "Gerudo Training Ground Boulder Room Silver Rupee Top Left": "True"
-        },
-        "exits": {
-            "Gerudo Training Ground Heavy Block Room": "(Silver_Rupee_Gerudo_Training_Ground_Slopes, 5)"
-        }
-    },
-    {
-        "region_name": "Gerudo Training Ground Heavy Block Room",
-        "dungeon": "Gerudo Training Ground",
-        "locations": {
-            "Gerudo Training Ground Before Heavy Block Chest": "True"
-        },
-        "exits": {
-            "Gerudo Training Ground Eye Statue Upper": "
-                is_adult and (logic_lens_gtg or can_use(Lens_of_Truth)) and
-                (Hookshot or (logic_gtg_fake_wall and Hover_Boots))"
         }
     },
     {
