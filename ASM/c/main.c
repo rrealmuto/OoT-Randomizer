@@ -59,4 +59,5 @@ void after_scene_init() {
     extern_scene_init();
     reset_collectible_mutex();
     get_current_scene_setup_number();
+    check_model_skeletons();
 }
