@@ -20,7 +20,7 @@ def set_all_entrances_data(world):
         forward_entrance.primary = True
         if type == 'Grotto':
             forward_entrance.data['index'] = 0x1000 + forward_entrance.data['grotto_id']
-        if world.settings.decouple_entrances and type not in ('ChildBoss', 'AdultBoss'):
+        if world.settings.decouple_entrances:
             forward_entrance.decoupled = True
         if return_entry:
             return_entry = return_entry[0]
@@ -30,7 +30,7 @@ def set_all_entrances_data(world):
             forward_entrance.bind_two_way(return_entrance)
             if type == 'Grotto':
                 return_entrance.data['index'] = 0x2000 + return_entrance.data['grotto_id']
-            if world.settings.decouple_entrances and type not in ('ChildBoss', 'AdultBoss'):
+            if world.settings.decouple_entrances:
                 return_entrance.decoupled = True
 
 
@@ -517,12 +517,17 @@ def shuffle_random_entrances(worlds):
             if worlds[0].settings.require_gohma:
                 # With Require Gohma, Gohma's arena must be vanilla. Place it here as an optimization.
                 entrance_pools['Boss'].remove(world.get_entrance('Deku Tree Boss Door -> Queen Gohma Boss Room'))
+            if worlds[0].settings.decouple_entrances:
+                entrance_pools['BossReverse'] = [entrance.reverse for entrance in entrance_pools['Boss']]
         elif worlds[0].settings.shuffle_bosses == 'limited':
             entrance_pools['ChildBoss'] = world.get_shufflable_entrances(type='ChildBoss', only_primary=True)
             entrance_pools['AdultBoss'] = world.get_shufflable_entrances(type='AdultBoss', only_primary=True)
             if worlds[0].settings.require_gohma:
                 # With Require Gohma, Gohma's arena must be vanilla. Place it here as an optimization.
                 entrance_pools['ChildBoss'].remove(world.get_entrance('Deku Tree Boss Door -> Queen Gohma Boss Room'))
+            if worlds[0].settings.decouple_entrances:
+                entrance_pools['ChildBossReverse'] = [entrance.reverse for entrance in entrance_pools['ChildBoss']]
+                entrance_pools['AdultBossReverse'] = [entrance.reverse for entrance in entrance_pools['AdultBoss']]
 
         if worlds[0].shuffle_dungeon_entrances:
             entrance_pools['Dungeon'] = world.get_shufflable_entrances(type='Dungeon', only_primary=True)

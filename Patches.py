@@ -999,7 +999,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     def set_entrance_updates(entrances):
         blue_warp_remaps = {}
         blue_warp_address_remaps = {}
-        if (world.settings.shuffle_bosses != 'off'):
+        if world.settings.shuffle_bosses != 'off':
             # Connect lake hylia fill exit to revisit exit
             rom.write_int16(0xAC995A, 0x060C)
 
@@ -1007,7 +1007,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             # We'll need to iterate more than once, so make a copy so we can iterate more than once.
             entrances = list(entrances)
             for entrance in entrances:
-                if entrance.type not in('ChildBoss', 'AdultBoss') or not entrance.replaces or 'patch_addresses' not in entrance.data:
+                if entrance.type not in ('ChildBoss', 'AdultBoss') or not entrance.replaces or 'patch_addresses' not in entrance.data:
                     continue
                 if entrance == entrance.replaces:
                     # This can happen if something is plando'd vanilla.
