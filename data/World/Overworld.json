@@ -302,7 +302,9 @@
         "scene": "Lost Woods",
         "hint": "LOST_WOODS",
         "locations": {
-            "LW Underwater Green Rupee Nearest Exit": "is_child"
+            # This is the third rupee from the shortcut entrance and is automatically 
+            # collected upon entering through the shortcut. Only really matters for overworld ER
+            "LW Underwater Shortcut Green Rupee": "is_child"
         },
         "exits": {
             "Lost Woods": "True"

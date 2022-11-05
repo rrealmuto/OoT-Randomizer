@@ -152,14 +152,14 @@ location_table = OrderedDict([
     ("LW GS Above Theater",                                          ("GS Token",     0x0D,  0x04, None,                            'Gold Skulltula Token',                  ("the Lost Woods", "Skulltulas"))),
     # Lost Woods Freestanding
     ("LW Under Boulder Blue Rupee",                                  ("Freestanding", 0x5B,  [(7,0,5), (7,2,2)], None,              'Rupees (5)',                            ("the Lost Woods", "Forest", "Freestanding"))),
-    ("LW Underwater Green Rupee 1",                                  ("Freestanding", 0x5B,  (3,0,6), None,                         'Rupee (1)',                             ("the Lost Woods", "Forest", "Freestanding"))),
-    ("LW Underwater Green Rupee 2",                                  ("Freestanding", 0x5B,  (3,0,7), None,                         'Rupee (1)',                             ("the Lost Woods", "Forest", "Freestanding"))),
+    ("LW Underwater Green Rupee 1",                                  ("Freestanding", 0x5B,  (3,0,5), None,                         'Rupee (1)',                             ("the Lost Woods", "Forest", "Freestanding"))),
+    ("LW Underwater Green Rupee 2",                                  ("Freestanding", 0x5B,  (3,0,6), None,                         'Rupee (1)',                             ("the Lost Woods", "Forest", "Freestanding"))),
+    ("LW Underwater Shortcut Green Rupee",                           ("Freestanding", 0x5B,  (3,0,7), None,                         'Rupee (1)',                             ("the Lost Woods", "Forest", "Freestanding"))),
     ("LW Underwater Green Rupee 3",                                  ("Freestanding", 0x5B,  (3,0,8), None,                         'Rupee (1)',                             ("the Lost Woods", "Forest", "Freestanding"))),
     ("LW Underwater Green Rupee 4",                                  ("Freestanding", 0x5B,  (3,0,9), None,                         'Rupee (1)',                             ("the Lost Woods", "Forest", "Freestanding"))),
     ("LW Underwater Green Rupee 5",                                  ("Freestanding", 0x5B,  (3,0,10), None,                        'Rupee (1)',                             ("the Lost Woods", "Forest", "Freestanding"))),
     ("LW Underwater Green Rupee 6",                                  ("Freestanding", 0x5B,  (3,0,11), None,                        'Rupee (1)',                             ("the Lost Woods", "Forest", "Freestanding"))),
     ("LW Underwater Green Rupee 7",                                  ("Freestanding", 0x5B,  (3,0,12), None,                        'Rupee (1)',                             ("the Lost Woods", "Forest", "Freestanding"))),
-    ("LW Underwater Green Rupee Nearest Exit",                       ("Freestanding", 0x5B,  (3,0,5), None,                         'Rupee (1)',                             ("the Lost Woods", "Forest", "Freestanding"))),
     # Lost Woods Beehives
     ("LW Near Shortcuts Grotto Beehive 1",                           ("Beehive",      0x3E, (0,0,0x48 + (0x14 * 2)), None,          'Rupees (5)',                            ("the Lost Woods", "Forest", "Grottos", "Beehive"))),
     ("LW Near Shortcuts Grotto Beehive 2",                           ("Beehive",      0x3E, (0,0,0x49 + (0x14 * 2)), None,          'Rupees (20)',                           ("the Lost Woods", "Forest", "Grottos", "Beehive"))),
