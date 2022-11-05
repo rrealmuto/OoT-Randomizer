@@ -1814,24 +1814,28 @@ setting_infos = [
                         'rom','web_output_type','player_num',
                         'web_wad_file', 'web_common_key_file', 'web_common_key_string',
                         'web_wad_channel_id','web_wad_channel_title', 'web_wad_legacy_mode',
-                        'model_adult', 'model_child'
+                        'model_adult', 'model_child', 'model_adult_filepicker', 'model_child_filepicker',
+                        'sfx_link_adult', 'sfx_link_child',
                     ],
                 },
                 True : {
                     'settings' : [
-                        'model_adult', 'model_child'
+                        'model_adult', 'model_child', 'model_unavailable_msg',
+                        'sfx_link_unavailable_msg',
                     ],
                 },
             },
             'electron:disable' : {
                 False : {
                     'settings' : [
-                        'model_adult_filepicker', 'model_child_filepicker'
+                        'model_adult_filepicker', 'model_child_filepicker', 'model_unavailable_msg',
+                        'sfx_link_unavailable_msg',
                     ],
                 },
                 True : {
                     'settings' : [
-                        'model_adult_filepicker', 'model_child_filepicker'
+                        'model_adult_filepicker', 'model_child_filepicker', 'model_unavailable_msg',
+                        'sfx_link_unavailable_msg',
                     ],
                 },
             }
@@ -5064,6 +5068,17 @@ setting_infos = [
             ],
             "hide_when_disabled": True,
     }),
+    Setting_Info(
+        name           = 'model_unavailable_msg',
+        type           = str,
+        gui_text       = "Models can only be customized when patching.",
+        gui_type       = "Textbox",
+        shared         = False,
+        gui_params     = {
+            "hide_when_disabled": True
+        },
+        choices        = {},
+    ),
     Checkbutton(
         name           = 'randomize_all_cosmetics',
         gui_text       = 'Randomize All Cosmetics',
@@ -5908,6 +5923,9 @@ setting_infos = [
         gui_tooltip    = '''\
             Change Link's adult voice.
         ''',
+        gui_params     = {
+            "hide_when_disabled": True,
+        }
     ),
     Combobox(
         name           = 'sfx_link_child',
@@ -5924,6 +5942,20 @@ setting_infos = [
         gui_tooltip    = '''\
             Change Link's child voice.
         ''',
+        gui_params     = {
+            "hide_when_disabled": True,
+        }
+    ),
+    Setting_Info(
+        name           = 'sfx_link_unavailable_msg',
+        type           = str,
+        gui_text       = "Link's Voice can only be customized when patching.",
+        gui_type       = "Textbox",
+        shared         = False,
+        gui_params     = {
+            "hide_when_disabled": True
+        },
+        choices        = {},
     ),
     Checkbutton(
         name           = 'easier_fire_arrow_entry',

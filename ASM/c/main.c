@@ -26,7 +26,6 @@ void c_init() {
     text_init();
     item_overrides_init();
     models_init();
-    //check_model_skeletons();
 }
 
 void before_game_state_update() {
@@ -54,4 +53,5 @@ void after_scene_init() {
     clear_twinrova_vars();
     models_reset();
     extern_scene_init();
+    check_model_skeletons();
 }
