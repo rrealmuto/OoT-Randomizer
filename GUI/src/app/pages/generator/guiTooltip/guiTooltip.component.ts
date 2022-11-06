@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'gui-tooltip',
+  selector: 'ootr-gui-tooltip',
   template: `
     <nb-card class="popover-card" style="height:100%;margin-bottom:0px">
       <nb-card-body>
@@ -10,7 +10,7 @@ import { Component, Input } from '@angular/core';
     </nb-card>
   `
 })
-export class GUITooltip {
+export class GUITooltipComponent {
 
   @Input()
   tooltip: string = '';

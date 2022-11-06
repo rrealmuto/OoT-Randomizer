@@ -1,7 +1,7 @@
 # text details: https://wiki.cloudmodding.com/oot/Text_Format
 
 import random
-from HintList import misc_item_hint_table
+from HintList import misc_item_hint_table, misc_location_hint_table
 from TextBox import line_wrap
 from Utils import find_last
 
@@ -975,6 +975,7 @@ def shuffle_messages(messages, except_hints=True, always_allow_skip=True):
         hint_ids = (
             GOSSIP_STONE_MESSAGES + TEMPLE_HINTS_MESSAGES +
             [data['id'] for data in misc_item_hint_table.values()] +
+            [data['id'] for data in misc_location_hint_table.values()] +
             list(KEYSANITY_MESSAGES.keys()) + shuffle_messages.shop_item_messages +
             shuffle_messages.scrubs_message_ids +
             [0x5036, 0x70F5] # Chicken count and poe count respectively

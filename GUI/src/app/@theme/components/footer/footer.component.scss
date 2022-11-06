@@ -12,7 +12,7 @@
 
     a {
       padding: 0.4rem;
-      color: nb-theme(color-basic-700);
+      color: nb-theme(color-success-600);
       transition: color ease-out 0.1s;
 
       &:hover {
@@ -23,7 +23,7 @@
 
   span {
     a#updateButton {
-      color: nb-theme(color-basic-100);
+      color: nb-theme(color-warning-600);
     }
   }
 

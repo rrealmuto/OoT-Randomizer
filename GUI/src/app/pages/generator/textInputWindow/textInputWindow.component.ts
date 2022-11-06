@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
 
 @Component({
@@ -15,14 +15,14 @@ import { NbDialogRef } from '@nebular/theme';
       </nb-card-body>
       <nb-card-footer>
         <div class="footerButtonWrapper">
-          <button nbButton hero size="small" status="primary" (click)="confirmDialog()">OK</button>
+          <button nbButton size="small" status="primary" (click)="confirmDialog()">OK</button>
         </div>
       </nb-card-footer>
     </nb-card>
   `,
   styleUrls: ['./textInputWindow.scss'],
 })
-export class TextInputWindow {
+export class TextInputWindowComponent implements OnInit {
 
   @Input() dialogHeader: string = "Enter name";
   @Input() dialogMessage: string = "";
@@ -31,14 +31,14 @@ export class TextInputWindow {
 
   @ViewChild("inputBar", { static: true }) inputBarRef: ElementRef;
 
-  constructor(protected ref: NbDialogRef<TextInputWindow>) {
+  constructor(protected ref: NbDialogRef<TextInputWindowComponent>) {
   }
 
   ngOnInit() {
     this.inputBarRef.nativeElement.focus();
   }
 
-  cancelDialog() { 
+  cancelDialog() {
     this.ref.close();
   }
 

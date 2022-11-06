@@ -176,7 +176,7 @@ async function pingServiceUntilLive(host, port) {
         running = await pingService(host, port).catch(err => { throw Error("Can't connect to local network: " + err); });
 
         if (!running)
-            await waitFor(500);     
+            await waitFor(500);
     }
 }
 
@@ -228,22 +228,23 @@ async function spawnChildSubProcess(path, args, shell, verbose, stderrSetting = 
         if (lastMessage && lastMessage.length > 0)
             console.error("Last message:", lastMessage);
 
-        throw Error("process_error");  
-    } 
+        throw Error("process_error");
+    }
 }
 
 async function setupNodeEnvironment(freshSetup = false) {
-
-    if (freshSetup)
-        console.log("Creating environment. Please be patient, this can take 5-10 minutes depending on your internet connection and HDD speed...");
-    else
-        console.log("Updating environment. Please wait...");
+    console.log(freshSetup
+        ? "Creating environment. Please be patient, this can take 5-10 minutes depending on your internet connection and HDD speed..."
+        : "Updating environment. Please wait...");
 
     await waitFor(1000);
 
     environmentChecked = true;
 
-    await spawnChildSubProcess("npm install --verbose", null, true, true, "inherit").catch(err => { throw Error("Environment setup failed"); });
+    let npmInstallCommand = freshSetup ? "npm ci --verbose" : "npm install --verbose --no-save";
+
+    await spawnChildSubProcess(npmInstallCommand, null, true, true, "inherit")
+        .catch(err => { throw Error("Environment setup failed", err); });
 
     console.log("Environment setup completed");
 }
@@ -291,7 +292,7 @@ async function compileAngular() {
     console.log("Compiling Angular. This can take a minute...");
 
     await spawnChildSubProcess("npm run ng-release", null, true, false).catch(err => { throw Error("Angular compile failed"); });
- 
+
     console.log("Angular compile completed");
 }
 
@@ -316,7 +317,7 @@ async function runAngularDevServer() {
 
         console.log("Angular dev server is running");
         devServerStarted = true;
-    }   
+    }
 }
 
 async function generateWebTestSettingsMap() {
@@ -329,7 +330,7 @@ async function generateWebTestSettingsMap() {
 }
 
 async function runWebTestServer() {
- 
+
     console.log("Running Web Server...");
 
     await spawnDetachedSubProcess("node", ["server.js"], true, false, "webTest").catch(err => { throw Error("Failed to launch Web Server"); });
@@ -341,22 +342,17 @@ async function main(commandLine) {
 
     console.log("OoT Randomizer GUI is booting up");
 
-    //Verify basic environment
-    if (!fs.existsSync("./node_modules"))
-        await setupNodeEnvironment(true);
-
-    //Verify binary folder exists
-    if (!fs.existsSync("./node_modules/.bin")) {
-        //throw Error("GUI/node_modules/.bin folder is missing. Please delete the entire GUI/node_modules folder and try again!");
+    //Verify node_modules
+    if (["./node_modules",
+        "./node_modules/.bin",
+        "./node_modules/@angular",
+        "./node_modules/electron",
+        "./node_modules/commander",
+        "./node_modules/tcp-ping",
+        "./node_modules/crc"]
+        .some(module => !fs.existsSync(module))) {
+        await setupNodeEnvironment(true); // fresh npm ci run when node_modules are sus
     }
-
-    //Verify core modules
-    if (!fs.existsSync("./node_modules/@angular") || !fs.existsSync("./node_modules/electron"))
-        await setupNodeEnvironment();
-
-    //Verify dynamic modules needed by run.js
-    if (!fs.existsSync("./node_modules/commander") || !fs.existsSync("./node_modules/tcp-ping") || !fs.existsSync("./node_modules/crc"))
-        await setupNodeEnvironment();
 
     //Load dynamic modules
     commander = require('commander');
@@ -434,7 +430,7 @@ async function main(commandLine) {
 
             //package.json got changed, update environment
             if (!environmentChecked)
-                await setupNodeEnvironment();
+                await setupNodeEnvironment(true); // fresh setup to reduce peer conflicts with outdated node_modules
 
             electronIndex["package.json"] = packageJsonChanged;
             electronIndexUpdated = true;

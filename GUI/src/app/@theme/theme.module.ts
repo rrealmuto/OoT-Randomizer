@@ -42,6 +42,7 @@ import {
 import {
   GUILayoutComponent
 } from './layouts';
+import {ThemeSwitcher} from '../providers/theme-switcher.service';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -82,8 +83,6 @@ const COMPONENTS = [
   GUILayoutComponent
 ];
 
-const ENTRY_COMPONENTS = [];
-
 const NB_THEME_PROVIDERS = [
   ...NbThemeModule.forRoot(
     {
@@ -95,17 +94,17 @@ const NB_THEME_PROVIDERS = [
   ...NbDialogModule.forRoot().providers,
   ...NbWindowModule.forRoot().providers,
   ...NbToastrModule.forRoot().providers,
+  ThemeSwitcher,
 ];
 
 @NgModule({
-  imports: [...BASE_MODULES, ...NB_MODULES],
-  exports: [...BASE_MODULES, ...NB_MODULES, ...COMPONENTS],
-  declarations: [...COMPONENTS],
-  entryComponents: [...ENTRY_COMPONENTS],
+    imports: [...BASE_MODULES, ...NB_MODULES],
+    exports: [...BASE_MODULES, ...NB_MODULES, ...COMPONENTS],
+    declarations: [...COMPONENTS]
 })
 export class ThemeModule {
-  static forRoot(): ModuleWithProviders {
-    return <ModuleWithProviders>{
+  static forRoot(): ModuleWithProviders<ThemeModule> {
+    return {
       ngModule: ThemeModule,
       providers: [...NB_THEME_PROVIDERS],
     };
