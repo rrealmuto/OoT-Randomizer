@@ -6,18 +6,16 @@ import { GUIGlobal } from '../../providers/GUIGlobal';
 import { MatGridList, MatGridTile } from '@angular/material/grid-list';
 import { NbSelectComponent } from '@nebular/theme/components/select/select.component';
 import {NbDialogService, NbTabsetComponent} from '@nebular/theme';
-import { ColorPickerModule } from 'ngx-color-picker';
-import { ngfModule, ngf } from "angular-file";
 
-import { GUITooltip } from './guiTooltip/guiTooltip.component';
-import { ProgressWindow } from './progressWindow/progressWindow.component';
-import { DialogWindow } from './dialogWindow/dialogWindow.component';
-import { ErrorDetailsWindow } from './errorDetailsWindow/errorDetailsWindow.component';
-import { ConfirmationWindow } from './confirmationWindow/confirmationWindow.component';
-import { TextInputWindow } from './textInputWindow/textInputWindow.component';
+import { GUITooltipComponent } from './guiTooltip/guiTooltip.component';
+import { ProgressWindowComponent } from './progressWindow/progressWindow.component';
+import { DialogWindowComponent } from './dialogWindow/dialogWindow.component';
+import { ErrorDetailsWindowComponent } from './errorDetailsWindow/errorDetailsWindow.component';
+import { ConfirmationWindowComponent } from './confirmationWindow/confirmationWindow.component';
+import { TextInputWindowComponent } from './textInputWindow/textInputWindow.component';
 
 @Component({
-  selector: 'app-generator',
+  selector: 'ootr-generator',
   styleUrls: ['./generator.component.scss'],
   templateUrl: './generator.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -26,10 +24,10 @@ export class GeneratorComponent implements OnInit {
 
   selectedItem = '2';
 
-  tooltipComponent = GUITooltip;
+  tooltipComponent = GUITooltipComponent;
 
-  @ViewChild('refTabSet', { static: false }) tabSet: NbTabsetComponent;
-  @ViewChild('refTabFooter', { static: false }) tabSetFooter: NbTabsetComponent;
+  @ViewChild('refTabSet') tabSet: NbTabsetComponent;
+  @ViewChild('refTabFooter') tabSetFooter: NbTabsetComponent;
   activeTab: string = "";
   activeFooterTab: string = "";
   settingsLocked: boolean = false;
@@ -128,7 +126,7 @@ export class GeneratorComponent implements OnInit {
           this.cd.detectChanges();
         }
         else if (eventObj.name == "dialog_error") {
-          this.dialogService.open(DialogWindow, {
+          this.dialogService.open(DialogWindowComponent, {
             autoFocus: true, closeOnBackdropClick: true, closeOnEsc: true, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "Error", dialogMessage: eventObj.message }
           });
         }
@@ -181,7 +179,7 @@ export class GeneratorComponent implements OnInit {
     let goalDistros = this.global.getGlobalVar('generatorGoalDistros');
 
     if (!goalHintsConfirmed && goalDistros.indexOf(this.global.generator_settingsMap["hint_dist"]) > -1 && this.global.generator_settingsMap["world_count"] > 5) {
-      this.dialogService.open(ConfirmationWindow, {
+      this.dialogService.open(ConfirmationWindowComponent, {
         autoFocus: true, closeOnBackdropClick: false, closeOnEsc: false, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "Goal Hint Warning", dialogMessage: goalErrorText }
       }).onClose.subscribe(confirmed => {
         //User acknowledged increased generation time for multiworld seeds with goal hints
@@ -205,7 +203,7 @@ export class GeneratorComponent implements OnInit {
 
       //Error if no patch file was entered in fromPatchFile mode
       if (fromPatchFile && !this.global.generator_settingsMap['patch_file']) {
-        this.dialogService.open(DialogWindow, {
+        this.dialogService.open(DialogWindowComponent, {
           autoFocus: true, closeOnBackdropClick: true, closeOnEsc: true, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "Error", dialogMessage: "You didn't enter a patch file!" }
         });
 
@@ -219,7 +217,7 @@ export class GeneratorComponent implements OnInit {
       //Hack: fromPatchFile forces generation count to 1 to avoid wrong count on progress window
       let generationCount = fromPatchFile ? 1 : this.global.generator_settingsMap["count"];
 
-      let dialogRef = this.dialogService.open(ProgressWindow, {
+      let dialogRef = this.dialogService.open(ProgressWindowComponent, {
         autoFocus: true, closeOnBackdropClick: false, closeOnEsc: false, hasBackdrop: true, hasScroll: false, context: { dashboardRef: this, totalGenerationCount: generationCount }
       });
 
@@ -299,13 +297,13 @@ export class GeneratorComponent implements OnInit {
         console.log('[Web] Gen Error:', err);
 
         if (err.status == 403) { //Rate Limited
-          this.dialogService.open(DialogWindow, {
+          this.dialogService.open(DialogWindowComponent, {
             autoFocus: true, closeOnBackdropClick: true, closeOnEsc: true, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "Error", dialogMessage: "You may only generate one seed per minute to prevent spam!" }
           });
         }
         else if (err.hasOwnProperty('error_rom_in_plando')) {
 
-          this.dialogService.open(ConfirmationWindow, {
+          this.dialogService.open(ConfirmationWindowComponent, {
             autoFocus: true, closeOnBackdropClick: true, closeOnEsc: true, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "Your ROM doesn't belong here!", dialogMessage: err.error_rom_in_plando }
           }).onClose.subscribe(confirmed => {
             if (confirmed) {
@@ -331,7 +329,7 @@ export class GeneratorComponent implements OnInit {
         }
         else if (err.hasOwnProperty('error_spoiler_log_disabled')) {
 
-          this.dialogService.open(ConfirmationWindow, {
+          this.dialogService.open(ConfirmationWindowComponent, {
             autoFocus: true, closeOnBackdropClick: false, closeOnEsc: false, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "Spoiler Log Warning", dialogMessage: err.error_spoiler_log_disabled }
           }).onClose.subscribe(confirmed => {
 
@@ -345,7 +343,7 @@ export class GeneratorComponent implements OnInit {
           });
         }
         else {
-          this.dialogService.open(DialogWindow, {
+          this.dialogService.open(DialogWindowComponent, {
             autoFocus: true, closeOnBackdropClick: true, closeOnEsc: true, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "Error", dialogMessage: err.error && typeof (err.error) == "string" ? err.error : err.message }
           });
         }
@@ -381,7 +379,7 @@ export class GeneratorComponent implements OnInit {
 
       if (err.hasOwnProperty('error_rom_in_plando')) {
 
-        this.dialogService.open(ConfirmationWindow, {
+        this.dialogService.open(ConfirmationWindowComponent, {
           autoFocus: true, closeOnBackdropClick: true, closeOnEsc: true, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "Your ROM doesn't belong here!", dialogMessage: err.error_rom_in_plando }
         }).onClose.subscribe(confirmed => {
           if (confirmed) {
@@ -399,7 +397,7 @@ export class GeneratorComponent implements OnInit {
         });
       }
       else {
-        this.dialogService.open(DialogWindow, {
+        this.dialogService.open(DialogWindowComponent, {
           autoFocus: true, closeOnBackdropClick: true, closeOnEsc: true, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "Error", dialogMessage: err.error && typeof (err.error) == "string" ? err.error : err.message }
         });
       }
@@ -448,7 +446,7 @@ export class GeneratorComponent implements OnInit {
       this.cd.markForCheck();
       this.cd.detectChanges();
 
-      this.dialogService.open(ErrorDetailsWindow, {
+      this.dialogService.open(ErrorDetailsWindowComponent, {
         autoFocus: true, closeOnBackdropClick: true, closeOnEsc: true, hasBackdrop: true, hasScroll: false, context: { errorMessage: err }
       });
     });
@@ -478,7 +476,7 @@ export class GeneratorComponent implements OnInit {
       this.cd.markForCheck();
       this.cd.detectChanges();
 
-      this.dialogService.open(DialogWindow, {
+      this.dialogService.open(DialogWindowComponent, {
         autoFocus: true, closeOnBackdropClick: true, closeOnEsc: true, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "Error", dialogMessage: "The entered settings string seems to be invalid!" }
       });
     });
@@ -497,7 +495,7 @@ export class GeneratorComponent implements OnInit {
 
     if (targetPreset) {
       if (("isNewPreset" in targetPreset) && targetPreset.isNewPreset == true) {
-        this.dialogService.open(DialogWindow, {
+        this.dialogService.open(DialogWindowComponent, {
           autoFocus: true, closeOnBackdropClick: true, closeOnEsc: true, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "Warning", dialogMessage: "You can not load this preset!" }
         });
       }
@@ -519,7 +517,7 @@ export class GeneratorComponent implements OnInit {
     }
   }
 
-  savePreset(refPresetSelect: NbSelectComponent<string>) {
+  savePreset(refPresetSelect: NbSelectComponent) {
 
     let targetPreset = this.global.generator_presets[this.global.generator_settingsMap["presets"]];
 
@@ -527,7 +525,7 @@ export class GeneratorComponent implements OnInit {
 
       if ((("isNewPreset" in targetPreset) && targetPreset.isNewPreset == true)) { //NEW PRESET
 
-        this.dialogService.open(TextInputWindow, {
+        this.dialogService.open(TextInputWindowComponent, {
           autoFocus: true, closeOnBackdropClick: true, closeOnEsc: true, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "Create new preset", dialogMessage: "Enter preset name:" }
         }).onClose.subscribe(name => {
 
@@ -536,7 +534,7 @@ export class GeneratorComponent implements OnInit {
             let trimmedName = name.trim();
 
             if (trimmedName in this.global.generator_presets) {
-              this.dialogService.open(DialogWindow, {
+              this.dialogService.open(DialogWindowComponent, {
                 autoFocus: true, closeOnBackdropClick: true, closeOnEsc: true, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "Error", dialogMessage: "A preset with this name already exists! If you wish to overwrite an existing preset, please select it from the list and hit Save instead." }
               });
             }
@@ -556,17 +554,17 @@ export class GeneratorComponent implements OnInit {
         });
       }
       else if (("isDefaultPreset" in targetPreset) && targetPreset.isDefaultPreset == true) { //DEFAULT
-        this.dialogService.open(DialogWindow, {
+        this.dialogService.open(DialogWindowComponent, {
           autoFocus: true, closeOnBackdropClick: true, closeOnEsc: true, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "Warning", dialogMessage: "System presets can not be overwritten!" }
         });
       }
       else if (("isProtectedPreset" in targetPreset) && targetPreset.isProtectedPreset == true) { //BUILT IN
-        this.dialogService.open(DialogWindow, {
+        this.dialogService.open(DialogWindowComponent, {
           autoFocus: true, closeOnBackdropClick: true, closeOnEsc: true, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "Warning", dialogMessage: "Built in presets are protected and can not be overwritten!" }
         });
       }
       else { //USER PRESETS
-        this.dialogService.open(ConfirmationWindow, {
+        this.dialogService.open(ConfirmationWindowComponent, {
           autoFocus: true, closeOnBackdropClick: true, closeOnEsc: true, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "Confirm?", dialogMessage: "Do you want to overwrite the preset '" + this.global.generator_settingsMap["presets"] + "' ?" }
         }).onClose.subscribe(confirmed => {
 
@@ -587,17 +585,17 @@ export class GeneratorComponent implements OnInit {
 
     if (targetPreset) {
       if ((("isNewPreset" in targetPreset) && targetPreset.isNewPreset == true) || (("isDefaultPreset" in targetPreset) && targetPreset.isDefaultPreset == true)) {
-        this.dialogService.open(DialogWindow, {
+        this.dialogService.open(DialogWindowComponent, {
           autoFocus: true, closeOnBackdropClick: true, closeOnEsc: true, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "Warning", dialogMessage: "System presets can not be deleted!" }
         });
       }
       else if (("isProtectedPreset" in targetPreset) && targetPreset.isProtectedPreset == true) {
-        this.dialogService.open(DialogWindow, {
+        this.dialogService.open(DialogWindowComponent, {
           autoFocus: true, closeOnBackdropClick: true, closeOnEsc: true, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "Warning", dialogMessage: "Built in presets are protected and can not be deleted!" }
         });
       }
       else {
-        this.dialogService.open(ConfirmationWindow, {
+        this.dialogService.open(ConfirmationWindowComponent, {
           autoFocus: true, closeOnBackdropClick: true, closeOnEsc: true, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "Confirm?", dialogMessage: "Do you really want to delete the preset '" + this.global.generator_settingsMap["presets"] + "' ?" }
         }).onClose.subscribe(confirmed => {
 
@@ -631,12 +629,12 @@ export class GeneratorComponent implements OnInit {
       console.error("Error:", err);
 
       if (err.message.includes("no such file or directory")) {
-        this.dialogService.open(DialogWindow, {
+        this.dialogService.open(DialogWindowComponent, {
           autoFocus: true, closeOnBackdropClick: true, closeOnEsc: true, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "Error", dialogMessage: "The specified output directory does not exist!" }
         });
       }
       else {
-        this.dialogService.open(DialogWindow, {
+        this.dialogService.open(DialogWindowComponent, {
           autoFocus: true, closeOnBackdropClick: true, closeOnEsc: true, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "Error", dialogMessage: err }
         });
       }
@@ -650,7 +648,7 @@ export class GeneratorComponent implements OnInit {
     }).catch(err => {
       console.error("Error:", err);
 
-      this.dialogService.open(DialogWindow, {
+      this.dialogService.open(DialogWindowComponent, {
         autoFocus: true, closeOnBackdropClick: true, closeOnEsc: true, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "Error", dialogMessage: err }
       });
     });

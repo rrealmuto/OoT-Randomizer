@@ -1,12 +1,14 @@
-import { Injectable, HostBinding, EventEmitter, Output } from '@angular/core';
+import { Injectable, HostBinding, EventEmitter, Output, Directive, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { ProgressWindow } from '../pages/generator/progressWindow/progressWindow.component';
+import { ProgressWindowComponent } from '../pages/generator/progressWindow/progressWindow.component';
 
 import * as post from 'post-robot';
+import {GuiEvent} from './GuiEvent';
 
+@Directive()
 @Injectable()
-export class GUIGlobal {
+export class GUIGlobal implements OnDestroy {
 
   //Globals for GUI HTML
   public generator_tabsVisibilityMap: Object = {};
@@ -22,7 +24,7 @@ export class GUIGlobal {
 
   @HostBinding('class.indigo-pink') materialStyleIndigo: boolean = true;
 
-  @Output() globalEmitter: EventEmitter<object> = new EventEmitter();
+  @Output() globalEmitter: EventEmitter<GuiEvent> = new EventEmitter();
 
   constructor(private http: HttpClient) {
     this.globalVars = new Map<string, any>([
@@ -508,6 +510,7 @@ export class GUIGlobal {
 
     //Add GUI only options
     this.generator_settingsMap["settings_string"] = userSettings && "settings_string" in userSettings ? userSettings["settings_string"] : "";
+    this.generator_settingsMap["theme"] = userSettings && "theme" in userSettings ? userSettings["theme"] : "";
     this.generator_settingsVisibilityMap["settings_string"] = true;
 
     console.log("JSON Settings Data:", guiSettings);
@@ -1060,10 +1063,10 @@ export class GUIGlobal {
     }
   }
 
-  generateSeedElectron(progressWindowRef: ProgressWindow, fromPatchFile: boolean = false, useStaticSeed: string = "") { //Electron only
+  generateSeedElectron(progressWindowRef: ProgressWindowComponent, fromPatchFile: boolean = false, useStaticSeed: string = "") { //Electron only
     var self = this;
 
-    return new Promise(function (resolve, reject) {
+    return new Promise<void>(function (resolve, reject) {
 
       let settingsMap = self.createSettingsFileObject(fromPatchFile, false, false, true);
 

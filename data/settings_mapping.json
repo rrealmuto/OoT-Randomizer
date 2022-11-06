@@ -495,7 +495,7 @@
           "name": "sfx_main_section",
           "is_sfx": true,
           "col_span": 4,
-          "row_span": [1,1,1],
+          "row_span": [2,1,1],
           "settings": [
             "randomize_all_sfx"
           ]
@@ -504,8 +504,8 @@
           "name": "generalsfx_section",
           "text": "General",
           "is_sfx": true,
-          "col_span": 2,
-          "row_span": [6,6,12],
+          "col_span": 1,
+          "row_span": [6,6,11],
           "settings": [
             "background_music",
             "disable_battle_music",
@@ -522,8 +522,8 @@
           "name": "menusfx_section",
           "text": "Menu",
           "is_sfx": true,
-          "col_span": 2,
-          "row_span": [6,6,3],
+          "col_span": 1,
+          "row_span": [6,6,11],
           "settings": [
             "sfx_menu_cursor",
             "sfx_menu_select"
@@ -533,8 +533,8 @@
           "name": "npcsfx_section",
           "text": "NPC",
           "is_sfx": true,
-          "col_span": 2,
-          "row_span": [6,6,3],
+          "col_span": 1,
+          "row_span": [6,6,11],
           "settings": [
             "sfx_navi_overworld",
             "sfx_navi_enemy"
@@ -545,8 +545,8 @@
           "text": "Link",
           "app_type": ["generator"],
           "is_sfx": true,
-          "col_span": 2,
-          "row_span": [6,6,6],
+          "col_span": 1,
+          "row_span": [6,6,11],
           "settings": [
             "sfx_link_adult",
             "sfx_link_child",
@@ -559,8 +559,8 @@
           "exclude_from_electron": true,
           "app_type": ["patcher"],
           "is_sfx": true,
-          "col_span": 2,
-          "row_span": [6,6,6],
+          "col_span": 1,
+          "row_span": [6,6,11],
           "settings": [
             "sfx_link_adult",
             "sfx_link_child"

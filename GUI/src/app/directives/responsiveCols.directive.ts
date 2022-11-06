@@ -1,4 +1,4 @@
- 
+
 import { Directive, Input, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { MatGridList } from '@angular/material/grid-list';
 import { MediaObserver, MediaChange } from '@angular/flex-layout';
@@ -43,10 +43,10 @@ export class ResponsiveColsDirective implements OnInit {
       this.grid.cols = 2;
 
     cd.markForCheck();
-    cd.detectChanges();
   }
 
   public ngOnInit(): void {
+    this.cd.detectChanges();
     this.initializeColsCount();
 
     //Default
@@ -67,7 +67,7 @@ export class ResponsiveColsDirective implements OnInit {
   }
 
   private initializeColsCount(): void {
-    Object.keys(this.countBySize).some( 
+    Object.keys(this.countBySize).some(
       (mqAlias: string): boolean => {
         const isActive = this.media.isActive(mqAlias);
 

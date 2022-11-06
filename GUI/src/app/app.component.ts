@@ -1,10 +1,11 @@
-import { Component, ViewContainerRef, ElementRef, ViewEncapsulation, Renderer2,  Inject } from '@angular/core';
+import { Component, ViewContainerRef, ElementRef, ViewEncapsulation, Renderer2, Inject } from '@angular/core';
 import { PipeTransform, Pipe } from '@angular/core';
 import { Router } from '@angular/router';
-import { DomSanitizer } from "@angular/platform-browser";
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { GUIGlobal } from './providers/GUIGlobal';
-import { DOCUMENT } from "@angular/common";
+import { DOCUMENT } from '@angular/common';
+import { OOTR_THEME, ThemeSwitcher } from './providers/theme-switcher.service';
 
 @Pipe({ name: 'bypassSecurity' })
 export class BypassSecurityPipe implements PipeTransform {
@@ -16,16 +17,19 @@ export class BypassSecurityPipe implements PipeTransform {
 }
 
 @Component({
+  // keep ngx-app as name for websites backwards compatibility
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'ngx-app',
-  template: `<body id="generator" class="nb-theme-default">
-    <router-outlet></router-outlet>
-  </body>`,
+  template: `
+      <div id="generator" class="${OOTR_THEME.DEFAULT}">
+        <router-outlet></router-outlet>
+      </div>
+  `,
   // Shadow-DOM requires code tweaks within Nebular.
   // Style interference with website is addressed by usage of selector specificity.
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-  private changes: MutationObserver;
 
   constructor(public viewContainerRef: ViewContainerRef,
               private elm: ElementRef,
@@ -33,44 +37,54 @@ export class AppComponent {
               private global: GUIGlobal,
               private readonly renderer: Renderer2,
               @Inject(DOCUMENT) private readonly document: Document,
+              private readonly themeSwitcher: ThemeSwitcher,
   ) {
+    this.global.globalEmitter.subscribe(eventObj => {
+      if (eventObj?.name === 'init_finished') {
+        this.themeSwitcher.initTheme();
+        this.fixInitialization();
+      }
+    });
+
     global.globalInit(elm.nativeElement.id);
-    this.observeInitialization();
 
     //Route manually at the start to avoid URL changes in the browser
     this.router.navigate(['/pages/generator'], { skipLocationChange: true });
   }
 
-  private observeInitialization(): void {
-    const outerBody = this.document.getElementsByTagName('body')[0];
+  private fixInitialization() {
+    const body = this.document.getElementsByTagName('body')[0];
 
-    this.changes = new MutationObserver((mutations: MutationRecord[]) => {
-      mutations.forEach((mutation: MutationRecord) => {
-        if (this.isInitializationDone(mutation, outerBody)) {
-          this.fixNebularThemingScope();
-        }
-      });
-    });
+    if (!body?.classList?.value?.includes('pace-done')) {
+      const paceProgressTag = this.document.getElementsByClassName('pace-progress')[0];
+      const initDestroyTimeOutPace = () => {
+        let counter = 0;
 
-    this.changes.observe(outerBody, {
-      attributeFilter: ['class'],
-    });
-  }
+        const refreshIntervalId = setInterval(() => {
+          const progress = paceProgressTag.getAttribute("data-progress-text");
 
-  private fixNebularThemingScope() {
-    const generatorBody = this.document.querySelector('body#generator');
-    const outerBody = this.document.getElementsByTagName('body')[0];
+          if (["99%", "100%"].includes(progress)) {
+            counter++;
+          }
 
-    if (outerBody && outerBody !== generatorBody && outerBody.classList.contains('nb-theme-default')) {
-      this.renderer.removeClass(outerBody, `nb-theme-default`);
-
-      if (generatorBody && !generatorBody.classList.contains('nb-theme-default')) {
-        this.renderer.addClass(generatorBody, `nb-theme-default`);
-      }
+          if (counter > 50) {
+            clearInterval(refreshIntervalId);
+            this.finishPace();
+          }
+        }, 100);
+      };
+      initDestroyTimeOutPace.bind(this)();
     }
   }
 
-  private isInitializationDone(mutation: MutationRecord, outerBody: HTMLBodyElement) {
-    return mutation.attributeName === 'class' && outerBody.classList.contains('pace-done');
+  private finishPace(): void {
+    const body = this.document.getElementsByTagName('body')[0];
+
+    body?.classList?.value
+      ?.split(' ')
+      .filter(c => c.startsWith('pace'))
+      .forEach(c => this.renderer.removeClass(body, c));
+
+    this.renderer.addClass(body, 'pace-done');
   }
 }
