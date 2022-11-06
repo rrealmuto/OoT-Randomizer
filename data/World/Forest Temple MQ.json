@@ -207,10 +207,10 @@
         "dungeon": "Forest Temple",
         "locations": {
             "Forest Temple MQ Basement Chest": "True",
-            "Forest Temple MQ Basement Pot 1": "True",
-            "Forest Temple MQ Basement Pot 2": "True",
-            "Forest Temple MQ Basement Pot 3": "True",
-            "Forest Temple MQ Basement Pot 4": "True"
+            "Forest Temple MQ Basement Pot 1": "can_take_damage or is_adult or can_child_attack or Nuts",
+            "Forest Temple MQ Basement Pot 2": "can_take_damage or is_adult or can_child_attack or Nuts",
+            "Forest Temple MQ Basement Pot 3": "can_take_damage or is_adult or can_child_attack or Nuts",
+            "Forest Temple MQ Basement Pot 4": "can_take_damage or is_adult or can_child_attack or Nuts"
         },
         "exits": {
             "Forest Temple Before Boss": "True"
