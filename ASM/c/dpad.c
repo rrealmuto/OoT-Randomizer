@@ -19,7 +19,7 @@ void handle_dpad() {
     pad_t pad_pressed = z64_game.common.input[0].pad_pressed;
     pad_t pad_held = z64_ctxt.input[0].raw.pad;
 
-    if (CAN_USE_DPAD && DISPLAY_DPAD && !pad_held.a) {
+    if (CAN_USE_DPAD && DISPLAY_DPAD && (!pad_held.a || !CAN_DRAW_DUNGEON_INFO)) {
         if (z64_file.link_age == 0) {
             if (pad_pressed.dl && z64_file.iron_boots) {
                 if (z64_file.equip_boots == 2) z64_file.equip_boots = 1;
@@ -47,6 +47,7 @@ void handle_dpad() {
         }
     }
 }
+
 void draw_dpad() {
     z64_disp_buf_t *db = &(z64_ctxt.gfx->overlay);
     if (CAN_DRAW_DUNGEON_INFO || (DISPLAY_DPAD && CFG_DISPLAY_DPAD)) {
