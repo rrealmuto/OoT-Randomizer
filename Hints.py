@@ -573,8 +573,6 @@ def get_goal_hint(spoiler, world, checked):
     # If so, set weights to zero. This is important for one-hint-per-goal.
     # Locations are unique per-category, so we don't have to check the others.
     for other_goal in goals:
-        if not world.one_hint_per_goal:
-            break
         if not other_goal.required_locations:
             continue
         if not zero_weights and other_goal.weight <= 0:
@@ -595,7 +593,8 @@ def get_goal_hint(spoiler, world, checked):
             # Replace randomly chosen goal with the goal that has all its locations
             # hinted without being directly hinted itself.
             other_goal.weight = 0
-            goal = other_goal
+            if world.one_hint_per_goal:
+                goal = other_goal
 
     # Goal weight to zero mitigates double hinting this goal
     # Once all goals in a category are 0, selection is true random
