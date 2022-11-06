@@ -138,7 +138,12 @@
       "altar",
       "dampe_diary",
       "ganondorf",
-      "warp_songs"
+      "warp_songs",
+      "10_skulltulas",
+      "20_skulltulas",
+      "30_skulltulas",
+      "40_skulltulas",
+      "50_skulltulas"
     ],
     "ice_trap_appearance": "major_only",
     "junk_ice_traps": "normal",
