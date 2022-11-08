@@ -10,7 +10,7 @@
         "region_name": "Deku Tree Boss Door",
         "scene": "Deku Tree",
         "dungeon": "Deku Tree",
-        "savewarp": "Deku Tree Lobby",
+        "savewarp": "KF Outside Deku Tree -> Deku Tree Lobby",
         "exits": {
             "Deku Tree Before Boss": "True",
             "Queen Gohma Boss Room": "True"
@@ -38,7 +38,7 @@
         "region_name": "Dodongos Cavern Boss Door",
         "scene": "Dodongos Cavern",
         "dungeon": "Dodongos Cavern",
-        "savewarp": "Dodongos Cavern Beginning",
+        "savewarp": "Death Mountain -> Dodongos Cavern Beginning",
         "exits": {
             "Dodongos Cavern Mouth": "True",
             "King Dodongo Boss Room": "True"
@@ -69,7 +69,7 @@
         "region_name": "Jabu Jabus Belly Boss Door",
         "scene": "Jabu Jabus Belly",
         "dungeon": "Jabu Jabus Belly",
-        "savewarp": "Jabu Jabus Belly Beginning",
+        "savewarp": "Zoras Fountain -> Jabu Jabus Belly Beginning",
         "exits": {
             "Jabu Jabus Belly Before Boss": "True",
             "Barinade Boss Room": "True"
@@ -102,7 +102,7 @@
         "region_name": "Forest Temple Boss Door",
         "scene": "Forest Temple",
         "dungeon": "Forest Temple",
-        "savewarp": "Forest Temple Lobby",
+        "savewarp": "SFM Forest Temple Entrance Ledge -> Forest Temple Lobby",
         "exits": {
             "Forest Temple Before Boss": "True",
             "Phantom Ganon Boss Room": "Boss_Key_Forest_Temple"
@@ -130,7 +130,7 @@
         "region_name": "Fire Temple Boss Door",
         "scene": "Fire Temple",
         "dungeon": "Fire Temple",
-        "savewarp": "Fire Temple Lower",
+        "savewarp": "DMC Fire Temple Entrance -> Fire Temple Lower",
         "exits": {
             "Fire Temple Near Boss": "is_adult and (logic_fewer_tunic_requirements or can_use(Goron_Tunic))",
             "Volvagia Boss Room": "Boss_Key_Fire_Temple"
@@ -156,7 +156,7 @@
         "region_name": "Water Temple Boss Door",
         "scene": "Water Temple",
         "dungeon": "Water Temple",
-        "savewarp": "Water Temple Lobby",
+        "savewarp": "Lake Hylia -> Water Temple Lobby",
         "exits": {
             "Morpha Boss Room": "Boss_Key_Water_Temple"
         }
@@ -184,7 +184,7 @@
         "region_name": "Shadow Temple Boss Door",
         "scene": "Shadow Temple",
         "dungeon": "Shadow Temple",
-        "savewarp": "Shadow Temple Entryway",
+        "savewarp": "Graveyard Warp Pad Region -> Shadow Temple Entryway",
         "exits": {
             "Shadow Temple Before Boss": "True",
             "Bongo Bongo Boss Room": "Boss_Key_Shadow_Temple"
@@ -214,7 +214,7 @@
         "region_name": "Spirit Temple Boss Door",
         "scene": "Spirit Temple",
         "dungeon": "Spirit Temple",
-        "savewarp": "Spirit Temple Lobby",
+        "savewarp": "Desert Colossus -> Spirit Temple Lobby",
         "exits": {
             "Spirit Temple Before Boss": "is_adult",
             "Twinrova Boss Room": "Boss_Key_Spirit_Temple"
@@ -236,6 +236,7 @@
             "Desert Colossus": "'Defeat Twinrova'"
         }
     },
+
     {
         "region_name": "Ganons Castle Tower",
         "dungeon": "Ganons Castle",

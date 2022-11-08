@@ -1005,6 +1005,12 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             new_entrance = entrance.data
             replaced_entrance = entrance.replaces.data
 
+            # Fixup save/quit and death warping entrance IDs on bosses.
+            if 'savewarp_addresses' in replaced_entrance and entrance.reverse:
+                savewarp = entrance.parent_region.savewarp.replaces or entrance.reverse
+                for address in replaced_entrance['savewarp_addresses']:
+                    rom.write_int16(address, savewarp.data['index'])
+
             for address in new_entrance.get('addresses', []):
                 rom.write_int16(address, replaced_entrance['index'])
 

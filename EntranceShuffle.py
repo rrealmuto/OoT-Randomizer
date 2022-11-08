@@ -101,10 +101,10 @@ entrance_shuffle_table = [
                         ('Fire Temple Lower -> DMC Fire Temple Entrance',                   { 'index': 0x024A })),
     ('Dungeon',         ('Lake Hylia -> Water Temple Lobby',                                { 'index': 0x0010 }),
                         ('Water Temple Lobby -> Lake Hylia',                                { 'index': 0x021D })),
-    ('Dungeon',         ('Desert Colossus -> Spirit Temple Lobby',                          { 'index': 0x0082 }),
-                        ('Spirit Temple Lobby -> Desert Colossus From Spirit Lobby',        { 'index': 0x01E1 })),
     ('Dungeon',         ('Graveyard Warp Pad Region -> Shadow Temple Entryway',             { 'index': 0x0037 }),
                         ('Shadow Temple Entryway -> Graveyard Warp Pad Region',             { 'index': 0x0205 })),
+    ('Dungeon',         ('Desert Colossus -> Spirit Temple Lobby',                          { 'index': 0x0082 }),
+                        ('Spirit Temple Lobby -> Desert Colossus From Spirit Lobby',        { 'index': 0x01E1 })),
     ('Dungeon',         ('Kakariko Village -> Bottom of the Well',                          { 'index': 0x0098 }),
                         ('Bottom of the Well -> Kakariko Village',                          { 'index': 0x02A6 })),
     ('Dungeon',         ('ZF Ice Ledge -> Ice Cavern Beginning',                            { 'index': 0x0088 }),
@@ -115,21 +115,21 @@ entrance_shuffle_table = [
     ('DungeonSpecial',  ('Ganons Castle Ledge -> Ganons Castle Lobby',                      { 'index': 0x0467 }),
                         ('Ganons Castle Lobby -> Castle Grounds From Ganons Castle',        { 'index': 0x023D })),
 
-    ('ChildBoss',       ('Deku Tree Boss Door -> Queen Gohma Boss Room',                    { 'index': 0x040f }),
+    ('ChildBoss',       ('Deku Tree Boss Door -> Queen Gohma Boss Room',                    { 'index': 0x040f, 'savewarp_addresses': [ 0xB06292, 0xBC6162, 0xBC60AE ] }),
                         ('Queen Gohma Boss Room -> Deku Tree Boss Door',                    { 'index': 0x0252 })),
-    ('ChildBoss',       ('Dodongos Cavern Boss Door -> King Dodongo Boss Room',             { 'index': 0x040b }),
+    ('ChildBoss',       ('Dodongos Cavern Boss Door -> King Dodongo Boss Room',             { 'index': 0x040b, 'savewarp_addresses': [ 0xB062B6, 0xBC616E ] }),
                         ('King Dodongo Boss Room -> Dodongos Cavern Boss Door',             { 'index': 0x00c5 })),
-    ('ChildBoss',       ('Jabu Jabus Belly Boss Door -> Barinade Boss Room',                { 'index': 0x0301 }),
+    ('ChildBoss',       ('Jabu Jabus Belly Boss Door -> Barinade Boss Room',                { 'index': 0x0301, 'savewarp_addresses': [ 0xB062C2, 0xBC60C2 ] }),
                         ('Barinade Boss Room -> Jabu Jabus Belly Boss Door',                { 'index': 0x0407 })),
-    ('AdultBoss',       ('Forest Temple Boss Door -> Phantom Ganon Boss Room',              { 'index': 0x000c }),
+    ('AdultBoss',       ('Forest Temple Boss Door -> Phantom Ganon Boss Room',              { 'index': 0x000c, 'savewarp_addresses': [ 0xB062CE, 0xBC6182 ] }),
                         ('Phantom Ganon Boss Room -> Forest Temple Boss Door',              { 'index': 0x024E })),
-    ('AdultBoss',       ('Fire Temple Boss Door -> Volvagia Boss Room',                     { 'index': 0x0305 }),
+    ('AdultBoss',       ('Fire Temple Boss Door -> Volvagia Boss Room',                     { 'index': 0x0305, 'savewarp_addresses': [ 0xB062DA, 0xBC60CE ] }),
                         ('Volvagia Boss Room -> Fire Temple Boss Door',                     { 'index': 0x0175 })),
-    ('AdultBoss',       ('Water Temple Boss Door -> Morpha Boss Room',                      { 'index': 0x0417 }),
+    ('AdultBoss',       ('Water Temple Boss Door -> Morpha Boss Room',                      { 'index': 0x0417, 'savewarp_addresses': [ 0xB062E6, 0xBC6196 ] }),
                         ('Morpha Boss Room -> Water Temple Lobby',                          { 'index': 0x0423 })), # https://github.com/TestRunnerSRL/OoT-Randomizer/issues/1552
-    ('AdultBoss',       ('Shadow Temple Boss Door -> Bongo Bongo Boss Room',                { 'index': 0x0413 }),
+    ('AdultBoss',       ('Shadow Temple Boss Door -> Bongo Bongo Boss Room',                { 'index': 0x0413, 'savewarp_addresses': [ 0xB062FE, 0xBC61AA ] }),
                         ('Bongo Bongo Boss Room -> Shadow Temple Boss Door',                { 'index': 0x02B2 })),
-    ('AdultBoss',       ('Spirit Temple Boss Door -> Twinrova Boss Room',                   { 'index': 0x008D }),
+    ('AdultBoss',       ('Spirit Temple Boss Door -> Twinrova Boss Room',                   { 'index': 0x008D, 'savewarp_addresses': [ 0xB062F2, 0xBC6122 ] }),
                         ('Twinrova Boss Room -> Spirit Temple Boss Door',                   { 'index': 0x02F5 })),
 
     ('Interior',        ('Kokiri Forest -> KF Midos House',                                 { 'index': 0x0433 }),
@@ -420,9 +420,13 @@ class EntranceShuffleError(ShuffleError):
 
 
 # Set entrances of all worlds, first initializing them to their default regions, then potentially shuffling part of them
-def set_entrances(worlds):
+def set_entrances(worlds, savewarps_to_connect):
     for world in worlds:
         world.initialize_entrances()
+
+    for savewarp, replaces in savewarps_to_connect:
+        savewarp.replaces = world.get_entrance(replaces)
+        savewarp.connect(savewarp.replaces.connected_region)
 
     if worlds[0].entrance_shuffle:
         shuffle_random_entrances(worlds)
