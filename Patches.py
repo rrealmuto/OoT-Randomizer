@@ -1005,6 +1005,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             new_entrance = entrance.data
             replaced_entrance = entrance.replaces.data
 
+            for address in new_entrance.get('addresses', []):
+                rom.write_int16(address, replaced_entrance['index'])
+
             if entrance.type == 'BlueWarp':
                 # Blue warps have multiple hardcodes leading to them. The good news is
                 # the blue warps (excluding deku sprout and lake fill special cases) each
@@ -1023,17 +1026,11 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
                 # entrance index, otherwise use the "normal" entrance table method.
                 # This runs after and overrides the cutscene edits for Forest Temple
                 # and Water Temple if needed.
-                if replaced_entrance['index'] >= 0x1000:
-                    for address in new_entrance['addresses']:
-                        rom.write_int16(address, replaced_entrance['index'])
-                else:
+                if replaced_entrance['index'] < 0x1000:
                     copy_entrance_record(replaced_entrance['index'] + 2, new_entrance['index'] + 2, 2)
                     copy_entrance_record(replaced_entrance.get('child_index', replaced_entrance['index']), new_entrance['index'], 2)
             else:
                 exit_updates.append((new_entrance['index'], replaced_entrance['index']))
-
-                for address in new_entrance.get('addresses', []):
-                    rom.write_int16(address, replaced_entrance['index'])
 
     exit_table = generate_exit_lookup_table()
 
@@ -1645,12 +1642,12 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
                 location = random.choice(list(filter(lambda loc: loc.type == best_type, locations)))
                 break
             already_checked |= jabu_reward_regions
-            jabu_reward_regions = [
+            jabu_reward_regions = {
                 exit.connected_region
                 for region in jabu_reward_regions
                 for exit in region.exits
-                if exit.connected_region.dungeon != 'Jabu Jabus Belly' and exit.connected_region.name not in already_checked
-            ]
+                if exit.connected_region.dungeon != 'Jabu Jabus Belly' and exit.connected_region not in already_checked
+            }
 
     if location is None:
         jabu_item = None
