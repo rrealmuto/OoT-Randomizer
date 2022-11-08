@@ -3114,7 +3114,7 @@
     ],
     "starting_songs": [],
     "ocarina_songs": "off",
-    "correct_chest_appearances": "classic",
+    "correct_chest_appearances": "both",
     "minor_items_as_major_chest": [],
     "correct_potcrate_appearances": "off",
     "invisible_chests": false,
