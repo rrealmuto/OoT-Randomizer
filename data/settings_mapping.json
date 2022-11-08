@@ -186,6 +186,7 @@
             "warp_songs",
             "shuffle_child_spawn",
             "shuffle_adult_spawn",
+            "blue_warps",
             "exclusive_one_ways"
           ]
         },

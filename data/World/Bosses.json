@@ -21,14 +21,16 @@
         "scene": "Deku Tree Boss",
         "is_boss_room": "True",
         "events": {
-            "Defeat Gohma": "(Nuts or can_use(Slingshot)) and can_jumpslash"
+            "Defeat Queen Gohma": "(Nuts or can_use(Slingshot)) and can_jumpslash",
+            "Deku Tree Clear": "'Defeat Queen Gohma'"
         },
         "locations": {
-            "Deku Tree Queen Gohma Heart": "'Defeat Gohma'",
-            "Queen Gohma": "'Defeat Gohma'"
+            "Deku Tree Queen Gohma Heart": "'Defeat Queen Gohma'",
+            "Queen Gohma": "'Defeat Queen Gohma'"
         },
         "exits": {
-            "Deku Tree Boss Door": "True"
+            "Deku Tree Boss Door": "True",
+            "KF Outside Deku Tree": "'Defeat Queen Gohma'"
         }
     },
 
@@ -46,19 +48,20 @@
         "region_name": "King Dodongo Boss Room",
         "scene": "Dodongos Cavern Boss",
         "is_boss_room": "True",
-        "locations": {
-            "Dodongos Cavern Boss Room Chest": "True",
-            "Dodongos Cavern King Dodongo Heart": "
-                ((can_use(Megaton_Hammer) and logic_dc_hammer_floor) or
-                    has_explosives or king_dodongo_shortcuts) and
-                (((Bombs or Progressive_Strength_Upgrade) and can_jumpslash) or deadly_bonks == 'ohko')",
-            "King Dodongo": "
+        "events": {
+            "Defeat King Dodongo": "
                 ((can_use(Megaton_Hammer) and logic_dc_hammer_floor) or
                     has_explosives or king_dodongo_shortcuts) and
                 (((Bombs or Progressive_Strength_Upgrade) and can_jumpslash) or deadly_bonks == 'ohko')"
         },
+        "locations": {
+            "Dodongos Cavern Boss Room Chest": "True",
+            "Dodongos Cavern King Dodongo Heart": "'Defeat King Dodongo'",
+            "King Dodongo": "'Defeat King Dodongo'"
+        },
         "exits": {
-            "Dodongos Cavern Boss Door": "True"
+            "Dodongos Cavern Boss Door": "True",
+            "Death Mountain": "'Defeat King Dodongo'"
         }
     },
 
@@ -76,9 +79,12 @@
         "region_name": "Barinade Boss Room",
         "scene": "Jabu Jabus Belly Boss",
         "is_boss_room": "True",
+        "events": {
+            "Defeat Barinade": "can_use(Boomerang) and (Sticks or Kokiri_Sword)"
+        },
         "locations": {
-            "Jabu Jabus Belly Barinade Heart": "can_use(Boomerang) and (Sticks or Kokiri_Sword)",
-            "Barinade": "can_use(Boomerang) and (Sticks or Kokiri_Sword)",
+            "Jabu Jabus Belly Barinade Heart": "'Defeat Barinade'",
+            "Barinade": "'Defeat Barinade'",
             "Jabu Jabus Belly Barinade Pot 1": "True",
             "Jabu Jabus Belly Barinade Pot 2": "True",
             "Jabu Jabus Belly Barinade Pot 3": "True",
@@ -87,7 +93,8 @@
             "Jabu Jabus Belly Barinade Pot 6": "True"
         },
         "exits": {
-            "Jabu Jabus Belly Boss Door": "False"
+            "Jabu Jabus Belly Boss Door": "False",
+            "Zoras Fountain": "'Defeat Barinade'"
         }
     },
 
@@ -105,14 +112,17 @@
         "region_name": "Phantom Ganon Boss Room",
         "scene": "Forest Temple Boss",
         "is_boss_room": "True",
+        "events": {
+            "Defeat Phantom Ganon": "
+            can_use(Hookshot) or can_use(Bow) or (can_use(Slingshot) and Kokiri_Sword)"
+        },
         "locations": {
-            "Forest Temple Phantom Ganon Heart": "
-                can_use(Hookshot) or can_use(Bow) or (can_use(Slingshot) and Kokiri_Sword)",
-            "Phantom Ganon": "
-                can_use(Hookshot) or can_use(Bow) or (can_use(Slingshot) and Kokiri_Sword)"
+            "Forest Temple Phantom Ganon Heart": "'Defeat Phantom Ganon'",
+            "Phantom Ganon": "'Defeat Phantom Ganon'"
         },
         "exits": {
-            "Forest Temple Boss Door": "False"
+            "Forest Temple Boss Door": "False",
+            "Sacred Forest Meadow": "'Defeat Phantom Ganon'"
         }
     },
 
@@ -130,12 +140,16 @@
         "region_name": "Volvagia Boss Room",
         "scene": "Fire Temple Boss",
         "is_boss_room": "True",
+        "events": {
+            "Defeat Volvagia": "can_use(Goron_Tunic) and can_use(Megaton_Hammer)"
+        },
         "locations": {
-            "Fire Temple Volvagia Heart": "can_use(Goron_Tunic) and can_use(Megaton_Hammer)",
-            "Volvagia": "can_use(Goron_Tunic) and can_use(Megaton_Hammer)"
+            "Fire Temple Volvagia Heart": "'Defeat Volvagia'",
+            "Volvagia": "'Defeat Volvagia'"
         },
         "exits": {
-            "Fire Temple Boss Door": "False"
+            "Fire Temple Boss Door": "False",
+            "DMC Central Local": "'Defeat Volvagia'"
         }
     },
     {
@@ -152,15 +166,17 @@
         "scene": "Water Temple Boss",
         "is_boss_room": "True",
         "events": {
-            "Water Temple Clear": "can_use(Hookshot)"
+            "Defeat Morpha": "can_use(Hookshot)",
+            "Water Temple Clear": "'Defeat Morpha'"
         },
         "locations": {
-            "Morpha": "can_use(Hookshot)",
-            "Water Temple Morpha Heart": "can_use(Hookshot)"
+            "Morpha": "'Defeat Morpha'",
+            "Water Temple Morpha Heart": "'Defeat Morpha'"
         },
         "exits": {
             # The Water temple entrance from the boss door currently does not exist, so the front entrance is reused instead
-            "Water Temple Lobby": "False"
+            "Water Temple Lobby": "False",
+            "Lake Hylia": "'Defeat Morpha'"
         }
     },
 
@@ -178,18 +194,19 @@
         "region_name": "Bongo Bongo Boss Room",
         "scene": "Shadow Temple Boss",
         "is_boss_room": "True",
-        "locations": {
-            "Shadow Temple Bongo Bongo Heart": "
-                (Kokiri_Sword or is_adult) and
-                (can_use(Hookshot) or can_use(Bow) or can_use(Slingshot) or logic_shadow_bongo) and
-                (can_use(Lens_of_Truth) or logic_lens_bongo)",
-            "Bongo Bongo": "
+        "events": {
+            "Defeat Bongo Bongo": "
                 (Kokiri_Sword or is_adult) and
                 (can_use(Hookshot) or can_use(Bow) or can_use(Slingshot) or logic_shadow_bongo) and
                 (can_use(Lens_of_Truth) or logic_lens_bongo)"
         },
+        "locations": {
+            "Shadow Temple Bongo Bongo Heart": "'Defeat Bongo Bongo'",
+            "Bongo Bongo": "'Defeat Bongo Bongo'"
+        },
         "exits": {
-            "Shadow Temple Boss Door": "False"
+            "Shadow Temple Boss Door": "False",
+            "Graveyard Warp Pad Region": "'Defeat Bongo Bongo'"
         }
     },
 
@@ -207,12 +224,16 @@
         "region_name": "Twinrova Boss Room",
         "scene": "Spirit Temple Boss",
         "is_boss_room": "True",
+        "events": {
+            "Defeat Twinrova": "can_use(Mirror_Shield)"
+        },
         "locations": {
-            "Spirit Temple Twinrova Heart": "can_use(Mirror_Shield)",
-            "Twinrova": "can_use(Mirror_Shield)"
+            "Spirit Temple Twinrova Heart": "'Defeat Twinrova'",
+            "Twinrova": "'Defeat Twinrova'"
         },
         "exits": {
-            "Spirit Temple Boss Door": "False"
+            "Spirit Temple Boss Door": "False",
+            "Desert Colossus": "'Defeat Twinrova'"
         }
     },
     {

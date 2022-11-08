@@ -2298,7 +2298,7 @@ setting_infos = [
         disabled_default = False,
         shared         = True,
         disable        = {
-            True : {'settings' : ['open_forest', 'shuffle_interior_entrances', 'shuffle_overworld_entrances', 'warp_songs', 'shuffle_child_spawn', 'shuffle_adult_spawn', 'shuffle_bosses', 'mix_entrance_pools', 'decouple_entrances']}
+            True : {'settings' : ['open_forest', 'shuffle_interior_entrances', 'shuffle_overworld_entrances', 'warp_songs', 'blue_warps', 'shuffle_child_spawn', 'shuffle_adult_spawn', 'shuffle_bosses', 'mix_entrance_pools', 'decouple_entrances']}
         },
     ),
     Combobox(
@@ -2643,7 +2643,7 @@ setting_infos = [
             'glitchless': {'settings' : ['tricks_list_msg']},
             'glitched'  : {'settings' : ['allowed_tricks', 'shuffle_interior_entrances', 'shuffle_hideout_entrances', 'shuffle_grotto_entrances',
                                          'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops',
-                                         'warp_songs', 'shuffle_child_spawn', 'shuffle_adult_spawn', 'mq_dungeons_mode', 'mq_dungeons_specific',
+                                         'warp_songs', 'shuffle_child_spawn', 'shuffle_adult_spawn', 'blue_warps', 'mq_dungeons_mode', 'mq_dungeons_specific',
                                          'mq_dungeons_count', 'shuffle_bosses', 'dungeon_shortcuts', 'deadly_bonks',
                                          'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_beehives', 'shuffle_silver_rupees',
                                          'mix_entrance_pools', 'decouple_entrances', 'shuffle_base_item_pool', 'logic_water_gold_scale_no_entry', 'require_gohma']},
@@ -3795,6 +3795,52 @@ setting_infos = [
                 ('balanced', 1),
                 ('full', 1),
             ],
+        },
+    ),
+    Combobox(
+        name           = 'blue_warps',
+        gui_text       = 'Randomize Blue Warps',
+        choices        = {
+            'vanilla':  'Vanilla',
+            'dungeon':  'Dungeon Entrance',
+            'balanced': 'Balanced',
+            'full':     'Full',
+        },
+        gui_tooltip    = '''\
+            Randomize where the the blue warps that appear
+            after defeating bosses lead to.
+
+            'Vanilla':
+            The blue warps always lead to their vanilla locations,
+            regardless of where the boss room is. For example, the
+            Barinade blue warp will always lead to Zora's Fountain.
+
+            As an exception, the Phantom Ganon blue warp will lead
+            to the Sacred Forest Meadow instead of in front of the
+            Deku Tree if dungeons, bosses, or the overworld are
+            shuffled. This matches the vanilla behavior when that
+            blue warp is entered a second time.
+
+            'Dungeon Entrance':
+            Each blue warp leads outside the entrance of the
+            dungeon the boss room is in. If that dungeon is in the
+            boss door of another dungeon, the blue warp leads
+            outside that second dungeon instead, and so on. If a
+            boss room is not inside a dungeon, the blue warp leads
+            outside the boss room's entrance.
+
+            'Balanced':
+            The destinations are randomly chosen from overworld,
+            interior, and a few special entrances.
+
+            'Full':
+            Blue warps can also take you inside or outside of grottos
+            or dungeons, potentially bypassing item requirements.
+        ''',
+        default        = 'dungeon',
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
         },
     ),
     Checkbutton(
