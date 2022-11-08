@@ -33,7 +33,7 @@ void Actor_SetWorldToHome_End(z64_actor_t *actor) {
     } 
 }
 
-z64_actor_t* Actor_SpawnEntry_Hack(void* actorCtx, ActorEntry* actorEntry, z64_game_t* globalCtx){
+z64_actor_t* Actor_SpawnEntry_Hack(void* actorCtx, ActorEntry* actorEntry, z64_game_t* globalCtx) {
     bool continue_spawn = true;
     switch(actorEntry->id)
     {
@@ -55,15 +55,19 @@ z64_actor_t* Actor_SpawnEntry_Hack(void* actorCtx, ActorEntry* actorEntry, z64_g
     
 }
 
-bool spawn_override_silver_rupee(ActorEntry* actorEntry, z64_game_t* globalCtx){
-    if(SHUFFLE_SILVER_RUPEES)
+// Override silver rupee spawns. 
+bool spawn_override_silver_rupee(ActorEntry* actorEntry, z64_game_t* globalCtx) {
+    if(SHUFFLE_SILVER_RUPEES) // Check if silver rupee shuffle is enabled.
     {
+        // Build a dummy enitem00 actor
         EnItem00 dummy;
         dummy.actor.actor_id = 0x15;
         dummy.actor.rot_init.y = (curr_scene_setup << 14) + (globalCtx->room_index << 8) + CURR_ACTOR_SPAWN_INDEX + 1;
+        dummy.actor.variable = 0;
         uint8_t type = (actorEntry->params >> 0x0C) & 0xF;
         if(type == 1 && should_override_collectible(&dummy)) // only override actual silver rupees, not the switches or pots.
         {
+            // Spawn a green rupee which will be overridden using the collectible hacks.
             actorEntry->params = 0;
             actorEntry->id = EN_ITEM00;
             return true;
