@@ -304,7 +304,7 @@ location_table = OrderedDict([
     ("HC Storms Grotto Pot 1",                                       ("Pot",          0x3E,  (8,0,7), None,                         'Rupees (20)',                           ("Hyrule Castle", "Grottos", "Pot"))),
     ("HC Storms Grotto Pot 2",                                       ("Pot",          0x3E,  (8,0,8), None,                         'Bombs (5)',                             ("Hyrule Castle", "Grottos", "Pot"))),
     ("HC Storms Grotto Pot 3",                                       ("Pot",          0x3E,  (8,0,10), None,                        'Arrows (5)',                            ("Hyrule Castle", "Grottos", "Pot"))),
-    ("HC Storms Grotto Pot 4",                                       ("Pot",          0x3E,  (8,0,11), None,                        'Deku Nuts (5)',                         ("Hyrule Castle", "Grottos", "Pot"))),
+    ("HC Storms Grotto Pot 4",                                       ("Pot",          0x3E,  (8,0,12), None,                        'Deku Nuts (5)',                         ("Hyrule Castle", "Grottos", "Pot"))),
 
     # Lon Lon Ranch
     ("LLR Talons Chickens",                                          ("NPC",          0x4C,  0x14, None,                            'Bottle with Milk',                      ("Lon Lon Ranch", "Minigames"))),
