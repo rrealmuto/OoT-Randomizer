@@ -58,8 +58,28 @@ Actor_UpdateAll_Hook:
     beq     t0, t1, @@set_flag_in_z_rot
     ; Check if the actor is a En_Item00 collectible
     li      t1, 0x0015 ; Check for collectible spawn
-    bne     t0, t1, @@end
+    beq     t0, t1, @@set_flag_in_y_rot
     nop
+
+    ;Check if actor is an enemy? 
+    lb      t0, 0x02(v0) ;Get the actors category variable
+    li      t1, 5
+    beq     t0, t1, @@is_enemy
+    nop
+    lh      t0, 0x00(v0) ; Get actor ID
+    li      t1, 0x00F6 ; Check for anubis spawns
+    beq     t0, t1, @@is_enemy
+    nop
+    li      t1, 0x0113 ; Check for iron knuckles (they use actor category 9 (boss) and change to category 5 but a frame later if the object isnt loaded)
+    beq     t0, t1, @@is_enemy
+    nop
+    li      t1, 0x0095 ; Check for skullwalltula (en_sw). They start as category 4 (npc) and change to category 5 but a frame later if the object isnt laoded
+    beq     t0, t1, @@is_enemy
+    nop
+
+    b       @@end
+    nop
+
     @@set_flag_in_y_rot:
     ; Set the actors home y rotation to the index in the actor list + 1
     lw      s0, 0x34(sp)
@@ -69,6 +89,8 @@ Actor_UpdateAll_Hook:
     or      s0, s0, s1
     sh      s0, 0x16(v0)
     b		@@end
+    nop
+
     @@set_flag_in_z_rot:
     ; Set the actors home z rotation to the index in the actor list + 1
     lw      s0, 0x34(sp)
@@ -78,6 +100,22 @@ Actor_UpdateAll_Hook:
     or      s0, s0, s1
     sh      s0, 0x18(v0)
     b       @@end
+    nop
+
+    @@is_enemy:
+    ; Set the actors home z rotation to the index in the actor list + 1
+    lh      t0, 0x00(v0)
+    li      t1, 0x0197 ; Dont hack gerudo fighters
+    beq     t0, t1, @@end
+    lw      s0, 0x34(sp)
+    addiu   s0, s0, 0x01
+    lb      s1, 0x03(v0) ; get actors room
+    sll     s1, s1, 8
+    or      s0, s0, s1
+    sh      s0, 0x18(v0)
+    b	    @@end
+    nop
+
     @@end:
     lw      t0, 0x20(sp)
     lw      t1, 0x24(sp)

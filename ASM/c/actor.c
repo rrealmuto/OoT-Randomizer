@@ -1,3 +1,5 @@
+#include "actor.h"
+#include "get_items.h"
 #include "z64.h"
 
 #define BG_HAKA_TUBO        0x00BB
@@ -24,4 +26,45 @@ void Actor_SetWorldToHome_End(z64_actor_t *actor) {
         default:
             break;
     } 
+}
+
+//Return 1 to not spawn the actor, 0 to spawn the actor
+//If enemy drops setting is enabled, check if the flag for this actor hasn't been set and make sure to spawn it.
+//Flag is the index of the actor in the actor spawn list, or -1 if this function is not being called at the room init.
+//Parent will be set if called by Actor_SpawnAsChild
+uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit, int16_t flag, z64_actor_t* parent)
+{
+    //probably need to do something specific for anubis spawns because they use the spawner items. Maybe flare dancers too?
+    if(actorInit->id == 0x00E0 && parent != NULL)
+    {
+        flag = parent->rot_init.z;
+    }
+    if((actorInit->category == ACTORCAT_ENEMY) && z64_Flags_GetClear(globalCtx, globalCtx->room_index))
+    {
+        //Check if this we're spawning an actor from the room's actor spawn list
+        if(flag > 0)
+        {
+            flag = flag - 1;
+            //Build a dummy override
+            uint16_t params = ((flag & 0x3F) << 8) + (flag & 0xC0) + 0x0001 + 0x0020;
+
+            EnItem00 dummy;
+            dummy.collectibleFlag = (params & 0x3F00) >> 8;
+            dummy.actor.actor_id = 0x15;
+            dummy.actor.dropFlag = 0x80;
+            dummy.actor.dropFlag |= (params & 0x00C0) >> 5;
+            dummy.actor.variable = params;
+            //Check if this actor is in the override list
+            if(lookup_override(&dummy, globalCtx->scene_index, 0).key.all != 0 && !(Get_CollectibleOverrideFlag(&dummy)>0))
+            {
+                return 0;
+            }
+            return 1;
+        }
+        
+        return 1;
+    }
+    
+
+    return 0;
 }

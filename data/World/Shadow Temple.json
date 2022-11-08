@@ -15,16 +15,20 @@
         "locations": {
             "Shadow Temple Map Chest": "True",
             "Shadow Temple Hover Boots Chest": "True",
-            "Shadow Temple Whispering Walls Front Pot 1": "True",
-            "Shadow Temple Whispering Walls Front Pot 2": "True",
-            "Shadow Temple Whispering Walls Left Pot 1": "True",
-            "Shadow Temple Whispering Walls Left Pot 2": "True",
-            "Shadow Temple Whispering Walls Left Pot 3": "True",
-            "Shadow Temple Whispering Walls Flying Pot": "True",
-            "Shadow Temple Whispering Walls Near Dead Hand Pot": "True",
+            "Shadow Temple Whispering Walls Front Pot 1" : "True",
+            "Shadow Temple Whispering Walls Front Pot 2" : "True",
+            "Shadow Temple Whispering Walls Left Pot 1" : "True",
+            "Shadow Temple Whispering Walls Left Pot 2" : "True",
+            "Shadow Temple Whispering Walls Left Pot 3" : "True",
+            "Shadow Temple Whispering Walls Flying Pot" : "True",
+            "Shadow Temple Whispering Walls Near Dead Hand Pot" : "True",
             "Shadow Temple Map Chest Room Pot 1": "True",
             "Shadow Temple Map Chest Room Pot 2": "True",
-            "Nut Pot": "True"
+            "Nut Pot": "True",
+            "Shadow Temple Map Chest Keese 1": "True",
+            "Shadow Temple Map Chest Keese 2": "True",
+            "Shadow Temple Map Chest Redead": "True",
+            "Shadow Temple Dead Hand": "True"
         },
         "exits": {
             "Shadow Temple First Beamos": "Hover_Boots"
@@ -35,7 +39,10 @@
         "dungeon": "Shadow Temple",
         "locations": {
             "Shadow Temple Compass Chest": "True",
-            "Shadow Temple Early Silver Rupee Chest": "True"
+            "Shadow Temple Early Silver Rupee Chest": "True",
+            "Shadow Temple Early Beamos": "has_explosives",
+            "Shadow Temple Compass Chest Redead 1": "True",
+            "Shadow Temple Compass Chest Redead 2": "True"
         },
         "exits": {
             # If the shortcut is open, reverse shadow becomes an option, so we need to check for 4 keys with Lens/trick
@@ -67,7 +74,19 @@
             "Shadow Temple Falling Spikes Upper Pot 1": "logic_shadow_umbrella or Progressive_Strength_Upgrade",
             "Shadow Temple Falling Spikes Upper Pot 2": "logic_shadow_umbrella or Progressive_Strength_Upgrade",
             "Shadow Temple GS Invisible Blades Room": "True",
-            "Shadow Temple GS Falling Spikes Room": "logic_shadow_umbrella_gs or Hookshot"
+            "Shadow Temple GS Falling Spikes Room": "logic_shadow_umbrella_gs or Hookshot",
+            "Shadow Temple Guillotine Hallway Skulltula 1": "True",
+            "Shadow Temple Guillotine Hallway Skulltula 2": "True",
+            "Shadow Temple Guillotine Hallway Skulltula 3": "True",
+            "Shadow Temple Guillotine Hallway Skulltula 4": "True",
+            "Shadow Temple Huge Pit Bubble": "True",
+            "Shadow Temple Huge Pit Wallmaster": "True",
+            "Shadow Temple Huge Pit Beamos": "has_explosives",
+            "Shadow Temple Huge Pit Stalfos": "True",
+            "Shadow Temple Invisible Scythe Keese 1": "True",
+            "Shadow Temple Invisible Scythe Keese 2": "True",
+            "Shadow Temple Invisible Scythe Keese 3": "True",
+            "Shadow Temple Invisible Scythe Like Like": "True"
         },
         "exits": {
             "Shadow Temple Invisible Spikes": "
@@ -83,7 +102,13 @@
                 Hookshot and
                 (Bombs or Progressive_Strength_Upgrade or
                     (logic_shadow_freestanding_key and has_bombchus))",
-            "Shadow Temple GS Single Giant Pot": "Hookshot"
+            "Shadow Temple GS Single Giant Pot": "Hookshot",
+            "Shadow Temple Invisible Spikes Redead 1": "True",
+            "Shadow Temple Invisible Spikes Redead 2": "True",
+            "Shadow Temple Spinning Pot Keese 1": "Progressive_Hookshot",
+            "Shadow Temple Spinning Pot Keese 2": "Progressive_Hookshot",
+            "Shadow Temple Spinning Pot Keese 3": "Progressive_Hookshot",
+            "Shadow Temple Spinning Pot Keese 4": "Progressive_Hookshot"
         },
         "exits": {
             "Shadow Temple Wind Tunnel": "Hookshot and (Small_Key_Shadow_Temple, 3)",
@@ -94,7 +119,10 @@
         "region_name": "Shadow Temple Wind Tunnel",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple Wind Hint Chest": "True"
+            "Shadow Temple Wind Hint Chest": "True",
+            "Shadow Temple Fan Hallway Skulltula": "True",
+            "Shadow Temple Wind Hint Left Redead": "True",
+            "Shadow Temple Wind Hint Right Redead": "True"
         },
         "exits": {
             "Shadow Temple After Wind": "True",
@@ -108,10 +136,13 @@
         "locations": {
             "Shadow Temple After Wind Enemy Chest": "True",
             "Shadow Temple After Wind Hidden Chest": "has_explosives",
-            "Shadow Temple After Wind Pot 1": "True",
-            "Shadow Temple After Wind Pot 2": "True",
-            "Shadow Temple After Wind Flying Pot 1": "True",
-            "Shadow Temple After Wind Flying Pot 2": "True"
+            "Shadow Temple After Wind Pot 1" : "True",
+            "Shadow Temple After Wind Pot 2" : "True",
+            "Shadow Temple After Wind Flying Pot 1" : "True",
+            "Shadow Temple After Wind Flying Pot 2" : "True",
+            "Shadow Temple After Wind Redead Left": "True",
+            "Shadow Temple After Wind Redead Right": "True"
+            
         },
         "exits": {
             "Shadow Temple Boat": "(Small_Key_Shadow_Temple, 4)",
@@ -138,11 +169,18 @@
             "Shadow Temple Invisible Floormaster Chest": "True",
             "Shadow Temple Spike Walls Left Chest": "can_use(Dins_Fire)",
             "Shadow Temple Boss Key Chest": "can_use(Dins_Fire)",
-            "Shadow Temple After Boat Pot": "True",
-            "Shadow Temple Invisible Floormaster Pot 1": "True",
-            "Shadow Temple Invisible Floormaster Pot 2": "True",
+            "Shadow Temple After Boat Pot" : "True",
+            "Shadow Temple Invisible Floormaster Pot 1" : "True",
+            "Shadow Temple Invisible Floormaster Pot 2" : "True",
             "Shadow Temple Spike Walls Pot": "True",
-            "Shadow Temple GS Triple Giant Pot": "True"
+            "Shadow Temple GS Triple Giant Pot": "True",
+            "Shadow Temple Spike Walls Left Redead": "can_use(Dins_Fire)",
+            "Shadow Temple Spike Walls Right Redead": "can_use(Dins_Fire)",
+            "Shadow Temple Invisible Walls Floormaster 1": "True",
+            "Shadow Temple Invisible Walls Floormaster 2": "True",
+            "Shadow Temple Invisible Floormaster": "True",
+            "Shadow Temple Boat Stalfos 1": "True",
+            "Shadow Temple Boat Stalfos 2": "True"
         },
         "exits": {
             "Shadow Temple 3 Spinning Pots Rupees": "Bombs or Progressive_Strength_Upgrade",
