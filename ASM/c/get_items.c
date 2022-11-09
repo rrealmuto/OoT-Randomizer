@@ -651,6 +651,7 @@ void Item_DropCollectible_Random_Before(z64_game_t* globalCtx, z64_actor_t* from
             case 0x0033: //Dark Link
             {
                 flag = 1;
+                flag |= (fromActor->room_index << 8);
                 break;
             }
             case 0x0002: //Stalfos, specifically the ones in the upper bow area of forest temple
@@ -669,7 +670,8 @@ void Item_DropCollectible_Random_Before(z64_game_t* globalCtx, z64_actor_t* from
                         else if(fromActor->pos_init.x == 170.0)
                             flag = 5;
                         break;
-                    }        
+                    }
+                    flag |= (fromActor->room_index << 8);
                 }
                 break;
             }
