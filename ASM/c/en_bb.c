@@ -12,15 +12,10 @@ void bb_red_wait_hack(z64_actor_t* actor)
     uint16_t flag = actor->rot_init.z;
     if(ENEMY_DROP_SHUFFLE && flag > 0)
     {
-        flag -= 1;
-        uint16_t params = ((flag & 0x3F) << 8) + (flag & 0xC0) + 0x0001 + 0x0020;
-
         EnItem00 dummy;
-        dummy.collectibleFlag = (params & 0x3F00) >> 8;
         dummy.actor.actor_id = 0x15;
-        dummy.actor.dropFlag = 0x80;
-        dummy.actor.dropFlag |= (params & 0x00C0) >> 5;
-        dummy.actor.variable = params;
+        dummy.actor.rot_init.y = flag;
+        dummy.actor.variable = 0;
 
         if(should_override_collectible(&dummy))
         {
