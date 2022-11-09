@@ -34,7 +34,7 @@ from Plandomizer import Distribution
 from Search import Search, RewindableSearch
 from EntranceShuffle import set_entrances
 from LocationList import set_drop_location_names
-from Goals import update_goal_items, maybe_set_misc_item_hints, replace_goal_names
+from Goals import update_goal_items, maybe_set_misc_item_hints, replace_goal_names, search_required_locations
 from version import __version__
 
 
@@ -820,4 +820,10 @@ def calculate_playthrough_locations(spoiler):
         playthrough_locations.update(locations)
     
     spoiler.playthrough_locations = playthrough_locations
-        
+    
+    # Generate location requirements for each playthrough location
+    requirements_by_world = {}
+    requirements = search_required_locations(playthrough_locations, playthrough_locations, spoiler.worlds)
+    for world in spoiler.worlds:
+        requirements_by_world[world.id] = {loc: required for loc, required in requirements.items() if loc.world.id == world.id}
+    spoiler.playthrough_location_requirements = requirements_by_world

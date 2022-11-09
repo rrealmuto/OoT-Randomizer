@@ -746,31 +746,46 @@ def get_playthrough_location_hint(spoiler, world, checked):
 
     return (GossipText('%s is on the way of the wanderer.' % location_text, ['Light Blue'], [location.name], [location.item.name]), [location])
 
-def get_block_hint(spoiler, world, checked):
+def get_unlock_woth_hint(spoiler, world, checked):
+    return get_unlock_hint(spoiler.required_location_requirements, world, checked, 'unlock-woth')
 
-    required_locations = spoiler.required_location_requirements[world.id]
-    unchecked_required_locations = {
-        location: list(filter(lambda required_location: not (location.name + "-" + required_location.name) in checked, required_locations)) 
-        for location, required_locations in required_locations.items()
+def get_unlock_playthrough_hint(spoiler, world, checked):
+    return get_unlock_hint(spoiler.playthrough_location_requirements, world, checked, 'unlock-playthrough')
+
+def get_unlock_hint(requirements, world, checked, hint_type):
+
+    required_locations = {
+        location: list(filter(lambda required_location: required_location.item.name not in world.item_hint_type_overrides[hint_type], required_locations)) 
+        for location, required_locations in requirements[world.id].items()
     }
+
     hintable_locations = list(filter(lambda location:
-        len(unchecked_required_locations[location]) > 0
+        len(required_locations[location]) > 0
+        and (location.name + '- unlock') not in checked
         and location.name not in world.hint_exclusions
-        and location.name not in world.hint_type_overrides['block']
-        and location.item.name not in world.item_hint_type_overrides['block'],
-        unchecked_required_locations))
+        and location.name not in world.hint_type_overrides[hint_type]
+        and location.item.name not in world.item_hint_type_overrides[hint_type]
+        and location.item.type != "Song",
+        required_locations))
 
     if not hintable_locations:
         return None
 
-    location = random.choice(hintable_locations)
-    required_location = random.choice(unchecked_required_locations[location])
-    checked.add(location.name + "-" + required_location.name)
+    location_weights = list(map(lambda loc: len(required_locations[loc]), hintable_locations))
+    location = random.choices(hintable_locations, location_weights)[0]
+    required_location_weights = list(map(lambda req_loc: len(required_locations[req_loc]) + 1, required_locations[location]))
+    required_location = random.choices(required_locations[location], required_location_weights)[0]
+    checked.add(location.name + '- unlock')
 
     location_text = getHint(getItemGenericName(location.item), world.settings.clearer_hints).text
     required_location_text = getHint(getItemGenericName(required_location.item), world.settings.clearer_hints).text
 
-    return (GossipText('#%s# unlocks the way to #%s#.' % (required_location_text, location_text), ['Light Blue', 'Light Blue'], [required_location.name, location.name], [required_location.item.name, location.item.name]), [required_location, location])
+    if hint_type == 'unlock-playthrough':
+        gossip_text = '#%s# unlocks the wanderer\'s way to #%s#.'
+    else:
+        gossip_text = '#%s# unlocks the way to #%s#.'
+
+    return (GossipText(gossip_text % (required_location_text, location_text), ['Light Blue', 'Light Blue'], [required_location.name, location.name], [required_location.item.name, location.item.name]), [required_location, location])
 
 def get_barren_hint(spoiler, world, checked, allChecked):
     if not hasattr(world, 'get_barren_hint_prev'):
@@ -1204,7 +1219,8 @@ hint_func = {
     'goal':             get_goal_hint,
     'goal-count':       	get_goal_count_hint,
     'playthrough-location': get_playthrough_location_hint,
-    'block':            get_block_hint,
+    'unlock-woth':      get_unlock_woth_hint,
+    'unlock-playthrough':   get_unlock_playthrough_hint,
     'barren':           get_barren_hint,
     'item':             get_good_item_hint,
     'sometimes':        get_sometimes_hint,
@@ -1230,7 +1246,8 @@ hint_dist_keys = {
     'goal',
     'goal-count',
     'playthrough-location',
-    'block',
+    'unlock-woth',
+    'unlock-playthrough',
     'barren',
     'item',
     'song',
