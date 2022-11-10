@@ -23,7 +23,7 @@
     "shuffle_overworld_entrances": false,
     "owl_drops": false,
     "warp_songs": false,
-    "spawn_positions": false,
+    "spawn_positions": [],
     "bombchus_in_logic": false,
     "one_item_per_dungeon": false,
     "mq_dungeons_mode": "vanilla",
@@ -86,9 +86,9 @@
     "junk_ice_traps": "normal",
     "adult_trade_start": ["Prescription", "Eyeball Frog", "Eyedrops", "Claim Check"]
   },
-  "S5 Tournament": {
+  "S6 Tournament": {
     "show_seed_info":                          true,
-    "user_message":                            "S5 Tournament",
+    "user_message":                            "S6 Tournament",
     "world_count":                             1,
     "create_spoiler":                          true,
     "randomize_settings":                      false,
@@ -122,7 +122,7 @@
     "starting_hearts":                         3,
     "plant_beans":                             false,
     "chicken_count_random":                    false,
-    "chicken_count":                           7,
+    "chicken_count":                           4,
     "big_poe_count_random":                    false,
     "big_poe_count":                           1,
     "shuffle_kokiri_sword":                    true,
@@ -138,7 +138,9 @@
     "shuffle_overworld_entrances":             false,
     "owl_drops":                               false,
     "warp_songs":                              false,
-    "spawn_positions":                         true,
+    "spawn_positions":                         [
+      "child"
+    ],
     "shuffle_scrubs":                          "off",
     "shopsanity":                              "off",
     "tokensanity":                             "off",
@@ -185,7 +187,7 @@
     ],
     "starting_songs":                          [],
     "ocarina_songs":                           "off",
-    "correct_chest_appearances":               "classic",
+    "correct_chest_appearances":               "both",
     "clearer_hints":                           true,
     "no_collectible_hearts":                   false,
     "hints":                                   "always",
@@ -242,7 +244,6 @@
     "start_with_consumables":                   true,
     "starting_hearts":                          3,
     "plant_beans":                              false,
-    "spawn_gerudo_guard_outside_gate":          true,
     "chicken_count_random":                     false,
     "chicken_count":                            3,
     "big_poe_count_random":                     false,
@@ -260,7 +261,9 @@
     "shuffle_overworld_entrances":              false,
     "owl_drops":                                false,
     "warp_songs":                               false,
-    "spawn_positions":                          false,
+    "spawn_positions":                         [
+      "adult"
+    ],
     "shuffle_scrubs":                           "off",
     "shopsanity":                               "off",
     "tokensanity":                              "off",
@@ -370,7 +373,6 @@
     "start_with_consumables":                   true,
     "starting_hearts":                          3,
     "plant_beans":                              false,
-    "spawn_gerudo_guard_outside_gate":          true,
     "chicken_count_random":                     false,
     "chicken_count":                            3,
     "big_poe_count_random":                     false,
@@ -388,7 +390,9 @@
     "shuffle_overworld_entrances":              false,
     "owl_drops":                                false,
     "warp_songs":                               false,
-    "spawn_positions":                          false,
+    "spawn_positions":                         [
+      "adult"
+    ],
     "shuffle_scrubs":                           "off",
     "shopsanity":                               "off",
     "tokensanity":                              "off",
@@ -514,7 +518,10 @@
     "shuffle_overworld_entrances":             false,
     "owl_drops":                               false,
     "warp_songs":                              false,
-    "spawn_positions":                         true,
+    "spawn_positions":                         [
+      "child",
+      "adult"
+    ],
     "shuffle_scrubs":                          "off",
     "shopsanity":                              "off",
     "tokensanity":                             "off",
@@ -634,7 +641,10 @@
     "shuffle_overworld_entrances":             false,
     "owl_drops":                               false,
     "warp_songs":                              false,
-    "spawn_positions":                         true,
+    "spawn_positions":                         [
+      "child",
+      "adult"
+    ],
     "shuffle_scrubs":                          "off",
     "shopsanity":                              "off",
     "tokensanity":                             "off",
@@ -751,7 +761,7 @@
     "shuffle_overworld_entrances":             false,
     "owl_drops":                               false,
     "warp_songs":                              false,
-    "spawn_positions":                         false,
+    "spawn_positions":                         [],
     "shuffle_scrubs":                          "off",
     "shopsanity":                              "off",
     "tokensanity":                             "off",
@@ -857,7 +867,10 @@
     "shuffle_overworld_entrances":             false,
     "owl_drops":                               false,
     "warp_songs":                              false,
-    "spawn_positions":                         true,
+    "spawn_positions":                         [
+      "child",
+      "adult"
+    ], 
     "shuffle_scrubs":                          "off",
     "shopsanity":                              "off",
     "tokensanity":                             "off",
@@ -976,7 +989,7 @@
     "shuffle_overworld_entrances":             false,
     "owl_drops":                               false,
     "warp_songs":                              false,
-    "spawn_positions":                         false,
+    "spawn_positions":                         [],
     "shuffle_scrubs":                          "low",
     "shopsanity":                              "4",
     "shopsanity_prices":                       "random",
@@ -1061,7 +1074,10 @@
     "shuffle_overworld_entrances": true,
     "owl_drops": true,
     "warp_songs": true,
-    "spawn_positions": true,
+    "spawn_positions":                         [
+      "child",
+      "adult"
+    ],
     "bombchus_in_logic": true,
     "one_item_per_dungeon": false,
     "mq_dungeons_mode": "random",
@@ -1329,7 +1345,7 @@
     "shuffle_overworld_entrances":             false,
     "owl_drops":                               false,
     "warp_songs":                              false,
-    "spawn_positions":                         false,
+    "spawn_positions":                         [],
     "shuffle_scrubs":                          "off",
     "shopsanity":                              "off",
     "tokensanity":                             "off",
@@ -1437,7 +1453,10 @@
     "shuffle_overworld_entrances":             false,
     "owl_drops":                               false,
     "warp_songs":                              false,
-    "spawn_positions":                         true,
+    "spawn_positions":                         [
+      "child",
+      "adult"
+    ],
     "shuffle_scrubs":                          "off",
     "shopsanity":                              "off",
     "tokensanity":                             "off",
@@ -1558,7 +1577,7 @@
     "shuffle_overworld_entrances":             false,
     "owl_drops":                               false,
     "warp_songs":                              false,
-    "spawn_positions":                         false,
+    "spawn_positions":                         [],
     "shuffle_scrubs":                          "low",
     "shopsanity":                              "4",
     "tokensanity":                             "off",

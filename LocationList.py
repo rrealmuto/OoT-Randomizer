@@ -842,6 +842,7 @@ location_table = OrderedDict([
     ("Bean Plant Fairy",                                             ("Drop",         None,  None, None,                        'Fairy',                                 None)),
     ("Fairy Pond",                                                   ("Drop",         None,  None, None,                        'Fairy',                                 None)),
     ("Big Poe Kill",                                                 ("Drop",         None,  None, None,                        'Big Poe',                               None)),
+    ("Deku Shield Pot",                                              ("Drop",         None,  None, None,                        'Deku Shield Drop',                      None)),
 
     ## Hints
     # These are not actual locations, but are filler spots used for hint reachability.
@@ -891,6 +892,11 @@ location_table = OrderedDict([
     ("ToT Child Altar Hint",                                         ("Hint",         None,  None, None,                        None,                                    None)),
     ("ToT Adult Altar Hint",                                         ("Hint",         None,  None, None,                        None,                                    None)),
     ("Dampe Diary Hint",                                             ("Hint",         None,  None, None,                        None,                                    None)),
+    ("10 Skulltulas Reward Hint",                                    ("Hint",         None,  None, None,                        None,                                    None)),
+    ("20 Skulltulas Reward Hint",                                    ("Hint",         None,  None, None,                        None,                                    None)),
+    ("30 Skulltulas Reward Hint",                                    ("Hint",         None,  None, None,                        None,                                    None)),
+    ("40 Skulltulas Reward Hint",                                    ("Hint",         None,  None, None,                        None,                                    None)),
+    ("50 Skulltulas Reward Hint",                                    ("Hint",         None,  None, None,                        None,                                    None)),
     ("Ganondorf Hint",                                               ("Hint",         None,  None, None,                        None,                                    None)),
 ])
 

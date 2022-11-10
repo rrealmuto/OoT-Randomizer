@@ -1,4 +1,5 @@
 #include "triforce.h"
+#include "model_text.h"
 #include "dungeon_info.h"
 #include "file_select.h"
 #include "get_items.h"
@@ -38,6 +39,7 @@ void before_game_state_update() {
 void after_game_state_update() {
     draw_dungeon_info(&(z64_ctxt.gfx->overlay));
     draw_triforce_count(&(z64_ctxt.gfx->overlay));
+    draw_illegal_model_text(&(z64_ctxt.gfx->overlay));
     give_ganon_boss_key();
 }
 
@@ -51,4 +53,5 @@ void after_scene_init() {
     clear_twinrova_vars();
     models_reset();
     extern_scene_init();
+    check_model_skeletons();
 }

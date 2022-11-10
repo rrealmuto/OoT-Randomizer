@@ -24,8 +24,9 @@ from Fill import distribute_items_restrictive, ShuffleError
 from Item import Item
 from ItemPool import generate_itempool, item_groups
 from Hints import buildGossipHints
-from HintList import clearHintExclusionCache, misc_item_hint_table
+from HintList import clearHintExclusionCache, misc_item_hint_table, misc_location_hint_table
 from Utils import default_output_path, is_bundled, run_process, data_path
+from Models import patch_model_adult, patch_model_child
 from N64Patch import create_patch_file, apply_patch_file
 from MBSDIFFPatch import apply_ootr_3_web_patch
 from SettingsList import setting_infos, logic_tricks
@@ -209,7 +210,7 @@ def make_spoiler(settings, worlds, window=dummy_window()):
         calculate_playthrough_locations(spoiler)
         buildGossipHints(spoiler, worlds)
         window.update_progress(55)
-    elif any(world.dungeon_rewards_hinted for world in worlds) or any(hint_type in settings.misc_hints for hint_type in misc_item_hint_table):
+    elif any(world.dungeon_rewards_hinted for world in worlds) or any(hint_type in settings.misc_hints for hint_type in misc_item_hint_table) or any(hint_type in settings.misc_hints for hint_type in misc_location_hint_table):
         find_misc_hint_items(spoiler)
     spoiler.build_file_hash()
     return spoiler
@@ -228,6 +229,10 @@ def prepare_rom(spoiler, world, rom, settings, rng_state=None, restore=True):
         rom.restore()
     patch_rom(spoiler, world, rom)
     cosmetics_log = patch_cosmetics(settings, rom)
+    if settings.model_adult != "Default" or len(settings.model_adult_filepicker) > 0:
+        patch_model_adult(rom, settings, cosmetics_log)
+    if settings.model_child != "Default" or len(settings.model_child_filepicker) > 0:
+        patch_model_child(rom, settings, cosmetics_log)
     rom.update_header()
     return cosmetics_log
 
@@ -495,10 +500,14 @@ def from_patch_file(settings, window=dummy_window()):
             subfile = f"P{settings.player_num}.zpf"
             if not settings.output_file:
                 output_path += f"P{settings.player_num}"
-        apply_patch_file(rom, settings.patch_file, subfile)
+        apply_patch_file(rom, settings, subfile)
     cosmetics_log = None
     if settings.repatch_cosmetics:
         cosmetics_log = patch_cosmetics(settings, rom)
+        if settings.model_adult != "Default" or len(settings.model_adult_filepicker) > 0:
+            patch_model_adult(rom, settings, cosmetics_log)
+        if settings.model_child != "Default" or len(settings.model_child_filepicker) > 0:
+            patch_model_child(rom, settings, cosmetics_log)
     window.update_progress(65)
 
     log_and_update_window(window, 'Saving Uncompressed ROM')
@@ -574,7 +583,7 @@ def cosmetic_patch(settings, window=dummy_window()):
         subfile = None
     else:
         subfile = 'P%d.zpf' % (settings.player_num)
-    apply_patch_file(rom, settings.patch_file, subfile)
+    apply_patch_file(rom, settings, subfile)
     window.update_progress(65)
 
     # clear changes from the base patch file
@@ -586,6 +595,10 @@ def cosmetic_patch(settings, window=dummy_window()):
     window.update_status('Patching ROM')
     patchfilename = '%s_Cosmetic.zpf' % output_path
     cosmetics_log = patch_cosmetics(settings, rom)
+    if settings.model_adult != "Default" or len(settings.model_adult_filepicker) > 0:
+        patch_model_adult(rom, settings, cosmetics_log)
+    if settings.model_child != "Default" or len(settings.model_child_filepicker) > 0:
+        patch_model_child(rom, settings, cosmetics_log)
     window.update_progress(80)
 
     window.update_status('Creating Patch File')

@@ -368,10 +368,11 @@ Gameplay_InitSkybox:
 .orga 0xA87E80 ;In memory 0x80011F20
     jal object_index_or_spawn ;Replace call to z64_ObjectIndex
 
-; Remove deku shield drop from spirit pot because it's "vanilla behavior"
-; Replace actor parameters in scene 06, room 27 actor list
-.orga 0x2BDC0C6
-    .halfword 0x603F
+; Fix autocollect magic jar wonder items
+; Replaces:
+;   jal     func_80022CF4
+.orga 0xA880D4
+    jal     enitem00_set_link_incoming_item_id
 
 ;==================================================================================================
 ; Freestanding models
@@ -2488,6 +2489,12 @@ skip_GS_BGS_text:
 .orga 0xDB32C8
     jal blue_fire_arrows ; replaces addiu at, zero, 0x00F0
 
+;===================================================================================================
+; Give each cursed skulltula house resident a different text ID, for skulltula reward hints
+;===================================================================================================
+.orga 0xEA2664
+	addiu	t1, t1, 0x9003
+
 ;==================================================================================================
 ; Base Get Item Draw Override
 ;==================================================================================================
@@ -2509,3 +2516,26 @@ skip_GS_BGS_text:
 ; Replaces: addiu   a0, $zero, 0x2008
 ; .orga 0xBE2930
 ;    addiu   a0, $zero, 0x6000
+
+;===================================================================================================
+; Remove the cutscene when throwing a bomb at the rock in front of Dodongo's cavern
+;===================================================================================================
+.orga 0xD55998
+	nop
+	nop
+	nop
+	nop
+	nop
+	
+.orga 0xD55A80
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+
+
+
+
+

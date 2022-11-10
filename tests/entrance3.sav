@@ -34,7 +34,10 @@
 "shuffle_overworld_entrances": true,
 "owl_drops": true,
 "warp_songs": true,
-"spawn_positions": true,
+"spawn_positions":                         [
+    "child",
+    "adult"
+  ],
 "shuffle_scrubs": "off",
 "shopsanity": "off",
 "tokensanity": "off",

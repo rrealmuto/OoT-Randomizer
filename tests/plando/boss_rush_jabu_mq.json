@@ -1,6 +1,9 @@
 {
     "settings":                  {
-    "spawn_positions":                         true,
+      "spawn_positions":                         [
+        "child",
+        "adult"
+      ],
     "shuffle_dungeon_entrances":               "simple",
     "open_forest":                             "open",
     "mq_dungeons_mode":                        "specific",

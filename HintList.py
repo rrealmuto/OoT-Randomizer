@@ -212,9 +212,9 @@ conditional_always = {
     'HF Ocarina of Time Item':      lambda world: stones_required_by_settings(world) < 2,
     'Sheik in Kakariko':            lambda world: medallions_required_by_settings(world) < 5,
     'DMT Biggoron':                 lambda world: 'Claim Check' not in world.settings.adult_trade_start or len(world.settings.adult_trade_start) != 1,
-    'Kak 30 Gold Skulltula Reward': lambda world: tokens_required_by_settings(world) < 30,
-    'Kak 40 Gold Skulltula Reward': lambda world: tokens_required_by_settings(world) < 40,
-    'Kak 50 Gold Skulltula Reward': lambda world: tokens_required_by_settings(world) < 50,
+    'Kak 30 Gold Skulltula Reward': lambda world: tokens_required_by_settings(world) < 30 and '30_skulltulas' not in world.settings.misc_hints,
+    'Kak 40 Gold Skulltula Reward': lambda world: tokens_required_by_settings(world) < 40 and '40_skulltulas' not in world.settings.misc_hints,
+    'Kak 50 Gold Skulltula Reward': lambda world: tokens_required_by_settings(world) < 50 and '50_skulltulas' not in world.settings.misc_hints,
 }
 
 # Entrance hints required under certain settings
@@ -239,6 +239,11 @@ conditional_sometimes = {
     # Conditional sometimes hints
     'HC Great Fairy Reward':                    lambda world: world.settings.shuffle_interior_entrances == 'off',
     'OGC Great Fairy Reward':                   lambda world: world.settings.shuffle_interior_entrances == 'off',
+    'Kak 20 Gold Skulltula Reward':             lambda world: '20_skulltulas' not in world.settings.misc_hints,
+    'Kak 30 Gold Skulltula Reward':             lambda world: '30_skulltulas' not in world.settings.misc_hints,
+    'Kak 40 Gold Skulltula Reward':             lambda world: '40_skulltulas' not in world.settings.misc_hints,
+    'Kak 50 Gold Skulltula Reward':             lambda world: '50_skulltulas' not in world.settings.misc_hints,
+    'ZR Frogs in the Rain':                     lambda world: not world.settings.shuffle_frog_song_rupees,
 
     # Conditional dual hints
     'GV Pieces of Heart Ledges':                lambda world: not world.settings.shuffle_cows and world.settings.tokensanity not in ['overworld', 'all'],
@@ -667,8 +672,8 @@ hintTable = {
     'ZR Frogs Zeldas Lullaby':                                     ("after hearing #Zelda's Lullaby, frogs gift#", None, 'exclude'),
     'ZR Frogs Eponas Song':                                        ("after hearing #Epona's Song, frogs gift#", None, 'exclude'),
     'ZR Frogs Sarias Song':                                        ("after hearing #Saria's Song, frogs gift#", None, 'exclude'),
-    'ZR Frogs Suns Song':                                          ("after hearing #Sun's Song, frogs gift#", None, 'exclude'),
-    'ZR Frogs Song of Time':                                       ("after hearing #Song of Time, frogs gift#", None, 'exclude'),
+    'ZR Frogs Suns Song':                                          ("after hearing the #Sun's Song, frogs gift#", None, 'exclude'),
+    'ZR Frogs Song of Time':                                       ("after hearing the #Song of Time, frogs gift#", None, 'exclude'),
 
     'Deku Tree Map Chest':                                         ("in the #center of the Deku Tree# lies", None, 'exclude'),
     'Deku Tree Slingshot Chest':                                   ("the #treasure guarded by a scrub# in the Deku Tree is", None, 'exclude'),
@@ -1414,7 +1419,7 @@ hintTable = {
     '1045':                                                     ("They say that Okami is the best Zelda game.", None, 'junk'), # ref: people often say that Okami feels and plays like a Zelda game
     '1046':                                                     ("They say that quest guidance can be found at a talking rock.", None, 'junk'),
     '1047':                                                     ("They say that the final item you're looking for can be found somewhere in Hyrule.", None, 'junk'),
-    '1048':                                                     ("${12 68 7a}Mweep.^Mweep.^Mweep.^Mweep.^Mweep.^Mweep.^Mweep.^Mweep.^Mweep.^Mweep.^Mweep.^Mweep.", None, 'junk'), # Mweep
+    '1048':                                                     ("${12 68 7a}Mweep${07 04 51}", None, 'junk'), # Mweep
     '1049':                                                     ("They say that Barinade fears Deku Nuts.", None, 'junk'),
     '1050':                                                     ("They say that Flare Dancers do not fear Goron-crafted blades.", None, 'junk'), 
     '1051':                                                     ("They say that Morpha is easily trapped in a corner.", None, 'junk'),
@@ -1734,6 +1739,44 @@ misc_item_hint_table = {
             "from #inside Ganon's Castle#": "from #inside my castle#",
             "from #outside Ganon's Castle#": "from #outside my castle#",
         },
+    },
+}
+
+misc_location_hint_table = {
+    '10_skulltulas': {
+        'id': 0x9004,
+        'hint_location': '10 Skulltulas Reward Hint',
+        'item_location': 'Kak 10 Gold Skulltula Reward',
+        'location_text': "Yeaaarrgh! I'm cursed!! Please save me by destroying \x05\x4110 Spiders of the Curse\x05\x40 and I will give you \x05\x42{item}\x05\x40.",
+        'location_fallback': "Yeaaarrgh! I'm cursed!!",
+    },
+    '20_skulltulas': {
+        'id': 0x9005,
+        'hint_location': '20 Skulltulas Reward Hint',
+        'item_location': 'Kak 20 Gold Skulltula Reward',
+        'location_text': "Yeaaarrgh! I'm cursed!! Please save me by destroying \x05\x4120 Spiders of the Curse\x05\x40 and I will give you \x05\x42{item}\x05\x40.",
+        'location_fallback': "Yeaaarrgh! I'm cursed!!",
+    },
+    '30_skulltulas': {
+        'id': 0x9006,
+        'hint_location': '30 Skulltulas Reward Hint',
+        'item_location': 'Kak 30 Gold Skulltula Reward',
+        'location_text': "Yeaaarrgh! I'm cursed!! Please save me by destroying \x05\x4130 Spiders of the Curse\x05\x40 and I will give you \x05\x42{item}\x05\x40.",
+        'location_fallback': "Yeaaarrgh! I'm cursed!!",
+    },
+    '40_skulltulas': {
+        'id': 0x9007,
+        'hint_location': '40 Skulltulas Reward Hint',
+        'item_location': 'Kak 40 Gold Skulltula Reward',
+        'location_text': "Yeaaarrgh! I'm cursed!! Please save me by destroying \x05\x4140 Spiders of the Curse\x05\x40 and I will give you \x05\x42{item}\x05\x40.",
+        'location_fallback': "Yeaaarrgh! I'm cursed!!",
+    },
+    '50_skulltulas': {
+        'id': 0x9008,
+        'hint_location': '50 Skulltulas Reward Hint',
+        'item_location': 'Kak 50 Gold Skulltula Reward',
+        'location_text': "Yeaaarrgh! I'm cursed!! Please save me by destroying \x05\x4150 Spiders of the Curse\x05\x40 and I will give you \x05\x42{item}\x05\x40.",
+        'location_fallback': "Yeaaarrgh! I'm cursed!!",
     },
 }
 

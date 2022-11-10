@@ -11,7 +11,7 @@ from Spoiler import Spoiler
 from LocationList import business_scrubs
 from HintList import getHint
 from Hints import HintArea, writeGossipStoneHints, buildAltarHints, \
-        buildGanonText, buildMiscItemHints, getSimpleHintNoPrefix, getItemGenericName
+        buildGanonText, buildMiscItemHints, buildMiscLocationHints, getSimpleHintNoPrefix, getItemGenericName
 from Utils import data_path
 from Messages import read_messages, update_message_by_id, read_shop_items, update_warp_song_text, \
         write_shop_items, remove_unused_messages, make_player_message, \
@@ -1656,6 +1656,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # build misc. item hints
     buildMiscItemHints(world, messages)
 
+    # build misc. location hints
+    buildMiscLocationHints(world, messages)
+
     # Write item overrides
     override_table = get_override_table(world)
     rom.write_bytes(rom.sym('cfg_item_overrides'), get_override_table_bytes(override_table))
@@ -1953,7 +1956,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     SILVER_CHEST = 13
     SKULL_CHEST_SMALL = 14
     SKULL_CHEST_BIG =  15
-    if world.settings.bombchus_in_logic or world.settings.bombchus_gilded_chest_appearance:
+    if world.settings.bombchus_in_logic or world.settings.minor_items_as_major_chest:
         bombchu_ids = [0x6A, 0x03, 0x6B]
         for i in bombchu_ids:
             item = read_rom_item(rom, i)
@@ -1969,6 +1972,15 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             item = read_rom_item(rom, i)
             item['chest_type'] = GILDED_CHEST
             write_rom_item(rom, i, item)
+    if world.settings.minor_items_as_major_chest:
+        # Deku
+        item = read_rom_item(rom, 0x29)
+        item['chest_type'] = GILDED_CHEST
+        write_rom_item(rom, 0x29, item)
+        # Hylian
+        item = read_rom_item(rom, 0x2A)
+        item['chest_type'] = GILDED_CHEST
+        write_rom_item(rom, 0x2A, item)
 
     # Update chest type appearance
     if world.settings.correct_chest_appearances == 'textures':
@@ -2169,6 +2181,18 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     if world.settings.fast_bunny_hood:
         symbol = rom.sym('FAST_BUNNY_HOOD_ENABLED')
         rom.write_byte(symbol, 0x01)
+
+    if world.settings.fix_broken_drops:
+        symbol = rom.sym('FIX_BROKEN_DROPS')
+        rom.write_byte(symbol, 0x01)
+
+        # Autocollect incoming_item_id for magic jars are swapped in vanilla code
+        rom.write_int16(0xA88066, 0x0044) # Change GI_MAGIC_SMALL to GI_MAGIC_LARGE
+        rom.write_int16(0xA88072, 0x0043) # Change GI_MAGIC_LARGE to GI_MAGIC_SMALL
+    else:
+        # Remove deku shield drop from spirit pot because it's "vanilla behavior"
+        # Replace actor parameters in scene 06, room 27 actor list
+        rom.write_int16(0x2BDC0C6, 0x603F)
 
     # Have the Gold Skulltula Count in the pause menu turn red when equal to the
     # available number of skulls in the world instead of 100.

@@ -14,6 +14,7 @@ from Hints import HintDistList, HintDistTips, gossipLocations
 from Item import ItemInfo
 from Location import LocationIterator
 from LocationList import location_table
+from Models import get_model_choices
 import Sounds as sfx
 import StartingItems
 from Utils import data_path
@@ -1819,7 +1820,29 @@ setting_infos = [
                     'settings' : [
                         'rom','web_output_type','player_num',
                         'web_wad_file', 'web_common_key_file', 'web_common_key_string',
-                        'web_wad_channel_id','web_wad_channel_title','web_wad_legacy_mode'
+                        'web_wad_channel_id','web_wad_channel_title', 'web_wad_legacy_mode',
+                        'model_adult', 'model_child', 'model_adult_filepicker', 'model_child_filepicker',
+                        'sfx_link_adult', 'sfx_link_child',
+                    ],
+                },
+                True : {
+                    'settings' : [
+                        'model_adult', 'model_child', 'model_unavailable_msg',
+                        'sfx_link_unavailable_msg',
+                    ],
+                },
+            },
+            'electron:disable' : {
+                False : {
+                    'settings' : [
+                        'model_adult_filepicker', 'model_child_filepicker', 'model_unavailable_msg',
+                        'sfx_link_unavailable_msg',
+                    ],
+                },
+                True : {
+                    'settings' : [
+                        'model_adult_filepicker', 'model_child_filepicker', 'model_unavailable_msg',
+                        'sfx_link_unavailable_msg',
                     ],
                 },
             }
@@ -2923,20 +2946,6 @@ setting_infos = [
         shared         = True,
     ),
     Checkbutton(
-        name           = 'spawn_gerudo_guard_outside_gate',
-        gui_text       = 'Gate-Opening Gerudo Guard',
-        gui_tooltip    = '''\
-            A Gerudo guard will spawn outside the Fortress
-            gate near the Haunted Wasteland.  Talking to the guard 
-            will open the gate if the Gerudo Card has been acquired.
-        ''',
-        gui_params={
-            "hide_when_disabled": True,
-        },
-        default        = False,
-        shared         = True,
-    ),
-    Checkbutton(
         name           = 'chicken_count_random',
         gui_text       = 'Random Cucco Count',
         gui_tooltip    = '''\
@@ -3063,9 +3072,6 @@ setting_infos = [
             The Gerudo Card is required to enter the Gerudo Training Ground
             and prevents the guards from throwing you in jail.
         ''',
-        disable        = {
-            True : {'settings' : ['spawn_gerudo_guard_outside_gate']}
-        },
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -3285,9 +3291,6 @@ setting_infos = [
             even when dying or loading a save.
         ''',
         default        = False,
-        disable        = {
-            True : {'settings' : ['spawn_gerudo_guard_outside_gate']}
-        },
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -3319,20 +3322,28 @@ setting_infos = [
             'randomize_key': 'randomize_settings',
         },
     ),
-    Checkbutton(
+    Combobox(
         name           = 'spawn_positions',
         gui_text       = 'Randomize Overworld Spawns',
+        multiple_select = True,
+        choices         = {
+            'child': 'Child',
+            'adult': 'Adult',
+        },
         gui_tooltip    = '''\
-            Randomize where you start as Child or Adult when loading
+            Randomize where you start when loading
             a save in the Overworld. This means you may not necessarily
             spawn inside Link's House or Temple of Time.
 
+            'Child': Child overworld spawn will be randomized.
+            
+            'Adult': Adult overworld spawn will be randomized.
+
+            Selecting both options will randomize both spawns.
+
             This stays consistent after saving and loading the game again.
         ''',
-        disable        = {
-            True : {'settings' : ['spawn_gerudo_guard_outside_gate']}
-        },
-        default        = False,
+        default        = [],
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -4327,6 +4338,20 @@ setting_infos = [
         ''',
         shared         = True,
     ),
+    Checkbutton(
+        name           = 'fix_broken_drops',
+        gui_text       = 'Fix Broken Drops',
+        gui_tooltip    = '''\
+            Enabling this fixes drops that are broken in the vanilla game.
+
+            There is a deku shield drop from a pot in the Spirit Temple child
+            side Anubis room that does not appear in the vanilla game, and
+            logic might require you to get a deku shield this way. There is a
+            magic jar on top of the Gerudo Training Ground eye statue that does
+            not always refill your magic in the vanilla game.
+        ''',
+        shared         = True,
+    ),
     Setting_Info(
         name           = 'starting_equipment',
         type           = list,
@@ -4443,6 +4468,25 @@ setting_infos = [
             "hide_when_disabled": True,
         },
         shared         = True,
+        disable        = {
+            'off' : {'settings' : ['minor_items_as_major_chest']},
+        },
+    ),
+    Checkbutton(
+        name           = 'minor_items_as_major_chest',
+        gui_text       = 'Minor Items in Big/Gold chests',
+        gui_tooltip    = '''\
+            Chests with Hylian Shield, Deku Shield
+            or Bombchus (regardless of the Bombchus
+            In Logic setting), will appear in
+            Big and/or Gold chests, depending on the 
+            Chest Appearance Matches Contents setting.
+        ''',
+        shared         = True,
+        disabled_default = False,
+        gui_params       = {
+            "hide_when_disabled" : True
+        },
     ),
     Checkbutton(
         name           = 'invisible_chests',
@@ -4582,6 +4626,11 @@ setting_infos = [
             'dampe_diary': "Dampé's Diary (Hookshot)",
             'ganondorf':   'Ganondorf (Light Arrows)',
             'warp_songs':  'Warp Songs',
+            '10_skulltulas':  'House of Skulltula: 10',
+            '20_skulltulas':  'House of Skulltula: 20',
+            '30_skulltulas':  'House of Skulltula: 30',
+            '40_skulltulas':  'House of Skulltula: 40',
+            '50_skulltulas':  'House of Skulltula: 50',
         },
         gui_tooltip    = '''\
             This setting adds some hints at locations
@@ -4612,6 +4661,10 @@ setting_infos = [
             Playing a warp song will tell you where
             it leads. (If warp song destinations
             are vanilla, this is always enabled.)
+
+            Talking to a cursed House of Skulltula 
+            resident will tell you the reward they will 
+            give you for removing their curse.
         ''',
         shared         = True,
         default        = ['altar', 'ganondorf', 'warp_songs'],
@@ -4903,6 +4956,19 @@ setting_infos = [
         default        = True,
     ),
     Checkbutton(
+        name           = 'dpad_dungeon_menu',
+        gui_text       = 'Display D-Pad Dungeon Info',
+        shared         = False,
+        cosmetic       = True,
+        gui_tooltip    = '''\
+            Shows separated menus on the pause screen for dungeon
+            keys, rewards, and Vanilla/MQ info. If disabled, these
+            menus are still available by holding the A button and
+            one of the D-Pad directions on the pause screen.
+        ''',
+        default        = True,
+    ),
+    Checkbutton(
         name           = 'correct_model_colors',
         gui_text       = 'Item Model Colors Match Cosmetics',
         shared         = False,
@@ -4916,6 +4982,85 @@ setting_infos = [
             able to discern freestanding Tunics from each other.
         ''',
         default        = False,
+    ),
+    Combobox(
+        name           = 'model_adult',
+        gui_text       = 'Adult Link Model',
+        shared         = False,
+        cosmetic       = True,
+        choices        = get_model_choices(0),
+        gui_tooltip    = '''\
+            Link's model will be replaced by the model selected. 
+            To add more model options, save the .zobj file to 
+            data/Models/Adult.
+            Caution: Any changes to Link's skeleton have the potential 
+            to affect gameplay in significant ways and so are disallowed 
+            for all recorded Racetime races. A note will appear at the top 
+            of the pause screen if an irregular skeleton is detected.
+        ''',
+        default        = 'Default',
+        gui_params     = {
+            "hide_when_disabled": True,
+        }
+    ),
+    Setting_Info('model_adult_filepicker', str, "Adult Link Model", "Fileinput", False, {},
+        gui_params = {
+            "file_types": [
+                {
+                  "name": "Z64 Model Files",
+                  "extensions": [ "zobj" ]
+                },
+                {
+                  "name": "All Files",
+                  "extensions": [ "*" ]
+                }
+            ],
+            "hide_when_disabled": True,
+    }),
+    Combobox(
+        name           = 'model_child',
+        gui_text       = 'Child Link Model',
+        shared         = False,
+        cosmetic       = True,
+        choices        = get_model_choices(1),
+        gui_tooltip    = '''\
+            Link's model will be replaced by the model selected. 
+            To add more model options, save the .zobj file to 
+            data/Models/Child.
+            Caution: Any changes to Link's skeleton have the potential 
+            to affect gameplay in significant ways and so are disallowed 
+            for all recorded Racetime races. A note will appear at the top 
+            of the pause screen if an irregular skeleton is detected.
+        ''',
+        default        = 'Default',
+        gui_params     = {
+            "hide_when_disabled": True,
+        }
+    ),
+    Setting_Info('model_child_filepicker', str, "Child Link Model", "Fileinput", False, {},
+        gui_params = {
+            "file_types": [
+                {
+                  "name": "Z64 Model Files",
+                  "extensions": [ "zobj" ]
+                },
+                {
+                  "name": "All Files",
+                  "extensions": [ "*" ]
+                }
+            ],
+            "hide_when_disabled": True,
+    }),
+    Setting_Info(
+        name           = 'model_unavailable_msg',
+        type           = str,
+        gui_text       = "Models can only be customized when patching.",
+        gui_type       = "Textbox",
+        shared         = False,
+        gui_params     = {
+            "hide_when_disabled": True
+        },
+        choices        = {},
     ),
     Checkbutton(
         name           = 'randomize_all_cosmetics',
@@ -5728,6 +5873,55 @@ setting_infos = [
                 ('random-choice', 1),
             ]
         }
+    ),
+    Combobox(
+        name           = 'sfx_link_adult',
+        gui_text       = 'Adult Voice',
+        shared         = False,
+        cosmetic       = True,
+        choices        = {
+            'default':       'Default',
+            'feminine':      'Feminine',
+            'silent':        'Silent',
+            'random-choice': 'Random Choice',
+        },
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change Link's adult voice.
+        ''',
+        gui_params     = {
+            "hide_when_disabled": True,
+        }
+    ),
+    Combobox(
+        name           = 'sfx_link_child',
+        gui_text       = 'Child Voice',
+        shared         = False,
+        cosmetic       = True,
+        choices        = {
+            'default':       'Default',
+            'feminine':      'Feminine',
+            'silent':        'Silent',
+            'random-choice': 'Random Choice',
+        },
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change Link's child voice.
+        ''',
+        gui_params     = {
+            "hide_when_disabled": True,
+        }
+    ),
+    Setting_Info(
+        name           = 'sfx_link_unavailable_msg',
+        type           = str,
+        gui_text       = "Link's Voice can only be customized when patching.",
+        gui_type       = "Textbox",
+        shared         = False,
+        gui_params     = {
+            "hide_when_disabled": True
+        },
+        choices        = {},
     ),
     Checkbutton(
         name           = 'easier_fire_arrow_entry',

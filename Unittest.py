@@ -11,6 +11,7 @@ import re
 import unittest
 
 from EntranceShuffle import EntranceShuffleError
+from Fill import ShuffleError
 from Hints import HintArea
 from Item import ItemInfo
 from ItemPool import remove_junk_items, remove_junk_ludicrous_items, ludicrous_items_base, ludicrous_items_extended, trade_items, ludicrous_exclusions
@@ -87,7 +88,7 @@ def load_spoiler(json_file):
         return json.load(f)
 
 
-def generate_with_plandomizer(filename, live_copy=False):
+def generate_with_plandomizer(filename, live_copy=False, max_attempts=10):
     distribution_file = load_spoiler(os.path.join(test_dir, 'plando', filename + '.json'))
     try:
         settings = load_settings(distribution_file['settings'], seed='TESTTESTTEST', filename=filename)
@@ -104,7 +105,7 @@ def generate_with_plandomizer(filename, live_copy=False):
             'output_file': os.path.join(test_dir, 'Output', filename),
             'seed': 'TESTTESTTEST'
         })
-    spoiler = main(settings)
+    spoiler = main(settings, max_attempts=max_attempts)
     if not live_copy:
         spoiler = load_spoiler('%s_Spoiler.json' % settings.output_file)
     return distribution_file, spoiler
@@ -494,6 +495,18 @@ class TestPlandomizer(unittest.TestCase):
                     if spoiler['empty_dungeons'][dungeon.dungeon_name]:
                         self.assertIn(str(dungeon), spoiler[':barren_regions'])
 
+
+    def test_fix_broken_drops(self):
+        # Setting off
+        distribution_file, spoiler = generate_with_plandomizer("plando-fix-broken-drops-off")
+        self.assertEqual(len([sphere for sphere in spoiler[':playthrough'].values() if 'Child Spirit Temple Deku Shield Pot' in sphere]), 0)
+
+        # No deku shield available, fail to generate
+        self.assertRaises(ShuffleError, lambda : generate_with_plandomizer("plando-fix-broken-drops-bad", max_attempts=1))
+
+        # Deku shield available only via spirit shield pot
+        distribution_file, spoiler = generate_with_plandomizer("plando-fix-broken-drops-good")
+        self.assertEqual(len([sphere for sphere in spoiler[':playthrough'].values() if 'Child Spirit Temple Deku Shield Pot' in sphere]), 1)
 
 class TestHints(unittest.TestCase):
     def test_skip_zelda(self):
