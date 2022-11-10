@@ -3847,8 +3847,9 @@ setting_infos = [
         name           = 'exclusive_one_ways',
         gui_text       = 'Mutually Exclusive One-Ways',
         gui_tooltip    = '''\
-            No two shuffled one-ways (overworld spawns, warp songs, owl drops,
-            or the river exit in Gerudo Valley) can lead to the same hint area.
+            No two shuffled one-ways (overworld spawns, warp songs, blue warps,
+            owl drops, or the river exit in Gerudo Valley) can lead to the same
+            hint area.
 
             If this setting is off, this restriction only applies to entrances
             of the same type.
