@@ -53,7 +53,7 @@
             "Deku Baba Nuts": "
                 is_adult or Slingshot or Sticks or
                 has_explosives or Kokiri_Sword or can_use(Dins_Fire)",
-            "Forest Temple NW Outdoors Deku Baba": "can_use(Ice_Arrows) or can_use(Light_Arrows)",
+            "Forest Temple NW Outdoors Deku Baba": "can_use(Ice_Arrows) or can_use(Light_Arrows) or can_use(Fire_Arrows)",
             "Forest Temple Left Courtyard Octorok": "can_kill_octorok_with_explosives",
             "Forest Temple Left Courtyard Vines Skullwalltula Lower": "has_explosives or can_use(Dins_Fire) or can_use(Bow) or can_use(Progressive_Hookshot) or can_use(Slingshot) or can_use(Boomerang)",
             "Forest Temple Left Courtyard Vines Skullwalltula Middle": "has_explosives or can_use(Bow) or can_use(Progressive_Hookshot) or can_use(Slingshot) or can_use(Boomerang)",
@@ -76,7 +76,7 @@
             "Forest Temple Well Recovery Heart 1": "True",
             "Forest Temple Well Recovery Heart 2": "True",
             "Forest Temple Map Chest Bubble": "can_kill_bubble",
-            "Forest Temple Right Courtyard Balcony Deku Baba" : "can_use(Ice_Arrows) or can_use(Light_Arrows)"
+            "Forest Temple Right Courtyard Balcony Deku Baba" : "can_use(Ice_Arrows) or can_use(Light_Arrows) or can_use(Fire_Arrows)"
         },
         "exits": {
             "Forest Temple NW Outdoors": "True",
@@ -100,7 +100,7 @@
             "Deku Baba Nuts": "
                 is_adult or Slingshot or Sticks or
                 has_explosives or Kokiri_Sword or can_use(Dins_Fire)",
-            "Forest Temple NE Outdoors Deku Baba": "can_use(Ice_Arrows) or can_use(Light_Arrows)",
+            "Forest Temple NE Outdoors Deku Baba": "can_use(Ice_Arrows) or can_use(Light_Arrows) or can_use(Fire_Arrows)",
             "Forest Temple Right Courtyard Balcony Skulltula": "can_use(Bow) or can_use(Slingshot) or at('Forest Temple Outdoors High Balconies', can_use(Hookshot) or can_use(Boomerang))",
             "Forest Temple Right Courtyard Octorok": "can_kill_octorok_with_explosives"
         },
@@ -154,7 +154,7 @@
             "Forest Temple Balcony Floormaster": "can_kill_floormaster",
             "Forest Temple Balcony Bubble 1": "can_kill_bubble",
             "Forest Temple Balcony Bubble 2": "can_kill_bubble",
-            "Forest Temple Balcony Deku Baba": "can_use(Ice_Arrows) or can_use(Light_Arrows)"
+            "Forest Temple Balcony Deku Baba": "can_use(Ice_Arrows) or can_use(Light_Arrows) or can_use(Fire_Arrows)"
         },
         "exits": {
             "Forest Temple NW Outdoors": "True"
