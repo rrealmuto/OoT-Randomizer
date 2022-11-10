@@ -26,8 +26,7 @@
             "Water Temple Lobby Spike 1": "at('Water Temple Lowered Water Levels', True) or (can_use(Iron_Boots) and can_use(Zora_Tunic))",
             "Water Temple Lobby Spike 2": "at('Water Temple Lowered Water Levels', True) or (can_use(Iron_Boots) and can_use(Zora_Tunic))",
             "Water Temple Lobby Tektite 1": "can_kill_tektite",
-            "Water Temple Lobby Tektite 2": "can_kill_tektite",
-            "Water Temple Raise The Water Tektite": "Raise_Water_Level"
+            "Water Temple Lobby Tektite 2": "can_kill_tektite"
         },
         "exits": {
             "Lake Hylia": "True",
@@ -43,7 +42,6 @@
         "dungeon": "Water Temple",
         "locations": {
             "Water Temple Map Chest": "Raise_Water_Level",
-            
             "Water Temple Compass Chest": "(can_play(Zeldas_Lullaby) or Iron_Boots) and Hookshot",
             "Water Temple L1 Torch Pot 1" : "(Iron_Boots and Hookshot) or can_play(Zeldas_Lullaby)",
             "Water Temple L1 Torch Pot 2" : "(Iron_Boots and Hookshot) or can_play(Zeldas_Lullaby)",
@@ -139,7 +137,8 @@
             "Water Temple Central Pillar Spike 2": "Iron_Boots and Zora_Tunic and Hookshot",
             "Water Temple Central Pillar Spike 3": "Iron_Boots and Zora_Tunic and Hookshot",
             "Water Temple Central Pillar Spike 4": "Iron_Boots and Zora_Tunic and Hookshot",
-            "Water Temple Central Pillar Spike 5": "Iron_Boots and Zora_Tunic and Hookshot"
+            "Water Temple Central Pillar Spike 5": "Iron_Boots and Zora_Tunic and Hookshot",
+            "Water Temple Raise The Water Tektite": "True"
         },
         "exits": {
             "Water Temple Cracked Wall": "True",
