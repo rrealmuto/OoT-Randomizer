@@ -595,6 +595,79 @@ def get_goal_category(spoiler, world, goal_categories, skip_empty = True):
 
     return goal_category
 
+def get_goal_legacy_hint(spoiler, world, checked):
+    goal_category = get_goal_category(spoiler, world, world.goal_categories)
+
+    # check if no goals were generated (and thus no categories available)
+    if not goal_category:
+        return None
+
+    goals = goal_category.goals
+    goal_locations = []
+
+    # Choose random goal and check if any locations are already hinted.
+    # If all locations for a goal are hinted, remove the goal from the list and try again.
+    # If all locations for all goals are hinted, try remaining goal categories
+    # If all locations for all goal categories are hinted, return no hint.
+    while not goal_locations:
+        if not goals:
+            del world.goal_categories[goal_category.name]
+            goal_category = get_goal_category(spoiler, world, world.goal_categories)
+            if not goal_category:
+                return None
+            else:
+                goals = goal_category.goals
+
+        weights = []
+        zero_weights = True
+        for goal in goals:
+            if goal.weight > 0:
+                zero_weights = False
+            weights.append(goal.weight)
+
+        if zero_weights:
+            goal = random.choice(goals)
+        else:
+            goal = random.choices(goals, weights=weights)[0]
+
+        goal_locations = list(filter(lambda location:
+            location[0].name not in checked
+            and location[0].name not in world.hint_exclusions
+            and location[0].name not in world.hint_type_overrides['goal']
+            and location[0].item.name not in world.item_hint_type_overrides['goal']
+            and location[0].item.name not in unHintableWothItems,
+            goal.required_locations))
+
+        if not goal_locations:
+            goals.remove(goal)
+
+    # Goal weight to zero mitigates double hinting this goal
+    # Once all goals in a category are 0, selection is true random
+    goal.weight = 0
+
+    prioritize_dungeon_hints = 'prioritize_dungeons' in world.hint_dist_user and world.hint_dist_user['prioritize_dungeons']
+    dungeon_goal_locations = list(filter(lambda location: HintArea.at(location[0]).is_dungeon, goal_locations))
+    if prioritize_dungeon_hints and len(dungeon_goal_locations) > 0:
+        location_tuple = random.choice(dungeon_goal_locations)
+    else:
+        location_tuple = random.choice(goal_locations)
+
+    location = location_tuple[0]
+    world_ids = location_tuple[3]
+    world_id = random.choice(world_ids)
+    checked.add(location.name)
+
+    location_text = HintArea.at(location).text(world.settings.clearer_hints)
+    if world_id == world.id:
+        player_text = "the"
+        goal_text = goal.hint_text
+    else:
+        player_text = "Player %s's" % (world_id + 1)
+        goal_text = spoiler.goal_categories[world_id][goal_category.name].get_goal(goal.name).hint_text
+
+    return (GossipText('%s is on %s %s.' % (location_text, player_text, goal_text), [goal.color, 'Light Blue'], [location.name], [location.item.name]), [location])
+
+
 def get_goal_hint(spoiler, world, checked):
     goal_category = get_goal_category(spoiler, world, world.goal_categories)
 
@@ -681,18 +754,6 @@ def get_goal_hint(spoiler, world, checked):
     # Goal weight to zero mitigates double hinting this goal
     # Once all goals in a category are 0, selection is true random
     goal.weight = 0
-
-    # prioritize_dungeon_hints = 'prioritize_dungeons' in world.hint_dist_user and world.hint_dist_user['prioritize_dungeons']
-    # dungeon_goal_locations = list(filter(lambda location: HintArea.at(location[0]).is_dungeon, goal_locations))
-    # if prioritize_dungeon_hints and len(dungeon_goal_locations) > 0:
-    #   location_tuple = random.choice(dungeon_goal_locations)
-    # else:
-    #   location_tuple = random.choice(goal_locations)
-
-    # location = location_tuple[0]
-    # world_ids = location_tuple[3]
-    # world_id = random.choice(world_ids)
-    # checked.add(location.name)
 
     location_text = HintArea.at(location).text(world.settings.clearer_hints)
     if world_id == world.id:
@@ -1256,7 +1317,8 @@ hint_func = {
     'dual-woth':        get_dual_woth_hint,
     'woth-count':       get_woth_count_hint,
     'goal':             get_goal_hint,
-    'goal-count':       	get_goal_count_hint,
+    'goal-legacy':      get_goal_legacy_hint,
+    'goal-count':       get_goal_count_hint,
     'playthrough-location': get_playthrough_location_hint,
     'unlock-woth':      get_unlock_woth_hint,
     'unlock-playthrough':   get_unlock_playthrough_hint,
@@ -1283,6 +1345,7 @@ hint_dist_keys = {
     'dual-woth',
     'woth-count',
     'goal',
+    'goal-legacy',
     'goal-count',
     'playthrough-location',
     'unlock-woth',
