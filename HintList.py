@@ -243,6 +243,7 @@ conditional_sometimes = {
     'Kak 30 Gold Skulltula Reward':             lambda world: '30_skulltulas' not in world.settings.misc_hints,
     'Kak 40 Gold Skulltula Reward':             lambda world: '40_skulltulas' not in world.settings.misc_hints,
     'Kak 50 Gold Skulltula Reward':             lambda world: '50_skulltulas' not in world.settings.misc_hints,
+    'ZR Frogs in the Rain':                     lambda world: not world.settings.shuffle_frog_song_rupees,
 
     # Conditional dual hints
     'GV Pieces of Heart Ledges':                lambda world: not world.settings.shuffle_cows and world.settings.tokensanity not in ['overworld', 'all'],
@@ -493,11 +494,6 @@ hintTable = {
     'DMC Deku Scrub':                                              ("a single #scrub in the crater# sells", None, ['overworld', 'sometimes']),
     'DMC GS Crate':                                                ("a spider under a #crate in the crater# holds", None, ['overworld', 'sometimes']),
     'LW Target in Woods':                                          ("shooting a #target in the woods# grants", None, ['overworld', 'sometimes']),
-    'ZR Frogs Zeldas Lullaby':                                     ("after hearing #Zelda's Lullaby, frogs gift#", None, ['overworld', 'sometimes']),
-    'ZR Frogs Eponas Song':                                        ("after hearing #Epona's Song, frogs gift#", None, ['overworld', 'sometimes']),
-    'ZR Frogs Sarias Song':                                        ("after hearing #Saria's Song, frogs gift#", None, ['overworld', 'sometimes']),
-    'ZR Frogs Suns Song':                                          ("after hearing the #Sun's Song, frogs gift#", None, ['overworld', 'sometimes']),
-    'ZR Frogs Song of Time':                                       ("after hearing the #Song of Time, frogs gift#", None, ['overworld', 'sometimes']),
     'ZR Frogs in the Rain':                                        ("#frogs in a storm# gift", None, ['overworld', 'sometimes']),
     'LH Lab Dive':                                                 ("a #diving experiment# is rewarded with", None, ['overworld', 'sometimes']),
     'HC Great Fairy Reward':                                       ("the #fairy of fire# holds", "a #fairy outside Hyrule Castle# holds", ['overworld', 'sometimes']),
@@ -665,6 +661,12 @@ hintTable = {
     'Hideout Jail Guard (2 Torches)':                              ("#defeating Gerudo guards# reveals", None, 'exclude'),
     'Hideout Jail Guard (3 Torches)':                              ("#defeating Gerudo guards# reveals", None, 'exclude'),
     'Hideout Jail Guard (4 Torches)':                              ("#defeating Gerudo guards# reveals", None, 'exclude'),
+
+    'ZR Frogs Zeldas Lullaby':                                     ("after hearing #Zelda's Lullaby, frogs gift#", None, 'exclude'),
+    'ZR Frogs Eponas Song':                                        ("after hearing #Epona's Song, frogs gift#", None, 'exclude'),
+    'ZR Frogs Sarias Song':                                        ("after hearing #Saria's Song, frogs gift#", None, 'exclude'),
+    'ZR Frogs Suns Song':                                          ("after hearing the #Sun's Song, frogs gift#", None, 'exclude'),
+    'ZR Frogs Song of Time':                                       ("after hearing the #Song of Time, frogs gift#", None, 'exclude'),
 
     'Deku Tree Map Chest':                                         ("in the #center of the Deku Tree# lies", None, 'exclude'),
     'Deku Tree Slingshot Chest':                                   ("the #treasure guarded by a scrub# in the Deku Tree is", None, 'exclude'),

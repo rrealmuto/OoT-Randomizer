@@ -47,8 +47,17 @@
                           </ng-container>
                           <!--Normal Combobox-->
                           <ng-container *ngIf="!section.is_colors">
-                            <nb-select class="selectXSmall" [ngClass]="{'oneLineComboBox oLCBSelect': getColumnCount(refEl) > 2 && setting.no_line_break}" [disabled]="!global.generator_settingsVisibilityMap[setting.name]" [(selected)]="global.generator_settingsMap[setting.name]" (selectedChange)="checkVisibility($event, setting, findOption(setting.options, $event))"
-                                       [nbPopover]="tooltipComponent" [nbPopoverContext]="{tooltip: setting.tooltip}" [nbPopoverTrigger]="setting.tooltip && setting.tooltip.length > 0 ? 'click' : 'noop'" nbPopoverPlacement="right" nbPopoverAdjustment="counterclockwise" size="xsmall">
+                            <nb-select class="selectXSmall"
+                                       [ngClass]="{'oneLineComboBox oLCBSelect': getColumnCount(refEl) > 2 && setting.no_line_break}"
+                                       [disabled]="!global.generator_settingsVisibilityMap[setting.name]"
+                                       [(selected)]="global.generator_settingsMap[setting.name]"
+                                       (selectedChange)="checkVisibility($event, setting, findOption(setting.options, $event))"
+                                       [nbPopover]="tooltipComponent"
+                                       [nbPopoverContext]="{tooltip: setting.tooltip}"
+                                       [nbPopoverTrigger]="setting.tooltip?.length > 0 ? 'click' : 'noop'"
+                                       [nbPopoverPlacement]="'right'"
+                                       [nbPopoverAdjustment]="flipPreferredHintAxis ? 'counterclockwise' : 'horizontal'"
+                                       size="xsmall">
                               <nb-option *ngFor="let option of setting.options; index as optionIndex" [value]="option.name">{{option.text}}</nb-option>
                             </nb-select>
                           </ng-container>
@@ -129,8 +138,16 @@
                           <button class="ioInputBrowseButton" [disabled]="!global.generator_settingsVisibilityMap[setting.name]" nbButton status="info" size="small" (click)="browseForDirectory(setting)">Browse</button>
                         </ng-container>
                         <ng-container *ngSwitchCase="'Presetinput'">
-                          <nb-select #refPresetSelect class="selectXSmall" [disabled]="!global.generator_settingsVisibilityMap[setting.name]" [(selected)]="global.generator_settingsMap[setting.name]" [nbPopover]="tooltipComponent" [nbPopoverContext]="{tooltip: setting.tooltip}" [nbPopoverTrigger]="setting.tooltip && setting.tooltip.length > 0 ? 'click' : 'noop'" nbPopoverPlacement="right"
-                                     nbPopoverAdjustment="counterclockwise" size="xsmall">
+                          <nb-select #refPresetSelect
+                                     class="selectXSmall"
+                                     [disabled]="!global.generator_settingsVisibilityMap[setting.name]"
+                                     [(selected)]="global.generator_settingsMap[setting.name]"
+                                     [nbPopover]="tooltipComponent"
+                                     [nbPopoverContext]="{tooltip: setting.tooltip}"
+                                     [nbPopoverTrigger]="setting.tooltip?.length > 0 ? 'click' : 'noop'"
+                                     [nbPopoverPlacement]="'right'"
+                                     [nbPopoverAdjustment]="flipPreferredHintAxis ? 'counterclockwise' : 'horizontal'"
+                                     size="xsmall">
                             <nb-option *ngFor="let presetKey of getPresetArray(); index as presetIndex" [value]="presetKey">{{presetKey}}</nb-option>
                           </nb-select>
                           <button class="presetButton" [disabled]="!global.generator_settingsVisibilityMap[setting.name]" nbButton status="info" size="small" (click)="loadPreset()">Load</button>

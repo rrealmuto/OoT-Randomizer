@@ -189,7 +189,7 @@
     ],
     "starting_songs":                          [],
     "ocarina_songs":                           "off",
-    "correct_chest_appearances":               "classic",
+    "correct_chest_appearances":               "both",
     "clearer_hints":                           true,
     "no_collectible_hearts":                   false,
     "hints":                                   "always",
