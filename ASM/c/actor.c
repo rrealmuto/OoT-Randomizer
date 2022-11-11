@@ -44,6 +44,7 @@ uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit
         //Check if this we're spawning an actor from the room's actor spawn list
         if(flag > 0)
         {
+            flag |= globalCtx->room_index << 8;
             //Build a dummy override
             EnItem00 dummy;
             dummy.actor.actor_id = 0x15;
