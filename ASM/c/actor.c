@@ -44,16 +44,11 @@ uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit
         //Check if this we're spawning an actor from the room's actor spawn list
         if(flag > 0)
         {
-            flag = flag - 1;
             //Build a dummy override
-            uint16_t params = ((flag & 0x3F) << 8) + (flag & 0xC0) + 0x0001 + 0x0020;
-
             EnItem00 dummy;
-            dummy.collectibleFlag = (params & 0x3F00) >> 8;
             dummy.actor.actor_id = 0x15;
-            dummy.actor.dropFlag = 0x80;
-            dummy.actor.dropFlag |= (params & 0x00C0) >> 5;
-            dummy.actor.variable = params;
+            dummy.actor.variable = 0;
+            dummy.actor.rot_init.y = flag;
             //Check if this actor is in the override list
             if(lookup_override(&dummy, globalCtx->scene_index, 0).key.all != 0 && !(Get_CollectibleOverrideFlag(&dummy)>0))
             {
