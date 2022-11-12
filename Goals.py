@@ -360,9 +360,7 @@ def calculate_playthrough_locations(spoiler):
     
     spoiler.playthrough_locations = playthrough_locations
 
-    all_locations = [location for world in spoiler.worlds for location in world.get_filled_locations()]
-    temp = list(map(lambda location: location.name, playthrough_locations.keys()))
-    search_locations = list(filter(lambda location: location.name in temp, all_locations))
+    search_locations = list(map(lambda location: spoiler.worlds[location.world.id].get_location(location.name), playthrough_locations.keys()))
     
     # Generate location requirements for each playthrough location
     requirements_by_world = {}
