@@ -35,7 +35,7 @@ from Plandomizer import Distribution
 from Search import Search, RewindableSearch
 from EntranceShuffle import set_entrances
 from LocationList import set_drop_location_names
-from Goals import update_goal_items, maybe_set_misc_item_hints, replace_goal_names, search_required_locations, calculate_playthrough_locations
+from Goals import update_goal_items, maybe_set_misc_item_hints, replace_goal_names, calculate_playthrough_locations
 from version import __version__
 
 
