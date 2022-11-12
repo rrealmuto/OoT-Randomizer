@@ -819,6 +819,17 @@ def get_goal_count_hint(spoiler, world, checked):
 
     return (GossipText('the %s requires #%d# %s.' % (goal.hint_text, item_count, item_text), ['Light Blue', goal.color]), None)
 
+def get_wanderer_hint(spoiler, world, checked):
+
+    hint_types = [get_playthrough_location_hint, get_unlock_playthrough_hint]
+    random.shuffle(hint_types)
+
+    hint = hint_types[0](spoiler, world, checked)
+    if not hint:
+        hint = hint_types[1](spoiler, world, checked)
+
+    return hint
+
 def get_playthrough_location_hint(spoiler, world, checked):
 
     locations = dict(filter(lambda locations: 
@@ -1331,6 +1342,7 @@ hint_func = {
     'goal-legacy':      get_goal_legacy_hint,
     'goal-legacy-single':   get_goal_legacy_hint,
     'goal-count':       get_goal_count_hint,
+    'wanderer':         get_wanderer_hint,
     'playthrough-location': get_playthrough_location_hint,
     'unlock-woth':      get_unlock_woth_hint,
     'unlock-playthrough':   get_unlock_playthrough_hint,
@@ -1360,6 +1372,7 @@ hint_dist_keys = {
     'goal-legacy',
     'goal-legacy-single',
     'goal-count',
+    'wanderer',
     'playthrough-location',
     'unlock-woth',
     'unlock-playthrough',
