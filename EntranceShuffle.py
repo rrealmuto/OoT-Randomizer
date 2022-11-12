@@ -696,10 +696,8 @@ def shuffle_random_entrances(worlds):
                         target = boss_exits[target.name].replaces or boss_exits[target.name]
                     if target.name in dungeon_exits:
                         target = dungeon_exits[target.name]
-                if not replace_entrance(worlds, blue_warp, target, rollbacks, locations_to_ensure_reachable, complete_itempool, check_compatibility=False):
-                    raise EntranceShuffleError(f'Unable to connect blue warp in world {world.id}.')
-            for entrance, target in rollbacks:
-                confirm_replacement(entrance, target)
+                blue_warp.connect(target.connected_region)
+                blue_warp.replaces = target
 
 
     # Multiple checks after shuffling entrances to make sure everything went fine
@@ -756,7 +754,7 @@ def shuffle_one_way_priority_entrances(worlds, world, one_way_priorities, one_wa
     raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d. Retry a few times or reach out to Support on Discord for help.' % world.id)
 
 # Shuffle all entrances within a provided pool
-def shuffle_entrance_pool(world, worlds, entrance_pool, target_entrances, locations_to_ensure_reachable, check_all=False, retry_count=20, placed_one_way_entrances=()):
+def shuffle_entrance_pool(world, worlds, entrance_pool, target_entrances, locations_to_ensure_reachable, check_all=False, retry_count=64, placed_one_way_entrances=()):
 
     # Split entrances between those that have requirements (restrictive) and those that do not (soft). These are primarily age or time of day requirements.
     restrictive_entrances, soft_entrances = split_entrances_by_requirements(worlds, entrance_pool, target_entrances)
