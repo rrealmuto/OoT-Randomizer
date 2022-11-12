@@ -453,7 +453,7 @@
     "item_hints":                              [],
     "hint_dist_user":                          {},
     "text_shuffle":                            "none",
-    "misc_hints":                              ["altar", "ganondorf", "warp_songs"],
+    "misc_hints":                              ["altar", "ganondorf", "warp_songs", "20_skulltulas"],
     "ice_trap_appearance":                     "junk_only",
     "junk_ice_traps":                          "off",
     "item_pool_value":                         "balanced",
