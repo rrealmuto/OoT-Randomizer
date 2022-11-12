@@ -4,7 +4,7 @@ import logging
 from HintList import goalTable, getHintGroup, hintExclusions, misc_item_hint_table, misc_location_hint_table
 from ItemList import item_table
 from Search import Search
-from ItemPool import triforce_items
+from ItemPool import item_groups, triforce_items
 
 
 validColors = [
@@ -348,6 +348,28 @@ def search_goals(categories, reachable_goals, search, priority_locations, all_lo
         # finally, collect unreachable locations for misc. item hints
         maybe_set_misc_item_hints(location)
     return required_locations
+
+def calculate_playthrough_locations(spoiler):
+
+    playthrough_locations = {}
+    for sphere, sphere_locations in spoiler.playthrough.items():
+        locations = dict(filter(lambda locations: 
+            locations[1].name in item_groups["MajorItem"], 
+            sphere_locations.items()))
+        playthrough_locations.update(locations)
+    
+    spoiler.playthrough_locations = playthrough_locations
+
+    all_locations = [location for world in spoiler.worlds for location in world.get_filled_locations()]
+    temp = list(map(lambda location: location.name, playthrough_locations.keys()))
+    search_locations = list(filter(lambda location: location.name in temp, all_locations))
+    
+    # Generate location requirements for each playthrough location
+    requirements_by_world = {}
+    requirements = search_required_locations(search_locations, search_locations, spoiler.worlds)
+    for world in spoiler.worlds:
+        requirements_by_world[world.id] = {loc: required for loc, required in requirements.items() if loc.world.id == world.id}
+    spoiler.playthrough_location_requirements = requirements_by_world
 
 def search_required_locations(locations, all_locations, worlds):
     requirements = {}
