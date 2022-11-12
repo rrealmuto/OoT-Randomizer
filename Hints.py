@@ -847,12 +847,17 @@ def get_playthrough_location_hint(spoiler, world, checked):
     return (GossipText('%s is on the way of the wanderer.' % location_text, ['Light Blue'], [location.name], [location.item.name]), [location])
 
 def get_unlock_woth_hint(spoiler, world, checked):
-    return get_unlock_hint(spoiler.required_location_requirements, world, checked, 'unlock-woth')
+    return get_unlock_hint(spoiler, world, checked, 'unlock-woth')
 
 def get_unlock_playthrough_hint(spoiler, world, checked):
-    return get_unlock_hint(spoiler.playthrough_location_requirements, world, checked, 'unlock-playthrough')
+    return get_unlock_hint(spoiler, world, checked, 'unlock-playthrough')
 
-def get_unlock_hint(requirements, world, checked, hint_type):
+def get_unlock_hint(spoiler, world, checked, hint_type):
+
+    if hint_type == 'unlock-playthrough':
+        requirements = spoiler.playthrough_location_requirements
+    else:
+        requirements = spoiler.required_location_requirements
 
     required_locations = {
         location: list(filter(lambda required_location: required_location.item.name not in world.item_hint_type_overrides[hint_type], required_locations)) 
@@ -867,6 +872,12 @@ def get_unlock_hint(requirements, world, checked, hint_type):
         and location.item.name not in world.item_hint_type_overrides[hint_type]
         and location.item.type != "Song",
         required_locations))
+
+    if hint_type == 'unlock-playthrough':
+        required_location_names = list(map(lambda location: location.name, spoiler.required_locations[world.id]))
+        hintable_locations = list(filter(lambda location:
+            location.name not in required_location_names,
+            hintable_locations))
 
     if not hintable_locations:
         return None
