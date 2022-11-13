@@ -4450,9 +4450,16 @@ setting_infos = [
         ''',
         shared         = True,
     ),
-    Checkbutton(
+    Combobox(
         name           = 'minor_items_as_major_chest',
         gui_text       = 'Minor Items in Big/Gold chests',
+        default        = 'off',
+        choices        = {
+            'off': 'Off',
+            'shields': 'Shields',
+            'bombchus':  'Bombchus',
+            'both': 'Both shields and bombchus'
+        },
         gui_tooltip    = '''\
             Chests with Hylian Shield, Deku Shield
             or Bombchus (regardless of the Bombchus
