@@ -8,6 +8,7 @@ import zlib
 from World import World
 from Rom import Rom
 from Spoiler import Spoiler
+from Location import DisableType
 from LocationList import business_scrubs
 from HintList import getHint
 from Hints import GossipText, HintArea, writeGossipStoneHints, buildAltarHints, \
@@ -24,7 +25,7 @@ from SaveContext import SaveContext, Scenes, FlagType
 from version import __version__
 from ItemPool import song_list
 from SceneFlags import get_alt_list_bytes, get_collectible_flag_table, get_collectible_flag_table_bytes
-from texture_util import ci4_texture_apply_rgba16patch_and_convert_to_ci8, rgba16_patch
+from texture_util import ci4_rgba16patch_to_ci8, rgba16_patch
 
 
 def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
@@ -139,21 +140,21 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     texture_table_start = rom.sym('texture_table') # Get the address of the texture table
 
     # texture list. See textures.h for texture IDs
-    # (texture_id, texture_name, rom_address_base, rom_address_palette (for ci4), size (pixels), patching function, patch file (None for default))
+    #   ID, texture_name,                   Rom Address    CI4 Pallet Addr  Size    Patching function           Patch file (None for default)
     crate_textures = [
-        (1, 'texture_pot_gold', 0x01738000, None, 2048, rgba16_patch, 'textures/pot/pot_gold_rgba16_patch.bin'),
-        (2, 'texture_pot_key', 0x01738000, None, 2048, rgba16_patch, 'textures/pot/pot_key_rgba16_patch.bin'),
-        (3, 'texture_pot_bosskey', 0x01738000, None, 2048, rgba16_patch, 'textures/pot/pot_bosskey_rgba16_patch.bin'),
-        (4, 'texture_pot_skull', 0x01738000, None, 2048, rgba16_patch, 'textures/pot/pot_skull_rgba16_patch.bin'),
-        (5, 'texture_crate_default', 0x18B6000 + 0x20, 0x018B6000, 4096, ci4_texture_apply_rgba16patch_and_convert_to_ci8, None),
-        (6, 'texture_crate_gold'   , 0x18B6000 + 0x20, 0x018B6000, 4096, ci4_texture_apply_rgba16patch_and_convert_to_ci8, 'textures/crate/crate_gold_rgba16_patch.bin'),
-        (7, 'texture_crate_key', 0x18B6000 + 0x20, 0x018B6000, 4096, ci4_texture_apply_rgba16patch_and_convert_to_ci8, 'textures/crate/crate_key_rgba16_patch.bin'),
-        (8, 'texture_crate_skull',  0x18B6000 + 0x20, 0x018B6000, 4096, ci4_texture_apply_rgba16patch_and_convert_to_ci8, 'textures/crate/crate_skull_rgba16_patch.bin'),
-        (9, 'texture_crate_bosskey', 0x18B6000 + 0x20, 0x018B6000, 4096, ci4_texture_apply_rgba16patch_and_convert_to_ci8, 'textures/crate/crate_bosskey_rgba16_patch.bin'),
-        (10, 'texture_smallcrate_gold', 0xF7ECA0, None, 2048, rgba16_patch, 'textures/crate/smallcrate_gold_rgba16_patch.bin' ),
-        (11, 'texture_smallcrate_key', 0xF7ECA0, None, 2048, rgba16_patch, 'textures/crate/smallcrate_key_rgba16_patch.bin'),
-        (12, 'texture_smallcrate_skull', 0xF7ECA0, None, 2048, rgba16_patch, 'textures/crate/smallcrate_skull_rgba16_patch.bin'),
-        (13, 'texture_smallcrate_bosskey', 0xF7ECA0, None, 2048, rgba16_patch, 'textures/crate/smallcrate_bosskey_rgba16_patch.bin')
+        (1,  'texture_pot_gold',            0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_gold_rgba16_patch.bin'),
+        (2,  'texture_pot_key',             0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_key_rgba16_patch.bin'),
+        (3,  'texture_pot_bosskey',         0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_bosskey_rgba16_patch.bin'),
+        (4,  'texture_pot_skull',           0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_skull_rgba16_patch.bin'),
+        (5,  'texture_crate_default',       0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     None),
+        (6,  'texture_crate_gold',          0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     'textures/crate/crate_gold_rgba16_patch.bin'),
+        (7,  'texture_crate_key',           0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     'textures/crate/crate_key_rgba16_patch.bin'),
+        (8,  'texture_crate_skull',         0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     'textures/crate/crate_skull_rgba16_patch.bin'),
+        (9,  'texture_crate_bosskey',       0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     'textures/crate/crate_bosskey_rgba16_patch.bin'),
+        (10, 'texture_smallcrate_gold',     0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_gold_rgba16_patch.bin' ),
+        (11, 'texture_smallcrate_key',      0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_key_rgba16_patch.bin'),
+        (12, 'texture_smallcrate_skull',    0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_skull_rgba16_patch.bin'),
+        (13, 'texture_smallcrate_bosskey',  0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_bosskey_rgba16_patch.bin')
     ]
 
     # Loop through the textures and apply the patch. Add the new texture as a new file in rom.
@@ -2832,6 +2833,8 @@ def patch_actor_override(location, rom: Rom):
         for address in addresses:
             rom.write_bytes(address, patch)
 
+# Patch rupee towers (circular patterns of rupees) to include their flag in their actor initialization data z rotation.
+# Also used for goron pot, shadow spinning pots
 def patch_rupee_tower(location, rom: Rom):
     flag = location.default
     if isinstance(location.default, tuple):

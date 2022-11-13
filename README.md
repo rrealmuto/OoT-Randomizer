@@ -12,7 +12,6 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
 
 * New settings and options:
   * New “Shuffle Thieves' Hideout Entrances” setting ([#1616](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1616))
-  * New “Shuffle Rupees & Hearts”, “Shuffle Pots”, “Shuffle Crates”, “Shuffle Beehives”, and “Pot & Crate Appearance Matches Contents” settings ([#1558](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1558))
   * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1536))
   * “Closed Forest Requires Gohma” is a separate setting, making “Closed Forest” compatible with more settings if disabled ([#1531](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1531))
   * New “Full” options for the settings “Randomize Owl Drops”, “Randomize Warp Song Destinations”, and “Randomize Overworld Spawns” (which is split into “Randomize Child Overworld Spawn” and “Randomize Adult Overworld Spawn” for this reason) that include more types of entrances (based on [#1179](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1179) and [#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
@@ -76,7 +75,7 @@ Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https:
 To run this program, clone this repository and either run ```Gui.py``` for a graphical interface or ```OoTRandomizer.py```
 for the command line version. They both require Python 3.6+. This will be fully featured,
 but the seeds you generate will have different random factors than the bundled release.
-To use the GUI, [NodeJS](https://nodejs.org/download/release/v14.15.1/) (v14, with npm) will additionally need to be installed. NodeJS v16+ is currently not supported.
+To use the GUI, [NodeJS](https://nodejs.org/download/release/v18.12.1/) (v18 LTS, with npm) will additionally need to be installed. NodeJS v12.20.1 and earlier are no longer supported.
 The first time ```Gui.py``` is run it will need to install necessary components, which could take a few minutes. Subsequent instances will run much quicker.
 Supported output formats are .z64 (N64/Emulator), .wad (Wii VC, channel IDs NICE/NRKE recommended), Uncompressed ROM (for developmental purposes, offline build only)
 and .zpf/.zpfz (patch files, for sharing seeds with others).
@@ -195,7 +194,11 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * New setting `Fix Broken Drops` adds a magic jar drop in GTG and a pot that drops a deku shield in Spirit Temple. These spawns were present in the code already but would not actually spawn due to the respective objects not being loaded.
   * New settings `Adult Link Model` and `Child Link Model` allow you to select a .zobj model file to replace Link's look in-game. For more details see the [Custom Models section](#Custom-Models)
   * New section under SFX labeled `Link` has options `Adult Voice` and `Child Voice`, allowing you to choose to either silence Link or change the voice to feminine to match your chosen player model. Adult and child female voices provided by Maple and shiroaeli in the Discord, respectively.
-   * New Misc. Hints for each of the Skulltula rewards makes it so each of the cursed family members who give a randomized reward will tell you what the reward is before being rescued. This precludes those locations from being conditional always hints.
+  * New Misc. Hints for each of the Skulltula rewards makes it so each of the cursed family members who give a randomized reward will tell you what the reward is before being rescued. This precludes those locations from being conditional always hints.
+  * New setting `Shuffle Rupees & Hearts` which allows you to shuffle freestanding rupees and recovery hearts in the world.
+  * New settings `Shuffle Pots` and `Shuffle Crates` which allows you to shuffle items from pots and crates that normally drop an item.
+  * New setting `Pot & Crate Appearance Matches Contents` which changes the pot/crate texture when using one of the above settings, similar to `Chest Appearance Matches Contents`.
+  * New setting `Shuffle Beehives` which allows beehives found in certain grottos to drop an item.
 
 * **Gameplay**
   * Shortened the animation for equipping magic arrows.

@@ -6,6 +6,8 @@ uint16_t illegal_model = false;
 bool adult_safe = false;
 bool child_safe = false;
 
+bool missing_dlist = false;
+
 const int text_width = 5;
 const int text_height = 10;
 
@@ -15,15 +17,23 @@ void draw_illegal_model_text(z64_disp_buf_t *db) {
         return;
     }
 
-    // Setup draw location
     int str_len = 41;
+    if (missing_dlist) {
+        str_len = 45;
+    }
+
+    // Setup draw location
     int total_w = str_len * text_width;
     int draw_x = (Z64_SCREEN_WIDTH * .5) - total_w / 2;
     int draw_y_text = 9;
 
     // Create collected/required string
     char text[str_len + 1];
-    strncpy(text, "Racing advisory: irregular model skeleton\0", str_len + 1);
+    if (missing_dlist) {
+        strncpy(text, "Racing advisory: model skeleton missing dlist\0", str_len + 1);
+    } else {
+        strncpy(text, "Racing advisory: irregular model skeleton\0", str_len + 1);
+    }
 
     // Call setup display list
     gSPDisplayList(db->p++, &setup_db);
@@ -98,10 +108,9 @@ z64_mem_obj_t FindModelData() {
   for (int i = 0; i < 19; i++) {
     z64_mem_obj_t obj = z64_game.obj_ctxt.objects[i];
     // 0x14 = obj_link_boy, 0x15 = obj_link_child
-    if (obj.id == 0x14) { 
+    if (obj.id == 0x14) {
       return obj;
-    }
-    else if (obj.id == 0x15) { 
+    } else if (obj.id == 0x15) {
       return obj;
     }
   }
@@ -120,7 +129,7 @@ int FindSize(z64_mem_obj_t model, int maxsize) {
     // Byte matches next byte in string
     if (data[i] == searchString[searchIndex]) {
       searchIndex += 1;
- 
+
       // All bytes have been found, so a match
       if (searchIndex == searchLen) {
         return i; //Return the address of the footer within the model data
@@ -131,7 +140,7 @@ int FindSize(z64_mem_obj_t model, int maxsize) {
       searchIndex = 0;
     }
   }
- 
+
   //If the footer was not found, then return max size (should only happen with a vanilla model)
   return maxsize;
 }
@@ -148,7 +157,7 @@ int FindHierarchy(z64_mem_obj_t model, int size) {
   for (int i = 0; i < size; i += 4) {
     if (data[i] == 0x06) {
       int possible = *(int*)(data + i) & 0x00FFFFFF;
- 
+
       if (possible < size) {
         int possible2 = *(int*)(data + i - 4) & 0x00FFFFFF;
         int diff = possible - possible2;
@@ -191,6 +200,13 @@ bool check_skeleton(z64_mem_obj_t model, int hierarchy, Limb* skeleton) {
     int skeletonZ = skeleton[i].z;
     // Check if the X, Y, and Z components all match
     if (limbX != skeletonX || limbY != skeletonY || limbZ != skeletonZ) {
+      return false;
+    }
+    int dlistPointer = *(uint8_t *)(data + offset + 8);
+    // If this model should have a dlist, check that it does
+    if (i != 2 && i != 9 && dlistPointer != 0x06) {
+      // Set this variable so a special message will be displayed if the xyz coords are correct but a dlist is missing
+      missing_dlist = true;
       return false;
     }
   }

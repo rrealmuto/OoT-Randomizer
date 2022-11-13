@@ -1,8 +1,7 @@
 ; goron spinning pot hacks to drop override collectibles
 
-; hack for when it drops bombs
+; hack for when it drops 3 bombs
 ; Loop variable stored in s7
-; a2 params passed into drop_collectible
 ; Actor pointer is stored in s0
 bg_spot18_basket_bombs_hack:
     lh      a3, 0x18(s0)   ; get our new flag out of the z rotation
@@ -17,7 +16,6 @@ bg_spot18_basket_bombs_end:
 
 ; hack for when it drops 3 rupees
 ; Loop variable stored in s7
-; flag needs to be stored in a2
 ; Actor pointer is stored in s0 hopefully
 bg_spot18_basket_rupees_hack:
     lh      a3, 0x18(s0)   ; get our new flag out of the z rotation

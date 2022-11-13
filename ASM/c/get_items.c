@@ -24,7 +24,7 @@ extern uint8_t MW_SEND_OWN_ITEMS;
 extern override_key_t OUTGOING_KEY;
 extern uint16_t OUTGOING_ITEM;
 extern uint16_t OUTGOING_PLAYER;
-uint16_t drop_collectible_override_flag = 0;
+uint16_t drop_collectible_override_flag = 0; // Flag used by hacks in Item_DropCollectible to override the item being dropped. Set it to the flag for the overridden item.
 
 override_t active_override = { 0 };
 int active_override_is_outgoing = 0;
@@ -89,8 +89,7 @@ override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_
         }
         EnItem00 *item = (EnItem00 *)actor;
 
-        if(collectible_type == 0x06 || collectible_type == 0x11) //heart pieces and keys
-        {
+        if (collectible_type == 0x06 || collectible_type == 0x11) { // heart pieces and keys
             return (override_key_t) {
                 .scene = scene,
                 .type = OVR_COLLECTABLE,
@@ -100,16 +99,15 @@ override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_
 
         // Get the collectible flag stored in the actor's initial y rotation field.
         uint16_t flag = item->actor.rot_init.y;
-        if(flag > 0)
-        {
-            flag += curr_scene_setup << 14;
+        if (flag > 0) {
+            flag |= curr_scene_setup << 14;
             if (scene == 0x19) {
                 scene = 0x0A;
             }
             override_key_t key = {
-            .scene = scene,
-            .type = OVR_NEWFLAGCOLLECTIBLE,
-            .flag = flag,
+                .scene = scene,
+                .type = OVR_NEWFLAGCOLLECTIBLE,
+                .flag = flag,
             };
             return resolve_alternative_override(key);
         }
@@ -166,7 +164,7 @@ override_t lookup_override(z64_actor_t *actor, uint8_t scene, uint8_t item_id) {
 // override_key: The key to search for in the alternative override table
 // Returns: The primary key to use if an alternative override is found in the table. Otherwise returns override_key
 override_key_t resolve_alternative_override(override_key_t override_key) {
-    alt_override_t* alt = &alt_overrides[0];
+    alt_override_t *alt = &alt_overrides[0];
     while (alt->alt.all != 0) {
         if (alt->alt.all == override_key.all) {
             return alt->primary;

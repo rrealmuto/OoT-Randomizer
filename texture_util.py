@@ -144,7 +144,7 @@ def rgba16_patch(rom: Rom, base_texture_address, base_palette_address, size, pat
 # size - Size of the texture in PIXELS
 # patchfile - file path of a rgba16 binary texture to patch
 # returns - bytearray of the new texture
-def ci4_texture_apply_rgba16patch_and_convert_to_ci8(rom, base_texture_address, base_palette_address, size, patchfile):
+def ci4_rgba16patch_to_ci8(rom, base_texture_address, base_palette_address, size, patchfile):
     palette = load_palette(rom, base_palette_address, 16) # load the original palette from rom
     base_texture_rgba16 = ci4_to_rgba16(rom, base_texture_address, size, palette) # load the original texture from rom and convert to ci8
     patch_rgba16 = None
@@ -209,11 +209,11 @@ def build_crate_ci8_patches():
     save_rgba16_texture(bosskey_palette, 'crate_bosskey_palette.bin')
 
     crate_textures = [
-        (5, 'texture_crate_default', 0x18B6000 + 0x20, 0x018B6000, 4096, ci4_texture_apply_rgba16patch_and_convert_to_ci8, None),
-        (6, 'texture_crate_gold'   , 0x18B6000 + 0x20, 0x018B6000, 4096, ci4_texture_apply_rgba16patch_and_convert_to_ci8, 'crate_gold_rgba16_patch.bin'),
-        (7, 'texture_crate_key', 0x18B6000 + 0x20, 0x018B6000, 4096, ci4_texture_apply_rgba16patch_and_convert_to_ci8, 'crate_key_rgba16_patch.bin'),
-        (8, 'texture_crate_skull',  0x18B6000 + 0x20, 0x018B6000, 4096, ci4_texture_apply_rgba16patch_and_convert_to_ci8, 'crate_skull_rgba16_patch.bin'),
-        (9, 'texture_crate_bosskey', 0x18B6000 + 0x20, 0x018B6000, 4096, ci4_texture_apply_rgba16patch_and_convert_to_ci8, 'crate_bosskey_rgba16_patch.bin'),
+        (5, 'texture_crate_default', 0x18B6000 + 0x20, 0x018B6000, 4096, ci4_rgba16patch_to_ci8, None),
+        (6, 'texture_crate_gold'   , 0x18B6000 + 0x20, 0x018B6000, 4096, ci4_rgba16patch_to_ci8, 'crate_gold_rgba16_patch.bin'),
+        (7, 'texture_crate_key', 0x18B6000 + 0x20, 0x018B6000, 4096, ci4_rgba16patch_to_ci8, 'crate_key_rgba16_patch.bin'),
+        (8, 'texture_crate_skull',  0x18B6000 + 0x20, 0x018B6000, 4096, ci4_rgba16patch_to_ci8, 'crate_skull_rgba16_patch.bin'),
+        (9, 'texture_crate_bosskey', 0x18B6000 + 0x20, 0x018B6000, 4096, ci4_rgba16patch_to_ci8, 'crate_bosskey_rgba16_patch.bin'),
     ]
 
     for texture_id, texture_name, rom_address_base, rom_address_palette, size,func, patchfile in crate_textures:

@@ -2669,7 +2669,8 @@ setting_infos = [
             to beat the game, but otherwise behaves like 'Required Only'.
             Goal items are the items required for the rainbow bridge and/or Ganon's Boss Key, so for example if the bridge is
             set to 1 Medallion and Ganon's Boss Key to 1 Gold Skulltula Token, all 6 Medallions and all 100 Tokens will
-            be obtainable. In Triforce Hunt, this will instead guarantee that all Triforce Pieces can be obtained.
+            be obtainable. In Triforce Hunt, this will instead guarantee that all Triforce Pieces can be obtained. Hint
+            distributions that define custom goals or remove the default goals will affect item placement as well.
 
             'Required Only': Only items and locations required to beat the game will be guaranteed reachable.
         ''',

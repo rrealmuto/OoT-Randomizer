@@ -114,7 +114,7 @@
         "is_boss_room": "True",
         "events": {
             "Defeat Phantom Ganon": "
-            can_use(Hookshot) or can_use(Bow) or (can_use(Slingshot) and Kokiri_Sword)"
+                can_use(Hookshot) or can_use(Bow) or (can_use(Slingshot) and Kokiri_Sword)"
         },
         "locations": {
             "Forest Temple Phantom Ganon Heart": "'Defeat Phantom Ganon'",

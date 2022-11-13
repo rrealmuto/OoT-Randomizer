@@ -10,9 +10,7 @@
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
 extern uint16_t drop_collectible_override_flag;
 
-// Hacks the regular crate spawn collectible function to use more flag space
-// The additional flag info is stored in the actors dropFlag variable (unused by collectibles)
-
+// Hacks the regular crate spawn collectible function to spawn overridden collectibles
 void ObjKibako2_SpawnCollectible_Hack(ObjKibako2 *this, z64_game_t *globalCtx) {
     int16_t itemDropped;
     int16_t collectibleFlagTemp;
