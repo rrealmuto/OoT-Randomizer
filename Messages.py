@@ -303,6 +303,10 @@ KEYSANITY_MESSAGES = {
     0x9016: "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x46Gerudo Training\x01Ground\x05\x40!\x09",
     0x9017: "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x46Thieves' Hideout\x05\x40!\x09",
     0x9018: "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for \x05\x41Ganon's Castle\x05\x40!\x09",
+
+    0x9046: "\x08You found the \x05\x41Triforce of Power\x05\x40!",
+    0x9047: "\x08You found the \x05\x45Triforce of Wisdom\x05\x40!",
+    0x9049: "\x08You found the \x05\x42Triforce of Courage\x05\x40!",
 }
 
 COLOR_MAP = {

@@ -131,7 +131,7 @@ SYMBOL TABLE:
 0000472c g     F .text	0000004c lookup_override
 00000094 g     O .sdata	00000004 text_height
 00008448 g     F .text	0000001c stick_upgrade
-000024b4 g     O .data	000000fc adultSkeleton
+000028b0 g     O .data	000000fc adultSkeleton
 00000010 g     O .data	00000018 medals
 0000a4d0 g     F .text	0000002c text_init
 00000000         *UND*	00000000 INCOMING_PLAYER
@@ -289,7 +289,7 @@ SYMBOL TABLE:
 00000228 g     O .data	00000028 setup_db
 00009968 g     F .text	00000060 get_object
 00007ea0 g     F .text	000000bc give_triforce_piece
-00001328 g     O .data	00001090 item_table
+00001328 g     O .data	0000148c item_table
 000001d8 g     O .data	00000010 font_sprite
 00000014 g     O .sbss	00000001 satisified_pending_frames
 00009a14 g     F .text	00000068 scale_top_matrix
@@ -395,7 +395,7 @@ SYMBOL TABLE:
 000098d4 g     F .text	0000006c load_object_file
 00006c60 g     F .text	00000154 draw_gi_magic_spells
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_NPC_INNER_ENABLED
-000023b8 g     O .data	000000fc childSkeleton
+000027b4 g     O .data	000000fc childSkeleton
 00000000 g     O .sbss	00000004 CHEST_SIZE_TEXTURE
 00009a7c g     F .text	00000078 draw_model_low_level
 000075f0 g     F .text	000001ec draw_gi_fairy_lantern
