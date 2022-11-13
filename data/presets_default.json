@@ -261,9 +261,7 @@
     "shuffle_overworld_entrances":              false,
     "owl_drops":                                false,
     "warp_songs":                               false,
-    "spawn_positions":                         [
-      "adult"
-    ],
+    "spawn_positions":                          [],
     "shuffle_scrubs":                           "off",
     "shopsanity":                               "off",
     "tokensanity":                              "off",
@@ -390,9 +388,7 @@
     "shuffle_overworld_entrances":              false,
     "owl_drops":                                false,
     "warp_songs":                               false,
-    "spawn_positions":                         [
-      "adult"
-    ],
+    "spawn_positions":                          [],
     "shuffle_scrubs":                           "off",
     "shopsanity":                               "off",
     "tokensanity":                              "off",
