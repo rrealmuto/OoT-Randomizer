@@ -420,7 +420,7 @@ def CorrectSkeleton(zobj, skeleton, agestr):
     # Go through each limb in the table
     hasVanillaSkeleton = True
     withinTolerance = True
-    for i in range(21):
+    for i in range(1, 21):
         offset = limb + i * 0x10
         # X, Y, Z components are 2 bytes each
         limbX = int.from_bytes(zobj[offset:offset+2], 'big')
@@ -434,7 +434,7 @@ def CorrectSkeleton(zobj, skeleton, agestr):
             hasVanillaSkeleton = False
             # Now check if the components are within a tolerance
             # Exclude limb 0 since that one is always zeroed out on models for some reason
-            if i > 0 and (CheckDiff(limbX, skeletonX) or CheckDiff(limbY, skeletonY) or CheckDiff(limbZ, skeletonZ)):
+            if CheckDiff(limbX, skeletonX) or CheckDiff(limbY, skeletonY) or CheckDiff(limbZ, skeletonZ):
                 withinTolerance = False
                 break
     # If the skeleton is not vanilla but all components are within the tolerance, then force to vanilla
@@ -555,7 +555,7 @@ def LoadModel(rom, model, age):
         zobj[hierarchy - BASE_OFFSET + 4] = 0x15 # Number of limbs
         zobj[hierarchy - BASE_OFFSET + 8] = 0x12 # Number of limbs to draw
         # # Save zobj for testing
-        # with open(path + "Test_Processed.zobj", "wb") as f:
+        # with open(path + "/Test_Processed.zobj", "wb") as f:
         #     f.write(zobj)
     # Correct skeleton if it should be corrected
     CorrectSkeleton(zobj, skeleton, agestr)

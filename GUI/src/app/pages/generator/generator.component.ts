@@ -50,8 +50,6 @@ export class GeneratorComponent implements OnInit {
   repatchCosmeticsCheckboxTooltipPatch: string = "Replaces the cosmetic and sound settings generated in the patch file<br>with those selected on this page.";
   repatchCosmeticsCheckboxTooltipSeedPageWeb: string = "Replaces the cosmetic and sound settings generated in the seed<br>with those selected on this page.";
 
-  flipPreferredHintAxis: boolean = window.matchMedia('(max-width: 500px)').matches;
-
   constructor(private overlayContainer: OverlayContainer, private cd: ChangeDetectorRef, public global: GUIGlobal, private dialogService: NbDialogService) {
   }
 
@@ -1355,10 +1353,5 @@ export class GeneratorComponent implements OnInit {
         }
       }
     }
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(_: Event): void {
-    this.flipPreferredHintAxis = window.matchMedia('(max-width: 500px)').matches;
   }
 }

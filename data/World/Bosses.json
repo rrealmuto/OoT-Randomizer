@@ -17,6 +17,7 @@
     {
         "region_name": "Queen Gohma Boss Room",
         "scene": "Deku Tree Boss",
+        "is_boss_room": "True",
         "events": {
             "Deku Tree Clear": "(Nuts or can_use(Slingshot)) and can_jumpslash"
         },
@@ -40,6 +41,7 @@
     {
         "region_name": "King Dodongo Boss Room",
         "scene": "Dodongos Cavern Boss",
+        "is_boss_room": "True",
         "locations": {
             "Dodongos Cavern Boss Room Chest": "True",
             "Dodongos Cavern King Dodongo Heart": "
@@ -68,9 +70,16 @@
     {
         "region_name": "Barinade Boss Room",
         "scene": "Jabu Jabus Belly Boss",
+        "is_boss_room": "True",
         "locations": {
             "Jabu Jabus Belly Barinade Heart": "can_use(Boomerang) and (Sticks or Kokiri_Sword)",
-            "Barinade": "can_use(Boomerang) and (Sticks or Kokiri_Sword)"
+            "Barinade": "can_use(Boomerang) and (Sticks or Kokiri_Sword)",
+            "Jabu Jabus Belly Barinade Pot 1": "True",
+            "Jabu Jabus Belly Barinade Pot 2": "True",
+            "Jabu Jabus Belly Barinade Pot 3": "True",
+            "Jabu Jabus Belly Barinade Pot 4": "True",
+            "Jabu Jabus Belly Barinade Pot 5": "True",
+            "Jabu Jabus Belly Barinade Pot 6": "True"
         },
         "exits": {
             "Jabu Jabus Belly Boss Door": "False"
@@ -88,11 +97,12 @@
     {
         "region_name": "Phantom Ganon Boss Room",
         "scene": "Forest Temple Boss",
+        "is_boss_room": "True",
         "locations": {
-            "Forest Temple Phantom Ganon Heart": "(can_use(Hookshot) or can_use(Bow)) or
-                (can_use(Slingshot) and Kokiri_Sword)",
-            "Phantom Ganon": "(can_use(Hookshot) or can_use(Bow)) or
-                (can_use(Slingshot) and Kokiri_Sword)"
+            "Forest Temple Phantom Ganon Heart": "
+                can_use(Hookshot) or can_use(Bow) or (can_use(Slingshot) and Kokiri_Sword)",
+            "Phantom Ganon": "
+                can_use(Hookshot) or can_use(Bow) or (can_use(Slingshot) and Kokiri_Sword)"
         },
         "exits": {
             "Forest Temple Boss Door": "False"
@@ -110,6 +120,7 @@
     {
         "region_name": "Volvagia Boss Room",
         "scene": "Fire Temple Boss",
+        "is_boss_room": "True",
         "locations": {
             "Fire Temple Volvagia Heart": "can_use(Goron_Tunic) and can_use(Megaton_Hammer)",
             "Volvagia": "can_use(Goron_Tunic) and can_use(Megaton_Hammer)"
@@ -129,6 +140,7 @@
     {
         "region_name": "Morpha Boss Room",
         "scene": "Water Temple Boss",
+        "is_boss_room": "True",
         "events": {
             "Water Temple Clear": "can_use(Hookshot)"
         },
@@ -152,13 +164,16 @@
     {
         "region_name": "Bongo Bongo Boss Room",
         "scene": "Shadow Temple Boss",
+        "is_boss_room": "True",
         "locations": {
             "Shadow Temple Bongo Bongo Heart": "
-                (Kokiri_Sword or is_adult) and (can_use(Hookshot) or can_use(Bow) or can_use(Slingshot) or
-                logic_shadow_bongo) and (can_use(Lens_of_Truth) or logic_lens_bongo)",
+                (Kokiri_Sword or is_adult) and
+                (can_use(Hookshot) or can_use(Bow) or can_use(Slingshot) or logic_shadow_bongo) and
+                (can_use(Lens_of_Truth) or logic_lens_bongo)",
             "Bongo Bongo": "
-                (Kokiri_Sword or is_adult) and (can_use(Hookshot) or can_use(Bow) or can_use(Slingshot) or
-                logic_shadow_bongo) and (can_use(Lens_of_Truth) or logic_lens_bongo)"
+                (Kokiri_Sword or is_adult) and
+                (can_use(Hookshot) or can_use(Bow) or can_use(Slingshot) or logic_shadow_bongo) and
+                (can_use(Lens_of_Truth) or logic_lens_bongo)"
         },
         "exits": {
             "Shadow Temple Boss Door": "False"
@@ -176,6 +191,7 @@
     {
         "region_name": "Twinrova Boss Room",
         "scene": "Spirit Temple Boss",
+        "is_boss_room": "True",
         "locations": {
             "Spirit Temple Twinrova Heart": "can_use(Mirror_Shield)",
             "Twinrova": "can_use(Mirror_Shield)"
@@ -188,9 +204,47 @@
         "region_name": "Ganons Castle Tower",
         "dungeon": "Ganons Castle",
         "locations": {
-            "Ganons Tower Boss Key Chest": "is_adult or Kokiri_Sword",
-            "Ganondorf Hint": "(is_adult or Kokiri_Sword) and Boss_Key_Ganons_Castle",
-            "Ganon": "Boss_Key_Ganons_Castle and can_use(Light_Arrows)"
+            "Ganons Tower Boss Key Chest": "is_adult or Kokiri_Sword"
+        },
+        "exits": {
+            "Ganons Castle Tower Below Boss": "
+                (is_adult or Kokiri_Sword) and
+                (Boss_Key_Ganons_Castle or (shuffle_pots != 'off'))"
+        }
+    },
+    {
+        "region_name": "Ganons Castle Tower Below Boss",
+        "dungeon": "Ganons Castle",
+        "hint": "INSIDE_GANONS_CASTLE",
+        "alt_hint": "GANONDORFS_CHAMBER",
+        "locations": {
+            "Ganons Tower Pot 1": "True",
+            "Ganons Tower Pot 2": "True",
+            "Ganons Tower Pot 3": "True",
+            "Ganons Tower Pot 4": "True",
+            "Ganons Tower Pot 5": "True",
+            "Ganons Tower Pot 6": "True",
+            "Ganons Tower Pot 7": "True",
+            "Ganons Tower Pot 8": "True",
+            "Ganons Tower Pot 9": "True",
+            "Ganons Tower Pot 10": "True",
+            "Ganons Tower Pot 11": "True",
+            "Ganons Tower Pot 12": "True",
+            "Ganons Tower Pot 13": "True",
+            "Ganons Tower Pot 14": "True"
+        },
+        "exits": {
+            "Ganondorf Boss Room": "Boss_Key_Ganons_Castle"
+        }
+    },
+    {
+        "region_name": "Ganondorf Boss Room",
+        "dungeon": "Ganons Castle",
+        "hint": "INSIDE_GANONS_CASTLE",
+        "alt_hint": "GANONDORFS_CHAMBER",
+        "locations": {
+            "Ganondorf Hint": "True",
+            "Ganon": "can_use(Light_Arrows)"
         }
     }
 ]

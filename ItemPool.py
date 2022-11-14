@@ -1,8 +1,9 @@
 import random
-from collections import OrderedDict
 from decimal import Decimal, ROUND_UP
+from Hints import HintArea
 
 from Item import ItemFactory, ItemInfo
+from Location import DisableType, Location
 from Utils import random_choices
 
 
@@ -506,11 +507,55 @@ def get_pool_core(world):
         elif location.vanilla_item == 'Small Key (Thieves Hideout)':
             shuffle_item = world.settings.shuffle_hideoutkeys != 'vanilla'
             if (world.settings.gerudo_fortress == 'open'
-                    or world.settings.gerudo_fortress == 'fast' and location.name != 'Hideout Jail Guard (1 Torch)'):
+                    or world.settings.gerudo_fortress == 'fast' and location.name != 'Hideout 1 Torch Jail Gerudo Key'):
                 item = IGNORE_LOCATION
                 shuffle_item = False
             if shuffle_item and world.settings.gerudo_fortress == 'normal' and 'Thieves Hideout' in world.settings.key_rings:
-                item = get_junk_item()[0] if location.name != 'Hideout Jail Guard (1 Torch)' else 'Small Key Ring (Thieves Hideout)'
+                item = get_junk_item()[0] if location.name != 'Hideout 1 Torch Jail Gerudo Key' else 'Small Key Ring (Thieves Hideout)'
+
+        # Freestanding Rupees and Hearts
+        elif location.type in ['ActorOverride', 'Freestanding', 'RupeeTower']:
+            if world.settings.shuffle_freestanding_items == 'all':
+                shuffle_item = True
+            elif world.settings.shuffle_freestanding_items == 'dungeons' and location.dungeon is not None:
+                shuffle_item = True
+            elif world.settings.shuffle_freestanding_items == 'overworld' and location.dungeon is None:
+                shuffle_item = True
+            else:
+                shuffle_item = False
+                location.disabled = DisableType.DISABLED
+
+        # Pots
+        elif location.type in ['Pot', 'FlyingPot']:
+            if world.settings.shuffle_pots == 'all':
+                shuffle_item = True
+            elif world.settings.shuffle_pots == 'dungeons' and (location.dungeon is not None or location.parent_region.is_boss_room):
+                shuffle_item = True
+            elif world.settings.shuffle_pots == 'overworld' and not (location.dungeon is not None or location.parent_region.is_boss_room):
+                shuffle_item = True
+            else:
+                shuffle_item = False
+                location.disabled = DisableType.DISABLED
+
+        # Crates
+        elif location.type in ['Crate', 'SmallCrate']:
+            if world.settings.shuffle_crates == 'all':
+                shuffle_item = True
+            elif world.settings.shuffle_crates == 'dungeons' and location.dungeon is not None:
+                shuffle_item = True
+            elif world.settings.shuffle_crates == 'overworld' and location.dungeon is None:
+                shuffle_item = True
+            else:
+                shuffle_item = False
+                location.disabled = DisableType.DISABLED
+
+        # Beehives
+        elif location.type == 'Beehive':
+            if world.settings.shuffle_beehives:
+                shuffle_item = True
+            else:
+                shuffle_item = False
+                location.disabled = DisableType.DISABLED
 
         # Dungeon Items
         elif location.dungeon is not None:
@@ -548,7 +593,7 @@ def get_pool_core(world):
             # Handle dungeon item.
             if shuffle_setting is not None and not shuffle_item:
                 dungeon_collection.append(ItemFactory(item))
-                if shuffle_setting in ['remove', 'startwith', 'triforce']:
+                if shuffle_setting in ['remove', 'startwith']:
                     world.state.collect(dungeon_collection[-1])
                     item = get_junk_item()[0]
                     shuffle_item = True
@@ -618,7 +663,7 @@ def get_pool_core(world):
     if world.settings.shuffle_ganon_bosskey == 'on_lacs':
         placed_items['ToT Light Arrows Cutscene'] = 'Boss Key (Ganons Castle)'
 
-    if world.settings.shuffle_ganon_bosskey in ['stones', 'medallions', 'dungeons', 'tokens', 'hearts']:
+    if world.settings.shuffle_ganon_bosskey in ['stones', 'medallions', 'dungeons', 'tokens', 'hearts', 'triforce']:
         placed_items['Gift from Sages'] = 'Boss Key (Ganons Castle)'
         pool.extend(get_junk_item())
     else:

@@ -16,11 +16,14 @@ export class GUITooltipComponent implements AfterViewChecked {
   @Input()
   tooltip: string = '';
 
-  constructor(@Inject(DOCUMENT) private readonly document: Document) {
+  constructor(@Inject(DOCUMENT) private readonly document: Document,
+              private readonly window: Window,
+  ) {
   }
 
   ngAfterViewChecked(): void {
     this.preventHintPositioningOutsideTopBounds();
+    this.preventHintPositioningOutsideBottomBounds();
     this.preventHintOverlayingOnSelectOptions();
   }
 
@@ -29,7 +32,15 @@ export class GUITooltipComponent implements AfterViewChecked {
 
     Array.from(cdkOverlayPanes)
       .filter((e: HTMLElement) => e.offsetTop < 0)
-      .forEach((e: HTMLElement) => e.style.top = '0px');
+      .forEach((e: HTMLElement) => e.style.top = '16px');
+  }
+
+  private preventHintPositioningOutsideBottomBounds(): void {
+    const cdkOverlayPanes = this.document.getElementsByClassName('cdk-overlay-pane');
+
+    Array.from(cdkOverlayPanes)
+      .filter((e: HTMLElement) => this.calculateFeasibleHeight(e) < e.offsetHeight)
+      .forEach((e: HTMLElement) => e.style.maxHeight = `${this.calculateFeasibleHeight(e) }px`);
   }
 
   private preventHintOverlayingOnSelectOptions(): void {
@@ -37,5 +48,9 @@ export class GUITooltipComponent implements AfterViewChecked {
 
     Array.from(cdkOverlayBoxes)
       .forEach((e: HTMLElement, i: number) => i === cdkOverlayBoxes.length-1 ? e.style.zIndex = '999' : e.style.zIndex = '1000');
+  }
+
+  private calculateFeasibleHeight(element: HTMLElement): number {
+    return this.window.innerHeight - element.offsetTop;
   }
 }

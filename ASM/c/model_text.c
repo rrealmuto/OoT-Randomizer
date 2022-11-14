@@ -6,6 +6,8 @@ uint16_t illegal_model = false;
 bool adult_safe = false;
 bool child_safe = false;
 
+bool missing_dlist = false;
+
 const int text_width = 5;
 const int text_height = 10;
 
@@ -16,15 +18,24 @@ void draw_illegal_model_text(z64_disp_buf_t *db) {
         return;
     }
     
-    // Setup draw location
     int str_len = 41;
+    if (missing_dlist) {
+      str_len = 45;
+    }
+
+    // Setup draw location
     int total_w = str_len * text_width;
     int draw_x = (Z64_SCREEN_WIDTH * .5) - total_w / 2;
     int draw_y_text = 9;
 
     // Create collected/required string
     char text[str_len + 1];
-    strncpy(text, "Racing advisory: irregular model skeleton\0", str_len + 1);
+    if (missing_dlist) {
+      strncpy(text, "Racing advisory: model skeleton missing dlist\0", str_len + 1);
+    }
+    else {
+      strncpy(text, "Racing advisory: irregular model skeleton\0", str_len + 1);
+    }
 
     // Call setup display list
     gSPDisplayList(db->p++, &setup_db);
@@ -192,6 +203,13 @@ bool check_skeleton(z64_mem_obj_t model, int hierarchy, Limb* skeleton) {
     int skeletonZ = skeleton[i].z;
     // Check if the X, Y, and Z components all match
     if (limbX != skeletonX || limbY != skeletonY || limbZ != skeletonZ) {
+      return false;
+    }
+    int dlistPointer = *(uint8_t*)(data + offset + 8);
+    // If this model should have a dlist, check that it does
+    if (i != 2 && i != 9 && dlistPointer != 0x06) {
+      //Set this variable so a special message will be displayed if the xyz coords are correct but a dlist is missing
+      missing_dlist = true;
       return false;
     }
   }
