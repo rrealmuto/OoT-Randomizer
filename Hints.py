@@ -613,15 +613,10 @@ def get_goal_hint(spoiler, world, checked):
     # If so, set weights to zero. This is important for one-hint-per-goal.
     # Locations are unique per-category, so we don't have to check the others.
     for other_goal in goals:
-        if not other_goal.required_locations:
-            continue
         if not zero_weights and other_goal.weight <= 0:
             continue
 
         required_locations = [loc[0] for loc in other_goal.required_locations]
-        if location not in required_locations:
-            continue
-
         goal_locations = list(filter(lambda loc:
             loc.name not in checked
             and loc.name not in world.hint_exclusions
@@ -630,10 +625,10 @@ def get_goal_hint(spoiler, world, checked):
             and loc.item.name not in unHintableWothItems,
             required_locations))
         if not goal_locations:
-            # Replace randomly chosen goal with the goal that has all its locations
-            # hinted without being directly hinted itself.
             other_goal.weight = 0
-            if world.one_hint_per_goal:
+            if world.one_hint_per_goal and location in required_locations:
+                # Replace randomly chosen goal with the goal that has all its locations
+                # hinted without being directly hinted itself.
                 goal = other_goal
 
     # Goal weight to zero mitigates double hinting this goal
