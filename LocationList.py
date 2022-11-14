@@ -1536,7 +1536,7 @@ location_table = OrderedDict([
     ("Shadow Temple Huge Pit Silver Rupee Left",                     ("SilverRupee",  0x07,  (9,0,8),  None,                       'Silver Rupee (Shadow Temple Huge Pit)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
     ("Shadow Temple Huge Pit Silver Rupee Center Front",             ("SilverRupee",  0x07,  (9,0,10), None,                       'Silver Rupee (Shadow Temple Huge Pit)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
     ("Shadow Temple Huge Pit Silver Rupee Center",                   ("SilverRupee",  0x07,  (9,0,9),  None,                       'Silver Rupee (Shadow Temple Huge Pit)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
-    ("Shadow Temple Huge Pit Silver Rupee Center Back",              ("SilverRupee",  0x07,  (9,0,1),  None,                       'Silver Rupee (Shadow Temple Huge Pit)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
+    ("Shadow Temple Huge Pit Silver Rupee Center Back",              ("SilverRupee",  0x07,  (9,0,11), None,                       'Silver Rupee (Shadow Temple Huge Pit)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
     ("Shadow Temple Huge Pit Silver Rupee Right",                    ("SilverRupee",  0x07,  (9,0,7),  None,                       'Silver Rupee (Shadow Temple Huge Pit)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),
 
     ("Shadow Temple Invisible Spikes Silver Rupee Right",            ("SilverRupee",  0x07,  (11,0,4), None,               'Silver Rupee (Shadow Temple Invisible Spikes)',  ("Shadow Temple", "Vanilla", "Silver Rupee"))),

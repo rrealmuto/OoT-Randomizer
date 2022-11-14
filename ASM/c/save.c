@@ -69,7 +69,7 @@ void Sram_WriteSave(SramContext *sramCtx) {
     uint16_t slot_offset = SRAM_SLOTS[z64_file.file_index] + SLOT_SIZE - (num_override_flags);
     SsSram_ReadWrite_Safe(SRAM_BASE + slot_offset, collectible_override_flags, num_override_flags, OS_WRITE);
 
-    //Write the extended Save Context data to the main slot
+    // Write the extended Save Context data to the main slot
     offset = SRAM_SLOTS[z64_file.file_index] + SRAM_ORIGINAL_SLOT_SIZE;
     SsSram_ReadWrite_Safe(SRAM_BASE + offset, &extended_savectx, sizeof(extended_savecontext_static_t), OS_WRITE);
 
@@ -77,7 +77,7 @@ void Sram_WriteSave(SramContext *sramCtx) {
     slot_offset = SRAM_SLOTS[z64_file.file_index + 3] + SLOT_SIZE - (num_override_flags);
     SsSram_ReadWrite_Safe(SRAM_BASE + slot_offset, collectible_override_flags, num_override_flags, OS_WRITE);
 
-    //Write the extended Save Context data to the backup slot
+    // Write the extended Save Context data to the backup slot
     offset = SRAM_SLOTS[z64_file.file_index + 3] + SRAM_ORIGINAL_SLOT_SIZE;
     SsSram_ReadWrite_Safe(SRAM_BASE + offset, &extended_savectx, sizeof(extended_savecontext_static_t), OS_WRITE);
 
@@ -115,7 +115,7 @@ void Sram_VerifyAndLoadAllSaves(z64_FileChooseContext_t *fileChooseCtx, SramCont
             newChecksum += *ptr++;
         }
         // Calculate the extended savectx in the checksum
-        ptr = (uint16_t*)&extended_savectx;
+        ptr = (uint16_t *)&extended_savectx;
         for (i = 0; i < sizeof(extended_savectx) / 2; i++) {
             newChecksum += *ptr++;
         }

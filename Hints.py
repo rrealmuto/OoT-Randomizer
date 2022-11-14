@@ -402,9 +402,7 @@ class HintArea(Enum):
 
     @classmethod
     def for_dungeon(cls, dungeon_name: str):
-        if 'Silver Rupee' in dungeon_name:
-            dungeon_name = ItemInfo.items[dungeon_name].dungeon
-        elif '(' in dungeon_name and ')' in dungeon_name:
+        if '(' in dungeon_name and ')' in dungeon_name:
             # A dungeon item name was passed in - get the name of the dungeon from it.
             dungeon_name = dungeon_name[dungeon_name.index('(') + 1:dungeon_name.index(')')]
 
@@ -413,7 +411,7 @@ class HintArea(Enum):
             return HintArea.THIEVES_HIDEOUT
 
         for hint_area in cls:
-            if hint_area.dungeon_name == dungeon_name:
+            if hint_area.dungeon_name is not None and hint_area.dungeon_name in dungeon_name:
                 return hint_area
         return None
 

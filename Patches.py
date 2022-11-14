@@ -1756,11 +1756,11 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         if world.settings.shuffle_silver_rupees != 'remove':
             rom.write_byte(rom.sym('CFG_DUNGEON_INFO_SILVER_RUPEES'), 1)
 
-        if world.dungeon_mq['Dodongos Cavern']: #Patch DC MQ Staircase Transition Actor to use permanent switch flag 0x1F
-            rom.write_byte(0x1F12190+15, 0x9F)
+        if world.dungeon_mq['Dodongos Cavern']: # Patch DC MQ Staircase Transition Actor to use permanent switch flag 0x1F
+            rom.write_byte(0x1F12190 + 15, 0x9F)
 
-        if world.dungeon_mq['Spirit Temple']: #Patch Spirit MQ Lobby front right chest to use permanent switch flag 0x1F
-            rom.write_byte(0x2b08ce4+13, 0x1F )
+        if world.dungeon_mq['Spirit Temple']: # Patch Spirit MQ Lobby front right chest to use permanent switch flag 0x1F
+            rom.write_byte(0x2b08ce4 + 13, 0x1F)
 
     # Write flag table data
     collectible_flag_table, alt_list = get_collectible_flag_table(world)
