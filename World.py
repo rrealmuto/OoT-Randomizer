@@ -67,7 +67,7 @@ class World(object):
             or settings.blue_warps not in ('vanilla', 'dungeon') or self.spawn_positions or (settings.shuffle_bosses != 'off')
         )
 
-        self.mixed_pools_bosses = 'Boss' in settings.mix_entrance_pools
+        self.mixed_pools_bosses = settings.shuffle_bosses == 'full' and 'Boss' in settings.mix_entrance_pools
 
         self.ensure_tod_access = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or self.spawn_positions
         self.disable_trade_revert = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances
