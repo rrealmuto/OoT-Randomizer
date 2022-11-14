@@ -426,6 +426,12 @@ SRAM_SLOTS:
     jal     get_override_drop_id_hook
     sh      T1, 0x0042(sp)
 
+; Hack Item_DropCollectibleRandom to call custom drop override function (mostly just for chus in logic)
+; replaces
+;   jal     0x80013530
+.orga 0xA89D4C
+    jal     get_override_drop_id_hook
+
 ; Hack Item_DropCollectible to set the y rotation to the drop_collectible_override_flag
 ; replaces
 ;   sw      r0, 0x0020(sp)
