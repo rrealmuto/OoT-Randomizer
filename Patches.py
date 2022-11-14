@@ -1038,7 +1038,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
                 # and Water Temple if needed.
                 copy_entrance_record(replaced_entrance['index'] + 2, new_entrance['index'] + 2, 2)
                 copy_entrance_record(replaced_entrance.get('child_index', replaced_entrance['index']), new_entrance['index'], 2)
-            else:
+            elif entrance.type != 'Grotto':
                 exit_updates.append((new_entrance['index'], replaced_entrance['index']))
 
     exit_table = generate_exit_lookup_table()
@@ -1124,7 +1124,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         rom.write_int32(0xB06318, 0x00000000)
 
     # Set entrances to update, except grotto entrances which are handled on their own at a later point
-    set_entrance_updates(filter(lambda entrance: entrance.type != 'Grotto', world.get_shuffled_entrances()))
+    set_entrance_updates(world.get_shuffled_entrances())
 
     for k, v in [(k,v) for k, v in exit_updates if k in exit_table]:
         for addr in exit_table[k]:
@@ -1338,7 +1338,6 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     # Make all chest opening animations fast
     rom.write_byte(rom.sym('FAST_CHESTS'), int(world.settings.fast_chests))
-
 
     # Set up Rainbow Bridge conditions
     symbol = rom.sym('RAINBOW_BRIDGE_CONDITION')
