@@ -9,6 +9,7 @@
 extern uint8_t FAST_CHESTS;
 extern uint8_t OCARINAS_SHUFFLED;
 extern uint8_t NO_COLLECTIBLE_HEARTS;
+extern uint32_t BOMBCHUS_IN_LOGIC;
 override_t cfg_item_overrides[1536] = { 0 };
 int item_overrides_count = 0;
 
@@ -414,6 +415,7 @@ void get_item(z64_actor_t *from_actor, z64_link_t *link, int8_t incoming_item_id
 #define GIVEITEM_MAGIC_SMALL 120
 #define GIVEITEM_MAGIC_LARGE 121
 #define GIVEITEM_RUPEE_PURPLE 135
+#define GIVEITEM_BOMBCHUS_5 0x96
 
 #define LEN_ITEMS 21
 uint8_t items[] = {
@@ -422,7 +424,7 @@ uint8_t items[] = {
     GIVEITEM_RUPEE_RED,
     GIVEITEM_HEART,
     GIVEITEM_BOMBS_5,
-    GIVEITEM_ARROWS_SINGLE,
+    GIVEITEM_BOMBCHUS_5,
     0,
     0,
     GIVEITEM_ARROWS_SMALL,
@@ -585,6 +587,28 @@ bool Item00_KillActorIfFlagIsSet(z64_actor_t *actor) {
     }
 }
 
+// Check ammo counts for bombs/chus and drop correspondingly.
+// This function returns the provided drop ID if bombs should be dropped, or ITEM00_ARROWS_SINGLE for chu drops.
+int16_t drop_bombs_or_chus(int16_t dropId) {
+    int8_t bomb_count = z64_file.ammo[Z64_SLOT_BOMB];
+    int8_t chu_count = z64_file.ammo[Z64_SLOT_BOMBCHU];
+
+    if (bomb_count > 15 && chu_count > 15) {
+        // We have more than 15 of both so randomly drop one (50/50)
+        if (z64_Rand_ZeroOne() < 0.5f) {
+            return dropId;
+        } else {
+            return ITEM00_ARROWS_SINGLE;
+        }
+    }
+
+    if (bomb_count <= chu_count) {
+        return dropId; // drop bombs
+    } else {
+        return ITEM00_ARROWS_SINGLE; // drop chus
+    }
+}
+
 // Override the drop ID (what item to spawn) in the call to Item_DropCollectible/Item_DropCollectible2.
 // Drops all overridden items as green rupees for consistency (so they don't float like hearts do).
 // The rest of the code is just the rewrite of the vanilla code for converting drops based on age/health.
@@ -616,6 +640,19 @@ int16_t get_override_drop_id(int16_t dropId, uint16_t params) {
     } else {
         if (dropId == ITEM00_ARROWS_SMALL || dropId == ITEM00_ARROWS_MEDIUM || dropId == ITEM00_ARROWS_LARGE) {
             dropId = ITEM00_SEEDS;
+        }
+    }
+
+    // Chus in logic drops, convert bomb drop to bombchu drop under certain circumstances
+    if (BOMBCHUS_IN_LOGIC && ((dropId == ITEM00_BOMBS_A) || (dropId == ITEM00_BOMBS_SPECIAL) || (dropId == ITEM00_BOMBS_B))) {
+        if ((z64_file.items[Z64_SLOT_BOMB] != -1) && (z64_file.items[Z64_SLOT_BOMBCHU] != -1)) { // we have bombs and chus
+            return drop_bombs_or_chus(dropId);
+        } else if (z64_file.items[Z64_SLOT_BOMB] != -1) { // only have bombs
+            return dropId; // don't do anything because this is already the right drop ID
+        } else if (z64_file.items[Z64_SLOT_BOMBCHU] != -1) { // only have chus
+            return ITEM00_ARROWS_SINGLE; // override drop ID to use the one for chus
+        } else {
+            return -1;
         }
     }
 

@@ -427,6 +427,12 @@ SRAM_SLOTS:
     jal     get_override_drop_id_hook
     sh      T1, 0x0042(sp)
 
+; Hack Item_DropCollectibleRandom to call custom drop override function (mostly just for chus in logic)
+; replaces
+;   jal     0x80013530
+.orga 0xA89D4C
+    jal     get_override_drop_id_hook
+
 ; Hack Item_DropCollectible to set the y rotation to the drop_collectible_override_flag
 ; replaces
 ;   sw      r0, 0x0020(sp)
@@ -1666,21 +1672,6 @@ skip_GS_BGS_text:
     nop
     nop
     nop
-
-; Replaces: lbu     t7, 0x0002(a1)
-;           addiu   v1, zero, 0x00FF
-;           addu    t8, v0, t7
-;           lbu     t9, 0x0074(t8)
-;           beq     v1, t9, 0x80013640
-.orga 0xA89518
-    sw      ra, 0(sp)
-    jal     bomb_drop_convert
-    nop
-    lw      ra, 0(sp)
-    beqz    v1, @drop_nothing
-
-.orga 0xA895A0
-@drop_nothing:
 
 ;==================================================================================================
 ; Override Collectible 05 to be a Bombchus (5) drop instead of the unused Arrow (1) drop
