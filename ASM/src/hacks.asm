@@ -409,22 +409,10 @@ SRAM_SLOTS:
 .skip 4
     nop
 
-;Hack Item_DropCollectible to call custom function to determine what item should be dropped based on our override.
-;overriding call at 0x8001376C to function 0x80013530
-;replaces
-;   jal     0x80013530
-;   sh      T1, 0x0046(sp)
-.orga 0xA896CC ; in memory 0x8001376C
-    jal     get_override_drop_id_hook
-    sh      T1, 0x0046(sp)
-
-; Hack Item_DropCollectible2 to call custom function to determine what item should be dropped based on our override.
-; replaces
-;   jal     0x80013530
-;   sh      T1, 0x0042(sp)
-.orga 0xA898F8 ; in memory 0x80013998
-    jal     get_override_drop_id_hook
-    sh      T1, 0x0042(sp)
+; Override the drop_id convert function s16 func_8001F404(s16 dropId) from decomp
+.orga 0xA89490 ; in memory 0x80013530
+    j get_override_drop_id
+    nop
 
 ; Hack Item_DropCollectibleRandom to call custom drop override function (mostly just for chus in logic)
 ; replaces
@@ -3159,3 +3147,13 @@ skip_GS_BGS_text:
     nop
     nop
     nop
+
+;==================================================================================================
+; Seeding RNG
+;==================================================================================================
+
+; Truth spinner seeding RNG
+; Replaces:
+;   jal     func_800CDCCC
+.orga 0xDB9E14
+    jal     rand_seed_truth_spinner

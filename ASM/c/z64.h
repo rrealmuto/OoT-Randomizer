@@ -1660,14 +1660,6 @@ typedef struct EnGSwitch
 #define z64_LinkDamage_addr                     0x8038E6A8
 #define z64_ObjectSpawn_addr                    0x800812F0
 #define z64_ObjectIndex_addr                    0x80081628
-#define SsSram_ReadWrite_addr                   0x80091474
-#define z64_memcopy_addr                        0x80057030
-#define z64_bzero_addr                          0x80002E80
-#define z64_Item_DropCollectible_addr           0x80013678
-#define z64_Item_DropCollectible2_addr          0x800138B0
-#define z64_Gfx_DrawDListOpa_addr               0x80028048
-#define z64_Math_SinS_addr                      0x800636C4
-#define z64_Rand_ZeroOne_addr                   0x800CDCCC
 #define z64_ActorSetLinkIncomingItemId_addr     0x80022CF4
 #define SsSram_ReadWrite_addr                   0x80091474
 #define z64_memcopy_addr                        0x80057030
@@ -1676,6 +1668,7 @@ typedef struct EnGSwitch
 #define z64_Item_DropCollectible2_addr          0x800138B0
 #define z64_Gfx_DrawDListOpa_addr               0x80028048
 #define z64_Math_SinS_addr                      0x800636C4
+#define z64_RandSeed_addr                       0x800CDCC0
 #define z64_Rand_ZeroOne_addr                   0x800CDCCC
 
 /* rom addresses */
@@ -1743,10 +1736,11 @@ typedef float (*z64_Math_SinS_proc)(int16_t angle);
 
 typedef int32_t(*z64_ObjectSpawn_proc)    (z64_obj_ctxt_t* object_ctx, int16_t object_id);
 typedef int32_t(*z64_ObjectIndex_proc)    (z64_obj_ctxt_t* object_ctx, int16_t object_id);
-typedef float (*z64_Rand_ZeroOne_proc)();
 
 typedef int32_t(*z64_ActorSetLinkIncomingItemId_proc) (z64_actor_t *actor, z64_game_t *game,
                                                        int32_t get_item_id, float xz_range, float y_range);
+typedef void(*z64_RandSeed_proc) (uint32_t seed);
+typedef float(*z64_Rand_ZeroOne_proc)();
 
 /* data */
 #define z64_file_mq             (*(OSMesgQueue*)      z64_file_mq_addr)
@@ -1809,18 +1803,11 @@ typedef int32_t(*z64_ActorSetLinkIncomingItemId_proc) (z64_actor_t *actor, z64_g
                                                       z64_LinkInvincibility_addr)
 #define z64_GetMatrixStackTop   ((z64_GetMatrixStackTop_proc) \
                                                       z64_GetMatrixStackTop_addr)
+#define z64_RandSeed            ((z64_RandSeed_proc)z64_RandSeed_addr)
+#define z64_Rand_ZeroOne        ((z64_Rand_ZeroOne_proc)z64_Rand_ZeroOne_addr)
 
 #define z64_ObjectSpawn         ((z64_ObjectSpawn_proc)z64_ObjectSpawn_addr)
 #define z64_ObjectIndex         ((z64_ObjectIndex_proc)z64_ObjectIndex_addr)
-
-#define SsSram_ReadWrite ((SsSram_ReadWrite_proc)SsSram_ReadWrite_addr)
-#define z64_memcopy ((z64_memcopy_proc)z64_memcopy_addr)
-#define z64_bzero ((z64_bzero_proc)z64_bzero_addr)
-#define z64_Item_DropCollectible ((z64_Item_DropCollectible_proc)z64_Item_DropCollectible_addr)
-#define z64_Item_DropCollectible2 ((z64_Item_DropCollectible_proc)z64_Item_DropCollectible2_addr)
-#define z64_Gfx_DrawDListOpa ((z64_Gfx_DrawDListOpa_proc)z64_Gfx_DrawDListOpa_addr)
-#define z64_Math_SinS ((z64_Math_SinS_proc)z64_Math_SinS_addr)
-#define z64_Rand_ZeroOne ((z64_Rand_ZeroOne_proc)z64_Rand_ZeroOne_addr)
 
 #define z64_ActorSetLinkIncomingItemId ((z64_ActorSetLinkIncomingItemId_proc)z64_ActorSetLinkIncomingItemId_addr)
 #define SsSram_ReadWrite ((SsSram_ReadWrite_proc)SsSram_ReadWrite_addr)
@@ -1830,6 +1817,5 @@ typedef int32_t(*z64_ActorSetLinkIncomingItemId_proc) (z64_actor_t *actor, z64_g
 #define z64_Item_DropCollectible2 ((z64_Item_DropCollectible_proc)z64_Item_DropCollectible2_addr)
 #define z64_Gfx_DrawDListOpa ((z64_Gfx_DrawDListOpa_proc)z64_Gfx_DrawDListOpa_addr)
 #define z64_Math_SinS ((z64_Math_SinS_proc)z64_Math_SinS_addr)
-#define z64_Rand_ZeroOne ((z64_Rand_ZeroOne_proc)z64_Rand_ZeroOne_addr)
 
 #endif
