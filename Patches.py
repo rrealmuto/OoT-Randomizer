@@ -8,6 +8,7 @@ import datetime
 from World import World
 from Rom import Rom
 from Spoiler import Spoiler
+from Location import DisableType
 from LocationList import business_scrubs
 from HintList import getHint
 from Hints import HintArea, writeGossipStoneHints, buildAltarHints, \
@@ -22,6 +23,8 @@ from MQ import patch_files, File, update_dmadata, insert_space, add_relocations
 from SaveContext import SaveContext, Scenes, FlagType
 from version import __version__
 from ItemPool import song_list
+from SceneFlags import get_alt_list_bytes, get_collectible_flag_table, get_collectible_flag_table_bytes
+from texture_util import ci4_rgba16patch_to_ci8, rgba16_patch
 
 
 def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
@@ -90,6 +93,46 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Add it to the extended object table
     add_to_extended_object_table(rom, 0x195, keyring_obj_file)
 
+    # Create the textures for pots/crates. Note: No copyrighted material can be distributed w/ the randomizer. Because of this, patch files are used to create the new textures from the original texture in ROM.
+    # Apply patches for custom textures for pots and crates and add as new files in rom
+    # Crates are ci4 textures in the normal ROM but for pot/crate textures match contents were upgraded to ci8 to support more colors
+    # Pot textures are rgba16
+    # Get the texture table from rom (see textures.c)
+    texture_table_start = rom.sym('texture_table') # Get the address of the texture table
+
+    # texture list. See textures.h for texture IDs
+    #   ID, texture_name,                   Rom Address    CI4 Pallet Addr  Size    Patching function                          Patch file (None for default)
+    crate_textures = [
+        (1, 'texture_pot_gold',             0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_gold_rgba16_patch.bin'),
+        (2, 'texture_pot_key',              0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_key_rgba16_patch.bin'),
+        (3, 'texture_pot_bosskey',          0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_bosskey_rgba16_patch.bin'),
+        (4, 'texture_pot_skull',            0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_skull_rgba16_patch.bin'),
+        (5, 'texture_crate_default',        0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     None),
+        (6, 'texture_crate_gold'   ,        0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     'textures/crate/crate_gold_rgba16_patch.bin'),
+        (7, 'texture_crate_key',            0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     'textures/crate/crate_key_rgba16_patch.bin'),
+        (8, 'texture_crate_skull',          0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     'textures/crate/crate_skull_rgba16_patch.bin'),
+        (9, 'texture_crate_bosskey',        0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     'textures/crate/crate_bosskey_rgba16_patch.bin'),
+        (10, 'texture_smallcrate_gold',     0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_gold_rgba16_patch.bin' ),
+        (11, 'texture_smallcrate_key',      0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_key_rgba16_patch.bin'),
+        (12, 'texture_smallcrate_skull',    0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_skull_rgba16_patch.bin'),
+        (13, 'texture_smallcrate_bosskey',  0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_bosskey_rgba16_patch.bin')
+    ]
+
+    # Loop through the textures and apply the patch. Add the new texture as a new file in rom.
+    for texture_id, texture_name, rom_address_base, rom_address_palette, size,func, patchfile in crate_textures:
+        texture_file = File({'Name': texture_name}) # Create a new file for the texture
+        texture_file.copy(rom) # Relocate this file to free space is the rom
+        texture_data = func(rom, rom_address_base, rom_address_palette, size, data_path(patchfile) if patchfile else None) # Apply the texture patch. Resulting texture will be stored in texture_data as a bytearray
+        rom.write_bytes(texture_file.start, texture_data) # write the bytes to our new file
+        texture_file.end = texture_file.start + len(texture_data) # Get size of the new texture
+        update_dmadata(rom, texture_file) # Update DMA table with new file
+
+        # update the texture table with the rom addresses of the texture files
+        entry = read_rom_texture(rom, texture_id)
+        entry['file_vrom_start'] = texture_file.start
+        entry['file_size'] = texture_file.end - texture_file.start
+        write_rom_texture(rom, texture_id, entry)
+
     # Apply chest texture diffs to vanilla wooden chest texture for Chest Texture Matches Content setting
     # new texture, vanilla texture, num bytes
     textures = [(rom.sym('SILVER_CHEST_FRONT_TEXTURE'), 0xFEC798, 4096),
@@ -113,7 +156,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     # Create an option so that recovery hearts no longer drop by changing the code which checks Link's health when an item is spawned.
     if world.settings.no_collectible_hearts:
-        rom.write_byte(0xA895B7, 0x2E)
+        symbol = rom.sym('NO_COLLECTIBLE_HEARTS')
+        rom.write_byte(symbol, 0x01)
+
     # Remove color commands inside certain object display lists
     rom.write_int32s(0x1455818, [0x00000000, 0x00000000, 0x00000000, 0x00000000]) # Small Key
     rom.write_int32s(0x14B9F20, [0x00000000, 0x00000000, 0x00000000, 0x00000000]) # Boss Key
@@ -1558,7 +1603,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             if locations:
                 # Location types later in the list will be preferred over earlier ones or ones not in the list.
                 # This ensures that if the region behind the boss door is a boss arena, the medallion or stone will be used.
-                priority_types = ("GS Token", "GrottoScrub", "Scrub", "Shop", "NPC", "Collectable", "Chest", "Cutscene", "Song", "BossHeart", "Boss")
+                priority_types = ("GS Token", "GrottoScrub", "Scrub", "Shop", "NPC", "Collectable", "Freestanding", "ActorOverride", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive", "Chest", "Cutscene", "Song", "BossHeart", "Boss")
                 best_type = max((location.type for location in locations), key=lambda type: priority_types.index(type) if type in priority_types else -1)
                 location = random.choice(list(filter(lambda loc: loc.type == best_type, locations)))
                 break
@@ -1658,9 +1703,35 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     # build misc. location hints
     buildMiscLocationHints(world, messages)
+    # Patch freestanding items
+    if world.settings.shuffle_freestanding_items:
+    # Get freestanding item locations
+        actor_override_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'ActorOverride']
+        rupeetower_locations = [location for location in world.get_locations() if location.disabled == DisableType.ENABLED and location.type == 'RupeeTower']
+
+        for location in actor_override_locations:
+            patch_actor_override(location, rom)
+        for location in rupeetower_locations:
+            patch_rupee_tower(location, rom)
+
+    # Write flag table data
+    collectible_flag_table, alt_list = get_collectible_flag_table(world)
+    collectible_flag_table_bytes, num_collectible_flags = get_collectible_flag_table_bytes(collectible_flag_table)
+    alt_list_bytes = get_alt_list_bytes(alt_list)
+    if(len(collectible_flag_table_bytes) > 600):
+        raise(RuntimeError(f'Exceeded collectible override table size: {len(collectible_flag_table_bytes)}'))
+    rom.write_bytes(rom.sym('collectible_scene_flags_table'), collectible_flag_table_bytes)
+    num_collectible_flags += num_collectible_flags % 8
+    rom.write_bytes(rom.sym('num_override_flags'), num_collectible_flags.to_bytes(2, 'big'))
+    if(len(alt_list) > 64):
+        raise(RuntimeError(f'Exceeded alt override table size: {len(alt_list)}'))
+    rom.write_bytes(rom.sym('alt_overrides'), alt_list_bytes)
 
     # Write item overrides
+    check_location_dupes(world)
     override_table = get_override_table(world)
+    if len(override_table) >= 1536:
+        raise(RuntimeError(f'Exceeded override table size: {len(override_table)}'))
     rom.write_bytes(rom.sym('cfg_item_overrides'), get_override_table_bytes(override_table))
     rom.write_byte(rom.sym('PLAYER_ID'), world.id + 1) # Write player ID
 
@@ -1783,8 +1854,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     shuffle_messages.shop_item_messages = []
 
     # kokiri shop
+    shop_locations = [location for location in world.get_region('KF Kokiri Shop').locations if location.type == 'Shop'] # Need to filter because of the freestanding item in KF Shop
     shop_objs = place_shop_items(rom, world, shop_items, messages,
-        world.get_region('KF Kokiri Shop').locations, True)
+        shop_locations, True)
     shop_objs |= {0x00FC, 0x00B2, 0x0101, 0x0102, 0x00FD, 0x00C5} # Shop objects
     rom.write_byte(0x2587029, len(shop_objs))
     rom.write_int32(0x258702C, 0x0300F600)
@@ -1944,10 +2016,11 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         update_message_by_id(messages, 0x304D, "How do you like it?\x02")
         update_message_by_id(messages, 0x304F, "How about buying this cool item for \x01200 Rupees?\x01\x1B\x05\x42Buy\x01Don't buy\x05\x40\x02")
 
-    if world.settings.shuffle_smallkeys == 'remove' or world.settings.shuffle_bosskeys == 'remove' or world.settings.shuffle_ganon_bosskey == 'remove':
-        locked_doors = get_locked_doors(rom, world)
-        for _,[door_byte, door_bits] in locked_doors.items():
-            save_context.write_bits(door_byte, door_bits)
+    if world.settings.shuffle_pots != 'off': # Update the first BK door in ganon's castle to use a separate flag so it can be unlocked to get to the pots
+        patch_ganons_tower_bk_door(rom, 0x15) # Using flag 0x15 for the door. GBK doors normally use 0x14.
+    locked_doors = get_doors_to_unlock(rom, world)
+    for _, [door_byte, door_bits] in locked_doors.items():
+        save_context.write_bits(door_byte, door_bits)
 
     # Fix chest animations
     BROWN_CHEST = 0
@@ -2026,6 +2099,15 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     if world.settings.invisible_chests:
         symbol = rom.sym('CHEST_LENS_ONLY')
         rom.write_int32(symbol, 0x00000001)
+
+    # Update pot type appearance
+    ptmc_options = {
+        'off': 0,
+        'textures_content' : 1,
+        'textures_unchecked': 2,
+    }
+    symbol = rom.sym('POTCRATE_TEXTURES_MATCH_CONTENTS')
+    rom.write_byte(symbol, ptmc_options[world.settings.correct_potcrate_appearances])
 
     # give dungeon items the correct messages
     add_item_messages(messages, shop_items, world)
@@ -2224,6 +2306,12 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     save_context.equip_current_items(world.settings.starting_age)
     save_context.write_save_table(rom)
 
+    # Write numeric seed truncated to 32 bits for rng seeding
+    # Overwritten with new seed every time a new rng value is generated
+    rom.write_int32(rom.sym('RNG_SEED_INT'), spoiler.settings.numeric_seed & 0xFFFFFFFF)
+    # Static initial seed value for one-time random actions like the Hylian Shield discount
+    rom.write_int32(rom.sym('RANDOMIZER_RNG_SEED'), spoiler.settings.numeric_seed & 0xFFFFFFFF)
+    
     return rom
 
 
@@ -2234,19 +2322,17 @@ def add_to_extended_object_table(rom, object_id, object_file):
     rom.write_int32s(extended_object_table + extended_id * 8, [object_file.start, object_file.end])
 
 
-item_row_struct = struct.Struct('>BBHHBBIIhh') # Match item_row_t in item_table.h
+item_row_struct = struct.Struct('>BBHHBBIIhhBxxx') # Match item_row_t in item_table.h
 item_row_fields = [
     'base_item_id', 'action_id', 'text_id', 'object_id', 'graphic_id', 'chest_type',
-    'upgrade_fn', 'effect_fn', 'effect_arg1', 'effect_arg2',
+    'upgrade_fn', 'effect_fn', 'effect_arg1', 'effect_arg2', 'collectible',
 ]
-
 
 def read_rom_item(rom, item_id):
     addr = rom.sym('item_table') + (item_id * item_row_struct.size)
     row_bytes = rom.read_bytes(addr, item_row_struct.size)
     row = item_row_struct.unpack(row_bytes)
     return { item_row_fields[i]: row[i] for i in range(len(item_row_fields)) }
-
 
 def write_rom_item(rom, item_id, item):
     addr = rom.sym('item_table') + (item_id * item_row_struct.size)
@@ -2255,12 +2341,27 @@ def write_rom_item(rom, item_id, item):
     rom.write_bytes(addr, row_bytes)
 
 
+texture_struct = struct.Struct('>HBxxxxxII') # Match texture_t in textures.c
+texture_fields = ['texture_id', 'file_buf', 'file_vrom_start', 'file_size']
+
+def read_rom_texture(rom, texture_id):
+    addr = rom.sym('texture_table') + (texture_id * texture_struct.size)
+    row_bytes = rom.read_bytes(addr, texture_struct.size)
+    row = texture_struct.unpack(row_bytes)
+    return {texture_fields[i]: row[i] for i in range(len(texture_fields))}
+
+def write_rom_texture(rom, texture_id, texture):
+    addr = rom.sym('texture_table') + (texture_id * texture_struct.size)
+    row = [texture[f] for f in texture_fields]
+    row_bytes = texture_struct.pack(*row)
+    rom.write_bytes(addr, row_bytes)
+
 
 def get_override_table(world):
     return list(filter(lambda val: val != None, map(get_override_entry, world.get_filled_locations())))
 
 
-override_struct = struct.Struct('>xBBBHBB') # match override_t in get_items.c
+override_struct = struct.Struct('>BBHHBB') # match override_t in get_items.c
 def get_override_table_bytes(override_table):
     return b''.join(sorted(itertools.starmap(override_struct.pack, override_table)))
 
@@ -2270,6 +2371,10 @@ def get_override_entry(location):
     default = location.default
     item_id = location.item.index
     if None in [scene, default, item_id]:
+        return None
+
+    # Don't add freestanding items, pots/crates, beehives to the override table if they're disabled. We use this check to determine how to draw and interact with them
+    if location.type in ["ActorOverride", "Freestanding", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive"] and location.disabled != DisableType.ENABLED:
         return None
 
     player_id = location.item.world.id + 1
@@ -2283,7 +2388,15 @@ def get_override_entry(location):
     elif location.type == 'Chest':
         type = 1
         default &= 0x1F
-    elif location.type == 'Collectable':
+    elif location.type in ['Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive']:
+        type = 6
+        if not (isinstance(location.default, list) or isinstance(location.default, tuple)):
+            raise Exception("Not right")
+        if(isinstance(location.default, list)):
+            default = location.default[0]
+        room, scene_setup, flag = default
+        default = (room << 8) + (scene_setup << 14) + flag
+    elif location.type in ['Collectable', 'ActorOverride']:
         type = 2
     elif location.type == 'GS Token':
         type = 3
@@ -2297,6 +2410,16 @@ def get_override_entry(location):
         return None
 
     return (scene, type, default, item_id, player_id, looks_like_item_id)
+
+
+def check_location_dupes(world):
+    locations = list(world.get_filled_locations())
+    for i in range(0, len(locations)):
+        for j in range(0, len(locations)):
+            check_i = locations[i]
+            check_j = locations[j]
+            if(check_i.name == check_j.name and i != j):
+                raise Exception(f'Discovered duplicate location: {check_i.name}')
 
 
 chestTypeMap = {
@@ -2486,30 +2609,38 @@ def set_spirit_shortcut_actors(rom):
     get_actor_list(rom, set_spirit_shortcut)
 
 
-
-def get_locked_doors(rom, world):
-    def locked_door(rom, actor_id, actor, scene):
+# Gets a dict of doors to unlock based on settings
+# Returns: dict with entries address: [byte_offset, bit]
+# Where:    address = rom address of the door
+#           byte_offset = the offset, in bytes, of the door flag in the SaveContext
+#           bit = the bit offset within the byte for the door flag
+# If small keys are set to remove, returns all small key doors
+# If boss keys are set to remove, returns boss key doors
+# If ganons boss key is set to remove, returns ganons boss key doors
+# If pot/crate shuffle is enabled, returns the first ganon's boss key door so that it can be unlocked separately to allow access to the room w/ the pots..
+def get_doors_to_unlock(rom, world):
+    def get_door_to_unlock(rom, actor_id, actor, scene):
         actor_var = rom.read_int16(actor + 14)
-        actor_type = actor_var >> 6
-        actor_flag = actor_var & 0x003F
+        door_type = actor_var >> 6
+        switch_flag = actor_var & 0x003F
 
-        flag_id = (1 << actor_flag)
-        flag_byte = 3 - (actor_flag >> 3)
-        flag_bits = 1 << (actor_flag & 0x07)
+        flag_id = (1 << switch_flag)
+        flag_byte = 3 - (switch_flag >> 3)
+        flag_bits = 1 << (switch_flag & 0x07)
 
-        # If locked door, set the door's unlock flag
+        # Return small key doors that should be unlocked
         if world.settings.shuffle_smallkeys == 'remove':
-            if actor_id == 0x0009 and actor_type == 0x02:
+            if actor_id == 0x0009 and door_type == 0x02:
                 return [0x00D4 + scene * 0x1C + 0x04 + flag_byte, flag_bits]
-            if actor_id == 0x002E and actor_type == 0x0B:
-                return [0x00D4 + scene * 0x1C + 0x04 + flag_byte, flag_bits]
-
-        # If boss door, set the door's unlock flag
-        if (world.settings.shuffle_bosskeys == 'remove' and scene != 0x0A) or (world.settings.shuffle_ganon_bosskey == 'remove' and scene == 0x0A):
-            if actor_id == 0x002E and actor_type == 0x05:
+            if actor_id == 0x002E and door_type == 0x0B:
                 return [0x00D4 + scene * 0x1C + 0x04 + flag_byte, flag_bits]
 
-    return get_actor_list(rom, locked_door)
+        # Return Boss Doors that should be unlocked
+        if (world.settings.shuffle_bosskeys == 'remove' and scene != 0x0A) or (world.settings.shuffle_ganon_bosskey == 'remove' and scene == 0x0A) or (world.settings.shuffle_pots and scene == 0x0A and switch_flag == 0x15):
+            if actor_id == 0x002E and door_type == 0x05:
+                return [0x00D4 + scene * 0x1C + 0x04 + flag_byte, flag_bits]
+
+    return get_actor_list(rom, get_door_to_unlock)
 
 
 def create_fake_name(name):
@@ -2644,3 +2775,30 @@ def configure_dungeon_info(rom, world):
     rom.write_bytes(rom.sym('CFG_DUNGEON_REWARDS'), dungeon_rewards)
     rom.write_bytes(rom.sym('CFG_DUNGEON_IS_MQ'), dungeon_is_mq)
     rom.write_bytes(rom.sym('CFG_DUNGEON_REWARD_AREAS'), dungeon_reward_areas)
+
+# Overwrite an actor in rom w/ the actor data from LocationList
+def patch_actor_override(location, rom: Rom):
+    addresses = location.address
+    patch = location.address2
+    if addresses is not None and patch is not None:
+        for address in addresses:
+            rom.write_bytes(address, patch)
+
+# Patch rupee towers (circular patterns of rupees) to include their flag in their actor initialization data z rotation.
+# Also used for goron pot, shadow spinning pots
+def patch_rupee_tower(location, rom: Rom):
+    flag = location.default
+    if(isinstance(location.default, tuple)):
+        room, scene_setup, flag = location.default
+    elif isinstance(location.default, list):
+        room, scene_setup, flag = location.default[0]
+    flag = flag + (room << 8)
+    if location.address:
+        for address in location.address:
+            rom.write_bytes(address + 12, flag.to_bytes(2, byteorder='big'))
+
+# Patch the first boss key door in ganons tower that leads to the room w/ the pots
+def patch_ganons_tower_bk_door(rom: Rom, flag):
+    var = (0x05 << 6) + (flag & 0x3F)
+    bytes = [(var & 0xFF00) >> 8, var & 0xFF]
+    rom.write_bytes(0x2EE30FE, bytes)

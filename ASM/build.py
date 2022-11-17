@@ -101,11 +101,13 @@ with open('build/asm_symbols.txt', 'r') as f:
 
 os.chdir(run_dir)
 
+PAYLOAD_START = int(symbols['PAYLOAD_START']['address'], 16)
+PAYLOAD_END = int(symbols['PAYLOAD_END']['address'], 16)
 data_symbols = {}
 for (name, sym) in symbols.items():
     if sym['type'] == 'data':
         addr = int(sym['address'], 16)
-        if 0x80400000 <= addr < 0x80420000:
+        if PAYLOAD_START <= addr < PAYLOAD_END:
             addr = addr - 0x80400000 + 0x03480000
         else:
             continue

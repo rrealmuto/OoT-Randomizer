@@ -80,7 +80,6 @@
     }
   }
 
-
   .footerTabset {
     position: absolute;
     bottom: 0;
@@ -97,7 +96,7 @@
       padding: 1.25rem;
 
       @media (max-width: 680px) {
-        padding: 0.5rem;
+        padding: 1.25rem 0.5rem 0.5rem 0.5rem;
       }
     }
   }
@@ -262,6 +261,7 @@
 
   .comboBoxLabel {
     position: relative;
+    display: block;
     left: 10px;
 
     &.oneLineComboBox {
@@ -280,6 +280,36 @@
 
   .selectXSmall {
     max-width: 300px;
+  }
+
+  div.select-wrapper {
+    display: flex;
+
+    nb-select {
+      flex-grow: 1;
+    }
+  }
+
+  img.select-info {
+    content: "o";
+    width: 26px;
+    height: 26px;
+    padding: 13px;
+    font-size: 2em;
+    margin-left: 5px;
+    background-image: nb-theme(tooltip-src);
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+
+    &.info-icon-colors {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &.disabled {
+      opacity: 0;
+    }
   }
 
   p.numberTextInputLabel {
@@ -324,16 +354,16 @@
     overflow: hidden;
   }
 
-.scale {
-  position: relative;
-  top: -7px;
-  min-width: 100%;
-  pointer-events: none; //Reduces the clickable part to just the visible slider itself
+  .scale {
+    position: relative;
+    top: -7px;
+    min-width: 100%;
+    pointer-events: none; //Reduces the clickable part to just the visible slider itself
 
-  ::ng-deep .mat-slider-wrapper {
-    pointer-events: auto;
+    ::ng-deep .mat-slider-wrapper {
+      pointer-events: auto;
+    }
   }
-}
 
   .ioInputLabel {
     position: relative;

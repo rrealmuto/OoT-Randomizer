@@ -100,7 +100,7 @@
       }
 
       nb-option, nb-option.selected {
-        color: nb-theme(color-basic-1000) !important;
+        color: nb-theme(color-basic-1000);
 
         &:hover {
           background-color: nb-theme(color-success-300) !important;
@@ -198,6 +198,12 @@
 
         &.selectXSmall {
           display: block;
+        }
+
+        &.select-colors {
+          display: inline-block;
+          max-width: 300px;
+          width: 72%;
         }
       }
 
@@ -439,6 +445,7 @@
           -webkit-user-select: none;
           -moz-user-select: none;
           user-select: none;
+          font-weight: 500;
 
           &:hover {
             background-color: nb-theme(color-info-500);

@@ -62,6 +62,9 @@ import { GUITooltipComponent } from './guiTooltip/guiTooltip.component';
         GUITooltipComponent,
         GUIListboxComponent
     ],
+    providers: [
+      { provide: Window, useValue: window }
+    ],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA
     ]

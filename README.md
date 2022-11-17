@@ -25,7 +25,7 @@ https://ootrandomizer.com
 If you wish to run the script raw, clone this repository and either run ```Gui.py``` for a
 graphical interface or ```OoTRandomizer.py``` for the command line version. They both require Python 3.6+. This will be fully featured,
 but the seeds you generate will have different random factors than the bundled release.
-To use the GUI, [NodeJS](https://nodejs.org/download/release/v14.15.1/) (v14, with npm) will additionally need to be installed. NodeJS v16+ is currently not supported.
+To use the GUI, [NodeJS](https://nodejs.org/download/release/v18.12.1/) (v18 LTS, with npm) will additionally need to be installed. NodeJS v12.20.1 and earlier are no longer supported.
 The first time ```Gui.py``` is run it will need to install necessary components, which could take a few minutes. Subsequent instances will run much quicker.
 Supported output formats are .z64 (N64/Emulator), .wad (Wii VC, channel IDs NICE/NRKE recommended), Uncompressed ROM (for developmental purposes, offline build only)
 and .zpf/.zpfz (patch files, for sharing seeds with others).
@@ -145,7 +145,11 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * New setting `Fix Broken Drops` adds a magic jar drop in GTG and a pot that drops a deku shield in Spirit Temple. These spawns were present in the code already but would not actually spawn due to the respective objects not being loaded.
   * New settings `Adult Link Model` and `Child Link Model` allow you to select a .zobj model file to replace Link's look in-game. For more details see the [Custom Models section](#Custom-Models)
   * New section under SFX labeled `Link` has options `Adult Voice` and `Child Voice`, allowing you to choose to either silence Link or change the voice to feminine to match your chosen player model. Adult and child female voices provided by Maple and shiroaeli in the Discord, respectively.
-   * New Misc. Hints for each of the Skulltula rewards makes it so each of the cursed family members who give a randomized reward will tell you what the reward is before being rescued. This precludes those locations from being conditional always hints.
+  * New Misc. Hints for each of the Skulltula rewards makes it so each of the cursed family members who give a randomized reward will tell you what the reward is before being rescued. This precludes those locations from being conditional always hints.
+  * New setting `Shuffle Rupees & Hearts` which allows you to shuffle freestanding rupees and recovery hearts in the world.
+  * New settings `Shuffle Pots` and `Shuffle Crates` which allows you to shuffle items from pots and crates that normally drop an item.
+  * New setting `Pot & Crate Appearance Matches Contents` which changes the pot/crate texture when using one of the above settings, similar to `Chest Appearance Matches Contents`.
+  * New setting `Shuffle Beehives` which allows beehives found in certain grottos to drop an item.
 
 * **Gameplay**
   * Shortened the animation for equipping magic arrows.
@@ -157,6 +161,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * Several vanilla warp destination messages have been updated to keep consistency with our custom warp destination messages.
   * Removed the cutscenes when throwing a bomb at and blowing up the boulder in front of Dodongo's Cavern.
   * Certain switches in MQ dungeons have been moved down 1 unit so they are less difficult for Link to walk onto.
+  * The "Truth Spinner" puzzle in the Shadow Temple's solution is now seeded per seed, so that the correct skull will be consistent across players racing the same seed.
 
 
 #### Bug fixes
@@ -196,6 +201,12 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * You can now specify an arbitrary 4-character hexadecimal text ID as a "Gossip Stone" to overwrite text in the game.
   * Adjusted how `starting_items` works in order to remove some redundancy, where it is now placed within the settings dictionary.. Spoiler output now includes a section `:skipped_locations` instead which is not used by Plandomizer.
   * Gold Skulltula Token requirements can be increased above 100 (the pool must also have at least that many).
+  * Plandomizer will now display an error and inform the user if they have specified conflicting settings within the plando.
+  * New plando item groups available: `#Map`, `#Compass`, `#BossKey`, and `#SmallKey` for placing a random one of these dungeon items in a specific location.
+  * Cosmetics plando has added three new groups which songs can be placed in `bgm_groups`:
+    * `favorites`: Songs placed in this group will be given priority when placing songs.
+    * `exclude`: Songs placed in this group will be ignored when placing songs.
+    * `groups`: In here you can place a dictionary where the key is a custom group name and the value is a list of sequences, and use `#GroupName` similar to item groups in normal plando to place any song from that group in that location.
 * Triforce Hunt changes
   * The number of Triforce pieces available per world, which was previously tied to the item pool setting, is now a separate setting.
 * Replaced old output option `compress_rom` with four separate options for outputting a patch file, compressed ROM, uncompressed ROM, and a WAD file.
@@ -210,12 +221,11 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Hinted item and location for a Gossip Stone hint are now included in the spoiler log.
 * One-way entrances are now restricted to one per hint area rather than one per scene.
 * You can now receive starting ice traps, either from Impa's item with Skip Child Zelda or with plando.
-* Plandomizer will now display an error and inform the user if they have specified conflicting settings within the plando.
 * Common ER error messages are now more helpful to solving the issue.
 * Corrected some goal hint colors.
 * Triforce Piece model has been updated so that it is shinier and centered.
 * Goal hints are now selected based on their category rather than their parent goal.
-* New plando item groups available: `#Map`, `#Compass`, `#BossKey`, and `#SmallKey` for placing a random one of these dungeon items in a specific location.
+* Settings and tricks in the spoiler log have been re-ordered to more closely follow the order in the GUI and use more logical groupings, respectively.
 
 ### 6.2
 

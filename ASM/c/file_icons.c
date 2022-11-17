@@ -589,7 +589,7 @@ void draw_file_icons(z64_disp_buf_t* db, const z64_menudata_t* menu_data) {
         if ((menu_data->menu_transition == 0x00 && menu_data->menu_depth == 0x02)
                 || menu_data->alt_transition == 0x05
                 || menu_data->alt_transition == 0x16) {
-            read_file_data(&menu_data->sram_buffer->primary_saves[menu_data->selected_file]);
+            read_file_data(&menu_data->sram_buffer->primary_saves[menu_data->selected_file].original_save);
             return;
         }
     }

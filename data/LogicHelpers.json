@@ -61,11 +61,11 @@
             or (for_age == adult and (Bow or Hookshot))
             or (for_age == both and (Slingshot or Boomerang) and (Bow or Hookshot))
             or (for_age == either and (Slingshot or Boomerang or Bow or Hookshot))",
-    "can_bonk_tree": "deadly_bonks != 'ohko' or Fairy or can_use(Nayrus_Love)",
-    "can_bonk_crate": "deadly_bonks != 'ohko' or Fairy or can_use(Nayrus_Love) or can_blast_or_smash",
-    "can_bonk_underwater_crate": "deadly_bonks != 'ohko' or Fairy or can_use(Nayrus_Love)",
-    "can_bonk_heated_crate": "(deadly_bonks != 'ohko' or (Fairy and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or can_use(Nayrus_Love) or can_blast_or_smash)",
-
+    "can_bonk": "deadly_bonks != 'ohko' or Fairy or can_use(Nayrus_Love)",
+    "can_break_crate": "can_bonk or can_blast_or_smash",
+    "can_break_heated_crate": "deadly_bonks != 'ohko' or (Fairy and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or can_use(Nayrus_Love) or can_blast_or_smash",
+    "can_break_lower_beehive": "can_use(Boomerang) or can_use(Hookshot) or Bombs or (logic_beehives_bombchus and has_bombchus)",
+    "can_break_upper_beehive": "can_use(Boomerang) or can_use(Hookshot) or (logic_beehives_bombchus and has_bombchus)",
     # can_use and helpers
     # The parser reduces this to smallest form based on item category.
     # Note that can_use(item) is False for any item not covered here.
@@ -87,9 +87,11 @@
     "has_fire_source_with_torch": "has_fire_source or (is_child and Sticks)",
 
     # Gerudo Fortress
-    "can_finish_GerudoFortress": "(gerudo_fortress == 'normal' and (Small_Key_Thieves_Hideout, 4) and (is_adult or Kokiri_Sword or is_glitched) and (is_adult and (Bow or Hookshot or Hover_Boots) or Gerudo_Membership_Card or logic_gerudo_kitchen or is_glitched))
-            or (gerudo_fortress == 'fast' and Small_Key_Thieves_Hideout and (is_adult or Kokiri_Sword or is_glitched))
-            or (gerudo_fortress != 'normal' and gerudo_fortress != 'fast')",
+    "can_finish_GerudoFortress": "(gerudo_fortress == 'normal' and
+            'Hideout 1 Torch Jail Carpenter' and 'Hideout 2 Torches Jail Carpenter'
+            and 'Hideout 3 Torches Jail Carpenter' and 'Hideout 4 Torches Jail Carpenter')
+        or (gerudo_fortress == 'fast' and 'Hideout 1 Torch Jail Carpenter')
+        or (gerudo_fortress != 'normal' and gerudo_fortress != 'fast')",
     # Mirror shield does not count because it cannot reflect scrub attack.
     "has_shield": "(is_adult and Hylian_Shield) or (is_child and Deku_Shield)",
     "can_shield": "(is_adult and (Hylian_Shield or Mirror_Shield)) or (is_child and Deku_Shield)",
@@ -123,9 +125,10 @@
         (shuffle_ganon_bosskey == 'dungeons' and has_dungeon_rewards(ganon_bosskey_rewards)) or
         (shuffle_ganon_bosskey == 'tokens' and (Gold_Skulltula_Token, ganon_bosskey_tokens)) or
         (shuffle_ganon_bosskey == 'hearts' and has_hearts(ganon_bosskey_hearts))) or
+        (shuffle_ganon_bosskey == 'triforce' and (Triforce_Piece, triforce_goal_per_world)) or
         (shuffle_ganon_bosskey != 'stones' and shuffle_ganon_bosskey != 'medallions' and
         shuffle_ganon_bosskey != 'dungeons' and shuffle_ganon_bosskey != 'tokens' and
-        shuffle_ganon_bosskey != 'hearts')",
+        shuffle_ganon_bosskey != 'hearts' and shuffle_ganon_bosskey != 'triforce')",
 
     # Dungeon Shortcuts
     "deku_tree_shortcuts": "'Deku Tree' in dungeon_shortcuts",
