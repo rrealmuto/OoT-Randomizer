@@ -1009,11 +1009,14 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             # Fixup save/quit and death warping entrance IDs on bosses.
             if 'savewarp_addresses' in replaced_entrance and entrance.reverse:
                 if entrance.parent_region.savewarp:
-                    savewarp = entrance.parent_region.savewarp.replaces
+                    savewarp = entrance.parent_region.savewarp.replaces.data['index']
+                elif 'savewarp_fallback' in entrance.reverse.data:
+                    # Spawning outside a grotto crashes the game, so we use a nearby regular entrance instead.
+                    savewarp = entrance.reverse.data['savewarp_fallback']
                 else:
-                    savewarp = entrance.reverse
+                    savewarp = entrance.reverse.data['index']
                 for address in replaced_entrance['savewarp_addresses']:
-                    rom.write_int16(address, savewarp.data['index'])
+                    rom.write_int16(address, savewarp)
 
             for address in new_entrance.get('addresses', []):
                 rom.write_int16(address, replaced_entrance['index'])
