@@ -745,6 +745,7 @@ def shuffle_random_entrances(worlds):
                         target = dungeon_exits[target.name]
                 blue_warp.connect(target.connected_region)
                 blue_warp.replaces = target
+                blue_warp.shuffled = True
 
 
     # Multiple checks after shuffling entrances to make sure everything went fine
