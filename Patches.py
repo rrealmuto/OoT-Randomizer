@@ -1004,7 +1004,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
         for entrance in entrances:
             new_entrance = entrance.data
-            replaced_entrance = entrance.replaces.data
+            replaced_entrance = (entrance.replaces or entrance).data
 
             # Fixup save/quit and death warping entrance IDs on bosses.
             if 'savewarp_addresses' in replaced_entrance and entrance.reverse:
@@ -1127,7 +1127,8 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         rom.write_int32(0xB06318, 0x00000000)
 
     # Set entrances to update, except grotto entrances which are handled on their own at a later point
-    set_entrance_updates(world.get_shuffled_entrances())
+    # Always patch blue warps to fix a crash when child steps into an adult blue warp
+    set_entrance_updates(entrance for entrance in world.get_shufflable_entrances() if entrance.shuffled or entrance.type == 'BlueWarp')
 
     for k, v in [(k,v) for k, v in exit_updates if k in exit_table]:
         for addr in exit_table[k]:
