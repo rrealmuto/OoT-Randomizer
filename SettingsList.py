@@ -137,12 +137,14 @@ logic_tricks = {
 
     'Pass Through Visible One-Way Collisions': {
         'name'    : 'logic_visible_collisions',
-        'tags'    : ("Entrance", "Kakariko Village",),
+        'tags'    : ("Entrance", "Kakariko Village", "Deku Tree",),
         'tooltip' : '''\
                     Allows climbing through the platform to reach
-                    Impa's House Back as adult with no items and
-                    going through the Kakariko Village Gate as child
-                    when coming from the Mountain Trail side.
+                    Impa's House Back as adult with no items, going
+                    through the Kakariko Village Gate as child when
+                    coming from the Mountain Trail side, and climbing
+                    through the webs in the Deku Tree when coming from
+                    the boss door.
                     '''},
     'Hidden Grottos without Stone of Agony': {
         'name'    : 'logic_grottos_without_agony',

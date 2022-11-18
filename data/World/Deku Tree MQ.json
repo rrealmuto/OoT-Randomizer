@@ -115,7 +115,7 @@
             "Deku Tree MQ Basement Recovery Heart 3": "True"
         },
         "exits": {
-            "Deku Tree Basement Ledge": "True",
+            "Deku Tree Basement Ledge": "logic_visible_collisions",
             "Deku Tree Boss Door": "deku_tree_shortcuts or here(has_shield)"
         }
     }
