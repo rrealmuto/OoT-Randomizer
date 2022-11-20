@@ -388,9 +388,9 @@ def randomize_music(rom, settings, log):
     for bgm in itertools.chain(bgm_ids.values(), ff_ids.values(), ocarina_ids.values()):
         if music_mapping.get(bgm[0], '') == "None":
             disabled_target_sequences[bgm[0]] = bgm
+            del music_mapping[bgm[0]]
     for bgm in disabled_ids:
         if bgm[0] not in music_mapping:
-            music_mapping[bgm[0]] = "None"
             disabled_target_sequences[bgm[0]] = bgm
 
     # Map music to itself if music is set to normal.
