@@ -2608,7 +2608,6 @@ location_table = OrderedDict([
     ("Ganons Tower Keese 5",                                         ("EnemyDrop",    0x0A,  (7,0,6), None,                     'Rupees (5)',                            ("Ganon's Castle", "Vanilla", "EnemyDrop"))),
     ("Ganons Tower Keese 6",                                         ("EnemyDrop",    0x0A,  (7,0,7), None,                     'Rupees (5)',                            ("Ganon's Castle", "Vanilla", "EnemyDrop"))),
     ("Ganons Tower Keese 7",                                         ("EnemyDrop",    0x0A,  (7,0,8), None,                     'Rupees (5)',                            ("Ganon's Castle", "Vanilla", "EnemyDrop"))),
-    ("Ganons Tower Keese 8",                                         ("EnemyDrop",    0x0A,  (7,0,9), None,                     'Rupees (5)',                            ("Ganon's Castle", "Vanilla", "EnemyDrop"))),
     ("Ganons Tower Lizalfos 1",                                      ("EnemyDrop",    0x0A,  (0,0,2), None,                     'Rupees (5)',                            ("Ganon's Castle", "Vanilla", "EnemyDrop"))),
     ("Ganons Tower Lizalfos 2",                                      ("EnemyDrop",    0x0A,  (0,0,3), None,                     'Rupees (5)',                            ("Ganon's Castle", "Vanilla", "EnemyDrop"))),
     ("Ganons Tower Stalfos 1",                                       ("EnemyDrop",    0x0A,  (2,0,6), None,                     'Rupees (5)',                            ("Ganon's Castle", "Vanilla", "EnemyDrop"))),
