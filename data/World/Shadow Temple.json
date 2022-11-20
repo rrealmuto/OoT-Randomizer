@@ -209,7 +209,7 @@
         },
         "exits": {
             "Shadow Temple Beyond Boat Scarecrow": "can_use(Scarecrow)",
-            "Shadow Temple Before Boss": "True"
+            "Shadow Temple Across Chasm": "True"
         }
     },
     {
