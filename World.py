@@ -63,7 +63,7 @@ class World(object):
 
         self.entrance_shuffle = (
             self.shuffle_interior_entrances or settings.shuffle_grotto_entrances or self.shuffle_dungeon_entrances
-            or settings.shuffle_overworld_entrances or settings.shuffle_gerudo_valley_river_exit or (settings.owl_drops != 'off') or (settings.warp_songs != 'off')
+            or settings.shuffle_overworld_entrances or (settings.shuffle_gerudo_valley_river_exit != 'off') or (settings.owl_drops != 'off') or (settings.warp_songs != 'off')
             or settings.blue_warps not in ('vanilla', 'dungeon') or self.spawn_positions or (settings.shuffle_bosses != 'off')
         )
 

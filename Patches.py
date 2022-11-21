@@ -1098,13 +1098,6 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         # Purge temp flags on entrance to spirit from colossus through the front door.
         rom.write_byte(0x021862E3, 0xC2)
 
-    if (
-            world.settings.shuffle_overworld_entrances or world.shuffle_dungeon_entrances
-            or (world.settings.shuffle_bosses != 'off')
-    ):
-        # Remove deku sprout and drop player at SFM after forest completion
-        rom.write_int16(0xAC9F96, 0x0608)
-
     if world.shuffle_special_dungeon_entrances:
         # Move Hyrule's Castle Courtyard exit spawn to be before the crates so players don't skip Talon
         rom.write_int16(0x21F607A, 0x033A) # Position X
@@ -1127,8 +1120,17 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         rom.write_int32(0xB06318, 0x00000000)
 
     # Set entrances to update, except grotto entrances which are handled on their own at a later point
-    # Always patch blue warps to fix a crash when child steps into an adult blue warp
-    set_entrance_updates(entrance for entrance in world.get_shufflable_entrances() if entrance.shuffled or entrance.type == 'BlueWarp')
+    patch_blue_warps = ( # Settings where blue warps need to be patched to fix a crash when child steps into an adult blue warp
+        world.settings.shuffle_overworld_entrances
+        or world.shuffle_dungeon_entrances
+        or world.settings.shuffle_bosses != 'off'
+        or world.settings.blue_warps in ('balanced', 'full')
+        or world.settings.shuffle_gerudo_valley_river_exit == 'full'
+        or world.settings.owl_drops == 'full'
+        or world.settings.warp_songs == 'full'
+        or world.settings.spawn_positions == 'full'
+    )
+    set_entrance_updates(entrance for entrance in world.get_shufflable_entrances() if entrance.shuffled or (patch_blue_warps and entrance.type == 'BlueWarp'))
 
     for k, v in [(k,v) for k, v in exit_updates if k in exit_table]:
         for addr in exit_table[k]:
