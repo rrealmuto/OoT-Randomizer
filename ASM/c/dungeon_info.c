@@ -92,7 +92,7 @@ int d_right_dungeon_idx(int i) {
     int dungeon_idx = i + 1; // skip Deku
     if (!CFG_DUNGEON_INFO_SILVER_RUPEES || !CFG_DUNGEON_IS_MQ[DODONGO_ID]) dungeon_idx++; // skip DC
     if (dungeon_idx >= 2) dungeon_idx++; // skip Jabu
-    if (dungeon_idx > 9 && (!CFG_DUNGEON_INFO_SILVER_RUPEES || CFG_DUNGEON_IS_MQ[ICE_ID])) dungeon_idx++; // skip Ice
+    if (dungeon_idx >= 9 && (!CFG_DUNGEON_INFO_SILVER_RUPEES || CFG_DUNGEON_IS_MQ[ICE_ID])) dungeon_idx++; // skip Ice
     return dungeon_idx;
 }
 
