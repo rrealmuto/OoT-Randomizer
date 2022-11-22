@@ -14,6 +14,8 @@ void give_bottle(z64_file_t *save, int16_t bottle_item_id, int16_t arg2);
 void give_dungeon_item(z64_file_t *save, int16_t mask, int16_t dungeon_id);
 void give_small_key(z64_file_t *save, int16_t dungeon_id, int16_t arg2);
 void give_small_key_ring(z64_file_t *save, int16_t dungeon_id, int16_t arg2);
+void give_silver_rupee(z64_file_t *save, int16_t dungeon_id, int16_t silver_rupee_id);
+void give_silver_rupee_pouch(z64_file_t *save, int16_t dungeon_id, int16_t silver_rupee_id);
 void give_defense(z64_file_t *save, int16_t arg1, int16_t arg2);
 void give_magic(z64_file_t *save, int16_t arg1, int16_t arg2);
 void give_double_magic(z64_file_t *save, int16_t arg1, int16_t arg2);
@@ -25,7 +27,7 @@ void fill_wallet_upgrade(z64_file_t *save, int16_t arg1, int16_t arg2);
 void clear_excess_hearts(z64_file_t *save, int16_t arg1, int16_t arg2);
 void open_mask_shop(z64_file_t *save, int16_t arg1, int16_t arg2);
 
-enum dungeon {
+typedef enum dungeon {
     DEKU_ID    = 0,
     DODONGO_ID = 1,
     JABU_ID    = 2,
@@ -40,6 +42,11 @@ enum dungeon {
     GTG_ID     = 11,
     FORT_ID    = 12,
     CASTLE_ID  = 13,
-};
+} dungeon;
+
+typedef struct {
+    uint8_t needed_count;
+    uint8_t switch_flag;
+} silver_rupee_data_t;
 
 #endif

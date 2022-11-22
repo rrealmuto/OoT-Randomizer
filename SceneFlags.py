@@ -18,7 +18,7 @@ def get_collectible_flag_table(world):
         max_enemy_flag = 0
         scene_flags[i] = {}
         for location in world.get_locations():
-            if(location.scene == i and location.type in ["Freestanding", "Pot", "FlyingPot", "Crate", "SmallCrate", "Beehive", "RupeeTower"]):
+            if(location.scene == i and location.type in ["Freestanding", "Pot", "FlyingPot", "Crate", "SmallCrate", "Beehive", "RupeeTower", "SilverRupee"]):
                 default = location.default
                 if(isinstance(default, list)): #List of alternative room/setup/flag to use
                     primary_tuple = default[0]

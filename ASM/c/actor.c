@@ -10,6 +10,8 @@
 
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
 extern uint16_t CURR_ACTOR_SPAWN_INDEX;
+extern uint8_t SHUFFLE_SILVER_RUPEES;
+extern int8_t curr_scene_setup;
 
 #define BG_HAKA_TUBO        0x00BB  // Shadow temple spinning pot
 #define BG_SPOT18_BASKET    0x015C  // Goron city spinning pot
@@ -20,6 +22,7 @@ extern uint16_t CURR_ACTOR_SPAWN_INDEX;
 #define EN_TUBO_TRAP        0x11D   // Flying Pot
 #define OBJ_KIBAKO          0x110   // Small Crate
 #define OBJ_KIBAKO2         0x1A0   // Large Crate
+#define EN_G_SWITCH         0x0117 //Silver Rupee
 
 // Called at the end of Actor_SetWorldToHome
 // Reset the rotations for any actors that we may have passed data in through Actor_Spawn
@@ -134,4 +137,57 @@ void Actor_StoreChestType(z64_actor_t* actor, z64_game_t* game) {
         }
         
     }
+}
+
+z64_actor_t* Actor_SpawnEntry_Hack(void* actorCtx, ActorEntry* actorEntry, z64_game_t* globalCtx) {
+    bool continue_spawn = true;
+    switch(actorEntry->id)
+    {
+        case(EN_G_SWITCH):
+        {
+            continue_spawn = spawn_override_silver_rupee(actorEntry, globalCtx);
+            break;
+        }
+        default:
+            break;
+    }
+    z64_actor_t* spawned = NULL;
+    if(continue_spawn)
+    {
+        spawned = z64_SpawnActor(actorCtx, globalCtx, actorEntry->id, actorEntry->pos.x, actorEntry->pos.y, actorEntry->pos.z,
+            actorEntry->rot.x, actorEntry->rot.y, actorEntry->rot.z, actorEntry->params);
+    }
+    return spawned;   
+    
+}
+
+// Override silver rupee spawns. 
+bool spawn_override_silver_rupee(ActorEntry* actorEntry, z64_game_t* globalCtx) {
+    if(SHUFFLE_SILVER_RUPEES) // Check if silver rupee shuffle is enabled.
+    {
+        // Build a dummy enitem00 actor
+        EnItem00 dummy;
+        dummy.actor.actor_id = 0x15;
+        dummy.actor.rot_init.y = (globalCtx->room_index << 8) + CURR_ACTOR_SPAWN_INDEX + 1;
+        dummy.actor.variable = 0;
+        uint8_t type = (actorEntry->params >> 0x0C) & 0xF;
+        if(type != 1) { // only override actual silver rupees, not the switches or pots.
+            return true;
+        }
+        override_t override = lookup_override(&(dummy.actor), globalCtx->scene_index, 0);
+        if(override.key.all != 0)
+        {
+            dummy.override = override;
+            if(type == 1 && !Get_CollectibleOverrideFlag(&dummy)) 
+            {
+                // Spawn a green rupee which will be overridden using the collectible hacks.
+                actorEntry->params = 0;
+                actorEntry->id = EN_ITEM00;
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    return true;
 }
