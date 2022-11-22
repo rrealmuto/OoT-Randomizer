@@ -30,15 +30,47 @@
             "Wall Fairy": "has_bottle and can_use(Bow)"
         },
         "exits": {
-            # Fire source is checked in the water room itself.
-            "Gerudo Training Ground Underwater": "is_adult and (Bow or Longshot) and Hover_Boots"
+            "Gerudo Training Ground Lava Room Front": "is_adult and (Bow or (Longshot and has_fire_source))",
+            "Gerudo Training Ground Water Room": "can_use(Longshot) and (Silver_Rupee_Gerudo_Training_Ground_Lava, 6)"
         }
     },
     {
-        "region_name": "Gerudo Training Ground Underwater",
+        "region_name": "Gerudo Training Ground Lava Room Front",
         "dungeon": "Gerudo Training Ground",
         "locations": {
-            "Gerudo Training Ground MQ Underwater Silver Rupee Chest": "
+            "Gerudo Training Ground MQ Lava Room Silver Rupee Front Left": "True",
+            "Gerudo Training Ground MQ Lava Room Silver Rupee Front Center": "True",
+            "Gerudo Training Ground MQ Lava Room Silver Rupee Front Right": "True"
+        },
+        "exits": {
+            "Gerudo Training Ground Lava Room Back": "Hover_Boots or (Silver_Rupee_Gerudo_Training_Ground_Lava, 6)",
+            "Gerudo Training Ground Water Room": "(Silver_Rupee_Gerudo_Training_Ground_Lava, 6)"
+        }
+    },
+    {
+        "region_name": "Gerudo Training Ground Lava Room Back",
+        "dungeon": "Gerudo Training Ground",
+        "locations": {
+            "Gerudo Training Ground MQ Lava Room Silver Rupee Back Left": "Hover_Boots or (Silver_Rupee_Gerudo_Training_Ground_Lava, 6)",
+            "Gerudo Training Ground MQ Lava Room Silver Rupee Back Center": "True",
+            "Gerudo Training Ground MQ Lava Room Silver Rupee Back Right": "True"
+        },
+        "exits": {
+            "Gerudo Training Ground Water Room": "(Silver_Rupee_Gerudo_Training_Ground_Lava, 6)"
+        }
+    },
+    {
+        "region_name": "Gerudo Training Ground Water Room",
+        "dungeon": "Gerudo Training Ground",
+        "locations": {
+            "Gerudo Training Ground MQ Underwater Silver Rupee Chest": "(Silver_Rupee_Gerudo_Training_Ground_Water, 3)",
+            "Gerudo Training Ground MQ Underwater Silver Rupee Middle": "
+                has_fire_source and Iron_Boots and
+                (logic_fewer_tunic_requirements or Zora_Tunic) and can_take_damage",
+            "Gerudo Training Ground MQ Underwater Silver Rupee Front Right": "
+                has_fire_source and Iron_Boots and
+                (logic_fewer_tunic_requirements or Zora_Tunic) and can_take_damage",
+            "Gerudo Training Ground MQ Underwater Silver Rupee Back Left": "
                 has_fire_source and Iron_Boots and
                 (logic_fewer_tunic_requirements or Zora_Tunic) and can_take_damage"
         }
@@ -50,9 +82,25 @@
             "Gerudo Training Ground MQ First Iron Knuckle Chest": "is_adult or Kokiri_Sword or has_explosives"
         },
         "exits": {
-            "Gerudo Training Ground Stalfos Room": "
+            "Gerudo Training Ground Icicle Room" : "is_adult or Kokiri_Sword or has_explosives"
+        }
+    },
+    {
+        "region_name" : "Gerudo Training Ground Icicle Room",
+        "dungeon": "Gerudo Training Ground",
+        "locations":{
+            "Gerudo Training Ground MQ Icicle Room Silver Rupee Freezard" : "True",
+            "Gerudo Training Ground MQ Icicle Room Silver Rupee Icicles" : "True",
+            "Gerudo Training Ground MQ Icicle Room Silver Rupee Center" : "True",
+            "Gerudo Training Ground MQ Icicle Room Silver Rupee Ceiling" : "
                 can_use(Longshot) or logic_gtg_mq_without_hookshot or
-                (logic_gtg_mq_with_hookshot and can_use(Hookshot))"
+                (logic_gtg_mq_with_hookshot and can_use(Hookshot))",
+            "Gerudo Training Ground MQ Icicle Room Silver Rupee Above Void" : "True"
+        },
+        "exits": {
+            "Gerudo Training Ground Stalfos Room": "
+                (Silver_Rupee_Gerudo_Training_Ground_Slopes, 5) and
+                (logic_gtg_mq_without_hookshot or can_use(Hookshot))"
         }
     },
     {
@@ -83,7 +131,8 @@
         },
         "exits": {
             "Gerudo Training Ground Central Maze Right": "Megaton_Hammer",
-            "Gerudo Training Ground Right Side": "Longshot"
+            "Gerudo Training Ground Right Side": "Longshot",
+            "Gerudo Training Ground Lava Room Back": "can_use(Fire_Arrows)"
         }
     },
     {
@@ -94,7 +143,7 @@
             "Gerudo Training Ground MQ Maze Right Side Chest": "True"
         },
         "exits": {
-            "Gerudo Training Ground Underwater": "Longshot or (Hookshot and Bow)",
+            "Gerudo Training Ground Water Room": "Longshot or (Hookshot and Bow)",
             "Gerudo Training Ground Right Side": "Hookshot"
         }
     }

@@ -642,6 +642,12 @@ bg_spot18_basket_rupees_loopstart: ; our new loop branch target
 ;   jal 0x800255C4
     jal Actor_UpdateAll_Hook
 
+; Hack Actor_SpawnEntry so we can override actors being spawned
+.orga 0xA9B524; In memory: 0x800255C4
+; Replaces: Entire function
+    j       Actor_SpawnEntry_Hack
+    nop
+
 ; Runs when storing an incoming item to the player instance
 ; Replaces:
 ;   sb      a2, 0x0424 (a3)
