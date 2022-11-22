@@ -4,7 +4,7 @@
 #include "util.h"
 #include "z64.h"
 
-#define text_max_chars 256
+#define text_max_chars 300
 #define text_bucket_count 6
 #define text_bucket_size 18
 
@@ -32,6 +32,16 @@ int text_print_size(const char *s, int left, int top, int width) {
         text_end->top = top;
         text_end++;
         left += width;
+        count++;
+    }
+    return count;
+}
+
+int text_len(char* s)
+{
+    char c;
+    int count = 0;
+    while(c = *(s++)) {
         count++;
     }
     return count;
