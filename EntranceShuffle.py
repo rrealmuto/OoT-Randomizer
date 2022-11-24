@@ -482,7 +482,8 @@ def shuffle_random_entrances(worlds):
             entrance_pools['Boss'] = world.get_shufflable_entrances(type='ChildBoss', only_primary=True)
             entrance_pools['Boss'] += world.get_shufflable_entrances(type='AdultBoss', only_primary=True)
             if worlds[0].settings.require_gohma:
-                # With Require Gohma, Gohma's arena must be vanilla. Place it here as an optimization.
+                # Deku is forced vanilla below, so Queen Gohma must be vanilla to ensure she is reachable.
+                # This is already enforced by the fill algorithm in most cases, but this covers the odd settings combination where it isn't.
                 entrance_pools['Boss'].remove(world.get_entrance('Deku Tree Boss Door -> Queen Gohma Boss Room'))
             if worlds[0].settings.decouple_entrances:
                 entrance_pools['BossReverse'] = [entrance.reverse for entrance in entrance_pools['Boss']]
@@ -490,7 +491,8 @@ def shuffle_random_entrances(worlds):
             entrance_pools['ChildBoss'] = world.get_shufflable_entrances(type='ChildBoss', only_primary=True)
             entrance_pools['AdultBoss'] = world.get_shufflable_entrances(type='AdultBoss', only_primary=True)
             if worlds[0].settings.require_gohma:
-                # With Require Gohma, Gohma's arena must be vanilla. Place it here as an optimization.
+                # Deku is forced vanilla below, so Queen Gohma must be vanilla to ensure she is reachable.
+                # This is already enforced by the fill algorithm in most cases, but this covers the odd settings combination where it isn't.
                 entrance_pools['ChildBoss'].remove(world.get_entrance('Deku Tree Boss Door -> Queen Gohma Boss Room'))
             if worlds[0].settings.decouple_entrances:
                 entrance_pools['ChildBossReverse'] = [entrance.reverse for entrance in entrance_pools['ChildBoss']]

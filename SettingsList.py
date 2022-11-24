@@ -3293,7 +3293,7 @@ setting_infos = [
         disabled_default = False,
         shared         = True,
         disable        = {
-            True : {'settings' : ['open_forest', 'shuffle_interior_entrances', 'shuffle_overworld_entrances', 'warp_songs', 'blue_warps', 'shuffle_child_spawn', 'shuffle_adult_spawn', 'shuffle_bosses', 'mix_entrance_pools', 'decouple_entrances']}
+            True : {'settings' : ['open_forest', 'shuffle_interior_entrances', 'shuffle_overworld_entrances', 'warp_songs', 'blue_warps', 'shuffle_child_spawn', 'shuffle_adult_spawn', 'mix_entrance_pools', 'decouple_entrances']}
         },
     ),
     Combobox(
