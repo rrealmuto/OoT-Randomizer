@@ -695,7 +695,7 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
         if (item_row->collectible >= 0) { // Item is one of our base collectibles
             collectible_mutex = NULL;
             pItem->actor.health = 1;
-            z64_GiveItem(&z64_game, item_row->action_id);
+            dispatch_item(resolved_item_id, player, &collectible_override, item_row);
             // Pick the correct sound effect for rupees or other items.
             uint16_t sfxId = NA_SE_SY_GET_ITEM;
             if (item_row->collectible <= ITEM00_RUPEE_RED || item_row->collectible == ITEM00_RUPEE_PURPLE || item_row->collectible == ITEM00_RUPEE_ORANGE) {
@@ -717,27 +717,10 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
         z64_link.common.frozen = 10;                        // freeze Link (like when picking up a skull)
         pItem->actionFunc = Collectible_WaitForMessageBox;  // Set up the EnItem00 action function to wait for the message box to close.
 
-        // Give the item to the right place
-        if (resolved_item_id == 0xCA) {
-            // Send triforce to everyone
-            set_outgoing_override(&collectible_override);
-            z64_GiveItem(&z64_game, item_row->action_id);
-            call_effect_function(item_row);
-        } else if (player != PLAYER_ID) {
-            // Item is for another world. Set outgoing item.
-            set_outgoing_override(&collectible_override);
-        } else {
-            // Item is for this player
-            if (MW_SEND_OWN_ITEMS) {
-                set_outgoing_override(&collectible_override);
-            }
-            z64_GiveItem(&z64_game, item_row->action_id);
-            call_effect_function(item_row);
-        }
-
+        dispatch_item(resolved_item_id, player, &collectible_override, item_row);
         return 1;
     }
-    return 2;  //
+    return 2;
 }
 
 void get_skulltula_token(z64_actor_t *token_actor) {
@@ -760,17 +743,24 @@ void get_skulltula_token(z64_actor_t *token_actor) {
 
     PLAYER_NAME_ID = player;
     z64_DisplayTextbox(&z64_game, item_row->text_id, 0);
+    dispatch_item(resolved_item_id, player, &override, item_row);
+}
 
+void dispatch_item(uint16_t resolved_item_id, uint8_t player, override_t *override, item_row_t *item_row) {
+    // Give the item to the right place
     if (resolved_item_id == 0xCA) {
         // Send triforce to everyone
-        set_outgoing_override(&override);
+        set_outgoing_override(override);
         z64_GiveItem(&z64_game, item_row->action_id);
         call_effect_function(item_row);
     } else if (player != PLAYER_ID) {
-        set_outgoing_override(&override);
+        // Item is for another world. Set outgoing item.
+        set_outgoing_override(override);
     } else {
+        // Item is for this player
         if (MW_SEND_OWN_ITEMS) {
-            set_outgoing_override(&override);
+            // Also send to multiworld plugin for informational purposes if requested
+            set_outgoing_override(override);
         }
         z64_GiveItem(&z64_game, item_row->action_id);
         call_effect_function(item_row);
