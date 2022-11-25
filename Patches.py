@@ -1128,7 +1128,8 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         or world.settings.shuffle_gerudo_valley_river_exit == 'full'
         or world.settings.owl_drops == 'full'
         or world.settings.warp_songs == 'full'
-        or world.settings.spawn_positions == 'full'
+        or world.settings.shuffle_child_spawn == 'full'
+        or world.settings.shuffle_adult_spawn == 'full'
     )
     set_entrance_updates(entrance for entrance in world.get_shufflable_entrances() if entrance.shuffled or (patch_blue_warps and entrance.type == 'BlueWarp'))
 
