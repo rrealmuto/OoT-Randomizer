@@ -8,6 +8,7 @@ This is a randomizer for _The Legend of Zelda: Ocarina of Time_ for the Nintendo
   * [Settings](#settings)
   * [Known Issues](#known-issues)
 * [Changelog](#changelog)
+  * [7.0](#70)
   * [6.2](#62)
   * [6.1](#61)
   * [6.0](#60)
@@ -106,7 +107,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 
 ## Changelog
 
-### Dev
+### 7.0
 
 #### New Features
 
@@ -119,7 +120,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * New setting `Key Rings` which can be enabled per-dungeon to replace all of its individual Small Keys into a singular Small Key Ring containing all the small keys for that dungeon. Key Rings also have their own model.
   * Setting `Randomize Ocarina Song Notes` can now be set to either "row" of songs individually, i.e. "Frog Songs" or "Warp Songs", in additional to the "Off" and "All Songs" options.
   * MQ Dungeon settings have been replaced with `MQ Dungeons Mode` which allows finer selection of which dungeons are MQ, or how many are at random.
-  * New setting `Shuffle Boss Entrances` allows boss rooms to be shuffled between dungeons. This is only available in glitchless logic.
+  * New setting `Shuffle Boss Entrances` allows boss rooms to be shuffled between dungeons. This is not available in glitched logic.
   * `Misc. Hints` has been expanded to a multiple select setting allowing you to fine-tune which set of misc hints to enable or disable.
   * New setting `Gate-Opening Gerudo Guard` adds a guard outside Gerudo Fortress to open the gate when entering from Haunted Wasteland.
   * New setting `Shuffle Frog Song Rupees` allows you to shuffle the rupees you receive from the Zora's River frogs.
@@ -162,7 +163,13 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * Removed the cutscenes when throwing a bomb at and blowing up the boulder in front of Dodongo's Cavern.
   * Certain switches in MQ dungeons have been moved down 1 unit so they are less difficult for Link to walk onto.
   * The "Truth Spinner" puzzle in the Shadow Temple's solution is now seeded per seed, so that the correct skull will be consistent across players racing the same seed.
-
+  
+* **GUI**
+  * Migration to latest Angular and Nebular framework versions
+  * Dark Mode toggle
+  * Support for modern Node.JS versions (>= Node.JS v16)
+  * Compatibility with newer Linux builds and ARM based Macs
+  * Improved mobile design in web mode
 
 #### Bug fixes
 * Return the color of the "OK" and "No" options of the warp song prompts to their correct colors in Warp Song Shuffle.

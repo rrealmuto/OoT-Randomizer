@@ -5,6 +5,7 @@ import re
 import math
 import json
 import operator
+import os
 
 from Colors import get_tunic_color_options, get_navi_color_options, get_sword_trail_color_options, \
     get_bombchu_trail_color_options, get_boomerang_trail_color_options, get_gauntlet_color_options, \
@@ -608,7 +609,7 @@ logic_tricks = {
 
     # Dungeons
 
-        'Deku Tree Basement Vines GS with Jump Slash': {
+    'Deku Tree Basement Vines GS with Jump Slash': {
         'name'    : 'logic_deku_basement_gs',
         'tags'    : ("Deku Tree", "Skulltulas",),
         'tooltip' : '''\
@@ -1845,7 +1846,7 @@ setting_infos = [
     Checkbutton('check_version', None),
     Checkbutton('output_settings', None),
     Checkbutton('patch_without_output', None),
-    Checkbutton('disable_custom_music', None),
+    Checkbutton('generating_patch_file', None),
     Checkbutton(
         name           = 'generate_from_file',
         gui_text       = 'Generate From Patch File',
@@ -4690,7 +4691,7 @@ setting_infos = [
     Combobox(
         name           = 'correct_potcrate_appearances',
         gui_text       = 'Pot & Crate Appearance Matches Contents',
-        default        = 'off',
+        default        = 'textures_unchecked',
         choices        = {
             'off':                'Off',
             'textures_content':   'Texture (Match Content)',
@@ -6108,13 +6109,8 @@ setting_infos = [
         gui_text       = 'Adult Voice',
         shared         = False,
         cosmetic       = True,
-        choices        = {
-            'default':       'Default',
-            'feminine':      'Feminine',
-            'silent':        'Silent',
-            'random-choice': 'Random Choice',
-        },
-        default        = 'default',
+        choices        = sfx.get_voice_sfx_choices(1),
+        default        = 'Default',
         gui_tooltip    = '''\
             Change Link's adult voice.
         ''',
@@ -6127,13 +6123,8 @@ setting_infos = [
         gui_text       = 'Child Voice',
         shared         = False,
         cosmetic       = True,
-        choices        = {
-            'default':       'Default',
-            'feminine':      'Feminine',
-            'silent':        'Silent',
-            'random-choice': 'Random Choice',
-        },
-        default        = 'default',
+        choices        = sfx.get_voice_sfx_choices(0),
+        default        = 'Default',
         gui_tooltip    = '''\
             Change Link's child voice.
         ''',

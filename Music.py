@@ -360,7 +360,7 @@ def randomize_music(rom, settings, log):
     ocarina_ids = {bgm[0]: bgm for bgm in ocarina_sequence_ids}
 
     # If generating a patch file, disallow custom sequences.
-    custom_sequences_enabled = not settings.disable_custom_music
+    custom_sequences_enabled = not settings.generating_patch_file
     if not custom_sequences_enabled and (settings.background_music == 'random_custom_only' or settings.fanfares == 'random_custom_only'):
         log.errors.append("Custom music is disabled when creating patch files. Only randomizing vanilla music.")
 
@@ -388,9 +388,9 @@ def randomize_music(rom, settings, log):
     for bgm in itertools.chain(bgm_ids.values(), ff_ids.values(), ocarina_ids.values()):
         if music_mapping.get(bgm[0], '') == "None":
             disabled_target_sequences[bgm[0]] = bgm
+            del music_mapping[bgm[0]]
     for bgm in disabled_ids:
         if bgm[0] not in music_mapping:
-            music_mapping[bgm[0]] = "None"
             disabled_target_sequences[bgm[0]] = bgm
 
     # Map music to itself if music is set to normal.
