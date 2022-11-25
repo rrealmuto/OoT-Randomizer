@@ -853,7 +853,7 @@ def get_playthrough_location_hint(spoiler, world, checked):
     hint_area = HintArea.at(location)
     location_text = hint_area.text(world.settings.clearer_hints)
 
-    return (GossipText('%s is on the way of the wanderer.' % location_text, ['Light Blue'], [location.name], [location.item.name]), [location])
+    return (GossipText('%s is on the way of the #wanderer#.' % location_text, ['Yellow', 'Light Blue'], [location.name], [location.item.name]), [location])
 
 def get_unlock_woth_hint(spoiler, world, checked):
     return get_unlock_hint(spoiler, world, checked, 'unlock-woth')
@@ -901,11 +901,13 @@ def get_unlock_hint(spoiler, world, checked, hint_type):
     required_location_text = getHint(getItemGenericName(required_location.item), world.settings.clearer_hints).text
 
     if hint_type == 'unlock-playthrough':
-        gossip_text = '#%s# unlocks the wanderer\'s way to #%s#.'
+        gossip_text = '#%s# unlocks the #wanderer\'s# way to #%s#.'
+        gossip_colors = ['Light Blue', 'Yellow', 'Light Blue']
     else:
         gossip_text = '#%s# unlocks the way to #%s#.'
+        gossip_colors = ['Light Blue', 'Light Blue']
 
-    return (GossipText(gossip_text % (required_location_text, location_text), ['Light Blue', 'Light Blue'], [required_location.name, location.name], [required_location.item.name, location.item.name]), [required_location, location])
+    return (GossipText(gossip_text % (required_location_text, location_text), gossip_colors, [required_location.name, location.name], [required_location.item.name, location.item.name]), [required_location, location])
 
 def get_barren_hint(spoiler, world, checked, allChecked):
     if not hasattr(world, 'get_barren_hint_prev'):
