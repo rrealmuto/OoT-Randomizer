@@ -3269,8 +3269,9 @@ setting_infos = [
                 Floormasters - After killing the floormaster, it will split in 3. 
                     The first child defeated will drop an item.
 
-            Deku Babas are the ultimate enemy so they will only drop 
+            Big Deku Babas are the ultimate enemy so they will only drop 
             their shuffled item if you hit them with Ice or Light Arrows.
+	    The smaller Deku Babas don't have additional drops.
         ''',
         default        = False,
         shared         = True,
