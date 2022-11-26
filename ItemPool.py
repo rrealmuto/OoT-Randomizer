@@ -1,9 +1,8 @@
 import random
 from decimal import Decimal, ROUND_UP
-from Hints import HintArea
 
 from Item import ItemFactory, ItemInfo
-from Location import DisableType, Location
+from Location import DisableType
 from Utils import random_choices
 
 
