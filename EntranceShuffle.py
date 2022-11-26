@@ -428,6 +428,10 @@ def set_entrances(worlds, savewarps_to_connect):
         savewarp.replaces = world.get_entrance(replaces)
         savewarp.connect(savewarp.replaces.connected_region)
 
+    for world in worlds:
+        # Set entrance data for all entrances, even those we aren't shuffling
+        set_all_entrances_data(world)
+
     if worlds[0].entrance_shuffle:
         shuffle_random_entrances(worlds)
 
@@ -447,9 +451,6 @@ def shuffle_random_entrances(worlds):
 
     # Shuffle all entrances within their own worlds
     for world in worlds:
-        # Set entrance data for all entrances, even those we aren't shuffling
-        set_all_entrances_data(world)
-
         # Determine entrance pools based on settings, to be shuffled in the order we set them by
         one_way_entrance_pools = OrderedDict()
         entrance_pools = OrderedDict()
