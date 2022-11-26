@@ -10,6 +10,7 @@ import itertools
 
 from HintList import getHint, getMulti, getHintGroup, getUpgradeHintList, hintExclusions, misc_item_hint_table, misc_location_hint_table
 from Item import Item, MakeEventItem
+from ItemPool import triforce_pieces
 from Messages import COLOR_MAP, update_message_by_id
 from Region import Region
 from Search import Search
@@ -27,7 +28,7 @@ defaultHintDists = [
     'balanced.json', 'bingo.json', 'chaos.json', 'coop2.json', 'ddr.json', 'league.json', 'mw3.json', 'scrubs.json', 'strong.json', 'tournament.json', 'useless.json', 'very_strong.json', 'very_strong_magic.json', 'weekly.json'
 ]
 
-unHintableWothItems = ['Triforce Piece', 'Gold Skulltula Token']
+unHintableWothItems = [*triforce_pieces, 'Gold Skulltula Token']
 
 class RegionRestriction(Enum):
     NONE = 0,
