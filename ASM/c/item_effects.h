@@ -47,6 +47,9 @@ typedef enum dungeon {
 typedef struct {
     uint8_t needed_count;
     uint8_t switch_flag;
+    uint8_t r;
+    uint8_t g;
+    uint8_t b;
 } silver_rupee_data_t;
 
 #endif
