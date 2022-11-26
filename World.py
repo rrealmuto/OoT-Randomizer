@@ -67,6 +67,15 @@ class World(object):
             or settings.blue_warps not in ('vanilla', 'dungeon') or self.spawn_positions or (settings.shuffle_bosses != 'off')
         )
 
+        self.full_one_ways = (
+            settings.blue_warps == 'full'
+            or settings.shuffle_gerudo_valley_river_exit == 'full'
+            or settings.owl_drops == 'full'
+            or settings.warp_songs == 'full'
+            or settings.shuffle_child_spawn == 'full'
+            or settings.shuffle_adult_spawn == 'full'
+        )
+
         self.mixed_pools_bosses = settings.shuffle_bosses == 'full' and 'Boss' in settings.mix_entrance_pools
 
         self.ensure_tod_access = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or self.spawn_positions

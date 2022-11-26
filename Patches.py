@@ -1098,7 +1098,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         # Purge temp flags on entrance to spirit from colossus through the front door.
         rom.write_byte(0x021862E3, 0xC2)
 
-    if world.shuffle_special_dungeon_entrances:
+    if world.shuffle_special_dungeon_entrances or world.full_one_ways:
         # Move Hyrule's Castle Courtyard exit spawn to be before the crates so players don't skip Talon
         rom.write_int16(0x21F607A, 0x033A) # Position X
         rom.write_int16(0x21F607C, 0x0623) # Position Y
@@ -1125,11 +1125,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         or world.shuffle_dungeon_entrances
         or world.settings.shuffle_bosses != 'off'
         or world.settings.blue_warps in ('balanced', 'full')
-        or world.settings.shuffle_gerudo_valley_river_exit == 'full'
-        or world.settings.owl_drops == 'full'
-        or world.settings.warp_songs == 'full'
-        or world.settings.shuffle_child_spawn == 'full'
-        or world.settings.shuffle_adult_spawn == 'full'
+        or world.full_one_ways
     )
     set_entrance_updates(entrance for entrance in world.get_shufflable_entrances() if entrance.shuffled or (patch_blue_warps and entrance.type == 'BlueWarp'))
 
