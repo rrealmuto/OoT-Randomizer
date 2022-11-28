@@ -202,14 +202,14 @@ ludicrous_items_extended = [
     'Silver Rupee Pouch (Ganons Castle Forest Trial)',
 ]
 
-ludicrous_exclusions = [
+ludicrous_exclusions = (
     *triforce_pieces,
     'Gold Skulltula Token',
     'Rutos Letter',
     'Heart Container',
     'Piece of Heart',
     'Piece of Heart (Treasure Chest Game)',
-]
+)
 
 item_difficulty_max = {
     'ludicrous': {

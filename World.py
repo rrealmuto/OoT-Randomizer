@@ -736,8 +736,8 @@ class World(object):
             # Key, which makes these items directly hintable in their respective goals
             # assuming they do not get hinted by another hint type (always, woth with
             # an earlier order in the hint distro, etc).
-            path_name = 'the #bunny#' if self.settings.triforce_hunt_mode == 'easter_egg_hunt' else '#gold#'
-            th.add_goal(Goal(self, path_name, f'path of {path_name}', 'Yellow', items=[{'name': 'Triforce Piece', 'quantity': self.settings.triforce_count_per_world, 'minimum': self.settings.triforce_goal_per_world, 'hintable': False}]))
+            path_name = 'the bunny' if self.settings.easter_egg_hunt else 'gold'
+            th.add_goal(Goal(self, path_name, f'path of #{path_name}#', 'Yellow', items=[{'name': 'Triforce Piece', 'quantity': self.settings.triforce_count_per_world, 'minimum': self.settings.triforce_goal_per_world, 'hintable': False}]))
             self.goal_categories[th.name] = th
         # Category goals are defined for each possible setting for each category.
         # Bridge can be Stones, Medallions, Dungeons, Skulls, or Vanilla.
