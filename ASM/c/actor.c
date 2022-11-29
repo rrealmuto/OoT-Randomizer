@@ -168,7 +168,7 @@ bool spawn_override_silver_rupee(ActorEntry* actorEntry, z64_game_t* globalCtx) 
         // Build a dummy enitem00 actor
         EnItem00 dummy;
         dummy.actor.actor_id = 0x15;
-        dummy.actor.rot_init.y = (globalCtx->room_index << 8) + CURR_ACTOR_SPAWN_INDEX + 1;
+        dummy.actor.rot_init.y = (globalCtx->room_index << 8) + CURR_ACTOR_SPAWN_INDEX;
         dummy.actor.variable = 0;
         uint8_t type = (actorEntry->params >> 0x0C) & 0xF;
         if(type != 1) { // only override actual silver rupees, not the switches or pots.
