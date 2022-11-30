@@ -189,7 +189,9 @@ void activate_override(override_t override) {
     active_item_object_id = item_row->object_id;
     active_item_graphic_id = item_row->graphic_id;
     if (override.value.looks_like_item_id) {
-        item_row = get_item_row(override.value.looks_like_item_id);
+        // looks_like_item_id is currently limited to 8 bits, so we replace silver rupee pouch cloaks with silver rupee cloaks as a quick fix to make item IDs >= 0x0100 work
+        //TODO proper fix
+        item_row = get_item_row(((uint16_t) override.value.looks_like_item_id) + (override.value.looks_like_item_id >= 0x00EA ? 0x00EA - 0x00D4 : 0));
     }
     active_item_fast_chest = item_row->chest_type == BROWN_CHEST || item_row->chest_type == SILVER_CHEST || item_row->chest_type == SKULL_CHEST_SMALL;
     PLAYER_NAME_ID = override.value.player;

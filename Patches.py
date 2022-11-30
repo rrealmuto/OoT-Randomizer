@@ -2420,7 +2420,7 @@ def get_override_table(world):
     return list(filter(lambda val: val != None, map(get_override_entry, world.get_filled_locations())))
 
 
-override_struct = struct.Struct('>BBHHBB') # match override_t in get_items.c
+override_struct = struct.Struct('>BBHHBB') # match override_t in get_items.h
 def get_override_table_bytes(override_table):
     return b''.join(sorted(itertools.starmap(override_struct.pack, override_table)))
 
@@ -2439,6 +2439,10 @@ def get_override_entry(location):
     player_id = location.item.world.id + 1
     if location.item.looks_like_item is not None:
         looks_like_item_id = location.item.looks_like_item.index
+        if looks_like_item_id >= 0x00EA:
+            # looks_like_item_id is currently limited to 8 bits, so we replace silver rupee pouch cloaks with silver rupee cloaks as a quick fix to make item IDs >= 0x0100 work
+            #TODO proper fix
+            looks_like_item_id -= 0x00EA - 0x00D4
     else:
         looks_like_item_id = 0
 

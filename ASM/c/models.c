@@ -124,7 +124,9 @@ void models_reset() {
 void lookup_model_by_override(model_t *model, override_t override) {
     if (override.key.all != 0) {
         uint16_t item_id = override.value.looks_like_item_id ?
-            override.value.looks_like_item_id :
+            // looks_like_item_id is currently limited to 8 bits, so we replace silver rupee pouch cloaks with silver rupee cloaks as a quick fix to make item IDs >= 0x0100 work
+            //TODO proper fix
+            ((uint16_t) override.value.looks_like_item_id) + (override.value.looks_like_item_id >= 0x00EA ? 0x00EA - 0x00D4 : 0) :
             override.value.item_id;
         uint16_t resolved_item_id = resolve_upgrades(item_id);
         item_row_t *item_row = get_item_row(resolved_item_id);

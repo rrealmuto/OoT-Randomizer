@@ -33,7 +33,7 @@ typedef union override_value_t {
     struct {
         uint16_t item_id;
         uint8_t  player;
-        uint8_t  looks_like_item_id;
+        uint8_t  looks_like_item_id; //TODO needs to be extended to u16
     };
 } override_value_t;
 
