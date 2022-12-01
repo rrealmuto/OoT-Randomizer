@@ -208,17 +208,42 @@ void clear_override() {
     active_item_fast_chest = 0;
 }
 
-void set_outgoing_override(override_t *override) {
+override_t outgoing_queue[8] = { 0 };
+
+void push_outgoing_override(override_t *override) {
     if (override->key.type != OVR_DELAYED || override->key.flag != 0xFF) { // don't send items received from incoming back to outgoing
-        OUTGOING_KEY = override->key;
-        if (override->value.item_id >= 0x100 && override->value.item_id < 0x107) {
-            // Multiworld plugins (at least Bizhawk Shuffler 2 and Mido's House Multiworld) have special cases for Triforce pieces.
-            // To make sure Easter eggs and Triforce Blitz pieces are handled the same way, they're sent as Triforce pieces.
-            OUTGOING_ITEM = 0xCA;
+        if (OUTGOING_KEY.all == 0) {
+            if (override->value.item_id >= 0x100 && override->value.item_id < 0x107) {
+                // Multiworld plugins (at least Bizhawk Shuffler 2 and Mido's House Multiworld) have special cases for Triforce pieces.
+                // To make sure Easter eggs and Triforce Blitz pieces are handled the same way, they're sent as Triforce pieces.
+                OUTGOING_ITEM = 0xCA;
+            } else {
+                OUTGOING_ITEM = override->value.item_id;
+            }
+            OUTGOING_PLAYER = override->value.player;
+            // Set the value first and then the key, so a plugin checking whether the key is present is guaranteed to see the value as well
+            OUTGOING_KEY = override->key;
         } else {
-            OUTGOING_ITEM = override->value.item_id;
+            for (int i = 0; i < 8; i++) {
+                if (outgoing_queue[i].key.all == 0) {
+                    outgoing_queue[i] = *override;
+                    break;
+                }
+            }
         }
-        OUTGOING_PLAYER = override->value.player;
+    }
+}
+
+void move_outgoing_queue() {
+    if (OUTGOING_KEY.all == 0) {
+        OUTGOING_ITEM = outgoing_queue[0].value.item_id;
+        OUTGOING_PLAYER = outgoing_queue[0].value.player;
+        // Set the value first and then the key, so a plugin checking whether the key is present is guaranteed to see the value as well
+        OUTGOING_KEY = outgoing_queue[0].key;
+        for (int i = 0; i < 7; i++) {
+            outgoing_queue[i] = outgoing_queue[i + 1];
+        }
+        outgoing_queue[7] = (override_t){ 0 };
     }
 }
 
@@ -304,7 +329,7 @@ void after_item_received() {
     }
 
     if (MW_SEND_OWN_ITEMS || active_override_is_outgoing) {
-        set_outgoing_override(&active_override);
+        push_outgoing_override(&active_override);
     }
 
     if (key.all == z64_file.scene_flags[0x30].unk_00_) {
@@ -359,6 +384,7 @@ void try_pending_item() {
 }
 
 void handle_pending_items() {
+    move_outgoing_queue();
     push_coop_item();
     if (link_is_ready()) {
         pop_ice_trap();
@@ -739,16 +765,16 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
         // Give the item to the right place
         if (resolved_item_id == 0xCA || (resolved_item_id >= 0x100 && resolved_item_id < 0x107)) { // Triforce piece or Easter egg
             // Send triforce to everyone
-            set_outgoing_override(&collectible_override);
+            push_outgoing_override(&collectible_override);
             z64_GiveItem(&z64_game, item_row->action_id);
             call_effect_function(item_row);
         } else if (player != PLAYER_ID) {
             // Item is for another world. Set outgoing item.
-            set_outgoing_override(&collectible_override);
+            push_outgoing_override(&collectible_override);
         } else {
             // Item is for this player
             if (MW_SEND_OWN_ITEMS) {
-                set_outgoing_override(&collectible_override);
+                push_outgoing_override(&collectible_override);
             }
             z64_GiveItem(&z64_game, item_row->action_id);
             call_effect_function(item_row);
@@ -782,14 +808,14 @@ void get_skulltula_token(z64_actor_t *token_actor) {
 
     if (resolved_item_id == 0xCA || (resolved_item_id >= 0x100 && resolved_item_id < 0x107)) { // Triforce piece or Easter egg
         // Send triforce to everyone
-        set_outgoing_override(&override);
+        push_outgoing_override(&override);
         z64_GiveItem(&z64_game, item_row->action_id);
         call_effect_function(item_row);
     } else if (player != PLAYER_ID) {
-        set_outgoing_override(&override);
+        push_outgoing_override(&override);
     } else {
         if (MW_SEND_OWN_ITEMS) {
-            set_outgoing_override(&override);
+            push_outgoing_override(&override);
         }
         z64_GiveItem(&z64_game, item_row->action_id);
         call_effect_function(item_row);
