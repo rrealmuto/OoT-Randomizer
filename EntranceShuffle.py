@@ -746,7 +746,7 @@ def shuffle_random_entrances(worlds):
                         target = boss_exits[target.name].replaces or boss_exits[target.name]
                     if target.name in dungeon_exits:
                         target = dungeon_exits[target.name]
-                blue_warp.connect(target.connected_region)
+                blue_warp.connect(target.reverse.parent_region)
                 blue_warp.replaces = target
                 blue_warp.shuffled = True
 
