@@ -924,10 +924,6 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     exit_updates = []
 
-    def copy_entrance_record(source_index, destination_index, count=4):
-        ti = source_index * 4
-        rom.write_bytes(0xB6FBF0 + destination_index * 4, et_original[ti:ti+(4 * count)])
-
     def generate_exit_lookup_table():
         # Assumes that the last exit on a scene's exit list cannot be 0000
         exit_table = {
@@ -1019,7 +1015,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
                     rom.write_int16(address, savewarp)
 
             for address in new_entrance.get('addresses', []):
-                rom.write_int16(address, replaced_entrance['index'])
+                rom.write_int16(address, replaced_entrance.get('child_index', replaced_entrance['index']))
 
             if entrance.type == 'BlueWarp' and replaced_entrance['index'] < 0x1000:
                 # Blue warps have multiple hardcodes leading to them. The good news is
@@ -1039,10 +1035,12 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
                 # entrance index, otherwise use the "normal" entrance table method.
                 # This runs after and overrides the cutscene edits for Forest Temple
                 # and Water Temple if needed.
-                copy_entrance_record(replaced_entrance['index'] + 2, new_entrance['index'] + 2, 2)
-                copy_entrance_record(replaced_entrance.get('child_index', replaced_entrance['index']), new_entrance['index'], 2)
+                exit_updates.append((new_entrance['index'], replaced_entrance.get('child_index', replaced_entrance['index'])))
+                exit_updates.append((new_entrance['index'] + 1, replaced_entrance.get('child_index', replaced_entrance['index']) + 1))
+                exit_updates.append((new_entrance['index'] + 2, replaced_entrance['index'] + 2))
+                exit_updates.append((new_entrance['index'] + 3, replaced_entrance['index'] + 3))
             elif entrance.type != 'Grotto':
-                exit_updates.append((new_entrance['index'], replaced_entrance['index']))
+                exit_updates.append((new_entrance['index'], replaced_entrance.get('child_index', replaced_entrance['index'])))
 
     exit_table = generate_exit_lookup_table()
 
