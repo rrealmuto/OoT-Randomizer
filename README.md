@@ -45,6 +45,8 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * Tokens can be on excluded locations if there are no checks requiring them (such as in SAWS)
   * With “Closed Forest Requires Gohma” enabled, items that can be used to escape the forest won't appear in the forest.
   * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
+* Bug fixes:
+  * Fixed junk items from pots, crates, freestanding items, beehives, and silver rupees not being sent to the correct player in multiworld ([#1783](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1783) and [#1800](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1800))
 
 Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):
 
