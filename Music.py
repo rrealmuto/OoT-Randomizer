@@ -426,7 +426,7 @@ def randomize_music(rom, settings, log):
     ff_groups_full = {n: [ns for ns in s if ns in fanfare_sequences] for n, s in itertools.chain(fanfare_groups.items(), plando_groups.items())}
     bgm_groups = {n: s.copy() for n, s in bgm_groups_full.items()}
     ff_groups = {n: s.copy() for n, s in ff_groups_full.items()}
-    for target, source in music_mapping.copy().items():
+    for target, mapping in music_mapping.copy().items():
         if target in bgm_ids:
             groups_full_alias = bgm_groups_full
             groups_alias = bgm_groups
@@ -440,25 +440,54 @@ def randomize_music(rom, settings, log):
             del music_mapping[target]
             continue
 
-        if isinstance(source, list):
-            random.shuffle(source)
-            source = music_mapping[target] = source.pop()
-
+        source = mapping
         group = group_name = None
-        if source.startswith('#'):
+        if isinstance(mapping, list):
+            # Try to find a valid source in the defined list
+            while len(mapping) > 0:
+                random.shuffle(mapping)
+                source = music_mapping[target] = mapping.pop()
+                
+                if source.startswith('#'):
+                    group_name = source[1:]
+                    group = groups_alias.get(group_name, None)
+
+                    # Check if group exists.
+                    if group is not None:
+                        # Check if we need to refill this group from the source dictionary.
+                        if not group:
+                            groups_alias[group_name] = groups_full_alias.get(group_name, []).copy()
+                            group = groups_alias[group_name]
+
+                        if group:
+                            random.shuffle(group)
+                            source = music_mapping[target] = group.pop()
+                            if source in sequences_alias:
+                                break
+                            
+                    log.errors.append(f"Warning: Group '{source}' linked to '{target}' does not have a valid custom sequence. Ignoring!")
+                else:
+                    break
+                    
+            if len(mapping) == 0 and source not in sequences_alias:
+                del music_mapping[target]
+                log.errors.append(f"Target Sequence '{target}' does not have a valid 'bgm_groups' entry.")
+                continue
+                
+        elif mapping.startswith('#'):
             group_name = source[1:]
             group = groups_alias.get(group_name, None)
 
-        # Check if group exists.
-        if group is not None:
-            # Check if we need to refill this group from the source dictionary.
-            if not group:
-                groups_alias[group_name] = groups_full_alias.get(group_name, []).copy()
-                group = groups_alias[group_name]
+            # Check if group exists.
+            if group is not None:
+                # Check if we need to refill this group from the source dictionary.
+                if not group:
+                    groups_alias[group_name] = groups_full_alias.get(group_name, []).copy()
+                    group = groups_alias[group_name]
 
-            if group:
-                random.shuffle(group)
-                source = music_mapping[target] = group.pop()
+                if group:
+                    random.shuffle(group)
+                    source = music_mapping[target] = group.pop()
 
         # Check if mapped sequence exists.
         if source not in sequences_alias:

@@ -30,7 +30,7 @@ override_t get_crate_override(z64_actor_t *actor, z64_game_t *game) {
     dummy.actor.rot_init.y = actor->rot_init.y;
     dummy.actor.variable = 0;
     
-    override_t override = lookup_override(&dummy, game->scene_index, 0);
+    override_t override = lookup_override(&(dummy.actor), game->scene_index, 0);
     if(override.key.all != 0)
     {
         dummy.override = override;

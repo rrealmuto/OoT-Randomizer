@@ -21,6 +21,7 @@ Differences between this branch and the main Dev branch (on [Testrunner's Fork](
   * [Settings](#settings)
   * [Known Issues](#known-issues)
 * [Changelog](#changelog)
+  * [7.0](#70)
   * [6.2](#62)
   * [6.1](#61)
   * [6.0](#60)
@@ -117,6 +118,30 @@ issue. You should always Hard Reset to avoid this issue entirely.
 
 ### Dev
 
+#### Bug Fixes
+* Fix freestanding items not spawning their overrides when an item with a shared base collectable flag is collected.
+* Fix models drawing incorrectly when picking up a duplicated collectible, such as from the Goron City spinning pot.
+* Fix junk items from pot/freestanding item locations not being sent to the proper player in multiworld.
+* Fix Skulltula House Misc. Hints not hinting the proper locations in multiworld.
+
+#### GUI
+* `Disable Battle Music` has been moved to the main section of the SFX tab.
+* Nonsense tags in the `Exclude Locations` list were cleaned up.
+* New tags were added in the `Exclude Locations` and `Enable Tricks` lists.
+
+#### Other Changes
+* Removed some unnecessary duplication in spirit temple logic.
+* In multiworld, outgoing items are now buffered.
+  * Allows players to continue collecting items if the Multiworld plugin crashes.
+  * Multiple freestanding/pot items can be sent on the same frame.
+* Ice Arrows will now be referred to as Blue Fire Arrows in hints and shop text when `Blue Fire Arrows` is enabled.
+
+#### Plandomizer
+* Due to Ice Arrows and Blue Fire Arrows being separate items in the code now, plandomizer authors must use `Ice_Arrows` or `Blue_Fire_Arrows` depending on if the setting is enabled.
+* In cosmetics plando, empty or non-existant BGM groups will no longer error, instead simply displaying a warning in the cosmetics log.
+
+### 7.0
+
 #### New Features
 
 * **Settings**
@@ -128,7 +153,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * New setting `Key Rings` which can be enabled per-dungeon to replace all of its individual Small Keys into a singular Small Key Ring containing all the small keys for that dungeon. Key Rings also have their own model.
   * Setting `Randomize Ocarina Song Notes` can now be set to either "row" of songs individually, i.e. "Frog Songs" or "Warp Songs", in additional to the "Off" and "All Songs" options.
   * MQ Dungeon settings have been replaced with `MQ Dungeons Mode` which allows finer selection of which dungeons are MQ, or how many are at random.
-  * New setting `Shuffle Boss Entrances` allows boss rooms to be shuffled between dungeons. This is only available in glitchless logic.
+  * New setting `Shuffle Boss Entrances` allows boss rooms to be shuffled between dungeons. This is not available in glitched logic.
   * `Misc. Hints` has been expanded to a multiple select setting allowing you to fine-tune which set of misc hints to enable or disable.
   * New setting `Shuffle Frog Song Rupees` allows you to shuffle the rupees you receive from the Zora's River frogs.
     * These locations are considered "sometimes" hints.
@@ -170,7 +195,13 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * Removed the cutscenes when throwing a bomb at and blowing up the boulder in front of Dodongo's Cavern.
   * Certain switches in MQ dungeons have been moved down 1 unit so they are less difficult for Link to walk onto.
   * The "Truth Spinner" puzzle in the Shadow Temple's solution is now seeded per seed, so that the correct skull will be consistent across players racing the same seed.
-
+  
+* **GUI**
+  * Migration to latest Angular and Nebular framework versions
+  * Dark Mode toggle
+  * Support for modern Node.JS versions (>= Node.JS v16)
+  * Compatibility with newer Linux builds and ARM based Macs
+  * Improved mobile design in web mode
 
 #### Bug fixes
 * Return the color of the "OK" and "No" options of the warp song prompts to their correct colors in Warp Song Shuffle.

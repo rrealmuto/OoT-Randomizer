@@ -940,6 +940,7 @@ class SaveContext():
         },
         "Fire Arrows"    : {'item_slot.fire_arrow'      : 'fire_arrow'},
         "Ice Arrows"     : {'item_slot.ice_arrow'       : 'ice_arrow'},
+        "Blue Fire Arrows"     : {'item_slot.ice_arrow' : 'ice_arrow'},
         "Light Arrows"   : {'item_slot.light_arrow'     : 'light_arrow'},
         "Dins Fire"      : {'item_slot.dins_fire'       : 'dins_fire'},
         "Farores Wind"   : {'item_slot.farores_wind'    : 'farores_wind'},

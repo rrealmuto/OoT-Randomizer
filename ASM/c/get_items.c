@@ -44,6 +44,7 @@ uint8_t collectible_scene_flags_table[600];
 alt_override_t alt_overrides[64];
 
 extern int8_t curr_scene_setup;
+extern uint16_t CURR_ACTOR_SPAWN_INDEX;
 
 // Total amount of memory required for each flag table (in bytes).
 uint16_t num_override_flags;
@@ -211,11 +212,36 @@ void clear_override() {
     active_item_fast_chest = 0;
 }
 
-void set_outgoing_override(override_t *override) {
+override_t outgoing_queue[8] = { 0 };
+
+void push_outgoing_override(override_t *override) {
     if (override->key.type != OVR_DELAYED || override->key.flag != 0xFF) { // don't send items received from incoming back to outgoing
-        OUTGOING_KEY = override->key;
-        OUTGOING_ITEM = override->value.item_id;
-        OUTGOING_PLAYER = override->value.player;
+        if (OUTGOING_KEY.all == 0) {
+            OUTGOING_ITEM = override->value.item_id;
+            OUTGOING_PLAYER = override->value.player;
+            // Set the value first and then the key, so a plugin checking whether the key is present is guaranteed to see the value as well
+            OUTGOING_KEY = override->key;
+        } else {
+            for (int i = 0; i < 8; i++) {
+                if (outgoing_queue[i].key.all == 0) {
+                    outgoing_queue[i] = *override;
+                    break;
+                }
+            }
+        }
+    }
+}
+
+void move_outgoing_queue() {
+    if (OUTGOING_KEY.all == 0) {
+        OUTGOING_ITEM = outgoing_queue[0].value.item_id;
+        OUTGOING_PLAYER = outgoing_queue[0].value.player;
+        // Set the value first and then the key, so a plugin checking whether the key is present is guaranteed to see the value as well
+        OUTGOING_KEY = outgoing_queue[0].key;
+        for (int i = 0; i < 7; i++) {
+            outgoing_queue[i] = outgoing_queue[i + 1];
+        }
+        outgoing_queue[7] = (override_t){ 0 };
     }
 }
 
@@ -301,7 +327,7 @@ void after_item_received() {
     }
 
     if (MW_SEND_OWN_ITEMS || active_override_is_outgoing) {
-        set_outgoing_override(&active_override);
+        push_outgoing_override(&active_override);
     }
 
     if (key.all == z64_file.scene_flags[0x30].unk_00_) {
@@ -356,6 +382,7 @@ void try_pending_item() {
 }
 
 void handle_pending_items() {
+    move_outgoing_queue();
     push_coop_item();
     if (link_is_ready()) {
         pop_ice_trap();
@@ -577,26 +604,43 @@ void Item_DropCollectible_Room_Hack(EnItem00 *spawnedActor)
 z64_actor_t* Item_DropCollectible_Actor_Spawn_Override(void* actorCtx, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params)
 {
     rotY = drop_collectible_override_flag; // Get the override flag
-    drop_collectible_override_flag = 0; //And reset it to 0.
     EnItem00* spawnedActor = (EnItem00*)z64_SpawnActor(actorCtx, globalCtx,actorId, posX, posY, posZ, rotX, rotY, rotZ, params); //Spawn the actor
+    drop_collectible_override_flag = 0; //And reset it to 0.
 
-    //Get the override for the newly spawned collectible
-    spawnedActor->override = lookup_override(spawnedActor, globalCtx->scene_index, 0);
-
-    //Check if it has already been collected
-    if(Get_CollectibleOverrideFlag(spawnedActor))
-    {
-        spawnedActor->override = (override_t) { 0 };
-    }
-    return spawnedActor;
+    return &(spawnedActor->actor);
 }
 
+// Hack in EnItem00_Init where it checks whether or not to kill the actor based on the collectible flag.
+// We use this point to determine if this is an overriden collectible and store that information in the actor.
 bool Item00_KillActorIfFlagIsSet(z64_actor_t *actor) {
     EnItem00 *this = (EnItem00 *)actor;
-    if (this->override.key.all) {
-        return 0;
+    uint16_t flag = 0;
+    if(drop_collectible_override_flag)
+    {
+        flag = drop_collectible_override_flag;
+    }
+    else if(CURR_ACTOR_SPAWN_INDEX)
+    {
+        flag = (CURR_ACTOR_SPAWN_INDEX) | (actor->room_index << 8);
+    }
+    // Still need to build a dummy because we haven't set any info in the actor yet.
+    EnItem00 dummy;
+    dummy.actor.actor_id = 0x15;
+    dummy.actor.rot_init.y = flag;
+    dummy.actor.variable = 0;
+
+    // Check if an override exists
+    this->override = lookup_override(&(dummy.actor), z64_game.scene_index,0);
+
+    // Check if the overridden item has already been collected
+    if(Get_CollectibleOverrideFlag(this))
+        this->override = (override_t) { 0 };
+
+    if (this->override.key.all) { // If an override exists and we haven't already collected it
+        return 0; // Return 0 to continue spawning the actor
     }
 
+    // If we get here than we either don't have an override, or the override has already been collected. Perform normal collectible flag check.
     if (z64_Flags_GetCollectible(&z64_game, this->collectibleFlag)) {
         z64_ActorKill(actor);
         return 1;
@@ -634,7 +678,7 @@ int16_t get_override_drop_id(int16_t dropId) {
     dummy.actor.actor_id = 0x15;
     dummy.actor.rot_init.y = drop_collectible_override_flag;
     dummy.actor.variable = dropId;
-    dummy.override = lookup_override(&dummy, z64_game.scene_index, 0);
+    dummy.override = lookup_override(&(dummy.actor), z64_game.scene_index, 0);
     if (dummy.override.key.all > 0 && !Get_CollectibleOverrideFlag(&dummy) &&
         dropId != ITEM00_HEART_PIECE &&
         dropId != ITEM00_SMALL_KEY &&
@@ -694,6 +738,27 @@ int16_t get_override_drop_id(int16_t dropId) {
     return dropId;
 }
 
+void dispatch_item(uint16_t resolved_item_id, uint8_t player, override_t *override, item_row_t *item_row) {
+    // Give the item to the right place
+    if (resolved_item_id == 0xCA) {
+        // Send triforce to everyone
+        push_outgoing_override(override);
+        z64_GiveItem(&z64_game, item_row->action_id);
+        call_effect_function(item_row);
+    } else if (player != PLAYER_ID) {
+        // Item is for another world. Set outgoing item.
+        push_outgoing_override(override);
+    } else {
+        // Item is for this player
+        if (MW_SEND_OWN_ITEMS) {
+            // Also send to multiworld plugin for informational purposes if requested
+            push_outgoing_override(override);
+        }
+        z64_GiveItem(&z64_game, item_row->action_id);
+        call_effect_function(item_row);
+    }
+}
+
 // Override hack for freestanding collectibles (rupees, recovery hearts, sticks, nuts, seeds, bombs, arrows, magic jars. Pieces of heart, heart containers, small keys handled by the regular get_item function)
 uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_actor) {
     EnItem00 *pItem = (EnItem00 *)from_actor;
@@ -731,8 +796,8 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
         // If it's a collectible item don't do the fanfare music/message box. 
         if (item_row->collectible >= 0) { // Item is one of our base collectibles
             collectible_mutex = NULL;
-            pItem->actor.health = 1;
-            z64_GiveItem(&z64_game, item_row->action_id);
+            pItem->actor.dropFlag = 1; // Store this so the draw function knows to keep drawing the override.
+            dispatch_item(resolved_item_id, player, &collectible_override, item_row);
             // Pick the correct sound effect for rupees or other items.
             uint16_t sfxId = NA_SE_SY_GET_ITEM;
             if (item_row->collectible <= ITEM00_RUPEE_RED || item_row->collectible == ITEM00_RUPEE_PURPLE || item_row->collectible == ITEM00_RUPEE_ORANGE) {
@@ -754,27 +819,10 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
         z64_link.common.frozen = 10;                        // freeze Link (like when picking up a skull)
         pItem->actionFunc = Collectible_WaitForMessageBox;  // Set up the EnItem00 action function to wait for the message box to close.
 
-        // Give the item to the right place
-        if (resolved_item_id == 0xCA) {
-            // Send triforce to everyone
-            set_outgoing_override(&collectible_override);
-            z64_GiveItem(&z64_game, item_row->action_id);
-            call_effect_function(item_row);
-        } else if (player != PLAYER_ID) {
-            // Item is for another world. Set outgoing item.
-            set_outgoing_override(&collectible_override);
-        } else {
-            // Item is for this player
-            if (MW_SEND_OWN_ITEMS) {
-                set_outgoing_override(&collectible_override);
-            }
-            z64_GiveItem(&z64_game, item_row->action_id);
-            call_effect_function(item_row);
-        }
-
+        dispatch_item(resolved_item_id, player, &collectible_override, item_row);
         return 1;
     }
-    return 2;  //
+    return 2;
 }
 
 void get_skulltula_token(z64_actor_t *token_actor) {
@@ -797,21 +845,7 @@ void get_skulltula_token(z64_actor_t *token_actor) {
 
     PLAYER_NAME_ID = player;
     z64_DisplayTextbox(&z64_game, item_row->text_id, 0);
-
-    if (resolved_item_id == 0xCA) {
-        // Send triforce to everyone
-        set_outgoing_override(&override);
-        z64_GiveItem(&z64_game, item_row->action_id);
-        call_effect_function(item_row);
-    } else if (player != PLAYER_ID) {
-        set_outgoing_override(&override);
-    } else {
-        if (MW_SEND_OWN_ITEMS) {
-            set_outgoing_override(&override);
-        }
-        z64_GiveItem(&z64_game, item_row->action_id);
-        call_effect_function(item_row);
-    }
+    dispatch_item(resolved_item_id, player, &override, item_row);
 }
 
 int give_sarias_gift() {

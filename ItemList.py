@@ -66,6 +66,7 @@ item_table = {
     'Biggoron Sword':                                  ('Item',     None,  0x57, None),
     'Fire Arrows':                                     ('Item',     True,  0x58, None),
     'Ice Arrows':                                      ('Item',     True,  0x59, None),
+    'Blue Fire Arrows':                                ('Item',     True,  0x59, None),
     'Light Arrows':                                    ('Item',     True,  0x5A, None),
     'Gold Skulltula Token':                            ('Token',    True,  0x5B, {'progressive': float('Inf')}),
     'Dins Fire':                                       ('Item',     True,  0x5C, None),

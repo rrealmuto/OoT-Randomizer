@@ -602,6 +602,13 @@ class TestHints(unittest.TestCase):
             if(message.id == 0x70CC): # Ganondorf hint message
                 self.assertTrue("thosepotsoverthere" in message.text.replace('\n', '').replace(' ', ''))
 
+    def test_blue_fire_arrows(self):
+        # Blue Fire Arrows should be WotH and in the item pool
+        _, spoiler = generate_with_plandomizer("plando-blue-fire-arrows-hints")
+        woth = list(spoiler[':woth_locations'].values())
+        self.assertIn('Blue Fire Arrows', woth)
+
+
 class TestEntranceRandomizer(unittest.TestCase):
     def test_spawn_point_invalid_areas(self):
         # With special interior, overworld, and warp song ER off, random spawns
