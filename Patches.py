@@ -1737,8 +1737,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     if world.shuffle_silver_rupees:
         rom.write_byte(rom.sym('SHUFFLE_SILVER_RUPEES'), 1)
-        silver_rupee_locations = [location for location in world.get_locations() if location.type == 'SilverRupee']
-        
+        if world.settings.shuffle_silver_rupees != 'remove':
+            rom.write_byte(rom.sym('CFG_DUNGEON_INFO_SILVER_RUPEES'), 1)
+
         if world.dungeon_mq['Dodongos Cavern']: #Patch DC MQ Staircase Transition Actor to use permanent switch flag 0x1F
             rom.write_byte(0x1F12190+15, 0x9F)
 
