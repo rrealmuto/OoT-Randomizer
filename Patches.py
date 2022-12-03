@@ -22,7 +22,7 @@ from Messages import read_messages, update_message_by_id, read_shop_items, updat
 from OcarinaSongs import replace_songs
 from MQ import patch_files, File, update_dmadata, insert_space, add_relocations
 from SaveContext import SaveContext, Scenes, FlagType
-from version import __version__
+from version import real_version
 from ItemPool import song_list
 from SceneFlags import get_alt_list_bytes, get_collectible_flag_table, get_collectible_flag_table_bytes
 from texture_util import ci4_rgba16patch_to_ci8, rgba16_patch
@@ -268,9 +268,11 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         return txt
 
     line_len = 21
-    version_str = "version " + __version__
+    version_str = f'version {real_version}'
     if len(version_str) > line_len:
-        version_str = "ver. " + __version__
+        version_str = f'ver. {real_version}'
+    if len(version_str) > line_len:
+        version_str = f'v. {real_version}'
     rom.write_bytes(rom.sym('VERSION_STRING_TXT'), makebytes(version_str, 25))
 
     if world.settings.create_spoiler:

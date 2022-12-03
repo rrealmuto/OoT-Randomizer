@@ -2,7 +2,7 @@ import difflib
 import json
 import math
 import operator
-from version import __version__
+from version import real_version
 
 from Colors import get_tunic_color_options, get_navi_color_options, get_sword_trail_color_options, \
     get_bombchu_trail_color_options, get_boomerang_trail_color_options, get_gauntlet_color_options, \
@@ -1888,7 +1888,7 @@ setting_infos = [
     Setting_Info(
         name           = 'version_msg',
         type           = str,
-        gui_text       = f"Ocarina of Time Randomizer version {__version__}\nThis version may be outdated. Go to github.com/fenhl/OoT-Randomizer for the latest version.",
+        gui_text       = f"Ocarina of Time Randomizer version {real_version}\nThis version may be outdated. Go to github.com/fenhl/OoT-Randomizer for the latest version.",
         gui_type       = "Textbox",
         shared         = False,
         choices        = {},

@@ -1,4 +1,4 @@
-from version import __version__
+from version import real_version
 from Utils import data_path
 from Colors import *
 import random
@@ -1167,7 +1167,7 @@ class CosmeticsLog(object):
 
     def to_json(self):
         self_dict = {
-            ':version': __version__,
+            ':version': real_version,
             ':enable_cosmetic_file': True,
             ':errors': self.errors,
             'settings': self.settings.to_json_cosmetics(),

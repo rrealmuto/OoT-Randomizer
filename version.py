@@ -14,4 +14,10 @@ branch_url = 'https://github.com/fenhl/OoT-Randomizer/tree/dev-fenhl'
 base_version = __version__
 
 # And finally, the completed version string. This is what is displayed and used for salting seeds.
-__version__ = f'{base_version} Fenhl-{supplementary_version}'
+real_version = f'{base_version} Fenhl-{supplementary_version}'
+
+# A fake version number with the patch number incremented with each supplementary update as well as each real patch since the website can't handle supplementary versions (yet?)
+fake_version = '7.0.11'
+
+# The fake version number read by the website
+__version__ = f'{fake_version} devFenhlWeb'

@@ -16,7 +16,7 @@ from Location import LocationIterator, LocationFactory, IsLocation
 from LocationList import location_groups, location_table
 from Search import Search
 from Spoiler import HASH_ICONS
-from version import __version__
+from version import real_version
 from Utils import random_choices
 from JSONDump import dump_obj, CollapseList, CollapseDict, AlignedDict, SortedDict
 import StartingItems
@@ -1244,7 +1244,7 @@ class Distribution(object):
 
     def to_json(self, include_output=True, spoiler=True):
         self_dict = {
-            ':version': __version__,
+            ':version': real_version,
             'file_hash': CollapseList(self.file_hash),
             ':seed': self.settings.seed,
             ':settings_string': self.settings.settings_string,
