@@ -11,12 +11,12 @@ This branch is available to use online at <https://ootrandomizer.com/generatorDe
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
 * New settings and options:
+  * New “Shuffle Silver Rupees” setting ([#1814](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1814))
   * New “Triforce Hunt Mode” setting with “Normal”, “Easter Egg Hunt”, and “Triforce Blitz” options (based on [#1804](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1804) and [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev))
   * New “Shuffle Thieves' Hideout Entrances” setting ([#1616](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1616))
   * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1536))
   * “Closed Forest Requires Gohma” is a separate setting, making “Closed Forest” compatible with more settings if disabled ([#1531](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1531))
   * New “Full” options for the settings “Randomize Owl Drops”, “Randomize Warp Song Destinations”, and “Randomize Overworld Spawns” (which is split into “Randomize Child Overworld Spawn” and “Randomize Adult Overworld Spawn” for this reason) that include more types of entrances (based on [#1179](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1179) and [#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
-  * New “Shuffle Silver Rupees” setting (based on [mracsys's `silver-rupees-refactor` branch](https://github.com/mracsys/OoT-Randomizer/tree/silver-rupees-refactor))
   * New “Shuffle Gerudo Valley River Exit” setting
   * New “Shuffle Blue Warps” setting
   * New “Mutually Exclusive One-Ways” setting which makes the hint area restriction apply to one-way entrances of different types
@@ -45,8 +45,6 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * Tokens can be on excluded locations if there are no checks requiring them (such as in SAWS)
   * With “Closed Forest Requires Gohma” enabled, items that can be used to escape the forest won't appear in the forest.
   * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
-* Bug fixes:
-  * Fixed junk items from pots, crates, freestanding items, beehives, and silver rupees not being sent to the correct player in multiworld ([#1783](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1783) and [#1800](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1800))
 
 Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):
 
@@ -158,6 +156,30 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * This randomizer is based on the 1.0 version of _Ocarina of Time_, so some of its specific bugs remain.
 
 ## Changelog
+
+### Dev
+
+#### Bug Fixes
+* Fix freestanding items not spawning their overrides when an item with a shared base collectable flag is collected.
+* Fix models drawing incorrectly when picking up a duplicated collectible, such as from the Goron City spinning pot.
+* Fix junk items from pot/freestanding item locations not being sent to the proper player in multiworld.
+* Fix Skulltula House Misc. Hints not hinting the proper locations in multiworld.
+
+#### GUI
+* `Disable Battle Music` has been moved to the main section of the SFX tab.
+* Nonsense tags in the `Exclude Locations` list were cleaned up.
+* New tags were added in the `Exclude Locations` and `Enable Tricks` lists.
+
+#### Other Changes
+* Removed some unnecessary duplication in spirit temple logic.
+* In multiworld, outgoing items are now buffered.
+  * Allows players to continue collecting items if the Multiworld plugin crashes.
+  * Multiple freestanding/pot items can be sent on the same frame.
+* Ice Arrows will now be referred to as Blue Fire Arrows in hints and shop text when `Blue Fire Arrows` is enabled.
+
+#### Plandomizer
+* Due to Ice Arrows and Blue Fire Arrows being separate items in the code now, plandomizer authors must use `Ice_Arrows` or `Blue_Fire_Arrows` depending on if the setting is enabled.
+* In cosmetics plando, empty or non-existant BGM groups will no longer error, instead simply displaying a warning in the cosmetics log.
 
 ### 7.0
 

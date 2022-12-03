@@ -31,6 +31,8 @@ class Location(object):
         self.never = False
         if filter_tags is None:
             self.filter_tags = None
+        elif isinstance(filter_tags, str):
+            self.filter_tags = [filter_tags]
         else:
             self.filter_tags = list(filter_tags)
 

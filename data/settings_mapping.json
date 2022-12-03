@@ -496,9 +496,10 @@
           "name": "sfx_main_section",
           "is_sfx": true,
           "col_span": 4,
-          "row_span": [2,1,1],
+          "row_span": [2,1,2],
           "settings": [
-            "randomize_all_sfx"
+            "randomize_all_sfx",
+            "disable_battle_music"
           ]
         },
         {
@@ -509,7 +510,6 @@
           "row_span": [6,6,11],
           "settings": [
             "background_music",
-            "disable_battle_music",
             "fanfares",
             "ocarina_fanfares",
             "sfx_low_hp",

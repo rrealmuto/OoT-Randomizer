@@ -110,7 +110,6 @@ ludicrous_items_base = [
     'Farores Wind',
     'Nayrus Love',
     'Stone of Agony',
-    'Ice Arrows',
     'Deku Stick Capacity',
     'Deku Nut Capacity'
 ]
@@ -156,6 +155,8 @@ ludicrous_items_extended = [
     'Small Key Ring (Bottom of the Well)',
     'Small Key Ring (Gerudo Training Ground)',
     'Magic Bean Pack',
+    'Ice Arrows',
+    'Blue Fire Arrows',
     'Silver Rupee (Dodongos Cavern Staircase)',
     'Silver Rupee (Ice Cavern Spinning Scythe)',
     'Silver Rupee (Ice Cavern Push Block)',
@@ -529,6 +530,12 @@ def get_pool_core(world):
         # Kokiri Sword
         elif location.vanilla_item == 'Kokiri Sword':
             shuffle_item = world.settings.shuffle_kokiri_sword
+
+        # Ice Arrows/Blue Fire Arrows
+        elif location.vanilla_item == 'Ice Arrows':
+            if world.settings.blue_fire_arrows:
+                item = 'Blue Fire Arrows'
+            shuffle_item = world.settings.shuffle_base_item_pool
 
         # Weird Egg
         elif location.vanilla_item == 'Weird Egg':

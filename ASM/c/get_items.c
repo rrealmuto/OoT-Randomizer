@@ -614,7 +614,7 @@ bool Item00_KillActorIfFlagIsSet(z64_actor_t *actor) {
     dummy.actor.variable = 0;
 
     // Check if an override exists
-    this->override = lookup_override(&dummy, z64_game.scene_index, 0);
+    this->override = lookup_override(&(dummy.actor), z64_game.scene_index, 0);
 
     // Check if the overridden item has already been collected
     if (Get_CollectibleOverrideFlag(this)) {
@@ -731,6 +731,7 @@ void dispatch_item(uint16_t resolved_item_id, uint8_t player, override_t *overri
         z64_GiveItem(&z64_game, item_row->action_id);
         call_effect_function(item_row);
     } else if (player != PLAYER_ID) {
+        // Item is for another world. Set outgoing item.
         push_outgoing_override(override);
     } else {
         // Item is for this player
@@ -776,7 +777,7 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
         // If it's a collectible item don't do the fanfare music/message box. 
         if (item_row->collectible >= 0) { // Item is one of our base collectibles
             collectible_mutex = NULL;
-            pItem->actor.health = 1;
+            pItem->actor.dropFlag = 1; // Store this so the draw function knows to keep drawing the override.
             dispatch_item(resolved_item_id, player, &collectible_override, item_row);
             // Pick the correct sound effect for rupees or other items.
             uint16_t sfxId = NA_SE_SY_GET_ITEM;
