@@ -2309,6 +2309,11 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         torch_count = world.settings.fae_torch_count
         rom.write_byte(0xCA61E3, torch_count)
 
+    # Fix shadow temple redead shared flags for silver rupee shuffle
+    if world.settings.shuffle_silver_rupees != 'vanilla' and not world.dungeon_mq['Shadow Temple']:
+        rom.write_byte(0x280905E,0)
+        rom.write_byte(0x280906E,0)
+
     # actually write the save table to rom
     world.distribution.give_items(world, save_context)
     if world.settings.starting_age == 'adult':
