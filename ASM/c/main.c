@@ -1,7 +1,6 @@
 #include "triforce.h"
 #include "model_text.h"
 #include "dungeon_info.h"
-#include "silver_rupee_info.h"
 #include "file_select.h"
 #include "get_items.h"
 #include "models.h"
@@ -43,7 +42,6 @@ void before_game_state_update() {
 
 void after_game_state_update() {
     draw_dungeon_info(&(z64_ctxt.gfx->overlay));
-    draw_silver_rupee_info(&(z64_ctxt.gfx->overlay));
     draw_triforce_count(&(z64_ctxt.gfx->overlay));
     draw_illegal_model_text(&(z64_ctxt.gfx->overlay));
     give_ganon_boss_key();
