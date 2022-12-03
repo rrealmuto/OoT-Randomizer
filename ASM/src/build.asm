@@ -111,6 +111,8 @@ RANDO_CONTEXT:
 .include "drop_overrides/obj_comb.asm"
 .include "drop_overrides/actor.asm"
 .include "drop_overrides/obj_tsubo.asm"
+.include "drop_overrides/enemy_drops.asm"
+.include "drop_overrides/ovl_en_bb.asm"
 .include "rand_seed.asm"
 
 .align 0x10
