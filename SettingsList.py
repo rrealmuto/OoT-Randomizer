@@ -3504,6 +3504,11 @@ setting_infos = [
             'Any Dungeon': Silver Rupees can only appear in a
             dungeon, but not necessarily the dungeon they are for.
 
+            'Regional': Silver Rupees can only appear in regions 
+            near the original dungeon (including the dungeon 
+            itself or other dungeons in the region).
+            <a href="https://wiki.ootrandomizer.com/index.php?title=Hints#Hint_Regions" target="_blank">The Wiki has a list of corresponding regions here.</a>
+
             'Anywhere': Silver Rupees can appear
             anywhere in the world.
         ''',
