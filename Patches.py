@@ -1010,7 +1010,18 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
                     # Spawning outside a grotto crashes the game, so we use a nearby regular entrance instead.
                     savewarp = entrance.reverse.data['savewarp_fallback']
                 else:
-                    savewarp = entrance.reverse.data['index']
+                    # Spawning inside a grotto also crashes, but exiting a grotto can currently only lead to a boss room in decoupled,
+                    # so we follow the entrance chain back to the nearest non-grotto.
+                    savewarp = entrance
+                    while 'savewarp_fallback' in savewarp.data:
+                        parents = list(filter(lambda parent: parent.reverse, savewarp.parent_region.entrances))
+                        if len(parents) == 0:
+                            raise Exception('Unable to set savewarp')
+                        elif len(parents) == 1:
+                            savewarp = parents[0]
+                        else:
+                            raise Exception('Found grotto with multiple entrances')
+                    savewarp = savewarp.reverse.data['index']
                 for address in replaced_entrance['savewarp_addresses']:
                     rom.write_int16(address, savewarp)
 
