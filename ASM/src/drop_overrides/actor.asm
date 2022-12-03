@@ -29,6 +29,7 @@ Actor_UpdateAll_Hook:
     sw      s1, 0x3C(sp)
     sw      ra, 0x40(sp)
 
+    addiu   s0, 1
     sh      s0, CURR_ACTOR_SPAWN_INDEX ; Store the actor index in a global variable so we can easily pass it into other functions
 
     jal     0x800255C4 ; Call Actor_SpawnEntry

@@ -1,5 +1,4 @@
 #include "z64.h"
-#include "en_item00.h"
 #include "pots.h"
 #include "item_table.h"
 #include "get_items.h"
@@ -28,7 +27,7 @@ extern int8_t curr_scene_setup;
 // Called at the end of Actor_SetWorldToHome
 // Reset the rotations for any actors that we may have passed data in through Actor_Spawn
 void Actor_SetWorldToHome_End(z64_actor_t *actor) {
-   switch (actor->actor_id) {
+    switch (actor->actor_id) {
         case BG_HAKA_TUBO:
         case BG_SPOT18_BASKET:
         case OBJ_MURE3:
@@ -54,15 +53,14 @@ void Actor_SetWorldToHome_End(z64_actor_t *actor) {
 void Actor_After_UpdateAll_Hack(z64_actor_t *actor, z64_game_t *game) {
     Actor_StoreFlagInRotation(actor, game, CURR_ACTOR_SPAWN_INDEX);
     Actor_StoreChestType(actor, game);
-    if (actor->actor_id == EN_ITEM00) { // Freestanding collectibles. Store the actual override in new space added to the actor instance.
-        EnItem00_Init_Hack((EnItem00 *)actor, game);
-    }
+
+    CURR_ACTOR_SPAWN_INDEX = 0; // reset CURR_ACTOR_SPAWN_INDEX
 }
 
-// For pots/crates/beehives/freestanding, store the flag in the actor's unused initial rotation fields
+// For pots/crates/beehives, store the flag in the actor's unused initial rotation fields
 // Flag consists of the room # and the actor index
 void Actor_StoreFlagInRotation(z64_actor_t *actor, z64_game_t *game, uint16_t actor_index) {
-    uint16_t flag = (actor_index + 1) | (actor->room_index << 8); // Calculate the flag
+    uint16_t flag = actor_index | (actor->room_index << 8); // Calculate the flag
     switch (actor->actor_id) {
         // For the following actors we store the flag in the z rotation
         case OBJ_TSUBO:
@@ -73,8 +71,7 @@ void Actor_StoreFlagInRotation(z64_actor_t *actor, z64_game_t *game, uint16_t ac
             break;
         }
         // For the following actors we store the flag in the y rotation
-        case OBJ_KIBAKO2:
-        case EN_ITEM00: {
+        case OBJ_KIBAKO2: {
             actor->rot_init.y = flag;
             break;
         }
@@ -151,7 +148,7 @@ bool spawn_override_silver_rupee(ActorEntry *actorEntry, z64_game_t *globalCtx) 
         // Build a dummy enitem00 actor
         EnItem00 dummy;
         dummy.actor.actor_id = 0x15;
-        dummy.actor.rot_init.y = (globalCtx->room_index << 8) + CURR_ACTOR_SPAWN_INDEX + 1;
+        dummy.actor.rot_init.y = (globalCtx->room_index << 8) + CURR_ACTOR_SPAWN_INDEX;
         dummy.actor.variable = 0;
         uint8_t type = (actorEntry->params >> 0x0C) & 0xF;
         if (type != 1) { // only override actual silver rupees, not the switches or pots.

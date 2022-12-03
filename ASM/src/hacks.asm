@@ -392,6 +392,7 @@ SRAM_SLOTS:
     .halfword 0x01B4 ; New data starts at 0x01A4
 
 ; Hack EnItem00_Init when it checks the scene flags to prevent killing the actor if its being overridden.
+; Also use this as the point to set override data within the actor.
 ; replaces
 ;   jal     0x80020EB4
 ;.orga 0x0A87B10; In Memory 0x80011BB0

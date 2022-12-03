@@ -44,6 +44,7 @@ uint8_t collectible_scene_flags_table[600];
 alt_override_t alt_overrides[64];
 
 extern int8_t curr_scene_setup;
+extern uint16_t CURR_ACTOR_SPAWN_INDEX;
 
 // Total amount of memory required for each flag table (in bytes).
 uint16_t num_override_flags;
@@ -590,25 +591,41 @@ void Item_DropCollectible_Room_Hack(EnItem00 *spawnedActor) {
 
 z64_actor_t *Item_DropCollectible_Actor_Spawn_Override(void *actorCtx, z64_game_t *globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params) {
     rotY = drop_collectible_override_flag; // Get the override flag
-    drop_collectible_override_flag = 0; // And reset it to 0.
     EnItem00 *spawnedActor = (EnItem00 *)z64_SpawnActor(actorCtx, globalCtx,actorId, posX, posY, posZ, rotX, rotY, rotZ, params); // Spawn the actor
+    drop_collectible_override_flag = 0; // And reset it to 0.
 
-    // Get the override for the newly spawned collectible
-    spawnedActor->override = lookup_override(&(spawnedActor->actor), globalCtx->scene_index, 0);
-
-    // Check if it has already been collected
-    if (Get_CollectibleOverrideFlag(spawnedActor)) {
-        spawnedActor->override = (override_t) { 0 };
-    }
     return &(spawnedActor->actor);
 }
 
+// Hack in EnItem00_Init where it checks whether or not to kill the actor based on the collectible flag.
+// We use this point to determine if this is an overriden collectible and store that information in the actor.
 bool Item00_KillActorIfFlagIsSet(z64_actor_t *actor) {
     EnItem00 *this = (EnItem00 *)actor;
-    if (this->override.key.all) {
-        return 0;
+    uint16_t flag = 0;
+    if (drop_collectible_override_flag) {
+        flag = drop_collectible_override_flag;
+    } else if (CURR_ACTOR_SPAWN_INDEX) {
+        flag = (CURR_ACTOR_SPAWN_INDEX) | (actor->room_index << 8);
+    }
+    // Still need to build a dummy because we haven't set any info in the actor yet.
+    EnItem00 dummy;
+    dummy.actor.actor_id = 0x15;
+    dummy.actor.rot_init.y = flag;
+    dummy.actor.variable = 0;
+
+    // Check if an override exists
+    this->override = lookup_override(&dummy, z64_game.scene_index, 0);
+
+    // Check if the overridden item has already been collected
+    if (Get_CollectibleOverrideFlag(this)) {
+        this->override = (override_t) { 0 };
     }
 
+    if (this->override.key.all) { // If an override exists and we haven't already collected it
+        return 0; // Return 0 to continue spawning the actor
+    }
+
+    // If we get here than we either don't have an override, or the override has already been collected. Perform normal collectible flag check.
     if (z64_Flags_GetCollectible(&z64_game, this->collectibleFlag)) {
         z64_ActorKill(actor);
         return 1;
