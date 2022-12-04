@@ -2253,10 +2253,17 @@ setting_infos = [
         default        = False,
         disable        = {
             True : {
-                'sections' : ['open_section', 'shuffle_section', 'shuffle_dungeon_section'],
-                'settings': ['starting_age', 'shuffle_interior_entrances', 'shuffle_grotto_entrances', 'shuffle_dungeon_entrances',
-                             'shuffle_bosses', 'shuffle_overworld_entrances', 'owl_drops', 'warp_songs', 'spawn_positions',
-                             'triforce_hunt', 'triforce_count_per_world', 'triforce_goal_per_world', 'bombchus_in_logic', 'one_item_per_dungeon'],
+                'sections': ['shuffle_section'],
+                'settings': [
+                    'open_forest', 'open_kakariko', 'open_door_of_time', 'zora_fountain', 'gerudo_fortress', 'dungeon_shortcuts_choice',
+                    'dungeon_shortcuts', 'trials_random', 'trials',
+                    'starting_age', 'shuffle_interior_entrances',
+                    'shuffle_grotto_entrances', 'shuffle_dungeon_entrances',
+                    'shuffle_bosses', 'shuffle_overworld_entrances', 'owl_drops', 'warp_songs', 'spawn_positions',
+                    'triforce_hunt', 'triforce_count_per_world', 'triforce_goal_per_world', 'bombchus_in_logic', 'one_item_per_dungeon',
+                    'shuffle_mapcompass', 'shuffle_smallkeys', 'shuffle_hideoutkeys', 'key_rings_choice', 'key_rings',
+                    'shuffle_bosskeys', 'enhance_map_compass'
+                ],
             }
         },
         shared         = True,
@@ -4217,7 +4224,7 @@ setting_infos = [
         name           = 'shuffle_beehives',
         gui_text       = 'Shuffle Beehives',
         gui_tooltip    = '''\
-            Enabling this will let beehives drop items. Beehives will shake if they contain anything important.
+            Enabling this will let beehives drop items.
             There are 32 Beehives located in:
                 Generic Grottos (x2 per grotto)
                 2 Scrub Grottos (x1 per grotto)
@@ -4761,7 +4768,7 @@ setting_infos = [
     ),    
     Combobox(
         name           = 'correct_potcrate_appearances',
-        gui_text       = 'Pot & Crate Appearance Matches Contents',
+        gui_text       = 'Pot, Crate, & Beehive Appearance Matches Contents',
         default        = 'textures_unchecked',
         choices        = {
             'off':                'Off',
@@ -4769,21 +4776,23 @@ setting_infos = [
             'textures_unchecked': 'Texture (Unchecked)',
         },
         gui_tooltip    = '''\
-            If enabled, pot/crate textures will reflect its contents.
+            If enabled, pot/crate textures, and beehive wiggling will reflect its contents.
 
-            Off - Pot and crates will appear as vanilla
+            Off - Pots, crates, and beehives will appear as vanilla.
 
             Texture (Match Content) - Pot and crate textures will reflect the contents.
             Golden Pots/crates will contain major items.
             Pots/crates with keys on them will contain small keys.
-            Pots/crates containing boss keys will use a variation of the boss key crate texture.
+            Pots/crates containing boss keys will use a variation of the boss key chest texture.
             Pots/crates with a spider web on them contain Gold Skulltula tokens.
             All other items will use the original texture.
             The texture will revert to the original texture once the item is collected.
+            Beehives containing non-junk items will wiggle until collected.
 
             Texture (Unchecked) - All pots/crates containing shuffled items
             will appear with a golden texture. The texture will revert to the
             original texture once the item is collected.
+            Beehives will wiggle until their item is collected.
         ''',
         shared         = True,
     ),
@@ -5212,7 +5221,7 @@ setting_infos = [
             Tunic colors are excluded from this to prevent not being 
             able to discern freestanding Tunics from each other.
         ''',
-        default        = False,
+        default        = True,
     ),
     Checkbutton(
         name           = 'randomize_all_cosmetics',

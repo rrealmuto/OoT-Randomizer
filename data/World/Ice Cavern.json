@@ -34,7 +34,7 @@
         },
         "exits": {
             "Ice Cavern Map Room": "is_adult and (Silver_Rupee_Ice_Cavern_Spinning_Scythe, 5)",
-            "Ice Cavern Behind Ice Walls": "Blue_Fire"
+            "Ice Cavern Behind Ice Walls": "here(Blue_Fire)"
         }
     },
     {
