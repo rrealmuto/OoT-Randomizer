@@ -26,6 +26,13 @@
 #define NA_BGM_SMALL_ITEM_GET 0x39
 #define NA_SE_SY_GET_RUPY     0x4803
 #define NA_SE_SY_GET_ITEM     0x4824
+#define NA_SE_SY_DECIDE 0x4808
+#define NA_SE_SY_CURSOR 0x4809
+#define NA_SE_SY_CANCEL 0x480A
+#define NA_SE_SY_FSEL_CURSOR 0x4839
+#define NA_SE_SY_FSEL_DECIDE_S 0x483A
+#define NA_SE_SY_FSEL_DECIDE_L 0x483B
+#define NA_SE_SY_FSEL_CLOSE 0x483C
 
 #define OFFSETOF(structure, member) ((size_t)&(((structure *)0)->member))
 
