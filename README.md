@@ -172,6 +172,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Upgrade to latest Nebular version 10.
 * Upgrade to Angular 14.
 * Minimum NodeJS version is now 14.15.0.
+* Fix visibility issues when using `Randomize Main Rule Settings`.
 
 #### Other Changes
 * Removed some unnecessary duplication in spirit temple logic.
@@ -180,6 +181,8 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * Multiple freestanding/pot items can be sent on the same frame.
 * Ice Arrows will now be referred to as Blue Fire Arrows in hints and shop text when `Blue Fire Arrows` is enabled.
 * Logic now considers the possibility to melt the red ice walls in Ice Cavern with Blue Fire Arrows as adult, then coming back as child and collecting a skulltula with the boomerang.
+* Beehives now wiggle depending on the renamed setting `Pot, Crate, & Beehive Appearance Matches Contents`.
+* `Item Model Colors Match Cosmetics` is now enabled by default.
 
 #### Plandomizer
 * Due to Ice Arrows and Blue Fire Arrows being separate items in the code now, plandomizer authors must use `Ice_Arrows` or `Blue_Fire_Arrows` depending on if the setting is enabled.
