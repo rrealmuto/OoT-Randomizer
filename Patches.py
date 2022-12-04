@@ -1654,7 +1654,10 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
                 loc
                 for region in jabu_reward_regions
                 for loc in region.locations
-                if not loc.locked and loc.has_item() and not loc.item.event
+                if not loc.locked
+                and loc.has_item()
+                and not loc.item.event
+                and (loc.type != "Shop" or loc.name in world.shop_prices) # ignore regular shop items (but keep special deals)
             ]
             if locations:
                 # Location types later in the list will be preferred over earlier ones or ones not in the list.
