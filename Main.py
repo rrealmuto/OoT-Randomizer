@@ -31,7 +31,7 @@ from Search import Search, RewindableSearch
 from EntranceShuffle import set_entrances
 from LocationList import set_drop_location_names
 from Goals import update_goal_items, maybe_set_misc_item_hints, replace_goal_names
-from version import real_version
+from version import __version__
 
 
 class dummy_window():
@@ -111,7 +111,7 @@ def resolve_settings(settings, window=dummy_window()):
     if len(settings.hint_dist_user) != 0:
         settings.hint_dist = 'custom'
 
-    logger.info(f'OoT Randomizer Version {real_version}  -  Seed: {settings.seed}')
+    logger.info('OoT Randomizer Version %s  -  Seed: %s', __version__, settings.seed)
     settings.remove_disabled()
     logger.info('(Original) Settings string: %s\n', settings.settings_string)
     random.seed(settings.numeric_seed)

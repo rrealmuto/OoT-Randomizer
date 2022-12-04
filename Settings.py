@@ -10,7 +10,7 @@ import string
 import sys
 import textwrap
 
-from version import real_version
+from version import __version__
 from Utils import random_choices, local_path, data_path
 from SettingsList import setting_infos, get_setting_info, validate_settings
 from Plandomizer import Distribution
@@ -194,7 +194,7 @@ class Settings:
     def get_numeric_seed(self):
         # salt seed with the settings, and hash to get a numeric seed
         distribution = json.dumps(self.distribution.to_json(include_output=False), sort_keys=True)
-        full_string = self.settings_string + distribution + real_version + self.seed
+        full_string = self.settings_string + distribution + __version__ + self.seed
         return int(hashlib.sha256(full_string.encode('utf-8')).hexdigest(), 16)
 
 
