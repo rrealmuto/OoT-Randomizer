@@ -76,7 +76,7 @@ Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https:
 To run this program, clone this repository and either run ```Gui.py``` for a graphical interface or ```OoTRandomizer.py```
 for the command line version. They both require Python 3.6+. This will be fully featured,
 but the seeds you generate will have different random factors than the bundled release.
-To use the GUI, [NodeJS](https://nodejs.org/download/release/v18.12.1/) (v18 LTS, with npm) will additionally need to be installed. NodeJS v12.20.1 and earlier are no longer supported.
+To use the GUI, [NodeJS](https://nodejs.org/download/release/v18.12.1/) (v18 LTS, with npm) will additionally need to be installed. NodeJS v14.14.0 and earlier are no longer supported.
 The first time ```Gui.py``` is run it will need to install necessary components, which could take a few minutes. Subsequent instances will run much quicker.
 Supported output formats are .z64 (N64/Emulator), .wad (Wii VC, channel IDs NICE/NRKE recommended), Uncompressed ROM (for developmental purposes, offline build only)
 and .zpf/.zpfz (patch files, for sharing seeds with others).
@@ -169,6 +169,9 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * `Disable Battle Music` has been moved to the main section of the SFX tab.
 * Nonsense tags in the `Exclude Locations` list were cleaned up.
 * New tags were added in the `Exclude Locations` and `Enable Tricks` lists.
+* Upgrade to latest Nebular version 10.
+* Upgrade to Angular 14.
+* Minimum NodeJS version is now 14.15.0.
 
 #### Other Changes
 * Removed some unnecessary duplication in spirit temple logic.
@@ -176,6 +179,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * Allows players to continue collecting items if the Multiworld plugin crashes.
   * Multiple freestanding/pot items can be sent on the same frame.
 * Ice Arrows will now be referred to as Blue Fire Arrows in hints and shop text when `Blue Fire Arrows` is enabled.
+* Logic now considers the possibility to melt the red ice walls in Ice Cavern with Blue Fire Arrows as adult, then coming back as child and collecting a skulltula with the boomerang.
 
 #### Plandomizer
 * Due to Ice Arrows and Blue Fire Arrows being separate items in the code now, plandomizer authors must use `Ice_Arrows` or `Blue_Fire_Arrows` depending on if the setting is enabled.

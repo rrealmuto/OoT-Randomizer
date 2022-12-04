@@ -24,7 +24,7 @@ from SettingsToJson import CreateJSON
 
 def guiMain():
     try:
-        version_check("Node", "12.20.2", "https://nodejs.org/en/download/")
+        version_check("Node", "14.15.0", "https://nodejs.org/en/download/")
         version_check("NPM", "6.12.0", "https://nodejs.org/en/download/")
     except VersionError as ex:
         print(ex.args[0])
