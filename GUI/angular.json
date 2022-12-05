@@ -21,7 +21,8 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [
-              "post-robot"
+              "post-robot",
+              "eva-icons"
             ],
             "outputPath": "dist/ootr-electron-gui",
             "index": "src/index.html",
@@ -173,6 +174,5 @@
         }
       }
     }
-  },
-  "defaultProject": "ootr-electron-gui"
+  }
 }
