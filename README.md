@@ -62,6 +62,7 @@ Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https:
   * [Settings](#settings)
   * [Known Issues](#known-issues)
 * [Changelog](#changelog)
+  * [7.1](#71)
   * [7.0](#70)
   * [6.2](#62)
   * [6.1](#61)
@@ -158,6 +159,8 @@ issue. You should always Hard Reset to avoid this issue entirely.
 ## Changelog
 
 ### Dev
+
+### 7.1
 
 #### Bug Fixes
 * Fix freestanding items not spawning their overrides when an item with a shared base collectable flag is collected.
