@@ -36,13 +36,14 @@ class FlagType(IntEnum):
 class Address():
     prev_address = None
     EXTENDED_CONTEXT_START = 0x1450
+
     def __init__(self, address=None, extended=False, size=4, mask=0xFFFFFFFF, max=None, choices=None, value=None):
         if address is None:
             self.address = Address.prev_address
         else:
-            self.address = address  
+            self.address = address
         if extended and address is not None:
-            self.address += Address.EXTENDED_CONTEXT_START         
+            self.address += Address.EXTENDED_CONTEXT_START
         self.value = value
         self.size = size
         self.choices = choices
@@ -163,6 +164,7 @@ class SaveContext():
         else:
             self.save_bits[address] = value
 
+
     # will overwrite the byte at offset with the given value
     def write_byte(self, address, value, predicate=None):
         if predicate and not predicate(value):
@@ -253,6 +255,7 @@ class SaveContext():
         if extended_table_len > 0x100:
             raise Exception("The Initial Extended Save Table has exceeded its maximum capacity: 0x%03X/0x100" % extended_table_len)
         rom.write_bytes(rom.sym('EXTENDED_INITIAL_SAVE_DATA'), extended_table)
+
 
     def give_bottle(self, item, count):
         for bottle_id in range(4):
@@ -835,9 +838,9 @@ class SaveContext():
             },
             'triforce_pieces'            : Address(0xD4 + 0x1C * 0x48 + 0x10, size=4), # Unused word in scene x48
             'pending_freezes'            : Address(0xD4 + 0x1C * 0x49 + 0x10, size=4), # Unused word in scene x49
-            #begin extended save data items
+            # begin extended save data items
             'silver_rupee_counts' : {
-                'dc_staircase'           : Address(address=0x00, extended=True, size=1),
+                'dc_staircase': Address(address=0x00, extended=True, size=1),
                 'ice_scythe': Address(extended=True, size=1),
                 'ice_block': Address(extended=True, size=1),
                 'botw_basement': Address(extended=True, size=1),

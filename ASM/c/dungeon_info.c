@@ -1,10 +1,10 @@
 #include <stdbool.h>
 #include "dungeon_info.h"
 #include "gfx.h"
-#include "item_effects.h"
-#include "save.h"
 #include "text.h"
 #include "z64.h"
+#include "item_effects.h"
+#include "save.h"
 
 typedef struct {
     uint8_t index;

@@ -32,11 +32,9 @@ override_t get_crate_override(z64_actor_t *actor, z64_game_t *game) {
     dummy.actor.variable = 0;
 
     override_t override = lookup_override(&(dummy.actor), game->scene_index, 0);
-    if(override.key.all != 0)
-    {
+    if (override.key.all != 0) {
         dummy.override = override;
-        if(!Get_CollectibleOverrideFlag(&dummy))
-        {
+        if (!Get_CollectibleOverrideFlag(&dummy)) {
             return override;
         }
     }
@@ -48,7 +46,7 @@ void ObjKibako2_Draw(z64_actor_t *actor, z64_game_t *game) {
 
     // get override palette and textures
 
-    ObjKibako2* this = (ObjKibako2*)actor;
+    ObjKibako2 *this = (ObjKibako2 *)actor;
 
     if (this->chest_type == GILDED_CHEST) {
         texture = get_texture(TEXTURE_ID_CRATE_GOLD);
@@ -59,7 +57,6 @@ void ObjKibako2_Draw(z64_actor_t *actor, z64_game_t *game) {
     } else if (this->chest_type == SKULL_CHEST_SMALL || this->chest_type == SKULL_CHEST_BIG) {
         texture = get_texture(TEXTURE_ID_CRATE_SKULL);
     }
-
 
     // push custom dlists (that set the palette and textures) to segment 09
     z64_gfx_t *gfx = game->common.gfx;

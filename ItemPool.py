@@ -601,7 +601,6 @@ def get_pool_core(world):
                 dungeon_collection = dungeon.silver_rupees
                 if shuffle_setting == 'vanilla':
                     shuffle_item = False
-
             # Any other item in a dungeon.
             elif location.type in ["Chest", "NPC", "Song", "Collectable", "Cutscene", "BossHeart"]:
                 shuffle_item = True
