@@ -1,10 +1,10 @@
 #include <stdbool.h>
 #include "dungeon_info.h"
 #include "gfx.h"
-#include "item_effects.h"
-#include "save.h"
 #include "text.h"
 #include "z64.h"
+#include "item_effects.h"
+#include "save.h"
 
 typedef struct {
     uint8_t index;
@@ -152,7 +152,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
                 0,
                 0, 0,
                 1<<10, 1<<10);
-        
+
         gDPPipeSync(db->p++);
         gDPSetCombineMode(db->p++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
 
@@ -227,7 +227,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
         left += (8 * font_width) + padding;
 
         // Draw keys
-        
+
         if (show_keys) {
             // Draw small key counts
 

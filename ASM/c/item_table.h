@@ -24,7 +24,7 @@ typedef struct {
     effect_fn   effect;
     int16_t     effect_arg1;
     int16_t     effect_arg2;
-    int8_t     collectible;
+    int8_t      collectible;
 } item_row_t;
 
 uint16_t resolve_upgrades(uint16_t item_id);

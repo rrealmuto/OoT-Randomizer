@@ -12,7 +12,7 @@ Actor_SetWorldToHome_Hook:
     addiu   sp, sp, 0x20
 
 ; Hacks Actor_UpdateAll so that we can override actor spawns.
-Actor_UpdateAll_Hook: 
+Actor_UpdateAll_Hook:
 ;A0 - Actor Context
 ;A1 - Actor Entry
 ;A2 - Global Context
@@ -40,12 +40,12 @@ Actor_UpdateAll_Hook:
     ; Make sure the actor was spawned
     beqz    v0, @@end
     nop
-    @@call_hack:
+@@call_hack:
     or      a0, r0, v0 ;move the actor pointer to a0
     lw      a1, 0x34(sp) ; Get the game context off the stack to pass into the hack.
     jal     Actor_After_UpdateAll_Hack ; Call our hack
     nop
-    @@end:
+@@end:
     lw      t0, 0x20(sp)
     lw      t1, 0x24(sp)
     lw      t2, 0x28(sp)
@@ -56,4 +56,4 @@ Actor_UpdateAll_Hook:
     lw      s1, 0x3C(sp)
     lw      ra, 0x40(sp)
     jr      ra
-    addiu   sp, sp, 0x50 
+    addiu   sp, sp, 0x50

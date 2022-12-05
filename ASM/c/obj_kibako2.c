@@ -15,11 +15,11 @@ void ObjKibako2_SpawnCollectible_Hack(ObjKibako2 *this, z64_game_t *globalCtx) {
     int16_t itemDropped;
     int16_t collectibleFlagTemp;
 
-    collectibleFlagTemp = this->collectibleFlag & 0x3F;             
+    collectibleFlagTemp = this->collectibleFlag & 0x3F;
     itemDropped = this->dyna.actor.rot_init.x & 0x1F;
     if (itemDropped >= 0 && itemDropped < 0x1A) {
         drop_collectible_override_flag = this->dyna.actor.rot_init.y;
-        EnItem00* spawned = z64_Item_DropCollectible(globalCtx, &this->dyna.actor.pos_world, itemDropped | (collectibleFlagTemp << 8));
+        EnItem00 *spawned = z64_Item_DropCollectible(globalCtx, &this->dyna.actor.pos_world, itemDropped | (collectibleFlagTemp << 8));
     }
 }
 
@@ -29,15 +29,13 @@ override_t get_crate_override(z64_actor_t *actor, z64_game_t *game) {
     dummy.actor.actor_id = 0x15;
     dummy.actor.rot_init.y = actor->rot_init.y;
     dummy.actor.variable = 0;
-    
+
     override_t override = lookup_override(&(dummy.actor), game->scene_index, 0);
-    if(override.key.all != 0)
-    {
+    if (override.key.all != 0) {
         dummy.override = override;
-        if(!Get_CollectibleOverrideFlag(&dummy))
-        {
+        if (!Get_CollectibleOverrideFlag(&dummy)) {
             return override;
-        }    
+        }
     }
     return (override_t) { 0 };
 }
@@ -46,8 +44,8 @@ void ObjKibako2_Draw(z64_actor_t *actor, z64_game_t *game) {
     uint8_t* texture = get_texture(TEXTURE_ID_CRATE_DEFAULT);
 
     // get override palette and textures
-    
-    ObjKibako2* this = (ObjKibako2*)actor;
+
+    ObjKibako2 *this = (ObjKibako2 *)actor;
 
     if (this->chest_type == GILDED_CHEST) {
         texture = get_texture(TEXTURE_ID_CRATE_GOLD);
@@ -58,7 +56,6 @@ void ObjKibako2_Draw(z64_actor_t *actor, z64_game_t *game) {
     } else if (this->chest_type == SKULL_CHEST_SMALL || this->chest_type == SKULL_CHEST_BIG) {
         texture = get_texture(TEXTURE_ID_CRATE_SKULL);
     }
-    
 
     // push custom dlists (that set the palette and textures) to segment 09
     z64_gfx_t *gfx = game->common.gfx;

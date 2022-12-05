@@ -117,17 +117,17 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     texture_table_start = rom.sym('texture_table') # Get the address of the texture table
 
     # texture list. See textures.h for texture IDs
-    #   ID, texture_name,                   Rom Address    CI4 Pallet Addr  Size    Patching function                          Patch file (None for default)
+    #   ID, texture_name,                   Rom Address    CI4 Pallet Addr  Size    Patching function           Patch file (None for default)
     crate_textures = [
-        (1, 'texture_pot_gold',             0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_gold_rgba16_patch.bin'),
-        (2, 'texture_pot_key',              0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_key_rgba16_patch.bin'),
-        (3, 'texture_pot_bosskey',          0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_bosskey_rgba16_patch.bin'),
-        (4, 'texture_pot_skull',            0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_skull_rgba16_patch.bin'),
-        (5, 'texture_crate_default',        0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     None),
-        (6, 'texture_crate_gold'   ,        0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     'textures/crate/crate_gold_rgba16_patch.bin'),
-        (7, 'texture_crate_key',            0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     'textures/crate/crate_key_rgba16_patch.bin'),
-        (8, 'texture_crate_skull',          0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     'textures/crate/crate_skull_rgba16_patch.bin'),
-        (9, 'texture_crate_bosskey',        0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     'textures/crate/crate_bosskey_rgba16_patch.bin'),
+        (1,  'texture_pot_gold',            0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_gold_rgba16_patch.bin'),
+        (2,  'texture_pot_key',             0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_key_rgba16_patch.bin'),
+        (3,  'texture_pot_bosskey',         0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_bosskey_rgba16_patch.bin'),
+        (4,  'texture_pot_skull',           0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_skull_rgba16_patch.bin'),
+        (5,  'texture_crate_default',       0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     None),
+        (6,  'texture_crate_gold',          0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     'textures/crate/crate_gold_rgba16_patch.bin'),
+        (7,  'texture_crate_key',           0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     'textures/crate/crate_key_rgba16_patch.bin'),
+        (8,  'texture_crate_skull',         0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     'textures/crate/crate_skull_rgba16_patch.bin'),
+        (9,  'texture_crate_bosskey',       0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     'textures/crate/crate_bosskey_rgba16_patch.bin'),
         (10, 'texture_smallcrate_gold',     0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_gold_rgba16_patch.bin' ),
         (11, 'texture_smallcrate_key',      0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_key_rgba16_patch.bin'),
         (12, 'texture_smallcrate_skull',    0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_skull_rgba16_patch.bin'),
@@ -1724,6 +1724,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     # build misc. location hints
     buildMiscLocationHints(world, messages)
+
     # Patch freestanding items
     if world.settings.shuffle_freestanding_items:
     # Get freestanding item locations
@@ -1740,30 +1741,30 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         if world.settings.shuffle_silver_rupees != 'remove':
             rom.write_byte(rom.sym('CFG_DUNGEON_INFO_SILVER_RUPEES'), 1)
 
-        if world.dungeon_mq['Dodongos Cavern']: #Patch DC MQ Staircase Transition Actor to use permanent switch flag 0x1F
-            rom.write_byte(0x1F12190+15, 0x9F)
+        if world.dungeon_mq['Dodongos Cavern']: # Patch DC MQ Staircase Transition Actor to use permanent switch flag 0x1F
+            rom.write_byte(0x1F12190 + 15, 0x9F)
 
-        if world.dungeon_mq['Spirit Temple']: #Patch Spirit MQ Lobby front right chest to use permanent switch flag 0x1F
-            rom.write_byte(0x2b08ce4+13, 0x1F )
+        if world.dungeon_mq['Spirit Temple']: # Patch Spirit MQ Lobby front right chest to use permanent switch flag 0x1F
+            rom.write_byte(0x2b08ce4 + 13, 0x1F)
 
     # Write flag table data
     collectible_flag_table, alt_list = get_collectible_flag_table(world)
     collectible_flag_table_bytes, num_collectible_flags = get_collectible_flag_table_bytes(collectible_flag_table)
     alt_list_bytes = get_alt_list_bytes(alt_list)
-    if(len(collectible_flag_table_bytes) > 600):
-        raise(RuntimeError(f'Exceeded collectible override table size: {len(collectible_flag_table_bytes)}'))
+    if len(collectible_flag_table_bytes) > 600:
+        raise RuntimeError(f'Exceeded collectible override table size: {len(collectible_flag_table_bytes)}')
     rom.write_bytes(rom.sym('collectible_scene_flags_table'), collectible_flag_table_bytes)
     num_collectible_flags += num_collectible_flags % 8
     rom.write_bytes(rom.sym('num_override_flags'), num_collectible_flags.to_bytes(2, 'big'))
-    if(len(alt_list) > 64):
-        raise(RuntimeError(f'Exceeded alt override table size: {len(alt_list)}'))
+    if len(alt_list) > 64:
+        raise RuntimeError(f'Exceeded alt override table size: {len(alt_list)}')
     rom.write_bytes(rom.sym('alt_overrides'), alt_list_bytes)
 
     # Write item overrides
     check_location_dupes(world)
     override_table = get_override_table(world)
     if len(override_table) >= 1536:
-        raise(RuntimeError(f'Exceeded override table size: {len(override_table)}'))
+        raise RuntimeError(f'Exceeded override table size: {len(override_table)}')
     rom.write_bytes(rom.sym('cfg_item_overrides'), get_override_table_bytes(override_table))
     rom.write_byte(rom.sym('PLAYER_ID'), world.id + 1) # Write player ID
 
@@ -2421,7 +2422,7 @@ def get_override_entry(location):
         type = 6
         if not (isinstance(location.default, list) or isinstance(location.default, tuple)):
             raise Exception("Not right")
-        if(isinstance(location.default, list)):
+        if isinstance(location.default, list):
             default = location.default[0]
         room, scene_setup, flag = default
         default = (room << 8) + (scene_setup << 14) + flag
@@ -2817,7 +2818,7 @@ def patch_actor_override(location, rom: Rom):
 # Also used for goron pot, shadow spinning pots
 def patch_rupee_tower(location, rom: Rom):
     flag = location.default
-    if(isinstance(location.default, tuple)):
+    if isinstance(location.default, tuple):
         room, scene_setup, flag = location.default
     elif isinstance(location.default, list):
         room, scene_setup, flag = location.default[0]
