@@ -1,6 +1,7 @@
 #include "item_effects.h"
 #include "dungeon_info.h"
 #include "save.h"
+
 #define rupee_cap ((uint16_t*)0x800F8CEC)
 volatile uint8_t MAX_RUPEES = 0;
 

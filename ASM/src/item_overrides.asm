@@ -191,7 +191,7 @@ get_item_hook:
     addiu   sp, sp, 0x20
 
 ; Hook Item_DropCollectible to not set the room to -1 if we are going to be overriding the collectible.
-; This will cause overridden collectibles to despawn when switching rooms. 
+; This will cause overridden collectibles to despawn when switching rooms.
 drop_collectible_room_hook:
     addiu   sp, sp, -0x20
     sw      a0, 0x10(sp)
@@ -214,7 +214,7 @@ EnItem00_DropCollectibleFallAction_Hack:
     nop
 
 drop_collectible2_hook:
-    li      t0, drop_collectible_override_flag	
+    li      t0, drop_collectible_override_flag
     lh      t1, 0x00(t0) ; get the current override flag
     sh      r0, 0x00(t0) ; clear the override_flag
     jr      ra

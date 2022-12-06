@@ -18,15 +18,13 @@ override_t get_pot_override(z64_actor_t *actor, z64_game_t *game) {
     dummy.actor.actor_id = 0x15;
     dummy.actor.rot_init.y = actor->rot_init.z;
     dummy.actor.variable = 0;
-    
+
     override_t override = lookup_override(&(dummy.actor), game->scene_index, 0);
-    if(override.key.all != 0)
-    {
+    if (override.key.all != 0) {
         dummy.override = override;
-        if(!Get_CollectibleOverrideFlag(&dummy))
-        {
+        if (!Get_CollectibleOverrideFlag(&dummy)) {
             return override;
-        }    
+        }
     }
     return (override_t) { 0 };
 }
@@ -36,18 +34,15 @@ override_t get_flying_pot_override(z64_actor_t *actor, z64_game_t *game) {
     dummy.actor.actor_id = 0x15;
     dummy.actor.rot_init.y = actor->rot_init.z;
     dummy.actor.variable = 0;
-    
+
     override_t override = lookup_override(&(dummy.actor), game->scene_index, 0);
-    if(override.key.all != 0)
-    {
+    if (override.key.all != 0) {
         dummy.override = override;
-        if(!Get_CollectibleOverrideFlag(&dummy))
-        {
+        if (!Get_CollectibleOverrideFlag(&dummy)) {
             return override;
-        }    
+        }
     }
     return (override_t) { 0 };
-
 }
 
 void draw_pot(z64_actor_t *actor, z64_game_t *game) {
@@ -62,12 +57,13 @@ void draw_pot(z64_actor_t *actor, z64_game_t *game) {
     }
 
     uint8_t chest_type;
-    if(actor->actor_id == 0x111) //Regular pot
-        chest_type = ((ObjTsubo*)actor)->chest_type;
-    else if(actor->actor_id == 0x117) //HBA Pot
+    if (actor->actor_id == 0x111) { // Regular pot
+        chest_type = ((ObjTsubo *)actor)->chest_type;
+    } else if (actor->actor_id == 0x117) { // HBA Pot
         chest_type = BROWN_CHEST;
-    else if(actor->actor_id == 0x11D) //Flying pot
-        chest_type = ((EnTuboTrap*)actor)->chest_type;
+    } else if (actor->actor_id == 0x11D) { // Flying pot
+        chest_type = ((EnTuboTrap *)actor)->chest_type;
+    }
 
     // get override texture
     if (chest_type == GILDED_CHEST) {
@@ -107,12 +103,11 @@ void draw_flying_pot_hack(z64_actor_t* actor, z64_game_t *game) {
     draw_pot(actor, game);
 }
 
-void ObjTsubo_SpawnCollectible_Hack(z64_actor_t *this, z64_game_t *game)
-{
+void ObjTsubo_SpawnCollectible_Hack(z64_actor_t *this, z64_game_t *game) {
     int16_t dropParams = this->variable & 0x1F;
     if ((dropParams >= ITEM00_RUPEE_GREEN) && (dropParams <= ITEM00_BOMBS_SPECIAL)) {
         drop_collectible_override_flag = this->rot_init.z;
-        EnItem00* spawned = z64_Item_DropCollectible(game, &this->pos_world, (dropParams | (((this->variable >> 9) & 0x3F) << 8)));
+        EnItem00 *spawned = z64_Item_DropCollectible(game, &this->pos_world, (dropParams | (((this->variable >> 9) & 0x3F) << 8)));
     }
 }
 
@@ -122,6 +117,6 @@ void EnTuboTrap_DropCollectible_Hack(z64_actor_t *this, z64_game_t *game) {
 
     if (param3FF >= 0 && param3FF < 0x1A) {
         drop_collectible_override_flag = this->rot_init.z;
-        EnItem00* spawned = z64_Item_DropCollectible(game, &this->pos_world, param3FF | ((params & 0x3F) << 8));
+        EnItem00 *spawned = z64_Item_DropCollectible(game, &this->pos_world, param3FF | ((params & 0x3F) << 8));
     }
 }
