@@ -1066,7 +1066,7 @@ class World(object):
         if self.settings.shuffle_ganon_bosskey in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
             itempool.extend([item for dungeon in self.dungeons if dungeon.name == 'Ganons Castle' for item in dungeon.boss_key])
         if self.settings.shuffle_silver_rupees in ['any_dungeon', 'overworld', 'anywhere', 'regional']:
-            itempool.extend([item for dungeon in self.dungeons for item in dungeon.silver_rupees])
+            itempool.extend([item for dungeon in self.dungeons if not self.empty_dungeons[dungeon.name].empty for item in dungeon.silver_rupees])
 
         for item in itempool:
             item.world = self

@@ -5,7 +5,7 @@ from Utils import data_path
 
 
 class Dungeon:
-    def __init__(self, world, name, hint, silver_rupees=None):
+    def __init__(self, world, name, hint):
         self.world = world
         self.name = name
         self.hint = hint
@@ -13,7 +13,7 @@ class Dungeon:
         self.boss_key = []
         self.small_keys = []
         self.dungeon_items = []
-        self.silver_rupees = silver_rupees if silver_rupees is not None else []
+        self.silver_rupees = []
 
         for region in world.regions:
             if region.dungeon == self.name:
