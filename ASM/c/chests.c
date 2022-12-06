@@ -33,12 +33,10 @@ void get_chest_override(z64_actor_t *actor) {
         uint8_t item_id = (actor->variable & 0x0FE0) >> 5;
 
         override_t override = lookup_override(actor, scene, item_id);
-        if (override.value.item_id != 0) {
-            // looks_like_item_id is currently limited to 8 bits, so we replace silver rupee pouch cloaks with silver rupee cloaks as a quick fix to make item IDs >= 0x0100 work
-            //TODO proper fix
-            item_row_t *item_row = get_item_row(((uint16_t) override.value.looks_like_item_id) + (override.value.looks_like_item_id >= 0x00EA ? 0x00EA - 0x00D4 : 0));
+        if (override.value.base.item_id != 0) {
+            item_row_t *item_row = get_item_row(override.value.looks_like_item_id);
             if (item_row == NULL) {
-                item_row = get_item_row(override.value.item_id);
+                item_row = get_item_row(override.value.base.item_id);
             }
             if (CHEST_SIZE_MATCH_CONTENTS || CHEST_SIZE_TEXTURE) {
                 if (item_row->chest_type == BROWN_CHEST || item_row->chest_type == SILVER_CHEST || item_row->chest_type == SKULL_CHEST_SMALL) {
