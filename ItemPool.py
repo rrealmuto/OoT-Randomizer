@@ -662,6 +662,9 @@ def get_pool_core(world):
             # Reverse Shadow is broken with vanilla keys in both vanilla/MQ
             world.state.collect(ItemFactory('Small Key (Shadow Temple)'))
             world.state.collect(ItemFactory('Small Key (Shadow Temple)'))
+        elif world.mixed_pools_bosses and not world.dungeon_mq['Shadow Temple']:
+            # Same with mixed pools bosses but only 1 extra key needed because the boat can't be taken in reverse
+            world.state.collect(ItemFactory('Small Key (Shadow Temple)'))
 
     if (not world.keysanity or (world.empty_dungeons['Fire Temple'].empty and world.settings.shuffle_smallkeys != 'remove'))\
         and not world.dungeon_mq['Fire Temple']:
