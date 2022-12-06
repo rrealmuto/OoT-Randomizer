@@ -36,7 +36,7 @@ offer_jail_normal_white_guard:
 
     ; Load En_Ge1 (white-clothed guards) actor location in RAM
     lui     t8, hi(0x800E8530)
-    addiu   t8, lo(0x800E8530)        ; actor overlay table
+    addiu   t8, lo(0x800E8530)         ; actor overlay table
     lw      t8, 0x2710(t8)             ; actor overlay loaded ram address (0x138 * 0x20 + 0x10)
 
     ; Handle player response to text box

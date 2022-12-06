@@ -1067,7 +1067,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         rom.write_byte(rom.sym('OCARINAS_SHUFFLED'), 1)
 
         # Combine all fence hopping LLR exits to lead to the main LLR exit
-        for k in [0x028A, 0x028E, 0x0292]: # Southern, Western, Eastern Gates
+        for k in (0x028A, 0x028E, 0x0292): # Southern, Western, Eastern Gates
             exit_table[0x01F9] += exit_table[k] # Hyrule Field entrance from Lon Lon Ranch (main land entrance)
             del exit_table[k]
         exit_table[0x01F9].append(0xD52722) # 0x0476, Front Gate
@@ -1138,7 +1138,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     )
     set_entrance_updates(entrance for entrance in world.get_shufflable_entrances() if entrance.shuffled or (patch_blue_warps and entrance.type == 'BlueWarp'))
 
-    for k, v in [(k,v) for k, v in exit_updates if k in exit_table]:
+    for k, v in [(k, v) for k, v in exit_updates if k in exit_table]:
         for addr in exit_table[k]:
             rom.write_int16(addr, v)
 
@@ -1475,7 +1475,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     # start with maps/compasses
     if world.settings.shuffle_mapcompass == 'startwith':
-        for dungeon in ['deku', 'dodongo', 'jabu', 'forest', 'fire', 'water', 'spirit', 'shadow', 'botw', 'ice']:
+        for dungeon in ('deku', 'dodongo', 'jabu', 'forest', 'fire', 'water', 'spirit', 'shadow', 'botw', 'ice'):
             save_context.addresses['dungeon_items'][dungeon]['compass'].value = True
             save_context.addresses['dungeon_items'][dungeon]['map'].value = True
 
@@ -2209,9 +2209,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             'Shadow Temple':      ("the \x05\x45Shadow Temple",      'Bongo Bongo',   0x7f, 0xa3),
         }
         for dungeon in world.dungeon_mq:
-            if dungeon in ['Gerudo Training Ground', 'Ganons Castle']:
+            if dungeon in ('Gerudo Training Ground', 'Ganons Castle'):
                 pass
-            elif dungeon in ['Bottom of the Well', 'Ice Cavern']:
+            elif dungeon in ('Bottom of the Well', 'Ice Cavern'):
                 dungeon_name, boss_name, compass_id, map_id = dungeon_list[dungeon]
                 if world.settings.world_count > 1:
                     map_message = "\x13\x76\x08\x05\x42\x0F\x05\x40 found the \x05\x41Dungeon Map\x05\x40\x01for %s\x05\x40!\x09" % (dungeon_name)
@@ -2435,11 +2435,11 @@ def get_override_entry(location):
     scene = location.scene
     default = location.default
     item_id = location.item.index
-    if None in [scene, default, item_id]:
+    if None in (scene, default, item_id):
         return None
 
     # Don't add freestanding items, pots/crates, beehives to the override table if they're disabled. We use this check to determine how to draw and interact with them
-    if location.type in ["ActorOverride", "Freestanding", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive"] and location.disabled != DisableType.ENABLED:
+    if location.type in ("ActorOverride", "Freestanding", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive") and location.disabled != DisableType.ENABLED:
         return None
 
     player_id = location.item.world.id + 1
@@ -2448,12 +2448,12 @@ def get_override_entry(location):
     else:
         looks_like_item_id = 0
 
-    if location.type in ['NPC', 'Scrub', 'BossHeart']:
+    if location.type in ('NPC', 'Scrub', 'BossHeart'):
         type = 0
     elif location.type == 'Chest':
         type = 1
         default &= 0x1F
-    elif location.type in ['Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive', 'SilverRupee']:
+    elif location.type in ('Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive', 'SilverRupee'):
         type = 6
         if not (isinstance(location.default, list) or isinstance(location.default, tuple)):
             raise Exception("Not right")
@@ -2461,7 +2461,7 @@ def get_override_entry(location):
             default = location.default[0]
         room, scene_setup, flag = default
         default = (room << 8) + (scene_setup << 14) + flag
-    elif location.type in ['Collectable', 'ActorOverride']:
+    elif location.type in ('Collectable', 'ActorOverride'):
         type = 2
     elif location.type == 'GS Token':
         type = 3
@@ -2469,7 +2469,7 @@ def get_override_entry(location):
         type = 0
     elif location.type == 'GrottoScrub' and location.item.type != 'Shop':
         type = 4
-    elif location.type in ['Song', 'Cutscene']:
+    elif location.type in ('Song', 'Cutscene'):
         type = 5
     else:
         return None

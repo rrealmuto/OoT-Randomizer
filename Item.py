@@ -31,7 +31,6 @@ class ItemInfo(object):
         self.alias = self.special.get('alias', None)
         self.junk = self.special.get('junk', None)
         self.trade = self.special.get('trade', False)
-        self.dungeon = self.special.get('dungeon', None)
 
 
 for item_name in item_table:

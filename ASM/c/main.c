@@ -57,7 +57,7 @@ void after_scene_init() {
     clear_twinrova_vars();
     models_reset();
     extern_scene_init();
+    check_model_skeletons();
     reset_collectible_mutex();
     get_current_scene_setup_number();
-    check_model_skeletons();
 }
