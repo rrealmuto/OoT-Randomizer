@@ -60,7 +60,8 @@
         "exits": {
             "Shadow Temple Upper Huge Pit": "
                 has_explosives and
-                (((Small_Key_Shadow_Temple, 2) and not shadow_temple_shortcuts) or
+                (((Small_Key_Shadow_Temple, 2) and not shadow_temple_shortcuts and not mixed_pools_bosses) or
+                    ((Small_Key_Shadow_Temple, 3) and not shadow_temple_shortcuts) or
                     (Small_Key_Shadow_Temple, 5))",
             "Shadow Temple Boat": "shadow_temple_shortcuts"
         }
@@ -99,7 +100,7 @@
                     (has_fire_source or logic_shadow_mq_huge_pit))",
             "Shadow Temple Invisible Spikes": "
                 (logic_lens_shadow_mq_platform or can_use(Lens_of_Truth)) and
-                Hover_Boots and (Small_Key_Shadow_Temple, 3)",
+                Hover_Boots and (((Small_Key_Shadow_Temple, 3) and not mixed_pools_bosses) or (Small_Key_Shadow_Temple, 4))",
             "Shadow Temple Upper Huge Pit": "Longshot"
         }
     },
@@ -131,7 +132,7 @@
             "Shadow Temple MQ Stalfos Room Chest": "Hookshot"
         },
         "exits": {
-            "Shadow Temple Wind Tunnel": "Hookshot and (Small_Key_Shadow_Temple, 4)",
+            "Shadow Temple Wind Tunnel": "Hookshot and (((Small_Key_Shadow_Temple, 4) and not mixed_pools_bosses) or (Small_Key_Shadow_Temple, 5))",
             "Shadow Temple Lower Huge Pit": "
                 (logic_lens_shadow_mq_platform or can_use(Lens_of_Truth)) and Hover_Boots"
         }
@@ -162,7 +163,7 @@
             "Nut Pot": "True"
         },
         "exits": {
-            "Shadow Temple Boat": "(Small_Key_Shadow_Temple, 5)",
+            "Shadow Temple Boat": "((Small_Key_Shadow_Temple, 5) and not mixed_pools_bosses) or (Small_Key_Shadow_Temple, 6)",
             "Shadow Temple Wind Tunnel": "Hover_Boots or logic_shadow_mq_windy_walkway"
         }
     },
@@ -174,7 +175,7 @@
             "Shadow Temple MQ Before Boat Recovery Heart 2": "can_use(Distant_Scarecrow)"
         },
         "exits": {
-            "Shadow Temple After Wind": "(Small_Key_Shadow_Temple, 5)",
+            "Shadow Temple After Wind": "((Small_Key_Shadow_Temple, 5) and not mixed_pools_bosses) or (Small_Key_Shadow_Temple, 6)",
             "Shadow Temple Beyond Boat": "can_play(Zeldas_Lullaby)"
         }
     },
@@ -183,14 +184,21 @@
         "dungeon": "Shadow Temple",
         "locations": {
             "Shadow Temple MQ After Boat Pot 1": "True",
-            "Shadow Temple MQ After Boat Pot 2": "True",
-            "Shadow Temple MQ GS After Ship": "Hookshot"
+            "Shadow Temple MQ After Boat Pot 2": "True"
         },
         "exits": {
+            "Shadow Temple Chasm Gold Skulltula": "Hookshot",
             "Shadow Temple Across Chasm": "
                 Bow or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts",
             "Shadow Temple Invisible Maze": "
                 at('Shadow Temple Across Chasm', Bow and can_play(Song_of_Time) and Longshot)"
+        }
+    },
+    {
+        "region_name": "Shadow Temple Chasm Gold Skulltula",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple MQ GS After Ship": "True"
         }
     },
     {
@@ -202,7 +210,8 @@
             "Shadow Temple MQ Near Boss Pot 2": "True"
         },
         "exits": {
-            "Shadow Temple Beyond Boat": "Progressive_Strength_Upgrade or has_explosives or Bow or can_use(Dins_Fire)",
+            "Shadow Temple Chasm Gold Skulltula": "Longshot",
+            "Shadow Temple Beyond Boat": "shadow_temple_shortcuts or Progressive_Strength_Upgrade or has_explosives or Bow or can_use(Dins_Fire)",
             "Shadow Temple Before Boss": "Hover_Boots"
         }
     },
