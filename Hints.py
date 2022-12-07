@@ -1154,27 +1154,7 @@ hint_func = {
     'named-item':       get_specific_item_hint
 }
 
-hint_dist_keys = {
-    'trial',
-    'always',
-    'dual_always',
-    'entrance_always',
-    'woth',
-    'goal',
-    'goal-count',
-    'playthrough-location',
-    'barren',
-    'item',
-    'song',
-    'overworld',
-    'dungeon',
-    'entrance',
-    'sometimes',
-    'dual',
-    'random',
-    'junk',
-    'named-item'
-}
+hint_dist_keys = set(hint_func)
 
 
 def buildBingoHintList(boardURL):
