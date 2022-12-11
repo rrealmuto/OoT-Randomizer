@@ -198,6 +198,10 @@ SHUFFLE_OCARINA_BUTTONS:
 .byte 0x00
 EPONAS_SONG_NOTES:
 .halfword 0x0000
+INCORRECT_CHEST_APPEARANCES:
+.byte 0x00
+CFG_GLITCHLESS_LOGIC:
+.byte 0x00
 .align 4
 
 ; These configuration values are given fixed addresses to aid auto-trackers.

@@ -3279,6 +3279,31 @@ class SettingInfos:
         shared         = True,
     )
 
+    incorrect_chest_appearances = Checkbutton(
+        gui_text       = 'Chest, Pot, Crate, & Beehive Appearance Does Not Match Contents',
+        gui_tooltip    = '''\
+            Inverts the effect of the "Chest Appearance Matches
+            Contents" and "Pot, Crate, & Beehive Appearance
+            Matches Contents" settings (the latter only if set
+            to "Texture (Match Content)") so that each item
+            will be in a container type other than the type it
+            would normally be in.
+
+            For example, if "Chest Appearance Matches Contents"
+            is set to "Texture", a boss key can be in a wooden
+            (junk item), gilded (major item), silver (small key),
+            webbed (token), or pink (heart) chest, but never in
+            a fancy golden (boss key) chest, and if "Pot, Crate,
+            & Beehive Appearance Matches Contents" is set to
+            "Texture (Match Content)", a beehive will wiggle if
+            it contains a junk item.
+        ''',
+        shared         = True,
+        gui_params     = {
+            'optional': True,
+        },
+    )
+
     key_appearance_match_dungeon = Checkbutton(
         gui_text       = 'Key Appearance Matches Dungeon',
         gui_tooltip    = '''\
