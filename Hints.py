@@ -381,8 +381,12 @@ class HintArea(Enum):
             original_parent = spot.parent_region
         already_checked = []
         spot_queue = [spot]
+        fallback_spot_queue = []
 
-        while spot_queue:
+        while spot_queue or fallback_spot_queue:
+            if not spot_queue:
+                spot_queue = fallback_spot_queue
+                fallback_spot_queue = []
             current_spot = spot_queue.pop(0)
             already_checked.append(current_spot)
 
@@ -396,7 +400,13 @@ class HintArea(Enum):
                     return parent_region.alt_hint
                 return parent_region.hint
 
-            spot_queue.extend(list(filter(lambda ent: ent not in already_checked, parent_region.entrances)))
+            for entrance in parent_region.entrances:
+                if entrance not in already_checked:
+                    # prioritize two-way entrances
+                    if entrance.type in ('OverworldOneWay', 'OwlDrop', 'ChildSpawn', 'AdultSpawn', 'WarpSong', 'BlueWarp'):
+                        fallback_spot_queue.append(entrance)
+                    else:
+                        spot_queue.append(entrance)
 
         raise HintAreaNotFound('No hint area could be found for %s [World %d]' % (spot, spot.world.id))
 
@@ -683,7 +693,7 @@ def get_goal_count_hint(spoiler, world, checked):
     item_count = len(goal_locations)
     item_text = 'step' if item_count == 1 else 'steps'
 
-    return (GossipText('the %s requires #%d# %s.' % (goal.hint_text, item_count, item_text), ['Light Blue', goal.color]), None)
+    return (GossipText('the %s requires #%d# %s.' % (goal.hint_text, item_count, item_text), ['Light Blue', goal.color]), None) #TODO adjust for multiworld?
 
 def get_playthrough_location_hint(spoiler, world, checked):
     locations = dict(filter(lambda locations:
