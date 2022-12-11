@@ -2,6 +2,7 @@
 
 Usage:
   update-presets.py [options]
+  update-presets.py diff <left> <right>
   update-presets.py (-h | --help)
 
 Options:
@@ -10,6 +11,8 @@ Options:
   --hook             run noninteractively for git pre-commit hook purposes
   --preset=<preset>  only update the named preset
 """
+
+import sys
 
 import json
 import subprocess
@@ -56,7 +59,23 @@ def complete_presets(new_presets, interactive, *, preset=None, source=None):
 if __name__ == '__main__':
     arguments = docopt.docopt(__doc__)
     new_presets = {}
-    if arguments['--hook']:
+    if arguments['diff']:
+        if arguments['<left>'] == 'default':
+            left = {setting_name: setting.default for setting_name, setting in SettingsList.si_dict.items() if setting.shared}
+        else:
+            with open('data/presets_default.json', encoding='utf-8') as f:
+                left = json.load(f)[arguments['<left>']]
+        if arguments['<right>'] == 'default':
+            right = {setting_name: setting.default for setting_name, setting in SettingsList.si_dict.items() if setting.shared}
+        else:
+            with open('data/presets_default.json', encoding='utf-8') as f:
+                right = json.load(f)[arguments['<right>']]
+        with open('left.json', 'w', encoding='utf-8') as left_f:
+            json.dump(left, left_f, indent=4)
+        with open('right.json', 'w', encoding='utf-8') as right_f:
+            json.dump(right, right_f, indent=4)
+        sys.exit(subprocess.run(['wsl', 'diff', left_f.name, right_f.name]).returncode)
+    elif arguments['--hook']:
         complete_presets(new_presets, False)
         with open('data/presets_default.json', encoding='utf-8') as f:
             if f.read() != json.dumps(new_presets, indent=2) + '\n':
