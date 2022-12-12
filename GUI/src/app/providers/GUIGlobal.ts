@@ -332,7 +332,7 @@ export class GUIGlobal implements OnDestroy {
       if (userSettings)
         userSettings = JSON.parse(userSettings);
 
-      this.parseGeneratorGUISettings(res, userSettings);
+      await this.parseGeneratorGUISettings(res, userSettings);
 
     } catch (err) {
       console.error(err);
@@ -401,7 +401,7 @@ export class GUIGlobal implements OnDestroy {
       }
     }
 
-    this.parseGeneratorGUISettings(res, userSettings);
+    await this.parseGeneratorGUISettings(res, userSettings);
 
     //Check for cached files and then create web events after
     if ((<any>window).emscriptenFoundCachedROMFile)
@@ -416,8 +416,7 @@ export class GUIGlobal implements OnDestroy {
     this.createWebEvents();
   }
 
-  parseGeneratorGUISettings(guiSettings, userSettings) {
-
+  async parseGeneratorGUISettings(guiSettings, userSettings) {
     const isRGBHex = /[0-9A-Fa-f]{6}/;
 
     //Intialize settings maps
@@ -472,7 +471,9 @@ export class GUIGlobal implements OnDestroy {
 
           continue;
         }
-        section.settings.forEach(setting => {
+        for (let settingIndex = 0; settingIndex < section.settings.length; settingIndex++) {
+
+          let setting = section.settings[settingIndex];
 
           this.generator_settingsVisibilityMap[setting.name] = true;
 
@@ -529,7 +530,35 @@ export class GUIGlobal implements OnDestroy {
               this.generator_customColorMap[setting.name] = "";
             }
           }
-        });
+          
+          //Handle dynamic settings. The available options (and sometimes the tooltip) are determined at runtime
+          if (setting.dynamic) {
+            let dynamicSetting = await this.updateDynamicSetting(setting.name)
+
+            if (dynamicSetting) {
+
+              let parsedSetting = JSON.parse(dynamicSetting);
+
+              let isCosmetic = (tab.name in guiSettings.cosmeticsObj);
+                     
+              guiSettings.settingsObj[tab.name].sections[section.name].settings[setting.name] = parsedSetting.object;
+              
+              guiSettings.settingsArray[tabIndex].sections[sectionIndex].settings[settingIndex] = parsedSetting.array;
+  
+              if (isCosmetic) {
+                guiSettings.cosmeticsObj[tab.name].sections[section.name].settings[setting.name] = parsedSetting.object;
+  
+                let cosmeticTabIndex = guiSettings.cosmeticsArray.findIndex(elem => elem.name == tab.name);
+  
+                if (cosmeticTabIndex != -1) {
+  
+                  //Note: This follows the assumption that sections and settings are structured identically between settings and cosmetics arrays.
+                  guiSettings.cosmeticsArray[cosmeticTabIndex].sections[sectionIndex].settings[settingIndex] = parsedSetting.array;
+                }
+              }  
+            }
+          }
+        };
       }
     }
 
@@ -551,6 +580,46 @@ export class GUIGlobal implements OnDestroy {
     this.setGlobalVar('generatorGoalDistros', guiSettings.distroArray);
 
     this.generator_presets = guiSettings.presets;
+  }
+
+  /**
+   * Queries SettingsToJson.py to return a JSON object with the dynamically generated setting definition in object & array format
+   * resolves with { object: settingInObjectFormat , array: settingInArrayFormat } (or null in web mode)
+   * rejects with null
+   * POTENTIAL TODO: add api calls or browser lookups for web if needed in the future
+  */
+  updateDynamicSetting(settingName: string) {
+    let self = this;
+
+    return new Promise<any>(function (resolve, reject) {
+      if (self.getGlobalVar('electronAvailable')) { //app mode
+        post.send(window, 'updateDynamicSetting', settingName).then(event => {
+          var listenerSuccess = post.once('updateDynamicSettingSuccess', function (event) {
+
+            listenerError.cancel();
+
+            let data = event.data;
+            resolve(data);
+          });
+
+          var listenerError = post.once('updateDynamicSettingError', function (event) {
+
+            listenerSuccess.cancel();
+
+            console.error("[updateDynamicSetting] Python Error:", event.data);
+            reject(null);
+          });
+
+        }).catch(err => {
+          console.error("[updateDynamicSettingy] Post-Robot Error:", err);
+          reject(null);
+        });   
+      } else { //web mode
+          //TODO: Should dynamic settings ever be needed on web, add API call or browser lookups here.
+          //for now, resolving with null is fine.
+          resolve(null);
+      }   
+    })
   }
 
   async versionCheck() { //Electron only
