@@ -3494,7 +3494,7 @@ setting_infos = [
                     The first child defeated will drop an item.
 
             Deku Babas are the ultimate enemy so they will only drop 
-            their shuffled item if you hit them with Ice or Light Arrows.
+            their shuffled item if you hit them with Elemental Arrows.
 	    The Deku Babas in Deku Tree and Bottom of the Well don't have additional drops.
         ''',
         default        = False,
