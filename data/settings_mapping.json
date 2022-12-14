@@ -175,6 +175,7 @@
             "warp_songs",
             "spawn_positions",
             "triforce_hunt",
+            "easter_egg_hunt",
             "triforce_count_per_world",
             "triforce_goal_per_world",
             "free_bombchu_drops",

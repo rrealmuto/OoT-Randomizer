@@ -185,6 +185,12 @@ class Item:
             return False
         return self.name in self.world.goal_items
 
+    @property
+    def triforce_piece(self) -> bool:
+        from ItemPool import triforce_pieces
+
+        return self.name in triforce_pieces
+
     def __str__(self) -> str:
         return str(self.__unicode__())
 

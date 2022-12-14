@@ -305,6 +305,10 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'Shadow Medallion':                                         (["Impa's sagely power", "a purple disc"], "the Shadow Medallion", 'item'),
     'Spirit Medallion':                                         (["Nabooru's sagely power", "an orange disc"], "the Spirit Medallion", 'item'),
     'Triforce Piece':                                           (["a triumph fork", "cheese", "a gold fragment"], "a Piece of the Triforce", 'item'),
+    'Easter Egg (Pink)':                                        (["a weirder egg", "a gift from a bunny"], "an Easter Egg", 'item'),
+    'Easter Egg (Orange)':                                      (["a weirder egg", "a gift from a bunny"], "an Easter Egg", 'item'),
+    'Easter Egg (Green)':                                       (["a weirder egg", "a gift from a bunny"], "an Easter Egg", 'item'),
+    'Easter Egg (Blue)':                                        (["a weirder egg", "a gift from a bunny"], "an Easter Egg", 'item'),
     'Magic Meter':                                              (["mystic training", "pixie dust", "a green rectangle"], "a Magic Meter", 'item'),
     'Double Defense':                                           (["a white outline", "damage decrease", "strengthened love"], "Double Defense", 'item'),
     'Slingshot':                                                (["a seed shooter", "a rubberband", "a child's catapult"], "a Slingshot", 'item'),
@@ -1692,6 +1696,7 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'ganonBK_any_dungeon':                                      ("hidden #inside a dungeon# in Hyrule", None, 'ganonBossKey'),
     'ganonBK_keysanity':                                        ("hidden #anywhere in Hyrule#", None, 'ganonBossKey'),
     'ganonBK_triforce':                                         ("given to the Hero once the #Triforce# is completed", None, 'ganonBossKey'),
+    'ganonBK_eggs':                                             ("given to the Hero once enough #Easter Eggs# are found", None, 'ganonBossKey'),
 
     'Spiritual Stone Text Start':                               ("3 Spiritual Stones found in Hyrule...", None, 'altar'),
     'Child Altar Text End':                                     ("\x13\x07Ye who may become a Hero...&Stand with the Ocarina and&play the Song of Time.", None, 'altar'),
