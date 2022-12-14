@@ -191,7 +191,7 @@ get_item_hook:
     addiu   sp, sp, 0x20
 
 ; Hook Item_DropCollectible to not set the room to -1 if we are going to be overriding the collectible.
-; This will cause overridden collectibles to despawn when switching rooms. 
+; This will cause overridden collectibles to despawn when switching rooms.
 drop_collectible_room_hook:
     addiu   sp, sp, -0x20
     sw      a0, 0x10(sp)

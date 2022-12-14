@@ -371,7 +371,7 @@ SRAM_SLOTS:
 .orga 0xB5D6BE ; Address in ROM of the enitem00 init params
     .halfword 0x01AC
 
-; Increase the size of pot instances to store chest type 
+; Increase the size of pot instances to store chest type
 .orga 0xDE8A5E ; Address in ROM of the ObjTsubo init params
     .halfword 0x01A0 ; New data starts at 0x0190
 
@@ -423,9 +423,9 @@ SRAM_SLOTS:
     nop
     lh      v0, 0x001C(s0)
     addiu   at, r0, 0x0003
-    .skip 4
+.skip 4
     nop
-    
+
 ; Override the drop_id convert function s16 func_8001F404(s16 dropId) from decomp
 .orga 0xA89490 ; in memory 0x80013530
     j get_override_drop_id
@@ -437,13 +437,13 @@ SRAM_SLOTS:
 ;   addiu   at, r0, 0x0011
 ;   beq     v0, at, 0x80013888
 ;   sh      t7, 0x014a(s2)
-;   addiu   at, r0, 0x0006      
+;   addiu   at, r0, 0x0006
 ;   beq     v0, at, 0x80013888
 ;   addiu   at, r0, 0x0007
 ;   beq     v0, at, 0x80013888
 ;   addiu   t8, r0, 0xFFFF
 ;   sb      t8, 0x0003(s2)
-.orga 0xA897C0; in memory 0x80013860
+.orga 0xA897C0 ; in memory 0x80013860
     jal     drop_collectible_room_hook
     nop
     nop
@@ -458,18 +458,18 @@ SRAM_SLOTS:
 ; Hack Item_DropCollectible call to Actor_Spawn to set override
 ; replaces
 ;   jal     0x80025110
-.orga 0xA8972C; in memory 0x800137B8
+.orga 0xA8972C ; in memory 0x800137B8
     jal     Item_DropCollectible_Actor_Spawn_Override
 
 ; Hack Item_DropCollectible2 call to Actor_Spawn to set override
 ; replaces
 ;   jal     0x80025110
-.orga 0xA89958; in memory 0x800139E0
+.orga 0xA89958 ; in memory 0x800139E0
     jal     Item_DropCollectible_Actor_Spawn_Override
 
 ; Hack ObjTsubo_SpawnCollectible (Pot) to call our overridden spawn function
 .orga 0xDE7C60
-    j		ObjTsubo_SpawnCollectible_Hack
+    j       ObjTsubo_SpawnCollectible_Hack
     nop
 
 ;Hack Item_DropCollectibleRandom to add the enemy drop flag and extended flag
@@ -505,14 +505,13 @@ nop
 
 ; Hack ObjKibako_SpawnCollectible (Small wooden crates) to call our overriden spawn function
 .orga 0xDE6F60
-    j		ObjKibako_SpawnCollectible_Hack
+    j       ObjKibako_SpawnCollectible_Hack
     nop
 
 ; Hack En_tubo_trap (flying pots) to call our overriden spawn function
 .orga 0xDFA520
-    j		EnTuboTrap_DropCollectible_Hack
+    j       EnTuboTrap_DropCollectible_Hack
     nop
-    
 
 ; Hack ObjKibako2_Init (Large Crates) to not delete our extended flag
 .orga 0xEC832C
@@ -629,7 +628,6 @@ bg_spot18_basket_rupees_loopstart: ; our new loop branch target
     nop
     nop
 
-
 ; Hack baby dodongo to pass its actor pointer into Item_DropCollectibleRandom
 .orga 0xC596E0 ; In memory: 0x801F8AF0
 ;replaces
@@ -694,13 +692,13 @@ sh  v0, 0x004E(sp)
 
 ; Hook Actor_UpdateAll when each actor is being initialized. At the call to Actor_SpawnEntry
 ; Used to set the flag (z-rotation) of the actor to its position in the actor table.
-.orga 0xA99D48; In memory: 0x80023DE8
+.orga 0xA99D48 ; In memory: 0x80023DE8
 ; Replaces:
-;   jal 0x800255C4
-    jal Actor_UpdateAll_Hook
+;   jal     0x800255C4
+    jal     Actor_UpdateAll_Hook
 
 ; Hack Actor_SpawnEntry so we can override actors being spawned
-.orga 0xA9B524; In memory: 0x800255C4
+.orga 0xA9B524 ; In memory: 0x800255C4
 ; Replaces: Entire function
     j       Actor_SpawnEntry_Hack
     nop

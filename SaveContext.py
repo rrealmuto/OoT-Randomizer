@@ -36,13 +36,14 @@ class FlagType(IntEnum):
 class Address():
     prev_address = None
     EXTENDED_CONTEXT_START = 0x1450
+
     def __init__(self, address=None, extended=False, size=4, mask=0xFFFFFFFF, max=None, choices=None, value=None):
         if address is None:
             self.address = Address.prev_address
         else:
-            self.address = address  
+            self.address = address
         if extended and address is not None:
-            self.address += Address.EXTENDED_CONTEXT_START         
+            self.address += Address.EXTENDED_CONTEXT_START
         self.value = value
         self.size = size
         self.choices = choices
@@ -97,7 +98,7 @@ class Address():
         value = (value & self.mask) >> self.bit_offset
         if value > self.max:
             value = self.max
-        
+
         if self.choices is not None:
             for choice_name, choice_value in self.choices.items():
                 if choice_value == value:
@@ -115,7 +116,7 @@ class Address():
         if value is None:
             return
 
-        values = zip(Address.to_bytes(value, self.size), 
+        values = zip(Address.to_bytes(value, self.size),
                      Address.to_bytes(self.mask, self.size))
 
         for i, (byte, mask) in enumerate(values):
@@ -162,6 +163,7 @@ class SaveContext():
             self.save_bits[address] |= value
         else:
             self.save_bits[address] = value
+
 
     # will overwrite the byte at offset with the given value
     def write_byte(self, address, value, predicate=None):
@@ -254,6 +256,7 @@ class SaveContext():
             raise Exception("The Initial Extended Save Table has exceeded its maximum capacity: 0x%03X/0x100" % extended_table_len)
         rom.write_bytes(rom.sym('EXTENDED_INITIAL_SAVE_DATA'), extended_table)
 
+
     def give_bottle(self, item, count):
         for bottle_id in range(4):
             item_slot = 'bottle_%d' % (bottle_id + 1)
@@ -338,10 +341,10 @@ class SaveContext():
                         "Spirit Temple Lobby and Lower Adult": {'silver_rupee_counts.spirit_lobby': needed_count, 'scene_flags.spirit.swch.silver_rupees_lobby': True},
                         "Spirit Temple Sun Block":             {'silver_rupee_counts.spirit_sun': needed_count, 'scene_flags.spirit.swch.silver_rupees_sun': True},
                         "Spirit Temple Adult Climb":           {'silver_rupee_counts.spirit_adult_climb': needed_count, 'scene_flags.spirit.swch.silver_rupees_adult_climb': True},
-                        "Ganons Castle Spirit Trial":          {'silver_rupee_counts.trials_spirit': needed_count, 'scene_flags.gc.swch.silver_rupees_spirit': True},
+                        "Ganons Castle Spirit Trial":          {'silver_rupee_counts.trials_spirit': needed_count, 'scene_flags.gc.swch.silver_rupees_shadow_spirit': True},
                         "Ganons Castle Light Trial":           {'silver_rupee_counts.trials_light': needed_count, 'scene_flags.gc.swch.silver_rupees_light': True},
                         "Ganons Castle Fire Trial":            {'silver_rupee_counts.trials_fire': needed_count, 'scene_flags.gc.swch.silver_rupees_mq_fire' if world.dungeon_mq["Ganons Castle"] else 'scene_flags.gc.swch.silver_rupees_vanilla_fire': True},
-                        "Ganons Castle Shadow Trial":          {'silver_rupee_counts.trials_shadow': needed_count, 'scene_flags.gc.swch.silver_rupees_shadow': True},
+                        "Ganons Castle Shadow Trial":          {'silver_rupee_counts.trials_shadow': needed_count, 'scene_flags.gc.swch.silver_rupees_shadow_spirit': True},
                         "Ganons Castle Water Trial":           {'silver_rupee_counts.trials_water': needed_count, 'scene_flags.gc.swch.silver_rupees_water': True},
                         "Ganons Castle Forest Trial":          {'silver_rupee_counts.trials_forest': needed_count, 'scene_flags.gc.swch.silver_rupees_forest': True},
                     }[puzzle]
@@ -826,18 +829,17 @@ class SaveContext():
                         'silver_rupees_mq_fire': Address(0xD4 + 0x1C * 0x0D + 0x04, mask=0x00000002),
                         'silver_rupees_water': Address(0xD4 + 0x1C * 0x0D + 0x04, mask=0x00000004),
                         'silver_rupees_vanilla_fire': Address(0xD4 + 0x1C * 0x0D + 0x04, mask=0x00000200),
-                        'silver_rupees_spirit': Address(0xD4 + 0x1C * 0x0D + 0x04, mask=0x00000800),
+                        'silver_rupees_shadow_spirit': Address(0xD4 + 0x1C * 0x0D + 0x04, mask=0x00000800),
                         'silver_rupees_forest': Address(0xD4 + 0x1C * 0x0D + 0x04, mask=0x00004000),
                         'silver_rupees_light': Address(0xD4 + 0x1C * 0x0D + 0x04, mask=0x00040000),
-                        'silver_rupees_shadow': Address(0xD4 + 0x1C * 0x0D + 0x04, mask=0x08000000),
                     },
                 },
             },
             'triforce_pieces'            : Address(0xD4 + 0x1C * 0x48 + 0x10, size=4), # Unused word in scene x48
             'pending_freezes'            : Address(0xD4 + 0x1C * 0x49 + 0x10, size=4), # Unused word in scene x49
-            #begin extended save data items
+            # begin extended save data items
             'silver_rupee_counts' : {
-                'dc_staircase'           : Address(address=0x00, extended=True, size=1),
+                'dc_staircase': Address(address=0x00, extended=True, size=1),
                 'ice_scythe': Address(extended=True, size=1),
                 'ice_block': Address(extended=True, size=1),
                 'botw_basement': Address(extended=True, size=1),
