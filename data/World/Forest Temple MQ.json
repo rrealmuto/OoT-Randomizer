@@ -214,6 +214,7 @@
         },
         "exits": {
             "Forest Temple Before Boss": "True"
+            # no exit to Forest Temple Central Area because the elevator doesn't work properly
         }
     },
     {

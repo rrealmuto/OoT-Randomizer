@@ -220,7 +220,7 @@
             "Shadow Temple Near Boss Pot 2": "True"
         },
         "exits": {
-            "Shadow Temple Beyond Boat": "Progressive_Strength_Upgrade or has_explosives or Bow or can_use(Dins_Fire)",
+            "Shadow Temple Beyond Boat": "shadow_temple_shortcuts or Progressive_Strength_Upgrade or has_explosives or Bow or can_use(Dins_Fire)",
             "Shadow Temple Beyond Boat SoT Block": "can_play(Song_of_Time)",
             "Shadow Temple Before Boss": "(Small_Key_Shadow_Temple, 5)"
         }

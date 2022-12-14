@@ -1136,7 +1136,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         or world.settings.blue_warps in ('balanced', 'full')
         or world.full_one_ways
     )
-    set_entrance_updates(entrance for entrance in world.get_shufflable_entrances() if entrance.shuffled or (patch_blue_warps and entrance.type == 'BlueWarp'))
+    set_entrance_updates(filter(lambda entrance: entrance.shuffled or (patch_blue_warps and entrance.type == 'BlueWarp'), world.get_shufflable_entrances()))
 
     for k, v in [(k, v) for k, v in exit_updates if k in exit_table]:
         for addr in exit_table[k]:

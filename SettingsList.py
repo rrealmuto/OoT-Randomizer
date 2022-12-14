@@ -1466,6 +1466,7 @@ logic_tricks = {
                     - Spirit Temple GS Lobby
                     - Spirit Temple MQ Central Chamber Top Left Pot (Left)
                     - Spirit Temple MQ Central Chamber Top Left Pot (Right)
+                    - Spirit Temple MQ Statue Room Invisible Chest
                     '''},
     'Spirit Temple Main Room Hookshot to Boss Platform': {
         'name'    : 'logic_spirit_platform_hookshot',
