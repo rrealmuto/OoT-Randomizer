@@ -2377,7 +2377,7 @@ def get_override_table(world):
     return list(filter(lambda val: val != None, map(get_override_entry, world.get_filled_locations())))
 
 
-override_struct = struct.Struct('>BBHHBB') # match override_t in get_items.c
+override_struct = struct.Struct('>BBHxxxxHBxHxx') # match override_t in get_items.h
 def get_override_table_bytes(override_table):
     return b''.join(sorted(itertools.starmap(override_struct.pack, override_table)))
 
@@ -2386,11 +2386,11 @@ def get_override_entry(location):
     scene = location.scene
     default = location.default
     item_id = location.item.index
-    if None in [scene, default, item_id]:
+    if None in (scene, default, item_id):
         return None
 
     # Don't add freestanding items, pots/crates, beehives to the override table if they're disabled. We use this check to determine how to draw and interact with them
-    if location.type in ["ActorOverride", "Freestanding", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive"] and location.disabled != DisableType.ENABLED:
+    if location.type in ("ActorOverride", "Freestanding", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive") and location.disabled != DisableType.ENABLED:
         return None
 
     player_id = location.item.world.id + 1
@@ -2399,20 +2399,20 @@ def get_override_entry(location):
     else:
         looks_like_item_id = 0
 
-    if location.type in ['NPC', 'Scrub', 'BossHeart']:
+    if location.type in ('NPC', 'Scrub', 'BossHeart'):
         type = 0
     elif location.type == 'Chest':
         type = 1
         default &= 0x1F
-    elif location.type in ['Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive']:
+    elif location.type in ('Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive'):
         type = 6
         if not (isinstance(location.default, list) or isinstance(location.default, tuple)):
             raise Exception("Not right")
-        if(isinstance(location.default, list)):
+        if isinstance(location.default, list):
             default = location.default[0]
         room, scene_setup, flag = default
         default = (room << 8) + (scene_setup << 14) + flag
-    elif location.type in ['Collectable', 'ActorOverride']:
+    elif location.type in ('Collectable', 'ActorOverride'):
         type = 2
     elif location.type == 'GS Token':
         type = 3
@@ -2420,7 +2420,7 @@ def get_override_entry(location):
         type = 0
     elif location.type == 'GrottoScrub' and location.item.type != 'Shop':
         type = 4
-    elif location.type in ['Song', 'Cutscene']:
+    elif location.type in ('Song', 'Cutscene'):
         type = 5
     else:
         return None
