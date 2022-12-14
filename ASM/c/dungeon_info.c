@@ -580,7 +580,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
                         if (silver_rupee_puzzles[puzzle_idx] == (uint8_t) -1) break;
                         silver_rupee_data_t var = silver_rupee_vars[silver_rupee_puzzles[puzzle_idx]][CFG_DUNGEON_IS_MQ[d->index]];
                         uint8_t count = extended_savectx.silver_rupee_counts[silver_rupee_puzzles[puzzle_idx]];
-                        int puzzle_left = left + icon_size + padding + font_sprite.tile_w * (2 * puzzle_idx - 1);
+                        int puzzle_left = left + font_sprite.tile_w * (2 * puzzle_idx) + padding * 4 * puzzle_idx;
                         // draw text manually instead of going through text_print/text_flush to get the right text colors
                         gDPSetPrimColor(db->p++, 0, 0, var.r, var.g, var.b, 0xFF);
                         if(count >= 10) {
