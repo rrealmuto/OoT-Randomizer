@@ -20,11 +20,12 @@ void obj_comb_drop_collectible(z64_actor_t *actor, int16_t params) {
     }
 
     if (params >= 0) {
-        if (get_beehive_override(actor, &z64_game).key.all != 0) {
+        override_t override = get_beehive_override(actor, &z64_game);
+        if (override.key.all != 0) {
             // set up params for Item_DropCollectible
             drop_collectible_override_flag = flag;
             EnItem00* spawned = z64_Item_DropCollectible2(&z64_game, &actor->pos_world, params);
-            spawned->override = lookup_override(spawned,z64_game.scene_index,0);
+            spawned->override = override;
         } else { // Normal beehive behavior
             if (z64_Rand_ZeroOne() > 0.5f) {
                 z64_Item_DropCollectible(&z64_game, &actor->pos_world, params);
@@ -47,7 +48,7 @@ override_t get_beehive_override(z64_actor_t *actor, z64_game_t *game) {
     dummy.actor.rot_init.y = flag;
     dummy.actor.variable = 0;
     
-    override_t override = lookup_override(&dummy, game->scene_index, 0);
+    override_t override = lookup_override(&(dummy.actor), game->scene_index, 0);
     if(override.key.all != 0)
     {
         dummy.override = override;

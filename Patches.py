@@ -2290,14 +2290,6 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         torch_count = world.settings.fae_torch_count
         rom.write_byte(0xCA61E3, torch_count)
 
-    if world.settings.blue_fire_arrows:
-        rom.write_byte(0xC230C1, 0x29) #Adds AT_TYPE_OTHER to arrows to allow collision with red ice
-        rom.write_byte(0xDB38FE, 0xEF) #disables ice arrow collision on secondary cylinder for red ice crystals
-        rom.write_byte(0xC9F036, 0x10) #enable ice arrow collision on mud walls
-        #increase cylinder radius/height for red ice sheets
-        rom.write_byte(0xDB391B, 0x50)
-        rom.write_byte(0xDB3927, 0x5A)
-
     # actually write the save table to rom
     world.distribution.give_items(world, save_context)
     if world.settings.starting_age == 'adult':

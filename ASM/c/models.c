@@ -149,7 +149,7 @@ bool collectible_draw(z64_actor_t *actor, z64_game_t *game) {
     if(this->override.key.all)
     {
         lookup_model_by_override(&model, this->override);
-        if (model.object_id != 0x0000) {
+        if(model.object_id != 0x0000 && (this->actor.dropFlag==1 || !Get_CollectibleOverrideFlag(this) || (collectible_mutex == this))) {
             if (collectible_mutex != this) {
                 draw_model(model, actor, game, 25.0);
             }
@@ -192,7 +192,7 @@ void collectible_draw_other(z64_actor_t *actor, z64_game_t *game) {
     if(this->override.key.all)
     {
         lookup_model_by_override(&model, this->override);
-        if (model.object_id != 0x0000) {
+        if(model.object_id != 0x0000 && (this->actor.dropFlag==1 || !Get_CollectibleOverrideFlag(this) || (collectible_mutex == this))) {
             if (collectible_mutex != this) {
                 draw_model(model, actor, game, 25.0);
             }

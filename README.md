@@ -8,6 +8,7 @@ This is a randomizer for _The Legend of Zelda: Ocarina of Time_ for the Nintendo
   * [Settings](#settings)
   * [Known Issues](#known-issues)
 * [Changelog](#changelog)
+  * [7.1](#71)
   * [7.0](#70)
   * [6.2](#62)
   * [6.1](#61)
@@ -26,7 +27,7 @@ https://ootrandomizer.com
 If you wish to run the script raw, clone this repository and either run ```Gui.py``` for a
 graphical interface or ```OoTRandomizer.py``` for the command line version. They both require Python 3.6+. This will be fully featured,
 but the seeds you generate will have different random factors than the bundled release.
-To use the GUI, [NodeJS](https://nodejs.org/download/release/v18.12.1/) (v18 LTS, with npm) will additionally need to be installed. NodeJS v12.20.1 and earlier are no longer supported.
+To use the GUI, [NodeJS](https://nodejs.org/download/release/v18.12.1/) (v18 LTS, with npm) will additionally need to be installed. NodeJS v14.14.0 and earlier are no longer supported.
 The first time ```Gui.py``` is run it will need to install necessary components, which could take a few minutes. Subsequent instances will run much quicker.
 Supported output formats are .z64 (N64/Emulator), .wad (Wii VC, channel IDs NICE/NRKE recommended), Uncompressed ROM (for developmental purposes, offline build only)
 and .zpf/.zpfz (patch files, for sharing seeds with others).
@@ -106,6 +107,39 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * This randomizer is based on the 1.0 version of _Ocarina of Time_, so some of its specific bugs remain.
 
 ## Changelog
+
+### Dev
+
+### 7.1
+
+#### Bug Fixes
+* Fix freestanding items not spawning their overrides when an item with a shared base collectable flag is collected.
+* Fix models drawing incorrectly when picking up a duplicated collectible, such as from the Goron City spinning pot.
+* Fix junk items from pot/freestanding item locations not being sent to the proper player in multiworld.
+* Fix Skulltula House Misc. Hints not hinting the proper locations in multiworld.
+
+#### GUI
+* `Disable Battle Music` has been moved to the main section of the SFX tab.
+* Nonsense tags in the `Exclude Locations` list were cleaned up.
+* New tags were added in the `Exclude Locations` and `Enable Tricks` lists.
+* Upgrade to latest Nebular version 10.
+* Upgrade to Angular 14.
+* Minimum NodeJS version is now 14.15.0.
+* Fix visibility issues when using `Randomize Main Rule Settings`.
+
+#### Other Changes
+* Removed some unnecessary duplication in spirit temple logic.
+* In multiworld, outgoing items are now buffered.
+  * Allows players to continue collecting items if the Multiworld plugin crashes.
+  * Multiple freestanding/pot items can be sent on the same frame.
+* Ice Arrows will now be referred to as Blue Fire Arrows in hints and shop text when `Blue Fire Arrows` is enabled.
+* Logic now considers the possibility to melt the red ice walls in Ice Cavern with Blue Fire Arrows as adult, then coming back as child and collecting a skulltula with the boomerang.
+* Beehives now wiggle depending on the renamed setting `Pot, Crate, & Beehive Appearance Matches Contents`.
+* `Item Model Colors Match Cosmetics` is now enabled by default.
+
+#### Plandomizer
+* Due to Ice Arrows and Blue Fire Arrows being separate items in the code now, plandomizer authors must use `Ice_Arrows` or `Blue_Fire_Arrows` depending on if the setting is enabled.
+* In cosmetics plando, empty or non-existant BGM groups will no longer error, instead simply displaying a warning in the cosmetics log.
 
 ### 7.0
 
