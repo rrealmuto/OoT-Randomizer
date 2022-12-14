@@ -175,7 +175,7 @@
             "Shadow Temple MQ Before Boat Recovery Heart 2": "can_use(Distant_Scarecrow)"
         },
         "exits": {
-            "Shadow Temple After Wind": "((Small_Key_Shadow_Temple, 5) and not mixed_pools_bosses) or (Small_Key_Shadow_Temple, 6)",
+            "Shadow Temple After Wind": "(Small_Key_Shadow_Temple, 5)",
             "Shadow Temple Beyond Boat": "can_play(Zeldas_Lullaby)"
         }
     },
