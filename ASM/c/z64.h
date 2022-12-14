@@ -1705,10 +1705,10 @@ typedef void (*z64_DisplayTextbox_proc)   (z64_game_t *game, uint16_t text_id,
                                            int unknown_);
 typedef void (*z64_GiveItem_proc)         (z64_game_t *game, uint8_t item);
 
-typedef void(*z64_LinkDamage_proc)        (z64_game_t *ctxt, z64_link_t *link,
+typedef void (*z64_LinkDamage_proc)        (z64_game_t *ctxt, z64_link_t *link,
                                            uint8_t damage_type, float unk_00, uint32_t unk_01,
                                            uint16_t unk_02);
-typedef void(*z64_LinkInvincibility_proc) (z64_link_t *link, uint8_t frames);
+typedef void (*z64_LinkInvincibility_proc) (z64_link_t *link, uint8_t frames);
 typedef float *(*z64_GetMatrixStackTop_proc)();
 typedef void (*SsSram_ReadWrite_proc)(uint32_t addr, void *dramAddr, size_t size, uint32_t direction);
 typedef void *(*z64_memcopy_proc)(void *dest, void *src, uint32_t size);
@@ -1716,13 +1716,13 @@ typedef void (*z64_bzero_proc)(void *__s, uint32_t __n);
 typedef void (*z64_Gfx_DrawDListOpa_proc)(z64_game_t *game, z64_gfx_t *dlist);
 typedef float (*z64_Math_SinS_proc)(int16_t angle);
 
-typedef int32_t(*z64_ObjectSpawn_proc)    (z64_obj_ctxt_t* object_ctx, int16_t object_id);
-typedef int32_t(*z64_ObjectIndex_proc)    (z64_obj_ctxt_t* object_ctx, int16_t object_id);
+typedef int32_t (*z64_ObjectSpawn_proc)    (z64_obj_ctxt_t *object_ctx, int16_t object_id);
+typedef int32_t (*z64_ObjectIndex_proc)    (z64_obj_ctxt_t *object_ctx, int16_t object_id);
 
-typedef int32_t(*z64_ActorSetLinkIncomingItemId_proc) (z64_actor_t *actor, z64_game_t *game,
+typedef int32_t (*z64_ActorSetLinkIncomingItemId_proc) (z64_actor_t *actor, z64_game_t *game,
                                                        int32_t get_item_id, float xz_range, float y_range);
-typedef void(*z64_RandSeed_proc) (uint32_t seed);
-typedef float(*z64_Rand_ZeroOne_proc)();
+typedef void (*z64_RandSeed_proc) (uint32_t seed);
+typedef float (*z64_Rand_ZeroOne_proc)();
 
 /* data */
 #define z64_file_mq             (*(OSMesgQueue*)      z64_file_mq_addr)
