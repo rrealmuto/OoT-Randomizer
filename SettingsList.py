@@ -2353,6 +2353,21 @@ setting_infos = [
             False : {'settings' : ['triforce_count_per_world', 'triforce_goal_per_world']}
         },
     ),
+    Checkbutton(
+        name           = 'easter_egg_hunt',
+        gui_text       = 'Easter Egg Hunt',
+        gui_tooltip    = '''\
+            Changes Triforce Pieces to appear as Easter
+            Eggs instead. This is just cosmetic and has
+            the same gameplay as normal Triforce Hunt.
+
+            Has no effect if Triforce Hunt is disabled.
+        ''',
+        shared         = True,
+        gui_params     = {
+            'optional': True,
+        },
+    ),
     Scale(
         name           = 'triforce_count_per_world',
         gui_text       = 'Triforces Per World',

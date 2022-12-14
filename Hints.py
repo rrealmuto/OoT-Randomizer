@@ -10,6 +10,7 @@ import itertools
 
 from HintList import getHint, getMulti, getHintGroup, getUpgradeHintList, hintExclusions, misc_item_hint_table, misc_location_hint_table
 from Item import Item, MakeEventItem
+from ItemPool import triforce_pieces
 from Messages import COLOR_MAP, update_message_by_id
 from Region import Region
 from Search import Search
@@ -27,7 +28,7 @@ defaultHintDists = [
     'balanced.json', 'bingo.json', 'chaos.json', 'coop2.json', 'ddr.json', 'league.json', 'mw3.json', 'scrubs.json', 'strong.json', 'tournament.json', 'useless.json', 'very_strong.json', 'very_strong_magic.json', 'weekly.json'
 ]
 
-unHintableWothItems = ['Triforce Piece', 'Gold Skulltula Token']
+unHintableWothItems = [*triforce_pieces, 'Gold Skulltula Token']
 
 class RegionRestriction(Enum):
     NONE = 0,
@@ -1573,7 +1574,10 @@ def buildGanonBossKeyString(world):
                 item_req_string = '#%s#' % item_req_string
             bk_location_string = "automatically granted once %s are retrieved" % item_req_string
         else:
-            bk_location_string = getHint('ganonBK_' + world.settings.shuffle_ganon_bosskey, world.settings.clearer_hints).text
+            condition = world.settings.shuffle_ganon_bosskey
+            if condition == 'triforce' and world.settings.easter_egg_hunt:
+                condition = 'eggs'
+            bk_location_string = getHint('ganonBK_' + condition, world.settings.clearer_hints).text
         string += "And the \x05\x41evil one\x05\x40's key will be %s." % bk_location_string
     return str(GossipText(string, ['Yellow'], prefix=''))
 

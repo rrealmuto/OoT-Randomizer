@@ -93,6 +93,30 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Add it to the extended object table
     add_to_extended_object_table(rom, 0x195, keyring_obj_file)
 
+    # object ID 0x196 is reserved for the Silver Rupee model
+
+    # Build Easter Egg models in several colors from the Weird Egg model
+    for egg_idx, (primary_color, env_color) in enumerate((
+        ((0xDB, 0xA9, 0xD8), (0xD1, 0x7B, 0xCC)), # pink
+        ((0xDB, 0xA9, 0x77), (0xD1, 0x7B, 0x25)), # orange
+        ((0x77, 0xDB, 0x77), (0x25, 0xD1, 0x25)), # green
+        ((0x77, 0x77, 0xDB), (0x25, 0x25, 0xD1)), # blue
+    )):
+        easter_egg_obj_file = File({
+            'Name': 'object_gi_egg',
+            'Start': '015B6000',
+            'End': '015B7320',
+        })
+        easter_egg_obj_file.copy(rom)
+        primColor = [0xFA, 0x00, 0x00, 0x00, *primary_color, 0xFF]
+        rom.write_bytes(easter_egg_obj_file.start + 0xFF0, primColor)
+        envColor = [0xFB, 0x00, 0x00, 0x00, *env_color, 0xFF]
+        rom.write_bytes(easter_egg_obj_file.start + 0xFF8, envColor)
+
+        update_dmadata(rom, easter_egg_obj_file)
+        # Add it to the extended object table
+        add_to_extended_object_table(rom, 0x197 + egg_idx, easter_egg_obj_file)
+
     # Create the textures for pots/crates. Note: No copyrighted material can be distributed w/ the randomizer. Because of this, patch files are used to create the new textures from the original texture in ROM.
     # Apply patches for custom textures for pots and crates and add as new files in rom
     # Crates are ci4 textures in the normal ROM but for pot/crate textures match contents were upgraded to ci8 to support more colors

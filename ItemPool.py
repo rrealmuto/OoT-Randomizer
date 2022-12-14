@@ -1,13 +1,24 @@
 import random
 from decimal import Decimal, ROUND_UP
-from Hints import HintArea
 
 from Item import ItemFactory, ItemInfo
-from Location import DisableType, Location
+from Location import DisableType
 from Utils import random_choices
 
 
 # Generates item pools and places fixed items based on settings.
+
+eggs = (
+    'Easter Egg (Pink)',
+    'Easter Egg (Orange)',
+    'Easter Egg (Green)',
+    'Easter Egg (Blue)',
+)
+
+triforce_pieces = (
+    'Triforce Piece',
+    *eggs,
+)
 
 plentiful_items = ([
     'Biggoron Sword',
@@ -126,14 +137,14 @@ ludicrous_items_extended = [
     'Blue Fire Arrows',
 ]
 
-ludicrous_exclusions = [
-    'Triforce Piece',
+ludicrous_exclusions = (
+    *triforce_pieces,
     'Gold Skulltula Token',
     'Rutos Letter',
     'Heart Container',
     'Piece of Heart',
-    'Piece of Heart (Treasure Chest Game)'
-]
+    'Piece of Heart (Treasure Chest Game)',
+)
 
 item_difficulty_max = {
     'ludicrous': {
@@ -255,7 +266,7 @@ exclude_from_major = [
     'Bombchus (10)',
     'Bombchus (20)',
     'Odd Potion',
-    'Triforce Piece',
+    *triforce_pieces,
     'Heart Container',
     'Piece of Heart',
     'Piece of Heart (Treasure Chest Game)',
@@ -395,7 +406,11 @@ def get_pool_core(world):
         pending_junk_pool.extend(ludicrous_health)
 
     if world.settings.triforce_hunt:
-        pending_junk_pool.extend(['Triforce Piece'] * world.settings.triforce_count_per_world)
+        if world.settings.easter_egg_hunt:
+            pending_junk_pool.extend(eggs * (world.settings.triforce_count_per_world // len(eggs)))
+            pending_junk_pool.extend(eggs[:world.settings.triforce_count_per_world % len(eggs)])
+        else:
+            pending_junk_pool.extend(['Triforce Piece'] * world.settings.triforce_count_per_world)
 
     # Use the vanilla items in the world's locations when appropriate.
     for location in world.get_locations():
