@@ -388,8 +388,9 @@ def set_entrances(worlds, savewarps_to_connect):
         savewarp.connect(savewarp.replaces.connected_region)
 
     for world in worlds:
-        # Set entrance data for all entrances, even those we aren't shuffling
-        set_all_entrances_data(world)
+        if world.settings.logic_rules != 'glitched':
+            # Set entrance data for all entrances, even those we aren't shuffling
+            set_all_entrances_data(world)
 
     if worlds[0].entrance_shuffle:
         shuffle_random_entrances(worlds)
