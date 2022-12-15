@@ -151,7 +151,7 @@
             "Shadow Temple GS Near Ship": "Longshot"
         },
         "exits": {
-            "Shadow Temple After Wind": "(((Small_Key_Shadow_Temple, 4) and not mixed_pools_bosses) or (Small_Key_Shadow_Temple, 5))",
+            "Shadow Temple After Wind": "(Small_Key_Shadow_Temple, 4)",
             "Shadow Temple Beyond Boat": "can_play(Zeldas_Lullaby)"
         }
     },
