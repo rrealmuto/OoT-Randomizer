@@ -248,10 +248,10 @@ item_row_t item_table[] = {
 
     // item IDs 0x00D4 through 0x00FF are reserved for silver rupees and silver rupee pouches
 
-    [0x0100] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9045, 0x0196, 0x29, no_upgrade, give_triforce_piece, -1, -1), // Easter egg (pink)
-    [0x0101] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9045, 0x0197, 0x29, no_upgrade, give_triforce_piece, -1, -1), // Easter egg (orange)
-    [0x0102] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9045, 0x0198, 0x29, no_upgrade, give_triforce_piece, -1, -1), // Easter egg (green)
-    [0x0103] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9045, 0x0199, 0x29, no_upgrade, give_triforce_piece, -1, -1), // Easter egg (blue)
+    [0x0100] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9045, 0x0197, 0x29, no_upgrade, give_triforce_piece, -1, -1), // Easter egg (pink)
+    [0x0101] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9045, 0x0198, 0x29, no_upgrade, give_triforce_piece, -1, -1), // Easter egg (orange)
+    [0x0102] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9045, 0x0199, 0x29, no_upgrade, give_triforce_piece, -1, -1), // Easter egg (green)
+    [0x0103] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9045, 0x019A, 0x29, no_upgrade, give_triforce_piece, -1, -1), // Easter egg (blue)
 };
 
 item_row_t *get_item_row(uint16_t item_id) {
