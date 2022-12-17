@@ -292,10 +292,10 @@ item_row_t item_table[] = {
     [0x00FE] = ITEM_ROW(0x4D,      SILVER_CHEST, 0x86, -1, 0x9043, 0x0196, 0x72, no_upgrade, give_silver_rupee_pouch, CASTLE_ID,  0x14), // Silver Rupee Pouch (Ganons Castle Water Trial)
     [0x00FF] = ITEM_ROW(0x4D,      SILVER_CHEST, 0x86, -1, 0x9044, 0x0196, 0x72, no_upgrade, give_silver_rupee_pouch, CASTLE_ID,  0x15), // Silver Rupee Pouch (Ganons Castle Forest Trial)
 
-    [0x0100] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9045, 0x0196, 0x29, no_upgrade, give_triforce_piece, -1, -1), // Easter egg (pink)
-    [0x0101] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9045, 0x0197, 0x29, no_upgrade, give_triforce_piece, -1, -1), // Easter egg (orange)
-    [0x0102] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9045, 0x0198, 0x29, no_upgrade, give_triforce_piece, -1, -1), // Easter egg (green)
-    [0x0103] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9045, 0x0199, 0x29, no_upgrade, give_triforce_piece, -1, -1), // Easter egg (blue)
+    [0x0100] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9045, 0x0197, 0x29, no_upgrade, give_triforce_piece, -1, -1), // Easter egg (pink)
+    [0x0101] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9045, 0x0198, 0x29, no_upgrade, give_triforce_piece, -1, -1), // Easter egg (orange)
+    [0x0102] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9045, 0x0199, 0x29, no_upgrade, give_triforce_piece, -1, -1), // Easter egg (green)
+    [0x0103] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9045, 0x019A, 0x29, no_upgrade, give_triforce_piece, -1, -1), // Easter egg (blue)
     [0x0104] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9046, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1), // Triforce of Power
     [0x0105] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9047, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1), // Triforce of Wisdom
     [0x0106] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9049, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1), // Triforce of Courage

@@ -235,7 +235,13 @@ void push_outgoing_override(override_t *override) {
 
 void move_outgoing_queue() {
     if (OUTGOING_KEY.all == 0) {
-        OUTGOING_ITEM = outgoing_queue[0].value.base.item_id;
+        if (outgoing_queue[0].value.base.item_id >= 0x100 && outgoing_queue[0].value.base.item_id < 0x107) {
+            // Multiworld plugins (at least Bizhawk Shuffler 2 and Mido's House Multiworld) have special cases for Triforce pieces.
+            // To make sure Easter eggs are handled the same way, they're sent as Triforce pieces.
+            OUTGOING_ITEM = 0xCA;
+        } else {
+            OUTGOING_ITEM = outgoing_queue[0].value.base.item_id;
+        }
         OUTGOING_PLAYER = outgoing_queue[0].value.base.player;
         // Set the value first and then the key, so a plugin checking whether the key is present is guaranteed to see the value as well
         OUTGOING_KEY = outgoing_queue[0].key;
