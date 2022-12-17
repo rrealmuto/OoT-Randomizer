@@ -5,6 +5,7 @@
 #include "gfx.h"
 #include "text.h"
 #include "util.h"
+#include "model_text.h"
 
 extern uint16_t TRIFORCE_HUNT_ENABLED;
 extern uint16_t TRIFORCE_PIECES_REQUIRED;

@@ -1,5 +1,4 @@
 from LocationList import location_table, location_is_viewable
-from Region import TimeOfDay
 from enum import Enum
 from itertools import chain
 
@@ -31,6 +30,8 @@ class Location(object):
         self.never = False
         if filter_tags is None:
             self.filter_tags = None
+        elif isinstance(filter_tags, str):
+            self.filter_tags = [filter_tags]
         else:
             self.filter_tags = list(filter_tags)
 

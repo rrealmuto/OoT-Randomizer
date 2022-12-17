@@ -212,9 +212,9 @@ conditional_always = {
     'HF Ocarina of Time Item':      lambda world: stones_required_by_settings(world) < 2,
     'Sheik in Kakariko':            lambda world: medallions_required_by_settings(world) < 5,
     'DMT Biggoron':                 lambda world: 'Claim Check' not in world.settings.adult_trade_start or len(world.settings.adult_trade_start) != 1,
-    'Kak 30 Gold Skulltula Reward': lambda world: tokens_required_by_settings(world) < 30,
-    'Kak 40 Gold Skulltula Reward': lambda world: tokens_required_by_settings(world) < 40,
-    'Kak 50 Gold Skulltula Reward': lambda world: tokens_required_by_settings(world) < 50,
+    'Kak 30 Gold Skulltula Reward': lambda world: tokens_required_by_settings(world) < 30 and '30_skulltulas' not in world.settings.misc_hints,
+    'Kak 40 Gold Skulltula Reward': lambda world: tokens_required_by_settings(world) < 40 and '40_skulltulas' not in world.settings.misc_hints,
+    'Kak 50 Gold Skulltula Reward': lambda world: tokens_required_by_settings(world) < 50 and '50_skulltulas' not in world.settings.misc_hints,
 }
 
 # Entrance hints required under certain settings
@@ -239,6 +239,7 @@ conditional_sometimes = {
     # Conditional sometimes hints
     'HC Great Fairy Reward':                    lambda world: world.settings.shuffle_interior_entrances == 'off',
     'OGC Great Fairy Reward':                   lambda world: world.settings.shuffle_interior_entrances == 'off',
+    'ZR Frogs in the Rain':                     lambda world: not world.settings.shuffle_frog_song_rupees,
 
     # Conditional dual hints
     'GV Pieces of Heart Ledges':                lambda world: not world.settings.shuffle_cows and world.settings.tokensanity not in ['overworld', 'all'],
@@ -319,6 +320,7 @@ hintTable = {
     'Dins Fire':                                                (["an inferno", "a heat wave", "a red ball"], "Din's Fire", 'item'),
     'Fire Arrows':                                              (["the furnace firearm", "the burning bolts", "a magma missile"], "the Fire Arrows", 'item'),
     'Ice Arrows':                                               (["the refrigerator rocket", "the frostbite bolts", "an iceberg maker"], "the Ice Arrows", 'item'),
+    'Blue Fire Arrows':                                         (["the icy hot rocket", "the blue bolts", "an iceberg destroyer"], "the Blue Fire Arrows", 'item'),
     'Light Arrows':                                             (["the shining shot", "the luminous launcher", "Ganondorf's bane", "the lighting bolts"], "the Light Arrows", 'item'),
     'Lens of Truth':                                            (["a lie detector", "a ghost tracker", "true sight", "a detective's tool"], "the Lens of Truth", 'item'),
     'Ocarina':                                                  (["a flute", "a music maker"], "an Ocarina", 'item'),
@@ -659,16 +661,16 @@ hintTable = {
     'DMT Freestanding PoH':                                        ("above a #mountain cavern entrance# is", None, 'exclude'),
     'DMC Wall Freestanding PoH':                                   ("nestled in a #volcanic wall# is", None, 'exclude'),
     'DMC Volcano Freestanding PoH':                                ("obscured by #volcanic ash# is", None, 'exclude'),
-    'Hideout Jail Guard (1 Torch)':                                ("#defeating Gerudo guards# reveals", None, 'exclude'),
-    'Hideout Jail Guard (2 Torches)':                              ("#defeating Gerudo guards# reveals", None, 'exclude'),
-    'Hideout Jail Guard (3 Torches)':                              ("#defeating Gerudo guards# reveals", None, 'exclude'),
-    'Hideout Jail Guard (4 Torches)':                              ("#defeating Gerudo guards# reveals", None, 'exclude'),
+    'Hideout 1 Torch Jail Gerudo Key':                             ("#defeating Gerudo guards# reveals", None, 'exclude'),
+    'Hideout 2 Torches Jail Gerudo Key':                           ("#defeating Gerudo guards# reveals", None, 'exclude'),
+    'Hideout 3 Torches Jail Gerudo Key':                           ("#defeating Gerudo guards# reveals", None, 'exclude'),
+    'Hideout 4 Torches Jail Gerudo Key':                           ("#defeating Gerudo guards# reveals", None, 'exclude'),
 
     'ZR Frogs Zeldas Lullaby':                                     ("after hearing #Zelda's Lullaby, frogs gift#", None, 'exclude'),
     'ZR Frogs Eponas Song':                                        ("after hearing #Epona's Song, frogs gift#", None, 'exclude'),
     'ZR Frogs Sarias Song':                                        ("after hearing #Saria's Song, frogs gift#", None, 'exclude'),
-    'ZR Frogs Suns Song':                                          ("after hearing #Sun's Song, frogs gift#", None, 'exclude'),
-    'ZR Frogs Song of Time':                                       ("after hearing #Song of Time, frogs gift#", None, 'exclude'),
+    'ZR Frogs Suns Song':                                          ("after hearing the #Sun's Song, frogs gift#", None, 'exclude'),
+    'ZR Frogs Song of Time':                                       ("after hearing the #Song of Time, frogs gift#", None, 'exclude'),
 
     'Deku Tree Map Chest':                                         ("in the #center of the Deku Tree# lies", None, 'exclude'),
     'Deku Tree Slingshot Chest':                                   ("the #treasure guarded by a scrub# in the Deku Tree is", None, 'exclude'),
@@ -1014,10 +1016,10 @@ hintTable = {
     'Fire Temple GS Scarecrow Top':                                ("a #spider-friendly scarecrow# atop a volcano hides", "a #spider-friendly scarecrow# atop the Fire Temple hides", 'exclude'),
     'Fire Temple GS Scarecrow Climb':                              ("a #spider-friendly scarecrow# atop a volcano hides", "a #spider-friendly scarecrow# atop the Fire Temple hides", 'exclude'),
 
-    'Fire Temple MQ GS Above Fire Wall Maze':                      ("a #spider above a fiery maze# holds", None, 'exclude'),
-    'Fire Temple MQ GS Fire Wall Maze Center':                     ("a #spider within a fiery maze# holds", None, 'exclude'),
+    'Fire Temple MQ GS Above Flame Maze':                          ("a #spider above a fiery maze# holds", None, 'exclude'),
+    'Fire Temple MQ GS Flame Maze Center':                         ("a #spider within a fiery maze# holds", None, 'exclude'),
     'Fire Temple MQ GS Big Lava Room Open Door':                   ("a #Goron trapped near lava# befriended a spider with", None, 'exclude'),
-    'Fire Temple MQ GS Fire Wall Maze Side Room':                  ("a #spider beside a fiery maze# holds", None, 'exclude'),
+    'Fire Temple MQ GS Flame Maze Side Room':                      ("a #spider beside a fiery maze# holds", None, 'exclude'),
 
     'Water Temple GS Falling Platform Room':                       ("a #spider over a waterfall# in the Water Temple holds", None, 'exclude'),
     'Water Temple GS Central Pillar':                              ("a #spider in the center of the Water Temple# holds", None, 'exclude'),
@@ -1042,7 +1044,7 @@ hintTable = {
     'Shadow Temple GS Single Giant Pot':                           ("#beyond a burning skull# lies a spider with", None, 'exclude'),
     'Shadow Temple GS Falling Spikes Room':                        ("a #spider beyond falling spikes# holds", None, 'exclude'),
     'Shadow Temple GS Triple Giant Pot':                           ("#beyond three burning skulls# lies a spider with", None, 'exclude'),
-    'Shadow Temple GS Like Like Room':                             ("a spider guarded by #invisible blades# holds", None, 'exclude'),
+    'Shadow Temple GS Invisible Blades Room':                      ("a spider guarded by #invisible blades# holds", None, 'exclude'),
     'Shadow Temple GS Near Ship':                                  ("a spider near a #docked ship# hoards", None, 'exclude'),
 
     'Shadow Temple MQ GS Falling Spikes Room':                     ("a #spider beyond falling spikes# holds", None, 'exclude'),
@@ -1276,7 +1278,7 @@ hintTable = {
     'Desert Colossus -> Colossus Grotto':                       ("lifting a #rock in the desert# reveals", None, 'entrance'),
     'GV Grotto Ledge -> GV Octorok Grotto':                     ("a rock on #a ledge in the valley# hides", None, 'entrance'),
     'GC Grotto Platform -> GC Grotto':                          ("a #pool of lava# in Goron City blocks the way to", None, 'entrance'),
-    'Gerudo Fortress -> GF Storms Grotto':                      ("a #storm within Gerudo's Fortress# reveals", None, 'entrance'),
+    'GF Entrances Behind Crates -> GF Storms Grotto':           ("a #storm within Gerudo's Fortress# reveals", None, 'entrance'),
     'Zoras Domain -> ZD Storms Grotto':                         ("a #storm within Zora's Domain# reveals", None, 'entrance'),
     'Hyrule Castle Grounds -> HC Storms Grotto':                ("a #storm near the castle# reveals", None, 'entrance'),
     'GV Fortress Side -> GV Storms Grotto':                     ("a #storm in the valley# reveals", None, 'entrance'),
@@ -1414,7 +1416,7 @@ hintTable = {
     '1045':                                                     ("They say that Okami is the best Zelda game.", None, 'junk'), # ref: people often say that Okami feels and plays like a Zelda game
     '1046':                                                     ("They say that quest guidance can be found at a talking rock.", None, 'junk'),
     '1047':                                                     ("They say that the final item you're looking for can be found somewhere in Hyrule.", None, 'junk'),
-    '1048':                                                     ("${12 68 7a}Mweep.^Mweep.^Mweep.^Mweep.^Mweep.^Mweep.^Mweep.^Mweep.^Mweep.^Mweep.^Mweep.^Mweep.", None, 'junk'), # Mweep
+    '1048':                                                     ("${12 68 7a}Mweep${07 04 51}", None, 'junk'), # Mweep
     '1049':                                                     ("They say that Barinade fears Deku Nuts.", None, 'junk'),
     '1050':                                                     ("They say that Flare Dancers do not fear Goron-crafted blades.", None, 'junk'), 
     '1051':                                                     ("They say that Morpha is easily trapped in a corner.", None, 'junk'),
@@ -1723,6 +1725,7 @@ misc_item_hint_table = {
         'replace': {
             "enter #your pocket#. I will let you have": "check #your pocket#. You will find",
         },
+        'use_alt_hint': False,
     },
     'ganondorf': {
         'id': 0x70CC,
@@ -1733,12 +1736,52 @@ misc_item_hint_table = {
         'replace': {
             "from #inside Ganon's Castle#": "from #inside my castle#",
             "from #outside Ganon's Castle#": "from #outside my castle#",
+            "from #Ganondorf's Chamber#": "from #those pots over there#",
         },
+        'use_alt_hint': True,
+    },
+}
+
+misc_location_hint_table = {
+    '10_skulltulas': {
+        'id': 0x9004,
+        'hint_location': '10 Skulltulas Reward Hint',
+        'item_location': 'Kak 10 Gold Skulltula Reward',
+        'location_text': "Yeaaarrgh! I'm cursed!! Please save me by destroying \x05\x4110 Spiders of the Curse\x05\x40 and I will give you \x05\x42{item}\x05\x40.",
+        'location_fallback': "Yeaaarrgh! I'm cursed!!",
+    },
+    '20_skulltulas': {
+        'id': 0x9005,
+        'hint_location': '20 Skulltulas Reward Hint',
+        'item_location': 'Kak 20 Gold Skulltula Reward',
+        'location_text': "Yeaaarrgh! I'm cursed!! Please save me by destroying \x05\x4120 Spiders of the Curse\x05\x40 and I will give you \x05\x42{item}\x05\x40.",
+        'location_fallback': "Yeaaarrgh! I'm cursed!!",
+    },
+    '30_skulltulas': {
+        'id': 0x9006,
+        'hint_location': '30 Skulltulas Reward Hint',
+        'item_location': 'Kak 30 Gold Skulltula Reward',
+        'location_text': "Yeaaarrgh! I'm cursed!! Please save me by destroying \x05\x4130 Spiders of the Curse\x05\x40 and I will give you \x05\x42{item}\x05\x40.",
+        'location_fallback': "Yeaaarrgh! I'm cursed!!",
+    },
+    '40_skulltulas': {
+        'id': 0x9007,
+        'hint_location': '40 Skulltulas Reward Hint',
+        'item_location': 'Kak 40 Gold Skulltula Reward',
+        'location_text': "Yeaaarrgh! I'm cursed!! Please save me by destroying \x05\x4140 Spiders of the Curse\x05\x40 and I will give you \x05\x42{item}\x05\x40.",
+        'location_fallback': "Yeaaarrgh! I'm cursed!!",
+    },
+    '50_skulltulas': {
+        'id': 0x9008,
+        'hint_location': '50 Skulltulas Reward Hint',
+        'item_location': 'Kak 50 Gold Skulltula Reward',
+        'location_text': "Yeaaarrgh! I'm cursed!! Please save me by destroying \x05\x4150 Spiders of the Curse\x05\x40 and I will give you \x05\x42{item}\x05\x40.",
+        'location_fallback': "Yeaaarrgh! I'm cursed!!",
     },
 }
 
 # Separate table for goal names to avoid duplicates in the hint table.
-# Link's Pocket will always be an empty goal, but it's included here to 
+# Link's Pocket will always be an empty goal, but it's included here to
 # prevent key errors during the dungeon reward lookup.
 goalTable = {
     'Queen Gohma':                                              ("path to the #Spider#", "path to #Queen Gohma#", "Green"),

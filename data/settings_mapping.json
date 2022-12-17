@@ -191,7 +191,11 @@
             "tokensanity",
             "shuffle_scrubs",
             "shuffle_child_trade",
+            "shuffle_freestanding_items",
+            "shuffle_pots",
+            "shuffle_crates",
             "shuffle_cows",
+            "shuffle_beehives",
             "shuffle_kokiri_sword",
             "shuffle_ocarinas",
             "shuffle_gerudo_card",
@@ -322,7 +326,6 @@
             "fast_bunny_hood",
             "plant_beans",
             "chicken_count_random",
-            "spawn_gerudo_guard_outside_gate",
             "chicken_count",
             "big_poe_count_random",
             "big_poe_count",
@@ -337,8 +340,9 @@
           "settings": [
             "ocarina_songs",
             "correct_chest_appearances",
+            "minor_items_as_major_chest",
             "invisible_chests",
-            "bombchus_gilded_chest_appearance",
+            "correct_potcrate_appearances",
             "clearer_hints",
             "hints",
             "hint_dist",
@@ -349,7 +353,8 @@
             "deadly_bonks",
             "no_collectible_hearts",
             "starting_tod",
-            "blue_fire_arrows"
+            "blue_fire_arrows",
+            "fix_broken_drops"
           ]
         },
         {
@@ -373,13 +378,41 @@
       "sections": [
         {
           "name": "generalcosmetics_section",
-          "col_span": 4,
+          "text": "General Cosmetics",
+          "col_span": 2,
           "row_span": [2,2,2],
           "settings": [
             "default_targeting",
             "display_dpad",
+            "dpad_dungeon_menu",
             "correct_model_colors",
             "randomize_all_cosmetics"
+          ]
+        },
+        {
+          "name": "playermodels_section_generator",
+          "text": "Player Models",
+          "app_type": ["generator"],
+          "col_span": 2,
+          "row_span": [2,2,2],
+          "settings": [
+            "model_adult",
+            "model_adult_filepicker",
+            "model_child",
+            "model_child_filepicker",
+            "model_unavailable_msg"
+          ]
+        },
+        {
+          "name": "playermodels_section_patcher",
+          "text": "Player Models",
+          "exclude_from_electron": true,
+          "app_type": ["patcher"],
+          "col_span": 2,
+          "row_span": [2,2,2],
+          "settings": [
+            "model_adult_filepicker",
+            "model_child_filepicker"
           ]
         },
         {
@@ -448,7 +481,7 @@
           "name": "sfx_main_section",
           "is_sfx": true,
           "col_span": 4,
-          "row_span": [2,2,2],
+          "row_span": [2,1,2],
           "settings": [
             "randomize_all_sfx",
             "disable_battle_music"
@@ -458,7 +491,8 @@
           "name": "generalsfx_section",
           "text": "General",
           "is_sfx": true,
-          "row_span": [6,6,13],
+          "col_span": 1,
+          "row_span": [6,6,11],
           "settings": [
             "background_music",
             "fanfares",
@@ -474,7 +508,8 @@
           "name": "menusfx_section",
           "text": "Menu",
           "is_sfx": true,
-          "row_span": [6,6,13],
+          "col_span": 1,
+          "row_span": [6,6,11],
           "settings": [
             "sfx_menu_cursor",
             "sfx_menu_select"
@@ -484,10 +519,37 @@
           "name": "npcsfx_section",
           "text": "NPC",
           "is_sfx": true,
-          "row_span": [6,6,13],
+          "col_span": 1,
+          "row_span": [6,6,11],
           "settings": [
             "sfx_navi_overworld",
             "sfx_navi_enemy"
+          ]
+        },
+        {
+          "name": "linksfx_section_generator",
+          "text": "Link",
+          "app_type": ["generator"],
+          "is_sfx": true,
+          "col_span": 1,
+          "row_span": [6,6,11],
+          "settings": [
+            "sfx_link_adult",
+            "sfx_link_child",
+            "sfx_link_unavailable_msg"
+          ]
+        },
+        {
+          "name": "linksfx_section_patcher",
+          "text": "Link",
+          "exclude_from_electron": true,
+          "app_type": ["patcher"],
+          "is_sfx": true,
+          "col_span": 1,
+          "row_span": [6,6,11],
+          "settings": [
+            "sfx_link_adult",
+            "sfx_link_child"
           ]
         }
       ]

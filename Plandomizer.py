@@ -501,6 +501,10 @@ class WorldDistribution(object):
             if record.type == 'set':
                 if item_name == '#Junk':
                     raise ValueError('#Junk item group cannot have a set number of items')
+                elif item_name == 'Ice Arrows' and world.settings.blue_fire_arrows:
+                    raise ValueError('Cannot add Ice Arrows to item pool with Blue Fire Arrows enabled')
+                elif item_name == 'Blue Fire Arrows' and not world.settings.blue_fire_arrows:
+                    raise ValueError('Cannot add Blue Fire Arrows to item pool with Blue Fire Arrows disabled')
                 elif item_name == 'Weird Egg' and self.distribution.settings.shuffle_child_trade != 'shuffle':
                     remove_egg = True
                     continue
@@ -540,6 +544,8 @@ class WorldDistribution(object):
                 self.pool_remove_item([pool], "#Bottle", record.count)
             elif trade_matcher(item_name):
                 self.pool_remove_item([pool], "#AdultTrade", record.count)
+            elif item_name == 'Ice Arrows' and world.settings.blue_fire_arrows:
+                self.pool_remove_item([pool], "Blue Fire Arrows", record.count)
             elif IsItem(item_name):
                 try:
                     self.pool_remove_item([pool], item_name, record.count)
@@ -913,6 +919,10 @@ class WorldDistribution(object):
                     item = self.pool_replace_item(pool, "Weird Egg", player_id, record.item, worlds)
                 except KeyError:
                     raise RuntimeError('Weird Egg already placed in World %d.' % (self.id + 1))
+            elif record.item == "Ice Arrows" and worlds[0].settings.blue_fire_arrows:
+                raise ValueError('Cannot add Ice Arrows to item pool with Blue Fire Arrows enabled')
+            elif record.item == "Blue Fire Arrows" and not worlds[0].settings.blue_fire_arrows:
+                raise ValueError('Cannot add Blue Fire Arrows to item pool with Blue Fire Arrows disabled')
             else:
                 try:
                     item = self.pool_replace_item(item_pools, "#Junk", player_id, record.item, worlds)

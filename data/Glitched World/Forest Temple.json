@@ -34,7 +34,7 @@
             "Forest Temple Outdoors High Balconies": "
                 is_adult or 
                 (has_explosives or
-                 ((can_use(Boomerang) or Nuts or Buy_Deku_Shield) and
+                 ((can_use(Boomerang) or Nuts or Deku_Shield) and
                   (Sticks or Kokiri_Sword or can_use(Slingshot))))",
             "Forest Temple Outside Upper Ledge": "can_hover or (can_use(Hover_Boots) and has_explosives and can_live_dmg(0.5))",
             "Forest Temple Boss Door": "is_child and can_live_dmg(0.5)"

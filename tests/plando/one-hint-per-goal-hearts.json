@@ -15,7 +15,7 @@
         "shuffle_ocarinas":                        true,
         "shuffle_song_items":                      "song",
         "shuffle_grotto_entrances":                false,
-        "spawn_positions":                         false,
+        "spawn_positions":                         [],
         "tokensanity":                             "all",
         "mq_dungeons_mode":                        "vanilla",
         "disabled_locations":                      [],

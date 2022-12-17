@@ -11,6 +11,7 @@ import copy
 from Utils import is_bundled, subprocess_args, local_path, data_path, default_output_path, get_version_bytes
 from ntype import BigStream, uint32
 from crc import calculate_crc
+from Models import restrictiveBytes
 from version import base_version, branch_identifier, supplementary_version
 
 DMADATA_START = 0x7430
@@ -120,6 +121,17 @@ class Rom(BigStream):
         super().write_byte(address, value)
         self.changed_address[self.last_address-1] = value
 
+    def write_bytes_restrictive(self, start, size, values):
+        for i in range(size):
+            address = start + i
+            should_write = True
+            for restrictiveBlock in restrictiveBytes:
+                # If i is between the start of restrictive zone [0] and start + size [1]
+                if restrictiveBlock[0] <= address and address < restrictiveBlock[0] + restrictiveBlock[1]:
+                    should_write = False
+                    break
+            if should_write:
+                self.write_byte(address, values[i])
 
     def write_bytes(self, address, values):
         super().write_bytes(address, values)
@@ -156,6 +168,15 @@ class Rom(BigStream):
         self.write_bytes(0x19, version_bytes)
         self.write_bytes(0x35, version_bytes[:3])
         self.force_patch.extend([0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x35, 0x36, 0x37])
+
+
+    def read_version_bytes(self):
+        version_bytes = self.read_bytes(0x19, 5)
+        secondary_version_bytes = self.read_bytes(0x35, 3)
+        for i in range(3):
+            if secondary_version_bytes[i] != version_bytes[i]:
+                return secondary_version_bytes
+        return version_bytes
 
 
     def read_rom(self, file):

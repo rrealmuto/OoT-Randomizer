@@ -52,7 +52,7 @@ medal_t medals[] = {
     { 3, 0xFF, 0x82, 0x00 }, // Spirit
 };
 
-uint8_t reward_rows[] = { 0, 1, 2, 4, 5, 6, 8, 7, 3 };
+uint8_t reward_rows[] = { 0, 1, 2, 8, 3, 4, 5, 7, 6 };
 
 extern uint32_t CFG_DUNGEON_INFO_MQ_ENABLE;
 extern uint32_t CFG_DUNGEON_INFO_MQ_NEED_MAP;
@@ -80,7 +80,10 @@ void draw_background(z64_disp_buf_t *db, int bg_left, int bg_top, int bg_width, 
 
 void draw_dungeon_info(z64_disp_buf_t *db) {
     pad_t pad_held = z64_ctxt.input[0].raw.pad;
-    int draw = CAN_DRAW_DUNGEON_INFO && (pad_held.dl || pad_held.dr || pad_held.dd || pad_held.a);
+    int draw = CAN_DRAW_DUNGEON_INFO && (
+        ((pad_held.dl || pad_held.dr || pad_held.dd) && CFG_DPAD_DUNGEON_INFO_ENABLE) || 
+        ((pad_held.dl || pad_held.dr || pad_held.dd) && !CFG_DPAD_DUNGEON_INFO_ENABLE && pad_held.a) ||
+        pad_held.a);
     if (!draw) {
         return;
     }
@@ -90,7 +93,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
     // Call setup display list
     gSPDisplayList(db->p++, &setup_db);
 
-    if (pad_held.a) {
+    if (pad_held.a && !((pad_held.dl || pad_held.dr || pad_held.dd) && !CFG_DPAD_DUNGEON_INFO_ENABLE)) {
         uint16_t altar_flags = z64_file.inf_table[27];
         int show_medals = CFG_DUNGEON_INFO_REWARD_ENABLE && (!CFG_DUNGEON_INFO_REWARD_NEED_ALTAR || (altar_flags & 1)) && CFG_DUNGEON_INFO_REWARD_SUMMARY_ENABLE;
         int show_stones = CFG_DUNGEON_INFO_REWARD_ENABLE && (!CFG_DUNGEON_INFO_REWARD_NEED_ALTAR || (altar_flags & 2)) && CFG_DUNGEON_INFO_REWARD_SUMMARY_ENABLE;

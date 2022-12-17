@@ -1,14 +1,14 @@
 import logging
 import os
 import random
-from collections import OrderedDict
+from collections import OrderedDict, defaultdict
 import urllib.request
 from urllib.error import URLError, HTTPError
 import json
 from enum import Enum
 import itertools
 
-from HintList import getHint, getMulti, getHintGroup, getUpgradeHintList, hintExclusions, misc_item_hint_table
+from HintList import getHint, getMulti, getHintGroup, getUpgradeHintList, hintExclusions, misc_item_hint_table, misc_location_hint_table
 from Item import Item, MakeEventItem
 from Messages import COLOR_MAP, update_message_by_id
 from Region import Region
@@ -24,7 +24,7 @@ bingoBottlesForHints = (
 )
 
 defaultHintDists = [
-    'balanced.json', 'bingo.json', 'chaos.json', 'ddr.json', 'scrubs.json', 'strong.json', 'tournament.json', 'useless.json', 'very_strong.json', 'very_strong_magic.json', 'weekly.json'
+    'balanced.json', 'bingo.json', 'chaos.json', 'coop2.json', 'ddr.json', 'league.json', 'mw3.json', 'scrubs.json', 'strong.json', 'tournament.json', 'useless.json', 'very_strong.json', 'very_strong_magic.json', 'weekly.json'
 ]
 
 unHintableWothItems = ['Triforce Piece', 'Gold Skulltula Token']
@@ -338,6 +338,7 @@ class HintArea(Enum):
     HYRULE_CASTLE          = 'at',     'at',     'Hyrule Castle',              'Hyrule Castle',          'Light Blue', None
     OUTSIDE_GANONS_CASTLE  = None,     None,     "outside Ganon's Castle",     "Outside Ganon's Castle", 'Light Blue', None
     INSIDE_GANONS_CASTLE   = 'inside', None,     "inside Ganon's Castle",      "Inside Ganon's Castle",  'Light Blue', 'Ganons Castle'
+    GANONDORFS_CHAMBER     = 'in',     'in',     "Ganondorf's Chamber",        "Ganondorf's Chamber",    'Light Blue', None
     KOKIRI_FOREST          = 'in',     'in',     'Kokiri Forest',              "Kokiri Forest",          'Green',      None
     DEKU_TREE              = 'inside', 'inside', 'the Deku Tree',              "Deku Tree",              'Green',      'Deku Tree'
     LOST_WOODS             = 'in',     'in',     'the Lost Woods',             "Lost Woods",             'Green',      None
@@ -369,7 +370,7 @@ class HintArea(Enum):
     # Performs a breadth first search to find the closest hint area from a given spot (region, location, or entrance).
     # May fail to find a hint if the given spot is only accessible from the root and not from any other region with a hint area
     @staticmethod
-    def at(spot):
+    def at(spot, use_alt_hint=False):
         if isinstance(spot, Region):
             original_parent = spot
         else:
@@ -387,6 +388,8 @@ class HintArea(Enum):
                 parent_region = current_spot.parent_region
 
             if parent_region.hint and (original_parent.name == 'Root' or parent_region.name != 'Root'):
+                if use_alt_hint and parent_region.alt_hint:
+                    return parent_region.alt_hint
                 return parent_region.hint
 
             spot_queue.extend(list(filter(lambda ent: ent not in already_checked, parent_region.entrances)))
@@ -555,7 +558,9 @@ def get_checked_areas(world, checked):
             location = world.get_location(check)
         except Exception:
             return check
-        return HintArea.at(location)
+        # Don't consider dungeons as already hinted from the reward hint on the Temple of Time altar
+        if location.type != 'Boss': #TODO or shuffled dungeon rewards
+            return HintArea.at(location)
 
     return set(get_area_from_name(check) for check in checked)
 
@@ -593,7 +598,7 @@ def get_goal_category(spoiler, world, goal_categories, skip_empty = True):
 
     return goal_category
 
-def get_goal_hint(spoiler, world, checked):
+def get_goal_legacy_hint(spoiler, world, checked):
     goal_category = get_goal_category(spoiler, world, world.goal_categories)
 
     # check if no goals were generated (and thus no categories available)
@@ -665,6 +670,99 @@ def get_goal_hint(spoiler, world, checked):
 
     return (GossipText('%s is on %s %s.' % (location_text, player_text, goal_text), [goal.color, 'Light Blue'], [location.name], [location.item.name]), [location])
 
+
+def get_goal_hint(spoiler, world, checked):
+    goal_category = get_goal_category(spoiler, world, world.goal_categories)
+
+    # check if no goals were generated (and thus no categories available)
+    if not goal_category:
+        return None
+
+    goals = goal_category.goals
+    category_locations = []
+
+    # Collect unhinted locations for the category across all category goals.
+    # If all locations for all goals in the category are hinted, try remaining goal categories
+    # If all locations for all goal categories are hinted, return no hint.
+    while not category_locations:
+
+        # Filter hinted goals until every goal in the category has been hinted.
+        weights = []
+        zero_weights = True
+        for goal in goals:
+            if goal.weight > 0:
+                zero_weights = False
+            weights.append(goal.weight)
+
+        # Collect set of unhinted locations for the category. Reduces the bias
+        # from locations in multiple goals for the category.
+        category_locations = []
+        location_reverse_map = defaultdict(list)
+        for goal in goals:
+            if zero_weights or goal.weight > 0:
+                goal_locations = list(filter(lambda location:
+                    location not in category_locations
+                    and location[0].name not in checked
+                    and location[0].name not in world.hint_exclusions
+                    and location[0].name not in world.hint_type_overrides['goal']
+                    and location[0].item.name not in world.item_hint_type_overrides['goal']
+                    and location[0].item.name not in unHintableWothItems,
+                    goal.required_locations))
+                for location in goal_locations:
+                    location_reverse_map[location[0]].append(goal)
+                category_locations.extend(goal_locations)
+
+        if not category_locations:
+            del world.goal_categories[goal_category.name]
+            goal_category = get_goal_category(spoiler, world, world.goal_categories)
+            if not goal_category:
+                return None
+            else:
+                goals = goal_category.goals
+
+    location_tuple = random.choice(category_locations)
+    location = location_tuple[0]
+    world_ids = location_tuple[3]
+    world_id = random.choice(world_ids)
+    checked.add(location.name)
+    goal = random.choice(location_reverse_map[location])
+
+    # Make sure this wasn't the last hintable location for other goals.
+    # If so, set weights to zero. This is important for one-hint-per-goal.
+    # Locations are unique per-category, so we don't have to check the others.
+    for other_goal in goals:
+        if not zero_weights and other_goal.weight <= 0:
+            continue
+
+        required_locations = [loc[0] for loc in other_goal.required_locations]
+        goal_locations = list(filter(lambda loc:
+            loc.name not in checked
+            and loc.name not in world.hint_exclusions
+            and loc.name not in world.hint_type_overrides['goal']
+            and loc.item.name not in world.item_hint_type_overrides['goal']
+            and loc.item.name not in unHintableWothItems,
+            required_locations))
+        if not goal_locations:
+            other_goal.weight = 0
+            if world.one_hint_per_goal and location in required_locations:
+                # Replace randomly chosen goal with the goal that has all its locations
+                # hinted without being directly hinted itself.
+                goal = other_goal
+
+    # Goal weight to zero mitigates double hinting this goal
+    # Once all goals in a category are 0, selection is true random
+    goal.weight = 0
+
+    location_text = HintArea.at(location).text(world.settings.clearer_hints)
+    if world_id == world.id:
+        player_text = "the"
+        goal_text = goal.hint_text
+    else:
+        player_text = "Player %s's" % (world_id + 1)
+        goal_text = spoiler.goal_categories[world_id][goal_category.name].get_goal(goal.name).hint_text
+
+    return (GossipText('%s is on %s %s.' % (location_text, player_text, goal_text), [goal.color, 'Light Blue'], [location.name], [location.item.name]), [location])
+
 def get_goal_count_hint(spoiler, world, checked):
     goal_category = get_goal_category(spoiler, world, world.goal_categories, False)
 
@@ -719,6 +817,17 @@ def get_goal_count_hint(spoiler, world, checked):
 
     return (GossipText('the %s requires #%d# %s.' % (goal.hint_text, item_count, item_text), ['Light Blue', goal.color]), None)
 
+def get_wanderer_hint(spoiler, world, checked):
+
+    hint_types = [get_playthrough_location_hint, get_unlock_playthrough_hint]
+    random.shuffle(hint_types)
+
+    hint = hint_types[0](spoiler, world, checked)
+    if not hint:
+        hint = hint_types[1](spoiler, world, checked)
+
+    return hint
+
 def get_playthrough_location_hint(spoiler, world, checked):
 
     locations = dict(filter(lambda locations: 
@@ -744,7 +853,61 @@ def get_playthrough_location_hint(spoiler, world, checked):
     hint_area = HintArea.at(location)
     location_text = hint_area.text(world.settings.clearer_hints)
 
-    return (GossipText('%s is on the way of the wanderer.' % location_text, ['Light Blue'], [location.name], [location.item.name]), [location])
+    return (GossipText('%s is on the way of the #wanderer#.' % location_text, ['Yellow', 'Light Blue'], [location.name], [location.item.name]), [location])
+
+def get_unlock_woth_hint(spoiler, world, checked):
+    return get_unlock_hint(spoiler, world, checked, 'unlock-woth')
+
+def get_unlock_playthrough_hint(spoiler, world, checked):
+    return get_unlock_hint(spoiler, world, checked, 'unlock-playthrough')
+
+def get_unlock_hint(spoiler, world, checked, hint_type):
+
+    if hint_type == 'unlock-playthrough':
+        requirements = spoiler.playthrough_location_requirements
+    else:
+        requirements = spoiler.required_location_requirements
+
+    required_locations = {
+        location: list(filter(lambda required_location: required_location.item.name not in world.item_hint_type_overrides[hint_type], required_locations)) 
+        for location, required_locations in requirements[world.id].items()
+    }
+
+    hintable_locations = list(filter(lambda location:
+        len(required_locations[location]) > 0
+        and (location.name + '- unlock') not in checked
+        and location.name not in world.hint_exclusions
+        and location.name not in world.hint_type_overrides[hint_type]
+        and location.item.name not in world.item_hint_type_overrides[hint_type]
+        and location.item.type != "Song",
+        required_locations))
+
+    if hint_type == 'unlock-playthrough':
+        required_location_names = list(map(lambda location: location.name, spoiler.required_locations[world.id]))
+        hintable_locations = list(filter(lambda location:
+            location.name not in required_location_names,
+            hintable_locations))
+
+    if not hintable_locations:
+        return None
+
+    location_weights = list(map(lambda loc: len(required_locations[loc]), hintable_locations))
+    location = random.choices(hintable_locations, location_weights)[0]
+    required_location_weights = list(map(lambda req_loc: len(required_locations[req_loc]) + 1, required_locations[location]))
+    required_location = random.choices(required_locations[location], required_location_weights)[0]
+    checked.add(location.name + '- unlock')
+
+    location_text = getHint(getItemGenericName(location.item), world.settings.clearer_hints).text
+    required_location_text = getHint(getItemGenericName(required_location.item), world.settings.clearer_hints).text
+
+    if hint_type == 'unlock-playthrough':
+        gossip_text = '#%s# unlocks the #wanderer\'s# way to #%s#.'
+        gossip_colors = ['Light Blue', 'Yellow', 'Light Blue']
+    else:
+        gossip_text = '#%s# unlocks the way to #%s#.'
+        gossip_colors = ['Light Blue', 'Light Blue']
+
+    return (GossipText(gossip_text % (required_location_text, location_text), gossip_colors, [required_location.name, location.name], [required_location.item.name, location.item.name]), [required_location, location])
 
 def get_barren_hint(spoiler, world, checked, allChecked):
     if not hasattr(world, 'get_barren_hint_prev'):
@@ -1176,8 +1339,13 @@ hint_func = {
     'dual-woth':        get_dual_woth_hint,
     'woth-count':       get_woth_count_hint,
     'goal':             get_goal_hint,
-    'goal-count':       	get_goal_count_hint,
+    'goal-legacy':      get_goal_legacy_hint,
+    'goal-legacy-single':   get_goal_legacy_hint,
+    'goal-count':       get_goal_count_hint,
+    'wanderer':         get_wanderer_hint,
     'playthrough-location': get_playthrough_location_hint,
+    'unlock-woth':      get_unlock_woth_hint,
+    'unlock-playthrough':   get_unlock_playthrough_hint,
     'barren':           get_barren_hint,
     'item':             get_good_item_hint,
     'sometimes':        get_sometimes_hint,
@@ -1201,8 +1369,13 @@ hint_dist_keys = {
     'dual-woth',
     'woth-count',
     'goal',
+    'goal-legacy',
+    'goal-legacy-single',
     'goal-count',
+    'wanderer',
     'playthrough-location',
+    'unlock-woth',
+    'unlock-playthrough',
     'barren',
     'item',
     'song',
@@ -1283,6 +1456,13 @@ def buildGossipHints(spoiler, worlds):
                 checkedLocations[item_world.id].add(location.name)
         for hint_type, location in world.misc_hint_item_locations.items():
             if hint_type in world.settings.misc_hints and can_reach_hint(worlds, world.get_location(misc_item_hint_table[hint_type]['hint_location']), location):
+                item_world = location.world
+                if item_world.id not in checkedLocations:
+                    checkedLocations[item_world.id] = set()
+                checkedLocations[item_world.id].add(location.name)
+        for hint_type in world.misc_hint_location_items.keys():
+            location = world.get_location(misc_location_hint_table[hint_type]['item_location'])
+            if hint_type in world.settings.misc_hints and can_reach_hint(worlds, world.get_location(misc_location_hint_table[hint_type]['hint_location']), location):
                 item_world = location.world
                 if item_world.id not in checkedLocations:
                     checkedLocations[item_world.id] = set()
@@ -1753,7 +1933,7 @@ def buildMiscItemHints(world, messages):
                     text = data['custom_item_text'].format(area='#your pocket#', item=item)
             elif hint_type in world.misc_hint_item_locations:
                 location = world.misc_hint_item_locations[hint_type]
-                area = HintArea.at(location).text(world.settings.clearer_hints, world=None if location.world.id == world.id else location.world.id + 1)
+                area = HintArea.at(location, use_alt_hint=data['use_alt_hint']).text(world.settings.clearer_hints, world=None if location.world.id == world.id else location.world.id + 1)
                 if item == data['default_item']:
                     text = data['default_item_text'].format(area=area)
                 else:
@@ -1773,6 +1953,18 @@ def buildMiscItemHints(world, messages):
                 text = text.replace(find, replace)
 
             update_message_by_id(messages, data['id'], str(GossipText(text, ['Green'], prefix='')))
+
+
+def buildMiscLocationHints(world, messages):
+    for hint_type, data in misc_location_hint_table.items():
+        text = data['location_fallback']
+        if hint_type in world.settings.misc_hints:
+            location = world.misc_hint_locations[hint_type]
+            if hint_type in world.misc_hint_location_items:
+                item = world.misc_hint_location_items[hint_type]
+                text = data['location_text'].format(item=getHint(getItemGenericName(item), world.settings.clearer_hints).text)
+
+        update_message_by_id(messages, data['id'], str(GossipText(text, ['Green'], prefix='')), 0x23)
 
 
 def get_raw_text(string):

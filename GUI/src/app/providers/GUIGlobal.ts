@@ -1,12 +1,14 @@
-import { Injectable, HostBinding, EventEmitter, Output } from '@angular/core';
+import { Injectable, HostBinding, EventEmitter, Output, Directive, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { ProgressWindow } from '../pages/generator/progressWindow/progressWindow.component';
+import { ProgressWindowComponent } from '../pages/generator/progressWindow/progressWindow.component';
 
 import * as post from 'post-robot';
+import {GuiEvent} from './GuiEvent';
 
+@Directive()
 @Injectable()
-export class GUIGlobal {
+export class GUIGlobal implements OnDestroy {
 
   //Globals for GUI HTML
   public generator_tabsVisibilityMap: Object = {};
@@ -22,7 +24,7 @@ export class GUIGlobal {
 
   @HostBinding('class.indigo-pink') materialStyleIndigo: boolean = true;
 
-  @Output() globalEmitter: EventEmitter<object> = new EventEmitter();
+  @Output() globalEmitter: EventEmitter<GuiEvent> = new EventEmitter();
 
   constructor(private http: HttpClient) {
     this.globalVars = new Map<string, any>([
@@ -223,10 +225,35 @@ export class GUIGlobal {
     if (!this.getGlobalVar('electronAvailable'))
       throw Error("electron_not_available");
 
-    let event = await post.send(window, 'createAndOpenPath', path);
-    let res = event.data;
+    let event = null;
 
-    if (res == true)
+    try {
+      event = await post.send(window, 'createAndOpenPath', path);
+    } catch (ex) {
+      console.error(ex);
+    }
+
+    if (event == null)
+      throw Error("The specified output directory does not exist!");
+
+    //If folder already existed, we get a quick sync exit, otherwise wait for async callback that the folder was created and opened
+    let status = event.data;
+
+    if (status)
+      return true;
+
+    let response = await new Promise(function (resolve, reject) {
+
+      var listenerResult = post.once('createAndOpenPathResult', function (res) {
+
+        listenerResult.cancel();
+
+        let data = res.data;
+        resolve(data);
+      });
+    });
+
+    if (response === "")
       return true;
     else
       throw Error("path_not_opened");
@@ -305,7 +332,7 @@ export class GUIGlobal {
       if (userSettings)
         userSettings = JSON.parse(userSettings);
 
-      this.parseGeneratorGUISettings(res, userSettings);
+      await this.parseGeneratorGUISettings(res, userSettings);
 
     } catch (err) {
       console.error(err);
@@ -374,7 +401,7 @@ export class GUIGlobal {
       }
     }
 
-    this.parseGeneratorGUISettings(res, userSettings);
+    await this.parseGeneratorGUISettings(res, userSettings);
 
     //Check for cached files and then create web events after
     if ((<any>window).emscriptenFoundCachedROMFile)
@@ -389,8 +416,7 @@ export class GUIGlobal {
     this.createWebEvents();
   }
 
-  parseGeneratorGUISettings(guiSettings, userSettings) {
-
+  async parseGeneratorGUISettings(guiSettings, userSettings) {
     const isRGBHex = /[0-9A-Fa-f]{6}/;
 
     //Intialize settings maps
@@ -445,7 +471,9 @@ export class GUIGlobal {
 
           continue;
         }
-        section.settings.forEach(setting => {
+        for (let settingIndex = 0; settingIndex < section.settings.length; settingIndex++) {
+
+          let setting = section.settings[settingIndex];
 
           this.generator_settingsVisibilityMap[setting.name] = true;
 
@@ -502,12 +530,41 @@ export class GUIGlobal {
               this.generator_customColorMap[setting.name] = "";
             }
           }
-        });
+          
+          //Handle dynamic settings. The available options (and sometimes the tooltip) are determined at runtime
+          if (setting.dynamic) {
+            let dynamicSetting = await this.updateDynamicSetting(setting.name)
+
+            if (dynamicSetting) {
+
+              let parsedSetting = JSON.parse(dynamicSetting);
+
+              let isCosmetic = (tab.name in guiSettings.cosmeticsObj);
+                     
+              guiSettings.settingsObj[tab.name].sections[section.name].settings[setting.name] = parsedSetting.object;
+              
+              guiSettings.settingsArray[tabIndex].sections[sectionIndex].settings[settingIndex] = parsedSetting.array;
+  
+              if (isCosmetic) {
+                guiSettings.cosmeticsObj[tab.name].sections[section.name].settings[setting.name] = parsedSetting.object;
+  
+                let cosmeticTabIndex = guiSettings.cosmeticsArray.findIndex(elem => elem.name == tab.name);
+  
+                if (cosmeticTabIndex != -1) {
+  
+                  //Note: This follows the assumption that sections and settings are structured identically between settings and cosmetics arrays.
+                  guiSettings.cosmeticsArray[cosmeticTabIndex].sections[sectionIndex].settings[settingIndex] = parsedSetting.array;
+                }
+              }  
+            }
+          }
+        };
       }
     }
 
     //Add GUI only options
     this.generator_settingsMap["settings_string"] = userSettings && "settings_string" in userSettings ? userSettings["settings_string"] : "";
+    this.generator_settingsMap["theme"] = userSettings && "theme" in userSettings ? userSettings["theme"] : "";
     this.generator_settingsVisibilityMap["settings_string"] = true;
 
     console.log("JSON Settings Data:", guiSettings);
@@ -523,6 +580,46 @@ export class GUIGlobal {
     this.setGlobalVar('generatorGoalDistros', guiSettings.distroArray);
 
     this.generator_presets = guiSettings.presets;
+  }
+
+  /**
+   * Queries SettingsToJson.py to return a JSON object with the dynamically generated setting definition in object & array format
+   * resolves with { object: settingInObjectFormat , array: settingInArrayFormat } (or null in web mode)
+   * rejects with null
+   * POTENTIAL TODO: add api calls or browser lookups for web if needed in the future
+  */
+  updateDynamicSetting(settingName: string) {
+    let self = this;
+
+    return new Promise<any>(function (resolve, reject) {
+      if (self.getGlobalVar('electronAvailable')) { //app mode
+        post.send(window, 'updateDynamicSetting', settingName).then(event => {
+          var listenerSuccess = post.once('updateDynamicSettingSuccess', function (event) {
+
+            listenerError.cancel();
+
+            let data = event.data;
+            resolve(data);
+          });
+
+          var listenerError = post.once('updateDynamicSettingError', function (event) {
+
+            listenerSuccess.cancel();
+
+            console.error("[updateDynamicSetting] Python Error:", event.data);
+            reject(null);
+          });
+
+        }).catch(err => {
+          console.error("[updateDynamicSettingy] Post-Robot Error:", err);
+          reject(null);
+        });   
+      } else { //web mode
+          //TODO: Should dynamic settings ever be needed on web, add API call or browser lookups here.
+          //for now, resolving with null is fine.
+          resolve(null);
+      }   
+    })
   }
 
   async versionCheck() { //Electron only
@@ -901,6 +998,7 @@ export class GUIGlobal {
 
       //Not mapped settings need to be deleted manually
       delete settingsFile["settings_string"];
+      delete settingsFile["theme"]
 
       //Delete all shared = false keys from map since they aren't included in the seed
       this.deleteSettingsFromMapWithCondition(settingsFile, "shared", false);
@@ -1060,10 +1158,10 @@ export class GUIGlobal {
     }
   }
 
-  generateSeedElectron(progressWindowRef: ProgressWindow, fromPatchFile: boolean = false, useStaticSeed: string = "") { //Electron only
+  generateSeedElectron(progressWindowRef: ProgressWindowComponent, fromPatchFile: boolean = false, useStaticSeed: string = "") { //Electron only
     var self = this;
 
-    return new Promise(function (resolve, reject) {
+    return new Promise<void>(function (resolve, reject) {
 
       let settingsMap = self.createSettingsFileObject(fromPatchFile, false, false, true);
 

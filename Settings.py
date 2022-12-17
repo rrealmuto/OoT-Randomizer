@@ -1,4 +1,5 @@
 import argparse
+from collections.abc import Iterable
 import copy
 import hashlib
 import json
@@ -113,6 +114,8 @@ class Settings:
                 i_bits = [1 if digit=='1' else 0 for digit in bin(value)[2:]]
                 i_bits.reverse()
             elif setting.type == list:
+                if not isinstance(value, Iterable):
+                    value = []
                 if len(value) > len(setting.choice_list) / 2:
                     value = [item for item in setting.choice_list if item not in value]
                     terminal = [1] * setting.bitwidth

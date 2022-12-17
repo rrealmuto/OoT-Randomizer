@@ -8,6 +8,8 @@ This is a randomizer for _The Legend of Zelda: Ocarina of Time_ for the Nintendo
   * [Settings](#settings)
   * [Known Issues](#known-issues)
 * [Changelog](#changelog)
+  * [7.1](#71)
+  * [7.0](#70)
   * [6.2](#62)
   * [6.1](#61)
   * [6.0](#60)
@@ -25,7 +27,7 @@ https://ootrandomizer.com
 If you wish to run the script raw, clone this repository and either run ```Gui.py``` for a
 graphical interface or ```OoTRandomizer.py``` for the command line version. They both require Python 3.6+. This will be fully featured,
 but the seeds you generate will have different random factors than the bundled release.
-To use the GUI, [NodeJS](https://nodejs.org/download/release/v14.15.1/) (v14, with npm) will additionally need to be installed. NodeJS v16+ is currently not supported.
+To use the GUI, [NodeJS](https://nodejs.org/download/release/v18.12.1/) (v18 LTS, with npm) will additionally need to be installed. NodeJS v14.14.0 and earlier are no longer supported.
 The first time ```Gui.py``` is run it will need to install necessary components, which could take a few minutes. Subsequent instances will run much quicker.
 Supported output formats are .z64 (N64/Emulator), .wad (Wii VC, channel IDs NICE/NRKE recommended), Uncompressed ROM (for developmental purposes, offline build only)
 and .zpf/.zpfz (patch files, for sharing seeds with others).
@@ -85,6 +87,14 @@ Caveat: Plandomizer settings will override most settings in the main OoTR genera
 
 See [the Plandomizer wiki page](https://wiki.ootrandomizer.com/index.php?title=Plandomizer) for full details.
 
+#### Custom Models
+
+Save the .ZOBJ file of the desired model in `data/Models/Adult` or `data/Models/Child`. The file must be in .ZOBJ format (the compressed .PAK files are not compatible), but most Modloader64 models will work. Exceptions are models which are larger than the base Link models (the randomizer will give an error message) and those created on the new pipeline (technically load but the textures get wonky). Please see notes regarding known model files that are floating around [in this spreadsheet](https://docs.google.com/spreadsheets/d/1xbJnYw8lGR_qAkpvOQXlzvSUobWdX6phTm1SRbXy4TQ/edit#gid=1223582726) before asking why a model doesn't work.
+
+Once the models are saved, the program may be opened and the model(s) selected under the `Cosmetics` tab.
+
+If the model's skeleton is similar enough to Link, the randomizer will use Link's skeleton. If it is substantially different, then a note will be placed on the pause screen to make it clear that the skeleton was changed.
+
 ### Known issues
 
 Unfortunately, a few known issues exist. These will hopefully be addressed in future versions.
@@ -100,6 +110,39 @@ issue. You should always Hard Reset to avoid this issue entirely.
 
 ### Dev
 
+### 7.1
+
+#### Bug Fixes
+* Fix freestanding items not spawning their overrides when an item with a shared base collectable flag is collected.
+* Fix models drawing incorrectly when picking up a duplicated collectible, such as from the Goron City spinning pot.
+* Fix junk items from pot/freestanding item locations not being sent to the proper player in multiworld.
+* Fix Skulltula House Misc. Hints not hinting the proper locations in multiworld.
+
+#### GUI
+* `Disable Battle Music` has been moved to the main section of the SFX tab.
+* Nonsense tags in the `Exclude Locations` list were cleaned up.
+* New tags were added in the `Exclude Locations` and `Enable Tricks` lists.
+* Upgrade to latest Nebular version 10.
+* Upgrade to Angular 14.
+* Minimum NodeJS version is now 14.15.0.
+* Fix visibility issues when using `Randomize Main Rule Settings`.
+
+#### Other Changes
+* Removed some unnecessary duplication in spirit temple logic.
+* In multiworld, outgoing items are now buffered.
+  * Allows players to continue collecting items if the Multiworld plugin crashes.
+  * Multiple freestanding/pot items can be sent on the same frame.
+* Ice Arrows will now be referred to as Blue Fire Arrows in hints and shop text when `Blue Fire Arrows` is enabled.
+* Logic now considers the possibility to melt the red ice walls in Ice Cavern with Blue Fire Arrows as adult, then coming back as child and collecting a skulltula with the boomerang.
+* Beehives now wiggle depending on the renamed setting `Pot, Crate, & Beehive Appearance Matches Contents`.
+* `Item Model Colors Match Cosmetics` is now enabled by default.
+
+#### Plandomizer
+* Due to Ice Arrows and Blue Fire Arrows being separate items in the code now, plandomizer authors must use `Ice_Arrows` or `Blue_Fire_Arrows` depending on if the setting is enabled.
+* In cosmetics plando, empty or non-existant BGM groups will no longer error, instead simply displaying a warning in the cosmetics log.
+
+### 7.0
+
 #### New Features
 
 * **Settings**
@@ -111,14 +154,16 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * New setting `Key Rings` which can be enabled per-dungeon to replace all of its individual Small Keys into a singular Small Key Ring containing all the small keys for that dungeon. Key Rings also have their own model.
   * Setting `Randomize Ocarina Song Notes` can now be set to either "row" of songs individually, i.e. "Frog Songs" or "Warp Songs", in additional to the "Off" and "All Songs" options.
   * MQ Dungeon settings have been replaced with `MQ Dungeons Mode` which allows finer selection of which dungeons are MQ, or how many are at random.
-  * New setting `Shuffle Boss Entrances` allows boss rooms to be shuffled between dungeons. This is only available in glitchless logic.
+  * New setting `Shuffle Boss Entrances` allows boss rooms to be shuffled between dungeons. This is not available in glitched logic.
   * `Misc. Hints` has been expanded to a multiple select setting allowing you to fine-tune which set of misc hints to enable or disable.
   * New setting `Gate-Opening Gerudo Guard` adds a guard outside Gerudo Fortress to open the gate when entering from Haunted Wasteland.
   * New setting `Shuffle Frog Song Rupees` allows you to shuffle the rupees you receive from the Zora's River frogs.
+    * These locations are considered "sometimes" hints.
   * New setting `Show Seed Info on File Screen` which also allows a user-set message to be displayed.
   * New settings allow for Rainbow Bridge and Ganon's Boss Key to be obtained upon reaching a certain amount of total heart containers.
   * New setting `Easier Fire Arrow Entry` allows you to set the amount of torches that must be lit to open Shadow Temple.
   * The pause screen info menu has been split into 3 menus, which show icons on the D-Pad indicating which direction leads to which menu. In addition, the menu now tracks the total keys you've found for a dungeon, not just how many you have remaining. The old menu from pressing A still exists as well.
+    * You can also make it so these menus only appear when holding A along with the D-Pad by disabling `Display D-Pad Dungeon Info`.
   * New setting `Invisible Chests` makes all chests in the game invisible.
   * New setting `Bonks Do Damage` will deal damage to Link when bonking, including `One Bonk KO` which will instantly kill him from bonking.
   * New hint type `Dual Hint` which allows multiple locations to be hinted in the same hint. Hint distros can also use new option `upgrade_hints` to upgrade some hints to Dual Hints.
@@ -131,6 +176,15 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * New setting `Regional` for dungeon items makes it so dungeon items such as keys will be placed in the same region as their dungeon. For example, if Small Keys are set to Regional, then Small keys for Forest Temple can be found in the temple itself, Sacred Forest Meadow, Lost Woods, Kokiri Forest, or Deku Tree.
   * `Skip Child Zelda` and `Shuffle Weird Egg` have been combined into one setting `Shuffle Child Trade Item`.
   * The Adult earliest and latest trade item settings have been combined into a multiselect `Adult Trade Sequence Item` which allows you to choose whatever items you wish as the starting item for the adult trade quest.
+  * New setting `Minor Items in Big/Gold chests` places shields and bombchus in major item chests when any `Chest Appearance Matches Contents` setting is enabled along with it.
+  * New setting `Fix Broken Drops` adds a magic jar drop in GTG and a pot that drops a deku shield in Spirit Temple. These spawns were present in the code already but would not actually spawn due to the respective objects not being loaded.
+  * New settings `Adult Link Model` and `Child Link Model` allow you to select a .zobj model file to replace Link's look in-game. For more details see the [Custom Models section](#Custom-Models)
+  * New section under SFX labeled `Link` has options `Adult Voice` and `Child Voice`, allowing you to choose to either silence Link or change the voice to feminine to match your chosen player model. Adult and child female voices provided by Maple and shiroaeli in the Discord, respectively.
+  * New Misc. Hints for each of the Skulltula rewards makes it so each of the cursed family members who give a randomized reward will tell you what the reward is before being rescued. This precludes those locations from being conditional always hints.
+  * New setting `Shuffle Rupees & Hearts` which allows you to shuffle freestanding rupees and recovery hearts in the world.
+  * New settings `Shuffle Pots` and `Shuffle Crates` which allows you to shuffle items from pots and crates that normally drop an item.
+  * New setting `Pot & Crate Appearance Matches Contents` which changes the pot/crate texture when using one of the above settings, similar to `Chest Appearance Matches Contents`.
+  * New setting `Shuffle Beehives` which allows beehives found in certain grottos to drop an item.
 
 * **Gameplay**
   * Shortened the animation for equipping magic arrows.
@@ -140,7 +194,16 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * Health and Magic potion models in shops will now match your health and magic colors when `Item Model Colors Match Cosmetics` is enabled.
   * The Gerudo guard on the Wasteland side of the gate will now spawn regardless of settings.
   * Several vanilla warp destination messages have been updated to keep consistency with our custom warp destination messages.
-
+  * Removed the cutscenes when throwing a bomb at and blowing up the boulder in front of Dodongo's Cavern.
+  * Certain switches in MQ dungeons have been moved down 1 unit so they are less difficult for Link to walk onto.
+  * The "Truth Spinner" puzzle in the Shadow Temple's solution is now seeded per seed, so that the correct skull will be consistent across players racing the same seed.
+  
+* **GUI**
+  * Migration to latest Angular and Nebular framework versions
+  * Dark Mode toggle
+  * Support for modern Node.JS versions (>= Node.JS v16)
+  * Compatibility with newer Linux builds and ARM based Macs
+  * Improved mobile design in web mode
 
 #### Bug fixes
 * Return the color of the "OK" and "No" options of the warp song prompts to their correct colors in Warp Song Shuffle.
@@ -168,6 +231,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Fix plando negative locations (ex. "!Gold Skulltula Token") choosing Buy items for non-Buy locations.
 * Ice traps will no longer be sent to players in the Treasure Chest Game to prevent using deaths to circumvent the game.
 * Fixed dragging list items in the GUI not working when the target is empty.
+* Recovery hearts in several scenes in MQ dungeon rooms have been fixed to no longer be invisible.
 
 #### Other changes
 * Added an auto-tracker context area to memory, so auto-trackers can find certain symbols much easier.
@@ -178,6 +242,12 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * You can now specify an arbitrary 4-character hexadecimal text ID as a "Gossip Stone" to overwrite text in the game.
   * Adjusted how `starting_items` works in order to remove some redundancy, where it is now placed within the settings dictionary.. Spoiler output now includes a section `:skipped_locations` instead which is not used by Plandomizer.
   * Gold Skulltula Token requirements can be increased above 100 (the pool must also have at least that many).
+  * Plandomizer will now display an error and inform the user if they have specified conflicting settings within the plando.
+  * New plando item groups available: `#Map`, `#Compass`, `#BossKey`, and `#SmallKey` for placing a random one of these dungeon items in a specific location.
+  * Cosmetics plando has added three new groups which songs can be placed in `bgm_groups`:
+    * `favorites`: Songs placed in this group will be given priority when placing songs.
+    * `exclude`: Songs placed in this group will be ignored when placing songs.
+    * `groups`: In here you can place a dictionary where the key is a custom group name and the value is a list of sequences, and use `#GroupName` similar to item groups in normal plando to place any song from that group in that location.
 * Triforce Hunt changes
   * The number of Triforce pieces available per world, which was previously tied to the item pool setting, is now a separate setting.
 * Replaced old output option `compress_rom` with four separate options for outputting a patch file, compressed ROM, uncompressed ROM, and a WAD file.
@@ -192,10 +262,11 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Hinted item and location for a Gossip Stone hint are now included in the spoiler log.
 * One-way entrances are now restricted to one per hint area rather than one per scene.
 * You can now receive starting ice traps, either from Impa's item with Skip Child Zelda or with plando.
-* Plandomizer will now display an error and inform the user if they have specified conflicting settings within the plando.
 * Common ER error messages are now more helpful to solving the issue.
 * Corrected some goal hint colors.
 * Triforce Piece model has been updated so that it is shinier and centered.
+* Goal hints are now selected based on their category rather than their parent goal.
+* Settings and tricks in the spoiler log have been re-ordered to more closely follow the order in the GUI and use more logical groupings, respectively.
 
 ### 6.2
 

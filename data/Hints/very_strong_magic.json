@@ -1,7 +1,7 @@
 {
     "name":                  "very_strong_magic",
     "gui_name":              "Very Strong with Magic",
-    "description":           "Very Strong with Magic.",
+    "description":           "Like the Very Strong hint distribution, but a fixed goal hint with two copies for a Magic Meter is added. All other goals are removed.",
     "add_locations":         [],
     "remove_locations":      [],
     "add_items":             [],

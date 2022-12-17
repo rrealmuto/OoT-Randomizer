@@ -10,6 +10,8 @@ from JSONDump import dump_obj, CollapseList, CollapseDict, AlignedDict, SortedDi
 from SettingsList import setting_infos
 from Plandomizer import InvalidFileException
 import json
+from itertools import chain
+import os
 
 
 def patch_targeting(rom, settings, log, symbols):
@@ -29,12 +31,20 @@ def patch_dpad(rom, settings, log, symbols):
     log.display_dpad = settings.display_dpad
 
 
+def patch_dpad_info(rom, settings, log, symbols):
+    # Display D-Pad HUD in pause menu for either dungeon info or equips
+    if settings.dpad_dungeon_menu:
+        rom.write_byte(symbols['CFG_DPAD_DUNGEON_INFO_ENABLE'], 0x01)
+    else:
+        rom.write_byte(symbols['CFG_DPAD_DUNGEON_INFO_ENABLE'], 0x00)
+    log.dpad_dungeon_menu = settings.dpad_dungeon_menu
+
+
 def patch_music(rom, settings, log, symbols):
     # patch music
     if settings.background_music != 'normal' or settings.fanfares != 'normal' or log.src_dict.get('bgm', {}):
         music.restore_music(rom)
-        log.bgm, errors = music.randomize_music(rom, settings, log.src_dict.get('bgm', {}))
-        log.errors.extend(errors)
+        music.randomize_music(rom, settings, log)
     else:
         music.restore_music(rom)
     # Remove battle music
@@ -769,6 +779,110 @@ def patch_instrument(rom, settings, log, symbols):
     log.sfx['Ocarina'] = ocarina_options[choice]
 
 
+def read_default_voice_data(rom):
+    audiobank = 0xD390
+    audiotable = 0x79470
+    soundbank = audiobank + rom.read_int32(audiobank + 0x4)
+    n_sfx = 0x88 # bank 00 sfx ids starting from 00
+
+    # Read sound bank entries. This table (usually at 0x109F0) has information on each entry in the bank
+    # Each entry is 8 bytes, the first 4 are the offset in audiobank, second are almost always 0x3F200000
+    # In the audiobank entry, each sfx has 0x20 bytes of info. The first 4 bytes are the length of the 
+    # raw sample and the following 4 bytes are the offset in the audiotable for the raw sample
+    soundbank_entries = {}
+    for i in range(n_sfx):
+        audiobank_offset = rom.read_int32(soundbank + i*0x8)
+        sfxid = f"00-00{i:02x}"
+        soundbank_entries[sfxid] = {
+            "length": rom.read_int32(audiobank + audiobank_offset),
+            "romoffset": audiotable + rom.read_int32(audiobank + audiobank_offset + 0x4)
+        }
+    return soundbank_entries
+
+
+def patch_silent_voice(rom, sfxidlist, soundbank_entries, log):
+    binsfxfilename = os.path.join(data_path('Voices'), 'SilentVoiceSFX.bin')
+    if not os.path.isfile(binsfxfilename):
+        log.errors.append(f"Could not find silent voice sfx at {binsfxfilename}. Skipping voice patching")
+        return
+
+    # Load the silent voice sfx file
+    with open(binsfxfilename, 'rb') as binsfxin:
+        binsfx = bytearray() + binsfxin.read(-1)
+
+    # Pad it to length and patch it into every id in sfxidlist
+    for decid in sfxidlist:
+        sfxid = f"00-00{decid:02x}"
+        injectme = binsfx.ljust(soundbank_entries[sfxid]["length"], b'\0')
+        # Write the binary sfx to the rom
+        rom.write_bytes(soundbank_entries[sfxid]["romoffset"], injectme)
+
+
+def apply_voice_patch(rom, voice_path, soundbank_entries):
+    if not os.path.exists(voice_path):
+        return
+
+    # Loop over all the files in the directory and apply each binary sfx file to the rom
+    for binsfxfilename in os.listdir(voice_path):
+        if binsfxfilename.endswith(".bin"):
+            sfxid = binsfxfilename.split('.')[0].lower()
+            # Load the binary sound file and pad it to be the same length as the default file
+            with open(os.path.join(voice_path, binsfxfilename), 'rb') as binsfxin:
+                binsfx = bytearray() + binsfxin.read(-1)
+            binsfx = binsfx.ljust(soundbank_entries[sfxid]["length"], b'\0')
+            # Write the binary sfx to the rom
+            rom.write_bytes(soundbank_entries[sfxid]["romoffset"], binsfx)
+
+
+def patch_voices(rom, settings, log, symbols):
+    # Reset the audiotable back to default to prepare patching voices and read data
+    rom.write_bytes(0x00079470, rom.original.read_bytes(0x00079470, 0x460AD0))
+
+    if settings.generating_patch_file:
+        if settings.sfx_link_child != 'Default' or settings.sfx_link_adult != 'Default':
+            log.errors.append("Link's Voice is not patched into outputted ZPF.")
+        return
+
+    soundbank_entries = read_default_voice_data(rom)
+    voice_ages = (
+        ('Child', settings.sfx_link_child, sfx.get_voice_sfx_choices(0, False), chain([0x14, 0x87], range(0x1C, 0x36+1), range(0x3E, 0x4C+1))),
+        ('Adult', settings.sfx_link_adult, sfx.get_voice_sfx_choices(1, False), chain([0x37, 0x38, 0x3C, 0x3D, 0x86], range(0x00, 0x13+1), range(0x15, 0x1B+1), range(0x4D, 0x58+1)))
+    )
+
+    for name, voice_setting, choices, silence_sfx_ids in voice_ages:
+        # Handle Plando
+        log_key = f'{name} Voice'
+        voice_setting = log.src_dict['sfx'][log_key] if log.src_dict.get('sfx', {}).get(log_key, '') else voice_setting
+
+        # Resolve Random option
+        if voice_setting == 'Random':
+            voice_setting = random.choice(choices)
+
+        # Special case patch the silent voice (this is separate because one .bin file is used for every sfx)
+        if voice_setting == 'Silent':
+            patch_silent_voice(rom, silence_sfx_ids, soundbank_entries, log)
+        elif voice_setting != 'Default':
+            age_path = os.path.join(data_path('Voices'), name)
+            voice_path = os.path.join(age_path, voice_setting) if os.path.isdir(os.path.join(age_path, voice_setting)) else None
+
+            # If we don't have a confirmed directory for this voice, do a case-insensitive directory search.
+            if voice_path is None:
+                voice_dirs = [f for f in os.listdir(age_path) if os.path.isdir(os.path.join(age_path, f))] if os.path.isdir(age_path) else []
+                for directory in voice_dirs:
+                    if directory.casefold() == voice_setting.casefold():
+                        voice_path = os.path.join(age_path, directory)
+                        break
+
+            if voice_path is None:
+                log.errors.append(f"{name} Voice not patched: Cannot find voice data directory: {os.path.join(age_path, voice_setting)}")
+                break
+
+            apply_voice_patch(rom, voice_path, soundbank_entries)
+
+        # Write the setting to the log
+        log.sfx[log_key] = voice_setting
+
+
 legacy_cosmetic_data_headers = [
     0x03481000,
     0x03480810,
@@ -783,6 +897,7 @@ global_patch_sets = [
     patch_sword_trails,
     patch_gauntlet_colors,
     patch_shield_frame_colors,
+    patch_voices,
     patch_sfx,
     patch_instrument,
 ]
@@ -873,6 +988,17 @@ patch_sets[0x1F073FD8] = {
     }
 }
 
+# 6.2.218
+patch_sets[0x1F073FD9] = {
+    "patches": patch_sets[0x1F073FD8]["patches"] + [
+        patch_dpad_info,
+    ],
+    "symbols": {
+        **patch_sets[0x1F073FD8]["symbols"],
+        "CFG_DPAD_DUNGEON_INFO_ENABLE": 0x0055,
+    }
+}
+
 
 def patch_cosmetics(settings, rom):
     # re-seed for aesthetic effects. They shouldn't be affected by the generation seed
@@ -939,6 +1065,7 @@ class CosmeticsLog(object):
         self.misc_colors = {}
         self.sfx = {}
         self.bgm = {}
+        self.bgm_groups = {}
 
         self.src_dict = {}
         self.errors = []
@@ -964,6 +1091,12 @@ class CosmeticsLog(object):
             else:
                 logging.getLogger('').warning("Cosmetic Plandomizer enabled, but no file provided.")
                 self.settings.enable_cosmetic_file = False
+
+        self.bgm_groups['favorites'] = CollapseList(self.src_dict.get('bgm_groups', {}).get('favorites', []).copy())
+        self.bgm_groups['exclude'] = CollapseList(self.src_dict.get('bgm_groups', {}).get('exclude', []).copy())
+        self.bgm_groups['groups'] = AlignedDict(self.src_dict.get('bgm_groups', {}).get('groups', {}).copy(), 1)
+        for key, value in self.bgm_groups['groups'].items():
+            self.bgm_groups['groups'][key] = CollapseList(value.copy())
 
         if self.src_dict.get('settings', {}):
             valid_settings = []
@@ -991,11 +1124,12 @@ class CosmeticsLog(object):
             'ui_colors': self.ui_colors,
             'misc_colors': self.misc_colors,
             'sfx': self.sfx,
+            'bgm_groups': self.bgm_groups,
             'bgm': self.bgm,
         }
 
         if (not self.settings.enable_cosmetic_file):
-            del self_dict[':enable_cosmetic_file'] # Done this way for ordering purposes.
+            del self_dict[':enable_cosmetic_file']  # Done this way for ordering purposes.
         if (not self.errors):
             del self_dict[':errors']
 
