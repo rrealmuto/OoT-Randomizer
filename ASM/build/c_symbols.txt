@@ -138,7 +138,7 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 MW_SEND_OWN_ITEMS
 0000c658 g     F .text	0000001c draw_pot_hack
 00009be0 g     F .text	00000018 scale_upgrade
-0000e150 g     F .text	00000014 clear_twinrova_vars
+0000e16c g     F .text	00000014 clear_twinrova_vars
 00000048 g     O .sdata	00000004 a_note_glow_max
 00001958 g     F .text	0000005c d_right_dungeon_idx
 00000008 g     O .sbss	00000004 CHEST_TEXTURE_MATCH_CONTENTS
@@ -208,7 +208,7 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 CFG_C_NOTE_COLOR
 00000000         *UND*	00000000 OUTGOING_PLAYER
 000002bc g     O .bss	00000258 collectible_scene_flags_table
-0000e1f8 g     F .text	00000240 override_weather_state
+0000e214 g     F .text	00000240 override_weather_state
 0000559c g     F .text	00000044 push_delayed_item
 00009b80 g     F .text	00000030 slingshot_upgrade
 0000d3d4 g     F .text	000001d0 Sram_CopySave
@@ -270,7 +270,7 @@ SYMBOL TABLE:
 00005614 g     F .text	00000070 after_key_received
 00000000         *UND*	00000000 PLANDOMIZER_USED
 00000078 g     O .sbss	00000001 KAKARIKO_WEATHER_FORECAST
-0000e178 g     F .text	0000003c heap_alloc
+0000e194 g     F .text	0000003c heap_alloc
 00000034 g     O .sbss	00000004 active_item_row
 00009e18 g     F .text	00000058 after_game_state_update
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_REWARD_SUMMARY_ENABLE
@@ -444,7 +444,7 @@ SYMBOL TABLE:
 0000cd9c g     F .text	00000638 Sram_VerifyAndLoadAllSaves
 0000990c g     F .text	00000018 give_song
 00000004 g     O .sdata	00000004 last_fog_distance
-0000e04c g     F .text	00000104 ice_percent_credits_warp
+0000e04c g     F .text	00000120 ice_percent_credits_warp
 0000008c g     O .sdata	00000006 defaultHeart
 00000060 g     O .sdata	00000004 a_note_g
 00009d90 g     F .text	0000004c c_init
@@ -507,7 +507,7 @@ SYMBOL TABLE:
 000035a8 g     F .text	00000018 extern_scene_init
 0000b288 g     F .text	0000004c set_object_segment
 000005dc g     F .text	000000a0 draw_agony
-0000e164 g     F .text	00000014 heap_init
+0000e180 g     F .text	00000014 heap_init
 0000ad90 g     F .text	000000e0 FindHierarchy
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_PROP_INNER_ENABLED
 0000b7d0 g     F .text	00000064 heart_container_draw
@@ -534,7 +534,7 @@ SYMBOL TABLE:
 0000664c g     F .text	0000002c sprite_bytes_per_tile
 00009a1c g     F .text	0000003c get_item_row
 00000000         *UND*	00000000 DISABLE_TIMERS
-0000e1b4 g     F .text	00000044 file_init
+0000e1d0 g     F .text	00000044 file_init
 0000c434 g     F .text	000000b4 get_flying_pot_override
 00000014 g     O .sbss	00000004 collectible_mutex
 00000210 g     O .rodata	0000000c rupee_colors

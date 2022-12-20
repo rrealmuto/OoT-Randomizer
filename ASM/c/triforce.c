@@ -112,7 +112,7 @@ void draw_triforce_count(z64_disp_buf_t *db) {
 }
 
 void ice_percent_credits_warp() {
-    if (ICE_PERCENT && z64_game.scene_index == 0x09 && (z64_game.chest_flags & 0x00000004) && satisfied_ice_percent_frames < 40) {
+    if (ICE_PERCENT && z64_game.scene_index == 0x09 && (z64_game.chest_flags & 0x00000004) && z64_file.scene_flags[0x48].unk_00_ == 0 && satisfied_ice_percent_frames < 40) {
         satisfied_ice_percent_frames++;
         if (satisfied_ice_percent_frames == 40) {
             // Give GC boss key to allow beating the game again afterwards
@@ -121,6 +121,7 @@ void ice_percent_credits_warp() {
             // Save Game
             z64_file.entrance_index = z64_game.entrance_index;
             z64_file.scene_index = z64_game.scene_index;
+            z64_file.scene_flags[0x48].unk_00_ = 1;
             commit_scene_flags(&z64_game);
             save_game(&z64_game + 0x1F74);
 
