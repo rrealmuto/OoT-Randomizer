@@ -81,9 +81,18 @@ class World(object):
         self.ensure_tod_access = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or self.spawn_positions
         self.disable_trade_revert = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances
 
-        if settings.triforce_goal_per_world > settings.triforce_count_per_world:
+        if settings.triforce_hunt_mode == 'ice_percent':
+            self.triforce_count_per_world = 1
+            self.triforce_goal_per_world = 1
+        elif settings.triforce_hunt_mode == 'blitz':
+            self.triforce_count_per_world = 3
+            self.triforce_goal_per_world = 3
+        else:
+            self.triforce_count_per_world = settings.triforce_count_per_world
+            self.triforce_goal_per_world = settings.triforce_goal_per_world
+        if self.triforce_goal_per_world > self.triforce_count_per_world:
             raise ValueError("Triforces required cannot be more than the triforce count.")
-        self.triforce_goal = settings.triforce_goal_per_world * settings.world_count
+        self.triforce_goal = self.triforce_goal_per_world * settings.world_count
 
         if settings.triforce_hunt:
             # Pin shuffle_ganon_bosskey to 'triforce' when triforce_hunt is enabled
@@ -722,10 +731,10 @@ class World(object):
         b = GoalCategory('rainbow_bridge', 10, lock_entrances=['Ganons Castle Ledge -> Ganons Castle Lobby'])
         gbk = GoalCategory('ganon_bosskey', 20)
         trials = GoalCategory('trials', 30, minimum_goals=1)
-        th = GoalCategory('triforce_hunt', 30, goal_count=round(self.settings.triforce_goal_per_world / 10), minimum_goals=1)
+        th = GoalCategory('triforce_hunt', 30, goal_count=round(self.triforce_goal_per_world / 10), minimum_goals=1)
         trial_goal = Goal(self, 'the Tower', 'path to #the Tower#', 'White', items=[], create_empty=True)
 
-        if self.settings.triforce_hunt and self.settings.triforce_goal_per_world > 0:
+        if self.settings.triforce_hunt and self.triforce_goal_per_world > 0:
             # "Hintable" value of False means the goal items themselves cannot
             # be hinted directly. This is used for Triforce Hunt and Skull
             # conditions to restrict hints to useful items instead of the win
@@ -736,8 +745,16 @@ class World(object):
             # Key, which makes these items directly hintable in their respective goals
             # assuming they do not get hinted by another hint type (always, woth with
             # an earlier order in the hint distro, etc).
-            path_name = 'the bunny' if self.settings.triforce_hunt_mode == 'easter_egg_hunt' else 'gold'
-            th.add_goal(Goal(self, path_name, f'path of #{path_name}#', 'Yellow', items=[{'name': 'Triforce Piece', 'quantity': self.settings.triforce_count_per_world, 'minimum': self.settings.triforce_goal_per_world, 'hintable': False}]))
+            if self.settings.triforce_hunt_mode == 'easter_egg_hunt':
+                path_name = 'the bunny'
+                path_color = 'Yellow'
+            elif self.settings.triforce_hunt_mode == 'ice_percent':
+                path_name = 'ice'
+                path_color = 'Light Blue'
+            else: #TODO add Triforce Blitz goals as defaults?
+                path_name = 'gold'
+                path_color = 'Yellow'
+            th.add_goal(Goal(self, path_name, f'path of #{path_name}#', path_color, items=[{'name': 'Triforce Piece', 'quantity': self.triforce_count_per_world, 'minimum': self.triforce_goal_per_world, 'hintable': False}]))
             self.goal_categories[th.name] = th
         # Category goals are defined for each possible setting for each category.
         # Bridge can be Stones, Medallions, Dungeons, Skulls, or Vanilla.

@@ -12,7 +12,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
 
 * New settings and options:
   * New “Shuffle Silver Rupees” setting ([#1814](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1814))
-  * New “Triforce Hunt Mode” setting with “Normal”, “Easter Egg Hunt”, and “Triforce Blitz” options (based on [#1804](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1804) and [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev))
+  * New “Triforce Hunt Mode” setting with “Normal”, “Easter Egg Hunt”, “Ice%”, and “Triforce Blitz” options (Easter Egg Hunt based on [#1804](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1804), Triforce Blitz based on [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev))
   * New “Shuffle Thieves' Hideout Entrances” setting ([#1616](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1616))
   * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1536))
   * “Closed Forest Requires Gohma” is a separate setting, making “Closed Forest” compatible with more settings if disabled ([#1531](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1531))
@@ -33,6 +33,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * “Vanilla (Master Quest)” and “Fast Vanilla (Master Quest)” are “Vanilla” and “Fast Vanilla” but with all dungeons from Master Quest. Since logic for vanilla MQ hasn't been coded yet, these use no logic.
   * “Fenhl's Casual” is my preferred flavor of playing OoTR, with everything shuffled, full entrance randomizer, chaos hints, warp song note shuffle, half damage, no Master Quest, and no tricks enabled. The rainbow bridge requires all dungeon rewards and Ganon's boss key requires all 100 gold skulltula tokens.
   * “Mixed Pools Tournament”, the settings used for a tournament that had full mixed pools entrance randomizer. Note that the tournament itself used [a previous version](https://ootrandomizer.com/generatorDev?version=devFenhl_6.2.100) of this branch.
+  * “Ice%”, the preliminary settings used for an upcoming tournament where the goal is to reac the Iron Boots chest.
   * The set of “Standard Anti-Weekly Settings” presets disables every location that's enabled in “Standard Weekly (Latest)” and enables every location that's disabled there, as well as changing some miscellaneous settings. See [the official document](https://docs.google.com/document/d/1sbL6Zju943F5qyx4QbTLUsqZqOTMmvqKVbDwJl08SGc/edit) for details.
     * “Standard Anti-Weekly Settings (Beginner)” omits “Shuffle Rupees & Hearts”, “Shuffle Pots”, “Shuffle Crates”, and “Shuffle Beehives”, and keeps the balanced item pool.
     * “Standard Anti-Weekly Settings (Advanced)” includes those shuffle settings, has a minimal item pool, and adds extra ice traps.

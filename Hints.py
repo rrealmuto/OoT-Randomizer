@@ -1675,8 +1675,11 @@ def buildGanonBossKeyString(world):
             bk_location_string = "automatically granted once %s are retrieved" % item_req_string
         else:
             condition = world.settings.shuffle_ganon_bosskey
-            if condition == 'triforce' and world.settings.triforce_hunt_mode == 'easter_egg_hunt':
-                condition = 'eggs'
+            if condition == 'triforce':
+                if world.settings.triforce_hunt_mode == 'easter_egg_hunt':
+                    condition = 'eggs'
+                elif world.settings.triforce_hunt_mode == 'ice_percent':
+                    condition = 'ice'
             bk_location_string = getHint('ganonBK_' + condition, world.settings.clearer_hints).text
         string += "And the \x05\x41evil one\x05\x40's key will be %s." % bk_location_string
     return str(GossipText(string, ['Yellow'], prefix=''))

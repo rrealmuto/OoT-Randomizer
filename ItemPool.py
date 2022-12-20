@@ -478,13 +478,14 @@ def get_pool_core(world):
         pending_junk_pool.extend(ludicrous_health)
 
     if world.settings.triforce_hunt:
-        if world.settings.triforce_hunt_mode == 'easter_egg_hunt':
-            pending_junk_pool.extend(eggs * (world.settings.triforce_count_per_world // len(eggs)))
-            pending_junk_pool.extend(eggs[:world.settings.triforce_count_per_world % len(eggs)])
+        if world.settings.triforce_hunt_mode == 'normal':
+            pending_junk_pool.extend(['Triforce Piece'] * world.triforce_count_per_world)
+        elif world.settings.triforce_hunt_mode == 'easter_egg_hunt':
+            pending_junk_pool.extend(eggs * (world.triforce_count_per_world // len(eggs)))
+            pending_junk_pool.extend(eggs[:world.triforce_count_per_world % len(eggs)])
         elif world.settings.triforce_hunt_mode == 'blitz':
             pending_junk_pool.extend(triforce_blitz_items)
-        else:
-            pending_junk_pool.extend(['Triforce Piece'] * world.settings.triforce_count_per_world)
+        # Ice% is handled below
 
     # Use the vanilla items in the world's locations when appropriate.
     for location in world.get_locations():
@@ -499,6 +500,15 @@ def get_pool_core(world):
                                       'Deliver Letter', 'Time Travel', 'Bombchu Drop']
                 or location.type == 'Drop'):
             shuffle_item = False
+
+        # Ice%
+        if location.vanilla_item == 'Iron Boots':
+            if world.settings.triforce_hunt_mode == 'ice_percent':
+                pending_junk_pool.append(item)
+                item = 'Triforce Piece'
+                shuffle_item = False
+            else:
+                shuffle_item = world.settings.shuffle_base_item_pool
 
         # Gold Skulltula Tokens
         elif location.vanilla_item == 'Gold Skulltula Token':

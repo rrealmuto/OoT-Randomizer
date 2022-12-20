@@ -1160,6 +1160,8 @@ class Distribution(object):
                 if world.settings.shuffle_child_trade == 'skip_child_zelda' and 'Song from Impa' in world.distribution.locations and world.distribution.locations['Song from Impa'].item == triforce_piece:
                     total_starting_count += 1
             total_count += world.triforce_count
+            if world.settings.triforce_hunt_mode == 'ice_percent': #TODO instead of hardcoding Ice%, scan filled locations
+                total_count += 1
 
         if total_count < worlds[0].triforce_goal:
             raise RuntimeError('Not enough Triforce Pieces in the worlds. There should be at least %d and there are only %d.' % (worlds[0].triforce_goal, total_count))

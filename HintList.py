@@ -1673,6 +1673,7 @@ hintTable = {
     'ganonBK_keysanity':                                        ("hidden #anywhere in Hyrule#", None, 'ganonBossKey'),
     'ganonBK_triforce':                                         ("given to the Hero once the #Triforce# is completed", None, 'ganonBossKey'),
     'ganonBK_eggs':                                             ("given to the Hero once enough #Easter Eggs# are found", None, 'ganonBossKey'),
+    'ganonBK_ice':                                              ("guarded by a #monster in a frozen cavern#", "the #final treasure of Ice Cavern#", 'ganonBossKey'),
     'ganonBK_medallions':                                       ("Medallions", None, 'ganonBossKey'),
     'ganonBK_stones':                                           ("Spiritual Stones", None, 'ganonBossKey'),
     'ganonBK_dungeons':                                         ("Spiritual Stones and Medallions", None, 'ganonBossKey'),

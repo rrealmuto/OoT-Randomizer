@@ -2354,6 +2354,7 @@ setting_infos = [
         choices        = {
             'normal':          'Normal',
             'easter_egg_hunt': 'Easter Egg Hunt',
+            'ice_percent':     'Ice%',
             'blitz':           'Triforce Blitz',
         },
         gui_tooltip    = '''\
@@ -2361,12 +2362,16 @@ setting_infos = [
             Easter Eggs instead. This is just cosmetic and has the
             same gameplay as normal Triforce Hunt.
 
+            'Ice%': A single piece of the Triforce is placed in the
+            Iron Boots chest at the end of the Ice Cavern.
+
             'Triforce Blitz': Find the Triforce pieces of Power,
             Wisdom, and Courage to beat the game. They can only be
             found inside dungeons.
         ''',
         shared         = True,
         disable        = {
+            'ice_percent': {'settings': ['triforce_count_per_world', 'triforce_goal_per_world', 'shuffle_base_item_pool']},
             'blitz': {'settings': ['triforce_count_per_world', 'triforce_goal_per_world']},
         },
     ),
@@ -2374,7 +2379,6 @@ setting_infos = [
         name           = 'triforce_count_per_world',
         gui_text       = 'Triforces Per World',
         default        = 30,
-        disabled_default = 3, # for Triforce Blitz
         min            = 1,
         max            = 999,
         shared         = True,
@@ -2398,7 +2402,6 @@ setting_infos = [
         name           = 'triforce_goal_per_world',
         gui_text       = 'Required Triforces Per World',
         default        = 20,
-        disabled_default = 3, # for Triforce Blitz
         min            = 1,
         max            = 999,
         shared         = True,
