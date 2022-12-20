@@ -502,7 +502,7 @@ def get_pool_core(world):
             shuffle_item = False
 
         # Ice%
-        if location.vanilla_item == 'Iron Boots':
+        elif location.vanilla_item == 'Iron Boots':
             if world.settings.triforce_hunt_mode == 'ice_percent':
                 pending_junk_pool.append(item)
                 item = 'Triforce Piece'
