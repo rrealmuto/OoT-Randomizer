@@ -1378,6 +1378,8 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     if world.settings.triforce_hunt:
         rom.write_int16(rom.sym('TRIFORCE_PIECES_REQUIRED'), world.triforce_goal)
         rom.write_int16(rom.sym('TRIFORCE_HUNT_ENABLED'), 1)
+        if world.settings.triforce_hunt_mode == 'ice_percent' and world.settings.world_count == 1: # use normal Triforce Hunt behavior for multiworld Ice%
+            rom.write_byte(rom.sym('ICE_PERCENT'), 1)
 
     # Set up Ganon's Boss Key conditions.
     symbol = rom.sym('GANON_BOSS_KEY_CONDITION')

@@ -10,6 +10,7 @@ extern uint8_t FAST_CHESTS;
 extern uint8_t OCARINAS_SHUFFLED;
 extern uint8_t NO_COLLECTIBLE_HEARTS;
 extern uint32_t BOMBCHUS_IN_LOGIC;
+extern uint8_t ICE_PERCENT;
 override_t cfg_item_overrides[1536] = { 0 };
 int item_overrides_count = 0;
 
@@ -36,7 +37,7 @@ uint32_t active_item_object_id = 0;
 uint32_t active_item_graphic_id = 0;
 uint32_t active_item_fast_chest = 0;
 
-uint8_t satisified_pending_frames = 0;
+uint8_t satisfied_pending_frames = 0;
 
 // This table contains the offset (in bytes) of the start of a particular scene/room/setup flag space in collectible_override_flags.
 // Call get_collectible_flag_offset to retrieve the desired offset.
@@ -350,13 +351,13 @@ inline uint32_t link_is_ready() {
         (z64_link.state_flags_2 & 0x000C0000) == 0 &&
         (z64_event_state_1 & 0x20) == 0 &&
         (z64_game.camera_2 == 0)) {
-        satisified_pending_frames++;
+        satisfied_pending_frames++;
     }
     else {
-        satisified_pending_frames = 0;
+        satisfied_pending_frames = 0;
     }
-    if (satisified_pending_frames >= 2) {
-        satisified_pending_frames = 0;
+    if (satisfied_pending_frames >= 2) {
+        satisfied_pending_frames = 0;
         return 1;
     }
     return 0;
@@ -424,7 +425,10 @@ void get_item(z64_actor_t *from_actor, z64_link_t *link, int8_t incoming_item_id
 
     if (from_actor->actor_id == 0x0A) {
         // Update chest contents
-        if (override.value.base.item_id == 0x7C && override.value.base.player == PLAYER_ID && (FAST_CHESTS || active_item_fast_chest)) {
+        if (
+            override.value.base.item_id == 0x7C && override.value.base.player == PLAYER_ID && (FAST_CHESTS || active_item_fast_chest)
+            || ICE_PERCENT && override.value.base.item_id == 0xCA
+        ) {
             // Use ice trap base item ID to freeze Link as the chest opens rather than playing the full item get animation
             base_item_id = 0x7C;
         }

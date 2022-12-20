@@ -19,6 +19,7 @@
 #include "weather.h"
 #include "textures.h"
 #include "scene.h"
+#include "triforce.h"
 
 void Gameplay_InitSkybox(z64_game_t* globalCtx, int16_t skyboxId);
 
@@ -45,6 +46,7 @@ void after_game_state_update() {
     draw_triforce_count(&(z64_ctxt.gfx->overlay));
     draw_illegal_model_text(&(z64_ctxt.gfx->overlay));
     give_ganon_boss_key();
+    ice_percent_credits_warp();
 }
 
 void before_skybox_init(z64_game_t* game, int16_t skyboxId) {

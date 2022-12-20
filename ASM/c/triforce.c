@@ -1,4 +1,5 @@
 #include "triforce.h"
+#include "item_effects.h"
 
 static uint32_t frames = 0;
 static uint32_t render_triforce_flag = 0;
@@ -7,6 +8,9 @@ static uint32_t render_triforce_flag = 0;
 #define TRIFORCE_FRAMES_VISIBLE 100 // 20 Frames seems to be about 1 second
 #define TRIFORCE_FRAMES_FADE_AWAY 80 
 #define TRIFORCE_FRAMES_FADE_INTO 5 
+
+extern uint8_t ICE_PERCENT;
+uint8_t satisfied_ice_percent_frames = 0;
 
 void set_triforce_render() {
     render_triforce_flag = 1;
@@ -104,5 +108,27 @@ void draw_triforce_count(z64_disp_buf_t *db) {
     if (!illegal_model) {
         gDPFullSync(db->p++);
         gSPEndDisplayList(db->p++);
+    }
+}
+
+void ice_percent_credits_warp() {
+    if (ICE_PERCENT && z64_game.scene_index == 0x09 && (z64_game.chest_flags & 0x00000004) && satisfied_ice_percent_frames < 40) {
+        satisfied_ice_percent_frames++;
+        if (satisfied_ice_percent_frames == 40) {
+            // Give GC boss key to allow beating the game again afterwards
+            give_dungeon_item(&z64_file, 0x01, 10);
+
+            // Save Game
+            z64_file.entrance_index = z64_game.entrance_index;
+            z64_file.scene_index = z64_game.scene_index;
+            commit_scene_flags(&z64_game);
+            save_game(&z64_game + 0x1F74);
+
+            // warp to start of credits sequence
+            z64_file.cutscene_next = 0xFFF8;
+            z64_game.entrance_index = 0x00A0;
+            z64_game.scene_load_flag = 0x14;
+            z64_game.fadeout_transition = 0x01;
+        }
     }
 }
