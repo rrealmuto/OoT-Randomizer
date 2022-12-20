@@ -590,9 +590,9 @@ logic_tricks = {
                     To cross the river of sand with no additional items,
                     be sure to also enable "Wasteland Crossing without
                     Hover Boots or Longshot".
-                    Unless all overworld entrances are randomized, child
-                    Link will not be expected to do anything at Gerudo's
-                    Fortress.
+                    Unless Thieves' Hideout entrances or all overworld
+                    entrances are randomized, child Link will not be
+                    expected to do anything at Gerudo's Fortress.
                     '''},
     'Colossus Hill GS with Hookshot': {
         'name'    : 'logic_colossus_gs',
