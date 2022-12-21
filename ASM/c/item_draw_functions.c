@@ -2,6 +2,7 @@
 
 #include "z64.h"
 #include "item_draw_table.h"
+#include "sys_matrix.h"
 
 typedef Gfx *(*append_setup_dl_fn)(Gfx *gfx, uint32_t dl_index);
 typedef void (*append_setup_dl_26_to_opa_fn)(z64_gfx_t *gfx);
@@ -9,24 +10,12 @@ typedef void (*append_setup_dl_25_to_opa_fn)(z64_gfx_t *gfx);
 typedef void (*append_setup_dl_25_to_xlu_fn)(z64_gfx_t *gfx);
 typedef Gfx *(*gen_double_tile_fn)(z64_gfx_t *gfx, int32_t tile1, uint32_t x1, uint32_t y1, int32_t width1, int32_t height1,
                                 int32_t tile2, uint32_t x2, uint32_t y2, int32_t width2, int32_t height2);
-typedef void (*duplicate_sys_matrix_fn)(void);
-typedef void (*pop_sys_matrix_fn)(void);
-typedef void (*translate_sys_matrix_fn)(float x, float y, float z, int32_t in_place_flag);
-typedef void (*scale_sys_matrix_fn)(float x, float y, float z, int32_t in_place_flag);
-typedef void (*update_sys_matrix_fn)(float mf[4][4]);
-typedef Mtx *(*append_sys_matrix_fn)(z64_gfx_t *gfx);
 
 #define append_setup_dl ((append_setup_dl_fn)0x8007DFBC)
 #define append_setup_dl_26_to_opa ((append_setup_dl_26_to_opa_fn)0x8007E1DC)
 #define append_setup_dl_25_to_opa ((append_setup_dl_25_to_opa_fn)0x8007E298)
 #define append_setup_dl_25_to_xlu ((append_setup_dl_25_to_xlu_fn)0x8007E2C0)
 #define gen_double_tile ((gen_double_tile_fn)0x8007EB84)
-#define duplicate_sys_matrix ((duplicate_sys_matrix_fn)0x800AA6EC)
-#define pop_sys_matrix ((pop_sys_matrix_fn)0x800AA724)
-#define translate_sys_matrix ((translate_sys_matrix_fn)0x800AA7F4)
-#define scale_sys_matrix ((scale_sys_matrix_fn)0x800AA8FC)
-#define update_sys_matrix ((update_sys_matrix_fn)0x800ABE54)
-#define append_sys_matrix ((append_sys_matrix_fn)0x800AB900)
 
 void draw_gi_bombchu_and_masks(z64_game_t *game, uint32_t draw_id) {
     z64_gfx_t *gfx = game->common.gfx;

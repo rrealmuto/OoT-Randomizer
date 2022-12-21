@@ -40,6 +40,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
     * “Standard Anti-Weekly Settings (S6)” is the inverse of “S6 Tournament” instead of weekly settings. It otherwise resembles the beginner preset. The only differences are open Deku, vanilla child spawn, and tournament hint distribution.
   * “Triforce Blitz” is a fast-paced game mode with very powerful hints. See [the official website](https://www.triforceblitz.com/) for details. Differences from the official branch include each Triforce piece having its own distinct text box, and the starting song not being counted for goal counts.
 * Other changes:
+  * The size and texture of the rotated chest in the Forest temple follows the “Chest Appearance Matches Contents” setting ([#1806](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1806))
   * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
   * Opening the Door of Time is a separate goal category when required by the settings ([#1529](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1529))
   * Gold Skulltula Tokens can be on excluded locations if there are no checks requiring them (such as in SAWS)

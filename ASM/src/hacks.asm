@@ -1844,6 +1844,45 @@ skip_GS_BGS_text:
     jal     HIDE_CHEST_WITH_INVERTED_LENS
     nop
 
+;==================================================================================================
+; Forest Twisted Hallway Chest
+;==================================================================================================
+
+; z_bg_mori_hineri, offset 0x0934
+; replace chest object logic with should_draw_forest_hallway_chest
+.orga 0xCB1288
+    or      a0, s1, r0 ; actor
+    jal     should_draw_forest_hallway_chest
+    or      a1, s2, r0 ; game
+    beqz    v0, @draw_forest_hallway_chest_lid_end
+    nop
+    nop
+    b       @draw_forest_hallway_chest_start
+    lui     t9, 0xDB06 ; G_MOVEWORD segment 06
+.orga 0xCB12C8
+@draw_forest_hallway_chest_start:
+
+; z_bg_mori_hineri, offset 0x0A24
+; replace gSPMatrix, gSPDisplayList with draw_forest_hallway_chest_base
+.orga 0xCB1374
+    jal     draw_forest_hallway_chest_base
+    nop
+    b       @draw_forest_hallway_chest_base_end
+    nop
+.orga 0xCB13B8
+@draw_forest_hallway_chest_base_end:
+
+; z_bg_mori_hineri, offset 0x0AE0
+; replace gSPMatrix, gSPDisplayList with draw_forest_hallway_chest_lid
+.orga 0xCB1430
+    jal     draw_forest_hallway_chest_lid
+    nop
+    b       @draw_forest_hallway_chest_lid_end
+    nop
+.orga 0xCB1474 ; also end of function
+@draw_forest_hallway_chest_lid_end:
+
+;==================================================================================================
 ; Draw Pot Textures
 ;==================================================================================================
 
