@@ -3,12 +3,24 @@
 
 #include "z64.h"
 
-#define BROWN_CHEST 0
-#define GOLD_CHEST 2
-#define GILDED_CHEST 12
-#define SILVER_CHEST 13
-#define SKULL_CHEST_SMALL 14
-#define SKULL_CHEST_BIG 15
+typedef enum {
+    /*  0 */ BROWN_CHEST,            // big default chest
+    /*  1 */ BIG_ROOM_CLEAR_CHEST,   // appear on room clear, store temp clear as permanent clear
+    /*  2 */ GOLD_CHEST,             // boss key chest, different look, same as BROWN_CHEST otherwise
+    /*  3 */ BIG_FALLING_CHEST,      // falling, appear on switch flag set
+    /*  4 */ TYPE_4_CHEST,           // big, drawn differently
+    /*  5 */ SMALL_CHEST,            // same as BROWN_CHEST but small
+    /*  6 */ TYPE_6_CHEST,           // small, drawn differently
+    /*  7 */ SMALL_ROOM_CLEAR_CHEST, // use room clear, store temp clear as perm clear
+    /*  8 */ SMALL_FALLING_CHEST,    // falling, appear on switch flag set
+    /*  9 */ TYPE_9_CHEST,           // big, has something more to do with player and message context?
+    /* 10 */ TYPE_10_CHEST,          // like 9
+    /* 11 */ BIG_SWITCH_FLAG_CHEST,  // big, appear on switch flag set
+    /* 12 */ GILDED_CHEST,
+    /* 13 */ SILVER_CHEST,
+    /* 14 */ SKULL_CHEST_SMALL,
+    /* 15 */ SKULL_CHEST_BIG,
+} ChestType;
 
 typedef uint16_t (*upgrade_fn)(z64_file_t *save, uint16_t item_id);
 typedef void (*effect_fn)(z64_file_t *save, int16_t arg1, int16_t arg2);

@@ -66,7 +66,7 @@ void Sram_WriteSave(SramContext *sramCtx) {
     // Write the collectible flags to the back of the backup slot
     slot_offset = SRAM_SLOTS[z64_file.file_index + 3] + SLOT_SIZE - (num_override_flags);
     SsSram_ReadWrite_Safe(SRAM_BASE + slot_offset, collectible_override_flags, num_override_flags, OS_WRITE);
-    
+
 }
 
 // Override the Sram_VerifyAndLoadAllSaves function. Only check our new 2 slots (and their backups).

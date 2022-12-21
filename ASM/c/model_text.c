@@ -17,7 +17,7 @@ void draw_illegal_model_text(z64_disp_buf_t *db) {
     if (!(illegal_model && z64_game.pause_ctxt.state == 6)) {
         return;
     }
-    
+
     int str_len = 41;
     if (missing_dlist) {
       str_len = 45;
@@ -110,10 +110,10 @@ z64_mem_obj_t FindModelData() {
   for (int i = 0; i < 19; i++) {
     z64_mem_obj_t obj = z64_game.obj_ctxt.objects[i];
     // 0x14 = obj_link_boy, 0x15 = obj_link_child
-    if (obj.id == 0x14) { 
+    if (obj.id == 0x14) {
       return obj;
     }
-    else if (obj.id == 0x15) { 
+    else if (obj.id == 0x15) {
       return obj;
     }
   }
@@ -132,7 +132,7 @@ int FindSize(z64_mem_obj_t model, int maxsize) {
     // Byte matches next byte in string
     if (data[i] == searchString[searchIndex]) {
       searchIndex += 1;
- 
+
       // All bytes have been found, so a match
       if (searchIndex == searchLen) {
         return i; //Return the address of the footer within the model data
@@ -143,7 +143,7 @@ int FindSize(z64_mem_obj_t model, int maxsize) {
       searchIndex = 0;
     }
   }
- 
+
   //If the footer was not found, then return max size (should only happen with a vanilla model)
   return maxsize;
 }
@@ -160,7 +160,7 @@ int FindHierarchy(z64_mem_obj_t model, int size) {
   for (int i = 0; i < size; i += 4) {
     if (data[i] == 0x06) {
       int possible = *(int*)(data + i) & 0x00FFFFFF;
- 
+
       if (possible < size) {
         int possible2 = *(int*)(data + i - 4) & 0x00FFFFFF;
         int diff = possible - possible2;

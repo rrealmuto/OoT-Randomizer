@@ -943,7 +943,7 @@ typedef struct
   z64_mem_obj_t objects[19];
 } z64_obj_ctxt_t;
 
-typedef struct 
+typedef struct
 {
   uint8_t       code;
   uint8_t       data1;
@@ -1056,6 +1056,15 @@ typedef struct
 typedef void (*z64_light_handler_t)(z64_gbi_lights_t*, z64_lightn_t*,
                                     z64_actor_t*);
 
+typedef struct
+{
+  uint8_t          freeze_flash_timer; /* 0x0000 */
+  char             unk_01_[0x01];      /* 0x0001 */
+  uint8_t          unk_02;             /* 0x0002 */
+  uint8_t          lens_active;        /* 0x0003 */
+  char             unk_04_[0x04];      /* 0x0004 */
+} z64_actor_ctxt_t;
+
 /* game context */
 typedef struct
 {
@@ -1088,7 +1097,7 @@ typedef struct
   char             unk_08_[0x0008];        /* 0x007B8 */
   z64_col_hdr_t   *col_hdr;                /* 0x007C0 */
   char             unk_09_[0x1460];        /* 0x007C4 */
-  char             actor_ctxt[0x0008];     /* 0x01C24 */
+  z64_actor_ctxt_t actor_ctxt;             /* 0x01C24 */
   uint8_t          n_actors_loaded;        /* 0x01C2C */
   char             unk_0A_[0x0003];        /* 0x01C2D */
   struct
@@ -1637,6 +1646,7 @@ typedef struct EnGSwitch
 #define z64_LinkDamage_addr                     0x8038E6A8
 #define z64_ObjectSpawn_addr                    0x800812F0
 #define z64_ObjectIndex_addr                    0x80081628
+#define z64_ObjectIsLoaded_addr                 0x80081688
 #define z64_ActorSetLinkIncomingItemId_addr     0x80022CF4
 #define SsSram_ReadWrite_addr                   0x80091474
 #define z64_memcopy_addr                        0x80057030
@@ -1712,6 +1722,7 @@ typedef float (*z64_Math_SinS_proc)(int16_t angle);
 
 typedef int32_t(*z64_ObjectSpawn_proc)    (z64_obj_ctxt_t *object_ctx, int16_t object_id);
 typedef int32_t(*z64_ObjectIndex_proc)    (z64_obj_ctxt_t *object_ctx, int16_t object_id);
+typedef int32_t(*z64_ObjectIsLoaded_proc) (z64_obj_ctxt_t *object_ctx, int32_t bank_index);
 
 typedef int32_t(*z64_ActorSetLinkIncomingItemId_proc) (z64_actor_t *actor, z64_game_t *game,
                                                        int32_t get_item_id, float xz_range, float y_range);
@@ -1785,6 +1796,7 @@ typedef float(*z64_Rand_ZeroOne_proc)();
 
 #define z64_ObjectSpawn         ((z64_ObjectSpawn_proc)z64_ObjectSpawn_addr)
 #define z64_ObjectIndex         ((z64_ObjectIndex_proc)z64_ObjectIndex_addr)
+#define z64_ObjectIsLoaded      ((z64_ObjectIsLoaded_proc)z64_ObjectIsLoaded_addr)
 
 #define z64_ActorSetLinkIncomingItemId ((z64_ActorSetLinkIncomingItemId_proc)z64_ActorSetLinkIncomingItemId_addr)
 #define SsSram_ReadWrite ((SsSram_ReadWrite_proc)SsSram_ReadWrite_addr)

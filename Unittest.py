@@ -451,7 +451,7 @@ class TestPlandomizer(unittest.TestCase):
         self.assertNotIn('Small Key Ring (Forest Temple)', spoiler['locations'].values())
         self.assertGreater(get_actual_pool(spoiler)['Small Key (Thieves Hideout)'], 5)
         self.assertNotIn('Small Key Ring (Thieves Hideout)', spoiler['locations'].values())
-    
+
     def test_empty_dungeons(self):
         filenames = [
             "empty-dungeons-all-dungeon-er",
@@ -538,7 +538,7 @@ class TestHints(unittest.TestCase):
                 _, spoiler = generate_with_plandomizer(filename, live_copy=True)
                 self.assertIsNotNone(spoiler.worlds[0].misc_hint_item_locations["ganondorf"])
                 self.assertNotEqual('Ganons Tower Boss Key Chest', spoiler.worlds[0].misc_hint_item_locations["ganondorf"].name)
-    
+
     # Test that every goal in every goal category is hinted at least once
     # if the bridge and Ganon's Boss Key conditions are for the same type
     # of win condition, such as 4 medallion bridge and 6 medallion GBK.
@@ -580,7 +580,7 @@ class TestHints(unittest.TestCase):
                 self.assertEqual(found_goals, goals)
         # 1 stone bridge / 3 stone gbk
         # 5 med bridge / 6 med bridge
-        # 5 dungeon bridge / 9 dungeon gbk 
+        # 5 dungeon bridge / 9 dungeon gbk
         # 99 skull bridge / 100 skull gbk
         # 19 heart bridge / 20 heart gbk
         # TH

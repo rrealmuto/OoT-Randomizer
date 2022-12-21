@@ -56,7 +56,7 @@ Shop_Set_Sold_Out:
     srl  t1, t5, 3
 
     ; load byte from save
-    li   t4, SAVE_CONTEXT   
+    li   t4, SAVE_CONTEXT
     add  t4, t4, t1
     lbu  t3, (Shop_Item_Save_Offset)(t4)
 

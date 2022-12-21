@@ -1,5 +1,5 @@
 #ifndef RNG_H
-#define RNG_H 
+#define RNG_H
 
 #include "z64.h"
 

@@ -217,12 +217,12 @@ item_row_t item_table[] = {
     [0xB9] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x00E4, 0x00CD, 0x1E, no_upgrade, give_magic,        -1, -1), // Magic Meter
     [0xBA] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x00E8, 0x00CD, 0x1F, no_upgrade, give_double_magic, -1, -1), // Double Magic
 
-    [0xBB] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0073, 0x00B6, 0x03, no_upgrade, give_song, 6, -1 ), // Minuet of Forest
-    [0xBC] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0074, 0x00B6, 0x04, no_upgrade, give_song, 7, -1 ), // Bolero of Fire
-    [0xBD] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0075, 0x00B6, 0x05, no_upgrade, give_song, 8, -1 ), // Serenade of Water
-    [0xBE] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0076, 0x00B6, 0x06, no_upgrade, give_song, 9, -1 ), // Requiem of Spirit
-    [0xBF] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0077, 0x00B6, 0x07, no_upgrade, give_song, 10, -1), // Nocturn of Shadow
-    [0xC0] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0078, 0x00B6, 0x08, no_upgrade, give_song, 11, -1), // Prelude of Light
+    [0xBB] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0073, 0x0196, 0x78, no_upgrade, give_song, 6, -1 ), // Minuet of Forest
+    [0xBC] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0074, 0x0196, 0x79, no_upgrade, give_song, 7, -1 ), // Bolero of Fire
+    [0xBD] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0075, 0x0196, 0x7A, no_upgrade, give_song, 8, -1 ), // Serenade of Water
+    [0xBE] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0076, 0x0196, 0x7B, no_upgrade, give_song, 9, -1 ), // Requiem of Spirit
+    [0xBF] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0077, 0x0196, 0x7C, no_upgrade, give_song, 10, -1), // Nocturn of Shadow
+    [0xC0] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0078, 0x0196, 0x7D, no_upgrade, give_song, 11, -1), // Prelude of Light
 
     [0xC1] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x00D4, 0x00B6, 0x04, no_upgrade, give_song, 12, -1), // Zelda's Lullaby
     [0xC2] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x00D2, 0x00B6, 0x06, no_upgrade, give_song, 13, -1), // Epona's Song

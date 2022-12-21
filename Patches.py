@@ -34,36 +34,35 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             rom.write_int32(address, value)
     rom.scan_dmadata_update()
 
-    # Write Randomizer title screen logo
-    with open(data_path('title.bin'), 'rb') as stream:
-        writeAddress = 0x01795300
-        titleBytesComp = stream.read()
-        titleBytesDiff = zlib.decompress(titleBytesComp)
+    # Binary patches of certain assets.
+    bin_patches = [
+        (data_path('title.bin'),  0x01795300),  # Randomizer title screen logo
+        (data_path('keaton.bin'), 0x8A7C00),    # Fixes the typo of "Keatan Mask" in the item select screen
+    ]
+    for (bin_path, write_address) in bin_patches:
+        with open(bin_path, 'rb') as stream:
+            bytes_compressed = stream.read()
+            bytes_diff = zlib.decompress(bytes_compressed)
+            original_bytes = rom.original.buffer[write_address: write_address + len(bytes_diff)]
+            new_bytes = bytearray([a ^ b for a, b in zip(bytes_diff, original_bytes)])
+            rom.write_bytes(write_address, new_bytes)
 
-        originalBytes = rom.original.buffer[writeAddress: writeAddress+ len(titleBytesDiff)]
-        titleBytes = bytearray([a ^ b for a, b in zip(titleBytesDiff, originalBytes)])
-        rom.write_bytes(writeAddress, titleBytes)
-
-    # Fixes the typo of keatan mask in the item select screen
-    with open(data_path('keaton.bin'), 'rb') as stream:
-        writeAddress = 0x8A7C00
-        keatonBytesComp = stream.read()
-        keatonBytesDiff = zlib.decompress(keatonBytesComp)
-
-        originalBytes = rom.original.buffer[writeAddress: writeAddress+ len(keatonBytesDiff)]
-        keatonBytes = bytearray([a ^ b for a, b in zip(keatonBytesDiff, originalBytes)])
-        rom.write_bytes(writeAddress, keatonBytes)
-
-    # Load Triforce model into a file
-    triforce_obj_file = File({ 'Name': 'object_gi_triforce' })
-    triforce_obj_file.copy(rom)
-    with open(data_path('Triforce.zobj'), 'rb') as stream:
-        obj_data = stream.read()
-        rom.write_bytes(triforce_obj_file.start, obj_data)
-        triforce_obj_file.end = triforce_obj_file.start + len(obj_data)
-    update_dmadata(rom, triforce_obj_file)
-    # Add it to the extended object table
-    add_to_extended_object_table(rom, 0x193, triforce_obj_file)
+    # Load models into a file
+    zobj_imports = [
+        ('object_gi_triforce', data_path('Triforce.zobj'), 0x193),  # Triforce Piece
+        ('object_gi_keyring',  data_path('KeyRing.zobj'),  0x195),  # Key Rings
+        ('object_gi_warpsong', data_path('Note.zobj'),     0x196),  # Inverted Music Note
+    ]
+    for (name, zobj_path, object_id) in zobj_imports:
+        obj_file = File({ 'Name': name })
+        obj_file.copy(rom)
+        with open(zobj_path, 'rb') as stream:
+            obj_data = stream.read()
+            rom.write_bytes(obj_file.start, obj_data)
+            obj_file.end = obj_file.start + len(obj_data)
+        update_dmadata(rom, obj_file)
+        # Add it to the extended object table
+        add_to_extended_object_table(rom, object_id, obj_file)
 
     # Build a Double Defense model from the Heart Container model
     dd_obj_file = File({
@@ -82,23 +81,10 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Add it to the extended object table
     add_to_extended_object_table(rom, 0x194, dd_obj_file)
 
-    # Load Key Ring model into a file
-    keyring_obj_file = File({ 'Name': 'object_gi_keyring' })
-    keyring_obj_file.copy(rom)
-    with open(data_path('KeyRing.zobj'), 'rb') as stream:
-        obj_data = stream.read()
-        rom.write_bytes(keyring_obj_file.start, obj_data)
-        keyring_obj_file.end = keyring_obj_file.start + len(obj_data)
-    update_dmadata(rom, keyring_obj_file)
-    # Add it to the extended object table
-    add_to_extended_object_table(rom, 0x195, keyring_obj_file)
-
     # Create the textures for pots/crates. Note: No copyrighted material can be distributed w/ the randomizer. Because of this, patch files are used to create the new textures from the original texture in ROM.
     # Apply patches for custom textures for pots and crates and add as new files in rom
     # Crates are ci4 textures in the normal ROM but for pot/crate textures match contents were upgraded to ci8 to support more colors
     # Pot textures are rgba16
-    # Get the texture table from rom (see textures.c)
-    texture_table_start = rom.sym('texture_table') # Get the address of the texture table
 
     # texture list. See textures.h for texture IDs
     #   ID, texture_name,                   Rom Address    CI4 Pallet Addr  Size    Patching function                          Patch file (None for default)
@@ -177,8 +163,8 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     # Fix Ice Cavern Alcove Camera
     if not world.dungeon_mq['Ice Cavern']:
-        rom.write_byte(0x2BECA25,0x01);
-        rom.write_byte(0x2BECA2D,0x01);
+        rom.write_byte(0x2BECA25, 0x01)
+        rom.write_byte(0x2BECA2D, 0x01)
 
     # Fix GS rewards to be static
     rom.write_int32(0xEA3934, 0)
@@ -1167,7 +1153,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             save_context.write_permanent_flag(Scenes.JABU_JABU, FlagType.CLEAR,  0x2, 0x01) # Jabu Red Slimy Thing defeated
             save_context.write_permanent_flag(Scenes.JABU_JABU, FlagType.SWITCH, 0x2, 0x08) # Jabu Red Slimy Thing not in front of boss lobby
             save_context.write_permanent_flag(Scenes.JABU_JABU, FlagType.SWITCH, 0x1, 0x10) # Jabu Boss Door Switch Activated
-        
+
     if 'Forest Temple' in world.settings.dungeon_shortcuts:
         # Forest, flags are the same between vanilla/MQ
         save_context.write_permanent_flag(Scenes.FOREST_TEMPLE, FlagType.SWITCH, 0x0, 0x10) # Forest Elevator up
@@ -1188,7 +1174,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             save_context.write_permanent_flag(Scenes.SPIRIT_TEMPLE, FlagType.SWITCH, 0x2, 0x02) # Spirit Silver Block
             save_context.write_permanent_flag(Scenes.SPIRIT_TEMPLE, FlagType.SWITCH, 0x1, 0x80) # Spirit Chains
             save_context.write_permanent_flag(Scenes.SPIRIT_TEMPLE, FlagType.SWITCH, 0x3, 0x10) # Spirit Face
-        
+
     if 'Shadow Temple' in world.settings.dungeon_shortcuts:
         # Shadow
         if not world.dungeon_mq['Shadow Temple']:
@@ -2344,7 +2330,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     rom.write_int32(rom.sym('RNG_SEED_INT'), spoiler.settings.numeric_seed & 0xFFFFFFFF)
     # Static initial seed value for one-time random actions like the Hylian Shield discount
     rom.write_int32(rom.sym('RANDOMIZER_RNG_SEED'), spoiler.settings.numeric_seed & 0xFFFFFFFF)
-    
+
     return rom
 
 

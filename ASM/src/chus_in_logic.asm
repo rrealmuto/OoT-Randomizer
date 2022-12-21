@@ -57,7 +57,7 @@ logic_chus__shopkeeper:
     lw      at, BOMBCHUS_IN_LOGIC
     beq     at, r0, @@logic_chus_false
     nop
-    
+
 @@logic_chus_true:
     lui     t1, hi(SAVE_CONTEXT + 0x7C)
     lb      t2, lo(SAVE_CONTEXT + 0x7C)(t1) ; bombchu item

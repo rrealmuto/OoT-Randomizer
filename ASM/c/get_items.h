@@ -42,7 +42,7 @@ typedef struct {
     override_value_t value;
 } override_t;
 
-typedef struct { 
+typedef struct {
     override_key_t  alt;
     override_key_t  primary;
 } alt_override_t;

@@ -107,7 +107,7 @@ class GoalCategory(object):
 
 
     def update_reachable_goals(self, starting_search, full_search):
-        # Only reduce goal item quantity if minimum goal requirements are reachable, 
+        # Only reduce goal item quantity if minimum goal requirements are reachable,
         # but not the full goal quantity. Primary use is to identify reachable
         # skull tokens, triforce pieces, and plentiful item duplicates with
         # All Locations Reachable off. Beatable check is required to prevent

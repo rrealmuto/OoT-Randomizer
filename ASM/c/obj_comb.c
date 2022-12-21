@@ -47,7 +47,7 @@ override_t get_beehive_override(z64_actor_t *actor, z64_game_t *game) {
     dummy.actor.actor_id = 0x15;
     dummy.actor.rot_init.y = flag;
     dummy.actor.variable = 0;
-    
+
     override_t override = lookup_override(&(dummy.actor), game->scene_index, 0);
     if(override.key.all != 0)
     {
@@ -55,7 +55,7 @@ override_t get_beehive_override(z64_actor_t *actor, z64_game_t *game) {
         if(!Get_CollectibleOverrideFlag(&dummy))
         {
             return override;
-        }    
+        }
     }
     return (override_t) { 0 };
 }

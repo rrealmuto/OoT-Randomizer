@@ -447,7 +447,7 @@ def randomize_music(rom, settings, log):
             while len(mapping) > 0:
                 random.shuffle(mapping)
                 source = music_mapping[target] = mapping.pop()
-                
+
                 if source.startswith('#'):
                     group_name = source[1:]
                     group = groups_alias.get(group_name, None)
@@ -464,16 +464,16 @@ def randomize_music(rom, settings, log):
                             source = music_mapping[target] = group.pop()
                             if source in sequences_alias:
                                 break
-                            
+
                     log.errors.append(f"Warning: Group '{source}' linked to '{target}' does not have a valid custom sequence. Ignoring!")
                 else:
                     break
-                    
+
             if len(mapping) == 0 and source not in sequences_alias:
                 del music_mapping[target]
                 log.errors.append(f"Target Sequence '{target}' does not have a valid 'bgm_groups' entry.")
                 continue
-                
+
         elif mapping.startswith('#'):
             group_name = source[1:]
             group = groups_alias.get(group_name, None)

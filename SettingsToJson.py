@@ -169,7 +169,7 @@ def GetSettingJson(setting, web_version, as_array=False):
                     for name, option in settingJson['options'].items():
                         if name != option_name[1:]:
                             add_disable_option_to_json(setting_disable[option_name], option)
-                        
+
 
         if tags_list:
             tags_list.sort()
@@ -225,7 +225,7 @@ def GetTabJson(tab, web_version, as_array=False):
             continue
         elif section.get('exclude_from_electron', False) and not web_version:
             continue
-        
+
         if as_array:
             tabJson['sections'].append(sectionJson)
         else:
@@ -257,7 +257,7 @@ def CreateJSON(path, web_version=False):
         if tab.get('is_cosmetics', False):
             settingOutputJson['cosmeticsObj'][tab['name']] = tabJsonObj
             settingOutputJson['cosmeticsArray'].append(tabJsonArr)
-    
+
     for d in HintDistFiles():
         with open(d, 'r') as dist_file:
             dist = json.load(dist_file)

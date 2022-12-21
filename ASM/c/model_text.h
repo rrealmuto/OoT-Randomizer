@@ -1,5 +1,5 @@
 #ifndef MODEL_TEXT_H
-#define MODEL_TEXT_H 
+#define MODEL_TEXT_H
 
 #include "z64.h"
 #include "gfx.h"

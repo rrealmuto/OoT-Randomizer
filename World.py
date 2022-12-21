@@ -71,7 +71,7 @@ class World(object):
             settings.open_forest == 'closed'
             and (
                 self.shuffle_special_interior_entrances or settings.shuffle_overworld_entrances
-                or settings.warp_songs or settings.spawn_positions or (settings.shuffle_bosses != 'off')
+                or settings.warp_songs or settings.spawn_positions
                 or settings.decouple_entrances or len(settings.mix_entrance_pools) > 1
             )
         ):
@@ -119,7 +119,7 @@ class World(object):
                 for area in HintArea:
                     if area.is_dungeon and area.dungeon_name in self:
                         self[area.dungeon_name].hint_name = area
-            
+
             def __missing__(self, dungeon_name):
                 return self.EmptyDungeonInfo(None)
 
@@ -175,10 +175,10 @@ class World(object):
                 if not all(sub_key in sub_keys for sub_key in self.hint_dist_user['distribution'][key]):
                     hint_dist_valid = False
         if not hint_dist_valid:
-            raise InvalidFileException("""Hint distributions require all hint types be present in the distro 
+            raise InvalidFileException("""Hint distributions require all hint types be present in the distro
                                           (trial, always, dual_always, woth, barren, item, song, overworld, dungeon, entrance,
                                           sometimes, dual, random, junk, named-item, goal). If a hint type should not be
-                                          shuffled, set its order to 0. Hint type format is \"type\": { 
+                                          shuffled, set its order to 0. Hint type format is \"type\": {
                                           \"order\": 0, \"weight\": 0.0, \"fixed\": 0, \"copies\": 0 }""")
 
         self.added_hint_types = {}
@@ -213,7 +213,7 @@ class World(object):
             for info in self.empty_dungeons.values():
                 if info.empty:
                     self.hint_type_overrides['barren'].append(info.hint_name)
-        
+
 
         self.hint_text_overrides = {}
         for loc in self.hint_dist_user['add_locations']:
@@ -905,14 +905,16 @@ class World(object):
                 gbk.minimum_goals = 1
             if (self.settings.ganon_bosskey_hearts > self.settings.starting_hearts
                 and self.settings.shuffle_ganon_bosskey == 'hearts'
-                and (self.settings.bridge != 'hearts'
+                and (self.shuffle_special_dungeon_entrances
+                        or self.settings.bridge != 'hearts'
                         or self.settings.bridge_hearts < self.settings.ganon_bosskey_hearts)):
                 gbk.add_goal(Goal(self, 'hearts', 'path of #hearts#', 'Red', items=[{'name': 'Piece of Heart', 'quantity': (20 - self.settings.starting_hearts) * 4, 'minimum': (self.settings.ganon_bosskey_hearts - self.settings.starting_hearts) * 4, 'hintable': False}]))
                 gbk.goal_count = round((self.settings.ganon_bosskey_hearts - 3) / 2)
                 gbk.minimum_goals = 1
             if (self.settings.lacs_hearts > self.settings.starting_hearts
                 and self.settings.shuffle_ganon_bosskey == 'on_lacs' and self.settings.lacs_condition == 'hearts'
-                and (self.settings.bridge != 'hearts'
+                and (self.shuffle_special_dungeon_entrances
+                        or self.settings.bridge != 'hearts'
                         or self.settings.bridge_hearts < self.settings.lacs_hearts)):
                 gbk.add_goal(Goal(self, 'hearts', 'path of #hearts#', 'Red', items=[{'name': 'Piece of Heart', 'quantity': (20 - self.settings.starting_hearts) * 4, 'minimum': (self.settings.lacs_hearts - self.settings.starting_hearts) * 4, 'hintable': False}]))
                 gbk.goal_count = round((self.settings.lacs_hearts - 3) / 2)
@@ -1132,7 +1134,7 @@ class World(object):
     # set collected to know this. To simplify this we instead just get areas
     # that don't have any items that could ever be required in any seed.
     # We further cull this list with woth info. This is an overestimate of
-    # the true list of possible useless areas, but this will generate a 
+    # the true list of possible useless areas, but this will generate a
     # reasonably sized list of areas that fit this property.
     def update_useless_areas(self, spoiler):
         areas = {}

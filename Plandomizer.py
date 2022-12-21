@@ -315,7 +315,7 @@ class WorldDistribution(object):
         invert = pattern.startswith('!')
         if invert:
             pattern = pattern[1:]
-        if pattern.startswith('#'):   
+        if pattern.startswith('#'):
             group = self.distribution.search_groups[pattern[1:]]
             if pattern == '#MajorItem':
                 if not self.major_group: # If necessary to compute major_group, do so only once
@@ -528,7 +528,7 @@ class WorldDistribution(object):
                         if bottle_matcher(item):
                             bottles -= 1
                         elif trade_matcher(item):
-                            self.pool_add_item(pool, "#AdultTrade", 1)           
+                            self.pool_add_item(pool, "#AdultTrade", 1)
         if remove_egg:
             del self.item_pool['Weird Egg']
 
@@ -629,7 +629,7 @@ class WorldDistribution(object):
                                                         or (target.reverse and target.reverse.connected_region and target.reverse.connected_region.name == target_region and not target.decoupled), 
                                                         target_entrance_pools[pool_type]))
                 if not matched_targets_to_region:
-                    raise RuntimeError('No entrance found to replace with %s that leads to %s in world %d' % 
+                    raise RuntimeError('No entrance found to replace with %s that leads to %s in world %d' %
                                                 (matched_entrance, target_region, self.id + 1))
                 index = 0
                 while index < len(matched_targets_to_region):
@@ -644,14 +644,14 @@ class WorldDistribution(object):
                     try:
                         matched_target = next(filter(lambda target: target.replaces.parent_region.name == target_parent, matched_targets_to_region))
                     except StopIteration:
-                        raise RuntimeError('No entrance found to replace with %s that leads to %s from %s in world %d' % 
+                        raise RuntimeError('No entrance found to replace with %s that leads to %s from %s in world %d' %
                                                 (matched_entrance, target_region, target_parent, self.id + 1))
                 else:
                     matched_target = matched_targets_to_region[0]
                     target_parent = matched_target.parent_region.name
 
                 if matched_target.connected_region == None:
-                    raise RuntimeError('Entrance leading to %s from %s is already shuffled in world %d' % 
+                    raise RuntimeError('Entrance leading to %s from %s is already shuffled in world %d' %
                                             (target_region, target_parent, self.id + 1))
 
                 try:
@@ -659,7 +659,7 @@ class WorldDistribution(object):
                     change_connections(matched_entrance, matched_target)
                     validate_world(matched_entrance.world, worlds, None, locations_to_ensure_reachable, itempool)
                 except EntranceShuffleError as error:
-                    raise RuntimeError('Cannot connect %s To %s in world %d (Reason: %s)' % 
+                    raise RuntimeError('Cannot connect %s To %s in world %d (Reason: %s)' %
                                             (matched_entrance, matched_entrance.connected_region or matched_target.connected_region, self.id + 1, error))
 
                 confirm_replacement(matched_entrance, matched_target)
@@ -806,7 +806,7 @@ class WorldDistribution(object):
                 continue
             valid_items = []
             if record.item == "#Vanilla": # Get vanilla item at this location from the location table
-                valid_items.append(location_table[location_name][4]) 
+                valid_items.append(location_table[location_name][4])
             else: # Do normal method of getting valid items for this location
                 valid_items = self.get_valid_items_from_record(world.itempool, used_items, record)
             if not valid_items:

@@ -772,7 +772,7 @@ def get_specific_item_hint(spoiler, world, checked):
                 named_item_locations = [location for w in worlds for location in w.get_filled_locations() if (location.item.name in all_named_items)]
                 spoiler._cached_named_item_locations = named_item_locations
 
-                always_hints = [(hint, w.id) for w in worlds for hint in getHintGroup('always', w)]                    
+                always_hints = [(hint, w.id) for w in worlds for hint in getHintGroup('always', w)]
                 always_locations = []
                 for hint, id  in always_hints:
                     location = worlds[id].get_location(hint.name)

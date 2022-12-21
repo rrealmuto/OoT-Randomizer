@@ -837,7 +837,7 @@ def read_default_voice_data(rom):
 
     # Read sound bank entries. This table (usually at 0x109F0) has information on each entry in the bank
     # Each entry is 8 bytes, the first 4 are the offset in audiobank, second are almost always 0x3F200000
-    # In the audiobank entry, each sfx has 0x20 bytes of info. The first 4 bytes are the length of the 
+    # In the audiobank entry, each sfx has 0x20 bytes of info. The first 4 bytes are the length of the
     # raw sample and the following 4 bytes are the offset in the audiotable for the raw sample
     soundbank_entries = {}
     for i in range(n_sfx):

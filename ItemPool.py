@@ -27,10 +27,10 @@ plentiful_items = ([
     'Progressive Scale',
     'Progressive Wallet',
     'Magic Meter',
-    'Deku Stick Capacity', 
-    'Deku Nut Capacity', 
-    'Bow', 
-    'Slingshot', 
+    'Deku Stick Capacity',
+    'Deku Nut Capacity',
+    'Bow',
+    'Slingshot',
     'Bomb Bag',
     'Double Defense'] +
     ['Heart Container'] * 8
@@ -148,12 +148,12 @@ item_difficulty_max = {
         'Bombchus (5)': 1,
         'Bombchus (10)': 2,
         'Bombchus (20)': 0,
-        'Magic Meter': 1, 
-        'Double Defense': 0, 
-        'Deku Stick Capacity': 1, 
-        'Deku Nut Capacity': 1, 
-        'Bow': 2, 
-        'Slingshot': 2, 
+        'Magic Meter': 1,
+        'Double Defense': 0,
+        'Deku Stick Capacity': 1,
+        'Deku Nut Capacity': 1,
+        'Bow': 2,
+        'Slingshot': 2,
         'Bomb Bag': 2,
         'Heart Container': 0,
     },
@@ -162,13 +162,13 @@ item_difficulty_max = {
         'Bombchus (5)': 1,
         'Bombchus (10)': 0,
         'Bombchus (20)': 0,
-        'Magic Meter': 1, 
+        'Magic Meter': 1,
         'Nayrus Love': 1,
-        'Double Defense': 0, 
-        'Deku Stick Capacity': 0, 
-        'Deku Nut Capacity': 0, 
-        'Bow': 1, 
-        'Slingshot': 1, 
+        'Double Defense': 0,
+        'Deku Stick Capacity': 0,
+        'Deku Nut Capacity': 0,
+        'Bow': 1,
+        'Slingshot': 1,
         'Bomb Bag': 1,
         'Heart Container': 0,
         'Piece of Heart': 0,
@@ -441,7 +441,7 @@ def get_pool_core(world):
         # Kokiri Sword
         elif location.vanilla_item == 'Kokiri Sword':
             shuffle_item = world.settings.shuffle_kokiri_sword
-        
+
         # Ice Arrows/Blue Fire Arrows
         elif location.vanilla_item == 'Ice Arrows':
             if world.settings.blue_fire_arrows:
@@ -644,7 +644,7 @@ def get_pool_core(world):
 
     if world.settings.free_scarecrow:
         world.state.collect(ItemFactory('Scarecrow Song'))
-    
+
     if world.settings.no_epona_race:
         world.state.collect(ItemFactory('Epona', event=True))
 

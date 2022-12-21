@@ -146,8 +146,8 @@ logic_tricks = {
         'name'    : 'logic_visible_collisions',
         'tags'    : ("General", "Entrance Shuffle", "Kakariko Village", "Overworld", "Child", "Adult",),
         'tooltip' : '''\
-                    Allows climbing through the platform to reach 
-                    Impa's House Back as adult with no items and 
+                    Allows climbing through the platform to reach
+                    Impa's House Back as adult with no items and
                     going through the Kakariko Village Gate as child
                     when coming from the Mountain Trail side.
                     '''},
@@ -160,7 +160,7 @@ logic_tricks = {
                     '''},
     'Fewer Tunic Requirements': {
         'name'    : 'logic_fewer_tunic_requirements',
-        'tags'    : ("General", "Fire Temple", "Fire Temple MQ", "Water Temple", "Water Temple MQ", "Gerudo Training Ground", "Gerudo Training Ground MQ", 
+        'tags'    : ("General", "Fire Temple", "Fire Temple MQ", "Water Temple", "Water Temple MQ", "Gerudo Training Ground", "Gerudo Training Ground MQ",
                     "Zora's Fountain", "Death Mountain Crater", "Master Quest", "Overworld", "Vanilla Dungeons", "Child", "Adult",),
         'tooltip' : '''\
                     Allows the following possible without Tunics:
@@ -379,7 +379,7 @@ logic_tricks = {
                     Destinations" is enabled, or if the settings are such
                     that trade items do not need to be delivered within a
                     time limit.
-                    '''},                    
+                    '''},
     'Goron City Spinning Pot PoH with Bombchu': {
         'name'    : 'logic_goron_city_pot',
         'tags'    : ("Goron City", "Overworld", "Child",),
@@ -393,7 +393,7 @@ logic_tricks = {
         'tags'    : ("Goron City", "Overworld", "Child",),
         'tooltip' : '''\
                     Allows for stopping the Goron City Spinning
-                    Pot using a bomb flower alone, requiring 
+                    Pot using a bomb flower alone, requiring
                     strength in lieu of inventory explosives.
                     '''},
     'Rolling Goron (Hot Rodder Goron) as Child with Strength': {
@@ -511,7 +511,7 @@ logic_tricks = {
                     recoil back onto the top of the frozen waterfall.
                     To kill it, the logic normally guarantees one of
                     Hookshot, Bow, or Magic.
-                    '''},                    
+                    '''},
     'Lake Hylia Lab Wall GS with Jump Slash': {
         'name'    : 'logic_lab_wall_gs',
         'tags'    : ("Lake Hylia", "Gold Skulltulas", "Overworld", "Child",),
@@ -543,7 +543,7 @@ logic_tricks = {
                     From the far side of Gerudo Valley, a precise
                     Hover Boots movement and jump-slash recoil can
                     allow adult to reach the ledge with the crate
-                    PoH without needing Longshot. You will take 
+                    PoH without needing Longshot. You will take
                     fall damage.
                     '''},
     'Thieves\' Hideout "Kitchen" with No Additional Items': {
@@ -788,7 +788,7 @@ logic_tricks = {
                     Hookshot or Longshot using the same methods as hitting the switch
                     in vanilla. This trick is usually only relevant if Jabu dungeon
                     shortcuts are enabled.
-                    '''},                    
+                    '''},
     'Jabu Near Boss Ceiling Switch with Explosives': {
         'name'    : 'logic_jabu_near_boss_explosives',
         'tags'    : ("Jabu Jabu's Belly", "Entrance Shuffle", "Vanilla Dungeons", "Child", "Adult",),
@@ -805,7 +805,7 @@ logic_tricks = {
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Jabu MQ.
-                    '''},                                      
+                    '''},
     'Jabu MQ Compass Chest with Boomerang': {
         'name'    : 'logic_jabu_mq_rang_jump',
         'tags'    : ("Jabu Jabu's Belly MQ", "Master Quest", "Child",),
@@ -835,7 +835,7 @@ logic_tricks = {
         'tags'    : ("Bottom of the Well", "Bottom of the Well MQ", "Vanilla Dungeons", "Master Quest", "Child",),
         'tooltip' : '''\
                     Requires 9 sticks or 5 jump slashes.
-                    '''},   
+                    '''},
     'Bottom of the Well Map Chest with Strength & Sticks': {
         'name'    : 'logic_botw_basement',
         'tags'    : ("Bottom of the Well", "Vanilla Dungeons", "Child",),
@@ -879,7 +879,7 @@ logic_tricks = {
         'tooltip' : '''\
                     Precise Boomerang throws can allow child to
                     kill the Skulltula and collect the token.
-                    '''},                                      
+                    '''},
     'Forest Temple East Courtyard Vines with Hookshot': {
         'name'    : 'logic_forest_vines',
         'tags'    : ("Forest Temple", "Forest Temple MQ", "Master Quest", "Vanilla Dungeons", "Adult",),
@@ -911,7 +911,7 @@ logic_tricks = {
                     the falling ceiling room early. In Master Quest,
                     this allows you to obtain the GS on the door frame
                     as adult without Hookshot or Song of Time.
-                    '''},                    
+                    '''},
     'Forest Temple Outside Backdoor with Jump Slash': {
         'name'    : 'logic_forest_outside_backdoor',
         'tags'    : ("Forest Temple", "Forest Temple MQ", "Master Quest", "Vanilla Dungeons", "Child", "Adult",),
@@ -939,7 +939,7 @@ logic_tricks = {
         'tooltip' : '''\
                     Send the Bombchu straight up the center of the
                     wall directly to the left upon entering the room.
-                    '''},                    
+                    '''},
     'Forest Temple MQ Twisted Hallway Switch with Jump Slash': {
         'name'    : 'logic_forest_mq_hallway_switch_jumpslash',
         'tags'    : ("Forest Temple MQ", "Master Quest", "Child", "Adult",),
@@ -1083,9 +1083,9 @@ logic_tricks = {
         'tooltip' : '''\
                     The floor of the room that contains this Skulltula
                     is only solid from above. From the maze below, the
-                    Longshot can be shot through the ceiling to obtain 
+                    Longshot can be shot through the ceiling to obtain
                     the token with two fewer small keys than normal.
-                    '''},                    
+                    '''},
     'Fire Temple MQ Flame Wall Maze Skip': {
         'name'    : 'logic_fire_mq_flame_maze',
         'tags'    : ("Fire Temple MQ", "Gold Skulltulas", "Master Quest", "Adult",),
@@ -1182,7 +1182,7 @@ logic_tricks = {
                     Iron Boots to go through the door after the water has
                     been raised, you can obtain the Skulltula Token with
                     the Hookshot.
-                    '''},                    
+                    '''},
     'Water Temple Central Bow Target without Longshot or Hover Boots': {
         'name'    : 'logic_water_central_bow',
         'tags'    : ("Water Temple", "Vanilla Dungeons", "Child", "Adult",),
@@ -1238,7 +1238,7 @@ logic_tricks = {
                     switch and swim through the tunnel to get to the chest. But
                     by hitting the switch from dry land, using one of Bombchus,
                     Hookshot, or Bow, it is possible to skip one or both of
-                    those requirements. After the gate has been opened, besides 
+                    those requirements. After the gate has been opened, besides
                     just using the Iron Boots, a well-timed dive with at least
                     the Silver Scale could be used to swim through the tunnel. If
                     coming from the serpent river, a jump dive can also be used
@@ -1327,7 +1327,7 @@ logic_tricks = {
                     Applies to both Vanilla and Master Quest. For obtaining
                     the chests in this room with just Hover Boots, be sure to
                     enable "Shadow Temple Stone Umbrella Skip".
-                    '''},                    
+                    '''},
     'Shadow Temple Freestanding Key with Bombchu': {
         'name'    : 'logic_shadow_freestanding_key',
         'tags'    : ("Shadow Temple", "Vanilla Dungeons", "Adult",),
@@ -1373,7 +1373,7 @@ logic_tricks = {
                     Removes the requirement for the Lens of Truth or
                     Nayru's Love in Shadow Temple MQ for the Invisible
                     Blades room silver rupee collection.
-                    '''},                    
+                    '''},
     'Shadow Temple MQ Invisible Moving Platform without Lens of Truth': {
         'name'    : 'logic_lens_shadow_mq_platform',
         'tags'    : ("Lens of Truth", "Shadow Temple MQ", "Master Quest", "Adult",),
@@ -1451,7 +1451,7 @@ logic_tricks = {
                     Skulltula. You must throw the Boomerang slightly off to
                     the side so that it curves into the Skulltula, as aiming
                     directly at it will clank off of the wall in front.
-                    '''},                    
+                    '''},
     'Spirit Temple Lower Adult Switch with Bombs': {
         'name'    : 'logic_spirit_lower_adult_switch',
         'tags'    : ("Spirit Temple", "Vanilla Dungeons", "Adult",),
@@ -1532,7 +1532,7 @@ logic_tricks = {
                     Throw the Boomerang in such a way that it
                     curves through the side of the glass block
                     to hit the Gold Skulltula.
-                    '''},                    
+                    '''},
     'Spirit Temple MQ Lower Adult without Fire Arrows': {
         'name'    : 'logic_spirit_mq_lower_adult',
         'tags'    : ("Spirit Temple MQ", "Master Quest", "Adult",),
@@ -1634,7 +1634,7 @@ logic_tricks = {
                     without a projectile, using a precise jump slash.
                     This trick supersedes "Gerudo Training Ground MQ Left Side
                     Silver Rupees with Hookshot".
-                    '''},       
+                    '''},
     'Ganon\'s Castle without Lens of Truth': {
         'name'    : 'logic_lens_castle',
         'tags'    : ("Lens of Truth", "Ganon's Castle", "Vanilla Dungeons", "Child", "Adult",),
@@ -1792,14 +1792,14 @@ setting_infos = [
             "hide_when_disabled" : True,
         }
     ),
-	Checkbutton(
+    Checkbutton(
         name           = 'web_wad_legacy_mode',
         gui_text       = 'WAD Legacy Mode',
-		shared		   = False,
+        shared         = False,
         default        = False,
-		gui_tooltip	   = "Enabling this will avoid any patching of the VC emulator in case your Wii does not have support for it. Recommended to be left unchecked.",
-		gui_params  = {
-			"no_line_break"		 : False,
+        gui_tooltip    = "Enabling this will avoid any patching of the VC emulator in case your Wii does not have support for it. Recommended to be left unchecked.",
+        gui_params  = {
+            "no_line_break"      : False,
             "hide_when_disabled" : True,
         }
     ),
@@ -1824,7 +1824,7 @@ setting_infos = [
                 'web_common_key_string',
                 'web_wad_channel_id',
                 'web_wad_channel_title',
-				'web_wad_legacy_mode']
+                'web_wad_legacy_mode']
             }
         }
     ),
@@ -1894,7 +1894,7 @@ setting_infos = [
         name           = 'enable_distribution_file',
         gui_text       = 'Enable Plandomizer (Advanced)',
         gui_tooltip    = '''\
-            Optional. Use a plandomizer JSON file to get 
+            Optional. Use a plandomizer JSON file to get
             total control over the item placement.
         ''',
         gui_params     = {
@@ -1910,7 +1910,7 @@ setting_infos = [
         name           = 'enable_cosmetic_file',
         gui_text       = 'Enable Cosmetic Plandomizer (Advanced)',
         gui_tooltip    = '''\
-            Optional. Use a cosmetic plandomizer JSON file to get 
+            Optional. Use a cosmetic plandomizer JSON file to get
             more control over your cosmetic and sound settings.
         ''',
         default        = False,
@@ -1921,7 +1921,7 @@ setting_infos = [
     ),
     Setting_Info('distribution_file', str, "Plandomizer File", "Fileinput", False, {},
         gui_tooltip = """\
-            Optional. Place a plandomizer JSON file here 
+            Optional. Place a plandomizer JSON file here
             to get total control over the item placement.
         """,
         gui_params = {
@@ -1939,7 +1939,7 @@ setting_infos = [
         }),
     Setting_Info('cosmetic_file', str, "Cosmetic Plandomizer File", "Fileinput", False, {},
         gui_tooltip = """\
-            Optional. Use a cosmetic plandomizer JSON file to get 
+            Optional. Use a cosmetic plandomizer JSON file to get
             more control over your cosmetic and sound settings.
         """,
         gui_params = {
@@ -1984,7 +1984,7 @@ setting_infos = [
         disable        = {
             False : {'settings' : ["user_message"]}
         },
-		gui_params = {
+        gui_params = {
             "hide_when_disabled" : True,
         }
     ),
@@ -2213,20 +2213,20 @@ setting_infos = [
             Select a setting preset to apply.
 
             Default/Beginner is aimed at those familiar with the vanilla game who desire a similar progression.
-            Uses base glitchless logic. No timesavers (See the tab "Other") are enabled in this preset 
+            Uses base glitchless logic. No timesavers (See the tab "Other") are enabled in this preset
             and the world begins closed. Expect a long playthrough.
 
-            Easy Mode is aimed at those who have perhaps seen a few randomizer runs previously and/or 
-            wish to dive right in. Uses base glitchless logic. Most timesavers (See the tab "Other") 
+            Easy Mode is aimed at those who have perhaps seen a few randomizer runs previously and/or
+            wish to dive right in. Uses base glitchless logic. Most timesavers (See the tab "Other")
             are enabled and the world is more open after leaving Kokiri Forest.
 
             Hell Mode is designed to be as frustrating an experience as possible, with every setting enabled
             to provide maximum randomness as well as things like one-hit-KO, one-bonk-KO and max ice traps.
-            It still uses glitchless logic to ensure a beatable seed. However, be aware that all glitchless 
-            "tricks" are enabled which have the potential to require the player to perform difficult techniques. 
+            It still uses glitchless logic to ensure a beatable seed. However, be aware that all glitchless
+            "tricks" are enabled which have the potential to require the player to perform difficult techniques.
             Expect a long and painful playthrough, even with good note-taking.
 
-            The other presets are for racing and/or tournaments. 
+            The other presets are for racing and/or tournaments.
 
             After a preset is loaded, the settings can be viewed/changed in the other tabs before
             generating a seed.
@@ -2280,17 +2280,17 @@ setting_infos = [
         },
         gui_tooltip    = '''\
             Logic provides guiding sets of rules for world generation
-            which the Randomizer uses to ensure the generated seeds 
+            which the Randomizer uses to ensure the generated seeds
             are beatable.
 
-            'Glitchless': No glitches are required, but may require 
+            'Glitchless': No glitches are required, but may require
             some minor tricks. Add minor tricks to consider for logic
             in the 'Detailed Logic' tab.
 
             'Glitched': Movement-oriented glitches are likely required.
             No locations excluded.
 
-            'No Logic': Maximize randomization, All locations are 
+            'No Logic': Maximize randomization, All locations are
             considered available. MAY BE IMPOSSIBLE TO BEAT.
         ''',
         disable        = {
@@ -2340,7 +2340,7 @@ setting_infos = [
         name           = 'triforce_hunt',
         gui_text       = 'Triforce Hunt',
         gui_tooltip    = '''\
-            Pieces of the Triforce have been scattered around the world. 
+            Pieces of the Triforce have been scattered around the world.
             Find some of them to beat the game.
 
             Game is saved on completion, and Ganon's Castle key is given
@@ -2388,9 +2388,9 @@ setting_infos = [
         gui_tooltip    = '''\
             Select the amount of Triforce Pieces required to beat the game.
 
-            In multiworld, the required amount will be per world collectively. 
-            For example, if this is set to 20 in a 2 player multiworld, players 
-            need 40 total, but one player could obtain 30 and the other 10. 
+            In multiworld, the required amount will be per world collectively.
+            For example, if this is set to 20 in a 2 player multiworld, players
+            need 40 total, but one player could obtain 30 and the other 10.
         ''',
         gui_params     = {
             "hide_when_disabled": True,
@@ -2413,7 +2413,7 @@ setting_infos = [
         gui_tooltip    = '''\
             Sets the condition for the Light Arrow Cutscene
             check to give you the item from Zelda.
-            
+
             'Vanilla': Shadow and Spirit Medallions.
             'Stones': A configurable amount of Spiritual Stones.
             'Medallions': A configurable amount of Medallions.
@@ -2534,7 +2534,7 @@ setting_infos = [
         choices        = {
             'open':       'Always Open',
             'vanilla':    'Vanilla Requirements',
-            'stones':	  'Spiritual Stones',
+            'stones':     'Spiritual Stones',
             'medallions': 'Medallions',
             'dungeons':   'Dungeons',
             'tokens':     'Gold Skulltula Tokens',
@@ -2708,20 +2708,20 @@ setting_infos = [
         gui_tooltip    = '''\
             'Remove': Ganon's Castle Boss Key is removed
             and the boss door in Ganon's Tower starts unlocked.
-            
-            'Vanilla': Ganon's Castle Boss Key will appear in 
+
+            'Vanilla': Ganon's Castle Boss Key will appear in
             the vanilla location.
-            
+
             'Own Dungeon': Ganon's Castle Boss Key can only appear
             inside Ganon's Castle.
-            
+
             'Regional': Ganon's Castle Boss Key can only appear
             in Hyrule Field, Lon Lon Ranch, Market, Temple of Time, Hyrule Castle,
             (Outside) Ganon's Castle, and Inside Ganon's Castle.
-            
+
             'Overworld Only': Ganon's Castle Boss Key can only appear
             outside of dungeons.
-            
+
             'Any Dungeon': Ganon's Castle Boss Key can only appear
             inside of a dungeon, but not necessarily Ganon's Castle.
 
@@ -2730,16 +2730,16 @@ setting_infos = [
 
             'Light Arrow Cutscene': Ganon's Castle Boss Key will
             appear on the Light Arrow Cutscene.
-            
+
             'Stones': Ganon's Castle Boss Key will be awarded
             when reaching the target number of Spiritual Stones.
-            
+
             'Medallions': Ganon's Castle Boss Key will be awarded
             when reaching the target number of Medallions.
-                        
+
             'Dungeons': Ganon's Castle Boss Key will be awarded
             when reaching the target number of Dungeon Rewards.
-            
+
             'Tokens': Ganon's Castle Boss Key will be awarded
             when reaching the target number of Gold Skulltula Tokens.
 
@@ -2869,22 +2869,22 @@ setting_infos = [
             doors in dungeons will be unlocked. An easier
             mode.
 
-            'Vanilla': Boss Keys will appear in their 
+            'Vanilla': Boss Keys will appear in their
             vanilla locations.
 
             'Own Dungeon': Boss Keys can only appear in their
             respective dungeon.
-            
+
             'Regional': Boss Keys can only appear in regions
             near the original dungeon (including the dungeon
             itself or other dungeons in the region).
             <a href="https://wiki.ootrandomizer.com/index.php?title=Hints#Hint_Regions" target="_blank">The Wiki has a list of corresponding regions here.</a>
-            
+
             'Overworld Only': Boss Keys can only appear outside
             of dungeons. You may need to enter a dungeon without
             the boss key to get items required to find the key
             in the overworld.
-            
+
             'Any Dungeon': Boss Keys can only appear inside
             of any dungeon, but won't necessarily be in the
             dungeon that the key is for. A difficult mode since
@@ -2935,17 +2935,17 @@ setting_infos = [
             'Own Dungeon': Small Keys can only appear in their respective
             dungeon. If Fire Temple is not a Master Quest dungeon, the door to
             the Boss Key chest will be unlocked.
-            
+
             'Regional': Small Keys can only appear
             in regions near the original dungeon (including
             the dungeon itself or other dungeons in the region).
             <a href="https://wiki.ootrandomizer.com/index.php?title=Hints#Hint_Regions" target="_blank">The Wiki has a list of corresponding regions here.</a>
-            
+
             'Overworld Only': Small Keys can only appear outside
             of dungeons. You may need to enter a dungeon multiple
             times to gain items to access the overworld locations
             with the keys required to finish a dungeon.
-            
+
             'Any Dungeon': Small Keys can only appear inside of any dungeon, but
             won't necessarily be in the dungeon that the key is for. A difficult mode
             since it is more likely to need to enter a dungeon multiple times.
@@ -2986,15 +2986,15 @@ setting_infos = [
             "Vanilla": Thieves' Hideout Keys will appear in their
             vanilla location, dropping from fighting Gerudo guards
             that attack when trying to free the jailed carpenters.
-            
+
             "Regional": Thieves' Hideout Keys can only appear in
             Gerudo Valley, Gerudo Fortress, Thieves' Hideout, Gerudo
             Training Ground, Haunted Wasteland, Desert Colossus, or
             Spirit Temple.
-            
+
             "Overworld Only": Thieves' Hideout Keys can only appear
             outside of dungeons.
-            
+
             "Any Dungeon": Thieves' Hideout Keys can only appear
             inside of dungeons.
 
@@ -3018,18 +3018,18 @@ setting_infos = [
             'random':    'Random dungeons'
         },
         gui_tooltip     = '''\
-            Selected dungeons will have all of their keys found 
-            at once in a ring rather than individually. 
+            Selected dungeons will have all of their keys found
+            at once in a ring rather than individually.
 
-            For example, instead of shuffling 5 Forest Temple 
+            For example, instead of shuffling 5 Forest Temple
             small keys into the pool, you will find a single
             key ring which will give you all 5 keys at once.
 
             Selecting key ring for dungeons will have no effect
             if Small Keys are set to Remove or Vanilla.
 
-            Selecting key ring for Thieves' Hideout will have 
-            no effect if Thieves' Hideout keys are in vanilla 
+            Selecting key ring for Thieves' Hideout will have
+            no effect if Thieves' Hideout keys are in vanilla
             locations or Gerudo's Fortress is set to Rescue
             One Carpenter.
         ''',
@@ -3089,23 +3089,23 @@ setting_infos = [
 
             'Own Dungeon': Maps and Compasses can only appear in their respective
             dungeon.
-            
+
             'Regional': Maps and Compasses can only appear in regions near the
             original dungeon (including the dungeon itself or other dungeons in
             the region). <a href="https://wiki.ootrandomizer.com/index.php?title=Hints#Hint_Regions" target="_blank">The Wiki has a list of corresponding regions here.</a>
-            
+
             'Overworld Only': Maps and Compasses can only appear
             outside of dungeons.
 
             'Any Dungeon': Maps and Compasses can only appear in a dungeon, but
-            not necessarily the dungeon they are for.            
+            not necessarily the dungeon they are for.
 
             'Anywhere': Maps and Compasses can appear anywhere in the world.
 
             Setting 'Remove', 'Start With', 'Overworld', or 'Anywhere' will add 2
             more possible locations to each Dungeons. This makes dungeons more
             profitable, especially Ice Cavern, Water Temple, and Jabu Jabu's Belly.
-            
+
             Regardless of the selected option, maps and compasses from pre-completed
             dungeons won't be placed outside their respective dungeons and maps and
             compasses from other dungeons won't be placed inside pre-completed dungeons.
@@ -3136,7 +3136,7 @@ setting_infos = [
         gui_params     = {
             'randomize_key': 'randomize_settings',
         },
-    ),  
+    ),
 
 
 
@@ -3153,7 +3153,7 @@ setting_infos = [
             'Open Forest': Mido no longer blocks the path to the
             Deku Tree, and the Kokiri boy no longer blocks the path
             out of the forest.
-            
+
             'Closed Deku': The Kokiri boy no longer blocks the path
             out of the forest, but Mido still blocks the path to the
             Deku Tree, requiring Kokiri Sword and Deku Shield to access
@@ -3165,10 +3165,10 @@ setting_infos = [
             required to access the Deku Tree. Items needed for this will be
             guaranteed inside the forest area. This setting is incompatible
             with starting as adult, and so Starting Age will be locked to Child.
-            With either "Shuffle Interior Entrances" set to "All", "Shuffle 
-            Overworld Entrances" on, "Randomize Warp Song Destinations" on 
-            or "Randomize Overworld Spawns" on, Closed Forest will instead 
-            be treated as Closed Deku with starting age Child and WILL NOT 
+            With either "Shuffle Interior Entrances" set to "All", "Shuffle
+            Overworld Entrances" on, "Randomize Warp Song Destinations" on
+            or "Randomize Overworld Spawns" on, Closed Forest will instead
+            be treated as Closed Deku with starting age Child and WILL NOT
             guarantee that these items are available in the forest area.
         ''',
         shared         = True,
@@ -3197,16 +3197,16 @@ setting_infos = [
             This changes the behavior of the Kakariko Gate to
             Death Mountain Trail as child. The gate is always
             open as adult.
-            
+
             "Open Gate": The gate is always open instead of
             needing Zelda's Letter. The Happy Mask Shop opens
             upon obtaining Zelda's Letter without needing to
             show it to the guard.
-            
+
             "Zelda's Letter Opens Gate": The gate is closed at
             the start, but opens automatically along with the
             Happy Mask Shop upon obtaining Zelda's Letter.
-            
+
             "Closed": The gate and the Happy Mask Shop both remain closed
             until showing Zelda's Letter to the guard in Kakariko.
         ''',
@@ -3243,12 +3243,12 @@ setting_infos = [
             Zora's Fountain. Ruto's Letter must be shown as
             child in order to move him for both eras.
 
-            'Open For Adult': King Zora is always moved in 
+            'Open For Adult': King Zora is always moved in
             the adult era. This means Ruto's Letter is only
             required to access Zora's Fountain as child.
 
             'Always Open': King Zora starts as moved in
-            both the child and adult eras. This also removes 
+            both the child and adult eras. This also removes
             Ruto's Letter from the pool since it can't be used.
         ''',
         shared         = True,
@@ -3273,7 +3273,7 @@ setting_infos = [
 
             'Open Gerudo's Fortress': The carpenters are rescued from
             the start of the game, and if 'Shuffle Gerudo Card' is disabled,
-            the player starts with the Gerudo Card in the inventory 
+            the player starts with the Gerudo Card in the inventory
             allowing access to Gerudo Training Ground.
         ''',
         shared         = True,
@@ -3510,7 +3510,7 @@ setting_infos = [
             'distribution':  [
                 ('none', 1)
             ],
-        },   
+        },
     ),
     Combobox(
         name            = 'empty_dungeons_specific',
@@ -3550,7 +3550,7 @@ setting_infos = [
         gui_params     = {
             "hide_when_disabled": True,
         },
-    ),    
+    ),
     Combobox(
         name           = 'shuffle_interior_entrances',
         gui_text       = 'Shuffle Interior Entrances',
@@ -3561,15 +3561,15 @@ setting_infos = [
             'all':       'All Interiors',
         },
         gui_tooltip    = '''\
-            'Simple Interiors': 
-            Shuffle the pool of interior entrances which contains most Houses 
+            'Simple Interiors':
+            Shuffle the pool of interior entrances which contains most Houses
             and all Great Fairies.
-    
+
             'All Interiors':
             Extended version of 'Simple Interiors' with some extra places:
             Windmill, Link's House, Temple of Time and Kakariko Potion Shop.
 
-            When shuffling any interior entrances, trade quest timers are disabled 
+            When shuffling any interior entrances, trade quest timers are disabled
             and items never revert, even when dying or loading a save.
         ''',
         shared         = True,
@@ -3586,7 +3586,7 @@ setting_infos = [
         name           = 'shuffle_grotto_entrances',
         gui_text       = 'Shuffle Grotto Entrances',
         gui_tooltip    = '''\
-            Shuffle the pool of grotto entrances, including all graves, 
+            Shuffle the pool of grotto entrances, including all graves,
             small Fairy Fountains and the Lost Woods Stage.
         ''',
         default        = False,
@@ -3663,8 +3663,8 @@ setting_infos = [
             - Both Market Back Alley entrances
             - Gerudo Valley to Lake Hylia (unless entrances are decoupled)
 
-            Just like when shuffling interior entrances, shuffling overworld 
-            entrances disables trade timers and trade items never revert, 
+            Just like when shuffling interior entrances, shuffling overworld
+            entrances disables trade timers and trade items never revert,
             even when dying or loading a save.
         ''',
         default        = False,
@@ -3730,8 +3730,8 @@ setting_infos = [
         name           = 'owl_drops',
         gui_text       = 'Randomize Owl Drops',
         gui_tooltip    = '''\
-            Randomize where Kaepora Gaebora (the Owl) drops you at 
-            when you talk to him at Lake Hylia or at the top of 
+            Randomize where Kaepora Gaebora (the Owl) drops you at
+            when you talk to him at Lake Hylia or at the top of
             Death Mountain Trail.
         ''',
         default        = False,
@@ -3766,7 +3766,7 @@ setting_infos = [
             spawn inside Link's House or Temple of Time.
 
             'Child': Child overworld spawn will be randomized.
-            
+
             'Adult': Adult overworld spawn will be randomized.
 
             Selecting both options will randomize both spawns.
@@ -3914,22 +3914,22 @@ setting_infos = [
         },
         gui_tooltip    = '''\
             Randomizes Shop contents.
-            
+
             'X Items Per Shop': Each shop will have the
             specified number of items randomized and they
             will always appear on the left side
             (identified by the Special Deal! text).
             Remaining items will be shuffled between shops.
-            
+
             'Random # of Items Per Shop': Each shop will
             have 0 to 4 Special Deals.
-            
+
             The randomized items have no requirements
             except money, while the remaining items retain
             normal requirements. Tunics that aren't a
             Special Deal! will still require you to be an
             adult to purchase for example.
-            
+
             Bombchu Special Deals will unlock the Bombchu
             slot in your inventory and allow purchase of
             Bombchu Refills if "Bombchus are considered in
@@ -4065,16 +4065,16 @@ setting_infos = [
             },
         gui_tooltip    = '''\
             This changes the beginning of the child trade quest.
-            
+
             'Vanilla Locations': Weird Egg is found from Malon outside
             of Hyrule Castle and the child trade quest continues normally.
-            
+
             'Shuffle Weird Egg': The Weird Egg is shuffled into the item pool
             and Malon gives a randomized item. This will require finding the
             Weird Egg to talk to Zelda in Hyrule Castle, which in turn locks
             rewards from Impa, Saria, Malon, and Talon, as well as the Happy
             Mask sidequest.
-            
+
             'Skip Child Zelda': Start having already met Zelda and obtained
             Zelda's Letter along with the item from Impa.
             Supersedes "Skip Child Stealth" since the whole sequence is skipped.
@@ -4264,9 +4264,9 @@ setting_infos = [
         name           = 'shuffle_medigoron_carpet_salesman',
         gui_text       = 'Shuffle Medigoron & Carpet Salesman',
         gui_tooltip    = '''\
-            Enabling this adds a Giant's Knife and a pack of Bombchus 
-            to the item pool and changes both Medigoron and the 
-            Haunted Wasteland Carpet Salesman to sell a random item 
+            Enabling this adds a Giant's Knife and a pack of Bombchus
+            to the item pool and changes both Medigoron and the
+            Haunted Wasteland Carpet Salesman to sell a random item
             once at the price of 200 Rupees.
         ''',
         default        = False,
@@ -4279,7 +4279,7 @@ setting_infos = [
         name           = 'shuffle_frog_song_rupees',
         gui_text       = 'Shuffle Frog Song Rupees',
         gui_tooltip    = '''\
-            Enabling this adds 5 Purple Rupees to the item pool 
+            Enabling this adds 5 Purple Rupees to the item pool
             and shuffles the rewards from playing Zelda's Lullaby,
             Epona's Song, Saria's Song, Sun's Song, and Song of Time
             to the frogs in Zora's River.
@@ -4317,10 +4317,10 @@ setting_infos = [
         default        = [],
         gui_tooltip    = '''
             Locations in the left column may contain items
-            required to complete the game. 
-            
-            Locations in the right column will never have 
-            items that are required to complete the game, 
+            required to complete the game.
+
+            Locations in the right column will never have
+            items that are required to complete the game,
             and will only contain junk.
 
             Most dungeon locations have a MQ alternative.
@@ -4350,9 +4350,9 @@ setting_infos = [
         gui_tooltip='''
             Tricks moved to the right column are in-logic
             and MAY be required to complete the game.
-            
+
             Tricks in the left column are NEVER required.
-            
+
             Tricks are only relevant for Glitchless logic.
         '''
     ),
@@ -4367,9 +4367,9 @@ setting_infos = [
         },
         choices        = {},
     ),
-    
+
     # Starting Inventory
-    
+
     Setting_Info(
         name           = 'starting_equipment',
         type           = list,
@@ -4412,7 +4412,7 @@ setting_infos = [
             Begin the game with the selected inventory items.
             Selecting multiple progressive items will give
             the appropriate number of upgrades.
-            
+
             If playing with Open Zora's Fountain, the Ruto's Letter
             is converted to a regular Bottle.
         ''',
@@ -4448,9 +4448,9 @@ setting_infos = [
         disabled_default = 1,
         shared         = True,
     ),
-    
+
     # Other
-    
+
     Checkbutton(
         name           = 'no_escape_sequence',
         gui_text       = 'Skip Tower Escape Sequence',
@@ -4485,14 +4485,14 @@ setting_infos = [
             Awards all eligible prizes after the first attempt for
             Dampe Race and Gerudo Horseback Archery.
 
-            Dampe will start with the second race so you can finish 
-            the race in under a minute and get both rewards at once. 
-            You still get the first reward from the chest even if you 
+            Dampe will start with the second race so you can finish
+            the race in under a minute and get both rewards at once.
+            You still get the first reward from the chest even if you
             don't complete the race in under a minute.
 
-            Both rewards at the Gerudo Horseback Archery will be 
-            available from the first time you play the minigame. 
-            This means you can get both rewards at once if you get 
+            Both rewards at the Gerudo Horseback Archery will be
+            available from the first time you play the minigame.
+            This means you can get both rewards at once if you get
             1500 points in a single attempt.
         ''',
         shared         = True,
@@ -4678,21 +4678,21 @@ setting_infos = [
             'classic': 'Classic'
         },
         gui_tooltip    = '''\
-            
-			
+
+
             If "Texture" is enabled, chest texture will reflect its contents
             regardless of size.  Fancy chests will contain keys,
             Gilded chests will contain major items, shuffled
             tokens will be in Webbed chests, and Wooden chests
             will contain the rest.
-            This allows skipping chests if they are wooden. 
-            However, skipping wooden chests will mean having 
+            This allows skipping chests if they are wooden.
+            However, skipping wooden chests will mean having
             low health, ammo, and rupees, so doing so is a risk.
-            
+
             "Size and Texture" will change chests with major
             items and boss keys into big chests, and everything
             else into small chests.
-            
+
             "Classic" is the behavior of CSMC in previous versions of the randomizer.
             This will change chests with major items and boss keys into big chests.
             Boss keys will remain in their fancy chest, while small key will be in a
@@ -4710,7 +4710,7 @@ setting_infos = [
             Chests with Hylian Shield, Deku Shield
             or Bombchus (regardless of the Bombchus
             In Logic setting), will appear in
-            Big and/or Gold chests, depending on the 
+            Big and/or Gold chests, depending on the
             Chest Appearance Matches Contents setting.
         ''',
         shared         = True,
@@ -4728,7 +4728,7 @@ setting_infos = [
             required for normally visible chests.
         ''',
         shared         = True,
-    ),    
+    ),
     Combobox(
         name           = 'correct_potcrate_appearances',
         gui_text       = 'Pot, Crate, & Beehive Appearance Matches Contents',
@@ -4822,7 +4822,7 @@ setting_infos = [
             order to have hints specific to items needed
             to beat the board. Goals which are completed simply
             by finding a specific item are not hinted
-            (e.g. "Boomerang"). 
+            (e.g. "Boomerang").
             In addition, overworld tokensanity will always
             hint the location of Sun's Song, and shopsanity
             will always hint the location of a wallet.
@@ -4893,8 +4893,8 @@ setting_infos = [
             it leads. (If warp song destinations
             are vanilla, this is always enabled.)
 
-            Talking to a cursed House of Skulltula 
-            resident will tell you the reward they will 
+            Talking to a cursed House of Skulltula
+            resident will tell you the reward they will
             give you for removing their curse.
         ''',
         shared         = True,
@@ -4962,14 +4962,14 @@ setting_infos = [
         name           = 'no_collectible_hearts',
         gui_text       = 'Hero Mode',
         gui_tooltip    = '''\
-            No recovery hearts will drop from 
+            No recovery hearts will drop from
             enemies or objects.
             (You might still find some freestanding
             or in chests depending on other settings.)
         ''',
         default        = False,
         shared         = True,
-    ),    
+    ),
     Combobox(
         name           = 'starting_tod',
         gui_text       = 'Starting Time of Day',
@@ -5037,20 +5037,20 @@ setting_infos = [
             'Ludicrous': Every item in the game is a major
             item. Incompatible with one major item per dungeon.
 
-            'Plentiful': One additional copy of each major 
+            'Plentiful': One additional copy of each major
             item is added.
 
             'Balanced': Original item pool.
 
-            'Scarce': An extra copy of major item upgrades 
-            that are not required to open location checks 
-            is removed (e.g. Bow upgrade, Magic upgrade). 
+            'Scarce': An extra copy of major item upgrades
+            that are not required to open location checks
+            is removed (e.g. Bow upgrade, Magic upgrade).
             Heart Containers are removed as well. Number
             of Bombchu items is reduced.
 
-            'Minimal': All major item upgrades not used to 
-            open location checks are removed. All health 
-            upgrades are removed. Only one Bombchu item is 
+            'Minimal': All major item upgrades not used to
+            open location checks are removed. All health
+            upgrades are removed. Only one Bombchu item is
             available.
         ''',
         shared         = True,
@@ -5099,7 +5099,7 @@ setting_infos = [
         gui_tooltip    = '''\
             Changes the categories of items Ice Traps may
             appear as, both when freestanding and when in
-            chests with Chest Size Matches Contents enabled. 
+            chests with Chest Size Matches Contents enabled.
 
             'Major Items Only': Ice Traps appear as Major
             Items (and in large chests if CSMC enabled).
@@ -5184,7 +5184,7 @@ setting_infos = [
             colors matching the colors chosen for cosmetic settings.
             Heart and magic drop icons also have matching colors.
 
-            Tunic colors are excluded from this to prevent not being 
+            Tunic colors are excluded from this to prevent not being
             able to discern freestanding Tunics from each other.
         ''',
         default        = True,
@@ -5210,14 +5210,14 @@ setting_infos = [
         cosmetic       = True,
         choices        = get_model_choices(0),
         gui_tooltip    = '''\
-            Link's model will be replaced by the model selected. 
-            To add more model options, save the .zobj file to 
+            Link's model will be replaced by the model selected.
+            To add more model options, save the .zobj file to
             data/Models/Adult.
-            Cosmetics options might not be applied when a 
+            Cosmetics options might not be applied when a
             custom model is in use.
-            Caution: Any changes to Link's skeleton have the potential 
-            to affect gameplay in significant ways and so are disallowed 
-            for all recorded Racetime races. A note will appear at the top 
+            Caution: Any changes to Link's skeleton have the potential
+            to affect gameplay in significant ways and so are disallowed
+            for all recorded Racetime races. A note will appear at the top
             of the pause screen if this is the case.
         ''',
         default        = 'Default',
@@ -5247,14 +5247,14 @@ setting_infos = [
         cosmetic       = True,
         choices        = get_model_choices(1),
         gui_tooltip    = '''\
-            Link's model will be replaced by the model selected. 
-            To add more model options, save the .zobj file to 
+            Link's model will be replaced by the model selected.
+            To add more model options, save the .zobj file to
             data/Models/Child.
-            Cosmetics options might not be applied when a 
-            custom model is in use.           
-            Caution: Any changes to Link's skeleton have the potential 
-            to affect gameplay in significant ways and so are disallowed 
-            for all recorded Racetime races. A note will appear at the top 
+            Cosmetics options might not be applied when a
+            custom model is in use.
+            Caution: Any changes to Link's skeleton have the potential
+            to affect gameplay in significant ways and so are disallowed
+            for all recorded Racetime races. A note will appear at the top
             of the pause screen if this is the case.
         ''',
         default        = 'Default',
@@ -5287,7 +5287,7 @@ setting_infos = [
             "hide_when_disabled": True
         },
         choices        = {},
-    ),    
+    ),
     Setting_Info(
         name           = 'kokiri_color',
         type           = str,
@@ -5948,9 +5948,9 @@ setting_infos = [
         cosmetic       = True,
         gui_tooltip    = '''\
             Disable standard battle music.
-	        This prevents background music from being
-	        interrupted by the battle theme when being
-	        near enemies.
+            This prevents background music from being
+            interrupted by the battle theme when being
+            near enemies.
         ''',
         default        = False,
     ),
@@ -5969,7 +5969,7 @@ setting_infos = [
         gui_tooltip    = '''\
             'No Music': No background music is played.
 
-            'Random': Area background music is randomized. 
+            'Random': Area background music is randomized.
             Additional music can be loaded from data/Music/
         ''',
         gui_params  = {

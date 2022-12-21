@@ -187,7 +187,7 @@ void collectible_draw_other(z64_actor_t *actor, z64_game_t *game) {
         return;
     }
 
-    // Probably don't need this check. We convert all dropped overridden collectibles to rupees. 
+    // Probably don't need this check. We convert all dropped overridden collectibles to rupees.
     // Pretty sure there are no freestanding collectibles of these types. But let's just do it anyway
     if(this->override.key.all)
     {

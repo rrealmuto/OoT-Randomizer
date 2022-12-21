@@ -1370,7 +1370,7 @@ hintTable = {
     # - They aren't inappropriate.
     # - They aren't absurdly long copy pastas.
     # - They aren't quotes or references that are simply not funny when out-of-context.
-    # To elaborate on this last point: junk hints need to be able to be understood 
+    # To elaborate on this last point: junk hints need to be able to be understood
     # by everyone, and not just those who get the obscure references.
     # Zelda references are considered fair game.
 
@@ -1411,7 +1411,7 @@ hintTable = {
     '1047':                                                     ("They say that the final item you're looking for can be found somewhere in Hyrule.", None, 'junk'),
     '1048':                                                     ("${12 68 7a}Mweep${07 04 51}", None, 'junk'), # Mweep
     '1049':                                                     ("They say that Barinade fears Deku Nuts.", None, 'junk'),
-    '1050':                                                     ("They say that Flare Dancers do not fear Goron-crafted blades.", None, 'junk'), 
+    '1050':                                                     ("They say that Flare Dancers do not fear Goron-crafted blades.", None, 'junk'),
     '1051':                                                     ("They say that Morpha is easily trapped in a corner.", None, 'junk'),
     '1052':                                                     ("They say that Bongo Bongo really hates the cold.", None, 'junk'),
     '1053':                                                     ("They say that crouch stabs mimic the effects of your last attack.", None, 'junk'),
@@ -1803,7 +1803,7 @@ def hintExclusions(world, clear_cache=False):
     location_hints = []
     for name in hintTable:
         hint = getHint(name, world.settings.clearer_hints)
-        if any(item in hint.type for item in 
+        if any(item in hint.type for item in
                 ['always',
                  'dual_always',
                  'sometimes',

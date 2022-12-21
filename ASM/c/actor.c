@@ -35,7 +35,7 @@ void Actor_SetWorldToHome_End(z64_actor_t *actor) {
             actor->rot_world.y = 0;
         default:
             break;
-    } 
+    }
 }
 
 // Called from Actor_UpdateAll when spawning the actors in the scene's/room's actor list.
@@ -45,7 +45,7 @@ void Actor_SetWorldToHome_End(z64_actor_t *actor) {
 // Now that we resized pots/crates/beehives we could probably just store this info in new space in the actor. But this works for now.
 // Prior to being called, CURR_ACTOR_SPAWN_INDEX is set to the current position in the actor spawn list.
 void Actor_After_UpdateAll_Hack(z64_actor_t *actor, z64_game_t* game) {
-    
+
     Actor_StoreFlagInRotation(actor, game, CURR_ACTOR_SPAWN_INDEX);
     Actor_StoreChestType(actor, game);
 
@@ -62,7 +62,7 @@ void Actor_StoreFlagInRotation(z64_actor_t* actor, z64_game_t* game, uint16_t ac
         case OBJ_TSUBO:
         case EN_TUBO_TRAP:
         case OBJ_KIBAKO:
-        case OBJ_COMB: 
+        case OBJ_COMB:
         {
             actor->rot_init.z = flag;
             break;
@@ -90,7 +90,7 @@ void Actor_StoreChestType(z64_actor_t* actor, z64_game_t* game) {
 
     if(actor->actor_id == OBJ_TSUBO) //Pots
     {
-        override = get_pot_override(actor, game);    
+        override = get_pot_override(actor, game);
         pChestType = &(((ObjTsubo*)actor)->chest_type);
     }
     else if(actor->actor_id == EN_TUBO_TRAP) // Flying Pots
@@ -132,6 +132,6 @@ void Actor_StoreChestType(z64_actor_t* actor, z64_game_t* game) {
         {
             *pChestType = 0;
         }
-        
+
     }
 }

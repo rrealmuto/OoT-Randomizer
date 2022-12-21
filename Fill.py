@@ -149,9 +149,9 @@ def distribute_items_restrictive(window, worlds, fill_locations=None):
             fill_locations.remove(location)
             location.world.hint_type_overrides['sometimes'].append(location.name)
             location.world.hint_type_overrides['random'].append(location.name)
-        
+
         if worlds[0].settings.shuffle_mapcompass in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
-            # Non-empty dungeon items are present in restitempool but yet we 
+            # Non-empty dungeon items are present in restitempool but yet we
             # don't want to place them in an empty dungeon
             restdungeon, restother = [], []
             for item in restitempool:
@@ -266,7 +266,7 @@ def fill_dungeon_unique_item(window, worlds, search, fill_locations, itempool):
     # since the rest are already placed.
     major_items = [item for item in itempool if item.majoritem]
     minor_items = [item for item in itempool if not item.majoritem]
-  
+
     if worlds[0].settings.empty_dungeons_mode != 'none':
         dungeons = [dungeon for world in worlds for dungeon in world.dungeons if not world.empty_dungeons[dungeon.name].empty]
     else:
