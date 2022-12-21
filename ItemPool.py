@@ -667,6 +667,11 @@ def get_pool_core(world):
                 shuffle_item = False
                 location.disabled = DisableType.DISABLED
 
+        # Dungeon Rewards
+        elif location.type == 'Boss':
+            shuffle_item = world.settings.shuffle_dungeon_rewards != 'vanilla'
+            #TODO support for more shuffle_dungeon_rewards options
+
         # Dungeon Items
         elif location.dungeon is not None:
             dungeon = location.dungeon

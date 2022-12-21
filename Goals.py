@@ -348,7 +348,7 @@ def search_goals(categories, reachable_goals, search, priority_locations, all_lo
 def maybe_set_misc_item_hints(location):
     if not location.item:
         return
-    if location.item.world.dungeon_rewards_hinted and location.item.name in location.item.world.rewardlist:
+    if location.item.world.dungeon_rewards_hinted and location.item.type == 'DungeonReward':
         if location.item.name not in location.item.world.hinted_dungeon_reward_locations:
             location.item.world.hinted_dungeon_reward_locations[location.item.name] = location
             logging.getLogger('').debug(f'{location.item.name} [{location.item.world.id}] set to [{location.name}]')

@@ -21,7 +21,9 @@ class FillError(ShuffleError):
 
 
 # Places all items into the world
-def distribute_items_restrictive(window, worlds, fill_locations=None):
+def distribute_items_restrictive(window, worlds, savewarps_to_connect, *, fill_locations=None):
+    from EntranceShuffle import set_entrances
+
     if worlds[0].settings.shuffle_song_items == 'song':
         song_location_names = location_groups['Song']
     elif worlds[0].settings.shuffle_song_items == 'dungeon':
@@ -47,6 +49,7 @@ def distribute_items_restrictive(window, worlds, fill_locations=None):
                 pass
 
     shop_locations = [location for world in worlds for location in world.get_unfilled_locations() if location.type == 'Shop' and location.price == None]
+    boss_locations = [location for world in worlds for location in world.get_unfilled_locations() if location.type == 'Boss']
 
     # If not passed in, then get a shuffled list of locations to fill in
     if not fill_locations:
@@ -54,16 +57,18 @@ def distribute_items_restrictive(window, worlds, fill_locations=None):
             location for world in worlds for location in world.get_unfilled_locations()
             if location not in song_locations
                 and location not in shop_locations
+                and location not in boss_locations
                 and not location.type.startswith('Hint')]
     world_states = [world.state for world in worlds]
 
-    window.locationcount = len(fill_locations) + len(song_locations) + len(shop_locations)
+    window.locationcount = len(fill_locations) + len(song_locations) + len(shop_locations) + len(boss_locations)
     window.fillcount = 0
 
     # Generate the itempools
-    shopitempool = [item for world in worlds for item in world.itempool if item.type == 'Shop']
-    songitempool = [item for world in worlds for item in world.itempool if item.type == 'Song']
-    itempool =     [item for world in worlds for item in world.itempool if item.type != 'Shop' and item.type != 'Song']
+    rewarditempool = [item for world in worlds for item in world.itempool if item.type == 'DungeonReward']
+    shopitempool   = [item for world in worlds for item in world.itempool if item.type == 'Shop']
+    songitempool   = [item for world in worlds for item in world.itempool if item.type == 'Song']
+    itempool       = [item for world in worlds for item in world.itempool if item.type not in ('DungeonReward', 'Shop', 'Song')]
 
     if worlds[0].settings.shuffle_song_items == 'any':
         itempool.extend(songitempool)
@@ -78,8 +83,8 @@ def distribute_items_restrictive(window, worlds, fill_locations=None):
     restitempool = [item for item in itempool if not item.advancement and not item.priority]
 
     cloakable_locations = shop_locations + song_locations + fill_locations
-    all_models = shopitempool + dungeon_items + songitempool + itempool
-    worlds[0].settings.distribution.fill(window, worlds, [shop_locations, song_locations, fill_locations], [shopitempool, dungeon_items, songitempool, progitempool, prioitempool, restitempool])
+    all_models = rewarditempool + shopitempool + dungeon_items + songitempool + itempool
+    worlds[0].settings.distribution.fill(window, worlds, [boss_locations, shop_locations, song_locations, fill_locations], [rewarditempool, shopitempool, dungeon_items, songitempool, progitempool, prioitempool, restitempool])
     itempool = progitempool + prioitempool + restitempool
 
     # set ice traps to have the appearance of other random items in the item pool
@@ -117,11 +122,23 @@ def distribute_items_restrictive(window, worlds, fill_locations=None):
     # Start a search cache here.
     search = Search([world.state for world in worlds])
 
-    # We place all the shop items first. Like songs, they have a more limited
-    # set of locations that they can be placed in, so placing them first will
-    # reduce the odds of creating unbeatable seeds. This also avoids needing
-    # to create item rules for every location for whether they are a shop item
-    # or not. This shouldn't have much affect on item bias.
+    # We first place items whose sets of candidate locations are restricted,
+    # allowing us to only retry the respective item pool if one fails,
+    # and reducing the odds of creating unbeatable seeds.
+    # This also avoids needing to create item rules for every location for whether
+    # they are such an item or not. This shouldn't have much affect on item bias.
+
+    # dungeon rewards (medallions and stones) may be restricted to boss locations
+    if worlds[0].settings.shuffle_dungeon_rewards in ('vanilla', 'reward'):
+        logger.info('Placing dungeon rewards.')
+        fill_ownworld_restrictive(window, worlds, search, boss_locations, rewarditempool, itempool + shopitempool + songitempool + dungeon_items, "boss")
+        search.collect_locations()
+
+    # Though not strictly related to item placement, entrances are randomized here, after dungeon rewards are placed, to reduce failure rates.
+    logger.info('Setting Entrances.')
+    set_entrances(worlds, savewarps_to_connect)
+
+    # non-special-deal shop items are restricted to shop locations
     if shop_locations:
         logger.info('Placing shop items.')
         fill_ownworld_restrictive(window, worlds, search, shop_locations, shopitempool, itempool + songitempool + dungeon_items, "shop")
@@ -131,10 +148,7 @@ def distribute_items_restrictive(window, worlds, fill_locations=None):
 
     search.collect_locations()
 
-    # If there are dungeon items that are restricted to their original dungeon,
-    # we must place them first to make sure that there is always a location to
-    # place them. This could probably be replaced for more intelligent item
-    # placement, but will leave as is for now
+    # dungeon items (keys, maps, etc.) may be restricted to their original dungeon
     if dungeon_items:
         logger.info('Placing dungeon items.')
         fill_dungeons_restrictive(window, worlds, search, fill_locations, dungeon_items, itempool + songitempool)
@@ -167,12 +181,7 @@ def distribute_items_restrictive(window, worlds, fill_locations=None):
             fast_fill(window, empty_locations, restitempool)
 
 
-    # places the songs into the world
-    # Currently places songs only at song locations. if there's an option
-    # to allow at other locations then they should be in the main pool.
-    # Placing songs on their own since they have a relatively high chance
-    # of failing compared to other item type. So this way we only have retry
-    # the song locations only.
+    # song items may be restricted to song locations or to “dungeon rewards” like boss hearts etc.
     if worlds[0].settings.shuffle_song_items != 'any':
         logger.info('Placing song items.')
         fill_ownworld_restrictive(window, worlds, search, song_locations, songitempool, progitempool, "song")

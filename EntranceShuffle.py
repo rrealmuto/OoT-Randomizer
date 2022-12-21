@@ -421,11 +421,8 @@ class EntranceShuffleError(ShuffleError):
 
 # Set entrances of all worlds, first initializing them to their default regions, then potentially shuffling part of them
 def set_entrances(worlds, savewarps_to_connect):
-    for world in worlds:
-        world.initialize_entrances()
-
     for savewarp, replaces in savewarps_to_connect:
-        savewarp.replaces = world.get_entrance(replaces)
+        savewarp.replaces = savewarp.world.get_entrance(replaces)
         savewarp.connect(savewarp.replaces.connected_region)
 
     for world in worlds:
