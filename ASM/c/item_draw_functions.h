@@ -15,6 +15,7 @@ void draw_gi_various_opa0_xlu1(z64_game_t *game, uint32_t draw_id);
 void draw_gi_coins_and_cuccos(z64_game_t *game, uint32_t draw_id);
 void draw_gi_magic_arrows(z64_game_t *game, uint32_t draw_id);
 void draw_gi_various_opa10_xlu32(z64_game_t *game, uint32_t draw_id);
+void draw_rutos_letter(z64_game_t *game, uint32_t draw_id);
 void draw_gi_bullet_bags(z64_game_t *game, uint32_t draw_id);
 void draw_gi_small_rupees(z64_game_t *game, uint32_t draw_id);
 void draw_gi_goron_swords(z64_game_t *game, uint32_t draw_id);

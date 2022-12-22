@@ -50,7 +50,7 @@ extern uint16_t CURR_ACTOR_SPAWN_INDEX;
 // Total amount of memory required for each flag table (in bytes).
 uint16_t num_override_flags;
 
-// Pointer to a variable length array that will contain the collectible flags for each scene. 
+// Pointer to a variable length array that will contain the collectible flags for each scene.
 uint8_t *collectible_override_flags;
 
 // Initialize the override flag tables on the heap.
@@ -782,7 +782,7 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
 
         PLAYER_NAME_ID = player;
 
-        // If it's a collectible item don't do the fanfare music/message box. 
+        // If it's a collectible item don't do the fanfare music/message box.
         if (item_row->collectible >= 0) { // Item is one of our base collectibles
             collectible_mutex = NULL;
             pItem->actor.dropFlag = 1; // Store this so the draw function knows to keep drawing the override.

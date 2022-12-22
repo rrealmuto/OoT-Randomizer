@@ -950,7 +950,7 @@ typedef struct
   z64_mem_obj_t objects[19];
 } z64_obj_ctxt_t;
 
-typedef struct 
+typedef struct
 {
   uint8_t       code;
   uint8_t       data1;

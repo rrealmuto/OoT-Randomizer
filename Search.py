@@ -215,7 +215,7 @@ class Search(object):
     # state to determine beatability; otherwise, only checks that the search
     # has already acquired all the Triforces.
     #
-    # The above comment was specifically for collecting the triforce. Other win 
+    # The above comment was specifically for collecting the triforce. Other win
     # conditions are possible, such as in Triforce Hunt, where only the total
     # amount of an item across all worlds matter, not specifcally who has it
     #

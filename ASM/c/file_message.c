@@ -25,11 +25,11 @@ static uint8_t get_alpha(const z64_menudata_t* menu_data) {
     if (0x20 <= alt_tr && alt_tr <= 0x27) {
         return 0;
     }
-    
+
     if (menu_data->file_message != -1) {
         return 0;
     }
-    
+
     unsigned int alpha = menu_data->alpha_levels.copy_button * 0x00FF / 0x00C8;
     return (uint8_t)(alpha <= 0xFF ? alpha : 0xFF);
 }

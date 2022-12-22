@@ -502,7 +502,7 @@ static void draw_digits(z64_disp_buf_t* db, const uint8_t* digits, const counter
 // Draw counter tiles
 static void draw_counts(z64_disp_buf_t* db, const counter_tile_info_t* info, uint8_t alpha) {
     const counter_tile_data_t* const data = counter_positions;
-    
+
     uint8_t bright_alpha = color_product(WHITE.a, alpha);
 
     // Rupee

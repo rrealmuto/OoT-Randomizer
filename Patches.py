@@ -35,109 +35,89 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             rom.write_int32(address, value)
     rom.scan_dmadata_update()
 
-    # Write Randomizer title screen logo
-    with open(data_path('title.bin'), 'rb') as stream:
-        writeAddress = 0x01795300
-        titleBytesComp = stream.read()
-        titleBytesDiff = zlib.decompress(titleBytesComp)
+    # Binary patches of certain assets.
+    bin_patches = [
+        (data_path('title.bin'),  0x01795300),  # Randomizer title screen logo
+        (data_path('keaton.bin'), 0x8A7C00),    # Fixes the typo of "Keatan Mask" in the item select screen
+    ]
+    for (bin_path, write_address) in bin_patches:
+        with open(bin_path, 'rb') as stream:
+            bytes_compressed = stream.read()
+            bytes_diff = zlib.decompress(bytes_compressed)
+            original_bytes = rom.original.buffer[write_address: write_address + len(bytes_diff)]
+            new_bytes = bytearray([a ^ b for a, b in zip(bytes_diff, original_bytes)])
+            rom.write_bytes(write_address, new_bytes)
 
-        originalBytes = rom.original.buffer[writeAddress: writeAddress+ len(titleBytesDiff)]
-        titleBytes = bytearray([a ^ b for a, b in zip(titleBytesDiff, originalBytes)])
-        rom.write_bytes(writeAddress, titleBytes)
-
-    # Fixes the typo of keatan mask in the item select screen
-    with open(data_path('keaton.bin'), 'rb') as stream:
-        writeAddress = 0x8A7C00
-        keatonBytesComp = stream.read()
-        keatonBytesDiff = zlib.decompress(keatonBytesComp)
-
-        originalBytes = rom.original.buffer[writeAddress: writeAddress+ len(keatonBytesDiff)]
-        keatonBytes = bytearray([a ^ b for a, b in zip(keatonBytesDiff, originalBytes)])
-        rom.write_bytes(writeAddress, keatonBytes)
-
-    # Load Triforce model into a file
-    triforce_obj_file = File({ 'Name': 'object_gi_triforce' })
-    triforce_obj_file.copy(rom)
-    with open(data_path('Triforce.zobj'), 'rb') as stream:
-        obj_data = stream.read()
-        rom.write_bytes(triforce_obj_file.start, obj_data)
-        triforce_obj_file.end = triforce_obj_file.start + len(obj_data)
-    update_dmadata(rom, triforce_obj_file)
-    # Add it to the extended object table
-    add_to_extended_object_table(rom, 0x193, triforce_obj_file)
-
-    # Build a Double Defense model from the Heart Container model
-    dd_obj_file = File({
-        'Name': 'object_gi_hearts',
-        'Start': '014D9000',
-        'End': '014DA590',
-    })
-    dd_obj_file.copy(rom)
-    # Update colors for the Double Defense variant
-    rom.write_bytes(dd_obj_file.start + 0x1294, [0xFF, 0xCF, 0x0F]) # Exterior Primary Color
-    rom.write_bytes(dd_obj_file.start + 0x12B4, [0xFF, 0x46, 0x32]) # Exterior Env Color
-    rom.write_int32s(dd_obj_file.start + 0x12A8, [0xFC173C60, 0x150C937F]) # Exterior Combine Mode
-    rom.write_bytes(dd_obj_file.start + 0x1474, [0xFF, 0xFF, 0xFF]) # Interior Primary Color
-    rom.write_bytes(dd_obj_file.start + 0x1494, [0xFF, 0xFF, 0xFF]) # Interior Env Color
-    update_dmadata(rom, dd_obj_file)
-    # Add it to the extended object table
-    add_to_extended_object_table(rom, 0x194, dd_obj_file)
-
-    # Load Key Ring model into a file
-    keyring_obj_file = File({ 'Name': 'object_gi_keyring' })
-    keyring_obj_file.copy(rom)
-    with open(data_path('KeyRing.zobj'), 'rb') as stream:
-        obj_data = stream.read()
-        rom.write_bytes(keyring_obj_file.start, obj_data)
-        keyring_obj_file.end = keyring_obj_file.start + len(obj_data)
-    update_dmadata(rom, keyring_obj_file)
-    # Add it to the extended object table
-    add_to_extended_object_table(rom, 0x195, keyring_obj_file)
-
-    # Build a Silver Rupee model from the Huge Rupee model
-    silver_rupee_obj_file = File({
-        'Name': 'object_gi_rupy',
-        'Start': '01914000',
-        'End': '01914800',
-    })
-    silver_rupee_obj_file.copy(rom)
-    # Update colors for the Silver Rupee variant
-    rom.write_bytes(silver_rupee_obj_file.start + 0x052C, [0xAA, 0xAA, 0xAA]) # Inner Primary Color?
-    rom.write_bytes(silver_rupee_obj_file.start + 0x0534, [0x5A, 0x5A, 0x5A]) # Inner Env Color?
-    rom.write_bytes(silver_rupee_obj_file.start + 0x05CC, [0xFF, 0xFF, 0xFF]) # Outer Primary Color?
-    rom.write_bytes(silver_rupee_obj_file.start + 0x05D4, [0xFF, 0xFF, 0xFF]) # Outer Env Color?
-    update_dmadata(rom, silver_rupee_obj_file)
-    # Add it to the extended object table
-    add_to_extended_object_table(rom, 0x196, silver_rupee_obj_file)
-
-    # Build Easter Egg models in several colors from the Weird Egg model
-    for egg_idx, (primary_color, env_color) in enumerate((
-        ((0xDB, 0xA9, 0xD8), (0xD1, 0x7B, 0xCC)), # pink
-        ((0xDB, 0xA9, 0x77), (0xD1, 0x7B, 0x25)), # orange
-        ((0x77, 0xDB, 0x77), (0x25, 0xD1, 0x25)), # green
-        ((0x77, 0x77, 0xDB), (0x25, 0x25, 0xD1)), # blue
-    )):
-        easter_egg_obj_file = File({
-            'Name': 'object_gi_egg',
-            'Start': '015B6000',
-            'End': '015B7320',
-        })
-        easter_egg_obj_file.copy(rom)
-        primColor = [0xFA, 0x00, 0x00, 0x00, *primary_color, 0xFF]
-        rom.write_bytes(easter_egg_obj_file.start + 0xFF0, primColor)
-        envColor = [0xFB, 0x00, 0x00, 0x00, *env_color, 0xFF]
-        rom.write_bytes(easter_egg_obj_file.start + 0xFF8, envColor)
-
-        update_dmadata(rom, easter_egg_obj_file)
+    # Load models into a file
+    zobj_imports = (
+        ('object_gi_triforce', data_path('Triforce.zobj'), 0x193),  # Triforce Piece
+        ('object_gi_keyring',  data_path('KeyRing.zobj'),  0x195),  # Key Rings
+        ('object_gi_warpsong', data_path('Note.zobj'),     0x196),  # Inverted Music Note
+    )
+    for name, zobj_path, object_id in zobj_imports:
+        obj_file = File({ 'Name': name })
+        obj_file.copy(rom)
+        with open(zobj_path, 'rb') as stream:
+            obj_data = stream.read()
+            rom.write_bytes(obj_file.start, obj_data)
+            obj_file.end = obj_file.start + len(obj_data)
+        update_dmadata(rom, obj_file)
         # Add it to the extended object table
-        add_to_extended_object_table(rom, 0x197 + egg_idx, easter_egg_obj_file)
+        add_to_extended_object_table(rom, object_id, obj_file)
+
+    # Make new models by editing the colors of existing ones
+    zobj_recolors = (
+        ('object_gi_hearts', '014D9000', '014DA590', 0x194, ( # Heart Container -> Double Defense
+            (0x1294, [0xFF, 0xCF, 0x0F]), # Exterior Primary Color
+            (0x12B4, [0xFF, 0x46, 0x32]), # Exterior Env Color
+            (0x1474, [0xFF, 0xFF, 0xFF]), # Interior Primary Color
+            (0x1494, [0xFF, 0xFF, 0xFF]), # Interior Env Color
+        ), (
+            (0x12A8, [0xFC173C60, 0x150C937F]), # Exterior Combine Mode
+        )),
+        ('object_gi_rupy', '01914000', '01914800', 0x197, ( # Huge Rupee -> Silver Rupee
+            (0x052C, [0xAA, 0xAA, 0xAA]), # Inner Primary Color?
+            (0x0534, [0x5A, 0x5A, 0x5A]), # Inner Env Color?
+            (0x05CC, [0xFF, 0xFF, 0xFF]), # Outer Primary Color?
+            (0x05D4, [0xFF, 0xFF, 0xFF]), # Outer Env Color?
+        ), ()),
+        ('object_gi_egg', '015B6000', '015B7320', 0x198, ( # Weird Egg -> Pink Easter Egg
+            (0x0FF4, [0xDB, 0xA9, 0xD8]), # Primary Color
+            (0x0FFC, [0xD1, 0x7B, 0xCC]), # Env Color
+        ), ()),
+        ('object_gi_egg', '015B6000', '015B7320', 0x199, ( # Weird Egg -> Orange Easter Egg
+            (0x0FF4, [0xDB, 0xA9, 0x77]), # Primary Color
+            (0x0FFC, [0xD1, 0x7B, 0x25]), # Env Color
+        ), ()),
+        ('object_gi_egg', '015B6000', '015B7320', 0x19A, ( # Weird Egg -> Green Easter Egg
+            (0x0FF4, [0x77, 0xDB, 0x77]), # Primary Color
+            (0x0FFC, [0x25, 0xD1, 0x25]), # Env Color
+        ), ()),
+        ('object_gi_egg', '015B6000', '015B7320', 0x19B, ( # Weird Egg -> Blue Easter Egg
+            (0x0FF4, [0x77, 0x77, 0xDB]), # Primary Color
+            (0x0FFC, [0x25, 0x25, 0xD1]), # Env Color
+        ), ()),
+    )
+    for name, start, end, object_id, colors, combine_modes in zobj_recolors:
+        obj_file = File({
+            'Name': name,
+            'Start': start,
+            'End': end,
+        })
+        obj_file.copy(rom)
+        # Update colors
+        for offset, color in colors:
+            rom.write_bytes(obj_file.start + offset, color)
+        for offset, combine_mode in combine_modes:
+            rom.write_int32s(obj_file.start + offset, combine_mode)
+        update_dmadata(rom, obj_file)
+        # Add it to the extended object table
+        add_to_extended_object_table(rom, object_id, obj_file)
 
     # Create the textures for pots/crates. Note: No copyrighted material can be distributed w/ the randomizer. Because of this, patch files are used to create the new textures from the original texture in ROM.
     # Apply patches for custom textures for pots and crates and add as new files in rom
     # Crates are ci4 textures in the normal ROM but for pot/crate textures match contents were upgraded to ci8 to support more colors
     # Pot textures are rgba16
-    # Get the texture table from rom (see textures.c)
-    texture_table_start = rom.sym('texture_table') # Get the address of the texture table
 
     # texture list. See textures.h for texture IDs
     #   ID, texture_name,                   Rom Address    CI4 Pallet Addr  Size    Patching function           Patch file (None for default)
@@ -216,8 +196,8 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     # Fix Ice Cavern Alcove Camera
     if not world.dungeon_mq['Ice Cavern']:
-        rom.write_byte(0x2BECA25,0x01);
-        rom.write_byte(0x2BECA2D,0x01);
+        rom.write_byte(0x2BECA25, 0x01)
+        rom.write_byte(0x2BECA2D, 0x01)
 
     # Fix GS rewards to be static
     rom.write_int32(0xEA3934, 0)
@@ -2252,7 +2232,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     if world.settings.tokensanity == 'off':
         # Change the GS token pickup message to fade out after 2 seconds (40 frames)
         update_message_by_id(messages, 0x00B4, bytearray(get_message_by_id(messages, 0x00B4).raw_text, encoding='utf-8')[:-1] + b'\x0E\x28')
-        # Prevent the GS token actor from freezing the player and waiting for the textbox to be closed 
+        # Prevent the GS token actor from freezing the player and waiting for the textbox to be closed
         rom.write_int32s(0xEC68C0, [0x00000000, 0x00000000])
         rom.write_int32s(0xEC69B0, [0x00000000, 0x00000000])
         rom.write_int32(0xEC6A10, 0x34020002) # li v0, 2

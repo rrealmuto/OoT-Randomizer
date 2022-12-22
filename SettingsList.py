@@ -155,7 +155,7 @@ logic_tricks = {
                     '''},
     'Fewer Tunic Requirements': {
         'name'    : 'logic_fewer_tunic_requirements',
-        'tags'    : ("General", "Fire Temple", "Fire Temple MQ", "Water Temple", "Water Temple MQ", "Gerudo Training Ground", "Gerudo Training Ground MQ", 
+        'tags'    : ("General", "Fire Temple", "Fire Temple MQ", "Water Temple", "Water Temple MQ", "Gerudo Training Ground", "Gerudo Training Ground MQ",
                     "Zora's Fountain", "Death Mountain Crater", "Master Quest", "Overworld", "Vanilla Dungeons", "Child", "Adult",),
         'tooltip' : '''\
                     Allows the following possible without Tunics:
@@ -6369,9 +6369,9 @@ setting_infos = [
         cosmetic       = True,
         gui_tooltip    = '''\
             Disable standard battle music.
-	        This prevents background music from being
-	        interrupted by the battle theme when being
-	        near enemies.
+            This prevents background music from being
+            interrupted by the battle theme when being
+            near enemies.
         ''',
         default        = False,
     ),

@@ -100,7 +100,7 @@ APPLY_BONK_DAMAGE:
     sra     t3, t3, 1        ; halve damage from bonk
     sll     t3, t3, 0x10
     sra     t3, t3, 0x10
-    
+
 @@normal_defense:
     sub     t4, t4, t3
     bltz    t4, @@bonks_kill

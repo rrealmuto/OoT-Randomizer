@@ -531,7 +531,7 @@ def LoadModel(rom, model, age):
         i = 0
         for byte in "HEYLOOKHERE".encode():
             zobj[LUT_START+i] = byte
-            i += 1 
+            i += 1
         # Set constants in the LUT
         file = open(os.path.join(path, 'Constants/preconstants.zobj'), "rb")
         constants = file.read()

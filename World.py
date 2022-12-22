@@ -188,10 +188,10 @@ class World(object):
                 if not all(sub_key in sub_keys for sub_key in self.hint_dist_user['distribution'][key]):
                     hint_dist_valid = False
         if not hint_dist_valid:
-            raise InvalidFileException("""Hint distributions require all hint types be present in the distro 
+            raise InvalidFileException("""Hint distributions require all hint types be present in the distro
                                           (trial, always, dual_always, woth, barren, item, song, overworld, dungeon, entrance,
                                           sometimes, dual, random, junk, named-item, goal). If a hint type should not be
-                                          shuffled, set its order to 0. Hint type format is \"type\": { 
+                                          shuffled, set its order to 0. Hint type format is \"type\": {
                                           \"order\": 0, \"weight\": 0.0, \"fixed\": 0, \"copies\": 0 }""")
 
         self.added_hint_types = {}
@@ -1149,7 +1149,7 @@ class World(object):
     # set collected to know this. To simplify this we instead just get areas
     # that don't have any items that could ever be required in any seed.
     # We further cull this list with woth info. This is an overestimate of
-    # the true list of possible useless areas, but this will generate a 
+    # the true list of possible useless areas, but this will generate a
     # reasonably sized list of areas that fit this property.
     def update_useless_areas(self, spoiler):
         areas = {}
