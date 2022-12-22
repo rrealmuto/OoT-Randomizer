@@ -101,13 +101,14 @@ class Region(object):
         is_dungeon_restricted = False
         is_overworld_restricted = False
 
-        if item.type in ['Map', 'Compass', 'SmallKey', 'HideoutSmallKey', 'BossKey', 'GanonBossKey', 'SilverRupee']:
+        if item.type in ['Map', 'Compass', 'SmallKey', 'HideoutSmallKey', 'BossKey', 'GanonBossKey', 'SilverRupee', 'DungeonReward']:
             shuffle_setting = (self.world.settings.shuffle_mapcompass if item.type in ['Map', 'Compass'] else
                                self.world.settings.shuffle_smallkeys if item.type == 'SmallKey' else
                                self.world.settings.shuffle_hideoutkeys if item.type == 'HideoutSmallKey' else
                                self.world.settings.shuffle_bosskeys if item.type == 'BossKey' else
                                self.world.settings.shuffle_ganon_bosskey if item.type == 'GanonBossKey' else
-                               self.world.settings.shuffle_silver_rupees if item.type == 'SilverRupee' else None)
+                               self.world.settings.shuffle_silver_rupees if item.type == 'SilverRupee' else
+                               self.world.settings.shuffle_dungeon_rewards if item.type == 'DungeonReward' else None)
 
             is_self_dungeon_restricted = shuffle_setting in ['dungeon', 'vanilla'] and item.type != 'HideoutSmallKey'
             is_self_region_restricted = [HintArea.GERUDO_FORTRESS, HintArea.THIEVES_HIDEOUT] if shuffle_setting == 'fortress' else None

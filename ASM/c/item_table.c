@@ -6,7 +6,7 @@
 #include "z64.h"
 
 #define ITEM_ROW( \
-        base_item_id_, chest_type_, action_id_, collectible_,  text_id_, object_id_, graphic_id_, \
+        base_item_id_, chest_type_, action_id_, collectible_, text_id_, object_id_, graphic_id_, \
         upgrade_, effect_, effect_arg1_, effect_arg2_) \
     { .base_item_id = base_item_id_, .chest_type = chest_type_, .action_id = action_id_, \
       .collectible = collectible_, .text_id = text_id_, .object_id = object_id_, .graphic_id = graphic_id_, \
@@ -217,19 +217,19 @@ item_row_t item_table[] = {
     [0x00B9] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x00E4, 0x00CD, 0x1E, no_upgrade, give_magic,        -1, -1), // Magic Meter
     [0x00BA] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x00E8, 0x00CD, 0x1F, no_upgrade, give_double_magic, -1, -1), // Double Magic
 
-    [0x00BB] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0073, 0x00B6, 0x03, no_upgrade, give_song, 6, -1 ), // Minuet of Forest
-    [0x00BC] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0074, 0x00B6, 0x04, no_upgrade, give_song, 7, -1 ), // Bolero of Fire
-    [0x00BD] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0075, 0x00B6, 0x05, no_upgrade, give_song, 8, -1 ), // Serenade of Water
-    [0x00BE] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0076, 0x00B6, 0x06, no_upgrade, give_song, 9, -1 ), // Requiem of Spirit
-    [0x00BF] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0077, 0x00B6, 0x07, no_upgrade, give_song, 10, -1), // Nocturn of Shadow
-    [0x00C0] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0078, 0x00B6, 0x08, no_upgrade, give_song, 11, -1), // Prelude of Light
+    [0x00BB] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0073, 0x00B6, 0x03, no_upgrade, give_quest_item, 6, -1 ), // Minuet of Forest
+    [0x00BC] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0074, 0x00B6, 0x04, no_upgrade, give_quest_item, 7, -1 ), // Bolero of Fire
+    [0x00BD] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0075, 0x00B6, 0x05, no_upgrade, give_quest_item, 8, -1 ), // Serenade of Water
+    [0x00BE] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0076, 0x00B6, 0x06, no_upgrade, give_quest_item, 9, -1 ), // Requiem of Spirit
+    [0x00BF] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0077, 0x00B6, 0x07, no_upgrade, give_quest_item, 10, -1), // Nocturne of Shadow
+    [0x00C0] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0078, 0x00B6, 0x08, no_upgrade, give_quest_item, 11, -1), // Prelude of Light
 
-    [0x00C1] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x00D4, 0x00B6, 0x04, no_upgrade, give_song, 12, -1), // Zelda's Lullaby
-    [0x00C2] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x00D2, 0x00B6, 0x06, no_upgrade, give_song, 13, -1), // Epona's Song
-    [0x00C3] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x00D1, 0x00B6, 0x03, no_upgrade, give_song, 14, -1), // Saria's Song
-    [0x00C4] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x00D3, 0x00B6, 0x08, no_upgrade, give_song, 15, -1), // Sun's Song
-    [0x00C5] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x00D5, 0x00B6, 0x05, no_upgrade, give_song, 16, -1), // Song of Time
-    [0x00C6] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x00D6, 0x00B6, 0x07, no_upgrade, give_song, 17, -1), // Song of Storms
+    [0x00C1] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x00D4, 0x00B6, 0x04, no_upgrade, give_quest_item, 12, -1), // Zelda's Lullaby
+    [0x00C2] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x00D2, 0x00B6, 0x06, no_upgrade, give_quest_item, 13, -1), // Epona's Song
+    [0x00C3] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x00D1, 0x00B6, 0x03, no_upgrade, give_quest_item, 14, -1), // Saria's Song
+    [0x00C4] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x00D3, 0x00B6, 0x08, no_upgrade, give_quest_item, 15, -1), // Sun's Song
+    [0x00C5] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x00D5, 0x00B6, 0x05, no_upgrade, give_quest_item, 16, -1), // Song of Time
+    [0x00C6] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x00D6, 0x00B6, 0x07, no_upgrade, give_quest_item, 17, -1), // Song of Storms
 
     [0x00C7] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x00F8, 0x00D1, 0x23, no_upgrade, give_tycoon_wallet, 3, -1), // Tycoon's Wallet
     [0x00C8] = ITEM_ROW(0x53,      GILDED_CHEST, 0x14, -1, 0x9099, 0x010B, 0x45, no_upgrade, no_effect, -1, -1), // Redundant Letter Bottle
@@ -299,6 +299,16 @@ item_row_t item_table[] = {
     [0x0104] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9046, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1), // Triforce of Power
     [0x0105] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9047, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1), // Triforce of Wisdom
     [0x0106] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9049, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1), // Triforce of Courage
+
+    [0x0107] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0080, 0x0193, 0x76, no_upgrade, give_quest_item, 18, -1), // Kokiri Emerald
+    [0x0108] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0081, 0x0193, 0x76, no_upgrade, give_quest_item, 19, -1), // Goron Ruby
+    [0x0109] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0082, 0x0193, 0x76, no_upgrade, give_quest_item, 20, -1), // Zora Sapphire
+    [0x010A] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0040, 0x0193, 0x76, no_upgrade, give_quest_item, 5, -1), // Light Medallion
+    [0x010B] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x003E, 0x0193, 0x76, no_upgrade, give_quest_item, 0, -1), // Forest Medallion
+    [0x010C] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x003C, 0x0193, 0x76, no_upgrade, give_quest_item, 1, -1), // Fire Medallion
+    [0x010D] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x003D, 0x0193, 0x76, no_upgrade, give_quest_item, 2, -1), // Water Medallion
+    [0x010E] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0041, 0x0193, 0x76, no_upgrade, give_quest_item, 4, -1), // Shadow Medallion
+    [0x010F] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x003F, 0x0193, 0x76, no_upgrade, give_quest_item, 3, -1), // Spirit Medallion
 };
 
 item_row_t *get_item_row(uint16_t item_id) {

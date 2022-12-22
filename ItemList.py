@@ -245,7 +245,7 @@ item_table = {
                                                 'song_id': 0x02,
                                                 'item_id': 0x5A,
                                             }),
-    'Bolero of Fire':                   ('Song',     True,  0xBC,
+    'Bolero of Fire':                   ('Song',     True,  0x00BC,
                                             {
                                                 'text_id': 0x74,
                                                 'song_id': 0x03,
@@ -344,7 +344,7 @@ item_table = {
     'Buy Red Potion for 40 Rupees':     ('Shop',     False, 0x30, {'object': 0x00EB, 'price': 40}),
     'Buy Red Potion for 50 Rupees':     ('Shop',     False, 0x31, {'object': 0x00EB, 'price': 50}),
 
-    'Kokiri Emerald':                   ('DungeonReward',    True,  None,
+    'Kokiri Emerald':                   ('DungeonReward',    True,  0x0107,
                                             {
                                                 'stone':      True,
                                                 'addr2_data': 0x80,
@@ -353,7 +353,7 @@ item_table = {
                                                 'actor_type': 0x13,
                                                 'object_id':  0x00AD,
                                             }),
-    'Goron Ruby':                       ('DungeonReward',    True,  None,
+    'Goron Ruby':                       ('DungeonReward',    True,  0x0108,
                                             {
                                                 'stone':      True,
                                                 'addr2_data': 0x81,
@@ -362,7 +362,7 @@ item_table = {
                                                 'actor_type': 0x14,
                                                 'object_id':  0x00AD,
                                             }),
-    'Zora Sapphire':                    ('DungeonReward',    True,  None,
+    'Zora Sapphire':                    ('DungeonReward',    True,  0x0109,
                                             {
                                                 'stone':      True,
                                                 'addr2_data': 0x82,
@@ -371,7 +371,7 @@ item_table = {
                                                 'actor_type': 0x15,
                                                 'object_id':  0x00AD,
                                             }),
-    'Forest Medallion':                 ('DungeonReward',    True,  None,
+    'Forest Medallion':                 ('DungeonReward',    True,  0x010B,
                                             {
                                                 'medallion':  True,
                                                 'addr2_data': 0x3E,
@@ -380,7 +380,7 @@ item_table = {
                                                 'actor_type': 0x0B,
                                                 'object_id':  0x00BA,
                                             }),
-    'Fire Medallion':                   ('DungeonReward',    True,  None,
+    'Fire Medallion':                   ('DungeonReward',    True,  0x010C,
                                             {
                                                 'medallion':  True,
                                                 'addr2_data': 0x3C,
@@ -389,7 +389,7 @@ item_table = {
                                                 'actor_type': 0x09,
                                                 'object_id':  0x00BA,
                                             }),
-    'Water Medallion':                  ('DungeonReward',    True,  None,
+    'Water Medallion':                  ('DungeonReward',    True,  0x010D,
                                             {
                                                 'medallion':  True,
                                                 'addr2_data': 0x3D,
@@ -398,7 +398,7 @@ item_table = {
                                                 'actor_type': 0x0A,
                                                 'object_id':  0x00BA,
                                             }),
-    'Spirit Medallion':                 ('DungeonReward',    True,  None,
+    'Spirit Medallion':                 ('DungeonReward',    True,  0x010F,
                                             {
                                                 'medallion':  True,
                                                 'addr2_data': 0x3F,
@@ -407,7 +407,7 @@ item_table = {
                                                 'actor_type': 0x0C,
                                                 'object_id':  0x00BA,
                                             }),
-    'Shadow Medallion':                 ('DungeonReward',    True,  None,
+    'Shadow Medallion':                 ('DungeonReward',    True,  0x010E,
                                             {
                                                 'medallion':  True,
                                                 'addr2_data': 0x41,
@@ -416,7 +416,7 @@ item_table = {
                                                 'actor_type': 0x0D,
                                                 'object_id':  0x00BA,
                                             }),
-    'Light Medallion':                  ('DungeonReward',    True,  None,
+    'Light Medallion':                  ('DungeonReward',    True,  0x010A,
                                             {
                                                 'medallion':  True,
                                                 'addr2_data': 0x40,

@@ -70,6 +70,9 @@ def distribute_items_restrictive(window, worlds, savewarps_to_connect, *, fill_l
     songitempool   = [item for world in worlds for item in world.itempool if item.type == 'Song']
     itempool       = [item for world in worlds for item in world.itempool if item.type not in ('DungeonReward', 'Shop', 'Song')]
 
+    if worlds[0].settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'):
+        itempool.extend(rewarditempool)
+        rewarditempool = []
     if worlds[0].settings.shuffle_song_items == 'any':
         itempool.extend(songitempool)
         songitempool = []
@@ -497,7 +500,7 @@ def fill_restrictive(window, worlds, base_search, locations, itempool, count=-1)
                 continue
             else:
                 # we expect all items to be placed
-                raise FillError('Game unbeatable: No more spots to place %s [World %d] from %d locations (%d total); %d other items left to place, plus %d skipped' % (item_to_place, item_to_place.world.id + 1, len(l2cations), len(locations), len(itempool), len(unplaced_items)))
+                raise FillError(f'Game unbeatable: No more spots to place {item_to_place} [World {item_to_place.world.id + 1}] from {len(l2cations)} locations ({len(locations)} total); {len(itempool)} other items left to place, plus {len(unplaced_items)} skipped')
 
         # Place the item in the world and continue
         spot_to_fill.world.push_item(spot_to_fill, item_to_place)

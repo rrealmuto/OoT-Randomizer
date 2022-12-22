@@ -1029,9 +1029,9 @@ class WorldDistribution(object):
             skipped_locations.append('Hideout Gerudo Membership Card')
         if world.settings.empty_dungeons_mode != 'none':
             skipped_locations_from_dungeons = []
-            if True: #TODO dungeon rewards not shuffled
+            if world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward'):
                 skipped_locations_from_dungeons += location_groups['Boss']
-            if world.settings.shuffle_song_items == 'song':
+            if world.settings.shuffle_song_items in ('vanilla', 'song'):
                 skipped_locations_from_dungeons += location_groups['Song']
             elif world.settings.shuffle_song_items == 'dungeon':
                 skipped_locations_from_dungeons += location_groups['BossHeart']
