@@ -1013,7 +1013,7 @@
     "key_rings": [],
     "shuffle_silver_rupees": "vanilla",
     "shuffle_mapcompass": "startwith",
-    "enhance_map_compass": false,
+    "enhance_map_compass": true,
     "open_deku": false,
     "open_forest": true,
     "require_gohma": false,
@@ -1121,7 +1121,9 @@
     "fae_torch_count": 3,
     "ocarina_songs": "off",
     "correct_chest_appearances": "both",
-    "minor_items_as_major_chest": [],
+    "minor_items_as_major_chest": [
+      "bombchus"
+    ],
     "invisible_chests": false,
     "correct_potcrate_appearances": "off",
     "clearer_hints": true,
