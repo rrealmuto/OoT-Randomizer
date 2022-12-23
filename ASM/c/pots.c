@@ -108,6 +108,7 @@ void ObjTsubo_SpawnCollectible_Hack(z64_actor_t *this, z64_game_t *game) {
     if ((dropParams >= ITEM00_RUPEE_GREEN) && (dropParams <= ITEM00_BOMBS_SPECIAL)) {
         drop_collectible_override_flag = this->rot_init.z;
         EnItem00 *spawned = z64_Item_DropCollectible(game, &this->pos_world, (dropParams | (((this->variable >> 9) & 0x3F) << 8)));
+        drop_collectible_override_flag = 0;
     }
 }
 
@@ -118,5 +119,6 @@ void EnTuboTrap_DropCollectible_Hack(z64_actor_t *this, z64_game_t *game) {
     if (param3FF >= 0 && param3FF < 0x1A) {
         drop_collectible_override_flag = this->rot_init.z;
         EnItem00 *spawned = z64_Item_DropCollectible(game, &this->pos_world, param3FF | ((params & 0x3F) << 8));
+        drop_collectible_override_flag = 0;
     }
 }

@@ -455,6 +455,30 @@ SRAM_SLOTS:
     nop
     nop
 
+; Hack at end of Item_DropCollectible to reset the drop_collectible_override_flag
+.orga 0xA897F8; in memory 0x80013898
+; replaces
+;   lw      ra, 0x003C(sp)
+;   lw      s0, 0x0030(sp)
+;   lw      s1, 0x0034(sp)
+;   lw      s2, 0x0038(sp)
+;   jr      ra
+;   addiu   sp, sp, 0x58
+    j       Item_DropCollectible_End_Hack
+    lw      ra, 0x003C(sp)
+
+; Hack at end of Item_DropCollectible2 to reset to drop_collectible_override_flag
+.orga 0xA899CC; in memory 0x80013A6C
+; replaces
+;   lw      ra, 0x003C(sp)
+;   lw      s0, 0x0030(sp)
+;   lw      s1, 0x0034(sp)
+;   lw      s2, 0x0038(sp)
+;   jr      ra
+;   addiu   sp, sp, 0x50
+    j       Item_DropCollectible2_End_Hack
+    lw      ra, 0x003C(sp)
+
 ; Hack Item_DropCollectible call to Actor_Spawn to set override
 ; replaces
 ;   jal     0x80025110

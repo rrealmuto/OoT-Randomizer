@@ -600,7 +600,6 @@ void Item_DropCollectible_Room_Hack(EnItem00 *spawnedActor) {
 z64_actor_t *Item_DropCollectible_Actor_Spawn_Override(void *actorCtx, z64_game_t *globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params) {
     rotY = drop_collectible_override_flag; // Get the override flag
     EnItem00 *spawnedActor = (EnItem00 *)z64_SpawnActor(actorCtx, globalCtx,actorId, posX, posY, posZ, rotX, rotY, rotZ, params); // Spawn the actor
-    drop_collectible_override_flag = 0; // And reset it to 0.
 
     return &(spawnedActor->actor);
 }

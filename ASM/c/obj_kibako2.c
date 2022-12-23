@@ -20,6 +20,7 @@ void ObjKibako2_SpawnCollectible_Hack(ObjKibako2 *this, z64_game_t *globalCtx) {
     if (itemDropped >= 0 && itemDropped < 0x1A) {
         drop_collectible_override_flag = this->dyna.actor.rot_init.y;
         EnItem00 *spawned = z64_Item_DropCollectible(globalCtx, &this->dyna.actor.pos_world, itemDropped | (collectibleFlagTemp << 8));
+        drop_collectible_override_flag = 0;
     }
 }
 
