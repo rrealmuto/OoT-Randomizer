@@ -137,7 +137,7 @@ class Item(object):
             return (self.world.settings.bridge == 'tokens' or self.world.settings.shuffle_ganon_bosskey == 'tokens' or
                 (self.world.settings.shuffle_ganon_bosskey == 'on_lacs' and self.world.settings.lacs_condition == 'tokens'))
 
-        if self.type in ('Drop', 'Event', 'Shop', 'DungeonReward') or not self.advancement:
+        if self.type in ('Drop', 'Event', 'Shop') or not self.advancement:
             return False
 
         if self.name.startswith('Bombchus') and not self.world.settings.bombchus_in_logic:
@@ -149,15 +149,17 @@ class Item(object):
 
         if self.map or self.compass:
             return False
-        if self.type == 'SmallKey' and self.world.settings.shuffle_smallkeys in ['dungeon', 'vanilla']:
+        if self.type == 'DungeonReward' and self.world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward', 'dungeon'):
+            return False
+        if self.type == 'SmallKey' and self.world.settings.shuffle_smallkeys in ('dungeon', 'vanilla'):
             return False
         if self.type == 'HideoutSmallKey' and self.world.settings.shuffle_hideoutkeys == 'vanilla':
             return False
-        if self.type == 'BossKey' and self.world.settings.shuffle_bosskeys in ['dungeon', 'vanilla']:
+        if self.type == 'BossKey' and self.world.settings.shuffle_bosskeys in ('dungeon', 'vanilla'):
             return False
-        if self.type == 'GanonBossKey' and self.world.settings.shuffle_ganon_bosskey in ['dungeon', 'vanilla']:
+        if self.type == 'GanonBossKey' and self.world.settings.shuffle_ganon_bosskey in ('dungeon', 'vanilla'):
             return False
-        if self.type == 'SilverRupee' and self.world.settings.shuffle_silver_rupees in ['dungeon', 'vanilla']:
+        if self.type == 'SilverRupee' and self.world.settings.shuffle_silver_rupees in ('dungeon', 'vanilla'):
             return False
 
         return True
