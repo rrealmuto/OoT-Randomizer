@@ -901,7 +901,7 @@ def get_unlock_hint(spoiler, world, checked, hint_type):
     required_location_text = getHint(getItemGenericName(required_location.item), world.settings.clearer_hints).text
 
     if hint_type == 'unlock-playthrough':
-        gossip_text = '#%s# unlocks the #wanderer\'s# way to #%s#.'
+        gossip_text = '#%s# unlocks the way to the #wanderer\'s# #%s#.'
         gossip_colors = ['Light Blue', 'Yellow', 'Light Blue']
     else:
         gossip_text = '#%s# unlocks the way to #%s#.'
