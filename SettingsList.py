@@ -2426,7 +2426,7 @@ setting_infos = [
             'vanilla':    "Vanilla",
             'stones':     "Stones",
             'medallions': "Medallions",
-            'dungeons':   "Dungeons",
+            'dungeons':   "Dungeon Rewards",
             'tokens':     "Tokens",
             'hearts':     "Hearts",
         },
@@ -2437,7 +2437,7 @@ setting_infos = [
             'Vanilla': Shadow and Spirit Medallions.
             'Stones': A configurable amount of Spiritual Stones.
             'Medallions': A configurable amount of Medallions.
-            'Dungeons': A configurable amount of Dungeon Rewards.
+            'Dungeon Rewards': A configurable amount of Dungeon Rewards.
             'Tokens': A configurable amount of Gold Skulltula Tokens.
             'Hearts': A configurable amount of hearts.
         ''',
@@ -2556,7 +2556,7 @@ setting_infos = [
             'vanilla':    'Vanilla Requirements',
             'stones':     'Spiritual Stones',
             'medallions': 'Medallions',
-            'dungeons':   'Dungeons',
+            'dungeons':   'Dungeon Rewards',
             'tokens':     'Gold Skulltula Tokens',
             'hearts':     'Hearts',
             'random':     'Random'
@@ -2566,7 +2566,7 @@ setting_infos = [
             'Vanilla Requirements': Spirit/Shadow Medallions and Light Arrows.
             'Spiritual Stones': A configurable amount of Spiritual Stones.
             'Medallions': A configurable amount of Medallions.
-            'Dungeons': A configurable amount of Dungeon Rewards.
+            'Dungeon Rewards': A configurable amount of Dungeon Rewards.
             'Gold Skulltula Tokens': A configurable amount of Gold Skulltula Tokens.
             'Hearts': A configurable amount of hearts.
             'Random': A random Rainbow Bridge requirement excluding Gold Skulltula Tokens.
@@ -2721,7 +2721,7 @@ setting_infos = [
             'on_lacs':         "Light Arrow Cutscene",
             'stones':          "Stones",
             'medallions':      "Medallions",
-            'dungeons':        "Dungeons",
+            'dungeons':        "Dungeon Rewards",
             'tokens':          "Tokens",
             'hearts':          "Hearts",
         },
@@ -2757,7 +2757,7 @@ setting_infos = [
             'Medallions': Ganon's Castle Boss Key will be awarded
             when reaching the target number of Medallions.
 
-            'Dungeons': Ganon's Castle Boss Key will be awarded
+            'Dungeon Rewards': Ganon's Castle Boss Key will be awarded
             when reaching the target number of Dungeon Rewards.
 
             'Tokens': Ganon's Castle Boss Key will be awarded
