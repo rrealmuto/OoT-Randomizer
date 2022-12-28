@@ -605,7 +605,6 @@ z64_actor_t* Item_DropCollectible_Actor_Spawn_Override(void* actorCtx, z64_game_
 {
     rotY = drop_collectible_override_flag; // Get the override flag
     EnItem00* spawnedActor = (EnItem00*)z64_SpawnActor(actorCtx, globalCtx,actorId, posX, posY, posZ, rotX, rotY, rotZ, params); //Spawn the actor
-    drop_collectible_override_flag = 0; //And reset it to 0.
 
     return &(spawnedActor->actor);
 }
@@ -615,8 +614,7 @@ z64_actor_t* Item_DropCollectible_Actor_Spawn_Override(void* actorCtx, z64_game_
 bool Item00_KillActorIfFlagIsSet(z64_actor_t *actor) {
     EnItem00 *this = (EnItem00 *)actor;
     uint16_t flag = 0;
-    if(drop_collectible_override_flag)
-    {
+    if(drop_collectible_override_flag) {
         flag = drop_collectible_override_flag;
     }
     else if(CURR_ACTOR_SPAWN_INDEX)

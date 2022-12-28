@@ -204,6 +204,26 @@ drop_collectible_room_hook:
     jr      ra
     addiu   sp, sp, 0x20
 
+Item_DropCollectible_End_Hack:
+    li      s0, drop_collectible_override_flag
+    sw      r0, 0x00(s0)
+    ; replaced code
+    lw      s0, 0x0030(sp)
+    lw      s1, 0x0034(sp)
+    lw      s2, 0x0038(sp)
+    jr      ra
+    addiu   sp, sp, 0x58
+
+Item_DropCollectible2_End_Hack:
+    li      s0, drop_collectible_override_flag
+    sw      r0, 0x00(s0)
+    ; replaced code
+    lw      s0, 0x0030(sp)
+    lw      s1, 0x0034(sp)
+    lw      s2, 0x0038(sp)
+    jr      ra
+    addiu   sp, sp, 0x50
+
 EnItem00_DropCollectibleFallAction_Hack:
     lh      t6, 0x014A(s0)
     bltz    t6, @@return
