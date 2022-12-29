@@ -12,7 +12,6 @@ void Actor_StoreChestType(z64_actor_t *actor, z64_game_t *game);
 z64_actor_t *Actor_SpawnEntry_Hack(void *actorCtx, ActorEntry *actorEntry, z64_game_t *globalCtx);
 bool spawn_override_silver_rupee(ActorEntry *actorEntry, z64_game_t *globalCtx);
 
-
 typedef struct {
     /* 0x00 */ int16_t id;
     /* 0x02 */ uint8_t category; // Classifies actor and determines when it will update or draw
