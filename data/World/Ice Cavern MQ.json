@@ -9,7 +9,13 @@
             # The crystal switch in the tektite room can be hit with the pot in the first hall.
             "Ice Cavern MQ Center Room Pot 1": "True",
             "Ice Cavern MQ Center Room Pot 2": "True",
-            "Fairy Pot": "has_bottle"
+            "Fairy Pot": "has_bottle",
+            "Ice Cavern MQ Entryway Freezard": "is_adult or has_explosives or can_use(Dins_Fire)",
+            "Ice Cavern MQ Entryway Tektite 1": "can_kill_tektite",
+            "Ice Cavern MQ Entryway Tektite 2": "can_kill_tektite",
+            "Ice Cavern MQ Center Room Wolfos": "is_adult or can_child_attack",
+            "Ice Cavern MQ Center Room Freezard 1": "is_adult or has_explosives or can_use(Dins_Fire)",
+            "Ice Cavern MQ Center Room Freezard 2": "is_adult or has_explosives or can_use(Dins_Fire)"
         },
         "exits": {
             "ZF Ice Ledge": "True",
@@ -27,7 +33,10 @@
             "Ice Cavern MQ Map Chest": "
                 Blue_Fire and
                 (is_adult or can_use(Sticks) or Kokiri_Sword or can_use_projectile)",
-            "Blue Fire": "has_bottle"
+            "Blue Fire": "has_bottle",
+            "Ice Cavern MQ Map Room Wolfos 1": "True",
+            "Ice Cavern MQ Map Room Wolfos 2": "True",
+            "Ice Cavern MQ Map Room Skullwalltula": "can_kill_skullwalltula"
         }
     },
     {
@@ -38,7 +47,12 @@
             "Ice Cavern MQ Freestanding PoH": "has_explosives",
             "Ice Cavern MQ Compass Room Pot 1": "True",
             "Ice Cavern MQ Compass Room Pot 2": "True",
-            "Ice Cavern MQ GS Red Ice": "can_play(Song_of_Time) or logic_ice_mq_red_ice_gs"
+            "Ice Cavern MQ GS Red Ice": "can_play(Song_of_Time) or logic_ice_mq_red_ice_gs",
+            "Ice Cavern MQ Before Compass Freezard 1": "True",
+            "Ice Cavern MQ Before Compass Freezard 2": "True",
+            "Ice Cavern MQ Compass Room Freezard 1": "True",
+            "Ice Cavern MQ Compass Room Freezard 2": "True",
+            "Ice Cavern MQ Compass Room Freezard 3": "True"
         }
     },
     {
@@ -51,7 +65,14 @@
             "Ice Cavern MQ GS Ice Block": "is_adult or can_child_attack",
             "Ice Cavern MQ GS Scarecrow": "
                 can_use(Scarecrow) or (Hover_Boots and can_use(Longshot)) or
-                (logic_ice_mq_scarecrow and is_adult)"
+                (logic_ice_mq_scarecrow and is_adult)",
+            "Ice Cavern MQ Large Room Wolfos 1": "is_adult or can_child_attack",
+            "Ice Cavern MQ Large Room Wolfos 2": "is_adult or can_child_attack",
+            "Ice Cavern MQ Large Room Ice Keese 1": "True",
+            "Ice Cavern MQ Large Room Ice Keese 2": "True",
+            "Ice Cavern MQ Near End Ice Keese 1": "is_adult",
+            "Ice Cavern MQ Near End Ice Keese 2": "is_adult",
+            "Ice Cavern MQ Iron Boots Room Stalfos": "is_adult"
         }
     }
 ]
