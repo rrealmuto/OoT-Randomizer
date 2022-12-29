@@ -3,7 +3,11 @@
         "region_name": "Ice Cavern Beginning",
         "dungeon": "Ice Cavern",
         "locations":{
-            "Ice Cavern Frozen Blue Rupee": "Blue_Fire"
+            "Ice Cavern Frozen Blue Rupee": "Blue_Fire",
+            "Ice Cavern Entryway Freezard 1": "is_adult or has_explosives or can_use(Dins_Fire)",
+            "Ice Cavern Entryway Freezard 2": "is_adult or has_explosives or can_use(Dins_Fire)",
+            "Ice Cavern Entryway Freezard 3": "is_adult or has_explosives or can_use(Dins_Fire)",
+            "Ice Cavern Entryway Freezard 4": "is_adult or has_explosives or can_use(Dins_Fire)"
         },
         "exits": {
             "ZF Ice Ledge": "True",
@@ -41,8 +45,15 @@
             "Ice Cavern Map Room Recovery Heart 1": "True",
             "Ice Cavern Map Room Recovery Heart 2": "True",
             "Ice Cavern Map Room Recovery Heart 3": "True",
-            "Ice Cavern Frozen Pot": "Blue_Fire",
-            "Blue Fire": "has_bottle"
+            "Ice Cavern Frozen Pot" : "Blue_Fire",
+            "Blue Fire": "has_bottle",
+            "Ice Cavern Sliding Spike Freezard": "True",
+            "Ice Cavern Map Chest Ice Keese 1": "True",
+            "Ice Cavern Map Chest Ice Keese 2": "True",
+            "Ice Cavern Map Chest Ice Keese 3": "True",
+            "Ice Cavern Map Chest Freezard Ground": "True",
+            "Ice Cavern Map Chest Freezard Lower Platform": "True",
+            "Ice Cavern Map Chest Freezard Upper Platform": "True"
         }
     },
     {
@@ -77,7 +88,16 @@
             "Sheik in Ice Cavern": "
                 is_adult or Slingshot or Sticks or Kokiri_Sword or can_use(Dins_Fire)",
             "Ice Cavern Near End Pot 1": "True",
-            "Ice Cavern Near End Pot 2": "True"
+            "Ice Cavern Near End Pot 2": "True",
+            "Ice Cavern Block Push Ice Keese 1": "can_kill_keese",
+            "Ice Cavern Block Push Ice Keese 2": "can_kill_keese",
+            "Ice Cavern Block Push Ice Keese 3": "can_kill_keese",
+            "Ice Cavern Near End Freezard 1": "is_adult or has_explosives or can_use(Dins_Fire)",
+            "Ice Cavern Near End Freezard 2": "is_adult or has_explosives or can_use(Dins_Fire)",
+            "Ice Cavern Wolfos": "is_adult or Slingshot or Sticks or Kokiri_Sword or can_use(Dins_Fire)",
+            "Ice Cavern Compass Chest Keese 1": "can_kill_keese",
+            "Ice Cavern Compass Chest Keese 2": "can_kill_keese",
+            "Ice Cavern Compass Chest Keese 3": "can_kill_keese"
         }
     }
 ]
