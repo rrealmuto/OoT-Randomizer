@@ -728,6 +728,22 @@ sh  v0, 0x004E(sp)
     j       Actor_SpawnEntry_Hack
     nop
 
+; ====== Wonderitem Shuffle ======
+; Hack EnWonderItem_MultitagFree to show the remaining tags
+.orga 0xDE9198
+; Replaces:
+;   lwc1    f4, 0x0024(a2)
+;   lwc1    f8, 0x0028(a2)
+    jal     EnWonderItem_Multitag_DrawHook
+    nop
+
+.orga 0xDE9408
+; Replaces:
+;   lwc1    f4, 0x0024(a2)
+;   lwc1    f8, 0x0028(a2)
+    jal     EnWonderItem_MultitagOrdered_DrawHook
+    nop
+
 ; Runs when storing an incoming item to the player instance
 ; Replaces:
 ;   sb      a2, 0x0424 (a3)
