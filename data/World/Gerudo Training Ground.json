@@ -16,7 +16,13 @@
             "Gerudo Training Ground Beamos Recovery Heart 1": "True",
             "Gerudo Training Ground Beamos Recovery Heart 2": "True",
             # In the Beamos room, shoot the Gerudo symbol above the door to the lava room.
-            "Wall Fairy": "has_bottle and can_use(Bow)"
+            "Wall Fairy": "has_bottle and can_use(Bow)",
+            "Gerudo Training Ground Stalfos 1": "is_adult or Kokiri_Sword",
+            "Gerudo Training Ground Stalfos 2": "is_adult or Kokiri_Sword",
+            "Gerudo Training Ground Beamos": "has_explosives",
+            "Gerudo Training Ground Lizalfos 1": "is_adult or Kokiri_Sword",
+            "Gerudo Training Ground Lizalfos 2": "is_adult or Kokiri_Sword",
+            "Gerudo Training Ground Slopes Wallmaster": "is_adult or Kokiri_Sword"
         },
         "exits": {
             "Gerudo Fortress": "True",
@@ -32,14 +38,24 @@
         "region_name": "Gerudo Training Ground Lava Room",
         "dungeon": "Gerudo Training Ground",
         "locations": {
-            "Gerudo Training Ground Underwater Silver Rupee Chest": "
-                is_adult and Hookshot and can_play(Song_of_Time) and
-                Iron_Boots and (logic_fewer_tunic_requirements or Zora_Tunic)"
+            "Gerudo Training Ground Lava Room Bubble 1": "True",
+            "Gerudo Training Ground Lava Room Bubble 2": "True"
         },
         "exits": {
             "Gerudo Training Ground Central Maze Right": "can_play(Song_of_Time) or is_child",
             "Gerudo Training Ground Hammer Room": "
                 is_adult and (Longshot or (Hookshot and Hover_Boots))"
+        }
+    },
+    {
+        "region_name": "Gerudo Training Ground Underwater Silver Rupee Room",
+        "dungeon": "Gerudo Training Ground",
+        "locations": {
+            "Gerudo Training Ground Underwater Silver Rupee Chest": "True",
+            "Gerudo Training Ground Underwater Shell Blade 1": "True",
+            "Gerudo Training Ground Underwater Shell Blade 2": "True",
+            "Gerudo Training Ground Underwater Shell Blade 3": "True",
+            "Gerudo Training Ground Underwater Shell Blade 4": "True"
         }
     },
     {
@@ -59,7 +75,11 @@
         "region_name": "Gerudo Training Ground Heavy Block Room",
         "dungeon": "Gerudo Training Ground",
         "locations": {
-            "Gerudo Training Ground Before Heavy Block Chest": "True"
+            "Gerudo Training Ground Before Heavy Block Chest": "True",
+            "Gerudo Training Ground Heavy Block Wolfos 1": "True",
+            "Gerudo Training Ground Heavy Block Wolfos 2": "True",
+            "Gerudo Training Ground Heavy Block Wolfos 3": "True",
+            "Gerudo Training Ground Heavy Block Wolfos 4": "True"
         },
         "exits": {
             "Gerudo Training Ground Eye Statue Upper": "
@@ -85,7 +105,10 @@
             "Gerudo Training Ground Heavy Block First Chest": "True",
             "Gerudo Training Ground Heavy Block Second Chest": "True",
             "Gerudo Training Ground Heavy Block Third Chest": "True",
-            "Gerudo Training Ground Heavy Block Fourth Chest": "True"
+            "Gerudo Training Ground Heavy Block Fourth Chest": "True",
+            "Gerudo Training Ground Heavy Block Like Like 1": "True",
+            "Gerudo Training Ground Heavy Block Like Like 2": "True",
+            "Gerudo Training Ground Heavy Block Like Like 3": "True"
         }
     },
     {
@@ -103,7 +126,11 @@
         "dungeon": "Gerudo Training Ground",
         "locations": {
             "Gerudo Training Ground Hammer Room Clear Chest": "True",
-            "Gerudo Training Ground Hammer Room Switch Chest": "Megaton_Hammer"
+            "Gerudo Training Ground Hammer Room Switch Chest": "Megaton_Hammer",
+            "Gerudo Training Ground Hammer Room Keese 1": "True",
+            "Gerudo Training Ground Hammer Room Keese 2": "True",
+            "Gerudo Training Ground Hammer Room Torch Slug 1": "True",
+            "Gerudo Training Ground Hammer Room Torch Slug 2": "True"
         },
         "exits": {
             "Gerudo Training Ground Lava Room": "True",

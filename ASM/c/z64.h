@@ -1593,6 +1593,7 @@ typedef struct EnGSwitch
 #define z64_Message_GetState_addr               0x800DD464
 #define z64_SetCollectibleFlags_addr            0x8002071C
 #define z64_GetCollectibleFlags_addr            0x800206E8
+#define z64_Flags_GetClear_addr                 0x80020640
 #define z64_Audio_PlaySoundGeneral_addr         0x800C806C
 #define z64_Audio_PlayFanFare_addr              0x800C69A0
 #define z64_osSendMesg_addr                     0x80001E20
@@ -1658,6 +1659,7 @@ typedef struct EnGSwitch
 #define z64_Rand_ZeroOne_addr                   0x800CDCCC
 #define z64_RandSeed_addr                       0x800CDCC0
 #define z64_Rand_ZeroOne_addr                   0x800CDCCC
+#define z64_EffectSsKiraKira_SpawnSmall_addr    0x8001C66C
 
 /* rom addresses */
 #define z64_icon_item_static_vaddr              0x007BD000
@@ -1685,6 +1687,7 @@ typedef void(*z64_ActorKillFunc)(z64_actor_t *);
 typedef uint8_t(*z64_Message_GetStateFunc)(uint8_t *);
 typedef void(*z64_Flags_SetCollectibleFunc)(z64_game_t *game, uint32_t flag);
 typedef int32_t (*z64_Flags_GetCollectibleFunc)(z64_game_t *game, uint32_t flag);
+typedef int32_t (*z64_Flags_GetClearFunc)(z64_game_t* game, int32_t flag);
 typedef void(*z64_Audio_PlaySoundGeneralFunc)(uint16_t sfxId, void *pos, uint8_t token, float *freqScale, float *a4, uint8_t *reverbAdd);
 typedef void(*z64_Audio_PlayFanFareFunc)(uint16_t);
 typedef void (*z64_DrawActors_proc)       (z64_game_t *game, void *actor_ctxt);
@@ -1719,6 +1722,7 @@ typedef void *(*z64_memcopy_proc)(void *dest, void *src, uint32_t size);
 typedef void (*z64_bzero_proc)(void *__s, uint32_t __n);
 typedef void (*z64_Gfx_DrawDListOpa_proc)(z64_game_t *game, z64_gfx_t *dlist);
 typedef float (*z64_Math_SinS_proc)(int16_t angle);
+typedef void (*z64_EffectSsKiraKira_SpawnSmall_proc)(z64_game_t* globalCtx, z64_xyzf_t* pos, z64_xyzf_t* velocity, z64_xyzf_t* accel, colorRGBA8_t* primColor, colorRGBA8_t* envColor);
 
 typedef int32_t(*z64_ObjectSpawn_proc)    (z64_obj_ctxt_t *object_ctx, int16_t object_id);
 typedef int32_t(*z64_ObjectIndex_proc)    (z64_obj_ctxt_t *object_ctx, int16_t object_id);
@@ -1761,6 +1765,7 @@ typedef float(*z64_Rand_ZeroOne_proc)();
 #define z64_MessageGetState         ((z64_Message_GetStateFunc)z64_Message_GetState_addr)
 #define z64_SetCollectibleFlags     ((z64_Flags_SetCollectibleFunc)z64_SetCollectibleFlags_addr)
 #define z64_Flags_GetCollectible    ((z64_Flags_GetCollectibleFunc)z64_GetCollectibleFlags_addr)
+#define z64_Flags_GetClear          ((z64_Flags_GetClearFunc)z64_Flags_GetClear_addr)
 #define z64_Audio_PlaySoundGeneral  ((z64_Audio_PlaySoundGeneralFunc)z64_Audio_PlaySoundGeneral_addr)
 #define z64_Audio_PlayFanFare       ((z64_Audio_PlayFanFareFunc)z64_Audio_PlayFanFare_addr)
 
@@ -1807,5 +1812,6 @@ typedef float(*z64_Rand_ZeroOne_proc)();
 #define z64_Gfx_DrawDListOpa ((z64_Gfx_DrawDListOpa_proc)z64_Gfx_DrawDListOpa_addr)
 #define z64_Math_SinS ((z64_Math_SinS_proc)z64_Math_SinS_addr)
 #define z64_Rand_ZeroOne ((z64_Rand_ZeroOne_proc)z64_Rand_ZeroOne_addr)
+#define z64_EffectSsKiraKira_SpawnSmall ((z64_EffectSsKiraKira_SpawnSmall_proc)z64_EffectSsKiraKira_SpawnSmall_addr)
 
 #endif

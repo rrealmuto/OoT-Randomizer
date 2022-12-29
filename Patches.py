@@ -1700,11 +1700,21 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         for location in rupeetower_locations:
             patch_rupee_tower(location, rom)
 
+    # Patches for enemy shuffle
+    if world.settings.shuffle_enemy_drops:
+        # Write the setting byte
+        rom.write_byte(rom.sym('ENEMY_DROP_SHUFFLE'), 0x01)
+        #Patch Kokiri Forest Adult scene setup to always use setup 2 regardless of age.
+        rom.write_byte(0xB10A6B, 0x02)
+        #Patch Hyrule Field Child scene setup to always use setup 1 regardless of spiritual stones
+        rom.write_bytes(0xB109E4, [0x10, 0x00, 0x00, 0x0A]) #b      0x8009AAB0
+        rom.write_bytes(0xB109E8, [0x24, 0x0E, 0x00, 0x01]) #addiu  T6, R0, 0x0001
+
     # Write flag table data
     collectible_flag_table, alt_list = get_collectible_flag_table(world)
     collectible_flag_table_bytes, num_collectible_flags = get_collectible_flag_table_bytes(collectible_flag_table)
     alt_list_bytes = get_alt_list_bytes(alt_list)
-    if(len(collectible_flag_table_bytes) > 600):
+    if(len(collectible_flag_table_bytes) > 900):
         raise(RuntimeError(f'Exceeded collectible override table size: {len(collectible_flag_table_bytes)}'))
     rom.write_bytes(rom.sym('collectible_scene_flags_table'), collectible_flag_table_bytes)
     num_collectible_flags += num_collectible_flags % 8
@@ -1716,8 +1726,8 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Write item overrides
     check_location_dupes(world)
     override_table = get_override_table(world)
-    if len(override_table) >= 1536:
-        raise(RuntimeError(f'Exceeded override table size: {len(override_table)}'))
+    if len(override_table) >= 1700:
+        raise(RuntimeError("Exceeded override table size: " + str(len(override_table))))
     rom.write_bytes(rom.sym('cfg_item_overrides'), get_override_table_bytes(override_table))
     rom.write_byte(rom.sym('PLAYER_ID'), world.id + 1) # Write player ID
 
@@ -2340,6 +2350,7 @@ def get_override_table(world):
 
 
 override_struct = struct.Struct('>BBHHBB') # match override_t in get_items.c
+
 def get_override_table_bytes(override_table):
     return b''.join(sorted(itertools.starmap(override_struct.pack, override_table)))
 
@@ -2355,6 +2366,10 @@ def get_override_entry(location):
     if location.type in ["ActorOverride", "Freestanding", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive"] and location.disabled != DisableType.ENABLED:
         return None
 
+    #Don't add enemy drops to the override table if they're disabled.
+    if not location.world.settings.shuffle_enemy_drops and (location.type == "EnemyDrop"):
+        return None
+
     player_id = location.item.world.id + 1
     if location.item.looks_like_item is not None:
         looks_like_item_id = location.item.looks_like_item.index
@@ -2366,7 +2381,7 @@ def get_override_entry(location):
     elif location.type == 'Chest':
         type = 1
         default &= 0x1F
-    elif location.type in ['Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive']:
+    elif location.type in ['Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive', 'EnemyDrop']:
         type = 6
         if not (isinstance(location.default, list) or isinstance(location.default, tuple)):
             raise Exception("Not right")

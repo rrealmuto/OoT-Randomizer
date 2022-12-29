@@ -1,0 +1,9 @@
+{
+    "entrances": {
+        "Adult Spawn -> Temple of Time" : {"region":"Gerudo Fortress", "from":"GV Fortress Side"},
+        "Child Spawn -> KF Links House" : {"region":"Death Mountain", "from":"Kak Behind Gate"}
+    },
+    "locations": {
+
+    }
+}
