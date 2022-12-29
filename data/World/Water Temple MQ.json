@@ -36,7 +36,12 @@
             "Water Temple MQ Lizalfos Hallway Room Crate 4": "
                 can_bonk or (can_play(Zeldas_Lullaby) and can_blast_or_smash)",
             "Water Temple MQ Lizalfos Hallway Room Crate 5": "
-                can_bonk or (can_play(Zeldas_Lullaby) and can_blast_or_smash)"
+                can_bonk or (can_play(Zeldas_Lullaby) and can_blast_or_smash)",
+            "Water Temple MQ Map Chest Stalfos 1": "has_fire_source and Hookshot",
+            "Water Temple MQ Map Chest Stalfos 2": "has_fire_source and Hookshot",
+            "Water Temple MQ Map Chest Stalfos 3": "has_fire_source and Hookshot",
+            "Water Temple MQ Lizalfos Hallway Lizalfos 1": "at('Water Temple Lowered Water Levels', True)",
+            "Water Temple MQ Lizalfos Hallway Lizalfos 2": "at('Water Temple Lowered Water Levels', True)"
         },
         "exits": {
             "Water Temple Below Central Pillar": "
@@ -64,7 +69,8 @@
             "Water Temple MQ Central Pillar Lower Crate 11": "can_bonk",
             "Water Temple MQ Central Pillar Lower Crate 12": "can_bonk",
             "Water Temple MQ Central Pillar Lower Crate 13": "can_bonk",
-            "Water Temple MQ Central Pillar Lower Crate 14": "can_bonk"
+            "Water Temple MQ Central Pillar Lower Crate 14": "can_bonk",
+            "Water Temple MQ Central Pillar Spike": "can_bonk and Hookshot"
         }
     },
     {
@@ -94,7 +100,13 @@
             "Water Temple MQ Lizalfos Hallway Gate Pot 2": "can_use(Dins_Fire)",
             "Water Temple MQ Lizalfos Hallway Gate Crate 1": "can_use(Dins_Fire) and can_break_crate",
             "Water Temple MQ Lizalfos Hallway Gate Crate 2": "can_use(Dins_Fire) and can_break_crate",
-            "Water Temple MQ GS Lizalfos Hallway": "can_use(Dins_Fire)"
+            "Water Temple MQ GS Lizalfos Hallway": "can_use(Dins_Fire)",
+            "Water Temple MQ Compass Chest Spike": "
+                Bow or can_use(Dins_Fire) or at('Water Temple Lobby', can_use(Sticks))",
+            "Water Temple MQ Compass Chest Lizalfos 1": "
+                Bow or can_use(Dins_Fire) or at('Water Temple Lobby', can_use(Sticks))",
+            "Water Temple MQ Compass Chest Lizalfos 2": "
+                Bow or can_use(Dins_Fire) or at('Water Temple Lobby', can_use(Sticks))"
         },
         "exits": {
             "Water Temple Before Upper Water Switch": "Hookshot"
@@ -115,7 +127,8 @@
             "Water Temple MQ Before Upper Water Switch Lower Crate 6": "can_break_crate",
             "Water Temple MQ Before Upper Water Switch Upper Crate 1": "Longshot and can_break_crate",
             "Water Temple MQ Before Upper Water Switch Upper Crate 2": "Longshot and can_break_crate",
-            "Water Temple MQ GS Before Upper Water Switch": "Longshot"
+            "Water Temple MQ GS Before Upper Water Switch": "Longshot",
+            "Water Temple MQ Before Upper Water Switch Lizalfos": "True"
         }
     },
     {
@@ -125,7 +138,11 @@
             "Water Temple MQ Before Dark Link Lower Pot": "True",
             "Water Temple MQ Before Dark Link Top Pot 1": "True",
             "Water Temple MQ Before Dark Link Top Pot 2": "True",
+            "Water Temple MQ Before Dark Link Stalfos 1": "True",
+            "Water Temple MQ Before Dark Link Stalfos 2": "True",
+            "Water Temple MQ Before Dark Link Stalfos 3": "True",
             "Water Temple MQ Room After Dark Link Pot": "True",
+            "Water Temple MQ Dark Link": "True",
             "Water Temple MQ River Pot": "True",
             "Water Temple MQ Dragon Statue Near Door Crate 1": "can_break_crate",
             "Water Temple MQ Dragon Statue Near Door Crate 2": "can_break_crate",
@@ -191,7 +208,9 @@
             "Water Temple MQ Triple Wall Torch Submerged Crate 3": "can_bonk or has_bombchus",
             "Water Temple MQ Triple Wall Torch Submerged Crate 4": "can_bonk or has_bombchus",
             "Water Temple MQ Triple Wall Torch Submerged Crate 5": "can_bonk or has_bombchus",
-            "Water Temple MQ Triple Wall Torch Submerged Crate 6": "can_bonk or has_bombchus"
+            "Water Temple MQ Triple Wall Torch Submerged Crate 6": "can_bonk or has_bombchus",
+            "Water Temple MQ Triple Wall Torch Stalfos 1": "True",
+            "Water Temple MQ Triple Wall Torch Stalfos 2": "True"
         },
         "exits": {
             "Water Temple Freestanding Key Room": "
@@ -210,7 +229,8 @@
             "Water Temple MQ Freestanding Key Room Crate 2": "can_break_crate",
             "Water Temple MQ Freestanding Key Room Crate 3": "can_break_crate",
             "Water Temple MQ Freestanding Key Room Crate 4": "can_break_crate",
-            "Water Temple MQ Freestanding Key Room Crate 5": "can_break_crate"
+            "Water Temple MQ Freestanding Key Room Crate 5": "can_break_crate",
+            "Water Temple MQ Freestanding Key Stalfos": "True"
         },
         "exits": {
             "Water Temple Dodongo Room": "(Small_Key_Water_Temple, 2)"
@@ -231,7 +251,14 @@
             "Water Temple MQ Freestanding Key Area Behind Gate Crate 2": "can_break_crate",
             "Water Temple MQ Freestanding Key Area Behind Gate Crate 3": "can_break_crate",
             "Water Temple MQ Freestanding Key Area Behind Gate Crate 4": "can_break_crate",
-            "Water Temple MQ GS Freestanding Key Area": "True"
+            "Water Temple MQ GS Freestanding Key Area": "True",
+            "Water Temple MQ Dodongo Room Dodongo 1": "True",
+            "Water Temple MQ Dodongo Room Dodongo 2": "True",
+            "Water Temple MQ Dodongo Room Dodongo 3": "True",
+            "Water Temple MQ Dodongo Room Dodongo 4": "True",
+            "Water Temple MQ Dodongo Room Dodongo 5": "True",
+            "Water Temple MQ Dodongo Room Dodongo 6": "True",
+            "Water Temple MQ Dodongo Room Dodongo 7": "True"
         },
         "exits": {
             "Water Temple Freestanding Key Room": "(Small_Key_Water_Temple, 2)"
