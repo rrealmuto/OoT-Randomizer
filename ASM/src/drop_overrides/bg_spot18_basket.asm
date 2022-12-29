@@ -2,7 +2,7 @@
 
 ; hack for when it drops 3 bombs
 ; Loop variable stored in s7
-; Actor pointer is stored in s0 
+; Actor pointer is stored in s0
 bg_spot18_basket_bombs_hack:
     lh      a3, 0x18(s0)   ; get our new flag out of the z rotation
     beqz    a3, bg_spot18_basket_bombs_end
