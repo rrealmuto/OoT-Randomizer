@@ -66,7 +66,7 @@ void Actor_After_UpdateAll_Hack(z64_actor_t *actor, z64_game_t *game) {
     // Add additional actor hacks here. These get called shortly after the call to actor_init
     // Hacks are responsible for checking that they are the correct actor.
     bb_after_init_hack(actor, game);
-    
+    EnWonderitem_AfterInitHack(actor, game);
     CURR_ACTOR_SPAWN_INDEX = 0; // reset CURR_ACTOR_SPAWN_INDEX
 }
 

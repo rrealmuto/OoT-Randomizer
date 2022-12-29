@@ -730,6 +730,10 @@ sh  v0, 0x004E(sp)
 
 ; ====== Wonderitem Shuffle ======
 
+; Increase the size of wonderitem to store when they are being overridden
+.orga 0xDE96FA
+.halfword 0x01D0
+
 ; Hack EnWonderItem_MultitagFree to show the remaining tags
 .orga 0xDE9198
 ; Replaces:

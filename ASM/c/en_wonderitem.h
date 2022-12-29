@@ -8,25 +8,29 @@ struct EnWonderItem;
 
 typedef void (*EnWonderItemUpdateFunc)(struct EnWonderItem*, z64_game_t*);
 
+void EnWonderitem_AfterInitHack(z64_actor_t* actor, z64_game_t* game);
+
 typedef struct EnWonderItem {
     /* 0x0000 */ z64_actor_t actor;
-    /* 0x014C */ EnWonderItemUpdateFunc updateFunc;
-    /* 0x0150 */ float unkHeight; // sets height of dummied out mode 4 
-    /* 0x0154 */ int16_t wonderMode;
-    /* 0x0156 */ int16_t itemDrop;
-    /* 0x0158 */ int16_t numTagPoints;
-    /* 0x015A */ int16_t dropCount;
-    /* 0x015C */ int16_t timer;
-    /* 0x015E */ int16_t tagFlags;
-    /* 0x015A */ int16_t tagCount;
-    /* 0x0162 */ int16_t switchFlag;
-    /* 0x0164 */ char unk_164[4];
-    /* 0x0168 */ int16_t nextTag;
-    /* 0x016A */ int16_t timerMod;
-    /* 0x016C */ z64_xyzf_t unkPos; // set to initial position by mode bomb soldier, then never used.
-    /* 0x0178 */ char unk_178[8];
-    /* 0x0180 */ char collider[0x4C];
-    /* 0x01CC */ char unk_1CC[4];
+    /* 0x013C */ EnWonderItemUpdateFunc updateFunc;
+    /* 0x0140 */ float unkHeight; // sets height of dummied out mode 4 
+    /* 0x0144 */ int16_t wonderMode;
+    /* 0x0146 */ int16_t itemDrop;
+    /* 0x0148 */ int16_t numTagPoints;
+    /* 0x014A */ int16_t dropCount;
+    /* 0x014C */ int16_t timer;
+    /* 0x014E */ int16_t tagFlags;
+    /* 0x014A */ int16_t tagCount;
+    /* 0x0152 */ int16_t switchFlag;
+    /* 0x0154 */ char unk_164[4];
+    /* 0x0158 */ int16_t nextTag;
+    /* 0x015A */ int16_t timerMod;
+    /* 0x015C */ z64_xyzf_t unkPos; // set to initial position by mode bomb soldier, then never used.
+    /* 0x0168 */ char unk_178[8];
+    /* 0x0170 */ char collider[0x4C];
+    /* 0x01BC */ char unk_1CC[4];
+    /* 0x01C0 */ uint8_t overridden;
+    /* 0x01C1 */ uint8_t spare[15];
 } EnWonderItem; // size = 0x01D0
 
 typedef enum {

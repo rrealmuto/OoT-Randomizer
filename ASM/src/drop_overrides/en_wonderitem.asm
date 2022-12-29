@@ -20,6 +20,7 @@ EnWonderItem_Multitag_DrawHook:
     sw      t7, 0x40(sp)
     swc1    f16,0x44(sp)
     sw      ra, 0x48(sp)
+    or      a2, s0, r0 ; Copy the actor instance into a2
     jal     EnWonderItem_Multitag_DrawHack
     or      a1, v1, r0
     lw      a0, 0x10(sp)
@@ -68,8 +69,9 @@ EnWonderItem_MultitagOrdered_DrawHook:
     swc1    f16,0x44(sp)
     sw      ra, 0x48(sp)
     or      a0, a1, r0
-    jal     EnWonderItem_Multitag_DrawHack
     or      a1, a2, r0
+    jal     EnWonderItem_Multitag_DrawHack
+    or      a2, s0, r0 ; Copy the actor instance into a2
     lw      a0, 0x10(sp)
     lw      a1, 0x14(sp)
     lw      a2, 0x18(sp)

@@ -3,17 +3,47 @@
 #include "en_wonderitem.h"
 #include "get_items.h"
 
-static colorRGBA8_t sEffectPrimColor = { 255, 0, 0, 0 };
+static colorRGBA8_t sEffectPrimColorRed = { 255, 0, 0, 0 };
+static colorRGBA8_t sEffectPrimColorYellow = {255, 255, 0};
 static colorRGBA8_t sEffectEnvColor = { 255, 255, 255, 0 };
 static z64_xyzf_t sEffectVelocity = { 0.0f, 0.1f, 0.0f };
 static z64_xyzf_t sEffectAccel = { 0.0f, 0.01f, 0.0f };
 
 extern uint16_t drop_collectible_override_flag;
 
-void EnWonderItem_Multitag_DrawHack(z64_xyzf_t* tags, uint32_t index)
+void EnWonderitem_AfterInitHack(z64_actor_t* this, z64_game_t* globalCtx)
 {
-    z64_xyzf_t pos = tags[index];
-    z64_EffectSsKiraKira_SpawnSmall(&z64_game, &pos, &sEffectVelocity, &sEffectAccel, &sEffectPrimColor, &sEffectEnvColor );
+    if(this->actor_id != 0x112)
+        return;
+
+    EnWonderItem* wonderitem = (EnWonderItem*)this;
+    wonderitem->overridden = 0;
+
+    EnItem00 dummy;
+    dummy.actor.actor_id = 0x15;
+    dummy.actor.rot_init.y = this->rot_init.y; //flag was just stored in z rotation
+    dummy.actor.variable = 0;
+
+    // Check if the Wonderitem should be overridden
+    dummy.override = lookup_override(&(dummy.actor), globalCtx->scene_index, 0);
+    if(dummy.override.key.all != 0 && !Get_CollectibleOverrideFlag(&dummy))
+    {
+        wonderitem->overridden = 1;
+    }
+}
+
+void EnWonderItem_Multitag_DrawHack(z64_xyzf_t* tags, uint32_t index, EnWonderItem* this)
+{
+    if(this->overridden)
+    {
+        colorRGBA8_t* color = &sEffectPrimColorRed;
+        if(this->wonderMode == WONDERITEM_MULTITAG_ORDERED)
+            color = &sEffectPrimColorYellow;
+        z64_xyzf_t pos = tags[index];
+        pos.y += 15.0;
+        z64_EffectSsKiraKira_SpawnSmall(&z64_game, &pos, &sEffectVelocity, &sEffectAccel, color, &sEffectEnvColor );
+    }
+    
 }
 
 void EnWonderItem_DropCollectible_Hack(EnWonderItem* this, z64_game_t* globalCtx, int32_t autoCollect)
@@ -26,6 +56,17 @@ void EnWonderItem_DropCollectible_Hack(EnWonderItem* this, z64_game_t* globalCtx
     int16_t i;
     int16_t randomDrop;
 
+    // Override behavior. Spawn an overridden collectible on link
+    if(this->overridden)
+    {
+        drop_collectible_override_flag = this->actor.rot_init.y;
+        z64_Item_DropCollectible2(globalCtx, &(z64_link.common.pos_world), dropTable[this->itemDrop]);
+        drop_collectible_override_flag = 0;
+        z64_ActorKill(&this->actor);
+        return;
+    }
+
+    // Not overridden so use vanilla behavior
     z64_PlaySFXID(NA_SE_SY_GET_ITEM);
 
     if (this->dropCount == 0) {

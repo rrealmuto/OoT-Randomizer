@@ -152,6 +152,10 @@ location_table = OrderedDict([
     ("KF Adult Deku Tree Deku Baba 5",                               ("EnemyDrop",    0x55, (1,2,7), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "EnemyDrop"))),
     ("KF Adult Deku Tree Deku Baba 6",                               ("EnemyDrop",    0x55, (1,2,8), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "EnemyDrop"))),
     
+    # Kokiri Forest Wonderitems
+    ("KF Child Stepping Stones Wonderitem",                          ("Wonderitem",   0x55, (0,0,39), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("KF Child Water Wonderitem",                                    ("Wonderitem",   0x55, (0,0,34), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("KF Child Sign Wonderitem",                                     ("Wonderitem",   0x55, (0,0,33), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
 
     # Lost Woods
     ("LW Gift from Saria",                                           ("Cutscene",     0xFF,  0x02, None,                            'Ocarina',                               ("Lost Woods", "Forest Area", "NPCs",))),
