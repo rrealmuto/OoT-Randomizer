@@ -729,12 +729,30 @@ sh  v0, 0x004E(sp)
     nop
 
 ; ====== Wonderitem Shuffle ======
+
 ; Hack EnWonderItem_MultitagFree to show the remaining tags
 .orga 0xDE9198
 ; Replaces:
 ;   lwc1    f4, 0x0024(a2)
 ;   lwc1    f8, 0x0028(a2)
     jal     EnWonderItem_Multitag_DrawHook
+    nop
+
+; Hack at the end of EnWonderItem_MultitagFree to not set the switch flag. It is set inside EnWonderItem_DropCollectible
+.orga 0xDE9250
+; Replaces:
+;   bltzl   a1, 0x801F8EE4
+;   or      a0, s0, r0
+;   jal     0x800204D0 ;Flags_SetSwitch
+;   lw      a0, 0x0024(sp)
+    nop
+    nop
+    nop
+    nop
+
+; Hack EnWonderItem_DropCollectible to drop flagged collectibles
+.orga 0xDE8C94
+    j		EnWonderItem_DropCollectible_Hack
     nop
 
 .orga 0xDE9408

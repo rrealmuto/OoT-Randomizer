@@ -1601,7 +1601,9 @@ typedef struct EnGSwitch
 #define z64_SetCollectibleFlags_addr            0x8002071C
 #define z64_GetCollectibleFlags_addr            0x800206E8
 #define z64_Flags_GetClear_addr                 0x80020640
+#define z64_Flags_SetSwitch_addr                0x800204D0
 #define z64_Audio_PlaySoundGeneral_addr         0x800C806C
+#define z64_PlaySFXID_addr                      0x800646F0
 #define z64_Audio_PlayFanFare_addr              0x800C69A0
 #define z64_osSendMesg_addr                     0x80001E20
 #define z64_osRecvMesg_addr                     0x80002030
@@ -1695,7 +1697,9 @@ typedef uint8_t(*z64_Message_GetStateFunc)(uint8_t *);
 typedef void(*z64_Flags_SetCollectibleFunc)(z64_game_t *game, uint32_t flag);
 typedef int32_t (*z64_Flags_GetCollectibleFunc)(z64_game_t *game, uint32_t flag);
 typedef int32_t (*z64_Flags_GetClearFunc)(z64_game_t* game, int32_t flag);
+typedef void (*z64_Flags_SetSwitchFunc)(z64_game_t* game, int32_t flag);
 typedef void(*z64_Audio_PlaySoundGeneralFunc)(uint16_t sfxId, void *pos, uint8_t token, float *freqScale, float *a4, uint8_t *reverbAdd);
+typedef void(*z64_PlaySFXIDFunc)(int16_t sfxId);
 typedef void(*z64_Audio_PlayFanFareFunc)(uint16_t);
 typedef void (*z64_DrawActors_proc)       (z64_game_t *game, void *actor_ctxt);
 typedef void (*z64_DeleteActor_proc)      (z64_game_t *game, void *actor_ctxt,
@@ -1773,9 +1777,10 @@ typedef float(*z64_Rand_ZeroOne_proc)();
 #define z64_SetCollectibleFlags     ((z64_Flags_SetCollectibleFunc)z64_SetCollectibleFlags_addr)
 #define z64_Flags_GetCollectible    ((z64_Flags_GetCollectibleFunc)z64_GetCollectibleFlags_addr)
 #define z64_Flags_GetClear          ((z64_Flags_GetClearFunc)z64_Flags_GetClear_addr)
+#define z64_Flags_SetSwitch         ((z64_Flags_SetSwitchFunc)z64_Flags_SetSwitch_addr)
 #define z64_Audio_PlaySoundGeneral  ((z64_Audio_PlaySoundGeneralFunc)z64_Audio_PlaySoundGeneral_addr)
 #define z64_Audio_PlayFanFare       ((z64_Audio_PlayFanFareFunc)z64_Audio_PlayFanFare_addr)
-
+#define z64_PlaySFXID               ((z64_PlaySFXIDFunc)z64_PlaySFXID_addr)
 #define z64_osSendMesg          ((osSendMesg_t)       z64_osSendMesg_addr)
 #define z64_osRecvMesg          ((osRecvMesg_t)       z64_osRecvMesg_addr)
 #define z64_osCreateMesgQueue   ((osCreateMesgQueue_t)                        \
