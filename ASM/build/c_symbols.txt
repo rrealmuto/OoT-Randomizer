@@ -304,7 +304,7 @@ SYMBOL TABLE:
 000001b0 g     O .data	00000010 linkhead_skull_sprite
 00000034 g     O .sbss	00000004 active_item_text_id
 00006cb8 g     F .text	00000014 ice_trap_is_pending
-000005f0 g     O .bss	00003520 cfg_item_overrides
+000005f0 g     O .bss	00003e80 cfg_item_overrides
 00000020 g     O .sdata	00000004 text_cursor_border_max
 00000000         *UND*	00000000 DPAD_TEXTURE
 00005270 g     F .text	00000088 push_pending_item
@@ -521,7 +521,7 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_PROP_INNER_ENABLED
 0000b4a0 g     F .text	00000064 heart_container_draw
 00006d6c g     F .text	0000009c draw_gi_bombchu_and_masks
-00003b10 g     O .bss	000000c0 object_slots
+00004470 g     O .bss	000000c0 object_slots
 000094b4 g     F .text	00000050 give_small_key
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_MQ_ENABLE
 00000a5c g     F .text	00000014 get_dummy_chest

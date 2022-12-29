@@ -9,7 +9,7 @@
 extern uint8_t FAST_CHESTS;
 extern uint8_t OCARINAS_SHUFFLED;
 extern uint8_t NO_COLLECTIBLE_HEARTS;
-override_t cfg_item_overrides[1700] = {0};
+override_t cfg_item_overrides[2000] = {0};
 int item_overrides_count = 0;
 
 z64_actor_t *dummy_actor = NULL;
