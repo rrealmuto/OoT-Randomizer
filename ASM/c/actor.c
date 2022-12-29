@@ -8,6 +8,7 @@
 #include "obj_kibako2.h"
 #include "obj_comb.h"
 #include "textures.h"
+#include "en_bb.h"
 #include "actor.h"
 
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
@@ -25,6 +26,7 @@ extern uint16_t CURR_ACTOR_SPAWN_INDEX;
 #define EN_ANUBICE_TAG      0x00F6  // Anubis Spawner
 #define EN_IK               0x0113  // Iron Knuckes
 #define EN_SW               0x0095  // Skullwalltula
+#define EN_BB               0x0069  // Bubble
 
 // Called at the end of Actor_SetWorldToHome
 // Reset the rotations for any actors that we may have passed data in through Actor_Spawn
@@ -54,7 +56,11 @@ void Actor_After_UpdateAll_Hack(z64_actor_t *actor, z64_game_t* game) {
     Actor_StoreFlagInRotation(actor, game, CURR_ACTOR_SPAWN_INDEX);
     Actor_StoreChestType(actor, game);
 
-    CURR_ACTOR_SPAWN_INDEX = 0; //reset CURR_ACTOR_SPAWN_INDEX
+    // Add additional actor hacks here. These get called shortly after the call to actor_init
+    // Hacks are responsible for checking that they are the correct actor.
+    bb_after_init_hack(actor, game);
+    
+    CURR_ACTOR_SPAWN_INDEX = 0; // reset CURR_ACTOR_SPAWN_INDEX
 }
 
 // For pots/crates/beehives, store the flag in the actor's unused initial rotation fields

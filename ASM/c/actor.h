@@ -9,7 +9,6 @@ void Actor_After_UpdateAll_Hack(z64_actor_t *actor, z64_game_t* game);
 void Actor_StoreFlagInRotation(z64_actor_t* actor, z64_game_t* game, uint16_t actor_index);
 void Actor_StoreChestType(z64_actor_t* actor, z64_game_t* game);
 
-
 typedef struct {
     /* 0x00 */ int16_t id;
     /* 0x02 */ uint8_t category; // Classifies actor and determines when it will update or draw
