@@ -247,7 +247,7 @@
                 at('Dodongos Cavern Before Boss', is_adult or can_child_attack or
                     Progressive_Strength_Upgrade)",
             "Dodongos Cavern MQ Before Boss Baby Dodongo 1": "True",
-            "Dodongos Cavern MQ Before Boss Baby Dodongo 1": "True",
+            "Dodongos Cavern MQ Before Boss Baby Dodongo 2": "True",
             "Dodongos Cavern MQ Armos Army Armos 1": "can_kill_armos",
             "Dodongos Cavern MQ Armos Army Armos 2": "can_kill_armos",
             "Dodongos Cavern MQ Armos Army Armos 3": "can_kill_armos",
