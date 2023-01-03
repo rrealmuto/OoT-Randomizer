@@ -20,7 +20,7 @@ from version import __version__
 from Utils import random_choices
 from JSONDump import dump_obj, CollapseList, CollapseDict, AlignedDict, SortedDict
 import StartingItems
-from SettingsList import build_close_match, validate_settings
+from SettingsList import build_close_match, validate_settings, settings_versioning
 
 
 class InvalidFileException(Exception):
@@ -1087,6 +1087,10 @@ class Distribution(object):
 
         self.settings.__dict__.update(update_dict['_settings'])
         if 'settings' in self.src_dict:
+            for setting in self.src_dict['settings']:
+                for setting_version in settings_versioning:
+                    if setting == setting_version.old_name:
+                        self.src_dict['settings'][setting_version.new_name] = self.src_dict['settings'].pop(setting_version.old_name)
             validate_settings(self.src_dict['settings'])
             self.src_dict['_settings'] = self.src_dict['settings']
             del self.src_dict['settings']
