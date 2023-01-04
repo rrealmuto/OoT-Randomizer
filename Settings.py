@@ -12,7 +12,7 @@ import textwrap
 
 from version import __version__
 from Utils import random_choices, local_path, data_path
-from SettingsList import setting_infos, get_setting_info, validate_settings
+from SettingsList import setting_infos, get_setting_info, validate_settings, settings_versioning
 from Plandomizer import Distribution
 import StartingItems
 
@@ -318,6 +318,11 @@ class Settings:
 
     # add the settings as fields, and calculate information based on them
     def __init__(self, settings_dict, strict=False):
+        # Update old setting names with the most recent ones
+        for setting in settings_dict:
+                for setting_version in settings_versioning:
+                    if setting == setting_version.old_name:
+                        settings_dict[setting_version.new_name] = settings_dict.pop(setting_version.old_name)
         if settings_dict.get('compress_rom', None):
             # Old compress_rom setting is set, so set the individual output settings using it.
             settings_dict['create_patch_file'] = settings_dict['compress_rom'] == 'Patch' or settings_dict.get('create_patch_file', False)

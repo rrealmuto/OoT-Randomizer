@@ -25,7 +25,7 @@ class Setting_Info_Versioning():
 
     def __init__(self, old_name, new_name):
         self.old_name = old_name # old name of the setting
-        self.new_name = new_name # old name of the setting
+        self.new_name = new_name # new name of the setting
 
 settings_versioning = [
     Setting_Info_Versioning(
