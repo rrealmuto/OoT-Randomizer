@@ -159,8 +159,8 @@ location_table = OrderedDict([
     ("KF Child Training Wonderitem 1",                               ("Wonderitem",   0x55, (0,0,40), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
     ("KF Child Training Wonderitem 2",                               ("Wonderitem",   0x55, (0,0,41), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
     ("KF Child Training Wonderitem 3",                               ("Wonderitem",   0x55, (0,0,42), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("KF Child Maze Grass Wonderitem 1",                             ("Wonderitem",   0x55, (2,0,7),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("KF Child Maze Grass Wonderitem 2",                             ("Wonderitem",   0x55, (2,0,8),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("KF Child Maze Grass Wonderitem 1",                             ("Wonderitem",   0x55, (2,0,6),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("KF Child Maze Grass Wonderitem 2",                             ("Wonderitem",   0x55, (2,0,7),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
     ("KF Shop Wonderitem",                                           ("Wonderitem",   0x2D, (0,0,5),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
 
     # Lost Woods
