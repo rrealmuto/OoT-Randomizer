@@ -326,7 +326,7 @@ SYMBOL TABLE:
 00000248 g     O .data	00000010 linkhead_skull_sprite
 00000034 g     O .sbss	00000004 active_item_text_id
 00007928 g     F .text	00000014 ice_trap_is_pending
-00000724 g     O .bss	00003b60 cfg_item_overrides
+00000724 g     O .bss	000044c0 cfg_item_overrides
 00000020 g     O .sdata	00000004 text_cursor_border_max
 00000000         *UND*	00000000 DPAD_TEXTURE
 00005d84 g     F .text	00000088 push_pending_item
@@ -425,7 +425,7 @@ SYMBOL TABLE:
 00000050 g     O .sdata	00000004 c_note_b
 00006f2c g     F .text	000000c0 get_skulltula_token
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_IDLE_INNER_ENABLED
-00004348 g     O .bss	00000016 extended_savectx
+00004ca8 g     O .bss	00000016 extended_savectx
 0000793c g     F .text	00000018 push_pending_ice_trap
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_REWARD_ENABLE
 0000c514 g     F .text	000000a4 bowling_bomb_bag_draw
@@ -550,7 +550,7 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_PROP_INNER_ENABLED
 0000c304 g     F .text	00000064 heart_container_draw
 000079dc g     F .text	0000009c draw_gi_bombchu_and_masks
-00004284 g     O .bss	000000c0 object_slots
+00004be4 g     O .bss	000000c0 object_slots
 0000a124 g     F .text	00000050 give_small_key
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_MQ_ENABLE
 00000c14 g     F .text	00000014 get_dummy_chest

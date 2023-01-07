@@ -1690,6 +1690,9 @@
     {
         "region_name": "Kak Impas House",
         "scene": "Kak Impas House",
+        "locations": {
+            "Kak Impas House Wonderitem": "True"
+        },
         "exits": {
             "Kakariko Village": "True",
             "Kak Impas House Near Cow": "True"
