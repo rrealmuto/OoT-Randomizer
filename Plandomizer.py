@@ -550,7 +550,7 @@ class WorldDistribution(object):
         else:
             self.pool_add_item(pool, '#Bottle', -bottles)
 
-        for item_name, record in self.starting_items.items():
+        for item_name, record in self.settings.starting_items.items():
             if bottle_matcher(item_name):
                 self.pool_remove_item([pool], "#Bottle", record.count)
             elif trade_matcher(item_name):
@@ -586,7 +586,7 @@ class WorldDistribution(object):
 
 
     def collect_starters(self, state):
-        for (name, record) in self.starting_items.items():
+        for (name, record) in self.settings.starting_items.items():
             for _ in range(record.count):
                 item = ItemFactory("Bottle" if name == "Bottle with Milk (Half)" else name)
                 state.collect(item)
@@ -1027,33 +1027,14 @@ class WorldDistribution(object):
 
 
     def get_starting_item(self, item):
-        items = self.starting_items
+        items = self.settings.starting_items
         if item in items:
             return items[item].count
         else:
             return 0
 
-    @property
-    def starting_items(self):
-        data = defaultdict(lambda: StarterRecord(0))
-        world_names = ['World %d' % (i + 1) for i in range(len(self.distribution.world_dists))]
-
-        # For each entry here of the form 'World %d', apply that entry to that world.
-        # If there are any entries that aren't of this form,
-        # apply them all to each world.
-        #TODO instead of allowing 'World %d' entries here, read starting items from per-world settings
-        if world_names[self.id] in self.distribution.settings.starting_items:
-            data.update(self.distribution.settings.starting_items[world_names[self.id]])
-        data.update(
-            (item_name, count)
-            for item_name, count in self.distribution.settings.starting_items.items()
-            if item_name not in world_names
-        )
-
-        return data
-
     def configure_effective_starting_items(self, worlds, world):
-        items = {item_name: record.copy() for item_name, record in self.starting_items.items()}
+        items = {item_name: record.copy() for item_name, record in self.settings.starting_items.items()}
 
         if world.settings.start_with_rupees:
             add_starting_item_with_ammo(items, 'Rupees', 999)
@@ -1158,9 +1139,9 @@ class Distribution(object):
             for triforce_piece in triforce_pieces:
                 if triforce_piece in world.distribution.item_pool:
                     world.triforce_count += world.distribution.item_pool[triforce_piece].count
-                if triforce_piece in world.distribution.starting_items:
-                    world.triforce_count += world.distribution.starting_items[triforce_piece].count
-                    total_starting_count += world.distribution.starting_items[triforce_piece].count
+                if triforce_piece in world.settings.starting_items:
+                    world.triforce_count += world.settings.starting_items[triforce_piece].count
+                    total_starting_count += world.settings.starting_items[triforce_piece].count
                 if world.settings.shuffle_child_trade == 'skip_child_zelda' and 'Song from Impa' in world.distribution.locations and world.distribution.locations['Song from Impa'].item == triforce_piece:
                     total_starting_count += 1
             total_count += world.triforce_count
@@ -1186,13 +1167,13 @@ class Distribution(object):
 
         for k in per_world_keys:
             if k == 'settings':
-                if k in self.src_dict:
+                if '_settings' in self.src_dict:
                     # For each entry here of the form 'World %d', apply that entry to that world.
                     # If there are any entries that aren't of this form,
                     # apply them all to each world.
                     for world_id, world_name in enumerate(world_names):
-                        if world_name in self.src_dict[k]:
-                            self.world_dists[world_id].settings.update(self.src_dict[k][world_name])
+                        if world_name in self.src_dict['_settings']:
+                            self.world_dists[world_id].settings.__dict__.update(self.src_dict['_settings'][world_name])
             # Anything starting with ':' is output-only and we ignore it in world.update anyway.
             elif k in self.src_dict and k[0] != ':':
                 if isinstance(self.src_dict[k], dict):
@@ -1211,51 +1192,46 @@ class Distribution(object):
                     for world in self.world_dists:
                         world.update({k: self.src_dict[k]})
 
-        # normalize starting items to use the dictionary format
-        #TODO also apply to per-world starting items
-        starting_items = itertools.chain(self.settings.starting_equipment, self.settings.starting_songs)
-        data = defaultdict(lambda: StarterRecord(0))
-        if isinstance(self.settings.starting_items, dict) and self.settings.starting_items:
-            world_names = ['World %d' % (i + 1) for i in range(len(self.world_dists))]
-            for name, record in self.settings.starting_items.items():
-                if name in world_names:
-                    data[name] = {item_name: count if isinstance(count, StarterRecord) else StarterRecord(count) for item_name, count in record.items()}
-                    add_starting_ammo(data[name])
-                else:
+        for world in self.world_dists:
+            # normalize starting items to use the dictionary format
+            starting_items = itertools.chain(world.settings.starting_equipment, world.settings.starting_songs)
+            data = defaultdict(lambda: StarterRecord(0))
+            if isinstance(world.settings.starting_items, dict) and world.settings.starting_items:
+                for name, record in world.settings.starting_items.items():
                     data[name] = record if isinstance(record, StarterRecord) else StarterRecord(record)
-            add_starting_ammo(data)
-        else:
-            starting_items = itertools.chain(self.settings.starting_equipment, self.settings.starting_items, self.settings.starting_songs)
-        for itemsetting in starting_items:
-            if itemsetting in StartingItems.everything:
-                item = StartingItems.everything[itemsetting]
-                if not item.special:
-                    add_starting_item_with_ammo(data, item.itemname)
-                else:
-                    if item.itemname == 'Rutos Letter' and self.settings.zora_fountain != 'open':
-                        data['Rutos Letter'].count += 1
-                    elif item.itemname in ['Bottle', 'Rutos Letter']:
-                        data['Bottle'].count += 1
+                add_starting_ammo(data)
+            else:
+                starting_items = itertools.chain(world.settings.starting_equipment, world.settings.starting_items, world.settings.starting_songs)
+            for itemsetting in starting_items:
+                if itemsetting in StartingItems.everything:
+                    item = StartingItems.everything[itemsetting]
+                    if not item.special:
+                        add_starting_item_with_ammo(data, item.itemname)
                     else:
-                        raise KeyError("invalid special item: {}".format(item.itemname))
-            else:
-                raise KeyError("invalid starting item: {}".format(itemsetting))
-        self.settings.starting_equipment = []
-        self.settings.starting_songs = []
-        # add hearts
-        if self.settings.starting_hearts > 3 and 'Piece of Heart' not in self.settings.starting_items and 'Heart Container' not in self.settings.starting_items:
-            num_hearts_to_collect = self.settings.starting_hearts - 3
-            if self.settings.item_pool_value in ('plentiful', 'ludicrous'):
-                if self.settings.starting_hearts >= 20:
-                    num_hearts_to_collect -= 1
-                    data['Piece of Heart'].count += 4
-                data['Heart Container'].count += num_hearts_to_collect
-            else:
-                # evenly split the difference between heart pieces and heart containers removed from the pool,
-                # removing an extra 4 pieces in case of an odd number since there's 9*4 of them but only 8 containers
-                data['Piece of Heart'].count += 4 * math.ceil(num_hearts_to_collect / 2)
-                data['Heart Container'].count += math.floor(num_hearts_to_collect / 2)
-        self.settings.starting_items = data
+                        if item.itemname == 'Rutos Letter' and world.settings.zora_fountain != 'open':
+                            data['Rutos Letter'].count += 1
+                        elif item.itemname in ['Bottle', 'Rutos Letter']:
+                            data['Bottle'].count += 1
+                        else:
+                            raise KeyError(f"invalid special item: {item.itemname}")
+                else:
+                    raise KeyError(f"invalid starting item: {itemsetting}")
+            world.settings.starting_equipment = []
+            world.settings.starting_songs = []
+            # add hearts
+            if world.settings.starting_hearts > 3 and 'Piece of Heart' not in world.settings.starting_items and 'Heart Container' not in world.settings.starting_items:
+                num_hearts_to_collect = world.settings.starting_hearts - 3
+                if world.settings.item_pool_value in ('plentiful', 'ludicrous'):
+                    if world.settings.starting_hearts >= 20:
+                        num_hearts_to_collect -= 1
+                        data['Piece of Heart'].count += 4
+                    data['Heart Container'].count += num_hearts_to_collect
+                else:
+                    # evenly split the difference between heart pieces and heart containers removed from the pool,
+                    # removing an extra 4 pieces in case of an odd number since there's 9*4 of them but only 8 containers
+                    data['Piece of Heart'].count += 4 * math.ceil(num_hearts_to_collect / 2)
+                    data['Heart Container'].count += math.floor(num_hearts_to_collect / 2)
+            world.settings.starting_items = data
 
 
     def to_json(self, include_output=True, spoiler=True):
@@ -1265,7 +1241,6 @@ class Distribution(object):
             ':seed': self.settings.seed,
             ':settings_string': self.settings.settings_string,
             ':enable_distribution_file': self.settings.enable_distribution_file,
-            'settings': self.settings.to_json(),
         }
 
         if spoiler:
