@@ -1075,10 +1075,10 @@ location_table = OrderedDict([
 
     # Colossus Wonderitems
     ("Colossus Tree Wonderitem 1",                                   ("Wonderitem",   0x5C, [(0,0,20),(0,2,23)], None,                         'Rupees (5)',                            ("Desert Colossus", "Wonderitem"))),
-    ("Colossus Tree Wonderitem 2",                                   ("Wonderitem",   0x5C, [(0,0,21),(0,2,24)], None,                         'Rupees (5)',                            ("Desert Colossus", "Wonderitem"))),
-    ("Colossus Tree Wonderitem 3",                                   ("Wonderitem",   0x5C, [(0,0,22),(0,2,25)], None,                         'Rupees (5)',                            ("Desert Colossus", "Wonderitem"))),
-    ("Colossus Tree Wonderitem 4",                                   ("Wonderitem",   0x5C, [(0,0,23),(0,2,26)], None,                         'Rupees (5)',                            ("Desert Colossus", "Wonderitem"))),
-    ("Colossus Tree Wonderitem 5",                                   ("Wonderitem",   0x5C, [(0,0,24),(0,2,27)], None,                         'Rupees (20)',                           ("Desert Colossus", "Wonderitem"))),
+    ("Colossus Tree Wonderitem 2",                                   ("Wonderitem",   0x5C, [(0,0,22),(0,2,24)], None,                         'Rupees (5)',                            ("Desert Colossus", "Wonderitem"))),
+    ("Colossus Tree Wonderitem 3 Child",                                   ("Wonderitem",   0x5C, (0,0,23), None,                         'Rupees (5)',                            ("Desert Colossus", "Wonderitem"))),
+    ("Colossus Tree Wonderitem 4",                                   ("Wonderitem",   0x5C, [(0,0,21),(0,2,25)], None,                         'Rupees (5)',                            ("Desert Colossus", "Wonderitem"))),
+    ("Colossus Tree Wonderitem 5",                                   ("Wonderitem",   0x5C, [(0,0,24),(0,2,26)], None,                         'Rupees (20)',                           ("Desert Colossus", "Wonderitem"))),
 
     # Outside Ganon's Castle
     ("OGC Great Fairy Reward",                                       ("Cutscene",     0xFF,  0x15, None,                            'Double Defense',                        ("Outside Ganon's Castle", "Great Fairies",))),
