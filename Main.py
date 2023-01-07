@@ -121,8 +121,8 @@ def resolve_settings(settings, window=dummy_window()):
 
 
 def generate(settings, window=dummy_window()):
-    worlds, savewarps_to_connect = build_world_graphs(settings, window=window)
-    place_items(settings, worlds, savewarps_to_connect, window=window)
+    worlds = build_world_graphs(settings, window=window)
+    place_items(settings, worlds, window=window)
     for world in worlds:
         world.distribution.configure_effective_starting_items(worlds, world)
     if worlds[0].enable_goal_hints:
@@ -171,19 +171,21 @@ def build_world_graphs(settings, window=dummy_window()):
         generate_itempool(world)
         set_shop_rules(world)
         set_drop_location_names(world)
-        world.initialize_entrances()
+        world.fill_bosses()
 
     if settings.triforce_hunt:
         settings.distribution.configure_triforce_hunt(worlds)
 
-    return worlds, savewarps_to_connect
+    logger.info('Setting Entrances.')
+    set_entrances(worlds, savewarps_to_connect)
+    return worlds
 
 
-def place_items(settings, worlds, savewarps_to_connect, *, window=dummy_window()):
+def place_items(settings, worlds, window=dummy_window()):
     logger = logging.getLogger('')
     window.update_status('Placing the Items')
     logger.info('Fill the world.')
-    distribute_items_restrictive(window, worlds, savewarps_to_connect)
+    distribute_items_restrictive(window, worlds)
     window.update_progress(35)
 
 

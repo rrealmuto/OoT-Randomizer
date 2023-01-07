@@ -11,7 +11,7 @@ This branch is available to use online at <https://ootrandomizer.com/generatorDe
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
 * New settings and options:
-  * Work-in-progress “Shuffle Dungeon Rewards” setting ([#1833](https://github.com/TestRunnerSRL/OoT-Randomizer/issues/1833))
+  * New “Shuffle Dungeon Rewards” setting with “Vanilla Locations” and “Dungeon Reward Locations” options (part of [#1833](https://github.com/TestRunnerSRL/OoT-Randomizer/issues/1833))
   * New “Shuffle Gerudo Valley River Exit” setting ([#1830](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1830))
   * New “Shuffle Silver Rupees” setting ([#1814](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1814))
   * New “Triforce Hunt Mode” setting with “Normal”, “Easter Egg Hunt”, “Ice%”, and “Triforce Blitz” options (Easter Egg Hunt based on [#1804](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1804), Triforce Blitz based on [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev))
@@ -44,7 +44,6 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * Opening the Door of Time is a separate goal category when required by the settings ([#1529](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1529))
   * Gold Skulltula Tokens can be on excluded locations if there are no checks requiring them (such as in SAWS)
   * With “Closed Forest Requires Gohma” enabled, items that can be used to escape the forest won't appear in the forest.
-  * Dungeon rewards are shuffled after plando'd items, reducing generation failures.
   * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
 
 Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):

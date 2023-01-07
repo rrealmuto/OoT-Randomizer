@@ -2876,13 +2876,8 @@ setting_infos = [
         gui_text       = 'Shuffle Dungeon Rewards',
         default        = 'reward',
         choices        = {
-            'vanilla':     'Vanilla Locations',
-            'reward':      'Dungeon Reward Locations',
-            'dungeon':     'Own Dungeon',
-            'regional':    'Regional',
-            'overworld':   'Overworld Only',
-            'any_dungeon': 'Any Dungeon',
-            'anywhere':    'Anywhere',
+            'vanilla': 'Vanilla Locations',
+            'reward':  'Dungeon Reward Locations',
         },
         gui_tooltip    = '''\
             This controls where Medallions and Spiritual Stones can
@@ -2896,34 +2891,6 @@ setting_infos = [
             of boss rooms, but not necessarily the boss's vanilla
             reward. In Multiworld, dungeon rewards will only appear
             in their own world.
-
-            <b>The following options are in early development, and
-            come with some limitations:</b> The starting dungeon reward
-            currently can't be shuffled. Dungeon reward locations will
-            hold a copy of the starting reward. Shuffled dungeon rewards
-            will appear as Triforce Pieces. If you receive the last
-            required medallion for the Burning Kakariko cutscene while
-            already in Kakariko, the cutscene doesn't play until you
-            leave and reenter Kakariko (or enter and exit a building).
-
-            'Own Dungeon': Each dungeon reward appears in its respective
-            dungeon, but not necessarily on the boss. If boss entrances
-            are mixed, boss rooms that aren't in a dungeon can't have
-            dungeon rewards.
-
-            'Regional': Dungeon rewards can only appear in regions
-            near the original dungeon (including the dungeon
-            itself or other dungeons in the region).
-            <a href="https://wiki.ootrandomizer.com/index.php?title=Hints#Hint_Regions" target="_blank">The Wiki has a list of corresponding regions here.</a>
-
-            'Overworld Only': Dungeon rewards can only appear
-            outside of dungeons.
-
-            'Any Dungeon': Dungeon rewards can only appear
-            inside of dungeons.
-
-            'Anywhere': Dungeon rewards can appear anywhere
-            in the world.
         ''',
         gui_params     = {
             'randomize_key': 'randomize_settings',
