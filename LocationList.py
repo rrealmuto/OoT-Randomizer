@@ -2151,7 +2151,6 @@ location_table = OrderedDict([
     ("Fire Temple MQ Boss Key Hookshot Wonderitem",                  ("Wonderitem",   0x04,  (19,0,10), None,                        'Rupees (20)',                           ("Fire Temple", "Master Quest", "Wonderitem"))),
     ("Fire Temple MQ Boss Key Arrow Wonderitem",                     ("Wonderitem",   0x04,  (19,0,11), None,                        'Rupees (20)',                           ("Fire Temple", "Master Quest", "Wonderitem"))),
     
-
     # Fire Temple Shared
     ("Fire Temple Volvagia Heart",                                   ("BossHeart",    0x15,  0x4F, None,                            'Heart Container',                       ("Fire Temple", "Fire Temple MQ", "Vanilla Dungeons", "Master Quest",))),
 
@@ -2410,6 +2409,31 @@ location_table = OrderedDict([
     ("Water Temple MQ Lizalfos Hallway Lizalfos 1",                  ("EnemyDrop",    0x05,  (20,0,1), None,                        'Rupees (5)',                            ("Water Temple", "Master Quest", "EnemyDrop"))),
     ("Water Temple MQ Lizalfos Hallway Lizalfos 2",                  ("EnemyDrop",    0x05,  (20,0,2), None,                        'Rupees (5)',                            ("Water Temple", "Master Quest", "EnemyDrop"))),
     
+    # Water Temple MQ Wonderitems
+    ("Water Temple MQ Below Central Pillar Hookshot Wonderitem",     ("Wonderitem",   0x05,  (2,0,25), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Triple Wall Torch Hookshot/Bow Wonderitem",    ("Wonderitem",   0x05,  (3,0,4), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Hookshot Waterfall Left Hookshot Wonderitem 1",("Wonderitem",   0x05,  (5,0,10), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Hookshot Waterfall Left Hookshot Wonderitem 2",("Wonderitem",   0x05,  (5,0,11), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Hookshot Waterfall Left Hookshot Wonderitem 3",("Wonderitem",   0x05,  (5,0,12), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Hookshot Waterfall Right Hookshot Wonderitem 1",("Wonderitem",   0x05,  (5,0,3), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Hookshot Waterfall Right Hookshot Wonderitem 2",("Wonderitem",   0x05,  (5,0,4), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Hookshot Waterfall Right Hookshot Wonderitem 3",("Wonderitem",   0x05,  (5,0,5), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ After Dark Link Hookshot Wonderitem",          ("Wonderitem",   0x05,  (7,0,1), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Dragon Statue Eyes Hookshot Wonderitem 1",     ("Wonderitem",   0x05,  (8,0,5), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Dragon Statue Eyes Hookshot Wonderitem 2",     ("Wonderitem",   0x05,  (8,0,7), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Dragon Statue Crates Hookshot Wonderitem",     ("Wonderitem",   0x05,  (8,0,6), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Upper Water Switch Hookshot Wonderitem",       ("Wonderitem",   0x05,  (10,0,2), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Boss Hallway Hookshot Wonderitem 1",           ("Wonderitem",   0x05,  (11,0,1), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Boss Hallway Hookshot Wonderitem 2",           ("Wonderitem",   0x05,  (11,0,2), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ 3 Water Spouts Proximity Wonderitem 1",        ("Wonderitem",   0x05,  (15,0,1), None,                        'Rupees (5)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ 3 Water Spouts Proximity Wonderitem 2",        ("Wonderitem",   0x05,  (15,0,2), None,                        'Arrows (10)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Freestanding Key Hookshot Wonderitem",         ("Wonderitem",   0x05,  (16,0,1), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Longshot Chest Hookshot Wonderitem",           ("Wonderitem",   0x05,  (17,0,8), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Compass Chest Hookshot Wonderitem",            ("Wonderitem",   0x05,  (18,0,4), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Map Chest Hookshot Wonderitem",                ("Wonderitem",   0x05,  (19,0,6), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Lizalfos Hallway Hookshot Wonderitem",         ("Wonderitem",   0x05,  (20,0,3), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    
+
     # Water Temple Shared
     ("Water Temple Morpha Heart",                                    ("BossHeart",    0x16,  0x4F, None,                            'Heart Container',                       ("Water Temple", "Water Temple MQ", "Vanilla Dungeons", "Master Quest",))),
 
