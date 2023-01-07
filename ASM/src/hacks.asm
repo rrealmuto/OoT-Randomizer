@@ -728,6 +728,13 @@ sh  v0, 0x004E(sp)
     j       Actor_SpawnEntry_Hack
     nop
 
+; Hack the function that kills actor when changing rooms to not kill overridden collectibles?
+; Hack at the call to Actor_Kill
+.orga 0xA9ADAC ; In memory: 0x80024E4C
+; Replaces:
+;   jal     Actor_Kill
+    jal     Room_Change_Actor_Kill_Hack
+
 ; ====== Wonderitem Shuffle ======
 
 ; Increase the size of wonderitem to store when they are being overridden

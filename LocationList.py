@@ -1751,6 +1751,20 @@ location_table = OrderedDict([
     ("Bottom of the Well MQ West Inner Room Invisible Skulltula 1",     ("EnemyDrop",    0x08,  (6,0,4), None,                        'Rupees (5)',                                ("Bottom of the Well", "Master Quest", "EnemyDrop"))),
     ("Bottom of the Well MQ West Inner Room Invisible Skulltula 2",     ("EnemyDrop",    0x08,  (6,0,5), None,                        'Rupees (5)',                                ("Bottom of the Well", "Master Quest", "EnemyDrop"))),
 
+    # Bottom of the Well MQ Wonderitems
+    ("Bottom of the Well MQ Main Area Left Slingshot Wonderitem 1",  ("Wonderitem",   0x08,  (0,0,6), None,                         'Rupees (20)',                           ("Bottom of the Well", "Master Quest", "Wonderitem"))),
+    ("Bottom of the Well MQ Main Area Left Slingshot Wonderitem 2",  ("Wonderitem",   0x08,  (0,0,7), None,                         'Rupees (20)',                           ("Bottom of the Well", "Master Quest", "Wonderitem"))),
+    ("Bottom of the Well MQ Main Area Left Slingshot Wonderitem 3",  ("Wonderitem",   0x08,  (0,0,9), None,                         'Deku Seeds (30)',                           ("Bottom of the Well", "Master Quest", "Wonderitem"))),
+    ("Bottom of the Well MQ Main Area Left Slingshot Wonderitem 4",  ("Wonderitem",   0x08,  (0,0,11), None,                         'Rupees (20)',                           ("Bottom of the Well", "Master Quest", "Wonderitem"))),
+    ("Bottom of the Well MQ Main Area Right Slingshot Wonderitem 1", ("Wonderitem",   0x08,  (0,0,8), None,                         'Rupees (20)',                           ("Bottom of the Well", "Master Quest", "Wonderitem"))),
+    ("Bottom of the Well MQ Main Area Right Slingshot Wonderitem 2", ("Wonderitem",   0x08,  (0,0,10), None,                        'Deku Seeds (30)',                       ("Bottom of the Well", "Master Quest", "Wonderitem"))),
+    ("Bottom of the Well MQ Main Area Right Slingshot Wonderitem 3", ("Wonderitem",   0x08,  (0,0,12), None,                        'Rupees (20)',                       ("Bottom of the Well", "Master Quest", "Wonderitem"))),
+    ("Bottom of the Well MQ Main Area Right Slingshot Wonderitem 4", ("Wonderitem",   0x08,  (0,0,13), None,                        'Rupees (20)',                       ("Bottom of the Well", "Master Quest", "Wonderitem"))),
+    ("Bottom of the Well MQ East Inner Room Slingshot Wonderitem 1", ("Wonderitem",   0x08,  (5,0,1), None,                        'Rupees (20)',                       ("Bottom of the Well", "Master Quest", "Wonderitem"))),
+    ("Bottom of the Well MQ East Inner Room Slingshot Wonderitem 2", ("Wonderitem",   0x08,  (5,0,2), None,                        'Rupees (20)',                       ("Bottom of the Well", "Master Quest", "Wonderitem"))),
+    ("Bottom of the Well MQ East Inner Room Slingshot Wonderitem 3", ("Wonderitem",   0x08,  (5,0,3), None,                        'Rupees (20)',                       ("Bottom of the Well", "Master Quest", "Wonderitem"))),
+    ("Bottom of the Well MQ East Inner Room Slingshot Wonderitem 4", ("Wonderitem",   0x08,  (5,0,4), None,                        'Rupees (20)',                       ("Bottom of the Well", "Master Quest", "Wonderitem"))),
+
     # Forest Temple Vanilla
     ("Forest Temple First Room Chest",                               ("Chest",        0x03,  0x03, None,                            'Small Key (Forest Temple)',             ("Forest Temple", "Vanilla Dungeons", "Chests",))),
     ("Forest Temple First Stalfos Chest",                            ("Chest",        0x03,  0x00, None,                            'Small Key (Forest Temple)',             ("Forest Temple", "Vanilla Dungeons", "Chests",))),
@@ -3280,6 +3294,10 @@ location_table = OrderedDict([
     ("Gerudo Training Ground MQ Heavy Block Spike 2",                ("EnemyDrop",    0x0B,  (10,0,4), None,                        'Rupees (5)',                           ("Gerudo Training Ground", "Master Quest", "EnemyDrop"))),
     ("Gerudo Training Ground MQ Heavy Block Spike 3",                ("EnemyDrop",    0x0B,  (10,0,5), None,                        'Rupees (5)',                           ("Gerudo Training Ground", "Master Quest", "EnemyDrop"))),
 
+    # Gerudo Training Ground MQ Wonderitems
+    ("Gerudo Training Ground MQ Eye Statue Proximity Wonderitem",    ("Wonderitem",   0x0B,  (4,0,5), None,                         'Rupees (20)',                           ("Gerudo Training Ground", "Master Quest", "Wonderitem"))),
+    ("Gerudo Training Ground MQ Dinolfos Arrow Wonderitem",          ("Wonderitem",   0x0B,  (7,0,9), None,                         'Rupees (20)',                           ("Gerudo Training Ground", "Master Quest", "Wonderitem"))), # One of the actors in this room appears to have been deleted so this actor is #9. The 0x185 Checkable Spot actor is missing in MQU.json
+    
     # Ganon's Castle Vanilla
     ("Ganons Castle Forest Trial Chest",                             ("Chest",        0x0D,  0x09, None,                            'Rupees (5)',                            ("Ganon's Castle", "Vanilla Dungeons", "Chests",))),
     ("Ganons Castle Water Trial Left Chest",                         ("Chest",        0x0D,  0x07, None,                            'Ice Trap',                              ("Ganon's Castle", "Vanilla Dungeons", "Chests",))),

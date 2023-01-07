@@ -77,7 +77,7 @@ void EnWonderItem_DropCollectible_Hack(EnWonderItem* this, z64_game_t* globalCtx
         if(autoCollect)
             z64_Item_DropCollectible2(globalCtx, &(z64_link.common.pos_world), 0);
         else
-            z64_Item_DropCollectible2(globalCtx, &this->actor.pos_world, 0);
+            z64_Item_DropCollectible(globalCtx, &this->actor.pos_world, 0);
         drop_collectible_override_flag = 0;
         if (this->switchFlag >= 0)
             z64_Flags_SetSwitch(globalCtx, this->switchFlag);

@@ -1783,7 +1783,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     collectible_flag_table, alt_list = get_collectible_flag_table(world)
     collectible_flag_table_bytes, num_collectible_flags = get_collectible_flag_table_bytes(collectible_flag_table)
     alt_list_bytes = get_alt_list_bytes(alt_list)
-    if(len(collectible_flag_table_bytes) > 900):
+    if(len(collectible_flag_table_bytes) > 1000):
         raise(RuntimeError(f'Exceeded collectible override table size: {len(collectible_flag_table_bytes)}'))
     rom.write_bytes(rom.sym('collectible_scene_flags_table'), collectible_flag_table_bytes)
     num_collectible_flags += num_collectible_flags % 8
