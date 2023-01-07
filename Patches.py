@@ -2076,39 +2076,13 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     for _, [door_byte, door_bits] in locked_doors.items():
         save_context.write_bits(door_byte, door_bits)
 
-    # Fix chest animations
+    # Update chest type appearance
     BROWN_CHEST = 0
     GOLD_CHEST = 2
     GILDED_CHEST = 12
     SILVER_CHEST = 13
     SKULL_CHEST_SMALL = 14
     SKULL_CHEST_BIG =  15
-    if world.settings.bombchus_in_logic or 'bombchus' in world.settings.minor_items_as_major_chest:
-        bombchu_ids = [0x6A, 0x03, 0x6B]
-        for i in bombchu_ids:
-            item = read_rom_item(rom, i)
-            item['chest_type'] = GILDED_CHEST
-            write_rom_item(rom, i, item)
-    if world.settings.bridge == 'tokens' or world.settings.lacs_condition == 'tokens' or world.settings.shuffle_ganon_bosskey == 'tokens':
-        item = read_rom_item(rom, 0x5B)
-        item['chest_type'] = SKULL_CHEST_BIG
-        write_rom_item(rom, 0x5B, item)
-    if world.settings.bridge == 'hearts' or world.settings.lacs_condition == 'hearts' or world.settings.shuffle_ganon_bosskey == 'hearts':
-        heart_ids = [0x3D, 0x3E, 0x76]
-        for i in heart_ids:
-            item = read_rom_item(rom, i)
-            item['chest_type'] = GILDED_CHEST
-            write_rom_item(rom, i, item)
-    if 'shields' in world.settings.minor_items_as_major_chest:
-        # Deku
-        item = read_rom_item(rom, 0x29)
-        item['chest_type'] = GILDED_CHEST
-        write_rom_item(rom, 0x29, item)
-        # Hylian
-        item = read_rom_item(rom, 0x2A)
-        item['chest_type'] = GILDED_CHEST
-        write_rom_item(rom, 0x2A, item)
-
     # Update chest type appearance
     if world.settings.correct_chest_appearances == 'textures':
         symbol = rom.sym('CHEST_TEXTURE_MATCH_CONTENTS')

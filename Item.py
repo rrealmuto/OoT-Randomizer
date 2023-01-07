@@ -63,7 +63,6 @@ class Item(object):
         self.priority = self.info.priority
         self.type = self.info.type
         self.special = self.info.special
-        self.index = self.info.index
         self.alias = self.info.alias
 
 
@@ -90,6 +89,21 @@ class Item(object):
             items_fixed.append(item)
         for item in items_fixed:
             del cls.item_worlds_to_fix[item]
+
+
+    @property
+    def index(self):
+        idx = self.info.index
+        # use different item IDs for items with conditional chest appearances so they appear according to the setting in the item's world, not the location's
+        if idx == 0x005B and (self.world.settings.bridge == 'tokens' or self.world.settings.lacs_condition == 'tokens' or self.world.settings.shuffle_ganon_bosskey == 'tokens'):
+            return 0x0110
+        if idx in (0x003D, 0x003E, 0x0076) and (self.world.settings.bridge == 'hearts' or self.world.settings.lacs_condition == 'hearts' or self.world.settings.shuffle_ganon_bosskey == 'hearts'):
+            return {0x003D: 0x0111, 0x003E: 0x0112, 0x0076: 0x0113}[idx]
+        if idx in (0x0029, 0x002A) and 'shields' in self.world.settings.minor_items_as_major_chest:
+            return {0x0029: 0x0114, 0x002A: 0x0115}[idx]
+        if idx in (0x006A, 0x0003, 0x006B) and 'bombchus' in self.world.settings.minor_items_as_major_chest:
+            return {0x006A: 0x0116, 0x0003: 0x0117, 0x006B: 0x0118}[idx]
+        return idx
 
 
     @property

@@ -309,6 +309,16 @@ item_row_t item_table[] = {
     [0x010D] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x003D, 0x0193, 0x76, no_upgrade, give_quest_item, 2, -1), // Water Medallion
     [0x010E] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0041, 0x0193, 0x76, no_upgrade, give_quest_item, 4, -1), // Shadow Medallion
     [0x010F] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x003F, 0x0193, 0x76, no_upgrade, give_quest_item, 3, -1), // Spirit Medallion
+
+    [0x0110] = ITEM_ROW(0x5B,   SKULL_CHEST_BIG, 0x71, -1, 0x00B4, 0x015C, 0x63, no_upgrade, no_effect, -1, -1), // Gold Skulltula Token (big chest)
+    [0x0111] = ITEM_ROW(0x3D,      GILDED_CHEST, 0x72, -1, 0x00C6, 0x00BD, 0x13, health_upgrade_cap, clear_excess_hearts, -1, -1), // Heart Container (big chest)
+    [0x0112] = ITEM_ROW(0x3E,      GILDED_CHEST, 0x7A, -1, 0x00C2, 0x00BD, 0x14, health_upgrade_cap, full_heal, -1, -1), // Piece of Heart (big chest)
+    [0x0113] = ITEM_ROW(0x53,      GILDED_CHEST, 0x7A, -1, 0x00FA, 0x00BD, 0x14, health_upgrade_cap, full_heal, -1, -1), // Piece of Heart (Chest Game) (big chest)
+    [0x0114] = ITEM_ROW(0x53,      GILDED_CHEST, 0x3E, -1, 0x004C, 0x00CB, 0x1D, no_upgrade, no_effect, -1, -1), // Deku Shield (big chest)
+    [0x0115] = ITEM_ROW(0x53,      GILDED_CHEST, 0x3F, -1, 0x004D, 0x00DC, 0x2C, no_upgrade, no_effect, -1, -1), // Hylian Shield (big chest)
+    [0x0116] = ITEM_ROW(0x4D,      GILDED_CHEST, 0x96, -1, 0x0033, 0x00D9, 0x28, no_upgrade, no_effect, -1, -1), // Bombchu (5) (big chest)
+    [0x0117] = ITEM_ROW(0x4D,      GILDED_CHEST, 0x09, -1, 0x0033, 0x00D9, 0x28, no_upgrade, no_effect, -1, -1), // Bombchu (10) (big chest)
+    [0x0118] = ITEM_ROW(0x4D,      GILDED_CHEST, 0x97, -1, 0x0033, 0x00D9, 0x28, no_upgrade, no_effect, -1, -1), // Bombchu (20) (big chest)
 };
 
 item_row_t *get_item_row(uint16_t item_id) {
