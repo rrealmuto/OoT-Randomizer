@@ -91,7 +91,12 @@ class World(object):
             self.triforce_goal_per_world = settings.triforce_goal_per_world
         if self.triforce_goal_per_world > self.triforce_count_per_world:
             raise ValueError("Triforces required cannot be more than the triforce count.")
-        self.triforce_goal = self.triforce_goal_per_world * settings.world_count
+        self.triforce_goal = sum(
+            1 if world_dist.settings.triforce_hunt_mode == 'ice_percent'
+            else 3 if world_dist.settings.triforce_hunt_mode == 'blitz'
+            else world_dist.settings.triforce_goal_per_world
+            for world_dist in settings.distribution.world_dists
+        )
 
         if settings.triforce_hunt:
             # Pin shuffle_ganon_bosskey to 'triforce' when triforce_hunt is enabled
@@ -105,7 +110,7 @@ class World(object):
             'Water': False,
             'Spirit': False,
             'Shadow': False,
-            'Light': False
+            'Light': False,
         }
 
         # empty dungeons will be decided later
@@ -150,7 +155,7 @@ class World(object):
             'Water Temple': False,
             'Spirit Temple': False,
             'Shadow Temple': False,
-            'Ganons Castle': False
+            'Ganons Castle': False,
         }
 
         if resolveRandomizedSettings:
@@ -1221,42 +1226,6 @@ class World(object):
             # to make all areas have a more uniform chance of being chosen
             area_info['weight'] = len(area_info['locations'])
 
-        # these are items that can never be required but are still considered major items
-        exclude_item_list = [
-            'Double Defense',
-        ]
-        if (self.settings.damage_multiplier != 'ohko' and self.settings.damage_multiplier != 'quadruple' and
-            self.settings.shuffle_scrubs == 'off' and not self.settings.shuffle_grotto_entrances):
-            # nayru's love may be required to prevent forced damage
-            exclude_item_list.append('Nayrus Love')
-        if self.settings.logic_grottos_without_agony and self.settings.hints != 'agony':
-            # Stone of Agony skippable if not used for hints or grottos
-            exclude_item_list.append('Stone of Agony')
-        if not self.shuffle_special_interior_entrances and not self.settings.shuffle_overworld_entrances and self.settings.warp_songs == 'off':
-            # Serenade and Prelude are never required unless one of those settings is enabled
-            exclude_item_list.append('Serenade of Water')
-            exclude_item_list.append('Prelude of Light')
-        if self.settings.logic_rules == 'glitchless':
-            # Both two-handed swords can be required in glitch logic, so only consider them foolish in glitchless
-            exclude_item_list.append('Biggoron Sword')
-            exclude_item_list.append('Giants Knife')
-        if self.settings.plant_beans:
-            # Magic Beans are useless if beans are already planted
-            exclude_item_list.append('Magic Bean')
-            exclude_item_list.append('Buy Magic Bean')
-            exclude_item_list.append('Magic Bean Pack')
-        if not self.settings.blue_fire_arrows:
-            # Ice Arrows can only be required when the Blue Fire Arrows setting is enabled
-            exclude_item_list.append('Ice Arrows')
-
-        for i in self.item_hint_type_overrides['barren']:
-            if i in exclude_item_list:
-                exclude_item_list.remove(i)
-
-        for i in self.item_added_hint_types['barren']:
-            if not (i in exclude_item_list):
-                exclude_item_list.append(i)
-
         # The idea here is that if an item shows up in woth, then the only way
         # that another copy of that major item could ever be required is if it
         # is a progressive item. Normally this applies to things like bows, bombs
@@ -1297,8 +1266,7 @@ class World(object):
                 world_id = location.item.world.id
                 item = location.item
 
-                if ((not location.item.majoritem) or (location.item.name in exclude_item_list)) and \
-                    (location.item.name not in self.item_hint_type_overrides['barren']):
+                if location.item.can_be_excluded and location.item.name not in self.item_hint_type_overrides['barren']:
                     # Minor items are always useless in logic
                     continue
 

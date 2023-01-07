@@ -180,6 +180,50 @@ class Item(object):
 
 
     @property
+    def can_be_excluded(self):
+        # these are items that can never be required
+        return (
+            self.name in self.world.item_added_hint_types['barren']
+            or (
+                self.name not in self.world.item_hint_type_overrides['barren']
+                and (
+                    (not self.majoritem)
+                    or self.name in ('Double Defense', 'Ice Arrows')
+                    or (
+                        # Nayru's Love may be required to prevent forced damage
+                        self.name == 'Nayrus Love'
+                        and self.world.settings.damage_multiplier != 'ohko'
+                        and self.world.settings.damage_multiplier != 'quadruple'
+                        and self.world.settings.shuffle_scrubs == 'off'
+                        and not self.world.settings.shuffle_grotto_entrances
+                    ) or (
+                        # Stone of Agony skippable if not used for hints or grottos
+                        self.name == 'Stone of Agony'
+                        and self.world.settings.logic_grottos_without_agony
+                        and self.world.settings.hints != 'agony'
+                    ) or (
+                        # Serenade and Prelude can only give access to new areas with certain forms of ER
+                        self.name in ('Serenade of Water', 'Prelude of Light')
+                        and not self.world.shuffle_special_interior_entrances
+                        and not self.world.settings.shuffle_overworld_entrances
+                        and self.world.settings.warp_songs == 'off'
+                        and self.world.settings.shuffle_child_spawn != 'full'
+                        and self.world.settings.shuffle_adult_spawn != 'full'
+                    ) or (
+                        # Both two-handed swords can be required in glitch logic, so only consider them foolish in glitchless
+                        self.name in ('Biggoron Sword', 'Giants Knife')
+                        and self.world.settings.logic_rules == 'glitchless'
+                    ) or (
+                        # Magic Beans are useless if beans are already planted
+                        self.name in ('Magic Bean', 'Buy Magic Bean', 'Magic Bean Pack')
+                        and self.world.settings.plant_beans
+                    )
+                )
+            )
+        )
+
+
+    @property
     def goalitem(self):
         return self.name in self.world.goal_items
 
