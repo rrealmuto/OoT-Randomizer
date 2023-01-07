@@ -43,8 +43,7 @@ class World(object):
         self.parser = Rule_AST_Transformer(self)
         self.event_items = set()
 
-        # dump settings directly into world's namespace
-        # this gives the world an attribute for every setting listed in Settings.py
+        # configure settings
         self.settings = settings
         self.distribution = settings.distribution.world_dists[id]
 

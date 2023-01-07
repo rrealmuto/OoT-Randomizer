@@ -1,8 +1,9 @@
+import copy
 import itertools
 import json
 import math
-import re
 import random
+import re
 
 from functools import reduce
 from collections import defaultdict
@@ -12,7 +13,7 @@ from EntranceShuffle import EntranceShuffleError, change_connections, confirm_re
 from Hints import HintArea, gossipLocations, GossipText
 from Item import ItemFactory, ItemInfo, ItemIterator, IsItem
 from ItemPool import item_groups, get_junk_item, song_list, eggs, triforce_blitz_items, triforce_pieces
-from Location import LocationIterator, LocationFactory, IsLocation
+from Location import LocationIterator, LocationFactory
 from LocationList import location_groups, location_table
 from Search import Search
 from Spoiler import HASH_ICONS
@@ -28,6 +29,7 @@ class InvalidFileException(Exception):
 
 
 per_world_keys = (
+    'settings',
     'randomized_settings',
     'item_pool',
     'dungeons',
@@ -285,6 +287,7 @@ class WorldDistribution(object):
 
     def to_json(self):
         return {
+            'settings': self.settings.to_json(),
             'randomized_settings': self.randomized_settings,
             'dungeons': {name: record.to_json() for (name, record) in self.dungeons.items()},
             'empty_dungeons': {name: record.to_json() for (name, record) in self.empty_dungeons.items()},
@@ -1038,6 +1041,7 @@ class WorldDistribution(object):
         # For each entry here of the form 'World %d', apply that entry to that world.
         # If there are any entries that aren't of this form,
         # apply them all to each world.
+        #TODO instead of allowing 'World %d' entries here, read starting items from per-world settings
         if world_names[self.id] in self.distribution.settings.starting_items:
             data.update(self.distribution.settings.starting_items[world_names[self.id]])
         data.update(
@@ -1176,12 +1180,21 @@ class Distribution(object):
     def reset(self):
         for world in self.world_dists:
             world.update({}, update_all=True)
+            world.settings = copy.copy(self.settings)
 
         world_names = ['World %d' % (i + 1) for i in range(len(self.world_dists))]
 
         for k in per_world_keys:
+            if k == 'settings':
+                if k in self.src_dict:
+                    # For each entry here of the form 'World %d', apply that entry to that world.
+                    # If there are any entries that aren't of this form,
+                    # apply them all to each world.
+                    for world_id, world_name in enumerate(world_names):
+                        if world_name in self.src_dict[k]:
+                            self.world_dists[world_id].settings.update(self.src_dict[k][world_name])
             # Anything starting with ':' is output-only and we ignore it in world.update anyway.
-            if k in self.src_dict and k[0] != ':':
+            elif k in self.src_dict and k[0] != ':':
                 if isinstance(self.src_dict[k], dict):
                     # For each entry here of the form 'World %d', apply that entry to that world.
                     # If there are any entries that aren't of this form,
@@ -1199,6 +1212,7 @@ class Distribution(object):
                         world.update({k: self.src_dict[k]})
 
         # normalize starting items to use the dictionary format
+        #TODO also apply to per-world starting items
         starting_items = itertools.chain(self.settings.starting_equipment, self.settings.starting_songs)
         data = defaultdict(lambda: StarterRecord(0))
         if isinstance(self.settings.starting_items, dict) and self.settings.starting_items:

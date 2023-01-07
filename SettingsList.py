@@ -6669,8 +6669,10 @@ def build_close_match(name, value_type, source_list=None):
 
 def validate_settings(settings_dict, *, check_conflicts=True):
     for setting, choice in settings_dict.items():
+        if setting.startswith('World '):
+            continue
         # Ensure the supplied setting name is a real setting
-        if setting not in [x.name for x in setting_infos]:
+        if not any(setting == x.name for x in setting_infos):
             raise TypeError('%r is not a valid setting. %s' % (setting, build_close_match(setting, 'setting')))
         info = get_setting_info(setting)
         # Ensure the type of the supplied choice is correct

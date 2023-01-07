@@ -43,18 +43,18 @@ class dummy_window():
         pass
 
 
-def main(settings, window=dummy_window(), max_attempts=10):
+def main(base_settings, window=dummy_window(), max_attempts=10):
     clearHintExclusionCache()
     logger = logging.getLogger('')
     start = time.process_time()
 
-    rom = resolve_settings(settings, window=window)
+    rom, world_settings = resolve_settings(base_settings, window=window)
 
     max_attempts = max(max_attempts, 1)
     spoiler = None
     for attempt in range(1, max_attempts + 1):
         try:
-            spoiler = generate(settings, window=window)
+            spoiler = generate(world_settings, window=window)
             break
         except ShuffleError as e:
             logger.warning('Failed attempt %d of %d: %s', attempt, max_attempts, e)
@@ -62,8 +62,9 @@ def main(settings, window=dummy_window(), max_attempts=10):
                 raise
             else:
                 logger.info('Retrying...\n\n')
-            settings.reset_distribution()
-    patch_and_output(settings, window, spoiler, rom)
+            for settings in world_settings:
+                settings.reset_distribution()
+    patch_and_output(base_settings, window, spoiler, rom)
     logger.debug('Total Time: %s', time.process_time() - start)
     return spoiler
 
@@ -71,16 +72,7 @@ def main(settings, window=dummy_window(), max_attempts=10):
 def resolve_settings(settings, window=dummy_window()):
     logger = logging.getLogger('')
 
-    old_tricks = settings.allowed_tricks
     settings.load_distribution()
-
-    # compare pointers to lists rather than contents, so even if the two are identical
-    # we'll still log the error and note the dist file overrides completely.
-    if old_tricks and old_tricks is not settings.allowed_tricks:
-        logger.error('Tricks are set in two places! Using only the tricks from the distribution file.')
-
-    for trick in logic_tricks.values():
-        settings.__dict__[trick['name']] = trick['name'] in settings.allowed_tricks
 
     # we load the rom before creating the seed so that errors get caught early
     outputting_specific_world = settings.create_uncompressed_rom or settings.create_compressed_rom or settings.create_wad_file
@@ -107,34 +99,41 @@ def resolve_settings(settings, window=dummy_window()):
             raise Exception(f'Player Num is {settings.player_num}; must be between (1, {settings.world_count})')
         settings.player_num = settings.world_count
 
-    # Set to a custom hint distribution if plando is overriding the distro
-    if len(settings.hint_dist_user) != 0:
-        settings.hint_dist = 'custom'
-
     logger.info('OoT Randomizer Version %s  -  Seed: %s', __version__, settings.seed)
-    settings.remove_disabled()
     logger.info('(Original) Settings string: %s\n', settings.settings_string)
     random.seed(settings.numeric_seed)
-    settings.resolve_random_settings(cosmetic=False)
-    logger.debug(settings.get_settings_display())
-    return rom
+
+    world_settings = [world.settings for world in settings.distribution.world_dists]
+    for settings in world_settings:
+        for trick in logic_tricks.values():
+            settings.__dict__[trick['name']] = trick['name'] in settings.allowed_tricks
+
+        # Set to a custom hint distribution if plando is overriding the distro
+        if len(settings.hint_dist_user) != 0:
+            settings.hint_dist = 'custom'
+
+        settings.remove_disabled()
+        settings.resolve_random_settings(cosmetic=False)
+        logger.debug(settings.get_settings_display())
+
+    return rom, world_settings
 
 
-def generate(settings, window=dummy_window()):
-    worlds = build_world_graphs(settings, window=window)
-    place_items(settings, worlds, window=window)
+def generate(world_settings, window=dummy_window()):
+    worlds = build_world_graphs(world_settings, window=window)
+    place_items(worlds, window=window)
     for world in worlds:
         world.distribution.configure_effective_starting_items(worlds, world)
     if worlds[0].enable_goal_hints:
         replace_goal_names(worlds)
-    return make_spoiler(settings, worlds, window=window)
+    return make_spoiler(world_settings, worlds, window=window)
 
 
-def build_world_graphs(settings, window=dummy_window()):
+def build_world_graphs(world_settings, window=dummy_window()):
     logger = logging.getLogger('')
     worlds = []
-    for i in range(0, settings.world_count):
-        worlds.append(World(i, copy.copy(settings)))
+    for i, settings in enumerate(world_settings):
+        worlds.append(World(i, settings))
 
     savewarps_to_connect = []
     window.update_status('Creating the Worlds')
@@ -181,7 +180,7 @@ def build_world_graphs(settings, window=dummy_window()):
     return worlds
 
 
-def place_items(settings, worlds, window=dummy_window()):
+def place_items(worlds, window=dummy_window()):
     logger = logging.getLogger('')
     window.update_status('Placing the Items')
     logger.info('Fill the world.')
@@ -189,10 +188,10 @@ def place_items(settings, worlds, window=dummy_window()):
     window.update_progress(35)
 
 
-def make_spoiler(settings, worlds, window=dummy_window()):
+def make_spoiler(world_settings, worlds, window=dummy_window()):
     logger = logging.getLogger('')
     spoiler = Spoiler(worlds)
-    if settings.create_spoiler or settings.hints != 'none':
+    if any(settings.create_spoiler or settings.hints != 'none' for settings in world_settings):
         window.update_status('Calculating Spoiler Data')
         logger.info('Calculating playthrough.')
         create_playthrough(spoiler)
@@ -204,7 +203,11 @@ def make_spoiler(settings, worlds, window=dummy_window()):
         calculate_playthrough_locations(spoiler)
         buildGossipHints(spoiler, worlds)
         window.update_progress(55)
-    elif any(world.dungeon_rewards_hinted for world in worlds) or any(hint_type in settings.misc_hints for hint_type in misc_item_hint_table) or any(hint_type in settings.misc_hints for hint_type in misc_location_hint_table):
+    elif (
+        any(world.dungeon_rewards_hinted for world in worlds)
+        or any(hint_type in settings.misc_hints for settings in world_settings for hint_type in misc_item_hint_table)
+        or any(hint_type in settings.misc_hints for settings in world_settings for hint_type in misc_location_hint_table)
+    ):
         find_misc_hint_items(spoiler)
     spoiler.build_file_hash()
     return spoiler
@@ -346,7 +349,7 @@ def patch_and_output(settings, window, spoiler, rom):
             settings.generating_patch_file = settings.create_patch_file
             patch_cosmetics_log = prepare_rom(spoiler, world, rom, settings, rng_state, restore_rom)
             restore_rom = True
-            window.update_progress(65 + 20*(world.id + 1)/settings.world_count)
+            window.update_progress(65 + 20 * (world.id + 1) / settings.world_count)
 
             if settings.create_patch_file:
                 patch_filename = f"{output_filename_base}{player_filename_suffix}.zpf"
@@ -354,7 +357,7 @@ def patch_and_output(settings, window, spoiler, rom):
                 output_path = os.path.join(output_dir, patch_filename)
                 file_list.append(patch_filename)
                 create_patch_file(rom, output_path)
-                window.update_progress(65 + 30*(world.id + 1)/settings.world_count)
+                window.update_progress(65 + 30 * (world.id + 1) / settings.world_count)
 
                 # Cosmetics Log for patch file only.
                 if settings.create_cosmetics_log and patch_cosmetics_log:
