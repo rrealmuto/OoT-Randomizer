@@ -433,7 +433,7 @@ def set_entrances(worlds, savewarps_to_connect):
             # Set entrance data for all entrances, even those we aren't shuffling
             set_all_entrances_data(world)
 
-    if worlds[0].entrance_shuffle:
+    if any(world.entrance_shuffle for world in worlds):
         shuffle_random_entrances(worlds)
 
     set_entrances_based_rules(worlds)
@@ -452,83 +452,86 @@ def shuffle_random_entrances(worlds):
 
     # Shuffle all entrances within their own worlds
     for world in worlds:
+        if not world.entrance_shuffle:
+            continue
+
         # Determine entrance pools based on settings, to be shuffled in the order we set them by
         one_way_entrance_pools = OrderedDict()
         entrance_pools = OrderedDict()
         one_way_priorities = {}
 
-        if worlds[0].settings.shuffle_gerudo_valley_river_exit != 'off':
+        if world.settings.shuffle_gerudo_valley_river_exit != 'off':
             one_way_entrance_pools['OverworldOneWay'] = world.get_shufflable_entrances(type='OverworldOneWay')
 
-        if worlds[0].settings.owl_drops != 'off':
+        if world.settings.owl_drops != 'off':
             one_way_entrance_pools['OwlDrop'] = world.get_shufflable_entrances(type='OwlDrop')
 
-        if worlds[0].settings.shuffle_child_spawn != 'off':
+        if world.settings.shuffle_child_spawn != 'off':
             one_way_entrance_pools['ChildSpawn'] = world.get_shufflable_entrances(type='ChildSpawn')
-        if worlds[0].settings.shuffle_adult_spawn != 'off':
+        if world.settings.shuffle_adult_spawn != 'off':
             one_way_entrance_pools['AdultSpawn'] = world.get_shufflable_entrances(type='AdultSpawn')
 
-        if worlds[0].settings.warp_songs != 'off':
+        if world.settings.warp_songs != 'off':
             one_way_entrance_pools['WarpSong'] = world.get_shufflable_entrances(type='WarpSong')
-            if worlds[0].settings.reachable_locations != 'beatable' and worlds[0].settings.logic_rules == 'glitchless':
+            if world.settings.reachable_locations != 'beatable' and world.settings.logic_rules == 'glitchless':
                 # In glitchless, there aren't any other ways to access these areas
                 one_way_priorities['Bolero'] = priority_entrance_table['Bolero']
                 one_way_priorities['Nocturne'] = priority_entrance_table['Nocturne']
-                if not worlds[0].shuffle_dungeon_entrances and not worlds[0].settings.shuffle_overworld_entrances:
+                if not world.shuffle_dungeon_entrances and not world.settings.shuffle_overworld_entrances:
                     one_way_priorities['Requiem'] = priority_entrance_table['Requiem']
 
-        if worlds[0].settings.blue_warps in ('balanced', 'full'):
+        if world.settings.blue_warps in ('balanced', 'full'):
             one_way_entrance_pools['BlueWarp'] = world.get_shufflable_entrances(type='BlueWarp')
 
-        if worlds[0].settings.shuffle_bosses == 'full':
+        if world.settings.shuffle_bosses == 'full':
             entrance_pools['Boss'] = world.get_shufflable_entrances(type='ChildBoss', only_primary=True)
             entrance_pools['Boss'] += world.get_shufflable_entrances(type='AdultBoss', only_primary=True)
-            if worlds[0].settings.require_gohma:
+            if world.settings.require_gohma:
                 # Deku is forced vanilla below, so Queen Gohma must be vanilla to ensure she is reachable.
                 # This is already enforced by the fill algorithm in most cases, but this covers the odd settings combination where it isn't.
                 entrance_pools['Boss'].remove(world.get_entrance('Deku Tree Boss Door -> Queen Gohma Boss Room'))
-            if worlds[0].settings.decouple_entrances:
+            if world.settings.decouple_entrances:
                 entrance_pools['BossReverse'] = [entrance.reverse for entrance in entrance_pools['Boss']]
-        elif worlds[0].settings.shuffle_bosses == 'limited':
+        elif world.settings.shuffle_bosses == 'limited':
             entrance_pools['ChildBoss'] = world.get_shufflable_entrances(type='ChildBoss', only_primary=True)
             entrance_pools['AdultBoss'] = world.get_shufflable_entrances(type='AdultBoss', only_primary=True)
-            if worlds[0].settings.require_gohma:
+            if world.settings.require_gohma:
                 # Deku is forced vanilla below, so Queen Gohma must be vanilla to ensure she is reachable.
                 # This is already enforced by the fill algorithm in most cases, but this covers the odd settings combination where it isn't.
                 entrance_pools['ChildBoss'].remove(world.get_entrance('Deku Tree Boss Door -> Queen Gohma Boss Room'))
-            if worlds[0].settings.decouple_entrances:
+            if world.settings.decouple_entrances:
                 entrance_pools['ChildBossReverse'] = [entrance.reverse for entrance in entrance_pools['ChildBoss']]
                 entrance_pools['AdultBossReverse'] = [entrance.reverse for entrance in entrance_pools['AdultBoss']]
 
-        if worlds[0].shuffle_dungeon_entrances:
+        if world.shuffle_dungeon_entrances:
             entrance_pools['Dungeon'] = world.get_shufflable_entrances(type='Dungeon', only_primary=True)
             # The fill algorithm will already make sure gohma is reachable, however it can end up putting
             # a forest escape via the hands of spirit on Deku leading to Deku on spirit in logic. This is
             # contrary to the idea of Require Gohma, so specifically place Deku Tree in its vanilla location.
-            if worlds[0].settings.require_gohma:
+            if world.settings.require_gohma:
                 entrance_pools['Dungeon'].remove(world.get_entrance('KF Outside Deku Tree -> Deku Tree Lobby'))
-            if worlds[0].shuffle_special_dungeon_entrances:
+            if world.shuffle_special_dungeon_entrances:
                 entrance_pools['Dungeon'] += world.get_shufflable_entrances(type='DungeonSpecial', only_primary=True)
-            if worlds[0].settings.decouple_entrances:
+            if world.settings.decouple_entrances:
                 entrance_pools['DungeonReverse'] = [entrance.reverse for entrance in entrance_pools['Dungeon']]
 
-        if worlds[0].shuffle_interior_entrances:
+        if world.shuffle_interior_entrances:
             entrance_pools['Interior'] = world.get_shufflable_entrances(type='Interior', only_primary=True)
-            if worlds[0].shuffle_special_interior_entrances:
+            if world.shuffle_special_interior_entrances:
                 entrance_pools['Interior'] += world.get_shufflable_entrances(type='SpecialInterior', only_primary=True)
-            if worlds[0].settings.shuffle_hideout_entrances:
+            if world.settings.shuffle_hideout_entrances:
                 entrance_pools['Interior'] += world.get_shufflable_entrances(type='Hideout', only_primary=True)
-            if worlds[0].settings.decouple_entrances:
+            if world.settings.decouple_entrances:
                 entrance_pools['InteriorReverse'] = [entrance.reverse for entrance in entrance_pools['Interior']]
 
-        if worlds[0].settings.shuffle_grotto_entrances:
+        if world.settings.shuffle_grotto_entrances:
             entrance_pools['GrottoGrave'] = world.get_shufflable_entrances(type='Grotto', only_primary=True)
             entrance_pools['GrottoGrave'] += world.get_shufflable_entrances(type='Grave', only_primary=True)
-            if worlds[0].settings.decouple_entrances:
+            if world.settings.decouple_entrances:
                 entrance_pools['GrottoGraveReverse'] = [entrance.reverse for entrance in entrance_pools['GrottoGrave']]
 
-        if worlds[0].settings.shuffle_overworld_entrances:
-            exclude_overworld_reverse = ('Overworld' in worlds[0].settings.mix_entrance_pools) and not worlds[0].settings.decouple_entrances
+        if world.settings.shuffle_overworld_entrances:
+            exclude_overworld_reverse = ('Overworld' in world.settings.mix_entrance_pools) and not world.settings.decouple_entrances
             entrance_pools['Overworld'] = world.get_shufflable_entrances(type='Overworld', only_primary=exclude_overworld_reverse)
 
         # Set shuffled entrances as such
@@ -539,9 +542,9 @@ def shuffle_random_entrances(worlds):
 
         # Combine all entrance pools into one when mixing entrance pools
         mixed_entrance_pools = []
-        for pool in worlds[0].settings.mix_entrance_pools:
+        for pool in world.settings.mix_entrance_pools:
             mixed_entrance_pools.append(pool)
-            if pool != 'Overworld' and worlds[0].settings.decouple_entrances:
+            if pool != 'Overworld' and world.settings.decouple_entrances:
                 mixed_entrance_pools.append(pool + 'Reverse')
 
         if len(mixed_entrance_pools) > 1:
@@ -556,15 +559,15 @@ def shuffle_random_entrances(worlds):
             if pool_type == 'OverworldOneWay':
                 valid_target_types = ('ChildSpawn', 'AdultSpawn', 'WarpSong', 'BlueWarp', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
                 valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
-                if worlds[0].settings.shuffle_gerudo_valley_river_exit == 'full':
+                if world.settings.shuffle_gerudo_valley_river_exit == 'full':
                     valid_target_types = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grotto', 'Grave', *valid_target_types)
                     valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grotto', 'Grave', *valid_target_types_reverse)
                     # Unless mixed pools bosses is on, vanilla Shadow temple key logic assumes the final small door can't be reached from the boss door.
                     # Make sure this assumption isn't broken by a one-way going there.
-                    if worlds[0].mixed_pools_bosses or world.dungeon_mq['Shadow Temple']:
+                    if world.mixed_pools_bosses or world.dungeon_mq['Shadow Temple']:
                         valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
                         valid_target_types_reverse = ('ChildBoss', 'AdultBoss', *valid_target_types_reverse)
-                    elif worlds[0].settings.shuffle_bosses in ('off', 'limited'):
+                    elif world.settings.shuffle_bosses in ('off', 'limited'):
                         valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
                         valid_target_types_reverse = ('ChildBoss', *valid_target_types_reverse)
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
@@ -572,15 +575,15 @@ def shuffle_random_entrances(worlds):
                 valid_target_types = ('WarpSong', 'BlueWarp', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Extra')
                 valid_target_types_reverse = ('Overworld',)
                 exclude = ['OGC Great Fairy Fountain -> Castle Grounds']
-                if worlds[0].settings.owl_drops == 'full':
+                if world.settings.owl_drops == 'full':
                     valid_target_types = ('ChildSpawn', 'AdultSpawn', 'Dungeon', 'DungeonSpecial', 'Hideout', 'Grotto', 'Grave', *valid_target_types)
                     valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'Interior', 'SpecialInterior', 'Hideout', 'Grotto', 'Grave', *valid_target_types_reverse)
                     # Unless mixed pools bosses is on, vanilla Shadow temple key logic assumes the final small door can't be reached from the boss door.
                     # Make sure this assumption isn't broken by a one-way going there.
-                    if worlds[0].mixed_pools_bosses or world.dungeon_mq['Shadow Temple']:
+                    if world.mixed_pools_bosses or world.dungeon_mq['Shadow Temple']:
                         valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
                         valid_target_types_reverse = ('ChildBoss', 'AdultBoss', *valid_target_types_reverse)
-                    elif worlds[0].settings.shuffle_bosses in ('off', 'limited'):
+                    elif world.settings.shuffle_bosses in ('off', 'limited'):
                         valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
                         valid_target_types_reverse = ('ChildBoss', *valid_target_types_reverse)
                 else:
@@ -591,62 +594,62 @@ def shuffle_random_entrances(worlds):
             elif pool_type == 'ChildSpawn':
                 valid_target_types = ('ChildSpawn', 'AdultSpawn', 'WarpSong', 'BlueWarp', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
                 valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
-                if worlds[0].settings.shuffle_child_spawn == 'full':
+                if world.settings.shuffle_child_spawn == 'full':
                     # grotto entrances don't work properly (they cause a black screen on file load)
                     valid_target_types = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grave', *valid_target_types)
                     valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grave', *valid_target_types_reverse)
                     # Unless mixed pools bosses is on, vanilla Shadow temple key logic assumes the final small door can't be reached from the boss door.
                     # Make sure this assumption isn't broken by a one-way going there.
-                    if worlds[0].mixed_pools_bosses or world.dungeon_mq['Shadow Temple']:
+                    if world.mixed_pools_bosses or world.dungeon_mq['Shadow Temple']:
                         valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
                         valid_target_types_reverse = ('ChildBoss', 'AdultBoss', *valid_target_types_reverse)
-                    elif worlds[0].settings.shuffle_bosses in ('off', 'limited'):
+                    elif world.settings.shuffle_bosses in ('off', 'limited'):
                         valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
                         valid_target_types_reverse = ('ChildBoss', *valid_target_types_reverse)
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
             elif pool_type == 'AdultSpawn':
                 valid_target_types = ('ChildSpawn', 'AdultSpawn', 'WarpSong', 'BlueWarp', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
                 valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
-                if worlds[0].settings.shuffle_adult_spawn == 'full':
+                if world.settings.shuffle_adult_spawn == 'full':
                     # grotto entrances don't work properly (they cause a black screen on file load)
                     valid_target_types = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grave', *valid_target_types)
                     valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grave', *valid_target_types_reverse)
                     # Unless mixed pools bosses is on, vanilla Shadow temple key logic assumes the final small door can't be reached from the boss door.
                     # Make sure this assumption isn't broken by a one-way going there.
-                    if worlds[0].mixed_pools_bosses or world.dungeon_mq['Shadow Temple']:
+                    if world.mixed_pools_bosses or world.dungeon_mq['Shadow Temple']:
                         valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
                         valid_target_types_reverse = ('ChildBoss', 'AdultBoss', *valid_target_types_reverse)
-                    elif worlds[0].settings.shuffle_bosses in ('off', 'limited'):
+                    elif world.settings.shuffle_bosses in ('off', 'limited'):
                         valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
                         valid_target_types_reverse = ('ChildBoss', *valid_target_types_reverse)
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
             elif pool_type == 'WarpSong':
                 valid_target_types = ('ChildSpawn', 'AdultSpawn', 'WarpSong', 'BlueWarp', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
                 valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
-                if worlds[0].settings.warp_songs == 'full':
+                if world.settings.warp_songs == 'full':
                     valid_target_types = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grotto', 'Grave', *valid_target_types)
                     valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grotto', 'Grave', *valid_target_types_reverse)
                     # Unless mixed pools bosses is on, vanilla Shadow temple key logic assumes the final small door can't be reached from the boss door.
                     # Make sure this assumption isn't broken by a one-way going there.
-                    if worlds[0].mixed_pools_bosses or world.dungeon_mq['Shadow Temple']:
+                    if world.mixed_pools_bosses or world.dungeon_mq['Shadow Temple']:
                         valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
                         valid_target_types_reverse = ('ChildBoss', 'AdultBoss', *valid_target_types_reverse)
-                    elif worlds[0].settings.shuffle_bosses in ('off', 'limited'):
+                    elif world.settings.shuffle_bosses in ('off', 'limited'):
                         valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
                         valid_target_types_reverse = ('ChildBoss', *valid_target_types_reverse)
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
             elif pool_type == 'BlueWarp':
                 valid_target_types = ('ChildSpawn', 'AdultSpawn', 'WarpSong', 'BlueWarp', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
                 valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
-                if worlds[0].settings.blue_warps == 'full':
+                if world.settings.blue_warps == 'full':
                     valid_target_types = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grotto', 'Grave', *valid_target_types)
                     valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grotto', 'Grave', *valid_target_types_reverse)
                     # Unless mixed pools bosses is on, vanilla Shadow temple key logic assumes the final small door can't be reached from the boss door.
                     # Make sure this assumption isn't broken by a one-way going there.
-                    if worlds[0].mixed_pools_bosses or world.dungeon_mq['Shadow Temple']:
+                    if world.mixed_pools_bosses or world.dungeon_mq['Shadow Temple']:
                         valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
                         valid_target_types_reverse = ('ChildBoss', 'AdultBoss', *valid_target_types_reverse)
-                    elif worlds[0].settings.shuffle_bosses in ('off', 'limited'):
+                    elif world.settings.shuffle_bosses in ('off', 'limited'):
                         valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
                         valid_target_types_reverse = ('ChildBoss', *valid_target_types_reverse)
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
@@ -756,6 +759,8 @@ def shuffle_random_entrances(worlds):
 
     # Check that all shuffled entrances are properly connected to a region
     for world in worlds:
+        if not world.entrance_shuffle:
+            continue
         for entrance in world.get_shuffled_entrances():
             if entrance.connected_region == None:
                 logging.getLogger('').error('%s was shuffled but still isn\'t connected to any region [World %d]', entrance, world.id)
@@ -772,6 +777,8 @@ def shuffle_random_entrances(worlds):
 
     # Validate the worlds one last time to ensure all special conditions are still valid
     for world in worlds:
+        if not world.entrance_shuffle:
+            continue
         try:
             validate_world(world, worlds, None, locations_to_ensure_reachable, complete_itempool, placed_one_way_entrances=placed_one_way_entrances)
         except EntranceShuffleError as error:
@@ -1009,7 +1016,7 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
     if locations_to_ensure_reachable:
         max_search = Search.max_explore([w.state for w in worlds], itempool)
         if world.check_beatable_only:
-            if worlds[0].settings.reachable_locations == 'goals':
+            if world.settings.reachable_locations == 'goals':
                 # If this entrance is required for a goal, it must be placed somewhere reachable.
                 # We also need to check to make sure the game is beatable, since custom goals might not imply that.
                 predicate = lambda state: state.won() and state.has_all_item_goals()
@@ -1028,8 +1035,13 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
 
     if (
         world.shuffle_interior_entrances and (
-            (world.dungeon_rewards_hinted and (world.mixed_pools_bosses or world.settings.shuffle_dungeon_rewards in ('regional', 'overworld', 'anywhere'))) or
-            any(hint_type in world.settings.misc_hints for hint_type in misc_item_hint_table) or world.settings.hints != 'none'
+            (world.dungeon_rewards_hinted and (world.mixed_pools_bosses or world.settings.shuffle_dungeon_rewards in ('regional', 'overworld', 'anywhere')))
+            or any(
+                hint_type in world.settings.misc_hints
+                for hint_type in misc_item_hint_table
+                for world in worlds
+            )
+            or world.settings.hints != 'none'
         ) and (entrance_placed == None or entrance_placed.type in ['Interior', 'SpecialInterior'])
     ):
         # When cows are shuffled, ensure both Impa's House entrances are in the same hint area because the cow is reachable from both sides
