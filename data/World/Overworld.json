@@ -1106,7 +1106,7 @@
             "Colossus Adult Guay 5": "is_adult",
             "Colossus Tree Wonderitem 1": "can_use(Slingshot) or can_use(Bow)",
             "Colossus Tree Wonderitem 2": "can_use(Slingshot) or can_use(Bow)",
-            "Colossus Tree Wonderitem 3": "can_use(Slingshot) or can_use(Bow)",
+            "Colossus Tree Wonderitem 3 Child": "can_use(Slingshot)",
             "Colossus Tree Wonderitem 4": "can_use(Slingshot) or can_use(Bow)",
             "Colossus Tree Wonderitem 5": "can_use(Slingshot) or can_use(Bow)"
         },
