@@ -324,45 +324,45 @@ class WorldDistribution(object):
                 if not self.major_group: # If necessary to compute major_group, do so only once
                     self.major_group = [item for item in group if item in self.base_pool]
                     # Songs included by default, remove them if songs not set to anywhere
-                    if self.distribution.settings.shuffle_song_items != "any":
+                    if self.settings.shuffle_song_items != "any":
                         self.major_group = [x for x in self.major_group if x not in item_groups['Song']]
                     # Special handling for things not included in base_pool
-                    if self.distribution.settings.triforce_hunt:
-                        if self.distribution.settings.triforce_hunt_mode == 'easter_egg_hunt':
+                    if self.settings.triforce_hunt:
+                        if self.settings.triforce_hunt_mode == 'easter_egg_hunt':
                             self.major_group.extend(eggs)
-                        elif self.distribution.settings.triforce_hunt_mode == 'blitz':
+                        elif self.settings.triforce_hunt_mode == 'blitz':
                             self.major_group.extend(triforce_blitz_items)
                         else:
                             self.major_group.append('Triforce Piece')
-                    major_tokens = ((self.distribution.settings.shuffle_ganon_bosskey == 'on_lacs' and
-                            self.distribution.settings.lacs_condition == 'tokens') or
-                            self.distribution.settings.shuffle_ganon_bosskey == 'tokens' or self.distribution.settings.bridge == 'tokens')
-                    if self.distribution.settings.tokensanity == 'all' and major_tokens:
+                    major_tokens = ((self.settings.shuffle_ganon_bosskey == 'on_lacs' and
+                            self.settings.lacs_condition == 'tokens') or
+                            self.settings.shuffle_ganon_bosskey == 'tokens' or self.settings.bridge == 'tokens')
+                    if self.settings.tokensanity == 'all' and major_tokens:
                         self.major_group.append('Gold Skulltula Token')
-                    major_hearts = ((self.distribution.settings.shuffle_ganon_bosskey == 'on_lacs' and
-                            self.distribution.settings.lacs_condition == 'hearts') or
-                            self.distribution.settings.shuffle_ganon_bosskey == 'hearts' or self.distribution.settings.bridge == 'hearts')
+                    major_hearts = ((self.settings.shuffle_ganon_bosskey == 'on_lacs' and
+                            self.settings.lacs_condition == 'hearts') or
+                            self.settings.shuffle_ganon_bosskey == 'hearts' or self.settings.bridge == 'hearts')
                     if major_hearts:
                         self.major_group += ['Heart Container', 'Piece of Heart', 'Piece of Heart (Treasure Chest Game)']
-                    if self.distribution.settings.shuffle_smallkeys == 'keysanity':
+                    if self.settings.shuffle_smallkeys == 'keysanity':
                         for dungeon in ['Bottom of the Well', 'Forest Temple', 'Fire Temple', 'Water Temple',
                                         'Shadow Temple', 'Spirit Temple', 'Gerudo Training Ground', 'Ganons Castle']:
-                            if dungeon in self.distribution.settings.key_rings:
+                            if dungeon in self.settings.key_rings:
                                 self.major_group.append(f"Small Key Ring ({dungeon})")
                             else:
                                 self.major_group.append(f"Small Key ({dungeon})")
-                    if self.distribution.settings.shuffle_hideoutkeys == 'keysanity':
-                        if 'Thieves Hideout' in self.distribution.settings.key_rings:
+                    if self.settings.shuffle_hideoutkeys == 'keysanity':
+                        if 'Thieves Hideout' in self.settings.key_rings:
                             self.major_group.append('Small Key Ring (Thieves Hideout)')
                         else:
                             self.major_group.append('Small Key (Thieves Hideout)')
-                    if self.distribution.settings.shuffle_bosskeys == 'keysanity':
+                    if self.settings.shuffle_bosskeys == 'keysanity':
                         keys = [name for name, item in ItemInfo.items.items() if item.type == 'BossKey' and name != 'Boss Key']
                         self.major_group.extend(keys)
-                    if self.distribution.settings.shuffle_ganon_bosskey == 'keysanity':
+                    if self.settings.shuffle_ganon_bosskey == 'keysanity':
                         keys = [name for name, item in ItemInfo.items.items() if item.type == 'GanonBossKey']
                         self.major_group.extend(keys)
-                    if self.distribution.settings.shuffle_silver_rupees == 'anywhere':
+                    if self.settings.shuffle_silver_rupees == 'anywhere':
                         rupees = [name for name, item in ItemInfo.items.items() if item.type == 'SilverRupee']
                         self.major_group.extend(rupees)
                 group = self.major_group
@@ -516,7 +516,7 @@ class WorldDistribution(object):
                     raise ValueError('Cannot add Ice Arrows to item pool with Blue Fire Arrows enabled')
                 elif item_name == 'Blue Fire Arrows' and not world.settings.blue_fire_arrows:
                     raise ValueError('Cannot add Blue Fire Arrows to item pool with Blue Fire Arrows disabled')
-                elif item_name == 'Weird Egg' and self.distribution.settings.shuffle_child_trade != 'shuffle':
+                elif item_name == 'Weird Egg' and world.settings.shuffle_child_trade != 'shuffle':
                     remove_egg = True
                     continue
                 elif item_name == 'Weird Egg' and self.item_pool['Weird Egg'].count > 1:
@@ -600,7 +600,7 @@ class WorldDistribution(object):
         else:
             del self.item_pool[removed_item.name]
         if new_item == "#Junk":
-            if self.distribution.settings.enable_distribution_file:
+            if self.settings.enable_distribution_file:
                 return ItemFactory(get_junk_item(1, self.base_pool, self.item_pool))[0]
             else:  # Generator settings that add junk to the pool should not be strict about the item_pool definitions
                 return ItemFactory(get_junk_item(1))[0]
@@ -943,9 +943,9 @@ class WorldDistribution(object):
                     item = self.pool_replace_item(pool, "Weird Egg", player_id, record.item, worlds)
                 except KeyError:
                     raise RuntimeError('Weird Egg already placed in World %d.' % (self.id + 1))
-            elif record.item == "Ice Arrows" and worlds[0].settings.blue_fire_arrows:
+            elif record.item == "Ice Arrows" and worlds[player_id].settings.blue_fire_arrows:
                 raise ValueError('Cannot add Ice Arrows to item pool with Blue Fire Arrows enabled')
-            elif record.item == "Blue Fire Arrows" and not worlds[0].settings.blue_fire_arrows:
+            elif record.item == "Blue Fire Arrows" and not worlds[player_id].settings.blue_fire_arrows:
                 raise ValueError('Cannot add Blue Fire Arrows to item pool with Blue Fire Arrows disabled')
             else:
                 try:
@@ -1239,7 +1239,7 @@ class Distribution(object):
             ':version': __version__,
             'file_hash': CollapseList(self.file_hash),
             ':seed': self.settings.seed,
-            ':settings_string': self.settings.settings_string,
+            ':settings_string': self.settings.settings_string, #TODO remove if per-world settings are active?
             ':enable_distribution_file': self.settings.enable_distribution_file,
         }
 

@@ -124,7 +124,7 @@ def generate(world_settings, window=dummy_window()):
     place_items(worlds, window=window)
     for world in worlds:
         world.distribution.configure_effective_starting_items(worlds, world)
-    if worlds[0].enable_goal_hints:
+    if any(world.enable_goal_hints for world in worlds):
         replace_goal_names(worlds)
     return make_spoiler(world_settings, worlds, window=window)
 
@@ -683,14 +683,14 @@ def find_misc_hint_items(spoiler):
 
 def create_playthrough(spoiler):
     worlds = spoiler.worlds
-    if worlds[0].check_beatable_only and not Search([world.state for world in worlds]).can_beat_game():
+    if not Search([world.state for world in worlds]).can_beat_game():
         raise RuntimeError('Uncopied is broken too.')
     # create a copy as we will modify it
     old_worlds = worlds
     worlds = copy_worlds(worlds)
 
     # if we only check for beatable, we can do this sanity check first before writing down spheres
-    if worlds[0].check_beatable_only and not Search([world.state for world in worlds]).can_beat_game():
+    if not Search([world.state for world in worlds]).can_beat_game():
         raise RuntimeError('Cannot beat game. Something went terribly wrong here!')
 
     search = RewindableSearch([world.state for world in worlds])
@@ -818,7 +818,7 @@ def create_playthrough(spoiler):
         for hint_type, item_location in w.misc_hint_item_locations.items():
             sw.misc_hint_item_locations[hint_type] = spoiler.worlds[item_location.world.id].get_location(item_location.name)
 
-    if worlds[0].entrance_shuffle:
+    if any(world.entrance_shuffle for world in worlds):
         spoiler.entrance_playthrough = OrderedDict((str(i + 1), list(sphere)) for i, sphere in enumerate(entrance_spheres))
 
 def calculate_playthrough_locations(spoiler):

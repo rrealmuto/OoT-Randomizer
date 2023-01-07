@@ -2,6 +2,7 @@ import difflib
 import json
 import math
 import operator
+import re
 from version import __version__
 
 from Colors import get_tunic_color_options, get_navi_color_options, get_sword_trail_color_options, \
@@ -6667,10 +6668,11 @@ def build_close_match(name, value_type, source_list=None):
     return "" # No matches
 
 
-def validate_settings(settings_dict, *, check_conflicts=True):
+def validate_settings(settings_dict, *, allow_world_entries=True, check_conflicts=True):
     for setting, choice in settings_dict.items():
-        if setting.startswith('World '):
-            continue
+        # Handle per-world settings
+        if allow_world_entries and re.fullmatch('World [0-9]+', setting):
+            validate_settings(choice, allow_world_entries=False, check_conflicts=check_conflicts)
         # Ensure the supplied setting name is a real setting
         if not any(setting == x.name for x in setting_infos):
             raise TypeError('%r is not a valid setting. %s' % (setting, build_close_match(setting, 'setting')))
