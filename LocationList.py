@@ -2720,6 +2720,9 @@ location_table = OrderedDict([
     ("Shadow Temple MQ Boat Stalfos 1",                              ("EnemyDrop",    0x07,  (21,0,17), None,                        'Rupees (5)',                            ("Shadow Temple", "Master Quest", "EnemyDrop"))),
     ("Shadow Temple MQ Boat Stalfos 2",                              ("EnemyDrop",    0x07,  (21,0,18), None,                        'Rupees (5)',                            ("Shadow Temple", "Master Quest", "EnemyDrop"))),
 
+    # Shadow Temple MQ Wonderitems
+    ("Shadow Temple MQ 3 Spinning Pots Arrow Wonderitem",            ("Wonderitem",   0x07,  (12,0,2), None,                        'Arrows (10)',                           ("Shadow Temple", "Master Quest", "Wonderitem"))),
+
     # Shadow Temple Shared
     ("Shadow Temple Bongo Bongo Heart",                              ("BossHeart",    0x18,  0x4F, None,                            'Heart Container',                       ("Shadow Temple", "Shadow Temple MQ", "Vanilla Dungeons", "Master Quest",))),
 
@@ -3016,6 +3019,10 @@ location_table = OrderedDict([
     ("Spirit Temple MQ Big Mirror Bubble 1",                         ("EnemyDrop",    0x06,  (26,0,7), None,                        'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))),
     ("Spirit Temple MQ Big Mirror Bubble 2",                         ("EnemyDrop",    0x06,  (26,0,8), None,                        'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))),
     ("Spirit Temple MQ Spinning Platform Stalfos",                   ("EnemyDrop",    0x06,  (27,0,8), None,                        'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))),
+
+    # Spirit Temple MQ Wonderitems
+    ("Spirit Temple MQ Chest Switch Sword Wonderitem",               ("Wonderitem",   0x06,  (18,0,10), None,                       'Recovery Heart',                        ("Spirit Temple", "Master Quest", "Wonderitem"))),
+    ("Spirit Temple MQ Chest Switch Hammer Wonderitem",              ("Wonderitem",   0x06,  (18,0,9), None,                        'Recovery Heart',                        ("Spirit Temple", "Master Quest", "Wonderitem"))),
 
     # Ice Cavern Vanilla
     ("Ice Cavern Map Chest",                                         ("Chest",        0x09,  0x00, None,                            'Map (Ice Cavern)',                      ("Ice Cavern", "Vanilla Dungeons", "Chests",))),
