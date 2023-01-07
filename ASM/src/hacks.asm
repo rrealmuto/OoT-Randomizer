@@ -772,15 +772,12 @@ sh  v0, 0x004E(sp)
     nop
     nop
 
-; Hack at the end of EnWonderItem_Update to draw a marker for the location (other than multitags)
-.orga 0xDE96A0
+; Hack at the beginning of EnWonderItem_Update to draw a marker for the location (other than multitags)
+.orga 0xDE9630
 ; Replaces:
-;   lw      ra, 0x001c(sp)
-;   lw      s0, 0x0018(sp)
-; Not actually replaced but gets skipped because we just return from our hack
-;   addiu   sp, sp, 0x30
-;   jr      ra
-    j       EnWonderItem_Update_Hook
+;   lw      t9, 0x013c(s0)
+;   or      a0, s0, r0
+    jal       EnWonderItem_Update_Hook
     nop
 
 ; Hack EnWonderItem_DropCollectible to drop flagged collectibles

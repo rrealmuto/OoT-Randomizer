@@ -128,12 +128,9 @@ void EnWonderItem_Update_Hack(EnWonderItem* this) {
                 break;
         }
         if(color) {
-            z64_xyzf_t pos = this->actor.pos_world;
-            pos.y += 25.0;
-            z64_EffectSsKiraKira_SpawnSmall(&z64_game, &pos, &sEffectVelocity, &sEffectAccel, color, &sEffectEnvColor );
+            z64_EffectSsKiraKira_SpawnSmall(&z64_game, &(this->actor.pos_world), &sEffectVelocity, &sEffectAccel, color, &sEffectEnvColor );
         }
     }
-    
 }
 
 // Hack to not kill wonderitem when switch flag is set if we need to override still
