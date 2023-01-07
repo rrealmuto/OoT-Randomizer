@@ -25,7 +25,7 @@ from version import __version__
 from ItemPool import song_list
 from SceneFlags import get_alt_list_bytes, get_collectible_flag_table, get_collectible_flag_table_bytes
 from texture_util import ci4_rgba16patch_to_ci8, rgba16_patch
-
+from wonderitems import get_wonderitems
 
 def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     with open(data_path('generated/rom_patch.txt'), 'r') as stream:
@@ -1551,6 +1551,10 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     patch_files(rom, mq_scenes)
 
+    wonderitems = get_wonderitems(rom)
+    for wonderitem in wonderitems:
+        print(str(wonderitem) + ": " + str(wonderitems[wonderitem]))
+
     ### Load Shop File
     # Move shop actor file to free space
     shop_item_file = File({
@@ -1770,6 +1774,11 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         rom.write_bytes(0xB109E4, [0x10, 0x00, 0x00, 0x0A]) #b      0x8009AAB0
         rom.write_bytes(0xB109E8, [0x24, 0x0E, 0x00, 0x01]) #addiu  T6, R0, 0x0001
 
+    if world.settings.shuffle_wonderitems:
+        #Patch Hyrule Castle Guards to not block the way
+        rom.write_bytes(0xCD5E30, [0x00, 0x00, 0x00, 0x00]) # nop
+        rom.write_bytes(0xCD5E7C, [0x10, 0x00, 0x00, 0x03]) # b courtyard_guards_kill
+
     # Write flag table data
     collectible_flag_table, alt_list = get_collectible_flag_table(world)
     collectible_flag_table_bytes, num_collectible_flags = get_collectible_flag_table_bytes(collectible_flag_table)
@@ -1779,7 +1788,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     rom.write_bytes(rom.sym('collectible_scene_flags_table'), collectible_flag_table_bytes)
     num_collectible_flags += num_collectible_flags % 8
     rom.write_bytes(rom.sym('num_override_flags'), num_collectible_flags.to_bytes(2, 'big'))
-    if len(alt_list) > 64:
+    if len(alt_list) >= 90:
         raise RuntimeError(f'Exceeded alt override table size: {len(alt_list)}')
     rom.write_bytes(rom.sym('alt_overrides'), alt_list_bytes)
 

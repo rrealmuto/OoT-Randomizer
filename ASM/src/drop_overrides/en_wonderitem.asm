@@ -92,3 +92,15 @@ EnWonderItem_MultitagOrdered_DrawHook:
     lw      ra, 0x48(sp)
     jr      ra
     addiu   sp, 0x60
+
+; Hook at the end of EnWonderItem_Update to call our hack to draw a marker for the wonderitem
+; Actor pointer in s0
+EnWonderItem_Update_Hook:
+    jal     EnWonderItem_Update_Hack
+    or      a0, s0, r0 ; copy actor pointer to a0
+    ; Replaced code
+    lw      ra, 0x001c(sp)
+    lw      s0, 0x0018(sp)
+    addiu   sp, sp, 0x30
+    jr      ra
+    nop

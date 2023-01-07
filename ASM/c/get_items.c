@@ -41,7 +41,7 @@ uint8_t satisified_pending_frames = 0;
 // This table contains the offset (in bytes) of the start of a particular scene/room/setup flag space in collectible_override_flags.
 // Call get_collectible_flag_offset to retrieve the desired offset.
 uint8_t collectible_scene_flags_table[900];
-alt_override_t alt_overrides[64];
+alt_override_t alt_overrides[90];
 
 extern int8_t curr_scene_setup;
 extern uint16_t CURR_ACTOR_SPAWN_INDEX;

@@ -4,15 +4,25 @@
 #include "get_items.h"
 
 static colorRGBA8_t sEffectPrimColorRed = { 255, 0, 0, 0 };
-static colorRGBA8_t sEffectPrimColorYellow = {255, 255, 0};
+static colorRGBA8_t sEffectPrimColorGreen = { 0, 255, 0, 0 };
+static colorRGBA8_t sEffectPrimColorBlue = { 0, 0, 255, 0 };
+static colorRGBA8_t sEffectPrimColorYellow = { 255, 255, 0, 0 };
+static colorRGBA8_t sEffectPrimColoMagenta = { 255, 0, 255, 0 };
+static colorRGBA8_t sEffectPrimColorCyan = {0, 255, 255, 0 };
 static colorRGBA8_t sEffectEnvColor = { 255, 255, 255, 0 };
-static z64_xyzf_t sEffectVelocity = { 0.0f, 0.1f, 0.0f };
-static z64_xyzf_t sEffectAccel = { 0.0f, 0.01f, 0.0f };
+//static z64_xyzf_t sEffectVelocity = { 0.0f, 0.1f, 0.0f };
+//static z64_xyzf_t sEffectAccel = { 0.0f, 0.01f, 0.0f };
+static z64_xyzf_t sEffectVelocity = { 0.0f, 0.5f, 0.0f };
+static z64_xyzf_t sEffectAccel = { 0.0f, 0.5f, 0.0f };
+
 
 extern uint16_t drop_collectible_override_flag;
+extern uint16_t CURR_ACTOR_SPAWN_INDEX;
 
 void EnWonderitem_AfterInitHack(z64_actor_t* this, z64_game_t* globalCtx)
 {
+    if(this->main_proc == NULL)
+        return;
     if(this->actor_id != 0x112)
         return;
 
@@ -36,11 +46,12 @@ void EnWonderItem_Multitag_DrawHack(z64_xyzf_t* tags, uint32_t index, EnWonderIt
 {
     if(this->overridden)
     {
-        colorRGBA8_t* color = &sEffectPrimColorRed;
+        colorRGBA8_t* color = &sEffectPrimColorBlue;
         if(this->wonderMode == WONDERITEM_MULTITAG_ORDERED)
-            color = &sEffectPrimColorYellow;
+            color = &sEffectPrimColorCyan;
         z64_xyzf_t pos = tags[index];
-        pos.y += 15.0;
+//        if(this->wonderMode != WONDERITEM_INTERACT_SWITCH) 
+//            pos.y += 20.0;
         z64_EffectSsKiraKira_SpawnSmall(&z64_game, &pos, &sEffectVelocity, &sEffectAccel, color, &sEffectEnvColor );
     }
     
@@ -56,19 +67,25 @@ void EnWonderItem_DropCollectible_Hack(EnWonderItem* this, z64_game_t* globalCtx
     int16_t i;
     int16_t randomDrop;
 
+    // Always play the SFX
+    z64_PlaySFXID(NA_SE_SY_GET_ITEM);
+
     // Override behavior. Spawn an overridden collectible on link
     if(this->overridden)
     {
         drop_collectible_override_flag = this->actor.rot_init.y;
-        z64_Item_DropCollectible2(globalCtx, &(z64_link.common.pos_world), dropTable[this->itemDrop]);
+        if(autoCollect)
+            z64_Item_DropCollectible2(globalCtx, &(z64_link.common.pos_world), 0);
+        else
+            z64_Item_DropCollectible2(globalCtx, &this->actor.pos_world, 0);
         drop_collectible_override_flag = 0;
+        if (this->switchFlag >= 0)
+            z64_Flags_SetSwitch(globalCtx, this->switchFlag);
         z64_ActorKill(&this->actor);
         return;
     }
 
     // Not overridden so use vanilla behavior
-    z64_PlaySFXID(NA_SE_SY_GET_ITEM);
-
     if (this->dropCount == 0) {
         this->dropCount++;
     }
@@ -77,16 +94,14 @@ void EnWonderItem_DropCollectible_Hack(EnWonderItem* this, z64_game_t* globalCtx
             if ((this->itemDrop == WONDERITEM_DROP_FLEXIBLE) || !autoCollect) {
                 z64_Item_DropCollectible(globalCtx, &this->actor.pos_world, dropTable[this->itemDrop]);
             } else {
-                drop_collectible_override_flag = this->actor.rot_init.y;
                 z64_Item_DropCollectible(globalCtx, &this->actor.pos_world, dropTable[this->itemDrop] | 0x8000);
-                drop_collectible_override_flag = 0;
             }
         } else {
             randomDrop = this->itemDrop - WONDERITEM_DROP_RANDOM;
             if (!autoCollect) {
-                //Item_DropCollectibleRandom(globalCtx, NULL, &this->actor.world.pos, randomDrop);
+                z64_Item_DropCollectibleRandom(globalCtx, NULL, &this->actor.pos_world, randomDrop);
             } else {
-                //Item_DropCollectibleRandom(globalCtx, NULL, &this->actor.world.pos, randomDrop | 0x8000);
+                z64_Item_DropCollectibleRandom(globalCtx, NULL, &this->actor.pos_world, randomDrop | 0x8000);
             }
         }
     }
@@ -94,4 +109,46 @@ void EnWonderItem_DropCollectible_Hack(EnWonderItem* this, z64_game_t* globalCtx
         z64_Flags_SetSwitch(globalCtx, this->switchFlag);
     }
     z64_ActorKill(&this->actor);
+}
+
+void EnWonderItem_Update_Hack(EnWonderItem* this) {
+    colorRGBA8_t* color = NULL;
+    if(this->overridden) {
+        switch(this->wonderMode){
+            case(WONDERITEM_PROXIMITY_DROP): {
+                color = &sEffectPrimColorYellow;
+                break;            
+            }
+            case(WONDERITEM_INTERACT_SWITCH):
+            case(WONDERITEM_BOMB_SOLDIER): {
+                color = &sEffectPrimColorRed;
+                break;
+            }
+            default:
+                break;
+        }
+        if(color) {
+            z64_xyzf_t pos = this->actor.pos_world;
+            pos.y += 25.0;
+            z64_EffectSsKiraKira_SpawnSmall(&z64_game, &pos, &sEffectVelocity, &sEffectAccel, color, &sEffectEnvColor );
+        }
+    }
+    
+}
+
+// Hack to not kill wonderitem when switch flag is set if we need to override still
+uint32_t EnWonderItem_Kill_Hack(EnWonderItem* this) {
+    EnItem00 dummy;
+    dummy.actor.actor_id = 0x15;
+    dummy.actor.rot_init.y = (CURR_ACTOR_SPAWN_INDEX) | (this->actor.room_index << 8);
+    dummy.actor.variable = 0;
+
+    // Check if the Wonderitem should be overridden
+    dummy.override = lookup_override(&(dummy.actor), z64_game.scene_index, 0);
+
+    if(dummy.override.key.all != 0 && !Get_CollectibleOverrideFlag(&dummy))
+        return 0;
+    if ((this->switchFlag >= 0) && z64_Flags_GetSwitch(&z64_game, this->switchFlag))
+        return 1;
+    return 0;
 }

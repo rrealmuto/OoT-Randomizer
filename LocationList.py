@@ -122,8 +122,8 @@ location_table = OrderedDict([
     ("KF Sarias House Recovery Heart 2",                             ("Freestanding", 0x29,  (0,0,4), None,                         'Recovery Heart',                        ("Kokiri Forest", "Forest Area", "Freestandings",))),
     ("KF Sarias House Recovery Heart 3",                             ("Freestanding", 0x29,  (0,0,5), None,                         'Recovery Heart',                        ("Kokiri Forest", "Forest Area", "Freestandings",))),
     ("KF Sarias House Recovery Heart 4",                             ("Freestanding", 0x29,  (0,0,6), None,                         'Recovery Heart',                        ("Kokiri Forest", "Forest Area", "Freestandings",))),
-    ("KF Shop Blue Rupee",                                           ("ActorOverride",0x2D,  0x01, ([0x02587098], [
-        0x00, 0x15, 0x00, 0x92, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x06            ]),               'Rupees (5)',                            ("Kokiri Forest", "Forest Area", "Freestandings",))),
+    #("KF Shop Blue Rupee",                                           ("ActorOverride",0x2D,  0x01, ([0x02587098], [
+    #    0x00, 0x15, 0x00, 0x92, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x06            ]),               'Rupees (5)',                            ("Kokiri Forest", "Forest Area", "Freestandings",))),
     # Kokiri Forest Pots
     ("KF Links House Pot",                                           ("Pot",          0x34,  (0,0,3), None,                         'Recovery Heart',                        ("Kokiri Forest", "Forest Area", "Pots",))),
     ("KF Know it All House Pot 1",                                   ("Pot",          0x26,  (0,0,7), None,                         'Rupee (1)',                             ("Kokiri Forest", "Forest Area", "Pots",))),
@@ -156,6 +156,12 @@ location_table = OrderedDict([
     ("KF Child Stepping Stones Wonderitem",                          ("Wonderitem",   0x55, (0,0,39), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
     ("KF Child Water Wonderitem",                                    ("Wonderitem",   0x55, (0,0,34), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
     ("KF Child Sign Wonderitem",                                     ("Wonderitem",   0x55, (0,0,33), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("KF Child Training Wonderitem 1",                               ("Wonderitem",   0x55, (0,0,40), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("KF Child Training Wonderitem 2",                               ("Wonderitem",   0x55, (0,0,41), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("KF Child Training Wonderitem 3",                               ("Wonderitem",   0x55, (0,0,42), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("KF Child Maze Grass Wonderitem 1",                             ("Wonderitem",   0x55, (2,0,7),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("KF Child Maze Grass Wonderitem 2",                             ("Wonderitem",   0x55, (2,0,8),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("KF Shop Wonderitem",                                           ("Wonderitem",   0x2D, (0,0,5),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
 
     # Lost Woods
     ("LW Gift from Saria",                                           ("Cutscene",     0xFF,  0x02, None,                            'Ocarina',                               ("Lost Woods", "Forest Area", "NPCs",))),
@@ -187,6 +193,11 @@ location_table = OrderedDict([
     ("LW Near Shortcuts Grotto Beehive 1",                           ("Beehive",      0x3E, (0,0,0x48 + (0x14 * 2)), None,          'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grottos", "Beehives",))),
     ("LW Near Shortcuts Grotto Beehive 2",                           ("Beehive",      0x3E, (0,0,0x49 + (0x14 * 2)), None,          'Rupees (20)',                           ("Lost Woods", "Forest Area", "Grottos", "Beehives",))),
     ("LW Scrubs Grotto Beehive",                                     ("Beehive",      0x3E, (6,0,0x44 + (0x15 * 2)), None,          'Rupees (20)',                           ("Lost Woods", "Forest Area", "Grottos", "Beehives",))),
+    # Lost Woods Wonderitems
+    ("LW Near Ocarina Game Wonderitem 1",                            ("Wonderitem",   0x5B, (1,0,6),  None,                       'Rupees (5)',                              ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("LW Near Ocarina Game Wonderitem 2",                            ("Wonderitem",   0x5B, (1,0,7),  None,                       'Rupees (5)',                              ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("LW Near Ocarina Game Wonderitem 3",                            ("Wonderitem",   0x5B, (1,0,8),  None,                       'Rupees (5)',                              ("Kokiri Forest", "Forest", "Wonderitem"))),
+
 
     # Sacred Forest Meadow
     ("SFM Wolfos Grotto Chest",                                      ("Chest",        0x3E,  0x11, None,                            'Rupees (50)',                           ("Sacred Forest Meadow", "Forest Area", "Grottos", "Chests",))),
@@ -214,6 +225,20 @@ location_table = OrderedDict([
     ("SFM Wolfos Grotto Wolfos 1",                                   ("EnemyDrop",    0x3E, (7,0,1), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
     ("SFM Wolfos Grotto Wolfos 2",                                   ("EnemyDrop",    0x3E, (7,0,2), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
     
+    # Sacred Forest Meadow Wonderitems
+    ("SFM Near Lost Woods Wonderitem",                               ("Wonderitem",   0x56, [(0,0,16),
+                                                                                             (0,2,19)],   None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("SFM Maze Wonderitem 1",                                        ("Wonderitem",   0x56, [(0,0,13),
+                                                                                             (0,2,16)],   None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("SFM Maze Wonderitem 2",                                        ("Wonderitem",   0x56, [(0,0,14),
+                                                                                             (0,2,17)],   None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("SFM Maze Wonderitem 3",                                        ("Wonderitem",   0x56, [(0,0,15),
+                                                                                             (0,2,18)],   None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("SFM Maze Wonderitem 4",                                        ("Wonderitem",   0x56, [(0,0,17),
+                                                                                             (0,2,20)],   None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("SFM Maze Wonderitem 5",                                        ("Wonderitem",   0x56, [(0,0,18),
+                                                                                             (0,2,21)],   None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+
 
     # Hyrule Field
     ("HF Ocarina of Time Item",                                      ("NPC",          0x51,  0x0C, None,                            'Ocarina',                               ("Hyrule Field", "Need Spiritual Stones", "NPCs",))),
@@ -249,6 +274,11 @@ location_table = OrderedDict([
     ("HF Child South Field Flying Peahat",                           ("EnemyDrop",    0x51, (0,1,11), None,                     'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
     ("HF Child Near Valley Flying Peahat",                           ("EnemyDrop",    0x51, (0,1,10), None,                     'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
     
+    # Hyrule Field Wonderitems
+    ("HF Child Above Drawbridge Wonderitem 1",                       ("Wonderitem",   0x51, [(0,0,53),(0,1,51)], None,              'Rupees (20)',                           ("Hyrule Field", "Wonderitem"))),
+    ("HF Child Above Drawbridge Wonderitem 2",                       ("Wonderitem",   0x51, [(0,0,54),(0,1,52)], None,              'Rupees (20)',                           ("Hyrule Field", "Wonderitem"))),
+    ("HF Child Above Drawbridge Wonderitem 3",                       ("Wonderitem",   0x51, [(0,0,55),(0,1,53)], None,              'Rupees (20)',                           ("Hyrule Field", "Wonderitem"))),
+
     # Market
     ("Market Shooting Gallery Reward",                               ("NPC",          0x42,  0x60, None,                            'Slingshot',                             ("Market", "Minigames",))),
     ("Market Bombchu Bowling First Prize",                           ("NPC",          0x4B,  0x34, None,                            'Bomb Bag',                              ("Market", "Minigames",))),
@@ -359,6 +389,16 @@ location_table = OrderedDict([
     ("Market Adult Redead 7",                                        ("EnemyDrop",    0x22, (0, 0, 7), None,                    'Rupees (5)',                            ("the Market", "Market", "EnemyDrop"))),
     ("Market Adult Redead 8",                                        ("EnemyDrop",    0x22, (0, 0, 8), None,                    'Rupees (5)',                            ("the Market", "Market", "EnemyDrop"))),
 
+    # Market Wonderitems
+    ("Market Daytime Balcony Wonderitem 1",                          ("Wonderitem",   0x20, (0,0,16),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("Market Daytime Balcony Wonderitem 2",                          ("Wonderitem",   0x20, (0,0,17),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("Market Daytime Balcony Wonderitem 3",                          ("Wonderitem",   0x20, (0,0,18),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("Market Daytime Balcony Wonderitem 4",                          ("Wonderitem",   0x20, (0,0,19),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("Market Daytime Balcony Wonderitem 5",                          ("Wonderitem",   0x20, (0,0,20),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("Market Night Balcony Wonderitem 1",                            ("Wonderitem",   0x21, (0,0,6),   None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("Market Night Balcony Wonderitem 2",                            ("Wonderitem",   0x21, (0,0,7),   None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+
+
     # Hyrule Castle
     ("HC Malon Egg",                                                 ("NPC",          0x5F,  0x47, None,                            'Weird Egg',                             ("Hyrule Castle", "NPCs",))),
     ("HC Zeldas Letter",                                             ("NPC",          0x4A,  0x0B, None,                            'Zeldas Letter',                         ("Hyrule Castle", "NPCs",))),
@@ -374,6 +414,19 @@ location_table = OrderedDict([
     ("HC Storms Grotto Skullwalltula 1",                             ("EnemyDrop",    0x3E, (8,0,1), None,                      'Rupees (5)',                            ("Hyrule Castle", "Grottos", "EnemyDrop"))),
     ("HC Storms Grotto Skullwalltula 2",                             ("EnemyDrop",    0x3E, (8,0,2), None,                      'Rupees (5)',                            ("Hyrule Castle", "Grottos", "EnemyDrop"))),
 
+    # Hyrule Castle Wonderitems
+    ("HC Castle Torch Wonderitem 1",                                 ("Wonderitem",   0x5F,  (0,0,13), None,                        'Rupees (20)',                           ("Hyrule Castle", "Wonderitem"))),
+    ("HC Castle Torch Wonderitem 2",                                 ("Wonderitem",   0x5F,  (0,0,14), None,                        'Rupees (20)',                           ("Hyrule Castle", "Wonderitem"))),
+    ("HC Castle Moat Wonderitem 1",                                  ("Wonderitem",   0x5F,  (0,0,33), None,                        'Rupee (1)',                             ("Hyrule Castle", "Wonderitem"))),
+    ("HC Castle Moat Wonderitem 2",                                  ("Wonderitem",   0x5F,  (0,0,34), None,                        'Rupee (1)',                             ("Hyrule Castle", "Wonderitem"))),
+    ("HC Castle Moat Wonderitem 3",                                  ("Wonderitem",   0x5F,  (0,0,35), None,                        'Rupee (1)',                             ("Hyrule Castle", "Wonderitem"))),
+    ("HC Castle Moat Wonderitem 4",                                  ("Wonderitem",   0x5F,  (0,0,36), None,                        'Rupee (1)',                             ("Hyrule Castle", "Wonderitem"))),
+    ("HC Castle Moat Wonderitem 5",                                  ("Wonderitem",   0x5F,  (0,0,37), None,                        'Rupee (1)',                             ("Hyrule Castle", "Wonderitem"))),
+    ("HC Castle Moat Wonderitem 6",                                  ("Wonderitem",   0x5F,  (0,0,38), None,                        'Rupee (1)',                             ("Hyrule Castle", "Wonderitem"))),
+    ("HC Castle Moat Wonderitem 7",                                  ("Wonderitem",   0x5F,  (0,0,39), None,                        'Rupee (1)',                             ("Hyrule Castle", "Wonderitem"))),
+    ("HC Castle Moat Wonderitem 8",                                  ("Wonderitem",   0x5F,  (0,0,40), None,                        'Rupee (1)',                             ("Hyrule Castle", "Wonderitem"))),
+    ("HC Castle Moat Wonderitem 9",                                  ("Wonderitem",   0x5F,  (0,0,41), None,                        'Rupee (1)',                             ("Hyrule Castle", "Wonderitem"))),
+    ("HC Zeldas Courtyard Mario Wonderitem",                         ("Wonderitem",   0x4A,  (0,0,6),  None,                        'Rupees (20)',                           ("Hyrule Castle", "Wonderitem"))),
 
     # Lon Lon Ranch
     ("LLR Talons Chickens",                                          ("NPC",          0x4C,  0x14, None,                            'Bottle with Milk',                      ("Lon Lon Ranch", "Minigames",))),
@@ -429,6 +482,10 @@ location_table = OrderedDict([
     ("LLR Child Night Guay 14",                                      ("EnemyDrop",    0x63, (0,1,24), None,                     'Rupees (5)',                            ("Lon Lon Ranch", "EnemyDrop"))),
     ("LLR Child Night Guay 15",                                      ("EnemyDrop",    0x63, (0,1,25), None,                     'Rupees (5)',                            ("Lon Lon Ranch", "EnemyDrop"))),
     
+    # Lon Long Ranch Wonderitems
+    ("LLR Epona Hurdle Wonderitem 1",                                ("Wonderitem",   0x63, [(0,2,25),(0,3,9)], None,           'Rupees (5)',                            ("Lon Lon Ranch", "Wonderitem"))),
+    ("LLR Epona Hurdle Wonderitem 2",                                ("Wonderitem",   0x63, [(0,2,26),(0,3,10)], None,           'Rupees (5)',                            ("Lon Lon Ranch", "Wonderitem"))),
+
     # Kakariko
     ("Kak Anju as Child",                                            ("NPC",          0x52,  0x0F, None,                            'Bottle',                                ("Kakariko Village", "Minigames",))),
     ("Kak Anju as Adult",                                            ("NPC",          0x52,  0x1D, None,                            'Pocket Egg',                            ("Kakariko Village", "NPCs",))),
@@ -483,10 +540,12 @@ location_table = OrderedDict([
     # Kak Beehives
     ("Kak Open Grotto Beehive 1",                                    ("Beehive",      0x3E,  (0,0,0x48 + (0x08 * 2)), None,         'Rupees (5)',                            ("Kakariko Village", "Grottos", "Beehives",))),
     ("Kak Open Grotto Beehive 2",                                    ("Beehive",      0x3E,  (0,0,0x49 + (0x08 * 2)), None,         'Rupees (20)',                           ("Kakariko Village", "Grottos", "Beehives",))),
-
     # Kak Enemies
     ("Kak Redead Grotto Redead Left",                                ("EnemyDrop",    0x3E, (2,0,1), None,                      'Rupees (5)',                            ("Kakariko Village", "Kakariko", "Grottos", "EnemyDrop"))),
     ("Kak Redead Grotto Redead Right",                               ("EnemyDrop",    0x3E, (2,0,2), None,                      'Rupees (5)',                            ("Kakariko Village", "Kakariko", "Grottos", "EnemyDrop"))),
+    # Kak Wonderitems
+    ("Kak Child Construction Wonderitem",                            ("Wonderitem",   0x52,  [(0,0,56), (0,0,49)], None,        'Rupees (20)',                               ("Kakariko Village", "Kakariko", "Wonderitem"))),
+    ("Kak Impas House Wonderitem",                                   ("Wonderitem",   0x37,  (0,0,7), None,                     'Rupees (20)',                               ("Kakariko Village", "Kakariko", "Wonderitem"))),
 
     # Graveyard
     ("Graveyard Shield Grave Chest",                                 ("Chest",        0x40,  0x00, None,                            'Hylian Shield',                         ("Graveyard", "Grottos", "Chests",))),
@@ -535,6 +594,22 @@ location_table = OrderedDict([
     ("Graveyard Dampe Race Redead 3",                                ("EnemyDrop",    0x48,  (3,0,3), None,                     'Rupees (5)',                            ("the Graveyard", "Kakariko", "EnemyDrop"))),
     ("Graveyard Dampe Race Redead 4",                                ("EnemyDrop",    0x48,  (3,0,4), None,                     'Rupees (5)',                            ("the Graveyard", "Kakariko", "EnemyDrop"))),
     
+    # Graveyard Wonderitems
+    ("Graveyard Dampe Race Wonderitem 1",                            ("Wonderitem",   0x48, (1,0,6), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 2",                            ("Wonderitem",   0x48, (1,0,7), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 3",                            ("Wonderitem",   0x48, (1,0,8), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 4",                            ("Wonderitem",   0x48, (1,0,9), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 5",                            ("Wonderitem",   0x48, (1,0,10), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 6",                            ("Wonderitem",   0x48, (2,0,8), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 7",                            ("Wonderitem",   0x48, (2,0,9), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 8",                            ("Wonderitem",   0x48, (2,0,10), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 9",                            ("Wonderitem",   0x48, (2,0,11), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 10",                           ("Wonderitem",   0x48, (2,0,12), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 11",                           ("Wonderitem",   0x48, (3,0,9), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 12",                           ("Wonderitem",   0x48, (3,0,10), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 13",                           ("Wonderitem",   0x48, (3,0,11), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 14",                           ("Wonderitem",   0x48, (3,0,12), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 15",                           ("Wonderitem",   0x48, (3,0,13), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
 
     # Death Mountain Trail
     ("DMT Freestanding PoH",                                         ("Collectable",  0x60,  0x1E, None,                            'Piece of Heart',                        ("Death Mountain Trail", "Freestandings",))),
@@ -711,6 +786,39 @@ location_table = OrderedDict([
     ("ZR Adult Octorok 7",                                           ("EnemyDrop",    0x54, (0,2,9), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
     ("ZR Adult Octorok 8",                                           ("EnemyDrop",    0x54, (0,2,10), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
     
+    # Zora's River Wonderitems
+    ("ZR Child Front River Wonderitem 1",                            ("Wonderitem",   0x54, (0,0,17), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child Front River Wonderitem 2",                            ("Wonderitem",   0x54, (0,0,18), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child Front River Wonderitem 3",                            ("Wonderitem",   0x54, (0,0,19), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child Front River Wonderitem 4",                            ("Wonderitem",   0x54, (0,0,20), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 1",                                  ("Wonderitem",   0x54, (1,0,6),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 2",                                  ("Wonderitem",   0x54, (1,0,7),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 3",                                  ("Wonderitem",   0x54, (1,0,8),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 4",                                  ("Wonderitem",   0x54, (1,0,9),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 5",                                  ("Wonderitem",   0x54, (0,0,16), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 6",                                 ("Wonderitem",   0x54, (0,0,21), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 7",                                 ("Wonderitem",   0x54, (0,0,22), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 8",                                 ("Wonderitem",   0x54, (0,0,23), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 9",                                 ("Wonderitem",   0x54, (0,0,24), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 10",                                 ("Wonderitem",   0x54, (0,0,25), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 11",                                 ("Wonderitem",   0x54, (0,0,26), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 12",                                 ("Wonderitem",   0x54, (0,0,27), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 13",                                 ("Wonderitem",   0x54, (0,0,28), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 14",                                 ("Wonderitem",   0x54, (0,0,29), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 15",                                 ("Wonderitem",   0x54, (0,0,30), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 16",                                 ("Wonderitem",   0x54, (0,0,31), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 17",                                 ("Wonderitem",   0x54, (0,0,32), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 18",                                 ("Wonderitem",   0x54, (0,0,33), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 19",                                 ("Wonderitem",   0x54, (0,0,34), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 20",                                 ("Wonderitem",   0x54, (0,0,35), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 21",                                 ("Wonderitem",   0x54, (0,0,36), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 22",                                 ("Wonderitem",   0x54, (0,0,37), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 23",                                 ("Wonderitem",   0x54, (0,0,38), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 24",                                 ("Wonderitem",   0x54, (0,0,39), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 25",                                 ("Wonderitem",   0x54, (0,0,40), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 26",                                 ("Wonderitem",   0x54, (0,0,41), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child River Wonderitem 27",                                 ("Wonderitem",   0x54, (0,0,42), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+
     # Zora's Domain
     ("ZD Diving Minigame",                                           ("NPC",          0x58,  0x37, None,                            'Progressive Scale',                     ("Zora's Domain", "Minigames",))),
     ("ZD Chest",                                                     ("Chest",        0x58,  0x00, None,                            'Piece of Heart',                        ("Zora's Domain", "Chests",))),
@@ -861,6 +969,11 @@ location_table = OrderedDict([
     ("GV Adult Lower Octorok 2",                                     ("EnemyDrop",    0x5A, (0, 2, 6), None,                    'Rupees (5)',                            ("Gerudo Valley", "Gerudo", "EnemyDrop"))),
     ("GV Octorok Grotto Octorok",                                    ("EnemyDrop",    0x3E, (5, 0, 1), None,                    'Rupees (5)',                            ("Gerudo Valley", "Gerudo", "Grottos", "EnemyDrop"))),
     
+    # Gerudo Valley Wonderitems
+    ("GV Adult Upper Waterfall Wonderitem",                          ("Wonderitem",   0x5A, (0,2,41), None,                     'Rupees (20)',                           ("Gerudo Valley", "Gerudo", "Wonderitem"))),
+    ("GV Adult Lower Waterfall Wonderitem",                          ("Wonderitem",   0x5A, (0,2,42), None,                     'Rupees (20)',                           ("Gerudo Valley", "Gerudo", "Wonderitem"))),
+
+
     # Gerudo's Fortress
     ("GF Chest",                                                     ("Chest",        0x5D,  0x00, None,                            'Piece of Heart',                        ("Gerudo's Fortress", "Chests",))),
     ("GF HBA 1000 Points",                                           ("NPC",          0x5D,  0x3E, None,                            'Piece of Heart',                        ("Gerudo's Fortress", "Minigames",))),
@@ -869,6 +982,9 @@ location_table = OrderedDict([
     ("GF GS Archery Range",                                          ("GS Token",     0x14,  0x01, None,                            'Gold Skulltula Token',                  ("Gerudo's Fortress", "Gold Skulltulas",))),
     # Gerudo's Fortress Crates/Pots
     ("GF Above Jail Crate",                                          ("Crate",        0x5D,  [(0,2,19),(0,3,19)], None,             'Rupees (50)',                           ("Gerudo's Fortress", "Crates",))),
+    # Gerudo's Fortress Wonderitems
+    ("GF Sign Wonderitem 1",                                         ("Wonderitem",   0x5D,  [(0,2,6),(0,3,6)], None,               'Rupees (20)',                           ("Thieves' Hideout", "Wonderitem"))),
+    ("GF Sign Wonderitem 2",                                         ("Wonderitem",   0x5D,  [(0,2,7),(0,3,7)], None,               'Rupees (20)',                           ("Thieves' Hideout", "Wonderitem"))),
 
     # Thieves' Hideout
     ("Hideout 1 Torch Jail Gerudo Key",                              ("Collectable",  0x0C,  0x0C, None,                            'Small Key (Thieves Hideout)',           ("Thieves' Hideout",))),
@@ -907,6 +1023,20 @@ location_table = OrderedDict([
     ("Hideout 2 Torch Jail Crate 1",                                 ("Crate",        0x0C,  (5,0,16), None,                        'Rupee (1)',                             ("Thieves' Hideout", "Crates",))),
     ("Hideout 2 Torch Jail Crate 2",                                 ("Crate",        0x0C,  (5,0,17), None,                        'Rupee (1)',                             ("Thieves' Hideout", "Crates",))),
 
+    # Thieves Hideout Wonderitems
+    ("Hideout Break Room Wonderitem 1",                              ("Wonderitem",   0x0C,  (0,0,3), None,                                 'Rupees (5)',                    ("Thieves' Hideout", "Wonderitem"))),
+    ("Hideout Break Room Wonderitem 2",                              ("Wonderitem",   0x0C,  (0,0,4), None,                                 'Rupees (5)',                    ("Thieves' Hideout", "Wonderitem"))),
+    ("Hideout 3 Torch Jail Wonderitem 1",                            ("Wonderitem",   0x0C,  (1,0,4), None,                                 'Rupees (5)',                    ("Thieves' Hideout", "Wonderitem"))),
+    ("Hideout 3 Torch Jail Wonderitem 2",                            ("Wonderitem",   0x0C,  (1,0,5), None,                                 'Rupees (5)',                    ("Thieves' Hideout", "Wonderitem"))),
+    ("Hideout 1 Torch Jail Wonderitem 1",                            ("Wonderitem",   0x0C,  (2,0,3), None,                                 'Rupees (5)',                    ("Thieves' Hideout", "Wonderitem"))),
+    ("Hideout 1 Torch Jail Wonderitem 2",                            ("Wonderitem",   0x0C,  (2,0,4), None,                                 'Rupees (5)',                    ("Thieves' Hideout", "Wonderitem"))),
+    ("Hideout Kitchen Stove Wonderitem",                             ("Wonderitem",   0x0C,  (3,0,4), None,                                 'Rupees (5)',                    ("Thieves' Hideout", "Wonderitem"))),
+    ("Hideout Kitchen Wonderitem",                                   ("Wonderitem",   0x0C,  (3,0,5), None,                                 'Rupees (5)',                    ("Thieves' Hideout", "Wonderitem"))),
+    ("Hideout 4 Torch Jail Wonderitem 1",                            ("Wonderitem",   0x0C,  (4,0,3), None,                                 'Rupees (5)',                    ("Thieves' Hideout", "Wonderitem"))),
+    ("Hideout 4 Torch Jail Wonderitem 2",                            ("Wonderitem",   0x0C,  (4,0,4), None,                                 'Rupees (5)',                    ("Thieves' Hideout", "Wonderitem"))),
+    ("Hideout 2 Torch Jail Wonderitem 1",                            ("Wonderitem",   0x0C,  (5,0,3), None,                                 'Rupees (5)',                    ("Thieves' Hideout", "Wonderitem"))),
+    ("Hideout 2 Torch Jail Wonderitem 2",                            ("Wonderitem",   0x0C,  (5,0,4), None,                                 'Rupees (5)',                    ("Thieves' Hideout", "Wonderitem"))),
+
     # Wasteland
     ("Wasteland Bombchu Salesman",                                   ("NPC",          0x5E,  0x03, None,                            'Bombchus (10)',                         ("Haunted Wasteland", "NPCs",))),
     ("Wasteland Chest",                                              ("Chest",        0x5E,  0x00, None,                            'Rupees (50)',                           ("Haunted Wasteland", "Chests",))),
@@ -942,6 +1072,13 @@ location_table = OrderedDict([
     ("Colossus Adult Guay 3",                                        ("EnemyDrop",    0x5C, (0,2,10), None,                               'Rupees (5)',                            ("Desert Colossus", "EnemyDrop"))),
     ("Colossus Adult Guay 4",                                        ("EnemyDrop",    0x5C, (0,2,11), None,                               'Rupees (5)',                            ("Desert Colossus", "EnemyDrop"))),
     ("Colossus Adult Guay 5",                                        ("EnemyDrop",    0x5C, (0,2,12), None,                               'Rupees (5)',                            ("Desert Colossus", "EnemyDrop"))),
+
+    # Colossus Wonderitems
+    ("Colossus Tree Wonderitem 1",                                   ("Wonderitem",   0x5C, [(0,0,20),(0,2,23)], None,                         'Rupees (5)',                            ("Desert Colossus", "Wonderitem"))),
+    ("Colossus Tree Wonderitem 2",                                   ("Wonderitem",   0x5C, [(0,0,21),(0,2,24)], None,                         'Rupees (5)',                            ("Desert Colossus", "Wonderitem"))),
+    ("Colossus Tree Wonderitem 3",                                   ("Wonderitem",   0x5C, [(0,0,22),(0,2,25)], None,                         'Rupees (5)',                            ("Desert Colossus", "Wonderitem"))),
+    ("Colossus Tree Wonderitem 4",                                   ("Wonderitem",   0x5C, [(0,0,23),(0,2,26)], None,                         'Rupees (5)',                            ("Desert Colossus", "Wonderitem"))),
+    ("Colossus Tree Wonderitem 5",                                   ("Wonderitem",   0x5C, [(0,0,24),(0,2,27)], None,                         'Rupees (20)',                           ("Desert Colossus", "Wonderitem"))),
 
     # Outside Ganon's Castle
     ("OGC Great Fairy Reward",                                       ("Cutscene",     0xFF,  0x15, None,                            'Double Defense',                        ("Outside Ganon's Castle", "Great Fairies",))),
@@ -1065,6 +1202,12 @@ location_table = OrderedDict([
     ("Deku Tree MQ Basement Back Room Gohma Larva 2",                ("EnemyDrop",    0x00,  (8,0,9), None,                         'Rupees (5)',                            ("Deku Tree", "Master Quest", "EnemyDrop"))),
     ("Deku Tree MQ Basement Back Room Gohma Larva 3",                ("EnemyDrop",    0x00,  (8,0,10), None,                        'Rupees (5)',                            ("Deku Tree", "Master Quest", "EnemyDrop"))),
     ("Deku Tree MQ Basement Back Room Gohma Larva 4",                ("EnemyDrop",    0x00,  (8,0,11), None,                        'Rupees (5)',                            ("Deku Tree", "Master Quest", "EnemyDrop"))),
+
+    # Deku Tree MQ Wonderitems
+    ("Deku Tree MQ Basement Graves Wonderitem 1",                    ("Wonderitem",   0x00,  (7,0,10), None,                        'Recovery Heart',                        ("Deku Tree", "Master Quest", "Wonderitem"))),
+    ("Deku Tree MQ Basement Graves Wonderitem 2",                    ("Wonderitem",   0x00,  (7,0,10), None,                        'Recovery Heart',                        ("Deku Tree", "Master Quest", "Wonderitem"))),
+    ("Deku Tree MQ Basement Graves Wonderitem 3",                    ("Wonderitem",   0x00,  (7,0,10), None,                        'Recovery Heart',                        ("Deku Tree", "Master Quest", "Wonderitem"))),
+    ("Deku Tree MQ Basement Graves Wonderitem 4",                    ("Wonderitem",   0x00,  (7,0,10), None,                        'Recovery Heart',                        ("Deku Tree", "Master Quest", "Wonderitem"))),
 
     # Deku Tree Shared
     ("Deku Tree Queen Gohma Heart",                                  ("BossHeart",    0x11,  0x4F, None,                            'Heart Container',                       ("Deku Tree", "Deku Tree MQ", "Vanilla Dungeons", "Master Quest",))),
@@ -1445,6 +1588,30 @@ location_table = OrderedDict([
     ("Jabu Jabus Belly MQ Basement Boomerang Room Like-like",        ("EnemyDrop",    0x02,  (14, 0, 4), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
     ("Jabu Jabus Belly MQ Basement Boomerang Room Lizalfos",         ("EnemyDrop",    0x02,  (14, 0, 5), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
     
+    # Jabu Jabu's Belly MQ Wonderitems
+    ("Jabu Jabus Belly MQ Entryway Left Cow Wonderitem",             ("Wonderitem",   0x02,  (0,0,15), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    ("Jabu Jabus Belly MQ Entryway Right Cow Wonderitem",            ("Wonderitem",   0x02,  (0,0,14), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    ("Jabu Jabus Belly MQ Elevator Room Cow Wonderitem",             ("Wonderitem",   0x02,  (1,0,20), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    #("Jabu Jabus Belly MQ Pit Room Cow Wonderitem",                  ("Wonderitem",   0x02,  (2,0,14), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    ("Jabu Jabus Belly MQ Basement Right Cow Wonderitem 1",          ("Wonderitem",   0x02,  (3,0,14), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    ("Jabu Jabus Belly MQ Basement Right Cow Wonderitem 2",          ("Wonderitem",   0x02,  (3,0,15), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    ("Jabu Jabus Belly MQ Basement Right Cow Wonderitem 3",          ("Wonderitem",   0x02,  (3,0,16), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    ("Jabu Jabus Belly MQ Basement Left Cow Wonderitem 1",           ("Wonderitem",   0x02,  (3,0,17), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    ("Jabu Jabus Belly MQ Basement Left Cow Wonderitem 2",           ("Wonderitem",   0x02,  (3,0,18), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    ("Jabu Jabus Belly MQ Basement Left Cow Wonderitem 3",           ("Wonderitem",   0x02,  (3,0,19), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    ("Jabu Jabus Belly MQ Wiggler Platforms Cow Wonderitem",         ("Wonderitem",   0x02,  (4,0,14), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    ("Jabu Jabus Belly MQ Before Boss Right Cow Wonderitem 1",       ("Wonderitem",   0x02,  (5,0,10), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    ("Jabu Jabus Belly MQ Before Boss Right Cow Wonderitem 2",       ("Wonderitem",   0x02,  (5,0,11), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    ("Jabu Jabus Belly MQ Before Boss Left Cow Wonderitem",          ("Wonderitem",   0x02,  (5,0,12), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    ("Jabu Jabus Belly MQ After Big Octo Cow Wonderitem",            ("Wonderitem",   0x02,  (6,0,8), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    ("Jabu Jabus Belly MQ Falling Like-Like Room Right Cow Wonderitem 1", ("Wonderitem",0x02,(11,0,20), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    ("Jabu Jabus Belly MQ Falling Like-Like Room Right Cow Wonderitem 2", ("Wonderitem",0x02,(11,0,21), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    ("Jabu Jabus Belly MQ Falling Like-Like Room Right Cow Wonderitem 3", ("Wonderitem",0x02,(11,0,22), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    ("Jabu Jabus Belly MQ Falling Like-Like Room Left Cow Wonderitem 1", ("Wonderitem",0x02, (11,0,23), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    ("Jabu Jabus Belly MQ Falling Like-Like Room Left Cow Wonderitem 2", ("Wonderitem",0x02, (11,0,24), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    ("Jabu Jabus Belly MQ Falling Like-Like Room Left Cow Wonderitem 3", ("Wonderitem",0x02, (11,0,25), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    
+
     # Jabu Jabu's Belly Shared
     ("Jabu Jabus Belly Barinade Heart",                              ("BossHeart",    0x13,  0x4F, None,                            'Heart Container',                       ("Jabu Jabu's Belly", "Jabu Jabu's Belly MQ", "Vanilla Dungeons", "Master Quest",))),
     ("Jabu Jabus Belly Barinade Pot 1",                              ("Pot",          0x13,  (1,0,2), None,                         'Recovery Heart',                        ("Jabu Jabu's Belly", "Jabu Jabu's Belly MQ", "Vanilla Dungeons", "Master Quest", "Pots",))),
@@ -1968,6 +2135,23 @@ location_table = OrderedDict([
     ("Fire Temple MQ Upper Flare Dancer",                            ("EnemyDrop",    0x04,  (24,0,1), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
     ("Fire Temple MQ Flame Maze Side Room Lizalfos",                 ("EnemyDrop",    0x04,  (25,0,1), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
 
+    # Fire Temple MQ Wonderitems
+    ("Fire Temple MQ Shortcut Room Hammer Wonderitem 1",             ("Wonderitem",   0x04,  (4,0,7), None,                         'Rupees (20)',                           ("Fire Temple", "Master Quest", "Wonderitem"))),
+    ("Fire Temple MQ Shortcut Room Hammer Wonderitem 2",             ("Wonderitem",   0x04,  (4,0,8), None,                         'Rupees (20)',                           ("Fire Temple", "Master Quest", "Wonderitem"))),
+    ("Fire Temple MQ Shortcut Room Hammer Wonderitem 3",             ("Wonderitem",   0x04,  (4,0,9), None,                         'Rupees (20)',                           ("Fire Temple", "Master Quest", "Wonderitem"))),
+    ("Fire Temple MQ Maze Face On Wall Hookshot Wonderitem",         ("Wonderitem",   0x04,  (5,0,20), None,                         'Rupees (20)',                           ("Fire Temple", "Master Quest", "Wonderitem"))),
+    ("Fire Temple MQ Elevator Above Maze Hookshot Wonderitem 1",     ("Wonderitem",   0x04,  (7,0,5), None,                         'Rupees (20)',                           ("Fire Temple", "Master Quest", "Wonderitem"))),
+    ("Fire Temple MQ Elevator Above Maze Hookshot Wonderitem 2",     ("Wonderitem",   0x04,  (7,0,6), None,                         'Rupees (20)',                           ("Fire Temple", "Master Quest", "Wonderitem"))),
+    ("Fire Temple MQ Elevator Above Maze Hookshot Wonderitem 3",     ("Wonderitem",   0x04,  (7,0,7), None,                         'Rupees (20)',                           ("Fire Temple", "Master Quest", "Wonderitem"))),
+    ("Fire Temple MQ Elevator Above Maze Hookshot Wonderitem 4",     ("Wonderitem",   0x04,  (7,0,8), None,                         'Rupees (20)',                           ("Fire Temple", "Master Quest", "Wonderitem"))),
+    ("Fire Temple MQ Flame Maze Hookshot Wonderitem",                ("Wonderitem",   0x04,  (10,0,43), None,                       'Rupees (20)',                           ("Fire Temple", "Master Quest", "Wonderitem"))),
+    ("Fire Temple MQ After Upper Flare Dancer Hookshot Wonderitem",  ("Wonderitem",   0x04,  (12,0,1), None,                        'Rupees (20)',                           ("Fire Temple", "Master Quest", "Wonderitem"))),
+    ("Fire Temple MQ Hammer Steps Hookshot Wonderitem",              ("Wonderitem",   0x04,  (14,0,2), None,                        'Rupees (20)',                           ("Fire Temple", "Master Quest", "Wonderitem"))),
+    ("Fire Temple MQ Shoot Torch on Wall Room Hookshot Wonderitem",  ("Wonderitem",   0x04,  (16,0,1), None,                        'Rupees (20)',                           ("Fire Temple", "Master Quest", "Wonderitem"))),
+    ("Fire Temple MQ Boss Key Hookshot Wonderitem",                  ("Wonderitem",   0x04,  (19,0,10), None,                        'Rupees (20)',                           ("Fire Temple", "Master Quest", "Wonderitem"))),
+    ("Fire Temple MQ Boss Key Arrow Wonderitem",                     ("Wonderitem",   0x04,  (19,0,11), None,                        'Rupees (20)',                           ("Fire Temple", "Master Quest", "Wonderitem"))),
+    
+
     # Fire Temple Shared
     ("Fire Temple Volvagia Heart",                                   ("BossHeart",    0x15,  0x4F, None,                            'Heart Container',                       ("Fire Temple", "Fire Temple MQ", "Vanilla Dungeons", "Master Quest",))),
 
@@ -2354,6 +2538,9 @@ location_table = OrderedDict([
     ("Shadow Temple Boat Stalfos 1",                                 ("EnemyDrop",    0x07,  (21,0, 14), None,                'Rupees (5)',                                ("Shadow Temple", "Vanilla", "EnemyDrop"))),
     ("Shadow Temple Boat Stalfos 2",                                 ("EnemyDrop",    0x07,  (21,0, 15), None,                'Rupees (5)',                                ("Shadow Temple", "Vanilla", "EnemyDrop"))),
     
+    # Shadow Temple Wonderitems
+    ("Shadow Temple 3 Spinning Pots Wonderitem",                     ("Wonderitem",   0x07, (12,0,2), None,                         'Arrows (10)',                           ("Shadow Temple", "Vanilla", "Wonderitem"))),
+
     # Shadow Temple MQ
     ("Shadow Temple MQ Early Gibdos Chest",                          ("Chest",        0x07,  0x03, None,                            'Small Key (Shadow Temple)',             ("Shadow Temple MQ", "Master Quest", "Chests",))),
     ("Shadow Temple MQ Map Chest",                                   ("Chest",        0x07,  0x02, None,                            'Map (Shadow Temple)',                   ("Shadow Temple MQ", "Master Quest", "Chests",))),
@@ -2982,6 +3169,11 @@ location_table = OrderedDict([
     ("Gerudo Training Ground Underwater Shell Blade 3",              ("EnemyDrop",    0x0B,  (9,0, 7), None,                    'Rupees (5)',                           ("Gerudo Training Ground", "Vanilla", "EnemyDrop"))),
     ("Gerudo Training Ground Underwater Shell Blade 4",              ("EnemyDrop",    0x0B,  (9,0, 8), None,                    'Rupees (5)',                           ("Gerudo Training Ground", "Vanilla", "EnemyDrop"))),
     # Wallmaster slopes room
+
+    # Gerudo Training Ground Wonderitems
+    ("Gerudo Training Ground Eye Statue Wonderitem",                 ("Wonderitem",   0x0B,  (4,0,3), None,                         'Arrows (10)',                           ("Shadow Temple", "Vanilla", "Wonderitem"))),
+    ("Gerudo Training Ground Hammer Room Wonderitem",                ("Wonderitem",   0x0B,  (5,0,17), None,                         'Arrows (10)',                           ("Shadow Temple", "Vanilla", "Wonderitem"))),
+    ("Gerudo Training Ground Beamos Wonderitem",                     ("Wonderitem",   0x0B,  (7,0,13), None,                         'Arrows (10)',                           ("Shadow Temple", "Vanilla", "Wonderitem"))),
 
     # Gerudo Training Ground MQ
     ("Gerudo Training Ground MQ Lobby Left Chest",                   ("Chest",        0x0B,  0x13, None,                            'Arrows (10)',                           ("Gerudo Training Ground MQ", "Master Quest", "Chests",))),

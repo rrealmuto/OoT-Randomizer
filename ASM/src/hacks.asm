@@ -734,12 +734,30 @@ sh  v0, 0x004E(sp)
 .orga 0xDE96FA
 .halfword 0x01D0
 
+; Hack EnWonderItem_Init to not kill the actor if the switch flag is set but it should be overridden
+; Replaces
+;   jal     Actor_Kill
+.orga 0xDE8E54
+    jal     EnWonderItem_Kill_Hack
+    nop
+    nop
+    nop
+    nop
+
 ; Hack EnWonderItem_MultitagFree to show the remaining tags
 .orga 0xDE9198
 ; Replaces:
 ;   lwc1    f4, 0x0024(a2)
 ;   lwc1    f8, 0x0028(a2)
     jal     EnWonderItem_Multitag_DrawHook
+    nop
+
+; Hack EnWonderItem_MultitagOrdered to show the remaining tags
+.orga 0xDE9408
+; Replaces:
+;   lwc1    f4, 0x0024(a2)
+;   lwc1    f8, 0x0028(a2)
+    jal     EnWonderItem_MultitagOrdered_DrawHook
     nop
 
 ; Hack at the end of EnWonderItem_MultitagFree to not set the switch flag. It is set inside EnWonderItem_DropCollectible
@@ -754,16 +772,20 @@ sh  v0, 0x004E(sp)
     nop
     nop
 
+; Hack at the end of EnWonderItem_Update to draw a marker for the location (other than multitags)
+.orga 0xDE96A0
+; Replaces:
+;   lw      ra, 0x001c(sp)
+;   lw      s0, 0x0018(sp)
+; Not actually replaced but gets skipped because we just return from our hack
+;   addiu   sp, sp, 0x30
+;   jr      ra
+    j       EnWonderItem_Update_Hook
+    nop
+
 ; Hack EnWonderItem_DropCollectible to drop flagged collectibles
 .orga 0xDE8C94
     j		EnWonderItem_DropCollectible_Hack
-    nop
-
-.orga 0xDE9408
-; Replaces:
-;   lwc1    f4, 0x0024(a2)
-;   lwc1    f8, 0x0028(a2)
-    jal     EnWonderItem_MultitagOrdered_DrawHook
     nop
 
 ; Runs when storing an incoming item to the player instance

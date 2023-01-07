@@ -1602,6 +1602,7 @@ typedef struct EnGSwitch
 #define z64_GetCollectibleFlags_addr            0x800206E8
 #define z64_Flags_GetClear_addr                 0x80020640
 #define z64_Flags_SetSwitch_addr                0x800204D0
+#define z64_Flags_GetSwitch_addr                0x8002049C
 #define z64_Audio_PlaySoundGeneral_addr         0x800C806C
 #define z64_PlaySFXID_addr                      0x800646F0
 #define z64_Audio_PlayFanFare_addr              0x800C69A0
@@ -1663,6 +1664,7 @@ typedef struct EnGSwitch
 #define z64_bzero_addr                          0x80002E80
 #define z64_Item_DropCollectible_addr           0x80013678
 #define z64_Item_DropCollectible2_addr          0x800138B0
+#define z64_Item_DropCollectibleRandom_addr     0x80013A84
 #define z64_Gfx_DrawDListOpa_addr               0x80028048
 #define z64_Math_SinS_addr                      0x800636C4
 #define z64_Rand_ZeroOne_addr                   0x800CDCCC
@@ -1698,6 +1700,7 @@ typedef void(*z64_Flags_SetCollectibleFunc)(z64_game_t *game, uint32_t flag);
 typedef int32_t (*z64_Flags_GetCollectibleFunc)(z64_game_t *game, uint32_t flag);
 typedef int32_t (*z64_Flags_GetClearFunc)(z64_game_t* game, int32_t flag);
 typedef void (*z64_Flags_SetSwitchFunc)(z64_game_t* game, int32_t flag);
+typedef int32_t (*z64_Flags_GetSwitchFunc)(z64_game_t* game, int32_t flag);
 typedef void(*z64_Audio_PlaySoundGeneralFunc)(uint16_t sfxId, void *pos, uint8_t token, float *freqScale, float *a4, uint8_t *reverbAdd);
 typedef void(*z64_PlaySFXIDFunc)(int16_t sfxId);
 typedef void(*z64_Audio_PlayFanFareFunc)(uint16_t);
@@ -1778,6 +1781,7 @@ typedef float(*z64_Rand_ZeroOne_proc)();
 #define z64_Flags_GetCollectible    ((z64_Flags_GetCollectibleFunc)z64_GetCollectibleFlags_addr)
 #define z64_Flags_GetClear          ((z64_Flags_GetClearFunc)z64_Flags_GetClear_addr)
 #define z64_Flags_SetSwitch         ((z64_Flags_SetSwitchFunc)z64_Flags_SetSwitch_addr)
+#define z64_Flags_GetSwitch         ((z64_Flags_GetSwitchFunc)z64_Flags_GetSwitch_addr)
 #define z64_Audio_PlaySoundGeneral  ((z64_Audio_PlaySoundGeneralFunc)z64_Audio_PlaySoundGeneral_addr)
 #define z64_Audio_PlayFanFare       ((z64_Audio_PlayFanFareFunc)z64_Audio_PlayFanFare_addr)
 #define z64_PlaySFXID               ((z64_PlaySFXIDFunc)z64_PlaySFXID_addr)
@@ -1821,6 +1825,7 @@ typedef float(*z64_Rand_ZeroOne_proc)();
 #define z64_bzero ((z64_bzero_proc)z64_bzero_addr)
 #define z64_Item_DropCollectible ((z64_Item_DropCollectible_proc)z64_Item_DropCollectible_addr)
 #define z64_Item_DropCollectible2 ((z64_Item_DropCollectible_proc)z64_Item_DropCollectible2_addr)
+#define z64_Item_DropCollectibleRandom ((z64_Item_DropCollectibleRandom_proc)z64_Item_DropCollectibleRandom_addr)
 #define z64_Gfx_DrawDListOpa ((z64_Gfx_DrawDListOpa_proc)z64_Gfx_DrawDListOpa_addr)
 #define z64_Math_SinS ((z64_Math_SinS_proc)z64_Math_SinS_addr)
 #define z64_Rand_ZeroOne ((z64_Rand_ZeroOne_proc)z64_Rand_ZeroOne_addr)

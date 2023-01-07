@@ -95,6 +95,11 @@
             "KF Child Stepping Stones Wonderitem": "is_child",
             "KF Child Water Wonderitem": "is_child",
             "KF Child Sign Wonderitem": "is_child and (Kokiri_Sword or Sticks)",
+            "KF Child Training Wonderitem 1": "is_child", 
+            "KF Child Training Wonderitem 2": "is_child", 
+            "KF Child Training Wonderitem 3": "is_child", 
+            "KF Child Maze Grass Wonderitem 1": "is_child", 
+            "KF Child Maze Grass Wonderitem 2": "is_child", 
             "KF Bean Platform Green Rupee 1": "is_adult and (here(can_plant_bean) or Hover_Boots)",
             "KF Bean Platform Green Rupee 2": "is_adult and (here(can_plant_bean) or Hover_Boots)",
             "KF Bean Platform Green Rupee 3": "is_adult and (here(can_plant_bean) or Hover_Boots)",
@@ -230,7 +235,7 @@
         "region_name": "KF Kokiri Shop",
         "scene": "KF Kokiri Shop",
         "locations": {
-            "KF Shop Blue Rupee": "True",
+            "KF Shop Wonderitem": "True",
             "KF Shop Item 1": "True",
             "KF Shop Item 2": "True",
             "KF Shop Item 3": "True",
@@ -265,6 +270,9 @@
             "LW Underwater Green Rupee 6": "is_child and (can_dive or Boomerang)",
             "LW Underwater Green Rupee 7": "is_child and (can_dive or Boomerang)",
             "LW GS Bean Patch Near Bridge": "can_plant_bugs and can_child_attack",
+            "LW Near Ocarina Game Wonderitem 1": "is_child",
+            "LW Near Ocarina Game Wonderitem 2": "is_child",
+            "LW Near Ocarina Game Wonderitem 3": "is_child",
             "LW Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle",
             "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle",
@@ -342,7 +350,8 @@
         "scene": "Sacred Forest Meadow",
         "hint": "SACRED_FOREST_MEADOW",
         "locations": {
-            "SFM Child Wolfos": "is_child and can_kill_wolfos"
+            "SFM Child Wolfos": "is_child and can_kill_wolfos",
+            "SFM Near Lost Woods Wonderitem": "True"
         },
         "exits": {
             "LW Beyond Mido": "True",
@@ -374,7 +383,12 @@
             "SFM Adult Maze Moblin 3": "is_adult",
             "SFM Adult Maze Moblin 4": "is_adult",
             "SFM Adult Maze Moblin 5": "is_adult",
-            "SFM Adult Smashing Moblin": "is_adult"
+            "SFM Adult Smashing Moblin": "is_adult",
+            "SFM Maze Wonderitem 1": "True",
+            "SFM Maze Wonderitem 2": "True",
+            "SFM Maze Wonderitem 3": "True",
+            "SFM Maze Wonderitem 4": "True",
+            "SFM Maze Wonderitem 5": "True"
         },
         "exits": {
             "SFM Entryway": "True",
@@ -428,7 +442,10 @@
             "HF Child South Field Peahat 2": "is_child and at_day and (Kokiri_Sword or Sticks or Slingshot)",
             "HF Child South Field Peahat 3": "is_child and at_day and (Kokiri_Sword or Sticks or Slingshot)",
             "HF Child South Field Flying Peahat": "is_child and at_day and Slingshot",
-            "HF Child Near Valley Flying Peahat": "is_child and at_day and Slingshot"
+            "HF Child Near Valley Flying Peahat": "is_child and at_day and Slingshot",
+            "HF Child Above Drawbridge Wonderitem 1": "is_child",
+            "HF Child Above Drawbridge Wonderitem 2": "is_child",
+            "HF Child Above Drawbridge Wonderitem 3": "is_child"
         },
         "exits": {
             "LW Bridge": "True",
@@ -583,7 +600,9 @@
             "GV Adult Upper Octorok 2": "is_adult and can_kill_octorok_with_explosives",
             "GV Adult Upper Octorok 3": "is_adult and can_kill_octorok_with_explosives",
             "GV Adult Lower Octorok 1": "is_adult and Iron_Boots and Hookshot",
-            "GV Adult Lower Octorok 2": "is_adult and Iron_Boots and Hookshot"
+            "GV Adult Lower Octorok 2": "is_adult and Iron_Boots and Hookshot",
+            "GV Adult Upper Waterfall Wonderitem": "is_adult",
+            "GV Adult Lower Waterfall Wonderitem": "is_adult"
         },
         "exits": {
             "Hyrule Field": "True",
@@ -693,7 +712,9 @@
             "GF HBA 1500 Points": "
                 Gerudo_Membership_Card and can_ride_epona and Bow and at_day",
             "GF GS Archery Range": "
-                can_use(Hookshot) and Gerudo_Membership_Card and at_night"
+                can_use(Hookshot) and Gerudo_Membership_Card and at_night",
+            "GF Sign Wonderitem 1": "can_use(Hookshot)",
+            "GF Sign Wonderitem 2": "can_use(Hookshot)"
         },
         "exits": {
             "GV Fortress Side": "True",
@@ -824,7 +845,9 @@
             "Hideout 1 Torch Jail Pot 1": "True",
             "Hideout 1 Torch Jail Pot 2": "True",
             "Hideout 1 Torch Jail Pot 3": "True",
-            "Hideout 1 Torch Jail Crate": "can_break_crate"
+            "Hideout 1 Torch Jail Crate": "can_break_crate",
+            "Hideout 1 Torch Jail Wonderitem 1": "can_use(Bow)",
+            "Hideout 1 Torch Jail Wonderitem 2": "can_use(Bow)"
         },
         "exits": {
             "Gerudo Fortress": "True",
@@ -851,7 +874,9 @@
             "Hideout 2 Torch Jail In Cell Pot 3": "True",
             "Hideout 2 Torch Jail In Cell Pot 4": "True",
             "Hideout 2 Torch Jail Crate 1": "can_break_crate",
-            "Hideout 2 Torch Jail Crate 2": "can_break_crate"
+            "Hideout 2 Torch Jail Crate 2": "can_break_crate",
+            "Hideout 2 Torch Jail Wonderitem 1": "can_use(Bow)",
+            "Hideout 2 Torch Jail Wonderitem 2": "can_use(Bow)"
         },
         "exits": {
             "Gerudo Fortress": "True",
@@ -870,7 +895,9 @@
         },
         "locations": {
             "Hideout 3 Torches Jail Gerudo Key": "'Hideout 3 Torches Jail Gerudo'",
-            "Hideout 3 Torch Jail Crate": "can_break_crate"
+            "Hideout 3 Torch Jail Crate": "can_break_crate",
+            "Hideout 3 Torch Jail Wonderitem 1": "can_use(Bow)",
+            "Hideout 3 Torch Jail Wonderitem 2": "can_use(Bow)"
         },
         "exits": {
             "GF 3 Torches Jail Exterior": "True"
@@ -889,7 +916,9 @@
         "locations": {
             "Hideout 4 Torches Jail Gerudo Key": "'Hideout 4 Torches Jail Gerudo'",
             "Hideout 4 Torch Jail Pot 1": "True",
-            "Hideout 4 Torch Jail Pot 2": "True"
+            "Hideout 4 Torch Jail Pot 2": "True",
+            "Hideout 4 Torch Jail Wonderitem 1": "can_use(Bow)",
+            "Hideout 4 Torch Jail Wonderitem 2": "can_use(Bow)"
         },
         "exits": {
             "Gerudo Fortress": "True",
@@ -907,7 +936,8 @@
             "Hideout Near Kitchen Crate 2": "can_break_crate",
             "Hideout Near Kitchen Crate 3": "can_break_crate",
             "Hideout Near Kitchen Crate 4": "can_break_crate",
-            "Hideout Near Kitchen Crate 5": "can_break_crate"
+            "Hideout Near Kitchen Crate 5": "can_break_crate",
+            "Hideout Kitchen Wonderitem": "can_use(Bow)"
         },
         "exits": {
             "GF Entrances Behind Crates": "True",
@@ -954,7 +984,8 @@
         "hint": "GERUDO_FORTRESS",
         "locations": {
             "Hideout Kitchen Pot 1": "True",
-            "Hideout Kitchen Pot 2": "True"
+            "Hideout Kitchen Pot 2": "True",
+            "Hideout Kitchen Stove Wonderitem": "damage_multiplier != 'ohko' or can_use(Nayrus_Love)"
         }
     },
     {
@@ -978,7 +1009,9 @@
             "Hideout Break Room Crate 2": "
                 can_break_crate and
                 (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or
-                    can_use(Sticks) or can_use(Kokiri_Sword))"
+                    can_use(Sticks) or can_use(Kokiri_Sword))",
+            "Hideout Break Room Wonderitem 1": "can_use(Bow)",
+            "Hideout Break Room Wonderitem 2": "can_use(Bow) and can_use(Hookshot)"
         }
     },
     {
@@ -1070,7 +1103,12 @@
             "Colossus Adult Guay 2": "is_adult",
             "Colossus Adult Guay 3": "is_adult",
             "Colossus Adult Guay 4": "is_adult",
-            "Colossus Adult Guay 5": "is_adult"
+            "Colossus Adult Guay 5": "is_adult",
+            "Colossus Tree Wonderitem 1": "can_use(Slingshot) or can_use(Bow)",
+            "Colossus Tree Wonderitem 2": "can_use(Slingshot) or can_use(Bow)",
+            "Colossus Tree Wonderitem 3": "can_use(Slingshot) or can_use(Bow)",
+            "Colossus Tree Wonderitem 4": "can_use(Slingshot) or can_use(Bow)",
+            "Colossus Tree Wonderitem 5": "can_use(Slingshot) or can_use(Bow)"
         },
         "exits": {
             "Colossus Great Fairy Fountain": "has_explosives",
@@ -1118,7 +1156,14 @@
             "Market Night Red Rupee Crate": "is_child and at_night and (deadly_bonks != 'ohko' or Fairy or (can_use(Nayrus_Love) and shuffle_overworld_entrances == 'off'))",
             "Market Night Green Rupee Crate 1": "is_child and at_night and (deadly_bonks != 'ohko' or Fairy or (can_use(Nayrus_Love) and shuffle_overworld_entrances == 'off'))",
             "Market Night Green Rupee Crate 2": "is_child and at_night and (deadly_bonks != 'ohko' or Fairy or (can_use(Nayrus_Love) and shuffle_overworld_entrances == 'off'))",
-            "Market Night Green Rupee Crate 3": "is_child and at_night (deadly_bonks != 'ohko' or Fairy or (can_use(Nayrus_Love) and shuffle_overworld_entrances == 'off'))"
+            "Market Night Green Rupee Crate 3": "is_child and at_night (deadly_bonks != 'ohko' or Fairy or (can_use(Nayrus_Love) and shuffle_overworld_entrances == 'off'))",
+            "Market Daytime Balcony Wonderitem 1": "is_child and at_day",
+            "Market Daytime Balcony Wonderitem 2": "is_child and at_day",
+            "Market Daytime Balcony Wonderitem 3": "is_child and at_day",
+            "Market Daytime Balcony Wonderitem 4": "is_child and at_day",
+            "Market Daytime Balcony Wonderitem 5": "is_child and at_day",
+            "Market Night Balcony Wonderitem 1": "is_child and at_night",
+            "Market Night Balcony Wonderitem 2": "is_child and at_night"
         },
         "exits": {
             "Market Entrance": "True",
@@ -1132,12 +1177,6 @@
             "Market Treasure Chest Game": "is_child and at_night",
             "Market Back Alley": "is_child",
             "Market Adult Enemies": "is_adult"
-        },
-        "locations": {
-            "Market Night Red Rupee Crate": "is_child and at_night and (deadly_bonks != 'ohko' or Fairy or (can_use(Nayrus_Love) and shuffle_overworld_entrances == 'off'))",
-            "Market Night Green Rupee Crate 1": "is_child and at_night and (deadly_bonks != 'ohko' or Fairy or (can_use(Nayrus_Love) and shuffle_overworld_entrances == 'off'))",
-            "Market Night Green Rupee Crate 2": "is_child and at_night and (deadly_bonks != 'ohko' or Fairy or (can_use(Nayrus_Love) and shuffle_overworld_entrances == 'off'))",
-            "Market Night Green Rupee Crate 3": "is_child and at_night (deadly_bonks != 'ohko' or Fairy or (can_use(Nayrus_Love) and shuffle_overworld_entrances == 'off'))"
         }
     },
     {
@@ -1228,6 +1267,17 @@
         "locations": {
             "HC Malon Egg": "True",
             "HC GS Tree": "can_child_attack and can_bonk",
+            "HC Castle Torch Wonderitem 1": "can_use(Slingshot)",
+            "HC Castle Torch Wonderitem 2": "can_use(Slingshot)",
+            "HC Castle Moat Wonderitem 1": "True",
+            "HC Castle Moat Wonderitem 2": "True",
+            "HC Castle Moat Wonderitem 3": "True",
+            "HC Castle Moat Wonderitem 4": "True",
+            "HC Castle Moat Wonderitem 5": "True",
+            "HC Castle Moat Wonderitem 6": "True",
+            "HC Castle Moat Wonderitem 7": "True",
+            "HC Castle Moat Wonderitem 8": "True",
+            "HC Castle Moat Wonderitem 9": "True",
             "HC Malon Gossip Stone": "True",
             "HC Rock Wall Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
@@ -1245,6 +1295,9 @@
         "region_name": "HC Garden",
         "scene": "Castle Grounds",
         "hint": "HYRULE_CASTLE",
+        "locations": {
+            "HC Zeldas Courtyard Mario Wonderitem": "can_use(Slingshot)"
+        },
         "exits": {
             "HC Garden Locations": "True",
             "Hyrule Castle Grounds": "True"
@@ -1529,6 +1582,7 @@
             "Kak GS Watchtower": "
                 is_child and at_night and
                 (Slingshot or has_bombchus or (logic_kakariko_tower_gs and (Sticks or Kokiri_Sword)))",
+            "Kak Child Construction Wonderitem": "is_child",
             "Bug Rock": "has_bottle"
         },
         "exits": {
@@ -1832,7 +1886,22 @@
             "Graveyard Dampe Race Redead 1": "can_kill_redead",
             "Graveyard Dampe Race Redead 2": "can_kill_redead",
             "Graveyard Dampe Race Redead 3": "can_kill_redead",
-            "Graveyard Dampe Race Redead 4": "can_kill_redead"
+            "Graveyard Dampe Race Redead 4": "can_kill_redead",
+            "Graveyard Dampe Race Wonderitem 1": "True",
+            "Graveyard Dampe Race Wonderitem 2": "True",
+            "Graveyard Dampe Race Wonderitem 3": "True",
+            "Graveyard Dampe Race Wonderitem 4": "True",
+            "Graveyard Dampe Race Wonderitem 5": "True",
+            "Graveyard Dampe Race Wonderitem 6": "True",
+            "Graveyard Dampe Race Wonderitem 7": "True",
+            "Graveyard Dampe Race Wonderitem 8": "True",
+            "Graveyard Dampe Race Wonderitem 9": "True",
+            "Graveyard Dampe Race Wonderitem 10": "True",
+            "Graveyard Dampe Race Wonderitem 11": "True",
+            "Graveyard Dampe Race Wonderitem 12": "True",
+            "Graveyard Dampe Race Wonderitem 13": "True",
+            "Graveyard Dampe Race Wonderitem 14": "True",
+            "Graveyard Dampe Race Wonderitem 15": "True"
         },
         "exits": {
             "Graveyard": "True",
@@ -2280,7 +2349,12 @@
         "hint": "ZORA_RIVER",
         "time_passes": true,
         "locations": {
-            "ZR GS Tree": "is_child and can_child_attack and can_bonk"
+            "ZR GS Tree": "is_child and can_child_attack and can_bonk",
+            "ZR Child Front River Wonderitem 1": "is_child",
+            "ZR Child Front River Wonderitem 2": "is_child",
+            "ZR Child Front River Wonderitem 3": "is_child",
+            "ZR Child Front River Wonderitem 4": "is_child"
+            
         },
         "exits": {
             "Zora River": "is_adult or has_explosives",
@@ -2332,7 +2406,34 @@
             "ZR Adult Octorok 5": "is_adult and can_kill_octorok_with_explosives",
             "ZR Adult Octorok 6": "is_adult and can_kill_octorok_with_explosives",
             "ZR Adult Octorok 7": "is_adult and can_kill_octorok_with_explosives",
-            "ZR Adult Octorok 8": "is_adult and can_kill_octorok_with_explosives"
+            "ZR Adult Octorok 8": "is_adult and can_kill_octorok_with_explosives",
+            "ZR Child River Wonderitem 1": "is_child",
+            "ZR Child River Wonderitem 2": "is_child",
+            "ZR Child River Wonderitem 3": "is_child",
+            "ZR Child River Wonderitem 4": "is_child",
+            "ZR Child River Wonderitem 5": "is_child",
+            "ZR Child River Wonderitem 6": "is_child",
+            "ZR Child River Wonderitem 7": "is_child",
+            "ZR Child River Wonderitem 8": "is_child",
+            "ZR Child River Wonderitem 9": "is_child",
+            "ZR Child River Wonderitem 10": "is_child",
+            "ZR Child River Wonderitem 11": "is_child",
+            "ZR Child River Wonderitem 12": "is_child",
+            "ZR Child River Wonderitem 13": "is_child",
+            "ZR Child River Wonderitem 14": "is_child",
+            "ZR Child River Wonderitem 15": "is_child",
+            "ZR Child River Wonderitem 16": "is_child",
+            "ZR Child River Wonderitem 17": "is_child",
+            "ZR Child River Wonderitem 18": "is_child",
+            "ZR Child River Wonderitem 19": "is_child",
+            "ZR Child River Wonderitem 20": "is_child",
+            "ZR Child River Wonderitem 21": "is_child",
+            "ZR Child River Wonderitem 22": "is_child",
+            "ZR Child River Wonderitem 23": "is_child",
+            "ZR Child River Wonderitem 24": "is_child",
+            "ZR Child River Wonderitem 25": "is_child",
+            "ZR Child River Wonderitem 26": "is_child",
+            "ZR Child River Wonderitem 27": "is_child"
         },
         "exits": {
             "ZR Front": "True",
@@ -2572,7 +2673,9 @@
             "LLR Child Night Guay 12": "at_night and can_child_attack",
             "LLR Child Night Guay 13": "at_night and can_child_attack",
             "LLR Child Night Guay 14": "at_night and can_child_attack",
-            "LLR Child Night Guay 15": "at_night and can_child_attack"
+            "LLR Child Night Guay 15": "at_night and can_child_attack",
+            "LLR Epona Hurdle Wonderitem 1": "is_adult and can_play(Eponas_Song)",
+            "LLR Epona Hurdle Wonderitem 2": "is_adult and can_play(Eponas_Song)"
         },
         "exits": {
             "Hyrule Field": "True",
