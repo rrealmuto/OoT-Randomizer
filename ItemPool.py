@@ -618,6 +618,10 @@ def get_pool_core(world):
                 shuffle_item = False
                 location.disabled = DisableType.DISABLED
 
+        # Wonderitems
+        elif location.type == 'Wonderitem':
+            shuffle_item = True
+
         # Dungeon Items
         elif location.dungeon is not None:
             dungeon = location.dungeon

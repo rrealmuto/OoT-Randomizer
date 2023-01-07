@@ -728,6 +728,70 @@ sh  v0, 0x004E(sp)
     j       Actor_SpawnEntry_Hack
     nop
 
+; Hack the function that kills actor when changing rooms to not kill overridden collectibles?
+; Hack at the call to Actor_Kill
+.orga 0xA9ADAC ; In memory: 0x80024E4C
+; Replaces:
+;   jal     Actor_Kill
+    jal     Room_Change_Actor_Kill_Hack
+
+; ====== Wonderitem Shuffle ======
+
+; Increase the size of wonderitem to store when they are being overridden
+.orga 0xDE96FA
+.halfword 0x01D0
+
+; Hack EnWonderItem_Init to not kill the actor if the switch flag is set but it should be overridden
+; Replaces
+;   jal     Actor_Kill
+.orga 0xDE8E54
+    jal     EnWonderItem_Kill_Hack
+    nop
+    nop
+    nop
+    nop
+
+; Hack EnWonderItem_MultitagFree to show the remaining tags
+.orga 0xDE9198
+; Replaces:
+;   lwc1    f4, 0x0024(a2)
+;   lwc1    f8, 0x0028(a2)
+    jal     EnWonderItem_Multitag_DrawHook
+    nop
+
+; Hack EnWonderItem_MultitagOrdered to show the remaining tags
+.orga 0xDE9408
+; Replaces:
+;   lwc1    f4, 0x0024(a2)
+;   lwc1    f8, 0x0028(a2)
+    jal     EnWonderItem_MultitagOrdered_DrawHook
+    nop
+
+; Hack at the end of EnWonderItem_MultitagFree to not set the switch flag. It is set inside EnWonderItem_DropCollectible
+.orga 0xDE9250
+; Replaces:
+;   bltzl   a1, 0x801F8EE4
+;   or      a0, s0, r0
+;   jal     0x800204D0 ;Flags_SetSwitch
+;   lw      a0, 0x0024(sp)
+    nop
+    nop
+    nop
+    nop
+
+; Hack at the beginning of EnWonderItem_Update to draw a marker for the location (other than multitags)
+.orga 0xDE9630
+; Replaces:
+;   lw      t9, 0x013c(s0)
+;   or      a0, s0, r0
+    jal       EnWonderItem_Update_Hook
+    nop
+
+; Hack EnWonderItem_DropCollectible to drop flagged collectibles
+.orga 0xDE8C94
+    j		EnWonderItem_DropCollectible_Hack
+    nop
+
 ; Runs when storing an incoming item to the player instance
 ; Replaces:
 ;   sb      a2, 0x0424 (a3)
