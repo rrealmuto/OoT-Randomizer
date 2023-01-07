@@ -92,6 +92,11 @@ class Region(object):
                 if item.world.empty_dungeons[dungeon.name].empty and dungeon.is_dungeon_item(item):
                     return False
 
+        if not manual and self.world.settings.require_gohma and item.name in closed_forest_restricted_items:
+            # Don't place items that can be used to escape the forest in Forest areas of worlds with Require Gohma
+            if HintArea.at(self).color == 'Green':
+                return False
+
         from Hints import HintArea
         from ItemPool import closed_forest_restricted_items, triforce_blitz_items
 
@@ -101,23 +106,21 @@ class Region(object):
         is_dungeon_restricted = False
         is_overworld_restricted = False
 
-        if item.type in ['Map', 'Compass', 'SmallKey', 'HideoutSmallKey', 'BossKey', 'GanonBossKey', 'SilverRupee']:
-            shuffle_setting = (self.world.settings.shuffle_mapcompass if item.type in ['Map', 'Compass'] else
-                               self.world.settings.shuffle_smallkeys if item.type == 'SmallKey' else
-                               self.world.settings.shuffle_hideoutkeys if item.type == 'HideoutSmallKey' else
-                               self.world.settings.shuffle_bosskeys if item.type == 'BossKey' else
-                               self.world.settings.shuffle_ganon_bosskey if item.type == 'GanonBossKey' else
-                               self.world.settings.shuffle_silver_rupees if item.type == 'SilverRupee' else None)
+        if item.type in ('Map', 'Compass', 'SmallKey', 'HideoutSmallKey', 'BossKey', 'GanonBossKey', 'SilverRupee'):
+            shuffle_setting = (item.world.settings.shuffle_mapcompass if item.type in ('Map', 'Compass') else
+                               item.world.settings.shuffle_smallkeys if item.type == 'SmallKey' else
+                               item.world.settings.shuffle_hideoutkeys if item.type == 'HideoutSmallKey' else
+                               item.world.settings.shuffle_bosskeys if item.type == 'BossKey' else
+                               item.world.settings.shuffle_ganon_bosskey if item.type == 'GanonBossKey' else
+                               item.world.settings.shuffle_silver_rupees if item.type == 'SilverRupee' else None)
 
-            is_self_dungeon_restricted = shuffle_setting in ['dungeon', 'vanilla'] and item.type != 'HideoutSmallKey'
+            is_self_dungeon_restricted = shuffle_setting in ('dungeon', 'vanilla') and item.type != 'HideoutSmallKey'
             is_self_region_restricted = [HintArea.GERUDO_FORTRESS, HintArea.THIEVES_HIDEOUT] if shuffle_setting == 'fortress' else None
             is_hint_color_restricted = [HintArea.for_dungeon(item.name).color] if shuffle_setting == 'regional' else None
             is_dungeon_restricted = shuffle_setting == 'any_dungeon'
             is_overworld_restricted = shuffle_setting == 'overworld'
         elif item.name in triforce_blitz_items:
             is_dungeon_restricted = True
-        elif item.name in closed_forest_restricted_items and self.world.settings.require_gohma:
-            is_hint_color_restricted = ['Light Blue', 'Red', 'Blue', 'Pink', 'Yellow']
 
         if is_self_dungeon_restricted and not manual:
             hint_area = HintArea.at(self)
