@@ -1,6 +1,7 @@
 #include "item_effects.h"
 #include "dungeon_info.h"
 #include "save.h"
+#include "triforce.h"
 
 #define rupee_cap ((uint16_t*)0x800F8CEC)
 volatile uint8_t MAX_RUPEES = 0;
@@ -13,6 +14,13 @@ void full_heal(z64_file_t *save, int16_t arg1, int16_t arg2) {
 }
 
 void give_triforce_piece(z64_file_t *save, int16_t arg1, int16_t arg2) {
+    if (!TRIFORCE_HUNT_ENABLED) {
+        // With per-world settings, Defeat Ganon worlds should behave as if Triforce pieces didn't exist.
+        // However, multiworld plugins don't know about this and will indiscriminately send pieces to all worlds.
+        // So we just ignore them here.
+        return;
+    }
+
     save->scene_flags[0x48].unk_00_ += 1; //Unused word in scene x48.
     set_triforce_render();
 
