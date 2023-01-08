@@ -184,13 +184,14 @@ void activate_override(override_t override) {
     item_row_t *item_row = get_item_row(resolved_item_id);
 
     active_override = override;
-    if (resolved_item_id == 0xCA)
+    if (resolved_item_id == 0xCA) {
         active_override_is_outgoing = 2; // Send to everyone
-    else
+    } else {
         active_override_is_outgoing = override.value.player != PLAYER_ID;
+    }
     active_item_row = item_row;
     active_item_action_id = item_row->action_id;
-    active_item_text_id = item_row->text_id;
+    active_item_text_id = resolve_item_text_id(resolved_item_id, active_override_is_outgoing);
     active_item_object_id = item_row->object_id;
     active_item_graphic_id = item_row->graphic_id;
     if (override.value.looks_like_item_id) {
@@ -771,7 +772,7 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
         // draw message box and play get item sound (like when a skull is picked up)
         z64_Audio_PlayFanFare(NA_BGM_SMALL_ITEM_GET);
 
-        z64_DisplayTextbox(&z64_game, item_row->text_id, 0);
+        z64_DisplayTextbox(&z64_game, resolve_item_text_id(resolved_item_id, player != PLAYER_ID), 0);
 
         // Set up
         pItem->timeToLive = 15;  // unk_15A is a frame timer that is decremented each frame by the main actor code.
@@ -805,7 +806,7 @@ void get_skulltula_token(z64_actor_t *token_actor) {
     token_actor->draw_proc = NULL;
 
     PLAYER_NAME_ID = player;
-    z64_DisplayTextbox(&z64_game, item_row->text_id, 0);
+    z64_DisplayTextbox(&z64_game, resolve_item_text_id(resolved_item_id, player != PLAYER_ID), 0);
     dispatch_item(resolved_item_id, player, &override, item_row);
 }
 
