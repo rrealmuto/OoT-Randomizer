@@ -6673,6 +6673,7 @@ def validate_settings(settings_dict, *, allow_world_entries=True, check_conflict
         # Handle per-world settings
         if allow_world_entries and re.fullmatch('World [0-9]+', setting):
             validate_settings(choice, allow_world_entries=False, check_conflicts=check_conflicts)
+            continue
         # Ensure the supplied setting name is a real setting
         if not any(setting == x.name for x in setting_infos):
             raise TypeError('%r is not a valid setting. %s' % (setting, build_close_match(setting, 'setting')))
