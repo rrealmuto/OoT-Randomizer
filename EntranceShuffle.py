@@ -1115,7 +1115,7 @@ def entrance_unreachable_as(entrance, age, already_checked=None):
     already_checked.append(entrance)
 
     # The following cases determine when we say an entrance is not safe to affirm unreachable as the given age
-    if entrance.type in ('WarpSong', 'BlueWarp', 'Overworld'):
+    if entrance.type in ('WarpSong', 'BlueWarp', 'OverworldOneWay', 'Overworld'):
         # Note that we consider all overworld entrances as potentially accessible as both ages, to be completely safe
         return False
     elif entrance.type in ('OwlDrop', 'ChildSpawn'):

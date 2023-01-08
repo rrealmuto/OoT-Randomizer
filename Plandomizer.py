@@ -810,6 +810,7 @@ class WorldDistribution(object):
             5: The rest of the Item pool
         """
         world = worlds[self.id]
+        fillable_locations = [location for location_pool in location_pools for location in location_pool]
         locations = {}
         if self.locations:
             locations = {loc: self.locations[loc] for loc in random.sample(sorted(self.locations), len(self.locations))}
@@ -817,6 +818,23 @@ class WorldDistribution(object):
         for (location_name, record) in self.pattern_dict_items(locations):
             if record.item is None:
                 continue
+
+            location_matcher = lambda loc: loc.world.id == world.id and loc.name.lower() == location_name.lower()
+            location = pull_first_element(location_pools, location_matcher)
+            if location is None:
+                try:
+                    location = LocationFactory(location_name)
+                except KeyError:
+                    raise RuntimeError('Unknown location in world %d: %r. %s' % (world.id + 1, location_name, build_close_match(location_name, 'location')))
+                if location.type == 'Boss':
+                    continue
+                elif location.name in world.settings.disabled_locations:
+                    continue
+                elif True in (location_matcher(location) for location in fillable_locations):
+                    raise RuntimeError('Location already filled in world %d: %s' % (self.id + 1, location_name))
+                else:
+                    continue
+
             valid_items = []
             if record.item == "#Vanilla": # Get vanilla item at this location from the location table
                 valid_items.append(location_table[location_name][4])
@@ -838,20 +856,6 @@ class WorldDistribution(object):
                     used_items.append(record.item)
 
             player_id = self.id if record.player is None else record.player - 1
-
-            location_matcher = lambda loc: loc.world.id == world.id and loc.name.lower() == location_name.lower()
-            location = pull_first_element(location_pools, location_matcher)
-            if location is None:
-                try:
-                    location = LocationFactory(location_name)
-                except KeyError:
-                    raise RuntimeError('Unknown location in world %d: %r. %s' % (world.id + 1, location_name, build_close_match(location_name, 'location')))
-                if location.type == 'Boss':
-                    continue
-                elif location.name in world.settings.disabled_locations:
-                    continue
-                else:
-                    raise RuntimeError('Location already filled in world %d: %s' % (self.id + 1, location_name))
 
             if record.item in item_groups['DungeonReward']:
                 raise RuntimeError('Cannot place dungeon reward %s in world %d in location %s.' % (record.item, self.id + 1, location_name))

@@ -38,7 +38,6 @@ class World(object):
         self.misc_hint_location_items = {}
         self.triforce_count = 0
         self.total_starting_triforce_count = 0
-        self.bingosync_url = None
 
         self.parser = Rule_AST_Transformer(self)
         self.event_items = set()

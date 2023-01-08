@@ -226,6 +226,7 @@
             "shuffle_hideoutkeys",
             "key_rings_choice",
             "key_rings",
+            "keyring_give_bk",
             "shuffle_bosskeys",
             "shuffle_ganon_bosskey",
             "ganon_bosskey_medallions",

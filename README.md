@@ -12,13 +12,13 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
 
 * New settings and options:
   * New “Shuffle Dungeon Rewards” setting with “Vanilla Locations” and “Dungeon Reward Locations” options (part of [#1833](https://github.com/TestRunnerSRL/OoT-Randomizer/issues/1833))
-  * New “Shuffle Gerudo Valley River Exit” setting ([#1830](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1830))
   * New “Shuffle Silver Rupees” setting ([#1814](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1814))
   * New “Triforce Hunt Mode” setting with “Normal”, “Easter Egg Hunt”, “Ice%”, and “Triforce Blitz” options (Easter Egg Hunt based on [#1804](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1804), Triforce Blitz based on [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev))
   * New “Shuffle Thieves' Hideout Entrances” setting ([#1616](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1616))
   * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1536))
   * “Closed Forest Requires Gohma” is a separate setting, making “Closed Forest” compatible with more settings if disabled ([#1531](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1531))
   * New “Full” options for the settings “Randomize Owl Drops”, “Randomize Warp Song Destinations”, and “Randomize Overworld Spawns” (which is split into “Randomize Child Overworld Spawn” and “Randomize Adult Overworld Spawn” for this reason) that include more types of entrances (based on [#1179](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1179) and [#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
+  * “Enable Specific Glitch-Useful Cutscenes” has been renamed to “Glitch-Useful Behaviors” and also controls whether the water in the well is present as adult
   * New “Shuffle Blue Warps” setting
   * New “Mutually Exclusive One-Ways” setting which makes the hint area restriction apply to one-way entrances of different types
   * New “Vanilla” option for the “Shuffle Songs” setting
@@ -161,14 +161,29 @@ issue. You should always Hard Reset to avoid this issue entirely.
 
 ### Dev
 
+#### New Features
+* **Settings**
+  * New setting `Key Rings give Boss Keys` makes it so when picking up a key ring for a certain dungeon, you will also get the boss key for that dungeon, if applicable.
+  * New ER setting `Shuffle Gerudo Valley River Exit` allows you to shuffle the one-way exit going down the river in Gerudo Valley.
+* **Hints**
+  * New `Important Checks` hint type which hints at how many major items are in a given region.
+
 #### Bug Fixes
 * Fix an issue where the `path of hearts` goal wasn't enabled in certain circumstances with a Ganon's Boss Key or LACS `Hearts` goal.
+* Fix an issue where CSMC chests containing ice traps were not moved correctly.
+* Fix the bingosync URL not being referenced correctly.
 
 #### Other Changes
 * `Closed Forest` is no longer changed to `Closed Deku` when `Shuffle Boss Entrances` is enabled.
 * A new model is now used for warp songs to differentiate from non-warp songs.
 * The model used for Ruto's Letter is now rotated onto its side to better differentiate from other bottles.
 * The dummy boss key chest on the wall of Forest Temple's twisted hallway now matches the real version of the chest in the straightened version of the room.
+* The Kakariko Well water will no longer be up as adult to facilitate a glitch strategy for entering the well.
+* The message table has been extended to allow further developments which require more added textboxes.
+* Currently worn mask will now be preserved when transitioning scenes or resetting.
+
+#### Plandomizer
+* Plandomizer now allows you to specify locations that are valid but do not exist in your current seed, for example, an MQ-specific location when that dungeon is Vanilla.
 
 ### 7.1
 

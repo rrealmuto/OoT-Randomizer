@@ -390,6 +390,15 @@ class SaveContext():
                         'total_keys.gc': 3 if world.dungeon_mq[dungeon] else 2,
                     },
                 }[dungeon]
+                if world.settings.keyring_give_bk:
+                    bk_names = {
+                        "Forest Temple": 'dungeon_items.forest.boss_key',
+                        "Fire Temple": 'dungeon_items.fire.boss_key',
+                        "Water Temple": 'dungeon_items.water.boss_key',
+                        "Spirit Temple": 'dungeon_items.spirit.boss_key',
+                        "Shadow Temple": 'dungeon_items.shadow.boss_key',
+                    }
+                    save_writes[dungeon][bk_names[dungeon]] = True
             else:
                 save_writes = SaveContext.save_writes_table[item]
             for address, value in save_writes.items():

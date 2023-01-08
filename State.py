@@ -144,6 +144,10 @@ class State(object):
     # Be careful using this function. It will not collect any
     # items that may be locked behind the item, only the item itself.
     def collect(self, item):
+        if 'Small Key Ring' in item.name and self.world.settings.keyring_give_bk:
+            dungeon_name = item.name[:-1].split(' (', 1)[1]
+            if dungeon_name in ('Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple'):
+                self.prog_items[f'Boss Key ({dungeon_name})'] = True
         if item.alias:
             self.prog_items[item.alias[0]] += item.alias[1]
         if item.advancement:
@@ -153,6 +157,10 @@ class State(object):
     # Be careful using this function. It will not uncollect any
     # items that may be locked behind the item, only the item itself.
     def remove(self, item):
+        if 'Small Key Ring' in item.name and self.world.settings.keyring_give_bk:
+            dungeon_name = item.name[:-1].split(' (', 1)[1]
+            if dungeon_name in ('Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple'):
+                self.prog_items[f'Boss Key ({dungeon_name})'] = False
         if item.alias and self.prog_items[item.alias[0]] > 0:
             self.prog_items[item.alias[0]] -= item.alias[1]
             if self.prog_items[item.alias[0]] <= 0:

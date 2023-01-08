@@ -25,7 +25,7 @@ bingoBottlesForHints = (
 )
 
 defaultHintDists = [
-    'balanced.json', 'bingo.json', 'chaos.json', 'coop2.json', 'ddr.json', 'league.json', 'mw3.json', 'scrubs.json', 'strong.json', 'tournament.json', 'useless.json', 'very_strong.json', 'very_strong_magic.json', 'weekly.json', 'mixed_pools.json', 'triforce_blitz.json'
+    'balanced.json', 'bingo.json', 'chaos.json', 'coop2.json', 'ddr.json', 'league.json', 'mw3.json', 'scrubs.json', 'strong.json', 'tournament.json', 'useless.json', 'very_strong.json', 'very_strong_magic.json', 'weekly.json', 'important_checks.json', 'mixed_pools.json', 'triforce_blitz.json'
 ]
 
 unHintableWothItems = [*triforce_pieces, 'Gold Skulltula Token']
@@ -1141,6 +1141,62 @@ def get_junk_hint(spoiler, world, checked):
 
     return (GossipText(hint.text, prefix=''), None)
 
+def get_important_check_hint(spoiler, world, checked):
+    top_level_locations = []
+    for location in world.get_filled_locations():
+        if (
+            HintArea.at(location).text(world.settings.clearer_hints) not in top_level_locations
+            and (HintArea.at(location).text(world.settings.clearer_hints) + ' Important Check') not in checked
+            and HintArea.at(location) != HintArea.ROOT
+        ):
+            top_level_locations.append(HintArea.at(location).text(world.settings.clearer_hints))
+    hintLoc = random.choice(top_level_locations)
+    item_count = 0
+    for location in world.get_filled_locations():
+        region = HintArea.at(location).text(world.settings.clearer_hints)
+        if region == hintLoc:
+            if (
+                location.item.majoritem
+                and not location.item.name == 'Triforce Piece'
+                and not location.item.name == 'Deliver Letter'
+                and not ((location.name == 'Song from Impa' or location.item.name == 'Zeldas Letter') and world.settings.shuffle_child_trade == 'skip_child_zelda')
+                and not (
+                    location.item.name == 'Kokiri Sword' and not world.settings.shuffle_kokiri_sword
+                    or location.item.name == 'Giants Knife' and not world.settings.shuffle_medigoron_carpet_salesman
+                    or location.item.name == 'Gerudo Membership Card' and not world.settings.shuffle_gerudo_card
+                    or location.item.name == 'Ocarina' and not world.settings.shuffle_ocarinas
+                    or 'Bean' in location.item.name and not world.settings.shuffle_beans
+                    or location.item.name == 'Weird Egg' and not world.settings.shuffle_child_trade == 'shuffle'
+                )
+                or (location.item.type == 'SmallKey' and not (world.settings.shuffle_smallkeys == 'dungeon' or world.settings.shuffle_smallkeys == 'vanilla'))
+                or (location.item.type == 'HideoutSmallKey' and not world.settings.shuffle_hideoutkeys == 'vanilla')
+                or (location.item.type == 'BossKey' and not (world.settings.shuffle_bosskeys == 'dungeon' or world.settings.shuffle_bosskeys == 'vanilla'))
+                or (
+                    location.item.type == 'GanonBossKey' and not (
+                        world.settings.shuffle_ganon_bosskey == 'vanilla'
+                        or world.settings.shuffle_ganon_bosskey == 'dungeon' or world.settings.shuffle_ganon_bosskey == 'on_lacs'
+                        or world.settings.shuffle_ganon_bosskey == 'stones' or world.settings.shuffle_ganon_bosskey == 'medallions'
+                        or world.settings.shuffle_ganon_bosskey == 'dungeons' or world.settings.shuffle_ganon_bosskey == 'tokens'
+                    )
+                )
+            ):
+                item_count = item_count + 1
+
+    checked.add(hintLoc + ' Important Check')
+
+    if item_count == 0:
+        numcolor = 'Red'
+    elif item_count == 1:
+        numcolor = 'Pink'
+    elif item_count == 2:
+        numcolor = 'Yellow'
+    elif item_count == 3:
+        numcolor = 'Light Blue'
+    else:
+        numcolor = 'Green'
+
+    return (GossipText('#%s# has #%d# major item%s.' % (hintLoc, item_count, "s" if item_count != 1 else ""), [numcolor, 'Green']), None)
+
 
 hint_func = {
     'trial':            lambda spoiler, world, checked: None,
@@ -1161,7 +1217,8 @@ hint_func = {
     'entrance':         get_entrance_hint,
     'random':           get_random_location_hint,
     'junk':             get_junk_hint,
-    'named-item':       get_specific_item_hint
+    'named-item':       get_specific_item_hint,
+    'important_check':  get_important_check_hint,
 }
 
 hint_dist_keys = set(hint_func)
@@ -1311,10 +1368,10 @@ def buildWorldGossipHints(spoiler, world, checkedLocations=None):
     if world.settings.hint_dist == "bingo":
         with open(data_path('Bingo/generic_bingo_hints.json'), 'r') as bingoFile:
             bingoDefaults = json.load(bingoFile)
-        if world.bingosync_url is not None and world.bingosync_url.startswith("https://bingosync.com/"): # Verify that user actually entered a bingosync URL
+        if world.settings.bingosync_url and world.settings.bingosync_url.startswith("https://bingosync.com/"): # Verify that user actually entered a bingosync URL
             logger = logging.getLogger('')
             logger.info("Got Bingosync URL. Building board-specific goals.")
-            world.item_hints = buildBingoHintList(world.bingosync_url)
+            world.item_hints = buildBingoHintList(world.settings.bingosync_url)
         else:
             world.item_hints = bingoDefaults['settings']['item_hints']
 

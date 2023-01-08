@@ -29,6 +29,7 @@
         "overworld":       {"order": 0, "weight": 0.0, "fixed":   0, "copies": 2},
         "dungeon":         {"order": 0, "weight": 0.0, "fixed":   0, "copies": 2},
         "junk":            {"order": 0, "weight": 0.0, "fixed":   0, "copies": 2},
-        "named-item":      {"order": 9, "weight": 0.0, "fixed":   0, "copies": 2}
+        "named-item":      {"order": 9, "weight": 0.0, "fixed":   0, "copies": 2},
+        "important_check": {"order": 0, "weight": 0.0, "fixed":   0, "copies": 0}
     }
 }

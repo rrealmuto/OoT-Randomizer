@@ -1422,33 +1422,9 @@ skip_GS_BGS_text:
 ; Set player health to zero on last frame of bonk animation
 ; z_player func_80844708, conditional where this->unk_850 != 0 and temp >= 0 || sp44
 ; Replaces:
-;   or      a0, s0, $zero
-;   jal     func_80838178
-;   lw      a1, 0x0054($sp)
 ;   b       lbl_80842AE8
-;   lw      $ra, 0x0024($sp)
-;   lwc1    $f4, 0x0828(s0)
-;   mtc1    $at, $f6
-;   nop
-.orga 0xBE0228
-; Load APPLY_BONK_DAMAGE address as throwaway instructions. Replacing the jump call causes
-; problems when overlay relocation is applied, breaking both replacement jump calls and nop'ing
-; the instruction. By chance, these two instructions (equivalent to `la APPLY_BONK_DAMAGE`) do
-; not crash after relocation, and so are kept here even though they do nothing.
-    lui     t8, 0x8040
-    addiu   t8, t8, 0x2D04
-; Replace original function call with hook to apply damage if the setting is on.
-; The original function is called in the new function before applying damage.
-; Since the player actor always ends up in the same location in RAM, the jump
-; address there is hardcoded.
-    jal     BONK_LAST_FRAME
-    lw      a1, 0x0054($sp)
-; The branch address is shifted to an alternate location where lw $ra... is run.
-; Required as la t8, APPLY_BONK_DAMAGE gets expanded to two commands.
-    b       0xBE0494
-    lw      $ra, 0x0024($sp)
-    lwc1    $f4, 0x0828(s0)
-    mtc1    $at, $f6
+.orga 0xBE0234
+    j       BONK_LAST_FRAME
 
 ; Prevent set and reset of player state3 flag 4, which is re-used for storing bonk state if the
 ; player manages to cancel the roll/bonk animation before the last frame.
@@ -3124,6 +3100,32 @@ skip_GS_BGS_text:
 .orga 0xB575C8
     sw      t6, 0x00(a1)
 
+; Dynamically load the en/jp message files for text lookup. Both files are utilized to make room
+; for additional text. The jp file is filled first. The segment value for the requested text ID
+; is used to manipulate the language bit to tell Message_OpenText (func_800DC838) which file
+; to load and search. Hook at VRAM 0x800DCB60 in message.s
+.orga 0xB52AC0
+    jal     set_message_file_to_search
+    nop
+
+; The message lookup function uses a fixed reference to the first entry's segment to strip it from
+; the combined segment/offset word. Since we have mixed segments in the table now, this is no
+; longer safe. Load the correct segment into register a2 from the current message.
+.orga 0xB4C980
+    j       load_correct_message_segment
+    nop
+
+; Since message lookup already occurs in the above hook, remove the lookup from both the JP and EN
+; branches.
+.orga 0xB52AD0 ; JP branch
+    nop
+    nop
+    nop
+    nop
+.orga 0xB52B64 ; EN branch
+    nop
+    nop
+
 ;==================================================================================================
 ; Null Boomerang Pointer in Links Instance
 ;==================================================================================================
@@ -3222,3 +3224,55 @@ skip_GS_BGS_text:
 ;   jal     func_800CDCCC
 .orga 0xDB9E14
     jal     rand_seed_truth_spinner
+
+;==================================================================================================
+; Save current mask on scene change
+;==================================================================================================
+; Player_Destroy (0x80848BB4) - Its easier to just re-write the function than make a hook.
+.orga 0xBE6564
+    addiu   sp, sp, -0x10
+    sw      ra, 0xC($sp)
+    sw      s1, 0x8($sp)
+    sw      s0, 0x4($sp)
+    move    s0, a0
+    move    s1, a1
+    la      t0, SAVE_CONTEXT
+    lui     t1, 0x0001
+    addu    t1, t1, a1 ; PlayState + 0x10000
+    lbu     t2, 0x1DE8(t1) ; playState->linkAgeOnLoad
+    lbu     t3, 0x014F(a0) ; player->currentMask
+    sw      t2, 0x0004(t0) ; saveContext->linkAge
+    sb      t3, 0x003B(t0) ; this seems to be an empty slot
+    move    a0, a1
+    jal     0x8001AE04 ; Effect_Delete
+    lw      a1, 0x660(s0) ; player->meleeWeaponEffectIndex
+    jal     0x80072548 ; Magic_Reset
+    move    a0, s1
+    lw      ra, 0xC(sp)
+    lw      s1, 0x8(sp)
+    lw      s0, 0x4(sp)
+    jr      ra
+    addiu   sp, sp, 0x10
+    ; Remove the rest of the old function
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+
+;==================================================================================================
+; Load current mask on scene change
+;==================================================================================================
+; Player_Init (0x80844DE8)
+; Replaces:
+;jal     func_80834000
+.orga 0xBE28EC
+    jal     player_save_mask
+
+; Dumb hack to not relocate the function call to player_save_mask
+.orga 0xBF2C14
+    nop

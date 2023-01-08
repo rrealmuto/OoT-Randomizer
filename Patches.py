@@ -1071,8 +1071,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         # Connect lake hylia fill exit to revisit exit
         rom.write_int16(0xAC995A, 0x060C)
 
-        # Tell the well water we are always a child.
-        rom.write_int32(0xDD5BF4, 0x00000000)
+        if not world.settings.useful_cutscenes:
+            # Tell the well water we are always a child.
+            rom.write_int32(0xDD5BF4, 0x00000000)
 
         # Make the Adult well blocking stone dissappear if the well has been drained by
         # checking the well drain event flag instead of links age. This actor doesn't need a
@@ -1382,6 +1383,11 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     else:
         rom.write_byte(symbol, 0)
         rom.write_int16(count_symbol, 0)
+
+    # Set Boss Key collection in Key Ring.
+    symbol = rom.sym('KEYRING_BOSSKEY_CONDITION')
+    if world.settings.keyring_give_bk:
+        rom.write_byte(symbol, 1)
 
     # Set up LACS conditions.
     symbol = rom.sym('LACS_CONDITION')
@@ -2098,7 +2104,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         if not world.dungeon_mq['Ganons Castle']:
             chest_name = 'Ganons Castle Light Trial Lullaby Chest'
             location = world.get_location(chest_name)
-            item = read_rom_item(rom, location.item.index)
+            item = read_rom_item(rom, (location.item.looks_like_item or location.item).index)
             if item['chest_type'] in (GOLD_CHEST, GILDED_CHEST, SKULL_CHEST_BIG):
                 rom.write_int16(0x321B176, 0xFC40) # original 0xFC48
 
@@ -2107,7 +2113,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             chest_name = 'Spirit Temple Compass Chest'
             chest_address = 0x2B6B07C
             location = world.get_location(chest_name)
-            item = read_rom_item(rom, location.item.index)
+            item = read_rom_item(rom, (location.item.looks_like_item or location.item).index)
             if item['chest_type'] in (BROWN_CHEST, SILVER_CHEST, SKULL_CHEST_SMALL):
                 rom.write_int16(chest_address + 2, 0x0190) # X pos
                 rom.write_int16(chest_address + 6, 0xFABC) # Z pos
@@ -2118,7 +2124,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             chest_address_0 = 0x21A02D0  # Address in setup 0
             chest_address_2 = 0x21A06E4  # Address in setup 2
             location = world.get_location(chest_name)
-            item = read_rom_item(rom, location.item.index)
+            item = read_rom_item(rom, (location.item.looks_like_item or location.item).index)
             if item['chest_type'] in (BROWN_CHEST, SILVER_CHEST, SKULL_CHEST_SMALL):
                 rom.write_int16(chest_address_0 + 6, 0x0172)  # Z pos
                 rom.write_int16(chest_address_2 + 6, 0x0172)  # Z pos
