@@ -95,6 +95,7 @@ class World(object):
             else 3 if world_dist.settings.triforce_hunt_mode == 'blitz'
             else world_dist.settings.triforce_goal_per_world
             for world_dist in settings.distribution.world_dists
+            if world_dist.settings.triforce_hunt
         )
 
         if settings.triforce_hunt:
