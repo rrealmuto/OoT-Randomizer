@@ -88,7 +88,10 @@ void give_small_key(z64_file_t *save, int16_t dungeon_id, int16_t arg2) {
     save->dungeon_keys[dungeon_id] = current_keys + 1;
     uint32_t flag = save->scene_flags[dungeon_id].unk_00_;
     int8_t total_keys = flag >> 0x10;
-    save->scene_flags[dungeon_id].unk_00_ = (flag & 0x0000ffff) | ((total_keys + 1) << 0x10);
+    int8_t max_keys = key_counts[dungeon_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
+    if (total_keys < max_keys) {
+        save->scene_flags[dungeon_id].unk_00_ = (flag & 0x0000ffff) | ((total_keys + 1) << 0x10);
+    }
 }
 
 uint8_t KEYRING_BOSSKEY_CONDITION = 0;
@@ -99,8 +102,8 @@ void give_small_key_ring(z64_file_t *save, int16_t dungeon_id, int16_t arg2) {
         save->dungeon_items[dungeon_id].boss_key = 1;
     }
     uint32_t flag = save->scene_flags[dungeon_id].unk_00_;
-    int8_t total_keys = flag >> 0x10;
-    save->scene_flags[dungeon_id].unk_00_ = (flag & 0x0000ffff) | ((total_keys + key_counts[dungeon_id][CFG_DUNGEON_IS_MQ[dungeon_id]]) << 0x10);
+    int8_t max_keys = key_counts[dungeon_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
+    save->scene_flags[dungeon_id].unk_00_ = (flag & 0x0000ffff) | (max_keys << 0x10);
 }
 
 silver_rupee_data_t silver_rupee_vars[0x16][2] = {
