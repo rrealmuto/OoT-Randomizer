@@ -83,6 +83,9 @@ class Region(object):
 
 
     def can_fill(self, item, manual=False):
+        from Hints import HintArea
+        from ItemPool import closed_forest_restricted_items, triforce_blitz_items
+
         if not manual and self.world.settings.empty_dungeons_mode != 'none' and item.dungeonitem:
             # An empty dungeon can only store its own dungeon items
             if self.dungeon and self.dungeon.world.empty_dungeons[self.dungeon.name].empty:
@@ -96,9 +99,6 @@ class Region(object):
             # Don't place items that can be used to escape the forest in Forest areas of worlds with Require Gohma
             if HintArea.at(self).color == 'Green':
                 return False
-
-        from Hints import HintArea
-        from ItemPool import closed_forest_restricted_items, triforce_blitz_items
 
         is_self_dungeon_restricted = False
         is_self_region_restricted = None
