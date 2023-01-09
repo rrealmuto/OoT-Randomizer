@@ -9,7 +9,8 @@
 extern uint8_t FAST_CHESTS;
 extern uint8_t OCARINAS_SHUFFLED;
 extern uint8_t NO_COLLECTIBLE_HEARTS;
-override_t cfg_item_overrides[1536] = { 0 };
+extern uint32_t BOMBCHUS_IN_LOGIC;
+override_t cfg_item_overrides[2200] = { 0 };
 int item_overrides_count = 0;
 
 z64_actor_t *dummy_actor = NULL;
@@ -39,8 +40,8 @@ uint8_t satisified_pending_frames = 0;
 
 // This table contains the offset (in bytes) of the start of a particular scene/room/setup flag space in collectible_override_flags.
 // Call get_collectible_flag_offset to retrieve the desired offset.
-uint8_t collectible_scene_flags_table[600];
-alt_override_t alt_overrides[64];
+uint8_t collectible_scene_flags_table[1000];
+alt_override_t alt_overrides[90];
 
 extern int8_t curr_scene_setup;
 extern uint16_t CURR_ACTOR_SPAWN_INDEX;
@@ -599,8 +600,19 @@ void Item_DropCollectible_Room_Hack(EnItem00 *spawnedActor)
        }
 }
 
-z64_actor_t* Item_DropCollectible_Actor_Spawn_Override(void* actorCtx, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params)
-{
+// Prevent overridden collectible items from despawning when changing to a room where
+// they are still being drawn.
+void Room_Change_Actor_Kill_Hack(z64_actor_t *actor) {
+    if(actor->actor_id == 0x15)
+    {
+        EnItem00* this = (EnItem00*)actor;
+        if(this->override.key.all > 0)
+            return;
+    }
+    z64_ActorKill(actor);
+}
+
+z64_actor_t *Item_DropCollectible_Actor_Spawn_Override(void *actorCtx, z64_game_t *globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params) {
     rotY = drop_collectible_override_flag; // Get the override flag
     EnItem00* spawnedActor = (EnItem00*)z64_SpawnActor(actorCtx, globalCtx,actorId, posX, posY, posZ, rotX, rotY, rotZ, params); //Spawn the actor
 

@@ -20,6 +20,7 @@ extern uint16_t CURR_ACTOR_SPAWN_INDEX;
 #define EN_TUBO_TRAP        0x11D   // Flying Pot
 #define OBJ_KIBAKO          0x110   // Small Crate
 #define OBJ_KIBAKO2         0x1A0   // Large Crate
+#define EN_WONDER_ITEM      0x0112  // Wonder Item
 
 // Called at the end of Actor_SetWorldToHome
 // Reset the rotations for any actors that we may have passed data in through Actor_Spawn
@@ -28,11 +29,14 @@ void Actor_SetWorldToHome_End(z64_actor_t *actor) {
         case BG_HAKA_TUBO:
         case BG_SPOT18_BASKET:
         case OBJ_MURE3:
-        case OBJ_COMB:
+        case OBJ_COMB: {
             actor->rot_world.z = 0;
             break;
+        }
         case EN_ITEM00:
+        case EN_WONDER_ITEM: {
             actor->rot_world.y = 0;
+        }
         default:
             break;
     }
@@ -49,7 +53,10 @@ void Actor_After_UpdateAll_Hack(z64_actor_t *actor, z64_game_t* game) {
     Actor_StoreFlagInRotation(actor, game, CURR_ACTOR_SPAWN_INDEX);
     Actor_StoreChestType(actor, game);
 
-    CURR_ACTOR_SPAWN_INDEX = 0; //reset CURR_ACTOR_SPAWN_INDEX
+    // Add additional actor hacks here. These get called shortly after the call to actor_init
+    // Hacks are responsible for checking that they are the correct actor.
+    EnWonderitem_AfterInitHack(actor, game);
+    CURR_ACTOR_SPAWN_INDEX = 0; // reset CURR_ACTOR_SPAWN_INDEX
 }
 
 // For pots/crates/beehives, store the flag in the actor's unused initial rotation fields
@@ -69,7 +76,7 @@ void Actor_StoreFlagInRotation(z64_actor_t* actor, z64_game_t* game, uint16_t ac
         }
         // For the following actors we store the flag in the y rotation
         case OBJ_KIBAKO2:
-        {
+        case EN_WONDER_ITEM: {
             actor->rot_init.y = flag;
             break;
         }

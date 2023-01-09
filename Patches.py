@@ -25,7 +25,7 @@ from version import __version__
 from ItemPool import song_list
 from SceneFlags import get_alt_list_bytes, get_collectible_flag_table, get_collectible_flag_table_bytes
 from texture_util import ci4_rgba16patch_to_ci8, rgba16_patch
-
+from wonderitems import get_wonderitems
 
 def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     with open(data_path('generated/rom_patch.txt'), 'r') as stream:
@@ -1498,6 +1498,10 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     patch_files(rom, mq_scenes)
 
+    wonderitems = get_wonderitems(rom)
+    for wonderitem in wonderitems:
+        print(str(wonderitem) + ": " + str(wonderitems[wonderitem]))
+
     ### Load Shop File
     # Move shop actor file to free space
     shop_item_file = File({
@@ -1702,24 +1706,29 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         for location in rupeetower_locations:
             patch_rupee_tower(location, rom)
 
+    if world.settings.shuffle_wonderitems:
+        #Patch Hyrule Castle Guards to not block the way
+        rom.write_bytes(0xCD5E30, [0x00, 0x00, 0x00, 0x00]) # nop
+        rom.write_bytes(0xCD5E7C, [0x10, 0x00, 0x00, 0x03]) # b courtyard_guards_kill
+
     # Write flag table data
     collectible_flag_table, alt_list = get_collectible_flag_table(world)
     collectible_flag_table_bytes, num_collectible_flags = get_collectible_flag_table_bytes(collectible_flag_table)
     alt_list_bytes = get_alt_list_bytes(alt_list)
-    if(len(collectible_flag_table_bytes) > 600):
+    if(len(collectible_flag_table_bytes) > 1000):
         raise(RuntimeError(f'Exceeded collectible override table size: {len(collectible_flag_table_bytes)}'))
     rom.write_bytes(rom.sym('collectible_scene_flags_table'), collectible_flag_table_bytes)
     num_collectible_flags += num_collectible_flags % 8
     rom.write_bytes(rom.sym('num_override_flags'), num_collectible_flags.to_bytes(2, 'big'))
-    if(len(alt_list) > 64):
-        raise(RuntimeError(f'Exceeded alt override table size: {len(alt_list)}'))
+    if len(alt_list) >= 90:
+        raise RuntimeError(f'Exceeded alt override table size: {len(alt_list)}')
     rom.write_bytes(rom.sym('alt_overrides'), alt_list_bytes)
 
     # Write item overrides
     check_location_dupes(world)
     override_table = get_override_table(world)
-    if len(override_table) >= 1536:
-        raise(RuntimeError(f'Exceeded override table size: {len(override_table)}'))
+    if len(override_table) >= 2200:
+        raise(RuntimeError("Exceeded override table size: " + str(len(override_table))))
     rom.write_bytes(rom.sym('cfg_item_overrides'), get_override_table_bytes(override_table))
     rom.write_byte(rom.sym('PLAYER_ID'), world.id + 1) # Write player ID
 
@@ -2354,7 +2363,7 @@ def get_override_entry(location):
         return None
 
     # Don't add freestanding items, pots/crates, beehives to the override table if they're disabled. We use this check to determine how to draw and interact with them
-    if location.type in ["ActorOverride", "Freestanding", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive"] and location.disabled != DisableType.ENABLED:
+    if location.type in ["ActorOverride", "Freestanding", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive", "Wonderitem"] and location.disabled != DisableType.ENABLED:
         return None
 
     player_id = location.item.world.id + 1
@@ -2368,7 +2377,7 @@ def get_override_entry(location):
     elif location.type == 'Chest':
         type = 1
         default &= 0x1F
-    elif location.type in ['Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive']:
+    elif location.type in ['Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive', 'Wonderitem']:
         type = 6
         if not (isinstance(location.default, list) or isinstance(location.default, tuple)):
             raise Exception("Not right")
