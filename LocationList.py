@@ -1205,9 +1205,9 @@ location_table = OrderedDict([
 
     # Deku Tree MQ Wonderitems
     ("Deku Tree MQ Basement Graves Wonderitem 1",                    ("Wonderitem",   0x00,  (7,0,10), None,                        'Recovery Heart',                        ("Deku Tree", "Master Quest", "Wonderitem"))),
-    ("Deku Tree MQ Basement Graves Wonderitem 2",                    ("Wonderitem",   0x00,  (7,0,10), None,                        'Recovery Heart',                        ("Deku Tree", "Master Quest", "Wonderitem"))),
-    ("Deku Tree MQ Basement Graves Wonderitem 3",                    ("Wonderitem",   0x00,  (7,0,10), None,                        'Recovery Heart',                        ("Deku Tree", "Master Quest", "Wonderitem"))),
-    ("Deku Tree MQ Basement Graves Wonderitem 4",                    ("Wonderitem",   0x00,  (7,0,10), None,                        'Recovery Heart',                        ("Deku Tree", "Master Quest", "Wonderitem"))),
+    ("Deku Tree MQ Basement Graves Wonderitem 2",                    ("Wonderitem",   0x00,  (7,0,11), None,                        'Recovery Heart',                        ("Deku Tree", "Master Quest", "Wonderitem"))),
+    ("Deku Tree MQ Basement Graves Wonderitem 3",                    ("Wonderitem",   0x00,  (7,0,12), None,                        'Recovery Heart',                        ("Deku Tree", "Master Quest", "Wonderitem"))),
+    ("Deku Tree MQ Basement Graves Wonderitem 4",                    ("Wonderitem",   0x00,  (7,0,13), None,                        'Recovery Heart',                        ("Deku Tree", "Master Quest", "Wonderitem"))),
 
     # Deku Tree Shared
     ("Deku Tree Queen Gohma Heart",                                  ("BossHeart",    0x11,  0x4F, None,                            'Heart Container',                       ("Deku Tree", "Deku Tree MQ", "Vanilla Dungeons", "Master Quest",))),
