@@ -49,6 +49,7 @@ class World(object):
 
         # rename a few attributes...
         self.keysanity = settings.shuffle_smallkeys in ['keysanity', 'remove', 'any_dungeon', 'overworld', 'regional']
+        self.shuffle_silver_rupees = settings.shuffle_silver_rupees != 'vanilla'
         self.check_beatable_only = settings.reachable_locations != 'all'
 
         self.shuffle_special_interior_entrances = settings.shuffle_interior_entrances == 'all'
@@ -1042,6 +1043,11 @@ class World(object):
         if self.settings.shuffle_ganon_bosskey == 'dungeon':
             itempool.extend([item for dungeon in self.dungeons if dungeon.name == 'Ganons Castle' for item in dungeon.boss_key])
 
+        if self.settings.shuffle_silver_rupees == 'dungeon':
+            itempool.extend([item for dungeon in self.dungeons for item in dungeon.silver_rupees])
+        elif self.settings.shuffle_silver_rupees in ['any_dungeon', 'overworld', 'anywhere', 'regional']:
+            itempool.extend([item for dungeon in self.dungeons if self.empty_dungeons[dungeon.name].empty for item in dungeon.silver_rupees])
+
         for item in itempool:
             item.world = self
         return itempool
@@ -1058,10 +1064,26 @@ class World(object):
             itempool.extend([item for dungeon in self.dungeons if (dungeon.name != 'Ganons Castle' and not self.empty_dungeons[dungeon.name].empty) for item in dungeon.boss_key])
         if self.settings.shuffle_ganon_bosskey in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
             itempool.extend([item for dungeon in self.dungeons if dungeon.name == 'Ganons Castle' for item in dungeon.boss_key])
+        if self.settings.shuffle_silver_rupees in ['any_dungeon', 'overworld', 'anywhere', 'regional']:
+            itempool.extend([item for dungeon in self.dungeons if not self.empty_dungeons[dungeon.name].empty for item in dungeon.silver_rupees])
 
         for item in itempool:
             item.world = self
         return itempool
+
+
+    def silver_rupee_puzzles(self):
+        return ([
+            'Shadow Temple Scythe Shortcut', 'Shadow Temple Huge Pit', 'Shadow Temple Invisible Spikes',
+            'Gerudo Training Ground Slopes', 'Gerudo Training Ground Lava', 'Gerudo Training Ground Water',
+            'Ganons Castle Fire Trial']
+            + (['Dodongos Cavern Staircase'] if self.dungeon_mq['Dodongos Cavern'] else [])
+            + ([] if self.dungeon_mq['Ice Cavern'] else ['Ice Cavern Spinning Scythe', 'Ice Cavern Push Block'])
+            + ([] if self.dungeon_mq['Bottom of the Well'] else ['Bottom of the Well Basement'])
+            + (['Shadow Temple Invisible Blades'] if self.dungeon_mq['Shadow Temple'] else [])
+            + (['Spirit Temple Lobby and Lower Adult', 'Spirit Temple Adult Climb'] if self.dungeon_mq['Spirit Temple'] else ['Spirit Temple Child Early Torches', 'Spirit Temple Adult Boulders', 'Spirit Temple Sun Block'])
+            + (['Ganons Castle Shadow Trial', 'Ganons Castle Water Trial'] if self.dungeon_mq['Ganons Castle'] else ['Ganons Castle Spirit Trial', 'Ganons Castle Light Trial', 'Ganons Castle Forest Trial'])
+        )
 
 
     def find_items(self, item):

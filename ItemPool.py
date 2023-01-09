@@ -124,6 +124,50 @@ ludicrous_items_extended = [
     'Magic Bean Pack',
     'Ice Arrows',
     'Blue Fire Arrows',
+    'Silver Rupee (Dodongos Cavern Staircase)',
+    'Silver Rupee (Ice Cavern Spinning Scythe)',
+    'Silver Rupee (Ice Cavern Push Block)',
+    'Silver Rupee (Bottom of the Well Basement)',
+    'Silver Rupee (Shadow Temple Scythe Shortcut)',
+    'Silver Rupee (Shadow Temple Invisible Blades)',
+    'Silver Rupee (Shadow Temple Huge Pit)',
+    'Silver Rupee (Shadow Temple Invisible Spikes)',
+    'Silver Rupee (Gerudo Training Ground Slopes)',
+    'Silver Rupee (Gerudo Training Ground Lava)',
+    'Silver Rupee (Gerudo Training Ground Water)',
+    'Silver Rupee (Spirit Temple Child Early Torches)',
+    'Silver Rupee (Spirit Temple Adult Boulders)',
+    'Silver Rupee (Spirit Temple Lobby and Lower Adult)',
+    'Silver Rupee (Spirit Temple Sun Block)',
+    'Silver Rupee (Spirit Temple Adult Climb)',
+    'Silver Rupee (Ganons Castle Spirit Trial)',
+    'Silver Rupee (Ganons Castle Light Trial)',
+    'Silver Rupee (Ganons Castle Fire Trial)',
+    'Silver Rupee (Ganons Castle Shadow Trial)',
+    'Silver Rupee (Ganons Castle Water Trial)',
+    'Silver Rupee (Ganons Castle Forest Trial)',
+    'Silver Rupee Pouch (Dodongos Cavern Staircase)',
+    'Silver Rupee Pouch (Ice Cavern Spinning Scythe)',
+    'Silver Rupee Pouch (Ice Cavern Push Block)',
+    'Silver Rupee Pouch (Bottom of the Well Basement)',
+    'Silver Rupee Pouch (Shadow Temple Scythe Shortcut)',
+    'Silver Rupee Pouch (Shadow Temple Invisible Blades)',
+    'Silver Rupee Pouch (Shadow Temple Huge Pit)',
+    'Silver Rupee Pouch (Shadow Temple Invidible Spikes)',
+    'Silver Rupee Pouch (Gerudo Training Ground Slopes)',
+    'Silver Rupee Pouch (Gerudo Training Ground Lava)',
+    'Silver Rupee Pouch (Gerudo Training Ground Water)',
+    'Silver Rupee Pouch (Spirit Temple Child Early Torches)',
+    'Silver Rupee Pouch (Spirit Temple Adult Boulders)',
+    'Silver Rupee Pouch (Spirit Temple Lobby and Lower Adult)',
+    'Silver Rupee Pouch (Spirit Temple Sun Block)',
+    'Silver Rupee Pouch (Spirit Temple Adult Climb)',
+    'Silver Rupee Pouch (Ganons Castle Spirit Trial)',
+    'Silver Rupee Pouch (Ganons Castle Light Trial)',
+    'Silver Rupee Pouch (Ganons Castle Fire Trial)',
+    'Silver Rupee Pouch (Ganons Castle Shadow Trial)',
+    'Silver Rupee Pouch (Ganons Castle Water Trial)',
+    'Silver Rupee Pouch (Ganons Castle Forest Trial)',
 ]
 
 ludicrous_exclusions = [
@@ -389,6 +433,8 @@ def get_pool_core(world):
                     pending_junk_pool.append(f"Boss Key ({dungeon})")
         if world.settings.shuffle_ganon_bosskey in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
             pending_junk_pool.append('Boss Key (Ganons Castle)')
+        if world.settings.shuffle_silver_rupees in ['any_dungeon', 'overworld', 'anywhere', 'regional']:
+            pending_junk_pool.extend([f"Silver Rupee ({puzzle})" for puzzle in world.silver_rupee_puzzles()])
         if world.settings.shuffle_song_items == 'any':
             pending_junk_pool.extend(song_list)
 
@@ -598,6 +644,12 @@ def get_pool_core(world):
                 elif dungeon.name in world.settings.key_rings:
                     item = get_junk_item()[0]
                     shuffle_item = True
+            # Silver Rupee
+            elif location.type == 'SilverRupee':
+                shuffle_setting = world.settings.shuffle_silver_rupees
+                dungeon_collection = dungeon.silver_rupees
+                if shuffle_setting == 'vanilla':
+                    shuffle_item = False
             # Any other item in a dungeon.
             elif location.type in ["Chest", "NPC", "Song", "Collectable", "Cutscene", "BossHeart"]:
                 shuffle_item = True
