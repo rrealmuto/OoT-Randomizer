@@ -81,23 +81,40 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Add the extended objects data to the DMA table.
     rom.update_dmadata_record(None, extended_objects_start, end_address)
 
+    # Build a Silver Rupee model from the Huge Rupee model
+    silver_rupee_obj_file = File({
+        'Name': 'object_gi_rupy',
+        'Start': '01914000',
+        'End': '01914800',
+    })
+    silver_rupee_obj_file.copy(rom)
+    # Update colors for the Silver Rupee variant
+    rom.write_bytes(silver_rupee_obj_file.start + 0x052C, [0xAA, 0xAA, 0xAA]) # Inner Primary Color?
+    rom.write_bytes(silver_rupee_obj_file.start + 0x0534, [0x5A, 0x5A, 0x5A]) # Inner Env Color?
+    rom.write_bytes(silver_rupee_obj_file.start + 0x05CC, [0xFF, 0xFF, 0xFF]) # Outer Primary Color?
+    rom.write_bytes(silver_rupee_obj_file.start + 0x05D4, [0xFF, 0xFF, 0xFF]) # Outer Env Color?
+    update_dmadata(rom, silver_rupee_obj_file)
+    # Add it to the extended object table
+    add_to_extended_object_table(rom, 0x197, silver_rupee_obj_file)
+
+
     # Create the textures for pots/crates. Note: No copyrighted material can be distributed w/ the randomizer. Because of this, patch files are used to create the new textures from the original texture in ROM.
     # Apply patches for custom textures for pots and crates and add as new files in rom
     # Crates are ci4 textures in the normal ROM but for pot/crate textures match contents were upgraded to ci8 to support more colors
     # Pot textures are rgba16
 
     # texture list. See textures.h for texture IDs
-    #   ID, texture_name,                   Rom Address    CI4 Pallet Addr  Size    Patching function                          Patch file (None for default)
+    #   ID, texture_name,                   Rom Address    CI4 Pallet Addr  Size    Patching function           Patch file (None for default)
     crate_textures = [
-        (1, 'texture_pot_gold',             0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_gold_rgba16_patch.bin'),
-        (2, 'texture_pot_key',              0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_key_rgba16_patch.bin'),
-        (3, 'texture_pot_bosskey',          0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_bosskey_rgba16_patch.bin'),
-        (4, 'texture_pot_skull',            0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_skull_rgba16_patch.bin'),
-        (5, 'texture_crate_default',        0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     None),
-        (6, 'texture_crate_gold'   ,        0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     'textures/crate/crate_gold_rgba16_patch.bin'),
-        (7, 'texture_crate_key',            0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     'textures/crate/crate_key_rgba16_patch.bin'),
-        (8, 'texture_crate_skull',          0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     'textures/crate/crate_skull_rgba16_patch.bin'),
-        (9, 'texture_crate_bosskey',        0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     'textures/crate/crate_bosskey_rgba16_patch.bin'),
+        (1,  'texture_pot_gold',            0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_gold_rgba16_patch.bin'),
+        (2,  'texture_pot_key',             0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_key_rgba16_patch.bin'),
+        (3,  'texture_pot_bosskey',         0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_bosskey_rgba16_patch.bin'),
+        (4,  'texture_pot_skull',           0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_skull_rgba16_patch.bin'),
+        (5,  'texture_crate_default',       0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     None),
+        (6,  'texture_crate_gold',          0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     'textures/crate/crate_gold_rgba16_patch.bin'),
+        (7,  'texture_crate_key',           0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     'textures/crate/crate_key_rgba16_patch.bin'),
+        (8,  'texture_crate_skull',         0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     'textures/crate/crate_skull_rgba16_patch.bin'),
+        (9,  'texture_crate_bosskey',       0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     'textures/crate/crate_bosskey_rgba16_patch.bin'),
         (10, 'texture_smallcrate_gold',     0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_gold_rgba16_patch.bin' ),
         (11, 'texture_smallcrate_key',      0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_key_rgba16_patch.bin'),
         (12, 'texture_smallcrate_skull',    0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_skull_rgba16_patch.bin'),
@@ -1472,6 +1489,11 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             save_context.addresses['dungeon_items'][dungeon]['compass'].value = True
             save_context.addresses['dungeon_items'][dungeon]['map'].value = True
 
+    # start with silver rupees
+    if world.settings.shuffle_silver_rupees == 'remove':
+        for puzzle in world.silver_rupee_puzzles():
+            save_context.give_item(world, f'Silver Rupee ({puzzle})', float('inf'))
+
     if world.settings.shuffle_smallkeys == 'vanilla':
         if world.dungeon_mq['Spirit Temple']:
             save_context.addresses['keys']['spirit'].value = 3
@@ -1650,7 +1672,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             if locations:
                 # Location types later in the list will be preferred over earlier ones or ones not in the list.
                 # This ensures that if the region behind the boss door is a boss arena, the medallion or stone will be used.
-                priority_types = ("GS Token", "GrottoScrub", "Scrub", "Shop", "NPC", "Collectable", "Freestanding", "ActorOverride", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive", "Chest", "Cutscene", "Song", "BossHeart", "Boss")
+                priority_types = ("GS Token", "GrottoScrub", "Scrub", "Shop", "NPC", "Collectable", "Freestanding", "ActorOverride", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive", "SilverRupee", "Chest", "Cutscene", "Song", "BossHeart", "Boss")
                 best_type = max((location.type for location in locations), key=lambda type: priority_types.index(type) if type in priority_types else -1)
                 location = random.choice(list(filter(lambda loc: loc.type == best_type, locations)))
                 break
@@ -1765,24 +1787,35 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         for location in rupeetower_locations:
             patch_rupee_tower(location, rom)
 
+    if world.shuffle_silver_rupees:
+        rom.write_byte(rom.sym('SHUFFLE_SILVER_RUPEES'), 1)
+        if world.settings.shuffle_silver_rupees != 'remove':
+            rom.write_byte(rom.sym('CFG_DUNGEON_INFO_SILVER_RUPEES'), 1)
+
+        if world.dungeon_mq['Dodongos Cavern']: # Patch DC MQ Staircase Transition Actor to use permanent switch flag 0x1F
+            rom.write_byte(0x1F12190 + 15, 0x9F)
+
+        if world.dungeon_mq['Spirit Temple']: # Patch Spirit MQ Lobby front right chest to use permanent switch flag 0x1F
+            rom.write_byte(0x2b08ce4 + 13, 0x1F)
+
     # Write flag table data
     collectible_flag_table, alt_list = get_collectible_flag_table(world)
     collectible_flag_table_bytes, num_collectible_flags = get_collectible_flag_table_bytes(collectible_flag_table)
     alt_list_bytes = get_alt_list_bytes(alt_list)
-    if(len(collectible_flag_table_bytes) > 600):
-        raise(RuntimeError(f'Exceeded collectible override table size: {len(collectible_flag_table_bytes)}'))
+    if len(collectible_flag_table_bytes) > 600:
+        raise RuntimeError(f'Exceeded collectible override table size: {len(collectible_flag_table_bytes)}')
     rom.write_bytes(rom.sym('collectible_scene_flags_table'), collectible_flag_table_bytes)
     num_collectible_flags += num_collectible_flags % 8
     rom.write_bytes(rom.sym('num_override_flags'), num_collectible_flags.to_bytes(2, 'big'))
-    if(len(alt_list) > 64):
-        raise(RuntimeError(f'Exceeded alt override table size: {len(alt_list)}'))
+    if len(alt_list) > 64:
+        raise RuntimeError(f'Exceeded alt override table size: {len(alt_list)}')
     rom.write_bytes(rom.sym('alt_overrides'), alt_list_bytes)
 
     # Write item overrides
     check_location_dupes(world)
     override_table = get_override_table(world)
     if len(override_table) >= 1536:
-        raise(RuntimeError(f'Exceeded override table size: {len(override_table)}'))
+        raise RuntimeError(f'Exceeded override table size: {len(override_table)}')
     rom.write_bytes(rom.sym('cfg_item_overrides'), get_override_table_bytes(override_table))
     rom.write_byte(rom.sym('PLAYER_ID'), world.id + 1) # Write player ID
 
@@ -2360,6 +2393,11 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     # Fix crash when hitting white bubbles enemies with Dins Fire
     rom.write_byte(0xCB4397, 0x00)
+    
+    # Fix shadow temple redead shared flags for silver rupee shuffle
+    if world.settings.shuffle_silver_rupees != 'vanilla' and not world.dungeon_mq['Shadow Temple']:
+        rom.write_byte(0x280905E,0)
+        rom.write_byte(0x280906E,0)
 
     # actually write the save table to rom
     world.distribution.give_items(world, save_context)
@@ -2451,11 +2489,11 @@ def get_override_entry(location):
     elif location.type == 'Chest':
         type = 1
         default &= 0x1F
-    elif location.type in ['Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive']:
+    elif location.type in ['Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive', 'SilverRupee']:
         type = 6
         if not (isinstance(location.default, list) or isinstance(location.default, tuple)):
             raise Exception("Not right")
-        if(isinstance(location.default, list)):
+        if isinstance(location.default, list):
             default = location.default[0]
         room, scene_setup, flag = default
         default = (room << 8) + (scene_setup << 14) + flag
@@ -2884,7 +2922,7 @@ def patch_actor_override(location, rom: Rom):
 # Also used for goron pot, shadow spinning pots
 def patch_rupee_tower(location, rom: Rom):
     flag = location.default
-    if(isinstance(location.default, tuple)):
+    if isinstance(location.default, tuple):
         room, scene_setup, flag = location.default
     elif isinstance(location.default, list):
         room, scene_setup, flag = location.default[0]

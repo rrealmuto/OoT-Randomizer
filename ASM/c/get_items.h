@@ -51,24 +51,24 @@ typedef struct {
 } alt_override_t;
 
 struct EnItem00;
-typedef void(*EnItem00ActionFunc)(struct EnItem00 *, z64_game_t *);
+typedef void (*EnItem00ActionFunc)(struct EnItem00 *, z64_game_t *);
 
 typedef struct EnItem00 {
-  z64_actor_t actor;
-  EnItem00ActionFunc actionFunc;
-  uint16_t collectibleFlag;
-  uint16_t getItemId;
-  uint16_t unk_154;
-  uint16_t unk_156;
-  uint16_t unk_158;
-  int16_t timeToLive; // 0x14A
-  float scale;        // 0x14C
-  uint8_t collider[0x4C];   // 0x150 size = 4C
-  override_t override;
+    z64_actor_t actor;
+    EnItem00ActionFunc actionFunc;
+    uint16_t collectibleFlag;
+    uint16_t getItemId;
+    uint16_t unk_154;
+    uint16_t unk_156;
+    uint16_t unk_158;
+    int16_t timeToLive; // 0x14A
+    float scale;        // 0x14C
+    uint8_t collider[0x4C];   // 0x150 size = 4C
+    override_t override;
 } EnItem00;
 
 
-typedef void(*z64_EnItem00ActionFunc)(struct EnItem00 *, z64_game_t *);
+typedef void (*z64_EnItem00ActionFunc)(struct EnItem00 *, z64_game_t *);
 typedef EnItem00 *(*z64_Item_DropCollectible_proc)(z64_game_t *globalCtx, z64_xyzf_t *spawnPos, int16_t params);
 
 override_t lookup_override_by_key(override_key_t key);
