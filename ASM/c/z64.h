@@ -833,6 +833,13 @@ struct z64_actor_s
                                     /* 0x013C */
 };
 
+typedef struct {
+    /* 0x00 */ uint16_t   id;
+    /* 0x02 */ z64_xyz_t pos;
+    /* 0x08 */ z64_xyz_t rot;
+    /* 0x0E */ uint16_t   params;
+} ActorEntry; // size = 0x10
+
 typedef struct
 {
   z64_actor_t  common;               /* 0x0000 */
