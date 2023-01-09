@@ -1247,16 +1247,17 @@ class Distribution(object):
             ':enable_distribution_file': self.settings.enable_distribution_file,
         }
 
-        if spoiler:
-            world_dist_dicts = [world_dist.to_json() for world_dist in self.world_dists]
-            if self.settings.world_count > 1:
-                for k in per_world_keys:
+        world_dist_dicts = [world_dist.to_json() for world_dist in self.world_dists]
+        if self.settings.world_count > 1:
+            for k in per_world_keys:
+                if spoiler or k == 'settings':
                     self_dict[k] = {}
                     for id, world_dist_dict in enumerate(world_dist_dicts):
                         self_dict[k]['World %d' % (id + 1)] = world_dist_dict[k]
-            else:
-                self_dict.update({k: world_dist_dicts[0][k] for k in per_world_keys})
+        else:
+            self_dict.update({k: world_dist_dicts[0][k] for k in per_world_keys if spoiler or k == 'settings'})
 
+        if spoiler:
             if self.playthrough is not None:
                 self_dict[':playthrough'] = AlignedDict({
                     sphere_nr: SortedDict({
