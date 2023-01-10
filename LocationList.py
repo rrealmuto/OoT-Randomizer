@@ -544,7 +544,7 @@ location_table = OrderedDict([
     ("Kak Redead Grotto Redead Left",                                ("EnemyDrop",    0x3E, (2,0,1), None,                      'Rupees (5)',                            ("Kakariko Village", "Kakariko", "Grottos", "EnemyDrop"))),
     ("Kak Redead Grotto Redead Right",                               ("EnemyDrop",    0x3E, (2,0,2), None,                      'Rupees (5)',                            ("Kakariko Village", "Kakariko", "Grottos", "EnemyDrop"))),
     # Kak Wonderitems
-    ("Kak Child Construction Wonderitem",                            ("Wonderitem",   0x52,  [(0,0,56), (0,0,49)], None,        'Rupees (20)',                               ("Kakariko Village", "Kakariko", "Wonderitem"))),
+    ("Kak Child Construction Wonderitem",                            ("Wonderitem",   0x52,  [(0,0,56), (0,1,49)], None,        'Rupees (20)',                               ("Kakariko Village", "Kakariko", "Wonderitem"))),
     ("Kak Impas House Wonderitem",                                   ("Wonderitem",   0x37,  (0,0,7), None,                     'Rupees (20)',                               ("Kakariko Village", "Kakariko", "Wonderitem"))),
 
     # Graveyard
