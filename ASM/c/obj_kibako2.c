@@ -58,7 +58,6 @@ void ObjKibako2_Draw(z64_actor_t *actor, z64_game_t *game) {
         texture = get_texture(TEXTURE_ID_CRATE_SKULL);
     }
 
-
     // push custom dlists (that set the palette and textures) to segment 09
     z64_gfx_t *gfx = game->common.gfx;
     gfx->poly_opa.d -= 6;

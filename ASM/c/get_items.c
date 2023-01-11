@@ -113,7 +113,6 @@ override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_
             };
             return resolve_alternative_override(key);
         }
-
     } else if (actor->actor_id == 0x19C) {
         return (override_key_t){
             .scene = (actor->variable >> 8) & 0x1F,
@@ -526,7 +525,7 @@ uint16_t get_collectible_flag_offset(uint8_t scene, uint8_t room, uint8_t setup_
                 setup_id_temp = (collectible_scene_flags_table[index++] & 0xC0) >> 6;
                 room_byte_offset = (collectible_scene_flags_table[index] << 8) + collectible_scene_flags_table[index+1];
                 index += 2;
-                if((room_id == room) && (setup_id_temp == setup_id)) { // Found the right room/setup
+                if ((room_id == room) && (setup_id_temp == setup_id)) { // Found the right room/setup
                     return room_byte_offset;
                 }
             }

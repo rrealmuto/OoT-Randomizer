@@ -12,7 +12,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
 
 * New settings and options:
   * New “Shuffle Dungeon Rewards” setting with “Vanilla Locations” and “Dungeon Reward Locations” options (part of [#1833](https://github.com/TestRunnerSRL/OoT-Randomizer/issues/1833))
-  * New “Shuffle Silver Rupees” setting ([#1814](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1814))
+  * New “Shuffle Silver Rupees” and “Silver Rupee Pouches” settings (based on [#1814](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1814))
   * New “Triforce Hunt Mode” setting with “Normal”, “Easter Egg Hunt”, “Ice%”, and “Triforce Blitz” options (Easter Egg Hunt based on [#1804](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1804), Triforce Blitz based on [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev))
   * New “Shuffle Thieves' Hideout Entrances” setting ([#1616](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1616))
   * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1536))

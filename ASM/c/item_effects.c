@@ -107,7 +107,7 @@ void give_small_key_ring(z64_file_t *save, int16_t dungeon_id, int16_t arg2) {
 }
 
 silver_rupee_data_t silver_rupee_vars[0x16][2] = {
-    //Vanilla,   Master Quest
+    //Vanilla,                     Master Quest
     {{-1, 0xFF, 0x00, 0x00, 0x00}, { 5, 0x1F, 0xFF, 0xFF, 0xFF}}, // Dodongos Cavern Staircase. Patched to use switch flag 0x1F
     {{ 5, 0x08, 0x00, 0xFF, 0xFF}, {-1, 0xFF, 0x00, 0x00, 0x00}}, // Ice Cavern Spinning Scythe
     {{ 5, 0x09, 0x00, 0x64, 0xFF}, {-1, 0xFF, 0x00, 0x00, 0x00}}, // Ice Cavern Push Block
