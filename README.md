@@ -40,7 +40,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
     * “Standard Anti-Weekly Settings (S6)” is the inverse of “S6 Tournament” instead of weekly settings. It otherwise resembles the beginner preset. The only differences are open Deku, vanilla child spawn, and tournament hint distribution.
   * “Triforce Blitz” is a fast-paced game mode with very powerful hints. See [the official website](https://www.triforceblitz.com/) for details. Note that this currently still based on the settings for Triforce Blitz season 1. Differences from the official branch include each Triforce piece having its own distinct text box (as in Triforce Blitz season 2), and the starting song not being counted for goal counts.
 * Other changes:
-  * When collecting a small key, the text box says how many of that key you've collected ([#1841](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1841))
+  * When collecting a small key or silver rupee, the text box says how many of that item you've collected (based on [#1841](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1841))
   * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
   * Opening the Door of Time is a separate goal category when required by the settings ([#1529](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1529))
   * Plandos can specify different settings for each world (based on [Andols0's `individual-settings` branch](https://github.com/Andols0/OoT-Randomizer/tree/individual-settings))
