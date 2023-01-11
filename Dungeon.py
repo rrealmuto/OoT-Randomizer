@@ -14,6 +14,7 @@ class Dungeon:
         self.small_keys = []
         self.dungeon_items = []
         self.silver_rupees = []
+        self.reward = []
 
         for region in world.regions:
             if region.dungeon == self.name:
@@ -28,6 +29,7 @@ class Dungeon:
         new_dungeon.small_keys = [item.copy(new_world) for item in self.small_keys]
         new_dungeon.dungeon_items = [item.copy(new_world) for item in self.dungeon_items]
         new_dungeon.silver_rupees = [item.copy(new_world) for item in self.silver_rupees]
+        new_dungeon.reward = [item.copy(new_world) for item in self.reward]
 
         return new_dungeon
 
@@ -39,7 +41,7 @@ class Dungeon:
 
     @property
     def all_items(self):
-        return self.dungeon_items + self.keys + self.silver_rupees
+        return self.dungeon_items + self.keys + self.silver_rupees + self.reward
 
 
     def item_name(self, text):

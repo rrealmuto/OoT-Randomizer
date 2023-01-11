@@ -26,6 +26,7 @@ from version import __version__
 from ItemPool import song_list
 from SceneFlags import get_alt_list_bytes, get_collectible_flag_table, get_collectible_flag_table_bytes
 from texture_util import ci4_rgba16patch_to_ci8, rgba16_patch
+from ntype import BigStream
 
 
 def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
@@ -48,26 +49,26 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             new_bytes = bytearray([a ^ b for a, b in zip(bytes_diff, original_bytes)])
             rom.write_bytes(write_address, new_bytes)
 
-    # Load models into a file
+    # Load models into the extended object table.
     zobj_imports = (
         ('object_gi_triforce', data_path('Triforce.zobj'), 0x193),  # Triforce Piece
         ('object_gi_keyring',  data_path('KeyRing.zobj'),  0x195),  # Key Rings
         ('object_gi_warpsong', data_path('Note.zobj'),     0x196),  # Inverted Music Note
     )
+
+    extended_objects_start = start_address = rom.free_space()
     for name, zobj_path, object_id in zobj_imports:
-        obj_file = File({ 'Name': name })
-        obj_file.copy(rom)
         with open(zobj_path, 'rb') as stream:
             obj_data = stream.read()
-            rom.write_bytes(obj_file.start, obj_data)
-            obj_file.end = obj_file.start + len(obj_data)
-        update_dmadata(rom, obj_file)
+            rom.write_bytes(start_address, obj_data)
         # Add it to the extended object table
-        add_to_extended_object_table(rom, object_id, obj_file)
+        end_address = ((start_address + len(obj_data) + 0x0F) >> 4) << 4
+        add_to_extended_object_table(rom, object_id, start_address, end_address)
+        start_address = end_address
 
     # Make new models by editing the colors of existing ones
     zobj_recolors = (
-        ('object_gi_hearts', '014D9000', '014DA590', 0x194, ( # Heart Container -> Double Defense
+        ('object_gi_hearts', 0x014D9000, 0x014DA590, 0x194, ( # Heart Container -> Double Defense
             (0x1294, [0xFF, 0xCF, 0x0F]), # Exterior Primary Color
             (0x12B4, [0xFF, 0x46, 0x32]), # Exterior Env Color
             (0x1474, [0xFF, 0xFF, 0xFF]), # Interior Primary Color
@@ -75,44 +76,135 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         ), (
             (0x12A8, [0xFC173C60, 0x150C937F]), # Exterior Combine Mode
         )),
-        ('object_gi_rupy', '01914000', '01914800', 0x197, ( # Huge Rupee -> Silver Rupee
+        ('object_gi_rupy', 0x01914000, 0x01914800, 0x197, ( # Huge Rupee -> Silver Rupee
             (0x052C, [0xAA, 0xAA, 0xAA]), # Inner Primary Color?
             (0x0534, [0x5A, 0x5A, 0x5A]), # Inner Env Color?
             (0x05CC, [0xFF, 0xFF, 0xFF]), # Outer Primary Color?
             (0x05D4, [0xFF, 0xFF, 0xFF]), # Outer Env Color?
         ), ()),
-        ('object_gi_egg', '015B6000', '015B7320', 0x198, ( # Weird Egg -> Pink Easter Egg
+        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x198, ( # Weird Egg -> Pink Easter Egg
             (0x0FF4, [0xDB, 0xA9, 0xD8]), # Primary Color
             (0x0FFC, [0xD1, 0x7B, 0xCC]), # Env Color
         ), ()),
-        ('object_gi_egg', '015B6000', '015B7320', 0x199, ( # Weird Egg -> Orange Easter Egg
+        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x199, ( # Weird Egg -> Orange Easter Egg
             (0x0FF4, [0xDB, 0xA9, 0x77]), # Primary Color
             (0x0FFC, [0xD1, 0x7B, 0x25]), # Env Color
         ), ()),
-        ('object_gi_egg', '015B6000', '015B7320', 0x19A, ( # Weird Egg -> Green Easter Egg
+        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x19A, ( # Weird Egg -> Green Easter Egg
             (0x0FF4, [0x77, 0xDB, 0x77]), # Primary Color
             (0x0FFC, [0x25, 0xD1, 0x25]), # Env Color
         ), ()),
-        ('object_gi_egg', '015B6000', '015B7320', 0x19B, ( # Weird Egg -> Blue Easter Egg
+        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x19B, ( # Weird Egg -> Blue Easter Egg
             (0x0FF4, [0x77, 0x77, 0xDB]), # Primary Color
             (0x0FFC, [0x25, 0x25, 0xD1]), # Env Color
         ), ()),
     )
     for name, start, end, object_id, colors, combine_modes in zobj_recolors:
+        end_address = start_address + end - start
+        rom.buffer[start_address:end_address] = rom.buffer[start:end]
+        # Update colors
+        for offset, color in colors:
+            rom.write_bytes(start_address + offset, color)
+        for offset, combine_mode in combine_modes:
+            rom.write_int32s(start_address + offset, combine_mode)
+        # Add it to the extended object table
+        add_to_extended_object_table(rom, object_id, start_address, end_address)
+        start_address = end_address
+
+    # Make new model files by splitting existing ones to fit into the get item memory slot
+    zobj_splits = (
+        ('object_gi_medal_light',    '014BB000', '014C0370', (0x5220, 0x0e18), 0x19C), # Light Medallion
+        ('object_gi_medal_forest',   '014BB000', '014C0370', (0x0cb0, 0x0e18), 0x19D), # Forest Medallion
+        ('object_gi_medal_fire',     '014BB000', '014C0370', (0x1af0, 0x0e18), 0x19E), # Fire Medallion
+        ('object_gi_medal_water',    '014BB000', '014C0370', (0x2830, 0x0e18), 0x19F), # Water Medallion
+        ('object_gi_medal_shadow',   '014BB000', '014C0370', (0x4330, 0x0e18), 0x1A0), # Shadow Medallion
+        ('object_gi_medal_spirit',   '014BB000', '014C0370', (0x3610, 0x0e18), 0x1A1), # Spirit Medallion
+        ('object_gi_jewel_emerald',  '0145A000', '0145D680', (0x1240, 0x10e0), 0x1A2), # Kokiri Emerald
+        ('object_gi_jewel_ruby',     '0145A000', '0145D680', (0x20a0, 0x1fb0), 0x1A3), # Goron Ruby
+        ('object_gi_jewel_sapphire', '0145A000', '0145D680', (0x3530, 0x3370), 0x1A4), # Zora Sapphire
+    )
+    for name, start, end, offsets, object_id in zobj_splits:
         obj_file = File({
             'Name': name,
             'Start': start,
             'End': end,
         })
-        obj_file.copy(rom)
-        # Update colors
-        for offset, color in colors:
-            rom.write_bytes(obj_file.start + offset, color)
-        for offset, combine_mode in combine_modes:
-            rom.write_int32s(obj_file.start + offset, combine_mode)
-        update_dmadata(rom, obj_file)
+        seen = {}
+        out = []
+        out_size = 0
+        for offset in offsets:
+            i = offset
+            while True:
+                data = rom.read_int32(obj_file.start + i)
+                op = data >> 24
+                i += 8
+                if op == 0xdf:
+                    size = i - offset
+                    break
+            segment = BigStream(rom.read_bytes(obj_file.start + offset, size))
+
+            def copy(addr, size):
+                nonlocal seen
+                nonlocal out_size
+
+                seg = addr >> 24
+                if seg != 0x06:
+                    return addr
+                addr &= 0xffffff
+                seenAddr = seen.get(addr)
+                if seenAddr is not None:
+                    return seenAddr
+                newAddr = out_size | 0x0600_0000
+                out_size += size
+                out.extend(rom.read_bytes(obj_file.start + addr, size))
+                seen[addr] = newAddr
+                return newAddr
+
+            for i in range(0, size, 8):
+                data = segment.read_int32(i)
+                op = data >> 24
+                if op == 0x01: # Vertices
+                    count = (data >> 12) & 0xff
+                    addr = segment.read_int32(i + 4)
+                    newAddr = copy(addr, count * 0x10)
+                    segment.write_int32(i + 4, newAddr)
+                elif op == 0xfd: # Texture or palette
+                    data2 = segment.read_int32(i + 8 * 1)
+                    op2 = data2 >> 24
+                    if op2 == 0xf5: # Texture
+                        fmt = (data >> 16) & 0xff
+                        if fmt in (0x50, 0x90):
+                            bpp = 4
+                        elif fmt == 0x10:
+                            bpp = 16
+                        else:
+                            raise ValueError(f'Unknown texture format 0x{fmt:02x}')
+                        data3 = segment.read_int32(i + 8 * 6 + 4)
+                        w = (((data3 >> 12) & 0xfff) / 4) + 1
+                        h = (((data3 >>  0) & 0xfff) / 4) + 1
+                        addr = segment.read_int32(i + 4)
+                        newAddr = copy(addr, int((w * h * bpp) / 8))
+                        segment.write_int32(i + 4, newAddr)
+                    elif op2 == 0xe8: # Palette
+                        addr = segment.read_int32(i + 4)
+                        newAddr = copy(addr, 32)
+                        segment.write_int32(i + 4, newAddr)
+            out_size += size
+            out.extend(segment.buffer)
+            if out_size % 16:
+                extra_size = 16 - (out_size % 16)
+                extra_buf = [0] * extra_size
+                out_size += extra_size
+                out.extend(extra_buf)
+
+        rom.write_bytes(start_address, out)
         # Add it to the extended object table
-        add_to_extended_object_table(rom, object_id, obj_file)
+        end_address = ((start_address + len(out) + 0x0F) >> 4) << 4
+        add_to_extended_object_table(rom, object_id, start_address, end_address)
+        start_address = end_address
+
+    # Add the extended objects data to the DMA table.
+    rom.update_dmadata_record(None, extended_objects_start, end_address)
 
     # Create the textures for pots/crates. Note: No copyrighted material can be distributed w/ the randomizer. Because of this, patch files are used to create the new textures from the original texture in ROM.
     # Apply patches for custom textures for pots and crates and add as new files in rom
@@ -137,20 +229,23 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         (13, 'texture_smallcrate_bosskey',  0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_bosskey_rgba16_patch.bin')
     ]
 
-    # Loop through the textures and apply the patch. Add the new texture as a new file in rom.
-    for texture_id, texture_name, rom_address_base, rom_address_palette, size,func, patchfile in crate_textures:
-        texture_file = File({'Name': texture_name}) # Create a new file for the texture
-        texture_file.copy(rom) # Relocate this file to free space is the rom
-        texture_data = func(rom, rom_address_base, rom_address_palette, size, data_path(patchfile) if patchfile else None) # Apply the texture patch. Resulting texture will be stored in texture_data as a bytearray
-        rom.write_bytes(texture_file.start, texture_data) # write the bytes to our new file
-        texture_file.end = texture_file.start + len(texture_data) # Get size of the new texture
-        update_dmadata(rom, texture_file) # Update DMA table with new file
+    # Loop through the textures and apply the patch. Add the new textures as a new file in rom.
+    extended_textures_start = start_address = rom.free_space()
+    for texture_id, texture_name, rom_address_base, rom_address_palette, size, func, patch_file in crate_textures:
+        # Apply the texture patch. Resulting texture will be stored in texture_data as a bytearray
+        texture_data = func(rom, rom_address_base, rom_address_palette, size, data_path(patch_file) if patch_file else None)
+        rom.write_bytes(start_address, texture_data)  # write the bytes to our new file
+        end_address = ((start_address + len(texture_data) + 0x0F) >> 4) << 4
 
         # update the texture table with the rom addresses of the texture files
         entry = read_rom_texture(rom, texture_id)
-        entry['file_vrom_start'] = texture_file.start
-        entry['file_size'] = texture_file.end - texture_file.start
+        entry['file_vrom_start'] = start_address
+        entry['file_size'] = end_address - start_address
         write_rom_texture(rom, texture_id, entry)
+        start_address = end_address
+
+    # Add the extended texture data to the DMA table.
+    rom.update_dmadata_record(None, extended_textures_start, end_address)
 
     # Apply chest texture diffs to vanilla wooden chest texture for Chest Texture Matches Content setting
     # new texture, vanilla texture, num bytes
@@ -2348,10 +2443,10 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
 
 NUM_VANILLA_OBJECTS = 0x192
-def add_to_extended_object_table(rom, object_id, object_file):
+def add_to_extended_object_table(rom, object_id, start_address, end_address):
     extended_id = object_id - NUM_VANILLA_OBJECTS - 1
     extended_object_table = rom.sym('EXTENDED_OBJECT_TABLE')
-    rom.write_int32s(extended_object_table + extended_id * 8, [object_file.start, object_file.end])
+    rom.write_int32s(extended_object_table + extended_id * 8, [start_address, end_address])
 
 
 item_row_struct = struct.Struct('>BBHHBBIIhhBxxx') # Match item_row_t in item_table.h

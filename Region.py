@@ -106,21 +106,40 @@ class Region(object):
         is_dungeon_restricted = False
         is_overworld_restricted = False
 
-        if item.type in ('Map', 'Compass', 'SmallKey', 'HideoutSmallKey', 'BossKey', 'GanonBossKey', 'SilverRupee'):
+        if item.type in ('Map', 'Compass', 'SmallKey', 'HideoutSmallKey', 'BossKey', 'GanonBossKey', 'SilverRupee', 'DungeonReward'):
             shuffle_setting = (item.world.settings.shuffle_mapcompass if item.type in ('Map', 'Compass') else
                                item.world.settings.shuffle_smallkeys if item.type == 'SmallKey' else
                                item.world.settings.shuffle_hideoutkeys if item.type == 'HideoutSmallKey' else
                                item.world.settings.shuffle_bosskeys if item.type == 'BossKey' else
                                item.world.settings.shuffle_ganon_bosskey if item.type == 'GanonBossKey' else
-                               item.world.settings.shuffle_silver_rupees if item.type == 'SilverRupee' else None)
+                               item.world.settings.shuffle_silver_rupees if item.type == 'SilverRupee' else
+                               item.world.settings.shuffle_dungeon_rewards if item.type == 'DungeonReward' else None)
 
-            is_self_dungeon_restricted = shuffle_setting in ('dungeon', 'vanilla') and item.type != 'HideoutSmallKey'
+            item_hint_colors = {
+                'Kokiri Emerald': 'Green',
+                'Goron Ruby': 'Red',
+                'Zora Sapphire': 'Blue',
+                'Light Medallion': 'Light Blue',
+                'Forest Medallion': 'Green',
+                'Fire Medallion': 'Red',
+                'Water Medallion': 'Blue',
+                'Shadow Medallion': 'Pink',
+                'Spirit Medallion': 'Yellow',
+            }
+
+            is_self_dungeon_restricted = (shuffle_setting == 'dungeon' or (shuffle_setting == 'vanilla' and item.type != 'DungeonReward')) and item.type != 'HideoutSmallKey'
             is_self_region_restricted = [HintArea.GERUDO_FORTRESS, HintArea.THIEVES_HIDEOUT] if shuffle_setting == 'fortress' else None
-            is_hint_color_restricted = [HintArea.for_dungeon(item.name).color] if shuffle_setting == 'regional' else None
+            if item.name in item_hint_colors:
+                is_hint_color_restricted = [item_hint_colors[item.name]] if shuffle_setting == 'regional' else None
+            else:
+                is_hint_color_restricted = [HintArea.for_dungeon(item.name).color] if shuffle_setting == 'regional' else None
             is_dungeon_restricted = shuffle_setting == 'any_dungeon'
             is_overworld_restricted = shuffle_setting == 'overworld'
         elif item.name in triforce_blitz_items:
             is_dungeon_restricted = True
+
+        if item.name == 'Light Medallion':
+            return True #HACK: Light medallion can be placed on dungeon reward location regardless of setting
 
         if is_self_dungeon_restricted and not manual:
             hint_area = HintArea.at(self)

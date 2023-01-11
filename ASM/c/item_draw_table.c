@@ -140,6 +140,17 @@ item_draw_table_entry_t item_draw_table[] = {
     [0x7A] = { draw_gi_song_notes,          { 0x06000EC0, 0xFF9600FF, 1 } }, // Music Note inverted (Orange)
     [0x7B] = { draw_gi_song_notes,          { 0x06000EC0, 0xC832FFFF, 1 } }, // Music Note inverted (Purple)
     [0x7C] = { draw_gi_song_notes,          { 0x06000EC0, 0xC8FF00FF, 1 } }, // Music Note inverted (Yellow)
+
+    [0x7D] = { draw_gi_medallions,          { 0x060004d0, 0x06000f80 } }, // Light Medallion
+    [0x7E] = { draw_gi_medallions,          { 0x06000370, 0x06000e40 } }, // Forest Medallion
+    [0x7F] = { draw_gi_medallions,          { 0x060001b0, 0x06000c30 } }, // Fire Medallion
+    [0x80] = { draw_gi_medallions,          { 0x06000330, 0x06000e00 } }, // Water Medallion
+    [0x81] = { draw_gi_medallions,          { 0x060002d0, 0x06000d60 } }, // Shadow Medallion
+    [0x82] = { draw_gi_medallions,          { 0x06000380, 0x06000e40 } }, // Spirit Medallion
+
+    [0x83] = { draw_gi_stones,              { 0x06000b50, 0x06001290, 0xffffa0ff, 0x00ff00ff } }, // Kokiri Emerald
+    [0x84] = { draw_gi_stones,              { 0x06000620, 0x06000920, 0xffaaffff, 0xff0064ff } }, // Goron Ruby
+    [0x85] = { draw_gi_stones,              { 0x06000b00, 0x060012f0, 0x32ffffff, 0x320096ff } }, // Zora Sapphire
 };
 
 void base_draw_gi_model(z64_game_t *game, uint32_t draw_id) {

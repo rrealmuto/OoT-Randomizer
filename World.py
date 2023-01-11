@@ -1071,6 +1071,11 @@ class World(object):
         elif self.settings.shuffle_silver_rupees in ('any_dungeon', 'overworld', 'anywhere', 'regional'):
             itempool.extend(item for dungeon in self.dungeons if self.empty_dungeons[dungeon.name].empty for item in dungeon.silver_rupees)
 
+        if self.settings.shuffle_dungeon_rewards == 'dungeon':
+            itempool.extend(item for dungeon in self.dungeons for item in dungeon.reward)
+        elif self.settings.shuffle_dungeon_rewards in ('any_dungeon', 'overworld', 'anywhere', 'regional'):
+            itempool.extend(item for dungeon in self.dungeons if self.empty_dungeons[dungeon.name].empty for item in dungeon.reward)
+
         for item in itempool:
             item.world = self
         return itempool
@@ -1089,6 +1094,8 @@ class World(object):
             itempool.extend(item for dungeon in self.dungeons if dungeon.name == 'Ganons Castle' for item in dungeon.boss_key)
         if self.settings.shuffle_silver_rupees in ('any_dungeon', 'overworld', 'anywhere', 'regional'):
             itempool.extend(item for dungeon in self.dungeons if not self.empty_dungeons[dungeon.name].empty for item in dungeon.silver_rupees)
+        if self.settings.shuffle_dungeon_rewards in ('any_dungeon', 'overworld', 'anywhere', 'regional'):
+            itempool.extend(item for dungeon in self.dungeons if not self.empty_dungeons[dungeon.name].empty for item in dungeon.reward)
 
         for item in itempool:
             item.world = self

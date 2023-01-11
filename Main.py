@@ -170,7 +170,8 @@ def build_world_graphs(world_settings, window=dummy_window()):
         generate_itempool(world)
         set_shop_rules(world)
         set_drop_location_names(world)
-        world.fill_bosses()
+        if world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward'):
+            world.fill_bosses()
 
     if settings.triforce_hunt:
         settings.distribution.configure_triforce_hunt(worlds)

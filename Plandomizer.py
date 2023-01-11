@@ -857,9 +857,6 @@ class WorldDistribution(object):
 
             player_id = self.id if record.player is None else record.player - 1
 
-            if record.item in item_groups['DungeonReward']:
-                raise RuntimeError('Cannot place dungeon reward %s in world %d in location %s.' % (record.item, self.id + 1, location_name))
-
             if record.item == '#Junk' and location.type == 'Song' and world.settings.shuffle_song_items in ('vanilla', 'song') and not any(name in song_list and record.count for name, record in world.settings.starting_items.items()):
                 record.item = '#JunkSong'
 
