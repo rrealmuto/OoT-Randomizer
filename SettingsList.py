@@ -3528,8 +3528,30 @@ setting_infos = [
             anywhere in the world.
         ''',
         shared         = True,
+        disable        = {
+            'remove':  {'settings': ['silver_rupee_pouches']},
+            'vanilla': {'settings': ['silver_rupee_pouches']},
+        },
         gui_params     = {
             'randomize_key': 'randomize_settings',
+        },
+    ),
+    Checkbutton(
+        name           = 'silver_rupee_pouches',
+        gui_text       = 'Silver Rupee Pouches',
+        gui_tooltip    = '''\
+            Each silver rupee puzzle will have all of its
+            silver rupees found at once in a pouch rather
+            than individually.
+
+            For example, instead of shuffling 5 silver
+            rupees for the Fire Trial in Ganon's Castle
+            into the pool, you will find a single pouch
+            which will give you all 5 of them at once.
+        ''',
+        shared         = True,
+        gui_params     = {
+            "hide_when_disabled": True,
         },
     ),
     Combobox(

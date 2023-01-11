@@ -487,7 +487,10 @@ def get_pool_core(world):
         if world.settings.shuffle_ganon_bosskey in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
             pending_junk_pool.append('Boss Key (Ganons Castle)')
         if world.settings.shuffle_silver_rupees in ['any_dungeon', 'overworld', 'anywhere', 'regional']:
-            pending_junk_pool.extend([f"Silver Rupee ({puzzle})" for puzzle in world.silver_rupee_puzzles()])
+            if world.settings.silver_rupee_pouches:
+                pending_junk_pool.extend([f"Silver Rupee Pouch ({puzzle})" for puzzle in world.silver_rupee_puzzles()])
+            else:
+                pending_junk_pool.extend([f"Silver Rupee ({puzzle})" for puzzle in world.silver_rupee_puzzles()])
         if world.settings.shuffle_song_items == 'any':
             pending_junk_pool.extend(song_list)
 
@@ -741,6 +744,11 @@ def get_pool_core(world):
                 dungeon_collection = dungeon.silver_rupees
                 if shuffle_setting == 'vanilla':
                     shuffle_item = False
+                elif world.settings.silver_rupee_pouches:
+                    item = location.vanilla_item.replace('Silver Rupee (', 'Silver Rupee Pouch (')
+                    if any(rupee.name == item for rupee in dungeon.silver_rupees):
+                        item = get_junk_item()[0]
+                        shuffle_item = True
             # Any other item in a dungeon.
             elif location.type in ["Chest", "NPC", "Song", "Collectable", "Cutscene", "BossHeart"]:
                 shuffle_item = True
