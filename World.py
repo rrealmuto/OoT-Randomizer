@@ -735,7 +735,7 @@ class World(object):
         b = GoalCategory('rainbow_bridge', 10, lock_entrances=['Ganons Castle Ledge -> Ganons Castle Lobby'])
         gbk = GoalCategory('ganon_bosskey', 20)
         trials = GoalCategory('trials', 30, minimum_goals=1)
-        th = GoalCategory('triforce_hunt', 30, goal_count=round(self.triforce_goal_per_world / 10), minimum_goals=1)
+        th = GoalCategory('triforce_hunt', 30, goal_count=round(self.triforce_goal_per_world / 10), minimum_goals=3 if self.settings.triforce_hunt_mode == 'blitz' else 1)
         trial_goal = Goal(self, 'the Tower', 'path to #the Tower#', 'White', items=[], create_empty=True)
 
         if self.settings.triforce_hunt and self.triforce_goal_per_world > 0:
@@ -749,16 +749,24 @@ class World(object):
             # Key, which makes these items directly hintable in their respective goals
             # assuming they do not get hinted by another hint type (always, woth with
             # an earlier order in the hint distro, etc).
-            if self.settings.triforce_hunt_mode == 'easter_egg_hunt':
-                path_name = 'the bunny'
-                path_color = 'Yellow'
-            elif self.settings.triforce_hunt_mode == 'ice_percent':
-                path_name = 'ice'
-                path_color = 'Light Blue'
-            else: #TODO add Triforce Blitz goals as defaults?
-                path_name = 'gold'
-                path_color = 'Yellow'
-            th.add_goal(Goal(self, path_name, f'path of #{path_name}#', path_color, items=[{'name': 'Triforce Piece', 'quantity': self.triforce_count_per_world, 'minimum': self.triforce_goal_per_world, 'hintable': False}]))
+            if self.settings.triforce_hunt_mode == 'blitz':
+                for piece, color in (
+                    ('Power', 'Red'),
+                    ('Wisdom', 'Blue'),
+                    ('Courage', 'Green'),
+                ):
+                    th.add_goal(Goal(self, piece.lower(), f'path of #{piece.lower()}#', color, items=[{'name': f'Triforce of {piece}', 'quantity': 1, 'minimum': 1, 'hintable': False}]))
+            else:
+                if self.settings.triforce_hunt_mode == 'easter_egg_hunt':
+                    path_name = 'the bunny'
+                    path_color = 'Yellow'
+                elif self.settings.triforce_hunt_mode == 'ice_percent':
+                    path_name = 'ice'
+                    path_color = 'Light Blue'
+                else:
+                    path_name = 'gold'
+                    path_color = 'Yellow'
+                th.add_goal(Goal(self, path_name, f'path of #{path_name}#', path_color, items=[{'name': 'Triforce Piece', 'quantity': self.triforce_count_per_world, 'minimum': self.triforce_goal_per_world, 'hintable': False}]))
             self.goal_categories[th.name] = th
         # Category goals are defined for each possible setting for each category.
         # Bridge can be Stones, Medallions, Dungeons, Skulls, or Vanilla.
