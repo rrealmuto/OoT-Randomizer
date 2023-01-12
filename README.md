@@ -44,8 +44,9 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
   * Opening the Door of Time is a separate goal category when required by the settings ([#1529](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1529))
   * Plandos can specify different settings for each world (based on [Andols0's `individual-settings` branch](https://github.com/Andols0/OoT-Randomizer/tree/individual-settings))
+  * The spoiler log playthrough is randomized instead of preferring locations based on the order in which they're defined
   * Gold Skulltula Tokens can be on excluded locations if there are no checks requiring them (such as in SAWS)
-  * With “Closed Forest Requires Gohma” enabled, items that can be used to escape the forest won't appear in the forest.
+  * With “Closed Forest Requires Gohma” enabled, items that can be used to escape the forest won't appear in the forest
   * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
 
 Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):

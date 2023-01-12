@@ -717,6 +717,7 @@ def create_playthrough(spoiler):
         # Otherwise, an item we collect could influence later item collection in the same sphere
         collected = list(search.iter_reachable_locations(item_locations))
         if not collected: break
+        random.shuffle(collected)
         # Gather the new entrances before collecting items.
         collection_spheres.append(collected)
         accessed_entrances = set(filter(search.spot_access, remaining_entrances))
@@ -735,6 +736,7 @@ def create_playthrough(spoiler):
     # like bow and slingshot appear as early as possible rather than as late as possible.
     required_locations = []
     for sphere in reversed(collection_spheres):
+        random.shuffle(sphere)
         for location in sphere:
             # we remove the item at location and check if the game is still beatable in case the item could be required
             old_item = location.item
@@ -764,6 +766,7 @@ def create_playthrough(spoiler):
     # Reduce each entrance sphere in reverse order, by checking if the game is beatable when we disconnect the entrance.
     required_entrances = []
     for sphere in reversed(entrance_spheres):
+        random.shuffle(sphere)
         for entrance in sphere:
             # we disconnect the entrance and check if the game is still beatable
             old_connected_region = entrance.disconnect()
