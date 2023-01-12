@@ -766,6 +766,7 @@ def create_playthrough(spoiler):
     # Reduce each entrance sphere in reverse order, by checking if the game is beatable when we disconnect the entrance.
     required_entrances = []
     for sphere in reversed(entrance_spheres):
+        sphere = list(sphere)
         random.shuffle(sphere)
         for entrance in sphere:
             # we disconnect the entrance and check if the game is still beatable
