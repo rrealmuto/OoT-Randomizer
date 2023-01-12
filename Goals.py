@@ -1,7 +1,7 @@
-from collections import OrderedDict, defaultdict
+from collections import defaultdict
 import logging
 
-from HintList import goalTable, getHintGroup, hintExclusions, misc_item_hint_table, misc_location_hint_table
+from HintList import BOSS_GOAL_TABLE, REWARD_GOAL_TABLE, getHintGroup, hintExclusions, misc_item_hint_table, misc_location_hint_table
 from ItemList import item_table
 from Search import Search
 
@@ -14,7 +14,7 @@ validColors = [
     'Light Blue',
     'Pink',
     'Yellow',
-    'Black'
+    'Black',
 ]
 
 
@@ -131,19 +131,29 @@ class GoalCategory(object):
 
 def replace_goal_names(worlds):
     for world in worlds:
-        bosses = [location for location in world.get_filled_locations() if location.item.type == 'DungeonReward']
-        for cat_name, category in world.goal_categories.items():
-            for goal in category.goals:
-                if isinstance(goal.hint_text, dict):
-                    for boss in bosses:
-                        if boss.item.name == goal.hint_text['replace']:
-                            flavorText, clearText, color = goalTable[boss.name]
-                            if world.settings.clearer_hints:
-                                goal.hint_text = clearText
-                            else:
-                                goal.hint_text = flavorText
-                            goal.color = color
-                            break
+        if world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward'):
+            bosses = [location for location in world.get_filled_locations() if location.item.type == 'DungeonReward']
+            for category in world.goal_categories.values():
+                for goal in category.goals:
+                    if isinstance(goal.hint_text, dict):
+                        for boss in bosses:
+                            if boss.item.name == goal.hint_text['replace']:
+                                flavor_text, clear_text, color = BOSS_GOAL_TABLE[boss.name]
+                                if world.settings.clearer_hints:
+                                    goal.hint_text = clear_text
+                                else:
+                                    goal.hint_text = flavor_text
+                                goal.color = color
+                                break
+        else:
+            for category in world.goal_categories.values():
+                for goal in category.goals:
+                    if isinstance(goal.hint_text, dict):
+                        flavor_text, clear_text = REWARD_GOAL_TABLE[goal.hint_text['replace']]
+                        if world.settings.clearer_hints:
+                            goal.hint_text = clear_text
+                        else:
+                            goal.hint_text = flavor_text
 
 
 def update_goal_items(spoiler):

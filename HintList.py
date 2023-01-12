@@ -1826,7 +1826,7 @@ misc_location_hint_table = {
 # Separate table for goal names to avoid duplicates in the hint table.
 # Link's Pocket will always be an empty goal, but it's included here to
 # prevent key errors during the dungeon reward lookup.
-goalTable = {
+BOSS_GOAL_TABLE = {
     'Queen Gohma':                                              ("path to the #Spider#", "path to #Queen Gohma#", "Green"),
     'King Dodongo':                                             ("path to the #Dinosaur#", "path to #King Dodongo#", "Red"),
     'Barinade':                                                 ("path to the #Tentacle#", "path to #Barinade#", "Blue"),
@@ -1836,6 +1836,19 @@ goalTable = {
     'Bongo Bongo':                                              ("path to the #Hands#", "path to #Bongo Bongo#", "Pink"),
     'Twinrova':                                                 ("path to the #Witches#", "path to #Twinrova#", "Yellow"),
     'Links Pocket':                                             ("path to #Links Pocket#", "path to #Links Pocket#", "Light Blue"),
+}
+
+# If dungeon rewards are shuffled, we don't use boss names for their goals.
+REWARD_GOAL_TABLE = {
+    'Kokiri Emerald':                                           ("path to a #tree's farewell#", "path to the #Kokiri Emerald#"),
+    'Goron Ruby':                                               ("path to the #Gorons' hidden treasure#", "path to the #Goron Ruby#"),
+    'Zora Sapphire':                                            ("path to an #engagement ring#", "path to the #Zora Sapphire#"),
+    'Light Medallion':                                          ("path to #Rauru's sagely power#", "path to the #Light Medallion#"),
+    'Forest Medallion':                                         ("path to #Saria's sagely power#", "path to the #Forest Medallion#"),
+    'Fire Medallion':                                           ("path to #Darunia's sagely power#", "path to the #Fire Medallion#"),
+    'Water Medallion':                                          ("path to #Ruto's sagely power#", "path to the #Water Medallion#"),
+    'Shadow Medallion':                                         ("path to #Impa's sagely power#", "path to the #Shadow Medallion#"),
+    'Spirit Medallion':                                         ("path to #Nabooru's sagely power#", "path to the #Spirit Medallion#"),
 }
 
 
