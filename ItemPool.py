@@ -115,6 +115,15 @@ ludicrous_items_base = [
 ]
 
 ludicrous_items_extended = [
+    'Kokiri Emerald',
+    'Goron Ruby',
+    'Zora Sapphire',
+    'Light Medallion',
+    'Forest Medallion',
+    'Fire Medallion',
+    'Water Medallion',
+    'Shadow Medallion',
+    'Spirit Medallion',
     'Zeldas Lullaby',
     'Eponas Song',
     'Suns Song',
@@ -307,6 +316,7 @@ trade_items = (
 )
 
 normal_bottles = [bottle for bottle in sorted(ItemInfo.bottles) if bottle not in ['Deliver Letter', 'Sell Big Poe']] + ['Bottle with Big Poe']
+reward_list = [item.name for item in sorted([i for n, i in ItemInfo.items.items() if i.type == 'DungeonReward'], key=lambda x: x.special['item_id'])]
 song_list = [item.name for item in sorted([i for n, i in ItemInfo.items.items() if i.type == 'Song'], key=lambda x: x.index)]
 junk_pool_base = [(item, weight) for (item, weight) in sorted(ItemInfo.junk.items()) if weight > 0]
 remove_junk_items = [item for (item, weight) in sorted(ItemInfo.junk.items()) if weight >= 0]
@@ -355,7 +365,7 @@ item_groups = {
     'HealthUpgrade': ('Heart Container', 'Piece of Heart', 'Piece of Heart (Treasure Chest Game)'),
     'ProgressItem': sorted([name for name, item in ItemInfo.items.items() if item.type == 'Item' and item.advancement]),
     'MajorItem': sorted([name for name, item in ItemInfo.items.items() if item.type in ['Item', 'Song'] and item.advancement and name not in exclude_from_major]),
-    'DungeonReward': [item.name for item in sorted([i for n, i in ItemInfo.items.items() if i.type == 'DungeonReward'], key=lambda x: x.special['item_id'])],
+    'DungeonReward': reward_list,
     'Map': sorted([name for name, item in ItemInfo.items.items() if item.type == 'Map']),
     'Compass': sorted([name for name, item in ItemInfo.items.items() if item.type == 'Compass']),
     'BossKey': sorted([name for name, item in ItemInfo.items.items() if item.type == 'BossKey']),
@@ -437,7 +447,7 @@ def get_pool_core(world):
     if world.settings.zora_fountain == 'open':
         ruto_bottles = 0
 
-    if world.settings.shopsanity not in ['off', '0']:
+    if world.settings.shopsanity not in ('off', '0'):
         pending_junk_pool.append('Progressive Wallet')
 
     if world.settings.item_pool_value == 'plentiful':
@@ -451,31 +461,33 @@ def get_pool_core(world):
         if world.settings.shuffle_beans and world.distribution.get_starting_item('Magic Bean') < 10:
             pending_junk_pool.append('Magic Bean Pack')
         if (world.settings.gerudo_fortress != "open"
-                and world.settings.shuffle_hideoutkeys in ['any_dungeon', 'overworld', 'keysanity', 'regional']):
+                and world.settings.shuffle_hideoutkeys in ('any_dungeon', 'overworld', 'keysanity', 'regional')):
             if 'Thieves Hideout' in world.settings.key_rings and world.settings.gerudo_fortress != "fast":
-                pending_junk_pool.extend(['Small Key Ring (Thieves Hideout)'])
+                pending_junk_pool.append('Small Key Ring (Thieves Hideout)')
             else:
                 pending_junk_pool.append('Small Key (Thieves Hideout)')
         if world.settings.shuffle_gerudo_card:
             pending_junk_pool.append('Gerudo Membership Card')
-        if world.settings.shuffle_smallkeys in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
-            for dungeon in ['Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple',
-                            'Bottom of the Well', 'Gerudo Training Ground', 'Ganons Castle']:
+        if world.settings.shuffle_smallkeys in ('any_dungeon', 'overworld', 'keysanity', 'regional'):
+            for dungeon in ('Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple',
+                            'Bottom of the Well', 'Gerudo Training Ground', 'Ganons Castle'):
                 if dungeon in world.settings.key_rings:
                     pending_junk_pool.append(f"Small Key Ring ({dungeon})")
                 else:
                     pending_junk_pool.append(f"Small Key ({dungeon})")
-        if world.settings.shuffle_bosskeys in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
-            for dungeon in ['Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple']:
-                if not world.settings.keyring_give_bk or dungeon not in world.settings.key_rings or world.settings.shuffle_smallkeys not in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
+        if world.settings.shuffle_bosskeys in ('any_dungeon', 'overworld', 'keysanity', 'regional'):
+            for dungeon in ('Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple'):
+                if not world.settings.keyring_give_bk or dungeon not in world.settings.key_rings or world.settings.shuffle_smallkeys not in ('any_dungeon', 'overworld', 'keysanity', 'regional'):
                     pending_junk_pool.append(f"Boss Key ({dungeon})")
-        if world.settings.shuffle_ganon_bosskey in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
+        if world.settings.shuffle_ganon_bosskey in ('any_dungeon', 'overworld', 'keysanity', 'regional'):
             pending_junk_pool.append('Boss Key (Ganons Castle)')
-        if world.settings.shuffle_silver_rupees in ['any_dungeon', 'overworld', 'anywhere', 'regional']:
+        if world.settings.shuffle_silver_rupees in ('any_dungeon', 'overworld', 'anywhere', 'regional'):
             if world.settings.silver_rupee_pouches:
-                pending_junk_pool.extend([f"Silver Rupee Pouch ({puzzle})" for puzzle in world.silver_rupee_puzzles()])
+                pending_junk_pool.extend(f"Silver Rupee Pouch ({puzzle})" for puzzle in world.silver_rupee_puzzles())
             else:
-                pending_junk_pool.extend([f"Silver Rupee ({puzzle})" for puzzle in world.silver_rupee_puzzles()])
+                pending_junk_pool.extend(f"Silver Rupee ({puzzle})" for puzzle in world.silver_rupee_puzzles())
+        if world.settings.shuffle_dungeon_rewards in ('any_dungeon', 'overworld', 'anywhere', 'regional'):
+            pending_junk_pool.extend(reward_list)
         if world.settings.shuffle_song_items == 'any':
             pending_junk_pool.extend(song_list)
 
@@ -887,7 +899,13 @@ def get_pool_core(world):
         # Replace all junk items with major items
         # Overrides plando'd junk items
         # Songs are in the unrestricted pool even if their fill is restricted. Filter from candidates
-        duplicate_candidates = [item for item in ludicrous_items_extended if item in pool and (ItemInfo.items[item].type != 'Song' or world.settings.shuffle_song_items == 'any')]
+        duplicate_candidates = [
+            item
+            for item in ludicrous_items_extended
+            if item in pool
+            and (ItemInfo.items[item].type != 'Song' or world.settings.shuffle_song_items == 'any')
+            and (ItemInfo.items[item].type != 'DungeonReward' or world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'))
+        ]
         duplicate_candidates.extend(ludicrous_items_base)
         junk_items = [
             item for item in pool
