@@ -1,5 +1,6 @@
 #include "z64.h"
 #include "stdbool.h"
+#include "save.h"
 
 // Helper function for adding characters to the decoded message buffer
 void Message_AddCharacter(MessageContext* msgCtx, void* pFont, uint32_t* pDecodedBufPos, uint32_t* pCharTexIdx, uint8_t charToAdd) {
@@ -21,7 +22,6 @@ void Message_AddCharacter(MessageContext* msgCtx, void* pFont, uint32_t* pDecode
 void Message_AddInteger(MessageContext * msgCtx, void* pFont, uint32_t* pDecodedBufPos, uint32_t* pCharTexIdx, uint32_t numToAdd) {
     uint8_t digits[10];
     uint8_t i = 0;
-
     // Extract each digit. They are added, in reverse order, to digits[]
     do {
         digits[i] = numToAdd % 10;
@@ -57,6 +57,16 @@ bool Message_Decode_Additional_Control_Codes(uint8_t currChar, uint32_t* pDecode
     MessageContext* msgCtx = &(z64_game.msgContext);
     Font* pFont = &(msgCtx->font); // Get a reference to the font.
     char* msgRaw = (char*)&(pFont->msgBuf); // Get a reference to the start of the raw message. Index using msgCtx->msgBufPos.
+
+    // Silver rupee puzzle control code
+    if(currChar == 0xF0) {
+        //Get the next character which tells us which puzzle it's for
+        uint8_t puzzle = (uint8_t*)(msgRaw[++(msgCtx->msgBufPos)]);
+        uint8_t count = extended_savectx.silver_rupee_counts[puzzle];
+        Message_AddInteger(msgCtx, pFont, pDecodedBufPos, pCharTexIdx, count);
+        (*pDecodedBufPos)--;
+        return true;
+    }
 
     /*
     // Example new control code that replaces code 0xF0 w/ a number

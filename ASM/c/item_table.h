@@ -47,5 +47,6 @@ uint16_t resolve_upgrades(uint16_t item_id);
 item_row_t *get_item_row(uint16_t item_id);
 void call_effect_function(item_row_t *item_row);
 void resolve_text_id(item_row_t* item_row);
+void resolve_text_silver_rupees(item_row_t* item_row);
 
 #endif

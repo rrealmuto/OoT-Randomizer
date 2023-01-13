@@ -18,7 +18,11 @@
     "AUDIO_THREAD_INFO": "03483820",
     "AUDIO_THREAD_INFO_MEM_SIZE": "0348383C",
     "AUDIO_THREAD_INFO_MEM_START": "03483838",
+<<<<<<< HEAD
     "AUDIO_THREAD_MEM_START": "034A0AB0",
+=======
+    "AUDIO_THREAD_MEM_START": "034A12A0",
+>>>>>>> Start working on silver rupee control codes/alt text
     "AUTO_TRACKER_CONTEXT": "03480E8C",
     "AUTO_TRACKER_VERSION": "03480E8C",
     "BOMBCHUS_IN_LOGIC": "03480E6C",
@@ -91,12 +95,25 @@
     "CHECK_FOR_BONK_CANCEL": "0348341C",
     "CHECK_ROOM_MESH_TYPE": "0348353C",
     "CHEST_LENS_ONLY": "03482C70",
+<<<<<<< HEAD
     "CHEST_SIZE_MATCH_CONTENTS": "03495FB8",
     "CHEST_SIZE_TEXTURE": "03495FB4",
     "CHEST_TEXTURE_MATCH_CONTENTS": "03495FBC",
     "COMPLETE_MASK_QUEST": "0349600C",
+<<<<<<< HEAD
 >>>>>>> Silver Rupee Shuffle
+<<<<<<< HEAD
 >>>>>>> Silver Rupee Shuffle
+=======
+=======
+=======
+    "CHEST_SIZE_MATCH_CONTENTS": "034967B0",
+    "CHEST_SIZE_TEXTURE": "034967AC",
+    "CHEST_TEXTURE_MATCH_CONTENTS": "034967B4",
+    "COMPLETE_MASK_QUEST": "03496804",
+>>>>>>> Start working on silver rupee control codes/alt text
+>>>>>>> Start working on silver rupee control codes/alt text
+>>>>>>> Start working on silver rupee control codes/alt text
     "COOP_CONTEXT": "03480020",
     "COOP_VERSION": "03480020",
     "COSMETIC_CONTEXT": "0348083C",
@@ -151,7 +168,11 @@
     "CURR_ACTOR_SPAWN_INDEX": "034845AC",
     "DEBUG_OFFSET": "03482F34",
     "DISABLE_TIMERS": "03480E81",
+<<<<<<< HEAD
     "DPAD_TEXTURE": "0349AAA8",
+=======
+    "DPAD_TEXTURE": "0349B2A0",
+>>>>>>> Start working on silver rupee control codes/alt text
     "DUNGEONS_SHUFFLED": "03480E82",
     "EXTENDED_INITIAL_SAVE_DATA": "03480D2C",
     "EXTENDED_OBJECT_TABLE": "03480E2C",
@@ -159,6 +180,7 @@
     "FAST_BUNNY_HOOD_ENABLED": "03480E84",
     "FAST_CHESTS": "03480E7B",
     "FIX_BROKEN_DROPS": "03480E85",
+<<<<<<< HEAD
     "FONT_TEXTURE": "034995E0",
     "FREE_SCARECROW_ENABLED": "03480E74",
     "GANON_BOSS_KEY_CONDITION": "03495FC4",
@@ -167,6 +189,16 @@
     "GET_ITEM_TRIGGERED": "03481960",
     "GILDED_CHEST_BASE_TEXTURE": "0349D2A8",
     "GILDED_CHEST_FRONT_TEXTURE": "0349C2A8",
+=======
+    "FONT_TEXTURE": "03499DD8",
+    "FREE_SCARECROW_ENABLED": "03480E74",
+    "GANON_BOSS_KEY_CONDITION": "034967BC",
+    "GANON_BOSS_KEY_CONDITION_COUNT": "034967BA",
+    "GET_CHEST_OVERRIDE_WRAPPER": "03482C74",
+    "GET_ITEM_TRIGGERED": "03481960",
+    "GILDED_CHEST_BASE_TEXTURE": "0349DAA0",
+    "GILDED_CHEST_FRONT_TEXTURE": "0349CAA0",
+>>>>>>> Start working on silver rupee control codes/alt text
     "GOSSIP_HINT_CONDITION": "03480E70",
     "GROTTO_EXIT_LIST": "034836A0",
     "GROTTO_LOAD_TABLE": "0348361C",
@@ -175,13 +207,19 @@
     "INCOMING_PLAYER": "03480026",
     "INITIAL_SAVE_DATA": "0348092C",
     "JABU_ELEVATOR_ENABLE": "03480E78",
+<<<<<<< HEAD
     "KAKARIKO_WEATHER_FORECAST": "03496038",
     "KEYRING_BOSSKEY_CONDITION": "0349600E",
+=======
+    "KAKARIKO_WEATHER_FORECAST": "03496830",
+    "KEYRING_BOSSKEY_CONDITION": "03496806",
+>>>>>>> Start working on silver rupee control codes/alt text
     "KING_DODONGO_BONKS": "03483508",
     "LACS_CONDITION": "03480ECC",
     "LACS_CONDITION_COUNT": "03480ED2",
     "MALON_GAVE_ICETRAP": "03483EEC",
     "MALON_TEXT_ID": "03480E80",
+<<<<<<< HEAD
     "MAX_RUPEES": "0349600F",
     "MOVED_ADULT_KING_ZORA": "0348385C",
     "MW_SEND_OWN_ITEMS": "0348002A",
@@ -189,8 +227,23 @@
     "NO_ESCAPE_SEQUENCE": "03495FC1",
     "OCARINAS_SHUFFLED": "03480E79",
     "OPEN_KAKARIKO": "0349600D",
+<<<<<<< HEAD
 >>>>>>> Silver Rupee Shuffle
+<<<<<<< HEAD
 >>>>>>> Silver Rupee Shuffle
+=======
+=======
+=======
+    "MAX_RUPEES": "03496807",
+    "MOVED_ADULT_KING_ZORA": "0348385C",
+    "MW_SEND_OWN_ITEMS": "0348002A",
+    "NO_COLLECTIBLE_HEARTS": "03480E7A",
+    "NO_ESCAPE_SEQUENCE": "034967B9",
+    "OCARINAS_SHUFFLED": "03480E79",
+    "OPEN_KAKARIKO": "03496805",
+>>>>>>> Start working on silver rupee control codes/alt text
+>>>>>>> Start working on silver rupee control codes/alt text
+>>>>>>> Start working on silver rupee control codes/alt text
     "OUTGOING_ITEM": "03480030",
     "OUTGOING_KEY": "0348002C",
     "OUTGOING_PLAYER": "03480032",
@@ -235,9 +288,15 @@
     "POTCRATE_TEXTURES_MATCH_CONTENTS": "03480E88",
     "RAINBOW_BRIDGE_CONDITION": "03480EC8",
     "RAINBOW_BRIDGE_COUNT": "03480ED0",
+<<<<<<< HEAD
     "RANDOMIZER_RNG_SEED": "0349601C",
     "RANDO_CONTEXT": "03480000",
     "RNG_SEED_INT": "03495FAC",
+=======
+    "RANDOMIZER_RNG_SEED": "03496814",
+    "RANDO_CONTEXT": "03480000",
+    "RNG_SEED_INT": "034967A4",
+>>>>>>> Start working on silver rupee control codes/alt text
     "SET_BONK_FLAG": "034833F0",
     "SHOW_CHEST_WITH_INVERTED_LENS": "03482D34",
     "SHUFFLE_BEANS": "03483578",
@@ -245,21 +304,36 @@
     "SHUFFLE_COWS": "03480E7C",
     "SHUFFLE_MEDIGORON": "034842C4",
     "SHUFFLE_SILVER_RUPEES": "03480E89",
+<<<<<<< HEAD
     "SILVER_CHEST_BASE_TEXTURE": "0349EAA8",
     "SILVER_CHEST_FRONT_TEXTURE": "0349DAA8",
     "SKULL_CHEST_BASE_TEXTURE": "034A02A8",
     "SKULL_CHEST_FRONT_TEXTURE": "0349F2A8",
+=======
+    "SILVER_CHEST_BASE_TEXTURE": "0349F2A0",
+    "SILVER_CHEST_FRONT_TEXTURE": "0349E2A0",
+    "SKULL_CHEST_BASE_TEXTURE": "034A0AA0",
+    "SKULL_CHEST_FRONT_TEXTURE": "0349FAA0",
+>>>>>>> Start working on silver rupee control codes/alt text
     "SONGS_AS_ITEMS": "03480E7D",
     "SOS_ITEM_GIVEN": "03481A2C",
     "SPECIAL_DEAL_COUNTS": "03480ED8",
     "SPEED_MULTIPLIER": "03482DF4",
     "SPOILER_AVAILABLE": "03480E86",
     "START_TWINROVA_FIGHT": "034838DC",
+<<<<<<< HEAD
     "Sram_InitNewSave": "03495FB0",
     "TIME_STRING_TXT": "03480908",
     "TIME_TRAVEL_SAVED_EQUIPS": "03481FBC",
     "TRIFORCE_HUNT_ENABLED": "03480ED4",
     "TRIFORCE_ICON_TEXTURE": "0349B2A8",
+=======
+    "Sram_InitNewSave": "034967A8",
+    "TIME_STRING_TXT": "03480908",
+    "TIME_TRAVEL_SAVED_EQUIPS": "03481FBC",
+    "TRIFORCE_HUNT_ENABLED": "03480ED4",
+    "TRIFORCE_ICON_TEXTURE": "0349BAA0",
+>>>>>>> Start working on silver rupee control codes/alt text
     "TRIFORCE_PIECES_REQUIRED": "03480ED6",
     "TWINROVA_ACTION_TIMER": "034838E0",
 >>>>>>> Silver Rupee Shuffle
@@ -267,6 +341,7 @@
     "WINDMILL_SONG_ID": "03480E7E",
     "WINDMILL_TEXT_ID": "03480E7F",
     "WORLD_STRING_TXT": "034808F8",
+<<<<<<< HEAD
 <<<<<<< HEAD
     "a_button": "034955F0",
     "a_note_b": "034955DC",
@@ -359,6 +434,8 @@
     "texture_table": "03495440",
     "triforce_sprite": "034928D0"
 =======
+=======
+>>>>>>> Start working on silver rupee control codes/alt text
 <<<<<<< HEAD
     "a_button": "03495580",
     "a_note_b": "0349556C",
@@ -451,6 +528,8 @@
     "texture_table": "034953D0",
     "triforce_sprite": "03492860"
 =======
+=======
+>>>>>>> Start working on silver rupee control codes/alt text
     "a_button": "03495F80",
     "a_note_b": "03495F6C",
     "a_note_font_glow_base": "03495F54",
@@ -543,6 +622,106 @@
     "text_width": "03495FA8",
     "texture_table": "03495DCC",
     "triforce_sprite": "034930B0"
+<<<<<<< HEAD
 >>>>>>> Silver Rupee Shuffle
+<<<<<<< HEAD
 >>>>>>> Silver Rupee Shuffle
+=======
+=======
+=======
+    "a_button": "03496778",
+    "a_note_b": "03496764",
+    "a_note_font_glow_base": "0349674C",
+    "a_note_font_glow_max": "03496748",
+    "a_note_g": "03496768",
+    "a_note_glow_base": "03496754",
+    "a_note_glow_max": "03496750",
+    "a_note_r": "0349676C",
+    "active_item_action_id": "034967E4",
+    "active_item_fast_chest": "034967D4",
+    "active_item_graphic_id": "034967D8",
+    "active_item_object_id": "034967DC",
+    "active_item_row": "034967E8",
+    "active_item_text_id": "034967E0",
+    "active_override": "034967F0",
+    "active_override_is_outgoing": "034967EC",
+    "adultSkeleton": "034964C8",
+    "adult_safe": "0349680E",
+    "alt_overrides": "034968A4",
+    "b_button": "03496774",
+    "beating_dd": "03496780",
+    "beating_no_dd": "03496788",
+    "c_button": "03496770",
+    "c_note_b": "03496758",
+    "c_note_font_glow_base": "0349673C",
+    "c_note_font_glow_max": "03496738",
+    "c_note_g": "0349675C",
+    "c_note_glow_base": "03496744",
+    "c_note_glow_max": "03496740",
+    "c_note_r": "03496760",
+    "cfg_item_overrides": "03496CFC",
+    "childSkeleton": "034963CC",
+    "child_safe": "0349680D",
+    "collectible_mutex": "034967C8",
+    "collectible_override": "034967C0",
+    "collectible_override_flags": "034967CC",
+    "collectible_scene_flags_table": "03496AA4",
+    "curr_scene_setup": "03496818",
+    "defaultDDHeart": "0349678C",
+    "defaultHeart": "03496794",
+    "dpad_sprite": "034934B8",
+    "drop_collectible_override_flag": "034967F8",
+    "dummy_actor": "034967FC",
+    "dungeon_count": "03496708",
+    "dungeons": "03493298",
+    "empty_dlist": "03496720",
+    "extended_savectx": "03499DC0",
+    "extern_ctxt": "034933AC",
+    "font_sprite": "034934C8",
+    "freecam_modes": "03492EE8",
+    "hash_sprites": "03496714",
+    "hash_symbols": "034933C0",
+    "heap_next": "0349682C",
+    "heart_sprite": "03493458",
+    "icon_sprites": "034930AC",
+    "illegal_model": "03496810",
+    "item_digit_sprite": "03493478",
+    "item_draw_table": "03493540",
+    "item_overrides_count": "03496800",
+    "item_table": "034947CC",
+    "items": "03493440",
+    "items_sprite": "034934E8",
+    "key_counts": "034947B0",
+    "key_rupee_clock_sprite": "03493488",
+    "last_fog_distance": "0349670C",
+    "linkhead_skull_sprite": "03493468",
+    "medals": "03493280",
+    "medals_sprite": "034934F8",
+    "missing_dlist": "0349680C",
+    "normal_dd": "0349677C",
+    "normal_no_dd": "03496784",
+    "num_override_flags": "034967D0",
+    "num_to_bits": "03493400",
+    "object_slots": "03499CFC",
+    "outgoing_queue": "03496864",
+    "quest_items_sprite": "034934D8",
+    "reward_rows": "03493274",
+    "rupee_colors": "034930D0",
+    "satisified_pending_frames": "034967D2",
+    "scene_fog_distance": "03496710",
+    "setup_db": "03493518",
+    "silver_rupee_vars": "034946D4",
+    "song_note_sprite": "03493498",
+    "stones_sprite": "03493508",
+    "text_cursor_border_base": "0349672C",
+    "text_cursor_border_max": "03496728",
+    "text_cursor_inner_base": "03496734",
+    "text_cursor_inner_max": "03496730",
+    "text_height": "0349679C",
+    "text_width": "034967A0",
+    "texture_table": "034965C4",
+    "triforce_sprite": "034934A8"
+>>>>>>> Start working on silver rupee control codes/alt text
+>>>>>>> Start working on silver rupee control codes/alt text
+>>>>>>> Start working on silver rupee control codes/alt text
 }
