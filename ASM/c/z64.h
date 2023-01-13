@@ -1198,6 +1198,62 @@ typedef struct
                                            /* 0x11E5F */
 } z64_game_t;
 
+typedef struct {
+    /* 0x0000 */ uint8_t   view[0x128];
+    /* 0x0128 */ uint8_t   font[0x6188];
+    /* 0xE2B0 */ void*  textboxSegment; // original name: "fukidashiSegment"
+    /* 0xE2B4 */ char   unk_E2B4[0x4];
+    /* 0xE2B8 */ void* ocarinaStaff; // original name : "info"
+    /* 0xE2BC */ char   unk_E2BC[0x3C];
+    /* 0xE2F8 */ uint16_t    textId;
+    /* 0xE2FA */ uint16_t    choiceTextId;
+    /* 0xE2FC */ uint8_t     textBoxProperties; // original name : "msg_disp_type"
+    /* 0xE2FD */ uint8_t     textBoxType; // "Text Box Type"
+    /* 0xE2FE */ uint8_t     textBoxPos; // text box position
+    /* 0xE300 */ int32_t    msgLength; // original name : "msg_data"
+    /* 0xE304 */ uint8_t     msgMode; // original name: "msg_mode"
+    /* 0xE305 */ char   unk_E305[0x1];
+    /* 0xE306 */ uint8_t     msgBufDecoded[200]; // decoded message buffer, may be smaller than this
+    /* 0xE3CE */ uint16_t    msgBufPos; // original name : "rdp"
+    /* 0xE3D0 */ uint16_t    unk_E3D0; // unused, only ever set to 0
+    /* 0xE3D2 */ uint16_t    textDrawPos; // draw all decoded characters up to this buffer position
+    /* 0xE3D4 */ uint16_t    decodedTextLen; // decoded message buffer length
+    /* 0xE3D6 */ uint16_t    textUnskippable;
+    /* 0xE3D8 */ int16_t    textPosX;
+    /* 0xE3DA */ int16_t    textPosY;
+    /* 0xE3DC */ int16_t    textColorR;
+    /* 0xE3DE */ int16_t    textColorG;
+    /* 0xE3E0 */ int16_t    textColorB;
+    /* 0xE3E2 */ int16_t    textColorAlpha;
+    /* 0xE3E4 */ uint8_t     textboxEndType; // original name : "select"
+    /* 0xE3E5 */ uint8_t     choiceIndex;
+    /* 0xE3E6 */ uint8_t     choiceNum; // textboxes that are not choice textboxes have a choiceNum of 1
+    /* 0xE3E7 */ uint8_t     stateTimer;
+    /* 0xE3E8 */ uint16_t    textDelayTimer;
+    /* 0xE3EA */ uint16_t    textDelay;
+    /* 0xE3EA */ uint16_t    lastPlayedSong; // original references : "Ocarina_Flog" , "Ocarina_Free"
+    /* 0xE3EE */ uint16_t    ocarinaMode; // original name : "ocarina_mode"
+    /* 0xE3F0 */ uint16_t    ocarinaAction; // original name : "ocarina_no"
+    /* 0xE3F2 */ uint16_t    unk_E3F2; // this is like "lastPlayedSong" but set less often, original name : "chk_ocarina_no"
+    /* 0xE3F4 */ uint16_t    unk_E3F4; // unused, only set to 0 in z_actor
+    /* 0xE3F6 */ uint16_t    textboxBackgroundIdx;
+    /* 0xE3F8 */ uint8_t     textboxBackgroundForeColorIdx;
+    /* 0xE3F8 */ uint8_t     textboxBackgroundBackColorIdx;
+    /* 0xE3F8 */ uint8_t     textboxBackgroundYOffsetIdx;
+    /* 0xE3F8 */ uint8_t     textboxBackgroundUnkArg; // unused, set by the textbox background control character arguments
+    /* 0xE3FC */ char   unk_E3FC[0x2];
+    /* 0xE3FE */ int16_t    textboxColorRed;
+    /* 0xE400 */ int16_t    textboxColorGreen;
+    /* 0xE402 */ int16_t    textboxColorBlue;
+    /* 0xE404 */ int16_t    textboxColorAlphaTarget;
+    /* 0xE406 */ int16_t    textboxColorAlphaCurrent;
+    /* 0xE408 */ z64_actor_t* talkActor;
+    /* 0xE40C */ int16_t    disableWarpSongs; // warp song flag set by scene commands
+    /* 0xE40E */ int16_t    unk_E40E; // ocarina related
+    /* 0xE410 */ uint8_t     lastOcaNoteIdx;
+} MessageContext; // size = 0xE418
+
+
 typedef struct
 {
   char              unk_00_[0x01D8];          /* 0x00000 */
@@ -1658,6 +1714,7 @@ typedef struct EnGSwitch
 #define z64_Rand_ZeroOne_addr                   0x800CDCCC
 #define z64_RandSeed_addr                       0x800CDCC0
 #define z64_Rand_ZeroOne_addr                   0x800CDCCC
+#define Font_LoadChar_addr                      0x8005BCE4
 
 /* rom addresses */
 #define z64_icon_item_static_vaddr              0x007BD000
@@ -1729,6 +1786,7 @@ typedef int32_t(*z64_ActorSetLinkIncomingItemId_proc) (z64_actor_t *actor, z64_g
 typedef float (*z64_Rand_ZeroOne_proc)();
 typedef void(*z64_RandSeed_proc) (uint32_t seed);
 typedef float(*z64_Rand_ZeroOne_proc)();
+typedef void(*Font_LoadChar_proc)(void* font, uint8_t character, uint16_t codePointIndex);
 
 /* data */
 #define z64_file_mq             (*(OSMesgQueue*)      z64_file_mq_addr)
@@ -1807,5 +1865,6 @@ typedef float(*z64_Rand_ZeroOne_proc)();
 #define z64_Gfx_DrawDListOpa ((z64_Gfx_DrawDListOpa_proc)z64_Gfx_DrawDListOpa_addr)
 #define z64_Math_SinS ((z64_Math_SinS_proc)z64_Math_SinS_addr)
 #define z64_Rand_ZeroOne ((z64_Rand_ZeroOne_proc)z64_Rand_ZeroOne_addr)
+#define Font_LoadChar ((Font_LoadChar_proc)Font_LoadChar_addr)
 
 #endif
