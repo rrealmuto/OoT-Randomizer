@@ -1,5 +1,6 @@
 #include "z64.h"
 #include "stdbool.h"
+#include "save.h"
 
 // Helper function for adding characters to the decoded message buffer
 void Message_AddCharacter(MessageContext* msgCtx, void* pFont, uint32_t* pDecodedBufPos, uint32_t* pCharTexIdx, uint8_t charToAdd) {
@@ -58,6 +59,16 @@ bool Message_Decode_Additional_Control_Codes(MessageContext* msgCtx, uint8_t cur
     void* pFont = (void*)(((uint8_t*)(&z64_game)) + 0x2200); // Get a reference to the font. Our struct is obviously broken. Determined it is at 0x2200 + GlobalContext
     char* msgRaw = ((char*)pFont) + 0xDC88; // Get a reference to the start of the raw message. Index using msgCtx->msgBufPos. 
     
+    // Silver rupee puzzle control code
+    if(currChar == 0xF0) {
+        //Get the next character which tells us which puzzle it's for
+        uint8_t puzzle = (uint8_t*)(msgRaw[++(msgCtx->msgBufPos)]);
+        uint8_t count = extended_savectx.silver_rupee_counts[puzzle];
+        Message_AddInteger(msgCtx, pFont, pDecodedBufPos, pCharTexIdx, count);
+        (*pDecodedBufPos)--;
+        return true;
+    }
+
     /*
     Example new control code that replaces code 0xF0 w/ a number
     if(currChar == 0xF0) { 
