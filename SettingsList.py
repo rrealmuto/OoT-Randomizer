@@ -4638,6 +4638,16 @@ setting_infos = [
             ''',
         shared         = True,
     ),
+    Checkbutton(
+        name           = 'random_frog_song',
+        gui_text       = 'Random Frog Song Notes',
+        gui_tooltip    = '''\
+            Randomizes the notes of the final
+            song of Fabulous Five Froggish Tenors.
+        ''',
+            default    = False,
+            shared     = True
+    ),
     Combobox(
         name           = 'correct_chest_appearances',
         gui_text       = 'Chest Appearance Matches Contents',

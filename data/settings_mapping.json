@@ -340,6 +340,7 @@
           "row_span": [1,1,1],
           "settings": [
             "ocarina_songs",
+            "random_frog_song",
             "correct_chest_appearances",
             "minor_items_as_major_chest",
             "invisible_chests",

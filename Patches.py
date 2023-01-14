@@ -2272,6 +2272,13 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         frog=world.settings.ocarina_songs in ('frog', 'all'),
         warp=world.settings.ocarina_songs in ('warp', 'all'),
     )
+    
+    # Random frog song
+    if world.settings.random_frog_song:
+        song = []
+        for i in range(0,14):
+            song.append(random.randint(0, 4))
+        rom.write_bytes(0xB78AA0, song)
 
     # Sets the torch count to open the entrance to Shadow Temple
     if world.settings.easier_fire_arrow_entry:
