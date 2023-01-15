@@ -19,7 +19,6 @@ def shop_address(shop_id, shelf_id):
 #       LW      Lost Woods
 #       OGC     Outside Ganon's Castle
 #       SFM     Sacred Forest Meadow
-#       TH      Thieves' Hideout
 #       ToT     Temple of Time
 #       ZD      Zora's Domain
 #       ZF      Zora's Fountain

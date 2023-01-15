@@ -341,7 +341,8 @@ MISC_MESSAGES = {
     0x0458: ("\x12\x68\x7AMweep\x07\x04\x59", 0x23),
     0x0459: ("\x12\x68\x7AMweep\x07\x04\x5A", 0x23),
     0x045A: ("\x12\x68\x7AMweep\x07\x04\x5B", 0x23),
-    0x045B: ("\x12\x68\x7AMweep", 0x23)
+    0x045B: ("\x12\x68\x7AMweep", 0x23),
+    0x6013: ("Hey, newcomer!\x04Want me to throw you in jail?\x01\x01\x1B\x05\x42No\x01Yes\x05\x40", 0x00),
 }
 
 

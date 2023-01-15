@@ -69,7 +69,7 @@ class World(object):
         if (
             settings.open_forest == 'closed'
             and (
-                self.shuffle_special_interior_entrances or settings.shuffle_overworld_entrances
+                self.shuffle_special_interior_entrances or settings.shuffle_hideout_entrances or settings.shuffle_overworld_entrances
                 or settings.warp_songs or settings.spawn_positions
             )
         ):
@@ -580,6 +580,10 @@ class World(object):
                     if self.settings.logic_rules != 'none':
                         self.parser.parse_spot_rule(new_exit)
                     new_region.exits.append(new_exit)
+            if 'savewarp' in region:
+                new_exit = Entrance('%s -> %s' % (new_region.name, region['savewarp']), new_region)
+                new_exit.connected_region = region['savewarp']
+                new_region.exits.append(new_exit)
             self.regions.append(new_region)
 
 
