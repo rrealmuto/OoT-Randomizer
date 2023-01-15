@@ -57,6 +57,7 @@ class Dungeon:
 
 
 def create_dungeons(world):
+    savewarps_to_connect = []
     for hint_area in HintArea:
         if hint_area.is_dungeon:
             name = hint_area.dungeon_name
@@ -72,5 +73,6 @@ def create_dungeons(world):
                 else:
                     dungeon_json = os.path.join(data_path('World'), name + ' MQ.json')
 
-            world.load_regions_from_json(dungeon_json)
+            savewarps_to_connect += world.load_regions_from_json(dungeon_json)
             world.dungeons.append(Dungeon(world, name, hint_area))
+    return savewarps_to_connect

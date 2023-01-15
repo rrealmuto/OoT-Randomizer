@@ -447,9 +447,18 @@ class EntranceShuffleError(ShuffleError):
 
 
 # Set entrances of all worlds, first initializing them to their default regions, then potentially shuffling part of them
-def set_entrances(worlds):
+def set_entrances(worlds, savewarps_to_connect):
     for world in worlds:
         world.initialize_entrances()
+
+    for savewarp, replaces in savewarps_to_connect:
+        savewarp.replaces = savewarp.world.get_entrance(replaces)
+        savewarp.connect(savewarp.replaces.connected_region)
+
+    for world in worlds:
+        if world.settings.logic_rules != 'glitched':
+            # Set entrance data for all entrances, even those we aren't shuffling
+            set_all_entrances_data(world)
 
     if worlds[0].entrance_shuffle:
         shuffle_random_entrances(worlds)
@@ -470,9 +479,6 @@ def shuffle_random_entrances(worlds):
 
     # Shuffle all entrances within their own worlds
     for world in worlds:
-        # Set entrance data for all entrances, even those we aren't shuffling
-        set_all_entrances_data(world)
-
         # Determine entrance pools based on settings, to be shuffled in the order we set them by
         one_way_entrance_pools = OrderedDict()
         entrance_pools = OrderedDict()
