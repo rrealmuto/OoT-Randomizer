@@ -186,7 +186,7 @@ item_table = {
     'Silver Rupee Pouch (Shadow Temple Scythe Shortcut)':       ('SilverRupee', True,  0x00EE, {'alias': ('Silver Rupee (Shadow Temple Scythe Shortcut)', 10), 'progressive': 1}),
     'Silver Rupee Pouch (Shadow Temple Invisible Blades)':      ('SilverRupee', True,  0x00EF, {'alias': ('Silver Rupee (Shadow Temple Invisible Blades)', 10), 'progressive': 1}),
     'Silver Rupee Pouch (Shadow Temple Huge Pit)':              ('SilverRupee', True,  0x00F0, {'alias': ('Silver Rupee (Shadow Temple Huge Pit)', 10), 'progressive': 1}),
-    'Silver Rupee Pouch (Shadow Temple Invidible Spikes)':      ('SilverRupee', True,  0x00F1, {'alias': ('Silver Rupee (Shadow Temple Invidible Spikes)', 10), 'progressive': 1}),
+    'Silver Rupee Pouch (Shadow Temple Invisible Spikes)':      ('SilverRupee', True,  0x00F1, {'alias': ('Silver Rupee (Shadow Temple Invisible Spikes)', 10), 'progressive': 1}),
     'Silver Rupee Pouch (Gerudo Training Ground Slopes)':       ('SilverRupee', True,  0x00F2, {'alias': ('Silver Rupee (Gerudo Training Ground Slopes)', 10), 'progressive': 1}),
     'Silver Rupee Pouch (Gerudo Training Ground Lava)':         ('SilverRupee', True,  0x00F3, {'alias': ('Silver Rupee (Gerudo Training Ground Lava)', 10), 'progressive': 1}),
     'Silver Rupee Pouch (Gerudo Training Ground Water)':        ('SilverRupee', True,  0x00F4, {'alias': ('Silver Rupee (Gerudo Training Ground Water)', 10), 'progressive': 1}),
