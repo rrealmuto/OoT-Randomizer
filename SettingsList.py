@@ -542,6 +542,16 @@ logic_tricks = {
                     PoH without needing Longshot. You will take
                     fall damage.
                     '''},
+    'Gerudo\'s Fortress Ledge Jumps': {
+        'name'    : 'logic_gf_jump',
+        'tags'    : ("Gerudo's Fortress", "Overworld", "Child", "Adult",),
+        'tooltip' : '''\
+                    Allows both ages to use a jump to reach the second
+                    floor of the fortress from the southern roof with
+                    the guard, and adult to jump to the top roof from
+                    there, without going through the interiors of the
+                    Thieves' Hideout.
+                    '''},
     'Thieves\' Hideout "Kitchen" with No Additional Items': {
         'name'    : 'logic_gerudo_kitchen',
         'tags'    : ("Thieves' Hideout", "Gerudo's Fortress", "Overworld", "Child", "Adult",),
@@ -551,13 +561,6 @@ logic_tricks = {
                     Bow or Hookshot to stun them from a distance, or
                     Hover Boots to cross the room without needing to
                     deal with the guards.
-                    '''},
-    'Gerudo\'s Fortress Ledge Jumps': {
-        'name'    : 'logic_gf_jump',
-        'tags'    : ("Gerudo's Fortress", "Overworld", "Adult",),
-        'tooltip' : '''\
-                    Adult can jump onto the top roof of the fortress
-                    without going through the interior of the hideout.
                     '''},
     'Wasteland Crossing without Hover Boots or Longshot': {
         'name'    : 'logic_wasteland_crossing',
@@ -3066,6 +3069,9 @@ setting_infos = [
             vanilla location, dropping from fighting Gerudo guards
             that attack when trying to free the jailed carpenters.
 
+            "Gerudo Fortress Region": Thieves' Hideout Keys can only
+            appear in Gerudo Fortress or Thieves' Hideout.
+
             "Regional": Thieves' Hideout Keys can only appear in
             Gerudo Valley, Gerudo Fortress, Thieves' Hideout, Gerudo
             Training Ground, Haunted Wasteland, Desert Colossus, or
@@ -3784,7 +3790,8 @@ setting_infos = [
             always takes you to the first room (with 1 torch).
 
             There is an extra heart piece on the balcony above the jail in
-            Gerudo's Fortress if accessed as child. This is not shuffled.
+            Gerudo's Fortress if accessed as child. This is not shuffled
+            and not considered in logic.
         ''',
         default        = False,
         disable        = {
