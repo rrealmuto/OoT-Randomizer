@@ -915,7 +915,7 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
                 raise EntranceShuffleError('Kak Impas House entrances are not in the same hint area')
 
     if (world.shuffle_special_interior_entrances or world.settings.shuffle_overworld_entrances or world.settings.spawn_positions) and \
-       (entrance_placed == None or entrance_placed.type in ('SpecialInterior', 'Overworld', 'OverworldOneWay', 'Spawn', 'WarpSong', 'OwlDrop')):
+       (entrance_placed == None or entrance_placed.type in ('SpecialInterior', 'Hideout', 'Overworld', 'OverworldOneWay', 'Spawn', 'WarpSong', 'OwlDrop')):
         # At least one valid starting region with all basic refills should be reachable without using any items at the beginning of the seed
         # Note this creates new empty states rather than reuse the worlds' states (which already have starting items)
         no_items_search = Search([State(w) for w in worlds])
@@ -939,7 +939,7 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
             raise EntranceShuffleError('Path to Temple of Time as child is not guaranteed')
 
     if (world.shuffle_interior_entrances or world.settings.shuffle_overworld_entrances) and \
-       (entrance_placed == None or entrance_placed.type in ('Interior', 'SpecialInterior', 'Overworld', 'OverworldOneWay', 'Spawn', 'WarpSong', 'OwlDrop')):
+       (entrance_placed == None or entrance_placed.type in ('Interior', 'SpecialInterior', 'Hideout', 'Overworld', 'OverworldOneWay', 'Spawn', 'WarpSong', 'OwlDrop')):
         # The Big Poe Shop should always be accessible as adult without the need to use any bottles
         # This is important to ensure that players can never lock their only bottles by filling them with Big Poes they can't sell
         # We can use starting items in this check as long as there are no exits requiring the use of a bottle without refills

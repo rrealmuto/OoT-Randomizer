@@ -605,9 +605,9 @@ logic_tricks = {
                     To cross the river of sand with no additional items,
                     be sure to also enable "Wasteland Crossing without
                     Hover Boots or Longshot".
-                    Unless all overworld entrances are randomized, child
-                    Link will not be expected to do anything at Gerudo's
-                    Fortress.
+                    Unless Thieves' Hideout entrances or all overworld
+                    entrances are randomized, child Link will not be
+                    expected to do anything at Gerudo's Fortress.
                     '''},
     'Colossus Hill GS with Hookshot': {
         'name'    : 'logic_colossus_gs',
@@ -2994,6 +2994,9 @@ setting_infos = [
             "Vanilla": Thieves' Hideout Keys will appear in their
             vanilla location, dropping from fighting Gerudo guards
             that attack when trying to free the jailed carpenters.
+
+            "Gerudo Fortress Region": Thieves' Hideout Keys can only
+            appear in Gerudo Fortress or Thieves' Hideout.
 
             "Regional": Thieves' Hideout Keys can only appear in
             Gerudo Valley, Gerudo Fortress, Thieves' Hideout, Gerudo

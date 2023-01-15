@@ -389,8 +389,8 @@ class HintArea(Enum):
             dungeon_name = dungeon_name[dungeon_name.index('(') + 1:dungeon_name.index(')')]
 
         if dungeon_name == "Thieves Hideout":
-            # Special case for Thieves' Hideout - change this if it gets its own hint area.
-            return HintArea.GERUDO_FORTRESS
+            # Special case for Thieves' Hideout since it's not considered a dungeon
+            return HintArea.THIEVES_HIDEOUT
 
         for hint_area in cls:
             if hint_area.dungeon_name == dungeon_name:
