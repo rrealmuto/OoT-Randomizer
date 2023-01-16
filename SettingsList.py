@@ -3374,7 +3374,7 @@ setting_infos = [
         disabled_default = False,
         shared         = True,
         disable        = {
-            True : {'settings' : ['open_forest', 'shuffle_interior_entrances', 'shuffle_overworld_entrances', 'warp_songs', 'blue_warps', 'shuffle_child_spawn', 'shuffle_adult_spawn', 'mix_entrance_pools', 'decouple_entrances']}
+            True : {'settings' : ['open_forest', 'shuffle_overworld_entrances', 'shuffle_child_spawn', 'mix_entrance_pools', 'decouple_entrances']}
         },
     ),
     Combobox(
@@ -4051,9 +4051,6 @@ setting_infos = [
             or dungeons, potentially bypassing item requirements.
         ''',
         default        = 'off',
-        disable        = {
-            '!off' : {'settings': ['require_gohma']},
-        },
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -4127,9 +4124,6 @@ setting_infos = [
             potentially bypassing item requirements.
         ''',
         default        = 'off',
-        disable        = {
-            '!off' : {'settings': ['require_gohma']},
-        },
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',

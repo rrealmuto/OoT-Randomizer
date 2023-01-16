@@ -89,8 +89,8 @@ def build_one_way_targets(world, types_to_include, types_to_include_reverse, exc
 #       ZR      Zora's River
 
 entrance_shuffle_table = [
-    ('Dungeon',         ('KF Outside Deku Tree -> Deku Tree Lobby',                         { 'index': 0x0000 }),
-                        ('Deku Tree Lobby -> KF Outside Deku Tree',                         { 'index': 0x0209 })),
+    ('Dungeon',         ('KF Outside Deku Tree -> Deku Tree Lobby',                         { 'index': 0x0000, 'forest': True }),
+                        ('Deku Tree Lobby -> KF Outside Deku Tree',                         { 'index': 0x0209, 'forest': True })),
     ('Dungeon',         ('Death Mountain -> Dodongos Cavern Beginning',                     { 'index': 0x0004 }),
                         ('Dodongos Cavern Beginning -> Death Mountain',                     { 'index': 0x0242 })),
     ('Dungeon',         ('Zoras Fountain -> Jabu Jabus Belly Beginning',                    { 'index': 0x0028 }),
@@ -115,8 +115,8 @@ entrance_shuffle_table = [
     ('DungeonSpecial',  ('Ganons Castle Ledge -> Ganons Castle Lobby',                      { 'index': 0x0467 }),
                         ('Ganons Castle Lobby -> Castle Grounds From Ganons Castle',        { 'index': 0x023D })),
 
-    ('ChildBoss',       ('Deku Tree Boss Door -> Queen Gohma Boss Room',                    { 'index': 0x040f, 'savewarp_addresses': [ 0xB06292, 0xBC6162, 0xBC60AE ] }),
-                        ('Queen Gohma Boss Room -> Deku Tree Boss Door',                    { 'index': 0x0252 })),
+    ('ChildBoss',       ('Deku Tree Boss Door -> Queen Gohma Boss Room',                    { 'index': 0x040f, 'savewarp_addresses': [ 0xB06292, 0xBC6162, 0xBC60AE ], 'forest': True }),
+                        ('Queen Gohma Boss Room -> Deku Tree Boss Door',                    { 'index': 0x0252, 'forest': True })),
     ('ChildBoss',       ('Dodongos Cavern Boss Door -> King Dodongo Boss Room',             { 'index': 0x040b, 'savewarp_addresses': [ 0xB062B6, 0xBC616E ] }),
                         ('King Dodongo Boss Room -> Dodongos Cavern Boss Door',             { 'index': 0x00c5 })),
     ('ChildBoss',       ('Jabu Jabus Belly Boss Door -> Barinade Boss Room',                { 'index': 0x0301, 'savewarp_addresses': [ 0xB062C2, 0xBC60C2 ] }),
@@ -132,16 +132,16 @@ entrance_shuffle_table = [
     ('AdultBoss',       ('Spirit Temple Boss Door -> Twinrova Boss Room',                   { 'index': 0x008D, 'savewarp_addresses': [ 0xB062F2, 0xBC6122 ] }),
                         ('Twinrova Boss Room -> Spirit Temple Boss Door',                   { 'index': 0x02F5 })),
 
-    ('Interior',        ('Kokiri Forest -> KF Midos House',                                 { 'index': 0x0433 }),
-                        ('KF Midos House -> Kokiri Forest',                                 { 'index': 0x0443 })),
-    ('Interior',        ('Kokiri Forest -> KF Sarias House',                                { 'index': 0x0437 }),
-                        ('KF Sarias House -> Kokiri Forest',                                { 'index': 0x0447 })),
-    ('Interior',        ('Kokiri Forest -> KF House of Twins',                              { 'index': 0x009C }),
-                        ('KF House of Twins -> Kokiri Forest',                              { 'index': 0x033C })),
-    ('Interior',        ('Kokiri Forest -> KF Know It All House',                           { 'index': 0x00C9 }),
-                        ('KF Know It All House -> Kokiri Forest',                           { 'index': 0x026A })),
-    ('Interior',        ('Kokiri Forest -> KF Kokiri Shop',                                 { 'index': 0x00C1 }),
-                        ('KF Kokiri Shop -> Kokiri Forest',                                 { 'index': 0x0266 })),
+    ('Interior',        ('Kokiri Forest -> KF Midos House',                                 { 'index': 0x0433, 'forest': True }),
+                        ('KF Midos House -> Kokiri Forest',                                 { 'index': 0x0443, 'forest': True })),
+    ('Interior',        ('Kokiri Forest -> KF Sarias House',                                { 'index': 0x0437, 'forest': True }),
+                        ('KF Sarias House -> Kokiri Forest',                                { 'index': 0x0447, 'forest': True })),
+    ('Interior',        ('Kokiri Forest -> KF House of Twins',                              { 'index': 0x009C, 'forest': True }),
+                        ('KF House of Twins -> Kokiri Forest',                              { 'index': 0x033C, 'forest': True })),
+    ('Interior',        ('Kokiri Forest -> KF Know It All House',                           { 'index': 0x00C9, 'forest': True }),
+                        ('KF Know It All House -> Kokiri Forest',                           { 'index': 0x026A, 'forest': True })),
+    ('Interior',        ('Kokiri Forest -> KF Kokiri Shop',                                 { 'index': 0x00C1, 'forest': True }),
+                        ('KF Kokiri Shop -> Kokiri Forest',                                 { 'index': 0x0266, 'forest': True })),
     ('Interior',        ('Lake Hylia -> LH Lab',                                            { 'index': 0x0043 }),
                         ('LH Lab -> Lake Hylia',                                            { 'index': 0x03CC })),
     ('Interior',        ('LH Fishing Island -> LH Fishing Hole',                            { 'index': 0x045F }),
@@ -205,8 +205,8 @@ entrance_shuffle_table = [
     ('Interior',        ('Zoras Fountain -> ZF Great Fairy Fountain',                       { 'index': 0x0371 }),
                         ('ZF Great Fairy Fountain -> Zoras Fountain',                       { 'index': 0x0394, 'addresses': [0xBEFD7E] })),
 
-    ('SpecialInterior', ('Kokiri Forest -> KF Links House',                                 { 'index': 0x0272 }),
-                        ('KF Links House -> Kokiri Forest',                                 { 'index': 0x0211 })),
+    ('SpecialInterior', ('Kokiri Forest -> KF Links House',                                 { 'index': 0x0272, 'forest': True }),
+                        ('KF Links House -> Kokiri Forest',                                 { 'index': 0x0211, 'forest': True })),
     ('SpecialInterior', ('ToT Entrance -> Temple of Time',                                  { 'index': 0x0053 }),
                         ('Temple of Time -> ToT Entrance',                                  { 'index': 0x0472 })),
     ('SpecialInterior', ('Kakariko Village -> Kak Windmill',                                { 'index': 0x0453 }),
@@ -289,16 +289,16 @@ entrance_shuffle_table = [
                         ('LLR Grotto -> Lon Lon Ranch',                                     { 'grotto_id': 0x15, 'entrance': 0x0157, 'room': 0x00, 'angle': 0xAAAB, 'pos': (0x44E0FD92, 0x00000000, 0x44BB9A4C), 'savewarp_fallback': 0x05D4 })),
     ('Grotto',          ('SFM Entryway -> SFM Wolfos Grotto',                               { 'grotto_id': 0x16, 'entrance': 0x05B4, 'content': 0xED, 'scene': 0x56 }),
                         ('SFM Wolfos Grotto -> SFM Entryway',                               { 'grotto_id': 0x16, 'entrance': 0x00FC, 'room': 0x00, 'angle': 0x8000, 'pos': (0xC33DDC64, 0x00000000, 0x44ED42CE), 'savewarp_fallback': 0x00FC })),
-    ('Grotto',          ('Sacred Forest Meadow -> SFM Storms Grotto',                       { 'grotto_id': 0x17, 'entrance': 0x05BC, 'content': 0xEE, 'scene': 0x56 }),
-                        ('SFM Storms Grotto -> Sacred Forest Meadow',                       { 'grotto_id': 0x17, 'entrance': 0x00FC, 'room': 0x00, 'angle': 0xAAAB, 'pos': (0x439D6D22, 0x43F00000, 0xC50FC63A), 'savewarp_fallback': 0x0600 })),
-    ('Grotto',          ('Sacred Forest Meadow -> SFM Fairy Grotto',                        { 'grotto_id': 0x18, 'entrance': 0x036D, 'content': 0xFF, 'scene': 0x56 }),
-                        ('SFM Fairy Grotto -> Sacred Forest Meadow',                        { 'grotto_id': 0x18, 'entrance': 0x00FC, 'room': 0x00, 'angle': 0x0000, 'pos': (0x425C22D1, 0x00000000, 0x434E9835), 'savewarp_fallback': 0x0600 })),
+    ('Grotto',          ('Sacred Forest Meadow -> SFM Storms Grotto',                       { 'grotto_id': 0x17, 'entrance': 0x05BC, 'content': 0xEE, 'scene': 0x56, 'forest': True }),
+                        ('SFM Storms Grotto -> Sacred Forest Meadow',                       { 'grotto_id': 0x17, 'entrance': 0x00FC, 'room': 0x00, 'angle': 0xAAAB, 'pos': (0x439D6D22, 0x43F00000, 0xC50FC63A), 'savewarp_fallback': 0x0600, 'forest': True })),
+    ('Grotto',          ('Sacred Forest Meadow -> SFM Fairy Grotto',                        { 'grotto_id': 0x18, 'entrance': 0x036D, 'content': 0xFF, 'scene': 0x56, 'forest': True }),
+                        ('SFM Fairy Grotto -> Sacred Forest Meadow',                        { 'grotto_id': 0x18, 'entrance': 0x00FC, 'room': 0x00, 'angle': 0x0000, 'pos': (0x425C22D1, 0x00000000, 0x434E9835), 'savewarp_fallback': 0x0600, 'forest': True })),
     ('Grotto',          ('LW Beyond Mido -> LW Scrubs Grotto',                              { 'grotto_id': 0x19, 'entrance': 0x05B0, 'content': 0xF5, 'scene': 0x5B }),
                         ('LW Scrubs Grotto -> LW Beyond Mido',                              { 'grotto_id': 0x19, 'entrance': 0x01A9, 'room': 0x08, 'angle': 0x2000, 'pos': (0x44293FA2, 0x00000000, 0xC51DE32B), 'savewarp_fallback': 0x01A9 })),
     ('Grotto',          ('Lost Woods -> LW Near Shortcuts Grotto',                          { 'grotto_id': 0x1A, 'entrance': 0x003F, 'content': 0x14, 'scene': 0x5B }),
                         ('LW Near Shortcuts Grotto -> Lost Woods',                          { 'grotto_id': 0x1A, 'entrance': 0x011E, 'room': 0x02, 'angle': 0xE000, 'pos': (0x4464B055, 0x00000000, 0xC464DB7D), 'savewarp_fallback': 0x04D6 })),
-    ('Grotto',          ('Kokiri Forest -> KF Storms Grotto',                               { 'grotto_id': 0x1B, 'entrance': 0x003F, 'content': 0x2C, 'scene': 0x55 }),
-                        ('KF Storms Grotto -> Kokiri Forest',                               { 'grotto_id': 0x1B, 'entrance': 0x0286, 'room': 0x00, 'angle': 0x4000, 'pos': (0xC3FD8856, 0x43BE0000, 0xC4988DA8), 'savewarp_fallback': 0x0286 })),
+    ('Grotto',          ('Kokiri Forest -> KF Storms Grotto',                               { 'grotto_id': 0x1B, 'entrance': 0x003F, 'content': 0x2C, 'scene': 0x55, 'forest': True }),
+                        ('KF Storms Grotto -> Kokiri Forest',                               { 'grotto_id': 0x1B, 'entrance': 0x0286, 'room': 0x00, 'angle': 0x4000, 'pos': (0xC3FD8856, 0x43BE0000, 0xC4988DA8), 'savewarp_fallback': 0x0286, 'forest': True })),
     ('Grotto',          ('Zoras Domain -> ZD Storms Grotto',                                { 'grotto_id': 0x1C, 'entrance': 0x036D, 'content': 0xFF, 'scene': 0x58 }),
                         ('ZD Storms Grotto -> Zoras Domain',                                { 'grotto_id': 0x1C, 'entrance': 0x0108, 'room': 0x01, 'angle': 0xD555, 'pos': (0xC455EB8D, 0x41600000, 0xC3ED3602), 'savewarp_fallback': 0x0108 })),
     ('Grotto',          ('GF Entrances Behind Crates -> GF Storms Grotto',                  { 'grotto_id': 0x1D, 'entrance': 0x036D, 'content': 0xFF, 'scene': 0x5D }),
@@ -307,8 +307,8 @@ entrance_shuffle_table = [
                         ('GV Storms Grotto -> GV Fortress Side',                            { 'grotto_id': 0x1E, 'entrance': 0x022D, 'room': 0x00, 'angle': 0x9555, 'pos': (0xC4A5CAD2, 0x41700000, 0xC475FF9B), 'savewarp_fallback': 0x022D })),
     ('Grotto',          ('GV Grotto Ledge -> GV Octorok Grotto',                            { 'grotto_id': 0x1F, 'entrance': 0x05AC, 'content': 0xF2, 'scene': 0x5A }),
                         ('GV Octorok Grotto -> GV Grotto Ledge',                            { 'grotto_id': 0x1F, 'entrance': 0x0117, 'room': 0x00, 'angle': 0x8000, 'pos': (0x4391C1A4, 0xC40AC000, 0x44B8CC9B), 'savewarp_fallback': 0x0117 })), #TODO (out-of-logic access to Gerudo Valley)
-    ('Grotto',          ('LW Beyond Mido -> Deku Theater',                                  { 'grotto_id': 0x20, 'entrance': 0x05C4, 'content': 0xF3, 'scene': 0x5B }),
-                        ('Deku Theater -> LW Beyond Mido',                                  { 'grotto_id': 0x20, 'entrance': 0x01A9, 'room': 0x06, 'angle': 0x4000, 'pos': (0x42AA8FDA, 0xC1A00000, 0xC4C82D49), 'savewarp_fallback': 0x01A9 })),
+    ('Grotto',          ('LW Beyond Mido -> Deku Theater',                                  { 'grotto_id': 0x20, 'entrance': 0x05C4, 'content': 0xF3, 'scene': 0x5B, 'forest': True }),
+                        ('Deku Theater -> LW Beyond Mido',                                  { 'grotto_id': 0x20, 'entrance': 0x01A9, 'room': 0x06, 'angle': 0x4000, 'pos': (0x42AA8FDA, 0xC1A00000, 0xC4C82D49), 'savewarp_fallback': 0x01A9, 'forest': True })),
 
     ('Grave',           ('Graveyard -> Graveyard Shield Grave',                             { 'index': 0x004B }),
                         ('Graveyard Shield Grave -> Graveyard',                             { 'index': 0x035D })),
@@ -321,14 +321,14 @@ entrance_shuffle_table = [
 
     ('Overworld',       ('Kokiri Forest -> LW Bridge From Forest',                          { 'index': 0x05E0 }),
                         ('LW Bridge -> Kokiri Forest',                                      { 'index': 0x020D })),
-    ('Overworld',       ('Kokiri Forest -> Lost Woods',                                     { 'index': 0x011E }),
-                        ('LW Forest Exit -> Kokiri Forest',                                 { 'index': 0x0286 })),
-    ('Overworld',       ('Lost Woods -> GC Woods Warp',                                     { 'index': 0x04E2 }),
-                        ('GC Woods Warp -> Lost Woods',                                     { 'index': 0x04D6 })),
+    ('Overworld',       ('Kokiri Forest -> Lost Woods',                                     { 'index': 0x011E, 'forest': True }),
+                        ('LW Forest Exit -> Kokiri Forest',                                 { 'index': 0x0286, 'forest': True })),
+    ('Overworld',       ('Lost Woods -> GC Woods Warp',                                     { 'index': 0x04E2, 'forest': True }),
+                        ('GC Woods Warp -> Lost Woods',                                     { 'index': 0x04D6, 'forest': True })),
     ('Overworld',       ('Lost Woods -> Zora River',                                        { 'index': 0x01DD }),
                         ('Zora River -> LW Underwater Entrance',                            { 'index': 0x04DA })),
-    ('Overworld',       ('LW Beyond Mido -> SFM Entryway',                                  { 'index': 0x00FC }),
-                        ('SFM Entryway -> LW Beyond Mido',                                  { 'index': 0x01A9 })),
+    ('Overworld',       ('LW Beyond Mido -> SFM Entryway',                                  { 'index': 0x00FC, 'forest': True }),
+                        ('SFM Entryway -> LW Beyond Mido',                                  { 'index': 0x01A9, 'forest': True })),
     ('Overworld',       ('LW Bridge -> Hyrule Field',                                       { 'index': 0x0185 }),
                         ('Hyrule Field -> LW Bridge',                                       { 'index': 0x04DE })),
     ('Overworld',       ('Hyrule Field -> Lake Hylia',                                      { 'index': 0x0102 }),
@@ -377,17 +377,17 @@ entrance_shuffle_table = [
     ('OwlDrop',         ('LH Owl Flight -> Hyrule Field',                                   { 'index': 0x027E, 'addresses': [0xAC9F26] })),
     ('OwlDrop',         ('DMT Owl Flight -> Kak Impas Rooftop',                             { 'index': 0x0554, 'addresses': [0xAC9EF2] })),
 
-    ('ChildSpawn',      ('Child Spawn -> KF Links House',                                   { 'index': 0x00BB, 'addresses': [0xB06342] })),
+    ('ChildSpawn',      ('Child Spawn -> KF Links House',                                   { 'index': 0x00BB, 'addresses': [0xB06342], 'forest': True })),
     ('AdultSpawn',      ('Adult Spawn -> Temple of Time',                                   { 'index': 0x05F4, 'addresses': [0xB06332] })),
 
-    ('WarpSong',        ('Minuet of Forest Warp -> Sacred Forest Meadow',                   { 'index': 0x0600, 'addresses': [0xBF023C] })),
+    ('WarpSong',        ('Minuet of Forest Warp -> Sacred Forest Meadow',                   { 'index': 0x0600, 'addresses': [0xBF023C], 'forest': True })),
     ('WarpSong',        ('Bolero of Fire Warp -> DMC Central Local',                        { 'index': 0x04F6, 'addresses': [0xBF023E] })),
     ('WarpSong',        ('Serenade of Water Warp -> Lake Hylia',                            { 'index': 0x0604, 'addresses': [0xBF0240] })),
     ('WarpSong',        ('Requiem of Spirit Warp -> Desert Colossus',                       { 'index': 0x01F1, 'addresses': [0xBF0242] })),
     ('WarpSong',        ('Nocturne of Shadow Warp -> Graveyard Warp Pad Region',            { 'index': 0x0568, 'addresses': [0xBF0244] })),
     ('WarpSong',        ('Prelude of Light Warp -> Temple of Time',                         { 'index': 0x05F4, 'addresses': [0xBF0246] })),
 
-    ('BlueWarp',        ('Queen Gohma Boss Room -> KF Outside Deku Tree',                   { 'index': 0x0457, 'addresses': [0xAC93A2, 0xCA3142] })),
+    ('BlueWarp',        ('Queen Gohma Boss Room -> KF Outside Deku Tree',                   { 'index': 0x0457, 'addresses': [0xAC93A2, 0xCA3142], 'forest': True })),
     ('BlueWarp',        ('King Dodongo Boss Room -> Death Mountain',                        { 'index': 0x047A, 'addresses': [0xAC9336, 0xCA30CA] })),
     ('BlueWarp',        ('Barinade Boss Room -> Zoras Fountain',                            { 'index': 0x010E, 'addresses': [0xAC936A, 0xCA31B2] })),
     ('BlueWarp',        ('Phantom Ganon Boss Room -> Sacred Forest Meadow',                 { 'index': 0x0608, 'addresses': [0xAC9F96, 0xCA3D66, 0xCA3D5A], 'child_index': 0x0600 })),
@@ -696,7 +696,15 @@ def shuffle_random_entrances(worlds):
 
         # Shuffle all entrances among the pools to shuffle
         for pool_type, entrance_pool in one_way_entrance_pools.items():
-            placed_one_way_entrances += shuffle_entrance_pool(world, worlds, entrance_pool, one_way_target_entrance_pools[pool_type], locations_to_ensure_reachable, check_all=True, placed_one_way_entrances=placed_one_way_entrances)
+            if world.settings.require_gohma:
+                forest_entrance_pool = list(filter(lambda entrance: entrance.data.get('forest', False), entrance_pool))
+                outside_entrance_pool = list(filter(lambda entrance: not entrance.data.get('forest', False), entrance_pool))
+                forest_target_pool = list(filter(lambda entrance: entrance.replaces.data.get('forest', False), one_way_target_entrance_pools[pool_type]))
+                outside_target_pool = list(filter(lambda entrance: not entrance.replaces.data.get('forest', False), one_way_target_entrance_pools[pool_type]))
+                placed_one_way_entrances += shuffle_entrance_pool(world, worlds, forest_entrance_pool, forest_target_pool, locations_to_ensure_reachable, check_all=True, placed_one_way_entrances=placed_one_way_entrances)
+                placed_one_way_entrances += shuffle_entrance_pool(world, worlds, outside_entrance_pool, outside_target_pool, locations_to_ensure_reachable, check_all=True, placed_one_way_entrances=placed_one_way_entrances)
+            else:
+                placed_one_way_entrances += shuffle_entrance_pool(world, worlds, entrance_pool, one_way_target_entrance_pools[pool_type], locations_to_ensure_reachable, check_all=True, placed_one_way_entrances=placed_one_way_entrances)
             # Delete all targets that we just placed from other one way target pools so multiple one way entrances don't use the same target
             replaced_entrances = [entrance.replaces for entrance in entrance_pool]
             for remaining_target in chain.from_iterable(one_way_target_entrance_pools.values()):
@@ -914,7 +922,10 @@ def place_one_way_priority_entrance(worlds, world, priority_name, allowed_region
     # Shuffle this list.
     # Pick the first one not already set, not adult spawn, that has a valid target entrance.
     # Assemble then clear entrances from the pool and target pools as appropriate.
-    avail_pool = list(chain.from_iterable(one_way_entrance_pools[t] for t in allowed_types if t in one_way_entrance_pools))
+    avail_pool = chain.from_iterable(one_way_entrance_pools[t] for t in allowed_types if t in one_way_entrance_pools)
+    if world.settings.require_gohma:
+        avail_pool = filter(lambda entrance: not entrance.data.get('forest', False), avail_pool)
+    avail_pool = list(avail_pool)
     random.shuffle(avail_pool)
     for entrance in avail_pool:
         if entrance.replaces:
