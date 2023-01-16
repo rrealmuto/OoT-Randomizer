@@ -426,6 +426,7 @@ location_table = OrderedDict([
     ("HC Castle Moat Wonderitem 7",                                  ("Wonderitem",   0x5F,  (0,0,39), None,                        'Rupee (1)',                             ("Hyrule Castle", "Wonderitem"))),
     ("HC Castle Moat Wonderitem 8",                                  ("Wonderitem",   0x5F,  (0,0,40), None,                        'Rupee (1)',                             ("Hyrule Castle", "Wonderitem"))),
     ("HC Castle Moat Wonderitem 9",                                  ("Wonderitem",   0x5F,  (0,0,41), None,                        'Rupee (1)',                             ("Hyrule Castle", "Wonderitem"))),
+    ("HC Castle Moat Wonderitem 10",                                 ("Wonderitem",   0x5F,  (0,0,42), None,                        'Rupee (1)',                             ("Hyrule Castle", "Wonderitem"))),
     ("HC Zeldas Courtyard Mario Wonderitem",                         ("Wonderitem",   0x4A,  (0,0,6),  None,                        'Rupees (20)',                           ("Hyrule Castle", "Wonderitem"))),
 
     # Lon Lon Ranch
