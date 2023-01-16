@@ -1383,7 +1383,7 @@ location_table = OrderedDict([
     
     # Dodongo's Cavern MQ Enemies
     ("Dodongos Cavern MQ Right Side Skulltula",                      ("EnemyDrop",    0x01,  (1,0,3), None,                         'Rupees (5)',                            ("Dodongo's Cavern", "Master Quest", "EnemyDrop"))),
-    ("Dodongos Cavern MQ Right Side Keese",                          ("EnemyDrop",    0x01,  (1,0,4), None,                         'Rupees (5)',                            ("Dodongo's Cavern", "Master Quest", "EnemyDrop"))),
+    ("Dodongos Cavern MQ Right Side Keese",                          ("EnemyDrop",    0x01,  (1,0,5), None,                         'Rupees (5)',                            ("Dodongo's Cavern", "Master Quest", "EnemyDrop"))),
     ("Dodongos Cavern MQ Right Side Baby Dodongo 1",                 ("EnemyDrop",    0x01,  (1,0,6), None,                         'Rupees (5)',                            ("Dodongo's Cavern", "Master Quest", "EnemyDrop"))),
     ("Dodongos Cavern MQ Right Side Baby Dodongo 2",                 ("EnemyDrop",    0x01,  (1,0,7), None,                         'Rupees (5)',                            ("Dodongo's Cavern", "Master Quest", "EnemyDrop"))),
     ("Dodongos Cavern MQ Staircase Beamos 1",                        ("EnemyDrop",    0x01,  (2,0,8), None,                         'Rupees (5)',                            ("Dodongo's Cavern", "Master Quest", "EnemyDrop"))),
