@@ -97,7 +97,7 @@ class Region(object):
 
         if not manual and self.world.settings.require_gohma and item.name in closed_forest_restricted_items:
             # Don't place items that can be used to escape the forest in Forest areas of worlds with Require Gohma
-            if HintArea.at(self).color == 'Green':
+            if HintArea.at(self, gc_woods_warp_is_forest=True).color == 'Green':
                 return False
 
         is_self_dungeon_restricted = False

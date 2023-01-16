@@ -374,7 +374,7 @@ class HintArea(Enum):
     # Performs a breadth first search to find the closest hint area from a given spot (region, location, or entrance).
     # May fail to find a hint if the given spot is only accessible from the root and not from any other region with a hint area
     @staticmethod
-    def at(spot, use_alt_hint=False):
+    def at(spot, use_alt_hint=False, *, gc_woods_warp_is_forest=False):
         if isinstance(spot, Region):
             original_parent = spot
         else:
@@ -398,6 +398,8 @@ class HintArea(Enum):
             if parent_region.hint and (original_parent.name == 'Root' or parent_region.name != 'Root'):
                 if use_alt_hint and parent_region.alt_hint:
                     return parent_region.alt_hint
+                if gc_woods_warp_is_forest and parent_region.name == 'GC Woods Warp':
+                    return HintArea.LOST_WOODS
                 return parent_region.hint
 
             for entrance in parent_region.entrances:
