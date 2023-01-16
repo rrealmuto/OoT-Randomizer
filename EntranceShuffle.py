@@ -1062,7 +1062,7 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
             if impas_front_entrance is not None and impas_back_entrance is not None and not same_hint_area(impas_front_entrance, impas_back_entrance):
                 raise EntranceShuffleError('Kak Impas House entrances are not in the same hint area')
 
-    if (world.shuffle_special_interior_entrances or world.settings.shuffle_overworld_entrances or world.spawn_positions) and \
+    if (world.shuffle_special_interior_entrances or world.settings.shuffle_overworld_entrances or (world.spawn_positions and not world.settings.require_gohma)) and \
        (entrance_placed == None or entrance_placed.type in ('SpecialInterior', 'Hideout', 'Overworld', 'OverworldOneWay', 'ChildSpawn', 'AdultSpawn', 'WarpSong', 'BlueWarp', 'OwlDrop')):
         # At least one valid starting region with all basic refills should be reachable without using any items at the beginning of the seed
         # Note this creates new empty states rather than reuse the worlds' states (which already have starting items)
