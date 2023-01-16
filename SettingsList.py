@@ -3373,7 +3373,7 @@ setting_infos = [
         disabled_default = False,
         shared         = True,
         disable        = {
-            True : {'settings' : ['open_forest', 'mix_entrance_pools', 'decouple_entrances']}
+            True : {'settings' : ['open_forest']}
         },
     ),
     Combobox(
@@ -3935,9 +3935,6 @@ setting_infos = [
             came from when you go back through an entrance.
         ''',
         default        = False,
-        disable        = {
-            True : {'settings': ['require_gohma']},
-        },
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',

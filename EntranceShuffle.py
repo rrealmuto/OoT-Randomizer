@@ -696,7 +696,7 @@ def shuffle_random_entrances(worlds):
 
         # Shuffle all entrances among the pools to shuffle
         for pool_type, entrance_pool in one_way_entrance_pools.items():
-            if world.settings.require_gohma:
+            if world.settings.require_gohma and pool_type not in ('OverworldOneWay', 'OwlDrop', 'AdultSpawn'):
                 forest_entrance_pool = list(filter(lambda entrance: entrance.data.get('forest', False), entrance_pool))
                 outside_entrance_pool = list(filter(lambda entrance: not entrance.data.get('forest', False), entrance_pool))
                 forest_target_pool = list(filter(lambda entrance: entrance.replaces.data.get('forest', False), one_way_target_entrance_pools[pool_type]))
@@ -716,13 +716,17 @@ def shuffle_random_entrances(worlds):
 
         for pool_type, entrance_pool in entrance_pools.items():
             if world.settings.require_gohma and (
-                pool_type == 'Overworld' or (
-                    pool_type == 'Interior' and (
-                        world.shuffle_special_interior_entrances
-                        or world.settings.shuffle_hideout_entrances
-                        or (world.shuffle_interior_entrances and world.settings.shuffle_child_spawn in ('balanced', 'full')) # to avoid spawning in a forest interior that has been placed outside the forest
-                    )
-                )
+                pool_type in ('Overworld', 'Mixed')
+                or (pool_type in ('GrottoGrave', 'GrottoGraveReverse') and world.settings.warp_songs == 'full') # to avoid Minuet leading inside a forest grotto that has been placed outside the forest
+                or (pool_type in ('Interior', 'InteriorReverse') and (
+                    world.shuffle_special_interior_entrances
+                    or world.settings.shuffle_hideout_entrances
+                    or (world.shuffle_interior_entrances and (
+                        world.settings.shuffle_child_spawn in ('balanced', 'full') # to avoid spawning in a forest interior that has been placed outside the forest
+                        or world.settings.warp_songs in ('balanced', 'full') # to avoid Minuet leading inside a forest interior that has been placed outside the forest
+                    ))
+                    or world.settings.decouple_entrances
+                ))
             ):
                 forest_entrance_pool = list(filter(lambda entrance: entrance.data.get('forest', False), entrance_pool))
                 outside_entrance_pool = list(filter(lambda entrance: not entrance.data.get('forest', False), entrance_pool))
