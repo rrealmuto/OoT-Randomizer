@@ -3766,7 +3766,6 @@ setting_infos = [
         ''',
         disable        = {
             'off' : {'settings': ['shuffle_hideout_entrances']},
-            'all' : {'settings': ['require_gohma']},
         },
         shared         = True,
         gui_params     = {
@@ -3793,9 +3792,6 @@ setting_infos = [
             and not considered in logic.
         ''',
         default        = False,
-        disable        = {
-            True : {'settings': ['require_gohma']},
-        },
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',

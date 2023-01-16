@@ -715,7 +715,15 @@ def shuffle_random_entrances(worlds):
                 delete_target_entrance(unused_target)
 
         for pool_type, entrance_pool in entrance_pools.items():
-            if world.settings.require_gohma and pool_type == 'Overworld':
+            if world.settings.require_gohma and (
+                pool_type == 'Overworld' or (
+                    pool_type == 'Interior' and (
+                        world.shuffle_special_interior_entrances
+                        or world.settings.shuffle_hideout_entrances
+                        or (world.shuffle_interior_entrances and world.settings.shuffle_child_spawn in ('balanced', 'full')) # to avoid spawning in a forest interior that has been placed outside the forest
+                    )
+                )
+            ):
                 forest_entrance_pool = list(filter(lambda entrance: entrance.data.get('forest', False), entrance_pool))
                 outside_entrance_pool = list(filter(lambda entrance: not entrance.data.get('forest', False), entrance_pool))
                 forest_target_pool = list(filter(lambda entrance: entrance.replaces.data.get('forest', False), target_entrance_pools[pool_type]))
