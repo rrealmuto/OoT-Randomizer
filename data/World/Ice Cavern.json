@@ -73,7 +73,13 @@
             "Ice Cavern GS Heart Piece Room": "can_use(Hookshot) or can_use(Boomerang)",
             "Ice Cavern GS Push Block Room": "
                 can_use(Hookshot) or can_use(Boomerang) or
-                (logic_ice_block_gs and can_use(Hover_Boots))"
+                (logic_ice_block_gs and can_use(Hover_Boots))",
+            "Ice Cavern Compass Chest Keese 1": "can_kill_keese",
+            "Ice Cavern Compass Chest Keese 2": "can_kill_keese",
+            "Ice Cavern Compass Chest Keese 3": "can_kill_keese",            
+            "Ice Cavern Block Push Ice Keese 1": "can_kill_keese",
+            "Ice Cavern Block Push Ice Keese 2": "can_kill_keese",
+            "Ice Cavern Block Push Ice Keese 3": "can_kill_keese"
         },
         "exits": {
             "Ice Cavern End": "(Silver_Rupee_Ice_Cavern_Push_Block, 5)"
@@ -89,15 +95,9 @@
                 is_adult or Slingshot or Sticks or Kokiri_Sword or can_use(Dins_Fire)",
             "Ice Cavern Near End Pot 1": "True",
             "Ice Cavern Near End Pot 2": "True",
-            "Ice Cavern Block Push Ice Keese 1": "can_kill_keese",
-            "Ice Cavern Block Push Ice Keese 2": "can_kill_keese",
-            "Ice Cavern Block Push Ice Keese 3": "can_kill_keese",
             "Ice Cavern Near End Freezard 1": "is_adult or has_explosives or can_use(Dins_Fire)",
             "Ice Cavern Near End Freezard 2": "is_adult or has_explosives or can_use(Dins_Fire)",
             "Ice Cavern Wolfos": "is_adult or Slingshot or Sticks or Kokiri_Sword or can_use(Dins_Fire)",
-            "Ice Cavern Compass Chest Keese 1": "can_kill_keese",
-            "Ice Cavern Compass Chest Keese 2": "can_kill_keese",
-            "Ice Cavern Compass Chest Keese 3": "can_kill_keese"
         }
     }
 ]
