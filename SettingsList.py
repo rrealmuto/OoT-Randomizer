@@ -3361,20 +3361,19 @@ setting_infos = [
         gui_tooltip    = '''\
             Defeating Queen Gohma is logically required to leave the forest
             area (Kokiri Forest/Lost Woods/Sacred Forest Meadow/Deku Tree).
-            Items needed for this will be guaranteed inside the forest area,
-            and "Shuffle Dungeon Entrances" does not affect the Deku Tree.
+            Items needed for this will be guaranteed inside the forest area.
+            "Shuffle Dungeon Entrances" and "Shuffle Boss Entrances" don't
+            affect the Deku Tree.
+
             This setting is incompatible with starting as adult, and so
-            Starting Age will be locked to Child. With either "Shuffle
-            Interior Entrances" set to "All", "Shuffle Overworld Entrances"
-            on, "Randomize Warp Song Destinations" on, or "Randomize Overworld
-            Spawns" on, this setting is automatically disabled and WILL NOT
-            guarantee that these items are available in the forest area.
+            Starting Age will be locked to Child. It is also currently
+            incompatible with "Mix Entrance Pools" and "Decouple Entrances".
         ''',
         default        = True,
         disabled_default = False,
         shared         = True,
         disable        = {
-            True : {'settings' : ['open_forest', 'shuffle_overworld_entrances', 'mix_entrance_pools', 'decouple_entrances']}
+            True : {'settings' : ['open_forest', 'mix_entrance_pools', 'decouple_entrances']}
         },
     ),
     Combobox(
@@ -3866,9 +3865,6 @@ setting_infos = [
             'limited':   'Age-Restricted',
             'full':      'Full',
         },
-        disable        = {
-            '!off' : {'settings': ['require_gohma']},
-        },
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -3893,9 +3889,6 @@ setting_infos = [
             even when dying or loading a save.
         ''',
         default        = False,
-        disable        = {
-            True : {'settings': ['require_gohma']},
-        },
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',

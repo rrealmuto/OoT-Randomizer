@@ -715,7 +715,15 @@ def shuffle_random_entrances(worlds):
                 delete_target_entrance(unused_target)
 
         for pool_type, entrance_pool in entrance_pools.items():
-            shuffle_entrance_pool(world, worlds, entrance_pool, target_entrance_pools[pool_type], locations_to_ensure_reachable, placed_one_way_entrances=placed_one_way_entrances)
+            if world.settings.require_gohma and pool_type == 'Overworld':
+                forest_entrance_pool = list(filter(lambda entrance: entrance.data.get('forest', False), entrance_pool))
+                outside_entrance_pool = list(filter(lambda entrance: not entrance.data.get('forest', False), entrance_pool))
+                forest_target_pool = list(filter(lambda entrance: entrance.replaces.data.get('forest', False), target_entrance_pools[pool_type]))
+                outside_target_pool = list(filter(lambda entrance: not entrance.replaces.data.get('forest', False), target_entrance_pools[pool_type]))
+                shuffle_entrance_pool(world, worlds, forest_entrance_pool, forest_target_pool, locations_to_ensure_reachable, placed_one_way_entrances=placed_one_way_entrances)
+                shuffle_entrance_pool(world, worlds, outside_entrance_pool, outside_target_pool, locations_to_ensure_reachable, placed_one_way_entrances=placed_one_way_entrances)
+            else:
+                shuffle_entrance_pool(world, worlds, entrance_pool, target_entrance_pools[pool_type], locations_to_ensure_reachable, placed_one_way_entrances=placed_one_way_entrances)
 
         # Determine blue warp targets
         if world.settings.blue_warps == 'dungeon':
@@ -1062,18 +1070,18 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
             if impas_front_entrance is not None and impas_back_entrance is not None and not same_hint_area(impas_front_entrance, impas_back_entrance):
                 raise EntranceShuffleError('Kak Impas House entrances are not in the same hint area')
 
-    if (world.shuffle_special_interior_entrances or world.settings.shuffle_overworld_entrances or (world.spawn_positions and not world.settings.require_gohma)) and \
+    if (world.shuffle_special_interior_entrances or world.settings.shuffle_overworld_entrances or world.spawn_positions) and \
        (entrance_placed == None or entrance_placed.type in ('SpecialInterior', 'Hideout', 'Overworld', 'OverworldOneWay', 'ChildSpawn', 'AdultSpawn', 'WarpSong', 'BlueWarp', 'OwlDrop')):
         # At least one valid starting region with all basic refills should be reachable without using any items at the beginning of the seed
         # Note this creates new empty states rather than reuse the worlds' states (which already have starting items)
         no_items_search = Search([State(w) for w in worlds])
 
-        valid_starting_regions = ['Kokiri Forest', 'Kakariko Village']
-        if not any(region for region in valid_starting_regions if no_items_search.can_reach(world.get_region(region))):
+        valid_starting_regions = ('Kokiri Forest', 'Kakariko Village')
+        if not any(no_items_search.can_reach(world.get_region(region)) for region in valid_starting_regions):
             raise EntranceShuffleError('Invalid starting area')
 
-        # Check that a region where time passes is always reachable as both ages without having collected any items
-        time_travel_search = Search.with_items([w.state for w in worlds], [ItemFactory('Time Travel', world=w) for w in worlds])
+        # Check that after leaving the forest, a region where time passes is always reachable as both ages without having collected any items
+        time_travel_search = Search.with_items([w.state for w in worlds], [ItemFactory('Time Travel', world=w) for w in worlds] + [ItemFactory('Deku Tree Clear', world=w, event=True) for w in worlds])
 
         if not (any(region for region in time_travel_search.reachable_regions('child') if region.time_passes and region.world == world) and
                 any(region for region in time_travel_search.reachable_regions('adult') if region.time_passes and region.world == world)):
@@ -1091,7 +1099,8 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
         # The Big Poe Shop should always be accessible as adult without the need to use any bottles
         # This is important to ensure that players can never lock their only bottles by filling them with Big Poes they can't sell
         # We can use starting items in this check as long as there are no exits requiring the use of a bottle without refills
-        time_travel_search = Search.with_items([w.state for w in worlds], [ItemFactory('Time Travel', world=w) for w in worlds])
+        # We can assume forest exit since Hyrule Field is not in the forest and Bottle with Big Poe is not a logical bottle
+        time_travel_search = Search.with_items([w.state for w in worlds], [ItemFactory('Time Travel', world=w) for w in worlds] + [ItemFactory('Deku Tree Clear', world=w, event=True) for w in worlds])
 
         if not time_travel_search.can_reach(world.get_region('Market Guard House'), age='adult'):
             raise EntranceShuffleError('Big Poe Shop access is not guaranteed as adult')
