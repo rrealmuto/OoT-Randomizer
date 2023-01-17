@@ -59,20 +59,11 @@ bool Message_Decode_Additional_Control_Codes(MessageContext* msgCtx, uint8_t cur
     char* msgRaw = ((char*)pFont) + 0xDC88; // Get a reference to the start of the raw message. Index using msgCtx->msgBufPos. 
     
     /*
-    Example new control code that replaces code 0xF0 w/ "ABC"
+    Example new control code that replaces code 0xF0 w/ a number
     if(currChar == 0xF0) { 
-        msgCtx->msgBufDecoded[decodedBufPosVal++] = 0x41;
-        Font_LoadChar(pFont, 0x41 - ' ', charTexIdx);
-        charTexIdx += 0x80;
-        msgCtx->msgBufDecoded[decodedBufPosVal++] = 0x42;
-        Font_LoadChar(pFont, 0x42 - ' ', charTexIdx);
-        charTexIdx += 0x80;
-        msgCtx->msgBufDecoded[decodedBufPosVal] = 0x43; // Don't increment the last time because the main function increments it.
-        Font_LoadChar(pFont, 0x43 - ' ', charTexIdx);
-        charTexIdx += 0x80;
-        *pDecodedBufPos = decodedBufPosVal;
-        *pCharTexIdx = charTexIdx;
-        //msgCtx->msgBufPos++;
+        uint32_t val = 20;
+        Message_AddInteger(msgCtx, pFont, pDecodedBufPos, pCharTexIdx, val);
+        (*pDecodedBufPos)--;
         return true;
     }
     */ 
