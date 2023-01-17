@@ -89,8 +89,8 @@ def build_one_way_targets(world, types_to_include, types_to_include_reverse, exc
 #       ZR      Zora's River
 
 entrance_shuffle_table = [
-    ('Dungeon',         ('KF Outside Deku Tree -> Deku Tree Lobby',                         { 'index': 0x0000, 'forest': True }),
-                        ('Deku Tree Lobby -> KF Outside Deku Tree',                         { 'index': 0x0209, 'forest': True })),
+    ('Dungeon',         ('KF Outside Deku Tree -> Deku Tree Lobby',                         { 'index': 0x0000, 'forest': True, 'deku': True }),
+                        ('Deku Tree Lobby -> KF Outside Deku Tree',                         { 'index': 0x0209, 'forest': True, 'deku': True })),
     ('Dungeon',         ('Death Mountain -> Dodongos Cavern Beginning',                     { 'index': 0x0004 }),
                         ('Dodongos Cavern Beginning -> Death Mountain',                     { 'index': 0x0242 })),
     ('Dungeon',         ('Zoras Fountain -> Jabu Jabus Belly Beginning',                    { 'index': 0x0028 }),
@@ -115,8 +115,8 @@ entrance_shuffle_table = [
     ('DungeonSpecial',  ('Ganons Castle Ledge -> Ganons Castle Lobby',                      { 'index': 0x0467 }),
                         ('Ganons Castle Lobby -> Castle Grounds From Ganons Castle',        { 'index': 0x023D })),
 
-    ('ChildBoss',       ('Deku Tree Boss Door -> Queen Gohma Boss Room',                    { 'index': 0x040f, 'savewarp_addresses': [ 0xB06292, 0xBC6162, 0xBC60AE ], 'forest': True }),
-                        ('Queen Gohma Boss Room -> Deku Tree Boss Door',                    { 'index': 0x0252, 'forest': True })),
+    ('ChildBoss',       ('Deku Tree Boss Door -> Queen Gohma Boss Room',                    { 'index': 0x040f, 'savewarp_addresses': [ 0xB06292, 0xBC6162, 0xBC60AE ], 'forest': True, 'deku': True }),
+                        ('Queen Gohma Boss Room -> Deku Tree Boss Door',                    { 'index': 0x0252, 'forest': True, 'deku': True })),
     ('ChildBoss',       ('Dodongos Cavern Boss Door -> King Dodongo Boss Room',             { 'index': 0x040b, 'savewarp_addresses': [ 0xB062B6, 0xBC616E ] }),
                         ('King Dodongo Boss Room -> Dodongos Cavern Boss Door',             { 'index': 0x00c5 })),
     ('ChildBoss',       ('Jabu Jabus Belly Boss Door -> Barinade Boss Room',                { 'index': 0x0301, 'savewarp_addresses': [ 0xB062C2, 0xBC60C2 ] }),
@@ -387,7 +387,7 @@ entrance_shuffle_table = [
     ('WarpSong',        ('Nocturne of Shadow Warp -> Graveyard Warp Pad Region',            { 'index': 0x0568, 'addresses': [0xBF0244] })),
     ('WarpSong',        ('Prelude of Light Warp -> Temple of Time',                         { 'index': 0x05F4, 'addresses': [0xBF0246] })),
 
-    ('BlueWarp',        ('Queen Gohma Boss Room -> KF Outside Deku Tree',                   { 'index': 0x0457, 'addresses': [0xAC93A2, 0xCA3142], 'forest': True })),
+    ('BlueWarp',        ('Queen Gohma Boss Room -> KF Outside Deku Tree',                   { 'index': 0x0457, 'addresses': [0xAC93A2, 0xCA3142], 'forest': True, 'deku': True })),
     ('BlueWarp',        ('King Dodongo Boss Room -> Death Mountain',                        { 'index': 0x047A, 'addresses': [0xAC9336, 0xCA30CA] })),
     ('BlueWarp',        ('Barinade Boss Room -> Zoras Fountain',                            { 'index': 0x010E, 'addresses': [0xAC936A, 0xCA31B2] })),
     ('BlueWarp',        ('Phantom Ganon Boss Room -> Sacred Forest Meadow',                 { 'index': 0x0608, 'addresses': [0xAC9F96, 0xCA3D66, 0xCA3D5A], 'child_index': 0x0600 })),
@@ -486,18 +486,16 @@ def shuffle_random_entrances(worlds):
         if world.settings.shuffle_bosses == 'full':
             entrance_pools['Boss'] = world.get_shufflable_entrances(type='ChildBoss', only_primary=True)
             entrance_pools['Boss'] += world.get_shufflable_entrances(type='AdultBoss', only_primary=True)
-            if world.settings.require_gohma:
-                # Deku is forced vanilla below, so Queen Gohma must be vanilla to ensure she is reachable.
-                # This is already enforced by the fill algorithm in most cases, but this covers the odd settings combination where it isn't.
+            if world.settings.require_gohma and not world.settings.open_deku:
+                # With both Require Gohma and Closed Deku, we want to require sword and shield to enter Gohma's room.
                 entrance_pools['Boss'].remove(world.get_entrance('Deku Tree Boss Door -> Queen Gohma Boss Room'))
             if world.settings.decouple_entrances:
                 entrance_pools['BossReverse'] = [entrance.reverse for entrance in entrance_pools['Boss']]
         elif world.settings.shuffle_bosses == 'limited':
             entrance_pools['ChildBoss'] = world.get_shufflable_entrances(type='ChildBoss', only_primary=True)
             entrance_pools['AdultBoss'] = world.get_shufflable_entrances(type='AdultBoss', only_primary=True)
-            if world.settings.require_gohma:
-                # Deku is forced vanilla below, so Queen Gohma must be vanilla to ensure she is reachable.
-                # This is already enforced by the fill algorithm in most cases, but this covers the odd settings combination where it isn't.
+            if world.settings.require_gohma and not world.settings.open_deku:
+                # With both Require Gohma and Closed Deku, we want to require sword and shield to enter Gohma's room.
                 entrance_pools['ChildBoss'].remove(world.get_entrance('Deku Tree Boss Door -> Queen Gohma Boss Room'))
             if world.settings.decouple_entrances:
                 entrance_pools['ChildBossReverse'] = [entrance.reverse for entrance in entrance_pools['ChildBoss']]
@@ -505,10 +503,8 @@ def shuffle_random_entrances(worlds):
 
         if world.shuffle_dungeon_entrances:
             entrance_pools['Dungeon'] = world.get_shufflable_entrances(type='Dungeon', only_primary=True)
-            # The fill algorithm will already make sure gohma is reachable, however it can end up putting
-            # a forest escape via the hands of spirit on Deku leading to Deku on spirit in logic. This is
-            # contrary to the idea of Require Gohma, so specifically place Deku Tree in its vanilla location.
-            if world.settings.require_gohma:
+            if world.settings.require_gohma and not world.settings.open_deku:
+                # With both Require Gohma and Closed Deku, we want to require sword and shield to enter Deku.
                 entrance_pools['Dungeon'].remove(world.get_entrance('KF Outside Deku Tree -> Deku Tree Lobby'))
             if world.shuffle_special_dungeon_entrances:
                 entrance_pools['Dungeon'] += world.get_shufflable_entrances(type='DungeonSpecial', only_primary=True)
@@ -696,11 +692,11 @@ def shuffle_random_entrances(worlds):
 
         # Shuffle all entrances among the pools to shuffle
         for pool_type, entrance_pool in one_way_entrance_pools.items():
-            if world.settings.require_gohma and pool_type not in ('OverworldOneWay', 'OwlDrop', 'AdultSpawn'):
+            if world.settings.require_gohma and pool_type not in ('OverworldOneWay', 'BlueWarp', 'OwlDrop', 'AdultSpawn'):
                 forest_entrance_pool = list(filter(lambda entrance: entrance.data.get('forest', False), entrance_pool))
                 outside_entrance_pool = list(filter(lambda entrance: not entrance.data.get('forest', False), entrance_pool))
-                forest_target_pool = list(filter(lambda entrance: entrance.replaces.data.get('forest', False), one_way_target_entrance_pools[pool_type]))
-                outside_target_pool = list(filter(lambda entrance: not entrance.replaces.data.get('forest', False), one_way_target_entrance_pools[pool_type]))
+                forest_target_pool = list(filter(lambda entrance: entrance.replaces.data.get('forest', False) and (world.settings.open_deku or not entrance.replaces.data.get('deku', False)), one_way_target_entrance_pools[pool_type]))
+                outside_target_pool = list(filter(lambda entrance: not entrance.replaces.data.get('forest', False) or (not world.settings.open_deku and entrance.replaces.data.get('deku', False)), one_way_target_entrance_pools[pool_type]))
                 placed_one_way_entrances += shuffle_entrance_pool(world, worlds, forest_entrance_pool, forest_target_pool, locations_to_ensure_reachable, check_all=True, placed_one_way_entrances=placed_one_way_entrances)
                 placed_one_way_entrances += shuffle_entrance_pool(world, worlds, outside_entrance_pool, outside_target_pool, locations_to_ensure_reachable, check_all=True, placed_one_way_entrances=placed_one_way_entrances)
             else:
@@ -716,7 +712,7 @@ def shuffle_random_entrances(worlds):
 
         for pool_type, entrance_pool in entrance_pools.items():
             if world.settings.require_gohma and (
-                pool_type in ('Overworld', 'Mixed')
+                pool_type in ('Dungeon', 'ChildBoss', 'Boss', 'Overworld', 'Mixed')
                 or (pool_type in ('GrottoGrave', 'GrottoGraveReverse') and world.settings.warp_songs == 'full') # to avoid Minuet leading inside a forest grotto that has been placed outside the forest
                 or (pool_type in ('Interior', 'InteriorReverse') and (
                     world.shuffle_special_interior_entrances
