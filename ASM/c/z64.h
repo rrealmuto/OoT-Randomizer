@@ -1198,6 +1198,7 @@ typedef struct
                                            /* 0x11E5F */
 } z64_game_t;
 
+// ** TODO ** fix "font". 1.0 not even close to matching decomp.
 typedef struct {
     /* 0x0000 */ uint8_t   view[0x128];
     /* 0x0128 */ uint8_t   font[0x6188];

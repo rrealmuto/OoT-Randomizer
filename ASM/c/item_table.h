@@ -22,13 +22,13 @@ typedef enum {
     /* 15 */ SKULL_CHEST_BIG,
 } ChestType;
 
-typedef struct item_row_t;
+struct item_row_t;
 
 typedef uint16_t (*upgrade_fn)(z64_file_t *save, uint16_t item_id);
 typedef void (*effect_fn)(z64_file_t *save, int16_t arg1, int16_t arg2);
 typedef void (*alt_text_fn)(struct item_row_t* this);
 
-typedef struct {
+typedef struct item_row_t{
     int8_t      base_item_id;
     uint8_t     action_id;
     uint16_t    text_id;
