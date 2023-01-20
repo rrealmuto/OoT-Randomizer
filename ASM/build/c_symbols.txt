@@ -222,7 +222,7 @@ SYMBOL TABLE:
 00000064 g     O .sdata	00000004 a_note_r
 00000000         *UND*	00000000 CFG_C_NOTE_COLOR
 00000000         *UND*	00000000 OUTGOING_PLAYER
-0000026c g     O .bss	00000384 collectible_scene_flags_table
+0000038c g     O .bss	00000384 collectible_scene_flags_table
 0000eae8 g     F .text	00000240 override_weather_state
 00005a40 g     F .text	0000003c push_delayed_item
 0000a3dc g     F .text	00000030 slingshot_upgrade
@@ -240,7 +240,7 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 CFG_RAINBOW_SWORD_INNER_ENABLED
 0000e200 g     F .text	000000a8 text_print_size
 0000006c g     O .sbss	00000001 curr_scene_setup
-0000006c g     O .bss	00000200 alt_overrides
+0000006c g     O .bss	00000320 alt_overrides
 000002a8 g     O .data	00000010 medals_sprite
 00003aa0 g     F .text	00000064 interpolate
 0000a3b4 g     F .text	00000028 bow_upgrade
@@ -314,7 +314,7 @@ SYMBOL TABLE:
 00000218 g     O .data	00000010 linkhead_skull_sprite
 00000034 g     O .sbss	00000004 active_item_text_id
 000073c4 g     F .text	00000014 ice_trap_is_pending
-000005f0 g     O .bss	00003e80 cfg_item_overrides
+00000710 g     O .bss	00003e80 cfg_item_overrides
 00000020 g     O .sdata	00000004 text_cursor_border_max
 00000000         *UND*	00000000 DPAD_TEXTURE
 00005958 g     F .text	00000088 push_pending_item
@@ -413,7 +413,7 @@ SYMBOL TABLE:
 00000050 g     O .sdata	00000004 c_note_b
 000069c0 g     F .text	000000c8 get_skulltula_token
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_IDLE_INNER_ENABLED
-00004530 g     O .bss	00000016 extended_savectx
+00004650 g     O .bss	00000016 extended_savectx
 000073d8 g     F .text	00000018 push_pending_ice_trap
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_REWARD_ENABLE
 0000c4a8 g     F .text	000000a4 bowling_bomb_bag_draw
@@ -539,7 +539,7 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_PROP_INNER_ENABLED
 0000c298 g     F .text	00000064 heart_container_draw
 00007478 g     F .text	0000009c draw_gi_bombchu_and_masks
-00004470 g     O .bss	000000c0 object_slots
+00004590 g     O .bss	000000c0 object_slots
 00009d4c g     F .text	00000050 give_small_key
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_MQ_ENABLE
 00000bf8 g     F .text	00000014 get_dummy_chest

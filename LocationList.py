@@ -234,16 +234,16 @@ location_table = OrderedDict([
     ("HF Inside Fence Grotto Beehive",                               ("Beehive",      0x3E, (1,0,0x42 + (0x06 * 2)), None,          'Rupees (20)',                           ("Hyrule Field", "Grottos", "Beehives",))),
 
     # Hyrule Field Enemies
-    ("HF Cow Grotto Skulltula",                                      ("EnemyDrop",    0x3E, (4,0,1), None,                      'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
-    ("HF Tektite Grotto Tektite",                                    ("EnemyDrop",    0x3E, (10,0,3), None,                     'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
-    ("HF Near Kak Grotto Skulltula",                                 ("EnemyDrop",    0x3E, (13,0,1), None,                     'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
-    ("HF Child Near Fairy Grotto Peahat",                            ("EnemyDrop",    0x51, (0,1,5), None,                     'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
-    ("HF Child Near Kokiri Forest Peahat",                           ("EnemyDrop",    0x51, (0,1,9), None,                     'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
-    ("HF Child South Field Peahat 1",                                ("EnemyDrop",    0x51, (0,1,6), None,                     'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
-    ("HF Child South Field Peahat 2",                                ("EnemyDrop",    0x51, (0,1,7), None,                     'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
-    ("HF Child South Field Peahat 3",                                ("EnemyDrop",    0x51, (0,1,8), None,                     'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
-    ("HF Child South Field Flying Peahat",                           ("EnemyDrop",    0x51, (0,1,11), None,                     'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
-    ("HF Child Near Valley Flying Peahat",                           ("EnemyDrop",    0x51, (0,1,10), None,                     'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
+    ("HF Cow Grotto Skulltula",                                      ("EnemyDrop",    0x3E, (4,0,1), None,                          'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
+    ("HF Tektite Grotto Tektite",                                    ("EnemyDrop",    0x3E, (10,0,3), None,                         'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
+    ("HF Near Kak Grotto Skulltula",                                 ("EnemyDrop",    0x3E, (13,0,1), None,                         'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
+    ("HF Child Near Fairy Grotto Peahat",                            ("EnemyDrop",    0x51, [(0,0,9),(0,1,5)], None,                'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
+    ("HF Child Near Kokiri Forest Peahat",                           ("EnemyDrop",    0x51, [(0,0,13),(0,1,9)], None,               'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
+    ("HF Child South Field Peahat 1",                                ("EnemyDrop",    0x51, [(0,0,10),(0,1,6)], None,               'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
+    ("HF Child South Field Peahat 2",                                ("EnemyDrop",    0x51, [(0,0,11),(0,1,7)], None,               'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
+    ("HF Child South Field Peahat 3",                                ("EnemyDrop",    0x51, [(0,0,12),(0,1,8)], None,               'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
+    ("HF Child South Field Flying Peahat",                           ("EnemyDrop",    0x51, [(0,0,15),(0,1,11)], None,              'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
+    ("HF Child Near Valley Flying Peahat",                           ("EnemyDrop",    0x51, [(0,0,14),(0,1,10)], None,              'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
     
     # Market
     ("Market Shooting Gallery Reward",                               ("NPC",          0x42,  0x60, None,                            'Slingshot',                             ("Market", "Minigames",))),

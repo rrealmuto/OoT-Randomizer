@@ -1768,9 +1768,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         rom.write_byte(rom.sym('ENEMY_DROP_SHUFFLE'), 0x01)
         #Patch Kokiri Forest Adult scene setup to always use setup 2 regardless of age.
         rom.write_byte(0xB10A6B, 0x02)
-        #Patch Hyrule Field Child scene setup to always use setup 1 regardless of spiritual stones
-        rom.write_bytes(0xB109E4, [0x10, 0x00, 0x00, 0x0A]) #b      0x8009AAB0
-        rom.write_bytes(0xB109E8, [0x24, 0x0E, 0x00, 0x01]) #addiu  T6, R0, 0x0001
+        #Patch Hyrule Field Child scene setup to always use setup 1 regardless of spiritual stones. This shouldn't be necessary anymore because it was required before the alt_override system was implemented.
+        #rom.write_bytes(0xB109E4, [0x10, 0x00, 0x00, 0x0A]) #b      0x8009AAB0
+        #rom.write_bytes(0xB109E8, [0x24, 0x0E, 0x00, 0x01]) #addiu  T6, R0, 0x0001
 
     # Write flag table data
     collectible_flag_table, alt_list = get_collectible_flag_table(world)
@@ -1781,8 +1781,8 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     rom.write_bytes(rom.sym('collectible_scene_flags_table'), collectible_flag_table_bytes)
     num_collectible_flags += num_collectible_flags % 8
     rom.write_bytes(rom.sym('num_override_flags'), num_collectible_flags.to_bytes(2, 'big'))
-    if len(alt_list) > 64:
-        raise RuntimeError(f'Exceeded alt override table size: {len(alt_list)}')
+    if(len(alt_list) > 100):
+        raise(RuntimeError(f'Exceeded alt override table size: {len(alt_list)}'))
     rom.write_bytes(rom.sym('alt_overrides'), alt_list_bytes)
 
     # Write item overrides
