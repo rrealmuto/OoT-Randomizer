@@ -36,7 +36,8 @@
         "junk":                     {"order":  0, "weight": 0.0, "fixed":   0, "copies": 2},
         "named-item":               {"order": 10, "weight": 0.0, "fixed":   0, "copies": 2},
         "woth":                     {"order":  0, "weight": 0.0, "fixed":   0, "copies": 2},
-        "entrance_always":          {"order":  0, "weight": 0.0, "fixed":   0, "copies": 2}
+        "entrance_always":          {"order":  0, "weight": 0.0, "fixed":   0, "copies": 2},
+        "important_check":          {"order":  0, "weight": 0.0, "fixed":   0, "copies": 2}
     },
     "remove_always_stones": [
         "ToT (Left)",
