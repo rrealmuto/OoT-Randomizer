@@ -47,7 +47,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * Plandos can specify different settings for each world (based on [Andols0's `individual-settings` branch](https://github.com/Andols0/OoT-Randomizer/tree/individual-settings))
   * “Closed Forest Requires Gohma” is compatible with all forms of entrance randomizer by restricting entrances inside the forest area to only be shuffled among themselves.
   * Gold Skulltula Tokens can be on excluded locations if there are no checks requiring them (such as in SAWS)
-  * With “Closed Forest Requires Gohma” enabled, items that can be used to escape the forest won't appear in the forest
+  * With “Closed Forest Requires Gohma” enabled, items that can be used to escape the forest won't appear in the forest, and the randomizer will try to place at least one slingshot for each player in the forest
   * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
 * Bug fixes:
   * If hideout keys are vanilla, they are properly considered an unshuffled dungeon item for hint purposes

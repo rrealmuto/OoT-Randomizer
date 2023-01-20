@@ -95,10 +95,17 @@ class Region(object):
                 if item.world.empty_dungeons[dungeon.name].empty and dungeon.is_dungeon_item(item):
                     return False
 
-        if not manual and self.world.settings.require_gohma and item.name in closed_forest_restricted_items:
-            # Don't place items that can be used to escape the forest in Forest areas of worlds with Require Gohma
-            if HintArea.at(self, gc_woods_warp_is_forest=True).color == 'Green':
-                return False
+        if not manual and self.world.settings.require_gohma:
+            if item.name in closed_forest_restricted_items:
+                # Don't place items that can be used to escape the forest in Forest areas of worlds with Require Gohma
+                if HintArea.at(self, gc_woods_warp_is_forest=True).color == 'Green':
+                    return False
+            elif item.name == 'Slingshot':
+                # Place at least one slingshot for each player in the Forest area, to avoid requiring one player to leave the forest to get another player's slingshot.
+                # This is still not a 100% guarantee because the slingshot could be behind an item that's not in the forest, such as in a bombable grotto entrance in the Lost Woods.
+                hint_area = HintArea.at(self)
+                if hint_area == HintArea.FOREST_TEMPLE or hint_area.color != 'Green':
+                    return False
 
         is_self_dungeon_restricted = False
         is_self_region_restricted = None
