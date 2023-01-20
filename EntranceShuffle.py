@@ -1042,18 +1042,22 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
 
     if locations_to_ensure_reachable:
         max_search = Search.max_explore([w.state for w in worlds], itempool)
-        if world.check_beatable_only:
-            if world.settings.reachable_locations == 'goals':
-                # If this entrance is required for a goal, it must be placed somewhere reachable.
-                # We also need to check to make sure the game is beatable, since custom goals might not imply that.
-                predicate = lambda state: state.won() and state.has_all_item_goals()
+        predicates = []
+        for world in worlds:
+            if world.check_beatable_only:
+                if world.settings.reachable_locations == 'goals':
+                    # If this item is required for a goal, it must be placed somewhere reachable.
+                    # We also need to check to make sure the game is beatable, since custom goals might not imply that.
+                    predicates.append(lambda state: state.won() and state.has_all_item_goals())
+                else:
+                    # If the game is not beatable without this item, it must be placed somewhere reachable.
+                    predicates.append(State.won)
             else:
-                # If the game is not beatable without this entrance, it must be placed somewhere reachable.
-                predicate = State.won
-            perform_access_check = not max_search.can_beat_game(scan_for_items=False, predicate=predicate)
+                # All items must be placed somewhere reachable.
+                perform_access_check = True
+                break
         else:
-            # All entrances must be placed somewhere reachable.
-            perform_access_check = True
+            perform_access_check = not max_search.can_beat_game(scan_for_items=False, predicates=predicates)
         if perform_access_check:
             max_search.visit_locations(locations_to_ensure_reachable)
             for location in locations_to_ensure_reachable:
