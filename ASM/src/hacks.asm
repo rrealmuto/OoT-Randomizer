@@ -709,6 +709,14 @@ lw a1, 0x118(s0)
 jal bb_red_wait_hook
 sh  v0, 0x004E(sp)
 
+; Hack Guays (en_crow) to not respawn in enemy drop shuffle
+.orga 0xEEE908 ; End of EnCrow_SetupRespawn where it sets actionFunc
+; replaces
+;   sw  r0, 0x0134(a2)
+;   sw  T7, 0x01B0(a2)
+jal     en_crow_respawn_hack
+sw      r0, 0x0134(a2) ; replaced code
+
 ; Hook at the end of Actor_SetWorldToHome to zeroize anything we use to store additional flag data
 .orga 0xA96E5C ; In memory: 0x80020EFC
 ; Replaces:
