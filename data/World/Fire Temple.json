@@ -22,7 +22,7 @@
             "Fairy Pot": "is_adult and has_bottle and (Hover_Boots or Hookshot)"
         },
         "exits": {
-            "Fire Temple Boss Door": "(fire_temple_shortcuts or logic_fire_boss_door_jump or Hover_Boots)"
+            "Fire Temple Boss Door": "is_adult and (fire_temple_shortcuts or logic_fire_boss_door_jump or Hover_Boots)"
         }
     },
     {
