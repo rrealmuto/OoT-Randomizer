@@ -24,7 +24,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * New “Mutually Exclusive One-Ways” setting which makes the hint area restriction apply to one-way entrances of different types
   * New “Vanilla” option for the “Shuffle Songs” setting
   * New “Shuffle Other Items” setting which can be disabled to generate vanilla seeds, only shuffle entrances, etc. (Currently not compatible with Master Quest)
-  * New “Mixed Pools Tournament” and “Triforce Blitz” hint distributions
+  * New “Mixed Pools Tournament”, “Triforce Blitz”, and “MW Season 3 (WotH)” hint distributions
   * New `goal-count` and `playthrough-location` hint types (based on [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev))
 * New settings presets:
   * “Debug” is similar to Default/Beginner but gives you most starting items for testing.
