@@ -3179,3 +3179,18 @@ skip_GS_BGS_text:
 ; Dumb hack to not relocate the function call to player_save_mask
 .orga 0xBF2C14
     nop
+
+
+
+;=========================================================================================
+; Add custom message control characters
+;=========================================================================================
+
+; In Message_Decode at the last control code check (0x01 for new line)
+; Replaces
+;   addiu   at, r0, 0x0001
+;   bne     v0, at, 0x800DC580
+.headersize (0x800110A0 - 0xA87000)
+.org 0x800DC568
+    j       Message_Decode_Control_Code_Hook
+    nop
