@@ -28,7 +28,7 @@
                             (!CAN_DRAW_DUNGEON_INFO || !CFG_DPAD_DUNGEON_INFO_ENABLE))
 
 #define CAN_USE_OCARINA     (z64_game.pause_ctxt.state == 0 && (z64_file.items[Z64_SLOT_OCARINA] == Z64_ITEM_FAIRY_OCARINA || z64_file.items[Z64_SLOT_OCARINA] == Z64_ITEM_OCARINA_OF_TIME) && !z64_game.restriction_flags.ocarina && ((z64_link.state_flags_1 & BLOCK_ITEMS) == 0))
-#define CAN_USE_CHILD_TRADE (z64_game.pause_ctxt.state == 0 && z64_file.items[Z64_SLOT_CHILD_TRADE] >= Z64_ITEM_WEIRD_EGG && z64_file.items[Z64_SLOT_CHILD_TRADE] <= Z64_ITEM_MASK_OF_TRUTH && !z64_game.restriction_flags.trade_items && ((z64_link.state_flags_1 & BLOCK_ITEMS) == 0) && !TRIFORCE_BLITZ)
+#define CAN_USE_CHILD_TRADE (z64_game.pause_ctxt.state == 0 && z64_file.items[Z64_SLOT_CHILD_TRADE] >= Z64_ITEM_WEIRD_EGG && z64_file.items[Z64_SLOT_CHILD_TRADE] <= Z64_ITEM_MASK_OF_TRUTH && !z64_game.restriction_flags.trade_items && ((z64_link.state_flags_1 & BLOCK_ITEMS) == 0) && !(TRIFORCE_BLITZ && z64_file.items[Z64_SLOT_CHILD_TRADE] == Z64_ITEM_ZELDAS_LETTER))
 
 void handle_dpad();
 void draw_dpad();
