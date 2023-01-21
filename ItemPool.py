@@ -172,7 +172,7 @@ ludicrous_items_extended = [
     'Silver Rupee Pouch (Shadow Temple Scythe Shortcut)',
     'Silver Rupee Pouch (Shadow Temple Invisible Blades)',
     'Silver Rupee Pouch (Shadow Temple Huge Pit)',
-    'Silver Rupee Pouch (Shadow Temple Invidible Spikes)',
+    'Silver Rupee Pouch (Shadow Temple Invisible Spikes)',
     'Silver Rupee Pouch (Gerudo Training Ground Slopes)',
     'Silver Rupee Pouch (Gerudo Training Ground Lava)',
     'Silver Rupee Pouch (Gerudo Training Ground Water)',
