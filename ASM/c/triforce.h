@@ -8,6 +8,7 @@
 #include "model_text.h"
 
 extern uint16_t TRIFORCE_HUNT_ENABLED;
+extern uint16_t TRIFORCE_BLITZ;
 extern uint16_t TRIFORCE_PIECES_REQUIRED;
 
 void draw_triforce_count(z64_disp_buf_t* db);
