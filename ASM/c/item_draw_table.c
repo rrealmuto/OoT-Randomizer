@@ -141,6 +141,7 @@ item_draw_table_entry_t item_draw_table[] = {
     [0x7B] = { draw_gi_song_notes,          { 0x06000EC0, 0xC832FFFF, 1 } }, // Music Note inverted (Purple)
     [0x7C] = { draw_gi_song_notes,          { 0x06000EC0, 0xC8FF00FF, 1 } }, // Music Note inverted (Yellow)
     [0x7D] = { draw_gi_various_opa0,        { 0x060016A0 } }, // Bombchu Bag
+    [0x7E] = { draw_gi_silver_rupee_pouch,  { 0x06001850, 0x06001750, 0x06001790, 0x060019A0, 0x060017B0, 0x06001A28, 0x060017D0, 0x06001AD8 } }, // Adult's Wallet}
 };
 
 void base_draw_gi_model(z64_game_t *game, uint32_t draw_id) {

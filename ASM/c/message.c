@@ -61,7 +61,7 @@ bool Message_Decode_Additional_Control_Codes(uint8_t currChar, uint32_t* pDecode
     // Silver rupee puzzle control code
     if(currChar == 0xF0) {
         //Get the next character which tells us which puzzle it's for
-        uint8_t puzzle = (uint8_t*)(msgRaw[++(msgCtx->msgBufPos)]);
+        uint8_t puzzle = msgRaw[++(msgCtx->msgBufPos)];
         uint8_t count = extended_savectx.silver_rupee_counts[puzzle];
         Message_AddInteger(msgCtx, pFont, pDecodedBufPos, pCharTexIdx, count);
         (*pDecodedBufPos)--;
