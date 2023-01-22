@@ -45,3 +45,7 @@ Additional flags stored in `inf_table` (an array of 16-bit integers at save cont
 
 * Entry 0x1b, bit 0002 is set when the Temple of Time altar is read as child. This allows the pause menu dungeon info to display stone locations depending on settings.
 * Entry 0x1b, bit 0001 is set when the Temple of Time altar is read as adult. This allows the pause menu dungeon info to display medallion locations depending on settings.
+
+# Misc data
+
+Current mask: 1 byte at save context + 0x3B. Written on `Player_Destroy` Read on `Player_Init` except when moving through time.

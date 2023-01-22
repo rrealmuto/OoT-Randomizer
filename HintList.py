@@ -215,6 +215,7 @@ conditional_always = {
     'Kak 30 Gold Skulltula Reward': lambda world: tokens_required_by_settings(world) < 30 and '30_skulltulas' not in world.settings.misc_hints,
     'Kak 40 Gold Skulltula Reward': lambda world: tokens_required_by_settings(world) < 40 and '40_skulltulas' not in world.settings.misc_hints,
     'Kak 50 Gold Skulltula Reward': lambda world: tokens_required_by_settings(world) < 50 and '50_skulltulas' not in world.settings.misc_hints,
+    'ZR Frogs Ocarina Game':        lambda world: 'frogs2' not in world.settings.misc_hints,
 }
 
 # Entrance hints required under certain settings
@@ -231,7 +232,7 @@ conditional_entrance_always = {
 conditional_dual_always = {
     'HF Ocarina of Time Retrieval': lambda world: stones_required_by_settings(world) < 2,
     'Deku Theater Rewards':         lambda world: not world.settings.complete_mask_quest,
-    'ZR Frogs Rewards':             lambda world: not world.settings.shuffle_frog_song_rupees,
+    'ZR Frogs Rewards':             lambda world: not world.settings.shuffle_frog_song_rupees and 'frogs2' not in world.settings.misc_hints,
 }
 
 # Some sometimes, dual, and entrance hints should only be enabled under certain settings
@@ -447,7 +448,7 @@ hintTable = {
     'Deku Seeds (30)':                                          (["catapult ammo", "lots-o-seeds"], "Deku Seeds (30 pieces)", 'item'),
     'Gold Skulltula Token':                                     (["proof of destruction", "an arachnid chip", "spider remains", "one percent of a curse"], "a Gold Skulltula Token", 'item'),
 
-    'ZR Frogs Ocarina Game':                                       (["an #amphibian feast# yields", "the #croaking choir's magnum opus# awards", "the #froggy finale# yields"], "the final reward from the #Frogs of Zora's River# is", 'always'),
+    'ZR Frogs Ocarina Game':                                       (["an #amphibian feast# yields", "the #croaking choir's magnum opus# awards", "the #froggy finale# yields"], "the final reward from the #Frogs of Zora's River# is", ['overworld', 'sometimes']),
     'KF Links House Cow':                                          ("the #bovine bounty of a horseback hustle# gifts", "#Malon's obstacle course# leads to", 'always'),
 
     'Song from Ocarina of Time':                                   ("the #Ocarina of Time# teaches", None, ['song', 'sometimes']),
@@ -1766,6 +1767,13 @@ misc_location_hint_table = {
         'item_location': 'Kak 50 Gold Skulltula Reward',
         'location_text': "Yeaaarrgh! I'm cursed!! Please save me by destroying \x05\x4150 Spiders of the Curse\x05\x40 and I will give you \x05\x42{item}\x05\x40.",
         'location_fallback': "Yeaaarrgh! I'm cursed!!",
+    },
+    'frogs2': {
+        'id': 0x022E,
+        'hint_location': 'ZR Frogs Ocarina Minigame Hint',
+        'item_location': 'ZR Frogs Ocarina Game',
+        'location_text': "Some frogs holding \x05\x42{item}\x05\x40 are looking at you from underwater...",
+        'location_fallback': "Some frogs are looking at you from underwater...",
     },
 }
 

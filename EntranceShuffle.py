@@ -321,7 +321,7 @@ entrance_shuffle_table = [
     ('Overworld',       ('ZD Behind King Zora -> Zoras Fountain',                           { 'index': 0x0225 }),
                         ('Zoras Fountain -> ZD Behind King Zora',                           { 'index': 0x01A1 })),
 
-    ('Overworld',       ('GV Lower Stream -> Lake Hylia',                                   { 'index': 0x0219 })),
+    ('OverworldOneWay', ('GV Lower Stream -> Lake Hylia',                                   { 'index': 0x0219 })),
 
     ('OwlDrop',         ('LH Owl Flight -> Hyrule Field',                                   { 'index': 0x027E, 'addresses': [0xAC9F26] })),
     ('OwlDrop',         ('DMT Owl Flight -> Kak Impas Rooftop',                             { 'index': 0x0554, 'addresses': [0xAC9EF2] })),
@@ -416,9 +416,9 @@ _add_boss_entrances()
 # if shuffling warp songs (depending on other settings).
 # Table maps: short key -> ([target regions], [allowed types])
 priority_entrance_table = {
-    'Bolero': (['DMC Central Local'], ['OwlDrop', 'WarpSong']),
-    'Nocturne': (['Graveyard Warp Pad Region'], ['OwlDrop', 'Spawn', 'WarpSong']),
-    'Requiem': (['Desert Colossus', 'Desert Colossus From Spirit Lobby'], ['OwlDrop', 'Spawn', 'WarpSong']),
+    'Bolero': (['DMC Central Local'], ['OwlDrop', 'WarpSong', 'OverworldOneWay']),
+    'Nocturne': (['Graveyard Warp Pad Region'], ['OwlDrop', 'Spawn', 'WarpSong', 'OverworldOneWay']),
+    'Requiem': (['Desert Colossus', 'Desert Colossus From Spirit Lobby'], ['OwlDrop', 'Spawn', 'WarpSong', 'OverworldOneWay']),
 }
 
 
@@ -457,6 +457,9 @@ def shuffle_random_entrances(worlds):
         one_way_entrance_pools = OrderedDict()
         entrance_pools = OrderedDict()
         one_way_priorities = {}
+
+        if worlds[0].settings.shuffle_gerudo_valley_river_exit:
+            one_way_entrance_pools['OverworldOneWay'] = world.get_shufflable_entrances(type='OverworldOneWay')
 
         if worlds[0].settings.owl_drops:
             one_way_entrance_pools['OwlDrop'] = world.get_shufflable_entrances(type='OwlDrop')
@@ -520,8 +523,6 @@ def shuffle_random_entrances(worlds):
         if worlds[0].settings.shuffle_overworld_entrances:
             exclude_overworld_reverse = ('Overworld' in worlds[0].settings.mix_entrance_pools) and not worlds[0].settings.decouple_entrances
             entrance_pools['Overworld'] = world.get_shufflable_entrances(type='Overworld', only_primary=exclude_overworld_reverse)
-            if not worlds[0].settings.decouple_entrances:
-                entrance_pools['Overworld'].remove(world.get_entrance('GV Lower Stream -> Lake Hylia'))
 
         # Set shuffled entrances as such
         for entrance in list(chain.from_iterable(one_way_entrance_pools.values())) + list(chain.from_iterable(entrance_pools.values())):
@@ -545,16 +546,19 @@ def shuffle_random_entrances(worlds):
         one_way_target_entrance_pools = {}
         for pool_type, entrance_pool in one_way_entrance_pools.items():
             # One way entrances are extra entrances that will be connected to entrance positions from a selection of entrance pools
-            if pool_type == 'OwlDrop':
-                valid_target_types = ('WarpSong', 'OwlDrop', 'Overworld', 'Extra')
+            if pool_type == 'OverworldOneWay':
+                valid_target_types = ('Spawn', 'WarpSong', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
+                one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types)
+            elif pool_type == 'OwlDrop':
+                valid_target_types = ('WarpSong', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Extra')
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, exclude=['Prelude of Light Warp -> Temple of Time'])
                 for target in one_way_target_entrance_pools[pool_type]:
                     target.set_rule(lambda state, age=None, **kwargs: age == 'child')
             elif pool_type == 'Spawn':
-                valid_target_types = ('Spawn', 'WarpSong', 'OwlDrop', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
+                valid_target_types = ('Spawn', 'WarpSong', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types)
             elif pool_type == 'WarpSong':
-                valid_target_types = ('Spawn', 'WarpSong', 'OwlDrop', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
+                valid_target_types = ('Spawn', 'WarpSong', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types)
             # Ensure that when trying to place the last entrance of a one way pool, we don't assume the rest of the targets are reachable
             for target in one_way_target_entrance_pools[pool_type]:
@@ -780,7 +784,7 @@ def place_one_way_priority_entrance(worlds, world, priority_name, allowed_region
                 continue
         # If not shuffling dungeons, Nocturne requires adult access.
         if not entrance.world.shuffle_dungeon_entrances and priority_name == 'Nocturne':
-            if entrance.type != 'WarpSong' and entrance.parent_region.name != 'Adult Spawn':
+            if entrance.type not in ('OverworldOneWay', 'WarpSong') and entrance.parent_region.name != 'Adult Spawn':
                 continue
         for target in one_way_target_entrance_pools[entrance.type]:
             if target.connected_region and target.connected_region.name in allowed_regions:
@@ -823,7 +827,7 @@ def check_entrances_compatibility(entrance, target, rollbacks=(), placed_one_way
         raise EntranceShuffleError('Self scene connections are forbidden')
 
     # One way entrances shouldn't lead to the same hint area as other already chosen one way entrances
-    if entrance.type in ('OwlDrop', 'Spawn', 'WarpSong'):
+    if entrance.type in ('OverworldOneWay', 'OwlDrop', 'Spawn', 'WarpSong'):
         try:
             hint_area = HintArea.at(target.connected_region)
         except HintAreaNotFound:
@@ -897,7 +901,7 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
                 raise EntranceShuffleError('Kak Impas House entrances are not in the same hint area')
 
     if (world.shuffle_special_interior_entrances or world.settings.shuffle_overworld_entrances or world.settings.spawn_positions) and \
-       (entrance_placed == None or entrance_placed.type in ['SpecialInterior', 'Overworld', 'Spawn', 'WarpSong', 'OwlDrop']):
+       (entrance_placed == None or entrance_placed.type in ('SpecialInterior', 'Overworld', 'OverworldOneWay', 'Spawn', 'WarpSong', 'OwlDrop')):
         # At least one valid starting region with all basic refills should be reachable without using any items at the beginning of the seed
         # Note this creates new empty states rather than reuse the worlds' states (which already have starting items)
         no_items_search = Search([State(w) for w in worlds])
@@ -921,7 +925,7 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
             raise EntranceShuffleError('Path to Temple of Time as child is not guaranteed')
 
     if (world.shuffle_interior_entrances or world.settings.shuffle_overworld_entrances) and \
-       (entrance_placed == None or entrance_placed.type in ['Interior', 'SpecialInterior', 'Overworld', 'Spawn', 'WarpSong', 'OwlDrop']):
+       (entrance_placed == None or entrance_placed.type in ('Interior', 'SpecialInterior', 'Overworld', 'OverworldOneWay', 'Spawn', 'WarpSong', 'OwlDrop')):
         # The Big Poe Shop should always be accessible as adult without the need to use any bottles
         # This is important to ensure that players can never lock their only bottles by filling them with Big Poes they can't sell
         # We can use starting items in this check as long as there are no exits requiring the use of a bottle without refills
@@ -956,7 +960,7 @@ def entrance_unreachable_as(entrance, age, already_checked=None):
     already_checked.append(entrance)
 
     # The following cases determine when we say an entrance is not safe to affirm unreachable as the given age
-    if entrance.type in ('WarpSong', 'Overworld'):
+    if entrance.type in ('WarpSong', 'OverworldOneWay', 'Overworld'):
         # Note that we consider all overworld entrances as potentially accessible as both ages, to be completely safe
         return False
     elif entrance.type == 'OwlDrop':
@@ -995,7 +999,7 @@ def get_entrance_replacing(region, entrance_name):
     try:
         return next(filter(lambda entrance: entrance.replaces and entrance.replaces.name == entrance_name and \
                                             entrance.parent_region and entrance.parent_region.name != 'Root Exits' and \
-                                            entrance.type not in ('OwlDrop', 'Spawn', 'WarpSong'), region.entrances))
+                                            entrance.type not in ('OverworldOneWay', 'OwlDrop', 'Spawn', 'WarpSong'), region.entrances))
     except StopIteration:
         return None
 

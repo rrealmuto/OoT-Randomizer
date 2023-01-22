@@ -5,9 +5,10 @@ from HintList import misc_item_hint_table, misc_location_hint_table
 from TextBox import line_wrap
 from Utils import find_last
 
-TEXT_START = 0x92D000
+ENG_TEXT_START = 0x92D000
+JPN_TEXT_START = 0x8EB000
 ENG_TEXT_SIZE_LIMIT = 0x39000
-JPN_TEXT_SIZE_LIMIT = 0x3A150
+JPN_TEXT_SIZE_LIMIT = 0x3B000
 
 JPN_TABLE_START = 0xB808AC
 ENG_TABLE_START = 0xB849EC
@@ -18,6 +19,9 @@ ENG_TABLE_SIZE = CREDITS_TABLE_START - ENG_TABLE_START
 
 EXTENDED_TABLE_START = JPN_TABLE_START # start writing entries to the jp table instead of english for more space
 EXTENDED_TABLE_SIZE = JPN_TABLE_SIZE + ENG_TABLE_SIZE # 0x8360 bytes, 4204 entries
+
+EXTENDED_TEXT_START = JPN_TABLE_START # start writing text to the jp table instead of english for more space
+EXTENDED_TEXT_SIZE_LIMIT = JPN_TEXT_SIZE_LIMIT + ENG_TEXT_SIZE_LIMIT # 0x74000 bytes
 
 # name of type, followed by number of additional bytes to read, follwed by a function that prints the code
 CONTROL_CODES = {
@@ -455,14 +459,14 @@ class Text_Code:
         return size
 
     # writes the code to the given offset, and returns the offset of the next byte
-    def write(self, rom, offset):
-        rom.write_byte(TEXT_START + offset, self.code)
+    def write(self, rom, text_start, offset):
+        rom.write_byte(text_start + offset, self.code)
 
         extra_bytes = 0
         if self.code in CONTROL_CODES:
             extra_bytes = CONTROL_CODES[self.code][1]
             bytes_to_write = int_to_bytes(self.data, extra_bytes)
-            rom.write_bytes(TEXT_START + offset + 1, bytes_to_write)
+            rom.write_bytes(text_start + offset + 1, bytes_to_write)
 
         return offset + 1 + extra_bytes
 
@@ -498,7 +502,7 @@ class Message:
 
     # check if this is an unused message that just contains it's own id as text
     def is_id_message(self):
-        if self.unpadded_length != 5:
+        if self.unpadded_length != 5 or self.id == 0xFFFC:
             return False
         for i in range(4):
             code = self.text_codes[i].code
@@ -609,20 +613,20 @@ class Message:
 
     # writes a Message back into the rom, using the given index and offset to update the table
     # returns the offset of the next message
-    def write(self, rom, index, offset):
+    def write(self, rom, index, text_start, offset, bank):
         # construct the table entry
         id_bytes = int_to_bytes(self.id, 2)
         offset_bytes = int_to_bytes(offset, 3)
-        entry = id_bytes + bytes([self.opts, 0x00, 0x07]) + offset_bytes
+        entry = id_bytes + bytes([self.opts, 0x00, bank]) + offset_bytes
         # write it back
         entry_offset = EXTENDED_TABLE_START + 8 * index
         rom.write_bytes(entry_offset, entry)
 
         for code in self.text_codes:
-            offset = code.write(rom, offset)
+            offset = code.write(rom, text_start, offset)
 
         while offset % 4 > 0:
-            offset = Text_Code(0x00, 0).write(rom, offset) # pad to 4 byte align
+            offset = Text_Code(0x00, 0).write(rom, text_start, offset) # pad to 4 byte align
 
         return offset
 
@@ -651,8 +655,14 @@ class Message:
 
     # read a single message from rom
     @classmethod
-    def from_rom(cls, rom, index):
-        entry_offset = ENG_TABLE_START + 8 * index
+    def from_rom(cls, rom, index, eng=True):
+        if eng:
+            table_start = ENG_TABLE_START
+            text_start = ENG_TEXT_START
+        else:
+            table_start = JPN_TABLE_START
+            text_start = JPN_TEXT_START
+        entry_offset = table_start + 8 * index
         entry = rom.read_bytes(entry_offset, 8)
         next = rom.read_bytes(entry_offset + 8, 8)
 
@@ -661,7 +671,7 @@ class Message:
         offset = bytes_to_int(entry[5:8])
         length = bytes_to_int(next[5:8]) - offset
 
-        raw_text = rom.read_bytes(TEXT_START + offset, length)
+        raw_text = rom.read_bytes(text_start + offset, length)
 
         return cls(raw_text, index, id, opts, offset, length)
 
@@ -922,19 +932,50 @@ def read_messages(rom):
         index += 1
         table_offset += 8
 
+    # Also grab 0xFFFC entry from JP table.
+    messages.append(read_fffc_message(rom))
     return messages
+
+# The JP text table is the only source for ID 0xFFFC, which is used by the
+# title and file select screens. Preserve this table entry and text data when
+# overwriting the JP data. The regular read_messages function only reads English
+# data.
+def read_fffc_message(rom):
+    table_offset = JPN_TABLE_START
+    index = 0
+    while True:
+        entry = rom.read_bytes(table_offset, 8)
+        id = bytes_to_int(entry[0:2])
+
+        if id == 0xFFFC:
+            message = Message.from_rom(rom, index, eng=False)
+            break
+
+        index += 1
+        table_offset += 8
+
+    return message
 
 # write the messages back
 def repack_messages(rom, messages, permutation=None, always_allow_skip=True, speed_up_text=True):
 
-    rom.update_dmadata_record(TEXT_START, TEXT_START, TEXT_START + ENG_TEXT_SIZE_LIMIT)
+    rom.update_dmadata_record(ENG_TEXT_START, ENG_TEXT_START, ENG_TEXT_START + ENG_TEXT_SIZE_LIMIT)
+    rom.update_dmadata_record(JPN_TEXT_START, JPN_TEXT_START, JPN_TEXT_START + JPN_TEXT_SIZE_LIMIT)
 
     if permutation is None:
         permutation = range(len(messages))
 
     # repack messages
     offset = 0
-    text_size_limit = ENG_TEXT_SIZE_LIMIT
+    text_start = JPN_TEXT_START
+    text_size_limit = EXTENDED_TEXT_SIZE_LIMIT
+    text_bank = 0x08 # start with the Japanese text bank
+    jp_bytes = 0
+    # An extra dummy message is inserted after exhausting the JP text file.
+    # Written message IDs are independent of the python list index, but the
+    # index has to be maintained for old/new lookups. This wouldn't be an
+    # issue if text shuffle didn't exist.
+    jp_index_offset = 0
 
     for old_index, new_index in enumerate(permutation):
         old_message = messages[old_index]
@@ -943,21 +984,57 @@ def repack_messages(rom, messages, permutation=None, always_allow_skip=True, spe
         new_message.id = old_message.id
 
         # modify message, making it represent how we want it to be written
-        new_message.transform(True, old_message.ending, always_allow_skip, speed_up_text)
+        if new_message.id != 0xFFFC:
+            new_message.transform(True, old_message.ending, always_allow_skip, speed_up_text)
+
+        # check if there is space to write the message
+        message_size = new_message.size()
+        if message_size + offset > JPN_TEXT_SIZE_LIMIT and text_start == JPN_TEXT_START:
+            # Add a dummy entry to the table for the last entry in the
+            # JP file. This is used by the game to calculate message
+            # length. Since the next entry in the English table has an
+            # offset of zero, which would lead to a negative length.
+            # 0xFFFD is used as the text ID for this in vanilla.
+            # Text IDs need to be in order across the table for the
+            # split to work.
+            entry = bytes([0xFF, 0xFD, 0x00, 0x00, text_bank]) + int_to_bytes(offset, 3)
+            entry_offset = EXTENDED_TABLE_START + 8 * old_index
+            rom.write_bytes(entry_offset, entry)
+            # if there is no room then switch to the English text bank
+            text_bank = 0x07
+            text_start = ENG_TEXT_START
+            jp_bytes = offset
+            jp_index_offset = 1
+            offset = 0
+
+        # Special handling for text ID 0xFFFC, which has hard-coded offsets to
+        # the JP file in function Font_LoadOrderedFont in z_kanfont.c
+        if new_message.id == 0xFFFC:
+            # hard-coded offset including segment
+            rom.write_int16(0xAD1CE2, (text_bank << 8) + ((offset & 0xFFFF0000) >> 16) + (1 if offset & 0xFFFF > 0x8000 else 0))
+            rom.write_int16(0xAD1CE6, offset & 0XFFFF)
+            # hard-coded message length, represented by offset of end of message
+            rom.write_int16(0xAD1D16, (text_bank << 8) + (((offset + new_message.size()) & 0xFFFF0000) >> 16) + (1 if (offset + new_message.size()) & 0xFFFF > 0x8000 else 0))
+            rom.write_int16(0xAD1D1E, (offset + new_message.size()) & 0XFFFF)
+            # hard-coded segment, default JP file (0x08)
+            rom.write_int16(0xAD1D12, (text_bank << 8))
+            # hard-coded text file start address in rom, default JP
+            rom.write_int16(0xAD1D22, ((text_start & 0xFFFF0000) >> 16) + (1 if text_start & 0xFFFF > 0x8000 else 0))
+            rom.write_int16(0xAD1D2E, text_start & 0XFFFF)
 
         # actually write the message
-        offset = new_message.write(rom, old_index, offset)
+        offset = new_message.write(rom, old_index + jp_index_offset, text_start, offset, text_bank)
 
         new_message.id = remember_id
 
     # raise an exception if too much is written
     # we raise it at the end so that we know how much overflow there is
-    if offset > text_size_limit:
-        raise(TypeError("Message Text table is too large: 0x" + "{:x}".format(offset) + " written / 0x" + "{:x}".format(ENG_TEXT_SIZE_LIMIT) + " allowed."))
+    if jp_bytes + offset > text_size_limit:
+        raise(TypeError("Message Text table is too large: 0x" + "{:x}".format(jp_bytes + offset) + " written / 0x" + "{:x}".format(EXTENDED_TEXT_SIZE_LIMIT) + " allowed."))
 
-    # end the table
-    table_index = len(messages)
-    entry = bytes([0xFF, 0xFD, 0x00, 0x00, 0x07]) + int_to_bytes(offset, 3)
+    # end the table, accounting for additional entry for file split
+    table_index = len(messages) + (1 if text_bank == 0x07 else 0)
+    entry = bytes([0xFF, 0xFD, 0x00, 0x00, text_bank]) + int_to_bytes(offset, 3)
     entry_offset = EXTENDED_TABLE_START + 8 * table_index
     rom.write_bytes(entry_offset, entry)
     table_index += 1
@@ -982,6 +1059,7 @@ def shuffle_messages(messages, except_hints=True, always_allow_skip=True):
         )
         shuffle_exempt = [
             0x208D,         # "One more lap!" for Cow in House race.
+            0xFFFC,         # Character data from JP table used on title and file select screens
         ]
         is_hint = (except_hints and m.id in hint_ids)
         is_error_message = (m.id == ERROR_MESSAGE)

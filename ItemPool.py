@@ -385,7 +385,8 @@ def get_pool_core(world):
                     pending_junk_pool.append(f"Small Key ({dungeon})")
         if world.settings.shuffle_bosskeys in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
             for dungeon in ['Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple']:
-                pending_junk_pool.append(f"Boss Key ({dungeon})")
+                if not world.settings.keyring_give_bk or dungeon not in world.settings.key_rings or world.settings.shuffle_smallkeys not in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
+                    pending_junk_pool.append(f"Boss Key ({dungeon})")
         if world.settings.shuffle_ganon_bosskey in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
             pending_junk_pool.append('Boss Key (Ganons Castle)')
         if world.settings.shuffle_song_items == 'any':
@@ -572,10 +573,14 @@ def get_pool_core(world):
 
             # Boss Key
             if location.vanilla_item == dungeon.item_name("Boss Key"):
-                shuffle_setting = world.settings.shuffle_bosskeys if dungeon.name != 'Ganons Castle' else world.settings.shuffle_ganon_bosskey
-                dungeon_collection = dungeon.boss_key
-                if shuffle_setting == 'vanilla':
-                    shuffle_item = False
+                if world.settings.shuffle_smallkeys in ['any_dungeon', 'overworld', 'keysanity', 'regional'] and dungeon.name in world.settings.key_rings and world.settings.keyring_give_bk and dungeon.name in ['Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple']:
+                    item = get_junk_item()[0]
+                    shuffle_item = True
+                else:
+                    shuffle_setting = world.settings.shuffle_bosskeys if dungeon.name != 'Ganons Castle' else world.settings.shuffle_ganon_bosskey
+                    dungeon_collection = dungeon.boss_key
+                    if shuffle_setting == 'vanilla':
+                        shuffle_item = False
             # Map or Compass
             elif location.vanilla_item in [dungeon.item_name("Map"), dungeon.item_name("Compass")]:
                 shuffle_setting = world.settings.shuffle_mapcompass

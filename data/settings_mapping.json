@@ -176,6 +176,7 @@
             "shuffle_overworld_entrances",
             "mix_entrance_pools",
             "decouple_entrances",
+            "shuffle_gerudo_valley_river_exit",
             "owl_drops",
             "warp_songs",
             "spawn_positions"
@@ -215,6 +216,7 @@
             "shuffle_hideoutkeys",
             "key_rings_choice",
             "key_rings",
+            "keyring_give_bk",
             "shuffle_bosskeys",
             "shuffle_ganon_bosskey",
             "ganon_bosskey_medallions",

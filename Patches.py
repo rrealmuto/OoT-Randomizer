@@ -260,9 +260,31 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         rom.write_bytes(symbol, part_bytes)
 
     # Change graveyard graves to not allow grabbing on to the ledge
-    rom.write_byte(0x0202039D, 0x20)
-    rom.write_byte(0x0202043C, 0x24)
 
+    # new floor type definition in the Graveyard
+    # first byte 0x24 causes you to fall off instead of jumping or grabbing the ledge
+    # otherwise identical to the originally used one
+    # overwrites zero-padding far past the end of the collision type array
+    rom.write_int32s(0x2026C04, [0x24000004, 0x00000FC8])
+    # indices from the array of polygons
+    floors_surrounding_graves = (range(494, 502),  # fairy fountain
+                                 range(502, 510),  # HP grave
+                                 range(487, 494),  # Dampé's grave
+                                 range(651, 659))  # royal tomb
+    for grave in floors_surrounding_graves:
+        for poly in grave:
+            # use the new floor type
+            rom.write_int16(0x2020494 + poly * 0x10, 0x0D0D)  # replaces 0x0014
+
+    grave_walls = (range(613, 621),  # fairy fountain
+                   range(623, 631),  # HP grave
+                   range(633, 641),  # Dampé's grave
+                   range(643, 651))  # royal tomb
+    for grave in grave_walls:
+        for poly in grave:
+            # use existing wall type that prevents grabbing ledges from midair
+            # otherwise identical to the originally used one
+            rom.write_int16(0x2020494 + poly * 0x10, 0x000F)  # replaces 0x0000
 
     # Fix Castle Courtyard to check for meeting Zelda, not Zelda fleeing, to block you
     rom.write_bytes(0xCD5E76, [0x0E, 0xDC])
@@ -852,6 +874,11 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     rom.write_byte(0xB6D3D3, 0x00) # Gerudo Training Ground
     rom.write_byte(0xB6D42B, 0x00) # Inside Ganon's Castle
 
+    # Allow Ocarina in some places
+    rom.write_byte(0xB6D346, 0x11) # Granny's Potion Shop
+    rom.write_byte(0xB6D33A, 0x51) # Bombchu Bowling
+    rom.write_byte(0xB6D30A, 0x51) # Archery
+
     # Remove disruptive text from Gerudo Training Ground and early Shadow Temple (vanilla)
     Wonder_text = [0x27C00BC, 0x27C00CC, 0x27C00DC, 0x27C00EC, 0x27C00FC, 0x27C010C, 0x27C011C, 0x27C012C, 0x27CE080,
                    0x27CE090, 0x2887070, 0x2887080, 0x2887090, 0x2897070, 0x28C7134, 0x28D91BC, 0x28A60F4, 0x28AE084,
@@ -1059,9 +1086,6 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
         # Connect lake hylia fill exit to revisit exit
         rom.write_int16(0xAC995A, 0x060C)
-
-        # Tell the well water we are always a child.
-        rom.write_int32(0xDD5BF4, 0x00000000)
 
         # Make the Adult well blocking stone dissappear if the well has been drained by
         # checking the well drain event flag instead of links age. This actor doesn't need a
@@ -1370,6 +1394,11 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     else:
         rom.write_byte(symbol, 0)
         rom.write_int16(count_symbol, 0)
+
+    # Set Boss Key collection in Key Ring.
+    symbol = rom.sym('KEYRING_BOSSKEY_CONDITION')
+    if world.settings.keyring_give_bk:
+        rom.write_byte(symbol, 1)
 
     # Set up LACS conditions.
     symbol = rom.sym('LACS_CONDITION')
@@ -2089,7 +2118,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         if not world.dungeon_mq['Ganons Castle']:
             chest_name = 'Ganons Castle Light Trial Lullaby Chest'
             location = world.get_location(chest_name)
-            item = read_rom_item(rom, location.item.index)
+            item = read_rom_item(rom, (location.item.looks_like_item or location.item).index)
             if item['chest_type'] in (GOLD_CHEST, GILDED_CHEST, SKULL_CHEST_BIG):
                 rom.write_int16(0x321B176, 0xFC40) # original 0xFC48
 
@@ -2098,7 +2127,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             chest_name = 'Spirit Temple Compass Chest'
             chest_address = 0x2B6B07C
             location = world.get_location(chest_name)
-            item = read_rom_item(rom, location.item.index)
+            item = read_rom_item(rom, (location.item.looks_like_item or location.item).index)
             if item['chest_type'] in (BROWN_CHEST, SILVER_CHEST, SKULL_CHEST_SMALL):
                 rom.write_int16(chest_address + 2, 0x0190) # X pos
                 rom.write_int16(chest_address + 6, 0xFABC) # Z pos
@@ -2109,7 +2138,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             chest_address_0 = 0x21A02D0  # Address in setup 0
             chest_address_2 = 0x21A06E4  # Address in setup 2
             location = world.get_location(chest_name)
-            item = read_rom_item(rom, location.item.index)
+            item = read_rom_item(rom, (location.item.looks_like_item or location.item).index)
             if item['chest_type'] in (BROWN_CHEST, SILVER_CHEST, SKULL_CHEST_SMALL):
                 rom.write_int16(chest_address_0 + 6, 0x0172)  # Z pos
                 rom.write_int16(chest_address_2 + 6, 0x0172)  # Z pos

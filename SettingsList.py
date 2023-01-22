@@ -2259,7 +2259,7 @@ setting_infos = [
                     'dungeon_shortcuts', 'trials_random', 'trials',
                     'starting_age', 'shuffle_interior_entrances',
                     'shuffle_grotto_entrances', 'shuffle_dungeon_entrances',
-                    'shuffle_bosses', 'shuffle_overworld_entrances', 'owl_drops', 'warp_songs', 'spawn_positions',
+                    'shuffle_bosses', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops', 'warp_songs', 'spawn_positions',
                     'mix_entrance_pools', 'decouple_entrances',
                     'triforce_hunt', 'triforce_count_per_world', 'triforce_goal_per_world', 'bombchus_in_logic', 'one_item_per_dungeon',
                     'shuffle_mapcompass', 'shuffle_smallkeys', 'shuffle_hideoutkeys', 'key_rings_choice', 'key_rings',
@@ -2296,7 +2296,7 @@ setting_infos = [
         disable        = {
             'glitchless': {'settings' : ['tricks_list_msg']},
             'glitched'  : {'settings' : ['allowed_tricks', 'shuffle_interior_entrances', 'shuffle_grotto_entrances',
-                                         'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'owl_drops',
+                                         'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops',
                                          'warp_songs', 'spawn_positions', 'mq_dungeons_mode', 'mq_dungeons_specific',
                                          'mq_dungeons_count', 'shuffle_bosses', 'dungeon_shortcuts', 'deadly_bonks',
                                          'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_beehives',
@@ -3035,7 +3035,7 @@ setting_infos = [
         ''',
         shared         = True,
         disable={
-            'off': {'settings' : ['key_rings']},
+            'off': {'settings' : ['key_rings', 'keyring_give_bk']},
             'all': {'settings' : ['key_rings']},
             'random': {'settings' : ['key_rings']},
         },
@@ -3063,6 +3063,21 @@ setting_infos = [
             Select areas with keyring instead of multiple keys
         ''',
         shared          = True,
+    ),
+    Checkbutton(
+        name           = 'keyring_give_bk',
+        gui_text       = 'Key Rings give Boss Keys',
+        gui_tooltip    = '''\
+            Boss Keys will be included in the Key Ring for the specific dungeon.
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            "hide_when_disabled": True,
+        },
+        disable={
+            True: {'settings' : ['shuffle_bosskeys']},
+        },
     ),
     Combobox(
         name           = 'shuffle_mapcompass',
@@ -3661,7 +3676,9 @@ setting_infos = [
             Some entrances are kept unshuffled to avoid issues:
             - Hyrule Castle Courtyard and Garden entrances
             - Both Market Back Alley entrances
-            - Gerudo Valley to Lake Hylia (unless entrances are decoupled)
+
+            The entrance from Gerudo Valley to Lake Hylia is a one-way
+            entrance and has its own setting below.
 
             Just like when shuffling interior entrances, shuffling overworld
             entrances disables trade timers and trade items never revert,
@@ -3719,6 +3736,19 @@ setting_infos = [
 
             Boss entrances are currently excluded from this setting and remain
             coupled regardless.
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    ),
+    Checkbutton(
+        name           = 'shuffle_gerudo_valley_river_exit',
+        gui_text       = 'Shuffle Gerudo Valley River Exit',
+        gui_tooltip    = '''\
+            Randomize where the the one-way entrance
+            down the river in Gerudo Valley leads to.
         ''',
         default        = False,
         shared         = True,
@@ -4862,6 +4892,7 @@ setting_infos = [
             '30_skulltulas':  'House of Skulltula: 30',
             '40_skulltulas':  'House of Skulltula: 40',
             '50_skulltulas':  'House of Skulltula: 50',
+            'frogs2':         'Frogs Ocarina Game',
         },
         gui_tooltip    = '''\
             This setting adds some hints at locations
@@ -4896,6 +4927,11 @@ setting_infos = [
             Talking to a cursed House of Skulltula
             resident will tell you the reward they will
             give you for removing their curse.
+
+            Placing yourself on the log at Zora River
+            where you play the songs for the frogs will
+            tell you what the reward is for playing all
+            six non warp songs.
         ''',
         shared         = True,
         default        = ['altar', 'ganondorf', 'warp_songs'],
@@ -5226,8 +5262,23 @@ setting_infos = [
             "dynamic": True,
         }
     ),
-    Setting_Info('model_adult_filepicker', str, "Adult Link Model", "Fileinput", False, {},
-        gui_params = {
+    Setting_Info(
+        name        = 'model_adult_filepicker',
+        type        = str,
+        gui_text    = "Adult Link Model",
+        gui_type    = "Fileinput",
+        shared      = False,
+        choices     = {},
+        gui_tooltip = '''\
+            Link's model will be replaced by the model selected.
+            Cosmetics options might not be applied when a
+            custom model is in use.
+            Caution: Any changes to Link's skeleton have the potential
+            to affect gameplay in significant ways and so are disallowed
+            for all recorded Racetime races. A note will appear at the top
+            of the pause screen if this is the case.
+        ''',
+        gui_params  = {
             "file_types": [
                 {
                   "name": "Z64 Model Files",
@@ -5239,7 +5290,8 @@ setting_infos = [
                 }
             ],
             "hide_when_disabled": True,
-    }),
+        }
+    ),
     Combobox(
         name           = 'model_child',
         gui_text       = 'Child Link Model',
@@ -5263,8 +5315,23 @@ setting_infos = [
             "dynamic": True,
         }
     ),
-    Setting_Info('model_child_filepicker', str, "Child Link Model", "Fileinput", False, {},
-        gui_params = {
+    Setting_Info(
+        name        = 'model_child_filepicker',
+        type        = str,
+        gui_text    = "Child Link Model",
+        gui_type    = "Fileinput",
+        shared      = False,
+        choices     = {},
+        gui_tooltip = '''\
+            Link's model will be replaced by the model selected.
+            Cosmetics options might not be applied when a
+            custom model is in use.
+            Caution: Any changes to Link's skeleton have the potential
+            to affect gameplay in significant ways and so are disallowed
+            for all recorded Racetime races. A note will appear at the top
+            of the pause screen if this is the case.
+        ''',
+        gui_params  = {
             "file_types": [
                 {
                   "name": "Z64 Model Files",
@@ -5276,7 +5343,8 @@ setting_infos = [
                 }
             ],
             "hide_when_disabled": True,
-    }),
+        }
+    ),
     Setting_Info(
         name           = 'model_unavailable_msg',
         type           = str,

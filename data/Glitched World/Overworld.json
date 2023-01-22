@@ -419,6 +419,10 @@
     {
         "region_name": "Temple of Time",
         "hint": "TEMPLE_OF_TIME",
+        "events": {
+            # used for the "path of time" goal
+            "Temple of Time Access": "True"
+        },
         "locations": {
             "ToT Light Arrows Cutscene": "is_adult and can_trigger_lacs",
             "ToT Child Altar Hint": "is_child",
@@ -1032,7 +1036,8 @@
             "ZR GS Near Raised Grottos": "is_adult and (Progressive_Hookshot or can_hover) and at_night",
             "ZR GS Above Bridge": "can_use(Hookshot) and at_night",
             "ZR Near Grottos Gossip Stone": "True",
-            "ZR Near Domain Gossip Stone": "True"
+            "ZR Near Domain Gossip Stone": "True",
+            "ZR Frogs Ocarina Minigame Hint": "True"
         },
         "exits": {
             "ZR Front": "True",

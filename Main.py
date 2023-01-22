@@ -684,14 +684,14 @@ def find_misc_hint_items(spoiler):
 def create_playthrough(spoiler):
     worlds = spoiler.worlds
     if worlds[0].check_beatable_only and not Search([world.state for world in worlds]).can_beat_game():
-        raise RuntimeError('Uncopied is broken too.')
+        raise RuntimeError('Game unbeatable after placing all items.')
     # create a copy as we will modify it
     old_worlds = worlds
     worlds = copy_worlds(worlds)
 
     # if we only check for beatable, we can do this sanity check first before writing down spheres
     if worlds[0].check_beatable_only and not Search([world.state for world in worlds]).can_beat_game():
-        raise RuntimeError('Cannot beat game. Something went terribly wrong here!')
+        raise RuntimeError('Uncopied world beatable but copied world is not.')
 
     search = RewindableSearch([world.state for world in worlds])
     # Get all item locations in the worlds

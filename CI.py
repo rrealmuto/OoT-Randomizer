@@ -55,9 +55,6 @@ def check_code_style(fix_errors=False):
                 if not line.endswith('\n'):
                     error(f'Missing line break at end of {path}')
                     line += '\n'
-                if line.endswith('\r\n'):
-                    error(f'Line {i} of {path} ends with CRLF')
-                    line = line.rstrip('\r\n') + '\n'
                 line = line.rstrip('\n')
                 if '\t' in line:
                     error(f'Hard tab on line {i} of {path}')

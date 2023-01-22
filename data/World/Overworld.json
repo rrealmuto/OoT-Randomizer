@@ -1086,6 +1086,10 @@
         "region_name": "Temple of Time",
         "scene": "Temple of Time",
         "hint": "TEMPLE_OF_TIME",
+        "events": {
+            # used for the "path of time" goal
+            "Temple of Time Access": "True"
+        },
         "locations": {
             "ToT Light Arrows Cutscene": "is_adult and can_trigger_lacs",
             "ToT Child Altar Hint": "is_child",
@@ -2189,7 +2193,8 @@
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
             "Bug Shrub": "
                 (is_child or here(can_plant_bean) or Hover_Boots or logic_zora_river_lower) and
-                can_cut_shrubs and has_bottle"
+                can_cut_shrubs and has_bottle",
+            "ZR Frogs Ocarina Minigame Hint": "True"
         },
         "exits": {
             "ZR Front": "True",
