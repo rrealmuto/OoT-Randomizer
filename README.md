@@ -19,6 +19,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1536))
   * “Closed Forest Requires Gohma” is a separate setting, making “Closed Forest” compatible with more settings if disabled ([#1531](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1531))
   * New “Full” options for the settings “Randomize Owl Drops”, “Randomize Warp Song Destinations”, and “Randomize Overworld Spawns” (which is split into “Randomize Child Overworld Spawn” and “Randomize Adult Overworld Spawn” for this reason) that include more types of entrances (based on [#1179](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1179) and [#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
+  * New “Frogs Ocarina Game” option for the “Randomize Ocarina Song Notes” setting (based on [rrealmuto's `random_frog_song` branch](https://github.com/rrealmuto/OoT-Randomizer/tree/random_frog_song))
   * “Enable Specific Glitch-Useful Cutscenes” has been renamed to “Glitch-Useful Behaviors” and also controls whether the water in the well is present as adult
   * New “Shuffle Blue Warps” setting
   * New “Mutually Exclusive One-Ways” setting which makes the hint area restriction apply to one-way entrances of different types
