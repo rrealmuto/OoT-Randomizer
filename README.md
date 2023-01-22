@@ -172,11 +172,15 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * New ER setting `Shuffle Gerudo Valley River Exit` allows you to shuffle the one-way exit going down the river in Gerudo Valley.
 * **Hints**
   * New `Important Checks` hint type which hints at how many major items are in a given region.
+  * New Misc. Hint `Frogs Ocarina Game` which tells you what item you'll get from the Zora's River frog minigame. The hint appears in the dialog box that's printed before they jump onto the log.
+  * Add a goal category for the items required to open the Door of Time, if it's closed.
 
 #### Bug Fixes
 * Fix an issue where the `path of hearts` goal wasn't enabled in certain circumstances with a Ganon's Boss Key or LACS `Hearts` goal.
 * Fix an issue where CSMC chests containing ice traps were not moved correctly.
 * Fix the bingosync URL not being referenced correctly.
+* The ocarina can no longer be pulled out mid-hookshot via the D-Pad to cancel the hookshot pull.
+* Fix the change which makes graveyard grave hole ledges un-grabbable incorrectly applied to other ledges in the graveyard area.
 
 #### Other Changes
 * `Closed Forest` is no longer changed to `Closed Deku` when `Shuffle Boss Entrances` is enabled.
@@ -186,6 +190,8 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * The Kakariko Well water will no longer be up as adult to facilitate a glitch strategy for entering the well.
 * The message table has been extended to allow further developments which require more added textboxes.
 * Currently worn mask will now be preserved when transitioning scenes or resetting.
+* The ocarina can now be used in some rooms it cannot normally be used in to allow warping out of them.
+* Link the Goron will now give you the item reward regardless of which dialog option you choose.
 
 #### Plandomizer
 * Plandomizer now allows you to specify locations that are valid but do not exist in your current seed, for example, an MQ-specific location when that dungeon is Vanilla.

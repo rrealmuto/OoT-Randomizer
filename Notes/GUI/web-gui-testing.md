@@ -10,15 +10,19 @@ Both Python3 and NodeJS v12+ are required.
 
 ### Step 1
 
-Execute `npm run release` inside the GUI directory to build the latest frontend code.
+Run `SettingsToJson.py --web` to ensure the right set of settings will be used.
 
 ### Step 2
+
+Execute `npm run ng-release` inside the `GUI` directory to build the latest frontend code.
+
+### Step 3
 
 Go to `GUI/webTest/settingsParser` and run `node index.js`.
 
 This will generate the `settings_list.json` required for the GUI to function.
 
-### Step 3
+### Step 4
 
 Drop back into `GUI/webTest` and run `node server.js`.
 

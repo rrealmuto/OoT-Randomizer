@@ -3276,3 +3276,13 @@ skip_GS_BGS_text:
 ; Dumb hack to not relocate the function call to player_save_mask
 .orga 0xBF2C14
     nop
+
+;===================================================================================================
+; Link the Goron gives the item on either first choice selected
+;===================================================================================================
+; Replaces: addiu   t5, $zero, 0x3035
+.orga 0xED3170
+    addiu   t5, $zero, 0x3036
+; Replaces: addiu   t9, $zero, 0x3033
+.orga 0xED31B8
+    addiu   t9, $zero, 0x3036

@@ -2204,7 +2204,8 @@
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
             "Bug Shrub": "
                 (is_child or here(can_plant_bean) or Hover_Boots or logic_zora_river_lower) and
-                can_cut_shrubs and has_bottle"
+                can_cut_shrubs and has_bottle",
+            "ZR Frogs Ocarina Minigame Hint": "is_child"
         },
         "exits": {
             "ZR Front": "True",

@@ -2213,6 +2213,7 @@ location_table = OrderedDict([
     ("30 Skulltulas Reward Hint",                                    ("Hint",         None,  None, None,                            None,                                    None)),
     ("40 Skulltulas Reward Hint",                                    ("Hint",         None,  None, None,                            None,                                    None)),
     ("50 Skulltulas Reward Hint",                                    ("Hint",         None,  None, None,                            None,                                    None)),
+    ("ZR Frogs Ocarina Minigame Hint",                               ("Hint",         None,  None, None,                            None,                                    None)),
     ("Ganondorf Hint",                                               ("Hint",         None,  None, None,                            None,                                    None)),
 ])
 

@@ -5306,6 +5306,7 @@ setting_infos = [
             '30_skulltulas':  'House of Skulltula: 30',
             '40_skulltulas':  'House of Skulltula: 40',
             '50_skulltulas':  'House of Skulltula: 50',
+            'frogs2':         'Frogs Ocarina Game',
         },
         gui_tooltip    = '''\
             This setting adds some hints at locations
@@ -5340,6 +5341,11 @@ setting_infos = [
             Talking to a cursed House of Skulltula
             resident will tell you the reward they will
             give you for removing their curse.
+
+            Placing yourself on the log at Zora River
+            where you play the songs for the frogs will
+            tell you what the reward is for playing all
+            six non-warp songs.
         ''',
         shared         = True,
         default        = ['altar', 'ganondorf', 'warp_songs'],
@@ -5669,8 +5675,23 @@ setting_infos = [
             "dynamic": True,
         }
     ),
-    Setting_Info('model_adult_filepicker', str, "Adult Link Model", "Fileinput", False, {},
-        gui_params = {
+    Setting_Info(
+        name        = 'model_adult_filepicker',
+        type        = str,
+        gui_text    = "Adult Link Model",
+        gui_type    = "Fileinput",
+        shared      = False,
+        choices     = {},
+        gui_tooltip = '''\
+            Link's model will be replaced by the model selected.
+            Cosmetics options might not be applied when a
+            custom model is in use.
+            Caution: Any changes to Link's skeleton have the potential
+            to affect gameplay in significant ways and so are disallowed
+            for all recorded Racetime races. A note will appear at the top
+            of the pause screen if this is the case.
+        ''',
+        gui_params  = {
             "file_types": [
                 {
                   "name": "Z64 Model Files",
@@ -5682,7 +5703,8 @@ setting_infos = [
                 }
             ],
             "hide_when_disabled": True,
-    }),
+        }
+    ),
     Combobox(
         name           = 'model_child',
         gui_text       = 'Child Link Model',
@@ -5706,8 +5728,23 @@ setting_infos = [
             "dynamic": True,
         }
     ),
-    Setting_Info('model_child_filepicker', str, "Child Link Model", "Fileinput", False, {},
-        gui_params = {
+    Setting_Info(
+        name        = 'model_child_filepicker',
+        type        = str,
+        gui_text    = "Child Link Model",
+        gui_type    = "Fileinput",
+        shared      = False,
+        choices     = {},
+        gui_tooltip = '''\
+            Link's model will be replaced by the model selected.
+            Cosmetics options might not be applied when a
+            custom model is in use.
+            Caution: Any changes to Link's skeleton have the potential
+            to affect gameplay in significant ways and so are disallowed
+            for all recorded Racetime races. A note will appear at the top
+            of the pause screen if this is the case.
+        ''',
+        gui_params  = {
             "file_types": [
                 {
                   "name": "Z64 Model Files",
@@ -5719,7 +5756,8 @@ setting_infos = [
                 }
             ],
             "hide_when_disabled": True,
-    }),
+        }
+    ),
     Setting_Info(
         name           = 'model_unavailable_msg',
         type           = str,
