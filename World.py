@@ -682,12 +682,12 @@ class World(object):
         'Kokiri Emerald',
         'Goron Ruby',
         'Zora Sapphire',
+        'Light Medallion',
         'Forest Medallion',
         'Fire Medallion',
         'Water Medallion',
-        'Spirit Medallion',
         'Shadow Medallion',
-        'Light Medallion'
+        'Spirit Medallion',
     )
     def fill_bosses(self, bossCount=9):
         boss_rewards = ItemFactory(self.rewardlist, self)

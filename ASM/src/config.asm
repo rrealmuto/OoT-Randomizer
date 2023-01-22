@@ -170,6 +170,11 @@ CFG_DUNGEON_INFO_SILVER_RUPEES:
 .byte 0x00
 ICE_PERCENT:
 .byte 0x00
+CFG_DUNGEON_INFO_REWARD_WORLDS_ENABLE:
+.byte 0x00
+.area 9, 0
+CFG_DUNGEON_REWARD_WORLDS:
+.endarea
 .align 4
 
 ; These configuration values are given fixed addresses to aid auto-trackers.

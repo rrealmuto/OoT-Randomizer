@@ -64,9 +64,11 @@ extern uint32_t CFG_DUNGEON_INFO_REWARD_ENABLE;
 extern uint32_t CFG_DUNGEON_INFO_REWARD_NEED_COMPASS;
 extern uint32_t CFG_DUNGEON_INFO_REWARD_NEED_ALTAR;
 extern uint32_t CFG_DUNGEON_INFO_REWARD_SUMMARY_ENABLE;
+extern bool CFG_DUNGEON_INFO_REWARD_WORLDS_ENABLE;
 
 extern int8_t CFG_DUNGEON_REWARDS[14];
 extern char CFG_DUNGEON_REWARD_AREAS[9][0x17];
+extern uint8_t CFG_DUNGEON_REWARD_WORLDS[9];
 
 extern uint8_t CFG_DUNGEON_INFO_SILVER_RUPEES;
 
@@ -372,6 +374,9 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
             (1 * icon_size) +
             (0x16 * font_sprite.tile_w) +
             (3 * padding);
+        if (CFG_DUNGEON_INFO_REWARD_WORLDS_ENABLE) {
+            bg_width += 5 * font_sprite.tile_w;
+        }
         int bg_height = (rows * icon_size) + ((rows + 1) * padding);
         int bg_left = (Z64_SCREEN_WIDTH - bg_width) / 2;
         int bg_top = (Z64_SCREEN_HEIGHT - bg_height) / 2;
@@ -408,7 +413,36 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
 
         left += icon_size + padding;
 
-        // Draw dungeon names
+        // Draw reward worlds
+
+        if (CFG_DUNGEON_INFO_REWARD_WORLDS_ENABLE) {
+            for (int i = 0; i < 9; i++) {
+                uint8_t world = CFG_DUNGEON_REWARD_WORLDS[i];
+                char world_text[5] = "WOOO";
+                if (world < 100) {
+                    world_text[0] = ' ';
+                    world_text[1] = 'W';
+                }
+                if (world < 10) {
+                    world_text[1] = ' ';
+                    world_text[2] = 'W';
+                }
+                if (world / 100) {
+                    world_text[1] = world / 100 + '0';
+                }
+                if ((world % 100) / 10) {
+                    world_text[2] = (world % 100) / 10 + '0';
+                }
+                if (world % 10) {
+                    world_text[3] = world % 10 + '0';
+                }
+                int top = start_top + ((icon_size + padding) * i) + 1;
+                text_print(world_text, left, top);
+            }
+            left += 5 * font_sprite.tile_w;
+        }
+
+        // Draw reward locations
 
         for (int i = 0; i < 9; i++) {
             if (i < 3 ? show_stones : show_medals) {

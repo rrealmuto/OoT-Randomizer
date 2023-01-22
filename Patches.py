@@ -29,7 +29,7 @@ from texture_util import ci4_rgba16patch_to_ci8, rgba16_patch
 from ntype import BigStream
 
 
-def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
+def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     with open(data_path('generated/rom_patch.txt'), 'r') as stream:
         for line in stream:
             address, value = [int(x, 16) for x in line.split(',')]
@@ -2882,11 +2882,13 @@ def configure_dungeon_info(rom, world):
 
     dungeon_rewards = [0xff] * 14
     dungeon_reward_areas = bytearray()
+    dungeon_reward_worlds = []
     for reward in ('Kokiri Emerald', 'Goron Ruby', 'Zora Sapphire', 'Light Medallion', 'Forest Medallion', 'Fire Medallion', 'Water Medallion', 'Shadow Medallion', 'Spirit Medallion'):
-        location = next(filter(lambda loc: loc.item.name == reward, world.get_filled_locations()))
+        location = world.hinted_dungeon_reward_locations[reward]
         area = HintArea.at(location)
         dungeon_reward_areas += area.short_name.encode('ascii').ljust(0x16) + b'\0'
-        if area.is_dungeon:
+        dungeon_reward_worlds.append(location.world.id + 1)
+        if location.world.id == world.id and area.is_dungeon:
             dungeon_rewards[codes.index(area.dungeon_name)] = boss_reward_index(location.item)
 
     dungeon_is_mq = [1 if world.dungeon_mq.get(c) else 0 for c in codes]
@@ -2901,6 +2903,8 @@ def configure_dungeon_info(rom, world):
     rom.write_bytes(rom.sym('CFG_DUNGEON_REWARDS'), dungeon_rewards)
     rom.write_bytes(rom.sym('CFG_DUNGEON_IS_MQ'), dungeon_is_mq)
     rom.write_bytes(rom.sym('CFG_DUNGEON_REWARD_AREAS'), dungeon_reward_areas)
+    rom.write_byte(rom.sym('CFG_DUNGEON_INFO_REWARD_WORLDS_ENABLE'), int(world.settings.world_count > 1 and world.settings.shuffle_dungeon_rewards in ('regional', 'overworld', 'any_dungeon', 'anywhere')))
+    rom.write_bytes(rom.sym('CFG_DUNGEON_REWARD_WORLDS'), dungeon_reward_worlds)
 
 # Overwrite an actor in rom w/ the actor data from LocationList
 def patch_actor_override(location, rom: Rom):
