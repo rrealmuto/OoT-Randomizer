@@ -3504,3 +3504,16 @@ courtyard_guards_kill:
 ; Replaces: addiu   t9, $zero, 0x0222
 .orga 0xDA1F94
     addiu   t9, $zero, 0x0221
+
+;=========================================================================================
+; Add custom message control characters
+;=========================================================================================
+
+; In Message_Decode at the last control code check (0x01 for new line)
+; Replaces
+;   addiu   at, r0, 0x0001
+;   bne     v0, at, 0x800DC580
+.headersize (0x800110A0 - 0xA87000)
+.org 0x800DC568
+    j       Message_Decode_Control_Code_Hook
+    nop

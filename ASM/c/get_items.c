@@ -194,6 +194,7 @@ override_key_t resolve_alternative_override(override_key_t override_key)
 void activate_override(override_t override) {
     uint16_t resolved_item_id = resolve_upgrades(override.value.item_id);
     item_row_t *item_row = get_item_row(resolved_item_id);
+    resolve_text_id(item_row);
 
     active_override = override;
     if (resolved_item_id == 0xCA) {
@@ -380,6 +381,7 @@ void try_pending_item() {
     if (override.value.item_id == 0xCA && override.value.player != PLAYER_ID) {
         uint16_t resolved_item_id = resolve_upgrades(override.value.item_id);
         item_row_t *item_row = get_item_row(resolved_item_id);
+        resolve_text_id(item_row);
         call_effect_function(item_row);
         pop_pending_item();
         after_key_received(override.key);
@@ -805,6 +807,7 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
         uint16_t item_id = collectible_override.value.item_id;
         uint16_t resolved_item_id = resolve_upgrades(item_id);
         item_row_t *item_row = get_item_row(resolved_item_id);
+        resolve_text_id(item_row);
 
         // Set the collectible flag
         Set_CollectibleOverrideFlag(pItem);
@@ -863,6 +866,7 @@ void get_skulltula_token(z64_actor_t *token_actor) {
 
     uint16_t resolved_item_id = resolve_upgrades(item_id);
     item_row_t *item_row = get_item_row(resolved_item_id);
+    resolve_text_id(item_row);
 
     token_actor->draw_proc = NULL;
 
