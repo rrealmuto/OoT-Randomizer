@@ -606,7 +606,7 @@ void Room_Change_Actor_Kill_Hack(z64_actor_t *actor) {
     if(actor->actor_id == 0x15)
     {
         EnItem00* this = (EnItem00*)actor;
-        if(this->override.key.all > 0)
+        if(this->dropped && this->override.key.all > 0)
             return;
     }
     z64_ActorKill(actor);
@@ -624,8 +624,10 @@ z64_actor_t *Item_DropCollectible_Actor_Spawn_Override(void *actorCtx, z64_game_
 bool Item00_KillActorIfFlagIsSet(z64_actor_t *actor) {
     EnItem00 *this = (EnItem00 *)actor;
     uint16_t flag = 0;
+    this->dropped = false;
     if(drop_collectible_override_flag) {
         flag = drop_collectible_override_flag;
+        this->dropped = true;
     }
     else if(CURR_ACTOR_SPAWN_INDEX)
     {

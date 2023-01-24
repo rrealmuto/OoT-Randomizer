@@ -61,7 +61,8 @@ typedef struct EnItem00 {
   int16_t timeToLive; // 0x14A
   float scale;        // 0x14C
   uint8_t collider[0x4C];   // 0x150 size = 4C
-  override_t override;
+  override_t override; // Used to store the override
+  bool dropped; // Flag to indicate that this was a dropped item vs. spawned.
 } EnItem00;
 
 
