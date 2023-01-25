@@ -27,6 +27,15 @@
         "locations": {
             "Gerudo Training Ground MQ Dinolfos Chest": "is_adult",
             # In the Dinalfos room, shoot the Gerudo symbol above the door to the lava room.
+            "Gerudo Training Ground MQ Lava Room Bubble 1": "is_adult and (Bow or (Longshot and Dins_Fire)) and Magic_Meter and Hover_Boots",
+            "Gerudo Training Ground MQ Lava Room Bubble 2": "is_adult and (Bow or Longshot) and Magic_Meter",
+            "Gerudo Training Ground MQ Lava Room Bubble 3": "is_adult and (Bow or (Longshot and Dins_Fire)) and Magic_Meter",
+            "Gerudo Training Ground MQ Dinalfos 1": "is_adult",
+            "Gerudo Training Ground MQ Dinalfos 2": "is_adult",
+            "Gerudo Training Ground MQ Dinalfos 3": "is_adult",
+            "Gerudo Training Ground MQ Dodongo 1": "is_adult",
+            "Gerudo Training Ground MQ Dodongo 2": "is_adult",
+            "Gerudo Training Ground MQ Armos": "is_adult",
             "Wall Fairy": "has_bottle and can_use(Bow)"
         },
         "exits": {
@@ -72,6 +81,19 @@
                 (logic_fewer_tunic_requirements or Zora_Tunic) and can_take_damage",
             "Gerudo Training Ground MQ Underwater Silver Rupee Back Left": "
                 has_fire_source and Iron_Boots and
+                (logic_fewer_tunic_requirements or Zora_Tunic) and can_take_damage",
+            "Gerudo Training Ground MQ Underwater Silver Rupee Chest": "
+                has_fire_source and Iron_Boots and Hookshot and 
+                (logic_fewer_tunic_requirements or Zora_Tunic) and can_take_damage",
+            "Gerudo Training Ground MQ Underwater Stingray 1": "
+                has_fire_source and Iron_Boots and Hookshot and 
+                (logic_fewer_tunic_requirements or Zora_Tunic) and can_take_damage",
+            "Gerudo Training Ground MQ Underwater Stingray 2": "
+                has_fire_source and Iron_Boots and Hookshot and 
+                (logic_fewer_tunic_requirements or Zora_Tunic) and can_take_damage",
+            "Gerudo Training Ground MQ Water Bari": "can_kill_biri",
+            "Gerudo Training Ground MQ Underwater Shellblade": "
+                has_fire_source and Iron_Boots and Hookshot and 
                 (logic_fewer_tunic_requirements or Zora_Tunic) and can_take_damage"
         }
     },
@@ -79,7 +101,10 @@
         "region_name": "Gerudo Training Ground Left Side",
         "dungeon": "Gerudo Training Ground",
         "locations": {
-            "Gerudo Training Ground MQ First Iron Knuckle Chest": "is_adult or Kokiri_Sword or has_explosives"
+            "Gerudo Training Ground MQ First Iron Knuckle Chest": "is_adult or Kokiri_Sword or has_explosives",
+            "Gerudo Training Ground MQ First Iron Knuckle": "is_adult or Kokiri_Sword or has_explosives",
+            "Gerudo Training Ground MQ Slopes Freezard": "is_adult or (Kokiri_Sword and Sticks) or has_explosives",
+            "Gerudo Training Ground MQ Slopes Wallmaster 1": "is_adult or Kokiri_Sword or has_explosives"
         },
         "exits": {
             "Gerudo Training Ground Icicle Room" : "is_adult or Kokiri_Sword or has_explosives"
@@ -110,6 +135,16 @@
             # Very difficult to fight the Stalfos and Stulltulas under the time limit as child.
             "Gerudo Training Ground MQ Before Heavy Block Chest": "is_adult",
             "Gerudo Training Ground MQ Heavy Block Chest": "can_use(Silver_Gauntlets)",
+            "Gerudo Training Ground MQ Before Heavy Block Stalfos 1": "is_adult",
+            "Gerudo Training Ground MQ Before Heavy Block Stalfos 2": "is_adult",
+            "Gerudo Training Ground MQ Before Heavy Block Skulltula 1": "is_adult",
+            "Gerudo Training Ground MQ Before Heavy Block Skulltula 2": "is_adult",
+            "Gerudo Training Ground MQ Before Heavy Block Skulltula 3": "is_adult",
+            "Gerudo Training Ground MQ Heavy Block Freezard 1": "is_adult",
+            "Gerudo Training Ground MQ Heavy Block Freezard 2": "is_adult",
+            "Gerudo Training Ground MQ Heavy Block Spike 1": "is_adult",
+            "Gerudo Training Ground MQ Heavy Block Spike 2": "is_adult",
+            "Gerudo Training Ground MQ Heavy Block Spike 3": "is_adult",
             "Blue Fire": "has_bottle"
         },
         "exits": {
@@ -127,7 +162,10 @@
                 (Small_Key_Gerudo_Training_Ground, 3) and Megaton_Hammer",
             "Gerudo Training Ground MQ Eye Statue Chest": "Bow",
             "Gerudo Training Ground MQ Second Iron Knuckle Chest": "True",
-            "Gerudo Training Ground MQ Flame Circle Chest": "Hookshot or Bow or has_explosives"
+            "Gerudo Training Ground MQ Flame Circle Chest": "Hookshot or Bow or has_explosives",
+            "Gerudo Training Ground MQ Second Iron Knuckle": "True",
+            "Gerudo Training Ground MQ Second Iron Knuckle Torch Slug 1": "True",
+            "Gerudo Training Ground MQ Second Iron Knuckle Torch Slug 2": "True"
         },
         "exits": {
             "Gerudo Training Ground Central Maze Right": "Megaton_Hammer",

@@ -496,6 +496,31 @@ SRAM_SLOTS:
     j       ObjTsubo_SpawnCollectible_Hack
     nop
 
+;Hack Item_DropCollectibleRandom to add the enemy drop flag and extended flag
+.orga 0xA899E4 ; in memory 0x80013A84
+;Replaces:
+;addiu  sp, sp, -0x60
+;sw     s6, 0x0044(sp)
+;sll    s6, a3, 16
+;sw     s7, 0x0048(sp)
+addiu   sp, sp, -0x60
+sw      ra, 0x004C(sp)
+jal drop_collectible_random_hook
+nop
+.skip 24
+nop  ; Replaces the sw ra, 0x004C(sp) later on so we dont screw up our return address because we already saved it.
+
+; Hack Actor_Spawn when it checks if the room is clear to still spawn the enemies
+.orga 0xA9B1CC ; in memory 0x8002526C
+jal actor_spawn_clear_check_hook
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+
 ; Hack ObjKibako2_SpawnCollectible (Large crates) to call our overridden spawn function
 ;
 .orga 0xEC8264
@@ -626,6 +651,71 @@ bg_spot18_basket_rupees_loopstart: ; our new loop branch target
     nop
     nop
     nop
+
+
+; Hack baby dodongo to pass its actor pointer into Item_DropCollectibleRandom
+.orga 0xC596E0 ; In memory: 0x801F8AF0
+;replaces
+; or a1, r0, r0
+or a1, r0, s0
+
+; Hack skullwalltula to pass its actor pointer into Item_DropCollectibleRandom
+.orga 0xCE4DC0
+;replaces
+; or a1, r0, r0
+or a1, r0, s0
+
+; Hack Gohma larva to pass its actor pointer into Item_DropCollectibleRandom
+.orga 0xC527F0
+;replaces
+;   or a1, r0, r0
+or  a1, r0, s0
+
+; Hack big skulltulas to pass its actor pointer in Item_DropCollectibleRandom
+.orga 0xC63CB4
+;replaces
+;   or a1, r0, r0
+or a1, r0, s0
+
+; Hack shaboms to pass its actor pointer in Item_DropCollectibleRandom
+.orga 0xC54B68
+;replaces
+;   or a1, r0, r0
+or a1, r0, s6
+
+; Hack flare dancer core to pass its parent actor pointer into Item_DropCollectibleRandom
+.orga 0xD15E34
+;replaces
+;   or a1, r0, r0
+or a1, r0, v0 ;parent is stored in v0
+
+; Hack redead/gibdo to pass its actor pointer into Item_DropCollectibleRandom
+.orga 0xCD908C
+;replaces
+;   or a1, r0, r0
+or a1, r0, s0 ;parent is stored in v0
+
+; Hack anubis (en_anubice) to pass its parent into Item_DropCollectibleRandom
+.orga 0xD79D6C
+;replaces
+;   or a1, s0, r0
+lw a1, 0x118(s0)
+
+; Hack Bubble (en_bb) to spawn sparkles for fire bubbles
+.orga 0xCB2F28
+;replaces
+;   jal 0x800214AC
+;   sh  v0, 0x004E(sp)
+jal bb_red_wait_hook
+sh  v0, 0x004E(sp)
+
+; Hack Guays (en_crow) to not respawn in enemy drop shuffle
+.orga 0xEEE908 ; End of EnCrow_SetupRespawn where it sets actionFunc
+; replaces
+;   sw  r0, 0x0134(a2)
+;   sw  T7, 0x01B0(a2)
+jal     en_crow_respawn_hack
+sw      r0, 0x0134(a2) ; replaced code
 
 ; Hook at the end of Actor_SetWorldToHome to zeroize anything we use to store additional flag data
 .orga 0xA96E5C ; In memory: 0x80020EFC
