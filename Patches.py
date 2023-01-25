@@ -1772,6 +1772,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         #rom.write_bytes(0xB109E4, [0x10, 0x00, 0x00, 0x0A]) #b      0x8009AAB0
         #rom.write_bytes(0xB109E8, [0x24, 0x0E, 0x00, 0x01]) #addiu  T6, R0, 0x0001
 
+        if world.settings.prevent_guay_respawns:
+            rom.write_byte(rom.sym('CFG_PREVENT_GUAY_RESPAWNS'), 0x01)
+
     # Write flag table data
     collectible_flag_table, alt_list = get_collectible_flag_table(world)
     collectible_flag_table_bytes, num_collectible_flags = get_collectible_flag_table_bytes(collectible_flag_table)
