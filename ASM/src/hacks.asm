@@ -423,7 +423,7 @@ SRAM_SLOTS:
     nop
     lh      v0, 0x001C(s0)
     addiu   at, r0, 0x0003
-    .skip 4
+.skip 4
     nop
 
 ; Override the drop_id convert function s16 func_8001F404(s16 dropId) from decomp
@@ -443,7 +443,7 @@ SRAM_SLOTS:
 ;   beq     v0, at, 0x80013888
 ;   addiu   t8, r0, 0xFFFF
 ;   sb      t8, 0x0003(s2)
-.orga 0xA897C0; in memory 0x80013860
+.orga 0xA897C0 ; in memory 0x80013860
     jal     drop_collectible_room_hook
     nop
     nop
@@ -482,13 +482,13 @@ SRAM_SLOTS:
 ; Hack Item_DropCollectible call to Actor_Spawn to set override
 ; replaces
 ;   jal     0x80025110
-.orga 0xA8972C; in memory 0x800137B8
+.orga 0xA8972C ; in memory 0x800137B8
     jal     Item_DropCollectible_Actor_Spawn_Override
 
 ; Hack Item_DropCollectible2 call to Actor_Spawn to set override
 ; replaces
 ;   jal     0x80025110
-.orga 0xA89958; in memory 0x800139E0
+.orga 0xA89958 ; in memory 0x800139E0
     jal     Item_DropCollectible_Actor_Spawn_Override
 
 ; Hack ObjTsubo_SpawnCollectible (Pot) to call our overridden spawn function
@@ -511,7 +511,6 @@ SRAM_SLOTS:
 .orga 0xDFA520
     j       EnTuboTrap_DropCollectible_Hack
     nop
-
 
 ; Hack ObjKibako2_Init (Large Crates) to not delete our extended flag
 .orga 0xEC832C
@@ -628,7 +627,6 @@ bg_spot18_basket_rupees_loopstart: ; our new loop branch target
     nop
     nop
 
-
 ; Hook at the end of Actor_SetWorldToHome to zeroize anything we use to store additional flag data
 .orga 0xA96E5C ; In memory: 0x80020EFC
 ; Replaces:
@@ -637,10 +635,16 @@ bg_spot18_basket_rupees_loopstart: ; our new loop branch target
 
 ; Hook Actor_UpdateAll when each actor is being initialized. At the call to Actor_SpawnEntry
 ; Used to set the flag (z-rotation) of the actor to its position in the actor table.
-.orga 0xA99D48; In memory: 0x80023DE8
+.orga 0xA99D48 ; In memory: 0x80023DE8
 ; Replaces:
-;   jal 0x800255C4
-    jal Actor_UpdateAll_Hook
+;   jal     0x800255C4
+    jal     Actor_UpdateAll_Hook
+
+; Hack Actor_SpawnEntry so we can override actors being spawned
+.orga 0xA9B524 ; In memory: 0x800255C4
+; Replaces: Entire function
+    j       Actor_SpawnEntry_Hack
+    nop
 
 ; Runs when storing an incoming item to the player instance
 ; Replaces:
@@ -3273,3 +3277,17 @@ skip_GS_BGS_text:
 ; Replaces: addiu   t9, $zero, 0x3033
 .orga 0xED31B8
     addiu   t9, $zero, 0x3036
+
+
+;=========================================================================================
+; Add custom message control characters
+;=========================================================================================
+
+; In Message_Decode at the last control code check (0x01 for new line)
+; Replaces
+;   addiu   at, r0, 0x0001
+;   bne     v0, at, 0x800DC580
+.headersize (0x800110A0 - 0xA87000)
+.org 0x800DC568
+    j       Message_Decode_Control_Code_Hook
+    nop
