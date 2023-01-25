@@ -113,6 +113,7 @@ RANDO_CONTEXT:
 .include "drop_overrides/enemy_drops.asm"
 .include "drop_overrides/ovl_en_bb.asm"
 .include "drop_overrides/ovl_en_crow.asm"
+.include "drop_overrides/en_wonderitem.asm"
 .include "rand_seed.asm"
 .include "messages.asm"
 .include "player_save_mask.asm"

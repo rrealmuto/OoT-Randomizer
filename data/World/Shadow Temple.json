@@ -206,7 +206,8 @@
             "Shadow Temple Invisible Walls Floormaster 2": "True",
             "Shadow Temple Invisible Floormaster": "True",
             "Shadow Temple Boat Stalfos 1": "True",
-            "Shadow Temple Boat Stalfos 2": "True"
+            "Shadow Temple Boat Stalfos 2": "True",
+            "Shadow Temple 3 Spinning Pots Wonderitem": "can_use(Bow)"
         },
         "exits": {
             "Shadow Temple 3 Spinning Pots Rupees": "Bombs or Progressive_Strength_Upgrade",
