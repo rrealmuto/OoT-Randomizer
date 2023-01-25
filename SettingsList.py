@@ -3492,8 +3492,6 @@ setting_infos = [
                 Skull Kid
                 Stahlchild
                 Leevers
-                Stalfos in the upper room of Forest Temple.
-                Floormaster in GTG Slopes room.
                 And maybe some others :)
             
             Some important tidbits:
@@ -3508,7 +3506,7 @@ setting_infos = [
                 Bari (the large jellyfish things in Jabu) will only drop an item from the large jelly. 
                     The 3 smaller ones won't
                 Floormasters - After killing the floormaster, it will split in 3. 
-                    The first child defeated will drop an item.
+                    One of the children will drop an item.
 
             Deku Babas are the ultimate enemy so they will only drop 
             their shuffled item if you hit them with Elemental Arrows.
@@ -3519,6 +3517,10 @@ setting_infos = [
         gui_params     = {
             'randomize_key': 'randomize_settings',
         },
+        disable        = 
+        {
+            False : { 'settings': ['prevent_guay_respawns']},   
+        }
     ),
     Combobox(
         name           = 'shuffle_silver_rupees',
@@ -5200,9 +5202,16 @@ setting_infos = [
         ''',
         shared         = True,
     ),
-
-
-
+    Checkbutton(
+        name           = 'prevent_guay_respawns',
+        gui_text       = 'Prevent guays from respawning',
+        gui_tooltip    = '''\
+            Enabling this prevents guays from respawning in enemy drop shuffle.
+            ''',
+        gui_params     = {
+            'hide_when_disabled' : True,
+        }
+    ),
     Combobox(
         name           = 'item_pool_value',
         gui_text       = 'Item Pool',

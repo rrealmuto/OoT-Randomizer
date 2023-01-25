@@ -3,7 +3,7 @@
 ; A2 contains the guay actor
 ; actionFunc is at 0x01B0(A2)
 en_crow_respawn_hack:
-    lb  a0, ENEMY_DROP_SHUFFLE ; Get enemy drop shuffle setting
+    lb      a0, CFG_PREVENT_GUAY_RESPAWNS
     beqz    a0, @en_crow_set_actionfunc
     nop
 @en_crow_set_actionfunc_nothing:

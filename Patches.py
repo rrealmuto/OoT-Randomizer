@@ -1803,6 +1803,8 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         #Patch Hyrule Field Child scene setup to always use setup 1 regardless of spiritual stones. This shouldn't be necessary anymore because it was required before the alt_override system was implemented.
         #rom.write_bytes(0xB109E4, [0x10, 0x00, 0x00, 0x0A]) #b      0x8009AAB0
         #rom.write_bytes(0xB109E8, [0x24, 0x0E, 0x00, 0x01]) #addiu  T6, R0, 0x0001
+        if world.settings.prevent_guay_respawns:
+            rom.write_byte(rom.sym('CFG_PREVENT_GUAY_RESPAWNS'), 0x01)
 
     # Patches for wonderitem shuffle
     if world.settings.shuffle_wonderitems:
