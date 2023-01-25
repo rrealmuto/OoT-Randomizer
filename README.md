@@ -2,19 +2,19 @@
 
 This is a randomizer for _The Legend of Zelda: Ocarina of Time_ for the Nintendo 64.
 
-**WARNING:** This branch is a modified version of the randomizer. It is **not** officially supported and may be **very unstable**.
-Please refrain from asking questions and from reporting issues in the main Randomizer Discord when using this branch.
-Instead, you can open an issue on this fork [here](https://github.com/Roman971/OoT-Randomizer/issues) or contact me directly on discord (Roman#7295) for any help, report or request.
+WARNING: This branch is a modified version of the randomizer. It is not officially supported and may be very unstable. Please refrain from asking questions and from reporting issues in the main Randomizer Discord when using this branch. Instead, you can open an issue on this fork here or contact me directly on discord (RealRob#4093) for any help, report or request.
 
-Differences between this branch and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):
-* Various GUI tweaks and improvements along with setting tooltip/option changes
-* 2 new advanced ER settings: "Mixed Entrance Pools" and "Decouple Entrances"
-* Picking up Gold Skulltula Tokens in non-Tokensanity displays a self-closing textbox which no longer freezes the player.
-* "Bombchus In Logic" is improved to include bombchu drops (from grass, pots, etc) that start dropping once you have found Bombchus.
-* New cosmetic setting to randomize the color of some additional equipment and items.
+This branch is based of of Roman971's fork of the randomizer, with the addition of the following developmental features:
+
+Silver Rupee Shuffle - Silver rupees can be shuffled into the item pool. Collecting the required number of silver rupees for a particular puzzle will unlock whatever was locked by the puzzle.
+Enemy Drop Shuffle - All (almost) of the enemies in the game can be contain shuffled items.
+Wonderitem Shuffle - Shuffles wonderitems - which include invisible rupees and invisible hit markers.
+
 
 ## Index
 
+* [RealRob's Changelog](#realrob-changelog)
+  * [v14](#v14)
 * [Installation](#installation)
 * [General Description](#general-description)
   * [Getting Stuck](#getting-stuck)
@@ -30,6 +30,18 @@ Differences between this branch and the main Dev branch (on [Testrunner's Fork](
   * [5.1](#51)
   * [5.0](#50)
   * [4.0](#40)
+
+## RealRob Changelog
+
+### v14
+
+  * Silver Rupee Shuffle:
+    * Added Silver Rupee Pouches
+    * When silver rupees are collected, the text box will indicate how many rupees of that puzzle have been collected
+  * Enemy Drop Shuffle:
+    * Added setting under Misc. to prevent guays from respawning
+  * Bug Fixes:
+    * Fix bug where freestanding items would duplicate when reloading a room
 
 ## Installation
 
