@@ -49,6 +49,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * Gold Skulltula Tokens can be on excluded locations if there are no checks requiring them (such as in SAWS)
   * With “Closed Forest Requires Gohma” enabled, items that can be used to escape the forest won't appear in the forest, and the randomizer will try to place at least one slingshot for each player in the forest
   * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
+  * Python 3.6 is no longer supported since GitHub's testing infrastructure no longer supports it.
 * Bug fixes:
   * If hideout keys are vanilla, they are properly considered an unshuffled dungeon item for hint purposes
 
@@ -81,7 +82,7 @@ Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https:
 ## Installation
 
 To run this program, clone this repository and either run ```Gui.py``` for a graphical interface or ```OoTRandomizer.py```
-for the command line version. They both require Python 3.6+. This will be fully featured,
+for the command line version. They both require Python 3.7+. This will be fully featured,
 but the seeds you generate will have different random factors than the bundled release.
 To use the GUI, [NodeJS](https://nodejs.org/download/release/v18.12.1/) (v18 LTS, with npm) will additionally need to be installed. NodeJS v14.14.0 and earlier are no longer supported.
 The first time ```Gui.py``` is run it will need to install necessary components, which could take a few minutes. Subsequent instances will run much quicker.

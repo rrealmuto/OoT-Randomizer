@@ -24,17 +24,11 @@
 # hook would contain a bunch of addresses, whether they share the same default
 # value or not.
 
+from dataclasses import dataclass
 from enum import Enum
 import os
 import sys
 from Utils import data_path
-
-# Python 3.6 support. We can drop the conditional usage of namedtuple if we decide to no longer support Python 3.6.
-dataclass_supported = sys.version_info[0] >= 3 and sys.version_info[1] >= 7
-if dataclass_supported:
-    from dataclasses import dataclass
-else:
-    from collections import namedtuple
 
 
 class Tags(Enum):
@@ -55,15 +49,12 @@ class Tags(Enum):
                         # I'm now thinking it has to do with a limit of concurrent sounds)
 
 
-if dataclass_supported:
-    @dataclass(frozen=True)
-    class Sound:
-        id: int
-        keyword: str
-        label: str
-        tags: list
-else:
-    Sound = namedtuple('Sound', 'id    keyword                  label                        tags')
+@dataclass(frozen=True)
+class Sound:
+    id: int
+    keyword: str
+    label: str
+    tags: list
 
 
 class Sounds(Enum):
@@ -170,14 +161,11 @@ class Sounds(Enum):
     ZELDA_ADULT_GASP   = Sound(0x6879, 'adult-zelda-gasp',      'Zelda Gasp (Adult)',        [Tags.NAVI, Tags.HPLOW])
 
 
-if dataclass_supported:
-    @dataclass(frozen=True)
-    class SoundHook:
-        name: str
-        pool: list
-        locations: list
-else:
-    SoundHook = namedtuple('SoundHook', 'name pool locations')
+@dataclass(frozen=True)
+class SoundHook:
+    name: str
+    pool: list
+    locations: list
 
 
 # Sound pools
