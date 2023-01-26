@@ -15,6 +15,7 @@ Wonderitem Shuffle - Shuffles wonderitems - which include invisible rupees and i
 
 * [RealRob's Changelog](#realrob-changelog)
   * [v14](#v14)
+  * [v15](#v15)
 * [Installation](#installation)
 * [General Description](#general-description)
   * [Getting Stuck](#getting-stuck)
@@ -32,6 +33,10 @@ Wonderitem Shuffle - Shuffles wonderitems - which include invisible rupees and i
   * [4.0](#40)
 
 ## RealRob Changelog
+
+### v15
+
+  * Add Fast Armos Pushing
 
 ### v14
 
