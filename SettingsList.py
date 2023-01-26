@@ -2348,7 +2348,7 @@ setting_infos = [
         },
         disable        = {
             True  : {'settings' : ['shuffle_ganon_bosskey', 'ganon_bosskey_stones', 'ganon_bosskey_medallions', 'ganon_bosskey_rewards', 'ganon_bosskey_tokens', 'ganon_bosskey_hearts']},
-            False : {'settings' : ['triforce_count_per_world', 'triforce_goal_per_world']}
+            False : {'settings' : ['triforce_hunt_mode', 'triforce_count_per_world', 'triforce_goal_per_world']}
         },
     ),
     Combobox(
@@ -2377,6 +2377,9 @@ setting_infos = [
         disable        = {
             'ice_percent': {'settings': ['triforce_count_per_world', 'triforce_goal_per_world', 'shuffle_base_item_pool']},
             'blitz': {'settings': ['triforce_count_per_world', 'triforce_goal_per_world']},
+        },
+        gui_params={
+            "hide_when_disabled": True,
         },
     ),
     Scale(
