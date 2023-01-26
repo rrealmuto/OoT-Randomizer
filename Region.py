@@ -42,6 +42,7 @@ class Region(object):
         self.provides_time = TimeOfDay.NONE
         self.scene = None
         self.is_boss_room = False
+        self.savewarp = None
 
 
     def copy(self, new_world):
@@ -53,6 +54,7 @@ class Region(object):
         new_region.time_passes = self.time_passes
         new_region.provides_time = self.provides_time
         new_region.scene = self.scene
+        new_region.savewarp = None if self.savewarp is None else self.savewarp.copy(new_region)
 
         if self.dungeon:
             new_region.dungeon = self.dungeon.name
