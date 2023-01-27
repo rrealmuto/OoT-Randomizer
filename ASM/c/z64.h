@@ -347,6 +347,59 @@ typedef enum {
     /* 14 */ OCARINA_SONG_SCARECROW_LONG = OCARINA_SONG_MAX // anything larger than 13 is considered the long scarecrow's song
 } OcarinaSongId;
 
+typedef enum {
+    /* 0x00 */ OCARINA_ACTION_UNK_0, // acts like free play but never set
+    /* 0x01 */ OCARINA_ACTION_FREE_PLAY,
+    /* 0x02 */ OCARINA_ACTION_TEACH_MINUET, // Song demonstrations by teachers
+    /* 0x03 */ OCARINA_ACTION_TEACH_BOLERO,
+    /* 0x04 */ OCARINA_ACTION_TEACH_SERENADE,
+    /* 0x05 */ OCARINA_ACTION_TEACH_REQUIEM,
+    /* 0x06 */ OCARINA_ACTION_TEACH_NOCTURNE,
+    /* 0x07 */ OCARINA_ACTION_TEACH_PRELUDE,
+    /* 0x08 */ OCARINA_ACTION_TEACH_SARIA,
+    /* 0x09 */ OCARINA_ACTION_TEACH_EPONA,
+    /* 0x0A */ OCARINA_ACTION_TEACH_LULLABY,
+    /* 0x0B */ OCARINA_ACTION_TEACH_SUNS,
+    /* 0x0C */ OCARINA_ACTION_TEACH_TIME,
+    /* 0x0D */ OCARINA_ACTION_TEACH_STORMS,
+    /* 0x0E */ OCARINA_ACTION_UNK_E,
+    /* 0x0F */ OCARINA_ACTION_PLAYBACK_MINUET, // Playing back a particular song
+    /* 0x10 */ OCARINA_ACTION_PLAYBACK_BOLERO,
+    /* 0x11 */ OCARINA_ACTION_PLAYBACK_SERENADE,
+    /* 0x12 */ OCARINA_ACTION_PLAYBACK_REQUIEM,
+    /* 0x13 */ OCARINA_ACTION_PLAYBACK_NOCTURNE,
+    /* 0x14 */ OCARINA_ACTION_PLAYBACK_PRELUDE,
+    /* 0x15 */ OCARINA_ACTION_PLAYBACK_SARIA,
+    /* 0x16 */ OCARINA_ACTION_PLAYBACK_EPONA,
+    /* 0x17 */ OCARINA_ACTION_PLAYBACK_LULLABY,
+    /* 0x18 */ OCARINA_ACTION_PLAYBACK_SUNS,
+    /* 0x19 */ OCARINA_ACTION_PLAYBACK_TIME,
+    /* 0x1A */ OCARINA_ACTION_PLAYBACK_STORMS,
+    /* 0x1B */ OCARINA_ACTION_UNK_1B,
+    /* 0x1C */ OCARINA_ACTION_CHECK_MINUET, // Playing songs for check spots
+    /* 0x1D */ OCARINA_ACTION_CHECK_BOLERO,
+    /* 0x1E */ OCARINA_ACTION_CHECK_SERENADE,
+    /* 0x1F */ OCARINA_ACTION_CHECK_REQUIEM,
+    /* 0020 */ OCARINA_ACTION_CHECK_NOCTURNE,
+    /* 0x21 */ OCARINA_ACTION_CHECK_PRELUDE,
+    /* 0x22 */ OCARINA_ACTION_CHECK_SARIA,
+    /* 0x23 */ OCARINA_ACTION_CHECK_EPONA,
+    /* 0x24 */ OCARINA_ACTION_CHECK_LULLABY,
+    /* 0x25 */ OCARINA_ACTION_CHECK_SUNS,
+    /* 0x26 */ OCARINA_ACTION_CHECK_TIME,
+    /* 0x27 */ OCARINA_ACTION_CHECK_STORMS,
+    /* 0x28 */ OCARINA_ACTION_CHECK_SCARECROW, // Playing back the song as adult that was set as child
+    /* 0x29 */ OCARINA_ACTION_FREE_PLAY_DONE,
+    /* 0x2A */ OCARINA_ACTION_SCARECROW_LONG_RECORDING,
+    /* 0x2B */ OCARINA_ACTION_SCARECROW_LONG_PLAYBACK,
+    /* 0x2C */ OCARINA_ACTION_SCARECROW_RECORDING,
+    /* 0x2D */ OCARINA_ACTION_SCARECROW_PLAYBACK,
+    /* 0x2E */ OCARINA_ACTION_MEMORY_GAME,
+    /* 0x2F */ OCARINA_ACTION_FROGS,
+    /* 0x30 */ OCARINA_ACTION_CHECK_NOWARP, // Check for any of sarias - storms
+    /* 0x31 */ OCARINA_ACTION_CHECK_NOWARP_DONE
+} OcarinaSongActionIDs;
+
 typedef struct
 {
   char      unk_00_[0x006E];        /* 0x0000 */
@@ -1727,6 +1780,8 @@ typedef struct {
 #define z64_Message_GetState_addr               0x800DD464
 #define z64_SetCollectibleFlags_addr            0x8002071C
 #define z64_GetCollectibleFlags_addr            0x800206E8
+#define z64_Flags_SetSwitch_addr                0x800204D0
+#define z64_Flags_GetSwitch_addr                0x8002049C
 #define z64_Audio_PlaySoundGeneral_addr         0x800C806C
 #define z64_Audio_PlayFanFare_addr              0x800C69A0
 #define z64_osSendMesg_addr                     0x80001E20
@@ -1821,6 +1876,8 @@ typedef void(*z64_ActorKillFunc)(z64_actor_t *);
 typedef uint8_t(*z64_Message_GetStateFunc)(uint8_t *);
 typedef void(*z64_Flags_SetCollectibleFunc)(z64_game_t *game, uint32_t flag);
 typedef int32_t (*z64_Flags_GetCollectibleFunc)(z64_game_t *game, uint32_t flag);
+typedef void (*z64_Flags_SetSwitchFunc)(z64_game_t* game, int32_t flag);
+typedef int32_t (*z64_Flags_GetSwitchFunc)(z64_game_t* game, int32_t flag);
 typedef void(*z64_Audio_PlaySoundGeneralFunc)(uint16_t sfxId, void *pos, uint8_t token, float *freqScale, float *a4, uint8_t *reverbAdd);
 typedef void(*z64_Audio_PlayFanFareFunc)(uint16_t);
 typedef void (*z64_DrawActors_proc)       (z64_game_t *game, void *actor_ctxt);
@@ -1898,6 +1955,8 @@ typedef void(*Font_LoadChar_proc)(void* font, uint8_t character, uint16_t codePo
 #define z64_MessageGetState         ((z64_Message_GetStateFunc)z64_Message_GetState_addr)
 #define z64_SetCollectibleFlags     ((z64_Flags_SetCollectibleFunc)z64_SetCollectibleFlags_addr)
 #define z64_Flags_GetCollectible    ((z64_Flags_GetCollectibleFunc)z64_GetCollectibleFlags_addr)
+#define z64_Flags_SetSwitch         ((z64_Flags_SetSwitchFunc)z64_Flags_SetSwitch_addr)
+#define z64_Flags_GetSwitch         ((z64_Flags_GetSwitchFunc)z64_Flags_GetSwitch_addr)
 #define z64_Audio_PlaySoundGeneral  ((z64_Audio_PlaySoundGeneralFunc)z64_Audio_PlaySoundGeneral_addr)
 #define z64_Audio_PlayFanFare       ((z64_Audio_PlayFanFareFunc)z64_Audio_PlayFanFare_addr)
 

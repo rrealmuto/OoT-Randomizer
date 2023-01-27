@@ -173,6 +173,9 @@ location_table = OrderedDict([
     # Sacred Forest Meadow Beehives
     ("SFM Storms Grotto Beehive",                                    ("Beehive",      0x3E, (9,0,0x43 + (0x0E * 2)), None,          'Rupees (20)',                           ("Sacred Forest Meadow", "Forest Area", "Grottos", "Beehives",))),
 
+    # Sacred Forest Meadow Gossip Stones
+    ("SFM Near Forest Temple Gossip Stone",                          ("Pot",  0x56,  (0,2,4), None,                         'Rupees (20)',                           ("Sacred Forest Meadow", "Forest Area", "GossipStone"))),
+
     # Hyrule Field
     ("HF Ocarina of Time Item",                                      ("NPC",          0x51,  0x0C, None,                            'Ocarina',                               ("Hyrule Field", "Need Spiritual Stones", "NPCs",))),
     ("HF Near Market Grotto Chest",                                  ("Chest",        0x3E,  0x00, None,                            'Rupees (5)',                            ("Hyrule Field", "Grottos", "Chests",))),

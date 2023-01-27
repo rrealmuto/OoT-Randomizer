@@ -340,6 +340,7 @@
             "SFM Maze Gossip Stone (Lower)": "True",
             "SFM Maze Gossip Stone (Upper)": "True",
             "SFM Saria Gossip Stone": "True",
+            "SFM Near Forest Temple Gossip Stone": "can_play(Song_of_Time) or can_play(Zeldas_Lullaby)",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle"
         },
         "exits": {

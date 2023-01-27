@@ -78,4 +78,6 @@ void reset_collectible_mutex();
 void override_flags_init();
 bool Get_CollectibleOverrideFlag(EnItem00 *item00);
 
+extern uint16_t drop_collectible_override_flag;
+
 #endif

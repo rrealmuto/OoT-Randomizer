@@ -648,7 +648,7 @@ bg_spot18_basket_rupees_loopstart: ; our new loop branch target
 ; Hook gossip stone action function that is checking for a song
 .orga 0xEE78EC
 ; Replaces: Entire Function
-    jal     En_Gs_Update_Hack
+    j       En_Gs_Update_Hack
     nop
 
 ; Runs when storing an incoming item to the player instance
