@@ -20,6 +20,7 @@ extern uint16_t CURR_ACTOR_SPAWN_INDEX;
 #define EN_TUBO_TRAP        0x11D   // Flying Pot
 #define OBJ_KIBAKO          0x110   // Small Crate
 #define OBJ_KIBAKO2         0x1A0   // Large Crate
+#define EN_GS               0x1B9   // Gossip Stone
 
 // Called at the end of Actor_SetWorldToHome
 // Reset the rotations for any actors that we may have passed data in through Actor_Spawn
@@ -63,6 +64,7 @@ void Actor_StoreFlagInRotation(z64_actor_t* actor, z64_game_t* game, uint16_t ac
         case EN_TUBO_TRAP:
         case OBJ_KIBAKO:
         case OBJ_COMB:
+        case EN_GS:
         {
             actor->rot_init.z = flag;
             break;

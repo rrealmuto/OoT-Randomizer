@@ -628,7 +628,6 @@ bg_spot18_basket_rupees_loopstart: ; our new loop branch target
     nop
     nop
 
-
 ; Hook at the end of Actor_SetWorldToHome to zeroize anything we use to store additional flag data
 .orga 0xA96E5C ; In memory: 0x80020EFC
 ; Replaces:
@@ -641,6 +640,16 @@ bg_spot18_basket_rupees_loopstart: ; our new loop branch target
 ; Replaces:
 ;   jal 0x800255C4
     jal Actor_UpdateAll_Hook
+
+; ==============================================================
+; Gossip Stone Shuffle
+; ==============================================================
+
+; Hook gossip stone action function that is checking for a song
+.orga 0xEE78EC
+; Replaces: Entire Function
+    jal     En_Gs_Update_Hack
+    nop
 
 ; Runs when storing an incoming item to the player instance
 ; Replaces:
