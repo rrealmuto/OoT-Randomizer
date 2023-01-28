@@ -1756,19 +1756,44 @@ skip_GS_BGS_text:
 ; Blue Warps
 ;==================================================================================================
 
-; In Memory: 0x80906250
-; Offset: 0x1D30
-.orga 0xCA3A10
+; Child blue warps
+; Replaces:
+;   jal     func_809056E8 ; DoorWarp1_PlayerInRange
+.orga 0xCA2F38 ; In Memory: 0x80905778
     jal     DoorWarp1_PlayerInRange_Overwrite
 
-.orga 0xCA5E08
+; Ruto blue warp
+; Replaces:
+;   jal     func_809056E8 ; DoorWarp1_PlayerInRange
+.orga 0xCA3404 ; In Memory: 0x80905C44
+    jal     DoorWarp1_PlayerInRange_Overwrite
+
+; Adult blue warps
+; Replaces:
+;   jal     func_809056E8 ; DoorWarp1_PlayerInRange
+.orga 0xCA3A10 ; In Memory: 0x80906250
+    jal     DoorWarp1_PlayerInRange_Overwrite
+
+; As the above replaces overlay functions with a global function,
+; Need to null out the reloc entries
+
+; Child blue warps
+; Replaces:
+;   .word   0x44001258
+.orga 0xCA5D4C
 .word   0x00000000
 
-; .orga 0xCA3A10
-;    addiu   a1, $zero, 0
+; Ruto blue warp
+; Replaces:
+;   .word   0x44001724
+.orga 0xCA5D7C
+.word   0x00000000
 
-;.orga 0xCA3A08
-;    addiu   a1, $zero, 0xC9
+; Adult blue warps
+; Replaces:
+;   .word   0x44001D30
+.orga 0xCA5E08
+.word   0x00000000
 
 ;==================================================================================================
 ; Correct Chest Sizes

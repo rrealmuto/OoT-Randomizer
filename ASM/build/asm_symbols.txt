@@ -16,6 +16,8 @@
 00BDA354 @@after_chest_speed_check
 00C0796E .wrd:0002
 00C6FF64 .byt:0018
+00CA5D4C .dbl:0004
+00CA5D7C .dbl:0004
 00CA5E08 .dbl:0004
 00CB12C8 @draw_forest_hallway_chest_start
 00CB13B8 @draw_forest_hallway_chest_base_end
