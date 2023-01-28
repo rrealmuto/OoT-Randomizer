@@ -20,8 +20,6 @@ int32_t DoorWarp1_PlayerInRange(z64_actor_t *actor, z64_game_t *game) {
 
 // Routine taken from Majora's Mask blue warps
 int32_t DoorWarp1_PlayerInRange_Overwrite(z64_actor_t *actor, z64_game_t *game) {
-    int32_t ret = 0;
-
     // Check vanilla range
     if (DoorWarp1_PlayerInRange(actor, game)) {
 
@@ -48,5 +46,5 @@ int32_t DoorWarp1_PlayerInRange_Overwrite(z64_actor_t *actor, z64_game_t *game) 
     }
 
 
-    return ret;
+    return 0;
 }
