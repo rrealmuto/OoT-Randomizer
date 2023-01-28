@@ -581,7 +581,7 @@ sos_handle_item:
 @@next_check:
     lw      a0, 0x18(sp)   ;this
     la      a1, GLOBAL_CONTEXT
-    jal     0x80022AD0     ;func_8002F334 in decomp, checks for closed text
+    jal     0x80022AD0     ;Actor_TextboxIsClosing in decomp, checks for closed text
     nop
     beqz    v0, @@return   ;return if text isnt closed yet
     nop

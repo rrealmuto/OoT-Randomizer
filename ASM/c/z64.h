@@ -1659,6 +1659,7 @@ typedef struct EnGSwitch
 #define z64_ObjectIndex_addr                    0x80081628
 #define z64_ObjectIsLoaded_addr                 0x80081688
 #define z64_ActorOfferGetItem_addr              0x80022BD4
+#define z64_ActorHasParent_addr                 0x80022BB0
 #define SsSram_ReadWrite_addr                   0x80091474
 #define z64_memcopy_addr                        0x80057030
 #define z64_bzero_addr                          0x80002E80
@@ -1734,6 +1735,7 @@ typedef int32_t (*z64_ObjectSpawn_proc)    (z64_obj_ctxt_t *object_ctx, int16_t 
 typedef int32_t (*z64_ObjectIndex_proc)    (z64_obj_ctxt_t *object_ctx, int16_t object_id);
 typedef int32_t (*z64_ObjectIsLoaded_proc) (z64_obj_ctxt_t *object_ctx, int32_t bank_index);
 
+typedef int32_t (*z64_ActorHasParent_proc) (z64_actor_t *actor, z64_game_t *game);
 typedef int32_t (*z64_ActorOfferGetItem_proc)(z64_actor_t *actor, z64_game_t *game,
                                               int32_t get_item_id, float xz_range, float y_range);
 typedef void (*z64_RandSeed_proc) (uint32_t seed);
@@ -1807,6 +1809,7 @@ typedef float (*z64_Rand_ZeroOne_proc)();
 #define z64_ObjectIndex         ((z64_ObjectIndex_proc)z64_ObjectIndex_addr)
 #define z64_ObjectIsLoaded      ((z64_ObjectIsLoaded_proc)z64_ObjectIsLoaded_addr)
 
+#define z64_ActorHasParent ((z64_ActorHasParent_proc)z64_ActorHasParent_addr)
 #define z64_ActorOfferGetItem ((z64_ActorOfferGetItem_proc)z64_ActorOfferGetItem_addr)
 #define SsSram_ReadWrite ((SsSram_ReadWrite_proc)SsSram_ReadWrite_addr)
 #define z64_memcopy ((z64_memcopy_proc)z64_memcopy_addr)
