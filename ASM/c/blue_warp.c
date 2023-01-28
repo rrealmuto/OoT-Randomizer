@@ -36,8 +36,8 @@ int32_t DoorWarp1_PlayerInRange_Overwrite(z64_actor_t *actor, z64_game_t *game) 
 
         // Link will attach as the parent actor once the GetItem is accepted. Until then, offer the dungeon reward for Link.
         if (!z64_ActorHasParent(actor, game)) {
-            // Put a dummy blue rupee on the blue warp, which will be overwritten by the medallions* (TODO)
-            z64_ActorOfferGetItem(actor, game, 0x4D, 60.0f, 20.0f);
+            // Put a dummy item value on the blue warp, which will be overwritten by the medallions* (TODO)
+            z64_ActorOfferGetItem(actor, game, 0x65, 60.0f, 20.0f);
             return 0;
         } 
 
