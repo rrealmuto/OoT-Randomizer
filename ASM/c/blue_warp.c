@@ -1,4 +1,7 @@
+#include <stdbool.h>
+
 #include "blue_warp.h"
+#include "save.h"
 #include "z64.h"
 
 #define TEXT_STATE_CLOSING 2
@@ -23,7 +26,7 @@ int32_t DoorWarp1_PlayerInRange_Overwrite(z64_actor_t *actor, z64_game_t *game) 
     // Check vanilla range
     if (DoorWarp1_PlayerInRange(actor, game)) {
 
-        if (HAS_COLLECTED_DUNGEON_REWARD) {
+        if (extended_savectx.collected_dungeon_rewards[game->scene_index - 0x0011]) {
             return 1;
         }
 
@@ -37,10 +40,11 @@ int32_t DoorWarp1_PlayerInRange_Overwrite(z64_actor_t *actor, z64_game_t *game) 
             // Put a dummy item value on the blue warp, which will be overwritten by the medallions* (TODO)
             z64_ActorOfferGetItem(actor, game, 0x65, 60.0f, 20.0f);
             return 0;
-        } 
+        }
 
         // Wait until Link closes the textbox displaying the getItem reward
         if (z64_MessageGetState(((uint8_t *)(&z64_game)) + 0x20D8) == TEXT_STATE_CLOSING) {
+            extended_savectx.collected_dungeon_rewards[game->scene_index - 0x0011] = true;
             return 1;
         }
     }
