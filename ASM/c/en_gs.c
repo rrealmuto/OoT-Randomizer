@@ -42,10 +42,10 @@ void En_Gs_Update_Hack(EnGs* this, z64_game_t* globalCtx) {
                     (globalCtx->msgContext.unk_E3F2 == OCARINA_SONG_LULLABY) ||
                     (globalCtx->msgContext.unk_E3F2 == OCARINA_SONG_SUNS) ||
                     (globalCtx->msgContext.unk_E3F2 == OCARINA_SONG_TIME)) {
-                        if(get_gossipstone_override(this, globalCtx).key.all != 0)
+                        if(globalCtx->msgContext.unk_E3F2 == OCARINA_SONG_TIME && get_gossipstone_override(this, globalCtx).key.all != 0)
                         {
                             drop_collectible_override_flag = this->actor.rot_init.z;
-                            EnItem00* spawned = z64_Item_DropCollectible(globalCtx, &(this->actor.pos_world + 40.0f), ITEM00_RUPEE_GREEN);
+                            EnItem00* spawned = z64_Item_DropCollectible(globalCtx, &(this->actor.pos_world), ITEM00_RUPEE_GREEN);
                             drop_collectible_override_flag = 0;
                         }
                         else

@@ -56,7 +56,14 @@ void Actor_After_UpdateAll_Hack(z64_actor_t *actor, z64_game_t* game) {
 // For pots/crates/beehives, store the flag in the actor's unused initial rotation fields
 // Flag consists of the room # and the actor index
 void Actor_StoreFlagInRotation(z64_actor_t* actor, z64_game_t* game, uint16_t actor_index) {
-    uint16_t flag = (actor_index) | (actor->room_index << 8); // Calculate the flag
+    uint16_t flag = 0;
+    if(game->scene_index == 0x3E) { // Calculate flag in a grotto using room + grotto_id + actor index
+        flag = (actor_index & 0x7F) | (actor->room_index << 12) | ((z64_file.grotto_id & 0x1F) << 7);
+    }
+    else { 
+        flag = (actor_index) | (actor->room_index << 8); // Calculate the flag for every other scene just using room and actor index. Setup will be added later.
+    } 
+    
     switch(actor->actor_id)
     {
         // For the following actors we store the flag in the z rotation

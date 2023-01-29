@@ -39,21 +39,26 @@ uint8_t satisified_pending_frames = 0;
 
 // This table contains the offset (in bytes) of the start of a particular scene/room/setup flag space in collectible_override_flags.
 // Call get_collectible_flag_offset to retrieve the desired offset.
-uint8_t collectible_scene_flags_table[600];
-alt_override_t alt_overrides[64];
+uint8_t collectible_scene_flags_table[800];
+uint8_t grotto_flag_table[100];
+
+alt_override_t alt_overrides[128];
 
 extern int8_t curr_scene_setup;
 extern uint16_t CURR_ACTOR_SPAWN_INDEX;
 
 // Total amount of memory required for each flag table (in bytes).
 uint16_t num_override_flags;
+uint16_t num_grotto_override_flags;
 
 // Pointer to a variable length array that will contain the collectible flags for each scene.
 uint8_t *collectible_override_flags;
+uint8_t *grotto_collectible_override_flags;
 
 // Initialize the override flag tables on the heap.
 void override_flags_init() {
     collectible_override_flags = heap_alloc(num_override_flags + 100);
+    grotto_collectible_override_flags = heap_alloc(num_grotto_override_flags + 100);
 }
 
 void item_overrides_init() {
@@ -102,9 +107,16 @@ override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_
         uint16_t flag = item->actor.rot_init.y;
         if(flag > 0)
         {
-            flag |= curr_scene_setup << 14;
+            if(scene != 0x3E) {
+                flag |= curr_scene_setup << 14; // Add curr scene setup if not in a grotto
+            }
+            // Alt scenes for ganons tower/ganondorf fight.
             if (scene == 0x19) {
                 scene = 0x0A;
+            }
+            // Alt scenes for outside temple of time
+            if (scene == 0x24 || scene == 0x25) {
+                scene = 0x23;
             }
             override_key_t key = {
             .scene = scene,
@@ -494,9 +506,9 @@ void Collectible_WaitForMessageBox(EnItem00 *this, z64_game_t *game) {
 
 // Determine the offset into the new flag table to store the flags for the current scene/setup/room.
 // TODO: Optimize this by remembering the current scene's offset.
-uint16_t get_collectible_flag_offset(uint8_t scene, uint8_t room, uint8_t setup_id)
+uint16_t get_collectible_flag_offset(uint8_t* table, uint8_t scene, uint8_t room, uint8_t setup_id)
 {
-    uint8_t num_scenes = collectible_scene_flags_table[0];
+    uint8_t num_scenes = table[0];
     uint16_t index = 1;
     uint8_t i = 0;
     uint8_t scene_id = 0;
@@ -507,26 +519,42 @@ uint16_t get_collectible_flag_offset(uint8_t scene, uint8_t room, uint8_t setup_
     // Loop through collectible_scene_flags_table until we find the right scene
     while(num_scenes > 0)
     {
-        scene_id = collectible_scene_flags_table[index++];
-        room_setup_count = collectible_scene_flags_table[index++];
+        scene_id = table[index++];
+        room_setup_count = table[index++];
         if(scene_id == scene) // Found the scene
         {
             // Loop through each room/setup combination in the scene until we find the right one.
             for(i = 0; i < room_setup_count; i++)
             {
-                room_id = collectible_scene_flags_table[index] & 0x3F;
-                setup_id_temp = (collectible_scene_flags_table[index++] & 0xC0) >> 6;
-                room_byte_offset = (collectible_scene_flags_table[index] << 8) + collectible_scene_flags_table[index+1];
-                index += 2;
-                if((room_id == room) && (setup_id_temp == setup_id)) // Found the right room/setup
-                {
-                    return room_byte_offset;
+                if(scene == 0x3E) { 
+                    room_id = table[index++];
+                    uint8_t grotto_id = table[index++];
+                    room_byte_offset = (table[index] << 8) + table[index+1];
+                    index += 2;
+                    if((room_id == room) && (grotto_id == setup_id)) {
+                        return room_byte_offset;
+                    }
+                }
+                else {
+                    room_id = table[index] & 0x3F;
+                    setup_id_temp = (table[index++] & 0xC0) >> 6;
+                    room_byte_offset = (table[index] << 8) + table[index+1];
+                    index += 2;
+                    if((room_id == room) && (setup_id_temp == setup_id)) // Found the right room/setup
+                    {
+                        return room_byte_offset;
+                    }
                 }
             }
         }
         else // Not the right scene so skip to the next one.
         {
-            index += 3 * room_setup_count;
+            if(scene_id == 0x3E) {
+                index += 4 * room_setup_count;
+            }
+            else {
+                index += 3 * room_setup_count;
+            }
         }
         num_scenes--;
 
@@ -545,17 +573,35 @@ bool Get_CollectibleOverrideFlag(EnItem00 *item00) {
     if(key.all)
     {
         scene = key.scene;
-        uint16_t collectible_flag = key.flag & 0xFF;
-        uint8_t room = (key.flag & 0x3F00) >> 8;
-        uint8_t setup = (key.flag & 0xC000) >> 14;
-        if (collectible_flag > 0) //Check if this is one of our collectibles
+        // if we're in a grotto, need to use the grotto format
+        if(scene == 0x3E) // Grotto
         {
-            uint16_t table_offset = get_collectible_flag_offset(scene, room, setup); //Get the offset into the flag table for the current scene/room/setup
-            if(table_offset != 0xFFFF) //get_collectible_flag_offset will return 0xFF is the flag is not found in the table
+            uint8_t flag = key.flag & 0x7F;
+            uint8_t grotto_id = (key.flag & 0x0F80) >> 7;
+            uint8_t room = (key.flag & 0xF000) >> 12;
+            if(flag > 0)
             {
-                return collectible_override_flags[table_offset + collectible_flag / 8] & (1 << (collectible_flag % 8));
+                uint16_t table_offset = get_collectible_flag_offset(collectible_scene_flags_table,scene, room, grotto_id);
+                if(table_offset != 0xFFFF) //get_collectible_flag_offset will return 0xFF is the flag is not found in the table
+                {
+                    return collectible_override_flags[table_offset + flag / 8] & (1 << flag % 8);
+                }
             }
         }
+        else {
+            uint16_t collectible_flag = key.flag & 0xFF;
+            uint8_t room = (key.flag & 0x3F00) >> 8;
+            uint8_t setup = (key.flag & 0xC000) >> 14;
+            if (collectible_flag > 0) //Check if this is one of our collectibles
+            {
+                uint16_t table_offset = get_collectible_flag_offset(collectible_scene_flags_table, scene, room, setup); //Get the offset into the flag table for the current scene/room/setup
+                if(table_offset != 0xFFFF) //get_collectible_flag_offset will return 0xFF is the flag is not found in the table
+                {
+                    return collectible_override_flags[table_offset + collectible_flag / 8] & (1 << (collectible_flag % 8));
+                }
+            }
+        }
+        
     }
 
     return true;
@@ -568,14 +614,29 @@ void Set_CollectibleOverrideFlag(EnItem00 *item00) {
     if(key.all)
     {
         scene = key.scene;
-        uint8_t room = (key.flag & 0x3F00) >> 8;
-        uint16_t collectible_flag = key.flag & 0xFF;
-        uint8_t setup = (key.flag & 0xC000) >> 14;
-        if(collectible_flag > 0) {
-            uint16_t table_offset = get_collectible_flag_offset(scene, room, setup);
-            if(table_offset != 0xFFFF)
+        if(scene == 0x3E) // Grotto
+        {
+            uint8_t collectible_flag = key.flag & 0x7F;
+            uint8_t grotto_id = (key.flag & 0x0F80) >> 7;
+            uint8_t room = (key.flag & 0xF000) >> 12;
+            if(collectible_flag > 0)
             {
-                collectible_override_flags[table_offset + collectible_flag / 8] |= (1 << (collectible_flag % 8));
+                uint16_t table_offset = get_collectible_flag_offset(collectible_scene_flags_table,scene, room, grotto_id);
+                if(table_offset != 0xFFFF) { 
+                    collectible_override_flags[table_offset + collectible_flag / 8] |= (1 << (collectible_flag % 8));
+                }
+            }
+        }
+        else {
+            uint8_t room = (key.flag & 0x3F00) >> 8;
+            uint16_t collectible_flag = key.flag & 0xFF;
+            uint8_t setup = (key.flag & 0xC000) >> 14;
+            if(collectible_flag > 0) {
+                uint16_t table_offset = get_collectible_flag_offset(collectible_scene_flags_table, scene, room, setup);
+                if(table_offset != 0xFFFF)
+                {
+                    collectible_override_flags[table_offset + collectible_flag / 8] |= (1 << (collectible_flag % 8));
+                }
             }
         }
     }
