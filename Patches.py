@@ -13,6 +13,7 @@ from LocationList import business_scrubs
 from HintList import getHint
 from Hints import GossipText, HintArea, writeGossipStoneHints, buildAltarHints, \
         buildGanonText, buildMiscItemHints, buildMiscLocationHints, getSimpleHintNoPrefix, getItemGenericName
+from Item import ItemFactory
 from Location import DisableType
 from Utils import data_path
 from Messages import read_messages, update_message_by_id, read_shop_items, update_warp_song_text, \
@@ -1996,6 +1997,18 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
             elif location.name == 'Sheik at Colossus':
                 rom.write_byte(0x218C589, special['text_id']) #Fix text box
         elif location.type == 'Boss' and location.name != 'Links Pocket':
+            locationaddress, secondaryaddress = {
+                "Queen Gohma":   (0x0CA315F, 0x2079571),
+                "King Dodongo":  (0x0CA30DF, 0x2223309),
+                "Barinade":      (0x0CA36EB, 0x2113C19),
+                "Phantom Ganon": (0x0CA3D07, 0x0D4ED79),
+                "Volvagia":      (0x0CA3D93, 0x0D10135),
+                "Morpha":        (0x0CA3E1F, 0x0D5A3A9),
+                "Bongo Bongo":   (0x0CA3F43, 0x0D13E19),
+                "Twinrova":      (0x0CA3EB3, 0x0D39FF1),
+            }[location.name]
+            if world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'):
+                special = ItemFactory('Light Medallion').special #TODO remove entirely
             rom.write_byte(locationaddress, special['item_id'])
             rom.write_byte(secondaryaddress, special['addr2_data'])
             bit_mask_hi = special['bit_mask'] >> 16
@@ -2541,7 +2554,7 @@ def get_override_entry(location):
     else:
         looks_like_item_id = 0
 
-    if location.type in ('NPC', 'Scrub', 'BossHeart'):
+    if location.type in ('NPC', 'Scrub', 'BossHeart', 'Boss'):
         type = 0
     elif location.type == 'Chest':
         type = 1

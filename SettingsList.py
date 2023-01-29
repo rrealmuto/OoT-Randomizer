@@ -2904,13 +2904,14 @@ setting_infos = [
             reward. In Multiworld, dungeon rewards will only appear
             in their own world.
 
-            <b>The following options are in early development, and
-            come with some limitations:</b> The starting dungeon reward
-            currently can't be shuffled. Dungeon reward locations will
-            hold a copy of the starting reward. If you receive the last
-            required medallion for the Burning Kakariko cutscene while
-            already in Kakariko, the cutscene doesn't play until you
-            leave and reenter Kakariko (or enter and exit a building).
+            <b>The following options are still in development, and
+            come with some limitations:</b> The Light Medallion
+            currently can't be shuffled because dungeon reward locations
+            will give a copy of it in addition to their shuffled item.
+            If you receive the last required medallion for the Burning
+            Kakariko cutscene while already in Kakariko, the cutscene
+            doesn't play until you leave and reenter Kakariko (or enter
+            and exit a building).
 
             'Own Dungeon': Each dungeon reward appears in its respective
             dungeon, but not necessarily on the boss. If boss entrances
