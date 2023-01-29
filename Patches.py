@@ -14,12 +14,13 @@ from HintList import getHint
 from Hints import GossipText, HintArea, writeGossipStoneHints, buildAltarHints, \
         buildGanonText, buildMiscItemHints, buildMiscLocationHints, getSimpleHintNoPrefix, getItemGenericName
 from Item import ItemFactory
+from ItemList import REWARD_COLORS
 from Location import DisableType
 from Utils import data_path
 from Messages import read_messages, update_message_by_id, read_shop_items, update_warp_song_text, \
         write_shop_items, remove_unused_messages, make_player_message, \
         add_item_messages, repack_messages, shuffle_messages, \
-        get_message_by_id, Text_Code
+        get_message_by_id, Text_Code, COLOR_MAP
 from OcarinaSongs import replace_songs
 from MQ import patch_files, File, update_dmadata, insert_space, add_relocations
 from SaveContext import SaveContext, Scenes, FlagType
@@ -1799,19 +1800,8 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     if reward_text is None:
         new_message = f"\x08Princess Ruto got \x01\x05\x43nothing\x05\x40!\x01Well, that's disappointing...\x02"
     else:
-        reward_texts = {
-            'Kokiri Emerald':   "the \x05\x42Kokiri Emerald\x05\x40",
-            'Goron Ruby':       "the \x05\x41Goron Ruby\x05\x40",
-            'Zora Sapphire':    "the \x05\x43Zora Sapphire\x05\x40",
-            'Forest Medallion': "the \x05\x42Forest Medallion\x05\x40",
-            'Fire Medallion':   "the \x05\x41Fire Medallion\x05\x40",
-            'Water Medallion':  "the \x05\x43Water Medallion\x05\x40",
-            'Spirit Medallion': "the \x05\x46Spirit Medallion\x05\x40",
-            'Shadow Medallion': "the \x05\x45Shadow Medallion\x05\x40",
-            'Light Medallion':  "the \x05\x44Light Medallion\x05\x40",
-        }
-        reward_text = reward_texts.get(location.item.name, f'\x05\x43{reward_text}\x05\x40')
-        new_message = f"\x08Princess Ruto got \x01{reward_text}!\x01But why Princess Ruto?\x02"
+        reward_color = REWARD_COLORS.get(location.item.name, 'Blue')
+        new_message = f"\x08Princess Ruto got \x01\x05{COLOR_MAP[reward_color]}{location.item.name}\x05\x40!\x01But why Princess Ruto?\x02"
     update_message_by_id(messages, 0x4050, new_message)
 
     # Set Dungeon Reward Actor in Jabu Jabu to be accurate
@@ -2281,62 +2271,51 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     # give dungeon items the correct messages
     add_item_messages(messages, shop_items, world)
     if world.settings.enhance_map_compass:
-        reward_list = {
-            'Kokiri Emerald':   "\x05\x42Kokiri Emerald\x05\x40",
-            'Goron Ruby':       "\x05\x41Goron Ruby\x05\x40",
-            'Zora Sapphire':    "\x05\x43Zora Sapphire\x05\x40",
-            'Forest Medallion': "\x05\x42Forest Medallion\x05\x40",
-            'Fire Medallion':   "\x05\x41Fire Medallion\x05\x40",
-            'Water Medallion':  "\x05\x43Water Medallion\x05\x40",
-            'Spirit Medallion': "\x05\x46Spirit Medallion\x05\x40",
-            'Shadow Medallion': "\x05\x45Shadow Medallion\x05\x40",
-            'Light Medallion':  "\x05\x44Light Medallion\x05\x40",
-        }
         dungeon_list = {
-            #                      dungeon name                      boss name        compass map
-            'Deku Tree':          ("the \x05\x42Deku Tree",          'Queen Gohma',   0x62, 0x88),
-            'Dodongos Cavern':    ("\x05\x41Dodongo\'s Cavern",      'King Dodongo',  0x63, 0x89),
-            'Jabu Jabus Belly':   ("\x05\x43Jabu Jabu\'s Belly",     'Barinade',      0x64, 0x8a),
-            'Forest Temple':      ("the \x05\x42Forest Temple",      'Phantom Ganon', 0x65, 0x8b),
-            'Fire Temple':        ("the \x05\x41Fire Temple",        'Volvagia',      0x7c, 0x8c),
-            'Water Temple':       ("the \x05\x43Water Temple",       'Morpha',        0x7d, 0x8e),
-            'Spirit Temple':      ("the \x05\x46Spirit Temple",      'Twinrova',      0x7e, 0x8f),
-            'Ice Cavern':         ("the \x05\x44Ice Cavern",         None,            0x87, 0x92),
-            'Bottom of the Well': ("the \x05\x45Bottom of the Well", None,            0xa2, 0xa5),
-            'Shadow Temple':      ("the \x05\x45Shadow Temple",      'Bongo Bongo',   0x7f, 0xa3),
+            #                      dungeon name                      compass map
+            'Deku Tree':          ("the \x05\x42Deku Tree",          0x62, 0x88),
+            'Dodongos Cavern':    ("\x05\x41Dodongo\'s Cavern",      0x63, 0x89),
+            'Jabu Jabus Belly':   ("\x05\x43Jabu Jabu\'s Belly",     0x64, 0x8a),
+            'Forest Temple':      ("the \x05\x42Forest Temple",      0x65, 0x8b),
+            'Fire Temple':        ("the \x05\x41Fire Temple",        0x7c, 0x8c),
+            'Water Temple':       ("the \x05\x43Water Temple",       0x7d, 0x8e),
+            'Spirit Temple':      ("the \x05\x46Spirit Temple",      0x7e, 0x8f),
+            'Ice Cavern':         ("the \x05\x44Ice Cavern",         0x87, 0x92),
+            'Bottom of the Well': ("the \x05\x45Bottom of the Well", 0xa2, 0xa5),
+            'Shadow Temple':      ("the \x05\x45Shadow Temple",      0x7f, 0xa3),
         }
-        for dungeon in world.dungeon_mq:
-            if dungeon in ('Gerudo Training Ground', 'Ganons Castle'):
+        for dungeon in world.dungeons:
+            if dungeon.name in ('Gerudo Training Ground', 'Ganons Castle'):
                 pass
-            elif dungeon in ('Bottom of the Well', 'Ice Cavern'):
-                dungeon_name, boss_name, compass_id, map_id = dungeon_list[dungeon]
+            elif dungeon.name in ('Bottom of the Well', 'Ice Cavern'):
+                dungeon_name, compass_id, map_id = dungeon_list[dungeon.name]
                 if world.settings.world_count > 1:
-                    map_message = "\x13\x76\x08\x05\x42\x0F\x05\x40 found the \x05\x41Dungeon Map\x05\x40\x01for %s\x05\x40!\x09" % (dungeon_name)
+                    map_message = f"\x13\x76\x08\x05\x42\x0F\x05\x40 found the \x05\x41Dungeon Map\x05\x40\x01for {dungeon_name}\x05\x40!\x09"
                 else:
-                    map_message = "\x13\x76\x08You found the \x05\x41Dungeon Map\x05\x40\x01for %s\x05\x40!\x01It\'s %s!\x09" % (dungeon_name, "masterful" if world.dungeon_mq[dungeon] else "ordinary")
+                    map_message = f"\x13\x76\x08You found the \x05\x41Dungeon Map\x05\x40\x01for {dungeon_name}\x05\x40!\x01It\'s {'masterful' if world.dungeon_mq[dungeon.name] else 'ordinary'}!\x09"
 
                 if world.settings.mq_dungeons_mode == 'random' or world.settings.mq_dungeons_count != 0 and world.settings.mq_dungeons_count != 12:
                     update_message_by_id(messages, map_id, map_message)
             else:
-                dungeon_name, boss_name, compass_id, map_id = dungeon_list[dungeon]
+                dungeon_name, compass_id, map_id = dungeon_list[dungeon.name]
                 if world.settings.world_count > 1 or world.settings.shuffle_dungeon_rewards == 'dungeon':
-                    compass_message = "\x13\x75\x08\x05\x42\x0F\x05\x40 found the \x05\x41Compass\x05\x40\x01for %s\x05\x40!\x09" % (dungeon_name)
+                    compass_message = f"\x13\x75\x08\x05\x42\x0F\x05\x40 found the \x05\x41Compass\x05\x40\x01for {dungeon_name}\x05\x40!\x09"
                 elif world.mixed_pools_bosses or world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'):
-                    vanilla_reward = world.get_location(boss_name).vanilla_item
+                    vanilla_reward = world.get_location(dungeon.vanilla_boss_name).vanilla_item
                     vanilla_reward_location = world.hinted_dungeon_reward_locations[vanilla_reward]
                     area = HintArea.at(vanilla_reward_location)
                     area = GossipText(area.text(world.settings.clearer_hints, preposition=True), [area.color], prefix='')
-                    compass_message = "\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for %s\x05\x40!\x01The %s can be found\x01%s!\x09" % (dungeon_name, vanilla_reward, area) #TODO figure out why the player name isn't being displayed
+                    compass_message = f"\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for {dungeon_name}\x05\x40!\x01The {vanilla_reward} can be found\x01{area}!\x09"
                 else:
-                    boss_location = next(filter(lambda loc: loc.type == 'Boss', world.get_entrance(f'{dungeon} Boss Door -> {boss_name} Boss Room').connected_region.locations))
-                    dungeon_reward = reward_list[boss_location.item.name]
-                    compass_message = "\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for %s\x05\x40!\x01It holds the %s!\x09" % (dungeon_name, dungeon_reward)
+                    boss_location = next(filter(lambda loc: loc.type == 'Boss', world.get_entrance(f'{dungeon} Boss Door -> {dungeon.vanilla_boss_name} Boss Room').connected_region.locations))
+                    dungeon_reward = boss_location.item.name
+                    compass_message = f"\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for {dungeon_name}\x05\x40!\x01It holds the \x05{COLOR_MAP[REWARD_COLORS[dungeon_reward]]}{dungeon_reward}\x05\x40!\x09"
                 update_message_by_id(messages, compass_id, compass_message)
                 if world.settings.mq_dungeons_mode == 'random' or world.settings.mq_dungeons_count != 0 and world.settings.mq_dungeons_count != 12:
                     if world.settings.world_count > 1:
-                        map_message = "\x13\x76\x08\x05\x42\x0F\x05\x40 found the \x05\x41Dungeon Map\x05\x40\x01for %s\x05\x40!\x09" % (dungeon_name)
+                        map_message = f"\x13\x76\x08\x05\x42\x0F\x05\x40 found the \x05\x41Dungeon Map\x05\x40\x01for {dungeon_name}\x05\x40!\x09"
                     else:
-                        map_message = "\x13\x76\x08You found the \x05\x41Dungeon Map\x05\x40\x01for %s\x05\x40!\x01It\'s %s!\x09" % (dungeon_name, "masterful" if world.dungeon_mq[dungeon] else "ordinary")
+                        map_message = f"\x13\x76\x08You found the \x05\x41Dungeon Map\x05\x40\x01for {dungeon_name}\x05\x40!\x01It\'s {'masterful' if world.dungeon_mq[dungeon.name] else 'ordinary'}!\x09"
                     update_message_by_id(messages, map_id, map_message)
 
     # Set hints on the altar inside ToT

@@ -9,6 +9,7 @@ from Goals import Goal, GoalCategory
 from HintList import getRequiredHints, misc_item_hint_table, misc_location_hint_table
 from Hints import HintArea, hint_dist_keys, HintDistFiles
 from Item import ItemFactory, ItemInfo, MakeEventItem
+from ItemPool import reward_list
 from Location import Location, LocationFactory
 from LocationList import business_scrubs, location_groups, location_table
 from Plandomizer import InvalidFileException
@@ -681,19 +682,8 @@ class World(object):
                         location.item.price = price
 
 
-    rewardlist = (
-        'Kokiri Emerald',
-        'Goron Ruby',
-        'Zora Sapphire',
-        'Light Medallion',
-        'Forest Medallion',
-        'Fire Medallion',
-        'Water Medallion',
-        'Shadow Medallion',
-        'Spirit Medallion',
-    )
     def fill_bosses(self, bossCount=9):
-        boss_rewards = ItemFactory(self.rewardlist, self)
+        boss_rewards = ItemFactory(reward_list, self)
         boss_locations = [self.get_location(loc) for loc in location_groups['Boss']]
 
         placed_prizes = [loc.item.name for loc in boss_locations if loc.item is not None]

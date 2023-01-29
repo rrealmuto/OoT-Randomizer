@@ -10,6 +10,7 @@ import itertools
 
 from HintList import getHint, getMulti, getHintGroup, getUpgradeHintList, hintExclusions, misc_item_hint_table, misc_location_hint_table
 from Item import Item, MakeEventItem
+from ItemList import REWARD_COLORS
 from ItemPool import triforce_pieces
 from Messages import COLOR_MAP, update_message_by_id
 from Region import Region
@@ -1298,15 +1299,45 @@ def alwaysNamedItem(world, locations):
 
 
 def buildGossipHints(spoiler, worlds):
+    from Dungeon import Dungeon
+
     checkedLocations = dict()
     # Add misc. item hint locations to "checked" locations if the respective hint is reachable without the hinted item.
     for world in worlds:
         for location in world.hinted_dungeon_reward_locations.values():
-            if 'altar' in world.settings.misc_hints and not world.settings.enhance_map_compass and can_reach_hint(worlds, world.get_location('ToT Child Altar Hint' if location.item.info.stone else 'ToT Adult Altar Hint'), location):
-                item_world = location.world
-                if item_world.id not in checkedLocations:
-                    checkedLocations[item_world.id] = set()
-                checkedLocations[item_world.id].add(location.name)
+            if world.settings.enhance_map_compass:
+                if world.mixed_pools_bosses or world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'):
+                    compass_locations = [
+                        compass_location
+                        for compass_world in worlds
+                        for compass_location in compass_world.get_filled_locations()
+                        if Dungeon.from_vanilla_reward(location.item) is None # Light Medallion area is shown in menu from beginning of game
+                        or (
+                            compass_location.item.name == Dungeon.from_vanilla_reward(location.item).item_name('Compass')
+                            and compass_location.item.world == world
+                        )
+                    ]
+                else:
+                    compass_locations = [
+                        compass_location
+                        for compass_world in worlds
+                        for compass_location in compass_world.get_filled_locations()
+                        if compass_location.item.name == HintArea.at(location).dungeon.item_name('Compass')
+                        and compass_location.item.world == world
+                    ]
+                for compass_location in compass_locations:
+                    if can_reach_hint(worlds, compass_location, location):
+                        item_world = location.world
+                        if item_world.id not in checkedLocations:
+                            checkedLocations[item_world.id] = set()
+                        checkedLocations[item_world.id].add(location.name)
+                        break
+            else:
+                if 'altar' in world.settings.misc_hints and can_reach_hint(worlds, world.get_location('ToT Child Altar Hint' if location.item.info.stone else 'ToT Adult Altar Hint'), location):
+                    item_world = location.world
+                    if item_world.id not in checkedLocations:
+                        checkedLocations[item_world.id] = set()
+                    checkedLocations[item_world.id].add(location.name)
         for hint_type, location in world.misc_hint_item_locations.items():
             if hint_type in world.settings.misc_hints and can_reach_hint(worlds, world.get_location(misc_item_hint_table[hint_type]['hint_location']), location):
                 item_world = location.world
@@ -1641,11 +1672,11 @@ def buildAltarHints(world, messages, include_rewards=True, include_wincons=True)
     # text that appears at altar as a child.
     child_text = '\x08'
     if include_rewards:
-        bossRewardsSpiritualStones = [
-            ('Kokiri Emerald',   'Green'),
-            ('Goron Ruby',       'Red'),
-            ('Zora Sapphire',    'Blue'),
-        ]
+        bossRewardsSpiritualStones = [(reward, REWARD_COLORS[reward]) for reward in (
+            'Kokiri Emerald',
+            'Goron Ruby',
+            'Zora Sapphire',
+        )]
         child_text += getHint('Spiritual Stone Text Start', world.settings.clearer_hints).text + '\x04'
         for (reward, color) in bossRewardsSpiritualStones:
             child_text += buildBossString(reward, color, world)
@@ -1657,14 +1688,14 @@ def buildAltarHints(world, messages, include_rewards=True, include_wincons=True)
     adult_text = '\x08'
     adult_text += getHint('Adult Altar Text Start', world.settings.clearer_hints).text + '\x04'
     if include_rewards:
-        bossRewardsMedallions = [
-            ('Light Medallion',  'Light Blue'),
-            ('Forest Medallion', 'Green'),
-            ('Fire Medallion',   'Red'),
-            ('Water Medallion',  'Blue'),
-            ('Shadow Medallion', 'Pink'),
-            ('Spirit Medallion', 'Yellow'),
-        ]
+        bossRewardsMedallions = [(reward, REWARD_COLORS[reward]) for reward in (
+            'Light Medallion',
+            'Forest Medallion',
+            'Fire Medallion',
+            'Water Medallion',
+            'Shadow Medallion',
+            'Spirit Medallion',
+        )]
         for (reward, color) in bossRewardsMedallions:
             adult_text += buildBossString(reward, color, world)
     if include_wincons:

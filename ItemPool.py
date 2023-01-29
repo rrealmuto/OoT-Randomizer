@@ -438,6 +438,8 @@ def generate_itempool(world):
         raise ValueError(f"Not enough available Gold Skulltula Tokens to meet requirements. Available: {world.available_tokens}, Required: {world.max_progressions['Gold Skulltula Token']}.")
 
 def get_pool_core(world):
+    from Dungeon import Dungeon
+
     pool = []
     placed_items = {}
     remain_shop_items = []
@@ -692,17 +694,7 @@ def get_pool_core(world):
                 # Once this is fixed, shuffle the Light Medallion normally.
                 shuffle_item = False
             else:
-                dungeon_name = {
-                    'Kokiri Emerald': 'Deku Tree',
-                    'Goron Ruby': 'Dodongos Cavern',
-                    'Zora Sapphire': 'Jabu Jabus Belly',
-                    'Forest Medallion': 'Forest Temple',
-                    'Fire Medallion': 'Fire Temple',
-                    'Water Medallion': 'Water Temple',
-                    'Shadow Medallion': 'Shadow Temple',
-                    'Spirit Medallion': 'Spirit Temple',
-                }[location.vanilla_item]
-                dungeon = [dungeon for dungeon in world.dungeons if dungeon.name == dungeon_name][0]
+                dungeon = Dungeon.from_vanilla_reward(ItemFactory(location.vanilla_item, world))
                 dungeon.reward.append(ItemFactory(item))
                 if world.settings.shuffle_dungeon_rewards in ('any_dungeon', 'overworld', 'regional'):
                     dungeon.reward[-1].priority = True

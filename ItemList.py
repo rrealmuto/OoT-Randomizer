@@ -427,3 +427,15 @@ item_table = {
                                                 'object_id':  0x00BA,
                                             }),
 }
+
+REWARD_COLORS = {
+    'Kokiri Emerald': 'Green',
+    'Goron Ruby': 'Red',
+    'Zora Sapphire': 'Blue',
+    'Light Medallion': 'Light Blue',
+    'Forest Medallion': 'Green',
+    'Fire Medallion': 'Red',
+    'Water Medallion': 'Blue',
+    'Shadow Medallion': 'Pink',
+    'Spirit Medallion': 'Yellow',
+}

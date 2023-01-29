@@ -1,5 +1,7 @@
 from enum import Enum, unique
 
+from ItemList import REWARD_COLORS
+
 
 @unique
 class RegionType(Enum):
@@ -122,22 +124,10 @@ class Region(object):
                                item.world.settings.shuffle_silver_rupees if item.type == 'SilverRupee' else
                                item.world.settings.shuffle_dungeon_rewards if item.type == 'DungeonReward' else None)
 
-            item_hint_colors = {
-                'Kokiri Emerald': 'Green',
-                'Goron Ruby': 'Red',
-                'Zora Sapphire': 'Blue',
-                'Light Medallion': 'Light Blue',
-                'Forest Medallion': 'Green',
-                'Fire Medallion': 'Red',
-                'Water Medallion': 'Blue',
-                'Shadow Medallion': 'Pink',
-                'Spirit Medallion': 'Yellow',
-            }
-
             is_self_dungeon_restricted = (shuffle_setting == 'dungeon' or (shuffle_setting == 'vanilla' and item.type != 'DungeonReward')) and item.type != 'HideoutSmallKey'
             is_self_region_restricted = [HintArea.GERUDO_FORTRESS, HintArea.THIEVES_HIDEOUT] if shuffle_setting == 'fortress' else None
-            if item.name in item_hint_colors:
-                is_hint_color_restricted = [item_hint_colors[item.name]] if shuffle_setting == 'regional' else None
+            if item.name in REWARD_COLORS:
+                is_hint_color_restricted = [REWARD_COLORS[item.name]] if shuffle_setting == 'regional' else None
             else:
                 is_hint_color_restricted = [HintArea.for_dungeon(item.name).color] if shuffle_setting == 'regional' else None
             is_dungeon_restricted = shuffle_setting == 'any_dungeon'

@@ -34,6 +34,13 @@ class Dungeon:
         return new_dungeon
 
 
+    @staticmethod
+    def from_vanilla_reward(item):
+        dungeons = [dungeon for dungeon in item.world.dungeons if dungeon.vanilla_reward == item.name]
+        if dungeons:
+            return dungeons[0]
+
+
     @property
     def keys(self):
         return self.small_keys + self.boss_key
@@ -48,16 +55,32 @@ class Dungeon:
         return f"{text} ({self.name})"
 
 
+    @property
+    def vanilla_boss_name(self):
+        return {
+            'Deku Tree': 'Queen Gohma',
+            'Dodongos Cavern': 'King Dodongo',
+            'Jabu Jabus Belly': 'Barinade',
+            'Forest Temple': 'Phantom Ganon',
+            'Fire Temple': 'Volvagia',
+            'Water Temple': 'Morpha',
+            'Shadow Temple': 'Bongo Bongo',
+            'Spirit Temple': 'Twinrova',
+        }.get(self.name)
+
+
+    @property
+    def vanilla_reward(self):
+        if self.vanilla_boss_name is not None:
+            return self.world.get_location(self.vanilla_boss_name).vanilla_item
+
+
     def is_dungeon_item(self, item):
         return item.name in [dungeon_item.name for dungeon_item in self.all_items]
 
 
     def __str__(self):
-        return str(self.__unicode__())
-
-
-    def __unicode__(self):
-        return '%s' % self.name
+        return self.name
 
 
 def create_dungeons(world):
