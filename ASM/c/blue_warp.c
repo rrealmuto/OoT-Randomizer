@@ -54,8 +54,6 @@ int32_t DoorWarp1_PlayerInRange_Overwrite(z64_actor_t *actor, z64_game_t *game) 
     return false;
 }
 
-// TODO: Fill in all necessary flags from skipped cutscenes below
-
 void DoorWarp1_KokiriEmerald_Overwrite(void) {
     z64_file.skybox_time = z64_file.day_time = 0x8000; // CLOCK_TIME(12, 00)
 }
@@ -74,18 +72,20 @@ void DoorWarp1_ForestMedallion_Overwrite(void) {
 
 void DoorWarp1_FireMedallion_Overwrite(void) {
     z64_file.skybox_time = z64_file.day_time = 0x8000; // CLOCK_TIME(12, 00)
+    z64_file.event_chk_inf[2] |= 1 << 15; // DMT cloud circle no longer fire
 }
 
 void DoorWarp1_WaterMedallion_Overwrite(void) {
     z64_file.skybox_time = z64_file.day_time = 0x4800; // CLOCK_TIME(6, 45)
     z64_file.event_chk_inf[6] |= 1 << 9; // Lake Hylia water raised
-    // TODO: Toggle bit for Hylia Gossip Stone Water Level Contol
 }
 
 void DoorWarp1_SpiritMedallion_Overwrite(void) {
+    // TODO: Spirit dayTime is not being set correctly, as entrance depends on `QUEST_MEDALLION_SPIRIT`
     z64_file.skybox_time = z64_file.day_time = 0x8000; // CLOCK_TIME(12, 00)
 }
 
 void DoorWarp1_ShadowMedallion_Overwrite(void) {
+    // TODO: Shadow dayTime is not being set correctly, as entrance depends on `QUEST_MEDALLION_SHADOW`
     z64_file.skybox_time = z64_file.day_time = 0x8000; // CLOCK_TIME(12, 00)
 }
