@@ -7,12 +7,13 @@ on:
     branches: [ "Dev", "Dev-R", "dev-fenhl" ]
 
 jobs:
-  build:
-
+  test_minimum_python:
+    name: Unit Tests - Python ${{ matrix.python-version }}
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.7", "3.x"]
+        python-version: ["3.7"]
 
     steps:
       - uses: actions/checkout@v3
@@ -21,4 +22,37 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Run checks
-        run: python CI.py
+        run: python CI.py --only_unit_tests
+
+  test_current_python:
+    name: Unit Tests - Python ${{ matrix.python-version }}
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.x"]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Run checks
+        run: python CI.py --only_unit_tests
+
+  other_ci_checks:
+    name: Other CI Checks
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.x"]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Run checks
+        run: python CI.py --no_unit_tests
