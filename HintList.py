@@ -243,15 +243,24 @@ conditional_sometimes = {
     'ZR Frogs in the Rain':                     lambda world: not world.settings.shuffle_frog_song_rupees,
 
     # Conditional dual hints
-    'GV Pieces of Heart Ledges':                lambda world: not world.settings.shuffle_cows and world.settings.tokensanity not in ['overworld', 'all'],
+    'GV Pieces of Heart Ledges':                lambda world: not world.settings.shuffle_cows and world.settings.tokensanity not in ('overworld', 'all'),
     'LH Adult Bean Destination Checks':         lambda world: world.settings.shuffle_interior_entrances == 'off',
 
-    'Fire Temple Lower Loop':                   lambda world: world.settings.tokensanity not in ['dungeons', 'all'],
-    'Water Temple River Loop Chests':           lambda world: world.settings.tokensanity not in ['dungeons', 'all'],
-    'Water Temple MQ Lower Checks':             lambda world: world.settings.tokensanity not in ['dungeons', 'all'],
-    'Spirit Temple Child Lower':                lambda world: world.settings.tokensanity not in ['dungeons', 'all'],
-    'Spirit Temple Adult Lower':                lambda world: world.settings.tokensanity not in ['dungeons', 'all'],
-    'Shadow Temple Invisible Blades Chests':    lambda world: world.settings.tokensanity not in ['dungeons', 'all'],
+    'Fire Temple Lower Loop':                   lambda world: world.settings.tokensanity not in ('dungeons', 'all'),
+    'Water Temple River Loop Chests':           lambda world: world.settings.tokensanity not in ('dungeons', 'all'),
+    'Water Temple MQ Lower Checks':             lambda world: world.settings.tokensanity not in ('dungeons', 'all'),
+    'Spirit Temple Child Lower':                lambda world: world.settings.tokensanity not in ('dungeons', 'all'),
+    'Spirit Temple Adult Lower':                lambda world: world.settings.tokensanity not in ('dungeons', 'all'),
+    'Shadow Temple Invisible Blades Chests':    lambda world: world.settings.tokensanity not in ('dungeons', 'all'),
+
+    'Queen Gohma Rewards':                      lambda world: world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'), # We don't want to hint unshuffled dungeon rewards even if compasses give info and are removed
+    'King Dodongo Rewards':                     lambda world: world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'),
+    'Barinade Rewards':                         lambda world: world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'),
+    'Phantom Ganon Rewards':                    lambda world: world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'),
+    'Volvagia Rewards':                         lambda world: world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'),
+    'Morpha Rewards':                           lambda world: world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'),
+    'Bongo Bongo Rewards':                      lambda world: world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'),
+    'Twinrova Rewards':                         lambda world: world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'),
 
     # Conditional entrance hints
     'Ganons Castle Ledge -> Ganons Castle Lobby': lambda world: (world.settings.bridge != 'open'
@@ -630,6 +639,15 @@ hintTable = {
     'Ice Cavern Final Room':                                       ("the #final treasures of Ice Cavern# are...^", None, 'dual'),
     'Ice Cavern MQ Final Room':                                    ("the #final treasures of Ice Cavern# are...^", None, 'dual'),
     'Ganons Castle Spirit Trial Chests':                           ("#within the Spirit Trial#, chests contain...^", None, 'dual'),
+
+    'Queen Gohma Rewards':                                         ("the #Parasitic Armored Arachnid# holds...^", "#Queen Gohma# holds...^", 'dual'),
+    'King Dodongo Rewards':                                        ("the #Infernal Dinosaur# holds...^", "#King Dodongo# holds...^", 'dual'),
+    'Barinade Rewards':                                            ("the #Bio-Electric Anemone# holds...^", "#Barinade# holds...^", 'dual'),
+    'Phantom Ganon Rewards':                                       ("the #Evil Spirit from Beyond# holds...^", "#Phantom Ganon# holds...^", 'dual'),
+    'Volvagia Rewards':                                            ("the #Subterranean Lava Dragon# holds...^", "#Volvagia# holds...^", 'dual'),
+    'Morpha Rewards':                                              ("the #Giant Aquatic Amoeba# holds...^", "#Morpha# holds...^", 'dual'),
+    'Bongo Bongo Rewards':                                         ("the #Phantom Shadow Beast# holds...^", "#Bongo Bongo# holds...^", 'dual'),
+    'Twinrova Rewards':                                            ("the #Sorceress Sisters# hold...^", "#Twinrova# holds...^", 'dual'),
 
     'KF Kokiri Sword Chest':                                       ("the #hidden treasure of the Kokiri# is", None, 'exclude'),
     'KF Midos Top Left Chest':                                     ("the #leader of the Kokiri# hides", "#inside Mido's house# is", 'exclude'),
@@ -1756,6 +1774,15 @@ multiTable = {
     'Ice Cavern Final Room':                                    ['Ice Cavern Iron Boots Chest', 'Sheik in Ice Cavern'],
     'Ice Cavern MQ Final Room':                                 ['Ice Cavern MQ Iron Boots Chest', 'Sheik in Ice Cavern'],
     'Ganons Castle Spirit Trial Chests':                        ['Ganons Castle Spirit Trial Crystal Switch Chest', 'Ganons Castle Spirit Trial Invisible Chest'],
+
+    'Queen Gohma Rewards':                                      ['Deku Tree Queen Gohma Heart', 'Queen Gohma'],
+    'King Dodongo Rewards':                                     ['Dodongos Cavern King Dodongo Heart', 'King Dodongo'],
+    'Barinade Rewards':                                         ['Jabu Jabus Belly Barinade Heart', 'Barinade'],
+    'Phantom Ganon Rewards':                                    ['Forest Temple Phantom Ganon Heart', 'Phantom Ganon'],
+    'Volvagia Rewards':                                         ['Fire Temple Volvagia Heart', 'Volvagia'],
+    'Morpha Rewards':                                           ['Water Temple Morpha Heart', 'Morpha'],
+    'Bongo Bongo Rewards':                                      ['Shadow Temple Bongo Bongo Heart', 'Bongo Bongo'],
+    'Twinrova Rewards':                                         ['Spirit Temple Twinrova Heart', 'Twinrova'],
 }
 
 misc_item_hint_table = {
