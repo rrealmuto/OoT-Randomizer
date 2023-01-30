@@ -386,7 +386,7 @@ def set_entrances(worlds, savewarps_to_connect):
         world.initialize_entrances()
 
     for savewarp, replaces in savewarps_to_connect:
-        savewarp.replaces = world.get_entrance(replaces)
+        savewarp.replaces = savewarp.world.get_entrance(replaces)
         savewarp.connect(savewarp.replaces.connected_region)
 
     for world in worlds:
