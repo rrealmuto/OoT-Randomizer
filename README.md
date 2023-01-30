@@ -45,7 +45,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * The spoiler log playthrough is randomized instead of preferring locations based on the order in which they're defined ([#1846](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1846))
   * When collecting a small key or silver rupee, the text box says how many of that item you've collected (based on [#1841](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1841))
   * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
-  * The conditions for forcing one-way entrances that lead to the Bolero, Nocturne, and Requiem warp pads have been adjusted to increase variety with some settings, such as “Guarantee Reachable Locations” set to “All Goals”, or “Mix Entrance Pools” (based on [#1440](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1440))
+  * The conditions for forcing one-way entrances that lead to the Bolero, Nocturne, and Requiem warp pads have been adjusted to increase variety with some settings, such as “Guarantee Reachable Locations” set to “All Goals”, “Shuffle Dungeon Rewards”, or “Mix Entrance Pools” (based on [#1440](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1440))
   * Plandos can specify different settings for each world (based on [Andols0's `individual-settings` branch](https://github.com/Andols0/OoT-Randomizer/tree/individual-settings))
   * “Closed Forest Requires Gohma” is compatible with all forms of entrance randomizer by restricting entrances inside the forest area to only be shuffled among themselves.
   * Gold Skulltula Tokens can be on excluded locations if there are no checks requiring them (such as in SAWS)

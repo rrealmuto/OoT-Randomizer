@@ -75,7 +75,20 @@ class World(object):
             or settings.shuffle_adult_spawn == 'full'
         )
 
-        self.mixed_pools_bosses = settings.shuffle_bosses == 'full' and 'Boss' in settings.mix_entrance_pools
+        self.mix_entrance_pools = {
+            pool
+            for pool in settings.mix_entrance_pools
+            if {
+                'Interior': self.shuffle_interior_entrances,
+                'GrottoGrave': settings.shuffle_grotto_entrances,
+                'Dungeon': self.shuffle_dungeon_entrances,
+                'Overworld': settings.shuffle_overworld_entrances,
+                'Boss': settings.shuffle_bosses == 'full',
+            }[pool]
+        }
+        if len(self.mix_entrance_pools) == 1:
+            self.mix_entrance_pools = set()
+        self.mixed_pools_bosses = 'Boss' in self.mix_entrance_pools
 
         self.ensure_tod_access = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or self.spawn_positions
         self.disable_trade_revert = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances

@@ -41,7 +41,7 @@ def assume_entrance_pool(entrance_pool):
         if entrance.reverse != None and not entrance.decoupled:
             assumed_return = entrance.reverse.assume_reachable()
             world = entrance.world
-            if not (len(world.settings.mix_entrance_pools) > 1 and (world.settings.shuffle_overworld_entrances or world.shuffle_special_interior_entrances or world.settings.shuffle_hideout_entrances)):
+            if not (world.mix_entrance_pools and (world.settings.shuffle_overworld_entrances or world.shuffle_special_interior_entrances or world.settings.shuffle_hideout_entrances)):
                 if (entrance.type in ('Dungeon', 'Grotto', 'Grave') and entrance.reverse.name != 'Spirit Temple Lobby -> Desert Colossus From Spirit Lobby') or \
                    (entrance.type == 'Interior' and (world.shuffle_special_interior_entrances or world.settings.shuffle_hideout_entrances)):
                     # In most cases, Dungeon, Grotto/Grave and Simple Interior exits shouldn't be assumed able to give access to their parent region
@@ -475,9 +475,17 @@ def shuffle_random_entrances(worlds):
             one_way_entrance_pools['WarpSong'] = world.get_shufflable_entrances(type='WarpSong')
             if world.settings.reachable_locations != 'beatable' and world.settings.logic_rules == 'glitchless':
                 # In glitchless, there aren't any other ways to access these areas
-                wincons = [world.settings.bridge, world.settings.shuffle_ganon_bosskey]
+                wincons = {world.settings.bridge, world.settings.shuffle_ganon_bosskey}
                 if world.settings.shuffle_ganon_bosskey == 'on_lacs':
-                    wincons.append(world.settings.lacs_condition)
+                    wincons.add(world.settings.lacs_condition)
+                if world.settings.shuffle_dungeon_rewards != 'dungeon' and (
+                    world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward')
+                    or (
+                        'Boss' in world.mix_entrance_pools
+                        and any(pool not in ('Boss', 'Dungeon') for pool in world.mix_entrance_pools)
+                    )
+                ):
+                    wincons -= {'dungeons', 'stones', 'medallions'}
                 if (
                     world.settings.reachable_locations == 'all'
                     or ('tokens' in wincons and world.settings.tokensanity in ('off', 'dungeons'))
@@ -485,10 +493,10 @@ def shuffle_random_entrances(worlds):
                     one_way_priorities['Bolero'] = priority_entrance_table['Bolero']
                 if (
                     (
-                        (not world.shuffle_dungeon_entrances or 'Dungeon' not in world.settings.mix_entrance_pools)
+                        'Dungeon' not in world.mix_entrance_pools
                         or (
-                            (not world.settings.shuffle_overworld_entrances or 'Overworld' not in world.settings.mix_entrance_pools)
-                            and ((not world.shuffle_special_interior_entrances and not world.settings.shuffle_hideout_entrances) or 'Interior' not in world.settings.mix_entrance_pools)
+                            'Overworld' not in world.mix_entrance_pools
+                            and ((not world.shuffle_special_interior_entrances and not world.settings.shuffle_hideout_entrances) or 'Interior' not in world.mix_entrance_pools)
                         )
                     )
                     and (
@@ -560,7 +568,7 @@ def shuffle_random_entrances(worlds):
                 entrance_pools['GrottoGraveReverse'] = [entrance.reverse for entrance in entrance_pools['GrottoGrave']]
 
         if world.settings.shuffle_overworld_entrances:
-            exclude_overworld_reverse = ('Overworld' in world.settings.mix_entrance_pools) and not world.settings.decouple_entrances
+            exclude_overworld_reverse = 'Overworld' in world.mix_entrance_pools and not world.settings.decouple_entrances
             entrance_pools['Overworld'] = world.get_shufflable_entrances(type='Overworld', only_primary=exclude_overworld_reverse)
 
         # Set shuffled entrances as such
