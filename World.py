@@ -1206,11 +1206,14 @@ class World(object):
             # and stones are not considered here. This is not really an accurate
             # way of doing this, but it's the only way to allow dungeons to appear.
             # So barren hints do not include these dungeon rewards.
-            if location_hint in excluded_areas or \
-               location.locked or \
-               location.name in self.hint_exclusions or \
-               location.item is None or \
-               location.item.type in ('Event', 'DungeonReward'):
+            if (
+                location_hint in excluded_areas
+                or location.locked
+                or location.name in self.hint_exclusions
+                or location.item is None
+                or location.item.type == 'Event'
+                or (location.item.type == 'DungeonReward' and location.item.world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward', 'dungeon'))
+            ):
                 continue
 
             area = location_hint
