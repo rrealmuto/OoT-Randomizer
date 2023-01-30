@@ -54,7 +54,23 @@ def set_rules(world):
                 # and render the game unbeatable, so for simplicity's sake we forbid putting pieces on any world's Song from Impa.
                 forbid_item(location, 'Triforce Piece')
 
-        if location.name == 'Forest Temple MQ First Room Chest' and world.settings.shuffle_bosskeys == 'dungeon' and world.settings.shuffle_smallkeys == 'dungeon' and world.settings.tokensanity == 'off':
+        if (
+            (
+                location.name == 'Forest Temple MQ First Room Chest'
+                and world.settings.shuffle_bosskeys == 'dungeon'
+                and world.settings.shuffle_smallkeys == 'dungeon'
+                and world.settings.tokensanity == 'off'
+            )
+            or (
+                location.name in ('Shadow Temple Hover Boots Chest', 'Shadow Temple Early Silver Rupee Chest')
+                and world.settings.shuffle_bosskeys == 'dungeon'
+                and world.settings.shuffle_smallkeys == 'dungeon'
+                and world.mixed_pools_bosses
+                and 'Shadow Temple' not in world.settings.dungeon_shortcuts
+                and world.settings.shuffle_pots in ('off', 'overworld')
+                and world.settings.shuffle_mapcompass == 'vanilla'
+            )
+        ):
             # This location needs to be a small key. Make sure the boss key isn't placed here.
             forbid_item(location, 'Boss Key (Forest Temple)')
 
