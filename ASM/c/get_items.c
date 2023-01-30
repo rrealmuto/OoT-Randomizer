@@ -682,7 +682,12 @@ bool Item00_KillActorIfFlagIsSet(z64_actor_t *actor) {
         this->dropped = true;
     }
     else if(CURR_ACTOR_SPAWN_INDEX) {
-        flag = (CURR_ACTOR_SPAWN_INDEX) | (actor->room_index << 8);
+        if(z64_game.scene_index == 0x3E) {
+            flag = (CURR_ACTOR_SPAWN_INDEX) | (actor->room_index << 12) | ((z64_file.grotto_id & 0x1F) << 7);
+        }
+        else {
+            flag = (CURR_ACTOR_SPAWN_INDEX) | (actor->room_index << 8);
+        }
     }
     // Still need to build a dummy because we haven't set any info in the actor yet.
     EnItem00 dummy;
