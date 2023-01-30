@@ -12,7 +12,9 @@
           "col_span": 4,
           "row_span": [2,2,3],
           "settings": [
+            "language",
             "rom",
+            "pal_rom",
             "output_dir",
             "enable_distribution_file",
             "enable_cosmetic_file",
@@ -43,6 +45,7 @@
           "row_span": [1,1,1],
           "settings": [
             "version_msg",
+            "language",
             "enable_distribution_file",
             "enable_cosmetic_file",
             "distribution_file",
@@ -50,6 +53,7 @@
             "create_spoiler",
             "web_output_type",
             "rom",
+            "pal_rom",
             "web_wad_file",
             "web_common_key_file",
             "web_common_key_string",

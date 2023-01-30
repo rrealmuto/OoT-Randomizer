@@ -1898,6 +1898,45 @@ setting_infos = [
         shared         = False,
         choices        = {},
     ),
+    Combobox(
+        name           = 'language',
+        gui_text       = 'Language',
+        default        = 'english',
+        choices        = {
+            'english': 'English',
+            'french':  'Français',
+            'german':  'Deutsch',
+        },
+        gui_tooltip    = '''\
+            Changes the language for text in the game.
+
+            This setting is a work in progress and currently
+            only translates text from the vanilla game. Text
+            added by the randomizer will be in English.
+
+            German and French languages require an OoT 1.0
+            PAL ROM in addition to the NTSC ROM.
+        ''',
+        disable        = {
+            'english': {'settings': ['pal_rom']},
+        },
+        shared         = True,
+    ),
+    Setting_Info('pal_rom', str, "Base ROM (PAL)", "Fileinput", False, {},
+        gui_params = {
+            "file_types": [
+                {
+                  "name": "ROM Files",
+                  "extensions": [ "z64", "n64" ]
+                },
+                {
+                  "name": "All Files",
+                  "extensions": [ "*" ]
+                }
+            ],
+            "hide_when_disabled" : True,
+        },
+    ),
     Checkbutton(
         name           = 'enable_distribution_file',
         gui_text       = 'Enable Plandomizer (Advanced)',
@@ -1944,7 +1983,8 @@ setting_infos = [
                 }
             ],
             "hide_when_disabled" : True,
-        }),
+        },
+    ),
     Setting_Info('cosmetic_file', str, "Cosmetic Plandomizer File", "Fileinput", False, {},
         gui_tooltip = """\
             Optional. Use a cosmetic plandomizer JSON file to get
@@ -1962,7 +2002,8 @@ setting_infos = [
                 }
             ],
             "hide_when_disabled" : True,
-        }),
+        },
+    ),
     Setting_Info('checked_version',   str, None, None, False, {}),
     Setting_Info('rom',               str, "Base ROM", "Fileinput", False, {},
         gui_params = {
@@ -1977,7 +2018,8 @@ setting_infos = [
                 }
             ],
             "web:hide_when_disabled" : True,
-        }),
+        },
+    ),
     Setting_Info('output_dir',        str, "Output Directory", "Directoryinput", False, {}),
     Setting_Info('output_file',       str, None, None, False, {}),
     Checkbutton(
@@ -2026,7 +2068,8 @@ setting_infos = [
                   "extensions": [ "*" ]
                 }
             ],
-        }),
+        },
+    ),
     Setting_Info('count',             int, "Generation Count", "Numberinput", False, {},
         default        = 1,
         gui_params = {

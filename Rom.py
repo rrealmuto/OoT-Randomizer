@@ -18,9 +18,10 @@ DMADATA_START = 0x7430
 
 class Rom(BigStream):
 
-    def __init__(self, file=None):
+    def __init__(self, file=None, *, pal=False):
         super().__init__([])
 
+        self.pal = pal
         self.original = None
         self.changed_address = {}
         self.changed_dma = {}
@@ -29,13 +30,14 @@ class Rom(BigStream):
         if file is None:
             return
 
-        decomp_file = local_path('ZOOTDEC.z64')
+        decomp_file = local_path('ZOOTDEC-PAL.z64' if pal else 'ZOOTDEC.z64')
 
         os.chdir(local_path())
 
-        with open(data_path('generated/symbols.json'), 'r') as stream:
-            symbols = json.load(stream)
-            self.symbols = { name: int(addr, 16) for name, addr in symbols.items() }
+        if not pal:
+            with open(data_path('generated/symbols.json'), 'r') as stream:
+                symbols = json.load(stream)
+                self.symbols = { name: int(addr, 16) for name, addr in symbols.items() }
 
         if file == '':
             # if not specified, try to read from the previously decompressed rom
@@ -44,19 +46,20 @@ class Rom(BigStream):
                 self.read_rom(file)
             except FileNotFoundError:
                 # could not find the decompressed rom either
-                raise FileNotFoundError('Must specify path to base ROM')
+                raise FileNotFoundError(f'Must specify path to {"PAL" if pal else "base"} ROM')
         else:
             self.read_rom(file)
 
         # decompress rom, or check if it's already decompressed
-        self.decompress_rom_file(file, decomp_file)
+        self.decompress_rom_file(file, decomp_file, pal=pal)
 
-        # Add file to maximum size
-        self.buffer.extend(bytearray([0x00] * (0x4000000 - len(self.buffer))))
-        self.original = self.copy()
+        if not pal:
+            # Add file to maximum size
+            self.buffer.extend(bytearray([0x00] * (0x4000000 - len(self.buffer))))
+            self.original = self.copy()
 
-        # Add version number to header.
-        self.write_version_bytes()
+            # Add version number to header.
+            self.write_version_bytes()
 
 
     def copy(self):
@@ -68,22 +71,29 @@ class Rom(BigStream):
         return new_rom
 
 
-    def decompress_rom_file(self, file, decomp_file, verify_crc=True):
-        validCRC = [
-            [0xEC, 0x70, 0x11, 0xB7, 0x76, 0x16, 0xD7, 0x2B], # Compressed
-            [0x70, 0xEC, 0xB7, 0x11, 0x16, 0x76, 0x2B, 0xD7], # Byteswap compressed
-            [0x93, 0x52, 0x2E, 0x7B, 0xE5, 0x06, 0xD4, 0x27], # Decompressed
-        ]
+    def decompress_rom_file(self, file, decomp_file, verify_crc=True, *, pal=False):
+        if pal:
+            validCRC = [
+                [0x44, 0xB0, 0x69, 0xB5, 0x3C, 0x37, 0x85, 0x19], # Compressed
+                [0xB0, 0x44, 0xB5, 0x69, 0x37, 0x3C, 0x19, 0x85], # Byteswap compressed
+                [0xEE, 0x9D, 0x53, 0xB5, 0xBC, 0x01, 0xD0, 0x15], # Decompressed
+            ]
+        else:
+            validCRC = [
+                [0xEC, 0x70, 0x11, 0xB7, 0x76, 0x16, 0xD7, 0x2B], # Compressed
+                [0x70, 0xEC, 0xB7, 0x11, 0x16, 0x76, 0x2B, 0xD7], # Byteswap compressed
+                [0x93, 0x52, 0x2E, 0x7B, 0xE5, 0x06, 0xD4, 0x27], # Decompressed
+            ]
 
         # Validate ROM file
         file_name = os.path.splitext(file)
         romCRC = list(self.buffer[0x10:0x18])
         if verify_crc and romCRC not in validCRC:
             # Bad CRC validation
-            raise RuntimeError('ROM file %s is not a valid OoT 1.0 US ROM.' % file)
-        elif len(self.buffer) < 0x2000000 or len(self.buffer) > (0x4000000) or file_name[1].lower() not in ['.z64', '.n64']:
+            raise RuntimeError(f'ROM file {file} is not a valid OoT 1.0 {"PAL" if pal else "US"} ROM.')
+        elif len(self.buffer) < 0x2000000 or len(self.buffer) > (0x4000000) or file_name[1].lower() not in ('.z64', '.n64'):
             # ROM is too big, or too small, or not a bad type
-            raise RuntimeError('ROM file %s is not a valid OoT 1.0 US ROM.' % file)
+            raise RuntimeError(f'ROM file {file} is not a valid OoT 1.0 {"PAL" if pal else "US"} ROM.')
         elif len(self.buffer) == 0x2000000:
             # If Input ROM is compressed, then Decompress it
             subcall = []

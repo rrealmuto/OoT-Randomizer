@@ -7,11 +7,16 @@ from Utils import find_last
 
 ENG_TEXT_START = 0x92D000
 JPN_TEXT_START = 0x8EB000
+GERMAN_TEXT_START = 0x8F4000
+FRENCH_TEXT_START = 0x930000
 ENG_TEXT_SIZE_LIMIT = 0x39000
 JPN_TEXT_SIZE_LIMIT = 0x3B000
 
 JPN_TABLE_START = 0xB808AC
 ENG_TABLE_START = 0xB849EC
+PAL_ENG_TABLE_START = 0xB801DC
+GERMAN_TABLE_START = 0xB84404
+FRENCH_TABLE_START = 0xB86514
 CREDITS_TABLE_START = 0xB88C0C
 
 JPN_TABLE_SIZE = ENG_TABLE_START - JPN_TABLE_START
@@ -463,16 +468,29 @@ class Message:
 
     # read a single message from rom
     @classmethod
-    def from_rom(cls, rom, index, eng=True):
-        if eng:
+    def from_rom(cls, rom, index, language='english'):
+        if language == 'english':
             table_start = ENG_TABLE_START
+            offset_table_start = None
             text_start = ENG_TEXT_START
-        else:
+        elif language == 'french':
+            table_start = PAL_ENG_TABLE_START
+            offset_table_start = FRENCH_TABLE_START
+            text_start = FRENCH_TEXT_START
+        elif language == 'german':
+            table_start = PAL_ENG_TABLE_START
+            offset_table_start = GERMAN_TABLE_START
+            text_start = GERMAN_TEXT_START
+        elif language == 'japanese': # only supports the fffc message currently, no support for decoding MacJapanese
             table_start = JPN_TABLE_START
+            offset_table_start = None
             text_start = JPN_TEXT_START
         entry_offset = table_start + 8 * index
         entry = rom.read_bytes(entry_offset, 8)
         next = rom.read_bytes(entry_offset + 8, 8)
+        if offset_table_start is not None:
+            entry[4:] = rom.read_bytes(offset_table_start + 4 * index, 4)
+            next[4:] = rom.read_bytes(offset_table_start + 4 * (index + 1), 4)
 
         id = bytes_to_int(entry[0:2])
         opts = entry[2]
@@ -720,8 +738,15 @@ def add_item_messages(messages, shop_items, world):
 
 
 # reads each of the game's messages into a list of Message objects
-def read_messages(rom):
-    table_offset = ENG_TABLE_START
+def read_messages(rom, fffc_rom, language='english'):
+    if language == 'english':
+        if rom.pal:
+            raise ValueError('English text must be read from the NTSC rom')
+        table_offset = ENG_TABLE_START
+    elif language in ('french', 'german'):
+        if not rom.pal:
+            raise ValueError('French or German text must be read from the PAL rom')
+        table_offset = PAL_ENG_TABLE_START
     index = 0
     messages = []
     while True:
@@ -734,13 +759,13 @@ def read_messages(rom):
         if id == 0xFFFF:
             break # this marks the end of the table
 
-        messages.append( Message.from_rom(rom, index) )
+        messages.append(Message.from_rom(rom, index, language))
 
         index += 1
         table_offset += 8
 
     # Also grab 0xFFFC entry from JP table.
-    messages.append(read_fffc_message(rom))
+    messages.append(read_fffc_message(fffc_rom))
     return messages
 
 # The JP text table is the only source for ID 0xFFFC, which is used by the
@@ -755,7 +780,7 @@ def read_fffc_message(rom):
         id = bytes_to_int(entry[0:2])
 
         if id == 0xFFFC:
-            message = Message.from_rom(rom, index, eng=False)
+            message = Message.from_rom(rom, index, 'japanese')
             break
 
         index += 1

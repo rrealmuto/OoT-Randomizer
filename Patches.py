@@ -339,11 +339,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
         bytes = list(ord(c) for c in txt[:size-1]) + [0] * size
         return bytes[:size]
 
-    def truncstr(txt, size):
-        if len(txt) > size:
-            txt = txt[:size-3] + "..."
-        return txt
-
     line_len = 21
     version_str = "version " + __version__
     if len(version_str) > line_len:
@@ -357,7 +352,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
         rom.write_byte(rom.sym('PLANDOMIZER_USED'), 0x01)
 
     if world.settings.world_count > 1:
-        world_str = "{} of {}".format(world.id + 1, world.settings.world_count)
+        world_str = f"{world.id + 1} of {world.settings.world_count}"
     else:
         world_str = ""
     rom.write_bytes(rom.sym('WORLD_STRING_TXT'), makebytes(world_str, 12))
@@ -1032,7 +1027,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
         # Assumes that the last exit on a scene's exit list cannot be 0000
         exit_table = {
             0x0028: [0xAC95C2] #Jabu with the fish is entered from a cutscene hardcode
-            }
+        }
 
         def add_scene_exits(scene_start, offset = 0):
             current = scene_start + offset
@@ -1734,7 +1729,13 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     ])
 
     # Load Message and Shop Data
-    messages = read_messages(rom)
+    if world.settings.language == 'english':
+        messages = read_messages(rom, rom, world.settings.language)
+    elif world.settings.language in ('french', 'german'):
+        pal_rom = Rom(world.settings.pal_rom, pal=True)
+        messages = read_messages(pal_rom, rom, world.settings.language)
+    else:
+        raise NotImplementedError(f'Unimplemented language: {world.settings.language}')
     remove_unused_messages(messages)
     shop_items = read_shop_items(rom, shop_item_file.start + 0x1DEC)
 
