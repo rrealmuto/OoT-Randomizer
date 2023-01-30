@@ -50,7 +50,7 @@
             # Also, we only need to check shortcut keys here and at boat, since key requirements are always the same.
             "Shadow Temple Huge Pit": "
                 has_explosives and
-                    (((Small_Key_Shadow_Temple, 1) and not shadow_temple_shortcuts and not mixed_pools_bosses) or
+                    (((Small_Key_Shadow_Temple, 1) and not shadow_temple_shortcuts and not dungeon_back_access) or
                     ((Small_Key_Shadow_Temple, 2) and not shadow_temple_shortcuts) or
                     (Small_Key_Shadow_Temple, 5) or
                     ((Small_Key_Shadow_Temple, 4) and (logic_lens_shadow_platform or can_use(Lens_of_Truth))))",
@@ -110,7 +110,7 @@
             "Shadow Temple GS Single Giant Pot": "(Silver_Rupee_Shadow_Temple_Invisible_Spikes, 5) and Hookshot"
         },
         "exits": {
-            "Shadow Temple Wind Tunnel": "Hookshot and (((Small_Key_Shadow_Temple, 3) and not mixed_pools_bosses) or (Small_Key_Shadow_Temple, 4))",
+            "Shadow Temple Wind Tunnel": "Hookshot and (((Small_Key_Shadow_Temple, 3) and not dungeon_back_access) or (Small_Key_Shadow_Temple, 4))",
             "Shadow Temple Huge Pit": "logic_lens_shadow_platform or can_use(Lens_of_Truth)"
         }
     },
@@ -138,7 +138,7 @@
             "Shadow Temple After Wind Flying Pot 2": "True"
         },
         "exits": {
-            "Shadow Temple Boat": "(((Small_Key_Shadow_Temple, 4) and not mixed_pools_bosses) or (Small_Key_Shadow_Temple, 5))",
+            "Shadow Temple Boat": "(((Small_Key_Shadow_Temple, 4) and not dungeon_back_access) or (Small_Key_Shadow_Temple, 5))",
             "Shadow Temple Wind Tunnel": "True"
         }
     },

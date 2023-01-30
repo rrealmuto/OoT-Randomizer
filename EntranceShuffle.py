@@ -597,32 +597,16 @@ def shuffle_random_entrances(worlds):
                 valid_target_types = ('ChildSpawn', 'AdultSpawn', 'WarpSong', 'BlueWarp', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
                 valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
                 if world.settings.shuffle_gerudo_valley_river_exit == 'full':
-                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grotto', 'Grave', *valid_target_types)
-                    valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grotto', 'Grave', *valid_target_types_reverse)
-                    # Unless mixed pools bosses is on, vanilla Shadow temple key logic assumes the final small door can't be reached from the boss door.
-                    # Make sure this assumption isn't broken by a one-way going there.
-                    if world.mixed_pools_bosses or world.dungeon_mq['Shadow Temple']:
-                        valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
-                        valid_target_types_reverse = ('ChildBoss', 'AdultBoss', *valid_target_types_reverse)
-                    elif world.settings.shuffle_bosses in ('off', 'limited'):
-                        valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
-                        valid_target_types_reverse = ('ChildBoss', *valid_target_types_reverse)
+                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'ChildBoss', 'AdultBoss', 'Hideout', 'Grotto', 'Grave', *valid_target_types)
+                    valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'ChildBoss', 'AdultBoss', 'Hideout', 'Grotto', 'Grave', *valid_target_types_reverse)
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
             elif pool_type == 'OwlDrop':
                 valid_target_types = ('WarpSong', 'BlueWarp', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Extra')
                 valid_target_types_reverse = ('Overworld',)
                 exclude = ['OGC Great Fairy Fountain -> Castle Grounds']
                 if world.settings.owl_drops == 'full':
-                    valid_target_types = ('ChildSpawn', 'AdultSpawn', 'Dungeon', 'DungeonSpecial', 'Hideout', 'Grotto', 'Grave', *valid_target_types)
-                    valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'Interior', 'SpecialInterior', 'Hideout', 'Grotto', 'Grave', *valid_target_types_reverse)
-                    # Unless mixed pools bosses is on, vanilla Shadow temple key logic assumes the final small door can't be reached from the boss door.
-                    # Make sure this assumption isn't broken by a one-way going there.
-                    if world.mixed_pools_bosses or world.dungeon_mq['Shadow Temple']:
-                        valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
-                        valid_target_types_reverse = ('ChildBoss', 'AdultBoss', *valid_target_types_reverse)
-                    elif world.settings.shuffle_bosses in ('off', 'limited'):
-                        valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
-                        valid_target_types_reverse = ('ChildBoss', *valid_target_types_reverse)
+                    valid_target_types = ('ChildSpawn', 'AdultSpawn', 'Dungeon', 'DungeonSpecial', 'ChildBoss', 'AdultBoss', 'Hideout', 'Grotto', 'Grave', *valid_target_types)
+                    valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'ChildBoss', 'AdultBoss', 'Interior', 'SpecialInterior', 'Hideout', 'Grotto', 'Grave', *valid_target_types_reverse)
                 else:
                     exclude.append('Prelude of Light Warp -> Temple of Time')
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse, exclude=exclude)
@@ -633,62 +617,30 @@ def shuffle_random_entrances(worlds):
                 valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
                 if world.settings.shuffle_child_spawn == 'full':
                     # grotto entrances don't work properly (they cause a black screen on file load)
-                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grave', *valid_target_types)
-                    valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grave', *valid_target_types_reverse)
-                    # Unless mixed pools bosses is on, vanilla Shadow temple key logic assumes the final small door can't be reached from the boss door.
-                    # Make sure this assumption isn't broken by a one-way going there.
-                    if world.mixed_pools_bosses or world.dungeon_mq['Shadow Temple']:
-                        valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
-                        valid_target_types_reverse = ('ChildBoss', 'AdultBoss', *valid_target_types_reverse)
-                    elif world.settings.shuffle_bosses in ('off', 'limited'):
-                        valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
-                        valid_target_types_reverse = ('ChildBoss', *valid_target_types_reverse)
+                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'ChildBoss', 'AdultBoss', 'Hideout', 'Grave', *valid_target_types)
+                    valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'ChildBoss', 'AdultBoss', 'Hideout', 'Grave', *valid_target_types_reverse)
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
             elif pool_type == 'AdultSpawn':
                 valid_target_types = ('ChildSpawn', 'AdultSpawn', 'WarpSong', 'BlueWarp', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
                 valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
                 if world.settings.shuffle_adult_spawn == 'full':
                     # grotto entrances don't work properly (they cause a black screen on file load)
-                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grave', *valid_target_types)
-                    valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grave', *valid_target_types_reverse)
-                    # Unless mixed pools bosses is on, vanilla Shadow temple key logic assumes the final small door can't be reached from the boss door.
-                    # Make sure this assumption isn't broken by a one-way going there.
-                    if world.mixed_pools_bosses or world.dungeon_mq['Shadow Temple']:
-                        valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
-                        valid_target_types_reverse = ('ChildBoss', 'AdultBoss', *valid_target_types_reverse)
-                    elif world.settings.shuffle_bosses in ('off', 'limited'):
-                        valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
-                        valid_target_types_reverse = ('ChildBoss', *valid_target_types_reverse)
+                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'ChildBoss', 'AdultBoss', 'Hideout', 'Grave', *valid_target_types)
+                    valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'ChildBoss', 'AdultBoss', 'Hideout', 'Grave', *valid_target_types_reverse)
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
             elif pool_type == 'WarpSong':
                 valid_target_types = ('ChildSpawn', 'AdultSpawn', 'WarpSong', 'BlueWarp', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
                 valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
                 if world.settings.warp_songs == 'full':
-                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grotto', 'Grave', *valid_target_types)
-                    valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grotto', 'Grave', *valid_target_types_reverse)
-                    # Unless mixed pools bosses is on, vanilla Shadow temple key logic assumes the final small door can't be reached from the boss door.
-                    # Make sure this assumption isn't broken by a one-way going there.
-                    if world.mixed_pools_bosses or world.dungeon_mq['Shadow Temple']:
-                        valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
-                        valid_target_types_reverse = ('ChildBoss', 'AdultBoss', *valid_target_types_reverse)
-                    elif world.settings.shuffle_bosses in ('off', 'limited'):
-                        valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
-                        valid_target_types_reverse = ('ChildBoss', *valid_target_types_reverse)
+                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'ChildBoss', 'AdultBoss', 'Hideout', 'Grotto', 'Grave', *valid_target_types)
+                    valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'ChildBoss', 'AdultBoss', 'Hideout', 'Grotto', 'Grave', *valid_target_types_reverse)
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
             elif pool_type == 'BlueWarp':
                 valid_target_types = ('ChildSpawn', 'AdultSpawn', 'WarpSong', 'BlueWarp', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
                 valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
                 if world.settings.blue_warps == 'full':
-                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grotto', 'Grave', *valid_target_types)
-                    valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grotto', 'Grave', *valid_target_types_reverse)
-                    # Unless mixed pools bosses is on, vanilla Shadow temple key logic assumes the final small door can't be reached from the boss door.
-                    # Make sure this assumption isn't broken by a one-way going there.
-                    if world.mixed_pools_bosses or world.dungeon_mq['Shadow Temple']:
-                        valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
-                        valid_target_types_reverse = ('ChildBoss', 'AdultBoss', *valid_target_types_reverse)
-                    elif world.settings.shuffle_bosses in ('off', 'limited'):
-                        valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
-                        valid_target_types_reverse = ('ChildBoss', *valid_target_types_reverse)
+                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'ChildBoss', 'AdultBoss', 'Hideout', 'Grotto', 'Grave', *valid_target_types)
+                    valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'ChildBoss', 'AdultBoss', 'Hideout', 'Grotto', 'Grave', *valid_target_types_reverse)
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
             # Ensure that when trying to place the last entrance of a one way pool, we don't assume the rest of the targets are reachable
             for target in one_way_target_entrance_pools[pool_type]:

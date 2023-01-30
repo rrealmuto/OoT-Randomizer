@@ -65,7 +65,7 @@
         "exits": {
             "Shadow Temple Upper Huge Pit": "
                 has_explosives and
-                (((Small_Key_Shadow_Temple, 2) and not shadow_temple_shortcuts and not mixed_pools_bosses) or
+                (((Small_Key_Shadow_Temple, 2) and not shadow_temple_shortcuts and not dungeon_back_access) or
                     ((Small_Key_Shadow_Temple, 3) and not shadow_temple_shortcuts) or
                     (Small_Key_Shadow_Temple, 5))",
             "Shadow Temple Boat": "shadow_temple_shortcuts"
@@ -111,7 +111,7 @@
                     (has_fire_source or logic_shadow_mq_huge_pit))",
             "Shadow Temple Invisible Spikes": "
                 (logic_lens_shadow_mq_platform or can_use(Lens_of_Truth)) and
-                Hover_Boots and (((Small_Key_Shadow_Temple, 3) and not mixed_pools_bosses) or (Small_Key_Shadow_Temple, 4))",
+                Hover_Boots and (((Small_Key_Shadow_Temple, 3) and not dungeon_back_access) or (Small_Key_Shadow_Temple, 4))",
             "Shadow Temple Upper Huge Pit": "Longshot"
         }
     },
@@ -158,7 +158,7 @@
             "Shadow Temple MQ Invisible Spikes Silver Rupee Ceiling Back": "True"
         },
         "exits": {
-            "Shadow Temple Wind Tunnel": "Hookshot and (((Small_Key_Shadow_Temple, 4) and not mixed_pools_bosses) or (Small_Key_Shadow_Temple, 5))",
+            "Shadow Temple Wind Tunnel": "Hookshot and (((Small_Key_Shadow_Temple, 4) and not dungeon_back_access) or (Small_Key_Shadow_Temple, 5))",
             "Shadow Temple Lower Huge Pit": "
                 (logic_lens_shadow_mq_platform or can_use(Lens_of_Truth)) and Hover_Boots"
         }
@@ -189,7 +189,7 @@
             "Nut Pot": "True"
         },
         "exits": {
-            "Shadow Temple Boat": "((Small_Key_Shadow_Temple, 5) and not mixed_pools_bosses) or (Small_Key_Shadow_Temple, 6)",
+            "Shadow Temple Boat": "((Small_Key_Shadow_Temple, 5) and not dungeon_back_access) or (Small_Key_Shadow_Temple, 6)",
             "Shadow Temple Wind Tunnel": "Hover_Boots or logic_shadow_mq_windy_walkway"
         }
     },

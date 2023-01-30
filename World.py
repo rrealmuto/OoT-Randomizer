@@ -66,6 +66,14 @@ class World(object):
             or settings.blue_warps not in ('vanilla', 'dungeon') or self.spawn_positions or (settings.shuffle_bosses != 'off')
         )
 
+        self.one_ways = (
+            settings.blue_warps in ('balanced', 'full')
+            or settings.shuffle_gerudo_valley_river_exit in ('balanced', 'full')
+            or settings.owl_drops in ('balanced', 'full')
+            or settings.warp_songs in ('balanced', 'full')
+            or settings.shuffle_child_spawn in ('balanced', 'full')
+            or settings.shuffle_adult_spawn in ('balanced', 'full')
+        )
         self.full_one_ways = (
             settings.blue_warps == 'full'
             or settings.shuffle_gerudo_valley_river_exit == 'full'
@@ -89,6 +97,24 @@ class World(object):
         if len(self.mix_entrance_pools) == 1:
             self.mix_entrance_pools = set()
         self.mixed_pools_bosses = 'Boss' in self.mix_entrance_pools
+        self.dungeon_back_access = self.full_one_ways or (
+            self.mixed_pools_bosses and (
+                self.settings.decouple_entrances
+                or 'Overworld' in self.mix_entrance_pools
+                or (
+                    'GrottoGrave' in self.mix_entrance_pools
+                    and self.one_ways
+                )
+                or (
+                    'Interior' in self.mix_entrance_pools
+                    and (
+                        self.one_ways
+                        or self.shuffle_special_interior_entrances
+                        or self.settings.shuffle_hideout_entrances
+                    )
+                )
+            )
+        )
 
         self.ensure_tod_access = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or self.spawn_positions
         self.disable_trade_revert = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances
