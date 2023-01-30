@@ -633,7 +633,7 @@
             "GF Roof Entrance Cluster": "can_use(Hover_Boots) or logic_gf_jump",
             "GF Kitchen Roof Access": "Gerudo_Membership_Card and can_use(Longshot)",
             # can ask the Gerudo on the path to HBA to throw you in jail
-            "GF Hall to Balcony Entrance": "can_use(Hookshot)",
+            "GF Break Room Entrance": "can_use(Hookshot)",
             "GF Outside Gate": "'GF Gate Open'",
             "Gerudo Training Ground Lobby": "Gerudo_Membership_Card and is_adult"
         }
@@ -693,7 +693,7 @@
         },
         "exits": {
             "GF Kitchen Roof Access": "True",
-            "GF Hall to Balcony Entrance": "True"
+            "GF Break Room Entrance": "True"
         }
     },
     {
@@ -705,12 +705,12 @@
         }
     },
     {
-        "region_name": "GF Hall to Balcony Entrance",
+        "region_name": "GF Break Room Entrance",
         "scene": "Gerudo Fortress",
         "hint": "GERUDO_FORTRESS",
         "exits": {
             "Gerudo Fortress": "True",
-            "Hideout Hall to Balcony Lower": "True"
+            "Hideout Break Room": "True"
         }
     },
     {
@@ -721,10 +721,10 @@
             "GF Above Jail Crate": "is_adult and can_break_crate"
         },
         "exits": {
-            "Hideout Hall to Balcony Upper": "True",
+            "Hideout Hall to Balcony": "True",
             "Gerudo Fortress": "True",
             "GF Chest Roof": "can_use(Longshot)",
-            "GF Hall to Balcony Entrance": "damage_multiplier != 'ohko' or can_use(Nayrus_Love)"
+            "GF Break Room Entrance": "damage_multiplier != 'ohko' or can_use(Nayrus_Love)"
         }
     },
     {
@@ -894,13 +894,13 @@
         }
     },
     {
-        "region_name": "Hideout Hall to Balcony Lower",
-        "scene": "Hideout Hall to Balcony",
+        "region_name": "Hideout Break Room",
+        "scene": "Hideout Break Room",
         "hint": "THIEVES_HIDEOUT",
         "savewarp": "Gerudo Fortress -> Hideout 1 Torch Jail",
         "exits": {
-            "GF Hall to Balcony Entrance": "True",
-            "Hideout Hall to Balcony Upper": "can_use(Hookshot)"
+            "GF Break Room Entrance": "True",
+            "Hideout Hall to Balcony": "can_use(Hookshot)"
         },
         "locations": {
             "Hideout Break Room Pot 1": "Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)",
@@ -919,12 +919,12 @@
         }
     },
     {
-        "region_name": "Hideout Hall to Balcony Upper",
-        "scene": "Hideout Hall to Balcony",
+        "region_name": "Hideout Hall to Balcony",
+        "scene": "Hideout Break Room",
         "hint": "THIEVES_HIDEOUT",
         "savewarp": "Gerudo Fortress -> Hideout 1 Torch Jail",
         "exits": {
-            "Hideout Hall to Balcony Lower": "can_use(Hookshot)",
+            "Hideout Break Room": "can_use(Hookshot)",
             "GF Balcony": "True"
         }
     },
