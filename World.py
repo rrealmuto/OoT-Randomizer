@@ -69,7 +69,7 @@ class World(object):
         if (
             settings.open_forest == 'closed'
             and (
-                self.shuffle_special_interior_entrances or settings.shuffle_overworld_entrances
+                self.shuffle_special_interior_entrances or settings.shuffle_hideout_entrances or settings.shuffle_overworld_entrances
                 or settings.warp_songs or settings.spawn_positions
             )
         ):
@@ -530,6 +530,7 @@ class World(object):
 
     def load_regions_from_json(self, file_path):
         region_json = read_logic_file(file_path)
+        savewarps_to_connect = []
 
         for region in region_json:
             new_region = Region(region['region_name'])
@@ -583,7 +584,16 @@ class World(object):
                     if self.settings.logic_rules != 'none':
                         self.parser.parse_spot_rule(new_exit)
                     new_region.exits.append(new_exit)
+            if 'savewarp' in region:
+                savewarp_target = region['savewarp'].split(' -> ')[1]
+                new_exit = Entrance(f'{new_region.name} -> {savewarp_target}', new_region)
+                new_exit.connected_region = savewarp_target
+                new_region.exits.append(new_exit)
+                new_region.savewarp = new_exit
+                # the replaced entrance may not exist yet so we connect it after all region files have been read
+                savewarps_to_connect.append((new_exit, region['savewarp']))
             self.regions.append(new_region)
+        return savewarps_to_connect
 
 
     def create_internal_locations(self):

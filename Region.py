@@ -42,6 +42,7 @@ class Region(object):
         self.provides_time = TimeOfDay.NONE
         self.scene = None
         self.is_boss_room = False
+        self.savewarp = None
 
 
     def copy(self, new_world):
@@ -53,6 +54,7 @@ class Region(object):
         new_region.time_passes = self.time_passes
         new_region.provides_time = self.provides_time
         new_region.scene = self.scene
+        new_region.savewarp = None if self.savewarp is None else self.savewarp.copy(new_region)
 
         if self.dungeon:
             new_region.dungeon = self.dungeon.name
@@ -105,7 +107,7 @@ class Region(object):
                                self.world.settings.shuffle_ganon_bosskey if item.type == 'GanonBossKey' else None)
 
             is_self_dungeon_restricted = shuffle_setting in ['dungeon', 'vanilla'] and item.type != 'HideoutSmallKey'
-            is_self_region_restricted = [HintArea.GERUDO_FORTRESS] if shuffle_setting == 'fortress' else None
+            is_self_region_restricted = [HintArea.GERUDO_FORTRESS, HintArea.THIEVES_HIDEOUT] if shuffle_setting == 'fortress' else None
             is_hint_color_restricted = [HintArea.for_dungeon(item.name).color] if shuffle_setting == 'regional' else None
             is_dungeon_restricted = shuffle_setting == 'any_dungeon'
             is_overworld_restricted = shuffle_setting == 'overworld'

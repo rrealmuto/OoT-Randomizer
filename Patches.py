@@ -1065,6 +1065,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         rom.write_int16(0xACAA2E, 0x0138) # 1st Impa escort
         rom.write_int16(0xD12D6E, 0x0138) # 2nd+ Impa escort
 
+    if world.settings.shuffle_hideout_entrances:
+        rom.write_byte(rom.sym('HIDEOUT_SHUFFLED'), 1)
+
     if world.shuffle_dungeon_entrances:
         rom.write_byte(rom.sym('DUNGEONS_SHUFFLED'), 1)
 

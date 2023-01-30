@@ -546,6 +546,16 @@ logic_tricks = {
                     PoH without needing Longshot. You will take
                     fall damage.
                     '''},
+    'Gerudo\'s Fortress Ledge Jumps': {
+        'name'    : 'logic_gf_jump',
+        'tags'    : ("Gerudo's Fortress", "Overworld", "Child", "Adult",),
+        'tooltip' : '''\
+                    Allows both ages to use a jump to reach the second
+                    floor of the fortress from the southern roof with
+                    the guard, and adult to jump to the top roof from
+                    there, without going through the interiors of the
+                    Thieves' Hideout.
+                    '''},
     'Thieves\' Hideout "Kitchen" with No Additional Items': {
         'name'    : 'logic_gerudo_kitchen',
         'tags'    : ("Thieves' Hideout", "Gerudo's Fortress", "Overworld", "Child", "Adult",),
@@ -595,9 +605,9 @@ logic_tricks = {
                     To cross the river of sand with no additional items,
                     be sure to also enable "Wasteland Crossing without
                     Hover Boots or Longshot".
-                    Unless all overworld entrances are randomized, child
-                    Link will not be expected to do anything at Gerudo's
-                    Fortress.
+                    Unless Thieves' Hideout entrances or all overworld
+                    entrances are randomized, child Link will not be
+                    expected to do anything at Gerudo's Fortress.
                     '''},
     'Colossus Hill GS with Hookshot': {
         'name'    : 'logic_colossus_gs',
@@ -2257,7 +2267,7 @@ setting_infos = [
                 'settings': [
                     'open_forest', 'open_kakariko', 'open_door_of_time', 'zora_fountain', 'gerudo_fortress', 'dungeon_shortcuts_choice',
                     'dungeon_shortcuts', 'trials_random', 'trials',
-                    'starting_age', 'shuffle_interior_entrances',
+                    'starting_age', 'shuffle_interior_entrances', 'shuffle_hideout_entrances',
                     'shuffle_grotto_entrances', 'shuffle_dungeon_entrances',
                     'shuffle_bosses', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops', 'warp_songs', 'spawn_positions',
                     'triforce_hunt', 'triforce_count_per_world', 'triforce_goal_per_world', 'bombchus_in_logic', 'one_item_per_dungeon',
@@ -2294,7 +2304,7 @@ setting_infos = [
         ''',
         disable        = {
             'glitchless': {'settings' : ['tricks_list_msg']},
-            'glitched'  : {'settings' : ['allowed_tricks', 'shuffle_interior_entrances', 'shuffle_grotto_entrances',
+            'glitched'  : {'settings' : ['allowed_tricks', 'shuffle_interior_entrances', 'shuffle_hideout_entrances', 'shuffle_grotto_entrances',
                                          'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops',
                                          'warp_songs', 'spawn_positions', 'mq_dungeons_mode', 'mq_dungeons_specific',
                                          'mq_dungeons_count', 'shuffle_bosses', 'dungeon_shortcuts', 'deadly_bonks',
@@ -2985,6 +2995,9 @@ setting_infos = [
             vanilla location, dropping from fighting Gerudo guards
             that attack when trying to free the jailed carpenters.
 
+            "Gerudo Fortress Region": Thieves' Hideout Keys can only
+            appear in Gerudo Fortress or Thieves' Hideout.
+
             "Regional": Thieves' Hideout Keys can only appear in
             Gerudo Valley, Gerudo Fortress, Thieves' Hideout, Gerudo
             Training Ground, Haunted Wasteland, Desert Colossus, or
@@ -3586,6 +3599,9 @@ setting_infos = [
             and items never revert, even when dying or loading a save.
         ''',
         shared         = True,
+        disable        = {
+            'off' : {'settings' : ['shuffle_hideout_entrances']},
+        },
         gui_params     = {
             'randomize_key': 'randomize_settings',
             'distribution':  [
@@ -3593,6 +3609,26 @@ setting_infos = [
                 ('simple', 1),
                 ('all', 1),
             ],
+        },
+    ),
+    Checkbutton(
+        name           = 'shuffle_hideout_entrances',
+        gui_text       = 'Shuffle Thieves\' Hideout Entrances',
+        gui_tooltip    = '''\
+            Shuffle the pool of entrances to Thieves' Hideout
+            into the pool of interior entrances.
+
+            Note that savewarping in any room of Thieves' Hideout
+            always takes you to the first room (with 1 torch).
+
+            There is an extra heart piece on the balcony above the jail in
+            Gerudo's Fortress if accessed as child. This is not shuffled
+            and not considered in logic.
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
         },
     ),
     Checkbutton(
@@ -3627,7 +3663,7 @@ setting_infos = [
             With Dungeon and Ganon selected, all dungeons including Ganon's
             castle will be shuffled.
 
-            Thieves' Hideout is not shuffled.
+            Thieves' Hideout is controlled by a separate setting.
         ''',
         shared         = True,
         gui_params     = {

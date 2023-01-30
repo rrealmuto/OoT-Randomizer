@@ -104,6 +104,7 @@ RANDO_CONTEXT:
 .include "door_of_time_col_fix.asm"
 .include "mask_deequip.asm"
 .include "blue_fire_arrows.asm"
+.include "gerudo_guard.asm"
 .include "save.asm"
 .include "drop_overrides/obj_mure3.asm"
 .include "drop_overrides/bg_haka_tubo.asm"
