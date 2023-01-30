@@ -905,11 +905,11 @@
             "Hideout Hall to Balcony": "can_use(Hookshot)"
         },
         "locations": {
-            "Hideout Break Room Pot 1": "Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)",
-            "Hideout Break Room Pot 2": "Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)",
+            "Hideout Break Room Pot 1": "Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or (can_use(Boomerang) and (Sticks or Kokiri_Sword))",
+            "Hideout Break Room Pot 2": "Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or (can_use(Boomerang) and (Sticks or Kokiri_Sword))",
             "Hideout Break Room Hallway Crate 1": "can_break_crate",
             "Hideout Break Room Hallway Crate 2": "can_break_crate",
-            # Child Link is too short to seen over the table as you go for these crates.
+            # Child Link is too short to be seen over the table as you go for these crates.
             "Hideout Break Room Crate 1": "
                 can_break_crate and
                 (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or
