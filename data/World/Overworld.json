@@ -632,7 +632,8 @@
             "GF Entrances Behind Crates": "True",
             "GF Roof Entrance Cluster": "can_use(Hover_Boots) or logic_gf_jump",
             "GF Kitchen Roof Access": "Gerudo_Membership_Card and can_use(Longshot)",
-            "GF Hall to Balcony Entrance": "can_use(Longshot)", # via jail ceiling
+            # can ask the Gerudo on the path to HBA to throw you in jail
+            "GF Hall to Balcony Entrance": "can_use(Hookshot)",
             "GF Outside Gate": "'GF Gate Open'",
             "Gerudo Training Ground Lobby": "Gerudo_Membership_Card and is_adult"
         }
@@ -723,8 +724,7 @@
             "Hideout Hall to Balcony Upper": "True",
             "Gerudo Fortress": "True",
             "GF Chest Roof": "can_use(Longshot)",
-            "GF Hall to Balcony Entrance": "
-                damage_multiplier != 'ohko' or can_use(Nayrus_Love) or can_use(Hookshot)"
+            "GF Hall to Balcony Entrance": "damage_multiplier != 'ohko' or can_use(Nayrus_Love)"
         }
     },
     {
