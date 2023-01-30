@@ -337,7 +337,7 @@ uint16_t resolve_item_text_id(uint16_t item_id, bool is_outgoing) {
     item_row_t *item_row = get_item_row(item_id);
     if (!is_outgoing) {
         if (item_id >= 0x00AF && item_id < 0x00B8) {
-            return item_row->text_id + z64_file.scene_flags[item_row->effect_arg1].unk_00_; // Dynamically select the text box based on key count
+        return item_row->text_id + (z64_file.scene_flags[item_row->effect_arg1].unk_00_ >> 0x10); // Dynamically select the text box based on key count
         } else if (item_id >= 0x00D4 && item_id < 0x00EA) {
             return item_row->text_id + extended_savectx.silver_rupee_counts[item_row->effect_arg2]; // Dynamically select the text box based on silver rupee count
         }
