@@ -41,9 +41,9 @@ def assume_entrance_pool(entrance_pool):
         if entrance.reverse != None and not entrance.decoupled:
             assumed_return = entrance.reverse.assume_reachable()
             world = entrance.world
-            if not (len(world.settings.mix_entrance_pools) > 1 and (world.settings.shuffle_overworld_entrances or world.shuffle_special_interior_entrances)):
+            if not (len(world.settings.mix_entrance_pools) > 1 and (world.settings.shuffle_overworld_entrances or world.shuffle_special_interior_entrances or world.settings.shuffle_hideout_entrances)):
                 if (entrance.type in ('Dungeon', 'Grotto', 'Grave') and entrance.reverse.name != 'Spirit Temple Lobby -> Desert Colossus From Spirit Lobby') or \
-                   (entrance.type == 'Interior' and world.shuffle_special_interior_entrances):
+                   (entrance.type == 'Interior' and (world.shuffle_special_interior_entrances or world.settings.shuffle_hideout_entrances)):
                     # In most cases, Dungeon, Grotto/Grave and Simple Interior exits shouldn't be assumed able to give access to their parent region
                     assumed_return.set_rule(lambda state, **kwargs: False)
             assumed_forward.bind_two_way(assumed_return)
@@ -475,9 +475,42 @@ def shuffle_random_entrances(worlds):
             one_way_entrance_pools['WarpSong'] = world.get_shufflable_entrances(type='WarpSong')
             if world.settings.reachable_locations != 'beatable' and world.settings.logic_rules == 'glitchless':
                 # In glitchless, there aren't any other ways to access these areas
-                one_way_priorities['Bolero'] = priority_entrance_table['Bolero']
-                one_way_priorities['Nocturne'] = priority_entrance_table['Nocturne']
-                if not world.shuffle_dungeon_entrances and not world.settings.shuffle_overworld_entrances:
+                wincons = [world.settings.bridge, world.settings.shuffle_ganon_bosskey]
+                if world.settings.shuffle_ganon_bosskey == 'on_lacs':
+                    wincons.append(world.settings.lacs_condition)
+                if (
+                    world.settings.reachable_locations == 'all'
+                    or ('tokens' in wincons and world.settings.tokensanity in ('off', 'dungeons'))
+                ):
+                    one_way_priorities['Bolero'] = priority_entrance_table['Bolero']
+                if (
+                    (
+                        (not world.shuffle_dungeon_entrances or 'Dungeon' not in world.settings.mix_entrance_pools)
+                        or (
+                            (not world.settings.shuffle_overworld_entrances or 'Overworld' not in world.settings.mix_entrance_pools)
+                            and ((not world.shuffle_special_interior_entrances and not world.settings.shuffle_hideout_entrances) or 'Interior' not in world.settings.mix_entrance_pools)
+                        )
+                    )
+                    and (
+                        world.settings.reachable_locations == 'all'
+                        or 'dungeons' in wincons
+                        or ('stones' in wincons and 'medallions' in wincons)
+                        or ('tokens' in wincons and world.settings.tokensanity in ('off', 'overworld'))
+                    )
+                ):
+                    one_way_priorities['Nocturne'] = priority_entrance_table['Nocturne']
+                if (
+                    not world.shuffle_dungeon_entrances
+                    and not world.settings.shuffle_overworld_entrances
+                    and not world.shuffle_special_interior_entrances
+                    and not world.settings.shuffle_hideout_entrances
+                    and (
+                        world.settings.reachable_locations == 'all'
+                        or 'dungeons' in wincons
+                        or ('stones' in wincons and 'medallions' in wincons)
+                        or ('tokens' in wincons and world.settings.tokensanity != 'all')
+                    )
+                ):
                     one_way_priorities['Requiem'] = priority_entrance_table['Requiem']
 
         if world.settings.blue_warps in ('balanced', 'full'):
