@@ -240,7 +240,7 @@ SYMBOL TABLE:
 00000064 g     O .sdata	00000004 a_note_r
 00000000         *UND*	00000000 CFG_C_NOTE_COLOR
 00000000         *UND*	00000000 OUTGOING_PLAYER
-0000051c g     O .bss	000003e8 collectible_scene_flags_table
+0000051c g     O .bss	000004b0 collectible_scene_flags_table
 000041a0 g     F .text	000000a8 EnWonderItem_Kill_Hack
 0000f520 g     F .text	00000240 override_weather_state
 00006224 g     F .text	0000003c push_delayed_item
@@ -335,7 +335,7 @@ SYMBOL TABLE:
 00000248 g     O .data	00000010 linkhead_skull_sprite
 0000003c g     O .sbss	00000004 active_item_text_id
 00007e68 g     F .text	00000014 ice_trap_is_pending
-00000904 g     O .bss	000044c0 cfg_item_overrides
+000009cc g     O .bss	000044c0 cfg_item_overrides
 00000020 g     O .sdata	00000004 text_cursor_border_max
 00000000         *UND*	00000000 DPAD_TEXTURE
 0000613c g     F .text	00000088 push_pending_item
@@ -436,7 +436,7 @@ SYMBOL TABLE:
 00000050 g     O .sdata	00000004 c_note_b
 00007464 g     F .text	000000c8 get_skulltula_token
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_IDLE_INNER_ENABLED
-00004e88 g     O .bss	00000016 extended_savectx
+00004f50 g     O .bss	00000016 extended_savectx
 00007e7c g     F .text	00000018 push_pending_ice_trap
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_REWARD_ENABLE
 0000cf4c g     F .text	000000a4 bowling_bomb_bag_draw
@@ -564,7 +564,7 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_PROP_INNER_ENABLED
 0000cd3c g     F .text	00000064 heart_container_draw
 00007f1c g     F .text	0000009c draw_gi_bombchu_and_masks
-00004dc4 g     O .bss	000000c0 object_slots
+00004e8c g     O .bss	000000c0 object_slots
 0000a7f0 g     F .text	00000050 give_small_key
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_MQ_ENABLE
 00000c54 g     F .text	00000014 get_dummy_chest
