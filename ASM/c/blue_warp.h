@@ -5,4 +5,14 @@
 
 int32_t DoorWarp1_PlayerInRange_Overwrite(z64_actor_t *actor, z64_game_t *game);
 
+void DoorWarp1_KokiriEmerald_Overwrite(void);
+void DoorWarp1_GoronRuby_Overwrite(void);
+void DoorWarp1_ZoraSapphire_Overwrite(void);
+void DoorWarp1_ForestMedallion_Overwrite(void);
+void DoorWarp1_FireMedallion_Overwrite(void);
+void DoorWarp1_WaterMedallion_Overwrite(void);
+void DoorWarp1_SpiritMedallion_Overwrite(void);
+void DoorWarp1_ShadowMedallion_Overwrite(void);
+
+
 #endif

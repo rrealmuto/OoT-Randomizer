@@ -2947,11 +2947,8 @@ setting_infos = [
             reward. In Multiworld, dungeon rewards will only appear
             in their own world.
 
-            <b>The following options are still in development, and
-            come with some limitations:</b> The Light Medallion
-            currently can't be shuffled because dungeon reward locations
-            will give a copy of it in addition to their shuffled item.
-            If you receive the last required medallion for the Burning
+            If you use one of the following options, note that after
+            receiving the last required medallion for the Burning
             Kakariko cutscene while already in Kakariko, the cutscene
             doesn't play until you leave and reenter Kakariko (or enter
             and exit a building).
@@ -2959,7 +2956,8 @@ setting_infos = [
             'Own Dungeon': Each dungeon reward appears in its respective
             dungeon, but not necessarily on the boss. If boss entrances
             are mixed, boss rooms that aren't in a dungeon can't have
-            dungeon rewards.
+            dungeon rewards. The Light Medallion is either a starting
+            item or appears in the Temple of Time.
 
             'Regional': Dungeon rewards can only appear in regions
             near the original dungeon (including the dungeon

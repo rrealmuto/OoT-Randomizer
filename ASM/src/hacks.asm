@@ -1795,6 +1795,100 @@ skip_GS_BGS_text:
 .orga 0xCA5E08
 .word   0x00000000
 
+; Overwrite Item_Give to set data and flags from skipped cutscenes
+
+
+; Kokiri Emerald
+
+; Replaces:
+;   jal     Item_Give
+.orga 0xCA3158 ; In Memory: 0x80905998
+    jal     DoorWarp1_KokiriEmerald_Overwrite
+.orga 0xCA3168
+    addiu   t5, $zero, 0x0457 ; nextEntranceIndex
+.orga 0xCA3174
+    ori     t6, $zero, 0 ; nextCutsceneIndex
+
+
+; Goron Ruby
+
+; Replaces:
+;   jal     Item_Give
+.orga 0xCA30D8 ; In Memory: 0x80905918
+    jal     DoorWarp1_GoronRuby_Overwrite
+.orga 0xCA30E8
+    addiu   t2, $zero, 0x047A ; nextEntranceIndex
+.orga 0xCA30F4
+    ori     t3, $zero, 0 ; nextCutsceneIndex
+
+
+; Zora Sapphire
+
+; Replaces:
+;   jal     Item_Give
+.orga 0xCA36F0 ; In Memory: 0x80905F30
+    jal     DoorWarp1_ZoraSapphire_Overwrite
+.orga 0xCA3710
+    ori     t5, $zero, 0 ; nextCutsceneIndex
+
+
+; Forest medallion
+
+; Replaces:
+;   jal     Item_Give
+.orga 0xCA3D18 ; In Memory: 0x80906558
+    jal     DoorWarp1_ForestMedallion_Overwrite
+; Set destination
+.orga 0xCA3D30
+    addiu   t3, $zero, 0x05E8 ; nextEntranceIndex
+
+
+; Fire medallion
+
+; Replaces:
+;   jal     Item_Give
+.orga 0xCA3DA4 ; In Memory: 0x809065E4
+    jal     DoorWarp1_FireMedallion_Overwrite
+; Set destination
+.orga 0xCA3DBC
+    addiu   t9, $zero, 0x0564 ; nextEntranceIndex
+.orga 0xCA3DC8
+    ori     t1, $zero, 0
+
+
+; Water medallion
+
+; Replaces:
+;   jal     Item_Give
+.orga 0xCA3E30 ; In Memory: 0x80906670
+    jal     DoorWarp1_WaterMedallion_Overwrite
+; Set destination
+.orga 0xCA3E48
+    addiu   t7, $zero, 0x04E6 ; nextEntranceIndex
+
+
+; Spirit medallion
+
+; Replaces:
+;   jal     Item_Give
+.orga 0xCA3EC0 ; In Memory: 0x80906700
+    jal     DoorWarp1_SpiritMedallion_Overwrite
+; Set destination
+.orga 0xCA3ED8
+    addiu   t6, $zero, 0x0610 ; nextEntranceIndex
+
+
+; Shadow medallion
+
+; Replaces:
+;   jal     Item_Give
+.orga 0xCA3F50 ; In Memory: 0x80906790
+    jal     DoorWarp1_ShadowMedallion_Overwrite
+; Set destination
+.orga 0xCA3F68
+    addiu   t5, $zero, 0x006B ; nextEntranceIndex
+
+
 ;==================================================================================================
 ; Correct Chest Sizes
 ;==================================================================================================

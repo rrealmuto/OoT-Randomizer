@@ -135,12 +135,12 @@ class Region(object):
         elif item.name in triforce_blitz_items:
             is_dungeon_restricted = True
 
-        if item.name == 'Light Medallion':
-            return True #HACK: Light medallion can be placed on dungeon reward location regardless of setting
-
         if is_self_dungeon_restricted and not manual:
             hint_area = HintArea.at(self)
-            return hint_area.is_dungeon and hint_area.is_dungeon_item(item) and item.world.id == self.world.id
+            if item.name == 'Light Medallion':
+                return hint_area in (HintArea.ROOT, HintArea.TEMPLE_OF_TIME)
+            else:
+                return hint_area.is_dungeon and hint_area.is_dungeon_item(item) and item.world.id == self.world.id
 
         if is_self_region_restricted and not manual:
             return HintArea.at(self) in is_self_region_restricted and item.world.id == self.world.id

@@ -1944,12 +1944,12 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
 
     # Patch songs and boss rewards
     for location in world.get_filled_locations():
-        item = location.item
-        special = item.special
-        locationaddress = location.address
-        secondaryaddress = location.address2
-
         if location.type == 'Song' and not songs_as_items:
+            item = location.item
+            special = item.special
+            locationaddress = location.address
+            secondaryaddress = location.address2
+
             bit_mask_pointer = 0x8C34 + ((special['item_id'] - 0x65) * 4)
             rom.write_byte(locationaddress, special['song_id'])
             next_song_id = special['song_id'] + 0x0D
@@ -1987,29 +1987,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
                 rom.write_byte(0x2000FED, special['text_id']) #Fix text box
             elif location.name == 'Sheik at Colossus':
                 rom.write_byte(0x218C589, special['text_id']) #Fix text box
-        elif location.type == 'Boss' and location.name != 'Links Pocket':
-            locationaddress, secondaryaddress = {
-                "Queen Gohma":   (0x0CA315F, 0x2079571),
-                "King Dodongo":  (0x0CA30DF, 0x2223309),
-                "Barinade":      (0x0CA36EB, 0x2113C19),
-                "Phantom Ganon": (0x0CA3D07, 0x0D4ED79),
-                "Volvagia":      (0x0CA3D93, 0x0D10135),
-                "Morpha":        (0x0CA3E1F, 0x0D5A3A9),
-                "Bongo Bongo":   (0x0CA3F43, 0x0D13E19),
-                "Twinrova":      (0x0CA3EB3, 0x0D39FF1),
-            }[location.name]
-            if world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'):
-                special = ItemFactory('Light Medallion').special #TODO remove entirely
-            rom.write_byte(locationaddress, special['item_id'])
-            rom.write_byte(secondaryaddress, special['addr2_data'])
-            bit_mask_hi = special['bit_mask'] >> 16
-            bit_mask_lo = special['bit_mask'] & 0xFFFF
-            if location.name == 'Bongo Bongo':
-                rom.write_int16(0xCA3F32, bit_mask_hi)
-                rom.write_int16(0xCA3F36, bit_mask_lo)
-            elif location.name == 'Twinrova':
-                rom.write_int16(0xCA3EA2, bit_mask_hi)
-                rom.write_int16(0xCA3EA6, bit_mask_lo)
 
     # add a cheaper bombchu pack to the bombchu shop
     # describe

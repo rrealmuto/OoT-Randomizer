@@ -690,9 +690,7 @@ def get_pool_core(world):
             if world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward'):
                 pass # handled in World.fill_bosses
             elif location.name == 'Links Pocket':
-                #TODO Blue warps currently each give a copy of the Light Medallion in addition to their shuffled item.
-                # Once this is fixed, shuffle the Light Medallion normally.
-                shuffle_item = False
+                shuffle_item = True
             else:
                 dungeon = Dungeon.from_vanilla_reward(ItemFactory(location.vanilla_item, world))
                 dungeon.reward.append(ItemFactory(item))
