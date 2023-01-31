@@ -45,13 +45,23 @@ int32_t DoorWarp1_PlayerInRange_Overwrite(z64_actor_t *actor, z64_game_t *game) 
 
         // Wait until Link closes the textbox displaying the getItem reward
         if (z64_MessageGetState(((uint8_t *)(&z64_game)) + 0x20D8) == TEXT_STATE_CLOSING) {
-            extended_savectx.collected_dungeon_rewards[game->scene_index - 0x0011] = true;
+            if ((game->scene_index != 0x17) && (game->scene_index != 0x18)) {
+                extended_savectx.collected_dungeon_rewards[game->scene_index - 0x0011] = true;
+            }
             return true;
         }
     }
 
 
     return false;
+}
+
+int32_t DoorWarp1_IsSpiritRewardObtained(void) {
+    return extended_savectx.collected_dungeon_rewards[6];
+}
+
+int32_t DoorWarp1_IsShadowRewardObtained(void) {
+    return extended_savectx.collected_dungeon_rewards[7];
 }
 
 void DoorWarp1_KokiriEmerald_Overwrite(void) {
@@ -81,11 +91,11 @@ void DoorWarp1_WaterMedallion_Overwrite(void) {
 }
 
 void DoorWarp1_SpiritMedallion_Overwrite(void) {
-    // TODO: Spirit dayTime is not being set correctly, as entrance depends on `QUEST_MEDALLION_SPIRIT`
+    extended_savectx.collected_dungeon_rewards[6] = true;
     z64_file.skybox_time = z64_file.day_time = 0x8000; // CLOCK_TIME(12, 00)
 }
 
 void DoorWarp1_ShadowMedallion_Overwrite(void) {
-    // TODO: Shadow dayTime is not being set correctly, as entrance depends on `QUEST_MEDALLION_SHADOW`
+    extended_savectx.collected_dungeon_rewards[7] = true;
     z64_file.skybox_time = z64_file.day_time = 0x8000; // CLOCK_TIME(12, 00)
 }

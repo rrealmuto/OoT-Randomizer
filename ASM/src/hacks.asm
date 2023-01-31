@@ -1795,6 +1795,41 @@ skip_GS_BGS_text:
 .orga 0xCA5E08
 .word   0x00000000
 
+
+; Overwrite warp conditions for Shadow and Spirit medallions
+
+; Replaces:
+;   lui     t3, 0x8010
+;   lw      t3, -0x7404(t3)
+;   lw      t4, 0x00A4(v1)
+;   or      a0, s0, $zero
+;   addiu   a1, $zero, 0x0069
+;   and     t5, t3, t4
+.orga 0xCA3EA0 ; In Memory: 0x809066E0
+    nop
+    jal     DoorWarp1_IsSpiritRewardObtained
+    nop
+    or      t5, v0, $zero
+    or      a0, s0, $zero
+    addiu   a1, $zero, 0x0069
+
+; Replaces:
+;   lui     t2, 0x8010
+;   lw      t2, -0x7400(t2)
+;   lw      t3, 0x00A4(v1)
+;   or      a0, s0, $zero
+;   addiu   a1, $zero, 0x006A
+;   and     t4, t2, t3
+.orga 0xCA3F30 ; In Memory: 0x80906770
+    nop
+    jal     DoorWarp1_IsShadowRewardObtained
+    nop
+    or      t4, v0, $zero
+    or      a0, s0, $zero
+    addiu   a1, $zero, 0x006A
+
+
+
 ; Overwrite Item_Give to set data and flags from skipped cutscenes
 
 
@@ -1886,7 +1921,7 @@ skip_GS_BGS_text:
     jal     DoorWarp1_ShadowMedallion_Overwrite
 ; Set destination
 .orga 0xCA3F68
-    addiu   t5, $zero, 0x006B ; nextEntranceIndex
+    addiu   t5, $zero, 0x0580 ; nextEntranceIndex
 
 
 ;==================================================================================================

@@ -938,12 +938,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     if world.settings.open_forest:
         rom.write_bytes(0xE5401C, [0x14, 0x0B])
 
-    # Fix Shadow Temple to check for different rewards for scene
-    rom.write_bytes(0xCA3F32, [0x00, 0x00, 0x25, 0x4A, 0x00, 0x10])
-
-    # Fix Spirit Temple to check for different rewards for scene
-    rom.write_bytes(0xCA3EA2, [0x00, 0x00, 0x25, 0x4A, 0x00, 0x08])
-
     # Fix Biggoron to check a different flag.
     rom.write_byte(0xED329B, 0x72)
     rom.write_byte(0xED43E7, 0x72)
