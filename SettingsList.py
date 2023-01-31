@@ -1918,16 +1918,15 @@ setting_infos = [
             PAL ROM in addition to the NTSC ROM.
 
             <hr />
-            Change le langage du texte dans le jeu vidéo.
+            Change la langue du texte dans le jeu.
 
-            Cette option est en processus d'être implémentée,
-            et présentement ne traduit que le texte qui se
-            trouve dans le jeu vanille. Tout le texte rajouté
-            par le randomiseur sera en anglais.
+            Cette option est en développement, et ne traduit
+            présentement que le texte du jeu original. Le
+            texte ajouté par le randomizer sera en anglais.
 
-            Les langues allemands et français requièrent un
-            ROM OoT de la version 1.0 PAL ainsi que le ROM de
-            la version 1.0 NTSC.
+            Les langues allemande et française nécessitent
+            une ROM OoT de la version 1.0 PAL et aussi la ROM
+            de version 1.0 NTSC.
 
             <hr />
             Ändert die Sprache für Text im Spiel.
