@@ -59,12 +59,13 @@
     {
         "region_name": "Jabu Jabus Belly Before Boss",
         "dungeon": "Jabu Jabus Belly",
+        "savewarp": "Zoras Fountain -> Jabu Jabus Belly Beginning",
         "locations": {
             "Jabu Jabus Belly GS Near Boss": "True"
         },
         "exits": {
             "Jabu Jabus Belly Main": "True",
-            "Jabu Jabus Belly Boss Door": "
+            "Barinade Boss Room": "
                 can_use(Boomerang) or
                 (logic_jabu_near_boss_ranged and
                     (can_use(Hookshot) or can_use(Bow) or can_use(Slingshot))) or

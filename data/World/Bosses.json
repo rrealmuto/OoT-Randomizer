@@ -2,20 +2,6 @@
     # Boss and boss door logic.
     # This is separated from individual dungeons because region names must match between normal/MQ
     # And there are no differences in boss rooms between normal/MQ as they are separate areas.
-    #
-    # Key requirements (i.e. the only requirements for actually opening the boss door)
-    # belong on the door->boss connection.  Any other requirements for reaching the boss door
-    # belong in the respective dungeon's logic json
-    {
-        "region_name": "Deku Tree Boss Door",
-        "scene": "Deku Tree",
-        "dungeon": "Deku Tree",
-        "savewarp": "KF Outside Deku Tree -> Deku Tree Lobby",
-        "exits": {
-            "Deku Tree Before Boss": "True",
-            "Queen Gohma Boss Room": "True"
-        }
-    },
     {
         "region_name": "Queen Gohma Boss Room",
         "scene": "Deku Tree Boss",
@@ -28,19 +14,8 @@
             "Queen Gohma": "'Defeat Queen Gohma'"
         },
         "exits": {
-            "Deku Tree Boss Door": "True",
+            "Deku Tree Before Boss": "True",
             "KF Outside Deku Tree": "'Defeat Queen Gohma'"
-        }
-    },
-
-    {
-        "region_name": "Dodongos Cavern Boss Door",
-        "scene": "Dodongos Cavern",
-        "dungeon": "Dodongos Cavern",
-        "savewarp": "Death Mountain -> Dodongos Cavern Beginning",
-        "exits": {
-            "Dodongos Cavern Mouth": "True",
-            "King Dodongo Boss Room": "True"
         }
     },
     {
@@ -59,19 +34,8 @@
             "King Dodongo": "'Defeat King Dodongo'"
         },
         "exits": {
-            "Dodongos Cavern Boss Door": "True",
+            "Dodongos Cavern Mouth": "True",
             "Death Mountain": "'Defeat King Dodongo'"
-        }
-    },
-
-    {
-        "region_name": "Jabu Jabus Belly Boss Door",
-        "scene": "Jabu Jabus Belly",
-        "dungeon": "Jabu Jabus Belly",
-        "savewarp": "Zoras Fountain -> Jabu Jabus Belly Beginning",
-        "exits": {
-            "Jabu Jabus Belly Before Boss": "True",
-            "Barinade Boss Room": "True"
         }
     },
     {
@@ -92,19 +56,8 @@
             "Jabu Jabus Belly Barinade Pot 6": "True"
         },
         "exits": {
-            "Jabu Jabus Belly Boss Door": "False",
+            "Jabu Jabus Belly Before Boss": "False",
             "Zoras Fountain": "'Defeat Barinade'"
-        }
-    },
-
-    {
-        "region_name": "Forest Temple Boss Door",
-        "scene": "Forest Temple",
-        "dungeon": "Forest Temple",
-        "savewarp": "SFM Forest Temple Entrance Ledge -> Forest Temple Lobby",
-        "exits": {
-            "Forest Temple Before Boss": "True",
-            "Phantom Ganon Boss Room": "Boss_Key_Forest_Temple"
         }
     },
     {
@@ -120,19 +73,8 @@
             "Phantom Ganon": "'Defeat Phantom Ganon'"
         },
         "exits": {
-            "Forest Temple Boss Door": "False",
+            "Forest Temple Before Boss": "False",
             "Sacred Forest Meadow": "'Defeat Phantom Ganon'"
-        }
-    },
-
-    {
-        "region_name": "Fire Temple Boss Door",
-        "scene": "Fire Temple",
-        "dungeon": "Fire Temple",
-        "savewarp": "DMC Fire Temple Entrance -> Fire Temple Lower",
-        "exits": {
-            "Fire Temple Near Boss": "is_adult and (logic_fewer_tunic_requirements or can_use(Goron_Tunic))",
-            "Volvagia Boss Room": "Boss_Key_Fire_Temple"
         }
     },
     {
@@ -149,15 +91,6 @@
         "exits": {
             "Fire Temple Boss Door": "False",
             "DMC Central Local": "'Defeat Volvagia'"
-        }
-    },
-    {
-        "region_name": "Water Temple Boss Door",
-        "scene": "Water Temple",
-        "dungeon": "Water Temple",
-        "savewarp": "Lake Hylia -> Water Temple Lobby",
-        "exits": {
-            "Morpha Boss Room": "Boss_Key_Water_Temple"
         }
     },
     {
@@ -178,17 +111,6 @@
             "Lake Hylia": "'Defeat Morpha'"
         }
     },
-
-    {
-        "region_name": "Shadow Temple Boss Door",
-        "scene": "Shadow Temple",
-        "dungeon": "Shadow Temple",
-        "savewarp": "Graveyard Warp Pad Region -> Shadow Temple Entryway",
-        "exits": {
-            "Shadow Temple Before Boss": "True",
-            "Bongo Bongo Boss Room": "Boss_Key_Shadow_Temple"
-        }
-    },
     {
         "region_name": "Bongo Bongo Boss Room",
         "scene": "Shadow Temple Boss",
@@ -204,19 +126,8 @@
             "Bongo Bongo": "'Defeat Bongo Bongo'"
         },
         "exits": {
-            "Shadow Temple Boss Door": "False",
+            "Shadow Temple Before Boss": "False",
             "Graveyard Warp Pad Region": "'Defeat Bongo Bongo'"
-        }
-    },
-
-    {
-        "region_name": "Spirit Temple Boss Door",
-        "scene": "Spirit Temple",
-        "dungeon": "Spirit Temple",
-        "savewarp": "Desert Colossus -> Spirit Temple Lobby",
-        "exits": {
-            "Spirit Temple Before Boss": "is_adult",
-            "Twinrova Boss Room": "Boss_Key_Spirit_Temple"
         }
     },
     {
@@ -231,11 +142,10 @@
             "Twinrova": "'Defeat Twinrova'"
         },
         "exits": {
-            "Spirit Temple Boss Door": "False",
+            "Spirit Temple Before Boss": "False",
             "Desert Colossus": "'Defeat Twinrova'"
         }
     },
-
     {
         "region_name": "Ganons Castle Tower",
         "dungeon": "Ganons Castle",

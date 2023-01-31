@@ -103,22 +103,22 @@ entrance_shuffle_table = [
     ('DungeonSpecial',  ('Ganons Castle Grounds -> Ganons Castle Lobby',                    { 'index': 0x0467 }),
                         ('Ganons Castle Lobby -> Castle Grounds From Ganons Castle',        { 'index': 0x023D })),
 
-    ('ChildBoss',       ('Deku Tree Boss Door -> Queen Gohma Boss Room',                    { 'index': 0x040f, 'savewarp_addresses': [ 0xB06292, 0xBC6162, 0xBC60AE ] }),
-                        ('Queen Gohma Boss Room -> Deku Tree Boss Door',                    { 'index': 0x0252 })),
-    ('ChildBoss',       ('Dodongos Cavern Boss Door -> King Dodongo Boss Room',             { 'index': 0x040b, 'savewarp_addresses': [ 0xB062B6, 0xBC616E ] }),
-                        ('King Dodongo Boss Room -> Dodongos Cavern Boss Door',             { 'index': 0x00c5 })),
-    ('ChildBoss',       ('Jabu Jabus Belly Boss Door -> Barinade Boss Room',                { 'index': 0x0301, 'savewarp_addresses': [ 0xB062C2, 0xBC60C2 ] }),
-                        ('Barinade Boss Room -> Jabu Jabus Belly Boss Door',                { 'index': 0x0407 })),
-    ('AdultBoss',       ('Forest Temple Boss Door -> Phantom Ganon Boss Room',              { 'index': 0x000c, 'savewarp_addresses': [ 0xB062CE, 0xBC6182 ] }),
-                        ('Phantom Ganon Boss Room -> Forest Temple Boss Door',              { 'index': 0x024E })),
+    ('ChildBoss',       ('Deku Tree Before Boss -> Queen Gohma Boss Room',                  { 'index': 0x040f, 'savewarp_addresses': [ 0xB06292, 0xBC6162, 0xBC60AE ] }),
+                        ('Queen Gohma Boss Room -> Deku Tree Before Boss',                  { 'index': 0x0252 })),
+    ('ChildBoss',       ('Dodongos Cavern Before Boss -> King Dodongo Boss Room',           { 'index': 0x040b, 'savewarp_addresses': [ 0xB062B6, 0xBC616E ] }),
+                        ('King Dodongo Boss Room -> Dodongos Cavern Mouth',                 { 'index': 0x00c5 })),
+    ('ChildBoss',       ('Jabu Jabus Belly Before Boss -> Barinade Boss Room',              { 'index': 0x0301, 'savewarp_addresses': [ 0xB062C2, 0xBC60C2 ] }),
+                        ('Barinade Boss Room -> Jabu Jabus Belly Before Boss',              { 'index': 0x0407 })),
+    ('AdultBoss',       ('Forest Temple Before Boss -> Phantom Ganon Boss Room',            { 'index': 0x000c, 'savewarp_addresses': [ 0xB062CE, 0xBC6182 ] }),
+                        ('Phantom Ganon Boss Room -> Forest Temple Before Boss',            { 'index': 0x024E })),
     ('AdultBoss',       ('Fire Temple Boss Door -> Volvagia Boss Room',                     { 'index': 0x0305, 'savewarp_addresses': [ 0xB062DA, 0xBC60CE ] }),
                         ('Volvagia Boss Room -> Fire Temple Boss Door',                     { 'index': 0x0175 })),
-    ('AdultBoss',       ('Water Temple Boss Door -> Morpha Boss Room',                      { 'index': 0x0417, 'savewarp_addresses': [ 0xB062E6, 0xBC6196 ] }),
+    ('AdultBoss',       ('Water Temple Lobby -> Morpha Boss Room',                          { 'index': 0x0417, 'savewarp_addresses': [ 0xB062E6, 0xBC6196 ] }),
                         ('Morpha Boss Room -> Water Temple Lobby',                          { 'index': 0x0423 })), # https://github.com/TestRunnerSRL/OoT-Randomizer/issues/1552
-    ('AdultBoss',       ('Shadow Temple Boss Door -> Bongo Bongo Boss Room',                { 'index': 0x0413, 'savewarp_addresses': [ 0xB062FE, 0xBC61AA ] }),
-                        ('Bongo Bongo Boss Room -> Shadow Temple Boss Door',                { 'index': 0x02B2 })),
-    ('AdultBoss',       ('Spirit Temple Boss Door -> Twinrova Boss Room',                   { 'index': 0x008D, 'savewarp_addresses': [ 0xB062F2, 0xBC6122 ] }),
-                        ('Twinrova Boss Room -> Spirit Temple Boss Door',                   { 'index': 0x02F5 })),
+    ('AdultBoss',       ('Shadow Temple Before Boss -> Bongo Bongo Boss Room',              { 'index': 0x0413, 'savewarp_addresses': [ 0xB062FE, 0xBC61AA ] }),
+                        ('Bongo Bongo Boss Room -> Shadow Temple Before Boss',              { 'index': 0x02B2 })),
+    ('AdultBoss',       ('Spirit Temple Before Boss -> Twinrova Boss Room',                 { 'index': 0x008D, 'savewarp_addresses': [ 0xB062F2, 0xBC6122 ] }),
+                        ('Twinrova Boss Room -> Spirit Temple Before Boss',                 { 'index': 0x02F5 })),
 
     ('Interior',        ('Kokiri Forest -> KF Midos House',                                 { 'index': 0x0433 }),
                         ('KF Midos House -> Kokiri Forest',                                 { 'index': 0x0443 })),
@@ -446,14 +446,14 @@ def shuffle_random_entrances(worlds):
             if worlds[0].settings.open_forest == 'closed':
                 # Deku is forced vanilla below, so Queen Gohma must be vanilla to ensure she is reachable.
                 # This is already enforced by the fill algorithm in most cases, but this covers the odd settings combination where it isn't.
-                entrance_pools['Boss'].remove(world.get_entrance('Deku Tree Boss Door -> Queen Gohma Boss Room'))
+                entrance_pools['Boss'].remove(world.get_entrance('Deku Tree Before Boss -> Queen Gohma Boss Room'))
         elif worlds[0].settings.shuffle_bosses == 'limited':
             entrance_pools['ChildBoss'] = world.get_shufflable_entrances(type='ChildBoss', only_primary=True)
             entrance_pools['AdultBoss'] = world.get_shufflable_entrances(type='AdultBoss', only_primary=True)
             if worlds[0].settings.open_forest == 'closed':
                 # Deku is forced vanilla below, so Queen Gohma must be vanilla to ensure she is reachable.
                 # This is already enforced by the fill algorithm in most cases, but this covers the odd settings combination where it isn't.
-                entrance_pools['ChildBoss'].remove(world.get_entrance('Deku Tree Boss Door -> Queen Gohma Boss Room'))
+                entrance_pools['ChildBoss'].remove(world.get_entrance('Deku Tree Before Boss -> Queen Gohma Boss Room'))
 
         if worlds[0].shuffle_dungeon_entrances:
             entrance_pools['Dungeon'] = world.get_shufflable_entrances(type='Dungeon', only_primary=True)
@@ -560,14 +560,14 @@ def shuffle_random_entrances(worlds):
         # Determine blue warp targets
         # if a boss room is inside a boss door, make the blue warp go outside the dungeon's entrance
         boss_exits = {
-            'Queen Gohma Boss Room -> Deku Tree Boss Door': world.get_entrance('Deku Tree Lobby -> KF Outside Deku Tree'),
-            'King Dodongo Boss Room -> Dodongos Cavern Boss Door': world.get_entrance('Dodongos Cavern Beginning -> Death Mountain'),
-            'Barinade Boss Room -> Jabu Jabus Belly Boss Door': world.get_entrance('Jabu Jabus Belly Beginning -> Zoras Fountain'),
-            'Phantom Ganon Boss Room -> Forest Temple Boss Door': world.get_entrance('Forest Temple Lobby -> SFM Forest Temple Entrance Ledge'),
+            'Queen Gohma Boss Room -> Deku Tree Before Boss': world.get_entrance('Deku Tree Lobby -> KF Outside Deku Tree'),
+            'King Dodongo Boss Room -> Dodongos Cavern Mouth': world.get_entrance('Dodongos Cavern Beginning -> Death Mountain'),
+            'Barinade Boss Room -> Jabu Jabus Belly Before Boss': world.get_entrance('Jabu Jabus Belly Beginning -> Zoras Fountain'),
+            'Phantom Ganon Boss Room -> Forest Temple Before Boss': world.get_entrance('Forest Temple Lobby -> SFM Forest Temple Entrance Ledge'),
             'Volvagia Boss Room -> Fire Temple Boss Door': world.get_entrance('Fire Temple Lower -> DMC Fire Temple Entrance'),
             'Morpha Boss Room -> Water Temple Lobby': world.get_entrance('Water Temple Lobby -> Lake Hylia'),
-            'Bongo Bongo Boss Room -> Shadow Temple Boss Door': world.get_entrance('Shadow Temple Entryway -> Graveyard Warp Pad Region'),
-            'Twinrova Boss Room -> Spirit Temple Boss Door': world.get_entrance('Spirit Temple Lobby -> Desert Colossus From Spirit Lobby'),
+            'Bongo Bongo Boss Room -> Shadow Temple Before Boss': world.get_entrance('Shadow Temple Entryway -> Graveyard Warp Pad Region'),
+            'Twinrova Boss Room -> Spirit Temple Before Boss': world.get_entrance('Spirit Temple Lobby -> Desert Colossus From Spirit Lobby'),
         }
         # if a boss room is inside a dungeon entrance (or inside a dungeon which is inside a dungeon entrance), make the blue warp go to that dungeon's blue warp target
         dungeon_exits = {
@@ -582,14 +582,14 @@ def shuffle_random_entrances(worlds):
         }
 
         for (blue_warp, boss_door_exit) in (
-            (world.get_entrance('Queen Gohma Boss Room -> KF Outside Deku Tree'), world.get_entrance('Queen Gohma Boss Room -> Deku Tree Boss Door')),
-            (world.get_entrance('King Dodongo Boss Room -> Death Mountain'), world.get_entrance('King Dodongo Boss Room -> Dodongos Cavern Boss Door')),
-            (world.get_entrance('Barinade Boss Room -> Zoras Fountain'), world.get_entrance('Barinade Boss Room -> Jabu Jabus Belly Boss Door')),
-            (world.get_entrance('Phantom Ganon Boss Room -> Sacred Forest Meadow'), world.get_entrance('Phantom Ganon Boss Room -> Forest Temple Boss Door')),
+            (world.get_entrance('Queen Gohma Boss Room -> KF Outside Deku Tree'), world.get_entrance('Queen Gohma Boss Room -> Deku Tree Before Boss')),
+            (world.get_entrance('King Dodongo Boss Room -> Death Mountain'), world.get_entrance('King Dodongo Boss Room -> Dodongos Cavern Mouth')),
+            (world.get_entrance('Barinade Boss Room -> Zoras Fountain'), world.get_entrance('Barinade Boss Room -> Jabu Jabus Belly Before Boss')),
+            (world.get_entrance('Phantom Ganon Boss Room -> Sacred Forest Meadow'), world.get_entrance('Phantom Ganon Boss Room -> Forest Temple Before Boss')),
             (world.get_entrance('Volvagia Boss Room -> DMC Central Local'), world.get_entrance('Volvagia Boss Room -> Fire Temple Boss Door')),
             (world.get_entrance('Morpha Boss Room -> Lake Hylia'), world.get_entrance('Morpha Boss Room -> Water Temple Lobby')),
-            (world.get_entrance('Bongo Bongo Boss Room -> Graveyard Warp Pad Region'), world.get_entrance('Bongo Bongo Boss Room -> Shadow Temple Boss Door')),
-            (world.get_entrance('Twinrova Boss Room -> Desert Colossus'), world.get_entrance('Twinrova Boss Room -> Spirit Temple Boss Door')),
+            (world.get_entrance('Bongo Bongo Boss Room -> Graveyard Warp Pad Region'), world.get_entrance('Bongo Bongo Boss Room -> Shadow Temple Before Boss')),
+            (world.get_entrance('Twinrova Boss Room -> Desert Colossus'), world.get_entrance('Twinrova Boss Room -> Spirit Temple Before Boss')),
         ):
             target = boss_door_exit.replaces or boss_door_exit
             if True: #TODO not world.settings.decouple_entrances
@@ -835,7 +835,7 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
     # This is mostly relevant when shuffling special interiors (such as windmill or kak potion shop)
     # Warp Songs and Overworld Spawns can also end up inside certain indoors so those need to be handled as well
     # Allowing child to enter Spirit from the boss would severely complicate key logic
-    CHILD_FORBIDDEN = ['OGC Great Fairy Fountain -> Castle Grounds', 'GV Carpenter Tent -> GV Fortress Side', 'Ganons Castle Lobby -> Castle Grounds', 'Twinrova Boss Room -> Spirit Temple Boss Door']
+    CHILD_FORBIDDEN = ['OGC Great Fairy Fountain -> Castle Grounds', 'GV Carpenter Tent -> GV Fortress Side', 'Ganons Castle Lobby -> Castle Grounds', 'Twinrova Boss Room -> Spirit Temple Before Boss']
     ADULT_FORBIDDEN = ['HC Great Fairy Fountain -> Castle Grounds', 'HC Storms Grotto -> Castle Grounds']
 
     for entrance in world.get_shufflable_entrances():

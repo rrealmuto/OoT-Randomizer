@@ -208,9 +208,10 @@
     {
         "region_name": "Spirit Temple Before Boss",
         "dungeon": "Spirit Temple",
+        "savewarp": "Desert Colossus -> Spirit Temple Lobby",
         "exits": {
             "Adult Spirit Temple": "is_adult",
-            "Spirit Temple Boss Door": "True"
+            "Twinrova Boss Room": "Boss_Key_Spirit_Temple"
         }
     }
 ]

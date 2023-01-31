@@ -1588,7 +1588,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     if world.settings.logic_rules == 'glitched':
         location = world.get_location('Barinade')
     else:
-        jabu_reward_regions = {world.get_entrance('Jabu Jabus Belly Boss Door -> Barinade Boss Room').connected_region}
+        jabu_reward_regions = {world.get_entrance('Jabu Jabus Belly Before Boss -> Barinade Boss Room').connected_region}
         already_checked = set()
         location = None
         while jabu_reward_regions:

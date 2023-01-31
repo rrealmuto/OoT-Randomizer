@@ -197,10 +197,11 @@
     },
     {
         "region_name": "Forest Temple Before Boss",
-        "dungeon":"Forest Temple",
+        "dungeon": "Forest Temple",
+        "savewarp": "SFM Forest Temple Entrance Ledge -> Forest Temple Lobby",
         "exits": {
             "Forest Temple Basement": "forest_temple_shortcuts",
-            "Forest Temple Boss Door": "True"
+            "Phantom Ganon Boss Room": "Boss_Key_Forest_Temple"
         }
     }
 ]

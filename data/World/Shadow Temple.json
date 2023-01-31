@@ -206,9 +206,10 @@
     {
         "region_name": "Shadow Temple Before Boss",
         "dungeon": "Shadow Temple",
+        "savewarp": "Graveyard Warp Pad Region -> Shadow Temple Entryway",
         "exits": {
             "Shadow Temple Across Chasm": "(logic_lens_shadow or can_use(Lens_of_Truth)) and can_use(Hover_Boots) and (Small_Key_Shadow_Temple, 5)",
-            "Shadow Temple Boss Door": "True"
+            "Bongo Bongo Boss Room": "Boss_Key_Shadow_Temple"
         }
     }
 ]

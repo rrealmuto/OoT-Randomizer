@@ -26,6 +26,15 @@
         }
     },
     {
+        "region_name": "Fire Temple Boss Door",
+        "dungeon": "Fire Temple",
+        "savewarp": "DMC Fire Temple Entrance -> Fire Temple Lower",
+        "exits": {
+            "Fire Temple Near Boss": "is_adult and (logic_fewer_tunic_requirements or can_use(Goron_Tunic))",
+            "Volvagia Boss Room": "Boss_Key_Fire_Temple"
+        }
+    },
+    {
         "region_name": "Fire Temple Lower Locked Door",
         "dungeon": "Fire Temple",
         "locations": {

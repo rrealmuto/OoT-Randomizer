@@ -189,6 +189,7 @@
     {
         "region_name": "Dodongos Cavern Mouth",
         "dungeon": "Dodongos Cavern",
+        "savewarp": "Death Mountain -> Dodongos Cavern Beginning",
         "locations": {
             "Dodongos Cavern MQ Under Grave Chest": "True",
             "Dodongos Cavern MQ Room Before Boss Pot 1": "True",
@@ -218,7 +219,7 @@
             "Fairy Pot": "has_bottle"
         },
         "exits": {
-            "Dodongos Cavern Boss Door": "True"
+            "King Dodongo Boss Room": "True"
         }
     }
 ]
