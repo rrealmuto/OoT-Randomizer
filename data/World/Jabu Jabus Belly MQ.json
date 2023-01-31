@@ -103,6 +103,7 @@
     {
         "region_name": "Jabu Jabus Belly Before Boss",
         "dungeon": "Jabu Jabus Belly",
+        "savewarp": "Zoras Fountain -> Jabu Jabus Belly Beginning",
         "locations": {
             "Jabu Jabus Belly MQ Near Boss Chest": "can_use(Slingshot)",
             "Jabu Jabus Belly MQ GS Near Boss": "
@@ -111,7 +112,7 @@
         },
         "exits": {
             "Jabu Jabus Belly Elevator Room": "can_take_damage",
-            "Jabu Jabus Belly Boss Door": "here(can_use(Slingshot)) or jabu_shortcuts"
+            "Barinade Boss Room": "here(can_use(Slingshot)) or jabu_shortcuts"
         }
     }
 ]

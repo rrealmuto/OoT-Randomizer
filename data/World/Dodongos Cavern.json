@@ -153,6 +153,7 @@
     {
         "region_name": "Dodongos Cavern Mouth",
         "dungeon": "Dodongos Cavern",
+        "savewarp": "Death Mountain -> Dodongos Cavern Beginning",
         "locations": {
             "Dodongos Cavern Last Block Pot 1": "True",
             "Dodongos Cavern Last Block Pot 2": "True",
@@ -162,7 +163,15 @@
         },
         "exits": {
             "Dodongos Cavern Lobby": "True",
-            "Dodongos Cavern Boss Door": "True"
+            "Dodongos Cavern Before Boss": "True"
+        }
+    },
+    {
+        # required to match MQ
+        "region_name": "Dodongos Cavern Before Boss",
+        "dungeon": "Dodongos Cavern",
+        "exits": {
+            "King Dodongo Boss Room": "True"
         }
     }
 ]
