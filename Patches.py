@@ -11,7 +11,7 @@ from Spoiler import Spoiler
 from Location import DisableType
 from LocationList import business_scrubs
 from HintList import getHint
-from Hints import HintArea, writeGossipStoneHints, buildAltarHints, \
+from Hints import GossipText, HintArea, writeGossipStoneHints, buildAltarHints, \
         buildGanonText, buildMiscItemHints, buildMiscLocationHints, getSimpleHintNoPrefix, getItemGenericName
 from Utils import data_path
 from Messages import read_messages, update_message_by_id, read_shop_items, update_warp_song_text, \
@@ -2154,7 +2154,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
                     area = GossipText(area.text(world.settings.clearer_hints, preposition=True), [area.color], prefix='')
                     compass_message = "\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for %s\x05\x40!\x01The %s can be found\x01%s!\x09" % (dungeon_name, vanilla_reward, area) #TODO figure out why the player name isn't being displayed
                 else:
-                    boss_location = next(filter(lambda loc: loc.type == 'Boss', world.get_entrance(f'{dungeon} Boss Door -> {boss_name} Boss Room').connected_region.locations))
+                    boss_location = next(filter(lambda loc: loc.type == 'Boss', world.get_entrance(f'{dungeon} Before Boss -> {boss_name} Boss Room').connected_region.locations))
                     dungeon_reward = reward_list[boss_location.item.name]
                     compass_message = "\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for %s\x05\x40!\x01It holds the %s!\x09" % (dungeon_name, dungeon_reward)
                 update_message_by_id(messages, compass_id, compass_message)

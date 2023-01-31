@@ -89,7 +89,7 @@
             "Volvagia": "'Defeat Volvagia'"
         },
         "exits": {
-            "Fire Temple Boss Door": "False",
+            "Fire Temple Before Boss": "False",
             "DMC Central Local": "'Defeat Volvagia'"
         }
     },

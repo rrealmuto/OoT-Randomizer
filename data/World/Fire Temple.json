@@ -22,11 +22,11 @@
             "Fairy Pot": "is_adult and has_bottle and (Hover_Boots or Hookshot)"
         },
         "exits": {
-            "Fire Temple Boss Door": "is_adult and (fire_temple_shortcuts or logic_fire_boss_door_jump or Hover_Boots)"
+            "Fire Temple Before Boss": "is_adult and (fire_temple_shortcuts or logic_fire_boss_door_jump or Hover_Boots)"
         }
     },
     {
-        "region_name": "Fire Temple Boss Door",
+        "region_name": "Fire Temple Before Boss",
         "dungeon": "Fire Temple",
         "savewarp": "DMC Fire Temple Entrance -> Fire Temple Lower",
         "exits": {
@@ -151,7 +151,7 @@
             "Fire Temple Flame Maze Right Side Pot 4": "True"
         },
         "exits": {
-            "Fire Temple Boss Door": "
+            "Fire Temple Before Boss": "
                 Megaton_Hammer and (can_play(Song_of_Time) or has_explosives)"
         }
     }

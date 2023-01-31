@@ -30,7 +30,14 @@
                 is_adult and (Zora_Tunic or logic_fewer_tunic_requirements) and
                 ((logic_water_temple_torch_longshot and Longshot) or Iron_Boots)",
             "Water Temple Falling Platform Room": "Raise_Water_Level and (Small_Key_Water_Temple, 4)",
-            "Morpha Boss Room": "can_use(Longshot) and Boss_Key_Water_Temple"
+            "Water Temple Before Boss": "can_use(Longshot)"
+        }
+    },
+    {
+        "region_name": "Water Temple Before Boss",
+        "dungeon": "Water Temple",
+        "exits": {
+            "Morpha Boss Room": "Boss_Key_Water_Temple"
         }
     },
     {
