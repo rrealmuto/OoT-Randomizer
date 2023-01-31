@@ -48,11 +48,11 @@
             "Shadow Temple MQ Map Chest": "(Silver_Rupee_Shadow_Temple_Scythe_Shortcut, 5)",
             "Shadow Temple MQ Early Gibdos Chest": "True",
             "Shadow Temple MQ Near Ship Invisible Chest": "True",
-            "Shadow Temple MQ Scythe Shortcut Silver Rupee Center Left" : "True",
-            "Shadow Temple MQ Scythe Shortcut Silver Rupee Ledge" : "True",
-            "Shadow Temple MQ Scythe Shortcut Silver Rupee Back Alcove" : "True",
-            "Shadow Temple MQ Scythe Shortcut Silver Rupee Left Alcove" : "True",
-            "Shadow Temple MQ Scythe Shortcut Silver Rupee Center Right" : "True"
+            "Shadow Temple MQ Scythe Shortcut Silver Rupee Center Left": "True",
+            "Shadow Temple MQ Scythe Shortcut Silver Rupee Ledge": "True",
+            "Shadow Temple MQ Scythe Shortcut Silver Rupee Back Alcove": "True",
+            "Shadow Temple MQ Scythe Shortcut Silver Rupee Left Alcove": "True",
+            "Shadow Temple MQ Scythe Shortcut Silver Rupee Center Right": "True"
         },
         # When shadow shortcuts are on, the central areas of the dungeon will require all 6 keys to
         # access. However, the final locked door does not actually prevent you from reaching any area
@@ -143,18 +143,18 @@
         "region_name": "Shadow Temple Invisible Spikes",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple MQ Invisible Spikes Chest": "(Silver_Rupee_Shadow_Temple_Invisible_Spikes, 10)",
-            "Shadow Temple MQ Stalfos Room Chest": "Hookshot",
+            "Shadow Temple MQ Invisible Spikes Chest": "True",
+            "Shadow Temple MQ Stalfos Room Chest": "(Silver_Rupee_Shadow_Temple_Invisible_Spikes, 10)",
             "Shadow Temple MQ Invisible Spikes Silver Rupee Center Front": "True",
             "Shadow Temple MQ Invisible Spikes Silver Rupee Center Right": "True",
-            "Shadow Temple MQ Invisible Spikes Silver Rupee Left Hookshot Target": "True",
-            "Shadow Temple MQ Invisible Spikes Silver Rupee Right Hookshot Target": "True",
-            "Shadow Temple MQ Invisible Spikes Silver Rupee Back Right": "True",
-            "Shadow Temple MQ Invisible Spikes Silver Rupee Ledge": "True",
-            "Shadow Temple MQ Invisible Spikes Silver Rupee Near Ledge": "True",
-            "Shadow Temple MQ Invisible Spikes Silver Rupee Ceiling Front": "True",
-            "Shadow Temple MQ Invisible Spikes Silver Rupee Ceiling Middle": "True",
-            "Shadow Temple MQ Invisible Spikes Silver Rupee Ceiling Back": "True"
+            "Shadow Temple MQ Invisible Spikes Silver Rupee Left Hookshot Target": "Hookshot",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee Right Hookshot Target": "Hookshot",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee Back Right": "Hookshot",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee Ledge": "Hookshot",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee Near Ledge": "Hookshot",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee Ceiling Front": "Hookshot",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee Ceiling Middle": "Hookshot",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee Ceiling Back": "Hookshot"
         },
         "exits": {
             "Shadow Temple Wind Tunnel": "Hookshot and (Small_Key_Shadow_Temple, 4)",
