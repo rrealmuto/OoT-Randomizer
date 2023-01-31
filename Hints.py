@@ -470,6 +470,11 @@ class HintArea(Enum):
     def is_dungeon(self):
         return self.dungeon_name is not None
 
+    def dungeon(self, world):
+        dungeons = [dungeon for dungeon in world.dungeons if dungeon.name == self.dungeon_name]
+        if dungeons:
+            return dungeons[0]
+
     def is_dungeon_item(self, item):
         for dungeon in item.world.dungeons:
             if dungeon.name == self.dungeon_name:
@@ -1322,8 +1327,11 @@ def buildGossipHints(spoiler, worlds):
                         compass_location
                         for compass_world in worlds
                         for compass_location in compass_world.get_filled_locations()
-                        if compass_location.item.name == HintArea.at(location).dungeon.item_name('Compass')
-                        and compass_location.item.world == world
+                        if HintArea.at(location).dungeon_name is None # free/ToT reward is shown in menu from beginning of game
+                        or (
+                            compass_location.item.name == HintArea.at(location).dungeon(location.world).item_name('Compass')
+                            and compass_location.item.world == world
+                        )
                     ]
                 for compass_location in compass_locations:
                     if can_reach_hint(worlds, compass_location, location):
