@@ -1087,10 +1087,10 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
         rom.write_int32(0xBC6160, 0x24180000) #li t8, 0
         rom.write_int32(0xBC6168, 0xAD380000) #sw t8, 0(t1)
 
-        # Credit to engineer124
-        # Update the Jabu-Jabu Boss Exit to actually useful coordinates (and to load the correct room)
-        rom.write_int16(0x273E08E, 0xF7F4)  # Z coordinate of Jabu Boss Door Spawn
-        rom.write_byte(0x273E27B, 0x05)  # Set Spawn Room to be correct
+    # Credit to engineer124
+    # Update the Jabu-Jabu Boss Exit to actually useful coordinates (and to load the correct room)
+    rom.write_int16(0x273E08E, 0xF7F4)  # Z coordinate of Jabu Boss Door Spawn
+    rom.write_byte(0x273E27B, 0x05)  # Set Spawn Room to be correct
 
     def set_entrance_updates(entrances):
         if world.settings.shuffle_bosses != 'off':
