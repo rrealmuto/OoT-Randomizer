@@ -75,7 +75,7 @@
         "exits": {
             "Shadow Temple Falling Spikes": "(Silver_Rupee_Shadow_Temple_Huge_Pit, 5)",
             "Shadow Temple Invisible Spikes": "
-                (((Small_Key_Shadow_Temple, 2) and not mixed_pools_bosses) or (Small_Key_Shadow_Temple, 3)) and
+                (((Small_Key_Shadow_Temple, 2) and not dungeon_back_access) or (Small_Key_Shadow_Temple, 3)) and
                 (logic_lens_shadow_platform or can_use(Lens_of_Truth))"
         }
     },

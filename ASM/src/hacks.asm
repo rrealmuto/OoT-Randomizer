@@ -3423,3 +3423,17 @@ skip_GS_BGS_text:
 ; Replaces: addiu   t9, $zero, 0x3033
 .orga 0xED31B8
     addiu   t9, $zero, 0x3036
+
+
+;=========================================================================================
+; Add custom message control characters
+;=========================================================================================
+
+; In Message_Decode at the last control code check (0x01 for new line)
+; Replaces
+;   addiu   at, r0, 0x0001
+;   bne     v0, at, 0x800DC580
+.headersize (0x800110A0 - 0xA87000)
+.org 0x800DC568
+    j       Message_Decode_Control_Code_Hook
+    nop

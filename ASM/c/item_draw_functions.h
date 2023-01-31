@@ -35,5 +35,6 @@ void draw_gi_small_keys(z64_game_t *game, uint32_t draw_id);
 void draw_gi_boss_keys(z64_game_t *game, uint32_t draw_id);
 void draw_gi_medallions(z64_game_t *game, uint32_t draw_id);
 void draw_gi_stones(z64_game_t *game, uint32_t draw_id);
+void draw_gi_silver_rupee_pouch(z64_game_t *game, uint32_t draw_id);
 
 #endif

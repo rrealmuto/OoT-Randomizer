@@ -151,6 +151,8 @@ item_draw_table_entry_t item_draw_table[] = {
     [0x83] = { draw_gi_stones,              { 0x06000b50, 0x06001290, 0xffffa0ff, 0x00ff00ff } }, // Kokiri Emerald
     [0x84] = { draw_gi_stones,              { 0x06000620, 0x06000920, 0xffaaffff, 0xff0064ff } }, // Goron Ruby
     [0x85] = { draw_gi_stones,              { 0x06000b00, 0x060012f0, 0x32ffffff, 0x320096ff } }, // Zora Sapphire
+
+    [0x86] = { draw_gi_silver_rupee_pouch,  { 0x06001850, 0x06001750, 0x06001790, 0x060019A0, 0x060017B0, 0x06001A28, 0x060017D0, 0x06001AD8 } }, // Silver Rupee Pouch
 };
 
 void base_draw_gi_model(z64_game_t *game, uint32_t draw_id) {

@@ -3240,9 +3240,9 @@ setting_infos = [
             'remove':      'Remove',
             'vanilla':     'Vanilla Locations',
             'dungeon':     'Own Dungeon',
+            'regional':    'Regional',
             'overworld':   'Overworld Only',
             'any_dungeon': 'Any Dungeon',
-            'regional':    'Regional',
             'anywhere':    'Anywhere',
         },
         gui_tooltip    = '''\
