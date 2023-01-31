@@ -1916,6 +1916,30 @@ setting_infos = [
 
             German and French languages require an OoT 1.0
             PAL ROM in addition to the NTSC ROM.
+
+            <hr />
+            Change le langage du texte dans le jeu vidéo.
+
+            Cette option est en processus d'être implémentée,
+            et présentement ne traduit que le texte qui se
+            trouve dans le jeu vanille. Tout le texte rajouté
+            par le randomiseur sera en anglais.
+
+            Les langues allemands et français requièrent un
+            ROM OoT de la version 1.0 PAL ainsi que le ROM de
+            la version 1.0 NTSC.
+
+            <hr />
+            Ändert die Sprache für Text im Spiel.
+
+            Diese Option ist noch in Arbeit und übersetzt
+            aktuell nur Texte aus dem ursprünglichen Spiel.
+            Texte aus dem Randomizer sind weiterhin auf
+            englisch.
+
+            Für die deutsche und französische Übersetzung
+            ist zusätzlich zum NTSC ROM auch ein OoT
+            1.0 PAL ROM erforderlich.
         ''',
         disable        = {
             'english': {'settings': ['pal_rom']},
