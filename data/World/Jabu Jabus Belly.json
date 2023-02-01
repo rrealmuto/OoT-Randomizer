@@ -13,7 +13,8 @@
         "locations": {
             "Jabu Jabus Belly Boomerang Chest": "True",
             "Jabu Jabus Belly Deku Scrub": "
-                can_dive or is_child or logic_jabu_alcove_jump_dive or can_use(Iron_Boots)",
+                can_stun_deku and
+                (can_dive or is_child or logic_jabu_alcove_jump_dive or can_use(Iron_Boots))",
             "Jabu Jabus Belly Small Wooden Crate": "True",
             "Jabu Jabus Belly Basement 2 Octoroks Pot 1": "can_use(Boomerang) or can_use(Hover_Boots)",
             "Jabu Jabus Belly Basement 2 Octoroks Pot 2": "can_use(Boomerang) or can_use(Hover_Boots)",
@@ -61,7 +62,7 @@
         "dungeon": "Jabu Jabus Belly",
         "savewarp": "Zoras Fountain -> Jabu Jabus Belly Beginning",
         "locations": {
-            "Jabu Jabus Belly GS Near Boss": "True"
+            "Jabu Jabus Belly GS Near Boss": "is_adult or can_child_attack"
         },
         "exits": {
             "Jabu Jabus Belly Main": "True",

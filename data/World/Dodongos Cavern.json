@@ -155,11 +155,7 @@
         "dungeon": "Dodongos Cavern",
         "savewarp": "Death Mountain -> Dodongos Cavern Beginning",
         "locations": {
-            "Dodongos Cavern Last Block Pot 1": "True",
-            "Dodongos Cavern Last Block Pot 2": "True",
-            "Dodongos Cavern Last Block Pot 3": "True",
-            "Dodongos Cavern GS Back Room": "can_blast_or_smash",
-            "Fairy Pot": "has_bottle"
+            "Dodongos Cavern GS Back Room": "can_blast_or_smash"
         },
         "exits": {
             "Dodongos Cavern Lobby": "True",
@@ -170,6 +166,12 @@
         # required to match MQ
         "region_name": "Dodongos Cavern Before Boss",
         "dungeon": "Dodongos Cavern",
+        "locations": {
+            "Dodongos Cavern Last Block Pot 1": "True",
+            "Dodongos Cavern Last Block Pot 2": "True",
+            "Dodongos Cavern Last Block Pot 3": "True",
+            "Fairy Pot": "has_bottle"
+        },
         "exits": {
             "King Dodongo Boss Room": "True"
         }

@@ -12,7 +12,7 @@
             "DMC Fire Temple Entrance": "True",
             "Fire Temple Near Boss": "
                 is_adult and has_fire_source and
-                (logic_fewer_tunic_requirements or can_use(Goron_Tunic))",
+                (logic_fewer_tunic_requirements or Goron_Tunic)",
             "Fire Temple Lower Locked Door": "
                 (Small_Key_Fire_Temple, 5) and (is_adult or Kokiri_Sword)",
             "Fire Temple Big Lava Room": "

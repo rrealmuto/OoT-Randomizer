@@ -282,7 +282,7 @@
         "dungeon": "Shadow Temple",
         "savewarp": "Graveyard Warp Pad Region -> Shadow Temple Entryway",
         "locations": {
-            "Shadow Temple MQ GS Near Boss": "has_projectile(adult) or can_use(Dins_Fire)"
+            "Shadow Temple MQ GS Near Boss": "(logic_lens_shadow or can_use(Lens_of_Truth)) and can_use_projectile"
         },
         "exits": {
             "Shadow Temple Across Chasm": "(logic_lens_shadow or can_use(Lens_of_Truth)) and can_use(Hover_Boots)",
