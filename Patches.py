@@ -1087,10 +1087,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     rom.write_byte(0x273E27B, 0x05)  # Set Spawn Room to be correct
 
     def set_entrance_updates(entrances):
-        if world.settings.shuffle_bosses != 'off':
-            # Connect lake hylia fill exit to revisit exit
-            rom.write_int16(0xAC995A, 0x060C)
-
         for entrance in entrances:
             new_entrance = entrance.data
             replaced_entrance = (entrance.replaces or entrance).data
@@ -1180,9 +1176,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
 
     if world.shuffle_dungeon_entrances:
         rom.write_byte(rom.sym('DUNGEONS_SHUFFLED'), 1)
-
-        # Connect lake hylia fill exit to revisit exit
-        rom.write_int16(0xAC995A, 0x060C)
 
         if not world.settings.useful_cutscenes:
             # Tell the well water we are always a child.
