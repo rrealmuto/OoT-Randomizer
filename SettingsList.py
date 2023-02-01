@@ -5017,10 +5017,15 @@ setting_infos = [
         name           = 'useful_cutscenes',
         gui_text       = 'Glitch-Useful Behaviors',
         gui_tooltip    = '''\
+            Enables some behaviors which are useful in glitched
+            gameplay only and are inconvenient or confusing for
+            glitchless playthroughs:
+
             The cutscenes of the Poes in Forest Temple and Darunia in
-            Fire Temple will not be skipped. These cutscenes are useful
-            in glitched gameplay only and do not provide any timesave
-            for glitchless playthroughs.
+            Fire Temple will not be skipped.
+
+            The water in the Kakariko well will be drained as adult
+            even if dungeon entrances are shuffled.
         ''',
         shared         = True,
     ),
