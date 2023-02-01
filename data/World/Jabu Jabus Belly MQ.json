@@ -36,7 +36,7 @@
         "exits": {
             "Jabu Jabus Belly Main": "
                 here(is_child or can_dive or Iron_Boots or logic_jabu_alcove_jump_dive)",
-            "Jabu Jabus Belly Before Parasitic Tentacle": "
+            "Jabu Jabus Belly Before Slimy Thing": "
                 can_use(Hover_Boots) or can_use(Hookshot) or
                 'Jabu Jabus Belly Floor Lowered' or jabu_shortcuts"
         }
@@ -96,7 +96,7 @@
         }
     },
     {
-        "region_name": "Jabu Jabus Belly Before Parasitic Tentacle",
+        "region_name": "Jabu Jabus Belly Before Slimy Thing",
         "dungeon": "Jabu Jabus Belly",
         "locations": {
             "Jabu Jabus Belly MQ Second Room Upper Chest": "at('Jabu Jabus Belly Elevator Room', can_use(Slingshot))"
@@ -117,7 +117,7 @@
             "Fairy Pot": "has_bottle"
         },
         "exits": {
-            "Jabu Jabus Belly Before Parasitic Tentacle": "'Jabu Jabus Belly Parasitic Tentacle Cleared' or damage_multiplier != 'ohko' or Fairy",
+            "Jabu Jabus Belly Before Slimy Thing": "'Jabu Jabus Belly Parasitic Tentacle Cleared' or damage_multiplier != 'ohko' or Fairy",
             "Jabu Jabus Belly Elevator Room": "can_use(Nayrus_Love)",
             "Barinade Boss Room": "here(can_use(Slingshot)) or jabu_shortcuts"
         }
