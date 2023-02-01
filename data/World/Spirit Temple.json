@@ -249,6 +249,7 @@
         },
         "exits": {
             "Spirit Temple Central Chamber": "is_adult",
+            "Adult Spirit Temple Climb": "can_use(Hover_Boots) or can_use(Hookshot)",
             "Twinrova Boss Room": "Boss_Key_Spirit_Temple"
         }
     }
