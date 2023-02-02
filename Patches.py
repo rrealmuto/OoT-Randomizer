@@ -2235,7 +2235,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
 
     # give dungeon items the correct messages
     add_item_messages(messages, shop_items, world)
-    if world.settings.enhance_map_compass:
+    if world.settings.enhance_map_compass and world.settings.world_count == 1:
         dungeon_list = {
             #                      dungeon name                      compass map
             'Deku Tree':          ("the \x05\x42Deku Tree",          0x62, 0x88),
@@ -2254,18 +2254,13 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
                 pass
             elif dungeon.name in ('Bottom of the Well', 'Ice Cavern'):
                 dungeon_name, compass_id, map_id = dungeon_list[dungeon.name]
-                if world.settings.world_count > 1:
-                    map_message = f"\x13\x76\x08\x05\x42\x0F\x05\x40 found the \x05\x41Dungeon Map\x05\x40\x01for {dungeon_name}\x05\x40!\x09"
-                else:
-                    map_message = f"\x13\x76\x08You found the \x05\x41Dungeon Map\x05\x40\x01for {dungeon_name}\x05\x40!\x01It\'s {'masterful' if world.dungeon_mq[dungeon.name] else 'ordinary'}!\x09"
+                map_message = f"\x13\x76\x08You found the \x05\x41Dungeon Map\x05\x40\x01for {dungeon_name}\x05\x40!\x01It\'s {'masterful' if world.dungeon_mq[dungeon.name] else 'ordinary'}!\x09"
 
                 if world.settings.mq_dungeons_mode == 'random' or world.settings.mq_dungeons_count != 0 and world.settings.mq_dungeons_count != 12:
                     update_message_by_id(messages, map_id, map_message)
             else:
                 dungeon_name, compass_id, map_id = dungeon_list[dungeon.name]
-                if world.settings.world_count > 1 or world.settings.shuffle_dungeon_rewards == 'dungeon':
-                    compass_message = f"\x13\x75\x08\x05\x42\x0F\x05\x40 found the \x05\x41Compass\x05\x40\x01for {dungeon_name}\x05\x40!\x09"
-                elif world.mixed_pools_bosses or world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'):
+                if world.mixed_pools_bosses or world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'):
                     vanilla_reward = world.get_location(dungeon.vanilla_boss_name).vanilla_item
                     vanilla_reward_location = world.hinted_dungeon_reward_locations[vanilla_reward]
                     area = HintArea.at(vanilla_reward_location)
@@ -2275,12 +2270,10 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
                     boss_location = next(filter(lambda loc: loc.type == 'Boss', world.get_entrance(f'{dungeon} Before Boss -> {dungeon.vanilla_boss_name} Boss Room').connected_region.locations))
                     dungeon_reward = boss_location.item.name
                     compass_message = f"\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for {dungeon_name}\x05\x40!\x01It holds the \x05{COLOR_MAP[REWARD_COLORS[dungeon_reward]]}{dungeon_reward}\x05\x40!\x09"
-                update_message_by_id(messages, compass_id, compass_message)
+                if world.settings.shuffle_dungeon_rewards != 'dungeon':
+                    update_message_by_id(messages, compass_id, compass_message)
                 if world.settings.mq_dungeons_mode == 'random' or world.settings.mq_dungeons_count != 0 and world.settings.mq_dungeons_count != 12:
-                    if world.settings.world_count > 1:
-                        map_message = f"\x13\x76\x08\x05\x42\x0F\x05\x40 found the \x05\x41Dungeon Map\x05\x40\x01for {dungeon_name}\x05\x40!\x09"
-                    else:
-                        map_message = f"\x13\x76\x08You found the \x05\x41Dungeon Map\x05\x40\x01for {dungeon_name}\x05\x40!\x01It\'s {'masterful' if world.dungeon_mq[dungeon.name] else 'ordinary'}!\x09"
+                    map_message = f"\x13\x76\x08You found the \x05\x41Dungeon Map\x05\x40\x01for {dungeon_name}\x05\x40!\x01It\'s {'masterful' if world.dungeon_mq[dungeon.name] else 'ordinary'}!\x09"
                     update_message_by_id(messages, map_id, map_message)
 
     # Set hints on the altar inside ToT
@@ -2871,13 +2864,14 @@ def configure_dungeon_info(rom, world):
     dungeon_rewards = [0xff] * 14
     dungeon_reward_areas = bytearray()
     dungeon_reward_worlds = []
-    for reward in ('Kokiri Emerald', 'Goron Ruby', 'Zora Sapphire', 'Light Medallion', 'Forest Medallion', 'Fire Medallion', 'Water Medallion', 'Shadow Medallion', 'Spirit Medallion'):
-        location = world.hinted_dungeon_reward_locations[reward]
-        area = HintArea.at(location)
-        dungeon_reward_areas += area.short_name.encode('ascii').ljust(0x16) + b'\0'
-        dungeon_reward_worlds.append(location.world.id + 1)
-        if location.world.id == world.id and area.is_dungeon:
-            dungeon_rewards[codes.index(area.dungeon_name)] = boss_reward_index(location.item)
+    if world.dungeon_rewards_hinted:
+        for reward in ('Kokiri Emerald', 'Goron Ruby', 'Zora Sapphire', 'Light Medallion', 'Forest Medallion', 'Fire Medallion', 'Water Medallion', 'Shadow Medallion', 'Spirit Medallion'):
+            location = world.hinted_dungeon_reward_locations[reward]
+            area = HintArea.at(location)
+            dungeon_reward_areas += area.short_name.encode('ascii').ljust(0x16) + b'\0'
+            dungeon_reward_worlds.append(location.world.id + 1)
+            if location.world.id == world.id and area.is_dungeon:
+                dungeon_rewards[codes.index(area.dungeon_name)] = boss_reward_index(location.item)
 
     dungeon_is_mq = [1 if world.dungeon_mq.get(c) else 0 for c in codes]
 

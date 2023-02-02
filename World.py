@@ -285,7 +285,7 @@ class World(object):
 
         self.always_hints = [hint.name for hint in getRequiredHints(self)]
 
-        self.dungeon_rewards_hinted = 'altar' in settings.misc_hints or settings.enhance_map_compass
+        self.dungeon_rewards_hinted = settings.shuffle_mapcompass != 'remove' if settings.enhance_map_compass else 'altar' in settings.misc_hints
         self.misc_hint_items = {hint_type: self.hint_dist_user.get('misc_hint_items', {}).get(hint_type, data['default_item']) for hint_type, data in misc_item_hint_table.items()}
         self.misc_hint_locations = {hint_type: self.hint_dist_user.get('misc_hint_locations', {}).get(hint_type, data['item_location']) for hint_type, data in misc_location_hint_table.items()}
 
