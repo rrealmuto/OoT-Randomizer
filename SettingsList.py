@@ -1893,7 +1893,7 @@ setting_infos = [
     Setting_Info(
         name           = 'version_msg',
         type           = str,
-        gui_text       = f"Ocarina of Time Randomizer version {__version__}\nThis version may be outdated. Go to github.com/fenhl/OoT-Randomizer for the latest version.",
+        gui_text       = f"Ocarina of Time Randomizer version {__version__}",
         gui_type       = "Textbox",
         shared         = False,
         choices        = {},

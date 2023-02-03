@@ -97,7 +97,6 @@
           "col_span": 4,
           "row_span": [1,1,1],
           "settings": [
-            "version_msg",
             "enable_cosmetic_file",
             "cosmetic_file",
             "web_output_type",
