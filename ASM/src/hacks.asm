@@ -369,7 +369,7 @@ SRAM_SLOTS:
 
 ; Increase the size of EnItem00 instances to store the override
 .orga 0xB5D6BE ; Address in ROM of the enitem00 init params
-    .halfword 0x01AC
+    .halfword 0x01AC ; Originally 0x019C
 
 ; Increase the size of pot instances to store chest type
 .orga 0xDE8A5E ; Address in ROM of the ObjTsubo init params
