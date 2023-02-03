@@ -835,6 +835,16 @@ sw      r0, 0x0134(a2) ; replaced code
     j		EnWonderItem_DropCollectible_Hack
     nop
 
+; ==============================================================
+; Gossip Stone Shuffle
+; ==============================================================
+
+; Hook gossip stone action function that is checking for a song
+.orga 0xEE78EC
+; Replaces: Entire Function
+    j       En_Gs_Update_Hack
+    nop
+
 ; Runs when storing an incoming item to the player instance
 ; Replaces:
 ;   sb      a2, 0x0424 (a3)

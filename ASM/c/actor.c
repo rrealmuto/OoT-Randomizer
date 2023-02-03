@@ -31,6 +31,7 @@ extern int8_t curr_scene_setup;
 #define EN_SW               0x0095  // Skullwalltula
 #define EN_BB               0x0069  // Bubble
 #define EN_WONDER_ITEM      0x0112  // Wonder Item
+#define EN_GS               0x1B9   // Gossip Stone
 
 // Called at the end of Actor_SetWorldToHome
 // Reset the rotations for any actors that we may have passed data in through Actor_Spawn
@@ -73,13 +74,19 @@ void Actor_After_UpdateAll_Hack(z64_actor_t *actor, z64_game_t *game) {
 // For pots/crates/beehives, store the flag in the actor's unused initial rotation fields
 // Flag consists of the room # and the actor index
 void Actor_StoreFlagInRotation(z64_actor_t* actor, z64_game_t* game, uint16_t actor_index) {
-    uint16_t flag = (actor_index) | (actor->room_index << 8); // Calculate the flag
-    
+    uint16_t flag = 0;
+    if(game->scene_index == 0x3E) { // Calculate flag in a grotto using room + grotto_id + actor index
+        flag = (actor_index & 0x7F) | (actor->room_index << 12) | ((z64_file.grotto_id & 0x1F) << 7);
+    }
+    else { 
+        flag = (actor_index) | (actor->room_index << 8); // Calculate the flag for every other scene just using room and actor index. Setup will be added later.
+    } 
     if(actor->actor_type == ACTORCAT_ENEMY && actor->actor_id != 0x0197) //Hack for most enemies. Specifically exclude gerudo fighters (0x197)
     {
         actor->rot_init.z = flag;
         return;
     }
+    
     
     switch(actor->actor_id)
     {
@@ -91,6 +98,7 @@ void Actor_StoreFlagInRotation(z64_actor_t* actor, z64_game_t* game, uint16_t ac
         case EN_IK: // Check for iron knuckles (they use actor category 9 (boss) and change to category 5 but a frame later if the object isnt loaded)
         case EN_SW: // Check for skullwalltula (en_sw). They start as category 4 (npc) and change to category 5 but a frame later if the object isnt laoded
         case EN_ANUBICE_TAG: //Check for anubis spawns
+        case EN_GS:
         {
             actor->rot_init.z = flag;
             break;

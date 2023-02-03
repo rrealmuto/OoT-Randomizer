@@ -36,9 +36,10 @@ Wonderitem Shuffle - Shuffles wonderitems - which include invisible rupees and i
 ## RealRob Changelog
 
 ### v16
-
-  * Add skull kids to enemy drop shuffle
-
+  * New Setting: Gossip Stone Shuffle
+  * Enemy Drop Shuffle Changes:
+    * Add skull kid drops
+  
 ### v15
 
   * Add Fast Armos Pushing

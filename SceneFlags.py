@@ -2,6 +2,27 @@ from math import ceil
 
 from LocationList import location_table
 
+
+def get_all_collectible_flags(world):
+    scene_flags = {}
+    for i in range(0, 101):
+        scene_flags[i] = []
+        for location in world.get_locations():
+            if(location.scene == i and location.type in ["Freestanding", "Pot", "FlyingPot", "Crate", "SmallCrate", "Beehive", "RupeeTower"]):
+                default = location.default
+                if(isinstance(default, list)): #List of alternative room/setup/flag to use
+                    default = location.default[0] #Use the first tuple as the primary tuple
+                if(isinstance(default, tuple)):
+                    room, setup, flag = default
+                    room_setup = room + (setup << 6)
+                    #flag = (room_setup << 8) + flag
+                    scene_flags[i].append((room, flag))
+                    #scene_flags[i].append(flag)
+        scene_flags[i].sort()
+        if len(scene_flags[i]) == 0:
+            del scene_flags[i]
+        #scene_flags.append((i, max_enemy_flag))
+    return scene_flags
 # Create a dict of dicts of the format:
 # {
 #   scene_number_n : {
@@ -18,7 +39,7 @@ def get_collectible_flag_table(world):
         max_enemy_flag = 0
         scene_flags[i] = {}
         for location in world.get_locations():
-            if(location.scene == i and location.type in ["Freestanding", "Pot", "FlyingPot", "Crate", "SmallCrate", "Beehive", "RupeeTower", "SilverRupee", "EnemyDrop", "Wonderitem"]):
+            if(location.scene == i and location.type in ["Freestanding", "Pot", "FlyingPot", "Crate", "SmallCrate", "Beehive", "RupeeTower", "SilverRupee", "EnemyDrop", "Wonderitem", "GossipStone"]):
                 default = location.default
                 if(isinstance(default, list)): #List of alternative room/setup/flag to use
                     primary_tuple = default[0]
@@ -26,8 +47,12 @@ def get_collectible_flag_table(world):
                         alt_list.append((location, default[c], primary_tuple))
                     default = location.default[0] #Use the first tuple as the primary tuple
                 if(isinstance(default, tuple)):
-                    room, setup, flag = default
-                    room_setup = room + (setup << 6)
+                    if location.scene == 0x3E: # Grottos need to be handled separately because they suck
+                        room, grotto_id, flag = default #14 rooms (4 bits), 0x1F grottos (5 bits), 
+                        room_setup = (room << 5) + grotto_id
+                    else:
+                        room, setup, flag = default
+                        room_setup = room + (setup << 6)
                     if(room_setup in scene_flags[i].keys()):
                         curr_room_max_flag = scene_flags[i][room_setup]
                         if flag > curr_room_max_flag:
@@ -43,15 +68,21 @@ def get_collectible_flag_table(world):
 def get_collectible_flag_table_bytes(scene_flag_table):
     num_flag_bytes = 0
     bytes = bytearray()
-    bytes.append(len(scene_flag_table.keys()))
-    for scene_id in scene_flag_table.keys():
+    bytes.append(len(scene_flag_table.keys())) # Append # of scenes
+    for scene_id in scene_flag_table.keys(): # For every scene
+        if(scene_id == 0x3E): # Grotto
+            print("here")
         rooms = scene_flag_table[scene_id]
         room_count = len(rooms.keys())
-        bytes.append(scene_id)
-        bytes.append(room_count)
-        for room in rooms:
-            bytes.append(room)
-            bytes.append((num_flag_bytes & 0xFF00) >> 8)
+        bytes.append(scene_id) # Append the scene ID
+        bytes.append(room_count) # Append the # of rooms in the scene
+        for room in rooms: # For every room in the scene
+            if scene_id == 0x3E:
+                bytes.append((room & 0x1E0) >> 5)
+                bytes.append((room & 0x1F))
+            else:
+                bytes.append(room) # Append the room #
+            bytes.append((num_flag_bytes & 0xFF00) >> 8) # Append the number of bytes
             bytes.append(num_flag_bytes & 0x00FF )
             num_flag_bytes += ceil((rooms[room] + 1) / 8)
 

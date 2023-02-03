@@ -115,6 +115,7 @@
             "KF GS House of Twins": "
                 is_adult and at_night and
                 (Hookshot or (logic_adult_kokiri_gs and Hover_Boots))",
+            "KF Gossip Stone Drop": "can_play(Song_of_Time)",
             "KF Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle",
             "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle",
@@ -162,7 +163,9 @@
             # repeatable access.
             "Deku Baba Sticks": "(is_adult and not entrance_shuffle) or can_use(Kokiri_Sword) or can_use(Boomerang)",
             "Deku Baba Nuts": "is_adult and not entrance_shuffle",
+            "KF Deku Tree Gossip Stone (Left) Drop": "can_play(Song_of_Time)",
             "KF Deku Tree Gossip Stone (Left)": "True",
+            "KF Deku Tree Gossip Stone (Right) Drop": "can_play(Song_of_Time)",
             "KF Deku Tree Gossip Stone (Right)": "True"
         },
         "exits": {
@@ -276,6 +279,7 @@
             "LW Near Ocarina Game Wonderitem 1": "is_child",
             "LW Near Ocarina Game Wonderitem 2": "is_child",
             "LW Near Ocarina Game Wonderitem 3": "is_child",
+            "LW Gossip Stone Drop": "can_play(Song_of_Time)",
             "LW Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle",
             "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle",
@@ -371,6 +375,9 @@
             "Song from Saria": "is_child and Zeldas_Letter",
             "Sheik in Forest": "is_adult",
             "SFM GS": "can_use(Hookshot) and at_night",
+            "SFM Maze Gossip Stone (Lower) Drop": "can_play(Song_of_Time)",
+            "SFM Maze Gossip Stone (Upper) Drop": "can_play(Song_of_Time)",
+            "SFM Saria Gossip Stone Drop": "can_play(Song_of_Time)",
             "SFM Maze Gossip Stone (Lower)": "True",
             "SFM Maze Gossip Stone (Upper)": "True",
             "SFM Saria Gossip Stone": "True",
@@ -492,8 +499,11 @@
                 (Boomerang or (logic_lab_wall_gs and (Sticks or Kokiri_Sword)))",
             "LH GS Small Island": "is_child and can_child_attack and at_night",
             "LH GS Tree": "can_use(Longshot) and at_night",
+            "LH Lab Gossip Stone Drop": "can_play(Song_of_Time)",
             "LH Lab Gossip Stone": "True",
+            "LH Gossip Stone (Southeast) Drop": "can_play(Song_of_Time)",
             "LH Gossip Stone (Southeast)": "True",
+            "LH Gossip Stone (Southwest) Drop": "can_play(Song_of_Time)",
             "LH Gossip Stone (Southwest)": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle",
@@ -627,6 +637,7 @@
             "GV GS Bean Patch": "can_plant_bugs and can_child_attack",
             "GV Cow": "is_child and can_play(Eponas_Song)",
             "GV Crate Near Cow": "is_child and can_break_crate",
+            "GV Gossip Stone Drop": "can_play(Song_of_Time)",
             "GV Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle"
@@ -1095,6 +1106,7 @@
             "Colossus GS Hill": "
                 is_adult and at_night and
                 (here(can_plant_bean) or Longshot or (logic_colossus_gs and Hookshot))",
+            "Colossus Gossip Stone Drop": "can_play(Song_of_Time)",
             "Colossus Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Fairy Pond": "can_play(Song_of_Storms) and has_bottle",
@@ -1213,9 +1225,13 @@
         "scene": "ToT Entrance",
         "hint": "MARKET",
         "locations": {
+            "ToT Gossip Stone (Left) Drop": "can_play(Song_of_Time)",
             "ToT Gossip Stone (Left)": "True",
+            "ToT Gossip Stone (Left-Center) Drop": "can_play(Song_of_Time)",
             "ToT Gossip Stone (Left-Center)": "True",
+            "ToT Gossip Stone (Right) Drop": "can_play(Song_of_Time)",
             "ToT Gossip Stone (Right)": "True",
+            "ToT Gossip Stone (Right-Center) Drop": "can_play(Song_of_Time)",
             "ToT Gossip Stone (Right-Center)": "True",
             "Gossip Stone Fairy": "
                 (can_summon_gossip_fairy_without_suns or (is_adult and can_play(Suns_Song))) and
@@ -1286,7 +1302,9 @@
             "HC Castle Moat Wonderitem 8": "True",
             "HC Castle Moat Wonderitem 9": "True",
             "HC Castle Moat Wonderitem 10": "True",
+            "HC Malon Gossip Stone Drop": "can_play(Song_of_Time)",
             "HC Malon Gossip Stone": "True",
+            "HC Rock Wall Gossip Stone Drop": "can_play(Song_of_Time)",
             "HC Rock Wall Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -1934,6 +1952,7 @@
         "scene": "Graveyard",
         "hint": "GRAVEYARD",
         "locations": {
+            "Graveyard Gossip Stone Drop": "can_play(Song_of_Time)",
             "Graveyard Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle"
         },
@@ -2016,6 +2035,7 @@
                     ('Eyedrops Access' or (Eyedrops and disable_trade_revert))))",
             "DMT GS Falling Rocks Path": "
                 is_adult and (Megaton_Hammer or logic_trail_gs_upper) and at_night",
+            "DMT Gossip Stone Drop": "can_play(Song_of_Time)",
             "DMT Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Bug Rock": "is_child and has_bottle",
@@ -2079,7 +2099,9 @@
             "GC Boulder Maze Crate": "(can_blast_or_smash or can_use(Silver_Gauntlets)) and can_break_crate",
             "GC GS Boulder Maze": "is_child and has_explosives",
             "GC GS Center Platform": "is_adult",
+            "GC Maze Gossip Stone Drop": "can_play(Song_of_Time) and (can_blast_or_smash or can_use(Silver_Gauntlets))",
             "GC Maze Gossip Stone": "can_blast_or_smash or can_use(Silver_Gauntlets)",
+            "GC Medigoron Gossip Stone Drop": "can_play(Song_of_Time) and (can_blast_or_smash or Progressive_Strength_Upgrade)",
             "GC Medigoron Gossip Stone": "can_blast_or_smash or Progressive_Strength_Upgrade",
             "Gossip Stone Fairy": "
                 can_summon_gossip_fairy_without_suns and has_bottle and
@@ -2201,6 +2223,7 @@
         "locations": {
             "DMC Wall Freestanding PoH": "True",
             "DMC GS Crate": "is_child and can_child_attack and can_break_heated_crate",
+            "DMC Gossip Stone Drop": "has_explosives and can_play(Song_of_Time)",
             "DMC Gossip Stone": "has_explosives",
             "Gossip Stone Fairy": "
                 has_explosives and can_summon_gossip_fairy_without_suns and has_bottle"
@@ -2437,7 +2460,9 @@
             "ZR GS Ladder": "is_child and at_night and can_child_attack",
             "ZR GS Near Raised Grottos": "can_use(Hookshot) and at_night",
             "ZR GS Above Bridge": "can_use(Hookshot) and at_night",
+            "ZR Near Grottos Gossip Stone Drop": "can_play(Song_of_Time)",
             "ZR Near Grottos Gossip Stone": "True",
+            "ZR Near Domain Gossip Stone Drop": "can_play(Song_of_Time)",
             "ZR Near Domain Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle",
@@ -2503,6 +2528,7 @@
             "ZD GS Frozen Waterfall": "
                 is_adult and at_night and
                 (Hookshot or Bow or Magic_Meter or logic_domain_gs)",
+            "ZD Gossip Stone Drop": "can_play(Song_of_Time)",
             "ZD Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle",
             "Fish Group": "is_child and has_bottle",
@@ -2553,7 +2579,9 @@
             "ZF Near Jabu Pot 4": "is_child",
             "ZF GS Tree": "is_child and can_bonk",
             "ZF GS Above the Log": "can_use(Boomerang) and at_night",
+            "ZF Fairy Gossip Stone Drop": "can_play(Song_of_Time)",
             "ZF Fairy Gossip Stone": "True",
+            "ZF Jabu Gossip Stone Drop": "can_play(Song_of_Time)",
             "ZF Jabu Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and at_day and has_bottle",
@@ -2761,6 +2789,7 @@
             "KF Storms Grotto Chest": "True",
             "KF Storms Grotto Beehive 1": "can_break_lower_beehive",
             "KF Storms Grotto Beehive 2": "can_break_lower_beehive",
+            "KF Storms Grotto Gossip Stone Drop": "can_play(Song_of_Time)",
             "KF Storms Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2778,6 +2807,7 @@
             "LW Near Shortcuts Grotto Chest": "True",
             "LW Near Shortcuts Grotto Beehive 1": "can_break_lower_beehive",
             "LW Near Shortcuts Grotto Beehive 2": "can_break_lower_beehive",
+            "LW Near Shortcuts Grotto Gossip Stone Drop": "can_play(Song_of_Time)",
             "LW Near Shortcuts Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2866,6 +2896,7 @@
             "HF Southeast Grotto Chest": "True",
             "HF Southeast Grotto Beehive 1": "can_break_lower_beehive",
             "HF Southeast Grotto Beehive 2": "can_break_lower_beehive",
+            "HF Southeast Grotto Gossip Stone Drop": "can_play(Song_of_Time)",
             "HF Southeast Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2883,6 +2914,7 @@
             "HF Open Grotto Chest": "True",
             "HF Open Grotto Beehive 1": "can_break_lower_beehive",
             "HF Open Grotto Beehive 2": "can_break_lower_beehive",
+            "HF Open Grotto Gossip Stone Drop": "can_play(Song_of_Time)",
             "HF Open Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2912,6 +2944,7 @@
             "HF Cow Grotto Cow": "has_fire_source and can_play(Eponas_Song)",
             "HF Cow Grotto Pot 1": "has_fire_source",
             "HF Cow Grotto Pot 2": "has_fire_source",
+            "HF Cow Grotto Gossip Stone Drop": "has_fire_source and can_play(Song_of_Time)",
             "HF Cow Grotto Gossip Stone": "has_fire_source",
             "Gossip Stone Fairy": "has_fire_source and can_summon_gossip_fairy and has_bottle",
             "Bug Shrub": "has_fire_source and can_cut_shrubs and has_bottle",
@@ -2929,6 +2962,7 @@
             "HF Near Market Grotto Chest": "True",
             "HF Near Market Grotto Beehive 1": "can_break_lower_beehive",
             "HF Near Market Grotto Beehive 2": "can_break_lower_beehive",
+            "HF Near Market Grotto Gossip Stone Drop": "can_play(Song_of_Time)",
             "HF Near Market Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -2982,6 +3016,7 @@
             "HC Storms Grotto Pot 2": "can_blast_or_smash",
             "HC Storms Grotto Pot 3": "can_blast_or_smash",
             "HC Storms Grotto Pot 4": "can_blast_or_smash",
+            "HC Storms Grotto Gossip Stone Drop": "can_play(Song_of_Time) and can_blast_or_smash",
             "HC Storms Grotto Gossip Stone": "can_blast_or_smash",
             "Gossip Stone Fairy": "can_blast_or_smash and can_summon_gossip_fairy and has_bottle",
             "Wandering Bugs": "can_blast_or_smash and has_bottle",
@@ -3010,6 +3045,7 @@
         "scene": "Kak Open Grotto",
         "locations": {
             "Kak Open Grotto Chest": "True",
+            "Kak Open Grotto Gossip Stone Drop": "can_play(Song_of_Time)",
             "Kak Open Grotto Gossip Stone": "True",
             "Kak Open Grotto Beehive 1": "can_break_lower_beehive",
             "Kak Open Grotto Beehive 2": "can_break_lower_beehive",
@@ -3051,6 +3087,7 @@
             "DMT Storms Grotto Chest": "True",
             "DMT Storms Grotto Beehive 1": "can_break_lower_beehive",
             "DMT Storms Grotto Beehive 2": "can_break_lower_beehive",
+            "DMT Storms Grotto Gossip Stone Drop": "can_play(Song_of_Time)",
             "DMT Storms Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -3081,6 +3118,7 @@
             "DMC Upper Grotto Chest": "True",
             "DMC Upper Grotto Beehive 1": "can_break_lower_beehive",
             "DMC Upper Grotto Beehive 2": "can_break_lower_beehive",
+            "DMC Upper Grotto Gossip Stone Drop": "can_play(Song_of_Time)",
             "DMC Upper Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -3111,6 +3149,7 @@
             "ZR Open Grotto Chest": "True",
             "ZR Open Grotto Beehive 1": "can_break_lower_beehive",
             "ZR Open Grotto Beehive 2": "can_break_lower_beehive",
+            "ZR Open Grotto Gossip Stone Drop": "can_play(Song_of_Time)",
             "ZR Open Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
