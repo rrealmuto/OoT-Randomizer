@@ -238,8 +238,8 @@ location_table = OrderedDict([
     ("SFM Adult Maze Moblin 5",                                      ("EnemyDrop",    0x56, (0,2,10), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
     ("SFM Adult Smashing Moblin",                                    ("EnemyDrop",    0x56, (0,2,11), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
     
-    ("SFM Wolfos Grotto Wolfos 1",                                   ("EnemyDrop",    0x3E, (7,0,1), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
-    ("SFM Wolfos Grotto Wolfos 2",                                   ("EnemyDrop",    0x3E, (7,0,2), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
+    ("SFM Wolfos Grotto Wolfos 1",                                   ("EnemyDrop",    0x3E, (7,0x0D,1), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
+    ("SFM Wolfos Grotto Wolfos 2",                                   ("EnemyDrop",    0x3E, (7,0x0D,2), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
     
     # Sacred Forest Meadow Wonderitems
     ("SFM Near Lost Woods Wonderitem",                               ("Wonderitem",   0x56, [(0,0,16),
@@ -286,9 +286,9 @@ location_table = OrderedDict([
     ("HF Cow Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (4,0x4,11), None, 'Rupees (20)',       ("Hyrule Field", "Grottos", "GossipStone"))),
 
     # Hyrule Field Enemies
-    ("HF Cow Grotto Skulltula",                                      ("EnemyDrop",    0x3E, (4,0,1), None,                          'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
-    ("HF Tektite Grotto Tektite",                                    ("EnemyDrop",    0x3E, (10,0,3), None,                         'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
-    ("HF Near Kak Grotto Skulltula",                                 ("EnemyDrop",    0x3E, (13,0,1), None,                         'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
+    ("HF Cow Grotto Skulltula",                                      ("EnemyDrop",    0x3E, (4,0x04,1), None,                          'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
+    ("HF Tektite Grotto Tektite",                                    ("EnemyDrop",    0x3E, (10,0x01,3), None,                         'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
+    ("HF Near Kak Grotto Skulltula",                                 ("EnemyDrop",    0x3E, (13,0x05,1), None,                         'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
     ("HF Child Near Fairy Grotto Peahat",                            ("EnemyDrop",    0x51, [(0,0,9),(0,1,5)], None,                'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
     ("HF Child Near Kokiri Forest Peahat",                           ("EnemyDrop",    0x51, [(0,0,13),(0,1,9)], None,               'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
     ("HF Child South Field Peahat 1",                                ("EnemyDrop",    0x51, [(0,0,10),(0,1,6)], None,               'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
@@ -440,8 +440,8 @@ location_table = OrderedDict([
     ("HC Storms Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (8,0x16,14), None, 'Rupees (20)', ("Hyrule Castle", "Grottos","GossipStone"))),
 
     # Hyrule Castle Enemies
-    ("HC Storms Grotto Skullwalltula 1",                             ("EnemyDrop",    0x3E, (8,0,1), None,                      'Rupees (5)',                            ("Hyrule Castle", "Grottos", "EnemyDrop"))),
-    ("HC Storms Grotto Skullwalltula 2",                             ("EnemyDrop",    0x3E, (8,0,2), None,                      'Rupees (5)',                            ("Hyrule Castle", "Grottos", "EnemyDrop"))),
+    ("HC Storms Grotto Skullwalltula 1",                             ("EnemyDrop",    0x3E, (8,0x16,1), None,                      'Rupees (5)',                            ("Hyrule Castle", "Grottos", "EnemyDrop"))),
+    ("HC Storms Grotto Skullwalltula 2",                             ("EnemyDrop",    0x3E, (8,0x16,2), None,                      'Rupees (5)',                            ("Hyrule Castle", "Grottos", "EnemyDrop"))),
 
     # Hyrule Castle Wonderitems
     ("HC Castle Torch Wonderitem 1",                                 ("Wonderitem",   0x5F,  (0,0,13), None,                        'Rupees (20)',                           ("Hyrule Castle", "Wonderitem"))),
@@ -576,8 +576,8 @@ location_table = OrderedDict([
     ("Kak Impas House Wonderitem",                                   ("Wonderitem",   0x37,  (0,0,7), None,                     'Rupees (20)',                               ("Kakariko Village", "Kakariko", "Wonderitem"))),
 
     # Kak Enemies
-    ("Kak Redead Grotto Redead Left",                                ("EnemyDrop",    0x3E, (2,0,1), None,                      'Rupees (5)',                            ("Kakariko Village", "Kakariko", "Grottos", "EnemyDrop"))),
-    ("Kak Redead Grotto Redead Right",                               ("EnemyDrop",    0x3E, (2,0,2), None,                      'Rupees (5)',                            ("Kakariko Village", "Kakariko", "Grottos", "EnemyDrop"))),
+    ("Kak Redead Grotto Redead Left",                                ("EnemyDrop",    0x3E, (2,0x07,1), None,                      'Rupees (5)',                            ("Kakariko Village", "Kakariko", "Grottos", "EnemyDrop"))),
+    ("Kak Redead Grotto Redead Right",                               ("EnemyDrop",    0x3E, (2,0x07,2), None,                      'Rupees (5)',                            ("Kakariko Village", "Kakariko", "Grottos", "EnemyDrop"))),
     # Kak Gossip Stones
     ("Kak Open Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,8,10), None, 'Rupees (20)', ("Kakariko Village", "Grottos", "GossipStone"))),
 
@@ -1032,7 +1032,7 @@ location_table = OrderedDict([
     ("GV Adult Upper Octorok 3",                                     ("EnemyDrop",    0x5A, (0, 2, 8), None,                    'Rupees (5)',                            ("Gerudo Valley", "Gerudo", "EnemyDrop"))),
     ("GV Adult Lower Octorok 1",                                     ("EnemyDrop",    0x5A, (0, 2, 4), None,                    'Rupees (5)',                            ("Gerudo Valley", "Gerudo", "EnemyDrop"))),
     ("GV Adult Lower Octorok 2",                                     ("EnemyDrop",    0x5A, (0, 2, 6), None,                    'Rupees (5)',                            ("Gerudo Valley", "Gerudo", "EnemyDrop"))),
-    ("GV Octorok Grotto Octorok",                                    ("EnemyDrop",    0x3E, (5, 0, 1), None,                    'Rupees (5)',                            ("Gerudo Valley", "Gerudo", "Grottos", "EnemyDrop"))),
+    ("GV Octorok Grotto Octorok",                                    ("EnemyDrop",    0x3E, (5, 0x12, 1), None,                    'Rupees (5)',                            ("Gerudo Valley", "Gerudo", "Grottos", "EnemyDrop"))),
     
     # Gerudo Valley Wonderitems
     ("GV Adult Upper Waterfall Wonderitem",                          ("Wonderitem",   0x5A, (0,2,41), None,                     'Rupees (20)',                           ("Gerudo Valley", "Gerudo", "Wonderitem"))),
