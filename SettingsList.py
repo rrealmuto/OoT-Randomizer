@@ -3487,7 +3487,6 @@ setting_infos = [
             There are a handful of exceptions:
                 Poes
                 Big Octo
-                Skull Kid
                 Stahlchild
                 Leevers
                 And maybe some others :)

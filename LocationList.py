@@ -183,6 +183,10 @@ location_table = OrderedDict([
     ("LW Near Shortcuts Grotto Beehive 1",                           ("Beehive",      0x3E, (0,0,0x48 + (0x14 * 2)), None,          'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grottos", "Beehives",))),
     ("LW Near Shortcuts Grotto Beehive 2",                           ("Beehive",      0x3E, (0,0,0x49 + (0x14 * 2)), None,          'Rupees (20)',                           ("Lost Woods", "Forest Area", "Grottos", "Beehives",))),
     ("LW Scrubs Grotto Beehive",                                     ("Beehive",      0x3E, (6,0,0x44 + (0x15 * 2)), None,          'Rupees (20)',                           ("Lost Woods", "Forest Area", "Grottos", "Beehives",))),
+    # Lost Woods Enemies
+    ("LW Adult Sarias Friend Skullkid",                              ("EnemyDrop",    0x5B,  (9,2,2), None,                         'Rupees (200)',                          ("Lost Woods", "Forest Area", "EnemyDrop"))),
+    ("LW Adult Ocarina Game Skullkid 1",                             ("EnemyDrop",    0x5B,  (1,2,1), None,                         'Rupees (200)',                          ("Lost Woods", "Forest Area", "EnemyDrop"))),
+    ("LW Adult Ocarina Game Skullkid 2",                             ("EnemyDrop",    0x5B,  (1,2,2), None,                         'Rupees (200)',                          ("Lost Woods", "Forest Area", "EnemyDrop"))),
 
     # Sacred Forest Meadow
     ("SFM Wolfos Grotto Chest",                                      ("Chest",        0x3E,  0x11, None,                            'Rupees (50)',                           ("Sacred Forest Meadow", "Forest Area", "Grottos", "Chests",))),
