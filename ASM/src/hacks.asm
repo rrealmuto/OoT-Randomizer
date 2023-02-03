@@ -648,6 +648,9 @@ bg_spot18_basket_rupees_loopstart: ; our new loop branch target
 ;   jal 0x800255C4
     jal Actor_UpdateAll_Hook
 
+.orga 0xA99C98 ; In memory: 0x80023D38
+    jal     Player_SpawnEntry_Hack
+
 ; Runs when storing an incoming item to the player instance
 ; Replaces:
 ;   sb      a2, 0x0424 (a3)
