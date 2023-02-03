@@ -730,6 +730,12 @@ or a1, r0, s0 ;parent is stored in v0
 ;   or a1, s0, r0
 lw a1, 0x118(s0)
 
+; Hack skull kids (en_skj) to spawn an overridden collectible
+.orga 0xDF1928
+;replaces
+;   jal     Item_DropCollectible
+    jal     en_skj_drop_collectible_hack
+
 ; Hack Bubble (en_bb) to spawn sparkles for fire bubbles
 .orga 0xCB2F28
 ;replaces

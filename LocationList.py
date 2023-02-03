@@ -198,6 +198,10 @@ location_table = OrderedDict([
     ("LW Near Ocarina Game Wonderitem 2",                            ("Wonderitem",   0x5B, (1,0,7),  None,                       'Rupees (5)',                              ("Kokiri Forest", "Forest", "Wonderitem"))),
     ("LW Near Ocarina Game Wonderitem 3",                            ("Wonderitem",   0x5B, (1,0,8),  None,                       'Rupees (5)',                              ("Kokiri Forest", "Forest", "Wonderitem"))),
 
+    # Lost Woods Enemies
+    ("LW Adult Sarias Friend Skullkid",                              ("EnemyDrop",    0x5B,  (9,2,2), None,                         'Rupees (200)',                          ("Lost Woods", "Forest Area", "EnemyDrop"))),
+    ("LW Adult Ocarina Game Skullkid 1",                             ("EnemyDrop",    0x5B,  (1,2,1), None,                         'Rupees (200)',                          ("Lost Woods", "Forest Area", "EnemyDrop"))),
+    ("LW Adult Ocarina Game Skullkid 2",                             ("EnemyDrop",    0x5B,  (1,2,2), None,                         'Rupees (200)',                          ("Lost Woods", "Forest Area", "EnemyDrop"))),
 
     # Sacred Forest Meadow
     ("SFM Wolfos Grotto Chest",                                      ("Chest",        0x3E,  0x11, None,                            'Rupees (50)',                           ("Sacred Forest Meadow", "Forest Area", "Grottos", "Chests",))),
