@@ -306,7 +306,7 @@ uint16_t resolve_text_silver_rupees(item_row_t* item_row)
 
     silver_rupee_data_t var = silver_rupee_vars[silver_rupee_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
 
-    if (extended_savectx.silver_rupee_counts[silver_rupee_id] + 1 == var.needed_count) {
+    if (extended_savectx.silver_rupee_counts[silver_rupee_id] + 1 >= var.needed_count) {
         return item_row->text_id + 0x16;
     }
     return item_row->text_id;
