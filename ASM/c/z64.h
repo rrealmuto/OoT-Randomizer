@@ -2,7 +2,9 @@
 #define Z64_H
 #include <stdint.h>
 #include <n64.h>
+#include "z64_math.h"
 #include "color.h"
+#include "z64collision_check.h"
 
 #define Z64_OOT10             0x00
 #define Z64_OOT11             0x01
@@ -31,27 +33,7 @@
 
 #define OFFSETOF(structure, member) ((size_t)&(((structure *)0)->member))
 
-typedef struct
-{
-  int16_t x;
-  int16_t y;
-  int16_t z;
-} z64_xyz_t;
 
-typedef struct
-{
-  float x;
-  float y;
-  float z;
-} z64_xyzf_t;
-
-typedef uint16_t z64_angle_t;
-typedef struct
-{
-  z64_angle_t x;
-  z64_angle_t y;
-  z64_angle_t z;
-} z64_rot_t;
 
 typedef struct
 {

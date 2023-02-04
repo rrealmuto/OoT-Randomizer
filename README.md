@@ -14,6 +14,7 @@ Wonderitem Shuffle - Shuffles wonderitems - which include invisible rupees and i
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v17](#v17)
   * [v16](#v16)
   * [v15](#v15)
   * [v14](#v14)
@@ -34,6 +35,11 @@ Wonderitem Shuffle - Shuffles wonderitems - which include invisible rupees and i
   * [4.0](#40)
 
 ## RealRob Changelog
+
+### v17
+  * Silver Rupee Shuffle Fixes:
+    * Prevent items shuffled in silver rupee locations from being collected with boomerang
+    * Fix "TEXT ID ERROR" message when collecting the final silver rupee from a chest or shop
 
 ### v16
   * New Setting: Gossip Stone Shuffle

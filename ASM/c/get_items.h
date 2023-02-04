@@ -51,18 +51,18 @@ struct EnItem00;
 typedef void (*EnItem00ActionFunc)(struct EnItem00 *, z64_game_t *);
 
 typedef struct EnItem00 {
-  z64_actor_t actor;
-  EnItem00ActionFunc actionFunc;
-  uint16_t collectibleFlag;
-  uint16_t getItemId;
-  uint16_t unk_154;
-  uint16_t unk_156;
-  uint16_t unk_158;
-  int16_t timeToLive; // 0x14A
-  float scale;        // 0x14C
-  uint8_t collider[0x4C];   // 0x150 size = 4C
-  override_t override; // Used to store the override
-  bool dropped; // Flag to indicate that this was a dropped item vs. spawned.
+    z64_actor_t actor;              // 0x0000
+    EnItem00ActionFunc actionFunc;  // 0x013C
+    uint16_t collectibleFlag;       // 0x0140
+    uint16_t getItemId;             // 0x0142
+    uint16_t unk_154;               // 0x0144
+    uint16_t unk_156;               // 0x0146
+    uint16_t unk_158;               // 0x0148
+    int16_t timeToLive;             // 0x014A
+    float scale;                    // 0x014C
+    ColliderCylinder collider;      // 0x0150 size = 4C
+    override_t override;            // 0x019C
+    bool dropped; // Flag to indicate that this was a dropped item vs. spawned.
 } EnItem00;
 
 
