@@ -299,7 +299,7 @@ item_row_t item_table[] = {
     [0x102] = ITEM_ROW(0x4D,     SILVER_CHEST, 0x86, -1, 0x9046, 0x0197, 0x7F, no_upgrade, give_silver_rupee_pouch, CASTLE_ID,  0x15, NULL), // Silver Rupee Pouch (Ganons Castle Forest Trial)
 };
 
-void resolve_text_silver_rupees(item_row_t* item_row)
+uint16_t resolve_text_silver_rupees(item_row_t* item_row)
 {
     int16_t dungeon_id = item_row->effect_arg1;
     int16_t silver_rupee_id = item_row->effect_arg2;
@@ -307,8 +307,9 @@ void resolve_text_silver_rupees(item_row_t* item_row)
     silver_rupee_data_t var = silver_rupee_vars[silver_rupee_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
 
     if (extended_savectx.silver_rupee_counts[silver_rupee_id] + 1 == var.needed_count) {
-        item_row->text_id += 0x16;
+        return item_row->text_id + 0x16;
     }
+    return item_row->text_id;
 }
 
 item_row_t *get_item_row(uint16_t item_id) {
@@ -341,11 +342,12 @@ uint16_t resolve_upgrades(uint16_t item_id) {
     }
 }
 
-void resolve_text_id(item_row_t* item_row) {
+uint16_t resolve_text_id(item_row_t* item_row) {
     if(item_row->alt_text_func != NULL)
     {
-        item_row->alt_text_func(item_row);
+        return item_row->alt_text_func(item_row);
     }
+    return item_row->text_id;
 }
 
 void call_effect_function(item_row_t *item_row) {
