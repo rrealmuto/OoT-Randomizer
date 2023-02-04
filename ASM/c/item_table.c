@@ -296,17 +296,31 @@ item_row_t item_table[] = {
     [0xFF] = ITEM_ROW(0x4D,      SILVER_CHEST, 0x86, -1, 0x9044, 0x00D1, 0x7E, no_upgrade, give_silver_rupee_pouch, CASTLE_ID,  0x15, NULL), // Silver Rupee Pouch (Ganons Castle Forest Trial)
 };
 
+/*  Determine which message to display based on the number of silver rupees collected.
+    If player has collected less than the required amount for a particular puzzle,
+    display the message saying that they have collected x # of silver rupees
+
+    If they have collected the required amount, display the message that they
+    have collected all of the silver rupees. This message should always be placed
+    0x16 messages after the base message.
+
+    Returns: text_id to use based on the logic above.
+*/ 
+
 uint16_t resolve_text_silver_rupees(item_row_t* item_row)
 {
+    // Get the arguments from the item_row struct.
     int16_t dungeon_id = item_row->effect_arg1;
     int16_t silver_rupee_id = item_row->effect_arg2;
 
+    // Get the data for this silver rupee puzzle
     silver_rupee_data_t var = silver_rupee_vars[silver_rupee_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
 
+    // Check if player has collected the required amount for this puzzle
     if (extended_savectx.silver_rupee_counts[silver_rupee_id] + 1 >= var.needed_count) {
-        return item_row->text_id + 0x16;
+        return item_row->text_id + 0x16; // Return the new text_id
     }
-    return item_row->text_id;
+    return item_row->text_id; // Return the base text_id
 }
 
 item_row_t *get_item_row(uint16_t item_id) {
