@@ -108,8 +108,7 @@
             "Water Temple Morpha Heart": "'Defeat Morpha'"
         },
         "exits": {
-            # The Water temple entrance from the boss door currently does not exist, so the front entrance is reused instead
-            "Water Temple Lobby": "False",
+            "Water Temple Before Boss": "False",
             "Lake Hylia": "'Defeat Morpha'"
         }
     },

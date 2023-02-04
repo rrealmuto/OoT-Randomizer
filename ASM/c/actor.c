@@ -138,6 +138,17 @@ z64_actor_t *Actor_SpawnEntry_Hack(void *actorCtx, ActorEntry *actorEntry, z64_g
     return spawned;
 }
 
+z64_actor_t *Player_SpawnEntry_Hack(void *actorCtx, ActorEntry *playerEntry, z64_game_t *globalCtx) {
+    if (z64_file.entrance_index == 0x423) {
+        playerEntry->pos.y = 1000;
+        playerEntry->pos.z = -1960;
+        playerEntry->rot.y = 0;
+        playerEntry->params = 0x0FFF;
+    }
+    return z64_SpawnActor(actorCtx, globalCtx, playerEntry->id, playerEntry->pos.x, playerEntry->pos.y, playerEntry->pos.z,
+           playerEntry->rot.x, playerEntry->rot.y, playerEntry->rot.z, playerEntry->params);
+}
+
 // Override silver rupee spawns.
 bool spawn_override_silver_rupee(ActorEntry *actorEntry, z64_game_t *globalCtx) {
     if (SHUFFLE_SILVER_RUPEES) { // Check if silver rupee shuffle is enabled.

@@ -12,6 +12,7 @@
     {
         "region_name": "Water Temple Before Boss",
         "dungeon": "Water Temple",
+        "savewarp": "Lake Hylia -> Water Temple Lobby",
         "exits": {
             "Morpha Boss Room": "Boss_Key_Water_Temple"
         }

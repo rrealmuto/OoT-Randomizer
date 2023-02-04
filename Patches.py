@@ -1086,6 +1086,9 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     rom.write_int16(0x273E08E, 0xF7F4)  # Z coordinate of Jabu Boss Door Spawn
     rom.write_byte(0x273E27B, 0x05)  # Set Spawn Room to be correct
 
+    # Update the Water Temple Boss Exit to load the correct room
+    rom.write_byte(0x25B82E3, 0x0B)
+
     def set_entrance_updates(entrances):
         for entrance in entrances:
             new_entrance = entrance.data

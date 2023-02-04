@@ -21,8 +21,7 @@
                 at('Water Temple Lowered Water Levels', True) or can_use(Boomerang) or
                 ((can_use(Iron_Boots) or (Progressive_Scale, 2)) and
                     (can_use(Bow) or can_use(Hookshot) or can_use(Slingshot)) and
-                    (can_use(Zora_Tunic) or logic_fewer_tunic_requirements))",
-            "Fairy Pot": "has_bottle and can_use(Longshot)"
+                    (can_use(Zora_Tunic) or logic_fewer_tunic_requirements))"
         },
         "exits": {
             "Lake Hylia": "True",
@@ -36,6 +35,10 @@
     {
         "region_name": "Water Temple Before Boss",
         "dungeon": "Water Temple",
+        "savewarp": "Lake Hylia -> Water Temple Lobby",
+        "locations": {
+            "Fairy Pot": "has_bottle"
+        },
         "exits": {
             "Morpha Boss Room": "Boss_Key_Water_Temple"
         }
