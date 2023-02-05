@@ -1558,6 +1558,11 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     patch_files(rom, mq_scenes)
 
+    # Set the hylian shield discount for the seed
+    possible_discounts = [0x0005, 0x000A, 0x000F, 0x0014, 0x0019, 0x001E, 0x0023, 0x0028]
+    set_discount = random.choice(possible_discounts)
+    rom.write_int16s(0xC0290C, [set_discount for i in range(8)])
+
     ### Load Shop File
     # Move shop actor file to free space
     shop_item_file = File({

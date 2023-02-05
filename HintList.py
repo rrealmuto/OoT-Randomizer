@@ -409,7 +409,7 @@ hintTable = {
     'Boss Key (Water Temple)':                                  (["a master of unlocking for under a vast lake", "a master pass for under a vast lake"], "the Water Temple Boss Key", 'item'),
     'Boss Key (Shadow Temple)':                                 (["a master of unlocking for the house of the dead", "a master pass for the house of the dead"], "the Shadow Temple Boss Key", 'item'),
     'Boss Key (Spirit Temple)':                                 (["a master of unlocking for a goddess of the sand", "a master pass for a goddess of the sand"], "the Spirit Temple Boss Key", 'item'),
-    'Boss Key (Ganons Castle)':                                 (["an master of unlocking", "a floating dungeon's master pass"], "Ganon's Castle Boss Key", 'item'),
+    'Boss Key (Ganons Castle)':                                 (["a master of unlocking a conquered citadel", "a floating dungeon's master pass"], "Ganon's Castle Boss Key", 'item'),
     'Small Key (Forest Temple)':                                (["a tool for unlocking a deep forest", "a dungeon pass for a deep forest", "a lock remover for a deep forest", "a lockpick for a deep forest"], "a Forest Temple Small Key", 'item'),
     'Small Key (Fire Temple)':                                  (["a tool for unlocking a high mountain", "a dungeon pass for a high mountain", "a lock remover for a high mountain", "a lockpick for a high mountain"], "a Fire Temple Small Key", 'item'),
     'Small Key (Water Temple)':                                 (["a tool for unlocking a vast lake", "a dungeon pass for under a vast lake", "a lock remover for under a vast lake", "a lockpick for under a vast lake"], "a Water Temple Small Key", 'item'),

@@ -1,4 +1,7 @@
+import re
+
 from ItemList import item_table
+from RulesCommon import allowed_globals, escape_name
 
 
 class ItemInfo(object):
@@ -8,6 +11,11 @@ class ItemInfo(object):
     medallions = set()
     stones = set()
     junk = {}
+
+    solver_ids = {}
+    bottle_ids = set()
+    medallion_ids = set()
+    stone_ids = set()
 
     def __init__(self, name='', event=False):
         if event:
@@ -32,15 +40,25 @@ class ItemInfo(object):
         self.junk = self.special.get('junk', None)
         self.trade = self.special.get('trade', False)
 
+        self.solver_id = None
+        if name and self.junk is None:
+            esc = escape_name(name)
+            if esc not in ItemInfo.solver_ids:
+                allowed_globals[esc] = ItemInfo.solver_ids[esc] = len(ItemInfo.solver_ids)
+            self.solver_id = ItemInfo.solver_ids[esc]
+
 
 for item_name in item_table:
     ItemInfo.items[item_name] = ItemInfo(item_name)
     if ItemInfo.items[item_name].bottle:
         ItemInfo.bottles.add(item_name)
+        ItemInfo.bottle_ids.add(ItemInfo.solver_ids[escape_name(item_name)])
     if ItemInfo.items[item_name].medallion:
         ItemInfo.medallions.add(item_name)
+        ItemInfo.medallion_ids.add(ItemInfo.solver_ids[escape_name(item_name)])
     if ItemInfo.items[item_name].stone:
         ItemInfo.stones.add(item_name)
+        ItemInfo.stone_ids.add(ItemInfo.solver_ids[escape_name(item_name)])
     if ItemInfo.items[item_name].junk is not None:
         ItemInfo.junk[item_name] = ItemInfo.items[item_name].junk
 
@@ -66,6 +84,10 @@ class Item(object):
         self.special = self.info.special
         self.index = self.info.index
         self.alias = self.info.alias
+
+        self.solver_id = self.info.solver_id
+        # Do not alias to junk--it has no solver id!
+        self.alias_id = ItemInfo.solver_ids[escape_name(self.alias[0])] if self.alias else None
 
 
     item_worlds_to_fix = {}
@@ -189,7 +211,7 @@ def ItemFactory(items, world=None, event=False):
 
 def MakeEventItem(name, location, item=None):
     if item is None:
-        item = ItemFactory(name, location.world, event=True)
+        item = Item(name, location.world, event=True)
     location.world.push_item(location, item)
     location.locked = True
     if name not in item_table:

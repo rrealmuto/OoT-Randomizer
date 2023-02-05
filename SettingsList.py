@@ -6347,7 +6347,7 @@ def build_close_match(name, value_type, source_list=None):
     return "" # No matches
 
 
-def validate_settings(settings_dict):
+def validate_settings(settings_dict, *, check_conflicts=True):
     for setting, choice in settings_dict.items():
         # Ensure the supplied setting name is a real setting
         if setting not in [x.name for x in setting_infos]:
@@ -6369,7 +6369,7 @@ def validate_settings(settings_dict):
         elif info.choice_list and choice not in info.choice_list:
             raise ValueError('%r is not a valid choice for setting %r. %s' % (choice, setting, build_close_match(choice, 'choice', info.choice_list)))
         # Ensure no conflicting settings are specified
-        if info.disable != None:
+        if check_conflicts and info.disable != None:
             for option, disabling in info.disable.items():
                 negative = False
                 if isinstance(option, str) and option[0] == '!':
@@ -6387,9 +6387,8 @@ def validate_settings(settings_dict):
 
 def validate_disabled_setting(settings_dict, setting, choice, other_setting):
     if other_setting in settings_dict:
-        disabled_default = get_setting_info(other_setting).disabled_default
-        if settings_dict[other_setting] != disabled_default:
-            raise ValueError(f'{other_setting!r} must be set to {disabled_default!r} since {setting!r} is set to {choice!r}')
+        if settings_dict[other_setting] != get_setting_info(other_setting).disabled_default:
+            raise ValueError(f'The {other_setting!r} setting cannot be used since {setting!r} is set to {choice!r}')
 
 class UnmappedSettingError(Exception):
     pass

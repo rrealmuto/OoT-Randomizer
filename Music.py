@@ -156,7 +156,7 @@ def process_sequences(rom, ids, seq_type='bgm', disabled_source_sequences=None, 
     # Process music data in data/Music/
     # Each sequence requires a valid .seq sequence file and a .meta metadata file
     # Current .meta format: Cosmetic Name\nInstrument Set\nPool
-    for dirpath, _, filenames in os.walk(u'./data/Music', followlinks=True):
+    for dirpath, _, filenames in os.walk(os.path.join(data_path(), 'Music'), followlinks=True):
         for fname in filenames:
             # Skip if included in exclusion file
             if fname in seq_exclusion_list:

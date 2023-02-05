@@ -108,8 +108,8 @@ class Search(object):
                     if exit.connected_region.provides_time and not regions[exit.world.get_region('Root')] & exit.connected_region.provides_time:
                         exit_queue.extend(failed)
                         failed = []
+                        regions[exit.world.get_region('Root')] |= exit.connected_region.provides_time
                     regions[exit.connected_region] = exit.connected_region.provides_time
-                    regions[exit.world.get_region('Root')] |= exit.connected_region.provides_time
                     exit_queue.extend(exit.connected_region.exits)
                 else:
                     failed.append(exit)
@@ -291,6 +291,8 @@ class Search(object):
     def iter_pseudo_starting_locations(self):
         for state in self.state_list:
             for location in state.world.distribution.skipped_locations:
+                # We need to use the locations in the current world
+                location = state.world.get_location(location.name)
                 self._cache['visited_locations'].add(location)
                 yield location
 

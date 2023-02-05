@@ -976,7 +976,7 @@ def get_specific_multi_hint(spoiler, world, checked, hint):
     for i in range(location_count):
         colors = ['Green'] + colors
         if i == location_count - 1:
-            gossip_string = gossip_string + 'and #%s#'
+            gossip_string = gossip_string + 'and #%s#.'
         else:
             gossip_string = gossip_string + '#%s# '
 

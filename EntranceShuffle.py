@@ -475,9 +475,32 @@ def shuffle_random_entrances(worlds):
             one_way_entrance_pools['WarpSong'] = world.get_shufflable_entrances(type='WarpSong')
             if worlds[0].settings.reachable_locations != 'beatable' and worlds[0].settings.logic_rules == 'glitchless':
                 # In glitchless, there aren't any other ways to access these areas
-                one_way_priorities['Bolero'] = priority_entrance_table['Bolero']
-                one_way_priorities['Nocturne'] = priority_entrance_table['Nocturne']
-                if not worlds[0].shuffle_dungeon_entrances and not worlds[0].settings.shuffle_overworld_entrances:
+                wincons = [worlds[0].settings.bridge, worlds[0].settings.shuffle_ganon_bosskey]
+                if worlds[0].settings.shuffle_ganon_bosskey == 'on_lacs':
+                    wincons.append(worlds[0].settings.lacs_condition)
+                if (
+                    worlds[0].settings.reachable_locations == 'all'
+                    or ('tokens' in wincons and worlds[0].settings.tokensanity in ('off', 'dungeons'))
+                ):
+                    one_way_priorities['Bolero'] = priority_entrance_table['Bolero']
+                if (
+                    worlds[0].settings.reachable_locations == 'all'
+                    or 'dungeons' in wincons
+                    or ('stones' in wincons and 'medallions' in wincons)
+                    or ('tokens' in wincons and worlds[0].settings.tokensanity in ('off', 'overworld'))
+                ):
+                    one_way_priorities['Nocturne'] = priority_entrance_table['Nocturne']
+                if (
+                    not worlds[0].shuffle_dungeon_entrances
+                    and not worlds[0].settings.shuffle_overworld_entrances
+                    and not worlds[0].shuffle_special_interior_entrances
+                    and (
+                        worlds[0].settings.reachable_locations == 'all'
+                        or 'dungeons' in wincons
+                        or ('stones' in wincons and 'medallions' in wincons)
+                        or ('tokens' in wincons and worlds[0].settings.tokensanity != 'all')
+                    )
+                ):
                     one_way_priorities['Requiem'] = priority_entrance_table['Requiem']
 
         if worlds[0].settings.shuffle_bosses == 'full':

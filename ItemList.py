@@ -165,6 +165,7 @@ item_table = {
     'Shadow Trial Clear':               ('Event',    True,  None, None),
     'Spirit Trial Clear':               ('Event',    True,  None, None),
     'Light Trial Clear':                ('Event',    True,  None, None),
+    'Epona':                            ('Event',    True,  None, None),
 
     'Deku Stick Drop':                  ('Drop',     True,  None, None),
     'Deku Nut Drop':                    ('Drop',     True,  None, None),
