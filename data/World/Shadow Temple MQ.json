@@ -131,7 +131,7 @@
     {
         "region_name": "Shadow Temple Lower Huge Pit",
         "dungeon": "Shadow Temple",
-        "location": {
+        "locations": {
             "Shadow Temple MQ Huge Pit Lower Beamos": "has_explosives"
         },
         "exits": {
