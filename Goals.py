@@ -126,7 +126,7 @@ class GoalCategory(object):
                 if goal.items:
                     if all(map(full_search.state_list[index].has_item_goal, goal.items)):
                         for i in goal.items:
-                            i['quantity'] = min(full_search.state_list[index].item_count(i['name']), i['quantity'])
+                            i['quantity'] = min(full_search.state_list[index].item_name_count(i['name']), i['quantity'])
 
 
 def replace_goal_names(worlds):

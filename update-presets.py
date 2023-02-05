@@ -78,7 +78,7 @@ if __name__ == '__main__':
     elif arguments['--hook']:
         complete_presets(new_presets, False)
         with open('data/presets_default.json', encoding='utf-8') as f:
-            if f.read() != json.dumps(new_presets, indent=2) + '\n':
+            if f.read() != json.dumps(new_presets, indent=4) + '\n':
                 raise ValueError('presets not formatted correctly, run .\\update-presets.py to fix')
     else:
         if arguments['--from']:
@@ -87,5 +87,5 @@ if __name__ == '__main__':
             source = None
         complete_presets(new_presets, True, preset=arguments['--preset'], source=source)
         with open('data/presets_default.json', 'w', encoding='utf-8') as f:
-            json.dump(new_presets, f, indent=2)
+            json.dump(new_presets, f, indent=4)
             print(file=f)

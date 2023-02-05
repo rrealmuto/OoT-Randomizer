@@ -134,6 +134,27 @@ def scan(bytes, data, start=0):
                 preceedingBytes = bytes[i-4:i]
                 if preceedingBytes == bytearray(b'FPS.'):
                     dataindex = 0
+            # More special cases added by the new pipeline...
+            # Hand.L and Hand.R are forward subsets of Gauntlet.Hand.X, FPS.Hand.X
+            # And Hand.L specifically is a forward subset of Bottle.Hand.L
+            if isinstance(data, str) and data in ["Hand.L", "Hand.R"] and dataindex == 1:
+                if i > 8:
+                    preceedingBytes = bytes[i-9:i]
+                    if preceedingBytes == bytearray(b'Gauntlet.'):
+                        dataindex = 0
+                if dataindex == 1 and i > 3:
+                    preceedingBytes = bytes[i-4:i]
+                    if preceedingBytes == bytearray(b'FPS.'):
+                        dataindex = 0
+                if data == "Hand.L" and dataindex == 1 and i > 6:
+                    preceedingBytes = bytes[i-7:i]
+                    if preceedingBytes == bytearray(b'Bottle.'):
+                        dataindex = 0
+            # Forearm.L and Forearm.R are forward subsets of FPS.Forearm.X
+            if isinstance(data, str) and data in ["Forearm.L", "Forearm.R"] and dataindex == 1 and i > 3:
+                preceedingBytes = bytes[i-4:i]
+                if preceedingBytes == bytearray(b'FPS.'):
+                    dataindex = 0
             # All bytes have been found, so a match
             if dataindex == len(databytes):
                 # If start is 0 then looking for the footer, return the index
@@ -486,11 +507,17 @@ def LoadModel(rom, model, age):
         # First, make sure all important bytes are zeroed out
         for i in range(LUT_START, LUT_END):
             zobj[i] = 0x00
-        # Find which pieces are missing from this model
+        # Locate the manifest
         footerstart = scan(zobj, "!PlayAsManifest0")
         if footerstart == -1:
             raise ModelDefinitionError("No manifest found in " + agestr + " model- Did you check \"Embed play-as data\" in zzconvert?")
         startaddr = footerstart - len("!PlayAsManifest0")
+        # Check if this is a new pipeline model
+        if scan(zobj, "riggedmesh", startaddr) != -1:
+            # Replace Limb x names with the new pipeline names
+            for oldName, newName in oldToNewPipeline.items():
+                pieces[newName] = pieces.pop(oldName)
+        # Find which pieces, if any, are missing from this model
         missing = []
         present = {}
         DLOffsets = {}
@@ -1229,6 +1256,27 @@ childSkeleton = [
     [0x0291, 0xFDF5, 0x016F], # Limb 19
     [0x0000, 0x0000, 0x0000], # Limb 20
 ]
+
+# Maps old pipeline limb names to new pipeline names
+oldToNewPipeline = {
+    "Limb 1": "Waist",
+    "Limb 3": "Thigh.R",
+    "Limb 4": "Shin.R",
+    "Limb 5": "Foot.R",
+    "Limb 6": "Thigh.L",
+    "Limb 7": "Shin.L",
+    "Limb 8": "Foot.L",
+    "Limb 10": "Head",
+    "Limb 11": "Hat",
+    "Limb 12": "Collar",
+    "Limb 13": "Shoulder.L",
+    "Limb 14": "Forearm.L",
+    "Limb 15": "Hand.L",
+    "Limb 16": "Shoulder.R",
+    "Limb 17": "Forearm.R",
+    "Limb 18": "Hand.R",
+    "Limb 20": "Torso",
+}
 
 # Misc. constants
 CODE_START          = 0x00A87000

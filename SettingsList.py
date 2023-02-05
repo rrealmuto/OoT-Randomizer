@@ -6889,9 +6889,8 @@ def validate_settings(settings_dict, *, allow_world_entries=True, check_conflict
 
 def validate_disabled_setting(settings_dict, setting, choice, other_setting):
     if other_setting in settings_dict:
-        disabled_default = get_setting_info(other_setting).disabled_default
-        if settings_dict[other_setting] != disabled_default:
-            raise ValueError(f'{other_setting!r} must be set to {disabled_default!r} since {setting!r} is set to {choice!r}')
+        if settings_dict[other_setting] != get_setting_info(other_setting).disabled_default:
+            raise ValueError(f'The {other_setting!r} setting cannot be used since {setting!r} is set to {choice!r}')
 
 class UnmappedSettingError(Exception):
     pass

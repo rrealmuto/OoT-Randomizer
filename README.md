@@ -11,7 +11,7 @@ This branch is available to use online at <https://ootrandomizer.com/generatorDe
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
 * New settings and options:
-  * Work-in-progress “Shuffle Dungeon Rewards” setting ([#1833](https://github.com/TestRunnerSRL/OoT-Randomizer/issues/1833))
+  * New “Shuffle Dungeon Rewards” setting ([#1833](https://github.com/TestRunnerSRL/OoT-Randomizer/issues/1833))
   * New “Bosses” option for the “Mix Entrance Pools” setting (based on [#1820](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1820))
   * New “Shuffle Silver Rupees” and “Silver Rupee Pouches” settings (based on [#1814](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1814))
   * New “Triforce Hunt Mode” setting with “Normal”, “Easter Egg Hunt”, “Ice%”, and “Triforce Blitz” options (Easter Egg Hunt based on [#1804](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1804), Triforce Blitz based on [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev))
@@ -178,13 +178,20 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * New `Important Checks` hint type which hints at how many major items are in a given region.
   * New Misc. Hint `Frogs Ocarina Game` which tells you what item you'll get from the Zora's River frog minigame. The hint appears in the dialog box that's printed before they jump onto the log.
   * Add a goal category for the items required to open the Door of Time, if it's closed.
+* **Other**
+  * When picking up a small key after the first, the text box will now inform you how many you've found total.
 
 #### Bug Fixes
-* Fix an issue where the `path of hearts` goal wasn't enabled in certain circumstances with a Ganon's Boss Key or LACS `Hearts` goal.
-* Fix an issue where CSMC chests containing ice traps were not moved correctly.
-* Fix the bingosync URL not being referenced correctly.
-* The ocarina can no longer be pulled out mid-hookshot via the D-Pad to cancel the hookshot pull.
-* Fix the change which makes graveyard grave hole ledges un-grabbable incorrectly applied to other ledges in the graveyard area.
+* **Misc.**
+  * Fix an issue where the `path of hearts` goal wasn't enabled in certain circumstances with a Ganon's Boss Key or LACS `Hearts` goal.
+  * Fix an issue where CSMC chests containing ice traps were not moved correctly.
+  * Fix the bingosync URL not being referenced correctly.
+  * The ocarina can no longer be pulled out mid-hookshot via the D-Pad to cancel the hookshot pull.
+  * Fix the change which makes graveyard grave hole ledges un-grabbable incorrectly applied to other ledges in the graveyard area.
+  * Fix the file path for custom music on some Linux machines.
+* **Hints**
+  * Fix the cryptic hint for Ganon's Castle Boss Key.
+  * Fix missing punctuation in dual hints.
 
 #### Other Changes
 * `Closed Forest` is no longer changed to `Closed Deku` when `Shuffle Boss Entrances` is enabled.
@@ -196,9 +203,15 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Currently worn mask will now be preserved when transitioning scenes or resetting.
 * The ocarina can now be used in some rooms it cannot normally be used in to allow warping out of them.
 * Link the Goron will now give you the item reward regardless of which dialog option you choose.
+* Models created using the newer ModLoder64 pipeline are now compatible with the randomizer.
+* The price of the shield discount after selling the Kakariko guard the Keaton mask is now set at patch time and thus consistent between different players of a seed.
+* Add binaries to support Windows on ARM64.
+* Priority placement of certain warp songs is now conditional if `Guarantee Reachable Locations` is set to `All Goals` or `Required Only`.
+* Improve speed generation time.
 
 #### Plandomizer
 * Plandomizer now allows you to specify locations that are valid but do not exist in your current seed, for example, an MQ-specific location when that dungeon is Vanilla.
+* Error messages for conflicting settings have been improved.
 
 ### 7.1
 

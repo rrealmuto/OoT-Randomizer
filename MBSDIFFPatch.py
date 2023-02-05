@@ -16,14 +16,16 @@ def apply_ootr_3_web_patch(settings, rom: Rom, window):
     minibsdiff_path = "./" if is_bundled() else "bin/minibsdiff/"
     minibsdiff_python = False
     if platform.system() == 'Windows':
-        if 8 * struct.calcsize("P") == 64:
+        if platform.machine() == 'AMD64':
             minibsdiff_path += "minibsdiff.exe"
+        elif platform.machine() == 'ARM64':
+            minibsdiff_path += "minibsdiff_ARM64.exe"
         else:
             minibsdiff_path += "minibsdiff32.exe"
     elif platform.system() == 'Linux':
-        if platform.machine() in ['arm64', 'aarch64', 'aarch64_be', 'armv8b', 'armv8l']:
+        if platform.machine() in ('arm64', 'aarch64', 'aarch64_be', 'armv8b', 'armv8l'):
             minibsdiff_path += "minibsdiff_ARM64"
-        elif platform.machine() in ['arm', 'armv7l', 'armhf']:
+        elif platform.machine() in ('arm', 'armv7l', 'armhf'):
             minibsdiff_path += "minibsdiff_ARM32"
         else:
             minibsdiff_path += "minibsdiff"
