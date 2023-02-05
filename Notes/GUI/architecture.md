@@ -72,7 +72,7 @@ The sections array follows that is used to group settings together in a tab. The
 * is-colors &rarr; Used to identify sections that contain settings with a Custom Color option which attaches the color picker module to these sections
 * is-sfx &rarr;Used to identify SFX related sections. Not used at the moment and can be removed
 * col-span &rarr; How many columns this section should try to occupy, affecting its width. If not set, the GUI will calculate a proper col-span automatically based on the number of columns available. On its biggest size the GUI can fit 4 columns per row, on its smallest 1. If this setting is used and not enough columns are available to satisfy this setting, it takes as many as possible. Thus setting a col-span of 4 will ensure that the section always takes up one full row regardless of GUI size
-* row-span &rarr; Required and has to be set. How many rows this section should try to occupy, affecting its height. The GUI will distribute the available height evenly between each row, thus giving a section 2 rows will proportionally make it have a greater height than with 1
+* row-span &rarr; Required and has to be set. How many rows this section should try to occupy, affecting its height. The GUI will distribute the available height evenly between each row, thus giving a section 2 rows will proportionally make it have a greater height than with 1. The three different numbers represent three different screen size presets: mobile, tablet, desktop
 * settings &rarr; An array of settings to render in the section, see next
 
 The settings array follows that defines the settings that should appear in this section. The following keys are supported:
