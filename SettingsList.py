@@ -4951,8 +4951,8 @@ setting_infos = [
     Checkbutton(
         name           = 'key_appearance_match_dungeon',
         gui_text       = 'Key Appearance Matches Dungeon',
-        gui_tooltip    = '''\Small keys, key rings, and boss keys
-                        will be color to match their dungeon''',
+        gui_tooltip    = '''Small keys, key rings, and boss keys
+                        will be colored to match their dungeon''',
         shared         = True,
         default        = True,
     ),
