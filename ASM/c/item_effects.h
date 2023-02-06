@@ -52,6 +52,7 @@ typedef struct {
     uint8_t r;
     uint8_t g;
     uint8_t b;
+    uint8_t room;
 } silver_rupee_data_t;
 
 extern silver_rupee_data_t silver_rupee_vars[0x16][2];
