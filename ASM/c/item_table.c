@@ -422,15 +422,9 @@ uint16_t resolve_item_text_id(item_row_t *item_row, uint16_t item_id, bool is_ou
     }
 }
 
-uint16_t resolve_upgrades(uint16_t item_id) {
-    for (;;) {
-        item_row_t *item_row = get_item_row(item_id);
-        uint16_t new_item_id = item_row->upgrade(&z64_file, item_id);
-        if (new_item_id == item_id) {
-            return item_id;
-        }
-        item_id = new_item_id;
-    }
+uint16_t resolve_upgrades(override_t override) {
+    item_row_t *item_row = get_item_row(override.value.base.item_id);
+    return item_row->upgrade(&z64_file, override);
 }
 
 void call_effect_function(item_row_t *item_row) {
