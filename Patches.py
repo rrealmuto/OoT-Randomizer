@@ -2217,6 +2217,10 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     symbol = rom.sym('POTCRATE_TEXTURES_MATCH_CONTENTS')
     rom.write_byte(symbol, ptmc_options[world.settings.correct_potcrate_appearances])
 
+    # Key appearance matches dungeon
+    symbol = rom.sym('CFG_KEY_APPEARANCE_MATCH_DUNGEON')
+    rom.write_byte(symbol, world.settings.key_appearance_match_dungeon)
+
     # give dungeon items the correct messages
     add_item_messages(messages, shop_items, world)
     if world.settings.enhance_map_compass:
