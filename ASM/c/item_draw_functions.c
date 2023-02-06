@@ -431,11 +431,15 @@ void draw_gi_song_notes(z64_game_t *game, uint32_t draw_id) {
 
 void draw_gi_small_keys(z64_game_t *game, uint32_t draw_id) {
     z64_gfx_t *gfx = game->common.gfx;
+    if(!CFG_KEY_APPEARANCE_MATCH_DUNGEON) {
+        draw_id = item_draw_table[draw_id].args[3].dlist;
+    }
     colorRGBA8_t prim_color = item_draw_table[draw_id].args[1].color;
     colorRGBA8_t env_color = item_draw_table[draw_id].args[2].color;
 
     append_setup_dl_25_to_opa(gfx);
     gSPMatrix(gfx->poly_opa.p++, append_sys_matrix(gfx), G_MTX_MODELVIEW | G_MTX_LOAD | G_MTX_NOPUSH);
+    gDPSetCombineMode(gfx->poly_opa.p++, G_CC_MODULATEI_PRIM, G_CC_MODULATEI_PRIM);
     gDPSetPrimColor(gfx->poly_opa.p++, 0, 0x80, prim_color.r, prim_color.g, prim_color.b, prim_color.a);
     gDPSetEnvColor(gfx->poly_opa.p++, env_color.r, env_color.g, env_color.b, env_color.a);
     gSPDisplayList(gfx->poly_opa.p++, item_draw_table[draw_id].args[0].dlist);
@@ -443,11 +447,18 @@ void draw_gi_small_keys(z64_game_t *game, uint32_t draw_id) {
 
 void draw_gi_boss_keys(z64_game_t *game, uint32_t draw_id) {
     z64_gfx_t *gfx = game->common.gfx;
+    if(!CFG_KEY_APPEARANCE_MATCH_DUNGEON) {
+        draw_id = 0x09;
+    }
     colorRGBA8_t prim_color = item_draw_table[draw_id].args[2].color;
     colorRGBA8_t env_color = item_draw_table[draw_id].args[3].color;
 
+    colorRGBA8_t prim_color_key = item_draw_table[draw_id].args[4].color;
+    colorRGBA8_t env_color_key = item_draw_table[draw_id].args[5].color;
     append_setup_dl_25_to_opa(gfx);
     gSPMatrix(gfx->poly_opa.p++, append_sys_matrix(gfx), G_MTX_MODELVIEW | G_MTX_LOAD | G_MTX_NOPUSH);
+    gDPSetPrimColor(gfx->poly_opa.p++, 0, 0x80, prim_color_key.r, prim_color_key.g, prim_color_key.b, prim_color_key.a);
+    gDPSetEnvColor(gfx->poly_opa.p++, env_color_key.r, env_color_key.g, env_color_key.b, env_color_key.a);
     gSPDisplayList(gfx->poly_opa.p++, item_draw_table[draw_id].args[0].dlist);
 
     append_setup_dl_25_to_xlu(gfx);

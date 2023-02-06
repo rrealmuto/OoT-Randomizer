@@ -164,7 +164,8 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     # Remove color commands inside certain object display lists
     rom.write_int32s(0x1455818, [0x00000000, 0x00000000, 0x00000000, 0x00000000]) # Small Key
-    rom.write_int32s(0x14B9F20, [0x00000000, 0x00000000, 0x00000000, 0x00000000]) # Boss Key
+    rom.write_int32s(0x14B9CB8, [0x00000000, 0x00000000, 0x00000000, 0x00000000]) # Boss Key (Key)
+    rom.write_int32s(0x14B9F20, [0x00000000, 0x00000000, 0x00000000, 0x00000000]) # Boss Key (Gem)
 
     # Force language to be English in the event a Japanese rom was submitted
     rom.write_byte(0x3E, 0x45)
@@ -2215,6 +2216,10 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     }
     symbol = rom.sym('POTCRATE_TEXTURES_MATCH_CONTENTS')
     rom.write_byte(symbol, ptmc_options[world.settings.correct_potcrate_appearances])
+
+    # Key appearance matches dungeon
+    symbol = rom.sym('CFG_KEY_APPEARANCE_MATCH_DUNGEON')
+    rom.write_byte(symbol, world.settings.key_appearance_match_dungeon)
 
     # give dungeon items the correct messages
     add_item_messages(messages, shop_items, world)
