@@ -96,6 +96,40 @@ int d_right_dungeon_idx(int i) {
     return dungeon_idx;
 }
 
+void draw_silver_rupee_count(z64_game_t* globalCtx, z64_disp_buf_t *db) {
+    uint8_t scene = globalCtx->scene_index;
+    uint8_t room = globalCtx->room_index;
+
+    for(int i = 0; i < dungeon_count; i++)
+    {
+        if(scene != dungeons[i].index) continue;
+
+        dungeon_entry_t dungeon = dungeons[i];
+        uint8_t *silver_rupee_puzzles = CFG_DUNGEON_IS_MQ[dungeon.index] ? dungeon.silver_rupee_puzzles_mq : dungeon.silver_rupee_puzzles_vanilla;
+        for (int puzzle_idx = 0; puzzle_idx < 4; puzzle_idx++) {
+            if (silver_rupee_puzzles[puzzle_idx] == (uint8_t) -1) break;
+            silver_rupee_data_t silver_rupee_info = silver_rupee_vars[silver_rupee_puzzles[puzzle_idx]][CFG_DUNGEON_IS_MQ[dungeon.index]];
+            if(silver_rupee_info.room == room) {
+                // Draw silver rupee icon
+                gDPPipeSync(db->p++);
+                gDPSetCombineMode(db->p++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
+                gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, globalCtx->hud_alpha_channels.rupees_keys_magic);
+                gDPPipeSync(db->p++);
+                sprite_texture(db, &key_rupee_clock_sprite, 1, 26, 174, 16, 16);
+
+                uint8_t count = extended_savectx.silver_rupee_counts[silver_rupee_puzzles[puzzle_idx]];
+                // Draw silver rupee count
+                gDPPipeSync(db->p++);
+                gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, globalCtx->hud_alpha_channels.rupees_keys_magic);
+    
+                gDPSetCombineLERP(db->p++, 0, 0, 0, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, PRIMITIVE,
+                                      TEXEL0, 0, PRIMITIVE, 0);
+                sprite_texture(db, &rupee_digit_sprite, count, 42, 174, 8, 16);
+                break;
+            }
+        }
+    }
+}
 void draw_dungeon_info(z64_disp_buf_t *db) {
     pad_t pad_held = z64_ctxt.input[0].raw.pad;
     int draw = CAN_DRAW_DUNGEON_INFO && (
