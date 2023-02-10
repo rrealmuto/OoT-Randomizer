@@ -14,6 +14,7 @@ Wonderitem Shuffle - Shuffles wonderitems - which include invisible rupees and i
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v19](#v19)
   * [v18](#v18)
   * [v17](#v17)
   * [v16](#v16)
@@ -36,6 +37,9 @@ Wonderitem Shuffle - Shuffles wonderitems - which include invisible rupees and i
   * [4.0](#40)
 
 ## RealRob Changelog
+### v19
+  * Enemy Drop Shuffle Fixes:
+    * Fix MQ GTG Heavy Block Room enemy logic
 
 ### v18
   * New Setting - Key Appearance Matches Dungeon
