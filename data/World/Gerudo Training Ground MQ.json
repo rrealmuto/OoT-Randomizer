@@ -140,11 +140,11 @@
             "Gerudo Training Ground MQ Before Heavy Block Skulltula 1": "is_adult",
             "Gerudo Training Ground MQ Before Heavy Block Skulltula 2": "is_adult",
             "Gerudo Training Ground MQ Before Heavy Block Skulltula 3": "is_adult",
-            "Gerudo Training Ground MQ Heavy Block Freezard 1": "is_adult",
-            "Gerudo Training Ground MQ Heavy Block Freezard 2": "is_adult",
-            "Gerudo Training Ground MQ Heavy Block Spike 1": "is_adult",
-            "Gerudo Training Ground MQ Heavy Block Spike 2": "is_adult",
-            "Gerudo Training Ground MQ Heavy Block Spike 3": "is_adult",
+            "Gerudo Training Ground MQ Heavy Block Freezard 1": "can_use(Silver_Gauntlets)",
+            "Gerudo Training Ground MQ Heavy Block Freezard 2": "can_use(Silver_Gauntlets)",
+            "Gerudo Training Ground MQ Heavy Block Spike 1": "can_use(Silver_Gauntlets)",
+            "Gerudo Training Ground MQ Heavy Block Spike 2": "can_use(Silver_Gauntlets)",
+            "Gerudo Training Ground MQ Heavy Block Spike 3": "can_use(Silver_Gauntlets)",
             "Blue Fire": "has_bottle"
         },
         "exits": {
