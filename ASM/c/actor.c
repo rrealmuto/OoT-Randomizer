@@ -83,11 +83,9 @@ void Actor_StoreFlagInRotation(z64_actor_t *actor, z64_game_t *game, uint16_t ac
 
 // For pots/crates/beehives, determine the override and store the chest type in new space in the actor instance
 // So we don't have to hit the override table every frame.
-void Actor_StoreChestType(z64_actor_t *actor, z64_game_t *game) {
-    uint8_t *pChestType = NULL;
-    override_t override;
-    override.key.all = 0;
-    override.value.all = 0;
+void Actor_StoreChestType(z64_actor_t* actor, z64_game_t* game) {
+    uint8_t* pChestType = NULL;
+    override_t override = { 0 };
 
     if (actor->actor_id == OBJ_TSUBO) { // Pots
         override = get_pot_override(actor, game);
@@ -108,11 +106,11 @@ void Actor_StoreChestType(z64_actor_t *actor, z64_game_t *game) {
     if (override.key.all != 0 && pChestType != NULL) { // If we don't have an override key, then either this item doesn't have an override entry, or it has already been collected.
         if (POTCRATE_TEXTURES_MATCH_CONTENTS == PTMC_UNCHECKED && override.key.all > 0) { // For "unchecked" PTMC setting: Check if we have an override which means it wasn't collected.
             *pChestType = GILDED_CHEST;
-        } else if (POTCRATE_TEXTURES_MATCH_CONTENTS == PTMC_CONTENTS) {
-            uint16_t item_id = resolve_upgrades(override.value.item_id);
+        } else if(POTCRATE_TEXTURES_MATCH_CONTENTS == PTMC_CONTENTS) {
+            uint16_t item_id = resolve_upgrades(override.value.base.item_id);
             item_row_t *row = get_item_row(override.value.looks_like_item_id);
             if (row == NULL) {
-                row = get_item_row(override.value.item_id);
+                row = get_item_row(override.value.base.item_id);
             }
             *pChestType = row->chest_type;
         } else {

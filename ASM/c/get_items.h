@@ -31,17 +31,25 @@ typedef union overide_key_t {
     };
 } override_key_t;
 
-typedef union override_value_t {
+// a type used when the cloak of an ice trap is irrelevant
+typedef union override_value_base_t {
     uint32_t all;
     struct {
         uint16_t item_id;
-        uint8_t  player;
-        uint8_t  looks_like_item_id;
+        uint8_t player;
+        uint8_t _pad;
     };
+} override_value_base_t;
+
+typedef struct {
+    override_value_base_t base;
+    uint16_t looks_like_item_id;
+    uint16_t _pad;
 } override_value_t;
 
 typedef struct {
-    override_key_t   key;
+    override_key_t key;
+    uint32_t _pad;
     override_value_t value;
 } override_t;
 

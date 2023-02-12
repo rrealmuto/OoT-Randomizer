@@ -186,7 +186,7 @@ override_key_t resolve_alternative_override(override_key_t override_key) {
 }
 
 void activate_override(override_t override) {
-    uint16_t resolved_item_id = resolve_upgrades(override.value.item_id);
+    uint16_t resolved_item_id = resolve_upgrades(override.value.base.item_id);
     item_row_t *item_row = get_item_row(resolved_item_id);
     uint16_t resolved_text_id = resolve_text_id(item_row);
 
@@ -194,7 +194,7 @@ void activate_override(override_t override) {
     if (resolved_item_id == 0xCA) {
         active_override_is_outgoing = 2; // Send to everyone
     } else {
-        active_override_is_outgoing = override.value.player != PLAYER_ID;
+        active_override_is_outgoing = override.value.base.player != PLAYER_ID;
     }
     active_item_row = item_row;
     active_item_action_id = item_row->action_id;
@@ -205,7 +205,7 @@ void activate_override(override_t override) {
         item_row = get_item_row(override.value.looks_like_item_id);
     }
     active_item_fast_chest = item_row->chest_type == BROWN_CHEST || item_row->chest_type == SILVER_CHEST || item_row->chest_type == SKULL_CHEST_SMALL;
-    PLAYER_NAME_ID = override.value.player;
+    PLAYER_NAME_ID = override.value.base.player;
 }
 
 void clear_override() {
@@ -224,8 +224,8 @@ override_t outgoing_queue[8] = { 0 };
 void push_outgoing_override(override_t *override) {
     if (override->key.type != OVR_DELAYED || override->key.flag != 0xFF) { // don't send items received from incoming back to outgoing
         if (OUTGOING_KEY.all == 0) {
-            OUTGOING_ITEM = override->value.item_id;
-            OUTGOING_PLAYER = override->value.player;
+            OUTGOING_ITEM = override->value.base.item_id;
+            OUTGOING_PLAYER = override->value.base.player;
             // Set the value first and then the key, so a plugin checking whether the key is present is guaranteed to see the value as well
             OUTGOING_KEY = override->key;
         } else {
@@ -241,8 +241,8 @@ void push_outgoing_override(override_t *override) {
 
 void move_outgoing_queue() {
     if (OUTGOING_KEY.all == 0) {
-        OUTGOING_ITEM = outgoing_queue[0].value.item_id;
-        OUTGOING_PLAYER = outgoing_queue[0].value.player;
+        OUTGOING_ITEM = outgoing_queue[0].value.base.item_id;
+        OUTGOING_PLAYER = outgoing_queue[0].value.base.player;
         // Set the value first and then the key, so a plugin checking whether the key is present is guaranteed to see the value as well
         OUTGOING_KEY = outgoing_queue[0].key;
         for (int i = 0; i < 7; i++) {
@@ -256,7 +256,7 @@ void push_pending_item(override_t override) {
     for (int key_scene = 0x30; key_scene < 0x36; key_scene += 2) {
         if (z64_file.scene_flags[key_scene].unk_00_ == 0) {
             z64_file.scene_flags[key_scene].unk_00_ = override.key.all;
-            z64_file.scene_flags[key_scene + 1].unk_00_ = override.value.all;
+            z64_file.scene_flags[key_scene + 1].unk_00_ = override.value.base.all;
             break;
         }
         if (z64_file.scene_flags[key_scene].unk_00_ == override.key.all) {
@@ -272,8 +272,8 @@ void push_coop_item() {
         override.key.scene = 0xFF;
         override.key.type = OVR_DELAYED;
         override.key.flag = 0xFF;
-        override.value.player = INCOMING_PLAYER;
-        override.value.item_id = INCOMING_ITEM;
+        override.value.base.player = INCOMING_PLAYER;
+        override.value.base.item_id = INCOMING_ITEM;
         push_pending_item(override);
     }
 }
@@ -319,7 +319,7 @@ void after_key_received(override_key_t key) {
 
 void pop_ice_trap() {
     override_key_t key = { .all = z64_file.scene_flags[0x30].unk_00_ };
-    override_value_t value = { .all = z64_file.scene_flags[0x31].unk_00_ };
+    override_value_base_t value = { .all = z64_file.scene_flags[0x31].unk_00_ };
     if (value.item_id == 0x7C && value.player == PLAYER_ID) {
         push_pending_ice_trap();
         pop_pending_item();
@@ -365,15 +365,15 @@ inline uint32_t link_is_ready() {
 void try_pending_item() {
     override_t override = {
         .key.all = z64_file.scene_flags[0x30].unk_00_,
-        .value.all = z64_file.scene_flags[0x31].unk_00_,
+        .value.base.all = z64_file.scene_flags[0x31].unk_00_,
     };
 
     if(override.key.all == 0) {
         return;
     }
 
-    if (override.value.item_id == 0xCA && override.value.player != PLAYER_ID) {
-        uint16_t resolved_item_id = resolve_upgrades(override.value.item_id);
+    if (override.value.base.item_id == 0xCA && override.value.base.player != PLAYER_ID) {
+        uint16_t resolved_item_id = resolve_upgrades(override.value.base.item_id);
         item_row_t *item_row = get_item_row(resolved_item_id);
         //resolve_text_id(item_row);
         call_effect_function(item_row);
@@ -438,7 +438,7 @@ void get_item(z64_actor_t *from_actor, z64_link_t *link, int8_t incoming_item_id
 
     if (from_actor->actor_id == 0x0A) {
         // Update chest contents
-        if (override.value.item_id == 0x7C && override.value.player == PLAYER_ID && (FAST_CHESTS || active_item_fast_chest)) {
+        if (override.value.base.item_id == 0x7C && override.value.base.player == PLAYER_ID && (FAST_CHESTS || active_item_fast_chest)) {
             // Use ice trap base item ID to freeze Link as the chest opens rather than playing the full item get animation
             base_item_id = 0x7C;
         }
@@ -777,7 +777,7 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
         collectible_mutex = (EnItem00 *)from_actor;
         collectible_override = override;
         // resolve upgrades and figure out what item to give.
-        uint16_t item_id = collectible_override.value.item_id;
+        uint16_t item_id = collectible_override.value.base.item_id;
         uint16_t resolved_item_id = resolve_upgrades(item_id);
         item_row_t *item_row = get_item_row(resolved_item_id);
         uint16_t resolved_text_id = resolve_text_id(item_row);
@@ -787,8 +787,8 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
         //if (item == ITEM00_HEART_PIECE || item == ITEM00_SMALL_KEY) { // Don't allow heart pieces or small keys to be collected a second time. This is really just for the "Drop" types.
         //    z64_SetCollectibleFlags(&z64_game, pItem->collectibleFlag);
         //}
-        item_id = collectible_override.value.item_id;
-        uint8_t player = collectible_override.value.player;
+        item_id = collectible_override.value.base.item_id;
+        uint8_t player = collectible_override.value.base.player;
 
         PLAYER_NAME_ID = player;
 
@@ -833,8 +833,8 @@ void get_skulltula_token(z64_actor_t *token_actor) {
         item_id = 0x5B;
         player = PLAYER_ID;
     } else {
-        item_id = override.value.item_id;
-        player = override.value.player;
+        item_id = override.value.base.item_id;
+        player = override.value.base.player;
     }
 
     uint16_t resolved_item_id = resolve_upgrades(item_id);
