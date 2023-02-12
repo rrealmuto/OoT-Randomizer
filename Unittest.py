@@ -32,7 +32,7 @@ logging.basicConfig(level=logging.INFO, filename=os.path.join(output_dir, 'LAST_
 never_prefix = ['Bombs', 'Arrows', 'Rupee', 'Deku Seeds', 'Map', 'Compass']
 never_suffix = ['Capacity']
 never = {
-    'Bunny Hood', 'Recovery Heart', 'Milk', 'Ice Trap',
+    'Recovery Heart', 'Milk', 'Ice Trap',
     'Double Defense', 'Biggoron Sword', 'Giants Knife',
 } | {name for name, item in ItemInfo.items.items() if item.priority
      or any(map(name.startswith, never_prefix)) or any(map(name.endswith, never_suffix))}
@@ -381,7 +381,7 @@ class TestPlandomizer(unittest.TestCase):
         shuffled_one = "plando-egg-shuffled-one-pool"
         distribution_file, spoiler = generate_with_plandomizer(shuffled_one)
         self.assertEqual(spoiler['item_pool']['Weird Egg'], 1)
-        # Shuffled, two in pool: Shouldn't have more than one, will remove force to 1 in pool
+        # Shuffled, two in pool: Valid config, will end with 2 in pool
         shuffled_two = "plando-egg-shuffled-two-pool"
         distribution_file, spoiler = generate_with_plandomizer(shuffled_two)
         self.assertEqual(spoiler['item_pool']['Weird Egg'], 1)

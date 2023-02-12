@@ -8,7 +8,7 @@
         },
         "exits": {
             "Root Exits": "is_starting_age or Time_Travel",
-            "HC Garden Locations": "shuffle_child_trade == 'skip_child_zelda'"
+            "HC Garden Locations": "skip_child_zelda"
         }
     },
     {
@@ -120,6 +120,8 @@
         "hint": "LOST_WOODS",
         "locations": {
             "LW Skull Kid": "is_child and can_play(Sarias_Song)",
+            "LW Trade Cojiro": "is_adult and Cojiro",
+            "LW Trade Odd Potion": "is_adult and Odd_Potion",
             "LW Ocarina Memory Game": "is_child and Ocarina",
             "LW Target in Woods": "can_use(Slingshot)",
             "LW Deku Scrub Near Bridge": "is_child and can_stun_deku",
@@ -169,7 +171,7 @@
         "region_name": "Sacred Forest Meadow",
         "hint": "SACRED_FOREST_MEADOW",
         "locations": {
-            "Song from Saria": "is_child and Zeldas_Letter",
+            "Song from Saria": "is_child and at('HC Garden Locations', is_child)",
             "Sheik in Forest": "is_adult",
             "SFM GS": "(can_use(Hookshot) or can_hover) and at_night and is_adult",
             "SFM Maze Gossip Stone (Lower)": "True",
@@ -261,6 +263,7 @@
     {
         "region_name": "LH Lab",
         "locations": {
+            "LH Trade Eyeball Frog": "is_adult and Eyeball_Frog",
             "LH Lab Dive": "
                 (Progressive_Scale, 2) or
                 (Iron_Boots and can_use(Hookshot)) or (has_bottle and can_use(Hover_Boots))",
@@ -302,6 +305,7 @@
         "time_passes": true,
         "locations": {
             "GV Chest": "can_use(Megaton_Hammer)",
+            "GV Trade Poachers Saw": "is_adult and Poachers_Saw",
             "GV GS Behind Tent": "can_use(Hookshot) and at_night",
             "GV GS Pillar": "can_use(Hookshot) and at_night"
         },
@@ -457,8 +461,8 @@
         },
         "exits": {
             "Market": "True",
-            #// garden will logically need weird-egg as letter first can screw over the mask quest
-            "HC Garden": "Weird_Egg",
+            #// child trade d-pad menu prevents overwriting Zelda's Letter with Weird Egg
+            "HC Garden": "has_explosives and (can_shield or can_jumpslash)",
             "HC Great Fairy Fountain": "True",
             "HC Storms Grotto": "can_play(Song_of_Storms)"
         }
@@ -540,12 +544,35 @@
     {
         "region_name": "Market Mask Shop",
         "events": {
-            "Skull Mask": "Zeldas_Letter and (complete_mask_quest or at('Kakariko Village', is_child))",
-            "Mask of Truth": "'Skull Mask' and
-                (complete_mask_quest or
-                (at('Lost Woods', is_child and can_play(Sarias_Song)) and
-                 at('Graveyard', is_child and at_day) and
-                 at('Hyrule Field', is_child and has_all_stones)))"
+            "Mask Shop Open": "at('HC Garden Locations', is_child) and 'Kakariko Village Gate Open'",
+            "Mask of Truth Access": "'Mask Shop Open' and (complete_mask_quest or (Bunny_Hood and at('Hyrule Field', is_child and has_all_stones)))"
+        },
+        "locations": {
+            # Gerudo Mask
+            "Market Mask Shop Item 1": "'Mask of Truth Access'",
+            # Zora Mask
+            "Market Mask Shop Item 2": "'Mask of Truth Access'",
+            # Mask of Truth
+            "Market Mask Shop Item 3": "'Mask of Truth Access'",
+            # Goron Mask
+            "Market Mask Shop Item 4": "'Mask of Truth Access'",
+            # Skull Mask
+            "Market Mask Shop Item 5": "
+                'Mask of Truth Access' or
+                ('Mask Shop Open' and Keaton_Mask and at('Kakariko Village', is_child))",
+            # Keaton Mask
+            "Market Mask Shop Item 6": "'Mask Shop Open'",
+            # Bunny Hood
+            "Market Mask Shop Item 7": "
+                'Mask of Truth Access' or
+                ('Mask Shop Open' and Spooky_Mask and at('Graveyard', is_child and at_day))",
+            # Spooky Mask
+            "Market Mask Shop Item 8": "
+                'Mask of Truth Access' or
+                ('Mask Shop Open' and Skull_Mask and at('Lost Woods', is_child and can_play(Sarias_Song)))"
+        },
+        "exits": {
+            "Market": "True"
         }
     },
     {
@@ -557,9 +584,10 @@
     {
         "region_name": "Market Bombchu Bowling",
         "locations": {
-            "Market Bombchu Bowling First Prize": "found_bombchus",
-            "Market Bombchu Bowling Second Prize": "found_bombchus",
-            "Market Bombchu Bowling Bombchus": "found_bombchus"
+            "Market Bombchu Bowling First Prize": "has_explosives",
+            "Market Bombchu Bowling Second Prize": "has_explosives",
+            "Market Bombchu Bowling Bombchus": "has_explosives",
+            "Market Bombchu Bowling Bomb": "has_explosives"
         }
     },
     {
@@ -606,9 +634,13 @@
     {
         "region_name": "Kakariko Village",
         "hint": "KAKARIKO_VILLAGE",
+        "events": {
+            "Kakariko Village Gate Open": "is_child and (Zeldas_Letter or open_kakariko == 'open')"
+        },
         "locations": {
             "Kak Man on Roof": "True",
             "Kak Anju as Adult": "is_adult",
+            "Kak Anju Trade Pocket Cucco": "is_adult and at_day and 'Wake Up Adult Talon'",
             "Kak Anju as Child": "is_child",
             "Sheik in Kakariko": "
                 is_adult and Forest_Medallion and Fire_Medallion and Water_Medallion",
@@ -647,7 +679,10 @@
         }
     },
     {
-        "region_name": "Kak Carpenter Boss House"
+        "region_name": "Kak Carpenter Boss House",
+        "events": {
+            "Wake Up Adult Talon": "is_adult and (Pocket_Egg or Pocket_Cucco)"
+        }
     },
     {
         "region_name": "Kak House of Skulltula",
@@ -722,7 +757,17 @@
         "region_name": "Kak Potion Shop Back"
     },
     {
-        "region_name": "Kak Odd Medicine Building"
+        "region_name": "Kak Odd Medicine Building",
+        "locations": {
+            "Kak Granny Trade Odd Mushroom": "is_adult and Odd_Mushroom",
+            # Granny will not sell her item without turning in odd mushroom
+            # If the adult trade item(s) in the world are all after odd mushroom,
+            # allow any of the later sequence items to satisfy logic. The patcher
+            # sets the flag needed for her to sell stuff if odd mushroom can't be obtained.
+            "Kak Granny Buy Blue Potion": "Progressive_Wallet and is_adult and
+                (Odd_Mushroom or ((Odd_Potion or Poachers_Saw or Broken_Sword or
+                Prescription or Eyeball_Frog or Eyedrops or Claim_Check) and not adult_trade_shuffle))"
+        }
     },
     {
         "region_name": "Graveyard",
@@ -833,6 +878,8 @@
                         Eyedrops or Eyeball_Frog or Prescription or Broken_Sword or
                         at('GV Fortress Side', is_adult and (
                             Poachers_Saw or Odd_Mushroom or Cojiro or Pocket_Cucco or Pocket_Egg)))))",
+            "DMT Trade Broken Sword": "is_adult and Broken_Sword",
+            "DMT Trade Eyedrops": "is_adult and Eyedrops",
             "DMT Gossip Stone": "True"
         },
         "exits": {
@@ -1056,6 +1103,7 @@
             "ZD Chest": "can_use(Sticks)",
             "Deliver Rutos Letter": "(is_child and Rutos_Letter) and zora_fountain != 'open'",
             "ZD King Zora Thawed": "is_adult",
+            "ZD Trade Prescription": "is_adult and Eyeball_Frog",
             "ZD GS Frozen Waterfall": "
                 is_adult and at_night and (Progressive_Hookshot or Bow or Magic_Meter or has_explosives or 
                 Biggoron_Sword or 
@@ -1124,7 +1172,7 @@
             "Links Cow": "(can_play(Eponas_Song) or can_hover) and is_adult"
         },
         "locations": {
-            "Song from Malon": "is_child and Zeldas_Letter and Ocarina",
+            "Song from Malon": "is_child and Ocarina and at_day and (skip_child_zelda or at('Hyrule Castle Grounds', is_child and (Weird_Egg or Chicken)))",
             "LLR GS Tree": "is_child",
             "LLR GS Rain Shed": "is_child and at_night",
             "LLR GS House Window": "can_use(Boomerang) and at_night",
@@ -1141,7 +1189,7 @@
     {
         "region_name": "LLR Talons House",
         "locations": {
-            "LLR Talons Chickens": "is_child and Zeldas_Letter"
+            "LLR Talons Chickens": "is_child and (skip_child_zelda or at('Hyrule Castle Grounds', is_child and (Weird_Egg or Chicken)))"
         }
     },
     {
@@ -1185,8 +1233,8 @@
     {
         "region_name": "Deku Theater",
         "locations": {
-            "Deku Theater Skull Mask": "is_child and 'Skull Mask'",
-            "Deku Theater Mask of Truth": "is_child and 'Mask of Truth'"
+            "Deku Theater Skull Mask": "is_child and Skull_Mask",
+            "Deku Theater Mask of Truth": "is_child and Mask_of_Truth"
         }
     },
     {

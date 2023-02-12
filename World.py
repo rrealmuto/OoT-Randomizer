@@ -9,6 +9,7 @@ from Goals import Goal, GoalCategory
 from HintList import getRequiredHints, misc_item_hint_table, misc_location_hint_table
 from Hints import HintArea, hint_dist_keys, HintDistFiles
 from Item import ItemFactory, ItemInfo, MakeEventItem
+from ItemPool import child_trade_items
 from Location import Location, LocationFactory
 from LocationList import business_scrubs, location_groups
 from Plandomizer import InvalidFileException
@@ -64,7 +65,11 @@ class World(object):
         )
 
         self.ensure_tod_access = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or settings.spawn_positions
-        self.disable_trade_revert = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances
+        self.disable_trade_revert = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or settings.adult_trade_shuffle
+        self.skip_child_zelda = 'Zeldas Letter' not in settings.shuffle_child_trade and \
+                                'Zeldas Letter' in self.distribution.starting_items
+        self.selected_adult_trade_item = ''
+        self.adult_trade_starting_inventory = ''
 
         if (
             settings.open_forest == 'closed'
@@ -183,7 +188,7 @@ class World(object):
         self.added_hint_types = {}
         self.item_added_hint_types = {}
         self.hint_exclusions = set()
-        if settings.shuffle_child_trade == 'skip_child_zelda':
+        if self.skip_child_zelda:
             self.hint_exclusions.add('Song from Impa')
         self.hint_type_overrides = {}
         self.item_hint_type_overrides = {}

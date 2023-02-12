@@ -261,8 +261,27 @@ void item_etcetera_draw(z64_actor_t *actor, z64_game_t *game) {
 
 void bowling_bomb_bag_draw(z64_actor_t *actor, z64_game_t *game) {
     override_t override = { 0 };
-    if (actor->variable == 0x00 || actor->variable == 0x05) {
-        override = lookup_override(actor, game->scene_index, 0x34);
+    switch (actor->variable) {
+        case 0x00:
+        case 0x05: // bomb bag
+            override = lookup_override(actor, game->scene_index, 0x34);
+            break;
+        case 0x01:
+        case 0x06: // heart piece
+            override = lookup_override(actor, game->scene_index, 0x3E);
+            break;
+        case 0x02:
+        case 0x07: // bombchus
+            override = lookup_override(actor, game->scene_index, 0x03);
+            break;
+        case 0x03:
+        case 0x08: // bombs
+            override = lookup_override(actor, game->scene_index, 0x65);
+            break;
+        case 0x04:
+        case 0x09: // purple rupee
+            override = lookup_override(actor, game->scene_index, 0x55);
+            break;
     }
 
     model_t model = { 0 };

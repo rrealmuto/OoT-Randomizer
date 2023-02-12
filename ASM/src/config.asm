@@ -108,11 +108,11 @@ TIME_STRING_TXT:
 INITIAL_SAVE_DATA:
 .endarea
 
-.area 0x20, 0 ; size must be at least 8 * ((max object_id parameter Patches.add_to_extended_object_table is called with) - 0x192)
+.area 0x40, 0 ; size must be at least 8 * ((max object_id parameter Patches.add_to_extended_object_table is called with) - 0x192)
 EXTENDED_OBJECT_TABLE:
 .endarea
 
-BOMBCHUS_IN_LOGIC:
+FREE_BOMBCHU_DROPS:
 .word 0x00
 
 GOSSIP_HINT_CONDITION:

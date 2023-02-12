@@ -31,9 +31,9 @@
     # "Big_Poe": "'Big Poe'",
 
     "can_refill_bombchus": "Buy_Bombchu_5 or Buy_Bombchu_10 or Buy_Bombchu_20 or Bombchu_Drop",
-    "has_bombchus": "(bombchus_in_logic and found_bombchus) or (not bombchus_in_logic and can_refill_bombchus)",
-    "found_bombchus": "(bombchus_in_logic and (Bombchus or Bombchus_5 or Bombchus_10 or Bombchus_20)) or (not bombchus_in_logic and Bomb_Bag)",
-    "has_explosives": "Bombs or (bombchus_in_logic and has_bombchus)",
+    "has_bombchus": "(free_bombchu_drops and found_bombchus) or (not free_bombchu_drops and can_refill_bombchus and Bomb_Bag)",
+    "found_bombchus": "(free_bombchu_drops and (Bombchus or Bombchus_5 or Bombchus_10 or Bombchus_20)) or (not free_bombchu_drops and Bomb_Bag)",
+    "has_explosives": "Bombs or (free_bombchu_drops and has_bombchus)",
     "is_child": "age == 'child'",
     "is_adult": "age == 'adult'",
     "is_starting_age": "age == starting_age",

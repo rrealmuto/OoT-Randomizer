@@ -29,7 +29,7 @@ class FlagType(IntEnum):
     SWITCH = 0x01
     CLEAR = 0x02
     COLLECT = 0x03
-    # 0x04 unused
+    UNK00 = 0x04 # 0x04 unused
     VISITED_ROOM = 0x05
     VISITED_FLOOR = 0x06
 
@@ -197,6 +197,11 @@ class SaveContext():
         # Scenes and FlagType enums are defined for increased readability when using
         # this function.
         self.write_bits(0x00D4 + scene * 0x1C + type * 0x04 + byte_offset, bit_values)
+
+    # write all flags (int32) of a given type at once
+    def write_permanent_flags(self, scene, type, value):
+        byte_value = value.to_bytes(4, byteorder='big', signed=False)
+        self.write_bytes(0x00D4 + scene * 0x1C + type * 0x04, byte_value)
 
     def set_ammo_max(self):
         ammo_maxes = {
@@ -963,6 +968,7 @@ class SaveContext():
         "Pocket Cucco"   : {'item_slot.adult_trade'     : 'pocket_cucco'},
         "Cojiro"         : {'item_slot.adult_trade'     : 'cojiro'},
         "Odd Mushroom"   : {'item_slot.adult_trade'     : 'odd_mushroom'},
+        "Odd Potion"     : {'item_slot.adult_trade'     : 'odd_potion'},
         "Poachers Saw"   : {'item_slot.adult_trade'     : 'poachers_saw'},
         "Broken Sword"   : {'item_slot.adult_trade'     : 'broken_sword'},
         "Prescription"   : {'item_slot.adult_trade'     : 'prescription'},
@@ -972,6 +978,14 @@ class SaveContext():
         "Weird Egg"      : {'item_slot.child_trade'     : 'weird_egg'},
         "Chicken"        : {'item_slot.child_trade'     : 'chicken'},
         "Zeldas Letter"  : {'item_slot.child_trade'     : 'zeldas_letter'},
+        "Keaton Mask"    : {'item_slot.child_trade'     : 'keaton_mask'},
+        "Skull Mask"     : {'item_slot.child_trade'     : 'skull_mask'},
+        "Spooky Mask"    : {'item_slot.child_trade'     : 'spooky_mask'},
+        "Bunny Hood"     : {'item_slot.child_trade'     : 'bunny_hood'},
+        "Goron Mask"     : {'item_slot.child_trade'     : 'goron_mask'},
+        "Zora Mask"      : {'item_slot.child_trade'     : 'zora_mask'},
+        "Gerudo Mask"    : {'item_slot.child_trade'     : 'gerudo_mask'},
+        "Mask of Truth"  : {'item_slot.child_trade'     : 'mask_of_truth'},
         "Goron Tunic"    : {'equip_items.goron_tunic'   : True},
         "Zora Tunic"     : {'equip_items.zora_tunic'    : True},
         "Iron Boots"     : {'equip_items.iron_boots'    : True},

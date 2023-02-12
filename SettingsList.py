@@ -2261,7 +2261,7 @@ setting_infos = [
                     'shuffle_grotto_entrances', 'shuffle_dungeon_entrances',
                     'shuffle_bosses', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops', 'warp_songs', 'spawn_positions',
                     'mix_entrance_pools', 'decouple_entrances',
-                    'triforce_hunt', 'triforce_count_per_world', 'triforce_goal_per_world', 'bombchus_in_logic', 'one_item_per_dungeon',
+                    'triforce_hunt', 'triforce_count_per_world', 'triforce_goal_per_world', 'free_bombchu_drops', 'one_item_per_dungeon',
                     'shuffle_mapcompass', 'shuffle_smallkeys', 'shuffle_hideoutkeys', 'key_rings_choice', 'key_rings',
                     'shuffle_bosskeys', 'enhance_map_compass'
                 ],
@@ -3813,26 +3813,37 @@ setting_infos = [
 
 
     Checkbutton(
-        name           = 'bombchus_in_logic',
-        gui_text       = 'Bombchus Are Considered in Logic',
+        name           = 'free_bombchu_drops',
+        gui_text       = 'Add Bombchu Bag and Drops',
         gui_tooltip    = '''\
             Bombchus are properly considered in logic and
             the game is changed to account for this fact.
 
-            The first Bombchu pack will always be 20.
-            Subsequent packs will be 5 or 10 based on
-            how many you have.
+            The first Bombchu pack will always be a
+            Bombchu Bag giving the same amount of Bombchus
+            as would have been given by the item normally.
+            For example, finding the Bombchus (5) item
+            first will give the Bombchu Bag with 5
+            Bombchus inside.
 
-            Bombchus are no longer tied to the Bomb Bag.
-            Once Bombchus have been found, they can be 
-            purchased for 60/99/180 rupees and Bombchu
-            drops can be collected around the world.
+            Bombchu refills will drop from grass, pots,
+            crates, and enemies after finding the bag.
 
-            Bombchu Bowling opens with Bombchus.
-            Additional Bombchu refills are available at 
-            the Kokiri Shop and the Bazaar.
+            Bombchus can be purchased for 60/99/180
+            rupees once the bag has been found.
+
+            The Wasteland carpet merchant will not sell
+            unshuffled Bombchus without finding a Bombchu
+            Bag. If he is shuffled, he will sell his item
+            without a Bombchu Bag.
+
+            Bombchu Bowling opens with either Bomb Bag or
+            Bombchu Bag. The Bombchu and Bomb prizes (3rd
+            and 4th respectively) will change to a Purple
+            Rupee if the corresponding bag has not yet been
+            found.
         ''',
-        default        = False,
+        default        = True,
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -3881,9 +3892,6 @@ setting_infos = [
             'randomize_key': 'randomize_settings',
         },
     ),
-
-
-
     Combobox(
         name           = 'shuffle_song_items',
         gui_text       = 'Shuffle Songs',
@@ -4086,37 +4094,28 @@ setting_infos = [
     ),
     Combobox(
         name           = 'shuffle_child_trade',
-        gui_text       = 'Shuffle Child Trade Item',
-        default        = 'vanilla',
+        multiple_select= True,
+        gui_text       = 'Shuffled Child Trade Sequence Items',
+        default        = [],
         choices        = {
-            'vanilla':          'Vanilla Locations',
-            'shuffle':          'Shuffle Weird Egg',
-            'skip_child_zelda': 'Skip Child Zelda',
-            },
-        gui_tooltip    = '''\
-            This changes the beginning of the child trade quest.
-
-            'Vanilla Locations': Weird Egg is found from Malon outside
-            of Hyrule Castle and the child trade quest continues normally.
-
-            'Shuffle Weird Egg': The Weird Egg is shuffled into the item pool
-            and Malon gives a randomized item. This will require finding the
-            Weird Egg to talk to Zelda in Hyrule Castle, which in turn locks
-            rewards from Impa, Saria, Malon, and Talon, as well as the Happy
-            Mask sidequest.
-
-            'Skip Child Zelda': Start having already met Zelda and obtained
-            Zelda's Letter along with the item from Impa.
-            Supersedes "Skip Child Stealth" since the whole sequence is skipped.
-        ''',
-        gui_params     = {
-            'randomize_key': 'randomize_settings',
-            'distribution':  [
-                ('vanilla', 1),
-                ('shuffle', 1),
-                ('skip_child_zelda', 1),
-            ],
+            'Weird Egg':     'Weird Egg',
+            'Chicken':       'Chicken',
+            'Zeldas Letter': "Zelda's Letter",
+            'Keaton Mask':   'Keaton Mask',
+            'Skull Mask':    'Skull Mask',
+            'Spooky Mask':   'Spooky Mask',
+            'Bunny Hood':    'Bunny Hood',
+            'Goron Mask':    'Goron Mask',
+            'Zora Mask':     'Zora Mask',
+            'Gerudo Mask':   'Gerudo Mask',
+            'Mask of Truth': 'Mask of Truth',
         },
+        gui_tooltip    = '''\
+            Select the items to shuffle in the child trade sequence.
+
+            To skip Child Zelda, do not shuffle Zelda's Letter and
+            add it as a starting item.
+        ''',
         shared         = True,
     ),
     Combobox(
@@ -4291,13 +4290,13 @@ setting_infos = [
         },
     ),
     Checkbutton(
-        name           = 'shuffle_medigoron_carpet_salesman',
-        gui_text       = 'Shuffle Medigoron & Carpet Salesman',
+        name           = 'shuffle_expensive_merchants',
+        gui_text       = 'Shuffle Expensive Merchants',
         gui_tooltip    = '''\
             Enabling this adds a Giant's Knife and a pack of Bombchus
-            to the item pool and changes both Medigoron and the
-            Haunted Wasteland Carpet Salesman to sell a random item
-            once at the price of 200 Rupees.
+            to the item pool and changes Medigoron, Granny's Potion Shop,
+            and the Haunted Wasteland Carpet Salesman to sell a random
+            item once at the same price as their vanilla items.
         ''',
         default        = False,
         shared         = True,
@@ -4737,11 +4736,10 @@ setting_infos = [
         name           = 'minor_items_as_major_chest',
         gui_text       = 'Minor Items in Big/Gold chests',
         gui_tooltip    = '''\
-            Chests with Hylian Shield, Deku Shield
-            or Bombchus (regardless of the Bombchus
-            In Logic setting), will appear in
-            Big and/or Gold chests, depending on the
-            Chest Appearance Matches Contents setting.
+            Chests with Hylian Shield or Deku Shield
+            will appear in Big and/or Gold chests,
+            depending on the Chest Appearance Matches
+            Contents setting.
         ''',
         shared         = True,
         disabled_default = False,
@@ -4893,6 +4891,7 @@ setting_infos = [
             '40_skulltulas':  'House of Skulltula: 40',
             '50_skulltulas':  'House of Skulltula: 50',
             'frogs2':         'Frogs Ocarina Game',
+            'mask_shop':  'Shuffled Mask Shop',
         },
         gui_tooltip    = '''\
             This setting adds some hints at locations
@@ -4932,6 +4931,11 @@ setting_infos = [
             where you play the songs for the frogs will
             tell you what the reward is for playing all
             six non warp songs.
+
+            If shuffled, right side items in the mask
+            shop will be visible but not obtainable
+            before completing the child trade quest.
+            Mask of Truth's shelf slot is always visible.
         ''',
         shared         = True,
         default        = ['altar', 'ganondorf', 'warp_songs'],
@@ -5147,18 +5151,29 @@ setting_infos = [
         ''',
         shared         = True,
     ),
+    Checkbutton(
+        name           = 'adult_trade_shuffle',
+        gui_text       = 'Shuffle All Adult Trade Items',
+        gui_tooltip    = '''\
+            Shuffle all adult trade sequence items. If disabled,
+            a random item will be selected, and Anju will always
+            give an item even if Pocket Egg is not shuffled.
+        ''',
+        shared         = True,
+        default        = False,
+    ),
     Combobox(
         name           = 'adult_trade_start',
         multiple_select= True,
         gui_text       = 'Adult Trade Sequence Items',
-        default        = ['Pocket Egg', 'Pocket Cucco', 'Cojiro', 'Odd Mushroom', 'Poachers Saw',
+        default        = ['Pocket Egg', 'Pocket Cucco', 'Cojiro', 'Odd Mushroom', 'Odd Potion', 'Poachers Saw',
                           'Broken Sword', 'Prescription', 'Eyeball Frog', 'Eyedrops', 'Claim Check'],
         choices        = {
             'Pocket Egg':   'Pocket Egg',
             'Pocket Cucco': 'Pocket Cucco',
             'Cojiro':       'Cojiro',
             'Odd Mushroom': 'Odd Mushroom',
-            #'Odd Potion':   'Odd Potion',
+            'Odd Potion':   'Odd Potion',
             'Poachers Saw': "Poacher's Saw",
             'Broken Sword': 'Broken Sword',
             'Prescription': 'Prescription',
@@ -5167,8 +5182,7 @@ setting_infos = [
             'Claim Check':  'Claim Check',
         },
         gui_tooltip    = '''\
-            Select the items that can appear to start the adult trade sequence.
-            If none are selected, it will function as if all are selected.
+            Select the items to shuffle in the adult trade sequence.
         ''',
         shared         = True,
     ),

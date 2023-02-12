@@ -30,13 +30,13 @@
         "warp_songs": false,
         "spawn_positions": [],
         "triforce_hunt": false,
-        "bombchus_in_logic": false,
+        "free_bombchu_drops": false,
         "one_item_per_dungeon": false,
         "shuffle_song_items": "song",
         "shopsanity": "off",
         "tokensanity": "off",
         "shuffle_scrubs": "off",
-        "shuffle_child_trade": "skip_child_zelda",
+        "shuffle_child_trade": [],
         "shuffle_freestanding_items": "off",
         "shuffle_pots": "off",
         "shuffle_crates": "off",
@@ -46,7 +46,7 @@
         "shuffle_ocarinas": false,
         "shuffle_gerudo_card": false,
         "shuffle_beans": false,
-        "shuffle_medigoron_carpet_salesman": false,
+        "shuffle_expensive_merchants": false,
         "shuffle_frog_song_rupees": false,
         "shuffle_mapcompass": "startwith",
         "shuffle_smallkeys": "dungeon",
@@ -65,7 +65,9 @@
         ],
         "allowed_tricks": [],
         "starting_equipment": [],
-        "starting_items": [],
+        "starting_items": [
+            "zeldas_letter"
+        ],
         "starting_songs": [],
         "start_with_consumables": true,
         "start_with_rupees": true,
@@ -108,6 +110,7 @@
         "item_pool_value": "balanced",
         "junk_ice_traps": "normal",
         "ice_trap_appearance": "junk_only",
+        "adult_trade_shuffle": false,
         "adult_trade_start": [
             "Prescription",
             "Eyeball Frog",
@@ -146,13 +149,13 @@
             "child"
         ],
         "triforce_hunt": false,
-        "bombchus_in_logic": false,
+        "free_bombchu_drops": false,
         "one_item_per_dungeon": false,
         "shuffle_song_items": "song",
         "shopsanity": "off",
         "tokensanity": "off",
         "shuffle_scrubs": "off",
-        "shuffle_child_trade": "skip_child_zelda",
+        "shuffle_child_trade": [],
         "shuffle_freestanding_items": "off",
         "shuffle_pots": "off",
         "shuffle_crates": "off",
@@ -162,7 +165,7 @@
         "shuffle_ocarinas": false,
         "shuffle_gerudo_card": false,
         "shuffle_beans": false,
-        "shuffle_medigoron_carpet_salesman": false,
+        "shuffle_expensive_merchants": false,
         "shuffle_frog_song_rupees": false,
         "shuffle_mapcompass": "startwith",
         "shuffle_smallkeys": "dungeon",
@@ -198,7 +201,8 @@
             "deku_shield"
         ],
         "starting_items": [
-            "ocarina"
+            "ocarina",
+            "zeldas_letter"
         ],
         "starting_songs": [],
         "start_with_consumables": true,
@@ -242,6 +246,7 @@
         "item_pool_value": "balanced",
         "junk_ice_traps": "off",
         "ice_trap_appearance": "junk_only",
+        "adult_trade_shuffle": false,
         "adult_trade_start": [
             "Prescription",
             "Eyeball Frog",
@@ -283,13 +288,13 @@
             "adult"
         ],
         "triforce_hunt": false,
-        "bombchus_in_logic": false,
+        "free_bombchu_drops": false,
         "one_item_per_dungeon": false,
         "shuffle_song_items": "song",
         "shopsanity": "off",
         "tokensanity": "off",
         "shuffle_scrubs": "off",
-        "shuffle_child_trade": "skip_child_zelda",
+        "shuffle_child_trade": [],
         "shuffle_freestanding_items": "off",
         "shuffle_pots": "off",
         "shuffle_crates": "off",
@@ -299,7 +304,7 @@
         "shuffle_ocarinas": false,
         "shuffle_gerudo_card": false,
         "shuffle_beans": false,
-        "shuffle_medigoron_carpet_salesman": false,
+        "shuffle_expensive_merchants": false,
         "shuffle_frog_song_rupees": false,
         "shuffle_mapcompass": "startwith",
         "shuffle_smallkeys": "dungeon",
@@ -335,7 +340,8 @@
             "deku_shield"
         ],
         "starting_items": [
-            "ocarina"
+            "ocarina",
+            "zeldas_letter"
         ],
         "starting_songs": [
             "prelude"
@@ -381,6 +387,7 @@
         "item_pool_value": "balanced",
         "junk_ice_traps": "off",
         "ice_trap_appearance": "junk_only",
+        "adult_trade_shuffle": false,
         "adult_trade_start": [
             "Prescription",
             "Eyeball Frog",
@@ -417,13 +424,13 @@
         "warp_songs": false,
         "spawn_positions": [],
         "triforce_hunt": false,
-        "bombchus_in_logic": false,
+        "free_bombchu_drops": false,
         "one_item_per_dungeon": false,
         "shuffle_song_items": "song",
         "shopsanity": "off",
         "tokensanity": "off",
         "shuffle_scrubs": "off",
-        "shuffle_child_trade": "vanilla",
+        "shuffle_child_trade": [],
         "shuffle_freestanding_items": "off",
         "shuffle_pots": "off",
         "shuffle_crates": "off",
@@ -433,7 +440,7 @@
         "shuffle_ocarinas": false,
         "shuffle_gerudo_card": false,
         "shuffle_beans": false,
-        "shuffle_medigoron_carpet_salesman": false,
+        "shuffle_expensive_merchants": false,
         "shuffle_frog_song_rupees": false,
         "shuffle_mapcompass": "startwith",
         "shuffle_smallkeys": "dungeon",
@@ -509,6 +516,7 @@
         "item_pool_value": "balanced",
         "junk_ice_traps": "normal",
         "ice_trap_appearance": "junk_only",
+        "adult_trade_shuffle": false,
         "adult_trade_start": [
             "Prescription",
             "Eyeball Frog",
@@ -548,13 +556,13 @@
             "adult"
         ],
         "triforce_hunt": false,
-        "bombchus_in_logic": false,
+        "free_bombchu_drops": false,
         "one_item_per_dungeon": false,
         "shuffle_song_items": "song",
         "shopsanity": "off",
         "tokensanity": "off",
         "shuffle_scrubs": "off",
-        "shuffle_child_trade": "skip_child_zelda",
+        "shuffle_child_trade": [],
         "shuffle_freestanding_items": "off",
         "shuffle_pots": "off",
         "shuffle_crates": "off",
@@ -564,7 +572,7 @@
         "shuffle_ocarinas": false,
         "shuffle_gerudo_card": false,
         "shuffle_beans": false,
-        "shuffle_medigoron_carpet_salesman": false,
+        "shuffle_expensive_merchants": false,
         "shuffle_frog_song_rupees": false,
         "shuffle_mapcompass": "startwith",
         "shuffle_smallkeys": "dungeon",
@@ -603,7 +611,8 @@
         ],
         "starting_items": [
             "ocarina",
-            "lens"
+            "lens",
+            "zeldas_letter"
         ],
         "starting_songs": [
             "prelude"
@@ -648,6 +657,7 @@
         "item_pool_value": "balanced",
         "junk_ice_traps": "off",
         "ice_trap_appearance": "junk_only",
+        "adult_trade_shuffle": false,
         "adult_trade_start": [
             "Claim Check"
         ]
@@ -692,14 +702,14 @@
         "triforce_hunt": false,
         "triforce_count_per_world": 30,
         "triforce_goal_per_world": 25,
-        "bombchus_in_logic": false,
+        "free_bombchu_drops": false,
         "one_item_per_dungeon": false,
         "shuffle_song_items": "song",
         "shopsanity": "4",
         "shopsanity_prices": "random",
         "tokensanity": "off",
         "shuffle_scrubs": "low",
-        "shuffle_child_trade": "skip_child_zelda",
+        "shuffle_child_trade": [],
         "shuffle_freestanding_items": "off",
         "shuffle_pots": "off",
         "shuffle_crates": "off",
@@ -709,7 +719,7 @@
         "shuffle_ocarinas": false,
         "shuffle_gerudo_card": false,
         "shuffle_beans": false,
-        "shuffle_medigoron_carpet_salesman": false,
+        "shuffle_expensive_merchants": false,
         "shuffle_frog_song_rupees": false,
         "shuffle_mapcompass": "startwith",
         "shuffle_smallkeys": "dungeon",
@@ -754,7 +764,8 @@
         "starting_items": [
             "ocarina",
             "farores_wind",
-            "lens"
+            "lens",
+            "zeldas_letter"
         ],
         "starting_songs": [],
         "start_with_consumables": true,
@@ -799,6 +810,7 @@
         "item_pool_value": "balanced",
         "junk_ice_traps": "off",
         "ice_trap_appearance": "junk_only",
+        "adult_trade_shuffle": false,
         "adult_trade_start": [
             "Claim Check"
         ]
@@ -837,14 +849,26 @@
             "adult"
         ],
         "triforce_hunt": false,
-        "bombchus_in_logic": true,
+        "free_bombchu_drops": true,
         "one_item_per_dungeon": false,
         "shuffle_song_items": "any",
         "shopsanity": "0",
         "shopsanity_prices": "random",
         "tokensanity": "all",
         "shuffle_scrubs": "random",
-        "shuffle_child_trade": "shuffle",
+        "shuffle_child_trade": [
+            "Weird Egg",
+            "Chicken",
+            "Zeldas Letter",
+            "Keaton Mask",
+            "Skull Mask",
+            "Spooky Mask",
+            "Bunny Hood",
+            "Goron Mask",
+            "Zora Mask",
+            "Gerudo Mask",
+            "Mask of Truth"
+        ],
         "shuffle_freestanding_items": "all",
         "shuffle_pots": "all",
         "shuffle_crates": "all",
@@ -854,7 +878,7 @@
         "shuffle_ocarinas": true,
         "shuffle_gerudo_card": true,
         "shuffle_beans": true,
-        "shuffle_medigoron_carpet_salesman": true,
+        "shuffle_expensive_merchants": true,
         "shuffle_frog_song_rupees": true,
         "shuffle_mapcompass": "remove",
         "shuffle_smallkeys": "keysanity",
@@ -1073,8 +1097,19 @@
         "item_pool_value": "minimal",
         "junk_ice_traps": "onslaught",
         "ice_trap_appearance": "anything",
+        "adult_trade_shuffle": true,
         "adult_trade_start": [
-            "Pocket Egg"
+            "Pocket Egg",
+            "Pocket Cucco",
+            "Cojiro",
+            "Odd Mushroom",
+            "Odd Potion",
+            "Poachers Saw",
+            "Broken Sword",
+            "Prescription",
+            "Eyeball Frog",
+            "Eyedrops",
+            "Claim Check"
         ]
     },
     "Bingo": {
@@ -1105,13 +1140,13 @@
         "warp_songs": false,
         "spawn_positions": [],
         "triforce_hunt": false,
-        "bombchus_in_logic": false,
+        "free_bombchu_drops": false,
         "one_item_per_dungeon": false,
         "shuffle_song_items": "song",
         "shopsanity": "off",
         "tokensanity": "off",
         "shuffle_scrubs": "off",
-        "shuffle_child_trade": "vanilla",
+        "shuffle_child_trade": [],
         "shuffle_freestanding_items": "off",
         "shuffle_pots": "off",
         "shuffle_crates": "off",
@@ -1121,7 +1156,7 @@
         "shuffle_ocarinas": false,
         "shuffle_gerudo_card": false,
         "shuffle_beans": false,
-        "shuffle_medigoron_carpet_salesman": false,
+        "shuffle_expensive_merchants": false,
         "shuffle_frog_song_rupees": false,
         "shuffle_mapcompass": "dungeon",
         "shuffle_smallkeys": "dungeon",
@@ -1191,6 +1226,7 @@
         "item_pool_value": "balanced",
         "junk_ice_traps": "normal",
         "ice_trap_appearance": "junk_only",
+        "adult_trade_shuffle": false,
         "adult_trade_start": [
             "Prescription",
             "Eyeball Frog",
@@ -1230,13 +1266,13 @@
             "adult"
         ],
         "triforce_hunt": false,
-        "bombchus_in_logic": false,
+        "free_bombchu_drops": false,
         "one_item_per_dungeon": false,
         "shuffle_song_items": "song",
         "shopsanity": "off",
         "tokensanity": "off",
         "shuffle_scrubs": "off",
-        "shuffle_child_trade": "skip_child_zelda",
+        "shuffle_child_trade": [],
         "shuffle_freestanding_items": "off",
         "shuffle_pots": "off",
         "shuffle_crates": "off",
@@ -1246,7 +1282,7 @@
         "shuffle_ocarinas": false,
         "shuffle_gerudo_card": false,
         "shuffle_beans": false,
-        "shuffle_medigoron_carpet_salesman": false,
+        "shuffle_expensive_merchants": false,
         "shuffle_frog_song_rupees": false,
         "shuffle_mapcompass": "startwith",
         "shuffle_smallkeys": "dungeon",
@@ -1281,7 +1317,8 @@
         "starting_items": [
             "ocarina",
             "lens",
-            "farores_wind"
+            "farores_wind",
+            "zeldas_letter"
         ],
         "starting_songs": [],
         "start_with_consumables": true,
@@ -1325,6 +1362,7 @@
         "item_pool_value": "balanced",
         "junk_ice_traps": "off",
         "ice_trap_appearance": "junk_only",
+        "adult_trade_shuffle": false,
         "adult_trade_start": [
             "Prescription",
             "Eyeball Frog",
@@ -1360,14 +1398,14 @@
         "warp_songs": false,
         "spawn_positions": [],
         "triforce_hunt": false,
-        "bombchus_in_logic": false,
+        "free_bombchu_drops": false,
         "one_item_per_dungeon": false,
         "shuffle_song_items": "song",
         "shopsanity": "4",
         "shopsanity_prices": "random",
         "tokensanity": "off",
         "shuffle_scrubs": "low",
-        "shuffle_child_trade": "skip_child_zelda",
+        "shuffle_child_trade": [],
         "shuffle_freestanding_items": "off",
         "shuffle_pots": "off",
         "shuffle_crates": "off",
@@ -1377,7 +1415,7 @@
         "shuffle_ocarinas": false,
         "shuffle_gerudo_card": false,
         "shuffle_beans": false,
-        "shuffle_medigoron_carpet_salesman": false,
+        "shuffle_expensive_merchants": false,
         "shuffle_frog_song_rupees": false,
         "shuffle_mapcompass": "startwith",
         "shuffle_smallkeys": "dungeon",
@@ -1414,7 +1452,8 @@
         ],
         "starting_equipment": [],
         "starting_items": [
-            "ocarina"
+            "ocarina",
+            "zeldas_letter"
         ],
         "starting_songs": [],
         "start_with_consumables": true,
@@ -1457,6 +1496,7 @@
         "item_pool_value": "balanced",
         "junk_ice_traps": "off",
         "ice_trap_appearance": "junk_only",
+        "adult_trade_shuffle": false,
         "adult_trade_start": [
             "Prescription",
             "Eyeball Frog",

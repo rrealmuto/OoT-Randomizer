@@ -1,7 +1,7 @@
 {
   "settings": {
     "shopsanity": "4",
-    "shuffle_child_trade": "shuffle",
+    "shuffle_child_trade": ["Weird Egg"],
     "junk_ice_traps": "on",
 	  "starting_items": {
 		  "Boomerang": 1,

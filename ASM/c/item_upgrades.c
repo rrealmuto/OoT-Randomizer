@@ -2,6 +2,8 @@
 
 #include "z64.h"
 
+extern uint32_t FREE_BOMBCHU_DROPS;
+
 uint16_t no_upgrade(z64_file_t *save, uint16_t item_id) {
     return item_id;
 }
@@ -130,4 +132,20 @@ uint16_t health_upgrade_cap(z64_file_t *save, uint16_t item_id) {
         return 0x7D;          // Piece of Heart / Fallthrough
     }
     return item_id;
+}
+
+uint16_t bombchus_to_bag(z64_file_t *save, uint16_t item_id) {
+    if (save->items[Z64_SLOT_BOMBCHU] == -1 && FREE_BOMBCHU_DROPS) {
+        // First chu pack found, convert to bombchu bag to
+        // tell player about chu drops. Different bags
+        // to preserve original chu refill count.
+        switch (item_id) {
+            case 0x03: return 0xD5; // 10 pack
+            case 0x6A: return 0xD6; // 5 pack
+            case 0x6B: return 0xD4; // 20 pack
+        }
+    } else {
+        // Subsequent chu packs stay as chu packs
+        return item_id;
+    }
 }

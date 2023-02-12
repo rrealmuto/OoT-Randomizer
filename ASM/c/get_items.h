@@ -4,6 +4,9 @@
 #include <stdbool.h>
 #include "z64.h"
 
+extern uint16_t CFG_ADULT_TRADE_SHUFFLE;
+extern uint16_t CFG_CHILD_TRADE_SHUFFLE;
+
 void item_overrides_init();
 void handle_pending_items();
 void push_delayed_item(uint8_t flag);

@@ -1,5 +1,6 @@
 #include "gfx.h"
 #include "dpad.h"
+#include "trade_quests.h"
 
 extern uint8_t CFG_DISPLAY_DPAD;
 
@@ -19,7 +20,25 @@ void handle_dpad() {
     pad_t pad_pressed = z64_game.common.input[0].pad_pressed;
     pad_t pad_held = z64_ctxt.input[0].raw.pad;
 
-    if (CAN_USE_DPAD && DISPLAY_DPAD && (!pad_held.a || !CAN_DRAW_DUNGEON_INFO)) {
+    if (CAN_USE_TRADE_DPAD) {
+        uint8_t current_trade_item = z64_file.items[z64_game.pause_ctxt.item_cursor];
+        if (IsTradeItem(current_trade_item)) {
+            uint8_t potential_trade_item = current_trade_item;
+
+            if (pad_pressed.dl) {
+                potential_trade_item = SaveFile_PrevOwnedTradeItem(current_trade_item);
+            }
+
+            if (pad_pressed.dr) {
+                potential_trade_item = SaveFile_NextOwnedTradeItem(current_trade_item);
+            }
+
+            if (current_trade_item != potential_trade_item) {
+                UpdateTradeEquips(potential_trade_item, z64_game.pause_ctxt.item_cursor);
+                PlaySFX(0x4809); // cursor move sound effect NA_SE_SY_CURSOR
+            }
+        }
+    } else if (CAN_USE_DPAD && DISPLAY_DPAD && (!pad_held.a || !CAN_DRAW_DUNGEON_INFO)) {
         if (z64_file.link_age == 0) {
             if (pad_pressed.dl && z64_file.iron_boots) {
                 if (z64_file.equip_boots == 2) z64_file.equip_boots = 1;
@@ -50,7 +69,7 @@ void handle_dpad() {
 
 void draw_dpad() {
     z64_disp_buf_t *db = &(z64_ctxt.gfx->overlay);
-    if (CAN_DRAW_DUNGEON_INFO || (DISPLAY_DPAD && CFG_DISPLAY_DPAD)) {
+    if (CAN_DRAW_DUNGEON_INFO || (DISPLAY_DPAD && CFG_DISPLAY_DPAD) || CAN_DRAW_TRADE_DPAD) {
         gSPDisplayList(db->p++, &setup_db);
         gDPPipeSync(db->p++);
         gDPSetCombineMode(db->p++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
@@ -58,9 +77,36 @@ void draw_dpad() {
 
         gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, alpha);
         sprite_load(db, &dpad_sprite, 0, 1);
-        sprite_draw(db, &dpad_sprite, 0, 271, 64, 16, 16);
+        int left = 271;
+        if (CAN_DRAW_TRADE_DPAD) {
+            uint8_t current_trade_item = z64_file.items[z64_game.pause_ctxt.item_cursor];
+            if (IsTradeItem(current_trade_item)) {
+                uint8_t prev_trade_item = SaveFile_PrevOwnedTradeItem(current_trade_item);
+                uint8_t next_trade_item = SaveFile_NextOwnedTradeItem(current_trade_item);
 
-        if (CAN_DRAW_DUNGEON_INFO && CFG_DPAD_DUNGEON_INFO_ENABLE) {
+                if (current_trade_item != next_trade_item) {
+                    // D-pad under selected trade item slot, if more than one trade item
+                    left = (z64_game.pause_ctxt.item_cursor == Z64_SLOT_ADULT_TRADE) ? 197 : 230;
+                    sprite_draw(db, &dpad_sprite, 0, left, 190, 24, 24);
+
+                    // Previous trade quest item
+                    gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, alpha);
+                    sprite_load(db, &items_sprite, prev_trade_item, 1);
+                    sprite_draw(db, &items_sprite, 0, left - 16, 194, 16, 16);
+
+                    // Next trade quest item
+                    gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, alpha);
+                    sprite_load(db, &items_sprite, next_trade_item, 1);
+                    sprite_draw(db, &items_sprite, 0, left + 24, 194, 16, 16);
+                }
+            }
+        }
+        if (left == 271) {
+            // D-pad under C buttons, if trade slot selector not drawn
+            sprite_draw(db, &dpad_sprite, 0, left, 64, 16, 16);
+        }
+
+        if (CAN_DRAW_DUNGEON_INFO && CFG_DPAD_DUNGEON_INFO_ENABLE && left == 271) {
             // Zora sapphire on D-down
             sprite_load(db, &stones_sprite, 2, 1);
             sprite_draw(db, &stones_sprite, 0, 273, 77, 12, 12);
@@ -72,7 +118,7 @@ void draw_dpad() {
             // map on D-left
             sprite_load(db, &quest_items_sprite, 16, 1);
             sprite_draw(db, &quest_items_sprite, 0, 260, 66, 12, 12);
-        } else {
+        } else if (left == 271) {
             if (!CAN_USE_DPAD)
                 gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, alpha * 0x46 / 0xFF);
 

@@ -1,5 +1,6 @@
 #include "get_items.h"
 
+#include "trade_quests.h"
 #include "icetrap.h"
 #include "item_table.h"
 #include "stdbool.h"
@@ -9,7 +10,7 @@
 extern uint8_t FAST_CHESTS;
 extern uint8_t OCARINAS_SHUFFLED;
 extern uint8_t NO_COLLECTIBLE_HEARTS;
-extern uint32_t BOMBCHUS_IN_LOGIC;
+extern uint32_t FREE_BOMBCHU_DROPS;
 override_t cfg_item_overrides[1536] = { 0 };
 int item_overrides_count = 0;
 
@@ -125,6 +126,15 @@ override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_
         return (override_key_t){
             .scene = z64_file.grotto_id,
             .type = OVR_GROTTO_SCRUB,
+            .flag = item_id,
+        };
+    } else if (actor->actor_id == 0x132) {
+        // Turning in Poacher's Saw to Carpenter Boss in Kakariko as child
+        // using equip swap instead of Gerudo Valley as adult. Override is
+        // keyed on Gerudo Valley.
+        return (override_key_t) {
+            .scene = 0x5A,
+            .type = OVR_BASE_ITEM,
             .flag = item_id,
         };
     } else {
@@ -403,6 +413,19 @@ void get_item(z64_actor_t *from_actor, z64_link_t *link, int8_t incoming_item_id
 
     if (from_actor && incoming_item_id != 0) {
         int8_t item_id = incoming_negative ? -incoming_item_id : incoming_item_id;
+        // Set trade items as traded, but keep in inventory. The incoming item
+        // ID will be the next sequential trade item, so use that as a reference.
+        item_row_t *row = get_item_row(item_id);
+        if (row) {
+            int16_t action_id = row->action_id;
+            if (CFG_ADULT_TRADE_SHUFFLE && action_id > 0 && from_actor->actor_id != 0x0A && IsAdultTradeItem(action_id)) {
+                if (action_id == Z64_ITEM_BIGGORON_SWORD) {
+                    TurnInTradeItem(Z64_ITEM_CLAIM_CHECK);
+                } else {
+                    TurnInTradeItem(action_id - 1);
+                }
+            }
+        }
         override = lookup_override(from_actor, z64_game.scene_index, item_id);
     }
 
@@ -703,8 +726,8 @@ int16_t get_override_drop_id(int16_t dropId) {
         }
     }
 
-    // Chus in logic drops, convert bomb drop to bombchu drop under certain circumstances
-    if (BOMBCHUS_IN_LOGIC && ((dropId == ITEM00_BOMBS_A) || (dropId == ITEM00_BOMBS_SPECIAL) || (dropId == ITEM00_BOMBS_B))) {
+    // Chu bag drops, convert bomb drop to bombchu drop under certain circumstances
+    if (FREE_BOMBCHU_DROPS && ((dropId == ITEM00_BOMBS_A) || (dropId == ITEM00_BOMBS_SPECIAL) || (dropId == ITEM00_BOMBS_B))) {
         if ((z64_file.items[Z64_SLOT_BOMB] != -1) && (z64_file.items[Z64_SLOT_BOMBCHU] != -1)) { // we have bombs and chus
             return drop_bombs_or_chus(dropId);
         } else if (z64_file.items[Z64_SLOT_BOMB] != -1) { // only have bombs

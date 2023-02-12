@@ -151,7 +151,7 @@
             "triforce_hunt",
             "triforce_count_per_world",
             "triforce_goal_per_world",
-            "bombchus_in_logic",
+            "free_bombchu_drops",
             "one_item_per_dungeon",
             "trials_random",
             "trials"
@@ -193,6 +193,8 @@
             "tokensanity",
             "shuffle_scrubs",
             "shuffle_child_trade",
+            "adult_trade_shuffle",
+            "adult_trade_start",
             "shuffle_freestanding_items",
             "shuffle_pots",
             "shuffle_crates",
@@ -202,7 +204,7 @@
             "shuffle_ocarinas",
             "shuffle_gerudo_card",
             "shuffle_beans",
-            "shuffle_medigoron_carpet_salesman",
+            "shuffle_expensive_merchants",
             "shuffle_frog_song_rupees"
           ]
         },
@@ -367,8 +369,7 @@
           "settings": [
             "item_pool_value",
             "junk_ice_traps",
-            "ice_trap_appearance",
-            "adult_trade_start"
+            "ice_trap_appearance"
           ]
         }
       ]

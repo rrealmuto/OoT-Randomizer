@@ -103,6 +103,7 @@ RANDO_CONTEXT:
 .include "misc_colors.asm"
 .include "door_of_time_col_fix.asm"
 .include "mask_deequip.asm"
+.include "trade_quests.asm"
 .include "blue_fire_arrows.asm"
 .include "save.asm"
 .include "drop_overrides/obj_mure3.asm"
