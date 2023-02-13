@@ -985,6 +985,9 @@ location_table = OrderedDict([
     ("Dodongos Cavern MQ Larvae Room Crate 6",                       ("Crate",        0x1,   (6,0,12), None,                        'Rupee (1)',                             ("Dodongo's Cavern MQ", "Master Quest", "Crates",))),
     ("Dodongos Cavern MQ After Upper Lizalfos Crate 1",              ("Crate",        0x1,   (12,0,11), None,                       'Rupee (1)',                             ("Dodongo's Cavern MQ", "Master Quest", "Crates",))),
     ("Dodongos Cavern MQ After Upper Lizalfos Crate 2",              ("Crate",        0x1,   (12,0,12), None,                       'Rupee (1)',                             ("Dodongo's Cavern MQ", "Master Quest", "Crates",))),
+    # Dodongo's Cavern MQ Gossip Stones
+    ("Dodongos Cavern MQ Gossip Stone Drop",                         ("GossipStone",  0x1,   (0,0,1), None,                         'Rupees (20)',                           ("Dodongo's Cavern MQ", "Master Quest", "GossipStone"))),
+    
     # Dodongo's Cavern Shared
     ("Dodongos Cavern Lower Lizalfos Hidden Recovery Heart",         ("Freestanding", 0x01,  (3,0,6), None,                         'Recovery Heart',                        ("Dodongo's Cavern", "Dodongo's Cavern MQ", "Vanilla Dungeons", "Master Quest", "Freestandings",))),
     ("Dodongos Cavern Boss Room Chest",                              ("Chest",        0x12,  0x00, None,                            'Bombs (5)',                             ("Dodongo's Cavern", "Dodongo's Cavern MQ", "Vanilla Dungeons", "Master Quest", "Chests",))),
