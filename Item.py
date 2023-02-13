@@ -114,6 +114,9 @@ class Item(object):
     @property
     def index(self):
         idx = self.info.index
+        if self.type == 'Shop':
+            # Some shop items have the same item IDs as unrelated regular items. Make sure these don't get turned into nonsense.
+            return idx
         # use different item IDs for items with conditional chest appearances so they appear according to the setting in the item's world, not the location's
         if idx == 0x005B and (self.world.settings.bridge == 'tokens' or self.world.settings.lacs_condition == 'tokens' or self.world.settings.shuffle_ganon_bosskey == 'tokens'):
             return 0x0110
