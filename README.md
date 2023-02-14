@@ -11,6 +11,7 @@ This branch is available to use online at <https://ootrandomizer.com/generatorDe
 Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Randomizer/tree/Dev-R) (on Roman's fork):
 
 * New settings and options:
+  * New “Vanilla Locations” option for the “Shuffle Songs” setting ([#1882](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1882))
   * New “Shuffle Dungeon Rewards” setting ([#1833](https://github.com/TestRunnerSRL/OoT-Randomizer/issues/1833))
   * New “Bosses” option for the “Mix Entrance Pools” setting (based on [#1820](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1820))
   * New “Shuffle Silver Rupees” and “Silver Rupee Pouches” settings (based on [#1814](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1814))
@@ -24,7 +25,6 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * “Enable Specific Glitch-Useful Cutscenes” has been renamed to “Glitch-Useful Behaviors” and also controls whether the water in the well is present as adult
   * New “Shuffle Blue Warps” setting
   * New “Mutually Exclusive One-Ways” setting which makes the hint area restriction apply to one-way entrances of different types
-  * New “Vanilla” option for the “Shuffle Songs” setting
   * New “Shuffle Other Items” setting which can be disabled to generate vanilla seeds, only shuffle entrances, etc. (Currently not compatible with Master Quest)
   * New “Mixed Pools Tournament”, “Triforce Blitz”, and “MW Season 3 (WotH)” hint distributions
   * New `goal-count` and `playthrough-location` hint types (based on [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev))
