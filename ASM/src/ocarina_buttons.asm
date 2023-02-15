@@ -10,7 +10,7 @@ ocarina_buttons:
     beqz    t0, @@return
     nop
 
-    
+
     jal     c_block_ocarina
     mov.s   f12, f0
     move    t5, v0
@@ -73,7 +73,7 @@ ocarina_buttons:
     sw      t7, 0x1F24(at)
 
     ; Displaced code
-    
+
     addiu   sp, sp, 0x20
     jr      ra
     nop

@@ -159,7 +159,7 @@ item_table = {
     'Small Key Ring (Thieves Hideout)':         ('HideoutSmallKey', True,  0x00D2, {'alias': ('Small Key (Thieves Hideout)', 10), 'progressive': float('Inf')}),
     'Small Key Ring (Ganons Castle)':                  ('SmallKey', True,  0x00D3, {'alias': ('Small Key (Ganons Castle)', 10), 'progressive': float('Inf')}),
 
-    
+
     'Ocarina A Button':                                ('Item',     True,  0xD7, {'ocarina_button': True}),
     'Ocarina C up Button':                             ('Item',     True,  0xD8, {'ocarina_button': True}),
     'Ocarina C down Button':                           ('Item',     True,  0xD9, {'ocarina_button': True}),
