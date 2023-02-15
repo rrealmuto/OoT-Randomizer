@@ -434,3 +434,55 @@ void draw_gi_boss_keys(z64_game_t *game, uint32_t draw_id) {
     gDPSetEnvColor(gfx->poly_xlu.p++, env_color.r, env_color.g, env_color.b, env_color.a);
     gSPDisplayList(gfx->poly_xlu.p++, item_draw_table[draw_id].args[1].dlist);
 }
+
+extern uint8_t CORRECT_MODEL_COLORS;
+extern colorRGB16_t CFG_A_BUTTON_COLOR;
+void draw_gi_a_button(z64_game_t *game, uint32_t draw_id) {
+    z64_gfx_t *gfx = game->common.gfx;
+    colorRGBA8_t prim_color = item_draw_table[draw_id].args[1].color;
+    if (CORRECT_MODEL_COLORS) {
+        prim_color.r = CFG_A_BUTTON_COLOR.r;
+        prim_color.g = CFG_A_BUTTON_COLOR.g;
+        prim_color.b = CFG_A_BUTTON_COLOR.b;
+    }
+    
+    append_setup_dl_25_to_xlu(gfx);
+    gSPMatrix(gfx->poly_xlu.p++, append_sys_matrix(gfx), G_MTX_MODELVIEW | G_MTX_LOAD | G_MTX_NOPUSH);
+    gDPSetPrimColor(gfx->poly_xlu.p++, 0, 0x80, prim_color.r, prim_color.g, prim_color.b, prim_color.a);
+    gSPDisplayList(gfx->poly_xlu.p++, item_draw_table[draw_id].args[0].dlist);
+}
+
+extern colorRGB16_t CFG_C_BUTTON_COLOR;
+void draw_gi_c_button_vertical(z64_game_t *game, uint32_t draw_id) {
+    z64_gfx_t *gfx = game->common.gfx;
+    colorRGBA8_t prim_color = item_draw_table[draw_id].args[1].color;
+    if (CORRECT_MODEL_COLORS) {
+        prim_color.r = CFG_C_BUTTON_COLOR.r;
+        prim_color.g = CFG_C_BUTTON_COLOR.g;
+        prim_color.b = CFG_C_BUTTON_COLOR.b;
+    }
+
+    rotate_Z_sys_matrix(item_draw_table[draw_id].args[2].dlist*3.14f, 1);
+
+    append_setup_dl_25_to_opa(gfx);
+    gSPMatrix(gfx->poly_opa.p++, append_sys_matrix(gfx), G_MTX_MODELVIEW | G_MTX_LOAD | G_MTX_NOPUSH);
+    gDPSetPrimColor(gfx->poly_opa.p++, 0, 0x80, prim_color.r, prim_color.g, prim_color.b, prim_color.a);
+    gSPDisplayList(gfx->poly_opa.p++, item_draw_table[draw_id].args[0].dlist);
+}
+
+void draw_gi_c_button_horizontal(z64_game_t *game, uint32_t draw_id) {
+    z64_gfx_t *gfx = game->common.gfx;
+    colorRGBA8_t prim_color = item_draw_table[draw_id].args[1].color;
+    if (CORRECT_MODEL_COLORS) {
+        prim_color.r = CFG_C_BUTTON_COLOR.r;
+        prim_color.g = CFG_C_BUTTON_COLOR.g;
+        prim_color.b = CFG_C_BUTTON_COLOR.b;
+    }
+
+    rotate_Z_sys_matrix(item_draw_table[draw_id].args[2].dlist*3.14f, 1);
+
+    append_setup_dl_25_to_opa(gfx);
+    gSPMatrix(gfx->poly_opa.p++, append_sys_matrix(gfx), G_MTX_MODELVIEW | G_MTX_LOAD | G_MTX_NOPUSH);
+    gDPSetPrimColor(gfx->poly_opa.p++, 0, 0x80, prim_color.r, prim_color.g, prim_color.b, prim_color.a);
+    gSPDisplayList(gfx->poly_opa.p++, item_draw_table[draw_id].args[0].dlist);
+}

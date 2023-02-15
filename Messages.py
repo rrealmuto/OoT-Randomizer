@@ -262,7 +262,12 @@ ITEM_MESSAGES = {
     0x9002: "\x08You are a \x05\x43FOOL\x05\x40!",
     0x9003: "\x08You found a piece of the \x05\x41Triforce\x05\x40!",
     0x9019: "\x08\x13\x09You found a \x05\x41Bombchu Bag\x05\x40!\x01It has some \x05\x41Bombchus\x05\x40 inside!\x01Find more in tall grass.",
-    0x901A: "\x08You can't buy Bombchus without a\x01\x05\x41Bombchu Bag\x05\x40!"
+    0x9020: "\x08You can't buy Bombchus without a\x01\x05\x41Bombchu Bag\x05\x40!",
+    0x901B: "\x08You got the\x01\x05\x41Ocarina A Button!\x05\x40\x01You can now play \x9F on the Ocarina!",
+    0x901C: "\x08You got the\x01\x05\x41Ocarina C-up Button!\x05\x40\x01You can now play \xA5 on the Ocarina!",
+    0x901D: "\x08You got the\x01\x05\x41Ocarina C-down Button!\x05\x40\x01You can now play \xA6 on the Ocarina!",
+    0x901E: "\x08You got the\x01\x05\x41Ocarina C-left Button!\x05\x40\x01You can now play \xA7 on the Ocarina!",
+    0x901F: "\x08You got the\x01\x05\x41Ocarina C-right Button!\x05\x40\x01You can now play \xA8 on the Ocarina!",
 }
 
 KEYSANITY_MESSAGES = {

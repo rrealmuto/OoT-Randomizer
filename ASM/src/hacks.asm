@@ -3519,3 +3519,14 @@ courtyard_guards_kill:
 .orga 0xD7C864
     lhu     t3, 0x0EDC(v0)
     andi    t4, t3, 0x0200
+
+;===================================================================================================
+; Shuffle individual ocarina notes hack
+;===================================================================================================
+; Ocarina buttons
+.orga 0xB37EB0
+; Replaced code:
+;   lui     at, 0x8012
+;   sw      t7, 0x1F24(at)
+    jal     ocarina_buttons
+    nop

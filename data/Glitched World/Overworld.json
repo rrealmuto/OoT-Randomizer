@@ -122,7 +122,7 @@
             "LW Skull Kid": "is_child and can_play(Sarias_Song)",
             "LW Trade Cojiro": "is_adult and Cojiro",
             "LW Trade Odd Potion": "is_adult and Odd_Potion",
-            "LW Ocarina Memory Game": "is_child and Ocarina",
+            "LW Ocarina Memory Game": "is_child and Ocarina and Ocarina_A_Button and Ocarina_C_down_Button and Ocarina_C_right_Button and Ocarina_C_left_Button and Ocarina_C_up_Button",
             "LW Target in Woods": "can_use(Slingshot)",
             "LW Deku Scrub Near Bridge": "is_child and can_stun_deku",
             "LW GS Bean Patch Near Bridge": "can_plant_bugs and can_child_attack",
