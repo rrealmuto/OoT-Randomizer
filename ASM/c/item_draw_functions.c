@@ -472,7 +472,7 @@ void draw_gi_a_button(z64_game_t *game, uint32_t draw_id) {
         prim_color.g = CFG_A_BUTTON_COLOR.g;
         prim_color.b = CFG_A_BUTTON_COLOR.b;
     }
-    
+
     append_setup_dl_25_to_xlu(gfx);
     gSPMatrix(gfx->poly_xlu.p++, append_sys_matrix(gfx), G_MTX_MODELVIEW | G_MTX_LOAD | G_MTX_NOPUSH);
     gDPSetPrimColor(gfx->poly_xlu.p++, 0, 0x80, prim_color.r, prim_color.g, prim_color.b, prim_color.a);

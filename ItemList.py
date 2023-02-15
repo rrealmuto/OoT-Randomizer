@@ -210,7 +210,7 @@ item_table = {
     'Silver Rupee Pouch (Ganons Castle Water Trial)':           ('SilverRupee', True,  0x0102, {'alias': ('Silver Rupee (Ganons Castle Water Trial)', 10), 'progressive': 1}),
     'Silver Rupee Pouch (Ganons Castle Forest Trial)':          ('SilverRupee', True,  0x0103, {'alias': ('Silver Rupee (Ganons Castle Forest Trial)', 10), 'progressive': 1}),
 
-    
+
     'Ocarina A Button':                                ('Item',     True,  0xD7, {'ocarina_button': True}),
     'Ocarina C up Button':                             ('Item',     True,  0xD8, {'ocarina_button': True}),
     'Ocarina C down Button':                           ('Item',     True,  0xD9, {'ocarina_button': True}),
