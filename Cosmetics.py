@@ -731,6 +731,10 @@ def patch_button_colors(rom, settings, log, symbols):
 
             log_dict['colors'][patch] = color_to_hex(colors[patch])
 
+    if settings.correct_model_colors:
+        symbol = rom.sym('CORRECT_MODEL_COLORS')
+        rom.write_byte(symbol, 0x01)
+
 
 def patch_sfx(rom, settings, log, symbols):
     # Configurable Sound Effects

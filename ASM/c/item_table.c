@@ -302,6 +302,14 @@ item_row_t item_table[] = {
     [0x0101] = ITEM_ROW(0x4D,     SILVER_CHEST, 0x41, -1, 0x902E, 0x00D1, 0x7F, no_upgrade, give_silver_rupee_pouch, CASTLE_ID,  0x13, resolve_text_silver_rupee_pouches), // Silver Rupee Pouch (Ganons Castle Shadow Trial)
     [0x0102] = ITEM_ROW(0x4D,     SILVER_CHEST, 0x41, -1, 0x902F, 0x00D1, 0x7F, no_upgrade, give_silver_rupee_pouch, CASTLE_ID,  0x14, resolve_text_silver_rupee_pouches), // Silver Rupee Pouch (Ganons Castle Water Trial)
     [0x0103] = ITEM_ROW(0x4D,     SILVER_CHEST, 0x41, -1, 0x9030, 0x00D1, 0x7F, no_upgrade, give_silver_rupee_pouch, CASTLE_ID,  0x15, resolve_text_silver_rupee_pouches), // Silver Rupee Pouch (Ganons Castle Forest Trial)
+    [0xD4] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9019, 0x0197, 0x7E, no_upgrade, give_bombchus, 20, -1), // Bombchu Bag (20)
+    [0xD5] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9019, 0x0197, 0x7E, no_upgrade, give_bombchus, 10, -1), // Bombchu Bag (10)
+    [0xD6] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9019, 0x0197, 0x7E, no_upgrade, give_bombchus,  5, -1), // Bombchu Bag (5)
+    [0xD7] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x901B, 0x0198, 0x7F, no_upgrade, unlock_ocarina_note, 0, -1), // Ocarina A
+    [0xD8] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x901C, 0x019A, 0x80, no_upgrade, unlock_ocarina_note, 1, -1), // Ocarina C up
+    [0xD9] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x901D, 0x019A, 0x81, no_upgrade, unlock_ocarina_note, 2, -1), // Ocarina C down
+    [0xDA] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x901E, 0x0199, 0x82, no_upgrade, unlock_ocarina_note, 3, -1), // Ocarina C left
+    [0xDB] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x901F, 0x0199, 0x83, no_upgrade, unlock_ocarina_note, 4, -1), // Ocarina C right
 };
 
 /*  Determine which message to display based on the number of silver rupees collected.
