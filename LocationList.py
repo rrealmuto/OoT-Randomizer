@@ -1447,7 +1447,6 @@ location_table = OrderedDict([
     ("Dodongos Cavern MQ Staircase Silver Rupee Mid Left Crate",     ("SilverRupee",  0x1,   (2,0,13), None,                     'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongo's Cavern MQ", "Master Quest", "Silver Rupees"))),
     ("Dodongos Cavern MQ Staircase Silver Rupee Vines",              ("SilverRupee",  0x1,   (2,0,14), None,                     'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongo's Cavern MQ", "Master Quest", "Silver Rupees"))),
     ("Dodongos Cavern MQ Staircase Silver Rupee Top Right Crate",    ("SilverRupee",  0x1,   (2,0,15), None,                     'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongo's Cavern MQ", "Master Quest", "Silver Rupees"))),
-
     
     # Dodongo's Cavern MQ Enemies
     ("Dodongos Cavern MQ Right Side Skulltula",                      ("EnemyDrop",    0x01,  (1,0,3), None,                         'Rupees (5)',                            ("Dodongo's Cavern", "Master Quest", "EnemyDrop"))),
@@ -1500,6 +1499,8 @@ location_table = OrderedDict([
     ("Dodongos Cavern MQ Song of Time Block Room Skulltula 1",       ("EnemyDrop",    0x01,  (15,0,2), None,                        'Rupees (5)',                            ("Dodongo's Cavern", "Master Quest", "EnemyDrop"))),
     ("Dodongos Cavern MQ Song of Time Block Room Skulltula 2",       ("EnemyDrop",    0x01,  (15,0,3), None,                        'Rupees (5)',                            ("Dodongo's Cavern", "Master Quest", "EnemyDrop"))),
     ("Dodongos Cavern MQ Song of Time Block Room Skulltula 3",       ("EnemyDrop",    0x01,  (15,0,4), None,                        'Rupees (5)',                            ("Dodongo's Cavern", "Master Quest", "EnemyDrop"))),
+    # Dodongo's Cavern MQ Gossip Stones
+    ("Dodongos Cavern MQ Gossip Stone Drop",                         ("GossipStone",  0x1,   (0,0,1), None,                         'Rupees (20)',                           ("Dodongo's Cavern MQ", "Master Quest", "GossipStone"))),
     
     # Dodongo's Cavern Shared
     ("Dodongos Cavern Lower Lizalfos Hidden Recovery Heart",         ("Freestanding", 0x01,  (3,0,6), None,                         'Recovery Heart',                        ("Dodongo's Cavern", "Dodongo's Cavern MQ", "Vanilla Dungeons", "Master Quest", "Freestandings",))),
