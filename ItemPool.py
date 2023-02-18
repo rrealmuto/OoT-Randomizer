@@ -452,7 +452,8 @@ def get_pool_core(world):
         pending_junk_pool.append('Progressive Wallet')
 
     if world.settings.item_pool_value == 'plentiful':
-        pending_junk_pool.extend(plentiful_items)
+        if world.settings.shuffle_base_item_pool:
+            pending_junk_pool.extend(plentiful_items)
         if world.settings.zora_fountain != 'open':
             ruto_bottles += 1
         if world.settings.shuffle_kokiri_sword:
