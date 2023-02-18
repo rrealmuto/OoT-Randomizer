@@ -359,7 +359,7 @@
         "big_poe_count_random": false,
         "big_poe_count": 1,
         "easier_fire_arrow_entry": false,
-        "ocarina_songs": "off",
+        "randomize_ocarina_melodies": "off",
         "correct_chest_appearances": "textures",
         "minor_items_as_major_chest": false,
         "invisible_chests": false,

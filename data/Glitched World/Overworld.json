@@ -229,7 +229,7 @@
         "hint": "LAKE_HYLIA",
         "time_passes": true,
         "events": {
-            "Bonooru": "is_child and Ocarina"
+            "Bonooru": "is_child and Ocarina and have_all_notes_for_song(Scarecrow_Song)"
         },
         "locations": {
             "Pierre": "is_adult and Bonooru and not free_scarecrow",
