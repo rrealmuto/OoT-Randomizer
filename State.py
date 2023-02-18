@@ -195,7 +195,7 @@ class State(object):
     def region_has_shortcuts(self, region_name):
         return self.world.region_has_shortcuts(region_name)
 
-    def can_play_song_note(self, song):
+    def have_all_notes_for_song(self, song):
 
         # Scarecrow needs 2 different notes
         if song == 'Scarecrow Song':
