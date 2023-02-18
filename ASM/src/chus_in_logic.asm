@@ -114,7 +114,7 @@ logic_chus__carpet_dude_2:
     nop                                    ; but bombchu bag is disabled
 
     jal     0x800DCE80
-    addiu   a1, $zero, 0x9020   ; custom text ID for missing bombchu bag
+    addiu   a1, $zero, 0x901A   ; custom text ID for missing bombchu bag
     b       @@return
     nop
 

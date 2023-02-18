@@ -16,7 +16,7 @@
                 at('Water Temple Lowered Water Levels', True) or can_use(Boomerang) or
                 ((can_use(Iron_Boots) or (Progressive_Scale, 2)) and
                     (can_use(Bow) or can_use(Hookshot) or can_use(Slingshot)) and
-                    (can_use(Zora_Tunic) or logic_fewer_tunic_requirements))", 
+                    (can_use(Zora_Tunic) or logic_fewer_tunic_requirements))",
             "Water Temple Main Room L2 Pot 2": "
                 at('Water Temple Lowered Water Levels', True) or can_use(Boomerang) or
                 ((can_use(Iron_Boots) or (Progressive_Scale, 2)) and
@@ -143,7 +143,7 @@
         },
         "exits": {
             "Water Temple Boss Key Chest Room": "
-                (Small_Key_Water_Temple, 5) and 
+                (Small_Key_Water_Temple, 5) and
                 (logic_water_bk_jump_dive or Iron_Boots) and
                 (logic_water_north_basement_ledge_jump or Hover_Boots or
                     (has_explosives and Progressive_Strength_Upgrade))"

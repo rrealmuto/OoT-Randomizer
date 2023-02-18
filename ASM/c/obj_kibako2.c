@@ -50,14 +50,26 @@ void ObjKibako2_Draw(z64_actor_t *actor, z64_game_t *game) {
 
     ObjKibako2* this = (ObjKibako2*)actor;
 
-    if (this->chest_type == GILDED_CHEST) {
-        texture = get_texture(TEXTURE_ID_CRATE_GOLD);
-    } else if (this->chest_type == SILVER_CHEST) {
-        texture = get_texture(TEXTURE_ID_CRATE_KEY);
-    } else if (this->chest_type == GOLD_CHEST) {
-        texture = get_texture(TEXTURE_ID_CRATE_BOSSKEY);
-    } else if (this->chest_type == SKULL_CHEST_SMALL || this->chest_type == SKULL_CHEST_BIG) {
-        texture = get_texture(TEXTURE_ID_CRATE_SKULL);
+    switch (this->chest_type) {
+        case GILDED_CHEST:
+            texture = get_texture(TEXTURE_ID_CRATE_GOLD);
+            break;
+
+        case SILVER_CHEST:
+            texture = get_texture(TEXTURE_ID_CRATE_KEY);
+            break;
+
+        case GOLD_CHEST:
+            texture = get_texture(TEXTURE_ID_CRATE_BOSSKEY);
+            break;
+
+        case SKULL_CHEST_SMALL:
+        case SKULL_CHEST_BIG:
+            texture = get_texture(TEXTURE_ID_CRATE_SKULL);
+            break;
+
+        default:
+            break;
     }
 
 

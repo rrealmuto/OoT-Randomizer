@@ -103,7 +103,14 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         (10, 'texture_smallcrate_gold',     0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_gold_rgba16_patch.bin' ),
         (11, 'texture_smallcrate_key',      0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_key_rgba16_patch.bin'),
         (12, 'texture_smallcrate_skull',    0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_skull_rgba16_patch.bin'),
-        (13, 'texture_smallcrate_bosskey',  0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_bosskey_rgba16_patch.bin')
+        (13, 'texture_smallcrate_bosskey',  0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_bosskey_rgba16_patch.bin'),
+
+        (18, "texture_chest_front_gilded",  0xFEC798,      None,            4096,   rgba16_patch,               'textures/chest/chest_front_gilded_rgba16_patch.bin'),
+        (19, "texture_chest_base_gilded",   0xFED798,      None,            2048,   rgba16_patch,               'textures/chest/chest_base_gilded_rgba16_patch.bin'),
+        (20, "texture_chest_front_silver",  0xFEC798,      None,            4096,   rgba16_patch,               'textures/chest/chest_front_silver_rgba16_patch.bin'),
+        (21, "texture_chest_base_silver",   0xFED798,      None,            2048,   rgba16_patch,               'textures/chest/chest_base_silver_rgba16_patch.bin'),
+        (22, "texture_chest_front_skull",   0xFEC798,      None,            4096,   rgba16_patch,               'textures/chest/chest_front_skull_rgba16_patch.bin'),
+        (23, "texture_chest_base_skull",    0xFED798,      None,            2048,   rgba16_patch,               'textures/chest/chest_base_skull_rgba16_patch.bin'),
     ]
 
     # Loop through the textures and apply the patch. Add the new texture as a new file in rom.
@@ -120,27 +127,6 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         entry['file_vrom_start'] = texture_file.start
         entry['file_size'] = texture_file.end - texture_file.start
         write_rom_texture(rom, texture_id, entry)
-
-    # Apply chest texture diffs to vanilla wooden chest texture for Chest Texture Matches Content setting
-    # new texture, vanilla texture, num bytes
-    textures = [(rom.sym('SILVER_CHEST_FRONT_TEXTURE'), 0xFEC798, 4096),
-                (rom.sym('SILVER_CHEST_BASE_TEXTURE'), 0xFED798, 2048),
-                (rom.sym('GILDED_CHEST_FRONT_TEXTURE'), 0xFEC798, 4096),
-                (rom.sym('GILDED_CHEST_BASE_TEXTURE'), 0xFED798, 2048),
-                (rom.sym('SKULL_CHEST_FRONT_TEXTURE'), 0xFEC798, 4096),
-                (rom.sym('SKULL_CHEST_BASE_TEXTURE'), 0xFED798, 2048)]
-    # Diff texture is the new texture minus the vanilla texture with byte overflow.
-    # This is done to avoid distributing copyrighted material with the randomizer,
-    # as the new textures are derivations of the wood chest textures.
-    # The following rebuilds the texture from the diff.
-    for diff_tex, vanilla_tex, size in textures:
-        db = rom.read_bytes(diff_tex, size)
-        vb = rom.read_bytes(vanilla_tex, size)
-        # bytes are immutable in python, can't edit in place
-        new_tex = bytearray(size)
-        for i in range(len(vb)):
-            new_tex[i] = (db[i] + vb[i]) & 0xFF
-        rom.write_bytes(diff_tex, new_tex)
 
     # Create an option so that recovery hearts no longer drop by changing the code which checks Link's health when an item is spawned.
     if world.settings.no_collectible_hearts:

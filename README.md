@@ -124,6 +124,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * New ER setting `Shuffle Gerudo Valley River Exit` allows you to shuffle the one-way exit going down the river in Gerudo Valley.
   * New setting `Add Bombchu Bag and Drops` which, along with the previous changes of `Bombchus in Logic`, makes the first pack of Bombchus you find into a bag which then allows you to purchase bombchus from shops as well as find them hidden in grass or rocks like regular bombs.
   * New multiselects `Shuffled Child Trade Sequence Items` and `Adult Trade Sequence Items` along with toggle `Shuffle All Adult Trade Items` which have reworked the trade quests for both child and adult. Now you can own multiple trade items for each age at the same time and have multiple trade item locations as shufflable checks.
+  * Many new SFX shuffle options have been added.
 * **Hints**
   * New `Important Checks` hint type which hints at how many major items are in a given region.
   * New Misc. Hint `Frogs Ocarina Game` which tells you what item you'll get from the Zora's River frog minigame. The hint appears in the dialog box that's printed before they jump onto the log.
@@ -162,10 +163,13 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Priority placement of certain warp songs is now conditional if `Guarantee Reachable Locations` is set to `All Goals` or `Required Only`.
 * Improve seed generation time.
 * The key ring texture has been updated with the normal small key texture, making it shinier.
+* D-Pad mask icons will now enlarge when the mask is equipped, similarly to D-Pad boots.
+* Fix a vanilla bug where jumpslashing into Bongo Bongo's chamber on the last possible frame will not properly skip the cutscene when it should be skipped.
 
 #### Plandomizer
 * Plandomizer now allows you to specify locations that are valid but do not exist in your current seed, for example, an MQ-specific location when that dungeon is Vanilla.
 * Error messages for conflicting settings have been improved.
+* Gossip stone text colors are no longer specified in reverse order.
 
 ### 7.1
 

@@ -16,7 +16,7 @@
         "exits": {
             "KF Links House": "is_child",
             "Temple of Time": "
-                is_adult or 
+                is_adult or
                 (can_play(Prelude_of_Light) and can_leave_forest)",
             "Sacred Forest Meadow": "can_play(Minuet_of_Forest)",
             "DMC Central": "can_play(Bolero_of_Fire) and can_leave_forest",
@@ -34,12 +34,12 @@
         "locations": {
             "KF Kokiri Sword Chest": "is_child",
             "KF GS Know It All House": "
-                is_child and at_night and 
+                is_child and at_night and
                 (had_night_start or can_leave_forest or can_play(Suns_Song)) and can_child_attack",
             "KF GS Bean Patch": "
                 can_plant_bugs and can_child_attack",
             "KF GS House of Twins": "
-                is_adult and at_night and 
+                is_adult and at_night and
                 (can_use(Hookshot) or can_use(Hover_Boots) or can_isg)",
             "KF Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle"
@@ -63,7 +63,7 @@
         "locations": {
             "Deku Baba Sticks": "is_adult or Kokiri_Sword or Boomerang",
             "Deku Baba Nuts": "
-                is_adult or Slingshot or Sticks or 
+                is_adult or Slingshot or Sticks or
                 has_explosives or Kokiri_Sword or can_use(Dins_Fire)",
             "KF Deku Tree Gossip Stone (Left)": "True",
             "KF Deku Tree Gossip Stone (Right)": "True"
@@ -146,7 +146,7 @@
             "LW Deku Scrub Near Deku Theater Left": "is_child and can_stun_deku",
             "LW GS Above Theater": "is_adult and at_night and (here(can_plant_bean) or can_use(Longshot) or (has_bombchus and Progressive_Hookshot) or can_hover)",
             "LW GS Bean Patch Near Theater": "
-                can_plant_bugs and 
+                can_plant_bugs and
                 (can_child_attack or (shuffle_scrubs == 'off' and Deku_Shield))"
         },
         "exits": {
@@ -162,7 +162,7 @@
         "exits": {
             "LW Beyond Mido": "True",
             "Sacred Forest Meadow": "
-                is_adult or Slingshot or Sticks or has_explosives or 
+                is_adult or Slingshot or Sticks or has_explosives or
                 Kokiri_Sword or can_use(Dins_Fire)",
             "SFM Wolfos Grotto": "can_blast_or_smash"
         }
@@ -235,7 +235,7 @@
             "Pierre": "is_adult and Bonooru and not free_scarecrow",
             "LH Underwater Item": "is_child and can_dive",
             "LH Sun": "
-                is_adult and 
+                is_adult and
                 (can_use(Distant_Scarecrow) or 'Water Temple Clear' or can_hover) and can_use(Bow)",
             "LH Freestanding PoH": "
                 is_adult and
@@ -278,13 +278,13 @@
             "LH Adult Fishing": "is_adult"
         }
     },
-    { 
+    {
         "region_name": "Gerudo Valley",
         "hint": "GERUDO_VALLEY",
         "time_passes": true,
         "locations": {
             "GV Waterfall Freestanding PoH": "True",
-            "GV Crate Freestanding PoH": "is_child or can_use(Longshot) or 
+            "GV Crate Freestanding PoH": "is_child or can_use(Longshot) or
                 at('GV Fortress Side', (can_use(Hover_Boots) or can_mega) and (can_live_dmg(0.5) or has_bottle or can_use(Nayrus_Love)))",
             "GV GS Small Bridge": "(can_use(Boomerang) or (can_hover and is_child)) and at_night",
             "GV GS Bean Patch": "can_plant_bugs and can_child_attack",
@@ -296,7 +296,7 @@
             "Lake Hylia": "True",
             "GV Fortress Side": "( is_child and (can_jumpslash or can_mega) )
                 or ( is_adult and (can_ride_epona or can_use(Hookshot) or gerudo_fortress == 'open' or can_mega))"
-            
+
         }
     },
     {
@@ -523,7 +523,7 @@
         },
         "locations": {
             "Market 10 Big Poes": "
-                is_adult and 
+                is_adult and
                 (Big_Poe or (Bottle_with_Big_Poe, big_poe_count))",
             "Market GS Guard House": "is_child"
         }
@@ -648,8 +648,8 @@
             "Kak GS Skulltula House": "is_child and at_night",
             "Kak GS Near Gate Guard": "is_child and at_night",
             "Kak GS Tree": "is_child and at_night",
-            "Kak GS Watchtower": "at_night and 
-                is_child and (Slingshot or has_bombchus or 
+            "Kak GS Watchtower": "at_night and
+                is_child and (Slingshot or has_bombchus or
                     ( (Sticks or Kokiri_Sword) and
                     ( can_live_dmg(0.5) or Fairy or can_use(Nayrus_Love) ) ) )",
             "Kak GS Above Impas House": "can_use(Hookshot) and at_night",
@@ -670,8 +670,8 @@
             "Kak Potion Shop Back": "is_adult",
             "Kak Odd Medicine Building": "is_adult",
             "Kak Redead Grotto": "
-                can_blast_or_smash and 
-                (is_adult or 
+                can_blast_or_smash and
+                (is_adult or
                     (Sticks or Kokiri_Sword or can_use(Dins_Fire)))",
             "Kak Open Grotto": "True",
             "Graveyard": "True",
@@ -807,8 +807,8 @@
         "locations": {
             "Graveyard Royal Familys Tomb Chest": "has_fire_source or (is_child and Sticks and (can_live_dmg(0.75) or can_use(Nayrus_Love)))",
             "Song from Royal Familys Tomb": "
-                is_adult or 
-                (Slingshot or Boomerang or Sticks or 
+                is_adult or
+                (Slingshot or Boomerang or Sticks or
                     has_explosives or Kokiri_Sword)"
         }
     },
@@ -847,7 +847,7 @@
                 can_blast_or_smash or can_jumpslash or
                 (is_child and Progressive_Strength_Upgrade)",
             "DMT Freestanding PoH": "
-                is_child or can_live_dmg(0.5) or 
+                is_child or can_live_dmg(0.5) or
                 can_use(Nayrus_Love) or Fairy or Hover_Boots",
             "DMT GS Bean Patch": "
                 can_plant_bugs and (has_explosives or Progressive_Strength_Upgrade)",
@@ -911,17 +911,17 @@
             "GC Maze Right Chest": "
                 can_blast_or_smash or can_use(Silver_Gauntlets) or (Progressive_Strength_Upgrade and can_shield)",
             "GC Pot Freestanding PoH": "
-                is_child and 
-                (has_explosives or Progressive_Strength_Upgrade) and 
+                is_child and
+                (has_explosives or Progressive_Strength_Upgrade) and
                 (( (can_play(Zeldas_Lullaby) or can_shield) and Sticks) or can_use(Dins_Fire))",
             "GC Rolling Goron as Child": "
-                is_child and 
+                is_child and
                 (has_explosives or Progressive_Strength_Upgrade)",
             "GC Rolling Goron as Adult": "
-                is_adult and 
+                is_adult and
                 (Progressive_Strength_Upgrade or has_explosives or Bow or can_use(Dins_Fire) or Blue_Fire)",
             "GC Medigoron": "
-                is_adult and Progressive_Wallet and 
+                is_adult and Progressive_Wallet and
                 (can_blast_or_smash or Progressive_Strength_Upgrade or Blue_Fire)",
             "GC GS Boulder Maze": "is_child and has_explosives",
             "GC GS Center Platform": "is_adult",
@@ -935,16 +935,16 @@
             "Death Mountain": "True",
             "GC Woods Warp": "'GC Woods Warp Open'",
             "GC Shop": "
-                has_explosives or Progressive_Strength_Upgrade or can_use(Bow) or 
+                has_explosives or Progressive_Strength_Upgrade or can_use(Bow) or
                 (is_child and (can_use(Dins_Fire) or (can_play(Zeldas_Lullaby) and Sticks)))",
             "GC Darunias Chamber": "
-                    (is_child and (can_play(Zeldas_Lullaby) or ((Progressive_Strength_Upgrade or has_explosives) and can_shield))) or 
+                    (is_child and (can_play(Zeldas_Lullaby) or ((Progressive_Strength_Upgrade or has_explosives) and can_shield))) or
                     (is_adult and (Progressive_Strength_Upgrade or has_explosives or Bow))",
             "GC Grotto": "can_hover or (
-                is_adult and 
-                ( (can_play(Song_of_Time) and 
-                    (can_live_dmg(1) or can_use(Goron_Tunic) or can_use(Longshot) or can_use(Nayrus_Love)) ) or 
-                ((can_live_dmg(0.5) or can_use(Goron_Tunic)) and can_use(Hookshot)) or 
+                is_adult and
+                ( (can_play(Song_of_Time) and
+                    (can_live_dmg(1) or can_use(Goron_Tunic) or can_use(Longshot) or can_use(Nayrus_Love)) ) or
+                ((can_live_dmg(0.5) or can_use(Goron_Tunic)) and can_use(Hookshot)) or
                 ((can_use(Nayrus_Love) or can_use(Goron_Tunic)) and can_use(Hookshot))))"
         }
     },
@@ -1003,7 +1003,7 @@
             "Death Mountain Summit": "True",
             "DMC Lower": "can_use(Hover_Boots) or can_mega",
             "DMC Central": "(is_child and can_mega and (can_live_dmg(1) or Fairy or can_use(Nayrus_Love)) and Hylian_Shield) or
-                (is_adult and can_use(Goron_Tunic) and (can_use(Distant_Scarecrow) or can_mega) and 
+                (is_adult and can_use(Goron_Tunic) and (can_use(Distant_Scarecrow) or can_mega) and
                 (can_live_dmg(1) or Fairy or can_use(Nayrus_Love)))",
             "DMC Upper Grotto": "here(can_blast_or_smash)"
         }
@@ -1068,8 +1068,8 @@
         "locations": {
             "ZR Magic Bean Salesman": "is_child",
             "ZR Frogs Ocarina Game": "
-                is_child and can_play(Zeldas_Lullaby) and can_play(Sarias_Song) and 
-                can_play(Suns_Song) and can_play(Eponas_Song) and 
+                is_child and can_play(Zeldas_Lullaby) and can_play(Sarias_Song) and
+                can_play(Suns_Song) and can_play(Eponas_Song) and
                 can_play(Song_of_Time) and can_play(Song_of_Storms)",
             "ZR Frogs Zeldas Lullaby": "is_child and can_play(Zeldas_Lullaby)",
             "ZR Frogs Eponas Song": "is_child and can_play(Eponas_Song)",
@@ -1105,8 +1105,8 @@
             "ZD King Zora Thawed": "is_adult",
             "ZD Trade Prescription": "is_adult and Eyeball_Frog",
             "ZD GS Frozen Waterfall": "
-                is_adult and at_night and (Progressive_Hookshot or Bow or Magic_Meter or has_explosives or 
-                Biggoron_Sword or 
+                is_adult and at_night and (Progressive_Hookshot or Bow or Magic_Meter or has_explosives or
+                Biggoron_Sword or
                 at('Goron City', is_adult and Progressive_Wallet and (can_blast_or_smash or Progressive_Strength_Upgrade or Blue_Fire)))",
             "ZD Gossip Stone": "True",
             "Fish Group": "is_child and has_bottle",
@@ -1129,7 +1129,7 @@
             "ZF Bottom Freestanding PoH": "is_adult and Iron_Boots",
             "ZF GS Tree": "is_child",
             "ZF GS Above the Log": "(can_use(Boomerang) or (can_hover and is_child)) and at_night",
-            "ZF GS Hidden Cave": "at_night and 
+            "ZF GS Hidden Cave": "at_night and
                 (
                 ((can_use(Silver_Gauntlets) and can_blast_or_smash) or (has_explosives and can_shield and (can_use(Bow) or can_use(Hookshot))))
                     or (has_explosives and can_shield)
@@ -1139,7 +1139,7 @@
         },
         "exits": {
             "Zoras Domain": "True",
-            "Jabu Jabus Belly Beginning": "(is_child and (can_jumpslash or Fish)) or 
+            "Jabu Jabus Belly Beginning": "(is_child and (can_jumpslash or Fish)) or
                 (is_adult and Hover_Boots and has_bombchus and can_shield)",
             "Ice Cavern": "is_adult or (is_child and can_hover)",
             "ZF Great Fairy Fountain": "has_explosives or can_use(Hookshot)"

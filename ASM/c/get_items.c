@@ -25,6 +25,7 @@ extern uint8_t MW_SEND_OWN_ITEMS;
 extern override_key_t OUTGOING_KEY;
 extern uint16_t OUTGOING_ITEM;
 extern uint16_t OUTGOING_PLAYER;
+extern uint16_t GET_ITEM_SEQ_ID;
 uint16_t drop_collectible_override_flag = 0; // Flag used by hacks in Item_DropCollectible to override the item being dropped. Set it to the flag for the overridden item.
 
 override_t active_override = { 0 };
@@ -821,7 +822,7 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
             pItem->actor.dropFlag = 1; // Store this so the draw function knows to keep drawing the override.
             dispatch_item(resolved_item_id, player, &collectible_override, item_row);
             // Pick the correct sound effect for rupees or other items.
-            uint16_t sfxId = NA_SE_SY_GET_ITEM;
+            uint16_t sfxId = GET_ITEM_SEQ_ID;
             if (item_row->collectible <= ITEM00_RUPEE_RED || item_row->collectible == ITEM00_RUPEE_PURPLE || item_row->collectible == ITEM00_RUPEE_ORANGE) {
                 sfxId = NA_SE_SY_GET_RUPY;
             }

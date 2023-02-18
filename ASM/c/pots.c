@@ -61,23 +61,36 @@ void draw_pot(z64_actor_t *actor, z64_game_t *game) {
         side_texture = POT_SIDE_TEXTURE;
     }
 
-    uint8_t chest_type;
-    if(actor->actor_id == 0x111) //Regular pot
+    uint8_t chest_type = 0;
+    if (actor->actor_id == 0x111) { //Regular pot
         chest_type = ((ObjTsubo*)actor)->chest_type;
-    else if(actor->actor_id == 0x117) //HBA Pot
+    } else if(actor->actor_id == 0x117) { //HBA Pot
         chest_type = BROWN_CHEST;
-    else if(actor->actor_id == 0x11D) //Flying pot
+    } else if(actor->actor_id == 0x11D) { //Flying pot
         chest_type = ((EnTuboTrap*)actor)->chest_type;
+    }
 
     // get override texture
-    if (chest_type == GILDED_CHEST) {
-        side_texture = get_texture(TEXTURE_ID_POT_GOLD);
-    } else if (chest_type == SILVER_CHEST) {
-        side_texture = get_texture(TEXTURE_ID_POT_KEY);
-    } else if (chest_type == GOLD_CHEST) {
-        side_texture = get_texture(TEXTURE_ID_POT_BOSSKEY);
-    } else if (chest_type == SKULL_CHEST_SMALL || chest_type == SKULL_CHEST_BIG) {
-        side_texture = get_texture(TEXTURE_ID_POT_SKULL);
+    switch (chest_type) {
+        case GILDED_CHEST:
+            side_texture = get_texture(TEXTURE_ID_POT_GOLD);
+            break;
+
+        case SILVER_CHEST:
+            side_texture = get_texture(TEXTURE_ID_POT_KEY);
+            break;
+
+        case GOLD_CHEST:
+            side_texture = get_texture(TEXTURE_ID_POT_BOSSKEY);
+            break;
+
+        case SKULL_CHEST_SMALL:
+        case SKULL_CHEST_BIG:
+            side_texture = get_texture(TEXTURE_ID_POT_SKULL);
+            break;
+
+        default:
+            break;
     }
 
     // push custom dlist (that sets the texture) to segment 09

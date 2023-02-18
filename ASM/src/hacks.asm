@@ -3582,3 +3582,13 @@ courtyard_guards_kill:
 ; Replaces: addiu   t9, $zero, 0x3033
 .orga 0xED31B8
     addiu   t9, $zero, 0x3036
+
+;===================================================================================================
+; Fix Bongo cutscene start not skipped if jumpslash at the last possible frame
+;===================================================================================================
+; Replaces: slti    $at, a2, 0x0222
+.orga 0xDA1D60
+    slti    $at, a2, 0x0221
+; Replaces: addiu   t9, $zero, 0x0222
+.orga 0xDA1F94
+    addiu   t9, $zero, 0x0221

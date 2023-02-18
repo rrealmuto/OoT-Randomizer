@@ -146,7 +146,12 @@ void draw_dpad() {
                 if(!CAN_USE_DPAD || !CAN_USE_CHILD_TRADE) gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, alpha * 0x46 / 0xFF);
                 else gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, alpha);
                 sprite_load(db, &items_sprite, z64_file.items[Z64_SLOT_CHILD_TRADE], 1);
-                sprite_draw(db, &items_sprite, 0, 285, 66, 12, 12);
+                if (z64_link.current_mask >= 1 && z64_link.current_mask <= 9) {
+                    sprite_draw(db, &items_sprite, 0, 283, 64, 16, 16);
+                }
+                else {
+                    sprite_draw(db, &items_sprite, 0, 285, 66, 12, 12);
+                }
             }
 
             if (z64_file.items[Z64_SLOT_OCARINA] == Z64_ITEM_FAIRY_OCARINA || z64_file.items[Z64_SLOT_OCARINA] == Z64_ITEM_OCARINA_OF_TIME) {

@@ -121,9 +121,11 @@ def check_code_style(fix_errors=False):
     for path in (repo_dir / 'ASM' / 'src').iterdir():
         if path.suffix == '.asm':
             check_file_format(path)
-    for path in (repo_dir / 'data' / 'Hints').iterdir():
-        if path.suffix == '.json':
-            check_file_format(path)
+    for subdir in ('Glitched World', 'Hints', 'World'):
+        for path in (repo_dir / 'data' / subdir).iterdir():
+            if path.suffix == '.json':
+                check_file_format(path)
+    check_file_format(repo_dir / 'data' / 'LogicHelpers.json')
     check_file_format(repo_dir / 'data' / 'presets_default.json')
 
 

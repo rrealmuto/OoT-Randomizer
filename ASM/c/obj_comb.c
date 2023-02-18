@@ -90,11 +90,17 @@ void ObjComb_Draw_Hack(z64_actor_t *this, z64_game_t *game) {
         if (row == NULL) {
             row = get_item_row(override.value.item_id);
         }
-        if (row->chest_type == GILDED_CHEST) {
-            texture = get_texture(TEXTURE_ID_BEEHIVE_GOLD);
-        }
-        if (row->chest_type == GOLD_CHEST) {
-            texture = get_texture(TEXTURE_ID_BEEHIVE_BOSSKEY);
+        switch (row->chest_type) {
+            case GILDED_CHEST:
+                texture = get_texture(TEXTURE_ID_BEEHIVE_GOLD);
+                break;
+
+            case GOLD_CHEST:
+                texture = get_texture(TEXTURE_ID_BEEHIVE_BOSSKEY);
+                break;
+
+            default:
+                break;
         }
     }
 

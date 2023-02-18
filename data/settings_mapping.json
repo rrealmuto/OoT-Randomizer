@@ -480,68 +480,64 @@
       "name": "sfx_tab",
       "text": "SFX",
       "app_type": ["generator", "patcher"],
-      "is_cosmetics": true,
+      "is_sfx": true,
       "sections": [
         {
           "name": "sfx_main_section",
+          "text": "General",
           "is_sfx": true,
-          "col_span": 4,
-          "row_span": [2,1,2],
+          "col_span": 2,
+          "row_span": [2,2,2],
           "settings": [
             "randomize_all_sfx",
             "disable_battle_music"
           ]
         },
         {
-          "name": "generalsfx_section",
-          "text": "General",
+          "name": "musicsfx_section",
+          "text": "Music",
           "is_sfx": true,
-          "col_span": 1,
-          "row_span": [6,6,11],
+          "col_span": 2,
+          "row_span": [2,2,2],
           "settings": [
             "background_music",
             "fanfares",
-            "ocarina_fanfares",
-            "sfx_low_hp",
-            "sfx_horse_neigh",
-            "sfx_nightfall",
+            "ocarina_fanfares"
+          ]
+        },
+        {
+          "name": "itemsfx_section",
+          "text": "Items",
+          "col_span": 2,
+          "row_span": [5,5,5],
+          "settings": [     
+            "sfx_ocarina",
+            "sfx_bombchu_move",
             "sfx_hover_boots",
-            "sfx_ocarina"
+            "sfx_iron_boots",
+            "sfx_boomerang_throw",
+            "sfx_hookshot_chain",
+            "sfx_arrow_shot",
+            "sfx_slingshot_shot",
+            "sfx_magic_arrow_shot",
+            "sfx_explosion"
           ]
         },
         {
-          "name": "menusfx_section",
-          "text": "Menu",
-          "is_sfx": true,
-          "col_span": 1,
-          "row_span": [6,6,11],
-          "settings": [
-            "sfx_menu_cursor",
-            "sfx_menu_select"
-          ]
-        },
-        {
-          "name": "npcsfx_section",
-          "text": "NPC",
-          "is_sfx": true,
-          "col_span": 1,
-          "row_span": [6,6,11],
-          "settings": [
-            "sfx_navi_overworld",
-            "sfx_navi_enemy"
-          ]
-        },
-        {
-          "name": "linksfx_section_generator",
-          "text": "Link",
+          "name": "voicesfx_section_generator",
+          "text": "Voices",
           "app_type": ["generator"],
           "is_sfx": true,
           "col_span": 1,
-          "row_span": [6,6,11],
+          "row_span": [5,5,5],
           "settings": [
             "sfx_link_adult",
             "sfx_link_child",
-            "sfx_link_unavailable_msg"
+            "sfx_link_unavailable_msg",         
+            "sfx_navi_overworld",
+            "sfx_navi_enemy",
+            "sfx_horse_neigh",
+            "sfx_cucco"
           ]
         },
         {
@@ -551,10 +547,26 @@
           "app_type": ["patcher"],
           "is_sfx": true,
           "col_span": 1,
-          "row_span": [6,6,11],
+          "row_span": [5,5,5],
           "settings": [
             "sfx_link_adult",
             "sfx_link_child"
+          ]
+        },
+        {
+          "name": "generalsfx_section",
+          "text": "Misc Sound Effects",
+          "is_sfx": true,
+          "col_span": 1,
+          "row_span": [5,5,5],
+          "settings": [
+            "sfx_daybreak",
+            "sfx_nightfall",
+            "sfx_menu_cursor",
+            "sfx_menu_select",
+            "sfx_low_hp",
+            "sfx_silver_rupee",
+            "sfx_get_small_item"
           ]
         }
       ]

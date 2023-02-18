@@ -4736,10 +4736,11 @@ setting_infos = [
         name           = 'minor_items_as_major_chest',
         gui_text       = 'Minor Items in Big/Gold chests',
         gui_tooltip    = '''\
-            Chests with Hylian Shield or Deku Shield
-            will appear in Big and/or Gold chests,
+            Chests with Hylian Shield, Deku Shield, or
+            Bombchus will appear in Big and/or Gold chests,
             depending on the Chest Appearance Matches
-            Contents setting.
+            Contents setting. Bombchus are always in big
+            chests if Add Bombchu Bag and Drops is on.
         ''',
         shared         = True,
         disabled_default = False,
@@ -6019,7 +6020,8 @@ setting_infos = [
         ''',
         default        = False,
         disable    = {
-            True : {'sections' : [ "generalsfx_section", "menusfx_section", "npcsfx_section" ]
+            True : {'sections' : [ "musicsfx_section", "generalsfx_section", "UIsfx_section", "itemsfx_section" ],
+            'settings' : ["sfx_navi_overworld", "sfx_navi_enemy", "sfx_horse_neigh", "sfx_cucco"]
             }
         }
     ),
@@ -6112,66 +6114,6 @@ setting_infos = [
         default        = False,
     ),
     Combobox(
-        name           = 'sfx_low_hp',
-        gui_text       = 'Low HP',
-        shared         = False,
-        cosmetic       = True,
-        choices        = sfx.get_setting_choices(sfx.SoundHooks.HP_LOW),
-        default        = 'default',
-        gui_tooltip    = '''\
-            'Random Choice': Choose a random sound from this list.
-            'Default': Beep. Beep. Beep.
-        ''',
-        gui_params     = {
-            'randomize_key': 'randomize_all_sfx',
-            'distribution': [
-                ('random-ear-safe', 1),
-            ]
-        }
-    ),
-    Combobox(
-        name           = 'sfx_horse_neigh',
-        gui_text       = 'Horse',
-        shared         = False,
-        cosmetic       = True,
-        choices        = sfx.get_setting_choices(sfx.SoundHooks.HORSE_NEIGH),
-        default        = 'default',
-        gui_params     = {
-            'randomize_key': 'randomize_all_sfx',
-            'distribution': [
-                ('random-ear-safe', 1),
-            ]
-        }
-    ),
-    Combobox(
-        name           = 'sfx_nightfall',
-        gui_text       = 'Nightfall',
-        shared         = False,
-        cosmetic       = True,
-        choices        = sfx.get_setting_choices(sfx.SoundHooks.NIGHTFALL),
-        default        = 'default',
-        gui_params     = {
-            'randomize_key': 'randomize_all_sfx',
-            'distribution': [
-                ('random-ear-safe', 1),
-            ]
-        }
-    ),
-    Combobox(
-        name           = 'sfx_hover_boots',
-        gui_text       = 'Hover Boots',
-        shared         = False,
-        cosmetic       = True,
-        choices        = sfx.get_setting_choices(sfx.SoundHooks.BOOTS_HOVER),
-        default        = 'default',
-        gui_params     = {
-            'randomize_key': 'randomize_all_sfx',
-            'distribution': [
-                ('random-ear-safe', 1),
-            ]
-        }
-    ),
-    Combobox(
         name           = 'sfx_ocarina',
         gui_text       = 'Ocarina',
         shared         = False,
@@ -6187,9 +6129,10 @@ setting_infos = [
         },
         default        = 'ocarina',
         gui_tooltip    = '''\
-            Change the sound of the ocarina.
+            Change the instrument used when playing the ocarina.
         ''',
         gui_params     = {
+            'no_line_break' : True,
             'randomize_key': 'randomize_all_sfx',
             'distribution': [
                 ('random-choice', 1),
@@ -6197,12 +6140,15 @@ setting_infos = [
         }
     ),
     Combobox(
-        name           = 'sfx_menu_cursor',
-        gui_text       = 'Menu Cursor',
+        name           = 'sfx_bombchu_move',
+        gui_text       = 'Bombchu',
         shared         = False,
         cosmetic       = True,
-        choices        = sfx.get_setting_choices(sfx.SoundHooks.MENU_CURSOR),
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.BOMBCHU_MOVE),
         default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound bombchus make when moving.
+        ''',
         gui_params     = {
             'randomize_key': 'randomize_all_sfx',
             'distribution': [
@@ -6211,12 +6157,33 @@ setting_infos = [
         }
     ),
     Combobox(
-        name           = 'sfx_menu_select',
-        gui_text       = 'Menu Select',
+        name           = 'sfx_hover_boots',
+        gui_text       = "Hover Boots",
         shared         = False,
         cosmetic       = True,
-        choices        = sfx.get_setting_choices(sfx.SoundHooks.MENU_SELECT),
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.BOOTS_HOVER),
         default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound of the hover boots when in air.
+        ''',
+        gui_params     = {
+        'no_line_break' : True,
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_iron_boots',
+        gui_text       = "Iron Boots",
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.BOOTS_IRON),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound of Iron boots.
+        ''',
         gui_params     = {
             'randomize_key': 'randomize_all_sfx',
             'distribution': [
@@ -6225,12 +6192,33 @@ setting_infos = [
         }
     ),
     Combobox(
-        name           = 'sfx_navi_overworld',
-        gui_text       = 'Navi Overworld',
+        name           = 'sfx_boomerang_throw',
+        gui_text       = 'Boomerang Throw',
         shared         = False,
         cosmetic       = True,
-        choices        = sfx.get_setting_choices(sfx.SoundHooks.NAVI_OVERWORLD),
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.BOOMERANG_THROW),
         default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound of the Boomerang flying in the air.
+        ''',
+        gui_params     = {
+            "no_line_break"      : True,
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_hookshot_chain',
+        gui_text       = 'Hookshot Chain',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.HOOKSHOT_CHAIN),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound of the Hookshot extending.
+        ''',
         gui_params     = {
             'randomize_key': 'randomize_all_sfx',
             'distribution': [
@@ -6239,12 +6227,68 @@ setting_infos = [
         }
     ),
     Combobox(
-        name           = 'sfx_navi_enemy',
-        gui_text       = 'Navi Enemy',
+        name           = 'sfx_arrow_shot',
+        gui_text       = 'Arrow Shot',
         shared         = False,
         cosmetic       = True,
-        choices        = sfx.get_setting_choices(sfx.SoundHooks.NAVI_ENEMY),
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.ARROW_SHOT),
         default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound of a regular arrow shot.
+        ''',
+        gui_params     = {
+            "no_line_break"      : True,
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_slingshot_shot',
+        gui_text       = 'Slingshot Shot',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.SLINGSHOT_SHOT),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound of a Slingshot shot.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_magic_arrow_shot',
+        gui_text       = 'Magic Arrow Shot',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.MAGIC_ARROW_SHOT),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound of a Magic arrow shot.
+        ''',
+        gui_params     = {
+            "no_line_break"      : True,
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_explosion',
+        gui_text       = 'Bomb Explosion',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.EXPLOSION),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound of a bomb exploding.
+        ''',
         gui_params     = {
             'randomize_key': 'randomize_all_sfx',
             'distribution': [
@@ -6292,6 +6336,193 @@ setting_infos = [
             "hide_when_disabled": True
         },
         choices        = {},
+    ),
+    Combobox(
+        name           = 'sfx_navi_overworld',
+        gui_text       = 'Navi Overworld',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.NAVI_OVERWORLD),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound of Navi calling in the overworld.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_navi_enemy',
+        gui_text       = 'Navi Enemy',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.NAVI_ENEMY),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound of Navi targetting an enemy.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_horse_neigh',
+        gui_text       = 'Horse',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.HORSE_NEIGH),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound of Epona and other horses.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_cucco',
+        gui_text       = 'Cucco',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.CUCCO),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound of Cuccos.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_daybreak',
+        gui_text       = 'Daybreak',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.DAYBREAK),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound when morning comes.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_nightfall',
+        gui_text       = 'Nightfall',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.NIGHTFALL),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound when night falls.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+     Combobox(
+        name           = 'sfx_menu_cursor',
+        gui_text       = 'Menu Cursor',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.MENU_CURSOR),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound when the cursor move in the main menu.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_menu_select',
+        gui_text       = 'Menu Select',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.MENU_SELECT),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound when pressing A in the main menu.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_low_hp',
+        gui_text       = 'Low HP',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.HP_LOW),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound when being low on HP.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_silver_rupee',
+        gui_text       = 'Silver Rupee Jingle',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.SILVER_RUPEE),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the jingle when getting a silver rupee.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_get_small_item',
+        gui_text       = 'Get Refill',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.GET_SMALL_ITEM),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound when you get a small refill (ammo or recovery heart).
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
     ),
 ]
 

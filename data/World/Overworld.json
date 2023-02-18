@@ -279,7 +279,7 @@
                     (logic_lost_woods_gs_bean and Hookshot and
                         (Longshot or Bow or has_bombchus or can_use(Dins_Fire))))",
             "LW GS Bean Patch Near Theater": "
-                can_plant_bugs and 
+                can_plant_bugs and
                 (can_child_attack or (shuffle_scrubs == 'off' and Deku_Shield))",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle"
         },
@@ -304,7 +304,7 @@
         "scene": "Lost Woods",
         "hint": "LOST_WOODS",
         "locations": {
-            # This is the third rupee from the shortcut entrance and is automatically 
+            # This is the third rupee from the shortcut entrance and is automatically
             # collected upon entering through the shortcut. Only really matters for overworld ER
             "LW Underwater Shortcut Green Rupee": "is_child"
         },
@@ -522,7 +522,7 @@
             "GV Crate Ledge": "is_child or Longshot",
             "GV Grotto Ledge": "True",
             "GV Fortress Side": "
-                is_adult and 
+                is_adult and
                 (can_ride_epona or Longshot or gerudo_fortress == 'open' or can_finish_GerudoFortress)"
         }
     },
@@ -1811,7 +1811,7 @@
         "time_passes": true,
         "locations": {
             "DMT Chest": "
-                can_blast_or_smash or 
+                can_blast_or_smash or
                 (logic_dmt_bombable and is_child and Progressive_Strength_Upgrade)",
             "DMT Freestanding PoH": "
                 can_take_damage or can_use(Hover_Boots) or
@@ -1855,9 +1855,9 @@
         },
         "locations": {
             "DMT Biggoron": "
-                is_adult and 
-                (Claim_Check or 
-                    (guarantee_trade_path and (not adult_trade_shuffle) and 
+                is_adult and
+                (Claim_Check or
+                    (guarantee_trade_path and (not adult_trade_shuffle) and
                     ('Eyedrops Access' or (Eyedrops and disable_trade_revert))))",
             "DMT Trade Broken Sword": "is_adult and Broken_Sword",
             "DMT Trade Eyedrops": "is_adult and Eyedrops",

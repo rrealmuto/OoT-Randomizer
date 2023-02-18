@@ -29,7 +29,7 @@
             "Forest Temple After Block Puzzle": "
                 (has_bombchus and logic_forest_mq_block_puzzle) or Progressive_Strength_Upgrade",
             "Forest Temple Outdoor Ledge": "
-                (has_bombchus and logic_forest_mq_block_puzzle) or 
+                (has_bombchus and logic_forest_mq_block_puzzle) or
                 Progressive_Strength_Upgrade or can_use(Hover_Boots)",
             "Forest Temple Boss Region": "
                 Forest_Temple_Jo_and_Beth and Forest_Temple_Amy_and_Meg"
@@ -63,7 +63,7 @@
         },
         "exits": {
             "Forest Temple NE Outdoors": "
-                can_use(Iron_Boots) or can_use(Longshot) or 
+                can_use(Iron_Boots) or can_use(Longshot) or
                 (Progressive_Scale, 2) or (logic_forest_well_swim and can_use(Hookshot))",
             "Forest Temple Outdoors Top Ledges": "can_use(Fire_Arrows)"
         }
@@ -78,7 +78,7 @@
         },
         "exits": {
             "Forest Temple Outdoors Top Ledges": "
-                can_use(Longshot) or can_use(Hover_Boots) or can_play(Song_of_Time) or 
+                can_use(Longshot) or can_use(Hover_Boots) or can_play(Song_of_Time) or
                 (logic_forest_vines and can_use(Hookshot))",
             "Forest Temple NE Outdoors Ledge": "can_use(Longshot)"
         }
@@ -117,7 +117,7 @@
         },
         "exits": {
             "Forest Temple Falling Room": "
-                (Small_Key_Forest_Temple, 5) and 
+                (Small_Key_Forest_Temple, 5) and
                 (can_use(Bow) or can_use(Dins_Fire))" # Only 5 keys because the door you could waste your key on is the door you're trying to use keys to get to.
         }
     },

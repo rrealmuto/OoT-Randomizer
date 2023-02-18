@@ -275,7 +275,47 @@ def build_smallcrate_patches():
     save_rgba16_texture(skull_patch, 'smallcrate_skull_rgba16_patch.bin')
     save_rgba16_texture(bosskey_patch, 'smallcrate_bosskey_rgba16_patch.bin')
 
+def build_chest_patches():
+    # load front and base texture from rom
+    front_texture_addr = 0xFEC798
+    base_texture_addr = 0xFED798
+
+    SIZE_32X64 = 2048
+    SIZE_32X32 = 1024
+    rom = Rom("ZOOTDEC.z64")
+
+    # Load textures
+    front_default_rgba16 = load_rgba16_texture_from_rom(rom, front_texture_addr, SIZE_32X64)
+    base_default_rgba16 = load_rgba16_texture_from_rom(rom, base_texture_addr, SIZE_32X32)
+
+    front_gilded_rgba16 = load_rgba16_texture('GILDED_CHEST_FRONT_TEXTURE.bin', SIZE_32X64)
+    base_gilded_rgba16 = load_rgba16_texture('GILDED_CHEST_BASE_TEXTURE.bin', SIZE_32X32)
+    front_silver_rgba16 = load_rgba16_texture('SILVER_CHEST_FRONT_TEXTURE.bin', SIZE_32X64)
+    base_silver_rgba16 = load_rgba16_texture('SILVER_CHEST_BASE_TEXTURE.bin', SIZE_32X32)
+    front_skull_rgba16 = load_rgba16_texture('SKULL_CHEST_FRONT_TEXTURE.bin', SIZE_32X64)
+    base_skull_rgba16 = load_rgba16_texture('SKULL_CHEST_BASE_TEXTURE.bin', SIZE_32X32)
+
+    save_rgba16_texture(front_default_rgba16, 'front_default_rgba16.bin')
+    save_rgba16_texture(base_default_rgba16, 'base_default_rgba16.bin')
+
+    # Create patches
+    front_gilded_patch = apply_rgba16_patch(front_default_rgba16, front_gilded_rgba16)
+    base_gilded_patch = apply_rgba16_patch(base_default_rgba16, base_gilded_rgba16)
+    front_silver_patch = apply_rgba16_patch(front_default_rgba16, front_silver_rgba16)
+    base_silver_patch = apply_rgba16_patch(base_default_rgba16, base_silver_rgba16)
+    front_skull_patch = apply_rgba16_patch(front_default_rgba16, front_skull_rgba16)
+    base_skull_patch = apply_rgba16_patch(base_default_rgba16, base_skull_rgba16)
+
+    # save patches
+    save_rgba16_texture(front_gilded_patch, 'chest_front_gilded_rgba16_patch.bin')
+    save_rgba16_texture(base_gilded_patch, 'chest_base_gilded_rgba16_patch.bin')
+    save_rgba16_texture(front_silver_patch, 'chest_front_silver_rgba16_patch.bin')
+    save_rgba16_texture(base_silver_patch, 'chest_base_silver_rgba16_patch.bin')
+    save_rgba16_texture(front_skull_patch, 'chest_front_skull_rgba16_patch.bin')
+    save_rgba16_texture(base_skull_patch, 'chest_base_skull_rgba16_patch.bin')
+
 
 #build_crate_ci8_patches()
 #build_pot_patches()
 #build_smallcrate_patches()
+#build_chest_patches()
