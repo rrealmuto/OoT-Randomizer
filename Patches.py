@@ -2243,7 +2243,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
 
     # give dungeon items the correct messages
     add_item_messages(messages, shop_items, world)
-    if world.settings.enhance_map_compass and world.settings.world_count == 1:
+    if world.settings.enhance_map_compass and world.settings.shuffle_mapcompass != 'remove' and world.settings.world_count == 1:
         dungeon_list = {
             #                      dungeon name                      compass map
             'Deku Tree':          ("the \x05\x42Deku Tree",          0x62, 0x88),
