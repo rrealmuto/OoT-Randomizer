@@ -14,6 +14,7 @@ Wonderitem Shuffle - Shuffles wonderitems - which include invisible rupees and i
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v20](#v20)
   * [v19](#v19)
   * [v18](#v18)
   * [v17](#v17)
@@ -37,6 +38,15 @@ Wonderitem Shuffle - Shuffles wonderitems - which include invisible rupees and i
   * [4.0](#40)
 
 ## RealRob Changelog
+### v20
+  * New Ice Trap Settings:
+    * Custom Ice Trap Count
+      * Allows specifiying a number of junk items to be replaced w/ Ice Traps
+    * Custom Ice Trap Percent
+      * Allows specifying a percentage of junk items to be replaced w/ Ice Traps
+  * Gossip Stone Shuffle Fixes:
+    * Add MQ Dodongo's Cavern Gossip Stone
+
 ### v19
   * Enemy Drop Shuffle Fixes:
     * Fix MQ GTG Heavy Block Room enemy logic
