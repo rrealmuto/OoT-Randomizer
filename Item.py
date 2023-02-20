@@ -219,6 +219,7 @@ class Item(object):
                         and self.world.settings.damage_multiplier != 'quadruple'
                         and self.world.settings.shuffle_scrubs == 'off'
                         and not self.world.settings.shuffle_grotto_entrances
+                        and not self.world.full_one_ways
                     ) or (
                         # Stone of Agony skippable if not used for hints or grottos
                         self.name == 'Stone of Agony'
