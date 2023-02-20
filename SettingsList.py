@@ -5355,11 +5355,13 @@ setting_infos = [
         gui_text       = 'Ice Traps',
         default        = 'normal',
         choices        = {
-            'off':       'No Ice Traps',
-            'normal':    'Normal Ice Traps',
-            'on':        'Extra Ice Traps',
-            'mayhem':    'Ice Trap Mayhem',
-            'onslaught': 'Ice Trap Onslaught',
+            'off':              'No Ice Traps',
+            'normal':           'Normal Ice Traps',
+            'on':               'Extra Ice Traps',
+            'mayhem':           'Ice Trap Mayhem',
+            'onslaught':        'Ice Trap Onslaught',
+            'custom_count':     'Custom (count)',
+            'custom_percent':   'Custom (%)',
         },
         gui_tooltip    = '''\
             'Off': All Ice Traps are removed.
@@ -5376,8 +5378,53 @@ setting_infos = [
             'Ice Trap Onslaught': All junk items will be
             replaced by Ice Traps, even those in the
             base pool.
+
+            'Custom (count)' : Allows specifying a specific number of 
+            "Junk items" to be converted to Ice Traps in the pool.
+
+            'Custom (%)' : Allows specifiying a percentage of
+            "Junk" items to be converted to Ice Traps in the pool
         ''',
         shared         = True,
+        disable        = {
+            'off' : {'settings': ['custom_ice_trap_percent', 'custom_ice_trap_count']},
+            'normal' : {'settings': ['custom_ice_trap_percent', 'custom_ice_trap_count']},
+            'on' : {'settings': ['custom_ice_trap_percent', 'custom_ice_trap_count']},
+            'mayhem' : {'settings': ['custom_ice_trap_percent', 'custom_ice_trap_count']},
+            'onslaught' : {'settings': ['custom_ice_trap_percent', 'custom_ice_trap_count']},
+            'custom_percent' : {'settings': ['custom_ice_trap_count']},
+            'custom_count' : {'settings': ['custom_ice_trap_percent']}
+        }
+    ),
+    Scale(
+        name           = 'custom_ice_trap_percent',
+        gui_text       = 'Custom Ice Trap Percent',
+        default        = 50,
+        min            = 0,
+        max            = 100,
+        gui_tooltip    = '''\
+            Percentage of junk items that will be replaced
+            with Ice Traps when using 'Custom' Ice Traps setting.
+        ''',
+        shared         = True,
+        gui_params     = {
+            "hide_when_disabled": True,
+        },
+    ),
+    Scale(
+        name           = 'custom_ice_trap_count',
+        gui_text       = 'Custom Ice Trap Count',
+        default        = 100,
+        min            = 0,
+        max            = 2000,
+        gui_tooltip    = '''\
+            Number of junk items that will be replaced
+            with Ice Traps when using 'Custom' Ice Traps setting.
+        ''',
+        shared         = True,
+        gui_params     = {
+            "hide_when_disabled": True,
+        },
     ),
     Combobox(
         name           = 'ice_trap_appearance',
