@@ -64,12 +64,14 @@ typedef struct EnItem00 {
   int16_t timeToLive; // 0x14A
   float scale;        // 0x14C
   uint8_t collider[0x4C];   // 0x150 size = 4C
-  override_t override;
+  override_t override; // Used to store the override
+  bool dropped; // Flag to indicate that this was a dropped item vs. spawned.
 } EnItem00;
 
 
 typedef void(*z64_EnItem00ActionFunc)(struct EnItem00 *, z64_game_t *);
 typedef EnItem00 *(*z64_Item_DropCollectible_proc)(z64_game_t *globalCtx, z64_xyzf_t *spawnPos, int16_t params);
+typedef EnItem00 *(*z64_Item_DropCollectibleRandom_proc)(z64_game_t *globalCtx, z64_actor_t *fromActor, z64_xyzf_t *spawnPos, int16_t params);
 
 override_t lookup_override_by_key(override_key_t key);
 override_t lookup_override(z64_actor_t *actor, uint8_t scene, uint8_t item_id);
