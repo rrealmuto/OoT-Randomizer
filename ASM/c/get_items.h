@@ -88,5 +88,6 @@ void Collectible_WaitForMessageBox(EnItem00 *this, z64_game_t *game);
 void reset_collectible_mutex();
 void override_flags_init();
 bool Get_CollectibleOverrideFlag(EnItem00 *item00);
+uint8_t get_enemy_flag_offset(uint8_t scene, uint8_t room);
 
 #endif

@@ -706,6 +706,14 @@ def get_pool_core(world):
                 shuffle_item = False
                 location.disabled = DisableType.DISABLED
 
+        # Enemy Drops
+        elif location.type == 'EnemyDrop':
+            if world.settings.shuffle_enemy_drops:
+                shuffle_item = True
+            else:
+                shuffle_item = False
+                location.disabled = DisableType.DISABLED
+
         # Dungeon Items
         elif location.dungeon is not None:
             dungeon = location.dungeon
