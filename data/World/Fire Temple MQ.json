@@ -6,7 +6,8 @@
             "Fire Temple MQ Map Room Side Chest": "
                 is_adult or Kokiri_Sword or Sticks or Slingshot or Bombs or can_use(Dins_Fire)",
             "Fire Temple MQ First Room Pot 1": "True",
-            "Fire Temple MQ First Room Pot 2": "True"
+            "Fire Temple MQ First Room Pot 2": "True",
+            "Fire Temple MQ Map Chest Like-Like": "can_kill_likelike"
         },
         "exits": {
             "DMC Fire Temple Entrance": "True",
@@ -14,7 +15,7 @@
                 is_adult and has_fire_source and
                 (logic_fewer_tunic_requirements or Goron_Tunic)",
             "Fire Temple Lower Locked Door": "
-                (Small_Key_Fire_Temple, 5) and (is_adult or Kokiri_Sword)",
+                (Small_Key_Fire_Temple, 5)",
             "Fire Temple Big Lava Room": "
                 is_adult and Megaton_Hammer and (logic_fewer_tunic_requirements or Goron_Tunic)"
         }
@@ -62,6 +63,18 @@
         "region_name": "Fire Temple Lower Locked Door",
         "dungeon": "Fire Temple",
         "locations": {
+            "Fire Temple MQ Before Lower Flare Dancer Keese": "can_kill_keese",
+            "Fire Temple MQ Before Lower Flare Dancer Stalfos 1": "is_adult or Kokiri_Sword",
+            "Fire Temple MQ Before Lower Flare Dancer Stalfos 2": "is_adult or Kokiri_Sword"
+        },
+        "exits": {
+            "Fire Temple Lower Locked Door After Stalfos": "is_adult or Kokiri_Sword"
+        }
+    },
+    {
+        "region_name": "Fire Temple Lower Locked Door After Stalfos",
+        "dungeon": "Fire Temple",
+        "locations": {
             "Fire Temple MQ Megaton Hammer Chest": "
                 is_adult and (has_explosives or Megaton_Hammer or Hookshot)",
             "Fire Temple MQ Map Chest": "can_use(Megaton_Hammer)",
@@ -69,6 +82,10 @@
             "Fire Temple MQ Iron Knuckle Room Pot 2": "True",
             "Fire Temple MQ Iron Knuckle Room Pot 3": "True",
             "Fire Temple MQ Iron Knuckle Room Pot 4": "True",
+            "Fire Temple MQ Before Lower Flare Dancer Iron Knuckle": "True", #Player got here so they killed the stalfos in the previous room
+            "Fire Temple MQ Lower Flare Dancer": "
+                (is_adult and (Megaton_Hammer or Hookshot or has_explosives)) or 
+                (is_child and (Kokiri_Sword or Sticks) and has_explosives)",
             "Fairy Pot": "has_bottle"
         }
     },
@@ -101,7 +118,8 @@
         "locations": {
             "Fire Temple MQ Elevator Room Recovery Heart 1": "True",
             "Fire Temple MQ Elevator Room Recovery Heart 2": "True",
-            "Fire Temple MQ Elevator Room Recovery Heart 3": "True"
+            "Fire Temple MQ Elevator Room Recovery Heart 3": "True",
+            "Fire Temple MQ Shortcut Room Lizalfos": "has_fire_source or (logic_fire_mq_climb and Hover_Boots)"
         },
         "exits": {
             "Fire Temple Lower Lizalfos Maze": "has_fire_source or (logic_fire_mq_climb and Hover_Boots)"
@@ -117,7 +135,12 @@
                 (logic_fire_mq_maze_side_room or at('Fire Temple Upper Lizalfos Maze', True))",
             "Fire Temple MQ Lower Lizalfos Maze Crate 1": "True",
             "Fire Temple MQ Lower Lizalfos Maze Crate 2": "True",
-            "Fire Temple MQ Lower Lizalfos Maze Crate 3": "True"
+            "Fire Temple MQ Lower Lizalfos Maze Crate 3": "True",
+            "Fire Temple MQ Maze Lizalfos 1": "True",
+            "Fire Temple MQ Maze Lizalfos 2": "True",
+            "Fire Temple MQ Maze Lizalfos 3": "True",
+            "Fire Temple MQ Maze Lizalfos 4": "True",
+            "Fire Temple MQ Lower Lizalfos Maze Skullwalltula": "has_explosives"
         },
         "exits": {
             "Fire Temple Upper Lizalfos Maze": "
@@ -132,7 +155,9 @@
             "Fire Temple MQ Lizalfos Maze Upper Chest": "True",
             "Fire Temple MQ Upper Lizalfos Maze Crate 1": "True",
             "Fire Temple MQ Upper Lizalfos Maze Crate 2": "True",
-            "Fire Temple MQ Upper Lizalfos Maze Crate 3": "True"
+            "Fire Temple MQ Upper Lizalfos Maze Crate 3": "True",
+            "Fire Temple MQ Elevator Above Maze Torch Slug 1": "Longshot or (can_play(Song_of_Time) and Hookshot)",
+            "Fire Temple MQ Elevator Above Maze Torch Slug 2": "Longshot or (can_play(Song_of_Time) and Hookshot)"
         },
         "exits": {
             "Fire Temple Shortcut": "has_explosives",
@@ -218,7 +243,8 @@
         "locations": {
             "Fire Temple MQ Flame Maze Right Pot 1": "True",
             "Fire Temple MQ Flame Maze Right Pot 2": "True",
-            "Fire Temple MQ GS Flame Maze Side Room": "True"
+            "Fire Temple MQ GS Flame Maze Side Room": "True",
+            "Fire Temple MQ Flame Maze Side Room Lizalfos": "True"
         }
     },
     {
@@ -228,7 +254,10 @@
             "Fire Temple MQ Freestanding Key": "True",
             "Fire Temple MQ Chest On Fire": "(Small_Key_Fire_Temple, 4)",
             "Fire Temple MQ Flame Maze Right Upper Pot 1": "True",
-            "Fire Temple MQ Flame Maze Right Upper Pot 2": "True"
+            "Fire Temple MQ Flame Maze Right Upper Pot 2": "True",
+            "Fire Temple MQ Upper Flare Dancer": "True",
+            "Fire Temple MQ Hammer Steps Stalfos 1": "(Small_Key_Fire_Temple, 4)",
+            "Fire Temple MQ Hammer Steps Stalfos 2": "(Small_Key_Fire_Temple, 4)"
         }
     }
 ]
