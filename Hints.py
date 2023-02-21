@@ -46,7 +46,7 @@ defaultHintDists = [
     'mw3_woth.json',
 ]
 
-unHintableWothItems = [*triforce_pieces, 'Gold Skulltula Token']
+unHintableWothItems = [*REWARD_COLORS, *triforce_pieces, 'Gold Skulltula Token']
 
 class RegionRestriction(Enum):
     NONE = 0,
