@@ -23,8 +23,7 @@ from MQ import patch_files, File, update_dmadata, insert_space, add_relocations
 from SaveContext import SaveContext, Scenes, FlagType
 from version import __version__
 from ItemPool import song_list, trade_items, child_trade_items
-from SceneFlags import get_alt_list_bytes, get_collectible_flag_table, get_collectible_flag_table_bytes
-from texture_util import ci4_rgba16patch_to_ci8, rgba16_patch
+from SceneFlags import get_alt_list_bytes, get_collectible_flag_table, get_collectible_flag_table_bytes, get_all_collectible_flags
 from SettingsList import setting_infos
 
 
@@ -1824,15 +1823,18 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             rom.write_byte(rom.sym('CFG_PREVENT_GUAY_RESPAWNS'), 0x01)
 
     # Write flag table data
+    flags = get_all_collectible_flags(world)
     collectible_flag_table, alt_list = get_collectible_flag_table(world)
     collectible_flag_table_bytes, num_collectible_flags = get_collectible_flag_table_bytes(collectible_flag_table)
+    
     alt_list_bytes = get_alt_list_bytes(alt_list)
-    if(len(collectible_flag_table_bytes) > 900):
+    if(len(collectible_flag_table_bytes) > 1200):
         raise(RuntimeError(f'Exceeded collectible override table size: {len(collectible_flag_table_bytes)}'))
     rom.write_bytes(rom.sym('collectible_scene_flags_table'), collectible_flag_table_bytes)
     num_collectible_flags += num_collectible_flags % 8
     rom.write_bytes(rom.sym('num_override_flags'), num_collectible_flags.to_bytes(2, 'big'))
-    if(len(alt_list) > 100):
+    
+    if(len(alt_list) > 128):
         raise(RuntimeError(f'Exceeded alt override table size: {len(alt_list)}'))
     rom.write_bytes(rom.sym('alt_overrides'), alt_list_bytes)
 
@@ -2524,15 +2526,19 @@ def get_override_entry(location):
     elif location.type == 'Chest':
         type = 1
         default &= 0x1F
-    elif location.type in ['Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive', 'SilverRupee', 'EnemyDrop']:
+    elif location.type in ['Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive', 'SilverRupee', 'EnemyDrop', 'GossipStone']:
         type = 6
         if not (isinstance(location.default, list) or isinstance(location.default, tuple)):
             raise Exception("Not right")
-        if isinstance(location.default, list):
-            default = location.default[0]
-        room, scene_setup, flag = default
-        default = (room << 8) + (scene_setup << 14) + flag
-    elif location.type in ('Collectable', 'ActorOverride'):
+        if location.scene == 0x3E: # handle grottos separately...
+            room, grotto_id, flag = default
+            default = (room << 12) + (grotto_id << 7) + flag
+        else:
+            if(isinstance(location.default, list)):
+                default = location.default[0]
+            room, scene_setup, flag = default
+            default = (room << 8) + (scene_setup << 14) + flag
+    elif location.type in ['Collectable', 'ActorOverride']:
         type = 2
     elif location.type == 'GS Token':
         type = 3
@@ -2961,7 +2967,11 @@ def patch_rupee_tower(location, rom: Rom):
         room, scene_setup, flag = location.default
     elif isinstance(location.default, list):
         room, scene_setup, flag = location.default[0]
-    flag = flag + (room << 8)
+    
+    if location.scene == 0x3E:
+        flag = (room << 12) + (scene_setup << 7) + flag
+    else:
+        flag = flag + (room << 8)
     if location.address:
         for address in location.address:
             rom.write_bytes(address + 12, flag.to_bytes(2, byteorder='big'))
