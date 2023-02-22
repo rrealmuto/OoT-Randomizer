@@ -66,37 +66,38 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         add_to_extended_object_table(rom, object_id, start_address, end_address)
         start_address = end_address
 
-    # Build a Double Defense model from the Heart Container model
-    end_address = start_address + 0x014DA590 - 0x014D9000
-    rom.buffer[start_address:end_address] = rom.buffer[0x014D9000:0x014DA590]
+    # Make new models by applying patches to existing ones
+    zobj_patches = [
+        ('object_gi_hearts', 0x014D9000, 0x014DA590, 0x194, # Heart Container -> Double Defense
+        [
+            (0x1294, [0xFF, 0xCF, 0x0F]), # Exterior Primary Color
+            (0x12B4, [0xFF, 0x46, 0x32]), # Exterior Env Color
+            (0x1474, [0xFF, 0xFF, 0xFF]), # Interior Primary Color
+            (0x1494, [0xFF, 0xFF, 0xFF]), # Interior Env Color
+            (0x12A8, [0xFC, 0x17, 0x3C, 0x60, 0x15, 0x0C, 0x93, 0x7F]), # Exterior Combine Mode
+        ]),
+        ('object_gi_rupy', 0x01914000, 0x01914800, 0x197, # Huge Rupee -> Silver Rupee
+        [
+            (0x052C, [0xAA, 0xAA, 0xAA]), # Inner Primary Color?
+            (0x0534, [0x5A, 0x5A, 0x5A]), # Inner Env Color?
+            (0x05CC, [0xFF, 0xFF, 0xFF]), # Outer Primary Color?
+            (0x05D4, [0xFF, 0xFF, 0xFF]), # Outer Env Color?
+        ]),
+    ]
 
-    # Update colors for the Double Defense variant
-    rom.write_bytes(start_address + 0x1294, [0xFF, 0xCF, 0x0F]) # Exterior Primary Color
-    rom.write_bytes(start_address + 0x12B4, [0xFF, 0x46, 0x32]) # Exterior Env Color
-    rom.write_int32s(start_address + 0x12A8, [0xFC173C60, 0x150C937F]) # Exterior Combine Mode
-    rom.write_bytes(start_address + 0x1474, [0xFF, 0xFF, 0xFF]) # Interior Primary Color
-    rom.write_bytes(start_address + 0x1494, [0xFF, 0xFF, 0xFF]) # Interior Env Color
-    # Add it to the extended object table
-    add_to_extended_object_table(rom, 0x194, start_address, end_address)
+    # Add the new models to the extended object file. 
+    for name, start, end, object_id, patches in zobj_patches:
+        end_address = start_address + end - start
+        rom.buffer[start_address:end_address] = rom.buffer[start:end]
+        # Apply patches
+        for offset, patch in patches:
+            rom.write_bytes(start_address + offset, patch)
+        # Add it to the extended object table
+        add_to_extended_object_table(rom, object_id, start_address, end_address)
+        start_address = end_address
+    
     # Add the extended objects data to the DMA table.
     rom.update_dmadata_record(None, extended_objects_start, end_address)
-
-    # Build a Silver Rupee model from the Huge Rupee model
-    silver_rupee_obj_file = File({
-        'Name': 'object_gi_rupy',
-        'Start': '01914000',
-        'End': '01914800',
-    })
-    silver_rupee_obj_file.copy(rom)
-    # Update colors for the Silver Rupee variant
-    rom.write_bytes(silver_rupee_obj_file.start + 0x052C, [0xAA, 0xAA, 0xAA]) # Inner Primary Color?
-    rom.write_bytes(silver_rupee_obj_file.start + 0x0534, [0x5A, 0x5A, 0x5A]) # Inner Env Color?
-    rom.write_bytes(silver_rupee_obj_file.start + 0x05CC, [0xFF, 0xFF, 0xFF]) # Outer Primary Color?
-    rom.write_bytes(silver_rupee_obj_file.start + 0x05D4, [0xFF, 0xFF, 0xFF]) # Outer Env Color?
-    update_dmadata(rom, silver_rupee_obj_file)
-    # Add it to the extended object table
-    add_to_extended_object_table(rom, 0x197, silver_rupee_obj_file)
-
 
     # Create the textures for pots/crates. Note: No copyrighted material can be distributed w/ the randomizer. Because of this, patch files are used to create the new textures from the original texture in ROM.
     # Apply patches for custom textures for pots and crates and add as new files in rom
