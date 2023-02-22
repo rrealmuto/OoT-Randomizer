@@ -14,7 +14,7 @@
 
 item_draw_table_entry_t item_draw_table[] = {
     [0x00] = { draw_gi_various_opa0_xlu1,   { 0x06000670, 0x06000750 } }, // Empty Bottle
-    [0x01] = { draw_gi_small_keys,          { 0x06000800, 0xFFFFFFFF, 0x3C505AFF } }, // Small Key
+    [0x01] = { draw_gi_small_keys,          { 0x06000800, 0xFFFFFFFF, 0x3C505AFF, 0x01 } }, // Small Key
     [0x02] = { draw_gi_song_notes,          { 0x06000AE0, 0x00C800FF, 0 } }, // Music Note (Green)
     [0x03] = { draw_gi_song_notes,          { 0x06000AE0, 0xFF3200FF, 0 } }, // Music Note (Red)
     [0x04] = { draw_gi_song_notes,          { 0x06000AE0, 0x0096FFFF, 0 } }, // Music Note (Blue)
@@ -133,7 +133,7 @@ item_draw_table_entry_t item_draw_table[] = {
 
     //Rando-added functions
     [0x75] = { draw_gi_various_opa0,        { 0x06000A30 } }, // Triforce Piece
-    [0x76] = { draw_gi_small_keys,          { 0x060015E8, 0xFFFFFFFF, 0x3C505AFF } }, // Key Ring
+    [0x76] = { draw_gi_small_keys,          { 0x060015E8, 0xFFFFFFFF, 0x3C505AFF, 0x76 } }, // Key Ring
     [0x77] = { draw_gi_song_notes,          { 0x06000EC0, 0x00C800FF, 1 } }, // Music Note inverted (Green)
     [0x78] = { draw_gi_song_notes,          { 0x06000EC0, 0xFF3200FF, 1 } }, // Music Note inverted (Red)
     [0x79] = { draw_gi_song_notes,          { 0x06000EC0, 0x0096FFFF, 1 } }, // Music Note inverted (Blue)
@@ -141,6 +141,25 @@ item_draw_table_entry_t item_draw_table[] = {
     [0x7B] = { draw_gi_song_notes,          { 0x06000EC0, 0xC832FFFF, 1 } }, // Music Note inverted (Purple)
     [0x7C] = { draw_gi_song_notes,          { 0x06000EC0, 0xC8FF00FF, 1 } }, // Music Note inverted (Yellow)
     [0x7D] = { draw_gi_various_opa0,        { 0x060016A0 } }, // Bombchu Bag
+    //Colored small keys
+    [0x7E] = { draw_gi_small_keys,          { 0x06000800, 0x017D01FF, 0x00C800FF, 0x01 } }, // Small Key (Forest)
+    [0x7F] = { draw_gi_small_keys,          { 0x06000800, 0xFF3200FF, 0xFFFFFFFF, 0x01 } }, // Small Key (Fire)
+    [0x80] = { draw_gi_small_keys,          { 0x06000800, 0x01548FFF, 0x0096FFFF, 0x01 } }, // Small Key (Water)
+    [0x81] = { draw_gi_small_keys,          { 0x06000800, 0xFF9600FF, 0xFFFFFFFF, 0x01 } }, // Small Key (Spirit)
+    [0x82] = { draw_gi_small_keys,          { 0x06000800, 0xC832FFFF, 0xFFFFFFFF, 0x01 } }, // Small Key (Shadow)
+    //Colored keyrings
+    [0x83] = { draw_gi_small_keys,          { 0x060015E8, 0x00C800FF, 0xFFFFFFFF, 0x76 } }, // Small Key Ring (Forest)
+    [0x84] = { draw_gi_small_keys,          { 0x060015E8, 0xFF3200FF, 0xFFFFFFFF, 0x76 } }, // Small Key Ring (Fire)
+    [0x85] = { draw_gi_small_keys,          { 0x060015E8, 0x01548FFF, 0x0096FFFF, 0x76 } }, // Small Key Ring (Water)
+    [0x86] = { draw_gi_small_keys,          { 0x060015E8, 0xFF9600FF, 0xFFFFFFFF, 0x76 } }, // Small Key Ring (Spirit)
+    [0x87] = { draw_gi_small_keys,          { 0x060015E8, 0xC832FFFF, 0xFFFFFFFF, 0x76 } }, // Small Key Ring (Shadow)
+    // Colored Boss Keys
+    [0x88] = { draw_gi_boss_keys,           { 0x06000CA0, 0x06000F08, 0xFFAAFFFF, 0xFF0064FF, 0xFFFFFFFF, 0x016E07FF } }, // Boss Key (Forest)
+    [0x89] = { draw_gi_boss_keys,           { 0x06000CA0, 0x06000F08, 0xFFAAFFFF, 0xFF0064FF, 0xFFFFFFFF, 0x9c0000FF } }, // Boss Key (Fire)
+    [0x8A] = { draw_gi_boss_keys,           { 0x06000CA0, 0x06000F08, 0xFFAAFFFF, 0xFF0064FF, 0xFFFFFFFF, 0x011d69FF } }, // Boss Key (Water)
+    [0x8B] = { draw_gi_boss_keys,           { 0x06000CA0, 0x06000F08, 0xFFAAFFFF, 0xFF0064FF, 0xFFFFFFFF, 0xff9500FF } }, // Boss Key (Spirit)
+    [0x8C] = { draw_gi_boss_keys,           { 0x06000CA0, 0x06000F08, 0xFFAAFFFF, 0xFF0064FF, 0xFFFFFFFF, 0x6a017aFF } }, // Boss Key (Shadow)
+    
 };
 
 void base_draw_gi_model(z64_game_t *game, uint32_t draw_id) {

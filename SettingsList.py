@@ -4731,6 +4731,14 @@ setting_infos = [
         shared         = True,
     ),
     Checkbutton(
+        name           = 'key_appearance_match_dungeon',
+        gui_text       = 'Key Appearance Matches Dungeon',
+        gui_tooltip    = '''\Small keys, key rings, and boss keys
+                        will be color to match their dungeon''',
+        shared         = True,
+        default        = True,
+    ),
+    Checkbutton(
         name           = 'clearer_hints',
         gui_text       = 'Clearer Hints',
         gui_tooltip    = '''\

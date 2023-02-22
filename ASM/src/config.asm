@@ -161,6 +161,8 @@ PLANDOMIZER_USED:
 .byte 0x00
 POTCRATE_TEXTURES_MATCH_CONTENTS:
 .byte 0x00
+CFG_KEY_APPEARANCE_MATCH_DUNGEON:
+.byte 0x00
 .align 4
 
 ; These configuration values are given fixed addresses to aid auto-trackers.
