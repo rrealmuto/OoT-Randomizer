@@ -94,13 +94,13 @@ void draw_gi_silver_rupee_pouch(z64_game_t *game, uint32_t draw_id) {
 
     append_setup_dl_25_to_opa(gfx);
     gSPMatrix(gfx->poly_opa.p++, append_sys_matrix(gfx), G_MTX_MODELVIEW | G_MTX_LOAD | G_MTX_NOPUSH);
-    
+
     // Set the wallet color silver by reimplementing the gGiAdultWalletColorDL calls:
     // E7 00 00 00 00 00 00 00 gSPRDPPipeSync
     // FA 00 00 00 A0 82 64 FF gSPSetPrimColor
-    // FB 00 00 00 46 3C 32 FF gSPSetEnvColor 
+    // FB 00 00 00 46 3C 32 FF gSPSetEnvColor
     // DF 00 00 00 00 00 00 00
-    
+
     //gSPDisplayList(gfx->poly_opa.p++, item_draw_table[draw_id].args[1].dlist);  // gGiAdultWalletColorDL
     gDPPipeSync(gfx->poly_opa.p++);
     gDPSetPrimColor(gfx->poly_opa.p++, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF);

@@ -112,7 +112,7 @@ void draw_int(z64_disp_buf_t *db, uint16_t number, int16_t left, int16_t top, co
     // This combiner mode makes it look like the rupee count
     gDPSetCombineLERP(db->p++, 0, 0, 0, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, PRIMITIVE,
                             TEXEL0, 0, PRIMITIVE, 0);
-    
+
     // Set the color
     gDPSetPrimColor(db->p++, 0, 0, color.r, color.g, color.b, color.a);
     // Draw each digit
@@ -147,10 +147,10 @@ void draw_silver_rupee_count(z64_game_t* globalCtx, z64_disp_buf_t *db) {
                 uint8_t count = extended_savectx.silver_rupee_counts[silver_rupee_puzzles[puzzle_idx]];
                 // Draw silver rupee count
                 gDPPipeSync(db->p++);
-                
+
                 // Draw the count white if we have less than the required amount
                 colorRGBA8_t color = { 0xFF, 0xFF, 0xFF, globalCtx->hud_alpha_channels.rupees_keys_magic};
-                
+
                 // Draw the count green (same color as max rupees) if we have the required amount
                 if(count >= silver_rupee_info.needed_count) {
                     color.r = 120;
@@ -158,7 +158,7 @@ void draw_silver_rupee_count(z64_game_t* globalCtx, z64_disp_buf_t *db) {
                     color.b = 0;
                 }
                 draw_int(db, count, 42, 174, color);
-                
+
                 break;
             }
         }

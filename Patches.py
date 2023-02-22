@@ -85,7 +85,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         ]),
     ]
 
-    # Add the new models to the extended object file. 
+    # Add the new models to the extended object file.
     for name, start, end, object_id, patches in zobj_patches:
         end_address = start_address + end - start
         rom.buffer[start_address:end_address] = rom.buffer[start:end]
@@ -95,7 +95,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         # Add it to the extended object table
         add_to_extended_object_table(rom, object_id, start_address, end_address)
         start_address = end_address
-    
+
     # Add the extended objects data to the DMA table.
     rom.update_dmadata_record(None, extended_objects_start, end_address)
 
@@ -2394,7 +2394,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     # Fix crash when hitting white bubbles enemies with Dins Fire
     rom.write_byte(0xCB4397, 0x00)
-    
+
     # Fix shadow temple redead shared flags for silver rupee shuffle
     if world.settings.shuffle_silver_rupees != 'vanilla' and not world.dungeon_mq['Shadow Temple']:
         rom.write_byte(0x280905E,0)
