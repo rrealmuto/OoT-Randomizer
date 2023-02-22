@@ -76,7 +76,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             (0x1494, [0xFF, 0xFF, 0xFF]), # Interior Env Color
             (0x12A8, [0xFC, 0x17, 0x3C, 0x60, 0x15, 0x0C, 0x93, 0x7F]), # Exterior Combine Mode
         ]),
-        ('object_gi_rupy', 0x01914000, 0x01914800, 0x197, # Huge Rupee -> Silver Rupee
+        ('object_gi_rupy', 0x01914000, 0x01914800, 0x198, # Huge Rupee -> Silver Rupee
         [
             (0x052C, [0xAA, 0xAA, 0xAA]), # Inner Primary Color?
             (0x0534, [0x5A, 0x5A, 0x5A]), # Inner Env Color?
