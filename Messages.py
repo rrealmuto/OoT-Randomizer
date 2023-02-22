@@ -302,7 +302,7 @@ KEYSANITY_MESSAGES = {
     0x9016: "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x46Gerudo Training\x01Ground\x05\x40!\x09",
     0x9017: "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x46Thieves' Hideout\x05\x40!\x09",
     0x9018: "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for \x05\x41Ganon's Castle\x05\x40!\x09",
-    #TODO for silver rupees, include how many are collected
+    # Silver Rupee Messages
     0x901B: "\x08You found a \x05\x44Silver Rupee\x05\x40 for the\x01staircase room in \x05\x41Dodongo's Cavern\x05\x40!\x01You have found \xF0\x00 so far!\x09",
     0x901C: "\x08You found a \x05\x44Silver Rupee\x05\x40 for the\x01\x05\x44spinning scythe room\x05\x40 in the \x05\x44Ice\x01Cavern\x05\x40! You have found \xF0\x01 so far!\x09",
     0x901D: "\x08You found a \x05\x44Silver Rupee\x05\x40 for the\x01\x05\x43push block room\x05\x40 in the \x05\x44Ice Cavern\x05\x40!\x01You have found \xF0\x02 so far!\x09",
@@ -348,28 +348,6 @@ KEYSANITY_MESSAGES = {
     0x9044: "\x08You have found all \x05\x44\xF0\x13\x05\x40 of the \x05\x44Silver\x01Rupees\x05\x40 for the \x05\x45Shadow Trial\x05\x40 in\x01\x05\x41Ganon's Castle\x05\x40!\x09",
     0x9045: "\x08You have found all \x05\x44\xF0\x14\x05\x40 of the \x05\x44Silver\x01Rupees\x05\x40 for the \x05\x43Water Trial\x05\x40 in\x01\x05\x41Ganon's Castle\x05\x40!\x09",
     0x9046: "\x08You have found all \x05\x44\xF0\x15\x05\x40 of the \x05\x44Silver\x01Rupees\x05\x40 for the \x05\x42Forest Trial\x05\x40 in\x01\x05\x41Ganon's Castle\x05\x40!\x09",
-    #0x902F: "\x08You found a \x05\x44Silver Rupee Pouch\x05\x40 for\x01the staircase room in \x05\x41Dodongo's\x01Cavern\x05\x40!\x09",
-    #0x9030: "\x08You found a \x05\x44Silver Rupee Pouch\x05\x40 for\x01the \x05\x44spinning scythe room\x05\x40 in the \x05\x44Ice\x01Cavern\x05\x40!\x09",
-    #0x9031: "\x08You found a \x05\x44Silver Rupee Pouch\x05\x40 for\x01the \x05\x43push block room\x05\x40 in the \x05\x44Ice\x01Cavern\x05\x40!\x09",
-    #0x9032: "\x08You found a \x05\x44Silver Rupee Pouch\x05\x40 for\x01the basement in the \x05\x45Bottom of the\x01Well\x05\x40!\x09",
-    #0x9033: "\x08You found a \x05\x44Silver Rupee Pouch\x05\x40 for\x01the \x05\x42scythe shortcut room\x05\x40 in the\x01\x05\x45Shadow Temple\x05\x40!\x09",
-    #0x9034: "\x08You found a \x05\x44Silver Rupee Pouch\x05\x40 for\x01the \x05\x44invisible blade room\x05\x40 in the\x01\x05\x45Shadow Temple\x05\x40!\x09",
-    #0x9035: "\x08You found a \x05\x44Silver Rupee Pouch\x05\x40 for\x01the \x05\x46huge pit\x05\x40 in the \x05\x45Shadow Temple\x05\x40!\x09",
-    #0x9036: "\x08You found a \x05\x44Silver Rupee Pouch\x05\x40 for\x01the room with \x05\x45invisible spikes\x05\x40 in the\x01\x05\x45Shadow Temple\x05\x40!\x09",
-    #0x9037: "\x08You found a \x05\x44Silver Rupee Pouch\x05\x40 for\x01the \x05\x46sloped room\x05\x40 in the \x05\x46Gerudo\x01Training Ground\x05\x40!\x09",
-    #0x9038: "\x08You found a \x05\x44Silver Rupee Pouch\x05\x40 for\x01the \x05\x41lava room\x05\x40 in the \x05\x46Gerudo Training\x01Ground\x05\x40!\x09",
-    #0x9039: "\x08You found a \x05\x44Silver Rupee Pouch\x05\x40 for\x01the \x05\x43water room\x05\x40 in the \x05\x46Gerudo\x01Training Ground\x05\x40!\x09",
-    #0x903A: "\x08You found a \x05\x44Silver Rupee Pouch\x05\x40 for\x01the \x05\x41torch room\x05\x40 in the child side of\x01the \x05\x46Spirit Temple\x05\x40!\x09",
-    #0x903B: "\x08You found a \x05\x44Silver Rupee Pouch\x05\x40 for\x01the \x05\x42boulder room\x05\x40 in the adult side of\x01the \x05\x46Spirit Temple\x05\x40!\x09",
-    #0x903C: "\x08You found a \x05\x44Silver Rupee Pouch\x05\x40 for\x01the \x05\x44lobby and adult side\x05\x40 of the \x05\x46Spirit\x01Temple\x05\x40!\x09",
-    #0x903D: "\x08You found a \x05\x44Silver Rupee Pouch\x05\x40 for\x01the \x05\x46sun block room\x05\x40 in the \x05\x46Spirit\x01Temple\x05\x40!\x09",
-    #0x903E: "\x08You found a \x05\x44Silver Rupee Pouch\x05\x40 for\x01the \x05\x43climbable wall\x05\x40 in the \x05\x46Spirit\x01Temple\x05\x40!\x09",
-    #0x903F: "\x08You found a \x05\x44Silver Rupee Pouch\x05\x40 for\x01the \x05\x46Spirit Trial\x05\x40 in \x05\x41Ganon's Castle\x05\x40!\x09",
-    #0x9040: "\x08You found a \x05\x44Silver Rupee Pouch\x05\x40 for\x01the \x05\x44Light Trial\x05\x40 in \x05\x41Ganon's Castle\x05\x40!\x09",
-    #0x9041: "\x08You found a \x05\x44Silver Rupee Pouch\x05\x40 for\x01the \x05\x41Fire Trial\x05\x40 in \x05\x41Ganon's Castle\x05\x40!\x09",
-    #0x9042: "\x08You found a \x05\x44Silver Rupee Pouch\x05\x40 for\x01the \x05\x45Shadow Trial\x05\x40 in \x05\x41Ganon's Castle\x05\x40!\x09",
-    #0x9043: "\x08You found a \x05\x44Silver Rupee Pouch\x05\x40 for\x01the \x05\x43Water Trial\x05\x40 in \x05\x41Ganon's Castle\x05\x40!\x09",
-    #0x9044: "\x08You found a \x05\x44Silver Rupee Pouch\x05\x40 for\x01the \x05\x42Forest Trial\x05\x40 in \x05\x41Ganon's Castle\x05\x40!\x09",
 }
 i = 0x9101
 for dungeon_name, max_keys in (
