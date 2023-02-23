@@ -1627,7 +1627,7 @@ logic_tricks = {
                     This trick is relevant if Silver Rupees are shuffled, or if GTG
                     is in its MQ form, or if "Gerudo Training Ground Boulder Room
                     Flame Wall Skip" is also enabled. This trick supersedes "Gerudo
-                    Training Ground MQ Left Side Silver Rupees with Hookshot".
+                    Training Ground MQ Left Side Ceiling Silver Rupee with Hookshot".
                     '''},
     'Gerudo Training Ground Boulder Room Flame Wall Skip': {
         'name'    : 'logic_gtg_flame_wall',
@@ -1657,7 +1657,7 @@ logic_tricks = {
                     Removes the requirements for the Lens of Truth
                     in Gerudo Training Ground MQ.
                     '''},
-    'Gerudo Training Ground MQ Ceiling Silver Rupee with Hookshot': {
+    'Gerudo Training Ground MQ Left Side Ceiling Silver Rupee with Hookshot': {
         'name'    : 'logic_gtg_mq_with_hookshot',
         'tags'    : ("Gerudo Training Ground MQ", "Silver Rupees", "Master Quest", "Adult",),
         'tooltip' : '''\
