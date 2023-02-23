@@ -74,30 +74,52 @@
         "region_name": "Shadow Temple Upper Huge Pit",
         "dungeon": "Shadow Temple",
         "exits": {
-            "Shadow Temple Invisible Blades": "
+            "Shadow Temple Invisible Blades Room": "
                 not shadow_temple_shortcuts or (Small_Key_Shadow_Temple, 6) or
                 ((logic_lens_shadow_mq_platform or can_use(Lens_of_Truth)) and Hover_Boots)",
             "Shadow Temple Lower Huge Pit": "has_fire_source or logic_shadow_mq_huge_pit"
         }
     },
     {
-        "region_name": "Shadow Temple Invisible Blades",
+        "region_name": "Shadow Temple Invisible Blades Room",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple MQ Invisible Blades Visible Chest": "(Silver_Rupee_Shadow_Temple_Invisible_Blades, 10)",
-            "Shadow Temple MQ Invisible Blades Invisible Chest": "(Silver_Rupee_Shadow_Temple_Invisible_Blades, 10)",
-            "Shadow Temple MQ Invisible Blades Recovery Heart 1": "can_play(Song_of_Time) or (logic_shadow_mq_invisible_blades and damage_multiplier != 'ohko')",
-            "Shadow Temple MQ Invisible Blades Recovery Heart 2": "can_play(Song_of_Time) or (logic_shadow_mq_invisible_blades and damage_multiplier != 'ohko')",
-            "Shadow Temple MQ Invisible Blades Silver Rupee 1": "logic_lens_shadow_mq_invisible_blades or can_use(Lens_of_Truth) or can_use(Nayrus_Love)",
-            "Shadow Temple MQ Invisible Blades Silver Rupee 2": "logic_lens_shadow_mq_invisible_blades or can_use(Lens_of_Truth) or can_use(Nayrus_Love)",
-            "Shadow Temple MQ Invisible Blades Silver Rupee 3": "logic_lens_shadow_mq_invisible_blades or can_use(Lens_of_Truth) or can_use(Nayrus_Love)",
-            "Shadow Temple MQ Invisible Blades Silver Rupee 4": "logic_lens_shadow_mq_invisible_blades or can_use(Lens_of_Truth) or can_use(Nayrus_Love)",
-            "Shadow Temple MQ Invisible Blades Silver Rupee 5": "logic_lens_shadow_mq_invisible_blades or can_use(Lens_of_Truth) or can_use(Nayrus_Love)",
-            "Shadow Temple MQ Invisible Blades Silver Rupee 6": "logic_lens_shadow_mq_invisible_blades or can_use(Lens_of_Truth) or can_use(Nayrus_Love)",
-            "Shadow Temple MQ Invisible Blades Silver Rupee 7": "logic_lens_shadow_mq_invisible_blades or can_use(Lens_of_Truth) or can_use(Nayrus_Love)",
-            "Shadow Temple MQ Invisible Blades Silver Rupee 8": "logic_lens_shadow_mq_invisible_blades or can_use(Lens_of_Truth) or can_use(Nayrus_Love)",
-            "Shadow Temple MQ Invisible Blades Silver Rupee Like Like": "logic_lens_shadow_mq_invisible_blades or can_use(Lens_of_Truth) or can_use(Nayrus_Love)",
-            "Shadow Temple MQ Invisible Blades Silver Rupee Song of Time Block": "can_play(Song_of_Time) or (logic_shadow_mq_invisible_blades and damage_multiplier != 'ohko')"
+            "Shadow Temple MQ Invisible Blades Visible Chest": "
+                (Silver_Rupee_Shadow_Temple_Invisible_Blades, 10)",
+            "Shadow Temple MQ Invisible Blades Invisible Chest": "
+                (Silver_Rupee_Shadow_Temple_Invisible_Blades, 10)",
+            "Shadow Temple MQ Invisible Blades Silver Rupee Back Left": "True",
+            "Shadow Temple MQ Invisible Blades Silver Rupee Back Right": "True"
+        },
+        "exits": {
+            "Shadow Temple Close Proximity to Invisible Blades": "
+                logic_lens_shadow_mq_invisible_blades or can_use(Lens_of_Truth) or
+                can_use(Nayrus_Love)",
+            "Shadow Temple Invisible Blades Song of Time Blocks": "
+                can_play(Song_of_Time) or
+               (logic_shadow_mq_invisible_blades and damage_multiplier != 'ohko')"
+        }
+    },
+    {
+        "region_name": "Shadow Temple Close Proximity to Invisible Blades",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple MQ Invisible Blades Silver Rupee 1": "True",
+            "Shadow Temple MQ Invisible Blades Silver Rupee 2": "True",
+            "Shadow Temple MQ Invisible Blades Silver Rupee 3": "True",
+            "Shadow Temple MQ Invisible Blades Silver Rupee 4": "True",
+            "Shadow Temple MQ Invisible Blades Silver Rupee 5": "True",
+            "Shadow Temple MQ Invisible Blades Silver Rupee 6": "True",
+            "Shadow Temple MQ Invisible Blades Silver Rupee Like Like": "True"
+        }
+    },
+    {
+        "region_name": "Shadow Temple Invisible Blades Song of Time Blocks",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple MQ Invisible Blades Recovery Heart 1": "True",
+            "Shadow Temple MQ Invisible Blades Recovery Heart 2": "True",
+            "Shadow Temple MQ Invisible Blades Silver Rupee Song of Time Block": "True"
         }
     },
     {
@@ -119,11 +141,6 @@
         "dungeon": "Shadow Temple",
         "locations": {
             "Shadow Temple MQ Beamos Silver Rupees Chest": "(Silver_Rupee_Shadow_Temple_Huge_Pit, 5)",
-            "Shadow Temple MQ Huge Pit Silver Rupee Center Front": "True",
-            "Shadow Temple MQ Huge Pit Silver Rupee Center Back": "True",
-            "Shadow Temple MQ Huge Pit Silver Rupee Right": "True",
-            "Shadow Temple MQ Huge Pit Silver Rupee Ceiling Upper": "Longshot",
-            "Shadow Temple MQ Huge Pit Silver Rupee Ceiling Lower": "Longshot",
             "Shadow Temple MQ Falling Spikes Lower Chest": "True",
             "Shadow Temple MQ Falling Spikes Upper Chest": "
                 (logic_shadow_umbrella and Hover_Boots) or Progressive_Strength_Upgrade",
@@ -135,6 +152,11 @@
                 (logic_shadow_umbrella and Hover_Boots) or Progressive_Strength_Upgrade",
             "Shadow Temple MQ Falling Spikes Upper Pot 2": "
                 (logic_shadow_umbrella and Hover_Boots) or Progressive_Strength_Upgrade",
+            "Shadow Temple MQ Huge Pit Silver Rupee Center Front": "True",
+            "Shadow Temple MQ Huge Pit Silver Rupee Center Back": "True",
+            "Shadow Temple MQ Huge Pit Silver Rupee Right": "True",
+            "Shadow Temple MQ Huge Pit Silver Rupee Ceiling Upper": "Longshot",
+            "Shadow Temple MQ Huge Pit Silver Rupee Ceiling Lower": "Longshot",
             "Shadow Temple MQ GS Falling Spikes Room": "
                 (logic_shadow_umbrella_gs and Hover_Boots) or Hookshot"
         }

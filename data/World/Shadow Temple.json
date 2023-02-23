@@ -35,12 +35,12 @@
         "dungeon": "Shadow Temple",
         "locations": {
             "Shadow Temple Compass Chest": "True",
+            "Shadow Temple Early Silver Rupee Chest": "(Silver_Rupee_Shadow_Temple_Scythe_Shortcut, 5)",
             "Shadow Temple Scythe Shortcut Silver Rupee Center Left": "True",
             "Shadow Temple Scythe Shortcut Silver Rupee Ledge": "True",
             "Shadow Temple Scythe Shortcut Silver Rupee Back Alcove": "True",
             "Shadow Temple Scythe Shortcut Silver Rupee Left Alcove": "True",
-            "Shadow Temple Scythe Shortcut Silver Rupee Center Right": "True",
-            "Shadow Temple Early Silver Rupee Chest": "(Silver_Rupee_Shadow_Temple_Scythe_Shortcut, 5)"
+            "Shadow Temple Scythe Shortcut Silver Rupee Center Right": "True"
         },
         "exits": {
             # If the shortcut is open, reverse shadow becomes an option, so we need to check for 4 keys with Lens/trick
@@ -79,8 +79,8 @@
     },
     {
         "region_name": "Shadow Temple Falling Spikes",
-        "dungeon" : "Shadow Temple",
-        "locations" : {
+        "dungeon": "Shadow Temple",
+        "locations": {
             "Shadow Temple Falling Spikes Lower Chest": "True",
             "Shadow Temple Falling Spikes Upper Chest": "logic_shadow_umbrella or Progressive_Strength_Upgrade",
             "Shadow Temple Falling Spikes Switch Chest": "logic_shadow_umbrella or Progressive_Strength_Upgrade",
@@ -105,7 +105,7 @@
             "Shadow Temple Invisible Spikes Silver Rupee Center": "True",
             "Shadow Temple Invisible Spikes Silver Rupee Left": "Hookshot",
             "Shadow Temple Invisible Spikes Silver Rupee Near Ledge": "Hookshot",
-            "Shadow Temple GS Single Giant Pot": "(Silver_Rupee_Shadow_Temple_Invisible_Spikes, 5) and Hookshot"
+            "Shadow Temple GS Single Giant Pot": "(Silver_Rupee_Shadow_Temple_Invisible_Spikes, 5)"
         },
         "exits": {
             "Shadow Temple Wind Tunnel": "Hookshot and (Small_Key_Shadow_Temple, 3)",
