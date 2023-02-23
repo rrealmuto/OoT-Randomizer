@@ -10,29 +10,20 @@
         },
         "exits": {
             "Desert Colossus From Spirit Lobby": "True",
-            "Child Spirit Temple Loop": "
+            "Child Spirit Temple Beyond Metal Bridges": "
                 is_child and
                 (Sticks or has_explosives or
-                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))",
+                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot))) and
+                (Boomerang or Slingshot or
+                    (has_bombchus and logic_spirit_child_bombchu) or
+                    (Silver_Rupee_Spirit_Temple_Child_Early_Torches, 5))",
             "Child Spirit Before Locked Door": "is_child",
             "Early Adult Spirit Temple": "can_use(Silver_Gauntlets)",
             "Spirit Temple Central Chamber": "is_adult and spirit_temple_shortcuts"
         }
     },
     {
-        "region_name": "Child Spirit Temple Loop",
-        "dungeon": "Spirit Temple",
-        "locations": {
-            "Spirit Temple GS Metal Fence": "Boomerang or ((Silver_Rupee_Spirit_Temple_Child_Early_Torches, 5) and has_projectile(child))"
-        },
-        "exits": {
-            "Child Spirit Beyond Metal Bridges": "Boomerang or Slingshot or
-                (has_bombchus and logic_spirit_child_bombchu) or
-                (Silver_Rupee_Spirit_Temple_Child_Early_Torches, 5)"
-        }
-    },
-    {
-        "region_name": "Child Spirit Beyond Metal Bridges",
+        "region_name": "Child Spirit Temple Beyond Metal Bridges",
         "dungeon": "Spirit Temple",
         "locations": {
             "Spirit Temple Child Bridge Chest": "True",
@@ -44,6 +35,10 @@
             "Spirit Temple Child Early Torches Silver Rupee Bottom Left": "True",
             "Spirit Temple Child Early Torches Silver Rupee Top Left": "True",
             "Spirit Temple Child Early Torches Silver Rupee Near Torch": "True",
+            "Spirit Temple GS Metal Fence": "
+                Boomerang or (logic_spirit_fence_gs and Kokiri_Sword) or
+                (((Silver_Rupee_Spirit_Temple_Child_Early_Torches, 5) or logic_spirit_fence_gs) and
+                    (Sticks or has_explosives or Slingshot or can_use(Dins_Fire)))",
             "Deku Shield Pot": "fix_broken_drops"
         }
     },
@@ -141,12 +136,13 @@
                 ((can_use(Dins_Fire) or (((Magic_Meter and Fire_Arrows) or logic_spirit_map_chest) and Bow and Sticks)) and
                     (has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)))",
             "Spirit Temple Sun Block Room Chest": "
-                (is_child and Sticks and
-                    (Small_Key_Spirit_Temple, 5) and (Silver_Rupee_Spirit_Temple_Sun_Block, 5)) or
-                (is_adult and (has_fire_source or (logic_spirit_sun_chest and Bow and (Silver_Rupee_Spirit_Temple_Sun_Block, 5))) and
+                (is_child and Sticks and (logic_spirit_sun_chest_no_rupees or (Silver_Rupee_Spirit_Temple_Sun_Block, 5)) and
+                    (Small_Key_Spirit_Temple, 5)) or
+                (is_adult and (has_fire_source or (logic_spirit_sun_chest_bow and (Silver_Rupee_Spirit_Temple_Sun_Block, 5) and Bow)) and
                     ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts)) or
-                ((can_use(Dins_Fire) or (((Magic_Meter and Fire_Arrows) or logic_spirit_sun_chest) and Bow and Sticks)) and
-                    (has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)))",
+                ((can_use(Dins_Fire) or (((Magic_Meter and Fire_Arrows) or (logic_spirit_sun_chest_bow and (Silver_Rupee_Spirit_Temple_Sun_Block, 5))) and
+                        Bow and Sticks and (logic_spirit_sun_chest_no_rupees or (Silver_Rupee_Spirit_Temple_Sun_Block, 5)))) and
+                    (has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops and not entrance_shuffle)))",
             "Spirit Temple Sun Block Room Silver Rupee Left" : "True",
             "Spirit Temple Sun Block Room Silver Rupee Center Front" : "True",
             "Spirit Temple Sun Block Room Silver Rupee Center Back" : "True",
@@ -171,7 +167,26 @@
                 has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)",
             "Spirit Temple Hall After Sun Block Room Pot 2": "
                 (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
+<<<<<<< HEAD
                 has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)",
+=======
+                has_explosives or ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)",
+            "Spirit Temple Sun Block Room Silver Rupee Left": "
+                (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
+                has_explosives or ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)",
+            "Spirit Temple Sun Block Room Silver Rupee Center Front": "
+                (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
+                has_explosives or ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)",
+            "Spirit Temple Sun Block Room Silver Rupee Center Back": "
+                (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
+                has_explosives or ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)",
+            "Spirit Temple Sun Block Room Silver Rupee Right Front": "
+                (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
+                has_explosives or ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)",
+            "Spirit Temple Sun Block Room Silver Rupee Right Back": "
+                (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
+                has_explosives or ((Small_Key_Spirit_Temple, 2) and bombchus_in_logic and not entrance_shuffle)",
+>>>>>>> silver rupee logic fixes & tricks
             "Spirit Temple GS Lobby": "
                 (is_child and logic_spirit_lobby_gs and Boomerang and
                     (Small_Key_Spirit_Temple, 5)) or
