@@ -145,20 +145,29 @@ item_draw_table_entry_t item_draw_table[] = {
     [0x7E] = { draw_gi_small_keys,          { 0x06000800, 0x017D01FF, 0x00C800FF, 0x01 } }, // Small Key (Forest)
     [0x7F] = { draw_gi_small_keys,          { 0x06000800, 0xFF3200FF, 0xFFFFFFFF, 0x01 } }, // Small Key (Fire)
     [0x80] = { draw_gi_small_keys,          { 0x06000800, 0x01548FFF, 0x0096FFFF, 0x01 } }, // Small Key (Water)
-    [0x81] = { draw_gi_small_keys,          { 0x06000800, 0xFF9600FF, 0xFFFFFFFF, 0x01 } }, // Small Key (Spirit)
+    [0x81] = { draw_gi_small_keys,          { 0x06000800, 0xff9900FF, 0xFFFFFFFF, 0x01 } }, // Small Key (Spirit)
     [0x82] = { draw_gi_small_keys,          { 0x06000800, 0xC832FFFF, 0xFFFFFFFF, 0x01 } }, // Small Key (Shadow)
+    [0x83] = { draw_gi_small_keys,          { 0x06000800, 0xd102caFF, 0xFFFFFFFF, 0x01 } }, // Small Key (BOTW)
+    [0x84] = { draw_gi_small_keys,          { 0x06000800, 0xffd000FF, 0xFFFFFFFF, 0x01 } }, // Small Key (GtG)
+    [0x85] = { draw_gi_small_keys,          { 0x06000800, 0x212121FF, 0xFFFFFFFF, 0x01 } }, // Small Key (Ganons Castle)
+
     //Colored keyrings
-    [0x83] = { draw_gi_small_keys,          { 0x060015E8, 0x00C800FF, 0xFFFFFFFF, 0x76 } }, // Small Key Ring (Forest)
-    [0x84] = { draw_gi_small_keys,          { 0x060015E8, 0xFF3200FF, 0xFFFFFFFF, 0x76 } }, // Small Key Ring (Fire)
-    [0x85] = { draw_gi_small_keys,          { 0x060015E8, 0x01548FFF, 0x0096FFFF, 0x76 } }, // Small Key Ring (Water)
-    [0x86] = { draw_gi_small_keys,          { 0x060015E8, 0xFF9600FF, 0xFFFFFFFF, 0x76 } }, // Small Key Ring (Spirit)
-    [0x87] = { draw_gi_small_keys,          { 0x060015E8, 0xC832FFFF, 0xFFFFFFFF, 0x76 } }, // Small Key Ring (Shadow)
+    [0x86] = { draw_gi_small_keys,          { 0x060015E8, 0x00C800FF, 0xFFFFFFFF, 0x76 } }, // Small Key Ring (Forest)
+    [0x87] = { draw_gi_small_keys,          { 0x060015E8, 0xFF3200FF, 0xFFFFFFFF, 0x76 } }, // Small Key Ring (Fire)
+    [0x88] = { draw_gi_small_keys,          { 0x060015E8, 0x01548FFF, 0x0096FFFF, 0x76 } }, // Small Key Ring (Water)
+    [0x89] = { draw_gi_small_keys,          { 0x060015E8, 0xff9900FF, 0xFFFFFFFF, 0x76 } }, // Small Key Ring (Spirit)
+    [0x8A] = { draw_gi_small_keys,          { 0x060015E8, 0xC832FFFF, 0xFFFFFFFF, 0x76 } }, // Small Key Ring (Shadow)
+    [0x8B] = { draw_gi_small_keys,          { 0x060015E8, 0xd102caFF, 0xFFFFFFFF, 0x76 } }, // Small Key Ring (BOTW)
+    [0x8C] = { draw_gi_small_keys,          { 0x060015E8, 0xffd000FF, 0xFFFFFFFF, 0x76 } }, // Small Key Ring (GtG)
+    [0x8D] = { draw_gi_small_keys,          { 0x060015E8, 0x212121FF, 0xFFFFFFFF, 0x76 } }, // Small Key Ring (Ganons Castle)
+
     // Colored Boss Keys
-    [0x88] = { draw_gi_boss_keys,           { 0x06000CA0, 0x06000F08, 0xFFAAFFFF, 0xFF0064FF, 0xFFFFFFFF, 0x016E07FF } }, // Boss Key (Forest)
-    [0x89] = { draw_gi_boss_keys,           { 0x06000CA0, 0x06000F08, 0xFFAAFFFF, 0xFF0064FF, 0xFFFFFFFF, 0x9c0000FF } }, // Boss Key (Fire)
-    [0x8A] = { draw_gi_boss_keys,           { 0x06000CA0, 0x06000F08, 0xFFAAFFFF, 0xFF0064FF, 0xFFFFFFFF, 0x011d69FF } }, // Boss Key (Water)
-    [0x8B] = { draw_gi_boss_keys,           { 0x06000CA0, 0x06000F08, 0xFFAAFFFF, 0xFF0064FF, 0xFFFFFFFF, 0xff9500FF } }, // Boss Key (Spirit)
-    [0x8C] = { draw_gi_boss_keys,           { 0x06000CA0, 0x06000F08, 0xFFAAFFFF, 0xFF0064FF, 0xFFFFFFFF, 0x6a017aFF } }, // Boss Key (Shadow)
+    [0x8E] = { draw_gi_boss_keys,           { 0x06000CA0, 0x06000F08, 0xFFAAFFFF, 0xFF0064FF, 0xFFFFFFFF, 0x016E07FF } }, // Boss Key (Forest)
+    [0x8F] = { draw_gi_boss_keys,           { 0x06000CA0, 0x06000F08, 0xFFAAFFFF, 0xFF0064FF, 0xFFFFFFFF, 0x9c0000FF } }, // Boss Key (Fire)
+    [0x90] = { draw_gi_boss_keys,           { 0x06000CA0, 0x06000F08, 0xFFAAFFFF, 0xFF0064FF, 0xFFFFFFFF, 0x011d69FF } }, // Boss Key (Water)
+    [0x91] = { draw_gi_boss_keys,           { 0x06000CA0, 0x06000F08, 0xFFAAFFFF, 0xFF0064FF, 0xFFFFFFFF, 0xff9500FF } }, // Boss Key (Spirit)
+    [0x92] = { draw_gi_boss_keys,           { 0x06000CA0, 0x06000F08, 0xFFAAFFFF, 0xFF0064FF, 0xFFFFFFFF, 0x6a017aFF } }, // Boss Key (Shadow)
+    [0x93] = { draw_gi_boss_keys,           { 0x06000CA0, 0x06000F08, 0xFFAAFFFF, 0xFF0064FF, 0xFFFFFFFF, 0x212121FF } }, // Boss Key (Ganons Castle)
     
 };
 
