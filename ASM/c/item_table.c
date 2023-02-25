@@ -325,11 +325,11 @@ uint16_t resolve_text_silver_rupees(item_row_t *item_row, bool is_outgoing) {
     } else if (!is_outgoing && extended_savectx.silver_rupee_counts[silver_rupee_id] + 1 == var.needed_count) {
         // This silver rupee unlocks the puzzle.
         return item_row->text_id + (CFG_DUNGEON_IS_MQ[dungeon_id] ? 0x2E : 0x44);
-    } else if (!is_outgoing && extended_savectx.silver_rupee_counts[silver_rupee_id] > 0) {
+    } else if (!is_outgoing && extended_savectx.silver_rupee_counts[silver_rupee_id] >= 0) {
         // Show number collected.
         return item_row->text_id;
     } else {
-        // This silver rupee is for another player or the first of this puzzle, don't show any extra info.
+        // This silver rupee is for another player, don't show any extra info.
         return item_row->text_id + 0x5A;
     }
 }
