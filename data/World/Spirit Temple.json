@@ -142,7 +142,7 @@
                     ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts)) or
                 ((can_use(Dins_Fire) or (((Magic_Meter and Fire_Arrows) or (logic_spirit_sun_chest_bow and (Silver_Rupee_Spirit_Temple_Sun_Block, 5))) and
                         Bow and Sticks and (logic_spirit_sun_chest_no_rupees or (Silver_Rupee_Spirit_Temple_Sun_Block, 5)))) and
-                    (has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops and not entrance_shuffle)))",
+                    (has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)))",
             "Spirit Temple Sun Block Room Silver Rupee Left" : "True",
             "Spirit Temple Sun Block Room Silver Rupee Center Front" : "True",
             "Spirit Temple Sun Block Room Silver Rupee Center Back" : "True",
@@ -167,22 +167,22 @@
                 has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)",
             "Spirit Temple Hall After Sun Block Room Pot 2": "
                 (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
-                has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops and not entrance_shuffle)",
+                has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)",
             "Spirit Temple Sun Block Room Silver Rupee Left": "
                 (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
-                has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops and not entrance_shuffle)",
+                has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)",
             "Spirit Temple Sun Block Room Silver Rupee Center Front": "
                 (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
-                has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops and not entrance_shuffle)",
+                has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)",
             "Spirit Temple Sun Block Room Silver Rupee Center Back": "
                 (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
-                has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops and not entrance_shuffle)",
+                has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)",
             "Spirit Temple Sun Block Room Silver Rupee Right Front": "
                 (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
-                has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops and not entrance_shuffle)",
+                has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)",
             "Spirit Temple Sun Block Room Silver Rupee Right Back": "
                 (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
-                has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops and not entrance_shuffle)",
+                has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)",
             "Spirit Temple GS Lobby": "
                 (is_child and logic_spirit_lobby_gs and Boomerang and
                     (Small_Key_Spirit_Temple, 5)) or
