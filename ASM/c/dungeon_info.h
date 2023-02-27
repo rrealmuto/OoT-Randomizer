@@ -2,8 +2,10 @@
 #define DUNGEON_INFO_H
 
 #include "util.h"
+#include "z64.h"
 
-void draw_dungeon_info();
+void draw_dungeon_info(z64_disp_buf_t *db);
+void draw_silver_rupee_count(z64_game_t *globalCtx, z64_disp_buf_t *db);
 
 extern unsigned char CFG_DUNGEON_IS_MQ[14];
 extern uint32_t CFG_DUNGEON_INFO_ENABLE;

@@ -1,7 +1,7 @@
 {
     "name":                  "mw3_woth",
     "gui_name":              "MW Season 3 (WotH)",
-    "description":           "Like the hints used for the Multiworld Tournament Season 3, but with Way of the Hero hints instead of goal hints.",
+    "description":           "Like the hints used for the Multiworld Tournament Season 3, but with Way of the Hero hints instead of goal hints. Useful for large multiworld seeds.",
     "add_locations":         [
         { "location": "Sheik in Kakariko", "types": ["always"] },
         { "location": "Song from Ocarina of Time", "types": ["always"] },

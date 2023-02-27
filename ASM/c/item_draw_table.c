@@ -22,7 +22,7 @@ item_draw_table_entry_t item_draw_table[] = {
     [0x06] = { draw_gi_song_notes,          { 0x06000AE0, 0xC832FFFF, 0 } }, // Music Note (Purple)
     [0x07] = { draw_gi_song_notes,          { 0x06000AE0, 0xC8FF00FF, 0 } }, // Music Note (Yellow)
     [0x08] = { draw_gi_recovery_heart,      { 0x060000E0 } }, // Recovery Heart
-    [0x09] = { draw_gi_boss_keys,           { 0x06000CA0, 0x06000F08, 0xFFAAFFFF, 0xFF0064FF } }, // Boss Key
+    [0x09] = { draw_gi_boss_keys,           { 0x06000CA0, 0x06000F08, 0xFFAAFFFF, 0xFF0064FF, 0xFFFFFFFF, 0x8C7800FF } }, // Boss Key
     [0x0A] = { draw_gi_compass,             { 0x06000960, 0x06000C50 } }, // Compass
     [0x0B] = { draw_gi_eggs_and_medallions, { 0x06000CB0, 0x06000E18 } }, // Forest Medallion
     [0x0C] = { draw_gi_eggs_and_medallions, { 0x06001AF0, 0x06000E18 } }, // Fire Medallion
@@ -133,7 +133,7 @@ item_draw_table_entry_t item_draw_table[] = {
 
     //Rando-added functions
     [0x75] = { draw_gi_various_opa0,        { 0x06000A30 } }, // Triforce Piece
-    [0x76] = { draw_gi_various_opa0,        { 0x060015E8 } }, // Key Ring
+    [0x76] = { draw_gi_small_keys,          { 0x060015E8, 0xFFFFFFFF, 0x3C505AFF } }, // Key Ring
     [0x77] = { draw_gi_song_notes,          { 0x06000EC0, 0x00C800FF, 1 } }, // Music Note inverted (Green)
     [0x78] = { draw_gi_song_notes,          { 0x06000EC0, 0xFF3200FF, 1 } }, // Music Note inverted (Red)
     [0x79] = { draw_gi_song_notes,          { 0x06000EC0, 0x0096FFFF, 1 } }, // Music Note inverted (Blue)
@@ -141,18 +141,19 @@ item_draw_table_entry_t item_draw_table[] = {
     [0x7B] = { draw_gi_song_notes,          { 0x06000EC0, 0xC832FFFF, 1 } }, // Music Note inverted (Purple)
     [0x7C] = { draw_gi_song_notes,          { 0x06000EC0, 0xC8FF00FF, 1 } }, // Music Note inverted (Yellow)
 
-    [0x7D] = { draw_gi_medallions,          { 0x060004d0, 0x06000f80 } }, // Light Medallion
-    [0x7E] = { draw_gi_medallions,          { 0x06000370, 0x06000e40 } }, // Forest Medallion
-    [0x7F] = { draw_gi_medallions,          { 0x060001b0, 0x06000c30 } }, // Fire Medallion
-    [0x80] = { draw_gi_medallions,          { 0x06000330, 0x06000e00 } }, // Water Medallion
-    [0x81] = { draw_gi_medallions,          { 0x060002d0, 0x06000d60 } }, // Shadow Medallion
-    [0x82] = { draw_gi_medallions,          { 0x06000380, 0x06000e40 } }, // Spirit Medallion
+    [0x7D] = { draw_gi_various_opa0,        { 0x060016A0 } }, // Bombchu Bag
+    [0x7E] = { draw_gi_silver_rupee_pouch,  { 0x06001850, 0x06001750, 0x06001790, 0x060019A0, 0x060017B0, 0x06001A28, 0x060017D0, 0x06001AD8 } }, // Silver Rupee Pouch
 
-    [0x83] = { draw_gi_stones,              { 0x06000b50, 0x06001290, 0xffffa0ff, 0x00ff00ff } }, // Kokiri Emerald
-    [0x84] = { draw_gi_stones,              { 0x06000620, 0x06000920, 0xffaaffff, 0xff0064ff } }, // Goron Ruby
-    [0x85] = { draw_gi_stones,              { 0x06000b00, 0x060012f0, 0x32ffffff, 0x320096ff } }, // Zora Sapphire
+    [0x7F] = { draw_gi_medallions,          { 0x060004d0, 0x06000f80 } }, // Light Medallion
+    [0x80] = { draw_gi_medallions,          { 0x06000370, 0x06000e40 } }, // Forest Medallion
+    [0x81] = { draw_gi_medallions,          { 0x060001b0, 0x06000c30 } }, // Fire Medallion
+    [0x82] = { draw_gi_medallions,          { 0x06000330, 0x06000e00 } }, // Water Medallion
+    [0x83] = { draw_gi_medallions,          { 0x060002d0, 0x06000d60 } }, // Shadow Medallion
+    [0x84] = { draw_gi_medallions,          { 0x06000380, 0x06000e40 } }, // Spirit Medallion
 
-    [0x86] = { draw_gi_silver_rupee_pouch,  { 0x06001850, 0x06001750, 0x06001790, 0x060019A0, 0x060017B0, 0x06001A28, 0x060017D0, 0x06001AD8 } }, // Silver Rupee Pouch
+    [0x85] = { draw_gi_stones,              { 0x06000b50, 0x06001290, 0xffffa0ff, 0x00ff00ff } }, // Kokiri Emerald
+    [0x86] = { draw_gi_stones,              { 0x06000620, 0x06000920, 0xffaaffff, 0xff0064ff } }, // Goron Ruby
+    [0x87] = { draw_gi_stones,              { 0x06000b00, 0x060012f0, 0x32ffffff, 0x320096ff } }, // Zora Sapphire
 };
 
 void base_draw_gi_model(z64_game_t *game, uint32_t draw_id) {

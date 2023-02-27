@@ -1,14 +1,12 @@
 #include "textures.h"
 
 
-#define LEN_TEXTURE_TABLE 20
-
 typedef struct {
-    uint16_t textureID;
+    TextureId textureID;
     file_t file;
 } texture_t;
 
-texture_t texture_table[LEN_TEXTURE_TABLE] = {
+texture_t texture_table[TEXTURE_ID_MAX] = {
     [TEXTURE_ID_POT_GOLD] = { .textureID = TEXTURE_ID_POT_GOLD },
     [TEXTURE_ID_POT_KEY] = { .textureID = TEXTURE_ID_POT_KEY },
     [TEXTURE_ID_POT_BOSSKEY] = { .textureID = TEXTURE_ID_POT_BOSSKEY },
@@ -22,14 +20,21 @@ texture_t texture_table[LEN_TEXTURE_TABLE] = {
     [TEXTURE_ID_SMALLCRATE_KEY] = { .textureID = TEXTURE_ID_SMALLCRATE_KEY },
     [TEXTURE_ID_SMALLCRATE_SKULL] = { .textureID = TEXTURE_ID_SMALLCRATE_SKULL },
     [TEXTURE_ID_SMALLCRATE_BOSSKEY] = { .textureID = TEXTURE_ID_SMALLCRATE_BOSSKEY },
+
+    [TEXTURE_ID_CHEST_FRONT_GILDED] = { .textureID = TEXTURE_ID_CHEST_FRONT_GILDED },
+    [TEXTURE_ID_CHEST_BASE_GILDED] = { .textureID = TEXTURE_ID_CHEST_BASE_GILDED },
+    [TEXTURE_ID_CHEST_FRONT_SILVER] = { .textureID = TEXTURE_ID_CHEST_FRONT_SILVER },
+    [TEXTURE_ID_CHEST_BASE_SILVER] = { .textureID = TEXTURE_ID_CHEST_BASE_SILVER },
+    [TEXTURE_ID_CHEST_FRONT_SKULL] = { .textureID = TEXTURE_ID_CHEST_FRONT_SKULL },
+    [TEXTURE_ID_CHEST_BASE_SKULL] = { .textureID = TEXTURE_ID_CHEST_BASE_SKULL },
 };
 
-uint8_t *get_texture(uint16_t textureID) {
+uint8_t *get_texture(TextureId textureID) {
     return texture_table[textureID].file.buf;
 }
 
 void init_textures() {
-    for (int i = 0; i < LEN_TEXTURE_TABLE; i++) {
+    for (int i = 0; i < TEXTURE_ID_MAX; i++) {
         if (texture_table[i].file.vrom_start != 0x00000000) {
             file_init(&texture_table[i].file);
         }

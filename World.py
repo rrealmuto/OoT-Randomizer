@@ -117,7 +117,10 @@ class World(object):
         )
 
         self.ensure_tod_access = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or self.spawn_positions
-        self.disable_trade_revert = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances
+        self.disable_trade_revert = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or settings.adult_trade_shuffle
+        self.skip_child_zelda = 'Zeldas Letter' not in settings.shuffle_child_trade and 'Zeldas Letter' in settings.starting_items
+        self.selected_adult_trade_item = ''
+        self.adult_trade_starting_inventory = ''
 
         if settings.triforce_hunt_mode == 'ice_percent':
             self.triforce_count_per_world = 1
@@ -241,7 +244,7 @@ class World(object):
         self.added_hint_types = {}
         self.item_added_hint_types = {}
         self.hint_exclusions = set()
-        if settings.shuffle_child_trade == 'skip_child_zelda':
+        if self.skip_child_zelda:
             self.hint_exclusions.add('Song from Impa')
         self.hint_type_overrides = {}
         self.item_hint_type_overrides = {}

@@ -1,4 +1,4 @@
-[    
+[
     {
         "region_name": "Forest Temple Lobby",
         "dungeon": "Forest Temple",
@@ -27,12 +27,12 @@
         "dungeon": "Forest Temple",
         "locations": {
             "Forest Temple GS Level Island Courtyard": "
-                can_use(Longshot) or 
+                can_use(Longshot) or
                 at('Forest Temple Outside Upper Ledge', can_use(Hookshot) or can_hover)"
         },
         "exits": {
             "Forest Temple Outdoors High Balconies": "
-                is_adult or 
+                is_adult or
                 (has_explosives or
                  ((can_use(Boomerang) or Nuts or Deku_Shield) and
                   (Sticks or Kokiri_Sword or can_use(Slingshot))))",
@@ -96,10 +96,10 @@
         "exits": {
             "Forest Temple Outside Upper Ledge": "can_jumpslash",
             "Forest Temple Bow Region": "
-                (Progressive_Strength_Upgrade or (can_mega and (can_hover or Hover_Boots))) 
+                (Progressive_Strength_Upgrade or (can_mega and (can_hover or Hover_Boots)))
                 and (Small_Key_Forest_Temple, 3) and is_adult",
             "Forest Temple Straightened Hall": "
-            (Progressive_Strength_Upgrade or (is_adult and can_mega and (can_hover or Hover_Boots))) 
+            (Progressive_Strength_Upgrade or (is_adult and can_mega and (can_hover or Hover_Boots)))
             and (Small_Key_Forest_Temple, 2) and (can_use(Bow) or (can_use(Slingshot) and can_hover))"
         }
     },
@@ -162,9 +162,9 @@
         "region_name": "Phantom Ganon Boss Room",
         "dungeon": "Forest Temple",
         "locations": {
-            "Forest Temple Phantom Ganon Heart": "(can_use(Hookshot) or can_use(Bow)) or 
+            "Forest Temple Phantom Ganon Heart": "(can_use(Hookshot) or can_use(Bow)) or
                 (can_use(Slingshot) and (Kokiri_Sword or Sticks))",
-            "Phantom Ganon": "(can_use(Hookshot) or can_use(Bow)) or 
+            "Phantom Ganon": "(can_use(Hookshot) or can_use(Bow)) or
                 (can_use(Slingshot) and (Kokiri_Sword or Sticks))"
         }
     }

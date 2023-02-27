@@ -86,6 +86,6 @@ if __name__ == '__main__':
         else:
             source = None
         complete_presets(new_presets, True, preset=arguments['--preset'], source=source)
-        with open('data/presets_default.json', 'w', encoding='utf-8') as f:
+        with open('data/presets_default.json', 'w', encoding='utf-8', newline='\n') as f:
             json.dump(new_presets, f, indent=4)
             print(file=f)

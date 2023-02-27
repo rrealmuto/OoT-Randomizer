@@ -12,9 +12,9 @@
         }
     },
     {
-    "region_name": "Ice Cavern Spinning Scythe Room",
-    "dungeon": "Ice Cavern",
-    "locations": {
+        "region_name": "Ice Cavern Spinning Scythe Room",
+        "dungeon": "Ice Cavern",
+        "locations": {
             "Ice Cavern Hall Pot 1": "True",
             "Ice Cavern Hall Pot 2": "True",
             "Ice Cavern Spinning Scythe Pot 1": "True",

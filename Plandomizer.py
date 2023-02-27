@@ -12,7 +12,7 @@ from Fill import FillError
 from EntranceShuffle import EntranceShuffleError, change_connections, confirm_replacement, validate_world, check_entrances_compatibility
 from Hints import HintArea, gossipLocations, GossipText
 from Item import ItemFactory, ItemInfo, ItemIterator, IsItem
-from ItemPool import item_groups, get_junk_item, song_list, eggs, triforce_blitz_items, triforce_pieces
+from ItemPool import item_groups, get_junk_item, song_list, trade_items, child_trade_items, eggs, triforce_blitz_items, triforce_pieces
 from Location import LocationIterator, LocationFactory
 from LocationList import location_groups, location_table
 from Search import Search
@@ -498,7 +498,8 @@ class WorldDistribution(object):
         self.base_pool = list(pool)
         pool_size = len(pool)
         bottle_matcher = self.pattern_matcher("#Bottle")
-        trade_matcher  = self.pattern_matcher("#AdultTrade")
+        adult_trade_matcher  = self.pattern_matcher("#AdultTrade")
+        child_trade_matcher  = self.pattern_matcher("#ChildTrade")
         bottles = 0
 
         for item_name, record in self.item_pool.items():
@@ -507,7 +508,7 @@ class WorldDistribution(object):
             if record.type == 'remove':
                 self.pool_remove_item([pool], item_name, record.count)
 
-        remove_egg = False
+        remove_trade = []
         for item_name, record in self.item_pool.items():
             if record.type == 'set':
                 if item_name == '#Junk':
@@ -516,11 +517,11 @@ class WorldDistribution(object):
                     raise ValueError('Cannot add Ice Arrows to item pool with Blue Fire Arrows enabled')
                 elif item_name == 'Blue Fire Arrows' and not world.settings.blue_fire_arrows:
                     raise ValueError('Cannot add Blue Fire Arrows to item pool with Blue Fire Arrows disabled')
-                elif item_name == 'Weird Egg' and world.settings.shuffle_child_trade != 'shuffle':
-                    remove_egg = True
+                elif child_trade_matcher(item_name) and item_name not in world.settings.shuffle_child_trade:
+                    remove_trade.append(item_name)
                     continue
-                elif item_name == 'Weird Egg' and self.item_pool['Weird Egg'].count > 1:
-                    self.item_pool['Weird Egg'].count = 1
+                elif child_trade_matcher(item_name) and world.settings.item_pool_value not in ('plentiful', 'ludicrous'):
+                    self.item_pool[item_name].count = 1
                     continue
                 predicate = self.pattern_matcher(item_name)
                 pool_match = [item for item in pool if predicate(item)]
@@ -533,17 +534,18 @@ class WorldDistribution(object):
                     for item in added_items:
                         if bottle_matcher(item):
                             bottles += 1
-                        elif trade_matcher(item):
+                        elif adult_trade_matcher(item) and not (world.settings.item_pool_value in ('plentiful', 'ludicrous') or world.settings.adult_trade_shuffle):
                             self.pool_remove_item([pool], "#AdultTrade", 1)
                 else:
                     removed_items = self.pool_remove_item([pool], item_name, -add_count)
                     for item in removed_items:
                         if bottle_matcher(item):
                             bottles -= 1
-                        elif trade_matcher(item):
+                        elif adult_trade_matcher(item) and not (world.settings.item_pool_value in ('plentiful', 'ludicrous') or world.settings.adult_trade_shuffle):
                             self.pool_add_item(pool, "#AdultTrade", 1)
-        if remove_egg:
-            del self.item_pool['Weird Egg']
+
+        for item in remove_trade:
+            del self.item_pool[item]
 
         if bottles > 0:
             self.pool_remove_item([pool], '#Bottle', bottles)
@@ -553,10 +555,33 @@ class WorldDistribution(object):
         for item_name, record in self.settings.starting_items.items():
             if bottle_matcher(item_name):
                 self.pool_remove_item([pool], "#Bottle", record.count)
-            elif trade_matcher(item_name):
+            elif item_name in ('Pocket Egg', 'Pocket Cucco') and world.settings.adult_trade_shuffle:
+                try:
+                    if 'Pocket Egg' in world.settings.adult_trade_start:
+                        try:
+                            self.pool_remove_item([pool], "Pocket Egg", record.count)
+                        except KeyError:
+                            raise KeyError('Tried to start with a Pocket Egg but could not remove it from the item pool. Are both Pocket Egg and Pocket Cucco shuffled?')
+                    elif 'Pocket Cucco' not in world.settings.adult_trade_start:
+                        raise RuntimeError('An unshuffled trade item was included as a starting item. Please remove %s from starting items' % item_name)
+                    else:
+                        self.pool_remove_item([pool], "Pocket Cucco", record.count)
+                except KeyError:
+                    raise KeyError('Tried to start with a Pocket Egg or Pocket Cucco but could not remove it from the item pool. Are both Pocket Egg and Pocket Cucco shuffled?')
+            elif adult_trade_matcher(item_name) and not world.settings.adult_trade_shuffle:
                 self.pool_remove_item([pool], "#AdultTrade", record.count)
             elif item_name == 'Ice Arrows' and world.settings.blue_fire_arrows:
                 self.pool_remove_item([pool], "Blue Fire Arrows", record.count)
+            elif item_name in ('Weird Egg', 'Chicken') and world.settings.shuffle_child_trade:
+                try:
+                    if 'Weird Egg' in world.settings.shuffle_child_trade:
+                        self.pool_remove_item([pool], "Weird Egg", record.count)
+                    elif 'Chicken' not in world.settings.shuffle_child_trade:
+                        raise RuntimeError('An unshuffled trade item was included as a starting item. Please remove %s from starting items' % item_name)
+                    else:
+                        self.pool_remove_item([pool], "Chicken", record.count)
+                except KeyError:
+                    raise KeyError('Tried to start with a Weird Egg or Chicken but could not remove it from the item pool. Are both Weird Egg and the Chicken shuffled?')
             elif IsItem(item_name):
                 try:
                     self.pool_remove_item([pool], item_name, record.count)
@@ -842,11 +867,11 @@ class WorldDistribution(object):
                 valid_items = self.get_valid_items_from_record(world.itempool, used_items, record)
             if not valid_items:
                 # Item pool values exceeded. Remove limited items from the list and choose a random value from it
-                limited_items = ['Weird Egg', '#AdultTrade', '#Bottle']
+                limited_items = ['#ChildTrade', '#AdultTrade', '#Bottle']
                 if isinstance(record.item, list):
                     allowed_choices = []
                     for item in record.item:
-                        if item in limited_items or item in item_groups['AdultTrade'] or item in item_groups['Bottle']:
+                        if item in limited_items or item in item_groups['Bottle'] or item in item_groups['AdultTrade'] or item in item_groups['ChildTrade']:
                             continue
                         allowed_choices.append(item)
                     record.item = random_choices(allowed_choices)[0]
@@ -919,31 +944,22 @@ class WorldDistribution(object):
                             self.item_pool[removed_item.name].count -= 1
                     item = ItemFactory([record.item], world=world)[0]
                 except KeyError:
-                    raise RuntimeError(
-                        'Too many shop buy items were added to world %d, and not enough shop buy items are available in the item pool to be removed.' % (
-                                    self.id + 1))
+                    raise RuntimeError(f'Too many shop buy items were added to world {self.id + 1}, and not enough shop buy items are available in the item pool to be removed.')
             elif record.item in item_groups['Bottle']:
                 try:
                     item = self.pool_replace_item(pool, "#Bottle", player_id, record.item, worlds)
                 except KeyError:
-                    raise RuntimeError(
-                        'Too many bottles were added to world %d, and not enough bottles are available in the item pool to be removed.' % (
-                                    self.id + 1))
-            elif record.item in item_groups['AdultTrade']:
+                    raise RuntimeError(f'Too many bottles were added to world {self.id + 1}, and not enough bottles are available in the item pool to be removed.')
+            elif record.item in item_groups['AdultTrade'] and not world.settings.adult_trade_shuffle:
                 try:
                     item = self.pool_replace_item(pool, "#AdultTrade", player_id, record.item, worlds)
                 except KeyError:
-                    raise RuntimeError(
-                        'Too many adult trade items were added to world %d, and not enough adult trade items are available in the item pool to be removed.' % (
-                                    self.id + 1))
-            elif record.item == "Weird Egg":
-                # If Letter has not been shown to guard before obtaining a second weird egg a softlock can occur
-                # if there are important items at deku theater or an important location locked behind the gate
-                # or if Keaton Mask gets overwritten before giving it to the guard.
+                    raise RuntimeError(f'Too many adult trade items were added to world {self.id + 1}, and not enough adult trade items are available in the item pool to be removed.')
+            elif record.item in item_groups['ChildTrade'] and record.item not in world.settings.shuffle_child_trade:
                 try:
-                    item = self.pool_replace_item(pool, "Weird Egg", player_id, record.item, worlds)
+                    item = self.pool_replace_item(pool, "#ChildTrade", player_id, record.item, worlds)
                 except KeyError:
-                    raise RuntimeError('Weird Egg already placed in World %d.' % (self.id + 1))
+                    raise RuntimeError(f'Too many child trade items were added to world {self.id + 1}, and not enough child trade items are available in the item pool to be removed.')
             elif record.item == "Ice Arrows" and worlds[player_id].settings.blue_fire_arrows:
                 raise ValueError('Cannot add Ice Arrows to item pool with Blue Fire Arrows enabled')
             elif record.item == "Blue Fire Arrows" and not worlds[player_id].settings.blue_fire_arrows:
@@ -952,19 +968,16 @@ class WorldDistribution(object):
                 try:
                     item = self.pool_replace_item(item_pools, "#Junk", player_id, record.item, worlds)
                 except KeyError:
-                    raise RuntimeError(
-                        'Too many items were added to world %d, and not enough junk is available to be removed.' % (self.id + 1))
+                    raise RuntimeError(f'Too many items were added to world {self.id + 1}, and not enough junk is available to be removed.')
                 except IndexError:
-                    raise RuntimeError(
-                        'Unknown item %r being placed on location %s in world %d. %s' % (record.item, location, self.id + 1, build_close_match(record.item, 'item')))
+                    raise RuntimeError(f'Unknown item {record.item} being placed on location {location} in world {self.id + 1}. {build_close_match(record.item, "item")}')
             # Update item_pool after item is replaced
             if item.name not in self.item_pool:
                 self.item_pool[item.name] = ItemPoolRecord()
             else:
                 self.item_pool[item.name].count += 1
         except IndexError:
-            raise RuntimeError(
-                'Unknown item %r being placed on location %s in world %d. %s' % (record.item, location, self.id + 1, build_close_match(record.item, 'item')))
+            raise RuntimeError(f'Unknown item {record.item} being placed on location {location} in world {self.id + 1}. {build_close_match(record.item, "item")}')
         # Ensure pool copy is persisted to real pool
         for i, new_pool in enumerate(pool):
             if new_pool:
@@ -1044,8 +1057,8 @@ class WorldDistribution(object):
             add_starting_item_with_ammo(items, 'Deku Nuts', 99)
 
         skipped_locations = ['Links Pocket']
-        if world.settings.shuffle_child_trade == 'skip_child_zelda':
-            skipped_locations += ['HC Malon Egg', 'HC Zeldas Letter', 'Song from Impa']
+        if world.skip_child_zelda:
+            skipped_locations += ['HC Zeldas Letter', 'Song from Impa']
         if world.settings.gerudo_fortress == 'open' and not world.settings.shuffle_gerudo_card:
             skipped_locations.append('Hideout Gerudo Membership Card')
         if world.settings.empty_dungeons_mode != 'none':
@@ -1069,6 +1082,35 @@ class WorldDistribution(object):
                     self.skipped_locations.append(loc)
                 if loc.item is not None and world.id == loc.item.world.id:
                     add_starting_item_with_ammo(items, loc.item.name)
+
+        effective_adult_trade_item_index = -1
+        effective_child_trade_item_index = -1
+        effective_adult_trade_item = None
+        effective_child_trade_item = None
+        trade_starting_items = list(items.keys())
+        for item_name in trade_starting_items:
+            if item_name in trade_items:
+                if item_name in world.settings.adult_trade_start:
+                    if trade_items.index(item_name) > effective_adult_trade_item_index:
+                        effective_adult_trade_item_index = trade_items.index(item_name)
+                        effective_adult_trade_item = items[item_name]
+                else:
+                    raise RuntimeError('An unshuffled trade item was included as a starting item. Please remove %s from starting items' % item_name)
+                del items[item_name]
+            if item_name in child_trade_items:
+                if item_name in world.settings.shuffle_child_trade or item_name == 'Zeldas Letter':
+                    if child_trade_items.index(item_name) > effective_child_trade_item_index:
+                        effective_child_trade_item_index = child_trade_items.index(item_name)
+                        effective_child_trade_item = items[item_name]
+                else:
+                    raise RuntimeError('An unshuffled trade item was included as a starting item. Please remove %s from starting items' % item_name)
+                del items[item_name]
+
+        if effective_child_trade_item_index >= 0:
+            items[child_trade_items[effective_child_trade_item_index]] = effective_child_trade_item
+        if effective_adult_trade_item_index >= 0:
+            items[trade_items[effective_adult_trade_item_index]] = effective_adult_trade_item
+            world.adult_trade_starting_inventory = effective_adult_trade_item
 
         self.effective_starting_items = items
 
@@ -1143,7 +1185,8 @@ class Distribution(object):
                 if triforce_piece in world.settings.starting_items:
                     world.triforce_count += world.settings.starting_items[triforce_piece].count
                     total_starting_count += world.settings.starting_items[triforce_piece].count
-                if world.settings.shuffle_child_trade == 'skip_child_zelda' and 'Song from Impa' in world.distribution.locations and world.distribution.locations['Song from Impa'].item == triforce_piece:
+                #TODO add starting pieces from other skipped checks (Links Pocket, pre-completed dungeons)
+                if world.skip_child_zelda and 'Song from Impa' in world.distribution.locations and world.distribution.locations['Song from Impa'].item == triforce_piece:
                     total_starting_count += 1
             total_count += world.triforce_count
             if world.settings.triforce_hunt_mode == 'ice_percent': #TODO instead of hardcoding Ice%, scan filled locations

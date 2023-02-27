@@ -6,7 +6,7 @@
     "require_gohma": false,
     "bridge": "open",
     "triforce_hunt": false,
-    "shuffle_child_trade": "shuffle",
+    "shuffle_child_trade": ["Weird Egg"],
     "logic_rules": "glitchless",
     "reachable_locations": "beatable",
     "trials_random": false,

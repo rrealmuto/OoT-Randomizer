@@ -119,11 +119,16 @@ void Actor_StoreChestType(z64_actor_t *actor, z64_game_t *game) {
     }
 }
 
+typedef void (*actor_after_spawn_func)(z64_actor_t *actor, bool overridden);
+
 z64_actor_t *Actor_SpawnEntry_Hack(void *actorCtx, ActorEntry *actorEntry, z64_game_t *globalCtx) {
     bool continue_spawn = true;
+    bool overridden = false;
+    actor_after_spawn_func after_spawn_func = NULL;
     switch (actorEntry->id) {
         case EN_G_SWITCH: {
-            continue_spawn = spawn_override_silver_rupee(actorEntry, globalCtx);
+            continue_spawn = spawn_override_silver_rupee(actorEntry, globalCtx, &overridden);
+            after_spawn_func = after_spawn_override_silver_rupee;
             break;
         }
         default: {
@@ -134,6 +139,9 @@ z64_actor_t *Actor_SpawnEntry_Hack(void *actorCtx, ActorEntry *actorEntry, z64_g
     if (continue_spawn) {
         spawned = z64_SpawnActor(actorCtx, globalCtx, actorEntry->id, actorEntry->pos.x, actorEntry->pos.y, actorEntry->pos.z,
             actorEntry->rot.x, actorEntry->rot.y, actorEntry->rot.z, actorEntry->params);
+        if (spawned && after_spawn_func) {
+            after_spawn_func(spawned, overridden);
+        }
     }
     return spawned;
 }
@@ -145,11 +153,12 @@ z64_actor_t *Player_SpawnEntry_Hack(void *actorCtx, ActorEntry *playerEntry, z64
         playerEntry->rot.y = 0;
     }
     return z64_SpawnActor(actorCtx, globalCtx, playerEntry->id, playerEntry->pos.x, playerEntry->pos.y, playerEntry->pos.z,
-           playerEntry->rot.x, playerEntry->rot.y, playerEntry->rot.z, playerEntry->params);
+        playerEntry->rot.x, playerEntry->rot.y, playerEntry->rot.z, playerEntry->params);
 }
 
 // Override silver rupee spawns.
-bool spawn_override_silver_rupee(ActorEntry *actorEntry, z64_game_t *globalCtx) {
+bool spawn_override_silver_rupee(ActorEntry *actorEntry, z64_game_t *globalCtx, bool *overridden) {
+    *overridden = false;
     if (SHUFFLE_SILVER_RUPEES) { // Check if silver rupee shuffle is enabled.
         // Build a dummy enitem00 actor
         EnItem00 dummy;
@@ -167,10 +176,19 @@ bool spawn_override_silver_rupee(ActorEntry *actorEntry, z64_game_t *globalCtx) 
                 // Spawn a green rupee which will be overridden using the collectible hacks.
                 actorEntry->params = 0;
                 actorEntry->id = EN_ITEM00;
+                *overridden = true;
                 return true;
             }
         }
         return false;
     }
     return true;
+}
+
+// After silver rupee spawns as enitem00
+void after_spawn_override_silver_rupee(z64_actor_t *spawned, bool overridden) {
+    if (overridden) {
+        EnItem00 *this = (EnItem00 *)spawned;
+        this->collider.info.bumper.dmgFlags = 0; // Remove clear the bumper collider flags so it doesn't interact w/ boomerang
+    }
 }

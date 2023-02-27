@@ -25,7 +25,7 @@ from OcarinaSongs import replace_songs
 from MQ import patch_files, File, update_dmadata, insert_space, add_relocations
 from SaveContext import SaveContext, Scenes, FlagType
 from version import __version__
-from ItemPool import song_list
+from ItemPool import song_list, trade_items, child_trade_items
 from SceneFlags import get_alt_list_bytes, get_collectible_flag_table, get_collectible_flag_table_bytes
 from texture_util import ci4_rgba16patch_to_ci8, rgba16_patch
 from ntype import BigStream
@@ -56,6 +56,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
         ('object_gi_triforce', data_path('Triforce.zobj'), 0x193),  # Triforce Piece
         ('object_gi_keyring',  data_path('KeyRing.zobj'),  0x195),  # Key Rings
         ('object_gi_warpsong', data_path('Note.zobj'),     0x196),  # Inverted Music Note
+        ('object_gi_chubag',   data_path('ChuBag.zobj'),   0x197),  # Bombchu Bag
     )
 
     extended_objects_start = start_address = rom.free_space()
@@ -68,62 +69,61 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
         add_to_extended_object_table(rom, object_id, start_address, end_address)
         start_address = end_address
 
-    # Make new models by editing the colors of existing ones
-    zobj_recolors = (
+    # Make new models by applying patches to existing ones
+    zobj_patches = (
         ('object_gi_hearts', 0x014D9000, 0x014DA590, 0x194, ( # Heart Container -> Double Defense
             (0x1294, [0xFF, 0xCF, 0x0F]), # Exterior Primary Color
             (0x12B4, [0xFF, 0x46, 0x32]), # Exterior Env Color
             (0x1474, [0xFF, 0xFF, 0xFF]), # Interior Primary Color
             (0x1494, [0xFF, 0xFF, 0xFF]), # Interior Env Color
-        ), (
-            (0x12A8, [0xFC173C60, 0x150C937F]), # Exterior Combine Mode
+            (0x12A8, [0xFC, 0x17, 0x3C, 0x60, 0x15, 0x0C, 0x93, 0x7F]), # Exterior Combine Mode
         )),
-        ('object_gi_rupy', 0x01914000, 0x01914800, 0x197, ( # Huge Rupee -> Silver Rupee
+        ('object_gi_rupy', 0x01914000, 0x01914800, 0x198, ( # Huge Rupee -> Silver Rupee
             (0x052C, [0xAA, 0xAA, 0xAA]), # Inner Primary Color?
             (0x0534, [0x5A, 0x5A, 0x5A]), # Inner Env Color?
             (0x05CC, [0xFF, 0xFF, 0xFF]), # Outer Primary Color?
             (0x05D4, [0xFF, 0xFF, 0xFF]), # Outer Env Color?
-        ), ()),
-        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x198, ( # Weird Egg -> Pink Easter Egg
+        )),
+        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1A2, ( # Weird Egg -> Pink Easter Egg
             (0x0FF4, [0xDB, 0xA9, 0xD8]), # Primary Color
             (0x0FFC, [0xD1, 0x7B, 0xCC]), # Env Color
-        ), ()),
-        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x199, ( # Weird Egg -> Orange Easter Egg
+        )),
+        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1A3, ( # Weird Egg -> Orange Easter Egg
             (0x0FF4, [0xDB, 0xA9, 0x77]), # Primary Color
             (0x0FFC, [0xD1, 0x7B, 0x25]), # Env Color
-        ), ()),
-        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x19A, ( # Weird Egg -> Green Easter Egg
+        )),
+        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1A4, ( # Weird Egg -> Green Easter Egg
             (0x0FF4, [0x77, 0xDB, 0x77]), # Primary Color
             (0x0FFC, [0x25, 0xD1, 0x25]), # Env Color
-        ), ()),
-        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x19B, ( # Weird Egg -> Blue Easter Egg
+        )),
+        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1A5, ( # Weird Egg -> Blue Easter Egg
             (0x0FF4, [0x77, 0x77, 0xDB]), # Primary Color
             (0x0FFC, [0x25, 0x25, 0xD1]), # Env Color
-        ), ()),
+        )),
     )
-    for name, start, end, object_id, colors, combine_modes in zobj_recolors:
+
+    # Add the new models to the extended object file.
+    for name, start, end, object_id, patches in zobj_patches:
         end_address = start_address + end - start
         rom.buffer[start_address:end_address] = rom.buffer[start:end]
-        # Update colors
-        for offset, color in colors:
-            rom.write_bytes(start_address + offset, color)
-        for offset, combine_mode in combine_modes:
-            rom.write_int32s(start_address + offset, combine_mode)
+        # Apply patches
+        for offset, patch in patches:
+            rom.write_bytes(start_address + offset, patch)
         # Add it to the extended object table
         add_to_extended_object_table(rom, object_id, start_address, end_address)
         start_address = end_address
 
     # Make new model files by splitting existing ones to fit into the get item memory slot
     zobj_splits = (
+        ('object_gi_jewel_emerald',  '0145A000', '0145D680', (0x1240, 0x10e0), 0x199), # Kokiri Emerald
+        ('object_gi_jewel_ruby',     '0145A000', '0145D680', (0x20a0, 0x1fb0), 0x19A), # Goron Ruby
+        ('object_gi_jewel_sapphire', '0145A000', '0145D680', (0x3530, 0x3370), 0x19B), # Zora Sapphire
         ('object_gi_medal_light',    '014BB000', '014C0370', (0x5220, 0x0e18), 0x19C), # Light Medallion
         ('object_gi_medal_forest',   '014BB000', '014C0370', (0x0cb0, 0x0e18), 0x19D), # Forest Medallion
         ('object_gi_medal_fire',     '014BB000', '014C0370', (0x1af0, 0x0e18), 0x19E), # Fire Medallion
         ('object_gi_medal_water',    '014BB000', '014C0370', (0x2830, 0x0e18), 0x19F), # Water Medallion
         ('object_gi_medal_shadow',   '014BB000', '014C0370', (0x4330, 0x0e18), 0x1A0), # Shadow Medallion
         ('object_gi_medal_spirit',   '014BB000', '014C0370', (0x3610, 0x0e18), 0x1A1), # Spirit Medallion
-        ('object_gi_jewel_emerald',  '0145A000', '0145D680', (0x1240, 0x10e0), 0x1A2), # Kokiri Emerald
-        ('object_gi_jewel_ruby',     '0145A000', '0145D680', (0x20a0, 0x1fb0), 0x1A3), # Goron Ruby
-        ('object_gi_jewel_sapphire', '0145A000', '0145D680', (0x3530, 0x3370), 0x1A4), # Zora Sapphire
     )
     for name, start, end, offsets, object_id in zobj_splits:
         obj_file = File({
@@ -228,7 +228,14 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
         (10, 'texture_smallcrate_gold',     0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_gold_rgba16_patch.bin' ),
         (11, 'texture_smallcrate_key',      0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_key_rgba16_patch.bin'),
         (12, 'texture_smallcrate_skull',    0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_skull_rgba16_patch.bin'),
-        (13, 'texture_smallcrate_bosskey',  0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_bosskey_rgba16_patch.bin')
+        (13, 'texture_smallcrate_bosskey',  0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_bosskey_rgba16_patch.bin'),
+
+        (18, "texture_chest_front_gilded",  0xFEC798,      None,            4096,   rgba16_patch,               'textures/chest/chest_front_gilded_rgba16_patch.bin'),
+        (19, "texture_chest_base_gilded",   0xFED798,      None,            2048,   rgba16_patch,               'textures/chest/chest_base_gilded_rgba16_patch.bin'),
+        (20, "texture_chest_front_silver",  0xFEC798,      None,            4096,   rgba16_patch,               'textures/chest/chest_front_silver_rgba16_patch.bin'),
+        (21, "texture_chest_base_silver",   0xFED798,      None,            2048,   rgba16_patch,               'textures/chest/chest_base_silver_rgba16_patch.bin'),
+        (22, "texture_chest_front_skull",   0xFEC798,      None,            4096,   rgba16_patch,               'textures/chest/chest_front_skull_rgba16_patch.bin'),
+        (23, "texture_chest_base_skull",    0xFED798,      None,            2048,   rgba16_patch,               'textures/chest/chest_base_skull_rgba16_patch.bin'),
     ]
 
     # Loop through the textures and apply the patch. Add the new textures as a new file in rom.
@@ -249,27 +256,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     # Add the extended texture data to the DMA table.
     rom.update_dmadata_record(None, extended_textures_start, end_address)
 
-    # Apply chest texture diffs to vanilla wooden chest texture for Chest Texture Matches Content setting
-    # new texture, vanilla texture, num bytes
-    textures = [(rom.sym('SILVER_CHEST_FRONT_TEXTURE'), 0xFEC798, 4096),
-                (rom.sym('SILVER_CHEST_BASE_TEXTURE'), 0xFED798, 2048),
-                (rom.sym('GILDED_CHEST_FRONT_TEXTURE'), 0xFEC798, 4096),
-                (rom.sym('GILDED_CHEST_BASE_TEXTURE'), 0xFED798, 2048),
-                (rom.sym('SKULL_CHEST_FRONT_TEXTURE'), 0xFEC798, 4096),
-                (rom.sym('SKULL_CHEST_BASE_TEXTURE'), 0xFED798, 2048)]
-    # Diff texture is the new texture minus the vanilla texture with byte overflow.
-    # This is done to avoid distributing copyrighted material with the randomizer,
-    # as the new textures are derivations of the wood chest textures.
-    # The following rebuilds the texture from the diff.
-    for diff_tex, vanilla_tex, size in textures:
-        db = rom.read_bytes(diff_tex, size)
-        vb = rom.read_bytes(vanilla_tex, size)
-        # bytes are immutable in python, can't edit in place
-        new_tex = bytearray(size)
-        for i in range(len(vb)):
-            new_tex[i] = (db[i] + vb[i]) & 0xFF
-        rom.write_bytes(diff_tex, new_tex)
-
     # Create an option so that recovery hearts no longer drop by changing the code which checks Link's health when an item is spawned.
     if world.settings.no_collectible_hearts:
         symbol = rom.sym('NO_COLLECTIBLE_HEARTS')
@@ -277,7 +263,8 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
 
     # Remove color commands inside certain object display lists
     rom.write_int32s(0x1455818, [0x00000000, 0x00000000, 0x00000000, 0x00000000]) # Small Key
-    rom.write_int32s(0x14B9F20, [0x00000000, 0x00000000, 0x00000000, 0x00000000]) # Boss Key
+    rom.write_int32s(0x14B9CB8, [0x00000000, 0x00000000, 0x00000000, 0x00000000]) # Boss Key (Key)
+    rom.write_int32s(0x14B9F20, [0x00000000, 0x00000000, 0x00000000, 0x00000000]) # Boss Key (Gem)
 
     # Force language to be English in the event a Japanese rom was submitted
     rom.write_byte(0x3E, 0x45)
@@ -331,8 +318,8 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     if not world.dungeon_mq['Water Temple']:
         rom.write_byte(0x25B8197, 0x3F)
 
-    if world.settings.bombchus_in_logic:
-        rom.write_int32(rom.sym('BOMBCHUS_IN_LOGIC'), 1)
+    if world.settings.free_bombchu_drops:
+        rom.write_int32(rom.sym('FREE_BOMBCHU_DROPS'), 1)
 
     # show seed info on file select screen
     def makebytes(txt, size):
@@ -938,20 +925,11 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     if world.settings.open_forest:
         rom.write_bytes(0xE5401C, [0x14, 0x0B])
 
-    # Fix Biggoron to check a different flag.
-    rom.write_byte(0xED329B, 0x72)
-    rom.write_byte(0xED43E7, 0x72)
-    rom.write_bytes(0xED3370, [0x3C, 0x0D, 0x80, 0x12])
-    rom.write_bytes(0xED3378, [0x91, 0xB8, 0xA6, 0x42, 0xA1, 0xA8, 0xA6, 0x42])
-    rom.write_bytes(0xED6574, [0x00, 0x00, 0x00, 0x00])
-
     # Remove the check on the number of days that passed for claim check.
     rom.write_bytes(0xED4470, [0x00, 0x00, 0x00, 0x00])
     rom.write_bytes(0xED4498, [0x00, 0x00, 0x00, 0x00])
 
     # Fixed reward order for Bombchu Bowling
-    rom.write_bytes(0xE2E698, [0x80, 0xAA, 0xE2, 0x64])
-    rom.write_bytes(0xE2E6A0, [0x80, 0xAA, 0xE2, 0x4C])
     rom.write_bytes(0xE2D440, [0x24, 0x19, 0x00, 0x00])
 
     # Offset kakariko carpenter starting position
@@ -1151,6 +1129,12 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
         # Disable trade quest timers and prevent trade items from ever reverting
         rom.write_byte(rom.sym('DISABLE_TIMERS'), 0x01)
         rom.write_int16s(0xB6D460, [0x0030, 0x0035, 0x0036]) # Change trade items revert table to prevent all reverts
+
+    if world.settings.adult_trade_shuffle or world.settings.item_pool_value in ('plentiful', 'ludicrous'):
+        rom.write_int16(rom.sym('CFG_ADULT_TRADE_SHUFFLE'), 0x0001)
+        move_fado_in_lost_woods(rom)
+    if world.settings.shuffle_child_trade or world.settings.logic_rules == 'glitched':
+        rom.write_int16(rom.sym('CFG_CHILD_TRADE_SHUFFLE'), 0x0001)
 
     if world.settings.shuffle_overworld_entrances:
         rom.write_byte(rom.sym('OVERWORLD_SHUFFLED'), 1)
@@ -1416,10 +1400,50 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     if world.settings.open_kakariko != 'closed':
         rom.write_byte(rom.sym('OPEN_KAKARIKO'), 1)
 
+    # Mark starting trade items as owned, filtered for only shuffled items
+    # The effective starting item seen in the player inventory will be the
+    # latest shuffled item in the trade sequence, calculated in
+    # Plandomizer.WorldDistribution.configure_effective_starting_items.
+    owned_flags = 0
+    for item_name in world.settings.starting_items.keys():
+        if item_name in world.settings.shuffle_child_trade:
+            owned_flags += 0x1 << (child_trade_items.index(item_name))
+        if item_name in world.settings.adult_trade_start:
+            owned_flags += 0x1 << (trade_items.index(item_name) + 11)
+    save_context.write_permanent_flags(Scenes.DEATH_MOUNTAIN_TRAIL, FlagType.UNK00, owned_flags)
+
+    # Mark unreachable trade-ins as traded. Only applicable with trade quest shuffle off,
+    # and only practically affects the Blue Potion purchase from Granny's Potion Shop.
+    if not world.settings.adult_trade_shuffle:
+        def calculate_traded_flags(world):
+            traded_flags = 0
+            reverting_item_map = {
+                "Cojiro": ["Odd Mushroom"],
+                "Prescription": ["Eyeball Frog", "Eyedrops"],
+            }
+            if world.adult_trade_starting_inventory:
+                trade_item = world.adult_trade_starting_inventory
+            else:
+                trade_item = world.selected_adult_trade_item
+            for item_name in trade_items:
+                # Break early for reverting items
+                if item_name in reverting_item_map.keys() and not world.disable_trade_revert:
+                    for revert_name in reverting_item_map[item_name]:
+                        if revert_name == trade_item:
+                            return traded_flags
+                if item_name != trade_item:
+                    traded_flags += 0x1 << (trade_items.index(item_name) + 11)
+                # No need to set traded flags for items coming after the starting trade item
+                # as they will remain accessible.
+                else:
+                    return traded_flags
+            return traded_flags
+        save_context.write_permanent_flags(Scenes.DEATH_MOUNTAIN_CRATER, FlagType.UNK00, calculate_traded_flags(world))
+
     if world.settings.complete_mask_quest:
         rom.write_byte(rom.sym('COMPLETE_MASK_QUEST'), 1)
 
-    if world.settings.shuffle_child_trade == 'skip_child_zelda':
+    if world.skip_child_zelda:
         save_context.write_bits(0x0ED7, 0x04) # "Obtained Malon's Item"
         save_context.write_bits(0x0ED7, 0x08) # "Woke Talon in castle"
         save_context.write_bits(0x0ED7, 0x10) # "Talon has fled castle"
@@ -1854,6 +1878,9 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     # build misc. location hints
     buildMiscLocationHints(world, messages)
 
+    if 'mask_shop' in world.settings.misc_hints:
+        rom.write_int32(rom.sym('CFG_MASK_SHOP_HINT'), 1)
+
     # Patch freestanding items
     if world.settings.shuffle_freestanding_items:
     # Get freestanding item locations
@@ -2002,6 +2029,12 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     update_message_by_id(messages, shop_items[0x001C].description_message, "\x08\x05\x41Bombchu  (10 pieces)  99 Rupees\x01\x05\x40This looks like a toy mouse, but\x01it's actually a self-propelled time\x01bomb!\x09\x0A")
     update_message_by_id(messages, shop_items[0x001C].purchase_message, "\x08Bombchu  10 pieces   99 Rupees\x09\x01\x01\x1B\x05\x42Buy\x01Don't buy\x05\x40")
 
+    # Fix blue potion shop text
+    update_message_by_id(messages, 0x80B5, "\x08\x05\x43Blue Potion 100 Rupees\x01\x05\x40If you drink this, you will\x01recover your life energy and magic.\x09\x0A", 0x03)
+    update_message_by_id(messages, 0x80BE, "\x08Blue Potion 100 Rupees\x01\x01\x1B\x05\x42Buy\x01Don't buy\x05\x40", 0x03)
+    shop_items[0x000A].description_message = 0x80B5
+    shop_items[0x000A].purchase_message = 0x80BE
+
     shuffle_messages.shop_item_messages = []
 
     # kokiri shop
@@ -2068,6 +2101,14 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     rom.write_byte(0x2DD8029, len(shop_objs))
     rom.write_int32(0x2DD802C, 0x03006A40)
     rom.write_int16s(0x2DDEA40, list(shop_objs))
+
+    # mask shop
+    shop_objs = place_shop_items(rom, world, shop_items, messages,
+        list(filter(lambda loc: loc.type == 'MaskShop', world.get_region('Market Mask Shop').locations)))
+    shop_objs |= {0x013E, 0x00B2, 0x0111, 0x00C5, 0x0165} # Shop objects
+    rom.write_byte(0x340A029, len(shop_objs))
+    rom.write_int32(0x340A02C, 0x0300D400)
+    rom.write_int16s(0x3417400, list(shop_objs))
 
     # Scrub text stuff.
     def update_scrub_text(message, text_replacement, default_price, price, item_name=None):
@@ -2162,7 +2203,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
         # Change first magic bean to cost 60 (is used as the price for the one time item when beans are shuffled)
         rom.write_byte(0xE209FD, 0x3C)
 
-    if world.settings.shuffle_medigoron_carpet_salesman:
+    if world.settings.shuffle_expensive_merchants:
         rom.write_byte(rom.sym('SHUFFLE_CARPET_SALESMAN'), 0x01)
         # Update carpet salesman messages to better fit the fact that he sells a randomized item
         update_message_by_id(messages, 0x6077, "\x06\x41Well Come!\x04I am selling stuff, strange and \x01rare, from all over the world to \x01everybody.\x01Today's special is...\x04A mysterious item! \x01Intriguing! \x01I won't tell you what it is until \x01I see the money....\x04How about \x05\x41200 Rupees\x05\x40?\x01\x01\x1B\x05\x42Buy\x01Don't buy\x05\x40\x02")
@@ -2173,6 +2214,9 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
         update_message_by_id(messages, 0x304C, "I have something cool right here.\x01How about it...\x07\x30\x4F\x02")
         update_message_by_id(messages, 0x304D, "How do you like it?\x02")
         update_message_by_id(messages, 0x304F, "How about buying this cool item for \x01200 Rupees?\x01\x1B\x05\x42Buy\x01Don't buy\x05\x40\x02")
+
+        rom.write_byte(rom.sym('SHUFFLE_GRANNYS_POTION_SHOP'), 0x01)
+        update_message_by_id(messages, 0x500C, "Mysterious item! How about\x01\x05\x41100 Rupees\x05\x40?\x01\x1B\x05\x42Buy\x01Don't buy\x05\x40\x02")
 
     if world.settings.shuffle_pots != 'off': # Update the first BK door in ganon's castle to use a separate flag so it can be unlocked to get to the pots
         patch_ganons_tower_bk_door(rom, 0x15) # Using flag 0x15 for the door. GBK doors normally use 0x14.
@@ -2409,10 +2453,13 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
         torch_count = world.settings.fae_torch_count
         rom.write_byte(0xCA61E3, torch_count)
 
+    # Fix crash when hitting white bubbles enemies with Dins Fire
+    rom.write_byte(0xCB4397, 0x00)
+
     # Fix shadow temple redead shared flags for silver rupee shuffle
     if world.settings.shuffle_silver_rupees != 'vanilla' and not world.dungeon_mq['Shadow Temple']:
-        rom.write_byte(0x280905E,0)
-        rom.write_byte(0x280906E,0)
+        rom.write_byte(0x280905E, 0)
+        rom.write_byte(0x280906E, 0)
 
     # actually write the save table to rom
     world.distribution.give_items(world, save_context)
@@ -2517,6 +2564,8 @@ def get_override_entry(location):
     elif location.type == 'GS Token':
         type = 3
     elif location.type == 'Shop' and location.item.type != 'Shop':
+        type = 0
+    elif location.type == 'MaskShop' and location.vanilla_item in location.world.settings.shuffle_child_trade:
         type = 0
     elif location.type == 'GrottoScrub' and location.item.type != 'Shop':
         type = 4
@@ -2725,6 +2774,19 @@ def set_spirit_shortcut_actors(rom):
     get_actor_list(rom, set_spirit_shortcut)
 
 
+def move_fado_in_lost_woods(rom):
+    def move_fado(rom, actor_id, actor, scene):
+        if actor_id == 0x163 and scene == 0x5B: # move Fado to short stump
+            rom.write_int16(actor + 2, 0xFBA6)
+            rom.write_int16(actor + 4, 0x0000)
+            rom.write_int16(actor + 6, 0xFFA1)
+            rom.write_int16(actor + 8, 0x0000)
+            rom.write_int16(actor + 10, 0x25A4)
+            rom.write_int16(actor + 12, 0x0000)
+
+    get_actor_list(rom, move_fado)
+
+
 # Gets a dict of doors to unlock based on settings
 # Returns: dict with entries address: [byte_offset, bit]
 # Where:    address = rom address of the door
@@ -2783,9 +2845,22 @@ def place_shop_items(rom, world, shop_items, messages, locations, init_shop_id=F
 
     shop_objs = { 0x0148 } # "Sold Out" object
     for location in locations:
-        if location.item.type == 'Shop':
+        if (
+            location.item.type == 'Shop'
+            or (
+                location.type == 'MaskShop'
+                and (
+                    location.vanilla_item not in world.settings.shuffle_child_trade
+                    or (
+                        not world.settings.shuffle_child_trade
+                        and location.vanilla_item == location.item
+                    )
+                )
+            )
+        ):
             shop_objs.add(location.item.special['object'])
-            rom.write_int16(location.address, location.item.index)
+            if location.item.type == 'Shop': # only necessary for shuffling shop items, masks are treated like regular items when shuffled
+                rom.write_int16(location.address, location.item.index)
         else:
             if location.item.looks_like_item is not None:
                 item_display = location.item.looks_like_item
@@ -2806,13 +2881,31 @@ def place_shop_items(rom, world, shop_items, messages, locations, init_shop_id=F
 
             shop_item.object = rom_item['object_id']
             shop_item.model = rom_item['graphic_id'] - 1
-            shop_item.price = location.price
+            if location.type == 'MaskShop':
+                shop_item.price = 0
+            else:
+                shop_item.price = location.price
             shop_item.pieces = 1
             shop_item.get_item_id = location.default
             shop_item.func1 = 0x808648CC
-            shop_item.func2 = 0x808636B8
+            shop_item.func2 = 0x808636B8  # default EnGirlA_CanBuy_WeirdEgg
             shop_item.func3 = 0x00000000
             shop_item.func4 = 0x80863FB4
+
+            # Mask shop lets you see the Mask of Truth before you can get it.
+            # Without complete mask quest, trading all masks will automatically
+            # give it and set this as sold out.
+            # With complete mask quest, it's free to take normally
+            if (
+                not world.settings.complete_mask_quest
+                and (
+                    (location.vanilla_item == 'Mask of Truth' and 'Mask of Truth' in world.settings.shuffle_child_trade)
+                    or ('mask_shop' in world.settings.misc_hints and location.vanilla_item == 'Goron Mask' and 'Goron Mask' in world.settings.shuffle_child_trade)
+                    or ('mask_shop' in world.settings.misc_hints and location.vanilla_item == 'Zora Mask' and 'Zora Mask' in world.settings.shuffle_child_trade)
+                    or ('mask_shop' in world.settings.misc_hints and location.vanilla_item == 'Gerudo Mask' and 'Gerudo Mask' in world.settings.shuffle_child_trade)
+                )
+            ):
+                shop_item.func2 = 0x80863714  # override to custom CanBuy function to prevent purchase before trade quest complete
 
             message_id = (shop_id - 0x32) * 2
             shop_item.description_message = 0x8100 + message_id
@@ -2829,20 +2922,20 @@ def place_shop_items(rom, world, shop_items, messages, locations, init_shop_id=F
                     split_item_name[0] = create_fake_name(split_item_name[0])
 
                 if world.settings.world_count > 1:
-                    description_text = '\x08\x05\x41%s  %d Rupees\x01%s\x01\x05\x42Player %d\x05\x40\x01Special deal! ONE LEFT!\x09\x0A\x02' % (split_item_name[0], location.price, split_item_name[1], location.item.world.id + 1)
+                    description_text = '\x08\x05\x41%s  %d Rupees\x01%s\x01\x05\x42Player %d\x05\x40\x01Special deal! ONE LEFT!\x09\x0A\x02' % (split_item_name[0], shop_item.price, split_item_name[1], location.item.world.id + 1)
                 else:
-                    description_text = '\x08\x05\x41%s  %d Rupees\x01%s\x01\x05\x40Special deal! ONE LEFT!\x01Get it while it lasts!\x09\x0A\x02' % (split_item_name[0], location.price, split_item_name[1])
-                purchase_text = '\x08%s  %d Rupees\x09\x01%s\x01\x1B\x05\x42Buy\x01Don\'t buy\x05\x40\x02' % (split_item_name[0], location.price, split_item_name[1])
+                    description_text = '\x08\x05\x41%s  %d Rupees\x01%s\x01\x05\x40Special deal! ONE LEFT!\x01Get it while it lasts!\x09\x0A\x02' % (split_item_name[0], shop_item.price, split_item_name[1])
+                purchase_text = '\x08%s  %d Rupees\x09\x01%s\x01\x1B\x05\x42Buy\x01Don\'t buy\x05\x40\x02' % (split_item_name[0], shop_item.price, split_item_name[1])
             else:
                 shop_item_name = getSimpleHintNoPrefix(item_display)
                 if location.item.name == 'Ice Trap':
                     shop_item_name = create_fake_name(shop_item_name)
 
                 if world.settings.world_count > 1:
-                    description_text = '\x08\x05\x41%s  %d Rupees\x01\x05\x42Player %d\x05\x40\x01Special deal! ONE LEFT!\x09\x0A\x02' % (shop_item_name, location.price, location.item.world.id + 1)
+                    description_text = '\x08\x05\x41%s  %d Rupees\x01\x05\x42Player %d\x05\x40\x01Special deal! ONE LEFT!\x09\x0A\x02' % (shop_item_name, shop_item.price, location.item.world.id + 1)
                 else:
-                    description_text = '\x08\x05\x41%s  %d Rupees\x01\x05\x40Special deal! ONE LEFT!\x01Get it while it lasts!\x09\x0A\x02' % (shop_item_name, location.price)
-                purchase_text = '\x08%s  %d Rupees\x09\x01\x01\x1B\x05\x42Buy\x01Don\'t buy\x05\x40\x02' % (shop_item_name, location.price)
+                    description_text = '\x08\x05\x41%s  %d Rupees\x01\x05\x40Special deal! ONE LEFT!\x01Get it while it lasts!\x09\x0A\x02' % (shop_item_name, shop_item.price)
+                purchase_text = '\x08%s  %d Rupees\x09\x01\x01\x1B\x05\x42Buy\x01Don\'t buy\x05\x40\x02' % (shop_item_name, shop_item.price)
 
             update_message_by_id(messages, shop_item.description_message, description_text, 0x03)
             update_message_by_id(messages, shop_item.purchase_message, purchase_text, 0x03)

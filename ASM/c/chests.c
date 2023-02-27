@@ -2,6 +2,7 @@
 #include "n64.h"
 #include "gfx.h"
 #include "sys_matrix.h"
+#include "textures.h"
 
 #define BROWN_FRONT_TEXTURE 0x06001798
 #define BROWN_BASE_TEXTURE 0x06002798
@@ -17,13 +18,6 @@
 uint32_t CHEST_TEXTURE_MATCH_CONTENTS = 0;
 uint32_t CHEST_SIZE_MATCH_CONTENTS = 0;
 uint32_t CHEST_SIZE_TEXTURE = 0;
-
-extern void* GILDED_CHEST_FRONT_TEXTURE;
-extern void* GILDED_CHEST_BASE_TEXTURE;
-extern void* SILVER_CHEST_FRONT_TEXTURE;
-extern void* SILVER_CHEST_BASE_TEXTURE;
-extern void* SKULL_CHEST_FRONT_TEXTURE;
-extern void* SKULL_CHEST_BASE_TEXTURE;
 
 extern Mtx_t* write_matrix_stack_top(z64_gfx_t* gfx);
 asm(".equ write_matrix_stack_top, 0x800AB900");
@@ -84,17 +78,25 @@ void set_chest_texture(z64_gfx_t *gfx, uint8_t chest_type, Gfx **opa_ptr) {
     void* baseTexture = (void*)BROWN_BASE_TEXTURE;
 
     if (CHEST_SIZE_TEXTURE || CHEST_TEXTURE_MATCH_CONTENTS) {
-        if (chest_type == GILDED_CHEST) {
-            frontTexture = &GILDED_CHEST_FRONT_TEXTURE;
-            baseTexture = &GILDED_CHEST_BASE_TEXTURE;
-        }
-        else if (chest_type == SILVER_CHEST) {
-            frontTexture = &SILVER_CHEST_FRONT_TEXTURE;
-            baseTexture = &SILVER_CHEST_BASE_TEXTURE;
-        }
-        else if (chest_type == SKULL_CHEST_SMALL || chest_type == SKULL_CHEST_BIG) {
-            frontTexture = &SKULL_CHEST_FRONT_TEXTURE;
-            baseTexture = &SKULL_CHEST_BASE_TEXTURE;
+        switch (chest_type) {
+            case GILDED_CHEST:
+                frontTexture = get_texture(TEXTURE_ID_CHEST_FRONT_GILDED);
+                baseTexture = get_texture(TEXTURE_ID_CHEST_BASE_GILDED);
+                break;
+
+            case SILVER_CHEST:
+                frontTexture = get_texture(TEXTURE_ID_CHEST_FRONT_SILVER);
+                baseTexture = get_texture(TEXTURE_ID_CHEST_BASE_SILVER);
+                break;
+
+            case SKULL_CHEST_SMALL:
+            case SKULL_CHEST_BIG:
+                frontTexture = get_texture(TEXTURE_ID_CHEST_FRONT_SKULL);
+                baseTexture = get_texture(TEXTURE_ID_CHEST_BASE_SKULL);
+                break;
+
+            default:
+                break;
         }
     }
 

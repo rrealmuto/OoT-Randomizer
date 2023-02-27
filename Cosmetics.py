@@ -767,6 +767,18 @@ def patch_sfx(rom, settings, log, symbols):
           ('sfx_nightfall',      sfx.SoundHooks.NIGHTFALL),
           ('sfx_horse_neigh',    sfx.SoundHooks.HORSE_NEIGH),
           ('sfx_hover_boots',    sfx.SoundHooks.BOOTS_HOVER),
+          ('sfx_iron_boots',     sfx.SoundHooks.BOOTS_IRON),
+          ('sfx_silver_rupee',   sfx.SoundHooks.SILVER_RUPEE),
+          ('sfx_boomerang_throw',sfx.SoundHooks.BOOMERANG_THROW),
+          ('sfx_hookshot_chain', sfx.SoundHooks.HOOKSHOT_CHAIN),
+          ('sfx_arrow_shot',     sfx.SoundHooks.ARROW_SHOT),
+          ('sfx_slingshot_shot', sfx.SoundHooks.SLINGSHOT_SHOT),
+          ('sfx_magic_arrow_shot', sfx.SoundHooks.MAGIC_ARROW_SHOT),
+          ('sfx_bombchu_move',   sfx.SoundHooks.BOMBCHU_MOVE),
+          ('sfx_get_small_item', sfx.SoundHooks.GET_SMALL_ITEM),
+          ('sfx_explosion',      sfx.SoundHooks.EXPLOSION),
+          ('sfx_daybreak',       sfx.SoundHooks.DAYBREAK),
+          ('sfx_cucco',          sfx.SoundHooks.CUCCO),
     ]
     sound_dict = sfx.get_patch_dict()
     sounds_keyword_label = {sound.value.keyword: sound.value.label for sound in sfx.Sounds}
@@ -795,12 +807,18 @@ def patch_sfx(rom, settings, log, symbols):
             elif selection == 'completely-random':
                 selection = random.choice(sfx.standard).value.keyword
             sound_id  = sound_dict[selection]
+            if hook.value.sfx_flag:
+                sound_id -= 0x800
             for loc in hook.value.locations:
                 rom.write_int16(loc, sound_id)
         if selection == 'default':
             log.sfx[hook.value.name] = 'Default'
         else:
             log.sfx[hook.value.name] = sounds_keyword_label[selection]
+
+        # Use the get small item sound for pots/crate/freestandings shuffle
+        if setting == 'sfx_get_small_item':
+            rom.write_int16(rom.sym('GET_ITEM_SEQ_ID'), sound_id)
 
 
 def patch_instrument(rom, settings, log, symbols):

@@ -157,20 +157,24 @@ logic_tricks = {
     'Fewer Tunic Requirements': {
         'name'    : 'logic_fewer_tunic_requirements',
         'tags'    : ("General", "Fire Temple", "Fire Temple MQ", "Water Temple", "Water Temple MQ", "Gerudo Training Ground", "Gerudo Training Ground MQ",
-                    "Zora's Fountain", "Death Mountain Crater", "Master Quest", "Overworld", "Vanilla Dungeons", "Child", "Adult",),
+                    "Ganon's Castle", "Ganon's Castle MQ", "Zora's Fountain", "Death Mountain Crater", "Master Quest", "Overworld", "Vanilla Dungeons",
+                    "Child", "Adult",),
         'tooltip' : '''\
                     Allows the following possible without Tunics:
-                    - Enter Water Temple. The area below the center
-                    pillar still requires Zora Tunic. Applies to
-                    MQ also.
-                    - Enter Fire Temple. Only the first floor is
-                    accessible, and not Volvagia. Applies to
-                    MQ also.
-                    - Zora's Fountain Bottom Freestanding PoH.
-                    Might not have enough health to resurface.
-                    - Gerudo Training Ground Underwater
-                    Silver Rupee Chest. May need to make multiple
-                    trips. Applies to MQ also.
+                    - Enter Fire Temple as adult.
+                    - Zora's Fountain bottom Freestandings. You
+                    might not have enough time to resurface, and
+                    you may need to make multiple trips.
+                    - Traverse the first floor of the Fire Temple,
+                    except the elevator room and Volvagia.
+                    - Go underwater in the Water Temple. (The area
+                    below the central pillar always requires Zora
+                    Tunic.)
+                    - Gerudo Training Ground Underwater Silver
+                    Rupees. You may need to make multiple trips.
+                    - Collecting some Silver Rupees in the Fire
+                    Trial. You may need to make multiple trips.
+                    - All instances also apply in Master Quest.
                     '''},
     'Beehives with Bombchus' : {
         'name'    : 'logic_beehives_bombchus',
@@ -288,7 +292,7 @@ logic_tricks = {
                     '''},
     'Shadow Temple Entry with Fire Arrows': {
         'name'    : 'logic_shadow_fire_arrow_entry',
-        'tags'    : ("Shadow Temple", "Overworld", "Adult",),
+        'tags'    : ("Graveyard", "Overworld", "Adult",),
         'tooltip' : '''\
                     It is possible to light all of the torches to
                     open the Shadow Temple entrance with just Fire
@@ -464,7 +468,7 @@ logic_tricks = {
                     Adult can reach this PoH with a precise jump,
                     no Hover Boots required.
                     '''},
-    'Zora\'s River Upper Freestanding PoH as adult with Nothing': {
+    'Zora\'s River Upper Freestanding PoH as Adult with Nothing': {
         'name'    : 'logic_zora_river_upper',
         'tags'    : ("Zora's River", "Overworld", "Adult",),
         'tooltip' : '''\
@@ -730,6 +734,14 @@ logic_tricks = {
                     without needing a Slingshot. You will
                     take fall damage.
                     '''},
+    'Dodongo\'s Cavern MQ Light the Eyes with Strength as Adult': {
+        'name'    : 'logic_dc_mq_eyes_adult',
+        'tags'    : ("Dodongo's Cavern MQ", "Master Quest", "Adult",),
+        'tooltip' : '''\
+                    If you move very quickly, it is possible to use
+                    the bomb flower at the top of the room to light
+                    the eyes.
+                    '''},
     'Dodongo\'s Cavern MQ Light the Eyes with Strength as Child': {
         'name'    : 'logic_dc_mq_eyes_child',
         'tags'    : ("Dodongo's Cavern MQ", "Master Quest", "Child",),
@@ -741,14 +753,6 @@ logic_tricks = {
                     player is also expected to complete the DC back
                     area without explosives, including getting past
                     the Armos wall to the switch for the boss door.
-                    '''},
-    'Dodongo\'s Cavern MQ Light the Eyes with Strength as Adult': {
-        'name'    : 'logic_dc_mq_eyes_adult',
-        'tags'    : ("Dodongo's Cavern MQ", "Master Quest", "Adult",),
-        'tooltip' : '''\
-                    If you move very quickly, it is possible to use
-                    the bomb flower at the top of the room to light
-                    the eyes.
                     '''},
     'Jabu Underwater Alcove as Adult with Jump Dive': {
         'name'    : 'logic_jabu_alcove_jump_dive',
@@ -1367,7 +1371,7 @@ logic_tricks = {
                     '''},
     'Shadow Temple MQ Invisible Blades Silver Rupees without Lens of Truth': {
         'name'    : 'logic_lens_shadow_mq_invisible_blades',
-        'tags'    : ("Lens of Truth", "Shadow Temple MQ", "Master Quest", "Adult",),
+        'tags'    : ("Lens of Truth", "Shadow Temple MQ", "Master Quest", "Silver Rupees", "Adult",),
         'tooltip' : '''\
                     Removes the requirement for the Lens of Truth or
                     Nayru's Love in Shadow Temple MQ for the Invisible
@@ -1399,7 +1403,7 @@ logic_tricks = {
                     '''},
     'Shadow Temple MQ Invisible Blades without Song of Time': {
         'name'    : 'logic_shadow_mq_invisible_blades',
-        'tags'    : ("Shadow Temple MQ", "Master Quest", "Adult",),
+        'tags'    : ("Shadow Temple MQ", "Master Quest", "Silver Rupees", "Freestandings", "Adult",),
         'tooltip' : '''\
                     The Like Like can be used to boost you into the
                     silver rupee or recovery hearts that normally
@@ -1441,6 +1445,17 @@ logic_tricks = {
         'tooltip' : '''\
                     A carefully-timed Bombchu can hit the switch.
                     '''},
+    'Spirit Temple Collect Metal Fence GS Through the Fence': {
+        'name'    : 'logic_spirit_fence_gs',
+        'tags'    : ("Spirit Temple", "Silver Rupees", "Vanilla Dungeons", "Child",),
+        'tooltip' : '''\
+                    After killing the Skulltula through the fence, the token
+                    can be collected from the wrong side of the fence by
+                    moving against the fence in a certain way. Also, the
+                    Skulltula can be defeated using the Kokiri Sword, by
+                    jump slashing into it after letting go from the fence.
+                    This trick is only relevant if Silver Rupees are shuffled.
+                    '''},
     'Spirit Temple Main Room GS with Boomerang': {
         'name'    : 'logic_spirit_lobby_gs',
         'tags'    : ("Spirit Temple", "Gold Skulltulas", "Vanilla Dungeons", "Child",),
@@ -1461,7 +1476,7 @@ logic_tricks = {
                     '''},
     'Spirit Temple Main Room Jump from Hands to Upper Ledges': {
         'name'    : 'logic_spirit_lobby_jump',
-        'tags'    : ("Spirit Temple", "Spirit Temple MQ", "Gold Skulltulas", "Master Quest", "Vanilla Dungeons", "Adult",),
+        'tags'    : ("Spirit Temple", "Spirit Temple MQ", "Gold Skulltulas", "Pots", "Master Quest", "Vanilla Dungeons", "Adult",),
         'tooltip' : '''\
                     A precise jump to obtain the following as adult
                     without needing one of Hover Boots, or Hookshot
@@ -1491,13 +1506,22 @@ logic_tricks = {
                     statue all the way up the stairs.
                     '''},
     'Spirit Temple Sun Block Room Chest with Bow': {
-        'name'    : 'logic_spirit_sun_chest',
+        'name'    : 'logic_spirit_sun_chest_bow',
         'tags'    : ("Spirit Temple", "Vanilla Dungeons", "Adult",),
         'tooltip' : '''\
                     Using the blocks in the room as platforms you can
                     get lines of sight to all three torches. The timer
                     on the torches is quite short so you must move
                     quickly in order to light all three.
+                    '''},
+    'Spirit Temple Sun Block Room Chest with Sticks without Silver Rupees': {
+        'name'    : 'logic_spirit_sun_chest_no_rupees',
+        'tags'    : ("Spirit Temple", "Silver Rupees", "Vanilla Dungeons", "Child",),
+        'tooltip' : '''\
+                    With lightning fast movement, the chest can
+                    be spawned using a lit stick brought in from
+                    the main room. This trick is only relevant
+                    if Silver Rupees are shuffled.
                     '''},
     'Spirit Temple Shifting Wall with No Additional Items': {
         'name'    : 'logic_spirit_wall',
@@ -1508,7 +1532,7 @@ logic_tricks = {
                     '''},
     'Spirit Temple MQ without Lens of Truth': {
         'name'    : 'logic_lens_spirit_mq',
-        'tags'    : ("Lens of Truth", "Spirit Temple MQ", "Master Quest", "Child", "Adult",),
+        'tags'    : ("Lens of Truth", "Spirit Temple MQ", "Master Quest", "Adult",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Spirit Temple MQ.
@@ -1581,28 +1605,50 @@ logic_tricks = {
                     Removes the requirements for the Lens of Truth
                     in Gerudo Training Ground.
                     '''},
-    'Gerudo Training Ground Left Side Silver Rupees without Hookshot': {
-        'name'    : 'logic_gtg_without_hookshot',
-        'tags'    : ("Gerudo Training Ground", "Vanilla Dungeons", "Child", "Adult",),
+    'Gerudo Training Ground Highest Underwater Rupee with Gold Scale': {
+        'name'    : 'logic_gtg_underwater_highest',
+        'tags'    : ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees", "Child", "Adult",),
         'tooltip' : '''\
-                    After collecting the rest of the silver rupees in the room,
-                    you can reach the final silver rupee on the ceiling by being
-                    pulled up into it after getting grabbed by the Wallmaster.
-                    Then, you must also reach the exit of the room without the
-                    use of the Hookshot. If you move quickly you can sneak past
-                    the edge of a flame wall before it can rise up to block you.
-                    To do so without taking damage is more precise.
+                    The camera is a menance while attempting to do this,
+                    though, as least as Adult, you will be automatically
+                    pulled by the current into the rupee. This trick is
+                    only relevant if Silver Rupees are shuffled.
+                    '''},
+    'Gerudo Training Ground Left Side Ceiling Silver Rupee without Hookshot': {
+        'name'    : 'logic_gtg_without_hookshot',
+        'tags'    : ("Gerudo Training Ground", "Gerudo Training Ground MQ", "Silver Rupees", "Master Quest", "Vanilla Dungeons", "Child", "Adult",),
+        'tooltip' : '''\
+                    The Silver Rupee on the ceiling can be reached by being pulled
+                    up into it by the Wallmaster. If Silver Rupees are not shuffled,
+                    you can save this rupee for last to unbar the door to the next
+                    room. In MQ, this trick is a bit more difficult since the
+                    Wallmaster will not track you to directly beneath the rupee, so
+                    you must inch forward after it begins its attempt to grab you.
+                    This trick is relevant if Silver Rupees are shuffled, or if GTG
+                    is in its MQ form, or if "Gerudo Training Ground Boulder Room
+                    Flame Wall Skip" is also enabled. This trick supersedes "Gerudo
+                    Training Ground MQ Left Side Ceiling Silver Rupee with Hookshot".
+                    '''},
+    'Gerudo Training Ground Boulder Room Flame Wall Skip': {
+        'name'    : 'logic_gtg_flame_wall',
+        'tags'    : ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees", "Child", "Adult",),
+        'tooltip' : '''\
+                    If you move quickly you can sneak past the edge of a flame wall
+                    before it can rise up to block you. To do so without taking damage
+                    is more precise. This trick is only relevant if Silver Rupees are
+                    shuffled, or if "Gerudo Training Ground Left Side Ceiling Silver
+                    Rupee without Hookshot" is also enabled.
                     '''},
     'Reach Gerudo Training Ground Fake Wall Ledge with Hover Boots': {
         'name'    : 'logic_gtg_fake_wall',
-        'tags'    : ("Gerudo Training Ground", "Gerudo Training Ground MQ", "Master Quest", "Vanilla Dungeons", "Adult",),
+        'tags'    : ("Gerudo Training Ground", "Gerudo Training Ground MQ", "Master Quest", "Vanilla Dungeons", "Silver Rupees", "Adult",),
         'tooltip' : '''\
-                    A precise Hover Boots use from the top of the chest can allow
-                    you to grab the ledge without needing the usual requirements.
-                    In Master Quest, this always skips a Song of Time requirement.
-                    In Vanilla, this skips a Hookshot requirement, but is only
-                    relevant if "Gerudo Training Ground Left Side Silver Rupees
-                    without Hookshot" is enabled.
+                    A precise Hover Boots use from the top of the chest can allow you
+                    to grab the ledge without needing the usual requirements. In Master
+                    Quest, this always skips a Song of Time requirement. In Vanilla,
+                    this can skip a Hookshot requirement, but it is only relevant if
+                    Silver Rupees are shuffled, or if "Gerudo Training Ground Left Side
+                    Ceiling Silver Rupee without Hookshot" is enabled.
                     '''},
     'Gerudo Training Ground MQ without Lens of Truth': {
         'name'    : 'logic_lens_gtg_mq',
@@ -1611,29 +1657,35 @@ logic_tricks = {
                     Removes the requirements for the Lens of Truth
                     in Gerudo Training Ground MQ.
                     '''},
-    'Gerudo Training Ground MQ Left Side Silver Rupees with Hookshot': {
+    'Gerudo Training Ground MQ Left Side Ceiling Silver Rupee with Hookshot': {
         'name'    : 'logic_gtg_mq_with_hookshot',
-        'tags'    : ("Gerudo Training Ground MQ", "Master Quest", "Adult",),
+        'tags'    : ("Gerudo Training Ground MQ", "Silver Rupees", "Master Quest", "Adult",),
         'tooltip' : '''\
-                    The highest silver rupee can be obtained by
+                    The highest Silver Rupee can be obtained by
                     hookshotting the target and then immediately jump
                     slashing toward the rupee.
                     '''},
-    'Gerudo Training Ground MQ Left Side Silver Rupees without Hookshot': {
-        'name'    : 'logic_gtg_mq_without_hookshot',
-        'tags'    : ("Gerudo Training Ground MQ", "Master Quest", "Child", "Adult",),
+    'Gerudo Training Ground MQ Eye Statue Room Switch with Jump Slash': {
+        'name'    : 'logic_gtg_mq_eye_statue_jumpslash',
+        'tags'    : ("Gerudo Training Ground MQ", "Silver Rupees", "Master Quest", "Adult",),
         'tooltip' : '''\
-                    After collecting the rest of the silver rupees in the room,
-                    you can reach the final silver rupee on the ceiling by being
-                    pulled up into it after getting grabbed by the Wallmaster.
-                    The Wallmaster will not track you to directly underneath the
-                    rupee. You should take the last step to be under the rupee
-                    after the Wallmaster has begun its attempt to grab you.
-                    Also included with this trick is that fact that the switch
-                    that unbars the door to the final chest of GTG can be hit
-                    without a projectile, using a precise jump slash.
-                    This trick supersedes "Gerudo Training Ground MQ Left Side
-                    Silver Rupees with Hookshot".
+                    The switch that unbars the door to the Ice Arrows chest
+                    can be hit with a precise jump slash. This trick is
+                    only relevant if Silver Rupees are shuffled, or if
+                    "Gerudo Training Ground Left Side Ceiling Silver Rupee
+                    without Hookshot" is also enabled.
+                    '''},
+    'Gerudo Training Ground MQ Central Maze Right to Dinolfos Room with Hookshot': {
+        'name'    : 'logic_gtg_mq_maze_right',
+        'tags'    : ("Gerudo Training Ground MQ", "Silver Rupees", "Master Quest", "Adult",),
+        'tooltip' : '''\
+                    You can stand next to the flame circle to the right of
+                    the entrance into the lava room from central maze right.
+                    From there, Hookshot can reach the torch to access the
+                    Dinolfos room without Bow. This trick is only relevant
+                    if Silver Rupees are shuffled or if one of the two tricks
+                    to collect the ceiling Silver Rupee without Longshot
+                    is enabled.
                     '''},
     'Ganon\'s Castle without Lens of Truth': {
         'name'    : 'logic_lens_castle',
@@ -1642,9 +1694,19 @@ logic_tricks = {
                     Removes the requirements for the Lens of Truth
                     in Ganon's Castle.
                     '''},
-    'Spirit Trial without Hookshot': {
+    'Fire Trial Torch Slug Silver Rupee as Child': {
+        'name'    : 'logic_fire_trial_slug_rupee',
+        'tags'    : ("Ganon's Castle", "Entrance Shuffle", "Vanilla Dungeons", "Silver Rupees", "Child"),
+        'tooltip' : '''\
+                    To jump to the platform with the Torch Slug as child requires
+                    that the sinking platform be almost as high as possible. This
+                    trick is only relevant if Silver Rupees and the Ganon's Castle
+                    entrance are both shuffled, and the Fewer Tunic Requirements
+                    trick is also enabled.
+                    '''},
+    'Spirit Trial Ceiling Silver Rupee without Hookshot': {
         'name'    : 'logic_spirit_trial_hookshot',
-        'tags'    : ("Ganon's Castle", "Vanilla Dungeons", "Child", "Adult",),
+        'tags'    : ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees", "Child", "Adult",),
         'tooltip' : '''\
                     The highest rupee can be obtained as either age by performing
                     a precise jump and a well-timed jumpslash off of an Armos.
@@ -4251,26 +4313,37 @@ setting_infos = [
 
 
     Checkbutton(
-        name           = 'bombchus_in_logic',
-        gui_text       = 'Bombchus Are Considered in Logic',
+        name           = 'free_bombchu_drops',
+        gui_text       = 'Add Bombchu Bag and Drops',
         gui_tooltip    = '''\
             Bombchus are properly considered in logic and
             the game is changed to account for this fact.
 
-            The first Bombchu pack will always be 20.
-            Subsequent packs will be 5 or 10 based on
-            how many you have.
+            The first Bombchu pack will always be a
+            Bombchu Bag giving the same amount of Bombchus
+            as would have been given by the item normally.
+            For example, finding the Bombchus (5) item
+            first will give the Bombchu Bag with 5
+            Bombchus inside.
 
-            Bombchus are no longer tied to the Bomb Bag.
-            Once Bombchus have been found, they can be
-            purchased for 60/99/180 rupees and Bombchu
-            drops can be collected around the world.
+            Bombchu refills will drop from grass, pots,
+            crates, and enemies after finding the bag.
 
-            Bombchu Bowling opens with Bombchus.
-            Additional Bombchu refills are available at
-            the Kokiri Shop and the Bazaar.
+            Bombchus can be purchased for 60/99/180
+            rupees once the bag has been found.
+
+            The Wasteland carpet merchant will not sell
+            unshuffled Bombchus without finding a Bombchu
+            Bag. If he is shuffled, he will sell his item
+            without a Bombchu Bag.
+
+            Bombchu Bowling opens with either Bomb Bag or
+            Bombchu Bag. The Bombchu and Bomb prizes (3rd
+            and 4th respectively) will change to a Purple
+            Rupee if the corresponding bag has not yet been
+            found.
         ''',
-        default        = False,
+        default        = True,
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -4319,9 +4392,6 @@ setting_infos = [
             'randomize_key': 'randomize_settings',
         },
     ),
-
-
-
     Combobox(
         name           = 'shuffle_song_items',
         gui_text       = 'Shuffle Songs',
@@ -4527,37 +4597,28 @@ setting_infos = [
     ),
     Combobox(
         name           = 'shuffle_child_trade',
-        gui_text       = 'Shuffle Child Trade Item',
-        default        = 'vanilla',
+        multiple_select= True,
+        gui_text       = 'Shuffled Child Trade Sequence Items',
+        default        = [],
         choices        = {
-            'vanilla':          'Vanilla Locations',
-            'shuffle':          'Shuffle Weird Egg',
-            'skip_child_zelda': 'Skip Child Zelda',
+            'Weird Egg':     'Weird Egg',
+            'Chicken':       'Chicken',
+            'Zeldas Letter': "Zelda's Letter",
+            'Keaton Mask':   'Keaton Mask',
+            'Skull Mask':    'Skull Mask',
+            'Spooky Mask':   'Spooky Mask',
+            'Bunny Hood':    'Bunny Hood',
+            'Goron Mask':    'Goron Mask',
+            'Zora Mask':     'Zora Mask',
+            'Gerudo Mask':   'Gerudo Mask',
+            'Mask of Truth': 'Mask of Truth',
         },
         gui_tooltip    = '''\
-            This changes the beginning of the child trade quest.
+            Select the items to shuffle in the child trade sequence.
 
-            'Vanilla Locations': Weird Egg is found from Malon outside
-            of Hyrule Castle and the child trade quest continues normally.
-
-            'Shuffle Weird Egg': The Weird Egg is shuffled into the item pool
-            and Malon gives a randomized item. This will require finding the
-            Weird Egg to talk to Zelda in Hyrule Castle, which in turn locks
-            rewards from Impa, Saria, Malon, and Talon, as well as the Happy
-            Mask sidequest.
-
-            'Skip Child Zelda': Start having already met Zelda and obtained
-            Zelda's Letter along with the item from Impa.
-            Supersedes "Skip Child Stealth" since the whole sequence is skipped.
+            To skip Child Zelda, do not shuffle Zelda's Letter and
+            add it as a starting item.
         ''',
-        gui_params     = {
-            'randomize_key': 'randomize_settings',
-            'distribution':  [
-                ('vanilla', 1),
-                ('shuffle', 1),
-                ('skip_child_zelda', 1),
-            ],
-        },
         shared         = True,
     ),
     Combobox(
@@ -4732,13 +4793,13 @@ setting_infos = [
         },
     ),
     Checkbutton(
-        name           = 'shuffle_medigoron_carpet_salesman',
-        gui_text       = 'Shuffle Medigoron & Carpet Salesman',
+        name           = 'shuffle_expensive_merchants',
+        gui_text       = 'Shuffle Expensive Merchants',
         gui_tooltip    = '''\
             Enabling this adds a Giant's Knife and a pack of Bombchus
-            to the item pool and changes both Medigoron and the
-            Haunted Wasteland Carpet Salesman to sell a random item
-            once at the price of 200 Rupees.
+            to the item pool and changes Medigoron, Granny's Potion Shop,
+            and the Haunted Wasteland Carpet Salesman to sell a random
+            item once at the same price as their vanilla items.
         ''',
         default        = False,
         shared         = True,
@@ -5237,11 +5298,11 @@ setting_infos = [
             'shields':  'Deku & Hylian Shields',
         },
         gui_tooltip    = '''\
-            Chests with Hylian Shield, Deku Shield,
-            or Bombchus (regardless of the Bombchus
-            In Logic setting) will appear in
-            Big and/or Gold chests, depending on the
-            Chest Appearance Matches Contents setting.
+            Chests with Hylian Shield, Deku Shield, or
+            Bombchus will appear in Big and/or Gold chests,
+            depending on the Chest Appearance Matches
+            Contents setting. Bombchus are always in big
+            chests if Add Bombchu Bag and Drops is on.
         ''',
         shared         = True,
         default        = [],
@@ -5393,6 +5454,7 @@ setting_infos = [
             '40_skulltulas':  'House of Skulltula: 40',
             '50_skulltulas':  'House of Skulltula: 50',
             'frogs2':         'Frogs Ocarina Game',
+            'mask_shop':  'Shuffled Mask Shop',
         },
         gui_tooltip    = '''\
             This setting adds some hints at locations
@@ -5432,6 +5494,11 @@ setting_infos = [
             where you play the songs for the frogs will
             tell you what the reward is for playing all
             six non-warp songs.
+
+            If shuffled, right side items in the mask
+            shop will be visible but not obtainable
+            before completing the child trade quest.
+            Mask of Truth's shelf slot is always visible.
         ''',
         shared         = True,
         default        = ['altar', 'ganondorf', 'warp_songs'],
@@ -5647,18 +5714,29 @@ setting_infos = [
         ''',
         shared         = True,
     ),
+    Checkbutton(
+        name           = 'adult_trade_shuffle',
+        gui_text       = 'Shuffle All Adult Trade Items',
+        gui_tooltip    = '''\
+            Shuffle all adult trade sequence items. If disabled,
+            a random item will be selected, and Anju will always
+            give an item even if Pocket Egg is not shuffled.
+        ''',
+        shared         = True,
+        default        = False,
+    ),
     Combobox(
         name           = 'adult_trade_start',
         multiple_select= True,
         gui_text       = 'Adult Trade Sequence Items',
-        default        = ['Pocket Egg', 'Pocket Cucco', 'Cojiro', 'Odd Mushroom', 'Poachers Saw',
+        default        = ['Pocket Egg', 'Pocket Cucco', 'Cojiro', 'Odd Mushroom', 'Odd Potion', 'Poachers Saw',
                           'Broken Sword', 'Prescription', 'Eyeball Frog', 'Eyedrops', 'Claim Check'],
         choices        = {
             'Pocket Egg':   'Pocket Egg',
             'Pocket Cucco': 'Pocket Cucco',
             'Cojiro':       'Cojiro',
             'Odd Mushroom': 'Odd Mushroom',
-            #'Odd Potion':   'Odd Potion',
+            'Odd Potion':   'Odd Potion',
             'Poachers Saw': "Poacher's Saw",
             'Broken Sword': 'Broken Sword',
             'Prescription': 'Prescription',
@@ -5667,8 +5745,7 @@ setting_infos = [
             'Claim Check':  'Claim Check',
         },
         gui_tooltip    = '''\
-            Select the items that can appear to start the adult trade sequence.
-            If none are selected, it will function as if all are selected.
+            Select the items to shuffle in the adult trade sequence.
         ''',
         shared         = True,
     ),
@@ -6504,7 +6581,10 @@ setting_infos = [
         ''',
         default        = False,
         disable    = {
-            True : {'sections' : [ "generalsfx_section", "menusfx_section", "npcsfx_section" ]}
+            True : {
+                'sections' : ["musicsfx_section", "generalsfx_section", "UIsfx_section", "itemsfx_section"],
+                'settings' : ["sfx_navi_overworld", "sfx_navi_enemy", "sfx_horse_neigh", "sfx_cucco"],
+            }
         }
     ),
     Checkbutton(
@@ -6596,66 +6676,6 @@ setting_infos = [
         default        = False,
     ),
     Combobox(
-        name           = 'sfx_low_hp',
-        gui_text       = 'Low HP',
-        shared         = False,
-        cosmetic       = True,
-        choices        = sfx.get_setting_choices(sfx.SoundHooks.HP_LOW),
-        default        = 'default',
-        gui_tooltip    = '''\
-            'Random Choice': Choose a random sound from this list.
-            'Default': Beep. Beep. Beep.
-        ''',
-        gui_params     = {
-            'randomize_key': 'randomize_all_sfx',
-            'distribution': [
-                ('random-ear-safe', 1),
-            ]
-        }
-    ),
-    Combobox(
-        name           = 'sfx_horse_neigh',
-        gui_text       = 'Horse',
-        shared         = False,
-        cosmetic       = True,
-        choices        = sfx.get_setting_choices(sfx.SoundHooks.HORSE_NEIGH),
-        default        = 'default',
-        gui_params     = {
-            'randomize_key': 'randomize_all_sfx',
-            'distribution': [
-                ('random-ear-safe', 1),
-            ]
-        }
-    ),
-    Combobox(
-        name           = 'sfx_nightfall',
-        gui_text       = 'Nightfall',
-        shared         = False,
-        cosmetic       = True,
-        choices        = sfx.get_setting_choices(sfx.SoundHooks.NIGHTFALL),
-        default        = 'default',
-        gui_params     = {
-            'randomize_key': 'randomize_all_sfx',
-            'distribution': [
-                ('random-ear-safe', 1),
-            ]
-        }
-    ),
-    Combobox(
-        name           = 'sfx_hover_boots',
-        gui_text       = 'Hover Boots',
-        shared         = False,
-        cosmetic       = True,
-        choices        = sfx.get_setting_choices(sfx.SoundHooks.BOOTS_HOVER),
-        default        = 'default',
-        gui_params     = {
-            'randomize_key': 'randomize_all_sfx',
-            'distribution': [
-                ('random-ear-safe', 1),
-            ]
-        }
-    ),
-    Combobox(
         name           = 'sfx_ocarina',
         gui_text       = 'Ocarina',
         shared         = False,
@@ -6671,9 +6691,10 @@ setting_infos = [
         },
         default        = 'ocarina',
         gui_tooltip    = '''\
-            Change the sound of the ocarina.
+            Change the instrument used when playing the ocarina.
         ''',
         gui_params     = {
+            'no_line_break' : True,
             'randomize_key': 'randomize_all_sfx',
             'distribution': [
                 ('random-choice', 1),
@@ -6681,12 +6702,15 @@ setting_infos = [
         }
     ),
     Combobox(
-        name           = 'sfx_menu_cursor',
-        gui_text       = 'Menu Cursor',
+        name           = 'sfx_bombchu_move',
+        gui_text       = 'Bombchu',
         shared         = False,
         cosmetic       = True,
-        choices        = sfx.get_setting_choices(sfx.SoundHooks.MENU_CURSOR),
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.BOMBCHU_MOVE),
         default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound bombchus make when moving.
+        ''',
         gui_params     = {
             'randomize_key': 'randomize_all_sfx',
             'distribution': [
@@ -6695,12 +6719,33 @@ setting_infos = [
         }
     ),
     Combobox(
-        name           = 'sfx_menu_select',
-        gui_text       = 'Menu Select',
+        name           = 'sfx_hover_boots',
+        gui_text       = "Hover Boots",
         shared         = False,
         cosmetic       = True,
-        choices        = sfx.get_setting_choices(sfx.SoundHooks.MENU_SELECT),
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.BOOTS_HOVER),
         default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound of the hover boots when in air.
+        ''',
+        gui_params     = {
+        'no_line_break' : True,
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_iron_boots',
+        gui_text       = "Iron Boots",
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.BOOTS_IRON),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound of Iron boots.
+        ''',
         gui_params     = {
             'randomize_key': 'randomize_all_sfx',
             'distribution': [
@@ -6709,12 +6754,33 @@ setting_infos = [
         }
     ),
     Combobox(
-        name           = 'sfx_navi_overworld',
-        gui_text       = 'Navi Overworld',
+        name           = 'sfx_boomerang_throw',
+        gui_text       = 'Boomerang Throw',
         shared         = False,
         cosmetic       = True,
-        choices        = sfx.get_setting_choices(sfx.SoundHooks.NAVI_OVERWORLD),
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.BOOMERANG_THROW),
         default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound of the Boomerang flying in the air.
+        ''',
+        gui_params     = {
+            "no_line_break"      : True,
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_hookshot_chain',
+        gui_text       = 'Hookshot Chain',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.HOOKSHOT_CHAIN),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound of the Hookshot extending.
+        ''',
         gui_params     = {
             'randomize_key': 'randomize_all_sfx',
             'distribution': [
@@ -6723,12 +6789,68 @@ setting_infos = [
         }
     ),
     Combobox(
-        name           = 'sfx_navi_enemy',
-        gui_text       = 'Navi Enemy',
+        name           = 'sfx_arrow_shot',
+        gui_text       = 'Arrow Shot',
         shared         = False,
         cosmetic       = True,
-        choices        = sfx.get_setting_choices(sfx.SoundHooks.NAVI_ENEMY),
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.ARROW_SHOT),
         default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound of a regular arrow shot.
+        ''',
+        gui_params     = {
+            "no_line_break"      : True,
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_slingshot_shot',
+        gui_text       = 'Slingshot Shot',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.SLINGSHOT_SHOT),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound of a Slingshot shot.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_magic_arrow_shot',
+        gui_text       = 'Magic Arrow Shot',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.MAGIC_ARROW_SHOT),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound of a Magic arrow shot.
+        ''',
+        gui_params     = {
+            "no_line_break"      : True,
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_explosion',
+        gui_text       = 'Bomb Explosion',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.EXPLOSION),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound of a bomb exploding.
+        ''',
         gui_params     = {
             'randomize_key': 'randomize_all_sfx',
             'distribution': [
@@ -6776,6 +6898,193 @@ setting_infos = [
             "hide_when_disabled": True
         },
         choices        = {},
+    ),
+    Combobox(
+        name           = 'sfx_navi_overworld',
+        gui_text       = 'Navi Overworld',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.NAVI_OVERWORLD),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound of Navi calling in the overworld.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_navi_enemy',
+        gui_text       = 'Navi Enemy',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.NAVI_ENEMY),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound of Navi targetting an enemy.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_horse_neigh',
+        gui_text       = 'Horse',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.HORSE_NEIGH),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound of Epona and other horses.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_cucco',
+        gui_text       = 'Cucco',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.CUCCO),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound of Cuccos.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_daybreak',
+        gui_text       = 'Daybreak',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.DAYBREAK),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound when morning comes.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_nightfall',
+        gui_text       = 'Nightfall',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.NIGHTFALL),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound when night falls.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+     Combobox(
+        name           = 'sfx_menu_cursor',
+        gui_text       = 'Menu Cursor',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.MENU_CURSOR),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound when the cursor move in the main menu.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_menu_select',
+        gui_text       = 'Menu Select',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.MENU_SELECT),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound when pressing A in the main menu.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_low_hp',
+        gui_text       = 'Low HP',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.HP_LOW),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound when being low on HP.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_silver_rupee',
+        gui_text       = 'Silver Rupee Jingle',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.SILVER_RUPEE),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the jingle when getting a silver rupee.
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
+    ),
+    Combobox(
+        name           = 'sfx_get_small_item',
+        gui_text       = 'Get Refill',
+        shared         = False,
+        cosmetic       = True,
+        choices        = sfx.get_setting_choices(sfx.SoundHooks.GET_SMALL_ITEM),
+        default        = 'default',
+        gui_tooltip    = '''\
+            Change the sound when you get a small refill (ammo or recovery heart).
+        ''',
+        gui_params     = {
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                ('random-ear-safe', 1),
+            ]
+        }
     ),
 ]
 

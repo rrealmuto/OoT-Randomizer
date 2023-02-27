@@ -31,14 +31,27 @@ void ObjKibako_Draw(z64_actor_t *actor, z64_game_t *game) {
     uint8_t *texture = SMALLCRATE_TEXTURE; // get original texture
 
     ObjKibako *this = (ObjKibako *)actor;
-    if (this->chest_type == GILDED_CHEST) {
-        texture = get_texture(TEXTURE_ID_SMALLCRATE_GOLD);
-    } else if (this->chest_type == SILVER_CHEST) {
-        texture = get_texture(TEXTURE_ID_SMALLCRATE_KEY);
-    } else if (this->chest_type == GOLD_CHEST) {
-        texture = get_texture(TEXTURE_ID_SMALLCRATE_BOSSKEY);
-    } else if (this->chest_type == SKULL_CHEST_SMALL || this->chest_type == SKULL_CHEST_BIG) {
-        texture = get_texture(TEXTURE_ID_SMALLCRATE_SKULL);
+
+    switch (this->chest_type) {
+        case GILDED_CHEST:
+            texture = get_texture(TEXTURE_ID_SMALLCRATE_GOLD);
+            break;
+
+        case SILVER_CHEST:
+            texture = get_texture(TEXTURE_ID_SMALLCRATE_KEY);
+            break;
+
+        case GOLD_CHEST:
+            texture = get_texture(TEXTURE_ID_SMALLCRATE_BOSSKEY);
+            break;
+
+        case SKULL_CHEST_SMALL:
+        case SKULL_CHEST_BIG:
+            texture = get_texture(TEXTURE_ID_SMALLCRATE_SKULL);
+            break;
+
+        default:
+            break;
     }
 
     // push custom dlists (that set the palette and textures) to segment 09

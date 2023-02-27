@@ -26,7 +26,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * New “Shuffle Blue Warps” setting
   * New “Mutually Exclusive One-Ways” setting which makes the hint area restriction apply to one-way entrances of different types
   * New “Shuffle Other Items” setting which can be disabled to generate vanilla seeds, only shuffle entrances, etc. (Currently not compatible with Master Quest)
-  * New “Mixed Pools Tournament”, “Triforce Blitz”, and “MW Season 3 (WotH)” hint distributions
+  * New “Mixed Pools Tournament” and “Triforce Blitz” hint distributions
   * New `goal-count` and `playthrough-location` hint types (based on [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev))
 * New settings presets:
   * “Debug” is similar to Default/Beginner but gives you most starting items for testing.
@@ -61,7 +61,6 @@ Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https:
 * Various GUI tweaks and improvements along with setting tooltip/option changes
 * 2 new advanced ER settings: "Mixed Entrance Pools" and "Decouple Entrances"
 * Picking up Gold Skulltula Tokens in non-Tokensanity displays a self-closing textbox which no longer freezes the player.
-* "Bombchus In Logic" is improved to include bombchu drops (from grass, pots, etc) that start dropping once you have found Bombchus.
 * New cosmetic setting to randomize the color of some additional equipment and items.
 
 ## Index
@@ -174,12 +173,17 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * **Settings**
   * New setting `Key Rings give Boss Keys` makes it so when picking up a key ring for a certain dungeon, you will also get the boss key for that dungeon, if applicable.
   * New ER setting `Shuffle Gerudo Valley River Exit` allows you to shuffle the one-way exit going down the river in Gerudo Valley.
+  * New setting `Add Bombchu Bag and Drops` which, along with the previous changes of `Bombchus in Logic`, makes the first pack of Bombchus you find into a bag which then allows you to purchase bombchus from shops as well as find them hidden in grass or rocks like regular bombs.
+  * New multiselects `Shuffled Child Trade Sequence Items` and `Adult Trade Sequence Items` along with toggle `Shuffle All Adult Trade Items` which have reworked the trade quests for both child and adult. Now you can own multiple trade items for each age at the same time and have multiple trade item locations as shufflable checks.
+  * Many new SFX shuffle options have been added.
 * **Hints**
   * New `Important Checks` hint type which hints at how many major items are in a given region.
   * New Misc. Hint `Frogs Ocarina Game` which tells you what item you'll get from the Zora's River frog minigame. The hint appears in the dialog box that's printed before they jump onto the log.
   * Add a goal category for the items required to open the Door of Time, if it's closed.
+  * New `MW Season 3 (WotH)` hint distribution which is similar to the `MW Season 3` hint distribution except with Way of the Hero hints instead of goal hints.
 * **Other**
   * When picking up a small key after the first, the text box will now inform you how many you've found total.
+  * The longstanding vanilla bug where using Din's Fire on a white bubble crashes the game has been fixed.
 
 #### Bug Fixes
 * **Misc.**
@@ -189,6 +193,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * The ocarina can no longer be pulled out mid-hookshot via the D-Pad to cancel the hookshot pull.
   * Fix the change which makes graveyard grave hole ledges un-grabbable incorrectly applied to other ledges in the graveyard area.
   * Fix the file path for custom music on some Linux machines.
+  * Fix "Spirit Temple MQ Beamos Room Chest" having an incorrect vanilla item.
 * **Hints**
   * Fix the cryptic hint for Ganon's Castle Boss Key.
   * Fix missing punctuation in dual hints.
@@ -207,11 +212,15 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * The price of the shield discount after selling the Kakariko guard the Keaton mask is now set at patch time and thus consistent between different players of a seed.
 * Add binaries to support Windows on ARM64.
 * Priority placement of certain warp songs is now conditional if `Guarantee Reachable Locations` is set to `All Goals` or `Required Only`.
-* Improve speed generation time.
+* Improve seed generation time.
+* The key ring texture has been updated with the normal small key texture, making it shinier.
+* D-Pad mask icons will now enlarge when the mask is equipped, similarly to D-Pad boots.
+* Fix a vanilla bug where jumpslashing into Bongo Bongo's chamber on the last possible frame will not properly skip the cutscene when it should be skipped.
 
 #### Plandomizer
 * Plandomizer now allows you to specify locations that are valid but do not exist in your current seed, for example, an MQ-specific location when that dungeon is Vanilla.
 * Error messages for conflicting settings have been improved.
+* Gossip stone text colors are no longer specified in reverse order.
 
 ### 7.1
 

@@ -1,5 +1,6 @@
 #include "get_items.h"
 
+#include "trade_quests.h"
 #include "icetrap.h"
 #include "item_table.h"
 #include "stdbool.h"
@@ -9,7 +10,7 @@
 extern uint8_t FAST_CHESTS;
 extern uint8_t OCARINAS_SHUFFLED;
 extern uint8_t NO_COLLECTIBLE_HEARTS;
-extern uint32_t BOMBCHUS_IN_LOGIC;
+extern uint32_t FREE_BOMBCHU_DROPS;
 extern uint8_t ICE_PERCENT;
 override_t cfg_item_overrides[1536] = { 0 };
 int item_overrides_count = 0;
@@ -25,6 +26,7 @@ extern uint8_t MW_SEND_OWN_ITEMS;
 extern override_key_t OUTGOING_KEY;
 extern uint16_t OUTGOING_ITEM;
 extern uint16_t OUTGOING_PLAYER;
+extern uint16_t GET_ITEM_SEQ_ID;
 uint16_t drop_collectible_override_flag = 0; // Flag used by hacks in Item_DropCollectible to override the item being dropped. Set it to the flag for the overridden item.
 
 override_t active_override = { 0 };
@@ -125,6 +127,15 @@ override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_
             .type = OVR_GROTTO_SCRUB,
             .flag = item_id,
         };
+    } else if (actor->actor_id == 0x132) {
+        // Turning in Poacher's Saw to Carpenter Boss in Kakariko as child
+        // using equip swap instead of Gerudo Valley as adult. Override is
+        // keyed on Gerudo Valley.
+        return (override_key_t){
+            .scene = 0x5A,
+            .type = OVR_BASE_ITEM,
+            .flag = item_id,
+        };
     } else {
         return (override_key_t) {
             .scene = scene,
@@ -180,7 +191,7 @@ void activate_override(override_t override) {
     item_row_t *item_row = get_item_row(resolved_item_id);
 
     active_override = override;
-    if (resolved_item_id == 0xCA || (resolved_item_id >= 0x100 && resolved_item_id < 0x107)) { // Triforce piece or Easter egg
+    if (resolved_item_id == 0xCA || (resolved_item_id >= 0x1000 && resolved_item_id < 0x1007)) { // Triforce piece or Easter egg
         active_override_is_outgoing = 2; // Send to everyone
     } else {
         active_override_is_outgoing = override.value.base.player != PLAYER_ID;
@@ -213,7 +224,7 @@ override_t outgoing_queue[8] = { 0 };
 void push_outgoing_override(override_t *override) {
     if (override->key.type != OVR_DELAYED || override->key.flag != 0xFF) { // don't send items received from incoming back to outgoing
         if (OUTGOING_KEY.all == 0) {
-            if (override->value.base.item_id >= 0x100 && override->value.base.item_id < 0x107) {
+            if (override->value.base.item_id >= 0x1000 && override->value.base.item_id < 0x1007) {
                 // Multiworld plugins (at least Bizhawk Shuffler 2 and Mido's House Multiworld) have special cases for Triforce pieces.
                 // To make sure Easter eggs and Triforce Blitz pieces are handled the same way, they're sent as Triforce pieces.
                 OUTGOING_ITEM = 0xCA;
@@ -236,7 +247,7 @@ void push_outgoing_override(override_t *override) {
 
 void move_outgoing_queue() {
     if (OUTGOING_KEY.all == 0) {
-        if (outgoing_queue[0].value.base.item_id >= 0x100 && outgoing_queue[0].value.base.item_id < 0x107) {
+        if (outgoing_queue[0].value.base.item_id >= 0x1000 && outgoing_queue[0].value.base.item_id < 0x1007) {
             // Multiworld plugins (at least Bizhawk Shuffler 2 and Mido's House Multiworld) have special cases for Triforce pieces.
             // To make sure Easter eggs are handled the same way, they're sent as Triforce pieces.
             OUTGOING_ITEM = 0xCA;
@@ -373,7 +384,7 @@ void try_pending_item() {
         return;
     }
 
-    if ((override.value.base.item_id == 0xCA || (override.value.base.item_id >= 0x100 && override.value.base.item_id < 0x107)) && override.value.base.player != PLAYER_ID) { // Triforce piece or Easter egg
+    if ((override.value.base.item_id == 0xCA || (override.value.base.item_id >= 0x1000 && override.value.base.item_id < 0x1007)) && override.value.base.player != PLAYER_ID) { // Triforce piece or Easter egg
         uint16_t resolved_item_id = resolve_upgrades(override.value.base.item_id);
         item_row_t *item_row = get_item_row(resolved_item_id);
         call_effect_function(item_row);
@@ -410,6 +421,19 @@ void get_item(z64_actor_t *from_actor, z64_link_t *link, int8_t incoming_item_id
 
     if (from_actor && incoming_item_id != 0) {
         int8_t item_id = incoming_negative ? -incoming_item_id : incoming_item_id;
+        // Set trade items as traded, but keep in inventory. The incoming item
+        // ID will be the next sequential trade item, so use that as a reference.
+        item_row_t *row = get_item_row(item_id);
+        if (row) {
+            int16_t action_id = row->action_id;
+            if (CFG_ADULT_TRADE_SHUFFLE && action_id > 0 && from_actor->actor_id != 0x0A && IsAdultTradeItem(action_id)) {
+                if (action_id == Z64_ITEM_BIGGORON_SWORD) {
+                    TurnInTradeItem(Z64_ITEM_CLAIM_CHECK);
+                } else {
+                    TurnInTradeItem(action_id - 1);
+                }
+            }
+        }
         override = lookup_override(from_actor, z64_game.scene_index, item_id);
     }
 
@@ -696,8 +720,8 @@ int16_t get_override_drop_id(int16_t dropId) {
         }
     }
 
-    // Chus in logic drops, convert bomb drop to bombchu drop under certain circumstances
-    if (BOMBCHUS_IN_LOGIC && (dropId == ITEM00_BOMBS_A || dropId == ITEM00_BOMBS_SPECIAL || dropId == ITEM00_BOMBS_B)) {
+    // Chu bag drops, convert bomb drop to bombchu drop under certain circumstances
+    if (FREE_BOMBCHU_DROPS && (dropId == ITEM00_BOMBS_A || dropId == ITEM00_BOMBS_SPECIAL || dropId == ITEM00_BOMBS_B)) {
         if (z64_file.items[Z64_SLOT_BOMB] != -1 && z64_file.items[Z64_SLOT_BOMBCHU] != -1) { // we have bombs and chus
             return drop_bombs_or_chus(dropId);
         } else if (z64_file.items[Z64_SLOT_BOMB] != -1) { // only have bombs
@@ -732,7 +756,7 @@ int16_t get_override_drop_id(int16_t dropId) {
 
 void dispatch_item(uint16_t resolved_item_id, uint8_t player, override_t *override, item_row_t *item_row) {
     // Give the item to the right place
-    if (resolved_item_id == 0xCA || (resolved_item_id >= 0x100 && resolved_item_id < 0x107)) { // Triforce piece or Easter egg
+    if (resolved_item_id == 0xCA || (resolved_item_id >= 0x1000 && resolved_item_id < 0x1007)) { // Triforce piece or Easter egg
         // Send triforce to everyone
         push_outgoing_override(override);
         z64_GiveItem(&z64_game, item_row->action_id);
@@ -787,7 +811,7 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
             pItem->actor.dropFlag = 1; // Store this so the draw function knows to keep drawing the override.
             dispatch_item(resolved_item_id, player, &collectible_override, item_row);
             // Pick the correct sound effect for rupees or other items.
-            uint16_t sfxId = NA_SE_SY_GET_ITEM;
+            uint16_t sfxId = GET_ITEM_SEQ_ID;
             if (item_row->collectible <= ITEM00_RUPEE_RED || item_row->collectible == ITEM00_RUPEE_PURPLE || item_row->collectible == ITEM00_RUPEE_ORANGE) {
                 sfxId = NA_SE_SY_GET_RUPY;
             }

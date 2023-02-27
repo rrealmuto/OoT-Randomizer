@@ -172,11 +172,13 @@ override_action:
 ;==================================================================================================
 
 get_item_hook:
-    addiu   sp, sp, -0x20
+    addiu   sp, sp, -0x28
     sw      a3, 0x10 (sp)
     sw      v0, 0x14 (sp)
     sw      v1, 0x18 (sp)
     sw      ra, 0x1C (sp)
+    sw      a1, 0x20 (sp)
+    sw      a0, 0x24 (sp)
 
     ; a0 = actor giving item
     ; a2 = incoming item id
@@ -187,8 +189,10 @@ get_item_hook:
     lw      v0, 0x14 (sp)
     lw      v1, 0x18 (sp)
     lw      ra, 0x1C (sp)
+    lw      a1, 0x20 (sp)
+    lw      a0, 0x24 (sp)
     jr      ra
-    addiu   sp, sp, 0x20
+    addiu   sp, sp, 0x28
 
 ; Hook Item_DropCollectible to not set the room to -1 if we are going to be overriding the collectible.
 ; This will cause overridden collectibles to despawn when switching rooms.

@@ -9,6 +9,7 @@ import os.path
 import pathlib
 import argparse
 
+from Messages import ITEM_MESSAGES, KEYSANITY_MESSAGES
 import Unittest as Tests
 from SettingsList import logic_tricks, validate_settings
 from Utils import data_path
@@ -124,7 +125,24 @@ def check_code_style(fix_errors=False):
     for path in (repo_dir / 'ASM' / 'src').iterdir():
         if path.suffix == '.asm':
             check_file_format(path)
+    for subdir in ('Glitched World', 'Hints', 'World'):
+        for path in (repo_dir / 'data' / subdir).iterdir():
+            if path.suffix == '.json':
+                check_file_format(path)
+    check_file_format(repo_dir / 'data' / 'LogicHelpers.json')
     check_file_format(repo_dir / 'data' / 'presets_default.json')
+    check_file_format(repo_dir / 'data' / 'settings_mapping.json')
+
+
+def check_message_dupes():
+    # Check the message table to ensure no duplicate entries exist.
+    new_item_messages = ITEM_MESSAGES + KEYSANITY_MESSAGES
+    for i in range(len(new_item_messages)):
+        for j in range(i + 1, len(new_item_messages)):
+            message_id1, message1 = new_item_messages[i]
+            message_id2, message2 = new_item_messages[j]
+            if message_id1 == message_id2:
+                error(f"Duplicate MessageID found: 0x{message_id1:04X}, {message1!r}, {message2!r}", False)
 
 
 def run_ci_checks():
@@ -141,6 +159,7 @@ def run_ci_checks():
         check_hell_mode_tricks(args.fix)
         check_code_style(args.fix)
         check_presets_formatting(args.fix)
+        check_message_dupes()
 
     exit_ci(args.fix)
 

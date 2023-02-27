@@ -14,29 +14,29 @@
         "locations": {
             "Spirit Temple Child Bridge Chest": "is_adult or
                 (
-                (can_use(Boomerang) or Slingshot or has_bombchus or can_mega) and 
-                (Sticks or has_explosives or 
-                    ( (Nuts or can_use(Boomerang)) and 
+                (can_use(Boomerang) or Slingshot or has_bombchus or can_mega) and
+                (Sticks or has_explosives or
+                    ( (Nuts or can_use(Boomerang)) and
                         (can_use(Kokiri_Sword) or Slingshot) ) ))",
             "Deku Shield Pot": "
                 fix_broken_drops and
                 (is_adult or (
-                (can_use(Boomerang) or Slingshot or has_bombchus or can_mega) and 
-                (Sticks or has_explosives or 
-                    ( (Nuts or can_use(Boomerang)) and 
+                (can_use(Boomerang) or Slingshot or has_bombchus or can_mega) and
+                (Sticks or has_explosives or
+                    ( (Nuts or can_use(Boomerang)) and
                         (can_use(Kokiri_Sword) or Slingshot) ) )))",
-            "Spirit Temple Child Early Torches Chest": "(is_adult and has_fire_source) or 
+            "Spirit Temple Child Early Torches Chest": "(is_adult and has_fire_source) or
                 (has_fire_source_with_torch and (here(is_adult) or
                 (
-                (can_use(Boomerang) or Slingshot or has_bombchus or can_mega) and 
-                (Sticks or has_explosives or 
-                    ( (Nuts or can_use(Boomerang)) and 
+                (can_use(Boomerang) or Slingshot or has_bombchus or can_mega) and
+                (Sticks or has_explosives or
+                    ( (Nuts or can_use(Boomerang)) and
                         (can_use(Kokiri_Sword) or Slingshot) ) ))))",
             "Spirit Temple GS Metal Fence": "is_adult or
                 (
-                (can_use(Boomerang) or Slingshot or has_bombchus or can_mega) and 
-                (Sticks or has_explosives or 
-                    ( (Nuts or can_use(Boomerang)) and 
+                (can_use(Boomerang) or Slingshot or has_bombchus or can_mega) and
+                (Sticks or has_explosives or
+                    ( (Nuts or can_use(Boomerang)) and
                         (can_use(Kokiri_Sword) or Slingshot) ) ))",
             "Nut Crate": "True"
         },
@@ -55,7 +55,7 @@
             "Spirit Temple Child Climb East Chest": "at('Spirit Temple Central Chamber', True)
                 or is_child or has_projectile(adult)",
             "Spirit Temple GS Sun on Floor Room": "can_use(Boomerang) or can_use(Hookshot) or
-                (can_child_damage and (can_live_dmg(0.5) or Fairy or can_use(Nayrus_Love))) or 
+                (can_child_damage and (can_live_dmg(0.5) or Fairy or can_use(Nayrus_Love))) or
                 (is_adult and (can_live_dmg(0.5) or Fairy or can_use(Nayrus_Love)))"
         },
         "exits": {
@@ -158,7 +158,7 @@
         "dungeon": "Spirit Temple",
         "locations": {
             "Spirit Temple Boss Key Chest": "
-                can_play(Zeldas_Lullaby) and (can_live_dmg(1.0) or (Bow and 
+                can_play(Zeldas_Lullaby) and (can_live_dmg(1.0) or (Bow and
                 Progressive_Hookshot))",
             "Spirit Temple Topmost Chest": "can_use(Mirror_Shield)"
         },
