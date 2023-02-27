@@ -3330,7 +3330,7 @@
         "gerudo_fortress": "fast",
         "dungeon_shortcuts_choice": "off",
         "dungeon_shortcuts": [],
-        "starting_age": "random",
+        "starting_age": "adult",
         "mq_dungeons_mode": "vanilla",
         "mq_dungeons_specific": [],
         "mq_dungeons_count": 0,
@@ -3340,7 +3340,7 @@
         "shuffle_interior_entrances": "off",
         "shuffle_hideout_entrances": false,
         "shuffle_grotto_entrances": false,
-        "shuffle_dungeon_entrances": "off",
+        "shuffle_dungeon_entrances": "simple",
         "shuffle_bosses": "off",
         "shuffle_overworld_entrances": false,
         "mix_entrance_pools": [],
@@ -3348,8 +3348,8 @@
         "shuffle_gerudo_valley_river_exit": "off",
         "owl_drops": "off",
         "warp_songs": "off",
-        "shuffle_child_spawn": "balanced",
-        "shuffle_adult_spawn": "balanced",
+        "shuffle_child_spawn": "off",
+        "shuffle_adult_spawn": "off",
         "blue_warps": "dungeon",
         "exclusive_one_ways": false,
         "free_bombchu_drops": false,
@@ -3398,9 +3398,7 @@
         "starting_equipment": [
             "deku_shield"
         ],
-        "starting_songs": [
-            "prelude"
-        ],
+        "starting_songs": [],
         "starting_items": [
             "ocarina",
             "zeldas_letter"
@@ -3419,13 +3417,13 @@
         "fast_bunny_hood": true,
         "plant_beans": false,
         "chicken_count_random": false,
-        "chicken_count": 7,
+        "chicken_count": 4,
         "big_poe_count_random": false,
         "big_poe_count": 1,
         "easier_fire_arrow_entry": false,
         "fae_torch_count": 3,
         "ocarina_songs": [],
-        "correct_chest_appearances": "both",
+        "correct_chest_appearances": "textures",
         "minor_items_as_major_chest": [],
         "invisible_chests": false,
         "correct_potcrate_appearances": "off",

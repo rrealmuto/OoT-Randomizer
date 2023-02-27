@@ -492,7 +492,7 @@
             "LH Lab Dive Red Rupee 3": "(Progressive_Scale, 2) or can_use(Iron_Boots)",
             "LH GS Lab Crate": "
                 Iron_Boots and can_use(Hookshot) and
-                (deadly_bonks != 'ohko' or Fairy or (can_use(Nayrus_Love) and shuffle_interior_entrances == 'off'))"
+                (deadly_bonks != 'ohko' or Fairy or (can_use(Nayrus_Love) and not shuffle_interior_entrances))"
         },
         "exits": {
             "Lake Hylia": "True"

@@ -727,7 +727,7 @@ def create_playthrough(spoiler):
         # Gather the new entrances before collecting items.
         collection_spheres.append(collected)
         accessed_entrances = set(filter(search.spot_access, remaining_entrances))
-        entrance_spheres.append(accessed_entrances)
+        entrance_spheres.append(list(accessed_entrances))
         remaining_entrances -= accessed_entrances
         for location in collected:
             # Collect the item for the state world it is for
@@ -772,7 +772,6 @@ def create_playthrough(spoiler):
     # Reduce each entrance sphere in reverse order, by checking if the game is beatable when we disconnect the entrance.
     required_entrances = []
     for sphere in reversed(entrance_spheres):
-        sphere = list(sphere)
         random.shuffle(sphere)
         for entrance in sphere:
             # we disconnect the entrance and check if the game is still beatable
