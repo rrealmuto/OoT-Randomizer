@@ -1876,7 +1876,7 @@
             "Shadow Temple",
             "Spirit Temple"
         ],
-        "starting_age": "random",
+        "starting_age": "child",
         "mq_dungeons_mode": "vanilla",
         "mq_dungeons_specific": [],
         "mq_dungeons_count": 0,
@@ -2343,7 +2343,7 @@
             "Shadow Temple",
             "Spirit Temple"
         ],
-        "starting_age": "random",
+        "starting_age": "child",
         "mq_dungeons_mode": "vanilla",
         "mq_dungeons_specific": [],
         "mq_dungeons_count": 0,
