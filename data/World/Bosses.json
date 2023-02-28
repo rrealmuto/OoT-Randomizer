@@ -22,8 +22,8 @@
             "Deku Tree Clear": "(Nuts or can_use(Slingshot)) and can_jumpslash"
         },
         "locations": {
-            "Deku Tree Queen Gohma Heart": "'Deku Tree Clear'",
-            "Queen Gohma": "'Deku Tree Clear'"
+            "Deku Tree Queen Gohma Heart": "'Defeat Gohma'",
+            "Queen Gohma": "'Defeat Gohma'"
         },
         "exits": {
             "Deku Tree Boss Door": "True"

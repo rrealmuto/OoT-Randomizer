@@ -622,8 +622,8 @@ logic_tricks = {
         'tooltip' : '''\
                     A precise jump can be used to skip
                     needing to use the Slingshot to go
-                    around B1 of the Deku Tree. If used
-                    with the "Closed Forest" setting, a
+                    around B1 of the Deku Tree. If using
+                    "Closed Forest Requires Gohma", a
                     Slingshot will not be guaranteed to
                     exist somewhere inside the Forest.
                     This trick applies to both Vanilla
@@ -3163,30 +3163,28 @@ setting_infos = [
             'closed':      'Closed Forest',
             },
         gui_tooltip    = '''\
-            'Open Forest': Mido no longer blocks the path to the
-            Deku Tree, and the Kokiri boy no longer blocks the path
-            out of the forest.
+            'Closed Forest': In the child era, Mido blocks the path
+            to the Deku Tree, requiring Kokiri Sword and Deku Shield
+            to access the Deku Tree, and another Kokiri boy blocks
+            the path out of the forest until Queen Gohma is defeated.
+            It may be logically required to "escape" the forest
+            (via one of the shortcuts in the Lost Woods, for example);
+            the setting "Closed Forest Requires Gohma" in the Detailed
+            Logic tab can be used to prevent this.
 
             'Closed Deku': The Kokiri boy no longer blocks the path
             out of the forest, but Mido still blocks the path to the
             Deku Tree, requiring Kokiri Sword and Deku Shield to access
             the Deku Tree.
 
-            'Closed Forest': Beating Deku Tree is logically required
-            to leave the forest area (Kokiri Forest/Lost Woods/Sacred Forest
-            Meadow/Deku Tree), while the Kokiri Sword and a Deku Shield are
-            required to access the Deku Tree. Items needed for this will be
-            guaranteed inside the forest area. This setting is incompatible
-            with starting as adult, and so Starting Age will be locked to Child.
-            With either "Shuffle Interior Entrances" set to "All", "Shuffle
-            Overworld Entrances" on, "Randomize Warp Song Destinations" on
-            or "Randomize Overworld Spawns" on, Closed Forest will instead
-            be treated as Closed Deku with starting age Child and WILL NOT
-            guarantee that these items are available in the forest area.
+            'Open Forest': Mido no longer blocks the path to the
+            Deku Tree, and the Kokiri boy no longer blocks the path
+            out of the forest.
         ''',
         shared         = True,
         disable        = {
-            'closed' : {'settings' : ['starting_age']}
+            '!closed': {'settings': ['require_gohma']},
+            'closed':  {'settings': ['starting_age']},
         },
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -3195,6 +3193,28 @@ setting_infos = [
                 ('closed_deku', 1),
                 ('closed', 1),
             ],
+        },
+    ),
+    Checkbutton(
+        name           = 'require_gohma',
+        gui_text       = 'Closed Forest Requires Gohma',
+        gui_tooltip    = '''\
+            Defeating Queen Gohma is logically required to leave the forest
+            area (Kokiri Forest/Lost Woods/Sacred Forest Meadow/Deku Tree).
+            Items needed for this will be guaranteed inside the forest area,
+            and "Shuffle Dungeon Entrances" does not affect the Deku Tree.
+            This setting is incompatible with starting as adult, and so
+            Starting Age will be locked to Child. With either "Shuffle
+            Interior Entrances" set to "All", "Shuffle Overworld Entrances"
+            on, "Randomize Warp Song Destinations" on, or "Randomize Overworld
+            Spawns" on, this setting is automatically disabled and WILL NOT
+            guarantee that these items are available in the forest area.
+        ''',
+        default        = True,
+        disabled_default = False,
+        shared         = True,
+        disable        = {
+            True : {'settings' : ['open_forest', 'shuffle_interior_entrances', 'shuffle_bosses', 'shuffle_overworld_entrances', 'warp_songs', 'spawn_positions']}
         },
     ),
     Combobox(
@@ -3585,6 +3605,9 @@ setting_infos = [
             When shuffling any interior entrances, trade quest timers are disabled
             and items never revert, even when dying or loading a save.
         ''',
+        disable        = {
+            'all' : {'settings': ['require_gohma']},
+        },
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -3657,6 +3680,9 @@ setting_infos = [
             'limited':   'Age-Restricted',
             'full':      'Full',
         },
+        disable        = {
+            '!off' : {'settings': ['require_gohma']},
+        },
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -3681,6 +3707,9 @@ setting_infos = [
             even when dying or loading a save.
         ''',
         default        = False,
+        disable        = {
+            True : {'settings': ['require_gohma']},
+        },
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -3720,6 +3749,9 @@ setting_infos = [
             Randomize where each of the 6 warp songs leads to.
         ''',
         default        = False,
+        disable        = {
+            True : {'settings': ['require_gohma']},
+        },
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',

@@ -71,15 +71,6 @@ class World(object):
         self.selected_adult_trade_item = ''
         self.adult_trade_starting_inventory = ''
 
-        if (
-            settings.open_forest == 'closed'
-            and (
-                self.shuffle_special_interior_entrances or settings.shuffle_overworld_entrances
-                or settings.warp_songs or settings.spawn_positions
-            )
-        ):
-            self.settings.open_forest = 'closed_deku'
-
         if settings.triforce_goal_per_world > settings.triforce_count_per_world:
             raise ValueError("Triforces required cannot be more than the triforce count.")
         self.triforce_goal = settings.triforce_goal_per_world * settings.world_count
@@ -419,11 +410,7 @@ class World(object):
         if (self.settings.starting_age == 'random'
             and ('starting_age' not in dist_keys
              or self.distribution.distribution.src_dict['_settings']['starting_age'] == 'random')):
-            if self.settings.open_forest == 'closed':
-                # adult is not compatible
-                self.settings.starting_age = 'child'
-            else:
-                self.settings.starting_age = random.choice(['child', 'adult'])
+            self.settings.starting_age = random.choice(['child', 'adult'])
             self.randomized_list.append('starting_age')
         if self.settings.chicken_count_random and 'chicken_count' not in dist_keys:
             self.settings.chicken_count = random.randint(0, 7)
