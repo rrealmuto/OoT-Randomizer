@@ -1458,8 +1458,6 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             save_context.addresses['keys']['spirit'].value = 3
         if 'Shadow Temple' in world.settings.dungeon_shortcuts:
             save_context.addresses['keys']['shadow'].value = 2
-        elif world.dungeon_back_access and not world.dungeon_mq['Shadow Temple']:
-            save_context.addresses['keys']['shadow'].value = 1
 
     if world.settings.start_with_rupees:
         rom.write_byte(rom.sym('MAX_RUPEES'), 0x01)

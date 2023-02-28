@@ -65,7 +65,6 @@ class World(object):
         )
 
         self.mixed_pools_bosses = False # this setting is still in active development at https://github.com/Roman971/OoT-Randomizer
-        self.dungeon_back_access = self.mixed_pools_bosses and False #TODO check if any entrance pools are mixed that can allow access to the back of a dungeon
 
         self.ensure_tod_access = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or settings.spawn_positions
         self.disable_trade_revert = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or settings.adult_trade_shuffle

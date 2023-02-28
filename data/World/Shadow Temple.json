@@ -45,8 +45,7 @@
             # Also, we only need to check shortcut keys here and at boat, since key requirements are always the same.
             "Shadow Temple Huge Pit": "
                 has_explosives and
-                    (((Small_Key_Shadow_Temple, 1) and not shadow_temple_shortcuts and not dungeon_back_access) or
-                    ((Small_Key_Shadow_Temple, 2) and not shadow_temple_shortcuts) or
+                    (((Small_Key_Shadow_Temple, 1) and not shadow_temple_shortcuts) or
                     (Small_Key_Shadow_Temple, 5) or
                     ((Small_Key_Shadow_Temple, 4) and (logic_lens_shadow_platform or can_use(Lens_of_Truth))))",
             "Shadow Temple Boat": "shadow_temple_shortcuts"
@@ -72,8 +71,7 @@
         },
         "exits": {
             "Shadow Temple Invisible Spikes": "
-                (((Small_Key_Shadow_Temple, 2) and not dungeon_back_access) or (Small_Key_Shadow_Temple, 3)) and
-                (logic_lens_shadow_platform or can_use(Lens_of_Truth))"
+                (Small_Key_Shadow_Temple, 2) and (logic_lens_shadow_platform or can_use(Lens_of_Truth))"
         }
     },
     {
@@ -88,7 +86,7 @@
             "Shadow Temple GS Single Giant Pot": "Hookshot"
         },
         "exits": {
-            "Shadow Temple Wind Tunnel": "Hookshot and (((Small_Key_Shadow_Temple, 3) and not dungeon_back_access) or (Small_Key_Shadow_Temple, 4))",
+            "Shadow Temple Wind Tunnel": "Hookshot and (Small_Key_Shadow_Temple, 3)",
             "Shadow Temple Huge Pit": "logic_lens_shadow_platform or can_use(Lens_of_Truth)"
         }
     },
@@ -116,7 +114,7 @@
             "Shadow Temple After Wind Flying Pot 2": "True"
         },
         "exits": {
-            "Shadow Temple Boat": "(((Small_Key_Shadow_Temple, 4) and not dungeon_back_access) or (Small_Key_Shadow_Temple, 5))",
+            "Shadow Temple Boat": "(Small_Key_Shadow_Temple, 4)",
             "Shadow Temple Wind Tunnel": "True"
         }
     },
@@ -149,7 +147,7 @@
         "exits": {
             "Shadow Temple 3 Spinning Pots Rupees": "Bombs or Progressive_Strength_Upgrade",
             "Shadow Temple Beyond Boat Scarecrow": "can_use(Distant_Scarecrow)",
-            "Shadow Temple Across Chasm": "
+            "Shadow Temple Before Boss": "
                 Bow or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts"
         }
     },
@@ -187,29 +185,19 @@
         },
         "exits": {
             "Shadow Temple Beyond Boat Scarecrow": "can_use(Scarecrow)",
-            "Shadow Temple Across Chasm": "True"
+            "Shadow Temple Before Boss": "True"
         }
     },
     {
-        "region_name": "Shadow Temple Across Chasm",
+        "region_name": "Shadow Temple Before Boss",
         "dungeon": "Shadow Temple",
         "locations": {
             "Shadow Temple Near Boss Pot 1": "True",
             "Shadow Temple Near Boss Pot 2": "True"
         },
         "exits": {
-            "Shadow Temple Beyond Boat": "shadow_temple_shortcuts or Progressive_Strength_Upgrade or has_explosives or Bow or can_use(Dins_Fire)",
             "Shadow Temple Beyond Boat SoT Block": "can_play(Song_of_Time)",
-            "Shadow Temple Before Boss": "(Small_Key_Shadow_Temple, 5)"
-        }
-    },
-    {
-        "region_name": "Shadow Temple Before Boss",
-        "dungeon": "Shadow Temple",
-        "savewarp": "Graveyard Warp Pad Region -> Shadow Temple Entryway",
-        "exits": {
-            "Shadow Temple Across Chasm": "(logic_lens_shadow or can_use(Lens_of_Truth)) and can_use(Hover_Boots) and (Small_Key_Shadow_Temple, 5)",
-            "Bongo Bongo Boss Room": "Boss_Key_Shadow_Temple"
+            "Bongo Bongo Boss Room": "(Small_Key_Shadow_Temple, 5) and Boss_Key_Shadow_Temple"
         }
     }
 ]
