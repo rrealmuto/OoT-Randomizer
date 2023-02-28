@@ -110,6 +110,8 @@ void draw_int(z64_disp_buf_t *db, uint16_t number, int16_t left, int16_t top, co
 
 // When in a silver rupee room, draw the silver rupee count for that room.
 void draw_silver_rupee_count(z64_game_t* globalCtx, z64_disp_buf_t *db) {
+    if (!CFG_DUNGEON_INFO_SILVER_RUPEES) return;
+
     uint8_t scene = globalCtx->scene_index;
     uint8_t room = globalCtx->room_index;
 
