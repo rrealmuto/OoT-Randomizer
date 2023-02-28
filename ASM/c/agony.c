@@ -4,6 +4,8 @@
 #include "item_effects.h"
 #include "z64.h"
 
+extern uint8_t CFG_DUNGEON_INFO_SILVER_RUPEES;
+
 typedef struct {
     unsigned char alpha_level : 8;
     signed char   pos         : 2;
@@ -90,18 +92,20 @@ void draw_agony() {
             // small keys displayed
             voffset -= 17;
         }
-        for (int i = 0; i < dungeon_count; i++) {
-            if (scene_index != dungeon_info_table[i].index) continue;
+        if (CFG_DUNGEON_INFO_SILVER_RUPEES) {
+            for (int i = 0; i < dungeon_count; i++) {
+                if (scene_index != dungeon_info_table[i].index) continue;
 
-            dungeon_entry_t dungeon = dungeon_info_table[i];
-            uint8_t *silver_rupee_puzzles = CFG_DUNGEON_IS_MQ[dungeon.index] ? dungeon.silver_rupee_puzzles_mq : dungeon.silver_rupee_puzzles_vanilla;
-            for (int puzzle_idx = 0; puzzle_idx < 4; puzzle_idx++) {
-                if (silver_rupee_puzzles[puzzle_idx] == (uint8_t) -1) break;
-                silver_rupee_data_t silver_rupee_info = silver_rupee_vars[silver_rupee_puzzles[puzzle_idx]][CFG_DUNGEON_IS_MQ[dungeon.index]];
-                if (silver_rupee_info.room == room_index) {
-                    // silver rupees displayed
-                    voffset -= 17;
-                    break;
+                dungeon_entry_t dungeon = dungeon_info_table[i];
+                uint8_t *silver_rupee_puzzles = CFG_DUNGEON_IS_MQ[dungeon.index] ? dungeon.silver_rupee_puzzles_mq : dungeon.silver_rupee_puzzles_vanilla;
+                for (int puzzle_idx = 0; puzzle_idx < 4; puzzle_idx++) {
+                    if (silver_rupee_puzzles[puzzle_idx] == (uint8_t) -1) break;
+                    silver_rupee_data_t silver_rupee_info = silver_rupee_vars[silver_rupee_puzzles[puzzle_idx]][CFG_DUNGEON_IS_MQ[dungeon.index]];
+                    if (silver_rupee_info.room == room_index) {
+                        // silver rupees displayed
+                        voffset -= 17;
+                        break;
+                    }
                 }
             }
         }
