@@ -114,7 +114,7 @@ entrance_shuffle_table = [
     ('AdultBoss',       ('Fire Temple Before Boss -> Volvagia Boss Room',                   { 'index': 0x0305, 'savewarp_addresses': [ 0xB062DA, 0xBC60CE ] }),
                         ('Volvagia Boss Room -> Fire Temple Before Boss',                   { 'index': 0x0175 })),
     ('AdultBoss',       ('Water Temple Before Boss -> Morpha Boss Room',                    { 'index': 0x0417, 'savewarp_addresses': [ 0xB062E6, 0xBC6196 ] }),
-                        ('Morpha Boss Room -> Water Temple Lobby',                          { 'index': 0x0423 })), # https://github.com/TestRunnerSRL/OoT-Randomizer/issues/1552
+                        ('Morpha Boss Room -> Water Temple Before Boss',                    { 'index': 0x0423 })),
     ('AdultBoss',       ('Shadow Temple Before Boss -> Bongo Bongo Boss Room',              { 'index': 0x0413, 'savewarp_addresses': [ 0xB062FE, 0xBC61AA ] }),
                         ('Bongo Bongo Boss Room -> Shadow Temple Before Boss',              { 'index': 0x02B2 })),
     ('AdultBoss',       ('Spirit Temple Before Boss -> Twinrova Boss Room',                 { 'index': 0x008D, 'savewarp_addresses': [ 0xB062F2, 0xBC6122 ] }),
@@ -588,7 +588,7 @@ def shuffle_random_entrances(worlds):
             'Barinade Boss Room -> Jabu Jabus Belly Before Boss': world.get_entrance('Jabu Jabus Belly Beginning -> Zoras Fountain'),
             'Phantom Ganon Boss Room -> Forest Temple Before Boss': world.get_entrance('Forest Temple Lobby -> SFM Forest Temple Entrance Ledge'),
             'Volvagia Boss Room -> Fire Temple Before Boss': world.get_entrance('Fire Temple Lower -> DMC Fire Temple Entrance'),
-            'Morpha Boss Room -> Water Temple Lobby': world.get_entrance('Water Temple Lobby -> Lake Hylia'),
+            'Morpha Boss Room -> Water Temple Before Boss': world.get_entrance('Water Temple Lobby -> Lake Hylia'),
             'Bongo Bongo Boss Room -> Shadow Temple Before Boss': world.get_entrance('Shadow Temple Entryway -> Graveyard Warp Pad Region'),
             'Twinrova Boss Room -> Spirit Temple Before Boss': world.get_entrance('Spirit Temple Lobby -> Desert Colossus From Spirit Lobby'),
         }
@@ -610,7 +610,7 @@ def shuffle_random_entrances(worlds):
             (world.get_entrance('Barinade Boss Room -> Zoras Fountain'), world.get_entrance('Barinade Boss Room -> Jabu Jabus Belly Before Boss')),
             (world.get_entrance('Phantom Ganon Boss Room -> Sacred Forest Meadow'), world.get_entrance('Phantom Ganon Boss Room -> Forest Temple Before Boss')),
             (world.get_entrance('Volvagia Boss Room -> DMC Central Local'), world.get_entrance('Volvagia Boss Room -> Fire Temple Before Boss')),
-            (world.get_entrance('Morpha Boss Room -> Lake Hylia'), world.get_entrance('Morpha Boss Room -> Water Temple Lobby')),
+            (world.get_entrance('Morpha Boss Room -> Lake Hylia'), world.get_entrance('Morpha Boss Room -> Water Temple Before Boss')),
             (world.get_entrance('Bongo Bongo Boss Room -> Graveyard Warp Pad Region'), world.get_entrance('Bongo Bongo Boss Room -> Shadow Temple Before Boss')),
             (world.get_entrance('Twinrova Boss Room -> Desert Colossus'), world.get_entrance('Twinrova Boss Room -> Spirit Temple Before Boss')),
         ):
