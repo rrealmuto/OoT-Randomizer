@@ -60,7 +60,8 @@
         "exits": {
             "Shadow Temple Upper Huge Pit": "
                 has_explosives and
-                (((Small_Key_Shadow_Temple, 2) and not shadow_temple_shortcuts) or
+                (((Small_Key_Shadow_Temple, 2) and not shadow_temple_shortcuts and not dungeon_back_access) or
+                    ((Small_Key_Shadow_Temple, 3) and not shadow_temple_shortcuts) or
                     (Small_Key_Shadow_Temple, 5))",
             "Shadow Temple Boat": "shadow_temple_shortcuts"
         }
@@ -99,7 +100,7 @@
                     (has_fire_source or logic_shadow_mq_huge_pit))",
             "Shadow Temple Invisible Spikes": "
                 (logic_lens_shadow_mq_platform or can_use(Lens_of_Truth)) and
-                Hover_Boots and (Small_Key_Shadow_Temple, 3)",
+                Hover_Boots and (((Small_Key_Shadow_Temple, 3) and not dungeon_back_access) or (Small_Key_Shadow_Temple, 4))",
             "Shadow Temple Upper Huge Pit": "Longshot"
         }
     },
@@ -131,7 +132,7 @@
             "Shadow Temple MQ Stalfos Room Chest": "Hookshot"
         },
         "exits": {
-            "Shadow Temple Wind Tunnel": "Hookshot and (Small_Key_Shadow_Temple, 4)",
+            "Shadow Temple Wind Tunnel": "Hookshot and (((Small_Key_Shadow_Temple, 4) and not dungeon_back_access) or (Small_Key_Shadow_Temple, 5))",
             "Shadow Temple Lower Huge Pit": "
                 (logic_lens_shadow_mq_platform or can_use(Lens_of_Truth)) and Hover_Boots"
         }
@@ -162,7 +163,7 @@
             "Nut Pot": "True"
         },
         "exits": {
-            "Shadow Temple Boat": "(Small_Key_Shadow_Temple, 5)",
+            "Shadow Temple Boat": "((Small_Key_Shadow_Temple, 5) and not dungeon_back_access) or (Small_Key_Shadow_Temple, 6)",
             "Shadow Temple Wind Tunnel": "Hover_Boots or logic_shadow_mq_windy_walkway"
         }
     },
@@ -183,12 +184,21 @@
         "dungeon": "Shadow Temple",
         "locations": {
             "Shadow Temple MQ After Boat Pot 1": "True",
-            "Shadow Temple MQ After Boat Pot 2": "True",
-            "Shadow Temple MQ GS After Ship": "Hookshot"
+            "Shadow Temple MQ After Boat Pot 2": "True"
         },
         "exits": {
+            "Shadow Temple Chasm Gold Skulltula": "Hookshot",
             "Shadow Temple Across Chasm": "
-                Bow or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts"
+                Bow or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts",
+            "Shadow Temple Invisible Maze": "
+                at('Shadow Temple Across Chasm', Bow and can_play(Song_of_Time) and Longshot)"
+        }
+    },
+    {
+        "region_name": "Shadow Temple Chasm Gold Skulltula",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple MQ GS After Ship": "True"
         }
     },
     {
@@ -200,7 +210,8 @@
             "Shadow Temple MQ Near Boss Pot 2": "True"
         },
         "exits": {
-            "Shadow Temple Invisible Maze": "Bow and can_play(Song_of_Time) and Longshot",
+            "Shadow Temple Chasm Gold Skulltula": "Longshot",
+            "Shadow Temple Beyond Boat": "shadow_temple_shortcuts or Progressive_Strength_Upgrade or has_explosives or Bow or can_use(Dins_Fire)",
             "Shadow Temple Before Boss": "Hover_Boots"
         }
     },
@@ -243,11 +254,13 @@
     {
         "region_name": "Shadow Temple Before Boss",
         "dungeon": "Shadow Temple",
+        "savewarp": "Graveyard Warp Pad Region -> Shadow Temple Entryway",
         "locations": {
-            "Shadow Temple MQ GS Near Boss": "has_projectile(adult) or can_use(Dins_Fire)"
+            "Shadow Temple MQ GS Near Boss": "(logic_lens_shadow or can_use(Lens_of_Truth)) and (can_use_projectile or can_use(Dins_Fire))"
         },
         "exits": {
-            "Shadow Temple Boss Door": "True"
+            "Shadow Temple Across Chasm": "(logic_lens_shadow or can_use(Lens_of_Truth)) and can_use(Hover_Boots)",
+            "Bongo Bongo Boss Room": "Boss_Key_Shadow_Temple"
         }
     }
 ]

@@ -189,6 +189,7 @@
     {
         "region_name": "Dodongos Cavern Mouth",
         "dungeon": "Dodongos Cavern",
+        "savewarp": "Death Mountain -> Dodongos Cavern Beginning",
         "locations": {
             "Dodongos Cavern MQ Under Grave Chest": "True",
             "Dodongos Cavern MQ Room Before Boss Pot 1": "True",
@@ -203,6 +204,7 @@
                     Progressive_Strength_Upgrade)"
         },
         "exits": {
+            "Dodongos Cavern Lobby": "True",
             # The final line of this exit is for using an Armos to explode the bomb flowers.
             "Dodongos Cavern Before Boss": "
                 is_adult or has_explosives or can_use(Dins_Fire) or dodongos_cavern_shortcuts or
@@ -217,7 +219,7 @@
             "Fairy Pot": "has_bottle"
         },
         "exits": {
-            "Dodongos Cavern Boss Door": "True"
+            "King Dodongo Boss Room": "True"
         }
     }
 ]

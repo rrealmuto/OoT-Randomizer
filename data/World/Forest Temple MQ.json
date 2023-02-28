@@ -35,7 +35,7 @@
             "Forest Temple NW Outdoors": "can_use(Bow) or can_use(Slingshot)",
             "Forest Temple NE Outdoors": "can_use(Bow) or can_use(Slingshot)",
             "Forest Temple Before Block Puzzle": "here(is_adult or Kokiri_Sword)",
-            "Forest Temple Before Boss": "
+            "Forest Temple Basement": "
                 (Forest_Temple_Jo_and_Beth and Forest_Temple_Amy_and_Meg) or forest_temple_shortcuts"
         }
     },
@@ -203,17 +203,27 @@
         }
     },
     {
-        "region_name": "Forest Temple Before Boss",
+        "region_name": "Forest Temple Basement",
         "dungeon": "Forest Temple",
         "locations": {
             "Forest Temple MQ Basement Chest": "True",
-            "Forest Temple MQ Basement Pot 1": "True",
-            "Forest Temple MQ Basement Pot 2": "True",
-            "Forest Temple MQ Basement Pot 3": "True",
-            "Forest Temple MQ Basement Pot 4": "True"
+            "Forest Temple MQ Basement Pot 1": "can_take_damage or is_adult or can_child_attack or Nuts",
+            "Forest Temple MQ Basement Pot 2": "can_take_damage or is_adult or can_child_attack or Nuts",
+            "Forest Temple MQ Basement Pot 3": "can_take_damage or is_adult or can_child_attack or Nuts",
+            "Forest Temple MQ Basement Pot 4": "can_take_damage or is_adult or can_child_attack or Nuts"
         },
         "exits": {
-            "Forest Temple Boss Door": "True"
+            "Forest Temple Before Boss": "True"
+            # no exit to Forest Temple Central Area because the elevator doesn't work properly
+        }
+    },
+    {
+        "region_name": "Forest Temple Before Boss",
+        "dungeon": "Forest Temple",
+        "savewarp": "SFM Forest Temple Entrance Ledge -> Forest Temple Lobby",
+        "exits": {
+            "Forest Temple Basement": "forest_temple_shortcuts",
+            "Phantom Ganon Boss Room": "Boss_Key_Forest_Temple"
         }
     }
 ]
