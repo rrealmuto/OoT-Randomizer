@@ -53,7 +53,7 @@
             "KF Kokiri Shop": "True",
             "KF Outside Deku Tree": "'Showed Mido Sword & Shield' or Sticks or is_adult",
             "Lost Woods": "True",
-            "LW Bridge": "open_forest != 'closed' or is_adult or 'Defeat Gohma'",
+            "LW Bridge": "open_forest != 'closed' or is_adult or 'Deku Tree Clear'",
             "KF Storms Grotto": "can_play(Song_of_Storms)"
         }
     },

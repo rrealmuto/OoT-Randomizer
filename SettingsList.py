@@ -2255,7 +2255,7 @@ setting_infos = [
             True : {
                 'sections': ['shuffle_section'],
                 'settings': [
-                    'open_forest', 'open_kakariko', 'open_door_of_time', 'zora_fountain', 'gerudo_fortress', 'dungeon_shortcuts_choice',
+                    'open_forest', 'require_gohma', 'open_kakariko', 'open_door_of_time', 'zora_fountain', 'gerudo_fortress', 'dungeon_shortcuts_choice',
                     'dungeon_shortcuts', 'trials_random', 'trials',
                     'starting_age', 'shuffle_interior_entrances',
                     'shuffle_grotto_entrances', 'shuffle_dungeon_entrances',
@@ -3169,8 +3169,8 @@ setting_infos = [
             the path out of the forest until Queen Gohma is defeated.
             It may be logically required to "escape" the forest
             (via one of the shortcuts in the Lost Woods, for example);
-            the setting "Closed Forest Requires Gohma" in the Detailed
-            Logic tab can be used to prevent this.
+            the setting "Closed Forest Requires Gohma" can be used to
+            prevent this.
 
             'Closed Deku': The Kokiri boy no longer blocks the path
             out of the forest, but Mido still blocks the path to the
@@ -3199,22 +3199,27 @@ setting_infos = [
         name           = 'require_gohma',
         gui_text       = 'Closed Forest Requires Gohma',
         gui_tooltip    = '''\
-            Defeating Queen Gohma is logically required to leave the forest
-            area (Kokiri Forest/Lost Woods/Sacred Forest Meadow/Deku Tree).
+            Defeating Queen Gohma is required to leave the forest area
+            (Kokiri Forest/Lost Woods/Sacred Forest Meadow/Deku Tree).
             Items needed for this will be guaranteed inside the forest area,
-            and "Shuffle Dungeon Entrances" does not affect the Deku Tree.
+            and items that could be used to escape the forest without
+            defeating Queen Gohma (such as explosives to enter Goron City)
+            will be prevented from appearing inside the forest area.
+
+            If entrances are shuffled, entrances inside and outside the
+            forest area will be shuffled separately. For example, "Shuffle
+            Dungeon Entrances" and "Shuffle Boss Entrances" don't affect the
+            Deku Tree. As an exception, grottos are not shuffled separately,
+            and neither are interiors if only simple interiors are shuffled.
+
             This setting is incompatible with starting as adult, and so
-            Starting Age will be locked to Child. With either "Shuffle
-            Interior Entrances" set to "All", "Shuffle Overworld Entrances"
-            on, "Randomize Warp Song Destinations" on, or "Randomize Overworld
-            Spawns" on, this setting is automatically disabled and WILL NOT
-            guarantee that these items are available in the forest area.
+            Starting Age will be locked to Child.
         ''',
         default        = True,
         disabled_default = False,
         shared         = True,
         disable        = {
-            True : {'settings' : ['open_forest', 'shuffle_interior_entrances', 'shuffle_bosses', 'shuffle_overworld_entrances', 'warp_songs', 'spawn_positions']}
+            True : {'settings' : ['open_forest']}
         },
     ),
     Combobox(
@@ -3605,9 +3610,6 @@ setting_infos = [
             When shuffling any interior entrances, trade quest timers are disabled
             and items never revert, even when dying or loading a save.
         ''',
-        disable        = {
-            'all' : {'settings': ['require_gohma']},
-        },
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -3680,9 +3682,6 @@ setting_infos = [
             'limited':   'Age-Restricted',
             'full':      'Full',
         },
-        disable        = {
-            '!off' : {'settings': ['require_gohma']},
-        },
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -3707,9 +3706,6 @@ setting_infos = [
             even when dying or loading a save.
         ''',
         default        = False,
-        disable        = {
-            True : {'settings': ['require_gohma']},
-        },
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -3749,9 +3745,6 @@ setting_infos = [
             Randomize where each of the 6 warp songs leads to.
         ''',
         default        = False,
-        disable        = {
-            True : {'settings': ['require_gohma']},
-        },
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
