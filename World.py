@@ -1077,16 +1077,12 @@ class World(object):
         if not isinstance(location, Location):
             location = self.get_location(location)
 
-        # This check should never be false normally, but is here as a sanity check
-        if location.can_fill_fast(item, manual):
-            location.item = item
-            item.location = location
-            item.price = location.price if location.price is not None else item.price
-            location.price = item.price
+        location.item = item
+        item.location = location
+        item.price = location.price if location.price is not None else item.price
+        location.price = item.price
 
-            logging.getLogger('').debug('Placed %s [World %d] at %s [World %d]', item, item.world.id if hasattr(item, 'world') else -1, location, location.world.id if hasattr(location, 'world') else -1)
-        else:
-            raise RuntimeError('Cannot assign item %s to location %s.' % (item, location))
+        logging.getLogger('').debug('Placed %s [World %d] at %s [World %d]', item, item.world.id if hasattr(item, 'world') else -1, location, location.world.id if hasattr(location, 'world') else -1)
 
 
     def get_locations(self):
