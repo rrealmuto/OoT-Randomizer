@@ -13,7 +13,6 @@ from LocationList import business_scrubs
 from HintList import getHint
 from Hints import GossipText, HintArea, writeGossipStoneHints, buildAltarHints, \
         buildGanonText, buildMiscItemHints, buildMiscLocationHints, getSimpleHintNoPrefix, getItemGenericName
-from Item import ItemFactory
 from ItemList import REWARD_COLORS
 from Location import DisableType
 from Utils import data_path
@@ -2318,7 +2317,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
                     vanilla_reward = world.get_location(dungeon.vanilla_boss_name).vanilla_item
                     vanilla_reward_location = world.hinted_dungeon_reward_locations[vanilla_reward]
                     area = HintArea.at(vanilla_reward_location)
-                    area = GossipText(area.text(world.settings.clearer_hints, preposition=True), [area.color], prefix='')
+                    area = GossipText(area.text(world.settings.clearer_hints, preposition=True), [area.color], prefix='', capitalize=False)
                     compass_message = f"\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for {dungeon_name}\x05\x40!\x01The {vanilla_reward} can be found\x01{area}!\x09"
                 else:
                     boss_location = next(filter(lambda loc: loc.type == 'Boss', world.get_entrance(f'{dungeon} Before Boss -> {dungeon.vanilla_boss_name} Boss Room').connected_region.locations))

@@ -62,9 +62,10 @@ class GossipStone():
 
 
 class GossipText():
-    def __init__(self, text, colors=None, hinted_locations=None, hinted_items=None, prefix="They say that "):
+    def __init__(self, text, colors=None, hinted_locations=None, hinted_items=None, prefix="They say that ", capitalize=True):
         text = prefix + text
-        text = text[:1].upper() + text[1:]
+        if capitalize:
+            text = text[:1].upper() + text[1:]
         self.text = text
         self.colors = colors
         self.hinted_locations = hinted_locations
