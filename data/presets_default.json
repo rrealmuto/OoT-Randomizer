@@ -4028,7 +4028,7 @@
         "shuffle_mapcompass": "remove",
         "enhance_map_compass": true,
         "open_deku": false,
-        "open_forest": true,
+        "open_forest": false,
         "require_gohma": false,
         "open_kakariko": "closed",
         "open_door_of_time": false,

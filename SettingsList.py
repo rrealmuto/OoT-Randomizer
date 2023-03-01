@@ -2424,7 +2424,7 @@ setting_infos = [
                                          'warp_songs', 'blue_warps', 'shuffle_child_spawn', 'shuffle_adult_spawn', 'mq_dungeons_mode', 'mq_dungeons_specific',
                                          'mq_dungeons_count', 'shuffle_bosses', 'dungeon_shortcuts', 'deadly_bonks',
                                          'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_beehives', 'shuffle_silver_rupees',
-                                         'mix_entrance_pools', 'decouple_entrances', 'shuffle_base_item_pool', 'logic_water_gold_scale_no_entry', 'require_gohma']},
+                                         'mix_entrance_pools', 'decouple_entrances', 'shuffle_base_item_pool', 'logic_water_gold_scale_no_entry']},
             'none'      : {'settings' : ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'logic_water_gold_scale_no_entry', 'reachable_locations']},
         },
         shared         = True,
@@ -3489,15 +3489,21 @@ setting_infos = [
         name           = 'require_gohma',
         gui_text       = 'Closed Forest Requires Gohma',
         gui_tooltip    = '''\
-            Defeating Queen Gohma is logically required to leave the forest
-            area (Kokiri Forest/Lost Woods/Sacred Forest Meadow/Deku Tree).
-            Items needed for this will be guaranteed inside the forest area.
-            "Shuffle Dungeon Entrances" and "Shuffle Boss Entrances" don't
-            affect the Deku Tree.
+            Defeating Queen Gohma is required to leave the forest area
+            (Kokiri Forest/Lost Woods/Sacred Forest Meadow/Deku Tree).
+            Items needed for this will be guaranteed inside the forest area,
+            and items that could be used to escape the forest without
+            defeating Queen Gohma (such as explosives to enter Goron City)
+            will be prevented from appearing inside the forest area.
+
+            If entrances are shuffled, entrances inside and outside the
+            forest area will be shuffled separately. For example, "Shuffle
+            Dungeon Entrances" and "Shuffle Boss Entrances" don't affect the
+            Deku Tree. As an exception, grottos are not shuffled separately,
+            and neither are interiors if only simple interiors are shuffled.
 
             This setting is incompatible with starting as adult, and so
-            Starting Age will be locked to Child. It is also currently
-            incompatible with "Mix Entrance Pools" and "Decouple Entrances".
+            Starting Age will be locked to Child.
         ''',
         default        = True,
         disabled_default = False,

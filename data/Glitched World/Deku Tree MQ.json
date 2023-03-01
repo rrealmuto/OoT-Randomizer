@@ -32,6 +32,7 @@
         "dungeon": "Deku Tree",
         "events": {
             "Defeat Queen Gohma": "Deku_Shield and (Kokiri_Sword or Sticks)",
+            # separate event which appears in the playthrough only if it's required to open the forest exit
             "Deku Tree Clear": "'Defeat Queen Gohma'"
         },
         "locations": {

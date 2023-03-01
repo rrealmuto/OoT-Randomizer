@@ -18,7 +18,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * New “Triforce Hunt Mode” setting with “Normal”, “Easter Egg Hunt”, “Ice%”, and “Triforce Blitz” options (Easter Egg Hunt based on [#1804](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1804), Triforce Blitz based on [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev))
   * New “Shuffle Thieves' Hideout Entrances” setting ([#1616](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1616))
   * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1536))
-  * “Closed Forest Requires Gohma” is a separate setting, making “Closed Forest” compatible with more settings if disabled ([#1531](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1531))
+  * “Closed Forest Requires Gohma” is a separate setting. With it enabled, items that can be used to escape the forest won't appear in the forest, and the randomizer will try to place at least one slingshot for each player in the forest. The setting is compatible with all forms of entrance randomizer by restricting entrances inside the forest area to only be shuffled among themselves. ([#1531](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1531))
   * New “Full” options for the settings “Randomize Owl Drops”, “Randomize Warp Song Destinations”, and “Randomize Overworld Spawns” (which is split into “Randomize Child Overworld Spawn” and “Randomize Adult Overworld Spawn” for this reason) that include more types of entrances (based on [#1179](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1179) and [#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
   * New “Frogs Ocarina Game” option for the “Randomize Ocarina Song Notes” setting (based on [rrealmuto's `random_frog_song` branch](https://github.com/rrealmuto/OoT-Randomizer/tree/random_frog_song))
   * Work-in-progress “Language” setting to translate the game into French or German
@@ -42,13 +42,10 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
     * “Standard Anti-Weekly Settings (S6)” is the inverse of “S6 Tournament” instead of weekly settings. It otherwise resembles the beginner preset. The only differences are open Deku, vanilla child spawn, and tournament hint distribution.
   * “Triforce Blitz” is a fast-paced game mode with very powerful hints. See [the official website](https://www.triforceblitz.com/) for details. Note that this currently still based on the settings for Triforce Blitz season 1. Differences from the official branch include each Triforce piece having its own distinct text box (as in Triforce Blitz season 2), and the starting song not being counted for goal counts.
 * Other changes:
-  * When collecting a small key, the text box says how many of that item you've collected (based on [#1841](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1841) and [#1849](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1849))
   * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
   * The conditions for forcing one-way entrances that lead to the Bolero, Nocturne, and Requiem warp pads have been adjusted to increase variety with some settings, such as “Guarantee Reachable Locations” set to “All Goals”, “Shuffle Dungeon Rewards”, or “Mix Entrance Pools” (based on [#1440](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1440))
   * Plandos can specify different settings for each world (based on [Andols0's `individual-settings` branch](https://github.com/Andols0/OoT-Randomizer/tree/individual-settings))
-  * “Closed Forest Requires Gohma” is compatible with all forms of entrance randomizer by restricting entrances inside the forest area to only be shuffled among themselves.
   * Gold Skulltula Tokens can be on excluded locations if there are no checks requiring them (such as in SAWS)
-  * With “Closed Forest Requires Gohma” enabled, items that can be used to escape the forest won't appear in the forest, and the randomizer will try to place at least one slingshot for each player in the forest
   * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
   * Python 3.6 is no longer supported since GitHub's testing infrastructure no longer supports it.
 * Bug fixes:

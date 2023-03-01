@@ -686,6 +686,8 @@ def shuffle_random_entrances(worlds):
         # Shuffle all entrances among the pools to shuffle
         for pool_type, entrance_pool in one_way_entrance_pools.items():
             if world.settings.require_gohma and pool_type not in ('OverworldOneWay', 'BlueWarp', 'OwlDrop', 'AdultSpawn'):
+                # These entrance pools can potentially be accessed from inside the forest.
+                # To prevent a forest escape, shuffle entrances of this type inside and outside the forest separately.
                 forest_entrance_pool = list(filter(lambda entrance: entrance.data.get('forest', False), entrance_pool))
                 outside_entrance_pool = list(filter(lambda entrance: not entrance.data.get('forest', False), entrance_pool))
                 forest_target_pool = list(filter(lambda entrance: entrance.replaces.data.get('forest', False) and (world.settings.open_deku or not entrance.replaces.data.get('deku', False)), one_way_target_entrance_pools[pool_type]))
@@ -717,6 +719,8 @@ def shuffle_random_entrances(worlds):
                     or world.settings.decouple_entrances
                 ))
             ):
+                # These entrance pools can potentially be accessed from inside the forest.
+                # To prevent a forest escape, shuffle entrances of this type inside and outside the forest separately.
                 forest_entrance_pool = list(filter(lambda entrance: entrance.data.get('forest', False), entrance_pool))
                 outside_entrance_pool = list(filter(lambda entrance: not entrance.data.get('forest', False), entrance_pool))
                 forest_target_pool = list(filter(lambda entrance: entrance.replaces.data.get('forest', False), target_entrance_pools[pool_type]))
