@@ -244,7 +244,7 @@ class Item(object):
                     ) or (
                         # These silver rupees unlock a door to an area that's also reachable with lens
                         self.name in ('Silver Rupee (Bottom of the Well Basement)', 'Silver Rupee Pouch (Bottom of the Well Basement)')
-                        and self.world.settings.logic_lens_botw
+                        and (self.world.settings.logic_lens_botw or self.world.settings.shuffle_pots in ('off', 'overworld'))
                     ) or (
                         # These silver rupees only unlock the map chest
                         self.name in ('Silver Rupee (Shadow Temple Scythe Shortcut)', 'Silver Rupee Pouch (Shadow Temple Scythe Shortcut)')
