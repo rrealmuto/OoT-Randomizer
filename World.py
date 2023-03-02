@@ -634,8 +634,10 @@ class World(object):
                 new_exit.connected_region = savewarp_target
                 new_region.exits.append(new_exit)
                 new_region.savewarp = new_exit
-                # the replaced entrance may not exist yet so we connect it after all region files have been read
-                savewarps_to_connect.append((new_exit, region['savewarp']))
+                if not new_region.is_boss_room:
+                    # the replaced entrance may not exist yet so we connect it after all region files have been read
+                    # boss room savewarps are handled separately since they're adjusted when boss rooms are shuffled
+                    savewarps_to_connect.append((new_exit, region['savewarp']))
             self.regions.append(new_region)
         return savewarps_to_connect
 

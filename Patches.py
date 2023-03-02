@@ -1074,36 +1074,8 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
             replaced_entrance = (entrance.replaces or entrance).data
 
             # Fixup save/quit and death warping entrance IDs on bosses.
-            if 'savewarp_addresses' in replaced_entrance and entrance.reverse:
-                if entrance.parent_region.savewarp:
-                    savewarp = entrance.parent_region.savewarp.replaces.data['index']
-                elif 'savewarp_fallback' in entrance.reverse.data:
-                    # Spawning outside a grotto crashes the game, so we use a nearby regular entrance instead.
-                    if entrance.reverse.data['savewarp_fallback'] == 0x0117:
-                        # We don't want savewarping in a boss room inside GV Octorok Grotto to allow out-of-logic access to Gerudo Valley,
-                        # so we spawn the player at whatever entrance GV Lower Stream -> Lake Hylia leads to.
-                        savewarp = world.get_entrance('GV Lower Stream -> Lake Hylia')
-                        savewarp = (savewarp.replaces or savewarp).data
-                        if 'savewarp_fallback' in savewarp:
-                            # the entrance GV Lower Stream -> Lake Hylia leads to is also not a valid savewarp so we place the player at Gerudo Valley from Hyrule Field instead
-                            savewarp = entrance.reverse.data['savewarp_fallback']
-                        else:
-                            savewarp = savewarp['index']
-                    else:
-                        savewarp = entrance.reverse.data['savewarp_fallback']
-                else:
-                    # Spawning inside a grotto also crashes, but exiting a grotto can currently only lead to a boss room in decoupled,
-                    # so we follow the entrance chain back to the nearest non-grotto.
-                    savewarp = entrance
-                    while 'savewarp_fallback' in savewarp.data:
-                        parents = list(filter(lambda parent: parent.reverse, savewarp.parent_region.entrances))
-                        if len(parents) == 0:
-                            raise Exception('Unable to set savewarp')
-                        elif len(parents) == 1:
-                            savewarp = parents[0]
-                        else:
-                            raise Exception('Found grotto with multiple entrances')
-                    savewarp = savewarp.reverse.data['index']
+            if 'savewarp_addresses' in replaced_entrance:
+                savewarp = (entrance.replaces or entrance).reverse.parent_region.savewarp.replaces.data['index']
                 for address in replaced_entrance['savewarp_addresses']:
                     rom.write_int16(address, savewarp)
 

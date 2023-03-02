@@ -4323,9 +4323,10 @@ setting_infos = [
         name           = 'dungeon_back_access',
         gui_text       = '[EXPERIMENTAL] Allow Access to Shadow and Spirit Temples From Boss Doors',
         gui_tooltip    = '''\
-            If this setting is enabled, entrances may be shuffled in a way that
-            allows accessing the Shadow Temple and/or the Spirit Temple from their
-            boss doors. The logic for this is incomplete so this may generate
+            If this setting is enabled and depending on which entrance randomizer
+            settings are enabled, entrances may be shuffled in a way that allows
+            accessing the Shadow Temple and/or the Spirit Temple from their boss
+            doors. The logic for this is incomplete so this may generate
             impossible seeds!
 
             This setting is always enabled if Logic Rules are set to No Logic.
