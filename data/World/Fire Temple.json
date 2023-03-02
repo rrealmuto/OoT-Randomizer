@@ -9,7 +9,7 @@
                 ((Small_Key_Fire_Temple, 2) or (local_vanilla_progression and (Small_Key_Fire_Temple, 1))) and
                 (logic_fewer_tunic_requirements or can_use(Goron_Tunic))",
             "Fire Temple Lower Locked Door": "
-                ((Small_Key_Fire_Temple, 8) or ((not keysanity) and (not local_vanilla_progression))) and can_use(Megaton_Hammer)"
+                ((Small_Key_Fire_Temple, 8) or (not keysanity and not local_vanilla_progression)) and can_use(Megaton_Hammer)"
         }
     },
     {

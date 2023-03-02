@@ -190,7 +190,8 @@
             "shuffle_child_spawn",
             "shuffle_adult_spawn",
             "blue_warps",
-            "exclusive_one_ways"
+            "exclusive_one_ways",
+            "dungeon_back_access"
           ]
         },
         {

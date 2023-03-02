@@ -597,16 +597,22 @@ def shuffle_random_entrances(worlds):
                 valid_target_types = ('ChildSpawn', 'AdultSpawn', 'WarpSong', 'BlueWarp', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
                 valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
                 if world.settings.shuffle_gerudo_valley_river_exit == 'full':
-                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'ChildBoss', 'AdultBoss', 'Hideout', 'Grotto', 'Grave', *valid_target_types)
-                    valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'ChildBoss', 'AdultBoss', 'Hideout', 'Grotto', 'Grave', *valid_target_types_reverse)
+                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grotto', 'Grave', *valid_target_types)
+                    valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grotto', 'Grave', *valid_target_types_reverse)
+                    if world.dungeon_back_access:
+                        valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
+                        valid_target_types_reverse = ('ChildBoss', 'AdultBoss', *valid_target_types_reverse)
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
             elif pool_type == 'OwlDrop':
                 valid_target_types = ('WarpSong', 'BlueWarp', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Extra')
                 valid_target_types_reverse = ('Overworld',)
                 exclude = ['OGC Great Fairy Fountain -> Castle Grounds']
                 if world.settings.owl_drops == 'full':
-                    valid_target_types = ('ChildSpawn', 'AdultSpawn', 'Dungeon', 'DungeonSpecial', 'ChildBoss', 'AdultBoss', 'Hideout', 'Grotto', 'Grave', *valid_target_types)
-                    valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'ChildBoss', 'AdultBoss', 'Interior', 'SpecialInterior', 'Hideout', 'Grotto', 'Grave', *valid_target_types_reverse)
+                    valid_target_types = ('ChildSpawn', 'AdultSpawn', 'Dungeon', 'DungeonSpecial', 'Hideout', 'Grotto', 'Grave', *valid_target_types)
+                    valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'Interior', 'SpecialInterior', 'Hideout', 'Grotto', 'Grave', *valid_target_types_reverse)
+                    if world.dungeon_back_access:
+                        valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
+                        valid_target_types_reverse = ('ChildBoss', 'AdultBoss', *valid_target_types_reverse)
                 else:
                     exclude.append('Prelude of Light Warp -> Temple of Time')
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse, exclude=exclude)
@@ -617,30 +623,42 @@ def shuffle_random_entrances(worlds):
                 valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
                 if world.settings.shuffle_child_spawn == 'full':
                     # grotto entrances don't work properly (they cause a black screen on file load)
-                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'ChildBoss', 'AdultBoss', 'Hideout', 'Grave', *valid_target_types)
-                    valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'ChildBoss', 'AdultBoss', 'Hideout', 'Grave', *valid_target_types_reverse)
+                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grave', *valid_target_types)
+                    valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grave', *valid_target_types_reverse)
+                    if world.dungeon_back_access:
+                        valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
+                        valid_target_types_reverse = ('ChildBoss', 'AdultBoss', *valid_target_types_reverse)
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
             elif pool_type == 'AdultSpawn':
                 valid_target_types = ('ChildSpawn', 'AdultSpawn', 'WarpSong', 'BlueWarp', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
                 valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
                 if world.settings.shuffle_adult_spawn == 'full':
                     # grotto entrances don't work properly (they cause a black screen on file load)
-                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'ChildBoss', 'AdultBoss', 'Hideout', 'Grave', *valid_target_types)
-                    valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'ChildBoss', 'AdultBoss', 'Hideout', 'Grave', *valid_target_types_reverse)
+                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grave', *valid_target_types)
+                    valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grave', *valid_target_types_reverse)
+                    if world.dungeon_back_access:
+                        valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
+                        valid_target_types_reverse = ('ChildBoss', 'AdultBoss', *valid_target_types_reverse)
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
             elif pool_type == 'WarpSong':
                 valid_target_types = ('ChildSpawn', 'AdultSpawn', 'WarpSong', 'BlueWarp', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
                 valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
                 if world.settings.warp_songs == 'full':
-                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'ChildBoss', 'AdultBoss', 'Hideout', 'Grotto', 'Grave', *valid_target_types)
-                    valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'ChildBoss', 'AdultBoss', 'Hideout', 'Grotto', 'Grave', *valid_target_types_reverse)
+                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grotto', 'Grave', *valid_target_types)
+                    valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grotto', 'Grave', *valid_target_types_reverse)
+                    if world.dungeon_back_access:
+                        valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
+                        valid_target_types_reverse = ('ChildBoss', 'AdultBoss', *valid_target_types_reverse)
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
             elif pool_type == 'BlueWarp':
-                valid_target_types = ('ChildSpawn', 'AdultSpawn', 'WarpSong', 'BlueWarp', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
-                valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
+                valid_target_types = ('ChildSpawn', 'AdultSpawn', 'WarpSong', 'BlueWarp', 'OwlDrop', 'OverworldOneWay', 'Extra')
+                valid_target_types_reverse = ()
                 if world.settings.blue_warps == 'full':
-                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'ChildBoss', 'AdultBoss', 'Hideout', 'Grotto', 'Grave', *valid_target_types)
-                    valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'ChildBoss', 'AdultBoss', 'Hideout', 'Grotto', 'Grave', *valid_target_types_reverse)
+                    valid_target_types = ('Overworld', 'Interior', 'SpecialInterior', 'Dungeon', 'DungeonSpecial', 'Hideout', 'Grotto', 'Grave', *valid_target_types)
+                    valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior', 'Dungeon', 'DungeonSpecial', 'Hideout', 'Grotto', 'Grave', *valid_target_types_reverse)
+                    if world.dungeon_back_access:
+                        valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
+                        valid_target_types_reverse = ('ChildBoss', 'AdultBoss', *valid_target_types_reverse)
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
             # Ensure that when trying to place the last entrance of a one way pool, we don't assume the rest of the targets are reachable
             for target in one_way_target_entrance_pools[pool_type]:
@@ -1015,15 +1033,21 @@ def check_entrances_compatibility(entrance, target, rollbacks=(), placed_one_way
 # Validate the provided worlds' structures, raising an error if it's not valid based on our criterias
 def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable, itempool, placed_one_way_entrances=()):
 
+    # For various reasons, we don't want the player to end up through certain entrances as the wrong age
+    # This means we need to hard check that none of the relevant entrances are ever reachable as that age
+    # This is mostly relevant when mixing entrance pools or shuffling special interiors (such as windmill or kak potion shop)
+    # Warp Songs and Overworld Spawns can also end up inside certain indoors so those need to be handled as well
+    CHILD_FORBIDDEN = ()
+    ADULT_FORBIDDEN = ()
     if not world.settings.decouple_entrances:
-        # Unless entrances are decoupled, we don't want the player to end up through certain entrances as the wrong age
-        # This means we need to hard check that none of the relevant entrances are ever reachable as that age
-        # This is mostly relevant when mixing entrance pools or shuffling special interiors (such as windmill or kak potion shop)
-        # Warp Songs and Overworld Spawns can also end up inside certain indoors so those need to be handled as well
-        # Allowing child to enter Spirit from the boss would severely complicate key logic
-        CHILD_FORBIDDEN = ['OGC Great Fairy Fountain -> Castle Grounds', 'GV Carpenter Tent -> GV Fortress Side', 'Twinrova Boss Room -> Spirit Temple Before Boss']
-        ADULT_FORBIDDEN = ['HC Great Fairy Fountain -> Castle Grounds', 'HC Storms Grotto -> Castle Grounds']
+        CHILD_FORBIDDEN += ('OGC Great Fairy Fountain -> Castle Grounds', 'GV Carpenter Tent -> GV Fortress Side')
+        ADULT_FORBIDDEN += ('HC Great Fairy Fountain -> Castle Grounds', 'HC Storms Grotto -> Castle Grounds')
+    if not world.dungeon_back_access:
+        # Logic for back access to Shadow and Spirit temples is experimental
+        CHILD_FORBIDDEN += ('Bongo Bongo Boss Room -> Shadow Temple Before Boss', 'Twinrova Boss Room -> Spirit Temple Before Boss')
+        ADULT_FORBIDDEN += ('Bongo Bongo Boss Room -> Shadow Temple Before Boss', 'Twinrova Boss Room -> Spirit Temple Before Boss')
 
+    if CHILD_FORBIDDEN or ADULT_FORBIDDEN:
         for entrance in world.get_shufflable_entrances():
             if entrance.shuffled:
                 if entrance.replaces:
@@ -1179,9 +1203,11 @@ def get_entrance_replacing(region, entrance_name):
         return original_entrance
 
     try:
-        return next(filter(lambda entrance: entrance.replaces and entrance.replaces.name == entrance_name and \
-                                            entrance.parent_region and entrance.parent_region.name != 'Root Exits' and \
-                                            entrance.type not in ('OverworldOneWay', 'OwlDrop', 'ChildSpawn', 'AdultSpawn', 'WarpSong', 'BlueWarp'), region.entrances))
+        return next(filter(lambda entrance:
+            entrance.replaces and entrance.replaces.name == entrance_name and
+            entrance.parent_region and entrance.parent_region.name != 'Root Exits' and
+            entrance.type not in ('OverworldOneWay', 'OwlDrop', 'ChildSpawn', 'AdultSpawn', 'WarpSong', 'BlueWarp'),
+        region.entrances))
     except StopIteration:
         return None
 

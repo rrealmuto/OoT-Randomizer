@@ -101,6 +101,7 @@
         "is_boss_room": "True",
         "events": {
             "Defeat Morpha": "can_use(Hookshot)",
+            # separate event which appears in the playthrough only if it's required to raise the Lake Hylia water level
             "Water Temple Clear": "'Defeat Morpha'"
         },
         "locations": {

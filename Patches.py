@@ -1079,7 +1079,18 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
                     savewarp = entrance.parent_region.savewarp.replaces.data['index']
                 elif 'savewarp_fallback' in entrance.reverse.data:
                     # Spawning outside a grotto crashes the game, so we use a nearby regular entrance instead.
-                    savewarp = entrance.reverse.data['savewarp_fallback']
+                    if entrance.reverse.data['savewarp_fallback'] == 0x0117:
+                        # We don't want savewarping in a boss room inside GV Octorok Grotto to allow out-of-logic access to Gerudo Valley,
+                        # so we spawn the player at whatever entrance GV Lower Stream -> Lake Hylia leads to.
+                        savewarp = world.get_entrance('GV Lower Stream -> Lake Hylia')
+                        savewarp = (savewarp.replaces or savewarp).data
+                        if 'savewarp_fallback' in savewarp:
+                            # the entrance GV Lower Stream -> Lake Hylia leads to is also not a valid savewarp so we place the player at Gerudo Valley from Hyrule Field instead
+                            savewarp = entrance.reverse.data['savewarp_fallback']
+                        else:
+                            savewarp = savewarp['index']
+                    else:
+                        savewarp = entrance.reverse.data['savewarp_fallback']
                 else:
                     # Spawning inside a grotto also crashes, but exiting a grotto can currently only lead to a boss room in decoupled,
                     # so we follow the entrance chain back to the nearest non-grotto.
@@ -1211,7 +1222,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
         or world.settings.blue_warps in ('balanced', 'full')
         or world.full_one_ways
     )
-    set_entrance_updates(filter(lambda entrance: entrance.shuffled or (patch_blue_warps and entrance.type == 'BlueWarp'), world.get_shufflable_entrances()))
+    set_entrance_updates(entrance for entrance in world.get_shufflable_entrances() if entrance.shuffled or (patch_blue_warps and entrance.type == 'BlueWarp'))
 
     for k, v in [(k, v) for k, v in exit_updates if k in exit_table]:
         for addr in exit_table[k]:
@@ -1795,7 +1806,29 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
             if locations:
                 # Location types later in the list will be preferred over earlier ones or ones not in the list.
                 # This ensures that if the region behind the boss door is a boss arena, the medallion or stone will be used.
-                priority_types = ("Freestanding", "ActorOverride", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive", "SilverRupee", "GS Token", "GrottoScrub", "Scrub", "Shop", "NPC", "Collectable", "Chest", "Cutscene", "Song", "BossHeart", "Boss")
+                priority_types = (
+                    "Freestanding",
+                    "ActorOverride",
+                    "RupeeTower",
+                    "Pot",
+                    "Crate",
+                    "FlyingPot",
+                    "SmallCrate",
+                    "Beehive",
+                    "SilverRupee",
+                    "GS Token",
+                    "GrottoScrub",
+                    "Scrub",
+                    "Shop",
+                    "MaskShop",
+                    "NPC",
+                    "Collectable",
+                    "Chest",
+                    "Cutscene",
+                    "Song",
+                    "BossHeart",
+                    "Boss",
+                )
                 best_type = max((location.type for location in locations), key=lambda type: priority_types.index(type) if type in priority_types else -1)
                 location = random.choice(list(filter(lambda loc: loc.type == best_type, locations)))
                 break
@@ -2364,7 +2397,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
                     vanilla_reward_location = world.hinted_dungeon_reward_locations[vanilla_reward]
                     area = HintArea.at(vanilla_reward_location)
                     area = GossipText(area.text(world.settings.clearer_hints, preposition=True), [area.color], prefix='', capitalize=False)
-                    compass_message = f"\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for {dungeon_name}\x05\x40!\x01The {vanilla_reward} can be found\x01{area}!\x09"
+                    compass_message = f"\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for {dungeon_name}\x05\x40!\x01The {vanilla_reward} can be found\x01{area}!\x09" #TODO figure out why the player name isn't being displayed
                 else:
                     boss_location = next(filter(lambda loc: loc.type == 'Boss', world.get_entrance(f'{dungeon} Before Boss -> {dungeon.vanilla_boss_name} Boss Room').connected_region.locations))
                     dungeon_reward = boss_location.item.name

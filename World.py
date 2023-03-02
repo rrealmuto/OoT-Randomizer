@@ -97,20 +97,22 @@ class World(object):
         if len(self.mix_entrance_pools) == 1:
             self.mix_entrance_pools = set()
         self.mixed_pools_bosses = 'Boss' in self.mix_entrance_pools
-        self.dungeon_back_access = self.full_one_ways or (
-            self.mixed_pools_bosses and (
-                self.settings.decouple_entrances
-                or 'Overworld' in self.mix_entrance_pools
-                or (
-                    'GrottoGrave' in self.mix_entrance_pools
-                    and self.one_ways
-                )
-                or (
-                    'Interior' in self.mix_entrance_pools
-                    and (
-                        self.one_ways
-                        or self.shuffle_special_interior_entrances
-                        or self.settings.shuffle_hideout_entrances
+        self.dungeon_back_access = settings.dungeon_back_access and (
+            self.full_one_ways or (
+                self.mixed_pools_bosses and (
+                    self.settings.decouple_entrances
+                    or 'Overworld' in self.mix_entrance_pools
+                    or (
+                        'GrottoGrave' in self.mix_entrance_pools
+                        and self.one_ways
+                    )
+                    or (
+                        'Interior' in self.mix_entrance_pools
+                        and (
+                            self.one_ways
+                            or self.shuffle_special_interior_entrances
+                            or self.settings.shuffle_hideout_entrances
+                        )
                     )
                 )
             )

@@ -2425,7 +2425,7 @@ setting_infos = [
                                          'mq_dungeons_count', 'shuffle_bosses', 'dungeon_shortcuts', 'deadly_bonks',
                                          'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_beehives', 'shuffle_silver_rupees',
                                          'mix_entrance_pools', 'decouple_entrances', 'shuffle_base_item_pool', 'logic_water_gold_scale_no_entry']},
-            'none'      : {'settings' : ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'logic_water_gold_scale_no_entry', 'reachable_locations']},
+            'none'      : {'settings' : ['dungeon_back_access', 'allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'logic_water_gold_scale_no_entry', 'reachable_locations']},
         },
         shared         = True,
     ),
@@ -4285,10 +4285,14 @@ setting_infos = [
             outside the boss room's entrance.
 
             'Balanced':
-            The destinations are randomly chosen from overworld,
-            interior, and a few special entrances.
+            The destinations are randomly chosen from one-way
+            targets and a few special entrances.
 
             'Full':
+            Blue warps can also lead to overworld or interior
+            entrances. Due to a vanilla bug, these entrances may
+            take a second or two to load in, so care must be taken
+            in order to avoid accidentally going out of bounds.
             Blue warps can also take you inside or outside of grottos
             or dungeons, potentially bypassing item requirements.
         ''',
@@ -4298,7 +4302,7 @@ setting_infos = [
             'randomize_key': 'randomize_settings',
         },
     ),
-        Checkbutton(
+    Checkbutton(
         name           = 'exclusive_one_ways',
         gui_text       = 'Mutually Exclusive One-Ways',
         gui_tooltip    = '''\
@@ -4314,6 +4318,21 @@ setting_infos = [
         gui_params     = {
             'randomize_key': 'randomize_settings',
         },
+    ),
+    Checkbutton(
+        name           = 'dungeon_back_access',
+        gui_text       = '[EXPERIMENTAL] Allow Access to Shadow and Spirit Temples From Boss Doors',
+        gui_tooltip    = '''\
+            If this setting is enabled, entrances may be shuffled in a way that
+            allows accessing the Shadow Temple and/or the Spirit Temple from their
+            boss doors. The logic for this is incomplete so this may generate
+            impossible seeds!
+
+            This setting is always enabled if Logic Rules are set to No Logic.
+        ''',
+        default        = False,
+        disabled_default = True,
+        shared         = True,
     ),
 
 
