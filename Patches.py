@@ -2225,6 +2225,53 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     for _, [door_byte, door_bits] in locked_doors.items():
         save_context.write_bits(door_byte, door_bits)
 
+    # Update item model appearance
+    if not world.settings.clearer_item_models:
+        models_to_update = (
+            (0x00BB, 0x00B6, 0x03), # Minuet of Forest
+            (0x00BC, 0x00B6, 0x04), # Bolero of Fire
+            (0x00BD, 0x00B6, 0x05), # Serenade of Water
+            (0x00BE, 0x00B6, 0x06), # Requiem of Spirit
+            (0x00BF, 0x00B6, 0x07), # Nocturne of Shadow
+            (0x00C0, 0x00B6, 0x08), # Prelude of Light
+            (0x00CB, 0x00AA, 0x02), # Small Key Ring (Forest Temple)
+            (0x00CC, 0x00AA, 0x02), # Small Key Ring (Fire Temple)
+            (0x00CD, 0x00AA, 0x02), # Small Key Ring (Water Temple)
+            (0x00CE, 0x00AA, 0x02), # Small Key Ring (Spirit Temple)
+            (0x00CF, 0x00AA, 0x02), # Small Key Ring (Shadow Temple)
+            (0x00D0, 0x00AA, 0x02), # Small Key Ring (Bottom of the Well)
+            (0x00D1, 0x00AA, 0x02), # Small Key Ring (Gerudo Training Ground)
+            (0x00D2, 0x00AA, 0x02), # Small Key Ring (Thieves Hideout)
+            (0x00D3, 0x00AA, 0x02), # Small Key Ring (Ganons Castle)
+            (0x00ED, 0x0198, 0x72), # Silver Rupee Pouch (Dodongos Cavern Staircase)
+            (0x00EE, 0x0198, 0x72), # Silver Rupee Pouch (Ice Cavern Spinning Scythe)
+            (0x00EF, 0x0198, 0x72), # Silver Rupee Pouch (Ice Cavern Push Block)
+            (0x00F0, 0x0198, 0x72), # Silver Rupee Pouch (Bottom of the Well Basement)
+            (0x00F1, 0x0198, 0x72), # Silver Rupee Pouch (Shadow Temple Scythe Shortcut)
+            (0x00F2, 0x0198, 0x72), # Silver Rupee Pouch (Shadow Temple Invisible Blades)
+            (0x00F3, 0x0198, 0x72), # Silver Rupee Pouch (Shadow Temple Huge Pit)
+            (0x00F4, 0x0198, 0x72), # Silver Rupee Pouch (Shadow Temple Invisible Spikes)
+            (0x00F5, 0x0198, 0x72), # Silver Rupee Pouch (Gerudo Training Ground Slopes)
+            (0x00F6, 0x0198, 0x72), # Silver Rupee Pouch (Gerudo Training Ground Lava)
+            (0x00F7, 0x0198, 0x72), # Silver Rupee Pouch (Gerudo Training Ground Water)
+            (0x00F8, 0x0198, 0x72), # Silver Rupee Pouch (Spirit Temple Child Early Torches)
+            (0x00F9, 0x0198, 0x72), # Silver Rupee Pouch (Spirit Temple Adult Boulders)
+            (0x00FA, 0x0198, 0x72), # Silver Rupee Pouch (Spirit Temple Lobby and Lower Adult)
+            (0x00FB, 0x0198, 0x72), # Silver Rupee Pouch (Spirit Temple Sun Block)
+            (0x00FC, 0x0198, 0x72), # Silver Rupee Pouch (Spirit Temple Adult Climb)
+            (0x00FD, 0x0198, 0x72), # Silver Rupee Pouch (Ganons Castle Spirit Trial)
+            (0x00FE, 0x0198, 0x72), # Silver Rupee Pouch (Ganons Castle Light Trial)
+            (0x00FF, 0x0198, 0x72), # Silver Rupee Pouch (Ganons Castle Fire Trial)
+            (0x0100, 0x0198, 0x72), # Silver Rupee Pouch (Ganons Castle Shadow Trial)
+            (0x0101, 0x0198, 0x72), # Silver Rupee Pouch (Ganons Castle Water Trial)
+            (0x0102, 0x0198, 0x72), # Silver Rupee Pouch (Ganons Castle Forest Trial)
+        )
+        for item_id, object_id, graphic_id in models_to_update:
+            item = read_rom_item(rom, item_id)
+            item['object_id'] = object_id
+            item['graphic_id'] = graphic_id
+            write_rom_item(rom, i, item)
+
     # Update chest type appearance
     BROWN_CHEST = 0
     GOLD_CHEST = 2
@@ -2232,7 +2279,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     SILVER_CHEST = 13
     SKULL_CHEST_SMALL = 14
     SKULL_CHEST_BIG =  15
-    # Update chest type appearance
     if world.settings.correct_chest_appearances == 'textures':
         symbol = rom.sym('CHEST_TEXTURE_MATCH_CONTENTS')
         rom.write_int32(symbol, 0x00000001)

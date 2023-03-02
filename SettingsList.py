@@ -5357,6 +5357,27 @@ setting_infos = [
         shared         = True,
     ),
     Checkbutton(
+        name           = 'clearer_item_models',
+        gui_text       = 'Clearer Item Models',
+        gui_tooltip    = '''\
+            Adds new item models to disambiguate some
+            pairs of freestanding items. If this
+            setting is disabled, the following pairs
+            of items will have identical models:
+
+            - Small Keys and Small Key Rings
+            - Silver Rupees and Silver Rupee Pouches
+            - Saria's Song and Minuet of Forest
+            - Zelda's Lullaby and Bolero of Fire
+            - Song of Time and Serenade of Water
+            - Epona's Song and Requiem of Spirit
+            - Song of Storms and Nocturne of Shadow
+            - Sun's Song and Prelude of Light
+        ''',
+        shared         = True,
+        default        = True,
+    ),
+    Checkbutton(
         name           = 'clearer_hints',
         gui_text       = 'Clearer Hints',
         gui_tooltip    = '''\
