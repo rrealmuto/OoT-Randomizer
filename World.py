@@ -1244,6 +1244,28 @@ class World(object):
         if not self.settings.blue_fire_arrows:
             # Ice Arrows can only be required when the Blue Fire Arrows setting is enabled
             exclude_item_list.append('Ice Arrows')
+        if self.settings.logic_lens_botw:
+            # These silver rupees unlock a door to an area that's also reachable with lens
+            exclude_item_list.append('Silver Rupee (Bottom of the Well Basement)')
+            exclude_item_list.append('Silver Rupee Pouch (Bottom of the Well Basement)')
+        if self.dungeon_mq['Shadow Temple'] and self.settings.shuffle_mapcompass == 'vanilla':
+            # These silver rupees only unlock the map chest
+            exclude_item_list.append('Silver Rupee (Shadow Temple Scythe Shortcut)')
+            exclude_item_list.append('Silver Rupee Pouch (Shadow Temple Scythe Shortcut)')
+        if self.settings.logic_spirit_sun_chest_no_rupees and not self.settings.logic_spirit_sun_chest_bow:
+            # With this trickset, these silver rupees are logically irrelevant
+            exclude_item_list.append('Silver Rupee (Spirit Temple Sun Block)')
+            exclude_item_list.append('Silver Rupee Pouch (Spirit Temple Sun Block)')
+        if self.settings.shuffle_pots in ('off', 'overworld') and self.settings.trials == 0:
+            # These silver rupees only lock pots and trial completion
+            exclude_item_list.append('Silver Rupee (Ganons Castle Fire Trial)')
+            exclude_item_list.append('Silver Rupee Pouch (Ganons Castle Fire Trial)')
+            exclude_item_list.append('Silver Rupee (Ganons Castle Shadow Trial)')
+            exclude_item_list.append('Silver Rupee Pouch (Ganons Castle Shadow Trial)')
+            exclude_item_list.append('Silver Rupee (Ganons Castle Water Trial)')
+            exclude_item_list.append('Silver Rupee Pouch (Ganons Castle Water Trial)')
+            exclude_item_list.append('Silver Rupee (Ganons Castle Forest Trial)')
+            exclude_item_list.append('Silver Rupee Pouch (Ganons Castle Forest Trial)')
 
         for i in self.item_hint_type_overrides['barren']:
             if i in exclude_item_list:
