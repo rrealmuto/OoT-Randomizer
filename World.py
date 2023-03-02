@@ -1244,7 +1244,7 @@ class World(object):
         if not self.settings.blue_fire_arrows:
             # Ice Arrows can only be required when the Blue Fire Arrows setting is enabled
             exclude_item_list.append('Ice Arrows')
-        if self.settings.logic_lens_botw:
+        if self.settings.logic_lens_botw or self.settings.shuffle_pots in ('off', 'overworld'):
             # These silver rupees unlock a door to an area that's also reachable with lens
             exclude_item_list.append('Silver Rupee (Bottom of the Well Basement)')
             exclude_item_list.append('Silver Rupee Pouch (Bottom of the Well Basement)')
