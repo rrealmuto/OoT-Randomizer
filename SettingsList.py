@@ -4478,8 +4478,8 @@ setting_infos = [
             'random': 'Random # of Items Per Shop',
         },
         disable        = {
-            'off':  {'settings': ['shopsanity_prices']},
-            '0':    {'settings': ['shopsanity_prices']},
+            'off':  {'settings': ['special_deal_price_min', 'special_deal_price_max', 'special_deal_price_distribution']},
+            '0':    {'settings': ['special_deal_price_min', 'special_deal_price_max', 'special_deal_price_distribution']},
         },
         gui_tooltip    = '''\
             Randomizes Shop contents.
@@ -4519,36 +4519,66 @@ setting_infos = [
             ],
         },
     ),
-    Combobox(
-        name           = 'shopsanity_prices',
-        gui_text       = 'Special Deal Prices',
-        default        = 'random',
-        choices        = {
-            'random':          'Random',
-            'random_starting':    'Starting Wallet',
-            'random_adult':   'Adult\'s Wallet',
-            'random_giant':    'Giant\'s Wallet',
-            'random_tycoon':   'Tycoon\'s Wallet',
-            'affordable':      'Affordable',
-        },
-        gui_tooltip    = '''\
-            Controls the randomization of prices for Special Deal
-            items in shops. sFor more control, utilize the plandomizer.
-
-            'Random': The default randomization. Shop prices for
-            Special Deals will range between 0 to 300 rupees,
-            with a bias towards values slightly below the middle of the
-            range, in multiples of 5.
-
-            'X Wallet': Shop prices for Special Deals will range
-            between 0 and the specified wallet's maximum capacity,
-            in multiples of 5.
-
-            'Affordable': Shop prices for Special Deals will be
-            fixed to 10 rupees.
-        ''',
-        disabled_default =  'random',
+    Scale(
+        name           = 'special_deal_price_min',
+        gui_text       = 'Minimum Special Deal Price',
+        default        = 0,
+        min            = 0,
+        max            = 995,
+        step           = 5,
         shared         = True,
+        gui_tooltip    = '''\
+            Select the minimum price in rupees for Special Deal
+            items in shops. Prices will be selected randomly in
+            multiples of 5 according to the "Special Deal Price
+            Distribution" setting. Set this setting and "Maximum
+            Special Deal Price" to the same value to give all
+            Special Deals a fixed price.
+        ''',
+        gui_params     = {
+            "hide_when_disabled": True,
+        },
+    ),
+    Scale(
+        name           = 'special_deal_price_max',
+        gui_text       = 'Maximum Special Deal Price',
+        default        = 300,
+        min            = 0,
+        max            = 995,
+        step           = 5,
+        shared         = True,
+        gui_tooltip    = '''\
+            Select the maximum price in rupees for Special Deal
+            items in shops. Prices will be selected randomly in
+            multiples of 5 according to the "Special Deal Price
+            Distribution" setting. Set this setting and "Minimum
+            Special Deal Price" to the same value to give all
+            Special Deals a fixed price.
+        ''',
+        gui_params     = {
+            "hide_when_disabled": True,
+        },
+    ),
+    Combobox(
+        name           = 'special_deal_price_distribution',
+        gui_text       = 'Special Deal Price Distribution',
+        default        = 'betavariate',
+        choices        = {
+            'betavariate': 'Weighted',
+            'uniform':     'Uniform',
+        },
+        shared         = True,
+        gui_tooltip    = '''\
+            Controls how the random prices for Special Deal items in
+            shops are selected. For more control, utilize the plandomizer.
+
+            'Weighted': Shop prices will be biased towards slightly below
+            the middle of the selected range, with very low or very high
+            prices only appearing rarely.
+
+            'Uniform': Each price value in the selected range is equally
+            likely.
+        ''',
         gui_params     = {
             "hide_when_disabled": True,
         },
