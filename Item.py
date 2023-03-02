@@ -241,6 +241,30 @@ class Item(object):
                         # Magic Beans are useless if beans are already planted
                         self.name in ('Magic Bean', 'Buy Magic Bean', 'Magic Bean Pack')
                         and self.world.settings.plant_beans
+                    ) or (
+                        # These silver rupees unlock a door to an area that's also reachable with lens
+                        self.name in ('Silver Rupee (Bottom of the Well Basement)', 'Silver Rupee Pouch (Bottom of the Well Basement)')
+                        and self.world.settings.logic_lens_botw
+                    ) or (
+                        # These silver rupees only unlock the map chest
+                        self.name in ('Silver Rupee (Shadow Temple Scythe Shortcut)', 'Silver Rupee Pouch (Shadow Temple Scythe Shortcut)')
+                        and self.world.dungeon_mq['Shadow Temple']
+                        and self.world.settings.shuffle_mapcompass == 'vanilla'
+                    ) or (
+                        # With this trickset, these silver rupees are logically irrelevant
+                        self.name in ('Silver Rupee (Spirit Temple Sun Block)', 'Silver Rupee Pouch (Spirit Temple Sun Block)')
+                        and self.world.settings.logic_spirit_sun_chest_no_rupees
+                        and not self.world.settings.logic_spirit_sun_chest_bow
+                    ) or (
+                        # These silver rupees only lock pots and the trial
+                        self.name in (
+                            'Silver Rupee (Ganons Castle Fire Trial)', 'Silver Rupee Pouch (Ganons Castle Fire Trial)',
+                            'Silver Rupee (Ganons Castle Shadow Trial)', 'Silver Rupee Pouch (Ganons Castle Shadow Trial)',
+                            'Silver Rupee (Ganons Castle Water Trial)', 'Silver Rupee Pouch (Ganons Castle Water Trial)',
+                            'Silver Rupee (Ganons Castle Forest Trial)', 'Silver Rupee Pouch (Ganons Castle Forest Trial)',
+                        )
+                        and self.world.settings.shuffle_pots in ('off', 'overworld')
+                        and self.world.settings.trials == 0
                     )
                 )
             )
