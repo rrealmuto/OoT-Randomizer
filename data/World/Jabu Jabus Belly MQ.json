@@ -117,8 +117,8 @@
             "Fairy Pot": "has_bottle"
         },
         "exits": {
-            "Jabu Jabus Belly Before Slimy Thing": "'Jabu Jabus Belly Parasitic Tentacle Cleared' or damage_multiplier != 'ohko' or Fairy",
-            "Jabu Jabus Belly Elevator Room": "can_use(Nayrus_Love)",
+            "Jabu Jabus Belly Before Slimy Thing": "'Jabu Jabus Belly Parasitic Tentacle Cleared' or damage_multiplier != 'ohko'",
+            "Jabu Jabus Belly Elevator Room": "Fairy or can_use(Nayrus_Love)",
             "Barinade Boss Room": "here(can_use(Slingshot)) or jabu_shortcuts"
         }
     }
