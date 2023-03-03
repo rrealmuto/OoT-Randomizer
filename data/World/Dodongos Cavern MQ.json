@@ -222,9 +222,10 @@
         "exits": {
             "Dodongos Cavern Lobby": "True",
             # The final line of this exit is for using an Armos to explode the bomb flowers.
+            # This should really be a separate trick, but it's only relevant in mixed pools.
             "Dodongos Cavern Before Boss": "
                 is_adult or has_explosives or can_use(Dins_Fire) or dodongos_cavern_shortcuts or
-                Sticks or ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot))"
+                (logic_dc_mq_eyes_child and (Sticks or ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot))))"
         }
     },
     {

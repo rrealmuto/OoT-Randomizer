@@ -62,7 +62,8 @@
         "dungeon": "Jabu Jabus Belly",
         "savewarp": "Zoras Fountain -> Jabu Jabus Belly Beginning",
         "locations": {
-            "Jabu Jabus Belly GS Near Boss": "is_adult or can_child_attack"
+            # Could have a trick to allow (is_adult or can_child_attack) for hitting the skulltula through the wall
+            "Jabu Jabus Belly GS Near Boss": "can_use_projectile or can_use(Dins_Fire)"
         },
         "exits": {
             "Jabu Jabus Belly Main": "True",

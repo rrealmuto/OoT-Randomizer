@@ -1070,7 +1070,6 @@ def check_entrances_compatibility(entrance, target, rollbacks=(), placed_one_way
 
 # Validate the provided worlds' structures, raising an error if it's not valid based on our criterias
 def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable, itempool, placed_one_way_entrances=()):
-
     # For various reasons, we don't want the player to end up through certain entrances as the wrong age
     # This means we need to hard check that none of the relevant entrances are ever reachable as that age
     # This is mostly relevant when mixing entrance pools or shuffling special interiors (such as windmill or kak potion shop)
@@ -1084,6 +1083,9 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
         # Logic for back access to Shadow and Spirit temples is experimental
         CHILD_FORBIDDEN += ('Bongo Bongo Boss Room -> Shadow Temple Before Boss', 'Twinrova Boss Room -> Spirit Temple Before Boss')
         ADULT_FORBIDDEN += ('Bongo Bongo Boss Room -> Shadow Temple Before Boss', 'Twinrova Boss Room -> Spirit Temple Before Boss')
+        if world.dungeon_mq['Forest Temple'] and 'Forest Temple' in world.settings.dungeon_shortcuts:
+            CHILD_FORBIDDEN += ('Phantom Ganon Boss Room -> Forest Temple Before Boss',)
+            ADULT_FORBIDDEN += ('Phantom Ganon Boss Room -> Forest Temple Before Boss',)
 
     if CHILD_FORBIDDEN or ADULT_FORBIDDEN:
         for entrance in world.get_shufflable_entrances():

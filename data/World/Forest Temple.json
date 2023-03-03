@@ -191,8 +191,8 @@
             "Forest Temple GS Basement": "can_use(Hookshot) or can_use(Boomerang)"
         },
         "exits": {
+            "Forest Temple Central Area": "forest_temple_shortcuts",
             "Forest Temple Before Boss": "True"
-            # no exit to Forest Temple Central Area because the elevator doesn't work properly
         }
     },
     {

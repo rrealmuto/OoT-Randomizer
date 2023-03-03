@@ -4326,7 +4326,8 @@ setting_infos = [
             If this setting is enabled and depending on which entrance randomizer
             settings are enabled, entrances may be shuffled in a way that allows
             accessing the Shadow Temple and/or the Spirit Temple from their boss
-            doors. The logic for this is incomplete so this may generate
+            doors. This also applies to Master Quest Forest Temple if the shortcut
+            is enabled. The logic for this is incomplete so this may generate
             impossible seeds!
 
             This setting is always enabled if Logic Rules are set to No Logic.
