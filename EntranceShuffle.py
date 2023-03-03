@@ -748,6 +748,7 @@ def shuffle_random_entrances(worlds):
             else:
                 shuffle_entrance_pool(world, worlds, entrance_pool, target_entrance_pools[pool_type], locations_to_ensure_reachable, placed_one_way_entrances=placed_one_way_entrances)
 
+        for pool_type, entrance_pool in entrance_pools.items():
             # Determine boss save/death warp targets
             for entrance in entrance_pool:
                 target = (entrance.replaces or entrance).reverse
