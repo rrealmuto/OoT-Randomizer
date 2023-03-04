@@ -367,7 +367,7 @@ KEYSANITY_MESSAGES = [
     (0x9046, "\x08You have found all of the \x05\x44Silver\x01Rupees\x05\x40 for the \x05\x42Forest Trial\x05\x40 in\x01\x05\x41Ganon's Castle\x05\x40!\x09"),
     # 0x9048 used above
     # Silver Rupee messages for MQ dungeons when all have been collected. Offset 0x2E from the base messages.
-    (0x9049, "\x08You have found all of the \x05\x44Silver\x01Rupees\x05\x40 for the staircase room in\x01\x05\x41Dodongo's Cavern\x05\x40! The way to the\x01hanging bridge open!\x09"),
+    (0x9049, "\x08You have found all of the \x05\x44Silver\x01Rupees\x05\x40 for the staircase room in\x01\x05\x41Dodongo's Cavern\x05\x40! The way to the\x01hanging bridge is open!\x09"),
     (0x904A, "\x08You found the \x05\x41Triforce of Power\x05\x40!"),
     (0x904B, "\x08You found the \x05\x43Triforce of Wisdom\x05\x40!"),
     (0x904C, "\x08You found the \x05\x42Triforce of Courage\x05\x40!"),
