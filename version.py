@@ -14,4 +14,4 @@ branch_url = 'https://github.com/Elagatua/OoT-Randomizer/tree/Dev'
 base_version = __version__
 
 # And finally, the completed version string. This is what is displayed and used for salting seeds.
-__version__ = f'{base_version} f.LUM'
+__version__ = f'{base_version} blitz-{supplementary_version}'
