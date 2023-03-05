@@ -361,7 +361,7 @@ KEYSANITY_MESSAGES = [
     (0x9046, "\x08You have found all of the \x05\x44Silver\x01Rupees\x05\x40 for the \x05\x42Forest Trial\x05\x40 in\x01\x05\x41Ganon's Castle\x05\x40!\x09"),
     # 0x9048 used above
     # Silver Rupee messages for MQ dungeons when all have been collected. Offset 0x2E from the base messages.
-    (0x9049, "\x08You have found all of the \x05\x44Silver\x01Rupees\x05\x40 for the staircase room in\x01\x05\x41Dodongo's Cavern\x05\x40! The way to the\x01hanging bridge open!\x09"),
+    (0x9049, "\x08You have found all of the \x05\x44Silver\x01Rupees\x05\x40 for the staircase room in\x01\x05\x41Dodongo's Cavern\x05\x40! The way to the\x01hanging bridge is open!\x09"),
     # 0x904A, 0x904B, and 0x904C unused
     (0x904D, "\x08You have found all of the \x05\x44Silver\x01Rupees\x05\x40 for the \x05\x42scythe shortcut room\x05\x40\x01in the \x05\x45Shadow Temple\x05\x40! Now you can\x01access the \x05\x42chest\x05\x40 there!\x09"),
     (0x904E, "\x08You have found all of the \x05\x44Silver\x01Rupees\x05\x40 for the \x05\x44invisible blade room\x05\x40 in\x01the \x05\x45Shadow Temple\x05\x40! Now you can\x01access the \x05\x4chest\x05\x40 there!\x09"),
