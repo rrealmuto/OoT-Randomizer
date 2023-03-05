@@ -73,6 +73,7 @@ typedef struct EnItem00 {
     float scale;                    // 0x014C
     ColliderCylinder collider;      // 0x0150 size = 4C
     override_t override;            // 0x019C
+    bool is_silver_rupee;            // 0x????
 } EnItem00;
 
 

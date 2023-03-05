@@ -369,7 +369,7 @@ SRAM_SLOTS:
 
 ; Increase the size of EnItem00 instances to store the override
 .orga 0xB5D6BE ; Address in ROM of the enitem00 init params
-    .halfword 0x01AC ; Originally 0x019C
+    .halfword 0x01BC ; Originally 0x019C
 
 ; Increase the size of pot instances to store chest type
 .orga 0xDE8A5E ; Address in ROM of the ObjTsubo init params
@@ -409,6 +409,14 @@ SRAM_SLOTS:
     nop
     nop
 .headersize(0)
+
+; Hack EnItem00_Update when it checks proximity to the player to handle silver rupee collisions differently
+.orga 0xA88B74 ; In Memory 0x80012C14
+; Replaces 
+;   mtc1    at, f18
+;   lwc1    f4, 0x0090(s0)
+    j       EnItem00_ProximityCheck_Hook
+    nop
 
 ; Hack EnItem00 Action Function (func_8001E304 from decomp, 0x8001251C in 1.0) used by Item_DropCollectible to not increment the time to live if its < 0
 ; replaces

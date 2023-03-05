@@ -180,6 +180,7 @@ void after_spawn_override_silver_rupee(z64_actor_t* spawned, bool overridden)
 {
     if(overridden) {
         EnItem00* this = (EnItem00*)spawned;
+        this->is_silver_rupee = true;
         this->collider.info.bumper.dmgFlags = 0; //Remove clear the bumper collider flags so it doesn't interact w/ boomerang
     }
 }
