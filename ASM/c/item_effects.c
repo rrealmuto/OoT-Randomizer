@@ -165,6 +165,8 @@ void give_silver_rupee(z64_file_t *save, int16_t dungeon_id, int16_t silver_rupe
 void give_silver_rupee_pouch(z64_file_t *save, int16_t dungeon_id, int16_t silver_rupee_id) {
     silver_rupee_data_t var = silver_rupee_vars[silver_rupee_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
 
+    Rupees_ChangeBy(5 * var.needed_count);
+
     if (extended_savectx.silver_rupee_counts[silver_rupee_id] == var.needed_count) return;
     extended_savectx.silver_rupee_counts[silver_rupee_id] = var.needed_count;
 
