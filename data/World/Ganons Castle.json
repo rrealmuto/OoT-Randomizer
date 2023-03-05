@@ -239,15 +239,7 @@
             "Ganons Castle Spirit Trial Silver Rupee Center": "True",
             "Ganons Castle Spirit Trial Silver Rupee Back Left": "True",
             "Ganons Castle Spirit Trial Silver Rupee Back Right": "True",
-            "Ganons Castle Spirit Trial Beamos" : "has_explosives",
-            "Ganons Castle Spirit Trial Torch Slug 1" : "(logic_spirit_trial_hookshot and (is_adult or Kokiri_Sword or Sticks))",
-            "Ganons Castle Spirit Trial Torch Slug 2" : "(logic_spirit_trial_hookshot and (is_adult or Kokiri_Sword or Sticks))",
-            "Ganons Castle Spirit Trial Wrong Sun Wallmaster 1": "can_use(Bow) and can_use(Mirror_Shield) and has_bombchus and
-            (logic_spirit_trial_hookshot or Progressive_Hookshot)",
-            "Ganons Castle Spirit Trial Wrong Sun Wallmaster 2": "can_use(Bow) and can_use(Mirror_Shield) and has_bombchus and
-            (logic_spirit_trial_hookshot or Progressive_Hookshot)",
-            "Ganons Castle Spirit Trial Wrong Sun Wallmaster 3": "can_use(Bow) and can_use(Mirror_Shield) and has_bombchus and
-            (logic_spirit_trial_hookshot or Progressive_Hookshot)"
+            "Ganons Castle Spirit Trial Beamos" : "has_explosives"
         },
         "exits": {
             "Ganons Castle Spirit Trial Second Room Front": "(Silver_Rupee_Ganons_Castle_Spirit_Trial, 5)"
@@ -257,7 +249,9 @@
         "region_name": "Ganons Castle Spirit Trial Second Room Front",
         "dungeon": "Ganons Castle",
         "locations": {
-            "Ganons Castle Spirit Trial Crystal Switch Chest": "can_jumpslash or has_explosives"
+            "Ganons Castle Spirit Trial Crystal Switch Chest": "can_jumpslash or has_explosives",
+            "Ganons Castle Spirit Trial Torch Slug 1" : "is_adult or Kokiri_Sword or Sticks",
+            "Ganons Castle Spirit Trial Torch Slug 2" : "is_adult or Kokiri_Sword or Sticks"
         },
         "exits": {
             "Ganons Castle Spirit Trial Second Room Back": "has_bombchus"
@@ -267,7 +261,10 @@
         "region_name": "Ganons Castle Spirit Trial Second Room Back",
         "dungeon": "Ganons Castle",
         "locations": {
-            "Ganons Castle Spirit Trial Invisible Chest": "logic_lens_castle or can_use(Lens_of_Truth)"
+            "Ganons Castle Spirit Trial Invisible Chest": "logic_lens_castle or can_use(Lens_of_Truth)",
+            "Ganons Castle Spirit Trial Wrong Sun Wallmaster 1": "is_adult and Bow and Mirror_Shield",
+            "Ganons Castle Spirit Trial Wrong Sun Wallmaster 2": "is_adult and Bow and Mirror_Shield",
+            "Ganons Castle Spirit Trial Wrong Sun Wallmaster 3": "is_adult and Bow and Mirror_Shield"
         },
         "exits": {
             "Ganons Castle Spirit Trial Ending": "is_adult and Bow and Mirror_Shield"
