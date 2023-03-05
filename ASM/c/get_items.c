@@ -616,6 +616,7 @@ z64_actor_t *Item_DropCollectible_Actor_Spawn_Override(void *actorCtx, z64_game_
 // We use this point to determine if this is an overriden collectible and store that information in the actor.
 bool Item00_KillActorIfFlagIsSet(z64_actor_t *actor) {
     EnItem00 *this = (EnItem00 *)actor;
+    this->is_silver_rupee = false;
     uint16_t flag = 0;
     if (drop_collectible_override_flag) {
         flag = drop_collectible_override_flag;
