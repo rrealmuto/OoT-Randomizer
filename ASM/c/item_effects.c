@@ -246,5 +246,5 @@ void give_bombchus(z64_file_t *save, int16_t arg1, int16_t arg2) {
 }
 
 void trade_quest_upgrade(z64_file_t *save, int16_t item_id, int16_t arg2) {
-    SaveFile_SetTradeItemAsOwned((uint8_t)item_id);
+    SaveFile_SetTradeItemAsOwned(item_id);
 }

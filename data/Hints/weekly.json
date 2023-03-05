@@ -1,7 +1,7 @@
 {
     "name":                  "weekly",
     "gui_name":              "Weekly",
-    "description":           "Hint distribution used for weekly races. Duplicates of each hint, Skull Mask and Sheik in Kakariko are always hints, 5 Goal, 3 Foolish, 2 Entrance, 2 Sometimes.",
+    "description":           "Hint distribution used for weekly races. Duplicates of each hint, Skull Mask and Sheik in Kakariko are always hints, 5 Goal, 3 Foolish, 4 Entrance/Sometimes.",
     "add_locations":         [
         { "location": "Deku Theater Skull Mask", "types": ["always"] },
         { "location": "Sheik in Kakariko", "types": ["always"] }

@@ -1887,6 +1887,11 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     if 'mask_shop' in world.settings.misc_hints:
         rom.write_int32(rom.sym('CFG_MASK_SHOP_HINT'), 1)
 
+    # Make the cursed skulltula people come down instantly when entering if skull hints are on.
+    # Change  lui     $at, 0x4320 to  lui     $at, 0x44C8
+    if any(hint_type in world.settings.misc_hints for hint_type in ('10_skulltulas', '20_skulltulas', '30_skulltulas', '40_skulltulas', '50_skulltulas')):
+        rom.write_int16(0xEA185A, 0x44C8)
+
     # Patch freestanding items
     if world.settings.shuffle_freestanding_items:
     # Get freestanding item locations

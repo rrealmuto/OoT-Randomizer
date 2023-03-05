@@ -114,6 +114,7 @@ Fill_Lake:
     lhu     t3, 0x0EE0(v0)
     beqz    t4, @@return
     nop
+    addiu   t7, zero, 0xFBA7   ;t7 = FFFFFBA7 (-0x0459)
 
 @@morpha_dead:
     ; toggle the fill flag if the ocarina spot switch flag was set
@@ -154,6 +155,7 @@ Fill_Lake:
     add.s  f8, f0, f6
     c.lt.s f4, f8
     nop
+    addiu   t7, zero, 0xFB57   ;t7 = FFFFFB57 (-0x04A9)
 
 @@check_fill_max:
     ; if next fill level would pass the taget, then set to target
@@ -181,8 +183,7 @@ Fill_Lake:
     lw      t8, 0x07C0(v0)     ;t8 = col_hdr
     lw      t9, 0x0028(t8)     ;t9 = col_hdr.water
 
-    addiu   t7, zero, 0xFB57   ;t7 = FFFFFB57 (-0x04A9)
-    sh      t7, 0x0012(t9)     ;col_hdr.water[1].pos.y = -0x04A9
+    sh      t7, 0x0012(t9)     ;Water level when coming from Gerudo Valley
     sh      t1, 0x0022(t9)     ;col_hdr.water[2].pos.y = actor y-pos
     sh      t1, 0x0032(t9)     ;col_hdr.water[3].pos.y = actor y-pos
 
