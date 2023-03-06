@@ -30,7 +30,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * New “Mutually Exclusive One-Ways” setting which makes the hint area restriction apply to one-way entrances of different types
   * New “Shuffle Other Items” setting which can be disabled to generate vanilla seeds, only shuffle entrances, etc. (Currently not compatible with Master Quest)
   * New “Mixed Pools Tournament” and “Triforce Blitz” hint distributions
-  * New `goal-count` and `playthrough-location` hint types (based on [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev))
+  * New `goal-count`, `playthrough-location`, `goal-legacy`, `goal-legacy-single`, `wanderer`, `unlock-woth`, and `unlock-playthrough` hint types (based on [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev))
 * New settings presets:
   * “Debug” is similar to Default/Beginner but gives you most starting items for testing.
   * “Vanilla” generates a seed that's as close to the vanilla game as possible with current randomizer features. Unlike the vanilla seed available on <https://ootrandomizer.com/>, this preset uses glitchless logic to produce a useful spoiler log playthrough.
@@ -43,7 +43,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
     * “Standard Anti-Weekly Settings (Beginner)” omits “Shuffle Rupees & Hearts”, “Shuffle Pots”, “Shuffle Crates”, and “Shuffle Beehives”, and keeps the balanced item pool.
     * “Standard Anti-Weekly Settings (Advanced)” includes those shuffle settings, has a minimal item pool, and adds extra ice traps.
     * “Standard Anti-Weekly Settings (S6)” is the inverse of “S6 Tournament” instead of weekly settings. It otherwise resembles the beginner preset. The only differences are open Deku, vanilla child spawn, and tournament hint distribution.
-  * “Triforce Blitz” is a fast-paced game mode with very powerful hints. See [the official website](https://www.triforceblitz.com/) for details. Note that this currently still based on the settings for Triforce Blitz season 1. Differences from the official branch include each Triforce piece having its own distinct text box (as in Triforce Blitz season 2), and the starting song not being counted for goal counts.
+  * “Triforce Blitz S2” is a fast-paced game mode with very powerful hints used for [an upcoming tournament](https://midos.house/tfb/2). See [the official website](https://www.triforceblitz.com/) for details.
 * Other changes:
   * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
   * The conditions for forcing one-way entrances that lead to the Bolero, Nocturne, and Requiem warp pads have been adjusted to increase variety with some settings, such as “Guarantee Reachable Locations” set to “All Goals”, “Shuffle Dungeon Rewards”, or “Mix Entrance Pools” (based on [#1440](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1440))

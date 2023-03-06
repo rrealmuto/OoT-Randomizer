@@ -216,9 +216,8 @@ class World(object):
             self.settings.hint_dist = 'custom'
             self.hint_dist_user = self.settings.hint_dist_user
 
-        # Hack for legacy hint distributions from before the goal, dual and dual_always hint
-        # types was created. Keeps validation happy.
-        for hint_type in ('goal', 'dual', 'dual_always', 'entrance_always', 'goal-count', 'playthrough-location'):
+        # Allow omitting hint types that shouldn't be included
+        for hint_type in hint_dist_keys:
             if 'distribution' in self.hint_dist_user and hint_type not in self.hint_dist_user['distribution']:
                 self.hint_dist_user['distribution'][hint_type] = {"order": 0, "weight": 0.0, "fixed": 0, "copies": 0}
         if 'use_default_goals' not in self.hint_dist_user:
@@ -329,12 +328,7 @@ class World(object):
 
         # Disable goal hints if the hint distro does not require them.
         # WOTH locations are always searched.
-        self.enable_goal_hints = False
-        if ('distribution' in self.hint_dist_user and
-           'goal' in self.hint_dist_user['distribution'] and
-           (self.hint_dist_user['distribution']['goal']['fixed'] != 0 or
-                self.hint_dist_user['distribution']['goal']['weight'] != 0)):
-            self.enable_goal_hints = True
+        self.enable_goal_hints = self.has_hint_type('goal') or self.has_hint_type('goal-legacy') or self.has_hint_type('goal-legacy-single')
 
         # Initialize default goals for win condition
         self.goal_categories = OrderedDict()
@@ -420,6 +414,17 @@ class World(object):
         new_world.available_tokens = self.available_tokens
 
         return new_world
+
+
+    def has_hint_type(self, hint_type):
+        return (
+            'distribution' in self.hint_dist_user
+            and hint_type in self.hint_dist_user['distribution']
+            and (
+                self.hint_dist_user['distribution'][hint_type]['fixed'] != 0
+                or self.hint_dist_user['distribution'][hint_type]['weight'] != 0
+            )
+        )
 
 
     def set_random_bridge_values(self):

@@ -46,13 +46,25 @@ def complete_presets(new_presets, interactive, *, preset=None, source=None):
                         SettingsList.validate_settings(new_presets[preset_name], check_conflicts=False)
                     except TypeError:
                         if interactive:
-                            new_presets[preset_name][setting_name] = json.loads(input(f'{preset_name}[{setting_name}] (previously {json.dumps(old_preset[setting_name])}): ').strip())
+                            while True:
+                                try:
+                                    new_presets[preset_name][setting_name] = json.loads(input(f'{preset_name}[{setting_name}] (previously {json.dumps(old_preset[setting_name])}): ').strip())
+                                except json.JSONDecodeError:
+                                    continue
+                                else:
+                                    break
                             SettingsList.validate_settings(new_presets[preset_name], check_conflicts=False)
                         else:
                             raise
                 else:
                     if interactive:
-                        new_presets[preset_name][setting_name] = json.loads(input(f'{preset_name}[{setting_name}]: ').strip())
+                        while True:
+                            try:
+                                new_presets[preset_name][setting_name] = json.loads(input(f'{preset_name}[{setting_name}]: ').strip())
+                            except json.JSONDecodeError:
+                                continue
+                            else:
+                                break
                     else:
                         raise ValueError(f'Missing setting {setting_name!r} in preset {preset_name!r}')
 

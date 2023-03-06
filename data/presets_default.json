@@ -2793,10 +2793,10 @@
             "Claim Check"
         ]
     },
-    "Triforce Blitz": {
+    "Triforce Blitz S2": {
         "language": "english",
         "show_seed_info": true,
-        "user_message": "Triforce Blitz",
+        "user_message": "Triforce Blitz S2",
         "world_count": 1,
         "create_spoiler": true,
         "logic_rules": "glitchless",
@@ -2940,7 +2940,7 @@
         "complete_mask_quest": false,
         "useful_cutscenes": false,
         "fast_chests": true,
-        "free_scarecrow": false,
+        "free_scarecrow": true,
         "fast_bunny_hood": true,
         "plant_beans": false,
         "chicken_count_random": false,
@@ -2959,13 +2959,14 @@
         "clearer_item_models": true,
         "clearer_hints": true,
         "hints": "always",
-        "hint_dist": "triforce_blitz",
+        "hint_dist": "triforce_blitz_s2",
         "item_hints": [],
         "hint_dist_user": {},
         "misc_hints": [
             "altar",
             "ganondorf",
-            "warp_songs"
+            "warp_songs",
+            "20_skulltulas"
         ],
         "text_shuffle": "none",
         "damage_multiplier": "normal",

@@ -30,7 +30,7 @@ from Rules import set_rules, set_shop_rules
 from Search import Search, RewindableSearch
 from EntranceShuffle import set_entrances
 from LocationList import set_drop_location_names
-from Goals import update_goal_items, maybe_set_misc_item_hints, replace_goal_names
+from Goals import update_goal_items, maybe_set_misc_item_hints, replace_goal_names, calculate_playthrough_locations
 from version import __version__
 
 
@@ -201,7 +201,8 @@ def make_spoiler(world_settings, worlds, window=dummy_window()):
         window.update_status('Calculating Hint Data')
         logger.info('Calculating hint data.')
         update_goal_items(spoiler)
-        calculate_playthrough_locations(spoiler)
+        if any(world.has_hint_type('playthrough-location') or world.has_hint_type('unlock-playthrough') or world.has_hint_type('wanderer') for world in worlds):
+            calculate_playthrough_locations(spoiler)
         buildGossipHints(spoiler, worlds)
         window.update_progress(55)
     elif (
@@ -834,14 +835,3 @@ def create_playthrough(spoiler):
 
     if any(world.entrance_shuffle for world in worlds):
         spoiler.entrance_playthrough = OrderedDict((str(i + 1), list(sphere)) for i, sphere in enumerate(entrance_spheres))
-
-def calculate_playthrough_locations(spoiler):
-    playthrough_locations = {}
-    for sphere_locations in spoiler.playthrough.values():
-        locations = dict(filter(
-            lambda locations: locations[1].name in item_groups['MajorItem'],
-            sphere_locations.items(),
-        ))
-        playthrough_locations.update(locations)
-
-    spoiler.playthrough_locations = playthrough_locations
