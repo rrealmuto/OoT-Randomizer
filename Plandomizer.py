@@ -1126,7 +1126,7 @@ class WorldDistribution(object):
             items[child_trade_items[effective_child_trade_item_index]] = effective_child_trade_item
         if effective_adult_trade_item_index >= 0:
             items[trade_items[effective_adult_trade_item_index]] = effective_adult_trade_item
-            world.adult_trade_starting_inventory = effective_adult_trade_item
+            world.adult_trade_starting_inventory = trade_items[effective_adult_trade_item_index]
 
         self.effective_starting_items = items
 

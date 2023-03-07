@@ -480,7 +480,7 @@
       "name": "sfx_tab",
       "text": "SFX",
       "app_type": ["generator", "patcher"],
-      "is_sfx": true,
+      "is_cosmetics": true,
       "sections": [
         {
           "name": "sfx_main_section",
@@ -541,8 +541,8 @@
           ]
         },
         {
-          "name": "linksfx_section_patcher",
-          "text": "Link",
+          "name": "voicesfx_section_patcher",
+          "text": "Voices",
           "exclude_from_electron": true,
           "app_type": ["patcher"],
           "is_sfx": true,
@@ -550,7 +550,11 @@
           "row_span": [5,5,5],
           "settings": [
             "sfx_link_adult",
-            "sfx_link_child"
+            "sfx_link_child",
+            "sfx_navi_overworld",
+            "sfx_navi_enemy",
+            "sfx_horse_neigh",
+            "sfx_cucco"
           ]
         },
         {

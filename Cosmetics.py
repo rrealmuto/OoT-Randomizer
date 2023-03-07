@@ -807,7 +807,7 @@ def patch_sfx(rom, settings, log, symbols):
             elif selection == 'completely-random':
                 selection = random.choice(sfx.standard).value.keyword
             sound_id  = sound_dict[selection]
-            if hook.value.sfx_flag:
+            if hook.value.sfx_flag and sound_id > 0x7FF:
                 sound_id -= 0x800
             for loc in hook.value.locations:
                 rom.write_int16(loc, sound_id)

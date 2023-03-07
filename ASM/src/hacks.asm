@@ -3592,3 +3592,12 @@ courtyard_guards_kill:
 ; Replaces: addiu   t9, $zero, 0x0222
 .orga 0xDA1F94
     addiu   t9, $zero, 0x0221
+
+;===================================================================================================
+; Death Mountain cloud color checks for Volvagia flag
+;===================================================================================================
+; Replaces: lhu     t3, 0x0ED8(v0)
+;           andi    t4, t3, 0x8000
+.orga 0xD7C864
+    lhu     t3, 0x0EDC(v0)
+    andi    t4, t3, 0x0200

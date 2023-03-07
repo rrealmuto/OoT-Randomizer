@@ -1,5 +1,7 @@
 #include "trade_quests.h"
 
+extern uint16_t CFG_ADULT_TRADE_SHUFFLE;
+
 const exchange_item_t trade_quest_items[] = {
     {  0, Z64_ITEM_WEIRD_EGG,           Z64_EXCH_ITEM_WEIRD_EGG,    PLAYER_AP_WEIRD_EGG    , 0 }, // "Weird Egg"
     {  1, Z64_ITEM_CHICKEN,             Z64_EXCH_ITEM_CHICKEN,      PLAYER_AP_CHICKEN      , 0 }, // "Chicken"
@@ -140,8 +142,16 @@ void SaveFile_UnsetTradeItemAsTraded(uint16_t itemId) {
 }
 
 uint32_t SaveFile_TradeItemIsTraded(uint16_t itemId) {
+    // Adult trade shuffle without full shuffle does not set traded flags
+    // because of timers. Some hacks still need to know if the item was
+    // traded independent of story flags. Child trade quest does not have
+    // this limitation because duping by re-trading isn't possible there.
     uint16_t tradeItemNum = GetTradeItemIndex(itemId);
-    return (z64_file.scene_flags[0x61].unk_00_ & (0x1 << tradeItemNum)) != 0;
+    uint32_t traded = (z64_file.scene_flags[0x61].unk_00_ & (0x1 << tradeItemNum)) != 0;
+    if (itemId >= Z64_ITEM_POCKET_EGG && itemId <= Z64_ITEM_CLAIM_CHECK && !CFG_ADULT_TRADE_SHUFFLE) {
+        return itemId < z64_file.items[Z64_SLOT_ADULT_TRADE] || traded;
+    }
+    return traded;
 }
 
 // Goron, Zora, Gerudo, and Mask of Truth masks have no need for Traded flags.

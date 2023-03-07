@@ -48,40 +48,38 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             new_bytes = bytearray([a ^ b for a, b in zip(bytes_diff, original_bytes)])
             rom.write_bytes(write_address, new_bytes)
 
-    # Load models into a file
+    # Load models into the extended object table.
     zobj_imports = [
         ('object_gi_triforce', data_path('Triforce.zobj'), 0x193),  # Triforce Piece
         ('object_gi_keyring',  data_path('KeyRing.zobj'),  0x195),  # Key Rings
         ('object_gi_warpsong', data_path('Note.zobj'),     0x196),  # Inverted Music Note
         ('object_gi_chubag',   data_path('ChuBag.zobj'),   0x197),  # Bombchu Bag
     ]
+
+    extended_objects_start = start_address = rom.free_space()
     for (name, zobj_path, object_id) in zobj_imports:
-        obj_file = File({ 'Name': name })
-        obj_file.copy(rom)
         with open(zobj_path, 'rb') as stream:
             obj_data = stream.read()
-            rom.write_bytes(obj_file.start, obj_data)
-            obj_file.end = obj_file.start + len(obj_data)
-        update_dmadata(rom, obj_file)
+            rom.write_bytes(start_address, obj_data)
         # Add it to the extended object table
-        add_to_extended_object_table(rom, object_id, obj_file)
+        end_address = ((start_address + len(obj_data) + 0x0F) >> 4) << 4
+        add_to_extended_object_table(rom, object_id, start_address, end_address)
+        start_address = end_address
 
     # Build a Double Defense model from the Heart Container model
-    dd_obj_file = File({
-        'Name': 'object_gi_hearts',
-        'Start': '014D9000',
-        'End': '014DA590',
-    })
-    dd_obj_file.copy(rom)
+    end_address = start_address + 0x014DA590 - 0x014D9000
+    rom.buffer[start_address:end_address] = rom.buffer[0x014D9000:0x014DA590]
+
     # Update colors for the Double Defense variant
-    rom.write_bytes(dd_obj_file.start + 0x1294, [0xFF, 0xCF, 0x0F]) # Exterior Primary Color
-    rom.write_bytes(dd_obj_file.start + 0x12B4, [0xFF, 0x46, 0x32]) # Exterior Env Color
-    rom.write_int32s(dd_obj_file.start + 0x12A8, [0xFC173C60, 0x150C937F]) # Exterior Combine Mode
-    rom.write_bytes(dd_obj_file.start + 0x1474, [0xFF, 0xFF, 0xFF]) # Interior Primary Color
-    rom.write_bytes(dd_obj_file.start + 0x1494, [0xFF, 0xFF, 0xFF]) # Interior Env Color
-    update_dmadata(rom, dd_obj_file)
+    rom.write_bytes(start_address + 0x1294, [0xFF, 0xCF, 0x0F]) # Exterior Primary Color
+    rom.write_bytes(start_address + 0x12B4, [0xFF, 0x46, 0x32]) # Exterior Env Color
+    rom.write_int32s(start_address + 0x12A8, [0xFC173C60, 0x150C937F]) # Exterior Combine Mode
+    rom.write_bytes(start_address + 0x1474, [0xFF, 0xFF, 0xFF]) # Interior Primary Color
+    rom.write_bytes(start_address + 0x1494, [0xFF, 0xFF, 0xFF]) # Interior Env Color
     # Add it to the extended object table
-    add_to_extended_object_table(rom, 0x194, dd_obj_file)
+    add_to_extended_object_table(rom, 0x194, start_address, end_address)
+    # Add the extended objects data to the DMA table.
+    rom.update_dmadata_record(None, extended_objects_start, end_address)
 
     # Create the textures for pots/crates. Note: No copyrighted material can be distributed w/ the randomizer. Because of this, patch files are used to create the new textures from the original texture in ROM.
     # Apply patches for custom textures for pots and crates and add as new files in rom
@@ -113,20 +111,23 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         (23, "texture_chest_base_skull",    0xFED798,      None,            2048,   rgba16_patch,               'textures/chest/chest_base_skull_rgba16_patch.bin'),
     ]
 
-    # Loop through the textures and apply the patch. Add the new texture as a new file in rom.
-    for texture_id, texture_name, rom_address_base, rom_address_palette, size,func, patchfile in crate_textures:
-        texture_file = File({'Name': texture_name}) # Create a new file for the texture
-        texture_file.copy(rom) # Relocate this file to free space is the rom
-        texture_data = func(rom, rom_address_base, rom_address_palette, size, data_path(patchfile) if patchfile else None) # Apply the texture patch. Resulting texture will be stored in texture_data as a bytearray
-        rom.write_bytes(texture_file.start, texture_data) # write the bytes to our new file
-        texture_file.end = texture_file.start + len(texture_data) # Get size of the new texture
-        update_dmadata(rom, texture_file) # Update DMA table with new file
+    # Loop through the textures and apply the patch. Add the new textures as a new file in rom.
+    extended_textures_start = start_address = rom.free_space()
+    for texture_id, texture_name, rom_address_base, rom_address_palette, size, func, patch_file in crate_textures:
+        # Apply the texture patch. Resulting texture will be stored in texture_data as a bytearray
+        texture_data = func(rom, rom_address_base, rom_address_palette, size, data_path(patch_file) if patch_file else None)
+        rom.write_bytes(start_address, texture_data)  # write the bytes to our new file
+        end_address = ((start_address + len(texture_data) + 0x0F) >> 4) << 4
 
         # update the texture table with the rom addresses of the texture files
         entry = read_rom_texture(rom, texture_id)
-        entry['file_vrom_start'] = texture_file.start
-        entry['file_size'] = texture_file.end - texture_file.start
+        entry['file_vrom_start'] = start_address
+        entry['file_size'] = end_address - start_address
         write_rom_texture(rom, texture_id, entry)
+        start_address = end_address
+
+    # Add the extended texture data to the DMA table.
+    rom.update_dmadata_record(None, extended_textures_start, end_address)
 
     # Create an option so that recovery hearts no longer drop by changing the code which checks Link's health when an item is spawned.
     if world.settings.no_collectible_hearts:
@@ -1780,6 +1781,12 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     if 'mask_shop' in world.settings.misc_hints:
         rom.write_int32(rom.sym('CFG_MASK_SHOP_HINT'), 1)
 
+    # Make the cursed skulltula people come down instantly when entering if skull hints are on.
+    # Change  lui     $at, 0x4320 to  lui     $at, 0x44C8
+    if ('10_skulltulas' in world.settings.misc_hints or '20_skulltulas' in world.settings.misc_hints or '30_skulltulas' in world.settings.misc_hints or
+     '40_skulltulas' in world.settings.misc_hints or '50_skulltulas' in world.settings.misc_hints):
+        rom.write_int16(0xEA185A, 0x44C8)
+
     # Patch freestanding items
     if world.settings.shuffle_freestanding_items:
     # Get freestanding item locations
@@ -2419,10 +2426,10 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
 
 NUM_VANILLA_OBJECTS = 0x192
-def add_to_extended_object_table(rom, object_id, object_file):
+def add_to_extended_object_table(rom, object_id, start_adddress, end_address):
     extended_id = object_id - NUM_VANILLA_OBJECTS - 1
     extended_object_table = rom.sym('EXTENDED_OBJECT_TABLE')
-    rom.write_int32s(extended_object_table + extended_id * 8, [object_file.start, object_file.end])
+    rom.write_int32s(extended_object_table + extended_id * 8, [start_adddress, end_address])
 
 
 item_row_struct = struct.Struct('>BBHHBBIIhhBxxx') # Match item_row_t in item_table.h
@@ -2464,7 +2471,7 @@ def get_override_table(world):
     return list(filter(lambda val: val != None, map(get_override_entry, world.get_filled_locations())))
 
 
-override_struct = struct.Struct('>BBHHBB') # match override_t in get_items.c
+override_struct = struct.Struct('>BBHxxxxHBxHxx') # match override_t in get_items.c
 def get_override_table_bytes(override_table):
     return b''.join(sorted(itertools.starmap(override_struct.pack, override_table)))
 
@@ -2473,11 +2480,11 @@ def get_override_entry(location):
     scene = location.scene
     default = location.default
     item_id = location.item.index
-    if None in [scene, default, item_id]:
+    if None in (scene, default, item_id):
         return None
 
     # Don't add freestanding items, pots/crates, beehives to the override table if they're disabled. We use this check to determine how to draw and interact with them
-    if location.type in ["ActorOverride", "Freestanding", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive"] and location.disabled != DisableType.ENABLED:
+    if location.type in ("ActorOverride", "Freestanding", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive") and location.disabled != DisableType.ENABLED:
         return None
 
     player_id = location.item.world.id + 1
@@ -2486,20 +2493,20 @@ def get_override_entry(location):
     else:
         looks_like_item_id = 0
 
-    if location.type in ['NPC', 'Scrub', 'BossHeart']:
+    if location.type in ('NPC', 'Scrub', 'BossHeart'):
         type = 0
     elif location.type == 'Chest':
         type = 1
         default &= 0x1F
-    elif location.type in ['Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive']:
+    elif location.type in ('Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive'):
         type = 6
         if not (isinstance(location.default, list) or isinstance(location.default, tuple)):
             raise Exception("Not right")
-        if(isinstance(location.default, list)):
+        if isinstance(location.default, list):
             default = location.default[0]
         room, scene_setup, flag = default
         default = (room << 8) + (scene_setup << 14) + flag
-    elif location.type in ['Collectable', 'ActorOverride']:
+    elif location.type in ('Collectable', 'ActorOverride'):
         type = 2
     elif location.type == 'GS Token':
         type = 3
@@ -2509,7 +2516,7 @@ def get_override_entry(location):
         type = 0
     elif location.type == 'GrottoScrub' and location.item.type != 'Shop':
         type = 4
-    elif location.type in ['Song', 'Cutscene']:
+    elif location.type in ('Song', 'Cutscene'):
         type = 5
     else:
         return None

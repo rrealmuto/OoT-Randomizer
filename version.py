@@ -1,6 +1,6 @@
-__version__ = '7.1.60'
+__version__ = '7.1.74'
 
-# This is a supplementary version number for branches based off of main dev.
+# This is a supplemental version number for branches based off of main dev.
 supplementary_version = 1
 
 # Pick a unique identifier byte for your fork if you are intending to have a long-lasting branch.
