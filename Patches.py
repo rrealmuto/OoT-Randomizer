@@ -2396,7 +2396,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     rom.write_byte(0xCB4397, 0x00)
 
     # Fix shadow temple redead shared flags for silver rupee shuffle
-    if world.settings.shuffle_silver_rupees != 'vanilla': 
+    if world.settings.shuffle_silver_rupees != 'vanilla':
         if not world.dungeon_mq['Shadow Temple']: # Patch for redeads in vanilla
             rom.write_byte(0x280905E,0)
             rom.write_byte(0x280906E,0)

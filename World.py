@@ -438,7 +438,7 @@ class World(object):
         elif (self.settings.dungeon_shortcuts_choice == 'all'):
             self.settings.dungeon_shortcuts = dungeons
 
-        # Determine area with keyring
+        # Determine areas with key rings
         if (self.settings.key_rings_choice == 'random'):
             areas = ['Thieves Hideout', 'Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple', 'Bottom of the Well', 'Gerudo Training Ground', 'Ganons Castle']
             self.settings.key_rings = random.sample(areas, random.randint(0, len(areas)))
@@ -470,7 +470,6 @@ class World(object):
         for trial in self.skipped_trials:
             if trial not in chosen_trials and trial not in dist_chosen:
                 self.skipped_trials[trial] = True
-
 
         # Determine empty and MQ Dungeons (avoid having both empty & MQ dungeons unless necessary)
         mq_dungeon_pool = list(self.dungeon_mq)
@@ -532,6 +531,14 @@ class World(object):
 
         self.settings.mq_dungeons_count = list(self.dungeon_mq.values()).count(True)
         self.distribution.configure_randomized_settings(self)
+
+        # Determine puzzles with silver rupee pouches
+        if self.settings.silver_rupee_pouches_choice == 'random':
+            puzzles = self.silver_rupee_puzzles()
+            self.settings.silver_rupee_pouches = random.sample(puzzles, random.randint(0, len(puzzles)))
+            self.randomized_list.append('silver_rupee_pouches')
+        elif self.settings.silver_rupee_poucheskey_rings_choice == 'all':
+            self.settings.silver_rupee_pouches = self.silver_rupee_puzzles()
 
 
     def load_regions_from_json(self, file_path):
