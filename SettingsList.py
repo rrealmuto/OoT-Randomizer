@@ -3346,20 +3346,27 @@ setting_infos = [
         ''',
         shared         = True,
         disable        = {
-            'remove':  {'settings': ['silver_rupee_pouches']},
-            'vanilla': {'settings': ['silver_rupee_pouches']},
+            'remove':  {'settings': ['silver_rupee_pouches_choice', 'silver_rupee_pouches']},
+            'vanilla': {'settings': ['silver_rupee_pouches_choice', 'silver_rupee_pouches']},
         },
         gui_params     = {
             'randomize_key': 'randomize_settings',
         },
     ),
-    Checkbutton(
-        name           = 'silver_rupee_pouches',
-        gui_text       = 'Silver Rupee Pouches',
-        gui_tooltip    = '''\
-            Each silver rupee puzzle will have all of its
-            silver rupees found at once in a pouch rather
-            than individually.
+    Combobox(
+        name           = 'silver_rupee_pouches_choice',
+        gui_text       = 'Silver Rupee Pouches Mode',
+        default        = 'off',
+        choices        = {
+            'off':       'Off',
+            'choice':    'Choose puzzles',
+            'all':       'All puzzles',
+            'random':    'Random puzzles'
+        },
+        gui_tooltip     = '''\
+            Selected silver rupee puzzles will have all of
+            their silver rupees found at once in a pouch
+            rather than individually.
 
             For example, instead of shuffling 5 silver
             rupees for the Fire Trial in Ganon's Castle
@@ -3367,9 +3374,52 @@ setting_infos = [
             which will give you all 5 of them at once.
         ''',
         shared         = True,
+        disable        = {
+            'off': {'settings' : ['silver_rupee_pouches']},
+            'all': {'settings' : ['silver_rupee_pouches']},
+            'random': {'setings' : ['silver_rupee_pouches']},
+        },
         gui_params     = {
             "hide_when_disabled": True,
         },
+    ),
+    Combobox(
+        name            = 'silver_rupee_pouches',
+        multiple_select = True,
+        gui_text        = 'Silver Rupee Pouches',
+        choices         = {
+            'Dodongos Cavern Staircase': "Dodongo's Cavern Staircase",
+            'Ice Cavern Spinning Scythe': "Ice Cavern Spinning Scythe",
+            'Ice Cavern Push Block': "Ice Cavern Push Block",
+            'Bottom of the Well Basement': "Bottom of the Well Basement",
+            'Shadow Temple Scythe Shortcut': "Shadow Temple Scythe Shortcut",
+            'Shadow Temple Invisible Blades': "Shadow Temple Invisible Blades",
+            'Shadow Temple Huge Pit': "Shadow Temple Huge Pit",
+            'Shadow Temple Invisible Spikes': "Shadow Temple Invisible Spikes",
+            'Gerudo Training Ground Slopes': "Gerudo Training Ground Slopes",
+            'Gerudo Training Ground Lava': "Gerudo Training Ground Lava",
+            'Gerudo Training Ground Water': "Gerudo Training Ground Water",
+            'Spirit Temple Child Early Torches': "Spirit Temple Child Early Torches",
+            'Spirit Temple Adult Boulders': "Spirit Temple Adult Boulders",
+            'Spirit Temple Lobby and Lower Adult': "Spirit Temple Lobby and Lower Adult",
+            'Spirit Temple Sun Block': "Spirit Temple Sun Block",
+            'Spirit Temple Adult Climb': "Spirit Temple Adult Climb",
+            'Ganons Castle Spirit Trial': "Ganon's Castle Spirit Trial",
+            'Ganons Castle Light Trial': "Ganon's Castle Light Trial",
+            'Ganons Castle Fire Trial': "Ganon's Castle Fire Trial",
+            'Ganons Castle Shadow Trial': "Ganon's Castle Shadow Trial",
+            'Ganons Castle Water Trial': "Ganon's Castle Water Trial",
+            'Ganons Castle Forest Trial': "Ganon's Castle Forest Trial",
+        },
+        gui_tooltip    = '''\
+            Select puzzles with silver rupee pouches
+            instead of individual silver rupees.
+        ''',
+        default         = [],
+        gui_params     = {
+            "hide_when_disabled": True,
+        },
+        shared          = True,
     ),
     Combobox(
         name           = 'shuffle_mapcompass',
