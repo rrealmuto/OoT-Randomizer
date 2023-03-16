@@ -537,7 +537,7 @@ class World(object):
             puzzles = self.silver_rupee_puzzles()
             self.settings.silver_rupee_pouches = random.sample(puzzles, random.randint(0, len(puzzles)))
             self.randomized_list.append('silver_rupee_pouches')
-        elif self.settings.silver_rupee_poucheskey_rings_choice == 'all':
+        elif self.settings.silver_rupee_pouches_choice == 'all':
             self.settings.silver_rupee_pouches = self.silver_rupee_puzzles()
 
 
