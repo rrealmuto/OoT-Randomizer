@@ -792,7 +792,7 @@ def get_goal_count_hint(spoiler, world, checked):
                 zero_weights = False
             weights.append(goal.weight)
 
-        if world.settings.triforce_blitz:
+        if world.settings.triforce_hunt_mode == 'blitz':
             goal = unchecked_goals[0]
         elif zero_weights:
             goal = random.choice(unchecked_goals)
