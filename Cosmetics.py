@@ -817,8 +817,8 @@ def patch_sfx(rom, settings, log, symbols):
             log.sfx[hook.value.name] = sounds_keyword_label[selection]
 
         # Use the get small item sound for pots/crate/freestandings shuffle
-        if setting == 'sfx_get_small_item':
-            rom.write_int16(rom.sym('GET_ITEM_SEQ_ID'), sound_id)
+        if setting == 'sfx_get_small_item' and 'GET_ITEM_SEQ_ID' in symbols:
+            rom.write_int16(symbols['GET_ITEM_SEQ_ID'], sound_id)
 
 
 def patch_instrument(rom, settings, log, symbols):
@@ -1068,6 +1068,16 @@ patch_sets[0x1F073FD9] = {
     }
 }
 
+# 7.1.79
+patch_sets[0x1F073FDA] = {
+    "patches": patch_sets[0x1F073FD9]["patches"] + [
+        patch_sfx,
+    ],
+    "symbols": {
+        **patch_sets[0x1F073FD9]["symbols"],
+        "GET_ITEM_SEQ_ID": 0x0056,
+    }
+}
 
 def patch_cosmetics(settings, rom):
     # re-seed for aesthetic effects. They shouldn't be affected by the generation seed
