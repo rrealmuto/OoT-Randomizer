@@ -322,9 +322,9 @@ item_row_t item_table[] = {
     [0x1001] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9057, 0x01A3, 0x29, no_upgrade, give_triforce_piece, -1, -1, NULL), // Easter egg (orange)
     [0x1002] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9057, 0x01A4, 0x29, no_upgrade, give_triforce_piece, -1, -1, NULL), // Easter egg (green)
     [0x1003] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9057, 0x01A5, 0x29, no_upgrade, give_triforce_piece, -1, -1, NULL), // Easter egg (blue)
-    [0x1004] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x904A, 0x01A6, 0x76, no_upgrade, give_triforce_piece, -1, -1, NULL), // Triforce of Power
-    [0x1005] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x904B, 0x01A7, 0x76, no_upgrade, give_triforce_piece, -1, -1, NULL), // Triforce of Wisdom
-    [0x1006] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x904C, 0x01A8, 0x76, no_upgrade, give_triforce_piece, -1, -1, NULL), // Triforce of Courage
+    [0x1004] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x904A, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1, NULL), // Triforce of Power
+    [0x1005] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x904B, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1, NULL), // Triforce of Wisdom
+    [0x1006] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x904C, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1, NULL), // Triforce of Courage
 };
 
 /*  Determine which message to display based on the number of silver rupees collected.

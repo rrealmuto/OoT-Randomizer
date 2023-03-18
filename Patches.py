@@ -2973,17 +2973,30 @@ def place_shop_items(rom, world, shop_items, messages, locations, init_shop_id=F
                 [shop_item.description_message, shop_item.purchase_message])
 
             if item_display.dungeonitem:
-                split_item_name = item_display.name.split('(')
-                split_item_name[1] = '(' + split_item_name[1]
+                base_name, extra_name = item_display.name[:-1].split('(')
+
+                extra_name = {
+                    'Dodongos Cavern': "Dodongo's Cavern",
+                    'Jabu Jabus Belly': "Jabu Jabu's Belly",
+                    'Thieves Hideout': "Thieves' Hideout",
+                    'Ganons Castle': "Ganon's Castle",
+                    'Dodongos Cavern Staircase': "Dodongo's Cavern Staircase",
+                    'Ganons Castle Spirit Trial': "Ganon's Castle Spirit Trial",
+                    'Ganons Castle Light Trial': "Ganon's Castle Light Trial",
+                    'Ganons Castle Fire Trial': "Ganon's Castle Fire Trial",
+                    'Ganons Castle Shadow Trial': "Ganon's Castle Shadow Trial",
+                    'Ganons Castle Water Trial': "Ganon's Castle Water Trial",
+                    'Ganons Castle Forest Trial': "Ganon's Castle Forest Trial",
+                }.get(extra_name, extra_name)
 
                 if location.item.name == 'Ice Trap':
-                    split_item_name[0] = create_fake_name(split_item_name[0])
+                    base_name = create_fake_name(base_name)
 
                 if world.settings.world_count > 1:
-                    description_text = '\x08\x05\x41%s  %d Rupees\x01%s\x01\x05\x42Player %d\x05\x40\x01Special deal! ONE LEFT!\x09\x0A\x02' % (split_item_name[0], shop_item.price, split_item_name[1], location.item.world.id + 1)
+                    description_text = f'\x08\x05\x41{base_name}  {shop_item.price} Rupees\x01({extra_name})\x01\x05\x42Player {location.item.world.id + 1}\x05\x40\x01Special deal! ONE LEFT!\x09\x0A\x02'
                 else:
-                    description_text = '\x08\x05\x41%s  %d Rupees\x01%s\x01\x05\x40Special deal! ONE LEFT!\x01Get it while it lasts!\x09\x0A\x02' % (split_item_name[0], shop_item.price, split_item_name[1])
-                purchase_text = '\x08%s  %d Rupees\x09\x01%s\x01\x1B\x05\x42Buy\x01Don\'t buy\x05\x40\x02' % (split_item_name[0], shop_item.price, split_item_name[1])
+                    description_text = f'\x08\x05\x41{base_name}  {shop_item.price} Rupees\x01({extra_name})\x01\x05\x40Special deal! ONE LEFT!\x01Get it while it lasts!\x09\x0A\x02'
+                purchase_text = f'\x08{base_name}  {shop_item.price} Rupees\x09\x01({extra_name})\x01\x1B\x05\x42Buy\x01Don\'t buy\x05\x40\x02'
             else:
                 shop_item_name = getSimpleHintNoPrefix(item_display)
                 if location.item.name == 'Ice Trap':

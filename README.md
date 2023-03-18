@@ -52,9 +52,10 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
   * Python 3.6 is no longer supported since GitHub's testing infrastructure no longer supports it.
 * Bug fixes:
+  * If hideout keys are vanilla, they are properly considered an unshuffled dungeon item for hint purposes (part of [#1914](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1914))
   * A potential softlock in the logic for items on the right side of the mask shop is fixed ([#1913](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1913))
   * Entering the Water temple from the boss room no longer puts you at the temple's main entrance ([#1552](https://github.com/TestRunnerSRL/OoT-Randomizer/issues/1552), fix based on [engineer124's `water_boss_entrance` branch](https://github.com/engineer124/OoT-Randomizer/tree/water_boss_entrance))
-  * If hideout keys are vanilla, they are properly considered an unshuffled dungeon item for hint purposes
+  * Text boxes for dungeon items in shops now include apostrophes.
 
 Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):
 
