@@ -759,18 +759,22 @@ def shuffle_random_entrances(worlds):
                     continue
                 if entrance.parent_region.savewarp:
                     savewarp_target = entrance.parent_region.savewarp.replaces
+                    savewarp_region = entrance.parent_region.savewarp.connected_region
                 elif 'savewarp_fallback' in entrance.reverse.data:
                     # Spawning outside a grotto crashes the game, so we use a nearby regular entrance instead.
                     if entrance.reverse.data['savewarp_fallback'] == 'Hyrule Field -> Gerudo Valley':
                         # We don't want savewarping in a boss room inside GV Octorok Grotto to allow out-of-logic access to Gerudo Valley,
                         # so we spawn the player at whatever entrance GV Lower Stream -> Lake Hylia leads to.
                         savewarp_target = world.get_entrance('GV Lower Stream -> Lake Hylia')
+                        savewarp_region = savewarp_target.connected_region
                         savewarp_target = savewarp_target.replaces or savewarp_target
                         if 'savewarp_fallback' in savewarp_target.data:
                             # the entrance GV Lower Stream -> Lake Hylia leads to is also not a valid savewarp so we place the player at Gerudo Valley from Hyrule Field instead
-                            savewarp_target = world.get_entrance(entrance.reverse.data['savewarp_fallback'])
+                            savewarp_target = world.get_entrance(savewarp_target.data['savewarp_fallback'])
+                            savewarp_region = world.get_region(savewarp_target.data['savewarp_fallback'].split(' -> ')[1])
                     else:
                         savewarp_target = world.get_entrance(entrance.reverse.data['savewarp_fallback'])
+                        savewarp_region = world.get_region(entrance.reverse.data['savewarp_fallback'].split(' -> ')[1])
                 else:
                     # Spawning inside a grotto also crashes, but exiting a grotto can currently only lead to a boss room in decoupled,
                     # so we follow the entrance chain back to the nearest non-grotto.
@@ -783,9 +787,10 @@ def shuffle_random_entrances(worlds):
                             savewarp_target = parents[0]
                         else:
                             raise Exception('Found grotto with multiple entrances')
+                    savewarp_region = savewarp_target.parent_region
                     savewarp_target = savewarp_target.reverse
                 savewarp.replaces = savewarp_target
-                savewarp.connect(savewarp.replaces.connected_region)
+                savewarp.connect(savewarp_region)
 
         # Determine blue warp targets
         if world.settings.blue_warps == 'dungeon':
