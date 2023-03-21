@@ -1446,6 +1446,14 @@ hintTable = {
     'SFM Fairy Grotto':                                         ("a small #Fairy Fountain#", None, 'region'),
     'ZD Storms Grotto':                                         ("a small #Fairy Fountain#", None, 'region'),
     'GF Storms Grotto':                                         ("a small #Fairy Fountain#", None, 'region'),
+    'Queen Gohma Boss Room':                                    ("the #Parasitic Armored Arachnid#", "#Queen Gohma#", 'region'),
+    'King Dodongo Boss Room':                                   ("the #Infernal Dinosaur#", "#King Dodongo#", 'region'),
+    'Barinade Boss Room':                                       ("the #Bio-Electric Anemone#", "#Barinade#", 'region'),
+    'Phantom Ganon Boss Room':                                  ("the #Evil Spirit from Beyond#", "#Phantom Ganon#", 'region'),
+    'Volvagia Boss Room':                                       ("the #Subterranean Lava Dragon#", "#Volvagia#", 'region'),
+    'Morpha Boss Room':                                         ("the #Giant Aquatic Amoeba#", "#Morpha#", 'region'),
+    'Bongo Bongo Boss Room':                                    ("the #Phantom Shadow Beast#", "#Bongo Bongo#", 'region'),
+    'Twinrova Boss Room':                                       ("the #Sorceress Sisters#", "#Twinrova#", 'region'),
 
     # Junk hints must satisfy all of the following conditions:
     # - They aren't inappropriate.
