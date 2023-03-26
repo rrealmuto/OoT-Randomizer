@@ -731,9 +731,7 @@ def patch_button_colors(rom, settings, log, symbols):
 
             log_dict['colors'][patch] = color_to_hex(colors[patch])
 
-    if settings.correct_model_colors:
-        symbol = rom.sym('CORRECT_MODEL_COLORS')
-        rom.write_byte(symbol, 0x01)
+
 
 
 def patch_sfx(rom, settings, log, symbols):
@@ -930,6 +928,12 @@ def patch_voices(rom, settings, log, symbols):
         # Write the setting to the log
         log.sfx[log_key] = voice_setting
 
+def patch_correct_model_colors(rom, settings, log, symbols):
+    if settings.correct_model_colors:
+        rom.write_byte(symbols['CFG_CORRECT_MODEL_COLORS'], 0x01)
+    else:
+        rom.write_byte(symbols['CFG_CORRECT_MODEL_COLORS'], 0x00)
+    log.correct_model_colors = settings.correct_model_colors
 def patch_music_changes(rom, settings, log, symbols):
     # Music tempo changes
     if settings.speedup_music_for_last_triforce_piece:
@@ -1069,32 +1073,6 @@ patch_sets[0x1F073FDA] = {
     "symbols": {
         **patch_sets[0x1F073FD9]["symbols"],
         "GET_ITEM_SEQ_ID": 0x0056,
-    }
-}
-
-# 7.1.96
-patch_sets[0x1F073FDB] = {
-    "patches": patch_sets[0x1F073FDA]["patches"] + [
-        patch_tunic_colors,
-    ],
-    "symbols": {
-        **patch_sets[0x1F073FDA]["symbols"],
-        "CFG_RAINBOW_TUNIC_ENABLED": 0x005A,
-        "CFG_TUNIC_COLORS": 0x005B,
-    }
-}
-
-# 7.1.110
-patch_sets[0x1F073FDC] = {
-    "patches": patch_sets[0x1F073FDB]["patches"] + [
-        patch_music_changes,
-    ],
-    "symbols": {
-        **patch_sets[0x1F073FDB]["symbols"],
-        "CFG_SPEEDUP_MUSIC_FOR_LAST_TRIFORCE_PIECE": 0x0058,
-        "CFG_SLOWDOWN_MUSIC_WHEN_LOWHP": 0x0059,
-        "CFG_RAINBOW_TUNIC_ENABLED": 0x005A,
-        "CFG_TUNIC_COLORS": 0x005B,
     }
 }
 
