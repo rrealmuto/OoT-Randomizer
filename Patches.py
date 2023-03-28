@@ -981,7 +981,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
 
     # Allow Ocarina in some places
     rom.write_byte(0xB6D346, 0x11) # Granny's Potion Shop
-    rom.write_byte(0xB6D33A, 0x51) # Bombchu Bowling
     rom.write_byte(0xB6D30A, 0x51) # Archery
 
     # Remove disruptive text from Gerudo Training Ground and early Shadow Temple (vanilla)
