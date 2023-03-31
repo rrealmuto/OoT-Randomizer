@@ -234,7 +234,7 @@
             "Spirit Temple MQ Symphony Room Skulltula 9": "
                 (Small_Key_Spirit_Temple, 7) and Megaton_Hammer and
                 can_play(Song_of_Time) and can_play(Eponas_Song) and can_play(Suns_Song) and
-                can_play(Song_of_Storms) and can_play(Zeldas_Lullaby)",
+                can_play(Song_of_Storms) and can_play(Zeldas_Lullaby)"
         }
     },
     {
