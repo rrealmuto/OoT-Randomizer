@@ -354,6 +354,9 @@ class WorldDistribution(object):
                     if self.distribution.settings.shuffle_ganon_bosskey == 'keysanity':
                         keys = [name for name, item in ItemInfo.items.items() if item.type == 'GanonBossKey']
                         self.major_group.extend(keys)
+                    if self.distribution.settings.shuffle_silver_rupees == 'anywhere':
+                        rupees = [name for name, item in ItemInfo.items.items() if item.type == 'SilverRupee']
+                        self.major_group.extend(rupees)
                 group = self.major_group
             return lambda s: invert != (s in group)
         wildcard_begin = pattern.startswith('*')
