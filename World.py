@@ -50,6 +50,7 @@ class World(object):
 
         # rename a few attributes...
         self.keysanity = settings.shuffle_smallkeys in ['keysanity', 'remove', 'any_dungeon', 'overworld', 'regional']
+        self.shuffle_silver_rupees = settings.shuffle_silver_rupees != 'vanilla'
         self.check_beatable_only = settings.reachable_locations != 'all'
 
         self.shuffle_special_interior_entrances = settings.shuffle_interior_entrances == 'all'
@@ -437,7 +438,7 @@ class World(object):
         elif (self.settings.dungeon_shortcuts_choice == 'all'):
             self.settings.dungeon_shortcuts = dungeons
 
-        # Determine area with keyring
+        # Determine areas with key rings
         if (self.settings.key_rings_choice == 'random'):
             areas = ['Thieves Hideout', 'Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple', 'Bottom of the Well', 'Gerudo Training Ground', 'Ganons Castle']
             self.settings.key_rings = random.sample(areas, random.randint(0, len(areas)))
@@ -469,7 +470,6 @@ class World(object):
         for trial in self.skipped_trials:
             if trial not in chosen_trials and trial not in dist_chosen:
                 self.skipped_trials[trial] = True
-
 
         # Determine empty and MQ Dungeons (avoid having both empty & MQ dungeons unless necessary)
         mq_dungeon_pool = list(self.dungeon_mq)
@@ -531,6 +531,14 @@ class World(object):
 
         self.settings.mq_dungeons_count = list(self.dungeon_mq.values()).count(True)
         self.distribution.configure_randomized_settings(self)
+
+        # Determine puzzles with silver rupee pouches
+        if self.settings.silver_rupee_pouches_choice == 'random':
+            puzzles = self.silver_rupee_puzzles()
+            self.settings.silver_rupee_pouches = random.sample(puzzles, random.randint(0, len(puzzles)))
+            self.randomized_list.append('silver_rupee_pouches')
+        elif self.settings.silver_rupee_pouches_choice == 'all':
+            self.settings.silver_rupee_pouches = self.silver_rupee_puzzles()
 
 
     def load_regions_from_json(self, file_path):
@@ -1060,6 +1068,11 @@ class World(object):
         if self.settings.shuffle_ganon_bosskey == 'dungeon':
             itempool.extend([item for dungeon in self.dungeons if dungeon.name == 'Ganons Castle' for item in dungeon.boss_key])
 
+        if self.settings.shuffle_silver_rupees == 'dungeon':
+            itempool.extend([item for dungeon in self.dungeons for item in dungeon.silver_rupees])
+        elif self.settings.shuffle_silver_rupees in ['any_dungeon', 'overworld', 'anywhere', 'regional']:
+            itempool.extend([item for dungeon in self.dungeons if self.empty_dungeons[dungeon.name].empty for item in dungeon.silver_rupees])
+
         for item in itempool:
             item.world = self
         return itempool
@@ -1076,10 +1089,26 @@ class World(object):
             itempool.extend([item for dungeon in self.dungeons if (dungeon.name != 'Ganons Castle' and not self.empty_dungeons[dungeon.name].empty) for item in dungeon.boss_key])
         if self.settings.shuffle_ganon_bosskey in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
             itempool.extend([item for dungeon in self.dungeons if dungeon.name == 'Ganons Castle' for item in dungeon.boss_key])
+        if self.settings.shuffle_silver_rupees in ['any_dungeon', 'overworld', 'anywhere', 'regional']:
+            itempool.extend([item for dungeon in self.dungeons if not self.empty_dungeons[dungeon.name].empty for item in dungeon.silver_rupees])
 
         for item in itempool:
             item.world = self
         return itempool
+
+
+    def silver_rupee_puzzles(self):
+        return ([
+            'Shadow Temple Scythe Shortcut', 'Shadow Temple Huge Pit', 'Shadow Temple Invisible Spikes',
+            'Gerudo Training Ground Slopes', 'Gerudo Training Ground Lava', 'Gerudo Training Ground Water',
+            'Ganons Castle Fire Trial']
+            + (['Dodongos Cavern Staircase'] if self.dungeon_mq['Dodongos Cavern'] else [])
+            + ([] if self.dungeon_mq['Ice Cavern'] else ['Ice Cavern Spinning Scythe', 'Ice Cavern Push Block'])
+            + ([] if self.dungeon_mq['Bottom of the Well'] else ['Bottom of the Well Basement'])
+            + (['Shadow Temple Invisible Blades'] if self.dungeon_mq['Shadow Temple'] else [])
+            + (['Spirit Temple Lobby and Lower Adult', 'Spirit Temple Adult Climb'] if self.dungeon_mq['Spirit Temple'] else ['Spirit Temple Child Early Torches', 'Spirit Temple Adult Boulders', 'Spirit Temple Sun Block'])
+            + (['Ganons Castle Shadow Trial', 'Ganons Castle Water Trial'] if self.dungeon_mq['Ganons Castle'] else ['Ganons Castle Spirit Trial', 'Ganons Castle Light Trial', 'Ganons Castle Forest Trial'])
+        )
 
 
     def find_items(self, item):
@@ -1222,6 +1251,28 @@ class World(object):
         if not self.settings.blue_fire_arrows:
             # Ice Arrows can only be required when the Blue Fire Arrows setting is enabled
             exclude_item_list.append('Ice Arrows')
+        if self.settings.logic_lens_botw or self.settings.shuffle_pots in ('off', 'overworld'):
+            # These silver rupees unlock a door to an area that's also reachable with lens
+            exclude_item_list.append('Silver Rupee (Bottom of the Well Basement)')
+            exclude_item_list.append('Silver Rupee Pouch (Bottom of the Well Basement)')
+        if self.dungeon_mq['Shadow Temple'] and self.settings.shuffle_mapcompass == 'vanilla':
+            # These silver rupees only unlock the map chest
+            exclude_item_list.append('Silver Rupee (Shadow Temple Scythe Shortcut)')
+            exclude_item_list.append('Silver Rupee Pouch (Shadow Temple Scythe Shortcut)')
+        if self.settings.logic_spirit_sun_chest_no_rupees and not self.settings.logic_spirit_sun_chest_bow:
+            # With this trickset, these silver rupees are logically irrelevant
+            exclude_item_list.append('Silver Rupee (Spirit Temple Sun Block)')
+            exclude_item_list.append('Silver Rupee Pouch (Spirit Temple Sun Block)')
+        if self.settings.shuffle_pots in ('off', 'overworld') and self.settings.trials == 0:
+            # These silver rupees only lock pots and trial completion
+            exclude_item_list.append('Silver Rupee (Ganons Castle Fire Trial)')
+            exclude_item_list.append('Silver Rupee Pouch (Ganons Castle Fire Trial)')
+            exclude_item_list.append('Silver Rupee (Ganons Castle Shadow Trial)')
+            exclude_item_list.append('Silver Rupee Pouch (Ganons Castle Shadow Trial)')
+            exclude_item_list.append('Silver Rupee (Ganons Castle Water Trial)')
+            exclude_item_list.append('Silver Rupee Pouch (Ganons Castle Water Trial)')
+            exclude_item_list.append('Silver Rupee (Ganons Castle Forest Trial)')
+            exclude_item_list.append('Silver Rupee Pouch (Ganons Castle Forest Trial)')
 
         for i in self.item_hint_type_overrides['barren']:
             if i in exclude_item_list:

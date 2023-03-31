@@ -224,6 +224,9 @@
             "ganon_bosskey_rewards",
             "ganon_bosskey_tokens",
             "ganon_bosskey_hearts",
+            "shuffle_silver_rupees",
+            "silver_rupee_pouches_choice",
+            "silver_rupee_pouches",
             "enhance_map_compass"
           ]
         }

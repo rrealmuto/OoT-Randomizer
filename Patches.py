@@ -66,18 +66,36 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         add_to_extended_object_table(rom, object_id, start_address, end_address)
         start_address = end_address
 
-    # Build a Double Defense model from the Heart Container model
-    end_address = start_address + 0x014DA590 - 0x014D9000
-    rom.buffer[start_address:end_address] = rom.buffer[0x014D9000:0x014DA590]
+    # Make new models by applying patches to existing ones
+    zobj_patches = [
+        ('object_gi_hearts', 0x014D9000, 0x014DA590, 0x194, # Heart Container -> Double Defense
+        [
+            (0x1294, [0xFF, 0xCF, 0x0F]), # Exterior Primary Color
+            (0x12B4, [0xFF, 0x46, 0x32]), # Exterior Env Color
+            (0x1474, [0xFF, 0xFF, 0xFF]), # Interior Primary Color
+            (0x1494, [0xFF, 0xFF, 0xFF]), # Interior Env Color
+            (0x12A8, [0xFC, 0x17, 0x3C, 0x60, 0x15, 0x0C, 0x93, 0x7F]), # Exterior Combine Mode
+        ]),
+        ('object_gi_rupy', 0x01914000, 0x01914800, 0x198, # Huge Rupee -> Silver Rupee
+        [
+            (0x052C, [0xAA, 0xAA, 0xAA]), # Inner Primary Color?
+            (0x0534, [0x5A, 0x5A, 0x5A]), # Inner Env Color?
+            (0x05CC, [0xFF, 0xFF, 0xFF]), # Outer Primary Color?
+            (0x05D4, [0xFF, 0xFF, 0xFF]), # Outer Env Color?
+        ]),
+    ]
 
-    # Update colors for the Double Defense variant
-    rom.write_bytes(start_address + 0x1294, [0xFF, 0xCF, 0x0F]) # Exterior Primary Color
-    rom.write_bytes(start_address + 0x12B4, [0xFF, 0x46, 0x32]) # Exterior Env Color
-    rom.write_int32s(start_address + 0x12A8, [0xFC173C60, 0x150C937F]) # Exterior Combine Mode
-    rom.write_bytes(start_address + 0x1474, [0xFF, 0xFF, 0xFF]) # Interior Primary Color
-    rom.write_bytes(start_address + 0x1494, [0xFF, 0xFF, 0xFF]) # Interior Env Color
-    # Add it to the extended object table
-    add_to_extended_object_table(rom, 0x194, start_address, end_address)
+    # Add the new models to the extended object file.
+    for name, start, end, object_id, patches in zobj_patches:
+        end_address = start_address + end - start
+        rom.buffer[start_address:end_address] = rom.buffer[start:end]
+        # Apply patches
+        for offset, patch in patches:
+            rom.write_bytes(start_address + offset, patch)
+        # Add it to the extended object table
+        add_to_extended_object_table(rom, object_id, start_address, end_address)
+        start_address = end_address
+
     # Add the extended objects data to the DMA table.
     rom.update_dmadata_record(None, extended_objects_start, end_address)
 
@@ -87,7 +105,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Pot textures are rgba16
 
     # texture list. See textures.h for texture IDs
-    #   ID, texture_name,                   Rom Address    CI4 Pallet Addr  Size    Patching function                          Patch file (None for default)
+    #   ID, texture_name,                   Rom Address    CI4 Pallet Addr  Size    Patching function           Patch file (None for default)
     crate_textures = [
         (1, 'texture_pot_gold',             0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_gold_rgba16_patch.bin'),
         (2, 'texture_pot_key',              0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_key_rgba16_patch.bin'),
@@ -1478,6 +1496,11 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             save_context.addresses['dungeon_items'][dungeon]['compass'].value = True
             save_context.addresses['dungeon_items'][dungeon]['map'].value = True
 
+    # start with silver rupees
+    if world.settings.shuffle_silver_rupees == 'remove':
+        for puzzle in world.silver_rupee_puzzles():
+            save_context.give_item(world, f'Silver Rupee ({puzzle})', float('inf'))
+
     if world.settings.shuffle_smallkeys == 'vanilla':
         if world.dungeon_mq['Spirit Temple']:
             save_context.addresses['keys']['spirit'].value = 3
@@ -1656,7 +1679,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             if locations:
                 # Location types later in the list will be preferred over earlier ones or ones not in the list.
                 # This ensures that if the region behind the boss door is a boss arena, the medallion or stone will be used.
-                priority_types = ("GS Token", "GrottoScrub", "Scrub", "Shop", "NPC", "Collectable", "Freestanding", "ActorOverride", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive", "Chest", "Cutscene", "Song", "BossHeart", "Boss")
+                priority_types = ("GS Token", "GrottoScrub", "Scrub", "Shop", "NPC", "Collectable", "Freestanding", "ActorOverride", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive", "SilverRupee", "Chest", "Cutscene", "Song", "BossHeart", "Boss")
                 best_type = max((location.type for location in locations), key=lambda type: priority_types.index(type) if type in priority_types else -1)
                 location = random.choice(list(filter(lambda loc: loc.type == best_type, locations)))
                 break
@@ -1777,24 +1800,35 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         for location in rupeetower_locations:
             patch_rupee_tower(location, rom)
 
+    if world.shuffle_silver_rupees:
+        rom.write_byte(rom.sym('SHUFFLE_SILVER_RUPEES'), 1)
+        if world.settings.shuffle_silver_rupees != 'remove':
+            rom.write_byte(rom.sym('CFG_DUNGEON_INFO_SILVER_RUPEES'), 1)
+
+        if world.dungeon_mq['Dodongos Cavern']: # Patch DC MQ Staircase Transition Actor to use permanent switch flag 0x1F
+            rom.write_byte(0x1F12190 + 15, 0x9F)
+
+        if world.dungeon_mq['Spirit Temple']: # Patch Spirit MQ Lobby front right chest to use permanent switch flag 0x1F
+            rom.write_byte(0x2b08ce4 + 13, 0x1F)
+
     # Write flag table data
     collectible_flag_table, alt_list = get_collectible_flag_table(world)
     collectible_flag_table_bytes, num_collectible_flags = get_collectible_flag_table_bytes(collectible_flag_table)
     alt_list_bytes = get_alt_list_bytes(alt_list)
-    if(len(collectible_flag_table_bytes) > 600):
-        raise(RuntimeError(f'Exceeded collectible override table size: {len(collectible_flag_table_bytes)}'))
+    if len(collectible_flag_table_bytes) > 600:
+        raise RuntimeError(f'Exceeded collectible override table size: {len(collectible_flag_table_bytes)}')
     rom.write_bytes(rom.sym('collectible_scene_flags_table'), collectible_flag_table_bytes)
     num_collectible_flags += num_collectible_flags % 8
     rom.write_bytes(rom.sym('num_override_flags'), num_collectible_flags.to_bytes(2, 'big'))
-    if(len(alt_list) > 64):
-        raise(RuntimeError(f'Exceeded alt override table size: {len(alt_list)}'))
+    if len(alt_list) > 64:
+        raise RuntimeError(f'Exceeded alt override table size: {len(alt_list)}')
     rom.write_bytes(rom.sym('alt_overrides'), alt_list_bytes)
 
     # Write item overrides
     check_location_dupes(world)
     override_table = get_override_table(world)
     if len(override_table) >= 1536:
-        raise(RuntimeError(f'Exceeded override table size: {len(override_table)}'))
+        raise RuntimeError(f'Exceeded override table size: {len(override_table)}')
     rom.write_bytes(rom.sym('cfg_item_overrides'), get_override_table_bytes(override_table))
     rom.write_byte(rom.sym('PLAYER_ID'), world.id + 1) # Write player ID
 
@@ -2375,6 +2409,15 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Fix crash when hitting white bubbles enemies with Dins Fire
     rom.write_byte(0xCB4397, 0x00)
 
+    # Fix shadow temple redead shared flags for silver rupee shuffle
+    if world.settings.shuffle_silver_rupees != 'vanilla':
+        if not world.dungeon_mq['Shadow Temple']: # Patch for redeads in vanilla
+            rom.write_byte(0x280905E,0)
+            rom.write_byte(0x280906E,0)
+        else: # Patch for redeads in MQ. ROM positions are calculated dyanmically by MQ.py but should remain static.
+            rom.write_byte(0x280CDDE,0)
+            rom.write_byte(0x280CDEE,0)
+
     # actually write the save table to rom
     world.distribution.give_items(world, save_context)
     if world.settings.starting_age == 'adult':
@@ -2399,10 +2442,10 @@ def add_to_extended_object_table(rom, object_id, start_adddress, end_address):
     rom.write_int32s(extended_object_table + extended_id * 8, [start_adddress, end_address])
 
 
-item_row_struct = struct.Struct('>BBHHBBIIhhBxxx') # Match item_row_t in item_table.h
+item_row_struct = struct.Struct('>BBHHBBIIhhBxxxI') # Match item_row_t in item_table.h
 item_row_fields = [
     'base_item_id', 'action_id', 'text_id', 'object_id', 'graphic_id', 'chest_type',
-    'upgrade_fn', 'effect_fn', 'effect_arg1', 'effect_arg2', 'collectible',
+    'upgrade_fn', 'effect_fn', 'effect_arg1', 'effect_arg2', 'collectible', 'alt_text_fn',
 ]
 
 def read_rom_item(rom, item_id):
@@ -2465,7 +2508,7 @@ def get_override_entry(location):
     elif location.type == 'Chest':
         type = 1
         default &= 0x1F
-    elif location.type in ('Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive'):
+    elif location.type in ['Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive', 'SilverRupee']:
         type = 6
         if not (isinstance(location.default, list) or isinstance(location.default, tuple)):
             raise Exception("Not right")
@@ -2898,7 +2941,7 @@ def patch_actor_override(location, rom: Rom):
 # Also used for goron pot, shadow spinning pots
 def patch_rupee_tower(location, rom: Rom):
     flag = location.default
-    if(isinstance(location.default, tuple)):
+    if isinstance(location.default, tuple):
         room, scene_setup, flag = location.default
     elif isinstance(location.default, list):
         room, scene_setup, flag = location.default[0]
