@@ -174,6 +174,8 @@ CFG_DUNGEON_INFO_SILVER_RUPEES:
 .byte 0x00
 CFG_PREVENT_GUAY_RESPAWNS:
 .byte 0x00
+CFG_KEY_APPEARANCE_MATCH_DUNGEON:
+.byte 0x00
 .align 4
 
 ; These configuration values are given fixed addresses to aid auto-trackers.
