@@ -2004,11 +2004,17 @@ skip_bombchu_bowling_prize_switch:
 .org 0xF6D000 + 0x17870 + 0x18 ; gameplay_dangeon_keep file start + dlist offset + gDPSetTextureImage offset
 .word   0xDE000000, 0x09000000 ; jump to the custom dlist at segment 09
 
+.org 0xF6D000 + 0x17870 + 0xD8 ; gameplay_dangeon_keep file start + dlist offset + gDPSetTextureImage offset
+.word   0xDE000000, 0x0A000000 ; jump to the custom dlist at segment 0A
+
 .org 0xF6D000 + 0x17870 + 0x138 ; gameplay_dangeon_keep file start + dlist offset + gDPSetTextureImage offset
 .word   0xDE000000, 0x09000000 ; jump to the custom dlist at segment 09
 
 .org 0x1738000 + 0x17C0 + 0x18 ; object_tsubo file start + dlist offset + gDPSetTextureImage offset
 .word   0xDE000000, 0x09000000 ; jump to the custom dlist at segment 09
+
+.org 0x1738000 + 0x17C0 + 0x108 ; object_tsubo file start + dlist offset + gDPSetTextureImage offset
+.word   0xDE000000, 0x0A000000 ; jump to the custom dlist at segment 0A
 
 ;==================================================================================================
 ; Draw Crate Textures
