@@ -209,6 +209,35 @@ Gameplay_InitSkybox:
     nop
 
 ;==================================================================================================
+; Speed up armos push
+;==================================================================================================
+; In EnAm_Statue, subtract 0x1000 from this->unk_258 instead of 0x800
+; This value is used as the timer for how long to push for
+; This halves the number of frames that the push will occur over.
+;replaces 
+;addiu t0, a2, 0xF800
+.orga 0xC97C68
+    addiu t0, a2, 0xF000
+
+; 1.00973892212 is used instead of 1 because we are setting a speed based on sin(unk_258). When this is discretized and summed up over the duration movement, 1 does not cause the proper amount of movement.
+
+; In EnAm_Statue, when calculating the speed, multiply by 1.00973892212 instead of 0.5 (first instance, used for collision detection?)
+.orga 0xC97D68
+;   replaces
+;   lui     at, 0x3F00
+;   mtc1    at, f8
+    jal     en_am_calculation_1
+    nop
+
+; In EnAm_Statue, when calculating the speed, multiply by 1.00973892212 instead of 0.5
+.orga 0xC97E20
+    ;replaces
+    ;lui at, 0x3F00
+    ;mtc1 at, f10
+    jal     en_am_calculation_2
+    nop
+    
+;==================================================================================================
 ; Item Overrides
 ;==================================================================================================
 
