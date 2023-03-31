@@ -120,6 +120,7 @@ RANDO_CONTEXT:
 .include "messages.asm"
 .include "player_save_mask.asm"
 .include "armos.asm"
+.include "ocarina_buttons.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"

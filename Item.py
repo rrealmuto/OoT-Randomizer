@@ -10,12 +10,14 @@ class ItemInfo(object):
     bottles = set()
     medallions = set()
     stones = set()
+    ocarina_buttons = set()
     junk = {}
 
     solver_ids = {}
     bottle_ids = set()
     medallion_ids = set()
     stone_ids = set()
+    ocarina_buttons_ids = set()
 
     def __init__(self, name='', event=False):
         if event:
@@ -39,6 +41,7 @@ class ItemInfo(object):
         self.alias = self.special.get('alias', None)
         self.junk = self.special.get('junk', None)
         self.trade = self.special.get('trade', False)
+        self.ocarina_button = self.special.get('ocarina_button', False)
 
         self.solver_id = None
         if name and self.junk is None:
@@ -59,6 +62,9 @@ for item_name in item_table:
     if ItemInfo.items[item_name].stone:
         ItemInfo.stones.add(item_name)
         ItemInfo.stone_ids.add(ItemInfo.solver_ids[escape_name(item_name)])
+    if ItemInfo.items[item_name].ocarina_button:
+        ItemInfo.ocarina_buttons.add(item_name)
+        ItemInfo.ocarina_buttons_ids.add(ItemInfo.solver_ids[escape_name(item_name)])
     if ItemInfo.items[item_name].junk is not None:
         ItemInfo.junk[item_name] = ItemInfo.items[item_name].junk
 

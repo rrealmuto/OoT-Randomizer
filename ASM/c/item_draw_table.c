@@ -171,6 +171,11 @@ item_draw_table_entry_t item_draw_table[] = {
     
     [0x94] = { draw_gi_silver_rupee_pouch,  { 0x06001850, 0x06001750, 0x06001790, 0x060019A0, 0x060017B0, 0x06001A28, 0x060017D0, 0x06001AD8 } }, // Adult's Wallet}
     
+    [0x95] = { draw_gi_a_button,            { 0x06000DA0, 0x5A5AFFFF } }, // A button
+    [0x96] = { draw_gi_c_button_vertical,   { 0x06000960, 0xFFA000FF, 0 } }, // Cup button
+    [0x97] = { draw_gi_c_button_vertical,   { 0x06000960, 0xFFA000FF, 1 } }, // Cdown button
+    [0x98] = { draw_gi_c_button_horizontal, { 0x06000E10, 0xFFA000FF, 1 } }, // Cleft button
+    [0x99] = { draw_gi_c_button_horizontal, { 0x06000E10, 0xFFA000FF, 0 } }, // Cright button
 };
 
 void base_draw_gi_model(z64_game_t *game, uint32_t draw_id) {

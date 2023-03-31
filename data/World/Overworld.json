@@ -264,7 +264,7 @@
             "LW Skull Kid": "is_child and can_play(Sarias_Song)",
             "LW Trade Cojiro": "is_adult and Cojiro",
             "LW Trade Odd Potion": "is_adult and Odd_Potion",
-            "LW Ocarina Memory Game": "is_child and Ocarina",
+            "LW Ocarina Memory Game": "is_child and Ocarina and Ocarina_A_Button and Ocarina_C_down_Button and Ocarina_C_right_Button and Ocarina_C_left_Button and Ocarina_C_up_Button",
             "LW Target in Woods": "can_use(Slingshot)",
             "LW Deku Scrub Near Bridge": "is_child and can_stun_deku",
             "LW Underwater Green Rupee 1": "is_child and (can_dive or Boomerang)",
@@ -484,7 +484,7 @@
         "hint": "LAKE_HYLIA",
         "time_passes": true,
         "events": {
-            "Bonooru": "is_child and Ocarina"
+            "Bonooru": "is_child and Ocarina and have_all_notes_for_song(Scarecrow_Song)"
         },
         "locations": {
             "Pierre": "is_adult and Bonooru and not free_scarecrow",
@@ -2455,8 +2455,9 @@
         "locations": {
             "ZR Magic Bean Salesman": "is_child",
             "ZR Frogs Ocarina Game": "
-                is_child and Ocarina and Zeldas_Lullaby and Eponas_Song and
-                Sarias_Song and Suns_Song and Song_of_Time and Song_of_Storms",
+                is_child and can_play(Zeldas_Lullaby) and can_play(Eponas_Song) and
+                can_play(Sarias_Song) and can_play(Suns_Song) and can_play(Song_of_Time) and can_play(Song_of_Storms) and
+                Ocarina_A_Button and Ocarina_C_left_Button and Ocarina_C_right_Button and Ocarina_C_down_Button",
             "ZR Frogs Zeldas Lullaby": "is_child and can_play(Zeldas_Lullaby)",
             "ZR Frogs Eponas Song": "is_child and can_play(Eponas_Song)",
             "ZR Frogs Sarias Song": "is_child and can_play(Sarias_Song)",

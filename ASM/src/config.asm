@@ -7,7 +7,7 @@
 COSMETIC_CONTEXT:
 
 COSMETIC_FORMAT_VERSION:
-.word 0x1F073FDA
+.word 0x1F073FDB
 CFG_MAGIC_COLOR:
 .halfword 0x0000, 0x00C8, 0x0000
 CFG_HEART_COLOR:
@@ -67,7 +67,9 @@ CFG_RAINBOW_NAVI_PROP_OUTER_ENABLED:
 CFG_DPAD_DUNGEON_INFO_ENABLE:
 .byte 0x01
 GET_ITEM_SEQ_ID:
-.word 0x00
+.halfword 0x0000
+CFG_CORRECT_MODEL_COLORS:
+.byte 0x00
 
 
 CFG_SHOW_SETTING_INFO:
@@ -116,7 +118,7 @@ INITIAL_SAVE_DATA:
 EXTENDED_INITIAL_SAVE_DATA:
 .endarea
 
-.area 0x40, 0 ; size must be at least 8 * ((max object_id parameter Patches.add_to_extended_object_table is called with) - 0x192)
+.area 0x80, 0 ; size must be at least 8 * ((max object_id parameter Patches.add_to_extended_object_table is called with) - 0x192)
 EXTENDED_OBJECT_TABLE:
 .endarea
 

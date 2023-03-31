@@ -705,7 +705,6 @@ def patch_button_colors(rom, settings, log, symbols):
 
             log_dict['colors'][patch] = color_to_hex(colors[patch])
 
-
 def patch_extra_equip_colors(rom, settings, log, symbols):
     # Various equipment color patches
     extra_equip_patches = [
@@ -950,6 +949,12 @@ def patch_voices(rom, settings, log, symbols):
         # Write the setting to the log
         log.sfx[log_key] = voice_setting
 
+def patch_correct_model_colors(rom, settings, log, symbols):
+    if settings.correct_model_colors:
+        rom.write_byte(symbols['CFG_CORRECT_MODEL_COLORS'], 0x01)
+    else:
+        rom.write_byte(symbols['CFG_CORRECT_MODEL_COLORS'], 0x00)
+    log.correct_model_colors = settings.correct_model_colors
 
 legacy_cosmetic_data_headers = [
     0x03481000,
@@ -1079,6 +1084,16 @@ patch_sets[0x1F073FDA] = {
     }
 }
 
+# 7.1.81
+patch_sets[0x1F073FDB] = {
+    "patches": patch_sets[0x1F073FDA]["patches"] + [
+        patch_correct_model_colors,
+    ],
+    "symbols": {
+        **patch_sets[0x1F073FDA]["symbols"],
+        "CFG_CORRECT_MODEL_COLORS": 0x0058,
+    }
+}
 def patch_cosmetics(settings, rom):
     # re-seed for aesthetic effects. They shouldn't be affected by the generation seed
     random.seed()
