@@ -1,3 +1,5 @@
+#include "actor.h"
+#include "get_items.h"
 #include "z64.h"
 #include "pots.h"
 #include "item_table.h"
@@ -6,6 +8,7 @@
 #include "obj_kibako2.h"
 #include "obj_comb.h"
 #include "textures.h"
+#include "en_bb.h"
 #include "actor.h"
 
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
@@ -23,6 +26,10 @@ extern int8_t curr_scene_setup;
 #define OBJ_KIBAKO          0x110   // Small Crate
 #define OBJ_KIBAKO2         0x1A0   // Large Crate
 #define EN_G_SWITCH         0x0117 //Silver Rupee
+#define EN_ANUBICE_TAG      0x00F6  // Anubis Spawner
+#define EN_IK               0x0113  // Iron Knuckes
+#define EN_SW               0x0095  // Skullwalltula
+#define EN_BB               0x0069  // Bubble
 
 // Called at the end of Actor_SetWorldToHome
 // Reset the rotations for any actors that we may have passed data in through Actor_Spawn
@@ -54,19 +61,35 @@ void Actor_After_UpdateAll_Hack(z64_actor_t *actor, z64_game_t *game) {
     Actor_StoreFlagInRotation(actor, game, CURR_ACTOR_SPAWN_INDEX);
     Actor_StoreChestType(actor, game);
 
+    // Add additional actor hacks here. These get called shortly after the call to actor_init
+    // Hacks are responsible for checking that they are the correct actor.
+    bb_after_init_hack(actor, game);
+    
     CURR_ACTOR_SPAWN_INDEX = 0; // reset CURR_ACTOR_SPAWN_INDEX
 }
 
 // For pots/crates/beehives, store the flag in the actor's unused initial rotation fields
 // Flag consists of the room # and the actor index
-void Actor_StoreFlagInRotation(z64_actor_t *actor, z64_game_t *game, uint16_t actor_index) {
-    uint16_t flag = actor_index | (actor->room_index << 8); // Calculate the flag
-    switch (actor->actor_id) {
+void Actor_StoreFlagInRotation(z64_actor_t* actor, z64_game_t* game, uint16_t actor_index) {
+    uint16_t flag = (actor_index) | (actor->room_index << 8); // Calculate the flag
+    
+    if(actor->actor_type == ACTORCAT_ENEMY && actor->actor_id != 0x0197) //Hack for most enemies. Specifically exclude gerudo fighters (0x197)
+    {
+        actor->rot_init.z = flag;
+        return;
+    }
+    
+    switch(actor->actor_id)
+    {
         // For the following actors we store the flag in the z rotation
         case OBJ_TSUBO:
         case EN_TUBO_TRAP:
         case OBJ_KIBAKO:
-        case OBJ_COMB: {
+        case OBJ_COMB: 
+        case EN_IK: // Check for iron knuckles (they use actor category 9 (boss) and change to category 5 but a frame later if the object isnt loaded)
+        case EN_SW: // Check for skullwalltula (en_sw). They start as category 4 (npc) and change to category 5 but a frame later if the object isnt laoded
+        case EN_ANUBICE_TAG: //Check for anubis spawns
+        {
             actor->rot_init.z = flag;
             break;
         }
@@ -182,4 +205,42 @@ void after_spawn_override_silver_rupee(z64_actor_t* spawned, bool overridden)
         EnItem00* this = (EnItem00*)spawned;
         this->collider.info.bumper.dmgFlags = 0; //Remove clear the bumper collider flags so it doesn't interact w/ boomerang
     }
+}
+
+//Return 1 to not spawn the actor, 0 to spawn the actor
+//If enemy drops setting is enabled, check if the flag for this actor hasn't been set and make sure to spawn it.
+//Flag is the index of the actor in the actor spawn list, or -1 if this function is not being called at the room init.
+//Parent will be set if called by Actor_SpawnAsChild
+uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit, int16_t flag, z64_actor_t* parent)
+{
+    //probably need to do something specific for anubis spawns because they use the spawner items. Maybe flare dancers too?
+    if(actorInit->id == 0x00E0 && parent != NULL)
+    {
+        flag = parent->rot_init.z;
+    }
+    if((actorInit->category == ACTORCAT_ENEMY) && z64_Flags_GetClear(globalCtx, globalCtx->room_index))
+    {
+        //Check if this we're spawning an actor from the room's actor spawn list
+        if(flag > 0)
+        {
+            flag |= globalCtx->room_index << 8;
+            //Build a dummy override
+            EnItem00 dummy;
+            dummy.actor.actor_id = 0x15;
+            dummy.actor.variable = 0;
+            dummy.actor.rot_init.y = flag;
+            dummy.override = lookup_override(&dummy, globalCtx->scene_index, 0);
+            //Check if this actor is in the override list
+            if(dummy.override.key.all != 0 && !(Get_CollectibleOverrideFlag(&dummy)>0))
+            {
+                return 0;
+            }
+            return 1;
+        }
+        
+        return 1;
+    }
+    
+
+    return 0;
 }
