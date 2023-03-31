@@ -32,6 +32,7 @@ extern int8_t curr_scene_setup;
 #define EN_BB               0x0069  // Bubble
 #define EN_WONDER_ITEM      0x0112  // Wonder Item
 #define EN_GS               0x1B9   // Gossip Stone
+#define EN_WONDER_ITEM      0x0112  // Wonder Item
 
 // Called at the end of Actor_SetWorldToHome
 // Reset the rotations for any actors that we may have passed data in through Actor_Spawn
@@ -44,12 +45,12 @@ void Actor_SetWorldToHome_End(z64_actor_t *actor) {
             actor->rot_world.z = 0;
             break;
         }
-        case EN_ITEM00: {
+        case EN_ITEM00:
+        case EN_WONDER_ITEM: {
             actor->rot_world.y = 0;
         }
-        default: {
+        default:
             break;
-        }
     }
 }
 
@@ -67,6 +68,7 @@ void Actor_After_UpdateAll_Hack(z64_actor_t *actor, z64_game_t *game) {
     // Hacks are responsible for checking that they are the correct actor.
     bb_after_init_hack(actor, game);
     
+    EnWonderitem_AfterInitHack(actor, game);
     CURR_ACTOR_SPAWN_INDEX = 0; // reset CURR_ACTOR_SPAWN_INDEX
 }
 
@@ -103,7 +105,8 @@ void Actor_StoreFlagInRotation(z64_actor_t* actor, z64_game_t* game, uint16_t ac
             break;
         }
         // For the following actors we store the flag in the y rotation
-        case OBJ_KIBAKO2: {
+        case OBJ_KIBAKO2:
+        case EN_WONDER_ITEM: {
             actor->rot_init.y = flag;
             break;
         }

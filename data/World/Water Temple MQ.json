@@ -2,6 +2,10 @@
     {
         "region_name": "Water Temple Lobby",
         "dungeon": "Water Temple",
+        "locations": {
+            "Water Temple MQ Boss Hallway Hookshot Wonderitem 1": "can_use(Longshot)",
+            "Water Temple MQ Boss Hallway Hookshot Wonderitem 2": "can_use(Longshot)"
+        },
         "exits": {
             "Lake Hylia": "True",
             "Water Temple Dive": "is_adult and (Zora_Tunic or logic_fewer_tunic_requirements) and Iron_Boots",
@@ -41,7 +45,9 @@
             "Water Temple MQ Map Chest Stalfos 2": "has_fire_source and Hookshot",
             "Water Temple MQ Map Chest Stalfos 3": "has_fire_source and Hookshot",
             "Water Temple MQ Lizalfos Hallway Lizalfos 1": "at('Water Temple Lowered Water Levels', True)",
-            "Water Temple MQ Lizalfos Hallway Lizalfos 2": "at('Water Temple Lowered Water Levels', True)"
+            "Water Temple MQ Lizalfos Hallway Lizalfos 2": "at('Water Temple Lowered Water Levels', True)",
+            "Water Temple MQ Map Chest Hookshot Wonderitem": "has_fire_source and Hookshot",
+            "Water Temple MQ Lizalfos Hallway Hookshot Wonderitem": "Hookshot"
         },
         "exits": {
             "Water Temple Below Central Pillar": "
@@ -70,7 +76,8 @@
             "Water Temple MQ Central Pillar Lower Crate 12": "can_bonk",
             "Water Temple MQ Central Pillar Lower Crate 13": "can_bonk",
             "Water Temple MQ Central Pillar Lower Crate 14": "can_bonk",
-            "Water Temple MQ Central Pillar Spike": "can_bonk and Hookshot"
+            "Water Temple MQ Central Pillar Spike": "can_bonk and Hookshot",
+            "Water Temple MQ Below Central Pillar Hookshot Wonderitem": "Hookshot"
         }
     },
     {
@@ -106,7 +113,9 @@
             "Water Temple MQ Compass Chest Lizalfos 1": "
                 Bow or can_use(Dins_Fire) or at('Water Temple Lobby', can_use(Sticks))",
             "Water Temple MQ Compass Chest Lizalfos 2": "
-                Bow or can_use(Dins_Fire) or at('Water Temple Lobby', can_use(Sticks))"
+                Bow or can_use(Dins_Fire) or at('Water Temple Lobby', can_use(Sticks))",
+            "Water Temple MQ Longshot Chest Hookshot Wonderitem": "Hookshot",
+            "Water Temple MQ Compass Chest Hookshot Wonderitem": "(Bow or can_use(Dins_Fire)) and Hookshot"
         },
         "exits": {
             "Water Temple Before Upper Water Switch": "Hookshot"
@@ -128,7 +137,8 @@
             "Water Temple MQ Before Upper Water Switch Upper Crate 1": "Longshot and can_break_crate",
             "Water Temple MQ Before Upper Water Switch Upper Crate 2": "Longshot and can_break_crate",
             "Water Temple MQ GS Before Upper Water Switch": "Longshot",
-            "Water Temple MQ Before Upper Water Switch Lizalfos": "True"
+            "Water Temple MQ Before Upper Water Switch Lizalfos": "True",
+            "Water Temple MQ Upper Water Switch Hookshot Wonderitem": "Hookshot"
         }
     },
     {
@@ -147,6 +157,15 @@
             "Water Temple MQ Dragon Statue Near Door Crate 1": "can_break_crate",
             "Water Temple MQ Dragon Statue Near Door Crate 2": "can_break_crate",
             "Water Temple MQ GS River": "True",
+            "Water Temple MQ Hookshot Waterfall Left Hookshot Wonderitem 1": "True", 
+            "Water Temple MQ Hookshot Waterfall Left Hookshot Wonderitem 2": "True",
+            "Water Temple MQ Hookshot Waterfall Left Hookshot Wonderitem 3": "True",
+            "Water Temple MQ Hookshot Waterfall Right Hookshot Wonderitem 1": "True",
+            "Water Temple MQ Hookshot Waterfall Right Hookshot Wonderitem 2": "True",
+            "Water Temple MQ Hookshot Waterfall Right Hookshot Wonderitem 3": "True",
+            "Water Temple MQ After Dark Link Hookshot Wonderitem": "True",
+            "Water Temple MQ Dragon Statue Eyes Hookshot Wonderitem 1": "(Zora_Tunic or logic_fewer_tunic_requirements) and Hookshot and Iron_Boots",
+            "Water Temple MQ Dragon Statue Eyes Hookshot Wonderitem 2": "(Zora_Tunic or logic_fewer_tunic_requirements) and Hookshot and Iron_Boots",
             "Fairy Pot": "has_bottle",
             "Nut Pot": "True"
         },
@@ -169,7 +188,8 @@
             "Water Temple MQ Dragon Statue Submerged Crate 3": "
                 (Iron_Boots and can_bonk) or (has_bombchus and (can_dive or Iron_Boots))",
             "Water Temple MQ Dragon Statue Submerged Crate 4": "
-                (Iron_Boots and can_bonk) or (has_bombchus and (can_dive or Iron_Boots))"
+                (Iron_Boots and can_bonk) or (has_bombchus and (can_dive or Iron_Boots))",
+            "Water Temple MQ Dragon Statue Crates Hookshot Wonderitem": "Hookshot"
         },
         "exits": {
             "Water Temple Boss Key Chest Room": "has_fire_source"
@@ -210,7 +230,9 @@
             "Water Temple MQ Triple Wall Torch Submerged Crate 5": "can_bonk or has_bombchus",
             "Water Temple MQ Triple Wall Torch Submerged Crate 6": "can_bonk or has_bombchus",
             "Water Temple MQ Triple Wall Torch Stalfos 1": "True",
-            "Water Temple MQ Triple Wall Torch Stalfos 2": "True"
+            "Water Temple MQ Triple Wall Torch Stalfos 2": "True",
+            "Water Temple MQ 3 Water Spouts Proximity Wonderitem 1": "Hookshot",
+            "Water Temple MQ 3 Water Spouts Proximity Wonderitem 2": "Hookshot"
         },
         "exits": {
             "Water Temple Freestanding Key Room": "
@@ -230,7 +252,8 @@
             "Water Temple MQ Freestanding Key Room Crate 3": "can_break_crate",
             "Water Temple MQ Freestanding Key Room Crate 4": "can_break_crate",
             "Water Temple MQ Freestanding Key Room Crate 5": "can_break_crate",
-            "Water Temple MQ Freestanding Key Stalfos": "True"
+            "Water Temple MQ Freestanding Key Stalfos": "True",
+            "Water Temple MQ Freestanding Key Hookshot Wonderitem": "Hookshot"
         },
         "exits": {
             "Water Temple Dodongo Room": "(Small_Key_Water_Temple, 2)"
@@ -275,7 +298,8 @@
             "Water Temple MQ Triple Wall Torch Behind Gate Crate 1": "can_break_crate",
             "Water Temple MQ Triple Wall Torch Behind Gate Crate 2": "can_break_crate",
             "Water Temple MQ Triple Wall Torch Behind Gate Crate 3": "can_break_crate",
-            "Water Temple MQ GS Triple Wall Torch": "True"
+            "Water Temple MQ GS Triple Wall Torch": "True",
+            "Water Temple MQ Triple Wall Torch Hookshot/Bow Wonderitem": "Hookshot"
         }
     }
 ]

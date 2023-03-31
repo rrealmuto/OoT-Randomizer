@@ -37,7 +37,7 @@
             "Gerudo Training Ground MQ Dodongo 1": "is_adult",
             "Gerudo Training Ground MQ Dodongo 2": "is_adult",
             "Gerudo Training Ground MQ Armos": "is_adult",
-            
+            "Gerudo Training Ground MQ Dinolfos Arrow Wonderitem": "can_use(Bow)",
             # Shoot the Gerudo symbol above the door to the lava room.
             "Wall Fairy": "has_bottle and can_use(Bow)"
         },
@@ -176,9 +176,13 @@
             "Gerudo Training Ground MQ Eye Statue Chest": "Bow",
             "Gerudo Training Ground MQ Second Iron Knuckle Chest": "True",
             "Gerudo Training Ground MQ Flame Circle Chest": "Hookshot or Bow or has_explosives",
+<<<<<<< HEAD
             "Gerudo Training Ground MQ Second Iron Knuckle": "True",
             "Gerudo Training Ground MQ Second Iron Knuckle Torch Slug 1": "True",
             "Gerudo Training Ground MQ Second Iron Knuckle Torch Slug 2": "True"
+=======
+            "Gerudo Training Ground MQ Eye Statue Proximity Wonderitem": "can_use(Hover_Boots) or can_use(Longshot)"
+>>>>>>> wonderitems
         },
         "exits": {
             "Gerudo Training Ground Central Maze Right": "Megaton_Hammer",

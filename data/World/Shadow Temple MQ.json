@@ -322,7 +322,8 @@
             "Shadow Temple MQ Invisible Wall Maze Bubble 2": "True",
             "Shadow Temple MQ Invisible Wall Maze Like-Like": "True",
             "Shadow Temple MQ Bomb Flower Deadhand": "
-                logic_lens_shadow_mq_dead_hand or can_use(Lens_of_Truth)"
+                logic_lens_shadow_mq_dead_hand or can_use(Lens_of_Truth)",
+            "Shadow Temple MQ 3 Spinning Pots Arrow Wonderitem": "can_use(Bow)"
         },
         "exits": {
             "Shadow Temple 3 Spinning Pots Rupees": "Bombs or Progressive_Strength_Upgrade"
