@@ -2,18 +2,27 @@
 
 This is a randomizer for _The Legend of Zelda: Ocarina of Time_ for the Nintendo 64.
 
-**WARNING:** This branch is a modified version of the randomizer. It is **not** officially supported and may be **very unstable**.
-Please refrain from asking questions and from reporting issues in the main Randomizer Discord when using this branch.
-Instead, you can open an issue on this fork [here](https://github.com/Roman971/OoT-Randomizer/issues) or contact me directly on discord (Roman#7295) for any help, report or request.
+WARNING: This branch is a modified version of the randomizer. It is not officially supported and may be very unstable. Please refrain from asking questions and from reporting issues in the main Randomizer Discord when using this branch. Instead, you can open an issue on this fork here or contact me directly on discord (RealRob#4093) for any help, report or request.
 
-Differences between this branch and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):
-* Various GUI tweaks and improvements along with setting tooltip/option changes
-* 2 new advanced ER settings: "Mixed Entrance Pools" and "Decouple Entrances"
-* Picking up Gold Skulltula Tokens in non-Tokensanity displays a self-closing textbox which no longer freezes the player.
-* New cosmetic setting to randomize the color of some additional equipment and items.
+This branch is based of of Roman971's fork of the randomizer, with the addition of the following developmental features:
+
+Silver Rupee Shuffle - Silver rupees can be shuffled into the item pool. Collecting the required number of silver rupees for a particular puzzle will unlock whatever was locked by the puzzle.
+Enemy Drop Shuffle - All (almost) of the enemies in the game can be contain shuffled items.
+Wonderitem Shuffle - Shuffles wonderitems - which include invisible rupees and invisible hit markers.
+Gossip Stone Shuffle - Play Song of Time to a gossip stone to receive a shuffled item.
+Individual Ocarina Note Shuffle (By GSKirox) - Shuffles individual ocarina buttons as items to be collected before they can be used to play songs.
 
 ## Index
 
+* [RealRob's Changelog](#realrob-changelog)
+  * [v21](#v21)
+  * [v20](#v20)
+  * [v19](#v19)
+  * [v18](#v18)
+  * [v17](#v17)
+  * [v16](#v16)
+  * [v15](#v15)
+  * [v14](#v14)
 * [Installation](#installation)
 * [General Description](#general-description)
   * [Getting Stuck](#getting-stuck)
@@ -29,6 +38,54 @@ Differences between this branch and the main Dev branch (on [Testrunner's Fork](
   * [5.1](#51)
   * [5.0](#50)
   * [4.0](#40)
+
+## RealRob Changelog
+### v21
+  * New Setting - Individual Ocarina Note Shuffle
+  * Enemy Drop Shuffle Fixes:
+    * Fix broken Lost Woods Skullkid drop
+
+### v20
+  * New Ice Trap Settings:
+    * Custom Ice Trap Count
+      * Allows specifiying a number of junk items to be replaced w/ Ice Traps
+    * Custom Ice Trap Percent
+      * Allows specifying a percentage of junk items to be replaced w/ Ice Traps
+  * Gossip Stone Shuffle Fixes:
+    * Add MQ Dodongo's Cavern Gossip Stone
+
+### v19
+  * Enemy Drop Shuffle Fixes:
+    * Fix MQ GTG Heavy Block Room enemy logic
+
+### v18
+  * New Setting - Key Appearance Matches Dungeon
+    * When enabled, small keys, key rings, and boss keys will 
+    be colored to match their respective dungeons.
+
+### v17
+  * Silver Rupee Shuffle Fixes:
+    * Prevent items shuffled in silver rupee locations from being collected with boomerang
+    * Fix "TEXT ID ERROR" message when collecting the final silver rupee from a chest or shop
+
+### v16
+  * New Setting: Gossip Stone Shuffle
+  * Enemy Drop Shuffle Changes:
+    * Add skull kid drops
+  
+### v15
+
+  * Add Fast Armos Pushing
+
+### v14
+
+  * Silver Rupee Shuffle:
+    * Added Silver Rupee Pouches
+    * When silver rupees are collected, the text box will indicate how many rupees of that puzzle have been collected
+  * Enemy Drop Shuffle:
+    * Added setting under Misc. to prevent guays from respawning
+  * Bug Fixes:
+    * Fix bug where freestanding items would duplicate when reloading a room
 
 ## Installation
 
