@@ -179,6 +179,14 @@ CFG_DUNGEON_INFO_REWARD_WORLDS_ENABLE:
 .area 9, 0
 CFG_DUNGEON_REWARD_WORLDS:
 .endarea
+INCORRECT_CHEST_APPEARANCES:
+.byte 0x00
+SKULL_CHEST_SIZES:
+.byte 0x01
+HEART_CHEST_SIZES:
+.byte 0x01
+CFG_GLITCHLESS_LOGIC:
+.byte 0x00
 .align 4
 
 ; These configuration values are given fixed addresses to aid auto-trackers.
