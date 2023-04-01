@@ -2297,6 +2297,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     SKULL_CHEST_BIG =  15
     HEART_CHEST_SMALL = 16
     HEART_CHEST_BIG = 17
+    rom.write_byte(rom.sym('CFG_GLITCHLESS_LOGIC'), int(world.settings.logic_rules == 'glitchless'))
     if world.settings.correct_chest_appearances == 'textures':
         symbol = rom.sym('CHEST_TEXTURE_MATCH_CONTENTS')
         rom.write_int32(symbol, 0x00000001)
@@ -2306,13 +2307,43 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     if world.settings.correct_chest_appearances == 'both':
         symbol = rom.sym('CHEST_SIZE_TEXTURE')
         rom.write_int32(symbol, 0x00000001)
-        # Move Ganon's Castle's Zelda's Lullaby Chest back so is reachable if large
+    if world.settings.incorrect_chest_appearances:
+        rom.write_byte(rom.sym('INCORRECT_CHEST_APPEARANCES'), 1)
+        any_small_skull_chests = any(
+            world_dist.settings.bridge != 'tokens'
+            and world_dist.settings.lacs_condition != 'tokens'
+            and world_dist.settings.shuffle_ganon_bosskey != 'tokens'
+            for world_dist in world.settings.distribution.world_dists
+            if world_dist.settings.tokensanity != 'off'
+        )
+        any_big_skull_chests = any(
+            world_dist.settings.bridge == 'tokens'
+            or world_dist.settings.lacs_condition == 'tokens'
+            or world_dist.settings.shuffle_ganon_bosskey == 'tokens'
+            for world_dist in world.settings.distribution.world_dists
+            if world_dist.settings.tokensanity != 'off'
+        )
+        rom.write_byte(rom.sym('SKULL_CHEST_SIZES'), 2 * any_big_skull_chests + any_small_skull_chests)
+        any_small_heart_chests = any(
+            world_dist.settings.bridge != 'hearts'
+            and world_dist.settings.lacs_condition != 'hearts'
+            and world_dist.settings.shuffle_ganon_bosskey != 'hearts'
+            for world_dist in world.settings.distribution.world_dists
+        )
+        any_big_heart_chests = any(
+            world_dist.settings.bridge == 'hearts'
+            or world_dist.settings.lacs_condition == 'hearts'
+            or world_dist.settings.shuffle_ganon_bosskey == 'hearts'
+            for world_dist in world.settings.distribution.world_dists
+        )
+        rom.write_byte(rom.sym('HEART_CHEST_SIZES'), 2 * any_big_heart_chests + any_small_heart_chests)
     if world.settings.correct_chest_appearances == 'classic' or world.settings.correct_chest_appearances == 'both':
+        # Move Ganon's Castle's Zelda's Lullaby Chest back so is reachable if large
         if not world.dungeon_mq['Ganons Castle']:
             chest_name = 'Ganons Castle Light Trial Lullaby Chest'
             location = world.get_location(chest_name)
             item = read_rom_item(rom, (location.item.looks_like_item or location.item).index)
-            if item['chest_type'] in (GOLD_CHEST, GILDED_CHEST, SKULL_CHEST_BIG, HEART_CHEST_BIG):
+            if (item['chest_type'] in (GOLD_CHEST, GILDED_CHEST, SKULL_CHEST_BIG, HEART_CHEST_BIG)) != world.settings.incorrect_chest_appearances:
                 rom.write_int16(0x321B176, 0xFC40) # original 0xFC48
 
         # Move Spirit Temple Compass Chest if it is a small chest so it is reachable with hookshot
@@ -2321,7 +2352,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
             chest_address = 0x2B6B07C
             location = world.get_location(chest_name)
             item = read_rom_item(rom, (location.item.looks_like_item or location.item).index)
-            if item['chest_type'] in (BROWN_CHEST, SILVER_CHEST, SKULL_CHEST_SMALL, HEART_CHEST_SMALL):
+            if (item['chest_type'] in (BROWN_CHEST, SILVER_CHEST, SKULL_CHEST_SMALL, HEART_CHEST_SMALL)) != world.settings.incorrect_chest_appearances:
                 rom.write_int16(chest_address + 2, 0x0190) # X pos
                 rom.write_int16(chest_address + 6, 0xFABC) # Z pos
 
@@ -2332,7 +2363,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
             chest_address_2 = 0x21A06E4  # Address in setup 2
             location = world.get_location(chest_name)
             item = read_rom_item(rom, (location.item.looks_like_item or location.item).index)
-            if item['chest_type'] in (BROWN_CHEST, SILVER_CHEST, SKULL_CHEST_SMALL, HEART_CHEST_SMALL):
+            if (item['chest_type'] in (BROWN_CHEST, SILVER_CHEST, SKULL_CHEST_SMALL, HEART_CHEST_SMALL)) != world.settings.incorrect_chest_appearances:
                 rom.write_int16(chest_address_0 + 6, 0x0172)  # Z pos
                 rom.write_int16(chest_address_2 + 6, 0x0172)  # Z pos
 
