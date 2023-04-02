@@ -5475,6 +5475,9 @@ setting_infos = [
             it contains a junk item.
         ''',
         shared         = True,
+        gui_params     = {
+            'optional': True,
+        },
     ),
     Checkbutton(
         name           = 'clearer_item_models',
