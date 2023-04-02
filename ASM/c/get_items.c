@@ -209,7 +209,7 @@ void activate_override(override_t override) {
     if (override.value.looks_like_item_id) {
         item_row = get_item_row(override.value.looks_like_item_id);
     }
-    active_item_fast_chest = item_row->chest_type == BROWN_CHEST || item_row->chest_type == SILVER_CHEST || item_row->chest_type == SKULL_CHEST_SMALL;
+    active_item_fast_chest = item_row->chest_type == BROWN_CHEST || item_row->chest_type == SILVER_CHEST || item_row->chest_type == SKULL_CHEST_SMALL || item_row->chest_type == HEART_CHEST_SMALL;
     PLAYER_NAME_ID = override.value.base.player;
 }
 

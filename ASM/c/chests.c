@@ -38,7 +38,7 @@ void get_chest_override(z64_actor_t *actor) {
                 item_row = get_item_row(override.value.base.item_id);
             }
             if (CHEST_SIZE_MATCH_CONTENTS || CHEST_SIZE_TEXTURE) {
-                if (item_row->chest_type == BROWN_CHEST || item_row->chest_type == SILVER_CHEST || item_row->chest_type == SKULL_CHEST_SMALL) {
+                if (item_row->chest_type == BROWN_CHEST || item_row->chest_type == SILVER_CHEST || item_row->chest_type == SKULL_CHEST_SMALL || item_row->chest_type == HEART_CHEST_SMALL) {
                     // Small chest
                     size = SMALL_CHEST;
                 }
@@ -93,6 +93,12 @@ void set_chest_texture(z64_gfx_t *gfx, uint8_t chest_type, Gfx **opa_ptr) {
             case SKULL_CHEST_BIG:
                 frontTexture = get_texture(TEXTURE_ID_CHEST_FRONT_SKULL);
                 baseTexture = get_texture(TEXTURE_ID_CHEST_BASE_SKULL);
+                break;
+
+            case HEART_CHEST_SMALL:
+            case HEART_CHEST_BIG:
+                frontTexture = get_texture(TEXTURE_ID_CHEST_FRONT_HEART);
+                baseTexture = get_texture(TEXTURE_ID_CHEST_BASE_HEART);
                 break;
 
             default:

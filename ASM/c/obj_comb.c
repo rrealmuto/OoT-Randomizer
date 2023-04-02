@@ -99,6 +99,10 @@ void ObjComb_Draw_Hack(z64_actor_t *this, z64_game_t *game) {
                 texture = get_texture(TEXTURE_ID_BEEHIVE_BOSSKEY);
                 break;
 
+            case HEART_CHEST:
+                texture = get_texture(TEXTURE_ID_BEEHIVE_HEART);
+                break;
+
             default:
                 break;
         }

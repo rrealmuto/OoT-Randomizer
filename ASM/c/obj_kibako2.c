@@ -68,6 +68,11 @@ void ObjKibako2_Draw(z64_actor_t *actor, z64_game_t *game) {
             texture = get_texture(TEXTURE_ID_CRATE_SKULL);
             break;
 
+        case HEART_CHEST_SMALL:
+        case HEART_CHEST_BIG:
+            texture = get_texture(TEXTURE_ID_CRATE_HEART);
+            break;
+
         default:
             break;
     }

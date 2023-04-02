@@ -545,7 +545,16 @@
         "region_name": "Market Mask Shop",
         "events": {
             "Mask Shop Open": "at('HC Garden Locations', is_child) and 'Kakariko Village Gate Open'",
-            "Mask of Truth Access": "'Mask Shop Open' and (complete_mask_quest or (Bunny_Hood and at('Hyrule Field', is_child and has_all_stones)))"
+            "Mask of Truth Access": "
+                'Mask Shop Open' and
+                (complete_mask_quest or
+                    (
+                    Keaton_Mask and at('Kakariko Village', is_child) and
+                    Skull_Mask and at('Lost Woods', is_child and can_play(Sarias_Song)) and
+                    Spooky_Mask and at('Graveyard', is_child and at_day) and
+                    Bunny_Hood and at('Hyrule Field', is_child and has_all_stones)
+                    )
+                )"
         },
         "locations": {
             # Gerudo Mask
