@@ -1440,6 +1440,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
         save_context.write_bits(0x0EDD, 0x01) # "Obtained Zelda's Letter"
         save_context.write_bits(0x0EDE, 0x02) # "Learned Zelda's Lullaby"
         save_context.write_bits(0x00D4 + 0x5F * 0x1C + 0x04 + 0x3, 0x10) # "Moved crates to access the courtyard"
+    if world.skip_child_zelda or "Zeldas Letter" in world.distribution.starting_items.keys():
         if world.settings.open_kakariko != 'closed':
             save_context.write_bits(0x0F07, 0x40) # "Spoke to Gate Guard About Mask Shop"
         if world.settings.complete_mask_quest:
