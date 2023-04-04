@@ -1881,7 +1881,7 @@ def buildBossString(reward, color, world):
             text = GossipText(f"\x08\x13{item_icon}One in #@'s pocket#...", [color], prefix='')
     else:
         location = world.hinted_dungeon_reward_locations[reward]
-        location_text = HintArea.at(location).text(world.settings.clearer_hints, preposition=True)
+        location_text = HintArea.at(location).text(world.settings.clearer_hints, preposition=True, world=None if location.world.id == world.id else location.world.id + 1)
         text = GossipText(f"\x08\x13{item_icon}One {location_text}...", [color], prefix='')
     return str(text) + '\x04'
 
