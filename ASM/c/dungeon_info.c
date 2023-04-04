@@ -478,6 +478,30 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
 
         if (CFG_DUNGEON_INFO_REWARD_WORLDS_ENABLE) {
             for (int i = 0; i < 9; i++) {
+                uint8_t reward = reward_rows[i];
+                bool display_area = true;
+                switch (CFG_DUNGEON_INFO_REWARD_NEED_COMPASS) {
+                    case 1:
+                        for (int j = 0; j < 8; j++) {
+                            uint8_t dungeon_idx = dungeon_info_table[j].index;
+                            if (CFG_DUNGEON_REWARDS[dungeon_idx] == reward) {
+                                if (!z64_file.dungeon_items[dungeon_idx].compass) {
+                                    display_area = false;
+                                }
+                                break;
+                            }
+                        }
+                        break;
+                    case 2:
+                        if (i != 3) { // always display Light Medallion
+                            dungeon_entry_t *d = &(dungeon_info_table[i - (i < 3 ? 0 : 1)]); // vanilla location of the reward
+                            display_area = z64_file.dungeon_items[d->index].compass;
+                        }
+                        break;
+                }
+                if (!display_area) {
+                    continue;
+                }
                 uint8_t world = CFG_DUNGEON_REWARD_WORLDS[i];
                 char world_text[5] = "WOOO";
                 if (world < 100) {
