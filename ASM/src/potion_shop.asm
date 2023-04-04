@@ -18,7 +18,7 @@ potion_shop_fix:
     lb      v1, SHUFFLE_GRANNYS_POTION_SHOP
     beqz    v1, @@return
     la      v1, SAVE_CONTEXT
-    lw      v1, (Shop_Item_Save_Offset)(v1)
+    lw      v1, (Granny_Item_Save_Offset)(v1)
     andi    v1, v1, 0x0001
     beqz    v1, @@return
     nop
@@ -46,9 +46,9 @@ potion_shop_buy_hook:
     lb      v1, SHUFFLE_GRANNYS_POTION_SHOP
     beqz    v1, @@return_buy_hook
     la      v1, SAVE_CONTEXT
-    lw      v0, (Shop_Item_Save_Offset)(v1)
+    lw      v0, (Granny_Item_Save_Offset)(v1)
     ori     v0, v0, 0x0001
-    sw      v0, (Shop_Item_Save_Offset)(v1)
+    sw      v0, (Granny_Item_Save_Offset)(v1)
 
 @@return_buy_hook:
     jr      ra
