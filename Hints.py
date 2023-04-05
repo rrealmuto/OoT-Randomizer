@@ -485,7 +485,7 @@ class HintArea(Enum):
 
     # Formats the hint text for this area with proper grammar.
     # Dungeons are hinted differently depending on the clearer_hints setting.
-    def text(self, clearer_hints, preposition=False, world=None):
+    def text(self, clearer_hints, preposition=False, use_2nd_person=False, world=None):
         if self.is_dungeon:
             text = getHint(self.dungeon_name, clearer_hints).text
         else:
@@ -493,7 +493,10 @@ class HintArea(Enum):
         prefix, suffix = text.replace('#', '').split(' ', 1)
         if world is None:
             if prefix == "Link's":
-                text = f"@'s {suffix}"
+                if use_2nd_person:
+                    text = f'your {suffix}'
+                else:
+                    text = f"@'s {suffix}"
         else:
             replace_prefixes = ('a', 'an', 'the')
             move_prefixes = ('outside', 'inside')
