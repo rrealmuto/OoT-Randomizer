@@ -68,8 +68,12 @@ void Message_AddString(MessageContext *msgCtx, void *pFont, uint32_t *pDecodedBu
 
 // Helper function for adding a filename to the decoded message buffer. Filenames use a different character set from other text.
 void Message_AddFileName(MessageContext *msgCtx, void *pFont, uint32_t *pDecodedBufPos, uint32_t *pCharTexIdx, uint8_t *filenameToAdd) {
-    for (int i = 0; i < 8; i++) {
-        //TODO trim leading/trailing spaces? Match vanilla behavior
+    int end = 8;
+    while (filenameToAdd[end - 1] == 0xDF) {
+        // trim trailing space
+        end--;
+    }
+    for (int i = 0; i < end; i++) {
         Message_AddCharacter(msgCtx, pFont, pDecodedBufPos, pCharTexIdx, FILENAME_ENCODING[filenameToAdd[i]]);
     }
 }
