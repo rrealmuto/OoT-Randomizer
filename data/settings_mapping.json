@@ -67,7 +67,7 @@
         {
           "name": "multiworld_section",
           "text": "Multi-World Generation",
-          "subheader": "This is used for co-op generations. Increasing Player Count will drastically increase the generation time.<br>For more information, see:<br><a href='https://github.com/TestRunnerSRL/bizhawk-co-op' target='_blank'>https://github.com/TestRunnerSRL/bizhawk-co-op</a>",
+          "subheader": "Play interconnected seeds with multiple players. Each player receives one of the worlds, which can contain items for other players.<br>You will need a plugin like <a href='https://github.com/TestRunnerSRL/bizhawk-co-op' target='_blank'>bizhawk-co-op</a> or <a href='https://midos.house/mw'>Mido's House Multiworld</a> to connect the worlds together.<br>Increasing Player Count will drastically increase the generation time.",
           "row_span": [1,1,1],
           "settings": [
             "world_count",
@@ -112,7 +112,7 @@
         {
           "name": "multiworld_section",
           "text": "Multi-World Generation",
-          "subheader": "This is used for co-op generations.<br>For more information, see:<br><a href='https://github.com/TestRunnerSRL/bizhawk-co-op' target='_blank'>https://github.com/TestRunnerSRL/bizhawk-co-op</a>",
+          "subheader": "Play interconnected seeds with multiple players. Each player receives one of the worlds, which can contain items for other players.<br>You will need a plugin like <a href='https://github.com/TestRunnerSRL/bizhawk-co-op' target='_blank'>bizhawk-co-op</a> or <a href='https://midos.house/mw'>Mido's House Multiworld</a> to connect the worlds together.",
           "row_span": [1,1,1],
           "settings": [
             "player_num"
