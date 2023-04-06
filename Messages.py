@@ -61,6 +61,7 @@ CONTROL_CODES = {
     0x1F: ('time', 0, lambda _: '<current time>' ),
     0xF0: ('silver_rupee', 1, lambda d: '<silver rupee count ' + "{:02x}".format(d) + '>' ),
     0xF1: ('key_count', 1, lambda d: '<key count ' + "{:02x}".format(d) + '>' ),
+    0xF2: ('outgoing_item_filename', 0, lambda _: '<outgoing item filename>' ),
 }
 
 # Maps unicode characters to corresponding bytes in OOTR's character set.
@@ -1010,7 +1011,7 @@ def move_shop_item_messages(messages, shop_items):
             shop.purchase_message |= 0x8000
 
 def make_player_message(text):
-    player_text = '\x05\x42\x0F\x05\x40'
+    player_text = '\x05\x42\xF2\x05\x40'
     pronoun_mapping = {
         "You have ": player_text + " ",
         "You are ":  player_text + " is ",
