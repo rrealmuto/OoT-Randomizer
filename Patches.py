@@ -1834,7 +1834,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
         new_message = f"\x08Princess Ruto got \x01\x05\x43nothing\x05\x40!\x01Well, that's disappointing...\x02"
     else:
         reward_color = REWARD_COLORS.get(location.item.name, 'Blue')
-        new_message = f"\x08Princess Ruto got \x01\x05{COLOR_MAP[reward_color]}{location.item.name}\x05\x40!\x01But why Princess Ruto?\x02"
+        new_message = f"\x08Princess Ruto got \x01\x05{COLOR_MAP[reward_color]}{reward_text}\x05\x40!\x01But why Princess Ruto?\x02"
     update_message_by_id(messages, 0x4050, new_message)
 
     # Set Dungeon Reward Actor in Jabu Jabu to be accurate
