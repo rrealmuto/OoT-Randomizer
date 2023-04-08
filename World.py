@@ -1265,6 +1265,8 @@ class World(object):
             exclude_item_list.append('Silver Rupee Pouch (Spirit Temple Sun Block)')
         if self.settings.shuffle_pots in ('off', 'overworld') and self.settings.trials == 0:
             # These silver rupees only lock pots and trial completion
+            exclude_item_list.append('Silver Rupee (Ganons Castle Light Trial)')
+            exclude_item_list.append('Silver Rupee Pouch (Ganons Castle Light Trial)')
             exclude_item_list.append('Silver Rupee (Ganons Castle Fire Trial)')
             exclude_item_list.append('Silver Rupee Pouch (Ganons Castle Fire Trial)')
             exclude_item_list.append('Silver Rupee (Ganons Castle Shadow Trial)')
@@ -1273,6 +1275,10 @@ class World(object):
             exclude_item_list.append('Silver Rupee Pouch (Ganons Castle Water Trial)')
             exclude_item_list.append('Silver Rupee (Ganons Castle Forest Trial)')
             exclude_item_list.append('Silver Rupee Pouch (Ganons Castle Forest Trial)')
+            if self.dungeon_mq['Ganons Castle'] and self.settings.shuffle_freestanding_items in ('off', 'overworld') and not self.shuffle_silver_rupees:
+                # MQ Ganon small keys only lock pots, freestanding recovery hearts, silver rupees, and trial completion
+                exclude_item_list.append('Small Key (Ganons Castle)')
+                exclude_item_list.append('Small Key Ring (Ganons Castle)')
 
         for i in self.item_hint_type_overrides['barren']:
             if i in exclude_item_list:
