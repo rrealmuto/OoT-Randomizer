@@ -411,12 +411,18 @@ SRAM_SLOTS:
 .headersize(0)
 
 ; Hack EnItem00_Update when it checks proximity to the player to handle silver rupee collisions differently
-.orga 0xA88B74 ; In Memory 0x80012C14
-; Replaces 
+; EnItem00_ProximityCheck_Hook will jump back into EnItem00 as appropriate.
+.headersize (0x800110A0 - 0xA87000)
+.org 0x80012C14 ; In Memory 0x80012C14
+; Replaces
 ;   mtc1    at, f18
 ;   lwc1    f4, 0x0090(s0)
-    j       EnItem00_ProximityCheck_Hook
+    jal     EnItem00_ProximityCheck_Hook
     nop
+    ; Check our return result in v0. If it's true (actor is in proximity) then continue on the function, otherwise return
+    bnez    v0, 0x80012C78 ; if v0 != 0 the player isn't in proximity, branch inside the original if where it calls Actor_HasParent before returning.
+    lui     t6, 0x0001
+    b       0x80012C64
 
 ; Hack EnItem00 Action Function (func_8001E304 from decomp, 0x8001251C in 1.0) used by Item_DropCollectible to not increment the time to live if its < 0
 ; replaces
