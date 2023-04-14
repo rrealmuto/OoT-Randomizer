@@ -143,11 +143,6 @@
                 ((can_use(Dins_Fire) or (((Magic_Meter and Fire_Arrows) or (logic_spirit_sun_chest_bow and (Silver_Rupee_Spirit_Temple_Sun_Block, 5))) and
                         Bow and Sticks and (logic_spirit_sun_chest_no_rupees or (Silver_Rupee_Spirit_Temple_Sun_Block, 5)))) and
                     (has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)))",
-            "Spirit Temple Sun Block Room Silver Rupee Left" : "True",
-            "Spirit Temple Sun Block Room Silver Rupee Center Front" : "True",
-            "Spirit Temple Sun Block Room Silver Rupee Center Back" : "True",
-            "Spirit Temple Sun Block Room Silver Rupee Right Front" : "True",
-            "Spirit Temple Sun Block Room Silver Rupee Right Back" : "True",
             # With longshot and explosives, right hand is reachable as adult after opening either
             # upper door. Because some of the keys cannot be spent without adult accessing the
             # main body of the dungeon, this route is able to be age-unknown, where child can be
