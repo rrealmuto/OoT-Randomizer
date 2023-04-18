@@ -167,7 +167,8 @@ class Item(object):
             (self.type == 'BossKey' and self.world.settings.shuffle_bosskeys in ('remove', 'vanilla', 'dungeon')) or
             (self.type == 'GanonBossKey' and self.world.settings.shuffle_ganon_bosskey in ('remove', 'vanilla', 'dungeon')) or
             ((self.map or self.compass) and self.world.settings.shuffle_mapcompass in ('remove', 'startwith', 'vanilla', 'dungeon')) or
-            (self.type == 'SilverRupee' and self.world.settings.shuffle_silver_rupees in ('remove', 'vanilla', 'dungeon'))
+            (self.type == 'SilverRupee' and self.world.settings.shuffle_silver_rupees in ('remove', 'vanilla', 'dungeon')) or
+            (self.type == 'DungeonReward' and self.world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward', 'dungeon'))
         )
 
 
@@ -261,6 +262,7 @@ class Item(object):
                     ) or (
                         # These silver rupees only lock pots and the trial
                         self.name in (
+                            'Silver Rupee (Ganons Castle Light Trial)', 'Silver Rupee Pouch (Ganons Castle Light Trial)',
                             'Silver Rupee (Ganons Castle Fire Trial)', 'Silver Rupee Pouch (Ganons Castle Fire Trial)',
                             'Silver Rupee (Ganons Castle Shadow Trial)', 'Silver Rupee Pouch (Ganons Castle Shadow Trial)',
                             'Silver Rupee (Ganons Castle Water Trial)', 'Silver Rupee Pouch (Ganons Castle Water Trial)',
@@ -268,6 +270,14 @@ class Item(object):
                         )
                         and self.world.settings.shuffle_pots in ('off', 'overworld')
                         and self.world.settings.trials == 0
+                    ) or (
+                        # MQ Ganon small keys only lock pots, freestanding recovery hearts, silver rupees, and trial completion
+                        self.name in ('Small Key (Ganons Castle)', 'Small Key Ring (Ganons Castle)')
+                        and self.world.settings.shuffle_pots in ('off', 'overworld')
+                        and self.world.settings.trials == 0
+                        and self.dungeon_mq['Ganons Castle']
+                        and self.settings.shuffle_freestanding_items in ('off', 'overworld')
+                        and not self.shuffle_silver_rupees
                     )
                 )
             )

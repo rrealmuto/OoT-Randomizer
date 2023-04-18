@@ -34,7 +34,6 @@
 #define OFFSETOF(structure, member) ((size_t)&(((structure *)0)->member))
 
 
-
 typedef struct
 {
   /* index of z64_col_type in scene file */
