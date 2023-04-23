@@ -1071,7 +1071,7 @@ location_table = OrderedDict([
     ("Bottom of the Well Basement Silver Rupee Ladders Bottom",      ("SilverRupee",  0x08, (1,0,41), None,                    'Silver Rupee (Bottom of the Well Basement)', ("Bottom of the Well", "Vanilla Dungeons", "Silver Rupees"))),
     ("Bottom of the Well Basement Silver Rupee Ladders Middle",      ("SilverRupee",  0x08, (1,0,40), None,                    'Silver Rupee (Bottom of the Well Basement)', ("Bottom of the Well", "Vanilla Dungeons", "Silver Rupees"))),
     ("Bottom of the Well Basement Silver Rupee Ladders Top",         ("SilverRupee",  0x08, (1,0,39), None,                    'Silver Rupee (Bottom of the Well Basement)', ("Bottom of the Well", "Vanilla Dungeons", "Silver Rupees"))),
-    
+
     # Bottom of the Well MQ
     ("Bottom of the Well MQ Map Chest",                              ("Chest",        0x08,  0x03, None,                            'Map (Bottom of the Well)',              ("Bottom of the Well MQ", "Master Quest", "Chests",))),
     ("Bottom of the Well MQ East Inner Room Freestanding Key",       ("Collectable",  0x08,  0x01, None,                            'Small Key (Bottom of the Well)',        ("Bottom of the Well MQ", "Master Quest", "Freestandings",))),

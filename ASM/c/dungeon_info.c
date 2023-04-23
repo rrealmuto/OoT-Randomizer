@@ -190,11 +190,15 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
         int mq_width = show_mq ?
             ((6 * font_width) + padding) :
             0;
+        int silver_width = CFG_DUNGEON_INFO_SILVER_RUPEES ?
+            icon_size + (7 * font_width) + (12 * padding) :
+            0;
         int bg_width =
             (6 * icon_size) +
             (11 * font_width) +
             (8 * padding) +
-            mq_width;
+            mq_width +
+            silver_width;
         int bg_height = (rows * icon_size) + ((rows + 1) * padding);
         int bg_left = (Z64_SCREEN_WIDTH - bg_width) / 2;
         int bg_top = (Z64_SCREEN_HEIGHT - bg_height) / 2;
@@ -412,9 +416,77 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
                 text_print_size(str, left, top, font_width);
             }
 
-            left += icon_size + padding;
+            left += (6 * font_width) + padding;
         }
         text_flush_size(db, font_width, font_height, 0, 0);
+
+        if (CFG_DUNGEON_INFO_SILVER_RUPEES) {
+            // Draw silver rupee icons
+
+            sprite_load(db, &key_rupee_clock_sprite, 1, 1);
+
+            for (int i = 0; i < dungeon_count; i++) {
+                dungeon_entry_t *d = &(dungeon_info_table[i]);
+                bool show_silver_rupees = false;
+                uint8_t *silver_rupee_puzzles = CFG_DUNGEON_IS_MQ[d->index] ? d->silver_rupee_puzzles_mq : d->silver_rupee_puzzles_vanilla;
+                for (int puzzle_idx = 0; puzzle_idx < 4; puzzle_idx++) {
+                    if (silver_rupee_puzzles[puzzle_idx] == (uint8_t) -1) break;
+                    uint8_t count = extended_savectx.silver_rupee_counts[silver_rupee_puzzles[puzzle_idx]];
+                    if (count > 0) {
+                        show_silver_rupees = true;
+                        break;
+                    }
+                }
+                if (show_silver_rupees) {
+                    int top = start_top + ((icon_size + padding) * i);
+                    sprite_draw(db, &key_rupee_clock_sprite, 0,
+                            left, top, icon_size, icon_size);
+                }
+            }
+
+            left += icon_size + padding;
+
+            // Draw silver rupee counts
+            sprite_load(db, &font_sprite, 16, 10); // load characters 0 through 9
+
+            for (int i = 0; i < dungeon_count; i++) {
+                dungeon_entry_t *d = &(dungeon_info_table[i]);
+                bool show_silver_rupees = false;
+                uint8_t *silver_rupee_puzzles = CFG_DUNGEON_IS_MQ[d->index] ? d->silver_rupee_puzzles_mq : d->silver_rupee_puzzles_vanilla;
+                for (int puzzle_idx = 0; puzzle_idx < 4; puzzle_idx++) {
+                    if (silver_rupee_puzzles[puzzle_idx] == (uint8_t) -1) break;
+                    uint8_t rupee_count = extended_savectx.silver_rupee_counts[silver_rupee_puzzles[puzzle_idx]];
+                    if (rupee_count > 0) {
+                        show_silver_rupees = true;
+                        break;
+                    }
+                }
+                if (show_silver_rupees) {
+                    int top = start_top + ((icon_size + padding) * i) + 1;
+                    for (int puzzle_idx = 0; puzzle_idx < 4; puzzle_idx++) {
+                        if (silver_rupee_puzzles[puzzle_idx] == (uint8_t) -1) break;
+                        silver_rupee_data_t var = silver_rupee_vars[silver_rupee_puzzles[puzzle_idx]][CFG_DUNGEON_IS_MQ[d->index]];
+                        uint8_t rupee_count = extended_savectx.silver_rupee_counts[silver_rupee_puzzles[puzzle_idx]];
+                        int puzzle_left = left + font_width * (2 * puzzle_idx) + padding * 3 * puzzle_idx;
+                        // draw text manually instead of going through text_print/text_flush to get the right text colors
+                        gDPSetPrimColor(db->p++, 0, 0, var.r, var.g, var.b, 0xFF);
+                        if(rupee_count >= 10) {
+                            sprite_draw(db, &font_sprite, rupee_count / 10, puzzle_left, top, font_width, font_height);
+                        }
+                        int tile_index = rupee_count % 10 > 0 ? rupee_count % 10 : 0;
+                        if (tile_index == 0) {
+                            sprite_load(db, &font_sprite, 47, 1); // load letter O
+                        }
+                        sprite_draw(db, &font_sprite, tile_index, puzzle_left + font_width, top, font_width, font_height);
+                        if (tile_index == 0) {
+                            sprite_load(db, &font_sprite, 16, 10); // load numbers 0 through 9
+                        }
+                    }
+                }
+            }
+
+            gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF);
+        }
 
         // Finish
 
@@ -513,7 +585,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
             (12 * font_sprite.tile_w) +
             (4 * padding);
         if (CFG_DUNGEON_INFO_SILVER_RUPEES) {
-            bg_width += icon_size + (7 * font_sprite.tile_w) + (2 * padding);
+            bg_width += icon_size + (8 * font_sprite.tile_w) + (16 * padding);
             if (CFG_DUNGEON_IS_MQ[DODONGO_ID]) rows++;
             if (!CFG_DUNGEON_IS_MQ[ICE_ID]) rows++;
         }
@@ -618,6 +690,8 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
                             left, top, icon_size, icon_size);
                 }
             }
+
+            left += icon_size + padding;
 
             // Draw silver rupee counts
             sprite_load(db, &font_sprite, 16, 10); // load characters 0 through 9
