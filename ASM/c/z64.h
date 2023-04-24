@@ -1860,6 +1860,7 @@ typedef struct EnGSwitch
 #define gspF3DEX2_NoN_fifoDataStart             0x801145C0
 #define z64_file_addr                           0x8011A5D0
 #define z64_input_direct_addr                   0x8011D730
+#define z64_logo_state_addr                     0x8011F200
 #define z64_stab_addr                           0x80120C38
 #define z64_seq_buf_addr                        0x80124800
 #define z64_ctxt_addr                           0x801C84A0
@@ -1985,6 +1986,7 @@ typedef void (*PlaySFX_proc) (uint16_t sfxId);
                                    z64_scene_config_table_addr)
 #define z64_file                (*(z64_file_t*)       z64_file_addr)
 #define z64_input_direct        (*(z64_input_t*)      z64_input_direct_addr)
+#define z64_logo_state          (*(uint32_t*)         z64_logo_state_addr)
 #define z64_gameinfo            (*                    z64_file.gameinfo)
 #define z64_ctxt                (*(z64_ctxt_t*)       z64_ctxt_addr)
 #define z64_game                (*(z64_game_t*)      &z64_ctxt)

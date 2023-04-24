@@ -357,7 +357,13 @@ void after_item_received() {
 }
 
 inline uint32_t link_is_ready() {
-    if ((z64_link.state_flags_1 & 0xFCAC2485) == 0 &&
+    if ((z64_logo_state != 0x802C5880) &&
+        (z64_logo_state != 0) &&
+        (z64_file.game_mode == 0) &&
+        (z64_game.pause_ctxt.state == 0) &&
+        // don't receive items in shops to avoid a softlock when buying an item at the same time as receiving one
+        ((z64_game.scene_index < 0x002C || z64_game.scene_index > 0x0033) && z64_game.scene_index != 0x0042 && z64_game.scene_index != 0x004B) &&
+        (z64_link.state_flags_1 & 0xFCAC2485) == 0 &&
         (z64_link.common.unk_flags_00 & 0x0001) &&
         (z64_link.state_flags_2 & 0x000C0000) == 0 &&
         (z64_event_state_1 & 0x20) == 0 &&
