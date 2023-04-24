@@ -2,15 +2,6 @@ CURR_ACTOR_SPAWN_INDEX:
 .halfword 0x0000
 .halfword 0x0000
 
-Actor_SetWorldToHome_Hook:
-    addiu   sp, sp, -0x20
-    sw      ra, 0x1C (sp)
-    jal     Actor_SetWorldToHome_End
-    nop
-    lw      ra, 0x1C (sp)
-    jr      ra
-    addiu   sp, sp, 0x20
-
 ; Hacks Actor_UpdateAll so that we can override actor spawns.
 Actor_UpdateAll_Hook:
 ;A0 - Actor Context
@@ -56,4 +47,16 @@ Actor_UpdateAll_Hook:
     lw      s1, 0x3C(sp)
     lw      ra, 0x40(sp)
     jr      ra
-    addiu   sp, sp, 0x50
+    addiu   sp, sp, 0x50 
+
+; Hacks the call to ZeldaArena_Malloc when spawning an actor in Actor_Spawn to increases the size of the actor
+; v1 - ActorInit struct from actor overlay table
+; a0 - size of the actor
+Actor_Spawn_Malloc_Hack:
+    addiu   sp, sp, -0x20
+    sw      ra, 0x10(sp)
+    jal     0x80066C10 ; (ZeldaArena_Malloc)
+    addiu   a0, a0, 0x04 ; Increase the size of the actor 
+    lw      ra, 0x10(sp)
+    jr      ra
+    addiu   sp, sp, 0x20

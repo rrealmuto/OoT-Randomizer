@@ -1,6 +1,7 @@
 #include "z64.h"
 #include "get_items.h"
 #include "en_bb.h"
+#include "actor.h"
 
 static colorRGBA8_t sEffectPrimColor = { 255, 255, 127, 0 };
 static colorRGBA8_t sEffectEnvColor = { 255, 255, 255, 0 };
@@ -29,15 +30,10 @@ void bb_after_init_hack(z64_actor_t* this, z64_game_t* globalCtx)
     bubble->overridden = 0;
     if(ENEMY_DROP_SHUFFLE)
     {
-        // Build dummy enitem00
-        EnItem00 dummy;
-        dummy.actor.actor_id = 0x15;
-        dummy.actor.rot_init.y = this->rot_init.z; //flag was just stored in z rotation
-        dummy.actor.variable = 0;
-
+        uint16_t flag = Actor_GetAdditionalData(this)->flag;
         // Check if the bubble should be overridden
-        dummy.override = lookup_override(&(dummy.actor), globalCtx->scene_index, 0);
-        if(dummy.override.key.all != 0 && !Get_CollectibleOverrideFlag(&dummy))
+        override_t override = lookup_override_by_newflag(flag, globalCtx->scene_index);
+        if(override.key.all != 0 && !Get_NewOverrideFlag(flag))
         {
             bubble->overridden = 1;
         }

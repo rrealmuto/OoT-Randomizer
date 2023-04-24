@@ -10,6 +10,7 @@
 #include "textures.h"
 #include "en_bb.h"
 #include "actor.h"
+#include "scene.h"
 
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
 extern uint16_t CURR_ACTOR_SPAWN_INDEX;
@@ -30,6 +31,17 @@ extern int8_t curr_scene_setup;
 #define EN_IK               0x0113  // Iron Knuckes
 #define EN_SW               0x0095  // Skullwalltula
 #define EN_BB               0x0069  // Bubble
+
+ActorOverlay* gActorOverlayTable = (ActorOverlay*)ACTOR_OVERLAY_TABLE_ADDR;
+
+// Get a pointer to the additional data that is stored at the end of every actor
+// This is calculated as the actor's address + the actor instance size from the overlay table.
+ActorAdditionalData* Actor_GetAdditionalData(z64_actor_t* actor) {
+    ActorOverlay overlayEntry = gActorOverlayTable[actor->actor_id]; // Get the overlay table entry
+    ActorInit* actorInit = (ActorInit*)((uint32_t)overlayEntry.initInfo - (int32_t)((uint32_t)overlayEntry.vramStart - (uint32_t)overlayEntry.loadedRamAddr)); // Get the init info from the overlay. This is stored in the overlay as a VRAM address so need to convert.
+
+    return (ActorAdditionalData*)(((uint8_t*)actor) + actorInit->instanceSize); // Calculate and return pointer to the new data.
+}
 
 // Called at the end of Actor_SetWorldToHome
 // Reset the rotations for any actors that we may have passed data in through Actor_Spawn
@@ -57,8 +69,8 @@ void Actor_SetWorldToHome_End(z64_actor_t *actor) {
 // Otherwise the actor would be rotated :)
 // Now that we resized pots/crates/beehives we could probably just store this info in new space in the actor. But this works for now.
 // Prior to being called, CURR_ACTOR_SPAWN_INDEX is set to the current position in the actor spawn list.
-void Actor_After_UpdateAll_Hack(z64_actor_t *actor, z64_game_t *game) {
-    Actor_StoreFlagInRotation(actor, game, CURR_ACTOR_SPAWN_INDEX);
+void Actor_After_UpdateAll_Hack(z64_actor_t *actor, z64_game_t* game) {
+    Actor_StoreFlag(actor, game, CURR_ACTOR_SPAWN_INDEX);
     Actor_StoreChestType(actor, game);
 
     // Add additional actor hacks here. These get called shortly after the call to actor_init
@@ -68,14 +80,20 @@ void Actor_After_UpdateAll_Hack(z64_actor_t *actor, z64_game_t *game) {
     CURR_ACTOR_SPAWN_INDEX = 0; // reset CURR_ACTOR_SPAWN_INDEX
 }
 
-// For pots/crates/beehives, store the flag in the actor's unused initial rotation fields
-// Flag consists of the room # and the actor index
-void Actor_StoreFlagInRotation(z64_actor_t* actor, z64_game_t* game, uint16_t actor_index) {
-    uint16_t flag = (actor_index) | (actor->room_index << 8); // Calculate the flag
-    
+// For pots/crates/beehives, store the flag in the new space in the actor instance.
+// Flag consists of the room #, scene setup, and the actor index
+void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, uint16_t actor_index) {
+    // Zeroize extra data;
+    ActorAdditionalData* extra = Actor_GetAdditionalData(actor);
+    extra->actor_id = 0;
+    extra->flag = 0;
+
+    uint16_t flag = (actor_index) | (actor->room_index << 8) | curr_scene_setup << 14; // Calculate the flag
+    flag = resolve_alternative_flag(game->scene_index, flag);
+    extra->actor_id = actor_index;
     if(actor->actor_type == ACTORCAT_ENEMY && actor->actor_id != 0x0197) //Hack for most enemies. Specifically exclude gerudo fighters (0x197)
     {
-        actor->rot_init.z = flag;
+        extra->flag = flag;
         return;
     }
     
@@ -86,16 +104,12 @@ void Actor_StoreFlagInRotation(z64_actor_t* actor, z64_game_t* game, uint16_t ac
         case EN_TUBO_TRAP:
         case OBJ_KIBAKO:
         case OBJ_COMB: 
+        case OBJ_KIBAKO2:
         case EN_IK: // Check for iron knuckles (they use actor category 9 (boss) and change to category 5 but a frame later if the object isnt loaded)
         case EN_SW: // Check for skullwalltula (en_sw). They start as category 4 (npc) and change to category 5 but a frame later if the object isnt laoded
         case EN_ANUBICE_TAG: //Check for anubis spawns
         {
-            actor->rot_init.z = flag;
-            break;
-        }
-        // For the following actors we store the flag in the y rotation
-        case OBJ_KIBAKO2: {
-            actor->rot_init.y = flag;
+            extra->flag = flag;
             break;
         }
         default: {
@@ -104,23 +118,36 @@ void Actor_StoreFlagInRotation(z64_actor_t* actor, z64_game_t* game, uint16_t ac
     }
 }
 
-// For pots/crates/beehives, determine the override and store the chest type in new space in the actor instance
+// Get an override for an actor with the new flags. If the override doesn't exist, or flag has already been set, return 0.
+override_t get_newflag_override(z64_actor_t *actor, z64_game_t *game) {
+    override_t override = lookup_override(actor, game->scene_index, 0);
+    if(override.key.all != 0)
+    {
+        if(!Get_NewOverrideFlag(Actor_GetAdditionalData(actor)->flag))
+        {
+            return override;
+        }
+    }
+    return (override_t) { 0 };
+}
+
+// For pots/crates/beehives match contents, determine the override and store the chest type in new space in the actor instance
 // So we don't have to hit the override table every frame.
 void Actor_StoreChestType(z64_actor_t* actor, z64_game_t* game) {
     uint8_t* pChestType = NULL;
     override_t override = { 0 };
 
     if (actor->actor_id == OBJ_TSUBO) { // Pots
-        override = get_pot_override(actor, game);
+        override = get_newflag_override(actor, game);
         pChestType = &(((ObjTsubo *)actor)->chest_type);
     } else if (actor->actor_id == EN_TUBO_TRAP) { // Flying Pots
-        override = get_flying_pot_override(actor, game);
+        override = get_newflag_override(actor, game);
         pChestType = &(((EnTuboTrap *)actor)->chest_type);
     } else if (actor->actor_id == OBJ_KIBAKO2) { // Large Crates
-        override = get_crate_override(actor, game);
+        override = get_newflag_override(actor, game);
         pChestType = &(((ObjKibako2 *)actor)->chest_type);
     } else if (actor->actor_id == OBJ_KIBAKO) { // Small wooden crates
-        override = get_smallcrate_override(actor, game);
+        override = get_newflag_override(actor, game);
         pChestType = &(((ObjKibako *)actor)->chest_type);
     } else if (actor->actor_id == OBJ_COMB) {
         override = get_beehive_override(actor, game);
@@ -173,19 +200,14 @@ z64_actor_t *Actor_SpawnEntry_Hack(void *actorCtx, ActorEntry *actorEntry, z64_g
 bool spawn_override_silver_rupee(ActorEntry *actorEntry, z64_game_t *globalCtx, bool* overridden) {
     *overridden = false;
     if (SHUFFLE_SILVER_RUPEES) { // Check if silver rupee shuffle is enabled.
-        // Build a dummy enitem00 actor
-        EnItem00 dummy;
-        dummy.actor.actor_id = 0x15;
-        dummy.actor.rot_init.y = (globalCtx->room_index << 8) + CURR_ACTOR_SPAWN_INDEX;
-        dummy.actor.variable = 0;
+        uint16_t flag = (curr_scene_setup << 14) | (globalCtx->room_index << 8) | CURR_ACTOR_SPAWN_INDEX;
         uint8_t type = (actorEntry->params >> 0x0C) & 0xF;
         if (type != 1) { // only override actual silver rupees, not the switches or pots.
             return true;
         }
-        override_t override = lookup_override(&(dummy.actor), globalCtx->scene_index, 0);
+        override_t override = lookup_override_by_newflag(flag, globalCtx->scene_index);
         if (override.key.all != 0) {
-            dummy.override = override;
-            if (type == 1 && !Get_CollectibleOverrideFlag(&dummy)) {
+            if (type == 1 && !Get_NewOverrideFlag(flag)) {
                 // Spawn a green rupee which will be overridden using the collectible hacks.
                 actorEntry->params = 0;
                 actorEntry->id = EN_ITEM00;
@@ -212,12 +234,12 @@ void after_spawn_override_silver_rupee(z64_actor_t* spawned, bool overridden)
 //If enemy drops setting is enabled, check if the flag for this actor hasn't been set and make sure to spawn it.
 //Flag is the index of the actor in the actor spawn list, or -1 if this function is not being called at the room init.
 //Parent will be set if called by Actor_SpawnAsChild
-uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit, int16_t flag, z64_actor_t* parent)
+uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit, uint16_t flag, z64_actor_t* parent)
 {
     //probably need to do something specific for anubis spawns because they use the spawner items. Maybe flare dancers too?
     if(actorInit->id == 0x00E0 && parent != NULL)
     {
-        flag = parent->rot_init.z;
+        flag = Actor_GetAdditionalData(parent)->flag;
     }
     if((actorInit->category == ACTORCAT_ENEMY) && z64_Flags_GetClear(globalCtx, globalCtx->room_index))
     {
@@ -226,13 +248,9 @@ uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit
         {
             flag |= globalCtx->room_index << 8;
             //Build a dummy override
-            EnItem00 dummy;
-            dummy.actor.actor_id = 0x15;
-            dummy.actor.variable = 0;
-            dummy.actor.rot_init.y = flag;
-            dummy.override = lookup_override(&(dummy.actor), globalCtx->scene_index, 0);
+            override_t override = lookup_override_by_newflag(flag, globalCtx->scene_index);
             //Check if this actor is in the override list
-            if(dummy.override.key.all != 0 && !(Get_CollectibleOverrideFlag(&dummy)>0))
+            if(override.key.all != 0 && !(Get_NewOverrideFlag(flag)>0))
             {
                 return 0;
             }

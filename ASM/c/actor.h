@@ -5,13 +5,9 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-void Actor_SetWorldToHome_End(z64_actor_t *actor);
-void Actor_After_UpdateAll_Hack(z64_actor_t *actor, z64_game_t *game);
-void Actor_StoreFlagInRotation(z64_actor_t *actor, z64_game_t *game, uint16_t actor_index);
-void Actor_StoreChestType(z64_actor_t *actor, z64_game_t *game);
-z64_actor_t *Actor_SpawnEntry_Hack(void *actorCtx, ActorEntry *actorEntry, z64_game_t *globalCtx);
-bool spawn_override_silver_rupee(ActorEntry *actorEntry, z64_game_t *globalCtx, bool* overridden);
-void after_spawn_override_silver_rupee(z64_actor_t* actor, bool overridden);
+#define ACTOR_OVERLAY_TABLE_ADDR 0x800E8530
+
+typedef void (*ActorFunc)(z64_actor_t*, z64_game_t*);
 
 typedef struct {
     /* 0x00 */ int16_t id;
@@ -19,10 +15,10 @@ typedef struct {
     /* 0x04 */ uint32_t flags;
     /* 0x08 */ int16_t objectId;
     /* 0x0C */ uint32_t instanceSize;
-    /* 0x10 */ void* init; // Constructor
-    /* 0x14 */ void* destroy; // Destructor
-    /* 0x18 */ void* update; // Update Function
-    /* 0x1C */ void* draw; // Draw function
+    /* 0x10 */ ActorFunc init; // Constructor
+    /* 0x14 */ ActorFunc destroy; // Destructor
+    /* 0x18 */ ActorFunc update; // Update Function
+    /* 0x1C */ ActorFunc draw; // Draw function
 } ActorInit; // size = 0x20
 
 typedef enum {
@@ -39,5 +35,32 @@ typedef enum {
     /* 0x0A */ ACTORCAT_DOOR,
     /* 0x0B */ ACTORCAT_CHEST
 } ActorCategory;
+
+typedef struct {
+    /* 0x00 */ uintptr_t vromStart;
+    /* 0x04 */ uintptr_t vromEnd;
+    /* 0x08 */ void* vramStart;
+    /* 0x0C */ void* vramEnd;
+    /* 0x10 */ void* loadedRamAddr; // original name: "allocp"
+    /* 0x14 */ ActorInit* initInfo;
+    /* 0x18 */ char* name;
+    /* 0x1C */ uint16_t allocType; // See `ACTOROVL_ALLOC_` defines
+    /* 0x1E */ int8_t numLoaded; // original name: "clients"
+} ActorOverlay; // size = 0x20
+
+// New data added to the end of every actor.
+// Make sure the size of this struct is equal to the amount of space added added in Actor_Spawn_Malloc_Hack from actor.asm
+typedef struct {
+    /* 0x00 */ uint16_t actor_id;
+    /* 0x02 */ uint16_t flag;
+} ActorAdditionalData;
+
+void Actor_SetWorldToHome_End(z64_actor_t *actor);
+void Actor_After_UpdateAll_Hack(z64_actor_t *actor, z64_game_t *game);
+void Actor_StoreChestType(z64_actor_t *actor, z64_game_t *game);
+z64_actor_t *Actor_SpawnEntry_Hack(void *actorCtx, ActorEntry *actorEntry, z64_game_t *globalCtx);
+ActorAdditionalData* Actor_GetAdditionalData(z64_actor_t* actor);
+bool spawn_override_silver_rupee(ActorEntry *actorEntry, z64_game_t *globalCtx, bool* overridden);
+void after_spawn_override_silver_rupee(z64_actor_t* actor, bool overridden);
 
 #endif

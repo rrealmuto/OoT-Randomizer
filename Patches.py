@@ -2984,7 +2984,7 @@ def patch_rupee_tower(location, rom: Rom):
         room, scene_setup, flag = location.default
     elif isinstance(location.default, list):
         room, scene_setup, flag = location.default[0]
-    flag = flag + (room << 8)
+    flag = flag | (room << 8) | (scene_setup << 14)
     if location.address:
         for address in location.address:
             rom.write_bytes(address + 12, flag.to_bytes(2, byteorder='big'))

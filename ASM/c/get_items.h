@@ -81,14 +81,15 @@ typedef void (*z64_EnItem00ActionFunc)(struct EnItem00 *, z64_game_t *);
 typedef EnItem00 *(*z64_Item_DropCollectible_proc)(z64_game_t *globalCtx, z64_xyzf_t *spawnPos, int16_t params);
 
 override_t lookup_override_by_key(override_key_t key);
+override_t lookup_override_by_newflag(uint16_t flag, uint8_t scene);
 override_t lookup_override(z64_actor_t *actor, uint8_t scene, uint8_t item_id);
 override_key_t resolve_alternative_override(override_key_t override_key);
+uint16_t resolve_alternative_flag(uint8_t scene, uint16_t flag);
 override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_t item_id);
 override_t get_override_if_collectible_flag_not_set(EnItem00 *item00);
 void Collectible_WaitForMessageBox(EnItem00 *this, z64_game_t *game);
 void reset_collectible_mutex();
 void override_flags_init();
-bool Get_CollectibleOverrideFlag(EnItem00 *item00);
-uint8_t get_enemy_flag_offset(uint8_t scene, uint8_t room);
+bool Get_NewOverrideFlag(uint16_t flag);
 
 #endif

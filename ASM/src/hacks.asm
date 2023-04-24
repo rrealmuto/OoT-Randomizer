@@ -499,18 +499,6 @@ SRAM_SLOTS:
 ;.orga 0xA89D4C
 ;    jal     get_override_drop_id
 
-; Hack Item_DropCollectible call to Actor_Spawn to set override
-; replaces
-;   jal     0x80025110
-.orga 0xA8972C ; in memory 0x800137B8
-    jal     Item_DropCollectible_Actor_Spawn_Override
-
-; Hack Item_DropCollectible2 call to Actor_Spawn to set override
-; replaces
-;   jal     0x80025110
-.orga 0xA89958 ; in memory 0x800139E0
-    jal     Item_DropCollectible_Actor_Spawn_Override
-
 ; Hack ObjTsubo_SpawnCollectible (Pot) to call our overridden spawn function
 .orga 0xDE7C60
     j       ObjTsubo_SpawnCollectible_Hack
@@ -672,7 +660,6 @@ bg_spot18_basket_rupees_loopstart: ; our new loop branch target
     nop
     nop
 
-
 ; Hack baby dodongo to pass its actor pointer into Item_DropCollectibleRandom
 .orga 0xC596E0 ; In memory: 0x801F8AF0
 ;replaces
@@ -751,11 +738,14 @@ sh  v0, 0x004E(sp)
     jal     en_crow_respawn_hack
     nop
 
-; Hook at the end of Actor_SetWorldToHome to zeroize anything we use to store additional flag data
-.orga 0xA96E5C ; In memory: 0x80020EFC
+; Hack in Actor_Spawn when allocating space for the actor to increase the size of every actor by a fixed amount
+.headersize (0x800110A0 - 0xA87000)
+.org 0x800252A8
 ; Replaces:
-;   jr      ra
-    j       Actor_SetWorldToHome_Hook
+;   jal     0x80066C10 (ZeldaArena_Malloc)
+;   sw      v1, 0x004C(sp)
+    jal     Actor_Spawn_Malloc_Hack
+    sw      v1, 0x004C(sp)
 
 ; Hook Actor_UpdateAll when each actor is being initialized. At the call to Actor_SpawnEntry
 ; Used to set the flag (z-rotation) of the actor to its position in the actor table.
