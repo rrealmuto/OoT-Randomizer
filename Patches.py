@@ -1309,6 +1309,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     save_context.write_bits(0x00D4 + 0x5B * 0x1C + 0x04 + 0x3, 0x80) # Lost Woods switch flag (Owl)
     save_context.write_bits(0x00D4 + 0x5C * 0x1C + 0x04 + 0x0, 0x80) # Desert Colossus switch flag (Owl)
     save_context.write_bits(0x00D4 + 0x5F * 0x1C + 0x04 + 0x3, 0x20) # Hyrule Castle switch flag (Owl)
+    save_context.write_bits(0x0F2B, 0x20) # Spoke to Lake Hylia Owl once
 
     save_context.write_bits(0x0ED4, 0x10) # "Met Deku Tree"
     save_context.write_bits(0x0ED5, 0x20) # "Deku Tree Opened Mouth"
@@ -1390,15 +1391,15 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     if world.settings.open_kakariko != 'closed':
         rom.write_byte(rom.sym('OPEN_KAKARIKO'), 1)
 
-    # Mark starting trade items as owned, filtered for only shuffled items
+    # Mark starting trade items as owned
     # The effective starting item seen in the player inventory will be the
     # latest shuffled item in the trade sequence, calculated in
     # Plandomizer.WorldDistribution.configure_effective_starting_items.
     owned_flags = 0
     for item_name in world.settings.starting_items.keys():
-        if item_name in world.settings.shuffle_child_trade:
+        if item_name in child_trade_items:
             owned_flags += 0x1 << (child_trade_items.index(item_name))
-        if item_name in world.settings.adult_trade_start:
+        if item_name in trade_items:
             owned_flags += 0x1 << (trade_items.index(item_name) + 11)
     save_context.write_permanent_flags(Scenes.DEATH_MOUNTAIN_TRAIL, FlagType.UNK00, owned_flags)
 
@@ -1428,13 +1429,14 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
                 else:
                     return traded_flags
             return traded_flags
-        save_context.write_permanent_flags(Scenes.DEATH_MOUNTAIN_CRATER, FlagType.UNK00, calculate_traded_flags(world))
+        save_context.write_permanent_flags(Scenes.GORON_CITY, FlagType.UNK00, calculate_traded_flags(world))
 
     if world.settings.complete_mask_quest:
         rom.write_byte(rom.sym('COMPLETE_MASK_QUEST'), 1)
 
     if world.skip_child_zelda:
-        save_context.write_bits(0x0ED7, 0x04) # "Obtained Malon's Item"
+        if all(trade_item not in world.settings.shuffle_child_trade for trade_item in ['Weird Egg', 'Chicken']):
+            save_context.write_bits(0x0ED7, 0x04) # "Obtained Malon's Item"
         save_context.write_bits(0x0ED7, 0x08) # "Woke Talon in castle"
         save_context.write_bits(0x0ED7, 0x10) # "Talon has fled castle"
         save_context.write_bits(0x0EDD, 0x01) # "Obtained Zelda's Letter"
@@ -2215,7 +2217,12 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     if world.settings.shuffle_beans:
         rom.write_byte(rom.sym('SHUFFLE_BEANS'), 0x01)
         # Update bean salesman messages to better fit the fact that he sells a randomized item
-        update_message_by_id(messages, 0x405E, "\x1AChomp chomp chomp...\x01We have... \x05\x41a mysterious item\x05\x40! \x01Do you want it...huh? Huh?\x04\x05\x41\x0860 Rupees\x05\x40 and it's yours!\x01Keyahahah!\x01\x1B\x05\x42Yes\x01No\x05\x40\x02")
+        if 'unique_merchants' not in world.settings.misc_hints:
+            update_message_by_id(messages, 0x405E, "\x1AChomp chomp chomp...\x01We have... \x05\x41a mysterious item\x05\x40! \x01Do you want it...huh? Huh?\x04\x05\x41\x0860 Rupees\x05\x40 and it's yours!\x01Keyahahah!\x01\x1B\x05\x42Yes\x01No\x05\x40\x02")
+        else:
+            location = world.get_location("ZR Magic Bean Salesman")
+            item_text = getHint(getItemGenericName(location.item), True).text
+            update_message_by_id(messages, 0x405E, "\x1AChomp chomp chomp...We have...\x01\x05\x41" + item_text + "\x05\x40! \x01Do you want it...huh? Huh?\x04\x05\x41\x0860 Rupees\x05\x40 and it's yours!\x01Keyahahah!\x01\x1B\x05\x42Yes\x01No\x05\x40\x02")
         update_message_by_id(messages, 0x4069, "You don't have enough money.\x01I can't sell it to you.\x01Chomp chomp...\x02")
         update_message_by_id(messages, 0x406C, "We hope you like it!\x01Chomp chomp chomp.\x02")
         # Change first magic bean to cost 60 (is used as the price for the one time item when beans are shuffled)
@@ -2224,17 +2231,32 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     if world.settings.shuffle_expensive_merchants:
         rom.write_byte(rom.sym('SHUFFLE_CARPET_SALESMAN'), 0x01)
         # Update carpet salesman messages to better fit the fact that he sells a randomized item
-        update_message_by_id(messages, 0x6077, "\x06\x41Well Come!\x04I am selling stuff, strange and \x01rare, from all over the world to \x01everybody.\x01Today's special is...\x04A mysterious item! \x01Intriguing! \x01I won't tell you what it is until \x01I see the money....\x04How about \x05\x41200 Rupees\x05\x40?\x01\x01\x1B\x05\x42Buy\x01Don't buy\x05\x40\x02")
+        if 'unique_merchants' not in world.settings.misc_hints:
+            update_message_by_id(messages, 0x6077, "\x06\x41Well Come!\x04I am selling stuff, strange and \x01rare, from all over the world to \x01everybody.\x01Today's special is...\x04A mysterious item! \x01Intriguing! \x01I won't tell you what it is until \x01I see the money....\x04How about \x05\x41200 Rupees\x05\x40?\x01\x01\x1B\x05\x42Buy\x01Don't buy\x05\x40\x02")
+        else:
+            location = world.get_location("Wasteland Bombchu Salesman")
+            item_text = getHint(getItemGenericName(location.item), True).text
+            update_message_by_id(messages, 0x6077, "\x06\x41Well Come!\x04I am selling stuff, strange and \x01rare, from all over the world to \x01everybody. Today's special is...\x01\x05\x41"+ item_text + "\x05\x40! \x01\x04How about \x05\x41200 Rupees\x05\x40?\x01\x01\x1B\x05\x42Buy\x01Don't buy\x05\x40\x02")
         update_message_by_id(messages, 0x6078, "Thank you very much!\x04The mark that will lead you to\x01the Spirit Temple is the \x05\x41flag on\x01the left \x05\x40outside the shop.\x01Be seeing you!\x02")
 
         rom.write_byte(rom.sym('SHUFFLE_MEDIGORON'), 0x01)
         # Update medigoron messages to better fit the fact that he sells a randomized item
         update_message_by_id(messages, 0x304C, "I have something cool right here.\x01How about it...\x07\x30\x4F\x02")
         update_message_by_id(messages, 0x304D, "How do you like it?\x02")
-        update_message_by_id(messages, 0x304F, "How about buying this cool item for \x01200 Rupees?\x01\x1B\x05\x42Buy\x01Don't buy\x05\x40\x02")
+        if 'unique_merchants' not in world.settings.misc_hints:
+            update_message_by_id(messages, 0x304F, "How about buying this cool item for \x01200 Rupees?\x01\x1B\x05\x42Buy\x01Don't buy\x05\x40\x02")
+        else:
+            location = world.get_location("GC Medigoron")
+            item_text = getHint(getItemGenericName(location.item), True).text
+            update_message_by_id(messages, 0x304F, "For 200 Rupees, how about buying \x01\x05\x41" + item_text + "\x05\x40?\x01\x1B\x05\x42Buy\x01Don't buy\x05\x40\x02")
 
         rom.write_byte(rom.sym('SHUFFLE_GRANNYS_POTION_SHOP'), 0x01)
-        update_message_by_id(messages, 0x500C, "Mysterious item! How about\x01\x05\x41100 Rupees\x05\x40?\x01\x1B\x05\x42Buy\x01Don't buy\x05\x40\x02")
+        if 'unique_merchants' not in world.settings.misc_hints:
+            update_message_by_id(messages, 0x500C, "Mysterious item! How about\x01\x05\x41100 Rupees\x05\x40?\x01\x1B\x05\x42Buy\x01Don't buy\x05\x40\x02")
+        else:
+            location = world.get_location("Kak Granny Buy Blue Potion")
+            item_text = getHint(getItemGenericName(location.item), True).text
+            update_message_by_id(messages, 0x500C, "How about \x05\x41100 Rupees\x05\x40 for\x01\x05\x41"+ item_text +"\x05\x40?\x01\x1B\x05\x42Buy\x01Don't buy\x05\x40\x02")
 
     if world.settings.shuffle_pots != 'off': # Update the first BK door in ganon's castle to use a separate flag so it can be unlocked to get to the pots
         patch_ganons_tower_bk_door(rom, 0x15) # Using flag 0x15 for the door. GBK doors normally use 0x14.

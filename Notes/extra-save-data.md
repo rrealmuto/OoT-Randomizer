@@ -19,7 +19,7 @@ The unused field (offset 0x10) of the permanent scene flags (save context + 0xd4
 * Pending ice traps: Scene 0x49
 * Expensive Merchants (Granny's Potion Shop only): Scene 0x4E
 * Trade Quest Items Owned: Scene 0x60
-* Trade Quest Items Traded: Scene 0x61
+* Trade Quest Items Traded: Scene 0x62
 
 ## Collectibles field
 

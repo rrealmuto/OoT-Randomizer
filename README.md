@@ -30,8 +30,11 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * New “Shuffle Blue Warps” setting
   * New “Mutually Exclusive One-Ways” setting which makes the hint area restriction apply to one-way entrances of different types
   * New “Shuffle Other Items” setting which can be disabled to generate vanilla seeds, only shuffle entrances, etc. (Currently not compatible with Master Quest)
-  * New “Chaos!!! (no goal hints)”, “Mixed Pools Tournament”, and “Triforce Blitz S2” hint distributions
   * New `goal-count`, `playthrough-location`, `goal-legacy`, `goal-legacy-single`, `wanderer`, `unlock-woth`, and `unlock-playthrough` hint types (based on [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev))
+* New hint distributions:
+  * “Chaos!!! (no goal hints)” is like “Chaos!!!” but without the possibility of Goal (aka Path) hints, making it suitable for large multiworlds.
+  * “Mixed Pools Tournament” is the hint distribution used for the first Mixed Pools tournament. Note that the tournament itself used [a previous version](https://ootrandomizer.com/generatorDev?version=devFenhl_6.2.100) of this branch.
+  * “Triforce Blitz S2” is the hint distribution used for the [Triforce Blitz Season 2 Tournament](https://midos.house/event/tfb/2), taken from [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev). Note that the tournament itself is being played on that branch, not this one.
 * New settings presets:
   * “Debug” is similar to Default/Beginner but gives you most starting items for testing.
   * “Vanilla” generates a seed that's as close to the vanilla game as possible with current randomizer features. Unlike the vanilla seed available on <https://ootrandomizer.com/>, this preset uses glitchless logic to produce a useful spoiler log playthrough.
@@ -53,8 +56,6 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
   * Python 3.6 is no longer supported since GitHub's testing infrastructure no longer supports it.
 * Bug fixes:
-  * Flags are once again set properly when starting with a shuffled Zelda's letter ([#1949](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1949))
-  * Buying the item from granny no longer makes the bottom right item on the left side of the market potion shop inaccessible or vice versa ([#1948](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1948))
   * Some bugs with no player name or the wrong player's name appearing in text boxes are fixed ([#208](https://github.com/OoTRandomizer/OoT-Randomizer/issues/208), [#1854](https://github.com/OoTRandomizer/OoT-Randomizer/issues/1854))
   * Entering the Water temple from the boss room no longer puts you at the temple's main entrance ([#1552](https://github.com/TestRunnerSRL/OoT-Randomizer/issues/1552), fix based on [engineer124's `water_boss_entrance` branch](https://github.com/engineer124/OoT-Randomizer/tree/water_boss_entrance))
   * Text boxes for dungeon items in shops now include apostrophes.
@@ -184,6 +185,8 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * New Misc. Hint `Frogs Ocarina Game` which tells you what item you'll get from the Zora's River frog minigame. The hint appears in the dialog box that's printed before they jump onto the log.
   * Add a goal category for the items required to open the Door of Time, if it's closed.
   * New `MW Season 3 (WotH)` hint distribution which is similar to the `MW Season 3` hint distribution except with Way of the Hero hints instead of goal hints.
+  * New Misc. Hint for unique merchants: Bean Salesman, Medigoron, Wasteland Bombchu Salesman, Granny's Potion Shop.
+  * Owls are now included in the Warp Songs misc hint and will tell you where they go when enabled.
 * **Other**
   * When picking up a small key after the first, the text box will now inform you how many you've found total.
   * The longstanding vanilla bug where using Din's Fire on a white bubble crashes the game has been fixed.
@@ -198,6 +201,9 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * Fix the change which makes graveyard grave hole ledges un-grabbable incorrectly applied to other ledges in the graveyard area.
   * Fix the file path for custom music on some Linux machines.
   * Fix "Spirit Temple MQ Beamos Room Chest" having an incorrect vanilla item.
+  * Starting with Magic Beans will now properly start you with 10 beans instead of 9. 
+  * A rare softlock when fighting Gohma present in the original game has been fixed.
+  * A crash when diving and resurfacing in very shallow water present in the original game has been fixed.
 * **Hints**
   * Fix the cryptic hint for Ganon's Castle Boss Key.
   * Fix missing punctuation in dual hints.
@@ -220,7 +226,8 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * The key ring texture has been updated with the normal small key texture, making it shinier.
 * D-Pad mask icons will now enlarge when the mask is equipped, similarly to D-Pad boots.
 * Fix a vanilla bug where jumpslashing into Bongo Bongo's chamber on the last possible frame will not properly skip the cutscene when it should be skipped.
-
+* Various cutscenes removed or shortened, such as Water Temple and Gerudo Fortress gates and scarecrow spawn cutscenes.
+* Heart Containers and Pieces of Heart will no longer be directly hinted by Way of the Hero or Path hints, which is consistent with Triforce Pieces and Gold Skulltula Tokens.
 #### Plandomizer
 * Plandomizer now allows you to specify locations that are valid but do not exist in your current seed, for example, an MQ-specific location when that dungeon is Vanilla.
 * Error messages for conflicting settings have been improved.

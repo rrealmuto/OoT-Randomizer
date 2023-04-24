@@ -3781,3 +3781,73 @@ courtyard_guards_kill:
 .org 0x800DC568
     j       Message_Decode_Control_Code_Hook
     nop
+
+;===================================================================================================
+; Various speedups
+;===================================================================================================
+; Scarecrow spawn cutscene
+; Replaces jal     func_8006BA10
+.orga 0xEF502C
+    nop
+
+; Water Temple Entrance Gate cutscene and timer
+; Replaces addiu   t6, $zero, 0x0064
+.orga 0xD5B53C
+    addiu   t6, $zero, 0x0000
+; Replaces jal     func_8006B6FC
+.orga 0xD5B940
+    nop
+; x3 Speed on gate opening
+; Replaces lui     a2, 0x3F19
+.orga 0xD5B5FC
+    lui     a2, 0x3FE6
+
+; Gerudo Gate opening
+; Replaces lui     a1, 0x3FCC
+;          lui     a2, 0x3CF5
+.orga 0xEB8ED8
+   lui     a1, 0x41A0
+   lui     a2, 0x41A0
+; Replaces jal     func_8006B6FC
+.orga 0xEB8E4C
+    nop
+; Replaces addiu   t7, $zero, 0x0028
+.orga 0xEB8E6C
+    addiu   t7, $zero, 0x0000
+
+; Forest Red/Blue poe painting hit cutscene removed
+; Replaces jal     func_8006B6FC
+.orga 0xCE1600
+    nop
+
+; Biggoron puts the eyedrops
+; Put eyedrops animation timer at 0 and skip the cutscene
+; Replaces sh      t2, 0x0582(s0)
+.orga 0xED665C
+    sh      $zero, 0x0582(s0)
+; Replaces jal     func_8006B6FC
+.orga 0xED6670
+    nop
+
+; Scrub leader hiding for 1 frame instead of 300 when you show Skull Mask
+; Replaces addiu   a1, $zero, 0x012C
+.orga 0xEC8D20
+    addiu   a1, $zero, 0x0001
+
+;===================================================================================================
+; Prevent Gohma from being stunned when climbing
+;===================================================================================================
+; Replaces lui     a1, 0x40A0
+;          lui     a2, 0x3F00
+.orga 0xC48BD4
+    jal     gohma_climb
+    nop
+
+;===================================================================================================
+; Prevent crash when diving in shallow water due to poorly initialized camera data
+;===================================================================================================
+; Replaces sw      v0, 0x011C(s0)
+;          lh      t2, 0x014C(s0)
+.orga 0xABDD10
+    jal     camera_init
+    nop

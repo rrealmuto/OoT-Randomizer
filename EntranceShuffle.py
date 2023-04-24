@@ -594,15 +594,18 @@ def shuffle_random_entrances(worlds):
         for pool_type, entrance_pool in one_way_entrance_pools.items():
             # One way entrances are extra entrances that will be connected to entrance positions from a selection of entrance pools
             if pool_type == 'OverworldOneWay':
-                valid_target_types = ('ChildSpawn', 'AdultSpawn', 'WarpSong', 'BlueWarp', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Interior', 'SpecialInterior', 'Extra')
+                valid_target_types = ('WarpSong', 'BlueWarp', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Extra')
                 valid_target_types_reverse = ('Overworld', 'Interior', 'SpecialInterior')
+                exclude = []
                 if world.settings.shuffle_gerudo_valley_river_exit == 'full':
-                    valid_target_types = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grotto', 'Grave', *valid_target_types)
+                    valid_target_types = ('ChildSpawn', 'AdultSpawn', 'Dungeon', 'DungeonSpecial', 'Interior', 'SpecialInterior', 'Hideout', 'Grotto', 'Grave', *valid_target_types)
                     valid_target_types_reverse = ('Dungeon', 'DungeonSpecial', 'Hideout', 'Grotto', 'Grave', *valid_target_types_reverse)
                     if world.dungeon_back_access:
                         valid_target_types = ('ChildBoss', 'AdultBoss', *valid_target_types)
                         valid_target_types_reverse = ('ChildBoss', 'AdultBoss', *valid_target_types_reverse)
-                one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
+                else:
+                    exclude.append('Prelude of Light Warp -> Temple of Time')
+                one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse, exclude=exclude)
             elif pool_type == 'OwlDrop':
                 valid_target_types = ('WarpSong', 'BlueWarp', 'OwlDrop', 'OverworldOneWay', 'Overworld', 'Extra')
                 valid_target_types_reverse = ('Overworld',)

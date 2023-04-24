@@ -23,6 +23,7 @@ class Scenes(IntEnum):
     DESERT_COLOSSUS = 0x5C
     DEATH_MOUNTAIN_TRAIL = 0x60
     DEATH_MOUNTAIN_CRATER = 0x61
+    GORON_CITY = 0x62
 
 class FlagType(IntEnum):
     CHEST = 0x00

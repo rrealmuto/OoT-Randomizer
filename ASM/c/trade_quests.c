@@ -133,12 +133,12 @@ int32_t SaveFile_UpdateShiftableItem(uint16_t oldItemId, uint16_t newItemId) {
 // Use the "unk" flags in DMC to represent trade item trade-in status
 void SaveFile_SetTradeItemAsTraded(uint16_t itemId) {
     uint16_t tradeItemNum = GetTradeItemIndex(itemId);
-    z64_file.scene_flags[0x61].unk_00_ |= (0x1 << tradeItemNum);
+    z64_file.scene_flags[0x62].unk_00_ |= (0x1 << tradeItemNum);
 }
 
 void SaveFile_UnsetTradeItemAsTraded(uint16_t itemId) {
     uint16_t tradeItemNum = GetTradeItemIndex(itemId);
-    z64_file.scene_flags[0x61].unk_00_ &= ~(0x1 << tradeItemNum);
+    z64_file.scene_flags[0x62].unk_00_ &= ~(0x1 << tradeItemNum);
 }
 
 uint32_t SaveFile_TradeItemIsTraded(uint16_t itemId) {
@@ -147,7 +147,7 @@ uint32_t SaveFile_TradeItemIsTraded(uint16_t itemId) {
     // traded independent of story flags. Child trade quest does not have
     // this limitation because duping by re-trading isn't possible there.
     uint16_t tradeItemNum = GetTradeItemIndex(itemId);
-    uint32_t traded = (z64_file.scene_flags[0x61].unk_00_ & (0x1 << tradeItemNum)) != 0;
+    uint32_t traded = (z64_file.scene_flags[0x62].unk_00_ & (0x1 << tradeItemNum)) != 0;
     if (itemId >= Z64_ITEM_POCKET_EGG && itemId <= Z64_ITEM_CLAIM_CHECK && !CFG_ADULT_TRADE_SHUFFLE) {
         return itemId < z64_file.items[Z64_SLOT_ADULT_TRADE] || traded;
     }
@@ -160,12 +160,12 @@ uint32_t SaveFile_TradeItemIsTraded(uint16_t itemId) {
 // to everything after each payment.
 void SaveFile_SetMaskAsPaid(uint16_t itemId) {
     uint16_t tradeItemNum = GetTradeItemIndex(itemId) + 4;
-    z64_file.scene_flags[0x61].unk_00_ |= (0x1 << tradeItemNum);
+    z64_file.scene_flags[0x62].unk_00_ |= (0x1 << tradeItemNum);
 }
 
 uint32_t SaveFile_MaskIsPaid(uint16_t itemId) {
     uint16_t tradeItemNum = GetTradeItemIndex(itemId) + 4;
-    return (z64_file.scene_flags[0x61].unk_00_ & (0x1 << tradeItemNum)) != 0;
+    return (z64_file.scene_flags[0x62].unk_00_ & (0x1 << tradeItemNum)) != 0;
 }
 
 uint16_t SaveFile_NextOwnedTradeItem(uint16_t itemId) {
@@ -315,8 +315,8 @@ int32_t IsCuccoGivenToCuccoLady() {
 }
 
 uint16_t SetupMaskShopHelloDialogOverride(EnOssan* maskShop) {
-    uint16_t traded = (z64_file.scene_flags[0x61].unk_00_ >> 0x03) & 0xF;
-    uint16_t paid = (z64_file.scene_flags[0x61].unk_00_ >> 0x07) & 0xF;
+    uint16_t traded = (z64_file.scene_flags[0x62].unk_00_ >> 0x03) & 0xF;
+    uint16_t paid = (z64_file.scene_flags[0x62].unk_00_ >> 0x07) & 0xF;
     if (traded != paid) {
         if (GET_ITEMGETINF(ITEMGETINF_38)) {
             if (!GET_EVENTCHKINF(EVENTCHKINF_8C)) {
@@ -397,8 +397,8 @@ void TryPaybackMaskOverride(EnOssan* maskShop, z64_game_t* play) {
             SaveFile_SetMaskAsPaid(Z64_ITEM_BUNNY_HOOD);
         }
 
-        uint16_t paid = (z64_file.scene_flags[0x61].unk_00_ >> 0x07) & 0xF;
-        uint16_t traded = (z64_file.scene_flags[0x61].unk_00_ >> 0x03) & 0xF;
+        uint16_t paid = (z64_file.scene_flags[0x62].unk_00_ >> 0x07) & 0xF;
+        uint16_t traded = (z64_file.scene_flags[0x62].unk_00_ >> 0x03) & 0xF;
 
         if (traded != paid) {
             if (SaveFile_TradeItemIsTraded(Z64_ITEM_SKULL_MASK) && !SaveFile_MaskIsPaid(Z64_ITEM_SKULL_MASK)) {

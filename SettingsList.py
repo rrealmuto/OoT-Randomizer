@@ -4139,12 +4139,12 @@ setting_infos = [
             The entrance leads to Lake Hylia.
 
             'Balanced':
-            The destinations are randomly chosen from overworld,
-            interior, and a few special entrances.
+            The destinations are randomly chosen from overworld
+            and a few special entrances.
 
             'Full':
-            It can also take you inside or outside of a grotto
-            or dungeon, potentially bypassing item requirements.
+            It can also take you inside or outside of an interior,
+            grotto, or dungeon, potentially bypassing item requirements.
         ''',
         default        = 'off',
         shared         = True,
@@ -5597,7 +5597,7 @@ setting_infos = [
             'altar':       'Temple of Time Altar',
             'dampe_diary': "Dampé's Diary (Hookshot)",
             'ganondorf':   'Ganondorf (Light Arrows)',
-            'warp_songs':  'Warp Songs',
+            'warp_songs_and_owls':  'Warp Songs and Owls',
             '10_skulltulas':  'House of Skulltula: 10',
             '20_skulltulas':  'House of Skulltula: 20',
             '30_skulltulas':  'House of Skulltula: 30',
@@ -5605,6 +5605,7 @@ setting_infos = [
             '50_skulltulas':  'House of Skulltula: 50',
             'frogs2':         'Frogs Ocarina Game',
             'mask_shop':  'Shuffled Mask Shop',
+            'unique_merchants':  'Unique Merchants',
         },
         gui_tooltip    = '''\
             This setting adds some hints at locations
@@ -5635,6 +5636,8 @@ setting_infos = [
             Playing a warp song will tell you where
             it leads. (If warp song destinations
             are vanilla, this is always enabled.)
+            The two Owls at Lake Hylia and Death Mountain
+            that move you around will tell you where they go.
 
             Talking to a cursed House of Skulltula
             resident will tell you the reward they will
@@ -5649,9 +5652,16 @@ setting_infos = [
             shop will be visible but not obtainable
             before completing the child trade quest.
             Mask of Truth's shelf slot is always visible.
+
+            If Shuffle Expensive Merchants is enabled, the
+            three characters that sell a new item will tell
+            what the reward is for buying their item.
+            If Shuffle Magic Beans is enabled, the Magic bean
+            salesman will tell what the reward is for buying
+            the 60 Rupees item.
         ''',
         shared         = True,
-        default        = ['altar', 'ganondorf', 'warp_songs'],
+        default        = ['altar', 'ganondorf', 'warp_songs_and_owls'],
     ),
     Combobox(
         name           = 'text_shuffle',

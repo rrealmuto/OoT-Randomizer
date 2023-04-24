@@ -47,7 +47,7 @@ defaultHintDists = [
     'weekly.json',
 ]
 
-unHintableWothItems = [*REWARD_COLORS, *triforce_pieces, 'Gold Skulltula Token']
+unHintableWothItems = [*REWARD_COLORS, *triforce_pieces, 'Gold Skulltula Token', 'Piece of Heart', 'Piece of Heart (Treasure Chest Game)', 'Heart Container']
 
 class RegionRestriction(Enum):
     NONE = 0,
