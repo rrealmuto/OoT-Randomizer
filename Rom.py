@@ -91,8 +91,10 @@ class Rom(BigStream):
             sub_dir = "./" if is_bundled() else "bin/Decompress/"
 
             if platform.system() == 'Windows':
-                if 8 * struct.calcsize("P") == 64:
+                if platform.machine() == 'AMD64':
                     subcall = [sub_dir + "Decompress.exe", file, decomp_file]
+                elif platform.machine() == 'ARM64':
+                    subcall = [sub_dir + "Decompress_ARM64.exe", file, decomp_file]
                 else:
                     subcall = [sub_dir + "Decompress32.exe", file, decomp_file]
             elif platform.system() == 'Linux':

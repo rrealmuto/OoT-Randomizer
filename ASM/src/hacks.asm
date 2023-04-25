@@ -19,7 +19,7 @@
     j       after_game_state_update
     nop
 
-; 
+;
 .org 0x8009CED0
     jal     before_skybox_init
 
@@ -39,7 +39,7 @@ Gameplay_InitSkybox:
 ;==================================================================================================
 
 //reserve the audio thread's heap
-.org 0x800C7DDC 
+.org 0x800C7DDC
 .area 0x1C
     lui     at, hi(AUDIO_THREAD_INFO_MEM_START)
     lw      a0, lo(AUDIO_THREAD_INFO_MEM_START)(at)
@@ -132,7 +132,7 @@ Gameplay_InitSkybox:
 ; Here we overwrite part of transition effect case 0
 
 @check_if_object_loaded:
-    
+
     li      at, 0x117A4 //object table
     addu    a0, a0, at
     jal     0x80081628          //check if object file is loaded
@@ -140,7 +140,7 @@ Gameplay_InitSkybox:
     b       @return_check_if_object_loaded
     nop
 
-; Optimize transition effect 0 so that the routine above still fits in the function 
+; Optimize transition effect 0 so that the routine above still fits in the function
 @transition_0_jump:
     lui     at, 0x800A
     addiu   t7, at, 0x8218
@@ -371,7 +371,7 @@ SRAM_SLOTS:
 .orga 0xB5D6BE ; Address in ROM of the enitem00 init params
     .halfword 0x01AC
 
-; Increase the size of pot instances to store chest type 
+; Increase the size of pot instances to store chest type
 .orga 0xDE8A5E ; Address in ROM of the ObjTsubo init params
     .halfword 0x01A0 ; New data starts at 0x0190
 
@@ -425,7 +425,7 @@ SRAM_SLOTS:
     addiu   at, r0, 0x0003
     .skip 4
     nop
-    
+
 ; Override the drop_id convert function s16 func_8001F404(s16 dropId) from decomp
 .orga 0xA89490 ; in memory 0x80013530
     j get_override_drop_id
@@ -437,7 +437,7 @@ SRAM_SLOTS:
 ;   addiu   at, r0, 0x0011
 ;   beq     v0, at, 0x80013888
 ;   sh      t7, 0x014a(s2)
-;   addiu   at, r0, 0x0006      
+;   addiu   at, r0, 0x0006
 ;   beq     v0, at, 0x80013888
 ;   addiu   at, r0, 0x0007
 ;   beq     v0, at, 0x80013888
@@ -455,6 +455,36 @@ SRAM_SLOTS:
     nop
     nop
 
+; Hack at end of Item_DropCollectible to reset the drop_collectible_override_flag
+.orga 0xA897F8; in memory 0x80013898
+; replaces
+;   lw      ra, 0x003C(sp)
+;   lw      s0, 0x0030(sp)
+;   lw      s1, 0x0034(sp)
+;   lw      s2, 0x0038(sp)
+;   jr      ra
+;   addiu   sp, sp, 0x58
+    j       Item_DropCollectible_End_Hack
+    lw      ra, 0x003C(sp)
+
+; Hack at end of Item_DropCollectible2 to reset to drop_collectible_override_flag
+.orga 0xA899CC; in memory 0x80013A6C
+; replaces
+;   lw      ra, 0x003C(sp)
+;   lw      s0, 0x0030(sp)
+;   lw      s1, 0x0034(sp)
+;   lw      s2, 0x0038(sp)
+;   jr      ra
+;   addiu   sp, sp, 0x50
+    j       Item_DropCollectible2_End_Hack
+    lw      ra, 0x003C(sp)
+
+; Hack Item_DropCollectibleRandom to call custom drop override function (mostly just for chus in logic)
+; replaces
+;   jal     0x80013530
+;.orga 0xA89D4C
+;    jal     get_override_drop_id
+
 ; Hack Item_DropCollectible call to Actor_Spawn to set override
 ; replaces
 ;   jal     0x80025110
@@ -469,7 +499,7 @@ SRAM_SLOTS:
 
 ; Hack ObjTsubo_SpawnCollectible (Pot) to call our overridden spawn function
 .orga 0xDE7C60
-    j		ObjTsubo_SpawnCollectible_Hack
+    j       ObjTsubo_SpawnCollectible_Hack
     nop
 
 ; Hack ObjKibako2_SpawnCollectible (Large crates) to call our overridden spawn function
@@ -480,14 +510,14 @@ SRAM_SLOTS:
 
 ; Hack ObjKibako_SpawnCollectible (Small wooden crates) to call our overriden spawn function
 .orga 0xDE6F60
-    j		ObjKibako_SpawnCollectible_Hack
+    j       ObjKibako_SpawnCollectible_Hack
     nop
 
 ; Hack En_tubo_trap (flying pots) to call our overriden spawn function
 .orga 0xDFA520
-    j		EnTuboTrap_DropCollectible_Hack
+    j       EnTuboTrap_DropCollectible_Hack
     nop
-    
+
 
 ; Hack ObjKibako2_Init (Large Crates) to not delete our extended flag
 .orga 0xEC832C
@@ -916,10 +946,10 @@ end_of_recovery_draw:
 
 .orga 0xBA1980 ; In memory: 0x803A5780
     ori     t0, r0, 0x00C8 ; was: addiu t0, t9, 0xFFE7
-    
+
 .orga 0xBA19DC ; In memory: 0x803A57DC
     nop ; was: sh r0, 0x4A6C (t2)
-    
+
 .orga 0xBA1E20 ; In memory: 0x803A5C20
     ori     t5, r0, 0x00C8 ; was: addiu t5, t4, 0x0019
 
@@ -1262,7 +1292,7 @@ nop
 .orga 0xC6C7A8
     jal      Shop_Keeper_Init_ID
 .orga 0xC6C920
-    jal      Shop_Keeper_Init_ID
+    jal      Shop_Keeper_Update_ID
 
 ; Override Deku Salescrub sold out check
 ; addiu at, zero, 2
@@ -1285,6 +1315,44 @@ nop
 ; sh t7, 0xef0(v0)
 .orga 0xDF7CB0
     jal     Deku_Set_Sold_Out
+
+;==================================================================================================
+; Mask Shop Changes for Trade Shuffle
+;==================================================================================================
+.orga 0xC01CD8
+    jal     set_mask_text_hook
+
+; The mask text hook replaces this instruction,
+; which happens to be duplicated for EnGirlA_SetItemDescription
+; but the other argument is set after the jal to EnGirlA_SetItemOutOfStock.
+; Making them the same lets us avoid running the displaced code in the hook.
+.orga 0xC01CEC
+    or      a1, a2, $zero
+
+; Set mask shop sold out flags after purchase if
+; the slot is shuffled
+.orga 0xC6F5DC
+    jal     set_mask_sold_out
+    nop
+
+; Change mask shop bunny hood turn in to check the given
+; shelf slot instead of the shop item ID to be compatible
+; with Mask of Truth shuffled. A custom buy item function
+; is used for shuffled Mask of Truth slot to prevent purchase
+; without trading all masks.
+.orga 0xC6F5F8
+    addiu   at, $zero, 0x0002   ; Mask of Truth slot
+    lui     v1, 0x8012
+    lbu     t5, 0x0242(s0)      ; cursor index
+
+; Use trade shuffle flags for mask salesman greeting
+.orga 0xC70704
+    j       SetupMaskShopHelloDialogOverride
+
+; Use trade shuffle flags to loop through mask payments
+.orga 0xC6D7EC
+    j       TryPaybackMaskOverride
+    addiu   sp, sp, 0x18             ; reset stack pointer from overrided function
 
 ;==================================================================================================
 ; Dungeon info display
@@ -1360,7 +1428,7 @@ skip_GS_BGS_text:
 .orga 0xC0E77C
     jal     empty_bomb
     sw      r0, 0x0428(v0)
-    
+
 ;==================================================================================================
 ; Damage Multiplier
 ;==================================================================================================
@@ -1393,33 +1461,9 @@ skip_GS_BGS_text:
 ; Set player health to zero on last frame of bonk animation
 ; z_player func_80844708, conditional where this->unk_850 != 0 and temp >= 0 || sp44
 ; Replaces:
-;   or      a0, s0, $zero
-;   jal     func_80838178
-;   lw      a1, 0x0054($sp)
 ;   b       lbl_80842AE8
-;   lw      $ra, 0x0024($sp)
-;   lwc1    $f4, 0x0828(s0)
-;   mtc1    $at, $f6
-;   nop
-.orga 0xBE0228
-; Load APPLY_BONK_DAMAGE address as throwaway instructions. Replacing the jump call causes
-; problems when overlay relocation is applied, breaking both replacement jump calls and nop'ing
-; the instruction. By chance, these two instructions (equivalent to `la APPLY_BONK_DAMAGE`) do
-; not crash after relocation, and so are kept here even though they do nothing.
-    lui     t8, 0x8040
-    addiu   t8, t8, 0x2D04
-; Replace original function call with hook to apply damage if the setting is on.
-; The original function is called in the new function before applying damage.
-; Since the player actor always ends up in the same location in RAM, the jump
-; address there is hardcoded.
-    jal     BONK_LAST_FRAME
-    lw      a1, 0x0054($sp)
-; The branch address is shifted to an alternate location where lw $ra... is run.
-; Required as la t8, APPLY_BONK_DAMAGE gets expanded to two commands.
-    b       0xBE0494
-    lw      $ra, 0x0024($sp)
-    lwc1    $f4, 0x0828(s0)
-    mtc1    $at, $f6
+.orga 0xBE0234
+    j       BONK_LAST_FRAME
 
 ; Prevent set and reset of player state3 flag 4, which is re-used for storing bonk state if the
 ; player manages to cancel the roll/bonk animation before the last frame.
@@ -1652,6 +1696,59 @@ skip_GS_BGS_text:
     nop
     nop
 
+; en_bom_bowl_man actor changes to prize selection using new flags
+; Replaces:
+;   jr      t7
+.orga 0xE2E070
+    jal     select_bombchu_bowling_prize
+    lhu     a0, 0x0232(s0)
+    or      v1, v0, $zero
+    b       skip_bombchu_bowling_prize_switch
+    sh      v1, 0x004E($sp)
+
+.orga 0xE2E0E0
+skip_bombchu_bowling_prize_switch:
+
+; set new bombchu bowling flags in scene collectible flags, skipping
+; inf_table flags
+; Replaces:
+;   lh      v0, 0x014A(a2)
+;   addiu   $at, $zero, 0x0001
+;   beq     v0, $zero, lbl_80AAEFA4
+;   nop
+;   beq     v0, $at, lbl_80AAEFBC
+.orga 0xE2EDD4
+    jal     set_bombchu_bowling_prize_flag
+    lh      a0, 0x014A(a2)
+    nop
+    nop
+    nop
+
+; en_js actor changes to prevent buying bombchus before finding a shuffled source
+.orga 0xE5B5C8
+    jal     logic_chus__carpet_dude_1
+.orga 0xE5B5DC
+    jal     logic_chus__carpet_dude_2
+
+;==================================================================================================
+; Override Collectible 05 to be a Bombchus (5) drop instead of the unused Arrow (1) drop
+;==================================================================================================
+; Replaces: 0x80011D30
+.orga 0xB7BD24
+    .word 0x80011D88
+
+; Replaces: li   a1, 0x03
+.orga 0xA8801C
+    li      a1, 0x96 ; Give Item Bombchus (5)
+.orga 0xA88CCC
+    li      a1, 0x96 ; Give Item Bombchus (5)
+
+; Replaces: lui     t5, 0x8012
+;           lui     at, 0x00FF
+.orga 0xA89268
+    jal     chu_drop_draw
+    lui     t5, 0x8012
+
 ;==================================================================================================
 ; Rainbow Bridge
 ;==================================================================================================
@@ -1679,6 +1776,13 @@ skip_GS_BGS_text:
 .orga 0xE2C03C
     jal     potion_shop_fix
     addiu   v0, v0, 0xA5D0 ; displaced
+
+.orga 0xE2BE10
+    jal     potion_shop_buy_hook
+    nop
+
+.orga 0xE2BDDC
+    jal     potion_shop_check_empty_bottle
 
 ;==================================================================================================
 ; Jabu Jabu Elevator
@@ -1811,6 +1915,45 @@ skip_GS_BGS_text:
     jal     HIDE_CHEST_WITH_INVERTED_LENS
     nop
 
+;==================================================================================================
+; Forest Twisted Hallway Chest
+;==================================================================================================
+
+; z_bg_mori_hineri, offset 0x0934
+; replace chest object logic with should_draw_forest_hallway_chest
+.orga 0xCB1288
+    or      a0, s1, r0 ; actor
+    jal     should_draw_forest_hallway_chest
+    or      a1, s2, r0 ; game
+    beqz    v0, @draw_forest_hallway_chest_lid_end
+    nop
+    nop
+    b       @draw_forest_hallway_chest_start
+    lui     t9, 0xDB06 ; G_MOVEWORD segment 06
+.orga 0xCB12C8
+@draw_forest_hallway_chest_start:
+
+; z_bg_mori_hineri, offset 0x0A24
+; replace gSPMatrix, gSPDisplayList with draw_forest_hallway_chest_base
+.orga 0xCB1374
+    jal     draw_forest_hallway_chest_base
+    nop
+    b       @draw_forest_hallway_chest_base_end
+    nop
+.orga 0xCB13B8
+@draw_forest_hallway_chest_base_end:
+
+; z_bg_mori_hineri, offset 0x0AE0
+; replace gSPMatrix, gSPDisplayList with draw_forest_hallway_chest_lid
+.orga 0xCB1430
+    jal     draw_forest_hallway_chest_lid
+    nop
+    b       @draw_forest_hallway_chest_lid_end
+    nop
+.orga 0xCB1474 ; also end of function
+@draw_forest_hallway_chest_lid_end:
+
+;==================================================================================================
 ; Draw Pot Textures
 ;==================================================================================================
 
@@ -1832,11 +1975,17 @@ skip_GS_BGS_text:
 .org 0xF6D000 + 0x17870 + 0x18 ; gameplay_dangeon_keep file start + dlist offset + gDPSetTextureImage offset
 .word   0xDE000000, 0x09000000 ; jump to the custom dlist at segment 09
 
+.org 0xF6D000 + 0x17870 + 0xD8 ; gameplay_dangeon_keep file start + dlist offset + gDPSetTextureImage offset
+.word   0xDE000000, 0x0A000000 ; jump to the custom dlist at segment 0A
+
 .org 0xF6D000 + 0x17870 + 0x138 ; gameplay_dangeon_keep file start + dlist offset + gDPSetTextureImage offset
 .word   0xDE000000, 0x09000000 ; jump to the custom dlist at segment 09
 
 .org 0x1738000 + 0x17C0 + 0x18 ; object_tsubo file start + dlist offset + gDPSetTextureImage offset
 .word   0xDE000000, 0x09000000 ; jump to the custom dlist at segment 09
+
+.org 0x1738000 + 0x17C0 + 0x108 ; object_tsubo file start + dlist offset + gDPSetTextureImage offset
+.word   0xDE000000, 0x0A000000 ; jump to the custom dlist at segment 0A
 
 ;==================================================================================================
 ; Draw Crate Textures
@@ -1942,14 +2091,14 @@ skip_GS_BGS_text:
 ;==================================================================================================
 ;
 ;manually set next entrance and fade out type
-.orga 0xBEA044 
+.orga 0xBEA044
    jal      warp_speedup
    nop
 
 .orga 0xB10CC0 ;set fade in type after the warp
     jal     set_fade_in
     lui     at, 0x0001
-   
+
 
 ;==================================================================================================
 ; Dampe Digging Fix
@@ -1988,7 +2137,7 @@ skip_GS_BGS_text:
 
 
 ;==================================================================================================
-; Extended Objects Table 
+; Extended Objects Table
 ;==================================================================================================
 
 ; extends object table lookup for on chest open
@@ -2033,7 +2182,7 @@ skip_GS_BGS_text:
 .orga 0xEF373C
     jal cow_bottle_check
     nop
-    
+
 ;==================================================================================================
 ; Make Bunny Hood like Majora's Mask
 ;==================================================================================================
@@ -2045,7 +2194,7 @@ skip_GS_BGS_text:
     nop
 
 ;==================================================================================================
-; Prevent hyrule guards from casuing a softlock if they're culled 
+; Prevent hyrule guards from casuing a softlock if they're culled
 ;==================================================================================================
 .orga 0xE24E7C
     jal guard_catch
@@ -2107,7 +2256,7 @@ skip_GS_BGS_text:
     nop
     lw      ra, 0x0000 (sp)
     nop
-    
+
 
 ;==================================================================================================
 ; Add ability to control Lake Hylia's water level
@@ -2133,6 +2282,217 @@ skip_GS_BGS_text:
 .orga 0xAE986C ; in memory 8007390C
     j   disable_trade_timers
     lui at, 0x800F
+
+;==================================================================================================
+; Trade Quest Shuffle Flag Hooks
+;==================================================================================================
+; Control if Fado (blonde Kokiri girl) can spawn in Lost Woods
+.orga 0xE538C4
+    or      t3, $zero, $ra
+    jal     check_fado_spawn_flags
+.orga 0xE538D4
+    or      $ra, $zero, t3
+; Fix Fado's text id when trading in the odd potion out of order
+.orga 0xE535E4
+    sh      t2, 0x010E(s0)
+
+; Control if Grog can spawn in Lost Woods
+.orga 0xE20BC8
+    jal     check_grog_spawn_flags
+
+; Control if the skull kid near Grog/Fado can spawn in Lost Woods
+; Replaces
+;   addu    t9, t9, t8
+;   lbu     t9, -0x59BC(t9)
+.orga 0xDEF73C
+    jal     check_skull_kid_spawn_flags
+    nop
+
+; Set traded flag after giving skull mask to the skull kid (en_skj).
+; Commands reorganized to fit and prevent displaced code.
+.orga 0xDF141C
+    jal     set_skull_mask_traded_flag
+    lw      s0, 0x0018($sp)
+    lw      $ra, 0x001C($sp)
+    jr      $ra
+    addiu   $sp, $sp, 0x0020
+
+; Set traded flag after giving keaton mask to the guard (en_heishi2).
+.orga 0xD1B894
+    jal     set_keaton_mask_traded_flag
+
+; Set traded flag after giving spooky mask to the graveyard kid (en_cs).
+.orga 0xE60D00
+    jal     set_spooky_mask_traded_flag
+
+; Set traded flag after giving bunny hood to the running man (en_mm).
+.orga 0xE50888
+    jal     set_bunny_hood_traded_flag
+
+; Skip BGS flag checks for Biggoron trade dialog
+
+; EnGo2_GetTextIdGoronDmtBiggoron
+; BGS flag text ID is the same as the claim check branch. Skip it.
+; This has the side effect that if claim check is traded in and
+; the adult trade item is changed to an item earlier than prescription,
+; Biggoron will use his early-game text throwing shade at Medigoron.
+; Replaces
+;   lbu     t6, 0x003E(a1)
+.orga 0xED3298
+    or      t6, $zero, $zero
+
+; EnGo2_GetStateGoronDmtBiggoron
+; Prevents duping the BGS get item cutscene if claim check is
+; presented again. Update to use the trade quest "traded"
+; flags in DMC unk_00_ scene flags.
+; Replaces
+;   lbu     t8, -0x59F2(t8)
+.orga 0xED337C
+    jal     check_claim_check_traded
+
+; EnGo2_BiggoronSetTextId
+; First instance controls Biggoron's response after the
+; claim check has been turned in, including if claim check
+; is presented to him again. Modify to use the trade quest
+; "traded" flags and also if the adult trade item is the claim
+; check. The second part is important to allow turning in
+; the broken sword and eyedrops after claim check has been
+; turned in. Since v0 (bgs flag state) is immediately checked
+; in the next branch, change this branch check to use t8
+; Replaces
+;   lbu     v0, 0x003E(v1)
+;   or      a0, a1, $zero
+;   beq     v0, $zero, lbl_80B58CFC
+.orga 0xED43E4
+    jal     check_claim_check_traded
+    or      a0, a1, $zero
+    beq     t8, $zero, claim_check_not_traded
+.orga 0xED442C
+claim_check_not_traded:
+
+; Skip setting the BGS flag after turning in the claim check
+; Replaces
+;   sb      t8, 0x003E(v0)
+.orga 0xED6574
+    nop
+
+; Change Biggoron animation if adult trade quest shuffle is on
+; to always in pain until the eye drops are turned in.
+; Replaces
+;   lbu     v0, 0x0074(t4)
+.orga 0xED5C04
+    jal     check_if_biggoron_should_cry_eye_hook
+.orga 0xED4860
+    jal     check_if_biggoron_should_cry_anim_hook
+    nop
+.orga 0xED5784
+    jal     check_if_biggoron_should_cry_sfx_hook
+    nop
+
+; Disable Cucco lady overriding her get item ID
+; as adult if Pocket Egg not obtained. The correct
+; ID is already set by this point.
+.orga 0xE1E9A0
+    jal     check_cucco_lady_talk_exch_hook
+.orga 0xE1E9DC
+    jal     check_cucco_lady_talk_none_hook
+.orga 0xE1ECD4
+    jal     check_cucco_lady_exchange_id_hook
+.orga 0xE1ECDC
+    nop
+.orga 0xE1ED64
+    jal     check_cucco_lady_flag_hook
+    nop
+
+; Prevent turning in trade items more than once.
+; Nullfies target actor if custom trade quest flag for the
+; presented item is set. Without a target actor, falls through
+; to default cutscene item text.
+; EXCEPTION: Claim check can be presented multiple times to
+; match vanilla behavior. "Traded" flags are checked in the
+; Biggoron actor to prevent duping.
+.orga 0xBD6CD0 ; player actor vram 0x80839320
+    jal     check_trade_item_traded
+
+; Update owned trade items after eggs hatch
+; Replaces
+;   lui     a0, 0x8012
+;   addiu   a0, a0, 0xA5D0
+;   or      v0, $zero, $zero
+.orga 0xAE795C
+    jal     update_shiftable_trade_item_egg_hook
+    nop
+    lw      ra, 0x14($sp)
+    addiu   sp, sp, 0x18
+    jr      ra
+    nop
+
+; Prevent losing masks to SOLD OUT if child trade shuffle
+; or single child mask shuffle is on
+.orga 0xAE72D0
+    jal     check_if_mask_sells_out
+    nop
+    bnez    v1, return_null_item_id
+    nop
+    nop
+
+.orga 0xAE734C
+return_null_item_id:
+
+; Custom CanBuy shop function for right side masks to
+; always check for all masks traded. Overwrites unused
+; functions EnGirlA_CanBuy_Unk19 and EnGirlA_CanBuy_Unk20
+.orga 0xC00FF4
+    addiu   $sp, $sp, -0x18
+    sw      $ra, 0x0014($sp)
+    jal     CanBuy_RightSideMask
+    nop
+    lw      $ra, 0x0014($sp)
+    jr      $ra
+    addiu   $sp, $sp, 0x18
+    nop
+    nop
+    nop
+
+; Prevent reverting Zelda's Letter to Chicken when
+; save warping from Zelda's courtyard before talking
+; to Impa. Only applied if trade shuffle is on.
+.orga 0xB06424
+    jal     handle_child_zelda_savewarp
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+
+; Prevent obtaining the item on Zelda's Letter more
+; than once.
+.orga 0xEFE9B4
+;.orga 0xEFE958
+    jal     check_zelda_cutscene_watched
+    nop
+    bnez    v0, end_child_zelda_cutscene
+    lbu     v1, 0x01F8(s0)
+.orga 0xEFEA68
+end_child_zelda_cutscene:
+.orga 0xEFEA00
+    nop
+
+; Courtyard guards never block the way after talking to Zelda.
+; En_Heishi1 init function branch logic nulled for EVENTCHKINF_80.
+.orga 0xCD5E30
+    nop
+.orga 0xCD5E7C
+    b       courtyard_guards_kill
+.orga 0xCD5E8C
+courtyard_guards_kill:
 
 ;==================================================================================================
 ; Remove Shooting gallery actor when entering the room with the wrong age
@@ -2339,12 +2699,6 @@ skip_GS_BGS_text:
     lui     a1, 0x808D
     bnez_a  t7, 0xC72C8C
     nop
-
-;==================================================================================================
-; Running Man should fill wallet when trading Bunny Hood.
-;==================================================================================================
-.orga 0xE50888
-    li      a0, 999
 
 ;==================================================================================================
 ; Change relevant checks to Bomb Bag
@@ -2645,7 +2999,7 @@ skip_GS_BGS_text:
 ; Prevent Carpenter Boss Softlock
 ;==================================================================================================
 ; Replaces: or      a1, s1, r0
-;           addiu   a2, r0, 0x22 
+;           addiu   a2, r0, 0x22
 .orga 0xE0EC50
     jal     prevent_carpenter_boss_softlock
     or      a1, s1, r0
@@ -2655,9 +3009,9 @@ skip_GS_BGS_text:
 ;==================================================================================================
 ; this hack sets the learning song ID to 0 (minuet) which forces the playback to be skipped.
 ; this change does not affect the value passed to Item_Give, so you still recieve the right song.
-; this allows other actors to be responsible for showing the "you learned" text and avoids undesireable 
+; this allows other actors to be responsible for showing the "you learned" text and avoids undesireable
 ; effects like suns song playback skipping time
-; 
+;
 ; Replaces: sh      a2, 0x63ED(at)
 .orga 0xB55428
     sh      r0, 0x63ED(at)
@@ -2734,7 +3088,7 @@ skip_GS_BGS_text:
 ;==================================================================================================
 ; Override Links call to SkelAnime_ChangeLinkAnimDefaultStop
 ;==================================================================================================
-;override the call to SkelAnime_ChangeLinkAnimDefaultStop in 80388BBC to allow for 
+;override the call to SkelAnime_ChangeLinkAnimDefaultStop in 80388BBC to allow for
 ;special cases when changing links animation
 ; Replaces: jal      0x8008C178
 .orga 0xBCDBD8
@@ -2768,7 +3122,7 @@ skip_GS_BGS_text:
 
 ;case 4: outside ganons castle
 ; Replaces: jal       0x8006B6FC
-.orga 0xCDF420 
+.orga 0xCDF420
     jal     heavy_block_set_switch
 
 ;set links position and angle to the center of the block as its being lifted
@@ -2842,9 +3196,9 @@ skip_GS_BGS_text:
     jal    malon_show_text  ;dont set next cutscene index, also show text if song
 .skip 4 * 2
     nop        ;dont set transition fade type
-.skip 4 * 4    
-    nop        ;dont set load flag 
-.skip 4 * 2  
+.skip 4 * 4
+    nop        ;dont set load flag
+.skip 4 * 2
     j      malon_check_give_item
 
 ;set relevant flags and restore malon so she can talk again
@@ -2960,6 +3314,32 @@ skip_GS_BGS_text:
 .orga 0xB575C8
     sw      t6, 0x00(a1)
 
+; Dynamically load the en/jp message files for text lookup. Both files are utilized to make room
+; for additional text. The jp file is filled first. The segment value for the requested text ID
+; is used to manipulate the language bit to tell Message_OpenText (func_800DC838) which file
+; to load and search. Hook at VRAM 0x800DCB60 in message.s
+.orga 0xB52AC0
+    jal     set_message_file_to_search
+    nop
+
+; The message lookup function uses a fixed reference to the first entry's segment to strip it from
+; the combined segment/offset word. Since we have mixed segments in the table now, this is no
+; longer safe. Load the correct segment into register a2 from the current message.
+.orga 0xB4C980
+    j       load_correct_message_segment
+    nop
+
+; Since message lookup already occurs in the above hook, remove the lookup from both the JP and EN
+; branches.
+.orga 0xB52AD0 ; JP branch
+    nop
+    nop
+    nop
+    nop
+.orga 0xB52B64 ; EN branch
+    nop
+    nop
+
 ;==================================================================================================
 ; Null Boomerang Pointer in Links Instance
 ;==================================================================================================
@@ -2973,8 +3353,8 @@ skip_GS_BGS_text:
 ;Kill Door of Time collision when the cutscene starts
 ;===================================================================================================
 .orga 0xCCE9A4
-    jal     kill_door_of_time_col ; Replaces lui     $at, 0x3F80 
-    lw      a0, 0x011C(s0) ; replaces mtc1    $at, $f6 
+    jal     kill_door_of_time_col ; Replaces lui     $at, 0x3F80
+    lw      a0, 0x011C(s0) ; replaces mtc1    $at, $f6
 
 ;===================================================================================================
 ; Don't grey out Goron's Bracelet as adult.
@@ -3007,7 +3387,7 @@ skip_GS_BGS_text:
 ; Give each cursed skulltula house resident a different text ID, for skulltula reward hints
 ;===================================================================================================
 .orga 0xEA2664
-	addiu	t1, t1, 0x9003
+    addiu   t1, t1, 0x9003
 
 ;==================================================================================================
 ; Base Get Item Draw Override
@@ -3035,19 +3415,19 @@ skip_GS_BGS_text:
 ; Remove the cutscene when throwing a bomb at the rock in front of Dodongo's cavern
 ;===================================================================================================
 .orga 0xD55998
-	nop
-	nop
-	nop
-	nop
-	nop
-	
+    nop
+    nop
+    nop
+    nop
+    nop
+
 .orga 0xD55A80
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
 
 ;==================================================================================================
 ; Seeding RNG
@@ -3058,3 +3438,154 @@ skip_GS_BGS_text:
 ;   jal     func_800CDCCC
 .orga 0xDB9E14
     jal     rand_seed_truth_spinner
+
+;==================================================================================================
+; Save current mask on scene change
+;==================================================================================================
+; Player_Destroy (0x80848BB4) - Its easier to just re-write the function than make a hook.
+.orga 0xBE6564
+    addiu   sp, sp, -0x10
+    sw      ra, 0xC($sp)
+    sw      s1, 0x8($sp)
+    sw      s0, 0x4($sp)
+    move    s0, a0
+    move    s1, a1
+    la      t0, SAVE_CONTEXT
+    lui     t1, 0x0001
+    addu    t1, t1, a1 ; PlayState + 0x10000
+    lbu     t2, 0x1DE8(t1) ; playState->linkAgeOnLoad
+    lbu     t3, 0x014F(a0) ; player->currentMask
+    sw      t2, 0x0004(t0) ; saveContext->linkAge
+    sb      t3, 0x003B(t0) ; this seems to be an empty slot
+    move    a0, a1
+    jal     0x8001AE04 ; Effect_Delete
+    lw      a1, 0x660(s0) ; player->meleeWeaponEffectIndex
+    jal     0x80072548 ; Magic_Reset
+    move    a0, s1
+    lw      ra, 0xC(sp)
+    lw      s1, 0x8(sp)
+    lw      s0, 0x4(sp)
+    jr      ra
+    addiu   sp, sp, 0x10
+    ;Remove the rest of the old function
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+
+;==================================================================================================
+; Load current mask on scene change
+;==================================================================================================
+;Player_Init (0x80844DE8)
+;Replaces:
+;jal     func_80834000
+.orga 0xBE28EC
+    jal     player_save_mask
+
+; Dumb hack to not relocate the function call to player_save_mask
+.orga 0xBF2C14
+    nop
+
+;===================================================================================================
+; Link the Goron gives the item on either first choice selected
+;===================================================================================================
+; Replaces: addiu   t5, $zero, 0x3035
+.orga 0xED3170
+    addiu   t5, $zero, 0x3036
+; Replaces: addiu   t9, $zero, 0x3033
+.orga 0xED31B8
+    addiu   t9, $zero, 0x3036
+
+;===================================================================================================
+; Fix Bongo cutscene start not skipped if jumpslash at the last possible frame
+;===================================================================================================
+; Replaces: slti    $at, a2, 0x0222
+.orga 0xDA1D60
+    slti    $at, a2, 0x0221
+; Replaces: addiu   t9, $zero, 0x0222
+.orga 0xDA1F94
+    addiu   t9, $zero, 0x0221
+
+;===================================================================================================
+; Death Mountain cloud color checks for Volvagia flag
+;===================================================================================================
+; Replaces: lhu     t3, 0x0ED8(v0)
+;           andi    t4, t3, 0x8000
+.orga 0xD7C864
+    lhu     t3, 0x0EDC(v0)
+    andi    t4, t3, 0x0200
+
+;===================================================================================================
+; Various speedups
+;===================================================================================================
+; Scarecrow spawn cutscene
+; Replaces jal     func_8006BA10
+.orga 0xEF502C
+    nop
+
+; Water Temple Entrance Gate cutscene and timer
+; Replaces addiu   t6, $zero, 0x0064
+.orga 0xD5B53C
+    addiu   t6, $zero, 0x0000
+; Replaces jal     func_8006B6FC
+.orga 0xD5B940
+    nop
+; x3 Speed on gate opening
+; Replaces lui     a2, 0x3F19
+.orga 0xD5B5FC
+    lui     a2, 0x3FE6
+
+; Gerudo Gate opening
+; Replaces lui     a1, 0x3FCC
+;          lui     a2, 0x3CF5
+.orga 0xEB8ED8
+   lui     a1, 0x41A0
+   lui     a2, 0x41A0
+; Replaces jal     func_8006B6FC
+.orga 0xEB8E4C
+    nop
+; Replaces addiu   t7, $zero, 0x0028
+.orga 0xEB8E6C
+    addiu   t7, $zero, 0x0000
+
+; Forest Red/Blue poe painting hit cutscene removed
+; Replaces jal     func_8006B6FC
+.orga 0xCE1600
+    nop
+
+; Biggoron puts the eyedrops
+; Put eyedrops animation timer at 0 and skip the cutscene
+; Replaces sh      t2, 0x0582(s0)
+.orga 0xED665C
+    sh      $zero, 0x0582(s0)
+; Replaces jal     func_8006B6FC
+.orga 0xED6670
+    nop
+
+; Scrub leader hiding for 1 frame instead of 300 when you show Skull Mask
+; Replaces addiu   a1, $zero, 0x012C
+.orga 0xEC8D20
+    addiu   a1, $zero, 0x0001
+
+;===================================================================================================
+; Prevent Gohma from being stunned when climbing
+;===================================================================================================
+; Replaces lui     a1, 0x40A0
+;          lui     a2, 0x3F00
+.orga 0xC48BD4
+    jal     gohma_climb
+    nop
+
+;===================================================================================================
+; Prevent crash when diving in shallow water due to poorly initialized camera data
+;===================================================================================================
+; Replaces sw      v0, 0x011C(s0)
+;          lh      t2, 0x014C(s0)
+.orga 0xABDD10
+    jal     camera_init
+    nop

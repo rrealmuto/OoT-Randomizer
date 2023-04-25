@@ -7,7 +7,7 @@
 COSMETIC_CONTEXT:
 
 COSMETIC_FORMAT_VERSION:
-.word 0x1F073FD9
+.word 0x1F073FDA
 CFG_MAGIC_COLOR:
 .halfword 0x0000, 0x00C8, 0x0000
 CFG_HEART_COLOR:
@@ -66,6 +66,10 @@ CFG_RAINBOW_NAVI_PROP_OUTER_ENABLED:
 .byte 0x00
 CFG_DPAD_DUNGEON_INFO_ENABLE:
 .byte 0x01
+GET_ITEM_SEQ_ID:
+.word 0x00
+
+
 CFG_SHOW_SETTING_INFO:
 .byte 0x00
 
@@ -108,11 +112,11 @@ TIME_STRING_TXT:
 INITIAL_SAVE_DATA:
 .endarea
 
-.area 0x20, 0 ; size must be at least 8 * ((max object_id parameter Patches.add_to_extended_object_table is called with) - 0x192)
+.area 0x40, 0 ; size must be at least 8 * ((max object_id parameter Patches.add_to_extended_object_table is called with) - 0x192)
 EXTENDED_OBJECT_TABLE:
 .endarea
 
-BOMBCHUS_IN_LOGIC:
+FREE_BOMBCHU_DROPS:
 .word 0x00
 
 GOSSIP_HINT_CONDITION:

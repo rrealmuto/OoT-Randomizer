@@ -156,7 +156,7 @@ def process_sequences(rom, ids, seq_type='bgm', disabled_source_sequences=None, 
     # Process music data in data/Music/
     # Each sequence requires a valid .seq sequence file and a .meta metadata file
     # Current .meta format: Cosmetic Name\nInstrument Set\nPool
-    for dirpath, _, filenames in os.walk(u'./data/Music', followlinks=True):
+    for dirpath, _, filenames in os.walk(os.path.join(data_path(), 'Music'), followlinks=True):
         for fname in filenames:
             # Skip if included in exclusion file
             if fname in seq_exclusion_list:
@@ -447,7 +447,7 @@ def randomize_music(rom, settings, log):
             while len(mapping) > 0:
                 random.shuffle(mapping)
                 source = music_mapping[target] = mapping.pop()
-                
+
                 if source.startswith('#'):
                     group_name = source[1:]
                     group = groups_alias.get(group_name, None)
@@ -464,16 +464,16 @@ def randomize_music(rom, settings, log):
                             source = music_mapping[target] = group.pop()
                             if source in sequences_alias:
                                 break
-                            
+
                     log.errors.append(f"Warning: Group '{source}' linked to '{target}' does not have a valid custom sequence. Ignoring!")
                 else:
                     break
-                    
+
             if len(mapping) == 0 and source not in sequences_alias:
                 del music_mapping[target]
                 log.errors.append(f"Target Sequence '{target}' does not have a valid 'bgm_groups' entry.")
                 continue
-                
+
         elif mapping.startswith('#'):
             group_name = source[1:]
             group = groups_alias.get(group_name, None)

@@ -215,6 +215,7 @@ conditional_always = {
     'Kak 30 Gold Skulltula Reward': lambda world: tokens_required_by_settings(world) < 30 and '30_skulltulas' not in world.settings.misc_hints,
     'Kak 40 Gold Skulltula Reward': lambda world: tokens_required_by_settings(world) < 40 and '40_skulltulas' not in world.settings.misc_hints,
     'Kak 50 Gold Skulltula Reward': lambda world: tokens_required_by_settings(world) < 50 and '50_skulltulas' not in world.settings.misc_hints,
+    'ZR Frogs Ocarina Game':        lambda world: 'frogs2' not in world.settings.misc_hints,
 }
 
 # Entrance hints required under certain settings
@@ -231,7 +232,7 @@ conditional_entrance_always = {
 conditional_dual_always = {
     'HF Ocarina of Time Retrieval': lambda world: stones_required_by_settings(world) < 2,
     'Deku Theater Rewards':         lambda world: not world.settings.complete_mask_quest,
-    'ZR Frogs Rewards':             lambda world: not world.settings.shuffle_frog_song_rupees,
+    'ZR Frogs Rewards':             lambda world: not world.settings.shuffle_frog_song_rupees and 'frogs2' not in world.settings.misc_hints,
 }
 
 # Some sometimes, dual, and entrance hints should only be enabled under certain settings
@@ -368,7 +369,16 @@ hintTable = {
     'Rupees (50)':                                              (["big bucks", "a purple gem", "wealth"], "a Purple Rupee", 'item'),
     'Rupees (200)':                                             (["a juicy jackpot", "a yellow gem", "a giant gem", "great wealth"], "a Huge Rupee", 'item'),
     'Weird Egg':                                                (["a chicken dilemma"], "the Weird Egg", 'item'),
+    'Chicken':                                                  (["a chicken dilemma"], "the Chicken",'item'),
     'Zeldas Letter':                                            (["an autograph", "royal stationery", "royal snail mail"], "Zelda's Letter", 'item'),
+    'Keaton Mask':                                              (["the famous façade"], "the Keaton Mask", 'item'),
+    'Skull Mask':                                               (["the fleshless façade"], "the Skull Mask", 'item'),
+    'Spooky Mask':                                              (["the frightening façade"], "the Spooky Mask", 'item'),
+    'Bunny Hood':                                               (["the fast façade"], "the Bunny Hood", 'item'),
+    'Goron Mask':                                               (["the fraternal façade"], "the Goron Mask", 'item'),
+    'Zora Mask':                                                (["the fishy façade"], "the Zora Mask", 'item'),
+    'Gerudo Mask':                                              (["the feminine façade"], "the Gerudo Mask", 'item'),
+    'Mask of Truth':                                            (["the factual façade"], "the Mask of Truth", 'item'),
     'Pocket Egg':                                               (["a Cucco container", "a Cucco, eventually", "a fowl youth"], "the Pocket Egg", 'item'),
     'Pocket Cucco':                                             (["a little clucker"], "the Pocket Cucco", 'item'),
     'Cojiro':                                                   (["a cerulean capon"], "Cojiro", 'item'),
@@ -411,7 +421,7 @@ hintTable = {
     'Boss Key (Water Temple)':                                  (["a master of unlocking for under a vast lake", "a master pass for under a vast lake"], "the Water Temple Boss Key", 'item'),
     'Boss Key (Shadow Temple)':                                 (["a master of unlocking for the house of the dead", "a master pass for the house of the dead"], "the Shadow Temple Boss Key", 'item'),
     'Boss Key (Spirit Temple)':                                 (["a master of unlocking for a goddess of the sand", "a master pass for a goddess of the sand"], "the Spirit Temple Boss Key", 'item'),
-    'Boss Key (Ganons Castle)':                                 (["an master of unlocking", "a floating dungeon's master pass"], "Ganon's Castle Boss Key", 'item'),
+    'Boss Key (Ganons Castle)':                                 (["a master of unlocking for a conquered citadel", "a floating dungeon's master pass"], "Ganon's Castle Boss Key", 'item'),
     'Small Key (Forest Temple)':                                (["a tool for unlocking a deep forest", "a dungeon pass for a deep forest", "a lock remover for a deep forest", "a lockpick for a deep forest"], "a Forest Temple Small Key", 'item'),
     'Small Key (Fire Temple)':                                  (["a tool for unlocking a high mountain", "a dungeon pass for a high mountain", "a lock remover for a high mountain", "a lockpick for a high mountain"], "a Fire Temple Small Key", 'item'),
     'Small Key (Water Temple)':                                 (["a tool for unlocking a vast lake", "a dungeon pass for under a vast lake", "a lock remover for under a vast lake", "a lockpick for under a vast lake"], "a Water Temple Small Key", 'item'),
@@ -450,7 +460,7 @@ hintTable = {
     'Deku Seeds (30)':                                          (["catapult ammo", "lots-o-seeds"], "Deku Seeds (30 pieces)", 'item'),
     'Gold Skulltula Token':                                     (["proof of destruction", "an arachnid chip", "spider remains", "one percent of a curse"], "a Gold Skulltula Token", 'item'),
 
-    'ZR Frogs Ocarina Game':                                       (["an #amphibian feast# yields", "the #croaking choir's magnum opus# awards", "the #froggy finale# yields"], "the final reward from the #Frogs of Zora's River# is", 'always'),
+    'ZR Frogs Ocarina Game':                                       (["an #amphibian feast# yields", "the #croaking choir's magnum opus# awards", "the #froggy finale# yields"], "the final reward from the #Frogs of Zora's River# is", ['overworld', 'sometimes']),
     'KF Links House Cow':                                          ("the #bovine bounty of a horseback hustle# gifts", "#Malon's obstacle course# leads to", 'always'),
 
     'Song from Ocarina of Time':                                   ("the #Ocarina of Time# teaches", None, ['song', 'sometimes']),
@@ -1377,7 +1387,7 @@ hintTable = {
     # - They aren't inappropriate.
     # - They aren't absurdly long copy pastas.
     # - They aren't quotes or references that are simply not funny when out-of-context.
-    # To elaborate on this last point: junk hints need to be able to be understood 
+    # To elaborate on this last point: junk hints need to be able to be understood
     # by everyone, and not just those who get the obscure references.
     # Zelda references are considered fair game.
 
@@ -1418,7 +1428,7 @@ hintTable = {
     '1047':                                                     ("They say that the final item you're looking for can be found somewhere in Hyrule.", None, 'junk'),
     '1048':                                                     ("${12 68 7a}Mweep${07 04 51}", None, 'junk'), # Mweep
     '1049':                                                     ("They say that Barinade fears Deku Nuts.", None, 'junk'),
-    '1050':                                                     ("They say that Flare Dancers do not fear Goron-crafted blades.", None, 'junk'), 
+    '1050':                                                     ("They say that Flare Dancers do not fear Goron-crafted blades.", None, 'junk'),
     '1051':                                                     ("They say that Morpha is easily trapped in a corner.", None, 'junk'),
     '1052':                                                     ("They say that Bongo Bongo really hates the cold.", None, 'junk'),
     '1053':                                                     ("They say that crouch stabs mimic the effects of your last attack.", None, 'junk'),
@@ -1778,6 +1788,13 @@ misc_location_hint_table = {
         'location_text': "Yeaaarrgh! I'm cursed!! Please save me by destroying \x05\x4150 Spiders of the Curse\x05\x40 and I will give you \x05\x42{item}\x05\x40.",
         'location_fallback': "Yeaaarrgh! I'm cursed!!",
     },
+    'frogs2': {
+        'id': 0x022E,
+        'hint_location': 'ZR Frogs Ocarina Minigame Hint',
+        'item_location': 'ZR Frogs Ocarina Game',
+        'location_text': "Some frogs holding \x05\x42{item}\x05\x40 are looking at you from underwater...",
+        'location_fallback': "Some frogs are looking at you from underwater...",
+    },
 }
 
 # Separate table for goal names to avoid duplicates in the hint table.
@@ -1814,7 +1831,7 @@ def hintExclusions(world, clear_cache=False):
     location_hints = []
     for name in hintTable:
         hint = getHint(name, world.settings.clearer_hints)
-        if any(item in hint.type for item in 
+        if any(item in hint.type for item in
                 ['always',
                  'dual_always',
                  'sometimes',

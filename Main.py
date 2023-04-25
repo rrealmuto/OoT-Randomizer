@@ -248,8 +248,10 @@ def compress_rom(input_file, output_file, window=dummy_window(), delete_input=Fa
     logger = logging.getLogger('')
     compressor_path = "./" if is_bundled() else "bin/Compress/"
     if platform.system() == 'Windows':
-        if 8 * struct.calcsize("P") == 64:
+        if platform.machine() == 'AMD64':
             compressor_path += "Compress.exe"
+        elif platform.machine() == 'ARM64':
+            compressor_path += "Compress_ARM64.exe"
         else:
             compressor_path += "Compress32.exe"
     elif platform.system() == 'Linux':
@@ -283,8 +285,10 @@ def generate_wad(wad_file, rom_file, output_file, channel_title, channel_id, win
     gzinject_path = "./" if is_bundled() else "bin/gzinject/"
     gzinject_patch_path = gzinject_path + "ootr.gzi"
     if platform.system() == 'Windows':
-        if 8 * struct.calcsize("P") == 64:
+        if platform.machine() == 'AMD64':
             gzinject_path += "gzinject.exe"
+        elif platform.machine() == 'ARM64':
+            gzinject_path += "gzinject_ARM64.exe"
         else:
             gzinject_path += "gzinject32.exe"
     elif platform.system() == 'Linux':
@@ -685,18 +689,20 @@ def find_misc_hint_items(spoiler):
 
 
 def create_playthrough(spoiler):
+    logger = logging.getLogger('')
     worlds = spoiler.worlds
     if worlds[0].check_beatable_only and not Search([world.state for world in worlds]).can_beat_game():
-        raise RuntimeError('Uncopied is broken too.')
+        raise RuntimeError('Game unbeatable after placing all items.')
     # create a copy as we will modify it
     old_worlds = worlds
     worlds = copy_worlds(worlds)
 
     # if we only check for beatable, we can do this sanity check first before writing down spheres
     if worlds[0].check_beatable_only and not Search([world.state for world in worlds]).can_beat_game():
-        raise RuntimeError('Cannot beat game. Something went terribly wrong here!')
+        raise RuntimeError('Uncopied world beatable but copied world is not.')
 
     search = RewindableSearch([world.state for world in worlds])
+    logger.debug('Initial search: %s', search.state_list[0].get_prog_items())
     # Get all item locations in the worlds
     item_locations = search.progression_locations()
     # Omit certain items from the playthrough
@@ -704,7 +710,6 @@ def create_playthrough(spoiler):
     # Generate a list of spheres by iterating over reachable locations without collecting as we go.
     # Collecting every item in one sphere means that every item
     # in the next sphere is collectable. Will contain every reachable item this way.
-    logger = logging.getLogger('')
     logger.debug('Building up collection spheres.')
     collection_spheres = []
     entrance_spheres = []
@@ -712,6 +717,7 @@ def create_playthrough(spoiler):
 
     search.checkpoint()
     search.collect_pseudo_starting_items()
+    logger.debug('With pseudo starting items: %s', search.state_list[0].get_prog_items())
 
     while True:
         search.checkpoint()
@@ -719,10 +725,11 @@ def create_playthrough(spoiler):
         # Otherwise, an item we collect could influence later item collection in the same sphere
         collected = list(search.iter_reachable_locations(item_locations))
         if not collected: break
+        random.shuffle(collected)
         # Gather the new entrances before collecting items.
         collection_spheres.append(collected)
         accessed_entrances = set(filter(search.spot_access, remaining_entrances))
-        entrance_spheres.append(accessed_entrances)
+        entrance_spheres.append(list(accessed_entrances))
         remaining_entrances -= accessed_entrances
         for location in collected:
             # Collect the item for the state world it is for
@@ -737,6 +744,7 @@ def create_playthrough(spoiler):
     # like bow and slingshot appear as early as possible rather than as late as possible.
     required_locations = []
     for sphere in reversed(collection_spheres):
+        random.shuffle(sphere)
         for location in sphere:
             # we remove the item at location and check if the game is still beatable in case the item could be required
             old_item = location.item
@@ -755,7 +763,7 @@ def create_playthrough(spoiler):
             location.item = None
 
             # An item can only be required if it isn't already obtained or if it's progressive
-            if search.state_list[old_item.world.id].item_count(old_item.name) < old_item.world.max_progressions[old_item.name]:
+            if search.state_list[old_item.world.id].item_count(old_item.solver_id) < old_item.world.max_progressions[old_item.name]:
                 # Test whether the game is still beatable from here.
                 logger.debug('Checking if %s is required to beat the game.', old_item.name)
                 if not search.can_beat_game():
@@ -766,6 +774,7 @@ def create_playthrough(spoiler):
     # Reduce each entrance sphere in reverse order, by checking if the game is beatable when we disconnect the entrance.
     required_entrances = []
     for sphere in reversed(entrance_spheres):
+        random.shuffle(sphere)
         for entrance in sphere:
             # we disconnect the entrance and check if the game is still beatable
             old_connected_region = entrance.disconnect()
@@ -810,6 +819,10 @@ def create_playthrough(spoiler):
             search.state_list[location.item.world.id].collect(location.item)
         collected.clear()
     logger.info('Collected %d final spheres', len(collection_spheres))
+
+    if not search.can_beat_game(False):
+        logger.error('Playthrough could not beat the game!')
+        # Add temporary debugging info or breakpoint here if this happens
 
     # Then we can finally output our playthrough
     spoiler.playthrough = OrderedDict((str(i), {location: location.item for location in sphere}) for i, sphere in enumerate(collection_spheres))

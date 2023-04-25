@@ -1,5 +1,6 @@
 #include "item_effects.h"
 #include "dungeon_info.h"
+#include "trade_quests.h"
 
 #define rupee_cap ((uint16_t*)0x800F8CEC)
 volatile uint8_t MAX_RUPEES = 0;
@@ -84,15 +85,22 @@ void give_small_key(z64_file_t *save, int16_t dungeon_id, int16_t arg2) {
     save->dungeon_keys[dungeon_id] = current_keys + 1;
     uint32_t flag = save->scene_flags[dungeon_id].unk_00_;
     int8_t total_keys = flag >> 0x10;
-    save->scene_flags[dungeon_id].unk_00_ = (flag & 0x0000ffff) | ((total_keys + 1) << 0x10);
+    int8_t max_keys = key_counts[dungeon_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
+    if (total_keys < max_keys) {
+        save->scene_flags[dungeon_id].unk_00_ = (flag & 0x0000ffff) | ((total_keys + 1) << 0x10);
+    }
 }
 
+uint8_t KEYRING_BOSSKEY_CONDITION = 0;
 void give_small_key_ring(z64_file_t *save, int16_t dungeon_id, int16_t arg2) {
     int8_t current_keys = save->dungeon_keys[dungeon_id] > 0 ? save->dungeon_keys[dungeon_id] : 0;
     save->dungeon_keys[dungeon_id] = current_keys + key_counts[dungeon_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
+    if (KEYRING_BOSSKEY_CONDITION && dungeon_id > 2 && dungeon_id < 8) {
+        save->dungeon_items[dungeon_id].boss_key = 1;
+    }
     uint32_t flag = save->scene_flags[dungeon_id].unk_00_;
-    int8_t total_keys = flag >> 0x10;
-    save->scene_flags[dungeon_id].unk_00_ = (flag & 0x0000ffff) | ((total_keys + key_counts[dungeon_id][CFG_DUNGEON_IS_MQ[dungeon_id]]) << 0x10);
+    int8_t max_keys = key_counts[dungeon_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
+    save->scene_flags[dungeon_id].unk_00_ = (flag & 0x0000ffff) | (max_keys << 0x10);
 }
 
 void give_defense(z64_file_t *save, int16_t arg1, int16_t arg2) {
@@ -158,4 +166,15 @@ void open_mask_shop(z64_file_t *save, int16_t arg1, int16_t arg2) {
         save->item_get_inf[3] = save->item_get_inf[3] | 0x8F00; // "Sold Masks & Unlocked Masks" / "Obtained Mask of Truth"
         save->event_chk_inf[8] = save->event_chk_inf[8] | 0xF000; // "Paid Back Mask Fees"
     }
+    // Set Zelda's Letter as collected in trade quest flags
+    trade_quest_upgrade(save, arg1, arg2);
+}
+
+void give_bombchus(z64_file_t *save, int16_t arg1, int16_t arg2) {
+    save->items[Z64_SLOT_BOMBCHU] = Z64_ITEM_BOMBCHU;
+    save->ammo[8] += arg1;
+}
+
+void trade_quest_upgrade(z64_file_t *save, int16_t item_id, int16_t arg2) {
+    SaveFile_SetTradeItemAsOwned(item_id);
 }

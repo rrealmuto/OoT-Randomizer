@@ -8,7 +8,7 @@
         },
         "exits": {
             "Root Exits": "is_starting_age or Time_Travel",
-            "HC Garden Locations": "shuffle_child_trade == 'skip_child_zelda'"
+            "HC Garden Locations": "skip_child_zelda"
         }
     },
     {
@@ -230,11 +230,13 @@
         "scene": "Lost Woods",
         "hint": "LOST_WOODS",
         "events": {
-            "Odd Mushroom Access": "is_adult and ('Cojiro Access' or Cojiro)",
-            "Poachers Saw Access": "is_adult and 'Odd Potion Access'"
+            "Odd Mushroom Access": "is_adult and (('Cojiro Access' and not adult_trade_shuffle) or Cojiro)",
+            "Poachers Saw Access": "is_adult and (('Odd Potion Access' and not adult_trade_shuffle) or Odd_Potion)"
         },
         "locations": {
             "LW Skull Kid": "is_child and can_play(Sarias_Song)",
+            "LW Trade Cojiro": "'Odd Mushroom Access'",
+            "LW Trade Odd Potion": "'Poachers Saw Access'",
             "LW Ocarina Memory Game": "is_child and Ocarina",
             "LW Target in Woods": "can_use(Slingshot)",
             "LW Deku Scrub Near Bridge": "is_child and can_stun_deku",
@@ -277,7 +279,7 @@
                     (logic_lost_woods_gs_bean and Hookshot and
                         (Longshot or Bow or has_bombchus or can_use(Dins_Fire))))",
             "LW GS Bean Patch Near Theater": "
-                can_plant_bugs and 
+                can_plant_bugs and
                 (can_child_attack or (shuffle_scrubs == 'off' and Deku_Shield))",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle"
         },
@@ -302,7 +304,7 @@
         "scene": "Lost Woods",
         "hint": "LOST_WOODS",
         "locations": {
-            # This is the third rupee from the shortcut entrance and is automatically 
+            # This is the third rupee from the shortcut entrance and is automatically
             # collected upon entering through the shortcut. Only really matters for overworld ER
             "LW Underwater Shortcut Green Rupee": "is_child"
         },
@@ -334,7 +336,7 @@
         "scene": "Sacred Forest Meadow",
         "hint": "SACRED_FOREST_MEADOW",
         "locations": {
-            "Song from Saria": "is_child and Zeldas_Letter",
+            "Song from Saria": "is_child and at('HC Garden Locations', is_child)",
             "Sheik in Forest": "is_adult",
             "SFM GS": "can_use(Hookshot) and at_night",
             "SFM Maze Gossip Stone (Lower)": "True",
@@ -477,9 +479,10 @@
         "events": {
             "Eyedrops Access": "
                 is_adult and
-                ('Eyeball Frog Access' or (Eyeball_Frog and disable_trade_revert))"
+                (('Eyeball Frog Access' and not adult_trade_shuffle) or (Eyeball_Frog and disable_trade_revert))"
         },
         "locations": {
+            "LH Trade Eyeball Frog": "'Eyedrops Access'",
             "LH Lab Dive": "
                 (Progressive_Scale, 2) or
                 (logic_lab_diving and is_adult and Iron_Boots and Hookshot)",
@@ -488,7 +491,7 @@
             "LH Lab Dive Red Rupee 3": "(Progressive_Scale, 2) or can_use(Iron_Boots)",
             "LH GS Lab Crate": "
                 Iron_Boots and can_use(Hookshot) and
-                (deadly_bonks != 'ohko' or Fairy or (can_use(Nayrus_Love) and shuffle_interior_entrances == 'off'))"
+                (deadly_bonks != 'ohko' or Fairy or (can_use(Nayrus_Love) and not shuffle_interior_entrances))"
         },
         "exits": {
             "Lake Hylia": "True"
@@ -520,7 +523,7 @@
             "GV Crate Ledge": "is_child or Longshot",
             "GV Grotto Ledge": "True",
             "GV Fortress Side": "
-                is_adult and 
+                is_adult and
                 (can_ride_epona or Longshot or gerudo_fortress == 'open' or can_finish_GerudoFortress)"
         }
     },
@@ -581,10 +584,11 @@
         "hint": "GERUDO_VALLEY",
         "time_passes": true,
         "events": {
-            "Broken Sword Access": "is_adult and ('Poachers Saw Access' or Poachers_Saw)"
+            "Broken Sword Access": "is_adult and (('Poachers Saw Access' and not adult_trade_shuffle) or Poachers_Saw)"
         },
         "locations": {
             "GV Chest": "can_use(Megaton_Hammer)",
+            "GV Trade Poachers Saw": "'Broken Sword Access'",
             "GV GS Behind Tent": "can_use(Hookshot) and at_night",
             "GV GS Pillar": "can_use(Hookshot) and at_night"
         },
@@ -1087,6 +1091,10 @@
         "region_name": "Temple of Time",
         "scene": "Temple of Time",
         "hint": "TEMPLE_OF_TIME",
+        "events": {
+            # used for the "path of time" goal
+            "Temple of Time Access": "True"
+        },
         "locations": {
             "ToT Light Arrows Cutscene": "is_adult and can_trigger_lacs",
             "ToT Child Altar Hint": "is_child",
@@ -1135,7 +1143,7 @@
         },
         "exits": {
             "Castle Grounds": "True",
-            "HC Garden": "Weird_Egg",
+            "HC Garden": "Weird_Egg or Chicken",
             "HC Great Fairy Fountain": "has_explosives",
             "HC Storms Grotto": "can_open_storm_grotto"
         }
@@ -1290,12 +1298,46 @@
         "region_name": "Market Mask Shop",
         "scene": "Market Mask Shop",
         "events": {
-            "Skull Mask": "Zeldas_Letter and (complete_mask_quest or at('Kakariko Village', is_child))",
-            "Mask of Truth": "'Skull Mask' and
+            # Mask Shop access is locked behind the Kakariko guard telling you about it.
+            # Zelda's Letter, shuffled or unshuffled, is required to change the guard's
+            # dialogue. The Kakariko gate event is not used as it forces a child check.
+            # This is relevant with open mask shop for adult-only access to shuffled items
+            # with interior entrance randomizer.
+            "Mask Shop Open": "Zeldas_Letter and (at('Kakariko Village', is_child) or open_kakariko == 'open')",
+            "Mask of Truth Access": "
+                'Mask Shop Open' and
                 (complete_mask_quest or
-                (at('Lost Woods', is_child and can_play(Sarias_Song)) and
-                    at('Graveyard', is_child and at_day) and
-                    at('Hyrule Field', is_child and has_all_stones)))"
+                    (
+                    Keaton_Mask and at('Kakariko Village', is_child) and
+                    Skull_Mask and at('Lost Woods', is_child and can_play(Sarias_Song)) and
+                    Spooky_Mask and at('Graveyard', is_child and at_day) and
+                    Bunny_Hood and at('Hyrule Field', is_child and has_all_stones)
+                    )
+                )"
+        },
+        "locations": {
+            # Gerudo Mask
+            "Market Mask Shop Item 1": "'Mask of Truth Access'",
+            # Zora Mask
+            "Market Mask Shop Item 2": "'Mask of Truth Access'",
+            # Mask of Truth
+            "Market Mask Shop Item 3": "'Mask of Truth Access'",
+            # Goron Mask
+            "Market Mask Shop Item 4": "'Mask of Truth Access'",
+            # Skull Mask
+            "Market Mask Shop Item 5": "
+                'Mask of Truth Access' or
+                ('Mask Shop Open' and Keaton_Mask and at('Kakariko Village', is_child))",
+            # Keaton Mask
+            "Market Mask Shop Item 6": "'Mask Shop Open'",
+            # Bunny Hood
+            "Market Mask Shop Item 7": "
+                'Mask of Truth Access' or
+                ('Mask Shop Open' and Spooky_Mask and at('Graveyard', is_child and at_day))",
+            # Spooky Mask
+            "Market Mask Shop Item 8": "
+                'Mask of Truth Access' or
+                ('Mask Shop Open' and Skull_Mask and at('Lost Woods', is_child and can_play(Sarias_Song)))"
         },
         "exits": {
             "Market": "True"
@@ -1315,9 +1357,10 @@
         "region_name": "Market Bombchu Bowling",
         "scene": "Market Bombchu Bowling",
         "locations": {
-            "Market Bombchu Bowling First Prize": "found_bombchus",
-            "Market Bombchu Bowling Second Prize": "found_bombchus",
-            "Market Bombchu Bowling Bombchus": "found_bombchus"
+            "Market Bombchu Bowling First Prize": "has_explosives",
+            "Market Bombchu Bowling Second Prize": "has_explosives",
+            "Market Bombchu Bowling Bombchus": "found_bombchus",
+            "Market Bombchu Bowling Bomb": "has_explosives"
         },
         "exits": {
             "Market": "True"
@@ -1395,7 +1438,7 @@
         "scene": "Kakariko Village",
         "hint": "KAKARIKO_VILLAGE",
         "events": {
-            "Cojiro Access": "is_adult and 'Wake Up Adult Talon'",
+            "Cojiro Access": "is_adult and at_day and 'Wake Up Adult Talon'",
             "Kakariko Village Gate Open": "is_child and (Zeldas_Letter or open_kakariko == 'open')"
         },
         "locations": {
@@ -1403,6 +1446,7 @@
                 is_adult and Forest_Medallion and Fire_Medallion and Water_Medallion",
             "Kak Anju as Adult": "is_adult and at_day",
             "Kak Anju as Child": "is_child and at_day and (can_break_crate or chicken_count < 7)",
+            "Kak Anju Trade Pocket Cucco": "'Cojiro Access'",
             "Kak Near Guards House Pot 1": "is_child",
             "Kak Near Guards House Pot 2": "is_child",
             "Kak Near Guards House Pot 3": "is_child",
@@ -1625,7 +1669,17 @@
         "events": {
             "Odd Potion Access": "
                 is_adult and
-                ('Odd Mushroom Access' or (Odd_Mushroom and disable_trade_revert))"
+                (('Odd Mushroom Access' and not adult_trade_shuffle) or (Odd_Mushroom and disable_trade_revert))"
+        },
+        "locations": {
+            "Kak Granny Trade Odd Mushroom": "'Odd Potion Access'",
+            # Granny will not sell her item without turning in odd mushroom
+            # If the adult trade item(s) in the world are all after odd mushroom,
+            # allow any of the later sequence items to satisfy logic. The patcher
+            # sets the flag needed for her to sell stuff if odd mushroom can't be obtained.
+            "Kak Granny Buy Blue Potion": "Progressive_Wallet and is_adult and
+                (Odd_Mushroom or ((Odd_Potion or Poachers_Saw or Broken_Sword or
+                Prescription or Eyeball_Frog or Eyedrops or Claim_Check) and not adult_trade_shuffle))"
         },
         "exits": {
             "Kak Backyard": "True"
@@ -1759,7 +1813,7 @@
         "time_passes": true,
         "locations": {
             "DMT Chest": "
-                can_blast_or_smash or 
+                can_blast_or_smash or
                 (logic_dmt_bombable and is_child and Progressive_Strength_Upgrade)",
             "DMT Freestanding PoH": "
                 can_take_damage or can_use(Hover_Boots) or
@@ -1799,14 +1853,14 @@
         "hint": "DEATH_MOUNTAIN_TRAIL",
         "time_passes": true,
         "events": {
-            "Prescription Access": "is_adult and ('Broken Sword Access' or Broken_Sword)"
+            "Prescription Access": "is_adult and (('Broken Sword Access' and not adult_trade_shuffle) or Broken_Sword)"
         },
         "locations": {
-            "DMT Biggoron": "
-                is_adult and
-                (Claim_Check or
-                    (guarantee_trade_path and
-                    ('Eyedrops Access' or (Eyedrops and disable_trade_revert))))",
+            "DMT Biggoron": "is_adult and Claim_Check",
+            "DMT Trade Broken Sword": "'Prescription Access'",
+            "DMT Trade Eyedrops": "
+                is_adult and (guarantee_trade_path or adult_trade_shuffle) and
+                (('Eyedrops Access' and not adult_trade_shuffle) or (Eyedrops and disable_trade_revert))",
             "DMT GS Falling Rocks Path": "
                 is_adult and (Megaton_Hammer or logic_trail_gs_upper) and at_night",
             "DMT Gossip Stone": "True",
@@ -2182,7 +2236,8 @@
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
             "Bug Shrub": "
                 (is_child or here(can_plant_bean) or Hover_Boots or logic_zora_river_lower) and
-                can_cut_shrubs and has_bottle"
+                can_cut_shrubs and has_bottle",
+            "ZR Frogs Ocarina Minigame Hint": "True"
         },
         "exits": {
             "ZR Front": "True",
@@ -2221,7 +2276,8 @@
             "King Zora Thawed": "is_adult and Blue_Fire",
             "Eyeball Frog Access": "
                 is_adult and 'King Zora Thawed' and
-                (Eyedrops or Eyeball_Frog or Prescription or 'Prescription Access')"
+                (((Eyedrops or Eyeball_Frog) and not disable_trade_revert) or
+                    Prescription or ('Prescription Access' and not adult_trade_shuffle))"
         },
         "locations": {
             "ZD Diving Minigame": "is_child",
@@ -2236,6 +2292,7 @@
             "ZD Pot 5": "True",
             "ZD In Front of King Zora Beehive 1": "is_child and can_break_upper_beehive",
             "ZD In Front of King Zora Beehive 2": "is_child and can_break_upper_beehive",
+            "ZD Trade Prescription": "'Eyeball Frog Access'",
             "ZD GS Frozen Waterfall": "
                 is_adult and at_night and
                 (Hookshot or Bow or Magic_Meter or logic_domain_gs)",
@@ -2385,7 +2442,6 @@
             "Links Cow": "can_play(Eponas_Song) and is_adult and at_day"
         },
         "locations": {
-            "Song from Malon": "is_child and Zeldas_Letter and Ocarina and at_day",
             "LLR Front Pot 1": "is_child",
             "LLR Front Pot 2": "is_child",
             "LLR Front Pot 3": "is_child",
@@ -2394,6 +2450,10 @@
             "LLR Rain Shed Pot 2": "is_child",
             "LLR Rain Shed Pot 3": "is_child",
             "LLR Child Crate": "is_child and can_break_crate",
+            # Malon requires:
+            #   Talk to her in Castle Grounds for her item
+            #   Wake up Talon
+            "Song from Malon": "is_child and Ocarina and at_day and (skip_child_zelda or at('Hyrule Castle Grounds', is_child and (Weird_Egg or Chicken)))",
             "LLR GS Tree": "is_child and can_bonk",
             "LLR GS Rain Shed": "is_child and at_night",
             "LLR GS House Window": "can_use(Boomerang) and at_night",
@@ -2411,7 +2471,7 @@
         "region_name": "LLR Talons House",
         "scene": "LLR Talons House",
         "locations": {
-            "LLR Talons Chickens": "is_child and at_day and Zeldas_Letter",
+            "LLR Talons Chickens": "is_child and at_day and (skip_child_zelda or at('Hyrule Castle Grounds', is_child and (Weird_Egg or Chicken)))",
             "LLR Talons House Pot 1": "True",
             "LLR Talons House Pot 2": "True",
             "LLR Talons House Pot 3": "True"
@@ -2501,8 +2561,8 @@
         "region_name": "Deku Theater",
         "scene": "Deku Theater",
         "locations": {
-            "Deku Theater Skull Mask": "is_child and 'Skull Mask'",
-            "Deku Theater Mask of Truth": "is_child and 'Mask of Truth'"
+            "Deku Theater Skull Mask": "is_child and Skull_Mask",
+            "Deku Theater Mask of Truth": "is_child and Mask_of_Truth"
         },
         "exits": {
             "LW Beyond Mido": "True"

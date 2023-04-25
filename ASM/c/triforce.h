@@ -1,5 +1,5 @@
-#ifndef TRIFORCE_H 
-#define TRIFORCE_H 
+#ifndef TRIFORCE_H
+#define TRIFORCE_H
 
 #include "z64.h"
 #include "gfx.h"

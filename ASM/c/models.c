@@ -125,7 +125,7 @@ void lookup_model_by_override(model_t *model, override_t override) {
     if (override.key.all != 0) {
         uint16_t item_id = override.value.looks_like_item_id ?
             override.value.looks_like_item_id :
-            override.value.item_id;
+            override.value.base.item_id;
         uint16_t resolved_item_id = resolve_upgrades(item_id);
         item_row_t *item_row = get_item_row(resolved_item_id);
         model->object_id = item_row->object_id;
@@ -187,7 +187,7 @@ void collectible_draw_other(z64_actor_t *actor, z64_game_t *game) {
         return;
     }
 
-    // Probably don't need this check. We convert all dropped overridden collectibles to rupees. 
+    // Probably don't need this check. We convert all dropped overridden collectibles to rupees.
     // Pretty sure there are no freestanding collectibles of these types. But let's just do it anyway
     if(this->override.key.all)
     {
@@ -261,8 +261,27 @@ void item_etcetera_draw(z64_actor_t *actor, z64_game_t *game) {
 
 void bowling_bomb_bag_draw(z64_actor_t *actor, z64_game_t *game) {
     override_t override = { 0 };
-    if (actor->variable == 0x00 || actor->variable == 0x05) {
-        override = lookup_override(actor, game->scene_index, 0x34);
+    switch (actor->variable) {
+        case 0x00:
+        case 0x05: // bomb bag
+            override = lookup_override(actor, game->scene_index, 0x34);
+            break;
+        case 0x01:
+        case 0x06: // heart piece
+            override = lookup_override(actor, game->scene_index, 0x3E);
+            break;
+        case 0x02:
+        case 0x07: // bombchus
+            override = lookup_override(actor, game->scene_index, 0x03);
+            break;
+        case 0x03:
+        case 0x08: // bombs
+            override = lookup_override(actor, game->scene_index, 0x65);
+            break;
+        case 0x04:
+        case 0x09: // purple rupee
+            override = lookup_override(actor, game->scene_index, 0x55);
+            break;
     }
 
     model_t model = { 0 };

@@ -15,14 +15,14 @@
 item_draw_table_entry_t item_draw_table[] = {
     [0x00] = { draw_gi_various_opa0_xlu1,   { 0x06000670, 0x06000750 } }, // Empty Bottle
     [0x01] = { draw_gi_small_keys,          { 0x06000800, 0xFFFFFFFF, 0x3C505AFF } }, // Small Key
-    [0x02] = { draw_gi_song_notes,          { 0x06000AE0, 0x00C800FF } }, // Music Note (Green)
-    [0x03] = { draw_gi_song_notes,          { 0x06000AE0, 0xFF3200FF } }, // Music Note (Red)
-    [0x04] = { draw_gi_song_notes,          { 0x06000AE0, 0x0096FFFF } }, // Music Note (Blue)
-    [0x05] = { draw_gi_song_notes,          { 0x06000AE0, 0xFF9600FF } }, // Music Note (Orange)
-    [0x06] = { draw_gi_song_notes,          { 0x06000AE0, 0xC832FFFF } }, // Music Note (Purple)
-    [0x07] = { draw_gi_song_notes,          { 0x06000AE0, 0xC8FF00FF } }, // Music Note (Yellow)
+    [0x02] = { draw_gi_song_notes,          { 0x06000AE0, 0x00C800FF, 0 } }, // Music Note (Green)
+    [0x03] = { draw_gi_song_notes,          { 0x06000AE0, 0xFF3200FF, 0 } }, // Music Note (Red)
+    [0x04] = { draw_gi_song_notes,          { 0x06000AE0, 0x0096FFFF, 0 } }, // Music Note (Blue)
+    [0x05] = { draw_gi_song_notes,          { 0x06000AE0, 0xFF9600FF, 0 } }, // Music Note (Orange)
+    [0x06] = { draw_gi_song_notes,          { 0x06000AE0, 0xC832FFFF, 0 } }, // Music Note (Purple)
+    [0x07] = { draw_gi_song_notes,          { 0x06000AE0, 0xC8FF00FF, 0 } }, // Music Note (Yellow)
     [0x08] = { draw_gi_recovery_heart,      { 0x060000E0 } }, // Recovery Heart
-    [0x09] = { draw_gi_boss_keys,           { 0x06000CA0, 0x06000F08, 0xFFAAFFFF, 0xFF0064FF } }, // Boss Key
+    [0x09] = { draw_gi_boss_keys,           { 0x06000CA0, 0x06000F08, 0xFFAAFFFF, 0xFF0064FF, 0xFFFFFFFF, 0x8C7800FF } }, // Boss Key
     [0x0A] = { draw_gi_compass,             { 0x06000960, 0x06000C50 } }, // Compass
     [0x0B] = { draw_gi_eggs_and_medallions, { 0x06000CB0, 0x06000E18 } }, // Forest Medallion
     [0x0C] = { draw_gi_eggs_and_medallions, { 0x06001AF0, 0x06000E18 } }, // Fire Medallion
@@ -81,7 +81,7 @@ item_draw_table_entry_t item_draw_table[] = {
     [0x41] = { draw_gi_various_opa0,        { 0x060008E0 } }, // Reed Whistle
     [0x42] = { draw_gi_goron_swords,        { 0x06000600 } }, // Giant's Knife & Biggoron's Sword
     [0x43] = { draw_gi_coins_and_cuccos,    { 0x06001630, 0x060015F0, 0x06001948 } }, // Chicken & Pocket Cucco
-    [0x44] = { draw_gi_various_opa0_xlu1,   { 0x060008E0, 0x06000AE0 } }, // Bottled Ruto's Letter
+    [0x44] = { draw_rutos_letter,           { 0x060008E0, 0x06000AE0 } }, // Bottled Ruto's Letter
     [0x45] = { draw_gi_various_opa0_xlu1,   { 0x060008E0, 0x06000B58 } }, // Fairy Ocarina
     [0x46] = { draw_gi_various_opa0_xlu1,   { 0x06001630, 0x06001A98 } }, // Iron Boots
     [0x47] = { draw_gi_various_opa0,        { 0x06000810 } }, // Deku Seeds
@@ -133,7 +133,14 @@ item_draw_table_entry_t item_draw_table[] = {
 
     //Rando-added functions
     [0x75] = { draw_gi_various_opa0,        { 0x06000A30 } }, // Triforce Piece
-    [0x76] = { draw_gi_various_opa0,        { 0x060015E8 } }, // Key Ring
+    [0x76] = { draw_gi_small_keys,          { 0x060015E8, 0xFFFFFFFF, 0x3C505AFF } }, // Key Ring
+    [0x77] = { draw_gi_song_notes,          { 0x06000EC0, 0x00C800FF, 1 } }, // Music Note inverted (Green)
+    [0x78] = { draw_gi_song_notes,          { 0x06000EC0, 0xFF3200FF, 1 } }, // Music Note inverted (Red)
+    [0x79] = { draw_gi_song_notes,          { 0x06000EC0, 0x0096FFFF, 1 } }, // Music Note inverted (Blue)
+    [0x7A] = { draw_gi_song_notes,          { 0x06000EC0, 0xFF9600FF, 1 } }, // Music Note inverted (Orange)
+    [0x7B] = { draw_gi_song_notes,          { 0x06000EC0, 0xC832FFFF, 1 } }, // Music Note inverted (Purple)
+    [0x7C] = { draw_gi_song_notes,          { 0x06000EC0, 0xC8FF00FF, 1 } }, // Music Note inverted (Yellow)
+    [0x7D] = { draw_gi_various_opa0,        { 0x060016A0 } }, // Bombchu Bag
 };
 
 void base_draw_gi_model(z64_game_t *game, uint32_t draw_id) {

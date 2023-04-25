@@ -9,6 +9,7 @@ from Goals import Goal, GoalCategory
 from HintList import getRequiredHints, misc_item_hint_table, misc_location_hint_table
 from Hints import HintArea, hint_dist_keys, HintDistFiles
 from Item import ItemFactory, ItemInfo, MakeEventItem
+from ItemPool import child_trade_items
 from Location import Location, LocationFactory
 from LocationList import business_scrubs, location_groups
 from Plandomizer import InvalidFileException
@@ -38,7 +39,6 @@ class World(object):
         self.misc_hint_location_items = {}
         self.triforce_count = 0
         self.total_starting_triforce_count = 0
-        self.bingosync_url = None
 
         self.parser = Rule_AST_Transformer(self)
         self.event_items = set()
@@ -60,18 +60,22 @@ class World(object):
 
         self.entrance_shuffle = (
             self.shuffle_interior_entrances or settings.shuffle_grotto_entrances or self.shuffle_dungeon_entrances
-            or settings.shuffle_overworld_entrances or settings.owl_drops or settings.warp_songs
+            or settings.shuffle_overworld_entrances or settings.shuffle_gerudo_valley_river_exit or settings.owl_drops or settings.warp_songs
             or settings.spawn_positions or (settings.shuffle_bosses != 'off')
         )
 
         self.ensure_tod_access = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or settings.spawn_positions
-        self.disable_trade_revert = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances
+        self.disable_trade_revert = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or settings.adult_trade_shuffle
+        self.skip_child_zelda = 'Zeldas Letter' not in settings.shuffle_child_trade and \
+                                'Zeldas Letter' in self.distribution.starting_items
+        self.selected_adult_trade_item = ''
+        self.adult_trade_starting_inventory = ''
 
         if (
             settings.open_forest == 'closed'
             and (
                 self.shuffle_special_interior_entrances or settings.shuffle_overworld_entrances
-                or settings.warp_songs or settings.spawn_positions or (settings.shuffle_bosses != 'off')
+                or settings.warp_songs or settings.spawn_positions
             )
         ):
             self.settings.open_forest = 'closed_deku'
@@ -118,7 +122,7 @@ class World(object):
                 for area in HintArea:
                     if area.is_dungeon and area.dungeon_name in self:
                         self[area.dungeon_name].hint_name = area
-            
+
             def __missing__(self, dungeon_name):
                 return self.EmptyDungeonInfo(None)
 
@@ -174,16 +178,16 @@ class World(object):
                 if not all(sub_key in sub_keys for sub_key in self.hint_dist_user['distribution'][key]):
                     hint_dist_valid = False
         if not hint_dist_valid:
-            raise InvalidFileException("""Hint distributions require all hint types be present in the distro 
+            raise InvalidFileException("""Hint distributions require all hint types be present in the distro
                                           (trial, always, dual_always, woth, barren, item, song, overworld, dungeon, entrance,
                                           sometimes, dual, random, junk, named-item, goal). If a hint type should not be
-                                          shuffled, set its order to 0. Hint type format is \"type\": { 
+                                          shuffled, set its order to 0. Hint type format is \"type\": {
                                           \"order\": 0, \"weight\": 0.0, \"fixed\": 0, \"copies\": 0 }""")
 
         self.added_hint_types = {}
         self.item_added_hint_types = {}
         self.hint_exclusions = set()
-        if settings.shuffle_child_trade == 'skip_child_zelda':
+        if self.skip_child_zelda:
             self.hint_exclusions.add('Song from Impa')
         self.hint_type_overrides = {}
         self.item_hint_type_overrides = {}
@@ -212,7 +216,7 @@ class World(object):
             for info in self.empty_dungeons.values():
                 if info.empty:
                     self.hint_type_overrides['barren'].append(info.hint_name)
-        
+
 
         self.hint_text_overrides = {}
         for loc in self.hint_dist_user['add_locations']:
@@ -310,9 +314,12 @@ class World(object):
         # over again after the first round through the categories.
         if len(self.goal_categories) > 0:
             self.one_hint_per_goal = True
-            goal_list1 = [goal.name for goal in list(self.goal_categories.values())[0].goals]
+            goal_list1 = []
             for category in self.goal_categories.values():
-                if goal_list1 != [goal.name for goal in category.goals]:
+                if category.name != 'door_of_time':
+                    goal_list1 = [goal.name for goal in category.goals]
+            for category in self.goal_categories.values():
+                if goal_list1 != [goal.name for goal in category.goals] and category.name != 'door_of_time':
                     self.one_hint_per_goal = False
 
         # initialize category check for first rounds of goal hints
@@ -733,6 +740,7 @@ class World(object):
         # and Skull conditions, there is only one goal in the category
         # requesting X copies within the goal, so minimum goals has to
         # be 1 for these.
+        dot = GoalCategory('door_of_time', 5, lock_entrances=['Temple of Time -> Beyond Door of Time'], minimum_goals=1)
         b = GoalCategory('rainbow_bridge', 10, lock_entrances=['Ganons Castle Grounds -> Ganons Castle Lobby'])
         gbk = GoalCategory('ganon_bosskey', 20)
         trials = GoalCategory('trials', 30, minimum_goals=1)
@@ -763,6 +771,15 @@ class World(object):
         # wording is used to distinguish the hint type even though the hintable location
         # set is identical to WOTH.
         if not self.settings.triforce_hunt:
+            if self.settings.starting_age == 'child':
+                dot_items = [{'name': 'Temple of Time Access', 'quantity': 1, 'minimum': 1, 'hintable': True}]
+                if not self.settings.open_door_of_time:
+                    dot_items.append({'name': 'Song of Time', 'quantity': 2 if self.settings.shuffle_song_items == 'any' and self.settings.item_pool_value == 'plentiful' else 1, 'minimum': 1, 'hintable': True})
+                    if self.settings.shuffle_ocarinas:
+                        dot_items.append({'name': 'Ocarina', 'quantity': 3 if self.settings.item_pool_value == 'plentiful' else 2, 'minimum': 1, 'hintable': True})
+                dot.add_goal(Goal(self, 'Door of Time', 'path of time', 'Light Blue', items=dot_items))
+                self.goal_categories[dot.name] = dot
+
             # Bridge goals will always be defined as they have the most immediate priority
             if self.settings.bridge != 'open' and not self.shuffle_special_dungeon_entrances:
                 # "Replace" hint text dictionaries are used to reference the
@@ -911,14 +928,16 @@ class World(object):
                 gbk.minimum_goals = 1
             if (self.settings.ganon_bosskey_hearts > self.settings.starting_hearts
                 and self.settings.shuffle_ganon_bosskey == 'hearts'
-                and (self.settings.bridge != 'hearts'
+                and (self.shuffle_special_dungeon_entrances
+                        or self.settings.bridge != 'hearts'
                         or self.settings.bridge_hearts < self.settings.ganon_bosskey_hearts)):
                 gbk.add_goal(Goal(self, 'hearts', 'path of #hearts#', 'Red', items=[{'name': 'Piece of Heart', 'quantity': (20 - self.settings.starting_hearts) * 4, 'minimum': (self.settings.ganon_bosskey_hearts - self.settings.starting_hearts) * 4, 'hintable': False}]))
                 gbk.goal_count = round((self.settings.ganon_bosskey_hearts - 3) / 2)
                 gbk.minimum_goals = 1
             if (self.settings.lacs_hearts > self.settings.starting_hearts
                 and self.settings.shuffle_ganon_bosskey == 'on_lacs' and self.settings.lacs_condition == 'hearts'
-                and (self.settings.bridge != 'hearts'
+                and (self.shuffle_special_dungeon_entrances
+                        or self.settings.bridge != 'hearts'
                         or self.settings.bridge_hearts < self.settings.lacs_hearts)):
                 gbk.add_goal(Goal(self, 'hearts', 'path of #hearts#', 'Red', items=[{'name': 'Piece of Heart', 'quantity': (20 - self.settings.starting_hearts) * 4, 'minimum': (self.settings.lacs_hearts - self.settings.starting_hearts) * 4, 'hintable': False}]))
                 gbk.goal_count = round((self.settings.lacs_hearts - 3) / 2)
@@ -1138,7 +1157,7 @@ class World(object):
     # set collected to know this. To simplify this we instead just get areas
     # that don't have any items that could ever be required in any seed.
     # We further cull this list with woth info. This is an overestimate of
-    # the true list of possible useless areas, but this will generate a 
+    # the true list of possible useless areas, but this will generate a
     # reasonably sized list of areas that fit this property.
     def update_useless_areas(self, spoiler):
         areas = {}

@@ -25,9 +25,16 @@
 # value or not.
 
 from enum import Enum
-from collections import namedtuple
 import os
+import sys
 from Utils import data_path
+
+# Python 3.6 support. We can drop the conditional usage of namedtuple if we decide to no longer support Python 3.6.
+dataclass_supported = sys.version_info[0] >= 3 and sys.version_info[1] >= 7
+if dataclass_supported:
+    from dataclasses import dataclass
+else:
+    from collections import namedtuple
 
 
 class Tags(Enum):
@@ -47,8 +54,20 @@ class Tags(Enum):
     INC_NE     = 20     # Incompatible with NAVI_ENEMY? (Verify)
                         # I'm now thinking it has to do with a limit of concurrent sounds)
 
-Sound = namedtuple('Sound',   'id      keyword                  label                        tags')
+
+if dataclass_supported:
+    @dataclass(frozen=True)
+    class Sound:
+        id: int
+        keyword: str
+        label: str
+        tags: list
+else:
+    Sound = namedtuple('Sound', 'id    keyword                  label                        tags')
+
+
 class Sounds(Enum):
+    #                          id      keyword                  label                        tags
     NONE               = Sound(0x0000, 'none',                  'None',                      [Tags.NAVI, Tags.HPLOW])
     ARMOS_GROAN        = Sound(0x3848, 'armos',                 'Armos',                     [Tags.HORSE, Tags.PAINFUL])
     BARK               = Sound(0x28D8, 'bark',                  'Bark',                      [Tags.BRIEF, Tags.NAVI, Tags.HPLOW, Tags.HOVERBOOT])
@@ -101,9 +120,9 @@ class Sounds(Enum):
     INGO_WOOAH         = Sound(0x6854, 'ingo-wooah',            'Ingo "Wooah!"',             [Tags.PAINFUL])
     IRON_BOOTS         = Sound(0x080D, 'iron-boots',            'Iron Boots',                [Tags.BRIEF, Tags.HPLOW, Tags.QUIET])
     IRON_KNUCKLE       = Sound(0x3929, 'iron-knuckle',          'Iron Knuckle',              [])
-    INGO_KAAH          = Sound(0x6855, 'kaah',                  'Kaah!',                     [Tags.PAINFUL]) 
-    MOBLIN_CLUB_GROUND = Sound(0x38E1, 'moblin-club-ground',    'Moblin Club Ground',        [Tags.PAINFUL]) 
-    MOBLIN_CLUB_SWING  = Sound(0x39EF, 'moblin-club-swing',     'Moblin Club Swing',         [Tags.PAINFUL]) 
+    INGO_KAAH          = Sound(0x6855, 'kaah',                  'Kaah!',                     [Tags.PAINFUL])
+    MOBLIN_CLUB_GROUND = Sound(0x38E1, 'moblin-club-ground',    'Moblin Club Ground',        [Tags.PAINFUL])
+    MOBLIN_CLUB_SWING  = Sound(0x39EF, 'moblin-club-swing',     'Moblin Club Swing',         [Tags.PAINFUL])
     MOO                = Sound(0x28DF, 'moo',                   'Moo',                       [Tags.NAVI, Tags.NIGHTFALL, Tags.HORSE, Tags.HPLOW])
     MWEEP              = Sound(0x687A, 'mweep',                 'Mweep!',                    [Tags.BRIEF, Tags.NAVI, Tags.MENUMOVE, Tags.MENUSELECT, Tags.NIGHTFALL, Tags.HPLOW, Tags.HORSE, Tags.HOVERBOOT])
     NAVI_HELLO         = Sound(0x6844, 'navi-hello',            'Navi "Hello!"',             [Tags.PAINFUL, Tags.NAVI])
@@ -151,6 +170,17 @@ class Sounds(Enum):
     ZELDA_ADULT_GASP   = Sound(0x6879, 'adult-zelda-gasp',      'Zelda Gasp (Adult)',        [Tags.NAVI, Tags.HPLOW])
 
 
+if dataclass_supported:
+    @dataclass(frozen=True)
+    class SoundHook:
+        name: str
+        pool: list
+        locations: list
+        sfx_flag: bool
+else:
+    SoundHook = namedtuple('SoundHook', 'name pool locations sfx_flag')
+
+
 # Sound pools
 standard    = [s for s in Sounds if Tags.LOOPED not in s.value.tags]
 looping     = [s for s in Sounds if Tags.LOOPED in s.value.tags]
@@ -164,25 +194,42 @@ menu_cursor = [s for s in Sounds if Tags.MENUMOVE in s.value.tags]
 horse_neigh = [s for s in Sounds if Tags.HORSE in s.value.tags]
 
 
-SoundHook = namedtuple('SoundHook', 'name pool locations')
 class SoundHooks(Enum):
-    NAVI_OVERWORLD  = SoundHook('Navi - Overworld', navi,        [0xAE7EF2, 0xC26C7E])
-    NAVI_ENEMY      = SoundHook('Navi - Enemy',     navi,        [0xAE7EC6])
-    HP_LOW          = SoundHook('Low Health',       hp_low,      [0xADBA1A])
-    BOOTS_HOVER     = SoundHook('Hover Boots',      hover_boots, [0xBDBD8A])
-    NIGHTFALL       = SoundHook('Nightfall',        nightfall,   [0xAD3466, 0xAD7A2E])
+    #                           name                pool         locations  sfx_flag
+    NAVI_OVERWORLD  = SoundHook('Navi - Overworld', navi,        [0xAE7EF2, 0xC26C7E], False)
+    NAVI_ENEMY      = SoundHook('Navi - Enemy',     navi,        [0xAE7EC6], False)
+    HP_LOW          = SoundHook('Low Health',       hp_low,      [0xADBA1A], False)
+    BOOTS_HOVER     = SoundHook('Hover Boots',      hover_boots, [0xBDBD8A], True)
+    NIGHTFALL       = SoundHook('Nightfall',        nightfall,   [0xAD3466, 0xAD7A2E], False)
     MENU_SELECT     = SoundHook('Menu Select',      no_painful + menu_select,  [
                         0xBA1BBE, 0xBA23CE, 0xBA2956, 0xBA321A, 0xBA72F6, 0xBA8106, 0xBA82EE,
-                        0xBA9DAE, 0xBA9EAE, 0xBA9FD2, 0xBAE6D6])
+                        0xBA9DAE, 0xBA9EAE, 0xBA9FD2, 0xBAE6D6], False)
     MENU_CURSOR     = SoundHook('Menu Cursor',      no_painful + menu_cursor,  [
                         0xBA165E, 0xBA1C1A, 0xBA2406, 0xBA327E, 0xBA3936, 0xBA77C2, 0xBA7886,
                         0xBA7A06, 0xBA7A6E, 0xBA7AE6, 0xBA7D6A, 0xBA8186, 0xBA822E, 0xBA82A2,
-                        0xBAA11E, 0xBAE7C6])
+                        0xBAA11E, 0xBAE7C6], False)
     HORSE_NEIGH     = SoundHook('Horse Neigh',      horse_neigh, [
                         0xC18832, 0xC18C32, 0xC19A7E, 0xC19CBE, 0xC1A1F2, 0xC1A3B6, 0xC1B08A,
                         0xC1B556, 0xC1C28A, 0xC1CC36, 0xC1EB4A, 0xC1F18E, 0xC6B136, 0xC6BBA2,
-                        0xC1E93A, 0XC6B366, 0XC6B562])
-
+                        0xC1E93A, 0XC6B366, 0XC6B562], False)
+    BOOTS_IRON       = SoundHook('Iron Boots',      standard,   [0xBCE1CA, 0xBCE21E, 0xBCE26A], False)
+    SILVER_RUPEE    = SoundHook('Silver Rupee',     standard,   [0xDF356A], False)
+    BOOMERANG_THROW = SoundHook('Boomerang Throw',  standard,   [0xC5ABD6], True)
+    HOOKSHOT_CHAIN = SoundHook('Hookshot Chain',    standard,   [0xCAD5AE], True)
+    ARROW_SHOT = SoundHook('Arrow Shot',            standard,   [0xC22002], False)
+    SLINGSHOT_SHOT = SoundHook('Slingshot Shot',    standard,   [0xC21FEE], False)
+    MAGIC_ARROW_SHOT = SoundHook('Magic Arrow Shot',standard,   [0xC22016], False)
+    BOMBCHU_MOVE = SoundHook('Bombchu Move',        standard,   [0xD5F792], True)
+    GET_SMALL_ITEM = SoundHook('Get Small Item',    standard,   [0xBDA00E, 0xBE9B4A, 0xBD9FFA, 0xA88EA2], False)
+    EXPLOSION = SoundHook('Explosion',              standard,   [0xC0ECA2, 0xC88476], False)
+    # Only overrides normal bomb/chu and Bomb flower, Bombchu bowling sounds too weird with it : 0xEECB9A, 0xEED402
+    DAYBREAK = SoundHook('Daybreak',                nightfall,  [0xAD342E, 0xAD7B52], False)
+    CUCCO = SoundHook('Cucco',                      standard,   [0xC28B9E, 0xC28C92, 0xC28D12, 0xC294EE,
+                                                                 0xC29866, 0xC29B82, 0xC2A3BA, 0xC2A3A6,            # Normal cuccos
+                                                                 0xE2841E,                                          # Attacking cuccos
+                                                                 0xE262B6, 0xE267EE, 0xE26846, 0xE26B1E, 0xE26B36,  # Bowling cuccos
+                                                                 0xBEACCE, 0xE2109A, 0xAFD942                       # Chicken, Pocket cucco and Cojiro
+                                                                 ], False)
 
 #   # Some enemies have a different cutting sound, making this a bit weird
 #   SWORD_SLASH     = SoundHook('Sword Slash',      standard,         [0xAC2942])

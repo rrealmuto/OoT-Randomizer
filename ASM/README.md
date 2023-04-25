@@ -1,4 +1,4 @@
-- Download the armips assembler: <https://github.com/Kingcom/armips>, build it if necessary, and put the executable in the `tools` directory, or somewhere in your PATH
+- Download the armips assembler: <https://github.com/Kingcom/armips>, build it if necessary, and put the executable in the `tools` directory, or somewhere in your PATH.
 - Put the ROM you want to patch at `roms/base.z64`. This needs to be an uncompressed ROM; OoTRandomizer will produce one at ZOOTDEC.z64 when you run it with a compressed ROM.
 - Run `python build.py`, which will:
   - create `roms/patched.z64`

@@ -13,14 +13,14 @@
         "locations": {
             "Dodongos Cavern Map Chest": "True",
             "Dodongos Cavern Compass Chest": "
-                is_adult or Sticks or 
+                is_adult or Sticks or
                 (can_use(Dins_Fire) and (Slingshot or has_explosives or Kokiri_Sword))
                 or can_shield",
             "Dodongos Cavern GS Side Room Near Lower Lizalfos": "
                 has_explosives or is_adult or can_child_attack or Blue_Fire",
             "Dodongos Cavern GS Scarecrow": "True",
             "Dodongos Cavern Deku Scrub Side Room Near Dodongos": "
-                is_adult or Slingshot or Sticks or 
+                is_adult or Slingshot or Sticks or
                 has_explosives or Kokiri_Sword or can_shield",
             "Dodongos Cavern Deku Scrub Lobby": "True",
             "Dodongos Cavern Gossip Stone": "True"
@@ -30,12 +30,12 @@
             "Dodongos Cavern Climb": "
                 here(
                     (is_adult or can_shield or
-                        ( (Sticks or can_use(Dins_Fire)) and 
-                            (Slingshot or Sticks or has_explosives or Kokiri_Sword) 
+                        ( (Sticks or can_use(Dins_Fire)) and
+                            (Slingshot or Sticks or has_explosives or Kokiri_Sword)
                         )
                     )
-                ) and 
-                    (has_explosives or Progressive_Strength_Upgrade or 
+                ) and
+                    (has_explosives or Progressive_Strength_Upgrade or
                         can_use(Dins_Fire) or can_use(Bow) )"
         }
     },
@@ -83,12 +83,12 @@
             "Dodongos Cavern King Dodongo Heart": "
                 (Bombs or Progressive_Strength_Upgrade or
                     (has_bombchus and ((is_adult and can_shield) or (is_child and can_isg)))
-                ) and 
+                ) and
                 (is_adult or Sticks or Kokiri_Sword)",
             "King Dodongo": "
             (Bombs or Progressive_Strength_Upgrade or
                 (has_bombchus and ((is_adult and can_shield) or (is_child and can_isg)))
-            ) and 
+            ) and
             (is_adult or Sticks or Kokiri_Sword)",
             "Dodongos Cavern GS Back Room": "True"
         },

@@ -717,6 +717,18 @@ def patch_sfx(rom, settings, log, symbols):
           ('sfx_nightfall',      sfx.SoundHooks.NIGHTFALL),
           ('sfx_horse_neigh',    sfx.SoundHooks.HORSE_NEIGH),
           ('sfx_hover_boots',    sfx.SoundHooks.BOOTS_HOVER),
+          ('sfx_iron_boots',     sfx.SoundHooks.BOOTS_IRON),
+          ('sfx_silver_rupee',   sfx.SoundHooks.SILVER_RUPEE),
+          ('sfx_boomerang_throw',sfx.SoundHooks.BOOMERANG_THROW),
+          ('sfx_hookshot_chain', sfx.SoundHooks.HOOKSHOT_CHAIN),
+          ('sfx_arrow_shot',     sfx.SoundHooks.ARROW_SHOT),
+          ('sfx_slingshot_shot', sfx.SoundHooks.SLINGSHOT_SHOT),
+          ('sfx_magic_arrow_shot', sfx.SoundHooks.MAGIC_ARROW_SHOT),
+          ('sfx_bombchu_move',   sfx.SoundHooks.BOMBCHU_MOVE),
+          ('sfx_get_small_item', sfx.SoundHooks.GET_SMALL_ITEM),
+          ('sfx_explosion',      sfx.SoundHooks.EXPLOSION),
+          ('sfx_daybreak',       sfx.SoundHooks.DAYBREAK),
+          ('sfx_cucco',          sfx.SoundHooks.CUCCO),
     ]
     sound_dict = sfx.get_patch_dict()
     sounds_keyword_label = {sound.value.keyword: sound.value.label for sound in sfx.Sounds}
@@ -745,12 +757,18 @@ def patch_sfx(rom, settings, log, symbols):
             elif selection == 'completely-random':
                 selection = random.choice(sfx.standard).value.keyword
             sound_id  = sound_dict[selection]
+            if hook.value.sfx_flag and sound_id > 0x7FF:
+                sound_id -= 0x800
             for loc in hook.value.locations:
                 rom.write_int16(loc, sound_id)
         if selection == 'default':
             log.sfx[hook.value.name] = 'Default'
         else:
             log.sfx[hook.value.name] = sounds_keyword_label[selection]
+
+        # Use the get small item sound for pots/crate/freestandings shuffle
+        if setting == 'sfx_get_small_item' and 'GET_ITEM_SEQ_ID' in symbols:
+            rom.write_int16(symbols['GET_ITEM_SEQ_ID'], sound_id)
 
 
 def patch_instrument(rom, settings, log, symbols):
@@ -787,7 +805,7 @@ def read_default_voice_data(rom):
 
     # Read sound bank entries. This table (usually at 0x109F0) has information on each entry in the bank
     # Each entry is 8 bytes, the first 4 are the offset in audiobank, second are almost always 0x3F200000
-    # In the audiobank entry, each sfx has 0x20 bytes of info. The first 4 bytes are the length of the 
+    # In the audiobank entry, each sfx has 0x20 bytes of info. The first 4 bytes are the length of the
     # raw sample and the following 4 bytes are the offset in the audiotable for the raw sample
     soundbank_entries = {}
     for i in range(n_sfx):
@@ -999,6 +1017,16 @@ patch_sets[0x1F073FD9] = {
     }
 }
 
+# 7.1.79
+patch_sets[0x1F073FDA] = {
+    "patches": patch_sets[0x1F073FD9]["patches"] + [
+        patch_sfx,
+    ],
+    "symbols": {
+        **patch_sets[0x1F073FD9]["symbols"],
+        "GET_ITEM_SEQ_ID": 0x0056,
+    }
+}
 
 def patch_cosmetics(settings, rom):
     # re-seed for aesthetic effects. They shouldn't be affected by the generation seed

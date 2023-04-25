@@ -14,11 +14,11 @@
     "triforce_hunt":                           false,
     "logic_rules":                             "glitchless",
     "reachable_locations":                     "all",
-    "bombchus_in_logic":                       false,
+    "free_bombchu_drops":                       false,
     "one_item_per_dungeon":                    false,
     "trials_random":                           false,
     "trials":                                  3,
-    "shuffle_child_trade":                     "skip_child_zelda",
+    "shuffle_child_trade":                     [],
     "no_escape_sequence":                      true,
     "no_guard_stealth":                        true,
     "no_epona_race":                           true,
@@ -43,7 +43,7 @@
     "shuffle_song_items":                      "song",
     "shuffle_cows":                            false,
     "shuffle_beans":                           false,
-    "shuffle_medigoron_carpet_salesman":       false,
+    "shuffle_expensive_merchants":       false,
     "shuffle_interior_entrances":              "off",
     "shuffle_grotto_entrances":                false,
     "shuffle_dungeon_entrances":               "off",
@@ -276,7 +276,8 @@
   },
   "starting_items":            {
     "Deku Nuts":   99,
-    "Deku Sticks": 99
+    "Deku Sticks": 99,
+    "Zeldas Letter": 1
   },
   "dungeons":                  {
     "Deku Tree":              "vanilla",

@@ -108,7 +108,7 @@ class GoalCategory(object):
 
 
     def update_reachable_goals(self, starting_search, full_search):
-        # Only reduce goal item quantity if minimum goal requirements are reachable, 
+        # Only reduce goal item quantity if minimum goal requirements are reachable,
         # but not the full goal quantity. Primary use is to identify reachable
         # skull tokens, triforce pieces, and plentiful item duplicates with
         # All Locations Reachable off. Beatable check is required to prevent
@@ -127,7 +127,7 @@ class GoalCategory(object):
                 if goal.items:
                     if all(map(full_search.state_list[index].has_item_goal, goal.items)):
                         for i in goal.items:
-                            i['quantity'] = min(full_search.state_list[index].item_count(i['name']), i['quantity'])
+                            i['quantity'] = min(full_search.state_list[index].item_name_count(i['name']), i['quantity'])
 
 
 def replace_goal_names(worlds):

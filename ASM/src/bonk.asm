@@ -9,11 +9,6 @@ BONK_LAST_FRAME:
     addiu   sp, sp, -0x18
     sw      ra, 0x10($sp)
 
-    ; displaced code
-    or      a0, s0, $zero
-    jal     0x80390B18  ; func_80838178, static location as part of player overlay
-    nop
-
     ; Bonk damage enabled
     lw      t0, CFG_DEADLY_BONKS
     beqz    t0, @@return_bonk_frame
@@ -24,8 +19,13 @@ BONK_LAST_FRAME:
 
 @@return_bonk_frame:
     lw      ra, 0x10($sp)
-    jr      ra
     addiu   sp, sp, 0x18
+
+    ; skipped code at end of func_808427BC after replaced branch statement
+    lw      s0, 0x0020($sp)
+    addiu   $sp, $sp, 0x0050
+    jr      ra
+    nop
 
 
 SET_BONK_FLAG:
@@ -100,7 +100,7 @@ APPLY_BONK_DAMAGE:
     sra     t3, t3, 1        ; halve damage from bonk
     sll     t3, t3, 0x10
     sra     t3, t3, 0x10
-    
+
 @@normal_defense:
     sub     t4, t4, t3
     bltz    t4, @@bonks_kill
@@ -173,8 +173,13 @@ CHECK_ROOM_MESH_TYPE:
     ori     t7, $zero, 0x0001
     bne     t7, t8, @@return_death_subcamera
     nop
-    j       0x8038D018 ; skips jal 0x8006B6FC (OnePointCutscene_Init), static location as part of player overlay
+    ; Skip jal 0x8006B6FC (OnePointCutscene_Init) at end of func_80834508.
+    ; Previously used hard-coded address at end of function, but making that
+    ; address relative to $ra broke on VC. Not much left in the function, so
+    ; reproduced here instead of trying to go back to just after the hook.
     lw      ra, 0x0024($sp)
+    lw      s0, 0x0020($sp)
+    addiu   $sp, $sp, 0x0030
 
 @@return_death_subcamera:
     jr      ra

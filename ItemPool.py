@@ -26,10 +26,10 @@ plentiful_items = ([
     'Progressive Scale',
     'Progressive Wallet',
     'Magic Meter',
-    'Deku Stick Capacity', 
-    'Deku Nut Capacity', 
-    'Bow', 
-    'Slingshot', 
+    'Deku Stick Capacity',
+    'Deku Nut Capacity',
+    'Bow',
+    'Slingshot',
     'Bomb Bag',
     'Double Defense'] +
     ['Heart Container'] * 8
@@ -67,7 +67,7 @@ ludicrous_items_base = [
     'Bow',
     'Slingshot',
     'Bomb Bag',
-    'Bombchus',
+    'Bombchus (10)',
     'Lens of Truth',
     'Goron Tunic',
     'Zora Tunic',
@@ -123,6 +123,25 @@ ludicrous_items_extended = [
     'Magic Bean Pack',
     'Ice Arrows',
     'Blue Fire Arrows',
+    'Weird Egg',
+    'Chicken',
+    'Zeldas Letter',
+    'Keaton Mask',
+    'Skull Mask',
+    'Spooky Mask',
+    'Bunny Hood',
+    'Mask of Truth',
+    'Pocket Egg',
+    'Pocket Cucco',
+    'Cojiro',
+    'Odd Mushroom',
+    'Odd Potion',
+    'Poachers Saw',
+    'Broken Sword',
+    'Prescription',
+    'Eyeball Frog',
+    'Eyedrops',
+    'Claim Check'
 ]
 
 ludicrous_exclusions = [
@@ -143,31 +162,29 @@ item_difficulty_max = {
     },
     'balanced': {},
     'scarce': {
-        'Bombchus': 3,
         'Bombchus (5)': 1,
         'Bombchus (10)': 2,
         'Bombchus (20)': 0,
-        'Magic Meter': 1, 
-        'Double Defense': 0, 
-        'Deku Stick Capacity': 1, 
-        'Deku Nut Capacity': 1, 
-        'Bow': 2, 
-        'Slingshot': 2, 
+        'Magic Meter': 1,
+        'Double Defense': 0,
+        'Deku Stick Capacity': 1,
+        'Deku Nut Capacity': 1,
+        'Bow': 2,
+        'Slingshot': 2,
         'Bomb Bag': 2,
         'Heart Container': 0,
     },
     'minimal': {
-        'Bombchus': 1,
         'Bombchus (5)': 1,
         'Bombchus (10)': 0,
         'Bombchus (20)': 0,
-        'Magic Meter': 1, 
+        'Magic Meter': 1,
         'Nayrus Love': 1,
-        'Double Defense': 0, 
-        'Deku Stick Capacity': 0, 
-        'Deku Nut Capacity': 0, 
-        'Bow': 1, 
-        'Slingshot': 1, 
+        'Double Defense': 0,
+        'Deku Stick Capacity': 0,
+        'Deku Nut Capacity': 0,
+        'Bow': 1,
+        'Slingshot': 1,
         'Bomb Bag': 1,
         'Heart Container': 0,
         'Piece of Heart': 0,
@@ -229,13 +246,27 @@ trade_items = (
     "Pocket Cucco",
     "Cojiro",
     "Odd Mushroom",
-    #"Odd Potion",
+    "Odd Potion",
     "Poachers Saw",
     "Broken Sword",
     "Prescription",
     "Eyeball Frog",
     "Eyedrops",
     "Claim Check",
+)
+
+child_trade_items = (
+    "Weird Egg",
+    "Chicken",
+    "Zeldas Letter",
+    "Keaton Mask",
+    "Skull Mask",
+    "Spooky Mask",
+    "Bunny Hood",
+    "Goron Mask",
+    "Zora Mask",
+    "Gerudo Mask",
+    "Mask of Truth",
 )
 
 normal_bottles = [bottle for bottle in sorted(ItemInfo.bottles) if bottle not in ['Deliver Letter', 'Sell Big Poe']] + ['Bottle with Big Poe']
@@ -281,6 +312,7 @@ item_groups = {
     'Junk': remove_junk_items,
     'JunkSong': ('Prelude of Light', 'Serenade of Water'),
     'AdultTrade': trade_items,
+    'ChildTrade': child_trade_items,
     'Bottle': normal_bottles,
     'Spell': ('Dins Fire', 'Farores Wind', 'Nayrus Love'),
     'Shield': ('Deku Shield', 'Hylian Shield'),
@@ -367,6 +399,7 @@ def get_pool_core(world):
     placed_items = {}
     remain_shop_items = []
     ruto_bottles = 1
+    blue_potions = 1
 
     if world.settings.zora_fountain == 'open':
         ruto_bottles = 0
@@ -376,6 +409,26 @@ def get_pool_core(world):
 
     if world.settings.item_pool_value == 'plentiful':
         pending_junk_pool.extend(plentiful_items)
+        if world.settings.shuffle_child_trade:
+            pending_junk_pool.extend(world.settings.shuffle_child_trade)
+            # Weird Egg is always chosen if both Egg and Chicken are selected to be shuffled.
+            # Make the duplicate item consistent with that.
+            if 'Weird Egg' in world.settings.shuffle_child_trade and 'Chicken' in world.settings.shuffle_child_trade:
+                pending_junk_pool.remove('Chicken')
+            if world.skip_child_zelda:
+                for item in ['Weird Egg', 'Chicken', 'Zeldas Letter']:
+                    if item in pending_junk_pool:
+                        pending_junk_pool.remove(item)
+        if world.settings.adult_trade_shuffle:
+            pending_junk_pool.extend(world.settings.adult_trade_start)
+            # Pocket Egg is always chosen if both Egg and Pocket Cucco are selected to be shuffled.
+            # Make the duplicate item consistent with that.
+            if 'Pocket Egg' in world.settings.adult_trade_start and 'Pocket Cucco' in world.settings.adult_trade_start:
+                pending_junk_pool.remove('Pocket Cucco')
+        else:
+            # With adult trade shuffle off, add a random extra adult trade item
+            item = random.choice(world.settings.adult_trade_start)
+            pending_junk_pool.append(item)
         if world.settings.zora_fountain != 'open':
             ruto_bottles += 1
         if world.settings.shuffle_kokiri_sword:
@@ -401,7 +454,8 @@ def get_pool_core(world):
                     pending_junk_pool.append(f"Small Key ({dungeon})")
         if world.settings.shuffle_bosskeys in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
             for dungeon in ['Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple']:
-                pending_junk_pool.append(f"Boss Key ({dungeon})")
+                if not world.settings.keyring_give_bk or dungeon not in world.settings.key_rings or world.settings.shuffle_smallkeys not in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
+                    pending_junk_pool.append(f"Boss Key ({dungeon})")
         if world.settings.shuffle_ganon_bosskey in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
             pending_junk_pool.append('Boss Key (Ganons Castle)')
         if world.settings.shuffle_song_items == 'any':
@@ -425,7 +479,7 @@ def get_pool_core(world):
         shuffle_item = None  # None for don't handle, False for place item, True for add to pool.
 
         # Always Placed Items
-        if (location.vanilla_item in ['Zeldas Letter', 'Triforce', 'Scarecrow Song',
+        if (location.vanilla_item in ['Triforce', 'Scarecrow Song',
                                       'Deliver Letter', 'Time Travel', 'Bombchu Drop']
                 or location.type == 'Drop'):
             shuffle_item = False
@@ -439,8 +493,6 @@ def get_pool_core(world):
         # Shops
         elif location.type == "Shop":
             if world.settings.shopsanity == 'off':
-                if world.settings.bombchus_in_logic and location.name in ['KF Shop Item 8', 'Market Bazaar Item 4', 'Kak Bazaar Item 4']:
-                    item = 'Buy Bombchu (5)'
                 shuffle_item = False
             else:
                 remain_shop_items.append(item)
@@ -460,21 +512,12 @@ def get_pool_core(world):
         # Kokiri Sword
         elif location.vanilla_item == 'Kokiri Sword':
             shuffle_item = world.settings.shuffle_kokiri_sword
-        
+
         # Ice Arrows/Blue Fire Arrows
         elif location.vanilla_item == 'Ice Arrows':
             if world.settings.blue_fire_arrows:
                 item = 'Blue Fire Arrows'
             shuffle_item = True
-
-        # Weird Egg
-        elif location.vanilla_item == 'Weird Egg':
-            if world.settings.shuffle_child_trade == 'skip_child_zelda':
-                item = IGNORE_LOCATION
-                shuffle_item = False
-                world.state.collect(ItemFactory('Weird Egg'))
-            else:
-                shuffle_item = world.settings.shuffle_child_trade != 'vanilla'
 
         # Ocarinas
         elif location.vanilla_item == 'Ocarina':
@@ -482,13 +525,25 @@ def get_pool_core(world):
 
         # Giant's Knife
         elif location.vanilla_item == 'Giants Knife':
-            shuffle_item = world.settings.shuffle_medigoron_carpet_salesman
+            shuffle_item = world.settings.shuffle_expensive_merchants
+
+        # Bombchu Bowling 3rd and 4th prizes (must be checked before Bombchu vanilla items!)
+        elif location.name in ['Market Bombchu Bowling Bombchus', 'Market Bombchu Bowling Bomb']:
+            shuffle_item = False
 
         # Bombchus
         elif location.vanilla_item in ['Bombchus', 'Bombchus (5)', 'Bombchus (10)', 'Bombchus (20)']:
-            if world.settings.bombchus_in_logic:
-                item = 'Bombchus'
-            shuffle_item = location.name != 'Wasteland Bombchu Salesman' or world.settings.shuffle_medigoron_carpet_salesman
+            shuffle_item = location.name != 'Wasteland Bombchu Salesman' or world.settings.shuffle_expensive_merchants
+
+        # Blue Potion from Granny's Potion Shop
+        elif location.vanilla_item == 'Blue Potion':
+            if world.settings.shuffle_expensive_merchants:
+                shuffle_item = True
+                # Don't shuffle the shop item. One of the bottles is forced to be a blue potion
+                # to simulate shuffling.
+                item = get_junk_item()[0]
+            else:
+                shuffle_item = False
 
         # Cows
         elif location.vanilla_item == 'Milk':
@@ -508,6 +563,10 @@ def get_pool_core(world):
             if ruto_bottles:
                 item = 'Rutos Letter'
                 ruto_bottles -= 1
+            # Add one blue potion to world if Granny's Potion Shop is shuffled
+            elif world.settings.shuffle_expensive_merchants and blue_potions:
+                item = "Bottle with Blue Potion"
+                blue_potions -= 1
             else:
                 item = random.choice(normal_bottles)
             shuffle_item = True
@@ -522,12 +581,45 @@ def get_pool_core(world):
         elif location.scene == 0x54 and location.vanilla_item == 'Rupees (50)':
             shuffle_item = world.settings.shuffle_frog_song_rupees
 
-        # Adult Trade Item
-        elif location.vanilla_item == 'Pocket Egg':
-            potential_trade_items = world.settings.adult_trade_start if world.settings.adult_trade_start else trade_items
-            item = random.choice(potential_trade_items)
-            world.selected_adult_trade_item = item
-            shuffle_item = True
+        # Adult Trade Quest Items
+        elif location.vanilla_item in trade_items:
+            if not world.settings.adult_trade_shuffle:
+                if location.vanilla_item == 'Pocket Egg' and world.settings.adult_trade_start:
+                    potential_trade_items = world.settings.adult_trade_start
+                    item = random.choice(potential_trade_items)
+                    world.selected_adult_trade_item = item
+                    shuffle_item = True
+                else:
+                    shuffle_item = False
+            elif location.vanilla_item in world.settings.adult_trade_start:
+                shuffle_item = True
+            else:
+                # Upgrade Pocket Egg to Pocket Cucco if the Cucco is shuffled but not the Egg.
+                # If both are selected to be shuffled, only the Egg gets shuffled.
+                if location.vanilla_item == 'Pocket Egg' and 'Pocket Cucco' in world.settings.adult_trade_start:
+                    item = 'Pocket Cucco'
+                    shuffle_item = True
+                else:
+                    shuffle_item = False
+
+        # Child Trade Quest Items
+        elif location.vanilla_item in child_trade_items:
+            if location.vanilla_item == 'Weird Egg' and world.skip_child_zelda:
+                world.state.collect(ItemFactory(location.vanilla_item))
+                item = IGNORE_LOCATION
+                shuffle_item = False
+            elif not world.settings.shuffle_child_trade:
+                shuffle_item = False
+            elif location.vanilla_item in world.settings.shuffle_child_trade:
+                shuffle_item = True
+            else:
+                # Upgrade Weird Egg to Chicken if the Chicken is shuffled but not the Egg.
+                # If both are selected to be shuffled, only the Egg gets shuffled.
+                if location.vanilla_item == 'Weird Egg' and 'Chicken' in world.settings.shuffle_child_trade:
+                    item = 'Chicken'
+                    shuffle_item = True
+                else:
+                    shuffle_item = False
 
         # Thieves' Hideout
         elif location.vanilla_item == 'Small Key (Thieves Hideout)':
@@ -591,10 +683,14 @@ def get_pool_core(world):
 
             # Boss Key
             if location.vanilla_item == dungeon.item_name("Boss Key"):
-                shuffle_setting = world.settings.shuffle_bosskeys if dungeon.name != 'Ganons Castle' else world.settings.shuffle_ganon_bosskey
-                dungeon_collection = dungeon.boss_key
-                if shuffle_setting == 'vanilla':
-                    shuffle_item = False
+                if world.settings.shuffle_smallkeys in ['any_dungeon', 'overworld', 'keysanity', 'regional'] and dungeon.name in world.settings.key_rings and world.settings.keyring_give_bk and dungeon.name in ['Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple']:
+                    item = get_junk_item()[0]
+                    shuffle_item = True
+                else:
+                    shuffle_setting = world.settings.shuffle_bosskeys if dungeon.name != 'Ganons Castle' else world.settings.shuffle_ganon_bosskey
+                    dungeon_collection = dungeon.boss_key
+                    if shuffle_setting == 'vanilla':
+                        shuffle_item = False
             # Map or Compass
             elif location.vanilla_item in [dungeon.item_name("Map"), dungeon.item_name("Compass")]:
                 shuffle_setting = world.settings.shuffle_mapcompass
@@ -663,7 +759,7 @@ def get_pool_core(world):
 
     if world.settings.free_scarecrow:
         world.state.collect(ItemFactory('Scarecrow Song'))
-    
+
     if world.settings.no_epona_race:
         world.state.collect(ItemFactory('Epona', event=True))
 

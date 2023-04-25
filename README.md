@@ -110,6 +110,66 @@ issue. You should always Hard Reset to avoid this issue entirely.
 
 ### Dev
 
+#### New Features
+* **Settings**
+  * New setting `Key Rings give Boss Keys` makes it so when picking up a key ring for a certain dungeon, you will also get the boss key for that dungeon, if applicable.
+  * New ER setting `Shuffle Gerudo Valley River Exit` allows you to shuffle the one-way exit going down the river in Gerudo Valley.
+  * New setting `Add Bombchu Bag and Drops` which, along with the previous changes of `Bombchus in Logic`, makes the first pack of Bombchus you find into a bag which then allows you to purchase bombchus from shops as well as find them hidden in grass or rocks like regular bombs.
+  * New multiselects `Shuffled Child Trade Sequence Items` and `Adult Trade Sequence Items` along with toggle `Shuffle All Adult Trade Items` which have reworked the trade quests for both child and adult. Now you can own multiple trade items for each age at the same time and have multiple trade item locations as shufflable checks.
+  * Many new SFX shuffle options have been added.
+* **Hints**
+  * New `Important Checks` hint type which hints at how many major items are in a given region.
+  * New Misc. Hint `Frogs Ocarina Game` which tells you what item you'll get from the Zora's River frog minigame. The hint appears in the dialog box that's printed before they jump onto the log.
+  * Add a goal category for the items required to open the Door of Time, if it's closed.
+  * New `MW Season 3 (WotH)` hint distribution which is similar to the `MW Season 3` hint distribution except with Way of the Hero hints instead of goal hints.
+  * New Misc. Hint for unique merchants: Bean Salesman, Medigoron, Wasteland Bombchu Salesman, Granny's Potion Shop.
+  * Owls are now included in the Warp Songs misc hint and will tell you where they go when enabled.
+* **Other**
+  * When picking up a small key after the first, the text box will now inform you how many you've found total.
+  * The longstanding vanilla bug where using Din's Fire on a white bubble crashes the game has been fixed.
+  * There are new chest, pot, and crate textures for Pieces of Heart and Heart Containers.
+
+#### Bug Fixes
+* **Misc.**
+  * Fix an issue where the `path of hearts` goal wasn't enabled in certain circumstances with a Ganon's Boss Key or LACS `Hearts` goal.
+  * Fix an issue where CSMC chests containing ice traps were not moved correctly.
+  * Fix the bingosync URL not being referenced correctly.
+  * The ocarina can no longer be pulled out mid-hookshot via the D-Pad to cancel the hookshot pull.
+  * Fix the change which makes graveyard grave hole ledges un-grabbable incorrectly applied to other ledges in the graveyard area.
+  * Fix the file path for custom music on some Linux machines.
+  * Fix "Spirit Temple MQ Beamos Room Chest" having an incorrect vanilla item.
+  * Starting with Magic Beans will now properly start you with 10 beans instead of 9. 
+  * A rare softlock when fighting Gohma present in the original game has been fixed.
+  * A crash when diving and resurfacing in very shallow water present in the original game has been fixed.
+* **Hints**
+  * Fix the cryptic hint for Ganon's Castle Boss Key.
+  * Fix missing punctuation in dual hints.
+
+#### Other Changes
+* `Closed Forest` is no longer changed to `Closed Deku` when `Shuffle Boss Entrances` is enabled.
+* A new model is now used for warp songs to differentiate from non-warp songs.
+* The model used for Ruto's Letter is now rotated onto its side to better differentiate from other bottles.
+* The dummy boss key chest on the wall of Forest Temple's twisted hallway now matches the real version of the chest in the straightened version of the room.
+* The Kakariko Well water will no longer be up as adult to facilitate a glitch strategy for entering the well.
+* The message table has been extended to allow further developments which require more added textboxes.
+* Currently worn mask will now be preserved when transitioning scenes or resetting.
+* The ocarina can now be used in some rooms it cannot normally be used in to allow warping out of them.
+* Link the Goron will now give you the item reward regardless of which dialog option you choose.
+* Models created using the newer ModLoder64 pipeline are now compatible with the randomizer.
+* The price of the shield discount after selling the Kakariko guard the Keaton mask is now set at patch time and thus consistent between different players of a seed.
+* Add binaries to support Windows on ARM64.
+* Priority placement of certain warp songs is now conditional if `Guarantee Reachable Locations` is set to `All Goals` or `Required Only`.
+* Improve seed generation time.
+* The key ring texture has been updated with the normal small key texture, making it shinier.
+* D-Pad mask icons will now enlarge when the mask is equipped, similarly to D-Pad boots.
+* Fix a vanilla bug where jumpslashing into Bongo Bongo's chamber on the last possible frame will not properly skip the cutscene when it should be skipped.
+* Various cutscenes removed or shortened, such as Water Temple and Gerudo Fortress gates and scarecrow spawn cutscenes.
+* Heart Containers and Pieces of Heart will no longer be directly hinted by Way of the Hero or Path hints, which is consistent with Triforce Pieces and Gold Skulltula Tokens.
+#### Plandomizer
+* Plandomizer now allows you to specify locations that are valid but do not exist in your current seed, for example, an MQ-specific location when that dungeon is Vanilla.
+* Error messages for conflicting settings have been improved.
+* Gossip stone text colors are no longer specified in reverse order.
+
 ### 7.1
 
 #### Bug Fixes

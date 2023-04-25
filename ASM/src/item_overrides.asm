@@ -172,11 +172,13 @@ override_action:
 ;==================================================================================================
 
 get_item_hook:
-    addiu   sp, sp, -0x20
+    addiu   sp, sp, -0x28
     sw      a3, 0x10 (sp)
     sw      v0, 0x14 (sp)
     sw      v1, 0x18 (sp)
     sw      ra, 0x1C (sp)
+    sw      a1, 0x20 (sp)
+    sw      a0, 0x24 (sp)
 
     ; a0 = actor giving item
     ; a2 = incoming item id
@@ -187,11 +189,13 @@ get_item_hook:
     lw      v0, 0x14 (sp)
     lw      v1, 0x18 (sp)
     lw      ra, 0x1C (sp)
+    lw      a1, 0x20 (sp)
+    lw      a0, 0x24 (sp)
     jr      ra
-    addiu   sp, sp, 0x20
+    addiu   sp, sp, 0x28
 
 ; Hook Item_DropCollectible to not set the room to -1 if we are going to be overriding the collectible.
-; This will cause overridden collectibles to despawn when switching rooms. 
+; This will cause overridden collectibles to despawn when switching rooms.
 drop_collectible_room_hook:
     addiu   sp, sp, -0x20
     sw      a0, 0x10(sp)
@@ -204,6 +208,26 @@ drop_collectible_room_hook:
     jr      ra
     addiu   sp, sp, 0x20
 
+Item_DropCollectible_End_Hack:
+    li      s0, drop_collectible_override_flag
+    sw      r0, 0x00(s0)
+    ; replaced code
+    lw      s0, 0x0030(sp)
+    lw      s1, 0x0034(sp)
+    lw      s2, 0x0038(sp)
+    jr      ra
+    addiu   sp, sp, 0x58
+
+Item_DropCollectible2_End_Hack:
+    li      s0, drop_collectible_override_flag
+    sw      r0, 0x00(s0)
+    ; replaced code
+    lw      s0, 0x0030(sp)
+    lw      s1, 0x0034(sp)
+    lw      s2, 0x0038(sp)
+    jr      ra
+    addiu   sp, sp, 0x50
+
 EnItem00_DropCollectibleFallAction_Hack:
     lh      t6, 0x014A(s0)
     bltz    t6, @@return
@@ -214,7 +238,7 @@ EnItem00_DropCollectibleFallAction_Hack:
     nop
 
 drop_collectible2_hook:
-    li      t0, drop_collectible_override_flag	
+    li      t0, drop_collectible_override_flag
     lh      t1, 0x00(t0) ; get the current override flag
     sh      r0, 0x00(t0) ; clear the override_flag
     jr      ra

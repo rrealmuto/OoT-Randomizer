@@ -273,6 +273,167 @@ typedef enum
 
 typedef enum
 {
+  Z64_EXCH_ITEM_NONE,
+  Z64_EXCH_ITEM_LETTER_ZELDA,
+  Z64_EXCH_ITEM_WEIRD_EGG,
+  Z64_EXCH_ITEM_CHICKEN,
+  Z64_EXCH_ITEM_BEAN,
+  Z64_EXCH_ITEM_POCKET_EGG,
+  Z64_EXCH_ITEM_POCKET_CUCCO,
+  Z64_EXCH_ITEM_COJIRO,
+  Z64_EXCH_ITEM_ODD_MUSHROOM,
+  Z64_EXCH_ITEM_ODD_POTION,
+  Z64_EXCH_ITEM_SAW,
+  Z64_EXCH_ITEM_SWORD_BROKEN,
+  Z64_EXCH_ITEM_PRESCRIPTION,
+  Z64_EXCH_ITEM_FROG,
+  Z64_EXCH_ITEM_EYEDROPS,
+  Z64_EXCH_ITEM_CLAIM_CHECK,
+  Z64_EXCH_ITEM_MASK_SKULL,
+  Z64_EXCH_ITEM_MASK_SPOOKY,
+  Z64_EXCH_ITEM_MASK_KEATON,
+  Z64_EXCH_ITEM_MASK_BUNNY,
+  Z64_EXCH_ITEM_MASK_TRUTH,
+  Z64_EXCH_ITEM_MASK_GORON,
+  Z64_EXCH_ITEM_MASK_ZORA,
+  Z64_EXCH_ITEM_MASK_GERUDO,
+  Z64_EXCH_ITEM_FISH,
+  Z64_EXCH_ITEM_BLUE_FIRE,
+  Z64_EXCH_ITEM_BUG,
+  Z64_EXCH_ITEM_POE,
+  Z64_EXCH_ITEM_BIG_POE,
+  Z64_EXCH_ITEM_LETTER_RUTO,
+  Z64_EXCH_ITEM_MAX,
+} z64_exchange_item_t;
+
+typedef enum {
+  PLAYER_AP_NONE,
+  PLAYER_AP_LAST_USED,
+  PLAYER_AP_FISHING_POLE,
+  PLAYER_AP_SWORD_MASTER,
+  PLAYER_AP_SWORD_KOKIRI,
+  PLAYER_AP_SWORD_BGS,
+  PLAYER_AP_STICK,
+  PLAYER_AP_HAMMER,
+  PLAYER_AP_BOW,
+  PLAYER_AP_BOW_FIRE,
+  PLAYER_AP_BOW_ICE,
+  PLAYER_AP_BOW_LIGHT,
+  PLAYER_AP_BOW_0C,
+  PLAYER_AP_BOW_0D,
+  PLAYER_AP_BOW_0E,
+  PLAYER_AP_SLINGSHOT,
+  PLAYER_AP_HOOKSHOT,
+  PLAYER_AP_LONGSHOT,
+  PLAYER_AP_BOMB,
+  PLAYER_AP_BOMBCHU,
+  PLAYER_AP_BOOMERANG,
+  PLAYER_AP_MAGIC_SPELL_15,
+  PLAYER_AP_MAGIC_SPELL_16,
+  PLAYER_AP_MAGIC_SPELL_17,
+  PLAYER_AP_FARORES_WIND,
+  PLAYER_AP_NAYRUS_LOVE,
+  PLAYER_AP_DINS_FIRE,
+  PLAYER_AP_NUT,
+  PLAYER_AP_OCARINA_FAIRY,
+  PLAYER_AP_OCARINA_TIME,
+  PLAYER_AP_BOTTLE,
+  PLAYER_AP_BOTTLE_FISH,
+  PLAYER_AP_BOTTLE_FIRE,
+  PLAYER_AP_BOTTLE_BUG,
+  PLAYER_AP_BOTTLE_POE,
+  PLAYER_AP_BOTTLE_BIG_POE,
+  PLAYER_AP_BOTTLE_LETTER,
+  PLAYER_AP_BOTTLE_POTION_RED,
+  PLAYER_AP_BOTTLE_POTION_BLUE,
+  PLAYER_AP_BOTTLE_POTION_GREEN,
+  PLAYER_AP_BOTTLE_MILK,
+  PLAYER_AP_BOTTLE_MILK_HALF,
+  PLAYER_AP_BOTTLE_FAIRY,
+  PLAYER_AP_LETTER_ZELDA,
+  PLAYER_AP_WEIRD_EGG,
+  PLAYER_AP_CHICKEN,
+  PLAYER_AP_BEAN,
+  PLAYER_AP_POCKET_EGG,
+  PLAYER_AP_POCKET_CUCCO,
+  PLAYER_AP_COJIRO,
+  PLAYER_AP_ODD_MUSHROOM,
+  PLAYER_AP_ODD_POTION,
+  PLAYER_AP_SAW,
+  PLAYER_AP_SWORD_BROKEN,
+  PLAYER_AP_PRESCRIPTION,
+  PLAYER_AP_FROG,
+  PLAYER_AP_EYEDROPS,
+  PLAYER_AP_CLAIM_CHECK,
+  PLAYER_AP_MASK_KEATON,
+  PLAYER_AP_MASK_SKULL,
+  PLAYER_AP_MASK_SPOOKY,
+  PLAYER_AP_MASK_BUNNY,
+  PLAYER_AP_MASK_GORON,
+  PLAYER_AP_MASK_ZORA,
+  PLAYER_AP_MASK_GERUDO,
+  PLAYER_AP_MASK_TRUTH,
+  PLAYER_AP_LENS,
+  PLAYER_AP_MAX
+} z64_action_parameter_t;
+
+typedef enum
+{
+  SI_DEKU_NUTS_5,
+  SI_ARROWS_30,
+  SI_ARROWS_50,
+  SI_BOMBS_5_R25,
+  SI_DEKU_NUTS_10,
+  SI_DEKU_STICK,
+  SI_BOMBS_10,
+  SI_FISH,
+  SI_RED_POTION_R30,
+  SI_GREEN_POTION,
+  SI_BLUE_POTION,
+  SI_LONGSWORD,
+  SI_HYLIAN_SHIELD,
+  SI_DEKU_SHIELD,
+  SI_GORON_TUNIC,
+  SI_ZORA_TUNIC,
+  SI_RECOVERY_HEART,
+  SI_MILK_BOTTLE,
+  SI_WEIRD_EGG,
+  SI_19,
+  SI_20,
+  SI_BOMBCHU_10_1,
+  SI_BOMBCHU_20_1,
+  SI_BOMBCHU_20_2,
+  SI_BOMBCHU_10_2,
+  SI_BOMBCHU_10_3,
+  SI_BOMBCHU_20_3,
+  SI_BOMBCHU_20_4,
+  SI_BOMBCHU_10_4,
+  SI_DEKU_SEEDS_30,
+  SI_KEATON_MASK,
+  SI_SPOOKY_MASK,
+  SI_SKULL_MASK,
+  SI_BUNNY_HOOD,
+  SI_MASK_OF_TRUTH,
+  SI_ZORA_MASK,
+  SI_GORON_MASK,
+  SI_GERUDO_MASK,
+  SI_SOLD_OUT,
+  SI_BLUE_FIRE,
+  SI_BUGS,
+  SI_BIG_POE,
+  SI_POE,
+  SI_FAIRY,
+  SI_ARROWS_10,
+  SI_BOMBS_20,
+  SI_BOMBS_30,
+  SI_BOMBS_5_R35,
+  SI_RED_POTION_R40,
+  SI_RED_POTION_R50,
+  SI_MAX
+} z64_shop_item_t;
+
+typedef enum
+{
   Z64_SLOT_STICK,
   Z64_SLOT_NUT,
   Z64_SLOT_BOMB,
@@ -834,25 +995,30 @@ struct z64_actor_s
 typedef struct
 {
   z64_actor_t  common;               /* 0x0000 */
-  char         unk_00_[0x02E8];      /* 0x013C */
+  char         unk_00_[0x0013];      /* 0x013C */
+  uint8_t      current_mask;         /* 0x014F */
+  char         unk_01_[0x02D4];      /* 0x0150 */
   int8_t       incoming_item_id;     /* 0x0424 */
-  char         unk_01_[0x0003];      /* 0x0425 */
+  char         unk_02_[0x0003];      /* 0x0425 */
   z64_actor_t *incoming_item_actor;  /* 0x0428 */
-  char         unk_02_[0x0008];      /* 0x042C */
+  char         unk_03_[0x0008];      /* 0x042C */
   uint8_t      action;               /* 0x0434 */
-  char         unk_03_[0x0237];      /* 0x0435 */
+  char         unk_04_[0x0237];      /* 0x0435 */
   uint32_t     state_flags_1;        /* 0x066C */
   uint32_t     state_flags_2;        /* 0x0670 */
-  char         unk_04_[0x0004];      /* 0x0674 */
+  char         unk_05_[0x0004];      /* 0x0674 */
   z64_actor_t *boomerang_actor;      /* 0x0678 */
   z64_actor_t *navi_actor;           /* 0x067C */
-  char         unk_05_[0x01A8];      /* 0x0680 */
+  uint16_t     naviTextId;           /* 0x0680 */
+  uint8_t      state_flags_3;        /* 0x0682 */
+  int8_t       exchange_item_id;     /* 0x0683 */
+  char         unk_06_[0x01A4];      /* 0x0684 */
   float        linear_vel;           /* 0x0828 */
-  char         unk_06_[0x0002];      /* 0x082C */
+  char         unk_07_[0x0002];      /* 0x082C */
   uint16_t     target_yaw;           /* 0x082E */
-  char         unk_07_[0x0003];      /* 0x0830 */
+  char         unk_08_[0x0003];      /* 0x0830 */
   int8_t       sword_state;          /* 0x0833 */
-  char         unk_08_[0x0050];      /* 0x0834 */
+  char         unk_09_[0x0050];      /* 0x0834 */
   int16_t      drop_y;               /* 0x0884 */
   int16_t      drop_distance;        /* 0x0886 */
                                      /* 0x0888 */
@@ -943,7 +1109,7 @@ typedef struct
   z64_mem_obj_t objects[19];
 } z64_obj_ctxt_t;
 
-typedef struct 
+typedef struct
 {
   uint8_t       code;
   uint8_t       data1;
@@ -1056,6 +1222,15 @@ typedef struct
 typedef void (*z64_light_handler_t)(z64_gbi_lights_t*, z64_lightn_t*,
                                     z64_actor_t*);
 
+typedef struct
+{
+  uint8_t          freeze_flash_timer; /* 0x0000 */
+  char             unk_01_[0x01];      /* 0x0001 */
+  uint8_t          unk_02;             /* 0x0002 */
+  uint8_t          lens_active;        /* 0x0003 */
+  char             unk_04_[0x04];      /* 0x0004 */
+} z64_actor_ctxt_t;
+
 /* game context */
 typedef struct
 {
@@ -1088,7 +1263,7 @@ typedef struct
   char             unk_08_[0x0008];        /* 0x007B8 */
   z64_col_hdr_t   *col_hdr;                /* 0x007C0 */
   char             unk_09_[0x1460];        /* 0x007C4 */
-  char             actor_ctxt[0x0008];     /* 0x01C24 */
+  z64_actor_ctxt_t actor_ctxt;             /* 0x01C24 */
   uint8_t          n_actors_loaded;        /* 0x01C2C */
   char             unk_0A_[0x0003];        /* 0x01C2D */
   struct
@@ -1184,7 +1359,9 @@ typedef struct
   int8_t           scene_load_flag;        /* 0x11E15 */
   char             unk_23_[0x0004];        /* 0x11E16 */
   int16_t          entrance_index;         /* 0x11E1A */
-  char             unk_24_[0x0042];        /* 0x11E1C */
+  char             unk_24_[0x0040];        /* 0x11E1C */
+  uint8_t          shootingGalleryStatus;  /* 0x11E5C */
+  uint8_t          bombchuBowlingStatus;   /* 0x11E5D */
   uint8_t          fadeout_transition;     /* 0x11E5E */
                                            /* 0x11E5F */
 } z64_game_t;
@@ -1637,6 +1814,7 @@ typedef struct EnGSwitch
 #define z64_LinkDamage_addr                     0x8038E6A8
 #define z64_ObjectSpawn_addr                    0x800812F0
 #define z64_ObjectIndex_addr                    0x80081628
+#define z64_ObjectIsLoaded_addr                 0x80081688
 #define z64_ActorSetLinkIncomingItemId_addr     0x80022CF4
 #define SsSram_ReadWrite_addr                   0x80091474
 #define z64_memcopy_addr                        0x80057030
@@ -1648,6 +1826,10 @@ typedef struct EnGSwitch
 #define z64_Rand_ZeroOne_addr                   0x800CDCCC
 #define z64_RandSeed_addr                       0x800CDCC0
 #define z64_Rand_ZeroOne_addr                   0x800CDCCC
+#define Interface_LoadItemIcon1_addr            0x8006FB50
+#define Rupees_ChangeBy_addr                    0x800721CC
+#define Message_ContinueTextbox_addr            0x800DCE80
+#define PlaySFX_addr                            0x800646F0
 
 /* rom addresses */
 #define z64_icon_item_static_vaddr              0x007BD000
@@ -1712,12 +1894,21 @@ typedef float (*z64_Math_SinS_proc)(int16_t angle);
 
 typedef int32_t(*z64_ObjectSpawn_proc)    (z64_obj_ctxt_t *object_ctx, int16_t object_id);
 typedef int32_t(*z64_ObjectIndex_proc)    (z64_obj_ctxt_t *object_ctx, int16_t object_id);
+typedef int32_t(*z64_ObjectIsLoaded_proc) (z64_obj_ctxt_t *object_ctx, int32_t bank_index);
 
 typedef int32_t(*z64_ActorSetLinkIncomingItemId_proc) (z64_actor_t *actor, z64_game_t *game,
                                                        int32_t get_item_id, float xz_range, float y_range);
 typedef float (*z64_Rand_ZeroOne_proc)();
 typedef void(*z64_RandSeed_proc) (uint32_t seed);
 typedef float(*z64_Rand_ZeroOne_proc)();
+
+typedef void(*Interface_LoadItemIcon1_proc) (z64_game_t *game, uint16_t button);
+
+typedef void(*Rupees_ChangeBy_proc)         (int16_t rupeeChange);
+
+typedef void(*Message_ContinueTextbox_proc) (z64_game_t *play, uint16_t textId);
+
+typedef void(*PlaySFX_proc) (uint16_t sfxId);
 
 /* data */
 #define z64_file_mq             (*(OSMesgQueue*)      z64_file_mq_addr)
@@ -1785,6 +1976,7 @@ typedef float(*z64_Rand_ZeroOne_proc)();
 
 #define z64_ObjectSpawn         ((z64_ObjectSpawn_proc)z64_ObjectSpawn_addr)
 #define z64_ObjectIndex         ((z64_ObjectIndex_proc)z64_ObjectIndex_addr)
+#define z64_ObjectIsLoaded      ((z64_ObjectIsLoaded_proc)z64_ObjectIsLoaded_addr)
 
 #define z64_ActorSetLinkIncomingItemId ((z64_ActorSetLinkIncomingItemId_proc)z64_ActorSetLinkIncomingItemId_addr)
 #define SsSram_ReadWrite ((SsSram_ReadWrite_proc)SsSram_ReadWrite_addr)
@@ -1795,5 +1987,276 @@ typedef float(*z64_Rand_ZeroOne_proc)();
 #define z64_Gfx_DrawDListOpa ((z64_Gfx_DrawDListOpa_proc)z64_Gfx_DrawDListOpa_addr)
 #define z64_Math_SinS ((z64_Math_SinS_proc)z64_Math_SinS_addr)
 #define z64_Rand_ZeroOne ((z64_Rand_ZeroOne_proc)z64_Rand_ZeroOne_addr)
+#define Interface_LoadItemIcon1 ((Interface_LoadItemIcon1_proc)Interface_LoadItemIcon1_addr)
+
+#define Rupees_ChangeBy         ((Rupees_ChangeBy_proc)Rupees_ChangeBy_addr)
+
+#define Message_ContinueTextbox ((Message_ContinueTextbox_proc)Message_ContinueTextbox_addr)
+
+#define PlaySFX ((PlaySFX_proc)PlaySFX_addr)
+
+/* macros */
+#define GET_ITEMGETINF(flag) (z64_file.item_get_inf[(flag) >> 4] & (1 << ((flag) & 0xF)))
+#define GET_EVENTCHKINF(flag) (z64_file.event_chk_inf[(flag) >> 4] & (1 << ((flag) & 0xF)))
+#define SET_EVENTCHKINF(flag) (z64_file.event_chk_inf[(flag) >> 4] |= (1 << ((flag) & 0xF)))
+#define CHECK_FLAG_ALL(flags, mask) (((flags) & (mask)) == (mask))
+
+/*
+ *
+ * SaveContext flags
+ *
+ */
+
+
+/*
+ * SaveContext.eventChkInf
+ */
+
+#define EVENTCHKINF_02 0x02
+#define EVENTCHKINF_03 0x03
+#define EVENTCHKINF_04 0x04
+#define EVENTCHKINF_05 0x05
+#define EVENTCHKINF_07 0x07
+#define EVENTCHKINF_09 0x09
+#define EVENTCHKINF_0A 0x0A
+#define EVENTCHKINF_0B 0x0B
+#define EVENTCHKINF_0C 0x0C
+#define EVENTCHKINF_0F 0x0F
+#define EVENTCHKINF_10 0x10
+#define EVENTCHKINF_11 0x11
+#define EVENTCHKINF_12 0x12
+#define EVENTCHKINF_13 0x13
+#define EVENTCHKINF_14 0x14
+#define EVENTCHKINF_15 0x15
+#define EVENTCHKINF_16 0x16
+#define EVENTCHKINF_18 0x18
+#define EVENTCHKINF_1B 0x1B
+#define EVENTCHKINF_1C 0x1C
+#define EVENTCHKINF_1D 0x1D
+#define EVENTCHKINF_1E 0x1E
+#define EVENTCHKINF_20 0x20
+#define EVENTCHKINF_21 0x21
+#define EVENTCHKINF_22 0x22
+#define EVENTCHKINF_23 0x23
+#define EVENTCHKINF_25 0x25
+#define EVENTCHKINF_2A 0x2A
+#define EVENTCHKINF_2B 0x2B
+#define EVENTCHKINF_2C 0x2C
+#define EVENTCHKINF_2D 0x2D
+#define EVENTCHKINF_2F 0x2F
+#define EVENTCHKINF_30 0x30
+#define EVENTCHKINF_31 0x31
+#define EVENTCHKINF_32 0x32
+#define EVENTCHKINF_33 0x33
+#define EVENTCHKINF_37 0x37
+#define EVENTCHKINF_38 0x38
+#define EVENTCHKINF_39 0x39
+#define EVENTCHKINF_3A 0x3A
+#define EVENTCHKINF_3B 0x3B
+#define EVENTCHKINF_3C 0x3C
+
+// 0x40
+#define EVENTCHKINF_40_INDEX 4
+#define EVENTCHKINF_40_SHIFT 0
+#define EVENTCHKINF_40_MASK (1 << EVENTCHKINF_40_SHIFT)
+#define EVENTCHKINF_40 ((EVENTCHKINF_40_INDEX << 4) | EVENTCHKINF_40_SHIFT)
+
+#define EVENTCHKINF_41 0x41
+#define EVENTCHKINF_42 0x42
+#define EVENTCHKINF_43 0x43
+#define EVENTCHKINF_45 0x45
+#define EVENTCHKINF_48 0x48
+#define EVENTCHKINF_49 0x49
+#define EVENTCHKINF_4A 0x4A
+#define EVENTCHKINF_4B 0x4B
+#define EVENTCHKINF_4C 0x4C
+#define EVENTCHKINF_4D 0x4D
+#define EVENTCHKINF_4E 0x4E
+#define EVENTCHKINF_4F 0x4F
+#define EVENTCHKINF_50 0x50
+#define EVENTCHKINF_51 0x51
+#define EVENTCHKINF_52 0x52
+#define EVENTCHKINF_54 0x54
+#define EVENTCHKINF_55 0x55
+#define EVENTCHKINF_59 0x59
+#define EVENTCHKINF_5A 0x5A
+#define EVENTCHKINF_5B 0x5B
+#define EVENTCHKINF_5C 0x5C
+#define EVENTCHKINF_65 0x65
+#define EVENTCHKINF_67 0x67
+#define EVENTCHKINF_68 0x68
+#define EVENTCHKINF_69 0x69
+#define EVENTCHKINF_6A 0x6A
+
+// 0x6B
+#define EVENTCHKINF_6B_INDEX 6
+#define EVENTCHKINF_6B_SHIFT 11
+#define EVENTCHKINF_6B_MASK (1 << EVENTCHKINF_6B_SHIFT)
+#define EVENTCHKINF_6B ((EVENTCHKINF_6B_INDEX << 4) | EVENTCHKINF_6B_SHIFT)
+
+#define EVENTCHKINF_6E 0x6E
+#define EVENTCHKINF_6F 0x6F
+#define EVENTCHKINF_70 0x70
+#define EVENTCHKINF_71 0x71
+#define EVENTCHKINF_72 0x72
+#define EVENTCHKINF_73 0x73
+#define EVENTCHKINF_74 0x74
+#define EVENTCHKINF_75 0x75
+#define EVENTCHKINF_76 0x76
+#define EVENTCHKINF_77 0x77
+#define EVENTCHKINF_78 0x78
+#define EVENTCHKINF_80 0x80
+#define EVENTCHKINF_82 0x82
+#define EVENTCHKINF_8C 0x8C
+#define EVENTCHKINF_8D 0x8D
+#define EVENTCHKINF_8E 0x8E
+#define EVENTCHKINF_8F 0x8F
+
+// 0x90-0x93
+// carpenters freed from the gerudo
+#define EVENTCHKINF_CARPENTERS_FREE_INDEX 9
+#define EVENTCHKINF_CARPENTERS_FREE_SHIFT(n) (0 + (n))
+#define EVENTCHKINF_CARPENTERS_FREE_MASK(n) (1 << EVENTCHKINF_CARPENTERS_FREE_SHIFT(n))
+#define EVENTCHKINF_CARPENTERS_FREE(n) ((EVENTCHKINF_CARPENTERS_FREE_INDEX << 4) | EVENTCHKINF_CARPENTERS_FREE_SHIFT(n))
+#define EVENTCHKINF_CARPENTERS_FREE_MASK_ALL (\
+      EVENTCHKINF_CARPENTERS_FREE_MASK(0)     \
+    | EVENTCHKINF_CARPENTERS_FREE_MASK(1)     \
+    | EVENTCHKINF_CARPENTERS_FREE_MASK(2)     \
+    | EVENTCHKINF_CARPENTERS_FREE_MASK(3)    )
+#define GET_EVENTCHKINF_CARPENTERS_FREE_ALL() \
+    CHECK_FLAG_ALL(z64_file.event_chk_inf[EVENTCHKINF_CARPENTERS_FREE_INDEX], EVENTCHKINF_CARPENTERS_FREE_MASK_ALL)
+
+#define EVENTCHKINF_94 0x94
+#define EVENTCHKINF_95 0x95
+#define EVENTCHKINF_96 0x96
+#define EVENTCHKINF_9C 0x9C
+#define EVENTCHKINF_A0 0xA0
+#define EVENTCHKINF_A1 0xA1
+#define EVENTCHKINF_A3 0xA3
+#define EVENTCHKINF_A4 0xA4
+#define EVENTCHKINF_A5 0xA5
+#define EVENTCHKINF_A6 0xA6
+#define EVENTCHKINF_A7 0xA7
+#define EVENTCHKINF_A8 0xA8
+#define EVENTCHKINF_A9 0xA9
+#define EVENTCHKINF_AA 0xAA
+#define EVENTCHKINF_AC 0xAC
+#define EVENTCHKINF_AD 0xAD
+#define EVENTCHKINF_B0 0xB0
+#define EVENTCHKINF_B1 0xB1
+#define EVENTCHKINF_B2 0xB2
+#define EVENTCHKINF_B3 0xB3
+#define EVENTCHKINF_B4 0xB4
+#define EVENTCHKINF_B5 0xB5
+#define EVENTCHKINF_B6 0xB6
+#define EVENTCHKINF_B7 0xB7
+#define EVENTCHKINF_B8 0xB8
+#define EVENTCHKINF_B9 0xB9
+#define EVENTCHKINF_BA 0xBA
+#define EVENTCHKINF_BB 0xBB
+#define EVENTCHKINF_BC 0xBC
+#define EVENTCHKINF_BD 0xBD
+#define EVENTCHKINF_BE 0xBE
+#define EVENTCHKINF_BF 0xBF
+#define EVENTCHKINF_C0 0xC0
+#define EVENTCHKINF_C1 0xC1
+#define EVENTCHKINF_C3 0xC3
+#define EVENTCHKINF_C4 0xC4
+#define EVENTCHKINF_C5 0xC5
+#define EVENTCHKINF_C6 0xC6
+#define EVENTCHKINF_C7 0xC7
+#define EVENTCHKINF_C8 0xC8
+#define EVENTCHKINF_C9 0xC9
+
+// 0xD0-0xD6
+#define EVENTCHKINF_SONGS_FOR_FROGS_INDEX 13
+#define EVENTCHKINF_SONGS_FOR_FROGS_CHOIR_SHIFT  0
+#define EVENTCHKINF_SONGS_FOR_FROGS_ZL_SHIFT     1
+#define EVENTCHKINF_SONGS_FOR_FROGS_EPONA_SHIFT  2
+#define EVENTCHKINF_SONGS_FOR_FROGS_SUNS_SHIFT   3
+#define EVENTCHKINF_SONGS_FOR_FROGS_SARIA_SHIFT  4
+#define EVENTCHKINF_SONGS_FOR_FROGS_SOT_SHIFT    5
+#define EVENTCHKINF_SONGS_FOR_FROGS_STORMS_SHIFT 6
+#define EVENTCHKINF_SONGS_FOR_FROGS_CHOIR_MASK  (1 << EVENTCHKINF_SONGS_FOR_FROGS_CHOIR_SHIFT)
+#define EVENTCHKINF_SONGS_FOR_FROGS_ZL_MASK     (1 << EVENTCHKINF_SONGS_FOR_FROGS_ZL_SHIFT)
+#define EVENTCHKINF_SONGS_FOR_FROGS_EPONA_MASK  (1 << EVENTCHKINF_SONGS_FOR_FROGS_EPONA_SHIFT)
+#define EVENTCHKINF_SONGS_FOR_FROGS_SUNS_MASK   (1 << EVENTCHKINF_SONGS_FOR_FROGS_SUNS_SHIFT)
+#define EVENTCHKINF_SONGS_FOR_FROGS_SARIA_MASK  (1 << EVENTCHKINF_SONGS_FOR_FROGS_SARIA_SHIFT)
+#define EVENTCHKINF_SONGS_FOR_FROGS_SOT_MASK    (1 << EVENTCHKINF_SONGS_FOR_FROGS_SOT_SHIFT)
+#define EVENTCHKINF_SONGS_FOR_FROGS_STORMS_MASK (1 << EVENTCHKINF_SONGS_FOR_FROGS_STORMS_SHIFT)
+#define EVENTCHKINF_SONGS_FOR_FROGS_CHOIR  ((EVENTCHKINF_SONGS_FOR_FROGS_INDEX << 4) | EVENTCHKINF_SONGS_FOR_FROGS_CHOIR_SHIFT)
+#define EVENTCHKINF_SONGS_FOR_FROGS_ZL     ((EVENTCHKINF_SONGS_FOR_FROGS_INDEX << 4) | EVENTCHKINF_SONGS_FOR_FROGS_ZL_SHIFT)
+#define EVENTCHKINF_SONGS_FOR_FROGS_EPONA  ((EVENTCHKINF_SONGS_FOR_FROGS_INDEX << 4) | EVENTCHKINF_SONGS_FOR_FROGS_EPONA_SHIFT)
+#define EVENTCHKINF_SONGS_FOR_FROGS_SUNS   ((EVENTCHKINF_SONGS_FOR_FROGS_INDEX << 4) | EVENTCHKINF_SONGS_FOR_FROGS_SUNS_SHIFT)
+#define EVENTCHKINF_SONGS_FOR_FROGS_SARIA  ((EVENTCHKINF_SONGS_FOR_FROGS_INDEX << 4) | EVENTCHKINF_SONGS_FOR_FROGS_SARIA_SHIFT)
+#define EVENTCHKINF_SONGS_FOR_FROGS_SOT    ((EVENTCHKINF_SONGS_FOR_FROGS_INDEX << 4) | EVENTCHKINF_SONGS_FOR_FROGS_SOT_SHIFT)
+#define EVENTCHKINF_SONGS_FOR_FROGS_STORMS ((EVENTCHKINF_SONGS_FOR_FROGS_INDEX << 4) | EVENTCHKINF_SONGS_FOR_FROGS_STORMS_SHIFT)
+
+// 0xDA-0xDE
+#define EVENTCHKINF_DA_DB_DC_DD_DE_INDEX 13
+#define EVENTCHKINF_DA_MASK (1 << 10)
+#define EVENTCHKINF_DB_MASK (1 << 11)
+#define EVENTCHKINF_DC_MASK (1 << 12)
+#define EVENTCHKINF_DD_MASK (1 << 13)
+#define EVENTCHKINF_DE_MASK (1 << 14)
+
+
+/*
+ * SaveContext.itemGetInf
+ */
+
+#define ITEMGETINF_02 0x02
+#define ITEMGETINF_03 0x03
+#define ITEMGETINF_04 0x04
+#define ITEMGETINF_05 0x05
+#define ITEMGETINF_06 0x06
+#define ITEMGETINF_07 0x07
+#define ITEMGETINF_08 0x08
+#define ITEMGETINF_09 0x09
+#define ITEMGETINF_0A 0x0A
+#define ITEMGETINF_0B 0x0B
+#define ITEMGETINF_0C 0x0C
+#define ITEMGETINF_0D 0x0D
+#define ITEMGETINF_0E 0x0E
+#define ITEMGETINF_0F 0x0F
+#define ITEMGETINF_10 0x10
+#define ITEMGETINF_11 0x11
+#define ITEMGETINF_12 0x12
+#define ITEMGETINF_13 0x13
+#define ITEMGETINF_15 0x15
+#define ITEMGETINF_16 0x16
+#define ITEMGETINF_17 0x17
+
+// 0x18-0x1A
+#define ITEMGETINF_18_19_1A_INDEX 1
+#define ITEMGETINF_18_SHIFT 8
+#define ITEMGETINF_19_SHIFT 9
+#define ITEMGETINF_1A_SHIFT 10
+#define ITEMGETINF_18_MASK (1 << ITEMGETINF_18_SHIFT)
+#define ITEMGETINF_19_MASK (1 << ITEMGETINF_19_SHIFT)
+#define ITEMGETINF_1A_MASK (1 << ITEMGETINF_1A_SHIFT)
+#define ITEMGETINF_18 ((ITEMGETINF_18_19_1A_INDEX << 4) | ITEMGETINF_18_SHIFT)
+#define ITEMGETINF_19 ((ITEMGETINF_18_19_1A_INDEX << 4) | ITEMGETINF_19_SHIFT)
+#define ITEMGETINF_1A ((ITEMGETINF_18_19_1A_INDEX << 4) | ITEMGETINF_1A_SHIFT)
+
+#define ITEMGETINF_1B 0x1B
+#define ITEMGETINF_1C 0x1C
+#define ITEMGETINF_1D 0x1D
+#define ITEMGETINF_1E 0x1E
+#define ITEMGETINF_1F 0x1F
+#define ITEMGETINF_23 0x23
+#define ITEMGETINF_24 0x24
+#define ITEMGETINF_25 0x25
+#define ITEMGETINF_26 0x26
+#define ITEMGETINF_2A 0x2A
+#define ITEMGETINF_2C 0x2C
+#define ITEMGETINF_2E 0x2E
+#define ITEMGETINF_30 0x30
+#define ITEMGETINF_31 0x31
+#define ITEMGETINF_38 0x38
+#define ITEMGETINF_39 0x39
+#define ITEMGETINF_3A 0x3A
+#define ITEMGETINF_3B 0x3B
+#define ITEMGETINF_3F 0x3F
 
 #endif

@@ -32,7 +32,7 @@ logging.basicConfig(level=logging.INFO, filename=os.path.join(output_dir, 'LAST_
 never_prefix = ['Bombs', 'Arrows', 'Rupee', 'Deku Seeds', 'Map', 'Compass']
 never_suffix = ['Capacity']
 never = {
-    'Bunny Hood', 'Recovery Heart', 'Milk', 'Ice Trap',
+    'Recovery Heart', 'Milk', 'Ice Trap',
     'Double Defense', 'Biggoron Sword', 'Giants Knife',
 } | {name for name, item in ItemInfo.items.items() if item.priority
      or any(map(name.startswith, never_prefix)) or any(map(name.endswith, never_suffix))}
@@ -381,13 +381,33 @@ class TestPlandomizer(unittest.TestCase):
         shuffled_one = "plando-egg-shuffled-one-pool"
         distribution_file, spoiler = generate_with_plandomizer(shuffled_one)
         self.assertEqual(spoiler['item_pool']['Weird Egg'], 1)
-        # Shuffled, two in pool: Shouldn't have more than one, will remove force to 1 in pool
+        # Shuffled, two in pool: Valid config, will end with 2 in pool
         shuffled_two = "plando-egg-shuffled-two-pool"
         distribution_file, spoiler = generate_with_plandomizer(shuffled_two)
         self.assertEqual(spoiler['item_pool']['Weird Egg'], 1)
 
     def test_key_rings(self):
         # Checking dungeon keys using forest temple
+        # Testing Boss Keys, should not be any Forest BK
+        # All other Boss Keys should exist, Fire Temple for example
+        distribution_file, spoiler = generate_with_plandomizer("plando-keyrings-bosskey-forest-anywhere-minimal")
+        self.assertNotIn('Boss Key (Forest Temple)', spoiler['locations'].values())
+        self.assertEqual(get_actual_pool(spoiler)['Boss Key (Fire Temple)'], 1)
+        distribution_file, spoiler = generate_with_plandomizer("plando-keyrings-bosskey-forest-anywhere-balanced")
+        self.assertNotIn('Boss Key (Forest Temple)', spoiler['locations'].values())
+        self.assertEqual(get_actual_pool(spoiler)['Boss Key (Fire Temple)'], 1)
+        # Shuffle Keys set to Vanilla, Boss Keys should exist
+        distribution_file, spoiler = generate_with_plandomizer("plando-keyrings-bosskey-forest-vanilla-plentiful")
+        self.assertEqual(get_actual_pool(spoiler)['Boss Key (Forest Temple)'], 1)
+
+        # No key rings: Make sure boss key in plentiful
+        distribution_file, spoiler = generate_with_plandomizer("plando-keyrings-bosskey-none-anywhere-plentiful")
+        self.assertEqual(get_actual_pool(spoiler)['Boss Key (Forest Temple)'], 1)
+
+        # No key rings: Make sure boss key in ludicrous
+        distribution_file, spoiler = generate_with_plandomizer("plando-keyrings-bosskey-none-anywhere-ludicrous")
+        self.assertEqual(get_actual_pool(spoiler)['Boss Key (Forest Temple)'], 1)
+
         # Minimal and balanced pools: Should be one key ring
         distribution_file, spoiler = generate_with_plandomizer("plando-keyrings-forest-anywhere-minimal")
         self.assertNotIn('Small Key (Forest Temple)', spoiler['locations'].values())
@@ -451,7 +471,7 @@ class TestPlandomizer(unittest.TestCase):
         self.assertNotIn('Small Key Ring (Forest Temple)', spoiler['locations'].values())
         self.assertGreater(get_actual_pool(spoiler)['Small Key (Thieves Hideout)'], 5)
         self.assertNotIn('Small Key Ring (Thieves Hideout)', spoiler['locations'].values())
-    
+
     def test_empty_dungeons(self):
         filenames = [
             "empty-dungeons-all-dungeon-er",
@@ -538,7 +558,7 @@ class TestHints(unittest.TestCase):
                 _, spoiler = generate_with_plandomizer(filename, live_copy=True)
                 self.assertIsNotNone(spoiler.worlds[0].misc_hint_item_locations["ganondorf"])
                 self.assertNotEqual('Ganons Tower Boss Key Chest', spoiler.worlds[0].misc_hint_item_locations["ganondorf"].name)
-    
+
     # Test that every goal in every goal category is hinted at least once
     # if the bridge and Ganon's Boss Key conditions are for the same type
     # of win condition, such as 4 medallion bridge and 6 medallion GBK.
@@ -580,7 +600,7 @@ class TestHints(unittest.TestCase):
                 self.assertEqual(found_goals, goals)
         # 1 stone bridge / 3 stone gbk
         # 5 med bridge / 6 med bridge
-        # 5 dungeon bridge / 9 dungeon gbk 
+        # 5 dungeon bridge / 9 dungeon gbk
         # 99 skull bridge / 100 skull gbk
         # 19 heart bridge / 20 heart gbk
         # TH

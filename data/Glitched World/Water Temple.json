@@ -1,4 +1,4 @@
-[    
+[
     {
         "region_name": "Water Temple Lobby",
         "dungeon": "Water Temple",
@@ -6,7 +6,7 @@
         "exits": {
             "High Alcove": "is_adult or can_hover",
             "Water Temple Boss Door": "can_use(Longshot) or can_hover or (can_use(Hover_Boots) and (can_mega or Megaton_Hammer))",
-            "Dark Link Area": "(at('High Alcove', can_play(Zeldas_Lullaby)) or 
+            "Dark Link Area": "(at('High Alcove', can_play(Zeldas_Lullaby)) or
                     (can_use(Hover_Boots) and (can_mega or Megaton_Hammer)))
                 and (Small_Key_Water_Temple, 4)",
             "Under Entrance Block": "can_use(Hookshot) and Iron_Boots",
@@ -20,13 +20,13 @@
         "region_name": "High Alcove",
         "dungeon":  "Water Temple",
         "locations": {},
-        "exits": {            
+        "exits": {
             "Compass Room": "is_adult",
             "Ruto Column": "is_adult",
             "Under Entrance Block": "can_use(Iron_Boots) and can_use(Hookshot)",
             "Caged Skulltula": "is_adult",
             "Dragon Head Area": "is_adult",
-            "Boss Key Area": "is_adult and 
+            "Boss Key Area": "is_adult and
                 (Small_Key_Water_Temple, 4)
                 and (can_use(Longshot) or can_hover or Hover_Boots)",
             "Water Temple Boss Door": "can_play(Zeldas_Lullaby) and can_use(Longshot)",
@@ -38,7 +38,7 @@
         "region_name": "Caged Skulltula",
         "dungeon": "Water Temple",
         "locations": {
-            "Water Temple GS Behind Gate": "(can_use(Hover_Boots) or can_hover or can_use(Hookshot)) and 
+            "Water Temple GS Behind Gate": "(can_use(Hover_Boots) or can_hover or can_use(Hookshot)) and
                 (can_jumpslash or has_explosives)"
         }
     },
@@ -67,7 +67,7 @@
                 and can_play(Zeldas_Lullaby)"
         },
         "exits": {
-            "Central Pillar": "can_play(Zeldas_Lullaby) and 
+            "Central Pillar": "can_play(Zeldas_Lullaby) and
                 ((Small_Key_Water_Temple, 5)
                 or here(is_child and can_use(Sticks)) or has_fire_source or can_use(Bow))",
             "Boss Key Area": "(Small_Key_Water_Temple, 4) and
@@ -75,8 +75,8 @@
             "Dragon Head Area": "Progressive_Strength_Upgrade and (is_adult or can_child_attack) and can_play(Zeldas_Lullaby)",
             "Caged Skulltula": "has_explosives and can_play(Zeldas_Lullaby)",
             "Compass Room": "can_play(Zeldas_Lullaby) and can_use(Hookshot)",
-            "Under Entrance Block": "can_play(Zeldas_Lullaby) and 
-            ( (can_use(Hookshot) and can_mega) or (can_use(Bow) and (Hover_Boots or can_use(Longshot)) 
+            "Under Entrance Block": "can_play(Zeldas_Lullaby) and
+            ( (can_use(Hookshot) and can_mega) or (can_use(Bow) and (Hover_Boots or can_use(Longshot))
                 and (Progressive_Strength_Upgrade or (can_use(Hookshot) and can_mega))))",
             "High Alcove": "(can_use(Hover_Boots) or can_use(Hookshot) or (is_adult and can_mega) or can_hover)
                 and can_play(Zeldas_Lullaby)"

@@ -169,6 +169,7 @@
             "shuffle_dungeon_entrances",
             "shuffle_bosses",
             "shuffle_overworld_entrances",
+            "shuffle_gerudo_valley_river_exit",
             "owl_drops",
             "warp_songs",
             "spawn_positions",
@@ -177,6 +178,7 @@
             "triforce_goal_per_world",
             "triforce_blitz",
             "bombchus_in_logic",
+            "free_bombchu_drops",
             "one_item_per_dungeon"
           ]
         },
@@ -191,6 +193,8 @@
             "tokensanity",
             "shuffle_scrubs",
             "shuffle_child_trade",
+            "adult_trade_shuffle",
+            "adult_trade_start",
             "shuffle_freestanding_items",
             "shuffle_pots",
             "shuffle_crates",
@@ -200,7 +204,7 @@
             "shuffle_ocarinas",
             "shuffle_gerudo_card",
             "shuffle_beans",
-            "shuffle_medigoron_carpet_salesman",
+            "shuffle_expensive_merchants",
             "shuffle_frog_song_rupees"
           ]
         },
@@ -214,6 +218,7 @@
             "shuffle_hideoutkeys",
             "key_rings_choice",
             "key_rings",
+            "keyring_give_bk",
             "shuffle_bosskeys",
             "shuffle_ganon_bosskey",
             "ganon_bosskey_medallions",
@@ -364,8 +369,7 @@
           "settings": [
             "item_pool_value",
             "junk_ice_traps",
-            "ice_trap_appearance",
-            "adult_trade_start"
+            "ice_trap_appearance"
           ]
         }
       ]
@@ -479,77 +483,93 @@
       "sections": [
         {
           "name": "sfx_main_section",
+          "text": "General",
           "is_sfx": true,
-          "col_span": 4,
-          "row_span": [2,1,2],
+          "col_span": 2,
+          "row_span": [2,2,2],
           "settings": [
             "randomize_all_sfx",
             "disable_battle_music"
           ]
         },
         {
-          "name": "generalsfx_section",
-          "text": "General",
+          "name": "musicsfx_section",
+          "text": "Music",
           "is_sfx": true,
-          "col_span": 1,
-          "row_span": [6,6,11],
+          "col_span": 2,
+          "row_span": [2,2,2],
           "settings": [
             "background_music",
             "fanfares",
-            "ocarina_fanfares",
-            "sfx_low_hp",
-            "sfx_horse_neigh",
-            "sfx_nightfall",
+            "ocarina_fanfares"
+          ]
+        },
+        {
+          "name": "itemsfx_section",
+          "text": "Items",
+          "col_span": 2,
+          "row_span": [5,5,5],
+          "settings": [     
+            "sfx_ocarina",
+            "sfx_bombchu_move",
             "sfx_hover_boots",
-            "sfx_ocarina"
+            "sfx_iron_boots",
+            "sfx_boomerang_throw",
+            "sfx_hookshot_chain",
+            "sfx_arrow_shot",
+            "sfx_slingshot_shot",
+            "sfx_magic_arrow_shot",
+            "sfx_explosion"
           ]
         },
         {
-          "name": "menusfx_section",
-          "text": "Menu",
-          "is_sfx": true,
-          "col_span": 1,
-          "row_span": [6,6,11],
-          "settings": [
-            "sfx_menu_cursor",
-            "sfx_menu_select"
-          ]
-        },
-        {
-          "name": "npcsfx_section",
-          "text": "NPC",
-          "is_sfx": true,
-          "col_span": 1,
-          "row_span": [6,6,11],
-          "settings": [
-            "sfx_navi_overworld",
-            "sfx_navi_enemy"
-          ]
-        },
-        {
-          "name": "linksfx_section_generator",
-          "text": "Link",
+          "name": "voicesfx_section_generator",
+          "text": "Voices",
           "app_type": ["generator"],
           "is_sfx": true,
           "col_span": 1,
-          "row_span": [6,6,11],
+          "row_span": [5,5,5],
           "settings": [
             "sfx_link_adult",
             "sfx_link_child",
-            "sfx_link_unavailable_msg"
+            "sfx_link_unavailable_msg",         
+            "sfx_navi_overworld",
+            "sfx_navi_enemy",
+            "sfx_horse_neigh",
+            "sfx_cucco"
           ]
         },
         {
-          "name": "linksfx_section_patcher",
-          "text": "Link",
+          "name": "voicesfx_section_patcher",
+          "text": "Voices",
           "exclude_from_electron": true,
           "app_type": ["patcher"],
           "is_sfx": true,
           "col_span": 1,
-          "row_span": [6,6,11],
+          "row_span": [5,5,5],
           "settings": [
             "sfx_link_adult",
-            "sfx_link_child"
+            "sfx_link_child",
+            "sfx_navi_overworld",
+            "sfx_navi_enemy",
+            "sfx_horse_neigh",
+            "sfx_cucco"
+          ]
+        },
+        {
+          "name": "generalsfx_section",
+          "text": "Misc Sound Effects",
+          "is_sfx": true,
+          "col_span": 1,
+          "row_span": [5,5,5],
+          "settings": [
+            "sfx_daybreak",
+            "sfx_nightfall",
+            "sfx_menu_cursor",
+            "sfx_menu_select",
+            "sfx_low_hp",
+            "sfx_silver_rupee",
+            "sfx_get_small_item"
           ]
         }
       ]

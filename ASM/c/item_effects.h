@@ -24,6 +24,8 @@ void give_bean_pack(z64_file_t *save, int16_t arg1, int16_t arg2);
 void fill_wallet_upgrade(z64_file_t *save, int16_t arg1, int16_t arg2);
 void clear_excess_hearts(z64_file_t *save, int16_t arg1, int16_t arg2);
 void open_mask_shop(z64_file_t *save, int16_t arg1, int16_t arg2);
+void give_bombchus(z64_file_t *save, int16_t arg1, int16_t arg2);
+void trade_quest_upgrade(z64_file_t *save, int16_t item_id, int16_t arg2);
 
 enum dungeon {
     DEKU_ID    = 0,

@@ -69,9 +69,8 @@
                           </ng-container>
                           <!--Normal Combobox-->
                           <ng-container *ngIf="!section.is_colors">
-                            <div class="select-wrapper">
                               <nb-select class="selectXSmall"
-                                         [ngClass]="{'oneLineComboBox oLCBSelect': getColumnCount(refEl) > 2 && setting.no_line_break}"
+                                         [ngClass]="{'oneLineComboBox oLCBSelect': getColumnCount(refEl) > 2 && (setting.no_line_break || (itemIndex > 0 && section.settings[itemIndex-1].no_line_break))}"
                                          [disabled]="!global.generator_settingsVisibilityMap[setting.name]"
                                          [(selected)]="global.generator_settingsMap[setting.name]"
                                          (selectedChange)="checkVisibility($event, setting, findOption(setting.options, $event))"
@@ -92,7 +91,6 @@
                                    [nbPopoverTrigger]="setting.tooltip?.length > 0 ? 'hover' : 'noop'"
                                    [nbPopoverPlacement]="'top'"
                                    [nbPopoverAdjustment]="'vertical'" />
-                            </div>
                           </ng-container>
                         </ng-container>
                         <!--Multiple Select-->

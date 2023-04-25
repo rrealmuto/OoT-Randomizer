@@ -35,7 +35,7 @@ class ModelPointerWriter:
         self.offset = 0
         self.advance = 4
         self.SetBase('Code')
-    
+
     def SetBase(self, base):
         if base == 'Code':
             self.base = CODE_START
@@ -96,12 +96,12 @@ def scan(bytes, data, start=0):
         # Byte matches next byte in string
         if bytes[i] == databytes[dataindex]:
             dataindex += 1
-            # Special case: Bottle, Bow, Slingshot, Fist.L, and Fist.R are subsets of 
+            # Special case: Bottle, Bow, Slingshot, Fist.L, and Fist.R are subsets of
             # Bottle.Hand.L, Bow.String, Slingshot.String, Gauntlet.Fist.L, and Gauntlet.Fist.R respectively
             # And Hookshot which is a subset of Hookshot.Spike, Hookshot.Chain, Hookshot.Aiming.Reticule
             # This leads to false positives. So if the next byte is . (0x2E) then reset the count.
             if isinstance(data, str) and data in ["Bottle", "Bow", "Slingshot", "Hookshot", "Fist.L", "Fist.R", "Blade.3"] and i < len(bytes) - 1 and bytes[i+1] == 0x2E:
-                # Blade.3 is even wackier, as it is a subset of Blade.3.Break, 
+                # Blade.3 is even wackier, as it is a subset of Blade.3.Break,
                 # and also a forward subset of Broken.Blade.3, and has a period in it
                 if data == "Blade.3":
                     resetCount = False
@@ -110,7 +110,7 @@ def scan(bytes, data, start=0):
                     if bytes[i] != 0x65:
                         resetCount = True
                     # Make sure i is large enough, "Broken.Blad" is 11 chars (remember we're currently at the e)
-                    if not resetCount and i > 10: 
+                    if not resetCount and i > 10:
                         # Check if "Broken." immediately preceeds this string
                         preceedingBytes = bytes[i-11:i-4]
                         if preceedingBytes == bytearray(b'Broken.'):
@@ -131,6 +131,27 @@ def scan(bytes, data, start=0):
             # (Blade.3 and fists can check in the previous stanza since a . will be encountered at some point)
             if isinstance(data, str) and data == "Hookshot" and dataindex == 1 and i > 3:
                 # Check if "FPS." immediately preceeds this string
+                preceedingBytes = bytes[i-4:i]
+                if preceedingBytes == bytearray(b'FPS.'):
+                    dataindex = 0
+            # More special cases added by the new pipeline...
+            # Hand.L and Hand.R are forward subsets of Gauntlet.Hand.X, FPS.Hand.X
+            # And Hand.L specifically is a forward subset of Bottle.Hand.L
+            if isinstance(data, str) and data in ["Hand.L", "Hand.R"] and dataindex == 1:
+                if i > 8:
+                    preceedingBytes = bytes[i-9:i]
+                    if preceedingBytes == bytearray(b'Gauntlet.'):
+                        dataindex = 0
+                if dataindex == 1 and i > 3:
+                    preceedingBytes = bytes[i-4:i]
+                    if preceedingBytes == bytearray(b'FPS.'):
+                        dataindex = 0
+                if data == "Hand.L" and dataindex == 1 and i > 6:
+                    preceedingBytes = bytes[i-7:i]
+                    if preceedingBytes == bytearray(b'Bottle.'):
+                        dataindex = 0
+            # Forearm.L and Forearm.R are forward subsets of FPS.Forearm.X
+            if isinstance(data, str) and data in ["Forearm.L", "Forearm.R"] and dataindex == 1 and i > 3:
                 preceedingBytes = bytes[i-4:i]
                 if preceedingBytes == bytearray(b'FPS.'):
                     dataindex = 0
@@ -257,7 +278,7 @@ def LoadVanilla(rom, missing, rebase, linkstart, linksize, pieces, skips):
                 returnStack = []
                 j = i+8
                 # The point of this loop is just to find the number of texels
-                # so that it may be multiplied by the bytesPerTexel so we know 
+                # so that it may be multiplied by the bytesPerTexel so we know
                 # the length of the texture.
                 while j < len(vanillaData) and numTexels == -1:
                     opJ = vanillaData[j]
@@ -486,11 +507,17 @@ def LoadModel(rom, model, age):
         # First, make sure all important bytes are zeroed out
         for i in range(LUT_START, LUT_END):
             zobj[i] = 0x00
-        # Find which pieces are missing from this model
+        # Locate the manifest
         footerstart = scan(zobj, "!PlayAsManifest0")
         if footerstart == -1:
             raise ModelDefinitionError("No manifest found in " + agestr + " model- Did you check \"Embed play-as data\" in zzconvert?")
         startaddr = footerstart - len("!PlayAsManifest0")
+        # Check if this is a new pipeline model
+        if scan(zobj, "riggedmesh", startaddr) != -1:
+            # Replace Limb x names with the new pipeline names
+            for oldName, newName in oldToNewPipeline.items():
+                pieces[newName] = pieces.pop(oldName)
+        # Find which pieces, if any, are missing from this model
         missing = []
         present = {}
         DLOffsets = {}
@@ -509,7 +536,7 @@ def LoadModel(rom, model, age):
                 zobj.insert(startaddr + i, byte)
                 i += 1
             if len(zobj) > linksize:
-                raise ModelDefinitionError("After processing, model for " + agestr + " too large- It is " 
+                raise ModelDefinitionError("After processing, model for " + agestr + " too large- It is "
                 + str(len(zobj)) + " bytes, but must be at most " + str(linksize) + " bytes.")
         # Now we have to set the lookup table for each item
         for (piece, offset) in DLOffsets.items():
@@ -531,7 +558,7 @@ def LoadModel(rom, model, age):
         i = 0
         for byte in "HEYLOOKHERE".encode():
             zobj[LUT_START+i] = byte
-            i += 1 
+            i += 1
         # Set constants in the LUT
         file = open(os.path.join(path, 'Constants/preconstants.zobj'), "rb")
         constants = file.read()
@@ -1055,7 +1082,7 @@ class Offsets(IntEnum):
 # Adult model pieces and their offsets, both in the LUT and in vanilla
 AdultPieces = {
     "Sheath": (Offsets.ADULT_LINK_LUT_DL_SWORD_SHEATH, 0x249D8),
-    "FPS.Hookshot": (Offsets.ADULT_LINK_LUT_DL_FPS_HOOKSHOT, 0x2A738), 
+    "FPS.Hookshot": (Offsets.ADULT_LINK_LUT_DL_FPS_HOOKSHOT, 0x2A738),
     "Hilt.2": (Offsets.ADULT_LINK_LUT_DL_SWORD_HILT, 0x22060), # 0x21F78 + 0xE8, skips blade
     "Hilt.3": (Offsets.ADULT_LINK_LUT_DL_LONGSWORD_HILT, 0x238C8),
     "Blade.2": (Offsets.ADULT_LINK_LUT_DL_SWORD_BLADE, 0x21F78),
@@ -1078,7 +1105,7 @@ AdultPieces = {
     "Bow": (Offsets.ADULT_LINK_LUT_DL_BOW, 0x22DA8),
     "Blade.3.Break": (Offsets.ADULT_LINK_LUT_DL_BLADEBREAK, 0x2BA38),
     "Blade.3": (Offsets.ADULT_LINK_LUT_DL_LONGSWORD_BLADE, 0x23A28), # 0x238C8 + 0x160, skips hilt
-    "Bottle": (Offsets.ADULT_LINK_LUT_DL_BOTTLE, 0x2AD58), 
+    "Bottle": (Offsets.ADULT_LINK_LUT_DL_BOTTLE, 0x2AD58),
     "Broken.Blade.3": (Offsets.ADULT_LINK_LUT_DL_LONGSWORD_BROKEN, 0x23EB0), # 0x23D50 + 0x160, skips hilt
     "Foot.2.L": (Offsets.ADULT_LINK_LUT_DL_BOOT_LIRON, 0x25918),
     "Foot.2.R": (Offsets.ADULT_LINK_LUT_DL_BOOT_RIRON, 0x25A60),
@@ -1154,7 +1181,7 @@ adultSkeleton = [
 
 ChildPieces = {
     "Slingshot.String": (Offsets.CHILD_LINK_LUT_DL_SLINGSHOT_STRING, 0x221A8),
-    "Sheath": (Offsets.CHILD_LINK_LUT_DL_SWORD_SHEATH, 0x15408), 
+    "Sheath": (Offsets.CHILD_LINK_LUT_DL_SWORD_SHEATH, 0x15408),
     "Blade.2": (Offsets.CHILD_LINK_LUT_DL_MASTER_SWORD, 0x15698), # 0x15540 + 0x158, skips fist
     "Blade.1": (Offsets.CHILD_LINK_LUT_DL_SWORD_BLADE, 0x14110), # 0x13F38 + 0x1D8, skips fist and hilt
     "Boomerang": (Offsets.CHILD_LINK_LUT_DL_BOOMERANG, 0x14660),
@@ -1230,6 +1257,27 @@ childSkeleton = [
     [0x0000, 0x0000, 0x0000], # Limb 20
 ]
 
+# Maps old pipeline limb names to new pipeline names
+oldToNewPipeline = {
+    "Limb 1": "Waist",
+    "Limb 3": "Thigh.R",
+    "Limb 4": "Shin.R",
+    "Limb 5": "Foot.R",
+    "Limb 6": "Thigh.L",
+    "Limb 7": "Shin.L",
+    "Limb 8": "Foot.L",
+    "Limb 10": "Head",
+    "Limb 11": "Hat",
+    "Limb 12": "Collar",
+    "Limb 13": "Shoulder.L",
+    "Limb 14": "Forearm.L",
+    "Limb 15": "Hand.L",
+    "Limb 16": "Shoulder.R",
+    "Limb 17": "Forearm.R",
+    "Limb 18": "Hand.R",
+    "Limb 20": "Torso",
+}
+
 # Misc. constants
 CODE_START          = 0x00A87000
 PLAYER_START        = 0x00BCDB70
@@ -1257,7 +1305,7 @@ CHILD_POST_START    = 0x00005228
 
 # Parts of the rom to not overwrite when applying a patch file
 restrictiveBytes = [
-    (ADULT_START, ADULT_SIZE), # Ignore adult model 
+    (ADULT_START, ADULT_SIZE), # Ignore adult model
     (CHILD_START, CHILD_SIZE), # Ignore child model
     # Adult model pointers
     (CODE_START + 0xE6718, 75 * 8), # Writes 75 4-byte pointers with 4 bytes between

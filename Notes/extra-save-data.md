@@ -17,6 +17,9 @@ The unused field (offset 0x10) of the permanent scene flags (save context + 0xd4
 * FW in both ages: Scenes 0x3E–0x47
 * Triforce Hunt: Scene 0x48
 * Pending ice traps: Scene 0x49
+* Trade Quest Items Owned: Scene 0x60
+* Trade Quest Items Traded: Scene 0x62
+* Expensive Merchants (Granny's Potion Shop only): Scene 4E
 
 ## Collectibles field
 
@@ -33,11 +36,13 @@ With `shuffle_cows`, the flags representing which cows have been talked to are s
 * LLR Tower Right Cow: scene 0x4c, bit 0100_0000
 * GV Cow: scene 0x5a, bit 0100_0000
 
-With `shuffle_beans` or `shuffle_medigoron_carpet_salesman`, flags for the bean salesman or Medigoron and the carpet salesman, respectively, are similarly stored in collectibles fields:
+With `shuffle_beans` or `shuffle_expensive_merchants`, flags for the bean salesman or Medigoron and the carpet salesman, respectively, are similarly stored in collectibles fields:
 
 * ZR Magic Bean Salesman: scene 0x54, bit 0000_0002
 * Wasteland Bombchu Salesman: scene 0x5e, bit 0000_0002
 * GC Medigoron: scene 0x62, bit 0000_0002
+
+Bombchu Bowling uses collectible flags 0 - 5 for each of the possible prizes in its scene flags (0x4B).
 
 # inf_table
 
@@ -45,3 +50,7 @@ Additional flags stored in `inf_table` (an array of 16-bit integers at save cont
 
 * Entry 0x1b, bit 0002 is set when the Temple of Time altar is read as child. This allows the pause menu dungeon info to display stone locations depending on settings.
 * Entry 0x1b, bit 0001 is set when the Temple of Time altar is read as adult. This allows the pause menu dungeon info to display medallion locations depending on settings.
+
+# Misc data
+
+Current mask: 1 byte at save context + 0x3B. Written on `Player_Destroy` Read on `Player_Init` except when moving through time.

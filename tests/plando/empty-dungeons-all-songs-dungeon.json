@@ -5,7 +5,7 @@
         "shuffle_ganon_bosskey":                   "medallions",
         "ganon_bosskey_medallions":                6,
         "item_pool_value":                         "minimal",
-        "shuffle_child_trade":                     "skip_child_zelda",
+        "shuffle_child_trade":                     [],
         "shuffle_song_items":                      "dungeon",
         "empty_dungeons_mode":                     "specific",
         "empty_dungeons_specific":                 [
@@ -17,6 +17,9 @@
           "Water Temple",
           "Shadow Temple",
           "Spirit Temple"
+        ],
+        "starting_items": [
+          "zeldas_letter"
         ]
     }
 }
