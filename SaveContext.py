@@ -302,7 +302,7 @@ class SaveContext():
         elif item == IGNORE_LOCATION:
             pass # used to disable some skipped and inaccessible locations
         elif item in SaveContext.save_writes_table:
-            if item.startswith('Silver Rupee ('):
+            if item.startswith('Silver Rupee (') or item.startswith('Silver Rupee Pouch ('):
                 puzzle = item[:-1].split(' (', 1)[1]
                 needed_count = {
                     "Dodongos Cavern Staircase": 5,
@@ -328,6 +328,9 @@ class SaveContext():
                     "Ganons Castle Water Trial": 5,
                     "Ganons Castle Forest Trial": 5,
                 }[puzzle]
+                if item.startswith('Silver Rupee Pouch ('):
+                    item = item.replace('Silver Rupee Pouch (', 'Silver Rupee (')
+                    count = needed_count
                 if count >= needed_count:
                     save_writes = {
                         "Dodongos Cavern Staircase":           {'silver_rupee_counts.dc_staircase': needed_count, 'scene_flags.dodongo.swch.silver_rupees_staircase': True},
@@ -1266,8 +1269,30 @@ class SaveContext():
             'keys.gc': None,
             'total_keys.gc': None,
         },
-        #HACK: these counts aren't used since exact counts based on whether the dungeon is MQ are defined above,
-        # but the entries need to be there for key rings to be valid starting items
+        'Silver Rupee (Dodongos Cavern Staircase)':            {'silver_rupee_counts.dc_staircase': None},
+        'Silver Rupee (Ice Cavern Spinning Scythe)':           {'silver_rupee_counts.ice_scythe': None},
+        'Silver Rupee (Ice Cavern Push Block)':                {'silver_rupee_counts.ice_block': None},
+        'Silver Rupee (Bottom of the Well Basement)':          {'silver_rupee_counts.botw_basement': None},
+        'Silver Rupee (Shadow Temple Scythe Shortcut)':        {'silver_rupee_counts.shadow_scythe': None},
+        'Silver Rupee (Shadow Temple Invisible Blades)':       {'silver_rupee_counts.shadow_blades': None},
+        'Silver Rupee (Shadow Temple Huge Pit)':               {'silver_rupee_counts.shadow_pit': None},
+        'Silver Rupee (Shadow Temple Invisible Spikes)':       {'silver_rupee_counts.shadow_spikes': None},
+        'Silver Rupee (Gerudo Training Ground Slopes)':        {'silver_rupee_counts.gtg_slopes': None},
+        'Silver Rupee (Gerudo Training Ground Lava)':          {'silver_rupee_counts.gtg_lava': None},
+        'Silver Rupee (Gerudo Training Ground Water)':         {'silver_rupee_counts.gtg_water': None},
+        'Silver Rupee (Spirit Temple Child Early Torches)':    {'silver_rupee_counts.spirit_torches': None},
+        'Silver Rupee (Spirit Temple Adult Boulders)':         {'silver_rupee_counts.spirit_boulders': None},
+        'Silver Rupee (Spirit Temple Lobby and Lower Adult)':  {'silver_rupee_counts.spirit_lobby': None},
+        'Silver Rupee (Spirit Temple Sun Block)':              {'silver_rupee_counts.spirit_sun': None},
+        'Silver Rupee (Spirit Temple Adult Climb)':            {'silver_rupee_counts.spirit_adult_climb': None},
+        'Silver Rupee (Ganons Castle Spirit Trial)':           {'silver_rupee_counts.trials_spirit': None},
+        'Silver Rupee (Ganons Castle Light Trial)':            {'silver_rupee_counts.trials_light': None},
+        'Silver Rupee (Ganons Castle Fire Trial)':             {'silver_rupee_counts.trials_fire': None},
+        'Silver Rupee (Ganons Castle Shadow Trial)':           {'silver_rupee_counts.trials_shadow': None},
+        'Silver Rupee (Ganons Castle Water Trial)':            {'silver_rupee_counts.trials_water': None},
+        'Silver Rupee (Ganons Castle Forest Trial)':           {'silver_rupee_counts.trials_forest': None},
+        #HACK: the following counts aren't used since exact counts based on whether the dungeon is MQ are defined above,
+        # but the entries need to be there for key rings and silver rupee pouches to be valid starting items
         "Small Key Ring (Forest Temple)"          : {
             'keys.forest': 6,
             'total_keys.forest': 6,
@@ -1304,28 +1329,28 @@ class SaveContext():
             'keys.gc': 3,
             'total_keys.gc': 3,
         },
-        'Silver Rupee (Dodongos Cavern Staircase)':            {'silver_rupee_counts.dc_staircase': None},
-        'Silver Rupee (Ice Cavern Spinning Scythe)':           {'silver_rupee_counts.ice_scythe': None},
-        'Silver Rupee (Ice Cavern Push Block)':                {'silver_rupee_counts.ice_block': None},
-        'Silver Rupee (Bottom of the Well Basement)':          {'silver_rupee_counts.botw_basement': None},
-        'Silver Rupee (Shadow Temple Scythe Shortcut)':        {'silver_rupee_counts.shadow_scythe': None},
-        'Silver Rupee (Shadow Temple Invisible Blades)':       {'silver_rupee_counts.shadow_blades': None},
-        'Silver Rupee (Shadow Temple Huge Pit)':               {'silver_rupee_counts.shadow_pit': None},
-        'Silver Rupee (Shadow Temple Invisible Spikes)':       {'silver_rupee_counts.shadow_spikes': None},
-        'Silver Rupee (Gerudo Training Ground Slopes)':        {'silver_rupee_counts.gtg_slopes': None},
-        'Silver Rupee (Gerudo Training Ground Lava)':          {'silver_rupee_counts.gtg_lava': None},
-        'Silver Rupee (Gerudo Training Ground Water)':         {'silver_rupee_counts.gtg_water': None},
-        'Silver Rupee (Spirit Temple Child Early Torches)':    {'silver_rupee_counts.spirit_torches': None},
-        'Silver Rupee (Spirit Temple Adult Boulders)':         {'silver_rupee_counts.spirit_boulders': None},
-        'Silver Rupee (Spirit Temple Lobby and Lower Adult)':  {'silver_rupee_counts.spirit_lobby': None},
-        'Silver Rupee (Spirit Temple Sun Block)':              {'silver_rupee_counts.spirit_sun': None},
-        'Silver Rupee (Spirit Temple Adult Climb)':            {'silver_rupee_counts.spirit_adult_climb': None},
-        'Silver Rupee (Ganons Castle Spirit Trial)':           {'silver_rupee_counts.trials_spirit': None},
-        'Silver Rupee (Ganons Castle Light Trial)':            {'silver_rupee_counts.trials_light': None},
-        'Silver Rupee (Ganons Castle Fire Trial)':             {'silver_rupee_counts.trials_fire': None},
-        'Silver Rupee (Ganons Castle Shadow Trial)':           {'silver_rupee_counts.trials_shadow': None},
-        'Silver Rupee (Ganons Castle Water Trial)':            {'silver_rupee_counts.trials_water': None},
-        'Silver Rupee (Ganons Castle Forest Trial)':           {'silver_rupee_counts.trials_forest': None},
+        'Silver Rupee Pouch (Dodongos Cavern Staircase)':            {'silver_rupee_counts.dc_staircase': 5},
+        'Silver Rupee Pouch (Ice Cavern Spinning Scythe)':           {'silver_rupee_counts.ice_scythe': 5},
+        'Silver Rupee Pouch (Ice Cavern Push Block)':                {'silver_rupee_counts.ice_block': 5},
+        'Silver Rupee Pouch (Bottom of the Well Basement)':          {'silver_rupee_counts.botw_basement': 5},
+        'Silver Rupee Pouch (Shadow Temple Scythe Shortcut)':        {'silver_rupee_counts.shadow_scythe': 5},
+        'Silver Rupee Pouch (Shadow Temple Invisible Blades)':       {'silver_rupee_counts.shadow_blades': 10},
+        'Silver Rupee Pouch (Shadow Temple Huge Pit)':               {'silver_rupee_counts.shadow_pit': 5},
+        'Silver Rupee Pouch (Shadow Temple Invisible Spikes)':       {'silver_rupee_counts.shadow_spikes': 10},
+        'Silver Rupee Pouch (Gerudo Training Ground Slopes)':        {'silver_rupee_counts.gtg_slopes': 5},
+        'Silver Rupee Pouch (Gerudo Training Ground Lava)':          {'silver_rupee_counts.gtg_lava': 6},
+        'Silver Rupee Pouch (Gerudo Training Ground Water)':         {'silver_rupee_counts.gtg_water': 5},
+        'Silver Rupee Pouch (Spirit Temple Child Early Torches)':    {'silver_rupee_counts.spirit_torches': 5},
+        'Silver Rupee Pouch (Spirit Temple Adult Boulders)':         {'silver_rupee_counts.spirit_boulders': 5},
+        'Silver Rupee Pouch (Spirit Temple Lobby and Lower Adult)':  {'silver_rupee_counts.spirit_lobby': 5},
+        'Silver Rupee Pouch (Spirit Temple Sun Block)':              {'silver_rupee_counts.spirit_sun': 5},
+        'Silver Rupee Pouch (Spirit Temple Adult Climb)':            {'silver_rupee_counts.spirit_adult_climb': 5},
+        'Silver Rupee Pouch (Ganons Castle Spirit Trial)':           {'silver_rupee_counts.trials_spirit': 5},
+        'Silver Rupee Pouch (Ganons Castle Light Trial)':            {'silver_rupee_counts.trials_light': 5},
+        'Silver Rupee Pouch (Ganons Castle Fire Trial)':             {'silver_rupee_counts.trials_fire': 5},
+        'Silver Rupee Pouch (Ganons Castle Shadow Trial)':           {'silver_rupee_counts.trials_shadow': 5},
+        'Silver Rupee Pouch (Ganons Castle Water Trial)':            {'silver_rupee_counts.trials_water': 5},
+        'Silver Rupee Pouch (Ganons Castle Forest Trial)':           {'silver_rupee_counts.trials_forest': 5},
     }
 
 
