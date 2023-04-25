@@ -6,6 +6,7 @@ from Item import ItemInfo
 from ItemPool import triforce_blitz_items
 from RulesCommon import escape_name
 
+Triforce_Blitz_Pieces = list(map(lambda item: ItemInfo.solver_ids[escape_name(item)], triforce_blitz_items))
 Triforce_Piece = ItemInfo.solver_ids['Triforce_Piece']
 Triforce = ItemInfo.solver_ids['Triforce']
 Rutos_Letter = ItemInfo.solver_ids['Rutos_Letter']
@@ -51,7 +52,7 @@ class State(object):
 
 
     def won_triforce_blitz(self):
-        return self.has_all_of(triforce_blitz_items)
+        return self.has_all_of(Triforce_Blitz_Pieces)
 
 
     def won_normal(self):
