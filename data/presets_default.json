@@ -138,11 +138,11 @@
         "triforce_blitz":                           true,
         "logic_rules":                              "glitchless",
         "reachable_locations":                      "all",
-        "bombchus_in_logic":                        false,
+        "free_bombchu_drops":                       false,
         "one_item_per_dungeon":                     false,
         "trials_random":                            false,
         "trials":                                   0,
-        "shuffle_child_trade":                     "skip_child_zelda",
+        "shuffle_child_trade":                      [],
         "no_escape_sequence":                       true,
         "no_guard_stealth":                         true,
         "no_epona_race":                            true,
@@ -167,7 +167,7 @@
         "shuffle_song_items":                       "song",
         "shuffle_cows":                             false,
         "shuffle_beans":                            false,
-        "shuffle_medigoron_carpet_salesman":        false,
+        "shuffle_expensive_merchants":              false,
         "shuffle_interior_entrances":               "off",
         "shuffle_grotto_entrances":                 false,
         "shuffle_dungeon_entrances":                false,
@@ -215,14 +215,16 @@
         "logic_lens_spirit",
         "logic_water_gold_scale_no_entry"
         ],
+        "adult_trade_shuffle":                     false,
         "adult_trade_start":                       [
-        "Claim Check"
+            "Claim Check"
         ],
         "starting_equipment":                      [
-        "deku_shield"
+            "deku_shield"
         ],
         "starting_items":                          [
-        "ocarina"
+            "ocarina",
+            "zeldas_letter"
         ],
         "starting_songs":                          [],
         "ocarina_songs":                           false,
@@ -235,7 +237,7 @@
         "item_hints":                              [],
         "hint_dist_user":                          {},
         "text_shuffle":                            "none",
-        "misc_hints":                              ["altar", "ganondorf", "warp_songs"],
+        "misc_hints":                              ["altar", "ganondorf", "warp_songs_and_owls"],
         "ice_trap_appearance":                     "junk_only",
         "junk_ice_traps":                          "off",
         "item_pool_value":                         "balanced",
@@ -265,11 +267,11 @@
         "triforce_blitz":                           true,
         "logic_rules":                              "glitchless",
         "reachable_locations":                      "all",
-        "bombchus_in_logic":                        false,
+        "free_bombchu_drops":                       false,
         "one_item_per_dungeon":                     false,
         "trials_random":                            false,
         "trials":                                   0,
-        "shuffle_child_trade":                     "skip_child_zelda",
+        "shuffle_child_trade":                      [],
         "no_escape_sequence":                       true,
         "no_guard_stealth":                         true,
         "no_epona_race":                            true,
@@ -294,7 +296,7 @@
         "shuffle_song_items":                       "song",
         "shuffle_cows":                             false,
         "shuffle_beans":                            false,
-        "shuffle_medigoron_carpet_salesman":        false,
+        "shuffle_expensive_merchants":              false,
         "shuffle_interior_entrances":               "off",
         "shuffle_grotto_entrances":                 false,
         "shuffle_dungeon_entrances":                false,
@@ -342,14 +344,16 @@
         "logic_lens_spirit",
         "logic_water_gold_scale_no_entry"
         ],
+        "adult_trade_shuffle":                     false,
         "adult_trade_start":                       [
-        "Claim Check"
+            "Claim Check"
         ],
         "starting_equipment":                      [
-        "deku_shield"
+            "deku_shield"
         ],
         "starting_items":                          [
-        "ocarina"
+            "ocarina",
+            "zeldas_letter"
         ],
         "starting_songs":                          [],
         "ocarina_songs":                           false,
@@ -362,7 +366,7 @@
         "item_hints":                              [],
         "hint_dist_user":                          {},
         "text_shuffle":                            "none",
-        "misc_hints":                              ["altar", "ganondorf", "warp_songs", "20_skulltulas"],
+        "misc_hints":                              ["altar", "ganondorf", "warp_songs_and_owls", "20_skulltulas"],
         "ice_trap_appearance":                     "junk_only",
         "junk_ice_traps":                          "off",
         "item_pool_value":                         "balanced",
