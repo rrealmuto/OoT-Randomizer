@@ -651,7 +651,7 @@ void Set_NewOverrideFlag(uint16_t flag) {
 // Not clearing room_index to -1 causes collectible items to despawn upon switching rooms.
 void Item_DropCollectible_Room_Hack(EnItem00 *spawnedActor)
 {
-    if(spawnedActor->override.key.all && !Get_NewOverrideFlag(Actor_GetAdditionalData(spawnedActor)->flag)) // Check if we should override the collectible
+    if(spawnedActor->override.key.all && !Get_NewOverrideFlag(Actor_GetAdditionalData(&(spawnedActor->actor))->flag)) // Check if we should override the collectible
     {
         return; // Overriding the collectible so just return.
     }

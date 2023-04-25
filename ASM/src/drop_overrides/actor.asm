@@ -2,6 +2,15 @@ CURR_ACTOR_SPAWN_INDEX:
 .halfword 0x0000
 .halfword 0x0000
 
+Actor_SetWorldToHome_Hook:	
+    addiu   sp, sp, -0x20	
+    sw      ra, 0x1C (sp)	
+    jal     Actor_SetWorldToHome_End	
+    nop	
+    lw      ra, 0x1C (sp)	
+    jr      ra	
+    addiu   sp, sp, 0x20
+
 ; Hacks Actor_UpdateAll so that we can override actor spawns.
 Actor_UpdateAll_Hook:
 ;A0 - Actor Context

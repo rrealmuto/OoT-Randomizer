@@ -53,11 +53,7 @@ void Actor_SetWorldToHome_End(z64_actor_t *actor) {
         case OBJ_COMB: {
             actor->rot_world.z = 0;
             break;
-        }
-        case EN_ITEM00: {
-            actor->rot_world.y = 0;
-        }
-        default: {
+        default:
             break;
         }
     }

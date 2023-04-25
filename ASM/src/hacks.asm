@@ -747,6 +747,12 @@ sh  v0, 0x004E(sp)
     jal     Actor_Spawn_Malloc_Hack
     sw      v1, 0x004C(sp)
 
+; Hook at the end of Actor_SetWorldToHome to zeroize anything we use to store additional flag data
+.orga 0xA96E5C ; In memory: 0x80020EFC
+; Replaces:
+;   jr      ra
+    j       Actor_SetWorldToHome_Hook
+
 ; Hook Actor_UpdateAll when each actor is being initialized. At the call to Actor_SpawnEntry
 ; Used to set the flag (z-rotation) of the actor to its position in the actor table.
 .orga 0xA99D48 ; In memory: 0x80023DE8
