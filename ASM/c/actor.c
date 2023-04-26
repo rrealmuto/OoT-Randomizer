@@ -197,6 +197,7 @@ bool spawn_override_silver_rupee(ActorEntry *actorEntry, z64_game_t *globalCtx, 
     *overridden = false;
     if (SHUFFLE_SILVER_RUPEES) { // Check if silver rupee shuffle is enabled.
         uint16_t flag = (curr_scene_setup << 14) | (globalCtx->room_index << 8) | CURR_ACTOR_SPAWN_INDEX;
+        flag = resolve_alternative_flag(globalCtx->scene_index, flag);
         uint8_t type = (actorEntry->params >> 0x0C) & 0xF;
         if (type != 1) { // only override actual silver rupees, not the switches or pots.
             return true;
