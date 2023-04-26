@@ -884,8 +884,8 @@ location_table = OrderedDict([
     ("LH Grotto Beehive",                                            ("Beehive",      0x3E,  (12,0x0F,4), None,        'Rupees (20)',                           ("Lake Hylia", "Grottos", "Beehives",))),
     # Lake Hylia Gossip Stones
     ("LH Lab Gossip Stone Drop", ("GossipStone", 0x57, [(0,2,3),(0,0,53)], None, 'Rupees (20)',         ("Lake Hylia","GossipStone"))),
-    ("LH Gossip Stone (Southeast) Drop", ("GossipStone", 0x57, [(0,2,4),(0,0,54)], None, 'Rupees (20)', ("Lake Hylia","GossipStone"))),
-    ("LH Gossip Stone (Southwest) Drop", ("GossipStone", 0x57, [(0,2,5),(0,0,55)], None, 'Rupees (20)', ("Lake Hylia","GossipStone"))),
+    ("LH Gossip Stone (Southeast) Drop", ("GossipStone", 0x57, [(0,2,4),(0,0,55)], None, 'Rupees (20)', ("Lake Hylia","GossipStone"))),
+    ("LH Gossip Stone (Southwest) Drop", ("GossipStone", 0x57, [(0,2,5),(0,0,54)], None, 'Rupees (20)', ("Lake Hylia","GossipStone"))),
 
 
     # Lake Hylia Enemies
