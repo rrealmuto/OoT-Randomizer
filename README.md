@@ -50,6 +50,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * “Triforce Blitz S2” is a fast-paced game mode with very powerful hints used for [an upcoming tournament](https://midos.house/tfb/2). See [the official website](https://www.triforceblitz.com/) for details.
 * Other changes:
   * The game now only gives incoming items to the player when it's safe to do so. Previously checking this was the responsibility of the multiworld plugin. ([#1867](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1867))
+  * When picking up a junk item from a location that supports fast junk pickup (such as a pot), the animation and sound effect is now distinct depending on whether the item is for another player ([#1766](https://github.com/OoTRandomizer/OoT-Randomizer/issues/1766), fix from [rrealmuto's `outgoing_junk` branch](https://github.com/rrealmuto/OoT-Randomizer/tree/outgoing_junk))
   * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
   * The conditions for forcing one-way entrances that lead to the Bolero, Nocturne, and Requiem warp pads have been adjusted to increase variety with some settings, such as “Guarantee Reachable Locations” set to “All Goals”, “Shuffle Dungeon Rewards”, or “Mix Entrance Pools” (based on [#1440](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1440))
   * Plandos can specify different settings for each world (based on [Andols0's `individual-settings` branch](https://github.com/Andols0/OoT-Randomizer/tree/individual-settings))
