@@ -369,7 +369,7 @@ SRAM_SLOTS:
 
 ; Increase the size of EnItem00 instances to store the override
 .orga 0xB5D6BE ; Address in ROM of the enitem00 init params
-    .halfword 0x01AC
+    .halfword 0x01BC ; Originally 0x019C
 
 ; Increase the size of pot instances to store chest type
 .orga 0xDE8A5E ; Address in ROM of the ObjTsubo init params
@@ -410,6 +410,20 @@ SRAM_SLOTS:
     nop
 .headersize(0)
 
+; Hack EnItem00_Update when it checks proximity to the player to handle silver rupee collisions differently
+; EnItem00_ProximityCheck_Hook will jump back into EnItem00 as appropriate.
+.headersize (0x800110A0 - 0xA87000)
+.org 0x80012C14 ; In Memory 0x80012C14
+; Replaces
+;   mtc1    at, f18
+;   lwc1    f4, 0x0090(s0)
+    jal     EnItem00_ProximityCheck_Hook
+    nop
+    ; Check our return result in v0. If it's true (actor is in proximity) then continue on the function, otherwise return
+    bnez    v0, 0x80012C78 ; if v0 != 0 the player isn't in proximity, branch inside the original if where it calls Actor_HasParent before returning.
+    lui     t6, 0x0001
+    b       0x80012C64
+
 ; Hack EnItem00 Action Function (func_8001E304 from decomp, 0x8001251C in 1.0) used by Item_DropCollectible to not increment the time to live if its < 0
 ; replaces
 ;   lh      t6, 0x014A(s0)
@@ -423,7 +437,7 @@ SRAM_SLOTS:
     nop
     lh      v0, 0x001C(s0)
     addiu   at, r0, 0x0003
-    .skip 4
+.skip 4
     nop
 
 ; Override the drop_id convert function s16 func_8001F404(s16 dropId) from decomp
@@ -443,7 +457,7 @@ SRAM_SLOTS:
 ;   beq     v0, at, 0x80013888
 ;   addiu   t8, r0, 0xFFFF
 ;   sb      t8, 0x0003(s2)
-.orga 0xA897C0; in memory 0x80013860
+.orga 0xA897C0 ; in memory 0x80013860
     jal     drop_collectible_room_hook
     nop
     nop
@@ -488,13 +502,13 @@ SRAM_SLOTS:
 ; Hack Item_DropCollectible call to Actor_Spawn to set override
 ; replaces
 ;   jal     0x80025110
-.orga 0xA8972C; in memory 0x800137B8
+.orga 0xA8972C ; in memory 0x800137B8
     jal     Item_DropCollectible_Actor_Spawn_Override
 
 ; Hack Item_DropCollectible2 call to Actor_Spawn to set override
 ; replaces
 ;   jal     0x80025110
-.orga 0xA89958; in memory 0x800139E0
+.orga 0xA89958 ; in memory 0x800139E0
     jal     Item_DropCollectible_Actor_Spawn_Override
 
 ; Hack ObjTsubo_SpawnCollectible (Pot) to call our overridden spawn function
@@ -517,7 +531,6 @@ SRAM_SLOTS:
 .orga 0xDFA520
     j       EnTuboTrap_DropCollectible_Hack
     nop
-
 
 ; Hack ObjKibako2_Init (Large Crates) to not delete our extended flag
 .orga 0xEC832C
@@ -634,7 +647,6 @@ bg_spot18_basket_rupees_loopstart: ; our new loop branch target
     nop
     nop
 
-
 ; Hook at the end of Actor_SetWorldToHome to zeroize anything we use to store additional flag data
 .orga 0xA96E5C ; In memory: 0x80020EFC
 ; Replaces:
@@ -643,10 +655,16 @@ bg_spot18_basket_rupees_loopstart: ; our new loop branch target
 
 ; Hook Actor_UpdateAll when each actor is being initialized. At the call to Actor_SpawnEntry
 ; Used to set the flag (z-rotation) of the actor to its position in the actor table.
-.orga 0xA99D48; In memory: 0x80023DE8
+.orga 0xA99D48 ; In memory: 0x80023DE8
 ; Replaces:
-;   jal 0x800255C4
-    jal Actor_UpdateAll_Hook
+;   jal     0x800255C4
+    jal     Actor_UpdateAll_Hook
+
+; Hack Actor_SpawnEntry so we can override actors being spawned
+.orga 0xA9B524 ; In memory: 0x800255C4
+; Replaces: Entire function
+    j       Actor_SpawnEntry_Hack
+    nop
 
 ; Runs when storing an incoming item to the player instance
 ; Replaces:
@@ -3588,4 +3606,17 @@ courtyard_guards_kill:
 ;          lh      t2, 0x014C(s0)
 .orga 0xABDD10
     jal     camera_init
+    nop
+
+;=========================================================================================
+; Add custom message control characters
+;=========================================================================================
+
+; In Message_Decode at the last control code check (0x01 for new line)
+; Replaces
+;   addiu   at, r0, 0x0001
+;   bne     v0, at, 0x800DC580
+.headersize (0x800110A0 - 0xA87000)
+.org 0x800DC568
+    j       Message_Decode_Control_Code_Hook
     nop

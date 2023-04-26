@@ -116,6 +116,7 @@ RANDO_CONTEXT:
 .include "player_save_mask.asm"
 .include "gohma.asm"
 .include "camera_init.asm"
+.include "en_item00.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"
