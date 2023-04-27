@@ -54,6 +54,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
   * The conditions for forcing one-way entrances that lead to the Bolero, Nocturne, and Requiem warp pads have been adjusted to increase variety with some settings, such as “Guarantee Reachable Locations” set to “All Goals”, “Shuffle Dungeon Rewards”, or “Mix Entrance Pools” (based on [#1440](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1440))
   * Plandos can specify different settings for each world (based on [Andols0's `individual-settings` branch](https://github.com/Andols0/OoT-Randomizer/tree/individual-settings))
+  * Pushing armos statues is faster (from  [rrealmuto's `armos_speedup` branch](https://github.com/rrealmuto/OoT-Randomizer/tree/armos_speedup))
   * Gold Skulltula Tokens can be on excluded locations if there are no checks requiring them (such as in SAWS)
   * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
   * Python 3.6 is no longer supported since GitHub's testing infrastructure no longer supports it.
