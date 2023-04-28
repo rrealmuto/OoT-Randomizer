@@ -91,20 +91,34 @@ def patch_tunic_icon(rom, tunic, color):
 
 def patch_tunic_colors(rom, settings, log, symbols):
     # patch tunic colors
+    
+    tunic_address = rom.sym("CFG_TUNIC_COLORS")
     tunics = [
-        ('Kokiri Tunic', 'kokiri_color', 0x00B6DA38),
-        ('Goron Tunic',  'goron_color',  0x00B6DA3B),
-        ('Zora Tunic',   'zora_color',   0x00B6DA3E),
+        ('Kokiri Tunic', 'kokiri_color', tunic_address),
+        ('Goron Tunic',  'goron_color',  tunic_address+3),
+        ('Zora Tunic',   'zora_color',   tunic_address+6),
     ]
+
     tunic_color_list = get_tunic_colors()
 
     for tunic, tunic_setting, address in tunics:
         tunic_option = settings.__dict__[tunic_setting]
 
         # Handle Plando
-        if log.src_dict.get('equipment_colors', {}).get(tunic, {}).get('color', ''):
+        if log.src_dict.get('equipment_colors', {}).get(tunic, {}).get('color', '') and log.src_dict['equipment_colors'][tunic][':option'] != 'Rainbow':
             tunic_option = log.src_dict['equipment_colors'][tunic]['color']
 
+	   # Handle rainbow
+        if tunic_option == 'Rainbow':
+            bit_shifts = {'Kokiri Tunic': 0, 'Goron Tunic': 1, 'Zora Tunic': 2}
+            # get symbol
+            rainbow_tunic_symbol = rom.sym('CFG_RAINBOW_TUNIC_ENABLED')
+            # read the current value
+            setting = rom.read_byte(rainbow_tunic_symbol)
+            # Write bits for each tunic
+            setting |= 1 << bit_shifts[tunic]
+            rom.write_byte(rainbow_tunic_symbol, setting)
+        
         # handle random
         if tunic_option == 'Random Choice':
             tunic_option = random.choice(tunic_color_list)
@@ -115,16 +129,18 @@ def patch_tunic_colors(rom, settings, log, symbols):
         elif tunic_option in tunic_colors:
             color = list(tunic_colors[tunic_option])
         # build color from hex code
+        elif tunic_option == 'Rainbow':
+            color = list(Color(0x00, 0x00, 0x00))
         else:
             color = hex_to_color(tunic_option)
             tunic_option = 'Custom'
         # "Weird" weirdshots will crash if the Kokiri Tunic Green value is > 0x99 and possibly 0x98. Brickwall it.
-        if settings.logic_rules != 'glitchless' and tunic == 'Kokiri Tunic':
-            color[1] = min(color[1], 0x97)
+        #if settings.logic_rules != 'glitchless' and tunic == 'Kokiri Tunic':
+        #    color[1] = min(color[1], 0x97)
         rom.write_bytes(address, color)
 
         # patch the tunic icon
-        if [tunic, tunic_option] not in [['Kokiri Tunic', 'Kokiri Green'], ['Goron Tunic', 'Goron Red'], ['Zora Tunic', 'Zora Blue']]:
+        if (tunic_option != 'Rainbow') and [tunic, tunic_option] not in [['Kokiri Tunic', 'Kokiri Green'], ['Goron Tunic', 'Goron Red'], ['Zora Tunic', 'Zora Blue']]:
             patch_tunic_icon(rom, tunic, color)
         else:
             patch_tunic_icon(rom, tunic, None)

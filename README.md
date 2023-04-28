@@ -15,6 +15,7 @@ Individual Ocarina Note Shuffle (By GSKirox) - Shuffles individual ocarina butto
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v22](#v22)
   * [v21](#v21)
   * [v20](#v20)
   * [v19](#v19)
@@ -40,6 +41,9 @@ Individual Ocarina Note Shuffle (By GSKirox) - Shuffles individual ocarina butto
   * [4.0](#40)
 
 ## RealRob Changelog
+### v22
+  * New Cosmetic Option - Rainbow Tunic. Might also fix the weirdshot crash
+
 ### v21
   * New Setting - Individual Ocarina Note Shuffle
   * Enemy Drop Shuffle Fixes:
