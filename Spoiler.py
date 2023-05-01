@@ -92,6 +92,7 @@ class Spoiler(object):
             "Dungeon": 6,
             "ChildBoss": 7,
             "AdultBoss": 7,
+            "SpecialBoss": 7,
             "Hideout": 8,
             "SpecialInterior": 8,
             "Interior": 8,

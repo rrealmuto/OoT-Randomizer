@@ -4,6 +4,14 @@
         "dungeon": "Ganons Castle",
         "exits": {
             "Castle Grounds From Ganons Castle": "True",
+            "Ganons Castle Main": "True"
+        }
+    },
+    {
+        "region_name": "Ganons Castle Main",
+        "dungeon": "Ganons Castle",
+        "exits": {
+            "Ganons Castle Lobby": "True",
             "Ganons Castle Forest Trial": "True",
             "Ganons Castle Water Trial": "True",
             "Ganons Castle Shadow Trial": "True",
