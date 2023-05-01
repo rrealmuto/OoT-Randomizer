@@ -28,6 +28,14 @@ typedef struct {
 
 extern const exchange_item_t trade_quest_items[22];
 
+typedef struct {
+    z64_actor_t  actor;                     /* 0x0000 */
+    char         unk_00_[0x0058];           /* 0x013C */
+    int32_t      getItemId;                 /* 0x0194 */
+    char         unk_01_[0x002C];           /* 0x0198 */
+                                            /* 0x01C4 */
+} EnGirlA;
+
 typedef struct
 {
     z64_actor_t  actor;                     /* 0x0000 */
@@ -36,7 +44,14 @@ typedef struct
     uint8_t      happyMaskShopkeeperEyeIdx; /* 0x01DC */
     char         unk_01_[0x000F];           /* 0x01DD */
     int16_t      stateFlag;                 /* 0x01EC */
-    char         unk_02_[0x00DA];           /* 0x01EE */
+    int16_t      tempStateFlag;             /* 0x01EE */
+    EnGirlA*     shelfSlots[8];             /* 0x01F0 */
+    // Shelves are indexed as such:
+    /* 7 5  3 1 */
+    /* 6 4  2 0 */
+    char         unk_02_[0x0032];           /* 0x0210 */
+    uint8_t      cursorIndex;               /* 0x0242 */
+    char         unk_03_[0x0084];           /* 0x0244 */
                                             /* 0x02C8 */
 } EnOssan;
 

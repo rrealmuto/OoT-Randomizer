@@ -130,6 +130,8 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * New Misc. Hint `Frogs Ocarina Game` which tells you what item you'll get from the Zora's River frog minigame. The hint appears in the dialog box that's printed before they jump onto the log.
   * Add a goal category for the items required to open the Door of Time, if it's closed.
   * New `MW Season 3 (WotH)` hint distribution which is similar to the `MW Season 3` hint distribution except with Way of the Hero hints instead of goal hints.
+  * New Misc. Hint for unique merchants: Bean Salesman, Medigoron, Wasteland Bombchu Salesman, Granny's Potion Shop.
+  * Owls are now included in the Warp Songs misc hint and will tell you where they go when enabled.
 * **Other**
   * When picking up a small key after the first, the text box will now inform you how many you've found total.
   * The longstanding vanilla bug where using Din's Fire on a white bubble crashes the game has been fixed.
@@ -144,6 +146,9 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * Fix the change which makes graveyard grave hole ledges un-grabbable incorrectly applied to other ledges in the graveyard area.
   * Fix the file path for custom music on some Linux machines.
   * Fix "Spirit Temple MQ Beamos Room Chest" having an incorrect vanilla item.
+  * Starting with Magic Beans will now properly start you with 10 beans instead of 9. 
+  * A rare softlock when fighting Gohma present in the original game has been fixed.
+  * A crash when diving and resurfacing in very shallow water present in the original game has been fixed.
 * **Hints**
   * Fix the cryptic hint for Ganon's Castle Boss Key.
   * Fix missing punctuation in dual hints.
@@ -166,7 +171,8 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * The key ring texture has been updated with the normal small key texture, making it shinier.
 * D-Pad mask icons will now enlarge when the mask is equipped, similarly to D-Pad boots.
 * Fix a vanilla bug where jumpslashing into Bongo Bongo's chamber on the last possible frame will not properly skip the cutscene when it should be skipped.
-
+* Various cutscenes removed or shortened, such as Water Temple and Gerudo Fortress gates and scarecrow spawn cutscenes.
+* Heart Containers and Pieces of Heart will no longer be directly hinted by Way of the Hero or Path hints, which is consistent with Triforce Pieces and Gold Skulltula Tokens.
 #### Plandomizer
 * Plandomizer now allows you to specify locations that are valid but do not exist in your current seed, for example, an MQ-specific location when that dungeon is Vanilla.
 * Error messages for conflicting settings have been improved.

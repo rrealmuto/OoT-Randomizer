@@ -1,11 +1,10 @@
 {
     "name":                  "weekly",
     "gui_name":              "Weekly",
-    "description":           "Hint distribution for weekly races. 5 Goal hints, 3 Barren hints, 5 Sometimes hints, 7 Always hints (including 30 Skulltula tokens, Skull Mask, Sheik in Kakariko, and Death Mountain Crater Scrub).",
+    "description":           "Hint distribution for weekly races. 5 Goal hints, 3 Barren hints, 7 Sometimes hints, 5 Always hints (including 30 Skulltula tokens, Skull Mask, and Sheik in Kakariko).",
     "add_locations":         [
         { "location": "Deku Theater Skull Mask", "types": ["always"] },
-        { "location": "Sheik in Kakariko", "types": ["always"] },
-        { "location": "DMC Deku Scrub", "types": ["always"] }
+        { "location": "Sheik in Kakariko", "types": ["always"] }
     ],
     "remove_locations":      [
         { "location": "Ganons Castle Shadow Trial Golden Gauntlets Chest", "types": ["sometimes"] },
@@ -19,7 +18,7 @@
     "remove_items":          [
         { "item": "Zeldas Lullaby", "types": ["goal"] }
     ],
-    "dungeons_barren_limit": 1,
+    "dungeons_barren_limit": 3,
     "named_items_required":  true,
     "vague_named_items":     false,
     "use_default_goals":     true,

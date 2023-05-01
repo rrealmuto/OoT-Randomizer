@@ -33,7 +33,7 @@ inventory = dict(chain(
     _entry('farores_wind', 'Farores Wind', guitext="Farore's Wind"),
     _entry('boomerang'),
     _entry('lens', 'Lens of Truth'),
-    _entry('beans', 'Magic Bean', ammo={'Magic Bean': (9,)}), # start with additional beans
+    _entry('beans', 'Magic Bean', ammo={'Magic Bean': (10,)}), # start with additional beans
     _entry('megaton_hammer', 'Megaton Hammer', guitext = 'Megaton Hammer'),
     _entry('light_arrow', 'Light Arrows'),
     _entry('nayrus_love', 'Nayrus Love', guitext="Nayru's Love"),

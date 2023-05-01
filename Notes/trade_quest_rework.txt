@@ -270,7 +270,7 @@ lbl_808394AC
 in func_8083B040
 
 Owned flags 8011A5D0 + D4 + 60 * 1C + 0x10 uint32 8011B134
-Traded flags 8011A5D0 + D4 + 61 * 1C + 0x10 uint32 8011B150
+Traded flags 8011A5D0 + D4 + 62 * 1C + 0x10 uint32 8011B16C
 
 hook at 80403F4C, lbl_80839320
 

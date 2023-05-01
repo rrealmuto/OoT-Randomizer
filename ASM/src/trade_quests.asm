@@ -481,13 +481,13 @@ check_zelda_cutscene_watched:
     sw      ra, 0x1C(sp)
 
     jal     SaveFile_TradeItemIsTraded
-    ori     a0, $zero, 0x0022           ; ITEM_CHICKEN
+    ori     a0, $zero, 0x0021           ; ITEM_WEIRD_EGG
     bnez    v0, @@skip_letter
     nop
 
 @@give_letter:
     jal     SaveFile_SetTradeItemAsTraded
-    ori     a0, $zero, 0x0022           ; ITEM_CHICKEN
+    ori     a0, $zero, 0x0021           ; ITEM_WEIRD_EGG
 
     ; displaced code
     or      a1, s1, $zero

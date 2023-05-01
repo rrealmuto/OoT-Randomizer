@@ -42,7 +42,7 @@ defaultHintDists = [
     'weekly.json',
 ]
 
-unHintableWothItems = ['Triforce Piece', 'Gold Skulltula Token']
+unHintableWothItems = ['Triforce Piece', 'Gold Skulltula Token', 'Piece of Heart', 'Piece of Heart (Treasure Chest Game)', 'Heart Container']
 
 class RegionRestriction(Enum):
     NONE = 0,

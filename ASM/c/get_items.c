@@ -411,12 +411,14 @@ void handle_pending_items() {
 void get_item(z64_actor_t *from_actor, z64_link_t *link, int8_t incoming_item_id) {
     override_t override = { 0 };
     int incoming_negative = incoming_item_id < 0;
+    int8_t item_id = 0;
+    item_row_t *row;
 
     if (from_actor && incoming_item_id != 0) {
-        int8_t item_id = incoming_negative ? -incoming_item_id : incoming_item_id;
+        item_id = incoming_negative ? -incoming_item_id : incoming_item_id;
         // Set trade items as traded, but keep in inventory. The incoming item
         // ID will be the next sequential trade item, so use that as a reference.
-        item_row_t *row = get_item_row(item_id);
+        row = get_item_row(item_id);
         if (row) {
             int16_t action_id = row->action_id;
             if (CFG_ADULT_TRADE_SHUFFLE && action_id > 0 && from_actor->actor_id != 0x0A && IsAdultTradeItem(action_id)) {
@@ -434,6 +436,18 @@ void get_item(z64_actor_t *from_actor, z64_link_t *link, int8_t incoming_item_id
         // No override, use base game's item code
         clear_override();
         link->incoming_item_id = incoming_item_id;
+
+        // If this is an unshuffled mask shop item, set the mask owned flag
+        // for partial trade shuffle. The rest of the trade items have entries
+        // in the override table when unshuffled. Mask Shop unshuffled items
+        // do not to avoid tripping the shop hack to only allow purchasing
+        // a shop item once.
+        if (row) {
+            if (row->action_id >= Z64_ITEM_KEATON_MASK && row->action_id <= Z64_ITEM_MASK_OF_TRUTH && CFG_CHILD_TRADE_SHUFFLE) {
+                call_effect_function(row);
+            }
+        }
+
         return;
     }
 

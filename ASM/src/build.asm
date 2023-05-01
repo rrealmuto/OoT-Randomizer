@@ -114,6 +114,8 @@ RANDO_CONTEXT:
 .include "rand_seed.asm"
 .include "messages.asm"
 .include "player_save_mask.asm"
+.include "gohma.asm"
+.include "camera_init.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"

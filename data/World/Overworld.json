@@ -230,13 +230,13 @@
         "scene": "Lost Woods",
         "hint": "LOST_WOODS",
         "events": {
-            "Odd Mushroom Access": "is_adult and ('Cojiro Access' or Cojiro)",
-            "Poachers Saw Access": "is_adult and 'Odd Potion Access'"
+            "Odd Mushroom Access": "is_adult and (('Cojiro Access' and not adult_trade_shuffle) or Cojiro)",
+            "Poachers Saw Access": "is_adult and (('Odd Potion Access' and not adult_trade_shuffle) or Odd_Potion)"
         },
         "locations": {
             "LW Skull Kid": "is_child and can_play(Sarias_Song)",
-            "LW Trade Cojiro": "is_adult and Cojiro",
-            "LW Trade Odd Potion": "is_adult and Odd_Potion",
+            "LW Trade Cojiro": "'Odd Mushroom Access'",
+            "LW Trade Odd Potion": "'Poachers Saw Access'",
             "LW Ocarina Memory Game": "is_child and Ocarina",
             "LW Target in Woods": "can_use(Slingshot)",
             "LW Deku Scrub Near Bridge": "is_child and can_stun_deku",
@@ -478,10 +478,10 @@
         "events": {
             "Eyedrops Access": "
                 is_adult and
-                ('Eyeball Frog Access' or (Eyeball_Frog and disable_trade_revert))"
+                (('Eyeball Frog Access' and not adult_trade_shuffle) or (Eyeball_Frog and disable_trade_revert))"
         },
         "locations": {
-            "LH Trade Eyeball Frog": "is_adult and Eyeball_Frog",
+            "LH Trade Eyeball Frog": "'Eyedrops Access'",
             "LH Lab Dive": "
                 (Progressive_Scale, 2) or
                 (logic_lab_diving and is_adult and Iron_Boots and Hookshot)",
@@ -583,11 +583,11 @@
         "hint": "GERUDO_VALLEY",
         "time_passes": true,
         "events": {
-            "Broken Sword Access": "is_adult and ('Poachers Saw Access' or Poachers_Saw)"
+            "Broken Sword Access": "is_adult and (('Poachers Saw Access' and not adult_trade_shuffle) or Poachers_Saw)"
         },
         "locations": {
             "GV Chest": "can_use(Megaton_Hammer)",
-            "GV Trade Poachers Saw": "is_adult and Poachers_Saw",
+            "GV Trade Poachers Saw": "'Broken Sword Access'",
             "GV GS Behind Tent": "can_use(Hookshot) and at_night",
             "GV GS Pillar": "can_use(Hookshot) and at_night"
         },
@@ -1366,7 +1366,7 @@
         "locations": {
             "Market Bombchu Bowling First Prize": "has_explosives",
             "Market Bombchu Bowling Second Prize": "has_explosives",
-            "Market Bombchu Bowling Bombchus": "has_explosives",
+            "Market Bombchu Bowling Bombchus": "found_bombchus",
             "Market Bombchu Bowling Bomb": "has_explosives"
         },
         "exits": {
@@ -1453,7 +1453,7 @@
                 is_adult and Forest_Medallion and Fire_Medallion and Water_Medallion",
             "Kak Anju as Adult": "is_adult and at_day",
             "Kak Anju as Child": "is_child and at_day and (can_break_crate or chicken_count < 7)",
-            "Kak Anju Trade Pocket Cucco": "is_adult and at_day and 'Wake Up Adult Talon'",
+            "Kak Anju Trade Pocket Cucco": "'Cojiro Access'",
             "Kak Near Guards House Pot 1": "is_child",
             "Kak Near Guards House Pot 2": "is_child",
             "Kak Near Guards House Pot 3": "is_child",
@@ -1676,10 +1676,10 @@
         "events": {
             "Odd Potion Access": "
                 is_adult and
-                ('Odd Mushroom Access' or (Odd_Mushroom and disable_trade_revert))"
+                (('Odd Mushroom Access' and not adult_trade_shuffle) or (Odd_Mushroom and disable_trade_revert))"
         },
         "locations": {
-            "Kak Granny Trade Odd Mushroom": "is_adult and Odd_Mushroom",
+            "Kak Granny Trade Odd Mushroom": "'Odd Potion Access'",
             # Granny will not sell her item without turning in odd mushroom
             # If the adult trade item(s) in the world are all after odd mushroom,
             # allow any of the later sequence items to satisfy logic. The patcher
@@ -1860,16 +1860,14 @@
         "hint": "DEATH_MOUNTAIN_TRAIL",
         "time_passes": true,
         "events": {
-            "Prescription Access": "is_adult and ('Broken Sword Access' or Broken_Sword)"
+            "Prescription Access": "is_adult and (('Broken Sword Access' and not adult_trade_shuffle) or Broken_Sword)"
         },
         "locations": {
-            "DMT Biggoron": "
-                is_adult and
-                (Claim_Check or
-                    (guarantee_trade_path and (not adult_trade_shuffle) and
-                    ('Eyedrops Access' or (Eyedrops and disable_trade_revert))))",
-            "DMT Trade Broken Sword": "is_adult and Broken_Sword",
-            "DMT Trade Eyedrops": "is_adult and Eyedrops",
+            "DMT Biggoron": "is_adult and Claim_Check",
+            "DMT Trade Broken Sword": "'Prescription Access'",
+            "DMT Trade Eyedrops": "
+                is_adult and (guarantee_trade_path or adult_trade_shuffle) and
+                (('Eyedrops Access' and not adult_trade_shuffle) or (Eyedrops and disable_trade_revert))",
             "DMT GS Falling Rocks Path": "
                 is_adult and (Megaton_Hammer or logic_trail_gs_upper) and at_night",
             "DMT Gossip Stone": "True",
@@ -2285,7 +2283,8 @@
             "King Zora Thawed": "is_adult and Blue_Fire",
             "Eyeball Frog Access": "
                 is_adult and 'King Zora Thawed' and
-                (Eyedrops or Eyeball_Frog or Prescription or 'Prescription Access')"
+                (((Eyedrops or Eyeball_Frog) and not disable_trade_revert) or
+                    Prescription or ('Prescription Access' and not adult_trade_shuffle))"
         },
         "locations": {
             "ZD Diving Minigame": "is_child",
@@ -2300,7 +2299,7 @@
             "ZD Pot 5": "True",
             "ZD In Front of King Zora Beehive 1": "is_child and can_break_upper_beehive",
             "ZD In Front of King Zora Beehive 2": "is_child and can_break_upper_beehive",
-            "ZD Trade Prescription": "'King Zora Thawed' and Eyeball_Frog",
+            "ZD Trade Prescription": "'Eyeball Frog Access'",
             "ZD GS Frozen Waterfall": "
                 is_adult and at_night and
                 (Hookshot or Bow or Magic_Meter or logic_domain_gs)",

@@ -98,7 +98,7 @@
             "altar",
             "dampe_diary",
             "ganondorf",
-            "warp_songs"
+            "warp_songs_and_owls"
         ],
         "text_shuffle": "none",
         "damage_multiplier": "normal",
@@ -234,7 +234,7 @@
         "misc_hints": [
             "altar",
             "ganondorf",
-            "warp_songs"
+            "warp_songs_and_owls"
         ],
         "text_shuffle": "none",
         "damage_multiplier": "normal",
@@ -266,7 +266,12 @@
         "open_door_of_time": true,
         "zora_fountain": "closed",
         "gerudo_fortress": "fast",
-        "dungeon_shortcuts_choice": "off",
+        "dungeon_shortcuts_choice": "choice",
+        "dungeon_shortcuts": [
+            "Forest Temple",
+            "Jabu Jabus Belly",
+            "Shadow Temple"
+        ],
         "bridge": "medallions",
         "bridge_medallions": 6,
         "trials_random": false,
@@ -290,9 +295,9 @@
         "free_bombchu_drops": false,
         "one_item_per_dungeon": false,
         "shuffle_song_items": "song",
-        "shopsanity": "off",
-        "tokensanity": "off",
-        "shuffle_scrubs": "low",
+        "shopsanity": "4",
+        "tokensanity": "dungeons",
+        "shuffle_scrubs": "off",
         "shuffle_child_trade": [],
         "shuffle_freestanding_items": "off",
         "shuffle_pots": "off",
@@ -304,7 +309,7 @@
         "shuffle_gerudo_card": false,
         "shuffle_beans": false,
         "shuffle_expensive_merchants": false,
-        "shuffle_frog_song_rupees": false,
+        "shuffle_frog_song_rupees": true,
         "shuffle_mapcompass": "startwith",
         "shuffle_smallkeys": "dungeon",
         "shuffle_hideoutkeys": "vanilla",
@@ -312,7 +317,7 @@
         "shuffle_bosskeys": "dungeon",
         "shuffle_ganon_bosskey": "remove",
         "enhance_map_compass": false,
-        "reachable_locations": "beatable",
+        "reachable_locations": "all",
         "logic_no_night_tokens_without_suns_song": false,
         "disabled_locations": [
             "Deku Theater Mask of Truth"
@@ -344,7 +349,7 @@
         ],
         "starting_songs": [],
         "start_with_consumables": true,
-        "start_with_rupees": false,
+        "start_with_rupees": true,
         "starting_hearts": 3,
         "no_escape_sequence": true,
         "no_guard_stealth": true,
@@ -353,7 +358,7 @@
         "complete_mask_quest": false,
         "useful_cutscenes": false,
         "fast_chests": true,
-        "free_scarecrow": false,
+        "free_scarecrow": true,
         "fast_bunny_hood": true,
         "plant_beans": false,
         "chicken_count_random": false,
@@ -372,7 +377,7 @@
         "misc_hints": [
             "altar",
             "ganondorf",
-            "warp_songs",
+            "warp_songs_and_owls",
             "40_skulltulas",
             "50_skulltulas"
         ],
@@ -388,9 +393,6 @@
         "ice_trap_appearance": "junk_only",
         "adult_trade_shuffle": false,
         "adult_trade_start": [
-            "Prescription",
-            "Eyeball Frog",
-            "Eyedrops",
             "Claim Check"
         ]
     },
@@ -503,7 +505,7 @@
         "misc_hints": [
             "altar",
             "ganondorf",
-            "warp_songs"
+            "warp_songs_and_owls"
         ],
         "text_shuffle": "none",
         "damage_multiplier": "normal",
@@ -644,7 +646,7 @@
         "misc_hints": [
             "altar",
             "ganondorf",
-            "warp_songs"
+            "warp_songs_and_owls"
         ],
         "text_shuffle": "none",
         "damage_multiplier": "normal",
@@ -797,7 +799,7 @@
         "misc_hints": [
             "altar",
             "ganondorf",
-            "warp_songs"
+            "warp_songs_and_owls"
         ],
         "text_shuffle": "none",
         "damage_multiplier": "normal",
@@ -1213,7 +1215,7 @@
         "misc_hints": [
             "altar",
             "ganondorf",
-            "warp_songs"
+            "warp_songs_and_owls"
         ],
         "text_shuffle": "none",
         "damage_multiplier": "normal",
@@ -1379,7 +1381,7 @@
         "misc_hints": [
             "altar",
             "ganondorf",
-            "warp_songs",
+            "warp_songs_and_owls",
             "30_skulltulas",
             "40_skulltulas",
             "50_skulltulas"
@@ -1509,7 +1511,7 @@
         "misc_hints": [
             "altar",
             "ganondorf",
-            "warp_songs"
+            "warp_songs_and_owls"
         ],
         "text_shuffle": "none",
         "damage_multiplier": "normal",
