@@ -154,7 +154,7 @@
         "clearer_item_models": false,
         "clearer_hints": true,
         "hints": "always",
-        "hint_dist": "chaos",
+        "hint_dist": "chaos_dev_fenhl",
         "item_hints": [],
         "hint_dist_user": {},
         "misc_hints": [
@@ -396,7 +396,7 @@
         "clearer_item_models": true,
         "clearer_hints": true,
         "hints": "always",
-        "hint_dist": "chaos",
+        "hint_dist": "chaos_dev_fenhl",
         "item_hints": [],
         "hint_dist_user": {},
         "misc_hints": [

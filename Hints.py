@@ -30,6 +30,8 @@ defaultHintDists = [
     'bingo.json',
     'chaos.json',
     'chaos_no_goal.json',
+    'chaos_dev_fenhl.json',
+    'chaos_dev_fenhl_no_goal.json',
     'coop2.json',
     'ddr.json',
     'important_checks.json',

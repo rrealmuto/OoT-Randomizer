@@ -34,6 +34,8 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * New `goal-count`, `playthrough-location`, `goal-legacy`, `goal-legacy-single`, `wanderer`, `unlock-woth`, and `unlock-playthrough` hint types (based on [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev))
 * New hint distributions:
   * “Chaos!!! (no goal hints)” is like “Chaos!!!” but without the possibility of Goal (aka Path) hints, making it suitable for large multiworlds.
+  * “Chaos!!! (dev-fenhl)” is like “Chaos!!!” but including hint types not available on Dev-R.
+  * “Chaos!!! (dev-fenhl, no goal hints)” combines these two changes.
   * “Mixed Pools Tournament” is the hint distribution used for the first Mixed Pools tournament. Note that the tournament itself used [a previous version](https://ootrandomizer.com/generatorDev?version=devFenhl_6.2.100) of this branch.
   * “Triforce Blitz S2” is the hint distribution used for the [Triforce Blitz Season 2 Tournament](https://midos.house/event/tfb/2), taken from [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev). Note that the tournament itself is being played on that branch, not this one.
 * New settings presets:

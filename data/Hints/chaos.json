@@ -1,7 +1,7 @@
 {
     "name":                  "chaos",
     "gui_name":              "Chaos!!!",
-    "description":           "A completely randomized hint distribution with single copies",
+    "description":           "A completely randomized hint distribution with single copies, chosen from hint types from the main branch",
     "add_locations":         [],
     "remove_locations":      [],
     "add_items":             [],
