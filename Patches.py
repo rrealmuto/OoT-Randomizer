@@ -862,6 +862,14 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     rom.write_byte(0xB6D3D3, 0x00) # Gerudo Training Ground
     rom.write_byte(0xB6D42B, 0x00) # Inside Ganon's Castle
 
+    # Allow Farore's everywhere
+    start_restriction_flag_offset = 0xB6D2B0
+    for i in range(0, 99):
+        flags = rom.read_byte(start_restriction_flag_offset + (4*i) + 3)
+        # clear bits 4 and 5 - (0x30 >> 4) should be 0
+        flags = flags & 0b11001111
+        rom.write_byte(start_restriction_flag_offset + (4*i) + 3, flags)
+
     # Allow Ocarina in some places
     rom.write_byte(0xB6D346, 0x11) # Granny's Potion Shop
     rom.write_byte(0xB6D30A, 0x51) # Archery
