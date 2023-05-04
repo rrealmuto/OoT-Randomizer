@@ -158,7 +158,8 @@
     },
     {
         "region_name": "Ganons Castle Tower",
-        "dungeon": "Ganons Castle",
+        "scene": "Ganons Castle Tower",
+        "is_boss_room": true,
         "locations": {
             "Ganons Tower Boss Key Chest": "is_adult or Kokiri_Sword"
         },
@@ -171,8 +172,8 @@
     },
     {
         "region_name": "Ganons Castle Tower Below Boss",
-        "dungeon": "Ganons Castle",
-        "hint": "INSIDE_GANONS_CASTLE",
+        "scene": "Ganons Castle Tower",
+        "is_boss_room": true,
         "alt_hint": "GANONDORFS_CHAMBER",
         "locations": {
             "Ganons Tower Pot 1": "True",
@@ -196,9 +197,8 @@
     },
     {
         "region_name": "Ganondorf Boss Room",
-        "dungeon": "Ganons Castle",
-        "hint": "INSIDE_GANONS_CASTLE",
-        "alt_hint": "GANONDORFS_CHAMBER",
+        "scene": "Ganons Castle Tower",
+        "is_boss_room": true,
         "locations": {
             "Ganondorf Hint": "True",
             "Ganon": "can_use(Light_Arrows)"
