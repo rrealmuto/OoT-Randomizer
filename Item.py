@@ -275,9 +275,9 @@ class Item(object):
                         self.name in ('Small Key (Ganons Castle)', 'Small Key Ring (Ganons Castle)')
                         and self.world.settings.shuffle_pots in ('off', 'overworld')
                         and self.world.settings.trials == 0
-                        and self.dungeon_mq['Ganons Castle']
-                        and self.settings.shuffle_freestanding_items in ('off', 'overworld')
-                        and not self.shuffle_silver_rupees
+                        and self.world.dungeon_mq['Ganons Castle']
+                        and self.world.settings.shuffle_freestanding_items in ('off', 'overworld')
+                        and not self.world.shuffle_silver_rupees
                     )
                 )
             )
