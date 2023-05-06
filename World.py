@@ -111,7 +111,7 @@ class World(object):
                         and (
                             self.one_ways
                             or self.shuffle_special_interior_entrances
-                            or self.settings.shuffle_hideout_entrances
+                            or self.settings.shuffle_hideout_entrances != 'off'
                         )
                     )
                 )

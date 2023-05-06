@@ -41,9 +41,9 @@ def assume_entrance_pool(entrance_pool):
         if entrance.reverse != None and not entrance.decoupled:
             assumed_return = entrance.reverse.assume_reachable()
             world = entrance.world
-            if not (world.mix_entrance_pools and (world.settings.shuffle_overworld_entrances or world.shuffle_special_interior_entrances or world.settings.shuffle_hideout_entrances)):
+            if not (world.mix_entrance_pools and (world.settings.shuffle_overworld_entrances or world.shuffle_special_interior_entrances or world.settings.shuffle_hideout_entrances != 'off')):
                 if (entrance.type in ('Dungeon', 'Grotto', 'Grave') and entrance.reverse.name != 'Spirit Temple Lobby -> Desert Colossus From Spirit Lobby') or \
-                   (entrance.type == 'Interior' and (world.shuffle_special_interior_entrances or world.settings.shuffle_hideout_entrances)):
+                   (entrance.type == 'Interior' and (world.shuffle_special_interior_entrances or world.settings.shuffle_hideout_entrances != 'off')):
                     # In most cases, Dungeon, Grotto/Grave and Simple Interior exits shouldn't be assumed able to give access to their parent region
                     assumed_return.set_rule(lambda state, **kwargs: False)
             assumed_forward.bind_two_way(assumed_return)
@@ -499,7 +499,7 @@ def shuffle_random_entrances(worlds):
                         'Dungeon' not in world.mix_entrance_pools
                         or (
                             'Overworld' not in world.mix_entrance_pools
-                            and ((not world.shuffle_special_interior_entrances and not world.settings.shuffle_hideout_entrances) or 'Interior' not in world.mix_entrance_pools)
+                            and ((not world.shuffle_special_interior_entrances and world.settings.shuffle_hideout_entrances == 'off') or 'Interior' not in world.mix_entrance_pools)
                         )
                     )
                     and (
@@ -514,7 +514,7 @@ def shuffle_random_entrances(worlds):
                     not world.shuffle_dungeon_entrances
                     and not world.settings.shuffle_overworld_entrances
                     and not world.shuffle_special_interior_entrances
-                    and not world.settings.shuffle_hideout_entrances
+                    and world.settings.shuffle_hideout_entrances == 'off'
                     and (
                         world.settings.reachable_locations == 'all'
                         or 'dungeons' in wincons
@@ -563,7 +563,7 @@ def shuffle_random_entrances(worlds):
             entrance_pools['Interior'] = world.get_shufflable_entrances(type='Interior', only_primary=True)
             if world.shuffle_special_interior_entrances:
                 entrance_pools['Interior'] += world.get_shufflable_entrances(type='SpecialInterior', only_primary=True)
-            if world.settings.shuffle_hideout_entrances:
+            if world.settings.shuffle_hideout_entrances != 'off':
                 entrance_pools['Interior'] += world.get_shufflable_entrances(type='Hideout', only_primary=True)
             if world.settings.decouple_entrances:
                 entrance_pools['InteriorReverse'] = [entrance.reverse for entrance in entrance_pools['Interior']]
@@ -739,7 +739,7 @@ def shuffle_random_entrances(worlds):
                 or (pool_type in ('GrottoGrave', 'GrottoGraveReverse') and world.settings.warp_songs == 'full') # to avoid Minuet leading inside a forest grotto that has been placed outside the forest
                 or (pool_type in ('Interior', 'InteriorReverse') and (
                     world.shuffle_special_interior_entrances
-                    or world.settings.shuffle_hideout_entrances
+                    or world.settings.shuffle_hideout_entrances != 'off'
                     or (world.shuffle_interior_entrances and (
                         world.settings.shuffle_child_spawn in ('balanced', 'full') # to avoid spawning in a forest interior that has been placed outside the forest
                         or world.settings.warp_songs in ('balanced', 'full') # to avoid Minuet leading inside a forest interior that has been placed outside the forest

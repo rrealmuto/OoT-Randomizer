@@ -3960,24 +3960,37 @@ setting_infos = [
             ],
         },
     ),
-    Checkbutton(
+    Combobox(
         name           = 'shuffle_hideout_entrances',
         gui_text       = 'Shuffle Thieves\' Hideout Entrances',
+        default        = 'off',
+        choices        = {
+            'off':                'Off',
+            'hideout_savewarp':   'On (Savewarp to Overworld)',
+            'overworld_savewarp': 'On (Savewarp to 1-Torch Jail)',
+        },
         gui_tooltip    = '''\
             Shuffle the pool of entrances to Thieves' Hideout
             into the pool of interior entrances.
 
-            Note that savewarping in any room of Thieves' Hideout
-            always takes you to the first room (with 1 torch).
+            If set to "On (Savewarp to 1-Torch Jail)", savewarping in any
+            room of Thieves' Hideout takes you to the first room (with 1
+            torch). If set to "On (Savewarp to Overworld)", savewarping in
+            the Hideout takes you to the overworld spawn depending on
+            Link's current age.
 
             There is an extra heart piece on the balcony above the jail in
             Gerudo's Fortress if accessed as child. This is not shuffled
             and not considered in logic.
         ''',
-        default        = False,
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
+            'distribution':  [
+                ('off', 2),
+                ('hideout_savewarp', 1),
+                ('overworld_savewarp', 1),
+            ],
         },
     ),
     Checkbutton(

@@ -2862,6 +2862,16 @@ courtyard_guards_kill:
     lui     v0, 0x0001
 
 ;==================================================================================================
+; Handle save warp in Thieves' Hideout
+;==================================================================================================
+; Thieves' Hideout save warp in vanilla goes to the 1 torch
+; carpenter jail cell. Prevent this and keep the save warp at
+; normal overworld spawn points.
+.orga 0xB06250
+    jal   set_hideout_spawn_point
+    nop
+
+;==================================================================================================
 ; Getting Caught by Gerudo NPCs in ER
 ;==================================================================================================
 ; Replaces: lui     at, 0x0001
