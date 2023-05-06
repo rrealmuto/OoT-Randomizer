@@ -67,7 +67,7 @@
         {
           "name": "multiworld_section",
           "text": "Multi-World Generation",
-          "subheader": "Play interconnected seeds with multiple players. Each player receives one of the worlds, which can contain items for other players.<br>You will need a plugin like <a href='https://github.com/TestRunnerSRL/bizhawk-co-op' target='_blank'>bizhawk-co-op</a> or <a href='https://midos.house/mw'>Mido's House Multiworld</a> to connect the worlds together.<br>Increasing Player Count will drastically increase the generation time.",
+          "subheader": "Play interconnected seeds with multiple players. Each player receives one of the worlds, which can contain items for other players. See <a href='https://wiki.ootrandomizer.com/index.php?title=Multiworld' target='_blank'>the wiki article on multiworld</a> for details.<br>You will need a plugin like <a href='https://github.com/TestRunnerSRL/bizhawk-co-op' target='_blank'>bizhawk-co-op</a> or <a href='https://midos.house/mw' target='_blank'>Mido's House Multiworld</a> to connect the worlds together.<br>Increasing Player Count will drastically increase the generation time.",
           "row_span": [1,1,1],
           "settings": [
             "world_count",
@@ -112,7 +112,7 @@
         {
           "name": "multiworld_section",
           "text": "Multi-World Generation",
-          "subheader": "Play interconnected seeds with multiple players. Each player receives one of the worlds, which can contain items for other players.<br>You will need a plugin like <a href='https://github.com/TestRunnerSRL/bizhawk-co-op' target='_blank'>bizhawk-co-op</a> or <a href='https://midos.house/mw'>Mido's House Multiworld</a> to connect the worlds together.",
+          "subheader": "Play interconnected seeds with multiple players. Each player receives one of the worlds, which can contain items for other players. See <a href='https://wiki.ootrandomizer.com/index.php?title=Multiworld' target='_blank'>the wiki article on multiworld</a> for details.<br>You will need a plugin like <a href='https://github.com/TestRunnerSRL/bizhawk-co-op' target='_blank'>bizhawk-co-op</a> or <a href='https://midos.house/mw' target='_blank'>Mido's House Multiworld</a> to connect the worlds together.",
           "row_span": [1,1,1],
           "settings": [
             "player_num"
