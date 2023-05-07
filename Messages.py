@@ -310,15 +310,7 @@ KEYSANITY_MESSAGES = [
     (0x00A5, "\x13\x76\x08You found the \x05\x41Dungeon Map\x05\x40\x01for the \x05\x45Bottom of the Well\x05\x40!\x09"),
     (0x00A6, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for the \x05\x46Spirit Temple\x05\x40!\x09"),
     (0x00A9, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for the \x05\x45Shadow Temple\x05\x40!\x09"),
-    (0x9010, "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x42Forest Temple\x05\x40!\x09"),
-    (0x9011, "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x41Fire Temple\x05\x40!\x09"),
-    (0x9012, "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x43Water Temple\x05\x40!\x09"),
-    (0x9013, "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x46Spirit Temple\x05\x40!\x09"),
-    (0x9014, "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x45Shadow Temple\x05\x40!\x09"),
-    (0x9015, "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x45Bottom of the Well\x05\x40!\x09"),
-    (0x9016, "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x46Gerudo Training\x01Ground\x05\x40!\x09"),
-    (0x9017, "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x46Thieves' Hideout\x05\x40!\x09"),
-    (0x9018, "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for \x05\x41Ganon's Castle\x05\x40!\x09"),
+    (0x00F3, "\x13\x88\x08You found a \x05\x41Small Key\x05\x40\x01for the \x05\x44Treasure Box Shop\x05\x40!\x09"),
     # 0x9019 and 0x901A used above
     # Silver Rupee Messages with count.
     (0x901B, "\x08You found a \x05\x44Silver Rupee\x05\x40 for the\x01staircase room in \x05\x41Dodongo's Cavern\x05\x40!\x01You have found \x05\x41\xF0\x00\x05\x40 so far!\x09"),
@@ -433,32 +425,67 @@ KEYSANITY_MESSAGES = [
     (0x9088, "\x08You found a \x05\x44Silver Rupee\x05\x40 for the\x01\x05\x45Shadow Trial\x05\x40 in \x05\x41Ganon's Castle\x05\x40!\x09"),
     (0x9089, "\x08You found a \x05\x44Silver Rupee\x05\x40 for the\x01\x05\x43Water Trial\x05\x40 in \x05\x41Ganon's Castle\x05\x40!\x09"),
     (0x908A, "\x08You found a \x05\x44Silver Rupee\x05\x40 for the\x01\x05\x42Forest Trial\x05\x40 in \x05\x41Ganon's Castle\x05\x40!\x09"),
-    # Small key messages with count. Located at dungeon scene ID + 0x908B.
-    # 0x908B, 0x908C, and 0x908D unused
-    (0x908E, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40 for\x01the \x05\x42Forest Temple\x05\x40! You've\x01collected \x05\x41\xF1\x03\x05\x40 of them.\x09"),
-    (0x908F, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40 for\x01the \x05\x41Fire Temple\x05\x40! You've\x01collected \x05\x41\xF1\x04\x05\x40 of them.\x09"),
-    (0x9090, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40 for\x01the \x05\x43Water Temple\x05\x40! You've\x01collected \x05\x41\xF1\x05\x05\x40 of them.\x09"),
-    (0x9091, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40 for\x01the \x05\x46Spirit Temple\x05\x40! You've\x01collected \x05\x41\xF1\x06\x05\x40 of them.\x09"),
-    (0x9092, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40 for\x01the \x05\x45Shadow Temple\x05\x40! You've\x01collected \x05\x41\xF1\x07\x05\x40 of them.\x09"),
-    (0x9093, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40 for\x01the \x05\x45Bottom of the Well\x05\x40!\x01You've collected \x05\x41\xF1\x08\x05\x40 of them.\x09"),
-    # 0x9094 and 0x9095 unused
-    (0x9096, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40 for\x01the \x05\x46Gerudo Training\x01Ground\x05\x40! You've collected \x05\x41\xF1\x0B\x05\x40 of\x01them.\x09"),
-    (0x9097, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40 for\x01the \x05\x46Thieves' Hideout\x05\x40! You've\x01collected \x05\x41\xF1\x0C\x05\x40 of them.\x09"),
-    (0x9098, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40 for\x01\x05\x41Ganon's Castle\x05\x40! You've\x01collected \x05\x41\xF1\x0D\x05\x40 of them.\x09"),
-    # 0x9099 used above
-    # Messages for surplus small keys. Located at dungeon scene ID + 0x909A.
-    # 0x909A, 0x909B, and 0x909C unused
-    (0x909D, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40 for\x01the \x05\x42Forest Temple\x05\x40! You\x01already have enough keys.\x09"),
-    (0x909E, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40 for\x01the \x05\x41Fire Temple\x05\x40! You already\x01have enough keys.\x09"),
-    (0x909F, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40 for\x01the \x05\x43Water Temple\x05\x40! You\x01already have enough keys.\x09"),
-    (0x90A0, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40 for\x01the \x05\x46Spirit Temple\x05\x40! You\x01already have enough keys.\x09"),
-    (0x90A1, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40 for\x01the \x05\x45Shadow Temple\x05\x40! You\x01already have enough keys.\x09"),
-    (0x90A2, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40 for\x01the \x05\x45Bottom of the Well\x05\x40! You\x01already have enough keys.\x09"),
-    # 0x90A3 and 0x90A4 available
-    (0x90A5, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40 for\x01the \x05\x46Gerudo Training\x01Ground\x05\x40! You already have\x01enough keys.\x09"),
-    (0x90A6, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40 for\x01the \x05\x46Thieves' Hideout\x05\x40! You\x01already have enough keys.\x09"),
-    (0x90A7, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40 for\x01\x05\x41Ganon's Castle\x05\x40! You already\x01have enough keys.\x09"),
 ]
+
+dungeon_names = [
+    None, # Unused Deku Tree
+    None, # Unused Dodongos Cavern
+    None, # Unused Jabu
+    "the \x05\x42Forest Temple\x05\x40",
+    "the \x05\x41Fire Temple\x05\x40",
+    "the \x05\x43Water Temple\x05\x40",
+    "the \x05\x46Spirit Temple\x05\x40",
+    "the \x05\x45Shadow Temple\x05\x40",
+    "the \x05\x45Bottom of the Well\x05\x40",
+    None, # Unused Ice Cavern
+    None, # Unused Ganons Castle Tower
+    "the \x05\x46Gerudo Training\x01Ground\x05\x40",
+    "the \x05\x46Thieves' Hideout\x05\x40",
+    "\x05\x41Ganon's Castle\x05\x40",
+    None, # Unused Tower Collapse
+    None, # Unused Castle Collapse
+    "the \x05\x44Treasure Box Shop\x05\x40",
+]
+
+i = 0x9101
+# Add small key messages starting at 0x9101
+# These are grouped in dungeon order as follows:
+#       0x9101 - Small key messages for the first one collected
+#       0x9112 - Small key messages containing the count
+#       0x9123 - Small key messages for collecting more than enough
+
+for dungeon_name in dungeon_names:
+    if dungeon_name is not None:
+        KEYSANITY_MESSAGES.append((i, f"\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for {dungeon_name}!\x01It's your \x05\x41first\x05\x40 one!\x09"))
+    i += 1
+c = 0
+for dungeon_name in dungeon_names:
+    if dungeon_name is not None:
+        KEYSANITY_MESSAGES.append((i, f"\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for {dungeon_name}!\x01You've collected \x05\x41" + "\xF1" + c.to_bytes(1, 'big').decode() + "\x05\x40 of them.\x09"))
+    i += 1
+    c += 1
+for dungeon_name in dungeon_names:
+    if dungeon_name is not None:
+        KEYSANITY_MESSAGES.append((i, f"\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for {dungeon_name}!\x01You already have enough keys.\x09"))
+    i += 1
+
+# Add key ring messages starting at 0x9200
+i = 0x9200
+for dungeon_name in dungeon_names:
+    if dungeon_name is not None:
+        KEYSANITY_MESSAGES.append((i, f"\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for {dungeon_name}!\x09"))
+    i += 1
+
+key_rings_with_bk_dungeon_names = [
+    "the \x05\x42Forest Temple\x05\x40",
+    "the \x05\x41Fire Temple\x05\x40",
+    "the \x05\x43Water Temple\x05\x40",
+    "the \x05\x46Spirit Temple\x05\x40",
+    "the \x05\x45Shadow Temple\x05\x40"
+]
+for dungeon_name in key_rings_with_bk_dungeon_names:
+    KEYSANITY_MESSAGES.append((i, f"\x13\x77\x08You found a \x05\x41Key Ring\x05\x40\x01for {dungeon_name}!\x09\x01It includes the \x05\x41Boss Key\x05\x40!"))
+    i += 1
 
 COLOR_MAP = {
     'White':      '\x40',

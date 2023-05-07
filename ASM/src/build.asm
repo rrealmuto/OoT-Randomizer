@@ -116,6 +116,7 @@ RANDO_CONTEXT:
 .include "player_save_mask.asm"
 .include "gohma.asm"
 .include "camera_init.asm"
+.include "chest_game.asm"
 .include "en_item00.asm"
 .include "armos.asm"
 

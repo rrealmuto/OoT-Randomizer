@@ -8,6 +8,7 @@
 #include "en_item00.h"
 #include "z64.h"
 
+extern uint8_t SHUFFLE_CHEST_GAME;
 extern uint8_t FAST_CHESTS;
 extern uint8_t OCARINAS_SHUFFLED;
 extern uint8_t NO_COLLECTIBLE_HEARTS;
@@ -414,7 +415,7 @@ void handle_pending_items() {
         pop_ice_trap();
         // don't apply ice traps while playing the treasure chest game, since that would allow cheesing it
         // (dying there lets you buy another key but doesn't lock already unlocked doors)
-        if (ice_trap_is_pending() && (z64_game.scene_index != 0x0010 || z64_game.chest_flags & 0x00000400)) {
+        if (ice_trap_is_pending() && (z64_game.scene_index != 0x0010 || (!SHUFFLE_CHEST_GAME && z64_game.chest_flags & 0x00000400))) {
             give_ice_trap();
         } else {
             try_pending_item();
@@ -471,10 +472,11 @@ void get_item(z64_actor_t *from_actor, z64_link_t *link, int8_t incoming_item_id
     if (from_actor->actor_id == 0x0A) {
         // Update chest contents
         if (
-            override.value.base.item_id == 0x7C && override.value.base.player == PLAYER_ID && (FAST_CHESTS || active_item_fast_chest)
-            || ICE_PERCENT && override.value.base.item_id == 0xCA
+            (override.value.base.item_id == 0x7C && override.value.base.player == PLAYER_ID && (FAST_CHESTS || active_item_fast_chest) && z64_game.scene_index != 0x0010)
+            || (ICE_PERCENT && override.value.base.item_id == 0xCA)
         ) {
             // Use ice trap base item ID to freeze Link as the chest opens rather than playing the full item get animation
+            //HACK: Not used in treasure box shop since it causes crashes that seem to be related to a timer being shared between ice traps and something in the minigame
             base_item_id = 0x7C;
         }
         from_actor->variable = (from_actor->variable & 0xF01F) | (base_item_id << 5);

@@ -93,7 +93,7 @@ void draw_agony() {
             voffset -= 17;
         }
         if (CFG_DUNGEON_INFO_SILVER_RUPEES) {
-            for (int i = 0; i < dungeon_count; i++) {
+            for (int i = 0; i < non_chest_game_dungeon_count; i++) {
                 if (scene_index != dungeon_info_table[i].index) continue;
 
                 dungeon_entry_t dungeon = dungeon_info_table[i];

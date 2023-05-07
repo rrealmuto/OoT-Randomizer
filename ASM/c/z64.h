@@ -1894,6 +1894,7 @@ typedef struct EnGSwitch
 #define Rupees_ChangeBy_addr                    0x800721CC
 #define Message_ContinueTextbox_addr            0x800DCE80
 #define PlaySFX_addr                            0x800646F0
+#define z64_ScalePitchAndTempo_addr             0x800C64A0
 #define Font_LoadChar_addr                      0x8005BCE4
 
 /* rom addresses */
@@ -1974,7 +1975,8 @@ typedef void (*Rupees_ChangeBy_proc)         (int16_t rupeeChange);
 
 typedef void (*Message_ContinueTextbox_proc) (z64_game_t *play, uint16_t textId);
 
-typedef void (*PlaySFX_proc) (uint16_t sfxId);
+typedef void(*PlaySFX_proc) (uint16_t sfxId);
+typedef void(*z64_ScalePitchAndTempo_proc)(float scaleTempoAndFreq, uint8_t duration);
 
 /* data */
 #define z64_file_mq             (*(OSMesgQueue*)      z64_file_mq_addr)
@@ -2059,6 +2061,7 @@ typedef void (*PlaySFX_proc) (uint16_t sfxId);
 #define Rupees_ChangeBy         ((Rupees_ChangeBy_proc)Rupees_ChangeBy_addr)
 
 #define Message_ContinueTextbox ((Message_ContinueTextbox_proc)Message_ContinueTextbox_addr)
+#define z64_ScalePitchAndTempo        ((z64_ScalePitchAndTempo_proc)z64_ScalePitchAndTempo_addr)
 
 #define PlaySFX ((PlaySFX_proc)PlaySFX_addr)
 #define Font_LoadChar ((Font_LoadChar_proc)Font_LoadChar_addr)

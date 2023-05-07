@@ -213,6 +213,7 @@
             "Forest Temple MQ Basement Pot 4": "True"
         },
         "exits": {
+            #TODO exit to Forest Temple Central Area requires changes to key logic
             "Forest Temple Central Area": "forest_temple_shortcuts",
             "Forest Temple Before Boss": "True"
         }

@@ -17,10 +17,10 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * New “Bosses” option for the “Mix Entrance Pools” setting (based on [#1820](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1820))
   * New “Shuffle Silver Rupees” and “Silver Rupee Pouches” settings (based on [#1814](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1814))
   * New “Triforce Hunt Mode” setting with “Normal”, “Easter Egg Hunt”, “Ice%”, and “Triforce Blitz” options (Easter Egg Hunt based on [#1804](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1804), Triforce Blitz based on [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev))
-  * New “Shuffle Thieves' Hideout Entrances” setting (based on [#1616](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1616) and [fenhl#7](https://github.com/fenhl/OoT-Randomizer/pull/7))
   * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1536))
   * “Closed Forest Requires Gohma” is a separate setting. With it enabled, items that can be used to escape the forest won't appear in the forest, and the randomizer will try to place at least one slingshot for each player in the forest. The setting is compatible with all forms of entrance randomizer by restricting entrances inside the forest area to only be shuffled among themselves. ([#1531](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1531))
   * New “Full” options for the settings “Randomize Owl Drops”, “Randomize Warp Song Destinations”, and “Randomize Overworld Spawns” (which is split into “Randomize Child Overworld Spawn” and “Randomize Adult Overworld Spawn” for this reason) that include more types of entrances (based on [#1179](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1179) and [#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
+  * New “On (Savewarp to Overworld)” option for the “Shuffle Thieves' Hideout Entrances” setting (based on [fenhl#7](https://github.com/fenhl/OoT-Randomizer/pull/7))
   * New “Frogs Ocarina Game” option for the “Randomize Ocarina Song Notes” setting (based on [rrealmuto's `random_frog_song` branch](https://github.com/rrealmuto/OoT-Randomizer/tree/random_frog_song))
   * New “Shuffle Ganon's Tower Entrance” setting
   * New “Minimum Special Deal Price”, “Maximum Special Deal Price”, and “Special Deal Price Distribution” settings replacing “Shopsanity Prices”
@@ -52,8 +52,6 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
     * “Standard Anti-Weekly Settings (S6)” is the inverse of “S6 Tournament” instead of weekly settings. It otherwise resembles the beginner preset. The only differences are open Deku, vanilla child spawn, and tournament hint distribution.
   * “Triforce Blitz S2” is a fast-paced game mode with very powerful hints used for [an upcoming tournament](https://midos.house/tfb/2). See [the official website](https://www.triforceblitz.com/) for details.
 * Other changes:
-  * The game now only gives incoming items to the player when it's safe to do so. Previously checking this was the responsibility of the multiworld plugin. ([#1867](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1867))
-  * When picking up a junk item from a location that supports fast junk pickup (such as a pot), the animation and sound effect is now distinct depending on whether the item is for another player ([#1766](https://github.com/OoTRandomizer/OoT-Randomizer/issues/1766), fix from [rrealmuto's `outgoing_junk` branch](https://github.com/rrealmuto/OoT-Randomizer/tree/outgoing_junk))
   * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
   * The conditions for forcing one-way entrances that lead to the Bolero, Nocturne, and Requiem warp pads have been adjusted to increase variety with some settings, such as “Guarantee Reachable Locations” set to “All Goals”, “Shuffle Dungeon Rewards”, or “Mix Entrance Pools” (based on [#1440](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1440))
   * Plandos can specify different settings for each world (based on [Andols0's `individual-settings` branch](https://github.com/Andols0/OoT-Randomizer/tree/individual-settings))
@@ -63,7 +61,6 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * Python 3.6 is no longer supported since GitHub's testing infrastructure no longer supports it.
 * Bug fixes:
   * Some bugs with no player name or the wrong player's name appearing in text boxes are fixed ([#208](https://github.com/OoTRandomizer/OoT-Randomizer/issues/208), [#1854](https://github.com/OoTRandomizer/OoT-Randomizer/issues/1854))
-  * Entering the Water temple from the boss room no longer puts you at the temple's main entrance ([#1552](https://github.com/TestRunnerSRL/OoT-Randomizer/issues/1552), fix based on [engineer124's `water_boss_entrance` branch](https://github.com/engineer124/OoT-Randomizer/tree/water_boss_entrance))
   * Text boxes for dungeon items in shops now include apostrophes.
 
 Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):
@@ -186,6 +183,12 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * New setting `Add Bombchu Bag and Drops` which, along with the previous changes of `Bombchus in Logic`, makes the first pack of Bombchus you find into a bag which then allows you to purchase bombchus from shops as well as find them hidden in grass or rocks like regular bombs.
   * New multiselects `Shuffled Child Trade Sequence Items` and `Adult Trade Sequence Items` along with toggle `Shuffle All Adult Trade Items` which have reworked the trade quests for both child and adult. Now you can own multiple trade items for each age at the same time and have multiple trade item locations as shufflable checks.
   * Many new SFX shuffle options have been added.
+  * New `Rainbow` tunic options.
+  * New music option `Speed Up Music For Last Triforce Piece` speeds up the music when you only have 1 Triforce Piece left to find, to drive home the intensity.
+  * New music option `Slow Down Music When Low HP` slows down the music when you're in critical health, to give the feeling of being near death.
+  * New shuffle setting `Shuffle Hyrule Loach Reward` which shuffles the reward you get upon presenting the Hyrule Loach to the fishing hole owner. You can choose to retain the Loach's vanilla behavior or make it easier to catch in several ways.
+  * New shuffle setting `Treasure Chest Game Keys` makes it so the keys from the Treasure Chest Game can be found anywhere in the world rather than just in the game itself, and the chests of the minigame can contain any item. It also makes the shopkeeper sell a random item.
+  * New World setting `Shuffle Thieves' Hideout Entrances`, which requires first shuffling interior entrances, shuffles the Thieves' Hideout rooms into the interior entrance pool.
 * **Hints**
   * New `Important Checks` hint type which hints at how many major items are in a given region.
   * New Misc. Hint `Frogs Ocarina Game` which tells you what item you'll get from the Zora's River frog minigame. The hint appears in the dialog box that's printed before they jump onto the log.
@@ -194,7 +197,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * New Misc. Hint for unique merchants: Bean Salesman, Medigoron, Wasteland Bombchu Salesman, Granny's Potion Shop.
   * Owls are now included in the Warp Songs misc hint and will tell you where they go when enabled.
 * **Other**
-  * When picking up a small key after the first, the text box will now inform you how many you've found total.
+  * When picking up a small key, the text box will now inform you how many you've found total.
   * The longstanding vanilla bug where using Din's Fire on a white bubble crashes the game has been fixed.
   * There are new chest, pot, and crate textures for Pieces of Heart and Heart Containers.
 
@@ -232,12 +235,22 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * The key ring texture has been updated with the normal small key texture, making it shinier.
 * D-Pad mask icons will now enlarge when the mask is equipped, similarly to D-Pad boots.
 * Fix a vanilla bug where jumpslashing into Bongo Bongo's chamber on the last possible frame will not properly skip the cutscene when it should be skipped.
-* Various cutscenes removed or shortened, such as Water Temple and Gerudo Fortress gates and scarecrow spawn cutscenes.
 * Heart Containers and Pieces of Heart will no longer be directly hinted by Way of the Hero or Path hints, which is consistent with Triforce Pieces and Gold Skulltula Tokens.
+* Junk items being sent to another world will now float up into the air to indicate this.
+* An unnecessary polygon check function is skipped to increase game performance.
+
+#### New Speedups
+* Various cutscenes removed or shortened, such as Water Temple and Gerudo Fortress gates and scarecrow spawn cutscenes.
+* Skulltulas will now pop out of their soil patches instantly (once the bugs enter the hole) instead of waiting 3 seconds.
+* The cutscene of the Gerudo's Fortress carpenters running out when you free them will be skipped.
+* The cutscene that plays when shooting the sun over Lake Hylia has been skipped.
+* The spinning room in the Forest Temple basement now moves faster, and does not lock Link in place while spinning.
+
 #### Plandomizer
 * Plandomizer now allows you to specify locations that are valid but do not exist in your current seed, for example, an MQ-specific location when that dungeon is Vanilla.
 * Error messages for conflicting settings have been improved.
 * Gossip stone text colors are no longer specified in reverse order.
+* Music groups will now add to each other if you have multiple groups of the same name, instead of the last one simply overwriting the others.
 
 ### 7.1
 

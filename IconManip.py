@@ -14,6 +14,24 @@ def add_hue(image, color, tiff=False):
             pass
     return image
 
+def add_rainbow(img, width, tiff=False):
+    # Define the colors of the rainbow
+    colors = [(255, 0, 0), (255, 165, 0), (255, 255, 0),
+              (0, 128, 0), (0, 0, 255), (75, 0, 130),
+              (238, 130, 238)]
+    start = 154 if tiff else 0
+    for y in range(0, width):
+        for x in range(0, width):
+            try:
+                color_index = int((x + y) / (width / len(colors)))
+                color_start = colors[color_index % len(colors)]
+                color_end = colors[(color_index + 1) % len(colors)]
+                color = tuple(int(color_start[i] + (color_end[i] - color_start[i]) * ((x + y) % (width / len(colors))) / (width / len(colors))) for i in range(3))
+                for c in range(3):
+                    img[start + (y*width*4) + (x*4) + c] = int(((img[start + (y*width*4) + (x*4) + c]/255) * (color[c]/255)) * 255)
+            except:
+                pass
+    return img
 
 # Function for adding belt to tunic
 def add_belt(tunic, belt, tiff=False):
@@ -28,13 +46,18 @@ def add_belt(tunic, belt, tiff=False):
             pass
     return tunic
 
-
 # Function for putting tunic colors together
 def generate_tunic_icon(color):
     with open(data_path('icons/grey.tiff'), 'rb') as grey_fil, open(data_path('icons/belt.tiff'), 'rb') as belt_fil:
         grey = list(grey_fil.read())
         belt = list(belt_fil.read())
         return add_belt(add_hue(grey, color, True), belt, True)[154:]
+
+def generate_rainbow_tunic_icon():
+    with open(data_path('icons/grey.tiff'), 'rb') as grey_fil, open(data_path('icons/belt.tiff'), 'rb') as belt_fil:
+        grey = list(grey_fil.read())
+        belt = list(belt_fil.read())
+        return add_belt(add_rainbow(grey, 32, True), belt, True)[154:]
 
 # END TODO
 

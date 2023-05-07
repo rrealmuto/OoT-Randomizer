@@ -115,11 +115,12 @@ class Region(object):
         is_dungeon_restricted = False
         is_overworld_restricted = False
 
-        if item.type in ('Map', 'Compass', 'SmallKey', 'HideoutSmallKey', 'BossKey', 'GanonBossKey', 'SilverRupee', 'DungeonReward'):
+        if item.type in ('Map', 'Compass', 'SmallKey', 'HideoutSmallKey', 'TCGSmallKey', 'BossKey', 'GanonBossKey', 'SilverRupee', 'DungeonReward'):
             shuffle_setting = (
                 item.world.settings.shuffle_mapcompass if item.type in ('Map', 'Compass') else
                 item.world.settings.shuffle_smallkeys if item.type == 'SmallKey' else
                 item.world.settings.shuffle_hideoutkeys if item.type == 'HideoutSmallKey' else
+                item.world.settings.shuffle_tcgkeys if item.type == 'TCGSmallKey' else
                 item.world.settings.shuffle_bosskeys if item.type == 'BossKey' else
                 item.world.settings.shuffle_ganon_bosskey if item.type == 'GanonBossKey' else
                 item.world.settings.shuffle_silver_rupees if item.type == 'SilverRupee' else
@@ -127,7 +128,7 @@ class Region(object):
                 None
             )
 
-            is_self_dungeon_restricted = (shuffle_setting == 'dungeon' or (shuffle_setting == 'vanilla' and item.type != 'DungeonReward')) and item.type != 'HideoutSmallKey'
+            is_self_dungeon_restricted = (shuffle_setting == 'dungeon' or (shuffle_setting == 'vanilla' and item.type != 'DungeonReward')) and item.type not in ('HideoutSmallKey', 'TCGSmallKey')
             is_self_region_restricted = [HintArea.GERUDO_FORTRESS, HintArea.THIEVES_HIDEOUT] if shuffle_setting == 'fortress' else None
             if item.name in REWARD_COLORS:
                 is_hint_color_restricted = [REWARD_COLORS[item.name]] if shuffle_setting == 'regional' else None

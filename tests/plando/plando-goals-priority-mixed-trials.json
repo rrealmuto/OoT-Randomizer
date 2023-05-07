@@ -59,6 +59,7 @@
     "shuffle_mapcompass":                      "startwith",
     "shuffle_smallkeys":                       "dungeon",
     "shuffle_hideoutkeys":                     "vanilla",
+    "shuffle_tcgkeys":                         "vanilla",
     "shuffle_bosskeys":                        "dungeon",
     "shuffle_ganon_bosskey":                   "medallions",
     "ganon_bosskey_medallions":                6,

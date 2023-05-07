@@ -119,13 +119,16 @@ class Item(object):
             return idx
         # use different item IDs for items with conditional chest appearances so they appear according to the setting in the item's world, not the location's
         if idx == 0x005B and (self.world.settings.bridge == 'tokens' or self.world.settings.lacs_condition == 'tokens' or self.world.settings.shuffle_ganon_bosskey == 'tokens'):
-            return 0x010C
+            return 0x010D
         if idx in (0x003D, 0x003E, 0x0076) and (self.world.settings.bridge == 'hearts' or self.world.settings.lacs_condition == 'hearts' or self.world.settings.shuffle_ganon_bosskey == 'hearts'):
-            return {0x003D: 0x010D, 0x003E: 0x010E, 0x0076: 0x010F}[idx]
+            return {0x003D: 0x010E, 0x003E: 0x010F, 0x0076: 0x0110}[idx]
         if idx in (0x0029, 0x002A) and 'shields' in self.world.settings.minor_items_as_major_chest:
-            return {0x0029: 0x0110, 0x002A: 0x0111}[idx]
+            return {0x0029: 0x0111, 0x002A: 0x0112}[idx]
         if idx in (0x006A, 0x0003, 0x006B) and 'bombchus' in self.world.settings.minor_items_as_major_chest:
-            return {0x006A: 0x0112, 0x0003: 0x0113, 0x006B: 0x0114}[idx]
+            return {0x006A: 0x0113, 0x0003: 0x0114, 0x006B: 0x0115}[idx]
+        # use different item IDs for keyring that include boss keys so the text box displayed depends on the setting in the item's world, not the location's
+        if idx in range(0x00CB, 0x00D0) and self.world.settings.keyring_give_bk:
+            return idx + 0x0116 - 0x00CB
         return idx
 
 
@@ -136,7 +139,7 @@ class Item(object):
 
     @property
     def smallkey(self):
-        return self.type == 'SmallKey' or self.type == 'HideoutSmallKey'
+        return self.type == 'SmallKey' or self.type == 'HideoutSmallKey' or  self.type == 'TCGSmallKey'
 
 
     @property
@@ -164,6 +167,7 @@ class Item(object):
         return (
             (self.type == 'SmallKey' and self.world.settings.shuffle_smallkeys in ('remove', 'vanilla', 'dungeon')) or
             (self.type == 'HideoutSmallKey' and self.world.settings.shuffle_hideoutkeys == 'vanilla') or
+            (self.type == 'TCGSmallKey' and self.world.settings.shuffle_tcgkeys in ('remove', 'vanilla')) or
             (self.type == 'BossKey' and self.world.settings.shuffle_bosskeys in ('remove', 'vanilla', 'dungeon')) or
             (self.type == 'GanonBossKey' and self.world.settings.shuffle_ganon_bosskey in ('remove', 'vanilla', 'dungeon')) or
             ((self.map or self.compass) and self.world.settings.shuffle_mapcompass in ('remove', 'startwith', 'vanilla', 'dungeon')) or
@@ -196,11 +200,15 @@ class Item(object):
             return False
         if self.type == 'HideoutSmallKey' and self.world.settings.shuffle_hideoutkeys == 'vanilla':
             return False
+        if self.type == 'TCGSmallKey' and self.world.settings.shuffle_tcgkeys == 'vanilla':
+            return False
         if self.type == 'BossKey' and self.world.settings.shuffle_bosskeys in ('dungeon', 'vanilla'):
             return False
         if self.type == 'GanonBossKey' and self.world.settings.shuffle_ganon_bosskey in ('dungeon', 'vanilla'):
             return False
         if self.type == 'SilverRupee' and self.world.settings.shuffle_silver_rupees in ('dungeon', 'vanilla'):
+            return False
+        if self.type == 'SilverRupee' and self.world.settings.shuffle_silver_rupees in ['dungeon', 'vanilla']:
             return False
 
         return True

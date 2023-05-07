@@ -19,6 +19,7 @@
 #define box_obj_idx(actor) ((int8_t *)actor)[0x015A] // forest_hallway_actor->box_obj_idx
 #define OBJECT_BOX 0x000E
 
+extern uint8_t SHUFFLE_CHEST_GAME;
 uint32_t CHEST_TEXTURE_MATCH_CONTENTS = 0;
 uint32_t CHEST_SIZE_MATCH_CONTENTS = 0;
 uint32_t CHEST_SIZE_TEXTURE = 0;
@@ -187,15 +188,13 @@ void get_chest_override(z64_actor_t *actor) {
             }
             if (CHEST_SIZE_MATCH_CONTENTS || CHEST_SIZE_TEXTURE) {
                 if (chest_type == BROWN_CHEST || chest_type == SILVER_CHEST || chest_type == SKULL_CHEST_SMALL || chest_type == HEART_CHEST_SMALL) {
-                    // Small chest
-                    size = SMALL_CHEST;
-                }
-                else {
-                    // Big chest
+                    // Ensure vanilla chest size in Chest Game when not shuffled
+                    size = (scene == 0x10 && !SHUFFLE_CHEST_GAME) ? BROWN_CHEST : SMALL_CHEST;
+                } else {
+                    // These chest_types are big by default
                     size = BROWN_CHEST;
                 }
             }
-
             color = chest_type;
         }
     }

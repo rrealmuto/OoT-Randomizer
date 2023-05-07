@@ -444,6 +444,10 @@ class HintArea(Enum):
             # Special case for Thieves' Hideout since it's not considered a dungeon
             return HintArea.THIEVES_HIDEOUT
 
+        if dungeon_name == "Treasure Chest Game":
+            # Special case for Treasure Chest Game keys: treat them as part of the market hint area regardless of where the treasure box shop actually is.
+            return HintArea.MARKET
+
         for hint_area in cls:
             if hint_area.dungeon_name is not None and hint_area.dungeon_name in dungeon_name:
                 return hint_area
@@ -1350,6 +1354,7 @@ def get_important_check_hint(spoiler, world, checked):
                 # Handle make keys not in own dungeon major items
                 or (location.item.type == 'SmallKey' and not (world.settings.shuffle_smallkeys == 'dungeon' or world.settings.shuffle_smallkeys == 'vanilla'))
                 or (location.item.type == 'HideoutSmallKey' and not world.settings.shuffle_hideoutkeys == 'vanilla')
+                or (location.item.type == 'TCGSmallKey' and not world.settings.shuffle_tcgkeys == 'vanilla')
                 or (location.item.type == 'BossKey' and not (world.settings.shuffle_bosskeys == 'dungeon' or world.settings.shuffle_bosskeys == 'vanilla'))
                 or (
                     location.item.type == 'GanonBossKey' and not (

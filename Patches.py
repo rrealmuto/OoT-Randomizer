@@ -1512,11 +1512,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
         rom.write_byte(symbol, 0)
         rom.write_int16(count_symbol, 0)
 
-    # Set Boss Key collection in Key Ring.
-    symbol = rom.sym('KEYRING_BOSSKEY_CONDITION')
-    if world.settings.keyring_give_bk:
-        rom.write_byte(symbol, 1)
-
     # Set up LACS conditions.
     symbol = rom.sym('LACS_CONDITION')
     count_symbol = rom.sym('LACS_CONDITION_COUNT')
@@ -2260,6 +2255,22 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
             item_text = getHint(getItemGenericName(location.item), True).text
             update_message_by_id(messages, 0x500C, "How about \x05\x41100 Rupees\x05\x40 for\x01\x05\x41"+ item_text +"\x05\x40?\x01\x1B\x05\x42Buy\x01Don't buy\x05\x40\x02")
 
+    if world.settings.shuffle_tcgkeys != 'vanilla':
+        if world.settings.shuffle_tcgkeys == 'remove':
+            rom.write_byte(rom.sym('SHUFFLE_CHEST_GAME'), 0x02)
+        else:
+            rom.write_byte(rom.sym('SHUFFLE_CHEST_GAME'), 0x01)
+        # Update Chest Game Salesman to better fit the fact he sells a randomized item
+        if 'unique_merchants' not in world.settings.misc_hints:
+            update_message_by_id(messages, 0x6D, "I seem to have misplaced my\x01keys, but I have a fun item to\x01sell instead.\x04How about \x05\x4110 Rupees\x05\x40?\x01\x01\x1B\x05\x42Buy\x01Don't Buy\x05\x40\x02")
+        else:
+            location = world.get_location("Market Treasure Chest Game Salesman")
+            item_text = getHint(getItemGenericName(location.item), True).text
+            update_message_by_id(messages, 0x6D, "I seem to have misplaced my\x01keys, but I have a fun item to\x01sell instead.\x04How about \x05\x4110 Rupees\x05\x40 for\x01\x05\x41" + item_text + "\x05\x40?\x01\x1B\x05\x42Buy\x01Don't Buy\x05\x40\x02")
+        update_message_by_id(messages, 0x2D, "That's OK!\x01More fun for me.\x02")
+        update_message_by_id(messages, 0x6E, "Wait, that room was off limits!\x02")
+        update_message_by_id(messages, 0x704C, "I hope you like it!\x02")
+
     if world.settings.shuffle_pots != 'off': # Update the first BK door in ganon's castle to use a separate flag so it can be unlocked to get to the pots
         patch_ganons_tower_bk_door(rom, 0x15) # Using flag 0x15 for the door. GBK doors normally use 0x14.
     locked_doors = get_doors_to_unlock(rom, world)
@@ -2322,6 +2333,11 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     SKULL_CHEST_BIG =  15
     HEART_CHEST_SMALL = 16
     HEART_CHEST_BIG = 17
+    if world.settings.shuffle_tcgkeys == 'vanilla':
+        # Force key chests in Treasure Chest Game to use the default chest texture when not shuffled
+        item = read_rom_item(rom, 0x71)
+        item['chest_type'] = BROWN_CHEST
+        write_rom_item(rom, 0x71, item)
     rom.write_byte(rom.sym('CFG_GLITCHLESS_LOGIC'), int(world.settings.logic_rules == 'glitchless'))
     if world.settings.correct_chest_appearances == 'textures':
         symbol = rom.sym('CHEST_TEXTURE_MATCH_CONTENTS')
@@ -2574,6 +2590,36 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     # Fix crash when hitting white bubbles enemies with Dins Fire
     rom.write_byte(0xCB4397, 0x00)
 
+    # Behavior Modifications to make the loach easier to catch
+    if world.settings.shuffle_loach_reward == 'easy':
+        # Make the loach always spawn
+        # Rather than just nop the branch, replace it with instruction 'sb at, 0xB057(s0)'
+        # this stores a non-zero value to an unused byte in the fishing overlay
+        # that byte can then be used as a flag to tell whether the setting is enabled or not
+        rom.write_int32(0xDBF1E4, 0xA201B057)
+
+        # Make sinking lure available immediately
+        rom.write_int32(0xDC2F00, 0x00000000)
+        rom.write_int32(0xDC2F10, 0x00000000)
+        # Don't set sinking lure position after recieving child/adult fishing prizes
+        rom.write_int32(0xDCC064, 0x00000000)
+        rom.write_int32(0xDCC06C, 0x00000000)
+        rom.write_int32(0xDCC12C, 0x00000000)
+        rom.write_int32(0xDCC134, 0x00000000)
+
+        # Give the child/adult fishing prizes even if using the sinking lure
+        rom.write_int32(0xDCBEBC, 0x00000000)
+        rom.write_int32(0xDCBEC0, 0x00000000)
+        rom.write_int32(0xDCBF1C, 0x00000000)
+        rom.write_int32(0xDCBF20, 0x00000000)
+        # Display the normal text when getting the prize, instead of text saying the sinking lure is in violation of the rules
+        rom.write_byte(0xDCBBDB, 0x86)
+
+        # In case 1: of Fishing_UpdateFish, set unk_1A2 = 200 instead of 20000
+        rom.write_int32(0xDC652C, 0x240100c8) # replace 'mtc1 zero, f10' with 'addiu at, zero, 0x00c8'
+        rom.write_int32(0xDC6540, 0xa6010192) # replace 'sh v0, 0x0192(s0)' with 'sh at, 0x0192(s0)'
+        rom.write_int32(0xDC6550, 0xE60601AC) # replace 'swc1 f10, 0x01ac(s0)' with 'swc1 f6, 0x01ac(s0)'
+
     # Fix shadow temple redead shared flags for silver rupee shuffle
     if world.settings.shuffle_silver_rupees != 'vanilla':
         if not world.dungeon_mq['Shadow Temple']: # Patch for redeads in vanilla
@@ -2590,6 +2636,25 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
         save_context.equip_default_items('child')
     save_context.equip_current_items(world.settings.starting_age)
     save_context.write_save_table(rom)
+
+    # Convert temporary flags used for locked doors in Treasure Chest Game to permanent flags namely (0x1A-0x1F)
+    if world.settings.shuffle_tcgkeys != 'vanilla':
+        rom.write_byte(0x33A607F, 0xDF)
+        rom.write_byte(0x33A608F, 0xDE)
+        rom.write_byte(0x33A609F, 0xDD)
+        rom.write_byte(0x33A60AF, 0xDC)
+        rom.write_byte(0x33A60BF, 0xDB)
+        rom.write_byte(0x33A60CF, 0xDA)
+
+        # Remove Locks From Treasure Chest Game doors if Keysy is turned on
+        if world.settings.shuffle_tcgkeys == 'remove':
+            rom.write_byte(0x33A607F, 0x80)
+            rom.write_byte(0x33A608F, 0x80)
+            rom.write_byte(0x33A609F, 0x80)
+            rom.write_byte(0x33A60AF, 0x80)
+            rom.write_byte(0x33A60BF, 0x80)
+            rom.write_byte(0x33A60CF, 0x80)
+
 
     # Write numeric seed truncated to 32 bits for rng seeding
     # Overwritten with new seed every time a new rng value is generated
@@ -2932,7 +2997,7 @@ def get_doors_to_unlock(rom, world):
         if world.settings.shuffle_smallkeys == 'remove':
             if actor_id == 0x0009 and door_type == 0x02:
                 return [0x00D4 + scene * 0x1C + 0x04 + flag_byte, flag_bits]
-            if actor_id == 0x002E and door_type == 0x0B:
+            if actor_id == 0x002E and door_type == 0x0B and scene != 0x10:
                 return [0x00D4 + scene * 0x1C + 0x04 + flag_byte, flag_bits]
 
         # Return Boss Doors that should be unlocked
