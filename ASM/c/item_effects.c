@@ -63,7 +63,7 @@ void give_dungeon_item(z64_file_t *save, int16_t mask, int16_t dungeon_id) {
     save->dungeon_items[dungeon_id].items |= mask;
 }
 
-char key_counts[14][2] = {
+char key_counts[17][2] = {
     {0, 0}, // Deku Tree
     {0, 0}, // Dodongo's Cavern
     {0, 0}, // Inside Jabu Jabu's Belly
@@ -78,6 +78,9 @@ char key_counts[14][2] = {
     {9, 3}, // Gerudo Training Ground
     {4, 4}, // Thieves' Hideout
     {2, 3}, // Ganon's Castle
+    {0, 0}, // Ganon's Tower (Collapsing)
+    {0, 0}, // Ganon's Castle (Collapsing)
+    {6, 6}, // Treasure Box Shop
 };
 
 void give_small_key(z64_file_t *save, int16_t dungeon_id, int16_t arg2) {
@@ -91,7 +94,6 @@ void give_small_key(z64_file_t *save, int16_t dungeon_id, int16_t arg2) {
     }
 }
 
-uint8_t KEYRING_BOSSKEY_CONDITION = 0;
 void give_small_key_ring(z64_file_t *save, int16_t dungeon_id, int16_t arg2) {
     int8_t current_keys = save->dungeon_keys[dungeon_id] > 0 ? save->dungeon_keys[dungeon_id] : 0;
     save->dungeon_keys[dungeon_id] = current_keys + key_counts[dungeon_id][CFG_DUNGEON_IS_MQ[dungeon_id]];

@@ -141,6 +141,7 @@ def build_world_graphs(settings, window=dummy_window()):
     for i in range(0, settings.world_count):
         worlds.append(World(i, copy.copy(settings)))
 
+    savewarps_to_connect = []
     window.update_status('Creating the Worlds')
     for id, world in enumerate(worlds):
         logger.info('Generating World %d.' % (id + 1))
@@ -156,10 +157,10 @@ def build_world_graphs(settings, window=dummy_window()):
         path = data_path(path)
 
         for filename in ('Overworld.json', 'Bosses.json'):
-            world.load_regions_from_json(os.path.join(path, filename))
+            savewarps_to_connect += world.load_regions_from_json(os.path.join(path, filename))
 
         # Compile the json rules based on settings
-        create_dungeons(world)
+        savewarps_to_connect += create_dungeons(world)
         world.create_internal_locations()
 
         if settings.shopsanity != 'off':
@@ -183,7 +184,7 @@ def build_world_graphs(settings, window=dummy_window()):
         settings.distribution.configure_triforce_blitz(worlds)
 
     logger.info('Setting Entrances.')
-    set_entrances(worlds)
+    set_entrances(worlds, savewarps_to_connect)
     return worlds
 
 

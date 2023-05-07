@@ -158,6 +158,40 @@ Gameplay_InitSkybox:
 .org 0x80108CEC
 .word @transition_0_jump
 
+;==================================================================================================
+; Skip using collision poly check table (performance optimization)
+;==================================================================================================
+; Instead some polys may be checked multiple times in a single line check, which is faster than
+; using the table, particularly in large scenes.
+
+; Skip loading the address of the table
+; Replaces lw       a3, 0x004C(s2)
+.org 0x8002D1E8
+    nop
+
+; Skip lookup
+; Replaces lbu      t8, 0x0000(v1)
+.org 0x8002D210
+    li      t8, 0
+
+; Skip updating the table
+; Replaces beqz     v0, 0x8002D264
+.org 0x8002D238
+    beqz    v0, 0x8002D26C
+; Replaces bnezl    t6, 0x8002D268
+.org 0x8002D248
+    bnezl   t6, 0x8002D26C
+
+; Skip resetting the table
+; Replaces:
+;   lw      t0, 0x0000(s2)
+;   jal     0x80033FF0
+;   lhu     a1, 0x0014(t0)
+.org 0x800302E8
+    nop
+    nop
+    nop
+
 .headersize 0
 
 ;==================================================================================================
@@ -647,6 +681,9 @@ bg_spot18_basket_rupees_loopstart: ; our new loop branch target
 ; Replaces:
 ;   jal 0x800255C4
     jal Actor_UpdateAll_Hook
+
+.orga 0xA99C98 ; In memory: 0x80023D38
+    jal     Player_SpawnEntry_Hack
 
 ; Runs when storing an incoming item to the player instance
 ; Replaces:
@@ -2605,6 +2642,15 @@ courtyard_guards_kill:
     nop
 
 ;==================================================================================================
+; Getting caught by Gerudo NPCs after obtaining Gerudo Card
+;==================================================================================================
+; Use unused message ID 0x6013 as our replacement text with two choice options
+; Set custom callback to handle the new textbox choices
+.orga 0xE1216C  ; White-clothed Gerudo
+    jal     offer_jail_hook
+    nop
+
+;==================================================================================================
 ; Song of Storms Effect Trigger Changes
 ;==================================================================================================
 ; Allow a storm to be triggered with the song in any environment
@@ -3296,6 +3342,60 @@ courtyard_guards_kill:
 .orga 0xE1F794
 @medigoron_check_return:
 
+
+;==================================================================================================
+; Chest Game Keysanity
+;==================================================================================================
+; Replaces: sh     t8, 0x0204(s0)
+;           sw     $zero, 0x0118(s0)
+
+.orga 0xE94B30
+    jal     chestgame_buy_item_hook
+    sh      t8, 0x0204(s0)
+
+; Replaces: sw     t3, 0x0014($sp)
+            sw     t2, 0x0010($sp)
+.orga 0xE94774
+    jal     chestgame_initial_message
+    sw      t3, 0x0014($sp)
+
+; Allow TCG chests to open separately
+; Skips this entire function func_80AC3A2C:
+.orga 0xE43874
+    jal     chestgame_open_chests_separately
+    or      a2, a0, $zero
+
+; Skip instruction to reset TCG chest flags
+; Replaces: sw     $zero, 0x1D38(t8)
+;           lhu    t0, 0x1402(v0)
+.orga 0xE9474C
+    jal     chestgame_no_reset_flag
+    nop
+
+; Skip instruction to set TCG keys to 0 every reload
+; Replaces: sb      t9, 0x00BC(t1)
+;           addiu   t2, s0, 0x0184
+.orga 0xE94760
+    jal     chestgame_no_reset_keys
+    nop
+
+; Change Chests so items don't change 50/50 between the room
+; Inserts additonal code at: mtc1    $at, $f8
+.orga 0xE435B4
+    jal     chestgame_remove_chest_rng
+
+; Change GetItemID that TCG Salesman gives while title card is up
+.orga 0xE94C14
+    addiu   a2, $zero, 0x0071   ; replaces 0x0042 (generic key) with 0x0071 (chest game key)
+
+; Skip instructions to open unopened chests in previous rooms.
+; Replaces: lh     t9, 0x0158(s0)
+;           lw     a0, 0x004C($sp)
+
+.orga 0xE437A8
+    jal     chestgame_delayed_chest_open
+    nop
+
 ;==================================================================================================
 ; Bombchu Ticking Color
 ;==================================================================================================
@@ -3521,6 +3621,34 @@ courtyard_guards_kill:
     andi    t4, t3, 0x0200
 
 ;===================================================================================================
+; Prevent Gohma from being stunned when climbing
+;===================================================================================================
+; Replaces lui     a1, 0x40A0
+;          lui     a2, 0x3F00
+.orga 0xC48BD4
+    jal     gohma_climb
+    nop
+
+;===================================================================================================
+; Prevent crash when diving in shallow water due to poorly initialized camera data
+;===================================================================================================
+; Replaces sw      v0, 0x011C(s0)
+;          lh      t2, 0x014C(s0)
+.orga 0xABDD10
+    jal     camera_init
+    nop
+
+;===================================================================================================
+;Update tunic color code to point to new table
+;===================================================================================================
+.orga 0xAEFFD0
+;    lui     T9, 0x8040
+;    ori   T9, T9, 0xC6EC
+;    lui     T9, hi(tunic_colors)
+;    ori   T9, T9, lo(tunic_colors)
+    li  T9, CFG_TUNIC_COLORS
+
+;===================================================================================================
 ; Various speedups
 ;===================================================================================================
 ; Scarecrow spawn cutscene
@@ -3572,6 +3700,56 @@ courtyard_guards_kill:
 .orga 0xEC8D20
     addiu   a1, $zero, 0x0001
 
+; patch skulls spawn when the insect digs in and not 3sec after
+; Replaces: slti    $at, t7, 0x003C
+.orga 0xEFA318
+    slti    $at, t7, 0x0001
+
+; Carpenter Escape
+; Timer before they escape succesfully
+; Replaces 0x00000064
+.orga 0xE10794
+    .word 0x00000001
+; Replaces 0x0000006E
+.orga 0xE107A4
+    .word 0x00000001
+; Replaces 0x00000064
+.orga 0xE107B4
+    .word 0x00000001
+; Replaces 0x00000078
+.orga 0xE107C4
+   .word 0x00000001
+; Cutscene
+; Replaces jal     func_800218EC
+.orga 0xE0FF64
+    nop
+
+; Lake Hylia Shot the sun cutscene trigger
+; Replaces sb      t8, -0x461C($at)
+.orga 0xE9E268
+    nop
+
+; Forest Basement pillars cutscenes removed
+; Replaces jal     func_8006B6FC
+.orga 0xCC5DE8
+    nop
+; Replaces jal     func_8006B6FC
+.orga 0xCC5DF4
+    nop
+; Replaces jal     func_8006B6FC
+.orga 0xCC5F70
+    nop
+; Replaces jal     func_8006B6FC
+.orga 0xCC604C
+    nop
+; Forest Basement pillars speed 3.0 by increments of 1.0 instead of 0.6 by increments of 0.02
+; Replaces lui     a1, 0x3F19
+.orga 0xCC5F14
+    lui     a1, 0x4040
+; Replaces lui     a2, 0x3CA3
+.orga 0xCC5F18
+    lui     a2, 0x3F80
+
 ;===================================================================================================
 ; Prevent Gohma from being stunned when climbing
 ;===================================================================================================
@@ -3589,3 +3767,50 @@ courtyard_guards_kill:
 .orga 0xABDD10
     jal     camera_init
     nop
+
+;===================================================================================================
+;Update tunic color code to point to new table
+;===================================================================================================
+.orga 0xAEFFD0
+;    lui     T9, 0x8040
+;    ori   T9, T9, 0xC6EC
+;    lui     T9, hi(tunic_colors)
+;    ori   T9, T9, lo(tunic_colors)
+    li  T9, CFG_TUNIC_COLORS
+
+;==================================================================================================
+; Shuffle Reward for Catching Hyrule Loach
+;==================================================================================================
+; Randomize the loach reward
+; replaces mtc1 zero, f18
+.orga 0xDCC138
+    jal     give_loach_reward
+
+; update sinking lure location so that it is available in any of the four positions
+; replaces
+; subu t2, v1, 2
+; sll t2, t2, 1
+.orga 0xDCC7E4
+    jal     increment_sSinkingLureLocation
+    lbu     t2, 0x34DB(a0)
+
+; Modify loach behavior to pay attention to the sinking lure
+; First call handles when loach is sitting on the bottom of the pond
+; replaces
+; addiu   $at, $zero, 0xFFFE
+; and     t1, t8, at
+.orga 0xdc689c
+    jal     make_loach_follow_lure
+    lw      t8, 0x0134(s0)
+
+; Second call handles when loach periodically surfaces
+; replaces
+; addiu     at, zero, 0xFFFE
+; and       t7, t9, at
+; <skip>
+; sw        t7, 0x0004(s0)
+.orga 0xDC6AF0
+    jal     make_loach_follow_lure
+    lw      t8, 0x0134(s0)
+.skip 4
+    sw      t1, 0x0004(s0)

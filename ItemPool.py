@@ -102,6 +102,7 @@ ludicrous_items_extended = [
     'Boss Key (Shadow Temple)',
     'Boss Key (Spirit Temple)',
     'Gerudo Membership Card',
+    'Small Key (Treasure Chest Game)',
     'Small Key (Thieves Hideout)',
     'Small Key (Shadow Temple)',
     'Small Key (Ganons Castle)',
@@ -111,6 +112,7 @@ ludicrous_items_extended = [
     'Small Key (Water Temple)',
     'Small Key (Bottom of the Well)',
     'Small Key (Gerudo Training Ground)',
+    'Small Key Ring (Treasure Chest Game)',
     'Small Key Ring (Thieves Hideout)',
     'Small Key Ring (Shadow Temple)',
     'Small Key Ring (Ganons Castle)',
@@ -443,6 +445,11 @@ def get_pool_core(world):
                 pending_junk_pool.extend(['Small Key Ring (Thieves Hideout)'])
             else:
                 pending_junk_pool.append('Small Key (Thieves Hideout)')
+        if world.settings.shuffle_tcgkeys in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
+            if 'Treasure Chest Game' in world.settings.key_rings:
+                pending_junk_pool.extend(['Small Key Ring (Treasure Chest Game)'])
+            else:
+                pending_junk_pool.append('Small Key (Treasure Chest Game)')
         if world.settings.shuffle_gerudo_card:
             pending_junk_pool.append('Gerudo Membership Card')
         if world.settings.shuffle_smallkeys in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
@@ -554,9 +561,12 @@ def get_pool_core(world):
         # Gerudo Card
         elif location.vanilla_item == 'Gerudo Membership Card':
             shuffle_item = world.settings.shuffle_gerudo_card and world.settings.gerudo_fortress != 'open'
-            if world.settings.shuffle_gerudo_card and world.settings.gerudo_fortress == 'open':
-                pending_junk_pool.append(item)
-                item = IGNORE_LOCATION
+            if world.settings.gerudo_fortress == 'open':
+                if world.settings.shuffle_gerudo_card:
+                    pending_junk_pool.append(item)
+                    item = IGNORE_LOCATION
+                else:
+                    world.state.collect(ItemFactory(item))
 
         # Bottles
         elif location.vanilla_item in ['Bottle', 'Bottle with Milk', 'Rutos Letter']:
@@ -580,6 +590,10 @@ def get_pool_core(world):
         # Frogs Purple Rupees
         elif location.scene == 0x54 and location.vanilla_item == 'Rupees (50)':
             shuffle_item = world.settings.shuffle_frog_song_rupees
+
+        # Hyrule Loach Reward
+        elif location.scene == 0x49 and location.vanilla_item == 'Rupees (50)':
+            shuffle_item = world.settings.shuffle_loach_reward != 'off'
 
         # Adult Trade Quest Items
         elif location.vanilla_item in trade_items:
@@ -630,6 +644,21 @@ def get_pool_core(world):
                 shuffle_item = False
             if shuffle_item and world.settings.gerudo_fortress == 'normal' and 'Thieves Hideout' in world.settings.key_rings:
                 item = get_junk_item()[0] if location.name != 'Hideout 1 Torch Jail Gerudo Key' else 'Small Key Ring (Thieves Hideout)'
+
+        # Treasure Chest Game Key Shuffle
+        elif location.vanilla_item != 'Piece of Heart (Treasure Chest Game)' and location.scene == 0x10:
+            if world.settings.shuffle_tcgkeys in ['regional', 'overworld', 'any_dungeon', 'keysanity']:
+                if 'Treasure Chest Game' in world.settings.key_rings and location.vanilla_item == 'Small Key (Treasure Chest Game)':
+                    item = get_junk_item()[0] if location.name != 'Market Treasure Chest Game Salesman' else 'Small Key Ring (Treasure Chest Game)'
+                shuffle_item = True
+            elif world.settings.shuffle_tcgkeys == 'remove':
+                if location.vanilla_item == 'Small Key (Treasure Chest Game)':
+                    world.state.collect(ItemFactory(item))
+                    item = get_junk_item()[0]
+                shuffle_item = True
+            else:
+                shuffle_item = False
+                location.disabled = DisableType.DISABLED
 
         # Freestanding Rupees and Hearts
         elif location.type in ['ActorOverride', 'Freestanding', 'RupeeTower']:

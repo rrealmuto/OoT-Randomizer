@@ -5,6 +5,8 @@
 #include "util.h"
 #include "z64.h"
 
+extern uint8_t SHUFFLE_CHEST_GAME;
+
 #define ITEM_ROW( \
         base_item_id_, chest_type_, action_id_, collectible_,  text_id_, object_id_, graphic_id_, \
         upgrade_, effect_, effect_arg1_, effect_arg2_) \
@@ -135,7 +137,7 @@ item_row_t item_table[] = {
     [0x006E] = ITEM_ROW(0x53,      GILDED_CHEST, 0x1C, -1, 0x005D, 0x0173, 0x67, no_upgrade, no_effect, -1, -1), // Blue Fire (Refill)
     [0x006F] = ITEM_ROW(0x53,      GILDED_CHEST, 0x20, -1, 0x0097, 0x0176, 0x6A, no_upgrade, no_effect, -1, -1), // Poe (Refill)
     [0x0070] = ITEM_ROW(0x53,      GILDED_CHEST, 0x1E, -1, 0x00F9, 0x0176, 0x70, no_upgrade, no_effect, -1, -1), // Big Poe (Refill)
-    [0x0071] = ITEM_ROW(0x53,       BROWN_CHEST, 0x77, -1, 0x00F3, 0x00AA, 0x02, no_upgrade, no_effect, -1, -1), // Small Key (Chest Game)
+    [0x0071] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x913E, 0x00AA, 0x02, no_upgrade, give_small_key, TCG_ID, -1), // Small Key (Chest Game)
     [0x0072] = ITEM_ROW(0x4D,       BROWN_CHEST, 0x84, -1, 0x00F4, 0x017F, 0x6D, no_upgrade, no_effect, -1, -1), // Green Rupee (Chest Game)
     [0x0073] = ITEM_ROW(0x4D,       BROWN_CHEST, 0x85, -1, 0x00F5, 0x017F, 0x6E, no_upgrade, no_effect, -1, -1), // Blue Rupee (Chest Game)
     [0x0074] = ITEM_ROW(0x4D,       BROWN_CHEST, 0x86, -1, 0x00F6, 0x017F, 0x6F, no_upgrade, no_effect, -1, -1), // Red Rupee (Chest Game)
@@ -250,6 +252,8 @@ item_row_t item_table[] = {
     [0x00D5] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9019, 0x0197, 0x7E, no_upgrade, give_bombchus, 10, -1), // Bombchu Bag (10)
     [0x00D6] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9019, 0x0197, 0x7E, no_upgrade, give_bombchus,  5, -1), // Bombchu Bag (5)
 
+    [0x00D7] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x901E, 0x0195, 0x77, no_upgrade, give_small_key_ring, TCG_ID, -1), // Treasure Chest Game Small Key Ring
+
     [0x0104] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9046, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1), // Triforce of Power
     [0x0105] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9047, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1), // Triforce of Wisdom
     [0x0106] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9049, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1), // Triforce of Courage
@@ -268,8 +272,12 @@ item_row_t *get_item_row(uint16_t item_id) {
 
 uint16_t resolve_item_text_id(uint16_t item_id, bool is_outgoing) {
     item_row_t *item_row = get_item_row(item_id);
-    if (item_id >= 0xAF && item_id < 0xB8 && !is_outgoing) {
+    if (((item_id >= 0xAF && item_id < 0xB8) || (SHUFFLE_CHEST_GAME && item_id == 0x71)) && !is_outgoing) {
         return item_row->text_id + (z64_file.scene_flags[item_row->effect_arg1].unk_00_ >> 0x10); // Dynamically select the text box based on key count
+    }
+    // Change message for key rings when they include boss keys
+    if (item_id >= 0x00CB && item_id < 0x00D0 && KEYRING_BOSSKEY_CONDITION) {
+        return item_row->text_id + 9;
     }
     return item_row->text_id;
 }

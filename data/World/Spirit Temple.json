@@ -161,7 +161,7 @@
         "exits": {
             "Child Spirit Temple Climb": "True",
             "Adult Spirit Temple Climb": "spirit_temple_shortcuts and can_use(Hookshot)",
-            "Spirit Temple Boss Door": "
+            "Spirit Temple Before Boss": "
                 is_adult and spirit_temple_shortcuts and
                 (Longshot or (logic_spirit_platform_hookshot and Hookshot))",
             # Age-unknown logic is incompatible with the rest of the world.
@@ -233,8 +233,15 @@
             "Spirit Temple Big Mirror Flying Pot 6": "True"
         },
         "exits": {
-            "Spirit Temple Boss Door": "
+            "Spirit Temple Before Boss": "
                 (spirit_temple_shortcuts or (has_explosives and Mirror_Shield)) and Hookshot"
+        }
+    },
+    {
+        "region_name": "Spirit Temple Before Boss",
+        "dungeon": "Spirit Temple",
+        "exits": {
+            "Twinrova Boss Room": "Boss_Key_Spirit_Temple"
         }
     }
 ]

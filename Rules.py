@@ -57,8 +57,13 @@ def set_rules(world):
                 for item in triforce_blitz_items:
                     forbid_item(location, item)
 
-        if location.name == 'Forest Temple MQ First Room Chest' and world.settings.shuffle_bosskeys == 'dungeon' and world.settings.shuffle_smallkeys == 'dungeon' and world.settings.tokensanity == 'off':
-            # This location needs to be a small key. Make sure the boss key isn't placed here.
+        # These locations need to be small keys. Make sure the boss key isn't placed here.
+        if (
+            location.name == 'Forest Temple MQ First Room Chest'
+            and world.settings.shuffle_bosskeys == 'dungeon'
+            and world.settings.shuffle_smallkeys == 'dungeon'
+            and world.settings.tokensanity == 'off'
+        ):
             forbid_item(location, 'Boss Key (Forest Temple)')
 
         if location.type == 'HintStone' and world.settings.hints == 'mask':

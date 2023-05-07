@@ -105,6 +105,7 @@ RANDO_CONTEXT:
 .include "mask_deequip.asm"
 .include "trade_quests.asm"
 .include "blue_fire_arrows.asm"
+.include "gerudo_guard.asm"
 .include "save.asm"
 .include "drop_overrides/obj_mure3.asm"
 .include "drop_overrides/bg_haka_tubo.asm"
@@ -116,6 +117,7 @@ RANDO_CONTEXT:
 .include "player_save_mask.asm"
 .include "gohma.asm"
 .include "camera_init.asm"
+.include "chest_game.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"

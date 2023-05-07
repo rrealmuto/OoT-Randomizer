@@ -15,28 +15,27 @@ typedef struct {
         uint8_t has_map : 1;
     };
     uint8_t skulltulas;
-    char name[10];
+    char name[11];
 } dungeon_entry_t;
 
 dungeon_entry_t dungeons[] = {
-    {  0, 0, 0, 0, 1, 0x0F, "Deku"    },
-    {  1, 0, 0, 0, 1, 0x1F, "Dodongo" },
-    {  2, 0, 0, 0, 1, 0x0F, "Jabu"    },
+    {  0, 0, 0, 0, 1, 0x0F, "Deku"       },
+    {  1, 0, 0, 0, 1, 0x1F, "Dodongo"    },
+    {  2, 0, 0, 0, 1, 0x0F, "Jabu"       },
 
-    {  3, 1, 1, 0, 1, 0x1F, "Forest"  },
-    {  4, 1, 1, 0, 1, 0x1F, "Fire"    },
-    {  5, 1, 1, 0, 1, 0x1F, "Water"   },
-    {  7, 1, 1, 0, 1, 0x1F, "Shadow"  },
-    {  6, 1, 1, 0, 1, 0x1F, "Spirit"  },
+    {  3, 1, 1, 0, 1, 0x1F, "Forest"     },
+    {  4, 1, 1, 0, 1, 0x1F, "Fire"       },
+    {  5, 1, 1, 0, 1, 0x1F, "Water"      },
+    {  7, 1, 1, 0, 1, 0x1F, "Shadow"     },
+    {  6, 1, 1, 0, 1, 0x1F, "Spirit"     },
 
-    {  8, 1, 0, 0, 1, 0x07, "BotW"    },
-    {  9, 0, 0, 0, 1, 0x07, "Ice"     },
-    { 12, 1, 0, 1, 0, 0x00, "Hideout" },
-    { 11, 1, 0, 0, 0, 0x00, "GTG"     },
-    { 13, 1, 1, 0, 0, 0x00, "Ganon"   },
+    {  8, 1, 0, 0, 1, 0x07, "BotW"       },
+    {  9, 0, 0, 0, 1, 0x07, "Ice"        },
+    { 12, 1, 0, 1, 0, 0x00, "Hideout"    },
+    { 11, 1, 0, 0, 0, 0x00, "GTG"        },
+    { 13, 1, 1, 0, 0, 0x00, "Ganon"      },
+    { 16, 1, 0, 0, 0, 0x00, "Chest Game" },
 };
-
-int dungeon_count = 13;
 
 typedef struct {
     uint8_t idx;
@@ -62,6 +61,8 @@ extern uint32_t CFG_DUNGEON_INFO_REWARD_ENABLE;
 extern uint32_t CFG_DUNGEON_INFO_REWARD_NEED_COMPASS;
 extern uint32_t CFG_DUNGEON_INFO_REWARD_NEED_ALTAR;
 extern uint32_t CFG_DUNGEON_INFO_REWARD_SUMMARY_ENABLE;
+
+extern uint8_t SHUFFLE_CHEST_GAME;
 
 extern int8_t CFG_DUNGEON_REWARDS[14];
 extern char CFG_DUNGEON_REWARD_AREAS[9][0x17];
@@ -103,6 +104,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
         int show_map_compass = 1;
         int show_skulls = 1;
         int show_mq = CFG_DUNGEON_INFO_MQ_ENABLE;
+        int non_chest_game_dungeon_count = 13;
 
         // Set up dimensions
 
@@ -110,13 +112,13 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
         int font_width = 6;
         int font_height = 11;
         int padding = 1;
-        int rows = 13;
+        int rows = SHUFFLE_CHEST_GAME == 1 ? 14 : 13;
         int mq_width = show_mq ?
             ((6 * font_width) + padding) :
             0;
         int bg_width =
             (6 * icon_size) +
-            (11 * font_width) +
+            ((SHUFFLE_CHEST_GAME == 1 ? 14 : 11) * font_width) +
             (8 * padding) +
             mq_width;
         int bg_height = (rows * icon_size) + ((rows + 1) * padding);
@@ -145,7 +147,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
         if (show_medals) {
             sprite_load(db, &medals_sprite, 0, medals_sprite.tile_count);
 
-            for (int i = 0; i < dungeon_count; i++) {
+            for (int i = 0; i < non_chest_game_dungeon_count; i++) {
                 dungeon_entry_t *d = &(dungeons[i]);
                 if (CFG_DUNGEON_INFO_REWARD_NEED_COMPASS && !z64_file.dungeon_items[d->index].compass) {
                     continue;
@@ -183,7 +185,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
         if (show_stones) {
             sprite_load(db, &stones_sprite, 0, stones_sprite.tile_count);
 
-            for (int i = 0; i < dungeon_count; i++) {
+            for (int i = 0; i < non_chest_game_dungeon_count; i++) {
                 dungeon_entry_t *d = &(dungeons[i]);
                 if (CFG_DUNGEON_INFO_REWARD_NEED_COMPASS && !z64_file.dungeon_items[d->index].compass) {
                     continue;
@@ -201,23 +203,22 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
 
         // Draw dungeon names
 
-        for (int i = 0; i < dungeon_count; i++) {
+        for (int i = 0; i < rows; i++) {
             dungeon_entry_t *d = &(dungeons[i]);
             int top = start_top + ((icon_size + padding) * i) + 1;
             text_print_size(d->name, left, top, font_width);
         }
         text_flush_size(db, font_width, font_height, 0, 0);
 
-        left += (8 * font_width) + padding;
+        left += ((SHUFFLE_CHEST_GAME == 1 ? 11 : 8) * font_width) + padding;
 
         // Draw keys
 
         if (show_keys) {
             // Draw small key counts
-
             sprite_load(db, &quest_items_sprite, 17, 1);
 
-            for (int i = 0; i < dungeon_count; i++) {
+            for (int i = 0; i < rows; i++) {
                 dungeon_entry_t *d = &(dungeons[i]);
                 if (!d->has_keys) continue;
 
@@ -243,7 +244,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
 
             sprite_load(db, &quest_items_sprite, 14, 1);
 
-            for (int i = 0; i < dungeon_count; i++) {
+            for (int i = 0; i < rows; i++) {
                 dungeon_entry_t *d = &(dungeons[i]);
                 // Replace index 13 (Ganon's Castle) with 10 (Ganon's Tower)
                 int index = d->index == 13 ? 10 : d->index;
@@ -259,7 +260,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
 
             sprite_load(db, &quest_items_sprite, 10, 1);
 
-            for (int i = 0; i < dungeon_count; i++) {
+            for (int i = 0; i < rows; i++) {
                 dungeon_entry_t *d = &(dungeons[i]);
                 if (d->has_card && z64_file.gerudos_card) {
                     int top = start_top + ((icon_size + padding) * i);
@@ -278,7 +279,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
 
             sprite_load(db, &quest_items_sprite, 16, 1);
 
-            for (int i = 0; i < dungeon_count; i++) {
+            for (int i = 0; i < rows; i++) {
                 dungeon_entry_t *d = &(dungeons[i]);
                 if (d->has_map && z64_file.dungeon_items[d->index].map) {
                     int top = start_top + ((icon_size + padding) * i);
@@ -293,7 +294,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
 
             sprite_load(db, &quest_items_sprite, 15, 1);
 
-            for (int i = 0; i < dungeon_count; i++) {
+            for (int i = 0; i < rows; i++) {
                 dungeon_entry_t *d = &(dungeons[i]);
                 if (d->has_map && z64_file.dungeon_items[d->index].compass) {
                     int top = start_top + ((icon_size + padding) * i);
@@ -310,7 +311,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
 
             sprite_load(db, &quest_items_sprite, 11, 1);
 
-            for (int i = 0; i < dungeon_count; i++) {
+            for (int i = 0; i < rows; i++) {
                 dungeon_entry_t *d = &(dungeons[i]);
                 if (d->skulltulas && z64_file.gs_flags[d->index ^ 0x03] == d->skulltulas) {
                     int top = start_top + ((icon_size + padding) * i);
@@ -325,7 +326,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
         // Draw master quest dungeons
 
         if (show_mq) {
-            for (int i = 0; i < dungeon_count; i++) {
+            for (int i = 0; i < non_chest_game_dungeon_count; i++) {
                 dungeon_entry_t *d = &(dungeons[i]);
                 if (CFG_DUNGEON_INFO_MQ_NEED_MAP && d->has_map &&
                         !z64_file.dungeon_items[d->index].map) {
@@ -336,7 +337,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
                 text_print_size(str, left, top, font_width);
             }
 
-            left += icon_size + padding;
+            left += (6 * font_width) + padding;
         }
         text_flush_size(db, font_width, font_height, 0, 0);
 
@@ -433,10 +434,10 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
 
         int icon_size = 16;
         int padding = 1;
-        int rows = 9;
+        int rows = SHUFFLE_CHEST_GAME == 1 ? 10 : 9;
         int bg_width =
             (1 * icon_size) +
-            (12 * font_sprite.tile_w) +
+            ((SHUFFLE_CHEST_GAME ? 15 : 12) * font_sprite.tile_w) +
             (4 * padding);
         int bg_height = (rows * icon_size) + ((rows + 1) * padding);
         int bg_left = (Z64_SCREEN_WIDTH - bg_width) / 2;
@@ -450,13 +451,13 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
 
         // Draw dungeon names
 
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < rows; i++) {
             dungeon_entry_t *d = &(dungeons[i + (i > 5 ? 4 : 3)]); // skip Deku/DC/Jabu/Ice
             int top = start_top + ((icon_size + padding) * i) + 1;
             text_print(d->name, left, top);
         }
 
-        left += (8 * font_sprite.tile_w) + padding;
+        left += ((SHUFFLE_CHEST_GAME == 1 ? 11 : 8) * font_sprite.tile_w) + padding;
 
         // Draw keys
 
@@ -465,7 +466,7 @@ void draw_dungeon_info(z64_disp_buf_t *db) {
 
             sprite_load(db, &quest_items_sprite, 17, 1);
 
-            for (int i = 0; i < 9; i++) {
+            for (int i = 0; i < rows; i++) {
                 dungeon_entry_t *d = &(dungeons[i + (i > 5 ? 4 : 3)]); // skip Deku/DC/Jabu/Ice
                 if (!d->has_keys) continue;
 

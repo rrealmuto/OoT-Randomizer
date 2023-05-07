@@ -26,6 +26,13 @@
 #define NA_BGM_SMALL_ITEM_GET 0x39
 #define NA_SE_SY_GET_RUPY     0x4803
 #define NA_SE_SY_GET_ITEM     0x4824
+#define NA_SE_SY_DECIDE 0x4808
+#define NA_SE_SY_CURSOR 0x4809
+#define NA_SE_SY_CANCEL 0x480A
+#define NA_SE_SY_FSEL_CURSOR 0x4839
+#define NA_SE_SY_FSEL_DECIDE_S 0x483A
+#define NA_SE_SY_FSEL_DECIDE_L 0x483B
+#define NA_SE_SY_FSEL_CLOSE 0x483C
 
 #define OFFSETOF(structure, member) ((size_t)&(((structure *)0)->member))
 
@@ -992,6 +999,13 @@ struct z64_actor_s
                                     /* 0x013C */
 };
 
+typedef struct {
+    /* 0x00 */ uint16_t   id;
+    /* 0x02 */ z64_xyz_t  pos;
+    /* 0x08 */ z64_xyz_t  rot;
+    /* 0x0E */ uint16_t   params;
+} ActorEntry; // size = 0x10
+
 typedef struct
 {
   z64_actor_t  common;               /* 0x0000 */
@@ -1804,6 +1818,7 @@ typedef struct EnGSwitch
 #define gspF3DEX2_NoN_fifoDataStart             0x801145C0
 #define z64_file_addr                           0x8011A5D0
 #define z64_input_direct_addr                   0x8011D730
+#define z64_logo_state_addr                     0x8011F200
 #define z64_stab_addr                           0x80120C38
 #define z64_seq_buf_addr                        0x80124800
 #define z64_ctxt_addr                           0x801C84A0
@@ -1830,6 +1845,7 @@ typedef struct EnGSwitch
 #define Rupees_ChangeBy_addr                    0x800721CC
 #define Message_ContinueTextbox_addr            0x800DCE80
 #define PlaySFX_addr                            0x800646F0
+#define z64_ScalePitchAndTempo_addr             0x800C64A0
 
 /* rom addresses */
 #define z64_icon_item_static_vaddr              0x007BD000
@@ -1909,6 +1925,7 @@ typedef void(*Rupees_ChangeBy_proc)         (int16_t rupeeChange);
 typedef void(*Message_ContinueTextbox_proc) (z64_game_t *play, uint16_t textId);
 
 typedef void(*PlaySFX_proc) (uint16_t sfxId);
+typedef void(*z64_ScalePitchAndTempo_proc)(float scaleTempoAndFreq, uint8_t duration);
 
 /* data */
 #define z64_file_mq             (*(OSMesgQueue*)      z64_file_mq_addr)
@@ -1927,6 +1944,7 @@ typedef void(*PlaySFX_proc) (uint16_t sfxId);
                                    z64_scene_config_table_addr)
 #define z64_file                (*(z64_file_t*)       z64_file_addr)
 #define z64_input_direct        (*(z64_input_t*)      z64_input_direct_addr)
+#define z64_logo_state          (*(uint32_t*)         z64_logo_state_addr)
 #define z64_gameinfo            (*                    z64_file.gameinfo)
 #define z64_ctxt                (*(z64_ctxt_t*)       z64_ctxt_addr)
 #define z64_game                (*(z64_game_t*)      &z64_ctxt)
@@ -1992,6 +2010,7 @@ typedef void(*PlaySFX_proc) (uint16_t sfxId);
 #define Rupees_ChangeBy         ((Rupees_ChangeBy_proc)Rupees_ChangeBy_addr)
 
 #define Message_ContinueTextbox ((Message_ContinueTextbox_proc)Message_ContinueTextbox_addr)
+#define z64_ScalePitchAndTempo        ((z64_ScalePitchAndTempo_proc)z64_ScalePitchAndTempo_addr)
 
 #define PlaySFX ((PlaySFX_proc)PlaySFX_addr)
 

@@ -26,22 +26,26 @@ void clear_excess_hearts(z64_file_t *save, int16_t arg1, int16_t arg2);
 void open_mask_shop(z64_file_t *save, int16_t arg1, int16_t arg2);
 void give_bombchus(z64_file_t *save, int16_t arg1, int16_t arg2);
 void trade_quest_upgrade(z64_file_t *save, int16_t item_id, int16_t arg2);
+extern uint8_t KEYRING_BOSSKEY_CONDITION;
 
 enum dungeon {
-    DEKU_ID    = 0,
-    DODONGO_ID = 1,
-    JABU_ID    = 2,
-    FOREST_ID  = 3,
-    FIRE_ID    = 4,
-    WATER_ID   = 5,
-    SPIRIT_ID  = 6,
-    SHADOW_ID  = 7,
-    BOTW_ID    = 8,
-    ICE_ID     = 9,
-    TOWER_ID   = 10,
-    GTG_ID     = 11,
-    FORT_ID    = 12,
-    CASTLE_ID  = 13,
+    DEKU_ID       =  0,
+    DODONGO_ID    =  1,
+    JABU_ID       =  2,
+    FOREST_ID     =  3,
+    FIRE_ID       =  4,
+    WATER_ID      =  5,
+    SPIRIT_ID     =  6,
+    SHADOW_ID     =  7,
+    BOTW_ID       =  8,
+    ICE_ID        =  9,
+    TOWER_ID      = 10,
+    GTG_ID        = 11,
+    FORT_ID       = 12,
+    CASTLE_ID     = 13,
+    TOWER_COL_ID  = 14,
+    CASTLE_COL_ID = 15,
+    TCG_ID        = 16,
 };
 
 #endif

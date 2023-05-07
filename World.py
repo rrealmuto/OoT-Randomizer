@@ -64,6 +64,8 @@ class World(object):
             or settings.spawn_positions or (settings.shuffle_bosses != 'off')
         )
 
+        self.mixed_pools_bosses = False # this setting is still in active development at https://github.com/Roman971/OoT-Randomizer
+
         self.ensure_tod_access = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or settings.spawn_positions
         self.disable_trade_revert = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or settings.adult_trade_shuffle
         self.skip_child_zelda = 'Zeldas Letter' not in settings.shuffle_child_trade and \
@@ -74,7 +76,7 @@ class World(object):
         if (
             settings.open_forest == 'closed'
             and (
-                self.shuffle_special_interior_entrances or settings.shuffle_overworld_entrances
+                self.shuffle_special_interior_entrances or settings.shuffle_hideout_entrances or settings.shuffle_overworld_entrances
                 or settings.warp_songs or settings.spawn_positions
             )
         ):
@@ -445,11 +447,11 @@ class World(object):
 
         # Determine area with keyring
         if (self.settings.key_rings_choice == 'random'):
-            areas = ['Thieves Hideout', 'Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple', 'Bottom of the Well', 'Gerudo Training Ground', 'Ganons Castle']
+            areas = ['Thieves Hideout', 'Treasure Chest Game', 'Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple', 'Bottom of the Well', 'Gerudo Training Ground', 'Ganons Castle']
             self.settings.key_rings = random.sample(areas, random.randint(0, len(areas)))
             self.randomized_list.append('key_rings')
         elif (self.settings.key_rings_choice == 'all'):
-            self.settings.key_rings = ['Thieves Hideout', 'Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple', 'Bottom of the Well', 'Gerudo Training Ground', 'Ganons Castle']
+            self.settings.key_rings = ['Thieves Hideout', 'Treasure Chest Game', 'Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple', 'Bottom of the Well', 'Gerudo Training Ground', 'Ganons Castle']
 
         # Handle random Rainbow Bridge condition
         if (self.settings.bridge == 'random'
@@ -541,6 +543,7 @@ class World(object):
 
     def load_regions_from_json(self, file_path):
         region_json = read_logic_file(file_path)
+        savewarps_to_connect = []
 
         for region in region_json:
             new_region = Region(region['region_name'])
@@ -594,7 +597,16 @@ class World(object):
                     if self.settings.logic_rules != 'none':
                         self.parser.parse_spot_rule(new_exit)
                     new_region.exits.append(new_exit)
+            if 'savewarp' in region:
+                savewarp_target = region['savewarp'].split(' -> ')[1]
+                new_exit = Entrance(f'{new_region.name} -> {savewarp_target}', new_region)
+                new_exit.connected_region = savewarp_target
+                new_region.exits.append(new_exit)
+                new_region.savewarp = new_exit
+                # the replaced entrance may not exist yet so we connect it after all region files have been read
+                savewarps_to_connect.append((new_exit, region['savewarp']))
             self.regions.append(new_region)
+        return savewarps_to_connect
 
 
     def create_internal_locations(self):
@@ -619,7 +631,7 @@ class World(object):
     def initialize_items(self):
         for item in self.itempool:
             item.world = self
-            if self.settings.shuffle_hideoutkeys in ['fortress', 'regional'] and item.type == 'HideoutSmallKey':
+            if (self.settings.shuffle_hideoutkeys in ['fortress', 'regional'] and item.type == 'HideoutSmallKey') or (self.settings.shuffle_tcgkeys == 'regional' and item.type == 'TCGSmallKey'):
                 item.priority = True
         for region in self.regions:
             for location in region.locations:

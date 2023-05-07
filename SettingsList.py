@@ -558,10 +558,13 @@ logic_tricks = {
                     '''},
     'Gerudo\'s Fortress Ledge Jumps': {
         'name'    : 'logic_gf_jump',
-        'tags'    : ("Gerudo's Fortress", "Overworld", "Adult",),
+        'tags'    : ("Gerudo's Fortress", "Overworld", "Child", "Adult",),
         'tooltip' : '''\
-                    Adult can jump onto the top roof of the fortress
-                    without going through the interior of the hideout.
+                    Allows both ages to use a jump to reach the second
+                    floor of the fortress from the southern roof with
+                    the guard, and adult to jump to the top roof from
+                    there, without going through the interiors of the
+                    Thieves' Hideout.
                     '''},
     'Wasteland Crossing without Hover Boots or Longshot': {
         'name'    : 'logic_wasteland_crossing',
@@ -595,9 +598,9 @@ logic_tricks = {
                     To cross the river of sand with no additional items,
                     be sure to also enable "Wasteland Crossing without
                     Hover Boots or Longshot".
-                    Unless all overworld entrances are randomized, child
-                    Link will not be expected to do anything at Gerudo's
-                    Fortress.
+                    Unless Thieves' Hideout entrances or all overworld
+                    entrances are randomized, child Link will not be
+                    expected to do anything at Gerudo's Fortress.
                     '''},
     'Colossus Hill GS with Hookshot': {
         'name'    : 'logic_colossus_gs',
@@ -2264,7 +2267,7 @@ setting_infos = [
                 'settings': [
                     'open_forest', 'open_kakariko', 'open_door_of_time', 'zora_fountain', 'gerudo_fortress', 'dungeon_shortcuts_choice',
                     'dungeon_shortcuts', 'trials_random', 'trials',
-                    'starting_age', 'shuffle_interior_entrances',
+                    'starting_age', 'shuffle_interior_entrances', 'shuffle_hideout_entrances',
                     'shuffle_grotto_entrances', 'shuffle_dungeon_entrances',
                     'shuffle_bosses', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops', 'warp_songs', 'spawn_positions',
                     'triforce_hunt', 'triforce_count_per_world', 'triforce_goal_per_world', 'free_bombchu_drops', 'one_item_per_dungeon',
@@ -2301,7 +2304,7 @@ setting_infos = [
         ''',
         disable        = {
             'glitchless': {'settings' : ['tricks_list_msg']},
-            'glitched'  : {'settings' : ['allowed_tricks', 'shuffle_interior_entrances', 'shuffle_grotto_entrances',
+            'glitched'  : {'settings' : ['allowed_tricks', 'shuffle_interior_entrances', 'shuffle_hideout_entrances', 'shuffle_grotto_entrances',
                                          'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops',
                                          'warp_songs', 'spawn_positions', 'mq_dungeons_mode', 'mq_dungeons_specific',
                                          'mq_dungeons_count', 'shuffle_bosses', 'dungeon_shortcuts', 'deadly_bonks',
@@ -3007,6 +3010,9 @@ setting_infos = [
             vanilla location, dropping from fighting Gerudo guards
             that attack when trying to free the jailed carpenters.
 
+            "Gerudo Fortress Region": Thieves' Hideout Keys can only
+            appear in Gerudo Fortress or Thieves' Hideout.
+
             "Regional": Thieves' Hideout Keys can only appear in
             Gerudo Valley, Gerudo Fortress, Thieves' Hideout, Gerudo
             Training Ground, Haunted Wasteland, Desert Colossus, or
@@ -3028,6 +3034,45 @@ setting_infos = [
         },
     ),
     Combobox(
+        name           = 'shuffle_tcgkeys',
+        gui_text       = 'Treasure Chest Game Keys',
+        default        = 'vanilla',
+        choices        = {
+            'remove':      "Remove (Keysy)",
+            'vanilla':     "Vanilla Locations",
+            'regional':    "Regional",
+            'overworld':   "Overworld Only",
+            'any_dungeon': "Any Dungeon",
+            'keysanity':   "Anywhere (Keysanity)",
+        },
+        gui_tooltip    = '''\
+            'Remove': All Treasure Chest Game keys will be removed
+            and all doors will remained unlocked.
+
+            'Vanilla': Treasure Chest Game keys will have vanilla
+            behavior (one random per room). The minigame will
+            also have vanilla behavior.
+
+            'Regional': Treasure Chest Game keys can only appear
+            in Hyrule Field, Lon Lon Ranch, the Market, the Temple
+            of Time, Hyrule Castle, outside Ganon's Castle, or
+            inside Ganon's Castle.
+
+            'Overworld Only': Treasure Chest Game keys can only appear
+            outside of dungeons.
+
+            'Any Dungeon': Treasure Chest Game keys can only appear
+            inside of dungeons.
+
+            'Anywhere': Treasure Chest Game keys can appear anywhere
+            in the world.
+        ''',
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    ),
+    Combobox(
         name           = 'key_rings_choice',
         gui_text       = 'Key Rings Mode',
         default        = 'off',
@@ -3035,7 +3080,7 @@ setting_infos = [
             'off':       'Off',
             'choice':    'Choose dungeons',
             'all':       'All dungeons',
-            'random':    'Random dungeons'
+            'random':    'Random selection'
         },
         gui_tooltip     = '''\
             Selected dungeons will have all of their keys found
@@ -3052,6 +3097,11 @@ setting_infos = [
             no effect if Thieves' Hideout keys are in vanilla
             locations or Gerudo's Fortress is set to Rescue
             One Carpenter.
+
+            Similarly, selecting Treasure Chest Game will have
+            no effect if the keys aren't shuffled. Treasure Chest
+            Game will be considered when selecting 'All dungeons'
+            or 'Random selection'.
         ''',
         shared         = True,
         disable={
@@ -3066,6 +3116,7 @@ setting_infos = [
         gui_text        = 'Key Rings',
         choices         = {
             'Thieves Hideout':        "Thieves' Hideout",
+            'Treasure Chest Game':    "Treasure Chest Game",
             'Forest Temple':          "Forest Temple",
             'Fire Temple':            "Fire Temple",
             'Water Temple':           "Water Temple",
@@ -3605,6 +3656,9 @@ setting_infos = [
             and items never revert, even when dying or loading a save.
         ''',
         shared         = True,
+        disable        = {
+            'off' : {'settings' : ['shuffle_hideout_entrances']},
+        },
         gui_params     = {
             'randomize_key': 'randomize_settings',
             'distribution':  [
@@ -3612,6 +3666,26 @@ setting_infos = [
                 ('simple', 1),
                 ('all', 1),
             ],
+        },
+    ),
+    Checkbutton(
+        name           = 'shuffle_hideout_entrances',
+        gui_text       = 'Shuffle Thieves\' Hideout Entrances',
+        gui_tooltip    = '''\
+            Shuffle the pool of entrances to Thieves' Hideout
+            into the pool of interior entrances.
+
+            Note that savewarping in any room of Thieves' Hideout
+            always takes you to the first room (with 1 torch).
+
+            There is an extra heart piece on the balcony above the jail in
+            Gerudo's Fortress if accessed as child. This is not shuffled
+            and not considered in logic.
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
         },
     ),
     Checkbutton(
@@ -3646,7 +3720,7 @@ setting_infos = [
             With Dungeon and Ganon selected, all dungeons including Ganon's
             castle will be shuffled.
 
-            Thieves' Hideout is not shuffled.
+            Thieves' Hideout is controlled by a separate setting.
         ''',
         shared         = True,
         gui_params     = {
@@ -4278,6 +4352,44 @@ setting_infos = [
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
+        },
+    ),
+    Combobox(
+        name           = 'shuffle_loach_reward',
+        gui_text       = 'Shuffle Hyrule Loach Reward',
+        gui_tooltip    = '''\
+            Enabling this shuffles the reward for catching the
+            Hyrule Loach at the fishing pond into the item pool
+
+            Vanilla Behavior shuffles the reward for catching the loach
+            but otherwise keeps all behavior the same as in
+            the vanilla game. The loach will spawn every fourth play
+            of the fishing minigame and the sinking lure will
+            become available only after obtaining the fishing prize
+            for link's current age.
+
+            Easier Behavior shuffles the loach reward but also modifies
+            some behavior in order to make the loach easier to catch.
+            When enabled the loach will always spawn at the
+            fishing pond, the sinking lure will be available
+            immediately at all four possible positions, and
+            the child/adult fishing prizes are still obtainable
+            if you use the sinking lure.
+        ''',
+        default        = 'off',
+        choices        = {
+            'off': 'Off',
+            'vanilla': 'Vanilla Behavior',
+            'easy': 'Easier Behavior'
+        },
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+            'distribution': [
+                ('off',          1),
+                ('vanilla',      1),
+                ('easy',         1)
+            ],
         },
     ),
 
@@ -5995,6 +6107,18 @@ setting_infos = [
         ''',
         default        = False,
     ),
+    Checkbutton(
+        name           = 'speedup_music_for_last_triforce_piece',
+        gui_text       = 'Speed Up Music For Last Triforce Piece',
+        shared         = False,
+        cosmetic       = True,
+        gui_tooltip    = '''\
+            In Triforce Hunt, the music will speed up slightly
+            at one piece from the goal to make it more hype !
+            Does not apply on the standard battle enemy music.
+        ''',
+        default        = False,
+    ),
     Combobox(
         name           = 'background_music',
         gui_text       = 'Background Music',
@@ -6446,6 +6570,17 @@ setting_infos = [
                 ('random-ear-safe', 1),
             ]
         }
+    ),
+    Checkbutton(
+        name           = 'slowdown_music_when_lowhp',
+        gui_text       = 'Slow Down Music When Low HP',
+        shared         = False,
+        cosmetic       = True,
+        gui_tooltip    = '''\
+            The music will slow down slightly when being low on HP.
+            Does not apply on the standard battle enemy music.
+        ''',
+        default        = False,
     ),
     Combobox(
         name           = 'sfx_silver_rupee',

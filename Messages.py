@@ -301,6 +301,12 @@ KEYSANITY_MESSAGES = {
     0x9016: "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x46Gerudo Training\x01Ground\x05\x40!\x09",
     0x9017: "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x46Thieves' Hideout\x05\x40!\x09",
     0x9018: "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for \x05\x41Ganon's Castle\x05\x40!\x09",
+    0x9019: "\x13\x77\x08You found a \x05\x41Key Ring\x05\x40\x01for the \x05\x42Forest Temple\x05\x40!\x09\x01It includes the \x05\x41Boss Key\x05\x40!",
+    0x901A: "\x13\x77\x08You found a \x05\x41Key Ring\x05\x40\x01for the \x05\x41Fire Temple\x05\x40!\x09\x01It includes the \x05\x41Boss Key\x05\x40!",
+    0x901B: "\x13\x77\x08You found a \x05\x41Key Ring\x05\x40\x01for the \x05\x43Water Temple\x05\x40!\x09\x01It includes the \x05\x41Boss Key\x05\x40!",
+    0x901C: "\x13\x77\x08You found a \x05\x41Key Ring\x05\x40\x01for the \x05\x46Spirit Temple\x05\x40!\x09\x01It includes the \x05\x41Boss Key\x05\x40!",
+    0x901D: "\x13\x77\x08You found a \x05\x41Key Ring\x05\x40\x01for the \x05\x45Shadow Temple\x05\x40!\x09\x01It includes the \x05\x41Boss Key\x05\x40!",
+    0x901E: "\x13\x77\x08You found a \x05\x41Small Key Ring\x05\x40\x01for the \x05\x44Treasure Box Shop\x05\x40!\x09",
 
     0x9046: "\x08You found the \x05\x41Triforce of Power\x05\x40!",
     0x9047: "\x08You found the \x05\x45Triforce of Wisdom\x05\x40!",
@@ -317,8 +323,9 @@ for dungeon_name, max_keys in (
     ("the \x05\x46Gerudo Training\x01Ground\x05\x40", 9),
     ("the \x05\x46Thieves' Hideout\x05\x40", 4),
     ("\x05\x41Ganon's Castle\x05\x40", 3),
+    ("the \x05\x44Treasure Box Shop\x05\x40", 6),
 ):
-    KEYSANITY_MESSAGES[i] = f"\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for {dungeon_name}!\x09"
+    KEYSANITY_MESSAGES[i] = f"\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for {dungeon_name}!\x01It's your \x05\x41first\x05\x40 one!\x09"
     i += 1
     for num_keys in range(2, max_keys + 1):
         KEYSANITY_MESSAGES[i] = f"\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for {dungeon_name}!\x01You've collected \x05\x41{num_keys}\x05\x40 of them.\x09"
@@ -358,7 +365,8 @@ MISC_MESSAGES = {
     0x0458: ("\x12\x68\x7AMweep\x07\x04\x59", 0x23),
     0x0459: ("\x12\x68\x7AMweep\x07\x04\x5A", 0x23),
     0x045A: ("\x12\x68\x7AMweep\x07\x04\x5B", 0x23),
-    0x045B: ("\x12\x68\x7AMweep", 0x23)
+    0x045B: ("\x12\x68\x7AMweep", 0x23),
+    0x6013: ("Hey, newcomer!\x04Want me to throw you in jail?\x01\x01\x1B\x05\x42No\x01Yes\x05\x40", 0x00),
 }
 
 
@@ -908,7 +916,6 @@ def make_player_message(text):
 
     return new_text
 
-
 # reduce item message sizes and add new item messages
 # make sure to call this AFTER move_shop_item_messages()
 def update_item_messages(messages, world):
@@ -922,12 +929,10 @@ def update_item_messages(messages, world):
     for id, (text, opt) in MISC_MESSAGES.items():
         update_message_by_id(messages, id, text, opt)
 
-
 # run all keysanity related patching to add messages for dungeon specific items
 def add_item_messages(messages, shop_items, world):
     move_shop_item_messages(messages, shop_items)
     update_item_messages(messages, world)
-
 
 # reads each of the game's messages into a list of Message objects
 def read_messages(rom):

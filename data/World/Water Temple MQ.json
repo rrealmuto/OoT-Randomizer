@@ -6,7 +6,15 @@
             "Lake Hylia": "True",
             "Water Temple Dive": "is_adult and (Zora_Tunic or logic_fewer_tunic_requirements) and Iron_Boots",
             "Water Temple Dark Link Region": "Small_Key_Water_Temple and can_use(Longshot)",
-            "Water Temple Boss Door": "can_use(Longshot)"
+            "Water Temple Before Boss": "can_use(Longshot)"
+        }
+    },
+    {
+        "region_name": "Water Temple Before Boss",
+        "dungeon": "Water Temple",
+        "savewarp": "Lake Hylia -> Water Temple Lobby",
+        "exits": {
+            "Morpha Boss Room": "Boss_Key_Water_Temple"
         }
     },
     {

@@ -197,7 +197,7 @@
         },
         "exits": {
             "Shadow Temple Beyond Boat SoT Block": "can_play(Song_of_Time)",
-            "Shadow Temple Boss Door": "(Small_Key_Shadow_Temple, 5)"
+            "Bongo Bongo Boss Room": "(Small_Key_Shadow_Temple, 5) and Boss_Key_Shadow_Temple"
         }
     }
 ]

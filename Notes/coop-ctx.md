@@ -7,7 +7,7 @@ The starting address of the auto-tracker context is listed at address `0x8040_00
 |Offset|Name|Min version|Size|Description|
 |--:|---|--:|--:|---|
 |`0x04`|`PLAYER_ID`|1|`0x0001`|The world number of this world, 1-indexed.|
-|`0x05`|`PLAYER_NAME_ID`|1|`0x0001`|The world number of the player whose item is being picked up, used as an index into `PLAYER_NAME_ID` to render that player's name in the text box. `0` if no item is being picked up. This should usually not be read or modified by the multiworld plugin; use `OUTGOING_PLAYER` instead.|
+|`0x05`|`PLAYER_NAME_ID`|1|`0x0001`|The world number of the player whose item is being picked up, used as an index into `PLAYER_NAMES` to render that player's name in the text box. `0` if no item is being picked up. This should usually not be read or modified by the multiworld plugin; use `OUTGOING_PLAYER` instead.|
 |`0x06`|`INCOMING_ITEM`|1|`0x0002`|The ID (as in `Item.index`) of the next item to receive from the network, or `0` if there is none.|
 |`0x08`|`OUTGOING_KEY`|1|`0x0004`|A unique ID (see `get_override_entry` in Patches.py for details) for the source location of the outgoing item, or `0` if no item is being sent. The multiworld plugin should set this to `0` after handling an outgoing item.|
 |`0x0c`|`OUTGOING_ITEM`|1|`0x0002`|The ID (as in `Item.index`) of the outgoing item, or `0` if no item is being sent. The multiworld plugin should set this to `0` after handling an outgoing item.|
@@ -19,7 +19,7 @@ The starting address of the auto-tracker context is listed at address `0x8040_00
 |Offset|Name|Min version|Size|Description|
 |--:|---|--:|--:|---|
 |`0x0004`|`PLAYER_ID`|1|`0x0001`|The world number of this world, 1-indexed.|
-|`0x0005`|`PLAYER_NAME_ID`|1|`0x0001`|The world number of the player whose item is being picked up, used as an index into `PLAYER_NAME_ID` to render that player's name in the text box. `0` if no item is being picked up. This should usually not be read or modified by the multiworld plugin; use `OUTGOING_PLAYER` instead.|
+|`0x0005`|`PLAYER_NAME_ID`|1|`0x0001`|The world number of the player whose item is being picked up, used as an index into `PLAYER_NAMES` to render that player's name in the text box. `0` if no item is being picked up. This should usually not be read or modified by the multiworld plugin; use `OUTGOING_PLAYER` instead.|
 |`0x0006`|`INCOMING_PLAYER`|2|`0x0002`|The world number from which the `INCOMING_ITEM` came, or `0` if there is no incoming item.|
 |`0x0008`|`INCOMING_ITEM`|2|`0x0002`|The ID (as in `Item.index`) of the next item to receive from the network, or `0` if there is none.|
 |`0x000a`|`MW_SEND_OWN_ITEMS`|3|`0x0001`|The multiworld plugin can set this to `1` to make the game set `OUTGOING_KEY`, `OUTGOING_ITEM`, and `OUTGOING_PLAYER` even when finding an item for its own world. Defaults to `0`, meaning these fields are only set for Triforce pieces (which affect all worlds) and other players' items.|
