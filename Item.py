@@ -126,9 +126,11 @@ class Item(object):
             return {0x0029: 0x0111, 0x002A: 0x0112}[idx]
         if idx in (0x006A, 0x0003, 0x006B) and 'bombchus' in self.world.settings.minor_items_as_major_chest:
             return {0x006A: 0x0113, 0x0003: 0x0114, 0x006B: 0x0115}[idx]
+        if idx in (0x0087, 0x0088) and 'capacity' in self.world.settings.minor_items_as_major_chest:
+            return {0x0087: 0x0116, 0x0088: 0x0117}[idx]
         # use different item IDs for keyring that include boss keys so the text box displayed depends on the setting in the item's world, not the location's
         if idx in range(0x00CB, 0x00D0) and self.world.settings.keyring_give_bk:
-            return idx + 0x0116 - 0x00CB
+            return idx + 0x0118 - 0x00CB
         return idx
 
 

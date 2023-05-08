@@ -21,6 +21,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * New “Full” options for the settings “Randomize Owl Drops”, “Randomize Warp Song Destinations”, and “Randomize Overworld Spawns” (which is split into “Randomize Child Overworld Spawn” and “Randomize Adult Overworld Spawn” for this reason) that include more types of entrances (based on [#1179](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1179) and [#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
   * New “On (Savewarp to Overworld)” option for the “Shuffle Thieves' Hideout Entrances” setting (based on [fenhl#7](https://github.com/fenhl/OoT-Randomizer/pull/7))
   * New “Frogs Ocarina Game” option for the “Randomize Ocarina Song Notes” setting (based on [rrealmuto's `random_frog_song` branch](https://github.com/rrealmuto/OoT-Randomizer/tree/random_frog_song))
+  * “Minor Items in Big/Gold Chests” allows selecting “Bombchus” and “Deku & Hylian Shields” separately, and adds a new option for “Deku Stick & Nut Capacity”
   * New “Shuffle Ganon's Tower Entrance” setting
   * New “Minimum Special Deal Price”, “Maximum Special Deal Price”, and “Special Deal Price Distribution” settings replacing “Shopsanity Prices”
   * New “[EXPERIMENTAL] Allow Access to Shadow and Spirit Temples From Boss Doors” setting
