@@ -1465,6 +1465,7 @@ hintTable = {
     'Morpha Boss Room':                                         ("the #Giant Aquatic Amoeba#", "#Morpha#", 'region'),
     'Bongo Bongo Boss Room':                                    ("the #Phantom Shadow Beast#", "#Bongo Bongo#", 'region'),
     'Twinrova Boss Room':                                       ("the #Sorceress Sisters#", "#Twinrova#", 'region'),
+    'Ganons Castle Tower':                                      ("#Ganon's Tower#", None, 'region'),
 
     # Junk hints must satisfy all of the following conditions:
     # - They aren't inappropriate.
