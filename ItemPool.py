@@ -820,6 +820,19 @@ def get_pool_core(world):
                 if world.settings.shuffle_dungeon_rewards in ('any_dungeon', 'overworld', 'regional'):
                     dungeon.reward[-1].priority = True
 
+        # Ganon boss key
+        elif location.vanilla_item == 'Boss Key (Ganons Castle)':
+            dungeon = [dungeon for dungeon in world.dungeons if dungeon.name == 'Ganons Castle'][0]
+            dungeon.boss_key.append(ItemFactory(item))
+            if world.settings.shuffle_ganon_bosskey == 'vanilla':
+                shuffle_item = False
+            elif world.settings.shuffle_ganon_bosskey == 'remove':
+                world.state.collect(dungeon.boss_key[-1])
+                item = get_junk_item()[0]
+                shuffle_item = True
+            elif world.settings.shuffle_ganon_bosskey in ('any_dungeon', 'overworld', 'regional'):
+                dungeon.boss_key[-1].priority = True
+
         # Dungeon Items
         elif location.dungeon is not None:
             dungeon = location.dungeon
@@ -828,11 +841,11 @@ def get_pool_core(world):
 
             # Boss Key
             if location.vanilla_item == dungeon.item_name("Boss Key"):
-                if world.settings.shuffle_smallkeys in ('any_dungeon', 'overworld', 'keysanity', 'regional') and dungeon.name in world.settings.key_rings and world.settings.keyring_give_bk and dungeon.name in ('Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple'):
+                if world.settings.shuffle_smallkeys in ('any_dungeon', 'overworld', 'keysanity', 'regional') and dungeon.name in world.settings.key_rings and world.settings.keyring_give_bk:
                     item = get_junk_item()[0]
                     shuffle_item = True
                 else:
-                    shuffle_setting = world.settings.shuffle_bosskeys if dungeon.name != 'Ganons Castle' else world.settings.shuffle_ganon_bosskey
+                    shuffle_setting = world.settings.shuffle_bosskeys
                     dungeon_collection = dungeon.boss_key
                     if shuffle_setting == 'vanilla':
                         shuffle_item = False
