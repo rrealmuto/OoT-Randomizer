@@ -322,11 +322,14 @@ item_row_t item_table[] = {
     [0x0116] = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,     -1, 0x00BB, 0x12, nut_upgrade,        no_effect,           -1, -1, NULL), // Progressive Nut Capacity (big chest)
     [0x0117] = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,     -1, 0x00C7, 0x1B, stick_upgrade,      no_effect,           -1, -1, NULL), // Progressive Stick Capacity (big chest)
 
-    [0x0118] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9211, 0x0195, 0x77, no_upgrade, give_keyring_with_bk, FOREST_ID, -1, NULL), // Forest Temple Key Ring (with boss key)
-    [0x0119] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9212, 0x0195, 0x77, no_upgrade, give_keyring_with_bk, FIRE_ID,   -1, NULL), // Fire Temple Key Ring (with boss key)
-    [0x011A] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9213, 0x0195, 0x77, no_upgrade, give_keyring_with_bk, WATER_ID,  -1, NULL), // Water Temple Key Ring (with boss key)
-    [0x011B] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9214, 0x0195, 0x77, no_upgrade, give_keyring_with_bk, SPIRIT_ID, -1, NULL), // Spirit Temple Key Ring (with boss key)
-    [0x011C] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9215, 0x0195, 0x77, no_upgrade, give_keyring_with_bk, SHADOW_ID, -1, NULL), // Shadow Temple Key Ring (with boss key)
+    [0x0118] = ITEM_ROW(0x5B, SKULL_CHEST_SMALL, 0x71, -1, 0x00B5, 0x015C, 0x63, no_upgrade, no_effect, -1, -1, NULL), // Gold Skulltula Token (normal text)
+    [0x0119] = ITEM_ROW(0x5B,   SKULL_CHEST_BIG, 0x71, -1, 0x00B5, 0x015C, 0x63, no_upgrade, no_effect, -1, -1, NULL), // Gold Skulltula Token (big chest, normal text)
+
+    [0x011A] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9211, 0x0195, 0x77, no_upgrade, give_keyring_with_bk, FOREST_ID, -1, NULL), // Forest Temple Key Ring (with boss key)
+    [0x011B] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9212, 0x0195, 0x77, no_upgrade, give_keyring_with_bk, FIRE_ID,   -1, NULL), // Fire Temple Key Ring (with boss key)
+    [0x011C] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9213, 0x0195, 0x77, no_upgrade, give_keyring_with_bk, WATER_ID,  -1, NULL), // Water Temple Key Ring (with boss key)
+    [0x011D] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9214, 0x0195, 0x77, no_upgrade, give_keyring_with_bk, SPIRIT_ID, -1, NULL), // Spirit Temple Key Ring (with boss key)
+    [0x011E] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9215, 0x0195, 0x77, no_upgrade, give_keyring_with_bk, SHADOW_ID, -1, NULL), // Shadow Temple Key Ring (with boss key)
 
     [0x1000] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9057, 0x01A2, 0x29, no_upgrade, give_triforce_piece, -1, -1, NULL), // Easter egg (pink)
     [0x1001] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9057, 0x01A3, 0x29, no_upgrade, give_triforce_piece, -1, -1, NULL), // Easter egg (orange)
