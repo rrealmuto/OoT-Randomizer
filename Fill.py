@@ -131,6 +131,19 @@ def distribute_items_restrictive(window, worlds, fill_locations=None):
 
     search.collect_locations()
 
+    if worlds[0].settings.triforce_blitz_jabus_revenge:
+        triforcepool = list(filter(lambda item: item.name in triforce_blitz_items, progitempool))
+        tokenpool = list(filter(lambda item: item.type == 'Token', progitempool))
+        # Make space for the Triforce pieces to get placed on GS Skull locations
+        for triforce in triforcepool:
+            tokenpool.pop()
+        progitempool = list(filter(lambda item: item not in triforcepool and item not in tokenpool, progitempool))
+        
+        skull_locations = list(filter(lambda loc: loc.type == 'GS Token', fill_locations))
+        fill_locations = list(filter(lambda loc: loc not in skull_locations, fill_locations))
+        fill_restrictive_fast(window, worlds, skull_locations, triforcepool)
+        fill_restrictive_fast(window, worlds, skull_locations, tokenpool)
+
     # If there are dungeon items that are restricted to their original dungeon,
     # we must place them first to make sure that there is always a location to
     # place them. This could probably be replaced for more intelligent item

@@ -2705,8 +2705,21 @@ setting_infos = [
         },
         disable        = {
             True  : {'settings' : ['shuffle_ganon_bosskey', 'ganon_bosskey_stones', 'ganon_bosskey_medallions', 
-                                   'ganon_bosskey_rewards', 'ganon_bosskey_tokens', 'triforce_hunt', 'triforce_goal_per_world']}
+                                   'ganon_bosskey_rewards', 'ganon_bosskey_tokens', 'triforce_hunt', 'triforce_goal_per_world']},
+            False : {'settings' : ['triforce_blitz_jabus_revenge']}
         },
+    ),
+        Checkbutton(
+        name           = 'triforce_blitz_jabus_revenge',
+        gui_text       = 'Triforce Blitz Jabu\'s Revenge',
+        gui_tooltip    = '''\
+            Place the Triforce pieces of Power, Wisdom, and Courage on dungeon skulltulas instead of dungeon items.
+        ''',
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+            'hide_when_disabled': True,
+        }
     ),
     Combobox(
         name           = 'shuffle_ganon_bosskey',
