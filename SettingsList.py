@@ -3329,6 +3329,7 @@ setting_infos = [
         gui_text       = 'Key Rings give Boss Keys',
         gui_tooltip    = '''\
             Boss Keys will be included in the Key Ring for the specific dungeon.
+            This does not apply to the Ganon's Castle Boss Key.
         ''',
         default        = False,
         shared         = True,

@@ -2255,6 +2255,8 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
             item_text = getHint(getItemGenericName(location.item), True).text
             update_message_by_id(messages, 0x500C, "How about \x05\x41100 Rupees\x05\x40 for\x01\x05\x41"+ item_text +"\x05\x40?\x01\x1B\x05\x42Buy\x01Don't buy\x05\x40\x02")
 
+    new_message = "All right. You don't have to play\x01if you don't want to.\x0B\x02"
+    update_message_by_id(messages, 0x908B, new_message, 0x00)
     if world.settings.shuffle_tcgkeys != 'vanilla':
         if world.settings.shuffle_tcgkeys == 'remove':
             rom.write_byte(rom.sym('SHUFFLE_CHEST_GAME'), 0x02)
@@ -2267,7 +2269,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
             location = world.get_location("Market Treasure Chest Game Salesman")
             item_text = getHint(getItemGenericName(location.item), True).text
             update_message_by_id(messages, 0x6D, "I seem to have misplaced my\x01keys, but I have a fun item to\x01sell instead.\x04How about \x05\x4110 Rupees\x05\x40 for\x01\x05\x41" + item_text + "\x05\x40?\x01\x1B\x05\x42Buy\x01Don't Buy\x05\x40\x02")
-        update_message_by_id(messages, 0x2D, "That's OK!\x01More fun for me.\x02")
+        update_message_by_id(messages, 0x908B, "That's OK!\x01More fun for me.\x0B\x02", 0x00)
         update_message_by_id(messages, 0x6E, "Wait, that room was off limits!\x02")
         update_message_by_id(messages, 0x704C, "I hope you like it!\x02")
 

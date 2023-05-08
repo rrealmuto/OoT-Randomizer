@@ -3635,6 +3635,9 @@ courtyard_guards_kill:
 ; Replaces: sh     t8, 0x0204(s0)
 ;           sw     $zero, 0x0118(s0)
 
+.orga 0xE94B9C ; In Memory 0x80B1946C
+    addiu   t3, $zero, 0x908B ; Replaces text ID 0x002D
+
 .orga 0xE94B30
     jal     chestgame_buy_item_hook
     sh      t8, 0x0204(s0)

@@ -15,7 +15,6 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * New “Vanilla Locations” option for the “Shuffle Songs” setting ([#1882](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1882))
   * New “Shuffle Dungeon Rewards” setting ([#1833](https://github.com/TestRunnerSRL/OoT-Randomizer/issues/1833))
   * New “Bosses” option for the “Mix Entrance Pools” setting (based on [#1820](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1820))
-  * New “Shuffle Silver Rupees” and “Silver Rupee Pouches” settings (based on [#1814](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1814))
   * New “Triforce Hunt Mode” setting with “Normal”, “Easter Egg Hunt”, “Ice%”, and “Triforce Blitz” options (Easter Egg Hunt based on [#1804](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1804), Triforce Blitz based on [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev))
   * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1536))
   * “Closed Forest Requires Gohma” is a separate setting. With it enabled, items that can be used to escape the forest won't appear in the forest, and the randomizer will try to place at least one slingshot for each player in the forest. The setting is compatible with all forms of entrance randomizer by restricting entrances inside the forest area to only be shuffled among themselves. ([#1531](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1531))
@@ -189,6 +188,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * New shuffle setting `Shuffle Hyrule Loach Reward` which shuffles the reward you get upon presenting the Hyrule Loach to the fishing hole owner. You can choose to retain the Loach's vanilla behavior or make it easier to catch in several ways.
   * New shuffle setting `Treasure Chest Game Keys` makes it so the keys from the Treasure Chest Game can be found anywhere in the world rather than just in the game itself, and the chests of the minigame can contain any item. It also makes the shopkeeper sell a random item.
   * New World setting `Shuffle Thieves' Hideout Entrances`, which requires first shuffling interior entrances, shuffles the Thieves' Hideout rooms into the interior entrance pool.
+  * New shuffle setting `Shuffle Silver Rupees` shuffles the silver rupees into the item pool. To solve a silver rupee puzzle, you will need to find all the associated silver rupees around the world. You can also use the setting `Silver Rupee Pouches` to make some or all of the silver rupees grouped into pouches so that, similar to key rings, all silver rupees for any given puzzle will be found in a single item location.
 * **Hints**
   * New `Important Checks` hint type which hints at how many major items are in a given region.
   * New Misc. Hint `Frogs Ocarina Game` which tells you what item you'll get from the Zora's River frog minigame. The hint appears in the dialog box that's printed before they jump onto the log.
@@ -238,6 +238,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Heart Containers and Pieces of Heart will no longer be directly hinted by Way of the Hero or Path hints, which is consistent with Triforce Pieces and Gold Skulltula Tokens.
 * Junk items being sent to another world will now float up into the air to indicate this.
 * An unnecessary polygon check function is skipped to increase game performance.
+* In Triforce Hunt, your current and goal number of triforce pieces are now displayed on the file select screen.
 
 #### New Speedups
 * Various cutscenes removed or shortened, such as Water Temple and Gerudo Fortress gates and scarecrow spawn cutscenes.
