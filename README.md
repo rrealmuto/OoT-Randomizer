@@ -62,6 +62,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * Python 3.6 is no longer supported since GitHub's testing infrastructure no longer supports it.
 * Bug fixes:
   * Some bugs with no player name or the wrong player's name appearing in text boxes are fixed ([#208](https://github.com/OoTRandomizer/OoT-Randomizer/issues/208), [#1854](https://github.com/OoTRandomizer/OoT-Randomizer/issues/1854))
+  * The grammar of the Temple of Time altar hint message is corrected for win conditions that only require one item.
   * Text boxes for dungeon items in shops now include apostrophes.
 
 Differences between Dev-R and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):

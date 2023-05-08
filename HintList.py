@@ -1706,13 +1706,6 @@ hintTable = {
     'Gerudo Training Ground':                                   ("the test of thieves", "the Gerudo Training Ground", 'dungeonName'),
     'Ganons Castle':                                            ("a conquered citadel", "inside Ganon's Castle", 'dungeonName'),
 
-    'bridge_vanilla':                                           ("the #Shadow and Spirit Medallions# as well as the #Light Arrows#", None, 'bridge'),
-    'bridge_stones':                                            ("Spiritual Stones", None, 'bridge'),
-    'bridge_medallions':                                        ("Medallions", None, 'bridge'),
-    'bridge_dungeons':                                          ("Spiritual Stones and Medallions", None, 'bridge'),
-    'bridge_tokens':                                            ("Gold Skulltula Tokens", None, 'bridge'),
-    'bridge_hearts':                                            ("hearts", None, 'bridge'),
-
     'ganonBK_dungeon':                                          ("hidden somewhere #inside its castle#", None, 'ganonBossKey'),
     'ganonBK_regional':                                         ("hidden somewhere #inside or nearby its castle#", None, 'ganonBossKey'),
     'ganonBK_vanilla':                                          ("kept in a big chest #inside its tower#", None, 'ganonBossKey'),
@@ -1722,18 +1715,6 @@ hintTable = {
     'ganonBK_triforce':                                         ("given to the Hero once the #Triforce# is completed", None, 'ganonBossKey'),
     'ganonBK_eggs':                                             ("given to the Hero once enough #Easter Eggs# are found", None, 'ganonBossKey'),
     'ganonBK_ice':                                              ("guarded by a #monster in a frozen cavern#", "the #final treasure of Ice Cavern#", 'ganonBossKey'),
-    'ganonBK_medallions':                                       ("Medallions", None, 'ganonBossKey'),
-    'ganonBK_stones':                                           ("Spiritual Stones", None, 'ganonBossKey'),
-    'ganonBK_dungeons':                                         ("Spiritual Stones and Medallions", None, 'ganonBossKey'),
-    'ganonBK_tokens':                                           ("Gold Skulltula Tokens", None, 'ganonBossKey'),
-    'ganonBK_hearts':                                           ("hearts", None, 'ganonBossKey'),
-
-    'lacs_vanilla':                                             ("the #Shadow and Spirit Medallions#", None, 'lacs'),
-    'lacs_medallions':                                          ("Medallions", None, 'lacs'),
-    'lacs_stones':                                              ("Spiritual Stones", None, 'lacs'),
-    'lacs_dungeons':                                            ("Spiritual Stones and Medallions", None, 'lacs'),
-    'lacs_tokens':                                              ("Gold Skulltula Tokens", None, 'lacs'),
-    'lacs_hearts':                                              ("hearts", None, 'lacs'),
 
     'Spiritual Stone Text Start':                               ("3 Spiritual Stones found in Hyrule...", None, 'altar'),
     'Child Altar Text End':                                     ("\x13\x07Ye who may become a Hero...&Stand with the Ocarina and&play the Song of Time.", None, 'altar'),

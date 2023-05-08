@@ -1901,20 +1901,18 @@ def buildBridgeReqsString(world):
     if world.settings.bridge == 'open':
         string += "The awakened ones will have #already created a bridge# to the castle where the evil dwells."
     else:
-        item_req_string = getHint('bridge_' + world.settings.bridge, world.settings.clearer_hints).text
-        if world.settings.bridge == 'medallions':
-            item_req_string = str(world.settings.bridge_medallions) + ' ' + item_req_string
-        elif world.settings.bridge == 'stones':
-            item_req_string = str(world.settings.bridge_stones) + ' ' + item_req_string
-        elif world.settings.bridge == 'dungeons':
-            item_req_string = str(world.settings.bridge_rewards) + ' ' + item_req_string
-        elif world.settings.bridge == 'tokens':
-            item_req_string = str(world.settings.bridge_tokens) + ' ' + item_req_string
-        elif world.settings.bridge == 'hearts':
-            item_req_string = str(world.settings.bridge_hearts) + ' ' + item_req_string
-        if '#' not in item_req_string:
-            item_req_string = '#%s#' % item_req_string
-        string += "The awakened ones will await for the Hero to collect %s." % item_req_string
+        if world.settings.bridge == 'vanilla':
+            item_req_string = "the #Shadow and Spirit Medallions# as well as the #Light Arrows#"
+        else:
+            count, singular, plural = {
+                'stones':     (world.settings.bridge_stones,     "#Spiritual Stone#",              "#Spiritual Stones#"),
+                'medallions': (world.settings.bridge_medallions, "#Medallion#",                    "#Medallions#"),
+                'dungeons':   (world.settings.bridge_rewards,    "#Spiritual Stone or Medallion#", "#Spiritual Stones and Medallions#"),
+                'tokens':     (world.settings.bridge_tokens,     "#Gold Skulltula Token#",         "#Gold Skulltula Tokens#"),
+                'hearts':     (world.settings.bridge_hearts,     "#heart#",                        "#hearts#"), #TODO clarify that this includes starting hearts
+            }[world.settings.bridge]
+            item_req_string = f'{count} {singular if count == 1 else plural}'
+        string += f"The awakened ones will await for the Hero to collect {item_req_string}."
     return str(GossipText(string, ['Green'], prefix=''))
 
 
@@ -1924,35 +1922,29 @@ def buildGanonBossKeyString(world):
         string += "And the door to the \x05\x41evil one\x05\x40's chamber will be left #unlocked#."
     else:
         if world.settings.shuffle_ganon_bosskey == 'on_lacs':
-            item_req_string = getHint('lacs_' + world.settings.lacs_condition, world.settings.clearer_hints).text
-            if world.settings.lacs_condition == 'medallions':
-                item_req_string = str(world.settings.lacs_medallions) + ' ' + item_req_string
-            elif world.settings.lacs_condition == 'stones':
-                item_req_string = str(world.settings.lacs_stones) + ' ' + item_req_string
-            elif world.settings.lacs_condition == 'dungeons':
-                item_req_string = str(world.settings.lacs_rewards) + ' ' + item_req_string
-            elif world.settings.lacs_condition == 'tokens':
-                item_req_string = str(world.settings.lacs_tokens) + ' ' + item_req_string
-            elif world.settings.lacs_condition == 'hearts':
-                item_req_string = str(world.settings.lacs_hearts) + ' ' + item_req_string
-            if '#' not in item_req_string:
-                item_req_string = '#%s#' % item_req_string
-            bk_location_string = "provided by Zelda once %s are retrieved" % item_req_string
-        elif world.settings.shuffle_ganon_bosskey in ['stones', 'medallions', 'dungeons', 'tokens', 'hearts']:
-            item_req_string = getHint('ganonBK_' + world.settings.shuffle_ganon_bosskey, world.settings.clearer_hints).text
-            if world.settings.shuffle_ganon_bosskey == 'medallions':
-                item_req_string = str(world.settings.ganon_bosskey_medallions) + ' ' + item_req_string
-            elif world.settings.shuffle_ganon_bosskey == 'stones':
-                item_req_string = str(world.settings.ganon_bosskey_stones) + ' ' + item_req_string
-            elif world.settings.shuffle_ganon_bosskey == 'dungeons':
-                item_req_string = str(world.settings.ganon_bosskey_rewards) + ' ' + item_req_string
-            elif world.settings.shuffle_ganon_bosskey == 'tokens':
-                item_req_string = str(world.settings.ganon_bosskey_tokens) + ' ' + item_req_string
-            elif world.settings.shuffle_ganon_bosskey == 'hearts':
-                item_req_string = str(world.settings.ganon_bosskey_hearts) + ' ' + item_req_string
-            if '#' not in item_req_string:
-                item_req_string = '#%s#' % item_req_string
-            bk_location_string = "automatically granted once %s are retrieved" % item_req_string
+            if world.settings.lacs_condition == 'vanilla':
+                item_req_string = "the #Shadow and Spirit Medallions#"
+                plural = True
+            else:
+                count, singular, plural = {
+                    'stones':     (world.settings.lacs_stones,     "#Spiritual Stone#",              "#Spiritual Stones#"),
+                    'medallions': (world.settings.lacs_medallions, "#Medallion#",                    "#Medallions#"),
+                    'dungeons':   (world.settings.lacs_rewards,    "#Spiritual Stone or Medallion#", "#Spiritual Stones and Medallions#"),
+                    'tokens':     (world.settings.lacs_tokens,     "#Gold Skulltula Token#",         "#Gold Skulltula Tokens#"),
+                    'hearts':     (world.settings.lacs_hearts,     "#heart#",                        "#hearts#"), #TODO clarify that this includes starting hearts
+                }[world.settings.lacs_condition]
+                item_req_string = f'{count} {singular if count == 1 else plural}'
+            bk_location_string = f"provided by Zelda once {item_req_string} {'are' if plural else 'is'} retrieved"
+        elif world.settings.shuffle_ganon_bosskey in ('stones', 'medallions', 'dungeons', 'tokens', 'hearts'):
+            count, singular, plural = {
+                'stones':     (world.settings.ganon_bosskey_stones,     "#Spiritual Stone#",              "#Spiritual Stones#"),
+                'medallions': (world.settings.ganon_bosskey_medallions, "#Medallion#",                    "#Medallions#"),
+                'dungeons':   (world.settings.ganon_bosskey_rewards,    "#Spiritual Stone or Medallion#", "#Spiritual Stones and Medallions#"),
+                'tokens':     (world.settings.ganon_bosskey_tokens,     "#Gold Skulltula Token#",         "#Gold Skulltula Tokens#"),
+                'hearts':     (world.settings.ganon_bosskey_hearts,     "#heart#",                        "#hearts#"), #TODO clarify that this includes starting hearts
+            }[world.settings.shuffle_ganon_bosskey]
+            item_req_string = f'{count} {singular if count == 1 else plural}'
+            bk_location_string = f"automatically granted once {item_req_string} {'are' if plural else 'is'} retrieved"
         else:
             condition = world.settings.shuffle_ganon_bosskey
             if condition == 'triforce':
@@ -1960,8 +1952,8 @@ def buildGanonBossKeyString(world):
                     condition = 'eggs'
                 elif world.settings.triforce_hunt_mode == 'ice_percent':
                     condition = 'ice'
-            bk_location_string = getHint('ganonBK_' + condition, world.settings.clearer_hints).text
-        string += "And the \x05\x41evil one\x05\x40's key will be %s." % bk_location_string
+            bk_location_string = getHint(f'ganonBK_{condition}', world.settings.clearer_hints).text
+        string += f"And the \x05\x41evil one\x05\x40's key will be {bk_location_string}."
     return str(GossipText(string, ['Yellow'], prefix=''))
 
 
