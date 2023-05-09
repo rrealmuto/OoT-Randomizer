@@ -1,6 +1,6 @@
 The **co-op context** is a region of memory where a portion of the randomizer's configuration variables are stored in a versioned layout defined below. It is the interface used by emulator plugins to implement [Multiworld](https://wiki.ootrandomizer.com/index.php?title=Multiworld).
 
-The starting address of the auto-tracker context is listed at address `0x8040_0000` (at the start of the randomizer context). On versions of the randomizer before this feature was added, the starting address is given as zero. At that address, a 4-byte integer can be found. This is the version number of the co-op context and defines the layout of the remainder of the context according to the sections below. The current version is 4.
+The starting address of the co-op context is listed at address `0x8040_0000` (at the start of the randomizer context). On versions of the randomizer before this feature was added, the starting address is given as zero. At that address, a 4-byte integer can be found. This is the version number of the co-op context and defines the layout of the remainder of the context according to the sections below. The current version is 4.
 
 # Version 1
 
