@@ -265,10 +265,10 @@ ITEM_MESSAGES = [
     (0x908E, "\x08\x06\x28You have learned the\x01\x06\x2D\x05\x46Requiem of Spirit\x05\x40!"),
     (0x908F, "\x08\x06\x28You have learned the\x01\x06\x28\x05\x45Nocturne of Shadow\x05\x40!"),
     (0x9090, "\x08\x06\x28You have learned the\x01\x06\x32\x05\x44Prelude of Light\x05\x40!"),
-    (0x9091, "\x08\x06\x14You've learned \x05\x42Saria's Song\x05\x40!"),
+    (0x9091, "\x08\x06\x15You've learned \x05\x43Zelda's Lullaby\x05\x40!"),
     (0x9092, "\x08\x06\x11You've learned \x05\x41Epona's Song\x05\x40!"),
-    (0x9093, "\x08\x06\x0BYou've learned the \x05\x46Sun's Song\x05\x40!"),
-    (0x9094, "\x08\x06\x15You've learned \x05\x43Zelda's Lullaby\x05\x40!"),
+    (0x9093, "\x08\x06\x14You've learned \x05\x42Saria's Song\x05\x40!"),
+    (0x9094, "\x08\x06\x0BYou've learned the \x05\x46Sun's Song\x05\x40!"),
     (0x9095, "\x08\x06\x05You've learned the \x05\x44Song of Time\x05\x40!"),
     (0x9096, "\x08You've learned the \x05\x45Song of Storms\x05\x40!"),
 ]
