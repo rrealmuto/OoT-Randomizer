@@ -54,9 +54,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         ('object_gi_keyring',  data_path('KeyRing.zobj'),  0x195),  # Key Rings
         ('object_gi_warpsong', data_path('Note.zobj'),     0x196),  # Inverted Music Note
         ('object_gi_chubag',   data_path('ChuBag.zobj'),   0x197),  # Bombchu Bag
-        ('object_gi_abutton',  data_path('A_Button.zobj'), 0x198),  # A button
-        ('object_gi_cbutton',  data_path('C_Button_Horizontal.zobj'), 0x199),  # C button Horizontal
-        ('object_gi_cbutton',  data_path('C_Button_Vertical.zobj'), 0x19A),  # C button Vertical
+        ('object_gi_abutton',  data_path('A_Button.zobj'), 0x199),  # A button
+        ('object_gi_cbutton',  data_path('C_Button_Horizontal.zobj'), 0x19A),  # C button Horizontal
+        ('object_gi_cbutton',  data_path('C_Button_Vertical.zobj'), 0x19B),  # C button Vertical
     ]
 
     extended_objects_start = start_address = rom.free_space()

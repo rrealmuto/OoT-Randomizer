@@ -142,11 +142,11 @@ item_draw_table_entry_t item_draw_table[] = {
     [0x7C] = { draw_gi_song_notes,          { 0x06000EC0, 0xC8FF00FF, 1 } }, // Music Note inverted (Yellow)
     [0x7D] = { draw_gi_various_opa0,        { 0x060016A0 } }, // Bombchu Bag
     [0x7E] = { draw_gi_silver_rupee_pouch,  { 0x06001850, 0x06001750, 0x06001790, 0x060019A0, 0x060017B0, 0x06001A28, 0x060017D0, 0x06001AD8 } }, // Adult's Wallet}
-    [0x7E] = { draw_gi_a_button,            { 0x06000DA0, 0x5A5AFFFF } }, // A button
-    [0x7F] = { draw_gi_c_button_vertical,   { 0x06000960, 0xFFA000FF, 0 } }, // Cup button
-    [0x80] = { draw_gi_c_button_vertical,   { 0x06000960, 0xFFA000FF, 1 } }, // Cdown button
-    [0x81] = { draw_gi_c_button_horizontal, { 0x06000E10, 0xFFA000FF, 1 } }, // Cleft button
-    [0x82] = { draw_gi_c_button_horizontal, { 0x06000E10, 0xFFA000FF, 0 } }, // Cright button
+    [0x7F] = { draw_gi_a_button,            { 0x06000DA0, 0x5A5AFFFF } }, // A button
+    [0x80] = { draw_gi_c_button_vertical,   { 0x06000960, 0xFFA000FF, 0 } }, // Cup button
+    [0x81] = { draw_gi_c_button_vertical,   { 0x06000960, 0xFFA000FF, 1 } }, // Cdown button
+    [0x82] = { draw_gi_c_button_horizontal, { 0x06000E10, 0xFFA000FF, 1 } }, // Cleft button
+    [0x83] = { draw_gi_c_button_horizontal, { 0x06000E10, 0xFFA000FF, 0 } }, // Cright button
 };
 
 void base_draw_gi_model(z64_game_t *game, uint32_t draw_id) {

@@ -928,12 +928,6 @@ def patch_voices(rom, settings, log, symbols):
         # Write the setting to the log
         log.sfx[log_key] = voice_setting
 
-def patch_correct_model_colors(rom, settings, log, symbols):
-    if settings.correct_model_colors:
-        rom.write_byte(symbols['CFG_CORRECT_MODEL_COLORS'], 0x01)
-    else:
-        rom.write_byte(symbols['CFG_CORRECT_MODEL_COLORS'], 0x00)
-    log.correct_model_colors = settings.correct_model_colors
 def patch_music_changes(rom, settings, log, symbols):
     # Music tempo changes
     if settings.speedup_music_for_last_triforce_piece:
@@ -948,6 +942,12 @@ def patch_music_changes(rom, settings, log, symbols):
         rom.write_byte(symbols['CFG_SLOWDOWN_MUSIC_WHEN_LOWHP'], 0x00)
     log.slowdown_music_when_lowhp = settings.slowdown_music_when_lowhp
 
+def patch_correct_model_colors(rom, settings, log, symbols):
+    if settings.correct_model_colors:
+        rom.write_byte(symbols['CFG_CORRECT_MODEL_COLORS'], 0x01)
+    else:
+        rom.write_byte(symbols['CFG_CORRECT_MODEL_COLORS'], 0x00)
+    log.correct_model_colors = settings.correct_model_colors
 
 legacy_cosmetic_data_headers = [
     0x03481000,
@@ -1076,6 +1076,42 @@ patch_sets[0x1F073FDA] = {
     }
 }
 
+# 7.1.96
+patch_sets[0x1F073FDB] = {
+    "patches": patch_sets[0x1F073FDA]["patches"] + [
+        patch_tunic_colors,
+    ],
+    "symbols": {
+        **patch_sets[0x1F073FDA]["symbols"],
+        "CFG_RAINBOW_TUNIC_ENABLED": 0x005A,
+        "CFG_TUNIC_COLORS": 0x005B,
+    }
+}
+
+# 7.1.110
+patch_sets[0x1F073FDC] = {
+    "patches": patch_sets[0x1F073FDB]["patches"] + [
+        patch_music_changes,
+    ],
+    "symbols": {
+        **patch_sets[0x1F073FDB]["symbols"],
+        "CFG_SPEEDUP_MUSIC_FOR_LAST_TRIFORCE_PIECE": 0x0058,
+        "CFG_SLOWDOWN_MUSIC_WHEN_LOWHP": 0x0059,
+        "CFG_RAINBOW_TUNIC_ENABLED": 0x005A,
+        "CFG_TUNIC_COLORS": 0x005B,
+    }
+}
+
+# 7.1.111
+patch_sets[0x1F073FDD] = {
+    "patches": patch_sets[0x1F073FDC]["patches"] + [
+        patch_correct_model_colors,
+    ],
+    "symbols": {
+        **patch_sets[0x1F073FDC]["symbols"],
+        "CFG_CORRECT_MODEL_COLORS": 0x0064
+    }
+}
 def patch_cosmetics(settings, rom):
     # re-seed for aesthetic effects. They shouldn't be affected by the generation seed
     random.seed()
