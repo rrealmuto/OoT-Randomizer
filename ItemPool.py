@@ -231,6 +231,11 @@ ludicrous_items_extended = [
     'Silver Rupee Pouch (Ganons Castle Shadow Trial)',
     'Silver Rupee Pouch (Ganons Castle Water Trial)',
     'Silver Rupee Pouch (Ganons Castle Forest Trial)',
+    'Ocarina A Button',
+    'Ocarina C up Button',
+    'Ocarina C left Button',
+    'Ocarina C down Button',
+    'Ocarina C right Button',
 ]
 
 ludicrous_exclusions = (
@@ -553,6 +558,8 @@ def get_pool_core(world):
             pending_junk_pool.extend(reward_list)
         if world.settings.shuffle_song_items == 'any':
             pending_junk_pool.extend(song_list)
+        if world.settings.shuffle_individual_ocarina_notes:
+            pending_junk_pool.extend(['Ocarina A Button', 'Ocarina C up Button', 'Ocarina C left Button', 'Ocarina C down Button', 'Ocarina C right Button'])
 
     if world.settings.item_pool_value == 'ludicrous':
         pending_junk_pool.extend(ludicrous_health)
@@ -566,6 +573,8 @@ def get_pool_core(world):
         elif world.settings.triforce_hunt_mode == 'blitz':
             pending_junk_pool.extend(triforce_blitz_items)
         # Ice% is handled below
+    if world.settings.shuffle_individual_ocarina_notes:
+        pending_junk_pool.extend(['Ocarina A Button', 'Ocarina C up Button', 'Ocarina C left Button', 'Ocarina C down Button', 'Ocarina C right Button'])
 
     # Use the vanilla items in the world's locations when appropriate.
     for location in world.get_locations():
@@ -1068,5 +1077,12 @@ def get_pool_core(world):
         world.distribution.distribution.search_groups['Junk'] = remove_junk_items
 
     world.distribution.collect_starters(world.state)
+
+    if not world.settings.shuffle_individual_ocarina_notes:
+        world.state.collect(ItemFactory('Ocarina A Button'))
+        world.state.collect(ItemFactory('Ocarina C up Button'))
+        world.state.collect(ItemFactory('Ocarina C down Button'))
+        world.state.collect(ItemFactory('Ocarina C left Button'))
+        world.state.collect(ItemFactory('Ocarina C right Button'))
 
     return pool, placed_items

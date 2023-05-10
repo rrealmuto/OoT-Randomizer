@@ -4,6 +4,7 @@
 #include "z64.h"
 #include "icetrap.h"
 #include "triforce.h"
+#include "ocarina_buttons.h"
 
 typedef void (*commit_scene_flags_fn)(z64_game_t* game_ctxt);
 #define commit_scene_flags ((commit_scene_flags_fn)0x8009D894)
@@ -34,6 +35,7 @@ void clear_excess_hearts(z64_file_t *save, int16_t arg1, int16_t arg2);
 void open_mask_shop(z64_file_t *save, int16_t arg1, int16_t arg2);
 void give_bombchus(z64_file_t *save, int16_t arg1, int16_t arg2);
 void trade_quest_upgrade(z64_file_t *save, int16_t item_id, int16_t arg2);
+void unlock_ocarina_note(z64_file_t *save, int16_t arg1, int16_t arg2);
 
 typedef enum dungeon {
     DEKU_ID       = 0,

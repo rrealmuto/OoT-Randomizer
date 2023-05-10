@@ -222,6 +222,7 @@
             "shuffle_expensive_merchants",
             "shuffle_frog_song_rupees",
             "shuffle_loach_reward",
+            "shuffle_individual_ocarina_notes",
             "shuffle_base_item_pool"
           ]
         },

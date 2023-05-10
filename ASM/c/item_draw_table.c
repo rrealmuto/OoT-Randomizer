@@ -143,17 +143,22 @@ item_draw_table_entry_t item_draw_table[] = {
 
     [0x7D] = { draw_gi_various_opa0,        { 0x060016A0 } }, // Bombchu Bag
     [0x7E] = { draw_gi_silver_rupee_pouch,  { 0x06001850, 0x06001750, 0x06001790, 0x060019A0, 0x060017B0, 0x06001A28, 0x060017D0, 0x06001AD8 } }, // Silver Rupee Pouch
+    [0x7F] = { draw_gi_a_button,            { 0x06000DA0, 0x5A5AFFFF } }, // A button
+    [0x80] = { draw_gi_c_button_vertical,   { 0x06000960, 0xFFA000FF, 0 } }, // Cup button
+    [0x81] = { draw_gi_c_button_vertical,   { 0x06000960, 0xFFA000FF, 1 } }, // Cdown button
+    [0x82] = { draw_gi_c_button_horizontal, { 0x06000E10, 0xFFA000FF, 1 } }, // Cleft button
+    [0x83] = { draw_gi_c_button_horizontal, { 0x06000E10, 0xFFA000FF, 0 } }, // Cright button
 
-    [0x7F] = { draw_gi_medallions,          { 0x060004d0, 0x06000f80 } }, // Light Medallion
-    [0x80] = { draw_gi_medallions,          { 0x06000370, 0x06000e40 } }, // Forest Medallion
-    [0x81] = { draw_gi_medallions,          { 0x060001b0, 0x06000c30 } }, // Fire Medallion
-    [0x82] = { draw_gi_medallions,          { 0x06000330, 0x06000e00 } }, // Water Medallion
-    [0x83] = { draw_gi_medallions,          { 0x060002d0, 0x06000d60 } }, // Shadow Medallion
-    [0x84] = { draw_gi_medallions,          { 0x06000380, 0x06000e40 } }, // Spirit Medallion
+    [0x84] = { draw_gi_medallions,          { 0x060004d0, 0x06000f80 } }, // Light Medallion
+    [0x85] = { draw_gi_medallions,          { 0x06000370, 0x06000e40 } }, // Forest Medallion
+    [0x86] = { draw_gi_medallions,          { 0x060001b0, 0x06000c30 } }, // Fire Medallion
+    [0x87] = { draw_gi_medallions,          { 0x06000330, 0x06000e00 } }, // Water Medallion
+    [0x88] = { draw_gi_medallions,          { 0x060002d0, 0x06000d60 } }, // Shadow Medallion
+    [0x89] = { draw_gi_medallions,          { 0x06000380, 0x06000e40 } }, // Spirit Medallion
 
-    [0x85] = { draw_gi_stones,              { 0x06000b50, 0x06001290, 0xffffa0ff, 0x00ff00ff } }, // Kokiri Emerald
-    [0x86] = { draw_gi_stones,              { 0x06000620, 0x06000920, 0xffaaffff, 0xff0064ff } }, // Goron Ruby
-    [0x87] = { draw_gi_stones,              { 0x06000b00, 0x060012f0, 0x32ffffff, 0x320096ff } }, // Zora Sapphire
+    [0x8A] = { draw_gi_stones,              { 0x06000b50, 0x06001290, 0xffffa0ff, 0x00ff00ff } }, // Kokiri Emerald
+    [0x8B] = { draw_gi_stones,              { 0x06000620, 0x06000920, 0xffaaffff, 0xff0064ff } }, // Goron Ruby
+    [0x8C] = { draw_gi_stones,              { 0x06000b00, 0x060012f0, 0x32ffffff, 0x320096ff } }, // Zora Sapphire
 };
 
 void base_draw_gi_model(z64_game_t *game, uint32_t draw_id) {

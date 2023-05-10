@@ -8,12 +8,14 @@ class ItemInfo(object):
     bottles = set()
     medallions = set()
     stones = set()
+    ocarina_buttons = set()
     junk = {}
 
     solver_ids = {}
     bottle_ids = set()
     medallion_ids = set()
     stone_ids = set()
+    ocarina_buttons_ids = set()
 
     def __init__(self, name='', event=False):
         if event:
@@ -37,6 +39,7 @@ class ItemInfo(object):
         self.alias = self.special.get('alias', None)
         self.junk = self.special.get('junk', None)
         self.trade = self.special.get('trade', False)
+        self.ocarina_button = self.special.get('ocarina_button', False)
 
         self.solver_id = None
         if name and self.junk is None:
@@ -57,6 +60,9 @@ for item_name in item_table:
     if ItemInfo.items[item_name].stone:
         ItemInfo.stones.add(item_name)
         ItemInfo.stone_ids.add(ItemInfo.solver_ids[escape_name(item_name)])
+    if ItemInfo.items[item_name].ocarina_button:
+        ItemInfo.ocarina_buttons.add(item_name)
+        ItemInfo.ocarina_buttons_ids.add(ItemInfo.solver_ids[escape_name(item_name)])
     if ItemInfo.items[item_name].junk is not None:
         ItemInfo.junk[item_name] = ItemInfo.items[item_name].junk
 
@@ -123,21 +129,21 @@ class Item(object):
             freeze_link = self.world.settings.tokensanity != 'off'
             return {
                 (False, False): 0x005B,
-                (False, True): 0x0118,
-                (True, False): 0x010D,
-                (True, True): 0x0119,
+                (False, True): 0x011D,
+                (True, False): 0x0112,
+                (True, True): 0x011E,
             }[big_chest, freeze_link]
         if idx in (0x003D, 0x003E, 0x0076) and (self.world.settings.bridge == 'hearts' or self.world.settings.lacs_condition == 'hearts' or self.world.settings.shuffle_ganon_bosskey == 'hearts'):
-            return {0x003D: 0x010E, 0x003E: 0x010F, 0x0076: 0x0110}[idx]
+            return {0x003D: 0x0113, 0x003E: 0x0114, 0x0076: 0x0115}[idx]
         if idx in (0x0029, 0x002A) and 'shields' in self.world.settings.minor_items_as_major_chest:
-            return {0x0029: 0x0111, 0x002A: 0x0112}[idx]
+            return {0x0029: 0x0116, 0x002A: 0x0117}[idx]
         if idx in (0x006A, 0x0003, 0x006B) and 'bombchus' in self.world.settings.minor_items_as_major_chest:
-            return {0x006A: 0x0113, 0x0003: 0x0114, 0x006B: 0x0115}[idx]
+            return {0x006A: 0x0118, 0x0003: 0x0119, 0x006B: 0x011A}[idx]
         if idx in (0x0087, 0x0088) and 'capacity' in self.world.settings.minor_items_as_major_chest:
-            return {0x0087: 0x0116, 0x0088: 0x0117}[idx]
+            return {0x0087: 0x011B, 0x0088: 0x011C}[idx]
         # use different item IDs for keyring that include boss keys so the text box displayed depends on the setting in the item's world, not the location's
         if idx in range(0x00CB, 0x00D0) and self.world.settings.keyring_give_bk:
-            return idx + 0x011A - 0x00CB
+            return idx + 0x011F - 0x00CB
         return idx
 
 

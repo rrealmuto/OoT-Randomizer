@@ -5007,6 +5007,20 @@ setting_infos = [
             'randomize_key': 'randomize_settings',
         },
     ),
+    Checkbutton(
+        name           = 'shuffle_individual_ocarina_notes',
+        gui_text       = 'Shuffle Ocarina Note Buttons',
+        gui_tooltip    = '''\
+            Enabling this locks all Ocarina inputs, and adds 5
+            new items to find that each unlock one of the 5
+            Ocarina notess.
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    ),
     Combobox(
         name           = 'shuffle_loach_reward',
         gui_text       = 'Shuffle Hyrule Loach Reward',
@@ -5448,7 +5462,7 @@ setting_infos = [
     Combobox(
         name           = 'ocarina_songs',
         multiple_select = True,
-        gui_text       = 'Randomize Ocarina Song Notes',
+        gui_text       = 'Randomize Ocarina Melodies',
         default        = [],
         choices        = {
             'frog': 'Frog Songs',

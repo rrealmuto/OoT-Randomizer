@@ -12,6 +12,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
 
 * New settings and options:
   * New plando-only “Chest, Pot, Crate, & Beehive Appearance Does Not Match Contents” setting which makes each chest etc. randomly choose any appearance except the correct one ([#1950](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1950))
+  * New “Shuffle Ocarina Note Buttons” setting (based on [#1885](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1885))
   * New “Vanilla Locations” option for the “Shuffle Songs” setting ([#1882](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1882))
   * New “Shuffle Dungeon Rewards” setting ([#1833](https://github.com/TestRunnerSRL/OoT-Randomizer/issues/1833))
   * New “Bosses” option for the “Mix Entrance Pools” setting (based on [#1820](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1820))

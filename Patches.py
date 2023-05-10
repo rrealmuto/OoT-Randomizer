@@ -20,7 +20,7 @@ from Messages import read_messages, update_message_by_id, read_shop_items, updat
         write_shop_items, remove_unused_messages, make_player_message, \
         add_item_messages, repack_messages, shuffle_messages, \
         get_message_by_id, Text_Code, COLOR_MAP
-from OcarinaSongs import replace_songs
+from OcarinaSongs import patch_songs
 from MQ import patch_files, File, update_dmadata, insert_space, add_relocations
 from SaveContext import SaveContext, Scenes, FlagType
 from version import __version__
@@ -52,10 +52,13 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
 
     # Load models into the extended object table.
     zobj_imports = (
-        ('object_gi_triforce', data_path('Triforce.zobj'), 0x193),  # Triforce Piece
-        ('object_gi_keyring',  data_path('KeyRing.zobj'),  0x195),  # Key Rings
-        ('object_gi_warpsong', data_path('Note.zobj'),     0x196),  # Inverted Music Note
-        ('object_gi_chubag',   data_path('ChuBag.zobj'),   0x197),  # Bombchu Bag
+        ('object_gi_triforce', data_path('Triforce.zobj'),            0x193),  # Triforce Piece
+        ('object_gi_keyring',  data_path('KeyRing.zobj'),             0x195),  # Key Rings
+        ('object_gi_warpsong', data_path('Note.zobj'),                0x196),  # Inverted Music Note
+        ('object_gi_chubag',   data_path('ChuBag.zobj'),              0x197),  # Bombchu Bag
+        ('object_gi_abutton',  data_path('A_Button.zobj'),            0x199),  # A button
+        ('object_gi_cbutton',  data_path('C_Button_Horizontal.zobj'), 0x19A),  # C button Horizontal
+        ('object_gi_cbutton',  data_path('C_Button_Vertical.zobj'),   0x19B),  # C button Vertical
     )
 
     extended_objects_start = start_address = rom.free_space()
@@ -83,19 +86,19 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
             (0x05CC, [0xFF, 0xFF, 0xFF]), # Outer Primary Color?
             (0x05D4, [0xFF, 0xFF, 0xFF]), # Outer Env Color?
         )),
-        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1A2, ( # Weird Egg -> Pink Easter Egg
+        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1A5, ( # Weird Egg -> Pink Easter Egg
             (0x0FF4, [0xDB, 0xA9, 0xD8]), # Primary Color
             (0x0FFC, [0xD1, 0x7B, 0xCC]), # Env Color
         )),
-        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1A3, ( # Weird Egg -> Orange Easter Egg
+        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1A6, ( # Weird Egg -> Orange Easter Egg
             (0x0FF4, [0xDB, 0xA9, 0x77]), # Primary Color
             (0x0FFC, [0xD1, 0x7B, 0x25]), # Env Color
         )),
-        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1A4, ( # Weird Egg -> Green Easter Egg
+        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1A7, ( # Weird Egg -> Green Easter Egg
             (0x0FF4, [0x77, 0xDB, 0x77]), # Primary Color
             (0x0FFC, [0x25, 0xD1, 0x25]), # Env Color
         )),
-        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1A5, ( # Weird Egg -> Blue Easter Egg
+        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1A8, ( # Weird Egg -> Blue Easter Egg
             (0x0FF4, [0x77, 0x77, 0xDB]), # Primary Color
             (0x0FFC, [0x25, 0x25, 0xD1]), # Env Color
         )),
@@ -114,15 +117,15 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
 
     # Make new model files by splitting existing ones to fit into the get item memory slot
     zobj_splits = (
-        ('object_gi_jewel_emerald',  '0145A000', '0145D680', (0x1240, 0x10e0), 0x199), # Kokiri Emerald
-        ('object_gi_jewel_ruby',     '0145A000', '0145D680', (0x20a0, 0x1fb0), 0x19A), # Goron Ruby
-        ('object_gi_jewel_sapphire', '0145A000', '0145D680', (0x3530, 0x3370), 0x19B), # Zora Sapphire
-        ('object_gi_medal_light',    '014BB000', '014C0370', (0x5220, 0x0e18), 0x19C), # Light Medallion
-        ('object_gi_medal_forest',   '014BB000', '014C0370', (0x0cb0, 0x0e18), 0x19D), # Forest Medallion
-        ('object_gi_medal_fire',     '014BB000', '014C0370', (0x1af0, 0x0e18), 0x19E), # Fire Medallion
-        ('object_gi_medal_water',    '014BB000', '014C0370', (0x2830, 0x0e18), 0x19F), # Water Medallion
-        ('object_gi_medal_shadow',   '014BB000', '014C0370', (0x4330, 0x0e18), 0x1A0), # Shadow Medallion
-        ('object_gi_medal_spirit',   '014BB000', '014C0370', (0x3610, 0x0e18), 0x1A1), # Spirit Medallion
+        ('object_gi_jewel_emerald',  '0145A000', '0145D680', (0x1240, 0x10e0), 0x19C), # Kokiri Emerald
+        ('object_gi_jewel_ruby',     '0145A000', '0145D680', (0x20a0, 0x1fb0), 0x19D), # Goron Ruby
+        ('object_gi_jewel_sapphire', '0145A000', '0145D680', (0x3530, 0x3370), 0x19E), # Zora Sapphire
+        ('object_gi_medal_light',    '014BB000', '014C0370', (0x5220, 0x0e18), 0x19F), # Light Medallion
+        ('object_gi_medal_forest',   '014BB000', '014C0370', (0x0cb0, 0x0e18), 0x1A0), # Forest Medallion
+        ('object_gi_medal_fire',     '014BB000', '014C0370', (0x1af0, 0x0e18), 0x1A1), # Fire Medallion
+        ('object_gi_medal_water',    '014BB000', '014C0370', (0x2830, 0x0e18), 0x1A2), # Water Medallion
+        ('object_gi_medal_shadow',   '014BB000', '014C0370', (0x4330, 0x0e18), 0x1A3), # Shadow Medallion
+        ('object_gi_medal_spirit',   '014BB000', '014C0370', (0x3610, 0x0e18), 0x1A4), # Spirit Medallion
     )
     for name, start, end, offsets, object_id in zobj_splits:
         obj_file = File({
@@ -427,9 +430,12 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     rom.write_bytes(0x1FC0CF8, Block_code)
 
     # songs as items flag
-    songs_as_items = world.settings.shuffle_song_items not in ('vanilla', 'song') or \
-                     world.distribution.song_as_items or \
-                     any(name in song_list and record.count for name, record in world.settings.starting_items.items())
+    songs_as_items = (
+        world.settings.shuffle_song_items not in ('vanilla', 'song')
+        or world.distribution.song_as_items
+        or any(name in song_list and record.count for name, record in world.settings.starting_items.items())
+        or world.settings.shuffle_individual_ocarina_notes
+    )
 
     if songs_as_items:
         rom.write_byte(rom.sym('SONGS_AS_ITEMS'), 1)
@@ -2578,11 +2584,10 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     # available number of skulls in the world instead of 100.
     rom.write_int16(0xBB340E, world.available_tokens)
 
-    replace_songs(world, rom,
-        frog='frog' in world.settings.ocarina_songs,
-        warp='warp' in world.settings.ocarina_songs,
-        frogs2='frogs2' in world.settings.ocarina_songs,
-    )
+    patch_songs(world, rom)
+
+    if world.settings.shuffle_individual_ocarina_notes:
+        rom.write_byte(rom.sym('SHUFFLE_OCARINA_BUTTONS'), 1)
 
     # Sets the torch count to open the entrance to Shadow Temple
     if world.settings.easier_fire_arrow_entry:

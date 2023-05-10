@@ -18,6 +18,7 @@ The unused field (offset 0x10) of the permanent scene flags (save context + 0xd4
 * Triforce Hunt: Scene 0x48
 * Pending ice traps: Scene 0x49
 * Expensive Merchants (Granny's Potion Shop only): Scene 0x4E
+* Unlocked ocarina notes: Scene 0x50
 * Trade Quest Items Owned: Scene 0x60
 * Trade Quest Items Traded: Scene 0x62
 

@@ -211,6 +211,12 @@ item_table = {
     'Silver Rupee Pouch (Ganons Castle Water Trial)':           ('SilverRupee', True,  0x0102, {'alias': ('Silver Rupee (Ganons Castle Water Trial)', 10), 'progressive': 1}),
     'Silver Rupee Pouch (Ganons Castle Forest Trial)':          ('SilverRupee', True,  0x0103, {'alias': ('Silver Rupee (Ganons Castle Forest Trial)', 10), 'progressive': 1}),
 
+    'Ocarina A Button':                                ('Item',     True,  0x0104, {'ocarina_button': True}),
+    'Ocarina C up Button':                             ('Item',     True,  0x0105, {'ocarina_button': True}),
+    'Ocarina C down Button':                           ('Item',     True,  0x0106, {'ocarina_button': True}),
+    'Ocarina C left Button':                           ('Item',     True,  0x0107, {'ocarina_button': True}),
+    'Ocarina C right Button':                          ('Item',     True,  0x0108, {'ocarina_button': True}),
+
     'Easter Egg (Pink)':                               ('Item',     True,  0x1000, {'alias': ('Triforce Piece', 1), 'progressive': float('Inf')}),
     'Easter Egg (Orange)':                             ('Item',     True,  0x1001, {'alias': ('Triforce Piece', 1), 'progressive': float('Inf')}),
     'Easter Egg (Green)':                              ('Item',     True,  0x1002, {'alias': ('Triforce Piece', 1), 'progressive': float('Inf')}),
@@ -354,7 +360,7 @@ item_table = {
     'Buy Red Potion for 40 Rupees':     ('Shop',     False, 0x30, {'object': 0x00EB, 'price': 40}),
     'Buy Red Potion for 50 Rupees':     ('Shop',     False, 0x31, {'object': 0x00EB, 'price': 50}),
 
-    'Kokiri Emerald':                   ('DungeonReward',    True,  0x0104,
+    'Kokiri Emerald':                   ('DungeonReward',    True,  0x0109,
                                             {
                                                 'stone':      True,
                                                 'addr2_data': 0x80,
@@ -363,7 +369,7 @@ item_table = {
                                                 'actor_type': 0x13,
                                                 'object_id':  0x00AD,
                                             }),
-    'Goron Ruby':                       ('DungeonReward',    True,  0x0105,
+    'Goron Ruby':                       ('DungeonReward',    True,  0x010A,
                                             {
                                                 'stone':      True,
                                                 'addr2_data': 0x81,
@@ -372,7 +378,7 @@ item_table = {
                                                 'actor_type': 0x14,
                                                 'object_id':  0x00AD,
                                             }),
-    'Zora Sapphire':                    ('DungeonReward',    True,  0x0106,
+    'Zora Sapphire':                    ('DungeonReward',    True,  0x010B,
                                             {
                                                 'stone':      True,
                                                 'addr2_data': 0x82,
@@ -381,7 +387,7 @@ item_table = {
                                                 'actor_type': 0x15,
                                                 'object_id':  0x00AD,
                                             }),
-    'Forest Medallion':                 ('DungeonReward',    True,  0x0108,
+    'Forest Medallion':                 ('DungeonReward',    True,  0x010D,
                                             {
                                                 'medallion':  True,
                                                 'addr2_data': 0x3E,
@@ -390,7 +396,7 @@ item_table = {
                                                 'actor_type': 0x0B,
                                                 'object_id':  0x00BA,
                                             }),
-    'Fire Medallion':                   ('DungeonReward',    True,  0x0109,
+    'Fire Medallion':                   ('DungeonReward',    True,  0x010E,
                                             {
                                                 'medallion':  True,
                                                 'addr2_data': 0x3C,
@@ -399,7 +405,7 @@ item_table = {
                                                 'actor_type': 0x09,
                                                 'object_id':  0x00BA,
                                             }),
-    'Water Medallion':                  ('DungeonReward',    True,  0x010A,
+    'Water Medallion':                  ('DungeonReward',    True,  0x010F,
                                             {
                                                 'medallion':  True,
                                                 'addr2_data': 0x3D,
@@ -408,7 +414,7 @@ item_table = {
                                                 'actor_type': 0x0A,
                                                 'object_id':  0x00BA,
                                             }),
-    'Spirit Medallion':                 ('DungeonReward',    True,  0x010C,
+    'Spirit Medallion':                 ('DungeonReward',    True,  0x0111,
                                             {
                                                 'medallion':  True,
                                                 'addr2_data': 0x3F,
@@ -417,7 +423,7 @@ item_table = {
                                                 'actor_type': 0x0C,
                                                 'object_id':  0x00BA,
                                             }),
-    'Shadow Medallion':                 ('DungeonReward',    True,  0x010B,
+    'Shadow Medallion':                 ('DungeonReward',    True,  0x0110,
                                             {
                                                 'medallion':  True,
                                                 'addr2_data': 0x41,
@@ -426,7 +432,7 @@ item_table = {
                                                 'actor_type': 0x0D,
                                                 'object_id':  0x00BA,
                                             }),
-    'Light Medallion':                  ('DungeonReward',    True,  0x0107,
+    'Light Medallion':                  ('DungeonReward',    True,  0x010C,
                                             {
                                                 'medallion':  True,
                                                 'addr2_data': 0x40,
