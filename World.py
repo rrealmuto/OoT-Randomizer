@@ -208,9 +208,9 @@ class World(object):
             self.resolve_random_settings()
 
         self.song_notes = generate_song_list(self,
-            frog='frog' in settings.randomize_ocarina_melodies,
-            warp='warp' in settings.randomize_ocarina_melodies,
-            frogs2='frogs2' in settings.randomize_ocarina_melodies,
+            frog='frog' in settings.ocarina_songs,
+            warp='warp' in settings.ocarina_songs,
+            frogs2='frogs2' in settings.ocarina_songs,
         )
 
         if len(settings.hint_dist_user) == 0:
