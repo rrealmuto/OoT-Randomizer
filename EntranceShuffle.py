@@ -758,8 +758,8 @@ def shuffle_random_entrances(worlds):
             else:
                 shuffle_entrance_pool(world, worlds, entrance_pool, target_entrance_pools[pool_type], locations_to_ensure_reachable, placed_one_way_entrances=placed_one_way_entrances)
 
+        # Determine boss save/death warp targets
         for pool_type, entrance_pool in entrance_pools.items():
-            # Determine boss save/death warp targets
             for entrance in entrance_pool:
                 target = (entrance.replaces or entrance).reverse
                 if not target or target.type not in ('ChildBoss', 'AdultBoss'):
@@ -875,7 +875,7 @@ def shuffle_random_entrances(worlds):
         try:
             validate_world(world, worlds, None, locations_to_ensure_reachable, complete_itempool, placed_one_way_entrances=placed_one_way_entrances)
         except EntranceShuffleError as error:
-            raise EntranceShuffleError('Worlds are not valid after shuffling entrances, Reason: %s' % error)
+            raise EntranceShuffleError('Worlds are not valid after shuffling entrances, Reason: %s' % error) from error
 
 
 def shuffle_one_way_priority_entrances(worlds, world, one_way_priorities, one_way_entrance_pools, one_way_target_entrance_pools, locations_to_ensure_reachable, complete_itempool, retry_count=2):
@@ -905,7 +905,7 @@ def shuffle_one_way_priority_entrances(worlds, world, one_way_priorities, one_wa
     raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d. Retry a few times or reach out to Support on Discord for help.' % world.id)
 
 # Shuffle all entrances within a provided pool
-def shuffle_entrance_pool(world, worlds, entrance_pool, target_entrances, locations_to_ensure_reachable, check_all=False, retry_count=64, placed_one_way_entrances=()):
+def shuffle_entrance_pool(world, worlds, entrance_pool, target_entrances, locations_to_ensure_reachable, check_all=False, retry_count=20, placed_one_way_entrances=()):
 
     # Split entrances between those that have requirements (restrictive) and those that do not (soft). These are primarily age or time of day requirements.
     restrictive_entrances, soft_entrances = split_entrances_by_requirements(worlds, entrance_pool, target_entrances)
@@ -938,12 +938,13 @@ def shuffle_entrance_pool(world, worlds, entrance_pool, target_entrances, locati
                 restore_connections(entrance, target)
             logging.getLogger('').info('Failed to place all entrances in a pool for world %d. Will retry %d more times', entrance_pool[0].world.id, retry_count)
             logging.getLogger('').info('\t%s' % error)
+            last_error = error
 
     if world.settings.custom_seed:
-        raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d. Ensure the \"Seed\" field is empty and retry a few times.' % world.id)
+        raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d. Ensure the \"Seed\" field is empty and retry a few times.' % world.id) from last_error
     if world.settings.distribution_file:
-        raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d. Some entrances in the Plandomizer File may have to be changed to create a valid seed. Reach out to Support on Discord for help.' % world.id)
-    raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d. Retry a few times or reach out to Support on Discord for help.' % world.id)
+        raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d. Some entrances in the Plandomizer File may have to be changed to create a valid seed. Reach out to Support on Discord for help.' % world.id) from last_error
+    raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d. Retry a few times or reach out to Support on Discord for help.' % world.id) from last_error
 
 
 # Split entrances based on their requirements to figure out how each entrance should be handled when shuffling them
@@ -989,14 +990,13 @@ def replace_entrance(worlds, entrance, target, rollbacks, locations_to_ensure_re
         change_connections(entrance, target)
         validate_world(entrance.world, worlds, entrance, locations_to_ensure_reachable, itempool, placed_one_way_entrances=placed_one_way_entrances)
         rollbacks.append((entrance, target))
-        return True
     except EntranceShuffleError as error:
         # If the entrance can't be placed there, log a debug message and change the connections back to what they were previously
         logging.getLogger('').debug('Failed to connect %s To %s (Reason: %s) [World %d]',
                                     entrance, entrance.connected_region or target.connected_region, error, entrance.world.id)
         if entrance.connected_region:
             restore_connections(entrance, target)
-    return False
+        raise
 
 
 # Connect one random entrance from entrance pools to one random target in the respective target pool.
@@ -1026,10 +1026,14 @@ def place_one_way_priority_entrance(worlds, world, priority_name, allowed_region
                 continue
         for target in one_way_target_entrance_pools[entrance.type]:
             if target.connected_region and target.connected_region.name in allowed_regions:
-                if replace_entrance(worlds, entrance, target, rollbacks, locations_to_ensure_reachable, complete_itempool):
+                try:
+                    replace_entrance(worlds, entrance, target, rollbacks, locations_to_ensure_reachable, complete_itempool)
+                except EntranceShuffleError as error:
+                    last_error = error
+                else:
                     logging.getLogger('').debug(f'Priority placement for {priority_name}: placing {entrance} as {target}')
                     return
-    raise EntranceShuffleError(f'Unable to place priority one-way entrance for {priority_name} [World {world.id}].')
+    raise EntranceShuffleError(f'Unable to place priority one-way entrance for {priority_name} [World {world.id}].') from last_error
 
 
 # Shuffle entrances by placing them instead of entrances in the provided target entrances list
@@ -1051,11 +1055,15 @@ def shuffle_entrances(worlds, entrances, target_entrances, rollbacks, locations_
             if target.connected_region == None:
                 continue
 
-            if replace_entrance(worlds, entrance, target, rollbacks, locations_to_ensure_reachable, complete_itempool, placed_one_way_entrances=placed_one_way_entrances):
+            try:
+                replace_entrance(worlds, entrance, target, rollbacks, locations_to_ensure_reachable, complete_itempool, placed_one_way_entrances=placed_one_way_entrances)
+            except EntranceShuffleError as error:
+                last_error = error
+            else:
                 break
 
         if entrance.connected_region == None:
-            raise EntranceShuffleError('No more valid entrances to replace with %s in world %d' % (entrance, entrance.world.id))
+            raise EntranceShuffleError('No more valid entrances to replace with %s in world %d' % (entrance, entrance.world.id)) from last_error
 
 
 # Check and validate that an entrance is compatible to replace a specific target
