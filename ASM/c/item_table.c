@@ -219,12 +219,12 @@ item_row_t item_table[] = {
     [0x00B9] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x00E4, 0x00CD, 0x1E, no_upgrade, give_magic,        -1, -1, NULL), // Magic Meter
     [0x00BA] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x00E8, 0x00CD, 0x1F, no_upgrade, give_double_magic, -1, -1, NULL), // Double Magic
 
-    [0x00BB] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9090, 0x0196, 0x78, no_upgrade, give_quest_item, 6,  -1, NULL), // Minuet of Forest
-    [0x00BC] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9091, 0x0196, 0x79, no_upgrade, give_quest_item, 7,  -1, NULL), // Bolero of Fire
-    [0x00BD] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9092, 0x0196, 0x7A, no_upgrade, give_quest_item, 8,  -1, NULL), // Serenade of Water
-    [0x00BE] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9093, 0x0196, 0x7B, no_upgrade, give_quest_item, 9,  -1, NULL), // Requiem of Spirit
-    [0x00BF] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9094, 0x0196, 0x7C, no_upgrade, give_quest_item, 10, -1, NULL), // Nocturne of Shadow
-    [0x00C0] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9095, 0x0196, 0x7D, no_upgrade, give_quest_item, 11, -1, NULL), // Prelude of Light
+    [0x00BB] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9091, 0x0196, 0x78, no_upgrade, give_quest_item, 6,  -1, NULL), // Minuet of Forest
+    [0x00BC] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9092, 0x0196, 0x79, no_upgrade, give_quest_item, 7,  -1, NULL), // Bolero of Fire
+    [0x00BD] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9093, 0x0196, 0x7A, no_upgrade, give_quest_item, 8,  -1, NULL), // Serenade of Water
+    [0x00BE] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9094, 0x0196, 0x7B, no_upgrade, give_quest_item, 9,  -1, NULL), // Requiem of Spirit
+    [0x00BF] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9095, 0x0196, 0x7C, no_upgrade, give_quest_item, 10, -1, NULL), // Nocturne of Shadow
+    [0x00C0] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9096, 0x0196, 0x7D, no_upgrade, give_quest_item, 11, -1, NULL), // Prelude of Light
 
     [0x00C1] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x909A, 0x00B6, 0x04, no_upgrade, give_quest_item, 12, -1, NULL), // Zelda's Lullaby
     [0x00C2] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x909B, 0x00B6, 0x06, no_upgrade, give_quest_item, 13, -1, NULL), // Epona's Song
@@ -300,11 +300,11 @@ item_row_t item_table[] = {
     [0x0102] = ITEM_ROW(0x4D,      SILVER_CHEST, 0x41, -1, 0x902F, 0x00D1, 0x7F, no_upgrade, give_silver_rupee_pouch, CASTLE_ID,  0x14, resolve_text_silver_rupee_pouches), // Silver Rupee Pouch (Ganons Castle Water Trial)
     [0x0103] = ITEM_ROW(0x4D,      SILVER_CHEST, 0x41, -1, 0x9030, 0x00D1, 0x7F, no_upgrade, give_silver_rupee_pouch, CASTLE_ID,  0x15, resolve_text_silver_rupee_pouches), // Silver Rupee Pouch (Ganons Castle Forest Trial)
 
-    [0x0104] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x908B, 0x0199, 0x80, no_upgrade, unlock_ocarina_note, 0, -1, NULL), // Ocarina A
-    [0x0105] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x908C, 0x019B, 0x81, no_upgrade, unlock_ocarina_note, 1, -1, NULL), // Ocarina C up
-    [0x0106] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x908D, 0x019B, 0x82, no_upgrade, unlock_ocarina_note, 2, -1, NULL), // Ocarina C down
-    [0x0107] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x908E, 0x019A, 0x83, no_upgrade, unlock_ocarina_note, 3, -1, NULL), // Ocarina C left
-    [0x0108] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x908F, 0x019A, 0x84, no_upgrade, unlock_ocarina_note, 4, -1, NULL), // Ocarina C right
+    [0x0104] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x908C, 0x0199, 0x80, no_upgrade, unlock_ocarina_note, 0, -1, NULL), // Ocarina A
+    [0x0105] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x908D, 0x019B, 0x81, no_upgrade, unlock_ocarina_note, 1, -1, NULL), // Ocarina C up
+    [0x0106] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x908E, 0x019B, 0x82, no_upgrade, unlock_ocarina_note, 2, -1, NULL), // Ocarina C down
+    [0x0107] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x908F, 0x019A, 0x83, no_upgrade, unlock_ocarina_note, 3, -1, NULL), // Ocarina C left
+    [0x0108] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9090, 0x019A, 0x84, no_upgrade, unlock_ocarina_note, 4, -1, NULL), // Ocarina C right
 
     [0x0109] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0080, 0x019C, 0x8B, no_upgrade, give_quest_item, 18, -1, NULL), // Kokiri Emerald
     [0x010A] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0081, 0x019D, 0x8C, no_upgrade, give_quest_item, 19, -1, NULL), // Goron Ruby

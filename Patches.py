@@ -411,7 +411,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     rom.write_bytes(0xCD5E76, [0x0E, 0xDC])
     rom.write_bytes(0xCD5E12, [0x0E, 0xDC])
 
-    # Cutscene for all medallions never triggers when leaving shadow or spirit temples(hopefully stops warp to colossus on shadow completion with boss reward shuffle)
+    # Cutscene for all medallions never triggers when leaving shadow or spirit temples (hopefully stops warp to colossus on shadow completion with boss reward shuffle)
     rom.write_byte(0xACA409, 0xAD)
     rom.write_byte(0xACA49D, 0xCE)
 
@@ -420,7 +420,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     rom.write_byte(0xEFCBA7, 0x08)
     rom.write_byte(0xEFE7C7, 0x05)
     #rom.write_byte(0xEFEAF7, 0x08)
-    #rom.write_byte(0xEFE7C7, 0x05)
     rom.write_bytes(0xEFE938, [0x00, 0x00, 0x00, 0x00])
     rom.write_bytes(0xEFE948, [0x00, 0x00, 0x00, 0x00])
     rom.write_bytes(0xEFE950, [0x00, 0x00, 0x00, 0x00])
@@ -436,7 +435,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
         or any(name in song_list and record.count for name, record in world.settings.starting_items.items())
         or world.settings.shuffle_individual_ocarina_notes
     )
-
     if songs_as_items:
         rom.write_byte(rom.sym('SONGS_AS_ITEMS'), 1)
 
@@ -446,7 +444,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
         rom.write_int16s(None, [0x0073, 0x001, 0x0002, 0x0002]) # ID, start, end, end
     else:
         rom.write_int16s(None, [0x0073, 0x003B, 0x003C, 0x003C]) # ID, start, end, end
-
 
     rom.write_int32s(0x02E8E91C, [0x00000013, 0x0000000C]) # Textbox, Count
     if songs_as_items:
@@ -773,7 +770,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     rom.write_bytes(0x292D810, [0x00, 0x02, 0x00, 0x3C])
     rom.write_bytes(0x292D924, [0xFF, 0xFF, 0x00, 0x14, 0x00, 0x96, 0xFF, 0xFF])
 
-    #Speed Pushing of All Pushable Objects
+    # Speed Pushing of All Pushable Objects (other than armos statues, which are handled in ASM)
     rom.write_bytes(0xDD2B86, [0x40, 0x80])             #block speed
     rom.write_bytes(0xDD2D26, [0x00, 0x01])             #block delay
     rom.write_bytes(0xDD9682, [0x40, 0x80])             #milk crate speed
@@ -788,7 +785,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     rom.write_bytes(0xDBA230, [0x28, 0x41, 0x00, 0x19]) #truth spinner speed
     rom.write_bytes(0xDBA3A4, [0x24, 0x18, 0x00, 0x00]) #truth spinner delay
 
-    #Speed Deku Seed Upgrade Scrub Cutscene
+    # Speed Deku Seed Upgrade Scrub Cutscene
     rom.write_bytes(0xECA900, [0x24, 0x03, 0xC0, 0x00]) #scrub angle
     rom.write_bytes(0xECAE90, [0x27, 0x18, 0xFD, 0x04]) #skip straight to giving item
     rom.write_bytes(0xECB618, [0x25, 0x6B, 0x00, 0xD4]) #skip straight to digging back in
@@ -817,10 +814,10 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     # Ruto never disappears from Jabu Jabu's Belly
     rom.write_byte(0xD01EA3, 0x00)
 
-    #Shift octorock in jabu forward
+    # Shift octorok in jabu forward
     rom.write_bytes(0x275906E, [0xFF, 0xB3, 0xFB, 0x20, 0xF9, 0x56])
 
-    #Move fire/forest temple switches down 1 unit to make it easier to press
+    # Move fire/forest temple switches down 1 unit to make it easier to press
     rom.write_bytes(0x24860A8, [0xFC, 0xF4]) #forest basement 1
     rom.write_bytes(0x24860C8, [0xFC, 0xF4]) #forest basement 2
     rom.write_bytes(0x24860E8, [0xFC, 0xF4]) #forest basement 3
@@ -847,7 +844,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     rom.write_byte(0x2025159, 0x02)
     rom.write_byte(0x2023E19, 0x02)
 
-    #Speed opening of Door of Time
+    # Speed opening of Door of Time
     rom.write_bytes(0xE0A176, [0x00, 0x02])
     rom.write_bytes(0xE0A35A, [0x00, 0x01, 0x00, 0x02])
 
@@ -976,7 +973,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     rom.write_byte(0xB6D3D2, 0x00) # Gerudo Training Ground
     rom.write_byte(0xB6D42A, 0x00) # Inside Ganon's Castle
 
-    #Tell Sheik at Ice Cavern we are always an Adult
+    # Tell Sheik at Ice Cavern we are always an Adult
     rom.write_int32(0xC7B9C0, 0x00000000)
     rom.write_int32(0xC7BAEC, 0x00000000)
     rom.write_int32(0xc7BCA4, 0x00000000)
@@ -1004,14 +1001,12 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     for address in Short_item_descriptions:
         rom.write_byte(address,0x02)
 
-    et_original = rom.read_bytes(0xB6FBF0, 4 * 0x0614)
-
     exit_updates = []
 
     def generate_exit_lookup_table():
         # Assumes that the last exit on a scene's exit list cannot be 0000
         exit_table = {
-            0x0028: [0xAC95C2] #Jabu with the fish is entered from a cutscene hardcode
+            0x0028: [0xAC95C2],  #Jabu with the fish is entered from a cutscene hardcode
         }
 
         def add_scene_exits(scene_start, offset = 0):
@@ -1870,9 +1865,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
     rom.write_byte(0xC1C01B, 0x2)
 
     # Sets hooks for gossip stone changes
-
-    symbol = rom.sym("GOSSIP_HINT_CONDITION");
-
+    symbol = rom.sym("GOSSIP_HINT_CONDITION")
     if world.settings.hints == 'none':
         rom.write_int32(symbol, 0)
     else:
@@ -1960,7 +1953,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
         rom.write_int32(0xE09FB0, 0x240F0001)
         # song of time
         rom.write_int32(0xDB532C, 0x24050003)
-
 
     # Set damage multiplier
     if world.settings.damage_multiplier == 'half':
@@ -2553,7 +2545,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
             bfa_name_bytes = stream.read()
             rom.write_bytes(0x8a1c00, bfa_name_bytes)
 
-
     repack_messages(rom, messages, permutation)
 
     if world.settings.free_scarecrow:
@@ -2661,7 +2652,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
             rom.write_byte(0x33A60AF, 0x80)
             rom.write_byte(0x33A60BF, 0x80)
             rom.write_byte(0x33A60CF, 0x80)
-
 
     # Write numeric seed truncated to 32 bits for rng seeding
     # Overwritten with new seed every time a new rng value is generated
