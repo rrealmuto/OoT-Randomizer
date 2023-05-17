@@ -1330,7 +1330,7 @@
         "shuffle_hideout_entrances": "off",
         "shuffle_grotto_entrances": true,
         "shuffle_dungeon_entrances": "all",
-        "shuffle_bosses": "off",
+        "shuffle_bosses": "full",
         "shuffle_ganon_tower": false,
         "shuffle_overworld_entrances": true,
         "mix_entrance_pools": [
