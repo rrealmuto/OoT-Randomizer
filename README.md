@@ -45,7 +45,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * “Fast Vanilla” is “Vanilla” but with speed-ups like fast bunny hood, fast chest cutscenes, or “Skip Some Minigame Phases” enabled.
   * “Vanilla (Master Quest)” and “Fast Vanilla (Master Quest)” are “Vanilla” and “Fast Vanilla” but with all dungeons from Master Quest. Since logic for vanilla MQ hasn't been coded yet, these use no logic.
   * “Fenhl's Casual” is my preferred flavor of playing OoTR, with everything shuffled, full entrance randomizer, chaos hints, warp song note shuffle, half damage, no Master Quest, and no tricks enabled. The rainbow bridge requires all dungeon rewards and Ganon's boss key requires all 100 gold skulltula tokens.
-  * “Mixed Pools Tournament”, the settings used for a tournament that had full mixed pools entrance randomizer. Note that the tournament itself used [a previous version](https://ootrandomizer.com/generatorDev?version=devFenhl_6.2.100) of this branch.
+  * “2nd Mixed Pools Tournament”, the settings used for an upcoming tournament with full mixed pools entrance randomizer.
   * “Ice%”, the preliminary settings used for an upcoming tournament where the goal is to reac the Iron Boots chest.
   * The set of “Standard Anti-Weekly Settings” presets disables every location that's enabled in “Standard Weekly (Latest)” and enables every location that's disabled there, as well as changing some miscellaneous settings. See [the official document](https://docs.google.com/document/d/1sbL6Zju943F5qyx4QbTLUsqZqOTMmvqKVbDwJl08SGc/edit) for details.
     * “Standard Anti-Weekly Settings (Beginner)” omits “Shuffle Rupees & Hearts”, “Shuffle Pots”, “Shuffle Crates”, and “Shuffle Beehives”, and keeps the balanced item pool.
