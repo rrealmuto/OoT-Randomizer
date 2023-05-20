@@ -27,7 +27,6 @@
             "Bottom of the Well MQ GS Basement": "can_child_attack",
             "Bottom of the Well MQ GS Coffin Room": "
                 (Small_Key_Bottom_of_the_Well, 2) and can_child_attack",
-<<<<<<< HEAD
             "Bottom of the Well MQ First Hallway Redead": "can_kill_redead",
             "Bottom of the Well MQ Center Room Pitfall Skulltula": "
                 has_explosives or can_use(Dins_Fire) or
@@ -47,7 +46,6 @@
             "Bottom of the Well MQ False Floor Floormaster": "(Slingshot or Boomerang) and can_kill_floormaster",
             "Bottom of the Well MQ Deadhand": "
                 Kokiri_Sword or (Sticks and logic_child_deadhand)",
-=======
             "Bottom of the Well MQ Main Area Left Slingshot Wonderitem 1": "Slingshot",
             "Bottom of the Well MQ Main Area Left Slingshot Wonderitem 2": "Slingshot",
             "Bottom of the Well MQ Main Area Left Slingshot Wonderitem 3": "Slingshot",
@@ -56,7 +54,6 @@
             "Bottom of the Well MQ Main Area Right Slingshot Wonderitem 2": "Slingshot",
             "Bottom of the Well MQ Main Area Right Slingshot Wonderitem 3": "Slingshot",
             "Bottom of the Well MQ Main Area Right Slingshot Wonderitem 4": "Slingshot",
->>>>>>> wonderitems
             "Wall Fairy": "has_bottle and Slingshot" # The fairy pot is obsolete
         },
         "exits": {
