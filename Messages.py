@@ -316,7 +316,7 @@ KEYSANITY_MESSAGES = [
     (0x00A5, "\x13\x76\x08You found the \x05\x41Dungeon Map\x05\x40\x01for the \x05\x45Bottom of the Well\x05\x40!\x09"),
     (0x00A6, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for the \x05\x46Spirit Temple\x05\x40!\x09"),
     (0x00A9, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for the \x05\x45Shadow Temple\x05\x40!\x09"),
-    (0x00F3, "\x13\x88\x08You found a \x05\x41Small Key\x05\x40\x01for the \x05\x44Treasure Box Shop\x05\x40!\x09"),
+    (0x00F3, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for the \x05\x44Treasure Box Shop\x05\x40!\x09"),
     # 0x9019 and 0x901A used above
     # Silver Rupee Messages with count.
     (0x901B, "\x08You found a \x05\x44Silver Rupee\x05\x40 for the\x01staircase room in \x05\x41Dodongo's Cavern\x05\x40!\x01You have found \x05\x41\xF0\x00\x05\x40 so far!\x09"),
