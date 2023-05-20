@@ -3,18 +3,6 @@
         "region_name": "Fire Temple Lower",
         "dungeon": "Fire Temple",
         "locations": {
-            "Fire Temple Near Boss Chest": "
-                logic_fewer_tunic_requirements or can_use(Goron_Tunic)",
-            "Fire Temple Near Boss Pot 1": "
-                is_adult and (Hover_Boots or Hookshot) and
-                (logic_fewer_tunic_requirements or Goron_Tunic)",
-            "Fire Temple Near Boss Pot 2": "
-                is_adult and (Hover_Boots or Hookshot) and
-                (logic_fewer_tunic_requirements or Goron_Tunic)",
-            "Fairy Pot": "
-                is_adult and has_bottle and (Hover_Boots or Hookshot) and
-                (logic_fewer_tunic_requirements or Goron_Tunic)",
-            
             "Fire Temple Lobby Keese 1": "can_kill_keese",
             "Fire Temple Lobby Keese 2": "can_kill_keese"
         },
