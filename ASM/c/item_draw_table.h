@@ -15,6 +15,7 @@ typedef struct {
 } item_draw_table_entry_t;
 
 extern item_draw_table_entry_t item_draw_table[];
+extern uint8_t CFG_KEY_APPEARANCE_MATCH_DUNGEON;
 
 void base_draw_gi_model(z64_game_t *game, uint32_t draw_id);
 
