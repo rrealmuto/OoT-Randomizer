@@ -13,13 +13,13 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
 * New settings and options:
   * New plando-only “Chest, Pot, Crate, & Beehive Appearance Does Not Match Contents” setting which makes each chest etc. randomly choose any appearance except the correct one ([#1950](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1950))
   * New “Shuffle Ocarina Note Buttons” setting (based on [#1885](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1885))
-  * New “Vanilla Locations” option for the “Shuffle Songs” setting ([#1882](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1882))
-  * New “Shuffle Dungeon Rewards” setting ([#1833](https://github.com/TestRunnerSRL/OoT-Randomizer/issues/1833))
-  * New “Bosses” option for the “Mix Entrance Pools” setting (based on [#1820](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1820))
-  * New “Triforce Hunt Mode” setting with “Normal”, “Easter Egg Hunt”, “Ice%”, and “Triforce Blitz” options (Easter Egg Hunt based on [#1804](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1804), Triforce Blitz based on [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev))
-  * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1536))
-  * “Closed Forest Requires Gohma” is a separate setting. With it enabled, items that can be used to escape the forest won't appear in the forest, and the randomizer will try to place at least one slingshot for each player in the forest. The setting is compatible with all forms of entrance randomizer by restricting entrances inside the forest area to only be shuffled among themselves. ([#1531](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1531))
-  * New “Full” options for the settings “Randomize Owl Drops”, “Randomize Warp Song Destinations”, and “Randomize Overworld Spawns” (which is split into “Randomize Child Overworld Spawn” and “Randomize Adult Overworld Spawn” for this reason) that include more types of entrances (based on [#1179](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1179) and [#1287](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1287))
+  * New “Vanilla Locations” option for the “Shuffle Songs” setting ([#1882](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1882))
+  * New “Shuffle Dungeon Rewards” setting ([#1833](https://github.com/OoTRandomizer/OoT-Randomizer/issues/1833))
+  * New “Bosses” option for the “Mix Entrance Pools” setting (based on [#1820](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1820))
+  * New “Triforce Hunt Mode” setting with “Normal”, “Easter Egg Hunt”, “Ice%”, and “Triforce Blitz” options (Easter Egg Hunt based on [#1804](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1804), Triforce Blitz based on [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev))
+  * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1536))
+  * “Closed Forest Requires Gohma” is a separate setting. With it enabled, items that can be used to escape the forest won't appear in the forest, and the randomizer will try to place at least one slingshot for each player in the forest. The setting is compatible with all forms of entrance randomizer by restricting entrances inside the forest area to only be shuffled among themselves. ([#1531](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1531))
+  * New “Full” options for the settings “Randomize Owl Drops”, “Randomize Warp Song Destinations”, and “Randomize Overworld Spawns” (which is split into “Randomize Child Overworld Spawn” and “Randomize Adult Overworld Spawn” for this reason) that include more types of entrances (based on [#1179](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1179) and [#1287](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1287))
   * New “On (Savewarp to Overworld)” option for the “Shuffle Thieves' Hideout Entrances” setting (based on [fenhl#7](https://github.com/fenhl/OoT-Randomizer/pull/7))
   * New “Frogs Ocarina Game” option for the “Randomize Ocarina Song Notes” setting (based on [rrealmuto's `random_frog_song` branch](https://github.com/rrealmuto/OoT-Randomizer/tree/random_frog_song))
   * “Minor Items in Big/Gold Chests” allows selecting “Bombchus” and “Deku & Hylian Shields” separately, and adds a new option for “Deku Stick & Nut Capacity”
@@ -53,10 +53,10 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
     * “Standard Anti-Weekly Settings (S6)” is the inverse of “S6 Tournament” instead of weekly settings. It otherwise resembles the beginner preset. The only differences are open Deku, vanilla child spawn, and tournament hint distribution.
   * “Triforce Blitz S2” is a fast-paced game mode with very powerful hints used for [an upcoming tournament](https://midos.house/tfb/2). See [the official website](https://www.triforceblitz.com/) for details.
 * Other changes:
-  * Some settings have been renamed for clarity ([#1560](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1560))
-  * The conditions for forcing one-way entrances that lead to the Bolero, Nocturne, and Requiem warp pads have been adjusted to increase variety with some settings, such as “Guarantee Reachable Locations” set to “All Goals”, “Shuffle Dungeon Rewards”, or “Mix Entrance Pools” (based on [#1440](https://github.com/TestRunnerSRL/OoT-Randomizer/pull/1440))
+  * Pushing armos statues is faster ([#1981](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1981))
+  * Some settings have been renamed for clarity ([#1560](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1560))
+  * The conditions for forcing one-way entrances that lead to the Bolero, Nocturne, and Requiem warp pads have been adjusted to increase variety with some settings, such as “Guarantee Reachable Locations” set to “All Goals”, “Shuffle Dungeon Rewards”, or “Mix Entrance Pools” (based on [#1440](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1440))
   * Plandos can specify different settings for each world (based on [Andols0's `individual-settings` branch](https://github.com/Andols0/OoT-Randomizer/tree/individual-settings))
-  * Pushing armos statues is faster (from  [rrealmuto's `armos_speedup` branch](https://github.com/rrealmuto/OoT-Randomizer/tree/armos_speedup))
   * The Dampé diary hint message has been tweaked to sound more natural.
   * Gold Skulltula Tokens can be on excluded locations if there are no checks requiring them (such as in SAWS)
   * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
