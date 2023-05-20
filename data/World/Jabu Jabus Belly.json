@@ -63,16 +63,7 @@
             "Jabu Jabus Belly Boomerang Chest Stinger 1" : "can_kill_stinger",
             "Jabu Jabus Belly Boomerang Chest Stinger 2" : "can_kill_stinger",
             "Jabu Jabus Belly Boomerang Chest Stinger 3" : "can_kill_stinger",
-            "Jabu Jabus Belly Boomerang Chest Stinger 4" : "can_kill_stinger",
-            "Jabu Jabus Belly Compass Chest Shabom 1" : "can_kill_shabom",
-            "Jabu Jabus Belly Compass Chest Shabom 2" : "can_kill_shabom",
-            "Jabu Jabus Belly Compass Chest Shabom 3" : "can_kill_shabom",
-            "Jabu Jabus Belly Compass Chest Shabom 4" : "can_kill_shabom",
-            "Jabu Jabus Belly Compass Chest Shabom 5" : "can_kill_shabom",
-            "Jabu Jabus Belly Compass Chest Shabom 6" : "can_kill_shabom",
-            "Jabu Jabus Belly Compass Chest Shabom 7" : "can_kill_shabom",
-            "Jabu Jabus Belly Compass Chest Shabom 8" : "can_kill_shabom",
-            "Jabu Jabus Belly Compass Chest Shabom 9" : "can_kill_shabom"
+            "Jabu Jabus Belly Boomerang Chest Stinger 4" : "can_kill_stinger"
         },
         "exits": {
             "Jabu Jabus Belly Depths": "can_use(Boomerang)",
@@ -87,6 +78,15 @@
         "locations": {
             "Jabu Jabus Belly Map Chest": "True",
             "Jabu Jabus Belly Compass Chest": "True",
+            "Jabu Jabus Belly Compass Chest Shabom 1" : "can_kill_shabom",
+            "Jabu Jabus Belly Compass Chest Shabom 2" : "can_kill_shabom",
+            "Jabu Jabus Belly Compass Chest Shabom 3" : "can_kill_shabom",
+            "Jabu Jabus Belly Compass Chest Shabom 4" : "can_kill_shabom",
+            "Jabu Jabus Belly Compass Chest Shabom 5" : "can_kill_shabom",
+            "Jabu Jabus Belly Compass Chest Shabom 6" : "can_kill_shabom",
+            "Jabu Jabus Belly Compass Chest Shabom 7" : "can_kill_shabom",
+            "Jabu Jabus Belly Compass Chest Shabom 8" : "can_kill_shabom",
+            "Jabu Jabus Belly Compass Chest Shabom 9" : "can_kill_shabom",
             "Jabu Jabus Belly Last Tentacle Biri 1" : "can_kill_biri",
             "Jabu Jabus Belly Last Tentacle Biri 2" : "can_kill_biri",
             "Jabu Jabus Belly Last Tentacle Biri 3" : "can_kill_biri",
