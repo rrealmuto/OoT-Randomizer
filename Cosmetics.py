@@ -732,6 +732,8 @@ def patch_button_colors(rom, settings, log, symbols):
             log_dict['colors'][patch] = color_to_hex(colors[patch])
 
 
+
+
 def patch_sfx(rom, settings, log, symbols):
     # Configurable Sound Effects
     sfx_config = [
@@ -940,6 +942,12 @@ def patch_music_changes(rom, settings, log, symbols):
         rom.write_byte(symbols['CFG_SLOWDOWN_MUSIC_WHEN_LOWHP'], 0x00)
     log.slowdown_music_when_lowhp = settings.slowdown_music_when_lowhp
 
+def patch_correct_model_colors(rom, settings, log, symbols):
+    if settings.correct_model_colors:
+        rom.write_byte(symbols['CFG_CORRECT_MODEL_COLORS'], 0x01)
+    else:
+        rom.write_byte(symbols['CFG_CORRECT_MODEL_COLORS'], 0x00)
+    log.correct_model_colors = settings.correct_model_colors
 
 legacy_cosmetic_data_headers = [
     0x03481000,
@@ -1094,6 +1102,16 @@ patch_sets[0x1F073FDC] = {
     }
 }
 
+# 7.1.111
+patch_sets[0x1F073FDD] = {
+    "patches": patch_sets[0x1F073FDC]["patches"] + [
+        patch_correct_model_colors,
+    ],
+    "symbols": {
+        **patch_sets[0x1F073FDC]["symbols"],
+        "CFG_CORRECT_MODEL_COLORS": 0x0064
+    }
+}
 def patch_cosmetics(settings, rom):
     # re-seed for aesthetic effects. They shouldn't be affected by the generation seed
     random.seed()

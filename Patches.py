@@ -18,7 +18,7 @@ from Messages import read_messages, update_message_by_id, read_shop_items, updat
         write_shop_items, remove_unused_messages, make_player_message, \
         add_item_messages, repack_messages, shuffle_messages, \
         get_message_by_id, Text_Code
-from OcarinaSongs import replace_songs
+from OcarinaSongs import patch_songs
 from MQ import patch_files, File, update_dmadata, insert_space, add_relocations
 from SaveContext import SaveContext, Scenes, FlagType
 from version import __version__
@@ -54,6 +54,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         ('object_gi_keyring',  data_path('KeyRing.zobj'),  0x195),  # Key Rings
         ('object_gi_warpsong', data_path('Note.zobj'),     0x196),  # Inverted Music Note
         ('object_gi_chubag',   data_path('ChuBag.zobj'),   0x197),  # Bombchu Bag
+        ('object_gi_abutton',  data_path('A_Button.zobj'), 0x199),  # A button
+        ('object_gi_cbutton',  data_path('C_Button_Horizontal.zobj'), 0x19A),  # C button Horizontal
+        ('object_gi_cbutton',  data_path('C_Button_Vertical.zobj'), 0x19B),  # C button Vertical
     ]
 
     extended_objects_start = start_address = rom.free_space()
@@ -326,7 +329,8 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # songs as items flag
     songs_as_items = world.settings.shuffle_song_items != 'song' or \
                      world.distribution.song_as_items or \
-                     any(name in song_list and record.count for name, record in world.settings.starting_items.items())
+                     any(name in song_list and record.count for name, record in world.settings.starting_items.items()) or \
+                     world.settings.shuffle_individual_ocarina_notes
 
     if songs_as_items:
         rom.write_byte(rom.sym('SONGS_AS_ITEMS'), 1)
@@ -2462,10 +2466,10 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # available number of skulls in the world instead of 100.
     rom.write_int16(0xBB340E, world.available_tokens)
 
-    replace_songs(world, rom,
-        frog=world.settings.ocarina_songs in ('frog', 'all'),
-        warp=world.settings.ocarina_songs in ('warp', 'all'),
-    )
+    patch_songs(world, rom)
+
+    if world.settings.shuffle_individual_ocarina_notes:
+        rom.write_byte(rom.sym('SHUFFLE_OCARINA_BUTTONS'), 1)
 
     # Sets the torch count to open the entrance to Shadow Temple
     if world.settings.easier_fire_arrow_entry:

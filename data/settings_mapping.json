@@ -208,7 +208,8 @@
             "shuffle_beans",
             "shuffle_expensive_merchants",
             "shuffle_frog_song_rupees",
-            "shuffle_loach_reward"
+            "shuffle_loach_reward",
+            "shuffle_individual_ocarina_notes"
           ]
         },
         {
@@ -350,7 +351,7 @@
           "text": "Misc",
           "row_span": [1,1,1],
           "settings": [
-            "ocarina_songs",
+            "randomize_ocarina_melodies",
             "correct_chest_appearances",
             "minor_items_as_major_chest",
             "invisible_chests",

@@ -125,6 +125,7 @@ RANDO_CONTEXT:
 .include "chest_game.asm"
 .include "en_item00.asm"
 .include "armos.asm"
+.include "ocarina_buttons.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"
