@@ -1,4 +1,5 @@
 #include "z64.h"
+#include "get_items.h"
 
 int8_t curr_scene_setup; // Global containing the current scene setup.
 
