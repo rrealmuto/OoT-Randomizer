@@ -1821,6 +1821,11 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         if world.settings.prevent_guay_respawns:
             rom.write_byte(rom.sym('CFG_PREVENT_GUAY_RESPAWNS'), 0x01)
 
+    if world.settings.shuffle_wonderitems:
+        #Patch Hyrule Castle Guards to not block the way
+        rom.write_bytes(0xCD5E30, [0x00, 0x00, 0x00, 0x00]) # nop
+        rom.write_bytes(0xCD5E7C, [0x10, 0x00, 0x00, 0x03]) # b courtyard_guards_kill
+
     # Write flag table data
     flags = get_all_collectible_flags(world)
     collectible_flag_table, alt_list = get_collectible_flag_table(world)
@@ -1840,7 +1845,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Write item overrides
     check_location_dupes(world)
     override_table = get_override_table(world)
-    if len(override_table) >= 2000:
+    if len(override_table) >= 2200:
         raise(RuntimeError("Exceeded override table size: " + str(len(override_table))))
     rom.write_bytes(rom.sym('cfg_item_overrides'), get_override_table_bytes(override_table))
     rom.write_byte(rom.sym('PLAYER_ID'), world.id + 1) # Write player ID
@@ -2600,7 +2605,7 @@ def get_override_entry(location):
         return None
 
     # Don't add freestanding items, pots/crates, beehives to the override table if they're disabled. We use this check to determine how to draw and interact with them
-    if location.type in ("ActorOverride", "Freestanding", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive") and location.disabled != DisableType.ENABLED:
+    if location.type in ["ActorOverride", "Freestanding", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive", "Wonderitem"] and location.disabled != DisableType.ENABLED:
         return None
 
     #Don't add enemy drops to the override table if they're disabled.
@@ -2618,7 +2623,7 @@ def get_override_entry(location):
     elif location.type == 'Chest':
         type = 1
         default &= 0x1F
-    elif location.type in ['Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive', 'SilverRupee', 'EnemyDrop', 'GossipStone']:
+    elif location.type in ['Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive', 'SilverRupee', 'EnemyDrop', 'GossipStone', 'Wonderitem']:
         type = 6
         if not (isinstance(location.default, list) or isinstance(location.default, tuple)):
             raise Exception("Not right")
