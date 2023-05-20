@@ -130,8 +130,15 @@ location_table = OrderedDict([
     ("KF House of Twins Pot 1",                                      ("Pot",          0x27,  (0,0,3), None,                         'Rupee (1)',                             ("Kokiri Forest", "Forest Area", "Pots",))),
     ("KF House of Twins Pot 2",                                      ("Pot",          0x27,  (0,0,4), None,                         'Rupees (5)',                            ("Kokiri Forest", "Forest Area", "Pots",))),
     # Kokiri Forest Beehives
-    ("KF Storms Grotto Beehive 1",                                   ("Beehive",      0x3E,  (0,0, 0x48 + (0x0C * 2)), None,        'Rupees (5)',                            ("Kokiri Forest", "Forest Area", "Grottos", "Beehives",))),
-    ("KF Storms Grotto Beehive 2",                                   ("Beehive",      0x3E,  (0,0, 0x49 + (0x0C * 2)), None,        'Rupees (20)',                           ("Kokiri Forest", "Forest Area", "Grottos", "Beehives",))),
+    ("KF Storms Grotto Beehive 1",                                   ("Beehive",      0x3E,  (0,0x0C,8), None,        'Rupees (5)',                            ("Kokiri Forest", "Forest Area", "Grottos", "Beehives",))),
+    ("KF Storms Grotto Beehive 2",                                   ("Beehive",      0x3E,  (0,0x0C,9), None,        'Rupees (20)',                           ("Kokiri Forest", "Forest Area", "Grottos", "Beehives",))),
+
+    # Kokiri Forest Gossip Stones
+    ("KF Deku Tree Gossip Stone (Left) Drop", ("GossipStone", 0x55, [(1,0,8),(1,2,9),(1,3,4)], None, 'Rupees (20)', ("Kokiri Forest", "Forest Area","GossipStone"))),
+    ("KF Deku Tree Gossip Stone (Right) Drop", ("GossipStone", 0x55, [(1,0,9),(1,2,10),(1,3,5)], None, 'Rupees (20)', ("Kokiri Forest", "Forest Area","GossipStone"))),
+    ("KF Gossip Stone Drop", ("GossipStone", 0x55, [(0,0,16),(0,2,25),(0,3,9)], None, 'Rupees (20)', ("Kokiri Forest", "Forest Area","GossipStone"))),
+    ("KF Storms Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,0x0C,10), None, 'Rupees (20)', ("Kokiri Forest", "Forest Area", "Grottos", "GossipStone"))),
+
 
     # Kokiri Forest Enemies
     ("KF Adult Platforms Octorok",                                   ("EnemyDrop",    0x55, (0,2,2), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "EnemyDrop"))),
@@ -181,13 +188,16 @@ location_table = OrderedDict([
     ("LW Underwater Green Rupee 7",                                  ("Freestanding", 0x5B,  (3,0,12), None,                        'Rupee (1)',                             ("Lost Woods", "Forest Area", "Freestandings",))),
     ("LW Underwater Shortcut Green Rupee",                           ("Freestanding", 0x5B,  (3,0,7), None,                         'Rupee (1)',                             ("Lost Woods", "Forest Area", "Freestandings",))),
     # Lost Woods Beehives
-    ("LW Near Shortcuts Grotto Beehive 1",                           ("Beehive",      0x3E, (0,0,0x48 + (0x14 * 2)), None,          'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grottos", "Beehives",))),
-    ("LW Near Shortcuts Grotto Beehive 2",                           ("Beehive",      0x3E, (0,0,0x49 + (0x14 * 2)), None,          'Rupees (20)',                           ("Lost Woods", "Forest Area", "Grottos", "Beehives",))),
-    ("LW Scrubs Grotto Beehive",                                     ("Beehive",      0x3E, (6,0,0x44 + (0x15 * 2)), None,          'Rupees (20)',                           ("Lost Woods", "Forest Area", "Grottos", "Beehives",))),
+    ("LW Near Shortcuts Grotto Beehive 1",                           ("Beehive",      0x3E,  (0,0x14,8), None,                         'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grottos", "Beehives",))),
+    ("LW Near Shortcuts Grotto Beehive 2",                           ("Beehive",      0x3E,  (0,0x14,9), None,                         'Rupees (20)',                           ("Lost Woods", "Forest Area", "Grottos", "Beehives",))),
+    ("LW Scrubs Grotto Beehive",                                     ("Beehive",      0x3E,  (6,0x15,4), None,                      'Rupees (20)',                           ("Lost Woods", "Forest Area", "Grottos", "Beehives",))),
     # Lost Woods Enemies
     ("LW Adult Sarias Friend Skullkid",                              ("EnemyDrop",    0x5B,  (9,2,2), None,                         'Rupees (200)',                          ("Lost Woods", "Forest Area", "EnemyDrop"))),
     ("LW Adult Ocarina Game Skullkid 1",                             ("EnemyDrop",    0x5B,  (1,2,2), None,                         'Rupees (200)',                          ("Lost Woods", "Forest Area", "EnemyDrop"))),
     ("LW Adult Ocarina Game Skullkid 2",                             ("EnemyDrop",    0x5B,  (1,2,3), None,                         'Rupees (200)',                          ("Lost Woods", "Forest Area", "EnemyDrop"))),
+    # Lost Woods Gossip Stones
+    ("LW Gossip Stone Drop", ("GossipStone", 0x5B, [(5,2,2),(5,0,5)], None, 'Rupees (20)', ("Lost Woods", "Forest Area", "GossipStone"))),
+    ("LW Near Shortcuts Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,0x14,10), None, 'Rupees (20)', ("Lost Woods", "Forest Area", "GossipStone"))),
 
     # Sacred Forest Meadow
     ("SFM Wolfos Grotto Chest",                                      ("Chest",        0x3E,  0x11, None,                            'Rupees (50)',                           ("Sacred Forest Meadow", "Forest Area", "Grottos", "Chests",))),
@@ -195,7 +205,12 @@ location_table = OrderedDict([
     ("SFM Deku Scrub Grotto Rear",                                   ("GrottoScrub",  0xEE,  0x39, None,                            'Buy Red Potion for 30 Rupees',          ("Sacred Forest Meadow", "Forest Area", "Deku Scrubs", "Grottos",))),
     ("SFM GS",                                                       ("GS Token",     0x0D,  0x08, None,                            'Gold Skulltula Token',                  ("Sacred Forest Meadow", "Forest Area", "Gold Skulltulas",))),
     # Sacred Forest Meadow Beehives
-    ("SFM Storms Grotto Beehive",                                    ("Beehive",      0x3E, (9,0,0x43 + (0x0E * 2)), None,          'Rupees (20)',                           ("Sacred Forest Meadow", "Forest Area", "Grottos", "Beehives",))),
+    ("SFM Storms Grotto Beehive",                                    ("Beehive",      0x3E, (9,0x0E,3), None,          'Rupees (20)',                           ("Sacred Forest Meadow", "Forest Area", "Grottos", "Beehives",))),
+
+    # Sacred Forest Meadow Gossip Stones
+    ("SFM Maze Gossip Stone (Lower) Drop",                          ("GossipStone",  0x56,  [(0,0,3),(0,2,2)], None,               'Rupees (20)',                           ("Sacred Forest Meadow", "Forest Area", "GossipStone"))),
+    ("SFM Maze Gossip Stone (Upper) Drop",                          ("GossipStone",  0x56,  [(0,0,4),(0,2,3)], None,               'Rupees (20)',                           ("Sacred Forest Meadow", "Forest Area", "GossipStone"))),
+    ("SFM Saria Gossip Stone Drop",                                 ("GossipStone",  0x56,  [(0,0,5),(0,2,4)], None,               'Rupees (20)',                           ("Sacred Forest Meadow", "Forest Area", "GossipStone"))),
 
     # Sacred Forest Meadow Enemies
     ("SFM Child Wolfos",                                             ("EnemyDrop",    0x56, (0,0,2), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
@@ -212,8 +227,8 @@ location_table = OrderedDict([
     ("SFM Adult Maze Moblin 5",                                      ("EnemyDrop",    0x56, (0,2,10), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
     ("SFM Adult Smashing Moblin",                                    ("EnemyDrop",    0x56, (0,2,11), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
     
-    ("SFM Wolfos Grotto Wolfos 1",                                   ("EnemyDrop",    0x3E, (7,0,1), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
-    ("SFM Wolfos Grotto Wolfos 2",                                   ("EnemyDrop",    0x3E, (7,0,2), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
+    ("SFM Wolfos Grotto Wolfos 1",                                   ("EnemyDrop",    0x3E, (7,0x0D,1), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
+    ("SFM Wolfos Grotto Wolfos 2",                                   ("EnemyDrop",    0x3E, (7,0x0D,2), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
     
 
     # Hyrule Field
@@ -227,21 +242,28 @@ location_table = OrderedDict([
     ("HF GS Cow Grotto",                                             ("GS Token",     0x0A,  0x01, None,                            'Gold Skulltula Token',                  ("Hyrule Field", "Gold Skulltulas", "Grottos",))),
     ("HF GS Near Kak Grotto",                                        ("GS Token",     0x0A,  0x02, None,                            'Gold Skulltula Token',                  ("Hyrule Field", "Gold Skulltulas", "Grottos",))),
     # Hyrule Field Pots
-    ("HF Cow Grotto Pot 1",                                          ("Pot",          0x3E,  (4,0,6), None,                         'Deku Nuts (5)',                         ("Hyrule Field", "Grottos", "Pots",))),
-    ("HF Cow Grotto Pot 2",                                          ("Pot",          0x3E,  (4,0,8), None,                         'Rupees (5)',                            ("Hyrule Field", "Grottos", "Pots",))),
+    ("HF Cow Grotto Pot 1",                                          ("Pot",          0x3E,  (4,0x4,6), None,                         'Deku Nuts (5)',                         ("Hyrule Field", "Grottos", "Pots",))),
+    ("HF Cow Grotto Pot 2",                                          ("Pot",          0x3E,  (4,0x4,8), None,                         'Rupees (5)',                            ("Hyrule Field", "Grottos", "Pots",))),
+    
     # Hyrule Field Beehives
-    ("HF Near Market Grotto Beehive 1",                              ("Beehive",      0x3E, (0,0,0x48 + (0x00 * 2)), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Beehives",))),
-    ("HF Near Market Grotto Beehive 2",                              ("Beehive",      0x3E, (0,0,0x49 + (0x00 * 2)), None,          'Rupees (20)',                           ("Hyrule Field", "Grottos", "Beehives",))),
-    ("HF Open Grotto Beehive 1",                                     ("Beehive",      0x3E, (0,0,0x48 + (0x03 * 2)), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Beehives",))),
-    ("HF Open Grotto Beehive 2",                                     ("Beehive",      0x3E, (0,0,0x49 + (0x03 * 2)), None,          'Rupees (20)',                           ("Hyrule Field", "Grottos", "Beehives",))),
-    ("HF Southeast Grotto Beehive 1",                                ("Beehive",      0x3E, (0,0,0x48 + (0x02 * 2)), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Beehives",))),
-    ("HF Southeast Grotto Beehive 2",                                ("Beehive",      0x3E, (0,0,0x49 + (0x02 * 2)), None,          'Rupees (20)',                           ("Hyrule Field", "Grottos", "Beehives",))),
-    ("HF Inside Fence Grotto Beehive",                               ("Beehive",      0x3E, (1,0,0x42 + (0x06 * 2)), None,          'Rupees (20)',                           ("Hyrule Field", "Grottos", "Beehives",))),
+    ("HF Near Market Grotto Beehive 1",                              ("Beehive",      0x3E, (0,0,8), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Beehives",))),
+    ("HF Near Market Grotto Beehive 2",                              ("Beehive",      0x3E, (0,0,9), None,          'Rupees (20)',                           ("Hyrule Field", "Grottos", "Beehives",))),
+    ("HF Open Grotto Beehive 1",                                     ("Beehive",      0x3E, (0,3,8), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Beehives",))),
+    ("HF Open Grotto Beehive 2",                                     ("Beehive",      0x3E, (0,3,9), None,          'Rupees (20)',                           ("Hyrule Field", "Grottos", "Beehives",))),
+    ("HF Southeast Grotto Beehive 1",                                ("Beehive",      0x3E, (0,2,8), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Beehives",))),
+    ("HF Southeast Grotto Beehive 2",                                ("Beehive",      0x3E, (0,2,9), None,          'Rupees (20)',                           ("Hyrule Field", "Grottos", "Beehives",))),
+    ("HF Inside Fence Grotto Beehive",                               ("Beehive",      0x3E, (1,6,2), None,          'Rupees (20)',                           ("Hyrule Field", "Grottos", "Beehives",))),
+
+    # Hyrule Field Gossip Stones
+    ("HF Near Market Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,0,10), None, 'Rupees (20)', ("Hyrule Field", "Grottos", "GossipStone"))),
+    ("HF Southeast Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,2,10), None, 'Rupees (20)',   ("Hyrule Field", "Grottos", "GossipStone"))),
+    ("HF Open Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,3,10), None, 'Rupees (20)',        ("Hyrule Field", "Grottos", "GossipStone"))),
+    ("HF Cow Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (4,0x4,11), None, 'Rupees (20)',       ("Hyrule Field", "Grottos", "GossipStone"))),
 
     # Hyrule Field Enemies
-    ("HF Cow Grotto Skulltula",                                      ("EnemyDrop",    0x3E, (4,0,1), None,                          'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
-    ("HF Tektite Grotto Tektite",                                    ("EnemyDrop",    0x3E, (10,0,3), None,                         'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
-    ("HF Near Kak Grotto Skulltula",                                 ("EnemyDrop",    0x3E, (13,0,1), None,                         'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
+    ("HF Cow Grotto Skulltula",                                      ("EnemyDrop",    0x3E, (4,0x04,1), None,                          'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
+    ("HF Tektite Grotto Tektite",                                    ("EnemyDrop",    0x3E, (10,0x01,3), None,                         'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
+    ("HF Near Kak Grotto Skulltula",                                 ("EnemyDrop",    0x3E, (13,0x05,1), None,                         'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
     ("HF Child Near Fairy Grotto Peahat",                            ("EnemyDrop",    0x51, [(0,0,9),(0,1,5)], None,                'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
     ("HF Child Near Kokiri Forest Peahat",                           ("EnemyDrop",    0x51, [(0,0,13),(0,1,9)], None,               'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
     ("HF Child South Field Peahat 1",                                ("EnemyDrop",    0x51, [(0,0,10),(0,1,6)], None,               'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
@@ -307,6 +329,10 @@ location_table = OrderedDict([
     ("Market Bombchu Shop Item 8",                                   ("Shop",         0x32,  0x37, (shop_address(2, 7), None),      'Buy Bombchu (20)',                      ("Market", "Shops",))),
 
     ("ToT Light Arrows Cutscene",                                    ("Cutscene",     0xFF,  0x01, None,                            'Light Arrows',                          ("Temple of Time", "NPCs",))),
+    ("ToT Gossip Stone (Left) Drop", ("GossipStone", 0x23, [(0,0,2),(0,1,2),(0,2,2)], None, 'Rupees (20)',         ("Temple of Time", "GossipStone"))),
+    ("ToT Gossip Stone (Left-Center) Drop", ("GossipStone", 0x23, [(0,0,3),(0,1,3),(0,2,3)], None, 'Rupees (20)',  ("Temple of Time", "GossipStone"))),
+    ("ToT Gossip Stone (Right) Drop", ("GossipStone", 0x23, [(0,0,4),(0,1,4),(0,2,4)], None, 'Rupees (20)',        ("Temple of Time", "GossipStone"))),
+    ("ToT Gossip Stone (Right-Center) Drop", ("GossipStone", 0x23, [(0,0,5),(0,1,5),(0,2,5)], None, 'Rupees (20)', ("Temple of Time", "GossipStone"))),
 
     # Market Pots/Crates
     ("Market Night Red Rupee Crate",                                 ("Crate",        0x21,  (0,0,23), None,                        'Rupees (20)',                           ("Market", "Crates",))),
@@ -386,14 +412,17 @@ location_table = OrderedDict([
     ("HC Great Fairy Reward",                                        ("Cutscene",     0xFF,  0x11, None,                            'Dins Fire',                             ("Hyrule Castle", "Great Fairies",))),
     ("HC GS Tree",                                                   ("GS Token",     0x0E,  0x04, None,                            'Gold Skulltula Token',                  ("Hyrule Castle", "Gold Skulltulas",))),
     ("HC GS Storms Grotto",                                          ("GS Token",     0x0E,  0x02, None,                            'Gold Skulltula Token',                  ("Hyrule Castle", "Gold Skulltulas", "Grottos",))),
-    ("HC Storms Grotto Pot 1",                                       ("Pot",          0x3E,  (8,0,7), None,                         'Rupees (20)',                           ("Hyrule Castle", "Grottos", "Pots",))),
-    ("HC Storms Grotto Pot 2",                                       ("Pot",          0x3E,  (8,0,8), None,                         'Bombs (5)',                             ("Hyrule Castle", "Grottos", "Pots",))),
-    ("HC Storms Grotto Pot 3",                                       ("Pot",          0x3E,  (8,0,10), None,                        'Arrows (5)',                            ("Hyrule Castle", "Grottos", "Pots",))),
-    ("HC Storms Grotto Pot 4",                                       ("Pot",          0x3E,  (8,0,12), None,                        'Deku Nuts (5)',                         ("Hyrule Castle", "Grottos", "Pots",))),
+    ("HC Storms Grotto Pot 1",                                       ("Pot",          0x3E,  (8,0x16,7), None,                         'Rupees (20)',                           ("Hyrule Castle", "Grottos", "Pots",))),
+    ("HC Storms Grotto Pot 2",                                       ("Pot",          0x3E,  (8,0x16,8), None,                         'Bombs (5)',                             ("Hyrule Castle", "Grottos", "Pots",))),
+    ("HC Storms Grotto Pot 3",                                       ("Pot",          0x3E,  (8,0x16,10), None,                        'Arrows (5)',                            ("Hyrule Castle", "Grottos", "Pots",))),
+    ("HC Storms Grotto Pot 4",                                       ("Pot",          0x3E,  (8,0x16,12), None,                        'Deku Nuts (5)',                         ("Hyrule Castle", "Grottos", "Pots",))),
+    ("HC Malon Gossip Stone Drop", ("GossipStone", 0x5F, (0,0,4), None, 'Rupees (20)', ("Hyrule Castle","GossipStone"))),
+    ("HC Rock Wall Gossip Stone Drop", ("GossipStone", 0x5F, (0,0,3), None, 'Rupees (20)', ("Hyrule Castle","GossipStone"))),
+    ("HC Storms Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (8,0x16,14), None, 'Rupees (20)', ("Hyrule Castle", "Grottos","GossipStone"))),
 
     # Hyrule Castle Enemies
-    ("HC Storms Grotto Skullwalltula 1",                             ("EnemyDrop",    0x3E, (8,0,1), None,                      'Rupees (5)',                            ("Hyrule Castle", "Grottos", "EnemyDrop"))),
-    ("HC Storms Grotto Skullwalltula 2",                             ("EnemyDrop",    0x3E, (8,0,2), None,                      'Rupees (5)',                            ("Hyrule Castle", "Grottos", "EnemyDrop"))),
+    ("HC Storms Grotto Skullwalltula 1",                             ("EnemyDrop",    0x3E, (8,0x16,1), None,                      'Rupees (5)',                            ("Hyrule Castle", "Grottos", "EnemyDrop"))),
+    ("HC Storms Grotto Skullwalltula 2",                             ("EnemyDrop",    0x3E, (8,0x16,2), None,                      'Rupees (5)',                            ("Hyrule Castle", "Grottos", "EnemyDrop"))),
 
 
     # Lon Lon Ranch
@@ -431,7 +460,7 @@ location_table = OrderedDict([
     ("LLR Child Crate",                                              ("Crate",        0x63,  [(0,0,25),
                                                                                               (0,1,30)], None,                      'Rupee (1)',                             ("Lon Lon Ranch", "Crates",))),
     # Lon Lon Ranch Beehives
-    ("LLR Grotto Beehive",                                           ("Beehive",      0x3E,  (12,0,0x44 + (0x1C * 2)), None,        'Rupees (20)',                           ("Lon Lon Ranch", "Grottos", "Beehives",))),
+    ("LLR Grotto Beehive",                                           ("Beehive",      0x3E,  (12,0x1C,4), None,        'Rupees (20)',                           ("Lon Lon Ranch", "Grottos", "Beehives",))),
 
     # Lon Lon Ranch Enemies
     ("LLR Child Night Guay 1",                                       ("EnemyDrop",    0x63, (0,1,11), None,                     'Rupees (5)',                            ("Lon Lon Ranch", "EnemyDrop"))),
@@ -505,12 +534,17 @@ location_table = OrderedDict([
     ("Kak Adult Red Rupee Crate",                                    ("Crate",        0x52,  [(0,2,46),(0,3,43)], None,             'Rupees (20)',                           ("Kakariko Village", "Crates",))), # update crate flags to not conflict w/ child pots. These move day/night
     ("Kak Adult Arrows Crate",                                       ("Crate",        0x52,  [(0,2,37),(0,3,40)], None,             'Arrows (10)',                           ("Kakariko Village", "Crates",))), # update crate flags to not conflict w/ child pots. These move day/night
     # Kak Beehives
-    ("Kak Open Grotto Beehive 1",                                    ("Beehive",      0x3E,  (0,0,0x48 + (0x08 * 2)), None,         'Rupees (5)',                            ("Kakariko Village", "Grottos", "Beehives",))),
-    ("Kak Open Grotto Beehive 2",                                    ("Beehive",      0x3E,  (0,0,0x49 + (0x08 * 2)), None,         'Rupees (20)',                           ("Kakariko Village", "Grottos", "Beehives",))),
+    ("Kak Open Grotto Beehive 1",                                    ("Beehive",      0x3E,  (0,0x08,8), None,         'Rupees (5)',                            ("Kakariko Village", "Grottos", "Beehives",))),
+    ("Kak Open Grotto Beehive 2",                                    ("Beehive",      0x3E,  (0,0x08,9), None,         'Rupees (20)',                           ("Kakariko Village", "Grottos", "Beehives",))),
+    # Kak Wonderitems
+    ("Kak Child Construction Wonderitem",                            ("Wonderitem",   0x52,  [(0,0,56), (0,1,49)], None,        'Rupees (20)',                               ("Kakariko Village", "Kakariko", "Wonderitem"))),
+    ("Kak Impas House Wonderitem",                                   ("Wonderitem",   0x37,  (0,0,7), None,                     'Rupees (20)',                               ("Kakariko Village", "Kakariko", "Wonderitem"))),
 
     # Kak Enemies
-    ("Kak Redead Grotto Redead Left",                                ("EnemyDrop",    0x3E, (2,0,1), None,                      'Rupees (5)',                            ("Kakariko Village", "Kakariko", "Grottos", "EnemyDrop"))),
-    ("Kak Redead Grotto Redead Right",                               ("EnemyDrop",    0x3E, (2,0,2), None,                      'Rupees (5)',                            ("Kakariko Village", "Kakariko", "Grottos", "EnemyDrop"))),
+    ("Kak Redead Grotto Redead Left",                                ("EnemyDrop",    0x3E, (2,0x07,1), None,                      'Rupees (5)',                            ("Kakariko Village", "Kakariko", "Grottos", "EnemyDrop"))),
+    ("Kak Redead Grotto Redead Right",                               ("EnemyDrop",    0x3E, (2,0x07,2), None,                      'Rupees (5)',                            ("Kakariko Village", "Kakariko", "Grottos", "EnemyDrop"))),
+    # Kak Gossip Stones
+    ("Kak Open Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,8,10), None, 'Rupees (20)', ("Kakariko Village", "Grottos", "GossipStone"))),
 
     # Graveyard
     ("Graveyard Shield Grave Chest",                                 ("Chest",        0x40,  0x00, None,                            'Hylian Shield',                         ("Graveyard", "Grottos", "Chests",))),
@@ -538,6 +572,8 @@ location_table = OrderedDict([
     ("Graveyard Dampe Pot 4",                                        ("Pot",          0x48,  (0,0,4), None,                         'Arrows (10)',                           ("Graveyard", "Grottos", "Pots",))),
     ("Graveyard Dampe Pot 5",                                        ("Pot",          0x48,  (0,0,5), None,                         'Rupees (20)',                           ("Graveyard", "Grottos", "Pots",))),
     ("Graveyard Dampe Pot 6",                                        ("Pot",          0x48,  (0,0,6), None,                         'Rupees (20)',                           ("Graveyard", "Grottos", "Pots",))),
+    # Graveyard Gossip Stones
+    ("Graveyard Gossip Stone Drop", ("GossipStone", 0x53, [(1,0,3),(1,1,51),(1,2,2),(1,3,2)], None, 'Rupees (20)', ("Graveyard","GossipStone"))),
 
     #Graveyard Enemies
     ("Graveyard Heart Piece Grave Redead",                           ("EnemyDrop",    0x3F,  (0,0,2), None,                     'Rupees (5)',                            ("the Graveyard", "Kakariko", "EnemyDrop"))),
@@ -576,21 +612,24 @@ location_table = OrderedDict([
     # Death Mountain Trail Freestanding
     ("DMT Rock Red Rupee",                                           ("Freestanding", 0x60,  (0,0,2), None,                         'Rupees (20)',                           ("Death Mountain Trail", "Freestandings",))),
     ("DMT Rock Blue Rupee",                                          ("Freestanding", 0x60,  (0,0,3), None,                         'Rupees (5)',                            ("Death Mountain Trail", "Freestandings",))),
-    ("DMT Cow Grotto Green Rupee 1",                                 ("RupeeTower",   0x3E,  (3,0,0x40), ([0x026D2098], None),      'Rupee (1)',                             ("Death Mountain Trail", "Grottos", "Rupee Towers",))),
-    ("DMT Cow Grotto Green Rupee 2",                                 ("RupeeTower",   0x3E,  (3,0,0x41), None,                      'Rupee (1)',                             ("Death Mountain Trail", "Grottos", "Rupee Towers",))),
-    ("DMT Cow Grotto Green Rupee 3",                                 ("RupeeTower",   0x3E,  (3,0,0x42), None,                      'Rupee (1)',                             ("Death Mountain Trail", "Grottos", "Rupee Towers",))),
-    ("DMT Cow Grotto Green Rupee 4",                                 ("RupeeTower",   0x3E,  (3,0,0x43), None,                      'Rupee (1)',                             ("Death Mountain Trail", "Grottos", "Rupee Towers",))),
-    ("DMT Cow Grotto Green Rupee 5",                                 ("RupeeTower",   0x3E,  (3,0,0x44), None,                      'Rupee (1)',                             ("Death Mountain Trail", "Grottos", "Rupee Towers",))),
-    ("DMT Cow Grotto Green Rupee 6",                                 ("RupeeTower",   0x3E,  (3,0,0x45), None,                      'Rupee (1)',                             ("Death Mountain Trail", "Grottos", "Rupee Towers",))),
-    ("DMT Cow Grotto Red Rupee",                                     ("RupeeTower",   0x3E,  (3,0,0x46), None,                      'Rupees (20)',                           ("Death Mountain Trail", "Grottos", "Rupee Towers",))),
-    ("DMT Cow Grotto Recovery Heart 1",                              ("Freestanding", 0x3E,  (3,0,7),    None,                      'Recovery Heart',                        ("Death Mountain Trail", "Grottos", "Freestandings",))),
-    ("DMT Cow Grotto Recovery Heart 2",                              ("Freestanding", 0x3E,  (3,0,8),    None,                      'Recovery Heart',                        ("Death Mountain Trail", "Grottos", "Freestandings",))),
-    ("DMT Cow Grotto Recovery Heart 3",                              ("Freestanding", 0x3E,  (3,0,9),    None,                      'Recovery Heart',                        ("Death Mountain Trail", "Grottos", "Freestandings",))),
-    ("DMT Cow Grotto Recovery Heart 4",                              ("Freestanding", 0x3E,  (3,0,10),   None,                      'Recovery Heart',                        ("Death Mountain Trail", "Grottos", "Freestandings",))),
+    ("DMT Cow Grotto Green Rupee 1",                                 ("RupeeTower",   0x3E,  (3,0x18,0x40), ([0x026D2098], None),      'Rupee (1)',                             ("Death Mountain Trail", "Grottos", "Rupee Towers",))),
+    ("DMT Cow Grotto Green Rupee 2",                                 ("RupeeTower",   0x3E,  (3,0x18,0x41), None,                      'Rupee (1)',                             ("Death Mountain Trail", "Grottos", "Rupee Towers",))),
+    ("DMT Cow Grotto Green Rupee 3",                                 ("RupeeTower",   0x3E,  (3,0x18,0x42), None,                      'Rupee (1)',                             ("Death Mountain Trail", "Grottos", "Rupee Towers",))),
+    ("DMT Cow Grotto Green Rupee 4",                                 ("RupeeTower",   0x3E,  (3,0x18,0x43), None,                      'Rupee (1)',                             ("Death Mountain Trail", "Grottos", "Rupee Towers",))),
+    ("DMT Cow Grotto Green Rupee 5",                                 ("RupeeTower",   0x3E,  (3,0x18,0x44), None,                      'Rupee (1)',                             ("Death Mountain Trail", "Grottos", "Rupee Towers",))),
+    ("DMT Cow Grotto Green Rupee 6",                                 ("RupeeTower",   0x3E,  (3,0x18,0x45), None,                      'Rupee (1)',                             ("Death Mountain Trail", "Grottos", "Rupee Towers",))),
+    ("DMT Cow Grotto Red Rupee",                                     ("RupeeTower",   0x3E,  (3,0x18,0x46), None,                      'Rupees (20)',                           ("Death Mountain Trail", "Grottos", "Rupee Towers",))),
+    ("DMT Cow Grotto Recovery Heart 1",                              ("Freestanding", 0x3E,  (3,0x18,7),    None,                      'Recovery Heart',                        ("Death Mountain Trail", "Grottos", "Freestandings",))),
+    ("DMT Cow Grotto Recovery Heart 2",                              ("Freestanding", 0x3E,  (3,0x18,8),    None,                      'Recovery Heart',                        ("Death Mountain Trail", "Grottos", "Freestandings",))),
+    ("DMT Cow Grotto Recovery Heart 3",                              ("Freestanding", 0x3E,  (3,0x18,9),    None,                      'Recovery Heart',                        ("Death Mountain Trail", "Grottos", "Freestandings",))),
+    ("DMT Cow Grotto Recovery Heart 4",                              ("Freestanding", 0x3E,  (3,0x18,10),   None,                      'Recovery Heart',                        ("Death Mountain Trail", "Grottos", "Freestandings",))),
     # Death Mountain Trial Beehives
-    ("DMT Cow Grotto Beehive",                                       ("Beehive",      0x3E, (3,0,0x44 + (0x18 * 2)), None,          'Rupees (20)',                           ("Death Mountain Trail", "Grottos", "Beehives",))),
-    ("DMT Storms Grotto Beehive 1",                                  ("Beehive",      0x3E, (0,0,0x48 + (0x17 * 2)), None,          'Rupees (5)',                            ("Death Mountain Trail", "Grottos", "Beehives",))),
-    ("DMT Storms Grotto Beehive 2",                                  ("Beehive",      0x3E, (0,0,0x49 + (0x17 * 2)), None,          'Rupees (20)',                           ("Death Mountain Trail", "Grottos", "Beehives",))),
+    ("DMT Cow Grotto Beehive",                                       ("Beehive",      0x3E, (3,0x18,4), None,          'Rupees (20)',                           ("Death Mountain Trail", "Grottos", "Beehives",))),
+    ("DMT Storms Grotto Beehive 1",                                  ("Beehive",      0x3E, (0,0x17,8), None,          'Rupees (5)',                            ("Death Mountain Trail", "Grottos", "Beehives",))),
+    ("DMT Storms Grotto Beehive 2",                                  ("Beehive",      0x3E, (0,0x17,9), None,          'Rupees (20)',                           ("Death Mountain Trail", "Grottos", "Beehives",))),
+    # Death Mountain Trail Gossip Stones
+    ("DMT Gossip Stone Drop", ("GossipStone", 0x60, [(0,0,5),(0,2,2)], None, 'Rupees (20)', ("Death Mountain Trial","GossipStone"))),
+    ("DMT Storms Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,0x17,10), None, 'Rupees (20)', ("Death Mountain Trial", "Grottos", "GossipStone"))),
 
     # Death Mountain Trail Enemies
     ("DMT Adult First Tektite",                                      ("EnemyDrop",    0x60,  (0,2,0x08), None,                   'Rupees (5)',                            ("Death Mountain Trail", "Vanilla", "EnemyDrop"))),
@@ -649,7 +688,11 @@ location_table = OrderedDict([
     ("GC Upper Staircase Pot 3",                                     ("Pot",          0x62,  [(3,0,45),(3,2,12)],None,              'Rupees (5)',                            ("Goron City", "Pots",))),
     ("GC Boulder Maze Crate",                                        ("Crate",        0x62,  [(0,0,50),(0,2,47)], None,             'Rupee (1)',                             ("Goron City", "Crates",))),
     # Goron City Beehives
-    ("GC Grotto Beehive",                                            ("Beehive",      0x3E,  (12,0,0x44 + (0x1B * 2)), None,        'Rupees (20)',                           ("Goron City", "Grottos", "Beehives",))),
+    ("GC Grotto Beehive",                                            ("Beehive",      0x3E,  (12,0x1B,4), None,        'Rupees (20)',                           ("Goron City", "Grottos", "Beehives",))),
+
+    # Goron City Gossip Stones
+    ("GC Maze Gossip Stone Drop", ("GossipStone", 0x62, [(0,2,1),(0,0,49)], None, 'Rupees (20)', ("Goron City","GossipStone"))),
+    ("GC Medigoron Gossip Stone Drop", ("GossipStone", 0x62, [(2,2,1),(2,0,6)], None, 'Rupees (20)', ("Goron City","GossipStone"))),
 
     # Death Mountain Crater
     ("DMC Volcano Freestanding PoH",                                 ("Collectable",  0x61,  0x08, None,                            'Piece of Heart',                        ("Death Mountain Crater", "Freestandings",))),
@@ -684,9 +727,12 @@ location_table = OrderedDict([
     ("DMC Near GC Pot 3",                                            ("Pot",          0x61,  (1,2,16), None,                        'Rupees (5)',                            ("Death Mountain Crater", "Pots",))),
     ("DMC Near GC Pot 4",                                            ("Pot",          0x61,  (1,2,17), None,                        'Rupees (5)',                            ("Death Mountain Crater", "Pots",))),
     # Death mountain Crater Beehives
-    ("DMC Upper Grotto Beehive 1",                                   ("Beehive",      0x3E, (0,0,0x48 + (0x1A * 2)), None,          'Rupees (5)',                            ("Death Mountain Crater", "Grottos", "Beehives",))),
-    ("DMC Upper Grotto Beehive 2",                                   ("Beehive",      0x3E, (0,0,0x49 + (0x1A * 2)), None,          'Rupees (20)',                           ("Death Mountain Crater", "Grottos", "Beehives",))),
-    ("DMC Hammer Grotto Beehive",                                    ("Beehive",      0x3E, (12,0,0x44 + (0x19 * 2)), None,         'Rupees (20)',                           ("Death Mountain Crater", "Grottos", "Beehives",))),
+    ("DMC Upper Grotto Beehive 1",                                   ("Beehive",      0x3E, (0,0x1A,8), None,          'Rupees (5)',                            ("Death Mountain Crater", "Grottos", "Beehives",))),
+    ("DMC Upper Grotto Beehive 2",                                   ("Beehive",      0x3E, (0,0x1A,9), None,          'Rupees (20)',                           ("Death Mountain Crater", "Grottos", "Beehives",))),
+    ("DMC Hammer Grotto Beehive",                                    ("Beehive",      0x3E, (12,0x19,4), None,         'Rupees (20)',                           ("Death Mountain Crater", "Grottos", "Beehives",))),
+    # Death Mountain Crater Gossip Stones
+    ("DMC Gossip Stone Drop",                                        ("GossipStone",  0x61, [(1,0,10),(1,2,2)], None,               'Rupees (20)',                           ("Death Mountain Crater", "GossipStone"))),
+    ("DMC Upper Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,0x1A,10), None, 'Rupees (20)', ("Death Mountain Crater", "Grottos", "GossipStone"))),
 
     # Death Mountain Crater Enemies
     ("DMC Bubble Below Bridge To Fire Temple",                       ("EnemyDrop",    0x61, (1,2,9), None,                      'Rupees (5)',                            ("Death Mountain Crater", "Death Mountain", "EnemyDrop"))),
@@ -719,9 +765,14 @@ location_table = OrderedDict([
     ("ZR Waterfall Red Rupee 3",                                     ("Freestanding", 0x54,  (1,2,4), None,                         'Rupees (20)',                           ("Zora's River", "Freestandings",))),
     ("ZR Waterfall Red Rupee 4",                                     ("Freestanding", 0x54,  (1,2,5), None,                         'Rupees (20)',                           ("Zora's River", "Freestandings",))),
     # Zora's River Beehives
-    ("ZR Open Grotto Beehive 1",                                     ("Beehive",      0x3E, (0,0,0x48 + (0x09 * 2)), None,          'Rupees (5)',                            ("Zora's River", "Grottos", "Beehives",))),
-    ("ZR Open Grotto Beehive 2",                                     ("Beehive",      0x3E, (0,0,0x49 + (0x09 * 2)), None,          'Rupees (20)',                           ("Zora's River", "Grottos", "Beehives",))),
-    ("ZR Storms Grotto Beehive",                                     ("Beehive",      0x3E, (9,0,0x43 + (0x0B * 2)), None,          'Rupees (20)',                           ("Zora's River", "Grottos", "Beehives",))),
+    ("ZR Open Grotto Beehive 1",                                     ("Beehive",      0x3E, (0,0x09,8), None,          'Rupees (5)',                            ("Zora's River", "Grottos", "Beehives",))),
+    ("ZR Open Grotto Beehive 2",                                     ("Beehive",      0x3E, (0,0x09,9), None,          'Rupees (20)',                           ("Zora's River", "Grottos", "Beehives",))),
+    ("ZR Storms Grotto Beehive",                                     ("Beehive",      0x3E, (9,0x0B,3), None,          'Rupees (20)',                           ("Zora's River", "Grottos", "Beehives",))),
+    # Zora's River Gossip Stones
+    ("ZR Near Grottos Gossip Stone Drop", ("GossipStone", 0x54, [(0,0,8),(0,2,11)], None, 'Rupees (20)', ("Zora's River", "GossipStone"))),
+    ("ZR Near Domain Gossip Stone Drop", ("GossipStone", 0x54, [(1,0,2),(1,2,6)], None, 'Rupees (20)',   ("Zora's River", "GossipStone"))),
+    ("ZR Open Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,9,10), None, 'Rupees (20)',            ("Zora's River", "GossipStone"))),
+
 
     # Zora's River Enemies
     ("ZR Child Octorok Near Bean Salesman",                          ("EnemyDrop",    0x54, (0,0,5), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
@@ -761,6 +812,9 @@ location_table = OrderedDict([
     ("ZD In Front of King Zora Beehive 1",                           ("Beehive",      0x58,  (0,0,10), None,                        'Rupees (20)',                           ("Zora's Domain", "Beehives",))),
     ("ZD In Front of King Zora Beehive 2",                           ("Beehive",      0x58,  (0,0,11), None,                        'Rupees (20)',                           ("Zora's Domain", "Beehives",))),
     ("ZD Behind King Zora Beehive",                                  ("Beehive",      0x58,  (0,0,12), None,                        'Rupees (20)',                           ("Zora's Domain", "Beehives",))),
+    # Zora's Domain Gossip Stones
+    ("ZD Gossip Stone Drop", ("GossipStone", 0x58, [(0,2,2),(0,0,14)], None, 'Rupees (20)', ("Zora's Domain","GossipStone"))),
+
 
     # Zora's Fountain
     ("ZF Great Fairy Reward",                                        ("Cutscene",     0xFF,  0x10, None,                            'Farores Wind',                          ("Zora's Fountain", "Great Fairies",))),
@@ -796,6 +850,10 @@ location_table = OrderedDict([
     ("ZF Near Jabu Pot 2",                                           ("Pot",          0x59,  [(0,0,22),(0,1,22)], None,             'Rupee (1)',                             ("Zora's Fountain", "Pots",))),
     ("ZF Near Jabu Pot 3",                                           ("Pot",          0x59,  [(0,0,23),(0,1,23)], None,             'Rupee (1)',                             ("Zora's Fountain", "Pots",))),
     ("ZF Near Jabu Pot 4",                                           ("Pot",          0x59,  [(0,0,24),(0,1,24)], None,             'Recovery Heart',                        ("Zora's Fountain", "Pots",))),
+    # Zora's Fountain Gossip Stones
+    ("ZF Fairy Gossip Stone Drop", ("GossipStone", 0x59, [(0,0,19),(0,1,19),(0,2,23)], None, 'Rupees (20)', ("Zora's Fountain", "GossipStone"))),
+    ("ZF Jabu Gossip Stone Drop", ("GossipStone", 0x59, [(0,0,21),(0,1,21),(0,2,24)], None, 'Rupees (20)',  ("Zora's Fountain", "GossipStone"))),
+
 
     # Zora's Fountain Enemies
     ("ZF Adult Octorok 1",                                           ("EnemyDrop",    0x59, (0,2,19), None,                     'Rupees (5)',                            ("Zora's Fountain", "EnemyDrop"))),
@@ -834,7 +892,12 @@ location_table = OrderedDict([
     ("LH Lab Dive Red Rupee 2",                                      ("Freestanding", 0x38,  (0,0,3), None,                         'Rupees (20)',                           ("Lake Hylia", "Freestandings",))),
     ("LH Lab Dive Red Rupee 3",                                      ("Freestanding", 0x38,  (0,0,4), None,                         'Rupees (20)',                           ("Lake Hylia", "Freestandings",))),
     #Lake Hylia Beehives
-    ("LH Grotto Beehive",                                            ("Beehive",      0x3E,  (12,0,0x44 + (0x0F * 2)), None,        'Rupees (20)',                           ("Lake Hylia", "Grottos", "Beehives",))),
+    ("LH Grotto Beehive",                                            ("Beehive",      0x3E,  (12,0x0F,4), None,        'Rupees (20)',                           ("Lake Hylia", "Grottos", "Beehives",))),
+    # Lake Hylia Gossip Stones
+    ("LH Lab Gossip Stone Drop", ("GossipStone", 0x57, [(0,2,3),(0,0,53)], None, 'Rupees (20)',         ("Lake Hylia","GossipStone"))),
+    ("LH Gossip Stone (Southeast) Drop", ("GossipStone", 0x57, [(0,2,4),(0,0,55)], None, 'Rupees (20)', ("Lake Hylia","GossipStone"))),
+    ("LH Gossip Stone (Southwest) Drop", ("GossipStone", 0x57, [(0,2,5),(0,0,54)], None, 'Rupees (20)', ("Lake Hylia","GossipStone"))),
+
 
     # Lake Hylia Enemies
     ("LH Child Near Lab Octorok",                                    ("EnemyDrop",    0x57, (0,0,4), None,                       'Rupees (5)',                            ("Lake Hylia", "EnemyDrop"))),
@@ -869,19 +932,21 @@ location_table = OrderedDict([
     ("GV GS Behind Tent",                                            ("GS Token",     0x13,  0x08, None,                            'Gold Skulltula Token',                  ("Gerudo Valley", "Gold Skulltulas",))),
     ("GV GS Pillar",                                                 ("GS Token",     0x13,  0x04, None,                            'Gold Skulltula Token',                  ("Gerudo Valley", "Gold Skulltulas",))),
     # Gerudo Valley Freestanding
-    ("GV Octorok Grotto Red Rupee",                                  ("Freestanding", 0x3E,  (5,0,9), None,                         'Rupees (20)',                           ("Gerudo Valley", "Grottos", "Freestandings",))),
-    ("GV Octorok Grotto Blue Rupee 1",                               ("Freestanding", 0x3E,  (5,0,2), None,                         'Rupees (5)',                            ("Gerudo Valley", "Grottos", "Freestandings",))),
-    ("GV Octorok Grotto Blue Rupee 2",                               ("Freestanding", 0x3E,  (5,0,3), None,                         'Rupees (5)',                            ("Gerudo Valley", "Grottos", "Freestandings",))),
-    ("GV Octorok Grotto Blue Rupee 3",                               ("Freestanding", 0x3E,  (5,0,4), None,                         'Rupees (5)',                            ("Gerudo Valley", "Grottos", "Freestandings",))),
-    ("GV Octorok Grotto Green Rupee 1",                              ("Freestanding", 0x3E,  (5,0,5), None,                         'Rupee (1)',                             ("Gerudo Valley", "Grottos", "Freestandings",))),
-    ("GV Octorok Grotto Green Rupee 2",                              ("Freestanding", 0x3E,  (5,0,6), None,                         'Rupee (1)',                             ("Gerudo Valley", "Grottos", "Freestandings",))),
-    ("GV Octorok Grotto Green Rupee 3",                              ("Freestanding", 0x3E,  (5,0,7), None,                         'Rupee (1)',                             ("Gerudo Valley", "Grottos", "Freestandings",))),
-    ("GV Octorok Grotto Green Rupee 4",                              ("Freestanding", 0x3E,  (5,0,8), None,                         'Rupee (1)',                             ("Gerudo Valley", "Grottos", "Freestandings",))),
+    ("GV Octorok Grotto Red Rupee",                                  ("Freestanding", 0x3E,  (5,0x12,9), None,                         'Rupees (20)',                           ("Gerudo Valley", "Grottos", "Freestandings",))),
+    ("GV Octorok Grotto Blue Rupee 1",                               ("Freestanding", 0x3E,  (5,0x12,2), None,                         'Rupees (5)',                            ("Gerudo Valley", "Grottos", "Freestandings",))),
+    ("GV Octorok Grotto Blue Rupee 2",                               ("Freestanding", 0x3E,  (5,0x12,3), None,                         'Rupees (5)',                            ("Gerudo Valley", "Grottos", "Freestandings",))),
+    ("GV Octorok Grotto Blue Rupee 3",                               ("Freestanding", 0x3E,  (5,0x12,4), None,                         'Rupees (5)',                            ("Gerudo Valley", "Grottos", "Freestandings",))),
+    ("GV Octorok Grotto Green Rupee 1",                              ("Freestanding", 0x3E,  (5,0x12,5), None,                         'Rupee (1)',                             ("Gerudo Valley", "Grottos", "Freestandings",))),
+    ("GV Octorok Grotto Green Rupee 2",                              ("Freestanding", 0x3E,  (5,0x12,6), None,                         'Rupee (1)',                             ("Gerudo Valley", "Grottos", "Freestandings",))),
+    ("GV Octorok Grotto Green Rupee 3",                              ("Freestanding", 0x3E,  (5,0x12,7), None,                         'Rupee (1)',                             ("Gerudo Valley", "Grottos", "Freestandings",))),
+    ("GV Octorok Grotto Green Rupee 4",                              ("Freestanding", 0x3E,  (5,0x12,8), None,                         'Rupee (1)',                             ("Gerudo Valley", "Grottos", "Freestandings",))),
     # Gerudo Valley Pots/Crates
     ("GV Crate Near Cow",                                            ("Crate",        0x5A,  (0,0,38), None,                        'Rupee (1)',                             ("Gerudo Valley", "Crates",))),
     ("GV Freestanding PoH Crate",                                    ("Crate",        0x5A,  [(0,2,31),(0,0,39)], None,             'Rupee (1)',                             ("Gerudo Valley", "Crates",))),
     # Gerudo Valley Beehives
-    ("GV Storms Grotto Beehive",                                     ("Beehive",      0x3E,  (9,0,0x43 + (0x10 * 2)), None,         'Rupees (20)',                           ("Gerudo Valley", "Grottos", "Beehives",))),
+    ("GV Storms Grotto Beehive",                                     ("Beehive",      0x3E,  (9,0x10,3), None,         'Rupees (20)',                           ("Gerudo Valley", "Grottos", "Beehives",))),
+    # Gerudo Valley Gossip Stones
+    ("GV Gossip Stone Drop", ("GossipStone", 0x5A, [(0,0,9),(0,2,46)], None, 'Rupees (20)', ("Gerudo Valley","GossipStone"))),
 
     # Gerudo Valley Enemies
     ("GV Adult Upper Octorok 1",                                     ("EnemyDrop",    0x5A, (0, 2, 5), None,                    'Rupees (5)',                            ("Gerudo Valley", "Gerudo", "EnemyDrop"))),
@@ -889,7 +954,7 @@ location_table = OrderedDict([
     ("GV Adult Upper Octorok 3",                                     ("EnemyDrop",    0x5A, (0, 2, 8), None,                    'Rupees (5)',                            ("Gerudo Valley", "Gerudo", "EnemyDrop"))),
     ("GV Adult Lower Octorok 1",                                     ("EnemyDrop",    0x5A, (0, 2, 4), None,                    'Rupees (5)',                            ("Gerudo Valley", "Gerudo", "EnemyDrop"))),
     ("GV Adult Lower Octorok 2",                                     ("EnemyDrop",    0x5A, (0, 2, 6), None,                    'Rupees (5)',                            ("Gerudo Valley", "Gerudo", "EnemyDrop"))),
-    ("GV Octorok Grotto Octorok",                                    ("EnemyDrop",    0x3E, (5, 0, 1), None,                    'Rupees (5)',                            ("Gerudo Valley", "Gerudo", "Grottos", "EnemyDrop"))),
+    ("GV Octorok Grotto Octorok",                                    ("EnemyDrop",    0x3E, (5, 0x12, 1), None,                    'Rupees (5)',                            ("Gerudo Valley", "Gerudo", "Grottos", "EnemyDrop"))),
     
     # Gerudo's Fortress
     ("GF Chest",                                                     ("Chest",        0x5D,  0x00, None,                            'Piece of Heart',                        ("Gerudo's Fortress", "Chests",))),
@@ -961,7 +1026,10 @@ location_table = OrderedDict([
     ("Colossus GS Tree",                                             ("GS Token",     0x15,  0x08, None,                            'Gold Skulltula Token',                  ("Desert Colossus", "Gold Skulltulas",))),
     ("Colossus GS Hill",                                             ("GS Token",     0x15,  0x04, None,                            'Gold Skulltula Token',                  ("Desert Colossus", "Gold Skulltulas",))),
     # Colossus Beehives
-    ("Colossus Grotto Beehive",                                      ("Beehive",      0x3E,  (9,0,0x43 + (0x1D * 2)), None,         'Rupees (20)',                           ("Desert Colossus", "Grottos", "Beehives",))),
+    ("Colossus Grotto Beehive",                                      ("Beehive",      0x3E,  (9,0x1D,3), None,         'Rupees (20)',                           ("Desert Colossus", "Grottos", "Beehives",))),
+
+    # Colossus Gossip Stone
+    ("Colossus Gossip Stone Drop", ("GossipStone", 0x5C, [(0,0,4),(0,2,3)], None, 'Rupees (20)', ("Desert Colossus","GossipStone"))),
 
     # Colossus Enemies
     ("Colossus Child Guay 1",                                        ("EnemyDrop",    0x5C, (0,0,8), None,                               'Rupees (5)',                            ("Desert Colossus", "EnemyDrop"))),
@@ -1147,6 +1215,8 @@ location_table = OrderedDict([
     ("Dodongos Cavern Single Eye Switch Room Pot 2",                 ("Pot",          0x01,  (10,0,8), None,                        'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla Dungeons", "Pots",))),
     ("Dodongos Cavern Double Eye Switch Room Pot 1",                 ("Pot",          0x01,  (12,0,6), None,                        'Recovery Heart',                        ("Dodongo's Cavern", "Vanilla Dungeons", "Pots",))),
     ("Dodongos Cavern Double Eye Switch Room Pot 2",                 ("Pot",          0x01,  (12,0,7), None,                        'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla Dungeons", "Pots",))),
+    ("Dodongos Cavern Gossip Stone Drop", ("GossipStone", 0x01, (0,0,26), None, 'Rupees (20)', ("Dodongo's Cavern", "Vanilla Dungeons", "GossipStone"))),
+
 
     # DC Enemies
     ("Dodongos Cavern Beamos Left Side",                             ("EnemyDrop",    0x01,  (0, 0, 0x08), None,                   'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla", "EnemyDrop"))),
@@ -1266,7 +1336,6 @@ location_table = OrderedDict([
     ("Dodongos Cavern MQ Staircase Silver Rupee Mid Left Crate",     ("SilverRupee",  0x1,   (2,0,13), None,                     'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongo's Cavern MQ", "Master Quest", "Silver Rupees"))),
     ("Dodongos Cavern MQ Staircase Silver Rupee Vines",              ("SilverRupee",  0x1,   (2,0,14), None,                     'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongo's Cavern MQ", "Master Quest", "Silver Rupees"))),
     ("Dodongos Cavern MQ Staircase Silver Rupee Top Right Crate",    ("SilverRupee",  0x1,   (2,0,15), None,                     'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongo's Cavern MQ", "Master Quest", "Silver Rupees"))),
-
     
     # Dodongo's Cavern MQ Enemies
     ("Dodongos Cavern MQ Right Side Skulltula",                      ("EnemyDrop",    0x01,  (1,0,3), None,                         'Rupees (5)',                            ("Dodongo's Cavern", "Master Quest", "EnemyDrop"))),
@@ -1319,6 +1388,8 @@ location_table = OrderedDict([
     ("Dodongos Cavern MQ Song of Time Block Room Skulltula 1",       ("EnemyDrop",    0x01,  (15,0,2), None,                        'Rupees (5)',                            ("Dodongo's Cavern", "Master Quest", "EnemyDrop"))),
     ("Dodongos Cavern MQ Song of Time Block Room Skulltula 2",       ("EnemyDrop",    0x01,  (15,0,3), None,                        'Rupees (5)',                            ("Dodongo's Cavern", "Master Quest", "EnemyDrop"))),
     ("Dodongos Cavern MQ Song of Time Block Room Skulltula 3",       ("EnemyDrop",    0x01,  (15,0,4), None,                        'Rupees (5)',                            ("Dodongo's Cavern", "Master Quest", "EnemyDrop"))),
+    # Dodongo's Cavern MQ Gossip Stones
+    ("Dodongos Cavern MQ Gossip Stone Drop",                         ("GossipStone",  0x1,   (0,0,1), None,                         'Rupees (20)',                           ("Dodongo's Cavern MQ", "Master Quest", "GossipStone"))),
     
     # Dodongo's Cavern Shared
     ("Dodongos Cavern Lower Lizalfos Hidden Recovery Heart",         ("Freestanding", 0x01,  (3,0,6), None,                         'Recovery Heart',                        ("Dodongo's Cavern", "Dodongo's Cavern MQ", "Vanilla Dungeons", "Master Quest", "Freestandings",))),

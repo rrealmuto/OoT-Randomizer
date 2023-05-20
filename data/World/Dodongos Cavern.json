@@ -15,6 +15,7 @@
         "locations": {
             "Dodongos Cavern Map Chest": "can_blast_or_smash or Progressive_Strength_Upgrade",
             "Dodongos Cavern Deku Scrub Lobby": "can_stun_deku or Progressive_Strength_Upgrade",
+            "Dodongos Cavern Gossip Stone Drop": "(here(can_blast_or_smash or Progressive_Strength_Upgrade)) and can_play(Song_of_Time)",
             "Dodongos Cavern Gossip Stone": "here(can_blast_or_smash or Progressive_Strength_Upgrade)",
             "Gossip Stone Fairy": "
                 (can_blast_or_smash or Progressive_Strength_Upgrade) and
