@@ -915,7 +915,7 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
         junk_pool[:] = [('Ice Trap', 1)]
         # Get a list of all "junk" type items
         junk = [item for item, weight in junk_pool_base] + ['Rupee (1)', 'Recovery Heart', 'Bombs (20)', 'Arrows (30)']
-        junk_count = get_pool_count(pool, junk) 
+        junk_count = get_pool_count(pool, junk)
         num_to_replace = int((world.settings.custom_ice_trap_percent / 100.0) * junk_count) if world.settings.junk_ice_traps == 'custom_percent' else world.settings.custom_ice_trap_count
         replace_x_items(pool, junk, num_to_replace)
 
