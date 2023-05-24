@@ -127,7 +127,7 @@ void lookup_model_by_override(model_t *model, override_t override) {
         uint16_t item_id = override.value.looks_like_item_id ?
             override.value.looks_like_item_id :
             override.value.base.item_id;
-        uint16_t resolved_item_id = resolve_upgrades(item_id);
+        uint16_t resolved_item_id = resolve_upgrades(override);
         item_row_t *item_row = get_item_row(resolved_item_id);
         model->object_id = item_row->object_id;
         model->graphic_id = item_row->graphic_id;
