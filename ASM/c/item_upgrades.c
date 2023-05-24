@@ -10,7 +10,7 @@ extern uint32_t FREE_BOMBCHU_DROPS;
 // If you change it, bump the co-op context version in coop_state.asm and update Notes/coop-ctx.md
 typedef struct {
     uint16_t _pad : 10;  // reserved for future use
-    uint8_t ocarina : 2;  // 0 = no sticks, 1 = fairy ocarina, 2 = ocarina of time
+    uint8_t ocarina : 2;  // 0 = no ocarina, 1 = fairy ocarina, 2 = ocarina of time
     uint8_t magic : 2;  // 0 = no magic, 1 = single magic, 2 = double magic
     uint8_t sticks : 2;  // 0 = no sticks, 1 = 10, 2 = 20, 3 = 30
     uint8_t nuts : 2;  // 0 = no nuts, 1 = 20, 2 = 30, 3 = 40
