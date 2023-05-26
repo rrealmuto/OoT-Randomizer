@@ -328,8 +328,8 @@ item_row_t item_table[] = {
     [0x011B] = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,     -1, 0x00BB, 0x12, nut_upgrade,        no_effect,           -1, -1, NULL), // Progressive Nut Capacity (big chest)
     [0x011C] = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,     -1, 0x00C7, 0x1B, stick_upgrade,      no_effect,           -1, -1, NULL), // Progressive Stick Capacity (big chest)
 
-    [0x011D] = ITEM_ROW(0x5B, SKULL_CHEST_SMALL, 0x71, -1, 0x00B5, 0x015C, 0x63, no_upgrade, no_effect, -1, -1, NULL), // Gold Skulltula Token (normal text)
-    [0x011E] = ITEM_ROW(0x5B,   SKULL_CHEST_BIG, 0x71, -1, 0x00B5, 0x015C, 0x63, no_upgrade, no_effect, -1, -1, NULL), // Gold Skulltula Token (big chest, normal text)
+    [0x011D] = ITEM_ROW(0x5B, SKULL_CHEST_SMALL, 0x71, -1, 0x00B5, 0x015C, 0x63, no_upgrade, no_effect, -1, -1, resolve_text_skull_token), // Gold Skulltula Token (normal text)
+    [0x011E] = ITEM_ROW(0x5B,   SKULL_CHEST_BIG, 0x71, -1, 0x00B5, 0x015C, 0x63, no_upgrade, no_effect, -1, -1, resolve_text_skull_token), // Gold Skulltula Token (big chest, normal text)
 
     [0x011F] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9211, 0x0195, 0x77, no_upgrade, give_keyring_with_bk, FOREST_ID, -1, NULL), // Forest Temple Key Ring (with boss key)
     [0x0120] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9212, 0x0195, 0x77, no_upgrade, give_keyring_with_bk, FIRE_ID,   -1, NULL), // Fire Temple Key Ring (with boss key)
@@ -417,6 +417,14 @@ uint16_t resolve_text_small_keys(item_row_t *item_row, bool is_outgoing) {
     } else {
         // Show number collected.
         return 0x9112 + dungeon_id;
+    }
+}
+
+uint16_t resolve_text_skull_token(item_row_t *item_row, bool is_outgoing) {
+    if (is_outgoing) {
+        return 0x9047;
+    } else {
+        return item_row->text_id;
     }
 }
 

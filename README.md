@@ -59,7 +59,8 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * The conditions for forcing one-way entrances that lead to the Bolero, Nocturne, and Requiem warp pads have been adjusted to increase variety with some settings, such as “Guarantee Reachable Locations” set to “All Goals”, “Shuffle Dungeon Rewards”, or “Mix Entrance Pools” (based on [#1440](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1440))
   * Plandos can specify different settings for each world (based on [Andols0's `individual-settings` branch](https://github.com/Andols0/OoT-Randomizer/tree/individual-settings))
   * The Dampé diary hint message has been tweaked to sound more natural.
-  * Gold Skulltula Tokens can be on excluded locations if there are no checks requiring them (such as in SAWS)
+  * Gold skulltula tokens can be on excluded locations if there are no checks requiring them (such as in SAWS)
+  * The text box no longer shows the player's own gold skulltula token count when finding a token for another player.
   * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
   * Python 3.6 is no longer supported since GitHub's testing infrastructure no longer supports it.
 * Bug fixes:
