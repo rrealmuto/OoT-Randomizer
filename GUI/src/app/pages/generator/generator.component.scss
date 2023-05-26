@@ -356,7 +356,8 @@
 
   .scale {
     position: relative;
-    top: -7px;
+    top: -10px;
+    height: 32px;
     min-width: 100%;
     pointer-events: none; //Reduces the clickable part to just the visible slider itself
 

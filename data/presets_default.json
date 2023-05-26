@@ -25,6 +25,8 @@
         "shuffle_dungeon_entrances": "off",
         "shuffle_bosses": "off",
         "shuffle_overworld_entrances": false,
+        "mix_entrance_pools": [],
+        "decouple_entrances": false,
         "owl_drops": false,
         "warp_songs": false,
         "spawn_positions": [],
@@ -848,6 +850,8 @@
         "shuffle_dungeon_entrances": "all",
         "shuffle_bosses": "full",
         "shuffle_overworld_entrances": true,
+        "mix_entrance_pools": ["Interior", "GrottoGrave", "Dungeon", "Overworld"],
+        "decouple_entrances": true,
         "owl_drops": true,
         "warp_songs": true,
         "spawn_positions": [

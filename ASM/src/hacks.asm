@@ -1023,6 +1023,7 @@ sh  v0, 0x004E(sp)
     addiu   at, r0, 0x8383 ; Make branch impossible
 
 ; Change Skulltula Token to give a different item
+; Mutated by Patches.py
 ; Replaces
 ;    move    a0, s1
 ;    jal     0x0006FDCC        ; call ex_06fdcc(ctx, 0x0071); VROM: 0xAE5D2C
@@ -1033,7 +1034,7 @@ sh  v0, 0x004E(sp)
 ;    li      a1, 0xB4          ; a1 = 0x00b4 ("You destoryed a Gold Skulltula...")
 ;    move    a2, zero
 ;    jal     0x000DCE14        ; call ex_0dce14(ctx, 0x00b4, 0)
-;    sh      t4, 0x110 (t5)    ; *(t5 + 0x110) = 0x000a
+;    sh      t4, 0x110 (t5)    ; *(t5 + 0x110) = 0x000a (Freeze the player actor for 10 frames)
 .orga 0xEC68BC
 .area 0x28, 0
     lw      t5, 0x2C (sp)                ; original code
@@ -1916,6 +1917,15 @@ skip_GS_BGS_text:
     jal     fishing_bite_when_stable
     lwc1    f10, 0x0198(s0)
 
+; Prevent fish from losing interest seemingly randomly
+; Replaces: sh      v0, 0x0148(s0)
+;           swc1    f20, 0x0180(s0)
+;           swc1    f10, 0x0184(s0)
+.orga 0xDC6300
+    nop
+    nop
+    nop
+
 ; Remove most fish loss branches
 .orga 0xDC87A0
     nop
@@ -1991,6 +2001,25 @@ skip_bombchu_bowling_prize_switch:
     jal     logic_chus__carpet_dude_1
 .orga 0xE5B5DC
     jal     logic_chus__carpet_dude_2
+
+;==================================================================================================
+; Override Collectible 05 to be a Bombchus (5) drop instead of the unused Arrow (1) drop
+;==================================================================================================
+; Replaces: 0x80011D30
+.orga 0xB7BD24
+    .word 0x80011D88
+
+; Replaces: li   a1, 0x03
+.orga 0xA8801C
+    li      a1, 0x96 ; Give Item Bombchus (5)
+.orga 0xA88CCC
+    li      a1, 0x96 ; Give Item Bombchus (5)
+
+; Replaces: lui     t5, 0x8012
+;           lui     at, 0x00FF
+.orga 0xA89268
+    jal     chu_drop_draw
+    lui     t5, 0x8012
 
 ;==================================================================================================
 ; Override Collectible 05 to be a Bombchus (5) drop instead of the unused Arrow (1) drop
@@ -2839,11 +2868,70 @@ courtyard_guards_kill:
     jal     grotto_entrance
     lui     at, 1
 
-; Replaces: addu    at, at, a3
+; Replaces: lui     at, 0x0001
+;           addu    at, at, a3
 ;           sh      t6, 0x1E1A(at)
-.orga 0xBD4C58
+;           lh      v0, 0x1E1A(v1)
+;           addiu   at, zero, 0x7FFF
+;           addiu   t7, zero, 0x0002
+.orga 0xBD4C54
+    lui     at, 0x0001
     jal     scene_exit_hook
     addu    at, at, a3
+    bnez    v0, @skip_other_entrance_routines
+    addiu   at, zero, 0x7FFF
+    lh      v0, 0x1E1A(v1)
+
+.orga 0xBD4D4C
+@skip_other_entrance_routines:
+
+; Replaces: lui     v1, 0x8012
+;           lw      v1, -0x5A28(v1)
+.orga 0xB11000
+    jal     override_special_grotto_entrances_1
+    lui     v1, 0x8012
+
+; Replaces: sw      t4, 0x000C(s0)
+;           sw      t5, 0x0010(s0)
+.orga 0xB113D0
+    jal     override_special_grotto_entrances_2
+    sw      t4, 0x000C(s0)
+
+; Replaces: sw      v0, 0x000C(s0)
+;           sw      t9, 0x0010(s0)
+.orga 0xB11608
+    jal     override_special_grotto_entrances_3
+    sw      v0, 0x000C(s0)
+
+; Replaces: sw      t3, 0x0010(s0)
+;           sw      v0, 0x000C(s0)
+.orga 0xB117F4
+    jal     override_special_grotto_entrances_4
+    sw      t3, 0x0010(s0)
+
+; Replaces: sw      t3, 0x0010(s0)
+;           sw      v0, 0x000C(s0)
+.orga 0xB11984
+    jal     override_special_grotto_entrances_4
+    sw      t3, 0x0010(s0)
+
+; Replaces: lui     v0, 0x8012
+;           addiu   v0, v0, 0xA5D0
+;           lw      t6, 0x0010(v0)
+;           lui     t0, 0x8010
+;           beql    t6, zero, 0xAF869C
+;           lw      t8, 0x0004(v0)
+;           lw      t7, 0x0004(v0)
+;           lui     v0, 0x0001
+.orga 0xAF863C
+    addiu   sp, sp, -0x18
+    sw      ra, 0x04(sp)
+    jal     override_special_grotto_entrances_5
+    nop
+    lw      ra, 0x04(sp)
+    addiu   sp, sp, 0x18
+    beq     t6, zero, 0xAF869C
+    lui     v0, 0x0001
 
 ;==================================================================================================
 ; Getting Caught by Gerudo NPCs in ER

@@ -92,7 +92,7 @@ def get_version_bytes(a, b=0x00, c=0x00):
 
     sa = a.replace('v', '').replace(' ', '.').split('.')
 
-    for i in range(0,3):
+    for i in range(0, min(len(sa), 4)):
         try:
             version_byte = int(sa[i])
         except ValueError:
@@ -113,7 +113,7 @@ def compare_version(a, b):
     sa = get_version_bytes(a)
     sb = get_version_bytes(b)
 
-    for i in range(0,3):
+    for i in range(0, 4):
         if sa[i] > sb[i]:
             return 1
         if sa[i] < sb[i]:

@@ -15,6 +15,7 @@ class Entrance(object):
         self.assumed = None
         self.type = None
         self.shuffled = False
+        self.decoupled = False
         self.data = None
         self.primary = False
         self.always = False
@@ -31,6 +32,7 @@ class Entrance(object):
         new_entrance.assumed = self.assumed
         new_entrance.type = self.type
         new_entrance.shuffled = self.shuffled
+        new_entrance.decoupled = self.decoupled
         new_entrance.data = self.data
         new_entrance.primary = self.primary
         new_entrance.always = self.always

@@ -500,7 +500,15 @@
         "exits": {
             "Market": "True",
             "OGC Great Fairy Fountain": "can_use(Golden_Gauntlets) or (has_explosives and can_live_dmg(0.5)) or can_use(Hover_Boots)",
-            "Ganons Castle Lobby": "(can_isg and has_explosives) or can_build_rainbow_bridge"
+            "Ganons Castle Ledge": "(can_isg and has_explosives) or can_build_rainbow_bridge"
+        }
+    },
+    {
+        "region_name": "Ganons Castle Ledge",
+        "hint": "OUTSIDE_GANONS_CASTLE",
+        "exits": {
+            "Ganons Castle Grounds": "True",
+            "Ganons Castle Lobby": "True"
         }
     },
     {
