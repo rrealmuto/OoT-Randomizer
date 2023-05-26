@@ -11,7 +11,7 @@ from Spoiler import Spoiler
 from Location import DisableType
 from LocationList import business_scrubs
 from HintList import getHint
-from Hints import HintArea, writeGossipStoneHints, buildAltarHints, \
+from Hints import GossipText, HintArea, writeGossipStoneHints, buildAltarHints, \
         buildGanonText, buildMiscItemHints, buildMiscLocationHints, getSimpleHintNoPrefix, getItemGenericName
 from Utils import data_path
 from Messages import read_messages, update_message_by_id, read_shop_items, update_warp_song_text, \
@@ -66,18 +66,36 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         add_to_extended_object_table(rom, object_id, start_address, end_address)
         start_address = end_address
 
-    # Build a Double Defense model from the Heart Container model
-    end_address = start_address + 0x014DA590 - 0x014D9000
-    rom.buffer[start_address:end_address] = rom.buffer[0x014D9000:0x014DA590]
+    # Make new models by applying patches to existing ones
+    zobj_patches = [
+        ('object_gi_hearts', 0x014D9000, 0x014DA590, 0x194, # Heart Container -> Double Defense
+        [
+            (0x1294, [0xFF, 0xCF, 0x0F]), # Exterior Primary Color
+            (0x12B4, [0xFF, 0x46, 0x32]), # Exterior Env Color
+            (0x1474, [0xFF, 0xFF, 0xFF]), # Interior Primary Color
+            (0x1494, [0xFF, 0xFF, 0xFF]), # Interior Env Color
+            (0x12A8, [0xFC, 0x17, 0x3C, 0x60, 0x15, 0x0C, 0x93, 0x7F]), # Exterior Combine Mode
+        ]),
+        ('object_gi_rupy', 0x01914000, 0x01914800, 0x198, # Huge Rupee -> Silver Rupee
+        [
+            (0x052C, [0xAA, 0xAA, 0xAA]), # Inner Primary Color?
+            (0x0534, [0x5A, 0x5A, 0x5A]), # Inner Env Color?
+            (0x05CC, [0xFF, 0xFF, 0xFF]), # Outer Primary Color?
+            (0x05D4, [0xFF, 0xFF, 0xFF]), # Outer Env Color?
+        ]),
+    ]
 
-    # Update colors for the Double Defense variant
-    rom.write_bytes(start_address + 0x1294, [0xFF, 0xCF, 0x0F]) # Exterior Primary Color
-    rom.write_bytes(start_address + 0x12B4, [0xFF, 0x46, 0x32]) # Exterior Env Color
-    rom.write_int32s(start_address + 0x12A8, [0xFC173C60, 0x150C937F]) # Exterior Combine Mode
-    rom.write_bytes(start_address + 0x1474, [0xFF, 0xFF, 0xFF]) # Interior Primary Color
-    rom.write_bytes(start_address + 0x1494, [0xFF, 0xFF, 0xFF]) # Interior Env Color
-    # Add it to the extended object table
-    add_to_extended_object_table(rom, 0x194, start_address, end_address)
+    # Add the new models to the extended object file.
+    for name, start, end, object_id, patches in zobj_patches:
+        end_address = start_address + end - start
+        rom.buffer[start_address:end_address] = rom.buffer[start:end]
+        # Apply patches
+        for offset, patch in patches:
+            rom.write_bytes(start_address + offset, patch)
+        # Add it to the extended object table
+        add_to_extended_object_table(rom, object_id, start_address, end_address)
+        start_address = end_address
+
     # Add the extended objects data to the DMA table.
     rom.update_dmadata_record(None, extended_objects_start, end_address)
 
@@ -87,7 +105,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Pot textures are rgba16
 
     # texture list. See textures.h for texture IDs
-    #   ID, texture_name,                   Rom Address    CI4 Pallet Addr  Size    Patching function                          Patch file (None for default)
+    #   ID, texture_name,                   Rom Address    CI4 Pallet Addr  Size    Patching function           Patch file (None for default)
     crate_textures = [
         (1, 'texture_pot_gold',             0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_gold_rgba16_patch.bin'),
         (2, 'texture_pot_key',              0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_key_rgba16_patch.bin'),
@@ -885,10 +903,6 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     exit_updates = []
 
-    def copy_entrance_record(source_index, destination_index, count=4):
-        ti = source_index * 4
-        rom.write_bytes(0xB6FBF0 + destination_index * 4, et_original[ti:ti+(4 * count)])
-
     def generate_exit_lookup_table():
         # Assumes that the last exit on a scene's exit list cannot be 0000
         exit_table = {
@@ -941,7 +955,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
         return exit_table
 
-    if (world.settings.shuffle_bosses != 'off'):
+    if world.settings.shuffle_bosses != 'off':
         # Credit to rattus128 for this ASM block.
         # Gohma's save/death warp is optimized to use immediate 0 for the
         # deku tree respawn. Use the delay slot before the switch table
@@ -958,63 +972,56 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         rom.write_int16(0x273E08E, 0xF7F4)  # Z coordinate of Jabu Boss Door Spawn
         rom.write_byte(0x273E27B, 0x05)  # Set Spawn Room to be correct
 
+    # Update the Water Temple Boss Exit to load the correct room
+    rom.write_byte(0x25B82E3, 0x0B)
+
     def set_entrance_updates(entrances):
-        blue_warp_remaps = {}
-        blue_warp_address_remaps = {}
-        if (world.settings.shuffle_bosses != 'off'):
+        if world.settings.shuffle_bosses != 'off':
             # Connect lake hylia fill exit to revisit exit
             rom.write_int16(0xAC995A, 0x060C)
 
-            # First pass for boss shuffle
-            # We'll need to iterate more than once, so make a copy so we can iterate more than once.
-            entrances = list(entrances)
-            for entrance in entrances:
-                if entrance.type not in('ChildBoss', 'AdultBoss') or not entrance.replaces or 'patch_addresses' not in entrance.data:
-                    continue
-                if entrance == entrance.replaces:
-                    # This can happen if something is plando'd vanilla.
-                    continue
-
-                new_boss = entrance.replaces.data
-                original_boss = entrance.data
-
-                # Fixup save/quit and death warping entrance IDs on bosses.
-                for address in new_boss['patch_addresses']:
-                    rom.write_int16(address, original_boss['dungeon_index'])
-
-                # Update blue warps.
-                # If dungeons are shuffled, we'll this in the next step -- that's fine.
-                copy_entrance_record(original_boss['exit_index'], new_boss['exit_blue_warp'], 2)
-                copy_entrance_record(original_boss['exit_blue_warp'] + 2, new_boss['exit_blue_warp'] + 2, 2)
-
-                # If dungeons are shuffled but their bosses are moved, they're going to refer to the wrong blue warp
-                # slots.  Create a table to remap them for later.
-                blue_warp_remaps[original_boss['exit_blue_warp']] = new_boss['exit_blue_warp']
-                blue_warp_address_remaps[original_boss['exit_blue_warp']] = original_boss['exit_blue_warp_addresses']
-
-        # Boss shuffle done(?)
         for entrance in entrances:
             new_entrance = entrance.data
-            replaced_entrance = entrance.replaces.data
+            replaced_entrance = (entrance.replaces or entrance).data
 
-            exit_updates.append((new_entrance['index'], replaced_entrance['index']))
+            # Fixup save/quit and death warping entrance IDs on bosses.
+            if 'savewarp_addresses' in replaced_entrance and entrance.reverse:
+                if entrance.parent_region.savewarp:
+                    savewarp = entrance.parent_region.savewarp.replaces.data['index']
+                elif 'savewarp_fallback' in entrance.reverse.data:
+                    # Spawning outside a grotto crashes the game, so we use a nearby regular entrance instead.
+                    if entrance.reverse.data['savewarp_fallback'] == 0x0117:
+                        # We don't want savewarping in a boss room inside GV Octorok Grotto to allow out-of-logic access to Gerudo Valley,
+                        # so we spawn the player at whatever entrance GV Lower Stream -> Lake Hylia leads to.
+                        savewarp = world.get_entrance('GV Lower Stream -> Lake Hylia')
+                        savewarp = (savewarp.replaces or savewarp).data
+                        if 'savewarp_fallback' in savewarp:
+                            # the entrance GV Lower Stream -> Lake Hylia leads to is also not a valid savewarp so we place the player at Gerudo Valley from Hyrule Field instead
+                            savewarp = entrance.reverse.data['savewarp_fallback']
+                        else:
+                            savewarp = savewarp['index']
+                    else:
+                        savewarp = entrance.reverse.data['savewarp_fallback']
+                else:
+                    # Spawning inside a grotto also crashes, but exiting a grotto can currently only lead to a boss room in decoupled,
+                    # so we follow the entrance chain back to the nearest non-grotto.
+                    savewarp = entrance
+                    while 'savewarp_fallback' in savewarp.data:
+                        parents = list(filter(lambda parent: parent.reverse, savewarp.parent_region.entrances))
+                        if len(parents) == 0:
+                            raise Exception('Unable to set savewarp')
+                        elif len(parents) == 1:
+                            savewarp = parents[0]
+                        else:
+                            raise Exception('Found grotto with multiple entrances')
+                    savewarp = savewarp.reverse.data['index']
+                for address in replaced_entrance['savewarp_addresses']:
+                    rom.write_int16(address, savewarp)
 
             for address in new_entrance.get('addresses', []):
-                rom.write_int16(address, replaced_entrance['index'])
+                rom.write_int16(address, replaced_entrance.get('child_index', replaced_entrance['index']))
 
-            patch_value = replaced_entrance.get('patch_value')
-            if patch_value is not None:
-                for address in new_entrance['patch_addresses']:
-                    rom.write_int16(address, patch_value)
-
-            if "blue_warp" in new_entrance:
-                blue_warp = new_entrance["blue_warp"]
-                blue_warp = blue_warp_remaps.get(blue_warp, blue_warp)
-                blue_warp_addresses = blue_warp_address_remaps.get(blue_warp, new_entrance['blue_warp_addresses'])
-                if "blue_warp" in replaced_entrance:
-                    blue_out_data = replaced_entrance["blue_warp"]
-                else:
-                    blue_out_data = replaced_entrance["index"]
+            if entrance.type == 'BlueWarp' and replaced_entrance['index'] < 0x1000:
                 # Blue warps have multiple hardcodes leading to them. The good news is
                 # the blue warps (excluding deku sprout and lake fill special cases) each
                 # have a nice consistent 4-entry in the table we can just shuffle. So just
@@ -1023,21 +1030,12 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
                 # vanilla as it never took you to the exit and the lake fill is handled
                 # above by removing the cutscene completely. Child has problems with Adult
                 # blue warps, so always use the return entrance if a child.
-                #
-                # This method does not work with mixed entrance pools between dungeons
-                # and grottos as grotto entrances are not in the entrance table.
-                # Grotto entrance indices always have the format 0x1000 + grotto ID or
-                # 0x2000 + grotto ID, which is greater than any entrance table index.
-                # If the dungeon is in a grotto, edit the blue warp hardcodes to the grotto
-                # entrance index, otherwise use the "normal" entrance table method.
-                # This runs after and overrides the cutscene edits for Forest Temple
-                # and Water Temple if needed.
-                if blue_out_data >= 0x1000:
-                    for address in blue_warp_addresses:
-                        rom.write_int16(address, blue_out_data)
-                else:
-                    copy_entrance_record(blue_out_data + 2, blue_warp + 2, 2)
-                    copy_entrance_record(replaced_entrance["index"], blue_warp, 2)
+                exit_updates.append((new_entrance['index'], replaced_entrance.get('child_index', replaced_entrance['index'])))
+                exit_updates.append((new_entrance['index'] + 1, replaced_entrance.get('child_index', replaced_entrance['index']) + 1))
+                exit_updates.append((new_entrance['index'] + 2, replaced_entrance['index'] + 2))
+                exit_updates.append((new_entrance['index'] + 3, replaced_entrance['index'] + 3))
+            elif entrance.type != 'Grotto':
+                exit_updates.append((new_entrance['index'], replaced_entrance.get('child_index', replaced_entrance['index'])))
 
     exit_table = generate_exit_lookup_table()
 
@@ -1059,7 +1057,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         rom.write_byte(rom.sym('OCARINAS_SHUFFLED'), 1)
 
         # Combine all fence hopping LLR exits to lead to the main LLR exit
-        for k in [0x028A, 0x028E, 0x0292]: # Southern, Western, Eastern Gates
+        for k in (0x028A, 0x028E, 0x0292): # Southern, Western, Eastern Gates
             exit_table[0x01F9] += exit_table[k] # Hyrule Field entrance from Lon Lon Ranch (main land entrance)
             del exit_table[k]
         exit_table[0x01F9].append(0xD52722) # 0x0476, Front Gate
@@ -1073,6 +1071,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         # Change Impa escorts to bring link at the hyrule castle grounds entrance from market, instead of hyrule field
         rom.write_int16(0xACAA2E, 0x0138) # 1st Impa escort
         rom.write_int16(0xD12D6E, 0x0138) # 2nd+ Impa escort
+
+    if world.settings.shuffle_hideout_entrances:
+        rom.write_byte(rom.sym('HIDEOUT_SHUFFLED'), 1)
 
     if world.shuffle_dungeon_entrances:
         rom.write_byte(rom.sym('DUNGEONS_SHUFFLED'), 1)
@@ -1093,12 +1094,6 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         # Purge temp flags on entrance to spirit from colossus through the front door.
         rom.write_byte(0x021862E3, 0xC2)
 
-    if (
-            world.settings.shuffle_overworld_entrances or world.shuffle_dungeon_entrances
-            or (world.settings.shuffle_bosses != 'off')
-    ):
-        # Remove deku sprout and drop player at SFM after forest completion
-        rom.write_int16(0xAC9F96, 0x0608)
 
     if world.shuffle_special_dungeon_entrances:
         # Move Hyrule's Castle Courtyard exit spawn to be before the crates so players don't skip Talon
@@ -1122,9 +1117,14 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         rom.write_int32(0xB06318, 0x00000000)
 
     # Set entrances to update, except grotto entrances which are handled on their own at a later point
-    set_entrance_updates(filter(lambda entrance: entrance.type != 'Grotto', world.get_shuffled_entrances()))
+    patch_blue_warps = ( # Settings where blue warps need to be patched to fix a crash when child steps into an adult blue warp
+        world.settings.shuffle_overworld_entrances
+        or world.shuffle_dungeon_entrances
+        or world.settings.shuffle_bosses != 'off'
+    )
+    set_entrance_updates(entrance for entrance in world.get_shufflable_entrances() if entrance.shuffled or (patch_blue_warps and entrance.type == 'BlueWarp'))
 
-    for k, v in [(k,v) for k, v in exit_updates if k in exit_table]:
+    for k, v in [(k, v) for k, v in exit_updates if k in exit_table]:
         for addr in exit_table[k]:
             rom.write_int16(addr, v)
 
@@ -1514,6 +1514,11 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             save_context.addresses['dungeon_items'][dungeon]['compass'].value = True
             save_context.addresses['dungeon_items'][dungeon]['map'].value = True
 
+    # start with silver rupees
+    if world.settings.shuffle_silver_rupees == 'remove':
+        for puzzle in world.silver_rupee_puzzles():
+            save_context.give_item(world, f'Silver Rupee ({puzzle})', float('inf'))
+
     if world.settings.shuffle_smallkeys == 'vanilla':
         if world.dungeon_mq['Spirit Temple']:
             save_context.addresses['keys']['spirit'].value = 3
@@ -1679,7 +1684,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     if world.settings.logic_rules == 'glitched':
         location = world.get_location('Barinade')
     else:
-        jabu_reward_regions = {world.get_entrance('Jabu Jabus Belly Boss Door -> Barinade Boss Room').connected_region}
+        jabu_reward_regions = {world.get_entrance('Jabu Jabus Belly Before Boss -> Barinade Boss Room').connected_region}
         already_checked = set()
         location = None
         while jabu_reward_regions:
@@ -1687,22 +1692,25 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
                 loc
                 for region in jabu_reward_regions
                 for loc in region.locations
-                if not loc.locked and loc.has_item() and not loc.item.event
+                if not loc.locked
+                and loc.has_item()
+                and not loc.item.event
+                and (loc.type != "Shop" or loc.name in world.shop_prices) # ignore regular shop items (but keep special deals)
             ]
             if locations:
                 # Location types later in the list will be preferred over earlier ones or ones not in the list.
                 # This ensures that if the region behind the boss door is a boss arena, the medallion or stone will be used.
-                priority_types = ("GS Token", "GrottoScrub", "Scrub", "Shop", "NPC", "Collectable", "Freestanding", "ActorOverride", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive", "Chest", "Cutscene", "Song", "BossHeart", "Boss")
+                priority_types = ("Freestanding", "ActorOverride", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive", "SilverRupee", "GS Token", "GrottoScrub", "Scrub", "Shop", "NPC", "Collectable", "Chest", "Cutscene", "Song", "BossHeart", "Boss")
                 best_type = max((location.type for location in locations), key=lambda type: priority_types.index(type) if type in priority_types else -1)
                 location = random.choice(list(filter(lambda loc: loc.type == best_type, locations)))
                 break
             already_checked |= jabu_reward_regions
-            jabu_reward_regions = [
+            jabu_reward_regions = {
                 exit.connected_region
                 for region in jabu_reward_regions
                 for exit in region.exits
-                if exit.connected_region.dungeon != 'Jabu Jabus Belly' and exit.connected_region.name not in already_checked
-            ]
+                if exit.connected_region.dungeon != 'Jabu Jabus Belly' and exit.connected_region not in already_checked
+            }
 
     if location is None:
         jabu_item = None
@@ -1736,12 +1744,12 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Set Dungeon Reward Actor in Jabu Jabu to be accurate
     if location is not None: #TODO make actor invisible if no item?
         jabu_item = location.item
-        jabu_actor_type = jabu_item.special['actor_type']
+        jabu_actor_type = jabu_item.special.get('actor_type', 0x15) #TODO handle non-dungeon-reward items
         set_jabu_stone_actors(rom, jabu_actor_type)
         # Also set the right object for the actor, since medallions and stones require different objects
         # MQ is handled separately, as we include both objects in the object list in mqu.json (Scene 2, Room 6)
         if not world.dungeon_mq['Jabu Jabus Belly']:
-            jabu_stone_object = jabu_item.special['object_id']
+            jabu_stone_object = jabu_item.special.get('object_id', 0x00AD) #TODO handle non-dungeon-reward items
             rom.write_int16(0x277D068, jabu_stone_object)
             rom.write_int16(0x277D168, jabu_stone_object)
 
@@ -1807,24 +1815,35 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         for location in rupeetower_locations:
             patch_rupee_tower(location, rom)
 
+    if world.shuffle_silver_rupees:
+        rom.write_byte(rom.sym('SHUFFLE_SILVER_RUPEES'), 1)
+        if world.settings.shuffle_silver_rupees != 'remove':
+            rom.write_byte(rom.sym('CFG_DUNGEON_INFO_SILVER_RUPEES'), 1)
+
+        if world.dungeon_mq['Dodongos Cavern']: # Patch DC MQ Staircase Transition Actor to use permanent switch flag 0x1F
+            rom.write_byte(0x1F12190 + 15, 0x9F)
+
+        if world.dungeon_mq['Spirit Temple']: # Patch Spirit MQ Lobby front right chest to use permanent switch flag 0x1F
+            rom.write_byte(0x2b08ce4 + 13, 0x1F)
+
     # Write flag table data
     collectible_flag_table, alt_list = get_collectible_flag_table(world)
     collectible_flag_table_bytes, num_collectible_flags = get_collectible_flag_table_bytes(collectible_flag_table)
     alt_list_bytes = get_alt_list_bytes(alt_list)
-    if(len(collectible_flag_table_bytes) > 600):
-        raise(RuntimeError(f'Exceeded collectible override table size: {len(collectible_flag_table_bytes)}'))
+    if len(collectible_flag_table_bytes) > 600:
+        raise RuntimeError(f'Exceeded collectible override table size: {len(collectible_flag_table_bytes)}')
     rom.write_bytes(rom.sym('collectible_scene_flags_table'), collectible_flag_table_bytes)
     num_collectible_flags += num_collectible_flags % 8
     rom.write_bytes(rom.sym('num_override_flags'), num_collectible_flags.to_bytes(2, 'big'))
-    if(len(alt_list) > 64):
-        raise(RuntimeError(f'Exceeded alt override table size: {len(alt_list)}'))
+    if len(alt_list) > 64:
+        raise RuntimeError(f'Exceeded alt override table size: {len(alt_list)}')
     rom.write_bytes(rom.sym('alt_overrides'), alt_list_bytes)
 
     # Write item overrides
     check_location_dupes(world)
     override_table = get_override_table(world)
     if len(override_table) >= 1536:
-        raise(RuntimeError(f'Exceeded override table size: {len(override_table)}'))
+        raise RuntimeError(f'Exceeded override table size: {len(override_table)}')
     rom.write_bytes(rom.sym('cfg_item_overrides'), get_override_table_bytes(override_table))
     rom.write_byte(rom.sym('PLAYER_ID'), world.id + 1) # Write player ID
 
@@ -2152,6 +2171,24 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             item_text = getHint(getItemGenericName(location.item), True).text
             update_message_by_id(messages, 0x500C, "How about \x05\x41100 Rupees\x05\x40 for\x01\x05\x41"+ item_text +"\x05\x40?\x01\x1B\x05\x42Buy\x01Don't buy\x05\x40\x02")
 
+    new_message = "All right. You don't have to play\x01if you don't want to.\x0B\x02"
+    update_message_by_id(messages, 0x908B, new_message, 0x00)
+    if world.settings.shuffle_tcgkeys != 'vanilla':
+        if world.settings.shuffle_tcgkeys == 'remove':
+            rom.write_byte(rom.sym('SHUFFLE_CHEST_GAME'), 0x02)
+        else:
+            rom.write_byte(rom.sym('SHUFFLE_CHEST_GAME'), 0x01)
+        # Update Chest Game Salesman to better fit the fact he sells a randomized item
+        if 'unique_merchants' not in world.settings.misc_hints:
+            update_message_by_id(messages, 0x6D, "I seem to have misplaced my\x01keys, but I have a fun item to\x01sell instead.\x04How about \x05\x4110 Rupees\x05\x40?\x01\x01\x1B\x05\x42Buy\x01Don't Buy\x05\x40\x02")
+        else:
+            location = world.get_location("Market Treasure Chest Game Salesman")
+            item_text = getHint(getItemGenericName(location.item), True).text
+            update_message_by_id(messages, 0x6D, "I seem to have misplaced my\x01keys, but I have a fun item to\x01sell instead.\x04How about \x05\x4110 Rupees\x05\x40 for\x01\x05\x41" + item_text + "\x05\x40?\x01\x1B\x05\x42Buy\x01Don't Buy\x05\x40\x02")
+        update_message_by_id(messages, 0x908B, "That's OK!\x01More fun for me.\x0B\x02", 0x00)
+        update_message_by_id(messages, 0x6E, "Wait, that room was off limits!\x02")
+        update_message_by_id(messages, 0x704C, "I hope you like it!\x02")
+
     if world.settings.shuffle_pots != 'off': # Update the first BK door in ganon's castle to use a separate flag so it can be unlocked to get to the pots
         patch_ganons_tower_bk_door(rom, 0x15) # Using flag 0x15 for the door. GBK doors normally use 0x14.
     locked_doors = get_doors_to_unlock(rom, world)
@@ -2167,6 +2204,11 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     SKULL_CHEST_BIG =  15
     HEART_CHEST_SMALL = 16
     HEART_CHEST_BIG = 17
+    if world.settings.shuffle_tcgkeys == 'vanilla':
+        # Force key chests in Treasure Chest Game to use the default chest texture when not shuffled
+        item = read_rom_item(rom, 0x71)
+        item['chest_type'] = BROWN_CHEST
+        write_rom_item(rom, 0x71, item)
     if world.settings.free_bombchu_drops or world.settings.minor_items_as_major_chest:
         bombchu_ids = [0x6A, 0x03, 0x6B]
         for i in bombchu_ids:
@@ -2275,9 +2317,9 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
             'Shadow Temple':      ("the \x05\x45Shadow Temple",      'Bongo Bongo',   0x7f, 0xa3),
         }
         for dungeon in world.dungeon_mq:
-            if dungeon in ['Gerudo Training Ground', 'Ganons Castle']:
+            if dungeon in ('Gerudo Training Ground', 'Ganons Castle'):
                 pass
-            elif dungeon in ['Bottom of the Well', 'Ice Cavern']:
+            elif dungeon in ('Bottom of the Well', 'Ice Cavern'):
                 dungeon_name, boss_name, compass_id, map_id = dungeon_list[dungeon]
                 if world.settings.world_count > 1:
                     map_message = "\x13\x76\x08\x05\x42\x0F\x05\x40 found the \x05\x41Dungeon Map\x05\x40\x01for %s\x05\x40!\x09" % (dungeon_name)
@@ -2290,13 +2332,14 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
                 dungeon_name, boss_name, compass_id, map_id = dungeon_list[dungeon]
                 if world.settings.world_count > 1:
                     compass_message = "\x13\x75\x08\x05\x42\x0F\x05\x40 found the \x05\x41Compass\x05\x40\x01for %s\x05\x40!\x09" % (dungeon_name)
-                elif False: #TODO enable if boss reward shuffle and/or mixed pools bosses are on
+                elif world.mixed_pools_bosses: #TODO also enable if boss reward shuffle is on
                     vanilla_reward = world.get_location(boss_name).vanilla_item
-                    vanilla_reward_location = world.hinted_dungeon_reward_locations[vanilla_reward.name]
-                    area = HintArea.at(vanilla_reward_location).text(world.settings.clearer_hints, preposition=True)
-                    compass_message = "\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for %s\x05\x40!\x01The %s can be found\x01%s!\x09" % (dungeon_name, vanilla_reward, area)
+                    vanilla_reward_location = world.hinted_dungeon_reward_locations[vanilla_reward]
+                    area = HintArea.at(vanilla_reward_location)
+                    area = GossipText(area.text(world.settings.clearer_hints, preposition=True), [area.color], prefix='')
+                    compass_message = "\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for %s\x05\x40!\x01The %s can be found\x01%s!\x09" % (dungeon_name, vanilla_reward, area) #TODO figure out why the player name isn't being displayed
                 else:
-                    boss_location = next(filter(lambda loc: loc.type == 'Boss', world.get_entrance(f'{dungeon} Boss Door -> {boss_name} Boss Room').connected_region.locations))
+                    boss_location = next(filter(lambda loc: loc.type == 'Boss', world.get_entrance(f'{dungeon} Before Boss -> {boss_name} Boss Room').connected_region.locations))
                     dungeon_reward = reward_list[boss_location.item.name]
                     compass_message = "\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for %s\x05\x40!\x01It holds the %s!\x09" % (dungeon_name, dungeon_reward)
                 update_message_by_id(messages, compass_id, compass_message)
@@ -2439,6 +2482,45 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     # Fix crash when hitting white bubbles enemies with Dins Fire
     rom.write_byte(0xCB4397, 0x00)
 
+    # Behavior Modifications to make the loach easier to catch
+    if world.settings.shuffle_loach_reward == 'easy':
+        # Make the loach always spawn
+        # Rather than just nop the branch, replace it with instruction 'sb at, 0xB057(s0)'
+        # this stores a non-zero value to an unused byte in the fishing overlay
+        # that byte can then be used as a flag to tell whether the setting is enabled or not
+        rom.write_int32(0xDBF1E4, 0xA201B057)
+
+        # Make sinking lure available immediately
+        rom.write_int32(0xDC2F00, 0x00000000)
+        rom.write_int32(0xDC2F10, 0x00000000)
+        # Don't set sinking lure position after recieving child/adult fishing prizes
+        rom.write_int32(0xDCC064, 0x00000000)
+        rom.write_int32(0xDCC06C, 0x00000000)
+        rom.write_int32(0xDCC12C, 0x00000000)
+        rom.write_int32(0xDCC134, 0x00000000)
+
+        # Give the child/adult fishing prizes even if using the sinking lure
+        rom.write_int32(0xDCBEBC, 0x00000000)
+        rom.write_int32(0xDCBEC0, 0x00000000)
+        rom.write_int32(0xDCBF1C, 0x00000000)
+        rom.write_int32(0xDCBF20, 0x00000000)
+        # Display the normal text when getting the prize, instead of text saying the sinking lure is in violation of the rules
+        rom.write_byte(0xDCBBDB, 0x86)
+
+        # In case 1: of Fishing_UpdateFish, set unk_1A2 = 200 instead of 20000
+        rom.write_int32(0xDC652C, 0x240100c8) # replace 'mtc1 zero, f10' with 'addiu at, zero, 0x00c8'
+        rom.write_int32(0xDC6540, 0xa6010192) # replace 'sh v0, 0x0192(s0)' with 'sh at, 0x0192(s0)'
+        rom.write_int32(0xDC6550, 0xE60601AC) # replace 'swc1 f10, 0x01ac(s0)' with 'swc1 f6, 0x01ac(s0)'
+
+    # Fix shadow temple redead shared flags for silver rupee shuffle
+    if world.settings.shuffle_silver_rupees != 'vanilla':
+        if not world.dungeon_mq['Shadow Temple']: # Patch for redeads in vanilla
+            rom.write_byte(0x280905E,0)
+            rom.write_byte(0x280906E,0)
+        else: # Patch for redeads in MQ. ROM positions are calculated dyanmically by MQ.py but should remain static.
+            rom.write_byte(0x280CDDE,0)
+            rom.write_byte(0x280CDEE,0)
+
     # actually write the save table to rom
     world.distribution.give_items(world, save_context)
     if world.settings.starting_age == 'adult':
@@ -2446,6 +2528,25 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         save_context.equip_default_items('child')
     save_context.equip_current_items(world.settings.starting_age)
     save_context.write_save_table(rom)
+
+    # Convert temporary flags used for locked doors in Treasure Chest Game to permanent flags namely (0x1A-0x1F)
+    if world.settings.shuffle_tcgkeys != 'vanilla':
+        rom.write_byte(0x33A607F, 0xDF)
+        rom.write_byte(0x33A608F, 0xDE)
+        rom.write_byte(0x33A609F, 0xDD)
+        rom.write_byte(0x33A60AF, 0xDC)
+        rom.write_byte(0x33A60BF, 0xDB)
+        rom.write_byte(0x33A60CF, 0xDA)
+
+        # Remove Locks From Treasure Chest Game doors if Keysy is turned on
+        if world.settings.shuffle_tcgkeys == 'remove':
+            rom.write_byte(0x33A607F, 0x80)
+            rom.write_byte(0x33A608F, 0x80)
+            rom.write_byte(0x33A609F, 0x80)
+            rom.write_byte(0x33A60AF, 0x80)
+            rom.write_byte(0x33A60BF, 0x80)
+            rom.write_byte(0x33A60CF, 0x80)
+
 
     # Write numeric seed truncated to 32 bits for rng seeding
     # Overwritten with new seed every time a new rng value is generated
@@ -2463,10 +2564,10 @@ def add_to_extended_object_table(rom, object_id, start_adddress, end_address):
     rom.write_int32s(extended_object_table + extended_id * 8, [start_adddress, end_address])
 
 
-item_row_struct = struct.Struct('>BBHHBBIIhhBxxx') # Match item_row_t in item_table.h
+item_row_struct = struct.Struct('>BBHHBBIIhhBxxxI') # Match item_row_t in item_table.h
 item_row_fields = [
     'base_item_id', 'action_id', 'text_id', 'object_id', 'graphic_id', 'chest_type',
-    'upgrade_fn', 'effect_fn', 'effect_arg1', 'effect_arg2', 'collectible',
+    'upgrade_fn', 'effect_fn', 'effect_arg1', 'effect_arg2', 'collectible', 'alt_text_fn',
 ]
 
 def read_rom_item(rom, item_id):
@@ -2529,7 +2630,7 @@ def get_override_entry(location):
     elif location.type == 'Chest':
         type = 1
         default &= 0x1F
-    elif location.type in ('Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive'):
+    elif location.type in ['Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive', 'SilverRupee']:
         type = 6
         if not (isinstance(location.default, list) or isinstance(location.default, tuple)):
             raise Exception("Not right")
@@ -2788,7 +2889,7 @@ def get_doors_to_unlock(rom, world):
         if world.settings.shuffle_smallkeys == 'remove':
             if actor_id == 0x0009 and door_type == 0x02:
                 return [0x00D4 + scene * 0x1C + 0x04 + flag_byte, flag_bits]
-            if actor_id == 0x002E and door_type == 0x0B:
+            if actor_id == 0x002E and door_type == 0x0B and scene != 0x10:
                 return [0x00D4 + scene * 0x1C + 0x04 + flag_byte, flag_bits]
 
         # Return Boss Doors that should be unlocked
@@ -2942,10 +3043,9 @@ def configure_dungeon_info(rom, world):
     rom.write_int32(rom.sym('CFG_DUNGEON_INFO_MQ_ENABLE'), int(mq_enable))
     rom.write_int32(rom.sym('CFG_DUNGEON_INFO_MQ_NEED_MAP'), int(enhance_map_compass))
     rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_ENABLE'), int('altar' in world.settings.misc_hints or enhance_map_compass))
-    rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_NEED_COMPASS'), (2 if False else 1) if enhance_map_compass else 0) #TODO set to 2 if boss reward shuffle and/or mixed pools bosses are on
+    rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_NEED_COMPASS'), (2 if world.mixed_pools_bosses else 1) if enhance_map_compass else 0) #TODO also set to 2 if boss reward shuffle is on
     rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_NEED_ALTAR'), int(not enhance_map_compass))
-    if hasattr(world.settings, 'mix_entrance_pools'):
-        rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_SUMMARY_ENABLE'), int('Boss' not in world.settings.mix_entrance_pools))
+    rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_SUMMARY_ENABLE'), int(not world.mixed_pools_bosses)) #TODO also set to 0 if boss reward shuffle is on
     rom.write_bytes(rom.sym('CFG_DUNGEON_REWARDS'), dungeon_rewards)
     rom.write_bytes(rom.sym('CFG_DUNGEON_IS_MQ'), dungeon_is_mq)
     rom.write_bytes(rom.sym('CFG_DUNGEON_REWARD_AREAS'), dungeon_reward_areas)
@@ -2962,7 +3062,7 @@ def patch_actor_override(location, rom: Rom):
 # Also used for goron pot, shadow spinning pots
 def patch_rupee_tower(location, rom: Rom):
     flag = location.default
-    if(isinstance(location.default, tuple)):
+    if isinstance(location.default, tuple):
         room, scene_setup, flag = location.default
     elif isinstance(location.default, list):
         room, scene_setup, flag = location.default[0]

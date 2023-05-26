@@ -50,6 +50,7 @@ class World(object):
 
         # rename a few attributes...
         self.keysanity = settings.shuffle_smallkeys in ['keysanity', 'remove', 'any_dungeon', 'overworld', 'regional']
+        self.shuffle_silver_rupees = settings.shuffle_silver_rupees != 'vanilla'
         self.check_beatable_only = settings.reachable_locations != 'all'
 
         self.shuffle_special_interior_entrances = settings.shuffle_interior_entrances == 'all'
@@ -64,6 +65,8 @@ class World(object):
             or settings.spawn_positions or (settings.shuffle_bosses != 'off')
         )
 
+        self.mixed_pools_bosses = False # this setting is still in active development at https://github.com/Roman971/OoT-Randomizer
+
         self.ensure_tod_access = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or settings.spawn_positions
         self.disable_trade_revert = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or settings.adult_trade_shuffle
         self.skip_child_zelda = 'Zeldas Letter' not in settings.shuffle_child_trade and \
@@ -74,7 +77,7 @@ class World(object):
         if (
             settings.open_forest == 'closed'
             and (
-                self.shuffle_special_interior_entrances or settings.shuffle_overworld_entrances
+                self.shuffle_special_interior_entrances or settings.shuffle_hideout_entrances or settings.shuffle_overworld_entrances
                 or settings.warp_songs or settings.spawn_positions
                 or settings.decouple_entrances or len(settings.mix_entrance_pools) > 1
             )
@@ -438,13 +441,13 @@ class World(object):
         elif (self.settings.dungeon_shortcuts_choice == 'all'):
             self.settings.dungeon_shortcuts = dungeons
 
-        # Determine area with keyring
+        # Determine areas with key rings
         if (self.settings.key_rings_choice == 'random'):
-            areas = ['Thieves Hideout', 'Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple', 'Bottom of the Well', 'Gerudo Training Ground', 'Ganons Castle']
+            areas = ['Thieves Hideout', 'Treasure Chest Game', 'Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple', 'Bottom of the Well', 'Gerudo Training Ground', 'Ganons Castle']
             self.settings.key_rings = random.sample(areas, random.randint(0, len(areas)))
             self.randomized_list.append('key_rings')
         elif (self.settings.key_rings_choice == 'all'):
-            self.settings.key_rings = ['Thieves Hideout', 'Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple', 'Bottom of the Well', 'Gerudo Training Ground', 'Ganons Castle']
+            self.settings.key_rings = ['Thieves Hideout', 'Treasure Chest Game', 'Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple', 'Bottom of the Well', 'Gerudo Training Ground', 'Ganons Castle']
 
         # Handle random Rainbow Bridge condition
         if (self.settings.bridge == 'random'
@@ -470,7 +473,6 @@ class World(object):
         for trial in self.skipped_trials:
             if trial not in chosen_trials and trial not in dist_chosen:
                 self.skipped_trials[trial] = True
-
 
         # Determine empty and MQ Dungeons (avoid having both empty & MQ dungeons unless necessary)
         mq_dungeon_pool = list(self.dungeon_mq)
@@ -533,9 +535,18 @@ class World(object):
         self.settings.mq_dungeons_count = list(self.dungeon_mq.values()).count(True)
         self.distribution.configure_randomized_settings(self)
 
+        # Determine puzzles with silver rupee pouches
+        if self.settings.silver_rupee_pouches_choice == 'random':
+            puzzles = self.silver_rupee_puzzles()
+            self.settings.silver_rupee_pouches = random.sample(puzzles, random.randint(0, len(puzzles)))
+            self.randomized_list.append('silver_rupee_pouches')
+        elif self.settings.silver_rupee_pouches_choice == 'all':
+            self.settings.silver_rupee_pouches = self.silver_rupee_puzzles()
+
 
     def load_regions_from_json(self, file_path):
         region_json = read_logic_file(file_path)
+        savewarps_to_connect = []
 
         for region in region_json:
             new_region = Region(region['region_name'])
@@ -589,7 +600,16 @@ class World(object):
                     if self.settings.logic_rules != 'none':
                         self.parser.parse_spot_rule(new_exit)
                     new_region.exits.append(new_exit)
+            if 'savewarp' in region:
+                savewarp_target = region['savewarp'].split(' -> ')[1]
+                new_exit = Entrance(f'{new_region.name} -> {savewarp_target}', new_region)
+                new_exit.connected_region = savewarp_target
+                new_region.exits.append(new_exit)
+                new_region.savewarp = new_exit
+                # the replaced entrance may not exist yet so we connect it after all region files have been read
+                savewarps_to_connect.append((new_exit, region['savewarp']))
             self.regions.append(new_region)
+        return savewarps_to_connect
 
 
     def create_internal_locations(self):
@@ -614,7 +634,7 @@ class World(object):
     def initialize_items(self):
         for item in self.itempool:
             item.world = self
-            if self.settings.shuffle_hideoutkeys in ['fortress', 'regional'] and item.type == 'HideoutSmallKey':
+            if (self.settings.shuffle_hideoutkeys in ['fortress', 'regional'] and item.type == 'HideoutSmallKey') or (self.settings.shuffle_tcgkeys == 'regional' and item.type == 'TCGSmallKey'):
                 item.priority = True
         for region in self.regions:
             for location in region.locations:
@@ -1061,6 +1081,11 @@ class World(object):
         if self.settings.shuffle_ganon_bosskey == 'dungeon':
             itempool.extend([item for dungeon in self.dungeons if dungeon.name == 'Ganons Castle' for item in dungeon.boss_key])
 
+        if self.settings.shuffle_silver_rupees == 'dungeon':
+            itempool.extend([item for dungeon in self.dungeons for item in dungeon.silver_rupees])
+        elif self.settings.shuffle_silver_rupees in ['any_dungeon', 'overworld', 'anywhere', 'regional']:
+            itempool.extend([item for dungeon in self.dungeons if self.empty_dungeons[dungeon.name].empty for item in dungeon.silver_rupees])
+
         for item in itempool:
             item.world = self
         return itempool
@@ -1077,10 +1102,26 @@ class World(object):
             itempool.extend([item for dungeon in self.dungeons if (dungeon.name != 'Ganons Castle' and not self.empty_dungeons[dungeon.name].empty) for item in dungeon.boss_key])
         if self.settings.shuffle_ganon_bosskey in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
             itempool.extend([item for dungeon in self.dungeons if dungeon.name == 'Ganons Castle' for item in dungeon.boss_key])
+        if self.settings.shuffle_silver_rupees in ['any_dungeon', 'overworld', 'anywhere', 'regional']:
+            itempool.extend([item for dungeon in self.dungeons if not self.empty_dungeons[dungeon.name].empty for item in dungeon.silver_rupees])
 
         for item in itempool:
             item.world = self
         return itempool
+
+
+    def silver_rupee_puzzles(self):
+        return ([
+            'Shadow Temple Scythe Shortcut', 'Shadow Temple Huge Pit', 'Shadow Temple Invisible Spikes',
+            'Gerudo Training Ground Slopes', 'Gerudo Training Ground Lava', 'Gerudo Training Ground Water',
+            'Ganons Castle Fire Trial']
+            + (['Dodongos Cavern Staircase'] if self.dungeon_mq['Dodongos Cavern'] else [])
+            + ([] if self.dungeon_mq['Ice Cavern'] else ['Ice Cavern Spinning Scythe', 'Ice Cavern Push Block'])
+            + ([] if self.dungeon_mq['Bottom of the Well'] else ['Bottom of the Well Basement'])
+            + (['Shadow Temple Invisible Blades'] if self.dungeon_mq['Shadow Temple'] else [])
+            + (['Spirit Temple Lobby and Lower Adult', 'Spirit Temple Adult Climb'] if self.dungeon_mq['Spirit Temple'] else ['Spirit Temple Child Early Torches', 'Spirit Temple Adult Boulders', 'Spirit Temple Sun Block'])
+            + (['Ganons Castle Shadow Trial', 'Ganons Castle Water Trial'] if self.dungeon_mq['Ganons Castle'] else ['Ganons Castle Spirit Trial', 'Ganons Castle Light Trial', 'Ganons Castle Forest Trial'])
+        )
 
 
     def find_items(self, item):
@@ -1223,6 +1264,34 @@ class World(object):
         if not self.settings.blue_fire_arrows:
             # Ice Arrows can only be required when the Blue Fire Arrows setting is enabled
             exclude_item_list.append('Ice Arrows')
+        if self.settings.logic_lens_botw or self.settings.shuffle_pots in ('off', 'overworld'):
+            # These silver rupees unlock a door to an area that's also reachable with lens
+            exclude_item_list.append('Silver Rupee (Bottom of the Well Basement)')
+            exclude_item_list.append('Silver Rupee Pouch (Bottom of the Well Basement)')
+        if self.dungeon_mq['Shadow Temple'] and self.settings.shuffle_mapcompass == 'vanilla':
+            # These silver rupees only unlock the map chest
+            exclude_item_list.append('Silver Rupee (Shadow Temple Scythe Shortcut)')
+            exclude_item_list.append('Silver Rupee Pouch (Shadow Temple Scythe Shortcut)')
+        if self.settings.logic_spirit_sun_chest_no_rupees and not self.settings.logic_spirit_sun_chest_bow:
+            # With this trickset, these silver rupees are logically irrelevant
+            exclude_item_list.append('Silver Rupee (Spirit Temple Sun Block)')
+            exclude_item_list.append('Silver Rupee Pouch (Spirit Temple Sun Block)')
+        if self.settings.shuffle_pots in ('off', 'overworld') and self.settings.trials == 0:
+            # These silver rupees only lock pots and trial completion
+            exclude_item_list.append('Silver Rupee (Ganons Castle Light Trial)')
+            exclude_item_list.append('Silver Rupee Pouch (Ganons Castle Light Trial)')
+            exclude_item_list.append('Silver Rupee (Ganons Castle Fire Trial)')
+            exclude_item_list.append('Silver Rupee Pouch (Ganons Castle Fire Trial)')
+            exclude_item_list.append('Silver Rupee (Ganons Castle Shadow Trial)')
+            exclude_item_list.append('Silver Rupee Pouch (Ganons Castle Shadow Trial)')
+            exclude_item_list.append('Silver Rupee (Ganons Castle Water Trial)')
+            exclude_item_list.append('Silver Rupee Pouch (Ganons Castle Water Trial)')
+            exclude_item_list.append('Silver Rupee (Ganons Castle Forest Trial)')
+            exclude_item_list.append('Silver Rupee Pouch (Ganons Castle Forest Trial)')
+            if self.dungeon_mq['Ganons Castle'] and self.settings.shuffle_freestanding_items in ('off', 'overworld') and not self.shuffle_silver_rupees:
+                # MQ Ganon small keys only lock pots, freestanding recovery hearts, silver rupees, and trial completion
+                exclude_item_list.append('Small Key (Ganons Castle)')
+                exclude_item_list.append('Small Key Ring (Ganons Castle)')
 
         for i in self.item_hint_type_overrides['barren']:
             if i in exclude_item_list:

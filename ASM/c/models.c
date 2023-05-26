@@ -20,6 +20,7 @@ typedef struct {
     uint8_t *buf;
 } loaded_object_t;
 
+extern uint32_t SHUFFLE_CHEST_GAME;
 extern uint32_t EXTENDED_OBJECT_TABLE;
 extern EnItem00 *collectible_mutex;
 
@@ -146,10 +147,9 @@ bool collectible_draw(z64_actor_t *actor, z64_game_t *game) {
         .graphic_id = 0x00,
     };
 
-    if(this->override.key.all)
-    {
+    if (this->override.key.all) {
         lookup_model_by_override(&model, this->override);
-        if(model.object_id != 0x0000 && (this->actor.dropFlag==1 || !Get_CollectibleOverrideFlag(this) || (collectible_mutex == this))) {
+        if (model.object_id != 0x0000 && (this->actor.dropFlag == 1 || !Get_CollectibleOverrideFlag(this) || (collectible_mutex == this))) {
             if (collectible_mutex != this) {
                 draw_model(model, actor, game, 25.0);
             }
@@ -180,26 +180,22 @@ void collectible_draw_other(z64_actor_t *actor, z64_game_t *game) {
 
     // Handle keys separately for now.
     int collectible_type = actor->variable & 0xFF;
-    if(collectible_type == 0x11)
-    {
-        lookup_model(&model, actor, game,0);
+    if (collectible_type == 0x11) {
+        lookup_model(&model, actor, game, 0);
         draw_model(model, actor, game, 10.0);
         return;
     }
 
     // Probably don't need this check. We convert all dropped overridden collectibles to rupees.
     // Pretty sure there are no freestanding collectibles of these types. But let's just do it anyway
-    if(this->override.key.all)
-    {
+    if (this->override.key.all) {
         lookup_model_by_override(&model, this->override);
-        if(model.object_id != 0x0000 && (this->actor.dropFlag==1 || !Get_CollectibleOverrideFlag(this) || (collectible_mutex == this))) {
+        if (model.object_id != 0x0000 && (this->actor.dropFlag == 1 || !Get_CollectibleOverrideFlag(this) || (collectible_mutex == this))) {
             if (collectible_mutex != this) {
                 draw_model(model, actor, game, 25.0);
             }
         }
-    }
-    else
-    {
+    } else {
         base_collectable_draw(actor, game);
     }
 }
@@ -245,6 +241,86 @@ void item_etcetera_draw(z64_actor_t *actor, z64_game_t *game) {
             .scene = 0x10,
             .type = OVR_CHEST,
             .flag = 0x0A,
+        };
+        override = lookup_override_by_key(key);
+    } else if (actor->variable == 0x0008 && SHUFFLE_CHEST_GAME) {
+        //Chest Game Room 1 Bottom Chest item inside chest
+        override_key_t key = {
+            .scene = 0x10,
+            .type = OVR_CHEST,
+            .flag = 0x00,
+        };
+        override = lookup_override_by_key(key);
+    } else if (actor->variable == 0x010D && SHUFFLE_CHEST_GAME) {
+        //Chest Game Room 1 Top Chest item inside chest
+        override_key_t key = {
+            .scene = 0x10,
+            .type = OVR_CHEST,
+            .flag = 0x01,
+        };
+        override = lookup_override_by_key(key);
+    } else if (actor->variable == 0x0208 && SHUFFLE_CHEST_GAME) {
+        //Chest Game Room 2 Bottom Chest item inside chest
+        override_key_t key = {
+            .scene = 0x10,
+            .type = OVR_CHEST,
+            .flag = 0x02,
+        };
+        override = lookup_override_by_key(key);
+    } else if (actor->variable == 0x030D && SHUFFLE_CHEST_GAME) {
+        //Chest Game Room 2 Top Chest item inside chest
+        override_key_t key = {
+            .scene = 0x10,
+            .type = OVR_CHEST,
+            .flag = 0x03,
+        };
+        override = lookup_override_by_key(key);
+    } else if (actor->variable == 0x0409 && SHUFFLE_CHEST_GAME) {
+        //Chest Game Room 3 Bottom Chest item inside chest
+        override_key_t key = {
+            .scene = 0x10,
+            .type = OVR_CHEST,
+            .flag = 0x04,
+        };
+        override = lookup_override_by_key(key);
+    } else if (actor->variable == 0x050D && SHUFFLE_CHEST_GAME) {
+        //Chest Game Room 3 Top Chest item inside chest
+        override_key_t key = {
+            .scene = 0x10,
+            .type = OVR_CHEST,
+            .flag = 0x05,
+        };
+        override = lookup_override_by_key(key);
+    } else if (actor->variable == 0x0609 && SHUFFLE_CHEST_GAME) {
+        //Chest Game Room 4 Bottom Chest item inside chest
+        override_key_t key = {
+            .scene = 0x10,
+            .type = OVR_CHEST,
+            .flag = 0x06,
+        };
+        override = lookup_override_by_key(key);
+    } else if (actor->variable == 0x070D && SHUFFLE_CHEST_GAME) {
+        //Chest Game Room 4 Top Chest item inside chest
+        override_key_t key = {
+            .scene = 0x10,
+            .type = OVR_CHEST,
+            .flag = 0x07,
+        };
+        override = lookup_override_by_key(key);
+    } else if (actor->variable == 0x080A && SHUFFLE_CHEST_GAME) {
+        //Chest Game Room 5 Bottom Chest item inside chest
+        override_key_t key = {
+            .scene = 0x10,
+            .type = OVR_CHEST,
+            .flag = 0x08,
+        };
+        override = lookup_override_by_key(key);
+    } else if (actor->variable == 0x090D && SHUFFLE_CHEST_GAME) {
+        //Chest Game Room 5 Top Chest item inside chest
+        override_key_t key = {
+            .scene = 0x10,
+            .type = OVR_CHEST,
+            .flag = 0x09,
         };
         override = lookup_override_by_key(key);
     }

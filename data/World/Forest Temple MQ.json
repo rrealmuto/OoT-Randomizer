@@ -35,7 +35,7 @@
             "Forest Temple NW Outdoors": "can_use(Bow) or can_use(Slingshot)",
             "Forest Temple NE Outdoors": "can_use(Bow) or can_use(Slingshot)",
             "Forest Temple Before Block Puzzle": "here(is_adult or Kokiri_Sword)",
-            "Forest Temple Before Boss": "
+            "Forest Temple Basement": "
                 (Forest_Temple_Jo_and_Beth and Forest_Temple_Amy_and_Meg) or forest_temple_shortcuts"
         }
     },
@@ -203,7 +203,7 @@
         }
     },
     {
-        "region_name": "Forest Temple Before Boss",
+        "region_name": "Forest Temple Basement",
         "dungeon": "Forest Temple",
         "locations": {
             "Forest Temple MQ Basement Chest": "True",
@@ -213,7 +213,17 @@
             "Forest Temple MQ Basement Pot 4": "True"
         },
         "exits": {
-            "Forest Temple Boss Door": "True"
+            "Forest Temple Before Boss": "True"
+            # exit to Forest Temple Central Area requires changes to key logic
+        }
+    },
+    {
+        "region_name": "Forest Temple Before Boss",
+        "dungeon": "Forest Temple",
+        "savewarp": "SFM Forest Temple Entrance Ledge -> Forest Temple Lobby",
+        "exits": {
+            "Forest Temple Basement": "forest_temple_shortcuts",
+            "Phantom Ganon Boss Room": "Boss_Key_Forest_Temple"
         }
     }
 ]

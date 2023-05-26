@@ -253,7 +253,7 @@ def get_tunic_colors():
 
 
 def get_tunic_color_options():
-    return meta_color_choices + get_tunic_colors()
+    return meta_color_choices + ["Rainbow"] + get_tunic_colors()
 
 
 def get_navi_colors():

@@ -1,24 +1,26 @@
 {
     "name":                  "weekly",
     "gui_name":              "Weekly",
-    "description":           "Hint distribution for weekly races. 5 Goal hints, 3 Barren hints, 7 Sometimes hints, 5 Always hints (including 30 Skulltula tokens, Skull Mask, and Sheik in Kakariko).",
+    "description":           "Hint distribution for weekly races. 5 WotH hints, 3 Barren hints, 5 Sometimes hints, 7 Always hints (including Skull Mask).",
     "add_locations":         [
-        { "location": "Deku Theater Skull Mask", "types": ["always"] },
-        { "location": "Sheik in Kakariko", "types": ["always"] }
+        { "location": "Deku Theater Skull Mask",                           "types": ["always"]    },
+        { "location": "Shadow Temple Invisible Floormaster Chest",         "types": ["sometimes"] }
     ],
     "remove_locations":      [
         { "location": "Ganons Castle Shadow Trial Golden Gauntlets Chest", "types": ["sometimes"] },
-        { "location": "Sheik in Forest", "types": ["sometimes"] },
-        { "location": "Sheik at Temple", "types": ["sometimes"] },
-        { "location": "Sheik in Crater", "types": ["sometimes"] },
-        { "location": "Sheik at Colossus", "types": ["sometimes"] },
-        { "location": "Song from Royal Familys Tomb", "types": ["sometimes"] }
+        { "location": "LW Target in Woods",                                "types": ["sometimes"] },
+        { "location": "ZR Frogs in the Rain",                              "types": ["sometimes"] },
+        { "location": "LH Lab Dive",                                       "types": ["sometimes"] },
+        { "location": "HC Great Fairy Reward",                             "types": ["sometimes"] },
+        { "location": "OGC Great Fairy Reward",                            "types": ["sometimes"] },
+        { "location": "Water Temple Central Pillar Chest",                 "types": ["sometimes"] },
+        { "location": "Ice Cavern Iron Boots Chest",                       "types": ["sometimes"] },
+        { "location": "Shadow Temple Freestanding Key",                    "types": ["sometimes"] }
     ],
     "add_items":             [],
-    "remove_items":          [
-        { "item": "Zeldas Lullaby", "types": ["goal"] }
-    ],
-    "dungeons_barren_limit": 3,
+    "remove_items":          [],
+    "dungeons_woth_limit": 2,
+    "dungeons_barren_limit": 1,
     "named_items_required":  true,
     "vague_named_items":     false,
     "use_default_goals":     true,
@@ -26,7 +28,7 @@
         "trial":            {"order": 1, "weight": 0.0, "fixed":   0, "copies": 2},
         "entrance_always":  {"order": 2, "weight": 0.0, "fixed":   0, "copies": 2},
         "always":           {"order": 3, "weight": 0.0, "fixed":   0, "copies": 2},
-        "goal":             {"order": 4, "weight": 0.0, "fixed":   5, "copies": 2},
+        "goal":             {"order": 0, "weight": 0.0, "fixed":   0, "copies": 2},
         "barren":           {"order": 5, "weight": 0.0, "fixed":   3, "copies": 2},
         "entrance":         {"order": 6, "weight": 0.0, "fixed":   4, "copies": 2},
         "sometimes":        {"order": 7, "weight": 0.0, "fixed": 100, "copies": 2},
@@ -37,7 +39,7 @@
         "dungeon":          {"order": 0, "weight": 0.0, "fixed":   0, "copies": 2},
         "junk":             {"order": 0, "weight": 0.0, "fixed":   0, "copies": 2},
         "named-item":       {"order": 9, "weight": 0.0, "fixed":   0, "copies": 2},
-        "woth":             {"order": 0, "weight": 0.0, "fixed":   0, "copies": 2},
+        "woth":             {"order": 4, "weight": 0.0, "fixed":   5, "copies": 2},
         "dual_always":      {"order": 0, "weight": 0.0, "fixed":   0, "copies": 0},
         "dual":             {"order": 0, "weight": 0.0, "fixed":   0, "copies": 0},
         "important_check":  {"order": 0, "weight": 0.0, "fixed":   0, "copies": 0}

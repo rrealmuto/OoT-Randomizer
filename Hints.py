@@ -150,7 +150,8 @@ def is_restricted_dungeon_item(item):
         ((item.map or item.compass) and item.world.settings.shuffle_mapcompass == 'dungeon') or
         (item.type == 'SmallKey' and item.world.settings.shuffle_smallkeys == 'dungeon') or
         (item.type == 'BossKey' and item.world.settings.shuffle_bosskeys == 'dungeon') or
-        (item.type == 'GanonBossKey' and item.world.settings.shuffle_ganon_bosskey == 'dungeon')
+        (item.type == 'GanonBossKey' and item.world.settings.shuffle_ganon_bosskey == 'dungeon') or
+        (item.type == 'SilverRupee' and item.world.settings.shuffle_silver_rupees == 'dungeon')
     )
 
 
@@ -352,6 +353,7 @@ class HintArea(Enum):
     SHADOW_TEMPLE          = 'within', 'in',     'the Shadow Temple',          "Shadow Temple",          'Pink',       'Shadow Temple'
     GERUDO_VALLEY          = 'at',     'at',     'Gerudo Valley',              "Gerudo Valley",          'Yellow',     None
     GERUDO_FORTRESS        = 'at',     'at',     "Gerudo's Fortress",          "Gerudo's Fortress",      'Yellow',     None
+    THIEVES_HIDEOUT        = 'in',     'in',     "the Thieves' Hideout",       "Thieves' Hideout",       'Yellow',     None
     GERUDO_TRAINING_GROUND = 'within', 'on',     'the Gerudo Training Ground', "Gerudo Training Ground", 'Yellow',     'Gerudo Training Ground'
     HAUNTED_WASTELAND      = 'in',     'in',     'the Haunted Wasteland',      "Haunted Wasteland",      'Yellow',     None
     DESERT_COLOSSUS        = 'at',     'at',     'the Desert Colossus',        "Desert Colossus",        'Yellow',     None
@@ -403,11 +405,15 @@ class HintArea(Enum):
             dungeon_name = dungeon_name[dungeon_name.index('(') + 1:dungeon_name.index(')')]
 
         if dungeon_name == "Thieves Hideout":
-            # Special case for Thieves' Hideout - change this if it gets its own hint area.
-            return HintArea.GERUDO_FORTRESS
+            # Special case for Thieves' Hideout since it's not considered a dungeon
+            return HintArea.THIEVES_HIDEOUT
+
+        if dungeon_name == "Treasure Chest Game":
+            # Special case for Treasure Chest Game keys: treat them as part of the market hint area regardless of where the treasure box shop actually is.
+            return HintArea.MARKET
 
         for hint_area in cls:
-            if hint_area.dungeon_name == dungeon_name:
+            if hint_area.dungeon_name is not None and hint_area.dungeon_name in dungeon_name:
                 return hint_area
         return None
 
@@ -1070,6 +1076,7 @@ def get_important_check_hint(spoiler, world, checked):
                 #Handle make keys not in own dungeon major items
                 or (location.item.type == 'SmallKey' and not (world.settings.shuffle_smallkeys == 'dungeon' or world.settings.shuffle_smallkeys == 'vanilla'))
                 or (location.item.type == 'HideoutSmallKey' and not world.settings.shuffle_hideoutkeys == 'vanilla')
+                or (location.item.type == 'TCGSmallKey' and not world.settings.shuffle_tcgkeys == 'vanilla')
                 or (location.item.type == 'BossKey' and not (world.settings.shuffle_bosskeys == 'dungeon' or world.settings.shuffle_bosskeys == 'vanilla'))
                 or (location.item.type == 'GanonBossKey' and not (world.settings.shuffle_ganon_bosskey == 'vanilla'
                 or world.settings.shuffle_ganon_bosskey == 'dungeon' or world.settings.shuffle_ganon_bosskey == 'on_lacs'

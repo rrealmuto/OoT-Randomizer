@@ -50,3 +50,60 @@ fishing_bite_when_stable:
 @@return:
     jr      ra
     nop
+
+give_loach_reward:
+    la      at, SAVE_CONTEXT
+    lw      v1, 0x0EC0(at)  ; HIGH_SCORE(HS_FISHING)
+    andi    t4, v1, 0x8000
+    sltiu   t9, t4, 1
+    addiu   t9, t9, 0x55    ; set item id for loach reward
+
+    ori     v1, v1, 0x8000
+    sw      v1, 0x0EC0(at)  ; set loach reward flag
+
+    jr      ra
+    mtc1    zero, f18       ; replaced code
+
+increment_sSinkingLureLocation:
+    beq     t2, zero, @@return  ; loads unused byte in fishing overlay
+    nop                         ; loach setting uses this as a flag to indicate setting is enabled
+
+    addiu   v1, v1, 1
+    addiu   t2, zero, 0x0004
+    sltu    t2, t2, v1      ; if sSinkingLureLocation > 4
+    sll     t2, t2, 1       ; set sSinkingLureLocation = 1
+    srlv    v1, v1, t2
+    sb      v1, 0x0000(a0)
+
+@@return:
+    sll     t2, v1, 2
+    subu    t2, t2, v1 ; replaced code
+    jr      ra
+    sll     t2, t2, 1  ; replaced code
+
+make_loach_follow_lure:
+    addiu   sp, sp, 0xFFEC
+    sw      ra, 0x0010 (sp)
+
+    lbu     t1, 0x7AE6(t8)      ; load value of D_80B7E0B6
+    addiu   at, zero, 0x0002    ; which has a value of 2 if sinking lure is equipped
+    bne     t1, at, @@return    ; if not using sinking lure
+    addiu   at, zero, 0xFFFE    ; unset ACTOR_FLAG_0
+
+    lbu     t1, 0x7AE7(t8)      ; loads unused byte in fishing overlay
+    beq     t1, zero, @@return  ; loach setting uses this as a flag to indicate setting is enabled
+    addiu   at, zero, 0xFFFE    ; unset ACTOR_FLAG_0
+
+    or      a0, s0, zero
+    addiu   t1, t8, 0xB288
+    jalr    t1              ; func_80B70ED4
+    addiu   a1, s1, 0x0014
+
+    addiu   at, zero, 0xFFFF    ; preserve current actor flags
+@@return:
+    lw      t1, 0x0004(s0)
+    and     t1, t1, at
+    lw      ra, 0x0010 (sp)
+    jr      ra
+    addiu   sp, sp, 0x0014
+

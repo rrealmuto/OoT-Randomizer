@@ -61,6 +61,7 @@
     "shuffle_mapcompass":                      "startwith",
     "shuffle_smallkeys":                       "dungeon",
     "shuffle_hideoutkeys":                     "vanilla",
+    "shuffle_tcgkeys":                         "vanilla",
     "shuffle_bosskeys":                        "dungeon",
     "lacs_condition":                          "vanilla",
     "enhance_map_compass":                     false,

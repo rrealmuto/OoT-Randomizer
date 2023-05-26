@@ -501,7 +501,8 @@
         "scene": "LH Fishing Hole",
         "locations": {
             "LH Child Fishing": "is_child",
-            "LH Adult Fishing": "is_adult"
+            "LH Adult Fishing": "is_adult",
+            "LH Loach Fishing": "True"
         },
         "exits": {
             "LH Fishing Island": "True"
@@ -636,12 +637,14 @@
             "GF Entrances Behind Crates": "True",
             "GF Roof Entrance Cluster": "can_use(Hover_Boots) or logic_gf_jump",
             "GF Kitchen Roof Access": "Gerudo_Membership_Card and can_use(Longshot)",
-            "GF Hall to Balcony Entrance": "can_use(Longshot)", # via jail ceiling
+            # can ask the Gerudo on the path to HBA to throw you in jail
+            "GF Break Room Entrance": "can_use(Hookshot)",
             "GF Outside Gate": "'GF Gate Open'",
             "Gerudo Training Ground Lobby": "Gerudo_Membership_Card and is_adult"
         }
     },
     {
+        # needs to be a separate region to disambiguate the 1 torch jail and kitchen entrances
         "region_name": "GF Entrances Behind Crates",
         "scene": "Gerudo Fortress",
         "hint": "GERUDO_FORTRESS",
@@ -695,7 +698,7 @@
         },
         "exits": {
             "GF Kitchen Roof Access": "True",
-            "GF Hall to Balcony Entrance": "True"
+            "GF Break Room Entrance": "True"
         }
     },
     {
@@ -707,12 +710,12 @@
         }
     },
     {
-        "region_name": "GF Hall to Balcony Entrance",
+        "region_name": "GF Break Room Entrance",
         "scene": "Gerudo Fortress",
         "hint": "GERUDO_FORTRESS",
         "exits": {
             "Gerudo Fortress": "True",
-            "Hideout Hall to Balcony Lower": "True"
+            "Hideout Break Room": "True"
         }
     },
     {
@@ -723,11 +726,10 @@
             "GF Above Jail Crate": "is_adult and can_break_crate"
         },
         "exits": {
-            "Hideout Hall to Balcony Upper": "True",
+            "Hideout Hall to Balcony": "True",
             "Gerudo Fortress": "True",
             "GF Chest Roof": "can_use(Longshot)",
-            "GF Hall to Balcony Entrance": "
-                damage_multiplier != 'ohko' or can_use(Nayrus_Love) or can_use(Hookshot)"
+            "GF Break Room Entrance": "damage_multiplier != 'ohko' or can_use(Nayrus_Love)"
         }
     },
     {
@@ -742,7 +744,7 @@
     {
         "region_name": "Hideout 1 Torch Jail",
         "scene": "Hideout 1 Torch Jail",
-        "hint": "GERUDO_FORTRESS",
+        "hint": "THIEVES_HIDEOUT",
         "events": {
             "Hideout 1 Torch Jail Gerudo": "is_adult or Kokiri_Sword",
             "Hideout 1 Torch Jail Carpenter": "
@@ -766,7 +768,8 @@
     {
         "region_name": "Hideout 2 Torches Jail",
         "scene": "Hideout 2 Torches Jail",
-        "hint": "GERUDO_FORTRESS",
+        "hint": "THIEVES_HIDEOUT",
+        "savewarp": "Gerudo Fortress -> Hideout 1 Torch Jail",
         "events": {
             "Hideout 2 Torches Jail Gerudo": "is_adult or Kokiri_Sword",
             "Hideout 2 Torches Jail Carpenter": "
@@ -793,7 +796,8 @@
     {
         "region_name": "Hideout 3 Torches Jail",
         "scene": "Hideout 3 Torches Jail",
-        "hint": "GERUDO_FORTRESS",
+        "hint": "THIEVES_HIDEOUT",
+        "savewarp": "Gerudo Fortress -> Hideout 1 Torch Jail",
         "events": {
             "Hideout 3 Torches Jail Gerudo": "is_adult or Kokiri_Sword",
             "Hideout 3 Torches Jail Carpenter": "
@@ -811,7 +815,8 @@
     {
         "region_name": "Hideout 4 Torches Jail",
         "scene": "Hideout 4 Torches Jail",
-        "hint": "GERUDO_FORTRESS",
+        "hint": "THIEVES_HIDEOUT",
+        "savewarp": "Gerudo Fortress -> Hideout 1 Torch Jail",
         "events": {
             "Hideout 4 Torches Jail Gerudo": "is_adult or Kokiri_Sword",
             "Hideout 4 Torches Jail Carpenter": "
@@ -831,7 +836,8 @@
     {
         "region_name": "Hideout Kitchen Hallway",
         "scene": "Hideout Kitchen",
-        "hint": "GERUDO_FORTRESS",
+        "hint": "THIEVES_HIDEOUT",
+        "savewarp": "Gerudo Fortress -> Hideout 1 Torch Jail",
         "locations": {
             "Hideout Near Kitchen Crate 1": "
                 (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or logic_gerudo_kitchen) and
@@ -855,7 +861,8 @@
     {
         "region_name": "Hideout Kitchen Front",
         "scene": "Hideout Kitchen",
-        "hint": "GERUDO_FORTRESS",
+        "hint": "THIEVES_HIDEOUT",
+        "savewarp": "Gerudo Fortress -> Hideout 1 Torch Jail",
         "exits": {
             "GF Roof Entrance Cluster": "True",
             "Hideout Kitchen Rear": "
@@ -869,7 +876,8 @@
     {
         "region_name": "Hideout Kitchen Rear",
         "scene": "Hideout Kitchen",
-        "hint": "GERUDO_FORTRESS",
+        "hint": "THIEVES_HIDEOUT",
+        "savewarp": "Gerudo Fortress -> Hideout 1 Torch Jail",
         "exits": {
             "GF Kitchen Roof Access": "True",
             "Hideout Kitchen Front": "
@@ -883,26 +891,28 @@
     {
         "region_name": "Hideout Kitchen Pots",
         "scene": "Hideout Kitchen",
-        "hint": "GERUDO_FORTRESS",
+        "hint": "THIEVES_HIDEOUT",
+        "savewarp": "Gerudo Fortress -> Hideout 1 Torch Jail",
         "locations": {
             "Hideout Kitchen Pot 1": "True",
             "Hideout Kitchen Pot 2": "True"
         }
     },
     {
-        "region_name": "Hideout Hall to Balcony Lower",
-        "scene": "Hideout Hall to Balcony",
-        "hint": "GERUDO_FORTRESS",
+        "region_name": "Hideout Break Room",
+        "scene": "Hideout Break Room",
+        "hint": "THIEVES_HIDEOUT",
+        "savewarp": "Gerudo Fortress -> Hideout 1 Torch Jail",
         "exits": {
-            "GF Hall to Balcony Entrance": "True",
-            "Hideout Hall to Balcony Upper": "can_use(Hookshot)"
+            "GF Break Room Entrance": "True",
+            "Hideout Hall to Balcony": "can_use(Hookshot)"
         },
         "locations": {
-            "Hideout Break Room Pot 1": "Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)",
-            "Hideout Break Room Pot 2": "Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot)",
+            "Hideout Break Room Pot 1": "Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or (can_use(Boomerang) and (Sticks or Kokiri_Sword))",
+            "Hideout Break Room Pot 2": "Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or (can_use(Boomerang) and (Sticks or Kokiri_Sword))",
             "Hideout Break Room Hallway Crate 1": "can_break_crate",
             "Hideout Break Room Hallway Crate 2": "can_break_crate",
-            # Child Link is too short to seen over the table as you go for these crates.
+            # Child Link is too short to be seen over the table as you go for these crates.
             "Hideout Break Room Crate 1": "
                 can_break_crate and
                 (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or
@@ -914,11 +924,12 @@
         }
     },
     {
-        "region_name": "Hideout Hall to Balcony Upper",
-        "scene": "Hideout Hall to Balcony",
-        "hint": "GERUDO_FORTRESS",
+        "region_name": "Hideout Hall to Balcony",
+        "scene": "Hideout Break Room",
+        "hint": "THIEVES_HIDEOUT",
+        "savewarp": "Gerudo Fortress -> Hideout 1 Torch Jail",
         "exits": {
-            "Hideout Hall to Balcony Lower": "can_use(Hookshot)",
+            "Hideout Break Room": "can_use(Hookshot)",
             "GF Balcony": "True"
         }
     },
@@ -1394,7 +1405,18 @@
         "region_name": "Market Treasure Chest Game",
         "scene": "Market Treasure Chest Game",
         "locations": {
-            "Market Treasure Chest Game Reward": "can_use(Lens_of_Truth)"
+            "Market Treasure Chest Game Salesman": "True",
+            "Market Treasure Chest Game Room 1 Bottom": "(Small_Key_Treasure_Chest_Game, 1) and (shuffle_tcgkeys != 'vanilla' or can_use(Lens_of_Truth))",
+            "Market Treasure Chest Game Room 1 Top": "(Small_Key_Treasure_Chest_Game, 1) and (shuffle_tcgkeys != 'vanilla' or can_use(Lens_of_Truth))",
+            "Market Treasure Chest Game Room 2 Bottom": "(Small_Key_Treasure_Chest_Game, 2) and (shuffle_tcgkeys != 'vanilla' or can_use(Lens_of_Truth))",
+            "Market Treasure Chest Game Room 2 Top": "(Small_Key_Treasure_Chest_Game, 2) and (shuffle_tcgkeys != 'vanilla' or can_use(Lens_of_Truth))",
+            "Market Treasure Chest Game Room 3 Bottom": "(Small_Key_Treasure_Chest_Game, 3) and (shuffle_tcgkeys != 'vanilla' or can_use(Lens_of_Truth))",
+            "Market Treasure Chest Game Room 3 Top": "(Small_Key_Treasure_Chest_Game, 3) and (shuffle_tcgkeys != 'vanilla' or can_use(Lens_of_Truth))",
+            "Market Treasure Chest Game Room 4 Bottom": "(Small_Key_Treasure_Chest_Game, 4) and (shuffle_tcgkeys != 'vanilla' or can_use(Lens_of_Truth))",
+            "Market Treasure Chest Game Room 4 Top": "(Small_Key_Treasure_Chest_Game, 4) and (shuffle_tcgkeys != 'vanilla' or can_use(Lens_of_Truth))",
+            "Market Treasure Chest Game Room 5 Bottom": "(Small_Key_Treasure_Chest_Game, 5) and (shuffle_tcgkeys != 'vanilla' or can_use(Lens_of_Truth))",
+            "Market Treasure Chest Game Room 5 Top": "(Small_Key_Treasure_Chest_Game, 5) and (shuffle_tcgkeys != 'vanilla' or can_use(Lens_of_Truth))",
+            "Market Treasure Chest Game Reward": "(Small_Key_Treasure_Chest_Game, 6)"
         },
         "exits": {
             "Market": "True"
