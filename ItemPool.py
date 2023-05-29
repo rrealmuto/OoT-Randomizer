@@ -842,6 +842,16 @@ def get_pool_core(world):
             elif world.settings.shuffle_ganon_bosskey in ('any_dungeon', 'overworld', 'regional'):
                 dungeon.boss_key[-1].priority = True
 
+        # Songs
+        elif location.type == 'Song':
+            shuffle_item = world.settings.shuffle_song_items != 'vanilla'
+
+        # Slingshots
+        elif location.vanilla_item == 'Deku Seed Bag':
+            if not world.settings.require_gohma:
+                item = 'Slingshot'
+            shuffle_item = world.settings.shuffle_base_item_pool
+
         # Dungeon Items
         elif location.dungeon is not None:
             dungeon = location.dungeon
@@ -887,9 +897,6 @@ def get_pool_core(world):
                     if any(rupee.name == item for rupee in dungeon.silver_rupees):
                         item = get_junk_item()[0]
                         shuffle_item = True
-            # Song
-            elif location.type == 'Song':
-                shuffle_item = world.settings.shuffle_song_items != 'vanilla'
             # Any other item in a dungeon.
             elif location.type in ["Chest", "NPC", "Collectable", "Cutscene", "BossHeart"]:
                 shuffle_item = world.settings.shuffle_base_item_pool
@@ -903,10 +910,6 @@ def get_pool_core(world):
                     shuffle_item = True
                 elif shuffle_setting in ['any_dungeon', 'overworld', 'regional']:
                     dungeon_collection[-1].priority = True
-
-        # Songs
-        elif location.type == 'Song':
-            shuffle_item = world.settings.shuffle_song_items != 'vanilla'
 
         # The rest of the overworld items.
         elif location.type in ["Chest", "NPC", "Collectable", "Cutscene", "BossHeart"]:
