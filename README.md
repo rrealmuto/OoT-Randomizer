@@ -61,6 +61,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * The Dampé diary hint message has been tweaked to sound more natural.
   * Gold skulltula tokens can be on excluded locations if there are no checks requiring them (such as in SAWS)
   * The text box no longer shows the player's own gold skulltula token count when finding a token for another player.
+  * The Lens of Truth can be in a foolish area if Treasure Chest Game keys are shuffled and all relevant “lensless” tricks are enabled.
   * The setting “Randomize Main Rule Settings” has been removed due to being too difficult to maintain across Dev and Dev-R updates. <https://github.com/fenhl/plando-random-settings> can be used instead.
   * Python 3.6 is no longer supported since GitHub's testing infrastructure no longer supports it.
 * Bug fixes:

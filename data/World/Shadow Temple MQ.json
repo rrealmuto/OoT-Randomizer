@@ -304,10 +304,10 @@
         "dungeon": "Shadow Temple",
         "savewarp": "Graveyard Warp Pad Region -> Shadow Temple Entryway",
         "locations": {
-            "Shadow Temple MQ GS Near Boss": "(logic_lens_shadow or can_use(Lens_of_Truth)) and (can_use_projectile or can_use(Dins_Fire))"
+            "Shadow Temple MQ GS Near Boss": "(logic_lens_shadow_mq or can_use(Lens_of_Truth)) and (can_use_projectile or can_use(Dins_Fire))"
         },
         "exits": {
-            "Shadow Temple Across Chasm": "(logic_lens_shadow or can_use(Lens_of_Truth)) and can_use(Hover_Boots)",
+            "Shadow Temple Across Chasm": "(logic_lens_shadow_mq or can_use(Lens_of_Truth)) and can_use(Hover_Boots)",
             "Bongo Bongo Boss Room": "Boss_Key_Shadow_Temple"
         }
     }

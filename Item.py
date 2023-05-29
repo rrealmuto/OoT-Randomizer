@@ -301,6 +301,22 @@ class Item(object):
                         and self.world.dungeon_mq['Ganons Castle']
                         and self.world.settings.shuffle_freestanding_items in ('off', 'overworld')
                         and not self.world.shuffle_silver_rupees
+                    ) or (
+                        # With shuffled Treasure Chest Game keys and all relevant lensless tricks, Lens of Truth is logically irrelevant
+                        self.name == 'Lens of Truth'
+                        and self.world.settings.shuffle_tcgkeys != 'vanilla'
+                        and self.world.settings.logic_lens_wasteland
+                        and self.world.settings.logic_lens_bongo
+                        and (self.world.settings.logic_lens_jabu_mq if self.world.dungeon_mq['Jabu Jabus Belly'] else True)
+                        and (
+                            (self.world.settings.logic_lens_shadow_mq and self.world.settings.logic_lens_shadow_mq_platform and self.world.settings.logic_lens_shadow_mq_invisible_blades and self.world.settings.logic_lens_shadow_mq_dead_hand)
+                            if self.world.dungeon_mq['Shadow Temple'] else
+                            (self.world.settings.logic_lens_shadow and self.world.settings.logic_lens_shadow_platform)
+                        )
+                        and (self.world.settings.logic_lens_spirit_mq if self.world.dungeon_mq['Spirit Temple'] else self.world.settings.logic_lens_spirit)
+                        and (True if self.world.dungeon_mq['Bottom of the Well'] else self.world.settings.logic_lens_botw)
+                        and (self.world.settings.logic_lens_gtg_mq if self.world.dungeon_mq['Gerudo Training Ground'] else self.world.settings.logic_lens_gtg)
+                        and (self.world.settings.logic_lens_castle_mq if self.world.dungeon_mq['Ganons Castle'] else self.world.settings.logic_lens_castle)
                     )
                 )
             )
