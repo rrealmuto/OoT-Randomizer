@@ -166,15 +166,15 @@ item_row_t item_table[] = {
     [0x008A] = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,     -1, 0x00CD, 0x1E, magic_upgrade,     no_effect, -1, -1, NULL), // Progressive Magic Meter
     [0x008B] = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,     -1, 0x010E, 0x46, ocarina_upgrade,   no_effect, -1, -1, NULL), // Progressive Ocarina
 
-    [0x008C] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0043, 0x00C6, 0x01, no_upgrade, give_bottle, 0x15, -1, NULL), // Bottle with Red Potion
-    [0x008D] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0044, 0x00C6, 0x01, no_upgrade, give_bottle, 0x16, -1, NULL), // Bottle with Green Potion
-    [0x008E] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0045, 0x00C6, 0x01, no_upgrade, give_bottle, 0x17, -1, NULL), // Bottle with Blue Potion
-    [0x008F] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0046, 0x0177, 0x6B, no_upgrade, give_bottle, 0x18, -1, NULL), // Bottle with Fairy
-    [0x0090] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0047, 0x00F4, 0x3F, no_upgrade, give_bottle, 0x19, -1, NULL), // Bottle with Fish
-    [0x0091] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x005D, 0x0173, 0x67, no_upgrade, give_bottle, 0x1C, -1, NULL), // Bottle with Blue Fire
-    [0x0092] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x007A, 0x0174, 0x68, no_upgrade, give_bottle, 0x1D, -1, NULL), // Bottle with Bugs
-    [0x0093] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x00F9, 0x0176, 0x70, no_upgrade, give_bottle, 0x1E, -1, NULL), // Bottle with Big Poe
-    [0x0094] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0097, 0x0176, 0x6A, no_upgrade, give_bottle, 0x20, -1, NULL), // Bottle with Poe
+    [0x008C] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x90A0, 0x00C6, 0x01, no_upgrade, give_bottle, 0x15, -1, NULL), // Bottle with Red Potion
+    [0x008D] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x90A1, 0x00C6, 0x01, no_upgrade, give_bottle, 0x16, -1, NULL), // Bottle with Green Potion
+    [0x008E] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x90A2, 0x00C6, 0x01, no_upgrade, give_bottle, 0x17, -1, NULL), // Bottle with Blue Potion
+    [0x008F] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x90A3, 0x0177, 0x6B, no_upgrade, give_bottle, 0x18, -1, NULL), // Bottle with Fairy
+    [0x0090] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x90A4, 0x00F4, 0x3F, no_upgrade, give_bottle, 0x19, -1, NULL), // Bottle with Fish
+    [0x0091] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x90A5, 0x0173, 0x67, no_upgrade, give_bottle, 0x1C, -1, NULL), // Bottle with Blue Fire
+    [0x0092] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x90A6, 0x0174, 0x68, no_upgrade, give_bottle, 0x1D, -1, NULL), // Bottle with Bugs
+    [0x0093] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x90A7, 0x0176, 0x70, no_upgrade, give_bottle, 0x1E, -1, NULL), // Bottle with Big Poe
+    [0x0094] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x90A8, 0x0176, 0x6A, no_upgrade, give_bottle, 0x20, -1, NULL), // Bottle with Poe
 
     [0x0095] = ITEM_ROW(0x53,        GOLD_CHEST, 0x41, -1, 0x0006, 0x00B9, 0x0A, no_upgrade, give_dungeon_item, 0x01, FOREST_ID, NULL), // Forest Temple Boss Key
     [0x0096] = ITEM_ROW(0x53,        GOLD_CHEST, 0x41, -1, 0x001C, 0x00B9, 0x0A, no_upgrade, give_dungeon_item, 0x01, FIRE_ID,   NULL), // Fire Temple Boss Key
