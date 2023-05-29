@@ -337,6 +337,8 @@ item_row_t item_table[] = {
     [0x0122] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9214, 0x0195, 0x77, no_upgrade, give_keyring_with_bk, SPIRIT_ID, -1, NULL), // Spirit Temple Key Ring (with boss key)
     [0x0123] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9215, 0x0195, 0x77, no_upgrade, give_keyring_with_bk, SHADOW_ID, -1, NULL), // Shadow Temple Key Ring (with boss key)
 
+    [0x0124] = ITEM_ROW(0x53,      GILDED_CHEST, 0x0C, -1, 0x9054, 0x0158, 0x61, no_upgrade, no_effect, -1, -1, NULL), // Blue Fire Arrow
+
     [0x1000] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9057, 0x01A5, 0x29, no_upgrade, give_triforce_piece, -1, -1, NULL), // Easter egg (pink)
     [0x1001] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9057, 0x01A6, 0x29, no_upgrade, give_triforce_piece, -1, -1, NULL), // Easter egg (orange)
     [0x1002] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9057, 0x01A7, 0x29, no_upgrade, give_triforce_piece, -1, -1, NULL), // Easter egg (green)

@@ -2536,11 +2536,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom):
         rom.write_byte(0xDB391B, 0x50)
         rom.write_byte(0xDB3927, 0x5A)
 
-        bfa_message = "\x08\x13\x0CYou got the \x05\x43Blue Fire Arrow\x05\x40!\x01This is a cool arrow you can\x01use on red ice."
-        if world.settings.world_count > 1:
-            bfa_message = make_player_message(bfa_message)
-        update_message_by_id(messages, 0x0071, bfa_message, 0x23)
-
         with open(data_path('blue_fire_arrow_item_name_eng.ia4'), 'rb') as stream:
             bfa_name_bytes = stream.read()
             rom.write_bytes(0x8a1c00, bfa_name_bytes)
