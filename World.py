@@ -335,7 +335,10 @@ class World(object):
 
         # Disable goal hints if the hint distro does not require them.
         # WOTH locations are always searched.
-        self.enable_goal_hints = self.has_hint_type('goal') or self.has_hint_type('goal-legacy') or self.has_hint_type('goal-legacy-single')
+        self.enable_goal_hints = any(
+            self.has_hint_type(hint_type)
+            for hint_type in ('goal', 'goal-legacy', 'goal-legacy-single', 'unlock-playthrough', 'unlock-woth')
+        )
 
         # Initialize default goals for win condition
         self.goal_categories = OrderedDict()
