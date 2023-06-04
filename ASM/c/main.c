@@ -19,6 +19,7 @@
 #include "weather.h"
 #include "textures.h"
 #include "scene.h"
+#include "music.h"
 
 void Gameplay_InitSkybox(z64_game_t* globalCtx, int16_t skyboxId);
 
@@ -38,11 +39,13 @@ void before_game_state_update() {
     update_misc_colors();
     update_hud_colors();
     process_extern_ctxt();
+    manage_music_changes();
 }
 
 void after_game_state_update() {
     draw_dungeon_info(&(z64_ctxt.gfx->overlay));
     draw_triforce_count(&(z64_ctxt.gfx->overlay));
+    draw_silver_rupee_count(&z64_game, &(z64_ctxt.gfx->overlay));
     draw_illegal_model_text(&(z64_ctxt.gfx->overlay));
     give_ganon_boss_key();
 }

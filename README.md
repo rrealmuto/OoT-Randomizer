@@ -125,6 +125,13 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * New setting `Add Bombchu Bag and Drops` which, along with the previous changes of `Bombchus in Logic`, makes the first pack of Bombchus you find into a bag which then allows you to purchase bombchus from shops as well as find them hidden in grass or rocks like regular bombs.
   * New multiselects `Shuffled Child Trade Sequence Items` and `Adult Trade Sequence Items` along with toggle `Shuffle All Adult Trade Items` which have reworked the trade quests for both child and adult. Now you can own multiple trade items for each age at the same time and have multiple trade item locations as shufflable checks.
   * Many new SFX shuffle options have been added.
+  * New `Rainbow` tunic options.
+  * New music option `Speed Up Music For Last Triforce Piece` speeds up the music when you only have 1 Triforce Piece left to find, to drive home the intensity.
+  * New music option `Slow Down Music When Low HP` slows down the music when you're in critical health, to give the feeling of being near death.
+  * New shuffle setting `Shuffle Hyrule Loach Reward` which shuffles the reward you get upon presenting the Hyrule Loach to the fishing hole owner. You can choose to retain the Loach's vanilla behavior or make it easier to catch in several ways.
+  * New shuffle setting `Treasure Chest Game Keys` makes it so the keys from the Treasure Chest Game can be found anywhere in the world rather than just in the game itself, and the chests of the minigame can contain any item. It also makes the shopkeeper sell a random item.
+  * New World setting `Shuffle Thieves' Hideout Entrances`, which requires first shuffling interior entrances, shuffles the Thieves' Hideout rooms into the interior entrance pool.
+  * New shuffle setting `Shuffle Silver Rupees` shuffles the silver rupees into the item pool. To solve a silver rupee puzzle, you will need to find all the associated silver rupees around the world. You can also use the setting `Silver Rupee Pouches` to make some or all of the silver rupees grouped into pouches so that, similar to key rings, all silver rupees for any given puzzle will be found in a single item location.
 * **Hints**
   * New `Important Checks` hint type which hints at how many major items are in a given region.
   * New Misc. Hint `Frogs Ocarina Game` which tells you what item you'll get from the Zora's River frog minigame. The hint appears in the dialog box that's printed before they jump onto the log.
@@ -133,7 +140,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * New Misc. Hint for unique merchants: Bean Salesman, Medigoron, Wasteland Bombchu Salesman, Granny's Potion Shop.
   * Owls are now included in the Warp Songs misc hint and will tell you where they go when enabled.
 * **Other**
-  * When picking up a small key after the first, the text box will now inform you how many you've found total.
+  * When picking up a small key, the text box will now inform you how many you've found total.
   * The longstanding vanilla bug where using Din's Fire on a white bubble crashes the game has been fixed.
   * There are new chest, pot, and crate textures for Pieces of Heart and Heart Containers.
 
@@ -171,12 +178,23 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * The key ring texture has been updated with the normal small key texture, making it shinier.
 * D-Pad mask icons will now enlarge when the mask is equipped, similarly to D-Pad boots.
 * Fix a vanilla bug where jumpslashing into Bongo Bongo's chamber on the last possible frame will not properly skip the cutscene when it should be skipped.
-* Various cutscenes removed or shortened, such as Water Temple and Gerudo Fortress gates and scarecrow spawn cutscenes.
 * Heart Containers and Pieces of Heart will no longer be directly hinted by Way of the Hero or Path hints, which is consistent with Triforce Pieces and Gold Skulltula Tokens.
+* Junk items being sent to another world will now float up into the air to indicate this.
+* An unnecessary polygon check function is skipped to increase game performance.
+* In Triforce Hunt, your current and goal number of triforce pieces are now displayed on the file select screen.
+
+#### New Speedups
+* Various cutscenes removed or shortened, such as Water Temple and Gerudo Fortress gates and scarecrow spawn cutscenes.
+* Skulltulas will now pop out of their soil patches instantly (once the bugs enter the hole) instead of waiting 3 seconds.
+* The cutscene of the Gerudo's Fortress carpenters running out when you free them will be skipped.
+* The cutscene that plays when shooting the sun over Lake Hylia has been skipped.
+* The spinning room in the Forest Temple basement now moves faster, and does not lock Link in place while spinning.
+
 #### Plandomizer
 * Plandomizer now allows you to specify locations that are valid but do not exist in your current seed, for example, an MQ-specific location when that dungeon is Vanilla.
 * Error messages for conflicting settings have been improved.
 * Gossip stone text colors are no longer specified in reverse order.
+* Music groups will now add to each other if you have multiple groups of the same name, instead of the last one simply overwriting the others.
 
 ### 7.1
 

@@ -2,6 +2,7 @@
   "settings":                  {
     "shuffle_smallkeys":                       "dungeon",
     "shuffle_hideoutkeys":                     "vanilla",
+    "shuffle_tcgkeys":                         "overworld",
     "key_rings":                               [
       "Forest Temple",
       "Water Temple",
@@ -11,7 +12,8 @@
       "Fire Temple",
       "Shadow Temple",
       "Gerudo Training Ground",
-      "Bottom of the Well"
+      "Bottom of the Well",
+      "Treasure Chest Game"
     ],
     "mq_dungeons_mode":                        "vanilla"
   }

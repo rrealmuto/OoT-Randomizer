@@ -2,6 +2,7 @@
   "settings":                  {
     "shuffle_smallkeys":                       "any_dungeon",
     "shuffle_hideoutkeys":                     "any_dungeon",
+    "shuffle_tcgkeys":                         "any_dungeon",
     "key_rings":                               [
       "Forest Temple",
       "Water Temple",
@@ -11,7 +12,8 @@
       "Fire Temple",
       "Shadow Temple",
       "Gerudo Training Ground",
-      "Bottom of the Well"
+      "Bottom of the Well",
+      "Treasure Chest Game"
     ],
     "mq_dungeons_mode":                        "count",
     "mq_dungeons_count":                       6

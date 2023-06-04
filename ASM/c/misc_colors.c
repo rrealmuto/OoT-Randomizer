@@ -250,6 +250,27 @@ void update_navi_colors()
     }
 }
 
+#define TUNIC_CYCLE_FRAMES 20
+extern uint8_t CFG_RAINBOW_TUNIC_ENABLED;
+
+extern colorRGB8_t CFG_TUNIC_COLORS[3];
+
+#define CFG_RAINBOW_TUNIC_KOKIRI    0b00000001
+#define CFG_RAINBOW_TUNIC_GORON     0b00000010
+#define CFG_RAINBOW_TUNIC_ZORA      0b00000100
+
+void update_tunic_colors()
+{
+    //colorRGB8_t* ptr_tunic_colors = (colorRGB8_t*)(0x800F7AD8);
+    colorRGB8_t tunic_color = get_rainbow_color(frames, TUNIC_CYCLE_FRAMES);
+    if(CFG_RAINBOW_TUNIC_ENABLED & CFG_RAINBOW_TUNIC_KOKIRI)
+        CFG_TUNIC_COLORS[0] = tunic_color; //Update kokiri tunic color
+    if(CFG_RAINBOW_TUNIC_ENABLED & CFG_RAINBOW_TUNIC_GORON)
+        CFG_TUNIC_COLORS[1] = tunic_color; //Update goron tunic color
+    if(CFG_RAINBOW_TUNIC_ENABLED & CFG_RAINBOW_TUNIC_ZORA)
+        CFG_TUNIC_COLORS[2] = tunic_color; //Update zora tunic color
+}
+
 void update_misc_colors()
 {
     frames++;
@@ -257,4 +278,5 @@ void update_misc_colors()
     update_boomerang_trail_colors();
     update_bombchu_trail_colors();
     update_navi_colors();
+    update_tunic_colors();
 }

@@ -62,7 +62,7 @@
         {
           "name": "multiworld_section",
           "text": "Multi-World Generation",
-          "subheader": "This is used for co-op generations. Increasing Player Count will drastically increase the generation time.<br>For more information, see:<br><a href='https://github.com/TestRunnerSRL/bizhawk-co-op' target='_blank'>https://github.com/TestRunnerSRL/bizhawk-co-op</a>",
+          "subheader": "Play interconnected seeds with multiple players. Each player receives one of the worlds, which can contain items for other players. See <a href='https://wiki.ootrandomizer.com/index.php?title=Multiworld' target='_blank'>the wiki article on multiworld</a> for details.<br>You will need a plugin like <a href='https://github.com/TestRunnerSRL/bizhawk-co-op' target='_blank'>bizhawk-co-op</a> or <a href='https://midos.house/mw' target='_blank'>Mido's House Multiworld</a> to connect the worlds together.<br>Increasing Player Count will drastically increase the generation time.",
           "row_span": [1,1,1],
           "settings": [
             "world_count",
@@ -107,7 +107,7 @@
         {
           "name": "multiworld_section",
           "text": "Multi-World Generation",
-          "subheader": "This is used for co-op generations.<br>For more information, see:<br><a href='https://github.com/TestRunnerSRL/bizhawk-co-op' target='_blank'>https://github.com/TestRunnerSRL/bizhawk-co-op</a>",
+          "subheader": "Play interconnected seeds with multiple players. Each player receives one of the worlds, which can contain items for other players. See <a href='https://wiki.ootrandomizer.com/index.php?title=Multiworld' target='_blank'>the wiki article on multiworld</a> for details.<br>You will need a plugin like <a href='https://github.com/TestRunnerSRL/bizhawk-co-op' target='_blank'>bizhawk-co-op</a> or <a href='https://midos.house/mw' target='_blank'>Mido's House Multiworld</a> to connect the worlds together.",
           "row_span": [1,1,1],
           "settings": [
             "player_num"
@@ -170,6 +170,7 @@
             "empty_dungeons_specific",
             "empty_dungeons_count",
             "shuffle_interior_entrances",
+            "shuffle_hideout_entrances",
             "shuffle_grotto_entrances",
             "shuffle_dungeon_entrances",
             "shuffle_bosses",
@@ -205,7 +206,8 @@
             "shuffle_gerudo_card",
             "shuffle_beans",
             "shuffle_expensive_merchants",
-            "shuffle_frog_song_rupees"
+            "shuffle_frog_song_rupees",
+            "shuffle_loach_reward"
           ]
         },
         {
@@ -216,6 +218,7 @@
             "shuffle_mapcompass",
             "shuffle_smallkeys",
             "shuffle_hideoutkeys",
+            "shuffle_tcgkeys",
             "key_rings_choice",
             "key_rings",
             "keyring_give_bk",
@@ -226,6 +229,9 @@
             "ganon_bosskey_rewards",
             "ganon_bosskey_tokens",
             "ganon_bosskey_hearts",
+            "shuffle_silver_rupees",
+            "silver_rupee_pouches_choice",
+            "silver_rupee_pouches",
             "enhance_map_compass"
           ]
         }
@@ -490,7 +496,9 @@
           "row_span": [2,2,2],
           "settings": [
             "randomize_all_sfx",
-            "disable_battle_music"
+            "disable_battle_music",
+            "speedup_music_for_last_triforce_piece",
+            "slowdown_music_when_lowhp"
           ]
         },
         {

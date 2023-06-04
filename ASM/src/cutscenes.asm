@@ -399,10 +399,20 @@ ingo_race_win:
 gerudo_caught_entrance:
     la      t3, GLOBAL_CONTEXT
     lh      t3, 0x00A4(t3)              ; current scene number
+    li      t4, 0x000C                  ; Thieves Hideout scene number
+    beq     t3, t4, @@hideout           ; if we are in Thieves Hideout with connector shuffle, prevent guard throwing you in jail or the valley
     li      t4, 0x005A                  ; Gerudo Valley scene number
     bne     t3, t4, @@fortress          ; if we are not in the valley, then we are in the fortress
 
     li      t3, 0x01A5                  ; else, use the thrown out in valley entrance index, even if you have a hookshot
+    sh      t3, 0x1E1A(at)
+    b       @@return
+
+@@hideout:
+    lb      t3, HIDEOUT_SHUFFLED
+    beqz    t3, @@fortress              ; if hideout shuffle is off, treat hideout the same as fortress
+    la      t4, SAVE_CONTEXT
+    lw      t3, 0x0000(t4)              ; last entrance index
     sh      t3, 0x1E1A(at)
     b       @@return
 

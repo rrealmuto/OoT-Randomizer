@@ -13,6 +13,7 @@ class Dungeon:
         self.boss_key = []
         self.small_keys = []
         self.dungeon_items = []
+        self.silver_rupees = []
 
         for region in world.regions:
             if region.dungeon == self.name:
@@ -26,6 +27,7 @@ class Dungeon:
         new_dungeon.boss_key = [item.copy(new_world) for item in self.boss_key]
         new_dungeon.small_keys = [item.copy(new_world) for item in self.small_keys]
         new_dungeon.dungeon_items = [item.copy(new_world) for item in self.dungeon_items]
+        new_dungeon.silver_rupees = [item.copy(new_world) for item in self.silver_rupees]
 
         return new_dungeon
 
@@ -37,7 +39,7 @@ class Dungeon:
 
     @property
     def all_items(self):
-        return self.dungeon_items + self.keys
+        return self.dungeon_items + self.keys + self.silver_rupees
 
 
     def item_name(self, text):
@@ -57,6 +59,7 @@ class Dungeon:
 
 
 def create_dungeons(world):
+    savewarps_to_connect = []
     for hint_area in HintArea:
         if hint_area.is_dungeon:
             name = hint_area.dungeon_name
@@ -72,5 +75,6 @@ def create_dungeons(world):
                 else:
                     dungeon_json = os.path.join(data_path('World'), name + ' MQ.json')
 
-            world.load_regions_from_json(dungeon_json)
+            savewarps_to_connect += world.load_regions_from_json(dungeon_json)
             world.dungeons.append(Dungeon(world, name, hint_area))
+    return savewarps_to_connect

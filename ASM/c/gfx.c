@@ -73,6 +73,11 @@ sprite_t key_rupee_clock_sprite = {
     G_IM_FMT_IA, G_IM_SIZ_8b, 1
 };
 
+sprite_t rupee_digit_sprite = {
+    NULL, 8, 16, 10,
+    G_IM_FMT_I, G_IM_SIZ_8b, 1
+};
+
 sprite_t item_digit_sprite = {
     NULL, 8, 8, 10,
     G_IM_FMT_IA, G_IM_SIZ_8b, 1
@@ -110,6 +115,28 @@ void sprite_load(z64_disp_buf_t *db, sprite_t *sprite,
             G_TX_WRAP, G_TX_WRAP,
             G_TX_NOMASK, G_TX_NOMASK,
             G_TX_NOLOD, G_TX_NOLOD);
+}
+
+void sprite_texture(z64_disp_buf_t *db, sprite_t * sprite, int tile_index, int16_t left, int16_t top,
+        int16_t width, int16_t height) {
+    int width_factor = (1<<10) * sprite->tile_w / width;
+    int height_factor = (1<<10) * sprite->tile_h / height;
+    gDPLoadTextureBlock(db->p++,
+        ((uint8_t*)(sprite->buf)) + (tile_index * sprite_bytes_per_tile(sprite)),
+        sprite->im_fmt,
+        sprite->im_siz,
+        sprite->tile_w,
+        sprite->tile_h,
+        0,
+        G_TX_NOMIRROR | G_TX_WRAP,
+        G_TX_NOMIRROR | G_TX_WRAP,
+        G_TX_NOMASK,
+        G_TX_NOMASK,
+        G_TX_NOLOD,
+        G_TX_NOLOD
+    );
+
+    gSPTextureRectangle(db->p++, left * 4, top * 4, (left + width) * 4, (top * height) * 4, G_TX_RENDERTILE, 0,0,width_factor, height_factor);
 }
 
 void sprite_draw(z64_disp_buf_t *db, sprite_t *sprite, int tile_index,
@@ -159,6 +186,7 @@ void gfx_init() {
     triforce_sprite.buf = TRIFORCE_ICON_TEXTURE;
     song_note_sprite.buf = icon_item_static.buf + 0x00088040;
     key_rupee_clock_sprite.buf = parameter_static.buf + 0x00001E00;
+    rupee_digit_sprite.buf = parameter_static.buf + 0x3040;
     item_digit_sprite.buf = parameter_static.buf + 0x000035C0;
     linkhead_skull_sprite.buf = icon_item_dungeon_static.buf + 0x00001980;
     heart_sprite.buf = parameter_static.buf;

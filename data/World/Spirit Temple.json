@@ -10,25 +10,35 @@
         },
         "exits": {
             "Desert Colossus From Spirit Lobby": "True",
-            "Child Spirit Temple": "
+            "Child Spirit Temple Beyond Metal Bridges": "
                 is_child and
                 (Sticks or has_explosives or
                     ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot))) and
-                (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu))",
+                (Boomerang or Slingshot or
+                    (has_bombchus and logic_spirit_child_bombchu) or
+                    (Silver_Rupee_Spirit_Temple_Child_Early_Torches, 5))",
             "Child Spirit Before Locked Door": "is_child",
             "Early Adult Spirit Temple": "can_use(Silver_Gauntlets)",
             "Spirit Temple Central Chamber": "is_adult and spirit_temple_shortcuts"
         }
     },
     {
-        "region_name": "Child Spirit Temple",
+        "region_name": "Child Spirit Temple Beyond Metal Bridges",
         "dungeon": "Spirit Temple",
         "locations": {
             "Spirit Temple Child Bridge Chest": "True",
             "Spirit Temple Child Early Torches Chest": "Sticks or can_use(Dins_Fire)",
             "Spirit Temple Child Bridge Flying Pot": "True",
             "Spirit Temple Child Anubis Pot": "True",
-            "Spirit Temple GS Metal Fence": "True",
+            "Spirit Temple Child Early Torches Silver Rupee Top Right": "True",
+            "Spirit Temple Child Early Torches Silver Rupee Bottom Right": "True",
+            "Spirit Temple Child Early Torches Silver Rupee Bottom Left": "True",
+            "Spirit Temple Child Early Torches Silver Rupee Top Left": "True",
+            "Spirit Temple Child Early Torches Silver Rupee Near Torch": "True",
+            "Spirit Temple GS Metal Fence": "
+                Boomerang or (logic_spirit_fence_gs and Kokiri_Sword) or
+                (((Silver_Rupee_Spirit_Temple_Child_Early_Torches, 5) or logic_spirit_fence_gs) and
+                    (Sticks or has_explosives or Slingshot or can_use(Dins_Fire)))",
             "Deku Shield Pot": "fix_broken_drops"
         }
     },
@@ -48,17 +58,26 @@
         "region_name": "Early Adult Spirit Temple",
         "dungeon": "Spirit Temple",
         "locations": {
-            "Spirit Temple Compass Chest": "Hookshot and can_play(Zeldas_Lullaby)",
-            # The mid-air silver rupee can be collected with a jumpslash.
-            "Spirit Temple Early Adult Right Chest": "
-                Bow or Hookshot or has_bombchus or (Bombs and logic_spirit_lower_adult_switch)",
-            "Spirit Temple GS Boulder Room": "
-                can_play(Song_of_Time) and
-                (Bow or Hookshot or has_bombchus or (Bombs and logic_spirit_lower_adult_switch))"
+            "Spirit Temple Compass Chest": "Hookshot and can_play(Zeldas_Lullaby)"
         },
         "exits": {
+            "Spirit Temple Boulder Room": "
+                Bow or Hookshot or has_bombchus or (Bombs and logic_spirit_lower_adult_switch)",
             "Spirit Temple Central Chamber": "(Small_Key_Spirit_Temple, 1)",
             "Adult Spirit Temple Climb": "(Small_Key_Spirit_Temple, 3)"
+        }
+    },
+    {
+        "region_name": "Spirit Temple Boulder Room",
+        "dungeon": "Spirit Temple",
+        "locations": {
+            "Spirit Temple Early Adult Right Chest": "(Silver_Rupee_Spirit_Temple_Adult_Boulders, 5)",
+            "Spirit Temple Adult Boulder Silver Rupee Ledge": "True", # Can be collected with a jumpslash.
+            "Spirit Temple Adult Boulder Silver Rupee Front Left": "True",
+            "Spirit Temple Adult Boulder Silver Rupee Front Right": "True",
+            "Spirit Temple Adult Boulder Silver Rupee Back Right": "True",
+            "Spirit Temple Adult Boulder Silver Rupee Back Left": "True",
+            "Spirit Temple GS Boulder Room": "can_play(Song_of_Time)"
         }
     },
     # In the following two regions, child and adult reachability actually means age-unknown, but with
@@ -117,11 +136,12 @@
                 ((can_use(Dins_Fire) or (((Magic_Meter and Fire_Arrows) or logic_spirit_map_chest) and Bow and Sticks)) and
                     (has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)))",
             "Spirit Temple Sun Block Room Chest": "
-                (is_child and Sticks and
+                (is_child and Sticks and (logic_spirit_sun_chest_no_rupees or (Silver_Rupee_Spirit_Temple_Sun_Block, 5)) and
                     (Small_Key_Spirit_Temple, 5)) or
-                (is_adult and (has_fire_source or (logic_spirit_sun_chest and Bow)) and
+                (is_adult and (has_fire_source or (logic_spirit_sun_chest_bow and (Silver_Rupee_Spirit_Temple_Sun_Block, 5) and Bow)) and
                     ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts)) or
-                ((can_use(Dins_Fire) or (((Magic_Meter and Fire_Arrows) or logic_spirit_sun_chest) and Bow and Sticks)) and
+                ((can_use(Dins_Fire) or (((Magic_Meter and Fire_Arrows) or (logic_spirit_sun_chest_bow and (Silver_Rupee_Spirit_Temple_Sun_Block, 5))) and
+                        Bow and Sticks and (logic_spirit_sun_chest_no_rupees or (Silver_Rupee_Spirit_Temple_Sun_Block, 5)))) and
                     (has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)))",
             # With longshot and explosives, right hand is reachable as adult after opening either
             # upper door. Because some of the keys cannot be spent without adult accessing the
@@ -143,6 +163,21 @@
             "Spirit Temple Hall After Sun Block Room Pot 2": "
                 (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
                 has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)",
+            "Spirit Temple Sun Block Room Silver Rupee Left": "
+                (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
+                has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)",
+            "Spirit Temple Sun Block Room Silver Rupee Center Front": "
+                (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
+                has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)",
+            "Spirit Temple Sun Block Room Silver Rupee Center Back": "
+                (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
+                has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)",
+            "Spirit Temple Sun Block Room Silver Rupee Right Front": "
+                (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
+                has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)",
+            "Spirit Temple Sun Block Room Silver Rupee Right Back": "
+                (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
+                has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)",
             "Spirit Temple GS Lobby": "
                 (is_child and logic_spirit_lobby_gs and Boomerang and
                     (Small_Key_Spirit_Temple, 5)) or
@@ -161,7 +196,7 @@
         "exits": {
             "Child Spirit Temple Climb": "True",
             "Adult Spirit Temple Climb": "spirit_temple_shortcuts and can_use(Hookshot)",
-            "Spirit Temple Boss Door": "
+            "Spirit Temple Before Boss": "
                 is_adult and spirit_temple_shortcuts and
                 (Longshot or (logic_spirit_platform_hookshot and Hookshot))",
             # Age-unknown logic is incompatible with the rest of the world.
@@ -233,8 +268,15 @@
             "Spirit Temple Big Mirror Flying Pot 6": "True"
         },
         "exits": {
-            "Spirit Temple Boss Door": "
+            "Spirit Temple Before Boss": "
                 (spirit_temple_shortcuts or (has_explosives and Mirror_Shield)) and Hookshot"
+        }
+    },
+    {
+        "region_name": "Spirit Temple Before Boss",
+        "dungeon": "Spirit Temple",
+        "exits": {
+            "Twinrova Boss Room": "Boss_Key_Spirit_Temple"
         }
     }
 ]

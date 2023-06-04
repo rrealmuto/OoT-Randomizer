@@ -1,6 +1,7 @@
 #include "item_effects.h"
 #include "dungeon_info.h"
 #include "trade_quests.h"
+#include "save.h"
 
 #define rupee_cap ((uint16_t*)0x800F8CEC)
 volatile uint8_t MAX_RUPEES = 0;
@@ -63,7 +64,7 @@ void give_dungeon_item(z64_file_t *save, int16_t mask, int16_t dungeon_id) {
     save->dungeon_items[dungeon_id].items |= mask;
 }
 
-char key_counts[14][2] = {
+char key_counts[17][2] = {
     {0, 0}, // Deku Tree
     {0, 0}, // Dodongo's Cavern
     {0, 0}, // Inside Jabu Jabu's Belly
@@ -78,6 +79,9 @@ char key_counts[14][2] = {
     {9, 3}, // Gerudo Training Ground
     {4, 4}, // Thieves' Hideout
     {2, 3}, // Ganon's Castle
+    {0, 0}, // Ganon's Tower (Collapsing)
+    {0, 0}, // Ganon's Castle (Collapsing)
+    {6, 6}, // Treasure Box Shop
 };
 
 void give_small_key(z64_file_t *save, int16_t dungeon_id, int16_t arg2) {
@@ -91,7 +95,6 @@ void give_small_key(z64_file_t *save, int16_t dungeon_id, int16_t arg2) {
     }
 }
 
-uint8_t KEYRING_BOSSKEY_CONDITION = 0;
 void give_small_key_ring(z64_file_t *save, int16_t dungeon_id, int16_t arg2) {
     int8_t current_keys = save->dungeon_keys[dungeon_id] > 0 ? save->dungeon_keys[dungeon_id] : 0;
     save->dungeon_keys[dungeon_id] = current_keys + key_counts[dungeon_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
@@ -101,6 +104,72 @@ void give_small_key_ring(z64_file_t *save, int16_t dungeon_id, int16_t arg2) {
     uint32_t flag = save->scene_flags[dungeon_id].unk_00_;
     int8_t max_keys = key_counts[dungeon_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
     save->scene_flags[dungeon_id].unk_00_ = (flag & 0x0000ffff) | (max_keys << 0x10);
+}
+
+silver_rupee_data_t silver_rupee_vars[0x16][2] = {
+    //Vanilla,                         Master Quest
+    {{-1, 0xFF, 0x00, 0x00, 0x00,  2}, { 5, 0x1F, 0xFF, 0xFF, 0xFF, 2}}, // Dodongos Cavern Staircase. Patched to use switch flag 0x1F
+    {{ 5, 0x08, 0x00, 0xFF, 0xFF,  3}, {-1, 0xFF, 0x00, 0x00, 0x00, 3}}, // Ice Cavern Spinning Scythe
+    {{ 5, 0x09, 0x00, 0x64, 0xFF,  5}, {-1, 0xFF, 0x00, 0x00, 0x00, 5}}, // Ice Cavern Push Block
+    {{ 5, 0x1F, 0xFF, 0xFF, 0xFF,  1}, {-1, 0xFF, 0x00, 0x00, 0x00, 1}}, // Bottom of the Well Basement
+    {{ 5, 0x01, 0x00, 0xFF, 0x00,  6}, { 5, 0x01, 0x00, 0xFF, 0x00, 6}}, // Shadow Temple Scythe Shortcut
+    {{-1, 0xFF, 0x00, 0x00, 0x00, 16}, {10, 0x03, 0x00, 0xFF, 0xFF, 16}}, // Shadow Temple Invisible Blades
+    {{ 5, 0x09, 0xC8, 0xC8, 0x00,  9}, { 5, 0x11, 0xC8, 0xC8, 0x00, 9}}, // Shadow Temple Huge Pit
+    {{ 5, 0x08, 0xC8, 0x32, 0xFF, 11}, {10, 0x08, 0xC8, 0x32, 0xFF, 11}}, // Shadow Temple Invisible Spikes
+    {{ 5, 0x1C, 0xC8, 0xC8, 0x00,  2}, { 5, 0x1C, 0xC8, 0xC8, 0x00, 2}}, // Gerudo Training Ground Slopes
+    {{ 5, 0x0C, 0xFF, 0x3C, 0x00,  6}, { 6, 0x0C, 0xFF, 0x3C, 0x00, 6}}, // Gerudo Training Ground Lava
+    {{ 5, 0x1B, 0x00, 0x64, 0xFF,  9}, { 3, 0x1B, 0x00, 0x64, 0xFF, 9}}, // Gerudo Training Ground Water
+    {{ 5, 0x05, 0xFF, 0x3C, 0x00,  2}, {-1, 0xFF, 0x00, 0x00, 0x00, 2}}, // Spirit Temple Child Early Torches
+    {{ 5, 0x02, 0x00, 0xFF, 0x00, 13}, {-1, 0xFF, 0x00, 0x00, 0x00, 13}}, // Spirit Temple Adult Boulders
+    {{-1, 0xFF, 0x00, 0x00, 0x00,  0}, { 5, 0x1F, 0x00, 0xFF, 0xFF, 0}}, // Spirit Temple Lobby and Lower Adult. Patched to use switch flag 0x1F
+    {{ 5, 0x0A, 0xC8, 0xC8, 0x00,  8}, {-1, 0xFF, 0x00, 0x00, 0x00, 8}}, // Spirit Temple Sun Block
+    {{-1, 0xFF, 0x00, 0x00, 0x00, 23}, { 5, 0x00, 0x00, 0x64, 0xFF, 23}}, // Spirit Temple Adult Climb
+    {{ 5, 0x0B, 0xC8, 0xC8, 0x00, 17}, {-1, 0xFF, 0x00, 0x00, 0x00, 17}}, // Ganons Castle Spirit Trial
+    {{ 5, 0x12, 0x00, 0xFF, 0xFF,  8}, {-1, 0xFF, 0x00, 0x00, 0x00, 8}}, // Ganons Castle Light Trial
+    {{ 5, 0x09, 0xFF, 0x3C, 0x00, 14}, { 5, 0x01, 0xFF, 0x3C, 0x00, 14}}, // Ganons Castle Fire Trial
+    {{-1, 0xFF, 0x00, 0x00, 0x00, 12}, { 5, 0x0B, 0xC8, 0x32, 0xFF, 12}}, // Ganons Castle Shadow Trial
+    {{-1, 0xFF, 0x00, 0x00, 0x00,  3}, { 5, 0x02, 0x00, 0x64, 0xFF, 3}}, // Ganons Castle Water Trial
+    {{ 5, 0x0E, 0x00, 0xFF, 0x00,  6}, {-1, 0xFF, 0x00, 0x00, 0x00, 6}}, // Ganons Castle Forest Trial
+};
+
+void set_silver_rupee_flags(z64_file_t *save, int16_t dungeon_id, int16_t silver_rupee_id) {
+    silver_rupee_data_t var = silver_rupee_vars[silver_rupee_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
+
+    if (silver_rupee_id == 8) { // GTG Boulder room needs to set room clear flag as well in order to make the timer go away. Maybe others?
+        if (z64_game.scene_index == dungeon_id) {
+            z64_game.clear_flags |= 1 << 2;
+            z64_game.temp_clear_flags |= 1 << 2;
+        } else {
+            save->scene_flags[dungeon_id].clear |= 1 << 2;
+        }
+    }
+    if (z64_game.scene_index == dungeon_id) {
+        z64_game.swch_flags |= 1 << var.switch_flag;
+    } else {
+        save->scene_flags[dungeon_id].swch |= 1 << var.switch_flag;
+    }
+}
+
+void give_silver_rupee(z64_file_t *save, int16_t dungeon_id, int16_t silver_rupee_id) {
+    silver_rupee_data_t var = silver_rupee_vars[silver_rupee_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
+
+    if (extended_savectx.silver_rupee_counts[silver_rupee_id] == var.needed_count) return;
+    extended_savectx.silver_rupee_counts[silver_rupee_id]++;
+
+    if (extended_savectx.silver_rupee_counts[silver_rupee_id] == var.needed_count) {
+        set_silver_rupee_flags(save, dungeon_id, silver_rupee_id);
+    }
+}
+
+void give_silver_rupee_pouch(z64_file_t *save, int16_t dungeon_id, int16_t silver_rupee_id) {
+    silver_rupee_data_t var = silver_rupee_vars[silver_rupee_id][CFG_DUNGEON_IS_MQ[dungeon_id]];
+
+    Rupees_ChangeBy(5 * var.needed_count);
+
+    if (extended_savectx.silver_rupee_counts[silver_rupee_id] == var.needed_count) return;
+    extended_savectx.silver_rupee_counts[silver_rupee_id] = var.needed_count;
+
+    set_silver_rupee_flags(save, dungeon_id, silver_rupee_id);
 }
 
 void give_defense(z64_file_t *save, int16_t arg1, int16_t arg2) {

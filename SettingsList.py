@@ -161,20 +161,24 @@ logic_tricks = {
     'Fewer Tunic Requirements': {
         'name'    : 'logic_fewer_tunic_requirements',
         'tags'    : ("General", "Fire Temple", "Fire Temple MQ", "Water Temple", "Water Temple MQ", "Gerudo Training Ground", "Gerudo Training Ground MQ",
-                    "Zora's Fountain", "Death Mountain Crater", "Master Quest", "Overworld", "Vanilla Dungeons", "Child", "Adult",),
+                    "Ganon's Castle", "Ganon's Castle MQ", "Zora's Fountain", "Death Mountain Crater", "Master Quest", "Overworld", "Vanilla Dungeons",
+                    "Child", "Adult",),
         'tooltip' : '''\
                     Allows the following possible without Tunics:
-                    - Enter Water Temple. The area below the center
-                    pillar still requires Zora Tunic. Applies to
-                    MQ also.
-                    - Enter Fire Temple. Only the first floor is
-                    accessible, and not Volvagia. Applies to
-                    MQ also.
-                    - Zora's Fountain Bottom Freestanding PoH.
-                    Might not have enough health to resurface.
-                    - Gerudo Training Ground Underwater
-                    Silver Rupee Chest. May need to make multiple
-                    trips. Applies to MQ also.
+                    - Enter Fire Temple as adult.
+                    - Zora's Fountain bottom Freestandings. You
+                    might not have enough time to resurface, and
+                    you may need to make multiple trips.
+                    - Traverse the first floor of the Fire Temple,
+                    except the elevator room and Volvagia.
+                    - Go underwater in the Water Temple. (The area
+                    below the central pillar always requires Zora
+                    Tunic.)
+                    - Gerudo Training Ground Underwater Silver
+                    Rupees. You may need to make multiple trips.
+                    - Collecting some Silver Rupees in the Fire
+                    Trial. You may need to make multiple trips.
+                    - All instances also apply in Master Quest.
                     '''},
     'Beehives with Bombchus' : {
         'name'    : 'logic_beehives_bombchus',
@@ -292,7 +296,7 @@ logic_tricks = {
                     '''},
     'Shadow Temple Entry with Fire Arrows': {
         'name'    : 'logic_shadow_fire_arrow_entry',
-        'tags'    : ("Shadow Temple", "Overworld", "Adult",),
+        'tags'    : ("Graveyard", "Overworld", "Adult",),
         'tooltip' : '''\
                     It is possible to light all of the torches to
                     open the Shadow Temple entrance with just Fire
@@ -468,7 +472,7 @@ logic_tricks = {
                     Adult can reach this PoH with a precise jump,
                     no Hover Boots required.
                     '''},
-    'Zora\'s River Upper Freestanding PoH as adult with Nothing': {
+    'Zora\'s River Upper Freestanding PoH as Adult with Nothing': {
         'name'    : 'logic_zora_river_upper',
         'tags'    : ("Zora's River", "Overworld", "Adult",),
         'tooltip' : '''\
@@ -558,10 +562,13 @@ logic_tricks = {
                     '''},
     'Gerudo\'s Fortress Ledge Jumps': {
         'name'    : 'logic_gf_jump',
-        'tags'    : ("Gerudo's Fortress", "Overworld", "Adult",),
+        'tags'    : ("Gerudo's Fortress", "Overworld", "Child", "Adult",),
         'tooltip' : '''\
-                    Adult can jump onto the top roof of the fortress
-                    without going through the interior of the hideout.
+                    Allows both ages to use a jump to reach the second
+                    floor of the fortress from the southern roof with
+                    the guard, and adult to jump to the top roof from
+                    there, without going through the interiors of the
+                    Thieves' Hideout.
                     '''},
     'Wasteland Crossing without Hover Boots or Longshot': {
         'name'    : 'logic_wasteland_crossing',
@@ -595,9 +602,9 @@ logic_tricks = {
                     To cross the river of sand with no additional items,
                     be sure to also enable "Wasteland Crossing without
                     Hover Boots or Longshot".
-                    Unless all overworld entrances are randomized, child
-                    Link will not be expected to do anything at Gerudo's
-                    Fortress.
+                    Unless Thieves' Hideout entrances or all overworld
+                    entrances are randomized, child Link will not be
+                    expected to do anything at Gerudo's Fortress.
                     '''},
     'Colossus Hill GS with Hookshot': {
         'name'    : 'logic_colossus_gs',
@@ -731,6 +738,14 @@ logic_tricks = {
                     without needing a Slingshot. You will
                     take fall damage.
                     '''},
+    'Dodongo\'s Cavern MQ Light the Eyes with Strength as Adult': {
+        'name'    : 'logic_dc_mq_eyes_adult',
+        'tags'    : ("Dodongo's Cavern MQ", "Master Quest", "Adult",),
+        'tooltip' : '''\
+                    If you move very quickly, it is possible to use
+                    the bomb flower at the top of the room to light
+                    the eyes.
+                    '''},
     'Dodongo\'s Cavern MQ Light the Eyes with Strength as Child': {
         'name'    : 'logic_dc_mq_eyes_child',
         'tags'    : ("Dodongo's Cavern MQ", "Master Quest", "Child",),
@@ -742,14 +757,6 @@ logic_tricks = {
                     player is also expected to complete the DC back
                     area without explosives, including getting past
                     the Armos wall to the switch for the boss door.
-                    '''},
-    'Dodongo\'s Cavern MQ Light the Eyes with Strength as Adult': {
-        'name'    : 'logic_dc_mq_eyes_adult',
-        'tags'    : ("Dodongo's Cavern MQ", "Master Quest", "Adult",),
-        'tooltip' : '''\
-                    If you move very quickly, it is possible to use
-                    the bomb flower at the top of the room to light
-                    the eyes.
                     '''},
     'Jabu Underwater Alcove as Adult with Jump Dive': {
         'name'    : 'logic_jabu_alcove_jump_dive',
@@ -1368,7 +1375,7 @@ logic_tricks = {
                     '''},
     'Shadow Temple MQ Invisible Blades Silver Rupees without Lens of Truth': {
         'name'    : 'logic_lens_shadow_mq_invisible_blades',
-        'tags'    : ("Lens of Truth", "Shadow Temple MQ", "Master Quest", "Adult",),
+        'tags'    : ("Lens of Truth", "Shadow Temple MQ", "Master Quest", "Silver Rupees", "Adult",),
         'tooltip' : '''\
                     Removes the requirement for the Lens of Truth or
                     Nayru's Love in Shadow Temple MQ for the Invisible
@@ -1400,7 +1407,7 @@ logic_tricks = {
                     '''},
     'Shadow Temple MQ Invisible Blades without Song of Time': {
         'name'    : 'logic_shadow_mq_invisible_blades',
-        'tags'    : ("Shadow Temple MQ", "Master Quest", "Adult",),
+        'tags'    : ("Shadow Temple MQ", "Master Quest", "Silver Rupees", "Freestandings", "Adult",),
         'tooltip' : '''\
                     The Like Like can be used to boost you into the
                     silver rupee or recovery hearts that normally
@@ -1442,6 +1449,17 @@ logic_tricks = {
         'tooltip' : '''\
                     A carefully-timed Bombchu can hit the switch.
                     '''},
+    'Spirit Temple Collect Metal Fence GS Through the Fence': {
+        'name'    : 'logic_spirit_fence_gs',
+        'tags'    : ("Spirit Temple", "Silver Rupees", "Vanilla Dungeons", "Child",),
+        'tooltip' : '''\
+                    After killing the Skulltula through the fence, the token
+                    can be collected from the wrong side of the fence by
+                    moving against the fence in a certain way. Also, the
+                    Skulltula can be defeated using the Kokiri Sword, by
+                    jump slashing into it after letting go from the fence.
+                    This trick is only relevant if Silver Rupees are shuffled.
+                    '''},
     'Spirit Temple Main Room GS with Boomerang': {
         'name'    : 'logic_spirit_lobby_gs',
         'tags'    : ("Spirit Temple", "Gold Skulltulas", "Vanilla Dungeons", "Child",),
@@ -1462,7 +1480,7 @@ logic_tricks = {
                     '''},
     'Spirit Temple Main Room Jump from Hands to Upper Ledges': {
         'name'    : 'logic_spirit_lobby_jump',
-        'tags'    : ("Spirit Temple", "Spirit Temple MQ", "Gold Skulltulas", "Master Quest", "Vanilla Dungeons", "Adult",),
+        'tags'    : ("Spirit Temple", "Spirit Temple MQ", "Gold Skulltulas", "Pots", "Master Quest", "Vanilla Dungeons", "Adult",),
         'tooltip' : '''\
                     A precise jump to obtain the following as adult
                     without needing one of Hover Boots, or Hookshot
@@ -1491,13 +1509,22 @@ logic_tricks = {
                     statue all the way up the stairs.
                     '''},
     'Spirit Temple Sun Block Room Chest with Bow': {
-        'name'    : 'logic_spirit_sun_chest',
+        'name'    : 'logic_spirit_sun_chest_bow',
         'tags'    : ("Spirit Temple", "Vanilla Dungeons", "Adult",),
         'tooltip' : '''\
                     Using the blocks in the room as platforms you can
                     get lines of sight to all three torches. The timer
                     on the torches is quite short so you must move
                     quickly in order to light all three.
+                    '''},
+    'Spirit Temple Sun Block Room Chest with Sticks without Silver Rupees': {
+        'name'    : 'logic_spirit_sun_chest_no_rupees',
+        'tags'    : ("Spirit Temple", "Silver Rupees", "Vanilla Dungeons", "Child",),
+        'tooltip' : '''\
+                    With lightning fast movement, the chest can
+                    be spawned using a lit stick brought in from
+                    the main room. This trick is only relevant
+                    if Silver Rupees are shuffled.
                     '''},
     'Spirit Temple Shifting Wall with No Additional Items': {
         'name'    : 'logic_spirit_wall',
@@ -1508,7 +1535,7 @@ logic_tricks = {
                     '''},
     'Spirit Temple MQ without Lens of Truth': {
         'name'    : 'logic_lens_spirit_mq',
-        'tags'    : ("Lens of Truth", "Spirit Temple MQ", "Master Quest", "Child", "Adult",),
+        'tags'    : ("Lens of Truth", "Spirit Temple MQ", "Master Quest", "Adult",),
         'tooltip' : '''\
                     Removes the requirements for the Lens of Truth
                     in Spirit Temple MQ.
@@ -1581,28 +1608,50 @@ logic_tricks = {
                     Removes the requirements for the Lens of Truth
                     in Gerudo Training Ground.
                     '''},
-    'Gerudo Training Ground Left Side Silver Rupees without Hookshot': {
-        'name'    : 'logic_gtg_without_hookshot',
-        'tags'    : ("Gerudo Training Ground", "Vanilla Dungeons", "Child", "Adult",),
+    'Gerudo Training Ground Highest Underwater Rupee with Gold Scale': {
+        'name'    : 'logic_gtg_underwater_highest',
+        'tags'    : ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees", "Child", "Adult",),
         'tooltip' : '''\
-                    After collecting the rest of the silver rupees in the room,
-                    you can reach the final silver rupee on the ceiling by being
-                    pulled up into it after getting grabbed by the Wallmaster.
-                    Then, you must also reach the exit of the room without the
-                    use of the Hookshot. If you move quickly you can sneak past
-                    the edge of a flame wall before it can rise up to block you.
-                    To do so without taking damage is more precise.
+                    The camera is a menance while attempting to do this,
+                    though, as least as Adult, you will be automatically
+                    pulled by the current into the rupee. This trick is
+                    only relevant if Silver Rupees are shuffled.
+                    '''},
+    'Gerudo Training Ground Left Side Ceiling Silver Rupee without Hookshot': {
+        'name'    : 'logic_gtg_without_hookshot',
+        'tags'    : ("Gerudo Training Ground", "Gerudo Training Ground MQ", "Silver Rupees", "Master Quest", "Vanilla Dungeons", "Child", "Adult",),
+        'tooltip' : '''\
+                    The Silver Rupee on the ceiling can be reached by being pulled
+                    up into it by the Wallmaster. If Silver Rupees are not shuffled,
+                    you can save this rupee for last to unbar the door to the next
+                    room. In MQ, this trick is a bit more difficult since the
+                    Wallmaster will not track you to directly beneath the rupee, so
+                    you must inch forward after it begins its attempt to grab you.
+                    This trick is relevant if Silver Rupees are shuffled, or if GTG
+                    is in its MQ form, or if "Gerudo Training Ground Boulder Room
+                    Flame Wall Skip" is also enabled. This trick supersedes "Gerudo
+                    Training Ground MQ Left Side Ceiling Silver Rupee with Hookshot".
+                    '''},
+    'Gerudo Training Ground Boulder Room Flame Wall Skip': {
+        'name'    : 'logic_gtg_flame_wall',
+        'tags'    : ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees", "Child", "Adult",),
+        'tooltip' : '''\
+                    If you move quickly you can sneak past the edge of a flame wall
+                    before it can rise up to block you. To do so without taking damage
+                    is more precise. This trick is only relevant if Silver Rupees are
+                    shuffled, or if "Gerudo Training Ground Left Side Ceiling Silver
+                    Rupee without Hookshot" is also enabled.
                     '''},
     'Reach Gerudo Training Ground Fake Wall Ledge with Hover Boots': {
         'name'    : 'logic_gtg_fake_wall',
-        'tags'    : ("Gerudo Training Ground", "Gerudo Training Ground MQ", "Master Quest", "Vanilla Dungeons", "Adult",),
+        'tags'    : ("Gerudo Training Ground", "Gerudo Training Ground MQ", "Master Quest", "Vanilla Dungeons", "Silver Rupees", "Adult",),
         'tooltip' : '''\
-                    A precise Hover Boots use from the top of the chest can allow
-                    you to grab the ledge without needing the usual requirements.
-                    In Master Quest, this always skips a Song of Time requirement.
-                    In Vanilla, this skips a Hookshot requirement, but is only
-                    relevant if "Gerudo Training Ground Left Side Silver Rupees
-                    without Hookshot" is enabled.
+                    A precise Hover Boots use from the top of the chest can allow you
+                    to grab the ledge without needing the usual requirements. In Master
+                    Quest, this always skips a Song of Time requirement. In Vanilla,
+                    this can skip a Hookshot requirement, but it is only relevant if
+                    Silver Rupees are shuffled, or if "Gerudo Training Ground Left Side
+                    Ceiling Silver Rupee without Hookshot" is enabled.
                     '''},
     'Gerudo Training Ground MQ without Lens of Truth': {
         'name'    : 'logic_lens_gtg_mq',
@@ -1611,29 +1660,35 @@ logic_tricks = {
                     Removes the requirements for the Lens of Truth
                     in Gerudo Training Ground MQ.
                     '''},
-    'Gerudo Training Ground MQ Left Side Silver Rupees with Hookshot': {
+    'Gerudo Training Ground MQ Left Side Ceiling Silver Rupee with Hookshot': {
         'name'    : 'logic_gtg_mq_with_hookshot',
-        'tags'    : ("Gerudo Training Ground MQ", "Master Quest", "Adult",),
+        'tags'    : ("Gerudo Training Ground MQ", "Silver Rupees", "Master Quest", "Adult",),
         'tooltip' : '''\
-                    The highest silver rupee can be obtained by
+                    The highest Silver Rupee can be obtained by
                     hookshotting the target and then immediately jump
                     slashing toward the rupee.
                     '''},
-    'Gerudo Training Ground MQ Left Side Silver Rupees without Hookshot': {
-        'name'    : 'logic_gtg_mq_without_hookshot',
-        'tags'    : ("Gerudo Training Ground MQ", "Master Quest", "Child", "Adult",),
+    'Gerudo Training Ground MQ Eye Statue Room Switch with Jump Slash': {
+        'name'    : 'logic_gtg_mq_eye_statue_jumpslash',
+        'tags'    : ("Gerudo Training Ground MQ", "Silver Rupees", "Master Quest", "Adult",),
         'tooltip' : '''\
-                    After collecting the rest of the silver rupees in the room,
-                    you can reach the final silver rupee on the ceiling by being
-                    pulled up into it after getting grabbed by the Wallmaster.
-                    The Wallmaster will not track you to directly underneath the
-                    rupee. You should take the last step to be under the rupee
-                    after the Wallmaster has begun its attempt to grab you.
-                    Also included with this trick is that fact that the switch
-                    that unbars the door to the final chest of GTG can be hit
-                    without a projectile, using a precise jump slash.
-                    This trick supersedes "Gerudo Training Ground MQ Left Side
-                    Silver Rupees with Hookshot".
+                    The switch that unbars the door to the Ice Arrows chest
+                    can be hit with a precise jump slash. This trick is
+                    only relevant if Silver Rupees are shuffled, or if
+                    "Gerudo Training Ground Left Side Ceiling Silver Rupee
+                    without Hookshot" is also enabled.
+                    '''},
+    'Gerudo Training Ground MQ Central Maze Right to Dinolfos Room with Hookshot': {
+        'name'    : 'logic_gtg_mq_maze_right',
+        'tags'    : ("Gerudo Training Ground MQ", "Silver Rupees", "Master Quest", "Adult",),
+        'tooltip' : '''\
+                    You can stand next to the flame circle to the right of
+                    the entrance into the lava room from central maze right.
+                    From there, Hookshot can reach the torch to access the
+                    Dinolfos room without Bow. This trick is only relevant
+                    if Silver Rupees are shuffled or if one of the two tricks
+                    to collect the ceiling Silver Rupee without Longshot
+                    is enabled.
                     '''},
     'Ganon\'s Castle without Lens of Truth': {
         'name'    : 'logic_lens_castle',
@@ -1642,9 +1697,19 @@ logic_tricks = {
                     Removes the requirements for the Lens of Truth
                     in Ganon's Castle.
                     '''},
-    'Spirit Trial without Hookshot': {
+    'Fire Trial Torch Slug Silver Rupee as Child': {
+        'name'    : 'logic_fire_trial_slug_rupee',
+        'tags'    : ("Ganon's Castle", "Entrance Shuffle", "Vanilla Dungeons", "Silver Rupees", "Child"),
+        'tooltip' : '''\
+                    To jump to the platform with the Torch Slug as child requires
+                    that the sinking platform be almost as high as possible. This
+                    trick is only relevant if Silver Rupees and the Ganon's Castle
+                    entrance are both shuffled, and the Fewer Tunic Requirements
+                    trick is also enabled.
+                    '''},
+    'Spirit Trial Ceiling Silver Rupee without Hookshot': {
         'name'    : 'logic_spirit_trial_hookshot',
-        'tags'    : ("Ganon's Castle", "Vanilla Dungeons", "Child", "Adult",),
+        'tags'    : ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees", "Child", "Adult",),
         'tooltip' : '''\
                     The highest rupee can be obtained as either age by performing
                     a precise jump and a well-timed jumpslash off of an Armos.
@@ -2257,7 +2322,7 @@ setting_infos = [
                 'settings': [
                     'open_forest', 'open_kakariko', 'open_door_of_time', 'zora_fountain', 'gerudo_fortress', 'dungeon_shortcuts_choice',
                     'dungeon_shortcuts', 'trials_random', 'trials',
-                    'starting_age', 'shuffle_interior_entrances',
+                    'starting_age', 'shuffle_interior_entrances', 'shuffle_hideout_entrances',
                     'shuffle_grotto_entrances', 'shuffle_dungeon_entrances',
                     'shuffle_bosses', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops', 'warp_songs', 'spawn_positions',
                     'mix_entrance_pools', 'decouple_entrances',
@@ -2295,11 +2360,11 @@ setting_infos = [
         ''',
         disable        = {
             'glitchless': {'settings' : ['tricks_list_msg']},
-            'glitched'  : {'settings' : ['allowed_tricks', 'shuffle_interior_entrances', 'shuffle_grotto_entrances',
+            'glitched'  : {'settings' : ['allowed_tricks', 'shuffle_interior_entrances', 'shuffle_hideout_entrances', 'shuffle_grotto_entrances',
                                          'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops',
                                          'warp_songs', 'spawn_positions', 'mq_dungeons_mode', 'mq_dungeons_specific',
                                          'mq_dungeons_count', 'shuffle_bosses', 'dungeon_shortcuts', 'deadly_bonks',
-                                         'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_beehives',
+                                         'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_beehives', 'shuffle_silver_rupees',
                                          'mix_entrance_pools', 'decouple_entrances']},
             'none'      : {'settings' : ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
         },
@@ -2987,6 +3052,9 @@ setting_infos = [
             vanilla location, dropping from fighting Gerudo guards
             that attack when trying to free the jailed carpenters.
 
+            "Gerudo Fortress Region": Thieves' Hideout Keys can only
+            appear in Gerudo Fortress or Thieves' Hideout.
+
             "Regional": Thieves' Hideout Keys can only appear in
             Gerudo Valley, Gerudo Fortress, Thieves' Hideout, Gerudo
             Training Ground, Haunted Wasteland, Desert Colossus, or
@@ -3008,6 +3076,45 @@ setting_infos = [
         },
     ),
     Combobox(
+        name           = 'shuffle_tcgkeys',
+        gui_text       = 'Treasure Chest Game Keys',
+        default        = 'vanilla',
+        choices        = {
+            'remove':      "Remove (Keysy)",
+            'vanilla':     "Vanilla Locations",
+            'regional':    "Regional",
+            'overworld':   "Overworld Only",
+            'any_dungeon': "Any Dungeon",
+            'keysanity':   "Anywhere (Keysanity)",
+        },
+        gui_tooltip    = '''\
+            'Remove': All Treasure Chest Game keys will be removed
+            and all doors will remained unlocked.
+
+            'Vanilla': Treasure Chest Game keys will have vanilla
+            behavior (one random per room). The minigame will
+            also have vanilla behavior.
+
+            'Regional': Treasure Chest Game keys can only appear
+            in Hyrule Field, Lon Lon Ranch, the Market, the Temple
+            of Time, Hyrule Castle, outside Ganon's Castle, or
+            inside Ganon's Castle.
+
+            'Overworld Only': Treasure Chest Game keys can only appear
+            outside of dungeons.
+
+            'Any Dungeon': Treasure Chest Game keys can only appear
+            inside of dungeons.
+
+            'Anywhere': Treasure Chest Game keys can appear anywhere
+            in the world.
+        ''',
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    ),
+    Combobox(
         name           = 'key_rings_choice',
         gui_text       = 'Key Rings Mode',
         default        = 'off',
@@ -3015,7 +3122,7 @@ setting_infos = [
             'off':       'Off',
             'choice':    'Choose dungeons',
             'all':       'All dungeons',
-            'random':    'Random dungeons'
+            'random':    'Random selection'
         },
         gui_tooltip     = '''\
             Selected dungeons will have all of their keys found
@@ -3032,6 +3139,11 @@ setting_infos = [
             no effect if Thieves' Hideout keys are in vanilla
             locations or Gerudo's Fortress is set to Rescue
             One Carpenter.
+
+            Similarly, selecting Treasure Chest Game will have
+            no effect if the keys aren't shuffled. Treasure Chest
+            Game will be considered when selecting 'All dungeons'
+            or 'Random selection'.
         ''',
         shared         = True,
         disable={
@@ -3046,6 +3158,7 @@ setting_infos = [
         gui_text        = 'Key Rings',
         choices         = {
             'Thieves Hideout':        "Thieves' Hideout",
+            'Treasure Chest Game':    "Treasure Chest Game",
             'Forest Temple':          "Forest Temple",
             'Fire Temple':            "Fire Temple",
             'Water Temple':           "Water Temple",
@@ -3069,12 +3182,140 @@ setting_infos = [
         gui_text       = 'Key Rings give Boss Keys',
         gui_tooltip    = '''\
             Boss Keys will be included in the Key Ring for the specific dungeon.
+            This does not apply to the Ganon's Castle Boss Key.
         ''',
         default        = False,
         shared         = True,
         gui_params     = {
             "hide_when_disabled": True,
         },
+    ),
+    Combobox(
+        name           = 'shuffle_silver_rupees',
+        gui_text       = 'Shuffle Silver Rupees',
+        default        = 'vanilla',
+        choices        = {
+            'remove':      'Remove',
+            'vanilla':     'Vanilla Locations',
+            'dungeon':     'Own Dungeon',
+            'overworld':   'Overworld Only',
+            'any_dungeon': 'Any Dungeon',
+            'regional':    'Regional',
+            'anywhere':    'Anywhere',
+        },
+        gui_tooltip    = '''\
+            Enabling this shuffles the Silver Rupee puzzles into to the
+            item pool.
+
+            Silver Rupees are grouped into sets of 5 (except for some
+            Master Quest dungeons, which have sets of other amounts), each
+            of which permanently unlocks something in a dungeon once all
+            the rupees in that set are collected. Hints will only tell you
+            the dungeon a Silver Rupee corresponds to, but upon collecting
+            it, you will be told the exact room.
+            The vanilla locations of Silver Rupees hold shuffled items.
+
+            'Remove': Silver Rupees are removed and the puzzles are
+            solved. This will add a small amount of money and
+            refill items to the pool.
+
+            'Vanilla': Silver Rupees will appear in their vanilla
+            locations. You will have to collect all of a set in one go to
+            to solve a puzzle.
+
+            'Own Dungeon': Silver Rupees can only appear
+            in their respective dungeon.
+
+            'Overworld Only': Silver Rupees can only appear
+            outside of dungeons.
+
+            'Any Dungeon': Silver Rupees can only appear in a
+            dungeon, but not necessarily the dungeon they are for.
+
+            'Regional': Silver Rupees can only appear in regions
+            near the original dungeon (including the dungeon
+            itself or other dungeons in the region).
+            <a href="https://wiki.ootrandomizer.com/index.php?title=Hints#Hint_Regions" target="_blank">The Wiki has a list of corresponding regions here.</a>
+
+            'Anywhere': Silver Rupees can appear
+            anywhere in the world.
+        ''',
+        shared         = True,
+        disable        = {
+            'remove':  {'settings': ['silver_rupee_pouches_choice', 'silver_rupee_pouches']},
+            'vanilla': {'settings': ['silver_rupee_pouches_choice', 'silver_rupee_pouches']},
+        },
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    ),
+    Combobox(
+        name           = 'silver_rupee_pouches_choice',
+        gui_text       = 'Silver Rupee Pouches Mode',
+        default        = 'off',
+        choices        = {
+            'off':       'Off',
+            'choice':    'Choose puzzles',
+            'all':       'All puzzles',
+            'random':    'Random puzzles'
+        },
+        gui_tooltip     = '''\
+            Selected silver rupee puzzles will have all of
+            their silver rupees found at once in a pouch
+            rather than individually.
+
+            For example, instead of shuffling 5 silver
+            rupees for the Fire Trial in Ganon's Castle
+            into the pool, you will find a single pouch
+            which will give you all 5 of them at once.
+        ''',
+        shared         = True,
+        disable        = {
+            'off': {'settings' : ['silver_rupee_pouches']},
+            'all': {'settings' : ['silver_rupee_pouches']},
+            'random': {'setings' : ['silver_rupee_pouches']},
+        },
+        gui_params     = {
+            "hide_when_disabled": True,
+        },
+    ),
+    Combobox(
+        name            = 'silver_rupee_pouches',
+        multiple_select = True,
+        gui_text        = 'Silver Rupee Pouches',
+        choices         = {
+            'Dodongos Cavern Staircase': "Dodongo's Cavern Staircase",
+            'Ice Cavern Spinning Scythe': "Ice Cavern Spinning Scythe",
+            'Ice Cavern Push Block': "Ice Cavern Push Block",
+            'Bottom of the Well Basement': "Bottom of the Well Basement",
+            'Shadow Temple Scythe Shortcut': "Shadow Temple Scythe Shortcut",
+            'Shadow Temple Invisible Blades': "Shadow Temple Invisible Blades",
+            'Shadow Temple Huge Pit': "Shadow Temple Huge Pit",
+            'Shadow Temple Invisible Spikes': "Shadow Temple Invisible Spikes",
+            'Gerudo Training Ground Slopes': "Gerudo Training Ground Slopes",
+            'Gerudo Training Ground Lava': "Gerudo Training Ground Lava",
+            'Gerudo Training Ground Water': "Gerudo Training Ground Water",
+            'Spirit Temple Child Early Torches': "Spirit Temple Child Early Torches",
+            'Spirit Temple Adult Boulders': "Spirit Temple Adult Boulders",
+            'Spirit Temple Lobby and Lower Adult': "Spirit Temple Lobby and Lower Adult",
+            'Spirit Temple Sun Block': "Spirit Temple Sun Block",
+            'Spirit Temple Adult Climb': "Spirit Temple Adult Climb",
+            'Ganons Castle Spirit Trial': "Ganon's Castle Spirit Trial",
+            'Ganons Castle Light Trial': "Ganon's Castle Light Trial",
+            'Ganons Castle Fire Trial': "Ganon's Castle Fire Trial",
+            'Ganons Castle Shadow Trial': "Ganon's Castle Shadow Trial",
+            'Ganons Castle Water Trial': "Ganon's Castle Water Trial",
+            'Ganons Castle Forest Trial': "Ganon's Castle Forest Trial",
+        },
+        gui_tooltip    = '''\
+            Select puzzles with silver rupee pouches
+            instead of individual silver rupees.
+        ''',
+        default         = [],
+        gui_params     = {
+            "hide_when_disabled": True,
+        },
+        shared          = True,
     ),
     Combobox(
         name           = 'shuffle_mapcompass',
@@ -3585,6 +3826,9 @@ setting_infos = [
             and items never revert, even when dying or loading a save.
         ''',
         shared         = True,
+        disable        = {
+            'off' : {'settings' : ['shuffle_hideout_entrances']},
+        },
         gui_params     = {
             'randomize_key': 'randomize_settings',
             'distribution':  [
@@ -3592,6 +3836,26 @@ setting_infos = [
                 ('simple', 1),
                 ('all', 1),
             ],
+        },
+    ),
+    Checkbutton(
+        name           = 'shuffle_hideout_entrances',
+        gui_text       = 'Shuffle Thieves\' Hideout Entrances',
+        gui_tooltip    = '''\
+            Shuffle the pool of entrances to Thieves' Hideout
+            into the pool of interior entrances.
+
+            Note that savewarping in any room of Thieves' Hideout
+            always takes you to the first room (with 1 torch).
+
+            There is an extra heart piece on the balcony above the jail in
+            Gerudo's Fortress if accessed as child. This is not shuffled
+            and not considered in logic.
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
         },
     ),
     Checkbutton(
@@ -3626,7 +3890,7 @@ setting_infos = [
             With Dungeon and Ganon selected, all dungeons including Ganon's
             castle will be shuffled.
 
-            Thieves' Hideout is not shuffled.
+            Thieves' Hideout is controlled by a separate setting.
         ''',
         shared         = True,
         gui_params     = {
@@ -4314,6 +4578,44 @@ setting_infos = [
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
+        },
+    ),
+    Combobox(
+        name           = 'shuffle_loach_reward',
+        gui_text       = 'Shuffle Hyrule Loach Reward',
+        gui_tooltip    = '''\
+            Enabling this shuffles the reward for catching the
+            Hyrule Loach at the fishing pond into the item pool
+
+            Vanilla Behavior shuffles the reward for catching the loach
+            but otherwise keeps all behavior the same as in
+            the vanilla game. The loach will spawn every fourth play
+            of the fishing minigame and the sinking lure will
+            become available only after obtaining the fishing prize
+            for link's current age.
+
+            Easier Behavior shuffles the loach reward but also modifies
+            some behavior in order to make the loach easier to catch.
+            When enabled the loach will always spawn at the
+            fishing pond, the sinking lure will be available
+            immediately at all four possible positions, and
+            the child/adult fishing prizes are still obtainable
+            if you use the sinking lure.
+        ''',
+        default        = 'off',
+        choices        = {
+            'off': 'Off',
+            'vanilla': 'Vanilla Behavior',
+            'easy': 'Easier Behavior'
+        },
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+            'distribution': [
+                ('off',          1),
+                ('vanilla',      1),
+                ('easy',         1)
+            ],
         },
     ),
 
@@ -6045,6 +6347,18 @@ setting_infos = [
         ''',
         default        = False,
     ),
+    Checkbutton(
+        name           = 'speedup_music_for_last_triforce_piece',
+        gui_text       = 'Speed Up Music For Last Triforce Piece',
+        shared         = False,
+        cosmetic       = True,
+        gui_tooltip    = '''\
+            In Triforce Hunt, the music will speed up slightly
+            at one piece from the goal to make it more hype !
+            Does not apply on the standard battle enemy music.
+        ''',
+        default        = False,
+    ),
     Combobox(
         name           = 'background_music',
         gui_text       = 'Background Music',
@@ -6496,6 +6810,17 @@ setting_infos = [
                 ('random-ear-safe', 1),
             ]
         }
+    ),
+    Checkbutton(
+        name           = 'slowdown_music_when_lowhp',
+        gui_text       = 'Slow Down Music When Low HP',
+        shared         = False,
+        cosmetic       = True,
+        gui_tooltip    = '''\
+            The music will slow down slightly when being low on HP.
+            Does not apply on the standard battle enemy music.
+        ''',
+        default        = False,
     ),
     Combobox(
         name           = 'sfx_silver_rupee',
