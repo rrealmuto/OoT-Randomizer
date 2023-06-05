@@ -2743,7 +2743,7 @@ courtyard_guards_kill:
     jal     Static_ctxt_Init
 
 ;==================================================================================================
-; burning kak from any entrance to kak
+; burning kak from any entrance to kak (except the grottos)
 ;==================================================================================================
 ; Replaces: lw      t9, 0x0000(s0)
 ;           addiu   at, 0x01E1
