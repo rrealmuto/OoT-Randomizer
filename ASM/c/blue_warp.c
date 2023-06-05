@@ -83,6 +83,7 @@ void DoorWarp1_ForestMedallion_Overwrite(void) {
 void DoorWarp1_FireMedallion_Overwrite(void) {
     z64_file.skybox_time = z64_file.day_time = 0x8000; // CLOCK_TIME(12, 00)
     z64_file.event_chk_inf[2] |= 1 << 15; // DMT cloud circle no longer fire
+    z64_file.timer_1_state = 0; // reset heat timer
 }
 
 void DoorWarp1_WaterMedallion_Overwrite(void) {
