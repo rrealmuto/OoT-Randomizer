@@ -4607,8 +4607,8 @@ setting_infos = [
             'random': 'Random # of Items Per Shop',
         },
         disable        = {
-            'off':  {'settings': ['special_deal_price_min', 'special_deal_price_max', 'special_deal_price_distribution']},
-            '0':    {'settings': ['special_deal_price_min', 'special_deal_price_max', 'special_deal_price_distribution']},
+            'off':  {'settings': ['special_deal_price_distribution', 'special_deal_price_min', 'special_deal_price_max']},
+            '0':    {'settings': ['special_deal_price_distribution', 'special_deal_price_min', 'special_deal_price_max']},
         },
         gui_tooltip    = '''\
             Randomizes Shop contents.
@@ -4648,6 +4648,37 @@ setting_infos = [
             ],
         },
     ),
+    Combobox(
+        name           = 'special_deal_price_distribution',
+        gui_text       = 'Special Deal Prices',
+        default        = 'betavariate',
+        choices        = {
+            'vanilla':     'Vanilla',
+            'betavariate': 'Weighted',
+            'uniform':     'Uniform',
+        },
+        disable        = {
+            'vanilla': {'settings': ['special_deal_price_min', 'special_deal_price_max']},
+        },
+        shared         = True,
+        gui_tooltip    = '''\
+            Controls how the prices for Special Deal items in shops are
+            selected. For more control, utilize the plandomizer.
+
+            'Vanilla': Each item will be sold for the price of the item
+            that appears in its slot in the vanilla game.
+
+            'Weighted': Shop prices will be biased towards slightly below
+            the middle of the selected range, with very low or very high
+            prices only appearing rarely.
+
+            'Uniform': Each price value in the selected range is equally
+            likely.
+        ''',
+        gui_params     = {
+            "hide_when_disabled": True,
+        },
+    ),
     Scale(
         name           = 'special_deal_price_min',
         gui_text       = 'Minimum Special Deal Price',
@@ -4683,30 +4714,6 @@ setting_infos = [
             Distribution" setting. Set this setting and "Minimum
             Special Deal Price" to the same value to give all
             Special Deals a fixed price.
-        ''',
-        gui_params     = {
-            "hide_when_disabled": True,
-        },
-    ),
-    Combobox(
-        name           = 'special_deal_price_distribution',
-        gui_text       = 'Special Deal Price Distribution',
-        default        = 'betavariate',
-        choices        = {
-            'betavariate': 'Weighted',
-            'uniform':     'Uniform',
-        },
-        shared         = True,
-        gui_tooltip    = '''\
-            Controls how the random prices for Special Deal items in
-            shops are selected. For more control, utilize the plandomizer.
-
-            'Weighted': Shop prices will be biased towards slightly below
-            the middle of the selected range, with very low or very high
-            prices only appearing rarely.
-
-            'Uniform': Each price value in the selected range is equally
-            likely.
         ''',
         gui_params     = {
             "hide_when_disabled": True,

@@ -24,7 +24,7 @@ Differences between this branch and [Dev-R](https://github.com/Roman971/OoT-Rand
   * New “Frogs Ocarina Game” option for the “Randomize Ocarina Song Notes” setting (based on [rrealmuto's `random_frog_song` branch](https://github.com/rrealmuto/OoT-Randomizer/tree/random_frog_song))
   * “Minor Items in Big/Gold Chests” allows selecting “Bombchus” and “Deku & Hylian Shields” separately, and adds a new option for “Deku Stick & Nut Capacity”
   * New “Shuffle Ganon's Tower Entrance” setting
-  * New “Minimum Special Deal Price”, “Maximum Special Deal Price”, and “Special Deal Price Distribution” settings replacing “Shopsanity Prices”
+  * New “Special Deal Prices”, “Minimum Special Deal Price”, and “Maximum Special Deal Price” settings replacing “Shopsanity Prices”
   * New “[EXPERIMENTAL] Allow Access to Shadow and Spirit Temples From Boss Doors” setting
   * New “Clearer Item Models” setting which is on by default but can be disabled to reintroduce pairs of items with the same model, including frog songs/warp songs and small keys/keyrings
   * Work-in-progress “Language” setting to translate the game into French or German

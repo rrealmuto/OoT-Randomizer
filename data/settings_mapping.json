@@ -202,9 +202,9 @@
           "settings": [
             "shuffle_song_items",
             "shopsanity",
+            "special_deal_price_distribution",
             "special_deal_price_min",
             "special_deal_price_max",
-            "special_deal_price_distribution",
             "tokensanity",
             "shuffle_scrubs",
             "shuffle_child_trade",

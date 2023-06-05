@@ -16,7 +16,7 @@ from OcarinaSongs import generate_song_list
 from Plandomizer import InvalidFileException
 from Region import Region, TimeOfDay
 from RuleParser import Rule_AST_Transformer
-from SettingsList import get_setting_info, get_settings_from_section
+from SettingsList import get_setting_info
 from State import State
 from Utils import read_logic_file
 
@@ -711,7 +711,9 @@ class World(object):
             for location in region.locations:
                 if location.type == 'Shop':
                     if location.name[-1:] in shop_item_indexes[:shop_item_count]:
-                        if self.settings.special_deal_price_max < self.settings.special_deal_price_min:
+                        if self.settings.special_deal_price_distribution == 'vanilla':
+                            self.shop_prices[location.name] = ItemInfo.items[location.vanilla_item].price
+                        elif self.settings.special_deal_price_max < self.settings.special_deal_price_min:
                             raise ValueError('Maximum special deal price is lower than minimum, perhaps you meant to swap them?')
                         elif self.settings.special_deal_price_max == self.settings.special_deal_price_min:
                             self.shop_prices[location.name] = self.settings.special_deal_price_min
@@ -720,7 +722,7 @@ class World(object):
                         elif self.settings.special_deal_price_distribution == 'uniform':
                             self.shop_prices[location.name] = random.randrange(self.settings.special_deal_price_min, self.settings.special_deal_price_max + 1, 5)
                         else:
-                            raise NotImplementedError(f'Unimplemented special deal distribution: {world.settings.special_deal_price_distribution}')
+                            raise NotImplementedError(f'Unimplemented special deal distribution: {self.settings.special_deal_price_distribution}')
 
 
     def set_scrub_prices(self):
