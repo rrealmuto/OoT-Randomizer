@@ -1326,7 +1326,7 @@ def update_warp_song_text(messages, world):
         0x0892: 'Prelude of Light Warp -> Temple of Time',
     }
     owl_messages = {
-        0x3063: 'DMT Owl Flight -> Kak Impas Rooftop',
+        0x3063: 'DMT Owl Flight -> Kak Impas Rooftop Cutscene Entrance',
         0x4004: 'LH Owl Flight -> Hyrule Field',
     }
 
