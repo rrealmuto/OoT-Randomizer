@@ -452,7 +452,7 @@ def generate_itempool(world):
     junk_pool[:] = list(junk_pool_base)
     if world.settings.junk_ice_traps == 'on':
         junk_pool.append(('Ice Trap', 10))
-    elif world.settings.junk_ice_traps in ['mayhem', 'onslaught']:
+    elif world.settings.junk_ice_traps in ('mayhem', 'onslaught'):
         junk_pool[:] = [('Ice Trap', 1)]
 
     # set up item pool
