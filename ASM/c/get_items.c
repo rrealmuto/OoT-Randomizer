@@ -184,10 +184,11 @@ void activate_override(override_t override) {
     item_row_t *item_row = get_item_row(resolved_item_id);
 
     active_override = override;
-    if (resolved_item_id == 0xCA)
+    if (resolved_item_id == 0xCA || (resolved_item_id >= 0x1000 && resolved_item_id < 0x1007)) { // Triforce piece
         active_override_is_outgoing = 2; // Send to everyone
-    else
+    } else {
         active_override_is_outgoing = override.value.player != PLAYER_ID;
+    }
     active_item_row = item_row;
     active_item_action_id = item_row->action_id;
     active_item_text_id = item_row->text_id;
@@ -216,7 +217,13 @@ override_t outgoing_queue[8] = { 0 };
 void push_outgoing_override(override_t *override) {
     if (override->key.type != OVR_DELAYED || override->key.flag != 0xFF) { // don't send items received from incoming back to outgoing
         if (OUTGOING_KEY.all == 0) {
-            OUTGOING_ITEM = override->value.item_id;
+            if (override->value.item_id >= 0x1000 && override->value.item_id < 0x1007) {
+                // Multiworld plugins (at least Bizhawk Shuffler 2 and Mido's House Multiworld) have special cases for Triforce pieces.
+                // To make sure Triforce Blitz pieces are handled the same way, they're sent as normal Triforce pieces.
+                OUTGOING_ITEM = 0xCA;
+            } else {
+                OUTGOING_ITEM = override->value.item_id;
+            }
             OUTGOING_PLAYER = override->value.player;
             // Set the value first and then the key, so a plugin checking whether the key is present is guaranteed to see the value as well
             OUTGOING_KEY = override->key;
@@ -233,7 +240,13 @@ void push_outgoing_override(override_t *override) {
 
 void move_outgoing_queue() {
     if (OUTGOING_KEY.all == 0) {
-        OUTGOING_ITEM = outgoing_queue[0].value.item_id;
+        if (outgoing_queue[0].value.item_id >= 0x1000 && outgoing_queue[0].value.item_id < 0x1007) {
+            // Multiworld plugins (at least Bizhawk Shuffler 2 and Mido's House Multiworld) have special cases for Triforce pieces.
+            // To make sure Triforce Blitz pieces are handled the same way, they're sent as normal Triforce pieces.
+            OUTGOING_ITEM = 0xCA;
+        } else {
+            OUTGOING_ITEM = outgoing_queue[0].value.item_id;
+        }
         OUTGOING_PLAYER = outgoing_queue[0].value.player;
         // Set the value first and then the key, so a plugin checking whether the key is present is guaranteed to see the value as well
         OUTGOING_KEY = outgoing_queue[0].key;
@@ -364,7 +377,7 @@ void try_pending_item() {
         return;
     }
 
-    if (override.value.item_id == 0xCA && override.value.player != PLAYER_ID) {
+    if ((override.value.item_id == 0xCA || (override.value.item_id >= 0x1000 && override.value.item_id < 0x1007)) && override.value.player != PLAYER_ID) { // Triforce piece
         uint16_t resolved_item_id = resolve_upgrades(override.value.item_id);
         item_row_t *item_row = get_item_row(resolved_item_id);
         call_effect_function(item_row);
@@ -703,7 +716,7 @@ int16_t get_override_drop_id(int16_t dropId) {
 
 void dispatch_item(uint16_t resolved_item_id, uint8_t player, override_t *override, item_row_t *item_row) {
     // Give the item to the right place
-    if (resolved_item_id == 0xCA) {
+    if (resolved_item_id == 0xCA || (resolved_item_id >= 0x1000 && resolved_item_id < 0x1007)) { // Triforce piece
         // Send triforce to everyone
         push_outgoing_override(override);
         z64_GiveItem(&z64_game, item_row->action_id);
