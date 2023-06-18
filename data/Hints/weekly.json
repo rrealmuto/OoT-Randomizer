@@ -1,7 +1,7 @@
 {
     "name":                  "weekly",
     "gui_name":              "Weekly",
-    "description":           "Hint distribution for weekly races. 5 Goal hints, 3 Barren hints, 7 Sometimes hints, 5 Always hints (including 30 Skulltula tokens, Skull Mask, and Sheik in Kakariko).",
+    "description":           "Hint distribution for weekly races. 5 Goal hints, 3 Barren hints, 4 Entrance/Sometimes hints, 8 Always hints (including Skull Mask and Sheik in Kakariko).",
     "add_locations":         [
         { "location": "Deku Theater Skull Mask", "types": ["always"] },
         { "location": "Sheik in Kakariko", "types": ["always"] }
@@ -18,7 +18,7 @@
     "remove_items":          [
         { "item": "Zeldas Lullaby", "types": ["goal"] }
     ],
-    "dungeons_barren_limit": 3,
+    "dungeons_barren_limit": 1,
     "named_items_required":  true,
     "vague_named_items":     false,
     "use_default_goals":     true,
@@ -28,9 +28,9 @@
         "always":           {"order": 3, "weight": 0.0, "fixed":   0, "copies": 2},
         "goal":             {"order": 4, "weight": 0.0, "fixed":   5, "copies": 2},
         "barren":           {"order": 5, "weight": 0.0, "fixed":   3, "copies": 2},
-        "entrance":         {"order": 6, "weight": 0.0, "fixed":   4, "copies": 2},
-        "sometimes":        {"order": 7, "weight": 0.0, "fixed": 100, "copies": 2},
-        "random":           {"order": 8, "weight": 9.0, "fixed":   0, "copies": 2},
+        "entrance":         {"order": 6, "weight": 1.0, "fixed":   0, "copies": 2},
+        "sometimes":        {"order": 7, "weight": 1.0, "fixed":   0, "copies": 2},
+        "random":           {"order": 8, "weight": 0.0, "fixed":   0, "copies": 2},
         "item":             {"order": 0, "weight": 0.0, "fixed":   0, "copies": 2},
         "song":             {"order": 0, "weight": 0.0, "fixed":   0, "copies": 2},
         "overworld":        {"order": 0, "weight": 0.0, "fixed":   0, "copies": 2},

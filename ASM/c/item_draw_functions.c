@@ -88,6 +88,32 @@ void draw_gi_wallets(z64_game_t *game, uint32_t draw_id) {
     gSPDisplayList(gfx->poly_opa.p++, item_draw_table[draw_id].args[7].dlist);
 }
 
+
+void draw_gi_silver_rupee_pouch(z64_game_t *game, uint32_t draw_id) {
+    z64_gfx_t *gfx = game->common.gfx;
+
+    append_setup_dl_25_to_opa(gfx);
+    gSPMatrix(gfx->poly_opa.p++, append_sys_matrix(gfx), G_MTX_MODELVIEW | G_MTX_LOAD | G_MTX_NOPUSH);
+
+    // Set the wallet color silver by reimplementing the gGiAdultWalletColorDL calls:
+    // E7 00 00 00 00 00 00 00 gSPRDPPipeSync
+    // FA 00 00 00 A0 82 64 FF gSPSetPrimColor
+    // FB 00 00 00 46 3C 32 FF gSPSetEnvColor
+    // DF 00 00 00 00 00 00 00
+
+    //gSPDisplayList(gfx->poly_opa.p++, item_draw_table[draw_id].args[1].dlist);  // gGiAdultWalletColorDL
+    gDPPipeSync(gfx->poly_opa.p++);
+    gDPSetPrimColor(gfx->poly_opa.p++, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF);
+    gDPSetEnvColor(gfx->poly_opa.p++, 0x32, 0x3C, 0x3C, 0xFF);
+    gSPDisplayList(gfx->poly_opa.p++, item_draw_table[draw_id].args[0].dlist);  // gGiWalletDL
+    gSPDisplayList(gfx->poly_opa.p++, item_draw_table[draw_id].args[2].dlist);  // gGiAdultWalletRupeeOuterColorDL
+    gSPDisplayList(gfx->poly_opa.p++, item_draw_table[draw_id].args[3].dlist);  // gGiWalletRupeeOuterDL
+    gSPDisplayList(gfx->poly_opa.p++, item_draw_table[draw_id].args[4].dlist);  // gGiAdultWalletStringColorDL
+    gSPDisplayList(gfx->poly_opa.p++, item_draw_table[draw_id].args[5].dlist);  // gGiWalletStringDL
+    gSPDisplayList(gfx->poly_opa.p++, item_draw_table[draw_id].args[6].dlist);  // gGiAdultWalletRupeeInnerColorDL
+    gSPDisplayList(gfx->poly_opa.p++, item_draw_table[draw_id].args[7].dlist);  // gGiWalletRupeeInnerDL
+}
+
 void draw_gi_various_xlu01(z64_game_t *game, uint32_t draw_id) {
     z64_gfx_t *gfx = game->common.gfx;
 
@@ -123,6 +149,7 @@ void draw_rutos_letter(z64_game_t *game, uint32_t draw_id) {
     gSPMatrix(gfx->poly_xlu.p++, append_sys_matrix(gfx), G_MTX_MODELVIEW | G_MTX_LOAD | G_MTX_NOPUSH);
     gSPDisplayList(gfx->poly_xlu.p++, item_draw_table[draw_id].args[1].dlist);
 }
+
 
 void draw_gi_coins_and_cuccos(z64_game_t *game, uint32_t draw_id) {
     z64_gfx_t *gfx = game->common.gfx;

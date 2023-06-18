@@ -18,11 +18,9 @@ override_t get_smallcrate_override(z64_actor_t *actor, z64_game_t *game) {
     dummy.actor.variable = 0;
 
     override_t override = lookup_override(&(dummy.actor), game->scene_index, 0);
-    if(override.key.all != 0)
-    {
+    if (override.key.all != 0) {
         dummy.override = override;
-        if(!Get_CollectibleOverrideFlag(&dummy))
-        {
+        if (!Get_CollectibleOverrideFlag(&dummy)) {
             return override;
         }
     }
@@ -79,7 +77,7 @@ void ObjKibako_SpawnCollectible_Hack(z64_actor_t* this, z64_game_t* globalCtx) {
     collectible = this->variable & 0x1F;
     if ((collectible >= 0) && (collectible <= 0x19)) {
         drop_collectible_override_flag = this->rot_init.z;
-        EnItem00* spawned = z64_Item_DropCollectible(globalCtx, &this->pos_world,
+        EnItem00 *spawned = z64_Item_DropCollectible(globalCtx, &this->pos_world,
                              collectible | (((this->variable >> 8) & 0x3F) << 8));
         drop_collectible_override_flag = 0;
     }

@@ -25,6 +25,7 @@ extern sprite_t dpad_sprite;
 extern sprite_t triforce_sprite;
 extern sprite_t song_note_sprite;
 extern sprite_t key_rupee_clock_sprite;
+extern sprite_t rupee_digit_sprite;
 extern sprite_t item_digit_sprite;
 extern sprite_t linkhead_skull_sprite;
 extern sprite_t heart_sprite;
@@ -35,5 +36,8 @@ void sprite_load(z64_disp_buf_t *db, sprite_t *sprite,
         int start_tile, int tile_count);
 void sprite_draw(z64_disp_buf_t *db, sprite_t *sprite, int tile_index,
         int left, int top, int width, int height);
+
+void sprite_texture(z64_disp_buf_t *db, sprite_t * sprite, int tile_index,
+        int16_t left, int16_t top, int16_t width, int16_t height);
 
 #endif

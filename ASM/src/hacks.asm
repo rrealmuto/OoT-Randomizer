@@ -71,6 +71,114 @@ Gameplay_InitSkybox:
 .endarea
 
 ;==================================================================================================
+; Increase Number of Audio Banks, and Audiotable (samples)
+;==================================================================================================
+
+.org 0x800B8888
+    lui     t2, hi(AUDIOBANK_TABLE_EXTENDED)
+.org 0x800B8898
+    addiu   t2, t2, lo(AUDIOBANK_TABLE_EXTENDED)
+
+; Hacks to increase the number of audio banks from 0x30 to 0x80
+; Hacks in AudioHeap_ResetLoadStatus
+; This loop is annoying because it hardcodes the start and end addresses of fontLoadStatus array instead of calculating it.
+; v0 - start of array
+; v1 - end of array
+.org 0x800B3540
+    ; Replaces
+    ; lui   v1, 0x8012
+    ; lui   v0, 0x8012
+    ; addiu v0, v0 0x5660
+    ; addiu v1, v1, 0x5630
+    li      v1, FONTLOADSTATUS_EXTENDED
+    li      v0, FONTLOADSTATUS_EXTENDED + 0x80
+
+.org 0x800B3554
+    ; Replaces:
+    ; lbu   t6, 0x3468(v1)
+    lbu     t6, 0x00(v1)
+
+.org 0x800B3560
+    ; Replaces:
+    ; sb    r0, 0x3468(v1)
+    sb      r0, 0x00(v1)
+
+; Hacks in AudioHeap_PopPersistentCache (I think)
+.org 0x800B3AB8
+    ; Replaces:
+    ; lui   t7, 0x8013
+    ; addiu t7, t7, 0x8A98
+    li  t7, FONTLOADSTATUS_EXTENDED
+
+; Hacks in AudioHeap_AllocCached (I think)
+.org 0x800B3F00
+    ; Replaces:
+    ; lui   t3, 0x8013
+    lui     t3, hi(FONTLOADSTATUS_EXTENDED)
+.org 0x800B3F0C
+    ; Replaces:
+    ; addiu t3, t3, 0x8A98
+    addiu   t3, t3, lo(FONTLOADSTATUS_EXTENDED)
+
+; Hacks in AudioLoad_IsFontLoadComplete
+.org 0x800B6E8C
+; Replaces:
+;   lui     t6, 0x8013
+;   addu    t6, t6, a1
+;   lbu     t6, 0x8A98(t6)
+    lui     t6, hi(FONTLOADSTATUS_EXTENDED)
+    addu    t6, t6, a1
+    lbu     t6, lo(FONTLOADSTATUS_EXTENDED)(t6)
+.org 0x800B6EB4
+; Replaces:
+;   lui     t7, 0x8013
+;   addu    t7, t7, v0
+;   lbu     t7, 0x8A98(t7)
+    lui     t7, hi(FONTLOADSTATUS_EXTENDED)
+    addu    t7, t7, v0
+    lbu     t7, lo(FONTLOADSTATUS_EXTENDED)(t7)
+
+; Hacks in AudioLoad_SetFontLoadStatus
+.org 0x800B6FE0
+; Replaces:
+;   lui     t6, 0x8012
+;   addiu   t6, t6, 0x5630
+;   skip
+;   lbu     t7, 0x3468(v0)
+;   skip
+;   skip
+;   skip
+;   sb      a1, 0x3468(v0)
+    li      t6, FONTLOADSTATUS_EXTENDED
+    .skip   4
+    lbu     t7, 0x00(v0)
+    .skip   12
+    sb      a1, 0x00(v0)
+
+; Hacks in AudioLoad_SyncLoadFont
+.org 0x800B7A2C
+; Replaces:
+;   lui     a1, 0x8012
+;   addiu   a1, a1, 0x5630
+;   addu    t6, a1, v0
+    jal     AudioLoad_SyncLoadFont_StatusHack
+    lui     a1, 0x8012
+    nop
+    lbu     t7, 0x00(t6)
+
+; Hacks in AudioLoad_AsyncLoadInner
+.org 0x800B82D0
+; Replaces:
+;   lui     t7, 0x8013
+    lui     t7, hi(FONTLOADSTATUS_EXTENDED)
+.org 0x800B8310
+; Replaces:
+;   addu    t7, t7, v0
+;   lbu     t7, 0x8A98(t7)
+    addu    t7, t7, v0
+    lbu     t7, lo(FONTLOADSTATUS_EXTENDED)(t7)
+
+;==================================================================================================
 ; Don't Use Sandstorm Transition if gameplay_field_keep is not loaded
 ;==================================================================================================
 
@@ -243,6 +351,35 @@ Gameplay_InitSkybox:
     nop
 
 ;==================================================================================================
+; Speed up armos push
+;==================================================================================================
+; In EnAm_Statue, subtract 0x1000 from this->unk_258 instead of 0x800
+; This value is used as the timer for how long to push for
+; This halves the number of frames that the push will occur over.
+;replaces
+;addiu t0, a2, 0xF800
+.orga 0xC97C68
+    addiu t0, a2, 0xF000
+
+; 1.00973892212 is used instead of 1 because we are setting a speed based on sin(unk_258). When this is discretized and summed up over the duration movement, 1 does not cause the proper amount of movement.
+
+; In EnAm_Statue, when calculating the speed, multiply by 1.00973892212 instead of 0.5 (first instance, used for collision detection?)
+.orga 0xC97D68
+;   replaces
+;   lui     at, 0x3F00
+;   mtc1    at, f8
+    jal     en_am_calculation_1
+    nop
+
+; In EnAm_Statue, when calculating the speed, multiply by 1.00973892212 instead of 0.5
+.orga 0xC97E20
+    ;replaces
+    ;lui at, 0x3F00
+    ;mtc1 at, f10
+    jal     en_am_calculation_2
+    nop
+
+;==================================================================================================
 ; Item Overrides
 ;==================================================================================================
 
@@ -403,7 +540,7 @@ SRAM_SLOTS:
 
 ; Increase the size of EnItem00 instances to store the override
 .orga 0xB5D6BE ; Address in ROM of the enitem00 init params
-    .halfword 0x01AC
+    .halfword 0x01BC ; Originally 0x019C
 
 ; Increase the size of pot instances to store chest type
 .orga 0xDE8A5E ; Address in ROM of the ObjTsubo init params
@@ -444,6 +581,21 @@ SRAM_SLOTS:
     nop
 .headersize(0)
 
+; Hack EnItem00_Update when it checks proximity to the player to handle silver rupee collisions differently
+; EnItem00_ProximityCheck_Hook will jump back into EnItem00 as appropriate.
+.headersize (0x800110A0 - 0xA87000)
+.org 0x80012C14 ; In Memory 0x80012C14
+; Replaces
+;   mtc1    at, f18
+;   lwc1    f4, 0x0090(s0)
+    jal     EnItem00_ProximityCheck_Hook
+    nop
+    ; Check our return result in v0. If it's true (actor is in proximity) then continue on the function, otherwise return
+    bnez    v0, 0x80012C78 ; if v0 != 0 the player isn't in proximity, branch inside the original if where it calls Actor_HasParent before returning.
+    lui     t6, 0x0001
+    b       0x80012C64
+    nop
+
 ; Hack EnItem00 Action Function (func_8001E304 from decomp, 0x8001251C in 1.0) used by Item_DropCollectible to not increment the time to live if its < 0
 ; replaces
 ;   lh      t6, 0x014A(s0)
@@ -457,7 +609,7 @@ SRAM_SLOTS:
     nop
     lh      v0, 0x001C(s0)
     addiu   at, r0, 0x0003
-    .skip 4
+.skip 4
     nop
 
 ; Override the drop_id convert function s16 func_8001F404(s16 dropId) from decomp
@@ -477,7 +629,7 @@ SRAM_SLOTS:
 ;   beq     v0, at, 0x80013888
 ;   addiu   t8, r0, 0xFFFF
 ;   sb      t8, 0x0003(s2)
-.orga 0xA897C0; in memory 0x80013860
+.orga 0xA897C0 ; in memory 0x80013860
     jal     drop_collectible_room_hook
     nop
     nop
@@ -522,13 +674,13 @@ SRAM_SLOTS:
 ; Hack Item_DropCollectible call to Actor_Spawn to set override
 ; replaces
 ;   jal     0x80025110
-.orga 0xA8972C; in memory 0x800137B8
+.orga 0xA8972C ; in memory 0x800137B8
     jal     Item_DropCollectible_Actor_Spawn_Override
 
 ; Hack Item_DropCollectible2 call to Actor_Spawn to set override
 ; replaces
 ;   jal     0x80025110
-.orga 0xA89958; in memory 0x800139E0
+.orga 0xA89958 ; in memory 0x800139E0
     jal     Item_DropCollectible_Actor_Spawn_Override
 
 ; Hack ObjTsubo_SpawnCollectible (Pot) to call our overridden spawn function
@@ -551,7 +703,6 @@ SRAM_SLOTS:
 .orga 0xDFA520
     j       EnTuboTrap_DropCollectible_Hack
     nop
-
 
 ; Hack ObjKibako2_Init (Large Crates) to not delete our extended flag
 .orga 0xEC832C
@@ -668,7 +819,6 @@ bg_spot18_basket_rupees_loopstart: ; our new loop branch target
     nop
     nop
 
-
 ; Hook at the end of Actor_SetWorldToHome to zeroize anything we use to store additional flag data
 .orga 0xA96E5C ; In memory: 0x80020EFC
 ; Replaces:
@@ -677,10 +827,16 @@ bg_spot18_basket_rupees_loopstart: ; our new loop branch target
 
 ; Hook Actor_UpdateAll when each actor is being initialized. At the call to Actor_SpawnEntry
 ; Used to set the flag (z-rotation) of the actor to its position in the actor table.
-.orga 0xA99D48; In memory: 0x80023DE8
+.orga 0xA99D48 ; In memory: 0x80023DE8
 ; Replaces:
-;   jal 0x800255C4
-    jal Actor_UpdateAll_Hook
+;   jal     0x800255C4
+    jal     Actor_UpdateAll_Hook
+
+; Hack Actor_SpawnEntry so we can override actors being spawned
+.orga 0xA9B524 ; In memory: 0x800255C4
+; Replaces: Entire function
+    j       Actor_SpawnEntry_Hack
+    nop
 
 .orga 0xA99C98 ; In memory: 0x80023D38
     jal     Player_SpawnEntry_Hack
@@ -1330,6 +1486,37 @@ nop
     jal      Shop_Keeper_Init_ID
 .orga 0xC6C920
     jal      Shop_Keeper_Update_ID
+
+; Update object ID and draw ID for progressive items
+.headersize(0x80862C00 - 0xC004E0)
+
+; EnGirlA_InitializeItemAction / func_8086443C
+; Update the IDs
+; Replaces:
+;   lh      t2, 0x0002(v1)
+.org 0x8086476C
+    jal     shop_draw_id_hook
+
+; Remove vanilla line assigning the draw ID.
+; This is handled in the above hook.
+; Replaces:
+;   sh      t2, 0x01BC(s0)
+.org 0x80864778
+    nop
+
+.headersize(0x808CED80 - 0xC6C5E0)
+
+; EnOssan_State_ItemPurchased / func_808D1D08
+; Run update shop items function after an item is purchased.
+; Also reorganize displaced code to preserve $ra
+; Replaces:
+;   lh      t6, 0x001C(s0)
+;   addiu   $at, $zero, 0x000A
+.org 0x808D1D48
+    jal     shop_update_offerings_hook
+    nop
+
+.headersize(0)
 
 ; Override Deku Salescrub sold out check
 ; addiu at, zero, 2
@@ -2598,6 +2785,14 @@ courtyard_guards_kill:
     lw      a1, 0x8000B188
 
 ;==================================================================================================
+; Load Audiobank using dmadata
+;==================================================================================================
+; Replaces: lui     a1, 0x0001
+;           addiu   a1, a1, 0xD390
+.orga 0xB2E840 ; in memory 0x800B88E0
+    lw      a1, 0x8000B178
+
+;==================================================================================================
 ; Load Audiotable using dmadata
 ;==================================================================================================
 ; Replaces: lui     a1, 0x0008
@@ -3349,6 +3544,9 @@ courtyard_guards_kill:
 ; Replaces: sh     t8, 0x0204(s0)
 ;           sw     $zero, 0x0118(s0)
 
+.orga 0xE94B9C ; In Memory 0x80B1946C
+    addiu   t3, $zero, 0x908B ; Replaces text ID 0x002D
+
 .orga 0xE94B30
     jal     chestgame_buy_item_hook
     sh      t8, 0x0204(s0)
@@ -3814,3 +4012,15 @@ courtyard_guards_kill:
     lw      t8, 0x0134(s0)
 .skip 4
     sw      t1, 0x0004(s0)
+;=========================================================================================
+; Add custom message control characters
+;=========================================================================================
+
+; In Message_Decode at the last control code check (0x01 for new line)
+; Replaces
+;   addiu   at, r0, 0x0001
+;   bne     v0, at, 0x800DC580
+.headersize (0x800110A0 - 0xA87000)
+.org 0x800DC568
+    j       Message_Decode_Control_Code_Hook
+    nop

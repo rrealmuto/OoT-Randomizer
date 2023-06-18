@@ -229,6 +229,9 @@
             "ganon_bosskey_rewards",
             "ganon_bosskey_tokens",
             "ganon_bosskey_hearts",
+            "shuffle_silver_rupees",
+            "silver_rupee_pouches_choice",
+            "silver_rupee_pouches",
             "enhance_map_compass"
           ]
         }
@@ -288,7 +291,7 @@
           "col_span": 2,
           "row_span": [3,3,3],
           "settings": [
-            "starting_items"
+            "starting_inventory"
           ]
         },
         {
@@ -332,13 +335,15 @@
             "fast_chests",
             "free_scarecrow",
             "fast_bunny_hood",
+            "auto_equip_masks",
             "plant_beans",
             "chicken_count_random",
             "chicken_count",
             "big_poe_count_random",
             "big_poe_count",
             "easier_fire_arrow_entry",
-            "fae_torch_count"
+            "fae_torch_count",
+            "ruto_already_f1_jabu"
           ]
         },
         {
