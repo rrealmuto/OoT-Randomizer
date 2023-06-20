@@ -42,6 +42,10 @@ Individual Ocarina Note Shuffle (By GSKirox) - Shuffles individual ocarina butto
   * [4.0](#40)
 
 ## RealRob Changelog
+### v24
+  * Enemy Drop Shuffle Fixes:
+    * Fix logic for Ganons Castle MQ Water Trial Keese
+
 ### v23
   * Rebased onto main Dev version 7.1.118
   * Enemy Drop Shuffle Fixes:
