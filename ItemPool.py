@@ -911,14 +911,6 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
 
     world.distribution.alter_pool(world, pool)
 
-    if world.settings.junk_ice_traps in ['custom_count', 'custom_percent']:
-        junk_pool[:] = [('Ice Trap', 1)]
-        # Get a list of all "junk" type items
-        junk = [item for item, weight in junk_pool_base] + ['Rupee (1)', 'Recovery Heart', 'Bombs (20)', 'Arrows (30)']
-        junk_count = get_pool_count(pool, junk)
-        num_to_replace = int((world.settings.custom_ice_trap_percent / 100.0) * junk_count) if world.settings.junk_ice_traps == 'custom_percent' else world.settings.custom_ice_trap_count
-        replace_x_items(pool, junk, num_to_replace)
-
     # Make sure our pending_junk_pool is empty. If not, remove some random junk here.
     if pending_junk_pool:
         for item in set(pending_junk_pool):
@@ -945,6 +937,14 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
             junk_candidates.remove(junk_item)
             pool.remove(junk_item)
             pool.append(pending_item)
+
+    if world.settings.junk_ice_traps in ['custom_count', 'custom_percent']:
+        junk_pool[:] = [('Ice Trap', 1)]
+        # Get a list of all "junk" type items
+        junk = [item for item, weight in junk_pool_base] + ['Rupee (1)', 'Recovery Heart', 'Bombs (20)', 'Arrows (30)']
+        junk_count = get_pool_count(pool, junk)
+        num_to_replace = int((world.settings.custom_ice_trap_percent / 100.0) * junk_count) if world.settings.junk_ice_traps == 'custom_percent' else world.settings.custom_ice_trap_count
+        replace_x_items(pool, junk, num_to_replace)
 
     if world.settings.item_pool_value == 'ludicrous':
         # Replace all junk items with major items
