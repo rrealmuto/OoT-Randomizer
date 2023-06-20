@@ -78,10 +78,6 @@
             "Ganons Castle MQ Water Trial Freezard 1": "is_adult or Kokiri_Sword",
             "Ganons Castle MQ Water Trial Freezard 2": "is_adult or Kokiri_Sword",
             "Ganons Castle MQ Water Trial Freezard 3": "is_adult or Kokiri_Sword",
-            "Ganons Castle MQ Water Trial Ice Keese 1": "Blue_Fire and can_kill_keese",
-            "Ganons Castle MQ Water Trial Ice Keese 2": "Blue_Fire and can_kill_keese",
-            "Ganons Castle MQ Water Trial Ice Keese 3": "Blue_Fire and can_kill_keese",
-            "Ganons Castle MQ Water Trial Ice Keese 4": "Blue_Fire and can_kill_keese",
             "Blue Fire": "has_bottle"
         },
         "exits": {
@@ -96,7 +92,11 @@
             "Ganons Castle MQ Water Trial Silver Rupee Near Blocks": "True",
             "Ganons Castle MQ Water Trial Silver Rupee Center Left": "True",
             "Ganons Castle MQ Water Trial Silver Rupee Red Ice": "is_adult",
-            "Ganons Castle MQ Water Trial Silver Rupee Above Void": "True"
+            "Ganons Castle MQ Water Trial Silver Rupee Above Void": "True",
+            "Ganons Castle MQ Water Trial Ice Keese 1": "can_kill_keese",
+            "Ganons Castle MQ Water Trial Ice Keese 2": "can_kill_keese",
+            "Ganons Castle MQ Water Trial Ice Keese 3": "can_kill_keese",
+            "Ganons Castle MQ Water Trial Ice Keese 4": "can_kill_keese"
         },
         "exits": {
             "Ganons Castle Water Trial Ending": "(Silver_Rupee_Ganons_Castle_Water_Trial, 5)"
