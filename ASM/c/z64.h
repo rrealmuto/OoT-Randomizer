@@ -2080,6 +2080,7 @@ typedef void(*z64_ScalePitchAndTempo_proc)(float scaleTempoAndFreq, uint8_t dura
 
 #define PlaySFX ((PlaySFX_proc)PlaySFX_addr)
 #define Font_LoadChar ((Font_LoadChar_proc)Font_LoadChar_addr)
+#define z64_EffectSsKiraKira_SpawnSmall ((z64_EffectSsKiraKira_SpawnSmall_proc)z64_EffectSsKiraKira_SpawnSmall_addr)
 
 /* macros */
 #define GET_ITEMGETINF(flag) (z64_file.item_get_inf[(flag) >> 4] & (1 << ((flag) & 0xF)))
