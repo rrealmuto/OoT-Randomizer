@@ -1964,6 +1964,36 @@ class SettingInfos:
         },
     )
 
+    shuffle_wonderitems = Checkbutton(
+        gui_text       = 'Shuffle Wonderitems',
+        gui_tooltip    = '''\
+            Enabling will shuffle drops from wonderitems.
+
+            Wonderitems are invisible items in the game that will drop an
+            item under a certain condition. These items will be marked in the game with a 
+            sparkle effect when shuffle so they can be easily found.There 
+            are 4 kinds of shuffled wonderitems.
+
+            Proximity Drop (Yellow): Gives an item when link touches it.
+
+            Interact Switch (Red): Drops an item when hit with a certain damage type.
+                             (Sword, bow, slingshot, or hookshot)
+
+            Free Multitag (Blue): Gives an item when a certain set of tag points
+                           are touched. The only free multitag is the stepping stones
+                           in Kokiri Forest.
+
+            Ordered Multitag (Cyan): Gives an item when a set of tag points are touched
+                              in a specific ordered. The only ordered multitag is the
+                              grass stepping stones in Kokiri Forest.
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    )
+
     empty_dungeons_mode = Combobox(
         gui_text       = 'Pre-completed Dungeons Mode',
         default        = 'none',
