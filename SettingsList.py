@@ -2801,6 +2801,19 @@ class SettingInfos:
         },
     )
 
+    shuffle_gossipstones = Checkbutton(
+        gui_text       = 'Shuffle Gossip Stones',
+        gui_tooltip    = '''\
+            Playing Song of Time to Gossip Stones
+            will cause them to drop an item.
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    )
+
     shuffle_kokiri_sword = Checkbutton(
         gui_text       = 'Shuffle Kokiri Sword',
         gui_tooltip    = '''\

@@ -93,4 +93,7 @@ void override_flags_init();
 bool Get_CollectibleOverrideFlag(EnItem00 *item00);
 uint8_t get_enemy_flag_offset(uint8_t scene, uint8_t room);
 
+extern uint16_t drop_collectible_override_flag;
+extern int16_t curr_collectible_flag_offset;
+
 #endif
