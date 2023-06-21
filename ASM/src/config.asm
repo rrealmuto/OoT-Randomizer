@@ -7,7 +7,7 @@
 COSMETIC_CONTEXT:
 
 COSMETIC_FORMAT_VERSION:
-.word 0x1F073FDC
+.word 0x1F073FDE
 CFG_MAGIC_COLOR:
 .halfword 0x0000, 0x00C8, 0x0000
 CFG_HEART_COLOR:
@@ -77,6 +77,11 @@ CFG_RAINBOW_TUNIC_ENABLED:
 CFG_TUNIC_COLORS:
 .byte 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 
+CFG_AUDIOBANK_TABLE_EXTENDED_ADDR:
+.word AUDIOBANK_TABLE_EXTENDED
+
+CFG_CORRECT_MODEL_COLORS:
+.byte 0x00
 
 CFG_SHOW_SETTING_INFO:
 .byte 0x00
@@ -125,7 +130,7 @@ INITIAL_SAVE_DATA:
 EXTENDED_INITIAL_SAVE_DATA:
 .endarea
 
-.area 0x40, 0 ; size must be at least 8 * ((max object_id parameter Patches.add_to_extended_object_table is called with) - 0x192)
+.area 0xC0, 0 ; size must be at least 8 * ((max object_id parameter Patches.add_to_extended_object_table is called with) - 0x192)
 EXTENDED_OBJECT_TABLE:
 .endarea
 
@@ -182,6 +187,8 @@ KEYRING_BOSSKEY_CONDITION:
 SHUFFLE_SILVER_RUPEES:
 .byte 0x00
 CFG_DUNGEON_INFO_SILVER_RUPEES:
+.byte 0x00
+CUSTOM_KEY_MODELS:
 .byte 0x00
 .align 4
 

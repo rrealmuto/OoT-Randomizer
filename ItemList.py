@@ -1,11 +1,18 @@
+from __future__ import annotations
+from typing import Optional, Any
+
 # Progressive: True  -> Advancement
 #              False -> Priority
 #              None  -> Normal
 #    Item:                                            (type, Progressive, GetItemID, special),
-item_table = {
+#
+# special "upgrade_ids" correspond to the item IDs in item_table.c for all of the upgrade tiers
+# of that item.
+#
+item_table: dict[str, tuple[str, Optional[bool], Optional[int], Optional[dict[str, Any]]]] = {
     'Bombs (5)':                                       ('Item',     None,  0x0001, {'junk': 8}),
     'Deku Nuts (5)':                                   ('Item',     None,  0x0002, {'junk': 5}),
-    'Bombchus (10)':                                   ('Item',     True,  0x0003, None),
+    'Bombchus (10)':                                   ('Item',     True,  0x0003, {'upgrade_ids': [0x00D4]}),
     'Boomerang':                                       ('Item',     True,  0x0006, None),
     'Deku Stick (1)':                                  ('Item',     None,  0x0007, {'junk': 5}),
     'Lens of Truth':                                   ('Item',     True,  0x000A, None),
@@ -14,7 +21,7 @@ item_table = {
     'Bottle':                                          ('Item',     True,  0x000F, {'bottle': float('Inf')}),
     'Blue Potion':                                     ('Item',     True,  0x0012, None), # distinct from shop item
     'Bottle with Milk':                                ('Item',     True,  0x0014, {'bottle': float('Inf')}),
-    'Rutos Letter':                                    ('Item',     True,  0x0015, None),
+    'Rutos Letter':                                    ('Item',     True,  0x0015, {'upgrade_ids': [0x000F]}),
     'Deliver Letter':                                  ('Item',     True,  None,   {'bottle': float('Inf')}),
     'Sell Big Poe':                                    ('Item',     True,  None,   {'bottle': float('Inf')}),
     'Magic Bean':                                      ('Item',     True,  0x0016, {'progressive': 10}),
@@ -79,9 +86,9 @@ item_table = {
     'Bombs (10)':                                      ('Item',     None,  0x0066, {'junk': 2}),
     'Bombs (20)':                                      ('Item',     None,  0x0067, {'junk': 0}),
     'Deku Seeds (30)':                                 ('Item',     None,  0x0069, {'junk': 5}),
-    'Bombchus (5)':                                    ('Item',     True,  0x006A, None),
-    'Bombchus (20)':                                   ('Item',     True,  0x006B, None),
-    'Small Key (Treasure Chest Game)':              ('TCGSmallKey', True,  0x0071, {'progressive': float('Inf')}),
+    'Bombchus (5)':                                    ('Item',     True,  0x006A, {'upgrade_ids': [0x00D4]}),
+    'Bombchus (20)':                                   ('Item',     True,  0x006B, {'upgrade_ids': [0x00D4]}),
+    'Small Key (Treasure Chest Game)':              ('TCGSmallKey', True,  0x0071, {'progressive': float('Inf'), 'upgrade_ids': [0x0118]}),
     'Rupee (Treasure Chest Game) (1)':                 ('Item',     None,  0x0072, None),
     'Rupees (Treasure Chest Game) (5)':                ('Item',     None,  0x0073, None),
     'Rupees (Treasure Chest Game) (20)':               ('Item',     None,  0x0074, None),
@@ -89,17 +96,17 @@ item_table = {
     'Piece of Heart (Treasure Chest Game)':            ('Item',     True,  0x0076, {'alias': ('Piece of Heart', 1), 'progressive': float('Inf')}),
     'Ice Trap':                                        ('Item',     None,  0x007C, {'junk': 0}),
     'Progressive Hookshot':                            ('Item',     True,  0x0080, {'progressive': 2}),
-    'Progressive Strength Upgrade':                    ('Item',     True,  0x0081, {'progressive': 3}),
+    'Progressive Strength Upgrade':                    ('Item',     True,  0x0081, {'progressive': 3, 'upgrade_ids': [0x0035]}),
     'Bomb Bag':                                        ('Item',     True,  0x0082, None),
-    'Bow':                                             ('Item',     True,  0x0083, None),
-    'Slingshot':                                       ('Item',     True,  0x0084, None),
+    'Bow':                                             ('Item',     True,  0x0083, {'upgrade_ids': [0x0030]}),
+    'Slingshot':                                       ('Item',     True,  0x0084, {'upgrade_ids': [0x0060]}),
     'Progressive Wallet':                              ('Item',     True,  0x0085, {'progressive': 3}),
     'Progressive Scale':                               ('Item',     True,  0x0086, {'progressive': 2}),
     'Deku Nut Capacity':                               ('Item',     None,  0x0087, None),
     'Deku Stick Capacity':                             ('Item',     None,  0x0088, None),
     'Bombchus':                                        ('Item',     True,  0x0089, None),
     'Magic Meter':                                     ('Item',     True,  0x008A, None),
-    'Ocarina':                                         ('Item',     True,  0x008B, None),
+    'Ocarina':                                         ('Item',     True,  0x008B, {'upgrade_ids': [0x000C]}),
     'Bottle with Red Potion':                          ('Item',     True,  0x008C, {'bottle': True, 'shop_object': 0x0F}),
     'Bottle with Green Potion':                        ('Item',     True,  0x008D, {'bottle': True, 'shop_object': 0x0F}),
     'Bottle with Blue Potion':                         ('Item',     True,  0x008E, {'bottle': True, 'shop_object': 0x0F}),
@@ -109,12 +116,12 @@ item_table = {
     'Bottle with Bugs':                                ('Item',     True,  0x0092, {'bottle': True, 'shop_object': 0x0F}),
     'Bottle with Big Poe':                             ('Item',     True,  0x0093, {'shop_object': 0x0F}),
     'Bottle with Poe':                                 ('Item',     True,  0x0094, {'bottle': True, 'shop_object': 0x0F}),
-    'Boss Key (Forest Temple)':                        ('BossKey',  True,  0x0095, None),
-    'Boss Key (Fire Temple)':                          ('BossKey',  True,  0x0096, None),
-    'Boss Key (Water Temple)':                         ('BossKey',  True,  0x0097, None),
-    'Boss Key (Spirit Temple)':                        ('BossKey',  True,  0x0098, None),
-    'Boss Key (Shadow Temple)':                        ('BossKey',  True,  0x0099, None),
-    'Boss Key (Ganons Castle)':                   ('GanonBossKey',  True,  0x009A, None),
+    'Boss Key (Forest Temple)':                        ('BossKey',  True,  0x0095, {'upgrade_ids': [0x0109]}),
+    'Boss Key (Fire Temple)':                          ('BossKey',  True,  0x0096, {'upgrade_ids': [0x010A]}),
+    'Boss Key (Water Temple)':                         ('BossKey',  True,  0x0097, {'upgrade_ids': [0x010B]}),
+    'Boss Key (Spirit Temple)':                        ('BossKey',  True,  0x0098, {'upgrade_ids': [0x010C]}),
+    'Boss Key (Shadow Temple)':                        ('BossKey',  True,  0x0099, {'upgrade_ids': [0x010D]}),
+    'Boss Key (Ganons Castle)':                   ('GanonBossKey',  True,  0x009A, {'upgrade_ids': [0x010E]}),
     'Compass (Deku Tree)':                             ('Compass', False,  0x009B, None),
     'Compass (Dodongos Cavern)':                       ('Compass', False,  0x009C, None),
     'Compass (Jabu Jabus Belly)':                      ('Compass', False,  0x009D, None),
@@ -135,15 +142,15 @@ item_table = {
     'Map (Shadow Temple)':                             ('Map',     False,  0x00AC, None),
     'Map (Bottom of the Well)':                        ('Map',     False,  0x00AD, None),
     'Map (Ice Cavern)':                                ('Map',     False,  0x00AE, None),
-    'Small Key (Forest Temple)':                       ('SmallKey', True,  0x00AF, {'progressive': float('Inf')}),
-    'Small Key (Fire Temple)':                         ('SmallKey', True,  0x00B0, {'progressive': float('Inf')}),
-    'Small Key (Water Temple)':                        ('SmallKey', True,  0x00B1, {'progressive': float('Inf')}),
-    'Small Key (Spirit Temple)':                       ('SmallKey', True,  0x00B2, {'progressive': float('Inf')}),
-    'Small Key (Shadow Temple)':                       ('SmallKey', True,  0x00B3, {'progressive': float('Inf')}),
-    'Small Key (Bottom of the Well)':                  ('SmallKey', True,  0x00B4, {'progressive': float('Inf')}),
-    'Small Key (Gerudo Training Ground)':              ('SmallKey', True,  0x00B5, {'progressive': float('Inf')}),
-    'Small Key (Thieves Hideout)':              ('HideoutSmallKey', True,  0x00B6, {'progressive': float('Inf')}),
-    'Small Key (Ganons Castle)':                       ('SmallKey', True,  0x00B7, {'progressive': float('Inf')}),
+    'Small Key (Forest Temple)':                       ('SmallKey', True,  0x00AF, {'progressive': float('Inf'), 'upgrade_ids': [0x010F]}),
+    'Small Key (Fire Temple)':                         ('SmallKey', True,  0x00B0, {'progressive': float('Inf'), 'upgrade_ids': [0x0110]}),
+    'Small Key (Water Temple)':                        ('SmallKey', True,  0x00B1, {'progressive': float('Inf'), 'upgrade_ids': [0x0111]}),
+    'Small Key (Spirit Temple)':                       ('SmallKey', True,  0x00B2, {'progressive': float('Inf'), 'upgrade_ids': [0x0112]}),
+    'Small Key (Shadow Temple)':                       ('SmallKey', True,  0x00B3, {'progressive': float('Inf'), 'upgrade_ids': [0x0113]}),
+    'Small Key (Bottom of the Well)':                  ('SmallKey', True,  0x00B4, {'progressive': float('Inf'), 'upgrade_ids': [0x0114]}),
+    'Small Key (Gerudo Training Ground)':              ('SmallKey', True,  0x00B5, {'progressive': float('Inf'), 'upgrade_ids': [0x0115]}),
+    'Small Key (Thieves Hideout)':              ('HideoutSmallKey', True,  0x00B6, {'progressive': float('Inf'), 'upgrade_ids': [0x0116]}),
+    'Small Key (Ganons Castle)':                       ('SmallKey', True,  0x00B7, {'progressive': float('Inf'), 'upgrade_ids': [0x0117]}),
     'Double Defense':                                  ('Item',     None,  0x00B8, None),
     'Buy Magic Bean':                                  ('Item',     True,  0x0016, {'alias': ('Magic Bean', 10), 'progressive': 10}),
     'Magic Bean Pack':                                 ('Item',     True,  0x00C9, {'alias': ('Magic Bean', 10), 'progressive': 10}),
@@ -209,6 +216,12 @@ item_table = {
     'Silver Rupee Pouch (Ganons Castle Shadow Trial)':          ('SilverRupee', True,  0x0101, {'alias': ('Silver Rupee (Ganons Castle Shadow Trial)', 10), 'progressive': 1}),
     'Silver Rupee Pouch (Ganons Castle Water Trial)':           ('SilverRupee', True,  0x0102, {'alias': ('Silver Rupee (Ganons Castle Water Trial)', 10), 'progressive': 1}),
     'Silver Rupee Pouch (Ganons Castle Forest Trial)':          ('SilverRupee', True,  0x0103, {'alias': ('Silver Rupee (Ganons Castle Forest Trial)', 10), 'progressive': 1}),
+
+    'Ocarina A Button':                                ('Item',     True,  0x0104, {'ocarina_button': True}),
+    'Ocarina C up Button':                             ('Item',     True,  0x0105, {'ocarina_button': True}),
+    'Ocarina C down Button':                           ('Item',     True,  0x0106, {'ocarina_button': True}),
+    'Ocarina C left Button':                           ('Item',     True,  0x0107, {'ocarina_button': True}),
+    'Ocarina C right Button':                          ('Item',     True,  0x0108, {'ocarina_button': True}),
 
     # Event items otherwise generated by generic event logic
     # can be defined here to enforce their appearance in playthroughs.
