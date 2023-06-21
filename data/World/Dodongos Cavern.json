@@ -19,7 +19,12 @@
             "Dodongos Cavern Gossip Stone": "here(can_blast_or_smash or Progressive_Strength_Upgrade)",
             "Gossip Stone Fairy": "
                 (can_blast_or_smash or Progressive_Strength_Upgrade) and
-                can_summon_gossip_fairy and has_bottle"
+                can_summon_gossip_fairy and has_bottle",
+            "Dodongos Cavern Beamos Left Side" : "has_explosives or Progressive_Strength_Upgrade",
+            "Dodongos Cavern Beamos Center" : "has_explosives or Progressive_Strength_Upgrade",
+            "Dodongos Cavern Beamos Right Side" : "has_explosives or Progressive_Strength_Upgrade",
+            "Dodongos Cavern Upper Bridge Keese 1": "can_use(Bow) or can_use(Slingshot) or at('Dodongos Cavern Climb', can_kill_keese)",
+            "Dodongos Cavern Upper Bridge Keese 2": "can_use(Bow) or can_use(Slingshot) or at('Dodongos Cavern Climb', can_kill_keese)"
         },
         "exits": {
             "Dodongos Cavern Lower Right Side": "has_explosives or Progressive_Strength_Upgrade",
@@ -41,18 +46,47 @@
             "Dodongos Cavern Right Side Pot 4": "True",
             "Dodongos Cavern Right Side Pot 5": "True",
             "Dodongos Cavern Right Side Pot 6": "True",
-            "Dodongos Cavern Lower Lizalfos Pot 1": "True",
-            "Dodongos Cavern Lower Lizalfos Pot 2": "True",
-            "Dodongos Cavern Lower Lizalfos Pot 3": "True",
-            "Dodongos Cavern Lower Lizalfos Pot 4": "True",
-            "Dodongos Cavern GS Side Room Near Lower Lizalfos": "
-                is_adult or has_explosives or Sticks or Slingshot or Boomerang or Kokiri_Sword",
+            "Dodongos Cavern Lower Lizalfos Pot 1" : "True",
+            "Dodongos Cavern Lower Lizalfos Pot 2" : "True",
+            "Dodongos Cavern Lower Lizalfos Pot 3" : "True",
+            "Dodongos Cavern Lower Lizalfos Pot 4" : "True",
             "Dodongos Cavern GS Scarecrow": "
                 can_use(Scarecrow) or can_use(Longshot) or
-                (logic_dc_scarecrow_gs and (is_adult or can_child_attack))"
+                (logic_dc_scarecrow_gs and (is_adult or can_child_attack))",
+            "Dodongos Cavern Right Side Baby Dodongo 1" : "is_adult or (Kokiri_Sword or Sticks or Slingshot or Boomerang or has_explosives)",
+            "Dodongos Cavern Right Side Baby Dodongo 2" : "is_adult or (Kokiri_Sword or Sticks or Slingshot or Boomerang or has_explosives)",
+            "Dodongos Cavern Right Side Baby Dodongo 3" : "is_adult or (Kokiri_Sword or Sticks or Slingshot or Boomerang or has_explosives)",
+            "Dodongos Cavern Right Side Baby Dodongo 4" : "is_adult or (Kokiri_Sword or Sticks or Slingshot or Boomerang or has_explosives)",
+            "Dodongos Cavern Right Side Baby Dodongo 5" : "is_adult or (Kokiri_Sword or Sticks or Slingshot or Boomerang or has_explosives)",
+            "Dodongos Cavern Right Side Baby Dodongo 6" : "is_adult or (Kokiri_Sword or Sticks or Slingshot or Boomerang or has_explosives)",
+            "Dodongos Cavern Right Side Keese 1" : "can_kill_keese",
+            "Dodongos Cavern Right Side Keese 2" : "can_kill_keese"
         },
         "exits": {
-            "Dodongos Cavern Torch Room": "Sticks or Slingshot or Bombs or Kokiri_Sword"
+            "Dodongos Cavern Lower Lizalfos Fight": "True",
+            "Dodongos Cavern Side Room Before Lower Lizalfos" : "is_adult or has_explosives or Sticks or Slingshot or Boomerang or Kokiri_Sword"
+        }
+    },
+    {
+        "region_name": "Dodongos Cavern Side Room Before Lower Lizalfos",
+        "dungeon": "Dodongos Cavern",
+        "locations" : {
+            "Dodongos Cavern GS Side Room Near Lower Lizalfos": "True",
+            "Dodongos Cavern Side Room Near Lower Lizalfos Keese 1": "True",
+            "Dodongos Cavern Side Room Near Lower Lizalfos Keese 2": "True",
+            "Dodongos Cavern Side Room Near Lower Lizalfos Keese 3": "True"
+        }
+    },
+    {
+        "region_name": "Dodongos Cavern Lower Lizalfos Fight",
+        "dungeon": "Dodongos Cavern",
+        "locations" : {
+            "Dodongos Cavern Lower Lizalfos 1" : "can_kill_lizalfos",
+            "Dodongos Cavern Lower Lizalfos 2" : "can_kill_lizalfos"
+        },
+        "exits" : {
+            "Dodongos Cavern Torch Room": "can_kill_lizalfos",
+            "Dodongos Cavern Lower Right Side": "can_kill_lizalfos"
         }
     },
     {
@@ -64,10 +98,13 @@
             "Dodongos Cavern Torch Room Pot 1": "True",
             "Dodongos Cavern Torch Room Pot 2": "True",
             "Dodongos Cavern Torch Room Pot 3": "True",
-            "Dodongos Cavern Torch Room Pot 4": "True"
+            "Dodongos Cavern Torch Room Pot 4": "True",
+            "Dodongos Cavern Torch Room Dodongo 1": "True",
+            "Dodongos Cavern Torch Room Dodongo 2": "True",
+            "Dodongos Cavern Torch Room Dodongo 3": "True"
         },
         "exits": {
-            "Dodongos Cavern Lower Right Side": "True"
+            "Dodongos Cavern Lower Lizalfos Fight": "True"
         }
     },
     {
@@ -76,11 +113,12 @@
         "locations": {
             "Dodongos Cavern Compass Chest": "can_blast_or_smash or Progressive_Strength_Upgrade",
             "Dodongos Cavern GS Vines Above Stairs": "
-                at('Dodongos Cavern Climb', True) or (logic_dc_vines_gs and can_use(Longshot))"
+                at('Dodongos Cavern Climb', True) or (logic_dc_vines_gs and can_use(Longshot))",
+            "Dodongos Cavern Compass Room Armos": "can_blast_or_smash or Progressive_Strength_Upgrade"
         },
         "exits": {
             "Dodongos Cavern Climb": "
-                has_explosives or Progressive_Strength_Upgrade or
+                has_explosives or Progressive_Strength_Upgrade or 
                 can_use(Dins_Fire) or (logic_dc_staircase and can_use(Bow))"
         }
     },
@@ -95,15 +133,22 @@
             "Dodongos Cavern Deku Scrub Near Bomb Bag Left": "
                 can_blast_or_smash or
                 (logic_dc_scrub_room and is_adult and Progressive_Strength_Upgrade)",
-            "Dodongos Cavern Blade Room Behind Block Recovery Heart": "True",
-            "Dodongos Cavern Staircase Pot 1": "True",
-            "Dodongos Cavern Staircase Pot 2": "True",
-            "Dodongos Cavern Staircase Pot 3": "True",
-            "Dodongos Cavern Staircase Pot 4": "True",
+            "Dodongos Cavern Blade Room Behind Block Recovery Heart" : "True",
+            "Dodongos Cavern Staircase Pot 1" : "True",
+            "Dodongos Cavern Staircase Pot 2" : "True",
+            "Dodongos Cavern Staircase Pot 3" : "True",
+            "Dodongos Cavern Staircase Pot 4" : "True",
             "Dodongos Cavern Blade Room Pot 1": "
                 can_use(Boomerang) or at('Dodongos Cavern Far Bridge', True)",
             "Dodongos Cavern Blade Room Pot 2": "
-                can_use(Boomerang) or at('Dodongos Cavern Far Bridge', True)"
+                can_use(Boomerang) or at('Dodongos Cavern Far Bridge', True)",
+            "Dodongos Cavern Staircase Skullwalltula": "is_adult or can_child_attack",
+            "Dodongos Cavern Climb Switch Room Armos 1" : "can_kill_armos",
+            "Dodongos Cavern Climb Switch Room Armos 2" : "can_kill_armos",
+            "Dodongos Cavern Climb Switch Room Armos 3" : "can_kill_armos",
+            "Dodongos Cavern Climb Switch Room Keese 1" : "is_adult or (Kokiri_Sword or Sticks or Slingshot or Boomerang or has_explosives or Progressive_Strength_Upgrade)",
+            "Dodongos Cavern Climb Switch Room Keese 2" : "is_adult or (Kokiri_Sword or Sticks or Slingshot or Boomerang or has_explosives or Progressive_Strength_Upgrade)"
+
         },
         "exits": {
             "Dodongos Cavern Before Upper Lizalfos": "
@@ -129,7 +174,12 @@
         "dungeon": "Dodongos Cavern",
         "locations": {
             "Dodongos Cavern Lizalfos Upper Recovery Heart 1": "True",
-            "Dodongos Cavern Lizalfos Upper Recovery Heart 2": "True"
+            "Dodongos Cavern Lizalfos Upper Recovery Heart 2": "True",
+            "Dodongos Cavern Upper Lizalfos 1" : "is_adult or (Kokiri_Sword or Sticks or Slingshot or Bombs)",
+            "Dodongos Cavern Upper Lizalfos 2" : "is_adult or (Kokiri_Sword or Sticks or Slingshot or Bombs)",
+            "Dodongos Cavern Before Upper Lizalfos Baby Dodongo 1": "True",
+            "Dodongos Cavern Before Upper Lizalfos Baby Dodongo 2": "True",
+            "Dodongos Cavern Before Upper Lizalfos Baby Dodongo 3": "True"
         },
         "exits": {
             "Dodongos Cavern Before Upper Lizalfos": "True",
@@ -171,7 +221,12 @@
             "Dodongos Cavern Last Block Pot 1": "True",
             "Dodongos Cavern Last Block Pot 2": "True",
             "Dodongos Cavern Last Block Pot 3": "True",
-            "Fairy Pot": "has_bottle"
+            "Fairy Pot": "has_bottle",
+            "Dodongos Cavern Before Boss Keese 1": "can_kill_keese",
+            "Dodongos Cavern Before Boss Keese 2": "can_kill_keese",
+            "Dodongos Cavern Before Back Room Keese 1": "can_kill_keese",
+            "Dodongos Cavern Before Back Room Keese 2": "can_kill_keese",
+            "Dodongos Cavern Back Room Armos" : "can_kill_armos"
         },
         "exits": {
             "King Dodongo Boss Room": "True"

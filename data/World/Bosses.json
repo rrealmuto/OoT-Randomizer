@@ -150,7 +150,20 @@
         "region_name": "Ganons Castle Tower",
         "dungeon": "Ganons Castle",
         "locations": {
-            "Ganons Tower Boss Key Chest": "is_adult or Kokiri_Sword"
+            "Ganons Tower Boss Key Chest": "is_adult or Kokiri_Sword",
+            "Ganons Tower Lizalfos 1": "True",
+            "Ganons Tower Lizalfos 2": "True",
+            "Ganons Tower Stalfos 1": "True",
+            "Ganons Tower Stalfos 2": "True",
+            "Ganons Tower White Knuckle": "True",
+            "Ganons Tower Black Knuckle": "True",
+            "Ganons Tower Keese 1": "True",
+            "Ganons Tower Keese 2": "True",
+            "Ganons Tower Keese 3": "True",
+            "Ganons Tower Keese 4": "True",
+            "Ganons Tower Keese 5": "True",
+            "Ganons Tower Keese 6": "True",
+            "Ganons Tower Keese 7": "True"
         },
         "exits": {
             "Ganons Castle Tower Below Boss": "
