@@ -69,7 +69,7 @@ void Actor_After_UpdateAll_Hack(z64_actor_t *actor, z64_game_t *game) {
     // Hacks are responsible for checking that they are the correct actor.
     EnWonderitem_AfterInitHack(actor, game);
     bb_after_init_hack(actor, game);
-    
+
     CURR_ACTOR_SPAWN_INDEX = 0; // reset CURR_ACTOR_SPAWN_INDEX
 }
 
@@ -80,23 +80,23 @@ void Actor_StoreFlagInRotation(z64_actor_t* actor, z64_game_t* game, uint16_t ac
     if(game->scene_index == 0x3E) { // Calculate flag in a grotto using room + grotto_id + actor index
         flag = (actor_index & 0x7F) | (actor->room_index << 12) | ((z64_file.grotto_id & 0x1F) << 7);
     }
-    else { 
+    else {
         flag = (actor_index) | (actor->room_index << 8); // Calculate the flag for every other scene just using room and actor index. Setup will be added later.
-    } 
+    }
     if(actor->actor_type == ACTORCAT_ENEMY && actor->actor_id != 0x0197) //Hack for most enemies. Specifically exclude gerudo fighters (0x197)
     {
         actor->rot_init.z = flag;
         return;
     }
-    
-    
+
+
     switch(actor->actor_id)
     {
         // For the following actors we store the flag in the z rotation
         case OBJ_TSUBO:
         case EN_TUBO_TRAP:
         case OBJ_KIBAKO:
-        case OBJ_COMB: 
+        case OBJ_COMB:
         case EN_IK: // Check for iron knuckles (they use actor category 9 (boss) and change to category 5 but a frame later if the object isnt loaded)
         case EN_SW: // Check for skullwalltula (en_sw). They start as category 4 (npc) and change to category 5 but a frame later if the object isnt laoded
         case EN_ANUBICE_TAG: //Check for anubis spawns
@@ -260,10 +260,10 @@ uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit
             }
             return 1;
         }
-        
+
         return 1;
     }
-    
+
 
     return 0;
 }

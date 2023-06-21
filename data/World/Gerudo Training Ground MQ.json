@@ -38,7 +38,7 @@
             "Gerudo Training Ground MQ Dodongo 1": "is_adult",
             "Gerudo Training Ground MQ Dodongo 2": "is_adult",
             "Gerudo Training Ground MQ Armos": "is_adult",
-            
+
             # Shoot the Gerudo symbol above the door to the lava room.
             "Gerudo Training Ground MQ Dinolfos Arrow Wonderitem": "can_use(Bow)",
             "Wall Fairy": "has_bottle and can_use(Bow)"

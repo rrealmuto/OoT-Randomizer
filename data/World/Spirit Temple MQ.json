@@ -208,7 +208,7 @@
     {
         "region_name": "Spirit Temple Symphony Room",
         "dungeon": "Spirit Temple",
-        "locations": { 
+        "locations": {
             "Spirit Temple MQ Symphony Room Chest": "True",
             "Spirit Temple MQ GS Symphony Room": "True",
             "Spirit Temple MQ Symphony Room Skulltula 1": "True",

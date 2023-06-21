@@ -100,7 +100,7 @@
             "Ice Cavern Near End Pot 2": "True",
             "Ice Cavern Near End Freezard 1": "is_adult or has_explosives or can_use(Dins_Fire)",
             "Ice Cavern Near End Freezard 2": "is_adult or has_explosives or can_use(Dins_Fire)",
-            "Ice Cavern Wolfos": "is_adult or Slingshot or Sticks or Kokiri_Sword or can_use(Dins_Fire)"            
+            "Ice Cavern Wolfos": "is_adult or Slingshot or Sticks or Kokiri_Sword or can_use(Dins_Fire)"
         }
     }
 ]

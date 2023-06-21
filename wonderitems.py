@@ -202,7 +202,7 @@ def process_wonderitem(actor_bytes):
         drop = dropTable[drop]
     else:
         drop = "Random " + str(drop)
-    
+
     damage_type = None
     if type == 3: # Interact Switch, get damage type
         damage_type = (actor_bytes[12] << 8) + actor_bytes[13]

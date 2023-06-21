@@ -169,7 +169,7 @@
             "Shadow Temple After Wind Flying Pot 2" : "True",
             "Shadow Temple After Wind Redead Left": "True",
             "Shadow Temple After Wind Redead Right": "True"
-            
+
         },
         "exits": {
             "Shadow Temple Boat": "(Small_Key_Shadow_Temple, 4)",

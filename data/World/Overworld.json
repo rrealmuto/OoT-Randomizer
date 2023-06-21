@@ -163,11 +163,11 @@
             "KF Child Stepping Stones Wonderitem": "is_child",
             "KF Child Water Wonderitem": "is_child",
             "KF Child Sign Wonderitem": "is_child and (Kokiri_Sword or Sticks)",
-            "KF Child Training Wonderitem 1": "is_child", 
-            "KF Child Training Wonderitem 2": "is_child", 
-            "KF Child Training Wonderitem 3": "is_child", 
-            "KF Child Maze Grass Wonderitem 1": "is_child", 
-            "KF Child Maze Grass Wonderitem 2": "is_child", 
+            "KF Child Training Wonderitem 1": "is_child",
+            "KF Child Training Wonderitem 2": "is_child",
+            "KF Child Training Wonderitem 3": "is_child",
+            "KF Child Maze Grass Wonderitem 1": "is_child",
+            "KF Child Maze Grass Wonderitem 2": "is_child",
             "KF Bean Platform Green Rupee 1": "is_adult and (here(can_plant_bean) or Hover_Boots)",
             "KF Bean Platform Green Rupee 2": "is_adult and (here(can_plant_bean) or Hover_Boots)",
             "KF Bean Platform Green Rupee 3": "is_adult and (here(can_plant_bean) or Hover_Boots)",
@@ -593,7 +593,7 @@
                 is_adult and Hookshot and
                 (Iron_Boots or ((Longshot or logic_water_hookshot_entry) and (Progressive_Scale, 2)))",
             "LH Grotto": "True"
-            
+
         }
     },
     {

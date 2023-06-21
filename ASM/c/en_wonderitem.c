@@ -50,11 +50,11 @@ void EnWonderItem_Multitag_DrawHack(z64_xyzf_t* tags, uint32_t index, EnWonderIt
         if(this->wonderMode == WONDERITEM_MULTITAG_ORDERED)
             color = &sEffectPrimColorCyan;
         z64_xyzf_t pos = tags[index];
-//        if(this->wonderMode != WONDERITEM_INTERACT_SWITCH) 
+//        if(this->wonderMode != WONDERITEM_INTERACT_SWITCH)
 //            pos.y += 20.0;
         z64_EffectSsKiraKira_SpawnSmall(&z64_game, &pos, &sEffectVelocity, &sEffectAccel, color, &sEffectEnvColor );
     }
-    
+
 }
 
 void EnWonderItem_DropCollectible_Hack(EnWonderItem* this, z64_game_t* globalCtx, int32_t autoCollect)
@@ -117,7 +117,7 @@ void EnWonderItem_Update_Hack(EnWonderItem* this) {
         switch(this->wonderMode){
             case(WONDERITEM_PROXIMITY_DROP): {
                 color = &sEffectPrimColorYellow;
-                break;            
+                break;
             }
             case(WONDERITEM_INTERACT_SWITCH):
             case(WONDERITEM_BOMB_SOLDIER): {

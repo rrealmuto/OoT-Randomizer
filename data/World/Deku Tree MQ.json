@@ -23,7 +23,7 @@
             "Deku Tree MQ Lobby Upper Keese" : "can_kill_keese",
             "Deku Tree MQ Lobby Vines Skullwalltula": "
                 (is_child and (Slingshot or Boomerang)) or
-                (is_adult and Bow or Hookshot) or 
+                (is_adult and Bow or Hookshot) or
                 (can_use(Dins_Fire) or Bombs or has_bombchus)",
             "Deku Tree MQ Lobby Gohma Larva 1": "is_adult or can_child_attack",
             "Deku Tree MQ Lobby Gohma Larva 2": "is_adult or can_child_attack",
@@ -69,11 +69,11 @@
                     (can_use(Megaton_Hammer) and (can_play(Song_of_Time) or logic_deku_mq_compass_gs)))",
             "Deku Tree MQ Compass Room Left Skullwalltula": "
                 (is_child and (Slingshot or Boomerang)) or
-                (is_adult and Bow or Hookshot) or 
+                (is_adult and Bow or Hookshot) or
                 (can_use(Dins_Fire) or Bombs or has_bombchus)",
             "Deku Tree MQ Compass Room Right Skullwalltula": "
                 (is_child and (Slingshot or Boomerang)) or
-                (is_adult and Bow or Hookshot) or 
+                (is_adult and Bow or Hookshot) or
                 (can_use(Dins_Fire) or Bombs or has_bombchus)",
             "Deku Tree MQ Compass Room Skulltula" : "is_adult or can_child_attack",
             "Deku Tree MQ Compass Room Gohma Larva 1": "is_adult or can_child_attack",

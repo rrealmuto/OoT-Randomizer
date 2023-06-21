@@ -51,7 +51,7 @@ def get_collectible_flag_table(world: World) -> tuple[dict[int, dict[int, int]],
                     default = location.default[0] #Use the first tuple as the primary tuple
                 if isinstance(default, tuple):
                     if location.scene == 0x3E: # Grottos need to be handled separately because they suck
-                        room, grotto_id, flag = default #14 rooms (4 bits), 0x1F grottos (5 bits), 
+                        room, grotto_id, flag = default #14 rooms (4 bits), 0x1F grottos (5 bits),
                         room_setup = (room << 5) + grotto_id
                     else:
                         room, setup, flag = default

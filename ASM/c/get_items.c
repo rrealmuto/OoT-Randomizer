@@ -104,7 +104,7 @@ override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_
                 .flag = item->collectibleFlag,
             };
         }
-        
+
         // Get the collectible flag stored in the actor's initial y rotation field.
         uint16_t flag = item->actor.rot_init.y;
         if(flag > 0)
@@ -568,7 +568,7 @@ uint16_t get_collectible_flag_offset(uint8_t* table, uint8_t scene, uint8_t room
             // Loop through each room/setup combination in the scene until we find the right one.
             for(i = 0; i < room_setup_count; i++)
             {
-                if(scene == 0x3E) { 
+                if(scene == 0x3E) {
                     room_id = table[index++];
                     uint8_t grotto_id = table[index++];
                     room_byte_offset = (table[index] << 8) + table[index+1];
@@ -641,7 +641,7 @@ bool Get_CollectibleOverrideFlag(EnItem00 *item00) {
                 }
             }
         }
-        
+
     }
 
     return true;
@@ -661,7 +661,7 @@ void Set_CollectibleOverrideFlag(EnItem00 *item00) {
             if(collectible_flag > 0)
             {
                 uint16_t table_offset = get_collectible_flag_offset(collectible_scene_flags_table,scene, room, grotto_id);
-                if(table_offset != 0xFFFF) { 
+                if(table_offset != 0xFFFF) {
                     collectible_override_flags[table_offset + collectible_flag / 8] |= (1 << (collectible_flag % 8));
                 }
             }
@@ -918,7 +918,7 @@ void Item_DropCollectible_Random_Before(z64_game_t* globalCtx, z64_actor_t* from
             params = 0;
 
             EnItem00 dummy;
-            
+
             dummy.actor.actor_id = 0x15;
             dummy.actor.rot_init.y = flag;
             dummy.actor.variable = 0;
@@ -929,11 +929,11 @@ void Item_DropCollectible_Random_Before(z64_game_t* globalCtx, z64_actor_t* from
                 z64_SpawnActor(&globalCtx->actor_ctxt, globalCtx, 21, z64_link.common.pos_world.x, z64_link.common.pos_world.y, z64_link.common.pos_world.z, 0, flag, 0, 0);
                 drop_collectible_override_flag = 0;
             }
-                
+
         }
-        
+
     }
-    
+
 }
 
 // Override hack for freestanding collectibles (green, blue, red rupees, recovery hearts)

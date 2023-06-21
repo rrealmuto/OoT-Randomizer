@@ -1006,7 +1006,7 @@ sh  v0, 0x004E(sp)
 
 ; Hack EnWonderItem_DropCollectible to drop flagged collectibles
 .orga 0xDE8C94
-    j		EnWonderItem_DropCollectible_Hack
+    j       EnWonderItem_DropCollectible_Hack
     nop
 
 ; ==============================================================

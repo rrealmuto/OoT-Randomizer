@@ -119,7 +119,7 @@
         },
         "exits": {
             "Dodongos Cavern Climb": "
-                has_explosives or Progressive_Strength_Upgrade or 
+                has_explosives or Progressive_Strength_Upgrade or
                 can_use(Dins_Fire) or (logic_dc_staircase and can_use(Bow))"
         }
     },

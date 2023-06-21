@@ -10,7 +10,7 @@
             "Jabu Jabus Belly MQ Entryway Left Cow Wonderitem": "can_use(Slingshot)",
             "Jabu Jabus Belly MQ Entryway Right Cow Wonderitem": "can_use(Slingshot)",
             "Jabu Jabus Belly MQ Entryway Octorok": "can_kill_octorok_with_explosives",
-            "Jabu Jabus Belly MQ Entryway Shabom 1": "can_kill_shabom", 
+            "Jabu Jabus Belly MQ Entryway Shabom 1": "can_kill_shabom",
             "Jabu Jabus Belly MQ Entryway Shabom 2": "can_kill_shabom",
             "Jabu Jabus Belly MQ Entryway Shabom 3": "can_kill_shabom",
             "Nut Pot": "True"

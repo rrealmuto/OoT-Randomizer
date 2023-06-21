@@ -1870,14 +1870,14 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     flags = get_all_collectible_flags(world)
     collectible_flag_table, alt_list = get_collectible_flag_table(world)
     collectible_flag_table_bytes, num_collectible_flags = get_collectible_flag_table_bytes(collectible_flag_table)
-    
+
     alt_list_bytes = get_alt_list_bytes(alt_list)
     if(len(collectible_flag_table_bytes) > 1200):
         raise(RuntimeError(f'Exceeded collectible override table size: {len(collectible_flag_table_bytes)}'))
     rom.write_bytes(rom.sym('collectible_scene_flags_table'), collectible_flag_table_bytes)
     num_collectible_flags += num_collectible_flags % 8
     rom.write_bytes(rom.sym('num_override_flags'), num_collectible_flags.to_bytes(2, 'big'))
-    
+
     if len(alt_list) > 128:
         raise RuntimeError(f'Exceeded alt override table size: {len(alt_list)}')
     rom.write_bytes(rom.sym('alt_overrides'), alt_list_bytes)
@@ -2401,7 +2401,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     if world.settings.tokensanity == 'off':
         # Change the GS token pickup message to fade out after 2 seconds (40 frames)
         update_message_by_id(messages, 0x00B4, bytearray(get_message_by_id(messages, 0x00B4).raw_text, encoding='utf-8')[:-1] + b'\x0E\x28')
-        # Prevent the GS token actor from freezing the player and waiting for the textbox to be closed 
+        # Prevent the GS token actor from freezing the player and waiting for the textbox to be closed
         rom.write_int32s(0xEC68C0, [0x00000000, 0x00000000])
         rom.write_int32s(0xEC69B0, [0x00000000, 0x00000000])
         rom.write_int32(0xEC6A10, 0x34020002) # li v0, 2
