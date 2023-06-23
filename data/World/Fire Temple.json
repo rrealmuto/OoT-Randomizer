@@ -70,15 +70,15 @@
             "Fire Temple Big Lava Room Keese 2": "can_use(Goron_Tunic)",
             "Fire Temple Big Lava Room Keese 3": "can_use(Goron_Tunic)",
             "Fire Temple Big Lava Room Keese 4": "can_use(Goron_Tunic)",
-            "Fire Temple Big Lava Room Bubble 1": "can_use(Goron_Tunic)",
-            "Fire Temple Big Lava Room Bubble 2": "can_use(Goron_Tunic)",
-            "Fire Temple Big Lava Room Bubble 3": "can_use(Goron_Tunic)",
-            "Fire Temple Big Lava Room Bubble 4": "can_use(Goron_Tunic)",
-            "Fire Temple Big Lava Room Bubble 5": "can_use(Goron_Tunic)",
-            "Fire Temple Big Lava Room Bubble 6": "can_use(Goron_Tunic)",
-            "Fire Temple Big Lava Room Bubble 7": "can_use(Goron_Tunic)",
-            "Fire Temple Big Lava Room Bubble 8": "can_use(Goron_Tunic)",
-            "Fire Temple Big Lava Room Bubble 9": "can_use(Goron_Tunic)"
+            "Fire Temple Big Lava Room Bubble 1": "can_use(Goron_Tunic) and (Magic_Meter or Bow)",
+            "Fire Temple Big Lava Room Bubble 2": "can_use(Goron_Tunic) and (Magic_Meter or Bow)",
+            "Fire Temple Big Lava Room Bubble 3": "can_use(Goron_Tunic) and (Magic_Meter or Bow)",
+            "Fire Temple Big Lava Room Bubble 4": "can_use(Goron_Tunic) and (Magic_Meter or Bow)",
+            "Fire Temple Big Lava Room Bubble 5": "can_use(Goron_Tunic) and (Magic_Meter or Bow)",
+            "Fire Temple Big Lava Room Bubble 6": "can_use(Goron_Tunic) and (Magic_Meter or Bow)",
+            "Fire Temple Big Lava Room Bubble 7": "can_use(Goron_Tunic) and (Magic_Meter or Bow)",
+            "Fire Temple Big Lava Room Bubble 8": "can_use(Goron_Tunic) and (Magic_Meter or Bow)",
+            "Fire Temple Big Lava Room Bubble 9": "can_use(Goron_Tunic) and (Magic_Meter or Bow)"
         },
         "exits": {
             "Fire Temple Elevator Room": "
@@ -167,11 +167,11 @@
             "Fire Temple Above Boulder Maze Torch Slug 1": "True",
             "Fire Temple Above Boulder Maze Torch Slug 2": "True",
             "Fire Temple Above Boulder Maze Torch Slug 3": "True",
-            "Fire Temple Moving Fire Room Bubble 1": "True",
-            "Fire Temple Moving Fire Room Bubble 2": "True",
-            "Fire Temple Moving Fire Room Bubble 3": "True",
-            "Fire Temple Moving Fire Room Bubble 4": "True",
-            "Fire Temple Moving Fire Room Bubble 5": "True"
+            "Fire Temple Moving Fire Room Bubble 1": "Bow or Magic_Meter",
+            "Fire Temple Moving Fire Room Bubble 2": "Bow or Magic_Meter",
+            "Fire Temple Moving Fire Room Bubble 3": "Bow or Magic_Meter",
+            "Fire Temple Moving Fire Room Bubble 4": "Bow or Magic_Meter",
+            "Fire Temple Moving Fire Room Bubble 5": "Bow or Magic_Meter"
         },
         "exits": {
             "Fire Temple Flame Maze": "(Small_Key_Fire_Temple, 7)"

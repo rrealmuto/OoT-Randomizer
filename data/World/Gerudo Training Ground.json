@@ -42,12 +42,11 @@
             "Gerudo Training Ground Lava Room Silver Rupee Front Right": "True",
             "Gerudo Training Ground Lava Room Silver Rupee Flame Circle": "
                 is_child or can_play(Song_of_Time) or Hover_Boots",
-            "Gerudo Training Ground Lava Room Bubble 1": "True",
-            "Gerudo Training Ground Lava Room Bubble 2": "True"
+            "Gerudo Training Ground Lava Room Bubble 1": "is_adult and (Bow or Magic_Meter)"
         },
         "exits": {
             "Gerudo Training Ground Central Maze Right": "is_child or can_play(Song_of_Time)",
-            "Gerudo Training Ground Lava Room Back": "can_use(Hover_Boots)",
+            "Gerudo Training Ground Lava Room Back": "is_child or can_play(Song_of_Time) or can_use(Hover_Boots) or can_use(Longshot)",
             "Gerudo Training Ground Hammer Room": "can_use(Longshot)",
             "Gerudo Training Ground Water Room": "(Silver_Rupee_Gerudo_Training_Ground_Lava, 5)"
         }
@@ -56,7 +55,8 @@
         "region_name": "Gerudo Training Ground Lava Room Back",
         "dungeon": "Gerudo Training Ground",
         "locations": {
-            "Gerudo Training Ground Lava Room Silver Rupee Center Right": "True"
+            "Gerudo Training Ground Lava Room Silver Rupee Center Right": "True",
+            "Gerudo Training Ground Lava Room Bubble 2": "is_adult and (Bow or Magic_Meter)"
         },
         "exits": {
             "Gerudo Training Ground Central Maze Right": "can_play(Song_of_Time)",

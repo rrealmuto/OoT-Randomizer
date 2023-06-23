@@ -2413,7 +2413,7 @@
             "DMC Adult Green Rupee 5": "is_adult",
             "DMC Adult Green Rupee 6": "is_adult",
             "DMC Adult Red Rupee": "is_adult",
-            "DMC Pierre Platform Bubble": "is_adult and Goron_Tunic"
+            "DMC Pierre Platform Bubble": "is_adult and Goron_Tunic and (Bow or Magic_Meter)"
         }
     },
     {
@@ -2494,9 +2494,9 @@
             "DMC Child Blue Rupee 4": "is_child",
             "DMC Child Blue Rupee 5": "is_child",
             "DMC Child Blue Rupee 6": "is_child",
-            "DMC Bubble Below Bridge To Fire Temple": "is_adult and can_use(Goron_Tunic) and Longshot",
-            "DMC Second Plank Bubble 1": "is_adult and can_use(Goron_Tunic)",
-            "DMC Second Plank Bubble 2": "is_adult and can_use(Goron_Tunic)"
+            "DMC Bubble Below Bridge To Fire Temple": "is_adult and can_use(Goron_Tunic) and Longshot and (Bow or Magic_Meter)",
+            "DMC Second Plank Bubble 1": "is_adult and can_use(Goron_Tunic) and (Bow or Magic_Meter)",
+            "DMC Second Plank Bubble 2": "is_adult and can_use(Goron_Tunic) and (Bow or Magic_Meter)"
         },
         "exits": {
             "DMC Central Nearby": "True",
