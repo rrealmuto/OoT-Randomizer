@@ -2079,7 +2079,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
     # mask shop
     shop_objs = place_shop_items(rom, world, shop_items, messages,
-        list(filter(lambda loc: loc.type == 'MaskShop', world.get_region('Market Mask Shop').locations)))
+        list(filter(lambda loc: loc.type == 'MaskShop', world.get_region('Market Mask Shop Storefront').locations)))
     shop_objs |= {0x013E, 0x00B2, 0x0111, 0x00C5, 0x0165} # Shop objects
     rom.write_byte(0x340A029, len(shop_objs))
     rom.write_int32(0x340A02C, 0x0300D400)

@@ -411,7 +411,7 @@
             "Ganons Castle Grounds": "is_adult",
             "Market Guard House": "True",
             "Market Bazaar": "is_child",
-            "Market Mask Shop": "is_child",
+            "Market Mask Shop Storefront": "is_child",
             "Market Shooting Gallery": "is_child",
             "Market Bombchu Bowling": "is_child",
             "Market Potion Shop": "is_child",
@@ -543,7 +543,7 @@
         }
     },
     {
-        "region_name": "Market Mask Shop",
+        "region_name": "Market Mask Shop Storefront",
         "events": {
             "Mask Shop Open": "at('HC Garden Locations', is_child) and 'Kakariko Village Gate Open'",
             "Mask of Truth Access": "
