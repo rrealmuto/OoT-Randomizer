@@ -14,6 +14,7 @@ Gossip Stone Shuffle - Play Song of Time to a gossip stone to receive a shuffled
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v26](#v26)
   * [v25](#v25)
   * [v24](#v24)
   * [v23](#v23)
@@ -43,6 +44,9 @@ Gossip Stone Shuffle - Play Song of Time to a gossip stone to receive a shuffled
   * [4.0](#40)
 
 ## RealRob Changelog
+### v26
+  * Improve Fire Bubble logic in Enemy Drop Shuffle
+
 ### v25
   * Rebased onto main Dev version 7.1.139
 
