@@ -155,10 +155,10 @@
             "Ganons Castle Fire Trial Silver Rupee Right Front": "True",
             "Ganons Castle Fire Trial Silver Rupee Inside Pillar": "can_use(Golden_Gauntlets)",
             "Ganons Castle Fire Trial Torch Slug" : "can_use(Goron_Tunic)",
-            "Ganons Castle Fire Trial Bubble 1" : "can_use(Goron_Tunic) and can_use(Hover_Boots)",
-            "Ganons Castle Fire Trial Bubble 2" : "can_use(Goron_Tunic) and can_use(Hover_Boots)",
-            "Ganons Castle Fire Trial Bubble 3" : "can_use(Goron_Tunic) and can_use(Hover_Boots)",
-            "Ganons Castle Fire Trial Bubble 4" : "can_use(Goron_Tunic) and can_use(Hover_Boots)"
+            "Ganons Castle Fire Trial Bubble 1" : "can_use(Goron_Tunic) and can_use(Hover_Boots) and (Magic_Meter or Bow)",
+            "Ganons Castle Fire Trial Bubble 2" : "can_use(Goron_Tunic) and can_use(Hover_Boots) and (Magic_Meter or Bow)",
+            "Ganons Castle Fire Trial Bubble 3" : "can_use(Goron_Tunic) and can_use(Hover_Boots) and (Magic_Meter or Bow)",
+            "Ganons Castle Fire Trial Bubble 4" : "can_use(Goron_Tunic) and can_use(Hover_Boots) and (Magic_Meter or Bow)"
         },
         "exits": {
             "Ganons Castle Fire Trial Ending": "
