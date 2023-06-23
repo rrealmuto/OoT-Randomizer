@@ -16,15 +16,13 @@ override_t get_smallcrate_override(z64_actor_t *actor, z64_game_t *game) {
     dummy.actor.actor_id = 0x15;
     dummy.actor.rot_init.y = actor->rot_init.z;
     dummy.actor.variable = 0;
-    
+
     override_t override = lookup_override(&(dummy.actor), game->scene_index, 0);
-    if(override.key.all != 0)
-    {
+    if (override.key.all != 0) {
         dummy.override = override;
-        if(!Get_CollectibleOverrideFlag(&dummy))
-        {
+        if (!Get_CollectibleOverrideFlag(&dummy)) {
             return override;
-        }    
+        }
     }
     return (override_t) { 0 };
 }
@@ -33,14 +31,32 @@ void ObjKibako_Draw(z64_actor_t *actor, z64_game_t *game) {
     uint8_t *texture = SMALLCRATE_TEXTURE; // get original texture
 
     ObjKibako* this = (ObjKibako*)actor;
-    if (this->chest_type == GILDED_CHEST) {
-        texture = get_texture(TEXTURE_ID_SMALLCRATE_GOLD);
-    } else if (this->chest_type == SILVER_CHEST) {
-        texture = get_texture(TEXTURE_ID_SMALLCRATE_KEY);
-    } else if (this->chest_type == GOLD_CHEST) {
-        texture = get_texture(TEXTURE_ID_SMALLCRATE_BOSSKEY);
-    } else if (this->chest_type == SKULL_CHEST_SMALL || this->chest_type == SKULL_CHEST_BIG) {
-        texture = get_texture(TEXTURE_ID_SMALLCRATE_SKULL);
+
+    switch (this->chest_type) {
+        case GILDED_CHEST:
+            texture = get_texture(TEXTURE_ID_SMALLCRATE_GOLD);
+            break;
+
+        case SILVER_CHEST:
+            texture = get_texture(TEXTURE_ID_SMALLCRATE_KEY);
+            break;
+
+        case GOLD_CHEST:
+            texture = get_texture(TEXTURE_ID_SMALLCRATE_BOSSKEY);
+            break;
+
+        case SKULL_CHEST_SMALL:
+        case SKULL_CHEST_BIG:
+            texture = get_texture(TEXTURE_ID_SMALLCRATE_SKULL);
+            break;
+
+        case HEART_CHEST_SMALL:
+        case HEART_CHEST_BIG:
+            texture = get_texture(TEXTURE_ID_SMALLCRATE_HEART);
+            break;
+
+        default:
+            break;
     }
 
     // push custom dlists (that set the palette and textures) to segment 09
@@ -61,7 +77,8 @@ void ObjKibako_SpawnCollectible_Hack(z64_actor_t* this, z64_game_t* globalCtx) {
     collectible = this->variable & 0x1F;
     if ((collectible >= 0) && (collectible <= 0x19)) {
         drop_collectible_override_flag = this->rot_init.z;
-        EnItem00* spawned = z64_Item_DropCollectible(globalCtx, &this->pos_world,
+        EnItem00 *spawned = z64_Item_DropCollectible(globalCtx, &this->pos_world,
                              collectible | (((this->variable >> 8) & 0x3F) << 8));
+        drop_collectible_override_flag = 0;
     }
 }

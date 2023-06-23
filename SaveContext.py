@@ -1,6 +1,22 @@
-from itertools import chain
+from __future__ import annotations
+import sys
+from collections.abc import Callable, Iterable
 from enum import IntEnum
+from typing import TYPE_CHECKING, Optional, Any
+
 from ItemPool import IGNORE_LOCATION
+
+if sys.version_info >= (3, 10):
+    from typing import TypeAlias
+else:
+    TypeAlias = str
+
+if TYPE_CHECKING:
+    from Rom import Rom
+    from World import World
+
+AddressesDict: TypeAlias = "dict[str, Address | dict[str, Address | dict[str, Address]]]"
+
 
 class Scenes(IntEnum):
     # Dungeons
@@ -23,49 +39,48 @@ class Scenes(IntEnum):
     DESERT_COLOSSUS = 0x5C
     DEATH_MOUNTAIN_TRAIL = 0x60
     DEATH_MOUNTAIN_CRATER = 0x61
+    GORON_CITY = 0x62
+
 
 class FlagType(IntEnum):
     CHEST = 0x00
     SWITCH = 0x01
     CLEAR = 0x02
     COLLECT = 0x03
-    # 0x04 unused
+    UNK00 = 0x04 # 0x04 unused
     VISITED_ROOM = 0x05
     VISITED_FLOOR = 0x06
 
-class Address():
-    prev_address = None
 
-    def __init__(self, address=None, size=4, mask=0xFFFFFFFF, max=None, choices=None, value=None):
-        if address is None:
-            self.address = Address.prev_address
-        else:
-            self.address = address           
-        self.value = value
-        self.size = size
-        self.choices = choices
-        self.mask = mask
+class Address:
+    prev_address: int = 0
+    EXTENDED_CONTEXT_START = 0x1450
+
+    def __init__(self, address: Optional[int] = None, extended: bool = False, size: int = 4, mask: int = 0xFFFFFFFF, max: Optional[int] = None,
+                 choices: Optional[dict[str, int]] = None, value: Optional[str] = None) -> None:
+        self.address: int = Address.prev_address if address is None else address
+        if extended and address is not None:
+            self.address += Address.EXTENDED_CONTEXT_START
+        self.value: Optional[str | int] = value
+        self.size: int = size
+        self.choices: Optional[dict[str, int]] = choices
+        self.mask: int = mask
 
         Address.prev_address = self.address + self.size
 
-        self.bit_offset = 0
+        self.bit_offset: int = 0
         while mask & 1 == 0:
             mask = mask >> 1
             self.bit_offset += 1
 
-        if max is None:
-            self.max = mask
-        else:
-            self.max = max
+        self.max: int = mask if max is None else max
 
-
-    def get_value(self, default=0):
+    def get_value(self, default: str | int = 0) -> str | int:
         if self.value is None:
             return default
         return self.value
 
-
-    def get_value_raw(self):
+    def get_value_raw(self) -> Optional[int]:
         if self.value is None:
             return None
 
@@ -83,8 +98,7 @@ class Address():
         value = (value << self.bit_offset) & self.mask
         return value
 
-
-    def set_value_raw(self, value):
+    def set_value_raw(self, value: int) -> None:
         if value is None:
             self.value = None
             return
@@ -95,7 +109,7 @@ class Address():
         value = (value & self.mask) >> self.bit_offset
         if value > self.max:
             value = self.max
-        
+
         if self.choices is not None:
             for choice_name, choice_value in self.choices.items():
                 if choice_value == value:
@@ -104,8 +118,7 @@ class Address():
 
         self.value = value
 
-
-    def get_writes(self, save_context):
+    def get_writes(self, save_context: SaveContext) -> None:
         if self.value is None:
             return
 
@@ -113,7 +126,7 @@ class Address():
         if value is None:
             return
 
-        values = zip(Address.to_bytes(value, self.size), 
+        values = zip(Address.to_bytes(value, self.size),
                      Address.to_bytes(self.mask, self.size))
 
         for i, (byte, mask) in enumerate(values):
@@ -124,8 +137,8 @@ class Address():
             else:
                 save_context.write_bits(self.address + i, byte, mask=mask)
 
-
-    def to_bytes(value, size):
+    @staticmethod
+    def to_bytes(value: int, size: int) -> list[int]:
         ret = []
         for _ in range(size):
             ret.insert(0, value & 0xFF)
@@ -133,15 +146,14 @@ class Address():
         return ret
 
 
-class SaveContext():
+class SaveContext:
     def __init__(self):
-        self.save_bits = {}
-        self.save_bytes = {}
-        self.addresses = self.get_save_context_addresses()
-
+        self.save_bits: dict[int, int] = {}
+        self.save_bytes: dict[int, int] = {}
+        self.addresses: AddressesDict = self.get_save_context_addresses()
 
     # will set the bits of value to the offset in the save (or'ing them with what is already there)
-    def write_bits(self, address, value, mask=None, predicate=None):
+    def write_bits(self, address: int, value: int, mask: Optional[int] = None, predicate: Optional[Callable[[int], bool]] = None) -> None:
         if predicate and not predicate(value):
             return
 
@@ -161,9 +173,8 @@ class SaveContext():
         else:
             self.save_bits[address] = value
 
-
     # will overwrite the byte at offset with the given value
-    def write_byte(self, address, value, predicate=None):
+    def write_byte(self, address: int, value: int, predicate: Optional[Callable[[int], bool]] = None) -> None:
         if predicate and not predicate(value):
             return
 
@@ -172,14 +183,12 @@ class SaveContext():
 
         self.save_bytes[address] = value
 
-
     # will overwrite the byte at offset with the given value
-    def write_bytes(self, address, bytes, predicate=None):
+    def write_bytes(self, address: int, bytes: Iterable[int], predicate: Optional[Callable[[int], bool]] = None) -> None:
         for i, value in enumerate(bytes):
             self.write_byte(address + i, value, predicate)
 
-
-    def write_save_entry(self, address):
+    def write_save_entry(self, address: Address) -> None:
         if isinstance(address, dict):
             for name, sub_address in address.items():
                 self.write_save_entry(sub_address)
@@ -189,7 +198,7 @@ class SaveContext():
         else:
             address.get_writes(self)
 
-    def write_permanent_flag(self, scene, type, byte_offset, bit_values):
+    def write_permanent_flag(self, scene: int, type: int, byte_offset: int, bit_values: int) -> None:
         # Save format is described here: https://wiki.cloudmodding.com/oot/Save_Format
         # Permanent flags start at offset 0x00D4. Each scene has 7 types of flags, one
         # of which is unused. Each flag type is 4 bytes wide per-scene, thus each scene
@@ -198,7 +207,12 @@ class SaveContext():
         # this function.
         self.write_bits(0x00D4 + scene * 0x1C + type * 0x04 + byte_offset, bit_values)
 
-    def set_ammo_max(self):
+    # write all flags (int32) of a given type at once
+    def write_permanent_flags(self, scene: Scenes, flag_type: FlagType, value: int) -> None:
+        byte_value = value.to_bytes(4, byteorder='big', signed=False)
+        self.write_bytes(0x00D4 + scene * 0x1C + flag_type * 0x04, byte_value)
+
+    def set_ammo_max(self) -> None:
         ammo_maxes = {
             'stick'     : ('stick_upgrade', [10,  10,  20,  30]),
             'nut'       : ('nut_upgrade',   [20,  20,  30,  40]),
@@ -219,28 +233,40 @@ class SaveContext():
             else:
                 self.addresses['ammo'][ammo].max = ammo_max
 
-
     # will overwrite the byte at offset with the given value
-    def write_save_table(self, rom):
+    def write_save_table(self, rom: Rom) -> None:
         self.set_ammo_max()
         for name, address in self.addresses.items():
             self.write_save_entry(address)
 
         save_table = []
+        extended_table = []
         for address, value in self.save_bits.items():
+            table = save_table
+            if(address >= Address.EXTENDED_CONTEXT_START):
+                table = extended_table
+                address -= Address.EXTENDED_CONTEXT_START
             if value != 0:
-                save_table += [(address & 0xFF00) >> 8, address & 0xFF, 0x00, value]
+                table += [(address & 0xFF00) >> 8, address & 0xFF, 0x00, value]
         for address, value in self.save_bytes.items():
-            save_table += [(address & 0xFF00) >> 8, address & 0xFF, 0x01, value]
+            table = save_table
+            if(address >= Address.EXTENDED_CONTEXT_START):
+                table = extended_table
+                address -= Address.EXTENDED_CONTEXT_START
+            table += [(address & 0xFF00) >> 8, address & 0xFF, 0x01, value]
         save_table += [0x00,0x00,0x00,0x00]
+        extended_table += [0x00,0x00, 0x00,0x00]
 
         table_len = len(save_table)
         if table_len > 0x400:
             raise Exception("The Initial Save Table has exceeded its maximum capacity: 0x%03X/0x400" % table_len)
         rom.write_bytes(rom.sym('INITIAL_SAVE_DATA'), save_table)
+        extended_table_len = len(extended_table)
+        if extended_table_len > 0x100:
+            raise Exception("The Initial Extended Save Table has exceeded its maximum capacity: 0x%03X/0x100" % extended_table_len)
+        rom.write_bytes(rom.sym('EXTENDED_INITIAL_SAVE_DATA'), extended_table)
 
-
-    def give_bottle(self, item, count):
+    def give_bottle(self, item: str, count: int) -> None:
         for bottle_id in range(4):
             item_slot = 'bottle_%d' % (bottle_id + 1)
             if self.addresses['item_slot'][item_slot].get_value(0xFF) != 0xFF:
@@ -252,8 +278,7 @@ class SaveContext():
             if count == 0:
                 return
 
-
-    def give_health(self, health):
+    def give_health(self, health: float):
         health += self.addresses['health_capacity'].get_value(0x30) / 0x10
         health += self.addresses['quest']['heart_pieces'].get_value() / 4
 
@@ -261,8 +286,7 @@ class SaveContext():
         self.addresses['health'].value                = int(health) * 0x10
         self.addresses['quest']['heart_pieces'].value = int((health % 1) * 4) * 0x10
 
-
-    def give_item(self, world, item, count=1):
+    def give_item(self, world: World, item: str, count: int = 1) -> None:
         if item.endswith(')'):
             item_base, implicit_count = item[:-1].split(' (', 1)
             if implicit_count.isdigit():
@@ -280,7 +304,63 @@ class SaveContext():
         elif item == IGNORE_LOCATION:
             pass # used to disable some skipped and inaccessible locations
         elif item in SaveContext.save_writes_table:
-            if item.startswith('Small Key Ring ('):
+            if item.startswith('Silver Rupee (') or item.startswith('Silver Rupee Pouch ('):
+                puzzle = item[:-1].split(' (', 1)[1]
+                needed_count = {
+                    "Dodongos Cavern Staircase": 5,
+                    "Ice Cavern Spinning Scythe": 5,
+                    "Ice Cavern Push Block": 5,
+                    "Bottom of the Well Basement": 5,
+                    "Shadow Temple Scythe Shortcut": 5,
+                    "Shadow Temple Invisible Blades": 10,
+                    "Shadow Temple Huge Pit": 5,
+                    "Shadow Temple Invisible Spikes": 10 if world.dungeon_mq["Shadow Temple"] else 5,
+                    "Gerudo Training Ground Slopes": 5,
+                    "Gerudo Training Ground Lava": 6 if world.dungeon_mq["Gerudo Training Ground"] else 5,
+                    "Gerudo Training Ground Water": 3 if world.dungeon_mq["Gerudo Training Ground"] else 5,
+                    "Spirit Temple Child Early Torches": 5,
+                    "Spirit Temple Adult Boulders": 5,
+                    "Spirit Temple Lobby and Lower Adult": 5,
+                    "Spirit Temple Sun Block": 5,
+                    "Spirit Temple Adult Climb": 5,
+                    "Ganons Castle Spirit Trial": 5,
+                    "Ganons Castle Light Trial": 5,
+                    "Ganons Castle Fire Trial": 5,
+                    "Ganons Castle Shadow Trial": 5,
+                    "Ganons Castle Water Trial": 5,
+                    "Ganons Castle Forest Trial": 5,
+                }[puzzle]
+                if item.startswith('Silver Rupee Pouch ('):
+                    item = item.replace('Silver Rupee Pouch (', 'Silver Rupee (')
+                    count = needed_count
+                if count >= needed_count:
+                    save_writes = {
+                        "Dodongos Cavern Staircase":           {'silver_rupee_counts.dc_staircase': needed_count, 'scene_flags.dodongo.swch.silver_rupees_staircase': True},
+                        "Ice Cavern Spinning Scythe":          {'silver_rupee_counts.ice_scythe': needed_count, 'scene_flags.ice.swch.silver_rupees_scythe': True},
+                        "Ice Cavern Push Block":               {'silver_rupee_counts.ice_block': needed_count, 'scene_flags.ice.swch.silver_rupees_block': True},
+                        "Bottom of the Well Basement":         {'silver_rupee_counts.botw_basement': needed_count, 'scene_flags.botw.swch.silver_rupees_basement': True},
+                        "Shadow Temple Scythe Shortcut":       {'silver_rupee_counts.shadow_scythe': needed_count, 'scene_flags.shadow.swch.silver_rupees_scythe': True},
+                        "Shadow Temple Invisible Blades":      {'silver_rupee_counts.shadow_blades': needed_count, 'scene_flags.shadow.swch.silver_rupees_blades': True},
+                        "Shadow Temple Huge Pit":              {'silver_rupee_counts.shadow_pit': needed_count, 'scene_flags.shadow.swch.silver_rupees_mq_pit' if world.dungeon_mq["Shadow Temple"] else 'scene_flags.shadow.swch.silver_rupees_vanilla_pit': True},
+                        "Shadow Temple Invisible Spikes":      {'silver_rupee_counts.shadow_spikes': needed_count, 'scene_flags.shadow.swch.silver_rupees_spikes': True},
+                        "Gerudo Training Ground Slopes":       {'silver_rupee_counts.gtg_slopes': needed_count, 'scene_flags.gtg.swch.silver_rupees_slopes': True, 'scene_flags.gtg.clear.slopes_room': True},
+                        "Gerudo Training Ground Lava":         {'silver_rupee_counts.gtg_lava': needed_count, 'scene_flags.gtg.swch.silver_rupees_lava': True},
+                        "Gerudo Training Ground Water":        {'silver_rupee_counts.gtg_water': needed_count, 'scene_flags.gtg.swch.silver_rupees_water': True},
+                        "Spirit Temple Child Early Torches":   {'silver_rupee_counts.spirit_torches': needed_count, 'scene_flags.spirit.swch.silver_rupees_torches': True},
+                        "Spirit Temple Adult Boulders":        {'silver_rupee_counts.spirit_boulders': needed_count, 'scene_flags.spirit.swch.silver_rupees_boulders': True},
+                        "Spirit Temple Lobby and Lower Adult": {'silver_rupee_counts.spirit_lobby': needed_count, 'scene_flags.spirit.swch.silver_rupees_lobby': True},
+                        "Spirit Temple Sun Block":             {'silver_rupee_counts.spirit_sun': needed_count, 'scene_flags.spirit.swch.silver_rupees_sun': True},
+                        "Spirit Temple Adult Climb":           {'silver_rupee_counts.spirit_adult_climb': needed_count, 'scene_flags.spirit.swch.silver_rupees_adult_climb': True},
+                        "Ganons Castle Spirit Trial":          {'silver_rupee_counts.trials_spirit': needed_count, 'scene_flags.gc.swch.silver_rupees_shadow_spirit': True},
+                        "Ganons Castle Light Trial":           {'silver_rupee_counts.trials_light': needed_count, 'scene_flags.gc.swch.silver_rupees_light': True},
+                        "Ganons Castle Fire Trial":            {'silver_rupee_counts.trials_fire': needed_count, 'scene_flags.gc.swch.silver_rupees_mq_fire' if world.dungeon_mq["Ganons Castle"] else 'scene_flags.gc.swch.silver_rupees_vanilla_fire': True},
+                        "Ganons Castle Shadow Trial":          {'silver_rupee_counts.trials_shadow': needed_count, 'scene_flags.gc.swch.silver_rupees_shadow_spirit': True},
+                        "Ganons Castle Water Trial":           {'silver_rupee_counts.trials_water': needed_count, 'scene_flags.gc.swch.silver_rupees_water': True},
+                        "Ganons Castle Forest Trial":          {'silver_rupee_counts.trials_forest': needed_count, 'scene_flags.gc.swch.silver_rupees_forest': True},
+                    }[puzzle]
+                else:
+                    save_writes = SaveContext.save_writes_table[item]
+            elif item.startswith('Small Key Ring ('):
                 dungeon = item[:-1].split(' (', 1)[1]
                 save_writes = {
                     "Forest Temple"          : {
@@ -319,7 +399,20 @@ class SaveContext():
                         'keys.gc': 3 if world.dungeon_mq[dungeon] else 2,
                         'total_keys.gc': 3 if world.dungeon_mq[dungeon] else 2,
                     },
+                    "Treasure Chest Game"    : {
+                        'keys.tcg': 6,
+                        'total_keys.tcg': 6,
+                    },
                 }[dungeon]
+                if world.settings.keyring_give_bk:
+                    bk_names = {
+                        "Forest Temple": 'dungeon_items.forest.boss_key',
+                        "Fire Temple": 'dungeon_items.fire.boss_key',
+                        "Water Temple": 'dungeon_items.water.boss_key',
+                        "Spirit Temple": 'dungeon_items.spirit.boss_key',
+                        "Shadow Temple": 'dungeon_items.shadow.boss_key'
+                    }
+                    save_writes[dungeon][bk_names[dungeon]] = True
             else:
                 save_writes = SaveContext.save_writes_table[item]
             for address, value in save_writes.items():
@@ -332,6 +425,7 @@ class SaveContext():
 
                 address_value = self.addresses
                 prev_sub_address = 'Save Context'
+                sub_address = None
                 for sub_address in address.split('.'):
                     if sub_address not in address_value:
                         raise ValueError('Unknown key %s in %s of SaveContext' % (sub_address, prev_sub_address))
@@ -342,7 +436,7 @@ class SaveContext():
                     address_value = address_value[sub_address]
                     prev_sub_address = sub_address
                 if not isinstance(address_value, Address):
-                    raise ValueError('%s does not resolve to an Address in SaveContext' % (sub_address))
+                    raise ValueError('%s does not resolve to an Address in SaveContext' % sub_address)
 
                 if isinstance(value, int) and value < address_value.get_value():
                     continue
@@ -351,20 +445,16 @@ class SaveContext():
         else:
             raise ValueError("Cannot give unknown starting item %s" % item)
 
-
-    def give_bombchu_item(self, world):
+    def give_bombchu_item(self, world: World) -> None:
         self.give_item(world, "Bombchus", 0)
 
-
-    def equip_default_items(self, age):
+    def equip_default_items(self, age: str) -> None:
         self.equip_items(age, 'equips_' + age)
 
-
-    def equip_current_items(self, age):
+    def equip_current_items(self, age: str) -> None:
         self.equip_items(age, 'equips')
 
-
-    def equip_items(self, age, equip_type):
+    def equip_items(self, age: str, equip_type: str) -> None:
         if age not in ['child', 'adult']:
             raise ValueError("Age must be 'adult' or 'child', not %s" % age)
 
@@ -393,8 +483,8 @@ class SaveContext():
                         self.addresses[equip_type]['button_items']['b'].value = item
                     break
 
-
-    def get_save_context_addresses(self):
+    @staticmethod
+    def get_save_context_addresses() -> AddressesDict:
         return {
             'entrance_index'             : Address(0x0000, size=4),
             'link_age'                   : Address(size=4, max=1),
@@ -439,7 +529,7 @@ class SaveContext():
                     'sword'              : Address(0x0048, size=2, mask=0x000F),
                     'shield'             : Address(0x0048, size=2, mask=0x00F0),
                     'tunic'              : Address(0x0048, size=2, mask=0x0F00),
-                    'boots'              : Address(0x0048, size=2, mask=0xF000),                
+                    'boots'              : Address(0x0048, size=2, mask=0xF000),
                 },
             },
             'equips_adult' : {
@@ -458,7 +548,7 @@ class SaveContext():
                     'sword'              : Address(0x0052, size=2, mask=0x000F),
                     'shield'             : Address(0x0052, size=2, mask=0x00F0),
                     'tunic'              : Address(0x0052, size=2, mask=0x0F00),
-                    'boots'              : Address(0x0052, size=2, mask=0xF000),                
+                    'boots'              : Address(0x0052, size=2, mask=0xF000),
                 },
             },
             'unk_06'                     : Address(size=0x12),
@@ -480,7 +570,7 @@ class SaveContext():
                     'sword'              : Address(0x0070, size=2, mask=0x000F, max=3),
                     'shield'             : Address(0x0070, size=2, mask=0x00F0, max=3),
                     'tunic'              : Address(0x0070, size=2, mask=0x0F00, max=3),
-                    'boots'              : Address(0x0070, size=2, mask=0xF000, max=3),                
+                    'boots'              : Address(0x0070, size=2, mask=0xF000, max=3),
                 },
             },
             'unk_07'                     : Address(size=2),
@@ -689,7 +779,10 @@ class SaveContext():
                 'gtg'                    : Address(size=1),
                 'fortress'               : Address(size=1),
                 'gc'                     : Address(size=1),
-                'unused'                 : Address(size=5),
+                'gt_col'                 : Address(size=1),
+                'gc_col'                 : Address(size=1),
+                'tcg'                    : Address(size=1),
+                'unused'                 : Address(size=2),
             },
             'defense_hearts'             : Address(size=1, max=20),
             'gs_tokens'                  : Address(size=2, max=100),
@@ -708,13 +801,94 @@ class SaveContext():
                 'gtg'                    : Address(0xD4 + 0x1C * 0x0B + 0x10, size=2),
                 'fortress'               : Address(0xD4 + 0x1C * 0x0C + 0x10, size=2),
                 'gc'                     : Address(0xD4 + 0x1C * 0x0D + 0x10, size=2),
+                'tcg'                    : Address(0xD4 + 0x1C * 0x10 + 0x10, size=2),
+            },
+            'scene_flags' : {
+                'dodongo' : {
+                    'swch' : {
+                        'silver_rupees_staircase': Address(0xD4 + 0x1C * 0x01 + 0x04, mask=0x80000000),
+                    },
+                },
+                'spirit' : {
+                    'swch' : {
+                        'silver_rupees_adult_climb': Address(0xD4 + 0x1C * 0x06 + 0x04, mask=0x00000001),
+                        'silver_rupees_boulders': Address(0xD4 + 0x1C * 0x06 + 0x04, mask=0x00000004),
+                        'silver_rupees_torches': Address(0xD4 + 0x1C * 0x06 + 0x04, mask=0x00000020),
+                        'silver_rupees_sun': Address(0xD4 + 0x1C * 0x06 + 0x04, mask=0x00000400),
+                        'silver_rupees_lobby': Address(0xD4 + 0x1C * 0x06 + 0x04, mask=0x80000000),
+                    },
+                },
+                'shadow' : {
+                    'swch' : {
+                        'silver_rupees_scythe': Address(0xD4 + 0x1C * 0x07 + 0x04, mask=0x00000002),
+                        'silver_rupees_blades': Address(0xD4 + 0x1C * 0x07 + 0x04, mask=0x00000008),
+                        'silver_rupees_spikes': Address(0xD4 + 0x1C * 0x07 + 0x04, mask=0x00000100),
+                        'silver_rupees_vanilla_pit': Address(0xD4 + 0x1C * 0x07 + 0x04, mask=0x00000200),
+                        'silver_rupees_mq_pit': Address(0xD4 + 0x1C * 0x07 + 0x04, mask=0x00020000),
+                    },
+                },
+                'botw' : {
+                    'swch' : {
+                        'silver_rupees_basement': Address(0xD4 + 0x1C * 0x08 + 0x04, mask=0x80000000),
+                    },
+                },
+                'ice' : {
+                    'swch' : {
+                        'silver_rupees_scythe': Address(0xD4 + 0x1C * 0x09 + 0x04, mask=0x00000100),
+                        'silver_rupees_block': Address(0xD4 + 0x1C * 0x09 + 0x04, mask=0x00000200),
+                    },
+                },
+                'gtg' : {
+                    'swch' : {
+                        'silver_rupees_lava': Address(0xD4 + 0x1C * 0x0B + 0x04, mask=0x00001000),
+                        'silver_rupees_water': Address(0xD4 + 0x1C * 0x0B + 0x04, mask=0x08000000),
+                        'silver_rupees_slopes': Address(0xD4 + 0x1C * 0x0B + 0x04, mask=0x10000000),
+                    },
+                    'clear' : {
+                        'slopes_room' : Address(0xD4 + 0x1C*0x0B + 0x08, mask=0x00000004)
+                    }
+                },
+                'gc' : {
+                    'swch' : {
+                        'silver_rupees_mq_fire': Address(0xD4 + 0x1C * 0x0D + 0x04, mask=0x00000002),
+                        'silver_rupees_water': Address(0xD4 + 0x1C * 0x0D + 0x04, mask=0x00000004),
+                        'silver_rupees_vanilla_fire': Address(0xD4 + 0x1C * 0x0D + 0x04, mask=0x00000200),
+                        'silver_rupees_shadow_spirit': Address(0xD4 + 0x1C * 0x0D + 0x04, mask=0x00000800),
+                        'silver_rupees_forest': Address(0xD4 + 0x1C * 0x0D + 0x04, mask=0x00004000),
+                        'silver_rupees_light': Address(0xD4 + 0x1C * 0x0D + 0x04, mask=0x00040000),
+                    },
+                },
             },
             'triforce_pieces'            : Address(0xD4 + 0x1C * 0x48 + 0x10, size=4), # Unused word in scene x48
             'pending_freezes'            : Address(0xD4 + 0x1C * 0x49 + 0x10, size=4), # Unused word in scene x49
+            # begin extended save data items
+            'silver_rupee_counts' : {
+                'dc_staircase': Address(address=0x00, extended=True, size=1),
+                'ice_scythe': Address(extended=True, size=1),
+                'ice_block': Address(extended=True, size=1),
+                'botw_basement': Address(extended=True, size=1),
+                'shadow_scythe': Address(extended=True, size=1),
+                'shadow_blades': Address(extended=True, size=1),
+                'shadow_pit': Address(extended=True, size=1),
+                'shadow_spikes': Address(extended=True, size=1),
+                'gtg_slopes': Address(extended=True, size=1),
+                'gtg_lava': Address(extended=True, size=1),
+                'gtg_water': Address(extended=True, size=1),
+                'spirit_torches': Address(extended=True, size=1),
+                'spirit_boulders': Address(extended=True, size=1),
+                'spirit_lobby': Address(extended=True, size=1),
+                'spirit_sun': Address(extended=True, size=1),
+                'spirit_adult_climb': Address(extended=True, size=1),
+                'trials_spirit': Address(extended=True, size=1),
+                'trials_light': Address(extended=True, size=1),
+                'trials_fire': Address(extended=True, size=1),
+                'trials_shadow': Address(extended=True, size=1),
+                'trials_water': Address(extended=True, size=1),
+                'trials_forest': Address(extended=True, size=1),
+            }
         }
 
-
-    item_id_map = {
+    item_id_map: dict[str, int] = {
         'none'                : 0xFF,
         'stick'               : 0x00,
         'nut'                 : 0x01,
@@ -838,8 +1012,7 @@ class SaveContext():
         'small_key'           : 0x67,
     }
 
-
-    slot_id_map = {
+    slot_id_map: dict[str, int] = {
         'stick'               : 0x00,
         'nut'                 : 0x01,
         'bomb'                : 0x02,
@@ -866,8 +1039,7 @@ class SaveContext():
         'child_trade'         : 0x17,
     }
 
-
-    bottle_types = {
+    bottle_types: dict[str, str] = {
         "Bottle"                   : 'bottle',
         "Bottle with Red Potion"   : 'red_potion',
         "Bottle with Green Potion" : 'green_potion',
@@ -880,14 +1052,13 @@ class SaveContext():
         "Bottle with Bugs"         : 'bug',
         "Bottle with Big Poe"      : 'big_poe',
         "Bottle with Milk (Half)"  : 'half_milk',
-        "Bottle with Poe"          : 'poe',    
+        "Bottle with Poe"          : 'poe',
     }
 
-
-    save_writes_table = {
+    save_writes_table: dict[str, dict[str, Any]] = {
         "Deku Stick Capacity": {
             'item_slot.stick'            : 'stick',
-            'upgrades.stick_upgrade'     : [2,3],
+            'upgrades.stick_upgrade'     : [2, 3],
         },
         "Deku Stick": {
             'item_slot.stick'            : 'stick',
@@ -901,7 +1072,7 @@ class SaveContext():
         },
         "Deku Nut Capacity": {
             'item_slot.nut'              : 'nut',
-            'upgrades.nut_upgrade'       : [2,3],
+            'upgrades.nut_upgrade'       : [2, 3],
         },
         "Deku Nuts": {
             'item_slot.nut'              : 'nut',
@@ -954,6 +1125,7 @@ class SaveContext():
         "Pocket Cucco"   : {'item_slot.adult_trade'     : 'pocket_cucco'},
         "Cojiro"         : {'item_slot.adult_trade'     : 'cojiro'},
         "Odd Mushroom"   : {'item_slot.adult_trade'     : 'odd_mushroom'},
+        "Odd Potion"     : {'item_slot.adult_trade'     : 'odd_potion'},
         "Poachers Saw"   : {'item_slot.adult_trade'     : 'poachers_saw'},
         "Broken Sword"   : {'item_slot.adult_trade'     : 'broken_sword'},
         "Prescription"   : {'item_slot.adult_trade'     : 'prescription'},
@@ -963,6 +1135,14 @@ class SaveContext():
         "Weird Egg"      : {'item_slot.child_trade'     : 'weird_egg'},
         "Chicken"        : {'item_slot.child_trade'     : 'chicken'},
         "Zeldas Letter"  : {'item_slot.child_trade'     : 'zeldas_letter'},
+        "Keaton Mask"    : {'item_slot.child_trade'     : 'keaton_mask'},
+        "Skull Mask"     : {'item_slot.child_trade'     : 'skull_mask'},
+        "Spooky Mask"    : {'item_slot.child_trade'     : 'spooky_mask'},
+        "Bunny Hood"     : {'item_slot.child_trade'     : 'bunny_hood'},
+        "Goron Mask"     : {'item_slot.child_trade'     : 'goron_mask'},
+        "Zora Mask"      : {'item_slot.child_trade'     : 'zora_mask'},
+        "Gerudo Mask"    : {'item_slot.child_trade'     : 'gerudo_mask'},
+        "Mask of Truth"  : {'item_slot.child_trade'     : 'mask_of_truth'},
         "Goron Tunic"    : {'equip_items.goron_tunic'   : True},
         "Zora Tunic"     : {'equip_items.zora_tunic'    : True},
         "Iron Boots"     : {'equip_items.iron_boots'    : True},
@@ -1022,8 +1202,9 @@ class SaveContext():
             'double_magic'          : [False, True],
         },
         "Rupee"                     : {'rupees' : None},
-        "Rupee (Treasure Chest Game)" : {'rupees' : None},
         "Rupees"                    : {'rupees' : None},
+        "Rupee (Treasure Chest Game)" : {'rupees' : None},
+        "Rupees (Treasure Chest Game)" : {'rupees' : None},
         "Magic Bean Pack" : {
             'item_slot.beans'       : 'beans',
             'ammo.beans'            : 10
@@ -1092,7 +1273,33 @@ class SaveContext():
             'keys.gc': None,
             'total_keys.gc': None,
         },
-        #HACK: these counts aren't used since exact counts based on whether the dungeon is MQ are defined above,
+        "Small Key (Treasure Chest Game)"         : {
+            'keys.tcg': None,
+            'total_keys.tcg': None,
+        },
+        'Silver Rupee (Dodongos Cavern Staircase)':            {'silver_rupee_counts.dc_staircase': None},
+        'Silver Rupee (Ice Cavern Spinning Scythe)':           {'silver_rupee_counts.ice_scythe': None},
+        'Silver Rupee (Ice Cavern Push Block)':                {'silver_rupee_counts.ice_block': None},
+        'Silver Rupee (Bottom of the Well Basement)':          {'silver_rupee_counts.botw_basement': None},
+        'Silver Rupee (Shadow Temple Scythe Shortcut)':        {'silver_rupee_counts.shadow_scythe': None},
+        'Silver Rupee (Shadow Temple Invisible Blades)':       {'silver_rupee_counts.shadow_blades': None},
+        'Silver Rupee (Shadow Temple Huge Pit)':               {'silver_rupee_counts.shadow_pit': None},
+        'Silver Rupee (Shadow Temple Invisible Spikes)':       {'silver_rupee_counts.shadow_spikes': None},
+        'Silver Rupee (Gerudo Training Ground Slopes)':        {'silver_rupee_counts.gtg_slopes': None},
+        'Silver Rupee (Gerudo Training Ground Lava)':          {'silver_rupee_counts.gtg_lava': None},
+        'Silver Rupee (Gerudo Training Ground Water)':         {'silver_rupee_counts.gtg_water': None},
+        'Silver Rupee (Spirit Temple Child Early Torches)':    {'silver_rupee_counts.spirit_torches': None},
+        'Silver Rupee (Spirit Temple Adult Boulders)':         {'silver_rupee_counts.spirit_boulders': None},
+        'Silver Rupee (Spirit Temple Lobby and Lower Adult)':  {'silver_rupee_counts.spirit_lobby': None},
+        'Silver Rupee (Spirit Temple Sun Block)':              {'silver_rupee_counts.spirit_sun': None},
+        'Silver Rupee (Spirit Temple Adult Climb)':            {'silver_rupee_counts.spirit_adult_climb': None},
+        'Silver Rupee (Ganons Castle Spirit Trial)':           {'silver_rupee_counts.trials_spirit': None},
+        'Silver Rupee (Ganons Castle Light Trial)':            {'silver_rupee_counts.trials_light': None},
+        'Silver Rupee (Ganons Castle Fire Trial)':             {'silver_rupee_counts.trials_fire': None},
+        'Silver Rupee (Ganons Castle Shadow Trial)':           {'silver_rupee_counts.trials_shadow': None},
+        'Silver Rupee (Ganons Castle Water Trial)':            {'silver_rupee_counts.trials_water': None},
+        'Silver Rupee (Ganons Castle Forest Trial)':           {'silver_rupee_counts.trials_forest': None},
+        # HACK: these counts aren't used since exact counts based on whether the dungeon is MQ are defined above,
         # but the entries need to be there for key rings to be valid starting items
         "Small Key Ring (Forest Temple)"          : {
             'keys.forest': 6,
@@ -1130,10 +1337,35 @@ class SaveContext():
             'keys.gc': 3,
             'total_keys.gc': 3,
         },
+        "Small Key Ring (Treasure Chest Game)"    : {
+            'keys.tcg': 6,
+            'total_keys.tcg': 6,
+        },
+        'Silver Rupee Pouch (Dodongos Cavern Staircase)':            {'silver_rupee_counts.dc_staircase': 5},
+        'Silver Rupee Pouch (Ice Cavern Spinning Scythe)':           {'silver_rupee_counts.ice_scythe': 5},
+        'Silver Rupee Pouch (Ice Cavern Push Block)':                {'silver_rupee_counts.ice_block': 5},
+        'Silver Rupee Pouch (Bottom of the Well Basement)':          {'silver_rupee_counts.botw_basement': 5},
+        'Silver Rupee Pouch (Shadow Temple Scythe Shortcut)':        {'silver_rupee_counts.shadow_scythe': 5},
+        'Silver Rupee Pouch (Shadow Temple Invisible Blades)':       {'silver_rupee_counts.shadow_blades': 10},
+        'Silver Rupee Pouch (Shadow Temple Huge Pit)':               {'silver_rupee_counts.shadow_pit': 5},
+        'Silver Rupee Pouch (Shadow Temple Invisible Spikes)':       {'silver_rupee_counts.shadow_spikes': 10},
+        'Silver Rupee Pouch (Gerudo Training Ground Slopes)':        {'silver_rupee_counts.gtg_slopes': 5},
+        'Silver Rupee Pouch (Gerudo Training Ground Lava)':          {'silver_rupee_counts.gtg_lava': 6},
+        'Silver Rupee Pouch (Gerudo Training Ground Water)':         {'silver_rupee_counts.gtg_water': 5},
+        'Silver Rupee Pouch (Spirit Temple Child Early Torches)':    {'silver_rupee_counts.spirit_torches': 5},
+        'Silver Rupee Pouch (Spirit Temple Adult Boulders)':         {'silver_rupee_counts.spirit_boulders': 5},
+        'Silver Rupee Pouch (Spirit Temple Lobby and Lower Adult)':  {'silver_rupee_counts.spirit_lobby': 5},
+        'Silver Rupee Pouch (Spirit Temple Sun Block)':              {'silver_rupee_counts.spirit_sun': 5},
+        'Silver Rupee Pouch (Spirit Temple Adult Climb)':            {'silver_rupee_counts.spirit_adult_climb': 5},
+        'Silver Rupee Pouch (Ganons Castle Spirit Trial)':           {'silver_rupee_counts.trials_spirit': 5},
+        'Silver Rupee Pouch (Ganons Castle Light Trial)':            {'silver_rupee_counts.trials_light': 5},
+        'Silver Rupee Pouch (Ganons Castle Fire Trial)':             {'silver_rupee_counts.trials_fire': 5},
+        'Silver Rupee Pouch (Ganons Castle Shadow Trial)':           {'silver_rupee_counts.trials_shadow': 5},
+        'Silver Rupee Pouch (Ganons Castle Water Trial)':            {'silver_rupee_counts.trials_water': 5},
+        'Silver Rupee Pouch (Ganons Castle Forest Trial)':           {'silver_rupee_counts.trials_forest': 5},
     }
 
-
-    equipable_items = {
+    equipable_items: dict[str, dict[str, list[str]]] = {
         'equips_adult' : {
             'items': [
                 'hookshot',

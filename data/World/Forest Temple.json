@@ -32,7 +32,7 @@
             "Forest Temple NW Outdoors": "can_play(Song_of_Time) or is_child",
             "Forest Temple NE Outdoors": "can_use(Bow) or can_use(Slingshot)",
             "Forest Temple Block Push Room": "(Small_Key_Forest_Temple, 1)",
-            "Forest Temple Before Boss": "
+            "Forest Temple Basement": "
                 (Forest_Temple_Jo_and_Beth and Forest_Temple_Amy_and_Meg) or forest_temple_shortcuts"
         }
     },
@@ -184,14 +184,24 @@
         }
     },
     {
-        "region_name": "Forest Temple Before Boss",
+        "region_name": "Forest Temple Basement",
         "dungeon": "Forest Temple",
         "locations": {
             "Forest Temple Basement Chest": "True",
             "Forest Temple GS Basement": "can_use(Hookshot) or can_use(Boomerang)"
         },
         "exits": {
-            "Forest Temple Boss Door": "True"
+            "Forest Temple Central Area": "forest_temple_shortcuts",
+            "Forest Temple Before Boss": "True"
+        }
+    },
+    {
+        "region_name": "Forest Temple Before Boss",
+        "dungeon": "Forest Temple",
+        "savewarp": "SFM Forest Temple Entrance Ledge -> Forest Temple Lobby",
+        "exits": {
+            "Forest Temple Basement": "forest_temple_shortcuts",
+            "Phantom Ganon Boss Room": "Boss_Key_Forest_Temple"
         }
     }
 ]

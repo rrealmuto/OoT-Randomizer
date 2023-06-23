@@ -8,7 +8,7 @@
             "Bottom of the Well MQ Map Chest": "
                 can_play(Zeldas_Lullaby) or has_explosives",
             "Bottom of the Well MQ Lens of Truth Chest": "
-                has_explosives and 
+                has_explosives and
                 (Small_Key_Bottom_of_the_Well, 2)",
             "Bottom of the Well MQ Dead Hand Freestanding Key": "
                 has_explosives or (logic_botw_mq_dead_hand_key and Boomerang)",
@@ -16,10 +16,10 @@
                 can_play(Zeldas_Lullaby) or has_explosives",
             "Bottom of the Well MQ GS Basement": "can_child_attack",
             "Bottom of the Well MQ GS West Inner Room": "
-                can_child_attack and 
+                can_child_attack and
                 (can_play(Zeldas_Lullaby) or has_explosives)",
             "Bottom of the Well MQ GS Coffin Room": "
-                can_child_attack and 
+                can_child_attack and
                 (Small_Key_Bottom_of_the_Well, 2)"
         },
         "exits": {

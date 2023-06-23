@@ -36,6 +36,8 @@ OOTR custom chest textures work by modifying the wooden chest display list to al
 - SILVER_CHEST 13 (custom type for small keys)
 - SKULL_CHEST_SMALL 14 (custom type for non-major item skull tokens)
 - SKULL_CHEST_BIG 15 (custom type for major item skull tokens)
+- HEART_CHEST_SMALL 16 (custom type for non-major heart containers and pieces of heart)
+- HEART_CHEST_BIG 17 (custom type for major heart containers and pieces of heart)
 
 Maximum number of chest types is 256 (max type id 255).
 

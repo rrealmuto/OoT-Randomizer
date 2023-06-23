@@ -4,6 +4,7 @@
     "gerudo_fortress":                         "normal",
     "shuffle_smallkeys":                       "keysanity",
     "shuffle_hideoutkeys":                     "keysanity",
+    "shuffle_tcgkeys":                         "keysanity",
     "key_rings":                               [
     ],
     "mq_dungeons_mode":                        "vanilla"

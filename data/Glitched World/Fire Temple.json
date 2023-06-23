@@ -1,4 +1,4 @@
-[    
+[
     {
         "region_name": "Fire Temple Lower",
         "dungeon": "Fire Temple",
@@ -27,7 +27,7 @@
         "exits": {
             "Fire Temple Lower":  "True",
             "Fire Temple Middle": "
-                (can_use(Goron_Tunic) or Fairy) and (Small_Key_Fire_Temple, 4) and 
+                (can_use(Goron_Tunic) or Fairy) and (Small_Key_Fire_Temple, 4) and
                 (has_explosives or can_use(Bow) or can_use(Hookshot))"
         }
     },
@@ -42,17 +42,17 @@
             "Fire Temple Boulder Maze Shortcut Chest": "((Small_Key_Fire_Temple, 6) and has_explosives) or
                 (((has_explosives and can_live_dmg(0.5)) or can_weirdshot) and (Small_Key_Fire_Temple, 4))",
             "Fire Temple Scarecrow Chest": "(
-                (Small_Key_Fire_Temple, 6) or (has_explosives and can_live_dmg(0.5) and (Small_Key_Fire_Temple, 4)) ) 
+                (Small_Key_Fire_Temple, 6) or (has_explosives and can_live_dmg(0.5) and (Small_Key_Fire_Temple, 4)) )
                 and (can_use(Scarecrow) or can_hover)",
             "Fire Temple Map Chest": "
-                (Small_Key_Fire_Temple, 6) or ((Small_Key_Fire_Temple, 5) and can_use(Bow)) or 
+                (Small_Key_Fire_Temple, 6) or ((Small_Key_Fire_Temple, 5) and can_use(Bow)) or
                 (has_explosives and can_live_dmg(0.5) and (Small_Key_Fire_Temple, 4))",
             "Fire Temple GS Boulder Maze": "(Small_Key_Fire_Temple, 4) and has_explosives",
             "Fire Temple GS Scarecrow Climb": "(
-                (Small_Key_Fire_Temple, 6) or (has_explosives and can_live_dmg(0.5) and (Small_Key_Fire_Temple, 4)) ) 
+                (Small_Key_Fire_Temple, 6) or (has_explosives and can_live_dmg(0.5) and (Small_Key_Fire_Temple, 4)) )
                 and (can_use(Scarecrow) or can_hover)",
             "Fire Temple GS Scarecrow Top": "(
-                (Small_Key_Fire_Temple, 6) or (has_explosives and can_live_dmg(0.5) and (Small_Key_Fire_Temple, 4)) ) 
+                (Small_Key_Fire_Temple, 6) or (has_explosives and can_live_dmg(0.5) and (Small_Key_Fire_Temple, 4)) )
                 and (can_use(Scarecrow) or can_hover)"
         },
         "exits": {
@@ -77,7 +77,7 @@
                 can_use(Megaton_Hammer) or (has_explosives and can_live_dmg(1.0))
                 ) or
                 (
-                    (can_mega and can_use(Hookshot)) or 
+                    (can_mega and can_use(Hookshot)) or
                     (can_play(Song_of_Time) and
                         (can_use(Megaton_Hammer) or can_use(Hover_Boots) or (has_explosives and can_live_dmg(0.5)) )
                     )

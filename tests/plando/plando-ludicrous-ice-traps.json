@@ -1,7 +1,7 @@
 {
   "settings": {
     "item_pool_value":                         "ludicrous",
-    "shuffle_child_trade":                     "vanilla",
+    "shuffle_child_trade":                     [],
     "open_forest":                             "closed_deku",
     "zora_fountain":                           "closed",
     "gerudo_fortress":                         "normal",
@@ -18,7 +18,7 @@
     "shuffle_song_items":                      "any",
     "shuffle_cows":                            true,
     "shuffle_beans":                           true,
-    "shuffle_medigoron_carpet_salesman":       true,
+    "shuffle_expensive_merchants":       true,
     "shuffle_frog_song_rupees":                true,
     "shuffle_scrubs":                          "low",
     "shopsanity":                              "4",
@@ -26,9 +26,10 @@
     "shuffle_mapcompass":                      "keysanity",
     "shuffle_smallkeys":                       "keysanity",
     "shuffle_hideoutkeys":                     "keysanity",
+    "shuffle_tcgkeys":                         "keysanity",
     "shuffle_bosskeys":                        "keysanity",
     "disabled_locations":                      [],
-    "starting_items":                          [],
+    "starting_inventory":                      [],
     "ice_trap_appearance":                     "junk_only",
     "junk_ice_traps":                          "onslaught"
   }

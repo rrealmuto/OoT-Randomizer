@@ -1,6 +1,6 @@
 {
   "settings": {
-    "shuffle_child_trade": "vanilla"
+    "shuffle_child_trade": []
   },
   "item_pool": {
     "Weird Egg":  1
