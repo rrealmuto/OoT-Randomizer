@@ -1068,7 +1068,13 @@ def entrance_unreachable_as(entrance: Entrance, age: str, already_checked: Optio
     # Other entrances such as Interior, Dungeon or Grotto are fine unless they have a parent which is one of the above cases
     # Recursively check parent entrances to verify that they are also not reachable as the wrong age
     for parent_entrance in entrance.parent_region.entrances:
-        if parent_entrance in already_checked: continue
+        if parent_entrance in already_checked:
+            continue
+
+        # Farores Wind Warp is a special case which should be ignored for the purpose of this check
+        if parent_entrance.parent_region.name == 'Farores Wind Warp':
+            continue
+
         unreachable = entrance_unreachable_as(parent_entrance, age, already_checked)
         if not unreachable:
             return False
