@@ -745,7 +745,7 @@ def get_goal_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintRetu
     # Collect unhinted locations for the category across all category goals.
     # If all locations for all goals in the category are hinted, try remaining goal categories
     # If all locations for all goal categories are hinted, return no hint.
-    while not category_locations:
+    while not location_reverse_map:
         # Filter hinted goals until every goal in the category has been hinted.
         weights = []
         zero_weights = True
@@ -756,23 +756,21 @@ def get_goal_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintRetu
 
         # Collect set of unhinted locations for the category. Reduces the bias
         # from locations in multiple goals for the category.
-        category_locations = []
-        location_reverse_map = defaultdict(list)
+        location_reverse_map = defaultdict(set)
         for goal in goals:
             if zero_weights or goal.weight > 0:
                 goal_locations = list(filter(lambda location:
-                    location not in category_locations
-                    and location[0].name not in checked
+                    location[0].name not in checked
                     and location[0].name not in world.hint_exclusions
                     and location[0].name not in world.hint_type_overrides['goal']
                     and location[0].item.name not in world.item_hint_type_overrides['goal']
                     and location[0].item.name not in unHintableWothItems,
                     goal.required_locations))
                 for location in goal_locations:
-                    location_reverse_map[location[0]].append(goal)
-                category_locations.extend(goal_locations)
+                    for world_id in location[3]:
+                        location_reverse_map[location[0]].add((goal, world_id))
 
-        if not category_locations:
+        if not location_reverse_map:
             del world.goal_categories[goal_category.name]
             goal_category = get_goal_category(spoiler, world, world.goal_categories)
             if not goal_category:
@@ -780,12 +778,9 @@ def get_goal_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintRetu
             else:
                 goals = goal_category.goals
 
-    location_tuple = random.choice(category_locations)
-    location = location_tuple[0]
-    world_ids = location_tuple[3]
-    world_id = random.choice(world_ids)
+    location, goal_set = random.choice(list(location_reverse_map.items()))
+    goal, world_id = random.choice(list(goal_set))
     checked.add(location.name)
-    goal = random.choice(location_reverse_map[location])
 
     # Make sure this wasn't the last hintable location for other goals.
     # If so, set weights to zero. This is important for one-hint-per-goal.
@@ -1412,6 +1407,9 @@ def get_important_check_hint(spoiler: Spoiler, world: World, checked: set[str]) 
                 # exclude triforce pieces as it defeats the idea of a triforce hunt
                 and not location.item.name == 'Triforce Piece'
                 and not (location.name == 'Song from Impa' and 'Zeldas Letter' in world.settings.starting_items and 'Zeldas Letter' not in world.settings.shuffle_child_trade)
+                # Special cases where the item is only considered major for important checks hints
+                or location.item.name == 'Biggoron Sword'
+                or location.item.name == 'Double Defense'
                 # Handle make keys not in own dungeon major items
                 or (location.item.type == 'SmallKey' and not (world.settings.shuffle_smallkeys == 'dungeon' or world.settings.shuffle_smallkeys == 'vanilla'))
                 or (location.item.type == 'HideoutSmallKey' and not world.settings.shuffle_hideoutkeys == 'vanilla')

@@ -272,7 +272,12 @@ ITEM_MESSAGES: list[tuple[int, str]] = [
     (0x9002, "\x08You are a \x05\x43FOOL\x05\x40!"),
     (0x9003, "\x08You found a piece of the \x05\x41Triforce\x05\x40!"),
     (0x9019, "\x08\x13\x09You found a \x05\x41Bombchu Bag\x05\x40!\x01It has some \x05\x41Bombchus\x05\x40 inside!\x01Find more in tall grass."),
-    (0x901A, "\x08You can't buy Bombchus without a\x01\x05\x41Bombchu Bag\x05\x40!")
+    (0x901A, "\x08You can't buy Bombchus without a\x01\x05\x41Bombchu Bag\x05\x40!"),
+    (0x908C, "\x08You got the\x01\x05\x41Ocarina A Button!\x05\x40\x01You can now play \x9F on the Ocarina!"),
+    (0x908D, "\x08You got the\x01\x05\x41Ocarina C-up Button!\x05\x40\x01You can now play \xA5 on the Ocarina!"),
+    (0x908E, "\x08You got the\x01\x05\x41Ocarina C-down Button!\x05\x40\x01You can now play \xA6 on the Ocarina!"),
+    (0x908F, "\x08You got the\x01\x05\x41Ocarina C-left Button!\x05\x40\x01You can now play \xA7 on the Ocarina!"),
+    (0x9090, "\x08You got the\x01\x05\x41Ocarina C-right Button!\x05\x40\x01You can now play \xA8 on the Ocarina!"),
 ]
 
 KEYSANITY_MESSAGES: list[tuple[int, str]] = [
@@ -425,9 +430,9 @@ KEYSANITY_MESSAGES: list[tuple[int, str]] = [
     (0x9089, "\x08You found a \x05\x44Silver Rupee\x05\x40 for the\x01\x05\x43Water Trial\x05\x40 in \x05\x41Ganon's Castle\x05\x40!\x09"),
     (0x908A, "\x08You found a \x05\x44Silver Rupee\x05\x40 for the\x01\x05\x42Forest Trial\x05\x40 in \x05\x41Ganon's Castle\x05\x40!\x09"),
 
-	(0x908B, "\x08You found the \x05\x41Triforce of Power\x05\x40!"),
-    (0x908C, "\x08You found the \x05\x45Triforce of Wisdom\x05\x40!"),
-    (0x908D, "\x08You found the \x05\x42Triforce of Courage\x05\x40!"),
+	(0x90A0, "\x08You found the \x05\x41Triforce of Power\x05\x40!"),
+    (0x90A1, "\x08You found the \x05\x45Triforce of Wisdom\x05\x40!"),
+    (0x90A2, "\x08You found the \x05\x42Triforce of Courage\x05\x40!"),
 ]
 
 dungeon_names = [
@@ -1271,7 +1276,7 @@ def shuffle_messages(messages: list[Message], except_hints: bool = True) -> list
         GOSSIP_STONE_MESSAGES + TEMPLE_HINTS_MESSAGES +
         [data['id'] for data in misc_item_hint_table.values()] +
         [data['id'] for data in misc_location_hint_table.values()] +
-        list(KEYSANITY_MESSAGES.keys()) + shuffle_messages.shop_item_messages +
+        [message_id for (message_id, message) in KEYSANITY_MESSAGES] + shuffle_messages.shop_item_messages +
         shuffle_messages.scrubs_message_ids +
         [0x5036, 0x70F5] # Chicken count and poe count respectively
     )
