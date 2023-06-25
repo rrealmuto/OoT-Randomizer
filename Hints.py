@@ -9,6 +9,7 @@ import urllib.request
 from collections import OrderedDict, defaultdict
 from collections.abc import Callable, Iterable
 from enum import Enum
+from functools import reduce
 from typing import TYPE_CHECKING, Optional
 from urllib.error import URLError, HTTPError
 
@@ -827,7 +828,6 @@ def get_goal_count_hint(spoiler, world, checked):
 
     goals = goal_category.goals
     goal = None
-    goal_locations = []
 
     # Choose random goal and check if any locations are already hinted.
     # If all locations for a goal are hinted, remove the goal from the list and try again.
@@ -864,10 +864,8 @@ def get_goal_count_hint(spoiler, world, checked):
         else:
             goal = random.choices(unchecked_goals, weights=weights)[0]
 
-        goal_locations = goal.required_locations
-
     checked.add(goal.name)
-    item_count = len(goal_locations)
+    item_count = reduce(lambda acc, locations: acc + len(locations), spoiler.goal_locations[world.id][goal_category.name][goal.name].values(), 0)
     item_text = 'step' if item_count == 1 else 'steps'
 
     return (GossipText('the %s requires #%d# %s.' % (goal.hint_text, item_count, item_text), [goal.color, 'Light Blue']), None)
@@ -924,7 +922,8 @@ def get_unlock_hint(spoiler, world, checked, hint_type):
         requirements = spoiler.required_location_requirements
 
     required_locations = {
-        location: list(filter(lambda required_location: required_location.item.name not in world.item_hint_type_overrides[hint_type], required_locations)) 
+        location: list(filter(lambda required_location: required_location.item.name not in world.item_hint_type_overrides[hint_type] 
+                              and required_location.world.id == world.id, required_locations)) 
         for location, required_locations in requirements[world.id].items()
     }
 
