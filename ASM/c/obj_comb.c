@@ -25,7 +25,7 @@ void obj_comb_drop_collectible(z64_actor_t *actor, int16_t params) {
             // set up params for Item_DropCollectible
             drop_collectible_override_flag = flag;
             EnItem00* spawned = z64_Item_DropCollectible2(&z64_game, &actor->pos_world, params);
-            spawned->override = override;
+            drop_collectible_override_flag = 0;
         } else { // Normal beehive behavior
             if (z64_Rand_ZeroOne() > 0.5f) {
                 z64_Item_DropCollectible(&z64_game, &actor->pos_world, params);
@@ -47,21 +47,19 @@ override_t get_beehive_override(z64_actor_t *actor, z64_game_t *game) {
     dummy.actor.actor_id = 0x15;
     dummy.actor.rot_init.y = flag;
     dummy.actor.variable = 0;
-    
+
     override_t override = lookup_override(&(dummy.actor), game->scene_index, 0);
-    if(override.key.all != 0)
-    {
+    if (override.key.all != 0) {
         dummy.override = override;
-        if(!Get_CollectibleOverrideFlag(&dummy))
-        {
+        if (!Get_CollectibleOverrideFlag(&dummy)) {
             return override;
-        }    
+        }
     }
     return (override_t) { 0 };
 }
 
 void ObjComb_Update(z64_actor_t *thisx, z64_game_t *game) {
-    ObjComb* this = (ObjComb *)thisx;
+    ObjComb *this = (ObjComb *)thisx;
     if (this->actor.dropFlag > 0) {
         this->actor.dropFlag --;
     }
@@ -85,16 +83,26 @@ void ObjComb_Draw_Hack(z64_actor_t *this, z64_game_t *game) {
     override_t override = get_beehive_override(this, game);
 
     if(override.key.all != 0) {
-        uint16_t item_id = resolve_upgrades(override.value.item_id);
+        uint16_t item_id = resolve_upgrades(override);
         item_row_t *row = get_item_row(override.value.looks_like_item_id);
         if (row == NULL) {
             row = get_item_row(override.value.item_id);
         }
-        if (row->chest_type == GILDED_CHEST) {
-            texture = get_texture(TEXTURE_ID_BEEHIVE_GOLD);
-        }
-        if (row->chest_type == GOLD_CHEST) {
-            texture = get_texture(TEXTURE_ID_BEEHIVE_BOSSKEY);
+        switch (row->chest_type) {
+            case GILDED_CHEST:
+                texture = get_texture(TEXTURE_ID_BEEHIVE_GOLD);
+                break;
+
+            case GOLD_CHEST:
+                texture = get_texture(TEXTURE_ID_BEEHIVE_BOSSKEY);
+                break;
+
+            case HEART_CHEST:
+                texture = get_texture(TEXTURE_ID_BEEHIVE_HEART);
+                break;
+
+            default:
+                break;
         }
     }
 

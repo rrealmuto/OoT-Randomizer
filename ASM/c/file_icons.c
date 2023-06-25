@@ -3,10 +3,13 @@
 #include "color.h"
 #include "hud_colors.h"
 #include "triforce.h"
+#include "ocarina_buttons.h"
 
 #define ICON_SIZE    0x0C
 #define MUSIC_WIDTH  0x06
 #define MUSIC_HEIGHT 0x0A
+#define BUTTON_WIDTH  0x09
+#define BUTTON_HEIGHT 0x09
 
 #define NUM_ICON_SPRITES 3
 sprite_t* const icon_sprites[NUM_ICON_SPRITES] = {
@@ -36,6 +39,7 @@ static int get_top(tile_position pos) {
 
 static const colorRGBA8_t WHITE = {0xFF, 0xFF, 0xFF, 0xFF};
 static const colorRGBA8_t DIM   = {0x40, 0x40, 0x40, 0x90};
+static int hasTriforceGoalBeenReached = 0;
 
 // Approximate product of two colors. Result is within 1 of true product.
 static uint8_t color_product(uint8_t c1, uint8_t c2) {
@@ -85,7 +89,7 @@ typedef struct {
 
 #define FIXED_BITS_PER_WORD 32
 #define NUM_FIXED_WORDS 2
-static const fixed_tile_data_t fixed_tile_positions[NUM_FIXED_WORDS*FIXED_BITS_PER_WORD] = {
+static fixed_tile_data_t fixed_tile_positions[NUM_FIXED_WORDS*FIXED_BITS_PER_WORD] = {
     {0, ICON_SIZE,   Z64_ITEM_STICK,            {0x4E, 0x00}}, // 0:0
     {0, ICON_SIZE,   Z64_ITEM_NUT,              {0x5A, 0x00}}, // 0:1
     {0, ICON_SIZE,   Z64_ITEM_BOMB,             {0x66, 0x00}}, // 0:2
@@ -191,14 +195,29 @@ static const music_tile_data_t song_note_data[NUM_SONGS] = {
     {{0xFF, 0xFF, 0xFF}, {0x73, 0x3A}}  // Song of storms
 };
 
-#define NUM_COUNTER 5
+typedef struct {
+    colorRGB8_t color;
+    tile_position pos;
+} button_tile_data_t;
+
+#define NUM_BUTTONS 5
+static const button_tile_data_t button_note_data[NUM_BUTTONS] = {
+    {{0x00, 0x00, 0xFF}, {0x4E, 0x51}}, // A
+    {{0xF4, 0xEC, 0x30}, {0x57, 0x51}}, // C down
+    {{0xF4, 0xEC, 0x30}, {0x60, 0x51}}, // C right
+    {{0xF4, 0xEC, 0x30}, {0x69, 0x51}}, // C left
+    {{0xF4, 0xEC, 0x30}, {0x72, 0x51}}, // C up
+};
+
+#define NUM_COUNTER 6
 #define COUNTER_ICON_SIZE 0x10
 
 typedef enum {
     SLOT_HEARTS = 0,
     SLOT_RUPEES,
     SLOT_SKULLTULLAS,
-    SLOT_TRIFORCE,
+    SLOT_TRIFORCE_CURRENT,
+    SLOT_TRIFORCE_TOTAL,
     SLOT_DEATHS,
 } counter_slot_t;
 
@@ -209,11 +228,12 @@ typedef struct {
     uint8_t align_center;
 } counter_tile_data_t;
 
-static const counter_tile_data_t counter_positions[NUM_COUNTER] = {
+static counter_tile_data_t counter_positions[NUM_COUNTER] = {
     {{0x05, 0x00}, COUNTER_ICON_SIZE/2, 13, 1}, // Hearts
     {{0x05, 0x15}, COUNTER_ICON_SIZE/2, 13, 1}, // Rupees
     {{0x05, 0x2A}, COUNTER_ICON_SIZE/2, 13, 1}, // Skulltulas
-    {{0x27, 0x0F}, COUNTER_ICON_SIZE/2, 11, 1}, // Triforce Pieces
+    {{0x27, 0x27}, 3, 16, 0},  // Current Triforce Pieces
+    {{0x33, 0x27}, 0, 16, 0},   // Total Triforce Pieces
     {{0x4D, 0x51}, 11,                   2, 0}, // Deaths
 };
 
@@ -245,6 +265,10 @@ typedef struct {
     uint16_t bits;
 } music_tile_info_t;
 
+typedef struct {
+    uint16_t bits;
+} button_tile_info_t;
+
 typedef uint8_t digits_t[3];
 
 typedef struct {
@@ -258,6 +282,7 @@ typedef struct {
     variable_tile_info_t variable;
     counter_tile_info_t counters;
     music_tile_info_t songs;
+    button_tile_info_t buttons;
 } file_info_t;
 
 // File data structure
@@ -268,13 +293,49 @@ static file_info_t draw_data;
 Data population functions
 =============================================================================*/
 
+static void change_meds_and_stones_tiles_for_triforce_hunt(fixed_tile_data_t* fixed_tile_original) {
+    tile_position emerald_pos = {0x1A, 0x25};
+    fixed_tile_original[50].pos = emerald_pos;
+    tile_position ruby_pos = {0x29, 0x1A};
+    fixed_tile_original[51].pos = ruby_pos;
+    tile_position saphire_pos = {0x38, 0x25};
+    fixed_tile_original[52].pos = saphire_pos;
+    tile_position forest_med_pos = {0x1B, 0x00};
+    fixed_tile_original[56].pos = forest_med_pos;
+    tile_position fire_med_pos = {0x29, 0x00};
+    fixed_tile_original[57].pos = fire_med_pos;
+    tile_position water_med_pos = {0x37, 0x00};
+    fixed_tile_original[58].pos = water_med_pos;
+    tile_position shadow_med_pos = {0x29, 0x0C};
+    fixed_tile_original[60].pos = shadow_med_pos;
+    tile_position spirit_med_pos = {0x1B, 0x0C};
+    fixed_tile_original[59].pos = spirit_med_pos;
+    tile_position light_med_pos = {0x37, 0x0C};
+    fixed_tile_original[61].pos = light_med_pos;
+}
+
+static void push_down_death_counter_and_soa_for_ocarina_button_shuffle(fixed_tile_data_t* fixed_tile_original,
+                                                                        counter_tile_data_t* counter_data_original) {
+    tile_position soa_pos = {0x6F, 0x5C};
+    fixed_tile_original[53].pos = soa_pos;
+    tile_position death_pos = {0x4D, 0x5C};
+    counter_data_original[5].pos = death_pos;
+}
+
 // Populate fixed tiles
 #define NUM_NORMAL_INVENTORY_SLOTS 18
 static void populate_fixed(const z64_file_t* file, fixed_tile_info_t* info) {
     // inventory (excluding bottles and trade items)
     uint32_t inv = 0;
     uint32_t mask = 0x1;
-    const fixed_tile_data_t* inv_data = fixed_tile_positions;
+    fixed_tile_data_t* inv_data = fixed_tile_positions;
+    counter_tile_data_t* counter_data = counter_positions;
+    if (TRIFORCE_HUNT_ENABLED) {
+        change_meds_and_stones_tiles_for_triforce_hunt(inv_data);
+    }
+    if (SHUFFLE_OCARINA_BUTTONS) {
+        push_down_death_counter_and_soa_for_ocarina_button_shuffle(inv_data, counter_data);
+    }
     for (int i = 0; i < NUM_NORMAL_INVENTORY_SLOTS; ++i) {
         uint8_t item = file->items[i];
         if (inv_data->sprite == 0 && item == inv_data->tile_index) {
@@ -338,6 +399,26 @@ static void populate_songs(const z64_file_t* file, music_tile_info_t* songs) {
     songs->bits = (uint16_t)((file->quest_items >> SONG_SHIFT) & 0x0FFF);
 }
 
+// Populate button titles
+static void populate_buttons(const z64_file_t* file, button_tile_info_t* buttons) {
+    buttons->bits = 0;
+    if (file->scene_flags[0x50].unk_00_ & 1 << 0) { // A
+       buttons->bits |= 1 << 0;
+    }
+    if (file->scene_flags[0x50].unk_00_ & 1 << 2) { // C Down
+       buttons->bits |= 1 << 1;
+    }
+    if (file->scene_flags[0x50].unk_00_ & 1 << 4) { // C right
+       buttons->bits |= 1 << 2;
+    }
+    if (file->scene_flags[0x50].unk_00_ & 1 << 3) { // C left
+       buttons->bits |= 1 << 3;
+    }
+    if (file->scene_flags[0x50].unk_00_ & 1 << 1) { // C up
+       buttons->bits |= 1 << 4;
+    }
+}
+
 
 // Populate counter tiles
 static void make_digits(uint8_t* digits, int16_t value);
@@ -354,7 +435,10 @@ static void populate_counts(const z64_file_t* file, counter_tile_info_t* counts)
 
     // Triforce or Boss Key
     int16_t num_triforce_pieces = (int16_t)file->scene_flags[0x48].unk_00_;
-    make_digits(counts->digits[SLOT_TRIFORCE], num_triforce_pieces > 0 ? num_triforce_pieces : -1);
+    make_digits(counts->digits[SLOT_TRIFORCE_CURRENT], TRIFORCE_HUNT_ENABLED ? num_triforce_pieces : -1);
+    int16_t total_triforce_pieces = TRIFORCE_PIECES_REQUIRED;
+    make_digits(counts->digits[SLOT_TRIFORCE_TOTAL], TRIFORCE_HUNT_ENABLED ? total_triforce_pieces : -1);
+    hasTriforceGoalBeenReached = num_triforce_pieces >= total_triforce_pieces;
 
     // Hearts
     counts->double_defense = (uint8_t)file->double_defense;
@@ -371,6 +455,7 @@ void read_file_data(const z64_file_t* file) {
     populate_variable(file, &draw_data.variable);
     populate_counts(file, &draw_data.counters);
     populate_songs(file, &draw_data.songs);
+    populate_buttons(file, &draw_data.buttons);
 }
 
 
@@ -387,7 +472,10 @@ static void draw_fixed(z64_disp_buf_t* db, const fixed_tile_info_t* info, uint8_
     for (uint8_t enabled = 0; enabled <= 1; ++enabled) {
         gDPSetPrimColor(db->p++, 0, 0, color.r, color.g, color.b, color.a);
 
-        const fixed_tile_data_t* data = fixed_tile_positions;
+        fixed_tile_data_t* data = fixed_tile_positions;
+        if (TRIFORCE_HUNT_ENABLED) {
+            change_meds_and_stones_tiles_for_triforce_hunt(data);
+        }
 
         // Read one bit at a time, from least significant to most significant
         for (int i = 0; i < NUM_FIXED_WORDS; ++i) {
@@ -467,6 +555,41 @@ static void draw_songs(z64_disp_buf_t* db, const music_tile_info_t* songs, uint8
     }
 }
 
+// Draw button tiles
+static void draw_buttons(z64_disp_buf_t* db, const button_tile_info_t* buttons, uint8_t alpha) {
+    uint16_t bits = buttons->bits;
+    const button_tile_data_t* data = button_note_data;
+    sprite_load(db, &button_sprite, 0, 5);
+
+    uint8_t bright_alpha = color_product(WHITE.a, alpha);
+    uint8_t dim_alpha = color_product(DIM.a, alpha);
+
+    colorRGBA8_t last_color = {0x00, 0x00, 0x00, 0x00};
+    uint8_t button_index = 0;
+    while (data != button_note_data + NUM_BUTTONS) {
+        colorRGBA8_t color;
+        color.color = data->color;
+        color.a = bright_alpha;
+        if ((bits & 0x1) == 0) {
+            // Dim color
+            color.r = color_product(color.r, DIM.r);
+            color.g = color_product(color.g, DIM.g);
+            color.b = color_product(color.b, DIM.b);
+            color.a = dim_alpha;
+        }
+
+        if (last_color.r != color.r || last_color.g != color.g || last_color.b != color.b || last_color.a != color.a) {
+            gDPSetPrimColor(db->p++, 0, 0, color.r, color.g, color.b, color.a);
+        }
+        sprite_draw(db, &button_sprite, button_index, get_left(data->pos), get_top(data->pos), BUTTON_WIDTH, BUTTON_HEIGHT);
+
+        bits >>= 1;
+        ++data;
+        last_color = color;
+        button_index++;
+    }
+}
+
 
 // Draw counter numbers
 // note: must load item_digit_sprite before calling this function
@@ -498,11 +621,75 @@ static void draw_digits(z64_disp_buf_t* db, const uint8_t* digits, const counter
     }
 }
 
+static void draw_triforce_count_fileselect(z64_disp_buf_t* db, const uint8_t* digitsCurrent, const uint8_t* digitsTotal,
+ const counter_tile_data_t* dataCurrent, const counter_tile_data_t* dataTotal, uint8_t bright_alpha) {
+    int digit_left[4] = {0, 0, 0, 0}; // last element is total width
+
+    for (int i = 0; i < 3; ++i) {
+        int digit_width = 6;
+        if (digitsCurrent[i] == 1) {
+            --digit_left[i];
+            digit_width = 5; // "1" sprite is narrower
+        }
+        else if (digitsCurrent[i] > 9) {
+            digit_width = 0; // empty
+        }
+        digit_left[i+1] = digit_left[i] + digit_width;
+    }
+
+    int left = get_left(dataCurrent->pos) + dataCurrent->counter_hoffset;
+    left -= digit_left[3];
+
+    int top = get_top(dataCurrent->pos) + dataCurrent->counter_voffset;
+
+    // If the goal has been reached, color current number in yellow instead of white.
+    if (hasTriforceGoalBeenReached) {
+        gDPSetPrimColor(db->p++, 0, 0, 0xF4, 0xEC, 0x30, bright_alpha);
+    }
+
+    for (int i = 0; i < 3; ++i) {
+        if (digitsCurrent[i] <= 9) {
+            sprite_draw(db, &item_digit_sprite, digitsCurrent[i], left + digit_left[i], top, 8, 8);
+        }
+    }
+
+    gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, bright_alpha);
+    text_print_size("/", get_left(dataCurrent->pos) + 4, top, 8);
+    text_flush_size(db, 8, 8, 0, 0);
+
+    sprite_load(db, &item_digit_sprite, 0, 10);
+    // Triforce goal number is always in yellow.
+    gDPSetPrimColor(db->p++, 0, 0, 0xF4, 0xEC, 0x30, bright_alpha);
+
+    for (int i = 0; i < 3; ++i) {
+        int digit_width = 6;
+        if (digitsTotal[i] == 1) {
+            --digit_left[i];
+            digit_width = 5; // "1" sprite is narrower
+        }
+        else if (digitsTotal[i] > 9) {
+            digit_width = 0; // empty
+        }
+        digit_left[i+1] = digit_left[i] + digit_width;
+    }
+
+    left = get_left(dataTotal->pos) + dataTotal->counter_hoffset;
+    top = get_top(dataTotal->pos) + dataTotal->counter_voffset;
+
+    for (int i = 0; i < 3; ++i) {
+        if (digitsTotal[i] <= 9) {
+            sprite_draw(db, &item_digit_sprite, digitsTotal[i], left + digit_left[i], top, 8, 8);
+        }
+    }
+    sprite_load(db, &item_digit_sprite, 0, 10);
+    gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, bright_alpha);
+}
+
 
 // Draw counter tiles
 static void draw_counts(z64_disp_buf_t* db, const counter_tile_info_t* info, uint8_t alpha) {
     const counter_tile_data_t* const data = counter_positions;
-    
+
     uint8_t bright_alpha = color_product(WHITE.a, alpha);
 
     // Rupee
@@ -533,16 +720,22 @@ static void draw_counts(z64_disp_buf_t* db, const counter_tile_info_t* info, uin
     sprite_draw(db, &quest_items_sprite, 0, get_left(data[SLOT_SKULLTULLAS].pos), get_top(data[SLOT_SKULLTULLAS].pos), COUNTER_ICON_SIZE, COUNTER_ICON_SIZE);
 
     // Triforce
-    if (info->digits[SLOT_TRIFORCE][2] <= 9) {
+    if (TRIFORCE_HUNT_ENABLED && info->digits[SLOT_TRIFORCE_CURRENT][2] <= 9) {
         static uint8_t frame_counter = 0;
         gDPSetPrimColor(db->p++, 0, 0, 0xF4, 0xEC, 0x30, bright_alpha);
-        draw_square_sprite(db, &triforce_sprite, (frame_counter++ >> 2) % 16, data[SLOT_TRIFORCE].pos, COUNTER_ICON_SIZE);
+        draw_square_sprite(db, &triforce_sprite, (frame_counter++ >> 2) % 16, data[SLOT_TRIFORCE_CURRENT].pos, COUNTER_ICON_SIZE);
     }
 
     // Draw digits
     gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, bright_alpha);
     sprite_load(db, &item_digit_sprite, 0, 10);
     for (int i = 0; i < NUM_COUNTER; ++i) {
+        // Special case for Triforce current / total
+        if (i == 3 && TRIFORCE_HUNT_ENABLED) {
+            draw_triforce_count_fileselect(db, info->digits[i], info->digits[i + 1], &data[i], &data[i + 1], bright_alpha);
+            i++;
+            continue;
+        }
         draw_digits(db, info->digits[i], &data[i]);
     }
 }
@@ -603,6 +796,9 @@ void draw_file_icons(z64_disp_buf_t* db, const z64_menudata_t* menu_data) {
         draw_fixed(db, &draw_data.fixed, icon_alpha);
         draw_variable(db, &draw_data.variable, icon_alpha);
         draw_songs(db, &draw_data.songs, icon_alpha);
+        if (SHUFFLE_OCARINA_BUTTONS) {
+            draw_buttons(db, &draw_data.buttons, icon_alpha);
+        }
         draw_counts(db, &draw_data.counters, icon_alpha);
     }
 }

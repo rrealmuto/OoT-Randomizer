@@ -1,6 +1,10 @@
 #include "agony.h"
+#include "dungeon_info.h"
 #include "gfx.h"
+#include "item_effects.h"
 #include "z64.h"
+
+extern uint8_t CFG_DUNGEON_INFO_SILVER_RUPEES;
 
 typedef struct {
     unsigned char alpha_level : 8;
@@ -59,7 +63,7 @@ void agony_vibrate_setup() {
 
 void draw_agony_graphic(int hoffset, int voffset, unsigned char alpha) {
     // terminate if alpha level prohibited (changed areas)
-    unsigned char maxalpha = (unsigned char)z64_game.hud_alpha_channels.minimap;
+    unsigned char maxalpha = (unsigned char)z64_game.hud_alpha_channels.rupees_keys_magic;
     if (maxalpha == 0xAA) maxalpha = 0xFF;
 
     if (alpha > maxalpha) {
@@ -82,9 +86,28 @@ void draw_agony() {
         int hoffset = alpha_frame->pos;
         alpha_frame = ALPHA_DATA + alpha_frame->next;
         int scene_index = z64_game.scene_index;
+        int room_index = z64_game.room_index;
         int voffset = 0;
         if (scene_index < 0x11 && z64_file.dungeon_keys[scene_index] >= 0) {
-            voffset = -17;
+            // small keys displayed
+            voffset -= 17;
+        }
+        if (CFG_DUNGEON_INFO_SILVER_RUPEES) {
+            for (int i = 0; i < dungeon_count; i++) {
+                if (scene_index != dungeons[i].index) continue;
+
+                dungeon_entry_t dungeon = dungeons[i];
+                uint8_t *silver_rupee_puzzles = CFG_DUNGEON_IS_MQ[dungeon.index] ? dungeon.silver_rupee_puzzles_mq : dungeon.silver_rupee_puzzles_vanilla;
+                for (int puzzle_idx = 0; puzzle_idx < 4; puzzle_idx++) {
+                    if (silver_rupee_puzzles[puzzle_idx] == (uint8_t) -1) break;
+                    silver_rupee_data_t silver_rupee_info = silver_rupee_vars[silver_rupee_puzzles[puzzle_idx]][CFG_DUNGEON_IS_MQ[dungeon.index]];
+                    if (silver_rupee_info.room == room_index) {
+                        // silver rupees displayed
+                        voffset -= 17;
+                        break;
+                    }
+                }
+            }
         }
         draw_agony_graphic(hoffset, voffset, alpha);
     }

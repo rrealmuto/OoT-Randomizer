@@ -4,6 +4,9 @@
 #include <stdbool.h>
 #include "z64.h"
 
+extern uint16_t CFG_ADULT_TRADE_SHUFFLE;
+extern uint16_t CFG_CHILD_TRADE_SHUFFLE;
+
 void item_overrides_init();
 void handle_pending_items();
 void push_delayed_item(uint8_t flag);
@@ -28,44 +31,53 @@ typedef union overide_key_t {
     };
 } override_key_t;
 
-typedef union override_value_t {
+// a type used when the cloak of an ice trap is irrelevant
+typedef union override_value_base_t {
     uint32_t all;
     struct {
         uint16_t item_id;
-        uint8_t  player;
-        uint8_t  looks_like_item_id;
+        uint8_t player;
+        uint8_t _pad;
     };
+} override_value_base_t;
+
+typedef struct {
+    override_value_base_t base;
+    uint16_t looks_like_item_id;
+    uint16_t _pad;
 } override_value_t;
 
 typedef struct {
-    override_key_t   key;
+    override_key_t key;
+    uint32_t _pad;
     override_value_t value;
 } override_t;
 
-typedef struct { 
+typedef struct {
     override_key_t  alt;
     override_key_t  primary;
 } alt_override_t;
 
 struct EnItem00;
-typedef void(*EnItem00ActionFunc)(struct EnItem00 *, z64_game_t *);
+typedef void (*EnItem00ActionFunc)(struct EnItem00 *, z64_game_t *);
 
 typedef struct EnItem00 {
-  z64_actor_t actor;
-  EnItem00ActionFunc actionFunc;
-  uint16_t collectibleFlag;
-  uint16_t getItemId;
-  uint16_t unk_154;
-  uint16_t unk_156;
-  uint16_t unk_158;
-  int16_t timeToLive; // 0x14A
-  float scale;        // 0x14C
-  uint8_t collider[0x4C];   // 0x150 size = 4C
-  override_t override;
+    z64_actor_t actor;              // 0x0000
+    EnItem00ActionFunc actionFunc;  // 0x013C
+    uint16_t collectibleFlag;       // 0x0140
+    uint16_t getItemId;             // 0x0142
+    uint16_t unk_154;               // 0x0144
+    uint16_t unk_156;               // 0x0146
+    uint16_t unk_158;               // 0x0148
+    int16_t timeToLive;             // 0x014A
+    float scale;                    // 0x014C
+    ColliderCylinder collider;      // 0x0150 size = 4C
+    override_t override;            // 0x019C
+    bool is_silver_rupee;            // 0x????
 } EnItem00;
 
 
-typedef void(*z64_EnItem00ActionFunc)(struct EnItem00 *, z64_game_t *);
+typedef void (*z64_EnItem00ActionFunc)(struct EnItem00 *, z64_game_t *);
 typedef EnItem00 *(*z64_Item_DropCollectible_proc)(z64_game_t *globalCtx, z64_xyzf_t *spawnPos, int16_t params);
 
 override_t lookup_override_by_key(override_key_t key);

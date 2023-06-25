@@ -1,8 +1,22 @@
+from __future__ import annotations
+import sys
 from collections import OrderedDict
+from typing import Optional
+
+if sys.version_info >= (3, 10):
+    from typing import TypeAlias
+else:
+    TypeAlias = str
+
+LocationDefault: TypeAlias = "Optional[int | tuple[int, ...] | list[tuple[int, ...]]]"
+LocationAddress: TypeAlias = "Optional[int | list[int]]"
+LocationAddresses: TypeAlias = "Optional[tuple[LocationAddress, LocationAddress]]"
+LocationFilterTags: TypeAlias = "Optional[tuple[str, ...] | str]"
 
 
-def shop_address(shop_id, shelf_id):
+def shop_address(shop_id: int, shelf_id: int) -> int:
     return 0xC71ED0 + (0x40 * shop_id) + (0x08 * shelf_id)
+
 
 #   Abbreviations
 #       DMC     Death Mountain Crater
@@ -19,7 +33,6 @@ def shop_address(shop_id, shelf_id):
 #       LW      Lost Woods
 #       OGC     Outside Ganon's Castle
 #       SFM     Sacred Forest Meadow
-#       TH      Thieves' Hideout
 #       ToT     Temple of Time
 #       ZD      Zora's Domain
 #       ZF      Zora's Fountain
@@ -37,14 +50,14 @@ def shop_address(shop_id, shelf_id):
 
 # For pot/crate/freestanding locations, the Default variable contains a tuple of the format (Room ID, Scene Setup, Actor ID) where:
 #   Room ID - The room index in the scene
-#   Scene Setup - The scene setup that the location exists in. This is a number 0-3: 0=Child Day, 1=Child Night, 2=Adult Day, 3=Adult Night. 
+#   Scene Setup - The scene setup that the location exists in. This is a number 0-3: 0=Child Day, 1=Child Night, 2=Adult Day, 3=Adult Night.
 #   Actor ID - The position of the actor in the actor table.
 # The default variable can also be a list of such tuples in the case that multiple scene setups contain the same locations to be shuffled together.
 
 # Note: for ActorOverride locations, the "Addresses" variable is in the form ([addresses], [bytes]) where addresses is a list of memory locations in ROM to be updated, and bytes is the data that will be written to that location
 
 #   Location:                                                        Type             Scene  Default Addresses                      Vanilla Item                             Categories
-location_table = OrderedDict([
+location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAddresses, Optional[str], LocationFilterTags]] = OrderedDict([
     ## Dungeon Rewards
     ("Links Pocket",                                                 ("Boss",         None,  None, None,                            'Light Medallion',                       None)),
     ("Queen Gohma",                                                  ("Boss",         None,  0x6C, (0x0CA315F, 0x2079571),          'Kokiri Emerald',                        None)),
@@ -139,6 +152,8 @@ location_table = OrderedDict([
     ("LW Ocarina Memory Game",                                       ("NPC",          0x5B,  0x76, None,                            'Piece of Heart',                        ("Lost Woods", "Forest Area", "Minigames",))),
     ("LW Target in Woods",                                           ("NPC",          0x5B,  0x60, None,                            'Slingshot',                             ("Lost Woods", "Forest Area", "NPCs",))),
     ("LW Near Shortcuts Grotto Chest",                               ("Chest",        0x3E,  0x14, None,                            'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grottos", "Chests",))),
+    ("LW Trade Cojiro",                                              ("NPC",          0x5B,  0x1F, None,                            'Odd Mushroom',                          ("the Lost Woods", "Forest",))),
+    ("LW Trade Odd Potion",                                          ("NPC",          0x5B,  0x21, None,                            'Poachers Saw',                          ("the Lost Woods", "Forest",))),
     ("Deku Theater Skull Mask",                                      ("NPC",          0x3E,  0x77, None,                            'Deku Stick Capacity',                   ("Lost Woods", "Forest Area", "Grottos",))),
     ("Deku Theater Mask of Truth",                                   ("NPC",          0x3E,  0x7A, None,                            'Deku Nut Capacity',                     ("Lost Woods", "Forest Area", "Need Spiritual Stones", "Grottos",))),
     ("LW Skull Kid",                                                 ("NPC",          0x5B,  0x3E, None,                            'Piece of Heart',                        ("Lost Woods", "Forest Area", "NPCs",))),
@@ -154,12 +169,12 @@ location_table = OrderedDict([
     ("LW Under Boulder Blue Rupee",                                  ("Freestanding", 0x5B,  [(7,0,5), (7,2,2)], None,              'Rupees (5)',                            ("Lost Woods", "Forest Area", "Freestandings",))),
     ("LW Underwater Green Rupee 1",                                  ("Freestanding", 0x5B,  (3,0,5), None,                         'Rupee (1)',                             ("Lost Woods", "Forest Area", "Freestandings",))),
     ("LW Underwater Green Rupee 2",                                  ("Freestanding", 0x5B,  (3,0,6), None,                         'Rupee (1)',                             ("Lost Woods", "Forest Area", "Freestandings",))),
-    ("LW Underwater Shortcut Green Rupee",                           ("Freestanding", 0x5B,  (3,0,7), None,                         'Rupee (1)',                             ("Lost Woods", "Forest Area", "Freestandings",))),
     ("LW Underwater Green Rupee 3",                                  ("Freestanding", 0x5B,  (3,0,8), None,                         'Rupee (1)',                             ("Lost Woods", "Forest Area", "Freestandings",))),
     ("LW Underwater Green Rupee 4",                                  ("Freestanding", 0x5B,  (3,0,9), None,                         'Rupee (1)',                             ("Lost Woods", "Forest Area", "Freestandings",))),
     ("LW Underwater Green Rupee 5",                                  ("Freestanding", 0x5B,  (3,0,10), None,                        'Rupee (1)',                             ("Lost Woods", "Forest Area", "Freestandings",))),
     ("LW Underwater Green Rupee 6",                                  ("Freestanding", 0x5B,  (3,0,11), None,                        'Rupee (1)',                             ("Lost Woods", "Forest Area", "Freestandings",))),
     ("LW Underwater Green Rupee 7",                                  ("Freestanding", 0x5B,  (3,0,12), None,                        'Rupee (1)',                             ("Lost Woods", "Forest Area", "Freestandings",))),
+    ("LW Underwater Shortcut Green Rupee",                           ("Freestanding", 0x5B,  (3,0,7), None,                         'Rupee (1)',                             ("Lost Woods", "Forest Area", "Freestandings",))),
     # Lost Woods Beehives
     ("LW Near Shortcuts Grotto Beehive 1",                           ("Beehive",      0x3E, (0,0,0x48 + (0x14 * 2)), None,          'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grottos", "Beehives",))),
     ("LW Near Shortcuts Grotto Beehive 2",                           ("Beehive",      0x3E, (0,0,0x49 + (0x14 * 2)), None,          'Rupees (20)',                           ("Lost Woods", "Forest Area", "Grottos", "Beehives",))),
@@ -199,11 +214,31 @@ location_table = OrderedDict([
     ("Market Shooting Gallery Reward",                               ("NPC",          0x42,  0x60, None,                            'Slingshot',                             ("Market", "Minigames",))),
     ("Market Bombchu Bowling First Prize",                           ("NPC",          0x4B,  0x34, None,                            'Bomb Bag',                              ("Market", "Minigames",))),
     ("Market Bombchu Bowling Second Prize",                          ("NPC",          0x4B,  0x3E, None,                            'Piece of Heart',                        ("Market", "Minigames",))),
-    ("Market Bombchu Bowling Bombchus",                              ("NPC",          0x4B,  None, None,                            'Bombchu Drop',                          ("Market", "Minigames",))),
+    ("Market Bombchu Bowling Bombchus",                              ("NPC",          0x4B,  0x03, None,                            'Bombchus (10)',                         ("Market", "Minigames"))),
+    ("Market Bombchu Bowling Bomb",                                  ("NPC",          0x4B,  0x65, None,                            'Bomb (1)',                              ("Market", "Minigames"))),
     ("Market Lost Dog",                                              ("NPC",          0x35,  0x3E, None,                            'Piece of Heart',                        ("Market", "NPCs",))),
+    ("Market Treasure Chest Game Salesman",                          ("NPC",          0x10,  0x71, None,                            'Small Key (Treasure Chest Game)',       ("Market", "Minigames", "NPCs",))),
+    ("Market Treasure Chest Game Room 1 Bottom",                     ("Chest",        0x10,  0x00, None,                            'Rupee (Treasure Chest Game) (1)',       ("Market", "Minigames", "Chests",))),
+    ("Market Treasure Chest Game Room 1 Top",                        ("Chest",        0x10,  0x01, None,                            'Small Key (Treasure Chest Game)',       ("Market", "Minigames", "Chests",))),
+    ("Market Treasure Chest Game Room 2 Bottom",                     ("Chest",        0x10,  0x02, None,                            'Rupee (Treasure Chest Game) (1)',       ("Market", "Minigames", "Chests",))),
+    ("Market Treasure Chest Game Room 2 Top",                        ("Chest",        0x10,  0x03, None,                            'Small Key (Treasure Chest Game)',       ("Market", "Minigames", "Chests",))),
+    ("Market Treasure Chest Game Room 3 Bottom",                     ("Chest",        0x10,  0x04, None,                            'Rupees (Treasure Chest Game) (5)',      ("Market", "Minigames", "Chests",))),
+    ("Market Treasure Chest Game Room 3 Top",                        ("Chest",        0x10,  0x05, None,                            'Small Key (Treasure Chest Game)',       ("Market", "Minigames", "Chests",))),
+    ("Market Treasure Chest Game Room 4 Bottom",                     ("Chest",        0x10,  0x06, None,                            'Rupees (Treasure Chest Game) (5)',      ("Market", "Minigames", "Chests",))),
+    ("Market Treasure Chest Game Room 4 Top",                        ("Chest",        0x10,  0x07, None,                            'Small Key (Treasure Chest Game)',       ("Market", "Minigames", "Chests",))),
+    ("Market Treasure Chest Game Room 5 Bottom",                     ("Chest",        0x10,  0x08, None,                            'Rupees (Treasure Chest Game) (20)',     ("Market", "Minigames", "Chests",))),
+    ("Market Treasure Chest Game Room 5 Top",                        ("Chest",        0x10,  0x09, None,                            'Small Key (Treasure Chest Game)',       ("Market", "Minigames", "Chests",))),
     ("Market Treasure Chest Game Reward",                            ("Chest",        0x10,  0x0A, None,                            'Piece of Heart (Treasure Chest Game)',  ("Market", "Minigames", "Chests",))),
     ("Market 10 Big Poes",                                           ("NPC",          0x4D,  0x0F, None,                            'Bottle',                                ("Market", "NPCs",))),
     ("Market GS Guard House",                                        ("GS Token",     0x0E,  0x08, None,                            'Gold Skulltula Token',                  ("Market", "Gold Skulltulas",))),
+    ("Market Mask Shop Item 1",                                      ("MaskShop",     0x33,  0x53, (shop_address(10, 0), None),     'Gerudo Mask',                           ("the Market", "Market", "Shops"))),
+    ("Market Mask Shop Item 2",                                      ("MaskShop",     0x33,  0x52, (shop_address(10, 1), None),     'Zora Mask',                             ("the Market", "Market", "Shops"))),
+    ("Market Mask Shop Item 3",                                      ("MaskShop",     0x33,  0x1C, (shop_address(10, 2), None),     'Mask of Truth',                         ("the Market", "Market", "Shops"))),
+    ("Market Mask Shop Item 4",                                      ("MaskShop",     0x33,  0x51, (shop_address(10, 3), None),     'Goron Mask',                            ("the Market", "Market", "Shops"))),
+    ("Market Mask Shop Item 5",                                      ("MaskShop",     0x33,  0x17, (shop_address(10, 4), None),     'Skull Mask',                            ("the Market", "Market", "Shops"))),
+    ("Market Mask Shop Item 6",                                      ("MaskShop",     0x33,  0x1A, (shop_address(10, 5), None),     'Keaton Mask',                           ("the Market", "Market", "Shops"))),
+    ("Market Mask Shop Item 7",                                      ("MaskShop",     0x33,  0x1B, (shop_address(10, 6), None),     'Bunny Hood',                            ("the Market", "Market", "Shops"))),
+    ("Market Mask Shop Item 8",                                      ("MaskShop",     0x33,  0x18, (shop_address(10, 7), None),     'Spooky Mask',                           ("the Market", "Market", "Shops"))),
     ("Market Bazaar Item 1",                                         ("Shop",         0x2C,  0x30, (shop_address(4, 0), None),      'Buy Hylian Shield',                     ("Market", "Shops",))),
     ("Market Bazaar Item 2",                                         ("Shop",         0x2C,  0x31, (shop_address(4, 1), None),      'Buy Bombs (5) for 35 Rupees',           ("Market", "Shops",))),
     ("Market Bazaar Item 3",                                         ("Shop",         0x2C,  0x32, (shop_address(4, 2), None),      'Buy Deku Nut (5)',                      ("Market", "Shops",))),
@@ -346,6 +381,9 @@ location_table = OrderedDict([
     # Kakariko
     ("Kak Anju as Child",                                            ("NPC",          0x52,  0x0F, None,                            'Bottle',                                ("Kakariko Village", "Minigames",))),
     ("Kak Anju as Adult",                                            ("NPC",          0x52,  0x1D, None,                            'Pocket Egg',                            ("Kakariko Village", "NPCs",))),
+    ("Kak Anju Trade Pocket Cucco",                                  ("NPC",          0x52,  0x0E, None,                            'Cojiro',                                ("Kakariko Village", "Kakariko",))),
+    ("Kak Granny Trade Odd Mushroom",                                ("NPC",          0x4E,  0x20, None,                            'Odd Potion',                            ("Kakariko Village", "Kakariko",))),
+    ("Kak Granny Buy Blue Potion",                                   ("NPC",          0x4E,  0x12, None,                            'Blue Potion',                           ("Kakariko Village", "Kakariko",))),
     ("Kak Impas House Freestanding PoH",                             ("Collectable",  0x37,  0x01, None,                            'Piece of Heart',                        ("Kakariko Village", "Freestandings",))),
     ("Kak Windmill Freestanding PoH",                                ("Collectable",  0x48,  0x01, None,                            'Piece of Heart',                        ("Kakariko Village", "Freestandings",))),
     ("Kak Man on Roof",                                              ("NPC",          0x52,  0x3E, None,                            'Piece of Heart',                        ("Kakariko Village", "NPCs",))),
@@ -431,6 +469,8 @@ location_table = OrderedDict([
     ("DMT Storms Grotto Chest",                                      ("Chest",        0x3E,  0x17, None,                            'Rupees (200)',                          ("Death Mountain Trail", "Grottos", "Chests",))),
     ("DMT Great Fairy Reward",                                       ("Cutscene",     0xFF,  0x13, None,                            'Magic Meter',                           ("Death Mountain Trail", "Great Fairies",))),
     ("DMT Biggoron",                                                 ("NPC",          0x60,  0x57, None,                            'Biggoron Sword',                        ("Death Mountain Trail", "NPCs",))),
+    ("DMT Trade Broken Sword",                                       ("NPC",          0x60,  0x23, None,                            'Prescription',                          ("Death Mountain Trail", "Death Mountain",))),
+    ("DMT Trade Eyedrops",                                           ("NPC",          0x60,  0x26, None,                            'Claim Check',                           ("Death Mountain Trail", "Death Mountain",))),
     ("DMT Cow Grotto Cow",                                           ("NPC",          0x3E,  0x15, None,                            'Milk',                                  ("Death Mountain Trail", "Cows", "Grottos",))),
     ("DMT GS Near Kak",                                              ("GS Token",     0x0F,  0x04, None,                            'Gold Skulltula Token',                  ("Death Mountain Trail", "Gold Skulltulas",))),
     ("DMT GS Bean Patch",                                            ("GS Token",     0x0F,  0x02, None,                            'Gold Skulltula Token',                  ("Death Mountain Trail", "Gold Skulltulas",))),
@@ -485,7 +525,7 @@ location_table = OrderedDict([
     ("GC Spinning Pot Rupee Drop 3",                                 ("RupeeTower",   0x62,  (3,0,0x46), None,                      'Rupee (1)',                             ("Goron City", "Rupee Towers",))),
     ("GC Spinning Pot PoH Drop Rupee 1",                             ("RupeeTower",   0x62,  (3,0,0x47), None,                      'Rupees (20)',                           ("Goron City", "Rupee Towers",))),
     ("GC Spinning Pot PoH Drop Rupee 2",                             ("RupeeTower",   0x62,  (3,0,0x48), None,                      'Rupees (5)',                            ("Goron City", "Rupee Towers",))),
-    # Goron City Pots. 
+    # Goron City Pots.
     ("GC Darunia Pot 1",                                             ("Pot",          0x62,  [(1,0,6),(1,2,2)], None,               'Deku Stick (1)',                        ("Goron City", "Pots",))),
     ("GC Darunia Pot 2",                                             ("Pot",          0x62,  [(1,0,7),(1,2,3)], None,               'Rupee (1)',                             ("Goron City", "Pots",))),
     ("GC Darunia Pot 3",                                             ("Pot",          0x62,  [(1,0,8),(1,2,4)], None,               'Deku Stick (1)',                        ("Goron City", "Pots",))),
@@ -511,21 +551,21 @@ location_table = OrderedDict([
     ("DMC GS Crate",                                                 ("GS Token",     0x0F,  0x80, None,                            'Gold Skulltula Token',                  ("Death Mountain Crater", "Gold Skulltulas",))),
     ("DMC GS Bean Patch",                                            ("GS Token",     0x0F,  0x01, None,                            'Gold Skulltula Token',                  ("Death Mountain Crater", "Gold Skulltulas",))),
     # Death Mountain Crater Freestanding
-    ("DMC Adult Green Rupee 1",                                      ("RupeeTower",   0x61,  (1,2,0x40),([0x0225E63C], None ),      'Rupee (1)',                             ("Death Mountain Crater", "Rupee Towers",))),    
-    ("DMC Adult Green Rupee 2",                                      ("RupeeTower",   0x61,  (1,2,0x41), None,                      'Rupee (1)',                             ("Death Mountain Crater", "Rupee Towers",))),    
-    ("DMC Adult Green Rupee 3",                                      ("RupeeTower",   0x61,  (1,2,0x42), None,                      'Rupee (1)',                             ("Death Mountain Crater", "Rupee Towers",))),    
-    ("DMC Adult Green Rupee 4",                                      ("RupeeTower",   0x61,  (1,2,0x43), None,                      'Rupee (1)',                             ("Death Mountain Crater", "Rupee Towers",))),    
-    ("DMC Adult Green Rupee 5",                                      ("RupeeTower",   0x61,  (1,2,0x44), None,                      'Rupee (1)',                             ("Death Mountain Crater", "Rupee Towers",))),    
-    ("DMC Adult Green Rupee 6",                                      ("RupeeTower",   0x61,  (1,2,0x45), None,                      'Rupee (1)',                             ("Death Mountain Crater", "Rupee Towers",))),    
-    ("DMC Adult Red Rupee",                                          ("RupeeTower",   0x61,  (1,2,0x46), None,                      'Rupees (20)',                           ("Death Mountain Crater", "Rupee Towers",))),    
-    ("DMC Child Red Rupee 1",                                        ("Freestanding", 0x61,  (1,0,2), None,                         'Rupees (20)',                           ("Death Mountain Crater", "Freestandings",))),    
-    ("DMC Child Red Rupee 2",                                        ("Freestanding", 0x61,  (1,0,3), None,                         'Rupees (20)',                           ("Death Mountain Crater", "Freestandings",))),    
-    ("DMC Child Blue Rupee 1",                                       ("Freestanding", 0x61,  (1,0,4), None,                         'Rupees (5)',                            ("Death Mountain Crater", "Freestandings",))),    
-    ("DMC Child Blue Rupee 2",                                       ("Freestanding", 0x61,  (1,0,5), None,                         'Rupees (5)',                            ("Death Mountain Crater", "Freestandings",))),    
-    ("DMC Child Blue Rupee 3",                                       ("Freestanding", 0x61,  (1,0,6), None,                         'Rupees (5)',                            ("Death Mountain Crater", "Freestandings",))),    
-    ("DMC Child Blue Rupee 4",                                       ("Freestanding", 0x61,  (1,0,7), None,                         'Rupees (5)',                            ("Death Mountain Crater", "Freestandings",))),    
-    ("DMC Child Blue Rupee 5",                                       ("Freestanding", 0x61,  (1,0,8), None,                         'Rupees (5)',                            ("Death Mountain Crater", "Freestandings",))),    
-    ("DMC Child Blue Rupee 6",                                       ("Freestanding", 0x61,  (1,0,9), None,                         'Rupees (5)',                            ("Death Mountain Crater", "Freestandings",))),    
+    ("DMC Adult Green Rupee 1",                                      ("RupeeTower",   0x61,  (1,2,0x40),([0x0225E63C], None ),      'Rupee (1)',                             ("Death Mountain Crater", "Rupee Towers",))),
+    ("DMC Adult Green Rupee 2",                                      ("RupeeTower",   0x61,  (1,2,0x41), None,                      'Rupee (1)',                             ("Death Mountain Crater", "Rupee Towers",))),
+    ("DMC Adult Green Rupee 3",                                      ("RupeeTower",   0x61,  (1,2,0x42), None,                      'Rupee (1)',                             ("Death Mountain Crater", "Rupee Towers",))),
+    ("DMC Adult Green Rupee 4",                                      ("RupeeTower",   0x61,  (1,2,0x43), None,                      'Rupee (1)',                             ("Death Mountain Crater", "Rupee Towers",))),
+    ("DMC Adult Green Rupee 5",                                      ("RupeeTower",   0x61,  (1,2,0x44), None,                      'Rupee (1)',                             ("Death Mountain Crater", "Rupee Towers",))),
+    ("DMC Adult Green Rupee 6",                                      ("RupeeTower",   0x61,  (1,2,0x45), None,                      'Rupee (1)',                             ("Death Mountain Crater", "Rupee Towers",))),
+    ("DMC Adult Red Rupee",                                          ("RupeeTower",   0x61,  (1,2,0x46), None,                      'Rupees (20)',                           ("Death Mountain Crater", "Rupee Towers",))),
+    ("DMC Child Red Rupee 1",                                        ("Freestanding", 0x61,  (1,0,2), None,                         'Rupees (20)',                           ("Death Mountain Crater", "Freestandings",))),
+    ("DMC Child Red Rupee 2",                                        ("Freestanding", 0x61,  (1,0,3), None,                         'Rupees (20)',                           ("Death Mountain Crater", "Freestandings",))),
+    ("DMC Child Blue Rupee 1",                                       ("Freestanding", 0x61,  (1,0,4), None,                         'Rupees (5)',                            ("Death Mountain Crater", "Freestandings",))),
+    ("DMC Child Blue Rupee 2",                                       ("Freestanding", 0x61,  (1,0,5), None,                         'Rupees (5)',                            ("Death Mountain Crater", "Freestandings",))),
+    ("DMC Child Blue Rupee 3",                                       ("Freestanding", 0x61,  (1,0,6), None,                         'Rupees (5)',                            ("Death Mountain Crater", "Freestandings",))),
+    ("DMC Child Blue Rupee 4",                                       ("Freestanding", 0x61,  (1,0,7), None,                         'Rupees (5)',                            ("Death Mountain Crater", "Freestandings",))),
+    ("DMC Child Blue Rupee 5",                                       ("Freestanding", 0x61,  (1,0,8), None,                         'Rupees (5)',                            ("Death Mountain Crater", "Freestandings",))),
+    ("DMC Child Blue Rupee 6",                                       ("Freestanding", 0x61,  (1,0,9), None,                         'Rupees (5)',                            ("Death Mountain Crater", "Freestandings",))),
     # Death Mountain Crater Pots
     ("DMC Near GC Pot 1",                                            ("Pot",          0x61,  (1,2,14), None,                        'Recovery Heart',                        ("Death Mountain Crater", "Pots",))),
     ("DMC Near GC Pot 2",                                            ("Pot",          0x61,  (1,2,15), None,                        'Arrows (10)',                           ("Death Mountain Crater", "Pots",))),
@@ -568,6 +608,7 @@ location_table = OrderedDict([
     ("ZD Diving Minigame",                                           ("NPC",          0x58,  0x37, None,                            'Progressive Scale',                     ("Zora's Domain", "Minigames",))),
     ("ZD Chest",                                                     ("Chest",        0x58,  0x00, None,                            'Piece of Heart',                        ("Zora's Domain", "Chests",))),
     ("ZD King Zora Thawed",                                          ("NPC",          0x58,  0x2D, None,                            'Zora Tunic',                            ("Zora's Domain", "NPCs",))),
+    ("ZD Trade Prescription",                                        ("NPC",          0x58,  0x24, None,                            'Eyeball Frog',                          ("Zora's Domain",))),
     ("ZD GS Frozen Waterfall",                                       ("GS Token",     0x11,  0x40, None,                            'Gold Skulltula Token',                  ("Zora's Domain", "Gold Skulltulas",))),
     ("ZD Shop Item 1",                                               ("Shop",         0x2F,  0x30, (shop_address(7, 0), None),      'Buy Zora Tunic',                        ("Zora's Domain", "Shops",))),
     ("ZD Shop Item 2",                                               ("Shop",         0x2F,  0x31, (shop_address(7, 1), None),      'Buy Arrows (10)',                       ("Zora's Domain", "Shops",))),
@@ -627,7 +668,9 @@ location_table = OrderedDict([
     ("LH Underwater Item",                                           ("NPC",          0x57,  0x15, None,                            'Rutos Letter',                          ("Lake Hylia", "Freestandings",))),
     ("LH Child Fishing",                                             ("NPC",          0x49,  0x3E, None,                            'Piece of Heart',                        ("Lake Hylia", "Minigames",))),
     ("LH Adult Fishing",                                             ("NPC",          0x49,  0x38, None,                            'Progressive Scale',                     ("Lake Hylia", "Minigames",))),
+    ("LH Loach Fishing",                                             ("NPC",          0x49,  0x56, None,                            'Rupees (50)',                           ("Lake Hylia", "Minigames"))),
     ("LH Lab Dive",                                                  ("NPC",          0x38,  0x3E, None,                            'Piece of Heart',                        ("Lake Hylia", "NPCs",))),
+    ("LH Trade Eyeball Frog",                                        ("NPC",          0x38,  0x25, None,                            'Eyedrops',                              ("Lake Hylia",))),
     ("LH Freestanding PoH",                                          ("Collectable",  0x57,  0x1E, None,                            'Piece of Heart',                        ("Lake Hylia", "Freestandings",))),
     ("LH Sun",                                                       ("NPC",          0x57,  0x58, None,                            'Fire Arrows',                           ("Lake Hylia", "Freestandings",))),
     ("LH Deku Scrub Grotto Left",                                    ("GrottoScrub",  0xEF,  0x30, None,                            'Buy Deku Nut (5)',                      ("Lake Hylia", "Deku Scrubs", "Grottos",))),
@@ -645,7 +688,7 @@ location_table = OrderedDict([
     ("LH Lab Dive Red Rupee 1",                                      ("Freestanding", 0x38,  (0,0,2), None,                         'Rupees (20)',                           ("Lake Hylia", "Freestandings",))),
     ("LH Lab Dive Red Rupee 2",                                      ("Freestanding", 0x38,  (0,0,3), None,                         'Rupees (20)',                           ("Lake Hylia", "Freestandings",))),
     ("LH Lab Dive Red Rupee 3",                                      ("Freestanding", 0x38,  (0,0,4), None,                         'Rupees (20)',                           ("Lake Hylia", "Freestandings",))),
-    #Lake Hylia Beehives
+    # Lake Hylia Beehives
     ("LH Grotto Beehive",                                            ("Beehive",      0x3E,  (12,0,0x44 + (0x0F * 2)), None,        'Rupees (20)',                           ("Lake Hylia", "Grottos", "Beehives",))),
 
     # Gerudo Valley
@@ -654,6 +697,7 @@ location_table = OrderedDict([
     ("GV Chest",                                                     ("Chest",        0x5A,  0x00, None,                            'Rupees (50)',                           ("Gerudo Valley", "Chests",))),
     ("GV Deku Scrub Grotto Front",                                   ("GrottoScrub",  0xF0,  0x3A, None,                            'Buy Green Potion',                      ("Gerudo Valley", "Deku Scrubs", "Grottos",))),
     ("GV Deku Scrub Grotto Rear",                                    ("GrottoScrub",  0xF0,  0x39, None,                            'Buy Red Potion for 30 Rupees',          ("Gerudo Valley", "Deku Scrubs", "Grottos",))),
+    ("GV Trade Poachers Saw",                                        ("NPC",          0x5A,  0x22, None,                            'Broken Sword',                          ("Gerudo Valley", "Gerudo",))),
     ("GV Cow",                                                       ("NPC",          0x5A,  0x15, None,                            'Milk',                                  ("Gerudo Valley", "Cows",))),
     ("GV GS Small Bridge",                                           ("GS Token",     0x13,  0x02, None,                            'Gold Skulltula Token',                  ("Gerudo Valley", "Gold Skulltulas",))),
     ("GV GS Bean Patch",                                             ("GS Token",     0x13,  0x01, None,                            'Gold Skulltula Token',                  ("Gerudo Valley", "Gold Skulltulas",))),
@@ -710,8 +754,8 @@ location_table = OrderedDict([
     ("Hideout Break Room Crate 2",                                   ("Crate",        0x0C,  (0,0,8), None,                         'Rupee (1)',                             ("Thieves' Hideout", "Crates",))),
     ("Hideout Break Room Hallway Crate 1",                           ("Crate",        0x0C,  (0,0,9), None,                         'Rupee (1)',                             ("Thieves' Hideout", "Crates",))),
     ("Hideout Break Room Hallway Crate 2",                           ("Crate",        0x0C,  (0,0,10), None,                        'Rupee (1)',                             ("Thieves' Hideout", "Crates",))),
-    ("Hideout 3 Torch Jail Crate",                                   ("Crate",        0x0C,  (1,0,11), None,                        'Rupee (1)',                             ("Thieves' Hideout", "Crates",))),
     ("Hideout 1 Torch Jail Crate",                                   ("Crate",        0x0C,  (2,0,11), None,                        'Rupee (1)',                             ("Thieves' Hideout", "Crates",))),
+    ("Hideout 3 Torch Jail Crate",                                   ("Crate",        0x0C,  (1,0,11), None,                        'Rupee (1)',                             ("Thieves' Hideout", "Crates",))),
     ("Hideout Near Kitchen Crate 1",                                 ("Crate",        0x0C,  (3,0,8), None,                         'Rupee (1)',                             ("Thieves' Hideout", "Crates",))),
     ("Hideout Near Kitchen Crate 2",                                 ("Crate",        0x0C,  (3,0,11), None,                        'Rupee (1)',                             ("Thieves' Hideout", "Crates",))),
     ("Hideout Near Kitchen Crate 3",                                 ("Crate",        0x0C,  (3,0,12), None,                        'Rupee (1)',                             ("Thieves' Hideout", "Crates",))),
@@ -727,7 +771,7 @@ location_table = OrderedDict([
     # Wasteland Pots/Crates
     ("Wasteland Near GS Pot 1",                                      ("Pot",          0x5E,  (0,0,1), None,                         'Recovery Heart',                        ("Haunted Wasteland", "Pots",))),
     ("Wasteland Near GS Pot 2",                                      ("Pot",          0x5E,  (0,0,2), None,                         'Deku Nuts (5)',                         ("Haunted Wasteland", "Pots",))),
-   #("Wasteland Near GS Pot 3",                                      ("Pot",          0x5E,  (0,0,3), None,                            'Rupees (5)',                            ("Haunted Wasteland", "Pots",))), Fairy
+   #("Wasteland Near GS Pot 3",                                      ("Pot",          0x5E,  (0,0,3), None,                         'Rupees (5)',                            ("Haunted Wasteland", "Pots",))), Fairy
     ("Wasteland Near GS Pot 3",                                      ("Pot",          0x5E,  (0,0,4), None,                         'Rupees (5)',                            ("Haunted Wasteland", "Pots",))),
     ("Wasteland Crate Before Quicksand",                             ("Crate",        0x5E,  (1,0,38),None,                         'Rupee (1)',                             ("Haunted Wasteland", "Crates",))),
     ("Wasteland Crate After Quicksand 1",                            ("Crate",        0x5E,  (1,0,35),None,                         'Rupee (1)',                             ("Haunted Wasteland", "Crates",))),
@@ -902,14 +946,14 @@ location_table = OrderedDict([
     ("Dodongos Cavern MQ Staircase Crate Top Left",                  ("Crate",        0x1,   (2,0,40), None,                        'Rupee (1)',                             ("Dodongo's Cavern MQ", "Master Quest", "Crates",))),
     ("Dodongos Cavern MQ Staircase Crate Mid Right",                 ("Crate",        0x1,   (2,0,43), None,                        'Rupee (1)',                             ("Dodongo's Cavern MQ", "Master Quest", "Crates",))),
     ("Dodongos Cavern MQ Staircase Crate Top Right",                 ("Crate",        0x1,   (2,0,44), None,                        'Rupee (1)',                             ("Dodongo's Cavern MQ", "Master Quest", "Crates",))),
-    ("Dodongos Cavern MQ Poes Room Crate 5",                         ("Crate",        0x1,   (4,0,23),None,                         'Rupee (1)',                             ("Dodongo's Cavern MQ", "Master Quest", "Crates",))),
-    ("Dodongos Cavern MQ Poes Room Crate 6",                         ("Crate",        0x1,   (4,0,24),None,                         'Rupee (1)',                             ("Dodongo's Cavern MQ", "Master Quest", "Crates",))),
     ("Dodongos Cavern MQ Poes Room Crate 1",                         ("Crate",        0x1,   (4,0,25),None,                         'Rupee (1)',                             ("Dodongo's Cavern MQ", "Master Quest", "Crates",))),
     ("Dodongos Cavern MQ Poes Room Crate 2",                         ("Crate",        0x1,   (4,0,26),None,                         'Rupee (1)',                             ("Dodongo's Cavern MQ", "Master Quest", "Crates",))),
     ("Dodongos Cavern MQ Poes Room Crate 3",                         ("Crate",        0x1,   (4,0,27),None,                         'Rupee (1)',                             ("Dodongo's Cavern MQ", "Master Quest", "Crates",))),
     ("Dodongos Cavern MQ Poes Room Crate 4",                         ("Crate",        0x1,   (4,0,28),None,                         'Rupee (1)',                             ("Dodongo's Cavern MQ", "Master Quest", "Crates",))),
-    ("Dodongos Cavern MQ Poes Room Crate Near Bomb Flower",          ("Crate",        0x1,   (4,0,29),None,                         'Rupee (1)',                             ("Dodongo's Cavern MQ", "Master Quest", "Crates",))),
+    ("Dodongos Cavern MQ Poes Room Crate 5",                         ("Crate",        0x1,   (4,0,23),None,                         'Rupee (1)',                             ("Dodongo's Cavern MQ", "Master Quest", "Crates",))),
+    ("Dodongos Cavern MQ Poes Room Crate 6",                         ("Crate",        0x1,   (4,0,24),None,                         'Rupee (1)',                             ("Dodongo's Cavern MQ", "Master Quest", "Crates",))),
     ("Dodongos Cavern MQ Poes Room Crate 7",                         ("Crate",        0x1,   (4,0,30),None,                         'Rupee (1)',                             ("Dodongo's Cavern MQ", "Master Quest", "Crates",))),
+    ("Dodongos Cavern MQ Poes Room Crate Near Bomb Flower",          ("Crate",        0x1,   (4,0,29),None,                         'Rupee (1)',                             ("Dodongo's Cavern MQ", "Master Quest", "Crates",))),
     ("Dodongos Cavern MQ Larvae Room Crate 1",                       ("Crate",        0x1,   (6,0,7), None,                         'Rupee (1)',                             ("Dodongo's Cavern MQ", "Master Quest", "Crates",))),
     ("Dodongos Cavern MQ Larvae Room Crate 2",                       ("Crate",        0x1,   (6,0,8), None,                         'Rupee (1)',                             ("Dodongo's Cavern MQ", "Master Quest", "Crates",))),
     ("Dodongos Cavern MQ Larvae Room Crate 3",                       ("Crate",        0x1,   (6,0,9), None,                         'Rupee (1)',                             ("Dodongo's Cavern MQ", "Master Quest", "Crates",))),
@@ -918,6 +962,14 @@ location_table = OrderedDict([
     ("Dodongos Cavern MQ Larvae Room Crate 6",                       ("Crate",        0x1,   (6,0,12), None,                        'Rupee (1)',                             ("Dodongo's Cavern MQ", "Master Quest", "Crates",))),
     ("Dodongos Cavern MQ After Upper Lizalfos Crate 1",              ("Crate",        0x1,   (12,0,11), None,                       'Rupee (1)',                             ("Dodongo's Cavern MQ", "Master Quest", "Crates",))),
     ("Dodongos Cavern MQ After Upper Lizalfos Crate 2",              ("Crate",        0x1,   (12,0,12), None,                       'Rupee (1)',                             ("Dodongo's Cavern MQ", "Master Quest", "Crates",))),
+
+    # Dodongo's Cavern MQ Silver Rupees
+    ("Dodongos Cavern MQ Staircase Silver Rupee Beamos",             ("SilverRupee",  0x1,   (2,0,11), None,                     'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongo's Cavern MQ", "Master Quest", "Silver Rupees"))),
+    ("Dodongos Cavern MQ Staircase Silver Rupee Lower Crate",        ("SilverRupee",  0x1,   (2,0,12), None,                     'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongo's Cavern MQ", "Master Quest", "Silver Rupees"))),
+    ("Dodongos Cavern MQ Staircase Silver Rupee Mid Left Crate",     ("SilverRupee",  0x1,   (2,0,13), None,                     'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongo's Cavern MQ", "Master Quest", "Silver Rupees"))),
+    ("Dodongos Cavern MQ Staircase Silver Rupee Vines",              ("SilverRupee",  0x1,   (2,0,14), None,                     'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongo's Cavern MQ", "Master Quest", "Silver Rupees"))),
+    ("Dodongos Cavern MQ Staircase Silver Rupee Top Right Crate",    ("SilverRupee",  0x1,   (2,0,15), None,                     'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongo's Cavern MQ", "Master Quest", "Silver Rupees"))),
+
     # Dodongo's Cavern Shared
     ("Dodongos Cavern Lower Lizalfos Hidden Recovery Heart",         ("Freestanding", 0x01,  (3,0,6), None,                         'Recovery Heart',                        ("Dodongo's Cavern", "Dodongo's Cavern MQ", "Vanilla Dungeons", "Master Quest", "Freestandings",))),
     ("Dodongos Cavern Boss Room Chest",                              ("Chest",        0x12,  0x00, None,                            'Bombs (5)',                             ("Dodongo's Cavern", "Dodongo's Cavern MQ", "Vanilla Dungeons", "Master Quest", "Chests",))),
@@ -1037,6 +1089,13 @@ location_table = OrderedDict([
     ("Bottom of the Well West Inner Room Flying Pot 1",              ("FlyingPot",    0x08,  (6,0,3), None,                         'Recovery Heart',                        ("Bottom of the Well", "Vanilla Dungeons", "Flying Pots",))),
     ("Bottom of the Well West Inner Room Flying Pot 2",              ("FlyingPot",    0x08,  (6,0,4), None,                         'Recovery Heart',                        ("Bottom of the Well", "Vanilla Dungeons", "Flying Pots",))),
     ("Bottom of the Well West Inner Room Flying Pot 3",              ("FlyingPot",    0x08,  (6,0,5), None,                         'Recovery Heart',                        ("Bottom of the Well", "Vanilla Dungeons", "Flying Pots",))),
+
+    # Bottom of the Well Silver Rupees
+    ("Bottom of the Well Basement Silver Rupee Wood Beam Front",     ("SilverRupee",  0x08, (1,0,43), None,                    'Silver Rupee (Bottom of the Well Basement)', ("Bottom of the Well", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Bottom of the Well Basement Silver Rupee Wood Beam Back",      ("SilverRupee",  0x08, (1,0,42), None,                    'Silver Rupee (Bottom of the Well Basement)', ("Bottom of the Well", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Bottom of the Well Basement Silver Rupee Ladders Bottom",      ("SilverRupee",  0x08, (1,0,41), None,                    'Silver Rupee (Bottom of the Well Basement)', ("Bottom of the Well", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Bottom of the Well Basement Silver Rupee Ladders Middle",      ("SilverRupee",  0x08, (1,0,40), None,                    'Silver Rupee (Bottom of the Well Basement)', ("Bottom of the Well", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Bottom of the Well Basement Silver Rupee Ladders Top",         ("SilverRupee",  0x08, (1,0,39), None,                    'Silver Rupee (Bottom of the Well Basement)', ("Bottom of the Well", "Vanilla Dungeons", "Silver Rupees"))),
 
     # Bottom of the Well MQ
     ("Bottom of the Well MQ Map Chest",                              ("Chest",        0x08,  0x03, None,                            'Map (Bottom of the Well)',              ("Bottom of the Well MQ", "Master Quest", "Chests",))),
@@ -1512,7 +1571,7 @@ location_table = OrderedDict([
     ("Shadow Temple 3 Spinning Pots Rupee 7",                        ("RupeeTower",   0x07,  (12,0,26), None,                       'Rupee (1)',                             ("Shadow Temple", "Vanilla Dungeons", "Rupee Towers",))),
     ("Shadow Temple 3 Spinning Pots Rupee 8",                        ("RupeeTower",   0x07,  (12,0,27), None,                       'Rupees (5)',                            ("Shadow Temple", "Vanilla Dungeons", "Rupee Towers",))),
     ("Shadow Temple 3 Spinning Pots Rupee 9",                        ("RupeeTower",   0x07,  (12,0,28), None,                       'Rupees (20)',                           ("Shadow Temple", "Vanilla Dungeons", "Rupee Towers",))),
-    #Shadow Temple Vanilla Pots
+    # Shadow Temple Vanilla Pots
     ("Shadow Temple Whispering Walls Near Dead Hand Pot",            ("Pot",          0x07,  (0,0,1), None,                         'Rupees (5)',                            ("Shadow Temple", "Vanilla Dungeons", "Pots",))),
     ("Shadow Temple Whispering Walls Left Pot 1",                    ("Pot",          0x07,  (0,0,2), None,                         'Rupees (5)',                            ("Shadow Temple", "Vanilla Dungeons", "Pots",))),
     ("Shadow Temple Whispering Walls Left Pot 2",                    ("Pot",          0x07,  (0,0,3), None,                         'Recovery Heart',                        ("Shadow Temple", "Vanilla Dungeons", "Pots",))),
@@ -1522,8 +1581,8 @@ location_table = OrderedDict([
     ("Shadow Temple Whispering Walls Flying Pot",                    ("FlyingPot",    0x07,  (0,0,7), None,                         'Recovery Heart',                        ("Shadow Temple", "Vanilla Dungeons", "Flying Pots",))),
     ("Shadow Temple Map Chest Room Pot 1",                           ("Pot",          0x07,  (1,0,4), None,                         'Recovery Heart',                        ("Shadow Temple", "Vanilla Dungeons", "Pots",))),
     ("Shadow Temple Map Chest Room Pot 2",                           ("Pot",          0x07,  (1,0,5), None,                         'Arrows (10)',                           ("Shadow Temple", "Vanilla Dungeons", "Pots",))),
-    ("Shadow Temple Falling Spikes Lower Pot 2",                     ("Pot",          0x07,  (10,0,4), None,                        'Bombs (5)',                             ("Shadow Temple", "Vanilla Dungeons", "Pots",))),
     ("Shadow Temple Falling Spikes Lower Pot 1",                     ("Pot",          0x07,  (10,0,5), None,                        'Recovery Heart',                        ("Shadow Temple", "Vanilla Dungeons", "Pots",))),
+    ("Shadow Temple Falling Spikes Lower Pot 2",                     ("Pot",          0x07,  (10,0,4), None,                        'Bombs (5)',                             ("Shadow Temple", "Vanilla Dungeons", "Pots",))),
     ("Shadow Temple Falling Spikes Upper Pot 1",                     ("Pot",          0x07,  (10,0,6), None,                        'Recovery Heart',                        ("Shadow Temple", "Vanilla Dungeons", "Pots",))),
     ("Shadow Temple Falling Spikes Upper Pot 2",                     ("Pot",          0x07,  (10,0,7), None,                        'Recovery Heart',                        ("Shadow Temple", "Vanilla Dungeons", "Pots",))),
     ("Shadow Temple Spike Walls Pot",                                ("Pot",          0x07,  (13,0,3), None,                        'Rupees (5)',                            ("Shadow Temple", "Vanilla Dungeons", "Pots",))),
@@ -1537,7 +1596,26 @@ location_table = OrderedDict([
    #("Shadow Temple After Boat Pot 2"                                ("Pot",          0x07,  (21,0,18), None,                        'Recovery Heart',                        ("Shadow Temple", "Vanilla Dungeons", "Pots",))),
     ("Shadow Temple Near Boss Pot 1",                                ("Pot",          0x07,  (21,0,19), None,                       'Arrows (30)',                           ("Shadow Temple", "Vanilla Dungeons", "Pots",))),
     ("Shadow Temple Near Boss Pot 2",                                ("Pot",          0x07,  (21,0,20), None,                       'Rupees (5)',                            ("Shadow Temple", "Vanilla Dungeons", "Pots",))),
-    
+
+    # Shadow Temple Silver Rupees
+    ("Shadow Temple Scythe Shortcut Silver Rupee Center Left",       ("SilverRupee",  0x07,  (6,0,1), None,                  'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Shadow Temple Scythe Shortcut Silver Rupee Center Right",      ("SilverRupee",  0x07,  (6,0,5), None,                  'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Shadow Temple Scythe Shortcut Silver Rupee Left Alcove",       ("SilverRupee",  0x07,  (6,0,4), None,                  'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Shadow Temple Scythe Shortcut Silver Rupee Back Alcove",       ("SilverRupee",  0x07,  (6,0,3), None,                  'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Shadow Temple Scythe Shortcut Silver Rupee Ledge",             ("SilverRupee",  0x07,  (6,0,2), None,                  'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
+
+    ("Shadow Temple Huge Pit Silver Rupee Left",                     ("SilverRupee",  0x07,  (9,0,8),  None,                        'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Shadow Temple Huge Pit Silver Rupee Center Front",             ("SilverRupee",  0x07,  (9,0,10), None,                        'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Shadow Temple Huge Pit Silver Rupee Center",                   ("SilverRupee",  0x07,  (9,0,9),  None,                        'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Shadow Temple Huge Pit Silver Rupee Center Back",              ("SilverRupee",  0x07,  (9,0,11),  None,                       'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Shadow Temple Huge Pit Silver Rupee Right",                    ("SilverRupee",  0x07,  (9,0,7),  None,                        'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
+
+    ("Shadow Temple Invisible Spikes Silver Rupee Right",            ("SilverRupee",  0x07,  (11,0,4), None,                'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Shadow Temple Invisible Spikes Silver Rupee Center",           ("SilverRupee",  0x07,  (11,0,5), None,                'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Shadow Temple Invisible Spikes Silver Rupee Left",             ("SilverRupee",  0x07,  (11,0,6), None,                'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Shadow Temple Invisible Spikes Silver Rupee Ledge",            ("SilverRupee",  0x07,  (11,0,3), None,                'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Shadow Temple Invisible Spikes Silver Rupee Near Ledge",       ("SilverRupee",  0x07,  (11,0,7), None,                'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
+
     # Shadow Temple MQ
     ("Shadow Temple MQ Early Gibdos Chest",                          ("Chest",        0x07,  0x03, None,                            'Small Key (Shadow Temple)',             ("Shadow Temple MQ", "Master Quest", "Chests",))),
     ("Shadow Temple MQ Map Chest",                                   ("Chest",        0x07,  0x02, None,                            'Map (Shadow Temple)',                   ("Shadow Temple MQ", "Master Quest", "Chests",))),
@@ -1610,6 +1688,38 @@ location_table = OrderedDict([
     ("Shadow Temple MQ Truth Spinner Small Wooden Crate 3",          ("SmallCrate",   0x07,  (2,0,18), None,                        'Bombs (5)',                             ("Shadow Temple MQ", "Master Quest", "Small Crates",))),
     ("Shadow Temple MQ Truth Spinner Small Wooden Crate 4",          ("SmallCrate",   0x07,  (2,0,19), None,                        'Recovery Heart',                        ("Shadow Temple MQ", "Master Quest", "Small Crates",))),
 
+    # Shadow Temple MQ Silver Rupees
+    ("Shadow Temple MQ Scythe Shortcut Silver Rupee Center Left",    ("SilverRupee", 0x07, (6,0,7), None,                    'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Scythe Shortcut Silver Rupee Center Right",   ("SilverRupee", 0x07, (6,0,8), None,                    'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Scythe Shortcut Silver Rupee Ledge",          ("SilverRupee", 0x07, (6,0,6), None,                    'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Scythe Shortcut Silver Rupee Left Alcove",    ("SilverRupee", 0x07, (6,0,5), None,                    'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Scythe Shortcut Silver Rupee Back Alcove",    ("SilverRupee", 0x07, (6,0,9), None,                    'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Invisible Blades Silver Rupee 1",             ("SilverRupee", 0x07, (16,0,9),  None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Invisible Blades Silver Rupee 2",             ("SilverRupee", 0x07, (16,0,10), None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Invisible Blades Silver Rupee 3",             ("SilverRupee", 0x07, (16,0,11), None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Invisible Blades Silver Rupee 4",             ("SilverRupee", 0x07, (16,0,12), None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Invisible Blades Silver Rupee 5",             ("SilverRupee", 0x07, (16,0,13), None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Invisible Blades Silver Rupee 6",             ("SilverRupee", 0x07, (16,0,14), None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Invisible Blades Silver Rupee Back Right",    ("SilverRupee", 0x07, (16,0,15), None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Invisible Blades Silver Rupee Back Left",     ("SilverRupee", 0x07, (16,0,16), None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Invisible Blades Silver Rupee Like Like",     ("SilverRupee", 0x07, (16,0,17), None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Invisible Blades Silver Rupee Song of Time Block",("SilverRupee",0x07,(16,0,18),None,                'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Huge Pit Silver Rupee Center Front",          ("SilverRupee", 0x07, (9,0,18), None,                          'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Huge Pit Silver Rupee Center Back",           ("SilverRupee", 0x07, (9,0,14), None,                          'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Huge Pit Silver Rupee Right",                 ("SilverRupee", 0x07, (9,0,17), None,                          'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Huge Pit Silver Rupee Ceiling Upper",         ("SilverRupee", 0x07, (9,0,16), None,                          'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Huge Pit Silver Rupee Ceiling Lower",         ("SilverRupee", 0x07, (9,0,15), None,                          'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Invisible Spikes Silver Rupee Center Front",  ("SilverRupee", 0x07, (11,0,15), None,                 'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Invisible Spikes Silver Rupee Center Right",  ("SilverRupee", 0x07, (11,0,18), None,                 'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Invisible Spikes Silver Rupee Left Hookshot Target",("SilverRupee",0x07,(11,0,12),None,              'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Invisible Spikes Silver Rupee Right Hookshot Target",("SilverRupee",0x07,(11,0,20),None,             'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Invisible Spikes Silver Rupee Back Right",    ("SilverRupee", 0x07, (11,0,19), None,                 'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Invisible Spikes Silver Rupee Ledge",         ("SilverRupee", 0x07, (11,0,11), None,                 'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Invisible Spikes Silver Rupee Near Ledge",    ("SilverRupee", 0x07, (11,0,13), None,                 'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Invisible Spikes Silver Rupee Ceiling Front", ("SilverRupee", 0x07, (11,0,17), None,                 'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Invisible Spikes Silver Rupee Ceiling Middle",("SilverRupee", 0x07, (11,0,16), None,                 'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Invisible Spikes Silver Rupee Ceiling Back",  ("SilverRupee", 0x07, (11,0,14), None,                 'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+
     # Shadow Temple Shared
     ("Shadow Temple Bongo Bongo Heart",                              ("BossHeart",    0x18,  0x4F, None,                            'Heart Container',                       ("Shadow Temple", "Shadow Temple MQ", "Vanilla Dungeons", "Master Quest",))),
 
@@ -1648,7 +1758,7 @@ location_table = OrderedDict([
     ("Spirit Temple MQ Statue Room Invisible Chest",                 ("Chest",        0x06,  0x02, None,                            'Recovery Heart',                        ("Spirit Temple MQ", "Master Quest", "Chests",))),
     ("Spirit Temple MQ Leever Room Chest",                           ("Chest",        0x06,  0x04, None,                            'Rupees (50)',                           ("Spirit Temple MQ", "Master Quest", "Chests",))),
     ("Spirit Temple MQ Symphony Room Chest",                         ("Chest",        0x06,  0x07, None,                            'Rupees (50)',                           ("Spirit Temple MQ", "Master Quest", "Chests",))),
-    ("Spirit Temple MQ Beamos Room Chest",                           ("Chest",        0x06,  0x19, None,                            'Recovery Heart',                        ("Spirit Temple MQ", "Master Quest", "Chests",))),
+    ("Spirit Temple MQ Beamos Room Chest",                           ("Chest",        0x06,  0x19, None,                            'Arrows (30)',                           ("Spirit Temple MQ", "Master Quest", "Chests",))),
     ("Spirit Temple MQ Chest Switch Chest",                          ("Chest",        0x06,  0x18, None,                            'Ice Trap',                              ("Spirit Temple MQ", "Master Quest", "Chests",))),
     ("Spirit Temple MQ Boss Key Chest",                              ("Chest",        0x06,  0x05, None,                            'Boss Key (Spirit Temple)',              ("Spirit Temple MQ", "Master Quest", "Chests",))),
     ("Spirit Temple Mirror Shield Chest",                            ("Chest",        0x5C,  0x09, None,                            'Mirror Shield',                         ("Spirit Temple", "Spirit Temple MQ", "Vanilla Dungeons", "Master Quest", "Desert Colossus", "Chests",))),
@@ -1667,9 +1777,9 @@ location_table = OrderedDict([
     ("Spirit Temple MQ GS Symphony Room",                            ("GS Token",     0x06,  0x08, None,                            'Gold Skulltula Token',                  ("Spirit Temple MQ", "Master Quest", "Gold Skulltulas",))),
     ("Spirit Temple MQ GS Nine Thrones Room West",                   ("GS Token",     0x06,  0x04, None,                            'Gold Skulltula Token',                  ("Spirit Temple MQ", "Master Quest", "Gold Skulltulas",))),
     ("Spirit Temple MQ GS Nine Thrones Room North",                  ("GS Token",     0x06,  0x10, None,                            'Gold Skulltula Token',                  ("Spirit Temple MQ", "Master Quest", "Gold Skulltulas",))),
-    
+
     ("Spirit Temple Twinrova Heart",                                 ("BossHeart",    0x17,  0x4F, None,                            'Heart Container',                       ("Spirit Temple", "Spirit Temple MQ", "Vanilla Dungeons", "Master Quest",))),
- 
+
     # Spirit Temple Freestanding
     ("Spirit Temple Shifting Wall Recovery Heart 1",                 ("Freestanding", 0x06,  (23,0,3), None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla Dungeons", "Freestandings",))),
     ("Spirit Temple Shifting Wall Recovery Heart 2",                 ("Freestanding", 0x06,  (23,0,4), None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla Dungeons", "Freestandings",))),
@@ -1708,6 +1818,37 @@ location_table = OrderedDict([
     ("Spirit Temple Big Mirror Flying Pot 4",                        ("FlyingPot",    0x06,  (25,0,8), None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla Dungeons", "Flying Pots",))),
     ("Spirit Temple Big Mirror Flying Pot 5",                        ("FlyingPot",    0x06,  (25,0,9), None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla Dungeons", "Flying Pots",))),
     ("Spirit Temple Big Mirror Flying Pot 6",                        ("FlyingPot",    0x06,  (25,0,10), None,                       'Recovery Heart',                        ("Spirit Temple", "Vanilla Dungeons", "Flying Pots",))),
+
+    #Spirit Temple Vanilla Silver Rupees
+    ("Spirit Temple Adult Boulder Silver Rupee Ledge",               ("SilverRupee", 0x06, (13,0,11), None,                   'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Spirit Temple Adult Boulder Silver Rupee Front Left",          ("SilverRupee", 0x06, (13,0,8),  None,                   'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Spirit Temple Adult Boulder Silver Rupee Front Right",         ("SilverRupee", 0x06, (13,0,9),  None,                   'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Spirit Temple Adult Boulder Silver Rupee Back Right",          ("SilverRupee", 0x06, (13,0,10), None,                   'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Spirit Temple Adult Boulder Silver Rupee Back Left",           ("SilverRupee", 0x06, (13,0,7),  None,                   'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Spirit Temple Sun Block Room Silver Rupee Left",               ("SilverRupee", 0x06, (8,0,16), None,                         'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Spirit Temple Sun Block Room Silver Rupee Center Front",       ("SilverRupee", 0x06, (8,0,15), None,                         'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Spirit Temple Sun Block Room Silver Rupee Center Back",        ("SilverRupee", 0x06, (8,0,14), None,                         'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Spirit Temple Sun Block Room Silver Rupee Right Front",        ("SilverRupee", 0x06, (8,0,17), None,                         'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Spirit Temple Sun Block Room Silver Rupee Right Back",         ("SilverRupee", 0x06, (8,0,13), None,                         'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Spirit Temple Child Early Torches Silver Rupee Top Right",     ("SilverRupee", 0x06, (2,0,13), None,               'Silver Rupee (Spirit Temple Child Early Torches)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Spirit Temple Child Early Torches Silver Rupee Bottom Right",  ("SilverRupee", 0x06, (2,0,14), None,               'Silver Rupee (Spirit Temple Child Early Torches)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Spirit Temple Child Early Torches Silver Rupee Bottom Left",   ("SilverRupee", 0x06, (2,0,15), None,               'Silver Rupee (Spirit Temple Child Early Torches)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Spirit Temple Child Early Torches Silver Rupee Top Left",      ("SilverRupee", 0x06, (2,0,16), None,               'Silver Rupee (Spirit Temple Child Early Torches)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Spirit Temple Child Early Torches Silver Rupee Near Torch",    ("SilverRupee", 0x06, (2,0,17), None,               'Silver Rupee (Spirit Temple Child Early Torches)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
+
+
+    # Spirit Temple MQ Silver Rupees
+    ("Spirit Temple MQ Lobby and Lower Adult Silver Rupee Left Boulder",("SilverRupee",0x06,(0,0,12), None,            'Silver Rupee (Spirit Temple Lobby and Lower Adult)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Spirit Temple MQ Lobby and Lower Adult Silver Rupee Right Boulder",("SilverRupee",0x06,(0,0,11),None,            'Silver Rupee (Spirit Temple Lobby and Lower Adult)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Spirit Temple MQ Lobby and Lower Adult Silver Rupee Water Jet",("SilverRupee", 0x06, (0,0,14), None,             'Silver Rupee (Spirit Temple Lobby and Lower Adult)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Spirit Temple MQ Lobby and Lower Adult Silver Rupee Behind Water Jet",("SilverRupee",0x06,(0,0,10),None,         'Silver Rupee (Spirit Temple Lobby and Lower Adult)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Spirit Temple MQ Lobby and Lower Adult Silver Rupee Near Door",("SilverRupee", 0x06, (0,0,13), None,             'Silver Rupee (Spirit Temple Lobby and Lower Adult)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Spirit Temple MQ Adult Climb Silver Rupee 1",                  ("SilverRupee", 0x06, (23,0,11), None,                      'Silver Rupee (Spirit Temple Adult Climb)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Spirit Temple MQ Adult Climb Silver Rupee 2",                  ("SilverRupee", 0x06, (23,0,12), None,                      'Silver Rupee (Spirit Temple Adult Climb)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Spirit Temple MQ Adult Climb Silver Rupee 3",                  ("SilverRupee", 0x06, (23,0,15), None,                      'Silver Rupee (Spirit Temple Adult Climb)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Spirit Temple MQ Adult Climb Silver Rupee 4",                  ("SilverRupee", 0x06, (23,0,13), None,                      'Silver Rupee (Spirit Temple Adult Climb)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Spirit Temple MQ Adult Climb Silver Rupee 5",                  ("SilverRupee", 0x06, (23,0,14), None,                      'Silver Rupee (Spirit Temple Adult Climb)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees"))),
+
 
     # Spirit Temple MQ Pots
     ("Spirit Temple MQ Lobby Pot 1",                                 ("Pot",          0x06,  (0,0,18), None,                        'Bombs (5)',                             ("Spirit Temple MQ", "Master Quest", "Pots",))),
@@ -1763,20 +1904,32 @@ location_table = OrderedDict([
     ("Ice Cavern Map Room Recovery Heart 1",                         ("Freestanding", 0x09,  (9,0,7), None,                         'Recovery Heart',                        ("Ice Cavern", "Vanilla Dungeons", "Freestandings",))),
     ("Ice Cavern Map Room Recovery Heart 2",                         ("Freestanding", 0x09,  (9,0,8), None,                         'Recovery Heart',                        ("Ice Cavern", "Vanilla Dungeons", "Freestandings",))),
     ("Ice Cavern Map Room Recovery Heart 3",                         ("Freestanding", 0x09,  (9,0,9), None,                         'Recovery Heart',                        ("Ice Cavern", "Vanilla Dungeons", "Freestandings",))),
-    ("Ice Cavern Block Room Red Rupee 1",                            ("Freestanding", 0x09,  (5,0,1), None,                         'Rupees (20)',                           ("Ice Cavern", "Vanilla Dungeons", "Freestandings",))),
-    ("Ice Cavern Block Room Red Rupee 2",                            ("Freestanding", 0x09,  (5,0,2), None,                         'Rupees (20)',                           ("Ice Cavern", "Vanilla Dungeons", "Freestandings",))),
-    ("Ice Cavern Block Room Red Rupee 3",                            ("Freestanding", 0x09,  (5,0,3), None,                         'Rupees (20)',                           ("Ice Cavern", "Vanilla Dungeons", "Freestandings",))),
+    ("Ice Cavern Push Block Room Red Rupee 1",                       ("Freestanding", 0x09,  (5,0,1), None,                         'Rupees (20)',                           ("Ice Cavern", "Vanilla Dungeons", "Freestandings",))),
+    ("Ice Cavern Push Block Room Red Rupee 2",                       ("Freestanding", 0x09,  (5,0,2), None,                         'Rupees (20)',                           ("Ice Cavern", "Vanilla Dungeons", "Freestandings",))),
+    ("Ice Cavern Push Block Room Red Rupee 3",                       ("Freestanding", 0x09,  (5,0,3), None,                         'Rupees (20)',                           ("Ice Cavern", "Vanilla Dungeons", "Freestandings",))),
     # Ice Cavern Vanilla Pots
     ("Ice Cavern Hall Pot 1",                                        ("Pot",          0x09,  (2,0,1), None,                         'Recovery Heart',                        ("Ice Cavern", "Vanilla Dungeons", "Pots",))),
     ("Ice Cavern Hall Pot 2",                                        ("Pot",          0x09,  (2,0,2), None,                         'Recovery Heart',                        ("Ice Cavern", "Vanilla Dungeons", "Pots",))),
-    ("Ice Cavern Spinning Blade Pot 1",                              ("Pot",          0x09,  (3,0,9), None,                         'Arrows (10)',                           ("Ice Cavern", "Vanilla Dungeons", "Pots",))),
-    ("Ice Cavern Spinning Blade Pot 2",                              ("Pot",          0x09,  (3,0,10), None,                        'Rupees (5)',                            ("Ice Cavern", "Vanilla Dungeons", "Pots",))),
-    ("Ice Cavern Spinning Blade Pot 3",                              ("Pot",          0x09,  (3,0,11), None,                        'Recovery Heart',                        ("Ice Cavern", "Vanilla Dungeons", "Pots",))),
-    ("Ice Cavern Spinning Blade Flying Pot",                         ("FlyingPot",    0x09,  (3,0,12), None,                        'Recovery Heart',                        ("Ice Cavern", "Vanilla Dungeons", "Flying Pots",))),
+    ("Ice Cavern Spinning Scythe Pot 1",                             ("Pot",          0x09,  (3,0,9), None,                         'Arrows (10)',                           ("Ice Cavern", "Vanilla Dungeons", "Pots",))),
+    ("Ice Cavern Spinning Scythe Pot 2",                             ("Pot",          0x09,  (3,0,10), None,                        'Rupees (5)',                            ("Ice Cavern", "Vanilla Dungeons", "Pots",))),
+    ("Ice Cavern Spinning Scythe Pot 3",                             ("Pot",          0x09,  (3,0,11), None,                        'Recovery Heart',                        ("Ice Cavern", "Vanilla Dungeons", "Pots",))),
+    ("Ice Cavern Spinning Scythe Flying Pot",                        ("FlyingPot",    0x09,  (3,0,12), None,                        'Recovery Heart',                        ("Ice Cavern", "Vanilla Dungeons", "Flying Pots",))),
     ("Ice Cavern Near End Pot 1",                                    ("Pot",          0x09,  (6,0,1), None,                         'Recovery Heart',                        ("Ice Cavern", "Vanilla Dungeons", "Pots",))),
     ("Ice Cavern Near End Pot 2",                                    ("Pot",          0x09,  (6,0,2), None,                         'Recovery Heart',                        ("Ice Cavern", "Vanilla Dungeons", "Pots",))),
     ("Ice Cavern Frozen Pot",                                        ("Pot",          0x09,  (9,0,10), None,                        'Rupees (50)',                           ("Ice Cavern", "Vanilla Dungeons", "Pots",))),
-    
+
+    # Ice Cavern Silver Rupees
+    ("Ice Cavern Spinning Scythe Silver Rupee Icicles",              ("SilverRupee",  0x09,  (3,0,3), None,                     'Silver Rupee (Ice Cavern Spinning Scythe)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ice Cavern Spinning Scythe Silver Rupee Center Left",          ("SilverRupee",  0x09,  (3,0,4), None,                     'Silver Rupee (Ice Cavern Spinning Scythe)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ice Cavern Spinning Scythe Silver Rupee Center Back",          ("SilverRupee",  0x09,  (3,0,5), None,                     'Silver Rupee (Ice Cavern Spinning Scythe)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ice Cavern Spinning Scythe Silver Rupee Center Right",         ("SilverRupee",  0x09,  (3,0,6), None,                     'Silver Rupee (Ice Cavern Spinning Scythe)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ice Cavern Spinning Scythe Silver Rupee Ledge",                ("SilverRupee",  0x09,  (3,0,7), None,                     'Silver Rupee (Ice Cavern Spinning Scythe)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ice Cavern Push Block Silver Rupee Back Left",                 ("SilverRupee",  0x09,  (5,0,11), None,                         'Silver Rupee (Ice Cavern Push Block)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ice Cavern Push Block Silver Rupee Back Center",               ("SilverRupee",  0x09,  (5,0,12), None,                         'Silver Rupee (Ice Cavern Push Block)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ice Cavern Push Block Silver Rupee Front Center",              ("SilverRupee",  0x09,  (5,0,13), None,                         'Silver Rupee (Ice Cavern Push Block)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ice Cavern Push Block Silver Rupee Red Ice",                   ("SilverRupee",  0x09,  (5,0,14), None,                         'Silver Rupee (Ice Cavern Push Block)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ice Cavern Push Block Silver Rupee Front Left",                ("SilverRupee",  0x09,  (5,0,15), None,                         'Silver Rupee (Ice Cavern Push Block)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees"))),
+
     # Ice Cavern MQ
     ("Ice Cavern MQ Map Chest",                                      ("Chest",        0x09,  0x01, None,                            'Map (Ice Cavern)',                      ("Ice Cavern MQ", "Master Quest", "Chests",))),
     ("Ice Cavern MQ Compass Chest",                                  ("Chest",        0x09,  0x00, None,                            'Compass (Ice Cavern)',                  ("Ice Cavern MQ", "Master Quest", "Chests",))),
@@ -1825,6 +1978,25 @@ location_table = OrderedDict([
     ("Gerudo Training Ground Beamos Recovery Heart 1",               ("Freestanding", 0x0B,  (7,0,11), None,                        'Recovery Heart',                        ("Gerudo Training Ground", "Vanilla Dungeons", "Freestandings",))),
     ("Gerudo Training Ground Beamos Recovery Heart 2",               ("Freestanding", 0x0B,  (7,0,12), None,                        'Recovery Heart',                        ("Gerudo Training Ground", "Vanilla Dungeons", "Freestandings",))),
 
+    # Gerudo Training Ground Silver Rupees
+    ("Gerudo Training Ground Lava Room Silver Rupee Front Left",     ("SilverRupee",  0x0B,  (6,0,11), None,                    'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Gerudo Training Ground Lava Room Silver Rupee Front Right",    ("SilverRupee",  0x0B,  (6,0,12), None,                    'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Gerudo Training Ground Lava Room Silver Rupee Flame Circle",   ("SilverRupee",  0x0B,  (6,0,13), None,                    'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Gerudo Training Ground Lava Room Silver Rupee Center Right",   ("SilverRupee",  0x0B,  (6,0,15), None,                    'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Gerudo Training Ground Lava Room Silver Rupee Hookshot Target",("SilverRupee",  0x0B,  (6,0,14), None,                    'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
+
+    ("Gerudo Training Ground Underwater Silver Rupee Top",           ("SilverRupee",  0x0B,  (9,0,18), None,                   'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Gerudo Training Ground Underwater Silver Rupee Middle",        ("SilverRupee",  0x0B,  (9,0,20), None,                   'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Gerudo Training Ground Underwater Silver Rupee Bottom Front Right",("SilverRupee",0x0B,(9,0,21), None,                   'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Gerudo Training Ground Underwater Silver Rupee Bottom Center", ("SilverRupee",  0x0B,  (9,0,17), None,                   'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Gerudo Training Ground Underwater Silver Rupee Bottom Back Left",("SilverRupee",0x0B,  (9,0,19), None,                   'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
+
+    ("Gerudo Training Ground Boulder Room Silver Rupee Bottom Right",("SilverRupee",  0x0B,  (2,0,10), None,                  'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Gerudo Training Ground Boulder Room Silver Rupee Bottom Left", ("SilverRupee",  0x0B,  (2,0,11), None,                  'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Gerudo Training Ground Boulder Room Silver Rupee Ceiling",     ("SilverRupee",  0x0B,  (2,0,12), None,                  'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Gerudo Training Ground Boulder Room Silver Rupee Ledge",       ("SilverRupee",  0x0B,  (2,0,13), None,                  'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Gerudo Training Ground Boulder Room Silver Rupee Top Left",    ("SilverRupee",  0x0B,  (2,0,14), None,                  'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
+
     # Gerudo Training Ground MQ
     ("Gerudo Training Ground MQ Lobby Left Chest",                   ("Chest",        0x0B,  0x13, None,                            'Arrows (10)',                           ("Gerudo Training Ground MQ", "Master Quest", "Chests",))),
     ("Gerudo Training Ground MQ Lobby Right Chest",                  ("Chest",        0x0B,  0x07, None,                            'Bombchus (5)',                          ("Gerudo Training Ground MQ", "Master Quest", "Chests",))),
@@ -1836,12 +2008,12 @@ location_table = OrderedDict([
     ("Gerudo Training Ground MQ Second Iron Knuckle Chest",          ("Chest",        0x0B,  0x12, None,                            'Arrows (10)',                           ("Gerudo Training Ground MQ", "Master Quest", "Chests",))),
     ("Gerudo Training Ground MQ Flame Circle Chest",                 ("Chest",        0x0B,  0x0E, None,                            'Small Key (Gerudo Training Ground)',    ("Gerudo Training Ground MQ", "Master Quest", "Chests",))),
     ("Gerudo Training Ground MQ Maze Right Central Chest",           ("Chest",        0x0B,  0x05, None,                            'Rupees (5)',                            ("Gerudo Training Ground MQ", "Master Quest", "Chests",))),
-    ("Gerudo Training Ground MQ Maze Right Side Chest",              ("Chest",        0x0B,  0x08, None,                            'Rupee (Treasure Chest Game)',           ("Gerudo Training Ground MQ", "Master Quest", "Chests",))),
+    ("Gerudo Training Ground MQ Maze Right Side Chest",              ("Chest",        0x0B,  0x08, None,                            'Rupee (Treasure Chest Game) (1)',       ("Gerudo Training Ground MQ", "Master Quest", "Chests",))),
     ("Gerudo Training Ground MQ Underwater Silver Rupee Chest",      ("Chest",        0x0B,  0x0D, None,                            'Small Key (Gerudo Training Ground)',    ("Gerudo Training Ground MQ", "Master Quest", "Chests",))),
     ("Gerudo Training Ground MQ Dinolfos Chest",                     ("Chest",        0x0B,  0x01, None,                            'Small Key (Gerudo Training Ground)',    ("Gerudo Training Ground MQ", "Master Quest", "Chests",))),
     ("Gerudo Training Ground MQ Hidden Ceiling Chest",               ("Chest",        0x0B,  0x0B, None,                            'Rupees (50)',                           ("Gerudo Training Ground MQ", "Master Quest", "Chests",))),
     ("Gerudo Training Ground MQ Maze Path First Chest",              ("Chest",        0x0B,  0x06, None,                            'Rupee (1)',                             ("Gerudo Training Ground MQ", "Master Quest", "Chests",))),
-    ("Gerudo Training Ground MQ Maze Path Third Chest",              ("Chest",        0x0B,  0x09, None,                            'Rupee (Treasure Chest Game)',           ("Gerudo Training Ground MQ", "Master Quest", "Chests",))),
+    ("Gerudo Training Ground MQ Maze Path Third Chest",              ("Chest",        0x0B,  0x09, None,                            'Rupee (Treasure Chest Game) (1)',       ("Gerudo Training Ground MQ", "Master Quest", "Chests",))),
     ("Gerudo Training Ground MQ Maze Path Second Chest",             ("Chest",        0x0B,  0x0A, None,                            'Rupees (20)',                           ("Gerudo Training Ground MQ", "Master Quest", "Chests",))),
     # Gerudo Training Ground MQ Pots/Crates
     ("Gerudo Training Ground MQ Lobby Left Pot 1",                   ("Pot",          0x0B,  (0,0,6), None,                         'Recovery Heart',                        ("Gerudo Training Ground MQ", "Master Quest", "Pots",))),
@@ -1849,6 +2021,24 @@ location_table = OrderedDict([
     ("Gerudo Training Ground MQ Lobby Right Pot 1",                  ("Pot",          0x0B,  (0,0,8), None,                         'Rupees (5)',                            ("Gerudo Training Ground MQ", "Master Quest", "Pots",))),
     ("Gerudo Training Ground MQ Lobby Right Pot 2",                  ("Pot",          0x0B,  (0,0,9), None,                         'Recovery Heart',                        ("Gerudo Training Ground MQ", "Master Quest", "Pots",))),
     ("Gerudo Training Ground MQ Maze Crate",                         ("Crate",        0x0B,  (8,0,2), None,                         'Rupee (1)',                             ("Gerudo Training Ground MQ", "Master Quest", "Crates",))),
+
+    # Gerudo Training Ground MQ Silver Rupees
+    ("Gerudo Training Ground MQ Icicle Room Silver Rupee Freezard",  ("SilverRupee",  0x0B,  (2,0,28), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
+    ("Gerudo Training Ground MQ Icicle Room Silver Rupee Icicles",   ("SilverRupee",  0x0B,  (2,0,25), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
+    ("Gerudo Training Ground MQ Icicle Room Silver Rupee Center",    ("SilverRupee",  0x0B,  (2,0,26), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
+    ("Gerudo Training Ground MQ Icicle Room Silver Rupee Ceiling",   ("SilverRupee",  0x0B,  (2,0,27), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
+    ("Gerudo Training Ground MQ Icicle Room Silver Rupee Above Void",("SilverRupee",  0x0B,  (2,0,29), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
+
+    ("Gerudo Training Ground MQ Lava Room Silver Rupee Front Left",  ("SilverRupee",  0x0B,  (6,0,12), None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
+    ("Gerudo Training Ground MQ Lava Room Silver Rupee Front Center",("SilverRupee",  0x0B,  (6,0,13), None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
+    ("Gerudo Training Ground MQ Lava Room Silver Rupee Front Right", ("SilverRupee",  0x0B,  (6,0,11), None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
+    ("Gerudo Training Ground MQ Lava Room Silver Rupee Back Left",   ("SilverRupee",  0x0B,  (6,0,9),  None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
+    ("Gerudo Training Ground MQ Lava Room Silver Rupee Back Center", ("SilverRupee",  0x0B,  (6,0,10), None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
+    ("Gerudo Training Ground MQ Lava Room Silver Rupee Back Right",  ("SilverRupee",  0x0B,  (6,0,8),  None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
+
+    ("Gerudo Training Ground MQ Underwater Silver Rupee Middle",     ("SilverRupee",  0x0B,  (9,0,13), None,                  'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
+    ("Gerudo Training Ground MQ Underwater Silver Rupee Front Right",("SilverRupee",  0x0B,  (9,0,14), None,                  'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
+    ("Gerudo Training Ground MQ Underwater Silver Rupee Back Left",  ("SilverRupee",  0x0B,  (9,0,12), None,                  'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
 
     # Ganon's Castle Vanilla
     ("Ganons Castle Forest Trial Chest",                             ("Chest",        0x0D,  0x09, None,                            'Rupees (5)',                            ("Ganon's Castle", "Vanilla Dungeons", "Chests",))),
@@ -1893,6 +2083,28 @@ location_table = OrderedDict([
     ("Ganons Castle Spirit Trial Pot 1",                             ("Pot",          0x0D,  (19,0,5), None,                        'Deku Nuts (5)',                         ("Ganon's Castle", "Vanilla Dungeons", "Pots",))),
     ("Ganons Castle Spirit Trial Pot 2",                             ("Pot",          0x0D,  (19,0,6), None,                        'Rupees (5)',                            ("Ganon's Castle", "Vanilla Dungeons", "Pots",))),
 
+    # Ganons Castle Silver Rupees
+    ("Ganons Castle Spirit Trial Silver Rupee Ceiling",              ("SilverRupee",  0x0D,  (17,0,22), None,                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ganons Castle Spirit Trial Silver Rupee Front Right",          ("SilverRupee",  0x0D,  (17,0,23), None,                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ganons Castle Spirit Trial Silver Rupee Center",               ("SilverRupee",  0x0D,  (17,0,24), None,                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ganons Castle Spirit Trial Silver Rupee Back Left",            ("SilverRupee",  0x0D,  (17,0,25), None,                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ganons Castle Spirit Trial Silver Rupee Back Right",           ("SilverRupee",  0x0D,  (17,0,26), None,                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ganons Castle Light Trial Silver Rupee Center Left",           ("SilverRupee",  0x0D,  (8,0,9), None,                      'Silver Rupee (Ganons Castle Light Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ganons Castle Light Trial Silver Rupee Center Top",            ("SilverRupee",  0x0D,  (8,0,7), None,                      'Silver Rupee (Ganons Castle Light Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ganons Castle Light Trial Silver Rupee Center Right",          ("SilverRupee",  0x0D,  (8,0,8), None,                      'Silver Rupee (Ganons Castle Light Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ganons Castle Light Trial Silver Rupee Left Alcove",           ("SilverRupee",  0x0D,  (8,0,6), None,                      'Silver Rupee (Ganons Castle Light Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ganons Castle Light Trial Silver Rupee Right Alcove",          ("SilverRupee",  0x0D,  (8,0,5), None,                      'Silver Rupee (Ganons Castle Light Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ganons Castle Fire Trial Silver Rupee Flamethrower",           ("SilverRupee",  0x0D,  (14,0,14), None,                     'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ganons Castle Fire Trial Silver Rupee Inside Pillar",          ("SilverRupee",  0x0D,  (14,0,17), None,                     'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ganons Castle Fire Trial Silver Rupee Right Front",            ("SilverRupee",  0x0D,  (14,0,16), None,                     'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ganons Castle Fire Trial Silver Rupee Right Center",           ("SilverRupee",  0x0D,  (14,0,15), None,                     'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ganons Castle Fire Trial Silver Rupee Right Back",             ("SilverRupee",  0x0D,  (14,0,13), None,                     'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ganons Castle Forest Trial Silver Rupee Front Left",           ("SilverRupee",  0x0D,  (6,0,8), None,                     'Silver Rupee (Ganons Castle Forest Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ganons Castle Forest Trial Silver Rupee Front Right",          ("SilverRupee",  0x0D,  (6,0,7), None,                     'Silver Rupee (Ganons Castle Forest Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ganons Castle Forest Trial Silver Rupee Center Left",          ("SilverRupee",  0x0D,  (6,0,11), None,                    'Silver Rupee (Ganons Castle Forest Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ganons Castle Forest Trial Silver Rupee Back Center",          ("SilverRupee",  0x0D,  (6,0,10), None,                    'Silver Rupee (Ganons Castle Forest Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ganons Castle Forest Trial Silver Rupee Back Right",           ("SilverRupee",  0x0D,  (6,0,9), None,                     'Silver Rupee (Ganons Castle Forest Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
+
     # Ganon's Castle MQ
     ("Ganons Castle MQ Forest Trial Freestanding Key",               ("Collectable",  0x0D,  0x01, None,                            'Small Key (Ganons Castle)',             ("Ganon's Castle MQ", "Master Quest", "Freestandings",))),
     ("Ganons Castle MQ Forest Trial Eye Switch Chest",               ("Chest",        0x0D,  0x02, None,                            'Arrows (10)',                           ("Ganon's Castle MQ", "Master Quest", "Chests",))),
@@ -1929,6 +2141,23 @@ location_table = OrderedDict([
     ("Ganons Castle MQ Fire Trial Pot 2",                            ("Pot",          0x0D,  (15,0,6), None,                        'Recovery Heart',                        ("Ganon's Castle MQ", "Master Quest", "Pots",))),
     ("Ganons Castle MQ Spirit Trial Pot 1",                          ("Pot",          0x0D,  (19,0,5), None,                        'Rupees (5)',                            ("Ganon's Castle MQ", "Master Quest", "Pots",))),
     ("Ganons Castle MQ Spirit Trial Pot 2",                          ("Pot",          0x0D,  (19,0,6), None,                        'Deku Nuts (5)',                         ("Ganon's Castle MQ", "Master Quest", "Pots",))),
+
+    # Ganons Castle MQ Silver Rupees
+    ("Ganons Castle MQ Fire Trial Silver Rupee Rising Platform",     ("SilverRupee", 0x0D, (14,0,22), None,                       'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
+    ("Ganons Castle MQ Fire Trial Silver Rupee Beamos",              ("SilverRupee", 0x0D, (14,0,19), None,                       'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
+    ("Ganons Castle MQ Fire Trial Silver Rupee Left Front",          ("SilverRupee", 0x0D, (14,0,23), None,                       'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
+    ("Ganons Castle MQ Fire Trial Silver Rupee Left Center",         ("SilverRupee", 0x0D, (14,0,20), None,                       'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
+    ("Ganons Castle MQ Fire Trial Silver Rupee Left Back",           ("SilverRupee", 0x0D, (14,0,21), None,                       'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
+    ("Ganons Castle MQ Shadow Trial Silver Rupee Moving Platform",   ("SilverRupee", 0x0D, (12,0,18), None,                     'Silver Rupee (Ganons Castle Shadow Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
+    ("Ganons Castle MQ Shadow Trial Silver Rupee Bomb Flower",       ("SilverRupee", 0x0D, (12,0,14), None,                     'Silver Rupee (Ganons Castle Shadow Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
+    ("Ganons Castle MQ Shadow Trial Silver Rupee First Beamos",      ("SilverRupee", 0x0D, (12,0,15), None,                     'Silver Rupee (Ganons Castle Shadow Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
+    ("Ganons Castle MQ Shadow Trial Silver Rupee Last Beamos",       ("SilverRupee", 0x0D, (12,0,16), None,                     'Silver Rupee (Ganons Castle Shadow Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
+    ("Ganons Castle MQ Shadow Trial Silver Rupee Guillotine",        ("SilverRupee", 0x0D, (12,0,17), None,                     'Silver Rupee (Ganons Castle Shadow Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
+    ("Ganons Castle MQ Water Trial Silver Rupee Hole",               ("SilverRupee", 0x0D, (3,0,8), None,                        'Silver Rupee (Ganons Castle Water Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
+    ("Ganons Castle MQ Water Trial Silver Rupee Near Blocks",        ("SilverRupee", 0x0D, (3,0,9), None,                        'Silver Rupee (Ganons Castle Water Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
+    ("Ganons Castle MQ Water Trial Silver Rupee Center Left",        ("SilverRupee", 0x0D, (3,0,12), None,                       'Silver Rupee (Ganons Castle Water Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
+    ("Ganons Castle MQ Water Trial Silver Rupee Red Ice",            ("SilverRupee", 0x0D, (3,0,10), None,                       'Silver Rupee (Ganons Castle Water Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
+    ("Ganons Castle MQ Water Trial Silver Rupee Above Void",         ("SilverRupee", 0x0D, (3,0,11), None,                       'Silver Rupee (Ganons Castle Water Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
 
     # Ganon's Castle Shared
     ("Ganons Tower Boss Key Chest",                                  ("Chest",        0x0A,  0x0B, None,                            'Boss Key (Ganons Castle)',              ("Ganon's Tower", "Vanilla Dungeons", "Master Quest", "Chests",))),
@@ -2028,15 +2257,16 @@ location_table = OrderedDict([
     ("30 Skulltulas Reward Hint",                                    ("Hint",         None,  None, None,                            None,                                    None)),
     ("40 Skulltulas Reward Hint",                                    ("Hint",         None,  None, None,                            None,                                    None)),
     ("50 Skulltulas Reward Hint",                                    ("Hint",         None,  None, None,                            None,                                    None)),
+    ("ZR Frogs Ocarina Minigame Hint",                               ("Hint",         None,  None, None,                            None,                                    None)),
     ("Ganondorf Hint",                                               ("Hint",         None,  None, None,                            None,                                    None)),
 ])
 
-location_sort_order = {
+location_sort_order: dict[str, int] = {
     loc: i for i, loc in enumerate(location_table.keys())
 }
 
 # Business Scrub Details
-business_scrubs = [
+business_scrubs: list[tuple[int, int, int, list[str]]] = [
     # id   price  text   text replacement
     (0x30, 20,   0x10A0, ["Deku Nuts", "a \x05\x42mysterious item\x05\x40"]),
     (0x31, 15,   0x10A1, ["Deku Sticks", "a \x05\x42mysterious item\x05\x40"]),
@@ -2051,31 +2281,23 @@ business_scrubs = [
     (0x79, 40,   0x10DD, ["enable you to pick up more \x05\x41Deku\x01Nuts", "sell you a \x05\x42mysterious item"]),
 ]
 
-dungeons = ('Deku Tree', 'Dodongo\'s Cavern', 'Jabu Jabu\'s Belly', 'Forest Temple', 'Fire Temple', 'Water Temple', 'Spirit Temple', 'Shadow Temple', 'Ice Cavern', 'Bottom of the Well', 'Gerudo Training Ground', 'Ganon\'s Castle')
-location_groups = {
+dungeons: tuple[str, ...] = ('Deku Tree', "Dodongo's Cavern", "Jabu Jabu's Belly", 'Forest Temple', 'Fire Temple', 'Water Temple', 'Spirit Temple', 'Shadow Temple', 'Ice Cavern', 'Bottom of the Well', 'Gerudo Training Ground', "Ganon's Castle")
+location_groups: dict[str, list[str]] = {
     'Song': [name for (name, data) in location_table.items() if data[0] == 'Song'],
     'Chest': [name for (name, data) in location_table.items() if data[0] == 'Chest'],
-    'Collectable': [name for (name, data) in location_table.items() if data[0] in ['Collectable']],
+    'Collectable': [name for (name, data) in location_table.items() if data[0] == 'Collectable'],
     'Boss': [name for (name, data) in location_table.items() if data[0] == 'Boss'],
     'ActorOverride': [name for (name, data) in location_table.items() if data[0] == 'ActorOverride'],
     'BossHeart': [name for (name, data) in location_table.items() if data[0] == 'BossHeart'],
-    'CollectableLike': [name for (name, data) in location_table.items() if data[0] in ('Collectable', 'BossHeart', 'GS Token')],
+    'CollectableLike': [name for (name, data) in location_table.items() if data[0] in ('Collectable', 'BossHeart', 'GS Token', 'SilverRupee')],
     'CanSee': [name for (name, data) in location_table.items()
-               if data[0] in ('Collectable', 'BossHeart', 'GS Token', 'Shop', 'Freestanding', 'ActorOverride', 'RupeeTower', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'Beehive')
+               if data[0] in ('Collectable', 'BossHeart', 'GS Token', 'Shop', 'Freestanding', 'ActorOverride', 'RupeeTower', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'Beehive', 'SilverRupee')
                # Treasure Box Shop, Bombchu Bowling, Hyrule Field (OoT), Lake Hylia (RL/FA)
                or data[0:2] in [('Chest', 0x10), ('NPC', 0x4B), ('NPC', 0x51), ('NPC', 0x57)]],
     'Dungeon': [name for (name, data) in location_table.items() if data[5] is not None and any(dungeon in data[5] for dungeon in dungeons)],
 }
 
 
-def location_is_viewable(loc_name, correct_chest_appearances, fast_chests):
+def location_is_viewable(loc_name: str, correct_chest_appearances: str, fast_chests: bool) -> bool:
     return (((correct_chest_appearances in ['textures', 'both', 'classic'] or not fast_chests) and loc_name in location_groups['Chest'])
-        or loc_name in location_groups['CanSee'])
-
-
-# Function to run exactly once after after placing items in drop locations for each world
-# Sets all Drop locations to a unique name in order to avoid name issues and to identify locations in the spoiler
-def set_drop_location_names(world):
-    for location in world.get_locations():
-        if location.type == 'Drop':
-            location.name = location.parent_region.name + " " + location.name
+            or loc_name in location_groups['CanSee'])
