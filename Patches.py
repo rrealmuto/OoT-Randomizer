@@ -1352,7 +1352,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
     # Mark unreachable trade-ins as traded. Only applicable with trade quest shuffle off,
     # and only practically affects the Blue Potion purchase from Granny's Potion Shop.
-    if not world.settings.adult_trade_shuffle:
+    if not world.settings.adult_trade_shuffle and len(world.settings.adult_trade_start) > 0:
         def calculate_traded_flags(world):
             traded_flags = 0
             reverting_item_map = {

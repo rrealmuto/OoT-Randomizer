@@ -1272,7 +1272,7 @@ def shuffle_messages(messages: list[Message], except_hints: bool = True) -> list
         GOSSIP_STONE_MESSAGES + TEMPLE_HINTS_MESSAGES +
         [data['id'] for data in misc_item_hint_table.values()] +
         [data['id'] for data in misc_location_hint_table.values()] +
-        list(KEYSANITY_MESSAGES.keys()) + shuffle_messages.shop_item_messages +
+        [message_id for (message_id, message) in KEYSANITY_MESSAGES] + shuffle_messages.shop_item_messages +
         shuffle_messages.scrubs_message_ids +
         [0x5036, 0x70F5] # Chicken count and poe count respectively
     )
