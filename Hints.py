@@ -625,14 +625,17 @@ def get_checked_areas(world: World, checked: set[str]) -> set[HintArea | str]:
     return set(get_area_from_name(check) for check in checked)
 
 
-def get_goal_category(spoiler: Spoiler, world: World, goal_categories: dict[str, GoalCategory]) -> GoalCategory:
+def get_goal_category(spoiler: Spoiler, world: World, goal_categories: dict[str, GoalCategory], skip_empty: bool = True) -> GoalCategory:
     cat_sizes = []
     cat_names = []
     zero_weights = True
     goal_category = None
     for cat_name, category in goal_categories.items():
         # Only add weights if the category has goals with hintable items
-        if (world.id in spoiler.goal_locations and cat_name in spoiler.goal_locations[world.id]):
+        if not skip_empty:
+            cat_sizes.append(category.weight)
+            cat_names.append(category.name)
+        elif (world.id in spoiler.goal_locations and cat_name in spoiler.goal_locations[world.id]):
             # Build lists for weighted choice
             if category.weight > 0:
                 zero_weights = False
@@ -820,7 +823,7 @@ def get_goal_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintRetu
     return GossipText('%s is on %s %s.' % (location_text, player_text, goal_text), ['Light Blue', goal.color], [location.name], [location.item.name]), [location]
 
 def get_goal_count_hint(spoiler, world, checked):
-    goal_category = get_goal_category(spoiler, world, world.goal_categories)
+    goal_category = get_goal_category(spoiler, world, world.goal_categories, skip_empty=False)
 
     # check if no goals were generated (and thus no categories available)
     if not goal_category:
