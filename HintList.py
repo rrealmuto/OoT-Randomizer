@@ -265,6 +265,16 @@ conditional_sometimes: dict[str, Callable[[World], bool]] = {
     'Spirit Temple Adult Lower':                lambda world: world.settings.tokensanity not in ['dungeons', 'all'],
     'Shadow Temple Invisible Blades Chests':    lambda world: world.settings.tokensanity not in ['dungeons', 'all'],
 
+    # We don't want to hint unshuffled dungeon rewards even if compasses give info and are removed
+    'Queen Gohma Rewards':                      lambda world: world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'),
+    'King Dodongo Rewards':                     lambda world: world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'),
+    'Barinade Rewards':                         lambda world: world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'),
+    'Phantom Ganon Rewards':                    lambda world: world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'),
+    'Volvagia Rewards':                         lambda world: world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'),
+    'Morpha Rewards':                           lambda world: world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'),
+    'Bongo Bongo Rewards':                      lambda world: world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'),
+    'Twinrova Rewards':                         lambda world: world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'),
+
     # Conditional entrance hints
     'Ganons Castle Grounds -> Ganons Castle Lobby': lambda world: (world.settings.bridge != 'open'
         and (world.settings.bridge != 'dungeons' or world.settings.bridge_rewards > 1)
@@ -657,6 +667,15 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'Ice Cavern Final Room':                                       ("the #final treasures of Ice Cavern# are...^", None, 'dual'),
     'Ice Cavern MQ Final Room':                                    ("the #final treasures of Ice Cavern# are...^", None, 'dual'),
     'Ganons Castle Spirit Trial Chests':                           ("#within the Spirit Trial#, chests contain...^", None, 'dual'),
+
+    'Queen Gohma Rewards':                                         ("the #Parasitic Armored Arachnid# holds...^", "#Queen Gohma# holds...^", 'dual'),
+    'King Dodongo Rewards':                                        ("the #Infernal Dinosaur# holds...^", "#King Dodongo# holds...^", 'dual'),
+    'Barinade Rewards':                                            ("the #Bio-Electric Anemone# holds...^", "#Barinade# holds...^", 'dual'),
+    'Phantom Ganon Rewards':                                       ("the #Evil Spirit from Beyond# holds...^", "#Phantom Ganon# holds...^", 'dual'),
+    'Volvagia Rewards':                                            ("the #Subterranean Lava Dragon# holds...^", "#Volvagia# holds...^", 'dual'),
+    'Morpha Rewards':                                              ("the #Giant Aquatic Amoeba# holds...^", "#Morpha# holds...^", 'dual'),
+    'Bongo Bongo Rewards':                                         ("the #Phantom Shadow Beast# holds...^", "#Bongo Bongo# holds...^", 'dual'),
+    'Twinrova Rewards':                                            ("the #Sorceress Sisters# hold...^", "#Twinrova# holds...^", 'dual'),
 
     'KF Kokiri Sword Chest':                                       ("the #hidden treasure of the Kokiri# is", None, 'exclude'),
     'KF Midos Top Left Chest':                                     ("the #leader of the Kokiri# hides", "#inside Mido's house# is", 'exclude'),
@@ -1447,6 +1466,14 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'SFM Fairy Grotto':                                         ("a small #Fairy Fountain#", None, 'region'),
     'ZD Storms Grotto':                                         ("a small #Fairy Fountain#", None, 'region'),
     'GF Storms Grotto':                                         ("a small #Fairy Fountain#", None, 'region'),
+    'Queen Gohma Boss Room':                                    ("the #Parasitic Armored Arachnid#", "#Queen Gohma#", 'region'),
+    'King Dodongo Boss Room':                                   ("the #Infernal Dinosaur#", "#King Dodongo#", 'region'),
+    'Barinade Boss Room':                                       ("the #Bio-Electric Anemone#", "#Barinade#", 'region'),
+    'Phantom Ganon Boss Room':                                  ("the #Evil Spirit from Beyond#", "#Phantom Ganon#", 'region'),
+    'Volvagia Boss Room':                                       ("the #Subterranean Lava Dragon#", "#Volvagia#", 'region'),
+    'Morpha Boss Room':                                         ("the #Giant Aquatic Amoeba#", "#Morpha#", 'region'),
+    'Bongo Bongo Boss Room':                                    ("the #Phantom Shadow Beast#", "#Bongo Bongo#", 'region'),
+    'Twinrova Boss Room':                                       ("the #Sorceress Sisters#", "#Twinrova#", 'region'),
 
     # Junk hints must satisfy all the following conditions:
     # - They aren't inappropriate.
@@ -1766,6 +1793,15 @@ multiTable: dict[str, list[str]] = {
     'Ice Cavern Final Room':                                    ['Ice Cavern Iron Boots Chest', 'Sheik in Ice Cavern'],
     'Ice Cavern MQ Final Room':                                 ['Ice Cavern MQ Iron Boots Chest', 'Sheik in Ice Cavern'],
     'Ganons Castle Spirit Trial Chests':                        ['Ganons Castle Spirit Trial Crystal Switch Chest', 'Ganons Castle Spirit Trial Invisible Chest'],
+
+    'Queen Gohma Rewards':                                      ['Deku Tree Queen Gohma Heart', 'Queen Gohma'],
+    'King Dodongo Rewards':                                     ['Dodongos Cavern King Dodongo Heart', 'King Dodongo'],
+    'Barinade Rewards':                                         ['Jabu Jabus Belly Barinade Heart', 'Barinade'],
+    'Phantom Ganon Rewards':                                    ['Forest Temple Phantom Ganon Heart', 'Phantom Ganon'],
+    'Volvagia Rewards':                                         ['Fire Temple Volvagia Heart', 'Volvagia'],
+    'Morpha Rewards':                                           ['Water Temple Morpha Heart', 'Morpha'],
+    'Bongo Bongo Rewards':                                      ['Shadow Temple Bongo Bongo Heart', 'Bongo Bongo'],
+    'Twinrova Rewards':                                         ['Spirit Temple Twinrova Heart', 'Twinrova'],
 }
 
 # TODO: Make these a type of some sort instead of a dict.
@@ -1861,7 +1897,7 @@ misc_location_hint_table: dict[str, dict[str, Any]] = {
 # Separate table for goal names to avoid duplicates in the hint table.
 # Link's Pocket will always be an empty goal, but it's included here to
 # prevent key errors during the dungeon reward lookup.
-goalTable: dict[str, tuple[str, str, str]] = {
+BOSS_GOAL_TABLE: dict[str, tuple[str, str, str]] = {
     'Queen Gohma':                                              ("path to the #Spider#", "path to #Queen Gohma#", "Green"),
     'King Dodongo':                                             ("path to the #Dinosaur#", "path to #King Dodongo#", "Red"),
     'Barinade':                                                 ("path to the #Tentacle#", "path to #Barinade#", "Blue"),
@@ -1871,6 +1907,19 @@ goalTable: dict[str, tuple[str, str, str]] = {
     'Bongo Bongo':                                              ("path to the #Hands#", "path to #Bongo Bongo#", "Pink"),
     'Twinrova':                                                 ("path to the #Witches#", "path to #Twinrova#", "Yellow"),
     'Links Pocket':                                             ("path to #Links Pocket#", "path to #Links Pocket#", "Light Blue"),
+}
+
+# If dungeon rewards are shuffled, we don't use boss names for their goals.
+REWARD_GOAL_TABLE: dict[str, tuple[str, str]] = {
+    'Kokiri Emerald':                                           ("path to a #tree's farewell#", "path to the #Kokiri Emerald#"),
+    'Goron Ruby':                                               ("path to the #Gorons' hidden treasure#", "path to the #Goron Ruby#"),
+    'Zora Sapphire':                                            ("path to an #engagement ring#", "path to the #Zora Sapphire#"),
+    'Light Medallion':                                          ("path to #Rauru's sagely power#", "path to the #Light Medallion#"),
+    'Forest Medallion':                                         ("path to #Saria's sagely power#", "path to the #Forest Medallion#"),
+    'Fire Medallion':                                           ("path to #Darunia's sagely power#", "path to the #Fire Medallion#"),
+    'Water Medallion':                                          ("path to #Ruto's sagely power#", "path to the #Water Medallion#"),
+    'Shadow Medallion':                                         ("path to #Impa's sagely power#", "path to the #Shadow Medallion#"),
+    'Spirit Medallion':                                         ("path to #Nabooru's sagely power#", "path to the #Spirit Medallion#"),
 }
 
 

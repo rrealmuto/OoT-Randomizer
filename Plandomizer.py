@@ -886,9 +886,6 @@ class WorldDistribution:
 
             player_id = self.id if record.player is None else record.player - 1
 
-            if record.item in item_groups['DungeonReward']:
-                raise RuntimeError('Cannot place dungeon reward %s in world %d in location %s.' % (record.item, self.id + 1, location_name))
-
             if record.item == '#Junk' and location.type == 'Song' and world.settings.shuffle_song_items == 'song' and not any(name in song_list and r.count for name, r in world.settings.starting_items.items()):
                 record.item = '#JunkSong'
 
@@ -1094,7 +1091,7 @@ class WorldDistribution:
             skipped_locations.append('Hideout Gerudo Membership Card')
         if world.settings.empty_dungeons_mode != 'none':
             skipped_locations_from_dungeons = []
-            if True: #TODO dungeon rewards not shuffled
+            if world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward', 'dungeon'):
                 skipped_locations_from_dungeons += location_groups['Boss']
             if world.settings.shuffle_song_items == 'song':
                 skipped_locations_from_dungeons += location_groups['Song']
