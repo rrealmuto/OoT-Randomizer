@@ -7,6 +7,7 @@
 #include "obj_comb.h"
 #include "textures.h"
 #include "actor.h"
+#include "enemy_spawn_shuffle.h"
 
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
 extern uint16_t CURR_ACTOR_SPAWN_INDEX;
@@ -135,6 +136,7 @@ z64_actor_t *Actor_SpawnEntry_Hack(void *actorCtx, ActorEntry *actorEntry, z64_g
             break;
         }
     }
+    continue_spawn = spawn_override_enemy_spawn_shuffle(actorEntry, globalCtx, &overridden);
     z64_actor_t *spawned = NULL;
     if (continue_spawn) {
         spawned = z64_SpawnActor(actorCtx, globalCtx, actorEntry->id, actorEntry->pos.x, actorEntry->pos.y, actorEntry->pos.z,
