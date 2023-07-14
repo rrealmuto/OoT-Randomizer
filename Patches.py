@@ -118,6 +118,14 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
             (0x05CC, [0xFF, 0xFF, 0xFF]), # Outer Primary Color?
             (0x05D4, [0xFF, 0xFF, 0xFF]), # Outer Env Color?
         ]),
+        ('object_gi_sutaru', 0x01858000, 0x01858650, 0x1AB, # Gold Skulltula Token -> Red)
+         [
+             (0x034C, [0xFF, 0x00, 0x00]), # Token primary color
+             (0x0354, [0x96, 0x00, 0x00]),
+             (0x0514, [0xFF, 0x00, 0x00]),
+             (0x051C, [0x96, 0x00, 0x00])
+         ]
+         ),
     ]
 
     # Add the new models to the extended object file.
