@@ -71,3 +71,11 @@ bool spawn_override_enemy_spawn_shuffle(ActorEntry *actorEntry, z64_game_t *glob
     
     return true;
 }
+
+void Actor_RemoveFromCategory_SetTempClear_Hack(z64_game_t *globalCtx, int32_t flag)
+{
+    if(curr_room_enemies_inhibited) {
+        return;
+    }
+    z64_Flags_SetTempClear(globalCtx, flag);
+}
