@@ -42,7 +42,7 @@ enemy_spawn_table_entry enemy_spawn_table[] = {
     ENEMY_SPAWN_TABLE_ENTRY(0x00EC, 28, NULL), //En_Ny (spike)
     ENEMY_SPAWN_TABLE_ENTRY(0x00F6, 29, NULL), //En_Anubice_Tag, En_Anubice (Anubis (spawner))
     ENEMY_SPAWN_TABLE_ENTRY(0x0113, 30, NULL), //En_Ik (Iron Knuckle)
-    ENEMY_SPAWN_TABLE_ENTRY(0x0115, 31, NULL), //En_Skj (Skull Kid)
+    ENEMY_SPAWN_TABLE_ENTRY(0x0115, 31, spawn_check_skullkid), //En_Skj (Skull Kid)
     ENEMY_SPAWN_TABLE_ENTRY(0x011D, 32, NULL), //En_Tubo_Trap (Flying Pot)
     ENEMY_SPAWN_TABLE_ENTRY(0x0121, 33, NULL), //En_Fz (Freezard (Frezzard))
     ENEMY_SPAWN_TABLE_ENTRY(0x018C, 34, NULL), //En_Weiyer, En_Eiyer (Stinger and Water Stinger)
@@ -77,6 +77,13 @@ bool spawn_check_big_octo(ActorEntry *actorEntry, z64_game_t *globalCtx, bool *o
     if ((actorEntry->params & 0x00FF) == 0)
         return true;
     return false;
+}
+
+bool spawn_check_skullkid(ActorEntry *actorEntry, z64_game_t *globalCtx, bool *overridden) {
+    uint16_t type = (actorEntry->params >> 0x0A) & 0x3F;
+    if (type <= 6) // Ocarina game/sarias song skull kids
+        return false;
+    return true;
 }
 
 // Spawn override function for enemy spawn shuffle.
