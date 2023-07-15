@@ -396,7 +396,7 @@
         "exits": {
             "LW Beyond Mido": "True",
             "Sacred Forest Meadow": "
-                is_adult or Slingshot or Sticks or Kokiri_Sword or can_use(Dins_Fire)",
+                is_adult or ((not shuffle_enemy_spawns or Wolfos_Soul) and (Slingshot or Sticks or Kokiri_Sword or can_use(Dins_Fire)))",
             "SFM Wolfos Grotto": "can_open_bomb_grotto"
         }
     },
