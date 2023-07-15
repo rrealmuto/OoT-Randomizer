@@ -5,15 +5,15 @@
         "locations": {
             "Spirit Temple Lobby Pot 1": "True",
             "Spirit Temple Lobby Pot 2": "True",
-            "Spirit Temple Lobby Flying Pot 1": "True",
-            "Spirit Temple Lobby Flying Pot 2": "True"
+            "Spirit Temple Lobby Flying Pot 1": "not shuffle_enemy_spawns or Flying_Pot_Soul",
+            "Spirit Temple Lobby Flying Pot 2": "not shuffle_enemy_spawns or Flying_Pot_Soul"
         },
         "exits": {
             "Desert Colossus From Spirit Lobby": "True",
             "Child Spirit Temple Beyond Metal Bridges": "
                 is_child and
-                (Sticks or has_explosives or
-                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot))) and
+                (not shuffle_enemy_spawns or Armos_Soul) and ((Sticks or has_explosives or
+                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)))) and
                 (Boomerang or Slingshot or
                     (has_bombchus and logic_spirit_child_bombchu) or
                     (Silver_Rupee_Spirit_Temple_Child_Early_Torches, 5))",
@@ -29,7 +29,7 @@
         "locations": {
             "Spirit Temple Child Bridge Chest": "True",
             "Spirit Temple Child Early Torches Chest": "Sticks or can_use(Dins_Fire)",
-            "Spirit Temple Child Bridge Flying Pot": "True",
+            "Spirit Temple Child Bridge Flying Pot": "not shuffle_enemy_spawns or Flying_Pot_Soul",
             "Spirit Temple Child Anubis Pot": "True",
             "Spirit Temple Child Early Torches Silver Rupee Top Right": "True",
             "Spirit Temple Child Early Torches Silver Rupee Bottom Right": "True",
@@ -150,14 +150,15 @@
             # expected to reach it as long as adult cannot enter. Because we cannot truly know
             # whether adult can enter, child must still possess the items that adult would use.
             "Spirit Temple Silver Gauntlets Chest": "
-                (Small_Key_Spirit_Temple, 5) or
-                (has_explosives and Longshot and (Small_Key_Spirit_Temple, 3))",
+                (not shuffle_enemy_spawns or Iron_Knuckle_Soul) and
+                ((Small_Key_Spirit_Temple, 5) or
+                (has_explosives and Longshot and (Small_Key_Spirit_Temple, 3) and (not shuffle_enemy_spawns or (Beamos_Soul and Anubis_Soul and Armos_Soul))))",
             "Spirit Temple Central Chamber Flying Pot 1": "
-                (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
-                has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)",
+                (not shuffle_enemy_spawns or Flying_Pot_Soul) and ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
+                has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops))",
             "Spirit Temple Central Chamber Flying Pot 2": "
-                (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
-                has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)",
+                (not shuffle_enemy_spawns or Flying_Pot_Soul) and ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
+                has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops))",
             "Spirit Temple Hall After Sun Block Room Pot 1": "
                 (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
                 has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)",
@@ -234,7 +235,7 @@
             "Spirit Temple Beamos Hall Pot": "True"
         },
         "exits": {
-            "Spirit Temple Beyond Anubis Room": "has_explosives",
+            "Spirit Temple Beyond Anubis Room": "has_explosives and (not shuffle_enemy_spawns or (Beamos_Soul and Anubis_Soul))",
             "Spirit Temple Big Mirror Room": "
                 (Small_Key_Spirit_Temple, 5) and
                 (logic_spirit_wall or Longshot or has_bombchus or
@@ -248,10 +249,10 @@
         "locations": {
             "Spirit Temple Near Four Armos Chest": "Mirror_Shield",
             "Spirit Temple Hallway Left Invisible Chest": "
-                logic_lens_spirit or can_use(Lens_of_Truth)",
+                (not shuffle_enemy_spawns or Armos_Soul) and (logic_lens_spirit or can_use(Lens_of_Truth))",
             "Spirit Temple Hallway Right Invisible Chest": "
-                logic_lens_spirit or can_use(Lens_of_Truth)",
-            "Spirit Temple Mirror Shield Chest": "True"
+                (not shuffle_enemy_spawns or Armos_Soul) and (logic_lens_spirit or can_use(Lens_of_Truth))",
+            "Spirit Temple Mirror Shield Chest": "not shuffle_enemy_spawns or (Armos_Soul and Iron_Knuckle_Soul)"
         }
     },
     {
@@ -263,12 +264,12 @@
             "Spirit Temple Topmost Chest": "Mirror_Shield",
             "Spirit Temple Shifting Wall Recovery Heart 1": "Hookshot",
             "Spirit Temple Shifting Wall Recovery Heart 2": "Hookshot",
-            "Spirit Temple Big Mirror Flying Pot 1": "True",
-            "Spirit Temple Big Mirror Flying Pot 2": "True",
-            "Spirit Temple Big Mirror Flying Pot 3": "True",
-            "Spirit Temple Big Mirror Flying Pot 4": "True",
-            "Spirit Temple Big Mirror Flying Pot 5": "True",
-            "Spirit Temple Big Mirror Flying Pot 6": "True"
+            "Spirit Temple Big Mirror Flying Pot 1": "not shuffle_enemy_spawns or Flying_Pot_Soul",
+            "Spirit Temple Big Mirror Flying Pot 2": "not shuffle_enemy_spawns or Flying_Pot_Soul",
+            "Spirit Temple Big Mirror Flying Pot 3": "not shuffle_enemy_spawns or Flying_Pot_Soul",
+            "Spirit Temple Big Mirror Flying Pot 4": "not shuffle_enemy_spawns or Flying_Pot_Soul",
+            "Spirit Temple Big Mirror Flying Pot 5": "not shuffle_enemy_spawns or Flying_Pot_Soul",
+            "Spirit Temple Big Mirror Flying Pot 6": "not shuffle_enemy_spawns or Flying_Pot_Soul"
         },
         "exits": {
             "Spirit Temple Before Boss": "

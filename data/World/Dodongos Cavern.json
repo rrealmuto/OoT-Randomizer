@@ -52,7 +52,7 @@
                 (logic_dc_scarecrow_gs and (is_adult or can_child_attack))"
         },
         "exits": {
-            "Dodongos Cavern Torch Room": "Sticks or Slingshot or Bombs or Kokiri_Sword"
+            "Dodongos Cavern Torch Room": "(Sticks or Slingshot or Bombs or Kokiri_Sword) and (not shuffle_enemy_spawns or Lizalfos_and_Dinalfos_Soul)"
         }
     },
     {
@@ -133,7 +133,7 @@
         },
         "exits": {
             "Dodongos Cavern Before Upper Lizalfos": "True",
-            "Dodongos Cavern Far Bridge": "is_adult or Sticks or Slingshot or Bombs or Kokiri_Sword"
+            "Dodongos Cavern Far Bridge": "(is_adult or Sticks or Slingshot or Bombs or Kokiri_Sword) and (not shuffle_enemy_spawns or Lizalfos_and_Dinalfos_Soul)"
         }
     },
     {

@@ -14,14 +14,14 @@
         "region_name": "Shadow Temple Beginning",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple Map Chest": "True",
-            "Shadow Temple Hover Boots Chest": "True",
+            "Shadow Temple Map Chest": "not shuffle_enemy_spawns or (Redead_and_Gibdo_Soul and Keese_Soul)",
+            "Shadow Temple Hover Boots Chest": "not shuffle_enemy_spawns or Dead_hand_Soul",
             "Shadow Temple Whispering Walls Front Pot 1": "True",
             "Shadow Temple Whispering Walls Front Pot 2": "True",
             "Shadow Temple Whispering Walls Left Pot 1": "True",
             "Shadow Temple Whispering Walls Left Pot 2": "True",
             "Shadow Temple Whispering Walls Left Pot 3": "True",
-            "Shadow Temple Whispering Walls Flying Pot": "True",
+            "Shadow Temple Whispering Walls Flying Pot": "not shuffle_enemy_spawns or Flying_Pot_Soul",
             "Shadow Temple Whispering Walls Near Dead Hand Pot": "True",
             "Shadow Temple Map Chest Room Pot 1": "True",
             "Shadow Temple Map Chest Room Pot 2": "True",
@@ -35,7 +35,7 @@
         "region_name": "Shadow Temple First Beamos",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple Compass Chest": "True",
+            "Shadow Temple Compass Chest": "not shuffle_enemy_spawns or (Redead_and_Gibdo_Soul)",
             "Shadow Temple Early Silver Rupee Chest": "(Silver_Rupee_Shadow_Temple_Scythe_Shortcut, 5)",
             "Shadow Temple Scythe Shortcut Silver Rupee Center Left": "True",
             "Shadow Temple Scythe Shortcut Silver Rupee Ledge": "True",
@@ -61,8 +61,8 @@
         "region_name": "Shadow Temple Huge Pit",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple Invisible Blades Visible Chest": "True",
-            "Shadow Temple Invisible Blades Invisible Chest": "True",
+            "Shadow Temple Invisible Blades Visible Chest": "not shuffle_enemy_spawns or (Likelike_Soul and Keese_Soul)",
+            "Shadow Temple Invisible Blades Invisible Chest": "not shuffle_enemy_spawns or (Likelike_Soul and Keese_Soul)",
             "Shadow Temple Invisible Blades Recovery Heart 1": "can_play(Song_of_Time)",
             "Shadow Temple Invisible Blades Recovery Heart 2": "can_play(Song_of_Time)",
             "Shadow Temple Huge Pit Silver Rupee Right": "True",
@@ -96,7 +96,7 @@
         "region_name": "Shadow Temple Invisible Spikes",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple Invisible Spikes Chest": "True",
+            "Shadow Temple Invisible Spikes Chest": "not shuffle_enemy_spawns or Redead_and_Gibdo_Soul",
             "Shadow Temple Freestanding Key": "
                 (Silver_Rupee_Shadow_Temple_Invisible_Spikes, 5) and
                 (Bombs or Progressive_Strength_Upgrade or
@@ -129,12 +129,12 @@
         "region_name": "Shadow Temple After Wind",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple After Wind Enemy Chest": "True",
+            "Shadow Temple After Wind Enemy Chest": "not shuffle_enemy_spawns or (Redead_and_Gibdo_Soul and Flying_Pot_Soul)",
             "Shadow Temple After Wind Hidden Chest": "has_explosives",
             "Shadow Temple After Wind Pot 1": "True",
             "Shadow Temple After Wind Pot 2": "True",
-            "Shadow Temple After Wind Flying Pot 1": "True",
-            "Shadow Temple After Wind Flying Pot 2": "True"
+            "Shadow Temple After Wind Flying Pot 1": "not shuffle_enemy_spawns or Flying_Pot_Soul",
+            "Shadow Temple After Wind Flying Pot 2": "not shuffle_enemy_spawns or Flying_Pot_Soul"
         },
         "exits": {
             "Shadow Temple Boat": "(Small_Key_Shadow_Temple, 4)",
@@ -158,7 +158,7 @@
         "region_name": "Shadow Temple Beyond Boat",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple Invisible Floormaster Chest": "True",
+            "Shadow Temple Invisible Floormaster Chest": "not shuffle_enemy_spawns or Floormaster_Soul",
             "Shadow Temple Spike Walls Left Chest": "can_use(Dins_Fire)",
             "Shadow Temple Boss Key Chest": "can_use(Dins_Fire)",
             "Shadow Temple After Boat Pot": "True",

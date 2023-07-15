@@ -38,9 +38,9 @@
         "region_name": "Fire Temple Lower Locked Door",
         "dungeon": "Fire Temple",
         "locations": {
-            "Fire Temple Flare Dancer Chest": "True",
-            "Fire Temple Boss Key Chest": "True",
-            "Fire Temple GS Boss Key Loop": "True"
+            "Fire Temple Flare Dancer Chest": "not shuffle_enemy_spawns or (Keese_Soul and Torch_Slug_Soul and Flare_Dancer_Soul)",
+            "Fire Temple Boss Key Chest": "not shuffle_enemy_spawns or (Keese_Soul and Torch_Slug_Soul and Flare_Dancer_Soul)",
+            "Fire Temple GS Boss Key Loop": "not shuffle_enemy_spawns or (Keese_Soul and Torch_Slug_Soul)"
         }
     },
     {
@@ -132,8 +132,9 @@
         },
         "exits": {
             "Fire Temple Upper": "
-                (Small_Key_Fire_Temple, 8) or
-                (Hover_Boots and Megaton_Hammer) or logic_fire_flame_maze"
+                (not shuffle_enemy_spawns or Flare_Dancer_Soul) and
+                ((Small_Key_Fire_Temple, 8) or
+                (Hover_Boots and Megaton_Hammer) or logic_fire_flame_maze)"
         }
     },
     {

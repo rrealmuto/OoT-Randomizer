@@ -533,7 +533,7 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'Gohma Larvae Soul': (["the souls of the Gohma Larvae"], None, 'item'),
     'Shabom Soul': (["the souls of the Shabom"], None, 'item'),
     'Baby Dodongo Soul': (["the souls of the Baby Dodongo"], None, 'item'),
-    'Biri Soul': (["the souls of the Biri"], None, 'item'),
+    'Biri and Bari Soul': (["the souls of the Biri and Bari"], None, 'item'),
     'Tailpasaran Soul': (["the souls of the Tailpasaran"], None, 'item'),
     'Skulltula Soul': (["the souls of the Skulltula"], None, 'item'),
     'Torch Slug Soul': (["the souls of the Torch Slug"], None, 'item'),
@@ -541,7 +541,6 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'Armos Soul': (["the souls of the Armos"], None, 'item'),
     'Deku Baba Soul': (["the souls of the Deku Baba"], None, 'item'),
     'Deku Scrub Soul': (["the souls of the Deku Scrub"], None, 'item'),
-    'Bari Soul': (["the souls of the Bari"], None, 'item'),
     'Bubble Soul': (["the souls of the Bubble"], None, 'item'),
     'Beamos Soul': (["the souls of the Beamos"], None, 'item'),
     'Floormaster Soul': (["the souls of the Floormaster"], None, 'item'),
@@ -560,6 +559,16 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'Stinger Soul': (["the souls of the Stinger"], None, 'item'),
     'Wolfos Soul': (["the souls of the Wolfos"], None, 'item'),
     'Guay Soul': (["the souls of the Guay"], None, 'item'),
+    'Queen Gohma Soul': (["the souls of the Queen Gohma"], None, 'item'),
+    'King Dodongo Soul': (["the souls of the King Dodongo"], None, 'item'),
+    'Barinade Soul': (["the souls of the Barinade"], None, 'item'),
+    'Phantom Ganon Soul': (["the souls of the Phantom Ganon"], None, 'item'),
+    'Volvagia Soul': (["the souls of the Volvagia"], None, 'item'),
+    'Morpha Soul': (["the souls of the Morpha"], None, 'item'),
+    'Bongo Bongo Soul': (["the souls of the Bongo Bongo"], None, 'item'),
+    'Twinrova Soul': (["the souls of the Twinrova"], None, 'item'),
+
+
 
 
     'ZR Frogs Ocarina Game':                                       (["an #amphibian feast# yields", "the #croaking choir's magnum opus# awards", "the #froggy finale# yields"], "the final reward from the #Frogs of Zora's River# is", ['overworld', 'sometimes']),

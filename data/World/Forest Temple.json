@@ -18,7 +18,7 @@
         "region_name": "Forest Temple Central Area",
         "dungeon": "Forest Temple",
         "locations": {
-            "Forest Temple First Stalfos Chest": "is_adult or Kokiri_Sword",
+            "Forest Temple First Stalfos Chest": "(not shuffle_enemy_spawns or Stalfos_Soul) and (is_adult or Kokiri_Sword)",
             "Forest Temple Center Room Right Pot 1": "True",
             "Forest Temple Center Room Right Pot 2": "True",
             "Forest Temple Center Room Right Pot 3": "True",
@@ -53,8 +53,9 @@
             "Forest Temple NE Outdoors": "(Progressive_Scale, 2)",
             # Other methods of crossing through the well are not currently relevant.
             "Forest Temple Outdoors High Balconies": "
-                here(is_adult or has_explosives or
-                    ((Boomerang or Nuts or Deku_Shield) and (Sticks or Kokiri_Sword or Slingshot)))",
+                here((not shuffle_enemy_spawns or Bubble_Soul) and 
+                    (is_adult or has_explosives or
+                        ((Boomerang or Nuts or Deku_Shield) and (Sticks or Kokiri_Sword or Slingshot))))",
             "Forest Temple NW Outdoors Freestandings": "logic_forest_courtyard_hearts and can_use(Boomerang)"
         }
     },
@@ -129,7 +130,7 @@
         "region_name": "Forest Temple Outside Upper Ledge",
         "dungeon": "Forest Temple",
         "locations": {
-            "Forest Temple Floormaster Chest": "True"
+            "Forest Temple Floormaster Chest": "not shuffle_enemy_spawns or Floormaster_Soul"
         },
         "exits": {
             "Forest Temple NW Outdoors": "True",

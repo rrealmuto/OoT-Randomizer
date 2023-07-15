@@ -10,7 +10,7 @@
         "exits": {
             "ZF Ice Ledge": "True",
             # Freezards are immune to Kokiri Sword. It would take a lot of sticks.
-            "Ice Cavern Spinning Scythe Room": "here(is_adult or has_explosives or can_use(Dins_Fire))",
+            "Ice Cavern Spinning Scythe Room": "(not shuffle_enemy_spawns or Freezard_Soul) and here(is_adult or has_explosives or can_use(Dins_Fire))",
             "Farores Wind Warp": "can_use(Farores_Wind)"
         }
     },
@@ -76,9 +76,9 @@
         "dungeon": "Ice Cavern",
         "locations": {
             "Ice Cavern Iron Boots Chest": "
-                is_adult or Slingshot or Sticks or Kokiri_Sword or can_use(Dins_Fire)",
+                (not shuffle_enemy_spawns or Wolfos_Soul) and (is_adult or Slingshot or Sticks or Kokiri_Sword or can_use(Dins_Fire))",
             "Sheik in Ice Cavern": "
-                is_adult or Slingshot or Sticks or Kokiri_Sword or can_use(Dins_Fire)",
+                (not shuffle_enemy_spawns or Wolfos_Soul) and (is_adult or Slingshot or Sticks or Kokiri_Sword or can_use(Dins_Fire))",
             "Ice Cavern Near End Pot 1": "True",
             "Ice Cavern Near End Pot 2": "True"
         }

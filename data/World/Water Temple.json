@@ -48,7 +48,7 @@
         "region_name": "Water Temple Dive",
         "dungeon": "Water Temple",
         "locations": {
-            "Water Temple Map Chest": "Raise_Water_Level",
+            "Water Temple Map Chest": "Raise_Water_Level and (not shuffle_enemy_spawns or Spike_Enemy_Soul)",
             "Water Temple Compass Chest": "(can_play(Zeldas_Lullaby) or Iron_Boots) and Hookshot",
             "Water Temple L1 Torch Pot 1": "(Iron_Boots and Hookshot) or can_play(Zeldas_Lullaby)",
             "Water Temple L1 Torch Pot 2": "(Iron_Boots and Hookshot) or can_play(Zeldas_Lullaby)",
@@ -69,8 +69,9 @@
         "dungeon": "Water Temple",
         "locations": {
             "Water Temple Torches Chest": "
-                Bow or can_use(Dins_Fire) or
-                (Child_Water_Temple and Sticks and Kokiri_Sword and Magic_Meter)",
+                (not shuffle_enemy_spawns or Shell_blade_Soul) and
+                    (Bow or can_use(Dins_Fire) or
+                    (Child_Water_Temple and Sticks and Kokiri_Sword and Magic_Meter))",
             "Water Temple GS Central Pillar": "
                 ((Longshot or (logic_water_central_gs_fw and Hookshot and can_use(Farores_Wind))) and
                     ((Small_Key_Water_Temple, 5) or Bow or can_use(Dins_Fire))) or
@@ -117,7 +118,7 @@
         "locations": {
             "Water Temple Central Pillar Chest": "
                 ((Small_Key_Water_Temple, 5) or Bow or can_use(Dins_Fire)) and
-                Iron_Boots and Zora_Tunic and Hookshot"
+                Iron_Boots and Zora_Tunic and Hookshot and (not shuffle_enemy_spawns or (Spike_Enemy_Soul and Shell_blade_Soul))"
         },
         "exits": {
             "Water Temple Cracked Wall": "True",

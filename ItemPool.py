@@ -536,7 +536,7 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
         pending_junk_pool.append('Gohma Larvae Soul')
         pending_junk_pool.append('Shabom Soul')
         pending_junk_pool.append('Baby Dodongo Soul')
-        pending_junk_pool.append('Biri Soul')
+        pending_junk_pool.append('Biri and Bari Soul')
         pending_junk_pool.append('Tailpasaran Soul')
         pending_junk_pool.append('Skulltula Soul')
         pending_junk_pool.append('Torch Slug Soul')
@@ -544,7 +544,6 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
         pending_junk_pool.append('Armos Soul')
         pending_junk_pool.append('Deku Baba Soul')
         pending_junk_pool.append('Deku Scrub Soul')
-        pending_junk_pool.append('Bari Soul')
         pending_junk_pool.append('Bubble Soul')
         pending_junk_pool.append('Beamos Soul')
         pending_junk_pool.append('Floormaster Soul')
@@ -563,6 +562,15 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
         pending_junk_pool.append('Stinger Soul')
         pending_junk_pool.append('Wolfos Soul')
         pending_junk_pool.append('Guay Soul')
+        pending_junk_pool.append('Queen Gohma Soul')
+        pending_junk_pool.append('King Dodongo Soul')
+        pending_junk_pool.append('Barinade Soul')
+        pending_junk_pool.append('Phantom Ganon Soul')
+        pending_junk_pool.append('Volvagia Soul')
+        pending_junk_pool.append('Morpha Soul')
+        pending_junk_pool.append('Bongo Bongo Soul')
+        pending_junk_pool.append('Twinrova Soul')
+
 
 
     # Use the vanilla items in the world's locations when appropriate.

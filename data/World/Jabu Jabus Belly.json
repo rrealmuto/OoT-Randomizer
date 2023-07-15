@@ -12,7 +12,7 @@
         "region_name": "Jabu Jabus Belly Main",
         "dungeon": "Jabu Jabus Belly",
         "locations": {
-            "Jabu Jabus Belly Boomerang Chest": "True",
+            "Jabu Jabus Belly Boomerang Chest": "not shuffle_enemy_spawns or Stinger_Soul",
             "Jabu Jabus Belly Deku Scrub": "
                 can_stun_deku and
                 (can_dive or is_child or logic_jabu_alcove_jump_dive or can_use(Iron_Boots))",
@@ -40,10 +40,10 @@
         "dungeon": "Jabu Jabus Belly",
         "locations": {
             "Jabu Jabus Belly Map Chest": "True",
-            "Jabu Jabus Belly Compass Chest": "True"
+            "Jabu Jabus Belly Compass Chest": "not shuffle_enemy_spawns or Shabom_Soul"
         },
         "exits": {
-            "Jabu Jabus Belly Past Big Octo": "Sticks or Kokiri_Sword"
+            "Jabu Jabus Belly Past Big Octo": "(Sticks or Kokiri_Sword) and (not shuffle_enemy_spawns or Octorok_Soul)"
         }
     },
     {

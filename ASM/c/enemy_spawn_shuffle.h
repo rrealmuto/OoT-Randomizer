@@ -8,6 +8,10 @@
 // Return true if the actor entry should be handled by enemy spawn shuffle
 typedef bool (*alt_spawn_override_fn)(ActorEntry *actorEntry, z64_game_t *globalCtx, bool *overriden);
 
+bool spawn_check_gs(ActorEntry *actorEntry, z64_game_t *globalCtx, bool *overridden);
+bool spawn_check_big_octo(ActorEntry *actorEntry, z64_game_t *globalCtx, bool *overridden);
+bool spawn_check_armos(ActorEntry *actorEntry, z64_game_t *globalCtx, bool *overridden);
+
 typedef struct enemy_spawn_table_entry {
     uint16_t actor_id;
     uint8_t index;
