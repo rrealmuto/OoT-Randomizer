@@ -159,12 +159,12 @@
         "region_name": "Gerudo Training Ground Hammer Room",
         "dungeon": "Gerudo Training Ground",
         "locations": {
-            "Gerudo Training Ground Hammer Room Clear Chest": "True",
+            "Gerudo Training Ground Hammer Room Clear Chest": "not shuffle_enemy_spawns or (Keese_Soul and Torch_Slug_Soul)",
             "Gerudo Training Ground Hammer Room Switch Chest": "Megaton_Hammer",
             "Gerudo Training Ground Lava Room Silver Rupee Hookshot Target": "Hookshot"
         },
         "exits": {
-            "Gerudo Training Ground Lava Room Back": "True",
+            "Gerudo Training Ground Lava Room Back": "not shuffle_enemy_spawns or (Keese_Soul and Torch_Slug_Soul)",
             "Gerudo Training Ground Eye Statue Lower": "Megaton_Hammer and Bow"
         }
     }
