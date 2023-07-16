@@ -30,7 +30,7 @@
         "dungeon": "Ganons Castle",
         "locations": {
             "Ganons Castle Forest Trial Chest": "
-                is_adult or Slingshot or Sticks or Kokiri_Sword or can_use(Dins_Fire)"
+                (not shuffle_enemy_spawns or Wolfos_Soul) and (is_adult or Slingshot or Sticks or Kokiri_Sword or can_use(Dins_Fire))"
         },
         "exits": {
             "Ganons Castle Forest Trial Wind Room": "
@@ -76,7 +76,7 @@
             "Ganons Castle Water Trial Freezard 2" : "is_adult or has_explosives or can_use(Dins_Fire)"
         },
         "exits": {
-            "Ganons Castle Water Trial Ending": "Blue_Fire and can_use(Megaton_Hammer)"
+            "Ganons Castle Water Trial Ending": "Blue_Fire and can_use(Megaton_Hammer) and (not shuffle_enemy_spawns or Freezard_Soul)"
         }
     },
     {
@@ -100,7 +100,7 @@
             "Ganons Castle Shadow Trial Like Like" : "can_use(Longshot) or can_use(Bow)"
         },
         "exits": {
-            "Ganons Castle Shadow Trial First Gap": "can_use(Longshot) or can_use(Fire_Arrows)"
+            "Ganons Castle Shadow Trial First Gap": "(can_use(Longshot) and (not shuffle_enemy_spawns or Likelike_Soul)) or can_use(Fire_Arrows)"
         }
     },
     {
@@ -192,7 +192,8 @@
             "Ganons Castle Light Trial Invisible Keese 3": "logic_lens_castle or can_use(Lens_of_Truth)",
             "Ganons Castle Light Trial Invisible Skulltula": "logic_lens_castle or can_use(Lens_of_Truth)",
             "Ganons Castle Light Trial Invisible Enemies Chest": "
-                logic_lens_castle or can_use(Lens_of_Truth)",
+                (not shuffle_enemy_spawns or Keese_Soul) and
+                (logic_lens_castle or can_use(Lens_of_Truth))",
             "Ganons Castle Light Trial Lullaby Chest": "
                 (Small_Key_Ganons_Castle, 1) and can_play(Zeldas_Lullaby)"
         },

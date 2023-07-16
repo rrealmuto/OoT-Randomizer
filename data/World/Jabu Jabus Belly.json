@@ -18,7 +18,7 @@
         "region_name": "Jabu Jabus Belly Main",
         "dungeon": "Jabu Jabus Belly",
         "locations": {
-            "Jabu Jabus Belly Boomerang Chest": "True",
+            "Jabu Jabus Belly Boomerang Chest": "not shuffle_enemy_spawns or Stinger_Soul",
             "Jabu Jabus Belly Deku Scrub": "
                 can_stun_deku and
                 (can_dive or is_child or logic_jabu_alcove_jump_dive or can_use(Iron_Boots))",
@@ -33,7 +33,7 @@
             "Jabu Jabus Belly GS Lobby Basement Lower": "can_use(Boomerang) or can_use(Hookshot)",
             "Jabu Jabus Belly GS Lobby Basement Upper": "can_use(Boomerang) or can_use(Hookshot)",
             "Fairy Pot": "has_bottle",
-            "Jabu Jabus Belly Elevator Room Biri" : "True", #This biri can be killed with the boxes in the room
+            "Jabu Jabus Belly Elevator Room Biri" : "not shuffle_enemy_spawns or Biri_and_Bari_Soul", #This biri can be killed with the boxes in the room
             "Jabu Jabus Belly Pit Room Biri 1" : "can_kill_biri",
             "Jabu Jabus Belly Pit Room Biri 2" : "can_kill_biri",
             "Jabu Jabus Belly Pit Room Biri 3" : "can_kill_biri",
@@ -78,7 +78,7 @@
         "dungeon": "Jabu Jabus Belly",
         "locations": {
             "Jabu Jabus Belly Map Chest": "True",
-            "Jabu Jabus Belly Compass Chest": "True",
+            "Jabu Jabus Belly Compass Chest": "can_kill_shabom",
             "Jabu Jabus Belly Compass Chest Shabom 1" : "can_kill_shabom",
             "Jabu Jabus Belly Compass Chest Shabom 2" : "can_kill_shabom",
             "Jabu Jabus Belly Compass Chest Shabom 3" : "can_kill_shabom",
@@ -97,7 +97,7 @@
             "Jabu Jabus Belly Wiggler Platforms Octorok" : "can_kill_octorok"
         },
         "exits": {
-            "Jabu Jabus Belly Past Big Octo": "Sticks or Kokiri_Sword"
+            "Jabu Jabus Belly Past Big Octo": "(Sticks or Kokiri_Sword) and (not shuffle_enemy_spawns or Octorok_Soul)"
         }
     },
     {

@@ -1943,6 +1943,7 @@ typedef struct {
 #define z64_Flags_GetClear_addr                 0x80020640
 #define z64_Flags_SetSwitch_addr                0x800204D0
 #define z64_Flags_GetSwitch_addr                0x8002049C
+#define z64_Flags_SetTempClear_addr             0x800206AC
 #define z64_Audio_PlaySoundGeneral_addr         0x800C806C
 #define z64_PlaySFXID_addr                      0x800646F0
 #define z64_Audio_PlayFanFare_addr              0x800C69A0
@@ -2049,6 +2050,7 @@ typedef int32_t (*z64_Flags_GetCollectibleFunc)(z64_game_t *game, uint32_t flag)
 typedef int32_t (*z64_Flags_GetClearFunc)(z64_game_t* game, int32_t flag);
 typedef void (*z64_Flags_SetSwitchFunc)(z64_game_t* game, int32_t flag);
 typedef int32_t (*z64_Flags_GetSwitchFunc)(z64_game_t* game, int32_t flag);
+typedef void(*z64_Flags_SetTempClearFunc)(z64_game_t *game, uint32_t flag);
 typedef void(*z64_Audio_PlaySoundGeneralFunc)(uint16_t sfxId, void *pos, uint8_t token, float *freqScale, float *a4, uint8_t *reverbAdd);
 typedef void(*z64_PlaySFXIDFunc)(int16_t sfxId);
 typedef void(*z64_Audio_PlayFanFareFunc)(uint16_t);
@@ -2141,6 +2143,7 @@ typedef void(*z64_ScalePitchAndTempo_proc)(float scaleTempoAndFreq, uint8_t dura
 #define z64_Flags_GetClear          ((z64_Flags_GetClearFunc)z64_Flags_GetClear_addr)
 #define z64_Flags_SetSwitch         ((z64_Flags_SetSwitchFunc)z64_Flags_SetSwitch_addr)
 #define z64_Flags_GetSwitch         ((z64_Flags_GetSwitchFunc)z64_Flags_GetSwitch_addr)
+#define z64_Flags_SetTempClear      ((z64_Flags_SetTempClearFunc)z64_Flags_SetTempClear_addr)
 #define z64_Audio_PlaySoundGeneral  ((z64_Audio_PlaySoundGeneralFunc)z64_Audio_PlaySoundGeneral_addr)
 #define z64_Audio_PlayFanFare       ((z64_Audio_PlayFanFareFunc)z64_Audio_PlayFanFare_addr)
 #define z64_PlaySFXID               ((z64_PlaySFXIDFunc)z64_PlaySFXID_addr)

@@ -10,10 +10,12 @@ This branch is based of of Roman971's fork of the randomizer and usually kept up
 Enemy Drop Shuffle - All (almost) of the enemies in the game will give a shuffled item when killed.
 Wonderitem Shuffle - Shuffles wonderitems - which include invisible rupees and invisible hit markers.
 Gossip Stone Shuffle - Play Song of Time to a gossip stone to receive a shuffled item.
+Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not spawn into the world until their souls have been collected.
 
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v27](#v27)
   * [v26](#v26)
   * [v25](#v25)
   * [v24](#v24)
@@ -44,6 +46,10 @@ Gossip Stone Shuffle - Play Song of Time to a gossip stone to receive a shuffled
   * [4.0](#40)
 
 ## RealRob Changelog
+### v27
+  * Add new setting 'Enemy Soul Shuffle'
+  * Enemy Drop logic improvements
+
 ### v26
   * Improve Fire Bubble logic in Enemy Drop Shuffle
 

@@ -2917,6 +2917,21 @@ class SettingInfos:
         },
     )
 
+    shuffle_enemy_spawns = Checkbutton(
+        gui_text       = 'Shuffle Enemy Souls',
+        gui_tooltip    = '''\
+            Enabling this will prevent enemies from
+            spawning into the world until their "Soul"
+            has been collected. Each enemy type will
+            have a soul added into the item pool"
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    )
+
     shuffle_loach_reward = Combobox(
         gui_text       = 'Shuffle Hyrule Loach Reward',
         gui_tooltip    = '''\

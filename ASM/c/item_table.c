@@ -328,6 +328,56 @@ item_row_t item_table[] = {
     [0x0117] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x00A1, 0x01A1, 0x88, no_upgrade, give_small_key, CASTLE_ID, -1, resolve_text_small_keys), // Ganon's Castle Small Key
     [0x0118] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x913E, 0x01A2, 0x89, no_upgrade, give_small_key, TCG_ID,    -1, resolve_text_small_keys), // Small Key (Chest Game)
 
+    // Enemy spawn shuffle items
+    [0x119] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9300, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 0, -1, NULL),
+    [0x11A] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9301, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 1, -1, NULL),
+    [0x11B] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9302, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 2, -1, NULL),
+    [0x11C] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9303, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 3, -1, NULL),
+    [0x11D] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9304, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 4, -1, NULL),
+    [0x11E] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9305, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 5, -1, NULL),
+    [0x11F] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9306, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 6, -1, NULL),
+    [0x120] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9307, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 7, -1, NULL),
+    [0x121] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9308, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 8, -1, NULL),
+    [0x122] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9309, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 9, -1, NULL),
+    [0x123] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x930A, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 10, -1, NULL),
+    [0x124] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x930B, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 11, -1, NULL),
+    [0x125] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x930C, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 12, -1, NULL),
+    [0x126] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x930D, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 13, -1, NULL),
+    [0x127] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x930E, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 14, -1, NULL),
+    [0x128] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x930F, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 15, -1, NULL),
+    [0x129] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9310, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 16, -1, NULL),
+    [0x12A] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9311, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 17, -1, NULL),
+    [0x12B] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9312, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 18, -1, NULL),
+    [0x12C] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9313, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 19, -1, NULL),
+    [0x12D] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9314, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 20, -1, NULL),
+    [0x12E] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9315, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 21, -1, NULL),
+    [0x12F] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9316, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 22, -1, NULL),
+    [0x130] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9317, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 23, -1, NULL),
+    [0x131] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9318, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 24, -1, NULL),
+    [0x132] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9319, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 25, -1, NULL),
+    [0x133] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x931A, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 26, -1, NULL),
+    [0x134] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x931B, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 27, -1, NULL),
+    [0x135] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x931C, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 28, -1, NULL),
+    [0x136] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x931D, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 29, -1, NULL),
+    [0x137] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x931E, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 30, -1, NULL),
+    [0x138] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x931F, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 31, -1, NULL),
+    [0x139] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9320, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 32, -1, NULL),
+    [0x13A] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9321, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 33, -1, NULL),
+    [0x13B] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9322, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 34, -1, NULL),
+    [0x13C] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9323, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 35, -1, NULL),
+    [0x13D] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9324, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 36, -1, NULL),
+    [0x13E] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9325, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 37, -1, NULL),
+    [0x13F] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9326, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 38, -1, NULL),
+    [0x140] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9327, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 39, -1, NULL),
+    [0x141] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9328, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 40, -1, NULL),
+    [0x142] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9329, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 41, -1, NULL),
+    [0x143] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x932A, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 42, -1, NULL),
+    [0x144] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x932B, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 43, -1, NULL),
+    [0x145] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x932C, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 44, -1, NULL),
+
+
+
+
 };
 
 /*  Determine which message to display based on the number of silver rupees collected.

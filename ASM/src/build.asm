@@ -133,6 +133,7 @@ RANDO_CONTEXT:
 
 .include "armos.asm"
 .include "ocarina_buttons.asm"
+.include "enemy_spawn_shuffle.asm"
 
 
 .align 0x10
