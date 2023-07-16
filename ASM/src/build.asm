@@ -132,6 +132,7 @@ RANDO_CONTEXT:
 
 .include "armos.asm"
 .include "ocarina_buttons.asm"
+.include "enemy_spawn_shuffle.asm"
 
 
 .align 0x10
@@ -145,6 +146,8 @@ TRIFORCE_ICON_TEXTURE:
 .incbin("../resources/triforce_sprite.bin")
 
 .align 0x10
+
+.skip 0x200
 
 AUDIO_THREAD_MEM_START:
 .skip AUDIO_THREAD_MEM_SIZE

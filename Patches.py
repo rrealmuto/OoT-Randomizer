@@ -118,6 +118,14 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
             (0x05CC, [0xFF, 0xFF, 0xFF]), # Outer Primary Color?
             (0x05D4, [0xFF, 0xFF, 0xFF]), # Outer Env Color?
         ]),
+        ('object_gi_sutaru', 0x01858000, 0x01858650, 0x1AB, # Gold Skulltula Token -> Red)
+         [
+             (0x034C, [0xFF, 0x00, 0x00]), # Token primary color
+             (0x0354, [0x96, 0x00, 0x00]),
+             (0x0514, [0xFF, 0x00, 0x00]),
+             (0x051C, [0x96, 0x00, 0x00])
+         ]
+         ),
     ]
 
     # Add the new models to the extended object file.
@@ -1335,7 +1343,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
     # Mark unreachable trade-ins as traded. Only applicable with trade quest shuffle off,
     # and only practically affects the Blue Potion purchase from Granny's Potion Shop.
-    if not world.settings.adult_trade_shuffle:
+    if not world.settings.adult_trade_shuffle and len(world.settings.adult_trade_start) > 0:
         def calculate_traded_flags(world):
             traded_flags = 0
             reverting_item_map = {
@@ -2054,7 +2062,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
     # mask shop
     shop_objs = place_shop_items(rom, world, shop_items, messages,
-        list(filter(lambda loc: loc.type == 'MaskShop', world.get_region('Market Mask Shop').locations)))
+        list(filter(lambda loc: loc.type == 'MaskShop', world.get_region('Market Mask Shop Storefront').locations)))
     shop_objs |= {0x013E, 0x00B2, 0x0111, 0x00C5, 0x0165} # Shop objects
     rom.write_byte(0x340A029, len(shop_objs))
     rom.write_int32(0x340A02C, 0x0300D400)
@@ -2490,6 +2498,9 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
     if world.settings.shuffle_individual_ocarina_notes:
         rom.write_byte(rom.sym('SHUFFLE_OCARINA_BUTTONS'), 1)
+
+    if world.settings.shuffle_enemy_spawns:
+        rom.write_byte(rom.sym('CFG_ENEMY_SPAWN_SHUFFLE'), 1)
 
     # Sets the torch count to open the entrance to Shadow Temple
     if world.settings.easier_fire_arrow_entry:

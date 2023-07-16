@@ -945,6 +945,30 @@ sh  v0, 0x004E(sp)
 .orga 0xA99C98 ; In memory: 0x80023D38
     jal     Player_SpawnEntry_Hack
 
+; Hack Actor_RemoveFromCategory to prevent setting the room clear flag if the room has unspawned enemies from enemy spawn shuffle
+.orga 0xA9AFEC ; In memory: 0x8002508C
+; Replaces:
+;   jal     0x800206AC Flags_SetTempClear
+    jal     Actor_RemoveFromCategory_SetTempClear_Hack
+
+; Hack in Scene_CommandActorEntryList to reset the flag used to check if the room has unspawned enemies from enemy spawn shuffle
+.orga 0xAF786C ; In memory: 0x8008190C
+; Replaces:
+;   sb      t6, 0x1DEB(at)
+;   lw      v0, 0x0004(a1)
+;   lui     t0, 0x8012
+;   lui     at, 0x00FF
+;   sll     t7, v0, 4
+;   srl     t8, t7, 28
+
+;   Need to set up the stack because this function doesn't store it's RA
+    addiu   sp, sp, -0x20
+    sw      ra, 0x10(sp)
+    jal     Actor_UpdateAll_ClearRoomEnemyInhibit
+    sb      t6, 0x1DEB(at) ; some replaced code
+    lw      ra, 0x10(sp)
+    addiu   sp, sp, 0x20
+
 ; Runs when storing an incoming item to the player instance
 ; Replaces:
 ;   sb      a2, 0x0424 (a3)

@@ -51,14 +51,14 @@
             "Bottom of the Well Basement Silver Rupee Ladders Top": "True",
             "Stick Pot": "True",
             "Nut Pot": "True",
-            "Bottom of the Well Entryway Skulltula": "is_child and can_child_damage",
-            "Bottom of the Well Left Side Skulltula": "can_child_damage",
-            "Bottom of the Well Dead Hand Skulltula": "can_play(Zeldas_Lullaby) and can_child_damage",
+            "Bottom of the Well Entryway Skulltula": "can_kill_skulltula",
+            "Bottom of the Well Left Side Skulltula": "can_kill_skulltula",
+            "Bottom of the Well Dead Hand Skulltula": "can_play(Zeldas_Lullaby) and can_kill_skulltula",
             "Bottom of the Well Patrolling Bubble": "can_kill_bubble",
             "Bottom of the Well Basement Redead Near Water": "can_kill_redead",      
             "Bottom of the Well Basement Redead Near Chest": "can_kill_redead",
-            "Bottom of the Well Coffin Room Redead": "True",
-            "Bottom of the Well Dead Hand": "can_play(Zeldas_Lullaby) and (Kokiri_Sword or (Sticks and logic_child_deadhand))"
+            "Bottom of the Well Coffin Room Redead": "can_kill_redead",
+            "Bottom of the Well Dead Hand": "can_play(Zeldas_Lullaby) and (Kokiri_Sword or (Sticks and logic_child_deadhand)) and (not shuffle_enemy_spawns or Dead_hand_Soul)"
         },
         "exits": {
             "Bottom of the Well Left Side": "(Silver_Rupee_Bottom_of_the_Well_Basement, 5)",
@@ -79,7 +79,7 @@
             "Bottom of the Well Center Room Pit Fall Blue Rupee 3": "True",
             "Bottom of the Well Center Room Pit Fall Blue Rupee 4": "True",
             "Bottom of the Well Center Room Pit Fall Blue Rupee 5": "True",
-            "Bottom of the Well Inside Gate Skulltula": "can_child_damage",
+            "Bottom of the Well Inside Gate Skulltula": "can_kill_skulltula",
             "Bottom of the Well Center Room Wallmaster": "can_kill_floormaster"
 
         },
@@ -104,9 +104,9 @@
             # Lens required because these pits are really unfair.
             "Bottom of the Well Fire Keese Chest": "True",
             "Bottom of the Well Like Like Chest": "True",
-            "Bottom of the Well West Inner Room Flying Pot 1": "True",
-            "Bottom of the Well West Inner Room Flying Pot 2": "True",
-            "Bottom of the Well West Inner Room Flying Pot 3": "True",
+            "Bottom of the Well West Inner Room Flying Pot 1": "not shuffle_enemy_spawns or Flying_Pot_Soul",
+            "Bottom of the Well West Inner Room Flying Pot 2": "not shuffle_enemy_spawns or Flying_Pot_Soul",
+            "Bottom of the Well West Inner Room Flying Pot 3": "not shuffle_enemy_spawns or Flying_Pot_Soul",
             "Bottom of the Well Fire Keese Pot": "True",
             "Bottom of the Well GS West Inner Room": "Boomerang",
             "Bottom of the Well GS East Inner Room": "Boomerang",
@@ -115,7 +115,7 @@
             "Bottom of the Well Fire Keese 1": "can_kill_keese",                    
             "Bottom of the Well Fire Keese 2": "can_kill_keese",                    
             "Bottom of the Well Fire Keese 3": "can_kill_keese",                    
-            "Bottom of the Well Fire Keese Room Beamos": "has_explosives",
+            "Bottom of the Well Fire Keese Room Beamos": "can_kill_beamos",
             "Bottom of the Well Behind Right Locked Door Keese 1": "can_kill_keese",
             "Bottom of the Well Behind Right Locked Door Keese 2": "can_kill_keese",
             "Bottom of the Well Behind Right Locked Door Keese 3": "can_kill_keese",
