@@ -812,7 +812,11 @@ class WorldDistribution:
             if record.player is not None and (record.player - 1) != self.id:
                 raise RuntimeError('A boss can only give rewards in its own world')
 
-            valid_items = self.get_valid_items_from_record(prizepool, used_items, record)
+            valid_items = []
+            if record.item == "#Vanilla": # Get vanilla item at this location from the location table
+                valid_items.append(location_table[name][4])
+            else: # Do normal method of getting valid items for this location
+                valid_items = self.get_valid_items_from_record(prizepool, used_items, record)
             if valid_items:  # Choices still available in the item pool, choose one, mark it as a used item
                 record.item = random.choices(valid_items)[0]
                 if used_items is not None:

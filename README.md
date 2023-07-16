@@ -210,6 +210,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Gossip stone text colors are no longer specified in reverse order.
 * Music groups will now add to each other if you have multiple groups of the same name, instead of the last one simply overwriting the others.
 * The legacy starting items dictionary has been renamed to `starting_inventory` to make it more distinct from the new `starting_items` which is part of the Settings dictionary.
+* The `#Vanilla` item category is now usable for dungeon rewards.
 
 ### 7.1
 

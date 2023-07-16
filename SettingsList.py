@@ -3803,7 +3803,7 @@ class SettingInfos:
         shared         = False,
         cosmetic       = True,
         gui_tooltip    = '''\
-            Randomize all cosmetics settings.
+            Randomize all cosmetics settings, except those in the "General Cosmetics" and the "Player Models" sections.
         ''',
         default        = False,
         disable        = {
@@ -4500,7 +4500,7 @@ class SettingInfos:
         shared         = False,
         cosmetic       = True,
         gui_tooltip    = '''\
-            Randomize all sound effects and music settings (ear safe)
+            Randomize all sound effects and music settings (ear safe), except the "Adult Voice" and "Child Voice" options and those in the "General" section.
         ''',
         default        = False,
         disable    = {
