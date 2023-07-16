@@ -3811,6 +3811,18 @@ class SettingInfos:
         }
     )
 
+    uninvert_y_axis_in_first_person_camera = Checkbutton(
+        gui_text       = 'Uninvert Y-Axis in First Person Camera',
+        shared         = False,
+        cosmetic       = True,
+        gui_tooltip    = '''\
+            Uninvert the Y axis in first person camera.
+            Note that this can make some tricks or glitches
+            harder to pull off.
+        ''',
+        default        = False,
+    )
+
     model_adult = Combobox(
         gui_text       = 'Adult Link Model',
         shared         = False,

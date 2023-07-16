@@ -1126,6 +1126,15 @@ class WorldDistribution:
                     self.skipped_locations.append(loc)
                 if loc.item is not None and world.id == loc.item.world.id:
                     add_starting_item_with_ammo(items, loc.item.name)
+            # With small keysy, key rings, and key rings give boss key, but boss keysy
+            # is not on, boss keys are still required in the game to open boss doors.
+            # The boss key is also shuffled in the world, but may not be reachable as
+            # logic assumes the boss key was already obtained with the free keysy keyring.
+            for dungeon in world.dungeons:
+                if (dungeon.name in world.settings.key_rings and dungeon.name != 'Ganons Castle'
+                    and dungeon.shuffle_smallkeys == 'remove' and dungeon.shuffle_bosskeys != 'remove'
+                    and world.settings.keyring_give_bk and len(dungeon.boss_key) > 0):
+                    items[dungeon.boss_key[0].name] = StarterRecord(1)
 
         effective_adult_trade_item_index = -1
         effective_child_trade_item_index = -1
