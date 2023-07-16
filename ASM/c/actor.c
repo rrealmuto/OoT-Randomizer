@@ -159,7 +159,9 @@ z64_actor_t *Actor_SpawnEntry_Hack(void *actorCtx, ActorEntry *actorEntry, z64_g
             break;
         }
     }
-    continue_spawn = spawn_override_enemy_spawn_shuffle(actorEntry, globalCtx, &overridden);
+    if (continue_spawn) {
+        continue_spawn = spawn_override_enemy_spawn_shuffle(actorEntry, globalCtx, &overridden);
+    }
     z64_actor_t *spawned = NULL;
     if (continue_spawn) {
         spawned = z64_SpawnActor(actorCtx, globalCtx, actorEntry->id, actorEntry->pos.x, actorEntry->pos.y, actorEntry->pos.z,
