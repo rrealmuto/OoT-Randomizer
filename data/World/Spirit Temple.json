@@ -299,8 +299,9 @@
             # Age-unknown logic is incompatible with the rest of the world.
             # Because adult might unlock all doors, child must require all 5 keys to pass.
             "Desert Colossus Hands": "
-                (Small_Key_Spirit_Temple, 5) or
-                (is_adult and has_explosives and (Small_Key_Spirit_Temple, 3))"
+                (not shuffle_enemy_spawns or Iron_Knuckle_Soul) and 
+                    ((Small_Key_Spirit_Temple, 5) or
+                    (is_adult and has_explosives and (Small_Key_Spirit_Temple, 3)))"
         }
     },
     {
