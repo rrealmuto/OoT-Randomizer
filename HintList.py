@@ -567,9 +567,7 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'Morpha Soul': (["the souls of the Morpha"], None, 'item'),
     'Bongo Bongo Soul': (["the souls of the Bongo Bongo"], None, 'item'),
     'Twinrova Soul': (["the souls of the Twinrova"], None, 'item'),
-
-
-
+    'Jabu Jabu Tentacle Soul': (["the souls of the Jabu Jabu Tentacle"], None, 'item'),
 
     'ZR Frogs Ocarina Game':                                       (["an #amphibian feast# yields", "the #croaking choir's magnum opus# awards", "the #froggy finale# yields"], "the final reward from the #Frogs of Zora's River# is", ['overworld', 'sometimes']),
     'KF Links House Cow':                                          ("the #bovine bounty of a horseback hustle# gifts", "#Malon's obstacle course# leads to", 'always'),

@@ -171,32 +171,32 @@
                     ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops))) or
                 has_projectile(both) or can_use(Dins_Fire) or
                 (can_take_damage and (Sticks or Kokiri_Sword or has_projectile(child)))",
-            "Spirit Temple Child Climb Skulltula 1": "
-                (not shuffle_enemy_spawns or Skulltula_Soul) and 
+            "Spirit Temple Child Climb Skullwalltula 1": "
+                (not shuffle_enemy_spawns or Skullwalltula_Soul) and 
                 ((is_child and has_projectile(child) and
                     (Small_Key_Spirit_Temple, 5)) or
                 (is_adult and has_projectile(adult) and
                     ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
                     ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops and not entrance_shuffle))) or
                 has_projectile(both) or can_use(Dins_Fire))",
-            "Spirit Temple Child Climb Skulltula 2": "
-                (not shuffle_enemy_spawns or Skulltula_Soul) and 
+            "Spirit Temple Child Climb Skullwalltula 2": "
+                (not shuffle_enemy_spawns or Skullwalltula_Soul) and 
                 ((is_child and has_projectile(child) and
                     (Small_Key_Spirit_Temple, 5)) or
                 (is_adult and has_projectile(adult) and
                     ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
                     ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops and not entrance_shuffle))) or
                 has_projectile(both) or can_use(Dins_Fire))",
-            "Spirit Temple Child Climb Skulltula 3": "
-                (not shuffle_enemy_spawns or Skulltula_Soul) and 
+            "Spirit Temple Child Climb Skullwalltula 3": "
+                (not shuffle_enemy_spawns or Skullwalltula_Soul) and 
                 ((is_child and has_projectile(child) and
                     (Small_Key_Spirit_Temple, 5)) or
                 (is_adult and has_projectile(adult) and
                     ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
                     ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops and not entrance_shuffle))) or
                 has_projectile(both) or can_use(Dins_Fire))",
-            "Spirit Temple Child Climb Skulltula 4": "
-                (not shuffle_enemy_spawns or Skulltula_Soul) and 
+            "Spirit Temple Child Climb Skullwalltula 4": "
+                (not shuffle_enemy_spawns or Skullwalltula_Soul) and 
                 ((is_child and has_projectile(child) and
                     (Small_Key_Spirit_Temple, 5)) or
                 (is_adult and has_projectile(adult) and

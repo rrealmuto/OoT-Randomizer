@@ -141,10 +141,12 @@
         "region_name": "Forest Temple Straightened Hall",
         "dungeon": "Forest Temple",
         "locations": {
-            "Forest Temple Boss Key Chest": "True"
+            "Forest Temple Boss Key Chest": "True",
+            "Forest Temple Balcony Bubble 1": "can_kill_bubble",
+            "Forest Temple Balcony Bubble 2": "can_kill_bubble"
         },
         "exits": {
-            "Forest Temple Outside Upper Ledge": "True"
+            "Forest Temple Outside Upper Ledge": "not shuffle_enemy_spawns or Bubble_Soul"
         }
     },
     {
@@ -153,8 +155,6 @@
         "locations": {
             "Forest Temple Floormaster Chest": "can_kill_floormaster",
             "Forest Temple Balcony Floormaster": "can_kill_floormaster",
-            "Forest Temple Balcony Bubble 1": "can_kill_bubble",
-            "Forest Temple Balcony Bubble 2": "can_kill_bubble",
             "Forest Temple Balcony Deku Baba": "can_kill_deku_baba"
         },
         "exits": {

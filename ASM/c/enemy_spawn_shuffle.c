@@ -56,7 +56,9 @@ enemy_spawn_table_entry enemy_spawn_table[] = {
     ENEMY_SPAWN_TABLE_ENTRY(0x0096, 41, NULL), //Boss_Fd (Volvagia)
     ENEMY_SPAWN_TABLE_ENTRY(0x00C4, 42, NULL), //Boss_Mo (Morpha)
     ENEMY_SPAWN_TABLE_ENTRY(0x00E9, 43, NULL), //Boss_Sst (Bongo Bongo)
-    ENEMY_SPAWN_TABLE_ENTRY(0x00DC, 44, NULL) //Boss_Tw (Twinrova)
+    ENEMY_SPAWN_TABLE_ENTRY(0x00DC, 44, NULL), //Boss_Tw (Twinrova)
+    ENEMY_SPAWN_TABLE_ENTRY(0x00DE, 45, NULL) //En_Ba (Jabu Jabu Tentacles),
+
 };
 
 // Return false if this is a gold skulltula
@@ -99,7 +101,7 @@ bool spawn_override_enemy_spawn_shuffle(ActorEntry *actorEntry, z64_game_t *glob
                     if (!enemy_spawn_table[i].override_func(actorEntry, globalCtx, overridden))
                         return true;
                 }
-                continue_spawn &= extended_savectx.enemy_spawn_flags[table_entry->index];
+                continue_spawn &= (extended_savectx.enemy_spawn_flags[table_entry->index/8] & (1 << (table_entry->index % 8))) > 0; 
                 curr_room_enemies_inhibited |= !continue_spawn;
                 return continue_spawn;
             }

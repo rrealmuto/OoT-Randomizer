@@ -180,6 +180,10 @@ class State:
     def region_has_shortcuts(self, region_name: str) -> bool:
         return self.world.region_has_shortcuts(region_name)
 
+    def has_soul(self, enemy: str) -> bool:
+        soul_str = enemy + " Soul"
+        return (not self.world.setting.shuffle_enemy_spawns or self.has(ItemInfo.solver_ids[escape_name(soul_str)]))
+
     def has_all_notes_for_song(self, song: str) -> bool:
 
         # Scarecrow needs 2 different notes

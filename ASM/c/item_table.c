@@ -374,10 +374,7 @@ item_row_t item_table[] = {
     [0x143] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x932A, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 42, -1, NULL),
     [0x144] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x932B, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 43, -1, NULL),
     [0x145] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x932C, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 44, -1, NULL),
-
-
-
-
+    [0x146] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x932D, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 45, -1, NULL),
 };
 
 /*  Determine which message to display based on the number of silver rupees collected.

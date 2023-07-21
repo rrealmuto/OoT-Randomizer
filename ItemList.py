@@ -268,7 +268,7 @@ item_table: dict[str, tuple[str, Optional[bool], Optional[int], Optional[dict[st
     'Morpha Soul': ('Item', True, 0x143, None),
     'Bongo Bongo Soul': ('Item', True, 0x144, None),
     'Twinrova Soul': ('Item', True, 0x145, None),
-
+    'Jabu Jabu Tentacle Soul': ('Item', True, 0x146, None),
 
 
 
