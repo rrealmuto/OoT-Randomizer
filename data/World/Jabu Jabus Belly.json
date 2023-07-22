@@ -67,7 +67,7 @@
             "Jabu Jabus Belly Boomerang Chest Stinger 4" : "can_kill_stinger"
         },
         "exits": {
-            "Jabu Jabus Belly Depths": "can_use(Boomerang)",
+            "Jabu Jabus Belly Depths": "can_use(Boomerang) and (not shuffle_enemy_spawns or Jabu_Jabu_Tentacle_Soul)",
             "Jabu Jabus Belly Before Boss": "
                 (logic_jabu_boss_hover and can_use(Hover_Boots))
                 or jabu_shortcuts or 'Jabu Jabus Belly Floor Lowered'"
@@ -92,8 +92,6 @@
             "Jabu Jabus Belly Last Tentacle Biri 2" : "can_kill_biri",
             "Jabu Jabus Belly Last Tentacle Biri 3" : "can_kill_biri",
             "Jabu Jabus Belly Last Tentacle Biri 4" : "can_kill_biri",
-            "Jabu Jabus Belly After Big Octo Biri 1" : "can_kill_biri",
-            "Jabu Jabus Belly After Big Octo Biri 2" : "can_kill_biri",
             "Jabu Jabus Belly Wiggler Platforms Octorok" : "can_kill_octorok"
         },
         "exits": {
@@ -109,6 +107,8 @@
         "locations": {
             "Jabu Jabus Belly Above Big Octo Pot 1" : "True",
             "Jabu Jabus Belly Above Big Octo Pot 2" : "True",
+            "Jabu Jabus Belly After Big Octo Biri 1" : "can_kill_biri",
+            "Jabu Jabus Belly After Big Octo Biri 2" : "can_kill_biri",
             "Nut Pot": "True"
         }
     },

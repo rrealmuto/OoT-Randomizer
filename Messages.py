@@ -324,9 +324,7 @@ ITEM_MESSAGES: list[tuple[int, str]] = [
     (0x932A, "\x08You found the \x05\x41Morpha Souls!"),
     (0x932B, "\x08You found the \x05\x41Bongo Bongo Souls!"),
     (0x932C, "\x08You found the \x05\x41Twinrova Souls!"),
-
-
-
+    (0x932D, "\x08You found the \x05\x41Jabu Jabu Tentacle Souls!"),
 ]
 
 KEYSANITY_MESSAGES: list[tuple[int, str]] = [

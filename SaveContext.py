@@ -57,7 +57,7 @@ class Address:
     EXTENDED_CONTEXT_START = 0x1450
 
     def __init__(self, address: Optional[int] = None, extended: bool = False, size: int = 4, mask: int = 0xFFFFFFFF, max: Optional[int] = None,
-                 choices: Optional[dict[str, int]] = None, value: Optional[str] = None) -> None:
+                 choices: Optional[dict[str, int]] = None, value: Optional[str] = None, pass_addr: Optional[bool] = False) -> None:
         self.address: int = Address.prev_address if address is None else address
         if extended and address is not None:
             self.address += Address.EXTENDED_CONTEXT_START
@@ -66,7 +66,8 @@ class Address:
         self.choices: Optional[dict[str, int]] = choices
         self.mask: int = mask
 
-        Address.prev_address = self.address + self.size
+        if not pass_addr:
+            Address.prev_address = self.address + self.size
 
         self.bit_offset: int = 0
         while mask & 1 == 0:
@@ -893,52 +894,52 @@ class SaveContext:
                 'trials_forest': Address(extended=True, size=1),
             },
             'enemy_spawn_flags': {
-                'stalfos': Address(extended=True, size=1),
-                'octorok': Address(extended=True, size=1),
-                'wallmaster': Address(extended=True, size=1),
-                'dodongo': Address(extended=True, size=1),
-                'keese': Address(extended=True, size=1),
-                'tektite': Address(extended=True, size=1),
-                'peahat': Address(extended=True, size=1),
-                'lizalfos_and_dinalfos': Address(extended=True, size=1),
-                'gohma_larvae': Address(extended=True, size=1),
-                'shabom': Address(extended=True, size=1),
-                'baby_dodongo': Address(extended=True, size=1),
-                'biri_and_bari': Address(extended=True, size=1),
-                'tailpasaran': Address(extended=True, size=1),
-                'skulltula': Address(extended=True, size=1),
-                'torch_slug': Address(extended=True, size=1),
-                'moblin': Address(extended=True, size=1),
-                'armos': Address(extended=True, size=1),
-                'deku_baba': Address(extended=True, size=1),
-                'deku_scrub': Address(extended=True, size=1),
-                'bubble': Address(extended=True, size=1),
-                'beamos': Address(extended=True, size=1),
-                'floormaster': Address(extended=True, size=1),
-                'redead_and_gibdo': Address(extended=True, size=1),
-                'skullwalltula': Address(extended=True, size=1),
-                'flare_dancer': Address(extended=True, size=1),
-                'dead_hand': Address(extended=True, size=1),
-                'shell_blade': Address(extended=True, size=1),
-                'like-like': Address(extended=True, size=1),
-                'spike_enemy': Address(extended=True, size=1),
-                'anubis': Address(extended=True, size=1),
-                'iron_knuckle': Address(extended=True, size=1),
-                'skull_kid': Address(extended=True, size=1),
-                'flying_pot': Address(extended=True, size=1),
-                'freezard': Address(extended=True, size=1),
-                'stinger': Address(extended=True, size=1),
-                'wolfos': Address(extended=True, size=1),
-                'guay': Address(extended=True, size=1),
-                'queen_gohma': Address(extended=True, size=1),
-                'king_dodongo': Address(extended=True, size=1),
-                'barinade': Address(extended=True, size=1),
-                'phantom_ganon': Address(extended=True, size=1),
-                'volvagia': Address(extended=True, size=1),
-                'morpha': Address(extended=True, size=1),
-                'bongo_bongo': Address(extended=True, size=1),
-                'twinrova': Address(extended=True, size=1),
-
+                'stalfos': Address(extended=True, size=1, mask=0x01, pass_addr=True),
+                'octorok': Address(extended=True, size=1, mask=0x02, pass_addr=True),
+                'wallmaster': Address(extended=True, size=1, mask=0x04, pass_addr=True),
+                'dodongo': Address(extended=True, size=1, mask=0x08, pass_addr=True),
+                'keese': Address(extended=True, size=1, mask=0x10, pass_addr=True),
+                'tektite': Address(extended=True, size=1, mask=0x20, pass_addr=True),
+                'peahat': Address(extended=True, size=1, mask=0x40, pass_addr=True),
+                'lizalfos_and_dinalfos': Address(extended=True, size=1, mask=0x80, pass_addr=True),
+                'gohma_larvae': Address(extended=True, size=1, mask=0x01),
+                'shabom': Address(extended=True, size=1, mask=0x02, pass_addr=True),
+                'baby_dodongo': Address(extended=True, size=1, mask=0x04, pass_addr=True),
+                'biri_and_bari': Address(extended=True, size=1, mask=0x08, pass_addr=True),
+                'tailpasaran': Address(extended=True, size=1, mask=0x10, pass_addr=True),
+                'skulltula': Address(extended=True, size=1, mask=0x20, pass_addr=True),
+                'torch_slug': Address(extended=True, size=1, mask=0x40, pass_addr=True),
+                'moblin': Address(extended=True, size=1, mask=0x80, pass_addr=True),
+                'armos': Address(extended=True, size=1, mask=0x01),
+                'deku_baba': Address(extended=True, size=1, mask=0x02, pass_addr=True),
+                'deku_scrub': Address(extended=True, size=1, mask=0x04, pass_addr=True),
+                'bubble': Address(extended=True, size=1, mask=0x08, pass_addr=True),
+                'beamos': Address(extended=True, size=1, mask=0x10, pass_addr=True),
+                'floormaster': Address(extended=True, size=1, mask=0x20, pass_addr=True),
+                'redead_and_gibdo': Address(extended=True, size=1, mask=0x40, pass_addr=True),
+                'skullwalltula': Address(extended=True, size=1, mask=0x80, pass_addr=True),
+                'flare_dancer': Address(extended=True, size=1, mask=0x01),
+                'dead_hand': Address(extended=True, size=1, mask=0x02, pass_addr=True),
+                'shell_blade': Address(extended=True, size=1, mask=0x04, pass_addr=True),
+                'like-like': Address(extended=True, size=1, mask=0x08, pass_addr=True),
+                'spike_enemy': Address(extended=True, size=1, mask=0x10, pass_addr=True),
+                'anubis': Address(extended=True, size=1, mask=0x20, pass_addr=True),
+                'iron_knuckle': Address(extended=True, size=1, mask=0x40, pass_addr=True),
+                'skull_kid': Address(extended=True, size=1, mask=0x80, pass_addr=True),
+                'flying_pot': Address(extended=True, size=1, mask=0x01),
+                'freezard': Address(extended=True, size=1, mask=0x02, pass_addr=True),
+                'stinger': Address(extended=True, size=1, mask=0x04, pass_addr=True),
+                'wolfos': Address(extended=True, size=1, mask=0x08, pass_addr=True),
+                'guay': Address(extended=True, size=1, mask=0x10, pass_addr=True),
+                'queen_gohma': Address(extended=True, size=1, mask=0x20, pass_addr=True),
+                'king_dodongo': Address(extended=True, size=1, mask=0x40, pass_addr=True),
+                'barinade': Address(extended=True, size=1, mask=0x80, pass_addr=True),
+                'phantom_ganon': Address(extended=True, size=1, mask=0x01),
+                'volvagia': Address(extended=True, size=1, mask=0x02, pass_addr=True),
+                'morpha': Address(extended=True, size=1, mask=0x04, pass_addr=True),
+                'bongo_bongo': Address(extended=True, size=1, mask=0x08, pass_addr=True),
+                'twinrova': Address(extended=True, size=1, mask=0x10, pass_addr=True),
+                'jabu_jabu_tentacle': Address(extended=True, size=1, mask=0x20, pass_addr=True),
             }
         }
 
@@ -1404,7 +1405,7 @@ class SaveContext:
         'Morpha Soul': {'enemy_spawn_flags.morpha': None},
         'Bongo Bongo Soul': {'enemy_spawn_flags.bongo_bongo': None},
         'Twinrova Soul': {'enemy_spawn_flags.twinrova': None},
-
+        'Jabu Jabu Tentacle Soul': {'enemy_spawn_flags.jabu_jabu_tentacle': None},
 
         # HACK: these counts aren't used since exact counts based on whether the dungeon is MQ are defined above,
         # but the entries need to be there for key rings to be valid starting items

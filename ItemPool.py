@@ -589,7 +589,7 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
         pending_junk_pool.append('Morpha Soul')
         pending_junk_pool.append('Bongo Bongo Soul')
         pending_junk_pool.append('Twinrova Soul')
-
+        pending_junk_pool.append('Jabu Jabu Tentacle Soul')
 
 
     # Use the vanilla items in the world's locations when appropriate.
