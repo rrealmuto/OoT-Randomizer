@@ -697,13 +697,14 @@ def get_goal_legacy_hint(spoiler, world, checked):
         else:
             goal = random.choices(goals, weights=weights)[0]
 
+        required_locations = reduce(lambda acc, locations: acc + locations, spoiler.goal_locations[world.id][goal_category.name][goal.name].values(), [])
         goal_locations = list(filter(lambda location:
-            location[0].name not in checked
-            and location[0].name not in world.hint_exclusions
-            and location[0].name not in world.hint_type_overrides['goal']
-            and location[0].item.name not in world.item_hint_type_overrides['goal']
-            and location[0].item.name not in unHintableWothItems,
-            goal.required_locations))
+            location.name not in checked
+            and location.name not in world.hint_exclusions
+            and location.name not in world.hint_type_overrides['goal']
+            and location.item.name not in world.item_hint_type_overrides['goal']
+            and location.item.name not in unHintableWothItems,
+            required_locations))
 
         if not goal_locations:
             goals.remove(goal)
@@ -713,26 +714,23 @@ def get_goal_legacy_hint(spoiler, world, checked):
     goal.weight = 0
 
     prioritize_dungeon_hints = 'prioritize_dungeons' in world.hint_dist_user and world.hint_dist_user['prioritize_dungeons']
-    dungeon_goal_locations = list(filter(lambda location: HintArea.at(location[0]).is_dungeon, goal_locations))
+    dungeon_goal_locations = list(filter(lambda location: HintArea.at(location).is_dungeon, goal_locations))
     if prioritize_dungeon_hints and len(dungeon_goal_locations) > 0:
-        location_tuple = random.choice(dungeon_goal_locations)
+        location = random.choice(dungeon_goal_locations)
     else:
-        location_tuple = random.choice(goal_locations)
+        location = random.choice(goal_locations)
 
-    location = location_tuple[0]
-    world_ids = location_tuple[3]
-    world_id = random.choice(world_ids)
     checked.add(location.name)
 
     location_text = HintArea.at(location).text(world.settings.clearer_hints)
-    if world_id == world.id:
-        player_text = "the"
-        goal_text = goal.hint_text
+    if location.world.id == world.id:
+        player_location_text = location_text
     else:
-        player_text = "Player %s's" % (world_id + 1)
-        goal_text = spoiler.goal_categories[world_id][goal_category.name].get_goal(goal.name).hint_text
+        player_location_text = "Player %s's " % (location.world.id + 1) + location_text
 
-    return (GossipText('%s is on %s %s.' % (location_text, player_text, goal_text), ['Light Blue', goal.color], [location.name], [location.item.name]), [location])
+    goal_text = "the" + goal.hint_text
+
+    return (GossipText('%s is on %s.' % (player_location_text, goal_text), ['Light Blue', goal.color], [location.name], [location.item.name]), [location])
 
 def get_goal_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintReturn:
     goal_category = get_goal_category(spoiler, world, world.goal_categories)
@@ -760,7 +758,7 @@ def get_goal_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintRetu
 
         # Collect set of unhinted locations for the category. Reduces the bias
         # from locations in multiple goals for the category.
-        location_reverse_map = defaultdict(set)
+        location_reverse_map = defaultdict(list)
         for goal in goals:
             if zero_weights or goal.weight > 0:
                 goal_locations = list(filter(lambda location:
@@ -772,7 +770,7 @@ def get_goal_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintRetu
                     goal.required_locations))
                 for location in goal_locations:
                     for world_id in location[3]:
-                        location_reverse_map[location[0]].add((goal, world_id))
+                        location_reverse_map[location[0]].append((goal, world_id))
 
         if not location_reverse_map:
             del world.goal_categories[goal_category.name]
@@ -782,8 +780,8 @@ def get_goal_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintRetu
             else:
                 goals = goal_category.goals
 
-    location, goal_set = random.choice(list(location_reverse_map.items()))
-    goal, world_id = random.choice(list(goal_set))
+    location, goal_list = random.choice(list(location_reverse_map.items()))
+    goal, world_id = random.choice(goal_list)
     checked.add(location.name)
 
     # Make sure this wasn't the last hintable location for other goals.
