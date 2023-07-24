@@ -15,6 +15,7 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v28](#v28)
   * [v27](#v27)
   * [v26](#v26)
   * [v25](#v25)
@@ -46,6 +47,9 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
   * [4.0](#40)
 
 ## RealRob Changelog
+### v28
+  * Fix broken flags in enemy soul shuffle
+
 ### v27
   * Add new setting 'Enemy Soul Shuffle'
   * Enemy Drop logic improvements
