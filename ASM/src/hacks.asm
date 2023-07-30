@@ -1973,25 +1973,6 @@ skip_bombchu_bowling_prize_switch:
     lui     t5, 0x8012
 
 ;==================================================================================================
-; Override Collectible 05 to be a Bombchus (5) drop instead of the unused Arrow (1) drop
-;==================================================================================================
-; Replaces: 0x80011D30
-.orga 0xB7BD24
-    .word 0x80011D88
-
-; Replaces: li   a1, 0x03
-.orga 0xA8801C
-    li      a1, 0x96 ; Give Item Bombchus (5)
-.orga 0xA88CCC
-    li      a1, 0x96 ; Give Item Bombchus (5)
-
-; Replaces: lui     t5, 0x8012
-;           lui     at, 0x00FF
-.orga 0xA89268
-    jal     chu_drop_draw
-    lui     t5, 0x8012
-
-;==================================================================================================
 ; Rainbow Bridge
 ;==================================================================================================
 
