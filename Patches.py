@@ -2499,7 +2499,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     if world.settings.shuffle_individual_ocarina_notes:
         rom.write_byte(rom.sym('SHUFFLE_OCARINA_BUTTONS'), 1)
 
-    if world.settings.shuffle_enemy_spawns:
+    if world.settings.shuffle_enemy_spawns != 'off':
         rom.write_byte(rom.sym('CFG_ENEMY_SPAWN_SHUFFLE'), 1)
 
     # Sets the torch count to open the entrance to Shadow Temple

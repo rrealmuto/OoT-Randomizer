@@ -2817,7 +2817,7 @@ class SettingInfos:
         },
     )
 
-    shuffle_enemy_spawns = Checkbutton(
+    shuffle_enemy_spawns = Combobox(
         gui_text       = 'Shuffle Enemy Souls',
         gui_tooltip    = '''\
             Enabling this will prevent enemies from
@@ -2827,10 +2827,20 @@ class SettingInfos:
 
             MQ dungeon logic not supported (yet)
         ''',
-        default        = False,
+        default        = 'off',
+        choices        = {
+            'off': 'Off',
+            'all': 'All',
+            'bosses': 'Bosses'
+        },
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
+            'distribution': [
+                ('off',      1),
+                ('all',      1),
+                ('bosses',   1)
+            ],
         },
     )
 
