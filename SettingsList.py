@@ -3928,7 +3928,7 @@ class SettingInfos:
         },
     )
 
-    display_dpad = Checkbutton(
+    display_dpad = Combobox(
         gui_text       = 'Display D-Pad HUD',
         shared         = False,
         cosmetic       = True,
@@ -3936,7 +3936,12 @@ class SettingInfos:
             Shows an additional HUD element displaying
             current available options on the D-Pad.
         ''',
-        default        = True,
+        default        = 'right',
+        choices        = {
+            'off':   'Off',
+            'left': 'On the left',
+            'right': 'On the right',
+        },
     )
 
     dpad_dungeon_menu = Checkbutton(
