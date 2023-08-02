@@ -30,6 +30,7 @@ from Spoiler import Spoiler
 from Utils import data_path
 from World import World
 from SceneFlags import get_alt_list_bytes, get_collectible_flag_table, get_collectible_flag_table_bytes, get_all_collectible_flags
+from TextBox import line_wrap
 from texture_util import ci4_rgba16patch_to_ci8, rgba16_patch
 from version import __version__
 
