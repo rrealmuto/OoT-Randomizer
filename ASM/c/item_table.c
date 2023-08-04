@@ -140,7 +140,7 @@ item_row_t item_table[] = {
     [0x006E] = ITEM_ROW(0x53,      GILDED_CHEST, 0x1C, -1, 0x005D, 0x0173, 0x67, no_upgrade, no_effect, -1, -1, NULL), // Blue Fire (Refill)
     [0x006F] = ITEM_ROW(0x53,      GILDED_CHEST, 0x20, -1, 0x0097, 0x0176, 0x6A, no_upgrade, no_effect, -1, -1, NULL), // Poe (Refill)
     [0x0070] = ITEM_ROW(0x53,      GILDED_CHEST, 0x1E, -1, 0x00F9, 0x0176, 0x70, no_upgrade, no_effect, -1, -1, NULL), // Big Poe (Refill)
-    [0x0071] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x913E, 0x00AA, 0x02, upgrade_key_model, give_small_key, TCG_ID, -1, resolve_text_small_keys), // Small Key (Chest Game)
+    [0x0071] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x913E, 0x00AA, 0x02, upgrade_key_model, give_small_key, TCG_ID, -1, resolve_text_small_keys_cmg), // Small Key (Chest Game)
     [0x0072] = ITEM_ROW(0x4D,       BROWN_CHEST, 0x84, -1, 0x00F4, 0x017F, 0x6D, no_upgrade, no_effect, -1, -1, NULL), // Green Rupee (Chest Game)
     [0x0073] = ITEM_ROW(0x4D,       BROWN_CHEST, 0x85, -1, 0x00F5, 0x017F, 0x6E, no_upgrade, no_effect, -1, -1, NULL), // Blue Rupee (Chest Game)
     [0x0074] = ITEM_ROW(0x4D,       BROWN_CHEST, 0x86, -1, 0x00F6, 0x017F, 0x6F, no_upgrade, no_effect, -1, -1, NULL), // Red Rupee (Chest Game)
@@ -326,7 +326,7 @@ item_row_t item_table[] = {
     [0x0115] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x009F, 0x019F, 0x86, no_upgrade, give_small_key, GTG_ID,    -1, resolve_text_small_keys), // Gerudo Training Small Key
     [0x0116] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x00A0, 0x01A0, 0x87, no_upgrade, give_small_key, FORT_ID,   -1, resolve_text_small_keys), // Thieves' Hideout Small Key
     [0x0117] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x00A1, 0x01A1, 0x88, no_upgrade, give_small_key, CASTLE_ID, -1, resolve_text_small_keys), // Ganon's Castle Small Key
-    [0x0118] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x913E, 0x01A2, 0x89, no_upgrade, give_small_key, TCG_ID,    -1, resolve_text_small_keys), // Small Key (Chest Game)
+    [0x0118] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x913E, 0x01A2, 0x89, no_upgrade, give_small_key, TCG_ID,    -1, resolve_text_small_keys_cmg), // Small Key (Chest Game)
 
     [0x1004] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x90A0, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1, NULL), // Triforce of Power
     [0x1005] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x90A1, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1, NULL), // Triforce of Wisdom
@@ -410,6 +410,16 @@ uint16_t resolve_text_small_keys(item_row_t *item_row, uint16_t item_id, bool is
         // Should never actually get here but if we do, just use the regular message.
         return item_row->text_id;
     }
+}
+
+uint16_t resolve_text_small_keys_cmg(item_row_t *item_row, uint16_t item_id, bool is_outgoing) {
+
+    // Don't use custom message for Treasure Chest Game if it's not shuffled.
+    if (!SHUFFLE_CHEST_GAME) {
+        return item_row->text_id;
+    }
+
+    return resolve_text_small_keys(item_row, item_id, is_outgoing);
 }
 
 uint16_t resolve_text_keyrings(item_row_t *item_row, uint16_t item_id, bool is_outgoing) {

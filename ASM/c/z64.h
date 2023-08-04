@@ -40,7 +40,14 @@
 
 #define OFFSETOF(structure, member) ((size_t)&(((structure *)0)->member))
 
-
+#define REG_PAGES 6
+#define REGS_PER_PAGE 16
+#define REGS_PER_GROUP (REG_PAGES * REGS_PER_PAGE)
+#define REG_EDITOR_DATA ((int16_t *)0x801C6EA4)
+#define BASE_REG(n, r) REG_EDITOR_DATA[(n)*REGS_PER_GROUP + (r)]
+#define REG(r) BASE_REG(0, (r))
+#define SREG(r) BASE_REG(1, (r))
+#define R_PAUSE_BG_PRERENDER_STATE SREG(94)
 
 typedef struct
 {
@@ -1837,6 +1844,16 @@ typedef struct EnGSwitch
   /* 0x017C */ uint8_t collider[0x4C];  // ColliderCylinder
   /* 0x01C8 */ uint8_t effects[0x1130]; // EnGSwitchEffect[100]
 } EnGSwitch; // size = 0x12F8
+
+typedef enum {
+    /* 0 */ PAUSE_BG_PRERENDER_OFF, // Inactive, do nothing.
+    /* 1 */ PAUSE_BG_PRERENDER_SETUP, // The current frame is only drawn for the purpose of serving as the pause background.
+    /* 2 */ PAUSE_BG_PRERENDER_PROCESS, // The previous frame was PAUSE_BG_PRERENDER_SETUP, now apply prerender filters.
+    /* 3 */ PAUSE_BG_PRERENDER_READY, // The pause background is ready to be used.
+    /* 4 */ PAUSE_BG_PRERENDER_MAX
+} PauseBgPreRenderState;
+
+
 
 /* helper macros */
 #define LINK_IS_ADULT (z64_file.link_age == 0)
