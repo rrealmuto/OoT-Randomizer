@@ -713,6 +713,22 @@ nop
 nop
 nop
 
+; Hack Actor_Spawn function so we can override actor spawns
+.orga 0xA9B070 ; in memory 0x80025110
+; Replaced code: 
+;   addiu   sp, sp, -0x58
+;   sw      a2, 0x0060(sp)
+    j       Actor_Spawn_Hook
+    nop
+Actor_Spawn_Continue_Jump_Point:
+
+; Hack Dark Link room En_Blkobj for enemy soul shuffle
+; At call to Actor_Find
+.orga 0xE1156C ; VRAM 0x80A8EC2C
+; Replaced code:
+;   jal Actor_Find
+    jal En_Blkobj_Actor_Find_Hook
+
 ; Hack ObjKibako2_SpawnCollectible (Large crates) to call our overridden spawn function
 ;
 .orga 0xEC8264

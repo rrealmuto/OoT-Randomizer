@@ -2512,4 +2512,8 @@ typedef void(*GetItem_Draw_proc)(z64_game_t *game, int16_t drawId);
 #define ITEMGETINF_3B 0x3B
 #define ITEMGETINF_3F 0x3F
 
+
+// Functions defined in the base ROM but we use the linkscript to link them externally.
+extern z64_actor_t* z64_ActorFind(void* actorCtx, int32_t actorId, int32_t actorCategory);
+
 #endif

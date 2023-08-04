@@ -349,7 +349,8 @@ enemy_souls_core: list[str] = [
     'Stinger Soul',
     'Wolfos Soul',
     'Guay Soul',
-    'Jabu Jabu Tentacle Soul'
+    'Jabu Jabu Tentacle Soul',
+    'Dark Link Soul',
 ]
 
 enemy_souls_bosses: list[str] = [

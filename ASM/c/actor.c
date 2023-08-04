@@ -173,7 +173,7 @@ z64_actor_t *Actor_SpawnEntry_Hack(void *actorCtx, ActorEntry *actorEntry, z64_g
         }
     }
     if (continue_spawn) {
-        continue_spawn = spawn_override_enemy_spawn_shuffle(actorEntry, globalCtx, &overridden);
+        continue_spawn = spawn_override_enemy_spawn_shuffle(actorEntry, globalCtx, SPAWN_FLAGS_SPAWNENTRY);
     }
     z64_actor_t *spawned = NULL;
     if (continue_spawn) {
@@ -270,4 +270,28 @@ uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit
 
 
     return 0;
+}
+
+// This is our entrypoint back into Actor_Spawn. Call/return this to spawn the actor
+extern z64_actor_t *Actor_Spawn_Continue(void* actorCtx, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params);
+
+z64_actor_t * Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int16_t actorId, 
+                                float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params) {
+    bool continue_spawn = true;
+
+    ActorEntry entry;
+    entry.id = actorId;
+    entry.params = params;
+    entry.pos.x = (int16_t)posX;
+    entry.pos.y = (int16_t)posY;
+    entry.pos.z = (int16_t)posZ;
+    entry.rot.x = rotX;
+    entry.rot.y = rotY;
+    entry.rot.z = rotZ;
+    continue_spawn = spawn_override_enemy_spawn_shuffle(&entry, globalCtx, SPAWN_FLAGS_ACTORSPAWN);
+    
+    if(continue_spawn) {
+        return Actor_Spawn_Continue(actorCtx, globalCtx, actorId, posX, posY, posZ, rotX, rotY, rotZ, params);
+    }
+    return NULL;
 }

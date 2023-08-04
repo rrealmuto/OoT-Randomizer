@@ -134,7 +134,7 @@ RANDO_CONTEXT:
 .include "armos.asm"
 .include "ocarina_buttons.asm"
 .include "enemy_spawn_shuffle.asm"
-
+.include "actor.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"

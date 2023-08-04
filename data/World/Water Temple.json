@@ -252,10 +252,10 @@
             "Water Temple Statue Puzzle Tektite 4": "can_kill_tektite",
             "Water Temple Statue Puzzle Tektite 5": "can_kill_tektite",
             "Water Temple Statue Puzzle Like Like": "can_kill_likelike",
-            "Water Temple Dark Link" : "True"
+            "Water Temple Dark Link" : "not shuffle_enemy_spawns or Dark_Link_Soul"
         },
         "exits": {
-            "Water Temple River": "can_play(Song_of_Time)"
+            "Water Temple River": "(not shuffle_enemy_spawns or Dark_Link_Soul) and can_play(Song_of_Time)"
         }
     },
     {
