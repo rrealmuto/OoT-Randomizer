@@ -127,6 +127,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * New setting `Key Appearance Matches Dungeon` which changes the models for small keys and boss keys to indicate which dungeon the key belongs to.
   * New setting `Shuffle Individual Ocarina Notes`, which shuffles items representing each of the 5 ocarina notes into the item pool. You cannot play any note on the ocarina until you find its corresponding item.
   * New cosmetic setting `Uninvert Y-Axis in First Person Camera` which makes tilting the joystick up or down in first person look those respective directions, instead of the opposite direction.
+  * The setting `Display D-Pad HUD` has been expanded so that the D-Pad can be set to the left of the screen.
 * **Hints**
   * New `Important Checks` hint type which hints at how many major items are in a given region.
     * Double Defense and Biggoron's Sword are counted as major for this hint type.
@@ -159,6 +160,9 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * A rare softlock when fighting Gohma present in the original game has been fixed.
   * A crash when diving and resurfacing in very shallow water present in the original game has been fixed.
   * Various miscellaneous logic issues have been addressed.
+  * A minor bug related to checking time of day access has been corrected.
+  * Fix a softlock caused by 8-note Sun's Songs when using `Randomize Ocarina Song Notes`, again.
+  * Fix pause screen rendering causing graphical issues on some platforms.
 * **Hints**
   * Fix the cryptic hint for Ganon's Castle Boss Key.
   * Fix missing punctuation in dual hints.
@@ -189,6 +193,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Python 3.6 and 3.7 are no longer supported.
 * Some inescapable entrances are no longer valid targets for Overworld Spawn entrances.
 * Using Farore's Wind to warp between dungeons is now considered in logic.
+* Various text changes such as singular Temple of Time Altar bridge conditions, grammar changes to region hints, and adding apostrophes to shop items.
 
 #### New Speedups
 * Various cutscenes removed or shortened, such as Water Temple and Gerudo Fortress gates and scarecrow spawn cutscenes.
