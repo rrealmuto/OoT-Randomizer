@@ -15,6 +15,7 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v31](#v31)
   * [v30](#v30)
   * [v29](#v29)
   * [v28](#v28)
@@ -49,6 +50,9 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
   * [4.0](#40)
 
 ## RealRob Changelog
+### v31
+  * Fix missing souls from enemy drop logic in Ganons Castle
+
 ### v30
   * Add Dark Link to enemy soul shuffle
 
