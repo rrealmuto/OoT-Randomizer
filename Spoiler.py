@@ -65,7 +65,7 @@ class Spoiler:
         self.required_locations: dict[int, list[Location]] = {}
         self.goal_locations: dict[int, dict[str, dict[str, dict[int, list[Location]]]]] = {}
         self.goal_categories: dict[int, dict[str, GoalCategory]] = {}
-        self.required_location_requirements = {}
+        self.required_location_requirements: dict[Location, list[Location]] = {}
         self.playthrough_locations = {}
         self.playthrough_location_requirements = {}
         self.hints: dict[int, dict[int, GossipText]] = {world.id: {} for world in worlds}

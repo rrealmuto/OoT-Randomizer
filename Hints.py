@@ -728,7 +728,7 @@ def get_goal_legacy_hint(spoiler, world, checked):
     else:
         player_location_text = "Player %s's " % (location.world.id + 1) + location_text
 
-    goal_text = "the" + goal.hint_text
+    goal_text = "the " + goal.hint_text
 
     return (GossipText('%s is on %s.' % (player_location_text, goal_text), ['Light Blue', goal.color], [location.name], [location.item.name]), [location])
 
@@ -919,14 +919,21 @@ def get_unlock_hint(spoiler, world, checked, hint_type):
 
     if hint_type == 'unlock-playthrough':
         requirements = spoiler.playthrough_location_requirements
+        required_locations = {
+            location: list(filter(lambda required_location: required_location.item.name not in world.item_hint_type_overrides[hint_type] 
+                                and required_location.world.id == world.id, required_locations)) 
+            for location, required_locations in requirements[world.id].items()
+        }
     else:
         requirements = spoiler.required_location_requirements
+        all_world_requirements = {}
+        for world_reqs in requirements.values():
+            all_world_requirements.update(world_reqs)
 
-    required_locations = {
-        location: list(filter(lambda required_location: required_location.item.name not in world.item_hint_type_overrides[hint_type] 
-                              and required_location.world.id == world.id, required_locations)) 
-        for location, required_locations in requirements[world.id].items()
-    }
+        required_locations = {
+            location: list(filter(lambda required_location: required_location.item.name not in world.item_hint_type_overrides[hint_type], required_locations)) 
+            for location, required_locations in all_world_requirements.items()
+        }
 
     hintable_locations = list(filter(lambda location:
         len(required_locations[location]) > 0
@@ -952,17 +959,27 @@ def get_unlock_hint(spoiler, world, checked, hint_type):
     required_location = random.choices(required_locations[location], required_location_weights)[0]
     checked.add(location.name + '- unlock')
 
-    location_text = get_hint(get_item_generic_name(location.item), world.settings.clearer_hints).text
-    required_location_text = get_hint(get_item_generic_name(required_location.item), world.settings.clearer_hints).text
+    item_text = get_hint(get_item_generic_name(location.item), world.settings.clearer_hints).text
+    required_item_text = get_hint(get_item_generic_name(required_location.item), world.settings.clearer_hints).text
+
+    if location.item.world.id == world.id:
+        item_player_text = ''
+    else:
+        item_player_text = "Player %s's " % (location.item.world.id + 1)
+
+    if required_location.item.world.id == world.id:
+        required_item_player_text = ''
+    else:
+        required_item_player_text = "Player %s's " % (required_location.item.world.id + 1)
 
     if hint_type == 'unlock-playthrough':
-        gossip_text = '#%s# unlocks the way to the #wanderer\'s# #%s#.'
+        gossip_text = '%s#%s# unlocks the way to the #wanderer\'s# %s#%s#.'
         gossip_colors = ['Light Blue', 'Yellow', 'Light Blue']
     else:
-        gossip_text = '#%s# unlocks the way to #%s#.'
+        gossip_text = '%s#%s# unlocks the way to %s#%s#.'
         gossip_colors = ['Light Blue', 'Light Blue']
 
-    return (GossipText(gossip_text % (required_location_text, location_text), gossip_colors, [required_location.name, location.name], [required_location.item.name, location.item.name]), [required_location, location])
+    return (GossipText(gossip_text % (required_item_player_text, required_item_text, item_player_text, item_text), gossip_colors, [required_location.name, location.name], [required_location.item.name, location.item.name]), [required_location, location])
 
 def get_barren_hint(spoiler: Spoiler, world: World, checked: set[str], all_checked: set[str]) -> HintReturn:
     if not hasattr(world, 'get_barren_hint_prev'):
