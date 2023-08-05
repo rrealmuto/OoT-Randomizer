@@ -127,6 +127,7 @@
                 is_adult",
             "Spirit Temple MQ Central Chamber Crate 1": "can_break_crate",
             "Spirit Temple MQ Central Chamber Crate 2": "can_break_crate",
+            "Spirit Temple MQ Central Chamber Small Wooden Crate": "True",
             "Spirit Temple MQ GS Sun Block Room": "
                 (logic_spirit_mq_sun_block_gs and Boomerang and
                     (can_play(Song_of_Time) or logic_spirit_mq_sun_block_sot)) or
@@ -167,7 +168,8 @@
         "region_name": "Spirit Temple Beamos Room",
         "dungeon": "Spirit Temple",
         "locations": {
-            "Spirit Temple MQ Beamos Room Chest": "has_explosives"
+            "Spirit Temple MQ Beamos Room Chest": "has_explosives",
+            "Spirit Temple MQ Beamos Room Small Wooden Crate": "can_play(Song_of_Time) and (has_explosives or Nuts)"
         },
         "exits": {
             "Spirit Temple Beyond Beamos Room": "can_play(Song_of_Time) and (has_explosives or Nuts)",

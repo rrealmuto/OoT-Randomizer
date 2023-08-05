@@ -3,7 +3,7 @@ from Rom import *
 def get_actor_list(rom, actor_func):
     actors = {}
     #scene_table = 0x00B71440
-    scene_table = 0x00BA0BB0
+    scene_table = 0x00BA0BB0 # for MQ
     for scene in range(0x00, 0x65):
         scene_data = rom.read_int32(scene_table + (scene * 0x14))
         actors.update(scene_get_actors(rom, actor_func, scene_data, scene))
@@ -72,6 +72,18 @@ def get_pots(rom):
         if actor_id == 0x111:
             return (scene, room_id, setup_num, actor_num, scenes[scene], process_pot(rom.read_bytes(actor, 16)))
     return get_actor_list(rom, get_pot_func)
+
+def get_crates(rom):
+    def get_crate_func(rom, actor_id, actor, scene, room_id, setup_num, actor_num):
+        if actor_id == 0x01A0:
+            return (scene, room_id, setup_num, actor_num, scenes[scene], process_crate(rom.read_bytes(actor, 16)))
+    return get_actor_list(rom, get_crate_func)
+
+def get_small_crates(rom):
+    def get_smallcrate_func(rom, actor_id, actor, scene, room_id, setup_num, actor_num):
+        if actor_id == 0x0110:
+            return (scene, room_id, setup_num, actor_num, scenes[scene], process_small_crate(rom.read_bytes(actor, 16)))
+    return get_actor_list(rom, get_smallcrate_func)
 
 def get_flying_pots(rom):
     def get_flyingpot_func(rom, actor_id, actor,scene,room_id,setup_num,actor_num):
@@ -240,6 +252,81 @@ def process_flying_pot(actor_bytes):
         "drop": hex(drop),
         "flag": hex(flag)
     }
+
+def process_small_crate(actor_bytes):
+    variable = (actor_bytes[14] << 8) + actor_bytes[15]
+    item_id = variable & 0x1F
+    item_dict = {
+        0x00: "Green Rupee",
+        0x01: "Blue Rupee",
+        0x02: "Red Rupee",
+        0x03: "Recovery Heart",
+        0x04: "Bombs (5)",
+        0x05: "Arrows (1)",
+        0x08: "Arrows (5)",
+        0x09: "Arrows (10)",
+        0x0A: "Arrows (30)",
+        0x0B: "Bombs (5)",
+        0x0C: "Deku Nuts (5)",
+        0x0D: "Deku Sticks (1)",
+        0x0E: "Magic Jar (Small)",
+        0x0F: "Magic Jar (Large)",
+        0x10: "Deku Seeds (5)",
+        0x11: "Small Key",
+        0x12: "Flexible (Fairy)",
+        0x13: "Huge Rupee",
+        0x14: "Purple Rupee",
+        0x15: "Deku Shield",
+        0x1F: "Empty",
+    }
+    if not item_id in item_dict.keys():
+        item_id = None
+    return{
+        "variable": hex(variable),
+        "item_id": item_dict[item_id]
+    }
+def process_crate(actor_bytes):
+    variable = (actor_bytes[14] << 8) + actor_bytes[15]
+    rx = (actor_bytes[8] << 8) + actor_bytes[9]
+    # for crates, item dropped iz in Rx
+    item_id = (rx & 0xFF)
+    item_dict = {
+        0x00: "Green Rupee",
+        0x01: "Blue Rupee",
+        0x02: "Red Rupee",
+        0x03: "Recovery Heart",
+        0x04: "Bombs (5)",
+        0x05: "Arrows (1)",
+        0x08: "Arrows (5)",
+        0x09: "Arrows (10)",
+        0x0A: "Arrows (30)",
+        0x0B: "Bombs (5)",
+        0x0C: "Deku Nuts (5)",
+        0x0D: "Deku Sticks (1)",
+        0x0E: "Magic Jar (Small)",
+        0x0F: "Magic Jar (Large)",
+        0x10: "Deku Seeds (5)",
+        0x11: "Small Key",
+        0x12: "Flexible (Fairy)",
+        0x13: "Huge Rupee",
+        0x14: "Purple Rupee",
+        0x15: "Deku Shield",
+        0x1F: "Empty",
+        0xFF: "Empty",
+    }
+    if not item_id in item_dict.keys():
+        item_id = None
+
+    actor_dict = {
+        "variable": hex(variable),
+        "rx": hex(rx),
+        "item_id": item_dict[item_id],
+        "skulltula": (variable & 0x8000) == 0
+    }
+    if actor_dict["skulltula"]:
+        actor_dict["skulltula_flag"] = variable & 0xFF
+    return actor_dict
+
 def process_pot(actor_bytes):
     variable = (actor_bytes[14] << 8) + actor_bytes[15]
     item_id = variable & 0x1F
@@ -273,8 +360,9 @@ def process_pot(actor_bytes):
         "item_id": item_dict[item_id]
     }
 
+#rom = Rom("ZOOTDEC.z64")
 rom = Rom("zeloot_mqdebug.z64")
-pots = get_flying_pots(rom)
+pots = get_crates(rom)
 
 for pot in pots:
     print(str(pot) + ": " + str(pots[pot]))

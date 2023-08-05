@@ -273,8 +273,17 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Market Night Green Rupee Crate 1",                             ("Crate",        0x21,  (0,0,24), None,                        'Rupee (1)',                             ("Market", "Crates",))),
     ("Market Night Green Rupee Crate 2",                             ("Crate",        0x21,  (0,0,25), None,                        'Rupee (1)',                             ("Market", "Crates",))),
     ("Market Night Green Rupee Crate 3",                             ("Crate",        0x21,  (0,0,26), None,                        'Rupee (1)',                             ("Market", "Crates",))),
+    ("Market Day Crate 1",                                           ("Crate",        0x20,  (0,0,34), None,                        'Nothing',                               ("Market", "Crates",))),
+    ("Market Day Crate 2",                                           ("Crate",        0x20,  (0,0,35), None,                        'Nothing',                               ("Market", "Crates",))),
+    ("Market Day Crate 3",                                           ("Crate",        0x20,  (0,0,36), None,                        'Nothing',                               ("Market", "Crates",))),
+    ("Market Day Crate 4",                                           ("Crate",        0x20,  (0,0,37), None,                        'Nothing',                               ("Market", "Crates",))),
+    
     ("Market Dog Lady House Crate",                                  ("Crate",        0x35,  (0,0,3), None,                         'Rupees (5)',                            ("Market", "Crates",))),
-    ("Market Guard House Child Crate",                               ("Crate",        0x4D,  (0,0,6), None,                         'Rupee (1)',                             ("Market", "Crates",))),
+    ("Market Guard House Child Crate 1",                             ("Crate",        0x4D,  (0,0,4), None,                         'Nothing',                               ("Market", "Crates",))),
+    ("Market Guard House Child Crate 2",                             ("Crate",        0x4D,  (0,0,5), None,                         'Nothing',                               ("Market", "Crates",))),
+    ("Market Guard House Child Crate 3",                             ("Crate",        0x4D,  (0,0,7), None,                         'Nothing',                               ("Market", "Crates",))),
+    ("Market Guard House Child Crate 4",                             ("Crate",        0x4D,  (0,0,6), None,                         'Rupee (1)',                             ("Market", "Crates",))),
+    
     ("Market Guard House Child Pot 1",                               ("Pot",          0x4D,  (0,0,9), None,                         'Rupee (1)',                             ("Market", "Pots",))),
     ("Market Guard House Child Pot 2",                               ("Pot",          0x4D,  (0,0,10), None,                        'Rupee (1)',                             ("Market", "Pots",))),
     ("Market Guard House Child Pot 3",                               ("Pot",          0x4D,  (0,0,11), None,                        'Rupee (1)',                             ("Market", "Pots",))),
@@ -434,8 +443,27 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Kak Near Guards House Pot 3",                                  ("Pot",          0x52,  [(0,0,17),(0,1,16)], None,             'Recovery Heart',                        ("Kakariko Village", "Pots",))),
     ("Kak Near Odd Medicine Building Pot 1",                         ("Pot",          0x52,  [(0,0,18),(0,1,17)], None,             'Recovery Heart',                        ("Kakariko Village", "Pots",))),
     ("Kak Near Odd Medicine Building Pot 2",                         ("Pot",          0x52,  [(0,0,19),(0,1,18)], None,             'Recovery Heart',                        ("Kakariko Village", "Pots",))),
-    ("Kak Adult Red Rupee Crate",                                    ("Crate",        0x52,  [(0,2,46),(0,3,43)], None,             'Rupees (20)',                           ("Kakariko Village", "Crates",))), # update crate flags to not conflict w/ child pots. These move day/night
-    ("Kak Adult Arrows Crate",                                       ("Crate",        0x52,  [(0,2,37),(0,3,40)], None,             'Arrows (10)',                           ("Kakariko Village", "Crates",))), # update crate flags to not conflict w/ child pots. These move day/night
+    ("Kak Adult Crate 1",                                            ("Crate",        0x52,  [(0,2,35),(0,3,33)], None,             'Nothing',                               ("Kakariko Village", "Crates",))), # Behind Skull House
+    ("Kak Adult Crate 2",                                            ("Crate",        0x52,  [(0,2,36),(0,3,34)], None,             'Nothing',                               ("Kakariko Village", "Crates",))), # Near Poor Kid
+    ("Kak Adult Arrows Crate",                                       ("Crate",        0x52,  [(0,2,37),(0,3,40)], None,             'Arrows (10)',                           ("Kakariko Village", "Crates",))), # Near poor kid (arrows)
+    ("Kak Adult Crate 3",                                            ("Crate",        0x52,  [(0,2,38),(0,3,36)], None,             'Nothing',                               ("Kakariko Village", "Crates",))), # Near impas
+    ("Kak Adult Crate 4",                                            ("Crate",        0x52,  [(0,2,39),(0,3,37)], None,             'Nothing',                               ("Kakariko Village", "Crates",))), # near impas
+    ("Kak Adult Crate 5",                                            ("Crate",        0x52,  [(0,2,40),(0,3,38)], None,             'Nothing',                               ("Kakariko Village", "Crates",))), # Near house w/ talon
+    ("Kak Adult Crate 6",                                            ("Crate",        0x52,  [(0,2,41),(0,3,39)], None,             'Nothing',                               ("Kakariko Village", "Crates",))), # Near house w/ talon
+    ("Kak Adult Crate 7",                                            ("Crate",        0x52,  [(0,2,42),(0,3,35)], None,             'Nothing',                               ("Kakariko Village", "Crates",))), # Shooting gallery (normally night time 40)
+    ("Kak Adult Crate 8",                                            ("Crate",        0x52,  [(0,2,43),(0,3,41)], None,             'Nothing',                               ("Kakariko Village", "Crates",))), # Near potion shop
+    ("Kak Adult Backyard Crate 1",                                   ("Crate",        0x52,  [(0,2,44),(0,3,42)], None,             'Nothing',                               ("Kakariko Village", "Crates",))), # Backyard
+    ("Kak Adult Backyard Crate 2",                                   ("Crate",        0x52,  [(0,2,45),(0,3,44)], None,             'Nothing',                               ("Kakariko Village", "Crates",))),
+    ("Kak Adult Red Rupee Crate",                                    ("Crate",        0x52,  [(0,2,46),(0,3,43)], None,             'Rupees (20)',                           ("Kakariko Village", "Crates",))),
+    ("Kak Adult Backyard Crate 3",                                   ("Crate",        0x52,  [(0,2,47),(0,3,45)], None,             'Nothing',                               ("Kakariko Village", "Crates",))),
+    
+    ("Kak Child Crate 1",                                            ("Crate",        0x52,  [(0,1,43),(0,0,50)], None,             'Nothing',                               ("Kakariko Village", "Crates",))),
+    ("Kak Child Crate 2",                                            ("Crate",        0x52,  [(0,1,44),(0,0,51)], None,             'Nothing',                               ("Kakariko Village", "Crates",))),
+    ("Kak Child Crate 3",                                            ("Crate",        0x52,  [(0,1,45),(0,0,52)], None,             'Nothing',                               ("Kakariko Village", "Crates",))),
+    ("Kak Child Crate 4",                                            ("Crate",        0x52,  [(0,1,46),(0,0,53)], None,             'Nothing',                               ("Kakariko Village", "Crates",))),
+    ("Kak Child Crate 5",                                            ("Crate",        0x52,  [(0,1,47),(0,0,54)], None,             'Nothing',                               ("Kakariko Village", "Crates",))),
+    
+    
     # Kak Beehives
     ("Kak Open Grotto Beehive 1",                                    ("Beehive",      0x3E,  (0,0,0x48 + (0x08 * 2)), None,         'Rupees (5)',                            ("Kakariko Village", "Grottos", "Beehives",))),
     ("Kak Open Grotto Beehive 2",                                    ("Beehive",      0x3E,  (0,0,0x49 + (0x08 * 2)), None,         'Rupees (20)',                           ("Kakariko Village", "Grottos", "Beehives",))),
@@ -460,6 +488,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Graveyard Dampe Race Rupee 7",                                 ("Freestanding", 0x48,  (3,0,1), None,                         'Rupee (1)',                             ("Graveyard", "Grottos", "Freestandings",))),
     ("Graveyard Dampe Race Rupee 8",                                 ("Freestanding", 0x48,  (3,0,2), None,                         'Rupee (1)',                             ("Graveyard", "Grottos", "Freestandings",))),
     # Graveyard Pots/Crates
+    ("Graveyard Freestanding PoH Crate",                             ("Crate",        0x53, [(1,0,22),(1,1,24),(1,2,34),(1,3,34)],None,'Nothing',                            ("Graveyard", "Crates"))),
     ("Graveyard Dampe Pot 1",                                        ("Pot",          0x48,  (0,0,1), None,                         'Recovery Heart',                        ("Graveyard", "Grottos", "Pots",))),
     ("Graveyard Dampe Pot 2",                                        ("Pot",          0x48,  (0,0,2), None,                         'Deku Nuts (5)',                         ("Graveyard", "Grottos", "Pots",))),
     ("Graveyard Dampe Pot 3",                                        ("Pot",          0x48,  (0,0,3), None,                         'Bombs (5)',                             ("Graveyard", "Grottos", "Pots",))),
@@ -729,7 +758,27 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("GF GS Top Floor",                                              ("GS Token",     0x14,  0x02, None,                            'Gold Skulltula Token',                  ("Gerudo's Fortress", "Gold Skulltulas",))),
     ("GF GS Archery Range",                                          ("GS Token",     0x14,  0x01, None,                            'Gold Skulltula Token',                  ("Gerudo's Fortress", "Gold Skulltulas",))),
     # Gerudo's Fortress Crates/Pots
+    ("GF Crate 1",                                                   ("Crate",        0x5D,  [(0,2,13),(0,3,13),(0,0,15)], None,    'Nothing',                               ("Gerudo's Fortress", "Crates",))),
+    ("GF Crate 2",                                                   ("Crate",        0x5D,  [(0,2,14),(0,3,14),(0,0,16)], None,    'Nothing',                               ("Gerudo's Fortress", "Crates",))),
+    ("GF Crate 3",                                                   ("Crate",        0x5D,  [(0,2,15),(0,3,15),(0,0,17)], None,    'Nothing',                               ("Gerudo's Fortress", "Crates",))),
+    ("GF Crate 4",                                                   ("Crate",        0x5D,  [(0,2,16),(0,3,16),(0,0,18)], None,    'Nothing',                               ("Gerudo's Fortress", "Crates",))),
+    ("GF Crate 5",                                                   ("Crate",        0x5D,  [(0,2,17),(0,3,17),(0,0,21)], None,    'Nothing',                               ("Gerudo's Fortress", "Crates",))),
+    ("GF Crate 6",                                                   ("Crate",        0x5D,  [(0,2,18),(0,3,18),(0,0,20)], None,    'Nothing',                               ("Gerudo's Fortress", "Crates",))),
     ("GF Above Jail Crate",                                          ("Crate",        0x5D,  [(0,2,19),(0,3,19)], None,             'Rupees (50)',                           ("Gerudo's Fortress", "Crates",))),
+    ("GF HBA Crate 1",                                               ("Crate",        0x5D,  [(1,3,2),(1,2,9),(1,0,1)], None,       'Nothing',                               ("Gerudo's Fortress", "Crates",))),
+    ("GF HBA Crate 2",                                               ("Crate",        0x5D,  [(1,3,3),(1,2,10),(1,0,2)], None,      'Nothing',                               ("Gerudo's Fortress", "Crates",))),
+    ("GF HBA Crate 3",                                               ("Crate",        0x5D,  [(1,3,4),(1,2,11),(1,0,3)], None,      'Nothing',                               ("Gerudo's Fortress", "Crates",))),
+    ("GF HBA Crate 4",                                               ("Crate",        0x5D,  [(1,3,5),(1,2,12),(1,0,14)], None,     'Nothing',                               ("Gerudo's Fortress", "Crates",))),
+    ("GF HBA Crate 5",                                               ("Crate",        0x5D,  [(1,3,6),(1,2,13),(1,0,5)], None,      'Nothing',                               ("Gerudo's Fortress", "Crates",))),
+    ("GF HBA Crate 6",                                               ("Crate",        0x5D,  [(1,3,7),(1,2,14),(1,0,6)], None,      'Nothing',                               ("Gerudo's Fortress", "Crates",))),
+    ("GF HBA Crate 7",                                               ("Crate",        0x5D,  [(1,3,8),(1,2,15),(1,0,7)], None,      'Nothing',                               ("Gerudo's Fortress", "Crates",))),
+    ("GF HBA Crate 8",                                               ("Crate",        0x5D,  [(1,3,9),(1,2,16),(1,0,8)], None,      'Nothing',                               ("Gerudo's Fortress", "Crates",))),
+    ("GF HBA Crate 9",                                               ("Crate",        0x5D,  [(1,3,10),(1,2,17),(1,0,9)], None,     'Nothing',                               ("Gerudo's Fortress", "Crates",))),
+    ("GF HBA Crate 10",                                              ("Crate",        0x5D,  [(1,3,11),(1,2,18),(1,0,10)], None,    'Nothing',                               ("Gerudo's Fortress", "Crates",))),
+    ("GF HBA Crate 11",                                              ("Crate",        0x5D,  [(1,3,12),(1,2,19),(1,0,11)], None,    'Nothing',                               ("Gerudo's Fortress", "Crates",))),
+    ("GF HBA Crate 12",                                              ("Crate",        0x5D,  [(1,3,13),(1,2,20),(1,0,12)], None,    'Nothing',                               ("Gerudo's Fortress", "Crates",))),
+    ("GF HBA Crate 13",                                              ("Crate",        0x5D,  [(1,3,14),(1,2,21),(1,0,13)], None,    'Nothing',                               ("Gerudo's Fortress", "Crates",))),
+    
 
     # Thieves' Hideout
     ("Hideout 1 Torch Jail Gerudo Key",                              ("Collectable",  0x0C,  0x0C, None,                            'Small Key (Thieves Hideout)',           ("Thieves' Hideout",))),
@@ -1002,7 +1051,8 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Jabu Jabus Belly Basement Switch Room Pot 1",                  ("Pot",          0x02,  (14,0,8), None,                        'Deku Seeds (30)',                       ("Jabu Jabu's Belly", "Vanilla Dungeons", "Pots",))),
     ("Jabu Jabus Belly Basement Switch Room Pot 2",                  ("Pot",          0x02,  (14,0,9), None,                        'Fairy Drop',                            ("Jabu Jabu's Belly", "Vanilla Dungeons", "Pots",))),
     ("Jabu Jabus Belly Basement Switch Room Pot 3",                  ("Pot",          0x02,  (14,0,10), None,                       'Deku Seeds (30)',                       ("Jabu Jabu's Belly", "Vanilla Dungeons", "Pots",))),
-    ("Jabu Jabus Belly Small Wooden Crate",                          ("SmallCrate",   0x02,  (1,0,8), None,                         'Recovery Heart',                        ("Jabu Jabu's Belly", "Vanilla Dungeons", "Small Crates",))),
+    ("Jabu Jabus Belly Small Wooden Crate 1",                        ("SmallCrate",   0x02,  (1,0,7), None,                         'Nothing',                               ("Jabu Jabu's Belly", "Vanilla Dungeons", "Small Crates",))),
+    ("Jabu Jabus Belly Small Wooden Crate 2",                        ("SmallCrate",   0x02,  (1,0,8), None,                         'Recovery Heart',                        ("Jabu Jabu's Belly", "Vanilla Dungeons", "Small Crates",))),
 
     # Jabu Jabu's Belly MQ
     ("Jabu Jabus Belly MQ Map Chest",                                ("Chest",        0x02,  0x03, None,                            'Map (Jabu Jabus Belly)',                ("Jabu Jabu's Belly MQ", "Master Quest", "Chests",))),
@@ -1027,16 +1077,21 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Jabu Jabus Belly MQ Underwater Green Rupee 3",                 ("Freestanding", 0x02,  (1,0,3), None,                         'Rupee (1)',                             ("Jabu Jabu's Belly MQ", "Master Quest", "Freestandings",))),
     ("Jabu Jabus Belly MQ Recovery Heart 1",                         ("Freestanding", 0x02,  (1,0,9), None,                         'Recovery Heart',                        ("Jabu Jabu's Belly MQ", "Master Quest", "Freestandings",))),
     ("Jabu Jabus Belly MQ Recovery Heart 2",                         ("Freestanding", 0x02,  (1,0,10), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly MQ", "Master Quest", "Freestandings",))),
-    # Jabu Jabu's Belly MQ Pots
+    # Jabu Jabu's Belly MQ Pots/Crates
     ("Jabu Jabus Belly MQ First Room Pot 1",                         ("Pot",          0x02,  (0,0,16), None,                        'Bombs (5)',                             ("Jabu Jabu's Belly MQ", "Master Quest", "Pots",))),
     ("Jabu Jabus Belly MQ First Room Pot 2",                         ("Pot",          0x02,  (0,0,17), None,                        'Deku Nuts (5)',                         ("Jabu Jabu's Belly MQ", "Master Quest", "Pots",))),
     ("Jabu Jabus Belly MQ Elevator Room Pot 1",                      ("Pot",          0x02,  (1,0,22), None,                        'Arrows (5)',                            ("Jabu Jabu's Belly MQ", "Master Quest", "Pots",))),
     ("Jabu Jabus Belly MQ Elevator Room Pot 2",                      ("Pot",          0x02,  (1,0,23), None,                        'Deku Nuts (5)',                         ("Jabu Jabu's Belly MQ", "Master Quest", "Pots",))),
+    ("Jabu Jabus Belly MQ Small Crate Near Cow 1",                   ("SmallCrate",   0x02,  (4,0,12), None,                        'Nothing',                               ("Jabu Jabu's Belly MQ", "Master Quest", "Small Crates",))),
+    ("Jabu Jabus Belly MQ Small Crate Near Cow 2",                   ("SmallCrate",   0x02,  (4,0,13), None,                        'Nothing',                               ("Jabu Jabu's Belly MQ", "Master Quest", "Small Crates",))),
     ("Jabu Jabus Belly MQ Near Boss Pot",                            ("Pot",          0x02,  (5,0,14), None,                        'Fairy Drop',                            ("Jabu Jabu's Belly MQ", "Master Quest", "Pots",))),
+    ("Jabu Jabus Belly MQ Hallway Small Crate 1",                    ("SmallCrate",   0x02,  (7,0,6), None,                         'Nothing',                               ("Jabu Jabu's Belly MQ", "Master Quest", "Small Crates",))),
+    ("Jabu Jabus Belly MQ Hallway Small Crate 2",                    ("SmallCrate",   0x02,  (7,0,6), None,                         'Nothing',                               ("Jabu Jabu's Belly MQ", "Master Quest", "Small Crates",))),
     ("Jabu Jabus Belly MQ Falling Like Like Room Pot 1",             ("Pot",          0x02,  (11,0,27), None,                       'Arrows (5)',                            ("Jabu Jabu's Belly MQ", "Master Quest", "Pots",))),
     ("Jabu Jabus Belly MQ Falling Like Like Room Pot 2",             ("Pot",          0x02,  (11,0,31), None,                       'Bombs (5)',                             ("Jabu Jabu's Belly MQ", "Master Quest", "Pots",))),
     ("Jabu Jabus Belly MQ Boomerang Room Pot 1",                     ("Pot",          0x02,  (14,0,11), None,                       'Bombs (5)',                             ("Jabu Jabu's Belly MQ", "Master Quest", "Pots",))),
     ("Jabu Jabus Belly MQ Boomerang Room Pot 2",                     ("Pot",          0x02,  (14,0,15), None,                       'Bombs (5)',                             ("Jabu Jabu's Belly MQ", "Master Quest", "Pots",))),
+    
     # Jabu Jabu's Belly Shared
     ("Jabu Jabus Belly Barinade Heart",                              ("BossHeart",    0x13,  0x4F, None,                            'Heart Container',                       ("Jabu Jabu's Belly", "Jabu Jabu's Belly MQ", "Vanilla Dungeons", "Master Quest",))),
     ("Jabu Jabus Belly Barinade Pot 1",                              ("Pot",          0x13,  (1,0,2), None,                         'Recovery Heart',                        ("Jabu Jabu's Belly", "Jabu Jabu's Belly MQ", "Vanilla Dungeons", "Master Quest", "Pots",))),
@@ -1258,7 +1313,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Fire Temple Moving Fire Room Recovery Heart 1",                ("Freestanding", 0x04,  (16,0,8), None,                        'Recovery Heart',                        ("Fire Temple", "Vanilla Dungeons", "Freestandings",))),
     ("Fire Temple Moving Fire Room Recovery Heart 2",                ("Freestanding", 0x04,  (16,0,9), None,                        'Recovery Heart',                        ("Fire Temple", "Vanilla Dungeons", "Freestandings",))),
     ("Fire Temple Moving Fire Room Recovery Heart 3",                ("Freestanding", 0x04,  (16,0,10), None,                       'Recovery Heart',                        ("Fire Temple", "Vanilla Dungeons", "Freestandings",))),
-    # Fire Temple Vanilla Pots
+    # Fire Temple Vanilla Pots/Crates
     ("Fire Temple Big Lava Room Pot 1",                              ("Pot",          0x04,  (1,0,27), None,                        'Arrows (10)',                           ("Fire Temple", "Vanilla Dungeons", "Pots",))),
     ("Fire Temple Big Lava Room Pot 2",                              ("Pot",          0x04,  (1,0,28), None,                        'Recovery Heart',                        ("Fire Temple", "Vanilla Dungeons", "Pots",))),
     ("Fire Temple Big Lava Room Pot 3",                              ("Pot",          0x04,  (1,0,29), None,                        'Arrows (10)',                           ("Fire Temple", "Vanilla Dungeons", "Pots",))),
@@ -1274,6 +1329,9 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Fire Temple Flame Maze Left Side Pot 2",                       ("Pot",          0x04,  (10,0,57), None,                       'Recovery Heart',                        ("Fire Temple", "Vanilla Dungeons", "Pots",))),
     ("Fire Temple Flame Maze Left Side Pot 3",                       ("Pot",          0x04,  (10,0,58), None,                       'Recovery Heart',                        ("Fire Temple", "Vanilla Dungeons", "Pots",))),
     ("Fire Temple Flame Maze Left Side Pot 4",                       ("Pot",          0x04,  (10,0,59), None,                       'Recovery Heart',                        ("Fire Temple", "Vanilla Dungeons", "Pots",))),
+    ("Fire Temple Hammer Staircase Small Wooden Crate 1",            ("SmallCrate",   0x04,  (14,0,3), None,                        'Nothing',                               ("Fire Temple", "Vanilla Dungeons", "Small Crates",))),
+    ("Fire Temple Hammer Staircase Small Wooden Crate 2",            ("SmallCrate",   0x04,  (14,0,4), None,                        'Nothing',                               ("Fire Temple", "Vanilla Dungeons", "Small Crates",))),
+
 
     # Fire Temple MQ
     ("Fire Temple MQ Map Room Side Chest",                           ("Chest",        0x04,  0x02, None,                            'Hylian Shield',                         ("Fire Temple MQ", "Master Quest", "Chests",))),
@@ -1326,13 +1384,13 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Fire Temple MQ Iron Knuckle Room Pot 8",                       ("Pot",          0x04,  (18,0,11), None,                       'Fairy Drop',                            ("Fire Temple MQ", "Master Quest", "Pots",))),
     ("Fire Temple MQ Boss Key Chest Room Pot 1",                     ("Pot",          0x04,  (19,0,15), None,                       'Rupees (5)',                            ("Fire Temple MQ", "Master Quest", "Pots",))),
     ("Fire Temple MQ Boss Key Chest Room Pot 2",                     ("Pot",          0x04,  (19,0,14), None,                       'Fairy Drop',                            ("Fire Temple MQ", "Master Quest", "Pots",))),
-   #("Fire Temple MQ Upper Maze Small Wooden Crate 1",               ("Pot",          0x04,  0x3F, None,                            'N/A',                                   ("Fire Temple MQ", "Master Quest", "Pots",))),
-   #("Fire Temple MQ Upper Maze Small Wooden Crate 2",               ("Pot",          0x04,  0x3F, None,                            'N/A',                                   ("Fire Temple MQ", "Master Quest", "Pots",))),
-   #("Fire Temple MQ Shoot Torch On Wall Room Small Wooden Crate 1", ("Pot",          0x04,  0x3F, None,                            'N/A',                                   ("Fire Temple MQ", "Master Quest", "Pots",))),
-   #("Fire Temple MQ Shoot Torch On Wall Room Small Wooden Crate 2", ("Pot",          0x04,  0x3F, None,                            'N/A',                                   ("Fire Temple MQ", "Master Quest", "Pots",))),
-   #("Fire Temple MQ Shoot Torch On Wall Room Small Wooden Crate 3", ("Pot",          0x04,  0x3F, None,                            'N/A',                                   ("Fire Temple MQ", "Master Quest", "Pots",))),
-   #("Fire Temple MQ Shoot Torch On Wall Room Small Wooden Crate 4", ("Pot",          0x04,  0x3F, None,                            'N/A',                                   ("Fire Temple MQ", "Master Quest", "Pots",))),
-   #("Fire Temple MQ Shoot Torch On Wall Room Small Wooden Crate 5", ("Pot",          0x04,  0x3F, None,                            'N/A',                                   ("Fire Temple MQ", "Master Quest", "Pots",))),
+    ("Fire Temple MQ Upper Lizalfos Maze Small Wooden Crate 1",      ("Pot",          0x04,  (5,0,33), None,                        'Nothing',                               ("Fire Temple MQ", "Master Quest", "Small Crates",))),
+    ("Fire Temple MQ Upper Lizalfos Maze Small Wooden Crate 2",      ("Pot",          0x04,  (5,0,34), None,                        'Nothing',                               ("Fire Temple MQ", "Master Quest", "Small Crates",))),
+    ("Fire Temple MQ Shoot Torch On Wall Room Small Wooden Crate 1", ("Pot",          0x04,  (16,0,14), None,                       'Nothing',                               ("Fire Temple MQ", "Master Quest", "Small Crates",))),
+    ("Fire Temple MQ Shoot Torch On Wall Room Small Wooden Crate 2", ("Pot",          0x04,  (16,0,15), None,                       'Nothing',                               ("Fire Temple MQ", "Master Quest", "Small Crates",))),
+    ("Fire Temple MQ Shoot Torch On Wall Room Small Wooden Crate 3", ("Pot",          0x04,  (16,0,16), None,                       'Nothing',                               ("Fire Temple MQ", "Master Quest", "Small Crates",))),
+    ("Fire Temple MQ Shoot Torch On Wall Room Small Wooden Crate 4", ("Pot",          0x04,  (16,0,17), None,                       'Nothing',                               ("Fire Temple MQ", "Master Quest", "Small Crates",))),
+    ("Fire Temple MQ Shoot Torch On Wall Room Small Wooden Crate 5", ("Pot",          0x04,  (16,0,18), None,                       'Nothing',                               ("Fire Temple MQ", "Master Quest", "Small Crates",))),
     # Fire Temple MQ Crates
     ("Fire Temple MQ Near Boss Left Crate 1",                        ("Crate",        0x04,  (2,0,14), None,                        'Rupee (1)',                             ("Fire Temple MQ", "Master Quest", "Crates",))),
     ("Fire Temple MQ Near Boss Left Crate 2",                        ("Crate",        0x04,  (2,0,15), None,                        'Rupee (1)',                             ("Fire Temple MQ", "Master Quest", "Crates",))),
@@ -1428,6 +1486,11 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Water Temple MQ Storage Room Pot 1",                           ("Pot",          0x05,  (4,0,14), None,                        'Recovery Heart',                        ("Water Temple MQ", "Master Quest", "Pots",))),
     ("Water Temple MQ Storage Room Pot 2",                           ("Pot",          0x05,  (4,0,15), None,                        'Recovery Heart',                        ("Water Temple MQ", "Master Quest", "Pots",))),
     ("Water Temple MQ Storage Room Pot 3",                           ("Pot",          0x05,  (4,0,16), None,                        'Recovery Heart',                        ("Water Temple MQ", "Master Quest", "Pots",))),
+    ("Water Temple MQ Storage Room Small Wooden Crate 1",            ("SmallCrate",   0x05,  (4,0,10), None,                        'Nothing',                               ("Water Temple MQ", "Master Quest", "Small Crates",))),
+    ("Water Temple MQ Storage Room Small Wooden Crate 2",            ("SmallCrate",   0x05,  (4,0,11), None,                        'Nothing',                               ("Water Temple MQ", "Master Quest", "Small Crates",))),
+    ("Water Temple MQ Storage Room Small Wooden Crate 3",            ("SmallCrate",   0x05,  (4,0,12), None,                        'Nothing',                               ("Water Temple MQ", "Master Quest", "Small Crates",))),
+    ("Water Temple MQ Storage Room Small Wooden Crate 4",            ("SmallCrate",   0x05,  (4,0,13), None,                        'Nothing',                               ("Water Temple MQ", "Master Quest", "Small Crates",))),
+    
     ("Water Temple MQ Before Dark Link Top Pot 1",                   ("Pot",          0x05,  (6,0,8), None,                         'Rupees (5)',                            ("Water Temple MQ", "Master Quest", "Pots",))),
     ("Water Temple MQ Before Dark Link Top Pot 2",                   ("Pot",          0x05,  (6,0,9), None,                         'Rupees (5)',                            ("Water Temple MQ", "Master Quest", "Pots",))),
     ("Water Temple MQ Before Dark Link Lower Pot 1",                 ("Pot",          0x05,  (6,0,10), None,                        'Deku Nuts (5)',                         ("Water Temple MQ", "Master Quest", "Pots",))),
@@ -1487,6 +1550,9 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Water Temple MQ Storage Room Crate 7",                         ("Crate",        0x05,  (4,0,9), None,                         'Rupee (1)',                             ("Water Temple MQ", "Master Quest", "Crates",))),
     ("Water Temple MQ Dragon Statue By Torches Crate 1",             ("Crate",        0x05,  (8,0,9), None,                         'Rupee (1)',                             ("Water Temple MQ", "Master Quest", "Crates",))),
     ("Water Temple MQ Dragon Statue By Torches Crate 2",             ("Crate",        0x05,  (8,0,10), None,                        'Rupee (1)',                             ("Water Temple MQ", "Master Quest", "Crates",))),
+    ("Water Temple MQ Dragon Statue By Torches Small Wooden Crate 1",("SmallCrate",   0x05,  (8,0,17), None,                        'Nothing',                               ("Water Temple MQ", "Master Quest", "Crates",))),
+    ("Water Temple MQ Dragon Statue By Torches Small Wooden Crate 2",("SmallCrate",   0x05,  (8,0,18), None,                        'Nothing',                               ("Water Temple MQ", "Master Quest", "Crates",))),
+    ("Water Temple MQ Dragon Statue By Torches Small Wooden Crate 3",("SmallCrate",   0x05,  (8,0,19), None,                        'Nothing',                               ("Water Temple MQ", "Master Quest", "Crates",))),
     ("Water Temple MQ Dragon Statue Submerged Crate 1",              ("Crate",        0x05,  (8,0,13), None,                        'Rupee (1)',                             ("Water Temple MQ", "Master Quest", "Crates",))),
     ("Water Temple MQ Dragon Statue Submerged Crate 2",              ("Crate",        0x05,  (8,0,14), None,                        'Rupee (1)',                             ("Water Temple MQ", "Master Quest", "Crates",))),
     ("Water Temple MQ Dragon Statue Submerged Crate 3",              ("Crate",        0x05,  (8,0,15), None,                        'Rupee (1)',                             ("Water Temple MQ", "Master Quest", "Crates",))),
@@ -1504,6 +1570,9 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Water Temple MQ Before Upper Water Switch Lower Crate 4",      ("Crate",        0x05,  (10,0,7), None,                        'Rupee (1)',                             ("Water Temple MQ", "Master Quest", "Crates",))),
     ("Water Temple MQ Before Upper Water Switch Lower Crate 5",      ("Crate",        0x05,  (10,0,8), None,                        'Rupee (1)',                             ("Water Temple MQ", "Master Quest", "Crates",))),
     ("Water Temple MQ Before Upper Water Switch Lower Crate 6",      ("Crate",        0x05,  (10,0,11), None,                       'Rupee (1)',                             ("Water Temple MQ", "Master Quest", "Crates",))),
+    ("Water Temple MQ Before Upper Water Switch Lower Small Crate",  ("SmallCrate",   0x05,  (10,0,12), None,                       'Rupee (1)',                             ("Water Temple MQ", "Master Quest", "Small Crates",))),
+    ("Water Temple MQ Before Upper Water Switch Upper Small Crate",  ("SmallCrate",   0x05,  (10,0,13), None,                       'Rupee (1)',                             ("Water Temple MQ", "Master Quest", "Small Crates",))),
+    
     ("Water Temple MQ Before Upper Water Switch Upper Crate 1",      ("Crate",        0x05,  (10,0,9), None,                        'Rupee (1)',                             ("Water Temple MQ", "Master Quest", "Crates",))),
     ("Water Temple MQ Before Upper Water Switch Upper Crate 2",      ("Crate",        0x05,  (10,0,10), None,                       'Rupee (1)',                             ("Water Temple MQ", "Master Quest", "Crates",))),
     ("Water Temple MQ Freestanding Key Area Behind Gate Crate 1",    ("Crate",        0x05,  (12,0,10), None,                       'Rupee (1)',                             ("Water Temple MQ", "Master Quest", "Crates",))),
@@ -1898,6 +1967,9 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     # Spirit Temple MQ Crates
     ("Spirit Temple MQ Central Chamber Crate 1",                     ("Crate",        0x06,  (5,0,12), None,                        'Rupee (1)',                             ("Spirit Temple MQ", "Master Quest", "Crates",))),
     ("Spirit Temple MQ Central Chamber Crate 2",                     ("Crate",        0x06,  (5,0,13), None,                        'Rupee (1)',                             ("Spirit Temple MQ", "Master Quest", "Crates",))),
+    ("Spirit Temple MQ Central Chamber Small Wooden Crate",          ("SmallCrate",   0x06,  (5,0,14), None,                        'Nothing',                               ("Spirit Temple MQ", "Master Quest", "Small Crates",))),
+    ("Spirit Temple MQ Beamos Room Small Wooden Crate",              ("SmallCrate",   0x06,  (17,0,1), None,                        'Nothing',                               ("Spirit Temple MQ", "Master Quest", "Small Crates",))),
+    
     ("Spirit Temple MQ Big Mirror Crate 1",                          ("Crate",        0x06,  (25,0,2), None,                        'Rupee (1)',                             ("Spirit Temple MQ", "Master Quest", "Crates",))),
     ("Spirit Temple MQ Big Mirror Crate 2",                          ("Crate",        0x06,  (25,0,3), None,                        'Rupee (1)',                             ("Spirit Temple MQ", "Master Quest", "Crates",))),
     ("Spirit Temple MQ Big Mirror Crate 3",                          ("Crate",        0x06,  (25,0,4), None,                        'Rupee (1)',                             ("Spirit Temple MQ", "Master Quest", "Crates",))),

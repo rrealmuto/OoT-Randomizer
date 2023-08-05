@@ -80,6 +80,8 @@
             "Jabu Jabus Belly MQ Falling Like Like Room Chest": "True",
             "Jabu Jabus Belly MQ Falling Like Like Room Pot 1": "True",
             "Jabu Jabus Belly MQ Falling Like Like Room Pot 2": "True",
+            "Jabu Jabus Belly MQ Hallway Small Crate 1": "True",
+            "Jabu Jabus Belly MQ Hallway Small Crate 2": "True",
             "Jabu Jabus Belly MQ GS Tailpasaran Room": "Sticks or can_use(Dins_Fire)"
         },
         "exits": {
@@ -93,6 +95,8 @@
             "Jabu Jabus Belly Floor Lowered": "True"
         },
         "locations": {
+            "Jabu Jabus Belly MQ Small Crate Near Cow 1": "True",
+            "Jabu Jabus Belly MQ Small Crate Near Cow 2": "True",
             "Jabu Jabus Belly MQ Cow": "can_play(Eponas_Song)"
         }
     },

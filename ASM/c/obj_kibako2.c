@@ -15,13 +15,19 @@ extern uint16_t drop_collectible_override_flag;
 void ObjKibako2_SpawnCollectible_Hack(ObjKibako2 *this, z64_game_t *globalCtx) {
     int16_t itemDropped;
     int16_t collectibleFlagTemp;
-
     collectibleFlagTemp = this->collectibleFlag & 0x3F;
     itemDropped = this->dyna.actor.rot_init.x & 0x1F;
-    if (itemDropped >= 0 && itemDropped < 0x1A) {
-        drop_collectible_override_flag = Actor_GetAdditionalData(&this->dyna.actor)->flag;
-        EnItem00* spawned = z64_Item_DropCollectible(globalCtx, &this->dyna.actor.pos_world, itemDropped | (collectibleFlagTemp << 8));
+    
+    uint16_t flag = Actor_GetAdditionalData(this)->flag;
+    if(flag && !Get_NewOverrideFlag(flag))
+    {
+        drop_collectible_override_flag = flag;
+        EnItem00* spawned = z64_Item_DropCollectible(globalCtx, &this->dyna.actor.pos_world, 0);
         drop_collectible_override_flag = 0;
+        return;
+    }
+    if (itemDropped >= 0 && itemDropped < 0x1A) {
+        EnItem00* spawned = z64_Item_DropCollectible(globalCtx, &this->dyna.actor.pos_world, itemDropped | (collectibleFlagTemp << 8));
     }
 }
 

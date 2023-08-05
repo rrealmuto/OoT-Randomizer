@@ -150,7 +150,10 @@
             "Fire Temple Flame Maze Right Side Pot 1": "True",
             "Fire Temple Flame Maze Right Side Pot 2": "True",
             "Fire Temple Flame Maze Right Side Pot 3": "True",
-            "Fire Temple Flame Maze Right Side Pot 4": "True"
+            "Fire Temple Flame Maze Right Side Pot 4": "True",
+            "Fire Temple Hammer Staircase Small Wooden Crate 1": "Megaton_Hammer",
+            "Fire Temple Hammer Staircase Small Wooden Crate 2": "Megaton_Hammer"
+
         },
         "exits": {
             "Fire Temple Before Boss": "

@@ -139,7 +139,9 @@
             "Fire Temple MQ Lizalfos Maze Upper Chest": "True",
             "Fire Temple MQ Upper Lizalfos Maze Crate 1": "True",
             "Fire Temple MQ Upper Lizalfos Maze Crate 2": "True",
-            "Fire Temple MQ Upper Lizalfos Maze Crate 3": "True"
+            "Fire Temple MQ Upper Lizalfos Maze Crate 3": "True",
+            "Fire Temple MQ Upper Lizalfos Maze Small Wooden Crate 1": "True",
+            "Fire Temple MQ Upper Lizalfos Maze Small Wooden Crate 2": "True"
         },
         "exits": {
             "Fire Temple Shortcut": "has_explosives",
@@ -195,7 +197,12 @@
             "Fire Temple MQ Shoot Torch On Wall Room Right Crate 2": "True",
             "Fire Temple MQ Shoot Torch On Wall Room Center Crate": "True",
             "Fire Temple MQ Shoot Torch On Wall Room Left Crate 1": "True",
-            "Fire Temple MQ Shoot Torch On Wall Room Left Crate 2": "True"
+            "Fire Temple MQ Shoot Torch On Wall Room Left Crate 2": "True",
+            "Fire Temple MQ Shoot Torch On Wall Room Small Wooden Crate 1": "True",
+            "Fire Temple MQ Shoot Torch On Wall Room Small Wooden Crate 2": "True",
+            "Fire Temple MQ Shoot Torch On Wall Room Small Wooden Crate 3": "True",
+            "Fire Temple MQ Shoot Torch On Wall Room Small Wooden Crate 4": "True",
+            "Fire Temple MQ Shoot Torch On Wall Room Small Wooden Crate 5": "True"
         },
         "exits": {
             "Fire Temple Narrow Path Room": "True",
