@@ -237,13 +237,6 @@ EnItem00_DropCollectibleFallAction_Hack:
     jr      ra
     nop
 
-drop_collectible2_hook:
-    li      t0, drop_collectible_override_flag
-    lh      t1, 0x00(t0) ; get the current override flag
-    sh      r0, 0x00(t0) ; clear the override_flag
-    jr      ra
-    sw      t1, 0x1C(sp) ; put the flag in the y rotation parameter which is at 0x1C(sp)
-
 item_give_hook:
     addiu sp, sp, -0x80
     sw      ra, 0x10(sp)

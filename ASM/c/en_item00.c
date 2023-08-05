@@ -1,6 +1,7 @@
 #include "z64.h"
 #include "en_item00.h"
 #include "get_items.h"
+#include "models.h"
 
 // EnItem00 Action Function used for sending outgoing junk overrides collected from enitem00 collectibles
 void EnItem00_OutgoingAction(EnItem00* this, z64_game_t* globalCtx) {
@@ -39,4 +40,16 @@ bool EnItem00_ProximityCheck_Hack(EnItem00* this, z64_game_t* GlobalCtx) {
         }
     }
     return false;
+}
+
+
+extern void en_item00_update(EnItem00* this, z64_game_t* globalCtx);
+
+void en_item00_update_hook(EnItem00* this, z64_game_t* globalCtx)
+{
+    if(this->override.key.all && this->actionFunc != Collectible_WaitForMessageBox)
+    {
+        lookup_model_by_override(&this->model, this->override);
+    }
+    en_item00_update(this, globalCtx);
 }

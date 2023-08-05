@@ -2,13 +2,13 @@ CURR_ACTOR_SPAWN_INDEX:
 .halfword 0x0000
 .halfword 0x0000
 
-Actor_SetWorldToHome_Hook:
-    addiu   sp, sp, -0x20
-    sw      ra, 0x1C (sp)
-    jal     Actor_SetWorldToHome_End
-    nop
-    lw      ra, 0x1C (sp)
-    jr      ra
+Actor_SetWorldToHome_Hook:	
+    addiu   sp, sp, -0x20	
+    sw      ra, 0x1C (sp)	
+    jal     Actor_SetWorldToHome_End	
+    nop	
+    lw      ra, 0x1C (sp)	
+    jr      ra	
     addiu   sp, sp, 0x20
 
 ; Hacks Actor_UpdateAll so that we can override actor spawns.
@@ -56,4 +56,44 @@ Actor_UpdateAll_Hook:
     lw      s1, 0x3C(sp)
     lw      ra, 0x40(sp)
     jr      ra
-    addiu   sp, sp, 0x50
+    addiu   sp, sp, 0x50 
+
+; Hacks the call to ZeldaArena_Malloc when spawning an actor in Actor_Spawn to increases the size of the actor
+; v1 - ActorInit struct from actor overlay table
+; a0 - size of the actor
+Actor_Spawn_Malloc_Hack:
+    addiu   sp, sp, -0x20
+    sw      ra, 0x10(sp)
+    sw      s0, 0x14(sp)
+; Check if this is the player actor. Don't want to increase this.
+    lh      s0, 0x00(v1) ; Get the ID from the entry
+    beqz    s0, @spawn
+    nop
+    addiu   a0, a0, 0x10 ; Increase the size of the actor 
+@spawn:
+    jal     0x80066C10 ; (ZeldaArena_Malloc)
+    nop  
+    lw      s0, 0x14(sp)
+    lw      ra, 0x10(sp)
+    jr      ra
+    addiu   sp, sp, 0x20
+
+Actor_Spawn_Shift:
+    addiu   sp, sp, -0x20
+    sw      s0, 0x10(sp)
+
+    ; Get the ActorInit from the stack. it was at 0x4C(sp) but we just moved down 0x20
+    lw      s0, 0x6C(sp)
+    lh      s0, 0x00(s0)
+    beqz    s0, @end
+    nop
+    addiu   v0, v0, 0x10
+    ; This is code that occurs in a delay slot in a branch earlier in the code. Need to call it again because it used v0
+    or      a3, v0, r0
+@end:
+    lw      s0, 0x10(sp)
+    ; Replaced code
+    lb      t2, 0x001E(s0)
+    lui     at, 0x0001
+    jr      ra
+    addiu   sp, sp, 0x20

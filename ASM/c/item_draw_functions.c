@@ -393,6 +393,26 @@ void draw_gi_fairy_lantern(z64_game_t *game, uint32_t draw_id) {
     pop_sys_matrix();
 }
 
+void draw_gi_fairy(z64_game_t *game, uint32_t draw_id) {
+    z64_gfx_t *gfx = game->common.gfx;
+
+    append_setup_dl_25_to_xlu(gfx);
+    gSPSegment(gfx->poly_xlu.p++, 0x08,
+               gen_double_tile(gfx,
+                               0, 0, 0, 32, 32,
+                               1, game->common.state_frames, -(game->common.state_frames * 6), 32, 32));
+    duplicate_sys_matrix();
+    update_sys_matrix(game->mf_11DA0);
+    gSPMatrix(gfx->poly_xlu.p++, append_sys_matrix(gfx), G_MTX_MODELVIEW | G_MTX_LOAD | G_MTX_NOPUSH);
+    gDPSetRenderMode(gfx->poly_xlu.p++, G_RM_PASS, G_RM_AA_ZB_XLU_SURF2);
+    gDPSetTextureLUT(gfx->poly_xlu.p++, G_TT_NONE);
+    gSPLoadGeometryMode(gfx->poly_xlu.p++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_FOG | G_LIGHTING | G_SHADING_SMOOTH);
+    gSPClearGeometryMode(gfx->poly_xlu.p++,G_CULL_BACK | G_FOG);
+    gSPSetGeometryMode(gfx->poly_xlu.p++,G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR);
+    gSPDisplayList(gfx->poly_xlu.p++, item_draw_table[draw_id].args[0].dlist);
+    pop_sys_matrix();
+}
+
 void draw_gi_poe_bottles(z64_game_t *game, uint32_t draw_id) {
     z64_gfx_t *gfx = game->common.gfx;
 

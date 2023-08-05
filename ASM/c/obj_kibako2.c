@@ -1,5 +1,6 @@
 #include "obj_kibako2.h"
 #include "textures.h"
+#include "actor.h"
 #define CRATE_DLIST (z64_gfx_t *)0x06000960
 
 #define CRATE_CI8_TEXTURE_PALETTE_OFFSET 0x00
@@ -18,27 +19,10 @@ void ObjKibako2_SpawnCollectible_Hack(ObjKibako2 *this, z64_game_t *globalCtx) {
     collectibleFlagTemp = this->collectibleFlag & 0x3F;
     itemDropped = this->dyna.actor.rot_init.x & 0x1F;
     if (itemDropped >= 0 && itemDropped < 0x1A) {
-        drop_collectible_override_flag = this->dyna.actor.rot_init.y;
+        drop_collectible_override_flag = Actor_GetAdditionalData(&this->dyna.actor)->flag;
         EnItem00* spawned = z64_Item_DropCollectible(globalCtx, &this->dyna.actor.pos_world, itemDropped | (collectibleFlagTemp << 8));
         drop_collectible_override_flag = 0;
     }
-}
-
-override_t get_crate_override(z64_actor_t *actor, z64_game_t *game) {
-    // make a dummy EnItem00 with enough info to get the override
-    EnItem00 dummy;
-    dummy.actor.actor_id = 0x15;
-    dummy.actor.rot_init.y = actor->rot_init.y;
-    dummy.actor.variable = 0;
-
-    override_t override = lookup_override(&(dummy.actor), game->scene_index, 0);
-    if (override.key.all != 0) {
-        dummy.override = override;
-        if (!Get_CollectibleOverrideFlag(&dummy)) {
-            return override;
-        }
-    }
-    return (override_t) { 0 };
 }
 
 void ObjKibako2_Draw(z64_actor_t *actor, z64_game_t *game) {

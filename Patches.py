@@ -1842,8 +1842,8 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     rom.write_bytes(rom.sym('collectible_scene_flags_table'), collectible_flag_table_bytes)
     num_collectible_flags += num_collectible_flags % 8
     rom.write_bytes(rom.sym('num_override_flags'), num_collectible_flags.to_bytes(2, 'big'))
-    if len(alt_list) > 64:
-        raise RuntimeError(f'Exceeded alt override table size: {len(alt_list)}')
+    if(len(alt_list) > 80):
+        raise(RuntimeError(f'Exceeded alt override table size: {len(alt_list)}'))
     rom.write_bytes(rom.sym('alt_overrides'), alt_list_bytes)
 
     # Write item overrides
@@ -3122,7 +3122,7 @@ def patch_rupee_tower(location: Location, rom: Rom) -> None:
     else:
         raise Exception(f"Location does not have compatible data for patch_rupee_tower: {location.name}")
 
-    flag = flag + (room << 8)
+    flag = flag | (room << 8) | (scene_setup << 14)
     if location.address:
         for address in location.address:
             rom.write_bytes(address + 12, flag.to_bytes(2, byteorder='big'))

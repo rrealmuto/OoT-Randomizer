@@ -20,6 +20,8 @@
             "Fire Temple Near Boss Chest": "True",
             "Fire Temple Near Boss Pot 1": "is_adult and (Hover_Boots or Hookshot)",
             "Fire Temple Near Boss Pot 2": "is_adult and (Hover_Boots or Hookshot)",
+            "Fire Temple Near Boss Pot 3": "is_adult and (Hover_Boots or Hookshot)",
+            "Fire Temple Near Boss Pot 4": "is_adult and (Hover_Boots or Hookshot)",
             "Fairy Pot": "is_adult and has_bottle and (Hover_Boots or Hookshot)"
         },
         "exits": {

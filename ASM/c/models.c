@@ -6,20 +6,12 @@
 #include "util.h"
 #include "z64.h"
 #include "shop_actors.h"
+#include "actor.h"
 
 #define slot_count 24
 #define object_size 0x1E70
 #define num_vanilla_objects 0x192
 
-typedef struct {
-    uint16_t object_id;
-    uint8_t graphic_id;
-} model_t;
-
-typedef struct {
-    uint16_t object_id;
-    uint8_t *buf;
-} loaded_object_t;
 
 extern uint32_t SHUFFLE_CHEST_GAME;
 extern uint32_t EXTENDED_OBJECT_TABLE;
@@ -180,14 +172,13 @@ bool collectible_draw(z64_actor_t *actor, z64_game_t *game) {
         .graphic_id = 0x00,
     };
 
-    if (this->override.key.all) {
-        lookup_model_by_override(&model, this->override);
-        if (model.object_id != 0x0000 && (this->actor.dropFlag == 1 || !Get_CollectibleOverrideFlag(this) || (collectible_mutex == this))) {
-            if (collectible_mutex != this) {
-                draw_model(model, actor, game, 25.0);
-            }
-            return true;
+    if(this->override.key.all)
+    {
+        model = this->model;
+        if(model.object_id != 0x0000) {
+            draw_model(model, actor, game, 25.0);
         }
+        return true;
     }
     return false;
 }
@@ -223,7 +214,7 @@ void collectible_draw_other(z64_actor_t *actor, z64_game_t *game) {
     // Pretty sure there are no freestanding collectibles of these types. But let's just do it anyway
     if (this->override.key.all) {
         lookup_model_by_override(&model, this->override);
-        if (model.object_id != 0x0000 && (this->actor.dropFlag == 1 || !Get_CollectibleOverrideFlag(this) || (collectible_mutex == this))) {
+        if(model.object_id != 0x0000 && (this->actor.dropFlag==1 || !Get_NewOverrideFlag(this->override.key.flag) || (collectible_mutex == this))) {
             if (collectible_mutex != this) {
                 draw_model(model, actor, game, 25.0);
             }

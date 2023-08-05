@@ -1032,6 +1032,7 @@
             "Wasteland Near GS Pot 1": "True",
             "Wasteland Near GS Pot 2": "True",
             "Wasteland Near GS Pot 3": "True",
+            "Wasteland Near GS Pot 4": "True",
             "Wasteland Crate After Quicksand 1": "can_break_crate",
             "Wasteland Crate After Quicksand 2": "can_break_crate",
             "Wasteland Crate After Quicksand 3": "can_break_crate",
@@ -1374,6 +1375,10 @@
             "Market Guard House Adult Pot 5": "is_adult",
             "Market Guard House Adult Pot 6": "is_adult",
             "Market Guard House Adult Pot 7": "is_adult",
+            "Market Guard House Adult Pot 8": "is_adult",
+            "Market Guard House Adult Pot 9": "is_adult",
+            "Market Guard House Adult Pot 10": "is_adult",
+            "Market Guard House Adult Pot 11": "is_adult",
             "Market GS Guard House": "is_child and can_break_crate"
         },
         "exits": {

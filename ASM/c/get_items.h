@@ -3,6 +3,7 @@
 
 #include <stdbool.h>
 #include "z64.h"
+#include "models.h"
 
 extern uint16_t CFG_ADULT_TRADE_SHUFFLE;
 extern uint16_t CFG_CHILD_TRADE_SHUFFLE;
@@ -74,6 +75,7 @@ typedef struct EnItem00 {
     ColliderCylinder collider;      // 0x0150 size = 4C
     override_t override;            // 0x019C
     bool is_silver_rupee;            // 0x????
+    model_t model;
 } EnItem00;
 
 
@@ -81,13 +83,15 @@ typedef void (*z64_EnItem00ActionFunc)(struct EnItem00 *, z64_game_t *);
 typedef EnItem00 *(*z64_Item_DropCollectible_proc)(z64_game_t *globalCtx, z64_xyzf_t *spawnPos, int16_t params);
 
 override_t lookup_override_by_key(override_key_t key);
+override_t lookup_override_by_newflag(uint16_t flag, uint8_t scene);
 override_t lookup_override(z64_actor_t *actor, uint8_t scene, uint8_t item_id);
 override_key_t resolve_alternative_override(override_key_t override_key);
+uint16_t resolve_alternative_flag(uint8_t scene, uint16_t flag);
 override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_t item_id);
 override_t get_override_if_collectible_flag_not_set(EnItem00 *item00);
 void Collectible_WaitForMessageBox(EnItem00 *this, z64_game_t *game);
 void reset_collectible_mutex();
 void override_flags_init();
-bool Get_CollectibleOverrideFlag(EnItem00 *item00);
+bool Get_NewOverrideFlag(uint16_t flag);
 
 #endif

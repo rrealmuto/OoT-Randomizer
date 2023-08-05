@@ -391,6 +391,16 @@ Gameplay_InitSkybox:
 
 ; en_item00_update() hacks - 0x80012938
 
+; Hook the entire en_item00_update function
+; Replaced code:
+;   addiu   sp, sp, -0x48
+;   sw      s1, 0x0020(sp)
+.headersize(0x800110A0 - 0xA87000)
+.org 0x80012938
+    j   en_item00_update_hook
+    nop
+en_item00_update_continue:
+
 ; Runs when player collides w/ Collectible (inside en_item00_update()) start of switch case at 0x80012CA4
 
 ; Override Item_Give(RUPEE_GREEN)
@@ -671,18 +681,6 @@ SRAM_SLOTS:
 ;.orga 0xA89D4C
 ;    jal     get_override_drop_id
 
-; Hack Item_DropCollectible call to Actor_Spawn to set override
-; replaces
-;   jal     0x80025110
-.orga 0xA8972C ; in memory 0x800137B8
-    jal     Item_DropCollectible_Actor_Spawn_Override
-
-; Hack Item_DropCollectible2 call to Actor_Spawn to set override
-; replaces
-;   jal     0x80025110
-.orga 0xA89958 ; in memory 0x800139E0
-    jal     Item_DropCollectible_Actor_Spawn_Override
-
 ; Hack ObjTsubo_SpawnCollectible (Pot) to call our overridden spawn function
 .orga 0xDE7C60
     j       ObjTsubo_SpawnCollectible_Hack
@@ -818,6 +816,32 @@ bg_spot18_basket_rupees_loopstart: ; our new loop branch target
     nop
     nop
     nop
+
+; Hack in Actor_Spawn when allocating space for the actor to increase the size of every actor by a fixed amount
+.headersize (0x800110A0 - 0xA87000)
+.org 0x800252A8
+; Replaces:
+;   jal     0x80066C10 (ZeldaArena_Malloc)
+;   sw      v1, 0x004C(sp)
+    jal     Actor_Spawn_Malloc_Hack
+    sw      v1, 0x004C(sp)
+
+
+; Hack in Actor_Spawn after the null check to offset the pointer by the amount that we added to the actor, so the new data is at the start
+.org 0x800252CC
+; Replaces:
+;   lb      t2, 0x001E(s0)
+;   lui     at, 0x0001
+    jal     Actor_Spawn_Shift
+    nop
+
+; Hack in Actor_Delete to shift the pointer back to the start of the actor that was malloc'd to include the new data.
+.org 0x8002570C
+; Replaces:
+;   jal     0x80066C90
+;   or      a0, s0, r0
+    .skip   4
+    addiu   a0, s0, -0x10
 
 ; Hook at the end of Actor_SetWorldToHome to zeroize anything we use to store additional flag data
 .orga 0xA96E5C ; In memory: 0x80020EFC
