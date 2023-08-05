@@ -404,6 +404,7 @@ void draw_gi_fairy(z64_game_t *game, uint32_t draw_id) {
     duplicate_sys_matrix();
     update_sys_matrix(game->mf_11DA0);
     gSPMatrix(gfx->poly_xlu.p++, append_sys_matrix(gfx), G_MTX_MODELVIEW | G_MTX_LOAD | G_MTX_NOPUSH);
+    // Not sure how much of this is required but these are called from the bottle DL. Not including them causes it to draw weird
     gDPSetRenderMode(gfx->poly_xlu.p++, G_RM_PASS, G_RM_AA_ZB_XLU_SURF2);
     gDPSetTextureLUT(gfx->poly_xlu.p++, G_TT_NONE);
     gSPLoadGeometryMode(gfx->poly_xlu.p++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_FOG | G_LIGHTING | G_SHADING_SMOOTH);

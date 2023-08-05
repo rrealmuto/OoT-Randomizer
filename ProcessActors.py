@@ -2,7 +2,8 @@ from Rom import *
 
 def get_actor_list(rom, actor_func):
     actors = {}
-    scene_table = 0x00B71440
+    #scene_table = 0x00B71440
+    scene_table = 0x00BA0BB0
     for scene in range(0x00, 0x65):
         scene_data = rom.read_int32(scene_table + (scene * 0x14))
         actors.update(scene_get_actors(rom, actor_func, scene_data, scene))
@@ -272,8 +273,8 @@ def process_pot(actor_bytes):
         "item_id": item_dict[item_id]
     }
 
-rom = Rom("ZOOTDEC.z64")
-pots = get_empty_flying_pots(rom)
+rom = Rom("zeloot_mqdebug.z64")
+pots = get_flying_pots(rom)
 
 for pot in pots:
     print(str(pot) + ": " + str(pots[pot]))

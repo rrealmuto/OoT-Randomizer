@@ -115,6 +115,7 @@
             "Jabu Jabus Belly MQ Near Boss Chest": "can_use(Slingshot)",
             "Jabu Jabus Belly MQ GS Near Boss": "
                 can_use(Boomerang) or (logic_jabu_near_boss_ranged and can_use(Hookshot))",
+            "Jabu Jabus Belly MQ Near Boss Pot": "True",
             "Fairy Pot": "has_bottle"
         },
         "exits": {
