@@ -112,8 +112,8 @@ item_row_t item_table[] = {
     [0x0052] = ITEM_ROW(0x53,      GILDED_CHEST, 0x29, -1, 0x0015, 0x0151, 0x5C, no_upgrade, trade_quest_upgrade, 0x29, -1, NULL), // Zora Mask
     [0x0053] = ITEM_ROW(0x53,      GILDED_CHEST, 0x2A, -1, 0x0016, 0x0152, 0x5D, no_upgrade, trade_quest_upgrade, 0x2A, -1, NULL), // Gerudo Mask
     [0x0054] = ITEM_ROW(0x53,      GILDED_CHEST, 0x50, -1, 0x0079, 0x0147, 0x58, no_upgrade, no_effect, -1, -1, NULL), // Goron's Bracelet
-    [0x0055] = ITEM_ROW(0x4D,       BROWN_CHEST, 0x87, 19, 0x00F1, 0x017F, 0x71, no_upgrade, no_effect, -1, -1, NULL), // Purple Rupee
-    [0x0056] = ITEM_ROW(0x4D,       BROWN_CHEST, 0x88, 20, 0x00F2, 0x017F, 0x72, no_upgrade, no_effect, -1, -1, NULL), // Huge Rupee
+    [0x0055] = ITEM_ROW(0x4D,       BROWN_CHEST, 0x87, 20, 0x00F1, 0x017F, 0x71, no_upgrade, no_effect, -1, -1, NULL), // Purple Rupee
+    [0x0056] = ITEM_ROW(0x4D,       BROWN_CHEST, 0x88, 19, 0x00F2, 0x017F, 0x72, no_upgrade, no_effect, -1, -1, NULL), // Huge Rupee
     [0x0057] = ITEM_ROW(0x53,      GILDED_CHEST, 0x3D, -1, 0x000C, 0x00F8, 0x43, no_upgrade, give_biggoron_sword, -1, -1, NULL), // Biggoron's Sword
     [0x0058] = ITEM_ROW(0x53,      GILDED_CHEST, 0x04, -1, 0x0070, 0x0158, 0x60, no_upgrade, no_effect, -1, -1, NULL), // Fire Arrow
     [0x0059] = ITEM_ROW(0x53,      GILDED_CHEST, 0x0C, -1, 0x0071, 0x0158, 0x61, no_upgrade, no_effect, -1, -1, NULL), // Ice Arrow
@@ -328,6 +328,8 @@ item_row_t item_table[] = {
     [0x0117] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x00A1, 0x01A1, 0x88, no_upgrade, give_small_key, CASTLE_ID, -1, resolve_text_small_keys), // Ganon's Castle Small Key
     [0x0118] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x913E, 0x01A2, 0x89, no_upgrade, give_small_key, TCG_ID,    -1, resolve_text_small_keys_cmg), // Small Key (Chest Game)
 
+    [0x0119] = ITEM_ROW(0x53, HEART_CHEST_SMALL, 0x41, -1, 0x90B4, 0x0177, 0x95, no_upgrade, full_heal, -1, -1, NULL), // Fairy
+    [0x011A] = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x90B5, 0x0177, 0x96, no_upgrade, no_effect, -1, -1, NULL), // Nothing :)
 };
 
 /*  Determine which message to display based on the number of silver rupees collected.

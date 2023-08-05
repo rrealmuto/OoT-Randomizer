@@ -2602,9 +2602,6 @@ class SettingInfos:
             Overworld Only: Only overworld pots/flying pots are shuffled.
             Dungeons Only: Only dungeon pots/flying pots are shuffled.
 
-            Note: Only pots which normally drop an item are shuffled.
-            Empty pots are not shuffled. Pots containing fairies are not shuffled.
-
             When this setting is enabled, the pots in Ganon's Tower will be
             accessible without Ganon's Boss Key. Proceeding up the tower out
             of the room with the pots will require Ganon's Boss Key.
@@ -2613,8 +2610,22 @@ class SettingInfos:
             'randomize_key': 'randomize_settings',
         },
         shared         = True,
+        disable        = {
+            'off': {'settings' : ['shuffle_empty_pots']},
+        }
     )
-
+    shuffle_empty_pots = Checkbutton(
+        gui_text       = 'Include empty pots',
+        default        = False,
+        gui_tooltip    = '''\
+            Enabling this will include empty pots into the location
+            pool based on the Shuffle Pots setting chosen.
+        ''',
+        gui_params={
+            "hide_when_disabled": True,
+        },
+        shared         = True
+    )
     shuffle_crates = Combobox(
         gui_text       = 'Shuffle Crates',
         default        = 'off',
@@ -2638,6 +2649,22 @@ class SettingInfos:
             'randomize_key': 'randomize_settings',
         },
         shared         = True,
+        disable        = {
+            'off': {'settings' : ['shuffle_empty_crates']},
+        }
+    )
+
+    shuffle_empty_crates = Checkbutton(
+        gui_text       = 'Include empty crates',
+        default        = False,
+        gui_tooltip    = '''\
+            Enabling this will include empty crates into the location
+            pool based on the Shuffle Pots setting chosen.
+        ''',
+        gui_params={
+            "hide_when_disabled": True,
+        },
+        shared         = True
     )
 
     shuffle_cows = Checkbutton(

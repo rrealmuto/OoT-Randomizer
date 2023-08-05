@@ -116,7 +116,7 @@ RANDO_CONTEXT:
 .include "drop_overrides/bg_haka_tubo.asm"
 .include "drop_overrides/bg_spot18_basket.asm"
 .include "drop_overrides/obj_comb.asm"
-.include "drop_overrides/actor.asm"
+.include "actor.asm"
 .include "rand_seed.asm"
 .include "messages.asm"
 .include "player_save_mask.asm"
@@ -124,11 +124,9 @@ RANDO_CONTEXT:
 .include "camera_init.asm"
 .include "chest_game.asm"
 .include "en_item00.asm"
-
 .include "armos.asm"
 .include "ocarina_buttons.asm"
 .include "fairy_ocarina.asm"
-
 
 .align 0x10
 .importobj "../build/bundle.o"
@@ -141,6 +139,8 @@ TRIFORCE_ICON_TEXTURE:
 .incbin("../resources/triforce_sprite.bin")
 
 .align 0x10
+
+.skip 0x200 ; Temporary address bump to avoid audio issues
 
 AUDIO_THREAD_MEM_START:
 .skip AUDIO_THREAD_MEM_SIZE

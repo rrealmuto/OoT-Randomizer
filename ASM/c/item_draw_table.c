@@ -163,6 +163,8 @@ item_draw_table_entry_t item_draw_table[] = {
     [0x91] = { draw_gi_c_button_vertical,   { 0x06000960, 0xFFA000FF, 1 } }, // Cdown button
     [0x92] = { draw_gi_c_button_horizontal, { 0x06000E10, 0xFFA000FF, 1 } }, // Cleft button
     [0x93] = { draw_gi_c_button_horizontal, { 0x06000E10, 0xFFA000FF, 0 } }, // Cright button
+    [0x94] = { draw_gi_fairy,               { 0x06000EF0 } }, // Fairy (not in a bottle but uses the fairy from the bottle)
+    [0x95] = { draw_gi_nothing,             {}}
 };
 
 void base_draw_gi_model(z64_game_t *game, uint32_t draw_id) {

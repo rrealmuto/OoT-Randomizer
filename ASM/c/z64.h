@@ -466,6 +466,22 @@ typedef enum
   Z64_ITEMBTN_CR,
 } z64_itembtn_t;
 
+typedef enum {
+    /* 0x00 */ ACTORCAT_SWITCH,
+    /* 0x01 */ ACTORCAT_BG,
+    /* 0x02 */ ACTORCAT_PLAYER,
+    /* 0x03 */ ACTORCAT_EXPLOSIVE,
+    /* 0x04 */ ACTORCAT_NPC,
+    /* 0x05 */ ACTORCAT_ENEMY,
+    /* 0x06 */ ACTORCAT_PROP,
+    /* 0x07 */ ACTORCAT_ITEMACTION,
+    /* 0x08 */ ACTORCAT_MISC,
+    /* 0x09 */ ACTORCAT_BOSS,
+    /* 0x0A */ ACTORCAT_DOOR,
+    /* 0x0B */ ACTORCAT_CHEST,
+    /* 0x0C */ ACTORCAT_MAX
+} ActorCategory;
+
 typedef struct
 {
   char      unk_00_[0x006E];        /* 0x0000 */
@@ -969,7 +985,9 @@ struct z64_actor_s
   uint8_t         damage_effect;    /* 0x00B1 */
   char            unk_0E_[0x0002];  /* 0x00B2 */
   z64_rot_t       rot_2;            /* 0x00B4 */
-  char            unk_0F_[0x0046];  /* 0x00BA */
+  int16_t         face;             /* 0x00BA */
+  float           yOffset;          /* 0x00BC */
+  char            unk_0F_[0x0040];  /* 0x00C0 */
   z64_xyzf_t      pos_4;            /* 0x0100 */
   uint16_t        unk_10_;          /* 0x010C */
   uint16_t        text_id;          /* 0x010E */
