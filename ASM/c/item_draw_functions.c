@@ -629,3 +629,7 @@ void draw_gi_c_button_horizontal(z64_game_t *game, uint32_t draw_id) {
     gDPSetPrimColor(gfx->poly_opa.p++, 0, 0x80, prim_color.r, prim_color.g, prim_color.b, prim_color.a);
     gSPDisplayList(gfx->poly_opa.p++, item_draw_table[draw_id].args[0].dlist);
 }
+
+void draw_gi_nothing(z64_game_t *game, uint32_t draw_id) {
+    
+}
