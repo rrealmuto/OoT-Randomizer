@@ -15,6 +15,7 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v33](#v33)
   * [v32](#v32)
   * [v31](#v31)
   * [v30](#v30)
@@ -51,6 +52,9 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
   * [4.0](#40)
 
 ## RealRob Changelog
+### v33
+  * Forest temple soul logic fixes
+
 ### v32
   * Fix ganondorf not spawning in enemy soul shuffle
 
