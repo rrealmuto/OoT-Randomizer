@@ -940,8 +940,7 @@ class SaveContext:
                 'bongo_bongo': Address(extended=True, size=1, mask=0x08, pass_addr=True),
                 'twinrova': Address(extended=True, size=1, mask=0x10, pass_addr=True),
                 'jabu_jabu_tentacle': Address(extended=True, size=1, mask=0x20, pass_addr=True),
-                'ganondorf': Address(extended=True, size=1, mask=0x40, pass_addr=True),
-                'dark_link': Address(extended=True, size=1, mask=0x80),
+                'dark_link': Address(extended=True, size=1, mask=0x40, pass_addr=True),
             }
         }
 
@@ -1408,7 +1407,6 @@ class SaveContext:
         'Bongo Bongo Soul': {'enemy_spawn_flags.bongo_bongo': None},
         'Twinrova Soul': {'enemy_spawn_flags.twinrova': None},
         'Jabu Jabu Tentacle Soul': {'enemy_spawn_flags.jabu_jabu_tentacle': None},
-        'Ganondorf Soul': {'enemy_spawn_flags.ganondorf': None},
         'Dark Link Soul': {'enemy_spawn_flags.dark_link': None},
 
         # HACK: these counts aren't used since exact counts based on whether the dungeon is MQ are defined above,
