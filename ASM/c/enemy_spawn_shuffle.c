@@ -58,8 +58,7 @@ enemy_spawn_table_entry enemy_spawn_table[] = {
     ENEMY_SPAWN_TABLE_ENTRY(0x00E9, 43,  SPAWN_FLAGS_SPAWNENTRY, NULL), //Boss_Sst (Bongo Bongo)
     ENEMY_SPAWN_TABLE_ENTRY(0x00DC, 44,  SPAWN_FLAGS_SPAWNENTRY, NULL), //Boss_Tw (Twinrova)
     ENEMY_SPAWN_TABLE_ENTRY(0x00DE, 45,  SPAWN_FLAGS_SPAWNENTRY, NULL), //En_Ba (Jabu Jabu Tentacles),
-    ENEMY_SPAWN_TABLE_ENTRY(0x00E8, 46,  SPAWN_FLAGS_SPAWNENTRY, NULL), //Boss_Ganon (Ganondorf),
-    ENEMY_SPAWN_TABLE_ENTRY(0x0033, 47,  SPAWN_FLAGS_ACTORSPAWN, NULL)  //En_Torch2 (Dark Link)
+    ENEMY_SPAWN_TABLE_ENTRY(0x0033, 46,  SPAWN_FLAGS_ACTORSPAWN, NULL)  //En_Torch2 (Dark Link)
 };
 
 // Return false if this is a gold skulltula
