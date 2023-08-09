@@ -15,7 +15,7 @@ from HintList import get_required_hints, misc_item_hint_table, misc_location_hin
 from Hints import HintArea, hint_dist_keys, hint_dist_files
 from Item import Item, ItemFactory, ItemInfo, make_event_item
 from Location import Location, LocationFactory
-from LocationList import business_scrubs, location_groups
+from LocationList import business_scrubs, location_groups, location_table
 from OcarinaSongs import generate_song_list, Song
 from Plandomizer import WorldDistribution, InvalidFileException
 from Region import Region, TimeOfDay
@@ -57,7 +57,8 @@ class World:
 
         # rename a few attributes...
         self.keysanity: bool = settings.shuffle_smallkeys in ['keysanity', 'remove', 'any_dungeon', 'overworld', 'regional']
-        self.shuffle_silver_rupees = settings.shuffle_silver_rupees != 'vanilla'
+        self.shuffle_ganon_bosskey: str = 'triforce' if settings.triforce_hunt else self.settings.shuffle_ganon_bosskey
+        self.shuffle_silver_rupees: bool = settings.shuffle_silver_rupees != 'vanilla'
         self.check_beatable_only: bool = settings.reachable_locations != 'all'
 
         self.shuffle_special_interior_entrances: bool = settings.shuffle_interior_entrances == 'all'
@@ -89,11 +90,6 @@ class World:
         if settings.triforce_goal_per_world > settings.triforce_count_per_world:
             raise ValueError("Triforces required cannot be more than the triforce count.")
         self.triforce_goal: int = settings.triforce_goal_per_world * settings.world_count
-
-        if settings.triforce_hunt:
-            # Pin shuffle_ganon_bosskey to 'triforce' when triforce_hunt is enabled
-            # (specifically, for randomize_settings)
-            self.settings.shuffle_ganon_bosskey = 'triforce'
 
         # trials that can be skipped will be decided later
         self.skipped_trials: dict[str, bool] = {
@@ -254,7 +250,7 @@ class World:
             max_tokens = max(max_tokens, self.settings.bridge_tokens)
         if self.settings.lacs_condition == 'tokens':
             max_tokens = max(max_tokens, self.settings.lacs_tokens)
-        if self.settings.shuffle_ganon_bosskey == 'tokens':
+        if self.shuffle_ganon_bosskey == 'tokens':
             max_tokens = max(max_tokens, self.settings.ganon_bosskey_tokens)
         tokens = [50, 40, 30, 20, 10]
         for t in tokens:
@@ -267,7 +263,7 @@ class World:
             max_hearts = max(max_hearts, self.settings.bridge_hearts)
         if self.settings.lacs_condition == 'hearts':
             max_hearts = max(max_hearts, self.settings.lacs_hearts)
-        if self.settings.shuffle_ganon_bosskey == 'hearts':
+        if self.shuffle_ganon_bosskey == 'hearts':
             max_hearts = max(max_hearts, self.settings.ganon_bosskey_hearts)
         self.max_progressions['Heart Container'] = max_hearts
         self.max_progressions['Piece of Heart'] = max_hearts * 4
@@ -409,11 +405,11 @@ class World:
                         or (setting == 'lacs_rewards' and self.settings.lacs_condition != 'dungeons') \
                         or (setting == 'lacs_tokens' and self.settings.lacs_condition != 'tokens') \
                         or (setting == 'lacs_hearts' and self.settings.lacs_condition != 'hearts') \
-                        or (setting == 'ganon_bosskey_medallions' and self.settings.shuffle_ganon_bosskey != 'medallions') \
-                        or (setting == 'ganon_bosskey_stones' and self.settings.shuffle_ganon_bosskey != 'stones') \
-                        or (setting == 'ganon_bosskey_rewards' and self.settings.shuffle_ganon_bosskey != 'dungeons') \
-                        or (setting == 'ganon_bosskey_tokens' and self.settings.shuffle_ganon_bosskey != 'tokens') \
-                        or (setting == 'ganon_bosskey_hearts' and self.settings.shuffle_ganon_bosskey != 'hearts'):
+                        or (setting == 'ganon_bosskey_medallions' and self.shuffle_ganon_bosskey != 'medallions') \
+                        or (setting == 'ganon_bosskey_stones' and self.shuffle_ganon_bosskey != 'stones') \
+                        or (setting == 'ganon_bosskey_rewards' and self.shuffle_ganon_bosskey != 'dungeons') \
+                        or (setting == 'ganon_bosskey_tokens' and self.shuffle_ganon_bosskey != 'tokens') \
+                        or (setting == 'ganon_bosskey_hearts' and self.shuffle_ganon_bosskey != 'hearts'):
                     self.randomized_list.remove(setting)
         if self.settings.big_poe_count_random and 'big_poe_count' not in dist_keys:
             self.settings.big_poe_count = random.randint(1, 10)
@@ -753,8 +749,11 @@ class World:
             boss_count -= 1
             random.shuffle(prizepool)
             random.shuffle(prize_locs)
-            item = prizepool.pop()
             loc = prize_locs.pop()
+            if not self.settings.shuffle_base_item_pool:
+                item = next(item for item in prizepool if item.name == location_table[loc.name][4])
+            else:
+                item = prizepool.pop()
             self.push_item(loc, item)
 
     def set_goals(self) -> None:
@@ -865,18 +864,18 @@ class World:
                 b.goal_count = len(b.goals)
                 if (self.settings.bridge_tokens > 0
                     and self.settings.bridge == 'tokens'
-                    and (self.settings.shuffle_ganon_bosskey != 'tokens'
+                    and (self.shuffle_ganon_bosskey != 'tokens'
                             or self.settings.bridge_tokens >= self.settings.ganon_bosskey_tokens)
-                    and (self.settings.shuffle_ganon_bosskey != 'on_lacs' or self.settings.lacs_condition != 'tokens'
+                    and (self.shuffle_ganon_bosskey != 'on_lacs' or self.settings.lacs_condition != 'tokens'
                             or self.settings.bridge_tokens >= self.settings.lacs_tokens)):
                     b.add_goal(Goal(self, 'Skulls', 'path of #Skulls#', 'Pink', items=[{'name': 'Gold Skulltula Token', 'quantity': 100, 'minimum': self.settings.bridge_tokens, 'hintable': False}]))
                     b.goal_count = round(self.settings.bridge_tokens / 10)
                     b.minimum_goals = 1
                 if (self.settings.bridge_hearts > self.settings.starting_hearts
                     and self.settings.bridge == 'hearts'
-                    and (self.settings.shuffle_ganon_bosskey != 'hearts'
+                    and (self.shuffle_ganon_bosskey != 'hearts'
                             or self.settings.bridge_hearts >= self.settings.ganon_bosskey_hearts)
-                    and (self.settings.shuffle_ganon_bosskey != 'on_lacs' or self.settings.lacs_condition != 'hearts'
+                    and (self.shuffle_ganon_bosskey != 'on_lacs' or self.settings.lacs_condition != 'hearts'
                             or self.settings.bridge_hearts >= self.settings.lacs_hearts)):
                     b.add_goal(Goal(self, 'hearts', 'path of #hearts#', 'Red', items=[{'name': 'Piece of Heart', 'quantity': (20 - self.settings.starting_hearts) * 4, 'minimum': (self.settings.bridge_hearts - self.settings.starting_hearts) * 4, 'hintable': False}]))
                     b.goal_count = round((self.settings.bridge_hearts - 3) / 2)
@@ -893,19 +892,19 @@ class World:
             # all of these goals are accessible without Ganon's Castle access,
             # the GBK category is redundant and not used for hint selection.
             if ((self.settings.ganon_bosskey_stones > 0
-                    and self.settings.shuffle_ganon_bosskey == 'stones'
+                    and self.shuffle_ganon_bosskey == 'stones'
                     and (self.shuffle_special_dungeon_entrances or self.settings.ganon_bosskey_stones > self.settings.bridge_stones or self.settings.bridge != 'stones'))
                 or (self.settings.lacs_stones > 0
-                    and self.settings.shuffle_ganon_bosskey == 'on_lacs' and self.settings.lacs_condition == 'stones'
+                    and self.shuffle_ganon_bosskey == 'on_lacs' and self.settings.lacs_condition == 'stones'
                     and (self.shuffle_special_dungeon_entrances or self.settings.lacs_stones > self.settings.bridge_stones or self.settings.bridge != 'stones'))
                 or (self.settings.ganon_bosskey_rewards > 0
-                    and self.settings.shuffle_ganon_bosskey == 'dungeons'
+                    and self.shuffle_ganon_bosskey == 'dungeons'
                     and (self.shuffle_special_dungeon_entrances or self.settings.ganon_bosskey_rewards > self.settings.bridge_medallions or self.settings.bridge != 'medallions')
                     and (self.shuffle_special_dungeon_entrances or self.settings.ganon_bosskey_rewards > self.settings.bridge_stones or self.settings.bridge != 'stones')
                     and (self.shuffle_special_dungeon_entrances or self.settings.ganon_bosskey_rewards > self.settings.bridge_rewards or self.settings.bridge != 'dungeons')
                     and (self.shuffle_special_dungeon_entrances or self.settings.ganon_bosskey_rewards > 2 or self.settings.bridge != 'vanilla'))
                 or (self.settings.lacs_rewards > 0
-                    and self.settings.shuffle_ganon_bosskey == 'on_lacs' and self.settings.lacs_condition == 'dungeons'
+                    and self.shuffle_ganon_bosskey == 'on_lacs' and self.settings.lacs_condition == 'dungeons'
                     and (self.shuffle_special_dungeon_entrances or self.settings.lacs_rewards > self.settings.bridge_medallions or self.settings.bridge != 'medallions')
                     and (self.shuffle_special_dungeon_entrances or self.settings.lacs_rewards > self.settings.bridge_stones or self.settings.bridge != 'stones')
                     and (self.shuffle_special_dungeon_entrances or self.settings.lacs_rewards > self.settings.bridge_rewards or self.settings.bridge != 'dungeons')
@@ -913,26 +912,26 @@ class World:
                 gbk.add_goal(Goal(self, 'Kokiri Emerald', { 'replace': 'Kokiri Emerald' }, 'Yellow', items=[{'name': 'Kokiri Emerald', 'quantity': 1, 'minimum': 1, 'hintable': True}]))
                 gbk.add_goal(Goal(self, 'Goron Ruby', { 'replace': 'Goron Ruby' }, 'Yellow', items=[{'name': 'Goron Ruby', 'quantity': 1, 'minimum': 1, 'hintable': True}]))
                 gbk.add_goal(Goal(self, 'Zora Sapphire', { 'replace': 'Zora Sapphire' }, 'Yellow', items=[{'name': 'Zora Sapphire', 'quantity': 1, 'minimum': 1, 'hintable': True}]))
-                gbk.minimum_goals = (self.settings.ganon_bosskey_stones if self.settings.shuffle_ganon_bosskey == 'stones'
-                    else self.settings.lacs_stones if self.settings.shuffle_ganon_bosskey == 'on_lacs' and self.settings.lacs_condition == 'stones'
-                    else self.settings.ganon_bosskey_rewards if self.settings.shuffle_ganon_bosskey == 'dungeons'
+                gbk.minimum_goals = (self.settings.ganon_bosskey_stones if self.shuffle_ganon_bosskey == 'stones'
+                    else self.settings.lacs_stones if self.shuffle_ganon_bosskey == 'on_lacs' and self.settings.lacs_condition == 'stones'
+                    else self.settings.ganon_bosskey_rewards if self.shuffle_ganon_bosskey == 'dungeons'
                     else self.settings.lacs_rewards)
             if ((self.settings.ganon_bosskey_medallions > 0
-                    and self.settings.shuffle_ganon_bosskey == 'medallions'
+                    and self.shuffle_ganon_bosskey == 'medallions'
                     and (self.shuffle_special_dungeon_entrances or self.settings.ganon_bosskey_medallions > self.settings.bridge_medallions or self.settings.bridge != 'medallions')
                     and (self.shuffle_special_dungeon_entrances or self.settings.ganon_bosskey_medallions > 2 or self.settings.bridge != 'vanilla'))
                 or (self.settings.lacs_medallions > 0
-                    and self.settings.shuffle_ganon_bosskey == 'on_lacs' and self.settings.lacs_condition == 'medallions'
+                    and self.shuffle_ganon_bosskey == 'on_lacs' and self.settings.lacs_condition == 'medallions'
                     and (self.shuffle_special_dungeon_entrances or self.settings.lacs_medallions > self.settings.bridge_medallions or self.settings.bridge != 'medallions')
                     and (self.shuffle_special_dungeon_entrances or self.settings.lacs_medallions > 2 or self.settings.bridge != 'vanilla'))
                 or (self.settings.ganon_bosskey_rewards > 0
-                    and self.settings.shuffle_ganon_bosskey == 'dungeons'
+                    and self.shuffle_ganon_bosskey == 'dungeons'
                     and (self.shuffle_special_dungeon_entrances or self.settings.ganon_bosskey_rewards > self.settings.bridge_medallions or self.settings.bridge != 'medallions')
                     and (self.shuffle_special_dungeon_entrances or self.settings.ganon_bosskey_rewards > self.settings.bridge_stones or self.settings.bridge != 'stones')
                     and (self.shuffle_special_dungeon_entrances or self.settings.ganon_bosskey_rewards > self.settings.bridge_rewards or self.settings.bridge != 'dungeons')
                     and (self.shuffle_special_dungeon_entrances or self.settings.ganon_bosskey_rewards > 2 or self.settings.bridge != 'vanilla'))
                 or (self.settings.lacs_rewards > 0
-                    and self.settings.shuffle_ganon_bosskey == 'on_lacs' and self.settings.lacs_condition == 'dungeons'
+                    and self.shuffle_ganon_bosskey == 'on_lacs' and self.settings.lacs_condition == 'dungeons'
                     and (self.shuffle_special_dungeon_entrances or self.settings.lacs_rewards > self.settings.bridge_medallions or self.settings.bridge != 'medallions')
                     and (self.shuffle_special_dungeon_entrances or self.settings.lacs_rewards > self.settings.bridge_stones or self.settings.bridge != 'stones')
                     and (self.shuffle_special_dungeon_entrances or self.settings.lacs_rewards > self.settings.bridge_rewards or self.settings.bridge != 'dungeons')
@@ -943,17 +942,17 @@ class World:
                 gbk.add_goal(Goal(self, 'Shadow Medallion', { 'replace': 'Shadow Medallion' }, 'Pink', items=[{'name': 'Shadow Medallion', 'quantity': 1, 'minimum': 1, 'hintable': True}]))
                 gbk.add_goal(Goal(self, 'Spirit Medallion', { 'replace': 'Spirit Medallion' }, 'Yellow', items=[{'name': 'Spirit Medallion', 'quantity': 1, 'minimum': 1, 'hintable': True}]))
                 gbk.add_goal(Goal(self, 'Light Medallion', { 'replace': 'Light Medallion' }, 'Light Blue', items=[{'name': 'Light Medallion', 'quantity': 1, 'minimum': 1, 'hintable': True}]))
-                gbk.minimum_goals = (self.settings.ganon_bosskey_medallions if self.settings.shuffle_ganon_bosskey == 'medallions'
-                    else self.settings.lacs_medallions if self.settings.shuffle_ganon_bosskey == 'on_lacs' and self.settings.lacs_condition == 'medallions'
-                    else self.settings.ganon_bosskey_rewards if self.settings.shuffle_ganon_bosskey == 'dungeons'
+                gbk.minimum_goals = (self.settings.ganon_bosskey_medallions if self.shuffle_ganon_bosskey == 'medallions'
+                    else self.settings.lacs_medallions if self.shuffle_ganon_bosskey == 'on_lacs' and self.settings.lacs_condition == 'medallions'
+                    else self.settings.ganon_bosskey_rewards if self.shuffle_ganon_bosskey == 'dungeons'
                     else self.settings.lacs_rewards)
-            if self.settings.shuffle_ganon_bosskey == 'on_lacs' and self.settings.lacs_condition == 'vanilla':
+            if self.shuffle_ganon_bosskey == 'on_lacs' and self.settings.lacs_condition == 'vanilla':
                 gbk.add_goal(Goal(self, 'Shadow Medallion', { 'replace': 'Shadow Medallion' }, 'Pink', items=[{'name': 'Shadow Medallion', 'quantity': 1, 'minimum': 1, 'hintable': True}]))
                 gbk.add_goal(Goal(self, 'Spirit Medallion', { 'replace': 'Spirit Medallion' }, 'Yellow', items=[{'name': 'Spirit Medallion', 'quantity': 1, 'minimum': 1, 'hintable': True}]))
                 gbk.minimum_goals = 2
             gbk.goal_count = len(gbk.goals)
             if (self.settings.ganon_bosskey_tokens > 0
-                and self.settings.shuffle_ganon_bosskey == 'tokens'
+                and self.shuffle_ganon_bosskey == 'tokens'
                 and (self.shuffle_special_dungeon_entrances
                         or self.settings.bridge != 'tokens'
                         or self.settings.bridge_tokens < self.settings.ganon_bosskey_tokens)):
@@ -961,7 +960,7 @@ class World:
                 gbk.goal_count = round(self.settings.ganon_bosskey_tokens / 10)
                 gbk.minimum_goals = 1
             if (self.settings.lacs_tokens > 0
-                and self.settings.shuffle_ganon_bosskey == 'on_lacs' and self.settings.lacs_condition == 'tokens'
+                and self.shuffle_ganon_bosskey == 'on_lacs' and self.settings.lacs_condition == 'tokens'
                 and (self.shuffle_special_dungeon_entrances
                         or self.settings.bridge != 'tokens'
                         or self.settings.bridge_tokens < self.settings.lacs_tokens)):
@@ -969,7 +968,7 @@ class World:
                 gbk.goal_count = round(self.settings.lacs_tokens / 10)
                 gbk.minimum_goals = 1
             if (self.settings.ganon_bosskey_hearts > self.settings.starting_hearts
-                and self.settings.shuffle_ganon_bosskey == 'hearts'
+                and self.shuffle_ganon_bosskey == 'hearts'
                 and (self.shuffle_special_dungeon_entrances
                         or self.settings.bridge != 'hearts'
                         or self.settings.bridge_hearts < self.settings.ganon_bosskey_hearts)):
@@ -977,7 +976,7 @@ class World:
                 gbk.goal_count = round((self.settings.ganon_bosskey_hearts - 3) / 2)
                 gbk.minimum_goals = 1
             if (self.settings.lacs_hearts > self.settings.starting_hearts
-                and self.settings.shuffle_ganon_bosskey == 'on_lacs' and self.settings.lacs_condition == 'hearts'
+                and self.shuffle_ganon_bosskey == 'on_lacs' and self.settings.lacs_condition == 'hearts'
                 and (self.shuffle_special_dungeon_entrances
                         or self.settings.bridge != 'hearts'
                         or self.settings.bridge_hearts < self.settings.lacs_hearts)):
@@ -989,7 +988,7 @@ class World:
             # generate a category/goal pair, though locations are not
             # guaranteed if the higher priority Bridge category contains
             # all required locations for GBK
-            if self.settings.shuffle_ganon_bosskey in ['dungeon', 'overworld', 'any_dungeon', 'keysanity', 'regional']:
+            if self.shuffle_ganon_bosskey in ['dungeon', 'overworld', 'any_dungeon', 'keysanity', 'regional']:
                 # Make priority even with trials as the goal is no longer centered around dungeon completion or collectibles
                 gbk.priority = 30
                 gbk.goal_count = 1
@@ -1031,7 +1030,7 @@ class World:
                 trials.add_goal(trial_goal)
                 self.goal_categories[trials.name] = trials
 
-            if (self.shuffle_special_dungeon_entrances or self.settings.bridge == 'open') and (self.settings.shuffle_ganon_bosskey == 'remove' or self.settings.shuffle_ganon_bosskey == 'vanilla') and self.settings.trials == 0:
+            if (self.shuffle_special_dungeon_entrances or self.settings.bridge == 'open') and (self.shuffle_ganon_bosskey == 'remove' or self.shuffle_ganon_bosskey == 'vanilla') and self.settings.trials == 0:
                 g = GoalCategory('ganon', 30, goal_count=1)
                 # Equivalent to WOTH, but added in case WOTH hints are disabled in favor of goal hints
                 g.add_goal(Goal(self, 'the hero', 'path of #the hero#', 'White', items=[{'name': 'Triforce', 'quantity': 1, 'minimum': 1, 'hintable': True}]))

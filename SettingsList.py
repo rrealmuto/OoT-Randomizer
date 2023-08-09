@@ -542,19 +542,25 @@ class SettingInfos:
         gui_tooltip    = '''\
             Select a setting preset to apply.
 
-            Default/Beginner is aimed at those familiar with the vanilla game who desire a similar progression.
+            <b>Default/Beginner</b> is aimed at those familiar with the vanilla game who desire a similar progression.
             Uses base glitchless logic. No timesavers (See the tab "Other") are enabled in this preset
             and the world begins closed. Expect a long playthrough.
 
-            Easy Mode is aimed at those who have perhaps seen a few randomizer runs previously and/or
+            <b>Easy Mode</b> is aimed at those who have perhaps seen a few randomizer runs previously and/or
             wish to dive right in. Uses base glitchless logic. Most timesavers (See the tab "Other")
             are enabled and the world is more open after leaving Kokiri Forest.
 
-            Hell Mode is designed to be as frustrating an experience as possible, with every setting enabled
+            <b>Hell Mode</b> is designed to be as frustrating an experience as possible, with every setting enabled
             to provide maximum randomness as well as things like one-hit-KO, one-bonk-KO and max ice traps.
             It still uses glitchless logic to ensure a beatable seed. However, be aware that all glitchless
             "tricks" are enabled which have the potential to require the player to perform difficult techniques.
             Expect a long and painful playthrough, even with good note-taking.
+
+            <b>Vanilla</b> generates a seed that's as close to the vanilla game as possible with current
+            randomizer features. It uses glitchless logic to produce a useful spoiler log playthrough.
+
+            <b>Fast Vanilla</b> is Vanilla but with speed-ups like fast bunny hood, fast chest cutscenes,
+            or "Skip Some Minigame Phases" enabled.
 
             The other presets are for racing and/or tournaments.
 
@@ -627,7 +633,8 @@ class SettingInfos:
                                          'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops',
                                          'warp_songs', 'spawn_positions', 'mq_dungeons_mode', 'mq_dungeons_specific',
                                          'mq_dungeons_count', 'shuffle_bosses', 'dungeon_shortcuts', 'deadly_bonks',
-                                         'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_beehives', 'shuffle_silver_rupees']},
+                                         'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_beehives', 'shuffle_silver_rupees',
+                                         'shuffle_items']},
             'none':       {'settings': ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
         },
         shared         = True,
@@ -721,6 +728,34 @@ class SettingInfos:
             'web:max':            100,
             'electron:max':       100,
         },
+    )
+
+    shuffle_items = Checkbutton(
+        gui_text       = 'Shuffle Items',
+        gui_tooltip    = '''\
+            Overall control of whether any items are randomized.
+
+            If this is disabled, all items are locked to their
+            vanilla locations and logic is adjusted to allow
+            such a seed to generate. This can be used, for
+            example, to generate a vanilla-ish seed (see also
+            the "Vanilla" and "Fast Vanilla" presets), or to
+            only shuffle entrances. This currently does not work
+            with glitched logic or Master Quest.
+        ''',
+        default        = True,
+        disable        = {
+            False: {'settings': [
+                'triforce_hunt', 'triforce_count_per_world', 'triforce_goal_per_world',
+                'shuffle_ganon_bosskey', 'ganon_bosskey_medallions', 'ganon_bosskey_stones', 'ganon_bosskey_rewards', 'ganon_bosskey_tokens', 'ganon_bosskey_hearts',
+                'shuffle_bosskeys', 'shuffle_smallkeys', 'shuffle_hideoutkeys', 'shuffle_tcgkeys', 'key_rings_choice', 'key_rings', 'keyring_give_bk', 'shuffle_silver_rupees', 'silver_rupee_pouches_choice', 'silver_rupee_pouches', 'shuffle_mapcompass',
+                'one_item_per_dungeon',
+                'shuffle_song_items', 'shopsanity', 'shopsanity_prices', 'tokensanity', 'shuffle_scrubs', 'shuffle_child_trade', 'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_cows', 'shuffle_beehives', 'shuffle_kokiri_sword', 'shuffle_ocarinas', 'shuffle_gerudo_card', 'shuffle_beans', 'shuffle_expensive_merchants', 'shuffle_frog_song_rupees', 'shuffle_individual_ocarina_notes', 'shuffle_loach_reward', 'shuffle_base_item_pool',
+                'disabled_locations',
+                'item_pool_value', 'junk_ice_traps', 'adult_trade_shuffle', 'adult_trade_start',
+            ]}
+        },
+        shared         = True,
     )
 
     lacs_condition = Combobox(
@@ -1013,7 +1048,7 @@ class SettingInfos:
     shuffle_ganon_bosskey = Combobox(
         gui_text         = "Ganon's Boss Key",
         default          = 'dungeon',
-        disabled_default = 'triforce',
+        disabled_default = 'vanilla',
         choices          = {
             'remove':          "Remove (Keysy)",
             'vanilla':         "Vanilla Location",
@@ -1179,6 +1214,7 @@ class SettingInfos:
     shuffle_bosskeys = Combobox(
         gui_text       = 'Boss Keys',
         default        = 'dungeon',
+        disabled_default = 'vanilla',
         choices        = {
             'remove':      'Remove (Keysy)',
             'vanilla':     'Vanilla Locations',
@@ -1238,6 +1274,7 @@ class SettingInfos:
     shuffle_smallkeys = Combobox(
         gui_text       = 'Small Keys',
         default        = 'dungeon',
+        disabled_default = 'vanilla',
         choices        = {
             'remove':      'Remove (Keysy)',
             'vanilla':     'Vanilla Locations',
@@ -1297,7 +1334,6 @@ class SettingInfos:
     shuffle_hideoutkeys = Combobox(
         gui_text       = "Thieves' Hideout Keys",
         default        = 'vanilla',
-        disabled_default = 'remove',
         choices        = {
             'vanilla':     "Vanilla Locations",
             'fortress':    "Gerudo Fortress Region",
@@ -1578,6 +1614,7 @@ class SettingInfos:
     shuffle_mapcompass = Combobox(
         gui_text       = 'Maps & Compasses',
         default        = 'dungeon',
+        disabled_default = 'vanilla',
         choices        = {
             'remove':      'Remove',
             'startwith':   'Start With',
@@ -2681,6 +2718,7 @@ class SettingInfos:
             sword is found.
         ''',
         default        = True,
+        disabled_default = False,
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -2810,6 +2848,32 @@ class SettingInfos:
                 ('vanilla',      1),
                 ('easy',         1)
             ],
+        },
+    )
+
+    shuffle_base_item_pool = Checkbutton(
+        gui_text       = 'Shuffle Other Items',
+        gui_tooltip    = '''\
+            Enabling this shuffles items not controlled by
+            other settings. This includes most chests, NPCs,
+            freestanding heart pieces, boss heart containers,
+            songs, dungeon rewards, and a few special items.
+
+            If this setting is enabled, the contents of bottles
+            found in the world (other than Ruto's letter) are
+            also randomized.
+
+            Turning this off currently does not work with
+            glitched logic or Master Quest.
+        ''',
+        default        = True,
+        disabled_default = False,
+        disable        = {
+            False : {'settings': ['mq_dungeons_mode']},
+        },
+        shared         = True,
+        gui_params     = {
+            'optional': True,
         },
     )
 
@@ -3670,6 +3734,7 @@ class SettingInfos:
         gui_text       = 'Adult Trade Sequence Items',
         default        = ['Pocket Egg', 'Pocket Cucco', 'Cojiro', 'Odd Mushroom', 'Odd Potion', 'Poachers Saw',
                           'Broken Sword', 'Prescription', 'Eyeball Frog', 'Eyedrops', 'Claim Check'],
+        disabled_default = [],
         choices        = {
             'Pocket Egg':   'Pocket Egg',
             'Pocket Cucco': 'Pocket Cucco',

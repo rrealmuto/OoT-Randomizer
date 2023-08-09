@@ -98,14 +98,14 @@
         "locations": {
             "Spirit Temple Child Climb North Chest": "
                 (is_child and has_projectile(child) and
-                    (Small_Key_Spirit_Temple, 5)) or
+                    ((Small_Key_Spirit_Temple, 5) or global_vanilla_progression)) or
                 (is_adult and has_projectile(adult) and
                     ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
                     ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops))) or
                 has_projectile(both)",
             "Spirit Temple Child Climb East Chest": "
                 (is_child and has_projectile(child) and
-                    (Small_Key_Spirit_Temple, 5)) or
+                    ((Small_Key_Spirit_Temple, 5) or global_vanilla_progression)) or
                 (is_adult and has_projectile(adult) and
                     ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
                     ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops))) or
@@ -113,7 +113,7 @@
             "Spirit Temple Child Climb Pot": "True",
             "Spirit Temple GS Sun on Floor Room": "
                 (is_child and has_projectile(child) and
-                    (Small_Key_Spirit_Temple, 5)) or
+                    ((Small_Key_Spirit_Temple, 5) or global_vanilla_progression)) or
                 (is_adult and (has_projectile(adult) or can_take_damage) and
                     ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
                     ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops))) or
@@ -131,14 +131,14 @@
         "locations": {
             "Spirit Temple Map Chest": "
                 (is_child and Sticks and
-                    (Small_Key_Spirit_Temple, 5)) or
+                    ((Small_Key_Spirit_Temple, 5) or global_vanilla_progression)) or
                 (is_adult and (has_fire_source or (logic_spirit_map_chest and Bow)) and
                     ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts)) or
                 ((can_use(Dins_Fire) or (((Magic_Meter and Fire_Arrows) or logic_spirit_map_chest) and Bow and Sticks)) and
                     (has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)))",
             "Spirit Temple Sun Block Room Chest": "
                 (is_child and Sticks and (logic_spirit_sun_chest_no_rupees or (Silver_Rupee_Spirit_Temple_Sun_Block, 5)) and
-                    (Small_Key_Spirit_Temple, 5)) or
+                    ((Small_Key_Spirit_Temple, 5) or global_vanilla_progression)) or
                 (is_adult and (has_fire_source or (logic_spirit_sun_chest_bow and (Silver_Rupee_Spirit_Temple_Sun_Block, 5) and Bow)) and
                     ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts)) or
                 ((can_use(Dins_Fire) or (((Magic_Meter and Fire_Arrows) or (logic_spirit_sun_chest_bow and (Silver_Rupee_Spirit_Temple_Sun_Block, 5))) and
@@ -150,7 +150,7 @@
             # expected to reach it as long as adult cannot enter. Because we cannot truly know
             # whether adult can enter, child must still possess the items that adult would use.
             "Spirit Temple Silver Gauntlets Chest": "
-                (Small_Key_Spirit_Temple, 5) or
+                (Small_Key_Spirit_Temple, 5) or global_vanilla_progression or
                 (has_explosives and Longshot and (Small_Key_Spirit_Temple, 3))",
             "Spirit Temple Central Chamber Flying Pot 1": "
                 (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
@@ -181,14 +181,14 @@
                 has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)",
             "Spirit Temple GS Lobby": "
                 (is_child and logic_spirit_lobby_gs and Boomerang and
-                    (Small_Key_Spirit_Temple, 5)) or
+                    ((Small_Key_Spirit_Temple, 5) or global_vanilla_progression)) or
                 (is_adult and (Hookshot or Hover_Boots or logic_spirit_lobby_jump) and
                     ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts)) or
                 (logic_spirit_lobby_gs and Boomerang and (Hookshot or Hover_Boots or logic_spirit_lobby_jump) and
                     (has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)))",
             "Spirit Temple GS Hall After Sun Block Room": "
                 (is_child and Boomerang and
-                    (Small_Key_Spirit_Temple, 5)) or
+                    ((Small_Key_Spirit_Temple, 5) or global_vanilla_progression)) or
                 (is_adult and Hookshot and
                     ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts)) or
                 (Boomerang and Hookshot and
@@ -205,7 +205,7 @@
             # Age-unknown logic is incompatible with the rest of the world.
             # Because adult might unlock all doors, child must require all 5 keys to pass.
             "Desert Colossus Hands": "
-                (Small_Key_Spirit_Temple, 5) or
+                (Small_Key_Spirit_Temple, 5) or global_vanilla_progression or
                 (is_adult and has_explosives and (Small_Key_Spirit_Temple, 3))"
         }
     },

@@ -186,6 +186,7 @@
           "text": "Shuffle",
           "row_span": [6,6,9],
           "settings": [
+            "shuffle_items",
             "shuffle_song_items",
             "shopsanity",
             "shopsanity_prices",
