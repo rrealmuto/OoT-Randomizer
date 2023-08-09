@@ -915,7 +915,7 @@ def get_unlock_woth_hint(spoiler, world, checked):
 def get_unlock_playthrough_hint(spoiler, world, checked):
     return get_unlock_hint(spoiler, world, checked, 'unlock-playthrough')
 
-def get_unlock_hint(spoiler, world, checked, hint_type):
+def get_unlock_hint(spoiler: Spoiler, world: World, checked: set[str], hint_type: str):
 
     if hint_type == 'unlock-playthrough':
         requirements = spoiler.playthrough_location_requirements
@@ -929,10 +929,18 @@ def get_unlock_hint(spoiler, world, checked, hint_type):
         all_world_requirements = {}
         for world_reqs in requirements.values():
             all_world_requirements.update(world_reqs)
+        
+        world_path_locations: set[Location] = set()
+        for name, category in world.goal_categories.items():
+            for goal in category.goals:
+                path_locations = reduce(lambda acc, locations: acc + locations, spoiler.goal_locations[world.id][category.name][goal.name].values(), [])
+                world_path_locations.update(path_locations)
+
+        world_path_requirements = {k:v for (k,v) in all_world_requirements.items() if k in world_path_locations}
 
         required_locations = {
             location: list(filter(lambda required_location: required_location.item.name not in world.item_hint_type_overrides[hint_type], required_locations)) 
-            for location, required_locations in all_world_requirements.items()
+            for location, required_locations in world_path_requirements.items()
         }
 
     hintable_locations = list(filter(lambda location:
