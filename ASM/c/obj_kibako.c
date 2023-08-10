@@ -2,14 +2,12 @@
 #include "get_items.h"
 #include "z64.h"
 #include "textures.h"
-#include "z64.h"
 #include "obj_kibako.h"
 #include "actor.h"
 
 #define SMALLCRATE_DLIST (z64_gfx_t *)0x05005290
 #define SMALLCRATE_TEXTURE (uint8_t *)0x05011CA0
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
-extern uint16_t drop_collectible_override_flag;
 
 void ObjKibako_Draw(z64_actor_t *actor, z64_game_t *game) {
     uint8_t *texture = SMALLCRATE_TEXTURE; // get original texture
@@ -60,12 +58,12 @@ void ObjKibako_SpawnCollectible_Hack(z64_actor_t* this, z64_game_t* globalCtx) {
 
     collectible = this->variable & 0x1F;
     
-    uint16_t flag = Actor_GetAdditionalData(this)->flag;
-    if(flag && !Get_NewOverrideFlag(flag))
+    xflag_t* flag = &Actor_GetAdditionalData(this)->flag;
+    if(flag->all && !Get_NewOverrideFlag(flag))
     {
-        drop_collectible_override_flag = flag;
+        drop_collectible_override_flag = *flag;
         EnItem00* spawned = z64_Item_DropCollectible(globalCtx, &this->pos_world, 0);
-        drop_collectible_override_flag = 0;
+        z64_bzero(&drop_collectible_override_flag, sizeof(drop_collectible_override_flag));
         return;
     }
     

@@ -24,11 +24,12 @@ enum override_type {
 
 
 typedef union overide_key_t {
-    uint32_t all;
+    uint64_t all;
     struct {
         uint8_t scene;
         uint8_t type;
-        uint16_t flag;
+        uint16_t pad;
+        uint32_t flag;
     };
 } override_key_t;
 
@@ -50,7 +51,6 @@ typedef struct {
 
 typedef struct {
     override_key_t key;
-    uint32_t _pad;
     override_value_t value;
 } override_t;
 
@@ -58,6 +58,22 @@ typedef struct {
     override_key_t  alt;
     override_key_t  primary;
 } alt_override_t;
+
+typedef struct xflag_t {
+    uint8_t set : 1;
+    uint8_t scene : 7;
+    union {
+        uint32_t all;
+        struct {
+            uint8_t setup : 2;
+            uint8_t room : 6;
+            uint8_t pad;
+            uint8_t flag;
+            uint8_t subflag;
+        };
+    };
+    
+} xflag_t;
 
 struct EnItem00;
 typedef void (*EnItem00ActionFunc)(struct EnItem00 *, z64_game_t *);
@@ -83,15 +99,17 @@ typedef void (*z64_EnItem00ActionFunc)(struct EnItem00 *, z64_game_t *);
 typedef EnItem00 *(*z64_Item_DropCollectible_proc)(z64_game_t *globalCtx, z64_xyzf_t *spawnPos, int16_t params);
 
 override_t lookup_override_by_key(override_key_t key);
-override_t lookup_override_by_newflag(uint16_t flag, uint8_t scene);
+override_t lookup_override_by_newflag(xflag_t* flag);
 override_t lookup_override(z64_actor_t *actor, uint8_t scene, uint8_t item_id);
 override_key_t resolve_alternative_override(override_key_t override_key);
-uint16_t resolve_alternative_flag(uint8_t scene, uint16_t flag);
+xflag_t resolve_alternative_flag(xflag_t* flag);
 override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_t item_id);
 override_t get_override_if_collectible_flag_not_set(EnItem00 *item00);
 void Collectible_WaitForMessageBox(EnItem00 *this, z64_game_t *game);
 void reset_collectible_mutex();
 void override_flags_init();
-bool Get_NewOverrideFlag(uint16_t flag);
+bool Get_NewOverrideFlag(xflag_t* flag);
+
+extern xflag_t drop_collectible_override_flag;
 
 #endif

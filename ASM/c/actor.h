@@ -36,11 +36,12 @@ typedef struct {
 // Make sure the size of this struct is equal to the amount of space added added in Actor_Spawn_Malloc_Hack from actor.asm
 typedef struct {
     /* 0x00 */ uint16_t actor_id;
-    /* 0x02 */ uint16_t flag;
+    /* 0x02 */ xflag_t flag;
 } ActorAdditionalData;
 
 void Actor_SetWorldToHome_End(z64_actor_t *actor);
 void Actor_After_UpdateAll_Hack(z64_actor_t *actor, z64_game_t *game);
+void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, uint16_t actor_index);
 void Actor_StoreFlagInRotation(z64_actor_t *actor, z64_game_t *game, uint16_t actor_index);
 void Actor_StoreChestType(z64_actor_t *actor, z64_game_t *game);
 z64_actor_t *Actor_SpawnEntry_Hack(void *actorCtx, ActorEntry *actorEntry, z64_game_t *globalCtx);

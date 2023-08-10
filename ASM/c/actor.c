@@ -70,7 +70,9 @@ void Actor_InitializeExtras(z64_actor_t* actor)
     if(extra != NULL)
     {
         extra->actor_id = 0;
-        extra->flag = 0;
+        extra->flag.all = 0;
+        extra->flag.set = 0;
+        extra->flag.scene = 0;
     }
     
 }
@@ -81,10 +83,16 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, uint16_t actor_index)
     // Zeroize extra data;
     ActorAdditionalData* extra = Actor_GetAdditionalData(actor);
     
-    uint16_t flag = (actor_index) | (actor->room_index << 8) | curr_scene_setup << 14; // Calculate the flag
-    flag = resolve_alternative_flag(game->scene_index, flag);
+    xflag_t flag = {
+        .scene = game->scene_index,
+        .setup = curr_scene_setup,
+        .room = actor->room_index,
+        .flag = actor_index,
+        .subflag = 0
+    };
+    flag = resolve_alternative_flag(&flag);
     extra->actor_id = actor_index;
-    override_t override = lookup_override_by_newflag(flag, game->scene_index);
+    override_t override = lookup_override_by_newflag(&flag);
     if(override.key.all)
     {
         switch(actor->actor_id)
@@ -95,6 +103,8 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, uint16_t actor_index)
             case OBJ_KIBAKO:
             case OBJ_COMB:
             case OBJ_KIBAKO2:
+            case EN_ITEM00:
+            case BG_SPOT18_BASKET:
             {
                 extra->flag = flag;
                 break;
@@ -110,10 +120,11 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, uint16_t actor_index)
 
 // Get an override for an actor with the new flags. If the override doesn't exist, or flag has already been set, return 0.
 override_t get_newflag_override(z64_actor_t *actor, z64_game_t *game) {
-    override_t override = lookup_override(actor, game->scene_index, 0);
+    xflag_t* flag = &Actor_GetAdditionalData(actor)->flag;
+    override_t override = lookup_override_by_newflag(flag);
     if(override.key.all != 0)
     {
-        if(!Get_NewOverrideFlag(Actor_GetAdditionalData(actor)->flag))
+        if(!Get_NewOverrideFlag(flag))
         {
             return override;
         }
@@ -199,15 +210,22 @@ z64_actor_t *Actor_SpawnEntry_Hack(void *actorCtx, ActorEntry *actorEntry, z64_g
 bool spawn_override_silver_rupee(ActorEntry *actorEntry, z64_game_t *globalCtx, bool* overridden) {
     *overridden = false;
     if (SHUFFLE_SILVER_RUPEES) { // Check if silver rupee shuffle is enabled.
-        uint16_t flag = (curr_scene_setup << 14) | (globalCtx->room_index << 8) | CURR_ACTOR_SPAWN_INDEX;
-        flag = resolve_alternative_flag(globalCtx->scene_index, flag);
+        xflag_t flag = {
+        .scene = globalCtx->scene_index,
+        .setup = curr_scene_setup,
+        .room = globalCtx->room_index,
+        .flag = CURR_ACTOR_SPAWN_INDEX,
+        .subflag = 0
+        };
+
+        flag = resolve_alternative_flag(&flag);
         uint8_t type = (actorEntry->params >> 0x0C) & 0xF;
         if (type != 1) { // only override actual silver rupees, not the switches or pots.
             return true;
         }
-        override_t override = lookup_override_by_newflag(flag, globalCtx->scene_index);
+        override_t override = lookup_override_by_newflag(&flag);
         if (override.key.all != 0) {
-            if (type == 1 && !Get_NewOverrideFlag(flag)) {
+            if (type == 1 && !Get_NewOverrideFlag(&flag)) {
                 // Spawn a green rupee which will be overridden using the collectible hacks.
                 actorEntry->params = 0;
                 actorEntry->id = EN_ITEM00;

@@ -25,7 +25,7 @@ from OcarinaSongs import patch_songs
 from MQ import patch_files, File, update_dmadata, insert_space, add_relocations
 from Rom import Rom
 from SaveContext import SaveContext, Scenes, FlagType
-from SceneFlags import get_alt_list_bytes, get_collectible_flag_table, get_collectible_flag_table_bytes
+from SceneFlags import build_xflag_tables, build_xflags_from_world, get_alt_list_bytes
 from Sounds import move_audiobank_table
 from Spoiler import Spoiler
 from Utils import data_path
@@ -1819,8 +1819,8 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
         for location in actor_override_locations:
             patch_actor_override(location, rom)
-        for location in rupeetower_locations:
-            patch_rupee_tower(location, rom)
+        #for location in rupeetower_locations:
+        #    patch_rupee_tower(location, rom)
 
     if world.shuffle_silver_rupees:
         rom.write_byte(rom.sym('SHUFFLE_SILVER_RUPEES'), 1)
@@ -1834,14 +1834,20 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
             rom.write_byte(0x2b08ce4 + 13, 0x1F)
 
     # Write flag table data
-    collectible_flag_table, alt_list = get_collectible_flag_table(world)
-    collectible_flag_table_bytes, num_collectible_flags = get_collectible_flag_table_bytes(collectible_flag_table)
+    #collectible_flag_table, alt_list = get_collectible_flag_table(world)
+    xflags_tables, alt_list = build_xflags_from_world(world)
+    xflag_scene_table, xflag_room_table, xflag_room_blob = build_xflag_tables(xflags_tables)
+    rom.write_bytes(rom.sym('xflag_scene_table'), xflag_scene_table)
+    rom.write_bytes(rom.sym('xflag_room_table'), xflag_room_table)
+    rom.write_bytes(rom.sym('xflag_room_blob'), xflag_room_blob)
+    
+    #collectible_flag_table_bytes, num_collectible_flags = get_collectible_flag_table_bytes(collectible_flag_table)
     alt_list_bytes = get_alt_list_bytes(alt_list)
-    if len(collectible_flag_table_bytes) > 600:
-        raise RuntimeError(f'Exceeded collectible override table size: {len(collectible_flag_table_bytes)}')
-    rom.write_bytes(rom.sym('collectible_scene_flags_table'), collectible_flag_table_bytes)
-    num_collectible_flags += num_collectible_flags % 8
-    rom.write_bytes(rom.sym('num_override_flags'), num_collectible_flags.to_bytes(2, 'big'))
+    #if len(collectible_flag_table_bytes) > 600:
+    #    raise RuntimeError(f'Exceeded collectible override table size: {len(collectible_flag_table_bytes)}')
+    #rom.write_bytes(rom.sym('collectible_scene_flags_table'), collectible_flag_table_bytes)
+    #num_collectible_flags += num_collectible_flags % 8
+    #rom.write_bytes(rom.sym('num_override_flags'), num_collectible_flags.to_bytes(2, 'big'))
     if(len(alt_list) > 140):
         raise(RuntimeError(f'Exceeded alt override table size: {len(alt_list)}'))
     rom.write_bytes(rom.sym('alt_overrides'), alt_list_bytes)
@@ -2635,7 +2641,7 @@ def get_override_table(world: World):
     return list(filter(lambda val: val is not None, map(get_override_entry, world.get_filled_locations())))
 
 
-override_struct = struct.Struct('>BBHxxxxHBxHxx')  # match override_t in get_items.c
+override_struct = struct.Struct('>BBxxIHBxHxx')  # match override_t in get_items.c
 
 
 def get_override_table_bytes(override_table):
@@ -2670,8 +2676,12 @@ def get_override_entry(location: Location) -> Optional[OverrideEntry]:
             raise Exception("Not right")
         if isinstance(location.default, list):
             default = location.default[0]
-        room, scene_setup, flag = default
-        default = (room << 8) + (scene_setup << 14) + flag
+        if len(default) == 3:
+            room, scene_setup, flag = default
+            subflag = 1
+        elif len(default) == 4:
+            room, scene_setup, flag, subflag = default
+        default = (scene_setup << 30) + (room << 24) + (flag << 8) + (subflag-1)
     elif location.type in ('Collectable', 'ActorOverride'):
         type = 2
     elif location.type == 'GS Token':

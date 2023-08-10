@@ -9,7 +9,6 @@
 
 
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
-extern uint16_t drop_collectible_override_flag;
 
 // Hacks the regular crate spawn collectible function to spawn overridden collectibles
 void ObjKibako2_SpawnCollectible_Hack(ObjKibako2 *this, z64_game_t *globalCtx) {
@@ -18,12 +17,12 @@ void ObjKibako2_SpawnCollectible_Hack(ObjKibako2 *this, z64_game_t *globalCtx) {
     collectibleFlagTemp = this->collectibleFlag & 0x3F;
     itemDropped = this->dyna.actor.rot_init.x & 0x1F;
     
-    uint16_t flag = Actor_GetAdditionalData(this)->flag;
-    if(flag && !Get_NewOverrideFlag(flag))
+    xflag_t* flag = &(Actor_GetAdditionalData(this)->flag);
+    if(flag->all && !Get_NewOverrideFlag(flag))
     {
-        drop_collectible_override_flag = flag;
+        drop_collectible_override_flag = *flag;
         EnItem00* spawned = z64_Item_DropCollectible(globalCtx, &this->dyna.actor.pos_world, 0);
-        drop_collectible_override_flag = 0;
+        z64_bzero(&drop_collectible_override_flag, sizeof(drop_collectible_override_flag));
         return;
     }
     if (itemDropped >= 0 && itemDropped < 0x1A) {

@@ -3,6 +3,7 @@
 #include "gfx.h"
 #include "textures.h"
 #include "z64.h"
+#include "get_items.h"
 #include "actor.h"
 
 #define DUNGEON_POT_SIDE_TEXTURE (uint8_t *)0x050108A0
@@ -14,7 +15,6 @@
 #define POT_DLIST (z64_gfx_t *)0x060017C0
 
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
-extern uint16_t drop_collectible_override_flag;
 
 
 void draw_pot(z64_actor_t *actor, z64_game_t *game) {
@@ -102,12 +102,12 @@ void draw_flying_pot_hack(z64_actor_t* actor, z64_game_t *game) {
 
 void ObjTsubo_SpawnCollectible_Hack(z64_actor_t *this, z64_game_t *game) {
     // If the pot contains an override that hasn't been collected, always drop
-    uint16_t flag = Actor_GetAdditionalData(this)->flag;
-    if(flag && !Get_NewOverrideFlag(flag))
+    xflag_t* flag = &(Actor_GetAdditionalData(this)->flag);
+    if(flag->all && !Get_NewOverrideFlag(flag))
     {
-        drop_collectible_override_flag = flag;
+        drop_collectible_override_flag = *flag;
         EnItem00* spawned = z64_Item_DropCollectible(game, &this->pos_world, ((((this->variable >> 9) & 0x3F) << 8)));
-        drop_collectible_override_flag = 0;
+        z64_bzero(&drop_collectible_override_flag, sizeof(drop_collectible_override_flag));
         return;
     }
 
@@ -121,12 +121,12 @@ void EnTuboTrap_DropCollectible_Hack(z64_actor_t *this, z64_game_t *game) {
     int16_t params = this->variable;
     int16_t param3FF = (params >> 6) & 0x3FF;
 
-    uint16_t flag = Actor_GetAdditionalData(this)->flag;
-    if(flag && !Get_NewOverrideFlag(flag))
+    xflag_t* flag = &(Actor_GetAdditionalData(this)->flag);
+    if(flag->all && !Get_NewOverrideFlag(flag))
     {
-        drop_collectible_override_flag = flag;
+        drop_collectible_override_flag = *flag;
         EnItem00* spawned = z64_Item_DropCollectible(game, &this->pos_world, (params & 0x3F) << 8);
-        drop_collectible_override_flag = 0;
+        z64_bzero(&drop_collectible_override_flag, sizeof(drop_collectible_override_flag));
         return;
     }
 
