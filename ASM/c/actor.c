@@ -83,13 +83,22 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, uint16_t actor_index)
     // Zeroize extra data;
     ActorAdditionalData* extra = Actor_GetAdditionalData(actor);
     
-    xflag_t flag = {
-        .scene = game->scene_index,
-        .setup = curr_scene_setup,
-        .room = actor->room_index,
-        .flag = actor_index,
-        .subflag = 0
-    };
+    xflag_t flag = (xflag_t) { 0 };
+
+    flag.scene = z64_game.scene_index;
+    if(z64_game.scene_index == 0x3E) {
+        flag.grotto.room = actor->room_index;
+        flag.grotto.grotto_id = z64_file.grotto_id & 0x1F;
+        flag.grotto.flag = actor_index;
+        flag.grotto.subflag = 0;
+    }
+    else {
+        flag.room = actor->room_index;
+        flag.setup = curr_scene_setup;
+        flag.flag = actor_index;
+        flag.subflag = 0;
+    }
+
     flag = resolve_alternative_flag(&flag);
     extra->actor_id = actor_index;
     override_t override = lookup_override_by_newflag(&flag);

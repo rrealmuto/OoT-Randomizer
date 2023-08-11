@@ -44,12 +44,12 @@ uint32_t active_item_fast_chest = 0;
 
 uint8_t satisified_pending_frames = 0;
 
-// This table contains the offset (in bytes) of the start of a particular scene/room/setup flag space in collectible_override_flags.
-// Call get_collectible_flag_offset to retrieve the desired offset.
+// These tables contain the flag bit offset for a particular scene/room/setup. These tables also index into xflag_room_blob to obtain the bit assignment for each actor in that room
+// xlflag_room_blob contains a compressed table of actor bit assignments for each scene/room/setup.
+// Call get_xflag_bit_offset to retrieve the desired offset for a flag.
 uint16_t xflag_scene_table[101];
-uint8_t xflag_room_table[500];
+uint8_t xflag_room_table[700];
 uint8_t xflag_room_blob[2000];
-uint8_t collectible_scene_flags_table[800];
 alt_override_t alt_overrides[140];
 
 extern uint16_t CURR_ACTOR_SPAWN_INDEX;
@@ -78,9 +78,6 @@ void item_overrides_init() {
 override_key_t get_override_search_key_by_newflag(xflag_t* flag) {
     if(flag > 0)
     {
-        /*if (scene == 0x19) {
-            scene = 0x0A;
-        }*/
         override_key_t key = {
         .scene = flag->scene,
         .type = OVR_NEWFLAGCOLLECTIBLE,
@@ -209,14 +206,9 @@ override_key_t resolve_alternative_override(override_key_t override_key) {
 xflag_t resolve_alternative_flag(xflag_t* flag)
 {
     override_key_t key;
-    if (flag->scene == 0x19) {
-        key.scene = 0x0A;
-    }
-    else {
-        key.scene = flag->scene;
-    }
+    key.scene = flag->scene;
     key.type = 0x06;
-    key.flag = (flag->setup << 30) + (flag->room << 24) + (flag->flag << 8) + flag->subflag;
+    key.flag = flag->all;
     override_key_t alt = resolve_alternative_override(key);
     xflag_t alt_flag = {
         .all = alt.flag,
@@ -582,49 +574,17 @@ void Collectible_WaitForMessageBox(EnItem00 *this, z64_game_t *game) {
     }
 }
 
-// Determine the offset into the new flag table to store the flags for the current scene/setup/room.
-// TODO: Optimize this by remembering the current scene's offset.
-uint16_t get_collectible_flag_offset(uint8_t scene, uint8_t room, uint8_t setup_id) {
-    uint8_t num_scenes = collectible_scene_flags_table[0];
-    uint16_t index = 1;
-    uint8_t i = 0;
-    uint8_t scene_id = 0;
-    uint8_t room_id = 0;
-    uint8_t setup_id_temp;
-    uint8_t room_setup_count = 0;
-    uint16_t room_byte_offset = 0;
-    // Loop through collectible_scene_flags_table until we find the right scene
-    while (num_scenes > 0) {
-        scene_id = collectible_scene_flags_table[index++];
-        room_setup_count = collectible_scene_flags_table[index++];
-        if (scene_id == scene) { // Found the scene
-            // Loop through each room/setup combination in the scene until we find the right one.
-            for (i = 0; i < room_setup_count; i++) {
-                room_id = collectible_scene_flags_table[index] & 0x3F;
-                setup_id_temp = (collectible_scene_flags_table[index++] & 0xC0) >> 6;
-                room_byte_offset = (collectible_scene_flags_table[index] << 8) + collectible_scene_flags_table[index+1];
-                index += 2;
-                if ((room_id == room) && (setup_id_temp == setup_id)) { // Found the right room/setup
-                    return room_byte_offset;
-                }
-            }
-        } else { // Not the right scene so skip to the next one.
-            index += 3 * room_setup_count;
-        }
-        num_scenes--;
-    }
-    return 0xFFFF;
-}
 
 uint16_t loaded_scene_room_setup = -1;
 uint16_t loaded_room_bit_offset = -1;
 uint8_t room_flags[256];
 
 uint16_t get_xflag_bit_offset(xflag_t* flag) {
-    uint8_t num_scenes = collectible_scene_flags_table[0];
     uint8_t i = 0;
+    uint8_t room_id_temp = 0;
     uint8_t room_id = 0;
     uint8_t setup_id_temp;
+    uint8_t setup_id = 0;
     uint8_t room_setup_count = 0;
     uint16_t room_byte_offset = 0xFFFF;
     //Index xflag_scene_table to get the offset into the room table for the current scene
@@ -632,6 +592,7 @@ uint16_t get_xflag_bit_offset(xflag_t* flag) {
     if(test_scene_room_setup != loaded_scene_room_setup)
     {
         loaded_room_bit_offset = -1;
+        loaded_scene_room_setup = -1;
         uint16_t room_table_index = xflag_scene_table[flag->scene];
         if(room_table_index == 0xffff) {
             return 0xffff;
@@ -639,13 +600,24 @@ uint16_t get_xflag_bit_offset(xflag_t* flag) {
         room_setup_count = xflag_room_table[room_table_index++];
         for(i = 0; i < room_setup_count; i++) {
             //room_setup = (setup << 6) + room
-            setup_id_temp = (xflag_room_table[room_table_index] & 0xC0) >> 6;
-            room_id = xflag_room_table[room_table_index] & 0x3F;
-            if((room_id == flag->room) && setup_id_temp == flag->setup) {
-                room_table_index++;
+            if(flag->scene == 0x3E) {
+                setup_id_temp = (xflag_room_table[room_table_index++]);
+                room_id_temp = xflag_room_table[room_table_index++];
+                room_id = flag->grotto.room;
+                setup_id = flag->grotto.grotto_id;
+            }
+            else {
+                setup_id_temp = (xflag_room_table[room_table_index] & 0xC0) >> 6;
+                room_id_temp = xflag_room_table[room_table_index++] & 0x3F;
+                room_id = flag->room;
+                setup_id = flag->setup;
+            }
+            
+            if((room_id_temp == room_id) && setup_id_temp == setup_id) {
                 room_byte_offset = (xflag_room_table[room_table_index] << 8) + xflag_room_table[room_table_index+1];
                 break;
             }
+            room_table_index += 2;
         }
         if(room_byte_offset == 0xFFFF) {
             return 0xFFFF;
@@ -740,11 +712,20 @@ bool Item00_KillActorIfFlagIsSet(z64_actor_t *actor) {
         flag = drop_collectible_override_flag;
     }
     else if(CURR_ACTOR_SPAWN_INDEX) {
-        flag.room = actor->room_index;
-        flag.setup = curr_scene_setup;
-        flag.flag = CURR_ACTOR_SPAWN_INDEX;
         flag.scene = z64_game.scene_index;
-        flag.subflag = 0;
+        if(z64_game.scene_index == 0x3E) {
+            flag.grotto.room = actor->room_index;
+            flag.grotto.grotto_id = z64_file.grotto_id & 0x1F;
+            flag.grotto.flag = CURR_ACTOR_SPAWN_INDEX;
+            flag.grotto.subflag = 0;
+        }
+        else {
+            flag.room = actor->room_index;
+            flag.setup = curr_scene_setup;
+            flag.flag = CURR_ACTOR_SPAWN_INDEX;
+            flag.subflag = 0;
+        }
+        
     };
     ActorAdditionalData* extra = Actor_GetAdditionalData(actor);
     // Check if an override exists

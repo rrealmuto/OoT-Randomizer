@@ -65,12 +65,19 @@ typedef struct xflag_t {
     union {
         uint32_t all;
         struct {
+            uint8_t pad;
             uint8_t setup : 2;
             uint8_t room : 6;
-            uint8_t pad;
             uint8_t flag;
             uint8_t subflag;
         };
+        struct {
+            uint32_t pad: 8;
+            uint32_t grotto_id: 5;
+            uint32_t room: 4;
+            uint32_t flag: 7;
+            uint32_t subflag: 8;
+        } grotto;
     };
     
 } xflag_t;

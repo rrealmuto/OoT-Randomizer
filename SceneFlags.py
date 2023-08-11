@@ -57,10 +57,13 @@ def build_xflag_tables(xflags):
         scene_table[scene*2 + 1] = (room_table_offset & 0x00FF)
         room_table.append(num_room_setups)
         for setup, room in xflags[scene].keys():
-            room_setup = (setup << 6) + room
+            if scene == 0x3E:
+                room_setup = bytearray([setup, room])
+            else:
+                room_setup = bytearray([(setup << 6) + room])
             room_xflags, room_bits = build_room_xflags(xflags[scene][(setup,room)])
             diff_flags, rlc_flags = encode_room_xflags(room_xflags)
-            room_table.append(room_setup)
+            room_table.extend(room_setup)
             room_blob_offset = len(room_blob)
             room_table.append((room_blob_offset & 0xFF00) >> 8)
             room_table.append(room_blob_offset & 0x00FF)
@@ -69,7 +72,7 @@ def build_xflag_tables(xflags):
             room_blob.append(len(rlc_flags))
             room_blob.extend(bytearray(rlc_flags))    
             bits += room_bits
-    return scene_table, room_table, room_blob
+    return scene_table, room_table, room_blob, bits
 
 # Create a 255 byte array representing each actor in the room. Each value in the array is the bit index that will be used for that actor, accounting for sub_ids
 # room_locations - list of location (actor_id, sub_id) in the room
@@ -126,24 +129,36 @@ def get_collectible_flag_table_bytes(scene_flag_table: dict[int, dict[int, int]]
 
     return bytes, num_flag_bytes
 
-
+# Build a list of alternative overrides for alternate scene setups
 def get_alt_list_bytes(alt_list: list[tuple[Location, tuple[int, int, int], tuple[int, int, int]]]) -> bytearray:
     bytes = bytearray()
     for entry in alt_list:
         location, alt, primary = entry
         room, scene_setup, flag, subflag = alt
+        
         if location.scene is None:
             continue
+        alt_scene = location.scene
+        if location.scene == 0x0A: 
+            alt_scene = 0x19
 
-        alt_override = (room << 8) + (scene_setup << 14) + flag
+        alt_override = (scene_setup << 22) + (room << 16) + (flag << 8) + (subflag - 1)
         room, scene_setup, flag, subflag = primary
-        primary_override = (room << 8) + (scene_setup << 14) + flag
+        primary_override = (scene_setup << 22) + (room << 16) + (flag << 8) + (subflag - 1)
+        bytes.append(alt_scene)
+        bytes.append(0x06)
+        bytes.append(0x00)
+        bytes.append(0x00)
+        bytes.append((alt_override & 0xFF000000) >> 24)
+        bytes.append((alt_override & 0x00FF0000) >> 16)
+        bytes.append((alt_override & 0x0000FF00) >> 8)
+        bytes.append((alt_override & 0x000000FF))
         bytes.append(location.scene)
         bytes.append(0x06)
-        bytes.append((alt_override & 0xFF00) >> 8)
-        bytes.append(alt_override & 0xFF)
-        bytes.append(location.scene)
-        bytes.append(0x06)
-        bytes.append((primary_override & 0xFF00) >> 8)
-        bytes.append(primary_override & 0xFF)
+        bytes.append(0x00)
+        bytes.append(0x00)
+        bytes.append((primary_override & 0xFF000000) >> 24)
+        bytes.append((primary_override & 0x00FF0000) >> 16)
+        bytes.append((primary_override & 0x0000FF00) >> 8)
+        bytes.append((primary_override & 0x000000FF))
     return bytes
