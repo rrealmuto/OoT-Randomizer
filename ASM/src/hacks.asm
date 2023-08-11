@@ -706,14 +706,6 @@ SRAM_SLOTS:
 .orga 0xEC832C
     or      T8, T7, R0
 
-; Hack bg_haka_tubo (shadow spinning pots) to drop flagged collectibles
-; replaces
-;   or      a0, s6, r0
-;   addiu   a1, sp, 0x005c
-.orga 0xD30FDC
-    jal     bg_haka_tubo_hack
-    or      a0, s6, r0
-
 ; Hack obj_comb (beehives) to drop flagged collectibles. Get rid of the random 50% drop
 ; replaces
 ;   sh      a2, 0x001e(sp) <- keep
@@ -3973,3 +3965,4 @@ courtyard_guards_kill:
 
 .include("hacks/ovl_bg_spot18_basket.asm")
 .include("hacks/ovl_obj_mure3.asm")
+.include("hacks/ovl_bg_haka_tubo.asm")
