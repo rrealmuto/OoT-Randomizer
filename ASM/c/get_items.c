@@ -587,8 +587,15 @@ uint16_t get_xflag_bit_offset(xflag_t* flag) {
     uint8_t setup_id = 0;
     uint8_t room_setup_count = 0;
     uint16_t room_byte_offset = 0xFFFF;
+    bool is_grotto = flag->scene == 0x3E;
     //Index xflag_scene_table to get the offset into the room table for the current scene
-    uint16_t test_scene_room_setup = (flag->scene << 8) + (flag->setup << 6) + (flag->room);
+    uint32_t test_scene_room_setup;
+    if(is_grotto) {
+        test_scene_room_setup = (flag->scene << 24) + (flag->grotto.grotto_id << 8) + (flag->grotto.room);
+    }
+    else {
+        test_scene_room_setup = (flag->scene << 24) + (flag->setup << 6) + (flag->room);        
+    }
     if(test_scene_room_setup != loaded_scene_room_setup)
     {
         loaded_room_bit_offset = -1;
@@ -632,7 +639,7 @@ uint16_t get_xflag_bit_offset(xflag_t* flag) {
         int j = 0;
         int index = 0;
         room_flags[0] = 0;
-        loaded_scene_room_setup = (flag->scene << 8) + (flag->setup << 6) + (flag->room);
+        loaded_scene_room_setup = test_scene_room_setup;
         uint8_t sum = 0;
         for(i = 0; i < rlc_size; i++) {
             token = xflag_room_blob[room_byte_offset++];
@@ -645,6 +652,9 @@ uint16_t get_xflag_bit_offset(xflag_t* flag) {
         }
     }
     if(loaded_room_bit_offset != -1) {
+        if(is_grotto) {
+            return loaded_room_bit_offset + room_flags[flag->grotto.flag] + flag->grotto.subflag;    
+        }
         return loaded_room_bit_offset + room_flags[flag->flag] + flag->subflag;
     }
     return 0xFFFF;

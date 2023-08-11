@@ -114,6 +114,7 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, uint16_t actor_index)
             case OBJ_KIBAKO2:
             case EN_ITEM00:
             case BG_SPOT18_BASKET:
+            case OBJ_MURE3:
             {
                 extra->flag = flag;
                 break;
