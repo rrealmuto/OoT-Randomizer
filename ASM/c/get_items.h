@@ -118,5 +118,6 @@ void override_flags_init();
 bool Get_NewOverrideFlag(xflag_t* flag);
 
 extern xflag_t drop_collectible_override_flag;
+extern EnItem00 *collectible_mutex;
 
 #endif

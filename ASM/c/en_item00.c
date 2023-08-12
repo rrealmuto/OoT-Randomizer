@@ -2,6 +2,7 @@
 #include "en_item00.h"
 #include "get_items.h"
 #include "models.h"
+#include "actor.h"
 
 // EnItem00 Action Function used for sending outgoing junk overrides collected from enitem00 collectibles
 void EnItem00_OutgoingAction(EnItem00* this, z64_game_t* globalCtx) {
@@ -47,9 +48,15 @@ extern void en_item00_update(EnItem00* this, z64_game_t* globalCtx);
 
 void en_item00_update_hook(EnItem00* this, z64_game_t* globalCtx)
 {
+    xflag_t* flag = &(Actor_GetAdditionalData(&this->actor)->flag);
+    if (Get_NewOverrideFlag(flag) && !((collectible_mutex == this) || this->actor.dropFlag == 1))
+    {
+        this->override = (override_t) { 0 };
+    }
     if(this->override.key.all && this->actionFunc != Collectible_WaitForMessageBox)
     {
         lookup_model_by_override(&this->model, this->override);
     }
     en_item00_update(this, globalCtx);
 }
+

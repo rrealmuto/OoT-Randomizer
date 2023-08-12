@@ -144,7 +144,7 @@ void Actor_StoreChestType(z64_actor_t* actor, z64_game_t* game) {
     }
     else if(actor->actor_id == OBJ_COMB)
     {
-        override = get_beehive_override(actor, game);
+        override = get_newflag_override(actor, game);
         pChestType = &(((ObjComb *)actor)->chest_type);
     }
     if (override.key.all != 0 && pChestType != NULL) { // If we don't have an override key, then either this item doesn't have an override entry, or it has already been collected.
