@@ -56,7 +56,6 @@ void Actor_SetWorldToHome_End(z64_actor_t *actor) {
 // Now that we resized pots/crates/beehives we could probably just store this info in new space in the actor. But this works for now.
 // Prior to being called, CURR_ACTOR_SPAWN_INDEX is set to the current position in the actor spawn list.
 void Actor_After_UpdateAll_Hack(z64_actor_t *actor, z64_game_t* game) {
-    Actor_InitializeExtras(actor);
     Actor_StoreFlag(actor, game, CURR_ACTOR_SPAWN_INDEX);
     Actor_StoreChestType(actor, game);
 
@@ -67,14 +66,7 @@ void Actor_After_UpdateAll_Hack(z64_actor_t *actor, z64_game_t* game) {
 void Actor_InitializeExtras(z64_actor_t* actor)
 {
     ActorAdditionalData* extra = Actor_GetAdditionalData(actor);
-    if(extra != NULL)
-    {
-        extra->actor_id = 0;
-        extra->flag.all = 0;
-        extra->flag.set = 0;
-        extra->flag.scene = 0;
-    }
-    
+    z64_bzero(extra, sizeof(ActorAdditionalData));
 }
 
 // For pots/crates/beehives, store the flag in the new space in the actor instance.
@@ -267,4 +259,28 @@ z64_actor_t *Player_SpawnEntry_Hack(void *actorCtx, ActorEntry *playerEntry, z64
     }
     return z64_SpawnActor(actorCtx, globalCtx, playerEntry->id, playerEntry->pos.x, playerEntry->pos.y, playerEntry->pos.z,
         playerEntry->rot.x, playerEntry->rot.y, playerEntry->rot.z, playerEntry->params);
+}
+
+// This is our entrypoint back into Actor_Spawn. Call/return this to spawn the actor
+extern z64_actor_t *Actor_Spawn_Continue(void* actorCtx, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params);
+
+z64_actor_t * Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int16_t actorId, 
+                                float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params) {
+    bool continue_spawn = true;
+
+    ActorEntry entry;
+    entry.id = actorId;
+    entry.params = params;
+    entry.pos.x = (int16_t)posX;
+    entry.pos.y = (int16_t)posY;
+    entry.pos.z = (int16_t)posZ;
+    entry.rot.x = rotX;
+    entry.rot.y = rotY;
+    entry.rot.z = rotZ;
+    
+    if(continue_spawn) {
+        z64_actor_t* spawned = Actor_Spawn_Continue(actorCtx, globalCtx, actorId, posX, posY, posZ, rotX, rotY, rotZ, params);
+        return spawned;
+    }
+    return NULL;
 }

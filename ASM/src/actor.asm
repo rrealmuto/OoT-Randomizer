@@ -79,21 +79,49 @@ Actor_Spawn_Malloc_Hack:
     addiu   sp, sp, 0x20
 
 Actor_Spawn_Shift:
-    addiu   sp, sp, -0x20
+    addiu   sp, sp, -0x40
     sw      s0, 0x10(sp)
-
-    ; Get the ActorInit from the stack. it was at 0x4C(sp) but we just moved down 0x20
-    lw      s0, 0x6C(sp)
+    sw      a0, 0x14(sp)
+    sw      a1, 0x18(sp)
+    sw      a2, 0x1C(sp)
+    sw      a3, 0x20(sp)
+    sw      at, 0x24(sp)
+    sw      v1, 0x28(sp)
+    sw      v0, 0x30(sp)
+    sw      ra, 0x34(sp)
+    ; Get the ActorInit from the stack. it was at 0x4C(sp) but we just moved down 0x40
+    lw      s0, 0x8C(sp)
     lh      s0, 0x00(s0)
-    beqz    s0, @end
+    beqz    s0, @end ; Make sure it isn't the Player actor. We don't want to increase that.
     nop
+
+    ; Zeroize the extra data
+    or      a0, v0, r0 ; store actor pointer in a0
+    jal     0x80002E80 ; call bzero
+    addiu   a1, r0, 0x10 ; store size to zeroize in a1
+
+    lw      s0, 0x10(sp)
+    lw      a0, 0x14(sp)
+    lw      a1, 0x18(sp)
+    lw      a2, 0x1C(sp)
+    lw      a3, 0x20(sp)
+    lw      at, 0x24(sp)
+    lw      v1, 0x28(sp)
+    lw      v0, 0x30(sp)
+
     addiu   v0, v0, 0x10
     ; This is code that occurs in a delay slot in a branch earlier in the code. Need to call it again because it used v0
     or      a3, v0, r0
 @end:
     lw      s0, 0x10(sp)
+    lw      ra, 0x34(sp)
     ; Replaced code
     lb      t2, 0x001E(s0)
     lui     at, 0x0001
     jr      ra
-    addiu   sp, sp, 0x20
+    addiu   sp, sp, 0x40
+
+Actor_Spawn_Continue:
+    addiu   sp, sp, -0x58
+    j       Actor_Spawn_Continue_Jump_Point
+    sw      a2, 0x0060(sp)

@@ -749,6 +749,15 @@ SRAM_SLOTS:
     jal     Actor_Spawn_Shift
     nop
 
+; Hack Actor_Spawn function so we can override actor spawns
+.orga 0xA9B070 ; in memory 0x80025110
+; Replaced code: 
+;   addiu   sp, sp, -0x58
+;   sw      a2, 0x0060(sp)
+    j       Actor_Spawn_Hook
+    nop
+Actor_Spawn_Continue_Jump_Point:
+
 ; Hack in Actor_Delete to shift the pointer back to the start of the actor that was malloc'd to include the new data.
 .org 0x8002570C
 ; Replaces:
