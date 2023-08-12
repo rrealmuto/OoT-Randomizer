@@ -52,6 +52,11 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
   * [4.0](#40)
 
 ## RealRob Changelog
+### v34
+  * Enemy Soul Shuffle Fixes:
+    * Fix logic for BOTW Dead Hand Chest
+    * Fix text for Dark Link soul incorrectly saying Ganondorf Soul
+
 ### v33
   * Forest temple soul logic fixes
 
