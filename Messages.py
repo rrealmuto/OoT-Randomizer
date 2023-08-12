@@ -278,7 +278,7 @@ ITEM_MESSAGES: list[tuple[int, str]] = [
     (0x908E, "\x08You got the\x01\x05\x41Ocarina C-down Button!\x05\x40\x01You can now play \xA6 on the Ocarina!"),
     (0x908F, "\x08You got the\x01\x05\x41Ocarina C-left Button!\x05\x40\x01You can now play \xA7 on the Ocarina!"),
     (0x9090, "\x08You got the\x01\x05\x41Ocarina C-right Button!\x05\x40\x01You can now play \xA8 on the Ocarina!"),
-    (0x9091, "\x08You found a \x05\x41stray fairy\x05\x40!\x01Your health has been restored!"),
+    (0x9091, "\x08You found a \x05\x41fairy\x05\x40!\x01Your health has been restored!"),
     (0x9092, "\x08You found \x05\x43literally nothing\x05\x40!"),
 ]
 
