@@ -33,27 +33,8 @@ ActorAdditionalData* Actor_GetAdditionalData(z64_actor_t* actor) {
     return (ActorAdditionalData*)(((uint8_t*)actor) - 0x10);
 }
 
-// Called at the end of Actor_SetWorldToHome
-// Reset the rotations for any actors that we may have passed data in through Actor_Spawn
-void Actor_SetWorldToHome_End(z64_actor_t *actor) {
-    switch (actor->actor_id) {
-        case BG_HAKA_TUBO:
-        case BG_SPOT18_BASKET:
-        case OBJ_MURE3:
-        case OBJ_COMB: {
-            actor->rot_world.z = 0;
-            break;
-        default:
-            break;
-        }
-    }
-}
 
-// Called from Actor_UpdateAll when spawning the actors in the scene's/room's actor list.
-// For Pots/Crates/Beehives, sets the actors spawn index into unused y/z rotation fields
-// This works because this hack occurs after the actor has been spawned and Actor_SetWorldToHome has been called
-// Otherwise the actor would be rotated :)
-// Now that we resized pots/crates/beehives we could probably just store this info in new space in the actor. But this works for now.
+// Called from Actor_UpdateAll when spawning the actors in the scene's/room's actor list to store flags in the new space that we added to the actors.
 // Prior to being called, CURR_ACTOR_SPAWN_INDEX is set to the current position in the actor spawn list.
 void Actor_After_UpdateAll_Hack(z64_actor_t *actor, z64_game_t* game) {
     Actor_StoreFlag(actor, game, CURR_ACTOR_SPAWN_INDEX);
