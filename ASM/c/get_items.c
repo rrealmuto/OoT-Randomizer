@@ -575,10 +575,12 @@ void Collectible_WaitForMessageBox(EnItem00 *this, z64_game_t *game) {
 }
 
 
-uint32_t loaded_scene_room_setup = -1;
-uint16_t loaded_room_bit_offset = -1;
-uint8_t room_flags[256];
+uint32_t loaded_scene_room_setup = -1; // Stores the currently cached scene/room/setup
+uint16_t loaded_room_bit_offset = -1; // Stores the bit offset of the cached scene/room/setup
+uint8_t room_flags[256]; // Stores the bit offset for each actor in the currently cached scene/room/setup
 
+// Determine the bit offset into the collectible_override_flags for a flag
+// Caches the bit offets for every actor in the current scene/room/setup into room_flags so that we don't have to search the table over and over.
 uint16_t get_xflag_bit_offset(xflag_t* flag) {
     uint8_t i = 0;
     uint8_t room_id_temp = 0;
@@ -590,24 +592,36 @@ uint16_t get_xflag_bit_offset(xflag_t* flag) {
     bool is_grotto = flag->scene == 0x3E;
     //Index xflag_scene_table to get the offset into the room table for the current scene
     uint32_t test_scene_room_setup;
+
+    // Check if we're in a grotto because we calculate grotto scene/room/setup differently because grottos are dumb
     if(is_grotto) {
         test_scene_room_setup = (flag->scene << 24) + (flag->grotto.grotto_id << 8) + (flag->grotto.room);
     }
     else {
         test_scene_room_setup = (flag->scene << 24) + (flag->setup << 6) + (flag->room);        
     }
+
+    // Check if we have this scene/room/setup cached already
     if(test_scene_room_setup != loaded_scene_room_setup)
     {
+        // Not cached so load it using the xflag tables
         loaded_room_bit_offset = -1;
         loaded_scene_room_setup = -1;
+
+        // Get the offset into xflag_room_table for the current scene.
         uint16_t room_table_index = xflag_scene_table[flag->scene];
         if(room_table_index == 0xffff) {
             return 0xffff;
         }
+
+        // First byte in the xflag_room_table block for this scene is the number of rooms/setups
         room_setup_count = xflag_room_table[room_table_index++];
+
+        // Loop through all of the rooms/setups to find the one for this flag
         for(i = 0; i < room_setup_count; i++) {
-            //room_setup = (setup << 6) + room
+            // Get the setup/room from the entry
             if(flag->scene == 0x3E) {
+                // If we're in a the room/setup entries are stored differently because we need 2 bytes to represent them
                 setup_id_temp = (xflag_room_table[room_table_index++]);
                 room_id_temp = xflag_room_table[room_table_index++];
                 room_id = flag->grotto.room;
@@ -620,19 +634,27 @@ uint16_t get_xflag_bit_offset(xflag_t* flag) {
                 setup_id = flag->setup;
             }
             
+            // Test if the setup/room matches the flag
             if((room_id_temp == room_id) && setup_id_temp == setup_id) {
+                // Match. Read the next 2 bytes which contains the byte offset into the xflag_room_blob table
                 room_byte_offset = (xflag_room_table[room_table_index] << 8) + xflag_room_table[room_table_index+1];
                 break;
             }
+            // Doesn't match so skip to the next entry
             room_table_index += 2;
         }
+        // If we get here and room_byte_offset is still 0xFFFF then the room/setup combination for this flag wasn't found in the table. Just return 0xFFFF
         if(room_byte_offset == 0xFFFF) {
             return 0xFFFF;
         }
 
-        // Load the room flags from the compressed data at room_byte_offset in xflag_room_blob
+        // Now load the actor flags from the compressed data starting at room_byte_offset in xflag_room_blob
+        
+        // Read the bit offset for the current room/setup. First uint16_t in the blob
         loaded_room_bit_offset = (xflag_room_blob[room_byte_offset] << 8) + (xflag_room_blob[room_byte_offset+1]);
         room_byte_offset += 2;
+
+        // Read the next byte from the blob. This contains the size, in bytes, of the run-length coded data to follow
         uint8_t rlc_size = xflag_room_blob[room_byte_offset++] / 2;
         uint8_t token;
         uint8_t tok_len;
@@ -641,6 +663,8 @@ uint16_t get_xflag_bit_offset(xflag_t* flag) {
         room_flags[0] = 0;
         loaded_scene_room_setup = test_scene_room_setup;
         uint8_t sum = 0;
+
+        // Read and decode the RLC, data and store it into room_flags
         for(i = 0; i < rlc_size; i++) {
             token = xflag_room_blob[room_byte_offset++];
             tok_len = xflag_room_blob[room_byte_offset++];
@@ -651,6 +675,8 @@ uint16_t get_xflag_bit_offset(xflag_t* flag) {
             }
         }
     }
+
+    // Finally, return the bit offset for this flag
     if(loaded_room_bit_offset != -1) {
         if(is_grotto) {
             return loaded_room_bit_offset + room_flags[flag->grotto.flag] + flag->grotto.subflag;    
@@ -663,12 +689,6 @@ uint16_t get_xflag_bit_offset(xflag_t* flag) {
 
 // Check if the new collectible flag for an actor is set.
 bool Get_NewOverrideFlag(xflag_t* flag) {
-    uint16_t scene = z64_game.scene_index;
-    /*if (scene == 0x19) {
-        scene = 0x0A;
-    }*/
-    
-    
     if (flag->all) //Check if this is one of our collectibles
     {
         uint16_t flag_bit_offset = get_xflag_bit_offset(flag);
@@ -677,17 +697,11 @@ bool Get_NewOverrideFlag(xflag_t* flag) {
             return collectible_override_flags[flag_bit_offset / 8] & (1 << (flag_bit_offset % 8));
         }
     }
-
     return true;
 }
 
 // Set a collectible flag in the new flag table for a given EnItem00.
 void Set_NewOverrideFlag(xflag_t* flag) {
-    uint16_t scene = z64_game.scene_index;
-    /*if (scene == 0x19) {
-        scene = 0x0A;
-    }*/
-    
     uint16_t flag_bit_offset = get_xflag_bit_offset(flag);
     if(flag_bit_offset != 0xFFFF) //get_xflag_bit_offset will return 0xFF is the flag is not found in the tables
         collectible_override_flags[flag_bit_offset / 8] |= (1 << (flag_bit_offset % 8));

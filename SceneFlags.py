@@ -6,9 +6,8 @@ if TYPE_CHECKING:
     from Location import Location
     from World import World
 
-
-# Loop through all of the locations in the world. Extract ones that use our flag system and 
-def build_xflags_from_world(world: World) -> tuple[dict[int, dict[int, int]], list[tuple[Location, tuple[int, int, int], tuple[int, int, int]]]]:
+# Loop through all of the locations in the world. Extract ones that use our flag system to start building our xflag tables
+def build_xflags_from_world(world: World) ->  tuple[dict[int, dict[tuple[int,int], list[tuple[int,int]]]], list[tuple[Location, tuple[int,int,int,int],tuple[int,int,int,int]]]]:
     scene_flags = {}
     alt_list = []
     for i in range(0, 101):
@@ -44,8 +43,9 @@ def build_xflags_from_world(world: World) -> tuple[dict[int, dict[int, int]], li
         if len(scene_flags[i].keys()) == 0:
             del scene_flags[i]
     return scene_flags, alt_list
-                
-def build_xflag_tables(xflags):
+
+# Take the data from build_xflags_from_world and create the actual tables that will be stored in the ROM
+def build_xflag_tables(xflags: dict[int, dict[tuple[int,int], list[tuple[int,int]]]]) -> tuple[bytearray, bytearray, bytearray, int]:
     scene_table = bytearray([0xFF] * 202)
     room_table = bytearray(0)
     room_blob = bytearray(0)
@@ -74,7 +74,7 @@ def build_xflag_tables(xflags):
             bits += room_bits
     return scene_table, room_table, room_blob, bits
 
-# Create a 255 byte array representing each actor in the room. Each value in the array is the bit index that will be used for that actor, accounting for sub_ids
+# Create a 256 byte array representing each actor in the room. Each value in the array is the bit index that will be used for that actor, accounting for sub_ids
 # room_locations - list of location (actor_id, sub_id) in the room
 def build_room_xflags(room_locations):
     # Loop through every shuffled location in the room
