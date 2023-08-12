@@ -575,7 +575,7 @@ void Collectible_WaitForMessageBox(EnItem00 *this, z64_game_t *game) {
 }
 
 
-uint16_t loaded_scene_room_setup = -1;
+uint32_t loaded_scene_room_setup = -1;
 uint16_t loaded_room_bit_offset = -1;
 uint8_t room_flags[256];
 
