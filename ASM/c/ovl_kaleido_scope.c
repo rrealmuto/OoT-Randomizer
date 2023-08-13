@@ -6,6 +6,8 @@
 
 #define KaleidoScope_DrawWorldMap   0x8081CE54
 #define KaleidoScope_DrawDungeonMap 0x8081b660
+#define PauseMapMark_Draw   0x808292e8
+
 #define MAX_LINES 13
 
 menu_ctx soul_menu_ctx = {0, 47, 0, 0, soul_menu_handler};
@@ -245,4 +247,10 @@ void KaleidoScope_DrawWorldMap_Callhook(z64_game_t* globalCtx, z64_gfx_t* gfx) {
 
 void KaleidoScope_DrawDungeonMap_Callhook(z64_game_t* globalCtx, z64_gfx_t* gfx) {
     KaleidoScope_DrawNewMap(globalCtx, gfx, KaleidoScope_DrawDungeonMap);
+}
+
+void PauseMapMark_Draw_CallHook(z64_game_t* globalCtx) {
+    pause_mapmark_draw_func handler = KaleidoManager_GetRamAddr(PauseMapMark_Draw);
+    if(menu_page == 0)
+        handler(globalCtx);
 }

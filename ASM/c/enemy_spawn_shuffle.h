@@ -33,7 +33,7 @@
 #define SOUL_ID_FLARE_DANCER 24
 #define SOUL_ID_DEAD_HAND 25
 #define SOUL_ID_SHELL_BLADE 26
-#define SOUL_ID_LIKE-LIKE 27
+#define SOUL_ID_LIKE_LIKE 27
 #define SOUL_ID_SPIKE_ENEMY 28
 #define SOUL_ID_ANUBIS 29
 #define SOUL_ID_IRON_KNUCKLE 30
@@ -53,7 +53,7 @@
 #define SOUL_ID_TWINROVA 44
 #define SOUL_ID_JABU_JABU_TENTACLE 45
 #define SOUL_ID_DARK_LINK 46
-
+#define SOUL_ID_GANONDORF 47
 
 // Enemy spawn shuffle spawn check override function.
 // Return true if the actor entry should be handled by enemy spawn shuffle

@@ -16,6 +16,7 @@ int print_string(z64_game_t* globalCtx, char* str, int x, int y, float scale);
 extern void* KaleidoManager_GetRamAddr(void* vram);
 
 typedef void(*kaleido_handler)(z64_game_t* globalCtx, z64_gfx_t* gfx);
+typedef void(*pause_mapmark_draw_func)(z64_game_t* globalCtx);
 
 typedef enum {
     MENU_PAGE_MAP = 0x00,
