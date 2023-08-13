@@ -2,6 +2,7 @@
 #include "dungeon_info.h"
 #include "trade_quests.h"
 #include "save.h"
+#include "enemy_spawn_shuffle.h"
 
 #define rupee_cap ((uint16_t*)0x800F8CEC)
 volatile uint8_t MAX_RUPEES = 0;
@@ -269,5 +270,5 @@ void unlock_ocarina_note(z64_file_t *save, int16_t arg1, int16_t arg2) {
 }
 
 void give_enemy_soul(z64_file_t *save, int16_t arg1, int16_t arg2) {
-    extended_savectx.enemy_spawn_flags[arg1/8] |= 1 << (arg1 % 8);
+    flags_setsoul(arg1);
 }

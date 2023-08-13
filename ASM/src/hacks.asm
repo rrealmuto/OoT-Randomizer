@@ -4330,3 +4330,8 @@ courtyard_guards_kill:
 ;   sw      t7, 0x1F24(at)
     jal     ocarina_buttons
     nop
+
+;================================================================
+; Include hacks in other files to start keeping things organized
+;================================================================
+.include "hacks/ovl/ovl_kaleido_scope.asm"
