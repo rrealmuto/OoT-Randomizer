@@ -6,6 +6,58 @@
 uint8_t CFG_ENEMY_SPAWN_SHUFFLE = 0;
 bool curr_room_enemies_inhibited = false; //When loading a room, set to keep track if any enemies were prevented from spawning due to enemy spawn shuffle. Used when checking for room clear to prevent clear if enemies are inhibited.
 
+
+
+char* SOUL_MENU_NAMES[] = {
+    "Stalfos",
+    "Octorok",
+    "Wallmaster",
+    "Dodongo",
+    "Keese",
+    "Tektite",
+    "Peahat",
+    "Lizalfos and Dinalfos",
+    "Gohma Larvae",
+    "Shabom",
+    "Baby Dodongo",
+    "Biri and Bari",
+    "Tailpasaran",
+    "Skulltula",
+    "Torch Slug",
+    "Moblin",
+    "Armos",
+    "Deku Baba",
+    "Deku Scrub",
+    "Bubble",
+    "Beamos",
+    "Floormaster",
+    "Redead and Gibdo",
+    "Skullwalltula",
+    "Flare Dancer",
+    "Dead hand",
+    "Shell blade",
+    "Like-like",
+    "Spike Enemy",
+    "Anubis",
+    "Iron Knuckle",
+    "Skull Kid",
+    "Flying Pot",
+    "Freezard",
+    "Stinger",
+    "Wolfos",
+    "Guay",
+    "Queen Gohma",
+    "King Dodongo",
+    "Barinade",
+    "Phantom Ganon",
+    "Volvagia",
+    "Morpha",
+    "Bongo Bongo",
+    "Twinrova",
+    "Jabu Jabu Tentacle",
+    "Dark Link"
+};
+
 enemy_spawn_table_entry enemy_spawn_table[] = {
     ENEMY_SPAWN_TABLE_ENTRY(0x0002, 0,   SPAWN_FLAGS_SPAWNENTRY, NULL), //En_Test (Stalfos)
     ENEMY_SPAWN_TABLE_ENTRY(0x000E, 1,   SPAWN_FLAGS_SPAWNENTRY, NULL), //En_Okuta (Octorok (and big octo))
@@ -61,6 +113,7 @@ enemy_spawn_table_entry enemy_spawn_table[] = {
     ENEMY_SPAWN_TABLE_ENTRY(0x0033, 46,  SPAWN_FLAGS_ACTORSPAWN, NULL)  //En_Torch2 (Dark Link)
 };
 
+
 // Return false if this is a gold skulltula
 bool spawn_check_gs(ActorEntry *actorEntry, z64_game_t *globalCtx) {
     uint16_t type = (actorEntry->params & 0xE000) >> 13;
@@ -92,6 +145,21 @@ bool flags_getsoul(int table_index) {
     return (extended_savectx.enemy_spawn_flags[table_index/8] & (1 << (table_index % 8))) > 0;
 }
 
+bool flags_setsoul(int table_index) {
+    extended_savectx.enemy_spawn_flags[table_index/8] |= 1 << (table_index % 8);
+    extended_savectx.soul_enable_flags[table_index/8] |= 1 << (table_index % 8);
+}
+
+bool get_soul_enabled(int table_index) { 
+    return (extended_savectx.soul_enable_flags[table_index/8] & (1 << (table_index % 8))) > 0;
+}
+
+bool toggle_soul_enabled(int table_index) { 
+    uint8_t flags = extended_savectx.soul_enable_flags[table_index/8];
+    uint8_t mask = (1 << (table_index % 8));
+    extended_savectx.soul_enable_flags[table_index/8] = flags ^ mask;
+}
+
 // Spawn override function for enemy spawn shuffle.
 // Check if the actor id is in the enemy_spawn_table, and if it is check if the enemy spawn flag is set in extended save context
 bool spawn_override_enemy_spawn_shuffle(ActorEntry *actorEntry, z64_game_t *globalCtx, SPAWN_FLAGS flag)
@@ -105,7 +173,7 @@ bool spawn_override_enemy_spawn_shuffle(ActorEntry *actorEntry, z64_game_t *glob
                     if (!enemy_spawn_table[i].override_func(actorEntry, globalCtx))
                         return true;
                 }
-                continue_spawn &= flags_getsoul(table_entry->index); 
+                continue_spawn &= flags_getsoul(table_entry->index) & get_soul_enabled(table_entry->index); 
                 curr_room_enemies_inhibited |= !continue_spawn;
                 return continue_spawn;
             }
