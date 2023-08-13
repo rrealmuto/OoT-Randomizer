@@ -9,7 +9,7 @@ z64_actor_t* En_Blkobj_Actor_Find_Hook(void* actorCtx, int32_t actorId, int32_t 
     // Check for enemy soul shuffle
     if(CFG_ENEMY_SPAWN_SHUFFLE)
     {
-        if(!flags_getsoul(47))
+        if(!flags_getsoul(46))
         {
             return 1;
         }

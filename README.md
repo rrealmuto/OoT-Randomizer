@@ -15,6 +15,8 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v35](#v35)
+  * [v34](#v34)
   * [v33](#v33)
   * [v32](#v32)
   * [v31](#v31)
@@ -52,6 +54,9 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
   * [4.0](#40)
 
 ## RealRob Changelog
+### v35
+  * Fix dark link room not clearing in soul shuffle
+
 ### v34
   * Enemy Soul Shuffle Fixes:
     * Fix logic for BOTW Dead Hand Chest
