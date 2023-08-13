@@ -1129,7 +1129,9 @@ typedef struct
     uint16_t          changing;                 /* 0x01E4 */
     uint16_t          screen_prev_idx;          /* 0x01E6 */
     uint16_t          screen_idx;               /* 0x01E8 */
-    char              unk_03_[0x002E];          /* 0x01EA */
+    char              unk_03_[0x002A];          /* 0x01EA */
+    int16_t           stickAdjX;                /* 0x0214*/
+    int16_t           stickAdjY;                /* 0x0216 */
     int16_t           item_cursor;              /* 0x0218 */
     char              unk_04_[0x0002];          /* 0x021A */
     int16_t           quest_cursor;             /* 0x021C */
@@ -2341,5 +2343,6 @@ typedef void(*z64_ScalePitchAndTempo_proc)(float scaleTempoAndFreq, uint8_t dura
 
 // Functions defined in the base ROM but we use the linkscript to link them externally.
 extern z64_actor_t* z64_ActorFind(void* actorCtx, int32_t actorId, int32_t actorCategory);
+extern int32_t DmaMgr_RequestSync(void* ram, uint32_t* vrom, unsigned long size);
 
 #endif
