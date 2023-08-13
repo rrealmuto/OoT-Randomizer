@@ -133,7 +133,7 @@
         {
           "name": "open_section",
           "text": "Open",
-          "row_span": [6,6,9],
+          "row_span": [4,4,7],
           "settings": [
             "open_forest",
             "open_kakariko",
@@ -170,15 +170,12 @@
             "shuffle_dungeon_entrances",
             "shuffle_bosses",
             "shuffle_overworld_entrances",
+            "mix_entrance_pools",
+            "decouple_entrances",
             "shuffle_gerudo_valley_river_exit",
             "owl_drops",
             "warp_songs",
-            "spawn_positions",
-            "triforce_hunt",
-            "triforce_count_per_world",
-            "triforce_goal_per_world",
-            "free_bombchu_drops",
-            "one_item_per_dungeon"
+            "spawn_positions"
           ]
         },
         {
@@ -232,6 +229,19 @@
             "silver_rupee_pouches_choice",
             "silver_rupee_pouches",
             "enhance_map_compass"
+          ]
+        },
+        {
+          "name": "various_section",
+          "text": "Various",
+          "col_span": 1,
+          "row_span": [2,2,2],
+          "settings": [
+            "triforce_hunt",
+            "triforce_count_per_world",
+            "triforce_goal_per_world",
+            "free_bombchu_drops",
+            "one_item_per_dungeon"
           ]
         }
       ]
@@ -440,7 +450,8 @@
             "zora_color",
             "silver_gauntlets_color",
             "golden_gauntlets_color",
-            "mirror_shield_frame_color"
+            "mirror_shield_frame_color",
+            "extra_equip_colors"
           ]
         },
         {

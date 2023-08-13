@@ -2,13 +2,14 @@ name: Python
 
 on:
   push:
-    branches: [ "Dev" ]
+    branches: [ "Dev", "Dev-R", "dev-fenhl" ]
   pull_request:
-    branches: [ "Dev" ]
+    branches: [ "Dev", "Dev-R", "dev-fenhl" ]
 
 jobs:
   test_minimum_python:
     name: Unit Tests - Python ${{ matrix.python-version }}
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -25,6 +26,7 @@ jobs:
 
   test_current_python:
     name: Unit Tests - Python ${{ matrix.python-version }}
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     strategy:
       matrix:

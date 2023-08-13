@@ -229,7 +229,7 @@ conditional_always: dict[str, Callable[[World], bool]] = {
 
 # Entrance hints required under certain settings
 conditional_entrance_always: dict[str, Callable[[World], bool]] = {
-    'Ganons Castle Grounds -> Ganons Castle Lobby': lambda world: (world.settings.bridge != 'open'
+    'Ganons Castle Ledge -> Ganons Castle Lobby': lambda world: (world.settings.bridge != 'open'
         and (world.settings.bridge != 'stones' or world.settings.bridge_stones > 1)
         and (world.settings.bridge != 'medallions' or world.settings.bridge_medallions > 1)
         and (world.settings.bridge != 'dungeons' or world.settings.bridge_rewards > 2)
@@ -265,7 +265,7 @@ conditional_sometimes: dict[str, Callable[[World], bool]] = {
     'Shadow Temple Invisible Blades Chests':    lambda world: world.settings.tokensanity not in ['dungeons', 'all'],
 
     # Conditional entrance hints
-    'Ganons Castle Grounds -> Ganons Castle Lobby': lambda world: (world.settings.bridge != 'open'
+    'Ganons Castle Ledge -> Ganons Castle Lobby': lambda world: (world.settings.bridge != 'open'
         and (world.settings.bridge != 'dungeons' or world.settings.bridge_rewards > 1)
         and (world.settings.bridge != 'tokens' or world.settings.bridge_tokens > 10)
         and (world.settings.bridge != 'hearts' or world.settings.bridge_hearts > world.settings.starting_hearts)),
@@ -1364,7 +1364,7 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'Zoras Fountain -> Jabu Jabus Belly Beginning':             ("inside #Jabu Jabu#, one can find", None, 'entrance'),
     'Kakariko Village -> Bottom of the Well':                   ("a #village well# leads to", None, 'entrance'),
 
-    'Ganons Castle Grounds -> Ganons Castle Lobby':             ("the #rainbow bridge# leads to", None, 'entrance'),
+    'Ganons Castle Ledge -> Ganons Castle Lobby':               ("the #rainbow bridge# leads to", None, 'entrance'),
 
     'KF Links House':                                           ("Link's House", None, 'region'),
     'Temple of Time':                                           ("the #Temple of Time#", None, 'region'),

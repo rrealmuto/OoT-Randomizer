@@ -1285,9 +1285,8 @@
         "scene": "Castle Grounds",
         "hint": "OUTSIDE_GANONS_CASTLE",
         "exits": {
-            # The rainbow bridge cutscene trigger doesn't extend to the castle entrance
-            "Ganons Castle Grounds": "is_adult and bridge == 'open'"
-            # No exit back into the castle because the entrance places Link in midair if the bridge isn't spawned
+            "Hyrule Castle Grounds": "is_child",
+            "Ganons Castle Ledge": "is_adult"
         }
     },
     {
@@ -1300,7 +1299,16 @@
         "exits": {
             "Castle Grounds": "True",
             "OGC Great Fairy Fountain": "can_use(Golden_Gauntlets) and at_dampe_time",
-            "Ganons Castle Lobby": "can_build_rainbow_bridge and at_dampe_time"
+            "Ganons Castle Ledge": "can_build_rainbow_bridge"
+        }
+    },
+    {
+        "region_name": "Ganons Castle Ledge",
+        "scene": "Castle Grounds",
+        "hint": "OUTSIDE_GANONS_CASTLE",
+        "exits": {
+            "Ganons Castle Grounds": "can_build_rainbow_bridge",
+            "Ganons Castle Lobby": "at_dampe_time"
         }
     },
     {
