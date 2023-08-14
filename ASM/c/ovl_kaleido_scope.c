@@ -16,9 +16,9 @@ Vtx background_vertices[4];
 int menu_count = 1;
 MENU_PAGE menu_page = 0;
 menu_ctx* menus[2]; // Increase this to add more menus
-uint8_t font_textures[NUM_FONT_CHARS * FONT_CHAR_TEX_WIDTH * FONT_CHAR_TEX_HEIGHT / 2];
-Gfx menu_dl_buffer[0x1000];
-Gfx* menu_dl_p;
+uint8_t font_textures[NUM_FONT_CHARS * FONT_CHAR_TEX_WIDTH * FONT_CHAR_TEX_HEIGHT / 2] __attribute__ ((aligned (8)));
+Gfx menu_dl_buffer[0x1000] __attribute__ ((aligned (16)));
+Gfx* menu_dl_p __attribute__ ((aligned (16)));
 
 
 void init_new_menus() {
