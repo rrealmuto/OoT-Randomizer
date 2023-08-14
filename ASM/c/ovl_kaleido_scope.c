@@ -16,9 +16,9 @@ Vtx background_vertices[4];
 int menu_count = 1;
 MENU_PAGE menu_page = 0;
 menu_ctx* menus[2]; // Increase this to add more menus
-uint8_t font_textures[NUM_FONT_CHARS * FONT_CHAR_TEX_WIDTH * FONT_CHAR_TEX_HEIGHT / 2];
-Gfx menu_dl_buffer[0x1000];
-Gfx* menu_dl_p;
+uint8_t font_textures[NUM_FONT_CHARS * FONT_CHAR_TEX_WIDTH * FONT_CHAR_TEX_HEIGHT / 2] __attribute__ ((aligned (8)));
+Gfx menu_dl_buffer[0x1000] __attribute__ ((aligned (16)));
+Gfx* menu_dl_p __attribute__ ((aligned (16)));
 
 
 void init_new_menus() {
@@ -60,6 +60,9 @@ void draw_map_background(z64_game_t* globalCtx, z64_gfx_t* gfx, float x, float y
         v[i].v.cn[3] = 0xff;
     }
     OPEN_DISPS(gfx);
+    gDPPipeSync(POLY_OPA_DISP++);
+    gDPSetPrimColor(POLY_OPA_DISP++, 0, 0, 0, 0, 0, 255);
+    gDPSetCombineMode(POLY_OPA_DISP++, G_CC_PRIMITIVE, G_CC_PRIMITIVE);
     gDPPipeSync(POLY_OPA_DISP++);
     gSPVertex(POLY_OPA_DISP++, (uint32_t)v & 0xffffffff, 4, 0);
     gSP2Triangles(
@@ -129,7 +132,16 @@ void draw_soul_menu(z64_game_t* globalCtx, z64_gfx_t* gfx) {
     // Set up the pipeline to use the new buffer, save old buffer?
 
     OPEN_DISPS(gfx);
+    
     gDPPipeSync(POLY_OPA_DISP++);
+    gDPSetOtherMode(POLY_OPA_DISP++, G_AD_DISABLE | G_CD_DISABLE |
+        G_CK_NONE | G_TC_FILT |
+        G_TD_CLAMP | G_TP_NONE |
+        G_TL_TILE | G_TT_NONE |
+        G_PM_NPRIMITIVE | G_CYC_1CYCLE |
+        G_TF_BILERP, // HI
+        G_AC_NONE | G_ZS_PRIM |
+        G_RM_XLU_SURF | G_RM_XLU_SURF2), // LO
     gDPSetCombineMode(POLY_OPA_DISP++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
 
     int y = 60;
@@ -204,8 +216,6 @@ int print_string(z64_game_t* globalCtx, char* str, int x, int y, float scale) {
 
 void draw_new_menus(z64_game_t* globalCtx, z64_gfx_t* gfx) {
     OPEN_DISPS(gfx)
-    gDPSetPrimColor(POLY_OPA_DISP++, 0, 0, 0, 0, 0, 255);
-    gDPSetCombineMode(POLY_OPA_DISP++, G_CC_PRIMITIVE, G_CC_PRIMITIVE);
     draw_map_background(globalCtx, gfx, -110.f, 59.f, 217.f, 128.f);
     CLOSE_DISPS();
     
@@ -227,7 +237,7 @@ void draw_new_menus(z64_game_t* globalCtx, z64_gfx_t* gfx) {
 }
 
 void KaleidoScope_DrawNewMap(z64_game_t* globalCtx, z64_gfx_t* gfx, kaleido_handler handler) {
-    if(globalCtx->common.input[0].pad_pressed.l && globalCtx->pause_ctxt.screen_idx == 1 && globalCtx->pause_ctxt.state == 6 && globalCtx->pause_ctxt.changing == 0) {
+    if(globalCtx->common.input[0].pad_pressed.cu && globalCtx->pause_ctxt.screen_idx == 1 && globalCtx->pause_ctxt.state == 6 && globalCtx->pause_ctxt.changing == 0) {
         menu_page = (menu_page + 1) % menu_count;
     }
     if(menu_page) {
