@@ -10,7 +10,7 @@
 
 #define MAX_LINES 13
 
-menu_ctx soul_menu_ctx = {0, 47, 0, 0, soul_menu_handler};
+menu_ctx soul_menu_ctx = {0, NUM_ENEMY_SOULS, 0, 0, soul_menu_handler};
 
 Vtx background_vertices[4];
 int menu_count = 1;
@@ -81,7 +81,7 @@ void soul_menu_handler(z64_game_t* globalCtx, z64_gfx_t* gfx) {
 
 void update_soul_menu(z64_game_t* globalCtx) {
     if(globalCtx->common.input->pad_pressed.a) {
-        uint8_t soul_index = soul_menu_ctx.curr_line;
+        uint8_t soul_index = SOUL_MENU_NAMES[soul_menu_ctx.curr_line].soul_id;
         if(flags_getsoul(soul_index)) {
             toggle_soul_enabled(soul_index);
             z64_Audio_PlaySoundGeneral(NA_SE_SY_DECIDE, (void *)0x80104394, 4, (float *)0x801043A0, (float *)0x801043A0, (uint8_t *)0x801043A8);
@@ -152,8 +152,8 @@ void draw_soul_menu(z64_game_t* globalCtx, z64_gfx_t* gfx) {
 
     gDPPipeSync(menu_dl_p++);
     for(int i = soul_menu_ctx.curr_min_line; i < soul_menu_ctx.curr_min_line + MAX_LINES; i++) {
-        if(flags_getsoul(i)) {
-            if(get_soul_enabled(i)) {
+        if(flags_getsoul(SOUL_MENU_NAMES[i].soul_id)) {
+            if(get_soul_enabled(SOUL_MENU_NAMES[i].soul_id)) {
                 gDPSetPrimColor(menu_dl_p++, 0,0,255,255,255,255);
             }
             else {
@@ -163,7 +163,7 @@ void draw_soul_menu(z64_game_t* globalCtx, z64_gfx_t* gfx) {
         else {
             gDPSetPrimColor(menu_dl_p++, 0,0,85,85,85,255);
         }
-        int x = print_string(globalCtx, SOUL_MENU_NAMES[i], 50, y, .5);
+        int x = print_string(globalCtx, SOUL_MENU_NAMES[i].name, 50, y, .5);
         if(soul_menu_ctx.curr_line == i) {
             print_string(globalCtx, "*", x, y, .5);
         }
