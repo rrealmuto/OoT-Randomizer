@@ -145,8 +145,8 @@ void draw_soul_menu(z64_game_t* globalCtx, z64_gfx_t* gfx) {
     gDPSetCombineMode(POLY_OPA_DISP++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
 
     int y = 60;
-    gDPSetCombineLERP(POLY_OPA_DISP++, PRIMITIVE, PRIMITIVE, TEXEL0, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0, PRIMITIVE,
-                      PRIMITIVE, TEXEL0, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0);
+    //gDPSetCombineLERP(POLY_OPA_DISP++, PRIMITIVE, PRIMITIVE, TEXEL0, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0, PRIMITIVE,
+    //                  PRIMITIVE, TEXEL0, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0);
     
     menu_dl_p = &menu_dl_buffer[0];
 
