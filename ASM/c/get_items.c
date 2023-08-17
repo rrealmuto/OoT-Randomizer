@@ -754,6 +754,7 @@ bool Item00_KillActorIfFlagIsSet(z64_actor_t *actor) {
     ActorAdditionalData* extra = Actor_GetAdditionalData(actor);
     // Check if an override exists
     
+    flag = resolve_alternative_flag(&flag);
     this->override = lookup_override_by_newflag(&flag);
     lookup_model_by_override(&this->model, this->override);
     // Check if the overridden item has already been collected
