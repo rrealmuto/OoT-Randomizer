@@ -267,8 +267,12 @@ void Save_Init_Write_Hook(uint32_t addr, void *dramAddr, size_t size, uint32_t d
     z64_bzero(dramAddr + slot_offset + SRAM_ORIGINAL_SLOT_SIZE, SLOT_SIZE - SRAM_ORIGINAL_SLOT_SIZE);
 
     // Configure initial extended save context
+    // Zeroize extended_savectx
+    z64_bzero(&extended_savectx, sizeof(extended_savecontext_static_t));
+
     // Set all souls to enabled
     for(int i = 0; i < 8; i++) {
+        extended_savectx.enemy_spawn_flags[i] = 0;
         extended_savectx.soul_enable_flags[i] = 0xFF;
     }
     // Copy extended savectx to the buffer
