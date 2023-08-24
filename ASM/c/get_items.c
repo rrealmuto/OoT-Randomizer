@@ -9,6 +9,7 @@
 #include "z64.h"
 #include "scene.h"
 #include "actor.h"
+#include "save.h"
 
 extern uint8_t SHUFFLE_CHEST_GAME;
 extern uint8_t FAST_CHESTS;
@@ -284,14 +285,12 @@ void move_outgoing_queue() {
 }
 
 void push_pending_item(override_t override) {
-    for (int key_scene = 0x30; key_scene < 0x36; key_scene += 2) {
-        if (z64_file.scene_flags[key_scene].unk_00_ == 0) {
-            z64_file.scene_flags[key_scene].unk_00_ = override.key.all;
-            z64_file.scene_flags[key_scene + 1].unk_00_ = override.value.base.all;
+    for (int i = 0; i < 3; i++) {
+        if (extended_savectx.incoming_queue[i].key.all == 0) {
+            extended_savectx.incoming_queue[i] = override;
             break;
         }
-        if (z64_file.scene_flags[key_scene].unk_00_ == override.key.all) {
-            // Prevent duplicate entries
+        if (extended_savectx.incoming_queue[i].key.all == override.key.all) {
             break;
         }
     }
@@ -321,11 +320,10 @@ void push_delayed_item(uint8_t flag) {
 }
 
 void pop_pending_item() {
-    for (int scene = 0x30; scene < 0x34; scene++) {
-        z64_file.scene_flags[scene].unk_00_ = z64_file.scene_flags[scene + 2].unk_00_;
+    for (int i = 0; i < 2; i++) {
+        extended_savectx.incoming_queue[i] = extended_savectx.incoming_queue[i+1];
     }
-    z64_file.scene_flags[0x34].unk_00_ = 0;
-    z64_file.scene_flags[0x35].unk_00_ = 0;
+    extended_savectx.incoming_queue[2] = (override_t){ 0 };
 }
 
 void after_key_received(override_key_t key) {
@@ -349,8 +347,9 @@ void after_key_received(override_key_t key) {
 }
 
 void pop_ice_trap() {
-    override_key_t key = { .all = z64_file.scene_flags[0x30].unk_00_ };
-    override_value_base_t value = { .all = z64_file.scene_flags[0x31].unk_00_ };
+    override_t override = extended_savectx.incoming_queue[0];
+    override_key_t key = { .all = override.key.all };
+    override_value_base_t value = { .all = override.value.base.all };
     if (value.item_id == 0x7C && value.player == PLAYER_ID) {
         push_pending_ice_trap();
         pop_pending_item();
@@ -368,7 +367,7 @@ void after_item_received() {
         push_outgoing_override(&active_override);
     }
 
-    if (key.all == z64_file.scene_flags[0x30].unk_00_) {
+    if (key.all == extended_savectx.incoming_queue[0].key.all) {
         pop_pending_item();
     }
     after_key_received(key);
@@ -400,10 +399,7 @@ inline uint32_t link_is_ready() {
 }
 
 void try_pending_item() {
-    override_t override = {
-        .key.all = z64_file.scene_flags[0x30].unk_00_,
-        .value.base.all = z64_file.scene_flags[0x31].unk_00_,
-    };
+    override_t override = extended_savectx.incoming_queue[0];
 
     if(override.key.all == 0) {
         return;
