@@ -39,7 +39,7 @@
             "Jabu Jabus Belly MQ Elevator Room Pot 2": "True",
             "Jabu Jabus Belly MQ Elevator Biri 1": "can_kill_biri",
             "Jabu Jabus Belly MQ Elevator Biri 2": "can_kill_biri",
-            "Jabu Jabus Belly MQ Elevator Stingray": "can_use(Slingshot) or can_use(Bow) or can_use(Hookshot)"
+            "Jabu Jabus Belly MQ Elevator Stingray": "has_soul(Stinger) and (can_use(Slingshot) or can_use(Bow) or can_use(Hookshot))"
         },
         "exits": {
             "Jabu Jabus Belly Main": "
@@ -57,7 +57,7 @@
             "Jabu Jabus Belly MQ Basement Near Switches Chest": "can_use(Slingshot)",
             "Jabu Jabus Belly MQ Boomerang Room Small Chest": "True",
             "Jabu Jabus Belly MQ Boomerang Chest": "
-                Kokiri_Sword or Slingshot or Bombs or Sticks or is_adult",
+                (has_soul(Stinger) and has_soul(Lizalfos_and_Dinalfos) and has_soul(Likelike)) and (Kokiri_Sword or Slingshot or Bombs or Sticks or is_adult)",
             "Jabu Jabus Belly MQ Boomerang Room Pot 1": "True",
             "Jabu Jabus Belly MQ Boomerang Room Pot 2": "True",
             "Jabu Jabus Belly MQ GS Boomerang Chest Room": "
@@ -76,7 +76,7 @@
         },
         "exits": {
             "Jabu Jabus Belly Depths": "has_explosives and can_use(Boomerang) and can_use(Slingshot)",
-            "Jabu Jabus Belly Invisible Enemies Room": "(at('Jabu Jabus Belly Depths', True) or jabu_shortcuts)"
+            "Jabu Jabus Belly Invisible Enemies Room": "(at('Jabu Jabus Belly Depths', has_soul(Jabu_Jabu_Tentacle)) or jabu_shortcuts)"
         }
     },
     {
@@ -84,50 +84,63 @@
         "dungeon": "Jabu Jabus Belly",
         "locations": {
             "Jabu Jabus Belly MQ GS Invisible Enemies Room": "
-                ((can_use(Hookshot) and (Hover_Boots or (can_use(Fire_Arrows) and (Longshot or Iron_Boots)))) or
-                (here((logic_lens_jabu_mq or can_use(Lens_of_Truth)) and
-                        (can_use(Slingshot) or can_use(Bow) or can_use(Longshot) or
-                        (can_use(Hookshot) and can_use(Iron_Boots) and logic_lens_jabu_mq))) and
-                    (can_use(Boomerang) or (can_use(Hookshot) and can_use(Iron_Boots)))))",
+                (has_soul(Keese) and has_soul(Stinger)) and (
+                    ((can_use(Hookshot) and (Hover_Boots or (can_use(Fire_Arrows) and (Longshot or Iron_Boots)))) or
+                    (here((logic_lens_jabu_mq or can_use(Lens_of_Truth)) and
+                            (can_use(Slingshot) or can_use(Bow) or can_use(Longshot) or
+                            (can_use(Hookshot) and can_use(Iron_Boots) and logic_lens_jabu_mq))) and
+                        (can_use(Boomerang) or (can_use(Hookshot) and can_use(Iron_Boots))))))",
             "Jabu Jabus Belly MQ Invisible Enemies Room Keese 1": "
-                (logic_lens_jabu_mq or can_use(Lens_of_Truth)) and
-                (can_use(Slingshot) or can_use(Bow) or can_use(Longshot)) or
-                (can_use(Hookshot) and can_use(Iron_Boots) and logic_lens_jabu_mq)",
+                has_soul(Keese) and (
+                    (logic_lens_jabu_mq or can_use(Lens_of_Truth)) and
+                    (can_use(Slingshot) or can_use(Bow) or can_use(Longshot)) or
+                    (can_use(Hookshot) and can_use(Iron_Boots) and logic_lens_jabu_mq))",
             "Jabu Jabus Belly MQ Invisible Enemies Room Keese 2": "
-                (logic_lens_jabu_mq or can_use(Lens_of_Truth)) and
-                (can_use(Slingshot) or can_use(Bow) or can_use(Longshot)) or
-                (can_use(Hookshot) and can_use(Iron_Boots) and logic_lens_jabu_mq)",
+                has_soul(Keese) and (
+                    (logic_lens_jabu_mq or can_use(Lens_of_Truth)) and
+                    (can_use(Slingshot) or can_use(Bow) or can_use(Longshot)) or
+                    (can_use(Hookshot) and can_use(Iron_Boots) and logic_lens_jabu_mq))",
             "Jabu Jabus Belly MQ Invisible Enemies Room Keese 3": "
-                (logic_lens_jabu_mq or can_use(Lens_of_Truth)) and
-                (can_use(Slingshot) or can_use(Bow) or can_use(Longshot)) or
-                (can_use(Hookshot) and can_use(Iron_Boots) and logic_lens_jabu_mq)",
-            "Jabu Jabus Belly MQ Invisible Enemies Room Stingray 1": "can_use(Slingshot) or can_use(Bow) or can_use(Hookshot)",
-            "Jabu Jabus Belly MQ Invisible Enemies Room Stingray 2": "can_use(Slingshot) or can_use(Bow) or can_use(Hookshot)"
+                has_soul(Keese) and (
+                    (logic_lens_jabu_mq or can_use(Lens_of_Truth)) and
+                    (can_use(Slingshot) or can_use(Bow) or can_use(Longshot)) or
+                    (can_use(Hookshot) and can_use(Iron_Boots) and logic_lens_jabu_mq))",
+            "Jabu Jabus Belly MQ Invisible Enemies Room Stingray 1": "has_soul(Stinger) and (can_use(Slingshot) or can_use(Bow) or can_use(Hookshot))",
+            "Jabu Jabus Belly MQ Invisible Enemies Room Stingray 2": "has_soul(Stinger) and (can_use(Slingshot) or can_use(Bow) or can_use(Hookshot))"
         }
     },
     {
         "region_name": "Jabu Jabus Belly Depths",
         "dungeon": "Jabu Jabus Belly",
         "events": {
-            "Jabu Jabus Belly Parasitic Tentacle Cleared": "True"
+            "Jabu Jabus Belly Parasitic Tentacle Cleared": "has_soul(Jabu_Jabu_Tentacle)",
+            "Jabu Jabus Belly Right Tentacle Cleared": "has_soul(Jabu_Jabu_Tentacle) and ((Sticks and has_soul(Likelike)) or can_use(Dins_Fire))"
         },
         "locations": {
-            "Jabu Jabus Belly MQ Falling Like Like Room Chest": "True",
+            "Jabu Jabus Belly MQ Falling Like Like Room Chest": "has_soul(Likelike)",
             "Jabu Jabus Belly MQ Falling Like Like Room Pot 1": "True",
             "Jabu Jabus Belly MQ Falling Like Like Room Pot 2": "True",
-            "Jabu Jabus Belly MQ GS Tailpasaran Room": "Sticks or can_use(Dins_Fire)",
             "Jabu Jabus Belly MQ Tentacle Hallway Lizalfos": "can_kill_lizalfos",
             "Jabu Jabus Belly MQ Falling Like-Like Room Like-Like 1": "can_kill_likelike",
-            "Jabu Jabus Belly MQ Falling Like-Like Room Like-Like 2": "can_kill_likelike",
-            "Jabu Jabus Belly MQ Tailsparan Room Tailsparan 1": "(Sticks or can_use(Dins_Fire)) and can_kill_tailsparan",
-            "Jabu Jabus Belly MQ Tailsparan Room Tailsparan 2": "(Sticks or can_use(Dins_Fire)) and can_kill_tailsparan",
-            "Jabu Jabus Belly MQ Tailsparan Room Tailsparan 3": "(Sticks or can_use(Dins_Fire)) and can_kill_tailsparan",
-            "Jabu Jabus Belly MQ Tailsparan Room Shabom 1": "(Sticks or can_use(Dins_Fire)) and can_kill_shabom",
-            "Jabu Jabus Belly MQ Tailsparan Room Shabom 2": "(Sticks or can_use(Dins_Fire)) and can_kill_shabom",
-            "Jabu Jabus Belly MQ Tailsparan Room Skullwalltula": "(Sticks or can_use(Dins_Fire)) and has_explosives"
+            "Jabu Jabus Belly MQ Falling Like-Like Room Like-Like 2": "can_kill_likelike"
+            
         },
         "exits": {
-            "Jabu Jabus Belly Past Big Octo": "Sticks or (can_use(Dins_Fire) and Kokiri_Sword)"
+            "Jabu Jabus Belly Past Big Octo": "has_soul(Octorok) and (Sticks or Kokiri_Sword) and Jabu_Jabus_Belly_Right_Tentacle_Cleared",
+            "Jabu Jabus Belly Tailpasaran Room": "Jabu_Jabus_Belly_Right_Tentacle_Cleared"
+        }
+    },
+    {
+        "region_name": "Jabu Jabus Belly Tailpasaran Room",
+        "dungeon": "Jabu Jabus Belly",
+        "locations": {
+            "Jabu Jabus Belly MQ GS Tailpasaran Room": "True",
+            "Jabu Jabus Belly MQ Tailsparan Room Tailsparan 1": "can_kill_tailsparan",
+            "Jabu Jabus Belly MQ Tailsparan Room Tailsparan 2": "can_kill_tailsparan",
+            "Jabu Jabus Belly MQ Tailsparan Room Tailsparan 3": "can_kill_tailsparan",
+            "Jabu Jabus Belly MQ Tailsparan Room Shabom 1": "can_kill_shabom",
+            "Jabu Jabus Belly MQ Tailsparan Room Shabom 2": "can_kill_shabom",
+            "Jabu Jabus Belly MQ Tailsparan Room Skullwalltula": "has_explosives and has_soul(Skullwalltula)"
         }
     },
     {

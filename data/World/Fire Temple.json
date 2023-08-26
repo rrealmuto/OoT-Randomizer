@@ -42,18 +42,18 @@
         "region_name": "Fire Temple Lower Locked Door",
         "dungeon": "Fire Temple",
         "locations": {
-            "Fire Temple Flare Dancer Chest": "not shuffle_enemy_spawns or (Keese_Soul and Torch_Slug_Soul and Flare_Dancer_Soul)",
-            "Fire Temple Boss Key Chest": "not shuffle_enemy_spawns or (Keese_Soul and Torch_Slug_Soul and Flare_Dancer_Soul)",
-            "Fire Temple GS Boss Key Loop": "not shuffle_enemy_spawns or (Keese_Soul and Torch_Slug_Soul)",
+            "Fire Temple Flare Dancer Chest": "has_soul(Keese) and has_soul(Torch_Slug) and has_soul(Flare_Dancer)",
+            "Fire Temple Boss Key Chest": "has_soul(Keese) and has_soul(Torch_Slug) and has_soul(Flare_Dancer)",
+            "Fire Temple GS Boss Key Loop": "has_soul(Keese) and has_soul(Torch_Slug) and has_soul(Flare_Dancer)",
             "Fire Temple Before Lower Flare Dancer Keese 1": "can_kill_keese",
             "Fire Temple Before Lower Flare Dancer Keese 2": "can_kill_keese",
             "Fire Temple Before Lower Flare Dancer Keese 3": "can_kill_keese",
-            "Fire Temple Before Lower Flare Dancer Torch Slug 1": "not shuffle_enemy_spawns or Torch_Slug_Soul",
-            "Fire Temple Before Lower Flare Dancer Torch Slug 2": "not shuffle_enemy_spawns or Torch_Slug_Soul",
-            "Fire Temple Before Lower Flare Dancer Torch Slug 3": "not shuffle_enemy_spawns or Torch_Slug_Soul",
-            "Fire Temple Before Lower Flare Dancer Torch Slug 4": "not shuffle_enemy_spawns or Torch_Slug_Soul",
-            "Fire Temple Before Lower Flare Dancer Like-Like": "not shuffle_enemy_spawns or (Keese_Soul and Torch_Slug_Soul)",
-            "Fire Temple Lower Flare Dancer" : "not shuffle_enemy_spawns or (Keese_Soul and Torch_Slug_Soul and Flare_Dancer_Soul)"
+            "Fire Temple Before Lower Flare Dancer Torch Slug 1": "has_soul(Torch_Slug)",
+            "Fire Temple Before Lower Flare Dancer Torch Slug 2": "has_soul(Torch_Slug)",
+            "Fire Temple Before Lower Flare Dancer Torch Slug 3": "has_soul(Torch_Slug)",
+            "Fire Temple Before Lower Flare Dancer Torch Slug 4": "has_soul(Torch_Slug)",
+            "Fire Temple Before Lower Flare Dancer Like-Like": "has_soul(Keese) and has_soul(Torch_Slug)",
+            "Fire Temple Lower Flare Dancer" : "has_soul(Keese) and has_soul(Torch_Slug) and has_soul(Flare_Dancer)"
         }
     },
     {
@@ -69,15 +69,15 @@
             "Fire Temple Big Lava Room Keese 2": "can_use(Goron_Tunic) and can_kill_keese",
             "Fire Temple Big Lava Room Keese 3": "can_use(Goron_Tunic) and can_kill_keese",
             "Fire Temple Big Lava Room Keese 4": "can_use(Goron_Tunic) and can_kill_keese",
-            "Fire Temple Big Lava Room Bubble 1": "can_use(Goron_Tunic) and (Magic_Meter or Bow) and (not shuffle_enemy_spawns or Bubble_Soul)",
-            "Fire Temple Big Lava Room Bubble 2": "can_use(Goron_Tunic) and (Magic_Meter or Bow) and (not shuffle_enemy_spawns or Bubble_Soul)",
-            "Fire Temple Big Lava Room Bubble 3": "can_use(Goron_Tunic) and (Magic_Meter or Bow) and (not shuffle_enemy_spawns or Bubble_Soul)",
-            "Fire Temple Big Lava Room Bubble 4": "can_use(Goron_Tunic) and (Magic_Meter or Bow) and (not shuffle_enemy_spawns or Bubble_Soul)",
-            "Fire Temple Big Lava Room Bubble 5": "can_use(Goron_Tunic) and (Magic_Meter or Bow) and (not shuffle_enemy_spawns or Bubble_Soul)",
-            "Fire Temple Big Lava Room Bubble 6": "can_use(Goron_Tunic) and (Magic_Meter or Bow) and (not shuffle_enemy_spawns or Bubble_Soul)",
-            "Fire Temple Big Lava Room Bubble 7": "can_use(Goron_Tunic) and (Magic_Meter or Bow) and (not shuffle_enemy_spawns or Bubble_Soul)",
-            "Fire Temple Big Lava Room Bubble 8": "can_use(Goron_Tunic) and (Magic_Meter or Bow) and (not shuffle_enemy_spawns or Bubble_Soul)",
-            "Fire Temple Big Lava Room Bubble 9": "can_use(Goron_Tunic) and (Magic_Meter or Bow) and (not shuffle_enemy_spawns or Bubble_Soul)"
+            "Fire Temple Big Lava Room Bubble 1": "can_use(Goron_Tunic) and (Magic_Meter or Bow) and (has_soul(Bubble))",
+            "Fire Temple Big Lava Room Bubble 2": "can_use(Goron_Tunic) and (Magic_Meter or Bow) and (has_soul(Bubble))",
+            "Fire Temple Big Lava Room Bubble 3": "can_use(Goron_Tunic) and (Magic_Meter or Bow) and (has_soul(Bubble))",
+            "Fire Temple Big Lava Room Bubble 4": "can_use(Goron_Tunic) and (Magic_Meter or Bow) and (has_soul(Bubble))",
+            "Fire Temple Big Lava Room Bubble 5": "can_use(Goron_Tunic) and (Magic_Meter or Bow) and (has_soul(Bubble))",
+            "Fire Temple Big Lava Room Bubble 6": "can_use(Goron_Tunic) and (Magic_Meter or Bow) and (has_soul(Bubble))",
+            "Fire Temple Big Lava Room Bubble 7": "can_use(Goron_Tunic) and (Magic_Meter or Bow) and (has_soul(Bubble))",
+            "Fire Temple Big Lava Room Bubble 8": "can_use(Goron_Tunic) and (Magic_Meter or Bow) and (has_soul(Bubble))",
+            "Fire Temple Big Lava Room Bubble 9": "can_use(Goron_Tunic) and (Magic_Meter or Bow) and (has_soul(Bubble))"
         },
         "exits": {
             "Fire Temple Elevator Room": "
@@ -114,8 +114,8 @@
         "region_name": "Fire Temple Shortcut Room",
         "dungeon": "Fire Temple",
         "locations": {
-            "Fire Temple Shortcut Room Lower Torch Slug": "not shuffle_enemy_spawns or Torch_Slug_Soul",
-            "Fire Temple Shortcut Room Upper Torch Slug": "not shuffle_enemy_spawns or Torch_Slug_Soul"
+            "Fire Temple Shortcut Room Lower Torch Slug": "has_soul(Torch_Slug)",
+            "Fire Temple Shortcut Room Upper Torch Slug": "has_soul(Torch_Slug)"
         },
         "exits": {
             "Fire Temple Boulder Maze Lower" :"
@@ -166,11 +166,11 @@
             "Fire Temple Above Boulder Maze Torch Slug 1": "True",
             "Fire Temple Above Boulder Maze Torch Slug 2": "True",
             "Fire Temple Above Boulder Maze Torch Slug 3": "True",
-            "Fire Temple Moving Fire Room Bubble 1": "(not shuffle_enemy_spawns or Bubble_Soul) and (Bow or Magic_Meter)",
-            "Fire Temple Moving Fire Room Bubble 2": "(not shuffle_enemy_spawns or Bubble_Soul) and (Bow or Magic_Meter)",
-            "Fire Temple Moving Fire Room Bubble 3": "(not shuffle_enemy_spawns or Bubble_Soul) and (Bow or Magic_Meter)",
-            "Fire Temple Moving Fire Room Bubble 4": "(not shuffle_enemy_spawns or Bubble_Soul) and (Bow or Magic_Meter)",
-            "Fire Temple Moving Fire Room Bubble 5": "(not shuffle_enemy_spawns or Bubble_Soul) and (Bow or Magic_Meter)"
+            "Fire Temple Moving Fire Room Bubble 1": "(has_soul(Bubble)) and (Bow or Magic_Meter)",
+            "Fire Temple Moving Fire Room Bubble 2": "(has_soul(Bubble)) and (Bow or Magic_Meter)",
+            "Fire Temple Moving Fire Room Bubble 3": "(has_soul(Bubble)) and (Bow or Magic_Meter)",
+            "Fire Temple Moving Fire Room Bubble 4": "(has_soul(Bubble)) and (Bow or Magic_Meter)",
+            "Fire Temple Moving Fire Room Bubble 5": "(has_soul(Bubble)) and (Bow or Magic_Meter)"
         },
         "exits": {
             "Fire Temple Flame Maze": "(Small_Key_Fire_Temple, 7)"
@@ -191,7 +191,7 @@
         },
         "exits": {
             "Fire Temple Upper": "
-                (not shuffle_enemy_spawns or Flare_Dancer_Soul) and
+                (has_soul(Flare_Dancer)) and
                 ((Small_Key_Fire_Temple, 8) or
                 (Hover_Boots and Megaton_Hammer) or logic_fire_flame_maze)"
         }
@@ -204,7 +204,7 @@
                 Megaton_Hammer and
                 (can_play(Song_of_Time) or
                     (logic_rusted_switches and (Hover_Boots or has_explosives)))",
-            "Fire Temple Megaton Hammer Chest": "has_explosives and (not shuffle_enemy_spawns or Flare_Dancer_Soul)",
+            "Fire Temple Megaton Hammer Chest": "has_explosives and (has_soul(Flare_Dancer))",
             "Fire Temple Flame Maze Right Side Pot 1" : "True",
             "Fire Temple Flame Maze Right Side Pot 2" : "True",
             "Fire Temple Flame Maze Right Side Pot 3" : "True",
@@ -216,7 +216,7 @@
             "Fire Temple Hammer Steps Keese 2": "Megaton_Hammer and has_explosives and can_kill_keese",
             "Fire Temple Hammer Steps Keese 3": "Megaton_Hammer and has_explosives and can_kill_keese",
             "Fire Temple Hammer Steps Keese 4": "Megaton_Hammer and has_explosives and can_kill_keese",
-            "Fire Temple Upper Flare Dancer" : "has_explosives and (not shuffle_enemy_spawns or Flare_Dancer_Soul)"
+            "Fire Temple Upper Flare Dancer" : "has_explosives and (has_soul(Flare_Dancer))"
         },
         "exits": {
             "Fire Temple Before Boss": "

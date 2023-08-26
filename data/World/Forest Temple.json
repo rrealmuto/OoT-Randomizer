@@ -21,7 +21,7 @@
         "region_name": "Forest Temple Central Area",
         "dungeon": "Forest Temple",
         "locations": {
-            "Forest Temple First Stalfos Chest": "(not shuffle_enemy_spawns or Stalfos_Soul) and (is_adult or Kokiri_Sword)",
+            "Forest Temple First Stalfos Chest": "(has_soul(Stalfos)) and (is_adult or Kokiri_Sword)",
             "Forest Temple Center Room Right Pot 1": "True",
             "Forest Temple Center Room Right Pot 2": "True",
             "Forest Temple Center Room Right Pot 3": "True",
@@ -56,15 +56,15 @@
                 has_explosives or Kokiri_Sword or can_use(Dins_Fire)",
             "Forest Temple NW Outdoors Deku Baba": "can_kill_deku_baba",
             "Forest Temple Left Courtyard Octorok": "can_kill_octorok_with_explosives",
-            "Forest Temple Left Courtyard Vines Skullwalltula Lower": "(not shuffle_enemy_spawns or Skullwalltula_Soul) and (has_explosives or can_use(Dins_Fire) or can_use(Bow) or can_use(Progressive_Hookshot) or can_use(Slingshot) or can_use(Boomerang))",
-            "Forest Temple Left Courtyard Vines Skullwalltula Middle": "(not shuffle_enemy_spawns or Skullwalltula_Soul) and (has_explosives or can_use(Bow) or can_use(Progressive_Hookshot) or can_use(Slingshot) or can_use(Boomerang))",
-            "Forest Temple Left Courtyard Vines Skullwalltula Upper": "(not shuffle_enemy_spawns or Skullwalltula_Soul) and (has_explosives or can_use(Bow) or can_use(Progressive_Hookshot) or can_use(Slingshot) or can_use(Boomerang))"
+            "Forest Temple Left Courtyard Vines Skullwalltula Lower": "(has_soul(Skullwalltula)) and (has_explosives or can_use(Dins_Fire) or can_use(Bow) or can_use(Progressive_Hookshot) or can_use(Slingshot) or can_use(Boomerang))",
+            "Forest Temple Left Courtyard Vines Skullwalltula Middle": "(has_soul(Skullwalltula)) and (has_explosives or can_use(Bow) or can_use(Progressive_Hookshot) or can_use(Slingshot) or can_use(Boomerang))",
+            "Forest Temple Left Courtyard Vines Skullwalltula Upper": "(has_soul(Skullwalltula)) and (has_explosives or can_use(Bow) or can_use(Progressive_Hookshot) or can_use(Slingshot) or can_use(Boomerang))"
         },
         "exits": {
             "Forest Temple NE Outdoors": "(Progressive_Scale, 2)",
             # Other methods of crossing through the well are not currently relevant.
             "Forest Temple Outdoors High Balconies": "
-                here((not shuffle_enemy_spawns or Bubble_Soul) and 
+                here((has_soul(Bubble)) and 
                     (is_adult or has_explosives or
                         ((Boomerang or Nuts or Deku_Shield) and (Sticks or Kokiri_Sword or Slingshot))))",
             "Forest Temple NW Outdoors Freestandings": "logic_forest_courtyard_hearts and can_use(Boomerang)"
@@ -104,7 +104,7 @@
                 is_adult or Slingshot or Sticks or
                 has_explosives or Kokiri_Sword or can_use(Dins_Fire)",
             "Forest Temple NE Outdoors Deku Baba": "can_kill_deku_baba",
-            "Forest Temple Right Courtyard Balcony Skulltula": "(not shuffle_enemy_spawns or Skulltula_Soul) and (can_use(Bow) or can_use(Slingshot) or at('Forest Temple Outdoors High Balconies', can_use(Hookshot) or can_use(Boomerang)))",
+            "Forest Temple Right Courtyard Balcony Skulltula": "(has_soul(Skulltula)) and (can_use(Bow) or can_use(Slingshot) or at('Forest Temple Outdoors High Balconies', can_use(Hookshot) or can_use(Boomerang)))",
             "Forest Temple Right Courtyard Octorok": "can_kill_octorok_with_explosives"
         },
         "exits": {
@@ -146,7 +146,7 @@
             "Forest Temple Balcony Bubble 2": "can_kill_bubble"
         },
         "exits": {
-            "Forest Temple Outside Upper Ledge": "not shuffle_enemy_spawns or Bubble_Soul"
+            "Forest Temple Outside Upper Ledge": "has_soul(Bubble)"
         }
     },
     {

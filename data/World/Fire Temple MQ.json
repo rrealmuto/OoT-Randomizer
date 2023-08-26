@@ -4,7 +4,7 @@
         "dungeon": "Fire Temple",
         "locations": {
             "Fire Temple MQ Map Room Side Chest": "
-                is_adult or Kokiri_Sword or Sticks or Slingshot or Bombs or can_use(Dins_Fire)",
+                has_soul(Likelike) and (is_adult or Kokiri_Sword or Sticks or Slingshot or Bombs or can_use(Dins_Fire))",
             "Fire Temple MQ First Room Pot 1": "True",
             "Fire Temple MQ First Room Pot 2": "True",
             "Fire Temple MQ Map Chest Like-Like": "can_kill_likelike"
@@ -65,29 +65,39 @@
         "dungeon": "Fire Temple",
         "locations": {
             "Fire Temple MQ Before Lower Flare Dancer Keese": "can_kill_keese",
-            "Fire Temple MQ Before Lower Flare Dancer Stalfos 1": "is_adult or Kokiri_Sword",
-            "Fire Temple MQ Before Lower Flare Dancer Stalfos 2": "is_adult or Kokiri_Sword"
+            "Fire Temple MQ Before Lower Flare Dancer Stalfos 1": "has_soul(Stalfos) and (is_adult or Kokiri_Sword)",
+            "Fire Temple MQ Before Lower Flare Dancer Stalfos 2": "has_soul(Stalfos) and (is_adult or Kokiri_Sword)"
         },
         "exits": {
-            "Fire Temple Lower Locked Door After Stalfos": "is_adult or Kokiri_Sword"
+            "Fire Temple Lower Locked Door After Stalfos": "has_soul(Keese) and has_soul(Stalfos) and (is_adult or Kokiri_Sword)"
         }
     },
     {
         "region_name": "Fire Temple Lower Locked Door After Stalfos",
         "dungeon": "Fire Temple",
         "locations": {
-            "Fire Temple MQ Megaton Hammer Chest": "
-                is_adult and (has_explosives or Megaton_Hammer or Hookshot)",
+            
             "Fire Temple MQ Map Chest": "can_use(Megaton_Hammer)",
             "Fire Temple MQ Iron Knuckle Room Pot 1": "True",
             "Fire Temple MQ Iron Knuckle Room Pot 2": "True",
             "Fire Temple MQ Iron Knuckle Room Pot 3": "True",
             "Fire Temple MQ Iron Knuckle Room Pot 4": "True",
-            "Fire Temple MQ Before Lower Flare Dancer Iron Knuckle": "True", #Player got here so they killed the stalfos in the previous room
-            "Fire Temple MQ Lower Flare Dancer": "
-                (is_adult and (Megaton_Hammer or Hookshot or has_explosives)) or 
-                (is_child and (Kokiri_Sword or Sticks) and has_explosives)",
+            "Fire Temple MQ Before Lower Flare Dancer Iron Knuckle": "has_soul(Iron_Knuckle)", #Player got here so they killed the stalfos in the previous room
             "Fairy Pot": "has_bottle"
+        },
+        "exits": {
+            "Fire Temple Lower Flare Dancer Room": "has_soul(Iron_Knuckle)"
+        }
+    },
+    {
+        "region_name": "Fire Temple Lower Flare Dancer Room",
+        "dungeon": "Fire Temple",
+        "locations": {
+            "Fire Temple MQ Megaton Hammer Chest": "
+                has_soul(Flare_Dancer) and (is_adult and (has_explosives or Megaton_Hammer or Hookshot))",
+            "Fire Temple MQ Lower Flare Dancer": "
+                has_soul(Flare_Dancer) and ((is_adult and (Megaton_Hammer or Hookshot or has_explosives)) or 
+                (is_child and (Kokiri_Sword or Sticks) and has_explosives))"
         }
     },
     {
@@ -227,7 +237,7 @@
             "Fire Temple MQ Flame Maze Left Pot 1": "True",
             "Fire Temple MQ GS Flame Maze Center": "has_explosives",
             "Fire Temple MQ GS Above Flame Maze": "
-                (Hookshot and (Small_Key_Fire_Temple, 5)) or
+                (Hookshot and (Small_Key_Fire_Temple, 5) and has_soul(Flare_Dancer) and has_soul(Stalfos)) or
                 (logic_fire_mq_above_maze_gs and Longshot)"
         },
         "exits": {
@@ -245,20 +255,20 @@
             "Fire Temple MQ Flame Maze Right Pot 1": "True",
             "Fire Temple MQ Flame Maze Right Pot 2": "True",
             "Fire Temple MQ GS Flame Maze Side Room": "True",
-            "Fire Temple MQ Flame Maze Side Room Lizalfos": "True"
+            "Fire Temple MQ Flame Maze Side Room Lizalfos": "has_soul(Lizalfos_and_Dinalfos)"
         }
     },
     {
         "region_name": "Fire Temple Upper",
         "dungeon": "Fire Temple",
         "locations": {
-            "Fire Temple MQ Freestanding Key": "True",
-            "Fire Temple MQ Chest On Fire": "(Small_Key_Fire_Temple, 4)",
+            "Fire Temple MQ Freestanding Key": "has_soul(Flare_Dancer)",
+            "Fire Temple MQ Chest On Fire": "has_soul(Flare_Dancer) and (Small_Key_Fire_Temple, 4)",
             "Fire Temple MQ Flame Maze Right Upper Pot 1": "True",
             "Fire Temple MQ Flame Maze Right Upper Pot 2": "True",
-            "Fire Temple MQ Upper Flare Dancer": "True",
-            "Fire Temple MQ Hammer Steps Stalfos 1": "(Small_Key_Fire_Temple, 4)",
-            "Fire Temple MQ Hammer Steps Stalfos 2": "(Small_Key_Fire_Temple, 4)"
+            "Fire Temple MQ Upper Flare Dancer": "has_soul(Flare_Dancer)",
+            "Fire Temple MQ Hammer Steps Stalfos 1": "has_soul(Flare_Dancer) and has_soul(Stalfos) and (Small_Key_Fire_Temple, 4)",
+            "Fire Temple MQ Hammer Steps Stalfos 2": "has_soul(Flare_Dancer) and has_soul(Stalfos) and (Small_Key_Fire_Temple, 4)"
         }
     }
 ]

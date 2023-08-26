@@ -20,11 +20,11 @@
             "Gossip Stone Fairy": "
                 (can_blast_or_smash or Progressive_Strength_Upgrade) and
                 can_summon_gossip_fairy and has_bottle",
-            "Dodongos Cavern Beamos Left Side" : "(not shuffle_enemy_spawns or Beamos_Soul) and (has_explosives or Progressive_Strength_Upgrade)",
-            "Dodongos Cavern Beamos Center" : "(not shuffle_enemy_spawns or Beamos_Soul) and (has_explosives or Progressive_Strength_Upgrade)",
-            "Dodongos Cavern Beamos Right Side" : "(not shuffle_enemy_spawns or Beamos_Soul) and (has_explosives or Progressive_Strength_Upgrade)",
-            "Dodongos Cavern Upper Bridge Keese 1": "(not shuffle_enemy_spawns or Keese_Soul) and (can_use(Bow) or can_use(Slingshot) or at('Dodongos Cavern Climb', can_kill_keese))",
-            "Dodongos Cavern Upper Bridge Keese 2": "(not shuffle_enemy_spawns or Keese_Soul) and (can_use(Bow) or can_use(Slingshot) or at('Dodongos Cavern Climb', can_kill_keese))"
+            "Dodongos Cavern Beamos Left Side" : "(has_soul(Beamos)) and (has_explosives or Progressive_Strength_Upgrade)",
+            "Dodongos Cavern Beamos Center" : "(has_soul(Beamos)) and (has_explosives or Progressive_Strength_Upgrade)",
+            "Dodongos Cavern Beamos Right Side" : "(has_soul(Beamos)) and (has_explosives or Progressive_Strength_Upgrade)",
+            "Dodongos Cavern Upper Bridge Keese 1": "(has_soul(Keese)) and (can_use(Bow) or can_use(Slingshot) or at('Dodongos Cavern Climb', can_kill_keese))",
+            "Dodongos Cavern Upper Bridge Keese 2": "(has_soul(Keese)) and (can_use(Bow) or can_use(Slingshot) or at('Dodongos Cavern Climb', can_kill_keese))"
         },
         "exits": {
             "Dodongos Cavern Lower Right Side": "has_explosives or Progressive_Strength_Upgrade",
@@ -114,7 +114,7 @@
             "Dodongos Cavern Compass Chest": "can_blast_or_smash or Progressive_Strength_Upgrade",
             "Dodongos Cavern GS Vines Above Stairs": "
                 at('Dodongos Cavern Climb', True) or (logic_dc_vines_gs and can_use(Longshot))",
-            "Dodongos Cavern Compass Room Armos": "(not shuffle_enemy_spawns or Armos_Soul) and (can_blast_or_smash or Progressive_Strength_Upgrade)"
+            "Dodongos Cavern Compass Room Armos": "(has_soul(Armos)) and (can_blast_or_smash or Progressive_Strength_Upgrade)"
         },
         "exits": {
             "Dodongos Cavern Climb": "
@@ -146,8 +146,8 @@
             "Dodongos Cavern Climb Switch Room Armos 1" : "can_kill_armos",
             "Dodongos Cavern Climb Switch Room Armos 2" : "can_kill_armos",
             "Dodongos Cavern Climb Switch Room Armos 3" : "can_kill_armos",
-            "Dodongos Cavern Climb Switch Room Keese 1" : "(not shuffle_enemy_spawns or Keese_Soul) and (is_adult or (Kokiri_Sword or Sticks or Slingshot or Boomerang or has_explosives or Progressive_Strength_Upgrade))",
-            "Dodongos Cavern Climb Switch Room Keese 2" : "(not shuffle_enemy_spawns or Keese_Soul) and (is_adult or (Kokiri_Sword or Sticks or Slingshot or Boomerang or has_explosives or Progressive_Strength_Upgrade))"
+            "Dodongos Cavern Climb Switch Room Keese 1" : "(has_soul(Keese)) and (is_adult or (Kokiri_Sword or Sticks or Slingshot or Boomerang or has_explosives or Progressive_Strength_Upgrade))",
+            "Dodongos Cavern Climb Switch Room Keese 2" : "(has_soul(Keese)) and (is_adult or (Kokiri_Sword or Sticks or Slingshot or Boomerang or has_explosives or Progressive_Strength_Upgrade))"
 
         },
         "exits": {
@@ -183,7 +183,7 @@
         },
         "exits": {
             "Dodongos Cavern Before Upper Lizalfos": "True",
-            "Dodongos Cavern Far Bridge": "(is_adult or Sticks or Slingshot or Bombs or Kokiri_Sword) and (not shuffle_enemy_spawns or Lizalfos_and_Dinalfos_Soul)"
+            "Dodongos Cavern Far Bridge": "(is_adult or Sticks or Slingshot or Bombs or Kokiri_Sword) and (has_soul(Lizalfos_and_Dinalfos))"
         }
     },
     {

@@ -25,7 +25,7 @@
                 can_play(Zeldas_Lullaby) and (logic_lens_botw or can_use(Lens_of_Truth))",
             # Sword not strictly necessary but being forced to do this with sticks isn't fair
             "Bottom of the Well Lens of Truth Chest": "
-                (can_play(Zeldas_Lullaby) and (Kokiri_Sword or (Sticks and logic_child_deadhand))) and (not shuffle_enemy_spawns or Dead_hand_Soul)",
+                (can_play(Zeldas_Lullaby) and (Kokiri_Sword or (Sticks and logic_child_deadhand))) and (has_soul(Dead_hand))",
             "Bottom of the Well Coffin Recovery Heart 1": "Sticks or can_use(Dins_Fire)",
             "Bottom of the Well Coffin Recovery Heart 2": "True",
             "Bottom of the Well Near Entrance Pot 1": "True",
@@ -58,7 +58,7 @@
             "Bottom of the Well Basement Redead Near Water": "can_kill_redead",      
             "Bottom of the Well Basement Redead Near Chest": "can_kill_redead",
             "Bottom of the Well Coffin Room Redead": "can_kill_redead",
-            "Bottom of the Well Dead Hand": "can_play(Zeldas_Lullaby) and (Kokiri_Sword or (Sticks and logic_child_deadhand)) and (not shuffle_enemy_spawns or Dead_hand_Soul)"
+            "Bottom of the Well Dead Hand": "can_play(Zeldas_Lullaby) and (Kokiri_Sword or (Sticks and logic_child_deadhand)) and (has_soul(Dead_hand))"
         },
         "exits": {
             "Bottom of the Well Left Side": "(Silver_Rupee_Bottom_of_the_Well_Basement, 5)",
@@ -104,9 +104,9 @@
             # Lens required because these pits are really unfair.
             "Bottom of the Well Fire Keese Chest": "True",
             "Bottom of the Well Like Like Chest": "True",
-            "Bottom of the Well West Inner Room Flying Pot 1": "not shuffle_enemy_spawns or Flying_Pot_Soul",
-            "Bottom of the Well West Inner Room Flying Pot 2": "not shuffle_enemy_spawns or Flying_Pot_Soul",
-            "Bottom of the Well West Inner Room Flying Pot 3": "not shuffle_enemy_spawns or Flying_Pot_Soul",
+            "Bottom of the Well West Inner Room Flying Pot 1": "has_soul(Flying_Pot)",
+            "Bottom of the Well West Inner Room Flying Pot 2": "has_soul(Flying_Pot)",
+            "Bottom of the Well West Inner Room Flying Pot 3": "has_soul(Flying_Pot)",
             "Bottom of the Well Fire Keese Pot": "True",
             "Bottom of the Well GS West Inner Room": "Boomerang",
             "Bottom of the Well GS East Inner Room": "Boomerang",
