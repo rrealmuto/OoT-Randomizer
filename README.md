@@ -15,6 +15,7 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v39](#v39)
   * [v38](#v38)
   * [v37](#v37)
   * [v36](#v36)
@@ -57,6 +58,9 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
   * [4.0](#40)
 
 ## RealRob Changelog
+### v39
+  * Add MQ enemy soul shuffle logic
+
 ### v38
   * Fix souls and silver rupee save data not initializing properly on some platforms
 

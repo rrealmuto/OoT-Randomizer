@@ -13,7 +13,7 @@
         "dungeon": "Bottom of the Well",
         "locations": {
             "Bottom of the Well MQ Compass Chest": "
-                Kokiri_Sword or (Sticks and logic_child_deadhand)",
+                has_soul(Dead_hand) and (Kokiri_Sword or (Sticks and logic_child_deadhand))",
             "Bottom of the Well MQ Dead Hand Freestanding Key": "
                 has_explosives or (logic_botw_mq_dead_hand_key and Boomerang)",
             "Bottom of the Well MQ Bombable Recovery Heart 1": "has_explosives",
@@ -51,10 +51,10 @@
             "Bottom of the Well MQ Basement Redead 4": "can_kill_redead",
             "Bottom of the Well MQ Basement Redead 5": "can_kill_redead",
             "Bottom of the Well MQ Coffin Room Gibdo": "(Small_Key_Bottom_of_the_Well,2) and can_kill_redead",
-            "Bottom of the Well MQ False Floor Wallmaster": "(Slingshot or Boomerang) and can_kill_floormaster",
+            "Bottom of the Well MQ False Floor Wallmaster": "(Slingshot or Boomerang) and can_kill_wallmaster",
             "Bottom of the Well MQ False Floor Floormaster": "(Slingshot or Boomerang) and can_kill_floormaster",
             "Bottom of the Well MQ Deadhand": "
-                Kokiri_Sword or (Sticks and logic_child_deadhand)",
+                has_soul(Dead_hand) and (Kokiri_Sword or (Sticks and logic_child_deadhand))",
             "Wall Fairy": "has_bottle and Slingshot" # The fairy pot is obsolete
         },
         "exits": {
@@ -95,8 +95,8 @@
         "region_name": "Bottom of the Well Skulltula Gate",
         "dungeon": "Bottom of the Well",
         "locations": {
-            "Bottom of the Well MQ Inside Gate Skullwalltula Lower": "can_child_attack",
-            "Bottom of the Well MQ Inside Gate Skullwalltula Higher": "Sticks or has_explosives or Boomerang or Slingshot or can_use(Dins_Fire)"
+            "Bottom of the Well MQ Inside Gate Skullwalltula Lower": "has_soul(Skullwalltula) and can_child_attack",
+            "Bottom of the Well MQ Inside Gate Skullwalltula Higher": "has_soul(Skullwalltula) and (Sticks or has_explosives or Boomerang or Slingshot or can_use(Dins_Fire))"
         }
     }
 ]

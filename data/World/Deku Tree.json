@@ -13,9 +13,9 @@
             "Deku Baba Nuts": "
                 is_adult or Slingshot or Sticks or
                 has_explosives or Kokiri_Sword or can_use(Dins_Fire)",
-            "Deku Tree Vines Lowest Skullwalltula": "(not shuffle_enemy_spawns or Skullwalltula_Soul) and ((is_child and (Slingshot or Boomerang)) or (is_adult and (Bow or Hookshot)) or has_explosives or can_use(Dins_Fire))" ,
-            "Deku Tree Vines Left Lower Skullwalltula": "(not shuffle_enemy_spawns or Skullwalltula_Soul) and ((is_child and (Slingshot or Boomerang)) or (is_adult and (Bow or Hookshot)) or has_explosives or can_use(Dins_Fire))" ,
-            "Deku Tree Vines Upper Skullwalltula": "(not shuffle_enemy_spawns or Skullwalltula_Soul) and ((is_child and (Slingshot or Boomerang)) or (is_adult and (Bow or Hookshot)) or has_explosives or can_use(Dins_Fire))" ,
+            "Deku Tree Vines Lowest Skullwalltula": "(has_soul(Skullwalltula)) and ((is_child and (Slingshot or Boomerang)) or (is_adult and (Bow or Hookshot)) or has_explosives or can_use(Dins_Fire))" ,
+            "Deku Tree Vines Left Lower Skullwalltula": "(has_soul(Skullwalltula)) and ((is_child and (Slingshot or Boomerang)) or (is_adult and (Bow or Hookshot)) or has_explosives or can_use(Dins_Fire))" ,
+            "Deku Tree Vines Upper Skullwalltula": "(has_soul(Skullwalltula)) and ((is_child and (Slingshot or Boomerang)) or (is_adult and (Bow or Hookshot)) or has_explosives or can_use(Dins_Fire))" ,
             "Deku Tree Web Skulltula 1": "can_kill_skulltula",
             "Deku Tree Web Skulltula 2": "can_kill_skulltula",
             "Deku Tree Web Skulltula 3": "can_kill_skulltula",
@@ -23,7 +23,7 @@
         },
         "exits": {
             "KF Outside Deku Tree": "True",
-            "Deku Tree Slingshot Room": "here(has_shield) and (not shuffle_enemy_spawns or Deku_Scrub_Soul)",
+            "Deku Tree Slingshot Room": "here(has_shield) and (has_soul(Deku_Scrub))",
             "Deku Tree Basement": "deku_tree_shortcuts or here(is_adult or can_child_attack or Nuts)",
             "Farores Wind Warp": "can_use(Farores_Wind)"
         }
@@ -104,7 +104,7 @@
         },
         "exits": {
             "Deku Tree Basement Ledge": "deku_tree_shortcuts or logic_visible_collisions",
-            "Queen Gohma Boss Room": "deku_tree_shortcuts or (here(has_shield) and (not shuffle_enemy_spawns or Deku_Scrub_Soul))"
+            "Queen Gohma Boss Room": "deku_tree_shortcuts or (here(has_shield) and (has_soul(Deku_Scrub)))"
         }
     }
 ]

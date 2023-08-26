@@ -190,9 +190,9 @@
             "KF Adult Platforms Octorok": "is_adult and can_kill_octorok",
             "KF Adult Near Shop Octorok": "is_adult and can_kill_octorok",
             "KF Adult Path To Deku Skulltula": "is_adult and can_kill_skulltula",
-            "KF Adult Near Midos House Scrub": "is_adult and (not shuffle_enemy_spawns or Deku_Scrub_Soul)",
-            "KF Adult Near Links House Scrub": "is_adult and (not shuffle_enemy_spawns or Deku_Scrub_Soul)",
-            "KF Adult Near Lost Woods Scrub": "is_adult and (not shuffle_enemy_spawns or Deku_Scrub_Soul)",
+            "KF Adult Near Midos House Scrub": "is_adult and (has_soul(Deku_Scrub))",
+            "KF Adult Near Links House Scrub": "is_adult and (has_soul(Deku_Scrub))",
+            "KF Adult Near Lost Woods Scrub": "is_adult and (has_soul(Deku_Scrub))",
             "KF Adult Near Field Deku Baba": "can_kill_deku_baba",
             "KF Adult Inside Fence Deku Baba": "can_kill_deku_baba",
             "KF Adult Near Links House Deku Baba": "can_kill_deku_baba",
@@ -342,9 +342,9 @@
             "LW Underwater Green Rupee 5": "is_child and (can_dive or Boomerang)",
             "LW Underwater Green Rupee 6": "is_child and (can_dive or Boomerang)",
             "LW Underwater Green Rupee 7": "is_child and (can_dive or Boomerang)",
-            "LW Adult Sarias Friend Skullkid":  "is_adult and (not shuffle_enemy_spawns or Skull_Kid_Soul)",
-            "LW Adult Ocarina Game Skullkid 1": "is_adult and (not shuffle_enemy_spawns or Skull_Kid_Soul)",
-            "LW Adult Ocarina Game Skullkid 2": "is_adult and (not shuffle_enemy_spawns or Skull_Kid_Soul)",
+            "LW Adult Sarias Friend Skullkid":  "is_adult and (has_soul(Skull_Kid))",
+            "LW Adult Ocarina Game Skullkid 1": "is_adult and (has_soul(Skull_Kid))",
+            "LW Adult Ocarina Game Skullkid 2": "is_adult and (has_soul(Skull_Kid))",
             "LW GS Bean Patch Near Bridge": "can_plant_bugs and can_child_attack",
             "LW Near Ocarina Game Wonderitem 1": "is_child",
             "LW Near Ocarina Game Wonderitem 2": "is_child",
@@ -434,7 +434,7 @@
         "exits": {
             "LW Beyond Mido": "True",
             "Sacred Forest Meadow": "
-                is_adult or ((not shuffle_enemy_spawns or Wolfos_Soul) and (Slingshot or Sticks or Kokiri_Sword or can_use(Dins_Fire)))",
+                is_adult or ((has_soul(Wolfos)) and (Slingshot or Sticks or Kokiri_Sword or can_use(Dins_Fire)))",
             "SFM Wolfos Grotto": "can_open_bomb_grotto"
         }
     },
@@ -464,12 +464,12 @@
             "SFM Child Maze Scrub 4": "is_child and can_kill_scrub",
             "SFM Child Near Saria Scrub 1": "is_child and can_kill_scrub",
             "SFM Child Near Saria Scrub 2": "is_child and can_kill_scrub",
-            "SFM Adult Maze Moblin 1": "is_adult and (not shuffle_enemy_spawns or Moblin_Soul)",
-            "SFM Adult Maze Moblin 2": "is_adult and (not shuffle_enemy_spawns or Moblin_Soul)",
-            "SFM Adult Maze Moblin 3": "is_adult and (not shuffle_enemy_spawns or Moblin_Soul)",
-            "SFM Adult Maze Moblin 4": "is_adult and (not shuffle_enemy_spawns or Moblin_Soul)",
-            "SFM Adult Maze Moblin 5": "is_adult and (not shuffle_enemy_spawns or Moblin_Soul)",
-            "SFM Adult Smashing Moblin": "is_adult and (not shuffle_enemy_spawns or Moblin_Soul)"
+            "SFM Adult Maze Moblin 1": "is_adult and (has_soul(Moblin))",
+            "SFM Adult Maze Moblin 2": "is_adult and (has_soul(Moblin))",
+            "SFM Adult Maze Moblin 3": "is_adult and (has_soul(Moblin))",
+            "SFM Adult Maze Moblin 4": "is_adult and (has_soul(Moblin))",
+            "SFM Adult Maze Moblin 5": "is_adult and (has_soul(Moblin))",
+            "SFM Adult Smashing Moblin": "is_adult and (has_soul(Moblin))"
         },
         "exits": {
             "SFM Entryway": "True",
@@ -607,10 +607,10 @@
             "LH Child Tektite 1": "is_child and can_kill_tektite",
             "LH Child Tektite 2": "is_child and can_kill_tektite",
             "LH Child Tektite 3": "is_child and can_kill_tektite",
-            "LH Adult Guay 1": "is_adult and (not shuffle_enemy_spawns or Guay_Soul)",
-            "LH Adult Guay 2": "is_adult and (not shuffle_enemy_spawns or Guay_Soul)",
-            "LH Adult Guay 3": "is_adult and (not shuffle_enemy_spawns or Guay_Soul)",
-            "LH Adult Guay 4": "is_adult and (not shuffle_enemy_spawns or Guay_Soul)",
+            "LH Adult Guay 1": "is_adult and (has_soul(Guay))",
+            "LH Adult Guay 2": "is_adult and (has_soul(Guay))",
+            "LH Adult Guay 3": "is_adult and (has_soul(Guay))",
+            "LH Adult Guay 4": "is_adult and (has_soul(Guay))",
             "LH Adult Tektite 1": "is_adult and can_kill_tektite",
             "LH Adult Tektite 2": "is_adult and can_kill_tektite",
             "LH Adult Tektite 3": "is_adult and can_kill_tektite",
@@ -687,8 +687,8 @@
             "GV Adult Upper Octorok 1": "is_adult and can_kill_octorok_with_explosives",
             "GV Adult Upper Octorok 2": "is_adult and can_kill_octorok_with_explosives",
             "GV Adult Upper Octorok 3": "is_adult and can_kill_octorok_with_explosives",
-            "GV Adult Lower Octorok 1": "is_adult and Iron_Boots and Hookshot and (not shuffle_enemy_spawns or Octorok_Soul)",
-            "GV Adult Lower Octorok 2": "is_adult and Iron_Boots and Hookshot and (not shuffle_enemy_spawns or Octorok_Soul)"
+            "GV Adult Lower Octorok 1": "is_adult and Iron_Boots and Hookshot and (has_soul(Octorok))",
+            "GV Adult Lower Octorok 2": "is_adult and Iron_Boots and Hookshot and (has_soul(Octorok))"
         },
         "exits": {
             "Hyrule Field": "True",
@@ -1207,14 +1207,14 @@
             "Colossus Tree Wonderitem 3 Child": "can_use(Slingshot)",
             "Colossus Tree Wonderitem 4": "can_use(Slingshot) or can_use(Bow)",
             "Colossus Tree Wonderitem 5": "can_use(Slingshot) or can_use(Bow)",
-            "Colossus Child Guay 1": "can_child_attack and (not shuffle_enemy_spawns or Guay_Soul)",
-            "Colossus Child Guay 2": "can_child_attack and (not shuffle_enemy_spawns or Guay_Soul)",
-            "Colossus Child Guay 3": "can_child_attack and (not shuffle_enemy_spawns or Guay_Soul)",
-            "Colossus Adult Guay 1": "is_adult and (not shuffle_enemy_spawns or Guay_Soul)",
-            "Colossus Adult Guay 2": "is_adult and (not shuffle_enemy_spawns or Guay_Soul)",
-            "Colossus Adult Guay 3": "is_adult and (not shuffle_enemy_spawns or Guay_Soul)",
-            "Colossus Adult Guay 4": "is_adult and (not shuffle_enemy_spawns or Guay_Soul)",
-            "Colossus Adult Guay 5": "is_adult and (not shuffle_enemy_spawns or Guay_Soul)"
+            "Colossus Child Guay 1": "can_child_attack and (has_soul(Guay))",
+            "Colossus Child Guay 2": "can_child_attack and (has_soul(Guay))",
+            "Colossus Child Guay 3": "can_child_attack and (has_soul(Guay))",
+            "Colossus Adult Guay 1": "is_adult  and (has_soul(Guay))",
+            "Colossus Adult Guay 2": "is_adult  and (has_soul(Guay))",
+            "Colossus Adult Guay 3": "is_adult  and (has_soul(Guay))",
+            "Colossus Adult Guay 4": "is_adult  and (has_soul(Guay))",
+            "Colossus Adult Guay 5": "is_adult  and (has_soul(Guay))"
         },
         "exits": {
             "Colossus Great Fairy Fountain": "has_explosives",
@@ -2041,7 +2041,7 @@
         "locations": {
             "Graveyard Royal Familys Tomb Chest": "has_fire_source",
             "Song from Royal Familys Tomb": "
-                (not shuffle_enemy_spawns or Keese_Soul) and (is_adult or Slingshot or Boomerang or Sticks or has_explosives or Kokiri_Sword)",
+                (has_soul(Keese)) and (is_adult or Slingshot or Boomerang or Sticks or has_explosives or Kokiri_Sword)",
             "Graveyard Royal Familys Tomb Keese 1": "can_kill_keese",
             "Graveyard Royal Familys Tomb Keese 2": "can_kill_keese",
             "Graveyard Royal Familys Tomb Keese 3": "can_kill_keese",
@@ -2201,12 +2201,12 @@
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Bug Rock": "is_child and has_bottle",
             "DMT Adult Summit Tektite": "is_adult",
-            "DMT Adult Summit Skullwalltula Lower": "(not shuffle_enemy_spawns or Skullwalltula_Soul) and (is_adult and (Hookshot or Bow or Megaton_Hammer or has_explosives or can_use(Dins_Fire)))",
-            "DMT Adult Summit Skullwalltula Middle": "(not shuffle_enemy_spawns or Skullwalltula_Soul) and (is_adult and (Hookshot or Bow or Megaton_Hammer or has_explosives or can_use(Dins_Fire)))",
-            "DMT Adult Summit Skullwalltula Upper": "(not shuffle_enemy_spawns or Skullwalltula_Soul) and (is_adult and (Hookshot or Bow or Megaton_Hammer or has_explosives or can_use(Dins_Fire)))",
-            "DMT Child Summit Skullwalltula Lower": "(not shuffle_enemy_spawns or Skullwalltula_Soul) and (is_child and (Slingshot or Boomerang or has_explosives or can_use(Dins_Fire)))",
-            "DMT Child Summit Skullwalltula Middle": "(not shuffle_enemy_spawns or Skullwalltula_Soul) and (is_child and (Slingshot or Boomerang or has_explosives or can_use(Dins_Fire)))",
-            "DMT Child Summit Skullwalltula Upper": "(not shuffle_enemy_spawns or Skullwalltula_Soul) and (is_child and (Slingshot or Boomerang or has_explosives or can_use(Dins_Fire)))"
+            "DMT Adult Summit Skullwalltula Lower": "(has_soul(Skullwalltula)) and (is_adult and (Hookshot or Bow or Megaton_Hammer or has_explosives or can_use(Dins_Fire)))",
+            "DMT Adult Summit Skullwalltula Middle": "(has_soul(Skullwalltula)) and (is_adult and (Hookshot or Bow or Megaton_Hammer or has_explosives or can_use(Dins_Fire)))",
+            "DMT Adult Summit Skullwalltula Upper": "(has_soul(Skullwalltula)) and (is_adult and (Hookshot or Bow or Megaton_Hammer or has_explosives or can_use(Dins_Fire)))",
+            "DMT Child Summit Skullwalltula Lower": "(has_soul(Skullwalltula)) and (is_child and (Slingshot or Boomerang or has_explosives or can_use(Dins_Fire)))",
+            "DMT Child Summit Skullwalltula Middle": "(has_soul(Skullwalltula)) and (is_child and (Slingshot or Boomerang or has_explosives or can_use(Dins_Fire)))",
+            "DMT Child Summit Skullwalltula Upper": "(has_soul(Skullwalltula)) and (is_child and (Slingshot or Boomerang or has_explosives or can_use(Dins_Fire)))"
         },
         "exits": {
             "Death Mountain": "True",
@@ -2413,7 +2413,7 @@
             "DMC Adult Green Rupee 5": "is_adult",
             "DMC Adult Green Rupee 6": "is_adult",
             "DMC Adult Red Rupee": "is_adult",
-            "DMC Pierre Platform Bubble": "(not shuffle_enemy_spawns or Bubble_Soul) and (is_adult and Goron_Tunic and (Bow or Magic_Meter))"
+            "DMC Pierre Platform Bubble": "(has_soul(Bubble)) and (is_adult and Goron_Tunic and (Bow or Magic_Meter))"
         }
     },
     {
@@ -2495,8 +2495,8 @@
             "DMC Child Blue Rupee 5": "is_child",
             "DMC Child Blue Rupee 6": "is_child",
             "DMC Bubble Below Bridge To Fire Temple": "is_adult and can_use(Goron_Tunic) and Longshot and (Bow or Magic_Meter)",
-            "DMC Second Plank Bubble 1": "(not shuffle_enemy_spawns or Bubble_Soul) and (is_adult and can_use(Goron_Tunic) and (Bow or Magic_Meter))",
-            "DMC Second Plank Bubble 2": "(not shuffle_enemy_spawns or Bubble_Soul) and (is_adult and can_use(Goron_Tunic) and (Bow or Magic_Meter))"
+            "DMC Second Plank Bubble 1": "(has_soul(Bubble)) and (is_adult and can_use(Goron_Tunic) and (Bow or Magic_Meter))",
+            "DMC Second Plank Bubble 2": "(has_soul(Bubble)) and (is_adult and can_use(Goron_Tunic) and (Bow or Magic_Meter))"
         },
         "exits": {
             "DMC Central Nearby": "True",
@@ -2752,11 +2752,11 @@
             "ZF Adult Octorok 3": "is_adult and can_kill_octorok_with_explosives",
             "ZF Adult Octorok 4": "is_adult and can_kill_octorok_with_explosives",
             "ZF Adult Tektite": "is_adult and can_kill_tektite",
-            "ZF Adult Hidden Cave Skulltula 1": "(not shuffle_enemy_spawns or Skulltula_Soul) and (can_use(Silver_Gauntlets) and can_blast_or_smash)",
-            "ZF Adult Hidden Cave Skulltula 2": "(not shuffle_enemy_spawns or Skulltula_Soul) and (can_use(Silver_Gauntlets) and can_blast_or_smash)",
-            "ZF Adult Hidden Cave Skulltula 3": "(not shuffle_enemy_spawns or Skulltula_Soul) and (can_use(Silver_Gauntlets) and can_blast_or_smash)",
-            "ZF Adult Hidden Cave Skulltula 4": "(not shuffle_enemy_spawns or Skulltula_Soul) and (can_use(Silver_Gauntlets) and can_blast_or_smash)",
-            "ZF Adult Hidden Cave Skulltula 5": "(not shuffle_enemy_spawns or Skulltula_Soul) and (can_use(Silver_Gauntlets) and can_blast_or_smash)"
+            "ZF Adult Hidden Cave Skulltula 1": "(has_soul(Skulltula)) and (can_use(Silver_Gauntlets) and can_blast_or_smash)",
+            "ZF Adult Hidden Cave Skulltula 2": "(has_soul(Skulltula)) and (can_use(Silver_Gauntlets) and can_blast_or_smash)",
+            "ZF Adult Hidden Cave Skulltula 3": "(has_soul(Skulltula)) and (can_use(Silver_Gauntlets) and can_blast_or_smash)",
+            "ZF Adult Hidden Cave Skulltula 4": "(has_soul(Skulltula)) and (can_use(Silver_Gauntlets) and can_blast_or_smash)",
+            "ZF Adult Hidden Cave Skulltula 5": "(has_soul(Skulltula)) and (can_use(Silver_Gauntlets) and can_blast_or_smash)"
         },
         "exits": {
             "ZD Behind King Zora": "True",
@@ -2867,21 +2867,21 @@
             "LLR GS Back Wall": "can_use(Boomerang) and at_night",
             "LLR Epona Hurdle Wonderitem 1": "is_adult and can_play(Eponas_Song)",
             "LLR Epona Hurdle Wonderitem 2": "is_adult and can_play(Eponas_Song)",
-            "LLR Child Night Guay 1": "at_night and can_child_attack and (not shuffle_enemy_spawns or Guay_Soul)",
-            "LLR Child Night Guay 2": "at_night and can_child_attack and (not shuffle_enemy_spawns or Guay_Soul)",
-            "LLR Child Night Guay 3": "at_night and can_child_attack and (not shuffle_enemy_spawns or Guay_Soul)",
-            "LLR Child Night Guay 4": "at_night and can_child_attack and (not shuffle_enemy_spawns or Guay_Soul)",
-            "LLR Child Night Guay 5": "at_night and can_child_attack and (not shuffle_enemy_spawns or Guay_Soul)",
-            "LLR Child Night Guay 6": "at_night and can_child_attack and (not shuffle_enemy_spawns or Guay_Soul)",
-            "LLR Child Night Guay 7": "at_night and can_child_attack and (not shuffle_enemy_spawns or Guay_Soul)",
-            "LLR Child Night Guay 8": "at_night and can_child_attack and (not shuffle_enemy_spawns or Guay_Soul)",
-            "LLR Child Night Guay 9": "at_night and can_child_attack and (not shuffle_enemy_spawns or Guay_Soul)",
-            "LLR Child Night Guay 10": "at_night and can_child_attack and (not shuffle_enemy_spawns or Guay_Soul)",
-            "LLR Child Night Guay 11": "at_night and can_child_attack and (not shuffle_enemy_spawns or Guay_Soul)",
-            "LLR Child Night Guay 12": "at_night and can_child_attack and (not shuffle_enemy_spawns or Guay_Soul)",
-            "LLR Child Night Guay 13": "at_night and can_child_attack and (not shuffle_enemy_spawns or Guay_Soul)",
-            "LLR Child Night Guay 14": "at_night and can_child_attack and (not shuffle_enemy_spawns or Guay_Soul)",
-            "LLR Child Night Guay 15": "at_night and can_child_attack and (not shuffle_enemy_spawns or Guay_Soul)"
+            "LLR Child Night Guay 1": "at_night and can_child_attack and (has_soul(Guay))",
+            "LLR Child Night Guay 2": "at_night and can_child_attack and (has_soul(Guay))",
+            "LLR Child Night Guay 3": "at_night and can_child_attack and (has_soul(Guay))",
+            "LLR Child Night Guay 4": "at_night and can_child_attack and (has_soul(Guay))",
+            "LLR Child Night Guay 5": "at_night and can_child_attack and (has_soul(Guay))",
+            "LLR Child Night Guay 6": "at_night and can_child_attack and (has_soul(Guay))",
+            "LLR Child Night Guay 7": "at_night and can_child_attack and (has_soul(Guay))",
+            "LLR Child Night Guay 8": "at_night and can_child_attack and (has_soul(Guay))",
+            "LLR Child Night Guay 9": "at_night and can_child_attack and (has_soul(Guay))",
+            "LLR Child Night Guay 10": "at_night and can_child_attack and (has_soul(Guay))",
+            "LLR Child Night Guay 11": "at_night and can_child_attack and (has_soul(Guay))",
+            "LLR Child Night Guay 12": "at_night and can_child_attack and (has_soul(Guay))",
+            "LLR Child Night Guay 13": "at_night and can_child_attack and (has_soul(Guay))",
+            "LLR Child Night Guay 14": "at_night and can_child_attack and (has_soul(Guay))",
+            "LLR Child Night Guay 15": "at_night and can_child_attack and (has_soul(Guay))"
         },
         "exits": {
             "Hyrule Field": "True",

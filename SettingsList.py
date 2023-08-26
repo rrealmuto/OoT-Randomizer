@@ -2924,8 +2924,6 @@ class SettingInfos:
             spawning into the world until their "Soul"
             has been collected. Each enemy type will
             have a soul added into the item pool"
-
-            MQ dungeon logic not supported (yet)
         ''',
         default        = 'off',
         choices        = {
