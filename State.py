@@ -182,7 +182,7 @@ class State:
 
     def has_soul(self, enemy: str) -> bool:
         soul_str = enemy + " Soul"
-        return (not self.world.settings.shuffle_enemy_spawns or self.has(ItemInfo.solver_ids[escape_name(soul_str)]))
+        return (not self.world.shuffle_enemy_spawns or self.has(ItemInfo.solver_ids[escape_name(soul_str)]))
 
     def has_all_notes_for_song(self, song: str) -> bool:
 
