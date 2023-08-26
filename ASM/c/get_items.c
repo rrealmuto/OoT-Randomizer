@@ -42,6 +42,7 @@ uint32_t active_item_text_id = 0;
 uint32_t active_item_object_id = 0;
 uint32_t active_item_graphic_id = 0;
 uint32_t active_item_fast_chest = 0;
+uint16_t incoming_junk = 0;
 
 uint8_t satisified_pending_frames = 0;
 
@@ -404,10 +405,10 @@ void try_pending_item() {
     if(override.key.all == 0) {
         return;
     }
-
+    uint16_t resolved_item_id = resolve_upgrades(override);
+    item_row_t *item_row = get_item_row(resolved_item_id);
     if (override.value.base.item_id == 0xCA && override.value.base.player != PLAYER_ID) {
-        uint16_t resolved_item_id = resolve_upgrades(override);
-        item_row_t *item_row = get_item_row(resolved_item_id);
+        
         call_effect_function(item_row);
         pop_pending_item();
         after_key_received(override.key);
@@ -415,10 +416,20 @@ void try_pending_item() {
         return;
     }
 
-    activate_override(override);
-
-    z64_link.incoming_item_actor = dummy_actor;
-    z64_link.incoming_item_id = active_item_row->base_item_id;
+    if(item_row->collectible >= 0) {
+        // This is an incoming collectible junk item so speed it up by spawning a give immediate collectible
+        EnItem00 *collectible = z64_SpawnActor(&z64_game.actor_ctxt, &z64_game, 0x0015, z64_link.common.pos_world.x, z64_link.common.pos_world.y, z64_link.common.pos_world.z, 0,0,0, 0x8000 | item_row->collectible);
+        collectible->override = override;
+        lookup_model_by_override(&collectible->model,collectible->override);
+        pop_pending_item();
+        after_key_received(override.key);
+    }
+    else {
+        activate_override(override);
+        z64_link.incoming_item_actor = dummy_actor;
+        z64_link.incoming_item_id = active_item_row->base_item_id;
+    }
+    
 
 }
 
