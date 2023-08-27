@@ -515,7 +515,8 @@
           "settings": [
             "background_music",
             "fanfares",
-            "ocarina_fanfares"
+            "ocarina_fanfares",
+            "credits_music"
           ]
         },
         {

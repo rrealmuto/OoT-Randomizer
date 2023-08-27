@@ -65,7 +65,6 @@ RANDO_CONTEXT:
 .include "scarecrow.asm"
 .include "empty_bomb.asm"
 .include "initial_save.asm"
-.include "textbox.asm"
 .include "fishing.asm"
 .include "bgs_fix.asm"
 .include "chus_in_logic.asm"
