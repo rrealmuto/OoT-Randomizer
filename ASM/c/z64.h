@@ -2065,6 +2065,7 @@ typedef enum {
 #define z64_EffectSsKiraKira_SpawnSmall_addr    0x8001C66C
 #define z64_ActorOverlayTable_addr              0x800E8530
 #define GetItem_Draw_addr                       0x800570C0
+#define z64_Audio_GetActiveSeqId_addr           0x800CAB18
 
 /* rom addresses */
 #define z64_icon_item_static_vaddr              0x007BD000
@@ -2153,6 +2154,7 @@ typedef void(*Message_ContinueTextbox_proc) (z64_game_t *play, uint16_t textId);
 typedef void(*PlaySFX_proc) (uint16_t sfxId);
 typedef void(*z64_ScalePitchAndTempo_proc)(float scaleTempoAndFreq, uint8_t duration);
 typedef void(*GetItem_Draw_proc)(z64_game_t *game, int16_t drawId);
+typedef uint16_t (*z64_Audio_GetActiveSeqId_proc)(uint8_t seqId);
 
 /* data */
 #define z64_file_mq             (*(OSMesgQueue*)      z64_file_mq_addr)
@@ -2244,6 +2246,7 @@ typedef void(*GetItem_Draw_proc)(z64_game_t *game, int16_t drawId);
 
 #define Message_ContinueTextbox ((Message_ContinueTextbox_proc)Message_ContinueTextbox_addr)
 #define z64_ScalePitchAndTempo        ((z64_ScalePitchAndTempo_proc)z64_ScalePitchAndTempo_addr)
+#define z64_Audio_GetActiveSeqId ((z64_Audio_GetActiveSeqId_proc)z64_Audio_GetActiveSeqId_addr)
 
 #define PlaySFX ((PlaySFX_proc)PlaySFX_addr)
 #define Font_LoadChar ((Font_LoadChar_proc)Font_LoadChar_addr)
