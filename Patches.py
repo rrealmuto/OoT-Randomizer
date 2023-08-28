@@ -1833,11 +1833,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         if world.dungeon_mq['Spirit Temple']: # Patch Spirit MQ Lobby front right chest to use permanent switch flag 0x1F
             rom.write_byte(0x2b08ce4 + 13, 0x1F)
 
-    if world.settings.shuffle_wonderitems:
-        #Patch Hyrule Castle Guards to not block the way
-        rom.write_bytes(0xCD5E30, [0x00, 0x00, 0x00, 0x00]) # nop
-        rom.write_bytes(0xCD5E7C, [0x10, 0x00, 0x00, 0x03]) # b courtyard_guards_kill
-
     # Write flag table data
     collectible_flag_table, alt_list = get_collectible_flag_table(world)
     collectible_flag_table_bytes, num_collectible_flags = get_collectible_flag_table_bytes(collectible_flag_table)
