@@ -31,7 +31,7 @@ void EnWonderitem_AfterInitHack(z64_actor_t* this, z64_game_t* globalCtx)
 
     EnItem00 dummy;
     dummy.actor.actor_id = 0x15;
-    dummy.actor.rot_init.y = this->rot_init.y; //flag was just stored in z rotation
+    dummy.actor.rot_init.y = this->rot_init.y; //flag was just stored in y rotation
     dummy.actor.variable = 0;
 
     // Check if the Wonderitem should be overridden

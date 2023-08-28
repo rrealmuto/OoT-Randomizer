@@ -7,6 +7,7 @@
 #include "obj_comb.h"
 #include "textures.h"
 #include "actor.h"
+#include "en_wonderitem.h"
 
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
 extern uint16_t CURR_ACTOR_SPAWN_INDEX;
