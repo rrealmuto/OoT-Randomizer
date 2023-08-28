@@ -46,7 +46,7 @@ def complete_presets(new_presets, interactive, *, preset=None, source=None):
             new_presets[preset_name] = {}
         SettingsList.validate_settings(new_presets[preset_name], check_conflicts=False)
         for setting_name, setting in SETTINGS_DICT.items():
-            if setting.shared and setting_name not in new_presets[preset_name]:
+            if setting_name != 'starting_items' and setting.shared and setting_name not in new_presets[preset_name]:
                 if setting_name in old_preset:
                     try:
                         new_presets[preset_name][setting_name] = old_preset[setting_name]
