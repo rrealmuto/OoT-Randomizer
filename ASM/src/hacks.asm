@@ -902,7 +902,7 @@ bg_spot18_basket_rupees_loopstart: ; our new loop branch target
 
 ; Hack EnWonderItem_DropCollectible to drop flagged collectibles
 .orga 0xDE8C94
-    j		EnWonderItem_DropCollectible_Hack
+    j       EnWonderItem_DropCollectible_Hack
     nop
 
 ; Runs when storing an incoming item to the player instance

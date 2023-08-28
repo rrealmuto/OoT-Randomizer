@@ -13,7 +13,7 @@ void EnWonderitem_AfterInitHack(z64_actor_t* actor, z64_game_t* game);
 typedef struct EnWonderItem {
     /* 0x0000 */ z64_actor_t actor;
     /* 0x013C */ EnWonderItemUpdateFunc updateFunc;
-    /* 0x0140 */ float unkHeight; // sets height of dummied out mode 4 
+    /* 0x0140 */ float unkHeight; // sets height of dummied out mode 4
     /* 0x0144 */ int16_t wonderMode;
     /* 0x0146 */ int16_t itemDrop;
     /* 0x0148 */ int16_t numTagPoints;

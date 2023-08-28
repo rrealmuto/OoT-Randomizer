@@ -1197,7 +1197,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Jabu Jabus Belly MQ Falling Like-Like Room Left Cow Wonderitem 1", ("Wonderitem",0x02, (11,0,23), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
     ("Jabu Jabus Belly MQ Falling Like-Like Room Left Cow Wonderitem 2", ("Wonderitem",0x02, (11,0,24), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
     ("Jabu Jabus Belly MQ Falling Like-Like Room Left Cow Wonderitem 3", ("Wonderitem",0x02, (11,0,25), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
-    
+
 
     # Jabu Jabu's Belly Shared
     ("Jabu Jabus Belly Barinade Heart",                              ("BossHeart",    0x13,  0x4F, None,                            'Heart Container',                       ("Jabu Jabu's Belly", "Jabu Jabu's Belly MQ", "Vanilla Dungeons", "Master Quest",))),
@@ -1546,7 +1546,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Fire Temple MQ Shoot Torch on Wall Room Hookshot Wonderitem",  ("Wonderitem",   0x04,  (16,0,1), None,                        'Rupees (20)',                           ("Fire Temple", "Master Quest", "Wonderitem"))),
     ("Fire Temple MQ Boss Key Hookshot Wonderitem",                  ("Wonderitem",   0x04,  (19,0,10), None,                        'Rupees (20)',                           ("Fire Temple", "Master Quest", "Wonderitem"))),
     ("Fire Temple MQ Boss Key Arrow Wonderitem",                     ("Wonderitem",   0x04,  (19,0,11), None,                        'Rupees (20)',                           ("Fire Temple", "Master Quest", "Wonderitem"))),
-    
+
     # Fire Temple Shared
     ("Fire Temple Volvagia Heart",                                   ("BossHeart",    0x15,  0x4F, None,                            'Heart Container',                       ("Fire Temple", "Fire Temple MQ", "Vanilla Dungeons", "Master Quest",))),
 
@@ -1748,7 +1748,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Water Temple MQ Compass Chest Hookshot Wonderitem",            ("Wonderitem",   0x05,  (18,0,4), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
     ("Water Temple MQ Map Chest Hookshot Wonderitem",                ("Wonderitem",   0x05,  (19,0,6), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
     ("Water Temple MQ Lizalfos Hallway Hookshot Wonderitem",         ("Wonderitem",   0x05,  (20,0,3), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
-    
+
 
     # Water Temple Shared
     ("Water Temple Morpha Heart",                                    ("BossHeart",    0x16,  0x4F, None,                            'Heart Container',                       ("Water Temple", "Water Temple MQ", "Vanilla Dungeons", "Master Quest",))),
@@ -2259,7 +2259,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     # Gerudo Training Ground MQ Wonderitems
     ("Gerudo Training Ground MQ Eye Statue Proximity Wonderitem",    ("Wonderitem",   0x0B,  (4,0,5), None,                         'Rupees (20)',                           ("Gerudo Training Ground", "Master Quest", "Wonderitem"))),
     ("Gerudo Training Ground MQ Dinolfos Arrow Wonderitem",          ("Wonderitem",   0x0B,  (7,0,9), None,                         'Rupees (20)',                           ("Gerudo Training Ground", "Master Quest", "Wonderitem"))), # One of the actors in this room appears to have been deleted so this actor is #9. The 0x185 Checkable Spot actor is missing in MQU.json
-    
+
     # Ganon's Castle Vanilla
     ("Ganons Castle Forest Trial Chest",                             ("Chest",        0x0D,  0x09, None,                            'Rupees (5)',                            ("Ganon's Castle", "Vanilla Dungeons", "Chests",))),
     ("Ganons Castle Water Trial Left Chest",                         ("Chest",        0x0D,  0x07, None,                            'Ice Trap',                              ("Ganon's Castle", "Vanilla Dungeons", "Chests",))),
