@@ -135,8 +135,6 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("KF Sarias House Recovery Heart 2",                             ("Freestanding", 0x29,  (0,0,4), None,                         'Recovery Heart',                        ("Kokiri Forest", "Forest Area", "Freestandings",))),
     ("KF Sarias House Recovery Heart 3",                             ("Freestanding", 0x29,  (0,0,5), None,                         'Recovery Heart',                        ("Kokiri Forest", "Forest Area", "Freestandings",))),
     ("KF Sarias House Recovery Heart 4",                             ("Freestanding", 0x29,  (0,0,6), None,                         'Recovery Heart',                        ("Kokiri Forest", "Forest Area", "Freestandings",))),
-    #("KF Shop Blue Rupee",                                           ("ActorOverride",0x2D,  0x01, ([0x02587098], [
-    #    0x00, 0x15, 0x00, 0x92, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x06            ]),               'Rupees (5)',                            ("Kokiri Forest", "Forest Area", "Freestandings",))),
     # Kokiri Forest Pots
     ("KF Links House Pot",                                           ("Pot",          0x34,  (0,0,3), None,                         'Recovery Heart',                        ("Kokiri Forest", "Forest Area", "Pots",))),
     ("KF Know it All House Pot 1",                                   ("Pot",          0x26,  (0,0,7), None,                         'Rupee (1)',                             ("Kokiri Forest", "Forest Area", "Pots",))),
@@ -191,10 +189,9 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("LW Near Shortcuts Grotto Beehive 2",                           ("Beehive",      0x3E, (0,0,0x49 + (0x14 * 2)), None,          'Rupees (20)',                           ("Lost Woods", "Forest Area", "Grottos", "Beehives",))),
     ("LW Scrubs Grotto Beehive",                                     ("Beehive",      0x3E, (6,0,0x44 + (0x15 * 2)), None,          'Rupees (20)',                           ("Lost Woods", "Forest Area", "Grottos", "Beehives",))),
     # Lost Woods Wonderitems
-    ("LW Near Ocarina Game Wonderitem 1",                            ("Wonderitem",   0x5B, (1,0,6),  None,                       'Rupees (5)',                              ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("LW Near Ocarina Game Wonderitem 2",                            ("Wonderitem",   0x5B, (1,0,7),  None,                       'Rupees (5)',                              ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("LW Near Ocarina Game Wonderitem 3",                            ("Wonderitem",   0x5B, (1,0,8),  None,                       'Rupees (5)',                              ("Kokiri Forest", "Forest", "Wonderitem"))),
-
+    ("LW Near Ocarina Game Wonderitem 1",                            ("Wonderitem",   0x5B, (1,0,6),  None,                       'Rupees (5)',                              ("Lost Woods", "Forest Area", "Wonderitem"))),
+    ("LW Near Ocarina Game Wonderitem 2",                            ("Wonderitem",   0x5B, (1,0,7),  None,                       'Rupees (5)',                              ("Lost Woods", "Forest Area", "Wonderitem"))),
+    ("LW Near Ocarina Game Wonderitem 3",                            ("Wonderitem",   0x5B, (1,0,8),  None,                       'Rupees (5)',                              ("Lost Woods", "Forest Area", "Wonderitem"))),
 
     # Sacred Forest Meadow
     ("SFM Wolfos Grotto Chest",                                      ("Chest",        0x3E,  0x11, None,                            'Rupees (50)',                           ("Sacred Forest Meadow", "Forest Area", "Grottos", "Chests",))),
@@ -206,17 +203,17 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
 
     # Sacred Forest Meadow Wonderitems
     ("SFM Near Lost Woods Wonderitem",                               ("Wonderitem",   0x56, [(0,0,16),
-                                                                                             (0,2,19)],   None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+                                                                                             (0,2,19)],   None,                       'Rupees (5)',                          ("Sacred Forest Meadow", "Forest Area", "Wonderitem"))),
     ("SFM Maze Wonderitem 1",                                        ("Wonderitem",   0x56, [(0,0,13),
-                                                                                             (0,2,16)],   None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+                                                                                             (0,2,16)],   None,                       'Rupees (5)',                          ("Sacred Forest Meadow", "Forest Area", "Wonderitem"))),
     ("SFM Maze Wonderitem 2",                                        ("Wonderitem",   0x56, [(0,0,14),
-                                                                                             (0,2,17)],   None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+                                                                                             (0,2,17)],   None,                       'Rupees (5)',                          ("Sacred Forest Meadow", "Forest Area", "Wonderitem"))),
     ("SFM Maze Wonderitem 3",                                        ("Wonderitem",   0x56, [(0,0,15),
-                                                                                             (0,2,18)],   None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+                                                                                             (0,2,18)],   None,                       'Rupees (5)',                          ("Sacred Forest Meadow", "Forest Area", "Wonderitem"))),
     ("SFM Maze Wonderitem 4",                                        ("Wonderitem",   0x56, [(0,0,17),
-                                                                                             (0,2,20)],   None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+                                                                                             (0,2,20)],   None,                       'Rupees (5)',                          ("Sacred Forest Meadow", "Forest Area", "Wonderitem"))),
     ("SFM Maze Wonderitem 5",                                        ("Wonderitem",   0x56, [(0,0,18),
-                                                                                             (0,2,21)],   None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+                                                                                             (0,2,21)],   None,                       'Rupees (5)',                          ("Sacred Forest Meadow", "Forest Area", "Wonderitem"))),
 
 
     # Hyrule Field
@@ -363,13 +360,13 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Market Man in Green House Pot 3",                              ("Pot",          0x2B,  (0,0,5), None,                         'Rupees (5)',                            ("Market", "Pots",))),
 
     # Market Wonderitems
-    ("Market Daytime Balcony Wonderitem 1",                          ("Wonderitem",   0x20, (0,0,16),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("Market Daytime Balcony Wonderitem 2",                          ("Wonderitem",   0x20, (0,0,17),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("Market Daytime Balcony Wonderitem 3",                          ("Wonderitem",   0x20, (0,0,18),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("Market Daytime Balcony Wonderitem 4",                          ("Wonderitem",   0x20, (0,0,19),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("Market Daytime Balcony Wonderitem 5",                          ("Wonderitem",   0x20, (0,0,20),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("Market Night Balcony Wonderitem 1",                            ("Wonderitem",   0x21, (0,0,6),   None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("Market Night Balcony Wonderitem 2",                            ("Wonderitem",   0x21, (0,0,7),   None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("Market Daytime Balcony Wonderitem 1",                          ("Wonderitem",   0x20, (0,0,16),  None,                       'Rupees (5)',                             ("Market", "Wonderitem"))),
+    ("Market Daytime Balcony Wonderitem 2",                          ("Wonderitem",   0x20, (0,0,17),  None,                       'Rupees (5)',                             ("Market", "Wonderitem"))),
+    ("Market Daytime Balcony Wonderitem 3",                          ("Wonderitem",   0x20, (0,0,18),  None,                       'Rupees (5)',                             ("Market", "Wonderitem"))),
+    ("Market Daytime Balcony Wonderitem 4",                          ("Wonderitem",   0x20, (0,0,19),  None,                       'Rupees (5)',                             ("Market", "Wonderitem"))),
+    ("Market Daytime Balcony Wonderitem 5",                          ("Wonderitem",   0x20, (0,0,20),  None,                       'Rupees (5)',                             ("Market", "Wonderitem"))),
+    ("Market Night Balcony Wonderitem 1",                            ("Wonderitem",   0x21, (0,0,6),   None,                       'Rupees (5)',                             ("Market", "Wonderitem"))),
+    ("Market Night Balcony Wonderitem 2",                            ("Wonderitem",   0x21, (0,0,7),   None,                       'Rupees (5)',                             ("Market", "Wonderitem"))),
 
 
     # Hyrule Castle
@@ -495,7 +492,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     # Kakariko Village Beehives
     ("Kak Open Grotto Beehive 1",                                    ("Beehive",      0x3E,  (0,0,0x48 + (0x08 * 2)), None,         'Rupees (5)',                            ("Kakariko Village", "Grottos", "Beehives",))),
     ("Kak Open Grotto Beehive 2",                                    ("Beehive",      0x3E,  (0,0,0x49 + (0x08 * 2)), None,         'Rupees (20)',                           ("Kakariko Village", "Grottos", "Beehives",))),
-    # Kak Wonderitems
+    # Kakariko Village Wonderitems
     ("Kak Child Construction Wonderitem",                            ("Wonderitem",   0x52,  [(0,0,56), (0,1,49)], None,        'Rupees (20)',                               ("Kakariko Village", "Kakariko", "Wonderitem"))),
     ("Kak Impas House Wonderitem",                                   ("Wonderitem",   0x37,  (0,0,7), None,                     'Rupees (20)',                               ("Kakariko Village", "Kakariko", "Wonderitem"))),
 
@@ -527,21 +524,21 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Graveyard Dampe Pot 6",                                        ("Pot",          0x48,  (0,0,6), None,                         'Rupees (20)',                           ("Graveyard", "Grottos", "Pots",))),
 
     # Graveyard Wonderitems
-    ("Graveyard Dampe Race Wonderitem 1",                            ("Wonderitem",   0x48, (1,0,6), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 2",                            ("Wonderitem",   0x48, (1,0,7), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 3",                            ("Wonderitem",   0x48, (1,0,8), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 4",                            ("Wonderitem",   0x48, (1,0,9), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 5",                            ("Wonderitem",   0x48, (1,0,10), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 6",                            ("Wonderitem",   0x48, (2,0,8), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 7",                            ("Wonderitem",   0x48, (2,0,9), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 8",                            ("Wonderitem",   0x48, (2,0,10), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 9",                            ("Wonderitem",   0x48, (2,0,11), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 10",                           ("Wonderitem",   0x48, (2,0,12), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 11",                           ("Wonderitem",   0x48, (3,0,9), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 12",                           ("Wonderitem",   0x48, (3,0,10), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 13",                           ("Wonderitem",   0x48, (3,0,11), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 14",                           ("Wonderitem",   0x48, (3,0,12), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 15",                           ("Wonderitem",   0x48, (3,0,13), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 1",                            ("Wonderitem",   0x48, (1,0,6), None,                       'Rupees (5)',                               ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 2",                            ("Wonderitem",   0x48, (1,0,7), None,                       'Rupees (5)',                               ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 3",                            ("Wonderitem",   0x48, (1,0,8), None,                       'Rupees (5)',                               ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 4",                            ("Wonderitem",   0x48, (1,0,9), None,                       'Rupees (5)',                               ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 5",                            ("Wonderitem",   0x48, (1,0,10), None,                       'Rupees (5)',                              ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 6",                            ("Wonderitem",   0x48, (2,0,8), None,                       'Rupees (5)',                               ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 7",                            ("Wonderitem",   0x48, (2,0,9), None,                       'Rupees (5)',                               ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 8",                            ("Wonderitem",   0x48, (2,0,10), None,                       'Rupees (5)',                              ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 9",                            ("Wonderitem",   0x48, (2,0,11), None,                       'Rupees (5)',                              ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 10",                           ("Wonderitem",   0x48, (2,0,12), None,                       'Rupees (5)',                              ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 11",                           ("Wonderitem",   0x48, (3,0,9), None,                       'Rupees (5)',                               ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 12",                           ("Wonderitem",   0x48, (3,0,10), None,                       'Rupees (5)',                              ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 13",                           ("Wonderitem",   0x48, (3,0,11), None,                       'Rupees (5)',                              ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 14",                           ("Wonderitem",   0x48, (3,0,12), None,                       'Rupees (5)',                              ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 15",                           ("Wonderitem",   0x48, (3,0,13), None,                       'Rupees (5)',                              ("Graveyard", "Grottos", "Wonderitem"))),
 
     # Death Mountain Trail
     ("DMT Freestanding PoH",                                         ("Collectable",  0x60,  0x1E, None,                            'Piece of Heart',                        ("Death Mountain Trail", "Freestandings",))),
@@ -685,37 +682,37 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("ZR Storms Grotto Beehive",                                     ("Beehive",      0x3E, (9,0,0x43 + (0x0B * 2)), None,          'Rupees (20)',                           ("Zora's River", "Grottos", "Beehives",))),
 
     # Zora's River Wonderitems
-    ("ZR Child Front River Wonderitem 1",                            ("Wonderitem",   0x54, (0,0,17), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child Front River Wonderitem 2",                            ("Wonderitem",   0x54, (0,0,18), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child Front River Wonderitem 3",                            ("Wonderitem",   0x54, (0,0,19), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child Front River Wonderitem 4",                            ("Wonderitem",   0x54, (0,0,20), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 1",                                  ("Wonderitem",   0x54, (1,0,6),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 2",                                  ("Wonderitem",   0x54, (1,0,7),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 3",                                  ("Wonderitem",   0x54, (1,0,8),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 4",                                  ("Wonderitem",   0x54, (1,0,9),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 5",                                  ("Wonderitem",   0x54, (0,0,16), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 6",                                 ("Wonderitem",   0x54, (0,0,21), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 7",                                 ("Wonderitem",   0x54, (0,0,22), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 8",                                 ("Wonderitem",   0x54, (0,0,23), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 9",                                 ("Wonderitem",   0x54, (0,0,24), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 10",                                 ("Wonderitem",   0x54, (0,0,25), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 11",                                 ("Wonderitem",   0x54, (0,0,26), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 12",                                 ("Wonderitem",   0x54, (0,0,27), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 13",                                 ("Wonderitem",   0x54, (0,0,28), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 14",                                 ("Wonderitem",   0x54, (0,0,29), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 15",                                 ("Wonderitem",   0x54, (0,0,30), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 16",                                 ("Wonderitem",   0x54, (0,0,31), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 17",                                 ("Wonderitem",   0x54, (0,0,32), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 18",                                 ("Wonderitem",   0x54, (0,0,33), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 19",                                 ("Wonderitem",   0x54, (0,0,34), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 20",                                 ("Wonderitem",   0x54, (0,0,35), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 21",                                 ("Wonderitem",   0x54, (0,0,36), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 22",                                 ("Wonderitem",   0x54, (0,0,37), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 23",                                 ("Wonderitem",   0x54, (0,0,38), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 24",                                 ("Wonderitem",   0x54, (0,0,39), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 25",                                 ("Wonderitem",   0x54, (0,0,40), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 26",                                 ("Wonderitem",   0x54, (0,0,41), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("ZR Child River Wonderitem 27",                                 ("Wonderitem",   0x54, (0,0,42), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("ZR Child Front River Wonderitem 1",                            ("Wonderitem",   0x54, (0,0,17), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child Front River Wonderitem 2",                            ("Wonderitem",   0x54, (0,0,18), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child Front River Wonderitem 3",                            ("Wonderitem",   0x54, (0,0,19), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child Front River Wonderitem 4",                            ("Wonderitem",   0x54, (0,0,20), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 1",                                  ("Wonderitem",   0x54, (1,0,6),  None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 2",                                  ("Wonderitem",   0x54, (1,0,7),  None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 3",                                  ("Wonderitem",   0x54, (1,0,8),  None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 4",                                  ("Wonderitem",   0x54, (1,0,9),  None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 5",                                  ("Wonderitem",   0x54, (0,0,16), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 6",                                  ("Wonderitem",   0x54, (0,0,21), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 7",                                  ("Wonderitem",   0x54, (0,0,22), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 8",                                  ("Wonderitem",   0x54, (0,0,23), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 9",                                  ("Wonderitem",   0x54, (0,0,24), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 10",                                 ("Wonderitem",   0x54, (0,0,25), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 11",                                 ("Wonderitem",   0x54, (0,0,26), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 12",                                 ("Wonderitem",   0x54, (0,0,27), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 13",                                 ("Wonderitem",   0x54, (0,0,28), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 14",                                 ("Wonderitem",   0x54, (0,0,29), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 15",                                 ("Wonderitem",   0x54, (0,0,30), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 16",                                 ("Wonderitem",   0x54, (0,0,31), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 17",                                 ("Wonderitem",   0x54, (0,0,32), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 18",                                 ("Wonderitem",   0x54, (0,0,33), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 19",                                 ("Wonderitem",   0x54, (0,0,34), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 20",                                 ("Wonderitem",   0x54, (0,0,35), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 21",                                 ("Wonderitem",   0x54, (0,0,36), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 22",                                 ("Wonderitem",   0x54, (0,0,37), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 23",                                 ("Wonderitem",   0x54, (0,0,38), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 24",                                 ("Wonderitem",   0x54, (0,0,39), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 25",                                 ("Wonderitem",   0x54, (0,0,40), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 26",                                 ("Wonderitem",   0x54, (0,0,41), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
+    ("ZR Child River Wonderitem 27",                                 ("Wonderitem",   0x54, (0,0,42), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
 
     # Zora's Domain
     ("ZD Diving Minigame",                                           ("NPC",          0x58,  0x37, None,                            'Progressive Scale',                     ("Zora's Domain", "Minigames",))),
@@ -832,8 +829,8 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("GV Storms Grotto Beehive",                                     ("Beehive",      0x3E,  (9,0,0x43 + (0x10 * 2)), None,         'Rupees (20)',                           ("Gerudo Valley", "Grottos", "Beehives",))),
 
     # Gerudo Valley Wonderitems
-    ("GV Adult Upper Waterfall Wonderitem",                          ("Wonderitem",   0x5A, (0,2,41), None,                     'Rupees (20)',                           ("Gerudo Valley", "Gerudo", "Wonderitem"))),
-    ("GV Adult Lower Waterfall Wonderitem",                          ("Wonderitem",   0x5A, (0,2,42), None,                     'Rupees (20)',                           ("Gerudo Valley", "Gerudo", "Wonderitem"))),
+    ("GV Adult Upper Waterfall Wonderitem",                          ("Wonderitem",   0x5A, (0,2,41), None,                         'Rupees (20)',                           ("Gerudo Valley", "Gerudo", "Wonderitem"))),
+    ("GV Adult Lower Waterfall Wonderitem",                          ("Wonderitem",   0x5A, (0,2,42), None,                         'Rupees (20)',                           ("Gerudo Valley", "Gerudo", "Wonderitem"))),
 
 
     # Gerudo's Fortress
@@ -845,8 +842,8 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     # Gerudo's Fortress Crates/Pots
     ("GF Above Jail Crate",                                          ("Crate",        0x5D,  [(0,2,19),(0,3,19)], None,             'Rupees (50)',                           ("Gerudo's Fortress", "Crates",))),
     # Gerudo's Fortress Wonderitems
-    ("GF Sign Wonderitem 1",                                         ("Wonderitem",   0x5D,  [(0,2,6),(0,3,6)], None,               'Rupees (20)',                           ("Thieves' Hideout", "Wonderitem"))),
-    ("GF Sign Wonderitem 2",                                         ("Wonderitem",   0x5D,  [(0,2,7),(0,3,7)], None,               'Rupees (20)',                           ("Thieves' Hideout", "Wonderitem"))),
+    ("GF Sign Wonderitem 1",                                         ("Wonderitem",   0x5D,  [(0,2,6),(0,3,6)], None,               'Rupees (20)',                           ("Gerudo's Fortress", "Wonderitem"))),
+    ("GF Sign Wonderitem 2",                                         ("Wonderitem",   0x5D,  [(0,2,7),(0,3,7)], None,               'Rupees (20)',                           ("Gerudo's Fortress", "Wonderitem"))),
 
     # Thieves' Hideout
     ("Hideout 1 Torch Jail Gerudo Key",                              ("Collectable",  0x0C,  0x0C, None,                            'Small Key (Thieves Hideout)',           ("Thieves' Hideout",))),
