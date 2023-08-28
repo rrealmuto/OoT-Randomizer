@@ -461,7 +461,7 @@
     },
     "Vanilla (Master Quest)": {
         "show_seed_info": true,
-        "user_message": "Vanilla",
+        "user_message": "Vanilla (Master Quest)",
         "world_count": 1,
         "create_spoiler": true,
         "randomize_settings": false,
@@ -616,7 +616,7 @@
     },
     "Fast Vanilla (Master Quest)": {
         "show_seed_info": true,
-        "user_message": "Fast Vanilla",
+        "user_message": "Fast Vanilla (Master Quest)",
         "world_count": 1,
         "create_spoiler": true,
         "randomize_settings": false,
