@@ -1650,45 +1650,42 @@ class SettingInfos:
         },
     )
 
-    open_forest = Combobox(
-        gui_text       = 'Forest',
-        default        = 'closed',
-        choices        = {
-            'open':        'Open Forest',
-            'closed_deku': 'Closed Deku',
-            'closed':      'Closed Forest',
-            },
+    open_deku = Checkbutton(
+        gui_text       = 'Open Deku Tree',
         gui_tooltip    = '''\
-            'Closed Forest': In the child era, Mido blocks the path
-            to the Deku Tree, requiring Kokiri Sword and Deku Shield
-            to access the Deku Tree, and another Kokiri boy blocks
+            In the child era, Mido no longer blocks the path
+            to the Deku Tree, so you can access the area without
+            requiring Kokiri Sword and Deku Shield.
+
+            If "Shuffle Dungeon Entrances" is enabled, the
+            Deku Tree's mouth is also open in the adult era.
+        ''',
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    )
+
+    open_forest = Checkbutton(
+        gui_text       = 'Open Forest',
+        gui_tooltip    = '''\
+            'Closed Forest': In the child era, a Kokiri boy blocks
             the path out of the forest until Queen Gohma is defeated.
             It may be logically required to "escape" the forest
             (via one of the shortcuts in the Lost Woods, for example);
             the setting "Closed Forest Requires Gohma" can be used to
             prevent this.
 
-            'Closed Deku': The Kokiri boy no longer blocks the path
-            out of the forest, but Mido still blocks the path to the
-            Deku Tree, requiring Kokiri Sword and Deku Shield to access
-            the Deku Tree.
-
-            'Open Forest': Mido no longer blocks the path to the
-            Deku Tree, and the Kokiri boy no longer blocks the path
+            'Open Forest': The Kokiri boy no longer blocks the path
             out of the forest.
         ''',
         shared         = True,
         disable        = {
-            '!closed': {'settings': ['require_gohma']},
-            'closed':  {'settings': ['starting_age']},
+            True  : {'settings': ['require_gohma']},
+            False : {'settings': ['starting_age']},
         },
         gui_params     = {
             'randomize_key': 'randomize_settings',
-            'distribution': [
-                ('open',        1),
-                ('closed_deku', 1),
-                ('closed',      1),
-            ],
         },
     )
 
@@ -1905,7 +1902,7 @@ class SettingInfos:
             the master sword in your inventory.
 
             Only the child option is compatible with
-            Closed Forest.
+            "Closed Forest Requires Gohma".
         ''',
         shared         = True,
         gui_params     = {

@@ -135,6 +135,7 @@
           "text": "Open",
           "row_span": [4,4,7],
           "settings": [
+            "open_deku",
             "open_forest",
             "require_gohma",
             "open_kakariko",

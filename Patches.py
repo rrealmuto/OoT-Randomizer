@@ -856,7 +856,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     # Change Pokey to check DT complete flag
     rom.write_bytes(0xE5400A, [0x8C, 0x4C])
     rom.write_bytes(0xE5400E, [0xB4, 0xA4])
-    if world.settings.open_forest != 'closed':
+    if world.settings.open_forest:
         rom.write_bytes(0xE5401C, [0x14, 0x0B])
     # Move Link spawn 40 units forwards to prevent Pokey trap
     rom.write_byte(0x206F0C7, 0xA3)
@@ -1484,7 +1484,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     else:
         rom.write_int32(symbol, 0)
 
-    if world.settings.open_forest == 'open':
+    if world.settings.open_deku:
         save_context.write_bits(0xED5, 0x10)  # "Showed Mido Sword & Shield"
 
     if world.settings.open_door_of_time:

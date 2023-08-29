@@ -103,7 +103,7 @@ class Region:
                     return False
 
         if not manual and self.world.settings.require_gohma and item.name in (*closed_forest_restricted_items, 'Slingshot'):
-            hint_area = HintArea.at(self)
+            hint_area = HintArea.at(self, gc_woods_warp_is_forest=True)
             if hint_area.color == 'Green' and hint_area != HintArea.FOREST_TEMPLE and self.name != 'Queen Gohma Boss Room':
                 # Don't place items that can be used to escape the forest in Forest areas of worlds with Require Gohma
                 if item.name in closed_forest_restricted_items:

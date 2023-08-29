@@ -186,9 +186,9 @@
             "KF House of Twins": "True",
             "KF Know It All House": "True",
             "KF Kokiri Shop": "True",
-            "KF Outside Deku Tree": "is_adult or open_forest == 'open' or 'Showed Mido Sword & Shield'",
+            "KF Outside Deku Tree": "is_adult or open_deku or 'Showed Mido Sword & Shield'",
             "Lost Woods": "True",
-            "LW Bridge From Forest": "open_forest != 'closed' or is_adult or 'Deku Tree Clear'",
+            "LW Bridge From Forest": "open_forest or is_adult or 'Deku Tree Clear'",
             "KF Storms Grotto": "can_open_storm_grotto"
         }
     },
@@ -212,8 +212,8 @@
         "exits": {
             "Deku Tree Lobby": "
                 is_child or
-                (shuffle_dungeon_entrances and (open_forest == 'open' or 'Showed Mido Sword & Shield'))",
-            "Kokiri Forest": "is_adult or open_forest == 'open' or 'Showed Mido Sword & Shield'"
+                (shuffle_dungeon_entrances and (open_deku or 'Showed Mido Sword & Shield'))",
+            "Kokiri Forest": "is_adult or open_deku or 'Showed Mido Sword & Shield'"
         }
     },
     {

@@ -492,16 +492,19 @@ class World:
                 non_empty = 8 - dist_num_empty - len(empty_dungeon_pool)
                 raise RuntimeError(f"On world {self.id+1}, {dist_num_empty} dungeons are set to empty and {non_empty} to non-empty. Can't reach {self.settings.empty_dungeons_count} empty dungeons.")
 
-            # Prioritize non-MQ dungeons
-            non_mq, mq = [], []
+            # Prioritize non-Deku dungeons in Require Gohma, then prioritize non-MQ dungeons
+            non_mq, mq, deku = [], [], []
             for dung in empty_dungeon_pool:
-                (mq if self.dungeon_mq[dung] else non_mq).append(dung)
-            for dung in random.sample(non_mq, min(nb_to_pick, len(non_mq))):
-                self.empty_dungeons[dung].empty = True
-                nb_to_pick -= 1
-            if nb_to_pick > 0:
-                for dung in random.sample(mq, nb_to_pick):
+                if self.settings.require_gohma and dung == 'Deku Tree':
+                    deku.append(dung)
+                elif self.dungeon_mq[dung]:
+                    mq.append(dung)
+                else:
+                    non_mq.append(dung)
+            for collection in (non_mq, mq, deku):
+                for dung in random.sample(collection, min(nb_to_pick, len(collection))):
                     self.empty_dungeons[dung].empty = True
+                    nb_to_pick -= 1
 
         if self.settings.mq_dungeons_mode == 'random' and 'mq_dungeons_count' not in dist_keys:
             for dungeon in mq_dungeon_pool:
