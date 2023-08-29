@@ -1,7 +1,8 @@
 {
   "settings": {
     "open_door_of_time": true,
-    "open_forest": "open",
+    "open_deku": true,
+    "open_forest": true,
     "bridge": "open",
     "triforce_hunt": false,
     "shuffle_child_trade": ["Weird Egg"],

@@ -2,7 +2,8 @@
   "settings": {
     "fix_broken_drops": true,
     "open_door_of_time": false,
-    "open_forest": "open",
+    "open_deku": true,
+    "open_forest": true,
     "shuffle_interior_entrances": "simple",
     "shuffle_scrubs": "low",
     "shuffle_song_items": "any",

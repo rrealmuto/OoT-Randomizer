@@ -1,6 +1,7 @@
 {
   "settings": {
-    "open_forest": "open",
+    "open_deku": true,
+    "open_forest": true,
     "shopsanity": "4"
   },
   "locations": {

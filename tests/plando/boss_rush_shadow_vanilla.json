@@ -5,7 +5,8 @@
       "adult"
     ],
   "shuffle_dungeon_entrances":               "simple",
-  "open_forest":                             "open",
+  "open_deku":                               true,
+  "open_forest":                             true,
   "mq_dungeons_mode":                        "vanilla",
   "dungeon_shortcuts_choice":                "choice",
   "dungeon_shortcuts":                       ["shadow_temple"],

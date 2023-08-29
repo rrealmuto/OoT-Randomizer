@@ -2,7 +2,8 @@
   "settings": {
     "item_pool_value":                         "ludicrous",
     "shuffle_child_trade":                     [],
-    "open_forest":                             "closed_deku",
+    "open_deku":                               false,
+    "open_forest":                             true,
     "zora_fountain":                           "closed",
     "gerudo_fortress":                         "normal",
     "triforce_hunt":                           false,
