@@ -341,7 +341,7 @@ class WorldDistribution:
             pattern_list = []
             for pattern_item in pattern:
                 pattern_list.append(self.pattern_matcher(pattern_item))
-            return reduce(lambda acc, sub_matcher: lambda item: sub_matcher(item) or acc(item), pattern_list, lambda _: False)
+            return reduce(lambda acc, sub_matcher: lambda name, item=None: sub_matcher(name, item) or acc(name, item), pattern_list, lambda s, i=None: False)
 
         invert = pattern.startswith('!')
         if invert:
@@ -394,7 +394,9 @@ class WorldDistribution:
                         rupees = [name for name, item in ItemInfo.items.items() if item.type == 'SilverRupee']
                         self.major_group.extend(rupees)
                 group = self.major_group
-            return lambda s: invert != (s in group)
+            if pattern == '#Junk':
+                return lambda s, i=None: invert != (s in group or (i is not None and i.world is not None and i.world.max_tokens == 0 and i.name == 'Gold Skulltula Token'))
+            return lambda s, i=None: invert != (s in group)
         wildcard_begin = pattern.startswith('*')
         if wildcard_begin:
             pattern = pattern[1:]
@@ -402,14 +404,14 @@ class WorldDistribution:
         if wildcard_end:
             pattern = pattern[:-1]
             if wildcard_begin:
-                return lambda s: invert != (pattern in s)
+                return lambda s, i=None: invert != (pattern in s)
             else:
-                return lambda s: invert != s.startswith(pattern)
+                return lambda s, i=None: invert != s.startswith(pattern)
         else:
             if wildcard_begin:
-                return lambda s: invert != s.endswith(pattern)
+                return lambda s, i=None: invert != s.endswith(pattern)
             else:
-                return lambda s: invert != (s == pattern)
+                return lambda s, i=None: invert != (s == pattern)
 
     # adds the location entry only if there is no record for that location already
     def add_location(self, new_location: str, new_item: str) -> None:
@@ -466,11 +468,11 @@ class WorldDistribution:
         removed_items = []
 
         base_remove_matcher = self.pattern_matcher(item_name)
-        remove_matcher = lambda item: base_remove_matcher(item) and ((item in self.base_pool) ^ (not use_base_pool))
+        remove_matcher = lambda name, item=None: base_remove_matcher(name, item) and ((name in self.base_pool) ^ (not use_base_pool))
         if world_id is None:
             predicate = remove_matcher
         else:
-            predicate = lambda item: item.world.id == world_id and remove_matcher(item.name)
+            predicate = lambda item: item.world.id == world_id and remove_matcher(item.name, item)
 
         for i in range(count):
             removed_item = pull_random_element(pools, predicate)
@@ -496,7 +498,7 @@ class WorldDistribution:
         if item_name == '#Junk':
             added_items = get_junk_item(count, pool=pool, plando_pool=self.item_pool)
         elif is_pattern(item_name):
-            add_matcher = lambda item: self.pattern_matcher(item_name)(item.name)
+            add_matcher = lambda item: self.pattern_matcher(item_name)(item.name, item)
             candidates = [
                 item.name for item in ItemIterator(predicate=add_matcher)
                 if item.name not in self.item_pool or self.item_pool[item.name].count != 0
@@ -636,7 +638,7 @@ class WorldDistribution:
 
     def pool_replace_item(self, item_pools: list[list[Item]], item_group: str, player_id: int, new_item: str, worlds: list[World]) -> Item:
         removed_item = self.pool_remove_item(item_pools, item_group, 1, world_id=player_id)[0]
-        item_matcher = lambda item: self.pattern_matcher(new_item)(item.name)
+        item_matcher = lambda item: self.pattern_matcher(new_item)(item.name, item)
         if self.item_pool[removed_item.name].count > 1:
             self.item_pool[removed_item.name].count -= 1
         else:
@@ -743,16 +745,16 @@ class WorldDistribution:
             for choice in record.item:
                 if choice[0] == '#' and choice[1:] in item_groups:
                     for item in itempool:
-                        if predicate(item.name):
+                        if predicate(item.name, item):
                             valid_items.append(choice)
                             break
             for item in itempool:
-                if item.name in record.item and predicate(item.name):
+                if item.name in record.item and predicate(item.name, item):
                     valid_items.append(item.name)
         else:
             if record.item[0] == '#' and record.item[1:] in item_groups:
                 for item in itempool:
-                    if predicate(item.name):
+                    if predicate(item.name, item):
                         valid_items = [record.item]
                         break
             else:

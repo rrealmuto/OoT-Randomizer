@@ -88,7 +88,6 @@ class Item:
         self.price: Optional[int] = self.info.special.get('price', None)
         self.world: Optional[World] = world
         self.looks_like_item: Optional[Item] = None
-        self.advancement: bool = self.info.advancement
         self.priority: bool = self.info.priority
         self.type: str = self.info.type
         self.special: dict = self.info.special
@@ -184,6 +183,12 @@ class Item:
         if self.world is None:
             return False
         return self.name in self.world.goal_items
+
+    @property
+    def advancement(self) -> bool:
+        if self.name == 'Gold Skulltula Token' and self.world is not None and self.world.max_tokens == 0:
+            return False
+        return self.info.advancement
 
     def __str__(self) -> str:
         return str(self.__unicode__())
