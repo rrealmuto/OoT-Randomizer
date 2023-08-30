@@ -1148,7 +1148,6 @@ def check_message_dupes(new_item_messages: list[tuple[int, str]]) -> None:
                     raise Exception("Duplicate MessageID found: " + hex(message_id1) + ", " + message1 + ", " + message2)
 
 
-# run all keysanity related patching to add messages for dungeon specific items
 def add_item_messages(messages: list[Message], shop_items: Iterable[ShopItem], world: World) -> None:
     move_shop_item_messages(messages, shop_items)
     update_item_messages(messages, world)

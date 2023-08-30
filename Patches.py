@@ -2478,14 +2478,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
     repack_messages(rom, messages, permutation)
 
-    # output a text dump, for testing...
-    #with open('keysanity_' + str(world.settings.seed) + '_dump.txt', 'w', encoding='utf-16') as f:
-    #     messages = read_messages(rom)
-    #     f.write('item_message_strings = {\n')
-    #     for m in messages:
-    #        f.write("\t0x%04X: \"%s\",\n" % (m.id, m.get_python_string()))
-    #     f.write('}\n')
-
     if world.settings.free_scarecrow:
         # Played song as adult
         save_context.write_bits(0x0EE6, 0x10)
