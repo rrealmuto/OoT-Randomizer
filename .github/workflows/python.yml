@@ -2,9 +2,9 @@ name: Python
 
 on:
   push:
-    branches: [ "Dev", "Dev-R", "dev-fenhl" ]
+    branches: [ "Dev", "Dev-R", "dev-fenhl", "dev-fenhl-rebase" ]
   pull_request:
-    branches: [ "Dev", "Dev-R", "dev-fenhl" ]
+    branches: [ "Dev", "Dev-R", "dev-fenhl", "dev-fenhl-rebase" ]
 
 jobs:
   test_minimum_python:
