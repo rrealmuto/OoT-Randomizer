@@ -119,6 +119,22 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
             (0x05CC, [0xFF, 0xFF, 0xFF]), # Outer Primary Color?
             (0x05D4, [0xFF, 0xFF, 0xFF]), # Outer Env Color?
         ]),
+        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1AB, ( # Weird Egg -> Pink Easter Egg
+            (0x0FF4, [0xDB, 0xA9, 0xD8]), # Primary Color
+            (0x0FFC, [0xD1, 0x7B, 0xCC]), # Env Color
+        )),
+        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1AC, ( # Weird Egg -> Orange Easter Egg
+            (0x0FF4, [0xDB, 0xA9, 0x77]), # Primary Color
+            (0x0FFC, [0xD1, 0x7B, 0x25]), # Env Color
+        )),
+        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1AD, ( # Weird Egg -> Green Easter Egg
+            (0x0FF4, [0x77, 0xDB, 0x77]), # Primary Color
+            (0x0FFC, [0x25, 0xD1, 0x25]), # Env Color
+        )),
+        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1AE, ( # Weird Egg -> Blue Easter Egg
+            (0x0FF4, [0x77, 0x77, 0xDB]), # Primary Color
+            (0x0FFC, [0x25, 0x25, 0xD1]), # Env Color
+        )),
     ]
 
     # Add the new models to the extended object file.

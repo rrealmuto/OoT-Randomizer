@@ -62,7 +62,7 @@ def set_rules(world: World) -> None:
             if world.settings.triforce_hunt and world.total_starting_triforce_count >= world.triforce_goal - world.settings.world_count:
                 # We have enough starting Triforce pieces that putting a piece on every world's Song from Impa would hit the goal count
                 # and render the game unbeatable, so for simplicity's sake we forbid putting pieces on any world's Song from Impa.
-                forbid_item(location, 'Triforce Piece')
+                add_item_rule(location, lambda location, item: not item.triforce_piece)
 
         # These locations need to be small keys. Make sure the boss key isn't placed here.
         if (

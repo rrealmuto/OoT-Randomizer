@@ -28,6 +28,18 @@ closed_forest_restricted_items: tuple[str, ...] = (
     'Prelude of Light',
 )
 
+eggs: tuple[str, ...] = (
+    'Easter Egg (Pink)',
+    'Easter Egg (Orange)',
+    'Easter Egg (Green)',
+    'Easter Egg (Blue)',
+)
+
+triforce_pieces: tuple[str, ...] = (
+    'Triforce Piece',
+    *eggs,
+)
+
 plentiful_items: list[str] = ([
     'Biggoron Sword',
     'Boomerang',
@@ -215,14 +227,14 @@ ludicrous_items_extended: list[str] = [
     'Ocarina C right Button',
 ]
 
-ludicrous_exclusions: list[str] = [
-    'Triforce Piece',
+ludicrous_exclusions: tuple[str, ...] = (
+    *triforce_pieces,
     'Gold Skulltula Token',
     'Rutos Letter',
     'Heart Container',
     'Piece of Heart',
-    'Piece of Heart (Treasure Chest Game)'
-]
+    'Piece of Heart (Treasure Chest Game)',
+)
 
 item_difficulty_max: dict[str, dict[str, int]] = {
     'ludicrous': {
@@ -356,7 +368,7 @@ exclude_from_major: list[str] = [
     'Bombchus (10)',
     'Bombchus (20)',
     'Odd Potion',
-    'Triforce Piece',
+    *triforce_pieces,
     'Heart Container',
     'Piece of Heart',
     'Piece of Heart (Treasure Chest Game)',
@@ -531,7 +543,11 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
         pending_junk_pool.extend(ludicrous_health)
 
     if world.settings.triforce_hunt:
-        pending_junk_pool.extend(['Triforce Piece'] * world.settings.triforce_count_per_world)
+        if world.settings.easter_egg_hunt:
+            pending_junk_pool.extend(eggs * (world.settings.triforce_count_per_world // len(eggs)))
+            pending_junk_pool.extend(eggs[:world.settings.triforce_count_per_world % len(eggs)])
+        else:
+            pending_junk_pool.extend(['Triforce Piece'] * world.settings.triforce_count_per_world)
     if world.settings.shuffle_individual_ocarina_notes:
         pending_junk_pool.append('Ocarina A Button')
         pending_junk_pool.append('Ocarina C up Button')

@@ -237,6 +237,7 @@ ITEM_MESSAGES: list[tuple[int, str]] = [
     (0x9003, "\x08You found a piece of the \x05\x41Triforce\x05\x40!"),
     (0x9019, "\x08\x13\x09You found a \x05\x41Bombchu Bag\x05\x40!\x01It has some \x05\x41Bombchus\x05\x40 inside!\x01Find more in tall grass."),
     (0x901A, "\x08You can't buy Bombchus without a\x01\x05\x41Bombchu Bag\x05\x40!"),
+    (0x9057, "\x08You found an \x05\x41Easter Egg\x05\x40!"),
     (0x908C, "\x08You got the\x01\x05\x41Ocarina A Button!\x05\x40\x01You can now play \x9F on the Ocarina!"),
     (0x908D, "\x08You got the\x01\x05\x41Ocarina C-up Button!\x05\x40\x01You can now play \xA5 on the Ocarina!"),
     (0x908E, "\x08You got the\x01\x05\x41Ocarina C-down Button!\x05\x40\x01You can now play \xA6 on the Ocarina!"),
@@ -375,7 +376,7 @@ KEYSANITY_MESSAGES: list[tuple[int, str]] = [
     (0x9053, "\x08You have found all of the \x05\x44Silver\x01Rupees\x05\x40 for the \x05\x43water room\x05\x40 in the\x01\x05\x46Gerudo Training Ground\x05\x40! A \x05\x43chest\x05\x40\x01has appeared!\x09"),
     # 0x9054 and 0x9055 unused
     (0x9056, "\x08You have found all of the \x05\x44Silver\x01Rupees\x05\x40 for the \x05\x44lobby and adult side\x05\x40\x01of the \x05\x46Spirit Temple\x05\x40! A \x05\x44chest\x05\x40 has\x01appeared!\x09"),
-    # 0x9057 unused
+    # 0x9057 used above
     (0x9058, "\x08You have found all of the \x05\x44Silver\x01Rupees\x05\x40 for the \x05\x43climbable wall\x05\x40 in the\x01\x05\x46Spirit Temple\x05\x40! The way to the\x01\x05\x43upstairs\x05\x40 is open!\x09"),
     # 0x9059 and 0x905A unused
     (0x905B, "\x08You have found all of the \x05\x44Silver\x01Rupees\x05\x40 for the \x05\x41Fire Trial\x05\x40 in \x05\x41Ganon's\x01Castle\x05\x40! The way to the \x05\x41final room\x05\x40 is\x01open!\x09"),

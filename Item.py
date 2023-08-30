@@ -185,6 +185,12 @@ class Item:
         return self.name in self.world.goal_items
 
     @property
+    def triforce_piece(self) -> bool:
+        from ItemPool import triforce_pieces
+
+        return self.name in triforce_pieces
+
+    @property
     def advancement(self) -> bool:
         if self.name == 'Gold Skulltula Token' and self.world is not None and self.world.max_tokens == 0:
             return False

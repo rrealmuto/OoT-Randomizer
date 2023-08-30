@@ -15,6 +15,7 @@ from urllib.error import URLError, HTTPError
 from HintList import Hint, get_hint, get_multi, get_hint_group, get_upgrade_hint_list, hint_exclusions, \
     misc_item_hint_table, misc_location_hint_table
 from Item import Item, make_event_item
+from ItemPool import triforce_pieces
 from Messages import Message, COLOR_MAP, update_message_by_id
 from Region import Region
 from Search import Search
@@ -63,7 +64,7 @@ defaultHintDists: list[str] = [
     'weekly.json',
 ]
 
-unHintableWothItems: set[str] = {'Triforce Piece', 'Gold Skulltula Token', 'Piece of Heart', 'Piece of Heart (Treasure Chest Game)', 'Heart Container'}
+unHintableWothItems: set[str] = {*triforce_pieces, 'Gold Skulltula Token', 'Piece of Heart', 'Piece of Heart (Treasure Chest Game)', 'Heart Container'}
 
 
 class RegionRestriction(Enum):
@@ -1703,9 +1704,11 @@ def build_ganon_boss_key_string(world: World) -> str:
             item_req_string = f'{count} {singular if count == 1 else plural}'
             bk_location_string = f"automatically granted once {item_req_string} {'is' if count == 1 else 'are'} retrieved"
         else:
-            bk_location_string = get_hint('ganonBK_' + world.settings.shuffle_ganon_bosskey,
-                                          world.settings.clearer_hints).text
-        string += "And the \x05\x41evil one\x05\x40's key will be %s." % bk_location_string
+            condition = world.settings.shuffle_ganon_bosskey
+            if condition == 'triforce' and world.settings.easter_egg_hunt:
+                condition = 'eggs'
+            bk_location_string = get_hint(f'ganonBK_{condition}', world.settings.clearer_hints).text
+        string += f"And the \x05\x41evil one\x05\x40's key will be {bk_location_string}."
     return str(GossipText(string, ['Yellow'], prefix=''))
 
 

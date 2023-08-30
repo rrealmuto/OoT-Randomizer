@@ -678,7 +678,22 @@ class SettingInfos:
         },
         disable        = {
             True:  {'settings': ['shuffle_ganon_bosskey', 'ganon_bosskey_stones', 'ganon_bosskey_medallions', 'ganon_bosskey_rewards', 'ganon_bosskey_tokens', 'ganon_bosskey_hearts']},
-            False: {'settings': ['triforce_count_per_world', 'triforce_goal_per_world']},
+            False: {'settings': ['easter_egg_hunt', 'triforce_count_per_world', 'triforce_goal_per_world']},
+        },
+    )
+
+    easter_egg_hunt = Checkbutton(
+        gui_text       = 'Easter Egg Hunt',
+        gui_tooltip    = '''\
+            Changes Triforce Pieces to appear as Easter
+            Eggs instead. This is just cosmetic and has
+            the same gameplay as normal Triforce Hunt.
+
+            Has no effect if Triforce Hunt is disabled.
+        ''',
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
         },
     )
 

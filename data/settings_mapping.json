@@ -240,6 +240,7 @@
           "row_span": [2,2,2],
           "settings": [
             "triforce_hunt",
+            "easter_egg_hunt",
             "triforce_count_per_world",
             "triforce_goal_per_world",
             "free_bombchu_drops",

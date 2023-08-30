@@ -15,7 +15,7 @@ from EntranceShuffle import EntranceShuffleError, change_connections, confirm_re
 from Fill import FillError
 from Hints import HintArea, gossipLocations, GossipText
 from Item import ItemFactory, ItemInfo, ItemIterator, is_item, Item
-from ItemPool import item_groups, get_junk_item, song_list, trade_items, child_trade_items
+from ItemPool import item_groups, get_junk_item, song_list, trade_items, child_trade_items, eggs, triforce_pieces
 from JSONDump import dump_obj, CollapseList, CollapseDict, AlignedDict, SortedDict
 from Location import Location, LocationIterator, LocationFactory
 from LocationList import location_groups, location_table
@@ -356,7 +356,10 @@ class WorldDistribution:
                         self.major_group = [x for x in self.major_group if x not in item_groups['Song']]
                     # Special handling for things not included in base_pool
                     if self.distribution.settings.triforce_hunt:
-                        self.major_group.append('Triforce Piece')
+                        if self.distribution.settings.easter_egg_hunt:
+                            self.major_group.extend(eggs)
+                        else:
+                            self.major_group.append('Triforce Piece')
                     major_tokens = ((self.distribution.settings.shuffle_ganon_bosskey == 'on_lacs' and
                             self.distribution.settings.lacs_condition == 'tokens') or
                             self.distribution.settings.shuffle_ganon_bosskey == 'tokens' or self.distribution.settings.bridge == 'tokens')
@@ -1043,15 +1046,16 @@ class WorldDistribution:
     def give_items(self, world: World, save_context: SaveContext) -> None:
         # copy Triforce pieces to all worlds
         triforce_count = sum(
-            world_dist.effective_starting_items['Triforce Piece'].count
+            world_dist.effective_starting_items[triforce_piece].count
             for world_dist in self.distribution.world_dists
-            if 'Triforce Piece' in world_dist.effective_starting_items
+            for triforce_piece in triforce_pieces
+            if triforce_piece in world_dist.effective_starting_items
         )
         if triforce_count > 0:
             save_context.give_item(world, 'Triforce Piece', triforce_count)
 
         for (name, record) in self.effective_starting_items.items():
-            if name == 'Triforce Piece' or record.count == 0:
+            if name in triforce_pieces or record.count == 0:
                 continue
             save_context.give_item(world, name, record.count)
 
@@ -1223,12 +1227,14 @@ class Distribution:
         total_count = 0
         total_starting_count = 0
         for world in worlds:
-            world.triforce_count = world.distribution.item_pool['Triforce Piece'].count
-            if 'Triforce Piece' in world.distribution.starting_items:
-                world.triforce_count += world.distribution.starting_items['Triforce Piece'].count
-                total_starting_count += world.distribution.starting_items['Triforce Piece'].count
-            if world.skip_child_zelda and 'Song from Impa' in world.distribution.locations and world.distribution.locations['Song from Impa'].item == 'Triforce Piece':
-                total_starting_count += 1
+            for triforce_piece in triforce_pieces:
+                if triforce_piece in world.distribution.item_pool:
+                    world.triforce_count = world.distribution.item_pool[triforce_piece].count
+                if triforce_piece in world.distribution.starting_items:
+                    world.triforce_count += world.distribution.starting_items[triforce_piece].count
+                    total_starting_count += world.distribution.starting_items[triforce_piece].count
+                if world.skip_child_zelda and 'Song from Impa' in world.distribution.locations and world.distribution.locations['Song from Impa'].item == triforce_piece:
+                    total_starting_count += 1
             total_count += world.triforce_count
 
         if total_count < worlds[0].triforce_goal:
