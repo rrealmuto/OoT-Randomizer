@@ -1584,7 +1584,7 @@
         "key_appearance_match_dungeon": false,
         "clearer_hints": false,
         "hints": "always",
-        "hint_dist": "weekly",
+        "hint_dist": "tournament",
         "item_hints": [],
         "hint_dist_user": {},
         "misc_hints": [
@@ -2046,7 +2046,7 @@
         "key_appearance_match_dungeon": false,
         "clearer_hints": false,
         "hints": "always",
-        "hint_dist": "weekly",
+        "hint_dist": "tournament",
         "item_hints": [],
         "hint_dist_user": {},
         "misc_hints": [
