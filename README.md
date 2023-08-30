@@ -3,10 +3,37 @@
 This is a randomizer for _The Legend of Zelda: Ocarina of Time_ for the Nintendo 64.
 
 **WARNING:** This branch is a modified version of the randomizer. It is **not** officially supported and may be **very unstable**.
-Please refrain from asking questions and from reporting issues in the main Randomizer Discord when using this branch.
-Instead, you can open an issue on this fork [here](https://github.com/Roman971/OoT-Randomizer/issues) or contact me directly on discord (Roman#7295) for any help, report or request.
+When asking questions or reporting issues in the main Randomizer Discord, please make sure to include the full version number in the `A.B.C Fenhl-D` format — that last part is important!
+You can also [open an issue](https://github.com/fenhl/OoT-Randomizer/issues/new) on this fork or contact me directly on Discord (`@fenhl`) for any help, report or request.
 
-Differences between this branch and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):
+This branch is available to use online at <https://ootrandomizer.com/generatorDev?version=devFenhl_> (may be outdated).
+
+This branch (`dev-fenhl`) is based on [Roman971](https://github.com/Roman971)'s branch ([`Dev-R`](https://github.com/Roman971/OoT-Randomizer)) which is in turn based on the main [`Dev`](https://github.com/OoTRandomizer/OoT-Randomizer) branch.
+
+Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Randomizer):
+
+* New settings and options:
+  * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1536))
+  * “Closed Forest Requires Gohma” is a separate setting. With it enabled, items that can be used to escape the forest won't appear in the forest, and the randomizer will try to place at least one slingshot for each player in the forest. The setting is compatible with all forms of entrance randomizer by restricting entrances inside the forest area to only be shuffled among themselves. ([#1531](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1531))
+* New hint distributions:
+  * “Ice%” consists of only Sometimes hints, and replaces the hookshot hint in Dampé's diary with a blue fire arrows hint.
+  * “Mixed Pools Tournament” is the hint distribution used for the [2nd Mixed Pools Tournament](https://midos.house/event/mp/2). Note that the tournament itself used [a previous version](https://github.com/fenhl/OoT-Randomizer/releases/tag/7.1.117-fenhl.17) of this branch.
+* New settings presets:
+  * “Fenhl's Casual” is my preferred flavor of playing OoTR, with everything shuffled, full entrance randomizer, chaos hints, warp song note shuffle, half damage, no Master Quest, and no tricks enabled. The rainbow bridge requires all dungeon rewards and Ganon's boss key requires all 100 gold skulltula tokens.
+  * “Vanilla” generates a seed that's as close to the vanilla game as possible with current randomizer features. Unlike the vanilla seed available on <https://ootrandomizer.com/>, this preset uses glitchless logic to produce a useful spoiler log playthrough.
+  * “Fast Vanilla” is “Vanilla” but with speed-ups like fast bunny hood, fast chest cutscenes, or “Skip Some Minigame Phases” enabled.
+  * “Vanilla (Master Quest)” and “Fast Vanilla (Master Quest)” are “Vanilla” and “Fast Vanilla” but with all dungeons from Master Quest. Since logic for vanilla MQ hasn't been coded yet, these use no logic.
+  * “Ice%” is an extremely fast-paced game mode where the goal is to reach the Iron Boots chest.
+  * “2nd Mixed Pools Tournament” was used for [a tournament](https://midos.house/event/mp/2) with full mixed pools entrance randomizer. Note that the tournament itself used [a previous version](https://github.com/fenhl/OoT-Randomizer/releases/tag/7.1.117-fenhl.17) of this branch.
+  * “Standard Anti-Weekly Settings (Beginner)” disables every location that's enabled in “S6 Tournament” and enables every location that's disabled there, as well as changing some miscellaneous settings. See [the official document](https://docs.google.com/document/d/1sbL6Zju943F5qyx4QbTLUsqZqOTMmvqKVbDwJl08SGc/edit) for details.
+  * “Standard Anti-Weekly Settings (Advanced)” adds “Shuffle Rupees & Hearts”, “Shuffle Pots”, “Shuffle Crates”, “Shuffle Beehives”, and “Shuffle Silver Rulees”, has a minimal item pool, and adds extra ice traps.
+* Other changes:
+  * Some settings have been renamed for clarity ([#1560](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1560))
+  * Gold skulltula tokens can be on excluded locations if there are no checks requiring them (such as in SAWS)
+  * The GUI tweaks made by [`Dev-R`](https://github.com/Roman971/OoT-Randomizer) are further adjusted to balance consistency with [main `Dev`](https://github.com/OoTRandomizer/OoT-Randomizer) and ease of use.
+
+Differences between [`Dev-R`](https://github.com/Roman971/OoT-Randomizer) and [`Dev`](https://github.com/OoTRandomizer/OoT-Randomizer):
+
 * Various GUI tweaks and improvements along with setting tooltip/option changes
 * 2 new advanced ER settings: "Mixed Entrance Pools" and "Decouple Entrances"
 * Picking up Gold Skulltula Tokens in non-Tokensanity displays a self-closing textbox which no longer freezes the player.
@@ -313,7 +340,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * Removed the cutscenes when throwing a bomb at and blowing up the boulder in front of Dodongo's Cavern.
   * Certain switches in MQ dungeons have been moved down 1 unit so they are less difficult for Link to walk onto.
   * The "Truth Spinner" puzzle in the Shadow Temple's solution is now seeded per seed, so that the correct skull will be consistent across players racing the same seed.
-  
+
 * **GUI**
   * Migration to latest Angular and Nebular framework versions
   * Dark Mode toggle
