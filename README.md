@@ -15,6 +15,7 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v40](#v40)
   * [v39](#v39)
   * [v38](#v38)
   * [v37](#v37)
@@ -58,6 +59,12 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
   * [4.0](#40)
 
 ## RealRob Changelog
+### v40
+  * Enemy soul shuffle logic fixes:
+    * Forest Temple Map Chest
+    * GTG Beamos Chest
+    * GTG Stalfos Chest
+
 ### v39
   * Add MQ enemy soul shuffle logic
 
