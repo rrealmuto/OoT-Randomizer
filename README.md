@@ -13,6 +13,7 @@ This branch (`dev-fenhl`) is based on [Roman971](https://github.com/Roman971)'s 
 Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Randomizer):
 
 * New settings and options:
+  * New plando-only “Chest, Pot, Crate, & Beehive Appearance Does Not Match Contents” setting which makes each chest etc. randomly choose any appearance except the correct one ([#1950](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1950))
   * New “Vanilla Locations” option for the “Shuffle Songs” setting ([#1882](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1882))
   * New “Easter Egg Hunt” setting (based on [#1804](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1804))
   * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1536))
