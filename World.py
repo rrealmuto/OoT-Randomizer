@@ -164,9 +164,8 @@ class World:
             self.settings.hint_dist = 'custom'
             self.hint_dist_user = self.settings.hint_dist_user
 
-        # Hack for legacy hint distributions from before the goal, dual and dual_always hint
-        # types was created. Keeps validation happy.
-        for hint_type in ('goal', 'dual', 'dual_always', 'entrance_always'):
+        # Allow omitting hint types that shouldn't be included
+        for hint_type in hint_dist_keys:
             if 'distribution' in self.hint_dist_user and hint_type not in self.hint_dist_user['distribution']:
                 self.hint_dist_user['distribution'][hint_type] = {"order": 0, "weight": 0.0, "fixed": 0, "copies": 0}
         if 'use_default_goals' not in self.hint_dist_user:
