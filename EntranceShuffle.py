@@ -472,9 +472,9 @@ def shuffle_random_entrances(worlds: list[World]) -> None:
             one_way_entrance_pools['WarpSong'] = world.get_shufflable_entrances(type='WarpSong')
             if worlds[0].settings.reachable_locations != 'beatable' and worlds[0].settings.logic_rules == 'glitchless':
                 # In glitchless, there aren't any other ways to access these areas
-                wincons = [worlds[0].settings.bridge, worlds[0].settings.shuffle_ganon_bosskey]
+                wincons = {worlds[0].settings.bridge, worlds[0].settings.shuffle_ganon_bosskey}
                 if worlds[0].settings.shuffle_ganon_bosskey == 'on_lacs':
-                    wincons.append(worlds[0].settings.lacs_condition)
+                    wincons.add(worlds[0].settings.lacs_condition)
                 if worlds[0].settings.shuffle_dungeon_rewards != 'dungeon' and (
                     worlds[0].settings.shuffle_dungeon_rewards not in ('vanilla', 'reward')
                     or worlds[0].mixed_pools_bosses
