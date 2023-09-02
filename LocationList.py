@@ -842,8 +842,8 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     # Gerudo's Fortress Crates/Pots
     ("GF Above Jail Crate",                                          ("Crate",        0x5D,  [(0,2,19),(0,3,19)], None,             'Rupees (50)',                           ("Gerudo's Fortress", "Crates",))),
     # Gerudo's Fortress Wonderitems
-    ("GF Sign Wonderitem 1",                                         ("Wonderitem",   0x5D,  [(0,2,6),(0,3,6)], None,               'Rupees (20)',                           ("Gerudo's Fortress", "Wonderitem"))),
-    ("GF Sign Wonderitem 2",                                         ("Wonderitem",   0x5D,  [(0,2,7),(0,3,7)], None,               'Rupees (20)',                           ("Gerudo's Fortress", "Wonderitem"))),
+    ("GF Sign Wonderitem Near Entrance",                             ("Wonderitem",   0x5D,  [(0,2,6),(0,3,6)], None,               'Rupees (20)',                           ("Gerudo's Fortress", "Wonderitem"))),
+    ("GF Sign Wonderitem Near HBA",                                  ("Wonderitem",   0x5D,  [(0,2,7),(0,3,7)], None,               'Rupees (20)',                           ("Gerudo's Fortress", "Wonderitem"))),
 
     # Thieves' Hideout
     ("Hideout 1 Torch Jail Gerudo Key",                              ("Collectable",  0x0C,  0x0C, None,                            'Small Key (Thieves Hideout)',           ("Thieves' Hideout",))),
@@ -883,8 +883,8 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Hideout 2 Torch Jail Crate 2",                                 ("Crate",        0x0C,  (5,0,17), None,                        'Rupee (1)',                             ("Thieves' Hideout", "Crates",))),
 
     # Thieves Hideout Wonderitems
-    ("Hideout Break Room Wonderitem 1",                              ("Wonderitem",   0x0C,  (0,0,3), None,                                 'Rupees (5)',                    ("Thieves' Hideout", "Wonderitem"))),
-    ("Hideout Break Room Wonderitem 2",                              ("Wonderitem",   0x0C,  (0,0,4), None,                                 'Rupees (5)',                    ("Thieves' Hideout", "Wonderitem"))),
+    ("Hideout Break Room Wonderitem",                                ("Wonderitem",   0x0C,  (0,0,3), None,                                 'Rupees (5)',                    ("Thieves' Hideout", "Wonderitem"))),
+    ("Hideout Break Room Hall to Balcony Wonderitem",                ("Wonderitem",   0x0C,  (0,0,4), None,                                 'Rupees (5)',                    ("Thieves' Hideout", "Wonderitem"))),
     ("Hideout 3 Torch Jail Wonderitem 1",                            ("Wonderitem",   0x0C,  (1,0,4), None,                                 'Rupees (5)',                    ("Thieves' Hideout", "Wonderitem"))),
     ("Hideout 3 Torch Jail Wonderitem 2",                            ("Wonderitem",   0x0C,  (1,0,5), None,                                 'Rupees (5)',                    ("Thieves' Hideout", "Wonderitem"))),
     ("Hideout 1 Torch Jail Wonderitem 1",                            ("Wonderitem",   0x0C,  (2,0,3), None,                                 'Rupees (5)',                    ("Thieves' Hideout", "Wonderitem"))),

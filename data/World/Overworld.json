@@ -323,10 +323,10 @@
             "LW Underwater Green Rupee 5": "is_child and (can_dive or Boomerang)",
             "LW Underwater Green Rupee 6": "is_child and (can_dive or Boomerang)",
             "LW Underwater Green Rupee 7": "is_child and (can_dive or Boomerang)",
-            "LW GS Bean Patch Near Bridge": "can_plant_bugs and can_child_attack",
             "LW Near Ocarina Game Wonderitem 1": "is_child",
             "LW Near Ocarina Game Wonderitem 2": "is_child",
             "LW Near Ocarina Game Wonderitem 3": "is_child",
+            "LW GS Bean Patch Near Bridge": "can_plant_bugs and can_child_attack",
             "LW Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle",
             "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle",
@@ -421,15 +421,16 @@
         "locations": {
             "Song from Saria": "is_child and at('HC Garden Locations', is_child)",
             "Sheik in Forest": "is_adult",
-            "SFM GS": "can_use(Hookshot) and at_night",
-            "SFM Maze Gossip Stone (Lower)": "True",
-            "SFM Maze Gossip Stone (Upper)": "True",
-            "SFM Saria Gossip Stone": "True",
             "SFM Maze Wonderitem 1": "True",
             "SFM Maze Wonderitem 2": "True",
             "SFM Maze Wonderitem 3": "True",
             "SFM Maze Wonderitem 4": "True",
-            "SFM Maze Wonderitem 5": "True"
+            "SFM Maze Wonderitem 5": "True",
+            "SFM GS": "can_use(Hookshot) and at_night",
+            "SFM Maze Gossip Stone (Lower)": "True",
+            "SFM Maze Gossip Stone (Upper)": "True",
+            "SFM Saria Gossip Stone": "True",
+            "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle"
         },
         "exits": {
             "SFM Entryway": "True",
@@ -604,10 +605,10 @@
         "hint": "GERUDO_VALLEY",
         "time_passes": true,
         "locations": {
-            "GV GS Small Bridge": "can_use(Boomerang) and at_night",
-            "Bug Rock": "is_child and has_bottle",
             "GV Adult Upper Waterfall Wonderitem": "is_adult",
-            "GV Adult Lower Waterfall Wonderitem": "is_adult"
+            "GV Adult Lower Waterfall Wonderitem": "is_adult",
+            "GV GS Small Bridge": "can_use(Boomerang) and at_night",
+            "Bug Rock": "is_child and has_bottle"
         },
         "exits": {
             "Hyrule Field": "True",
@@ -717,10 +718,10 @@
                 Gerudo_Membership_Card and can_ride_epona and Bow and at_day",
             "GF HBA 1500 Points": "
                 Gerudo_Membership_Card and can_ride_epona and Bow and at_day",
+            "GF Sign Wonderitem Near Entrance": "can_use(Hookshot)",
+            "GF Sign Wonderitem Near HBA": "Gerudo_Membership_Card and can_use(Hookshot)",
             "GF GS Archery Range": "
-                can_use(Hookshot) and Gerudo_Membership_Card and at_night",
-            "GF Sign Wonderitem 1": "can_use(Hookshot)",
-            "GF Sign Wonderitem 2": "can_use(Hookshot)"
+                can_use(Hookshot) and Gerudo_Membership_Card and at_night"
         },
         "exits": {
             "GV Fortress Side": "True",
@@ -949,7 +950,10 @@
             "Hideout Near Kitchen Crate 3": "can_break_crate",
             "Hideout Near Kitchen Crate 4": "can_break_crate",
             "Hideout Near Kitchen Crate 5": "can_break_crate",
-            "Hideout Kitchen Wonderitem": "can_use(Bow)"
+            "Hideout Kitchen Wonderitem": "can_use(Bow)",
+            "Hideout Kitchen Stove Wonderitem": "
+                (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or logic_gerudo_kitchen) and 
+                (damage_multiplier != 'ohko' or can_use(Nayrus_Love) or can_use(Goron_Tunic))"
         },
         "exits": {
             "GF Entrances Behind Crates": "True",
@@ -999,8 +1003,7 @@
         "savewarp": "Gerudo Fortress -> Hideout 1 Torch Jail",
         "locations": {
             "Hideout Kitchen Pot 1": "True",
-            "Hideout Kitchen Pot 2": "True",
-            "Hideout Kitchen Stove Wonderitem": "damage_multiplier != 'ohko' or can_use(Nayrus_Love)"
+            "Hideout Kitchen Pot 2": "True"
         }
     },
     {
@@ -1030,8 +1033,7 @@
                 can_break_crate and
                 (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or
                     can_use(Sticks) or can_use(Kokiri_Sword))",
-            "Hideout Break Room Wonderitem 1": "can_use(Bow)",
-            "Hideout Break Room Wonderitem 2": "can_use(Bow) and can_use(Hookshot)"
+            "Hideout Break Room Wonderitem": "can_use(Bow)"
         }
     },
     {
@@ -1039,6 +1041,9 @@
         "scene": "Hideout Break Room",
         "hint": "THIEVES_HIDEOUT",
         "savewarp": "Gerudo Fortress -> Hideout 1 Torch Jail",
+        "locations": {
+            "Hideout Break Room Hall to Balcony Wonderitem": "can_use(Bow)"
+        },
         "exits": {
             "Hideout Break Room": "can_use(Hookshot)",
             "GF Balcony": "True"
@@ -1110,6 +1115,11 @@
         "time_passes": true,
         "locations": {
             "Colossus Freestanding PoH": "is_adult and here(can_plant_bean)",
+            "Colossus Tree Wonderitem 1": "can_use(Slingshot) or can_use(Bow)",
+            "Colossus Tree Wonderitem 2": "can_use(Slingshot) or can_use(Bow)",
+            "Colossus Tree Wonderitem 3 Child": "can_use(Slingshot)",
+            "Colossus Tree Wonderitem 4": "can_use(Slingshot) or can_use(Bow)",
+            "Colossus Tree Wonderitem 5": "can_use(Slingshot) or can_use(Bow)",
             "Colossus GS Bean Patch": "can_plant_bugs and can_child_attack",
             "Colossus GS Tree": "can_use(Hookshot) and at_night",
             "Colossus GS Hill": "
@@ -1118,12 +1128,7 @@
             "Colossus Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Fairy Pond": "can_play(Song_of_Storms) and has_bottle",
-            "Bug Rock": "has_bottle",
-            "Colossus Tree Wonderitem 1": "can_use(Slingshot) or can_use(Bow)",
-            "Colossus Tree Wonderitem 2": "can_use(Slingshot) or can_use(Bow)",
-            "Colossus Tree Wonderitem 3 Child": "can_use(Slingshot)",
-            "Colossus Tree Wonderitem 4": "can_use(Slingshot) or can_use(Bow)",
-            "Colossus Tree Wonderitem 5": "can_use(Slingshot) or can_use(Bow)"
+            "Bug Rock": "has_bottle"
         },
         "exits": {
             "Colossus Great Fairy Fountain": "has_explosives",
@@ -1286,7 +1291,6 @@
         "time_passes": true,
         "locations": {
             "HC Malon Egg": "True",
-            "HC GS Tree": "can_child_attack and can_bonk",
             "HC Castle Torch Wonderitem 1": "can_use(Slingshot)",
             "HC Castle Torch Wonderitem 2": "can_use(Slingshot)",
             "HC Castle Moat Wonderitem 1": "True",
@@ -1299,6 +1303,7 @@
             "HC Castle Moat Wonderitem 8": "True",
             "HC Castle Moat Wonderitem 9": "True",
             "HC Castle Moat Wonderitem 10": "True",
+            "HC GS Tree": "can_child_attack and can_bonk",
             "HC Malon Gossip Stone": "True",
             "HC Rock Wall Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
@@ -1636,6 +1641,7 @@
             "Kak Near Impas House Pot 2": "is_child",
             "Kak Near Impas House Pot 3": "is_child",
             "Kak Adult Arrows Crate": "is_adult and can_break_crate",
+            "Kak Child Construction Wonderitem": "is_child",
             "Kak GS House Under Construction": "is_child and at_night",
             "Kak GS Skulltula House": "is_child and at_night",
             "Kak GS Near Gate Guard": "is_child and at_night",
@@ -1643,7 +1649,6 @@
             "Kak GS Watchtower": "
                 is_child and at_night and
                 (Slingshot or has_bombchus or (logic_kakariko_tower_gs and (Sticks or Kokiri_Sword)))",
-            "Kak Child Construction Wonderitem": "is_child",
             "Bug Rock": "has_bottle"
         },
         "exits": {
@@ -2389,11 +2394,11 @@
         "hint": "ZORA_RIVER",
         "time_passes": true,
         "locations": {
-            "ZR GS Tree": "is_child and can_child_attack and can_bonk",
             "ZR Child Front River Wonderitem 1": "is_child",
             "ZR Child Front River Wonderitem 2": "is_child",
             "ZR Child Front River Wonderitem 3": "is_child",
-            "ZR Child Front River Wonderitem 4": "is_child"
+            "ZR Child Front River Wonderitem 4": "is_child",
+            "ZR GS Tree": "is_child and can_child_attack and can_bonk"
 
         },
         "exits": {
@@ -2425,18 +2430,6 @@
             "ZR Waterfall Red Rupee 2": "is_adult and (Iron_Boots or logic_zora_river_rupees)",
             "ZR Waterfall Red Rupee 3": "is_adult and (Iron_Boots or logic_zora_river_rupees)",
             "ZR Waterfall Red Rupee 4": "is_adult and (Iron_Boots or logic_zora_river_rupees)",
-            "ZR GS Ladder": "is_child and at_night and can_child_attack",
-            "ZR GS Near Raised Grottos": "can_use(Hookshot) and at_night",
-            "ZR GS Above Bridge": "can_use(Hookshot) and at_night",
-            "ZR Near Grottos Gossip Stone": "True",
-            "ZR Near Domain Gossip Stone": "True",
-            "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
-            "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle",
-            "Butterfly Fairy": "can_use(Sticks) and has_bottle",
-            "Bug Shrub": "
-                (is_child or here(can_plant_bean) or Hover_Boots or logic_zora_river_lower) and
-                can_cut_shrubs and has_bottle",
-            "ZR Frogs Ocarina Minigame Hint": "True",
             "ZR Child River Wonderitem 1": "is_child",
             "ZR Child River Wonderitem 2": "is_child",
             "ZR Child River Wonderitem 3": "is_child",
@@ -2463,7 +2456,19 @@
             "ZR Child River Wonderitem 24": "is_child",
             "ZR Child River Wonderitem 25": "is_child",
             "ZR Child River Wonderitem 26": "is_child",
-            "ZR Child River Wonderitem 27": "is_child"
+            "ZR Child River Wonderitem 27": "is_child",
+            "ZR GS Ladder": "is_child and at_night and can_child_attack",
+            "ZR GS Near Raised Grottos": "can_use(Hookshot) and at_night",
+            "ZR GS Above Bridge": "can_use(Hookshot) and at_night",
+            "ZR Near Grottos Gossip Stone": "True",
+            "ZR Near Domain Gossip Stone": "True",
+            "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
+            "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle",
+            "Butterfly Fairy": "can_use(Sticks) and has_bottle",
+            "Bug Shrub": "
+                (is_child or here(can_plant_bean) or Hover_Boots or logic_zora_river_lower) and
+                can_cut_shrubs and has_bottle",
+            "ZR Frogs Ocarina Minigame Hint": "True"
         },
         "exits": {
             "ZR Front": "True",
@@ -2680,12 +2685,12 @@
             "Song from Malon": "
                 is_child and Ocarina and at_day and
                 (skip_child_zelda or at('Hyrule Castle Grounds', is_child and (Weird_Egg or Chicken)))",
+            "LLR Epona Hurdle Wonderitem 1": "can_ride_epona",
+            "LLR Epona Hurdle Wonderitem 2": "can_ride_epona",
             "LLR GS Tree": "is_child and can_bonk",
             "LLR GS Rain Shed": "is_child and at_night",
             "LLR GS House Window": "can_use(Boomerang) and at_night",
-            "LLR GS Back Wall": "can_use(Boomerang) and at_night",
-            "LLR Epona Hurdle Wonderitem 1": "is_adult and can_play(Eponas_Song)",
-            "LLR Epona Hurdle Wonderitem 2": "is_adult and can_play(Eponas_Song)"
+            "LLR GS Back Wall": "can_use(Boomerang) and at_night"
         },
         "exits": {
             "Hyrule Field": "True",

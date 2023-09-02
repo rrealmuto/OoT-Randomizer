@@ -89,10 +89,10 @@
             "Deku Tree MQ GS Basement Back Room": "
                 here(has_fire_source_with_torch) and
                 (can_use(Hookshot) or can_use(Boomerang))",
-            "Deku Tree MQ Basement Graves Wonderitem 1": "is_adult or (is_child and (Kokiri_Sword or Sticks))",
-            "Deku Tree MQ Basement Graves Wonderitem 2": "is_adult or (is_child and (Kokiri_Sword or Sticks))",
-            "Deku Tree MQ Basement Graves Wonderitem 3": "is_adult or (is_child and (Kokiri_Sword or Sticks))",
-            "Deku Tree MQ Basement Graves Wonderitem 4": "is_adult or (is_child and (Kokiri_Sword or Sticks))"
+            "Deku Tree MQ Basement Graves Wonderitem 1": "can_jumpslash",
+            "Deku Tree MQ Basement Graves Wonderitem 2": "can_jumpslash",
+            "Deku Tree MQ Basement Graves Wonderitem 3": "can_jumpslash",
+            "Deku Tree MQ Basement Graves Wonderitem 4": "can_jumpslash"
         },
         "exits": {
             "Deku Tree Basement Ledge": "is_child",

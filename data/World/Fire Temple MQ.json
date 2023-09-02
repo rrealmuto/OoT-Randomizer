@@ -88,7 +88,7 @@
                 has_fire_source and (Bow or logic_fire_mq_bk_chest) and Hookshot",
             "Fire Temple MQ GS Big Lava Room Open Door": "True",
             "Fire Temple MQ Boss Key Hookshot Wonderitem": "has_fire_source and (Bow or logic_fire_mq_bk_chest) and Hookshot",
-            "Fire Temple MQ Boss Key Arrow Wonderitem": "has_fire_source and (Bow or logic_fire_mq_bk_chest) and Hookshot and Bow",
+            "Fire Temple MQ Boss Key Arrow Wonderitem": "has_fire_source and Hookshot and Bow",
             "Fairy Pot": "
                 has_bottle and has_fire_source and (Bow or logic_fire_mq_bk_chest) and
                 (Hookshot or logic_fire_song_of_time)"
@@ -105,9 +105,9 @@
             "Fire Temple MQ Elevator Room Recovery Heart 1": "True",
             "Fire Temple MQ Elevator Room Recovery Heart 2": "True",
             "Fire Temple MQ Elevator Room Recovery Heart 3": "True",
-            "Fire Temple MQ Shortcut Room Hammer Wonderitem 1": "can_use(Megaton_Hammer)",
-            "Fire Temple MQ Shortcut Room Hammer Wonderitem 2": "can_use(Megaton_Hammer)",
-            "Fire Temple MQ Shortcut Room Hammer Wonderitem 3": "can_use(Megaton_Hammer)"
+            "Fire Temple MQ Shortcut Room Hammer Wonderitem 1": "True",
+            "Fire Temple MQ Shortcut Room Hammer Wonderitem 2": "True",
+            "Fire Temple MQ Shortcut Room Hammer Wonderitem 3": "True"
         },
         "exits": {
             "Fire Temple Lower Lizalfos Maze": "has_fire_source or (logic_fire_mq_climb and Hover_Boots)"
@@ -139,11 +139,7 @@
             "Fire Temple MQ Lizalfos Maze Upper Chest": "True",
             "Fire Temple MQ Upper Lizalfos Maze Crate 1": "True",
             "Fire Temple MQ Upper Lizalfos Maze Crate 2": "True",
-            "Fire Temple MQ Upper Lizalfos Maze Crate 3": "True",
-            "Fire Temple MQ Elevator Above Maze Hookshot Wonderitem 1": "Longshot or (can_play(Song_of_Time) and Hookshot)",
-            "Fire Temple MQ Elevator Above Maze Hookshot Wonderitem 2": "Longshot or (can_play(Song_of_Time) and Hookshot)",
-            "Fire Temple MQ Elevator Above Maze Hookshot Wonderitem 3": "Longshot or (can_play(Song_of_Time) and Hookshot)",
-            "Fire Temple MQ Elevator Above Maze Hookshot Wonderitem 4": "Longshot or (can_play(Song_of_Time) and Hookshot)"
+            "Fire Temple MQ Upper Lizalfos Maze Crate 3": "True"
         },
         "exits": {
             "Fire Temple Shortcut": "has_explosives",
@@ -171,7 +167,11 @@
         "dungeon": "Fire Temple",
         "locations": {
             "Fire Temple MQ GS Skull On Fire": "True",
-            "Wall Fairy": "has_bottle"
+            "Wall Fairy": "has_bottle",
+            "Fire Temple MQ Elevator Above Maze Hookshot Wonderitem 1": "True",
+            "Fire Temple MQ Elevator Above Maze Hookshot Wonderitem 2": "True",
+            "Fire Temple MQ Elevator Above Maze Hookshot Wonderitem 3": "True",
+            "Fire Temple MQ Elevator Above Maze Hookshot Wonderitem 4": "True"
         },
         "exits": {
             "Fire Temple Narrow Path Room": "
@@ -243,7 +243,7 @@
             "Fire Temple MQ Flame Maze Right Upper Pot 2": "True",
             "Fire Temple MQ Flame Maze Hookshot Wonderitem": "can_use(Hookshot)",
             "Fire Temple MQ After Upper Flare Dancer Hookshot Wonderitem": "can_use(Hookshot)",
-            "Fire Temple MQ Hammer Steps Hookshot Wonderitem": "(Small_Key_Fire_Temple, 4)"
+            "Fire Temple MQ Hammer Steps Hookshot Wonderitem": "(Small_Key_Fire_Temple, 5) and can_use(Hookshot)"
         }
     }
 ]
