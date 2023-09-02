@@ -627,7 +627,7 @@ class SettingInfos:
                                          'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops',
                                          'warp_songs', 'spawn_positions', 'mq_dungeons_mode', 'mq_dungeons_specific',
                                          'mq_dungeons_count', 'shuffle_bosses', 'dungeon_shortcuts', 'deadly_bonks',
-                                         'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_beehives', 'shuffle_silver_rupees']},
+                                         'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_beehives', 'shuffle_silver_rupees', 'shuffle_wonderitems']},
             'none':       {'settings': ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
         },
         shared         = True,
