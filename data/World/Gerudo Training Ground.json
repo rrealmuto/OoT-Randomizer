@@ -130,7 +130,7 @@
         "dungeon": "Gerudo Training Ground",
         "locations": {
             "Gerudo Training Ground Near Scarecrow Chest": "Bow",
-            "Gerudo Training Ground Eye Statue Wonderitem": "can_use(Hover_Boots)"
+            "Gerudo Training Ground Eye Statue Wonderitem": "can_use(Hover_Boots) or logic_gtg_eye_statue_wonderitem"
         },
         "exits": {
             "Gerudo Training Ground Like Like Room": "Silver_Gauntlets",
