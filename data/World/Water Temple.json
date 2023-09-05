@@ -243,7 +243,7 @@
         "region_name": "Water Temple Dark Link Region",
         "dungeon": "Water Temple",
         "locations": {
-            "Water Temple Longshot Chest": "True",
+            "Water Temple Longshot Chest": "has_soul(Dark_Link)",
             "Water Temple Like Like Pot 1": "True",
             "Water Temple Like Like Pot 2": "True",
             "Water Temple Statue Puzzle Tektite 1": "can_kill_tektite",
