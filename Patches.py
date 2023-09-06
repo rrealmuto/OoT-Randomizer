@@ -33,6 +33,7 @@ from World import World
 from TextBox import line_wrap
 from texture_util import ci4_rgba16patch_to_ci8, rgba16_patch
 from version import __version__
+from Boulders import shuffle_boulders
 
 if sys.version_info >= (3, 10):
     from typing import TypeAlias
@@ -2509,6 +2510,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     rom.write_int16(0xBB340E, world.available_tokens)
 
     patch_songs(world, rom)
+    shuffle_boulders(rom)
 
     if world.settings.shuffle_individual_ocarina_notes:
         rom.write_byte(rom.sym('SHUFFLE_OCARINA_BUTTONS'), 1)
