@@ -3987,3 +3987,4 @@ courtyard_guards_kill:
 .include("hacks/ovl_obj_mure3.asm")
 .include("hacks/ovl_bg_haka_tubo.asm")
 .include("hacks/ovl_en_ishi.asm")
+.include("hacks/ovl_obj_hamishi.asm")
