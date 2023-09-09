@@ -10,7 +10,7 @@ dh  0x01AB
 ;   lui     t5, 0x0501
 ;   addiu   t5, t5, -0x5C48
     lui     t5, 0x0600
-    addiu   t5, t5, 0x0810
+    addiu   t5, t5, 0x09E0
 
 ; Hack the EffectSsKakera_Spawn params to use the new standalone object
 .org 0x80b806e0
@@ -21,7 +21,7 @@ dh  0x01AB
 ;   addiu   s8, s8, -0x5a18
     lui     s8, 0x0600
     .skip   8
-    addiu   s8, s8, 0x0AE0
+    addiu   s8, s8, 0x0C10
 
 .org 0x80b80830
 ; Replaces

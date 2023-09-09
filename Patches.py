@@ -41,6 +41,8 @@ else:
     TypeAlias = str
 
 OverrideEntry: TypeAlias = "tuple[int, int, int, int, int, int]"
+FileEntry: TypeAlias = "tuple[str, int, int]"
+PatchEntry: TypeAlias = "tuple[int, list[int]]"
 
 
 def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
@@ -64,8 +66,11 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
             new_bytes = bytearray([a ^ b for a, b in zip(bytes_diff, original_bytes)])
             rom.write_bytes(write_address, new_bytes)
 
-    # Load models into the extended object table.
-    zobj_imports = [
+    # Setup the extended object table
+    extended_objects_start = start_address = rom.dma.free_space()
+
+    # Load models into the extended object table
+    zobj_imports: list[tuple[str, str, int]] = [
         ('object_gi_triforce',    data_path('items/Triforce.zobj'),             0x193),  # Triforce Piece
         ('object_gi_keyring',     data_path('items/KeyRing.zobj'),              0x195),  # Key Rings
         ('object_gi_warpsong',    data_path('items/Note.zobj'),                 0x196),  # Inverted Music Note
@@ -88,13 +93,11 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         ('object_gi_abutton',     data_path('items/A_Button.zobj'),             0x1A8),  # A button
         ('object_gi_cbutton',     data_path('items/C_Button_Horizontal.zobj'),  0x1A9),  # C button Horizontal
         ('object_gi_cbutton',     data_path('items/C_Button_Vertical.zobj'),    0x1AA),  # C button Vertical
-        ('object_silver_rock',    data_path('obj_silver_rock_standalone.zobj'), 0x1AB)   # Standalone silver rock model
     ]
 
     if world.settings.key_appearance_match_dungeon:
         rom.write_byte(rom.sym('CUSTOM_KEY_MODELS'), 0x01)
 
-    extended_objects_start = start_address = rom.dma.free_space()
     for (name, zobj_path, object_id) in zobj_imports:
         with open(zobj_path, 'rb') as stream:
             obj_data = stream.read()
@@ -105,30 +108,57 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         start_address = end_address
 
     # Make new models by applying patches to existing ones
-    zobj_patches = [
-        ('object_gi_hearts', 0x014D9000, 0x014DA590, 0x194, # Heart Container -> Double Defense
-        [
-            (0x1294, [0xFF, 0xCF, 0x0F]), # Exterior Primary Color
-            (0x12B4, [0xFF, 0x46, 0x32]), # Exterior Env Color
-            (0x1474, [0xFF, 0xFF, 0xFF]), # Interior Primary Color
-            (0x1494, [0xFF, 0xFF, 0xFF]), # Interior Env Color
-            (0x12A8, [0xFC, 0x17, 0x3C, 0x60, 0x15, 0x0C, 0x93, 0x7F]), # Exterior Combine Mode
-        ]),
-        ('object_gi_rupy', 0x01914000, 0x01914800, 0x198, # Huge Rupee -> Silver Rupee
-        [
-            (0x052C, [0xAA, 0xAA, 0xAA]), # Inner Primary Color?
-            (0x0534, [0x5A, 0x5A, 0x5A]), # Inner Env Color?
-            (0x05CC, [0xFF, 0xFF, 0xFF]), # Outer Primary Color?
-            (0x05D4, [0xFF, 0xFF, 0xFF]), # Outer Env Color?
-        ]),
+    zobj_patches: list[tuple[str, int, list[FileEntry], list[PatchEntry]]] = [
+        ('object_double_defense', 0x194, # Heart Container -> Double Defense
+            [
+                ('object_gi_hearts', 0x014D9000, 0x014DA590),
+            ],
+            [
+                (0x1294, [0xFF, 0xCF, 0x0F]), # Exterior Primary Color
+                (0x12B4, [0xFF, 0x46, 0x32]), # Exterior Env Color
+                (0x1474, [0xFF, 0xFF, 0xFF]), # Interior Primary Color
+                (0x1494, [0xFF, 0xFF, 0xFF]), # Interior Env Color
+                (0x12A8, [0xFC, 0x17, 0x3C, 0x60, 0x15, 0x0C, 0x93, 0x7F]), # Exterior Combine Mode
+            ]),
+        ('object_silver_rupee', 0x198, # Huge Rupee -> Silver Rupee
+            [
+                ('object_gi_rupy', 0x01914000, 0x01914800),
+            ],
+            [
+                (0x052C, [0xAA, 0xAA, 0xAA]), # Inner Primary Color?
+                (0x0534, [0x5A, 0x5A, 0x5A]), # Inner Env Color?
+                (0x05CC, [0xFF, 0xFF, 0xFF]), # Outer Primary Color?
+                (0x05D4, [0xFF, 0xFF, 0xFF]), # Outer Env Color?
+            ]),
+        ('object_silver_rock', 0x1AB,
+            [
+                ('gameplay_field_keep', 0x00F689D0, 0x00F689F0), # silver_rock_tlut offset 0x0000
+                ('gameplay_field_keep', 0x00F689F8, 0x00F691F8), # silver_rock_texture offset 0x0020
+                ('gameplay_field_keep', 0x00F691F8, 0x00F693B8), # silver_rock_vertices offset 0x0820
+                ('gameplay_field_keep', 0x00F693B8, 0x00F694C8), # silver_rock_dlist offset 0x09E0
+                ('gameplay_field_keep', 0x00F694C8, 0x00F695E8), # fragments_vertices offset 0x0AF0
+                ('gameplay_field_keep', 0x00F695E8, 0x00F696C8), # fragments_dlist offset 0x0C10
+            ],
+            [
+                (0x09FC, [0x06, 0x00, 0x00, 0x20]), # gsDPSetTextureImage(..., silver_rock_texture)
+                (0x0A34, [0x06, 0x00, 0x00, 0x00]), # gsDPSetTextureImage(..., silver_rock_tlut)
+                (0x0A84, [0x06, 0x00, 0x08, 0x20]), # gsSPVertex(..., silver_rock_vertices)
+                (0x0C2C, [0x06, 0x00, 0x00, 0x20]), # gsDPSetTextureImage(..., silver_rock_texture)
+                (0x0C64, [0x06, 0x00, 0x00, 0x00]), # gsDPSetTextureImage(..., silver_rock_tlut)
+                (0x0CB4, [0x06, 0x00, 0x0A, 0xF0]), # gsSPVertex(..., fragments_vertices)
+            ]),
     ]
 
     # Add the new models to the extended object file.
-    for name, start, end, object_id, patches in zobj_patches:
-        end_address = start_address + end - start
-        rom.buffer[start_address:end_address] = rom.buffer[start:end]
+    for name, object_id, file_entries, patch_entries in zobj_patches:
+        # Combine file entries into a single file
+        assert all(end > start for (_name, start, end) in file_entries)
+        end_address = start_address + sum(end - start for (_name, start, end) in file_entries)
+        buffers = [rom.buffer[start:end] for (_name, start, end) in file_entries]
+        rom.buffer[start_address:end_address] = bytearray(itertools.chain(*buffers))
         # Apply patches
-        for offset, patch in patches:
+        for offset, patch in patch_entries:
+            assert start_address + offset < end_address
             rom.write_bytes(start_address + offset, patch)
         # Add it to the extended object table
         add_to_extended_object_table(rom, object_id, start_address, end_address)
