@@ -1575,9 +1575,9 @@
             "Claim Check"
         ]
     },
-    "League S4": {
+    "League S5": {
         "show_seed_info": true,
-        "user_message": "OoTR League S4",
+        "user_message": "OoTR League S5",
         "world_count": 1,
         "create_spoiler": false,
         "randomize_settings": false,
