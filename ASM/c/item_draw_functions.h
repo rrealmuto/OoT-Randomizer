@@ -46,6 +46,9 @@ void draw_gi_silver_rupee_pouch(z64_game_t *game, uint32_t draw_id);
 void draw_gi_a_button(z64_game_t *game, uint32_t draw_id);
 void draw_gi_c_button_vertical(z64_game_t *game, uint32_t draw_id);
 void draw_gi_c_button_horizontal(z64_game_t *game, uint32_t draw_id);
+void draw_gi_flame(z64_game_t *game, colorRGBA8_t prim, colorRGBA8_t env);
+void draw_gi_opa_with_flame(z64_game_t *game, uint32_t draw_id);
+void draw_gi_deku_nut_with_flame(z64_game_t* game, uint32_t draw_id);
 
 
 #endif
