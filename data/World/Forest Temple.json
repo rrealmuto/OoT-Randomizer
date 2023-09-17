@@ -104,7 +104,7 @@
                 is_adult or Slingshot or Sticks or
                 has_explosives or Kokiri_Sword or can_use(Dins_Fire)",
             "Forest Temple NE Outdoors Deku Baba": "can_kill_deku_baba",
-            "Forest Temple Right Courtyard Balcony Skulltula": "(has_soul(Skulltula)) and (can_use(Bow) or can_use(Slingshot) or at('Forest Temple Outdoors High Balconies', can_use(Hookshot) or can_use(Boomerang)))",
+            "Forest Temple Right Courtyard Balcony Skullwalltula": "(has_soul(Skullwalltula)) and (can_use(Bow) or can_use(Slingshot) or at('Forest Temple Outdoors High Balconies', can_use(Hookshot) or can_use(Boomerang)))",
             "Forest Temple Right Courtyard Octorok": "can_kill_octorok_with_explosives"
         },
         "exits": {

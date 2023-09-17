@@ -1691,7 +1691,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Forest Temple Left Courtyard Vines Skullwalltula Upper",       ("EnemyDrop",    0x03,  (8, 0, 2), None,                'Rupees (5)',                            ("Forest Temple", "Vanilla", "EnemyDrop"))),
     ("Forest Temple NW Outdoors Deku Baba",                          ("EnemyDrop",    0x03,  (8, 0, 5), None,                'Rupees (5)',                            ("Forest Temple", "Vanilla", "EnemyDrop"))),
     ("Forest Temple Map Chest Bubble",                               ("EnemyDrop",    0x03,  (10,0, 1), None,               'Rupees (5)',                            ("Forest Temple", "Vanilla", "EnemyDrop"))),
-    ("Forest Temple Right Courtyard Balcony Skulltula",              ("EnemyDrop",    0x03,  (7, 0, 4), None,                'Rupees (5)',                            ("Forest Temple", "Vanilla", "EnemyDrop"))),
+    ("Forest Temple Right Courtyard Balcony Skullwalltula",          ("EnemyDrop",    0x03,  (7, 0, 4), None,                'Rupees (5)',                            ("Forest Temple", "Vanilla", "EnemyDrop"))),
     ("Forest Temple Right Courtyard Balcony Deku Baba",              ("EnemyDrop",    0x03,  (7, 0, 5), None,                'Rupees (5)',                            ("Forest Temple", "Vanilla", "EnemyDrop"))),
     ("Forest Temple Right Courtyard Octorok",                        ("EnemyDrop",    0x03,  (7, 0, 3), None,                'Rupees (5)',                            ("Forest Temple", "Vanilla", "EnemyDrop"))),
     ("Forest Temple NE Outdoors Deku Baba",                          ("EnemyDrop",    0x03,  (7, 0, 6), None,                'Rupees (5)',                            ("Forest Temple", "Vanilla", "EnemyDrop"))),
