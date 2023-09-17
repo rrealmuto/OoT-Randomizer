@@ -191,6 +191,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * Custom music has moved to a new format. See `data/Music/README.md` for more details.
   * New and improved model for key rings.
   * Several new tricks have been added.
+  * Multiworld plugins now have the ability to show the proper progressive item based on the inventory state of the receiving player.
 
 #### Bug Fixes
 * **Misc.**
@@ -209,10 +210,12 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * Fix a softlock caused by 8-note Sun's Songs when using `Randomize Ocarina Song Notes`, again.
   * Fix pause screen rendering causing graphical issues on some platforms.
   * Fix a long-standing bug where certain fanfares kill the currently-playing backgroud music.
+  * Fix a bug which would cause the Lost Woods bridge ocarina check, if ocarinas are unshuffled and overworld Entrance Randomizer is disabled, to give a Fairy Ocarina when it should give the Ocarina of Time.
 * **Hints**
   * Fix the cryptic hint for Ganon's Castle Boss Key.
   * Fix missing punctuation in dual hints.
   * Fix a bug in Multiworld Goal hints causing the incorrect path to be generated for the hint.
+  * Fix a bug which would cause hints to the "Link's Pocket" goal to be generated.
 
 #### Other Changes
 * `Closed Forest` is no longer changed to `Closed Deku` when `Shuffle Boss Entrances` is enabled.
@@ -240,6 +243,8 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Some inescapable entrances are no longer valid targets for Overworld Spawn entrances.
 * Using Farore's Wind to warp between dungeons is now considered in logic.
 * Various text changes such as singular Temple of Time Altar bridge conditions, grammar changes to region hints, and adding apostrophes to shop items.
+* Updated fill error message to add suggestions for resolving the error.
+* Updated some trick tool tips for grammar and clarity.
 
 #### New Speedups
 * Various cutscenes removed or shortened, such as Water Temple and Gerudo Fortress gates and scarecrow spawn cutscenes.

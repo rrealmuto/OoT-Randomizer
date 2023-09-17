@@ -616,12 +616,20 @@ def get_goal_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintRetu
     goals = goal_category.goals
     category_locations = []
     zero_weights = True
-    location_reverse_map = defaultdict(list)
+    required_location_reverse_map = defaultdict(list)
+
+    # Filters Goal.required_locations to those still eligible to be hinted.
+    hintable_required_locations_filter = (lambda required_location:
+        required_location[0].name not in checked
+        and required_location[0].name not in world.hint_exclusions
+        and required_location[0].name not in world.hint_type_overrides['goal']
+        and required_location[0].item.name not in world.item_hint_type_overrides['goal']
+        and required_location[0].item.name not in unHintableWothItems)
 
     # Collect unhinted locations for the category across all category goals.
     # If all locations for all goals in the category are hinted, try remaining goal categories
     # If all locations for all goal categories are hinted, return no hint.
-    while not location_reverse_map:
+    while not required_location_reverse_map:
         # Filter hinted goals until every goal in the category has been hinted.
         weights = []
         zero_weights = True
@@ -632,21 +640,15 @@ def get_goal_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintRetu
 
         # Collect set of unhinted locations for the category. Reduces the bias
         # from locations in multiple goals for the category.
-        location_reverse_map = defaultdict(list)
+        required_location_reverse_map = defaultdict(list)
         for goal in goals:
             if zero_weights or goal.weight > 0:
-                goal_locations = list(filter(lambda location:
-                    location[0].name not in checked
-                    and location[0].name not in world.hint_exclusions
-                    and location[0].name not in world.hint_type_overrides['goal']
-                    and location[0].item.name not in world.item_hint_type_overrides['goal']
-                    and location[0].item.name not in unHintableWothItems,
-                    goal.required_locations))
-                for location in goal_locations:
-                    for world_id in location[3]:
-                        location_reverse_map[location[0]].append((goal, world_id))
+                hintable_required_locations = list(filter(hintable_required_locations_filter, goal.required_locations))
+                for required_location in hintable_required_locations:
+                    for world_id in required_location[3]:
+                        required_location_reverse_map[required_location[0]].append((goal, world_id))
 
-        if not location_reverse_map:
+        if not required_location_reverse_map:
             del world.goal_categories[goal_category.name]
             goal_category = get_goal_category(spoiler, world, world.goal_categories)
             if not goal_category:
@@ -654,31 +656,30 @@ def get_goal_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintRetu
             else:
                 goals = goal_category.goals
 
-    location, goal_list = random.choice(list(location_reverse_map.items()))
+    location, goal_list = random.choice(list(required_location_reverse_map.items()))
     goal, world_id = random.choice(goal_list)
     checked.add(location.name)
 
     # Make sure this wasn't the last hintable location for other goals.
     # If so, set weights to zero. This is important for one-hint-per-goal.
     # Locations are unique per-category, so we don't have to check the others.
+    last_chance_overrides = []
     for other_goal in goals:
         if not zero_weights and other_goal.weight <= 0:
             continue
 
-        required_locations = [loc[0] for loc in other_goal.required_locations]
-        goal_locations = list(filter(lambda loc:
-                                     loc.name not in checked
-                                     and loc.name not in world.hint_exclusions
-                                     and loc.name not in world.hint_type_overrides['goal']
-                                     and loc.item.name not in world.item_hint_type_overrides['goal']
-                                     and loc.item.name not in unHintableWothItems,
-                                     required_locations))
-        if not goal_locations:
+        hintable_required_locations = list(filter(hintable_required_locations_filter, other_goal.required_locations))
+        if not hintable_required_locations:
             other_goal.weight = 0
-            if world.one_hint_per_goal and location in required_locations:
-                # Replace randomly chosen goal with the goal that has all its locations
-                # hinted without being directly hinted itself.
-                goal = other_goal
+            if world.one_hint_per_goal:
+                for required_location in other_goal.required_locations:
+                    if required_location[0] == location:
+                        for other_world_id in required_location[3]:
+                            last_chance_overrides.append((other_goal, other_world_id))
+    if (last_chance_overrides):
+        # Replace randomly chosen goal with a goal that has all its locations
+        # hinted without being directly hinted itself.
+        goal, world_id = random.choice(last_chance_overrides)
 
     # Goal weight to zero mitigates double hinting this goal
     # Once all goals in a category are 0, selection is true random

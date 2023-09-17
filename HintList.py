@@ -255,6 +255,7 @@ conditional_sometimes: dict[str, Callable[[World], bool]] = {
     # Conditional dual hints
     'GV Pieces of Heart Ledges':                lambda world: not world.settings.shuffle_cows and world.settings.tokensanity not in ['overworld', 'all'],
     'LH Adult Bean Destination Checks':         lambda world: world.settings.shuffle_interior_entrances == 'off',
+    'Castle Fairy Checks':                      lambda world: world.settings.shuffle_interior_entrances == 'off',
     'King Zora Items':                          lambda world: world.settings.adult_trade_shuffle and 'Eyeball Frog' in world.settings.adult_trade_start,
 
     'Fire Temple Lower Loop':                   lambda world: world.settings.tokensanity not in ['dungeons', 'all'],
@@ -618,6 +619,7 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'HF Valley Grotto':                                            ("in a grotto with a #spider and a cow# you will find...^", None, 'dual'),
     'Market Bombchu Bowling Rewards':                              ("at the #Bombchu Bowling Alley#, you will be rewarded with...^", None, 'dual'),
     'ZR Frogs Rewards':                                            ("the #Frogs of Zora River# will reward you with...^", None, 'dual'),
+    'ZD Child Checks':                                             ("the Zora's Domain #diving game and torch run# lead to...^", None, 'dual'),
     'LH Lake Lab Pool':                                            ("inside the #lakeside lab# a person and a spider hold...^", None, 'dual'),
     'LH Adult Bean Destination Checks':                            ("#riding the bean in Lake Hylia# leads to...^", None, 'dual'),
     'GV Pieces of Heart Ledges':                                   ("within the #valley#, the crate and waterfall conceal...^", None, 'dual'),
@@ -627,6 +629,7 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'Graveyard Royal Family Tomb Contents':                        ("inside the #Royal Family Tomb#, you will find...^", None, 'dual'),
     'DMC Child Upper Checks':                                      ("in the #crater, a spider in a crate and a single scrub# guard...^", None, 'dual'),
     'Haunted Wasteland Checks':                                    ("deep in the #wasteland a spider and a chest# hold...^", None, 'dual'),
+    'Castle Fairy Checks':                                         ("Great Fairies outside #Hyrule and Ganon's castles# reward...^", None, 'dual'),
     'King Zora Items':                                             ("#unfreezing King Zora and giving him the Prescription# rewards...^", None, 'dual'),
 
     'Deku Tree MQ Basement GS':                                    ("in the back of the #basement of the Great Deku Tree# two spiders hold...^", None, 'dual'),
@@ -1726,6 +1729,7 @@ multiTable: dict[str, list[str]] = {
     'HF Valley Grotto':                                         ['HF Cow Grotto Cow', 'HF GS Cow Grotto'],
     'Market Bombchu Bowling Rewards':                           ['Market Bombchu Bowling First Prize', 'Market Bombchu Bowling Second Prize'],
     'ZR Frogs Rewards':                                         ['ZR Frogs in the Rain', 'ZR Frogs Ocarina Game'],
+    'ZD Child Checks':                                          ['ZD Diving Minigame', 'ZD Chest'],
     'LH Lake Lab Pool':                                         ['LH Lab Dive', 'LH GS Lab Crate'],
     'LH Adult Bean Destination Checks':                         ['LH Freestanding PoH', 'LH Adult Fishing'],
     'GV Pieces of Heart Ledges':                                ['GV Crate Freestanding PoH', 'GV Waterfall Freestanding PoH'],
@@ -1735,6 +1739,7 @@ multiTable: dict[str, list[str]] = {
     'Graveyard Royal Family Tomb Contents':                     ['Graveyard Royal Familys Tomb Chest', 'Song from Royal Familys Tomb'],
     'DMC Child Upper Checks':                                   ['DMC GS Crate', 'DMC Deku Scrub'],
     'Haunted Wasteland Checks':                                 ['Wasteland Chest', 'Wasteland GS'],
+    'Castle Fairy Checks':                                      ['HC Great Fairy Reward', 'OGC Great Fairy Reward'],
     'King Zora Items':                                          ['ZD King Zora Thawed', 'ZD Trade Prescription'],
 
     'Deku Tree MQ Basement GS':                                 ['Deku Tree MQ GS Basement Graves Room','Deku Tree MQ GS Basement Back Room'],
