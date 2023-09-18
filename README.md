@@ -15,6 +15,7 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v43](#v43)
   * [v42](#v42)
   * [v41](#v41)
   * [v40](#v40)
@@ -61,11 +62,15 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
   * [4.0](#40)
 
 ## RealRob Changelog
+### v43
+  * Fix HF Cow Grotto Skulltula soul logic
+
 ### v42
   * Fix Forest Temple Right Courtyard Balcony Skullwalltula
 
 ### v41
   * Add flame effect to stick/nut upgrade so they are distinguishable
+
 ### v40
   * Enemy soul shuffle logic fixes:
     * Forest Temple Map Chest

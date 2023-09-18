@@ -3115,7 +3115,7 @@
             "Gossip Stone Fairy": "has_fire_source and can_summon_gossip_fairy and has_bottle",
             "Bug Shrub": "has_fire_source and can_cut_shrubs and has_bottle",
             "Nut Pot": "has_fire_source",
-            "HF Cow Grotto Skulltula": "can_use(Bow) or (has_fire_source and can_kill_skulltula)"
+            "HF Cow Grotto Skulltula": "has_soul(Skulltula) and (can_use(Bow) or has_fire_source)"
         },
         "exits": {
             "Hyrule Field": "True"
