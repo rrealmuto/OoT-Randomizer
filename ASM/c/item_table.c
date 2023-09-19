@@ -328,9 +328,9 @@ item_row_t item_table[] = {
     [0x0117] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x00A1, 0x01A1, 0x88, no_upgrade, give_small_key, CASTLE_ID, -1, resolve_text_small_keys), // Ganon's Castle Small Key
     [0x0118] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x913E, 0x01A2, 0x89, no_upgrade, give_small_key, TCG_ID,    -1, resolve_text_small_keys_cmg), // Small Key (Chest Game)
 
-    [0x1004] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x90A0, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1, NULL), // Triforce of Power
-    [0x1005] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x90A1, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1, NULL), // Triforce of Wisdom
-    [0x1006] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x90A2, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1, NULL), // Triforce of Courage
+    [0x1004] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x90E0, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1, NULL), // Triforce of Power
+    [0x1005] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x90E1, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1, NULL), // Triforce of Wisdom
+    [0x1006] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x90E2, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1, NULL), // Triforce of Courage
 
 };
 

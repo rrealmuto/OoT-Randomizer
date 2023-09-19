@@ -276,6 +276,10 @@ ITEM_MESSAGES: list[tuple[int, str]] = [
     (0x90B1, "\x08You got a \x05\x45Recovery Heart\x05\x40!\x01Your life energy is recovered!"),
     (0x90B2, "\x08You got a \x05\x46bundle of arrows\x05\x40!"),
     (0x90B3, "\x08\x13\x58You got \x05\x41Deku Seeds\x05\x40!\x01Use these as bullets\x01for your Slingshot."),
+
+    (0x90E0, "\x08You found the \x05\x41Triforce of Power\x05\x40!"),
+    (0x90E1, "\x08You found the \x05\x45Triforce of Wisdom\x05\x40!"),
+    (0x90E2, "\x08You found the \x05\x42Triforce of Courage\x05\x40!"),
 ]
 
 KEYSANITY_MESSAGES: list[tuple[int, str]] = [
@@ -427,10 +431,6 @@ KEYSANITY_MESSAGES: list[tuple[int, str]] = [
     (0x9088, "\x08You found a \x05\x44Silver Rupee\x05\x40 for the\x01\x05\x45Shadow Trial\x05\x40 in \x05\x41Ganon's Castle\x05\x40!\x09"),
     (0x9089, "\x08You found a \x05\x44Silver Rupee\x05\x40 for the\x01\x05\x43Water Trial\x05\x40 in \x05\x41Ganon's Castle\x05\x40!\x09"),
     (0x908A, "\x08You found a \x05\x44Silver Rupee\x05\x40 for the\x01\x05\x42Forest Trial\x05\x40 in \x05\x41Ganon's Castle\x05\x40!\x09"),
-
-	(0x90A0, "\x08You found the \x05\x41Triforce of Power\x05\x40!"),
-    (0x90A1, "\x08You found the \x05\x45Triforce of Wisdom\x05\x40!"),
-    (0x90A2, "\x08You found the \x05\x42Triforce of Courage\x05\x40!"),
 ]
 
 dungeon_names = [
