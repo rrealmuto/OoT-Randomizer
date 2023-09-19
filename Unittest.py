@@ -3,6 +3,7 @@
 # See `python -m unittest -h` or `pytest -h` for more options.
 
 from __future__ import annotations
+import io
 import json
 import logging
 import os
@@ -19,10 +20,18 @@ from Item import ItemInfo
 from ItemPool import remove_junk_items, remove_junk_ludicrous_items, ludicrous_items_base, ludicrous_items_extended, trade_items, ludicrous_exclusions
 from LocationList import location_is_viewable
 from Main import main, resolve_settings, build_world_graphs
+<<<<<<< HEAD
 from Messages import Message, read_messages, shuffle_messages
 from Settings import Settings, get_preset_files
 from Spoiler import Spoiler
 from Rom import Rom
+=======
+from Messages import Message
+from Rom import Rom
+from Settings import Settings, get_preset_files
+from Spoiler import Spoiler
+from Audiobank import *
+>>>>>>> 4a31aed4 (Add MMR custom music support and OOTRS improvements)
 
 test_dir = os.path.join(os.path.dirname(__file__), 'tests')
 output_dir = os.path.join(test_dir, 'Output')
@@ -821,7 +830,7 @@ class TestValidSpoilers(unittest.TestCase):
                     self.verify_woth(spoiler)
                     self.verify_playthrough(spoiler)
                     self.verify_disables(spoiler)
-
+    
     # remove this to run the fuzzer
     @unittest.skip("generally slow and failures can be ignored")
     def test_fuzzer(self):
@@ -855,6 +864,7 @@ class TestValidSpoilers(unittest.TestCase):
                     logging.getLogger('').exception(f'Failed to generate with these settings:\n{settings.get_settings_display()}\n')
                     raise
 
+<<<<<<< HEAD
 class TestTextShuffle(unittest.TestCase):
     def test_text_shuffle(self):
         if not os.path.isfile('./ZOOTDEC.z64'):
@@ -863,3 +873,141 @@ class TestTextShuffle(unittest.TestCase):
         messages = read_messages(rom)
         shuffle_messages(messages)
         shuffle_messages(messages, False)
+=======
+class TestCustomAudio(unittest.TestCase):
+    def test_audiobank(self):
+        AUDIOBANK_POINTER_TABLE = 0x00B896A0
+        AUDIOBANK_ADDR = 0xD390
+        AUDIOTABLE_INDEX_ADDR = 0xB8A1C0
+        AUDIOTABLE_ADDR = 0x79470
+
+        
+        rom: Rom = Rom("ZOOTDEC.z64")
+        audiobank_file = rom.read_bytes(AUDIOBANK_ADDR, 0x1CA50)
+        audiotable_index = rom.read_bytes(AUDIOTABLE_INDEX_ADDR, 0x80) # Read audiotable index into bytearray
+        audiotable_file = rom.read_bytes(AUDIOTABLE_ADDR, 0x460AD0) # Read audiotable (samples) into bytearray
+        rom_bytes: bytearray = rom.buffer
+        audiobank_table_header = rom.read_bytes(AUDIOBANK_POINTER_TABLE, 0x10)
+        num_banks = int.from_bytes(audiobank_table_header[0:2])
+        audiobanks: list[AudioBank] = []
+        for i in range(0, num_banks):
+            curr_entry = rom.read_bytes(AUDIOBANK_POINTER_TABLE + 0x10 + (0x10 * i), 0x10)
+            audiobank: AudioBank = AudioBank(curr_entry, audiobank_file, audiotable_file, audiotable_index)
+            audiobanks.append(audiobank)
+        self.assertEqual(num_banks, 0x26)
+        self.assertEqual(audiobanks[0x25].bank_offset, 0x19110)
+        self.assertEqual(audiobanks[0x25].size, 0x3940)
+
+    def test_mmrs_oot(self):
+        AUDIOBANK_POINTER_TABLE = 0x00B896A0
+        AUDIOBANK_ADDR = 0xD390
+        AUDIOTABLE_INDEX_ADDR = 0xB8A1C0
+        AUDIOTABLE_ADDR = 0x79470
+
+        rom: Rom = Rom("ZOOTDEC.z64")
+        audiobank_file = rom.read_bytes(AUDIOBANK_ADDR, 0x1CA50)
+        audiotable_index = rom.read_bytes(AUDIOTABLE_INDEX_ADDR, 0x80) # Read audiotable index into bytearray
+        audiotable_file = rom.read_bytes(AUDIOTABLE_ADDR, 0x460AD0) # Read audiotable (samples) into bytearray
+        rom_bytes: bytearray = rom.buffer
+        audiobank_table_header = rom.read_bytes(AUDIOBANK_POINTER_TABLE, 0x10)
+        num_banks = int.from_bytes(audiobank_table_header[0:2])
+        oot_audiobanks: list[AudioBank] = []
+        for i in range(0, num_banks):
+            curr_entry = rom.read_bytes(AUDIOBANK_POINTER_TABLE + 0x10 + (0x10 * i), 0x10)
+            audiobank: AudioBank = AudioBank(curr_entry, audiobank_file, audiotable_file, audiotable_index)
+            oot_audiobanks.append(audiobank)
+        
+        mm_audiobank_index = open("data/Music/mm_audiobank_index.bin", 'rb').read()
+        mm_audiobank_file = open("data/Music/mm_audiobank.bin", 'rb').read()
+        mm_audiotable_index = open("data/Music/mm_audiotable_index.bin", 'rb').read()
+        mm_audiotable_file = open("data/Music/mm_audiotable.bin", 'rb').read()
+        num_banks = int.from_bytes(mm_audiobank_index[0:2])
+        offset = 0x10
+        mm_audiobanks: list[AudioBank] = []
+        for i in range(0, num_banks):
+            bank_entry = mm_audiobank_index[offset:offset+0x10]
+            audiobank: AudioBank = AudioBank(bank_entry, mm_audiobank_file, mm_audiotable_file, mm_audiotable_index)
+            mm_audiobanks.append(audiobank)
+            offset += 0x10
+
+        from zipfile import ZipFile, ZipInfo
+
+        mmrs = ZipFile("data/Music/inverted stone tower.zip", 'r')
+        newbank_data = None
+        bankmeta = None
+        meta = None
+        for file in mmrs.filelist:
+            if file.filename.endswith(".zbank"):
+                newbank_data = bytearray(mmrs.read(file))
+            if file.filename.endswith(".bankmeta"):
+                bankmeta = mmrs.read(file)
+            if file.filename.endswith(".meta"):
+                with mmrs.open(file, 'r') as f:
+                    meta = io.TextIOWrapper(f).readlines()
+                    
+        zsounds = []
+        # Process the zsounds out of the meta file
+        for line in meta:
+            if line.startswith("ZSOUND"):
+                line = line.rstrip()
+                zsound = {}
+                split = line.split(':')
+                zsound['type'] = split[1]
+                zsound['index'] = int(split[2])
+                zsound['alt'] = split[3]
+                zsound['filename'] = split[4]
+                zsounds.append(zsound)
+
+        if newbank_data and bankmeta:
+            bank_entry = bytearray(4) + len(newbank_data).to_bytes(4, 'big') + bankmeta
+            newbank: AudioBank = AudioBank(bank_entry, newbank_data, mm_audiotable_file, mm_audiotable_index)
+
+            mm_samples_to_add: list[Sample] = []
+            # Cross reference MM instrument data against OOT and update accordingly
+            all_samples = newbank.get_all_samples()
+            all_samples = [sample for sample in all_samples if sample.addr != -1]
+            for sample in all_samples:
+                match = find_sample_in_audiobanks(oot_audiobanks, sample.data)
+                if match: # Found a matching sample in OOT. Just update the bank with the corresponding sample address
+                    # Update the sample's offset in the new bank
+                    newbank_data[sample.bank_offset+4:sample.bank_offset+8] = match.audiotable_addr.to_bytes(4, 'big')
+                else: # Didn't find a matching sample, need to add the data to the end of audiotable and update the bank.
+                    mm_samples_to_add.append(sample)
+
+            # Check for any drums that need to be updated (they will have -1 in their sample addresses)
+            for drum_id in range(0, len(newbank.drums)):
+                if newbank.drums[drum_id] and newbank.drums[drum_id].sample and newbank.drums[drum_id].sample.addr == -1:
+                    for zsound in zsounds:
+                        if zsound['type'] == 'DRUM' and zsound['index'] == drum_id:
+                            newbank.drums[drum_id].sample.data = mmrs.read(zsound['filename'])
+                            break
+
+            # Check for any new SFX that need to be updated (they will have -1 in their sample addresses)
+            for sfx_id in range(0, len(newbank.SFX)):
+                if newbank.SFX[sfx_id] and newbank.SFX[sfx_id].sample and newbank.SFX[sfx_id].sample.addr == -1:
+                    for zsound in zsounds:
+                        if zsound['type'] == 'SFX' and zsound['index'] == sfx_id:
+                            newbank.SFX[sfx_id].sample.data = mmrs.read(zsound['filename'])
+                            break
+
+            # Check if any instruments need to be updated (they will have -1 in their sample addresses)
+            for instr_id in range(0, len(newbank.instruments)):
+                if newbank.instruments[instr_id]:
+                    instr = newbank.instruments[instr_id]
+                    if instr.lowNoteSample and instr.lowNoteSample.addr == -1:
+                        for zsound in zsounds:
+                            if zsound['type'] == 'INST' and zsound['index'] == instr_id and zsound['alt'] == 'LOW':
+                                instr.lowNoteSample.data = mmrs.read(zsound['filename'])
+                                break
+                    if instr.normalNoteSample and instr.normalNoteSample.addr == -1:
+                        for zsound in zsounds:
+                            if zsound['type'] == 'INST' and zsound['index'] == instr_id and zsound['alt'] == 'NORM':
+                                instr.normalNoteSample.data = mmrs.read(zsound['filename'])
+                                break
+                    if instr.highNoteSample and instr.highNoteSample.addr == -1:
+                        for zsound in zsounds:
+                            if zsound['type'] == 'INST' and zsound['index'] == instr_id and zsound['alt'] == 'HIGH':
+                                instr.highNoteSample.data = mmrs.read(zsound['filename'])
+                                break
+
+>>>>>>> 4a31aed4 (Add MMR custom music support and OOTRS improvements)
