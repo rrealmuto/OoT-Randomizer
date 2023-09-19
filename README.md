@@ -115,6 +115,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * New ER setting `Shuffle Gerudo Valley River Exit` allows you to shuffle the one-way exit going down the river in Gerudo Valley.
   * New setting `Add Bombchu Bag and Drops` which, along with the previous changes of `Bombchus in Logic`, makes the first pack of Bombchus you find into a bag which then allows you to purchase bombchus from shops as well as find them hidden in grass or rocks like regular bombs.
   * New multiselects `Shuffled Child Trade Sequence Items` and `Adult Trade Sequence Items` along with toggle `Shuffle All Adult Trade Items` which have reworked the trade quests for both child and adult. Now you can own multiple trade items for each age at the same time and have multiple trade item locations as shufflable checks.
+    * The Scrub grotto Mask of Truth check will no longer be an always hint if the mask of truth is shuffled.
   * Many new SFX shuffle options have been added.
   * New `Rainbow` tunic options.
   * New music option `Speed Up Music For Last Triforce Piece` speeds up the music when you only have 1 Triforce Piece left to find, to drive home the intensity.
@@ -139,6 +140,8 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * New options for hint distributions, both of which are lists of gossip stones defined inside the entry for a hint type:
     * `remove_stones`: When defined, each gossip stone in the list will be excluded from receiving this hint type. For example, if `ToT (Left)` is inserted into the `remove_stones` list inside the dictionary for `always` hints, then no `always` hint will be placed on `ToT (Left)`.
     * `priority_stones`: When defined, gossip stones in this list will be given priority when placing the specified hint type, in the order they're defined. For example, if `ToT (Left)` and `ToT (Right)` are inserted into the `priority_stones` list, in that order, inside the dictionary for `always` hints, the first `always` hint will be placed on `ToT (Left)` and the second `always` hint will be placed on `ToT (Right)`.
+  * New Dual hint for King Zora checks: Unfreezing him and trading the prescription for an eyeball frog.
+  * The credits music can now be shuffled into the music pool.
 * **Other**
   * When picking up a small key, the text box will now inform you how many you've found total.
   * The longstanding vanilla bug where using Din's Fire on a white bubble crashes the game has been fixed.
@@ -146,6 +149,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * Custom music has moved to a new format. See `data/Music/README.md` for more details.
   * New and improved model for key rings.
   * Several new tricks have been added.
+  * Multiworld plugins now have the ability to show the proper progressive item based on the inventory state of the receiving player.
 
 #### Bug Fixes
 * **Misc.**
@@ -163,10 +167,13 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * A minor bug related to checking time of day access has been corrected.
   * Fix a softlock caused by 8-note Sun's Songs when using `Randomize Ocarina Song Notes`, again.
   * Fix pause screen rendering causing graphical issues on some platforms.
+  * Fix a long-standing bug where certain fanfares kill the currently-playing backgroud music.
+  * Fix a bug which would cause the Lost Woods bridge ocarina check, if ocarinas are unshuffled and overworld Entrance Randomizer is disabled, to give a Fairy Ocarina when it should give the Ocarina of Time.
 * **Hints**
   * Fix the cryptic hint for Ganon's Castle Boss Key.
   * Fix missing punctuation in dual hints.
   * Fix a bug in Multiworld Goal hints causing the incorrect path to be generated for the hint.
+  * Fix a bug which would cause hints to the "Link's Pocket" goal to be generated.
 
 #### Other Changes
 * `Closed Forest` is no longer changed to `Closed Deku` when `Shuffle Boss Entrances` is enabled.
@@ -194,6 +201,8 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Some inescapable entrances are no longer valid targets for Overworld Spawn entrances.
 * Using Farore's Wind to warp between dungeons is now considered in logic.
 * Various text changes such as singular Temple of Time Altar bridge conditions, grammar changes to region hints, and adding apostrophes to shop items.
+* Updated fill error message to add suggestions for resolving the error.
+* Updated some trick tool tips for grammar and clarity.
 
 #### New Speedups
 * Various cutscenes removed or shortened, such as Water Temple and Gerudo Fortress gates and scarecrow spawn cutscenes.

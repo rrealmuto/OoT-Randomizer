@@ -4587,6 +4587,25 @@ class SettingInfos:
         default        = False,
     )
 
+    credits_music = Checkbutton(
+        gui_text       = 'Credits music as BGM',
+        shared         = False,
+        cosmetic       = True,
+        gui_tooltip    = '''\
+            Include the songs that play when the credits
+            roll as part of the music pool when
+            shuffling music.
+        ''',
+        gui_params  = {
+            "hide_when_disabled": False,
+            'randomize_key': 'randomize_all_sfx',
+            'distribution': [
+                (True, 1),
+            ],
+        },
+        default        = False,
+    )
+
     sfx_ocarina = Combobox(
         gui_text       = 'Ocarina',
         shared         = False,

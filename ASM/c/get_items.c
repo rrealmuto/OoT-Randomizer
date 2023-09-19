@@ -907,3 +907,23 @@ int give_sarias_gift() {
     // return 1 to skip the cutscene
     return OCARINAS_SHUFFLED || received_sarias_gift;
 }
+
+// called as part of the cutscene
+void fairy_ocarina_getitem() {
+    override_key_t lw_gift_from_saria = { .scene = 0xFF, .type = OVR_DELAYED, .flag = 0x02 };
+    override_t override = lookup_override_by_key(lw_gift_from_saria);
+    uint16_t resolved_item_id = resolve_upgrades(override);
+    switch (resolved_item_id) {
+        case 0x003B: { // Fairy Ocarina
+            z64_file.items[Z64_SLOT_OCARINA] = 0x07;
+            break;
+        }
+        case 0x000C: { // Ocarina of Time
+            z64_file.items[Z64_SLOT_OCARINA] = 0x08;
+            break;
+        }
+    }
+    item_row_t *item_row = get_item_row(resolved_item_id);
+    PLAYER_NAME_ID = override.value.base.player;
+    z64_DisplayTextbox(&z64_game, resolve_item_text_id(item_row, resolved_item_id, PLAYER_NAME_ID != PLAYER_ID), 0);
+}
