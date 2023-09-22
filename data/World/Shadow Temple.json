@@ -77,7 +77,7 @@
             "Shadow Temple Huge Pit Silver Rupee Center": "True",
             "Shadow Temple Huge Pit Silver Rupee Center Front": "True",
             "Shadow Temple Huge Pit Silver Rupee Center Back": "True",
-            "Shadow Temple GS Invisible Blades Room": "True",
+            "Shadow Temple GS Invisible Blades Room": "has_soul(Likelike) and has_soul(Keese)",
             "Shadow Temple Guillotine Hallway Skulltula 1": "can_kill_skulltula",
             "Shadow Temple Guillotine Hallway Skulltula 2": "can_kill_skulltula",
             "Shadow Temple Guillotine Hallway Skulltula 3": "can_kill_skulltula",

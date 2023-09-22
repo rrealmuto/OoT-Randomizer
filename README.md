@@ -15,6 +15,7 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v44](#v44)
   * [v43](#v43)
   * [v42](#v42)
   * [v41](#v41)
@@ -62,6 +63,9 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
   * [4.0](#40)
 
 ## RealRob Changelog
+### v44
+  * Fix Shadow Temple GS Invisible Blades Room soul logic
+
 ### v43
   * Fix HF Cow Grotto Skulltula soul logic
 
