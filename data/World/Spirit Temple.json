@@ -28,8 +28,8 @@
             "Spirit Temple Child Side Keese 3": "can_kill_keese",
             "Spirit Temple Child Side Keese 4": "can_kill_keese",
             "Spirit Temple Child Bridge Stalfos": "can_kill_keese and can_kill_armos and can_kill_stalfos",
-            "Spirit Temple Child Bridge Bubble": "(Sticks or has_explosives or
-            ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot))) and (Boomerang or Slingshot)"
+            "Spirit Temple Child Bridge Bubble": "has_soul(Bubble) and ((Sticks or has_explosives or
+            ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot))) and (Boomerang or Slingshot))"
         },
         "exits": {
             "Child Spirit Temple Beyond Left Bridge": "
