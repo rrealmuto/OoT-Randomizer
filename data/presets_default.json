@@ -164,9 +164,9 @@
             "Claim Check"
         ]
     },
-    "S6 Tournament": {
+    "S7 Tournament": {
         "show_seed_info": true,
-        "user_message": "S6 Tournament",
+        "user_message": "S7 Tournament",
         "world_count": 1,
         "create_spoiler": true,
         "randomize_settings": false,
@@ -230,9 +230,7 @@
         "shuffle_gerudo_valley_river_exit": false,
         "owl_drops": false,
         "warp_songs": false,
-        "spawn_positions": [
-            "child"
-        ],
+        "spawn_positions": [],
         "free_bombchu_drops": false,
         "one_item_per_dungeon": false,
         "shuffle_song_items": "song",
@@ -274,7 +272,8 @@
             "logic_lens_shadow",
             "logic_lens_shadow_platform",
             "logic_lens_bongo",
-            "logic_lens_spirit"
+            "logic_lens_spirit",
+            "logic_visible_collisions"
         ],
         "starting_equipment": [
             "deku_shield"
@@ -299,7 +298,7 @@
         "auto_equip_masks": false,
         "plant_beans": false,
         "chicken_count_random": false,
-        "chicken_count": 4,
+        "chicken_count": 7,
         "big_poe_count_random": false,
         "big_poe_count": 1,
         "easier_fire_arrow_entry": false,
@@ -319,7 +318,10 @@
         "misc_hints": [
             "altar",
             "ganondorf",
-            "warp_songs_and_owls"
+            "warp_songs_and_owls",
+            "40_skulltulas",
+            "50_skulltulas",
+            "unique_merchants"
         ],
         "text_shuffle": "none",
         "damage_multiplier": "normal",
@@ -1570,9 +1572,9 @@
             "Claim Check"
         ]
     },
-    "League S4": {
+    "League S5": {
         "show_seed_info": true,
-        "user_message": "OoTR League S4",
+        "user_message": "OoTR League S5",
         "world_count": 1,
         "create_spoiler": false,
         "randomize_settings": false,

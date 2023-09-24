@@ -189,9 +189,9 @@ def exit_ci(fix_errors: bool = False) -> NoReturn:
         else:
             if getattr(error, 'can_fix', False):
                 if getattr(error, 'cannot_fix', False):
-                    print('Run `CI.py --fix` to automatically fix some of these errors.', file=sys.stderr)
+                    print('Run `CI.py --fix --no_unit_tests` to automatically fix some of these errors.', file=sys.stderr)
                 else:
-                    print('Run `CI.py --fix` to automatically fix these errors.', file=sys.stderr)
+                    print('Run `CI.py --fix --no_unit_tests` to automatically fix these errors.', file=sys.stderr)
             sys.exit(1)
     else:
         print(f'CI checks successful.')

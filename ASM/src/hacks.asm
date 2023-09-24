@@ -4081,3 +4081,11 @@ courtyard_guards_kill:
 ;   sw      t7, 0x1F24(at)
     jal     ocarina_buttons
     nop
+
+;===================================================================================================
+; Overrides the function that gives Fairy Ocarina on the Lost Woods Bridge
+;===================================================================================================
+.orga 0xACCDFC
+; Replaces Item_Give(play, ITEM_OCARINA_FAIRY)
+    jal      fairy_ocarina_getitem_override
+    nop
