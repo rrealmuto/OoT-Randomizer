@@ -192,7 +192,7 @@
             "Ganons Castle Light Trial Invisible Keese 3": "(has_soul(Keese)) and (logic_lens_castle or can_use(Lens_of_Truth))",
             "Ganons Castle Light Trial Invisible Skulltula": "(has_soul(Skulltula)) and (logic_lens_castle or can_use(Lens_of_Truth))",
             "Ganons Castle Light Trial Invisible Enemies Chest": "
-                (has_soul(Keese)) and
+                (has_soul(Keese) and has_soul(Skulltula)) and
                 (logic_lens_castle or can_use(Lens_of_Truth))",
             "Ganons Castle Light Trial Lullaby Chest": "
                 (Small_Key_Ganons_Castle, 1) and can_play(Zeldas_Lullaby)"

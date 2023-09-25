@@ -15,6 +15,7 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v45](#v45)
   * [v44](#v44)
   * [v43](#v43)
   * [v42](#v42)
@@ -63,6 +64,9 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
   * [4.0](#40)
 
 ## RealRob Changelog
+### v45
+  * Various soul shuffle logic fixes
+
 ### v44
   * Fix Shadow Temple GS Invisible Blades Room soul logic
   * Fix Spirit Temple Child Bridge Bubble soul logic

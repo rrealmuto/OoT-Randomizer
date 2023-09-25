@@ -179,9 +179,11 @@
             "Forest Temple MQ GS Well": "
                 (can_use(Iron_Boots) and can_use(Hookshot)) or can_use(Bow) or can_use(Slingshot)",
             "Forest Temple MQ Raised Island Courtyard Vines Skullwalltula": "
-                can_use(Bow) or can_use(Slingshot) or can_use(Longshot) or
-                (logic_forest_vines and can_use(Hookshot)) or
-                at('Forest Temple Outdoors High Balconies', can_use(Hookshot))",
+                has_soul(Skullwalltula) and (
+                    can_use(Bow) or can_use(Slingshot) or can_use(Longshot) or
+                    (logic_forest_vines and can_use(Hookshot)) or
+                    at('Forest Temple Outdoors High Balconies', can_use(Hookshot))
+                )",
             "Forest Temple MQ Raised Island Courtyard Deku Baba 2": "can_kill_deku_baba",
             "Forest Temple MQ Raised Island Courtyard Deku Baba 3": "can_kill_deku_baba",
             "Deku Baba Sticks": "has_soul(Deku_Baba) and (is_adult or Kokiri_Sword or Boomerang)",

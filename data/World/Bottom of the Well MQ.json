@@ -38,12 +38,12 @@
             "Bottom of the Well MQ Main Area Right Slingshot Wonderitem 4": "Slingshot",
             "Bottom of the Well MQ First Hallway Redead": "can_kill_redead",
             "Bottom of the Well MQ Center Room Pitfall Skulltula": "
-                has_explosives or can_use(Dins_Fire) or
-                (can_play(Zeldas_Lullaby) and
-                    (Slingshot or (logic_botw_mq_pits and can_kill_skulltula)))",
-            "Bottom of the Well MQ Basement Wallmaster": "can_kill_floormaster",
-            "Bottom of the Well MQ Basement Skulltula 1": "can_kill_skulltula",
-            "Bottom of the Well MQ Basement Skulltula 2": "can_kill_skulltula",
+                has_soul(Skulltula) and (has_explosives or can_use(Dins_Fire) or
+                (can_play(Zeldas_Lullaby) and 
+                    (Slingshot or (logic_botw_mq_pits and can_kill_skulltula))))",
+            "Bottom of the Well MQ Basement Wallmaster": "can_kill_wallmaster",
+            "Bottom of the Well MQ Basement Skulltula 1": "can_kill_skulltula",                
+            "Bottom of the Well MQ Basement Skulltula 2": "can_kill_skulltula",                
             "Bottom of the Well MQ Basement Skulltula 3": "can_kill_skulltula",
             "Bottom of the Well MQ Basement Redead 1": "can_kill_redead",
             "Bottom of the Well MQ Basement Redead 2": "can_kill_redead",
@@ -83,7 +83,7 @@
             "Bottom of the Well MQ East Inner Room Slingshot Wonderitem 2": "Slingshot",
             "Bottom of the Well MQ East Inner Room Slingshot Wonderitem 3": "Slingshot",
             "Bottom of the Well MQ East Inner Room Slingshot Wonderitem 4": "Slingshot",
-            "Bottom of the Well MQ Center Room Wallmaster": "can_kill_floormaster",
+            "Bottom of the Well MQ Center Room Wallmaster": "can_kill_wallmaster",
             "Bottom of the Well MQ West Inner Room Keese 1": "(logic_botw_mq_pits or has_explosives) and (can_kill_keese)",
             "Bottom of the Well MQ West Inner Room Keese 2": "(logic_botw_mq_pits or has_explosives) and (can_kill_keese)",
             "Bottom of the Well MQ West Inner Room Keese 3": "(logic_botw_mq_pits or has_explosives) and (can_kill_keese)",

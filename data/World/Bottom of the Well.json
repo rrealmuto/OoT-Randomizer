@@ -80,7 +80,7 @@
             "Bottom of the Well Center Room Pit Fall Blue Rupee 4": "True",
             "Bottom of the Well Center Room Pit Fall Blue Rupee 5": "True",
             "Bottom of the Well Inside Gate Skulltula": "can_kill_skulltula",
-            "Bottom of the Well Center Room Wallmaster": "can_kill_floormaster"
+            "Bottom of the Well Center Room Wallmaster": "can_kill_wallmaster"
 
         },
         "exits": {

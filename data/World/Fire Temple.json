@@ -52,7 +52,7 @@
             "Fire Temple Before Lower Flare Dancer Torch Slug 2": "has_soul(Torch_Slug)",
             "Fire Temple Before Lower Flare Dancer Torch Slug 3": "has_soul(Torch_Slug)",
             "Fire Temple Before Lower Flare Dancer Torch Slug 4": "has_soul(Torch_Slug)",
-            "Fire Temple Before Lower Flare Dancer Like-Like": "has_soul(Keese) and has_soul(Torch_Slug)",
+            "Fire Temple Before Lower Flare Dancer Like-Like": "has_soul(Likelike) and has_soul(Keese) and has_soul(Torch_Slug)",
             "Fire Temple Lower Flare Dancer" : "has_soul(Keese) and has_soul(Torch_Slug) and has_soul(Flare_Dancer)"
         }
     },
@@ -163,9 +163,9 @@
                 can_use(Scarecrow) or (logic_fire_scarecrow and Longshot)",
             "Fire Temple GS Scarecrow Top": "
                 can_use(Scarecrow) or (logic_fire_scarecrow and Longshot)",
-            "Fire Temple Above Boulder Maze Torch Slug 1": "True",
-            "Fire Temple Above Boulder Maze Torch Slug 2": "True",
-            "Fire Temple Above Boulder Maze Torch Slug 3": "True",
+            "Fire Temple Above Boulder Maze Torch Slug 1": "has_soul(Torch_Slug)",
+            "Fire Temple Above Boulder Maze Torch Slug 2": "has_soul(Torch_Slug)",
+            "Fire Temple Above Boulder Maze Torch Slug 3": "has_soul(Torch_Slug)",
             "Fire Temple Moving Fire Room Bubble 1": "(has_soul(Bubble)) and (Bow or Magic_Meter)",
             "Fire Temple Moving Fire Room Bubble 2": "(has_soul(Bubble)) and (Bow or Magic_Meter)",
             "Fire Temple Moving Fire Room Bubble 3": "(has_soul(Bubble)) and (Bow or Magic_Meter)",

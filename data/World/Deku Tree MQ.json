@@ -15,10 +15,12 @@
             "Deku Tree MQ GS Lobby": "
                 is_adult or Sticks or Kokiri_Sword or has_explosives or can_use(Dins_Fire) or
                 ((Slingshot or Boomerang) and can_break_crate)",
-            "Deku Baba Sticks": "is_adult or Kokiri_Sword or Boomerang",
+            "Deku Baba Sticks": "has_soul(Deku_Baba) and (is_adult or Kokiri_Sword or Boomerang)",
             "Deku Baba Nuts": "
-                is_adult or Slingshot or Sticks or
-                has_explosives or Kokiri_Sword or can_use(Dins_Fire)",
+                has_soul(Deku_Baba) and (
+                    is_adult or Slingshot or Sticks or
+                    has_explosives or Kokiri_Sword or can_use(Dins_Fire)
+                )",
             "Deku Tree MQ Lobby Lower Keese" : "can_kill_keese",
             "Deku Tree MQ Lobby Upper Keese" : "can_kill_keese",
             "Deku Tree MQ Lobby Vines Skullwalltula": "
@@ -69,13 +71,17 @@
                 here(has_bombchus or (Bombs and (can_play(Song_of_Time) or is_adult)) or
                     (can_use(Megaton_Hammer) and (can_play(Song_of_Time) or logic_deku_mq_compass_gs)))",
             "Deku Tree MQ Compass Room Left Skullwalltula": "
-                (is_child and (Slingshot or Boomerang)) or
-                (is_adult and Bow or Hookshot) or
-                (can_use(Dins_Fire) or Bombs or has_bombchus)",
+                has_soul(Skullwalltula) and (
+                    (is_child and (Slingshot or Boomerang)) or
+                    (is_adult and Bow or Hookshot) or
+                    (can_use(Dins_Fire) or Bombs or has_bombchus)
+                )",
             "Deku Tree MQ Compass Room Right Skullwalltula": "
-                (is_child and (Slingshot or Boomerang)) or
-                (is_adult and Bow or Hookshot) or
-                (can_use(Dins_Fire) or Bombs or has_bombchus)",
+                has_soul(Skullwalltula) and (
+                    (is_child and (Slingshot or Boomerang)) or
+                    (is_adult and Bow or Hookshot) or
+                    (can_use(Dins_Fire) or Bombs or has_bombchus)
+                )",
             "Deku Tree MQ Compass Room Skulltula" : "has_soul(Skulltula) and (is_adult or can_child_attack)",
             "Deku Tree MQ Compass Room Gohma Larva 1": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)",
             "Deku Tree MQ Compass Room Gohma Larva 2": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)"
