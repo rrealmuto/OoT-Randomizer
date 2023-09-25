@@ -50,10 +50,12 @@
             "Forest Temple GS Level Island Courtyard": "
                 can_use(Longshot) or
                 at('Forest Temple Outside Upper Ledge', can_use(Hookshot) or can_use(Boomerang))",
-            "Deku Baba Sticks": "is_adult or Kokiri_Sword or Boomerang",
+            "Deku Baba Sticks": "has_soul(Deku_Baba) and (is_adult or Kokiri_Sword or Boomerang)",
             "Deku Baba Nuts": "
-                is_adult or Slingshot or Sticks or
-                has_explosives or Kokiri_Sword or can_use(Dins_Fire)",
+                has_soul(Deku_Baba) and (
+                    is_adult or Slingshot or Sticks or
+                    has_explosives or Kokiri_Sword or can_use(Dins_Fire)
+                )",
             "Forest Temple NW Outdoors Deku Baba": "can_kill_deku_baba",
             "Forest Temple Left Courtyard Octorok": "can_kill_octorok_with_explosives",
             "Forest Temple Left Courtyard Vines Skullwalltula Lower": "(has_soul(Skullwalltula)) and (has_explosives or can_use(Dins_Fire) or can_use(Bow) or can_use(Progressive_Hookshot) or can_use(Slingshot) or can_use(Boomerang))",
@@ -99,10 +101,12 @@
             "Forest Temple GS Raised Island Courtyard": "
                 can_use(Hookshot) or (logic_forest_outdoor_east_gs and can_use(Boomerang)) or
                 at('Forest Temple Falling Room', can_use(Bow) or can_use(Dins_Fire) or has_explosives)",
-            "Deku Baba Sticks": "is_adult or Kokiri_Sword or Boomerang",
+            "Deku Baba Sticks": "has_soul(Deku_Baba) and (is_adult or Kokiri_Sword or Boomerang)",
             "Deku Baba Nuts": "
-                is_adult or Slingshot or Sticks or
-                has_explosives or Kokiri_Sword or can_use(Dins_Fire)",
+                has_soul(Deku_Baba) and (
+                    is_adult or Slingshot or Sticks or
+                    has_explosives or Kokiri_Sword or can_use(Dins_Fire)
+                )",
             "Forest Temple NE Outdoors Deku Baba": "can_kill_deku_baba",
             "Forest Temple Right Courtyard Balcony Skullwalltula": "(has_soul(Skullwalltula)) and (can_use(Bow) or can_use(Slingshot) or at('Forest Temple Outdoors High Balconies', can_use(Hookshot) or can_use(Boomerang)))",
             "Forest Temple Right Courtyard Octorok": "can_kill_octorok_with_explosives"

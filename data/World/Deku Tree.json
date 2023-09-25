@@ -9,10 +9,12 @@
             "Deku Tree Lower Lobby Recovery Heart": "True",
             "Deku Tree Upper Lobby Recovery Heart": "is_adult or can_child_attack or Nuts",
             "Deku Tree GS Compass Room": "is_adult or can_child_attack",
-            "Deku Baba Sticks": "is_adult or Kokiri_Sword or Boomerang",
+            "Deku Baba Sticks": "has_soul(Deku_Baba) and (is_adult or Kokiri_Sword or Boomerang)",
             "Deku Baba Nuts": "
-                is_adult or Slingshot or Sticks or 
-                has_explosives or Kokiri_Sword or can_use(Dins_Fire)",
+                has_soul(Deku_Baba) and (
+                    is_adult or Slingshot or Sticks or
+                    has_explosives or Kokiri_Sword or can_use(Dins_Fire)
+                )",
             "Deku Tree Vines Lowest Skullwalltula": "(has_soul(Skullwalltula)) and ((is_child and (Slingshot or Boomerang)) or (is_adult and (Bow or Hookshot)) or has_explosives or can_use(Dins_Fire))" ,
             "Deku Tree Vines Left Lower Skullwalltula": "(has_soul(Skullwalltula)) and ((is_child and (Slingshot or Boomerang)) or (is_adult and (Bow or Hookshot)) or has_explosives or can_use(Dins_Fire))" ,
             "Deku Tree Vines Upper Skullwalltula": "(has_soul(Skullwalltula)) and ((is_child and (Slingshot or Boomerang)) or (is_adult and (Bow or Hookshot)) or has_explosives or can_use(Dins_Fire))" ,

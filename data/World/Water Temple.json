@@ -187,7 +187,7 @@
             "Water Temple GS Near Boss Key Chest": "True",
                 # Longshot reaches without the need to actually go near
                 # Otherwise you have Hovers and can you hover over and collect with a jumpslash
-            "Water Temple Before BK Shell Blade": "(Iron_Boots and Hookshot)",
+            "Water Temple Before BK Shell Blade": "has_soul(Shell_blade) and Iron_Boots and Hookshot",
             "Water Temple Whirlpool Room Tektite 1": "has_soul(Tektite)",
             "Water Temple Whirlpool Room Tektite 2": "has_soul(Tektite)",
             "Water Temple Whirlpool Room Tektite 3": "has_soul(Tektite)",

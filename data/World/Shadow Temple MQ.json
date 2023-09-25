@@ -87,7 +87,7 @@
         "region_name": "Shadow Temple Upper Huge Pit",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple MQ Guillotine Hallway Skulltula": "True",
+            "Shadow Temple MQ Guillotine Hallway Skulltula": "has_soul(Skulltula)",
             "Shadow Temple MQ Guillotine Hallway Beamos 1": "can_kill_beamos",
             "Shadow Temple MQ Guillotine Hallway Beamos 2": "can_kill_beamos",
             "Shadow Temple MQ Huge Pit Bubble": "has_soul(Bubble)",

@@ -69,7 +69,7 @@
             "Jabu Jabus Belly MQ Basement Shabom": "can_kill_shabom",
             "Jabu Jabus Belly MQ Basement Boomerang Room Stinger 1": "can_kill_stinger",
             "Jabu Jabus Belly MQ Basement Boomerang Room Stinger 2": "can_kill_stinger",
-            "Jabu Jabus Belly MQ Basement Boomerang Room Like-like": "can_kill_stinger",
+            "Jabu Jabus Belly MQ Basement Boomerang Room Like-like": "can_kill_likelike",
             "Jabu Jabus Belly MQ Basement Boomerang Room Lizalfos": "can_kill_lizalfos"
             # Lens of Truth cannot be used underwater.
             # Adult's legs are too long to swim directly onto the Hookshot pillar.

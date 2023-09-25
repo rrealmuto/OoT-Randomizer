@@ -61,9 +61,9 @@
             "Dodongos Cavern MQ Staircase Skulltula 2": "can_kill_skulltula",
             "Deku Baba Sticks": "has_soul(Deku_Baba) and (is_adult or Kokiri_Sword or Boomerang)",
             "Dodongos Cavern MQ Song of Time Block Room Skullwalltula": "has_soul(Skullwalltula) and (is_adult or (is_child and can_play(Song_of_Time) and can_child_attack))",
-            "Dodongos Cavern MQ Song of Time Block Room Skulltula 1": "has_soul(Skullwalltula) and (is_adult or (is_child and can_play(Song_of_Time) and can_child_attack))",
-            "Dodongos Cavern MQ Song of Time Block Room Skulltula 2": "has_soul(Skullwalltula) and (is_adult or (is_child and can_play(Song_of_Time) and can_child_attack))",
-            "Dodongos Cavern MQ Song of Time Block Room Skulltula 3": "has_soul(Skullwalltula) and (is_adult or (is_child and can_play(Song_of_Time) and can_child_attack))"
+            "Dodongos Cavern MQ Song of Time Block Room Skulltula 1": "has_soul(Skulltula) and (is_adult or (is_child and can_play(Song_of_Time) and can_child_attack))",
+            "Dodongos Cavern MQ Song of Time Block Room Skulltula 2": "has_soul(Skulltula) and (is_adult or (is_child and can_play(Song_of_Time) and can_child_attack))",
+            "Dodongos Cavern MQ Song of Time Block Room Skulltula 3": "has_soul(Skulltula) and (is_adult or (is_child and can_play(Song_of_Time) and can_child_attack))"
         },
         "exits": {
             "Dodongos Cavern Above Staircase": "is_adult or can_child_attack or Nuts",

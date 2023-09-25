@@ -2093,7 +2093,7 @@
             "DMT Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Bug Rock": "is_child and has_bottle",
-            "DMT Adult Summit Tektite": "is_adult",
+            "DMT Adult Summit Tektite": "has_soul(Tektite) and is_adult",
             "DMT Adult Summit Skullwalltula Lower": "(has_soul(Skullwalltula)) and (is_adult and (Hookshot or Bow or Megaton_Hammer or has_explosives or can_use(Dins_Fire)))",
             "DMT Adult Summit Skullwalltula Middle": "(has_soul(Skullwalltula)) and (is_adult and (Hookshot or Bow or Megaton_Hammer or has_explosives or can_use(Dins_Fire)))",
             "DMT Adult Summit Skullwalltula Upper": "(has_soul(Skullwalltula)) and (is_adult and (Hookshot or Bow or Megaton_Hammer or has_explosives or can_use(Dins_Fire)))",

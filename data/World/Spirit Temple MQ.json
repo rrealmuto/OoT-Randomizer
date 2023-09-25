@@ -277,7 +277,7 @@
             "Spirit Temple MQ Chest Switch Lizalfos 1": "has_soul(Lizalfos_and_Dinalfos)",
             "Spirit Temple MQ Chest Switch Lizalfos 2": "has_soul(Lizalfos_and_Dinalfos)",
             "Spirit Temple MQ Before Adult Knuckle Floormaster": "has_soul(Floormaster) and (logic_lens_spirit_mq or can_use(Lens_of_Truth))",
-            "Spirit Temple MQ Boss Key Redead": "Mirror_Shield"
+            "Spirit Temple MQ Boss Key Redead": "has_soul(Redead_and_Gibdo) and Mirror_Shield"
         },
         "exits": {
             "Spirit Temple Adult Knuckle Room": "has_soul(Floormaster) and (logic_lens_spirit_mq or can_use(Lens_of_Truth))"
