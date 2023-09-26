@@ -15,12 +15,14 @@ Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Ra
 * New settings and options:
   * New plando-only “Chest, Pot, Crate, & Beehive Appearance Does Not Match Contents” setting which makes each chest etc. randomly choose any appearance except the correct one ([#1950](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1950))
   * New “Vanilla Locations” option for the “Shuffle Songs” setting ([#1882](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1882))
++  * New “Shuffle Dungeon Rewards” setting ([#1833](https://github.com/OoTRandomizer/OoT-Randomizer/issues/1833))
   * New “Easter Egg Hunt” setting (based on [#1804](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1804))
   * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1536))
   * “Closed Forest Requires Gohma” is a separate setting. With it enabled, items that can be used to escape the forest won't appear in the forest, and the randomizer will try to place at least one slingshot for each player in the forest. The setting is compatible with all forms of entrance randomizer by restricting entrances inside the forest area to only be shuffled among themselves. ([#1531](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1531))
 * New hint distributions:
   * “Ice%” consists of only Sometimes hints, and replaces the hookshot hint in Dampé's diary with a blue fire arrows hint.
   * “Mixed Pools Tournament” is the hint distribution used for the [2nd Mixed Pools Tournament](https://midos.house/event/mp/2). Note that the tournament itself used [a previous version](https://github.com/fenhl/OoT-Randomizer/releases/tag/7.1.117-fenhl.17) of this branch.
+  * “Tournament (Season 6)” is the hint distribution used for the [Standard Tournament Season 6](https://midos.house/event/s/6). Note that the tournament itself used the main [`Dev`](https://github.com/OoTRandomizer/OoT-Randomizer) branch.
 * New settings presets:
   * “Fenhl's Casual” is my preferred flavor of playing OoTR, with everything shuffled, full entrance randomizer, chaos hints, warp song note shuffle, half damage, no Master Quest, and no tricks enabled. The rainbow bridge requires all dungeon rewards and Ganon's boss key requires all 100 gold skulltula tokens.
   * “Vanilla” generates a seed that's as close to the vanilla game as possible with current randomizer features. Unlike the vanilla seed available on <https://ootrandomizer.com/>, this preset uses glitchless logic to produce a useful spoiler log playthrough.

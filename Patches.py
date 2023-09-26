@@ -14,13 +14,14 @@ from HintList import get_hint
 from Hints import GossipText, HintArea, write_gossip_stone_hints, build_altar_hints, \
         build_ganon_text, build_misc_item_hints, build_misc_location_hints, get_simple_hint_no_prefix, get_item_generic_name
 from Item import Item
+from ItemList import REWARD_COLORS
 from ItemPool import song_list, trade_items, child_trade_items
 from Location import Location, DisableType
 from LocationList import business_scrubs
 from Messages import read_messages, update_message_by_id, read_shop_items, update_warp_song_text, \
         write_shop_items, remove_unused_messages, make_player_message, \
         add_item_messages, repack_messages, shuffle_messages, \
-        get_message_by_id, TextCode
+        get_message_by_id, TextCode, COLOR_MAP
 from OcarinaSongs import patch_songs
 from MQ import patch_files, File, update_dmadata, insert_space, add_relocations
 from Rom import Rom
@@ -28,9 +29,10 @@ from SaveContext import SaveContext, Scenes, FlagType
 from SceneFlags import get_alt_list_bytes, get_collectible_flag_table, get_collectible_flag_table_bytes
 from Sounds import move_audiobank_table
 from Spoiler import Spoiler
+from TextBox import line_wrap
 from Utils import data_path
 from World import World
-from TextBox import line_wrap
+from ntype import BigStream
 from texture_util import ci4_rgba16patch_to_ci8, rgba16_patch
 from version import __version__
 
@@ -119,19 +121,19 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
             (0x05CC, [0xFF, 0xFF, 0xFF]), # Outer Primary Color?
             (0x05D4, [0xFF, 0xFF, 0xFF]), # Outer Env Color?
         ]),
-        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1AB, ( # Weird Egg -> Pink Easter Egg
+        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1B4, ( # Weird Egg -> Pink Easter Egg
             (0x0FF4, [0xDB, 0xA9, 0xD8]), # Primary Color
             (0x0FFC, [0xD1, 0x7B, 0xCC]), # Env Color
         )),
-        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1AC, ( # Weird Egg -> Orange Easter Egg
+        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1B5, ( # Weird Egg -> Orange Easter Egg
             (0x0FF4, [0xDB, 0xA9, 0x77]), # Primary Color
             (0x0FFC, [0xD1, 0x7B, 0x25]), # Env Color
         )),
-        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1AD, ( # Weird Egg -> Green Easter Egg
+        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1B6, ( # Weird Egg -> Green Easter Egg
             (0x0FF4, [0x77, 0xDB, 0x77]), # Primary Color
             (0x0FFC, [0x25, 0xD1, 0x25]), # Env Color
         )),
-        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1AE, ( # Weird Egg -> Blue Easter Egg
+        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1B7, ( # Weird Egg -> Blue Easter Egg
             (0x0FF4, [0x77, 0x77, 0xDB]), # Primary Color
             (0x0FFC, [0x25, 0x25, 0xD1]), # Env Color
         )),
@@ -145,6 +147,94 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         for offset, patch in patches:
             rom.write_bytes(start_address + offset, patch)
         # Add it to the extended object table
+        add_to_extended_object_table(rom, object_id, start_address, end_address)
+        start_address = end_address
+
+    # Make new model files by splitting existing ones to fit into the get item memory slot
+    zobj_splits = (
+        ('object_gi_jewel_emerald',  0x0145A000, 0x0145D680, (0x1240, 0x10E0), 0x1AB), # Kokiri Emerald
+        ('object_gi_jewel_ruby',     0x0145A000, 0x0145D680, (0x20A0, 0x1FB0), 0x1AC), # Goron Ruby
+        ('object_gi_jewel_sapphire', 0x0145A000, 0x0145D680, (0x3530, 0x3370), 0x1AD), # Zora Sapphire
+        ('object_gi_medal_light',    0x014BB000, 0x014C0370, (0x5220, 0x0E18), 0x1AE), # Light Medallion
+        ('object_gi_medal_forest',   0x014BB000, 0x014C0370, (0x0CB0, 0x0E18), 0x1AF), # Forest Medallion
+        ('object_gi_medal_fire',     0x014BB000, 0x014C0370, (0x1AF0, 0x0E18), 0x1B0), # Fire Medallion
+        ('object_gi_medal_water',    0x014BB000, 0x014C0370, (0x2830, 0x0E18), 0x1B1), # Water Medallion
+        ('object_gi_medal_shadow',   0x014BB000, 0x014C0370, (0x4330, 0x0E18), 0x1B2), # Shadow Medallion
+        ('object_gi_medal_spirit',   0x014BB000, 0x014C0370, (0x3610, 0x0E18), 0x1B3), # Spirit Medallion
+    )
+    for name, start, end, offsets, object_id in zobj_splits:
+        obj_file = File(name, start, end)
+        seen = {}
+        out = []
+        out_size = 0
+        for offset in offsets:
+            i = offset
+            while True:
+                data = rom.read_int32(obj_file.start + i)
+                op = data >> 24
+                i += 8
+                if op == 0xdf:
+                    size = i - offset
+                    break
+            segment = BigStream(rom.read_bytes(obj_file.start + offset, size))
+
+            def copy(addr, size):
+                nonlocal seen
+                nonlocal out_size
+
+                seg = addr >> 24
+                if seg != 0x06:
+                    return addr
+                addr &= 0xffffff
+                seenAddr = seen.get(addr)
+                if seenAddr is not None:
+                    return seenAddr
+                newAddr = out_size | 0x0600_0000
+                out_size += size
+                out.extend(rom.read_bytes(obj_file.start + addr, size))
+                seen[addr] = newAddr
+                return newAddr
+
+            for i in range(0, size, 8):
+                data = segment.read_int32(i)
+                op = data >> 24
+                if op == 0x01: # Vertices
+                    count = (data >> 12) & 0xff
+                    addr = segment.read_int32(i + 4)
+                    newAddr = copy(addr, count * 0x10)
+                    segment.write_int32(i + 4, newAddr)
+                elif op == 0xfd: # Texture or palette
+                    data2 = segment.read_int32(i + 8 * 1)
+                    op2 = data2 >> 24
+                    if op2 == 0xf5: # Texture
+                        fmt = (data >> 16) & 0xff
+                        if fmt in (0x50, 0x90):
+                            bpp = 4
+                        elif fmt == 0x10:
+                            bpp = 16
+                        else:
+                            raise ValueError(f'Unknown texture format 0x{fmt:02x}')
+                        data3 = segment.read_int32(i + 8 * 6 + 4)
+                        w = (((data3 >> 12) & 0xfff) / 4) + 1
+                        h = (((data3 >>  0) & 0xfff) / 4) + 1
+                        addr = segment.read_int32(i + 4)
+                        newAddr = copy(addr, int((w * h * bpp) / 8))
+                        segment.write_int32(i + 4, newAddr)
+                    elif op2 == 0xe8: # Palette
+                        addr = segment.read_int32(i + 4)
+                        newAddr = copy(addr, 32)
+                        segment.write_int32(i + 4, newAddr)
+            out_size += size
+            out.extend(segment.buffer)
+            if out_size % 16:
+                extra_size = 16 - (out_size % 16)
+                extra_buf = [0] * extra_size
+                out_size += extra_size
+                out.extend(extra_buf)
+
+        rom.write_bytes(start_address, out)
+        # Add it to the extended object table
+        end_address = ((start_address + len(out) + 0x0F) >> 4) << 4
         add_to_extended_object_table(rom, object_id, start_address, end_address)
         start_address = end_address
 
@@ -874,12 +964,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     # Move Link spawn 40 units forwards to prevent Pokey trap
     rom.write_byte(0x206F0C7, 0xA3)
 
-    # Fix Shadow Temple to check for different rewards for scene
-    rom.write_bytes(0xCA3F32, [0x00, 0x00, 0x25, 0x4A, 0x00, 0x10])
-
-    # Fix Spirit Temple to check for different rewards for scene
-    rom.write_bytes(0xCA3EA2, [0x00, 0x00, 0x25, 0x4A, 0x00, 0x08])
-
     # Remove the check on the number of days that passed for claim check.
     rom.write_bytes(0xED4470, [0x00, 0x00, 0x00, 0x00])
     rom.write_bytes(0xED4498, [0x00, 0x00, 0x00, 0x00])
@@ -1004,19 +1088,15 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         rom.write_int32(0xBC6160, 0x24180000)  # li t8, 0
         rom.write_int32(0xBC6168, 0xAD380000)  # sw t8, 0(t1)
 
-        # Credit to engineer124
-        # Update the Jabu-Jabu Boss Exit to actually useful coordinates (and to load the correct room)
-        rom.write_int16(0x273E08E, 0xF7F4)  # Z coordinate of Jabu Boss Door Spawn
-        rom.write_byte(0x273E27B, 0x05)  # Set Spawn Room to be correct
+    # Credit to engineer124
+    # Update the Jabu-Jabu Boss Exit to actually useful coordinates (and to load the correct room)
+    rom.write_int16(0x273E08E, 0xF7F4)  # Z coordinate of Jabu Boss Door Spawn
+    rom.write_byte(0x273E27B, 0x05)  # Set Spawn Room to be correct
 
     # Update the Water Temple Boss Exit to load the correct room
     rom.write_byte(0x25B82E3, 0x0B)
 
     def set_entrance_updates(entrances: Iterable[Entrance]) -> None:
-        if world.settings.shuffle_bosses != 'off':
-            # Connect lake hylia fill exit to revisit exit
-            rom.write_int16(0xAC995A, 0x060C)
-
         for entrance in entrances:
             if entrance.data is None or entrance.replaces is None or entrance.replaces.data is None:
                 continue
@@ -1116,9 +1196,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
     if world.shuffle_dungeon_entrances:
         rom.write_byte(rom.sym('DUNGEONS_SHUFFLED'), 1)
-
-        # Connect lake hylia fill exit to revisit exit
-        rom.write_int16(0xAC995A, 0x060C)
 
         # Make the Adult well blocking stone dissappear if the well has been drained by
         # checking the well drain event flag instead of links age. This actor doesn't need a
@@ -1752,33 +1829,18 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
                 if exit.connected_region is not None and exit.connected_region.dungeon != 'Jabu Jabus Belly' and exit.connected_region.name not in already_checked
             }
 
+    # Update "Princess Ruto got the Spiritual Stone!" text before the midboss in Jabu
     if location is None or location.item is None:
         jabu_item = None
-        reward_text = None
+        new_message = f"\x08Princess Ruto got \x01\x05\x43nothing\x05\x40!\x01Well, that's disappointing...\x02"
     elif location.item.looks_like_item is not None:
         jabu_item = location.item.looks_like_item
-        reward_text = create_fake_name(get_hint(get_item_generic_name(location.item.looks_like_item), True).text)
+        new_message = "\x08Princess Ruto is a \x05\x43FOOL\x05\x40!\x01But why Princess Ruto?\x02"
     else:
         jabu_item = location.item
         reward_text = get_hint(get_item_generic_name(location.item), True).text
-
-    # Update "Princess Ruto got the Spiritual Stone!" text before the midboss in Jabu
-    if reward_text is None or location is None or location.item is None:
-        new_message = f"\x08Princess Ruto got \x01\x05\x43nothing\x05\x40!\x01Well, that's disappointing...\x02"
-    else:
-        reward_texts = {
-            'Kokiri Emerald':   "the \x05\x42Kokiri Emerald\x05\x40",
-            'Goron Ruby':       "the \x05\x41Goron Ruby\x05\x40",
-            'Zora Sapphire':    "the \x05\x43Zora Sapphire\x05\x40",
-            'Forest Medallion': "the \x05\x42Forest Medallion\x05\x40",
-            'Fire Medallion':   "the \x05\x41Fire Medallion\x05\x40",
-            'Water Medallion':  "the \x05\x43Water Medallion\x05\x40",
-            'Spirit Medallion': "the \x05\x46Spirit Medallion\x05\x40",
-            'Shadow Medallion': "the \x05\x45Shadow Medallion\x05\x40",
-            'Light Medallion':  "the \x05\x44Light Medallion\x05\x40",
-        }
-        reward_text = reward_texts.get(location.item.name, f'\x05\x43{reward_text}\x05\x40')
-        new_message = f"\x08Princess Ruto got \x01{reward_text}!\x01But why Princess Ruto?\x02"
+        reward_color = REWARD_COLORS.get(location.item.name, 'Blue')
+        new_message = f"\x08Princess Ruto got \x01\x05{COLOR_MAP[reward_color]}{reward_text}\x05\x40!\x01But why Princess Ruto?\x02"
     update_message_by_id(messages, 0x4050, new_message)
 
     # Set Dungeon Reward Actor in Jabu Jabu to be accurate
@@ -1927,12 +1989,12 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
     # Patch songs and boss rewards
     for location in world.get_filled_locations():
-        item = location.item
-        special = item.special
-        locationaddress = location.address
-        secondaryaddress = location.address2
-
         if location.type == 'Song' and not songs_as_items:
+            item = location.item
+            special = item.special
+            locationaddress = location.address
+            secondaryaddress = location.address2
+
             bit_mask_pointer = 0x8C34 + ((special['item_id'] - 0x65) * 4)
             rom.write_byte(locationaddress, special['song_id'])
             next_song_id = special['song_id'] + 0x0D
@@ -1970,17 +2032,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
                 rom.write_byte(0x2000FED, special['text_id'])  # Fix text box
             elif location.name == 'Sheik at Colossus':
                 rom.write_byte(0x218C589, special['text_id'])  # Fix text box
-        elif location.type == 'Boss' and location.name != 'Links Pocket':
-            rom.write_byte(locationaddress, special['item_id'])
-            rom.write_byte(secondaryaddress, special['addr2_data'])
-            bit_mask_hi = special['bit_mask'] >> 16
-            bit_mask_lo = special['bit_mask'] & 0xFFFF
-            if location.name == 'Bongo Bongo':
-                rom.write_int16(0xCA3F32, bit_mask_hi)
-                rom.write_int16(0xCA3F36, bit_mask_lo)
-            elif location.name == 'Twinrova':
-                rom.write_int16(0xCA3EA2, bit_mask_hi)
-                rom.write_int16(0xCA3EA6, bit_mask_lo)
 
     # add a cheaper bombchu pack to the bombchu shop
     # describe
@@ -2351,63 +2402,45 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
     # give dungeon items the correct messages
     add_item_messages(messages, shop_items, world)
-    if world.settings.enhance_map_compass:
-        reward_list = {
-            'Kokiri Emerald':   "\x05\x42Kokiri Emerald\x05\x40",
-            'Goron Ruby':       "\x05\x41Goron Ruby\x05\x40",
-            'Zora Sapphire':    "\x05\x43Zora Sapphire\x05\x40",
-            'Forest Medallion': "\x05\x42Forest Medallion\x05\x40",
-            'Fire Medallion':   "\x05\x41Fire Medallion\x05\x40",
-            'Water Medallion':  "\x05\x43Water Medallion\x05\x40",
-            'Spirit Medallion': "\x05\x46Spirit Medallion\x05\x40",
-            'Shadow Medallion': "\x05\x45Shadow Medallion\x05\x40",
-            'Light Medallion':  "\x05\x44Light Medallion\x05\x40",
-        }
+    if world.settings.enhance_map_compass and world.settings.shuffle_mapcompass != 'remove' and world.settings.world_count == 1:
         dungeon_list = {
-            #                      dungeon name                      boss name        compass map
-            'Deku Tree':          ("the \x05\x42Deku Tree",          'Queen Gohma',   0x62, 0x88),
-            'Dodongos Cavern':    ("\x05\x41Dodongo\'s Cavern",      'King Dodongo',  0x63, 0x89),
-            'Jabu Jabus Belly':   ("\x05\x43Jabu Jabu\'s Belly",     'Barinade',      0x64, 0x8a),
-            'Forest Temple':      ("the \x05\x42Forest Temple",      'Phantom Ganon', 0x65, 0x8b),
-            'Fire Temple':        ("the \x05\x41Fire Temple",        'Volvagia',      0x7c, 0x8c),
-            'Water Temple':       ("the \x05\x43Water Temple",       'Morpha',        0x7d, 0x8e),
-            'Spirit Temple':      ("the \x05\x46Spirit Temple",      'Twinrova',      0x7e, 0x8f),
-            'Ice Cavern':         ("the \x05\x44Ice Cavern",         None,            0x87, 0x92),
-            'Bottom of the Well': ("the \x05\x45Bottom of the Well", None,            0xa2, 0xa5),
-            'Shadow Temple':      ("the \x05\x45Shadow Temple",      'Bongo Bongo',   0x7f, 0xa3),
+            #                      dungeon name                      compass map
+            'Deku Tree':          ("the \x05\x42Deku Tree",          0x62, 0x88),
+            'Dodongos Cavern':    ("\x05\x41Dodongo\'s Cavern",      0x63, 0x89),
+            'Jabu Jabus Belly':   ("\x05\x43Jabu Jabu\'s Belly",     0x64, 0x8a),
+            'Forest Temple':      ("the \x05\x42Forest Temple",      0x65, 0x8b),
+            'Fire Temple':        ("the \x05\x41Fire Temple",        0x7c, 0x8c),
+            'Water Temple':       ("the \x05\x43Water Temple",       0x7d, 0x8e),
+            'Spirit Temple':      ("the \x05\x46Spirit Temple",      0x7e, 0x8f),
+            'Ice Cavern':         ("the \x05\x44Ice Cavern",         0x87, 0x92),
+            'Bottom of the Well': ("the \x05\x45Bottom of the Well", 0xa2, 0xa5),
+            'Shadow Temple':      ("the \x05\x45Shadow Temple",      0x7f, 0xa3),
         }
-        for dungeon in world.dungeon_mq:
-            if dungeon in ('Gerudo Training Ground', 'Ganons Castle'):
+        for dungeon in world.dungeons:
+            if dungeon.name in ('Gerudo Training Ground', 'Ganons Castle'):
                 pass
-            elif dungeon in ('Bottom of the Well', 'Ice Cavern'):
-                dungeon_name, boss_name, compass_id, map_id = dungeon_list[dungeon]
-                if world.settings.world_count > 1:
-                    map_message = "\x13\x76\x08\x05\x42\x0F\x05\x40 found the \x05\x41Dungeon Map\x05\x40\x01for %s\x05\x40!\x09" % dungeon_name
-                else:
-                    map_message = "\x13\x76\x08You found the \x05\x41Dungeon Map\x05\x40\x01for %s\x05\x40!\x01It\'s %s!\x09" % (dungeon_name, "masterful" if world.dungeon_mq[dungeon] else "ordinary")
+            elif dungeon.name in ('Bottom of the Well', 'Ice Cavern'):
+                dungeon_name, compass_id, map_id = dungeon_list[dungeon.name]
+                map_message = f"\x13\x76\x08You found the \x05\x41Dungeon Map\x05\x40\x01for {dungeon_name}\x05\x40!\x01It\'s {'masterful' if world.dungeon_mq[dungeon.name] else 'ordinary'}!\x09"
 
                 if world.settings.mq_dungeons_mode == 'random' or world.settings.mq_dungeons_count != 0 and world.settings.mq_dungeons_count != 12:
                     update_message_by_id(messages, map_id, map_message)
             else:
-                dungeon_name, boss_name, compass_id, map_id = dungeon_list[dungeon]
-                if world.settings.world_count > 1:
-                    compass_message = "\x13\x75\x08\x05\x42\x0F\x05\x40 found the \x05\x41Compass\x05\x40\x01for %s\x05\x40!\x09" % (dungeon_name)
-                elif world.mixed_pools_bosses: #TODO also enable if boss reward shuffle is on
-                    vanilla_reward = world.get_location(boss_name).vanilla_item
+                dungeon_name, compass_id, map_id = dungeon_list[dungeon.name]
+                if world.mixed_pools_bosses or world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'):
+                    vanilla_reward = world.get_location(dungeon.vanilla_boss_name).vanilla_item
                     vanilla_reward_location = world.hinted_dungeon_reward_locations[vanilla_reward]
                     area = HintArea.at(vanilla_reward_location)
-                    area = GossipText(area.text(world.settings.clearer_hints, preposition=True), [area.color], prefix='')
-                    compass_message = "\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for %s\x05\x40!\x01The %s can be found\x01%s!\x09" % (dungeon_name, vanilla_reward, area) #TODO figure out why the player name isn't being displayed
+                    area = GossipText(area.text(world.settings.clearer_hints, preposition=True, use_2nd_persion=True), [area.color], prefix='', capitalize=False)
+                    compass_message = f"\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for {dungeon_name}\x05\x40!\x01The {vanilla_reward} can be found\x01{area}!\x09"
                 else:
-                    boss_location = next(filter(lambda loc: loc.type == 'Boss', world.get_entrance(f'{dungeon} Before Boss -> {boss_name} Boss Room').connected_region.locations))
-                    dungeon_reward = reward_list[boss_location.item.name]
-                    compass_message = "\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for %s\x05\x40!\x01It holds the %s!\x09" % (dungeon_name, dungeon_reward)
-                update_message_by_id(messages, compass_id, compass_message)
+                    boss_location = next(filter(lambda loc: loc.type == 'Boss', world.get_entrance(f'{dungeon} Before Boss -> {dungeon.vanilla_boss_name} Boss Room').connected_region.locations))
+                    dungeon_reward = boss_location.item.name
+                    compass_message = f"\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for {dungeon_name}\x05\x40!\x01It holds the \x05{COLOR_MAP[REWARD_COLORS[dungeon_reward]]}{dungeon_reward}\x05\x40!\x09"
+                if world.settings.shuffle_dungeon_rewards != 'dungeon':
+                    update_message_by_id(messages, compass_id, compass_message)
                 if world.settings.mq_dungeons_mode == 'random' or world.settings.mq_dungeons_count != 0 and world.settings.mq_dungeons_count != 12:
-                    if world.settings.world_count > 1:
-                        map_message = "\x13\x76\x08\x05\x42\x0F\x05\x40 found the \x05\x41Dungeon Map\x05\x40\x01for %s\x05\x40!\x09" % dungeon_name
-                    else:
-                        map_message = "\x13\x76\x08You found the \x05\x41Dungeon Map\x05\x40\x01for %s\x05\x40!\x01It\'s %s!\x09" % (dungeon_name, "masterful" if world.dungeon_mq[dungeon] else "ordinary")
+                    map_message = f"\x13\x76\x08You found the \x05\x41Dungeon Map\x05\x40\x01for {dungeon_name}\x05\x40!\x01It\'s {'masterful' if world.dungeon_mq[dungeon.name] else 'ordinary'}!\x09"
                     update_message_by_id(messages, map_id, map_message)
 
     # Set hints on the altar inside ToT
@@ -2713,7 +2746,7 @@ def get_override_entry(location: Location) -> Optional[OverrideEntry]:
     else:
         looks_like_item_id = 0
 
-    if location.type in ('NPC', 'Scrub', 'BossHeart'):
+    if location.type in ('NPC', 'Scrub', 'BossHeart', 'Boss'):
         type = 0
     elif location.type == 'Chest':
         type = 1
@@ -3136,12 +3169,15 @@ def configure_dungeon_info(rom: Rom, world: World) -> None:
 
     dungeon_rewards = [0xff] * 14
     dungeon_reward_areas = bytearray()
-    for reward in ('Kokiri Emerald', 'Goron Ruby', 'Zora Sapphire', 'Light Medallion', 'Forest Medallion', 'Fire Medallion', 'Water Medallion', 'Shadow Medallion', 'Spirit Medallion'):
-        location = next(filter(lambda loc: loc.item.name == reward, world.get_filled_locations()))
-        area = HintArea.at(location)
-        dungeon_reward_areas += area.short_name.encode('ascii').ljust(0x16) + b'\0'
-        if area.is_dungeon:
-            dungeon_rewards[codes.index(area.dungeon_name)] = boss_reward_index(location.item)
+    dungeon_reward_worlds = []
+    if world.dungeon_rewards_hinted:
+        for reward in REWARD_COLORS:
+            location = world.hinted_dungeon_reward_locations[reward]
+            area = HintArea.at(location)
+            dungeon_reward_areas += area.short_name.encode('ascii').ljust(0x16) + b'\0'
+            dungeon_reward_worlds.append(location.world.id + 1)
+            if location.world.id == world.id and area.is_dungeon:
+                dungeon_rewards[codes.index(area.dungeon_name)] = boss_reward_index(location.item)
 
     dungeon_is_mq = [1 if world.dungeon_mq.get(c) else 0 for c in codes]
 
@@ -3149,12 +3185,14 @@ def configure_dungeon_info(rom: Rom, world: World) -> None:
     rom.write_int32(rom.sym('CFG_DUNGEON_INFO_MQ_ENABLE'), int(mq_enable))
     rom.write_int32(rom.sym('CFG_DUNGEON_INFO_MQ_NEED_MAP'), int(enhance_map_compass))
     rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_ENABLE'), int('altar' in world.settings.misc_hints or enhance_map_compass))
-    rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_NEED_COMPASS'), (2 if world.mixed_pools_bosses else 1) if enhance_map_compass else 0) #TODO also set to 2 if boss reward shuffle is on
-    rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_NEED_ALTAR'), int(not enhance_map_compass))
-    rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_SUMMARY_ENABLE'), int(not world.mixed_pools_bosses)) #TODO also set to 0 if boss reward shuffle is on
+    rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_NEED_COMPASS'), (2 if world.mixed_pools_bosses or world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward') else 1) if enhance_map_compass and world.settings.shuffle_dungeon_rewards != 'dungeon' else 0)
+    rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_NEED_ALTAR'), int(not enhance_map_compass and world.settings.shuffle_dungeon_rewards != 'dungeon'))
+    rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_SUMMARY_ENABLE'), int(not world.mixed_pools_bosses and world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward')))
     rom.write_bytes(rom.sym('CFG_DUNGEON_REWARDS'), dungeon_rewards)
     rom.write_bytes(rom.sym('CFG_DUNGEON_IS_MQ'), dungeon_is_mq)
     rom.write_bytes(rom.sym('CFG_DUNGEON_REWARD_AREAS'), dungeon_reward_areas)
+    rom.write_byte(rom.sym('CFG_DUNGEON_INFO_REWARD_WORLDS_ENABLE'), int(world.settings.world_count > 1 and world.settings.shuffle_dungeon_rewards in ('regional', 'overworld', 'any_dungeon', 'anywhere')))
+    rom.write_bytes(rom.sym('CFG_DUNGEON_REWARD_WORLDS'), dungeon_reward_worlds)
 
 
 # Overwrite an actor in rom w/ the actor data from LocationList

@@ -309,7 +309,7 @@ class Copier:
             self.worlds[id(world)] = world.copy()
             for dungeon in world.dungeons:
                 self.dungeons[id(dungeon)] = dungeon.copy()
-                for item in chain(dungeon.boss_key, dungeon.small_keys, dungeon.dungeon_items, dungeon.silver_rupees):
+                for item in chain(dungeon.boss_key, dungeon.small_keys, dungeon.dungeon_items, dungeon.silver_rupees, dungeon.reward):
                     if id(item) in self.items:
                         continue
                     self.items[id(item)] = item.copy()
@@ -343,6 +343,7 @@ class Copier:
             dungeon.small_keys = [self.items.get(id(item), item) for item in dungeon.small_keys]
             dungeon.dungeon_items = [self.items.get(id(item), item) for item in dungeon.dungeon_items]
             dungeon.silver_rupees = [self.items.get(id(item), item) for item in dungeon.silver_rupees]
+            dungeon.reward = [self.items.get(id(item), item) for item in dungeon.reward]
 
         for region in self.regions.values():
             region.world = self.worlds.get(id(region.world), region.world)

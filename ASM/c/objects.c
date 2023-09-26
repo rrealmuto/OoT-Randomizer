@@ -27,8 +27,8 @@ void enitem00_set_link_incoming_item_id(z64_actor_t *actor, z64_game_t *game, in
 {
     EnItem00 *this = (EnItem00 *)actor;
 
-    // Run z64_ActorSetLinkIncomingItemId regardless of FIX_BROKEN_DROPS
-    if (!z64_ActorSetLinkIncomingItemId(&this->actor, game, incoming_item_id, 50.0f, 10.0f) && FIX_BROKEN_DROPS)
+    // Run z64_ActorOfferGetItem regardless of FIX_BROKEN_DROPS
+    if (!z64_ActorOfferGetItem(&this->actor, game, incoming_item_id, 50.0f, 10.0f) && FIX_BROKEN_DROPS)
     {
         switch (incoming_item_id)
         {

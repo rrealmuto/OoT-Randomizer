@@ -15,6 +15,7 @@ from urllib.error import URLError, HTTPError
 from HintList import Hint, get_hint, get_multi, get_hint_group, get_upgrade_hint_list, hint_exclusions, \
     misc_item_hint_table, misc_location_hint_table
 from Item import Item, make_event_item
+from ItemList import REWARD_COLORS
 from ItemPool import triforce_pieces
 from Messages import Message, COLOR_MAP, update_message_by_id
 from Region import Region
@@ -28,6 +29,7 @@ else:
     TypeAlias = str
 
 if TYPE_CHECKING:
+    from Dungeon import Dungeon
     from Entrance import Entrance
     from Goals import GoalCategory
     from Location import Location
@@ -51,20 +53,24 @@ defaultHintDists: list[str] = [
     'chaos.json',
     'coop2.json',
     'ddr.json',
+    'ice_percent.json',
     'important_checks.json',
     'league.json',
+    'mixed_pools.json',
     'mw3.json',
     'mw3_woth.json',
     'scrubs.json',
     'strong.json',
     'tournament.json',
+    'tournament_s3.json',
+    'tournament_s6.json',
     'useless.json',
     'very_strong.json',
     'very_strong_magic.json',
     'weekly.json',
 ]
 
-unHintableWothItems: set[str] = {*triforce_pieces, 'Gold Skulltula Token', 'Piece of Heart', 'Piece of Heart (Treasure Chest Game)', 'Heart Container'}
+unHintableWothItems: set[str] = {*REWARD_COLORS, *triforce_pieces, 'Gold Skulltula Token', 'Piece of Heart', 'Piece of Heart (Treasure Chest Game)', 'Heart Container'}
 
 
 class RegionRestriction(Enum):
@@ -82,9 +88,10 @@ class GossipStone:
 
 class GossipText:
     def __init__(self, text: str, colors: Optional[list[str]] = None, hinted_locations: Optional[list[str]] = None,
-                 hinted_items: Optional[list[str]] = None, prefix: str = "They say that ") -> None:
+                 hinted_items: Optional[list[str]] = None, prefix: str = "They say that ", capitalize: bool = True) -> None:
         text = prefix + text
-        text = text[:1].upper() + text[1:]
+        if capitalize:
+            text = text[:1].upper() + text[1:]
         self.text: str = text
         self.colors: Optional[list[str]] = colors
         self.hinted_locations: Optional[list[str]] = hinted_locations
@@ -163,7 +170,7 @@ gossipLocations_reversemap: dict[str, int] = {
 
 
 def get_item_generic_name(item: Item) -> str:
-    if item.unshuffled_dungeon_item:
+    if item.unshuffled_dungeon_item and item.type != 'DungeonReward':
         return item.type
     else:
         return item.name
@@ -177,7 +184,8 @@ def is_restricted_dungeon_item(item: Item) -> bool:
         (item.type == 'SmallKey' and item.world.settings.shuffle_smallkeys == 'dungeon') or
         (item.type == 'BossKey' and item.world.settings.shuffle_bosskeys == 'dungeon') or
         (item.type == 'GanonBossKey' and item.world.settings.shuffle_ganon_bosskey == 'dungeon') or
-        (item.type == 'SilverRupee' and item.world.settings.shuffle_silver_rupees == 'dungeon')
+        (item.type == 'SilverRupee' and item.world.settings.shuffle_silver_rupees == 'dungeon') or
+        (item.type == 'DungeonReward' and item.world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward', 'dungeon'))
     )
 
 
@@ -498,6 +506,11 @@ class HintArea(Enum):
     def is_dungeon(self) -> bool:
         return self.dungeon_name is not None
 
+    def dungeon(self, world: World) -> Optional[Dungeon]:
+        dungeons = [dungeon for dungeon in world.dungeons if dungeon.name == self.dungeon_name]
+        if dungeons:
+            return dungeons[0]
+
     def is_dungeon_item(self, item: Item) -> bool:
         for dungeon in item.world.dungeons:
             if dungeon.name == self.dungeon_name:
@@ -506,7 +519,7 @@ class HintArea(Enum):
 
     # Formats the hint text for this area with proper grammar.
     # Dungeons are hinted differently depending on the clearer_hints setting.
-    def text(self, clearer_hints: bool, preposition: bool = False, world: Optional[int] = None) -> str:
+    def text(self, clearer_hints: bool, preposition: bool = False, use_2nd_person: bool = False, world: Optional[int] = None) -> str:
         if self.is_dungeon and self.dungeon_name:
             text = get_hint(self.dungeon_name, clearer_hints).text
         else:
@@ -514,7 +527,10 @@ class HintArea(Enum):
         prefix, suffix = text.replace('#', '').split(' ', 1)
         if world is None:
             if prefix == "Link's":
-                text = f"@'s {suffix}"
+                if use_2nd_person:
+                    text = f'your {suffix}'
+                else:
+                    text = f"@'s {suffix}"
         else:
             replace_prefixes = ('a', 'an', 'the')
             move_prefixes = ('outside', 'inside')
@@ -565,7 +581,7 @@ def get_checked_areas(world: World, checked: set[str]) -> set[HintArea | str]:
         except Exception:
             return check
         # Don't consider dungeons as already hinted from the reward hint on the Temple of Time altar
-        if location.type != 'Boss':  # TODO or shuffled dungeon rewards
+        if location.type != 'Boss' or world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'):
             return HintArea.at(location)
 
     return set(get_area_from_name(check) for check in checked)
@@ -929,7 +945,7 @@ def get_specific_item_hint(spoiler: Spoiler, world: World, checked: set[str]) ->
 def get_random_location_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintReturn:
     locations = list(filter(lambda location:
         is_not_checked([location], checked)
-        and location.item.type not in ('Drop', 'Event', 'Shop', 'DungeonReward')
+        and location.item.type not in ('Drop', 'Event', 'Shop')
         and not is_restricted_dungeon_item(location.item)
         and not location.locked
         and location.name not in world.hint_exclusions
@@ -1249,15 +1265,51 @@ def always_named_item(world: World, locations: Iterable[Location]):
 
 
 def build_gossip_hints(spoiler: Spoiler, worlds: list[World]) -> None:
+    from Dungeon import Dungeon
+
     checked_locations = dict()
     # Add misc. item hint locations to "checked" locations if the respective hint is reachable without the hinted item.
     for world in worlds:
         for location in world.hinted_dungeon_reward_locations.values():
-            if 'altar' in world.settings.misc_hints and not world.settings.enhance_map_compass and can_reach_hint(worlds, world.get_location('ToT Child Altar Hint' if location.item.info.stone else 'ToT Adult Altar Hint'), location):
-                item_world = location.world
-                if item_world.id not in checked_locations:
-                    checked_locations[item_world.id] = set()
-                checked_locations[item_world.id].add(location.name)
+            if world.settings.enhance_map_compass:
+                if world.mixed_pools_bosses or world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'):
+                    # In these settings, there is not necessarily one dungeon reward in each dungeon,
+                    # so we instead have each compass hint the area of its dungeon's vanilla reward.
+                    compass_locations = [
+                        compass_location
+                        for compass_world in worlds
+                        for compass_location in compass_world.get_filled_locations()
+                        if Dungeon.from_vanilla_reward(location.item) is None # Light Medallion area is shown in menu from beginning of game
+                        or (
+                            compass_location.item.name == Dungeon.from_vanilla_reward(location.item).item_name('Compass')
+                            and compass_location.item.world == world
+                        )
+                    ]
+                else:
+                    # Each compass hints which reward is in its dungeon.
+                    compass_locations = [
+                        compass_location
+                        for compass_world in worlds
+                        for compass_location in compass_world.get_filled_locations()
+                        if HintArea.at(location).dungeon_name is None # free/ToT reward is shown in menu from beginning of game
+                        or (
+                            compass_location.item.name == HintArea.at(location).dungeon(location.world).item_name('Compass')
+                            and compass_location.item.world == world
+                        )
+                    ]
+                for compass_location in compass_locations:
+                    if can_reach_hint(worlds, compass_location, location):
+                        item_world = location.world
+                        if item_world.id not in checked_locations:
+                            checked_locations[item_world.id] = set()
+                        checked_locations[item_world.id].add(location.name)
+                        break
+            else:
+                if 'altar' in world.settings.misc_hints and can_reach_hint(worlds, world.get_location('ToT Child Altar Hint' if location.item.info.stone else 'ToT Adult Altar Hint'), location):
+                    item_world = location.world
+                    if item_world.id not in checked_locations:
+                        checked_locations[item_world.id] = set()
+                    checked_locations[item_world.id].add(location.name)
         for hint_type, location in world.misc_hint_item_locations.items():
             if hint_type in world.settings.misc_hints and can_reach_hint(worlds, world.get_location(misc_item_hint_table[hint_type]['hint_location']), location):
                 item_world = location.world
@@ -1591,11 +1643,11 @@ def build_altar_hints(world: World, messages: list[Message], include_rewards: bo
     # text that appears at altar as a child.
     child_text = '\x08'
     if include_rewards:
-        boss_rewards_spiritual_stones = [
-            ('Kokiri Emerald',   'Green'),
-            ('Goron Ruby',       'Red'),
-            ('Zora Sapphire',    'Blue'),
-        ]
+        boss_rewards_spiritual_stones = [(reward, REWARD_COLORS[reward]) for reward in (
+            'Kokiri Emerald',
+            'Goron Ruby',
+            'Zora Sapphire',
+        )]
         child_text += get_hint('Spiritual Stone Text Start', world.settings.clearer_hints).text + '\x04'
         for (reward, color) in boss_rewards_spiritual_stones:
             child_text += build_boss_string(reward, color, world)
@@ -1607,14 +1659,14 @@ def build_altar_hints(world: World, messages: list[Message], include_rewards: bo
     adult_text = '\x08'
     adult_text += get_hint('Adult Altar Text Start', world.settings.clearer_hints).text + '\x04'
     if include_rewards:
-        boss_rewards_medallions = [
-            ('Light Medallion',  'Light Blue'),
-            ('Forest Medallion', 'Green'),
-            ('Fire Medallion',   'Red'),
-            ('Water Medallion',  'Blue'),
-            ('Shadow Medallion', 'Pink'),
-            ('Spirit Medallion', 'Yellow'),
-        ]
+        boss_rewards_medallions = [(reward, REWARD_COLORS[reward]) for reward in (
+            'Light Medallion',
+            'Forest Medallion',
+            'Fire Medallion',
+            'Water Medallion',
+            'Shadow Medallion',
+            'Spirit Medallion',
+        )]
         for (reward, color) in boss_rewards_medallions:
             adult_text += build_boss_string(reward, color, world)
     if include_wincons:
@@ -1637,7 +1689,7 @@ def build_boss_string(reward: str, color: str, world: World) -> str:
             text = GossipText(f"\x08\x13{item_icon}One in #@'s pocket#...", [color], prefix='')
     else:
         location = world.hinted_dungeon_reward_locations[reward]
-        location_text = HintArea.at(location).text(world.settings.clearer_hints, preposition=True)
+        location_text = HintArea.at(location).text(world.settings.clearer_hints, preposition=True, world=None if location.world.id == world.id else location.world.id + 1)
         text = GossipText(f"\x08\x13{item_icon}One {location_text}...", [color], prefix='')
     return str(text) + '\x04'
 

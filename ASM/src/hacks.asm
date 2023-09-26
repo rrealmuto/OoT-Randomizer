@@ -2016,6 +2016,176 @@ skip_bombchu_bowling_prize_switch:
     nop
 
 ;==================================================================================================
+; Blue Warps
+;==================================================================================================
+
+; Child blue warps
+; Replaces:
+;   jal     func_809056E8 ; DoorWarp1_PlayerInRange
+.orga 0xCA2F38 ; In Memory: 0x80905778
+    jal     DoorWarp1_PlayerInRange_Overwrite
+
+; Ruto blue warp
+; Replaces:
+;   jal     func_809056E8 ; DoorWarp1_PlayerInRange
+.orga 0xCA3404 ; In Memory: 0x80905C44
+    jal     DoorWarp1_PlayerInRange_Overwrite
+
+; Adult blue warps
+; Replaces:
+;   jal     func_809056E8 ; DoorWarp1_PlayerInRange
+.orga 0xCA3A10 ; In Memory: 0x80906250
+    jal     DoorWarp1_PlayerInRange_Overwrite
+
+; As the above replaces overlay functions with a global function,
+; Need to null out the reloc entries
+
+; Child blue warps
+; Replaces:
+;   .word   0x44001258
+.orga 0xCA5D4C
+.word   0x00000000
+
+; Ruto blue warp
+; Replaces:
+;   .word   0x44001724
+.orga 0xCA5D7C
+.word   0x00000000
+
+; Adult blue warps
+; Replaces:
+;   .word   0x44001D30
+.orga 0xCA5E08
+.word   0x00000000
+
+
+; Overwrite warp conditions for Shadow and Spirit medallions
+
+; Replaces:
+;   lui     t3, 0x8010
+;   lw      t3, -0x7404(t3)
+;   lw      t4, 0x00A4(v1)
+;   or      a0, s0, $zero
+;   addiu   a1, $zero, 0x0069
+;   and     t5, t3, t4
+.orga 0xCA3EA0 ; In Memory: 0x809066E0
+    nop
+    jal     DoorWarp1_IsSpiritRewardObtained
+    nop
+    or      t5, v0, $zero
+    or      a0, s0, $zero
+    addiu   a1, $zero, 0x0069
+
+; Replaces:
+;   lui     t2, 0x8010
+;   lw      t2, -0x7400(t2)
+;   lw      t3, 0x00A4(v1)
+;   or      a0, s0, $zero
+;   addiu   a1, $zero, 0x006A
+;   and     t4, t2, t3
+.orga 0xCA3F30 ; In Memory: 0x80906770
+    nop
+    jal     DoorWarp1_IsShadowRewardObtained
+    nop
+    or      t4, v0, $zero
+    or      a0, s0, $zero
+    addiu   a1, $zero, 0x006A
+
+
+; Overwrite Item_Give to set data and flags from skipped cutscenes
+
+
+; Kokiri Emerald
+
+; Replaces:
+;   jal     Item_Give
+.orga 0xCA3158 ; In Memory: 0x80905998
+    jal     DoorWarp1_KokiriEmerald_Overwrite
+.orga 0xCA3168
+    addiu   t5, $zero, 0x0457 ; nextEntranceIndex
+.orga 0xCA3174
+    ori     t6, $zero, 0 ; nextCutsceneIndex
+
+
+; Goron Ruby
+
+; Replaces:
+;   jal     Item_Give
+.orga 0xCA30D8 ; In Memory: 0x80905918
+    jal     DoorWarp1_GoronRuby_Overwrite
+.orga 0xCA30E8
+    addiu   t2, $zero, 0x047A ; nextEntranceIndex
+.orga 0xCA30F4
+    ori     t3, $zero, 0 ; nextCutsceneIndex
+
+
+; Zora Sapphire
+
+; Replaces:
+;   jal     Item_Give
+.orga 0xCA36F0 ; In Memory: 0x80905F30
+    jal     DoorWarp1_ZoraSapphire_Overwrite
+.orga 0xCA3710
+    ori     t5, $zero, 0 ; nextCutsceneIndex
+
+
+; Forest medallion
+
+; Replaces:
+;   jal     Item_Give
+.orga 0xCA3D18 ; In Memory: 0x80906558
+    jal     DoorWarp1_ForestMedallion_Overwrite
+; Set destination
+.orga 0xCA3D30
+    addiu   t3, $zero, 0x05E8 ; nextEntranceIndex
+
+
+; Fire medallion
+
+; Replaces:
+;   jal     Item_Give
+.orga 0xCA3DA4 ; In Memory: 0x809065E4
+    jal     DoorWarp1_FireMedallion_Overwrite
+; Set destination
+.orga 0xCA3DBC
+    addiu   t9, $zero, 0x0564 ; nextEntranceIndex
+.orga 0xCA3DC8
+    ori     t1, $zero, 0
+
+
+; Water medallion
+
+; Replaces:
+;   jal     Item_Give
+.orga 0xCA3E30 ; In Memory: 0x80906670
+    jal     DoorWarp1_WaterMedallion_Overwrite
+; Set destination
+.orga 0xCA3E48
+    addiu   t7, $zero, 0x04E6 ; nextEntranceIndex
+
+
+; Spirit medallion
+
+; Replaces:
+;   jal     Item_Give
+.orga 0xCA3EC0 ; In Memory: 0x80906700
+    jal     DoorWarp1_SpiritMedallion_Overwrite
+; Set destination
+.orga 0xCA3ED8
+    addiu   t6, $zero, 0x0610 ; nextEntranceIndex
+
+
+; Shadow medallion
+
+; Replaces:
+;   jal     Item_Give
+.orga 0xCA3F50 ; In Memory: 0x80906790
+    jal     DoorWarp1_ShadowMedallion_Overwrite
+; Set destination
+.orga 0xCA3F68
+    addiu   t5, $zero, 0x0580 ; nextEntranceIndex
+
+;==================================================================================================
 ; Correct Chest Sizes
 ;==================================================================================================
 
@@ -2700,7 +2870,7 @@ courtyard_guards_kill:
     jal     Static_ctxt_Init
 
 ;==================================================================================================
-; burning kak from any entrance to kak
+; burning kak from any entrance to kak (except the grottos)
 ;==================================================================================================
 ; Replaces: lw      t9, 0x0000(s0)
 ;           addiu   at, 0x01E1
@@ -3835,15 +4005,6 @@ courtyard_guards_kill:
 ; Replaces: addiu   t9, $zero, 0x0222
 .orga 0xDA1F94
     addiu   t9, $zero, 0x0221
-
-;===================================================================================================
-; Death Mountain cloud color checks for Volvagia flag
-;===================================================================================================
-; Replaces: lhu     t3, 0x0ED8(v0)
-;           andi    t4, t3, 0x8000
-.orga 0xD7C864
-    lhu     t3, 0x0EDC(v0)
-    andi    t4, t3, 0x0200
 
 ;===================================================================================================
 ; Prevent Gohma from being stunned when climbing
