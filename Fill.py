@@ -349,8 +349,9 @@ def fill_dungeon_unique_item(worlds: list[World], search: Search, fill_locations
         location.minor_only = True
 
     # Error out if we have any items that won't be placeable in the overworld left.
+    # Try both Kokiri Forest and Kakariko Village to account for item restrictions in Require Gohma.
     for item in major_items:
-        if not item.world.get_region('Root').can_fill(item):
+        if not item.world.get_region('Kokiri Forest').can_fill(item) and not item.world.get_region('Kakariko Village').can_fill(item):
             raise FillError(f"No more dungeon locations available for {item.name} to be placed with 'Dungeons Have One Major Item' enabled. To fix this, either disable 'Dungeons Have One Major Item' or enable some settings that add more locations for shuffled items in the overworld.")
 
     logger.info("Unique dungeon items placed")
