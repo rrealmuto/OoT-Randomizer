@@ -157,7 +157,8 @@
             "Ganons Castle Main": "True",
             "Ganons Castle Tower Below Boss": "
                 (is_adult or Kokiri_Sword) and
-                (Boss_Key_Ganons_Castle or (shuffle_pots != 'off'))"
+                (Boss_Key_Ganons_Castle or (shuffle_pots != 'off'))",
+            "Farores Wind Warp": "can_use(Farores_Wind)"
         }
     },
     {
