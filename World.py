@@ -76,8 +76,7 @@ class World:
 
         self.ensure_tod_access: bool = bool(self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or settings.spawn_positions)
         self.disable_trade_revert: bool = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or settings.adult_trade_shuffle
-        self.skip_child_zelda: bool = 'Zeldas Letter' not in settings.shuffle_child_trade and \
-                                      'Zeldas Letter' in self.distribution.starting_items
+        self.skip_child_zelda: bool = 'Zeldas Letter' not in settings.shuffle_child_trade and 'Zeldas Letter' in settings.starting_items
         self.selected_adult_trade_item: str = ''
         self.adult_trade_starting_inventory: str = ''
 
@@ -86,9 +85,18 @@ class World:
                  or settings.warp_songs or settings.spawn_positions)):
             self.settings.open_forest = 'closed_deku'
 
-        if settings.triforce_goal_per_world > settings.triforce_count_per_world:
+        self.triforce_goal: int = sum(
+            world_dist.settings.triforce_goal_per_world
+            for world_dist in settings.distribution.world_dists
+            if world_dist.settings.triforce_hunt
+        )
+        triforce_count = sum(
+            world_dist.settings.triforce_count_per_world
+            for world_dist in settings.distribution.world_dists
+            if world_dist.settings.triforce_hunt
+        )
+        if self.triforce_goal > triforce_count:
             raise ValueError("Triforces required cannot be more than the triforce count.")
-        self.triforce_goal: int = settings.triforce_goal_per_world * settings.world_count
 
         if settings.triforce_hunt:
             # Pin shuffle_ganon_bosskey to 'triforce' when triforce_hunt is enabled
@@ -341,7 +349,7 @@ class World:
         self.unlocked_goal_categories: dict[str, GoalCategory] = {name: category for (name, category) in self.goal_categories.items() if not category.lock_entrances}
 
     def copy(self) -> World:
-        new_world = World(self.id, self.settings, False)
+        new_world = World(self.id, self.settings.copy(), False)
 
         new_world.skipped_trials = copy.copy(self.skipped_trials)
         new_world.dungeon_mq = copy.copy(self.dungeon_mq)
