@@ -136,22 +136,18 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
     # Make new model files by splitting existing ones to fit into the get item memory slot
     zobj_splits = (
-        ('object_gi_jewel_emerald',  '0145A000', '0145D680', (0x1240, 0x10e0), 0x1AB), # Kokiri Emerald
-        ('object_gi_jewel_ruby',     '0145A000', '0145D680', (0x20a0, 0x1fb0), 0x1AC), # Goron Ruby
-        ('object_gi_jewel_sapphire', '0145A000', '0145D680', (0x3530, 0x3370), 0x1AD), # Zora Sapphire
-        ('object_gi_medal_light',    '014BB000', '014C0370', (0x5220, 0x0e18), 0x1AE), # Light Medallion
-        ('object_gi_medal_forest',   '014BB000', '014C0370', (0x0cb0, 0x0e18), 0x1AF), # Forest Medallion
-        ('object_gi_medal_fire',     '014BB000', '014C0370', (0x1af0, 0x0e18), 0x1B0), # Fire Medallion
-        ('object_gi_medal_water',    '014BB000', '014C0370', (0x2830, 0x0e18), 0x1B1), # Water Medallion
-        ('object_gi_medal_shadow',   '014BB000', '014C0370', (0x4330, 0x0e18), 0x1B2), # Shadow Medallion
-        ('object_gi_medal_spirit',   '014BB000', '014C0370', (0x3610, 0x0e18), 0x1B3), # Spirit Medallion
+        ('object_gi_jewel_emerald',  0x0145A000, 0x0145D680, (0x1240, 0x10E0), 0x1AB), # Kokiri Emerald
+        ('object_gi_jewel_ruby',     0x0145A000, 0x0145D680, (0x20A0, 0x1FB0), 0x1AC), # Goron Ruby
+        ('object_gi_jewel_sapphire', 0x0145A000, 0x0145D680, (0x3530, 0x3370), 0x1AD), # Zora Sapphire
+        ('object_gi_medal_light',    0x014BB000, 0x014C0370, (0x5220, 0x0E18), 0x1AE), # Light Medallion
+        ('object_gi_medal_forest',   0x014BB000, 0x014C0370, (0x0CB0, 0x0E18), 0x1AF), # Forest Medallion
+        ('object_gi_medal_fire',     0x014BB000, 0x014C0370, (0x1AF0, 0x0E18), 0x1B0), # Fire Medallion
+        ('object_gi_medal_water',    0x014BB000, 0x014C0370, (0x2830, 0x0E18), 0x1B1), # Water Medallion
+        ('object_gi_medal_shadow',   0x014BB000, 0x014C0370, (0x4330, 0x0E18), 0x1B2), # Shadow Medallion
+        ('object_gi_medal_spirit',   0x014BB000, 0x014C0370, (0x3610, 0x0E18), 0x1B3), # Spirit Medallion
     )
     for name, start, end, offsets, object_id in zobj_splits:
-        obj_file = File({
-            'Name': name,
-            'Start': start,
-            'End': end,
-        })
+        obj_file = File(name, start, end)
         seen = {}
         out = []
         out_size = 0
