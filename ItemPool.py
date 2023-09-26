@@ -772,11 +772,11 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
                 pass # handled in World.fill_bosses
             elif location.name == 'Links Pocket':
                 shuffle_item = True
+            elif world.settings.shuffle_dungeon_rewards in ('any_dungeon', 'overworld', 'regional', 'anywhere'):
+                shuffle_item = True
             else:
                 dungeon = Dungeon.from_vanilla_reward(ItemFactory(location.vanilla_item, world))
-                dungeon.reward.append(ItemFactory(item))
-                if world.settings.shuffle_dungeon_rewards in ('any_dungeon', 'overworld', 'regional'):
-                    dungeon.reward[-1].priority = True
+                dungeon.reward.append(ItemFactory(item, world))
 
         # Dungeon Items
         elif location.dungeon is not None:
