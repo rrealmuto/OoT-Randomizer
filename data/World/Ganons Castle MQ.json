@@ -15,6 +15,7 @@
         "region_name": "Ganons Castle Main",
         "dungeon": "Ganons Castle",
         "exits": {
+            "Ganons Castle Lobby": "True",
             "Ganons Castle Forest Trial": "here(is_adult or Kokiri_Sword)",
             "Ganons Castle Water Trial": "True",
             "Ganons Castle Shadow Trial": "is_adult",
