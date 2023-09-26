@@ -1319,7 +1319,7 @@ class World:
                 world_id = location.item.world.id
                 item = location.item
 
-                if ((not location.item.majoritem) or (location.item.name in self.exclude_item_list)) and \
+                if ((not location.item.majoritem) or (location.item.name in location.item.world.exclude_item_list)) and \
                     (location.item.name not in self.item_hint_type_overrides['barren']):
                     # Minor items are always useless in logic
                     continue
