@@ -311,7 +311,10 @@ def fill_dungeon_unique_item(worlds: list[World], search: Search, fill_locations
                 major_items.append(item)
 
         # place 1 item into the dungeon
-        fill_restrictive(worlds, base_search, dungeon_locations, major_items, 1)
+        try:
+            fill_restrictive(worlds, base_search, dungeon_locations, major_items, 1)
+        except FillError as e:
+            raise FillError(f'Could not place a major item in {dungeon} because there are no remaining locations in the dungeon. If you have excluded some of the locations in this dungeon, try reincluding one.') from e
 
         # update the location and item pool, removing any placed items and filled locations
         # the fact that you can remove items from a list you're iterating over is python magic

@@ -184,6 +184,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
     * `priority_stones`: When defined, gossip stones in this list will be given priority when placing the specified hint type, in the order they're defined. For example, if `ToT (Left)` and `ToT (Right)` are inserted into the `priority_stones` list, in that order, inside the dictionary for `always` hints, the first `always` hint will be placed on `ToT (Left)` and the second `always` hint will be placed on `ToT (Right)`.
   * New Dual hint for King Zora checks: Unfreezing him and trading the prescription for an eyeball frog.
   * The credits music can now be shuffled into the music pool.
+  * Many hints had clearer hints added and/or were reworded.
 * **Other**
   * When picking up a small key, the text box will now inform you how many you've found total.
   * The longstanding vanilla bug where using Din's Fire on a white bubble crashes the game has been fixed.
@@ -211,6 +212,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * Fix pause screen rendering causing graphical issues on some platforms.
   * Fix a long-standing bug where certain fanfares kill the currently-playing backgroud music.
   * Fix a bug which would cause the Lost Woods bridge ocarina check, if ocarinas are unshuffled and overworld Entrance Randomizer is disabled, to give a Fairy Ocarina when it should give the Ocarina of Time.
+  * Disallow excluding the bombchu bowling bombchu refill locations, since this didn't do anything.
 * **Hints**
   * Fix the cryptic hint for Ganon's Castle Boss Key.
   * Fix missing punctuation in dual hints.

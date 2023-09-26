@@ -86,7 +86,7 @@ fanfare_sequence_ids: tuple[tuple[str, int], ...] = (
     ("Zelda Turns Around", 0x51),
     ("Master Sword", 0x53),
     ("Door of Time", 0x59),
-    ("Gannons Rainbow Bridge", 0x5D),
+    ("Ganons Rainbow Bridge", 0x5D),
 )
 
 ocarina_sequence_ids: tuple[tuple[str, int], ...] = (
