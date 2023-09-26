@@ -28,7 +28,7 @@
             "Dodongos Cavern Upper Bridge Keese 2": "(has_soul(Keese)) and (can_use(Bow) or can_use(Slingshot) or at('Dodongos Cavern Climb', can_kill_keese))"
         },
         "exits": {
-            "Dodongos Cavern Lower Right Side": "has_explosives or Progressive_Strength_Upgrade",
+            "Dodongos Cavern Lower Right Side": "here(can_blast_or_smash or Progressive_Strength_Upgrade)",
             "Dodongos Cavern Torch Room": "is_adult",
             "Dodongos Cavern Staircase Room": "
                 at('Dodongos Cavern Torch Room', is_adult or Sticks or can_use(Dins_Fire))",
@@ -65,7 +65,7 @@
         },
         "exits": {
             "Dodongos Cavern Lower Lizalfos Fight": "True",
-            "Dodongos Cavern Side Room Before Lower Lizalfos" : "is_adult or has_explosives or Sticks or Slingshot or Boomerang or Kokiri_Sword"
+            "Dodongos Cavern Side Room Before Lower Lizalfos" : "here(can_blast_or_smash or can_kill_baby_dodongo)"
         }
     },
     {

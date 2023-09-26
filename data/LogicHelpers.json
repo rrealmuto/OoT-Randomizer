@@ -129,9 +129,7 @@
     "can_kill_baby_dodongo": "has_soul(Baby_Dodongo) and (is_adult or (Kokiri_Sword or Sticks or Slingshot or Boomerang or has_explosives))",
     "can_kill_stalfos": "has_soul(Stalfos) and (is_adult or Kokiri_Sword or Sticks)",
     "can_kill_peahat": "has_soul(Peahat) and is_child and ((at_night and Bombs and Deku_Shield) or (at_day and (Kokiri_Sword or Sticks or Slingshot)))",
-    "can_kill_flying_peahat": "has_soul(Peahat) and is_child and (
-            (at_day and Slingshot) or (at_night and Bombs and Deku_Shield) or
-            (at_day and at_night and (Kokiri_Sword or Sticks or Slingshot)))",
+    "can_kill_flying_peahat": "has_soul(Peahat) and is_child and ((at_day and Slingshot) or (at_night and Bombs and Deku_Shield))",
     "can_kill_iron_knuckle": "has_soul(Iron_Knuckle) and ((is_adult) or (is_child and (Bombs or Kokiri_Sword or Sticks)))",
 
     # Bridge Requirements
