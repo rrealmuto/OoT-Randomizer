@@ -25,6 +25,8 @@ uint32_t CHEST_SIZE_MATCH_CONTENTS = 0;
 uint32_t CHEST_SIZE_TEXTURE = 0;
 
 extern uint8_t CFG_GLITCHLESS_LOGIC;
+extern uint8_t SKULL_CHEST_SIZES;
+extern uint8_t HEART_CHEST_SIZES;
 
 extern Mtx_t* write_matrix_stack_top(z64_gfx_t* gfx);
 asm(".equ write_matrix_stack_top, 0x800AB900");
@@ -66,11 +68,11 @@ uint8_t wrong_chest_type(uint8_t chest_type, override_key_t override_key, int16_
         true, // GILDED_CHEST
         true, // SILVER_CHEST
         true, // GOLD_CHEST
-        // Get the skull and heart chest textures from the item table to make sure they have the correct sizes for the randomizer settings.
-        get_item_row(0x005B)->chest_type == SKULL_CHEST_SMALL,
-        get_item_row(0x005B)->chest_type == SKULL_CHEST_BIG,
-        get_item_row(0x003D)->chest_type == HEART_CHEST_SMALL,
-        get_item_row(0x003D)->chest_type == HEART_CHEST_BIG,
+        // Get the possible skull and heart chest sizes for all worlds according to the randomizer settings.
+        SKULL_CHEST_SIZES & 1, // SKULL_CHEST_SMALL
+        SKULL_CHEST_SIZES & 2, // SKULL_CHEST_BIG
+        HEART_CHEST_SIZES & 1, // HEART_CHEST_SMALL
+        HEART_CHEST_SIZES & 2, // HEART_CHEST_BIG
     };
     if (CHEST_SIZE_MATCH_CONTENTS && override_key.type == OVR_CHEST) {
         // classic CSMC, treat skull/heart chests as brown or gilded depending on wincons
@@ -95,6 +97,15 @@ uint8_t wrong_chest_type(uint8_t chest_type, override_key_t override_key, int16_
             case GOLD_CHEST:
                 chest_type = GOLD_CHEST;
                 break;
+        }
+    }
+    if (CHEST_TEXTURE_MATCH_CONTENTS || override_key.type != OVR_CHEST) {
+        // CTMC without sizes or not a chest, small and big skull/heart chests appear identically, don't include both in the allowed types
+        if (SKULL_CHEST_SIZES == 3) {
+            disallow_chest_type(allowed_types, SKULL_CHEST_BIG);
+        }
+        if (HEART_CHEST_SIZES == 3) {
+            disallow_chest_type(allowed_types, HEART_CHEST_BIG);
         }
     }
     bool restricted = override_key.type == OVR_CHEST && (CHEST_SIZE_MATCH_CONTENTS || CHEST_SIZE_TEXTURE) && (
@@ -127,6 +138,16 @@ uint8_t wrong_chest_type(uint8_t chest_type, override_key_t override_key, int16_
     }
     // must not be the same as the original type
     disallow_chest_type(allowed_types, chest_type);
+    if (CHEST_TEXTURE_MATCH_CONTENTS || override_key.type != OVR_CHEST) {
+        // CTMC without sizes or not a chest, small and big skull/heart chests appear identically
+        // disallowing the big equivalents of small chest_type is already handled above
+        if (chest_type == SKULL_CHEST_BIG) {
+            disallow_chest_type(allowed_types, SKULL_CHEST_SMALL);
+        }
+        if (chest_type == HEART_CHEST_BIG) {
+            disallow_chest_type(allowed_types, HEART_CHEST_SMALL);
+        }
+    }
     // Pick a random chest type that's not the same as the original.
     int num_allowed_chest_types = 0;
     for (int i = 0; i < NUM_CHEST_TYPES; i++) {

@@ -657,12 +657,12 @@ class TestEntranceRandomizer(unittest.TestCase):
         ]
         for filename in filenames:
             distribution_file = load_spoiler(os.path.join(test_dir, 'plando', filename + '.json'))
-            settings = load_settings(distribution_file['settings'], seed='TESTTESTTEST', filename=filename)
-            resolve_settings(settings)
+            base_settings = load_settings(distribution_file['settings'], seed='TESTTESTTEST', filename=filename)
+            _, world_settings = resolve_settings(base_settings)
             # Test for an entrance shuffle error during world validation.
             # If the test succeeds, this confirms Serenade and Prelude can be foolish.
             with self.assertRaises(EntranceShuffleError):
-                build_world_graphs(settings)
+                build_world_graphs(world_settings)
 
 
 class TestValidSpoilers(unittest.TestCase):

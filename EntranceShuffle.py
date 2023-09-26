@@ -437,7 +437,7 @@ def set_entrances(worlds: list[World], savewarps_to_connect: list[tuple[Entrance
             # Set entrance data for all entrances, even those we aren't shuffling
             set_all_entrances_data(world)
 
-    if worlds[0].entrance_shuffle:
+    if any(world.entrance_shuffle for world in worlds):
         shuffle_random_entrances(worlds)
 
     set_entrances_based_rules(worlds)
@@ -456,101 +456,104 @@ def shuffle_random_entrances(worlds: list[World]) -> None:
 
     # Shuffle all entrances within their own worlds
     for world in worlds:
+        if not world.entrance_shuffle:
+            continue
+
         # Determine entrance pools based on settings, to be shuffled in the order we set them by
         one_way_entrance_pools = OrderedDict()
         entrance_pools = OrderedDict()
         one_way_priorities = {}
 
-        if worlds[0].settings.shuffle_gerudo_valley_river_exit:
+        if world.settings.shuffle_gerudo_valley_river_exit:
             one_way_entrance_pools['OverworldOneWay'] = world.get_shufflable_entrances(type='OverworldOneWay')
 
-        if worlds[0].settings.owl_drops:
+        if world.settings.owl_drops:
             one_way_entrance_pools['OwlDrop'] = world.get_shufflable_entrances(type='OwlDrop')
 
-        if worlds[0].settings.spawn_positions:
+        if world.settings.spawn_positions:
             one_way_entrance_pools['Spawn'] = world.get_shufflable_entrances(type='Spawn')
-            if 'child' not in worlds[0].settings.spawn_positions:
+            if 'child' not in world.settings.spawn_positions:
                 one_way_entrance_pools['Spawn'].remove(world.get_entrance('Child Spawn -> KF Links House'))
-            elif 'adult' not in worlds[0].settings.spawn_positions:
+            elif 'adult' not in world.settings.spawn_positions:
                 one_way_entrance_pools['Spawn'].remove(world.get_entrance('Adult Spawn -> Temple of Time'))
 
-        if worlds[0].settings.warp_songs:
+        if world.settings.warp_songs:
             one_way_entrance_pools['WarpSong'] = world.get_shufflable_entrances(type='WarpSong')
-            if worlds[0].settings.reachable_locations != 'beatable' and worlds[0].settings.logic_rules == 'glitchless':
+            if world.settings.reachable_locations != 'beatable' and world.settings.logic_rules == 'glitchless':
                 # In glitchless, there aren't any other ways to access these areas
-                wincons = {worlds[0].settings.bridge, worlds[0].settings.shuffle_ganon_bosskey}
-                if worlds[0].settings.shuffle_ganon_bosskey == 'on_lacs':
-                    wincons.add(worlds[0].settings.lacs_condition)
-                if worlds[0].settings.shuffle_dungeon_rewards != 'dungeon' and (
-                    worlds[0].settings.shuffle_dungeon_rewards not in ('vanilla', 'reward')
-                    or worlds[0].mixed_pools_bosses
+                wincons = {world.settings.bridge, world.settings.shuffle_ganon_bosskey}
+                if world.settings.shuffle_ganon_bosskey == 'on_lacs':
+                    wincons.add(world.settings.lacs_condition)
+                if world.settings.shuffle_dungeon_rewards != 'dungeon' and (
+                    world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward')
+                    or world.mixed_pools_bosses
                 ):
                     wincons -= {'dungeons', 'stones', 'medallions'}
                 if (
-                    worlds[0].settings.reachable_locations == 'all'
-                    or ('tokens' in wincons and worlds[0].settings.tokensanity in ('off', 'dungeons'))
+                    world.settings.reachable_locations == 'all'
+                    or ('tokens' in wincons and world.settings.tokensanity in ('off', 'dungeons'))
                 ):
                     one_way_priorities['Bolero'] = priority_entrance_table['Bolero']
                 if (
-                    worlds[0].settings.reachable_locations == 'all'
+                    world.settings.reachable_locations == 'all'
                     or 'dungeons' in wincons
                     or ('stones' in wincons and 'medallions' in wincons)
-                    or ('tokens' in wincons and worlds[0].settings.tokensanity in ('off', 'overworld'))
+                    or ('tokens' in wincons and world.settings.tokensanity in ('off', 'overworld'))
                 ):
                     one_way_priorities['Nocturne'] = priority_entrance_table['Nocturne']
                 if (
-                    not worlds[0].shuffle_dungeon_entrances
-                    and not worlds[0].settings.shuffle_overworld_entrances
-                    and not worlds[0].shuffle_special_interior_entrances
+                    not world.shuffle_dungeon_entrances
+                    and not world.settings.shuffle_overworld_entrances
+                    and not world.shuffle_special_interior_entrances
                     and (
-                        worlds[0].settings.reachable_locations == 'all'
+                        world.settings.reachable_locations == 'all'
                         or 'dungeons' in wincons
                         or ('stones' in wincons and 'medallions' in wincons)
-                        or ('tokens' in wincons and worlds[0].settings.tokensanity != 'all')
+                        or ('tokens' in wincons and world.settings.tokensanity != 'all')
                     )
                 ):
                     one_way_priorities['Requiem'] = priority_entrance_table['Requiem']
 
-        if worlds[0].settings.shuffle_bosses == 'full':
+        if world.settings.shuffle_bosses == 'full':
             entrance_pools['Boss'] = world.get_shufflable_entrances(type='ChildBoss', only_primary=True)
             entrance_pools['Boss'] += world.get_shufflable_entrances(type='AdultBoss', only_primary=True)
             if world.settings.require_gohma and not world.settings.open_deku:
                 # With both Require Gohma and Closed Deku, we want to require sword and shield to enter Gohma's room.
                 entrance_pools['Boss'].remove(world.get_entrance('Deku Tree Before Boss -> Queen Gohma Boss Room'))
-        elif worlds[0].settings.shuffle_bosses == 'limited':
+        elif world.settings.shuffle_bosses == 'limited':
             entrance_pools['ChildBoss'] = world.get_shufflable_entrances(type='ChildBoss', only_primary=True)
             entrance_pools['AdultBoss'] = world.get_shufflable_entrances(type='AdultBoss', only_primary=True)
             if world.settings.require_gohma and not world.settings.open_deku:
                 # With both Require Gohma and Closed Deku, we want to require sword and shield to enter Gohma's room.
                 entrance_pools['ChildBoss'].remove(world.get_entrance('Deku Tree Before Boss -> Queen Gohma Boss Room'))
 
-        if worlds[0].shuffle_dungeon_entrances:
+        if world.shuffle_dungeon_entrances:
             entrance_pools['Dungeon'] = world.get_shufflable_entrances(type='Dungeon', only_primary=True)
             if world.settings.require_gohma and not world.settings.open_deku:
                 # With both Require Gohma and Closed Deku, we want to require sword and shield to enter Deku.
                 entrance_pools['Dungeon'].remove(world.get_entrance('KF Outside Deku Tree -> Deku Tree Lobby'))
-            if worlds[0].shuffle_special_dungeon_entrances:
+            if world.shuffle_special_dungeon_entrances:
                 entrance_pools['Dungeon'] += world.get_shufflable_entrances(type='DungeonSpecial', only_primary=True)
-            if worlds[0].settings.decouple_entrances:
+            if world.settings.decouple_entrances:
                 entrance_pools['DungeonReverse'] = [entrance.reverse for entrance in entrance_pools['Dungeon']]
 
-        if worlds[0].shuffle_interior_entrances:
+        if world.shuffle_interior_entrances:
             entrance_pools['Interior'] = world.get_shufflable_entrances(type='Interior', only_primary=True)
-            if worlds[0].shuffle_special_interior_entrances:
+            if world.shuffle_special_interior_entrances:
                 entrance_pools['Interior'] += world.get_shufflable_entrances(type='SpecialInterior', only_primary=True)
-            if worlds[0].settings.shuffle_hideout_entrances:
+            if world.settings.shuffle_hideout_entrances:
                 entrance_pools['Interior'] += world.get_shufflable_entrances(type='Hideout', only_primary=True)
-            if worlds[0].settings.decouple_entrances:
+            if world.settings.decouple_entrances:
                 entrance_pools['InteriorReverse'] = [entrance.reverse for entrance in entrance_pools['Interior']]
 
-        if worlds[0].settings.shuffle_grotto_entrances:
+        if world.settings.shuffle_grotto_entrances:
             entrance_pools['GrottoGrave'] = world.get_shufflable_entrances(type='Grotto', only_primary=True)
             entrance_pools['GrottoGrave'] += world.get_shufflable_entrances(type='Grave', only_primary=True)
-            if worlds[0].settings.decouple_entrances:
+            if world.settings.decouple_entrances:
                 entrance_pools['GrottoGraveReverse'] = [entrance.reverse for entrance in entrance_pools['GrottoGrave']]
 
-        if worlds[0].settings.shuffle_overworld_entrances:
-            exclude_overworld_reverse = ('Overworld' in worlds[0].settings.mix_entrance_pools) and not worlds[0].settings.decouple_entrances
+        if world.settings.shuffle_overworld_entrances:
+            exclude_overworld_reverse = 'Overworld' in world.settings.mix_entrance_pools and not world.settings.decouple_entrances
             entrance_pools['Overworld'] = world.get_shufflable_entrances(type='Overworld', only_primary=exclude_overworld_reverse)
 
         # Set shuffled entrances as such
@@ -561,9 +564,9 @@ def shuffle_random_entrances(worlds: list[World]) -> None:
 
         # Combine all entrance pools into one when mixing entrance pools
         mixed_entrance_pools = []
-        for pool in worlds[0].settings.mix_entrance_pools:
+        for pool in world.settings.mix_entrance_pools:
             mixed_entrance_pools.append(pool)
-            if pool != 'Overworld' and worlds[0].settings.decouple_entrances:
+            if pool != 'Overworld' and world.settings.decouple_entrances:
                 mixed_entrance_pools.append(pool + 'Reverse')
 
         if len(mixed_entrance_pools) > 1:
@@ -725,6 +728,8 @@ def shuffle_random_entrances(worlds: list[World]) -> None:
 
     # Check that all shuffled entrances are properly connected to a region
     for world in worlds:
+        if not world.entrance_shuffle:
+            continue
         for entrance in world.get_shuffled_entrances():
             if entrance.connected_region is None:
                 logging.getLogger('').error('%s was shuffled but still isn\'t connected to any region [World %d]', entrance, world.id)
@@ -741,6 +746,8 @@ def shuffle_random_entrances(worlds: list[World]) -> None:
 
     # Validate the worlds one last time to ensure all special conditions are still valid
     for world in worlds:
+        if not world.entrance_shuffle:
+            continue
         try:
             validate_world(world, worlds, None, locations_to_ensure_reachable, complete_itempool, placed_one_way_entrances=placed_one_way_entrances)
         except EntranceShuffleError as error:
@@ -998,18 +1005,22 @@ def validate_world(world: World, worlds: list[World], entrance_placed: Optional[
 
     if locations_to_ensure_reachable:
         max_search = Search.max_explore([w.state for w in worlds], itempool)
-        if world.check_beatable_only:
-            if worlds[0].settings.reachable_locations == 'goals':
-                # If this entrance is required for a goal, it must be placed somewhere reachable.
-                # We also need to check to make sure the game is beatable, since custom goals might not imply that.
-                predicate = lambda state: state.won() and state.has_all_item_goals()
+        predicates = []
+        for world in worlds:
+            if world.check_beatable_only:
+                if world.settings.reachable_locations == 'goals':
+                    # If this entrance is required for a goal, it must be placed somewhere reachable.
+                    # We also need to check to make sure the game is beatable, since custom goals might not imply that.
+                    predicates.append(lambda state: state.won() and state.has_all_item_goals())
+                else:
+                    # If the game is not beatable without this entrance, it must be placed somewhere reachable.
+                    predicates.append(State.won)
             else:
-                # If the game is not beatable without this entrance, it must be placed somewhere reachable.
-                predicate = State.won
-            perform_access_check = not max_search.can_beat_game(scan_for_items=False, predicate=predicate)
+                # All entrances must be placed somewhere reachable.
+                perform_access_check = True
+                break
         else:
-            # All entrances must be placed somewhere reachable.
-            perform_access_check = True
+            perform_access_check = not max_search.can_beat_game(scan_for_items=False, predicates=predicates)
         if perform_access_check:
             max_search.visit_locations(locations_to_ensure_reachable)
             for location in locations_to_ensure_reachable:
@@ -1019,8 +1030,12 @@ def validate_world(world: World, worlds: list[World], entrance_placed: Optional[
     if (
         world.shuffle_interior_entrances and (
             (world.dungeon_rewards_hinted and (world.mixed_pools_bosses or world.settings.shuffle_dungeon_rewards in ('regional', 'overworld', 'anywhere')))
-            or any(hint_type in world.settings.misc_hints for hint_type in misc_item_hint_table) or world.settings.hints != 'none'
-        ) and (entrance_placed is None or entrance_placed.type in ['Interior', 'SpecialInterior'])
+            or any(
+                hint_type in world.settings.misc_hints
+                for hint_type in misc_item_hint_table
+                for world in worlds
+            ) or world.settings.hints != 'none'
+        ) and (entrance_placed is None or entrance_placed.type in ('Interior', 'SpecialInterior', 'Hideout'))
     ):
         # When cows are shuffled, ensure both Impa's House entrances are in the same hint area because the cow is reachable from both sides
         if world.settings.shuffle_cows:
