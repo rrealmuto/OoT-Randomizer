@@ -3386,20 +3386,32 @@ class SettingInfos:
         shared         = True,
     )
 
-    ocarina_songs = Combobox(
+    ocarina_songs = MultipleSelect(
         gui_text       = 'Randomize Ocarina Melodies',
-        default        = 'off',
+        default        = [],
         choices        = {
-            'off': 'Off',
-            'frog': 'Frog Songs Only',
-            'warp': 'Warp Songs Only',
-            'all':  'All Songs',
+            'frog':   'Frog Songs',
+            'warp':   'Warp Songs',
+            'frogs2': 'Frogs Ocarina Game',
         },
         gui_tooltip    = '''\
             Will need to memorize a new set of songs.
             Can be silly, but difficult. All songs are
             generally sensible, but warp songs are
             typically more difficult than frog songs.
+
+            "Frog Songs": Randomizes Zelda's Lullaby,
+            Epona's Song, Saria's Song, Sun's Song,
+            Song of Time, and Song of Storms.
+
+            "Warp Songs": Randomizes Minuet of Forest,
+            Bolero of Fire, Serenade of Water, Requiem
+            of Spirit, Nocturne of Shadow, and Prelude
+            of Light.
+
+            "Frogs Ocarina Game": Randomizes the 14
+            notes of the final song of the Fabulous
+            Five Froggish Tenors.
             ''',
         shared         = True,
     )
@@ -3669,7 +3681,7 @@ class SettingInfos:
             Placing yourself on the log at Zora River
             where you play the songs for the frogs will
             tell you what the reward is for playing all
-            six non warp songs.
+            six non-warp songs.
 
             If shuffled, right side items in the mask
             shop will be visible but not obtainable
