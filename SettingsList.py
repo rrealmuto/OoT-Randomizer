@@ -685,21 +685,33 @@ class SettingInfos:
         },
         disable        = {
             True:  {'settings': ['shuffle_ganon_bosskey', 'ganon_bosskey_stones', 'ganon_bosskey_medallions', 'ganon_bosskey_rewards', 'ganon_bosskey_tokens', 'ganon_bosskey_hearts']},
-            False: {'settings': ['easter_egg_hunt', 'triforce_count_per_world', 'triforce_goal_per_world']},
+            False: {'settings': ['triforce_hunt_mode', 'triforce_count_per_world', 'triforce_goal_per_world']},
         },
     )
 
-    easter_egg_hunt = Checkbutton(
-        gui_text       = 'Easter Egg Hunt',
+    triforce_hunt_mode = Combobox(
+        gui_text       = 'Triforce Hunt Mode',
+        default        = 'normal',
+        choices        = {
+            'normal':          'Normal',
+            'easter_egg_hunt': 'Easter Egg Hunt',
+            'blitz':           'Triforce Blitz',
+        },
         gui_tooltip    = '''\
-            Changes Triforce Pieces to appear as Easter
-            Eggs instead. This is just cosmetic and has
-            the same gameplay as normal Triforce Hunt.
+            'Easter Egg Hunt': Changes Triforce Pieces to appear as
+            Easter Eggs instead. This is just cosmetic and has the
+            same gameplay as normal Triforce Hunt.
 
-            Has no effect if Triforce Hunt is disabled.
+            'Triforce Blitz': Find the Triforce pieces of Power,
+            Wisdom, and Courage to beat the game. They can only be
+            found inside dungeons.
         ''',
         shared         = True,
+        disable        = {
+            'blitz': {'settings': ['triforce_count_per_world', 'triforce_goal_per_world']},
+        },
         gui_params     = {
+            "hide_when_disabled": True,
             'randomize_key': 'randomize_settings',
         },
     )
@@ -3099,6 +3111,18 @@ class SettingInfos:
             during the night expect you to have Sun's
             Song to collect them. This prevents needing
             to wait until night for some locations.
+        ''',
+        gui_params={
+            "hide_when_disabled": True,
+        },
+        shared         = True,
+    )
+
+    logic_water_gold_scale_no_entry = Checkbutton(
+        gui_text       = 'Water Temple Disable Entry With Gold Scale',
+        gui_tooltip    = '''\
+            Require Iron Boots for entering the Water Temple
+            instead of using Gold Scale with the Longshot.
         ''',
         gui_params={
             "hide_when_disabled": True,

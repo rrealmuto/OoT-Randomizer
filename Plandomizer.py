@@ -15,7 +15,7 @@ from EntranceShuffle import EntranceShuffleError, change_connections, confirm_re
 from Fill import FillError
 from Hints import HintArea, gossipLocations, GossipText
 from Item import ItemFactory, ItemInfo, ItemIterator, is_item, Item
-from ItemPool import item_groups, get_junk_item, song_list, trade_items, child_trade_items, eggs, triforce_pieces
+from ItemPool import item_groups, get_junk_item, song_list, trade_items, child_trade_items, eggs, triforce_blitz_items, triforce_pieces
 from JSONDump import dump_obj, CollapseList, CollapseDict, AlignedDict, SortedDict
 from Location import Location, LocationIterator, LocationFactory
 from LocationList import location_groups, location_table
@@ -359,8 +359,10 @@ class WorldDistribution:
                         self.major_group = [x for x in self.major_group if x not in item_groups['Song']]
                     # Special handling for things not included in base_pool
                     if self.settings.triforce_hunt:
-                        if self.settings.easter_egg_hunt:
+                        if self.settings.triforce_hunt_mode == 'easter_egg_hunt':
                             self.major_group.extend(eggs)
+                        elif self.settings.triforce_hunt_mode == 'blitz':
+                            self.major_group.extend(triforce_blitz_items)
                         else:
                             self.major_group.append('Triforce Piece')
                     major_tokens = ((not self.settings.triforce_hunt and
@@ -1170,6 +1172,7 @@ class Distribution:
         update_dict = {
             'file_hash': (self.src_dict.get('file_hash', []) + [None, None, None, None, None])[0:5],
             'playthrough': None,
+            'playthrough_locations': None,
             'entrance_playthrough': None,
             '_settings': self.src_dict.get('settings', {}),
         }
@@ -1216,20 +1219,14 @@ class Distribution:
         total_starting_count = 0
         for world in worlds:
             for triforce_piece in triforce_pieces:
-                if triforce_piece in world.distribution.item_pool:
-                    world.triforce_count = world.distribution.item_pool[triforce_piece].count
                 if triforce_piece in world.settings.starting_items:
-                    world.triforce_count += world.settings.starting_items[triforce_piece].count
                     total_starting_count += world.settings.starting_items[triforce_piece].count
                 if world.skip_child_zelda and 'Song from Impa' in world.distribution.locations and world.distribution.locations['Song from Impa'].item == triforce_piece:
                     total_starting_count += 1
             total_count += world.triforce_count
 
-        if total_count < worlds[0].triforce_goal:
-            raise RuntimeError('Not enough Triforce Pieces in the worlds. There should be at least %d and there are only %d.' % (worlds[0].triforce_goal, total_count))
-
-        if total_starting_count >= worlds[0].triforce_goal:
-            raise RuntimeError('Too many Triforce Pieces in starting items. There should be at most %d and there are %d.' % (worlds[0].triforce_goal - 1, total_starting_count))
+        if total_starting_count >= world.triforce_goal:
+            raise RuntimeError('Too many Triforce Pieces in starting items. There should be at most %d and there are %d.' % (world.triforce_goal - 1, total_starting_count))
 
         for world in worlds:
             world.total_starting_triforce_count = total_starting_count # used later in Rules.py
@@ -1338,6 +1335,11 @@ class Distribution:
                     for (sphere_nr, sphere) in self.playthrough.items()
                 }, depth=2)
 
+            if self.playthrough_locations is not None:
+                self_dict[':playthrough_locations'] = {
+                    name: [rec.to_json() for rec in record] if is_pattern(name) else record.to_json() for (name, record) in self.playthrough_locations.items()
+                }
+
             if self.entrance_playthrough is not None and len(self.entrance_playthrough) > 0:
                 self_dict[':entrance_playthrough'] = AlignedDict({
                     sphere_nr: SortedDict({
@@ -1417,6 +1419,15 @@ class Distribution:
                     location_key = location.name
 
                 loc_rec_sphere[location_key] = LocationRecord.from_item(location.item)
+
+
+        self.playthrough_locations = {}
+        for (location, item) in spoiler.playthrough_locations.items():
+            if spoiler.settings.world_count > 1:
+                location_key = '%s [W%d]' % (location.name, location.world.id + 1)
+            else:
+                location_key = location.name
+            self.playthrough_locations[location_key] = LocationRecord.from_item(location.item)
 
         self.entrance_playthrough = {}
         for (sphere_nr, sphere) in spoiler.entrance_playthrough.items():

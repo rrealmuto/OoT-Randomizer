@@ -6,6 +6,7 @@ from typing import TYPE_CHECKING, Optional, Any
 
 from HintList import BOSS_GOAL_TABLE, REWARD_GOAL_TABLE, get_hint_group, hint_exclusions
 from ItemList import item_table
+from ItemPool import item_groups
 from RulesCommon import AccessRule
 from Search import Search, ValidGoals
 
@@ -240,6 +241,13 @@ def update_goal_items(spoiler: Spoiler) -> None:
     woth_locations = list(required_locations['way of the hero'])
     del required_locations['way of the hero']
 
+    # Generate location requirements for each WOTH location
+    requirements_by_world = {}
+    requirements = search_required_locations(woth_locations, woth_locations, worlds)
+    for world in worlds:
+        requirements_by_world[world.id] = {loc: required for loc, required in requirements.items() if loc.world.id == world.id}
+    spoiler.required_location_requirements = requirements_by_world
+
     # Update WOTH items
     woth_locations_dict = {}
     for world in worlds:
@@ -371,3 +379,43 @@ def search_goals(categories: dict[str, GoalCategory], reachable_goals: ValidGoal
         # finally, collect unreachable locations for misc. item hints
         location.maybe_set_misc_hints()
     return required_locations
+
+def calculate_playthrough_locations(spoiler):
+    playthrough_locations = {}
+    for sphere_locations in spoiler.playthrough.values():
+        locations = dict(filter(lambda locations:
+            locations[1].name in item_groups["MajorItem"],
+            sphere_locations.items()))
+        playthrough_locations.update(locations)
+
+    spoiler.playthrough_locations = playthrough_locations
+
+    search_locations = list(map(lambda location: spoiler.worlds[location.world.id].get_location(location.name), playthrough_locations.keys()))
+
+    # Generate location requirements for each playthrough location
+    requirements_by_world = {}
+    requirements = search_required_locations(search_locations, search_locations, spoiler.worlds)
+    for world in spoiler.worlds:
+        requirements_by_world[world.id] = {loc: required for loc, required in requirements.items() if loc.world.id == world.id}
+    spoiler.playthrough_location_requirements = requirements_by_world
+
+def search_required_locations(locations, all_locations, worlds):
+    requirements = {}
+    for location in locations:
+        requirements[location] = []
+
+    for location in all_locations:
+        search = Search([world.state for world in worlds])
+        search.collect_pseudo_starting_items()
+
+        old_item = location.item
+        location.item = None
+
+        search.collect_locations()
+        not_accessible = list(filter(lambda location: not search.spot_access(location), locations))
+        location.item = old_item
+
+        for blocker in not_accessible:
+            requirements[blocker].append(location)
+
+    return requirements

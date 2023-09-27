@@ -526,7 +526,9 @@
                 here(can_plant_bean) or 'Water Temple Clear'",
             "Water Temple Lobby": "
                 is_adult and Hookshot and
-                (Iron_Boots or ((Longshot or logic_water_hookshot_entry) and (Progressive_Scale, 2)))",
+                (Iron_Boots or
+                    ((Longshot or logic_water_hookshot_entry) and
+                    (Progressive_Scale, 2) and not logic_water_gold_scale_no_entry))",
             "LH Grotto": "True"
         }
     },

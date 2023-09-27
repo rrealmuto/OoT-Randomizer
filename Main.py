@@ -14,7 +14,7 @@ from typing import Optional
 from Cosmetics import CosmeticsLog, patch_cosmetics
 from EntranceShuffle import set_entrances
 from Fill import distribute_items_restrictive, ShuffleError
-from Goals import update_goal_items, replace_goal_names
+from Goals import update_goal_items, replace_goal_names, calculate_playthrough_locations
 from Hints import build_gossip_hints
 from HintList import clear_hint_exclusion_cache, misc_item_hint_table, misc_location_hint_table
 from ItemPool import generate_itempool
@@ -180,6 +180,8 @@ def make_spoiler(world_settings: list[Settings], worlds: list[World]) -> Spoiler
 
         logger.info('Calculating hint data.')
         update_goal_items(spoiler)
+        if any(world.has_hint_type('playthrough-location') or world.has_hint_type('unlock-playthrough') or world.has_hint_type('wanderer') for world in worlds):
+            calculate_playthrough_locations(spoiler)
         build_gossip_hints(spoiler, worlds)
     elif any(world.dungeon_rewards_hinted for world in worlds) or any(hint_type in settings.misc_hints for hint_type in misc_item_hint_table) or any(hint_type in settings.misc_hints for hint_type in misc_location_hint_table):
         spoiler.find_misc_hint_items()

@@ -363,7 +363,9 @@ item_row_t item_table[] = {
     [0x1002] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9057, 0x01B6, 0x29, no_upgrade, give_triforce_piece, -1, -1, NULL), // Easter egg (green)
     [0x1003] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9057, 0x01B7, 0x29, no_upgrade, give_triforce_piece, -1, -1, NULL), // Easter egg (blue)
 
-    // 0x1004 to 0x1006 reserved for Triforce Blitz items
+    [0x1004] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x904A, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1, NULL), // Triforce of Power
+    [0x1005] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x904B, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1, NULL), // Triforce of Wisdom
+    [0x1006] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x904C, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1, NULL), // Triforce of Courage
 
     [0x1007] = ITEM_ROW(0x5B, SKULL_CHEST_SMALL, 0x71, -1, 0x00B5, 0x015C, 0x63, no_upgrade, no_effect, -1, -1, resolve_text_skull_token), // Gold Skulltula Token (normal text)
     [0x1008] = ITEM_ROW(0x5B,   SKULL_CHEST_BIG, 0x71, -1, 0x00B5, 0x015C, 0x63, no_upgrade, no_effect, -1, -1, resolve_text_skull_token), // Gold Skulltula Token (big chest, normal text)

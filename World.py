@@ -14,7 +14,7 @@ from Goals import Goal, GoalCategory
 from HintList import get_required_hints, misc_item_hint_table, misc_location_hint_table
 from Hints import HintArea, hint_dist_keys, hint_dist_files
 from Item import Item, ItemFactory, ItemInfo, make_event_item
-from ItemPool import reward_list
+from ItemPool import reward_list, triforce_pieces
 from Location import Location, LocationFactory
 from LocationList import business_scrubs, location_groups, location_table
 from OcarinaSongs import generate_song_list, Song
@@ -44,7 +44,6 @@ class World:
         self.hinted_dungeon_reward_locations: dict[str, Location] = {}
         self.misc_hint_item_locations: dict[str, Location] = {}
         self.misc_hint_location_items: dict[str, Item] = {}
-        self.triforce_count: int = 0
         self.total_starting_triforce_count: int = 0
         self.empty_areas: dict[HintArea, dict[str, Any]] = {}
         self.barren_dungeon: int = 0
@@ -84,17 +83,25 @@ class World:
         self.selected_adult_trade_item: str = ''
         self.adult_trade_starting_inventory: str = ''
 
+        if settings.triforce_hunt_mode == 'blitz':
+            self.triforce_count_per_world = 3
+            self.triforce_goal_per_world = 3
+        else:
+            self.triforce_count_per_world = settings.triforce_count_per_world
+            self.triforce_goal_per_world = settings.triforce_goal_per_world
         self.triforce_goal: int = sum(
-            world_dist.settings.triforce_goal_per_world
+            3 if world_dist.settings.triforce_hunt_mode == 'blitz'
+            else world_dist.settings.triforce_goal_per_world
             for world_dist in settings.distribution.world_dists
             if world_dist.settings.triforce_hunt
         )
-        triforce_count = sum(
+        self.triforce_count: int = sum(
             world_dist.settings.triforce_count_per_world
+            + sum(world_dist.settings.starting_items[triforce_piece].count for triforce_piece in triforce_pieces if triforce_piece in world_dist.settings.starting_items)
             for world_dist in settings.distribution.world_dists
             if world_dist.settings.triforce_hunt
         )
-        if self.triforce_goal > triforce_count:
+        if self.triforce_goal > self.triforce_count:
             raise ValueError("Triforces required cannot be more than the triforce count.")
 
         # trials that can be skipped will be decided later
@@ -282,12 +289,10 @@ class World:
 
         # Disable goal hints if the hint distro does not require them.
         # WOTH locations are always searched.
-        self.enable_goal_hints: bool = False
-        if ('distribution' in self.hint_dist_user and
-                'goal' in self.hint_dist_user['distribution'] and
-                (self.hint_dist_user['distribution']['goal']['fixed'] != 0 or
-                 self.hint_dist_user['distribution']['goal']['weight'] != 0)):
-            self.enable_goal_hints = True
+        self.enable_goal_hints: bool = any(
+            self.has_hint_type(hint_type)
+            for hint_type in ('goal', 'goal-legacy', 'goal-legacy-single', 'unlock-playthrough', 'unlock-woth', 'wanderer')
+        )
 
         # Initialize default goals for win condition
         self.goal_categories: dict[str, GoalCategory] = OrderedDict()
@@ -375,6 +380,16 @@ class World:
         new_world.song_notes = copy.copy(self.song_notes)
 
         return new_world
+
+    def has_hint_type(self, hint_type: str) -> bool:
+        return (
+            'distribution' in self.hint_dist_user
+            and hint_type in self.hint_dist_user['distribution']
+            and (
+                self.hint_dist_user['distribution'][hint_type]['fixed'] != 0
+                or self.hint_dist_user['distribution'][hint_type]['weight'] != 0
+            )
+        )
 
     def set_random_bridge_values(self) -> None:
         if self.settings.bridge == 'medallions':
@@ -786,10 +801,10 @@ class World:
         b = GoalCategory('rainbow_bridge', 10, lock_entrances=['Ganons Castle Ledge -> Ganons Castle Lobby'])
         gbk = GoalCategory('ganon_bosskey', 20)
         trials = GoalCategory('trials', 30, minimum_goals=1)
-        th = GoalCategory('triforce_hunt', 30, goal_count=round(self.settings.triforce_goal_per_world / 10), minimum_goals=1)
+        th = GoalCategory('triforce_hunt', 30, goal_count=round(self.triforce_goal_per_world / 10), minimum_goals=3 if self.settings.triforce_hunt_mode == 'blitz' else 1)
         trial_goal = Goal(self, 'the Tower', 'path to #the Tower#', 'White', items=[], create_empty=True)
 
-        if self.settings.triforce_hunt and self.settings.triforce_goal_per_world > 0:
+        if self.settings.triforce_hunt and self.triforce_goal_per_world > 0:
             # "Hintable" value of False means the goal items themselves cannot
             # be hinted directly. This is used for Triforce Hunt and Skull
             # conditions to restrict hints to useful items instead of the win
@@ -800,9 +815,22 @@ class World:
             # Key, which makes these items directly hintable in their respective goals
             # assuming they do not get hinted by another hint type (always, woth with
             # an earlier order in the hint distro, etc).
-            path_name = 'the bunny' if self.settings.easter_egg_hunt else 'gold'
-            th.add_goal(Goal(self, path_name, f'path of #{path_name}#', 'Yellow', items=[{'name': 'Triforce Piece', 'quantity': self.settings.triforce_count_per_world, 'minimum': self.settings.triforce_goal_per_world, 'hintable': False}]))
-            self.goal_categories[th.name] = th
+            if self.settings.triforce_hunt_mode == 'blitz':
+                for piece, color in (
+                    ('Power', 'Red'),
+                    ('Wisdom', 'Blue'),
+                    ('Courage', 'Green'),
+                ):
+                    th.add_goal(Goal(self, piece.lower(), f'path of #{piece.lower()}#', color, items=[{'name': f'Triforce of {piece}', 'quantity': 1, 'minimum': 1, 'hintable': False}]))
+            else:
+                if self.settings.triforce_hunt_mode == 'easter_egg_hunt':
+                    path_name = 'the bunny'
+                    path_color = 'Yellow'
+                else:
+                    path_name = 'gold'
+                    path_color = 'Yellow'
+                th.add_goal(Goal(self, path_name, f'path of #{path_name}#', path_color, items=[{'name': 'Triforce Piece', 'quantity': self.triforce_count_per_world, 'minimum': self.triforce_goal_per_world, 'hintable': False}]))
+                self.goal_categories[th.name] = th
         # Category goals are defined for each possible setting for each category.
         # Bridge can be Stones, Medallions, Dungeons, Skulls, or Vanilla.
         # Ganon's Boss Key can be Stones, Medallions, Dungeons, Skulls, LACS or

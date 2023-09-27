@@ -192,7 +192,7 @@ void activate_override(override_t override) {
     item_row_t *item_row = get_item_row(resolved_item_id);
 
     active_override = override;
-    if (resolved_item_id == 0xCA || (resolved_item_id >= 0x1000 && resolved_item_id < 0x1004)) { // Triforce piece or Easter egg
+    if (resolved_item_id == 0xCA || (resolved_item_id >= 0x1000 && resolved_item_id < 0x1007)) { // Triforce piece or Easter egg
         active_override_is_outgoing = 2; // Send to everyone
     } else {
         active_override_is_outgoing = override.value.base.player != PLAYER_ID;
@@ -225,9 +225,9 @@ override_t outgoing_queue[8] = { 0 };
 void push_outgoing_override(override_t *override) {
     if (override->key.type != OVR_DELAYED || override->key.flag != 0xFF) { // don't send items received from incoming back to outgoing
         if (OUTGOING_KEY.all == 0) {
-            if (override->value.base.item_id >= 0x1000 && override->value.base.item_id < 0x1004) {
+            if (override->value.base.item_id >= 0x1000 && override->value.base.item_id < 0x1007) {
                 // Multiworld plugins (at least Bizhawk Shuffler 2 and Mido's House Multiworld) have special cases for Triforce pieces.
-                // To make sure Easter eggs are handled the same way, they're sent as Triforce pieces.
+                // To make sure Easter eggs and Triforce Blitz pieces are handled the same way, they're sent as Triforce pieces.
                 OUTGOING_ITEM = 0xCA;
             } else {
                 OUTGOING_ITEM = override->value.base.item_id;
@@ -248,9 +248,9 @@ void push_outgoing_override(override_t *override) {
 
 void move_outgoing_queue() {
     if (OUTGOING_KEY.all == 0) {
-        if (outgoing_queue[0].value.base.item_id >= 0x1000 && outgoing_queue[0].value.base.item_id < 0x1004) {
+        if (outgoing_queue[0].value.base.item_id >= 0x1000 && outgoing_queue[0].value.base.item_id < 0x1007) {
             // Multiworld plugins (at least Bizhawk Shuffler 2 and Mido's House Multiworld) have special cases for Triforce pieces.
-            // To make sure Easter eggs are handled the same way, they're sent as Triforce pieces.
+            // To make sure Easter eggs and Triforce Blitz pieces are handled the same way, they're sent as Triforce pieces.
             OUTGOING_ITEM = 0xCA;
         } else {
             OUTGOING_ITEM = outgoing_queue[0].value.base.item_id;
@@ -391,7 +391,7 @@ void try_pending_item() {
         return;
     }
 
-    if ((override.value.base.item_id == 0xCA || (override.value.base.item_id >= 0x1000 && override.value.base.item_id < 0x1004)) && override.value.base.player != PLAYER_ID) { // Triforce piece or Easter egg
+    if ((override.value.base.item_id == 0xCA || (override.value.base.item_id >= 0x1000 && override.value.base.item_id < 0x1007)) && override.value.base.player != PLAYER_ID) { // Triforce piece or Easter egg
         uint16_t resolved_item_id = resolve_upgrades(override);
         item_row_t *item_row = get_item_row(resolved_item_id);
         call_effect_function(item_row);
@@ -777,7 +777,7 @@ int16_t get_override_drop_id(int16_t dropId) {
 
 void dispatch_item(uint16_t resolved_item_id, uint8_t player, override_t *override, item_row_t *item_row) {
     // Give the item to the right place
-    if (resolved_item_id == 0xCA || (resolved_item_id >= 0x1000 && resolved_item_id < 0x1004)) { // Triforce piece or Easter egg
+    if (resolved_item_id == 0xCA || (resolved_item_id >= 0x1000 && resolved_item_id < 0x1007)) { // Triforce piece or Easter egg
         // Send triforce to everyone
         push_outgoing_override(override);
         z64_GiveItem(&z64_game, item_row->action_id);

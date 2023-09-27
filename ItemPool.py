@@ -35,9 +35,16 @@ eggs: tuple[str, ...] = (
     'Easter Egg (Blue)',
 )
 
+triforce_blitz_items: tuple[str, ...] = (
+    'Triforce of Power',
+    'Triforce of Wisdom',
+    'Triforce of Courage',
+)
+
 triforce_pieces: tuple[str, ...] = (
     'Triforce Piece',
     *eggs,
+    *triforce_blitz_items,
 )
 
 plentiful_items: list[str] = ([
@@ -558,11 +565,13 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
         pending_junk_pool.extend(ludicrous_health)
 
     if world.settings.triforce_hunt:
-        if world.settings.easter_egg_hunt:
-            pending_junk_pool.extend(eggs * (world.settings.triforce_count_per_world // len(eggs)))
-            pending_junk_pool.extend(eggs[:world.settings.triforce_count_per_world % len(eggs)])
-        else:
-            pending_junk_pool.extend(['Triforce Piece'] * world.settings.triforce_count_per_world)
+        if world.settings.triforce_hunt_mode == 'normal':
+            pending_junk_pool.extend(['Triforce Piece'] * world.triforce_count_per_world)
+        elif world.settings.triforce_hunt_mode == 'easter_egg_hunt':
+            pending_junk_pool.extend(eggs * (world.triforce_count_per_world // len(eggs)))
+            pending_junk_pool.extend(eggs[:world.triforce_count_per_world % len(eggs)])
+        elif world.settings.triforce_hunt_mode == 'blitz':
+            pending_junk_pool.extend(triforce_blitz_items)
     if world.settings.shuffle_individual_ocarina_notes:
         pending_junk_pool.append('Ocarina A Button')
         pending_junk_pool.append('Ocarina C up Button')

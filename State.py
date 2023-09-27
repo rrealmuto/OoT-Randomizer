@@ -45,7 +45,7 @@ class State:
         return self.won_triforce_hunt() if self.world.settings.triforce_hunt else self.won_normal()
 
     def won_triforce_hunt(self) -> bool:
-        return self.has(Triforce_Piece, self.world.settings.triforce_goal_per_world)
+        return self.has(Triforce_Piece, self.world.triforce_goal_per_world)
 
     def won_normal(self) -> bool:
         return self.has(Triforce)

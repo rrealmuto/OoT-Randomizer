@@ -16,7 +16,7 @@ from EntranceShuffle import EntranceShuffleError
 from Fill import ShuffleError
 from Hints import HintArea, build_misc_item_hints
 from Item import ItemInfo
-from ItemPool import remove_junk_items, remove_junk_ludicrous_items, ludicrous_items_base, ludicrous_items_extended, trade_items, ludicrous_exclusions
+from ItemPool import remove_junk_items, remove_junk_ludicrous_items, ludicrous_items_base, ludicrous_items_extended, trade_items, ludicrous_exclusions, triforce_blitz_items
 from LocationList import location_is_viewable
 from Main import main, resolve_settings, build_world_graphs
 from Messages import Message, read_messages, shuffle_messages
@@ -762,11 +762,16 @@ class TestValidSpoilers(unittest.TestCase):
             item_pool = self.normalize_worlds_dict(spoiler['item_pool'])
             # playthrough assumes each player gets exactly the goal
             req = self.normalize_worlds_dict(spoiler['settings'])[1].get('triforce_goal_per_world', None) or self.normalize_worlds_dict(spoiler['randomized_settings'])[1].get('triforce_goal_per_world', None)
-            self.assertEqual(
-                {p: req or item_pool[p]['Triforce Piece']
-                    for p in items},
-                {p: c['Triforce Piece'] for p, c in items.items()},
-                'Playthrough missing some (or having extra) Triforce Pieces')
+            if self.normalize_worlds_dict(spoiler['settings'])[1].get('triforce_hunt_mode', 'normal') == 'blitz':
+                triforce_pieces = triforce_blitz_items
+            else:
+                triforce_pieces = ['Triforce Piece']
+            for triforce_piece in triforce_pieces:
+                self.assertEqual(
+                    {p: req or item_pool[p][triforce_piece]
+                        for p in items},
+                    {p: c[triforce_piece] for p, c in items.items()},
+                    'Playthrough missing some (or having extra) Triforce Pieces')
         else:
             self.assertEqual(
                 {p: 1 for p in items},
