@@ -22,6 +22,7 @@ Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Ra
   * New “Easter Egg Hunt” setting (based on [#1804](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1804))
   * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1536))
   * “Closed Forest Requires Gohma” is a separate setting. With it enabled, items that can be used to escape the forest won't appear in the forest, and the randomizer will try to place at least one slingshot for each player in the forest. The setting is compatible with all forms of entrance randomizer by restricting entrances inside the forest area to only be shuffled among themselves. ([#1531](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1531))
+  * New “Shuffle Items” and “Shuffle Other Items” settings which can be disabled to generate vanilla seeds, only shuffle songs, only shuffle entrances, etc. (Currently not compatible with Master Quest)
 * New hint distributions:
   * “Ice%” consists of only Sometimes hints, and replaces the hookshot hint in Dampé's diary with a blue fire arrows hint.
   * “Mixed Pools Tournament” is the hint distribution that was used for the [2nd Mixed Pools Tournament](https://midos.house/event/mp/2). Note that the tournament itself used [a previous version](https://github.com/fenhl/OoT-Randomizer/releases/tag/7.1.117-fenhl.17) of this branch.

@@ -186,6 +186,7 @@
           "text": "Shuffle",
           "row_span": [6,6,9],
           "settings": [
+            "shuffle_items",
             "shuffle_song_items",
             "shopsanity",
             "special_deal_price_distribution",
@@ -208,7 +209,8 @@
             "shuffle_expensive_merchants",
             "shuffle_frog_song_rupees",
             "shuffle_loach_reward",
-            "shuffle_individual_ocarina_notes"
+            "shuffle_individual_ocarina_notes",
+            "shuffle_base_item_pool"
           ]
         },
         {

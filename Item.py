@@ -114,7 +114,7 @@ class Item:
             return idx
         # use different item IDs for items with conditional chest appearances so they appear according to the setting in the item's world, not the location's
         if idx == 0x005B:
-            big_chest = self.world.settings.bridge == 'tokens' or self.world.settings.lacs_condition == 'tokens' or self.world.settings.shuffle_ganon_bosskey == 'tokens'
+            big_chest = self.world.settings.bridge == 'tokens' or self.world.settings.lacs_condition == 'tokens' or self.world.shuffle_ganon_bosskey == 'tokens'
             freeze_link = self.world.settings.tokensanity != 'off'
             return {
                 (False, False): 0x005B,
@@ -122,7 +122,7 @@ class Item:
                 (True, False): 0x0128,
                 (True, True): 0x1008,
             }[big_chest, freeze_link]
-        if idx in (0x003D, 0x003E, 0x0076) and (self.world.settings.bridge == 'hearts' or self.world.settings.lacs_condition == 'hearts' or self.world.settings.shuffle_ganon_bosskey == 'hearts'):
+        if idx in (0x003D, 0x003E, 0x0076) and (self.world.settings.bridge == 'hearts' or self.world.settings.lacs_condition == 'hearts' or self.world.shuffle_ganon_bosskey == 'hearts'):
             return {0x003D: 0x0129, 0x003E: 0x012A, 0x0076: 0x012B}[idx]
         if idx in (0x0029, 0x002A) and self.world.settings.minor_items_as_major_chest:
             return {0x0029: 0x012C, 0x002A: 0x012D}[idx]
@@ -165,7 +165,7 @@ class Item:
                 (self.type == 'HideoutSmallKey' and self.world.settings.shuffle_hideoutkeys == 'vanilla') or
                 (self.type == 'TCGSmallKey' and self.world.settings.shuffle_tcgkeys in ('remove', 'vanilla')) or
                 (self.type == 'BossKey' and self.world.settings.shuffle_bosskeys in ('remove', 'vanilla', 'dungeon')) or
-                (self.type == 'GanonBossKey' and self.world.settings.shuffle_ganon_bosskey in ('remove', 'vanilla', 'dungeon')) or
+                (self.type == 'GanonBossKey' and self.world.shuffle_ganon_bosskey in ('remove', 'vanilla', 'dungeon')) or
                 ((self.map or self.compass) and (self.world.settings.shuffle_mapcompass in ('remove', 'startwith', 'vanilla', 'dungeon'))) or
                 (self.type == 'SilverRupee' and self.world.settings.shuffle_silver_rupees in ('remove','vanilla','dungeon')) or
                 (self.type == 'DungeonReward' and self.world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward', 'dungeon')))
@@ -175,8 +175,8 @@ class Item:
         if self.world is None:
             return False
         if self.type == 'Token':
-            return (self.world.settings.bridge == 'tokens' or self.world.settings.shuffle_ganon_bosskey == 'tokens' or
-                (self.world.settings.shuffle_ganon_bosskey == 'on_lacs' and self.world.settings.lacs_condition == 'tokens'))
+            return (self.world.settings.bridge == 'tokens' or self.world.shuffle_ganon_bosskey == 'tokens' or
+                (self.world.shuffle_ganon_bosskey == 'on_lacs' and self.world.settings.lacs_condition == 'tokens'))
 
         if self.type in ('Drop', 'Event', 'Shop') or not self.advancement:
             return False
@@ -185,8 +185,8 @@ class Item:
             return False
 
         if self.name == 'Heart Container' or self.name.startswith('Piece of Heart'):
-            return (self.world.settings.bridge == 'hearts' or self.world.settings.shuffle_ganon_bosskey == 'hearts' or
-                (self.world.settings.shuffle_ganon_bosskey == 'on_lacs' and self.world.settings.lacs_condition == 'hearts'))
+            return (self.world.settings.bridge == 'hearts' or self.world.shuffle_ganon_bosskey == 'hearts' or
+                (self.world.shuffle_ganon_bosskey == 'on_lacs' and self.world.settings.lacs_condition == 'hearts'))
 
         if self.map or self.compass:
             return False
@@ -200,7 +200,7 @@ class Item:
             return False
         if self.type == 'BossKey' and self.world.settings.shuffle_bosskeys in ['dungeon', 'vanilla']:
             return False
-        if self.type == 'GanonBossKey' and self.world.settings.shuffle_ganon_bosskey in ['dungeon', 'vanilla']:
+        if self.type == 'GanonBossKey' and self.world.shuffle_ganon_bosskey in ['dungeon', 'vanilla']:
             return False
         if self.type == 'SilverRupee' and self.world.settings.shuffle_silver_rupees in ['dungeon', 'vanilla']:
             return False

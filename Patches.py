@@ -352,7 +352,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     rom.write_bytes(0x94FCDD, [0x08, 0x39, 0x39])
 
     # Remove locked door to Boss Key Chest in Fire Temple
-    if not world.keysanity and not world.dungeon_mq['Fire Temple']:
+    if not world.keysanity and (world.settings.shuffle_base_item_pool or world.settings.shuffle_smallkeys != 'vanilla') and not world.dungeon_mq['Fire Temple']:
         rom.write_byte(0x22D82B7, 0x3F)
     # Remove the unused locked door in water temple
     if not world.dungeon_mq['Water Temple']:
@@ -1529,19 +1529,19 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     # Set up Ganon's Boss Key conditions.
     symbol = rom.sym('GANON_BOSS_KEY_CONDITION')
     count_symbol = rom.sym('GANON_BOSS_KEY_CONDITION_COUNT')
-    if world.settings.shuffle_ganon_bosskey == 'medallions':
+    if world.shuffle_ganon_bosskey == 'medallions':
         rom.write_byte(symbol, 1)
         rom.write_int16(count_symbol, world.settings.ganon_bosskey_medallions)
-    elif world.settings.shuffle_ganon_bosskey == 'dungeons':
+    elif world.shuffle_ganon_bosskey == 'dungeons':
         rom.write_byte(symbol, 2)
         rom.write_int16(count_symbol, world.settings.ganon_bosskey_rewards)
-    elif world.settings.shuffle_ganon_bosskey == 'stones':
+    elif world.shuffle_ganon_bosskey == 'stones':
         rom.write_byte(symbol, 3)
         rom.write_int16(count_symbol, world.settings.ganon_bosskey_stones)
-    elif world.settings.shuffle_ganon_bosskey == 'tokens':
+    elif world.shuffle_ganon_bosskey == 'tokens':
         rom.write_byte(symbol, 4)
         rom.write_int16(count_symbol, world.settings.ganon_bosskey_tokens)
-    elif world.settings.shuffle_ganon_bosskey == 'hearts':
+    elif world.shuffle_ganon_bosskey == 'hearts':
         rom.write_byte(symbol, 5)
         rom.write_int16(count_symbol, world.settings.ganon_bosskey_hearts * 0x10)
     else:
@@ -2328,14 +2328,14 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         any_small_skull_chests = any(
             world_dist.settings.bridge != 'tokens'
             and world_dist.settings.lacs_condition != 'tokens'
-            and world_dist.settings.shuffle_ganon_bosskey != 'tokens'
+            and (world_dist.settings.triforce_hunt or world_dist.settings.shuffle_ganon_bosskey != 'tokens')
             for world_dist in world.settings.distribution.world_dists
             if world_dist.settings.tokensanity != 'off'
         )
         any_big_skull_chests = any(
             world_dist.settings.bridge == 'tokens'
             or world_dist.settings.lacs_condition == 'tokens'
-            or world_dist.settings.shuffle_ganon_bosskey == 'tokens'
+            or (world_dist.settings.shuffle_ganon_bosskey == 'tokens' and not world_dist.settings.triforce_hunt)
             for world_dist in world.settings.distribution.world_dists
             if world_dist.settings.tokensanity != 'off'
         )
@@ -2343,13 +2343,13 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         any_small_heart_chests = any(
             world_dist.settings.bridge != 'hearts'
             and world_dist.settings.lacs_condition != 'hearts'
-            and world_dist.settings.shuffle_ganon_bosskey != 'hearts'
+            and (world_dist.settings.triforce_hunt or world_dist.settings.shuffle_ganon_bosskey != 'hearts')
             for world_dist in world.settings.distribution.world_dists
         )
         any_big_heart_chests = any(
             world_dist.settings.bridge == 'hearts'
             or world_dist.settings.lacs_condition == 'hearts'
-            or world_dist.settings.shuffle_ganon_bosskey == 'hearts'
+            or (world_dist.settings.shuffle_ganon_bosskey == 'hearts' and not world_dist.settings.triforce_hunt)
             for world_dist in world.settings.distribution.world_dists
         )
         rom.write_byte(rom.sym('HEART_CHEST_SIZES'), 2 * any_big_heart_chests + any_small_heart_chests)
@@ -3010,7 +3010,7 @@ def get_doors_to_unlock(rom: Rom, world: World) -> dict[int, list[int]]:
                 return [0x00D4 + scene * 0x1C + 0x04 + flag_byte, flag_bits]
 
         # Return Boss Doors that should be unlocked
-        if (world.settings.shuffle_bosskeys == 'remove' and scene != 0x0A) or (world.settings.shuffle_ganon_bosskey == 'remove' and scene == 0x0A) or (world.settings.shuffle_pots and scene == 0x0A and switch_flag == 0x15):
+        if (world.settings.shuffle_bosskeys == 'remove' and scene != 0x0A) or (world.shuffle_ganon_bosskey == 'remove' and scene == 0x0A) or (world.settings.shuffle_pots and scene == 0x0A and switch_flag == 0x15):
             if actor_id == 0x002E and door_type == 0x05:
                 return [0x00D4 + scene * 0x1C + 0x04 + flag_byte, flag_bits]
 

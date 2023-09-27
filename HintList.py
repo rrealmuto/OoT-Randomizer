@@ -168,15 +168,15 @@ def stones_required_by_settings(world: World) -> int:
     stones = 0
     if world.settings.bridge == 'stones' and not world.shuffle_special_dungeon_entrances:
         stones = max(stones, world.settings.bridge_stones)
-    if world.settings.shuffle_ganon_bosskey == 'on_lacs' and world.settings.lacs_condition == 'stones':
+    if world.shuffle_ganon_bosskey == 'on_lacs' and world.settings.lacs_condition == 'stones':
         stones = max(stones, world.settings.lacs_stones)
-    if world.settings.shuffle_ganon_bosskey == 'stones':
+    if world.shuffle_ganon_bosskey == 'stones':
         stones = max(stones, world.settings.ganon_bosskey_stones)
     if world.settings.bridge == 'dungeons' and not world.shuffle_special_dungeon_entrances:
         stones = max(stones, world.settings.bridge_rewards - 6)
-    if world.settings.shuffle_ganon_bosskey == 'on_lacs' and world.settings.lacs_condition == 'dungeons':
+    if world.shuffle_ganon_bosskey == 'on_lacs' and world.settings.lacs_condition == 'dungeons':
         stones = max(stones, world.settings.lacs_rewards - 6)
-    if world.settings.shuffle_ganon_bosskey == 'dungeons':
+    if world.shuffle_ganon_bosskey == 'dungeons':
         stones = max(stones, world.settings.ganon_bosskey_rewards - 6)
 
     return stones
@@ -186,15 +186,15 @@ def medallions_required_by_settings(world: World) -> int:
     medallions = 0
     if world.settings.bridge == 'medallions' and not world.shuffle_special_dungeon_entrances:
         medallions = max(medallions, world.settings.bridge_medallions)
-    if world.settings.shuffle_ganon_bosskey == 'on_lacs' and world.settings.lacs_condition == 'medallions':
+    if world.shuffle_ganon_bosskey == 'on_lacs' and world.settings.lacs_condition == 'medallions':
         medallions = max(medallions, world.settings.lacs_medallions)
-    if world.settings.shuffle_ganon_bosskey == 'medallions':
+    if world.shuffle_ganon_bosskey == 'medallions':
         medallions = max(medallions, world.settings.ganon_bosskey_medallions)
     if world.settings.bridge == 'dungeons' and not world.shuffle_special_dungeon_entrances:
         medallions = max(medallions, max(world.settings.bridge_rewards - 3, 0))
-    if world.settings.shuffle_ganon_bosskey == 'on_lacs' and world.settings.lacs_condition == 'dungeons':
+    if world.shuffle_ganon_bosskey == 'on_lacs' and world.settings.lacs_condition == 'dungeons':
         medallions = max(medallions, max(world.settings.lacs_rewards - 3, 0))
-    if world.settings.shuffle_ganon_bosskey == 'dungeons':
+    if world.shuffle_ganon_bosskey == 'dungeons':
         medallions = max(medallions, max(world.settings.ganon_bosskey_rewards - 3, 0))
 
     return medallions
@@ -204,9 +204,9 @@ def tokens_required_by_settings(world: World) -> int:
     tokens = 0
     if world.settings.bridge == 'tokens' and not world.shuffle_special_dungeon_entrances:
         tokens = max(tokens, world.settings.bridge_tokens)
-    if world.settings.shuffle_ganon_bosskey == 'on_lacs' and world.settings.lacs_condition == 'tokens':
+    if world.shuffle_ganon_bosskey == 'on_lacs' and world.settings.lacs_condition == 'tokens':
         tokens = max(tokens, world.settings.lacs_tokens)
-    if world.settings.shuffle_ganon_bosskey == 'tokens':
+    if world.shuffle_ganon_bosskey == 'tokens':
         tokens = max(tokens, world.settings.ganon_bosskey_tokens)
 
     return tokens

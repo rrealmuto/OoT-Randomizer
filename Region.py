@@ -128,7 +128,7 @@ class Region:
                                self.world.settings.shuffle_hideoutkeys if item.type == 'HideoutSmallKey' else
                                self.world.settings.shuffle_tcgkeys if item.type == 'TCGSmallKey' else
                                self.world.settings.shuffle_bosskeys if item.type == 'BossKey' else
-                               self.world.settings.shuffle_ganon_bosskey if item.type == 'GanonBossKey' else
+                               self.world.shuffle_ganon_bosskey if item.type == 'GanonBossKey' else
                                self.world.settings.shuffle_silver_rupees if item.type == 'SilverRupee' else
                                self.world.settings.shuffle_dungeon_rewards if item.type == 'DungeonReward' else
                                None)

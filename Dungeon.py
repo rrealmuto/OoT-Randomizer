@@ -56,7 +56,7 @@ class Dungeon:
 
     @property
     def shuffle_bosskeys(self) -> str:
-        return self.world.settings.shuffle_bosskeys if self.name != 'Ganons Castle' else self.world.settings.shuffle_ganon_bosskey
+        return self.world.settings.shuffle_bosskeys if self.name != 'Ganons Castle' else self.world.shuffle_ganon_bosskey
 
     @property
     def shuffle_silver_rupees(self) -> str:

@@ -183,7 +183,7 @@ def is_restricted_dungeon_item(item: Item) -> bool:
         ((item.map or item.compass) and item.world.settings.shuffle_mapcompass == 'dungeon') or
         (item.type == 'SmallKey' and item.world.settings.shuffle_smallkeys == 'dungeon') or
         (item.type == 'BossKey' and item.world.settings.shuffle_bosskeys == 'dungeon') or
-        (item.type == 'GanonBossKey' and item.world.settings.shuffle_ganon_bosskey == 'dungeon') or
+        (item.type == 'GanonBossKey' and item.world.shuffle_ganon_bosskey == 'dungeon') or
         (item.type == 'SilverRupee' and item.world.settings.shuffle_silver_rupees == 'dungeon') or
         (item.type == 'DungeonReward' and item.world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward', 'dungeon'))
     )
@@ -1164,10 +1164,10 @@ def get_important_check_hint(spoiler: Spoiler, world: World, checked: set[str]) 
                 or (location.item.type == 'HideoutSmallKey' and not world.settings.shuffle_hideoutkeys == 'vanilla')
                 or (location.item.type == 'TCGSmallKey' and not world.settings.shuffle_tcgkeys == 'vanilla')
                 or (location.item.type == 'BossKey' and not (world.settings.shuffle_bosskeys == 'dungeon' or world.settings.shuffle_bosskeys == 'vanilla'))
-                or (location.item.type == 'GanonBossKey' and not (world.settings.shuffle_ganon_bosskey == 'vanilla'
-                    or world.settings.shuffle_ganon_bosskey == 'dungeon' or world.settings.shuffle_ganon_bosskey == 'on_lacs'
-                    or world.settings.shuffle_ganon_bosskey == 'stones' or world.settings.shuffle_ganon_bosskey == 'medallions'
-                    or world.settings.shuffle_ganon_bosskey == 'dungeons' or world.settings.shuffle_ganon_bosskey == 'tokens'))):
+                or (location.item.type == 'GanonBossKey' and not (world.shuffle_ganon_bosskey == 'vanilla'
+                    or world.shuffle_ganon_bosskey == 'dungeon' or world.shuffle_ganon_bosskey == 'on_lacs'
+                    or world.shuffle_ganon_bosskey == 'stones' or world.shuffle_ganon_bosskey == 'medallions'
+                    or world.shuffle_ganon_bosskey == 'dungeons' or world.shuffle_ganon_bosskey == 'tokens'))):
                 item_count = item_count + 1
 
     checked.add(hint_loc + ' Important Check')
@@ -1718,10 +1718,10 @@ def build_bridge_reqs_string(world: World) -> str:
 
 def build_ganon_boss_key_string(world: World) -> str:
     string = "\x13\x74" # Boss Key Icon
-    if world.settings.shuffle_ganon_bosskey == 'remove':
+    if world.shuffle_ganon_bosskey == 'remove':
         string += "And the door to the \x05\x41evil one\x05\x40's chamber will be left #unlocked#."
     else:
-        if world.settings.shuffle_ganon_bosskey == 'on_lacs':
+        if world.shuffle_ganon_bosskey == 'on_lacs':
             if world.settings.lacs_condition == 'vanilla':
                 item_req_string = "the #Shadow and Spirit Medallions#"
                 count = 2
@@ -1735,18 +1735,18 @@ def build_ganon_boss_key_string(world: World) -> str:
                 }[world.settings.lacs_condition]
                 item_req_string = f'{count} {singular if count == 1 else plural}'
             bk_location_string = f"provided by Zelda once {item_req_string} {'is' if count == 1 else 'are'} retrieved"
-        elif world.settings.shuffle_ganon_bosskey in ('stones', 'medallions', 'dungeons', 'tokens', 'hearts'):
+        elif world.shuffle_ganon_bosskey in ('stones', 'medallions', 'dungeons', 'tokens', 'hearts'):
             count, singular, plural = {
                 'stones':     (world.settings.ganon_bosskey_stones,     "#Spiritual Stone#",              "#Spiritual Stones#"),
                 'medallions': (world.settings.ganon_bosskey_medallions, "#Medallion#",                    "#Medallions#"),
                 'dungeons':   (world.settings.ganon_bosskey_rewards,    "#Spiritual Stone or Medallion#", "#Spiritual Stones and Medallions#"),
                 'tokens':     (world.settings.ganon_bosskey_tokens,     "#Gold Skulltula Token#",         "#Gold Skulltula Tokens#"),
                 'hearts':     (world.settings.ganon_bosskey_hearts,     "#heart#",                        "#hearts#"),
-            }[world.settings.shuffle_ganon_bosskey]
+            }[world.shuffle_ganon_bosskey]
             item_req_string = f'{count} {singular if count == 1 else plural}'
             bk_location_string = f"automatically granted once {item_req_string} {'is' if count == 1 else 'are'} retrieved"
         else:
-            condition = world.settings.shuffle_ganon_bosskey
+            condition = world.shuffle_ganon_bosskey
             if condition == 'triforce' and world.settings.easter_egg_hunt:
                 condition = 'eggs'
             bk_location_string = get_hint(f'ganonBK_{condition}', world.settings.clearer_hints).text

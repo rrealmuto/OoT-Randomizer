@@ -363,14 +363,20 @@ class WorldDistribution:
                             self.major_group.extend(eggs)
                         else:
                             self.major_group.append('Triforce Piece')
-                    major_tokens = ((self.settings.shuffle_ganon_bosskey == 'on_lacs' and
+                    major_tokens = ((not self.settings.triforce_hunt and
+                            self.settings.shuffle_ganon_bosskey == 'on_lacs' and
                             self.settings.lacs_condition == 'tokens') or
-                            self.settings.shuffle_ganon_bosskey == 'tokens' or self.settings.bridge == 'tokens')
+                            (not self.settings.triforce_hunt and
+                            self.settings.shuffle_ganon_bosskey == 'tokens') or
+                            self.settings.bridge == 'tokens')
                     if self.settings.tokensanity == 'all' and major_tokens:
                         self.major_group.append('Gold Skulltula Token')
-                    major_hearts = ((self.settings.shuffle_ganon_bosskey == 'on_lacs' and
+                    major_hearts = ((not self.settings.triforce_hunt and
+                            self.settings.shuffle_ganon_bosskey == 'on_lacs' and
                             self.settings.lacs_condition == 'hearts') or
-                            self.settings.shuffle_ganon_bosskey == 'hearts' or self.settings.bridge == 'hearts')
+                            (not self.settings.triforce_hunt and
+                            self.settings.shuffle_ganon_bosskey == 'hearts') or
+                            self.settings.bridge == 'hearts')
                     if major_hearts:
                         self.major_group += ['Heart Container', 'Piece of Heart', 'Piece of Heart (Treasure Chest Game)']
                     if self.settings.shuffle_smallkeys == 'keysanity':
@@ -393,7 +399,7 @@ class WorldDistribution:
                     if self.settings.shuffle_bosskeys == 'keysanity':
                         keys = [name for name, item in ItemInfo.items.items() if item.type == 'BossKey' and name != 'Boss Key']
                         self.major_group.extend(keys)
-                    if self.settings.shuffle_ganon_bosskey == 'keysanity':
+                    if self.settings.shuffle_ganon_bosskey == 'keysanity' and not self.settings.triforce_hunt:
                         keys = [name for name, item in ItemInfo.items.items() if item.type == 'GanonBossKey']
                         self.major_group.extend(keys)
                     if self.settings.shuffle_silver_rupees == 'anywhere':
