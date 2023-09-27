@@ -445,7 +445,7 @@ class HintArea(Enum):
             else:
                 parent_region = current_spot.parent_region
 
-            if parent_region.hint and (original_parent.name == 'Root' or parent_region.name != 'Root'):
+            if (parent_region.hint or (use_alt_hint and parent_region.alt_hint)) and (original_parent.name == 'Root' or parent_region.name != 'Root'):
                 if use_alt_hint and parent_region.alt_hint:
                     return parent_region.alt_hint
                 if gc_woods_warp_is_forest and parent_region.name == 'GC Woods Warp':

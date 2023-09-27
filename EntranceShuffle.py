@@ -30,7 +30,7 @@ def set_all_entrances_data(world: World) -> None:
         forward_entrance.primary = True
         if type == 'Grotto':
             forward_entrance.data['index'] = 0x1000 + forward_entrance.data['grotto_id']
-        if world.settings.decouple_entrances and type not in ('ChildBoss', 'AdultBoss'):
+        if world.settings.decouple_entrances and type not in ('ChildBoss', 'AdultBoss', 'SpecialBoss'):
             forward_entrance.decoupled = True
         if return_entry:
             return_entry = return_entry[0]
@@ -40,7 +40,7 @@ def set_all_entrances_data(world: World) -> None:
             forward_entrance.bind_two_way(return_entrance)
             if type == 'Grotto':
                 return_entrance.data['index'] = 0x2000 + return_entrance.data['grotto_id']
-            if world.settings.decouple_entrances and type not in ('ChildBoss', 'AdultBoss'):
+            if world.settings.decouple_entrances and type not in ('ChildBoss', 'AdultBoss', 'SpecialBoss'):
                 return_entrance.decoupled = True
 
 
@@ -51,9 +51,9 @@ def assume_entrance_pool(entrance_pool: list[Entrance]) -> list[Entrance]:
         if entrance.reverse is not None and not entrance.decoupled:
             assumed_return = entrance.reverse.assume_reachable()
             world = entrance.world
-            if not (len(world.settings.mix_entrance_pools) > 1 and (world.settings.shuffle_overworld_entrances or world.shuffle_special_interior_entrances)):
+            if not (len(world.settings.mix_entrance_pools) > 1 and (world.settings.shuffle_overworld_entrances or world.shuffle_special_interior_entrances or world.settings.shuffle_hideout_entrances)):
                 if (entrance.type in ('Dungeon', 'Grotto', 'Grave') and entrance.reverse.name != 'Spirit Temple Lobby -> Desert Colossus From Spirit Lobby') or \
-                   (entrance.type == 'Interior' and world.shuffle_special_interior_entrances):
+                   (entrance.type == 'Interior' and (world.shuffle_special_interior_entrances or world.settings.shuffle_hideout_entrances)):
                     # In most cases, Dungeon, Grotto/Grave and Simple Interior exits shouldn't be assumed able to give access to their parent region
                     assumed_return.set_rule(lambda state, **kwargs: False)
             assumed_forward.bind_two_way(assumed_return)
@@ -135,6 +135,9 @@ entrance_shuffle_table = [
                         ('Bongo Bongo Boss Room -> Shadow Temple Before Boss',              { 'index': 0x02B2 })),
     ('AdultBoss',       ('Spirit Temple Before Boss -> Twinrova Boss Room',                 { 'index': 0x008D, 'savewarp_addresses': [ 0xB062F2, 0xBC6122 ] }),
                         ('Twinrova Boss Room -> Spirit Temple Before Boss',                 { 'index': 0x02F5 })),
+
+    ('SpecialBoss',     ('Ganons Castle Main -> Ganons Castle Tower',                       { 'index': 0x041B }),
+                        ('Ganons Castle Tower -> Ganons Castle Main',                       { 'index': 0x0534 })),
 
     ('Interior',        ('Kokiri Forest -> KF Midos House',                                 { 'index': 0x0433, 'forest': True }),
                         ('KF Midos House -> Kokiri Forest',                                 { 'index': 0x0443, 'forest': True })),
@@ -505,6 +508,7 @@ def shuffle_random_entrances(worlds: list[World]) -> None:
                     not world.shuffle_dungeon_entrances
                     and not world.settings.shuffle_overworld_entrances
                     and not world.shuffle_special_interior_entrances
+                    and not world.settings.shuffle_hideout_entrances
                     and (
                         world.settings.reachable_locations == 'all'
                         or 'dungeons' in wincons
@@ -517,12 +521,16 @@ def shuffle_random_entrances(worlds: list[World]) -> None:
         if world.settings.shuffle_bosses == 'full':
             entrance_pools['Boss'] = world.get_shufflable_entrances(type='ChildBoss', only_primary=True)
             entrance_pools['Boss'] += world.get_shufflable_entrances(type='AdultBoss', only_primary=True)
+            if world.settings.shuffle_ganon_tower:
+                entrance_pools['Boss'] += world.get_shufflable_entrances(type='SpecialBoss', only_primary=True)
             if world.settings.require_gohma and not world.settings.open_deku:
                 # With both Require Gohma and Closed Deku, we want to require sword and shield to enter Gohma's room.
                 entrance_pools['Boss'].remove(world.get_entrance('Deku Tree Before Boss -> Queen Gohma Boss Room'))
         elif world.settings.shuffle_bosses == 'limited':
             entrance_pools['ChildBoss'] = world.get_shufflable_entrances(type='ChildBoss', only_primary=True)
             entrance_pools['AdultBoss'] = world.get_shufflable_entrances(type='AdultBoss', only_primary=True)
+            if world.settings.shuffle_ganon_tower:
+                entrance_pools['AdultBoss'] += world.get_shufflable_entrances(type='SpecialBoss', only_primary=True)
             if world.settings.require_gohma and not world.settings.open_deku:
                 # With both Require Gohma and Closed Deku, we want to require sword and shield to enter Gohma's room.
                 entrance_pools['ChildBoss'].remove(world.get_entrance('Deku Tree Before Boss -> Queen Gohma Boss Room'))
