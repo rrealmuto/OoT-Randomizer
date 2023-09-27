@@ -13,6 +13,7 @@ This branch (`dev-fenhl`) is based on [Roman971](https://github.com/Roman971)'s 
 Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Randomizer):
 
 * New settings and options:
+  * “Minor Items in Big/Gold Chests” allows selecting “Bombchus” and “Deku & Hylian Shields” separately, and adds a new option for “Deku Stick & Nut Capacity” ([#2100](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2100))
   * New “Frogs Ocarina Game” option for the “Randomize Ocarina Song Notes” setting ([#2064](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2064))
   * New “Shuffle Ganon's Tower Entrance” setting ([#2063](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2063))
   * New “Special Deal Prices”, “Minimum Special Deal Price”, and “Maximum Special Deal Price” settings replacing “Shopsanity Prices” ([#2037](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2037))

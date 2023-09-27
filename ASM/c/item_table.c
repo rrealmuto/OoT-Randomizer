@@ -355,6 +355,8 @@ item_row_t item_table[] = {
     [0x012E] = ITEM_ROW(0x4D,      GILDED_CHEST, 0x96, -1, 0x0033, 0x00D9, 0x28, no_upgrade,         no_effect,           -1, -1, NULL), // Bombchu (5) (big chest)
     [0x012F] = ITEM_ROW(0x4D,      GILDED_CHEST, 0x09, -1, 0x0033, 0x00D9, 0x28, no_upgrade,         no_effect,           -1, -1, NULL), // Bombchu (10) (big chest)
     [0x0130] = ITEM_ROW(0x4D,      GILDED_CHEST, 0x97, -1, 0x0033, 0x00D9, 0x28, no_upgrade,         no_effect,           -1, -1, NULL), // Bombchu (20) (big chest)
+    [0x0131] = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,     -1, 0x00BB, 0x12, nut_upgrade,        no_effect,           -1, -1, NULL), // Progressive Nut Capacity (big chest)
+    [0x0132] = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,     -1, 0x00C7, 0x1B, stick_upgrade,      no_effect,           -1, -1, NULL), // Progressive Stick Capacity (big chest)
 
     [0x1000] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9057, 0x01B4, 0x29, no_upgrade, give_triforce_piece, -1, -1, NULL), // Easter egg (pink)
     [0x1001] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9057, 0x01B5, 0x29, no_upgrade, give_triforce_piece, -1, -1, NULL), // Easter egg (orange)

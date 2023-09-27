@@ -2309,9 +2309,9 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     HEART_CHEST_BIG = 17
     if world.settings.shuffle_tcgkeys == 'vanilla':
         # Force key chests in Treasure Chest Game to use the default chest texture when not shuffled
-        item = read_rom_item(rom, 0x71)
+        item = read_rom_item(rom, 0x0071)
         item['chest_type'] = BROWN_CHEST
-        write_rom_item(rom, 0x71, item)
+        write_rom_item(rom, 0x0071, item)
 
     rom.write_byte(rom.sym('CFG_GLITCHLESS_LOGIC'), int(world.settings.logic_rules == 'glitchless'))
     if world.settings.correct_chest_appearances == 'textures':
