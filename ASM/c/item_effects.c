@@ -2,14 +2,10 @@
 #include "dungeon_info.h"
 #include "trade_quests.h"
 #include "save.h"
+#include "triforce.h"
 
 #define rupee_cap ((uint16_t*)0x800F8CEC)
 volatile uint8_t MAX_RUPEES = 0;
-
-typedef void (*commit_scene_flags_fn)(z64_game_t* game_ctxt);
-#define commit_scene_flags ((commit_scene_flags_fn)0x8009D894)
-typedef void (*save_game_fn)(void* unk);
-#define save_game ((save_game_fn)0x800905D4)
 
 void no_effect(z64_file_t *save, int16_t arg1, int16_t arg2) {
 }

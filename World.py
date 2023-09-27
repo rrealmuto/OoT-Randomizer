@@ -83,14 +83,18 @@ class World:
         self.selected_adult_trade_item: str = ''
         self.adult_trade_starting_inventory: str = ''
 
-        if settings.triforce_hunt_mode == 'blitz':
+        if settings.triforce_hunt_mode == 'ice_percent':
+            self.triforce_count_per_world = 1
+            self.triforce_goal_per_world = 1
+        elif settings.triforce_hunt_mode == 'blitz':
             self.triforce_count_per_world = 3
             self.triforce_goal_per_world = 3
         else:
             self.triforce_count_per_world = settings.triforce_count_per_world
             self.triforce_goal_per_world = settings.triforce_goal_per_world
         self.triforce_goal: int = sum(
-            3 if world_dist.settings.triforce_hunt_mode == 'blitz'
+            1 if world_dist.settings.triforce_hunt_mode == 'ice_percent'
+            else 3 if world_dist.settings.triforce_hunt_mode == 'blitz'
             else world_dist.settings.triforce_goal_per_world
             for world_dist in settings.distribution.world_dists
             if world_dist.settings.triforce_hunt
@@ -826,6 +830,9 @@ class World:
                 if self.settings.triforce_hunt_mode == 'easter_egg_hunt':
                     path_name = 'the bunny'
                     path_color = 'Yellow'
+                elif self.settings.triforce_hunt_mode == 'ice_percent':
+                    path_name = 'ice'
+                    path_color = 'Light Blue'
                 else:
                     path_name = 'gold'
                     path_color = 'Yellow'

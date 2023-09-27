@@ -12,6 +12,7 @@ extern uint16_t TRIFORCE_PIECES_REQUIRED;
 
 void draw_triforce_count(z64_disp_buf_t* db);
 void set_triforce_render();
+void ice_percent_credits_warp();
 
 #define BLOCK_TRIFORCE (0x00000001 | \
                     0x00000002 | \

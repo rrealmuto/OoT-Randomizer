@@ -1745,6 +1745,7 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'ganonBK_keysanity':                                        ("hidden #anywhere in Hyrule#", None, 'ganonBossKey'),
     'ganonBK_triforce':                                         ("given to the Hero once the #Triforce# is completed", None, 'ganonBossKey'),
     'ganonBK_eggs':                                             ("given to the Hero once enough #Easter Eggs# are found", None, 'ganonBossKey'),
+    'ganonBK_ice':                                              ("guarded by a #monster in a frozen cavern#", "the #final treasure of Ice Cavern#", 'ganonBossKey'),
 
     'Spiritual Stone Text Start':                               ("3 Spiritual Stones found in Hyrule...", None, 'altar'),
     'Child Altar Text End':                                     ("\x13\x07Ye who may become a Hero...&Stand with the Ocarina and&play the Song of Time.", None, 'altar'),

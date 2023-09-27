@@ -209,6 +209,8 @@ HEART_CHEST_SIZES:
 .byte 0x01
 CFG_GLITCHLESS_LOGIC:
 .byte 0x00
+ICE_PERCENT:
+.byte 0x00
 .align 4
 
 ; These configuration values are given fixed addresses to aid auto-trackers.

@@ -54,6 +54,7 @@ void after_game_state_update() {
         draw_illegal_model_text(&(z64_ctxt.gfx->overlay));
     }
     give_ganon_boss_key();
+    ice_percent_credits_warp();
 }
 
 void before_skybox_init(z64_game_t* game, int16_t skyboxId) {

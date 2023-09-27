@@ -6,6 +6,11 @@
 #include "triforce.h"
 #include "ocarina_buttons.h"
 
+typedef void (*commit_scene_flags_fn)(z64_game_t* game_ctxt);
+#define commit_scene_flags ((commit_scene_flags_fn)0x8009D894)
+typedef void (*save_game_fn)(void* unk);
+#define save_game ((save_game_fn)0x800905D4)
+
 void no_effect(z64_file_t *save, int16_t arg1, int16_t arg2);
 void full_heal(z64_file_t *save, int16_t arg1, int16_t arg2);
 void give_triforce_piece(z64_file_t *save, int16_t arg1, int16_t arg2);

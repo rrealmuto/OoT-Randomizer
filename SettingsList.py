@@ -695,12 +695,16 @@ class SettingInfos:
         choices        = {
             'normal':          'Normal',
             'easter_egg_hunt': 'Easter Egg Hunt',
+            'ice_percent':     'Ice%',
             'blitz':           'Triforce Blitz',
         },
         gui_tooltip    = '''\
             'Easter Egg Hunt': Changes Triforce Pieces to appear as
             Easter Eggs instead. This is just cosmetic and has the
             same gameplay as normal Triforce Hunt.
+
+            'Ice%': A single piece of the Triforce is placed in the
+            Iron Boots chest at the end of the Ice Cavern.
 
             'Triforce Blitz': Find the Triforce pieces of Power,
             Wisdom, and Courage to beat the game. They can only be

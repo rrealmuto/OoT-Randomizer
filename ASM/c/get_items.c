@@ -13,6 +13,7 @@ extern uint8_t FAST_CHESTS;
 extern uint8_t OCARINAS_SHUFFLED;
 extern uint8_t NO_COLLECTIBLE_HEARTS;
 extern uint32_t FREE_BOMBCHU_DROPS;
+extern uint8_t ICE_PERCENT;
 override_t cfg_item_overrides[1536] = { 0 };
 int item_overrides_count = 0;
 
@@ -471,7 +472,11 @@ void get_item(z64_actor_t *from_actor, z64_link_t *link, int8_t incoming_item_id
 
     if (from_actor->actor_id == 0x0A) {
         // Update chest contents
-        if (override.value.base.item_id == 0x7C && override.value.base.player == PLAYER_ID && (FAST_CHESTS || active_item_fast_chest) && z64_game.scene_index != 0x0010) {
+        override_key_t ice_cavern_iron_boots_chest = { .scene = 0x09, .type = OVR_CHEST, .flag = 0x02 };
+        if (
+            (override.value.base.item_id == 0x7C && override.value.base.player == PLAYER_ID && (FAST_CHESTS || active_item_fast_chest) && z64_game.scene_index != 0x0010)
+            || (ICE_PERCENT && override.key.all == ice_cavern_iron_boots_chest.all)
+        ) {
             // Use ice trap base item ID to freeze Link as the chest opens rather than playing the full item get animation
             //HACK: Not used in treasure box shop since it causes crashes that seem to be related to a timer being shared between ice traps and something in the minigame
             base_item_id = 0x7C;

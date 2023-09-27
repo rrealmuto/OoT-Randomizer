@@ -836,7 +836,7 @@
         "logic_rules": "glitchless",
         "reachable_locations": "all",
         "triforce_hunt": true,
-        "triforce_hunt_mode": "blitz",
+        "triforce_hunt_mode": "ice_percent",
         "triforce_count_per_world": 1,
         "triforce_goal_per_world": 1,
         "shuffle_items": true,

@@ -572,6 +572,7 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
             pending_junk_pool.extend(eggs[:world.triforce_count_per_world % len(eggs)])
         elif world.settings.triforce_hunt_mode == 'blitz':
             pending_junk_pool.extend(triforce_blitz_items)
+        # Ice% is handled below
     if world.settings.shuffle_individual_ocarina_notes:
         pending_junk_pool.append('Ocarina A Button')
         pending_junk_pool.append('Ocarina C up Button')
@@ -593,6 +594,15 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
                                       'Deliver Letter', 'Time Travel', 'Bombchu Drop']
                 or location.type == 'Drop'):
             shuffle_item = False
+
+        # Ice%
+        elif location.vanilla_item == 'Iron Boots':
+            if world.settings.triforce_hunt_mode == 'ice_percent':
+                pending_junk_pool.append(item)
+                item = 'Triforce Piece'
+                shuffle_item = False
+            else:
+                shuffle_item = world.settings.shuffle_base_item_pool
 
         # Gold Skulltula Tokens
         elif location.vanilla_item == 'Gold Skulltula Token':
