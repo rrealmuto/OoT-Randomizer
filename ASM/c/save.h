@@ -8,6 +8,8 @@
 typedef struct {
     uint8_t silver_rupee_counts[0x16];
     override_t incoming_queue[3];
+    uint8_t enemy_spawn_flags[8];
+    uint8_t soul_enable_flags[8];
 } extended_savecontext_static_t __attribute__ ((aligned (8)));
 
 

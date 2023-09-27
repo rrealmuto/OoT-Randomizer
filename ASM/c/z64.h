@@ -1154,7 +1154,9 @@ typedef struct
     uint16_t          changing;                 /* 0x01E4 */
     uint16_t          screen_prev_idx;          /* 0x01E6 */
     uint16_t          screen_idx;               /* 0x01E8 */
-    char              unk_03_[0x002E];          /* 0x01EA */
+    char              unk_03_[0x002A];          /* 0x01EA */
+    int16_t           stickAdjX;                /* 0x0214*/
+    int16_t           stickAdjY;                /* 0x0216 */
     int16_t           item_cursor;              /* 0x0218 */
     char              unk_04_[0x0002];          /* 0x021A */
     int16_t           quest_cursor;             /* 0x021C */
@@ -1884,6 +1886,8 @@ typedef enum {
 #define z64_Message_GetState_addr               0x800DD464
 #define z64_SetCollectibleFlags_addr            0x8002071C
 #define z64_GetCollectibleFlags_addr            0x800206E8
+#define z64_Flags_GetClear_addr                 0x80020640
+#define z64_Flags_SetTempClear_addr             0x800206AC
 #define z64_Audio_PlaySoundGeneral_addr         0x800C806C
 #define z64_Audio_PlayFanFare_addr              0x800C69A0
 #define z64_osSendMesg_addr                     0x80001E20
@@ -1958,6 +1962,7 @@ typedef enum {
 #define Font_LoadChar_addr                      0x8005BCE4
 #define GetItem_Draw_addr                       0x800570C0
 #define z64_Audio_GetActiveSeqId_addr           0x800CAB18
+#define z64_EffectSsKiraKira_SpawnSmall_addr    0x8001C66C
 
 /* rom addresses */
 #define z64_icon_item_static_vaddr              0x007BD000
@@ -1985,6 +1990,8 @@ typedef void(*z64_ActorKillFunc)(z64_actor_t *);
 typedef uint8_t(*z64_Message_GetStateFunc)(uint8_t *);
 typedef void(*z64_Flags_SetCollectibleFunc)(z64_game_t *game, uint32_t flag);
 typedef int32_t (*z64_Flags_GetCollectibleFunc)(z64_game_t *game, uint32_t flag);
+typedef int32_t (*z64_Flags_GetClearFunc)(z64_game_t* game, int32_t flag);
+typedef void(*z64_Flags_SetTempClearFunc)(z64_game_t *game, uint32_t flag);
 typedef void(*z64_Audio_PlaySoundGeneralFunc)(uint16_t sfxId, void *pos, uint8_t token, float *freqScale, float *a4, uint8_t *reverbAdd);
 typedef void(*z64_Audio_PlayFanFareFunc)(uint16_t);
 typedef void (*z64_DrawActors_proc)       (z64_game_t *game, void *actor_ctxt);
@@ -2019,6 +2026,7 @@ typedef void *(*z64_memcopy_proc)(void *dest, void *src, uint32_t size);
 typedef void (*z64_bzero_proc)(void *__s, uint32_t __n);
 typedef void (*z64_Gfx_DrawDListOpa_proc)(z64_game_t *game, z64_gfx_t *dlist);
 typedef float (*z64_Math_SinS_proc)(int16_t angle);
+typedef void (*z64_EffectSsKiraKira_SpawnSmall_proc)(z64_game_t* globalCtx, z64_xyzf_t* pos, z64_xyzf_t* velocity, z64_xyzf_t* accel, colorRGBA8_t* primColor, colorRGBA8_t* envColor);
 
 typedef int32_t(*z64_ObjectSpawn_proc)    (z64_obj_ctxt_t *object_ctx, int16_t object_id);
 typedef int32_t(*z64_ObjectIndex_proc)    (z64_obj_ctxt_t *object_ctx, int16_t object_id);
@@ -2074,6 +2082,8 @@ typedef uint16_t (*z64_Audio_GetActiveSeqId_proc)(uint8_t seqId);
 #define z64_MessageGetState         ((z64_Message_GetStateFunc)z64_Message_GetState_addr)
 #define z64_SetCollectibleFlags     ((z64_Flags_SetCollectibleFunc)z64_SetCollectibleFlags_addr)
 #define z64_Flags_GetCollectible    ((z64_Flags_GetCollectibleFunc)z64_GetCollectibleFlags_addr)
+#define z64_Flags_GetClear          ((z64_Flags_GetClearFunc)z64_Flags_GetClear_addr)
+#define z64_Flags_SetTempClear      ((z64_Flags_SetTempClearFunc)z64_Flags_SetTempClear_addr)
 #define z64_Audio_PlaySoundGeneral  ((z64_Audio_PlaySoundGeneralFunc)z64_Audio_PlaySoundGeneral_addr)
 #define z64_Audio_PlayFanFare       ((z64_Audio_PlayFanFareFunc)z64_Audio_PlayFanFare_addr)
 
@@ -2131,6 +2141,7 @@ typedef uint16_t (*z64_Audio_GetActiveSeqId_proc)(uint8_t seqId);
 #define PlaySFX ((PlaySFX_proc)PlaySFX_addr)
 #define Font_LoadChar ((Font_LoadChar_proc)Font_LoadChar_addr)
 #define GetItem_Draw            ((GetItem_Draw_proc)GetItem_Draw_addr)
+#define z64_EffectSsKiraKira_SpawnSmall ((z64_EffectSsKiraKira_SpawnSmall_proc)z64_EffectSsKiraKira_SpawnSmall_addr)
 
 /* macros */
 #define GET_ITEMGETINF(flag) (z64_file.item_get_inf[(flag) >> 4] & (1 << ((flag) & 0xF)))
@@ -2395,5 +2406,10 @@ typedef uint16_t (*z64_Audio_GetActiveSeqId_proc)(uint8_t seqId);
 #define ITEMGETINF_3A 0x3A
 #define ITEMGETINF_3B 0x3B
 #define ITEMGETINF_3F 0x3F
+
+
+// Functions defined in the base ROM but we use the linkscript to link them externally.
+extern z64_actor_t* z64_ActorFind(void* actorCtx, int32_t actorId, int32_t actorCategory);
+extern int32_t DmaMgr_RequestSync(void* ram, uint32_t* vrom, unsigned long size);
 
 #endif

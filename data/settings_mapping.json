@@ -201,6 +201,7 @@
             "shuffle_empty_crates",
             "shuffle_cows",
             "shuffle_beehives",
+            "shuffle_enemy_drops",
             "shuffle_kokiri_sword",
             "shuffle_ocarinas",
             "shuffle_gerudo_card",
@@ -208,7 +209,8 @@
             "shuffle_expensive_merchants",
             "shuffle_frog_song_rupees",
             "shuffle_loach_reward",
-            "shuffle_individual_ocarina_notes"
+            "shuffle_individual_ocarina_notes",
+            "shuffle_enemy_spawns"
           ]
         },
         {
@@ -369,7 +371,8 @@
             "no_collectible_hearts",
             "starting_tod",
             "blue_fire_arrows",
-            "fix_broken_drops"
+            "fix_broken_drops",
+            "prevent_guay_respawns"
           ]
         },
         {

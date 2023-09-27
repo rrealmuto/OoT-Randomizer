@@ -1,3 +1,5 @@
+#include "actor.h"
+#include "get_items.h"
 #include "z64.h"
 #include "pots.h"
 #include "item_table.h"
@@ -6,9 +8,12 @@
 #include "obj_kibako2.h"
 #include "obj_comb.h"
 #include "textures.h"
+#include "en_bb.h"
 #include "actor.h"
 #include "scene.h"
 #include "en_item00.h"
+#include "item_table.h"
+#include "enemy_spawn_shuffle.h"
 
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
 extern uint16_t CURR_ACTOR_SPAWN_INDEX;
@@ -25,6 +30,10 @@ extern int8_t curr_scene_setup;
 #define OBJ_KIBAKO          0x110   // Small Crate
 #define OBJ_KIBAKO2         0x1A0   // Large Crate
 #define EN_G_SWITCH         0x0117 //Silver Rupee
+#define EN_ANUBICE_TAG      0x00F6  // Anubis Spawner
+#define EN_IK               0x0113  // Iron Knuckes
+#define EN_SW               0x0095  // Skullwalltula
+#define EN_BB               0x0069  // Bubble
 
 ActorOverlay* gActorOverlayTable = (ActorOverlay*)ACTOR_OVERLAY_TABLE_ADDR;
 
@@ -41,6 +50,10 @@ void Actor_After_UpdateAll_Hack(z64_actor_t *actor, z64_game_t* game) {
     Actor_StoreFlag(actor, game, CURR_ACTOR_SPAWN_INDEX);
     Actor_StoreChestType(actor, game);
 
+    // Add additional actor hacks here. These get called shortly after the call to actor_init
+    // Hacks are responsible for checking that they are the correct actor.
+    bb_after_init_hack(actor, game);
+    
     CURR_ACTOR_SPAWN_INDEX = 0; // reset CURR_ACTOR_SPAWN_INDEX
 }
 
@@ -71,6 +84,12 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, uint16_t actor_index)
     override_t override = lookup_override_by_newflag(&flag);
     if(override.key.all)
     {
+        if(actor->actor_type == ACTORCAT_ENEMY && actor->actor_id != 0x0197) //Hack for most enemies. Specifically exclude gerudo fighters (0x197)
+        {
+            extra->flag = flag;
+            return;
+        }
+
         switch(actor->actor_id)
         {
             // For the following actors we store the flag in the new space added to the actor.
@@ -83,6 +102,9 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, uint16_t actor_index)
             case BG_SPOT18_BASKET:
             case OBJ_MURE3:
             case BG_HAKA_TUBO:
+            case EN_IK: // Check for iron knuckles (they use actor category 9 (boss) and change to category 5 but a frame later if the object isnt loaded)
+            case EN_SW: // Check for skullwalltula (en_sw). They start as category 4 (npc) and change to category 5 but a frame later if the object isnt laoded
+            case EN_ANUBICE_TAG: //Check for anubis spawns
             {
                 extra->flag = flag;
                 break;
@@ -173,6 +195,9 @@ z64_actor_t *Actor_SpawnEntry_Hack(void *actorCtx, ActorEntry *actorEntry, z64_g
             break;
         }
     }
+    if (continue_spawn) {
+        continue_spawn = spawn_override_enemy_spawn_shuffle(actorEntry, globalCtx, SPAWN_FLAGS_SPAWNENTRY);
+    }
     z64_actor_t *spawned = NULL;
     if (continue_spawn) {
         spawned = z64_SpawnActor(actorCtx, globalCtx, actorEntry->id, actorEntry->pos.x, actorEntry->pos.y, actorEntry->pos.z,
@@ -235,11 +260,65 @@ z64_actor_t *Player_SpawnEntry_Hack(void *actorCtx, ActorEntry *playerEntry, z64
     return z64_SpawnActor(actorCtx, globalCtx, playerEntry->id, playerEntry->pos.x, playerEntry->pos.y, playerEntry->pos.z,
         playerEntry->rot.x, playerEntry->rot.y, playerEntry->rot.z, playerEntry->params);
 }
+//Return 1 to not spawn the actor, 0 to spawn the actor
+//If enemy drops setting is enabled, check if the flag for this actor hasn't been set and make sure to spawn it.
+//Flag is the index of the actor in the actor spawn list, or -1 if this function is not being called at the room init.
+//Parent will be set if called by Actor_SpawnAsChild
+uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit, int16_t flag, z64_actor_t* parent)
+{
+    //probably need to do something specific for anubis spawns because they use the spawner items. Maybe flare dancers too?
+    if(actorInit->id == 0x00E0 && parent != NULL)
+    {
+        ActorAdditionalData* extra = Actor_GetAdditionalData(parent);
+        xflag_t xflag = extra->flag;
+        if (xflag.all) {
+            return 1;
+        }
+    }
+    if((actorInit->category == ACTORCAT_ENEMY) && z64_Flags_GetClear(globalCtx, globalCtx->room_index))
+    {
+        //Check if we're spawning an actor from the room's actor spawn list
+        if(flag > 0)
+        {
+            // Build an xflag
+            xflag_t xflag = (xflag_t) { 0 };
+
+            xflag.scene = globalCtx->scene_index;
+            if(globalCtx->scene_index == 0x3E) {
+                xflag.grotto.room = globalCtx->room_index;
+                xflag.grotto.grotto_id = z64_file.grotto_id & 0x1F;
+                xflag.grotto.flag = flag;
+                xflag.grotto.subflag = 0;
+            }
+            else {
+                xflag.room = globalCtx->room_index;
+                xflag.setup = curr_scene_setup;
+                xflag.flag = flag;
+                xflag.subflag = 0;
+            }
+
+            xflag = resolve_alternative_flag(&xflag);
+            override_t override = lookup_override_by_newflag(&flag);
+
+            //Check if this actor is in the override list
+            if(override.key.all != 0 && !(Get_NewOverrideFlag(&xflag)>0))
+            {
+                return 0;
+            }
+            return 1;
+        }
+        
+        return 1;
+    }
+    
+
+    return 0;
+}
 
 // This is our entrypoint back into Actor_Spawn. Call/return this to spawn the actor
 extern z64_actor_t *Actor_Spawn_Continue(void* actorCtx, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params);
 
-z64_actor_t * Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int16_t actorId,
+z64_actor_t * Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int16_t actorId, 
                                 float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params) {
     bool continue_spawn = true;
 
@@ -252,10 +331,10 @@ z64_actor_t * Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int16_t ac
     entry.rot.x = rotX;
     entry.rot.y = rotY;
     entry.rot.z = rotZ;
-
+    continue_spawn = spawn_override_enemy_spawn_shuffle(&entry, globalCtx, SPAWN_FLAGS_ACTORSPAWN);
+    
     if(continue_spawn) {
-        z64_actor_t* spawned = Actor_Spawn_Continue(actorCtx, globalCtx, actorId, posX, posY, posZ, rotX, rotY, rotZ, params);
-        return spawned;
+        return Actor_Spawn_Continue(actorCtx, globalCtx, actorId, posX, posY, posZ, rotX, rotY, rotZ, params);
     }
     return NULL;
 }

@@ -311,6 +311,59 @@ child_trade_items: tuple[str, ...] = (
     "Mask of Truth",
 )
 
+enemy_souls_core: list[str] = [
+    'Stalfos Soul',
+    'Octorok Soul',
+    'Wallmaster Soul',
+    'Dodongo Soul',
+    'Keese Soul',
+    'Tektite Soul',
+    'Peahat Soul',
+    'Lizalfos and Dinalfos Soul',
+    'Gohma Larvae Soul',
+    'Shabom Soul',
+    'Baby Dodongo Soul',
+    'Biri and Bari Soul',
+    'Tailpasaran Soul',
+    'Skulltula Soul',
+    'Torch Slug Soul',
+    'Moblin Soul',
+    'Armos Soul',
+    'Deku Baba Soul',
+    'Deku Scrub Soul',
+    'Bubble Soul',
+    'Beamos Soul',
+    'Floormaster Soul',
+    'Redead and Gibdo Soul',
+    'Skullwalltula Soul',
+    'Flare Dancer Soul',
+    'Dead hand Soul',
+    'Shell blade Soul',
+    'Like-like Soul',
+    'Spike Enemy Soul',
+    'Anubis Soul',
+    'Iron Knuckle Soul',
+    'Skull Kid Soul',
+    'Flying Pot Soul',
+    'Freezard Soul',
+    'Stinger Soul',
+    'Wolfos Soul',
+    'Guay Soul',
+    'Jabu Jabu Tentacle Soul',
+    'Dark Link Soul',
+]
+
+enemy_souls_bosses: list[str] = [
+    'Queen Gohma Soul',
+    'King Dodongo Soul',
+    'Barinade Soul',
+    'Phantom Ganon Soul',
+    'Volvagia Soul',
+    'Morpha Soul',
+    'Bongo Bongo Soul',
+    'Twinrova Soul',
+]
+
 normal_bottles: list[str] = [bottle for bottle in sorted(ItemInfo.bottles) if bottle not in ['Deliver Letter', 'Sell Big Poe']] + ['Bottle with Big Poe']
 song_list: list[str] = [item.name for item in sorted([i for n, i in ItemInfo.items.items() if i.type == 'Song'], key=lambda x: x.index if x.index is not None else 0)]
 junk_pool_base: list[tuple[str, int]] = [(item, weight) for (item, weight) in sorted(ItemInfo.junk_weight.items()) if weight > 0]
@@ -523,6 +576,11 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
         pending_junk_pool.append('Ocarina C left Button')
         pending_junk_pool.append('Ocarina C down Button')
         pending_junk_pool.append('Ocarina C right Button')
+
+    if world.settings.shuffle_enemy_spawns == 'all':
+        pending_junk_pool.extend(enemy_souls_core + enemy_souls_bosses)
+    elif world.settings.shuffle_enemy_spawns == 'bosses':
+        pending_junk_pool.extend(enemy_souls_bosses)
 
     # Use the vanilla items in the world's locations when appropriate.
     vanilla_items_processed = Counter()
@@ -754,6 +812,14 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
         # Beehives
         elif location.type == 'Beehive':
             if world.settings.shuffle_beehives:
+                shuffle_item = True
+            else:
+                shuffle_item = False
+                location.disabled = DisableType.DISABLED
+
+        # Enemy Drops
+        elif location.type == 'EnemyDrop':
+            if world.settings.shuffle_enemy_drops:
                 shuffle_item = True
             else:
                 shuffle_item = False
