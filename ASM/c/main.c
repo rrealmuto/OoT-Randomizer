@@ -21,6 +21,8 @@
 #include "scene.h"
 #include "music.h"
 #include "uninvertYaxis.h"
+#include "enemy_spawn_shuffle.h"
+#include "ovl_kaleidoscope.h"
 
 void Gameplay_InitSkybox(z64_game_t* globalCtx, int16_t skyboxId);
 
@@ -28,10 +30,12 @@ void c_init() {
     heap_init();
     gfx_init();
     text_init();
+    text_new_init();
     item_overrides_init();
     override_flags_init();
     models_init();
     init_textures();
+    init_new_menus();
 }
 
 void before_game_state_update() {
