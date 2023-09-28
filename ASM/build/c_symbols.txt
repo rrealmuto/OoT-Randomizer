@@ -282,7 +282,7 @@ SYMBOL TABLE:
 0000e5d4 g     F .text	0000008c resolve_text_silver_rupee_pouches
 00000000         *UND*	00000000 CFG_C_NOTE_COLOR
 00000000         *UND*	00000000 OUTGOING_PLAYER
-0000150c g     O .bss	000000ca xflag_scene_table
+000018cc g     O .bss	000000ca xflag_scene_table
 00014d80 g     F .text	00000240 override_weather_state
 00003968 g     O .data	00000100 FILENAME_ENCODING
 00008018 g     F .text	0000004c push_delayed_item
@@ -301,7 +301,7 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 CFG_RAINBOW_SWORD_INNER_ENABLED
 000137a0 g     F .text	000000a8 text_print_size
 00000078 g     O .sbss	00000001 curr_scene_setup
-000001c0 g     O .bss	000008c0 alt_overrides
+000001c0 g     O .bss	00000c80 alt_overrides
 00014344 g     F .text	00000154 SetupMaskShopHelloDialogOverride
 000003e8 g     O .data	00000010 medals_sprite
 00005724 g     F .text	00000064 interpolate
@@ -323,7 +323,7 @@ SYMBOL TABLE:
 00000048 g     O .sdata	00000004 a_note_font_glow_max
 000002d0 g     O .rodata	00000268 trade_quest_items
 0000ad10 g     F .text	00000118 draw_gi_various_opa0_xlu1
-000015d8 g     O .bss	00000010 active_override
+00001998 g     O .bss	00000010 active_override
 00000020 g     O .sdata	00000008 empty_dlist
 00000074 g     O .sbss	00000004 RANDOMIZER_RNG_SEED
 000140cc g     F .text	00000070 IsTradeItemTraded
@@ -384,7 +384,7 @@ SYMBOL TABLE:
 00000348 g     O .data	00000010 linkhead_skull_sprite
 00000040 g     O .sbss	00000004 active_item_text_id
 0000a414 g     F .text	00000014 ice_trap_is_pending
-000015e8 g     O .bss	00006000 cfg_item_overrides
+000019a8 g     O .bss	00006000 cfg_item_overrides
 00000028 g     O .sdata	00000004 text_cursor_border_max
 0000d950 g     F .text	00000138 draw_gi_a_button
 00000000         *UND*	00000000 DPAD_TEXTURE
@@ -502,7 +502,7 @@ SYMBOL TABLE:
 00000058 g     O .sdata	00000004 c_note_b
 000095c8 g     F .text	000000e4 get_skulltula_token
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_IDLE_INNER_ENABLED
-000076a8 g     O .bss	00000048 extended_savectx
+00007a68 g     O .bss	00000048 extended_savectx
 0000971c g     F .text	000000c8 fairy_ocarina_getitem
 0000a428 g     F .text	00000018 push_pending_ice_trap
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_REWARD_ENABLE
@@ -592,7 +592,7 @@ SYMBOL TABLE:
 00006100 g     F .text	00000ea0 draw_file_icons
 00013b9c g     F .text	00000038 SaveFile_SetTradeItemAsOwned
 00000044 g     O .sbss	00000004 active_item_action_id
-00000a80 g     O .bss	000007d0 xflag_room_blob
+00000e40 g     O .bss	000007d0 xflag_room_blob
 00008248 g     F .text	000001cc try_pending_item
 0000a6c8 g     F .text	00000120 draw_gi_compass
 00003c60 g     O .data	000001f0 texture_table
@@ -664,7 +664,7 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_PROP_INNER_ENABLED
 00010f40 g     F .text	00000064 heart_container_draw
 0000a4c8 g     F .text	0000009c draw_gi_bombchu_and_masks
-000075e8 g     O .bss	000000c0 object_slots
+000079a8 g     O .bss	000000c0 object_slots
 0000df48 g     F .text	00000094 give_small_key
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_MQ_ENABLE
 000011f0 g     F .text	00000014 get_dummy_chest
@@ -687,7 +687,7 @@ SYMBOL TABLE:
 0000f4a4 g     F .text	000000e8 Message_AddFileName
 00001104 g     F .text	00000048 draw_chest
 00000000         *UND*	00000000 CFG_A_BUTTON_COLOR
-00001250 g     O .bss	000002bc xflag_room_table
+00001610 g     O .bss	000002bc xflag_room_table
 00000000         *UND*	00000000 FIX_BROKEN_DROPS
 00000000         *UND*	00000000 GET_ITEM_SEQ_ID
 000097e4 g     F .text	0000002c sprite_bytes_per_tile
