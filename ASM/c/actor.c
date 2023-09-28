@@ -34,6 +34,7 @@ extern int8_t curr_scene_setup;
 #define EN_IK               0x0113  // Iron Knuckes
 #define EN_SW               0x0095  // Skullwalltula
 #define EN_BB               0x0069  // Bubble
+#define EN_GS               0x1B9   // Gossip Stone
 
 ActorOverlay* gActorOverlayTable = (ActorOverlay*)ACTOR_OVERLAY_TABLE_ADDR;
 
@@ -105,6 +106,7 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, uint16_t actor_index)
             case EN_IK: // Check for iron knuckles (they use actor category 9 (boss) and change to category 5 but a frame later if the object isnt loaded)
             case EN_SW: // Check for skullwalltula (en_sw). They start as category 4 (npc) and change to category 5 but a frame later if the object isnt laoded
             case EN_ANUBICE_TAG: //Check for anubis spawns
+            case EN_GS:
             {
                 extra->flag = flag;
                 break;

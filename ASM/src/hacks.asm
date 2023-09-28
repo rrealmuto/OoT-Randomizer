@@ -915,6 +915,16 @@ Actor_Spawn_Continue_Jump_Point:
     lw      ra, 0x10(sp)
     addiu   sp, sp, 0x20
 
+; ==============================================================
+; Gossip Stone Shuffle
+; ==============================================================
+
+; Hook gossip stone action function that is checking for a song
+.orga 0xEE78EC
+; Replaces: Entire Function
+    j       En_Gs_Update_Hack
+    nop
+
 ; Runs when storing an incoming item to the player instance
 ; Replaces:
 ;   sb      a2, 0x0424 (a3)
