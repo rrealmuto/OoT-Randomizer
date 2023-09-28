@@ -212,23 +212,23 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("SFM Storms Grotto Beehive",                                    ("Beehive",      0x3E, (9,0x0E,3), None,          'Rupees (20)',                           ("Sacred Forest Meadow", "Forest Area", "Grottos", "Beehives",))),
 
     # Sacred Forest Meadow Enemies
-    ("SFM Child Wolfos",                                             ("EnemyDrop",    0x56, (0,0,2), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
-    ("SFM Child Maze Scrub 1",                                       ("EnemyDrop",    0x56, (0,0,6), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
-    ("SFM Child Maze Scrub 2",                                       ("EnemyDrop",    0x56, (0,0,7), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
-    ("SFM Child Maze Scrub 3",                                       ("EnemyDrop",    0x56, (0,0,8), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
-    ("SFM Child Maze Scrub 4",                                       ("EnemyDrop",    0x56, (0,0,11), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
-    ("SFM Child Near Saria Scrub 1",                                 ("EnemyDrop",    0x56, (0,0,9), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
-    ("SFM Child Near Saria Scrub 2",                                 ("EnemyDrop",    0x56, (0,0,10), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
-    ("SFM Adult Maze Moblin 1",                                      ("EnemyDrop",    0x56, (0,2,6), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
-    ("SFM Adult Maze Moblin 2",                                      ("EnemyDrop",    0x56, (0,2,7), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
-    ("SFM Adult Maze Moblin 3",                                      ("EnemyDrop",    0x56, (0,2,8), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
-    ("SFM Adult Maze Moblin 4",                                      ("EnemyDrop",    0x56, (0,2,9), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
-    ("SFM Adult Maze Moblin 5",                                      ("EnemyDrop",    0x56, (0,2,10), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
-    ("SFM Adult Smashing Moblin",                                    ("EnemyDrop",    0x56, (0,2,11), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
+    ("SFM Child Wolfos",                                             ("EnemyDrop",    0x56, (0,0,2), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "EnemyDrop"))),
+    ("SFM Child Maze Scrub 1",                                       ("EnemyDrop",    0x56, (0,0,6), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "EnemyDrop"))),
+    ("SFM Child Maze Scrub 2",                                       ("EnemyDrop",    0x56, (0,0,7), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "EnemyDrop"))),
+    ("SFM Child Maze Scrub 3",                                       ("EnemyDrop",    0x56, (0,0,8), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "EnemyDrop"))),
+    ("SFM Child Maze Scrub 4",                                       ("EnemyDrop",    0x56, (0,0,11), None,                      'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "EnemyDrop"))),
+    ("SFM Child Near Saria Scrub 1",                                 ("EnemyDrop",    0x56, (0,0,9), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "EnemyDrop"))),
+    ("SFM Child Near Saria Scrub 2",                                 ("EnemyDrop",    0x56, (0,0,10), None,                      'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "EnemyDrop"))),
+    ("SFM Adult Maze Moblin 1",                                      ("EnemyDrop",    0x56, (0,2,6), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "EnemyDrop"))),
+    ("SFM Adult Maze Moblin 2",                                      ("EnemyDrop",    0x56, (0,2,7), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "EnemyDrop"))),
+    ("SFM Adult Maze Moblin 3",                                      ("EnemyDrop",    0x56, (0,2,8), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "EnemyDrop"))),
+    ("SFM Adult Maze Moblin 4",                                      ("EnemyDrop",    0x56, (0,2,9), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "EnemyDrop"))),
+    ("SFM Adult Maze Moblin 5",                                      ("EnemyDrop",    0x56, (0,2,10), None,                      'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "EnemyDrop"))),
+    ("SFM Adult Smashing Moblin",                                    ("EnemyDrop",    0x56, (0,2,11), None,                      'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "EnemyDrop"))),
     
-    ("SFM Wolfos Grotto Wolfos 1",                                   ("EnemyDrop",    0x3E, (7,0,1), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
-    ("SFM Wolfos Grotto Wolfos 2",                                   ("EnemyDrop",    0x3E, (7,0,2), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
-    
+    ("SFM Wolfos Grotto Wolfos 1",                                   ("EnemyDrop",    0x3E, (7,0x0D,1), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
+    ("SFM Wolfos Grotto Wolfos 2",                                   ("EnemyDrop",    0x3E, (7,0x0D,2), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
+
 
     # Hyrule Field
     ("HF Ocarina of Time Item",                                      ("NPC",          0x51,  0x0C, None,                            'Ocarina',                               ("Hyrule Field", "Need Spiritual Stones", "NPCs",))),
@@ -252,17 +252,17 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("HF Southeast Grotto Beehive 2",                                ("Beehive",      0x3E, (0,2,9), None,          'Rupees (20)',                           ("Hyrule Field", "Grottos", "Beehives",))),
     ("HF Inside Fence Grotto Beehive",                               ("Beehive",      0x3E, (1,6,2), None,          'Rupees (20)',                           ("Hyrule Field", "Grottos", "Beehives",))),
 
-    # Hyrule Field Enemies
-    ("HF Cow Grotto Skulltula",                                      ("EnemyDrop",    0x3E, (4,0,1), None,                          'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
-    ("HF Tektite Grotto Tektite",                                    ("EnemyDrop",    0x3E, (10,0,3), None,                         'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
-    ("HF Near Kak Grotto Skulltula",                                 ("EnemyDrop",    0x3E, (13,0,1), None,                         'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
-    ("HF Child Near Fairy Grotto Peahat",                            ("EnemyDrop",    0x51, [(0,0,9),(0,1,5)], None,                'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
-    ("HF Child Near Kokiri Forest Peahat",                           ("EnemyDrop",    0x51, [(0,0,13),(0,1,9)], None,               'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
-    ("HF Child South Field Peahat 1",                                ("EnemyDrop",    0x51, [(0,0,10),(0,1,6)], None,               'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
-    ("HF Child South Field Peahat 2",                                ("EnemyDrop",    0x51, [(0,0,11),(0,1,7)], None,               'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
-    ("HF Child South Field Peahat 3",                                ("EnemyDrop",    0x51, [(0,0,12),(0,1,8)], None,               'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
-    ("HF Child South Field Flying Peahat",                           ("EnemyDrop",    0x51, [(0,0,15),(0,1,11)], None,              'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
-    ("HF Child Near Valley Flying Peahat",                           ("EnemyDrop",    0x51, [(0,0,14),(0,1,10)], None,              'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
+     # Hyrule Field Enemies
+    ("HF Cow Grotto Skulltula",                                      ("EnemyDrop",    0x3E, (4,0x04,1), None,                       'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
+    ("HF Tektite Grotto Tektite",                                    ("EnemyDrop",    0x3E, (10,0x01,3), None,                      'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
+    ("HF Near Kak Grotto Skulltula",                                 ("EnemyDrop",    0x3E, (13,0x05,1), None,                      'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
+    ("HF Child Near Fairy Grotto Peahat",                            ("EnemyDrop",    0x51, [(0,0,9),(0,1,5)], None,                'Rupees (5)',                            ("Hyrule Field", "EnemyDrop"))),
+    ("HF Child Near Kokiri Forest Peahat",                           ("EnemyDrop",    0x51, [(0,0,13),(0,1,9)], None,               'Rupees (5)',                            ("Hyrule Field", "EnemyDrop"))),
+    ("HF Child South Field Peahat 1",                                ("EnemyDrop",    0x51, [(0,0,10),(0,1,6)], None,               'Rupees (5)',                            ("Hyrule Field", "EnemyDrop"))),
+    ("HF Child South Field Peahat 2",                                ("EnemyDrop",    0x51, [(0,0,11),(0,1,7)], None,               'Rupees (5)',                            ("Hyrule Field", "EnemyDrop"))),
+    ("HF Child South Field Peahat 3",                                ("EnemyDrop",    0x51, [(0,0,12),(0,1,8)], None,               'Rupees (5)',                            ("Hyrule Field", "EnemyDrop"))),
+    ("HF Child South Field Flying Peahat",                           ("EnemyDrop",    0x51, [(0,0,15),(0,1,11)], None,              'Rupees (5)',                            ("Hyrule Field", "EnemyDrop"))),
+    ("HF Child Near Valley Flying Peahat",                           ("EnemyDrop",    0x51, [(0,0,14),(0,1,10)], None,              'Rupees (5)',                            ("Hyrule Field", "EnemyDrop"))),
     
     # Market
     ("Market Shooting Gallery Reward",                               ("NPC",          0x42,  0x60, None,                            'Slingshot',                             ("Market", "Minigames",))),
@@ -416,8 +416,8 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("HC Storms Grotto Pot 4",                                       ("Pot",          0x3E,  (8,0x16,12), None,                        'Deku Nuts (5)',                         ("Hyrule Castle", "Grottos", "Pots",))),
 
     # Hyrule Castle Enemies
-    ("HC Storms Grotto Skullwalltula 1",                             ("EnemyDrop",    0x3E, (8,0,1), None,                      'Rupees (5)',                            ("Hyrule Castle", "Grottos", "EnemyDrop"))),
-    ("HC Storms Grotto Skullwalltula 2",                             ("EnemyDrop",    0x3E, (8,0,2), None,                      'Rupees (5)',                            ("Hyrule Castle", "Grottos", "EnemyDrop"))),
+    ("HC Storms Grotto Skullwalltula 1",                             ("EnemyDrop",    0x3E, (8,0x16,1), None,                      'Rupees (5)',                            ("Hyrule Castle", "Grottos", "EnemyDrop"))),
+    ("HC Storms Grotto Skullwalltula 2",                             ("EnemyDrop",    0x3E, (8,0x16,2), None,                      'Rupees (5)',                            ("Hyrule Castle", "Grottos", "EnemyDrop"))),
 
 
     # Lon Lon Ranch
@@ -546,15 +546,14 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Kak Child Crate 4",                                            ("Crate",        0x52,  [(0,1,46),(0,0,53)], None,             'Nothing',                               ("Kakariko Village", "Crates",))),
     ("Kak Child Crate 5",                                            ("Crate",        0x52,  [(0,1,47),(0,0,54)], None,             'Nothing',                               ("Kakariko Village", "Crates",))),
 
-
-    # Kak Beehives
+    # Kakariko Village Beehives
     ("Kak Open Grotto Beehive 1",                                    ("Beehive",      0x3E,  (0,0x08,8), None,         'Rupees (5)',                            ("Kakariko Village", "Grottos", "Beehives",))),
     ("Kak Open Grotto Beehive 2",                                    ("Beehive",      0x3E,  (0,0x08,9), None,         'Rupees (20)',                           ("Kakariko Village", "Grottos", "Beehives",))),
 
-    # Kak Enemies
-    ("Kak Redead Grotto Redead Left",                                ("EnemyDrop",    0x3E, (2,0,1), None,                      'Rupees (5)',                            ("Kakariko Village", "Kakariko", "Grottos", "EnemyDrop"))),
-    ("Kak Redead Grotto Redead Right",                               ("EnemyDrop",    0x3E, (2,0,2), None,                      'Rupees (5)',                            ("Kakariko Village", "Kakariko", "Grottos", "EnemyDrop"))),
-
+    # Kakariko Village Enemies
+    ("Kak Redead Grotto Redead Left",                                ("EnemyDrop",    0x3E, (2,0x07,1), None,                      'Rupees (5)',                            ("Kakariko Village", "Kakariko", "Grottos", "EnemyDrop"))),
+    ("Kak Redead Grotto Redead Right",                               ("EnemyDrop",    0x3E, (2,0x07,2), None,                      'Rupees (5)',                            ("Kakariko Village", "Kakariko", "Grottos", "EnemyDrop"))),
+    
     # Graveyard
     ("Graveyard Shield Grave Chest",                                 ("Chest",        0x40,  0x00, None,                            'Hylian Shield',                         ("Graveyard", "Grottos", "Chests",))),
     ("Graveyard Heart Piece Grave Chest",                            ("Chest",        0x3F,  0x00, None,                            'Piece of Heart',                        ("Graveyard", "Grottos", "Chests",))),
@@ -933,8 +932,8 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("GV Adult Upper Octorok 3",                                     ("EnemyDrop",    0x5A, (0, 2, 8), None,                    'Rupees (5)',                            ("Gerudo Valley", "Gerudo", "EnemyDrop"))),
     ("GV Adult Lower Octorok 1",                                     ("EnemyDrop",    0x5A, (0, 2, 4), None,                    'Rupees (5)',                            ("Gerudo Valley", "Gerudo", "EnemyDrop"))),
     ("GV Adult Lower Octorok 2",                                     ("EnemyDrop",    0x5A, (0, 2, 6), None,                    'Rupees (5)',                            ("Gerudo Valley", "Gerudo", "EnemyDrop"))),
-    ("GV Octorok Grotto Octorok",                                    ("EnemyDrop",    0x3E, (5, 0, 1), None,                    'Rupees (5)',                            ("Gerudo Valley", "Gerudo", "Grottos", "EnemyDrop"))),
-    
+    ("GV Octorok Grotto Octorok",                                    ("EnemyDrop",    0x3E, (5, 0x12, 1), None,                    'Rupees (5)',                            ("Gerudo Valley", "Gerudo", "Grottos", "EnemyDrop"))),
+
     # Gerudo's Fortress
     ("GF Chest",                                                     ("Chest",        0x5D,  0x00, None,                            'Piece of Heart',                        ("Gerudo's Fortress", "Chests",))),
     ("GF HBA 1000 Points",                                           ("NPC",          0x5D,  0x3E, None,                            'Piece of Heart',                        ("Gerudo's Fortress", "Minigames",))),
