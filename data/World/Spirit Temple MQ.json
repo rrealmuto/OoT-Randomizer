@@ -40,18 +40,6 @@
             "Spirit Temple MQ Child Recovery Heart 1": "can_use(Slingshot) or can_use(Boomerang)",
             "Spirit Temple MQ Child Recovery Heart 2": "can_use(Slingshot) or can_use(Boomerang)",
             "Spirit Temple MQ Child Torch Slugs Room Pot": "True",
-            "Spirit Temple MQ Child 3 Gibdo Room Pot 1": "
-                (Sticks or Kokiri_Sword or (Bombs and can_use(Dins_Fire))) and has_bombchus and Slingshot",
-            "Spirit Temple MQ Child 3 Gibdo Room Pot 2": "
-                (Sticks or Kokiri_Sword or (Bombs and can_use(Dins_Fire))) and has_bombchus and Slingshot",
-            "Spirit Temple MQ Child Stalfos Fight Pot 1": "
-                (Sticks or Kokiri_Sword) and has_bombchus and Slingshot",
-            "Spirit Temple MQ Child Stalfos Fight Pot 2": "
-                (Sticks or Kokiri_Sword) and has_bombchus and Slingshot",
-            "Spirit Temple MQ Child Stalfos Fight Pot 3": "
-                (Sticks or Kokiri_Sword) and has_bombchus and Slingshot",
-            "Spirit Temple MQ Child Stalfos Fight Pot 4": "
-                (Sticks or Kokiri_Sword) and has_bombchus and Slingshot",
             "Fairy Pot": "
                 has_bottle and (Sticks or Kokiri_Sword) and has_bombchus and Slingshot",
             "Spirit Temple MQ Early Child Torch Slug 1": "has_soul(Torch_Slug) and (Sticks or Kokiri_Sword or has_explosives)",
