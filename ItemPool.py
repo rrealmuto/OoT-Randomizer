@@ -833,6 +833,14 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
                 shuffle_item = False
                 location.disabled = DisableType.DISABLED
 
+        # Wonderitems
+        elif location.type == 'Wonderitem':
+            if world.settings.shuffle_wonderitems:
+                shuffle_item = True
+            else:
+                shuffle_item = False
+                location.disabled = DisableType.DISABLED
+
         # Dungeon Items
         elif location.dungeon is not None:
             dungeon = location.dungeon

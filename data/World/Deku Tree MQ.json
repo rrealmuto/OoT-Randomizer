@@ -167,7 +167,11 @@
             "Deku Tree MQ Basement Graves Room Keese 1": "can_kill_keese",
             "Deku Tree MQ Basement Graves Room Keese 2": "can_kill_keese",
             "Deku Tree MQ Basement Graves Room Keese 3": "can_kill_keese",
-            "Deku Tree MQ Basement Graves Room Keese 4": "can_kill_keese"
+            "Deku Tree MQ Basement Graves Room Keese 4": "can_kill_keese",
+            "Deku Tree MQ Basement Graves Wonderitem 1": "can_jumpslash",
+            "Deku Tree MQ Basement Graves Wonderitem 2": "can_jumpslash",
+            "Deku Tree MQ Basement Graves Wonderitem 3": "can_jumpslash",
+            "Deku Tree MQ Basement Graves Wonderitem 4": "can_jumpslash"
         },
         "exits": {
             "Deku Tree Basement Ledge": "is_child",

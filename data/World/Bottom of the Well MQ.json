@@ -48,6 +48,14 @@
             "Bottom of the Well MQ False Floor Floormaster": "(Slingshot or Boomerang) and can_kill_floormaster",
             "Bottom of the Well MQ Deadhand": "
                 has_soul(Dead_hand) and (Kokiri_Sword or (Sticks and logic_child_deadhand))",
+            "Bottom of the Well MQ Main Area Left Slingshot Wonderitem 1": "Slingshot",
+            "Bottom of the Well MQ Main Area Left Slingshot Wonderitem 2": "Slingshot",
+            "Bottom of the Well MQ Main Area Left Slingshot Wonderitem 3": "Slingshot",
+            "Bottom of the Well MQ Main Area Left Slingshot Wonderitem 4": "Slingshot",
+            "Bottom of the Well MQ Main Area Right Slingshot Wonderitem 1": "Slingshot",
+            "Bottom of the Well MQ Main Area Right Slingshot Wonderitem 2": "Slingshot",
+            "Bottom of the Well MQ Main Area Right Slingshot Wonderitem 3": "Slingshot",
+            "Bottom of the Well MQ Main Area Right Slingshot Wonderitem 4": "Slingshot",
             "Wall Fairy": "has_bottle and Slingshot" # The fairy pot is obsolete
         },
         "exits": {
@@ -70,6 +78,10 @@
             "Bottom of the Well MQ East Inner Room Pot 1": "True",
             "Bottom of the Well MQ East Inner Room Pot 2": "True",
             "Bottom of the Well MQ East Inner Room Pot 3": "True",
+            "Bottom of the Well MQ East Inner Room Slingshot Wonderitem 1": "Slingshot",
+            "Bottom of the Well MQ East Inner Room Slingshot Wonderitem 2": "Slingshot",
+            "Bottom of the Well MQ East Inner Room Slingshot Wonderitem 3": "Slingshot",
+            "Bottom of the Well MQ East Inner Room Slingshot Wonderitem 4": "Slingshot",
             "Bottom of the Well MQ GS West Inner Room": "
                 can_child_attack and (logic_botw_mq_pits or has_explosives)",
             "Bottom of the Well MQ Center Room Wallmaster": "can_kill_wallmaster",

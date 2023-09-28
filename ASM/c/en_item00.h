@@ -21,6 +21,7 @@ typedef struct EnItem00 {
     ColliderCylinder collider;      // 0x0150 size = 4C
     override_t override;            // 0x019C
     bool is_silver_rupee;            // 0x????
+    bool dropped;
     model_t model;
 } EnItem00;
 
@@ -28,5 +29,6 @@ void EnItem00_OutgoingAction(EnItem00* this, z64_game_t* globalCtx);
 
 typedef void (*z64_EnItem00ActionFunc)(struct EnItem00 *, z64_game_t *);
 typedef EnItem00 *(*z64_Item_DropCollectible_proc)(z64_game_t *globalCtx, z64_xyzf_t *spawnPos, int16_t params);
+typedef EnItem00 *(*z64_Item_DropCollectibleRandom_proc)(z64_game_t *globalCtx, z64_actor_t *fromActor, z64_xyzf_t *spawnPos, int16_t params);
 
 #endif

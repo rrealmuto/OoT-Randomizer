@@ -208,7 +208,8 @@
             "Shadow Temple Invisible Walls Floormaster 2": "can_kill_floormaster",
             "Shadow Temple Invisible Floormaster": "can_kill_floormaster",
             "Shadow Temple Boat Stalfos 1": "can_kill_stalfos",
-            "Shadow Temple Boat Stalfos 2": "can_kill_stalfos"
+            "Shadow Temple Boat Stalfos 2": "can_kill_stalfos",
+            "Shadow Temple 3 Spinning Pots Wonderitem": "can_use(Bow)"
         },
         "exits": {
             "Shadow Temple 3 Spinning Pots Rupees": "

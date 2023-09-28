@@ -325,7 +325,8 @@
             "Shadow Temple MQ Invisible Wall Maze Bubble 2": "has_soul(Bubble)",
             "Shadow Temple MQ Invisible Wall Maze Like-Like": "has_soul(Likelike)",
             "Shadow Temple MQ Bomb Flower Deadhand": "
-                has_soul(Dead_hand) and (logic_lens_shadow_mq_dead_hand or can_use(Lens_of_Truth))"
+                has_soul(Dead_hand) and (logic_lens_shadow_mq_dead_hand or can_use(Lens_of_Truth))",
+            "Shadow Temple MQ 3 Spinning Pots Arrow Wonderitem": "True"
         },
         "exits": {
             "Shadow Temple 3 Spinning Pots Rupees": "

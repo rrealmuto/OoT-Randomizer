@@ -14,6 +14,7 @@
 #include "en_item00.h"
 #include "item_table.h"
 #include "enemy_spawn_shuffle.h"
+#include "en_wonderitem.h"
 
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
 extern uint16_t CURR_ACTOR_SPAWN_INDEX;
@@ -35,6 +36,7 @@ extern int8_t curr_scene_setup;
 #define EN_SW               0x0095  // Skullwalltula
 #define EN_BB               0x0069  // Bubble
 #define EN_GS               0x1B9   // Gossip Stone
+#define EN_WONDER_ITEM      0x0112  // Wonder Item
 
 ActorOverlay* gActorOverlayTable = (ActorOverlay*)ACTOR_OVERLAY_TABLE_ADDR;
 
@@ -54,7 +56,7 @@ void Actor_After_UpdateAll_Hack(z64_actor_t *actor, z64_game_t* game) {
     // Add additional actor hacks here. These get called shortly after the call to actor_init
     // Hacks are responsible for checking that they are the correct actor.
     bb_after_init_hack(actor, game);
-    
+    EnWonderitem_AfterInitHack(actor, game);
     CURR_ACTOR_SPAWN_INDEX = 0; // reset CURR_ACTOR_SPAWN_INDEX
 }
 
@@ -107,6 +109,7 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, uint16_t actor_index)
             case EN_SW: // Check for skullwalltula (en_sw). They start as category 4 (npc) and change to category 5 but a frame later if the object isnt laoded
             case EN_ANUBICE_TAG: //Check for anubis spawns
             case EN_GS:
+            case EN_WONDER_ITEM:
             {
                 extra->flag = flag;
                 break;

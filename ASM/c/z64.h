@@ -1980,6 +1980,7 @@ typedef enum {
 #define z64_Flags_SetSwitch_addr                0x800204D0
 #define z64_Flags_GetSwitch_addr                0x8002049C
 #define z64_Audio_PlaySoundGeneral_addr         0x800C806C
+#define z64_PlaySFXID_addr                      0x800646F0
 #define z64_Audio_PlayFanFare_addr              0x800C69A0
 #define z64_osSendMesg_addr                     0x80001E20
 #define z64_osRecvMesg_addr                     0x80002030
@@ -2040,6 +2041,7 @@ typedef enum {
 #define z64_bzero_addr                          0x80002E80
 #define z64_Item_DropCollectible_addr           0x80013678
 #define z64_Item_DropCollectible2_addr          0x800138B0
+#define z64_Item_DropCollectibleRandom_addr     0x80013A84
 #define z64_Gfx_DrawDListOpa_addr               0x80028048
 #define z64_Math_SinS_addr                      0x800636C4
 #define z64_Rand_ZeroOne_addr                   0x800CDCCC
@@ -2087,6 +2089,7 @@ typedef void(*z64_Flags_SetTempClearFunc)(z64_game_t *game, uint32_t flag);
 typedef void (*z64_Flags_SetSwitchFunc)(z64_game_t* game, int32_t flag);
 typedef int32_t (*z64_Flags_GetSwitchFunc)(z64_game_t* game, int32_t flag);
 typedef void(*z64_Audio_PlaySoundGeneralFunc)(uint16_t sfxId, void *pos, uint8_t token, float *freqScale, float *a4, uint8_t *reverbAdd);
+typedef void(*z64_PlaySFXIDFunc)(int16_t sfxId);
 typedef void(*z64_Audio_PlayFanFareFunc)(uint16_t);
 typedef void (*z64_DrawActors_proc)       (z64_game_t *game, void *actor_ctxt);
 typedef void (*z64_DeleteActor_proc)      (z64_game_t *game, void *actor_ctxt,
@@ -2182,7 +2185,7 @@ typedef uint16_t (*z64_Audio_GetActiveSeqId_proc)(uint8_t seqId);
 #define z64_Flags_GetSwitch         ((z64_Flags_GetSwitchFunc)z64_Flags_GetSwitch_addr)
 #define z64_Audio_PlaySoundGeneral  ((z64_Audio_PlaySoundGeneralFunc)z64_Audio_PlaySoundGeneral_addr)
 #define z64_Audio_PlayFanFare       ((z64_Audio_PlayFanFareFunc)z64_Audio_PlayFanFare_addr)
-
+#define z64_PlaySFXID               ((z64_PlaySFXIDFunc)z64_PlaySFXID_addr)
 #define z64_osSendMesg          ((osSendMesg_t)       z64_osSendMesg_addr)
 #define z64_osRecvMesg          ((osRecvMesg_t)       z64_osRecvMesg_addr)
 #define z64_osCreateMesgQueue   ((osCreateMesgQueue_t)                        \
@@ -2223,9 +2226,11 @@ typedef uint16_t (*z64_Audio_GetActiveSeqId_proc)(uint8_t seqId);
 #define z64_bzero ((z64_bzero_proc)z64_bzero_addr)
 #define z64_Item_DropCollectible ((z64_Item_DropCollectible_proc)z64_Item_DropCollectible_addr)
 #define z64_Item_DropCollectible2 ((z64_Item_DropCollectible_proc)z64_Item_DropCollectible2_addr)
+#define z64_Item_DropCollectibleRandom ((z64_Item_DropCollectibleRandom_proc)z64_Item_DropCollectibleRandom_addr)
 #define z64_Gfx_DrawDListOpa ((z64_Gfx_DrawDListOpa_proc)z64_Gfx_DrawDListOpa_addr)
 #define z64_Math_SinS ((z64_Math_SinS_proc)z64_Math_SinS_addr)
 #define z64_Rand_ZeroOne ((z64_Rand_ZeroOne_proc)z64_Rand_ZeroOne_addr)
+#define z64_EffectSsKiraKira_SpawnSmall ((z64_EffectSsKiraKira_SpawnSmall_proc)z64_EffectSsKiraKira_SpawnSmall_addr)
 #define Interface_LoadItemIcon1 ((Interface_LoadItemIcon1_proc)Interface_LoadItemIcon1_addr)
 
 #define Rupees_ChangeBy         ((Rupees_ChangeBy_proc)Rupees_ChangeBy_addr)

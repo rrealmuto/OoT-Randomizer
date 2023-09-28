@@ -628,7 +628,7 @@ class SettingInfos:
                                          'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops',
                                          'warp_songs', 'spawn_positions', 'mq_dungeons_mode', 'mq_dungeons_specific',
                                          'mq_dungeons_count', 'shuffle_bosses', 'dungeon_shortcuts', 'deadly_bonks',
-                                         'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_beehives', 'shuffle_silver_rupees',
+                                         'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_beehives', 'shuffle_silver_rupees', 'shuffle_wonderitems',
                                          'mix_entrance_pools', 'decouple_entrances']},
             'none':       {'settings': ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
         },
@@ -2798,12 +2798,42 @@ class SettingInfos:
         },
     )
 
+    shuffle_wonderitems = Checkbutton(
+        gui_text       = 'Shuffle Wonderitems',
+        gui_tooltip    = '''\
+            Enabling will shuffle drops from wonderitems.
+
+            Wonderitems are invisible items in the game that will drop an
+            item under a certain condition. These items will be marked in the game with a
+            sparkle effect when shuffle so they can be easily found.There
+            are 4 kinds of shuffled wonderitems.
+
+            Proximity Drop (Yellow): Gives an item when link touches it.
+
+            Interact Switch (Red): Drops an item when hit with a certain damage type.
+                             (Sword, bow, slingshot, or hookshot)
+
+            Free Multitag (Blue): Gives an item when a certain set of tag points
+                           are touched. The only free multitag is the stepping stones
+                           in Kokiri Forest.
+
+            Ordered Multitag (Cyan): Gives an item when a set of tag points are touched
+                              in a specific ordered. The only ordered multitag is the
+                              grass stepping stones in Kokiri Forest.
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    )
+
     shuffle_gossipstones = Checkbutton(
         gui_text       = 'Shuffle Gossip Stones',
         gui_tooltip    = '''\
             Playing Song of Time to Gossip Stones
             will cause them to drop an item.
-        ''',
+            ''',
         default        = False,
         shared         = True,
         gui_params     = {
