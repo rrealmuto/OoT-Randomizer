@@ -33,7 +33,9 @@ Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Ra
   * `unlock-playthrough`, also known as “Wanderer Unlock”, hints the name of two items that appear in the spoiler log playthrough where the first is required to obtain the second. The first item may or may not be on the Way of the Hero, but the second definitely isn't.
   * `wanderer` randomly generates a `playthrough-location` or `unlock-playthrough` hint.
 * New hint distributions:
+  * “Chaos!!! (no goal hints)” is like “Chaos!!!” but without the possibility of Goal (aka Path) hints, making it suitable for large multiworlds. ([#2101](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2101))
   * “Chaos!!! (dev-fenhl)” is like “Chaos!!!” but including hint types not available on [`Dev-R`](https://github.com/Roman971/OoT-Randomizer).
+  * “Chaos!!! (dev-fenhl, no goal hints)” combines these two changes.
   * “Ice%” consists of only Sometimes hints, and replaces the hookshot hint in Dampé's diary with a blue fire arrows hint.
   * “Mixed Pools Tournament” is the hint distribution that was used for the [2nd Mixed Pools Tournament](https://midos.house/event/mp/2). Note that the tournament itself used [a previous version](https://github.com/fenhl/OoT-Randomizer/releases/tag/7.1.117-fenhl.17) of this branch.
   * “Tournament (Season 6)” is the hint distribution that was used for the [Standard Tournament Season 6](https://midos.house/event/s/6). Note that the tournament itself used the main [`Dev`](https://github.com/OoTRandomizer/OoT-Randomizer) branch.

@@ -295,7 +295,7 @@ class World:
         # WOTH locations are always searched.
         self.enable_goal_hints: bool = any(
             self.has_hint_type(hint_type)
-            for hint_type in ('goal', 'goal-legacy', 'goal-legacy-single', 'unlock-playthrough', 'unlock-woth', 'wanderer')
+            for hint_type in ('goal', 'goal-count', 'goal-legacy', 'goal-legacy-single', 'unlock-playthrough', 'unlock-woth', 'wanderer')
         )
 
         # Initialize default goals for win condition
