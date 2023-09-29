@@ -887,6 +887,15 @@ Actor_Spawn_Continue_Jump_Point:
     .skip   4
     addiu   a0, s0, -0x10
 
+; Hack for enemy drop shuffle to display enemy markers on the minimap
+.headersize (0x800110A0 - 0xA87000)
+; Hack at call to Minimap_Draw in Interface_Draw
+.org 0x80075D48
+; Replaces
+;   jal     0x8006CA64
+    jal     MiniMap_Draw_Hook
+
+
 ; Hook Actor_UpdateAll when each actor is being initialized. At the call to Actor_SpawnEntry
 ; Used to set the flag (z-rotation) of the actor to its position in the actor table.
 .orga 0xA99D48 ; In memory: 0x80023DE8
