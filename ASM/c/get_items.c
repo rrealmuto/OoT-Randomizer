@@ -773,6 +773,7 @@ bool Item00_KillActorIfFlagIsSet(z64_actor_t *actor) {
         extra->flag = (xflag_t) { 0 };
     }
 
+    /*
     // Pots with overridden fairy drops just spawn the fairy like they normally do and set the collectible flag
     if(this->override.value.base.item_id == 0x0119 && drop_collectible_override_flag.all)
     {
@@ -787,7 +788,7 @@ bool Item00_KillActorIfFlagIsSet(z64_actor_t *actor) {
         Set_NewOverrideFlag(&flag);
         z64_ActorKill(actor);
         return 1;
-    }
+    }*/
 
     if (this->override.key.all) { // If an override exists and we haven't already collected it
         extra->flag = flag;
