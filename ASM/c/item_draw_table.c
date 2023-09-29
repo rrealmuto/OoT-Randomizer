@@ -42,8 +42,8 @@ item_draw_table_entry_t item_draw_table[] = {
     [0x1A] = { draw_gi_various_opa0,        { 0x060004D0 } }, // Deku Stick
     [0x1B] = { draw_gi_various_opa0,        { 0x060003C0 } }, // Map
     [0x1C] = { draw_gi_various_opa0,        { 0x06000A50 } }, // Deku Shield
-    [0x1D] = { draw_gi_various_opa0,        { 0x06000580 } }, // Small Magic Jar
-    [0x1E] = { draw_gi_various_opa0,        { 0x06000EE0 } }, // Large Magic Jar
+    [0x1D] = { draw_gi_various_opa0,        { 0x06000580, 0xe0d4ffFF, 0xd4ffe2FF } }, // Small Magic Jar
+    [0x1E] = { draw_gi_various_opa0,        { 0x06000EE0, 0xe0d4ffFF, 0xd4ffe2FF } }, // Large Magic Jar
     [0x1F] = { draw_gi_various_opa0,        { 0x060009A0 } }, // Bomb
     [0x20] = { draw_gi_various_opa0,        { 0x06000B70 } }, // Stone of Agony
     [0x21] = { draw_gi_wallets,             { 0x06001850, 0x06001750, 0x06001790, 0x060019A0, 0x060017B0, 0x06001A28, 0x060017D0, 0x06001AD8 } }, // Adult's Wallet
@@ -164,7 +164,9 @@ item_draw_table_entry_t item_draw_table[] = {
     [0x92] = { draw_gi_c_button_horizontal, { 0x06000E10, 0xFFA000FF, 1 } }, // Cleft button
     [0x93] = { draw_gi_c_button_horizontal, { 0x06000E10, 0xFFA000FF, 0 } }, // Cright button
     [0x94] = { draw_gi_fairy,               { 0x06000EF0 } }, // Fairy (not in a bottle but uses the fairy from the bottle)
-    [0x95] = { draw_gi_nothing,             {}}
+    [0x95] = { draw_gi_nothing,             {}},
+    [0x96] = { draw_gi_opa_with_flame,      { 0x060004D0, 0xC0C0C0FF, 0xC0C0C0FF } }, // Deku Stick
+    [0x97] = { draw_gi_deku_nut_with_flame, { 0x06000E90, 0xC0C0C0FF, 0xC0C0C0FF } }, // Deku Nut
 };
 
 void base_draw_gi_model(z64_game_t *game, uint32_t draw_id) {
