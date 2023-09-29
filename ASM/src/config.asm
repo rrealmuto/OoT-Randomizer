@@ -202,6 +202,8 @@ EPONAS_SONG_NOTES:
 .halfword 0x0000
 CFG_PREVENT_GUAY_RESPAWNS:
 .byte 0x00
+CFG_MINIMAP_ENEMY_TRACKER:
+.byte 0x00
 .align 4
 
 ; These configuration values are given fixed addresses to aid auto-trackers.

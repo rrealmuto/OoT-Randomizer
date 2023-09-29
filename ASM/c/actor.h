@@ -39,6 +39,7 @@ typedef struct {
 typedef struct {
     /* 0x00 */ uint16_t actor_id;
     /* 0x02 */ xflag_t flag;
+    /* 0x04 */ uint8_t minimap_draw_flags;
 } ActorAdditionalData;
 
 void Actor_SetWorldToHome_End(z64_actor_t *actor);
@@ -51,5 +52,6 @@ z64_actor_t *Actor_SpawnEntry_Hack(void *actorCtx, ActorEntry *actorEntry, z64_g
 bool spawn_override_silver_rupee(ActorEntry *actorEntry, z64_game_t *globalCtx, bool* overridden);
 void after_spawn_override_silver_rupee(z64_actor_t* actor, bool overridden);
 ActorAdditionalData* Actor_GetAdditionalData(z64_actor_t* actor);
+void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, uint16_t actor_index);
 
 #endif
