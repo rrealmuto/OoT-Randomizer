@@ -23,6 +23,7 @@ Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Ra
   * New “Triforce Hunt Mode” setting with “Normal”, “Easter Egg Hunt”, “Ice%”, and “Triforce Blitz” options (Easter Egg Hunt based on [#1804](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1804), Triforce Blitz based on [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev))
   * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1536))
   * “Closed Forest Requires Gohma” is a separate setting. With it enabled, items that can be used to escape the forest won't appear in the forest, and the randomizer will try to place at least one slingshot for each player in the forest. The setting is compatible with all forms of entrance randomizer by restricting entrances inside the forest area to only be shuffled among themselves. ([#1531](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1531))
+  * New “On (Savewarp to Overworld)” option for the “Shuffle Thieves' Hideout Entrances” setting (based on [fenhl#7](https://github.com/fenhl/OoT-Randomizer/pull/7))
   * New “Shuffle Items” and “Shuffle Other Items” settings which can be disabled to generate vanilla seeds, only shuffle songs, only shuffle entrances, etc. (Currently not compatible with Master Quest)
 * New hint types based on [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev):
   * `goal-count` tells you how many items are on the path to a goal.

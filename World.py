@@ -629,13 +629,14 @@ class World:
                         self.parser.parse_spot_rule(new_exit)
                     new_region.exits.append(new_exit)
             if 'savewarp' in region:
-                savewarp_target = region['savewarp'].split(' -> ')[1]
-                new_exit = Entrance(f'{new_region.name} -> {savewarp_target}', new_region)
-                new_exit.connected_region = savewarp_target
-                new_region.exits.append(new_exit)
-                new_region.savewarp = new_exit
-                # the replaced entrance may not exist yet so we connect it after all region files have been read
-                savewarps_to_connect.append((new_exit, region['savewarp']))
+                if region['savewarp'] != "Gerudo Fortress -> Hideout 1 Torch Jail" or self.settings.shuffle_hideout_entrances != 'overworld_savewarp':
+                    savewarp_target = region['savewarp'].split(' -> ')[1]
+                    new_exit = Entrance(f'{new_region.name} -> {savewarp_target}', new_region)
+                    new_exit.connected_region = savewarp_target
+                    new_region.exits.append(new_exit)
+                    new_region.savewarp = new_exit
+                    # the replaced entrance may not exist yet so we connect it after all region files have been read
+                    savewarps_to_connect.append((new_exit, region['savewarp']))
             self.regions.append(new_region)
         return savewarps_to_connect
 

@@ -557,11 +557,25 @@ class SettingInfos:
             "tricks" are enabled which have the potential to require the player to perform difficult techniques.
             Expect a long and painful playthrough, even with good note-taking.
 
+            <b>Fenhl's Casual</b> is Fenhl's preferred flavor of playing OoTR, including full entrance
+            randomizer, chaos hints, and warp song note shuffle, but with half damage, no Master Quest,
+            and no tricks enabled. The rainbow bridge requires all dungeon rewards and Ganon's boss key
+            requires all 100 gold skulltula tokens.
+
             <b>Vanilla</b> generates a seed that's as close to the vanilla game as possible with current
-            randomizer features. It uses glitchless logic to produce a useful spoiler log playthrough.
+            randomizer features. Unlike the vanilla seed available on ootrandomizer.com, this preset
+            uses glitchless logic to produce a useful spoiler log playthrough.
 
             <b>Fast Vanilla</b> is Vanilla but with speed-ups like fast bunny hood, fast chest cutscenes,
             or "Skip Some Minigame Phases" enabled.
+
+            <b>Vanilla (Master Quest)</b> and <b>Fast Vanilla (Master Quest)</b> are Vanilla and Fast Vanilla
+            but with all dungeons from Master Quest. Since logic for vanilla MQ hasn't been coded yet,
+            these use no logic.
+
+            The set of <b>Standard Anti-Weekly Settings</b> presets disables every location that's enabled in
+            “S6 Tournament” and enables every location that's disabled there, as well as changing some
+            miscellaneous settings.
 
             The other presets are for racing and/or tournaments.
 
@@ -712,6 +726,7 @@ class SettingInfos:
         ''',
         shared         = True,
         disable        = {
+            'ice_percent': {'settings': ['triforce_count_per_world', 'triforce_goal_per_world']}, #TODO also disable shuffle_base_item_pool but lock it to True
             'blitz': {'settings': ['triforce_count_per_world', 'triforce_goal_per_world']},
         },
         gui_params     = {
@@ -2231,23 +2246,36 @@ class SettingInfos:
         },
     )
 
-    shuffle_hideout_entrances = Checkbutton(
+    shuffle_hideout_entrances = Combobox(
         gui_text       = "Shuffle Thieves' Hideout Entrances",
+        default        = 'off',
+        choices        = {
+            'off':                'Off',
+            'hideout_savewarp':   'On (Savewarp to Overworld)',
+            'overworld_savewarp': 'On (Savewarp to 1-Torch Jail)',
+        },
         gui_tooltip    = '''\
             Shuffle the pool of entrances to Thieves' Hideout
             into the pool of interior entrances.
 
-            Note that savewarping in any room of Thieves' Hideout
-            always takes you to the first room (with 1 torch).
+            If set to "On (Savewarp to 1-Torch Jail)", savewarping in any
+            room of Thieves' Hideout takes you to the first room (with 1
+            torch). If set to "On (Savewarp to Overworld)", savewarping in
+            the Hideout takes you to the overworld spawn depending on
+            Link's current age.
 
             There is an extra heart piece on the balcony above the jail in
             Gerudo's Fortress if accessed as child. This is not shuffled
             and not considered in logic.
         ''',
-        default        = False,
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
+            'distribution':  [
+                ('off', 2),
+                ('hideout_savewarp', 1),
+                ('overworld_savewarp', 1),
+            ],
         },
     )
 
