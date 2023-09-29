@@ -1130,7 +1130,6 @@ def make_player_message(text: str) -> str:
 # make sure to call this AFTER move_shop_item_messages()
 def update_item_messages(messages: list[Message], world: World) -> None:
     new_item_messages = ITEM_MESSAGES + KEYSANITY_MESSAGES
-    check_message_dupes(new_item_messages)
     for id, text in new_item_messages:
         if world.settings.world_count > 1:
             update_message_by_id(messages, id, make_player_message(text), 0x23)
@@ -1139,17 +1138,6 @@ def update_item_messages(messages: list[Message], world: World) -> None:
 
     for id, (text, opt) in MISC_MESSAGES.items():
         update_message_by_id(messages, id, text, opt)
-
-
-# Check the message table to ensure no duplicate entries exist.
-def check_message_dupes(new_item_messages: list[tuple[int, str]]) -> None:
-    for i in range(0, len(new_item_messages)):
-        for j in range(1, len(new_item_messages)):
-            if i != j:
-                message_id1, message1 = new_item_messages[i]
-                message_id2, message2 = new_item_messages[j]
-                if message_id1 == message_id2:
-                    raise Exception("Duplicate MessageID found: " + hex(message_id1) + ", " + message1 + ", " + message2)
 
 
 def add_item_messages(messages: list[Message], shop_items: Iterable[ShopItem], world: World) -> None:
