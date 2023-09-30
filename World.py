@@ -72,7 +72,20 @@ class World:
             or settings.spawn_positions or (settings.shuffle_bosses != 'off')
         )
 
-        self.mixed_pools_bosses = False # this setting is still in active development at https://github.com/Roman971/OoT-Randomizer
+        self.mix_entrance_pools: set[str] = {
+            pool
+            for pool in settings.mix_entrance_pools
+            if {
+                'Interior': self.shuffle_interior_entrances,
+                'GrottoGrave': settings.shuffle_grotto_entrances,
+                'Dungeon': self.shuffle_dungeon_entrances,
+                'Overworld': settings.shuffle_overworld_entrances,
+                'Boss': settings.shuffle_bosses == 'full',
+            }[pool]
+        }
+        if len(self.mix_entrance_pools) == 1:
+            self.mix_entrance_pools = set()
+        self.mixed_pools_bosses: bool = 'Boss' in self.mix_entrance_pools
 
         self.ensure_tod_access: bool = bool(self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or settings.spawn_positions)
         self.disable_trade_revert: bool = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or settings.adult_trade_shuffle
@@ -83,7 +96,7 @@ class World:
 
         if (settings.open_forest == 'closed'
             and (self.shuffle_special_interior_entrances or settings.shuffle_hideout_entrances or settings.shuffle_overworld_entrances
-                 or settings.warp_songs or settings.spawn_positions  or settings.decouple_entrances or len(settings.mix_entrance_pools) > 1)):
+                 or settings.warp_songs or settings.spawn_positions  or settings.decouple_entrances or len(self.mix_entrance_pools) > 1)):
             self.settings.open_forest = 'closed_deku'
 
         if settings.triforce_goal_per_world > settings.triforce_count_per_world:
