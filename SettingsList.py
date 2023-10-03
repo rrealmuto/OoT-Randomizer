@@ -3675,6 +3675,7 @@ class SettingInfos:
         shared         = True,
         gui_params     = {
             "hide_when_disabled": True,
+            "size": "medium"
         },
     )
 
