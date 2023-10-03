@@ -316,7 +316,7 @@ uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit
             }
 
             xflag = resolve_alternative_flag(&xflag);
-            override_t override = lookup_override_by_newflag(&flag);
+            override_t override = lookup_override_by_newflag(&xflag);
 
             //Check if this actor is in the override list
             if(override.key.all != 0 && !(Get_NewOverrideFlag(&xflag)>0))
