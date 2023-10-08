@@ -3,8 +3,8 @@
         "region_name": "Ganons Castle Lobby",
         "dungeon": "Ganons Castle",
         "locations": {
-            "Ganons Castle Entry Hallway Beamos Left": "has_explosives",
-            "Ganons Castle Entry Hallway Beamos Right": "has_explosives"
+            "Ganons Castle Entry Hallway Beamos Left": "has_soul(Beamos) and has_explosives",
+            "Ganons Castle Entry Hallway Beamos Right": "has_soul(Beamos) and has_explosives"
         },
         "exits": {
             "Castle Grounds From Ganons Castle": "True",
