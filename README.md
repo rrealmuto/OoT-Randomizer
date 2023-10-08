@@ -15,6 +15,7 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v47](#v47)
   * [v46](#v46)
   * [v45](#v45)
   * [v44](#v44)
@@ -65,6 +66,9 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
   * [4.0](#40)
 
 ## RealRob Changelog
+### v47
+  * Fix Forest Trial enemy logic
+
 ### v46
   * Potsanity Changes:
     * Add new settings to shuffle empty pots/crates
