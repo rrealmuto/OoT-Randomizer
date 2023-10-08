@@ -31,7 +31,7 @@
         "locations": {
             "Ganons Castle Forest Trial Chest": "
                 (has_soul(Wolfos)) and (is_adult or Slingshot or Sticks or Kokiri_Sword or can_use(Dins_Fire))",
-                "Ganons Castle Forest Trial Wolfos" : "can_kill_wolfos"
+            "Ganons Castle Forest Trial Wolfos" : "can_kill_wolfos"
         },
         "exits": {
             "Ganons Castle Forest Trial Wind Room": "
@@ -47,7 +47,7 @@
             "Ganons Castle Forest Trial Silver Rupee Back Right": "True",
             "Ganons Castle Forest Trial Silver Rupee Back Center": "True",
             "Ganons Castle Forest Trial Silver Rupee Center Left": "True",
-            "Ganons Castle Forest Trial Beamos" : "(has_soul(Beamos)) and (has_explosives and (can_use(Fire_Arrows) or (can_use(Dins_Fire) and (can_use(Bow) or can_use(Hookshot)))))"
+            "Ganons Castle Forest Trial Beamos" : "has_soul(Beamos) and has_explosives"
         },
         "exits": {
             "Ganons Castle Forest Trial Ending": "(Silver_Rupee_Ganons_Castle_Forest_Trial, 5)"
