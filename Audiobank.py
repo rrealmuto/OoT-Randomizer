@@ -37,9 +37,33 @@ class Audiobin:
                         return sfx.sample
         return None
 
+class AdpcmLoop:
+    def __init__(self, bankdata: bytearray, loop_addr: int):
+        self.start = int.from_bytes(bankdata[loop_addr:loop_addr+4], 'big')
+        self.end = int.from_bytes(bankdata[loop_addr+4:loop_addr+8], 'big')
+        self.count = int.from_bytes(bankdata[loop_addr+8:loop_addr+12], 'big')
+        self.origSpls = int.from_bytes(bankdata[loop_addr+12:loop_addr+16], 'big')
+        self.state = []
+        if self.count:
+            for i in range(0,16):
+                index = loop_addr + 0x10 + 2*i
+                self.state.append(int.from_bytes(bankdata[index:index+2],'big'))
+
+class AdpcmBook:
+    def __init__(self, bankdata: bytearray, book_addr: int):
+        self.order = int.from_bytes(bankdata[book_addr:book_addr+4], 'big')
+        self.npredictors = int.from_bytes(bankdata[book_addr+4:book_addr+8], 'big')
+        self.book = []
+        for i in range(0, 8 * self.order * self.npredictors):
+            index = book_addr + 8 + 2*i
+            self.book.append(int.from_bytes(bankdata[index:index+2], 'big'))
+
 class Sample:
     def __init__(self, bankdata: bytearray, audiotable_file: bytearray, audiotable_index: bytearray, sample_offset: int, audiotable_id: int, parent):
         # Process the sample
+        if sample_offset == 0:
+            self = None
+            return
         self.parent = parent
         self.bank_offset = sample_offset
         self.sample_header = bankdata[sample_offset:sample_offset + 0x10]
@@ -47,6 +71,11 @@ class Sample:
         self.medium = (self.sample_header[0] & 0x0C) >> 2
         self.size = int.from_bytes(self.sample_header[1:4], 'big')
         self.addr = int.from_bytes(self.sample_header[4:8], 'big')
+        if(sample_offset != 0):
+            self.loop_addr = int.from_bytes(self.sample_header[8:12], 'big')
+            self.book_addr = int.from_bytes(self.sample_header[12:16], 'big')
+            self.loop = AdpcmLoop(bankdata, self.loop_addr)
+            self.book = AdpcmBook(bankdata, self.book_addr)
 
         if audiotable_file and self.addr > len(audiotable_file): # The offset is higher than the total size of audiotable so we'll assume it doesn't actually exist. # We'll need to get the sample data from ZSOUND files in the archive.
             self.data = None
