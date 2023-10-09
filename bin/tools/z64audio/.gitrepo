@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:z64tools/z64audio.git
+	branch = main
+	commit = dbd208f9280fea22ce35d6ce1fd95ea07b994632
+	parent = 1223301147ddd5e78df10bacf131e7d95ea0c0b5
+	cmdver = 0.1.0

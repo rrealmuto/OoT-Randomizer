@@ -190,6 +190,7 @@ class Drum:
 class SFX:
     def __init__(self, sfx_id: int, bankdata: bytearray, audiotable_file: bytearray, audiotable_index: bytearray, sfx_offset: int, audiotable_id: int) -> None:
         self.sfx_id = sfx_id
+        self.sfx_offset = sfx_offset
         self.sampleOffset = int.from_bytes(bankdata[sfx_offset:sfx_offset+4], 'big')
         self.sampleTuning = int.from_bytes(bankdata[sfx_offset+4:sfx_offset+8], 'big')
         self.sample: Sample = Sample(bankdata, audiotable_file, audiotable_index, self.sampleOffset, audiotable_id, self)
