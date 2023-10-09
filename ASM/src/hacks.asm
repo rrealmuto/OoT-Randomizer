@@ -824,7 +824,9 @@ lw a1, 0x118(s0)
 .orga 0xDF1928
 ;replaces
 ;   jal     Item_DropCollectible
-    jal     en_skj_drop_collectible_hack
+;   swcl    f8, 0x44(sp)
+    jal       en_skj_drop_collectible_hook
+    nop
 
 ; Hack Bubble (en_bb) to spawn sparkles for fire bubbles
 .orga 0xCB2F28
