@@ -1,9 +1,12 @@
 from enum import Enum
+from math import ceil
+import sys
 from Audiobank import *
 from Rom import Rom
 from Utils import data_path
 import os
-
+import aifc
+import numpy as np
 
 AUDIOBANK_INDEX_ADDR = 0x00B896A0
 AUDIOBANK_FILE_ADDR = 0xD390
@@ -117,17 +120,115 @@ def patch_voice_pack(rom: Rom, voice_pack: str, age: VOICE_PACK_AGE):
 
     # List all files in the directory
     files : list[str] = os.listdir(voice_pack_dir)
+
+    sfxs = []
     for file in files:
         filename = os.path.basename(file)
-        filename_without_ext = filename.split('.')[0]
+        split = filename.split('.')
+        filename_without_ext = split[0]
+        ext = split[1]
         for sfx_name, sfx_id in sfx_list:
-            if filename_without_ext == sfx_name:
+            if filename_without_ext == sfx_name and ext == "aifc":
+                sfxs.append(os.path.join(voice_pack_dir,filename))
                 print(filename_without_ext)
+
+    # Patch each sfx that we have
+    for sfx_to_patch in sfxs:
+        # Open the .aifc file
+        index = 0
+        f = open(sfx_to_patch, 'rb')
+        # Read data from the .aifc file
+        
+        # Read the "FORM" Chunk
+        f.read(4) # "FORM"
+        size = int.from_bytes(f.read(4), 'big')
+        type = str(f.read(4), encoding='utf-8')
+        if type != "AIFC":
+            raise Exception("Not an AIFC file")
+
+        # Read the rest of the chunks
+        done = False
+        chunks = {}
+        chkID = "FORM"
+        while chkID != '':
+            chkID = str(f.read(4), encoding='utf-8')
+            size = int.from_bytes(f.read(4), 'big')
+            data = f.read(size)
+            chunk = {
+                'size': size,
+                'data': data
+            }
+            chunks[chkID] = chunk
+        
+        # Process the chunks
+        
+        # COMM Chunk: Sampling rate, compression type, number of channels
+        #define CommonID 'COMM' /* ckID for Common Chunk */
+        # typedef struct {
+        #   ID ckID; /*  'COMM'  */
+        #   long kDataSize;
+        #   short numChannels; /* # audio channels */
+        #   unsigned long numSampleFrames; /* # sample frames = samples/channel */
+        #   short sampleSize; /* # bits/sample */
+        #   extended sampleRate; /* sample_frames/sec */
+        #   ID compressionType; /* compression type ID code */
+        #   pstring compressionName; /* human-readable compression type name */
+        # } CommonChunk;
+
+        comm = chunks['COMM']
+        data = comm['data']
+        numChannels = int.from_bytes(data[0:2], 'big')
+        numSampleFrames = int.from_bytes(data[2:6], 'big')
+        sampleSize = int.from_bytes(data[6:8], 'big')
+        sampleRateBytes = bytearray(data[8:18])
+        # Need to process the sample rate. it's an 80-bit extended floating point value stored in 10 bytes which nothing natively supports
+        # We can probably use NumPy if we put it in the proper byte order and extend to 128-bit
+        dtype = np.dtype(np.longdouble)
+        if sys.byteorder == 'little':
+            sampleRateBytes.reverse()
+        sampleRateBytes = sampleRateBytes + bytearray(16 - len(sampleRateBytes)) # Pad sampleRateBytes to 128 bit
+        sampleRate = np.frombuffer(sampleRateBytes, dtype=dtype)[0]
+        compressionType = str(data[18:22],encoding='utf-8')
+        compressionNameLen = data[22]
+        compressionName = str(data[23:23 + compressionNameLen], encoding='utf-8')
+        
+        # Make sure it's the correct compression type
+        if compressionType != "ADP9":
+            raise Exception("Unknown compression format. Must be 'ADP9'. Did you use vadpcm_enc?")
+    
+        # Make sure it's the correct sample size
+        if sampleSize != 16:
+            raise Exception("Unsupported sample size. Must be 16 bit samples")
+
+        # Compressed sample data
+        # SSND Chunk contains the sample data
+        ssnd = chunks['SSND']
+        data = ssnd['data']
+        ssndOffset = int.from_bytes(data[0:4], 'big')
+        ssndBlockSize = int.from_bytes(data[4:8], 'big')
+        
+        if ssndOffset != 0 or ssndBlockSize != 0:
+            raise Exception("Unsupported SSND offset/block size")
+        # Read the sample data. it's numSampleFrames * 9 / 8 / 2
+        dataLen = int(ceil(numSampleFrames * 9 / 8 / 2))
+        soundData = data[8:8 + dataLen]
+        
+        # Calculate the tuning as sampling rate / 32000.
+        tuning = sampleRate / 32000
+
+        # Put the data in audiotable
+        # Sort-of problem. We need to update audiotable in multiple different spots. 
+        # So instead of making the new file, maybe just add a new variable to Rom called new_audiotable_data and write it all at the end.
+
+        # Update the sfx tuning
+        # Update loop end as numSampleFrames
+        # Update sample data length = length
+        # Update sample address to point to new data in audiotable.
 
 if __name__ == "__main__":
     rom = Rom("ZOOTDEC.z64")
 
-    patch_voice_pack(rom, "Test", VOICE_PACK_AGE.ADULT)
+    patch_voice_pack(rom, "Mario", VOICE_PACK_AGE.ADULT)
 
     bank_index_header: bytearray = rom.read_bytes(AUDIOBANK_INDEX_ADDR, 0x10)
     bank_index_length = int.from_bytes(bank_index_header[0:2], 'big')
