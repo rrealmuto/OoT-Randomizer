@@ -71,6 +71,7 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
   * Fix Forest Temple Upper Stalfos Drops
   * Fix Dark Link drop
   * Fix Skull Kids drops
+  * Fix Spirit Temple Child Bridge Bubble logic
 
 ### v47
   * Fix Forest Trial enemy logic

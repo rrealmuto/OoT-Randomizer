@@ -26,20 +26,27 @@
             "Spirit Temple Child Side Keese 1": "can_kill_keese",
             "Spirit Temple Child Side Keese 2": "can_kill_keese",
             "Spirit Temple Child Side Keese 3": "can_kill_keese",
-            "Spirit Temple Child Side Keese 4": "can_kill_keese",
+            "Spirit Temple Child Side Keese 4": "can_kill_keese"
+        },
+        "exits": {
+            "Child Spirit Temple Before Left Bridge": "can_kill_keese and can_kill_armos",
+            "Child Spirit Temple Beyond Right Bridge": "
+                can_kill_keese and can_kill_armos and
+                    ( (Silver_Rupee_Spirit_Temple_Child_Early_Torches, 5))",
+            "Child Spirit Before Locked Door": "True"
+        }
+    },
+    {
+        "region_name": "Child Spirit Temple Before Left Bridge",
+        "dungeon": "Spirit Temple",
+        "locations": {
             "Spirit Temple Child Bridge Stalfos": "can_kill_keese and can_kill_armos and can_kill_stalfos",
             "Spirit Temple Child Bridge Bubble": "has_soul(Bubble) and ((Sticks or has_explosives or
             ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot))) and (Boomerang or Slingshot))"
         },
         "exits": {
             "Child Spirit Temple Beyond Left Bridge": "
-                can_kill_keese and can_kill_armos and
-                (Boomerang or Slingshot or
-                    (has_bombchus and logic_spirit_child_bombchu))",
-            "Child Spirit Temple Beyond Right Bridge": "
-                can_kill_keese and can_kill_armos and
-                    ( (Silver_Rupee_Spirit_Temple_Child_Early_Torches, 5))",
-            "Child Spirit Before Locked Door": "True"
+                (Boomerang or Slingshot or (has_bombchus and logic_spirit_child_bombchu))"
         }
     },
     {
