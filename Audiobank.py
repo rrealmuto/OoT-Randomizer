@@ -1,5 +1,5 @@
 from io import FileIO
-from Rom import Rom
+import struct
 
 # Container for storing Audiotable, Audiobank, Audiotable_index, Audiobank_index
 class Audiobin:
@@ -32,7 +32,7 @@ class Audiobin:
                     if instrument.normalNoteSample and instrument.normalNoteSample.data == sample_data:
                         return instrument.normalNoteSample
             for sfx in audiobank.SFX:
-                if sfx and sfx.sample:
+                if sfx and sfx.sample and sfx.sample.data:
                     if sfx.sample.data == sample_data:
                         return sfx.sample
         return None
@@ -62,7 +62,7 @@ class Sample:
     def __init__(self, bankdata: bytearray, audiotable_file: bytearray, audiotable_index: bytearray, sample_offset: int, audiotable_id: int, parent):
         # Process the sample
         if sample_offset == 0:
-            self = None
+            self.data = None
             return
         self.parent = parent
         self.bank_offset = sample_offset
@@ -93,6 +93,15 @@ class Sample:
         else:
             self.audiotable_addr = -1
             self.data = None
+    
+    def get_bytes(self) -> bytearray:
+        bytes = bytearray()
+        bytes += (((self.codec & 0x0F) << 4) | ((self.medium & 0x03) << 2)).to_bytes(1, 'big')
+        bytes += self.size.to_bytes(3, 'big')
+        bytes += self.addr.to_bytes(4, 'big')
+        bytes += self.loop_addr.to_bytes(4, 'big')
+        bytes += self.book_addr.to_bytes(4, 'big')
+        return bytes
 
 # Loads an audiobank and it's corresponding instrument/drum/sfxs
 class AudioBank:
@@ -171,11 +180,17 @@ class AudioBank:
                     all_samples.append(sfx.sample)
         return all_samples
 
-    def build_entry(self, offset: int) -> bytes:
-        bank_entry: bytes = offset.to_bytes(4, 'big')
+    def build_entry(self, offset: int = 0) -> bytes:
+        bank_entry: bytearray = bytearray(0)
+        if offset == 0:
+            bank_entry += self.bank_offset.to_bytes(4, 'big')
+        else:
+            bank_entry += offset.to_bytes(4, 'big')
         bank_entry += len(self.bank_data).to_bytes(4, 'big')
         bank_entry += self.table_entry[8:16]
         return bank_entry
+    
+
 
 class Drum:
     def __init__(self, drum_id: int, bankdata: bytearray, audiotable_file: bytearray, audiotable_index: bytearray, drum_offset: int, audiotable_id: int) -> None:
@@ -194,7 +209,12 @@ class SFX:
         self.sampleOffset = int.from_bytes(bankdata[sfx_offset:sfx_offset+4], 'big')
         self.sampleTuning = int.from_bytes(bankdata[sfx_offset+4:sfx_offset+8], 'big')
         self.sample: Sample = Sample(bankdata, audiotable_file, audiotable_index, self.sampleOffset, audiotable_id, self)
-        
+    
+    def get_bytes(self):
+        bytes = bytearray(0)
+        bytes += self.sampleOffset.to_bytes(4,'big')
+        bytes += struct.pack(">f", self.sampleTuning)
+        return bytes
 
 class Instrument:
     def __init__(self, inst_id: int, bankdata: bytearray, audiotable_file: bytearray, audiotable_index: bytearray, instr_offset: int, audiotable_id: int) -> None:
