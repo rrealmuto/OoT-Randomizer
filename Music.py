@@ -523,9 +523,9 @@ def rebuild_sequences(rom: Rom, sequences: list[Sequence], log: CosmeticsLog, sy
                                             elif parent.lowNoteSample and parent.lowNoteSample.addr == sample.addr:
                                                 sample = newbank.instruments[parent.inst_id].lowNoteSample
                                         if type(parent) == Drum:
-                                            sample = newbank.SFX[parent.drum_id]
+                                            sample = newbank.drums[parent.drum_id].sample
                                         if type(parent) == SFX:
-                                            sample = newbank.SFX[parent.sfx_id]
+                                            sample = newbank.SFX[parent.sfx_id].sample
                                         sample.data = zip.read(zsound['file'])
                                         sample.addr = -1 # Set the sample address to -1 so that we know it's from a zsound
                                         zsound_samples.append(sample)
