@@ -145,8 +145,14 @@ def get_alt_list_bytes(alt_list: list[tuple[Location, tuple[int, int, int], tupl
         if location.scene is None:
             continue
         alt_scene = location.scene
+        # Handle ganons tower pots special
         if location.scene == 0x0A:
             alt_scene = 0x19
+
+        # Handle outside ToT Gossip Stones separately
+        if location.scene == 0x23:
+            alt_scene = location.scene + scene_setup
+            scene_setup = 0
 
         alt_override = (scene_setup << 22) + (room << 16) + (flag << 8) + (subflag - 1)
         room, scene_setup, flag, subflag = primary
