@@ -345,7 +345,8 @@ def rebuild_sequences(rom: Rom, sequences: list[Sequence], log: CosmeticsLog, sy
 
     # If custom banks are supported, we're going to make copies of the banks to be used for fanfares
     # In that case, need to update the fanfare sequence's bank to point to the new one
-    fanfare_bank_shift = 0x26 if CUSTOM_BANKS_SUPPORTED else 0
+    #fanfare_bank_shift = 0x26 if CUSTOM_BANKS_SUPPORTED else 0
+    fanfare_bank_shift = 0
 
     # Update pointer table
     for i in range(0x6E):
@@ -392,15 +393,15 @@ def rebuild_sequences(rom: Rom, sequences: list[Sequence], log: CosmeticsLog, sy
     # Builds new audio bank entrys for fanfares to prevent fanfares killing bgm in areas like Goron City
     bank_index_base = (rom.read_int32(symbols['CFG_AUDIOBANK_TABLE_EXTENDED_ADDR']) - 0x80400000) + 0x3480000
     # Build new fanfare banks by copying each entry in audiobank_index
-    for i in range(0, 0x26):
-        bank_entry = rom.read_bytes(bank_index_base + 0x10 + (0x10*i), 0x10) # Get the vanilla entry
-        bank_entry[9] = 1 # Update the cache type to 1
-        rom.write_bytes(bank_index_base + 0x270 + 0x10*i, bank_entry) # Write the new entry at the end of the bank table.
-    rom.write_byte(bank_index_base + 0x01, 0x4C) # Updates AudioBank Index Header if no custom banks are present as this would be 0x26 which would crash the game if a fanfare was played
+    #for i in range(0, 0x26):
+    #    bank_entry = rom.read_bytes(bank_index_base + 0x10 + (0x10*i), 0x10) # Get the vanilla entry
+    #    bank_entry[9] = 1 # Update the cache type to 1
+    #    rom.write_bytes(bank_index_base + 0x270 + 0x10*i, bank_entry) # Write the new entry at the end of the bank table.
+    #rom.write_byte(bank_index_base + 0x01, 0x4C) # Updates AudioBank Index Header if no custom banks are present as this would be 0x26 which would crash the game if a fanfare was played
 
     added_banks: list[AudioBank] = [] # Store copies of all the banks we've added
     added_samples: list[Sample] = []  # Store copies of all the samples we've added
-    new_bank_index = 0x4C
+    new_bank_index = 0x26
     instr_data = bytearray(0)  # Store all the new instrument data that will be added to the end of audiotable
 
     instr_offset_in_file = len(rom.audiotable)
@@ -516,9 +517,9 @@ def rebuild_sequences(rom: Rom, sequences: list[Sequence], log: CosmeticsLog, sy
                                             elif parent.lowNoteSample and parent.lowNoteSample.addr == sample.addr:
                                                 sample = newbank.instruments[parent.inst_id].lowNoteSample
                                         if type(parent) == Drum:
-                                            sample = newbank.drums[parent.drum_id]
+                                            sample = newbank.drums[parent.drum_id].sample
                                         if type(parent) == SFX:
-                                            sample = newbank.SFX[parent.sfx_id]
+                                            sample = newbank.SFX[parent.sfx_id].sample
                                         sample.data = zip.read(zsound['file'])
                                         sample.addr = -1 # Set the sample address to -1 so that we know it's from a zsound
                                         zsound_samples.append(sample)
@@ -605,11 +606,7 @@ def rebuild_sequences(rom: Rom, sequences: list[Sequence], log: CosmeticsLog, sy
         # Add the new data
         rom.audiotable += instr_data
 
-    rom.write_audiotable()
-
     rom.audiobanks.extend(added_banks)
-
-    rom.write_audiobanks(bank_table_base)
 
     # Update the init heap size. This size is normally hardcoded based on the number of audio banks.
     init_heap_size = rom.read_int32(0xB80118)

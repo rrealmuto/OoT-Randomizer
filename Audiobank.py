@@ -49,6 +49,16 @@ class AdpcmLoop:
                 index = loop_addr + 0x10 + 2*i
                 self.state.append(int.from_bytes(bankdata[index:index+2],'big'))
 
+    def get_bytes(self):
+        bytes = bytearray(0)
+        bytes += self.start.to_bytes(4,'big')
+        bytes += self.end.to_bytes(4, 'big')
+        bytes += self.count.to_bytes(4, 'big')
+        bytes += self.origSpls.to_bytes(4, 'big')
+        for short in self.state:
+            bytes += short.to_bytes(2, 'big')
+        return bytes
+
 class AdpcmBook:
     def __init__(self, bankdata: bytearray, book_addr: int):
         self.order = int.from_bytes(bankdata[book_addr:book_addr+4], 'big')
@@ -189,8 +199,6 @@ class AudioBank:
         bank_entry += len(self.bank_data).to_bytes(4, 'big')
         bank_entry += self.table_entry[8:16]
         return bank_entry
-    
-
 
 class Drum:
     def __init__(self, drum_id: int, bankdata: bytearray, audiotable_file: bytearray, audiotable_index: bytearray, drum_offset: int, audiotable_id: int) -> None:

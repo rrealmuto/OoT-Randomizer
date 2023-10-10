@@ -3,6 +3,7 @@ from math import ceil
 import sys
 from Audiobank import *
 from Rom import Rom
+from Settings import Settings
 from Utils import data_path
 import os
 import aifc
@@ -112,9 +113,10 @@ class VOICE_PACK_AGE(Enum):
     CHILD = 0
     ADULT = 1
 
-def patch_voice_pack(rom: Rom, voice_pack: str, age: VOICE_PACK_AGE, audiobanks: list[AudioBank]):
-    bank0 = audiobanks[0]
-    
+def _patch_voice_pack(rom: Rom):
+    bank0 = rom.audiobanks[0]
+    age = VOICE_PACK_AGE.ADULT
+    voice_pack = "Mario"
     # Build voice pack path
     voice_pack_dir = os.path.join(data_path(), "Voices", "Child" if age == VOICE_PACK_AGE.CHILD else "Adult", voice_pack)
 
@@ -221,17 +223,17 @@ def patch_voice_pack(rom: Rom, voice_pack: str, age: VOICE_PACK_AGE, audiobanks:
         tuning = sampleRate / 32000
 
         # Pad the data to 16 bytes
-        data += bytearray((16 - (len(data)%16))%16)
+        soundData += bytearray((16 - (len(soundData)%16))%16)
 
         # Put the data in audiotable
-        rom.audiotable += data
+        rom.audiotable += soundData
         # Sort-of problem. We need to update audiotable in multiple different spots. 
         # So instead of making the new file, maybe just add a new variable to Rom called new_audiotable_data and write it all at the end.
         # Update sample address to point to new data in audiotable.
         sfx: SFX = bank0.SFX[sfx_id]
 
         sfx.sample.addr = sfx_data_start
-        sfx_data_start += len(data)
+        sfx_data_start += len(soundData)
 
         # Update the sfx tuning
         sfx.sampleTuning = float(tuning)
@@ -242,34 +244,15 @@ def patch_voice_pack(rom: Rom, voice_pack: str, age: VOICE_PACK_AGE, audiobanks:
         sfx.sample.size = dataLen
         sampleBytes = sfx.sample.get_bytes()
         sfxBytes = sfx.get_bytes()
+        loopBytes = sfx.sample.loop.get_bytes()
 
         # Write the new sample into the bank
-        rom.write_bytes(sfx.sampleOffset)
+        bank0.bank_data[sfx.sampleOffset:sfx.sampleOffset+0x10] = sfx.sample.get_bytes()
+        bank0.bank_data[sfx.sfx_offset:sfx.sfx_offset+0x08] = sfx.get_bytes()
+        bank0.bank_data[sfx.sample.loop_addr:sfx.sample.loop_addr+len(loopBytes)] = loopBytes
         
 if __name__ == "__main__":
     rom = Rom("ZOOTDEC.z64")
 
-
-    bank_index_header: bytearray = rom.read_bytes(AUDIOBANK_INDEX_ADDR, 0x10)
-    bank_index_length = int.from_bytes(bank_index_header[0:2], 'big')
-
-    # Read Audiobank file
-    audiobank = rom.read_bytes(AUDIOBANK_FILE_ADDR, AUDIOBANK_FILE_LENGTH)    
-
-    # Read Audiotable file
-    audiotable = rom.read_bytes(AUDIOTABLE_FILE_ADDR, AUDIOTABLE_FILE_LENGTH)
-
-    # Read Audiotable index
-    audiotable_index_header: bytearray = rom.read_bytes(AUDIOTABLE_INDEX_ADDR, 0x10)
-    audiotable_index_length = int.from_bytes(audiotable_index_header[0:2], 'big')
-    audiotable_index = rom.read_bytes(AUDIOTABLE_INDEX_ADDR, 0x10*audiotable_index_length + 0x10)
-
-    # Read bank entry 0 from audiobank pointer table
-    banks = []
-    for i in range(0, bank_index_length):
-        bank_entry = rom.read_bytes(AUDIOBANK_INDEX_ADDR + 0x10 + i*0x10, 0x10)    
-        bank = AudioBank(bank_entry, audiobank, audiotable, audiotable_index)
-        banks.append(bank)
-
-    patch_voice_pack(rom, "Mario", VOICE_PACK_AGE.ADULT, banks)
+    _patch_voice_pack(rom, "Mario", VOICE_PACK_AGE.ADULT)
 

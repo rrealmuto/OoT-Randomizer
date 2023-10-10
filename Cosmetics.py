@@ -15,6 +15,7 @@ from JSONDump import dump_obj, CollapseList, CollapseDict, AlignedDict
 from Plandomizer import InvalidFileException
 from Utils import data_path
 from version import __version__
+from Voices import _patch_voice_pack
 
 if TYPE_CHECKING:
     from Rom import Rom
@@ -933,6 +934,12 @@ def patch_voices(rom: Rom, settings: Settings, log: CosmeticsLog, symbols: dict[
         # Write the setting to the log
         log.sfx[log_key] = voice_setting
 
+def patch_voice_pack(rom: Rom, settings: Settings, log: CosmeticsLog, symbols: dict[str, int]):
+    _patch_voice_pack(rom)
+    
+    rom.write_audiotable()
+    bank_index_base = (rom.read_int32(symbols['CFG_AUDIOBANK_TABLE_EXTENDED_ADDR']) - 0x80400000) + 0x3480000
+    rom.write_audiobanks(bank_index_base)
 
 def patch_music_changes(rom: Rom, settings: Settings, log: CosmeticsLog, symbols: dict[str, int]) -> None:
     # Music tempo changes
@@ -1161,6 +1168,16 @@ patch_sets[0x1F073FE0] = {
     "symbols": {
         **patch_sets[0x1F073FDF]["symbols"],
         "CFG_DPAD_ON_THE_LEFT": 0x006A,
+    }
+}
+
+# 7.1.144
+patch_sets[0x1F073FE1] = {
+    "patches": patch_sets[0x1F073FE0]["patches"] + [
+        patch_voice_pack,
+    ],
+    "symbols": {
+        **patch_sets[0x1F073FE0]["symbols"]
     }
 }
 

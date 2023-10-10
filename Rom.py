@@ -308,7 +308,7 @@ class Rom(BigStream):
         self.audiotable_dma_entry.update(new_audiotable_start, new_audiotable_start + len(self.audiotable))
 
     def write_audiobanks(self, audiobank_index_addr: int) -> int:
-        audiobank_start, audiobank_end, audiobank_size = self.audiotable_dma_entry.as_tuple()
+        audiobank_start, audiobank_end, audiobank_size = self.audiobank_dma_entry.as_tuple()
         # Loop through all of the banks and compile the data, build the index
         audiobank_bytes: bytearray = bytearray(0)
         bank_data_offset = len(audiobank_bytes)
