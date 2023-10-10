@@ -15,6 +15,7 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v49](#v49)
   * [v48](#v48)
   * [v47](#v47)
   * [v46](#v46)
@@ -67,6 +68,9 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
   * [4.0](#40)
 
 ## RealRob Changelog
+### v49
+  * Fix Temple of Time Gossip Stone Drops
+
 ### v48
   * Fix Forest Temple Upper Stalfos Drops
   * Fix Dark Link drop
