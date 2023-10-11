@@ -63,60 +63,58 @@ child_link_sfx = [
 ]
 
 adult_link_sfx = [
-    ("Adult Link - Attack 1", 0),
-    ("Adult Link - Attack 2", 1),
-    ("Adult Link - Attack 3", 2),
-    ("Adult Link - Attack 4", 3),
-    ("Adult Link - Strong Attack 1", 4),
-    ("Adult Link - Strong Attack 2", 5),
-    ("Adult Link - Dangling Grunt", 6),
-    ("Adult Link - Climb Edge", 7),
-    ("Adult Link - Dangling Gasp 1", 8),
-    ("Adult Link - Hurt 1", 9),
-    ("Adult Link - Hurt 2", 10),
-    ("Adult Link - Hurt 3", 11),
-    ("Adult Link - Hurt 4", 12),
-    ("Adult Link - Knocked Back", 13),
-    ("Adult Link - Hurt 5", 14),
-    ("Adult Link - Falling 1", 15),
-    ("Adult Link - Falling 2", 16),
-    ("Adult Link - Gasp 1", 17),
-    ("Adult Link - Gasp 2", 18),
-    ("Adult Link - Pant 1", 19),
-    ("Adult Link - Spur Horse 1", 21),
-    ("Adult Link - Spur Horse 2", 22),
-    ("Adult Link - Pant 2", 23),
-    ("Adult Link - Painful Landing", 24),
-    ("Adult Link - Dangling Gasp 2", 25),
-    ("Adult Link - Hup", 26),
-    ("Adult Link - Gasp 3", 27),
-    ("Adult Link - Glug", 55),
-    ("Adult Link - Refreshed", 56),
-    ("Adult Link - Lift", 60),
-    ("Adult Link - Cast Spell", 61),
-    ("Adult Link - Hurt 6", 77),
-    ("Adult Link - Choking", 78),
-    ("Adult Link - Gasping", 79),
-    ("Adult Link - Small Gasp", 80),
-    ("Adult Link - Unsettled Moan", 81),
-    ("Adult Link - Sneeze", 82),
-    ("Adult Link - Sigh 1", 83),
-    ("Adult Link - Sigh 2", 84),
-    ("Adult Link - Sigh 3", 85),
-    ("Adult Link - Stretch Start", 86),
-    ("Adult Link - Stretching", 87),
-    ("Adult Link - Finished Stretching", 88),
-    ("Adult Link - Dramatic Gasp", 134)
+    ("Adult Link - Attack 1", 0x00),
+    ("Adult Link - Attack 2", 0x01),
+    ("Adult Link - Attack 3", 0x02),
+    ("Adult Link - Attack 4", 0x03),
+    ("Adult Link - Strong Attack 1", 0x04),
+    ("Adult Link - Strong Attack 2", 0x05),
+    ("Adult Link - Dangling Grunt", 0x06),
+    ("Adult Link - Climb Edge", 0x07),
+    ("Adult Link - Dangling Gasp 1", 0x08),
+    ("Adult Link - Hurt 1", 0x09),
+    ("Adult Link - Hurt 2", 0x0A),
+    ("Adult Link - Hurt 3", 0x0B),
+    ("Adult Link - Hurt 4", 0x0C),
+    ("Adult Link - Knocked Back", 0x0D),
+    ("Adult Link - Hurt 5", 0x0E),
+    ("Adult Link - Falling 1", 0x0F),
+    ("Adult Link - Falling 2", 0x10),
+    ("Adult Link - Gasp 1", 0x11),
+    ("Adult Link - Gasp 2", 0x12),
+    ("Adult Link - Pant 1", 0x13),
+    ("Adult Link - Spur Horse 1", 0x15),
+    ("Adult Link - Spur Horse 2", 0x16),
+    ("Adult Link - Pant 2", 0x17),
+    ("Adult Link - Painful Landing", 0x18),
+    ("Adult Link - Dangling Gasp 2", 0x19),
+    ("Adult Link - Hup", 0x1A),
+    ("Adult Link - Gasp 3", 0x1B),
+    ("Adult Link - Glug", 0x37),
+    ("Adult Link - Refreshed", 0x38),
+    ("Adult Link - Lift", 0x3C),
+    ("Adult Link - Cast Spell", 0x3D),
+    ("Adult Link - Hurt 6", 0x4D),
+    ("Adult Link - Choking", 0x4E),
+    ("Adult Link - Gasping", 0x4F),
+    ("Adult Link - Small Gasp", 0x50),
+    ("Adult Link - Unsettled Moan", 0x51),
+    ("Adult Link - Sneeze", 0x52),
+    ("Adult Link - Sigh 1", 0x53),
+    ("Adult Link - Sigh 2", 0x54),
+    ("Adult Link - Sigh 3", 0x55),
+    ("Adult Link - Stretch Start", 0x56),
+    ("Adult Link - Stretching", 0x57),
+    ("Adult Link - Finished Stretching", 0x58),
+    ("Adult Link - Dramatic Gasp", 0x86)
 ]
 
 class VOICE_PACK_AGE(Enum):
     CHILD = 0
     ADULT = 1
 
-def _patch_voice_pack(rom: Rom):
+def _patch_voice_pack(rom: Rom, age: VOICE_PACK_AGE, voice_pack: str):
     bank0 = rom.audiobanks[0]
-    age = VOICE_PACK_AGE.ADULT
-    voice_pack = "Mario"
     # Build voice pack path
     voice_pack_dir = os.path.join(data_path(), "Voices", "Child" if age == VOICE_PACK_AGE.CHILD else "Adult", voice_pack)
 
@@ -126,15 +124,22 @@ def _patch_voice_pack(rom: Rom):
     files : list[str] = os.listdir(voice_pack_dir)
 
     sfxs = []
-    for file in files:
-        filename = os.path.basename(file)
-        split = filename.split('.')
-        filename_without_ext = split[0]
-        ext = split[1]
-        for sfx_name, sfx_id in sfx_list:
-            if filename_without_ext == sfx_name and ext == "aifc":
-                sfxs.append((os.path.join(voice_pack_dir,filename), sfx_name, sfx_id))
-                print(filename_without_ext)
+    for filename in files:
+        if filename.startswith("00-"):
+            # Old style, get bank and then sfx id
+            substr = filename[0:7]
+            split = substr.split("-")
+            bank = split[0]
+            sfxid = split[1]
+            sfxs.append((os.path.join(voice_pack_dir,filename), filename, int(sfxid,16)))
+        else:
+            split = filename.split('.')
+            filename_without_ext = split[0]
+            ext = split[1]
+            for sfx_name, sfx_id in sfx_list:
+                if filename_without_ext == sfx_name and ext == "aifc":
+                    sfxs.append((os.path.join(voice_pack_dir,filename), sfx_name, sfx_id))
+                    print(filename_without_ext)
 
     sfx_data_start = len(rom.audiotable)
 
@@ -225,15 +230,24 @@ def _patch_voice_pack(rom: Rom):
         # Pad the data to 16 bytes
         soundData += bytearray((16 - (len(soundData)%16))%16)
 
-        # Put the data in audiotable
-        rom.audiotable += soundData
+
+        
         # Sort-of problem. We need to update audiotable in multiple different spots. 
         # So instead of making the new file, maybe just add a new variable to Rom called new_audiotable_data and write it all at the end.
         # Update sample address to point to new data in audiotable.
         sfx: SFX = bank0.SFX[sfx_id]
 
-        sfx.sample.addr = sfx_data_start
-        sfx_data_start += len(soundData)
+        # Compare sound data to existing to see if it fits
+        if len(soundData) > sfx.sample.size:
+            # Put the data in audiotable
+            rom.audiotable += soundData
+            sfx.sample.addr = sfx_data_start
+            sfx_data_start += len(soundData)
+        else:
+            # Put the data in the existing location. Pad with 0s
+            pad_len = sfx.sample.size - len(soundData)
+            soundData += bytearray(pad_len)
+            rom.audiotable[sfx.sample.addr:sfx.sample.addr + len(soundData)] = soundData
 
         # Update the sfx tuning
         sfx.sampleTuning = float(tuning)

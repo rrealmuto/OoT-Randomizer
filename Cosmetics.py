@@ -15,7 +15,7 @@ from JSONDump import dump_obj, CollapseList, CollapseDict, AlignedDict
 from Plandomizer import InvalidFileException
 from Utils import data_path
 from version import __version__
-from Voices import _patch_voice_pack
+from Voices import VOICE_PACK_AGE, _patch_voice_pack
 
 if TYPE_CHECKING:
     from Rom import Rom
@@ -935,7 +935,7 @@ def patch_voices(rom: Rom, settings: Settings, log: CosmeticsLog, symbols: dict[
         log.sfx[log_key] = voice_setting
 
 def patch_voice_pack(rom: Rom, settings: Settings, log: CosmeticsLog, symbols: dict[str, int]):
-    _patch_voice_pack(rom)
+    _patch_voice_pack(rom, VOICE_PACK_AGE.ADULT, settings.sfx_link_adult)
     
     rom.write_audiotable()
     bank_index_base = (rom.read_int32(symbols['CFG_AUDIOBANK_TABLE_EXTENDED_ADDR']) - 0x80400000) + 0x3480000
