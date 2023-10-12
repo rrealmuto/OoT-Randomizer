@@ -125,21 +125,20 @@ def _patch_voice_pack(rom: Rom, age: VOICE_PACK_AGE, voice_pack: str):
 
     sfxs = []
     for filename in files:
-        if filename.startswith("00-"):
-            # Old style, get bank and then sfx id
+        if filename.startswith("00-") and filename.endswith(".aifc"): # Old style naming get bank and then sfx id from the file name
             substr = filename[0:7]
             split = substr.split("-")
             bank = split[0]
             sfxid = split[1]
             sfxs.append((os.path.join(voice_pack_dir,filename), filename, int(sfxid,16)))
-        else:
+        else: # New style naming, compare file name against table
             split = filename.split('.')
             filename_without_ext = split[0]
             ext = split[1]
             for sfx_name, sfx_id in sfx_list:
                 if filename_without_ext == sfx_name and ext == "aifc":
                     sfxs.append((os.path.join(voice_pack_dir,filename), sfx_name, sfx_id))
-                    print(filename_without_ext)
+                    break
 
     sfx_data_start = len(rom.audiotable)
 
@@ -230,8 +229,6 @@ def _patch_voice_pack(rom: Rom, age: VOICE_PACK_AGE, voice_pack: str):
         # Pad the data to 16 bytes
         soundData += bytearray((16 - (len(soundData)%16))%16)
 
-
-        
         # Sort-of problem. We need to update audiotable in multiple different spots. 
         # So instead of making the new file, maybe just add a new variable to Rom called new_audiotable_data and write it all at the end.
         # Update sample address to point to new data in audiotable.
@@ -264,9 +261,31 @@ def _patch_voice_pack(rom: Rom, age: VOICE_PACK_AGE, voice_pack: str):
         bank0.bank_data[sfx.sampleOffset:sfx.sampleOffset+0x10] = sfx.sample.get_bytes()
         bank0.bank_data[sfx.sfx_offset:sfx.sfx_offset+0x08] = sfx.get_bytes()
         bank0.bank_data[sfx.sample.loop_addr:sfx.sample.loop_addr+len(loopBytes)] = loopBytes
-        
+
+def rename_old_files(dir: str, age: VOICE_PACK_AGE):
+    # list the contents of the directory
+
+    files : list[str] = os.listdir(dir)
+    sfxlist = adult_link_sfx if age == VOICE_PACK_AGE.ADULT else child_link_sfx
+    for file in files:
+        if file.startswith("00-") and (file.endswith(".aifc")):
+            # Rename this file
+            split = file.split("_")
+            split = split[0].split("-")
+            bank = split[0]
+            oldsfxid = int(split[1],16)
+            # Get the name from the table
+            for sfxname, sfxid in sfxlist:
+                # Rename the file to sfxname
+                if oldsfxid == sfxid:
+                    old_path = os.path.join(dir,file)
+                    new_path = os.path.join(dir,sfxname+ ".aifc")
+                    print("Renaming " + old_path)
+                    os.rename(old_path, new_path)
+                    break
+
 if __name__ == "__main__":
     rom = Rom("ZOOTDEC.z64")
-
-    _patch_voice_pack(rom, "Mario", VOICE_PACK_AGE.ADULT)
+    rename_old_files("data/Voices/Child/Feminine_New", VOICE_PACK_AGE.CHILD)
+    #_patch_voice_pack(rom, "Mario", VOICE_PACK_AGE.ADULT)
 

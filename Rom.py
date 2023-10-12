@@ -294,7 +294,8 @@ class Rom(BigStream):
         if size < original_size:
             self.changed_address.update(zip(range(size, original_size-1), [0]*(original_size-size)))
 
-    def write_audiotable(self) -> None:
+    def write_audiotable(self) -> int:
+        new_audiotable_start = -1
         audiotable_start, audiotable_end, audiotable_size = self.audiotable_dma_entry.as_tuple()
         new_audiotable_start = audiotable_start
         if len(self.audiotable) > audiotable_size: # Data was added to audiotable so it needs to be relocated
@@ -305,7 +306,9 @@ class Rom(BigStream):
         # Write the file to the new address
         self.write_bytes(new_audiotable_start, self.audiotable)
         # Update DMA
-        self.audiotable_dma_entry.update(new_audiotable_start, new_audiotable_start + len(self.audiotable))
+        if new_audiotable_start > 0:
+            self.audiotable_dma_entry.update(new_audiotable_start, new_audiotable_start + len(self.audiotable))
+        return new_audiotable_start
 
     def write_audiobanks(self, audiobank_index_addr: int) -> int:
         audiobank_start, audiobank_end, audiobank_size = self.audiobank_dma_entry.as_tuple()

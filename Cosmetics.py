@@ -6,6 +6,7 @@ import random
 from collections.abc import Iterable, Callable
 from itertools import chain
 from typing import TYPE_CHECKING, Optional, Any
+from Audiobank import SFX
 
 import Colors
 import IconManip
@@ -15,7 +16,7 @@ from JSONDump import dump_obj, CollapseList, CollapseDict, AlignedDict
 from Plandomizer import InvalidFileException
 from Utils import data_path
 from version import __version__
-from Voices import VOICE_PACK_AGE, _patch_voice_pack
+from Voices import VOICE_PACK_AGE, _patch_voice_pack, child_link_sfx, adult_link_sfx
 
 if TYPE_CHECKING:
     from Rom import Rom
@@ -852,7 +853,7 @@ def read_default_voice_data(rom: Rom) -> dict[str, dict[str, int]]:
     return soundbank_entries
 
 
-def patch_silent_voice(rom: Rom, sfxidlist: Iterable[int], soundbank_entries: dict[str, dict[str, int]], log: CosmeticsLog) -> None:
+def patch_silent_voice(rom: Rom, age: VOICE_PACK_AGE, log: CosmeticsLog) -> None:
     binsfxfilename = os.path.join(data_path('Voices'), 'SilentVoiceSFX.bin')
     if not os.path.isfile(binsfxfilename):
         log.errors.append(f"Could not find silent voice sfx at {binsfxfilename}. Skipping voice patching")
@@ -862,12 +863,14 @@ def patch_silent_voice(rom: Rom, sfxidlist: Iterable[int], soundbank_entries: di
     with open(binsfxfilename, 'rb') as binsfxin:
         binsfx = bytearray() + binsfxin.read(-1)
 
+    sfxlist = adult_link_sfx if age == VOICE_PACK_AGE.ADULT else child_link_sfx
+
     # Pad it to length and patch it into every id in sfxidlist
-    for decid in sfxidlist:
-        sfxid = f"00-00{decid:02x}"
-        injectme = binsfx.ljust(soundbank_entries[sfxid]["length"], b'\0')
+    for _, sfxid in sfxlist:
+        sfx: SFX = rom.audiobanks[0].SFX[sfxid]
+        injectme = binsfx.ljust(sfx.sample.size)
         # Write the binary sfx to the rom
-        rom.write_bytes(soundbank_entries[sfxid]["romoffset"], injectme)
+        rom.audiotable[sfx.sample.audiotable_addr:sfx.sample.audiotable_addr + len(injectme)] = injectme
 
 
 def apply_voice_patch(rom: Rom, voice_path: str, soundbank_entries: dict[str, dict[str, int]]) -> None:
@@ -935,11 +938,15 @@ def patch_voices(rom: Rom, settings: Settings, log: CosmeticsLog, symbols: dict[
         log.sfx[log_key] = voice_setting
 
 def patch_voice_pack(rom: Rom, settings: Settings, log: CosmeticsLog, symbols: dict[str, int]):
-    _patch_voice_pack(rom, VOICE_PACK_AGE.ADULT, settings.sfx_link_adult)
-    
-    rom.write_audiotable()
-    bank_index_base = (rom.read_int32(symbols['CFG_AUDIOBANK_TABLE_EXTENDED_ADDR']) - 0x80400000) + 0x3480000
-    rom.write_audiobanks(bank_index_base)
+    if settings.sfx_link_adult == 'Silent':
+        patch_silent_voice(rom, VOICE_PACK_AGE.ADULT, log)
+    elif settings.sfx_link_adult != 'Default':
+        _patch_voice_pack(rom, VOICE_PACK_AGE.ADULT, settings.sfx_link_adult)
+
+    if settings.sfx_link_child == 'Silent':
+        patch_silent_voice(rom, VOICE_PACK_AGE.ADULT, log)
+    elif settings.sfx_link_child != 'Default':
+        _patch_voice_pack(rom, VOICE_PACK_AGE.CHILD, settings.sfx_link_child)
 
 def patch_music_changes(rom: Rom, settings: Settings, log: CosmeticsLog, symbols: dict[str, int]) -> None:
     # Music tempo changes
@@ -990,7 +997,6 @@ global_patch_sets: list[Callable[[Rom, Settings, CosmeticsLog, dict[str, int]], 
     patch_sword_trails,
     patch_gauntlet_colors,
     patch_shield_frame_colors,
-    patch_voices,
     patch_sfx,
     patch_instrument,
 ]
@@ -1233,6 +1239,13 @@ def patch_cosmetics(settings: Settings, rom: Rom) -> CosmeticsLog:
         # Unknown patch format
         log.errors.append("Unable to patch some cosmetics. ROM uses unknown cosmetic patch format.")
 
+    audiotable_start = rom.write_audiotable()
+    log.symbols = cosmetic_context_symbols
+    log.symbols['audiotable_start'] = audiotable_start
+    if "CFG_AUDIOBANK_TABLE_EXTENDED_ADDR" in cosmetic_context_symbols.keys():
+        bank_index_base = (rom.read_int32(cosmetic_context_symbols['CFG_AUDIOBANK_TABLE_EXTENDED_ADDR']) - 0x80400000) + 0x3480000
+        rom.write_audiobanks(bank_index_base)
+
     return log
 
 
@@ -1246,7 +1259,7 @@ class CosmeticsLog:
         self.sfx: dict[str, str] = {}
         self.bgm: dict[str, str] = {}
         self.bgm_groups: dict[str, list | dict] = {}
-
+        self.symbols: dict[str, int] = {}
         self.src_dict: dict = {}
         self.errors: list[str] = []
 
@@ -1305,6 +1318,7 @@ class CosmeticsLog:
             'sfx': self.sfx,
             'bgm_groups': self.bgm_groups,
             'bgm': self.bgm,
+            'symbols': self.symbols
         }
 
         if not self.settings.enable_cosmetic_file:
