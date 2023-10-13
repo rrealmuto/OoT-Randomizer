@@ -146,6 +146,8 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     # Kokiri Forest Beehives
     ("KF Storms Grotto Beehive 1",                                   ("Beehive",      0x3E, (0,0x0C,8), None,        'Rupees (5)',                            ("Kokiri Forest", "Forest Area", "Grottos", "Beehives",))),
     ("KF Storms Grotto Beehive 2",                                   ("Beehive",      0x3E,  (0,0x0C,9), None,        'Rupees (20)',                           ("Kokiri Forest", "Forest Area", "Grottos", "Beehives",))),
+    # Kokiri Forest Grass
+    ("KF Grass 1",                                                   ("Grass",        0x55,  (0,0,69), None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest Area", "Grass"))),
 
     # Lost Woods
     ("LW Gift from Saria",                                           ("Cutscene",     0xFF,  0x02, None,                            'Ocarina',                               ("Lost Woods", "Forest Area", "NPCs",))),

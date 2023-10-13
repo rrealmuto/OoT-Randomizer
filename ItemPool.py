@@ -759,6 +759,10 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
                 shuffle_item = False
                 location.disabled = DisableType.DISABLED
 
+        # Grass
+        elif location.type == 'Grass':
+            shuffle_item = True
+
         # Dungeon Items
         elif location.dungeon is not None:
             dungeon = location.dungeon

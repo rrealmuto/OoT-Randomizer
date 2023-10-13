@@ -1,9 +1,10 @@
+import sys
 from Rom import *
 
 def get_actor_list(rom, actor_func):
     actors = {}
-    #scene_table = 0x00B71440
-    scene_table = 0x00BA0BB0 # for MQ
+    scene_table = 0x00B71440
+    #scene_table = 0x00BA0BB0 # for MQ
     for scene in range(0x00, 0x65):
         scene_data = rom.read_int32(scene_table + (scene * 0x14))
         actors.update(scene_get_actors(rom, actor_func, scene_data, scene))
@@ -99,6 +100,22 @@ def get_empty_and_fairy_pots(rom):
             if pot[5]["item_id"] == "Empty" or pot[5]["item_id"] == "Flexible (Fairy)":
                 return pot
     return get_actor_list(rom, get_pot_func)
+
+def get_grass(rom):
+    def get_grass_func(rom, actor_id, actor, scene, room_id, setup_num, actor_num):
+        func = None
+        if actor_id == 0x0125: # En_Kusa - Bush/Grass (single)
+            func = process_bush
+        elif actor_id == 0x0151: # Obj_Mure2 - Rock/Bush circle
+            func = process_bush_circle
+        else:
+            return
+        data = func(rom.read_bytes(actor,16))
+        if data:
+            bush = (scene, room_id, setup_num, actor_num, scenes[scene], data)
+            return bush
+
+    return get_actor_list(rom, get_grass_func)
 
 wondertypes = [
     "MULTITAG_FREE",
@@ -360,15 +377,46 @@ def process_pot(actor_bytes):
         "item_id": item_dict[item_id]
     }
 
-#rom = Rom("ZOOTDEC.z64")
-rom = Rom("zeloot_mqdebug.z64")
-pots = get_crates(rom)
+def process_bush(actor_bytes):
+    bush_types = {
+        0: "Shrub",
+        1: "Cuttable Regenerating Grass",
+        2: "Cuttable Grass"
+    }
+    type = actor_bytes[15] & 0x03
+    drop_table = actor_bytes[14] & 0xFF
+    if type in bush_types.keys():
+        return {
+            "type": bush_types[type],
+            "drop_table": drop_table
+        }
 
-for pot in pots:
-    print(str(pot) + ": " + str(pots[pot]))
+def process_bush_circle(actor_bytes):
+    type = actor_bytes[15] & 0x0F
+    drop_table = actor_bytes[14] & 0xFF
+    if type == 0: # Circle of shrubs with on in the middle, random drops
+        return {
+            "type": "Bush Circle",
+            "drop_table": drop_table
+        }
+    elif type == 1: # Scattered shrubs, random drops
+        return {
+            "type": "Scattered Bushes",
+            "drop_table": drop_table
+        }
+    else: # Rocks/don't care
+        pass
 
-#rom = Rom("../zeloot_mqdebug.z64")
-#wonderitems = get_wonderitems(rom)
+if __name__ == "__main__":
+    #rom = Rom("ZOOTDEC.z64")
+    rom = Rom("ZOOTDEC.z64")
+    actors = get_grass(rom)
 
-#for wonderitem in wonderitems:
-    #print(str(wonderitem) + ": " + str(wonderitems[wonderitem]))
+    for actor in actors:
+        print(str(actor) + ": " + str(actors[actor]))
+
+    #rom = Rom("../zeloot_mqdebug.z64")
+    #wonderitems = get_wonderitems(rom)
+
+    #for wonderitem in wonderitems:
+        #print(str(wonderitem) + ": " + str(wonderitems[wonderitem]))
