@@ -459,7 +459,19 @@
         "locations": {
             "HF Ocarina of Time Item": "is_child and has_all_stones",
             "Song from Ocarina of Time": "is_child and has_all_stones",
-            "Big Poe Kill": "can_ride_epona and Bow and has_bottle"
+            "Big Poe Kill": "can_ride_epona and Bow and has_bottle",
+            "HF Near KF Grass Patch 1": "True",
+            "HF Near KF Grass Patch 2": "True",
+            "HF Near KF Grass Patch 3": "True",
+            "HF Near KF Grass Patch 4": "True",
+            "HF Near KF Grass Patch 5": "True",
+            "HF Near KF Grass Patch 6": "True",
+            "HF Near KF Grass Patch 7": "True",
+            "HF Near KF Grass Patch 8": "True",
+            "HF Near KF Grass Patch 9": "True",
+            "HF Near KF Grass Patch 10": "True",
+            "HF Near KF Grass Patch 11": "True",
+            "HF Near KF Grass Patch 12": "True"
         },
         "exits": {
             "LW Bridge": "True",

@@ -211,6 +211,19 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("HF Southeast Grotto Beehive 1",                                ("Beehive",      0x3E, (0,2,8), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Beehives",))),
     ("HF Southeast Grotto Beehive 2",                                ("Beehive",      0x3E, (0,2,9), None,          'Rupees (20)',                           ("Hyrule Field", "Grottos", "Beehives",))),
     ("HF Inside Fence Grotto Beehive",                               ("Beehive",      0x3E, (1,6,2), None,          'Rupees (20)',                           ("Hyrule Field", "Grottos", "Beehives",))),
+    # Hyrule Field Grass
+    ("HF Near KF Grass Patch 1",                                     ("Grass",        0x51, (0,0,62,1), None,      'Rupees (5)',                           ("Hyrule Field", "Grass"))),
+    ("HF Near KF Grass Patch 2",                                     ("Grass",        0x51, (0,0,62,2), None,      'Rupees (5)',                           ("Hyrule Field", "Grass"))),
+    ("HF Near KF Grass Patch 3",                                     ("Grass",        0x51, (0,0,62,3), None,      'Rupees (5)',                           ("Hyrule Field", "Grass"))),
+    ("HF Near KF Grass Patch 4",                                     ("Grass",        0x51, (0,0,62,4), None,      'Rupees (5)',                           ("Hyrule Field", "Grass"))),
+    ("HF Near KF Grass Patch 5",                                     ("Grass",        0x51, (0,0,62,5), None,      'Rupees (5)',                           ("Hyrule Field", "Grass"))),
+    ("HF Near KF Grass Patch 6",                                     ("Grass",        0x51, (0,0,62,6), None,      'Rupees (5)',                           ("Hyrule Field", "Grass"))),
+    ("HF Near KF Grass Patch 7",                                     ("Grass",        0x51, (0,0,62,7), None,      'Rupees (5)',                           ("Hyrule Field", "Grass"))),
+    ("HF Near KF Grass Patch 8",                                     ("Grass",        0x51, (0,0,62,8), None,      'Rupees (5)',                           ("Hyrule Field", "Grass"))),
+    ("HF Near KF Grass Patch 9",                                     ("Grass",        0x51, (0,0,62,9), None,      'Rupees (5)',                           ("Hyrule Field", "Grass"))),
+    ("HF Near KF Grass Patch 10",                                    ("Grass",        0x51, (0,0,62,10), None,     'Rupees (5)',                           ("Hyrule Field", "Grass"))),
+    ("HF Near KF Grass Patch 11",                                    ("Grass",        0x51, (0,0,62,11), None,     'Rupees (5)',                           ("Hyrule Field", "Grass"))),
+    ("HF Near KF Grass Patch 12",                                    ("Grass",        0x51, (0,0,62,12), None,     'Rupees (5)',                           ("Hyrule Field", "Grass"))),
 
     # Market
     ("Market Shooting Gallery Reward",                               ("NPC",          0x42,  0x60, None,                            'Slingshot',                             ("Market", "Minigames",))),

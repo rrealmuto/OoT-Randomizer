@@ -117,6 +117,7 @@ RANDO_CONTEXT:
 .include "drop_overrides/bg_spot18_basket.asm"
 .include "drop_overrides/obj_comb.asm"
 .include "drop_overrides/en_kusa.asm"
+.include "drop_overrides/obj_mure2.asm"
 .include "actor.asm"
 .include "rand_seed.asm"
 .include "messages.asm"
