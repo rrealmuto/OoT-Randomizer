@@ -1852,7 +1852,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     #rom.write_bytes(rom.sym('collectible_scene_flags_table'), collectible_flag_table_bytes)
     #num_collectible_flags += num_collectible_flags % 8
     #rom.write_bytes(rom.sym('num_override_flags'), num_collectible_flags.to_bytes(2, 'big'))
-    if(len(alt_list) > 140):
+    if(len(alt_list) > 300):
         raise(RuntimeError(f'Exceeded alt override table size: {len(alt_list)}'))
     rom.write_bytes(rom.sym('alt_overrides'), alt_list_bytes)
 

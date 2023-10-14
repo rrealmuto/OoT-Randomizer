@@ -212,25 +212,25 @@ scenes = [
     "Granny's Potion Shop",
     "Ganon's Tower Collapse & Battle Arena",
     "House of Skulltula",
-    "Spot 00 - Hyrule Field",
-    "Spot 01 - Kakariko Village",
-    "Spot 02 - Graveyard",
-    "Spot 03 - Zora's River",
-    "Spot 04 - Kokiri Forest",
-    "Spot 05 - Sacred Forest Meadow",
-    "Spot 06 - Lake Hylia",
-    "Spot 07 - Zora's Domain",
-    "Spot 08 - Zora's Fountain",
-    "Spot 09 - Gerudo Valley",
-    "Spot 10 - Lost Woods",
-    "Spot 11 - Desert Colossus",
-    "Spot 12 - Gerudo's Fortress",
-    "Spot 13 - Haunted Wasteland",
-    "Spot 15 - Hyrule Castle",
-    "Spot 16 - Death Mountain Trail",
-    "Spot 17 - Death Mountain Crater",
-    "Spot 18 - Goron City",
-    "Spot 20 - Lon Lon Ranch",
+    "Hyrule Field",
+    "Kakariko Village",
+    "Graveyard",
+    "Zora's River",
+    "Kokiri Forest",
+    "Sacred Forest Meadow",
+    "Lake Hylia",
+    "Zora's Domain",
+    "Zora's Fountain",
+    "Gerudo Valley",
+    "Lost Woods",
+    "Desert Colossus",
+    "Gerudo's Fortress",
+    "Haunted Wasteland",
+    "Hyrule Castle",
+    "Death Mountain Trail",
+    "Death Mountain Crater",
+    "Goron City",
+    "Lon Lon Ranch",
     "Ganon's Castle Exterior",
 
 ]
@@ -413,7 +413,14 @@ if __name__ == "__main__":
     actors = get_grass(rom)
 
     for actor in actors:
-        print(str(actor) + ": " + str(actors[actor]))
+        #print(str(actor) + ": " + str(actors[actor]))
+        scene, room,setup,actor_num, scene_name, data = actors[actor]
+        actor_num += 1
+        if data['type'] == "Scattered Bushes":
+            for i in range(1,12+1):
+                print(f"(\"{scene_name} Room {room} {actor_num} Grass Patch {i}\",    (\"Grass\",      {hex(scene)}, ({room},{setup},{actor_num},{i}), None,     'Rupees (5)',         (,))),")
+        else:
+            print(f"(\"{scene_name} Room {room} Grass {actor_num}\",    (\"Grass\",      {hex(scene)}, ({room},{setup},{actor_num}), None,     'Rupees (5)',         (,))),")
 
     #rom = Rom("../zeloot_mqdebug.z64")
     #wonderitems = get_wonderitems(rom)
