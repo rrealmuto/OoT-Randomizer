@@ -141,6 +141,8 @@ def get_alt_list_bytes(alt_list: list[tuple[Location, tuple[int, int, int], tupl
         alt_scene = location.scene
         if location.scene == 0x0A:
             alt_scene = 0x19
+        if location.scene == 0x20 and location.type == "Grass": # Alt scene for grass in Child Market
+            alt_scene = 0x21
 
         alt_override = (scene_setup << 22) + (room << 16) + (flag << 8) + (subflag - 1)
         room, scene_setup, flag, subflag = primary

@@ -147,7 +147,41 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("KF Storms Grotto Beehive 1",                                   ("Beehive",      0x3E, (0,0x0C,8), None,        'Rupees (5)',                            ("Kokiri Forest", "Forest Area", "Grottos", "Beehives",))),
     ("KF Storms Grotto Beehive 2",                                   ("Beehive",      0x3E,  (0,0x0C,9), None,        'Rupees (20)',                           ("Kokiri Forest", "Forest Area", "Grottos", "Beehives",))),
     # Kokiri Forest Grass
-    ("KF Grass 1",                                                   ("Grass",        0x55,  (0,0,69), None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Child Grass 1",                                             ("Grass",      0x55, (0,0,61), None,                           'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Child Grass 2",                                             ("Grass",      0x55, (0,0,62), None,                           'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Child Grass 3",                                             ("Grass",      0x55, (0,0,63), None,                           'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Child Grass 4",                                             ("Grass",      0x55, (0,0,64), None,                           'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Child Grass 5",                                             ("Grass",      0x55, (0,0,65), None,                           'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Child Grass 6",                                             ("Grass",      0x55, (0,0,66), None,                           'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Child Grass 7",                                             ("Grass",      0x55, (0,0,67), None,                           'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Child Grass 8",                                             ("Grass",      0x55, (0,0,68), None,                           'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Child Grass 9",                                             ("Grass",      0x55, (0,0,69), None,                           'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Child Grass 10",                                            ("Grass",      0x55, (0,0,70), None,                           'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Child Grass 11",                                            ("Grass",      0x55, (0,0,71), None,                           'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Child Grass 12",                                            ("Grass",      0x55, (0,0,72), None,                           'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Child Maze Grass 1",                                        ("Grass",      0x55, (2,0,3),  None,                           'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Child Maze Grass 2",                                        ("Grass",      0x55, (2,0,4),  None,                           'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Child Maze Grass 3",                                        ("Grass",      0x55, (2,0,5),  None,                           'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Adult Grass 1",                                             ("Grass",      0x55, [(0,2,16),(0,3,23)], None,                'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Adult Grass 2",                                             ("Grass",      0x55, [(0,2,17),(0,3,24)], None,                'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Adult Grass 3",                                             ("Grass",      0x55, [(0,2,18),(0,3,25)], None,                'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Adult Grass 4",                                             ("Grass",      0x55, [(0,2,19),(0,3,26)], None,                'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Adult Grass 5",                                             ("Grass",      0x55, [(0,2,20),(0,3,27)], None,                'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Adult Grass 6",                                             ("Grass",      0x55, [(0,2,21),(0,3,28)], None,                'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Adult Grass 7",                                             ("Grass",      0x55, [(0,2,22),(0,3,29)], None,                'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Adult Grass 8",                                             ("Grass",      0x55, [(0,2,23),(0,3,30)], None,                'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Adult Grass 9",                                             ("Grass",      0x55, [(0,2,24,1),(0,3,31,1)], None,             'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Adult Grass 10",                                            ("Grass",      0x55, [(0,2,24,2),(0,3,31,2)], None,             'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Adult Grass 11",                                            ("Grass",      0x55, [(0,2,24,3),(0,3,31,3)], None,             'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Adult Grass 12",                                            ("Grass",      0x55, [(0,2,24,4),(0,3,31,4)], None,             'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Adult Grass 13",                                            ("Grass",      0x55, [(0,2,24,5),(0,3,31,5)], None,             'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Adult Grass 14",                                            ("Grass",      0x55, [(0,2,24,6),(0,3,31,6)], None,             'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Adult Grass 15",                                            ("Grass",      0x55, [(0,2,24,7),(0,3,31,7)], None,             'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Adult Grass 16",                                            ("Grass",      0x55, [(0,2,24,8),(0,3,31,8)], None,             'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Adult Grass 17",                                            ("Grass",      0x55, [(0,2,24,9),(0,3,31,9)], None,             'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Adult Grass 18",                                            ("Grass",      0x55, [(0,2,24,10),(0,3,31,10)], None,          'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Adult Grass 19",                                            ("Grass",      0x55, [(0,2,24,11),(0,3,31,11)], None,          'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
+    ("KF Adult Grass 20",                                            ("Grass",      0x55, [(0,2,24,12),(0,3,31,12)], None,          'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
 
     # Lost Woods
     ("LW Gift from Saria",                                           ("Cutscene",     0xFF,  0x02, None,                            'Ocarina',                               ("Lost Woods", "Forest Area", "NPCs",))),
@@ -413,6 +447,15 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Market Man in Green House Pot 1",                              ("Pot",          0x2B,  (0,0,3), None,                         'Recovery Heart',                        ("Market", "Pots",))),
     ("Market Man in Green House Pot 2",                              ("Pot",          0x2B,  (0,0,4), None,                         'Recovery Heart',                        ("Market", "Pots",))),
     ("Market Man in Green House Pot 3",                              ("Pot",          0x2B,  (0,0,5), None,                         'Rupees (5)',                            ("Market", "Pots",))),
+    # Market Grass
+    ("Market Child Grass 1",                                         ("Grass",        0x20, [(0,0,24),(0,0,8)],  None,              'Rupees (5)',                            ("Market", "Grass"))),
+    ("Market Child Grass 2",                                         ("Grass",        0x20, [(0,0,25),(0,0,9)],  None,              'Rupees (5)',                            ("Market", "Grass"))),
+    ("Market Child Grass 3",                                         ("Grass",        0x20, [(0,0,26),(0,0,10)], None,              'Rupees (5)',                            ("Market", "Grass"))),
+    ("Market Child Grass 4",                                         ("Grass",        0x20, [(0,0,27),(0,0,11)], None,              'Rupees (5)',                            ("Market", "Grass"))),
+    ("Market Child Grass 5",                                         ("Grass",        0x20, [(0,0,28),(0,0,12)], None,              'Rupees (5)',                            ("Market", "Grass"))),
+    ("Market Child Grass 6",                                         ("Grass",        0x20, [(0,0,29),(0,0,13)], None,              'Rupees (5)',                            ("Market", "Grass"))),
+    ("Market Child Grass 7",                                         ("Grass",        0x20, [(0,0,30),(0,0,14)], None,              'Rupees (5)',                            ("Market", "Grass"))),
+    ("Market Child Grass 8",                                         ("Grass",        0x20, [(0,0,31),(0,0,15)], None,              'Rupees (5)',                            ("Market", "Grass"))),
 
     # Hyrule Castle
     ("HC Malon Egg",                                                 ("NPC",          0x5F,  0x47, None,                            'Weird Egg',                             ("Hyrule Castle", "NPCs",))),
@@ -534,10 +577,20 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Kak Child Crate 4",                                            ("Crate",        0x52,  [(0,1,46),(0,0,53)], None,             'Nothing',                               ("Kakariko Village", "Crates",))),
     ("Kak Child Crate 5",                                            ("Crate",        0x52,  [(0,1,47),(0,0,54)], None,             'Nothing',                               ("Kakariko Village", "Crates",))),
 
-
     # Kak Beehives
     ("Kak Open Grotto Beehive 1",                                    ("Beehive",      0x3E,  (0,0x08,8), None,         'Rupees (5)',                            ("Kakariko Village", "Grottos", "Beehives",))),
     ("Kak Open Grotto Beehive 2",                                    ("Beehive",      0x3E,  (0,0x08,9), None,         'Rupees (20)',                           ("Kakariko Village", "Grottos", "Beehives",))),
+
+    # Kakariko Village Grass
+    ("Kak Grass 1",                                                  ("Grass",      0x52, [(0,0,37),(0,1,32),(0,2,25),(0,3,23)], None, 'Rupees (5)',                         ("Kakariko Village", "Grass"))),
+    ("Kak Grass 2",                                                  ("Grass",      0x52, [(0,0,38),(0,1,33),(0,2,26),(0,3,24)], None, 'Rupees (5)',                         ("Kakariko Village", "Grass"))),
+    ("Kak Grass 3",                                                  ("Grass",      0x52, [(0,0,39),(0,1,34),(0,2,27),(0,3,25)], None, 'Rupees (5)',                         ("Kakariko Village", "Grass"))),
+    ("Kak Grass 4",                                                  ("Grass",      0x52, [(0,0,40),(0,1,35),(0,2,28),(0,3,26)], None, 'Rupees (5)',                         ("Kakariko Village", "Grass"))),
+    ("Kak Grass 5",                                                  ("Grass",      0x52, [(0,0,41),(0,1,36),(0,2,29),(0,3,27)], None, 'Rupees (5)',                         ("Kakariko Village", "Grass"))),
+    ("Kak Grass 6",                                                  ("Grass",      0x52, [(0,0,42),(0,1,37),(0,2,30),(0,3,28)], None, 'Rupees (5)',                         ("Kakariko Village", "Grass"))),
+    ("Kak Grass 7",                                                  ("Grass",      0x52, [(0,0,43),(0,1,38),(0,2,31),(0,3,29)], None, 'Rupees (5)',                         ("Kakariko Village", "Grass"))),
+    ("Kak Grass 8",                                                  ("Grass",      0x52, [(0,0,44),(0,1,39),(0,2,32),(0,3,30)], None, 'Rupees (5)',                         ("Kakariko Village", "Grass"))),
+
 
     # Graveyard
     ("Graveyard Shield Grave Chest",                                 ("Chest",        0x40,  0x00, None,                            'Hylian Shield',                         ("Graveyard", "Grottos", "Chests",))),
@@ -566,6 +619,20 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Graveyard Dampe Pot 4",                                        ("Pot",          0x48,  (0,0,4), None,                         'Arrows (10)',                           ("Graveyard", "Grottos", "Pots",))),
     ("Graveyard Dampe Pot 5",                                        ("Pot",          0x48,  (0,0,5), None,                         'Rupees (20)',                           ("Graveyard", "Grottos", "Pots",))),
     ("Graveyard Dampe Pot 6",                                        ("Pot",          0x48,  (0,0,6), None,                         'Rupees (20)',                           ("Graveyard", "Grottos", "Pots",))),
+    # Graveyard Grass
+    ("Graveyard Grass Patch 1",                            ("Grass",      0x53,  [(1,0,17,1),(1,1,21,1),(1,2,30,1),(1,3,30,1)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
+    ("Graveyard Grass Patch 2",                            ("Grass",      0x53,  [(1,0,17,2),(1,1,21,2),(1,2,30,2),(1,3,30,2)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
+    ("Graveyard Grass Patch 3",                            ("Grass",      0x53,  [(1,0,17,3),(1,1,21,3),(1,2,30,3),(1,3,30,3)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
+    ("Graveyard Grass Patch 4",                            ("Grass",      0x53,  [(1,0,17,4),(1,1,21,4),(1,2,30,4),(1,3,30,4)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
+    ("Graveyard Grass Patch 5",                            ("Grass",      0x53,  [(1,0,17,5),(1,1,21,5),(1,2,30,5),(1,3,30,5)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
+    ("Graveyard Grass Patch 6",                            ("Grass",      0x53,  [(1,0,17,6),(1,1,21,6),(1,2,30,6),(1,3,30,6)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
+    ("Graveyard Grass Patch 7",                            ("Grass",      0x53,  [(1,0,17,7),(1,1,21,7),(1,2,30,7),(1,3,30,7)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
+    ("Graveyard Grass Patch 8",                            ("Grass",      0x53,  [(1,0,17,8),(1,1,21,8),(1,2,30,8),(1,3,30,8)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
+    ("Graveyard Grass Patch 9",                            ("Grass",      0x53,  [(1,0,17,9),(1,1,21,9),(1,2,30,9),(1,3,30,9)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
+    ("Graveyard Grass Patch 10",                           ("Grass",      0x53,  [(1,0,17,10),(1,1,21,10),(1,2,30,10),(1,3,30,10)], None,  'Rupees (5)',           ("Graveyard", "Grass"))),
+    ("Graveyard Grass Patch 11",                           ("Grass",      0x53,  [(1,0,17,11),(1,1,21,11),(1,2,30,11),(1,3,30,11)], None,  'Rupees (5)',           ("Graveyard", "Grass"))),
+    ("Graveyard Grass Patch 12",                           ("Grass",      0x53,  [(1,0,17,12),(1,1,21,12),(1,2,30,12),(1,3,30,12)], None,  'Rupees (5)',           ("Graveyard", "Grass"))),
+
 
     # Death Mountain Trail
     ("DMT Freestanding PoH",                                         ("Collectable",  0x60,  0x1E, None,                            'Piece of Heart',                        ("Death Mountain Trail", "Freestandings",))),
@@ -707,6 +774,21 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("ZR Open Grotto Beehive 1",                                     ("Beehive",      0x3E, (0,0x09,8), None,          'Rupees (5)',                            ("Zora's River", "Grottos", "Beehives",))),
     ("ZR Open Grotto Beehive 2",                                     ("Beehive",      0x3E, (0,0x09,9), None,          'Rupees (20)',                           ("Zora's River", "Grottos", "Beehives",))),
     ("ZR Storms Grotto Beehive",                                     ("Beehive",      0x3E, (9,0x0B,3), None,          'Rupees (20)',                           ("Zora's River", "Grottos", "Beehives",))),
+    # Zora's River Grass
+    ("ZR Near Freestanding PoH Grass",                               ("Grass",      0x54, [(0,0,53),(0,2,25)], None,       'Rupees (5)',                        ("Zora's River", "Grass"))),
+    ("ZR Front Grass Patch 1",                                       ("Grass",      0x54, [(0,0,54,1),(0,2,26,1)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
+    ("ZR Front Grass Patch 2",                                       ("Grass",      0x54, [(0,0,54,2),(0,2,26,2)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
+    ("ZR Front Grass Patch 3",                                       ("Grass",      0x54, [(0,0,54,3),(0,2,26,3)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
+    ("ZR Front Grass Patch 4",                                       ("Grass",      0x54, [(0,0,54,4),(0,2,26,4)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
+    ("ZR Front Grass Patch 5",                                       ("Grass",      0x54, [(0,0,54,5),(0,2,26,5)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
+    ("ZR Front Grass Patch 6",                                       ("Grass",      0x54, [(0,0,54,6),(0,2,26,6)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
+    ("ZR Front Grass Patch 7",                                       ("Grass",      0x54, [(0,0,54,7),(0,2,26,7)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
+    ("ZR Front Grass Patch 8",                                       ("Grass",      0x54, [(0,0,54,8),(0,2,26,8)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
+    ("ZR Front Grass Patch 9",                                       ("Grass",      0x54, [(0,0,54,9),(0,2,26,9)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
+    ("ZR Front Grass Patch 10",                                      ("Grass",      0x54, [(0,0,54,10),(0,2,26,10)], None, 'Rupees (5)',                        ("Zora's River", "Grass"))),
+    ("ZR Front Grass Patch 11",                                      ("Grass",      0x54, [(0,0,54,11),(0,2,26,11)], None, 'Rupees (5)',                        ("Zora's River", "Grass"))),
+    ("ZR Front Grass Patch 12",                                      ("Grass",      0x54, [(0,0,54,12),(0,2,26,12)], None, 'Rupees (5)',                        ("Zora's River", "Grass"))),
+
 
     # Zora's Domain
     ("ZD Diving Minigame",                                           ("NPC",          0x58,  0x37, None,                            'Progressive Scale',                     ("Zora's Domain", "Minigames",))),
@@ -1051,6 +1133,12 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Dodongos Cavern Single Eye Switch Room Pot 2",                 ("Pot",          0x01,  (10,0,8), None,                        'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla Dungeons", "Pots",))),
     ("Dodongos Cavern Double Eye Switch Room Pot 1",                 ("Pot",          0x01,  (12,0,6), None,                        'Recovery Heart',                        ("Dodongo's Cavern", "Vanilla Dungeons", "Pots",))),
     ("Dodongos Cavern Double Eye Switch Room Pot 2",                 ("Pot",          0x01,  (12,0,7), None,                        'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla Dungeons", "Pots",))),
+    # Dodongos Cavern Grass
+    ("Dodongos Cavern First Bridge Grass",                           ("Grass",        0x01,  (0,0,3),  None,                        'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla Dungeons", "Grass"))),
+    ("Dodongos Cavern Before Boss Grass",                            ("Grass",        0x01,  (7,0,1),  None,                        'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla Dungeons", "Grass"))),
+    ("Dodongos Cavern Blade Room Grass",                             ("Grass",        0x01,  (9,0,1),  None,                        'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla Dungeons", "Grass"))),
+    ("Dodongos Cavern Single Eye Switch Room Grass",                 ("Grass",        0x01,  (10,0,1), None,                        'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla Dungeons", "Grass"))),
+    ("Dodongos Cavern Side Room Before Lower Lizalfos Grass",        ("Grass",        0x01,  (11,0,4), None,                        'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla Dungeons", "Grass"))),
 
     # Dodongo's Cavern MQ
     ("Dodongos Cavern MQ Map Chest",                                 ("Chest",        0x01,  0x00, None,                            'Map (Dodongos Cavern)',                 ("Dodongo's Cavern MQ", "Master Quest", "Chests",))),
@@ -1262,6 +1350,20 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Bottom of the Well Basement Silver Rupee Ladders Bottom",      ("SilverRupee",  0x08, (1,0,41), None,                    'Silver Rupee (Bottom of the Well Basement)', ("Bottom of the Well", "Vanilla Dungeons", "Silver Rupees"))),
     ("Bottom of the Well Basement Silver Rupee Ladders Middle",      ("SilverRupee",  0x08, (1,0,40), None,                    'Silver Rupee (Bottom of the Well Basement)', ("Bottom of the Well", "Vanilla Dungeons", "Silver Rupees"))),
     ("Bottom of the Well Basement Silver Rupee Ladders Top",         ("SilverRupee",  0x08, (1,0,39), None,                    'Silver Rupee (Bottom of the Well Basement)', ("Bottom of the Well", "Vanilla Dungeons", "Silver Rupees"))),
+    # Bottom of the Well Grass
+    ("Bottom of the Well Basement Behind Rock Grass 1",              ("Grass",        0x08, (1,0,2),  None,                    'Rupees (5)',                                 ("Bottom of the Well", "Vanilla Dungeons", "Grass"))),
+    ("Bottom of the Well Basement Behind Rock Grass 2",              ("Grass",        0x08, (1,0,3),  None,                    'Rupees (5)',                                 ("Bottom of the Well", "Vanilla Dungeons", "Grass"))),
+    ("Bottom of the Well Basement Behind Rock Grass 3",              ("Grass",        0x08, (1,0,4),  None,                    'Rupees (5)',                                 ("Bottom of the Well", "Vanilla Dungeons", "Grass"))),
+    ("Bottom of the Well Basement Behind Rock Grass 4",              ("Grass",        0x08, (1,0,5),  None,                    'Rupees (5)',                                 ("Bottom of the Well", "Vanilla Dungeons", "Grass"))),
+    ("Bottom of the Well Basement Behind Rock Grass 5",              ("Grass",        0x08, (1,0,6),  None,                    'Rupees (5)',                                 ("Bottom of the Well", "Vanilla Dungeons", "Grass"))),
+    ("Bottom of the Well Basement Behind Rock Grass 6",              ("Grass",        0x08, (1,0,7),  None,                    'Rupees (5)',                                 ("Bottom of the Well", "Vanilla Dungeons", "Grass"))),
+    ("Bottom of the Well Basement Behind Rock Grass 7",              ("Grass",        0x08, (1,0,8),  None,                    'Rupees (5)',                                 ("Bottom of the Well", "Vanilla Dungeons", "Grass"))),
+    ("Bottom of the Well Basement Behind Rock Grass 8",              ("Grass",        0x08, (1,0,9),  None,                    'Rupees (5)',                                 ("Bottom of the Well", "Vanilla Dungeons", "Grass"))),
+    ("Bottom of the Well Basement Behind Rock Grass 9",              ("Grass",        0x08, (1,0,10), None,                    'Rupees (5)',                                 ("Bottom of the Well", "Vanilla Dungeons", "Grass"))),
+    ("Bottom of the Well Basement Grass 1",                          ("Grass",        0x08, (1,0,11), None,                    'Rupees (5)',                                 ("Bottom of the Well", "Vanilla Dungeons", "Grass"))),
+    ("Bottom of the Well Basement Grass 2",                          ("Grass",        0x08, (1,0,12), None,                    'Rupees (5)',                                 ("Bottom of the Well", "Vanilla Dungeons", "Grass"))),
+    ("Bottom of the Well Basement Grass 3",                          ("Grass",        0x08, (1,0,13), None,                    'Rupees (5)',                                 ("Bottom of the Well", "Vanilla Dungeons", "Grass"))),
+
 
     # Bottom of the Well MQ
     ("Bottom of the Well MQ Map Chest",                              ("Chest",        0x08,  0x03, None,                            'Map (Bottom of the Well)',              ("Bottom of the Well MQ", "Master Quest", "Chests",))),

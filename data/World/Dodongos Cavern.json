@@ -47,6 +47,8 @@
             "Dodongos Cavern Lower Lizalfos Pot 4": "True",
             "Dodongos Cavern GS Side Room Near Lower Lizalfos": "
                 is_adult or has_explosives or Sticks or Slingshot or Boomerang or Kokiri_Sword",
+            "Dodongos Cavern Side Room Before Lower Lizalfos Grass": "
+                is_adult or has_explosives or Sticks or Slingshot or Boomerang or Kokiri_Sword",
             "Dodongos Cavern GS Scarecrow": "
                 can_use(Scarecrow) or can_use(Longshot) or
                 (logic_dc_scarecrow_gs and (is_adult or can_child_attack))"
@@ -103,7 +105,9 @@
             "Dodongos Cavern Blade Room Pot 1": "
                 can_use(Boomerang) or at('Dodongos Cavern Far Bridge', True)",
             "Dodongos Cavern Blade Room Pot 2": "
-                can_use(Boomerang) or at('Dodongos Cavern Far Bridge', True)"
+                can_use(Boomerang) or at('Dodongos Cavern Far Bridge', True)",
+            "Dodongos Cavern First Bridge Grass": "can_mow_the_lawn",
+            "Dodongos Cavern Blade Room Grass": "can_mow_the_lawn"
         },
         "exits": {
             "Dodongos Cavern Before Upper Lizalfos": "
@@ -117,7 +121,8 @@
         "dungeon": "Dodongos Cavern",
         "locations": {
             "Dodongos Cavern Single Eye Switch Room Pot 1": "True",
-            "Dodongos Cavern Single Eye Switch Room Pot 2": "True"
+            "Dodongos Cavern Single Eye Switch Room Pot 2": "True",
+            "Dodongos Cavern Single Eye Switch Room Grass": "can_mow_the_lawn"
         },
         "exits": {
             "Dodongos Cavern Upper Lizalfos": "
@@ -156,6 +161,7 @@
         "dungeon": "Dodongos Cavern",
         "savewarp": "Death Mountain -> Dodongos Cavern Beginning",
         "locations": {
+            "Dodongos Cavern Before Boss Grass": "can_mow_the_lawn",
             "Dodongos Cavern GS Back Room": "can_blast_or_smash"
         },
         "exits": {
