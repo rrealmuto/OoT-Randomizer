@@ -48,6 +48,7 @@ defaultHintDists: list[str] = [
     'balanced.json',
     'bingo.json',
     'chaos.json',
+    'chaos_no_goal.json',
     'coop2.json',
     'ddr.json',
     'important_checks.json',
@@ -986,12 +987,7 @@ def get_specific_hint(spoiler: Spoiler, world: World, checked: set[str], hint_ty
         location_text = '#%s#' % location_text
     item_text = get_hint(get_item_generic_name(location.item), world.settings.clearer_hints).text
 
-    colors = ['Red']
-    while location_text.count('#') > 2 * len(colors):
-        colors.append('Red')
-    colors.append('Green')
-
-    return GossipText('%s #%s#.' % (location_text, item_text), colors, [location.name], [location.item.name]), [location]
+    return GossipText('%s #%s#.' % (location_text, item_text), ['Red', 'Green'], [location.name], [location.item.name]), [location]
 
 
 def get_sometimes_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintReturn:

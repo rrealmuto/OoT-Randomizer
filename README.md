@@ -359,6 +359,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * New Dual hint for King Zora checks: Unfreezing him and trading the prescription for an eyeball frog.
   * The credits music can now be shuffled into the music pool.
   * Many hints had clearer hints added and/or were reworded.
+  * New `Chaos!!! (no goal hints)` hint distribution which is the same as the normal "Chaos" distribution, but without goal hints.
 * **Other**
   * When picking up a small key, the text box will now inform you how many you've found total.
   * The longstanding vanilla bug where using Din's Fire on a white bubble crashes the game has been fixed.
