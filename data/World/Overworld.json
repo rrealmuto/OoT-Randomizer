@@ -350,6 +350,9 @@
             "LW Underwater Green Rupee 5": "is_child and (can_dive or Boomerang)",
             "LW Underwater Green Rupee 6": "is_child and (can_dive or Boomerang)",
             "LW Underwater Green Rupee 7": "is_child and (can_dive or Boomerang)",
+            "Lost Woods Near Goron City Grass 1": "can_mow_the_lawn",
+            "Lost Woods Near Goron City Grass 2": "can_mow_the_lawn",
+            "Lost Woods Near Goron City Grass 3": "can_mow_the_lawn",
             "LW GS Bean Patch Near Bridge": "can_plant_bugs and can_child_attack",
             "LW Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle",
@@ -377,6 +380,12 @@
             "LW Deku Scrub Near Deku Theater Left": "is_child and can_stun_deku",
             "LW Under Boulder Blue Rupee": "
                 can_blast_or_smash or (logic_boomerang_boulders and can_use(Boomerang))",
+            "Lost Woods Boulder Grass 1": "can_mow_the_lawn",
+            "Lost Woods Boulder Grass 2": "can_mow_the_lawn",
+            "Lost Woods Boulder Grass 3": "can_mow_the_lawn",
+            "Lost Woods Near Meadow Grass 1": "can_mow_the_lawn",
+            "Lost Woods Near Meadow Grass 2": "can_mow_the_lawn",
+            "Lost Woods Near Meadow Grass 3": "can_mow_the_lawn",
             "LW GS Above Theater": "
                 is_adult and at_night and
                 (here(can_plant_bean) or
@@ -1403,6 +1412,8 @@
         "time_passes": true,
         "locations": {
             "HC Malon Egg": "True",
+            "Hyrule Castle Grass 1": "can_mow_the_lawn",
+            "Hyrule Castle Grass 2": "can_mow_the_lawn",
             "HC GS Tree": "can_child_attack and can_bonk",
             "HC Malon Gossip Stone": "True",
             "HC Rock Wall Gossip Stone": "True",

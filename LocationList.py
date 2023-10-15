@@ -215,6 +215,16 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("LW Near Shortcuts Grotto Beehive 1",                           ("Beehive",      0x3E,  (0,0x14,8), None,                         'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grottos", "Beehives",))),
     ("LW Near Shortcuts Grotto Beehive 2",                           ("Beehive",      0x3E,  (0,0x14,9), None,                         'Rupees (20)',                           ("Lost Woods", "Forest Area", "Grottos", "Beehives",))),
     ("LW Scrubs Grotto Beehive",                                     ("Beehive",      0x3E,  (6,0x15,4), None,                      'Rupees (20)',                           ("Lost Woods", "Forest Area", "Grottos", "Beehives",))),
+    # Lost Woods Grass
+    ("Lost Woods Near Goron City Grass 1",                           ("Grass",      0x5b, [(2,0,3),(2,2,5)], None,                  'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grass"))),
+    ("Lost Woods Near Goron City Grass 2",                           ("Grass",      0x5b, [(2,0,4),(2,2,6)], None,                  'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grass"))),
+    ("Lost Woods Near Goron City Grass 3",                           ("Grass",      0x5b, [(2,0,5),(2,2,7)], None,                  'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grass"))),
+    ("Lost Woods Boulder Grass 1",                                   ("Grass",      0x5b, [(7,0,2),(7,2,3)], None,                  'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grass"))),
+    ("Lost Woods Boulder Grass 2",                                   ("Grass",      0x5b, [(7,0,3),(7,2,4)], None,                  'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grass"))),
+    ("Lost Woods Boulder Grass 3",                                   ("Grass",      0x5b, [(7,0,4),(7,2,5)], None,                  'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grass"))),
+    ("Lost Woods Near Meadow Grass 1",                               ("Grass",      0x5b, [(8,0,4),(8,2,5)], None,                  'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grass"))),
+    ("Lost Woods Near Meadow Grass 2",                               ("Grass",      0x5b, [(8,0,5),(8,2,6)], None,                  'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grass"))),
+    ("Lost Woods Near Meadow Grass 3",                               ("Grass",      0x5b, [(8,0,6),(8,2,7)], None,                  'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grass"))),
 
     # Sacred Forest Meadow
     ("SFM Wolfos Grotto Chest",                                      ("Chest",        0x3E,  0x11, None,                            'Rupees (50)',                           ("Sacred Forest Meadow", "Forest Area", "Grottos", "Chests",))),
@@ -467,6 +477,9 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("HC Storms Grotto Pot 2",                                       ("Pot",          0x3E,  (8,0x16,8), None,                         'Bombs (5)',                             ("Hyrule Castle", "Grottos", "Pots",))),
     ("HC Storms Grotto Pot 3",                                       ("Pot",          0x3E,  (8,0x16,10), None,                        'Arrows (5)',                            ("Hyrule Castle", "Grottos", "Pots",))),
     ("HC Storms Grotto Pot 4",                                       ("Pot",          0x3E,  (8,0x16,12), None,                        'Deku Nuts (5)',                         ("Hyrule Castle", "Grottos", "Pots",))),
+    # Hyrule Castle Grass
+    ("Hyrule Castle Grass 1",                                        ("Grass",        0x5f, (0,0,47), None,                         'Rupees (5)',                            ("Hyrule Castle","Grass",))),
+    ("Hyrule Castle Grass 2",                                        ("Grass",        0x5f, (0,0,48), None,                         'Rupees (5)',                            ("Hyrule Castle","Grass",))),
 
     # Lon Lon Ranch
     ("LLR Talons Chickens",                                          ("NPC",          0x4C,  0x14, None,                            'Bottle with Milk',                      ("Lon Lon Ranch", "Minigames",))),
