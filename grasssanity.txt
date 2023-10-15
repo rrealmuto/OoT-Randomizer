@@ -2,8 +2,10 @@
 ("Grotto Grass 2",    ("Grass",      0x3e, (0,0,4), None,     'Rupees (5)',         (,))),
 ("Grotto Grass 3",    ("Grass",      0x3e, (0,0,5), None,     'Rupees (5)',         (,))),
 ("Grotto Grass 4",    ("Grass",      0x3e, (0,0,6), None,     'Rupees (5)',         (,))),
+
 ("Grottos Room 3 Grass 2",    ("Grass",      0x3e, (3,0,2), None,     'Rupees (5)',         (,))),
 ("Grottos Room 3 Grass 3",    ("Grass",      0x3e, (3,0,3), None,     'Rupees (5)',         (,))),
+
 ("Grottos Room 4 Grass 3",    ("Grass",      0x3e, (4,0,3), None,     'Rupees (5)',         (,))),
 ("Grottos Room 4 Grass 4",    ("Grass",      0x3e, (4,0,4), None,     'Rupees (5)',         (,))),
 

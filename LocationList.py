@@ -277,7 +277,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("HF Southeast Grotto Grass 2",                                  ("Grass",        0x3e, (0,2,4), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Grass"))),
     ("HF Southeast Grotto Grass 3",                                  ("Grass",        0x3e, (0,2,5), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Grass"))),
     ("HF Southeast Grotto Grass 4",                                  ("Grass",        0x3e, (0,2,6), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Grass"))),
-    
+
     ("HF Cow Grotto Grass 1",                                        ("Grass",      0x3e,   (4,4,3), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Grass",))),
     ("HF Cow Grotto Grass 2",                                        ("Grass",      0x3e,   (4,4,4), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Grass",))),
 

@@ -79,7 +79,7 @@
             "Deku Tree Basement Rotating Spike Grass 1": "can_mow_the_lawn",
             "Deku Tree Basement Rotating Spike Grass 2": "can_mow_the_lawn"
         },
-        "exits": 
+        "exits":
         {
             "Deku Tree Basement Back Room" : "True",
             "Deku Tree Basement Eye Switch Room": "True"
