@@ -146,7 +146,12 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     # Kokiri Forest Beehives
     ("KF Storms Grotto Beehive 1",                                   ("Beehive",      0x3E, (0,0x0C,8), None,        'Rupees (5)',                            ("Kokiri Forest", "Forest Area", "Grottos", "Beehives",))),
     ("KF Storms Grotto Beehive 2",                                   ("Beehive",      0x3E,  (0,0x0C,9), None,        'Rupees (20)',                           ("Kokiri Forest", "Forest Area", "Grottos", "Beehives",))),
+
     # Kokiri Forest Grass
+    ("KF Storms Grotto Grass 1",                                     ("Grass",      0x3e, (0,0x0C,3), None,                         'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grottos", "Grass",))),
+    ("KF Storms Grotto Grass 2",                                     ("Grass",      0x3e, (0,0x0C,4), None,                         'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grottos", "Grass",))),
+    ("KF Storms Grotto Grass 3",                                     ("Grass",      0x3e, (0,0x0C,5), None,                         'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grottos", "Grass",))),
+    ("KF Storms Grotto Grass 4",                                     ("Grass",      0x3e, (0,0x0C,6), None,                         'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grottos", "Grass",))),
     ("KF Child Grass 1",                                             ("Grass",      0x55, (0,0,61), None,                           'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
     ("KF Child Grass 2",                                             ("Grass",      0x55, (0,0,62), None,                           'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
     ("KF Child Grass 3",                                             ("Grass",      0x55, (0,0,63), None,                           'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
@@ -216,6 +221,10 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("LW Near Shortcuts Grotto Beehive 2",                           ("Beehive",      0x3E,  (0,0x14,9), None,                         'Rupees (20)',                           ("Lost Woods", "Forest Area", "Grottos", "Beehives",))),
     ("LW Scrubs Grotto Beehive",                                     ("Beehive",      0x3E,  (6,0x15,4), None,                      'Rupees (20)',                           ("Lost Woods", "Forest Area", "Grottos", "Beehives",))),
     # Lost Woods Grass
+    ("LW Near Shortcuts Grotto Grass 1",                             ("Grass",      0x3e, (0,0x14,3),        None,                  'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grottos", "Grass",))),
+    ("LW Near Shortcuts Grotto Grass 2",                             ("Grass",      0x3e, (0,0x14,4),        None,                  'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grottos", "Grass",))),
+    ("LW Near Shortcuts Grotto Grass 3",                             ("Grass",      0x3e, (0,0x14,5),        None,                  'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grottos", "Grass",))),
+    ("LW Near Shortcuts Grotto Grass 4",                             ("Grass",      0x3e, (0,0x14,6),        None,                  'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grottos", "Grass",))),
     ("Lost Woods Near Goron City Grass 1",                           ("Grass",      0x5b, [(2,0,3),(2,2,5)], None,                  'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grass"))),
     ("Lost Woods Near Goron City Grass 2",                           ("Grass",      0x5b, [(2,0,4),(2,2,6)], None,                  'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grass"))),
     ("Lost Woods Near Goron City Grass 3",                           ("Grass",      0x5b, [(2,0,5),(2,2,7)], None,                  'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grass"))),
@@ -256,6 +265,22 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("HF Southeast Grotto Beehive 2",                                ("Beehive",      0x3E, (0,2,9), None,          'Rupees (20)',                           ("Hyrule Field", "Grottos", "Beehives",))),
     ("HF Inside Fence Grotto Beehive",                               ("Beehive",      0x3E, (1,6,2), None,          'Rupees (20)',                           ("Hyrule Field", "Grottos", "Beehives",))),
     # Hyrule Field Grass
+    ("HF Near Market Grotto Grass 1",                                ("Grass",        0x3e, (0,0,3), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Grass"))),
+    ("HF Near Market Grotto Grass 2",                                ("Grass",        0x3e, (0,0,4), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Grass"))),
+    ("HF Near Market Grotto Grass 3",                                ("Grass",        0x3e, (0,0,5), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Grass"))),
+    ("HF Near Market Grotto Grass 4",                                ("Grass",        0x3e, (0,0,6), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Grass"))),
+    ("HF Open Grotto Grass 1",                                       ("Grass",        0x3e, (0,3,3), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Grass"))),
+    ("HF Open Grotto Grass 2",                                       ("Grass",        0x3e, (0,3,4), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Grass"))),
+    ("HF Open Grotto Grass 3",                                       ("Grass",        0x3e, (0,3,5), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Grass"))),
+    ("HF Open Grotto Grass 4",                                       ("Grass",        0x3e, (0,3,6), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Grass"))),
+    ("HF Southeast Grotto Grass 1",                                  ("Grass",        0x3e, (0,2,3), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Grass"))),
+    ("HF Southeast Grotto Grass 2",                                  ("Grass",        0x3e, (0,2,4), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Grass"))),
+    ("HF Southeast Grotto Grass 3",                                  ("Grass",        0x3e, (0,2,5), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Grass"))),
+    ("HF Southeast Grotto Grass 4",                                  ("Grass",        0x3e, (0,2,6), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Grass"))),
+    
+    ("HF Cow Grotto Grass 1",                                        ("Grass",      0x3e,   (4,4,3), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Grass",))),
+    ("HF Cow Grotto Grass 2",                                        ("Grass",      0x3e,   (4,4,4), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Grass",))),
+
     #("HF 57 Grass Patch 1",    ("Grass",      0x51, [(0,0,57,1), (0,1,55,1),],   None,     'Rupees (5)',         ("Hyrule Field", "Grass"))),
     #("HF 57 Grass Patch 2",    ("Grass",      0x51, [(0,0,57,2), (0,1,55,2),],   None,     'Rupees (5)',         ("Hyrule Field", "Grass"))),
     #("HF 57 Grass Patch 3",    ("Grass",      0x51, [(0,0,57,3), (0,1,55,3),],   None,     'Rupees (5)',         ("Hyrule Field", "Grass"))),
@@ -595,6 +620,10 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Kak Open Grotto Beehive 2",                                    ("Beehive",      0x3E,  (0,0x08,9), None,         'Rupees (20)',                           ("Kakariko Village", "Grottos", "Beehives",))),
 
     # Kakariko Village Grass
+    ("Kak Open Grotto Grass 1",                                     ("Grass",      0x3e, (0,0x08,3), None,                            'Rupees (5)',                         ("Kakariko Vaillage", "Grottos", "Grass",))),
+    ("Kak Open Grotto Grass 2",                                     ("Grass",      0x3e, (0,0x08,4), None,                            'Rupees (5)',                         ("Kakariko Vaillage", "Grottos", "Grass",))),
+    ("Kak Open Grotto Grass 3",                                     ("Grass",      0x3e, (0,0x08,5), None,                            'Rupees (5)',                         ("Kakariko Vaillage", "Grottos", "Grass",))),
+    ("Kak Open Grotto Grass 4",                                     ("Grass",      0x3e, (0,0x08,6), None,                            'Rupees (5)',                         ("Kakariko Vaillage", "Grottos", "Grass",))),
     ("Kak Grass 1",                                                  ("Grass",      0x52, [(0,0,37),(0,1,32),(0,2,25),(0,3,23)], None, 'Rupees (5)',                         ("Kakariko Village", "Grass"))),
     ("Kak Grass 2",                                                  ("Grass",      0x52, [(0,0,38),(0,1,33),(0,2,26),(0,3,24)], None, 'Rupees (5)',                         ("Kakariko Village", "Grass"))),
     ("Kak Grass 3",                                                  ("Grass",      0x52, [(0,0,39),(0,1,34),(0,2,27),(0,3,25)], None, 'Rupees (5)',                         ("Kakariko Village", "Grass"))),
@@ -678,6 +707,14 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("DMT Cow Grotto Beehive",                                       ("Beehive",      0x3E, (3,0x18,4), None,                       'Rupees (20)',                           ("Death Mountain Trail", "Grottos", "Beehives",))),
     ("DMT Storms Grotto Beehive 1",                                  ("Beehive",      0x3E, (0,0x17,8), None,                       'Rupees (5)',                            ("Death Mountain Trail", "Grottos", "Beehives",))),
     ("DMT Storms Grotto Beehive 2",                                  ("Beehive",      0x3E, (0,0x17,9), None,                       'Rupees (20)',                           ("Death Mountain Trail", "Grottos",  "Beehives",))),
+    # Death Mountain Trail Grass
+    ("DMT Storms Grotto Grass 1",                                    ("Grass",        0x3e, (0,0x17,3), None,                       'Rupees (5)',                            ("Death Mountain Trail", "Grottos", "Grass"))),
+    ("DMT Storms Grotto Grass 2",                                    ("Grass",        0x3e, (0,0x17,4), None,                       'Rupees (5)',                            ("Death Mountain Trail", "Grottos", "Grass"))),
+    ("DMT Storms Grotto Grass 3",                                    ("Grass",        0x3e, (0,0x17,5), None,                       'Rupees (5)',                            ("Death Mountain Trail", "Grottos", "Grass"))),
+    ("DMT Storms Grotto Grass 4",                                    ("Grass",        0x3e, (0,0x17,6), None,                       'Rupees (5)',                            ("Death Mountain Trail", "Grottos", "Grass"))),
+    ("DMT Cow Grotto Grass 1",                                       ("Grass",        0x3e, (3,0x18,2), None,                       'Rupees (5)',                            ("Death Mountain Trail", "Grottos", "Grass"))),
+    ("DMT Cow Grotto Grass 2",                                       ("Grass",        0x3e, (3,0x18,3), None,                       'Rupees (5)',                            ("Death Mountain Trail", "Grottos", "Grass"))),
+
 
     # Goron City
     ("GC Darunias Joy",                                              ("NPC",          0x62,  0x54, None,                            'Progressive Strength Upgrade',          ("Goron City", "NPCs",))),
@@ -759,6 +796,11 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("DMC Upper Grotto Beehive 1",                                   ("Beehive",      0x3E, (0,0x1A,8), None,          'Rupees (5)',                            ("Death Mountain Crater", "Grottos", "Beehives",))),
     ("DMC Upper Grotto Beehive 2",                                   ("Beehive",      0x3E, (0,0x1A,9), None,          'Rupees (20)',                           ("Death Mountain Crater", "Grottos", "Beehives",))),
     ("DMC Hammer Grotto Beehive",                                    ("Beehive",      0x3E, (12,0x19,4), None,         'Rupees (20)',                           ("Death Mountain Crater", "Grottos", "Beehives",))),
+    # Death Mountain Crater Grass
+    ("DMC Upper Grotto Grass 1",                                     ("Grass",      0x3e, (0,0x1A,3), None,                         'Rupees (5)',               ("Death Mountain Crater", "Grottos", "Grass",))),
+    ("DMC Upper Grotto Grass 2",                                     ("Grass",      0x3e, (0,0x1A,4), None,                         'Rupees (5)',               ("Death Mountain Crater", "Grottos", "Grass",))),
+    ("DMC Upper Grotto Grass 3",                                     ("Grass",      0x3e, (0,0x1A,5), None,                         'Rupees (5)',               ("Death Mountain Crater", "Grottos", "Grass",))),
+    ("DMC Upper Grotto Grass 4",                                     ("Grass",      0x3e, (0,0x1A,6), None,                         'Rupees (5)',               ("Death Mountain Crater", "Grottos", "Grass",))),
 
     # Zora's River
     ("ZR Magic Bean Salesman",                                       ("NPC",          0x54,  0x16, None,                            'Buy Magic Bean',                        ("Zora's River", "NPCs",))),
@@ -788,6 +830,10 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("ZR Open Grotto Beehive 2",                                     ("Beehive",      0x3E, (0,0x09,9), None,          'Rupees (20)',                           ("Zora's River", "Grottos", "Beehives",))),
     ("ZR Storms Grotto Beehive",                                     ("Beehive",      0x3E, (9,0x0B,3), None,          'Rupees (20)',                           ("Zora's River", "Grottos", "Beehives",))),
     # Zora's River Grass
+    ("ZR Open Grotto Grass 1",                                       ("Grass",      0x3e, (0,0x09,3), None,                'Rupees (5)',                        ("Zora's River", "Grottos", "Grass",))),
+    ("ZR Open Grotto Grass 2",                                       ("Grass",      0x3e, (0,0x09,4), None,                'Rupees (5)',                        ("Zora's River", "Grottos", "Grass",))),
+    ("ZR Open Grotto Grass 3",                                       ("Grass",      0x3e, (0,0x09,5), None,                'Rupees (5)',                        ("Zora's River", "Grottos", "Grass",))),
+    ("ZR Open Grotto Grass 4",                                       ("Grass",      0x3e, (0,0x09,6), None,                'Rupees (5)',                        ("Zora's River", "Grottos", "Grass",))),
     ("ZR Near Freestanding PoH Grass",                               ("Grass",      0x54, [(0,0,53),(0,2,25)], None,       'Rupees (5)',                        ("Zora's River", "Grass"))),
     ("ZR Front Grass Patch 1",                                       ("Grass",      0x54, [(0,0,54,1),(0,2,26,1)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
     ("ZR Front Grass Patch 2",                                       ("Grass",      0x54, [(0,0,54,2),(0,2,26,2)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
