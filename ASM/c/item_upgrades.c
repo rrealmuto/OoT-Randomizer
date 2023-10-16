@@ -185,12 +185,12 @@ uint16_t upgrade_key_model(z64_file_t *save, override_t override) {
         if (item_id == GI_DOOR_KEY) {
             // Treasure Chest Game Key
             return GI_SMALL_KEY_MODEL_CHEST_GAME;
-        } else if (item_id < GI_SMALL_KEY_FOREST_TEMPLE) {
+        } else if (item_id < GI_SMALL_KEY_MIN) {
             // Boss Keys
-            return item_id + GI_BOSS_KEY_MODEL_FOREST_TEMPLE - GI_BOSS_KEY_FOREST_TEMPLE;
+            return item_id + GI_BOSS_KEY_MODEL_MIN - GI_BOSS_KEY_TEMPLE;
         } else {
             // Small Keys
-            return item_id + GI_SMALL_KEY_MODEL_FOREST_TEMPLE - GI_SMALL_KEY_FOREST_TEMPLE;
+            return item_id + GI_SMALL_KEY_MODEL_MIN - GI_SMALL_KEY_MIN;
         }
     } else {
         return item_id;

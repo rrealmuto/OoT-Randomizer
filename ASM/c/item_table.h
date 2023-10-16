@@ -6,6 +6,8 @@
 #include "get_items.h"
 #include "z64.h"
 
+// Enum that indexes into item_table.
+// Please update comments accordingly when adding new entries
 typedef enum GetItemID {
     /* 0x0000 */ GI_NONE,
     /* 0x0001 */ GI_BOMBS_5, // Bombs (5)
@@ -162,7 +164,8 @@ typedef enum GetItemID {
     /* 0x0093 */ GI_BOTTLE_WITH_BIG_POE, // Bottle with Big Poe
     /* 0x0094 */ GI_BOTTLE_WITH_POE, // Bottle with Poe
 
-    /* 0x0095 */ GI_BOSS_KEY_FOREST_TEMPLE, // Forest Temple Boss Key
+    /* 0x0095 */ GI_BOSS_KEY_TEMPLE,
+    /* 0x0095 */ GI_BOSS_KEY_FOREST_TEMPLE = GI_BOSS_KEY_TEMPLE, // Forest Temple Boss Key
     /* 0x0096 */ GI_BOSS_KEY_FIRE_TEMPLE, // Fire Temple Boss Key
     /* 0x0097 */ GI_BOSS_KEY_WATER_TEMPLE, // Water Temple Boss Key
     /* 0x0098 */ GI_BOSS_KEY_SPIRIT_TEMPLE, // Spirit Temple Boss Key
@@ -191,7 +194,8 @@ typedef enum GetItemID {
     /* 0x00AD */ GI_MAP_BOTTOM_OF_THE_WELL, // Bottom of the Well Map
     /* 0x00AE */ GI_MAP_ICE_CAVERN, // Ice Cavern Map
 
-    /* 0x00AF */ GI_SMALL_KEY_FOREST_TEMPLE, // Forest Temple Small Key
+    /* 0x00AF */ GI_SMALL_KEY_MIN,
+    /* 0x00AF */ GI_SMALL_KEY_FOREST_TEMPLE = GI_SMALL_KEY_MIN, // Forest Temple Small Key
     /* 0x00B0 */ GI_SMALL_KEY_FIRE_TEMPLE, // Fire Temple Small Key
     /* 0x00B1 */ GI_SMALL_KEY_WATER_TEMPLE, // Water Temple Small Key
     /* 0x00B2 */ GI_SMALL_KEY_SPIRIT_TEMPLE, // Spirit Temple Small Key
@@ -199,7 +203,8 @@ typedef enum GetItemID {
     /* 0x00B4 */ GI_SMALL_KEY_BOTTOM_OF_THE_WELL, // Bottom of the Well Small Key
     /* 0x00B5 */ GI_SMALL_KEY_GERUDO_TRAINING, // Gerudo Training Small Key
     /* 0x00B6 */ GI_SMALL_KEY_THIEVES_HIDEOUT, // Thieves' Hideout Small Key
-    /* 0x00B7 */ GI_SMALL_KEY_GANONS_CASTLE, // Ganon's Castle Small Key
+    /* 0x00AF */ GI_SMALL_KEY_MAX,
+    /* 0x00B7 */ GI_SMALL_KEY_GANONS_CASTLE = GI_SMALL_KEY_MAX, // Ganon's Castle Small Key
 
     /* 0x00B8 */ GI_DOUBLE_DEFENSE, // Double Defense
     /* 0x00B9 */ GI_MAGIC_METER, // Magic Meter
@@ -224,11 +229,13 @@ typedef enum GetItemID {
     /* 0x00C9 */ GI_MAGIC_BEAN_PACK, // Magic Bean Pack
     /* 0x00CA */ GI_TRIFORCE_PIECE, // Triforce piece
 
-    /* 0x00CB */ GI_SMALL_KEY_RING_FOREST_TEMPLE, // Forest Temple Small Key Ring
+    /* 0x00CB */ GI_SMALL_KEY_RING_TEMPLE_MIN,
+    /* 0x00CB */ GI_SMALL_KEY_RING_FOREST_TEMPLE = GI_SMALL_KEY_RING_TEMPLE_MIN, // Forest Temple Small Key Ring
     /* 0x00CC */ GI_SMALL_KEY_RING_FIRE_TEMPLE, // Fire Temple Small Key Ring
     /* 0x00CD */ GI_SMALL_KEY_RING_WATER_TEMPLE, // Water Temple Small Key Ring
     /* 0x00CE */ GI_SMALL_KEY_RING_SPIRIT_TEMPLE, // Spirit Temple Small Key Ring
-    /* 0x00CF */ GI_SMALL_KEY_RING_SHADOW_TEMPLE, // Shadow Temple Small Key Ring
+    /* 0x00CF */ GI_SMALL_KEY_RING_TEMPLE_MAX,
+    /* 0x00CF */ GI_SMALL_KEY_RING_SHADOW_TEMPLE = GI_SMALL_KEY_RING_TEMPLE_MAX, // Shadow Temple Small Key Ring
     /* 0x00D0 */ GI_SMALL_KEY_RING_BOTTOM_OF_THE_WELL, // Bottom of the Well Small Key Ring
     /* 0x00D1 */ GI_SMALL_KEY_RING_GERUDO_TRAINING, // Gerudo Training Small Key Ring
     /* 0x00D2 */ GI_SMALL_KEY_RING_THIEVES_HIDEOUT, // Thieves' Hideout Small Key Ring
@@ -294,13 +301,15 @@ typedef enum GetItemID {
     /* 0x0108 */ GI_OCARINA_BUTTON_C_RIGHT, // Ocarina C right
 
     // Custom Key Models
-    /* 0x0109 */ GI_BOSS_KEY_MODEL_FOREST_TEMPLE, // Forest Temple Boss Key
+    /* 0x0109 */ GI_BOSS_KEY_MODEL_MIN,
+    /* 0x0109 */ GI_BOSS_KEY_MODEL_FOREST_TEMPLE = GI_BOSS_KEY_MODEL_MIN, // Forest Temple Boss Key
     /* 0x010A */ GI_BOSS_KEY_MODEL_FIRE_TEMPLE, // Fire Temple Boss Key
     /* 0x010B */ GI_BOSS_KEY_MODEL_WATER_TEMPLE, // Water Temple Boss Key
     /* 0x010C */ GI_BOSS_KEY_MODEL_SPIRIT_TEMPLE, // Spirit Temple Boss Key
     /* 0x010D */ GI_BOSS_KEY_MODEL_SHADOW_TEMPLE, // Shadow Temple Boss Key
     /* 0x010E */ GI_BOSS_KEY_MODEL_GANONS_CASTLE, // Ganon's Castle Boss Key
-    /* 0x010F */ GI_SMALL_KEY_MODEL_FOREST_TEMPLE, // Forest Temple Small Key
+    /* 0x010F */ GI_SMALL_KEY_MODEL_MIN,
+    /* 0x010F */ GI_SMALL_KEY_MODEL_FOREST_TEMPLE = GI_SMALL_KEY_MODEL_MIN, // Forest Temple Small Key
     /* 0x0110 */ GI_SMALL_KEY_MODEL_FIRE_TEMPLE, // Fire Temple Small Key
     /* 0x0111 */ GI_SMALL_KEY_MODEL_WATER_TEMPLE, // Water Temple Small Key
     /* 0x0112 */ GI_SMALL_KEY_MODEL_SPIRIT_TEMPLE, // Spirit Temple Small Key
@@ -308,11 +317,14 @@ typedef enum GetItemID {
     /* 0x0114 */ GI_SMALL_KEY_MODEL_BOTTOM_OF_THE_WELL, // Bottom of the Well Small Key
     /* 0x0115 */ GI_SMALL_KEY_MODEL_GERUDO_TRAINING, // Gerudo Training Small Key
     /* 0x0116 */ GI_SMALL_KEY_MODEL_THIEVES_HIDEOUT, // Thieves' Hideout Small Key
-    /* 0x0117 */ GI_SMALL_KEY_MODEL_GANONS_CASTLE, // Ganon's Castle Small Key
+    /* 0x0117 */ GI_SMALL_KEY_MODEL_MAX,
+    /* 0x0117 */ GI_SMALL_KEY_MODEL_GANONS_CASTLE = GI_SMALL_KEY_MODEL_MAX, // Ganon's Castle Small Key
     /* 0x0118 */ GI_SMALL_KEY_MODEL_CHEST_GAME, // Small Key (Chest Game)
 
     /* 0x0119 */ GI_RANDO_MAX
 } GetItemId;
+
+_Static_assert(GI_RANDO_MAX == 0x0119, "Remember to update the comment and the assert for the value of GI_RANDO_MAX when adding new items");
 
 typedef enum {
     /*  0 */ BROWN_CHEST,            // big default chest

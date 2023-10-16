@@ -421,7 +421,7 @@ uint16_t resolve_text_small_keys_cmg(item_row_t *item_row, uint16_t item_id, boo
 
 uint16_t resolve_text_keyrings(item_row_t *item_row, uint16_t item_id, bool is_outgoing) {
     int16_t dungeon_id = item_row->effect_arg1;
-    if (item_id >= GI_SMALL_KEY_RING_FOREST_TEMPLE && item_id < GI_SMALL_KEY_RING_BOTTOM_OF_THE_WELL && KEYRING_BOSSKEY_CONDITION) {
+    if (item_id >= GI_SMALL_KEY_RING_TEMPLE_MIN && item_id <= GI_SMALL_KEY_RING_TEMPLE_MAX && KEYRING_BOSSKEY_CONDITION) {
         return item_row->text_id + dungeon_id + 14;
     }
     return item_row->text_id + dungeon_id;
@@ -441,11 +441,11 @@ item_row_t *get_item_row(uint16_t item_id) {
 /*
 uint16_t resolve_item_text_id(uint16_t item_id, bool is_outgoing) {
     item_row_t *item_row = get_item_row(item_id);
-    if ((item_id >= GI_SMALL_KEY_FOREST_TEMPLE && item_id <= GI_SMALL_KEY_GANONS_CASTLE) || (item_id >= GI_SMALL_KEY_MODEL_FOREST_TEMPLE && item_id <= GI_SMALL_KEY_MODEL_GANONS_CASTLE) || (SHUFFLE_CHEST_GAME && (item_id == GI_DOOR_KEY || item_id == GI_SMALL_KEY_MODEL_CHEST_GAME)) && !is_outgoing) {
+    if ((item_id >= GI_SMALL_KEY_MIN && item_id <= GI_SMALL_KEY_MAX) || (item_id >= GI_SMALL_KEY_MODEL_MIN && item_id <= GI_SMALL_KEY_MODEL_MAX) || (SHUFFLE_CHEST_GAME && (item_id == GI_DOOR_KEY || item_id == GI_SMALL_KEY_MODEL_CHEST_GAME)) && !is_outgoing) {
         return item_row->text_id + (z64_file.scene_flags[item_row->effect_arg1].unk_00_ >> 0x10); // Dynamically select the text box based on key count
     }
     // Change message for key rings when they include boss keys
-    if (item_id >= GI_SMALL_KEY_RING_FOREST_TEMPLE && item_id <= GI_SMALL_KEY_RING_SHADOW_TEMPLE && KEYRING_BOSSKEY_CONDITION) {
+    if (item_id >= GI_SMALL_KEY_RING_TEMPLE_MIN && item_id <= GI_SMALL_KEY_RING_TEMPLE_MAX && KEYRING_BOSSKEY_CONDITION) {
         return item_row->text_id + 9;
     }
     return item_row->text_id;
