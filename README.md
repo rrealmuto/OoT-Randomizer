@@ -15,6 +15,7 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v50](#v50)
   * [v49](#v49)
   * [v48](#v48)
   * [v47](#v47)
@@ -68,6 +69,10 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
   * [4.0](#40)
 
 ## RealRob Changelog
+### v50
+  * New setting - Grass Shuffle ;P
+  * Add support for MMR custom music
+
 ### v49
   * Fix Temple of Time Gossip Stone Drops
 
