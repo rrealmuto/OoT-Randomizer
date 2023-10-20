@@ -122,6 +122,8 @@ RANDO_CONTEXT:
 .include "drop_overrides/ovl_en_crow.asm"
 .include "drop_overrides/ovl_en_skj.asm"
 .include "drop_overrides/en_wonderitem.asm"
+.include "drop_overrides/en_kusa.asm"
+.include "drop_overrides/obj_mure2.asm"
 .include "rand_seed.asm"
 .include "messages.asm"
 .include "player_save_mask.asm"

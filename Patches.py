@@ -1891,7 +1891,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     #rom.write_bytes(rom.sym('collectible_scene_flags_table'), collectible_flag_table_bytes)
     #num_collectible_flags += num_collectible_flags % 8
     #rom.write_bytes(rom.sym('num_override_flags'), num_collectible_flags.to_bytes(2, 'big'))
-    if(len(alt_list) > 200):
+    if(len(alt_list) > 500):
         raise(RuntimeError(f'Exceeded alt override table size: {len(alt_list)}'))
     rom.write_bytes(rom.sym('alt_overrides'), alt_list_bytes)
 
@@ -2729,7 +2729,7 @@ def get_override_entry(location: Location) -> Optional[OverrideEntry]:
         return None
 
     # Don't add freestanding items, pots/crates, beehives to the override table if they're disabled. We use this check to determine how to draw and interact with them
-    if location.type in ["ActorOverride", "Freestanding", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive", "Wonderitem", "GossipStone"] and location.disabled != DisableType.ENABLED:
+    if location.type in ["ActorOverride", "Freestanding", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive", "Wonderitem", "GossipStone", "Grass"] and location.disabled != DisableType.ENABLED:
         return None
 
     #Don't add enemy drops to the override table if they're disabled.
@@ -2747,7 +2747,7 @@ def get_override_entry(location: Location) -> Optional[OverrideEntry]:
     elif location.type == 'Chest':
         type = 1
         default &= 0x1F
-    elif location.type in ['Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive', 'SilverRupee', 'EnemyDrop', 'GossipStone', 'Wonderitem']:
+    elif location.type in ['Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive', 'SilverRupee', 'EnemyDrop', 'GossipStone', 'Wonderitem', 'Grass']:
         type = 6
         if not (isinstance(location.default, list) or isinstance(location.default, tuple)):
             raise Exception("Not right")

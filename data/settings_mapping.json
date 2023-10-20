@@ -203,6 +203,7 @@
             "shuffle_empty_crates",
             "shuffle_cows",
             "shuffle_beehives",
+            "shuffle_grass",
             "shuffle_enemy_drops",
             "shuffle_wonderitems",
             "shuffle_kokiri_sword",

@@ -38,6 +38,8 @@ extern int8_t curr_scene_setup;
 #define EN_BB               0x0069  // Bubble
 #define EN_GS               0x1B9   // Gossip Stone
 #define EN_WONDER_ITEM      0x0112  // Wonder Item
+#define EN_KUSA             0x0125 // Grass/Bush
+#define OBJ_MURE2           0x0151 // Obj_Mure2 - Bush/Rock circles
 
 ActorOverlay* gActorOverlayTable = (ActorOverlay*)ACTOR_OVERLAY_TABLE_ADDR;
 
@@ -110,6 +112,8 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, uint16_t actor_index)
             case BG_SPOT18_BASKET:
             case OBJ_MURE3:
             case BG_HAKA_TUBO:
+            case EN_KUSA:
+            case OBJ_MURE2:
             {
                 extra->flag = flag;
                 break;

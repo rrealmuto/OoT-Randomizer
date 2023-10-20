@@ -2797,6 +2797,20 @@ class SettingInfos:
             'randomize_key': 'randomize_settings',
         },
     )
+    shuffle_grass = Checkbutton(
+        gui_text       = 'Shuffle Grass',
+        gui_tooltip    = '''\
+            Grass will contain random items.
+
+            If you enable this, there's seriously
+            some what's wrong with you :)
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    )
 
     shuffle_wonderitems = Checkbutton(
         gui_text       = 'Shuffle Wonderitems',
