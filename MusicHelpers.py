@@ -155,7 +155,9 @@ def process_sequence_ootrs(filepath: str, file_name: str, seq_type: str, include
         lines = [line.rstrip() for line in lines]
         cosmetic_name = lines[0]
         instrument_set = lines[1]
-        if lines[2].lower() == seq_type.lower():
+        if len(lines) < 3 and seq_type == 'bgm':
+            type_match = True
+        elif lines[2].lower() == seq_type.lower():
             type_match = True
         if len(lines) >= 4:
             seq_groups = lines[3].split(',')
