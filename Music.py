@@ -132,7 +132,8 @@ class SequenceData:
 def process_sequences(rom: Rom, ids: Iterable[tuple[str, int]], seq_type: str = 'bgm', disabled_source_sequences: Optional[list[str]] = None,
                       disabled_target_sequences: Optional[dict[str, tuple[str, int]]] = None, include_custom: bool = True,
                       sequences: Optional[dict[str, Sequence]] = None, target_sequences: Optional[dict[str, Sequence]] = None,
-                      groups: Optional[dict[str, list[str]]] = None, include_custom_audiobanks: bool = False) -> tuple[dict[str, Sequence], dict[str, Sequence], dict[str, list[str]]]:
+                      groups: Optional[dict[str, list[str]]] = None, include_custom_audiobanks: bool = False,
+                      log: CosmeticsLog = None) -> tuple[dict[str, Sequence], dict[str, Sequence], dict[str, list[str]]]:
     disabled_source_sequences = [] if disabled_source_sequences is None else disabled_source_sequences
     disabled_target_sequences = {} if disabled_target_sequences is None else disabled_target_sequences
     sequences = {} if sequences is None else sequences
@@ -185,14 +186,18 @@ def process_sequences(rom: Rom, ids: Iterable[tuple[str, int]], seq_type: str = 
 
             filepath = os.path.join(dirpath, fname)
             seq = None
-            if fname.lower().endswith('.ootrs'):
-                seq = process_sequence_ootrs(filepath, fname, seq_type, include_custom_audiobanks, groups)
-            elif fname.lower().endswith('.zseq'):
-                seq = process_sequence_mmr_zseq(filepath, fname, seq_type, include_custom_audiobanks, groups)
-            elif fname.lower().endswith('.mmrs'):
-                seq = process_sequence_mmrs(filepath, fname, seq_type, include_custom_audiobanks, groups)
-            if seq:
-                sequences[seq.cosmetic_name] = seq
+            try:
+                if fname.lower().endswith('.ootrs'):
+                    seq = process_sequence_ootrs(filepath, fname, seq_type, include_custom_audiobanks, groups)
+                elif fname.lower().endswith('.zseq'):
+                    seq = process_sequence_mmr_zseq(filepath, fname, seq_type, include_custom_audiobanks, groups)
+                elif fname.lower().endswith('.mmrs'):
+                    seq = process_sequence_mmrs(filepath, fname, seq_type, include_custom_audiobanks, groups)
+                if seq:
+                    sequences[seq.cosmetic_name] = seq
+            except Exception as e:
+                if log:
+                    log.errors.append(f"Error processing custom sequence {fname} - {e}")
             continue
 
     return sequences, target_sequences, groups
@@ -754,7 +759,7 @@ def randomize_music(rom: Rom, settings: Settings, log: CosmeticsLog, symbols: di
 
     # Grab our lists of sequences.
     if settings.background_music in ['random', 'random_custom_only'] or bgm_mapped:
-        sequences, target_sequences, bgm_groups = process_sequences(rom, bgm_ids.values(), 'bgm', disabled_source_sequences, disabled_target_sequences, custom_sequences_enabled, include_custom_audiobanks=custom_audiobanks_enabled)
+        sequences, target_sequences, bgm_groups = process_sequences(rom, bgm_ids.values(), 'bgm', disabled_source_sequences, disabled_target_sequences, custom_sequences_enabled, include_custom_audiobanks=custom_audiobanks_enabled, log=log)
         if settings.background_music == 'random_custom_only':
             sequences = {name: seq for name, seq in sequences.items() if name not in bgm_ids or name in music_mapping.values()}
         if available_sequences:
@@ -762,7 +767,7 @@ def randomize_music(rom: Rom, settings: Settings, log: CosmeticsLog, symbols: di
                 sequences[sequence_name] = Sequence(sequence_name, sequence_name)
 
     if settings.fanfares in ['random', 'random_custom_only'] or ff_mapped or ocarina_mapped:
-        fanfare_sequences, target_fanfare_sequences, fanfare_groups = process_sequences(rom, ff_ids.values(), 'fanfare', disabled_source_sequences, disabled_target_sequences, custom_sequences_enabled, include_custom_audiobanks=custom_audiobanks_enabled)
+        fanfare_sequences, target_fanfare_sequences, fanfare_groups = process_sequences(rom, ff_ids.values(), 'fanfare', disabled_source_sequences, disabled_target_sequences, custom_sequences_enabled, include_custom_audiobanks=custom_audiobanks_enabled, log=log)
         if settings.fanfares == 'random_custom_only':
             fanfare_sequences = {name: seq for name, seq in fanfare_sequences.items() if name not in ff_ids or name in music_mapping.values()}
         if available_sequences:
