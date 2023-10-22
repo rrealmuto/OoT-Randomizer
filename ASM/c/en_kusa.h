@@ -14,7 +14,7 @@ typedef enum {
 } EnKusaType;
 
 typedef struct EnKusa {
-    /* 0x0000 */ z64_actor_t* actor;
+    /* 0x0000 */ z64_actor_t actor;
     /* 0x013C */ EnKusaActionFunc actionFunc;
     /* 0x0140 */ ColliderCylinder collider;
     /* 0x018C */ int16_t timer;

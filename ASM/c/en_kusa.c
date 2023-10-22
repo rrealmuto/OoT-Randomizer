@@ -31,14 +31,23 @@ void EnKusa_Draw_Hack(z64_actor_t* actor, z64_game_t* game) {
     // Figure out which texture to use
     // Original texture for big grass is 0x0500B140
     // Pick the original texture based on grass type
+    EnKusa* this = (EnKusa*)actor;
     static uint8_t* textures[] = { 0x0500B140, 0x04035BD0, 0x04035BD0 };
     uint8_t* grass_texture_custom = get_texture(TEXTURE_ID_GRASS_CUSTOM);
     uint8_t* grass_small_texture_custom = get_texture(TEXTURE_ID_GRASS_SMALL_CUSTOM);
     uint8_t* custom_textures[] = {grass_texture_custom, grass_small_texture_custom, grass_small_texture_custom };
     uint8_t* texture = textures[actor->variable & 0x03];
     colorRGBA8_t color = {.r = 0xFF, .g = 0xFF, .b = 0xFF, .a = 0xFF};
+
+    // Check if the item has already been collected to properly redraw the color
+    ActorAdditionalData* extras = Actor_GetAdditionalData(actor);
+    if(extras->flag.all && Get_NewOverrideFlag(&(extras->flag))) {
+        // Flag is set so clear the chest type
+        this->chest_type = -1;
+        extras->flag.all = 0;
+    }
+
     // Check CTMC
-    EnKusa* this = (EnKusa*)actor;
     switch (this->chest_type) {
         case GILDED_CHEST:
             texture = custom_textures[actor->variable & 0x03];
