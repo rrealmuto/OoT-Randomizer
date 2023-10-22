@@ -31,7 +31,7 @@ from Spoiler import Spoiler
 from Utils import data_path
 from World import World
 from TextBox import line_wrap
-from texture_util import ci4_rgba16patch_to_ci8, rgba16_patch
+from texture_util import ci4_rgba16patch_to_ci8, rgba16_from_file, rgba16_patch
 from version import __version__
 
 if sys.version_info >= (3, 10):
@@ -170,6 +170,9 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         (27, 'texture_pot_top_heart',       0x01739000,    None,            256,    rgba16_patch,               'textures/pot/pot_top_heart_rgba16_patch.bin'),
         (28, 'texture_crate_heart',         0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,     'textures/crate/crate_heart_rgba16_patch.bin'),
         (29, 'texture_smallcrate_heart',    0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_heart_rgba16_patch.bin'),
+        (31, 'texture_grass_custom',        0xF6A140,      None,            2048,   rgba16_from_file,           'textures/grass/grass_texture_gray_rgba16.bin'),
+        (32, 'texture_grass_small_custom',  0xF6A140,      None,            2048,   rgba16_from_file,           'textures/grass/grass_small_texture_gray_rgba16.bin'),
+        
     ]
 
     # Loop through the textures and apply the patch. Add the new textures as a new file in rom.
