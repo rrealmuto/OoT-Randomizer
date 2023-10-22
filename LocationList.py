@@ -1376,6 +1376,17 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Dodongos Cavern MQ Staircase Silver Rupee Mid Left Crate",     ("SilverRupee",  0x1,   (2,0,13), None,                     'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongo's Cavern MQ", "Master Quest", "Silver Rupees"))),
     ("Dodongos Cavern MQ Staircase Silver Rupee Vines",              ("SilverRupee",  0x1,   (2,0,14), None,                     'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongo's Cavern MQ", "Master Quest", "Silver Rupees"))),
     ("Dodongos Cavern MQ Staircase Silver Rupee Top Right Crate",    ("SilverRupee",  0x1,   (2,0,15), None,                     'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongo's Cavern MQ", "Master Quest", "Silver Rupees"))),
+    # Dodongo's Cavern MQ Grass
+    ("Dodongos Cavern Compass Room Grass 1",                         ("Grass",        0x1,   (5,0,1), None,                      'Rupees (5)',                               ("Dodongo's Cavern MQ", "Master Quest", "Grass",))),
+    ("Dodongos Cavern Compass Room Grass 2",                         ("Grass",        0x1,   (5,0,2), None,                      'Rupees (5)',                               ("Dodongo's Cavern MQ", "Master Quest", "Grass",))),
+    ("Dodongos Cavern Compass Room Grass 3",                         ("Grass",        0x1,   (5,0,3), None,                      'Rupees (5)',                               ("Dodongo's Cavern MQ", "Master Quest", "Grass",))),
+    ("Dodongos Cavern Compass Room Grass 4",                         ("Grass",        0x1,   (5,0,4), None,                      'Rupees (5)',                               ("Dodongo's Cavern MQ", "Master Quest", "Grass",))),
+    ("Dodongos Cavern Armos Army Grass",                             ("Grass",        0x1,   (8,0,10), None,                     'Rupees (5)',                               ("Dodongo's Cavern MQ", "Master Quest", "Grass",))),
+    #("Dodongos Cavern Torch Puzzle Grass",                           ("Grass",        0x1,   (9,0,1), None,                      'Rupees (5)',                               ("Dodongo's Cavern MQ", "Master Quest", "Grass",))),
+    #("Dodongos Cavern Before Upper Lizalfos Grass",                  ("Grass",        0x1,   (10,0,7), None,                     'Rupees (5)',                               ("Dodongo's Cavern MQ", "Master Quest", "Grass",))),
+    ("Dodongos Cavern Scrub Room Grass 1",                           ("Grass",        0x1,   (13,0,1), None,                     'Rupees (5)',                               ("Dodongo's Cavern MQ", "Master Quest", "Grass",))),
+    ("Dodongos Cavern Scrub Room Grass 2",                           ("Grass",        0x1,   (13,0,2), None,                     'Rupees (5)',                               ("Dodongo's Cavern MQ", "Master Quest", "Grass",))),
+    ("Dodongos Cavern Back Poe Room Grass",                          ("Grass",        0x1,   (14,0,1), None,                     'Rupees (5)',                               ("Dodongo's Cavern MQ", "Master Quest", "Grass",))),
 
     # Dodongo's Cavern Shared
     ("Dodongos Cavern Lower Lizalfos Hidden Recovery Heart",         ("Freestanding", 0x01,  (3,0,6), None,                         'Recovery Heart',                        ("Dodongo's Cavern", "Dodongo's Cavern MQ", "Vanilla Dungeons", "Master Quest", "Freestandings",))),
@@ -1443,6 +1454,21 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Jabu Jabus Belly MQ Falling Like Like Room Pot 2",             ("Pot",          0x02,  (11,0,31), None,                       'Bombs (5)',                             ("Jabu Jabu's Belly MQ", "Master Quest", "Pots",))),
     ("Jabu Jabus Belly MQ Boomerang Room Pot 1",                     ("Pot",          0x02,  (14,0,11), None,                       'Bombs (5)',                             ("Jabu Jabu's Belly MQ", "Master Quest", "Pots",))),
     ("Jabu Jabus Belly MQ Boomerang Room Pot 2",                     ("Pot",          0x02,  (14,0,15), None,                       'Bombs (5)',                             ("Jabu Jabu's Belly MQ", "Master Quest", "Pots",))),
+    # Jabu Jabu's Belly MQ Grass
+    ("Jabu Jabus Belly MQ First Room Grass 1",                       ("Grass",        0x2,   (0,0,2), None,                         'Rupees (5)',                            ("Jabu Jabu's Belly MQ", "Master Quest", "Grass",))),
+    ("Jabu Jabus Belly MQ First Room Grass 2",                       ("Grass",        0x2,   (0,0,3), None,                         'Rupees (5)',                            ("Jabu Jabu's Belly MQ", "Master Quest", "Grass",))),
+    ("Jabu Jabus Belly MQ Pit Room Grass 1",                         ("Grass",        0x2,   (2,0,1), None,                         'Rupees (5)',                            ("Jabu Jabu's Belly MQ", "Master Quest", "Grass",))),
+    ("Jabu Jabus Belly MQ Pit Room Grass 2",                         ("Grass",        0x2,   (2,0,2), None,                         'Rupees (5)',                            ("Jabu Jabu's Belly MQ", "Master Quest", "Grass",))),
+    ("Jabu Jabus Belly MQ Basement Grass 1",                         ("Grass",        0x2,   (3,0,1), None,                         'Rupees (5)',                            ("Jabu Jabu's Belly MQ", "Master Quest", "Grass",))),
+    ("Jabu Jabus Belly MQ Basement Grass 2",                         ("Grass",        0x2,   (3,0,2), None,                         'Rupees (5)',                            ("Jabu Jabu's Belly MQ", "Master Quest", "Grass",))),
+    ("Jabu Jabus Belly MQ Basement Grass 3",                         ("Grass",        0x2,   (3,0,3), None,                         'Rupees (5)',                            ("Jabu Jabu's Belly MQ", "Master Quest", "Grass",))),
+    ("Jabu Jabus Belly MQ Wiggler Platforms Grass",                  ("Grass",        0x2,   (4,0,5), None,                         'Rupees (5)',                            ("Jabu Jabu's Belly MQ", "Master Quest", "Grass",))),
+    ("Jabu Jabus Belly MQ Before Boss Grass 1",                      ("Grass",        0x2,   (5,0,3), None,                         'Rupees (5)',                            ("Jabu Jabu's Belly MQ", "Master Quest", "Grass",))),
+    ("Jabu Jabus Belly MQ Before Boss Grass 2",                      ("Grass",        0x2,   (5,0,4), None,                         'Rupees (5)',                            ("Jabu Jabu's Belly MQ", "Master Quest", "Grass",))),
+    ("Jabu Jabus Belly MQ After Big Octo Grass 1",                   ("Grass",        0x2,   (6,0,5), None,                         'Rupees (5)',                            ("Jabu Jabu's Belly MQ", "Master Quest", "Grass",))),
+    ("Jabu Jabus Belly MQ After Big Octo Grass 2",                   ("Grass",        0x2,   (6,0,6), None,                         'Rupees (5)',                            ("Jabu Jabu's Belly MQ", "Master Quest", "Grass",))),
+    ("Jabu Jabus Belly MQ Falling Like Like Room Grass",             ("Grass",        0x2,   (11,0,5), None,                        'Rupees (5)',                            ("Jabu Jabu's Belly MQ", "Master Quest", "Grass",))),
+    ("Jabu Jabus Belly MQ Basement Boomerang Room Grass",            ("Grass",        0x2,   (14,0,3), None,                        'Rupees (5)',                            ("Jabu Jabu's Belly MQ", "Master Quest", "Grass",))),
 
     # Jabu Jabu's Belly Shared
     ("Jabu Jabus Belly Barinade Heart",                              ("BossHeart",    0x13,  0x4F, None,                            'Heart Container',                       ("Jabu Jabu's Belly", "Jabu Jabu's Belly MQ", "Vanilla Dungeons", "Master Quest",))),
@@ -1548,6 +1574,11 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Bottom of the Well MQ East Inner Room Pot 1",                  ("Pot",          0x08,  (5,0,7), None,                         'Recovery Heart',                        ("Bottom of the Well MQ", "Master Quest", "Pots",))),
     ("Bottom of the Well MQ East Inner Room Pot 2",                  ("Pot",          0x08,  (5,0,8), None,                         'Recovery Heart',                        ("Bottom of the Well MQ", "Master Quest", "Pots",))),
     ("Bottom of the Well MQ East Inner Room Pot 3",                  ("Pot",          0x08,  (5,0,9), None,                         'Recovery Heart',                        ("Bottom of the Well MQ", "Master Quest", "Pots",))),
+    # Bottom of the Well MQ Grass
+    ("Bottom of the Well Dead Hand Grass 1",                         ("Grass",        0x8,   (4,0,1), None,                         'Rupees (5)',                            ("Bottom of the Well MQ", "Master Quest", "Grass",))),
+    ("Bottom of the Well Dead Hand Grass 2",                         ("Grass",        0x8,   (4,0,2), None,                         'Rupees (5)',                            ("Bottom of the Well MQ", "Master Quest", "Grass",))),
+    ("Bottom of the Well Dead Hand Grass 3",                         ("Grass",        0x8,   (4,0,3), None,                         'Rupees (5)',                            ("Bottom of the Well MQ", "Master Quest", "Grass",))),
+    ("Bottom of the Well Dead Hand Grass 4",                         ("Grass",        0x8,   (4,0,4), None,                         'Rupees (5)',                            ("Bottom of the Well MQ", "Master Quest", "Grass",))),
 
     # Forest Temple Vanilla
     ("Forest Temple First Room Chest",                               ("Chest",        0x03,  0x03, None,                            'Small Key (Forest Temple)',             ("Forest Temple", "Vanilla Dungeons", "Chests",))),

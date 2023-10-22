@@ -7,6 +7,8 @@
             "Jabu Jabus Belly MQ First Room Side Chest": "can_use(Slingshot)",
             "Jabu Jabus Belly MQ First Room Pot 1": "True",
             "Jabu Jabus Belly MQ First Room Pot 2": "True",
+            "Jabu Jabus Belly MQ First Room Grass 1": "can_mow_the_lawn",
+            "Jabu Jabus Belly MQ First Room Grass 2": "can_mow_the_lawn",
             "Nut Pot": "True"
         },
         "exits": {
@@ -53,6 +55,12 @@
                 Kokiri_Sword or Slingshot or Bombs or Sticks or is_adult",
             "Jabu Jabus Belly MQ Boomerang Room Pot 1": "True",
             "Jabu Jabus Belly MQ Boomerang Room Pot 2": "True",
+            "Jabu Jabus Belly MQ Pit Room Grass 1": "can_blast_or_smash",
+            "Jabu Jabus Belly MQ Pit Room Grass 2": "can_blast_or_smash",
+            "Jabu Jabus Belly MQ Basement Grass 1": "can_mow_the_lawn",
+            "Jabu Jabus Belly MQ Basement Grass 2": "can_mow_the_lawn",
+            "Jabu Jabus Belly MQ Basement Grass 3": "can_mow_the_lawn",
+            "Jabu Jabus Belly MQ Basement Boomerang Room Grass": "can_mow_the_lawn",
             "Jabu Jabus Belly MQ GS Boomerang Chest Room": "
                 (can_play(Song_of_Time) and (can_child_attack or is_adult)) or
                 (logic_jabu_mq_sot_gs and can_use(Boomerang))",
@@ -80,6 +88,7 @@
             "Jabu Jabus Belly MQ Falling Like Like Room Chest": "True",
             "Jabu Jabus Belly MQ Falling Like Like Room Pot 1": "True",
             "Jabu Jabus Belly MQ Falling Like Like Room Pot 2": "True",
+            "Jabu Jabus Belly MQ Falling Like Like Room Grass": "True",
             "Jabu Jabus Belly MQ Hallway Small Crate 1": "True",
             "Jabu Jabus Belly MQ Hallway Small Crate 2": "True",
             "Jabu Jabus Belly MQ GS Tailpasaran Room": "Sticks or can_use(Dins_Fire)"
@@ -97,7 +106,10 @@
         "locations": {
             "Jabu Jabus Belly MQ Small Crate Near Cow 1": "True",
             "Jabu Jabus Belly MQ Small Crate Near Cow 2": "True",
-            "Jabu Jabus Belly MQ Cow": "can_play(Eponas_Song)"
+            "Jabu Jabus Belly MQ Cow": "can_play(Eponas_Song)",
+            "Jabu Jabus Belly MQ After Big Octo Grass 1": "can_mow_the_lawn",
+            "Jabu Jabus Belly MQ After Big Octo Grass 2": "can_mow_the_lawn",
+            "Jabu Jabus Belly MQ Wiggler Platforms Grass": "can_mow_the_lawn"
         }
     },
     {
@@ -120,6 +132,8 @@
             "Jabu Jabus Belly MQ GS Near Boss": "
                 can_use(Boomerang) or (logic_jabu_near_boss_ranged and can_use(Hookshot))",
             "Jabu Jabus Belly MQ Near Boss Pot": "True",
+            "Jabu Jabus Belly MQ Before Boss Grass 1": "can_mow_the_lawn",
+            "Jabu Jabus Belly MQ Before Boss Grass 2": "can_mow_the_lawn",
             "Fairy Pot": "has_bottle"
         },
         "exits": {
