@@ -74,6 +74,9 @@ Grass Shuffle - Shuffles grass
 ### v51
   * Add grass shuffle texture match contents
   * Add MQ dungeons to grass shuffle
+  * Soul Logic fixes
+    * DMC Bubble Below Bridge To Fire Temple
+    * Deku Tree Basement Back Room Near GS Skulltula
 
 ### v50
   * New setting - Grass Shuffle ;P
