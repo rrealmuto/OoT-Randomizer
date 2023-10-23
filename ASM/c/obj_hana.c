@@ -13,7 +13,7 @@ void ObjHana_Draw_Hack(z64_actor_t* actor, z64_game_t* game) {
         gDPSetTextureImage(gfx->poly_opa.d, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, texture);
         gSPEndDisplayList(gfx->poly_opa.d + 1);
         gMoveWd(gfx->poly_opa.p++, G_MW_SEGMENT, 9 * sizeof(int), gfx->poly_opa.d);
-        gDPSetPrimColor(gfx->poly_opa.p++, 0,0, 0xFF,200,0,0xFF);
+        gDPSetPrimColor(gfx->poly_opa.p++, 0,0, 0xFF,0xFF,0xFF,0xFF);
     }
 
     ActorFunc func = (ActorFunc)Actor_ResolveOverlayAddr(actor, ObjHana_Draw);
