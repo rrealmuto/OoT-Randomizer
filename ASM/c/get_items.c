@@ -17,7 +17,7 @@ extern uint8_t FAST_CHESTS;
 extern uint8_t OCARINAS_SHUFFLED;
 extern uint8_t NO_COLLECTIBLE_HEARTS;
 extern uint32_t FREE_BOMBCHU_DROPS;
-override_t cfg_item_overrides[2500] = { 0 };
+override_t cfg_item_overrides[2700] = { 0 };
 int item_overrides_count = 0;
 
 z64_actor_t *dummy_actor = NULL;
