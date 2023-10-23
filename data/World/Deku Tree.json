@@ -77,7 +77,7 @@
             "Deku Tree Basement Back Room Gohma Larva 1": "can_kill_gohma_larva",
             "Deku Tree Basement Back Room Gohma Larva 2": "can_kill_gohma_larva",
             "Deku Tree Basement Back Room Gohma Larva 3": "can_kill_gohma_larva",
-            "Deku Tree Basement Back Room Near GS Skulltula": "is_adult or can_child_attack"
+            "Deku Tree Basement Back Room Near GS Skulltula": "here(has_fire_source_with_torch or can_use(Bow)) and (has_soul(Skulltula) and (is_adult or can_child_attack))"
         },
         "exits": {
             "Deku Tree Basement Ledge": "is_child",
