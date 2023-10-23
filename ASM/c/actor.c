@@ -60,6 +60,10 @@ void* Actor_ResolveOverlayAddr(z64_actor_t* actor, void* addr) {
 void Actor_After_UpdateAll_Hack(z64_actor_t *actor, z64_game_t* game) {
     // Add additional actor hacks here. These get called shortly after the call to actor_init
     // Hacks are responsible for checking that they are the correct actor.
+    if(CURR_ACTOR_SPAWN_INDEX)
+    {
+        Actor_StoreFlagByIndex(actor, game, CURR_ACTOR_SPAWN_INDEX);
+    }
     bb_after_init_hack(actor, game);
     EnWonderitem_AfterInitHack(actor, game);
     CURR_ACTOR_SPAWN_INDEX = 0; // reset CURR_ACTOR_SPAWN_INDEX
@@ -370,15 +374,13 @@ z64_actor_t * Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int16_t ac
     if(continue_spawn) {
         z64_actor_t* spawned = Actor_Spawn_Continue(actorCtx, globalCtx, actorId, posX, posY, posZ, rotX, rotY, rotZ, params);
         
-        if(CURR_ACTOR_SPAWN_INDEX)
-        {
-            Actor_StoreFlagByIndex(spawned, globalCtx, CURR_ACTOR_SPAWN_INDEX);
+        if(spawned) {
+            if(spawn_actor_with_flag)
+            {
+                Actor_StoreFlag(spawned, globalCtx, *spawn_actor_with_flag);
+                Actor_StoreChestType(spawned, globalCtx);
+            }
         }
-        else if(spawn_actor_with_flag)
-        {
-            Actor_StoreFlag(spawned, globalCtx, *spawn_actor_with_flag);
-        }
-        Actor_StoreChestType(spawned, globalCtx);
         return spawned;
     }
     return NULL;

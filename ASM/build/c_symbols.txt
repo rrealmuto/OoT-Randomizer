@@ -219,7 +219,7 @@ SYMBOL TABLE:
 0000fd44 g     F .text	0000002c call_effect_function
 00013970 g     F .text	000000dc BgSpot18Basket_BombDropHook
 00006ba8 g     F .text	00000560 read_file_data
-000005cc g     F .text	00000108 spawn_override_silver_rupee
+000005e8 g     F .text	00000108 spawn_override_silver_rupee
 0000608c g     F .text	000000a4 EnWonderItem_Multitag_DrawHack
 00000000         *UND*	00000000 PLAYER_ID
 0000f8bc g     F .text	0000001c clear_excess_hearts
@@ -377,7 +377,7 @@ SYMBOL TABLE:
 00009d40 g     F .text	00000208 Item00_KillActorIfFlagIsSet
 000091b4 g     F .text	0000009c after_item_received
 00000030 g     O .sbss	00000002 num_grotto_override_flags
-000002c4 g     F .text	000000c4 Actor_StoreFlagByIndex
+00000280 g     F .text	000000c4 Actor_StoreFlagByIndex
 00000000         *UND*	00000000 SPOILER_AVAILABLE
 0000fd70 g     F .text	00000010 no_upgrade
 00011674 g     F .text	00000224 update_navi_colors
@@ -399,7 +399,7 @@ SYMBOL TABLE:
 00010070 g     F .text	0000005c nut_upgrade
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_PROP_OUTER_ENABLED
 00008fbc g     F .text	00000064 push_coop_item
-00000a38 g     F .text	0000016c Actor_Spawn_Hook
+00000a54 g     F .text	00000150 Actor_Spawn_Hook
 00000008 g     O .sdata	00000004 EnKusa_Draw
 00000010 g     O .sdata	00000004 scene_fog_distance
 000104d4 g     F .text	0000004c upgrade_key_model
@@ -510,7 +510,7 @@ SYMBOL TABLE:
 0000aa98 g     F .text	000001a0 sprite_load
 0000b87c g     F .text	000000a4 draw_gi_sold_out
 0000d7c0 g     F .text	000001d8 draw_gi_fairy
-00000418 g     F .text	000001b4 Actor_StoreChestType
+00000434 g     F .text	000001b4 Actor_StoreChestType
 00000830 g     O .data	00000010 stones_sprite
 00000000         *UND*	00000000 NO_COLLECTIBLE_HEARTS
 00000000         *UND*	00000000 OUTGOING_KEY
@@ -532,7 +532,7 @@ SYMBOL TABLE:
 00000028 g     O .sbss	00000004 grotto_collectible_override_flags
 00000000         *UND*	00000000 CFG_UNINVERT_YAXIS_IN_FIRST_PERSON_CAMERA
 000007f0 g     O .data	00000010 font_sprite
-000000c8 g     F .text	00000044 Actor_After_UpdateAll_Hack
+00000344 g     F .text	00000060 Actor_After_UpdateAll_Hack
 00000034 g     O .sbss	00000001 satisified_pending_frames
 000122a8 g     F .text	00000068 scale_top_matrix
 00009138 g     F .text	0000007c pop_ice_trap
@@ -642,7 +642,7 @@ SYMBOL TABLE:
 0000e328 g     F .text	000002d4 draw_gi_boss_altered
 00006504 g     F .text	00000038 flags_getsoul
 0000008c g     O .sbss	00000004 menu_page
-00000800 g     F .text	000000b8 Player_SpawnEntry_Hack
+0000081c g     F .text	000000b8 Player_SpawnEntry_Hack
 000123dc g     F .text	000000a8 draw_model
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_SILVER_RUPEES
 000159c0 g     F .text	00000120 Save_Init_Write_Hook
@@ -669,7 +669,7 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 CFG_SPEEDUP_MUSIC_FOR_LAST_TRIFORCE_PIECE
 00000000         *UND*	00000000 CFG_RAINBOW_BOOM_TRAIL_OUTER_ENABLED
 000007d0 g     O .data	00000010 triforce_sprite
-000006d4 g     F .text	0000012c Actor_SpawnEntry_Hack
+000006f0 g     F .text	0000012c Actor_SpawnEntry_Hack
 00000000         *UND*	00000000 EXTERN_DAMAGE_MULTIPLYER
 0000006a g     O .sbss	00000001 MAX_RUPEES
 000098a4 g     F .text	00000310 get_xflag_bit_offset
@@ -743,7 +743,7 @@ SYMBOL TABLE:
 000144a0 g     F .text	0000003c soul_menu_handler
 00005afc g     F .text	0000005c EnItem00_Init_Hook
 00000000         *UND*	00000000 CFG_TEXT_CURSOR_COLOR
-0000010c g     F .text	000001b8 Actor_StoreFlag
+000000c8 g     F .text	000001b8 Actor_StoreFlag
 0000dcdc g     F .text	0000019c draw_gi_small_keys
 000014a0 g     F .text	000000c0 draw_chest_lid
 000006c4 g     O .data	00000040 hash_symbols
@@ -767,7 +767,7 @@ SYMBOL TABLE:
 0000f43c g     F .text	00000094 give_small_key
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_MQ_ENABLE
 0000164c g     F .text	00000014 get_dummy_chest
-000008b8 g     F .text	00000180 Actor_Spawn_Clear_Check_Hack
+000008d4 g     F .text	00000180 Actor_Spawn_Clear_Check_Hack
 00000744 g     O .data	00000015 items
 0000cf04 g     F .text	000001d0 draw_gi_potions
 000007a0 g     O .data	00000010 rupee_digit_sprite
@@ -808,7 +808,7 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 EXTENDED_OBJECT_TABLE
 00016bc0 g     F .text	00000508 draw_triforce_count
 00000000         *UND*	00000000 PLAYER_NAME_ID
-00000388 g     F .text	00000090 get_newflag_override
+000003a4 g     F .text	00000090 get_newflag_override
 00015ef0 g     F .text	00000020 GetTradeItemIndex
 00000000         *UND*	00000000 CFG_TUNIC_COLORS
 000013e0 g     F .text	000000c0 draw_chest_base
