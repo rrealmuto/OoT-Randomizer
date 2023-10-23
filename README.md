@@ -11,10 +11,12 @@ Enemy Drop Shuffle - All (almost) of the enemies in the game will give a shuffle
 Wonderitem Shuffle - Shuffles wonderitems - which include invisible rupees and invisible hit markers.
 Gossip Stone Shuffle - Play Song of Time to a gossip stone to receive a shuffled item.
 Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not spawn into the world until their souls have been collected.
+Grass Shuffle - Shuffles grass
 
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v51](#v51)
   * [v50](#v50)
   * [v49](#v49)
   * [v48](#v48)
@@ -69,6 +71,10 @@ Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not
   * [4.0](#40)
 
 ## RealRob Changelog
+### v51
+  * Add grass shuffle texture match contents
+  * Add MQ dungeons to grass shuffle
+
 ### v50
   * New setting - Grass Shuffle ;P
   * Add support for MMR custom music

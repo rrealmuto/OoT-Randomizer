@@ -1061,6 +1061,35 @@ typedef enum {
     ACTORTYPE_CHEST
 } actor_type_t;
 
+struct z64_actor_t;
+struct z64_game_t;
+
+typedef void (*ActorFunc)(struct z64_actor_t*, struct z64_game_t*);
+
+typedef struct {
+    /* 0x00 */ int16_t id;
+    /* 0x02 */ uint8_t category; // Classifies actor and determines when it will update or draw
+    /* 0x04 */ uint32_t flags;
+    /* 0x08 */ int16_t objectId;
+    /* 0x0C */ uint32_t instanceSize;
+    /* 0x10 */ ActorFunc init; // Constructor
+    /* 0x14 */ ActorFunc destroy; // Destructor
+    /* 0x18 */ ActorFunc update; // Update Function
+    /* 0x1C */ ActorFunc draw; // Draw function
+} ActorInit; // size = 0x20
+
+typedef struct {
+    /* 0x00 */ uintptr_t vromStart;
+    /* 0x04 */ uintptr_t vromEnd;
+    /* 0x08 */ void* vramStart;
+    /* 0x0C */ void* vramEnd;
+    /* 0x10 */ void* loadedRamAddr; // original name: "allocp"
+    /* 0x14 */ ActorInit* initInfo;
+    /* 0x18 */ char* name;
+    /* 0x1C */ uint16_t allocType; // See `ACTOROVL_ALLOC_` defines
+    /* 0x1E */ int8_t numLoaded; // original name: "clients"
+} ActorOverlay; // size = 0x20
+
 typedef struct z64_actor_s z64_actor_t;
 struct z64_actor_s
 {
@@ -1123,7 +1152,7 @@ struct z64_actor_s
   void           *dtor;             /* 0x012C */
   void           *main_proc;        /* 0x0130 */
   void           *draw_proc;        /* 0x0134 */
-  void           *code_entry;       /* 0x0138 */
+  ActorOverlay *overlay_entry;    /* 0x0138 */
                                     /* 0x013C */
 };
 

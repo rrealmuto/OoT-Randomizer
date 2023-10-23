@@ -32,7 +32,8 @@ extern override_key_t OUTGOING_KEY;
 extern uint16_t OUTGOING_ITEM;
 extern uint16_t OUTGOING_PLAYER;
 extern uint16_t GET_ITEM_SEQ_ID;
-xflag_t drop_collectible_override_flag; // Flag used by hacks in Item_DropCollectible to override the item being dropped. Set it to the flag for the overridden item.
+xflag_t drop_collectible_override_flag = { 0 }; // Flag used by hacks in Item_DropCollectible to override the item being dropped. Set it to the flag for the overridden item.
+xflag_t* spawn_actor_with_flag = NULL;
 
 override_t active_override = { 0 };
 int active_override_is_outgoing = 0;
@@ -52,7 +53,7 @@ uint8_t satisified_pending_frames = 0;
 // Call get_xflag_bit_offset to retrieve the desired offset for a flag.
 uint16_t xflag_scene_table[101];
 uint8_t xflag_room_table[1000];
-uint8_t xflag_room_blob[3000];
+uint8_t xflag_room_blob[4000];
 alt_override_t alt_overrides[500];
 
 extern uint16_t CURR_ACTOR_SPAWN_INDEX;

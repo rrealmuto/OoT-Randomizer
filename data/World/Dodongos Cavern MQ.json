@@ -93,7 +93,11 @@
             "Dodongos Cavern MQ Compass Chest": "has_soul(Dodongo)",
             "Dodongos Cavern MQ Compass Room Dodongo 1": "has_soul(Dodongo)",
             "Dodongos Cavern MQ Compass Room Dodongo 2": "has_soul(Dodongo)",
-            "Dodongos Cavern MQ Compass Room Dodongo 3": "has_soul(Dodongo)"
+            "Dodongos Cavern MQ Compass Room Dodongo 3": "has_soul(Dodongo)",
+            "Dodongos Cavern Compass Room Grass 1": "can_mow_the_lawn",
+            "Dodongos Cavern Compass Room Grass 2": "can_mow_the_lawn",
+            "Dodongos Cavern Compass Room Grass 3": "can_mow_the_lawn",
+            "Dodongos Cavern Compass Room Grass 4": "can_mow_the_lawn"
         },
         "exits": {
             "Dodongos Cavern Torch Puzzle Lower": "has_soul(Dodongo)",
@@ -251,6 +255,8 @@
             "Dodongos Cavern MQ Poes Room Crate 7": "can_break_crate or Progressive_Strength_Upgrade",
             "Dodongos Cavern MQ Poes Room Crate Near Bomb Flower": "
                 can_break_crate or Progressive_Strength_Upgrade or can_use(Bow) or can_use(Dins_Fire)",
+            "Dodongos Cavern Scrub Room Grass 1": "can_mow_the_lawn and ((here(can_use(Bow)) or Progressive_Strength_Upgrade or can_use(Dins_Fire) or has_explosives))",
+            "Dodongos Cavern Scrub Room Grass 2": "can_mow_the_lawn and ((here(can_use(Bow)) or Progressive_Strength_Upgrade or can_use(Dins_Fire) or has_explosives))",
             "Dodongos Cavern MQ GS Scrub Room": "
                 (here(can_use(Bow)) or Progressive_Strength_Upgrade or
                     can_use(Dins_Fire) or has_explosives) and
@@ -281,8 +287,10 @@
             "Dodongos Cavern MQ Room Before Boss Pot 2": "True",
             "Dodongos Cavern MQ Armos Army Room Pot 1": "True",
             "Dodongos Cavern MQ Armos Army Room Pot 2": "True",
+            "Dodongos Cavern Armos Army Grass": "True",
             "Dodongos Cavern MQ Back Poe Room Pot 1": "True",
             "Dodongos Cavern MQ Back Poe Room Pot 2": "True",
+            "Dodongos Cavern Back Poe Room Grass": "True",
             "Dodongos Cavern MQ GS Back Area": "
                 can_use(Boomerang) or
                 at('Dodongos Cavern Before Boss', is_adult or can_child_attack or
