@@ -4230,3 +4230,4 @@ courtyard_guards_kill:
 .include "hacks/ovl/ovl_kaleido_scope.asm"
 .include("hacks/ovl_en_kusa.asm")
 .include("hacks/ovl_obj_mure2.asm")
+.include("hacks/ovl_obj_hana.asm")
