@@ -77,6 +77,7 @@ Grass Shuffle - Shuffles grass
   * Soul Logic fixes
     * DMC Bubble Below Bridge To Fire Temple
     * Deku Tree Basement Back Room Near GS Skulltula
+  * Fix Spirit Temple MQ Child Stalfos Fight Pot 4 not shuffled
 
 ### v50
   * New setting - Grass Shuffle ;P
