@@ -2722,7 +2722,7 @@
             "DMC Child Blue Rupee 4": "is_child",
             "DMC Child Blue Rupee 5": "is_child",
             "DMC Child Blue Rupee 6": "is_child",
-            "DMC Bubble Below Bridge To Fire Temple": "is_adult and can_use(Goron_Tunic) and Longshot and (Bow or Magic_Meter)",
+            "DMC Bubble Below Bridge To Fire Temple": "has_soul(Bubble) and (is_adult and can_use(Goron_Tunic) and Longshot and (Bow or Magic_Meter))",
             "DMC Second Plank Bubble 1": "(has_soul(Bubble)) and (is_adult and can_use(Goron_Tunic) and (Bow or Magic_Meter))",
             "DMC Second Plank Bubble 2": "(has_soul(Bubble)) and (is_adult and can_use(Goron_Tunic) and (Bow or Magic_Meter))"
         },
