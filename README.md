@@ -34,9 +34,8 @@ Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Ra
   * `unlock-playthrough`, also known as “Wanderer Unlock”, hints the name of two items that appear in the spoiler log playthrough where the first is required to obtain the second. The first item may or may not be on the Way of the Hero, but the second definitely isn't.
   * `wanderer` randomly generates a `playthrough-location` or `unlock-playthrough` hint.
 * New hint distributions:
-  * “Chaos!!! (no goal hints)” is like “Chaos!!!” but without the possibility of Goal (aka Path) hints, making it suitable for large multiworlds. ([#2101](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2101))
   * “Chaos!!! (dev-fenhl)” is like “Chaos!!!” but including hint types not available on [`Dev-R`](https://github.com/Roman971/OoT-Randomizer).
-  * “Chaos!!! (dev-fenhl, no goal hints)” combines these two changes.
+  * “Chaos!!! (dev-fenhl, no goal hints)” is like “Chaos!!! (no goal hints)” but including hint types not available on [`Dev-R`](https://github.com/Roman971/OoT-Randomizer).
   * “Ice%” consists of only Sometimes hints, and replaces the hookshot hint in Dampé's diary with a blue fire arrows hint.
   * “Mixed Pools Tournament” is the hint distribution that was used for the [2nd Mixed Pools Tournament](https://midos.house/event/mp/2). Note that the tournament itself used [a previous version](https://github.com/fenhl/OoT-Randomizer/releases/tag/7.1.117-fenhl.17) of this branch.
   * “Tournament (Season 6)” is the hint distribution that was used for the [Standard Tournament Season 6](https://midos.house/event/s/6). Note that the tournament itself used the main [`Dev`](https://github.com/OoTRandomizer/OoT-Randomizer) branch.
@@ -49,7 +48,7 @@ Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Ra
   * “Ice%” is an extremely fast-paced game mode where the goal is to reach the Iron Boots chest.
   * “2nd Mixed Pools Tournament” was used for [a tournament](https://midos.house/event/mp/2) with full mixed pools entrance randomizer. Note that the tournament itself used [a previous version](https://github.com/fenhl/OoT-Randomizer/releases/tag/7.1.117-fenhl.17) of this branch.
   * “Standard Anti-Weekly Settings (Beginner)” disables every location that's enabled in “S6 Tournament” and enables every location that's disabled there, as well as changing some miscellaneous settings. See [the official document](https://docs.google.com/document/d/1sbL6Zju943F5qyx4QbTLUsqZqOTMmvqKVbDwJl08SGc/edit) for details.
-  * “Standard Anti-Weekly Settings (Advanced)” adds “Shuffle Rupees & Hearts”, “Shuffle Pots”, “Shuffle Crates”, “Shuffle Beehives”, and “Shuffle Silver Rulees”, has a minimal item pool, and adds extra ice traps.
+  * “Standard Anti-Weekly Settings (Advanced)” adds “Shuffle Rupees & Hearts”, “Shuffle Pots”, “Shuffle Crates”, “Shuffle Beehives”, and “Shuffle Silver Rupees”, has a minimal item pool, and adds extra ice traps.
   * “Triforce Blitz S2” is a fast-paced game mode with very powerful hints used for [a tournament](https://midos.house/event/tfb/2), taken from [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev). Note that the tournament itself was played on that branch, not this one. See [the official website](https://www.triforceblitz.com/) for details.
 * Other changes:
   * Plandos can specify different settings for each world ([#2055](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2055))
@@ -207,6 +206,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * New Dual hint for King Zora checks: Unfreezing him and trading the prescription for an eyeball frog.
   * The credits music can now be shuffled into the music pool.
   * Many hints had clearer hints added and/or were reworded.
+  * New `Chaos!!! (no goal hints)` hint distribution which is the same as the normal "Chaos" distribution, but without goal hints.
 * **Other**
   * When picking up a small key, the text box will now inform you how many you've found total.
   * The longstanding vanilla bug where using Din's Fire on a white bubble crashes the game has been fixed.
