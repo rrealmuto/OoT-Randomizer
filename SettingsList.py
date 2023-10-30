@@ -2397,10 +2397,11 @@ class SettingInfos:
     mix_entrance_pools = MultipleSelect(
         gui_text        = 'Mix Entrance Pools',
         choices         = {
-            'Interior': 'Interiors',
+            'Interior':    'Interiors',
             'GrottoGrave': 'Grottos',
-            'Dungeon': 'Dungeons',
-            'Overworld': 'Overworld',
+            'Dungeon':     'Dungeons',
+            'Overworld':   'Overworld',
+            'Boss':        'Bosses',
         },
         gui_tooltip    = '''\
             Shuffle the selected entrances into a mixed pool

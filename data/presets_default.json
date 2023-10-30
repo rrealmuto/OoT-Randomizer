@@ -72,7 +72,8 @@
             "Interior",
             "GrottoGrave",
             "Dungeon",
-            "Overworld"
+            "Overworld",
+            "Boss"
         ],
         "decouple_entrances": false,
         "shuffle_gerudo_valley_river_exit": true,
@@ -3574,7 +3575,8 @@
             "Interior",
             "GrottoGrave",
             "Dungeon",
-            "Overworld"
+            "Overworld",
+            "Boss"
         ],
         "decouple_entrances": true,
         "shuffle_gerudo_valley_river_exit": true,

@@ -11,12 +11,14 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
 
     'Pass Through Visible One-Way Collisions': {
         'name'    : 'logic_visible_collisions',
-        'tags'    : ("General", "Entrance Shuffle", "Kakariko Village", "Overworld", "Child", "Adult",),
+        'tags'    : ("General", "Entrance Shuffle", "Kakariko Village", "Deku Tree", "Deku Tree MQ", "Overworld", "Master Quest", "Vanilla Dungeons", "Child", "Adult",),
         'tooltip' : '''\
                     Allows climbing through the platform to reach
-                    Impa's House Back as adult with no items and
-                    going through the Kakariko Village Gate as child
-                    when coming from the Mountain Trail side.
+                    Impa's House Back as adult with no items, going
+                    through the Kakariko Village Gate as child when
+                    coming from the Mountain Trail side, and climbing
+                    through the webs in the Deku Tree when coming from
+                    the boss door.
                     '''},
     'Hidden Grottos without Stone of Agony': {
         'name'    : 'logic_grottos_without_agony',
