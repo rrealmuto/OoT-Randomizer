@@ -669,13 +669,13 @@ class SettingInfos:
             True: {
                 'sections': ['shuffle_section'],
                 'settings': [
-                    'open_forest', 'require_gohma', 'open_kakariko', 'open_door_of_time', 'zora_fountain', 'gerudo_fortress', 'dungeon_shortcuts_choice',
+                    'open_deku', 'open_forest', 'require_gohma', 'open_kakariko', 'open_door_of_time', 'zora_fountain', 'gerudo_fortress', 'dungeon_shortcuts_choice',
                     'dungeon_shortcuts', 'trials_random', 'trials',
                     'starting_age', 'shuffle_interior_entrances', 'shuffle_hideout_entrances',
                     'shuffle_grotto_entrances', 'shuffle_dungeon_entrances',
-                    'shuffle_bosses', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops', 'warp_songs', 'spawn_positions',
-                    'mix_entrance_pools', 'decouple_entrances',
-                    'triforce_hunt', 'triforce_count_per_world', 'triforce_goal_per_world', 'free_bombchu_drops', 'one_item_per_dungeon',
+                    'shuffle_bosses', 'shuffle_ganon_tower', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops', 'warp_songs', 'blue_warps', 'shuffle_child_spawn', 'shuffle_adult_spawn',
+                    'mix_entrance_pools', 'decouple_entrances', 'exclusive_one_ways',
+                    'triforce_hunt', 'triforce_hunt_mode', 'triforce_count_per_world', 'triforce_goal_per_world', 'free_bombchu_drops', 'one_item_per_dungeon',
                     'shuffle_mapcompass', 'shuffle_smallkeys', 'shuffle_hideoutkeys', 'key_rings_choice', 'key_rings',
                     'shuffle_bosskeys', 'enhance_map_compass',
                 ],
@@ -711,11 +711,11 @@ class SettingInfos:
             'glitchless': {'settings': ['tricks_list_msg']},
             'glitched':   {'settings': ['allowed_tricks', 'shuffle_interior_entrances', 'shuffle_hideout_entrances', 'shuffle_grotto_entrances',
                                          'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops',
-                                         'warp_songs', 'spawn_positions', 'mq_dungeons_mode', 'mq_dungeons_specific',
+                                         'warp_songs', 'blue_warps', 'shuffle_child_spawn', 'shuffle_adult_spawn', 'mq_dungeons_mode', 'mq_dungeons_specific',
                                          'mq_dungeons_count', 'shuffle_bosses', 'shuffle_ganon_tower', 'dungeon_shortcuts', 'deadly_bonks',
                                          'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_beehives', 'shuffle_silver_rupees',
                                          'mix_entrance_pools', 'decouple_entrances']},
-            'none':       {'settings': ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
+            'none':       {'settings': ['dungeon_back_access', 'allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
         },
         shared         = True,
     )
@@ -2315,8 +2315,8 @@ class SettingInfos:
         default        = 'off',
         choices        = {
             'off':                'Off',
-            'hideout_savewarp':   'On (Savewarp to Overworld)',
-            'overworld_savewarp': 'On (Savewarp to 1-Torch Jail)',
+            'hideout_savewarp':   'On (Savewarp to 1-Torch Jail)',
+            'overworld_savewarp': 'On (Savewarp to Overworld)',
         },
         gui_tooltip    = '''\
             Shuffle the pool of entrances to Thieves' Hideout
@@ -2511,37 +2511,241 @@ class SettingInfos:
         },
     )
 
-    shuffle_gerudo_valley_river_exit = Checkbutton(
+    shuffle_gerudo_valley_river_exit = Combobox(
         gui_text       = 'Shuffle Gerudo Valley River Exit',
+        choices        = {
+            'off':       'Off',
+            'balanced':  'Balanced',
+            'full':      'Full',
+        },
         gui_tooltip    = '''\
             Randomize where the the one-way entrance
             down the river in Gerudo Valley leads to.
+
+            'Off':
+            The entrance leads to Lake Hylia.
+
+            'Balanced':
+            The destinations are randomly chosen from overworld
+            and a few special entrances.
+
+            'Full':
+            It can also take you inside or outside of an interior,
+            grotto, or dungeon, potentially bypassing item requirements.
         ''',
-        default        = False,
+        default        = 'off',
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
+            'distribution':  [
+                ('off', 2),
+                ('balanced', 1),
+                ('full', 1),
+            ],
         },
     )
 
-    owl_drops = Checkbutton(
+    owl_drops = Combobox(
         gui_text       = 'Randomize Owl Drops',
+        choices        = {
+            'off':       'Off',
+            'balanced':  'Balanced',
+            'full':      'Full',
+        },
         gui_tooltip    = '''\
             Randomize where Kaepora Gaebora (the Owl) drops you at
             when you talk to him at Lake Hylia or at the top of
             Death Mountain Trail.
+
+            'Off':
+            He will take you from Lake Hylia to Hyrule Field
+            (near the Market entrance) and from Death Mountain Trail
+            to Kakariko (onto the roof of Impa's house).
+
+            'Balanced':
+            The destinations are randomly chosen from overworld
+            and a few special entrances.
+
+            'Full':
+            The Owl can also drop you off outside of buildings,
+            inside the Temple of Time, or inside or outside of
+            grottos or dungeons, potentially bypassing item
+            requirements.
         ''',
-        default        = False,
+        default        = 'off',
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
+            'distribution':  [
+                ('off', 2),
+                ('balanced', 1),
+                ('full', 1),
+            ],
         },
     )
 
-    warp_songs = Checkbutton(
+    warp_songs = Combobox(
         gui_text       = 'Randomize Warp Song Destinations',
+        choices        = {
+            'off':       'Off',
+            'balanced':  'Balanced',
+            'full':      'Full',
+        },
         gui_tooltip    = '''\
             Randomize where each of the 6 warp songs leads to.
+
+            'Off':
+            The warp songs lead to their vanilla destinations
+            (the warp pads near the Temples).
+
+            'Balanced':
+            The destinations are randomly chosen from overworld,
+            interior, and a few special entrances.
+
+            'Full':
+            Warp songs can also take you inside or outside of grottos
+            or dungeons, potentially bypassing item requirements.
+        ''',
+        default        = 'off',
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+            'distribution':  [
+                ('off', 2),
+                ('balanced', 1),
+                ('full', 1),
+            ],
+        },
+    )
+
+    shuffle_child_spawn = Combobox(
+        gui_text       = 'Randomize Child Overworld Spawn',
+        choices        = {
+            'off':       'Off',
+            'balanced':  'Balanced',
+            'full':      'Full',
+        },
+        gui_tooltip    = '''\
+            Randomize where you start as Child when loading
+            a save in the Overworld. This stays consistent after
+            saving and loading the game again.
+
+            'Off':
+            Child will spawn in Link's House.
+
+            'Balanced':
+            The spawn position is randomly chosen from overworld, interior,
+            and a few special entrances.
+
+            'Full':
+            Link can also spawn inside or outside of graves or dungeons,
+            potentially bypassing item requirements.
+        ''',
+        default        = 'off',
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+            'distribution':  [
+                ('off', 2),
+                ('balanced', 1),
+                ('full', 1),
+            ],
+        },
+    )
+
+    shuffle_adult_spawn = Combobox(
+        gui_text       = 'Randomize Adult Overworld Spawn',
+        choices        = {
+            'off':       'Off',
+            'balanced':  'Balanced',
+            'full':      'Full',
+        },
+        gui_tooltip    = '''\
+            Randomize where you start as Adult when loading
+            a save in the Overworld. This stays consistent after
+            saving and loading the game again.
+
+            'Off':
+            Adult will spawn in the Temple of Time.
+
+            'Balanced':
+            The spawn position is randomly chosen from overworld, interior,
+            and a few special entrances.
+
+            'Full':
+            Link can also spawn inside or outside of graves or dungeons,
+            potentially bypassing item requirements.
+        ''',
+        default        = 'off',
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+            'distribution':  [
+                ('off', 2),
+                ('balanced', 1),
+                ('full', 1),
+            ],
+        },
+    )
+
+    blue_warps = Combobox(
+        gui_text       = 'Randomize Blue Warps',
+        choices        = {
+            'vanilla':  'Vanilla',
+            'dungeon':  'Dungeon Entrance',
+            'balanced': 'Balanced',
+            'full':     'Full',
+        },
+        gui_tooltip    = '''\
+            Randomize where the the blue warps that appear
+            after defeating bosses lead to.
+
+            'Vanilla':
+            The blue warps always lead to their vanilla locations,
+            regardless of where the boss room is. For example, the
+            Barinade blue warp will always lead to Zora's Fountain.
+            As an exception, the Phantom Ganon blue warp will lead
+            to the Sacred Forest Meadow instead of in front of the
+            Deku Tree if dungeons, bosses, or the overworld are
+            shuffled. This matches the vanilla behavior when that
+            blue warp is entered a second time.
+
+            'Dungeon Entrance':
+            Each blue warp leads outside the entrance of the
+            dungeon the boss room is in. If that dungeon is in the
+            boss door of another dungeon, the blue warp leads
+            outside that second dungeon instead, and so on. If a
+            boss room is not inside a dungeon, the blue warp leads
+            outside the boss room's entrance.
+
+            'Balanced':
+            The destinations are randomly chosen from one-way
+            targets and a few special entrances.
+
+            'Full':
+            Blue warps can also lead to overworld or interior
+            entrances. Due to a vanilla bug, these entrances may
+            take a second or two to load in, so care must be taken
+            in order to avoid accidentally going out of bounds.
+            Blue warps can also take you inside or outside of grottos
+            or dungeons, potentially bypassing item requirements.
+        ''',
+        default        = 'dungeon',
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    )
+
+    exclusive_one_ways = Checkbutton(
+        gui_text       = 'Mutually Exclusive One-Ways',
+        gui_tooltip    = '''\
+            No two shuffled one-ways (overworld spawns, warp songs, blue warps,
+            owl drops, or the river exit in Gerudo Valley) can lead to the same
+            hint area.
+
+            If this setting is off, this restriction only applies to entrances
+            of the same type.
         ''',
         default        = False,
         shared         = True,
@@ -2550,30 +2754,21 @@ class SettingInfos:
         },
     )
 
-    spawn_positions = MultipleSelect(
-        gui_text       = 'Randomize Overworld Spawns',
-        choices         = {
-            'child': 'Child',
-            'adult': 'Adult',
-        },
+    dungeon_back_access = Checkbutton(
+        gui_text       = '[EXPERIMENTAL] Allow Access to Shadow and Spirit Temples From Boss Doors',
         gui_tooltip    = '''\
-            Randomize where you start when loading
-            a save in the Overworld. This means you may not necessarily
-            spawn inside Link's House or Temple of Time.
+            If this setting is enabled and depending on which entrance randomizer
+            settings are enabled, entrances may be shuffled in a way that allows
+            accessing the Shadow Temple and/or the Spirit Temple from their boss
+            doors. This also applies to Master Quest Forest Temple if the shortcut
+            is enabled. The logic for this is incomplete so this may generate
+            impossible seeds!
 
-            'Child': Child overworld spawn will be randomized.
-
-            'Adult': Adult overworld spawn will be randomized.
-
-            Selecting both options will randomize both spawns.
-
-            This stays consistent after saving and loading the game again.
+            This setting is always enabled if Logic Rules are set to No Logic.
         ''',
-        default        = [],
+        default        = False,
+        disabled_default = True,
         shared         = True,
-        gui_params     = {
-            'randomize_key': 'randomize_settings',
-        },
     )
 
     free_bombchu_drops = Checkbutton(
@@ -3406,12 +3601,17 @@ class SettingInfos:
     )
 
     useful_cutscenes = Checkbutton(
-        gui_text       = 'Enable Specific Glitch-Useful Cutscenes',
+        gui_text       = 'Glitch-Useful Behaviors',
         gui_tooltip    = '''\
+            Enables some behaviors which are useful in glitched
+            gameplay only and are inconvenient or confusing for
+            glitchless playthroughs:
+
             The cutscenes of the Poes in Forest Temple and Darunia in
-            Fire Temple will not be skipped. These cutscenes are useful
-            in glitched gameplay only and do not provide any timesave
-            for glitchless playthroughs.
+            Fire Temple will not be skipped.
+
+            The water in the Kakariko well will be drained as adult
+            even if dungeon entrances are shuffled.
         ''',
         shared         = True,
     )

@@ -34,12 +34,10 @@
 "shuffle_overworld_entrances": true,
 "mix_entrance_pools": ["Interior", "GrottoGrave", "Dungeon", "Overworld"],
 "decouple_entrances": true,
-"owl_drops": true,
-"warp_songs": true,
-"spawn_positions":                         [
-    "child",
-    "adult"
-  ],
+"owl_drops": "balanced",
+"warp_songs": "balanced",
+"shuffle_child_spawn": "balanced",
+"shuffle_adult_spawn": "balanced",
 "shuffle_scrubs": "off",
 "shopsanity": "off",
 "tokensanity": "off",

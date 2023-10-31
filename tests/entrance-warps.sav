@@ -29,12 +29,10 @@
 "shuffle_grotto_entrances": true,
 "shuffle_dungeon_entrances": "off",
 "shuffle_overworld_entrances": false,
-"owl_drops": true,
-"warp_songs": true,
-"spawn_positions":                         [
-    "child",
-    "adult"
-  ],
+"owl_drops": "balanced",
+"warp_songs": "balanced",
+"shuffle_child_spawn": "balanced",
+"shuffle_adult_spawn": "balanced",
 "shuffle_scrubs": "off",
 "shopsanity": "off",
 "tokensanity": "off",

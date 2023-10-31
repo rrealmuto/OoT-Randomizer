@@ -73,6 +73,17 @@ def set_rules(world: World) -> None:
             and world.settings.tokensanity == 'off'
         ):
             forbid_item(location, 'Boss Key (Forest Temple)')
+        if (
+            location.name in ('Shadow Temple Hover Boots Chest', 'Shadow Temple Early Silver Rupee Chest')
+            and world.settings.shuffle_bosskeys == 'dungeon'
+            and world.settings.shuffle_smallkeys == 'dungeon'
+            and world.dungeon_back_access
+            and 'Shadow Temple' not in world.settings.dungeon_shortcuts
+            and world.settings.shuffle_pots in ('off', 'overworld')
+            and world.settings.shuffle_mapcompass == 'vanilla'
+            and world.settings.shuffle_silver_rupees == 'vanilla'
+        ):
+            forbid_item(location, 'Boss Key (Shadow Temple)')
 
         if location.type == 'HintStone' and world.settings.hints == 'mask':
             location.add_rule(is_child)

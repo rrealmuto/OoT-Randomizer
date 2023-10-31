@@ -1104,38 +1104,12 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
             replaced_entrance = (entrance.replaces or entrance).data
 
             # Fixup save/quit and death warping entrance IDs on bosses.
-            if 'savewarp_addresses' in replaced_entrance and entrance.reverse:
-                if entrance.parent_region.savewarp:
-                    savewarp = entrance.parent_region.savewarp.replaces.data['index']
-                elif 'savewarp_fallback' in entrance.reverse.data:
-                    # Spawning outside a grotto crashes the game, so we use a nearby regular entrance instead.
-                    if entrance.reverse.data['savewarp_fallback'] == 0x0117:
-                        # We don't want savewarping in a boss room inside GV Octorok Grotto to allow out-of-logic access to Gerudo Valley,
-                        # so we spawn the player at whatever entrance GV Lower Stream -> Lake Hylia leads to.
-                        savewarp = world.get_entrance('GV Lower Stream -> Lake Hylia')
-                        savewarp = (savewarp.replaces or savewarp).data
-                        if 'savewarp_fallback' in savewarp:
-                            # the entrance GV Lower Stream -> Lake Hylia leads to is also not a valid savewarp so we place the player at Gerudo Valley from Hyrule Field instead
-                            savewarp = entrance.reverse.data['savewarp_fallback']
-                        else:
-                            savewarp = savewarp['index']
-                    else:
-                        savewarp = entrance.reverse.data['savewarp_fallback']
-                else:
-                    # Spawning inside a grotto also crashes, but exiting a grotto can currently only lead to a boss room in decoupled,
-                    # so we follow the entrance chain back to the nearest non-grotto.
-                    savewarp = entrance
-                    while 'savewarp_fallback' in savewarp.data:
-                        parents = list(filter(lambda parent: parent.reverse, savewarp.parent_region.entrances))
-                        if len(parents) == 0:
-                            raise Exception('Unable to set savewarp')
-                        elif len(parents) == 1:
-                            savewarp = parents[0]
-                        else:
-                            raise Exception('Found grotto with multiple entrances')
-                    savewarp = savewarp.reverse.data['index']
-                for address in replaced_entrance['savewarp_addresses']:
-                    rom.write_int16(address, savewarp)
+            if 'savewarp_addresses' in replaced_entrance:
+                savewarp = (entrance.replaces or entrance).reverse.parent_region.savewarp.replaces
+                if savewarp is not None:
+                    savewarp = savewarp.data['index']
+                    for address in replaced_entrance['savewarp_addresses']:
+                        rom.write_int16(address, savewarp)
 
             for address in new_entrance.get('addresses', []):
                 rom.write_int16(address, replaced_entrance.get('child_index', replaced_entrance['index']))
@@ -1149,6 +1123,15 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
                 # vanilla as it never took you to the exit and the lake fill is handled
                 # above by removing the cutscene completely. Child has problems with Adult
                 # blue warps, so always use the return entrance if a child.
+                #
+                # This method does not work with mixed entrance pools between dungeons
+                # and grottos as grotto entrances are not in the entrance table.
+                # Grotto entrance indices always have the format 0x1000 + grotto ID or
+                # 0x2000 + grotto ID, which is greater than any entrance table index.
+                # If the dungeon is in a grotto, edit the blue warp hardcodes to the grotto
+                # entrance index, otherwise use the "normal" entrance table method.
+                # This runs after and overrides the cutscene edits for Forest Temple
+                # and Water Temple if needed.
                 exit_updates.append((new_entrance['index'], replaced_entrance.get('child_index', replaced_entrance['index'])))
                 exit_updates.append((new_entrance['index'] + 1, replaced_entrance.get('child_index', replaced_entrance['index']) + 1))
                 exit_updates.append((new_entrance['index'] + 2, replaced_entrance['index'] + 2))
@@ -1199,6 +1182,10 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     if world.shuffle_dungeon_entrances:
         rom.write_byte(rom.sym('DUNGEONS_SHUFFLED'), 1)
 
+        if not world.settings.useful_cutscenes:
+            # Tell the well water we are always a child.
+            rom.write_int32(0xDD5BF4, 0x00000000)
+
         # Make the Adult well blocking stone dissappear if the well has been drained by
         # checking the well drain event flag instead of links age. This actor doesn't need a
         # code check for links age as the stone is absent for child via the scene alternate
@@ -1213,7 +1200,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         rom.write_byte(0x021862E3, 0xC2)
 
 
-    if world.shuffle_special_dungeon_entrances:
+    if world.shuffle_special_dungeon_entrances or world.settings.shuffle_ganon_tower or world.full_one_ways:
         # Move Hyrule's Castle Courtyard exit spawn to be before the crates so players don't skip Talon
         rom.write_int16(0x21F607A, 0x033A) # Position X
         rom.write_int16(0x21F607C, 0x0623) # Position Y
@@ -1230,7 +1217,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         rom.write_int16(0xE2B46A, 0xC3C8) # Min X = -400.0f
         rom.write_int32(0xE2B7A0, 0x44160000) # Min Y = 600.0f
 
-    if world.settings.spawn_positions:
+    if world.spawn_positions:
         # Fix save warping inside Link's House to not be a special case
         rom.write_int32(0xB06318, 0x00000000)
 
@@ -1239,6 +1226,8 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         world.settings.shuffle_overworld_entrances
         or world.shuffle_dungeon_entrances
         or world.settings.shuffle_bosses != 'off'
+        or world.settings.blue_warps in ('balanced', 'full')
+        or world.full_one_ways
     )
     set_entrance_updates(entrance for entrance in world.get_shufflable_entrances() if entrance.shuffled or (patch_blue_warps and entrance.type == 'BlueWarp'))
 
@@ -1644,6 +1633,8 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
             save_context.addresses['keys']['spirit'].value = 3
         if 'Shadow Temple' in world.settings.dungeon_shortcuts:
             save_context.addresses['keys']['shadow'].value = 2
+        elif world.dungeon_back_access and not world.dungeon_mq['Shadow Temple']:
+            save_context.addresses['keys']['shadow'].value = 1
 
     if world.settings.start_with_rupees:
         rom.write_byte(rom.sym('MAX_RUPEES'), 0x01)
@@ -2200,9 +2191,10 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         if world.settings.shuffle_scrubs == 'random':
             shuffle_messages.scrubs_message_ids.append(text_id)
 
-    if world.settings.shuffle_grotto_entrances:
+    # This changes the behavior of deathwarps after exiting grottos, so only apply it if required.
+    if world.settings.shuffle_grotto_entrances or world.full_one_ways:
         # Build the Grotto Load Table based on grotto entrance data
-        for entrance in world.get_shuffled_entrances(type='Grotto'):
+        for entrance in world.get_shufflable_entrances(type='Grotto'):
             if entrance.primary:
                 load_table_pointer = rom.sym('GROTTO_LOAD_TABLE') + 4 * entrance.data['grotto_id']
                 rom.write_int16(load_table_pointer, entrance.data['entrance'])
@@ -2945,12 +2937,12 @@ def set_grotto_shuffle_data(rom: Rom, world: World) -> None:
 
     # Build the override table based on shuffled grotto entrances
     grotto_entrances_override = {}
-    for entrance in world.get_shuffled_entrances(type='Grotto'):
+    for entrance in world.get_shufflable_entrances(type='Grotto'):
         if entrance.primary:
             grotto_actor_id = (entrance.data['scene'] << 8) + entrance.data['content']
-            grotto_entrances_override[grotto_actor_id] = entrance.replaces.data['index']
+            grotto_entrances_override[grotto_actor_id] = (entrance.replaces or entrance).data['index']
         else:
-            rom.write_int16(rom.sym('GROTTO_EXIT_LIST') + 2 * entrance.data['grotto_id'], entrance.replaces.data['index'])
+            rom.write_int16(rom.sym('GROTTO_EXIT_LIST') + 2 * entrance.data['grotto_id'], (entrance.replaces or entrance).data['index'])
 
     # Override grotto actors data with the new data
     get_actor_list(rom, override_grotto_data)

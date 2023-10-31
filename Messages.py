@@ -1390,13 +1390,13 @@ def update_warp_song_text(messages: list[Message], world: World) -> None:
         0x0892: 'Prelude of Light Warp -> Temple of Time',
     }
     owl_messages = {
-        0x3063: 'DMT Owl Flight -> Kak Impas Rooftop',
+        0x3063: 'DMT Owl Flight -> Kak Impas Rooftop Cutscene Entrance',
         0x4004: 'LH Owl Flight -> Hyrule Field',
     }
 
     if world.settings.logic_rules != "glitched": # Entrances not set on glitched logic so following code will error
         for id, entr in msg_list.items():
-            if 'warp_songs_and_owls' in world.settings.misc_hints or not world.settings.warp_songs:
+            if 'warp_songs_and_owls' in world.settings.misc_hints or world.settings.warp_songs == 'off':
                 destination = world.get_entrance(entr).connected_region
                 destination_name = HintArea.at(destination)
                 color = COLOR_MAP[destination_name.color]
@@ -1409,7 +1409,7 @@ def update_warp_song_text(messages: list[Message], world: World) -> None:
             new_msg = f"\x08\x05{color}Warp {destination_name}?\x05\40\x09\x01\x01\x1b\x05\x42OK\x01No\x05\40"
             update_message_by_id(messages, id, new_msg)
 
-    if world.settings.owl_drops:
+    if world.settings.owl_drops != 'off':
         for id, entr in owl_messages.items():
             if 'warp_songs_and_owls' in world.settings.misc_hints:
                 destination = world.get_entrance(entr).connected_region

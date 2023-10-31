@@ -459,7 +459,7 @@ class HintArea(Enum):
             for entrance in parent_region.entrances:
                 if entrance not in already_checked:
                     # prioritize two-way entrances
-                    if entrance.type in ('OverworldOneWay', 'OwlDrop', 'Spawn', 'WarpSong'):
+                    if entrance.type in ('OverworldOneWay', 'OwlDrop', 'ChildSpawn', 'AdultSpawn', 'WarpSong', 'BlueWarp'):
                         fallback_spot_queue.append(entrance)
                     else:
                         spot_queue.append(entrance)

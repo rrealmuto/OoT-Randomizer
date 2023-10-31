@@ -24,9 +24,14 @@ Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Ra
   * New “Triforce Hunt Mode” setting with “Normal”, “Easter Egg Hunt”, “Ice%”, and “Triforce Blitz” options (Easter Egg Hunt based on [#1804](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1804), Triforce Blitz based on [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev))
   * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1536))
   * “Closed Forest Requires Gohma” is a separate setting. With it enabled, items that can be used to escape the forest won't appear in the forest, and the randomizer will try to place at least one slingshot for each player in the forest. The setting is compatible with all forms of entrance randomizer by restricting entrances inside the forest area to only be shuffled among themselves. ([#1531](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1531))
+  * New “Full” options for the settings “Randomize Owl Drops”, “Randomize Warp Song Destinations”, and “Randomize Overworld Spawns” (which is split into “Randomize Child Overworld Spawn” and “Randomize Adult Overworld Spawn” for this reason) that include more types of entrances (based on [#1179](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1179) and [#1287](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1287))
   * New “On (Savewarp to Overworld)” option for the “Shuffle Thieves' Hideout Entrances” setting (based on [fenhl#7](https://github.com/fenhl/OoT-Randomizer/pull/7))
   * New “Shuffle Items” and “Shuffle Other Items” settings which can be disabled to generate vanilla seeds, only shuffle songs, only shuffle entrances, etc. (Currently not compatible with Master Quest)
   * Work-in-progress “Language” setting to translate the game into French or German
+  * New “[EXPERIMENTAL] Allow Access to Shadow and Spirit Temples From Boss Doors” setting
+  * “Enable Specific Glitch-Useful Cutscenes” has been renamed to “Glitch-Useful Behaviors” and also controls whether the water in the well is present as adult
+  * New “Shuffle Blue Warps” setting
+  * New “Mutually Exclusive One-Ways” setting which makes the hint area restriction apply to one-way entrances of different types
 * New hint types based on [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev):
   * `goal-count` tells you how many items are on the path to a goal.
   * `goal-legacy` is a variant of `goal` with many subtle differences. Notably, hints will be placed in the goal's world, not the world where the item can be found. It is used in the “Triforce Blitz S2” hint distribution.
@@ -55,6 +60,7 @@ Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Ra
 * Other changes:
   * Plandos can specify different settings for each world ([#2055](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2055))
   * Some settings have been renamed for clarity ([#1560](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1560))
+  * The conditions for forcing one-way entrances that lead to the Bolero, Nocturne, and Requiem warp pads have been adjusted to increase variety with some settings, such as “Guarantee Reachable Locations” set to “All Goals”, “Shuffle Dungeon Rewards”, or “Mix Entrance Pools” (based on [#1440](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1440))
   * Gold skulltula tokens can be on excluded locations if there are no checks requiring them (such as in SAWS)
   * The GUI tweaks made by [`Dev-R`](https://github.com/Roman971/OoT-Randomizer) are further adjusted to balance consistency with [main `Dev`](https://github.com/OoTRandomizer/OoT-Randomizer) and ease of use.
 

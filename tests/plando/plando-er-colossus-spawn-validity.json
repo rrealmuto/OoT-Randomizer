@@ -3,11 +3,9 @@
     "logic_rules":                             "glitchless",
     "shuffle_interior_entrances":              "off",
     "shuffle_overworld_entrances":             false,
-    "warp_songs":                              false,
-    "spawn_positions":                         [
-      "child",
-      "adult"
-    ],
+    "warp_songs":                              "off",
+    "shuffle_child_spawn": "balanced",
+    "shuffle_adult_spawn": "balanced",
     "starting_inventory":                      [
       "ocarina"
     ],

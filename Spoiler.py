@@ -94,21 +94,23 @@ class Spoiler:
             self.locations[world.id] = OrderedDict([(str(location), location.item) for location in spoiler_locations if location.item is not None])
 
         entrance_sort_order = {
-            "Spawn": 0,
-            "WarpSong": 1,
-            "OwlDrop": 2,
-            "OverworldOneWay": 3,
-            "Overworld": 4,
-            "DungeonSpecial": 5,
-            "Dungeon": 5,
-            "ChildBoss": 6,
-            "AdultBoss": 6,
-            "SpecialBoss": 6,
-            "Hideout": 7,
-            "SpecialInterior": 7,
-            "Interior": 7,
-            "Grotto": 8,
-            "Grave": 8,
+            "ChildSpawn": 0,
+            "AdultSpawn": 1,
+            "WarpSong": 2,
+            "OwlDrop": 3,
+            "BlueWarp": 4,
+            "OverworldOneWay": 5,
+            "Overworld": 6,
+            "Dungeon": 7,
+            "DungeonSpecial": 8,
+            "ChildBoss": 9,
+            "AdultBoss": 10,
+            "SpecialBoss": 11,
+            "Hideout": 12,
+            "SpecialInterior": 13,
+            "Interior": 13,
+            "Grotto": 14,
+            "Grave": 14,
         }
         for (sphere_nr, sphere) in self.entrance_playthrough.items():
             sorted_sphere = [entrance for entrance in sphere]

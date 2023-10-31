@@ -63,6 +63,8 @@ class World:
         if settings.starting_age == 'adult' and settings.shuffle_song_items == 'vanilla' and settings.reachable_locations == 'all' and not settings.open_door_of_time:
             raise ValueError("Cannot combine songs on vanilla locations, adult start, all locations reachable, and closed Door of Time since access to the Song of Time would be locked behind itself.")
 
+        self.spawn_positions: bool = settings.shuffle_child_spawn in ('balanced', 'full') or settings.shuffle_adult_spawn in ('balanced', 'full')
+
         self.shuffle_special_interior_entrances: bool = settings.shuffle_interior_entrances == 'all'
         self.shuffle_interior_entrances: bool = settings.shuffle_interior_entrances in ['simple', 'all']
 
@@ -71,8 +73,24 @@ class World:
 
         self.entrance_shuffle: bool = bool(
             self.shuffle_interior_entrances or settings.shuffle_grotto_entrances or self.shuffle_dungeon_entrances
-            or settings.shuffle_overworld_entrances or settings.shuffle_gerudo_valley_river_exit or settings.owl_drops or settings.warp_songs
-            or settings.spawn_positions or (settings.shuffle_bosses != 'off')
+            or settings.shuffle_overworld_entrances or settings.shuffle_gerudo_valley_river_exit != 'off' or settings.owl_drops != 'off' or settings.warp_songs != 'off'
+            or settings.blue_warps not in ('vanilla', 'dungeon') or self.spawn_positions or settings.shuffle_bosses != 'off'
+        )
+        self.one_ways: bool = (
+            settings.blue_warps in ('balanced', 'full')
+            or settings.shuffle_gerudo_valley_river_exit in ('balanced', 'full')
+            or settings.owl_drops in ('balanced', 'full')
+            or settings.warp_songs in ('balanced', 'full')
+            or settings.shuffle_child_spawn in ('balanced', 'full')
+            or settings.shuffle_adult_spawn in ('balanced', 'full')
+        )
+        self.full_one_ways: bool = (
+            settings.blue_warps == 'full'
+            or settings.shuffle_gerudo_valley_river_exit == 'full'
+            or settings.owl_drops == 'full'
+            or settings.warp_songs == 'full'
+            or settings.shuffle_child_spawn == 'full'
+            or settings.shuffle_adult_spawn == 'full'
         )
 
         self.mix_entrance_pools: set[str] = {
@@ -89,8 +107,28 @@ class World:
         if len(self.mix_entrance_pools) == 1:
             self.mix_entrance_pools = set()
         self.mixed_pools_bosses: bool = 'Boss' in self.mix_entrance_pools
+        self.dungeon_back_access: bool = settings.dungeon_back_access and (
+            self.full_one_ways or (
+                self.mixed_pools_bosses and (
+                    self.settings.decouple_entrances
+                    or 'Overworld' in self.mix_entrance_pools
+                    or (
+                        'GrottoGrave' in self.mix_entrance_pools
+                        and self.one_ways
+                    )
+                    or (
+                        'Interior' in self.mix_entrance_pools
+                        and (
+                            self.one_ways
+                            or self.shuffle_special_interior_entrances
+                            or self.settings.shuffle_hideout_entrances != 'off'
+                        )
+                    )
+                )
+            )
+        )
 
-        self.ensure_tod_access: bool = bool(self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or settings.spawn_positions)
+        self.ensure_tod_access: bool = bool(self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or self.spawn_positions)
         self.disable_trade_revert: bool = self.shuffle_interior_entrances or settings.shuffle_overworld_entrances or settings.adult_trade_shuffle
         self.skip_child_zelda: bool = 'Zeldas Letter' not in settings.shuffle_child_trade and 'Zeldas Letter' in settings.starting_items
         self.selected_adult_trade_item: str = ''
@@ -648,8 +686,10 @@ class World:
                     new_exit.connected_region = savewarp_target
                     new_region.exits.append(new_exit)
                     new_region.savewarp = new_exit
-                    # the replaced entrance may not exist yet so we connect it after all region files have been read
-                    savewarps_to_connect.append((new_exit, region['savewarp']))
+                    if not new_region.is_boss_room:
+                        # the replaced entrance may not exist yet so we connect it after all region files have been read
+                        # boss room savewarps are handled separately since they're adjusted when boss rooms are shuffled
+                        savewarps_to_connect.append((new_exit, region['savewarp']))
             self.regions.append(new_region)
         return savewarps_to_connect
 
@@ -1187,6 +1227,9 @@ class World:
     def get_shufflable_entrances(self, type=None, only_primary=False) -> list[Entrance]:
         return [entrance for entrance in self.get_entrances() if (type is None or entrance.type == type) and (not only_primary or entrance.primary)]
 
+    def get_shufflable_entrances_reverse(self, type=None) -> list[Entrance]:
+        return [entrance for entrance in self.get_entrances() if (type == None or entrance.type == type) and not entrance.primary]
+
     def get_shuffled_entrances(self, type=None, only_primary=False) -> list[Entrance]:
         return [entrance for entrance in self.get_shufflable_entrances(type=type, only_primary=only_primary) if entrance.shuffled]
 
@@ -1210,13 +1253,15 @@ class World:
         ]
 
         if (self.settings.damage_multiplier != 'ohko' and self.settings.damage_multiplier != 'quadruple' and
-            self.settings.shuffle_scrubs == 'off' and not self.settings.shuffle_grotto_entrances):
+            self.settings.shuffle_scrubs == 'off' and not self.settings.shuffle_grotto_entrances
+            and not self.full_one_ways):
             # Nayru's Love may be required to prevent forced damage
             self.exclude_item_list.append('Nayrus Love')
         if 'logic_grottos_without_agony' in self.settings.allowed_tricks and self.settings.hints != 'agony':
             # Stone of Agony skippable if not used for hints or grottos
             self.exclude_item_list.append('Stone of Agony')
-        if not self.shuffle_special_interior_entrances and not self.settings.shuffle_overworld_entrances and not self.settings.warp_songs:
+        if (not self.shuffle_special_interior_entrances and not self.settings.shuffle_overworld_entrances and self.settings.warp_songs == 'off'
+            and self.settings.shuffle_child_spawn != 'full' and self.settings.shuffle_adult_spawn != 'full'):
             # Serenade and Prelude are never required unless one of those settings is enabled
             self.exclude_item_list.append('Serenade of Water')
             self.exclude_item_list.append('Prelude of Light')
