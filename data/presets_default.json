@@ -1,5 +1,6 @@
 {
     "Fenhl's Casual": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "Fenhl's Casual",
         "world_count": 1,
@@ -191,6 +192,7 @@
         ]
     },
     "Vanilla": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "Vanilla",
         "world_count": 1,
@@ -344,6 +346,7 @@
         "adult_trade_start": []
     },
     "Fast Vanilla": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "Fast Vanilla",
         "world_count": 1,
@@ -497,6 +500,7 @@
         "adult_trade_start": []
     },
     "Vanilla (Master Quest)": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "Vanilla (Master Quest)",
         "world_count": 1,
@@ -663,6 +667,7 @@
         "adult_trade_start": []
     },
     "Fast Vanilla (Master Quest)": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "Fast Vanilla (Master Quest)",
         "world_count": 1,
@@ -829,6 +834,7 @@
         "adult_trade_start": []
     },
     "Ice%": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "Ice%",
         "world_count": 1,
@@ -1030,6 +1036,7 @@
         ]
     },
     "2nd Mixed Pools Tournament": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "2nd Mixed Pools Tournament",
         "world_count": 1,
@@ -1226,6 +1233,7 @@
         ]
     },
     "Standard Anti-Weekly Settings (Beginner)": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "Standard Anti-Weekly Settings (Beginner)",
         "world_count": 1,
@@ -1699,6 +1707,7 @@
         ]
     },
     "Standard Anti-Weekly Settings (Advanced)": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "Standard Anti-Weekly Settings (Advanced)",
         "world_count": 1,
@@ -2172,6 +2181,7 @@
         ]
     },
     "Triforce Blitz S2": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "Triforce Blitz S2",
         "world_count": 1,
@@ -2367,6 +2377,7 @@
         ]
     },
     "Easy Mode": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "Easy Mode",
         "world_count": 1,
@@ -2543,6 +2554,7 @@
         ]
     },
     "S7 Tournament": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "S7 Tournament",
         "world_count": 1,
@@ -2733,6 +2745,7 @@
         ]
     },
     "Standard Weekly (Latest)": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "Standard Weekly (Latest)",
         "world_count": 1,
@@ -2923,6 +2936,7 @@
         ]
     },
     "DDR Weekly (2023-06-12)": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "DDR Season 2",
         "world_count": 1,
@@ -3119,6 +3133,7 @@
         ]
     },
     "Scrub Tournament": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "Scrub Tournament",
         "world_count": 1,
@@ -3311,6 +3326,7 @@
         ]
     },
     "Multiworld Tournament Season 4": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "Multiworld Tournament Season 4",
         "world_count": 3,
@@ -3503,6 +3519,7 @@
         ]
     },
     "Hell Mode": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "Hell Mode",
         "world_count": 1,
@@ -3878,6 +3895,7 @@
         ]
     },
     "Bingo": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "Bingo",
         "world_count": 1,
@@ -4054,6 +4072,7 @@
         ]
     },
     "League S5": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "OoTR League S5",
         "world_count": 1,
@@ -4247,6 +4266,7 @@
         ]
     },
     "Co-Op Tournament Season 2": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "Co-Op Tournament Season 2",
         "world_count": 1,

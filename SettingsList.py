@@ -241,6 +241,70 @@ class SettingInfos:
         },
     )
 
+    language = Combobox(
+        gui_text       = 'Language',
+        default        = 'english',
+        choices        = {
+            'english': 'English',
+            'french':  'Français',
+            'german':  'Deutsch',
+        },
+        gui_tooltip    = '''\
+            Changes the language for text in the game.
+
+            This setting is a work in progress and currently
+            only translates text from the vanilla game. Text
+            added by the randomizer will be in English.
+
+            German and French languages require an OoT 1.0
+            PAL ROM in addition to the NTSC ROM.
+
+            <hr />
+            Change la langue du texte dans le jeu.
+
+            Cette option est en développement, et ne traduit
+            présentement que le texte du jeu original. Le
+            texte ajouté par le randomizer sera en anglais.
+
+            Les langues allemande et française nécessitent
+            une ROM OoT de la version 1.0 PAL et aussi la ROM
+            de version 1.0 NTSC.
+
+            <hr />
+            Ändert die Sprache für Text im Spiel.
+
+            Diese Option ist noch in Arbeit und übersetzt
+            aktuell nur Texte aus dem ursprünglichen Spiel.
+            Texte aus dem Randomizer sind weiterhin auf
+            englisch.
+
+            Für die deutsche und französische Übersetzung
+            ist zusätzlich zum NTSC ROM auch ein OoT
+            1.0 PAL ROM erforderlich.
+        ''',
+        disable        = {
+            'english': {'settings': ['pal_rom']},
+        },
+        shared         = True,
+    )
+
+    pal_rom = Fileinput(
+        gui_text   = "Base ROM (PAL)",
+        gui_params = {
+            "file_types": [
+                {
+                  "name": "ROM Files",
+                  "extensions": ["z64", "n64"]
+                },
+                {
+                  "name": "All Files",
+                  "extensions": ["*"]
+                },
+            ],
+            "hide_when_disabled": True,
+        },
+    )
+
     enable_distribution_file = Checkbutton(
         gui_text       = 'Enable Plandomizer (Advanced)',
         gui_tooltip    = '''\

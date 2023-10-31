@@ -869,6 +869,6 @@ class TestTextShuffle(unittest.TestCase):
         if not os.path.isfile('./ZOOTDEC.z64'):
             self.skipTest("Base ROM file not available.")
         rom = Rom("./ZOOTDEC.z64")
-        messages = read_messages(rom)
+        messages = read_messages(rom, rom)
         shuffle_messages(messages)
         shuffle_messages(messages, False)
