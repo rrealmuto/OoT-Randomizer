@@ -1663,7 +1663,13 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     ])
 
     # Load Message and Shop Data
-    messages = read_messages(rom)
+    if world.settings.language == 'english':
+        messages = read_messages(rom, rom, world.settings.language)
+    elif world.settings.language in ('french', 'german'):
+        pal_rom = Rom(world.settings.pal_rom, pal=True)
+        messages = read_messages(pal_rom, rom, world.settings.language)
+    else:
+        raise NotImplementedError(f'Unimplemented language: {world.settings.language}')
     remove_unused_messages(messages)
     shop_items = read_shop_items(rom, shop_item_file.start + 0x1DEC)
 

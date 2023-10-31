@@ -1,5 +1,6 @@
 {
     "Easy Mode": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "Easy Mode",
         "world_count": 1,
@@ -163,6 +164,7 @@
         ]
     },
     "S7 Tournament": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "S7 Tournament",
         "world_count": 1,
@@ -340,6 +342,7 @@
         ]
     },
     "Standard Weekly (Latest)": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "Standard Weekly (Latest)",
         "world_count": 1,
@@ -517,6 +520,7 @@
         ]
     },
     "DDR Weekly (2023-06-12)": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "DDR Season 2",
         "world_count": 1,
@@ -700,6 +704,7 @@
         ]
     },
     "Scrub Tournament": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "Scrub Tournament",
         "world_count": 1,
@@ -879,6 +884,7 @@
         ]
     },
     "Multiworld Tournament Season 4": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "Multiworld Tournament Season 4",
         "world_count": 3,
@@ -1058,6 +1064,7 @@
         ]
     },
     "Hell Mode": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "Hell Mode",
         "world_count": 1,
@@ -1410,6 +1417,7 @@
         ]
     },
     "Bingo": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "Bingo",
         "world_count": 1,
@@ -1573,6 +1581,7 @@
         ]
     },
     "League S5": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "OoTR League S5",
         "world_count": 1,
@@ -1753,6 +1762,7 @@
         ]
     },
     "Co-Op Tournament Season 2": {
+        "language": "english",
         "show_seed_info": true,
         "user_message": "Co-Op Tournament Season 2",
         "world_count": 1,

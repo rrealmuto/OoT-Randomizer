@@ -17,9 +17,10 @@ DMADATA_START: int = 0x7430  # NTSC 1.0/1.1: 0x7430, NTSC 1.2: 0x7960, Debug: 0x
 
 
 class Rom(BigStream):
-    def __init__(self, file: Optional[str] = None) -> None:
+    def __init__(self, file: Optional[str] = None, *, pal: bool = False) -> None:
         super().__init__(bytearray())
 
+        self.pal: bool = pal
         self.original: Rom = self
         self.changed_address: dict[int, int] = {}
         self.changed_dma: dict[int, tuple[int, int, int]] = {}
@@ -29,34 +30,36 @@ class Rom(BigStream):
         if file is None:
             return
 
-        decompressed_file: str = local_path('ZOOTDEC.z64')
+        decompressed_file: str = local_path('ZOOTDEC-PAL.z64' if pal else 'ZOOTDEC.z64')
 
         os.chdir(local_path())
 
-        with open(data_path('generated/symbols.json'), 'r') as stream:
-            symbols = json.load(stream)
-            self.symbols: dict[str, int] = {name: int(addr, 16) for name, addr in symbols.items()}
+        if not pal:
+            with open(data_path('generated/symbols.json'), 'r') as stream:
+                symbols = json.load(stream)
+                self.symbols: dict[str, int] = {name: int(addr, 16) for name, addr in symbols.items()}
 
         if os.path.isfile(decompressed_file):
             # Try to read from previously decompressed rom if one exists.
             try:
-                self.read_rom(decompressed_file)
+                self.read_rom(decompressed_file, pal=pal)
             except (FileNotFoundError, RuntimeError):
                 # Decompress the provided file.
                 if not file:
-                    raise FileNotFoundError('Must specify path to base ROM')
-                self.read_rom(file, decompressed_file)
+                    raise FileNotFoundError(f'Must specify path to {"PAL" if pal else "base"} ROM')
+                self.read_rom(file, decompressed_file, pal=pal)
         elif file:
-            self.read_rom(file, decompressed_file)
+            self.read_rom(file, decompressed_file, pal=pal)
         else:
             raise FileNotFoundError('Must specify path to base ROM')
 
-        # Add file to maximum size
-        self.buffer.extend(bytearray([0x00] * (0x4000000 - len(self.buffer))))
-        self.original = self.copy()
+        if not pal:
+            # Add file to maximum size
+            self.buffer.extend(bytearray([0x00] * (0x4000000 - len(self.buffer))))
+            self.original = self.copy()
 
-        # Add version number to header.
-        self.write_version_bytes()
+            # Add version number to header.
+            self.write_version_bytes()
 
     def copy(self) -> Rom:
         new_rom: Rom = Rom()
@@ -66,7 +69,7 @@ class Rom(BigStream):
         new_rom.force_patch = copy.copy(self.force_patch)
         return new_rom
 
-    def read_rom(self, input_file: str, output_file: Optional[str] = None, verify_crc: bool = True) -> None:
+    def read_rom(self, input_file: str, output_file: Optional[str] = None, verify_crc: bool = True, *, pal: bool = False) -> None:
         try:
             with open(input_file, 'rb') as stream:
                 self.buffer = bytearray(stream.read())
@@ -77,31 +80,38 @@ class Rom(BigStream):
         if not verify_crc:
             return
 
-        valid_crc = [
-            [0xEC, 0x70, 0x11, 0xB7, 0x76, 0x16, 0xD7, 0x2B], # Compressed
-            [0x70, 0xEC, 0xB7, 0x11, 0x16, 0x76, 0x2B, 0xD7], # Byteswap compressed
-            [0x93, 0x52, 0x2E, 0x7B, 0xE5, 0x06, 0xD4, 0x27], # Decompressed
-        ]
+        if pal:
+            valid_crc = [
+                [0x44, 0xB0, 0x69, 0xB5, 0x3C, 0x37, 0x85, 0x19], # Compressed
+                [0xB0, 0x44, 0xB5, 0x69, 0x37, 0x3C, 0x19, 0x85], # Byteswap compressed
+                [0xEE, 0x9D, 0x53, 0xB5, 0xBC, 0x01, 0xD0, 0x15], # Decompressed
+            ]
+        else:
+            valid_crc = [
+                [0xEC, 0x70, 0x11, 0xB7, 0x76, 0x16, 0xD7, 0x2B], # Compressed
+                [0x70, 0xEC, 0xB7, 0x11, 0x16, 0x76, 0x2B, 0xD7], # Byteswap compressed
+                [0x93, 0x52, 0x2E, 0x7B, 0xE5, 0x06, 0xD4, 0x27], # Decompressed
+            ]
 
         file_name = os.path.splitext(input_file)
         rom_crc = list(self.buffer[0x10:0x18])
         if rom_crc not in valid_crc:
             # Bad CRC validation
-            raise RuntimeError('ROM file %s is not a valid OoT 1.0 US ROM.' % input_file)
+            raise RuntimeError(f'ROM file {input_file} is not a valid OoT 1.0 {"PAL" if pal else "US"} ROM.')
         elif len(self.buffer) < 0x2000000 or len(self.buffer) > 0x4000000 or file_name[1].lower() not in ['.z64', '.n64']:
             # ROM is too big, or too small, or a bad type
-            raise RuntimeError('ROM file %s is not a valid OoT 1.0 US ROM.' % input_file)
+            raise RuntimeError(f'ROM file {input_file} is not a valid OoT 1.0 {"PAL" if pal else "US"} ROM.')
         elif len(self.buffer) == 0x2000000:
             # If Input ROM is compressed, then Decompress it
             if output_file:
-                self.decompress_rom(input_file, output_file, verify_crc)
+                self.decompress_rom(input_file, output_file, verify_crc, pal=pal)
             else:
                 raise RuntimeError('ROM was unable to be decompressed. Please supply an already decompressed ROM.')
         else:
             # ROM file is a valid and already uncompressed
             pass
 
-    def decompress_rom(self, input_file: str, output_file: str, verify_crc: bool = True) -> None:
+    def decompress_rom(self, input_file: str, output_file: str, verify_crc: bool = True, *, pal: bool = False) -> None:
         sub_dir = "./" if is_bundled() else "bin/Decompress/"
 
         if platform.system() == 'Windows':
@@ -127,7 +137,7 @@ class Rom(BigStream):
             raise RuntimeError('Unsupported operating system for decompression. Please supply an already decompressed ROM.')
 
         subprocess.call(subcall, **subprocess_args())
-        self.read_rom(output_file, verify_crc=verify_crc)
+        self.read_rom(output_file, verify_crc=verify_crc, pal=pal)
 
     def write_byte(self, address: int, value: int) -> None:
         super().write_byte(address, value)
