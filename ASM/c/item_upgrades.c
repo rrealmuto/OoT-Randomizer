@@ -177,21 +177,3 @@ uint16_t bombchus_to_bag(z64_file_t *save, override_t override) {
         return override.value.base.item_id;
     }
 }
-
-uint16_t upgrade_key_model(z64_file_t *save, override_t override) {
-    uint16_t item_id = override.value.base.item_id;
-    if (CUSTOM_KEY_MODELS) {
-        if (item_id == 0x0071) {
-            // Treasure Chest Game Key
-            return 0x0118;
-        } else if (item_id < 0x00AF) {
-            // Boss Keys
-            return item_id + 0x74;
-        } else {
-            // Small Keys
-            return item_id + 0x60;
-        }
-    } else {
-        return item_id;
-    }
-}

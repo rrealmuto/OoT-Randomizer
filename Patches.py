@@ -91,8 +91,92 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         ('object_gi_cbutton',     data_path('items/C_Button_Vertical.zobj'),    0x1AA),  # C button Vertical
     ]
 
-    if world.settings.key_appearance_match_dungeon:
-        rom.write_byte(rom.sym('CUSTOM_KEY_MODELS'), 0x01)
+    models_to_update = []
+    if 'keys' in world.settings.clearer_item_models:
+        models.extend((
+            (0x0071, 0x01A2, 0x89), # Small Key (Chest Game)
+            (0x0095, 0x01A3, 0x8A), # Forest Temple Boss Key
+            (0x0096, 0x01A4, 0x8B), # Fire Temple Boss Key
+            (0x0097, 0x01A5, 0x8C), # Water Temple Boss Key
+            (0x0098, 0x01A6, 0x8D), # Spirit Temple Boss Key
+            (0x0099, 0x01A7, 0x8E), # Shadow Temple Boss Key
+            (0x009A, 0x00B9, 0x8F), # Ganon's Castle Boss Key
+            (0x00AF, 0x0199, 0x80), # Forest Temple Small Key
+            (0x00B0, 0x019A, 0x81), # Fire Temple Small Key
+            (0x00B1, 0x019B, 0x82), # Water Temple Small Key
+            (0x00B2, 0x019C, 0x83), # Spirit Temple Small Key
+            (0x00B3, 0x019D, 0x84), # Shadow Temple Small Key
+            (0x00B4, 0x019E, 0x85), # Bottom of the Well Small Key
+            (0x00B5, 0x019F, 0x86), # Gerudo Training Small Key
+            (0x00B6, 0x01A0, 0x87), # Thieves' Hideout Small Key
+            (0x00B7, 0x01A1, 0x88), # Ganon's Castle Small Key
+        ))
+    if 'keyrings' not in world.settings.clearer_item_models:
+        if 'keys' in world.settings.clearer_item_models:
+            models.extend((
+                (0x00CB, 0x0199, 0x80), # Small Key Ring (Forest Temple)
+                (0x00CC, 0x019A, 0x81), # Small Key Ring (Fire Temple)
+                (0x00CD, 0x019B, 0x82), # Small Key Ring (Water Temple)
+                (0x00CE, 0x019C, 0x83), # Small Key Ring (Spirit Temple)
+                (0x00CF, 0x019D, 0x84), # Small Key Ring (Shadow Temple)
+                (0x00D0, 0x019E, 0x85), # Small Key Ring (Bottom of the Well)
+                (0x00D1, 0x019F, 0x86), # Small Key Ring (Gerudo Training Ground)
+                (0x00D2, 0x01A0, 0x87), # Small Key Ring (Thieves Hideout)
+                (0x00D3, 0x01A1, 0x88), # Small Key Ring (Ganons Castle)
+                (0x00D7, 0x01A2, 0x89), # Small Key Ring (Chest Game)
+            ))
+        else:
+            models.extend((
+                (0x00CB, 0x00AA, 0x02), # Small Key Ring (Forest Temple)
+                (0x00CC, 0x00AA, 0x02), # Small Key Ring (Fire Temple)
+                (0x00CD, 0x00AA, 0x02), # Small Key Ring (Water Temple)
+                (0x00CE, 0x00AA, 0x02), # Small Key Ring (Spirit Temple)
+                (0x00CF, 0x00AA, 0x02), # Small Key Ring (Shadow Temple)
+                (0x00D0, 0x00AA, 0x02), # Small Key Ring (Bottom of the Well)
+                (0x00D1, 0x00AA, 0x02), # Small Key Ring (Gerudo Training Ground)
+                (0x00D2, 0x00AA, 0x02), # Small Key Ring (Thieves Hideout)
+                (0x00D3, 0x00AA, 0x02), # Small Key Ring (Ganons Castle)
+                (0x00D7, 0x00AA, 0x02), # Small Key Ring (Chest Game)
+            ))
+    if 'silver_rupee_pouches' not in world.settings.clearer_item_models:
+        models.extend((
+            (0x00EE, 0x0198, 0x72), # Silver Rupee Pouch (Dodongos Cavern Staircase)
+            (0x00EF, 0x0198, 0x72), # Silver Rupee Pouch (Ice Cavern Spinning Scythe)
+            (0x00F0, 0x0198, 0x72), # Silver Rupee Pouch (Ice Cavern Push Block)
+            (0x00F1, 0x0198, 0x72), # Silver Rupee Pouch (Bottom of the Well Basement)
+            (0x00F2, 0x0198, 0x72), # Silver Rupee Pouch (Shadow Temple Scythe Shortcut)
+            (0x00F3, 0x0198, 0x72), # Silver Rupee Pouch (Shadow Temple Invisible Blades)
+            (0x00F4, 0x0198, 0x72), # Silver Rupee Pouch (Shadow Temple Huge Pit)
+            (0x00F5, 0x0198, 0x72), # Silver Rupee Pouch (Shadow Temple Invisible Spikes)
+            (0x00F6, 0x0198, 0x72), # Silver Rupee Pouch (Gerudo Training Ground Slopes)
+            (0x00F7, 0x0198, 0x72), # Silver Rupee Pouch (Gerudo Training Ground Lava)
+            (0x00F8, 0x0198, 0x72), # Silver Rupee Pouch (Gerudo Training Ground Water)
+            (0x00F9, 0x0198, 0x72), # Silver Rupee Pouch (Spirit Temple Child Early Torches)
+            (0x00FA, 0x0198, 0x72), # Silver Rupee Pouch (Spirit Temple Adult Boulders)
+            (0x00FB, 0x0198, 0x72), # Silver Rupee Pouch (Spirit Temple Lobby and Lower Adult)
+            (0x00FC, 0x0198, 0x72), # Silver Rupee Pouch (Spirit Temple Sun Block)
+            (0x00FD, 0x0198, 0x72), # Silver Rupee Pouch (Spirit Temple Adult Climb)
+            (0x00FE, 0x0198, 0x72), # Silver Rupee Pouch (Ganons Castle Spirit Trial)
+            (0x00FF, 0x0198, 0x72), # Silver Rupee Pouch (Ganons Castle Light Trial)
+            (0x0100, 0x0198, 0x72), # Silver Rupee Pouch (Ganons Castle Fire Trial)
+            (0x0101, 0x0198, 0x72), # Silver Rupee Pouch (Ganons Castle Shadow Trial)
+            (0x0102, 0x0198, 0x72), # Silver Rupee Pouch (Ganons Castle Water Trial)
+            (0x0103, 0x0198, 0x72), # Silver Rupee Pouch (Ganons Castle Forest Trial)
+        ))
+    if 'warp_songs' not in world.settings.clearer_item_models:
+        models.extend((
+            (0x00BB, 0x00B6, 0x03), # Minuet of Forest
+            (0x00BC, 0x00B6, 0x04), # Bolero of Fire
+            (0x00BD, 0x00B6, 0x05), # Serenade of Water
+            (0x00BE, 0x00B6, 0x06), # Requiem of Spirit
+            (0x00BF, 0x00B6, 0x07), # Nocturne of Shadow
+            (0x00C0, 0x00B6, 0x08), # Prelude of Light
+        ))
+    for item_id, object_id, graphic_id in models_to_update:
+        item = read_rom_item(rom, item_id)
+        item['object_id'] = object_id
+        item['graphic_id'] = graphic_id
+        write_rom_item(rom, i, item)
 
     extended_objects_start = start_address = rom.dma.free_space()
     for (name, zobj_path, object_id) in zobj_imports:

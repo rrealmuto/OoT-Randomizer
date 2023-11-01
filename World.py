@@ -891,7 +891,7 @@ class World:
                     path_name = 'gold'
                     path_color = 'Yellow'
                 th.add_goal(Goal(self, path_name, f'path of #{path_name}#', path_color, items=[{'name': 'Triforce Piece', 'quantity': self.triforce_count_per_world, 'minimum': self.triforce_goal_per_world, 'hintable': False}]))
-                self.goal_categories[th.name] = th
+            self.goal_categories[th.name] = th
         # Category goals are defined for each possible setting for each category.
         # Bridge can be Stones, Medallions, Dungeons, Skulls, or Vanilla.
         # Ganon's Boss Key can be Stones, Medallions, Dungeons, Skulls, LACS or

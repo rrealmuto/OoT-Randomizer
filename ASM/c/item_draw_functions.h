@@ -3,7 +3,6 @@
 
 #include "z64.h"
 
-extern uint8_t CUSTOM_KEY_MODELS;
 extern uint8_t CFG_CORRECT_MODEL_COLORS;
 extern colorRGB16_t CFG_A_BUTTON_COLOR;
 extern colorRGB16_t CFG_C_BUTTON_COLOR;

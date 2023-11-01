@@ -3920,13 +3920,38 @@ class SettingInfos:
         },
     )
 
-    key_appearance_match_dungeon = Checkbutton(
-        gui_text       = 'Key Appearance Matches Dungeon',
+    clearer_item_models = MultipleSelect(
+        gui_text       = 'Distinct Item Models',
+        choices        = {
+            'keys':                 "Keys of Different Dungeons",
+            'keyrings':             "Small Keys vs Small Key Rings",
+            'silver_rupee_pouches': "Silver Rupees vs Silver Rupee Pouches",
+            'warp_songs':           "Frog Songs vs Warp Songs",
+        },
         gui_tooltip    = '''\
-            Small keys and boss keys (not key rings)
-            will use custom models to match their dungeon.
+            Adds new item models to disambiguate some
+            pairs of freestanding items. If an option
+            is disabled, the listed items will have
+            identical models.
+
+            The "Keys of Different Dungeons" option
+            affects small keys and boss keys. If the
+            "Small Keys vs Small Key Rings" option is
+            disabled, it also affects key rings.
+
+            For the "Frog Songs vs Warp Songs" option,
+            the pairs of items with identical models
+            when disabled are:
+
+            - Saria's Song and Minuet of Forest
+            - Zelda's Lullaby and Bolero of Fire
+            - Song of Time and Serenade of Water
+            - Epona's Song and Requiem of Spirit
+            - Song of Storms and Nocturne of Shadow
+            - Sun's Song and Prelude of Light
         ''',
         shared         = True,
+        default        = ['keyrings', 'silver_rupee_pouches', 'warp_songs'],
     )
 
     clearer_hints = Checkbutton(
