@@ -68,7 +68,6 @@ plentiful_items: list[str] = ([
     'Deku Stick Capacity',
     'Deku Nut Capacity',
     'Bow',
-    'Deku Seed Bag',
     'Bomb Bag',
     'Double Defense'] +
     ['Heart Container'] * 8
@@ -104,7 +103,6 @@ ludicrous_items_base: list[str] = [
     'Progressive Wallet',
     'Magic Meter',
     'Bow',
-    'Deku Seed Bag',
     'Bomb Bag',
     'Bombchus (10)',
     'Lens of Truth',
@@ -143,6 +141,7 @@ ludicrous_items_extended: list[str] = [
     'Requiem of Spirit',
     'Ocarina',
     'Kokiri Sword',
+    'Deku Seed Bag',
     'Boss Key (Ganons Castle)',
     'Boss Key (Forest Temple)',
     'Boss Key (Fire Temple)',
@@ -269,6 +268,7 @@ item_difficulty_max: dict[str, dict[str, int]] = {
         'Deku Stick Capacity': 1,
         'Deku Nut Capacity': 1,
         'Bow': 2,
+        'Slingshot': 2,
         'Deku Seed Bag': 1,
         'Bomb Bag': 2,
         'Heart Container': 0,
@@ -283,6 +283,7 @@ item_difficulty_max: dict[str, dict[str, int]] = {
         'Deku Stick Capacity': 0,
         'Deku Nut Capacity': 0,
         'Bow': 1,
+        'Slingshot': 1,
         'Deku Seed Bag': 0,
         'Bomb Bag': 1,
         'Heart Container': 0,
@@ -494,6 +495,10 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
     if world.settings.item_pool_value == 'plentiful':
         if world.settings.shuffle_base_item_pool:
             pending_junk_pool.extend(plentiful_items)
+            if world.settings.require_gohma and world.settings.world_count > 1:
+                pending_junk_pool.append('Deku Seed Bag')
+            else:
+                pending_junk_pool.append('Slingshot')
         if world.settings.shuffle_child_trade:
             pending_junk_pool.extend(world.settings.shuffle_child_trade)
             # Weird Egg is always chosen if both Egg and Chicken are selected to be shuffled.
@@ -843,6 +848,12 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
             else:
                 dungeon = [dungeon for dungeon in world.dungeons if dungeon.name == 'Ganons Castle'][0]
                 dungeon.boss_key.append(ItemFactory(item, world))
+
+        # Slingshots
+        elif location.vanilla_item == 'Deku Seed Bag':
+            if world.settings.item_pool_value != 'ludicrous' and (not world.settings.require_gohma or world.settings.world_count == 1):
+                item = 'Slingshot'
+            shuffle_item = world.settings.shuffle_base_item_pool
 
         # Dungeon Items
         elif location.dungeon is not None:
