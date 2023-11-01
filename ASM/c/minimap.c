@@ -10,17 +10,18 @@ extern uint8_t CFG_MINIMAP_ENEMY_TRACKER;
 
 void MiniMap_Draw_Hack(z64_game_t* globalCtx)
 {
-    if(CFG_MINIMAP_ENEMY_TRACKER && !R_MINIMAP_DISABLED && globalCtx->hud_alpha_channels.minimap >= 0xAA) {
+    if(CFG_MINIMAP_ENEMY_TRACKER && !R_MINIMAP_DISABLED && globalCtx->pause_ctxt.state <= 3 && globalCtx->hud_alpha_channels.minimap >= 0xAA) {
         // Need to actually do all of the actor lists
         z64_actor_t* curr = globalCtx->actor_list[0x05].first;
         //int16_t tempX, tempZ;
         
         z64_disp_buf_t *db = &(z64_ctxt.gfx->overlay);
         gSPDisplayList(db->p++, 0x800F84A0); // Call setup DLIST 39 again
+        gDPSetCombineMode(db->p++, G_CC_PRIMITIVE, G_CC_PRIMITIVE);
         gDPPipeSync(db->p++);
         gDPSetTextureLUT(db->p++, G_TT_NONE);
-        gDPSetPrimColor(db->p++, 0, 0, 255, 255, 255, 0xFF);
-        gDPSetEnvColor(db->p++, 0, 0, 0, 0xFF);
+        gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0x00, 0x00, 0xFF);
+
         int32_t rectLeft, rectTop;
         //int32_t minimap_center_x = 272;
         //int32_t minimap_center_z = 195;
