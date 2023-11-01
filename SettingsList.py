@@ -18,6 +18,7 @@ from SettingTypes import SettingInfo, SettingInfoStr, SettingInfoList, SettingIn
 import Sounds
 import StartingItems
 from Utils import data_path
+from version import __version__
 
 if TYPE_CHECKING:
     from Entrance import Entrance
@@ -239,6 +240,10 @@ class SettingInfos:
                 },
             },
         },
+    )
+
+    version_msg = Textbox(
+        gui_text = f"Ocarina of Time Randomizer version {__version__}",
     )
 
     language = Combobox(
