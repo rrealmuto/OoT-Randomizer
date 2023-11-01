@@ -1,5 +1,5 @@
 {
-    "name":                  "triforce-blitz-s2",
+    "name":                  "triforce_blitz_s2",
     "gui_name":              "Triforce Blitz S2",
     "description":           "Hint Distribution for Triforce Blitz S2. 3 Path Count Hints, 10 Goal Hints, 5 Barren Hints, 3 Always hints.",
     "add_locations":         [],

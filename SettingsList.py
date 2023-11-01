@@ -2859,12 +2859,13 @@ class SettingInfos:
     shuffle_song_items = Combobox(
         gui_text       = 'Shuffle Songs',
         default        = 'song',
+        disabled_default = 'vanilla',
         choices        = {
             'vanilla': 'Vanilla Locations',
             'song':    'Song Locations',
             'dungeon': 'Dungeon Rewards',
             'any':     'Anywhere',
-            },
+        },
         gui_tooltip    = '''\
             This restricts where song items can appear.
 

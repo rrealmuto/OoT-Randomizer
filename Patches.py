@@ -93,7 +93,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
     models_to_update = []
     if 'keys' in world.settings.clearer_item_models:
-        models.extend((
+        models_to_update.extend((
             (0x0071, 0x01A2, 0x89), # Small Key (Chest Game)
             (0x0095, 0x01A3, 0x8A), # Forest Temple Boss Key
             (0x0096, 0x01A4, 0x8B), # Fire Temple Boss Key
@@ -113,7 +113,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         ))
     if 'keyrings' not in world.settings.clearer_item_models:
         if 'keys' in world.settings.clearer_item_models:
-            models.extend((
+            models_to_update.extend((
                 (0x00CB, 0x0199, 0x80), # Small Key Ring (Forest Temple)
                 (0x00CC, 0x019A, 0x81), # Small Key Ring (Fire Temple)
                 (0x00CD, 0x019B, 0x82), # Small Key Ring (Water Temple)
@@ -126,7 +126,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
                 (0x00D7, 0x01A2, 0x89), # Small Key Ring (Chest Game)
             ))
         else:
-            models.extend((
+            models_to_update.extend((
                 (0x00CB, 0x00AA, 0x02), # Small Key Ring (Forest Temple)
                 (0x00CC, 0x00AA, 0x02), # Small Key Ring (Fire Temple)
                 (0x00CD, 0x00AA, 0x02), # Small Key Ring (Water Temple)
@@ -139,7 +139,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
                 (0x00D7, 0x00AA, 0x02), # Small Key Ring (Chest Game)
             ))
     if 'silver_rupee_pouches' not in world.settings.clearer_item_models:
-        models.extend((
+        models_to_update.extend((
             (0x00EE, 0x0198, 0x72), # Silver Rupee Pouch (Dodongos Cavern Staircase)
             (0x00EF, 0x0198, 0x72), # Silver Rupee Pouch (Ice Cavern Spinning Scythe)
             (0x00F0, 0x0198, 0x72), # Silver Rupee Pouch (Ice Cavern Push Block)
@@ -164,7 +164,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
             (0x0103, 0x0198, 0x72), # Silver Rupee Pouch (Ganons Castle Forest Trial)
         ))
     if 'warp_songs' not in world.settings.clearer_item_models:
-        models.extend((
+        models_to_update.extend((
             (0x00BB, 0x00B6, 0x03), # Minuet of Forest
             (0x00BC, 0x00B6, 0x04), # Bolero of Fire
             (0x00BD, 0x00B6, 0x05), # Serenade of Water
@@ -176,7 +176,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         item = read_rom_item(rom, item_id)
         item['object_id'] = object_id
         item['graphic_id'] = graphic_id
-        write_rom_item(rom, i, item)
+        write_rom_item(rom, item_id, item)
 
     extended_objects_start = start_address = rom.dma.free_space()
     for (name, zobj_path, object_id) in zobj_imports:
