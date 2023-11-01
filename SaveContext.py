@@ -1387,7 +1387,7 @@ class SaveContext:
         'Skullwalltula Soul': {'enemy_spawn_flags.skullwalltula': None},
         'Flare Dancer Soul': {'enemy_spawn_flags.flare_dancer': None},
         'Dead hand Soul': {'enemy_spawn_flags.dead_hand': None},
-        'Shell blade Soul': {'enemy_spawn_flags.shell_blade': None},
+        'Shell Blade Soul': {'enemy_spawn_flags.shell_blade': None},
         'Like-like Soul': {'enemy_spawn_flags.like-like': None},
         'Spike Enemy Soul': {'enemy_spawn_flags.spike_enemy': None},
         'Anubis Soul': {'enemy_spawn_flags.anubis': None},

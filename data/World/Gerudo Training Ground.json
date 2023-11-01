@@ -88,10 +88,10 @@
             "Gerudo Training Ground Underwater Silver Rupee Bottom Back Left": "True",
             "Gerudo Training Ground Underwater Silver Rupee Middle": "True",
             "Gerudo Training Ground Underwater Silver Rupee Bottom Front Right": "True",
-            "Gerudo Training Ground Underwater Shell Blade 1": "(has_soul(Shell_blade)) and Hookshot",
-            "Gerudo Training Ground Underwater Shell Blade 2": "(has_soul(Shell_blade)) and Hookshot",
-            "Gerudo Training Ground Underwater Shell Blade 3": "(has_soul(Shell_blade)) and Hookshot",
-            "Gerudo Training Ground Underwater Shell Blade 4": "(has_soul(Shell_blade)) and Hookshot"
+            "Gerudo Training Ground Underwater Shell Blade 1": "(has_soul(Shell_Blade)) and Hookshot",
+            "Gerudo Training Ground Underwater Shell Blade 2": "(has_soul(Shell_Blade)) and Hookshot",
+            "Gerudo Training Ground Underwater Shell Blade 3": "(has_soul(Shell_Blade)) and Hookshot",
+            "Gerudo Training Ground Underwater Shell Blade 4": "(has_soul(Shell_Blade)) and Hookshot"
         }
     },
     {
