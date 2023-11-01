@@ -192,9 +192,9 @@ def update_goal_items(spoiler: Spoiler) -> None:
     # getHintGroup relies on hint exclusion list
     always_locations = [location.name for world in worlds for location in get_hint_group('always', world)]
 
-    if worlds[0].enable_goal_hints:
+    if any(world.enable_goal_hints for world in worlds):
         # References first world for goal categories only
-        for cat_name, category in worlds[0].locked_goal_categories.items():
+        for cat_name, category in worlds[0].locked_goal_categories.items(): #TODO check goal categories for all worlds with goal hints
             for cat_world in worlds:
                 search = Search([world.state for world in worlds])
                 search.collect_pseudo_starting_items()
@@ -230,13 +230,13 @@ def update_goal_items(spoiler: Spoiler) -> None:
     # Saves a minor amount of search time. Most of the benefit is skipping the
     # locked goal categories. This section still needs to run to generate WOTH.
     # WOTH isn't a goal, so it still is searched successfully.
-    if worlds[0].enable_goal_hints:
+    if any(world.enable_goal_hints for world in worlds):
         full_search = search.copy()
         full_search.collect_locations()
-        for cat_name, category in worlds[0].unlocked_goal_categories.items():
+        for cat_name, category in worlds[0].unlocked_goal_categories.items(): #TODO check goal categories for all worlds with goal hints
             category.update_reachable_goals(search, full_search)
-        reachable_goals = full_search.beatable_goals_fast(worlds[0].unlocked_goal_categories)
-    identified_locations = search_goals(worlds[0].unlocked_goal_categories, reachable_goals, search, priority_locations, all_locations, item_locations, always_locations, search_woth=True)
+        reachable_goals = full_search.beatable_goals_fast(worlds[0].unlocked_goal_categories) #TODO check goal categories for all worlds with goal hints
+    identified_locations = search_goals(worlds[0].unlocked_goal_categories, reachable_goals, search, priority_locations, all_locations, item_locations, always_locations, search_woth=True) #TODO check goal categories for all worlds with goal hints
     required_locations.update(identified_locations)
     woth_locations = list(required_locations['way of the hero'])
     del required_locations['way of the hero']
@@ -259,7 +259,7 @@ def update_goal_items(spoiler: Spoiler) -> None:
     # If the woth list is also empty, fails gracefully to the next hint type for the distro in either case.
     # required_locations_dict[goal_world][category.name][goal.name][world.id] = [...]
     required_locations_dict = defaultdict(lambda: defaultdict(lambda: defaultdict(lambda: defaultdict(list))))
-    if not required_locations and 'ganon' not in worlds[0].goal_categories and worlds[0].hint_dist_user['use_default_goals'] and worlds[0].enable_goal_hints:
+    if not required_locations and 'ganon' not in worlds[0].goal_categories and worlds[0].hint_dist_user['use_default_goals'] and worlds[0].enable_goal_hints: #TODO check each world separately?
         for world in worlds:
             locations = [(location, 1, 1, [world.id]) for location in spoiler.required_locations[world.id]]
             c = GoalCategory('ganon', 30, goal_count=1, minimum_goals=1)

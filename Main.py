@@ -113,7 +113,7 @@ def generate(world_settings: list[Settings]) -> Spoiler:
     place_items(worlds)
     for world in worlds:
         world.distribution.configure_effective_starting_items(worlds, world)
-    if worlds[0].enable_goal_hints:
+    if any(world.enable_goal_hints for world in worlds):
         replace_goal_names(worlds)
     return make_spoiler(world_settings, worlds)
 
@@ -183,7 +183,11 @@ def make_spoiler(world_settings: list[Settings], worlds: list[World]) -> Spoiler
         if any(world.has_hint_type('playthrough-location') or world.has_hint_type('unlock-playthrough') or world.has_hint_type('wanderer') for world in worlds):
             calculate_playthrough_locations(spoiler)
         build_gossip_hints(spoiler, worlds)
-    elif any(world.dungeon_rewards_hinted for world in worlds) or any(hint_type in settings.misc_hints for hint_type in misc_item_hint_table) or any(hint_type in settings.misc_hints for hint_type in misc_location_hint_table):
+    elif (
+        any(world.dungeon_rewards_hinted for world in worlds)
+        or any(hint_type in settings.misc_hints for settings in world_settings for hint_type in misc_item_hint_table)
+        or any(hint_type in settings.misc_hints for settings in world_settings for hint_type in misc_location_hint_table)
+    ):
         spoiler.find_misc_hint_items()
     spoiler.build_file_hash()
     return spoiler

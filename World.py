@@ -1307,6 +1307,23 @@ class World:
             if 'vanilla' not in (self.settings.bridge, self.settings.lacs_condition):
                 self.exclude_item_list.append('Shadow Medallion')
                 self.exclude_item_list.append('Spirit Medallion')
+        if (
+            self.settings.shuffle_tcgkeys != 'vanilla'
+            and 'logic_lens_wasteland' in self.settings.allowed_tricks
+            and 'logic_lens_bongo' in self.settings.allowed_tricks
+            and ('logic_lens_jabu_mq' in self.settings.allowed_tricks if self.dungeon_mq['Jabu Jabus Belly'] else True)
+            and (
+                ('logic_lens_shadow_mq' in self.settings.allowed_tricks and 'logic_lens_shadow_mq_platform' in self.settings.allowed_tricks and 'logic_lens_shadow_mq_invisible_blades' in self.settings.allowed_tricks and 'logic_lens_shadow_mq_dead_hand' in self.settings.allowed_tricks)
+                if self.dungeon_mq['Shadow Temple'] else
+                ('logic_lens_shadow' in self.settings.allowed_tricks and 'logic_lens_shadow_platform' in self.settings.allowed_tricks)
+            )
+            and ('logic_lens_spirit_mq' in self.settings.allowed_tricks if self.dungeon_mq['Spirit Temple'] else 'logic_lens_spirit' in self.settings.allowed_tricks)
+            and (True if self.dungeon_mq['Bottom of the Well'] else 'logic_lens_botw' in self.settings.allowed_tricks)
+            and ('logic_lens_gtg_mq' in self.settings.allowed_tricks if self.dungeon_mq['Gerudo Training Ground'] else 'logic_lens_gtg' in self.settings.allowed_tricks)
+            and ('logic_lens_castle_mq' in self.settings.allowed_tricks if self.dungeon_mq['Ganons Castle'] else 'logic_lens_castle' in self.settings.allowed_tricks)
+        ):
+            # With shuffled Treasure Chest Game keys and all relevant lensless tricks, Lens of Truth is logically irrelevant
+            self.exclude_item_list.append('Lens of Truth')
 
         for i in self.item_hint_type_overrides['barren']:
             if i in self.exclude_item_list:
