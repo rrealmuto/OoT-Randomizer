@@ -389,7 +389,7 @@ class Rule_AST_Transformer(ast.NodeTransformer):
 
             self.current_spot = event
             # This could, in theory, create further subrules.
-            access_rule = self.make_access_rule(self.visit(node))
+            access_rule = self.make_access_rule(self.visit(node), 'create_delayed_rules')
             if access_rule is self.rule_cache.get('NameConstant(False)') or access_rule is self.rule_cache.get('Constant(False)'):
                 event.access_rule = None
                 event.never = True
@@ -404,13 +404,13 @@ class Rule_AST_Transformer(ast.NodeTransformer):
         # Safeguard in case this is called multiple times per world
         self.delayed_rules.clear()
 
-    def make_access_rule(self, body: ast.AST) -> AccessRule:
+    def make_access_rule(self, body: ast.AST, filename: str = 'make_access_rule') -> AccessRule:
         rule_str = ast.dump(body, False)
         if rule_str not in self.rule_cache:
             # requires consistent iteration on dicts
             kwargs = [ast.arg(arg=k) for k in kwarg_defaults.keys()]
             kwd = list(map(ast.Constant, kwarg_defaults.values()))
-            name = f'<{self.current_spot and self.current_spot.name}: {rule_str}>'
+            name = f'<{self.current_spot.name if self.current_spot else filename}: {rule_str}>'
             try:
                 self.rule_cache[rule_str] = eval(compile(
                     ast.fix_missing_locations(
@@ -477,7 +477,7 @@ class Rule_AST_Transformer(ast.NodeTransformer):
     # If spot is None, here() rules won't work.
     def parse_rule(self, rule_string: str, spot: Optional[Location | Entrance] = None) -> AccessRule:
         self.current_spot = spot
-        return self.make_access_rule(self.visit(ast.parse(rule_string, mode='eval').body))
+        return self.make_access_rule(self.visit(ast.parse(rule_string, mode='eval').body), str(spot or 'parse_rule'))
 
     def parse_spot_rule(self, spot: Location | Entrance) -> None:
         rule = spot.rule_string.split('#', 1)[0].strip()

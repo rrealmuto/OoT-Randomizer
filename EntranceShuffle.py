@@ -891,7 +891,7 @@ def shuffle_random_entrances(worlds: list[World]) -> None:
         try:
             validate_world(world, worlds, None, locations_to_ensure_reachable, complete_itempool, placed_one_way_entrances=placed_one_way_entrances)
         except EntranceShuffleError as error:
-            raise EntranceShuffleError('Worlds are not valid after shuffling entrances, Reason: %s' % error)
+            raise EntranceShuffleError('Worlds are not valid after shuffling entrances, Reason: %s' % error) from error
 
 
 def shuffle_one_way_priority_entrances(worlds: list[World], world: World, one_way_priorities: dict[str, tuple[list[str], list[str]]],
@@ -916,12 +916,13 @@ def shuffle_one_way_priority_entrances(worlds: list[World], world: World, one_wa
                 restore_connections(entrance, target)
             logging.getLogger('').info('Failed to place all priority one-way entrances for world %d. Will retry %d more times', world.id, retry_count)
             logging.getLogger('').info('\t%s' % error)
+            last_error = error
 
     if world.settings.custom_seed:
-        raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d. Ensure the \"Seed\" field is empty and retry a few times.' % world.id)
+        raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d. Ensure the \"Seed\" field is empty and retry a few times.' % world.id) from last_error
     if world.settings.distribution_file:
-        raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d. Some entrances in the Plandomizer File may have to be changed to create a valid seed. Reach out to Support on Discord for help.' % world.id)
-    raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d. Retry a few times or reach out to Support on Discord for help.' % world.id)
+        raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d. Some entrances in the Plandomizer File may have to be changed to create a valid seed. Reach out to Support on Discord for help.' % world.id) from last_error
+    raise EntranceShuffleError('Entrance placement attempt count exceeded for world %d. Retry a few times or reach out to Support on Discord for help.' % world.id) from last_error
 
 
 # Shuffle all entrances within a provided pool
@@ -1013,14 +1014,13 @@ def replace_entrance(worlds: list[World], entrance: Entrance, target: Entrance, 
         change_connections(entrance, target)
         validate_world(entrance.world, worlds, entrance, locations_to_ensure_reachable, itempool, placed_one_way_entrances=placed_one_way_entrances)
         rollbacks.append((entrance, target))
-        return True
     except EntranceShuffleError as error:
         # If the entrance can't be placed there, log a debug message and change the connections back to what they were previously
         logging.getLogger('').debug('Failed to connect %s To %s (Reason: %s) [World %d]',
                                     entrance, entrance.connected_region or target.connected_region, error, entrance.world.id)
         if entrance.connected_region:
             restore_connections(entrance, target)
-    return False
+        raise
 
 
 # Connect one random entrance from entrance pools to one random target in the respective target pool.
@@ -1052,10 +1052,14 @@ def place_one_way_priority_entrance(worlds: list[World], world: World, priority_
                 continue
         for target in one_way_target_entrance_pools[entrance.type]:
             if target.connected_region and target.connected_region.name in allowed_regions:
-                if replace_entrance(worlds, entrance, target, rollbacks, locations_to_ensure_reachable, complete_itempool):
+                try:
+                    replace_entrance(worlds, entrance, target, rollbacks, locations_to_ensure_reachable, complete_itempool)
+                except EntranceShuffleError as error:
+                    last_error = error
+                else:
                     logging.getLogger('').debug(f'Priority placement for {priority_name}: placing {entrance} as {target}')
                     return
-    raise EntranceShuffleError(f'Unable to place priority one-way entrance for {priority_name} [World {world.id}].')
+    raise EntranceShuffleError(f'Unable to place priority one-way entrance for {priority_name} [World {world.id}].') from last_error
 
 
 # Shuffle entrances by placing them instead of entrances in the provided target entrances list
@@ -1079,11 +1083,15 @@ def shuffle_entrances(worlds: list[World], entrances: list[Entrance], target_ent
             if target.connected_region is None:
                 continue
 
-            if replace_entrance(worlds, entrance, target, rollbacks, locations_to_ensure_reachable, complete_itempool, placed_one_way_entrances=placed_one_way_entrances):
+            try:
+                replace_entrance(worlds, entrance, target, rollbacks, locations_to_ensure_reachable, complete_itempool, placed_one_way_entrances=placed_one_way_entrances)
+            except EntranceShuffleError as error:
+                last_error = error
+            else:
                 break
 
         if entrance.connected_region is None:
-            raise EntranceShuffleError('No more valid entrances to replace with %s in world %d' % (entrance, entrance.world.id))
+            raise EntranceShuffleError('No more valid entrances to replace with %s in world %d' % (entrance, entrance.world.id)) from last_error
 
 
 # Check and validate that an entrance is compatible to replace a specific target

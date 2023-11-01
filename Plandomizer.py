@@ -1226,6 +1226,7 @@ class Distribution:
             for triforce_piece in triforce_pieces:
                 if triforce_piece in world.settings.starting_items:
                     total_starting_count += world.settings.starting_items[triforce_piece].count
+                #TODO add starting pieces from other skipped checks (Links Pocket, pre-completed dungeons)
                 if world.skip_child_zelda and 'Song from Impa' in world.distribution.locations and world.distribution.locations['Song from Impa'].item == triforce_piece:
                     total_starting_count += 1
             total_count += world.triforce_count
