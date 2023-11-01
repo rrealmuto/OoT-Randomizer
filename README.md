@@ -16,6 +16,7 @@ Grass Shuffle - Shuffles grass
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v52](#v52)
   * [v51](#v51)
   * [v50](#v50)
   * [v49](#v49)
@@ -71,6 +72,9 @@ Grass Shuffle - Shuffles grass
   * [4.0](#40)
 
 ## RealRob Changelog
+### v52
+  * Testing something that will hopeful improve seed generation
+
 ### v51
   * Add grass shuffle texture match contents
   * Add MQ dungeons to grass shuffle
