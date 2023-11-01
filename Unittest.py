@@ -873,7 +873,6 @@ class TestValidSpoilers(unittest.TestCase):
                     logging.getLogger('').exception(f'Failed to generate with these settings:\n{settings.get_settings_display()}\n')
                     raise
 
-<<<<<<< HEAD
 class TestTextShuffle(unittest.TestCase):
     def test_text_shuffle(self):
         if not os.path.isfile('./ZOOTDEC.z64'):
@@ -882,7 +881,6 @@ class TestTextShuffle(unittest.TestCase):
         messages = read_messages(rom)
         shuffle_messages(messages)
         shuffle_messages(messages, False)
-<<<<<<< HEAD
 
 class TestSceneFlags(unittest.TestCase):
     def test_build_room_xflags(self):
@@ -912,8 +910,7 @@ class TestSceneFlags(unittest.TestCase):
         self.assertEqual(flags[46], 12)
         diff, encoded = encode_room_xflags(flags)
         self.assertListEqual(test_encoded, encoded)
-=======
-=======
+
 class TestCustomAudio(unittest.TestCase):
     def test_audiobank(self):
         AUDIOBANK_POINTER_TABLE = 0x00B896A0
@@ -928,7 +925,7 @@ class TestCustomAudio(unittest.TestCase):
         audiotable_file = rom.read_bytes(AUDIOTABLE_ADDR, 0x460AD0) # Read audiotable (samples) into bytearray
         rom_bytes: bytearray = rom.buffer
         audiobank_table_header = rom.read_bytes(AUDIOBANK_POINTER_TABLE, 0x10)
-        num_banks = int.from_bytes(audiobank_table_header[0:2])
+        num_banks = int.from_bytes(audiobank_table_header[0:2], 'big')
         audiobanks: list[AudioBank] = []
         for i in range(0, num_banks):
             curr_entry = rom.read_bytes(AUDIOBANK_POINTER_TABLE + 0x10 + (0x10 * i), 0x10)
@@ -950,7 +947,7 @@ class TestCustomAudio(unittest.TestCase):
         audiotable_file = rom.read_bytes(AUDIOTABLE_ADDR, 0x460AD0) # Read audiotable (samples) into bytearray
         rom_bytes: bytearray = rom.buffer
         audiobank_table_header = rom.read_bytes(AUDIOBANK_POINTER_TABLE, 0x10)
-        num_banks = int.from_bytes(audiobank_table_header[0:2])
+        num_banks = int.from_bytes(audiobank_table_header[0:2], 'big')
         oot_audiobanks: list[AudioBank] = []
         for i in range(0, num_banks):
             curr_entry = rom.read_bytes(AUDIOBANK_POINTER_TABLE + 0x10 + (0x10 * i), 0x10)
@@ -1049,6 +1046,3 @@ class TestCustomAudio(unittest.TestCase):
                             if zsound['type'] == 'INST' and zsound['index'] == instr_id and zsound['alt'] == 'HIGH':
                                 instr.highNoteSample.data = mmrs.read(zsound['filename'])
                                 break
-
->>>>>>> 4a31aed4 (Add MMR custom music support and OOTRS improvements)
->>>>>>> mmr_music
