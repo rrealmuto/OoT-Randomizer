@@ -553,7 +553,7 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'Skullwalltula Soul': (["the souls of the Skullwalltula"], None, 'item'),
     'Flare Dancer Soul': (["the souls of the Flare Dancer"], None, 'item'),
     'Dead hand Soul': (["the souls of the Dead hand"], None, 'item'),
-    'Shell blade Soul': (["the souls of the Shell blade"], None, 'item'),
+    'Shell Blade Soul': (["the souls of the Shell blade"], None, 'item'),
     'Like-like Soul': (["the souls of the Like-like"], None, 'item'),
     'Spike Enemy Soul': (["the souls of the Spike Enemy"], None, 'item'),
     'Anubis Soul': (["the souls of the Anubis"], None, 'item'),

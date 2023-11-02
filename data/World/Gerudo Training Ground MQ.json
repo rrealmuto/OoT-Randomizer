@@ -128,7 +128,7 @@
             "Gerudo Training Ground MQ Underwater Silver Rupee Back Left": "True",
             "Gerudo Training Ground MQ Underwater Stingray 1": "has_soul(Stinger) and Hookshot",
             "Gerudo Training Ground MQ Underwater Stingray 2": "has_soul(Stinger) and Hookshot",
-            "Gerudo Training Ground MQ Underwater Shellblade": "has_soul(Shell_blade) and Hookshot"
+            "Gerudo Training Ground MQ Underwater Shellblade": "has_soul(Shell_Blade) and Hookshot"
         }
     },
     {

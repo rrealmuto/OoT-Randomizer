@@ -338,7 +338,7 @@ enemy_souls_core: list[str] = [
     'Skullwalltula Soul',
     'Flare Dancer Soul',
     'Dead hand Soul',
-    'Shell blade Soul',
+    'Shell Blade Soul',
     'Like-like Soul',
     'Spike Enemy Soul',
     'Anubis Soul',
@@ -583,6 +583,10 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
             pending_junk_pool.extend(song_list)
         if world.settings.shuffle_individual_ocarina_notes:
             pending_junk_pool.extend(['Ocarina A Button', 'Ocarina C up Button', 'Ocarina C left Button', 'Ocarina C down Button', 'Ocarina C right Button'])
+        if world.settings.shuffle_enemy_spawns == 'all':
+            pending_junk_pool.extend(enemy_souls_core + enemy_souls_bosses)
+        elif world.settings.shuffle_enemy_spawns == 'bosses':
+            pending_junk_pool.extend(enemy_souls_bosses)
 
     if world.settings.item_pool_value == 'ludicrous':
         pending_junk_pool.extend(ludicrous_health)
@@ -1049,6 +1053,10 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
         # Songs are in the unrestricted pool even if their fill is restricted. Filter from candidates
         duplicate_candidates = [item for item in ludicrous_items_extended if item in pool and (ItemInfo.items[item].type != 'Song' or world.settings.shuffle_song_items == 'any')]
         duplicate_candidates.extend(ludicrous_items_base)
+        if world.settings.shuffle_enemy_spawns == 'all':
+            duplicate_candidates.extend(enemy_souls_core + enemy_souls_bosses)
+        elif world.settings.shuffle_enemy_spawns == 'bosses':
+            duplicate_candidates.extend(enemy_souls_bosses)
         junk_items = [
             item for item in pool
             if item not in duplicate_candidates
