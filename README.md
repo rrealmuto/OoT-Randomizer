@@ -16,6 +16,7 @@ Grass Shuffle - Shuffles grass
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v54](#v54)
   * [v53](#v53)
   * [v52](#v52)
   * [v51](#v51)
@@ -73,6 +74,9 @@ Grass Shuffle - Shuffles grass
   * [4.0](#40)
 
 ## RealRob Changelog
+### v54
+  * Update multiworld coop context version #
+
 ### v53
   * Add souls to plentiful and ludicrous item pools
   * Fix enemy minimap markers not displaying properly on some platforms.
