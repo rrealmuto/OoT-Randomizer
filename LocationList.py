@@ -1784,7 +1784,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Dodongos Cavern Before Boss Grass",                            ("Grass",        0x01,  (7,0,1),  None,                        'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla Dungeons", "Grass"))),
     ("Dodongos Cavern Blade Room Grass",                             ("Grass",        0x01,  (9,0,1),  None,                        'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla Dungeons", "Grass"))),
     ("Dodongos Cavern Single Eye Switch Room Grass",                 ("Grass",        0x01,  (10,0,1), None,                        'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla Dungeons", "Grass"))),
-    ("Dodongos Cavern Side Room Before Lower Lizalfos Grass",        ("Grass",        0x01,  (11,0,4), None,                        'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla Dungeons", "Grass"))),
+#    ("Dodongos Cavern Side Room Before Lower Lizalfos Grass",        ("Grass",        0x01,  (11,0,4), None,                        'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla Dungeons", "Grass"))),
 
     # DC Enemies
     ("Dodongos Cavern Beamos Left Side",                             ("EnemyDrop",    0x01,  (0, 0, 0x08), None,                   'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla", "EnemyDrop"))),

@@ -72,8 +72,6 @@
         "region_name": "Dodongos Cavern Side Room Before Lower Lizalfos",
         "dungeon": "Dodongos Cavern",
         "locations" : {
-            "Dodongos Cavern Side Room Before Lower Lizalfos Grass": "
-                is_adult or has_explosives or Sticks or Slingshot or Boomerang or Kokiri_Sword",
             "Dodongos Cavern GS Side Room Near Lower Lizalfos": "True",
             "Dodongos Cavern Side Room Near Lower Lizalfos Keese 1": "can_kill_keese",
             "Dodongos Cavern Side Room Near Lower Lizalfos Keese 2": "can_kill_keese",
