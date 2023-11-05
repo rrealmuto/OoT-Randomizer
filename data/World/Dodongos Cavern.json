@@ -47,8 +47,6 @@
             "Dodongos Cavern Lower Lizalfos Pot 4": "True",
             "Dodongos Cavern GS Side Room Near Lower Lizalfos": "
                 is_adult or has_explosives or Sticks or Slingshot or Boomerang or Kokiri_Sword",
-            "Dodongos Cavern Side Room Before Lower Lizalfos Grass": "
-                is_adult or has_explosives or Sticks or Slingshot or Boomerang or Kokiri_Sword",
             "Dodongos Cavern GS Scarecrow": "
                 can_use(Scarecrow) or can_use(Longshot) or
                 (logic_dc_scarecrow_gs and (is_adult or can_child_attack))"
