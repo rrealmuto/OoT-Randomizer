@@ -10,13 +10,12 @@ sw  s0, 0x28(sp)
 lh  a2, CURR_ACTOR_SPAWN_INDEX
 ; Check if we were called from Actor_SpawnAsChild. Primarily for anubis. Might be important for others
 ; Get the return address of the actor_spawn function from the stack
-lw  a3, 0x54(sp)
-li  v0, 0x80025444
-bne v0, a3, @@notspawnaschild
+lb  a3, actor_spawn_as_child_flag
+beqz a3, @@notspawnaschild
 nop
 @@spawnaschild:
 ; We were called from Actor_SpawnAsChild. Load the parent address from 0xBC(sp)
-lw  a3, 0xBC(sp)
+lw  a3, actor_spawn_as_child_parent
 b   @@callhack
 nop
 @@notspawnaschild:

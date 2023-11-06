@@ -44,6 +44,8 @@ extern xflag_t* spawn_actor_with_flag;
 #define OBJ_MURE2           0x0151 // Obj_Mure2 - Bush/Rock circles
 
 ActorOverlay* gActorOverlayTable = (ActorOverlay*)ACTOR_OVERLAY_TABLE_ADDR;
+uint8_t actor_spawn_as_child_flag = 0;
+z64_actor_t* actor_spawn_as_child_parent = NULL;
 
 // Get a pointer to the additional data that is stored at the beginning of every actor
 // This is calculated as the actor's address + the actor instance size from the overlay table.
@@ -308,7 +310,12 @@ uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit
         ActorAdditionalData* extra = Actor_GetAdditionalData(parent);
         xflag_t xflag = extra->flag;
         if (xflag.all) {
-            return 1;
+            xflag = resolve_alternative_flag(&xflag);
+            override_t override = lookup_override_by_newflag(&xflag);
+            if(override.key.all != 0 && !(Get_NewOverrideFlag(&xflag)>0))
+            {
+                return 0;
+            }
         }
     }
     if((actorInit->category == ACTORCAT_ENEMY) && z64_Flags_GetClear(globalCtx, globalCtx->room_index))
@@ -382,4 +389,14 @@ z64_actor_t * Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int16_t ac
         return spawned;
     }
     return NULL;
+}
+
+extern z64_actor_t * Actor_SpawnAsChild(void* actorCtx, z64_actor_t* parent, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params);
+z64_actor_t * Actor_SpawnAsChild_Hook(void* actorCtx, z64_actor_t* parent, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params) {
+    actor_spawn_as_child_flag = 1;
+    actor_spawn_as_child_parent = parent;
+    z64_actor_t* spawned = Actor_SpawnAsChild(actorCtx, parent, globalCtx, actorId, posX, posY, posZ, rotX, rotY, rotZ, params);
+    actor_spawn_as_child_flag = 0;
+    actor_spawn_as_child_parent = NULL;
+    return spawned;
 }
