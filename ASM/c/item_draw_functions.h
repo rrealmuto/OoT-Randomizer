@@ -47,5 +47,7 @@ void draw_gi_c_button_vertical(z64_game_t *game, uint32_t draw_id);
 void draw_gi_c_button_horizontal(z64_game_t *game, uint32_t draw_id);
 void draw_gi_medallions(z64_game_t *game, uint32_t draw_id);
 void draw_gi_stones(z64_game_t *game, uint32_t draw_id);
+void draw_gi_fairy(z64_game_t *game, uint32_t draw_id);
+void draw_gi_nothing(z64_game_t *game, uint32_t draw_id);
 
 #endif

@@ -793,11 +793,15 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
 
         # Pots
         elif location.type in ['Pot', 'FlyingPot']:
+            shuffle_item = False
             if world.settings.shuffle_pots == 'all':
                 shuffle_item = True
             elif world.settings.shuffle_pots == 'dungeons' and (location.dungeon is not None or (location.parent_region is not None and location.parent_region.is_boss_room)):
                 shuffle_item = True
             elif world.settings.shuffle_pots == 'overworld' and not (location.dungeon is not None or (location.parent_region is not None and location.parent_region.is_boss_room)):
+                shuffle_item = True
+
+            if shuffle_item and (location.vanilla_item != 'Nothing' or world.settings.shuffle_empty_pots):
                 shuffle_item = True
             else:
                 shuffle_item = False
@@ -805,11 +809,14 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
 
         # Crates
         elif location.type in ['Crate', 'SmallCrate']:
+            shuffle_item = False
             if world.settings.shuffle_crates == 'all':
                 shuffle_item = True
             elif world.settings.shuffle_crates == 'dungeons' and location.dungeon is not None:
                 shuffle_item = True
             elif world.settings.shuffle_crates == 'overworld' and location.dungeon is None:
+                shuffle_item = True
+            if shuffle_item and (location.vanilla_item != 'Nothing' or world.settings.shuffle_empty_crates):
                 shuffle_item = True
             else:
                 shuffle_item = False
