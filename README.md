@@ -16,6 +16,7 @@ Grass Shuffle - Shuffles grass
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v55](#v55)
   * [v54](#v54)
   * [v53](#v53)
   * [v52](#v52)
@@ -74,6 +75,9 @@ Grass Shuffle - Shuffles grass
   * [4.0](#40)
 
 ## RealRob Changelog
+### v55
+  * Fix anubis spawns in enemy drop shuffle
+
 ### v54
   * Update multiworld coop context version #
 
