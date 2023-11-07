@@ -1914,7 +1914,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
             }
 
     # Update "Princess Ruto got the Spiritual Stone!" text before the midboss in Jabu
-    if location is None or location.item is None:
+    if location is None or location.item is None or location.item.name == 'Nothing':
         jabu_item = None
         new_message = f"\x08Princess Ruto got \x01\x05\x43nothing\x05\x40!\x01Well, that's disappointing...\x02"
     elif location.item.looks_like_item is not None:
