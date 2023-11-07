@@ -54,7 +54,7 @@ defaultHintDists: list[str] = [
     'chaos_dev_fenhl.json',
     'chaos_dev_fenhl_no_goal.json',
     'chaos_no_goal.json',
-    'coop2.json',
+    'coop.json',
     'ddr.json',
     'ice_percent.json',
     'important_checks.json',

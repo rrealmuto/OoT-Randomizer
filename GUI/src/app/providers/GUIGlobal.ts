@@ -108,11 +108,40 @@ export class GUIGlobal implements OnDestroy {
 
     var self = this;
 
+    //Switch the GUI theme
+    (<any>window).addEventListener('external_switch_theme', function (event) {
+
+      let detail = event.detail;
+
+      self.generator_settingsMap["theme"] = detail.theme; //Ensure theme is set
+      self.globalEmitter.emit({ name: "theme_switch", message: detail.theme });
+
+    }, false);
+
+    //Allow external updates of any setting, then refresh GUI
+    (<any>window).addEventListener('external_update_setting', function (event) {
+
+      let detail = event.detail;
+
+      if (detail && Array.isArray(detail)) { //Batch
+
+        for (let setting of detail) {
+          self.generator_settingsMap[setting.name] = setting.value;
+        }
+      }
+      else if (detail && detail.name && "value" in detail) { //Single
+        self.generator_settingsMap[detail.name] = detail.value;
+      }
+
+      self.globalEmitter.emit({ name: "refresh_gui" });
+
+    }, false);
+
+    //Legacy: Update settings entry for cached file and then refresh GUI
     (<any>window).addEventListener('emscripten_cache_file_found', function (event) {
 
       let detail = event.detail;
 
-      //Update settings entry for cached file and then refresh GUI
       if (detail) {
 
         if (detail.name == "ROM")
@@ -403,7 +432,7 @@ export class GUIGlobal implements OnDestroy {
 
     await this.parseGeneratorGUISettings(res, userSettings);
 
-    //Check for cached files and then create web events after
+    //Legacy: Check for cached files and then create web events after
     if ((<any>window).emscriptenFoundCachedROMFile)
       this.generator_settingsMap["rom"] = "<using cached ROM>";
 
@@ -412,6 +441,22 @@ export class GUIGlobal implements OnDestroy {
 
     if ((<any>window).emscriptenFoundCachedCommonKeyFile)
       this.generator_settingsMap["web_common_key_file"] = "<using cached common key>";
+
+    //If we have an external override settings map, apply it now
+    if ((<any>window).externalOverrideSettingsMap)
+    {
+      let settings = JSON.parse((<any>window).externalOverrideSettingsMap);
+
+      if (settings && Array.isArray(settings)) { //Batch
+
+        for (let setting of settings) {
+          this.generator_settingsMap[setting.name] = setting.value;
+        }
+      }
+      else if (settings && settings.name && "value" in settings) { //Single
+        this.generator_settingsMap[settings.name] = settings.value;
+      }
+    }
 
     this.createWebEvents();
   }
