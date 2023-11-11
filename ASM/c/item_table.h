@@ -214,7 +214,7 @@ typedef enum GetItemID {
     /* 0x00BC */ GI_BOLERO_OF_FIRE, // Bolero of Fire
     /* 0x00BD */ GI_SERENADE_OF_WATER, // Serenade of Water
     /* 0x00BE */ GI_REQUIEM_OF_SPIRIT, // Requiem of Spirit
-    /* 0x00BF */ GI_NOCTURN_OF_SHADOW, // Nocturn of Shadow
+    /* 0x00BF */ GI_NOCTURNE_OF_SHADOW, // Nocturne of Shadow
     /* 0x00C0 */ GI_PRELUDE_OF_LIGHT, // Prelude of Light
 
     /* 0x00C1 */ GI_ZELDAS_LULLABY, // Zelda's Lullaby

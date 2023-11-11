@@ -227,7 +227,7 @@ item_row_t item_table[GI_RANDO_MAX] = {
     [GI_BOLERO_OF_FIRE]                                         = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9092, 0x0196, 0x79, no_upgrade, give_song, 7, -1, NULL), // Bolero of Fire
     [GI_SERENADE_OF_WATER]                                      = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9093, 0x0196, 0x7A, no_upgrade, give_song, 8, -1, NULL), // Serenade of Water
     [GI_REQUIEM_OF_SPIRIT]                                      = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9094, 0x0196, 0x7B, no_upgrade, give_song, 9, -1, NULL), // Requiem of Spirit
-    [GI_NOCTURN_OF_SHADOW]                                      = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9095, 0x0196, 0x7C, no_upgrade, give_song, 10, -1, NULL), // Nocturn of Shadow
+    [GI_NOCTURNE_OF_SHADOW]                                      = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9095, 0x0196, 0x7C, no_upgrade, give_song, 10, -1, NULL), // Nocturn of Shadow
     [GI_PRELUDE_OF_LIGHT]                                       = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9096, 0x0196, 0x7D, no_upgrade, give_song, 11, -1, NULL), // Prelude of Light
 
     [GI_ZELDAS_LULLABY]                                         = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x909A, 0x00B6, 0x04, no_upgrade, give_song, 12, -1, NULL), // Zelda's Lullaby

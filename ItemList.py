@@ -205,7 +205,7 @@ class GetItemId(IntEnum):
     GI_BOLERO_OF_FIRE = 0x00BC
     GI_SERENADE_OF_WATER = 0x00BD
     GI_REQUIEM_OF_SPIRIT = 0x00BE
-    GI_NOCTURN_OF_SHADOW = 0x00BF
+    GI_NOCTURNE_OF_SHADOW = 0x00BF
     GI_PRELUDE_OF_LIGHT = 0x00C0
 
     GI_ZELDAS_LULLABY = 0x00C1
@@ -584,7 +584,7 @@ item_table: dict[str, tuple[str, Optional[bool], Optional[int], Optional[dict[st
                                                 'song_id': 0x05,
                                                 'item_id': 0x5D,
                                             }),
-    'Nocturne of Shadow':               ('Song',     True,  GetItemId.GI_NOCTURN_OF_SHADOW,
+    'Nocturne of Shadow':               ('Song',     True,  GetItemId.GI_NOCTURNE_OF_SHADOW,
                                             {
                                                 'text_id': 0x77,
                                                 'song_id': 0x06,
