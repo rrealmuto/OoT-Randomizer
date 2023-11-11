@@ -83,6 +83,7 @@ Differences between [`Dev-R`](https://github.com/Roman971/OoT-Randomizer) and [`
   * [Settings](#settings)
   * [Known Issues](#known-issues)
 * [Changelog](#changelog)
+  * [8.0](#80)
   * [7.1](#71)
   * [7.0](#70)
   * [6.2](#62)
@@ -183,6 +184,8 @@ issue. You should always Hard Reset to avoid this issue entirely.
 ## Changelog
 
 ### Dev
+
+### 8.0
 
 #### New Features
 * **Settings**
