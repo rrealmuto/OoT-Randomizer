@@ -20,6 +20,7 @@ Differences between this branch and the main Dev branch (on [Testrunner's Fork](
   * [Settings](#settings)
   * [Known Issues](#known-issues)
 * [Changelog](#changelog)
+  * [8.0](#80)
   * [7.1](#71)
   * [7.0](#70)
   * [6.2](#62)
@@ -116,6 +117,8 @@ issue. You should always Hard Reset to avoid this issue entirely.
 
 ### Dev
 
+### 8.0
+
 #### New Features
 * **Settings**
   * New setting `Key Rings give Boss Keys` makes it so when picking up a key ring for a certain dungeon, you will also get the boss key for that dungeon, if applicable.
@@ -150,6 +153,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * New Dual hint for King Zora checks: Unfreezing him and trading the prescription for an eyeball frog.
   * The credits music can now be shuffled into the music pool.
   * Many hints had clearer hints added and/or were reworded.
+  * New `Chaos!!! (no goal hints)` hint distribution which is the same as the normal "Chaos" distribution, but without goal hints.
 * **Other**
   * When picking up a small key, the text box will now inform you how many you've found total.
   * The longstanding vanilla bug where using Din's Fire on a white bubble crashes the game has been fixed.

@@ -75,6 +75,13 @@ class SettingInfos:
         },
     )
 
+    custom_music_unavailable_msg = Textbox(
+        gui_text   = "Custom music can only be added when patching.",
+        gui_params = {
+            "hide_when_disabled": True,
+        },
+    )
+
     # Web Only Settings
 
     web_wad_file = Fileinput(
@@ -213,13 +220,13 @@ class SettingInfos:
                         'web_wad_file', 'web_common_key_file', 'web_common_key_string',
                         'web_wad_channel_id', 'web_wad_channel_title', 'web_wad_legacy_mode',
                         'model_adult', 'model_child', 'model_adult_filepicker', 'model_child_filepicker',
-                        'sfx_link_adult', 'sfx_link_child',
+                        'sfx_link_adult', 'sfx_link_child', 'custom_music_directorypicker'
                     ],
                 },
                 True: {
                     'settings': [
                         'model_adult', 'model_child', 'model_unavailable_msg',
-                        'sfx_link_unavailable_msg',
+                        'sfx_link_unavailable_msg', 'custom_music_unavailable_msg'
                     ],
                 },
             },
@@ -227,13 +234,13 @@ class SettingInfos:
                 False: {
                     'settings': [
                         'model_adult_filepicker', 'model_child_filepicker', 'model_unavailable_msg',
-                        'sfx_link_unavailable_msg',
+                        'sfx_link_unavailable_msg', 'custom_music_directorypicker', 'custom_music_unavailable_msg'
                     ],
                 },
                 True: {
                     'settings': [
                         'model_adult_filepicker', 'model_child_filepicker', 'model_unavailable_msg',
-                        'sfx_link_unavailable_msg',
+                        'sfx_link_unavailable_msg', 'custom_music_directorypicker', 'custom_music_unavailable_msg'
                     ],
                 },
             },
@@ -4521,8 +4528,8 @@ class SettingInfos:
         ''',
         default        = False,
         disable    = {
-            True : {'sections' : [ "musicsfx_section", "generalsfx_section", "UIsfx_section", "itemsfx_section" ],
-            'settings' : ["sfx_navi_overworld", "sfx_navi_enemy", "sfx_horse_neigh", "sfx_cucco"]
+            True : {'sections' : [ "generalsfx_section", "UIsfx_section", "itemsfx_section" ],
+            'settings' : ["sfx_navi_overworld", "sfx_navi_enemy", "sfx_horse_neigh", "sfx_cucco", "background_music", "fanfares", "ocarina_fanfares", "credits_music"]
             }
         }
     )
@@ -4573,8 +4580,7 @@ class SettingInfos:
             'randomize_key': 'randomize_all_sfx',
             'distribution':  [
                 ('random', 1),
-            ],
-            'web:option_remove': ['random_custom_only'],
+            ]
         },
     )
 
@@ -4602,8 +4608,7 @@ class SettingInfos:
             'randomize_key': 'randomize_all_sfx',
             'distribution': [
                 ('random', 1),
-            ],
-            'web:option_remove': ['random_custom_only'],
+            ]
         },
     )
 
@@ -4625,6 +4630,29 @@ class SettingInfos:
             ],
         },
         default        = False,
+    )
+
+    custom_music_directorypicker = Directoryinput(
+        gui_text   = "Custom Music",
+        shared     = False,
+        cosmetic   = True,
+        gui_tooltip = '''\
+            Upload custom music files in OoTR's dedicated .ootrs format.
+            You can upload individual files or directories consisting of multiple
+            custom sequences. Implementation into the seed is controlled by
+            the background_music setting.
+            Note: Multiple directories at once can only be uploaded by dragging them
+            onto the text field.
+        ''',
+        gui_params = {
+            "file_types": [
+                {
+                  "name": "OoTR Sequence Files",
+                  "extensions": ["ootrs"]
+                }
+            ],
+            "hide_when_disabled": True,
+        },
     )
 
     credits_music = Checkbutton(
