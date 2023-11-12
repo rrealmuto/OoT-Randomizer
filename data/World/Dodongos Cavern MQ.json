@@ -234,7 +234,8 @@
         "dungeon": "Dodongos Cavern",
         "savewarp": "Death Mountain -> Dodongos Cavern Beginning",
         "locations": {
-            "Dodongos Cavern MQ Armos Army Room Upper Pot": "True",
+            "Dodongos Cavern MQ Armos Army Room Upper Pot 1": "True",
+            "Dodongos Cavern MQ Armos Army Room Upper Pot 2": "True",
             "Fairy Pot": "has_bottle"
         },
         "exits": {
