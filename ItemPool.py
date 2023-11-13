@@ -718,9 +718,7 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
         elif location.vanilla_item in trade_items:
             if not world.settings.adult_trade_shuffle:
                 if location.vanilla_item == 'Pocket Egg' and world.settings.adult_trade_start:
-                    potential_trade_items = world.settings.adult_trade_start
-                    item = random.choice(potential_trade_items)
-                    world.selected_adult_trade_item = item
+                    item = world.selected_adult_trade_item
                     shuffle_item = True
                 else:
                     shuffle_item = False
