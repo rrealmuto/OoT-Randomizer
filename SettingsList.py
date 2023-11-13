@@ -3184,7 +3184,7 @@ class SettingInfos:
     )
 
     shuffle_empty_pots = Checkbutton(
-        gui_text       = 'Include empty pots',
+        gui_text       = 'Include Empty Pots',
         default        = False,
         gui_tooltip    = '''\
             Enabling this will include empty pots into the location
@@ -3223,7 +3223,7 @@ class SettingInfos:
     )
 
     shuffle_empty_crates = Checkbutton(
-        gui_text       = 'Include empty crates',
+        gui_text       = 'Include Empty Crates',
         default        = False,
         gui_tooltip    = '''\
             Enabling this will include empty crates into the location

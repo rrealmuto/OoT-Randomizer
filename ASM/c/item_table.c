@@ -310,8 +310,8 @@ item_row_t item_table[] = {
     [0x0107] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x908F, 0x01A9, 0x93, no_upgrade, unlock_ocarina_note, 3, -1, NULL), // Ocarina C left
     [0x0108] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9090, 0x01A9, 0x94, no_upgrade, unlock_ocarina_note, 4, -1, NULL), // Ocarina C right
 
-    [0x0119] = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x90B4, 0x0177, 0x9E, no_upgrade, full_heal, -1, -1, NULL), // Fairy
-    [0x011A] = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x90B5, 0x0177, 0x9F, no_upgrade, no_effect, -1, -1, NULL), // Nothing :)
+    [0x0109] = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x90B4, 0x0177, 0x9E, no_upgrade, full_heal, -1, -1, NULL), // Fairy
+    [0x010A] = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x90B5, 0x0177, 0x9F, no_upgrade, no_effect, -1, -1, NULL), // Nothing :)
 
     [0x0119] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0080, 0x01AB, 0x9B, no_upgrade, give_quest_item, 18, -1, NULL), // Kokiri Emerald
     [0x011A] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0081, 0x01AC, 0x9C, no_upgrade, give_quest_item, 19, -1, NULL), // Goron Ruby
