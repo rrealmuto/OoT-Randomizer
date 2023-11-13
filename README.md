@@ -16,6 +16,7 @@ Grass Shuffle - Shuffles grass
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v56](#v56)
   * [v55](#v55)
   * [v54](#v54)
   * [v53](#v53)
@@ -75,6 +76,9 @@ Grass Shuffle - Shuffles grass
   * [4.0](#40)
 
 ## RealRob Changelog
+### v56
+  * Fix incorrect overrides spawning in soul shuffle
+
 ### v55
   * Fix anubis spawns in enemy drop shuffle
 

@@ -37,6 +37,7 @@ Actor_UpdateAll_Hook:
     jal     Actor_After_UpdateAll_Hack ; Call our hack
     nop
 @@end:
+    sh      r0, CURR_ACTOR_SPAWN_INDEX ; Clear CURR_ACTOR_SPAWN_INDEX
     lw      t0, 0x20(sp)
     lw      t1, 0x24(sp)
     lw      t2, 0x28(sp)
