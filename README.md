@@ -16,6 +16,7 @@ Grass Shuffle - Shuffles grass
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v57](#v57)
   * [v56](#v56)
   * [v55](#v55)
   * [v54](#v54)
@@ -76,6 +77,9 @@ Grass Shuffle - Shuffles grass
   * [4.0](#40)
 
 ## RealRob Changelog
+### v57
+  * Fix missing grass in Lake Hylia
+
 ### v56
   * Fix incorrect overrides spawning in soul shuffle
 
