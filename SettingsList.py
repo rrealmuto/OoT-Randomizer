@@ -865,6 +865,7 @@ class SettingInfos:
             'dungeons':   'Dungeons',
             'tokens':     'Gold Skulltula Tokens',
             'hearts':     'Hearts',
+            'never':      'Never Open',
             'random':     'Random'
         },
         gui_tooltip    = '''\
@@ -875,6 +876,7 @@ class SettingInfos:
             'Dungeons': A configurable amount of Dungeon Rewards.
             'Gold Skulltula Tokens': A configurable amount of Gold Skulltula Tokens.
             'Hearts': A configurable amount of hearts.
+            'Never Open': The rainbow bridge will never be open. You'll have to find another way across.
             'Random': A random Rainbow Bridge requirement excluding Gold Skulltula Tokens.
         ''',
         shared         = True,
@@ -3771,6 +3773,13 @@ class SettingInfos:
             not always refill your magic in the vanilla game.
         ''',
         shared         = True,
+    )
+
+    continuous_hookshot_upgrades = Checkbutton(
+        gui_text       = 'Continuous Hookshot Upgrades',
+        gui_tooltip    = '''\
+            Enabling this makes each additional hookshot collected increase the total hookshot length.
+    ''',
     )
 
     prevent_guay_respawns = Checkbutton(

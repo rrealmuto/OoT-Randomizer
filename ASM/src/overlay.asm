@@ -4,7 +4,7 @@
 ; Read the entry from the overlay table
 ; Calculate the RAM address as addr - VRAM Start + File RAM and jump to that address
 ; Overlay table at 0x800E8530
-; when calling, store the address to call in GP and the overlay index in t9
+; when calling, store the address to call in t8 and the overlay index in t9
 Overlay_Call_Addr:
     li  t0, 0x800E8530 ; current overlay entry
     sll t9, 5 ; multiply overlay number by 0x20 to get offset into table
@@ -15,7 +15,7 @@ Overlay_Call_Addr:
 
 ; calculate RAM address
     lw  t3, 0x10(t0)
-    sub t0, gp, t1;
+    sub t0, t8, t1;
     add t0, t0, t3
     jr  t0
     nop

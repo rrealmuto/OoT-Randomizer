@@ -204,6 +204,8 @@ CFG_PREVENT_GUAY_RESPAWNS:
 .byte 0x00
 CFG_MINIMAP_ENEMY_TRACKER:
 .byte 0x00
+CONTINUOUS_HOOKSHOTS:
+.byte 0x00
 .align 4
 
 ; These configuration values are given fixed addresses to aid auto-trackers.

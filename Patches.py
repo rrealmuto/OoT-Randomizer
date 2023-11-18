@@ -2582,6 +2582,9 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     if world.settings.shuffle_enemy_spawns != 'off':
         rom.write_byte(rom.sym('CFG_ENEMY_SPAWN_SHUFFLE'), 1)
 
+    if world.settings.continuous_hookshot_upgrades:
+        rom.write_byte(rom.sym('CONTINUOUS_HOOKSHOTS'), 1)
+
     # Sets the torch count to open the entrance to Shadow Temple
     if world.settings.easier_fire_arrow_entry:
         torch_count = world.settings.fae_torch_count

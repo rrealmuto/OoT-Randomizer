@@ -35,8 +35,8 @@ item_row_t item_table[] = {
     [0x0005] = ITEM_ROW(0x53,      GILDED_CHEST, 0x06, -1, 0x0030, 0x00E7, 0x33, no_upgrade, no_effect, -1, -1, NULL), // Fairy Slingshot
     [0x0006] = ITEM_ROW(0x53,      GILDED_CHEST, 0x0E, -1, 0x0035, 0x00E8, 0x34, no_upgrade, no_effect, -1, -1, NULL), // Boomerang
     [0x0007] = ITEM_ROW(0x4D,       BROWN_CHEST, 0x00, 13, 0x90AC, 0x00C7, 0x1B, no_upgrade, no_effect, -1, -1, NULL), // Deku Stick
-    [0x0008] = ITEM_ROW(0x53,      GILDED_CHEST, 0x0A, -1, 0x0036, 0x00DD, 0x2D, no_upgrade, no_effect, -1, -1, NULL), // Hookshot
-    [0x0009] = ITEM_ROW(0x53,      GILDED_CHEST, 0x0B, -1, 0x004F, 0x00DD, 0x2E, no_upgrade, no_effect, -1, -1, NULL), // Longshot
+    [0x0008] = ITEM_ROW(0x53,      GILDED_CHEST, 0x0A, -1, 0x0036, 0x00DD, 0x2D, no_upgrade, give_hookshot, -1, -1, NULL), // Hookshot
+    [0x0009] = ITEM_ROW(0x53,      GILDED_CHEST, 0x0B, -1, 0x004F, 0x00DD, 0x2E, no_upgrade, give_hookshot, -1, -1, NULL), // Longshot
     [0x000A] = ITEM_ROW(0x53,      GILDED_CHEST, 0x0F, -1, 0x0039, 0x00EA, 0x36, no_upgrade, no_effect, -1, -1, NULL), // Lens of Truth
     [0x000B] = ITEM_ROW(0x53,      GILDED_CHEST, 0x23, -1, 0x0069, 0x00EF, 0x3B, no_upgrade, open_mask_shop, 0x23, -1, NULL), // Zelda's Letter
     [0x000C] = ITEM_ROW(0x53,      GILDED_CHEST, 0x08, -1, 0x003A, 0x00DE, 0x2F, no_upgrade, no_effect, -1, -1, NULL), // Ocarina of Time
@@ -156,7 +156,7 @@ item_row_t item_table[] = {
     [0x007E] = ITEM_ROW(0x3E, HEART_CHEST_SMALL, 0x41, -1, 0x90C6, 0x00BD, 0x13, no_upgrade, full_heal, -1, -1, NULL), // Capped Heart Container
     [0x007F] = ITEM_ROW(0x53, HEART_CHEST_SMALL, 0x41, -1, 0x90FA, 0x00BD, 0x14, no_upgrade, full_heal, -1, -1, NULL), // Capped Piece of Heart (Chest Game)
 
-    [0x0080] = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,    -1, 0x00DD, 0x2D, hookshot_upgrade,  no_effect, -1, -1, NULL), // Progressive Hookshot
+    [0x0080] = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1, 0x90B6, 0x00DD, 0x2E, hookshot_upgrade,  give_hookshot, -1, -1, resolve_text_hookshot), // Progressive Hookshot
     [0x0081] = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,    -1, 0x0147, 0x58, strength_upgrade,  no_effect, -1, -1, NULL), // Progressive Strength
     [0x0082] = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,    -1, 0x00BF, 0x18, bomb_bag_upgrade,  no_effect, -1, -1, NULL), // Progressive Bomb Bag
     [0x0083] = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,    -1, 0x00E9, 0x35, bow_upgrade,       no_effect, -1, -1, NULL), // Progressive Bow
@@ -475,6 +475,14 @@ uint16_t resolve_text_keyrings(item_row_t *item_row, uint16_t item_id, bool is_o
         return item_row->text_id + dungeon_id + 14;
     }
     return item_row->text_id + dungeon_id;
+}
+
+uint16_t resolve_text_hookshot(item_row_t *item_row, uint16_t item_id, bool is_outgoing) {
+    if(extended_savectx.hookshot_level == 0)
+    {
+        return 0x0036; // Original hookshot message
+    }
+    return item_row->text_id; // hookshot extension message
 }
 
 item_row_t *get_item_row(uint16_t item_id) {

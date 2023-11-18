@@ -377,6 +377,7 @@
             "starting_tod",
             "blue_fire_arrows",
             "fix_broken_drops",
+            "continuous_hookshot_upgrades",
             "prevent_guay_respawns",
             "minimap_enemy_tracker"
           ]

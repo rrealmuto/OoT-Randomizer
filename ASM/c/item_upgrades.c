@@ -4,7 +4,7 @@
 #include "z64.h"
 
 extern uint32_t FREE_BOMBCHU_DROPS;
-
+extern uint8_t CONTINUOUS_HOOKSHOTS;
 
 // The layout of this struct is part of the definition of the co-op context.
 // If you change it, bump the co-op context version in coop_state.asm and update Notes/coop-ctx.md
@@ -35,10 +35,16 @@ uint16_t no_upgrade(z64_file_t *save, override_t override) {
 }
 
 uint16_t hookshot_upgrade(z64_file_t *save, override_t override) {
-    switch ((override.value.base.player == PLAYER_ID || !MW_PROGRESSIVE_ITEMS_ENABLE) ? save->items[Z64_SLOT_HOOKSHOT] : MW_PROGRESSIVE_ITEMS_STATE[override.value.base.player].hookshot) {
+    if(!CONTINUOUS_HOOKSHOTS) {
+        switch ((override.value.base.player == PLAYER_ID || !MW_PROGRESSIVE_ITEMS_ENABLE) ? save->items[Z64_SLOT_HOOKSHOT] : MW_PROGRESSIVE_ITEMS_STATE[override.value.base.player].hookshot) {
         case -1: case 0: return 0x08; // Hookshot
         default: return 0x09; // Longshot
+        }
     }
+    else { //Continuous hookshot setting so resolve to itself
+        return override.value.base.item_id;
+    }
+    
 }
 
 uint16_t strength_upgrade(z64_file_t *save, override_t override) {

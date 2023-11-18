@@ -941,7 +941,8 @@ class SaveContext:
                 'twinrova': Address(extended=True, size=1, mask=0x10, pass_addr=True),
                 'jabu_jabu_tentacle': Address(extended=True, size=1, mask=0x20, pass_addr=True),
                 'dark_link': Address(extended=True, size=1, mask=0x40, pass_addr=True),
-            }
+            },
+            'hookshot_level': Address(address=0x26, extended=True, size=1)
         }
 
     item_id_map: dict[str, int] = {
@@ -1173,7 +1174,10 @@ class SaveContext:
         "Farores Wind"   : {'item_slot.farores_wind'    : 'farores_wind'},
         "Nayrus Love"    : {'item_slot.nayrus_love'     : 'nayrus_love'},
         "Ocarina"        : {'item_slot.ocarina'         : ['fairy_ocarina', 'ocarina_of_time']},
-        "Progressive Hookshot" : {'item_slot.hookshot'  : ['hookshot', 'longshot']},
+        "Progressive Hookshot" : 
+            {'item_slot.hookshot'  : ['hookshot', 'longshot', 'longshot', 'longshot', 'longshot', 'longshot', 'longshot', 'longshot'],
+             'hookshot_level': [1,2,3,4,5,6,7,8]
+             },
         "Boomerang"      : {'item_slot.boomerang'       : 'boomerang'},
         "Lens of Truth"  : {'item_slot.lens'            : 'lens'},
         "Megaton Hammer"         : {'item_slot.hammer'          : 'hammer'},
