@@ -1183,7 +1183,7 @@ class Distribution:
                     or update_dict['_settings'].get('starting_songs', None)):
                 update_dict['_settings']['starting_items'] = {}
 
-        self.settings.settings_dict.update(update_dict['_settings'])
+        self.settings.update(update_dict['_settings'])
         if 'settings' in self.src_dict:
             validate_settings(self.src_dict['settings'])
             self.src_dict['_settings'] = self.src_dict['settings']

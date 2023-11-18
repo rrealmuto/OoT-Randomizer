@@ -2680,7 +2680,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
             song_layout_in_byte_form |= 1 << 3
         if '>' in epona_notes:
             song_layout_in_byte_form |= 1 << 4
-        rom.write_int16(rom.sym('EPONAS_SONG_NOTES'), song_layout_in_byte_form)
+        rom.write_byte(rom.sym('EPONAS_SONG_NOTES'), song_layout_in_byte_form)
 
     # Sets the torch count to open the entrance to Shadow Temple
     if world.settings.easier_fire_arrow_entry:

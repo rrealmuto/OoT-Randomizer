@@ -529,7 +529,7 @@ export class GUIGlobal implements OnDestroy {
             userSettings[setting.name].forEach(entry => {
 
               let optionEntry = setting.options.find(option => {
-                if (option.name == entry)
+                if (option.name === entry)
                   return true;
 
                 return false;
@@ -548,7 +548,7 @@ export class GUIGlobal implements OnDestroy {
             }
             else {
               let optionEntry = setting.options.find(option => {
-                if (option.name == userSettings[setting.name])
+                if (option.name === userSettings[setting.name])
                   return true;
 
                 return false;
@@ -886,7 +886,7 @@ export class GUIGlobal implements OnDestroy {
               settingsObj[setting.name].forEach(entry => {
 
                 let optionEntry = setting.options.find(option => {
-                  if (option.name == entry)
+                  if (option.name === entry)
                     return true;
 
                   return false;
@@ -901,7 +901,7 @@ export class GUIGlobal implements OnDestroy {
             else if (setting.type == "Combobox") { //Ensure combobox option exists before applying it (in case of outdated settings being loaded)
 
               let optionEntry = setting.options.find(option => {
-                if (option.name == settingsObj[setting.name])
+                if (option.name === settingsObj[setting.name])
                   return true;
 
                 return false;
