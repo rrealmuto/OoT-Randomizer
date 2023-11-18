@@ -234,7 +234,8 @@ conditional_entrance_always: dict[str, Callable[[World], bool]] = {
         and (world.settings.bridge != 'medallions' or world.settings.bridge_medallions > 1)
         and (world.settings.bridge != 'dungeons' or world.settings.bridge_rewards > 2)
         and (world.settings.bridge != 'tokens' or world.settings.bridge_tokens > 20)
-        and (world.settings.bridge != 'hearts' or world.settings.bridge_hearts > world.settings.starting_hearts + 1)),
+        and (world.settings.bridge != 'hearts' or world.settings.bridge_hearts > world.settings.starting_hearts + 1)
+        and (world.settings.bridge != 'never' or world.settings.additional_hookshot_count >= 3)),
 }
 
 # Dual hints required under certain settings

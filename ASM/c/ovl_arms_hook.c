@@ -1,7 +1,7 @@
 #include "ovl_arms_hook.h"
 #include "save.h"
 
-extern uint8_t CONTINUOUS_HOOKSHOTS;
+extern uint8_t HOOKSHOT_EXTENSIONS;
 extern void ArmsHook_Wait(ArmsHook* this, z64_game_t* globalCtx);
 
 void ArmsHook_Wait_Hooked(ArmsHook* this, z64_game_t* globalCtx) {
@@ -10,7 +10,7 @@ void ArmsHook_Wait_Hooked(ArmsHook* this, z64_game_t* globalCtx) {
     // Set up the stack
     ArmsHook_Wait(this, globalCtx);
     // Calculate the new hookshot timer based on the hookshot level instead of heldItemAction
-    if(CONTINUOUS_HOOKSHOTS) {
+    if(HOOKSHOT_EXTENSIONS) {
         this->timer = extended_savectx.hookshot_level * 13;
     }
 }

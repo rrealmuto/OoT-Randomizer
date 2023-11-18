@@ -621,6 +621,7 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_NPC_OUTER_ENABLED
 0000e6e0 g     F .text	000002d4 draw_gi_boss_altflip
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_REWARD_NEED_COMPASS
+00000000         *UND*	00000000 HOOKSHOT_EXTENSIONS
 000066d8 g     F .text	00000100 spawn_override_enemy_spawn_shuffle
 0000003c g     O .sdata	00000004 text_cursor_inner_base
 00000000         *UND*	00000000 CFG_MINIMAP_ENEMY_TRACKER
@@ -628,7 +629,6 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 EnItem00_Init
 00015f34 g     F .text	00000020 text_print
 00016264 g     F .text	00000024 IsAdultTradeItem
-00000000         *UND*	00000000 CONTINUOUS_HOOKSHOTS
 0000fa6c g     F .text	00000018 give_bombchus
 00014ca8 g     F .text	000000e8 EnTuboTrap_DropCollectible_Hack
 0000def0 g     O .bss	00008000 menu_dl_buffer

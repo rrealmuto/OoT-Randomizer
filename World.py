@@ -877,6 +877,10 @@ class World:
                     b.add_goal(Goal(self, 'hearts', 'path of #hearts#', 'Red', items=[{'name': 'Piece of Heart', 'quantity': (20 - self.settings.starting_hearts) * 4, 'minimum': (self.settings.bridge_hearts - self.settings.starting_hearts) * 4, 'hintable': False}]))
                     b.goal_count = round((self.settings.bridge_hearts - 3) / 2)
                     b.minimum_goals = 1
+                if (self.settings.bridge == 'never'):
+                    b.add_goal(Goal(self, 'hookshots', 'path of #the hooker#', 'Red', items=[{'name': 'Progressive Hookshot', 'quantity': 2 + self.settings.additional_hookshot_count, 'minimum': 3, 'hintable': True}]))
+                    b.goal_count = 5
+                    b.minimum_goals = 1
                 self.goal_categories[b.name] = b
 
             # If the Ganon's Boss Key condition is the same or similar conditions

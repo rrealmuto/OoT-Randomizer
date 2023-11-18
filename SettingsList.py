@@ -3775,11 +3775,32 @@ class SettingInfos:
         shared         = True,
     )
 
-    continuous_hookshot_upgrades = Checkbutton(
-        gui_text       = 'Continuous Hookshot Upgrades',
+    hookshot_extensions = Checkbutton(
+        gui_text       = 'Enable Hookshot Extensions',
         gui_tooltip    = '''\
             Enabling this makes each additional hookshot collected increase the total hookshot length.
-    ''',
+            The base item pool includes 2 hookshots
+        ''',
+        disable = {
+            False: {'settings' : ['additional_hookshot_count']}
+        },
+        gui_params     = {
+            'hide_when_disabled' : True
+        }
+    )
+
+    additional_hookshot_count = Scale(
+        gui_text       = 'Additional Hookshot Count',
+        default        = 5,
+        minimum        = 1,
+        maximum        = 10,
+        gui_tooltip    = '''\
+            Number of additional hookshots that will be added to the game
+        ''',
+        shared         = True,
+        gui_params     = {
+            'no_line_break': True,
+        },
     )
 
     prevent_guay_respawns = Checkbutton(

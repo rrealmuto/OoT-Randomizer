@@ -605,9 +605,9 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
     elif world.settings.shuffle_enemy_spawns == 'bosses':
         pending_junk_pool.extend(enemy_souls_bosses)
 
-    # Add more hookshots if bridge condition is "Never"
-    if world.settings.continuous_hookshot_upgrades and world.settings.bridge == 'never':
-        pending_junk_pool.extend(['Progressive Hookshot']*4)
+    # Hookshot extensions
+    if world.settings.hookshot_extensions:
+        pending_junk_pool.extend(['Progressive Hookshot']*world.settings.additional_hookshot_count)
 
     # Use the vanilla items in the world's locations when appropriate.
     vanilla_items_processed = Counter()

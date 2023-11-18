@@ -95,7 +95,7 @@ item_table: dict[str, tuple[str, Optional[bool], Optional[int], Optional[dict[st
     'Rupees (Treasure Chest Game) (50)':               ('Item',     None,  0x0075, None),
     'Piece of Heart (Treasure Chest Game)':            ('Item',     True,  0x0076, {'alias': ('Piece of Heart', 1), 'progressive': float('Inf')}),
     'Ice Trap':                                        ('Item',     None,  0x007C, {'junk': 0}),
-    'Progressive Hookshot':                            ('Item',     True,  0x0080, {'progressive': 2}),
+    'Progressive Hookshot':                            ('Item',     True,  0x0080, {'progressive': float('Inf')}),
     'Progressive Strength Upgrade':                    ('Item',     True,  0x0081, {'progressive': 3}),
     'Bomb Bag':                                        ('Item',     True,  0x0082, None),
     'Bow':                                             ('Item',     True,  0x0083, None),

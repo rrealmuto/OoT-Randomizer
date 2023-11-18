@@ -156,7 +156,7 @@ item_row_t item_table[] = {
     [0x007E] = ITEM_ROW(0x3E, HEART_CHEST_SMALL, 0x41, -1, 0x90C6, 0x00BD, 0x13, no_upgrade, full_heal, -1, -1, NULL), // Capped Heart Container
     [0x007F] = ITEM_ROW(0x53, HEART_CHEST_SMALL, 0x41, -1, 0x90FA, 0x00BD, 0x14, no_upgrade, full_heal, -1, -1, NULL), // Capped Piece of Heart (Chest Game)
 
-    [0x0080] = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1, 0x90B6, 0x00DD, 0x2E, hookshot_upgrade,  give_hookshot, -1, -1, resolve_text_hookshot), // Progressive Hookshot
+    [0x0080] = ITEM_ROW(0x53,      GILDED_CHEST, 0x0A, -1, 0x90B6, 0x00DD, 0x2E, hookshot_upgrade,  give_hookshot, -1, -1, resolve_text_hookshot), // Progressive Hookshot
     [0x0081] = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,    -1, 0x0147, 0x58, strength_upgrade,  no_effect, -1, -1, NULL), // Progressive Strength
     [0x0082] = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,    -1, 0x00BF, 0x18, bomb_bag_upgrade,  no_effect, -1, -1, NULL), // Progressive Bomb Bag
     [0x0083] = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,    -1, 0x00E9, 0x35, bow_upgrade,       no_effect, -1, -1, NULL), // Progressive Bow

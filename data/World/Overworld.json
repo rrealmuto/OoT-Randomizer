@@ -1656,7 +1656,7 @@
         "exits": {
             "Castle Grounds": "True",
             "OGC Great Fairy Fountain": "can_use(Golden_Gauntlets) and at_dampe_time",
-            "Ganons Castle Ledge": "can_build_rainbow_bridge"
+            "Ganons Castle Ledge": "can_build_rainbow_bridge or (hookshot_extensions and (Progressive_Hookshot, 3))"
         }
     },
     {

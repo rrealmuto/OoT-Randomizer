@@ -1657,6 +1657,8 @@ def build_bridge_reqs_string(world: World) -> str:
     string = "\x13\x12" # Light Arrow Icon
     if world.settings.bridge == 'open':
         string += "The awakened ones will have #already created a bridge# to the castle where the evil dwells."
+    elif world.settings.bridge == 'never':
+        string += "The awakened ones decided to take the day off."    
     else:
         if world.settings.bridge == 'vanilla':
             item_req_string = "the #Shadow and Spirit Medallions# as well as the #Light Arrows#"
