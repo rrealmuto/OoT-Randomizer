@@ -20,6 +20,9 @@ rainbow_bridge:
     li        at, 6
     beq       t2, at, @@hearts
 
+    li        at, 7
+    beq       t2, at, @@never
+
 @@open:
     li        at, 0
     jr        ra
@@ -155,6 +158,12 @@ rainbow_bridge:
     lh        t8, RAINBOW_BRIDGE_COUNT
     jr        ra
     slt       t2, t7, t8
+
+@@never:
+    li        at, 0
+    jr        ra
+    li        t2, 1
+
 
 @@vanilla:
     li        at, 0x18 ; shadow and spirit medallions

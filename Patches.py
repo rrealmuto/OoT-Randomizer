@@ -1437,6 +1437,8 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     elif world.settings.bridge == 'hearts':
         rom.write_int32(symbol, 6)
         rom.write_int16(count_symbol, world.settings.bridge_hearts * 0x10)
+    elif world.settings.bridge == 'never':
+        rom.write_int32(symbol, 7)
 
     if world.settings.triforce_hunt:
         rom.write_int16(rom.sym('TRIFORCE_PIECES_REQUIRED'), world.triforce_goal)
