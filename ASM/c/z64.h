@@ -1163,6 +1163,12 @@ typedef struct {
     /* 0x0E */ uint16_t   params;
 } ActorEntry; // size = 0x10
 
+typedef struct {
+    /* 0x00 */ int32_t active;
+    /* 0x04 */ z64_xyzf_t tip;
+    /* 0x10 */ z64_xyzf_t base;
+} WeaponInfo; // size = 0x1C
+
 typedef struct
 {
   z64_actor_t  common;               /* 0x0000 */

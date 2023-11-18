@@ -136,6 +136,8 @@ RANDO_CONTEXT:
 .include "fairy_ocarina.asm"
 .include "enemy_spawn_shuffle.asm"
 .include "minimap.asm"
+.include "ovl_arms_hook.asm"
+.include "overlay.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"
