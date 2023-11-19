@@ -1602,7 +1602,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         rom.write_int16(rom.sym('TRIFORCE_HUNT_ENABLED'), 1)
         if (
             world.settings.triforce_hunt_mode == 'ice_percent'
-            and world.settings.triforce_goal == 1
+            and world.triforce_goal == 1
             and world.get_location('Ice Cavern MQ Iron Boots Chest' if world.dungeon_mq['Ice Cavern'] else 'Ice Cavern Iron Boots Chest').item.name == 'Triforce Piece'
         ): # use normal Triforce Hunt behavior for multiworld Ice% or plando shenanigans
             rom.write_byte(rom.sym('ICE_PERCENT'), 1)
