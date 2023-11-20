@@ -2679,7 +2679,7 @@ class SettingInfos:
 
             Wonderitems are invisible items in the game that will drop an
             item under a certain condition. These items will be marked in the game with a
-            sparkle effect when shuffle so they can be easily found.There
+            sparkle effect when shuffled so they can be easily found. There
             are 4 kinds of shuffled wonderitems.
 
             Proximity Drop (Yellow): Gives an item when Link touches it.
