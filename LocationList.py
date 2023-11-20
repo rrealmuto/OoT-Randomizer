@@ -1940,7 +1940,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Shadow Temple MQ Invisible Spikes Silver Rupee Ceiling Middle",("SilverRupee", 0x07, (11,0,16), None,                 'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
     ("Shadow Temple MQ Invisible Spikes Silver Rupee Ceiling Back",  ("SilverRupee", 0x07, (11,0,14), None,                 'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
     # Shadow Temple MQ Wonderitems
-    ("Shadow Temple MQ 3 Spinning Pots Arrow Wonderitem",            ("Wonderitem",   0x07,  (12,0,2), None,                        'Arrows (10)',                           ("Shadow Temple", "Master Quest", "Wonderitem"))),
+    ("Shadow Temple MQ 3 Spinning Pots Wonderitem",                  ("Wonderitem",   0x07,  (12,0,2), None,                        'Arrows (10)',                           ("Shadow Temple", "Master Quest", "Wonderitem"))),
 
     # Shadow Temple Shared
     ("Shadow Temple Bongo Bongo Heart",                              ("BossHeart",    0x18,  0x4F, None,                            'Heart Container',                       ("Shadow Temple", "Shadow Temple MQ", "Vanilla Dungeons", "Master Quest",))),
