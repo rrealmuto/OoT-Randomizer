@@ -16,6 +16,7 @@ Grass Shuffle - Shuffles grass
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v58](#v58)
   * [v57](#v57)
   * [v56](#v56)
   * [v55](#v55)
@@ -77,6 +78,9 @@ Grass Shuffle - Shuffles grass
   * [4.0](#40)
 
 ## RealRob Changelog
+### v58
+  * Fix missing Deku Tree Rotating Spike Skulltula
+
 ### v57
   * Fix missing grass in Lake Hylia
 
