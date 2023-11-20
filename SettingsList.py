@@ -2692,7 +2692,7 @@ class SettingInfos:
                            in Kokiri Forest.
 
             Ordered Multitag (Cyan): Gives an item when a set of tag points are touched
-                              in a specific ordered. The only ordered multitag is the
+                              in a specific order. The only ordered multitag is the
                               grass stepping stones in Kokiri Forest.
         ''',
         default        = False,
