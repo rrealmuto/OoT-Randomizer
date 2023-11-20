@@ -2682,7 +2682,7 @@ class SettingInfos:
             sparkle effect when shuffle so they can be easily found.There
             are 4 kinds of shuffled wonderitems.
 
-            Proximity Drop (Yellow): Gives an item when link touches it.
+            Proximity Drop (Yellow): Gives an item when Link touches it.
 
             Interact Switch (Red): Drops an item when hit with a certain damage type.
                              (Sword, bow, slingshot, or hookshot)
