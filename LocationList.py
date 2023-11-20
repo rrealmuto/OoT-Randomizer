@@ -493,8 +493,8 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Kak Open Grotto Beehive 1",                                    ("Beehive",      0x3E,  (0,0,0x48 + (0x08 * 2)), None,         'Rupees (5)',                            ("Kakariko Village", "Grottos", "Beehives",))),
     ("Kak Open Grotto Beehive 2",                                    ("Beehive",      0x3E,  (0,0,0x49 + (0x08 * 2)), None,         'Rupees (20)',                           ("Kakariko Village", "Grottos", "Beehives",))),
     # Kakariko Village Wonderitems
-    ("Kak Child Construction Wonderitem",                            ("Wonderitem",   0x52,  [(0,0,56), (0,1,49)], None,        'Rupees (20)',                               ("Kakariko Village", "Kakariko", "Wonderitem"))),
-    ("Kak Impas House Wonderitem",                                   ("Wonderitem",   0x37,  (0,0,7), None,                     'Rupees (20)',                               ("Kakariko Village", "Kakariko", "Wonderitem"))),
+    ("Kak Child Construction Wonderitem",                            ("Wonderitem",   0x52,  [(0,0,56), (0,1,49)], None,        'Rupees (20)',                               ("Kakariko Village", "Wonderitem"))),
+    ("Kak Impas House Wonderitem",                                   ("Wonderitem",   0x37,  (0,0,7), None,                     'Rupees (20)',                               ("Kakariko Village", "Wonderitem"))),
 
     # Graveyard
     ("Graveyard Shield Grave Chest",                                 ("Chest",        0x40,  0x00, None,                            'Hylian Shield',                         ("Graveyard", "Grottos", "Chests",))),
@@ -829,8 +829,8 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("GV Storms Grotto Beehive",                                     ("Beehive",      0x3E,  (9,0,0x43 + (0x10 * 2)), None,         'Rupees (20)',                           ("Gerudo Valley", "Grottos", "Beehives",))),
 
     # Gerudo Valley Wonderitems
-    ("GV Adult Upper Waterfall Wonderitem",                          ("Wonderitem",   0x5A, (0,2,41), None,                         'Rupees (20)',                           ("Gerudo Valley", "Gerudo", "Wonderitem"))),
-    ("GV Adult Lower Waterfall Wonderitem",                          ("Wonderitem",   0x5A, (0,2,42), None,                         'Rupees (20)',                           ("Gerudo Valley", "Gerudo", "Wonderitem"))),
+    ("GV Adult Upper Waterfall Wonderitem",                          ("Wonderitem",   0x5A, (0,2,41), None,                         'Rupees (20)',                           ("Gerudo Valley", "Wonderitem"))),
+    ("GV Adult Lower Waterfall Wonderitem",                          ("Wonderitem",   0x5A, (0,2,42), None,                         'Rupees (20)',                           ("Gerudo Valley", "Wonderitem"))),
 
 
     # Gerudo's Fortress
