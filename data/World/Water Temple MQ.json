@@ -8,19 +8,30 @@
             "Water Temple Dark Link Region": "
                 Small_Key_Water_Temple and is_adult and
                 (Longshot or (logic_water_mq_dark_link and Hover_Boots and Hookshot))",
-            "Water Temple Before Boss": "can_use(Longshot)",
+            "Water Temple Before Boss Lower": "can_use(Longshot)",
             "Farores Wind Warp": "can_use(Farores_Wind)"
+        }
+    },
+    {
+        "region_name": "Water Temple Before Boss Lower",
+        "dungeon": "Water Temple",
+        "savewarp": "Lake Hylia -> Water Temple Lobby",
+        "locations": {
+            "Water Temple MQ Boss Hallway Hookshot Wonderitem 1": "can_use(Hookshot)",
+            "Water Temple MQ Boss Hallway Hookshot Wonderitem 2": "can_use(Hookshot)",
+            "Wall Fairy": "has_bottle and can_use(Hookshot)"
+        },
+        "exits": {
+            "Water Temple Before Boss": "True",
+            "Water Temple Lobby": "True"
         }
     },
     {
         "region_name": "Water Temple Before Boss",
         "dungeon": "Water Temple",
         "savewarp": "Lake Hylia -> Water Temple Lobby",
-        "locations": {
-            "Water Temple MQ Boss Hallway Hookshot Wonderitem 1": "can_use(Hookshot)",
-            "Water Temple MQ Boss Hallway Hookshot Wonderitem 2": "can_use(Hookshot)"
-        },
         "exits": {
+            "Water Temple Before Boss Lower": "not_ohko or can_use(Nayrus_Love) or can_use(Longshot)",
             "Morpha Boss Room": "Boss_Key_Water_Temple"
         }
     },
