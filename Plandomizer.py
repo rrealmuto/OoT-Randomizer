@@ -905,11 +905,6 @@ class WorldDistribution:
             if record.item == '#Junk' and location.type == 'Song' and world.settings.shuffle_song_items == 'song' and not any(name in song_list and r.count for name, r in world.settings.starting_items.items()):
                 record.item = '#JunkSong'
 
-            adult_trade_matcher  = self.pattern_matcher("#AdultTrade")
-            if adult_trade_matcher(record.item) and not world.settings.adult_trade_shuffle and world.settings.adult_trade_start:
-                # Override the adult trade item used to control trade quest flags during patching
-                world.selected_adult_trade_item = record.item
-
             ignore_pools = None
             is_invert = self.pattern_matcher(record.item)('!')
             if is_invert and location.type != 'Song' and world.settings.shuffle_song_items == 'song':
@@ -1204,7 +1199,7 @@ class Distribution:
                     or update_dict['_settings'].get('starting_songs', None)):
                 update_dict['_settings']['starting_items'] = {}
 
-        self.settings.settings_dict.update(update_dict['_settings'])
+        self.settings.update(update_dict['_settings'])
         if 'settings' in self.src_dict:
             validate_settings(self.src_dict['settings'])
             self.src_dict['_settings'] = self.src_dict['settings']

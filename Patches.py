@@ -2577,7 +2577,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
             song_layout_in_byte_form |= 1 << 3
         if '>' in epona_notes:
             song_layout_in_byte_form |= 1 << 4
-        rom.write_int16(rom.sym('EPONAS_SONG_NOTES'), song_layout_in_byte_form)
+        rom.write_byte(rom.sym('EPONAS_SONG_NOTES'), song_layout_in_byte_form)
 
     if world.settings.shuffle_enemy_spawns != 'off':
         rom.write_byte(rom.sym('CFG_ENEMY_SPAWN_SHUFFLE'), 1)
