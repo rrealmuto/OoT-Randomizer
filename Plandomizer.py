@@ -1224,9 +1224,10 @@ class Distribution:
                 #TODO add starting pieces from other skipped checks (Links Pocket, pre-completed dungeons)
                 if world.skip_child_zelda and 'Song from Impa' in world.distribution.locations and world.distribution.locations['Song from Impa'].item == triforce_piece:
                     total_starting_count += 1
-            total_count += world.triforce_count
-            if world.settings.triforce_hunt_mode == 'ice_percent': #TODO instead of hardcoding Ice%, scan filled locations
-                total_count += 1
+            if world.settings.triforce_hunt:
+                total_count += world.triforce_count_per_world
+                if world.settings.triforce_hunt_mode == 'ice_percent': #TODO instead of hardcoding Ice%, scan filled locations
+                    total_count += 1
 
         if total_starting_count >= world.triforce_goal:
             raise RuntimeError('Too many Triforce Pieces in starting items. There should be at most %d and there are %d.' % (world.triforce_goal - 1, total_starting_count))

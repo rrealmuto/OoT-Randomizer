@@ -130,7 +130,7 @@ def build_world_graphs(world_settings: list[Settings]) -> list[World]:
         logger.info('Creating Overworld')
 
         # Load common json rule files (those used regardless of MQ status)
-        if settings.logic_rules == 'glitched':
+        if world.settings.logic_rules == 'glitched':
             path = 'Glitched World'
         else:
             path = 'World'
@@ -143,7 +143,7 @@ def build_world_graphs(world_settings: list[Settings]) -> list[World]:
         savewarps_to_connect += world.create_dungeons()
         world.create_internal_locations()
 
-        if settings.shopsanity != 'off':
+        if world.settings.shopsanity != 'off':
             world.random_shop_prices()
         world.set_scrub_prices()
 
@@ -157,7 +157,7 @@ def build_world_graphs(world_settings: list[Settings]) -> list[World]:
         if world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward'):
             world.fill_bosses()
 
-    if settings.triforce_hunt:
+    if any(world.settings.triforce_hunt for world in worlds):
         settings.distribution.configure_triforce_hunt(worlds)
 
     logger.info('Setting Entrances.')
