@@ -649,6 +649,7 @@ class SettingInfos:
             'all':      'All',
             'goals':    'All Goals',
             'beatable': 'Required Only',
+            'random':   'Random Choice',
         },
         gui_tooltip    = '''\
             This determines which items and locations are guaranteed to be reachable.
@@ -663,6 +664,8 @@ class SettingInfos:
             distributions that define custom goals or remove the default goals will affect item placement as well.
 
             'Required Only': Only items and locations required to beat the game will be guaranteed reachable.
+            
+            'Random Choice': Picks one of the other options at random.
         ''',
         gui_params={
             "hide_when_disabled": True,
@@ -670,22 +673,32 @@ class SettingInfos:
         shared         = True,
     )
 
-    triforce_hunt = Checkbutton(
+    triforce_hunt = Combobox(
         gui_text       = 'Triforce Hunt',
+        default        = 'off',
+        choices        = {
+            'off':    'Off',
+            'on':     'On',
+            'random': 'Random',
+        },
         gui_tooltip    = '''\
             Pieces of the Triforce have been scattered around the world.
             Find some of them to beat the game.
 
             Game is saved on completion, and Ganon's Castle key is given
             if beating the game again is desired.
+            
+            For the random setting, a random number of pieces will spawn
+            and another random number will be required, with the chosen
+            number on the slider below acting as a maximum.
         ''',
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
         },
         disable        = {
-            True:  {'settings': ['shuffle_ganon_bosskey', 'ganon_bosskey_stones', 'ganon_bosskey_medallions', 'ganon_bosskey_rewards', 'ganon_bosskey_tokens', 'ganon_bosskey_hearts']},
-            False: {'settings': ['triforce_count_per_world', 'triforce_goal_per_world']},
+            'on':     {'settings': ['shuffle_ganon_bosskey', 'ganon_bosskey_stones', 'ganon_bosskey_medallions', 'ganon_bosskey_rewards', 'ganon_bosskey_tokens', 'ganon_bosskey_hearts']},
+            'off':    {'settings': ['triforce_count_per_world', 'triforce_goal_per_world']},
         },
     )
 
@@ -742,6 +755,7 @@ class SettingInfos:
             'dungeons':   "Dungeons",
             'tokens':     "Tokens",
             'hearts':     "Hearts",
+            'random':     "Random",
         },
         gui_tooltip    = '''\
             Sets the condition for the Light Arrow Cutscene
@@ -753,14 +767,19 @@ class SettingInfos:
             'Dungeons': A configurable amount of Dungeon Rewards.
             'Tokens': A configurable amount of Gold Skulltula Tokens.
             'Hearts': A configurable amount of hearts.
+            'Random Choice': Totally random requirement. The number of
+            Hearts or Tokens will be a random number with your choice
+            below as a maximum.
         ''',
         shared         = True,
         disable        = {
-            '!stones':     {'settings': ['lacs_stones']},
-            '!medallions': {'settings': ['lacs_medallions']},
-            '!dungeons':   {'settings': ['lacs_rewards']},
-            '!tokens':     {'settings': ['lacs_tokens']},
-            '!hearts':     {'settings': ['lacs_hearts']},
+            'vanilla':    {'settings': ['lacs_stones','lacs_medallions','lacs_rewards','lacs_tokens','lacs_hearts']},
+            'stones':     {'settings': ['lacs_medallions','lacs_rewards','lacs_tokens','lacs_hearts']},
+            'medallions': {'settings': ['lacs_stones','lacs_rewards','lacs_tokens','lacs_hearts']},
+            'dungeons':   {'settings': ['lacs_stones','lacs_medallions','lacs_tokens','lacs_hearts']},
+            'tokens':     {'settings': ['lacs_stones','lacs_medallions','lacs_rewards','lacs_hearts']},
+            'hearts':     {'settings': ['lacs_stones','lacs_medallions','lacs_rewards','lacs_tokens']},
+            'random':     {'settings': ['lacs_stones','lacs_medallions','lacs_rewards']},
         },
         gui_params     = {
             'optional': True,
@@ -770,23 +789,6 @@ class SettingInfos:
                 ('stones',     1),
                 ('dungeons',   1),
             ],
-        },
-    )
-
-    lacs_medallions = Scale(
-        gui_text         = "Medallions Required for LACS",
-        default          = 6,
-        minimum          = 1,
-        maximum          = 6,
-        gui_tooltip      = '''\
-            Select the amount of Medallions required to trigger the Light Arrow Cutscene.
-        ''',
-        shared           = True,
-        disabled_default = 0,
-        gui_params       = {
-            'optional':           True,
-            "hide_when_disabled": True,
-            'distribution':       [(6, 1)],
         },
     )
 
@@ -804,6 +806,23 @@ class SettingInfos:
             'optional':           True,
             "hide_when_disabled": True,
             'distribution':       [(3, 1)],
+        },
+    )
+
+    lacs_medallions = Scale(
+        gui_text         = "Medallions Required for LACS",
+        default          = 6,
+        minimum          = 1,
+        maximum          = 6,
+        gui_tooltip      = '''\
+            Select the amount of Medallions required to trigger the Light Arrow Cutscene.
+        ''',
+        shared           = True,
+        disabled_default = 0,
+        gui_params       = {
+            'optional':           True,
+            "hide_when_disabled": True,
+            'distribution':       [(6, 1)],
         },
     )
 
@@ -882,15 +901,20 @@ class SettingInfos:
             'Dungeons': A configurable amount of Dungeon Rewards.
             'Gold Skulltula Tokens': A configurable amount of Gold Skulltula Tokens.
             'Hearts': A configurable amount of hearts.
-            'Random': A random Rainbow Bridge requirement excluding Gold Skulltula Tokens.
+            'Random': A completely random Rainbow Bridge requirement. The number of
+            hearts or skulltullas required will be a random number with your choice 
+            for that setting as a maximum.
         ''',
         shared         = True,
         disable        = {
-            '!stones':     {'settings': ['bridge_stones']},
-            '!medallions': {'settings': ['bridge_medallions']},
-            '!dungeons':   {'settings': ['bridge_rewards']},
-            '!tokens':     {'settings': ['bridge_tokens']},
-            '!hearts':     {'settings': ['bridge_hearts']},
+            'open':       {'settings': ['bridge_stones', 'bridge_medallions', 'bridge_rewards', 'bridge_tokens', 'bridge_hearts']},
+            'vanilla':    {'settings': ['bridge_stones', 'bridge_medallions', 'bridge_rewards', 'bridge_tokens', 'bridge_hearts']},
+            'stones':     {'settings': ['bridge_medallions', 'bridge_rewards', 'bridge_tokens', 'bridge_hearts']},
+            'medallions': {'settings': ['bridge_stones', 'bridge_rewards', 'bridge_tokens', 'bridge_hearts']},
+            'dungeons':   {'settings': ['bridge_stones', 'bridge_medallions', 'bridge_tokens', 'bridge_hearts']},
+            'tokens':     {'settings': ['bridge_stones', 'bridge_medallions', 'bridge_rewards', 'bridge_hearts']},
+            'hearts':     {'settings': ['bridge_stones', 'bridge_medallions', 'bridge_rewards', 'bridge_tokens']},
+            'random':     {'settings': ['bridge_stones', 'bridge_medallions', 'bridge_rewards']},
         },
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -1445,13 +1469,18 @@ class SettingInfos:
         shared          = True,
     )
 
-    keyring_give_bk = Checkbutton(
+    keyring_give_bk = Combobox(
         gui_text       = 'Key Rings give Boss Keys',
+        choices        = {
+            'off':    'Off',
+            'on':     'On',
+            'random': 'Random',
+        },
+        default        = 'off',
         gui_tooltip    = '''\
             Boss Keys will be included in the Key Ring for the specific dungeon.
             This does not apply to the Ganon's Castle Boss Key.
         ''',
-        default        = False,
         shared         = True,
         gui_params     = {
             "hide_when_disabled": True,
@@ -1538,9 +1567,9 @@ class SettingInfos:
         ''',
         shared         = True,
         disable        = {
-            'off': {'settings' : ['silver_rupee_pouches']},
-            'all': {'settings' : ['silver_rupee_pouches']},
-            'random': {'setings' : ['silver_rupee_pouches']},
+            'off':    {'settings' : ['silver_rupee_pouches']},
+            'all':    {'settings' : ['silver_rupee_pouches']},
+            'random': {'settings' : ['silver_rupee_pouches']},  
         },
         gui_params     = {
             "hide_when_disabled": True,
@@ -1664,6 +1693,7 @@ class SettingInfos:
             'open':        'Open Forest',
             'closed_deku': 'Closed Deku',
             'closed':      'Closed Forest',
+            'random':      'Random Choice',
             },
         gui_tooltip    = '''\
             'Open Forest': Mido no longer blocks the path to the
@@ -1686,6 +1716,8 @@ class SettingInfos:
             or "Randomize Overworld Spawns" on, Closed Forest will instead
             be treated as Closed Deku with starting age Child and WILL NOT
             guarantee that these items are available in the forest area.
+            
+            'Random Choise': Picks either 'Open Forest' or 'Closed Deku' at random.
         ''',
         shared         = True,
         disable        = {
@@ -1708,6 +1740,7 @@ class SettingInfos:
             'open':   'Open Gate',
             'zelda':  "Zelda's Letter Opens Gate",
             'closed': 'Closed Gate',
+            'random': 'Random Choice',
             },
         gui_tooltip    = '''\
             This changes the behavior of the Kakariko Gate to
@@ -1725,6 +1758,8 @@ class SettingInfos:
 
             "Closed": The gate and the Happy Mask Shop both remain closed
             until showing Zelda's Letter to the guard in Kakariko.
+            
+            "Random Choice": Picks one of these at random.
         ''',
         shared         = True,
         gui_params     = {
@@ -1732,13 +1767,22 @@ class SettingInfos:
         },
     )
 
-    open_door_of_time = Checkbutton(
-        gui_text       = 'Open Door of Time',
+    open_door_of_time = Combobox(
+        gui_text       = 'Door of Time',
+        default        = 'closed',
+        choices        = {
+            'open':   'Open Door of Time',
+            'closed': 'Closed',
+            'random': 'Random Choice',
+            },
         gui_tooltip    = '''\
-            The Door of Time starts opened instead of needing to
-            play the Song of Time. If this is not set, only
-            an Ocarina and Song of Time must be found to open
-            the Door of Time.
+            This changes the behavior of the Door of Time.
+            
+            "Open Door of Time": The Door of Time is open by default.
+            
+            "Closed": Opening the Door of Time will require an Ocaina and the Song of Time.
+            
+            "Random Choice": Picks one at random.
         ''',
         shared         = True,
         gui_params     = {
@@ -1753,6 +1797,7 @@ class SettingInfos:
             'closed': 'Default Behavior (Closed)',
             'adult':  'Open For Adult',
             'open':   'Always Open',
+            'random': 'Random Choice',
         },
         gui_tooltip    = '''\
             'Default Behavior': King Zora obstructs the way to
@@ -1766,6 +1811,8 @@ class SettingInfos:
             'Always Open': King Zora starts as moved in
             both the child and adult eras. This also removes
             Ruto's Letter from the pool since it can't be used.
+            
+            'Random Choice': Picks one of these at random.
         ''',
         shared         = True,
         gui_params     = {
@@ -1780,6 +1827,7 @@ class SettingInfos:
             'normal': 'Default Behavior',
             'fast':   'Rescue One Carpenter',
             'open':   "Open Gerudo's Fortress",
+            'random': 'Random choice',
         },
         gui_tooltip    = '''\
             'Rescue One Carpenter': Only the bottom left carpenter,
@@ -1791,6 +1839,8 @@ class SettingInfos:
             the start of the game, and if 'Shuffle Gerudo Card' is disabled,
             the player starts with the Gerudo Card in the inventory
             allowing access to Gerudo Training Ground.
+            
+            'Random Choice': Picks one of the other three at random.
         ''',
         shared         = True,
         disable        = {
@@ -2549,6 +2599,7 @@ class SettingInfos:
             'random_giant':    "Giant's Wallet",
             'random_tycoon':   "Tycoon's Wallet",
             'affordable':      "Affordable",
+            'random_choice':   "Random Choice",
         },
         gui_tooltip      = '''\
             Controls the randomization of prices for shopsanity items.
@@ -2565,6 +2616,8 @@ class SettingInfos:
 
             'Affordable': Shop prices for shopsanity items will be
             fixed to 10 rupees.
+            
+            'Random Choice': Picks one of the other options at random.
         ''',
         disabled_default =  'random',
         shared           = True,
@@ -3184,10 +3237,16 @@ class SettingInfos:
         shared         = True,
     )
 
-    no_epona_race = Checkbutton(
-        gui_text       = 'Skip Epona Race',
+    no_epona_race = Combobox(
+        gui_text       = 'Epona Race',
+        default        = 'off',
+        choices        = {
+            'off':    'Vanilla',
+            'on':     'Skip',
+            'random': 'Random',
+        },
         gui_tooltip    = '''\
-            Epona can be summoned with Epona's Song
+            If set to 'Skip' Epona can be summoned with Epona's Song
             without needing to race Ingo.
         ''',
         shared         = True,
@@ -3212,11 +3271,17 @@ class SettingInfos:
         shared         = True,
     )
 
-    complete_mask_quest = Checkbutton(
-        gui_text       = 'Complete Mask Quest',
+    complete_mask_quest = Combobox(
+        gui_text       = 'Mask Quest',
+        default        = 'off',
+        choices        = {
+            'off':    'Vanilla',
+            'on':     'Skip',
+            'random': 'Random',
+        },
         gui_tooltip    = '''\
-            Once the Happy Mask Shop is opened,
-            all masks will be available to be borrowed.
+            If set to 'Skip' all masks will be available to be 
+            borrowed as soon as the Happy Mask Shop is opened.
         ''',
         shared         = True,
     )
@@ -3242,12 +3307,17 @@ class SettingInfos:
         shared         = True,
     )
 
-    free_scarecrow = Checkbutton(
-        gui_text       = "Free Scarecrow's Song",
+    free_scarecrow = Combobox(
+        gui_text       = "Scarecrow's Song",
+        default        = 'off',
+        choices        = {
+            'off':    'Vanilla',
+            'on':     'Free',
+            'random': 'Random',
+        },
         gui_tooltip    = '''\
-            Pulling out the Ocarina near a
-            spot at which Pierre can spawn will
-            do so, without needing the song.
+            When set to 'Free', just pulling out the Ocarina will
+            summon Pierre automatically, without needing the song.
         ''',
         shared         = True,
     )
@@ -3274,26 +3344,57 @@ class SettingInfos:
         shared         = True,
     )
 
-    plant_beans = Checkbutton(
+    plant_beans = Combobox(
         gui_text       = 'Plant Magic Beans',
+        default        = 'off',
+        choices        = {
+            'off':    'None',
+            'on':     'Select Locations',
+            'random': 'Random',
+        },
         gui_tooltip    = '''\
-            Enabling this plants all 10 magic beans in soft soil
-            causing the bean plants to be available as adult. You
-            can still get beans normally.
+            Select whether to have any magic beans already planted 
+            in soft soil and available to ride as adult. You can still 
+            get beans normally.
         ''',
-        default        = False,
+        disable        = {
+            '!on': {'settings' : ['bean_locations']},
+        },
         shared         = True,
+    )
+
+    bean_locations = MultipleSelect(
+        gui_text        = 'Bean Locations',
+        choices         = {
+            'Zora River': "Zora River",
+            'Graveyard': "Graveyard",
+            'Kokiri Forest': "Kokiri Forest",
+            'Lost Woods Near Bridge': "Lost Woods Near Bridge",
+            'Lost Woods Near Grotto': "Lost Woods Near Grotto",
+            'Death Mountain Trail': "Death Mountain Trail",
+            'Lake Hylia': "Lake Hylia",
+            'Gerudo Valley': "Gerudo Valley",
+            'Death Mountain Crater': "Death Mountain Crater",
+            'Desert Colossus': "Desert Colossus",
+        },
+        gui_tooltip    = '''\
+            Select puzzles with silver rupee pouches
+            instead of individual silver rupees.
+        ''',
+        default         = [],
+        gui_params     = {
+            "hide_when_disabled": True,
+        },
+        shared          = True,
     )
 
     chicken_count_random = Checkbutton(
         gui_text       = 'Random Cucco Count',
         gui_tooltip    = '''\
             Anju will give a reward for collecting a random
-            number of Cuccos.
+            number of Cuccos. The slider determines the maximum
+            number it can be.
         ''',
-        disable        = {
-            True: {'settings' : ['chicken_count']},
-        },
         shared         = True,
     )
 
@@ -3316,11 +3417,9 @@ class SettingInfos:
         gui_text       = 'Random Big Poe Target Count',
         gui_tooltip    = '''\
             The Poe buyer will give a reward for turning
-            in a random number of Big Poes.
+            in a random number of Big Poes. The slider 
+            determines the maximum number it can be.
         ''',
-        disable        = {
-            True: {'settings' : ['big_poe_count']},
-        },
         shared         = True,
     )
 
@@ -3389,10 +3488,11 @@ class SettingInfos:
         gui_text       = 'Randomize Ocarina Melodies',
         default        = 'off',
         choices        = {
-            'off': 'Off',
-            'frog': 'Frog Songs Only',
-            'warp': 'Warp Songs Only',
-            'all':  'All Songs',
+            'off':    'Off',
+            'frog':   'Frog Songs Only',
+            'warp':   'Warp Songs Only',
+            'all':    'All Songs',
+            'random': 'Random Choice',
         },
         gui_tooltip    = '''\
             Will need to memorize a new set of songs.
@@ -3755,14 +3855,19 @@ class SettingInfos:
         shared         = True,
     )
 
-    blue_fire_arrows = Checkbutton(
+    blue_fire_arrows = Combobox(
         gui_text       = 'Blue Fire Arrows',
+        default        = 'off',
+        choices        = {
+            'off':    'Off',
+            'on':     'On',
+            'random': 'Random',
+        },
         gui_tooltip    = '''\
             Ice arrows gain the power of blue fire.
             They can be used to melt red ice
             and break the mud walls in Dodongo's Cavern.
         ''',
-        default        = False,
         shared         = True,
     )
 

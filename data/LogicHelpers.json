@@ -25,7 +25,7 @@
     "Nuts": "Buy_Deku_Nut_5 or Buy_Deku_Nut_10 or Deku_Nut_Drop",
     "Sticks": "Buy_Deku_Stick_1 or Deku_Stick_Drop",
     "Bugs": "'Bugs' or Buy_Bottle_Bug",
-    "Blue_Fire": "'Blue Fire' or Buy_Blue_Fire or (blue_fire_arrows and can_use(Blue_Fire_Arrows))",
+    "Blue_Fire": "'Blue Fire' or Buy_Blue_Fire or (blue_fire_arrows == 'on' and can_use(Blue_Fire_Arrows))",
     "Fish": "'Fish' or Buy_Fish",
     "Fairy": "'Fairy' or Buy_Fairys_Spirit",
     # "Big_Poe": "'Big Poe'",
@@ -50,7 +50,7 @@
     "can_summon_gossip_fairy": "can_play(Zeldas_Lullaby) or can_play(Eponas_Song) or can_play(Song_of_Time) or can_play(Suns_Song)",
     "can_summon_gossip_fairy_without_suns": "can_play(Zeldas_Lullaby) or can_play(Eponas_Song) or can_play(Song_of_Time)",
     "can_take_damage": "damage_multiplier != 'ohko' or Fairy or can_use(Nayrus_Love)",
-    "can_plant_bean": "plant_beans or (is_child and (Magic_Bean, 10))",
+    "can_plant_bean": "is_child and (Magic_Bean, 10)",
     "can_play(song)": "Ocarina and song and (not shuffle_individual_ocarina_notes or has_all_notes_for_song(song))",
     "can_open_bomb_grotto": "can_blast_or_smash and (Stone_of_Agony or logic_grottos_without_agony)",
     "can_open_storm_grotto": "can_play(Song_of_Storms) and (Stone_of_Agony or logic_grottos_without_agony)",
@@ -83,7 +83,7 @@
     # Biggoron's trade path
     # ER with certain settings disables timers and prevents items from reverting on save warp.
     # Otherwise, to get to Biggoron requires: a trick, clearing boulders on DMT, or Darunia's Chamber
-    "guarantee_trade_path": "disable_trade_revert or plant_beans or can_blast_or_smash or 'Stop GC Rolling Goron as Adult' or (logic_dmt_climb_hovers and can_use(Hover_Boots)) or (logic_biggoron_bolero and not warp_songs and can_play(Bolero_of_Fire) and at('DMC Central Local', can_use(Hookshot) or can_use(Hover_Boots) or can_plant_bean))",
+    "guarantee_trade_path": "disable_trade_revert or 'Death Mountain Trail' in bean_locations or can_blast_or_smash or 'Stop GC Rolling Goron as Adult' or (logic_dmt_climb_hovers and can_use(Hover_Boots)) or (logic_biggoron_bolero and not warp_songs and can_play(Bolero_of_Fire) and at('DMC Central Local', can_use(Hookshot) or can_use(Hover_Boots) or can_plant_bean))",
     "guarantee_hint": "(hints == 'mask' and Mask_of_Truth) or (hints == 'agony' and Stone_of_Agony) or (hints != 'mask' and hints != 'agony')",
     "has_fire_source": "can_use(Dins_Fire) or can_use(Fire_Arrows)",
     "has_fire_source_with_torch": "has_fire_source or (is_child and Sticks)",
@@ -124,7 +124,7 @@
     "can_kill_wallmaster" : "has_soul(Wallmaster) and (is_adult or can_child_attack)",
     "can_kill_likelike": "has_soul(Likelike) and (is_adult or (is_child and (Kokiri_Sword or Sticks or has_explosives or can_use(Dins_Fire))))",
     "can_kill_lizalfos": "has_soul(Lizalfos_and_Dinalfos) and ((Slingshot or Sticks or Bombs or Kokiri_Sword) or is_adult)",
-    "can_kill_deku_baba": "has_soul(Deku_Baba) and (can_use(Fire_Arrows) or can_use(Ice_Arrows) or can_use(Light_Arrows) or (blue_fire_arrows and can_use(Blue_Fire_Arrows)))",
+    "can_kill_deku_baba": "has_soul(Deku_Baba) and (can_use(Fire_Arrows) or can_use(Ice_Arrows) or can_use(Light_Arrows) or (blue_fire_arrows == 'on' and can_use(Blue_Fire_Arrows)))",
     "can_kill_dodongo": "has_soul(Dodongo) and (is_adult or Kokiri_Sword or Sticks or Slingshot or has_explosives)",
     "can_kill_gohma_larva": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)",
     "can_kill_baby_dodongo": "has_soul(Baby_Dodongo) and (is_adult or (Kokiri_Sword or Sticks or Slingshot or Boomerang or has_explosives))",
