@@ -1,6 +1,6 @@
 {
   "settings": {
-    "triforce_hunt": true,
+    "triforce_hunt": "on",
     "triforce_goal_per_world": 5,
     "junk_ice_traps": "off"
   },
