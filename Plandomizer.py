@@ -355,7 +355,7 @@ class WorldDistribution:
                     if self.distribution.settings.shuffle_song_items != "any":
                         self.major_group = [x for x in self.major_group if x not in item_groups['Song']]
                     # Special handling for things not included in base_pool
-                    if self.distribution.settings.triforce_hunt:
+                    if self.distribution.settings.triforce_hunt == 'on':
                         self.major_group.append('Triforce Piece')
                     major_tokens = ((self.distribution.settings.shuffle_ganon_bosskey == 'on_lacs' and
                             self.distribution.settings.lacs_condition == 'tokens') or
@@ -533,9 +533,9 @@ class WorldDistribution:
             if record.type == 'set':
                 if item_name == '#Junk':
                     raise ValueError('#Junk item group cannot have a set number of items')
-                elif item_name == 'Ice Arrows' and world.settings.blue_fire_arrows:
+                elif item_name == 'Ice Arrows' and world.settings.blue_fire_arrows == 'on':
                     raise ValueError('Cannot add Ice Arrows to item pool with Blue Fire Arrows enabled')
-                elif item_name == 'Blue Fire Arrows' and not world.settings.blue_fire_arrows:
+                elif item_name == 'Blue Fire Arrows' and world.settings.blue_fire_arrows == 'off':
                     raise ValueError('Cannot add Blue Fire Arrows to item pool with Blue Fire Arrows disabled')
                 elif child_trade_matcher(item_name) and item_name not in world.settings.shuffle_child_trade:
                     remove_trade.append(item_name)
@@ -590,7 +590,7 @@ class WorldDistribution:
                     raise KeyError('Tried to start with a Pocket Egg or Pocket Cucco but could not remove it from the item pool. Are both Pocket Egg and Pocket Cucco shuffled?')
             elif adult_trade_matcher(item_name) and not world.settings.adult_trade_shuffle:
                 self.pool_remove_item([pool], "#AdultTrade", record.count)
-            elif item_name == 'Ice Arrows' and world.settings.blue_fire_arrows:
+            elif item_name == 'Ice Arrows' and world.settings.blue_fire_arrows == 'on':
                 self.pool_remove_item([pool], "Blue Fire Arrows", record.count)
             elif item_name in ['Weird Egg', 'Chicken'] and world.settings.shuffle_child_trade:
                 try:
@@ -987,9 +987,9 @@ class WorldDistribution:
                     raise RuntimeError(
                         'Too many child trade items were added to world %d, and not enough child trade items are available in the item pool to be removed.' % (
                                     self.id + 1))
-            elif record.item == "Ice Arrows" and worlds[0].settings.blue_fire_arrows:
+            elif record.item == "Ice Arrows" and worlds[0].settings.blue_fire_arrows == 'on':
                 raise ValueError('Cannot add Ice Arrows to item pool with Blue Fire Arrows enabled')
-            elif record.item == "Blue Fire Arrows" and not worlds[0].settings.blue_fire_arrows:
+            elif record.item == "Blue Fire Arrows" and worlds[0].settings.blue_fire_arrows == 'off':
                 raise ValueError('Cannot add Blue Fire Arrows to item pool with Blue Fire Arrows disabled')
             else:
                 try:
@@ -1131,7 +1131,7 @@ class WorldDistribution:
             for dungeon in world.dungeons:
                 if (dungeon.name in world.settings.key_rings and dungeon.name != 'Ganons Castle'
                     and dungeon.shuffle_smallkeys == 'remove' and dungeon.shuffle_bosskeys != 'remove'
-                    and world.settings.keyring_give_bk and len(dungeon.boss_key) > 0):
+                    and world.settings.keyring_give_bk == 'on' and len(dungeon.boss_key) > 0):
                     items[dungeon.boss_key[0].name] = StarterRecord(1)
 
         effective_adult_trade_item_index = -1

@@ -99,11 +99,6 @@ class World:
             raise ValueError("Triforces required cannot be more than the triforce count.")
         self.triforce_goal: int = settings.triforce_goal_per_world * settings.world_count
 
-        if settings.triforce_hunt:
-            # Pin shuffle_ganon_bosskey to 'triforce' when triforce_hunt is enabled
-            # (specifically, for randomize_settings)
-            self.settings.shuffle_ganon_bosskey = 'triforce'
-
         # trials that can be skipped will be decided later
         self.skipped_trials: dict[str, bool] = {
             'Forest': False,
@@ -160,7 +155,12 @@ class World:
 
         if resolve_randomized_settings:
             self.resolve_random_settings()
-
+        
+        if self.settings.triforce_hunt == 'on':
+            # Pin shuffle_ganon_bosskey to 'triforce' when triforce_hunt is enabled
+            # (specifically, for randomize_settings)
+            self.settings.shuffle_ganon_bosskey = 'triforce'
+        
         self.song_notes: dict[str, Song] = generate_song_list(self,
             frog=settings.ocarina_songs in ('frog', 'all'),
             warp=settings.ocarina_songs in ('warp', 'all'),
@@ -379,15 +379,53 @@ class World:
         return new_world
 
     def set_random_bridge_values(self) -> None:
+        if self.settings.bridge == 'stones':
+            self.settings.bridge_stones = random.randint(1,3)
+            self.randomized_list.append('bridge_stones')
         if self.settings.bridge == 'medallions':
-            self.settings.bridge_medallions = 6
+            self.settings.bridge_medallions = random.randint(1,6)
             self.randomized_list.append('bridge_medallions')
         if self.settings.bridge == 'dungeons':
-            self.settings.bridge_rewards = 9
+            self.settings.bridge_rewards = random.randint(1,9)
             self.randomized_list.append('bridge_rewards')
-        if self.settings.bridge == 'stones':
-            self.settings.bridge_stones = 3
-            self.randomized_list.append('bridge_stones')
+        if self.settings.bridge == 'tokens':
+            randmax = self.settings.bridge_tokens
+            self.settings.bridge_tokens = random.randint(1,randmax)
+            self.randomized_list.append('bridge_tokens')
+        if self.settings.bridge == 'hearts':
+            randmax = self.settings.bridge_hearts
+            self.settings.bridge_hearts = random.randint(4,randmax)
+            self.randomized_list.append('bridge_hearts')
+
+    def set_random_triforce_values(self) -> None:
+        if self.settings.triforce_hunt == 'on':
+            rannum1 = random.randint(int(self.settings.triforce_count_per_world/2),self.settings.triforce_count_per_world)
+            rannum2 = rannum1+1
+            while rannum1 < rannum2:
+                rannum2 = random.randint(int(self.settings.triforce_goal_per_world/2),self.settings.triforce_goal_per_world)
+            self.settings.triforce_count_per_world = rannum1
+            self.settings.triforce_goal_per_world = rannum2
+            self.randomized_list.append('triforce_count_per_world')
+            self.randomized_list.append('triforce_goal_per_world')
+
+    def set_random_lacs_values(self) -> None:
+        if self.settings.lacs_condition == 'stones':
+            self.settings.lacs_stones = random.randint(1,3)
+            self.randomized_list.append('lacs_stones')
+        if self.settings.lacs_condition == 'medallions':
+            self.settings.lacs_medallions = random.randint(1,6)
+            self.randomized_list.append('lacs_medallions')
+        if self.settings.lacs_condition == 'dungeons':
+            self.settings.lacs_rewards = random.randint(1,9)
+            self.randomized_list.append('lacs_rewards')
+        if self.settings.lacs_condition == 'tokens':
+            randmax = self.settings.lacs_tokens
+            self.settings.lacs_tokens = random.randint(1,randmax)
+            self.randomized_list.append('lacs_tokens')
+        if self.settings.lacs_condition == 'hearts':
+            randmax = self.settings.lacs_hearts
+            self.settings.lacs_hearts = random.randint(4,randmax)
+            self.randomized_list.append('lacs_hearts')
 
     def resolve_random_settings(self) -> None:
         # evaluate settings (important for logic, nice for spoiler)
@@ -419,8 +457,37 @@ class World:
                         or (setting == 'ganon_bosskey_tokens' and self.settings.shuffle_ganon_bosskey != 'tokens') \
                         or (setting == 'ganon_bosskey_hearts' and self.settings.shuffle_ganon_bosskey != 'hearts'):
                     self.randomized_list.remove(setting)
+        
+        # Choose Reachable Locations random setting
+        if self.settings.reachable_locations == 'random':
+            self.settings.reachable_locations = random.choice(['all', 'goals', 'beatable'])
+            self.randomized_list.append('reachable_locations')
+
+        # Determine random Open settings
+        if self.settings.open_forest == 'random':
+            self.settings.open_forest = random.choice(['open', 'closed_deku'])
+            self.randomized_list.append('open_forest')
+        if self.settings.open_kakariko == 'random':
+            self.settings.open_kakariko = random.choice(['open', 'zelda', 'closed'])
+            self.randomized_list.append('open_kakariko')
+        if self.settings.open_door_of_time == 'random':
+            self.settings.open_door_of_time = random.choice(['open', 'closed'])
+            self.randomized_list.append('open_door_of_time')
+        if self.settings.zora_fountain == 'random':
+            self.settings.zora_fountain = random.choice(['closed', 'adult', 'open'])
+            self.randomized_list.append('zora_fountain')
+        if self.settings.gerudo_fortress == 'random':
+            self.settings.gerudo_fortress = random.choice(['normal', 'fast', 'open'])
+            self.randomized_list.append('gerudo_fortress')
+
+        # Triforce hunt settings
+        if self.settings.triforce_hunt == 'random':
+            self.settings.triforce_hunt = random.choice(['off', 'on'])
+            self.randomized_list.append('triforce_hunt')
+            self.set_random_triforce_values()
+        
         if self.settings.big_poe_count_random and 'big_poe_count' not in dist_keys:
-            self.settings.big_poe_count = random.randint(1, 10)
+            self.settings.big_poe_count = random.randint(1, self.settings.big_poe_count)
             self.randomized_list.append('big_poe_count')
         # If set to random in GUI, we don't want to randomize if it was specified as non-random in the distribution
         if (self.settings.starting_tod == 'random'
@@ -440,7 +507,7 @@ class World:
                 self.settings.starting_age = random.choice(['child', 'adult'])
             self.randomized_list.append('starting_age')
         if self.settings.chicken_count_random and 'chicken_count' not in dist_keys:
-            self.settings.chicken_count = random.randint(0, 7)
+            self.settings.chicken_count = random.randint(0, self.settings.chicken_count)
             self.randomized_list.append('chicken_count')
 
         # Determine dungeons with shortcuts
@@ -459,14 +526,25 @@ class World:
         elif self.settings.key_rings_choice == 'all':
             self.settings.key_rings = ['Thieves Hideout', 'Treasure Chest Game', 'Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple', 'Bottom of the Well', 'Gerudo Training Ground', 'Ganons Castle']
 
+        # Determine if Boss Keys are found with key rings
+        if self.settings.keyring_give_bk == 'random':
+            self.settings.keyring_give_bk = random.choice(['off', 'on'])
+            self.randomized_list.append('keyring_give_bk')
+
+        # Handle random LACS condition
+        if self.settings.lacs_condition == 'random':
+            self.settings.lacs_condition = random.choice(["vanilla", "stones", "medallions", "dungeons", "tokens", "hearts"])
+            self.randomized_list.append('lacs_condition')
+            self.set_random_lacs_values()
+
         # Handle random Rainbow Bridge condition
         if (self.settings.bridge == 'random'
             and ('bridge' not in dist_keys
              or self.distribution.distribution.src_dict['_settings']['bridge'] == 'random')):
-            possible_bridge_requirements = ["open", "medallions", "dungeons", "stones", "vanilla"]
+            possible_bridge_requirements = ["open", "medallions", "dungeons", "stones", "vanilla", "tokens", "hearts"]
             self.settings.bridge = random.choice(possible_bridge_requirements)
-            self.set_random_bridge_values()
             self.randomized_list.append('bridge')
+            self.set_random_bridge_values()
 
         # Determine Ganon Trials
         trial_pool = list(self.skipped_trials)
@@ -552,6 +630,33 @@ class World:
             self.randomized_list.append('silver_rupee_pouches')
         elif self.settings.silver_rupee_pouches_choice == 'all':
             self.settings.silver_rupee_pouches = self.silver_rupee_puzzles()
+        
+        # Ocarina Notes random or not
+        if self.settings.ocarina_songs == 'random':
+            self.settings.ocarina_songs = random.choice(['off', 'frog', 'warp', 'all'])
+            self.randomized_list.append('ocarina_songs')
+
+        # Blue Fire Arrows random or not
+        if self.settings.blue_fire_arrows == 'random':
+            self.settings.blue_fire_arrows = random.choice(['off', 'on'])
+            self.randomized_list.append('blue_fire_arrows')
+
+        # Randomized Time savers
+        if self.settings.no_epona_race == 'random':
+            self.settings.no_epona_race = random.choice(['off', 'on'])
+            self.randomized_list.append('no_epona_race')
+        if self.settings.complete_mask_quest == 'random':
+            self.settings.complete_mask_quest = random.choice(['off', 'on'])
+            self.randomized_list.append('complete_mask_quest')
+        if self.settings.free_scarecrow == 'random':
+            self.settings.free_scarecrow = random.choice(['off', 'on'])
+            self.randomized_list.append('free_scarecrow')
+
+        # Choose planted beans
+        if self.settings.plant_beans == 'random':
+            beanspots = ['Zora River', 'Graveyard', 'Kokiri Forest', 'Lost Woods Near Bridge', 'Lost Woods Near Grotto', 'Death Mountain Trail', 'Lake Hylia', 'Gerudo Valley', 'Death Mountain Crater', 'Desert Colossus']
+            self.settings.bean_locations = random.sample(beanspots, random.randint(0, len(beanspots)))
+            self.randomized_list.append('bean_locations')
 
     def load_regions_from_json(self, file_path: str) -> list[tuple[Entrance, str]]:
         region_json = read_logic_file(file_path)
@@ -689,6 +794,9 @@ class World:
             for location in region.locations:
                 if location.type == 'Shop':
                     if location.name[-1:] in shop_item_indexes[:shop_item_count]:
+                        if self.settings.shopsanity_prices == 'random_choice':
+                            self.settings.shopsanity_prices = random.choice(['random','random_starting','random_adult','random_giant','random_tycoon','affordable'])
+                            self.randomized_list.append('shopsanity_prices')
                         if self.settings.shopsanity_prices == 'random':
                             self.shop_prices[location.name] = int(random.betavariate(1.5, 2) * 60) * 5
                         elif self.settings.shopsanity_prices == 'random_starting':
@@ -794,7 +902,7 @@ class World:
         th = GoalCategory('triforce_hunt', 30, goal_count=round(self.settings.triforce_goal_per_world / 10), minimum_goals=1)
         trial_goal = Goal(self, 'the Tower', 'path to #the Tower#', 'White', items=[], create_empty=True)
 
-        if self.settings.triforce_hunt and self.settings.triforce_goal_per_world > 0:
+        if self.settings.triforce_hunt == 'on' and self.settings.triforce_goal_per_world > 0:
             # "Hintable" value of False means the goal items themselves cannot
             # be hinted directly. This is used for Triforce Hunt and Skull
             # conditions to restrict hints to useful items instead of the win
@@ -816,10 +924,10 @@ class World:
         # no trials), a fallback "path of the hero" clone of WOTH is created. Path
         # wording is used to distinguish the hint type even though the hintable location
         # set is identical to WOTH.
-        if not self.settings.triforce_hunt:
+        if self.settings.triforce_hunt == 'off':
             if self.settings.starting_age == 'child':
                 dot_items = [{'name': 'Temple of Time Access', 'quantity': 1, 'minimum': 1, 'hintable': True}]
-                if not self.settings.open_door_of_time:
+                if self.settings.open_door_of_time == 'closed':
                     dot_items.append({'name': 'Song of Time', 'quantity': 2 if self.settings.shuffle_song_items == 'any' and self.settings.item_pool_value == 'plentiful' else 1, 'minimum': 1, 'hintable': True})
                     if self.settings.shuffle_ocarinas:
                         dot_items.append({'name': 'Ocarina', 'quantity': 3 if self.settings.item_pool_value == 'plentiful' else 2, 'minimum': 1, 'hintable': True})
@@ -1232,12 +1340,12 @@ class World:
             # Both two-handed swords can be required in glitch logic, so only consider them foolish in glitchless
             exclude_item_list.append('Biggoron Sword')
             exclude_item_list.append('Giants Knife')
-        if self.settings.plant_beans:
-            # Magic Beans are useless if beans are already planted
+        if len(self.settings.bean_locations) == 10:
+            # Magic Beans are useless if all beans are already planted
             exclude_item_list.append('Magic Bean')
             exclude_item_list.append('Buy Magic Bean')
             exclude_item_list.append('Magic Bean Pack')
-        if not self.settings.blue_fire_arrows:
+        if self.settings.blue_fire_arrows == 'off':
             # Ice Arrows can only be required when the Blue Fire Arrows setting is enabled
             exclude_item_list.append('Ice Arrows')
         if 'logic_lens_botw' in self.settings.allowed_tricks or self.settings.shuffle_pots in ('off', 'overworld'):

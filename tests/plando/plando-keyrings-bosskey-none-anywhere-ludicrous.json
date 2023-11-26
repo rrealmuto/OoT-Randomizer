@@ -6,7 +6,7 @@
     "shuffle_hideoutkeys":                     "keysanity",
     "key_rings":                               [
     ],
-    "keyring_give_bk":                         true,
+    "keyring_give_bk":                         "on",
     "mq_dungeons_mode":                        "vanilla"
   }
 }

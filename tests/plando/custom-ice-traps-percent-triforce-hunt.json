@@ -1,6 +1,6 @@
 {
     "settings": {
-        "triforce_hunt": true,
+        "triforce_hunt": "on",
         "shuffle_pots": "all",
         "triforce_count_per_world": 100,
         "triforce_goal_per_world": 50,
