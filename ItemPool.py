@@ -569,7 +569,7 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
                     pending_junk_pool.append(f"Small Key ({dungeon})")
         if world.settings.shuffle_bosskeys in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
             for dungeon in ['Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple']:
-                if not world.settings.keyring_give_bk or dungeon not in world.settings.key_rings or world.settings.shuffle_smallkeys == 'vanilla':
+                if world.settings.keyring_give_bk == 'off' or dungeon not in world.settings.key_rings or world.settings.shuffle_smallkeys == 'vanilla':
                     pending_junk_pool.append(f"Boss Key ({dungeon})")
         if world.settings.shuffle_ganon_bosskey in ['any_dungeon', 'overworld', 'keysanity', 'regional']:
             pending_junk_pool.append('Boss Key (Ganons Castle)')
@@ -591,7 +591,7 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
     if world.settings.item_pool_value == 'ludicrous':
         pending_junk_pool.extend(ludicrous_health)
 
-    if world.settings.triforce_hunt:
+    if world.settings.triforce_hunt == 'on':
         pending_junk_pool.extend(['Triforce Piece'] * world.settings.triforce_count_per_world)
     if world.settings.shuffle_individual_ocarina_notes:
         pending_junk_pool.append('Ocarina A Button')
@@ -651,7 +651,7 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
 
         # Ice Arrows/Blue Fire Arrows
         elif location.vanilla_item == 'Ice Arrows':
-            if world.settings.blue_fire_arrows:
+            if world.settings.blue_fire_arrows == 'on':
                 item = 'Blue Fire Arrows'
             shuffle_item = True
 
@@ -879,7 +879,7 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
             # Boss Key
             if location.vanilla_item == dungeon.item_name("Boss Key"):
                 if (world.settings.shuffle_smallkeys != 'vanilla'
-                        and dungeon.name in world.settings.key_rings and world.settings.keyring_give_bk
+                        and dungeon.name in world.settings.key_rings and world.settings.keyring_give_bk == 'on'
                         and dungeon.name in ['Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple']):
                     item = get_junk_item()[0]
                     shuffle_item = True
@@ -965,10 +965,10 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
             else:
                 pending_junk_pool.append(rupee)
 
-    if world.settings.free_scarecrow:
+    if world.settings.free_scarecrow == 'on':
         world.state.collect(ItemFactory('Scarecrow Song', world))
 
-    if world.settings.no_epona_race:
+    if world.settings.no_epona_race == 'on':
         world.state.collect(ItemFactory('Epona', world, event=True))
 
     if world.settings.shuffle_smallkeys == 'vanilla':
