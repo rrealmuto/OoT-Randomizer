@@ -16,6 +16,7 @@ Grass Shuffle - Shuffles grass
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v59](#v59)
   * [v58](#v58)
   * [v57](#v57)
   * [v56](#v56)
@@ -78,6 +79,9 @@ Grass Shuffle - Shuffles grass
   * [4.0](#40)
 
 ## RealRob Changelog
+### v59
+  * Fix Small Crates in MQ Fire Temple not shuffled
+
 ### v58
   * Fix missing Deku Tree Rotating Spike Skulltula
 
