@@ -168,13 +168,13 @@
             "KF Child Training Wonderitem 3": "is_child",
             "KF Child Maze Grass Wonderitem 1": "is_child",
             "KF Child Maze Grass Wonderitem 2": "is_child",
-            "KF Bean Platform Green Rupee 1": "is_adult and (here(can_plant_bean) or Hover_Boots)",
-            "KF Bean Platform Green Rupee 2": "is_adult and (here(can_plant_bean) or Hover_Boots)",
-            "KF Bean Platform Green Rupee 3": "is_adult and (here(can_plant_bean) or Hover_Boots)",
-            "KF Bean Platform Green Rupee 4": "is_adult and (here(can_plant_bean) or Hover_Boots)",
-            "KF Bean Platform Green Rupee 5": "is_adult and (here(can_plant_bean) or Hover_Boots)",
-            "KF Bean Platform Green Rupee 6": "is_adult and (here(can_plant_bean) or Hover_Boots)",
-            "KF Bean Platform Red Rupee": "is_adult and (here(can_plant_bean) or Hover_Boots)",
+            "KF Bean Platform Green Rupee 1": "is_adult and (here(can_plant_bean) or 'Kokiri Forest' in bean_locations or Hover_Boots)",
+            "KF Bean Platform Green Rupee 2": "is_adult and (here(can_plant_bean) or 'Kokiri Forest' in bean_locations or Hover_Boots)",
+            "KF Bean Platform Green Rupee 3": "is_adult and (here(can_plant_bean) or 'Kokiri Forest' in bean_locations or Hover_Boots)",
+            "KF Bean Platform Green Rupee 4": "is_adult and (here(can_plant_bean) or 'Kokiri Forest' in bean_locations or Hover_Boots)",
+            "KF Bean Platform Green Rupee 5": "is_adult and (here(can_plant_bean) or 'Kokiri Forest' in bean_locations or Hover_Boots)",
+            "KF Bean Platform Green Rupee 6": "is_adult and (here(can_plant_bean) or 'Kokiri Forest' in bean_locations or Hover_Boots)",
+            "KF Bean Platform Red Rupee": "is_adult and (here(can_plant_bean) or 'Kokiri Forest' in bean_locations or Hover_Boots)",
             "KF Child Grass 1": "is_child and can_mow_the_lawn",
             "KF Child Grass 2": "is_child and can_mow_the_lawn",
             "KF Child Grass 3": "is_child and can_mow_the_lawn",
@@ -221,7 +221,7 @@
             "KF Gossip Stone Drop": "can_play(Song_of_Time)",
             "KF Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle",
-            "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle",
+            "Bean Plant Fairy": "is_child and (can_plant_bean or 'Kokiri Forest' in bean_locations) and can_play(Song_of_Storms) and has_bottle"
             "KF Adult Platforms Octorok": "is_adult and can_kill_octorok",
             "KF Adult Near Shop Octorok": "is_adult and can_kill_octorok",
             "KF Adult Path To Deku Skulltula": "is_adult and can_kill_skulltula",
@@ -392,16 +392,15 @@
             "LW Gossip Stone Drop": "can_play(Song_of_Time)",
             "LW Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle",
-            "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle",
+            "Bean Plant Fairy": "is_child and (can_plant_bean or 'Lost Woods Near Bridge' in bean_locations or 'Lost Woods Near Grotto' in bean_locations) and can_play(Song_of_Storms) and has_bottle",
             "Bug Shrub": "is_child and can_cut_shrubs and has_bottle"
         },
         "exits": {
             "LW Forest Exit": "True",
             "GC Woods Warp": "True",
-            # The seemingly redundant `plant_beans` check is to allow supplementary searches, which can't collect events, to use this path.
             "LW Bridge": "
                 is_adult and
-                (Hover_Boots or Longshot or here(can_plant_bean) or plant_beans or logic_lost_woods_bridge)",
+                (Hover_Boots or Longshot or here(can_plant_bean) or 'Lost Woods Near Bridge' in bean_locations or logic_lost_woods_bridge)",
             "LW Underwater Entrance": "is_child and (can_dive or Boomerang)",
             "Zora River": "can_leave_forest and (can_dive or can_use(Iron_Boots))",
             "LW Beyond Mido": "is_child or logic_mido_backflip or can_play(Sarias_Song)",
@@ -425,7 +424,7 @@
             "Lost Woods Near Meadow Grass 3": "can_mow_the_lawn",
             "LW GS Above Theater": "
                 is_adult and at_night and
-                (here(can_plant_bean) or
+                (here(can_plant_bean) or 'Lost Woods Near Grotto' in bean_locations or
                     (logic_lost_woods_gs_bean and Hookshot and
                         (Longshot or Bow or has_bombchus or can_use(Dins_Fire))))",
             "LW GS Bean Patch Near Theater": "
@@ -651,10 +650,10 @@
             "Bonooru": "is_child and Ocarina and has_all_notes_for_song(Scarecrow_Song)"
         },
         "locations": {
-            "Pierre": "is_adult and Bonooru and not free_scarecrow",
+            "Pierre": "is_adult and Bonooru and free_scarecrow == 'off'",
             "LH Sun": "(can_use(Distant_Scarecrow) or 'Water Temple Clear') and can_use(Bow)",
             "LH Freestanding PoH": "
-                is_adult and (can_use(Scarecrow) or here(can_plant_bean))",
+                is_adult and (can_use(Scarecrow) or here(can_plant_bean) or 'Lake Hylia' in bean_locations)",
             "LH Underwater Item": "is_child and can_dive",
             "LH Underwater Near Shore Green Rupee": "is_child",
             "LH Underwater Green Rupee 1": "is_child and can_dive",
@@ -714,7 +713,7 @@
             "LH Gossip Stone (Southwest) Drop": "can_play(Song_of_Time)",
             "LH Gossip Stone (Southwest)": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
-            "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle",
+            "Bean Plant Fairy": "is_child and (can_plant_bean or 'Lake Hylia' in bean_locations) and can_play(Song_of_Storms) and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
             "Bug Shrub": "is_child and can_cut_shrubs and has_bottle"
         },
@@ -723,10 +722,9 @@
             "Zoras Domain": "is_child and can_dive",
             "LH Owl Flight": "is_child",
             "LH Lab": "True",
-            # The seemingly redundant `plant_beans` check is to allow supplementary searches, which can't collect events, to use this path.
             "LH Fishing Island": "
                 is_child or can_use(Scarecrow) or
-                here(can_plant_bean) or plant_beans or 'Water Temple Clear'",
+                here(can_plant_bean) or 'Lake Hylia' in bean_locations or 'Water Temple Clear'",
             "Water Temple Lobby": "
                 is_adult and Hookshot and
                 (Iron_Boots or ((Longshot or logic_water_hookshot_entry) and (Progressive_Scale, 2)))",
@@ -851,7 +849,7 @@
             "GV Gossip Stone Drop": "can_play(Song_of_Time)",
             "GV Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
-            "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle"
+            "Bean Plant Fairy": "is_child and (can_plant_bean or 'Gerudo Valley' in bean_locations) and can_play(Song_of_Storms) and has_bottle"
         },
         "exits": {
             "GV Lower Stream": "True"
@@ -1353,7 +1351,7 @@
         "hint": "DESERT_COLOSSUS",
         "time_passes": true,
         "locations": {
-            "Colossus Freestanding PoH": "is_adult and here(can_plant_bean)",
+            "Colossus Freestanding PoH": "is_adult and here(can_plant_bean) or 'Desert Colossus' in bean_locations",
             "Colossus Tree Wonderitem 1": "can_use(Slingshot) or can_use(Bow)",
             "Colossus Tree Wonderitem 2": "can_use(Slingshot) or can_use(Bow)",
             "Colossus Tree Wonderitem 3 Child": "can_use(Slingshot)",
@@ -1363,7 +1361,7 @@
             "Colossus GS Tree": "can_use(Hookshot) and at_night",
             "Colossus GS Hill": "
                 is_adult and at_night and
-                (here(can_plant_bean) or Longshot or (logic_colossus_gs and Hookshot))",
+                (here(can_plant_bean) or 'Desert Colossus' in bean_locations or Longshot or (logic_colossus_gs and Hookshot))",
             "Colossus Gossip Stone Drop": "can_play(Song_of_Time)",
             "Colossus Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
@@ -1547,7 +1545,7 @@
         },
         "exits": {
             "ToT Entrance": "True",
-            "Beyond Door of Time": "can_play(Song_of_Time) or open_door_of_time"
+            "Beyond Door of Time": "can_play(Song_of_Time) or open_door_of_time == 'open'"
         }
     },
     {
@@ -1786,7 +1784,7 @@
         "scene": "Market Mask Shop",
         "events": {
             "Mask of Truth Access": "
-                complete_mask_quest or
+                complete_mask_quest == 'on' or
                 (at('Kakariko Village', is_child and Keaton_Mask) and
                     at('Lost Woods', is_child and can_play(Sarias_Song) and Skull_Mask) and
                     at('Graveyard', is_child and at_day and Spooky_Mask) and
@@ -1802,14 +1800,14 @@
             # Goron Mask
             "Market Mask Shop Item 4": "'Mask of Truth Access'",
             # Skull Mask
-            "Market Mask Shop Item 5": "complete_mask_quest or at('Kakariko Village', is_child and Keaton_Mask)",
+            "Market Mask Shop Item 5": "complete_mask_quest == 'on' or at('Kakariko Village', is_child and Keaton_Mask)",
             # Keaton Mask
             "Market Mask Shop Item 6": "True",
             # Bunny Hood
-            "Market Mask Shop Item 7": "complete_mask_quest or at('Graveyard', is_child and at_day and Spooky_Mask)",
+            "Market Mask Shop Item 7": "complete_mask_quest == 'on' or at('Graveyard', is_child and at_day and Spooky_Mask)",
             # Spooky Mask
             "Market Mask Shop Item 8": "
-                complete_mask_quest or at('Lost Woods', is_child and can_play(Sarias_Song) and Skull_Mask)"
+                complete_mask_quest == 'on' or at('Lost Woods', is_child and can_play(Sarias_Song) and Skull_Mask)"
         }
     },
     {
@@ -2210,9 +2208,9 @@
         "hint": "GRAVEYARD",
         "locations": {
             "Graveyard Freestanding PoH": "
-                (is_adult and can_break_crate and (here(can_plant_bean) or Longshot)) or
+                (is_adult and can_break_crate and (here(can_plant_bean) or 'Graveyard' in bean_locations or Longshot)) or
                 (logic_graveyard_poh and can_use(Boomerang))",
-            "Graveyard Freestanding PoH Crate": "(is_adult and can_break_crate and (here(can_plant_bean) or Longshot))",
+            "Graveyard Freestanding PoH Crate": "(is_adult and can_break_crate and (here(can_plant_bean) or 'Graveyard' in bean_locations or Longshot))",
             "Graveyard Dampe Gravedigging Tour": "is_child and at_dampe_time",
             "Graveyard Grass Patch 1": "can_mow_the_lawn",
             "Graveyard Grass Patch 2": "can_mow_the_lawn",
@@ -2229,7 +2227,7 @@
             "Graveyard GS Wall": "can_use(Boomerang) and at_night",
             "Graveyard GS Bean Patch": "can_plant_bugs and can_child_attack",
             "Butterfly Fairy": "can_use(Sticks) and at_day and has_bottle",
-            "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle",
+            "Bean Plant Fairy": "is_child and (can_plant_bean or 'Graveyard' in bean_locations) and can_play(Song_of_Storms) and has_bottle",
             "Bug Rock": "has_bottle"
         },
         "exits": {
@@ -2381,7 +2379,7 @@
                 (logic_dmt_bombable and is_child and Progressive_Strength_Upgrade)",
             "DMT Freestanding PoH": "
                 can_take_damage or can_use(Hover_Boots) or
-                (is_adult and here(can_plant_bean and (plant_beans or has_explosives or Progressive_Strength_Upgrade)))",
+                (is_adult and (here(can_plant_bean and (has_explosives or Progressive_Strength_Upgrade)) or 'Death Mountain Trail' in bean_locations))",
             "DMT Rock Red Rupee": "
                 is_child and (here(can_blast_or_smash) or (logic_boomerang_boulders and Boomerang))",
             "DMT Rock Blue Rupee": "
@@ -2392,7 +2390,7 @@
             "DMT GS Near Kak": "can_blast_or_smash",
             "DMT GS Above Dodongos Cavern": "is_adult and at_night and (Megaton_Hammer or logic_trail_gs_lower)",
             "Bean Plant Fairy": "
-                is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle and
+                is_child and (can_plant_bean or 'Death Mountain Trail' in bean_locations) and can_play(Song_of_Storms) and has_bottle and
                 (has_explosives or Progressive_Strength_Upgrade)",
             "DMT Adult First Tektite": "is_adult and can_kill_tektite",
             "DMT Adult Second Tektite": "is_adult and can_kill_tektite",
@@ -2406,7 +2404,7 @@
             "Goron City": "True",
             "Death Mountain Summit": "
                 here(can_blast_or_smash) or
-                (is_adult and (here(can_plant_bean and Progressive_Strength_Upgrade) or plant_beans)) or
+                (is_adult and (here(can_plant_bean and Progressive_Strength_Upgrade) or 'Death Mountain Trail' in bean_locations)) or
                 (logic_dmt_climb_hovers and can_use(Hover_Boots))",
             "Dodongos Cavern Beginning": "
                 has_explosives or Progressive_Strength_Upgrade or is_adult",
@@ -2704,7 +2702,7 @@
         "locations": {
             "DMC Volcano Freestanding PoH": "
                 is_adult and
-                (here(can_plant_bean) or (logic_crater_bean_poh_with_hovers and Hover_Boots))",
+                (here(can_plant_bean) or 'Death Mountain Crater' in bean_locations or (logic_crater_bean_poh_with_hovers and Hover_Boots))",
             "Sheik in Crater": "is_adult"
         },
         "exits": {
@@ -2717,7 +2715,7 @@
         "hint": "DEATH_MOUNTAIN_CRATER",
         "locations": {
             "DMC GS Bean Patch": "can_plant_bugs and can_child_attack",
-            "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle",
+            "Bean Plant Fairy": "is_child and (can_plant_bean or 'Death Mountain Crater' in bean_locations) and can_play(Song_of_Storms) and has_bottle",
             "DMC Child Red Rupee 1": "is_child",
             "DMC Child Red Rupee 2": "is_child",
             "DMC Child Blue Rupee 1": "is_child",
@@ -2732,10 +2730,9 @@
         },
         "exits": {
             "DMC Central Nearby": "True",
-            # The seemingly redundant `plant_beans` checks are to allow supplementary searches, which can't collect events, to use these paths.
             "DMC Lower Nearby": "
-                is_adult and (Hover_Boots or Hookshot or here(can_plant_bean) or plant_beans)",
-            "DMC Upper Nearby": "is_adult and (here(can_plant_bean) or plant_beans)",
+                is_adult and (Hover_Boots or Hookshot or here(can_plant_bean) or 'Death Mountain Crater' in bean_locations)",
+            "DMC Upper Nearby": "is_adult and (here(can_plant_bean) or 'Death Mountain Crater' in bean_locations)",
             "DMC Fire Temple Entrance": "
                 (is_child and shuffle_dungeon_entrances) or
                 (is_adult and (logic_fewer_tunic_requirements or Goron_Tunic))",
@@ -2818,7 +2815,7 @@
             "ZR Frogs Song of Time": "is_child and can_play(Song_of_Time)",
             "ZR Frogs in the Rain": "is_child and can_play(Song_of_Storms)",
             "ZR Near Open Grotto Freestanding PoH": "
-                is_child or here(can_plant_bean) or Hover_Boots or logic_zora_river_lower",
+                is_child or here(can_plant_bean) or 'Zora River' in bean_locations or Hover_Boots or logic_zora_river_lower",
             "ZR Near Domain Freestanding PoH": "is_child or Hover_Boots or logic_zora_river_upper",
             "ZR Waterfall Red Rupee 1": "is_adult and (Iron_Boots or logic_zora_river_rupees)",
             "ZR Waterfall Red Rupee 2": "is_adult and (Iron_Boots or logic_zora_river_rupees)",
@@ -2863,7 +2860,7 @@
             "ZR Child River Wonderitem 25": "is_child",
             "ZR Child River Wonderitem 26": "is_child",
             "ZR Child River Wonderitem 27": "is_child",
-            "ZR Near Freestanding PoH Grass": "is_child or here(can_plant_bean) or Hover_Boots or logic_zora_river_lower",
+            "ZR Near Freestanding PoH Grass": "is_child or here(can_plant_bean) or 'Zora River' in bean_locations or Hover_Boots or logic_zora_river_lower",
             "ZR GS Ladder": "is_child and at_night and can_child_attack",
             "ZR GS Near Raised Grottos": "can_use(Hookshot) and at_night",
             "ZR GS Above Bridge": "can_use(Hookshot) and at_night",
@@ -2872,10 +2869,10 @@
             "ZR Near Domain Gossip Stone Drop": "can_play(Song_of_Time)",
             "ZR Near Domain Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
-            "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle",
+            "Bean Plant Fairy": "is_child and (can_plant_bean or 'Zora River' in bean_locations) and can_play(Song_of_Storms) and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
             "Bug Shrub": "
-                (is_child or here(can_plant_bean) or Hover_Boots or logic_zora_river_lower) and
+                (is_child or here(can_plant_bean) or 'Zora River' in bean_locations or Hover_Boots or logic_zora_river_lower) and
                 can_cut_shrubs and has_bottle",
             "ZR Frogs Ocarina Minigame Hint": "True"
             
