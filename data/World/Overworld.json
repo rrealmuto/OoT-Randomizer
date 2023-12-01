@@ -221,7 +221,7 @@
             "KF Gossip Stone Drop": "can_play(Song_of_Time)",
             "KF Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle",
-            "Bean Plant Fairy": "is_child and (can_plant_bean or 'Kokiri Forest' in bean_locations) and can_play(Song_of_Storms) and has_bottle"
+            "Bean Plant Fairy": "is_child and (can_plant_bean or 'Kokiri Forest' in bean_locations) and can_play(Song_of_Storms) and has_bottle",
             "KF Adult Platforms Octorok": "is_adult and can_kill_octorok",
             "KF Adult Near Shop Octorok": "is_adult and can_kill_octorok",
             "KF Adult Path To Deku Skulltula": "is_adult and can_kill_skulltula",
