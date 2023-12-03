@@ -1545,7 +1545,7 @@
         },
         "exits": {
             "ToT Entrance": "True",
-            "Beyond Door of Time": "can_play(Song_of_Time) or open_door_of_time == 'open'"
+            "Beyond Door of Time": "can_play(Song_of_Time) or open_door_of_time"
         }
     },
     {
