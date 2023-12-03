@@ -8,7 +8,7 @@ supplementary_version = 58
 branch_identifier = 0x45
 
 # URL to your branch on GitHub.
-branch_url = 'https://github.com/rrealmuto/OoT-Randomizer/tree/Dev-Rob'
+branch_url = 'https://github.com/3pacgangstarap/OoT-Randomizer/tree/Dev-3pac'
 
 # This is named __version__ at the top for compatability with older versions trying to version check.
 base_version = __version__
