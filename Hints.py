@@ -1656,7 +1656,7 @@ def build_boss_string(reward: str, color: str, world: World) -> str:
 
 
 def build_bridge_reqs_string(world: World) -> str:
-    string = "\x13\x6B" # Light Arrow Icon
+    string = "\x13\x6B" # Light Medallion Icon
     if world.settings.bridge == 'open':
         string += "The awakened ones will have #already created a bridge# to the castle where the evil dwells."
     else:
