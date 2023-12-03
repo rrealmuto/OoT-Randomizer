@@ -435,7 +435,7 @@
         },
         "exits": {
             "Market": "True",
-            "Beyond Door of Time": "can_play(Song_of_Time) or open_door_of_time == 'open' or Hover_Boots"
+            "Beyond Door of Time": "can_play(Song_of_Time) or open_door_of_time or Hover_Boots"
             #// only consider dot skip in logic if adult can get back as well
         }
     },
