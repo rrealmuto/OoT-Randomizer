@@ -13,7 +13,7 @@
 "randomize_settings": false,
 "open_forest": "open",
 "open_kakariko": "closed",
-"open_door_of_time": "closed",
+"open_door_of_time": false,
 "zora_fountain": "closed",
 "gerudo_fortress": "fast",
 "bridge": "medallions",
