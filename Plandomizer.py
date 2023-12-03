@@ -1131,7 +1131,7 @@ class WorldDistribution:
             for dungeon in world.dungeons:
                 if (dungeon.name in world.settings.key_rings and dungeon.name != 'Ganons Castle'
                     and dungeon.shuffle_smallkeys == 'remove' and dungeon.shuffle_bosskeys != 'remove'
-                    and world.settings.keyring_give_bk == 'on' and len(dungeon.boss_key) > 0):
+                    and world.settings.keyring_give_bk and len(dungeon.boss_key) > 0):
                     items[dungeon.boss_key[0].name] = StarterRecord(1)
 
         effective_adult_trade_item_index = -1

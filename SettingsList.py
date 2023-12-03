@@ -578,28 +578,29 @@ class SettingInfos:
                          Randomizes all settings on the 'Main Rules' tab, except:
 
                          - Logic Rules
-                         - (Random) Number of MQ Dungeons
-                         - Pre-completed Dungeons
-                         - Rainbow Bridge/Ganon Boss Key Requirements: Gold Skulltula Tokens
-                         - Variable numbers of Spiritual Stones, Medallions, or Dungeons
-                         for Rainbow Bridge and Ganon's Boss Key
-                         (you will always be required to obtain all the relevant rewards)
-                         - Scrub Shuffle will either be "Off" or "On (Affordable)"
+                         - Dungeon Boss Shortcuts Mode
+                         - Rainbow Bridge Requirements
+                         - Triforce Hunt
+                         - Light Arrow Cutscene Condition
+                         - MQ Dungeon Mode
+                         - Pre-completed Dungeons Mode
+                         - Ganon's Boss Key
                          ''',
         default        = False,
         disable        = {
             True: {
                 'sections': ['shuffle_section'],
                 'settings': [
-                    'open_forest', 'open_kakariko', 'open_door_of_time', 'zora_fountain', 'gerudo_fortress', 'dungeon_shortcuts_choice',
-                    'dungeon_shortcuts', 'trials_random', 'trials',
+                    'open_forest', 'open_kakariko', 'open_door_of_time', 'zora_fountain', 'gerudo_fortress',
+                    'free_bombchu_drops', 'one_item_per_dungeon', 'trials_random', 'trials',
                     'starting_age', 'shuffle_interior_entrances', 'shuffle_hideout_entrances',
-                    'shuffle_grotto_entrances', 'shuffle_dungeon_entrances',
-                    'shuffle_bosses', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops', 'warp_songs', 'spawn_positions',
-                    'mix_entrance_pools', 'decouple_entrances',
-                    'triforce_hunt', 'triforce_count_per_world', 'triforce_goal_per_world', 'free_bombchu_drops', 'one_item_per_dungeon',
-                    'shuffle_mapcompass', 'shuffle_smallkeys', 'shuffle_hideoutkeys', 'key_rings_choice', 'key_rings',
-                    'shuffle_bosskeys', 'enhance_map_compass',
+                    'shuffle_grotto_entrances', 'shuffle_dungeon_entrances', 'shuffle_bosses',
+                    'shuffle_overworld_entrances', 'mix_entrance_pools', 'decouple_entrances',
+                    'shuffle_gerudo_valley_river_exit', 'owl_drops', 'warp_songs', 'spawn_positions',
+                    'shuffle_mapcompass', 'shuffle_smallkeys', 'shuffle_hideoutkeys', 'shuffle_tcgkeys',
+                    'key_rings_choice', 'key_rings', 'keyring_give_bk', 'shuffle_bosskeys',
+                    'shuffle_silver_rupees', 'silver_rupee_pouches_choice', 'silver_rupee_pouches',
+                    'enhance_map_compass',
                 ],
             },
         },
@@ -693,9 +694,6 @@ class SettingInfos:
             number on the slider below acting as a maximum.
         ''',
         shared         = True,
-        gui_params     = {
-            'randomize_key': 'randomize_settings',
-        },
         disable        = {
             'on':     {'settings': ['shuffle_ganon_bosskey', 'ganon_bosskey_stones', 'ganon_bosskey_medallions', 'ganon_bosskey_rewards', 'ganon_bosskey_tokens', 'ganon_bosskey_hearts']},
             'off':    {'settings': ['triforce_count_per_world', 'triforce_goal_per_world']},
@@ -783,29 +781,6 @@ class SettingInfos:
         },
         gui_params     = {
             'optional': True,
-            'distribution': [
-                ('vanilla',    1),
-                ('medallions', 1),
-                ('stones',     1),
-                ('dungeons',   1),
-            ],
-        },
-    )
-
-    lacs_stones = Scale(
-        gui_text         = "Spiritual Stones Required for LACS",
-        default          = 3,
-        minimum          = 1,
-        maximum          = 3,
-        gui_tooltip      = '''\
-            Select the amount of Spiritual Stones required to trigger the Light Arrow Cutscene.
-        ''',
-        shared           = True,
-        disabled_default = 0,
-        gui_params       = {
-            'optional':           True,
-            "hide_when_disabled": True,
-            'distribution':       [(3, 1)],
         },
     )
 
@@ -822,7 +797,22 @@ class SettingInfos:
         gui_params       = {
             'optional':           True,
             "hide_when_disabled": True,
-            'distribution':       [(6, 1)],
+        },
+    )
+
+    lacs_stones = Scale(
+        gui_text         = "Spiritual Stones Required for LACS",
+        default          = 3,
+        minimum          = 1,
+        maximum          = 3,
+        gui_tooltip      = '''\
+            Select the amount of Spiritual Stones required to trigger the Light Arrow Cutscene.
+        ''',
+        shared           = True,
+        disabled_default = 0,
+        gui_params       = {
+            'optional':           True,
+            "hide_when_disabled": True,
         },
     )
 
@@ -840,7 +830,6 @@ class SettingInfos:
         gui_params       = {
             'optional':           True,
             "hide_when_disabled": True,
-            'distribution':       [(9, 1)],
         },
     )
 
@@ -916,16 +905,6 @@ class SettingInfos:
             'hearts':     {'settings': ['bridge_stones', 'bridge_medallions', 'bridge_rewards', 'bridge_tokens']},
             'random':     {'settings': ['bridge_stones', 'bridge_medallions', 'bridge_rewards']},
         },
-        gui_params     = {
-            'randomize_key': 'randomize_settings',
-            'distribution':  [
-                ('open',       1),
-                ('vanilla',    1),
-                ('stones',     1),
-                ('medallions', 1),
-                ('dungeons',   1),
-            ],
-        },
     )
 
     bridge_medallions = Scale(
@@ -939,9 +918,7 @@ class SettingInfos:
         shared           = True,
         disabled_default = 0,
         gui_params       = {
-            "randomize_key":      "randomize_settings",
             "hide_when_disabled": True,
-            'distribution':       [(6, 1)],
         },
     )
 
@@ -956,9 +933,7 @@ class SettingInfos:
         shared           = True,
         disabled_default = 0,
         gui_params       = {
-            "randomize_key":      "randomize_settings",
             "hide_when_disabled": True,
-            'distribution':       [(3, 1)],
         },
     )
 
@@ -974,9 +949,7 @@ class SettingInfos:
         shared           = True,
         disabled_default = 0,
         gui_params       = {
-            "randomize_key":      "randomize_settings",
             "hide_when_disabled": True,
-            'distribution':       [(9, 1)],
         },
     )
 
@@ -1041,6 +1014,9 @@ class SettingInfos:
         ''',
         shared           = True,
         disabled_default = 0,
+        gui_params     = {
+            "hide_when_disabled": True,
+        },
     )
 
     shuffle_ganon_bosskey = Combobox(
@@ -1061,6 +1037,7 @@ class SettingInfos:
             'dungeons':        "Dungeons",
             'tokens':          "Tokens",
             'hearts':          "Hearts",
+            'random':          "Random",
         },
         gui_tooltip      = '''\
             'Remove': Ganon's Castle Boss Key is removed
@@ -1102,24 +1079,28 @@ class SettingInfos:
 
             'Hearts': Ganon's Castle Boss Key will be awarded
             when reaching the target number of hearts.
+            
+            'Random': Will pick any of Keysanity, LACS, Stones, Medallions,
+            Dungeons, Tokens, or Hearts. For the Dungeon related ones will
+            pick a random number of requirements, for tokens and hearts will
+            pick a random number between the minimum and the number chosen below.
         ''',
         shared           = True,
         disable          = {
-            '!stones':      {'settings': ['ganon_bosskey_stones']},
-            '!medallions':  {'settings': ['ganon_bosskey_medallions']},
-            '!dungeons':    {'settings': ['ganon_bosskey_rewards']},
-            '!tokens':      {'settings': ['ganon_bosskey_tokens']},
-            '!hearts':      {'settings': ['ganon_bosskey_hearts']},
-        },
-        gui_params       = {
-            'randomize_key': 'randomize_settings',
-            'distribution': [
-                ('remove',          4),
-                ('dungeon',         2),
-                ('vanilla',         2),
-                ('keysanity',       4),
-                ('on_lacs',         1),
-            ],
+            'remove':      {'settings': ['ganon_bosskey_stones', 'ganon_bosskey_medallions', 'ganon_bosskey_rewards', 'ganon_bosskey_tokens', 'ganon_bosskey_hearts']},
+            'vanilla':     {'settings': ['ganon_bosskey_stones', 'ganon_bosskey_medallions', 'ganon_bosskey_rewards', 'ganon_bosskey_tokens', 'ganon_bosskey_hearts']},
+            'dungeon':     {'settings': ['ganon_bosskey_stones', 'ganon_bosskey_medallions', 'ganon_bosskey_rewards', 'ganon_bosskey_tokens', 'ganon_bosskey_hearts']},
+            'regional':    {'settings': ['ganon_bosskey_stones', 'ganon_bosskey_medallions', 'ganon_bosskey_rewards', 'ganon_bosskey_tokens', 'ganon_bosskey_hearts']},
+            'overworld':   {'settings': ['ganon_bosskey_stones', 'ganon_bosskey_medallions', 'ganon_bosskey_rewards', 'ganon_bosskey_tokens', 'ganon_bosskey_hearts']},
+            'any_dungeon': {'settings': ['ganon_bosskey_stones', 'ganon_bosskey_medallions', 'ganon_bosskey_rewards', 'ganon_bosskey_tokens', 'ganon_bosskey_hearts']},
+            'keysanity':   {'settings': ['ganon_bosskey_stones', 'ganon_bosskey_medallions', 'ganon_bosskey_rewards', 'ganon_bosskey_tokens', 'ganon_bosskey_hearts']},
+            'on_lacs':     {'settings': ['ganon_bosskey_stones', 'ganon_bosskey_medallions', 'ganon_bosskey_rewards', 'ganon_bosskey_tokens', 'ganon_bosskey_hearts']},
+            'stones':      {'settings': ['ganon_bosskey_medallions', 'ganon_bosskey_rewards', 'ganon_bosskey_tokens', 'ganon_bosskey_hearts']},
+            'medallions':  {'settings': ['ganon_bosskey_stones', 'ganon_bosskey_rewards', 'ganon_bosskey_tokens', 'ganon_bosskey_hearts']},
+            'dungeons':    {'settings': ['ganon_bosskey_stones', 'ganon_bosskey_medallions', 'ganon_bosskey_tokens', 'ganon_bosskey_hearts']},
+            'tokens':      {'settings': ['ganon_bosskey_stones', 'ganon_bosskey_medallions', 'ganon_bosskey_rewards', 'ganon_bosskey_hearts']},
+            'hearts':      {'settings': ['ganon_bosskey_stones', 'ganon_bosskey_medallions', 'ganon_bosskey_rewards', 'ganon_bosskey_tokens']},
+            'random':      {'settings': ['ganon_bosskey_stones', 'ganon_bosskey_medallions', 'ganon_bosskey_rewards']},
         },
     )
 
@@ -1134,9 +1115,7 @@ class SettingInfos:
         shared           = True,
         disabled_default = 0,
         gui_params       = {
-            "randomize_key":      "randomize_settings",
             "hide_when_disabled": True,
-            'distribution':       [(6, 1)],
         },
     )
 
@@ -1151,9 +1130,7 @@ class SettingInfos:
         shared           = True,
         disabled_default = 0,
         gui_params       = {
-            "randomize_key":      "randomize_settings",
             "hide_when_disabled": True,
-            'distribution':       [(3, 1)],
         },
     )
 
@@ -1169,9 +1146,7 @@ class SettingInfos:
         shared           = True,
         disabled_default = 0,
         gui_params       = {
-            "randomize_key":      "randomize_settings",
             "hide_when_disabled": True,
-            'distribution':       [(9, 1)],
         },
     )
 
@@ -1443,6 +1418,12 @@ class SettingInfos:
             'all':    {'settings': ['key_rings']},
             'random': {'settings': ['key_rings']},
         },
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+            'distribution': [
+                ('random', 1),
+            ],
+        },
     )
 
     key_rings = MultipleSelect(
@@ -1469,21 +1450,17 @@ class SettingInfos:
         shared          = True,
     )
 
-    keyring_give_bk = Combobox(
+    keyring_give_bk = Checkbutton(
         gui_text       = 'Key Rings give Boss Keys',
-        choices        = {
-            'off':    'Off',
-            'on':     'On',
-            'random': 'Random',
-        },
-        default        = 'off',
         gui_tooltip    = '''\
             Boss Keys will be included in the Key Ring for the specific dungeon.
             This does not apply to the Ganon's Castle Boss Key.
         ''',
+        default        = False,
         shared         = True,
         gui_params     = {
-            "hide_when_disabled": True,
+            'hide_when_disabled' : True,
+            'randomize_key': 'randomize_settings',
         },
     )
 
@@ -1572,7 +1549,11 @@ class SettingInfos:
             'random': {'settings' : ['silver_rupee_pouches']},  
         },
         gui_params     = {
-            "hide_when_disabled": True,
+            'hide_when_disabled': True,
+            'randomize_key': 'randomize_settings',
+            'distribution' : [
+                ('random', 1),
+            ],
         },
     )
 
@@ -1693,7 +1674,6 @@ class SettingInfos:
             'open':        'Open Forest',
             'closed_deku': 'Closed Deku',
             'closed':      'Closed Forest',
-            'random':      'Random Choice',
             },
         gui_tooltip    = '''\
             'Open Forest': Mido no longer blocks the path to the
@@ -1716,8 +1696,6 @@ class SettingInfos:
             or "Randomize Overworld Spawns" on, Closed Forest will instead
             be treated as Closed Deku with starting age Child and WILL NOT
             guarantee that these items are available in the forest area.
-            
-            'Random Choise': Picks either 'Open Forest' or 'Closed Deku' at random.
         ''',
         shared         = True,
         disable        = {
@@ -1725,11 +1703,6 @@ class SettingInfos:
         },
         gui_params     = {
             'randomize_key': 'randomize_settings',
-            'distribution': [
-                ('open',        1),
-                ('closed_deku', 1),
-                ('closed',      1),
-            ],
         },
     )
 
@@ -1740,7 +1713,6 @@ class SettingInfos:
             'open':   'Open Gate',
             'zelda':  "Zelda's Letter Opens Gate",
             'closed': 'Closed Gate',
-            'random': 'Random Choice',
             },
         gui_tooltip    = '''\
             This changes the behavior of the Kakariko Gate to
@@ -1758,8 +1730,6 @@ class SettingInfos:
 
             "Closed": The gate and the Happy Mask Shop both remain closed
             until showing Zelda's Letter to the guard in Kakariko.
-            
-            "Random Choice": Picks one of these at random.
         ''',
         shared         = True,
         gui_params     = {
@@ -1767,22 +1737,13 @@ class SettingInfos:
         },
     )
 
-    open_door_of_time = Combobox(
-        gui_text       = 'Door of Time',
-        default        = 'closed',
-        choices        = {
-            'open':   'Open Door of Time',
-            'closed': 'Closed',
-            'random': 'Random Choice',
-            },
+    open_door_of_time = Checkbutton(
+        gui_text       = 'Open Door of Time',
         gui_tooltip    = '''\
-            This changes the behavior of the Door of Time.
-            
-            "Open Door of Time": The Door of Time is open by default.
-            
-            "Closed": Opening the Door of Time will require an Ocaina and the Song of Time.
-            
-            "Random Choice": Picks one at random.
+            The Door of Time starts opened instead of needing to
+            play the Song of Time. If this is not set, only
+            an Ocarina and Song of Time must be found to open
+            the Door of Time.
         ''',
         shared         = True,
         gui_params     = {
@@ -1797,7 +1758,6 @@ class SettingInfos:
             'closed': 'Default Behavior (Closed)',
             'adult':  'Open For Adult',
             'open':   'Always Open',
-            'random': 'Random Choice',
         },
         gui_tooltip    = '''\
             'Default Behavior': King Zora obstructs the way to
@@ -1811,8 +1771,6 @@ class SettingInfos:
             'Always Open': King Zora starts as moved in
             both the child and adult eras. This also removes
             Ruto's Letter from the pool since it can't be used.
-            
-            'Random Choice': Picks one of these at random.
         ''',
         shared         = True,
         gui_params     = {
@@ -1827,7 +1785,6 @@ class SettingInfos:
             'normal': 'Default Behavior',
             'fast':   'Rescue One Carpenter',
             'open':   "Open Gerudo's Fortress",
-            'random': 'Random choice',
         },
         gui_tooltip    = '''\
             'Rescue One Carpenter': Only the bottom left carpenter,
@@ -1839,8 +1796,6 @@ class SettingInfos:
             the start of the game, and if 'Shuffle Gerudo Card' is disabled,
             the player starts with the Gerudo Card in the inventory
             allowing access to Gerudo Training Ground.
-            
-            'Random Choice': Picks one of the other three at random.
         ''',
         shared         = True,
         disable        = {
@@ -1970,11 +1925,6 @@ class SettingInfos:
             '!specific': {'settings': ['mq_dungeons_specific']},
             '!count':    {'settings': ['mq_dungeons_count']},
         },
-        gui_params     = {
-            'distribution': [
-                ('random', 1),
-            ],
-        },
     )
 
     mq_dungeons_specific = MultipleSelect(
@@ -2103,11 +2053,6 @@ class SettingInfos:
         disable        = {
             '!specific': {'settings': ['empty_dungeons_specific']},
             '!count':    {'settings': ['empty_dungeons_count']}
-        },
-        gui_params     = {
-            'distribution':  [
-                ('none', 1)
-            ],
         },
     )
 
@@ -2345,6 +2290,10 @@ class SettingInfos:
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
+            'distribution':  [
+                (False, 4),
+                (True,  1),
+            ],
         },
     )
 
@@ -2578,7 +2527,7 @@ class SettingInfos:
         gui_params     = {
             'randomize_key': 'randomize_settings',
             'distribution':  [
-                ('off',    6),
+                ('off',    3),
                 ('0',      1),
                 ('1',      1),
                 ('2',      1),
@@ -2599,7 +2548,6 @@ class SettingInfos:
             'random_giant':    "Giant's Wallet",
             'random_tycoon':   "Tycoon's Wallet",
             'affordable':      "Affordable",
-            'random_choice':   "Random Choice",
         },
         gui_tooltip      = '''\
             Controls the randomization of prices for shopsanity items.
@@ -2616,13 +2564,20 @@ class SettingInfos:
 
             'Affordable': Shop prices for shopsanity items will be
             fixed to 10 rupees.
-            
-            'Random Choice': Picks one of the other options at random.
         ''',
         disabled_default =  'random',
         shared           = True,
         gui_params       = {
             "hide_when_disabled": True,
+            'randomize_key': 'randomize_settings',
+            'distribution':  [
+                ('random',          2),
+                ('random_starting', 3),
+                ('random_adult',    1),
+                ('random_giant',    1),
+                ('random_tycoon',   1),
+                ('affordable',      4),
+            ],
         },
     )
 
@@ -2688,8 +2643,10 @@ class SettingInfos:
         gui_params     = {
             'randomize_key': 'randomize_settings',
             'distribution':  [
-                ('off', 1),
-                ('low', 1),
+                ('off',     3),
+                ('low',     3),
+                ('regular', 1),
+                ('random',  2),
             ],
         },
     )
@@ -2717,6 +2674,9 @@ class SettingInfos:
             add it as a starting item.
         ''',
         shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
     )
 
     shuffle_freestanding_items = Combobox(
@@ -2782,6 +2742,7 @@ class SettingInfos:
         ''',
         gui_params={
             "hide_when_disabled": True,
+            'randomize_key': 'randomize_settings',
         },
         shared         = True
     )
@@ -2822,6 +2783,7 @@ class SettingInfos:
         ''',
         gui_params={
             "hide_when_disabled": True,
+            'randomize_key': 'randomize_settings',
         },
         shared         = True
     )
@@ -3034,11 +2996,6 @@ class SettingInfos:
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
-            'distribution': [
-                ('off',      1),
-                ('all',      1),
-                ('bosses',   1)
-            ],
         },
     )
 
@@ -3074,7 +3031,6 @@ class SettingInfos:
             'randomize_key': 'randomize_settings',
             'distribution': [
                 ('off',          1),
-                ('vanilla',      1),
                 ('easy',         1)
             ],
         },

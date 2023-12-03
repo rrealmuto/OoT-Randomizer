@@ -1476,7 +1476,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
     # Set Boss Key collection in Key Ring.
     symbol = rom.sym('KEYRING_BOSSKEY_CONDITION')
-    if world.settings.keyring_give_bk == 'on':
+    if world.settings.keyring_give_bk:
         rom.write_byte(symbol, 1)
 
     # Set up LACS conditions.
@@ -1503,7 +1503,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     if world.settings.open_forest == 'open':
         save_context.write_bits(0xED5, 0x10)  # "Showed Mido Sword & Shield"
 
-    if world.settings.open_door_of_time == 'open':
+    if world.settings.open_door_of_time:
         save_context.write_bits(0xEDC, 0x08)  # "Opened the Door of Time"
 
     # "fast-ganon" stuff
