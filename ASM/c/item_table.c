@@ -329,7 +329,9 @@ item_row_t item_table[] = {
     [0x0117] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x00A1, 0x01A1, 0x88, no_upgrade, give_small_key, CASTLE_ID, -1, resolve_text_small_keys), // Ganon's Castle Small Key
     [0x0118] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x913E, 0x01A2, 0x89, no_upgrade, give_small_key, TCG_ID,    -1, resolve_text_small_keys_cmg), // Small Key (Chest Game)
 
-    // new items in dev-fenhl which are not in main Dev
+    // New items in dev-fenhl which are not in main Dev
+    // Some IDs may be skipped to avoid ambiguity with Dev-Rob, to simplify auto-tracker support
+
     [0x1000] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9057, 0x01B4, 0x29, no_upgrade, give_triforce_piece, -1, -1, NULL), // Easter egg (pink)
     [0x1001] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9057, 0x01B5, 0x29, no_upgrade, give_triforce_piece, -1, -1, NULL), // Easter egg (orange)
     [0x1002] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9057, 0x01B6, 0x29, no_upgrade, give_triforce_piece, -1, -1, NULL), // Easter egg (green)
@@ -374,6 +376,8 @@ item_row_t item_table[] = {
     [0x1022] = ITEM_ROW(0x4D,      GILDED_CHEST, 0x97, -1, 0x0033, 0x00D9, 0x28, no_upgrade,         no_effect,           -1, -1, NULL), // Bombchu (20) (big chest)
     [0x1023] = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,     -1, 0x00BB, 0x12, nut_upgrade,        no_effect,           -1, -1, NULL), // Progressive Nut Capacity (big chest)
     [0x1024] = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,     -1, 0x00C7, 0x1B, stick_upgrade,      no_effect,           -1, -1, NULL), // Progressive Stick Capacity (big chest)
+
+    // 0x1025 through 0x1053 reserved for enemy souls
 };
 
 /*  Determine which message to display based on the number of silver rupees collected.
