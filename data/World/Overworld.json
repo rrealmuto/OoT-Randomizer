@@ -597,7 +597,22 @@
         "locations": {
             "LH Child Fishing": "is_child",
             "LH Adult Fishing": "is_adult",
-            "LH Loach Fishing": "True"
+            "LH Loach Fishing": "True",
+            "LH Child Fish 1": "is_child",
+            "LH Child Fish 2": "is_child",
+            "LH Child Fish 3": "is_child",
+            "LH Child Fish 4": "is_child",
+            "LH Child Fish 5": "is_child",
+            "LH Child Fish 6": "is_child",
+            "LH Child Fish 7": "is_child",
+            "LH Child Fish 8": "is_child",
+            "LH Child Fish 9": "is_child",
+            "LH Child Fish 10": "is_child",
+            "LH Child Fish 11": "is_child",
+            "LH Child Fish 12": "is_child",
+            "LH Child Fish 13": "is_child",
+            "LH Child Fish 14": "is_child",
+            "LH Child Fish 15": "is_child"
         },
         "exits": {
             "LH Fishing Island": "True"

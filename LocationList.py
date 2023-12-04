@@ -832,6 +832,22 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("LH Lab Dive Red Rupee 3",                                      ("Freestanding", 0x38,  (0,0,4), None,                         'Rupees (20)',                           ("Lake Hylia", "Freestandings",))),
     # Lake Hylia Beehives
     ("LH Grotto Beehive",                                            ("Beehive",      0x3E,  (12,0x0F,4), None,        'Rupees (20)',                           ("Lake Hylia", "Grottos", "Beehives",))),
+    # Lake Hylia Fish
+    ("LH Child Fish 1",                                              ("Pot",          0x49, (0,0,1,1), None,                        'Rupee (1)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 2",                                              ("Pot",          0x49, (0,0,1,2), None,                        'Rupee (1)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 3",                                              ("Pot",          0x49, (0,0,1,3), None,                        'Rupee (1)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 4",                                              ("Pot",          0x49, (0,0,1,4), None,                        'Rupee (1)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 5",                                              ("Pot",          0x49, (0,0,1,5), None,                        'Rupee (1)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 6",                                              ("Pot",          0x49, (0,0,1,6), None,                        'Rupee (1)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 7",                                              ("Pot",          0x49, (0,0,1,7), None,                        'Rupee (1)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 8",                                              ("Pot",          0x49, (0,0,1,8), None,                        'Rupee (1)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 9",                                              ("Pot",          0x49, (0,0,1,9), None,                        'Rupee (1)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 10",                                             ("Pot",          0x49, (0,0,1,10), None,                       'Rupee (1)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 11",                                             ("Pot",          0x49, (0,0,1,11), None,                       'Rupee (1)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 12",                                             ("Pot",          0x49, (0,0,1,12), None,                       'Rupee (1)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 13",                                             ("Pot",          0x49, (0,0,1,13), None,                       'Rupee (1)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 14",                                             ("Pot",          0x49, (0,0,1,14), None,                       'Rupee (1)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 15",                                             ("Pot",          0x49, (0,0,1,15), None,                       'Rupee (1)',                             ("Lake Hylia", "Minigames", "Fish"))),
 
     # Gerudo Valley
     ("GV Crate Freestanding PoH",                                    ("Collectable",  0x5A,  0x02, None,                            'Piece of Heart',                        ("Gerudo Valley", "Freestandings",))),

@@ -28,6 +28,7 @@ extern xflag_t* spawn_actor_with_flag;
 #define OBJ_KIBAKO2         0x1A0   // Large Crate
 #define EN_G_SWITCH         0x0117 //Silver Rupee
 #define EN_WONDER_ITEM      0x0112  // Wonder Item
+#define ACTOR_FISHING       0xFE // Fishing fish
 
 ActorOverlay* gActorOverlayTable = (ActorOverlay*)ACTOR_OVERLAY_TABLE_ADDR;
 
@@ -73,6 +74,7 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, xflag_t flag) {
             case OBJ_MURE3:
             case BG_HAKA_TUBO:
             case EN_WONDER_ITEM:
+            case ACTOR_FISHING:
             {
                 extra->flag = flag;
                 break;
