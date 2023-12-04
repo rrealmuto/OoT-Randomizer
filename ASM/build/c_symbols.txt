@@ -227,7 +227,7 @@ SYMBOL TABLE:
 0000009c g     O .sdata	00000004 text_height
 00000000         *UND*	00000000 CFG_CORRECT_MODEL_COLORS
 0000f738 g     F .text	0000005c stick_upgrade
-0001ded0 g     O .data	000000fc adultSkeleton
+0001e1e0 g     O .data	000000fc adultSkeleton
 00000030 g     O .data	00000018 medals
 0001429c g     F .text	0000002c text_init
 00000080 g     O .sbss	00000001 satisfied_ice_percent_frames
@@ -294,7 +294,7 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 OUTGOING_PLAYER
 0000150c g     O .bss	000000ca xflag_scene_table
 000159c8 g     F .text	00000240 override_weather_state
-0001dcd4 g     O .data	00000100 FILENAME_ENCODING
+0001dfe4 g     O .data	00000100 FILENAME_ENCODING
 0000881c g     F .text	0000004c push_delayed_item
 0000f590 g     F .text	00000078 slingshot_upgrade
 00013e90 g     F .text	000001d0 Sram_CopySave
@@ -469,7 +469,7 @@ SYMBOL TABLE:
 00000428 g     O .data	00000028 setup_db
 000114c8 g     F .text	00000060 get_object
 0000e9ac g     F .text	000000d4 give_triforce_piece
-00001bd8 g     O .data	0001c0fc item_table
+00001bd8 g     O .data	0001c40c item_table
 00000000         *UND*	00000000 CFG_UNINVERT_YAXIS_IN_FIRST_PERSON_CAMERA
 000003d8 g     O .data	00000010 font_sprite
 0000041c g     F .text	00000050 Actor_After_UpdateAll_Hack
@@ -613,7 +613,7 @@ SYMBOL TABLE:
 00000a80 g     O .bss	000007d0 xflag_room_blob
 00008a4c g     F .text	000001dc try_pending_item
 0000aea8 g     F .text	00000120 draw_gi_compass
-0001dfcc g     O .data	000001f0 texture_table
+0001e2dc g     O .data	000001f0 texture_table
 0000ef44 g     F .text	0000002c fill_wallet_upgrade
 0000ad44 g     F .text	000000c0 draw_gi_eggs_and_medallions
 0000008c g     O .sbss	00000004 heap_next
@@ -643,7 +643,7 @@ SYMBOL TABLE:
 00008678 g     F .text	000000b4 move_outgoing_queue
 000036c0 g     F .text	00000318 draw_silver_rupee_count
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_NPC_INNER_ENABLED
-0001ddd4 g     O .data	000000fc childSkeleton
+0001e0e4 g     O .data	000000fc childSkeleton
 00000004 g     O .sbss	00000004 CHEST_SIZE_TEXTURE
 00000d54 g     F .text	00000024 DoorWarp1_WaterMedallion_Overwrite
 000115dc g     F .text	00000078 draw_model_low_level

@@ -75,7 +75,7 @@ item_table: dict[str, tuple[str, Optional[bool], Optional[int], Optional[dict[st
     'Biggoron Sword':                                  ('Item',     None,  0x0057, None),
     'Fire Arrows':                                     ('Item',     True,  0x0058, None),
     'Ice Arrows':                                      ('Item',     True,  0x0059, None),
-    'Blue Fire Arrows':                                ('Item',     True,  0x0127, None),
+    'Blue Fire Arrows':                                ('Item',     True,  0x1019, None),
     'Light Arrows':                                    ('Item',     True,  0x005A, None),
     'Gold Skulltula Token':                            ('Token',    True,  0x005B, {'progressive': float('Inf')}),
     'Dins Fire':                                       ('Item',     True,  0x005C, None),
@@ -223,8 +223,8 @@ item_table: dict[str, tuple[str, Optional[bool], Optional[int], Optional[dict[st
     'Ocarina C down Button':                           ('Item',     True,  0x0106, {'ocarina_button': True}),
     'Ocarina C left Button':                           ('Item',     True,  0x0107, {'ocarina_button': True}),
     'Ocarina C right Button':                          ('Item',     True,  0x0108, {'ocarina_button': True}),
-    'Fairy Drop':                                      ('Item',     None,  0x0109, None),
-    'Nothing':                                         ('Item',     None,  0x010A, None),
+    'Fairy Drop':                                      ('Item',     None,  0x1009, None),
+    'Nothing':                                         ('Item',     None,  0x100A, None),
 
     'Easter Egg (Pink)':                               ('Item',     True,  0x1000, {'alias': ('Triforce Piece', 1), 'progressive': float('Inf')}),
     'Easter Egg (Orange)':                             ('Item',     True,  0x1001, {'alias': ('Triforce Piece', 1), 'progressive': float('Inf')}),
@@ -370,7 +370,7 @@ item_table: dict[str, tuple[str, Optional[bool], Optional[int], Optional[dict[st
     'Buy Red Potion for 40 Rupees':     ('Shop',     False, 0x30, {'object': 0x00EB, 'price': 40}),
     'Buy Red Potion for 50 Rupees':     ('Shop',     False, 0x31, {'object': 0x00EB, 'price': 50}),
 
-    'Kokiri Emerald':                   ('DungeonReward',    True,  0x0119,
+    'Kokiri Emerald':                   ('DungeonReward',    True,  0x100B,
                                             {
                                                 'stone':      True,
                                                 'addr2_data': 0x80,
@@ -379,7 +379,7 @@ item_table: dict[str, tuple[str, Optional[bool], Optional[int], Optional[dict[st
                                                 'actor_type': 0x13,
                                                 'object_id':  0x00AD,
                                             }),
-    'Goron Ruby':                       ('DungeonReward',    True,  0x011A,
+    'Goron Ruby':                       ('DungeonReward',    True,  0x100C,
                                             {
                                                 'stone':      True,
                                                 'addr2_data': 0x81,
@@ -388,7 +388,7 @@ item_table: dict[str, tuple[str, Optional[bool], Optional[int], Optional[dict[st
                                                 'actor_type': 0x14,
                                                 'object_id':  0x00AD,
                                             }),
-    'Zora Sapphire':                    ('DungeonReward',    True,  0x011B,
+    'Zora Sapphire':                    ('DungeonReward',    True,  0x100D,
                                             {
                                                 'stone':      True,
                                                 'addr2_data': 0x82,
@@ -397,7 +397,7 @@ item_table: dict[str, tuple[str, Optional[bool], Optional[int], Optional[dict[st
                                                 'actor_type': 0x15,
                                                 'object_id':  0x00AD,
                                             }),
-    'Forest Medallion':                 ('DungeonReward',    True,  0x011D,
+    'Forest Medallion':                 ('DungeonReward',    True,  0x100F,
                                             {
                                                 'medallion':  True,
                                                 'addr2_data': 0x3E,
@@ -406,7 +406,7 @@ item_table: dict[str, tuple[str, Optional[bool], Optional[int], Optional[dict[st
                                                 'actor_type': 0x0B,
                                                 'object_id':  0x00BA,
                                             }),
-    'Fire Medallion':                   ('DungeonReward',    True,  0x011E,
+    'Fire Medallion':                   ('DungeonReward',    True,  0x1010,
                                             {
                                                 'medallion':  True,
                                                 'addr2_data': 0x3C,
@@ -415,7 +415,7 @@ item_table: dict[str, tuple[str, Optional[bool], Optional[int], Optional[dict[st
                                                 'actor_type': 0x09,
                                                 'object_id':  0x00BA,
                                             }),
-    'Water Medallion':                  ('DungeonReward',    True,  0x011F,
+    'Water Medallion':                  ('DungeonReward',    True,  0x1011,
                                             {
                                                 'medallion':  True,
                                                 'addr2_data': 0x3D,
@@ -424,7 +424,7 @@ item_table: dict[str, tuple[str, Optional[bool], Optional[int], Optional[dict[st
                                                 'actor_type': 0x0A,
                                                 'object_id':  0x00BA,
                                             }),
-    'Spirit Medallion':                 ('DungeonReward',    True,  0x0121,
+    'Spirit Medallion':                 ('DungeonReward',    True,  0x1013,
                                             {
                                                 'medallion':  True,
                                                 'addr2_data': 0x3F,
@@ -433,7 +433,7 @@ item_table: dict[str, tuple[str, Optional[bool], Optional[int], Optional[dict[st
                                                 'actor_type': 0x0C,
                                                 'object_id':  0x00BA,
                                             }),
-    'Shadow Medallion':                 ('DungeonReward',    True,  0x0120,
+    'Shadow Medallion':                 ('DungeonReward',    True,  0x1012,
                                             {
                                                 'medallion':  True,
                                                 'addr2_data': 0x41,
@@ -442,7 +442,7 @@ item_table: dict[str, tuple[str, Optional[bool], Optional[int], Optional[dict[st
                                                 'actor_type': 0x0D,
                                                 'object_id':  0x00BA,
                                             }),
-    'Light Medallion':                  ('DungeonReward',    True,  0x011C,
+    'Light Medallion':                  ('DungeonReward',    True,  0x100E,
                                             {
                                                 'medallion':  True,
                                                 'addr2_data': 0x40,
