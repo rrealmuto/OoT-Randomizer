@@ -187,6 +187,11 @@ z64_actor_t *Actor_SpawnEntry_Hack(void *actorCtx, ActorEntry *actorEntry, z64_g
     bool continue_spawn = true;
     bool overridden = false;
     actor_after_spawn_func after_spawn_func = NULL;
+
+    // Handle actor's that we've patched out using ID 0xFFFF
+    if(actorEntry->id == 0xFFFF)
+        return NULL;
+
     switch (actorEntry->id) {
         case EN_G_SWITCH: {
             continue_spawn = spawn_override_silver_rupee(actorEntry, globalCtx, &overridden);
