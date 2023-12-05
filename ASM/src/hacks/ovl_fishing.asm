@@ -2,6 +2,10 @@
 
 .headersize(0x80A34510 - 0x00DBE030)
 
+; Increase the size of the fishing actor to store the override
+.org 0x80a44a1c
+.word 0x00000550 ; normally 0x0540
+
 ; Hook Actor_Spawn call in Fishing_Init
 .org 0x80a35774
 ; Replaces
@@ -14,6 +18,6 @@
 ; Replaces
 ;   addiu   sp, sp, -0x30
 ;   sw      s0, 0x28(sp)
-jal     Fishing_Draw_Hook
+j      Fishing_DrawFish_Hook
 nop
 Fishing_DrawFish_Continue:

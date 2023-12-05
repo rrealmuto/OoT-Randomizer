@@ -108,3 +108,10 @@ make_loach_follow_lure:
     addiu   sp, sp, 0x0014
 
 Fishing_DrawFish:
+; Fishing_DrawFish replaced code:
+    addiu   sp, sp, -0x30
+    sw      s0, 0x28(sp)
+    li      t8, Fishing_DrawFish_Continue
+    addiu   t9, r0, 0xFE ; Fishing Overlay index
+    j       Overlay_Call_Addr
+    nop

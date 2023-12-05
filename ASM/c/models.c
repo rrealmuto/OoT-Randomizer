@@ -370,3 +370,7 @@ void bowling_heart_piece_draw(z64_actor_t* actor, z64_game_t* game) {
     lookup_model(&model, actor, game, 0x3E);
     draw_model(model, actor, game, 1.0);
 }
+
+void fishing_draw(z64_actor_t* actor, z64_game_t* game) {
+    
+}
