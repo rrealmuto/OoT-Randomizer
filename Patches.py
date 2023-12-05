@@ -2589,8 +2589,17 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
             song_layout_in_byte_form |= 1 << 4
         rom.write_byte(rom.sym('EPONAS_SONG_NOTES'), song_layout_in_byte_form)
 
+    # Enemy soul shuffle
     if world.settings.shuffle_enemy_spawns != 'off':
         rom.write_byte(rom.sym('CFG_ENEMY_SPAWN_SHUFFLE'), 1)
+
+        # There are two keese in MQ spirit temple that don't spawn because their object isn't loaded
+        # This causes the room clear check hacks to break because soul shuffle will normally see the actor when spawning, and inhibit it
+        # if the soul hasn't been collected.
+        # Patch out those keese by writing 0xFFFF to their ID
+        if world.dungeon_mq['Spirit Temple']:
+            rom.write_int16(0x2B12334, 0xFFFF)
+            rom.write_int16(0x2B12344, 0xFFFF)
 
     # Sets the torch count to open the entrance to Shadow Temple
     if world.settings.easier_fire_arrow_entry:
