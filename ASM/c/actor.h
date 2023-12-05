@@ -3,6 +3,7 @@
 
 #include "z64.h"
 #include <stdbool.h>
+#include "get_items.h"
 
 #define ACTOR_OVERLAY_TABLE_ADDR 0x800E8530
 

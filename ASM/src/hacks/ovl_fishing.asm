@@ -23,3 +23,21 @@
 ; Replaces
 ;   jal SkelAnime_DrawFlexOpa
     jal Fishing_SkeletonDraw_Hook
+
+; Hook Fishing_UpdateFish when it calls Actor_Kill so we can give the overridden item
+.org 0x80a3f3e0
+; Replaces
+;   jal Actor_Kill
+    jal Fishing_GiveOverride_Kill
+
+; Hook when a fish is caught (case D 6) in Fishing_UpdateFish to keep track of the fish that was caught
+.org 0x80a3ef3c
+; Replaces
+;   jal 0x80064624
+    jal Fish_Caught_Hook
+
+; Hook the call to Message_StartTextbox in Fishing_UpdateOwner so we can override the message
+.org 0x80a42b98
+; Replaces
+;   jal Message_StartTextbox
+    jal Fishing_CaughtFish_Textbox
