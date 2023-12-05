@@ -3,7 +3,7 @@
     "open_door_of_time": true,
     "open_forest": "open",
     "bridge": "open",
-    "triforce_hunt": false,
+    "triforce_hunt": "on",
     "shuffle_child_trade": ["Weird Egg"],
     "logic_rules": "glitchless",
     "reachable_locations": "beatable",

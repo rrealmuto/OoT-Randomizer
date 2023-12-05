@@ -591,7 +591,7 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
     if world.settings.item_pool_value == 'ludicrous':
         pending_junk_pool.extend(ludicrous_health)
 
-    if world.settings.triforce_hunt:
+    if world.settings.triforce_hunt == 'on':
         pending_junk_pool.extend(['Triforce Piece'] * world.settings.triforce_count_per_world)
     if world.settings.shuffle_individual_ocarina_notes:
         pending_junk_pool.append('Ocarina A Button')
@@ -651,7 +651,7 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
 
         # Ice Arrows/Blue Fire Arrows
         elif location.vanilla_item == 'Ice Arrows':
-            if world.settings.blue_fire_arrows:
+            if world.settings.blue_fire_arrows == 'on':
                 item = 'Blue Fire Arrows'
             shuffle_item = True
 
@@ -965,10 +965,10 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
             else:
                 pending_junk_pool.append(rupee)
 
-    if world.settings.free_scarecrow:
+    if world.settings.free_scarecrow == 'on':
         world.state.collect(ItemFactory('Scarecrow Song', world))
 
-    if world.settings.no_epona_race:
+    if world.settings.no_epona_race == 'on':
         world.state.collect(ItemFactory('Epona', world, event=True))
 
     if world.settings.shuffle_smallkeys == 'vanilla':

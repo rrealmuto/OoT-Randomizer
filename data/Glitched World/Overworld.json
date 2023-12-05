@@ -232,7 +232,7 @@
             "Bonooru": "is_child and Ocarina and has_all_notes_for_song(Scarecrow_Song)"
         },
         "locations": {
-            "Pierre": "is_adult and Bonooru and not free_scarecrow",
+            "Pierre": "is_adult and Bonooru and free_scarecrow == 'off'",
             "LH Underwater Item": "is_child and can_dive",
             "LH Sun": "
                 is_adult and
@@ -548,7 +548,7 @@
             "Mask Shop Open": "at('HC Garden Locations', is_child) and 'Kakariko Village Gate Open'",
             "Mask of Truth Access": "
                 'Mask Shop Open' and
-                (complete_mask_quest or
+                (complete_mask_quest == 'on' or
                     (
                     Keaton_Mask and at('Kakariko Village', is_child) and
                     Skull_Mask and at('Lost Woods', is_child and can_play(Sarias_Song)) and

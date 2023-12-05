@@ -1,7 +1,7 @@
 {
     "settings": {
         "shuffle_mapcompass": "startwith",
-        "blue_fire_arrows":   true,
+        "blue_fire_arrows":   "on",
         "zora_fountain":      "open",
         "hint_dist":          "tournament"
     },
