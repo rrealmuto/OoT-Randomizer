@@ -848,6 +848,8 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("LH Child Fish 13",                                             ("Pot",          0x49, (0,0,1,13), None,                       'Rupee (1)',                             ("Lake Hylia", "Minigames", "Fish"))),
     ("LH Child Fish 14",                                             ("Pot",          0x49, (0,0,1,14), None,                       'Rupee (1)',                             ("Lake Hylia", "Minigames", "Fish"))),
     ("LH Child Fish 15",                                             ("Pot",          0x49, (0,0,1,15), None,                       'Rupee (1)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 16",                                             ("Pot",          0x49, (0,0,1,16), None,                       'Rupee (1)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 17",                                             ("Pot",          0x49, (0,0,1,17), None,                       'Rupee (1)',                             ("Lake Hylia", "Minigames", "Fish"))),
 
     # Gerudo Valley
     ("GV Crate Freestanding PoH",                                    ("Collectable",  0x5A,  0x02, None,                            'Piece of Heart',                        ("Gerudo Valley", "Freestandings",))),

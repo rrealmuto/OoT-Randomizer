@@ -19,3 +19,7 @@
 ;   jal SkelAnime_DrawFlexOpa
     jal Fishing_SkeletonDraw_Hook
 
+.org 0x80a4066c
+; Replaces
+;   jal SkelAnime_DrawFlexOpa
+    jal Fishing_SkeletonDraw_Hook

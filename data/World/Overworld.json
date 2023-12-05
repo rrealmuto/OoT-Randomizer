@@ -612,7 +612,9 @@
             "LH Child Fish 12": "is_child",
             "LH Child Fish 13": "is_child",
             "LH Child Fish 14": "is_child",
-            "LH Child Fish 15": "is_child"
+            "LH Child Fish 15": "is_child",
+            "LH Child Fish 16": "is_child",
+            "LH Child Fish 17": "is_child"
         },
         "exits": {
             "LH Fishing Island": "True"
