@@ -23,15 +23,13 @@ z64_actor_t* Fishing_Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int
 }
 
 extern void Fishing_DrawFish(z64_actor_t* this, z64_game_t* globalCtx);
-void Fishing_DrawFish_Hook(z64_actor_t* this, z64_game_t* globalCtx) {
+void Fishing_SkeletonDraw_Hook(z64_game_t* globalCtx, void** skeleton, z64_xyz_t* jointTable, int32_t dListCount, OverrideLimbDrawOpa overrideLimbDraw, PostLimbDrawOpa postLimbDraw, void* this) {
     Fishing* fish = (Fishing*)this;
     if(fish->override.key.all) {
-        model_t model;
-        lookup_model_by_override(&model, ((Fishing*)this)->override);
-        draw_model(model, this, globalCtx, 1);
+        postLimbDraw(globalCtx, 0xD, NULL, NULL, this);
+        fishing_draw(&(fish->actor), globalCtx);
         return;
     }
-    
-
-    Fishing_DrawFish(this, globalCtx);
+    SkelAnime_DrawFlexOpa(globalCtx, skeleton, jointTable, dListCount, overrideLimbDraw, postLimbDraw, this);
+    //Fishing_DrawFish(this, globalCtx);
 }

@@ -4,7 +4,7 @@
 
 ; Increase the size of the fishing actor to store the override
 .org 0x80a44a1c
-.word 0x00000550 ; normally 0x0540
+.word 0x00000570 ; normally 0x0540
 
 ; Hook Actor_Spawn call in Fishing_Init
 .org 0x80a35774
@@ -13,11 +13,9 @@
     jal Fishing_Actor_Spawn_Hook
 
 
-; Hook Fishing_Draw_Fish so we can draw overridden items
-.org 0x80a40440
+; Hook Fishing_DrawFish call to SkelAnime_DrawFlexOpa to draw our model
+.org 0x80a405d8
 ; Replaces
-;   addiu   sp, sp, -0x30
-;   sw      s0, 0x28(sp)
-j      Fishing_DrawFish_Hook
-nop
-Fishing_DrawFish_Continue:
+;   jal SkelAnime_DrawFlexOpa
+    jal Fishing_SkeletonDraw_Hook
+

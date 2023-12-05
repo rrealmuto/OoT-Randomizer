@@ -29,3 +29,5 @@ SECTIONS
         *(.reginfo)
     }
 }
+
+SkelAnime_DrawFlexOpa = 0x80089d8c;

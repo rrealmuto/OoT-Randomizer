@@ -1550,6 +1550,9 @@ typedef struct {
                                               /* 0x01B0 */
 } z64_trail_t;
 
+typedef int32_t (*OverrideLimbDrawOpa)(z64_game_t* play, int32_t limbIndex, Gfx** dList, z64_xyzf_t* pos, z64_xyz_t* rot, void*);
+typedef void (*PostLimbDrawOpa)(z64_game_t* play, int32_t limbIndex, Gfx** dList, z64_xyz_t* rot, void*);
+
 typedef enum {
     /* 0x00 */ ITEM00_RUPEE_GREEN,
     /* 0x01 */ ITEM00_RUPEE_BLUE,
@@ -2342,5 +2345,7 @@ typedef void(*z64_Play_SetupRespawnPoint_proc)(z64_game_t *game, int32_t respawn
 #define ITEMGETINF_3A 0x3A
 #define ITEMGETINF_3B 0x3B
 #define ITEMGETINF_3F 0x3F
+
+extern void SkelAnime_DrawFlexOpa(z64_game_t* globalCtx, void** skeleton, z64_xyz_t* jointTable, int32_t dListCount, OverrideLimbDrawOpa overrideLimbDraw, PostLimbDrawOpa postLimbDraw, void* this);
 
 #endif
