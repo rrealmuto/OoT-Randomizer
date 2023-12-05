@@ -49,5 +49,6 @@ bool spawn_override_silver_rupee(ActorEntry *actorEntry, z64_game_t *globalCtx, 
 void after_spawn_override_silver_rupee(z64_actor_t* actor, bool overridden);
 ActorAdditionalData* Actor_GetAdditionalData(z64_actor_t* actor);
 override_t get_newflag_override(z64_actor_t *actor, z64_game_t *game);
+override_t get_newflag_override_by_flag(xflag_t* flag, z64_game_t* game);
 
 #endif

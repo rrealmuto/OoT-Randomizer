@@ -197,6 +197,8 @@ SHUFFLE_OCARINA_BUTTONS:
 .byte 0x00
 EPONAS_SONG_NOTES:
 .byte 0x00
+SHUFFLE_FISHIES:
+.byte 0x00
 .align 4
 
 ; These configuration values are given fixed addresses to aid auto-trackers.

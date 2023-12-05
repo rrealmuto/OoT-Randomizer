@@ -116,6 +116,11 @@ void Actor_StoreFlagByIndex(z64_actor_t* actor, z64_game_t* game, uint16_t actor
 // Get an override for an actor with the new flags. If the override doesn't exist, or flag has already been set, return 0.
 override_t get_newflag_override(z64_actor_t *actor, z64_game_t *game) {
     xflag_t* flag = &Actor_GetAdditionalData(actor)->flag;
+    return get_newflag_override_by_flag(flag, game);
+}
+
+// Get an override for an actor with the new flags. If the override doesn't exist, or flag has already been set, return 0.
+override_t get_newflag_override_by_flag(xflag_t* flag, z64_game_t *game) {
     override_t override = lookup_override_by_newflag(flag);
     if(override.key.all != 0)
     {

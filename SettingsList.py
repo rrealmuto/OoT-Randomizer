@@ -2839,6 +2839,18 @@ class SettingInfos:
         },
     )
 
+    shuffle_fishies = Checkbutton(
+        gui_text       = 'Shuffle Fishing Game Fish',
+        gui_tooltip    = '''\
+            Fish shuffle?
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    )
+
     shuffle_loach_reward = Combobox(
         gui_text       = 'Shuffle Hyrule Loach Reward',
         gui_tooltip    = '''\

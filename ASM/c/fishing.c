@@ -7,6 +7,7 @@
 #include "item_table.h"
 #include "util.h"
 
+extern uint8_t SHUFFLE_FISHIES;
 extern xflag_t* spawn_actor_with_flag;
         //0x80a44a50 - sFishOnHandLength
         //0x80a47eec - sFishOnHandIsLoach
@@ -17,17 +18,24 @@ extern xflag_t* spawn_actor_with_flag;
 Fishing* caught_fish = NULL;
 
 z64_actor_t* Fishing_Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params) {
-    xflag_t fish_flag = { 0 };
-    fish_flag.room = globalCtx->room_index;
-    fish_flag.scene = globalCtx->scene_index;
-    fish_flag.setup = curr_scene_setup;
-    fish_flag.flag = globalCtx->link_age; // Use the current age as the flag to distinguish child/adult fish
-    fish_flag.subflag = params - 100; // Params contains the value 100 + i from the spawn loop. Add 1
-    spawn_actor_with_flag = &fish_flag;
-    Fishing* fish = z64_SpawnActor(actorCtx, globalCtx, actorId, posX, posY, posZ, rotX, rotY, rotZ, params);
-    fish->override = get_newflag_override(&fish->actor, globalCtx);
-    spawn_actor_with_flag = NULL;
-    return fish;
+    if(SHUFFLE_FISHIES) {
+        xflag_t fish_flag = { 0 };
+        fish_flag.room = globalCtx->room_index;
+        fish_flag.scene = globalCtx->scene_index;
+        fish_flag.setup = curr_scene_setup;
+        fish_flag.flag = globalCtx->link_age; // Use the current age as the flag to distinguish child/adult fish
+        fish_flag.subflag = params - 100; // Params contains the value 100 + i from the spawn loop. Add 1
+        override_t override = get_newflag_override_by_flag(&fish_flag, globalCtx);
+        if(override.key.all) {
+            spawn_actor_with_flag = &fish_flag;
+            Fishing* fish = z64_SpawnActor(actorCtx, globalCtx, actorId, posX, posY, posZ, rotX, rotY, rotZ, params);
+            fish->override = override;
+            spawn_actor_with_flag = NULL;
+            return fish;
+        }
+        return NULL;
+    }
+    return z64_SpawnActor(actorCtx, globalCtx, actorId, posX, posY, posZ, rotX, rotY, rotZ, params);
 }
 
 extern void Fishing_DrawFish(z64_actor_t* this, z64_game_t* globalCtx);
@@ -45,8 +53,10 @@ void Fishing_SkeletonDraw_Hook(z64_game_t* globalCtx, void** skeleton, z64_xyz_t
 void Fishing_GiveOverride_Kill(z64_actor_t* this) {
     Fishing* fish = (Fishing*)this;
     if(fish->override.key.all) {
+        ActorAdditionalData* extras = Actor_GetAdditionalData(this);
         uint16_t resolved_item_id = resolve_upgrades(fish->override);
         item_row_t* item_row = get_item_row(resolved_item_id);
+        Set_NewOverrideFlag(&(extras->flag));
         dispatch_item(resolved_item_id, fish->override.value.base.player, &(fish->override), item_row);
         // Reset the fishing variables that keep track if we have caught a fish
         float* pFishOnHandLength = (float*)resolve_overlay_addr(pFishOnHandLength_VRAM, 0xFE);

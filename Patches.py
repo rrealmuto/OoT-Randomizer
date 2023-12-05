@@ -2589,6 +2589,10 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         rom.write_int32(0xDC6540, 0xa6010192) # replace 'sh v0, 0x0192(s0)' with 'sh at, 0x0192(s0)'
         rom.write_int32(0xDC6550, 0xE60601AC) # replace 'swc1 f10, 0x01ac(s0)' with 'swc1 f6, 0x01ac(s0)'
 
+    # Fishing game fish shuffle
+    if world.settings.shuffle_fishies:
+        rom.write_byte(rom.sym("SHUFFLE_FISHIES"), 1)
+
     # Fix shadow temple redead shared flags for silver rupee shuffle
     if world.settings.shuffle_silver_rupees != 'vanilla':
         if not world.dungeon_mq['Shadow Temple']: # Patch for redeads in vanilla
