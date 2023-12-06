@@ -526,6 +526,7 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'Ocarina C right Button':                                   (["a middle note"], "the Ocarina C right Button", 'item'),
     'Fairy Drop':                                               (["an annoying companion"], "a Stray Fairy", 'item'),
     'Nothing':                                                  (["emptiness", "loneliness"], "Nothing", 'item'),
+    'Fishing Rod':                                              (["a Fishing Rod"], "a Fishing Rod", 'item'),
     'Fish (Child 6 lb)':                                        (["chum"], "a small fish (child)", 'item'),
     'Fish (Child 8 lb)':                                        (["chum"], "a medium-sized fish (child)", 'item'),
     'Fish (Child 10 lb)':                                       (["a LUNKER"], "a record setting fish (child)", 'item'),
