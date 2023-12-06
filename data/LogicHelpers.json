@@ -54,6 +54,7 @@
     "can_play(song)": "Ocarina and song and (not shuffle_individual_ocarina_notes or has_all_notes_for_song(song))",
     "can_open_bomb_grotto": "can_blast_or_smash and (Stone_of_Agony or logic_grottos_without_agony)",
     "can_open_storm_grotto": "can_play(Song_of_Storms) and (Stone_of_Agony or logic_grottos_without_agony)",
+    "can_fish": "(not shuffle_fishies) or Fishing_Rod",
     # The last case in a conditional still needs a check, to prevent failure from falling through
     # into what should be the 'else' case.
     "can_use_projectile": "has_explosives or (is_adult and (Bow or Hookshot)) or (is_child and (Slingshot or Boomerang))",

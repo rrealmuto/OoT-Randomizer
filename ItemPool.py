@@ -641,7 +641,7 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
 
         # Hyrule Loach Reward
         elif location.scene == 0x49 and location.vanilla_item == 'Rupees (50)':
-            shuffle_item = world.settings.shuffle_loach_reward != 'off'
+            shuffle_item = world.settings.shuffle_loach_reward != 'off' or world.settings.shuffle_fishies
 
         # Adult Trade Quest Items
         elif location.vanilla_item in trade_items:

@@ -2577,7 +2577,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     rom.write_byte(0xCB4397, 0x00)
 
     # Behavior Modifications to make the loach easier to catch
-    if world.settings.shuffle_loach_reward == 'easy':
+    if world.settings.shuffle_loach_reward == 'easy' or world.settings.shuffle_fishies:
         # Make the loach always spawn
         # Rather than just nop the branch, replace it with instruction 'sb at, 0xB057(s0)'
         # this stores a non-zero value to an unused byte in the fishing overlay
