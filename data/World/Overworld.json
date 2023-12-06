@@ -613,8 +613,8 @@
             "LH Child Fish 13": "is_child and can_fish",
             "LH Child Fish 14": "is_child and can_fish",
             "LH Child Fish 15": "is_child and can_fish",
-            "LH Child Fish 16": "is_child and can_fish",
-            "LH Child Fish 17": "is_child and can_fish",
+            "LH Child Loach 1": "is_child and can_fish",
+            "LH Child Loach 2": "is_child and can_fish",
             "LH Adult Fish 1": "is_adult and can_fish",
             "LH Adult Fish 2": "is_adult and can_fish",
             "LH Adult Fish 3": "is_adult and can_fish",
@@ -630,7 +630,7 @@
             "LH Adult Fish 13": "is_adult and can_fish",
             "LH Adult Fish 14": "is_adult and can_fish",
             "LH Adult Fish 15": "is_adult and can_fish",
-            "LH Adult Fish 16": "is_adult and can_fish"
+            "LH Adult Loach": "is_adult and can_fish"
         },
         "exits": {
             "LH Fishing Island": "True"
