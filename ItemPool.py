@@ -524,6 +524,9 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
         pending_junk_pool.append('Ocarina C down Button')
         pending_junk_pool.append('Ocarina C right Button')
 
+    if world.settings.shuffle_fishies:
+        pending_junk_pool.append('Fishing Rod')
+
     # Use the vanilla items in the world's locations when appropriate.
     vanilla_items_processed = Counter()
     for location in world.get_locations():
