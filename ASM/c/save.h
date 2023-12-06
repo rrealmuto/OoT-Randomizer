@@ -7,6 +7,9 @@
 // Struct for storing additional data in SRAM. This has to always be a multiple of 2 bytes long supposedly.
 typedef struct {
     uint8_t silver_rupee_counts[0x16];
+    uint8_t has_fishing_rod;
+    uint8_t largest_fish_found[2]; // index 1 = child, index 0 = adult
+    uint8_t has_loach;
     override_t incoming_queue[3];
 } extended_savecontext_static_t __attribute__ ((aligned (8)));
 

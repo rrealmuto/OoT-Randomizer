@@ -41,3 +41,14 @@
 ; Replaces
 ;   jal Message_StartTextbox
     jal Fishing_CaughtFish_Textbox
+
+; Hook call to Fishing_HandleOwnerDialog so we can handle our own dialog for fish shuffle
+.org 0x80a42ba8
+; Replaces
+;   jal Fishing_HandleOwnerDialog - This is relocated so clear the relocation
+    jal Fishing_HandleOwnerDialog_Hook
+
+
+; Relocs
+.org 0x80a47734 ; Call to Fishing_HandleOwnerDialog
+nop

@@ -578,7 +578,7 @@ void Collectible_WaitForMessageBox(EnItem00 *this, z64_game_t *game) {
     }
 
     // Check message state:
-    if (z64_MessageGetState(((uint8_t*)(&z64_game)) + 0x20D8) == 0) {
+    if (Message_GetState(((uint8_t*)(&z64_game)) + 0x20D8) == 0) {
         // Make sure link was frozen for the minimum amount of time
         if (this->timeToLive == 0) {
             reset_collectible_mutex(); // release the mutex

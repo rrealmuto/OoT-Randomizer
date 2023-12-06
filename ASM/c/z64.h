@@ -49,6 +49,31 @@
 #define SREG(r) BASE_REG(1, (r))
 #define R_PAUSE_BG_PRERENDER_STATE SREG(94)
 
+typedef enum {
+    /* 0x00 */ HS_HBA,          // horseback archery
+    /* 0x01 */ HS_POE_POINTS,
+    /* 0x02 */ HS_FISHING,
+    /* 0x03 */ HS_HORSE_RACE,
+    /* 0x04 */ HS_MARATHON,
+    /* 0x05 */ HS_UNK_05,
+    /* 0x06 */ HS_DAMPE_RACE
+} HighScores;
+
+#define HIGH_SCORE(score) (z64_file.highScores[score])
+
+// the score value for the fishing minigame also stores many flags.
+#define HS_FISH_LENGTH_CHILD 0x7F // mask for record length of catch as child.
+#define HS_FISH_LENGTH_ADULT 0x7F000000 // mask for record length of catch as adult.
+#define HS_FISH_PLAYED_CHILD 0x100 // set when first talking to owner as child
+#define HS_FISH_PLAYED_ADULT 0x200 // set when first talking to owner as adult
+#define HS_FISH_PRIZE_CHILD 0x400 // won the Piece of Heart
+#define HS_FISH_PRIZE_ADULT 0x800 // won the Golden Scale
+#define HS_FISH_PRIZE_LOACH 0x8000 // Added by rando - hylian loach reward
+#define HS_FISH_STOLE_HAT 0x1000 // Pond owner is visibly bald as Adult Link.
+#define HS_FISH_CHEAT_CHILD 0x80 // used Sinking Lure as child to catch record fish
+#define HS_FISH_CHEAT_ADULT 0x80000000 // used Sinking Lure as adult to catch record fish
+#define HS_FISH_PLAYED 0x10000 // incremented for every play. controls weather.
+
 typedef struct {
   /* index of z64_col_type in scene file */
   uint16_t    type;
@@ -718,7 +743,8 @@ typedef struct {
   uint32_t        fw_room_index;            /* 0x0E7C */
   int32_t         fw_set;                   /* 0x0E80 */
   char            unk_0C_[0x0018];          /* 0x0E84 */
-  uint8_t         gs_flags[56];             /* 0x0E9C */
+  uint8_t         gs_flags[28];             /* 0x0E9C */
+  int32_t         highScores[7];            /* 0x0EB8 */
   uint16_t        event_chk_inf[14];        /* 0x0ED4 */
   uint16_t        item_get_inf[4];          /* 0x0EF0 */
   uint16_t        inf_table[30];            /* 0x0EF8 */
@@ -1286,6 +1312,7 @@ typedef enum {
 } CameraModeType;
 
 /* game context */
+struct z64_game_t;
 typedef struct {
   z64_ctxt_t       common;                 /* 0x00000 */
   uint16_t         scene_index;            /* 0x000A4 */
@@ -1366,7 +1393,9 @@ typedef struct {
     uint16_t       rupees_keys_magic;
     uint16_t       minimap;
   }                hud_alpha_channels;    /* 0x10732 */
-  char             unk_13_[0x000C];       /* 0x10746 */
+  char             unk_13_[0x000A];       /* 0x10746 */
+  uint8_t          unk_interfacectx_260_fishing; /* 0x10750 */
+  uint8_t          unk_13_2;              /* 0x10751 */
   struct {
     uint8_t        unk_00_;
     uint8_t        b_button;
@@ -1388,7 +1417,9 @@ typedef struct {
   int8_t           room_index;             /* 0x11CBC */
   char             unk_16_[0x000B];        /* 0x11CBD */
   void            *room_ptr;               /* 0x11CC8 */
-  char             unk_17_[0x00D4];        /* 0x11CCC */
+  char             unk_17_[0x007C];        /* 0x11CCC */
+  int32_t          (*startPlayerFishing)(struct z64_game_t* globalCtx); /* 0x11D48*/
+  char             unk_17_2[0x0054];       /* 0x11D4C */
   float            mf_11DA0[4][4];         /* 0x11DA0 */
   char             unk_18_[0x0004];        /* 0x11DE0 */
   uint32_t         gameplay_frames;        /* 0x11DE4 */
@@ -1552,6 +1583,20 @@ typedef struct {
 
 typedef int32_t (*OverrideLimbDrawOpa)(z64_game_t* play, int32_t limbIndex, Gfx** dList, z64_xyzf_t* pos, z64_xyz_t* rot, void*);
 typedef void (*PostLimbDrawOpa)(z64_game_t* play, int32_t limbIndex, Gfx** dList, z64_xyz_t* rot, void*);
+
+typedef enum {
+    /*  0 */ TEXT_STATE_NONE,
+    /*  1 */ TEXT_STATE_DONE_HAS_NEXT,
+    /*  2 */ TEXT_STATE_CLOSING,
+    /*  3 */ TEXT_STATE_DONE_FADING,
+    /*  4 */ TEXT_STATE_CHOICE,
+    /*  5 */ TEXT_STATE_EVENT,
+    /*  6 */ TEXT_STATE_DONE,
+    /*  7 */ TEXT_STATE_SONG_DEMO_DONE,
+    /*  8 */ TEXT_STATE_8,
+    /*  9 */ TEXT_STATE_9,
+    /* 10 */ TEXT_STATE_AWAITING_NEXT
+} TextState;
 
 typedef enum {
     /* 0x00 */ ITEM00_RUPEE_GREEN,
@@ -1808,13 +1853,13 @@ typedef enum {
 
 /* helper macros */
 #define LINK_IS_ADULT (z64_file.link_age == 0)
+#define LINK_IS_CHILD (z64_file.link_age == 1)
 #define SLOT(item) gItemSlots[item]
 #define INV_CONTENT(item) z64_file.items[SLOT(item)]
 
 /* dram addresses */
 #define z64_EnItem00Action_addr                 0x800127E0
 #define z64_ActorKill_addr                      0x80020EB4
-#define z64_Message_GetState_addr               0x800DD464
 #define z64_SetCollectibleFlags_addr            0x8002071C
 #define z64_GetCollectibleFlags_addr            0x800206E8
 #define z64_Flags_GetClear_addr                 0x80020640
@@ -1889,7 +1934,6 @@ typedef enum {
 #define z64_Rand_ZeroOne_addr                   0x800CDCCC
 #define Interface_LoadItemIcon1_addr            0x8006FB50
 #define Rupees_ChangeBy_addr                    0x800721CC
-#define Message_ContinueTextbox_addr            0x800DCE80
 #define PlaySFX_addr                            0x800646F0
 #define z64_ScalePitchAndTempo_addr             0x800C64A0
 #define Font_LoadChar_addr                      0x8005BCE4
@@ -1921,7 +1965,6 @@ typedef enum {
 
 /* function prototypes */
 typedef void(*z64_ActorKillFunc)(z64_actor_t*);
-typedef uint8_t(*z64_Message_GetStateFunc)(uint8_t*);
 typedef void(*z64_Flags_SetCollectibleFunc)(z64_game_t* game, uint32_t flag);
 typedef int32_t (*z64_Flags_GetCollectibleFunc)(z64_game_t* game, uint32_t flag);
 typedef void(*z64_Audio_PlaySoundGeneralFunc)(uint16_t sfxId, void* pos, uint8_t token, float* freqScale, float* a4, uint8_t* reverbAdd);
@@ -1978,8 +2021,6 @@ typedef void(*Interface_LoadItemIcon1_proc) (z64_game_t* game, uint16_t button);
 
 typedef void(*Rupees_ChangeBy_proc)         (int16_t rupeeChange);
 
-typedef void(*Message_ContinueTextbox_proc) (z64_game_t* play, uint16_t textId);
-
 typedef void(*PlaySFX_proc) (uint16_t sfxId);
 typedef void(*z64_ScalePitchAndTempo_proc)(float scaleTempoAndFreq, uint8_t duration);
 typedef void(*GetItem_Draw_proc)(z64_game_t* game, int16_t drawId);
@@ -2015,7 +2056,6 @@ typedef void(*z64_Play_SetupRespawnPoint_proc)(z64_game_t *game, int32_t respawn
 
 /* functions */
 #define z64_ActorKill               ((z64_ActorKillFunc)    z64_ActorKill_addr)
-#define z64_MessageGetState         ((z64_Message_GetStateFunc)z64_Message_GetState_addr)
 #define z64_SetCollectibleFlags     ((z64_Flags_SetCollectibleFunc)z64_SetCollectibleFlags_addr)
 #define z64_Flags_GetCollectible    ((z64_Flags_GetCollectibleFunc)z64_GetCollectibleFlags_addr)
 #define z64_Flags_GetClear          ((z64_Flags_GetClearFunc)z64_Flags_GetClear_addr)
@@ -2073,7 +2113,6 @@ typedef void(*z64_Play_SetupRespawnPoint_proc)(z64_game_t *game, int32_t respawn
 
 #define Rupees_ChangeBy         ((Rupees_ChangeBy_proc)Rupees_ChangeBy_addr)
 
-#define Message_ContinueTextbox ((Message_ContinueTextbox_proc)Message_ContinueTextbox_addr)
 #define z64_ScalePitchAndTempo        ((z64_ScalePitchAndTempo_proc)z64_ScalePitchAndTempo_addr)
 #define z64_Audio_GetActiveSeqId ((z64_Audio_GetActiveSeqId_proc)z64_Audio_GetActiveSeqId_addr)
 #define z64_Play_SetupRespawnPoint ((z64_Play_SetupRespawnPoint_proc)z64_Play_SetupRespawnPoint_addr)
@@ -2347,5 +2386,11 @@ typedef void(*z64_Play_SetupRespawnPoint_proc)(z64_game_t *game, int32_t respawn
 #define ITEMGETINF_3F 0x3F
 
 extern void SkelAnime_DrawFlexOpa(z64_game_t* globalCtx, void** skeleton, z64_xyz_t* jointTable, int32_t dListCount, OverrideLimbDrawOpa overrideLimbDraw, PostLimbDrawOpa postLimbDraw, void* this);
-
+extern int32_t Actor_TalkOfferAccepted(z64_actor_t* actor, z64_game_t* globalCtx);
+extern int32_t Actor_OfferTalk(z64_actor_t* actor, z64_game_t* globalCtx, float radius);
+extern uint8_t Message_GetState(MessageContext* msgCtx);
+extern uint8_t Message_ShouldAdvance(z64_game_t* globalCtx);
+extern void Message_ContinueTextbox(z64_game_t* globalCtx, uint16_t text_id);
+extern void Message_CloseTextbox(z64_game_t* globalCtx);
+extern int32_t Actor_OfferGetItem(z64_actor_t* actor, z64_game_t* globalCtx, int32_t getItemId, float xzRange, float yRange);
 #endif

@@ -64,6 +64,20 @@ void give_dungeon_item(z64_file_t* save, int16_t mask, int16_t dungeon_id) {
     save->dungeon_items[dungeon_id].items |= mask;
 }
 
+void give_fishing_rod(z64_file_t* save, int16_t arg1, int16_t arg2) {
+    extended_savectx.has_fishing_rod = 1;
+}
+
+void give_fish(z64_file_t* save, int16_t weight, int16_t age) {
+    if(weight == 30) {
+        extended_savectx.has_loach = 1;
+        return;
+    }
+    if(weight > extended_savectx.largest_fish_found[age]) {
+        extended_savectx.largest_fish_found[age] = weight;
+    }
+}
+
 char key_counts[17][2] = {
     {0, 0}, // Deku Tree
     {0, 0}, // Dodongo's Cavern

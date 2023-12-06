@@ -31,3 +31,10 @@ SECTIONS
 }
 
 SkelAnime_DrawFlexOpa = 0x80089d8c;
+Actor_TalkOfferAccepted = 0x80022930;
+Actor_OfferTalk = 0x80022a68;
+Message_GetState = 0x800DD464;
+Message_ShouldAdvance = 0x800d6110;
+Message_ContinueTextbox = 0x800dce80;
+Message_CloseTextbox = 0x800d6218;
+Actor_OfferGetItem = 0x80022bd4;

@@ -87,6 +87,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         ('object_gi_abutton',     data_path('items/A_Button.zobj'),            0x1A8),  # A button
         ('object_gi_cbutton',     data_path('items/C_Button_Horizontal.zobj'), 0x1A9),  # C button Horizontal
         ('object_gi_cbutton',     data_path('items/C_Button_Vertical.zobj'),   0x1AA),  # C button Vertical
+        ('object_gi_fishingrod',  data_path('items/FishingRod.zobj'),          0x1AB),  # Fishing Rod
     )
 
     if world.settings.key_appearance_match_dungeon:
@@ -94,6 +95,8 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
     extended_objects_start = start_address = rom.dma.free_space()
     for name, zobj_path, object_id in zobj_imports:
+        if name == 'object_gi_fishingrod':
+            print("here")
         with open(zobj_path, 'rb') as stream:
             obj_data = stream.read()
             rom.write_bytes(start_address, obj_data)
@@ -2243,6 +2246,20 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     for _, [door_byte, door_bits] in locked_doors.items():
         save_context.write_bits(door_byte, door_bits)
 
+    # Fishing game fish shuffle
+    if world.settings.shuffle_fishies:
+        rom.write_byte(rom.sym("SHUFFLE_FISHIES"), 1)
+
+        # Patch the owner messages
+        fishing_message_no_rod = "\x08He even stole all of my fishing rods\x01or I would let you fish."
+        fishing_message_start = "\x08Hi there. Unfortunately Ganondorf\x01stole all of the fish from my pond\x01and I've gone out of business."
+        fishing_message_rod = "\x08It looks like you have a fishing rod.\x01Do you want to fish?\x01\x1B\x05\x42Yes\x01No\x05\x40"
+        fishing_message_prize = "\x08Hey, is that one of my prized fish?\x01Thank you for bringing it back!\x01Here, take this reward"
+        update_message_by_id(messages, 0x407B, fishing_message_start, 0x03)
+        update_message_by_id(messages, 0x407C, fishing_message_rod, 0x03)
+        update_message_by_id(messages, 0x407D, fishing_message_no_rod, 0x03)
+        update_message_by_id(messages, 0x407E, fishing_message_prize, 0x03)
+
     # Fix chest animations
     BROWN_CHEST = 0
     GOLD_CHEST = 2
@@ -2588,10 +2605,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         rom.write_int32(0xDC652C, 0x240100c8) # replace 'mtc1 zero, f10' with 'addiu at, zero, 0x00c8'
         rom.write_int32(0xDC6540, 0xa6010192) # replace 'sh v0, 0x0192(s0)' with 'sh at, 0x0192(s0)'
         rom.write_int32(0xDC6550, 0xE60601AC) # replace 'swc1 f10, 0x01ac(s0)' with 'swc1 f6, 0x01ac(s0)'
-
-    # Fishing game fish shuffle
-    if world.settings.shuffle_fishies:
-        rom.write_byte(rom.sym("SHUFFLE_FISHIES"), 1)
 
     # Fix shadow temple redead shared flags for silver rupee shuffle
     if world.settings.shuffle_silver_rupees != 'vanilla':
