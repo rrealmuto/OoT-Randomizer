@@ -301,6 +301,8 @@ class SaveContext:
             self.give_health(count)
         elif item == "Bombchu Item":
             self.give_bombchu_item(world)
+        elif "Fish" in item and "lb" in item: # Pond fish
+            self.give_pond_fish(world, item)
         elif item == IGNORE_LOCATION:
             pass # used to disable some skipped and inaccessible locations
         elif item in SaveContext.save_writes_table:
@@ -447,6 +449,21 @@ class SaveContext:
 
     def give_bombchu_item(self, world: World) -> None:
         self.give_item(world, "Bombchus", 0)
+
+    def give_pond_fish(self, world:World, item:str) -> None:
+        # Split the name to figure out child/adult and the size
+        split = item.split('(')[1].split(')')[0].split(' ')
+        age = split[0].lower()
+        weight = int(split[1])
+
+        # Get the current value from addresses
+        addr = self.addresses['fishing'][f'weight_{age}']
+        if addr.value:
+            if weight > addr.value:
+                addr.value = weight
+        else:
+            addr.value = weight
+        return
 
     def equip_default_items(self, age: str) -> None:
         self.equip_items(age, 'equips_' + age)
@@ -891,6 +908,12 @@ class SaveContext:
                 'trials_shadow': Address(extended=True, size=1),
                 'trials_water': Address(extended=True, size=1),
                 'trials_forest': Address(extended=True, size=1),
+            },
+            'fishing': {
+                'fishing_rod': Address(extended=True, size=1),
+                'weight_adult': Address(extended=True, size=1),
+                'weight_child': Address(extended=True, size=1),
+                'has_loach': Address(extended=True, size=1),
             }
         }
 
@@ -1374,6 +1397,7 @@ class SaveContext:
         'Silver Rupee Pouch (Ganons Castle Shadow Trial)':           {'silver_rupee_counts.trials_shadow': 5},
         'Silver Rupee Pouch (Ganons Castle Water Trial)':            {'silver_rupee_counts.trials_water': 5},
         'Silver Rupee Pouch (Ganons Castle Forest Trial)':           {'silver_rupee_counts.trials_forest': 5},
+        'Fishing Rod':                                               {'fishing.fishing_rod': 1},
     }
 
     equipable_items: dict[str, dict[str, list[str]]] = {

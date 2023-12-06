@@ -2251,14 +2251,16 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         rom.write_byte(rom.sym("SHUFFLE_FISHIES"), 1)
 
         # Patch the owner messages
-        fishing_message_no_rod = "\x08He even stole all of my fishing rods\x01or I would let you fish."
-        fishing_message_start = "\x08Hi there. Unfortunately Ganondorf\x01stole all of the fish from my pond\x01and I've gone out of business."
-        fishing_message_rod = "\x08It looks like you have a fishing rod.\x01Do you want to fish?\x01\x1B\x05\x42Yes\x01No\x05\x40"
-        fishing_message_prize = "\x08Hey, is that one of my prized fish?\x01Thank you for bringing it back!\x01Here, take this reward"
+        fishing_message_no_rod = "\x08He even stole all of my fishing rods\x01or I would let you practice."
+        fishing_message_start = "\x08Hi there. Unfortunately Ganondorf\x01stole all of my fish and littered\x01my pond."
+        fishing_message_rod = "\x08It looks like you have a fishing rod.\x01Do you want to practice? It's free!\x01\x1B\x05\x42Yes\x01No\x05\x40"
+        fishing_message_prize = "\x08Hey, is that a record breaking fish?\x01Thank you for bringing it back!\x01Here, take this reward!"
+        fishing_sign_message = "\x08\x06\x3F\x05\x44Fishing Pond\x05\x40\x01\x06\x14The fish aren't really biting\x01\x06\x14since Ganondorf stole them\x09 "
         update_message_by_id(messages, 0x407B, fishing_message_start, 0x03)
         update_message_by_id(messages, 0x407C, fishing_message_rod, 0x03)
         update_message_by_id(messages, 0x407D, fishing_message_no_rod, 0x03)
         update_message_by_id(messages, 0x407E, fishing_message_prize, 0x03)
+        update_message_by_id(messages, 0x023A, fishing_sign_message,0x13)
 
     # Fix chest animations
     BROWN_CHEST = 0

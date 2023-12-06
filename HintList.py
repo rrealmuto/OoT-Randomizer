@@ -526,6 +526,13 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'Ocarina C right Button':                                   (["a middle note"], "the Ocarina C right Button", 'item'),
     'Fairy Drop':                                               (["an annoying companion"], "a Stray Fairy", 'item'),
     'Nothing':                                                  (["emptiness", "loneliness"], "Nothing", 'item'),
+    'Fish (Child 6 lb)':                                        (["chum"], "a small fish (child)", 'item'),
+    'Fish (Child 8 lb)':                                        (["chum"], "a medium-sized fish (child)", 'item'),
+    'Fish (Child 10 lb)':                                       (["a LUNKER"], "a record setting fish (child)", 'item'),
+    'Fish (Adult 10 lb)':                                       (["chum"], "a small fish (adult)", 'item'),
+    'Fish (Adult 12 lb)':                                       (["chum"], "a medium-sized fish (adult)", 'item'),
+    'Fish (Adult 16 lb)':                                       (["a LUNKER"], "a record setting fish (adult)", 'item'),
+    'Hylian Loach':                                             (["a strange fish", "a Hylian Loach", 'item']),
 
     'ZR Frogs Ocarina Game':                                       (["an #amphibian feast# yields", "the #croaking choir's magnum opus# awards", "the #froggy finale# yields"], "the final reward from the #Frogs of Zora's River# is", ['overworld', 'sometimes']),
     'KF Links House Cow':                                          ("the #bovine bounty of a horseback hustle# gifts", "#Malon's obstacle course# leads to", 'always'),
