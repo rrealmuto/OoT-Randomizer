@@ -35,6 +35,7 @@ texture_t texture_table[TEXTURE_ID_MAX] = {
     [TEXTURE_ID_CRATE_HEART] = { .textureID = TEXTURE_ID_CRATE_HEART },
     [TEXTURE_ID_SMALLCRATE_HEART] = { .textureID = TEXTURE_ID_SMALLCRATE_HEART },
     [TEXTURE_ID_BEEHIVE_HEART] = { .textureID = TEXTURE_ID_BEEHIVE_HEART },
+    [TEXTURE_ID_GRASS_CUSTOM] = { .textureID = TEXTURE_ID_GRASS_CUSTOM },
 };
 
 uint8_t* get_texture(TextureId textureID) {

@@ -1,9 +1,10 @@
+import sys
 from Rom import *
 
 def get_actor_list(rom, actor_func):
     actors = {}
-    #scene_table = 0x00B71440
-    scene_table = 0x00BA0BB0 # for MQ
+    scene_table = 0x00B71440
+    #scene_table = 0x00BA0BB0 # for MQ
     for scene in range(0x00, 0x65):
         scene_data = rom.read_int32(scene_table + (scene * 0x14))
         actors.update(scene_get_actors(rom, actor_func, scene_data, scene))
@@ -100,6 +101,22 @@ def get_empty_and_fairy_pots(rom):
                 return pot
     return get_actor_list(rom, get_pot_func)
 
+def get_grass(rom):
+    def get_grass_func(rom, actor_id, actor, scene, room_id, setup_num, actor_num):
+        func = None
+        if actor_id == 0x0125: # En_Kusa - Bush/Grass (single)
+            func = process_bush
+        elif actor_id == 0x0151: # Obj_Mure2 - Rock/Bush circle
+            func = process_bush_circle
+        else:
+            return
+        data = func(rom.read_bytes(actor,16))
+        if data:
+            bush = (scene, room_id, setup_num, actor_num, scenes[scene], data)
+            return bush
+
+    return get_actor_list(rom, get_grass_func)
+
 wondertypes = [
     "MULTITAG_FREE",
     "TAG_POINT_FREE",
@@ -195,25 +212,25 @@ scenes = [
     "Granny's Potion Shop",
     "Ganon's Tower Collapse & Battle Arena",
     "House of Skulltula",
-    "Spot 00 - Hyrule Field",
-    "Spot 01 - Kakariko Village",
-    "Spot 02 - Graveyard",
-    "Spot 03 - Zora's River",
-    "Spot 04 - Kokiri Forest",
-    "Spot 05 - Sacred Forest Meadow",
-    "Spot 06 - Lake Hylia",
-    "Spot 07 - Zora's Domain",
-    "Spot 08 - Zora's Fountain",
-    "Spot 09 - Gerudo Valley",
-    "Spot 10 - Lost Woods",
-    "Spot 11 - Desert Colossus",
-    "Spot 12 - Gerudo's Fortress",
-    "Spot 13 - Haunted Wasteland",
-    "Spot 15 - Hyrule Castle",
-    "Spot 16 - Death Mountain Trail",
-    "Spot 17 - Death Mountain Crater",
-    "Spot 18 - Goron City",
-    "Spot 20 - Lon Lon Ranch",
+    "Hyrule Field",
+    "Kakariko Village",
+    "Graveyard",
+    "Zora's River",
+    "Kokiri Forest",
+    "Sacred Forest Meadow",
+    "Lake Hylia",
+    "Zora's Domain",
+    "Zora's Fountain",
+    "Gerudo Valley",
+    "Lost Woods",
+    "Desert Colossus",
+    "Gerudo's Fortress",
+    "Haunted Wasteland",
+    "Hyrule Castle",
+    "Death Mountain Trail",
+    "Death Mountain Crater",
+    "Goron City",
+    "Lon Lon Ranch",
     "Ganon's Castle Exterior",
 
 ]
@@ -360,15 +377,53 @@ def process_pot(actor_bytes):
         "item_id": item_dict[item_id]
     }
 
-#rom = Rom("ZOOTDEC.z64")
-rom = Rom("zeloot_mqdebug.z64")
-pots = get_crates(rom)
+def process_bush(actor_bytes):
+    bush_types = {
+        0: "Shrub",
+        1: "Cuttable Regenerating Grass",
+        2: "Cuttable Grass"
+    }
+    type = actor_bytes[15] & 0x03
+    drop_table = actor_bytes[14] & 0xFF
+    if type in bush_types.keys():
+        return {
+            "type": bush_types[type],
+            "drop_table": drop_table
+        }
 
-for pot in pots:
-    print(str(pot) + ": " + str(pots[pot]))
+def process_bush_circle(actor_bytes):
+    type = actor_bytes[15] & 0x0F
+    drop_table = actor_bytes[14] & 0xFF
+    if type == 0: # Circle of shrubs with on in the middle, random drops
+        return {
+            "type": "Bush Circle",
+            "drop_table": drop_table
+        }
+    elif type == 1: # Scattered shrubs, random drops
+        return {
+            "type": "Scattered Bushes",
+            "drop_table": drop_table
+        }
+    else: # Rocks/don't care
+        pass
 
-#rom = Rom("../zeloot_mqdebug.z64")
-#wonderitems = get_wonderitems(rom)
+if __name__ == "__main__":
+    #rom = Rom("ZOOTDEC.z64")
+    rom = Rom("ZOOTDEC.z64")
+    actors = get_grass(rom)
 
-#for wonderitem in wonderitems:
-    #print(str(wonderitem) + ": " + str(wonderitems[wonderitem]))
+    for actor in actors:
+        #print(str(actor) + ": " + str(actors[actor]))
+        scene, room,setup,actor_num, scene_name, data = actors[actor]
+        actor_num += 1
+        if data['type'] == "Scattered Bushes":
+            for i in range(1,12+1):
+                print(f"(\"{scene_name} Room {room} {actor_num} Grass Patch {i}\",    (\"Grass\",      {hex(scene)}, ({room},{setup},{actor_num},{i}), None,     'Rupees (5)',         (,))),")
+        else:
+            print(f"(\"{scene_name} Room {room} Grass {actor_num}\",    (\"Grass\",      {hex(scene)}, ({room},{setup},{actor_num}), None,     'Rupees (5)',         (,))),")
+
+    #rom = Rom("../zeloot_mqdebug.z64")
+    #wonderitems = get_wonderitems(rom)
+
+    #for wonderitem in wonderitems:
+        #print(str(wonderitem) + ": " + str(wonderitems[wonderitem]))
