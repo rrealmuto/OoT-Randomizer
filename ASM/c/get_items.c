@@ -52,8 +52,8 @@ uint8_t satisfied_pending_frames = 0;
 // xlflag_room_blob contains a compressed table of actor bit assignments for each scene/room/setup.
 // Call get_xflag_bit_offset to retrieve the desired offset for a flag.
 uint16_t xflag_scene_table[101];
-uint8_t xflag_room_table[700];
-uint8_t xflag_room_blob[2000];
+uint8_t xflag_room_table[1000];
+uint8_t xflag_room_blob[2500];
 alt_override_t alt_overrides[400];
 
 extern uint16_t CURR_ACTOR_SPAWN_INDEX;
