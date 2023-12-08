@@ -16,6 +16,10 @@
                 has_soul(Dead_hand) and (Kokiri_Sword or (Sticks and logic_child_deadhand))",
             "Bottom of the Well MQ Dead Hand Freestanding Key": "
                 has_explosives or (logic_botw_mq_dead_hand_key and Boomerang)",
+            "Bottom of the Well Dead Hand Grass 1": "can_mow_the_lawn",
+            "Bottom of the Well Dead Hand Grass 2": "can_mow_the_lawn",
+            "Bottom of the Well Dead Hand Grass 3": "can_mow_the_lawn",
+            "Bottom of the Well Dead Hand Grass 4": "can_mow_the_lawn",
             "Bottom of the Well MQ Bombable Recovery Heart 1": "has_explosives",
             "Bottom of the Well MQ Bombable Recovery Heart 2": "has_explosives",
             "Bottom of the Well MQ Basement Recovery Heart 1": "True",

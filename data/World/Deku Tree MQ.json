@@ -12,6 +12,21 @@
             "Deku Tree MQ Lobby Crate": "can_break_crate",
             "Deku Tree MQ Slingshot Room Crate 1": "can_break_crate",
             "Deku Tree MQ Slingshot Room Crate 2": "can_break_crate",
+            "Deku Tree MQ Slingshot Room Grass 1": "can_mow_the_lawn",
+            "Deku Tree MQ Slingshot Room Grass 2": "can_mow_the_lawn",
+            "Deku Tree MQ Slingshot Room Grass 3": "can_mow_the_lawn",
+            "Deku Tree MQ Slingshot Room Grass 4": "can_mow_the_lawn",
+            "Deku Tree MQ Lobby Grass 1": "can_mow_the_lawn",
+            "Deku Tree MQ Lobby Grass 2": "can_mow_the_lawn",
+            "Deku Tree MQ Lobby Grass 3": "can_mow_the_lawn",
+            "Deku Tree MQ Lobby Grass 4": "can_mow_the_lawn",
+            "Deku Tree MQ Lobby Grass 5": "can_mow_the_lawn",
+            "Deku Tree MQ Lobby Grass 6": "can_mow_the_lawn",
+            "Deku Tree MQ Lobby Grass 7": "can_mow_the_lawn",
+            "Deku Tree MQ Basement Lower Grass 1": "can_mow_the_lawn",
+            "Deku Tree MQ Basement Lower Grass 2": "can_mow_the_lawn",
+            "Deku Tree MQ Basement Lower Grass 3": "can_mow_the_lawn",
+            "Deku Tree MQ Basement Lower Grass 4": "can_mow_the_lawn",
             "Deku Tree MQ GS Lobby": "
                 is_adult or Sticks or Kokiri_Sword or has_explosives or can_use(Dins_Fire) or
                 ((Slingshot or Boomerang) and can_break_crate)",
@@ -40,8 +55,7 @@
         "exits": {
             "KF Outside Deku Tree": "True",
             "Deku Tree Near Compass Room": "here(has_fire_source_with_torch or can_use(Bow))",
-            "Deku Tree Basement Water Room Front": "
-                here(can_use(Slingshot) or can_use(Bow)) and here(has_fire_source_with_torch)",
+            "Deku Tree Basement Torches Room": "here(can_use(Slingshot) or can_use(Bow))",
             "Deku Tree Basement Ledge": "deku_tree_shortcuts or here(is_adult) or logic_deku_b1_skip",
             "Farores Wind Warp": "can_use(Farores_Wind)"
         }
@@ -52,7 +66,14 @@
         "locations": {
             "Deku Tree MQ Near Compass Room Recovery Heart": "True",
             "Deku Tree MQ Before Compass Gohma Larva 1": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)",
-            "Deku Tree MQ Before Compass Gohma Larva 2": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)"
+            "Deku Tree MQ Before Compass Gohma Larva 2": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)",
+            "Deku Tree MQ Room Before Compass Grass 1": "can_mow_the_lawn",
+            "Deku Tree MQ Room Before Compass Grass 2": "can_mow_the_lawn",
+            "Deku Tree MQ Room Before Compass Grass 3": "can_mow_the_lawn",
+            "Deku Tree MQ Room Before Compass Grass 4": "can_mow_the_lawn",
+            "Deku Tree MQ Room Before Compass Grass 5": "can_mow_the_lawn",
+            "Deku Tree MQ Room Before Compass Grass 6": "can_mow_the_lawn",
+            "Deku Tree MQ Room Before Compass Grass 7": "can_mow_the_lawn"
         },
         "exits": {
             "Deku Tree Compass Room": "here(can_use(Slingshot) or can_use(Bow))"
@@ -66,6 +87,10 @@
             "Deku Tree MQ Compass Room Recovery Heart": "
                 has_bombchus or (Bombs and (can_play(Song_of_Time) or is_adult)) or
                 (can_use(Megaton_Hammer) and (can_play(Song_of_Time) or logic_deku_mq_compass_gs))",
+            "Deku Tree MQ Compass Room Grass 1": "can_mow_the_lawn",
+            "Deku Tree MQ Compass Room Grass 2": "can_mow_the_lawn",
+            "Deku Tree MQ Compass Room Grass 3": "can_mow_the_lawn",
+            "Deku Tree MQ Compass Room Grass 4": "can_mow_the_lawn",
             "Deku Tree MQ GS Compass Room": "
                 (can_use(Hookshot) or can_use(Boomerang)) and
                 here(has_bombchus or (Bombs and (can_play(Song_of_Time) or is_adult)) or
@@ -101,11 +126,27 @@
         }
     },
     {
+        "region_name": "Deku Tree Basement Torches Room",
+        "dungeon": "Deku Tree",
+        "locations": {
+            "Deku Tree MQ Basement Torch Room Grass 1": "can_mow_the_lawn",
+            "Deku Tree MQ Basement Torch Room Grass 2": "can_mow_the_lawn",
+            "Deku Tree MQ Basement Torch Room Grass 3": "can_mow_the_lawn",
+            "Deku Tree MQ Basement Torch Room Grass 4": "can_mow_the_lawn"
+        },
+        "exits": {
+            "Deku Tree Basement Water Room Front": "here(has_fire_source_with_torch)"
+        }
+    },
+    {
         "region_name": "Deku Tree Basement Water Room Front",
         "dungeon": "Deku Tree",
         "locations": {
             "Deku Tree MQ Before Spinning Log Chest": "True",
-            "Deku Tree MQ Spike Roller Gohma Larva": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)"
+            "Deku Tree MQ Spike Roller Gohma Larva": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)",
+            "Deku Tree MQ Basement Spike Roller Room Front Grass 1": "can_mow_the_lawn",
+            "Deku Tree MQ Basement Spike Roller Room Front Grass 2": "can_mow_the_lawn",
+            "Deku Tree MQ Basement Spike Roller Room Front Grass 3": "can_mow_the_lawn"
         },
         "exits": {
             "Deku Tree Basement Water Room Back": "
@@ -118,7 +159,9 @@
         "dungeon": "Deku Tree",
         "locations": {
             "Deku Tree MQ After Spinning Log Chest": "can_play(Song_of_Time)",
-            "Deku Tree MQ Spike Roller Skulltula": "has_soul(Skulltula) and (is_adult or can_child_attack)"
+            "Deku Tree MQ Spike Roller Skulltula": "has_soul(Skulltula) and (is_adult or can_child_attack)",
+            "Deku Tree MQ Basement Spike Roller Room Back Grass 1": "can_mow_the_lawn",
+            "Deku Tree MQ Basement Spike Roller Room Back Grass 2": "can_mow_the_lawn"
         },
         "exits": {
             #"Deku Tree Basement Back Room": "
@@ -151,9 +194,31 @@
         }
     },
     {
+        "region_name": "Deku Tree Basement Larva Room",
+        "dungeon": "Deku Tree",
+        "locations": {
+            "Deku Tree MQ Basement Gohma Larvae Room Grass 1": "can_mow_the_lawn",
+            "Deku Tree MQ Basement Gohma Larvae Room Grass 2": "can_mow_the_lawn"
+        },
+        "exits": {
+            "Deku Tree Basement Back Room": "(here(is_adult or Kokiri_Sword or can_use_projectile or (Nuts and Sticks)))",
+            "Deku Tree Basement Water Room Back": "(can_use(Kokiri_Sword) or can_use_projectile or (Nuts and can_use(Sticks)))"
+        }
+    },
+    {
         "region_name": "Deku Tree Basement Back Room",
         "dungeon": "Deku Tree",
         "locations": {
+            "Deku Tree MQ Basement Graves Room Grass 1": "can_mow_the_lawn",
+            "Deku Tree MQ Basement Graves Room Grass 2": "can_mow_the_lawn",
+            "Deku Tree MQ Basement Graves Room Grass 3": "can_mow_the_lawn",
+            "Deku Tree MQ Basement Graves Room Grass 4": "can_mow_the_lawn",
+            "Deku Tree MQ Basement Graves Room Grass 5": "can_mow_the_lawn",
+            "Deku Tree MQ Basement Back Room Grass 1": "here(has_fire_source_with_torch) and can_mow_the_lawn",
+            "Deku Tree MQ Basement Back Room Grass 2": "here(has_fire_source_with_torch) and can_mow_the_lawn",
+            "Deku Tree MQ Basement Back Room Grass 3": "here(has_fire_source_with_torch) and can_mow_the_lawn",
+            "Deku Tree MQ Basement Back Room Grass 4": "here(has_fire_source_with_torch) and can_mow_the_lawn",
+            "Deku Tree MQ Basement Back Room Grass 5": "here(has_fire_source_with_torch) and can_mow_the_lawn",
             "Deku Tree MQ GS Basement Graves Room": "
                 can_use(Longshot) or
                 (can_play(Song_of_Time) and (can_use(Boomerang) or can_use(Hookshot)))",
@@ -182,7 +247,10 @@
         "region_name": "Deku Tree Basement Ledge",
         "dungeon": "Deku Tree",
         "locations": {
-            "Deku Tree MQ Deku Scrub": "can_stun_deku"
+            "Deku Tree MQ Deku Scrub": "can_stun_deku",
+            "Deku Tree MQ Basement Ledge Grass 1": "can_mow_the_lawn",
+            "Deku Tree MQ Basement Ledge Grass 2": "can_mow_the_lawn",
+            "Deku Tree MQ Basement Ledge Grass 3": "can_mow_the_lawn"
         },
         "exits": {
             "Deku Tree Basement Back Room": "is_child",
@@ -196,7 +264,10 @@
         "locations": {
             "Deku Tree MQ Basement Recovery Heart 1": "True",
             "Deku Tree MQ Basement Recovery Heart 2": "True",
-            "Deku Tree MQ Basement Recovery Heart 3": "True"
+            "Deku Tree MQ Basement Recovery Heart 3": "True",
+            "Deku Tree MQ Before Boss Grass 1": "can_mow_the_lawn",
+            "Deku Tree MQ Before Boss Grass 2": "can_mow_the_lawn",
+            "Deku Tree MQ Before Boss Grass 3": "can_mow_the_lawn"
         },
         "exits": {
             "Deku Tree Basement Ledge": "deku_tree_shortcuts or logic_visible_collisions",

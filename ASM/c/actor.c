@@ -7,6 +7,7 @@
 #include "obj_kibako.h"
 #include "obj_kibako2.h"
 #include "obj_comb.h"
+#include "en_kusa.h"
 #include "textures.h"
 #include "en_bb.h"
 #include "actor.h"
@@ -38,6 +39,8 @@ extern xflag_t* spawn_actor_with_flag;
 #define EN_SW               0x0095  // Skullwalltula
 #define EN_BB               0x0069  // Bubble
 #define EN_GS               0x1B9   // Gossip Stone
+#define EN_KUSA             0x0125 // Grass/Bush
+#define OBJ_MURE2           0x0151 // Obj_Mure2 - Bush/Rock circles
 
 ActorOverlay* gActorOverlayTable = (ActorOverlay*)ACTOR_OVERLAY_TABLE_ADDR;
 uint8_t actor_spawn_as_child_flag = 0;
@@ -49,6 +52,9 @@ ActorAdditionalData* Actor_GetAdditionalData(z64_actor_t* actor) {
     return (ActorAdditionalData*)(((uint8_t*)actor) - 0x10);
 }
 
+void* Actor_ResolveOverlayAddr(z64_actor_t* actor, void* addr) {
+    return (addr - actor->overlay_entry->vramStart + actor->overlay_entry->loadedRamAddr);
+}
 
 // Called from Actor_UpdateAll when spawning the actors in the scene's/room's actor list to store flags in the new space that we added to the actors.
 // Prior to being called, CURR_ACTOR_SPAWN_INDEX is set to the current position in the actor spawn list.
@@ -97,6 +103,8 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, xflag_t flag) {
             case EN_SW: // Check for skullwalltula (en_sw). They start as category 4 (npc) and change to category 5 but a frame later if the object isnt laoded
             case EN_ANUBICE_TAG: //Check for anubis spawns
             case EN_GS:
+            case EN_KUSA:
+            case OBJ_MURE2:
             {
                 extra->flag = flag;
                 break;
@@ -179,6 +187,10 @@ void Actor_StoreChestType(z64_actor_t* actor, z64_game_t* game) {
     {
         override = get_newflag_override(actor, game);
         pChestType = &(((ObjComb *)actor)->chest_type);
+    }
+    else if(actor->actor_id == EN_KUSA) {
+        override = get_newflag_override(actor, game);
+        pChestType = &(((EnKusa*)actor)->chest_type);
     }
     if (override.key.all != 0 && pChestType != NULL) { // If we don't have an override key, then either this item doesn't have an override entry, or it has already been collected.
         if (POTCRATE_TEXTURES_MATCH_CONTENTS == PTMC_UNCHECKED && override.key.all > 0) { // For "unchecked" PTMC setting: Check if we have an override which means it wasn't collected.

@@ -13,7 +13,15 @@
         },
         "locations": {
             "Deku Tree Queen Gohma Heart": "'Defeat Queen Gohma'",
-            "Queen Gohma": "'Defeat Queen Gohma'"
+            "Queen Gohma": "'Defeat Queen Gohma'",
+            "Deku Tree Gohma Grass 1": "can_mow_the_lawn",
+            "Deku Tree Gohma Grass 2": "can_mow_the_lawn",
+            "Deku Tree Gohma Grass 3": "can_mow_the_lawn",
+            "Deku Tree Gohma Grass 4": "can_mow_the_lawn",
+            "Deku Tree Gohma Grass 5": "can_mow_the_lawn",
+            "Deku Tree Gohma Grass 6": "can_mow_the_lawn",
+            "Deku Tree Gohma Grass 7": "can_mow_the_lawn",
+            "Deku Tree Gohma Grass 8": "can_mow_the_lawn"
         },
         "exits": {
             "Deku Tree Before Boss": "True",

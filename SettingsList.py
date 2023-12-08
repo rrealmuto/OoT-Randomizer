@@ -2747,6 +2747,20 @@ class SettingInfos:
             'randomize_key': 'randomize_settings',
         },
     )
+    shuffle_grass = Checkbutton(
+        gui_text       = 'Shuffle Grass',
+        gui_tooltip    = '''\
+            Grass will contain random items.
+
+            If you enable this, there's seriously
+            some what's wrong with you :)
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    )
 
     shuffle_wonderitems = Checkbutton(
         gui_text       = 'Shuffle Wonderitems',
@@ -3402,7 +3416,7 @@ class SettingInfos:
     )
 
     correct_potcrate_appearances = Combobox(
-        gui_text       = 'Pot, Crate, & Beehive Appearance Matches Contents',
+        gui_text       = 'Pot, Crate, Grass, & Beehive Appearance Matches Contents',
         default        = 'textures_unchecked',
         choices        = {
             'off':                'Off',
@@ -3412,9 +3426,9 @@ class SettingInfos:
         gui_tooltip    = '''\
             If enabled, pot/crate textures, and beehive wiggling will reflect its contents.
 
-            Off - Pots, crates, and beehives will appear as vanilla.
+            Off - Pots, crates, grass and beehives will appear as vanilla.
 
-            Texture (Match Content) - Pot and crate textures will reflect the contents.
+            Texture (Match Content) - Pot, crate, grass textures will reflect the contents.
             Golden Pots/crates will contain major items.
             Pots/crates with keys on them will contain small keys.
             Pots/crates containing boss keys will use a variation of the boss key chest texture.
@@ -3423,7 +3437,7 @@ class SettingInfos:
             The texture will revert to the original texture once the item is collected.
             Beehives containing non-junk items will wiggle until collected.
 
-            Texture (Unchecked) - All pots/crates containing shuffled items
+            Texture (Unchecked) - All pots/crates/grass containing shuffled items
             will appear with a golden texture. The texture will revert to the
             original texture once the item is collected.
             Beehives will wiggle until their item is collected.

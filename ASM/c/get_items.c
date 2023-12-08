@@ -17,7 +17,7 @@ extern uint8_t FAST_CHESTS;
 extern uint8_t OCARINAS_SHUFFLED;
 extern uint8_t NO_COLLECTIBLE_HEARTS;
 extern uint32_t FREE_BOMBCHU_DROPS;
-override_t cfg_item_overrides[2200] = { 0 };
+override_t cfg_item_overrides[2700] = { 0 };
 int item_overrides_count = 0;
 
 z64_actor_t* dummy_actor = NULL;
@@ -54,7 +54,7 @@ uint8_t satisfied_pending_frames = 0;
 uint16_t xflag_scene_table[101];
 uint8_t xflag_room_table[1000];
 uint8_t xflag_room_blob[3000];
-alt_override_t alt_overrides[200];
+alt_override_t alt_overrides[500];
 
 extern uint16_t CURR_ACTOR_SPAWN_INDEX;
 

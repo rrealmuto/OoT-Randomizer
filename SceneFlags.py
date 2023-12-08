@@ -13,7 +13,7 @@ def build_xflags_from_world(world: World) ->  tuple[dict[int, dict[tuple[int,int
     for i in range(0, 101):
         scene_flags[i] = {}
         for location in world.get_locations():
-            if location.scene == i and location.type in ["Freestanding", "Pot", "FlyingPot", "Crate", "SmallCrate", "Beehive", "RupeeTower", "SilverRupee", "Wonderitem", "EnemyDrop", "GossipStone"]:
+            if location.scene == i and location.type in ["Freestanding", "Pot", "FlyingPot", "Crate", "SmallCrate", "Beehive", "RupeeTower", "SilverRupee", "Wonderitem", "EnemyDrop", "GossipStone", "Grass"]:
                 default = location.default
                 if isinstance(default, list):  # List of alternative room/setup/flag to use
                     primary_tuple = default[0]
@@ -148,6 +148,8 @@ def get_alt_list_bytes(alt_list: list[tuple[Location, tuple[int, int, int], tupl
         # Handle ganons tower pots special
         if location.scene == 0x0A:
             alt_scene = 0x19
+        if location.scene == 0x20 and location.type == "Grass": # Alt scene for grass in Child Market
+            alt_scene = 0x21
 
         # Handle outside ToT Gossip Stones separately
         if location.scene == 0x23:
