@@ -1101,7 +1101,9 @@ typedef struct {
     uint16_t          changing;                 /* 0x01E4 */
     uint16_t          screen_prev_idx;          /* 0x01E6 */
     uint16_t          screen_idx;               /* 0x01E8 */
-    char              unk_03_[0x002E];          /* 0x01EA */
+    char              unk_03_[0x002A];          /* 0x01EA */
+    int16_t           stickAdjX;                /* 0x0214*/
+    int16_t           stickAdjY;                /* 0x0216 */
     int16_t           item_cursor;              /* 0x0218 */
     char              unk_04_[0x0002];          /* 0x021A */
     int16_t           quest_cursor;             /* 0x021C */
@@ -1817,6 +1819,7 @@ typedef enum {
 #define z64_Flags_GetClear_addr                 0x80020640
 #define z64_Flags_SetSwitch_addr                0x800204D0
 #define z64_Flags_GetSwitch_addr                0x8002049C
+#define z64_Flags_SetTempClear_addr             0x800206AC
 #define z64_Audio_PlaySoundGeneral_addr         0x800C806C
 #define z64_PlaySFXID_addr                      0x800646F0
 #define z64_Audio_PlayFanFare_addr              0x800C69A0
@@ -1923,6 +1926,7 @@ typedef void(*z64_Flags_SetCollectibleFunc)(z64_game_t* game, uint32_t flag);
 typedef int32_t (*z64_Flags_GetCollectibleFunc)(z64_game_t* game, uint32_t flag);
 typedef void(*z64_Audio_PlaySoundGeneralFunc)(uint16_t sfxId, void* pos, uint8_t token, float* freqScale, float* a4, uint8_t* reverbAdd);
 typedef int32_t (*z64_Flags_GetClearFunc)(z64_game_t* game, int32_t flag);
+typedef void(*z64_Flags_SetTempClearFunc)(z64_game_t *game, uint32_t flag);
 typedef void (*z64_Flags_SetSwitchFunc)(z64_game_t* game, int32_t flag);
 typedef int32_t (*z64_Flags_GetSwitchFunc)(z64_game_t* game, int32_t flag);
 typedef void(*z64_PlaySFXIDFunc)(int16_t sfxId);
@@ -2018,6 +2022,7 @@ typedef void(*z64_Play_SetupRespawnPoint_proc)(z64_game_t *game, int32_t respawn
 #define z64_Flags_GetClear          ((z64_Flags_GetClearFunc)z64_Flags_GetClear_addr)
 #define z64_Flags_SetSwitch         ((z64_Flags_SetSwitchFunc)z64_Flags_SetSwitch_addr)
 #define z64_Flags_GetSwitch         ((z64_Flags_GetSwitchFunc)z64_Flags_GetSwitch_addr)
+#define z64_Flags_SetTempClear      ((z64_Flags_SetTempClearFunc)z64_Flags_SetTempClear_addr)
 #define z64_Audio_PlaySoundGeneral  ((z64_Audio_PlaySoundGeneralFunc)z64_Audio_PlaySoundGeneral_addr)
 #define z64_Audio_PlayFanFare       ((z64_Audio_PlayFanFareFunc)z64_Audio_PlayFanFare_addr)
 #define z64_PlaySFXID               ((z64_PlaySFXIDFunc)z64_PlaySFXID_addr)
@@ -2078,6 +2083,7 @@ typedef void(*z64_Play_SetupRespawnPoint_proc)(z64_game_t *game, int32_t respawn
 #define PlaySFX ((PlaySFX_proc)PlaySFX_addr)
 #define Font_LoadChar ((Font_LoadChar_proc)Font_LoadChar_addr)
 #define GetItem_Draw            ((GetItem_Draw_proc)GetItem_Draw_addr)
+#define z64_EffectSsKiraKira_SpawnSmall ((z64_EffectSsKiraKira_SpawnSmall_proc)z64_EffectSsKiraKira_SpawnSmall_addr)
 
 /* macros */
 #define GET_ITEMGETINF(flag) (z64_file.item_get_inf[(flag) >> 4] & (1 << ((flag) & 0xF)))
@@ -2342,5 +2348,10 @@ typedef void(*z64_Play_SetupRespawnPoint_proc)(z64_game_t *game, int32_t respawn
 #define ITEMGETINF_3A 0x3A
 #define ITEMGETINF_3B 0x3B
 #define ITEMGETINF_3F 0x3F
+
+
+// Functions defined in the base ROM but we use the linkscript to link them externally.
+extern z64_actor_t* z64_ActorFind(void* actorCtx, int32_t actorId, int32_t actorCategory);
+extern int32_t DmaMgr_RequestSync(void* ram, uint32_t* vrom, unsigned long size);
 
 #endif

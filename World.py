@@ -58,6 +58,7 @@ class World:
         # rename a few attributes...
         self.keysanity: bool = settings.shuffle_smallkeys in ('keysanity', 'remove', 'any_dungeon', 'overworld', 'regional')
         self.shuffle_silver_rupees = settings.shuffle_silver_rupees != 'vanilla'
+        self.shuffle_enemy_spawns = settings.shuffle_enemy_spawns != 'off'
         self.check_beatable_only: bool = settings.reachable_locations != 'all'
 
         self.shuffle_special_interior_entrances: bool = settings.shuffle_interior_entrances == 'all'

@@ -3,6 +3,18 @@
 
 #include "z64.h"
 
+#define OPEN_DISPS(gfx)             \
+    {                               \
+        z64_gfx_t* __gfx = (gfx);  \
+        (void)__gfx;
+
+#define CLOSE_DISPS()               \
+    }
+
+#define POLY_OPA_DISP   (__gfx->poly_opa.p)
+#define POLY_XLU_DISP   (__gfx->poly_xlu.p)
+#define OVERLAY_DISP    (__gfx->overlay.p)
+
 extern Gfx setup_db[];
 extern Gfx empty_dlist[];
 

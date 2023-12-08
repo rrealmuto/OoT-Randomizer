@@ -133,7 +133,7 @@ INITIAL_SAVE_DATA:
 EXTENDED_INITIAL_SAVE_DATA:
 .endarea
 
-.area 0xC0, 0 ; size must be at least 8 * ((max object_id parameter Patches.add_to_extended_object_table is called with) - 0x192)
+.area 0xD0, 0 ; size must be at least 8 * ((max object_id parameter Patches.add_to_extended_object_table is called with) - 0x192)
 EXTENDED_OBJECT_TABLE:
 .endarea
 
@@ -183,6 +183,8 @@ SPOILER_AVAILABLE:
 .byte 0x00
 PLANDOMIZER_USED:
 .byte 0x00
+ENEMY_DROP_SHUFFLE:
+.byte 0x00
 POTCRATE_TEXTURES_MATCH_CONTENTS:
 .byte 0x00
 KEYRING_BOSSKEY_CONDITION:
@@ -196,6 +198,8 @@ CUSTOM_KEY_MODELS:
 SHUFFLE_OCARINA_BUTTONS:
 .byte 0x00
 EPONAS_SONG_NOTES:
+.halfword 0x0000
+CFG_PREVENT_GUAY_RESPAWNS:
 .byte 0x00
 .align 4
 
