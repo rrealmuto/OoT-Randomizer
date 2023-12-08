@@ -844,6 +844,14 @@ Actor_Spawn_Continue_Jump_Point:
 ; Hack EnWonderItem_DropCollectible to drop flagged collectibles
 .orga 0xDE8C94
     j       EnWonderItem_DropCollectible_Hack
+; ==============================================================
+; Gossip Stone Shuffle
+; ==============================================================
+
+; Hook gossip stone action function that is checking for a song
+.orga 0xEE78EC
+; Replaces: Entire Function
+    j       En_Gs_Update_Hack
     nop
 
 ; Runs when storing an incoming item to the player instance

@@ -54,12 +54,13 @@ uint8_t satisfied_pending_frames = 0;
 uint16_t xflag_scene_table[101];
 uint8_t xflag_room_table[700];
 uint8_t xflag_room_blob[2000];
-alt_override_t alt_overrides[140];
+alt_override_t alt_overrides[200];
 
 extern uint16_t CURR_ACTOR_SPAWN_INDEX;
 
 // Total amount of memory required for each flag table (in bytes).
 uint16_t num_override_flags;
+uint16_t num_grotto_override_flags;
 
 // Pointer to a variable length array that will contain the collectible flags for each scene.
 uint8_t* collectible_override_flags;
