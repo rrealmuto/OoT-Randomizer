@@ -17,6 +17,7 @@
             "Dodongos Cavern MQ Map Chest": "can_blast_or_smash or Progressive_Strength_Upgrade",
             "Dodongos Cavern MQ Deku Scrub Lobby Rear": "can_stun_deku",
             "Dodongos Cavern MQ Deku Scrub Lobby Front": "can_stun_deku",
+            "Dodongos Cavern MQ Gossip Stone Drop" : "here(can_blast_or_smash or Progressive_Strength_Upgrade) and can_play(Song_of_Time)", 
             "Dodongos Cavern Gossip Stone": "here(can_blast_or_smash or Progressive_Strength_Upgrade)",
             "Gossip Stone Fairy": "
                 (can_blast_or_smash or Progressive_Strength_Upgrade) and

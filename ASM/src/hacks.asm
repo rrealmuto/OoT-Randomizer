@@ -965,6 +965,14 @@ Actor_Spawn_Continue_Jump_Point:
 ; Hack EnWonderItem_DropCollectible to drop flagged collectibles
 .orga 0xDE8C94
     j       EnWonderItem_DropCollectible_Hack
+; ==============================================================
+; Gossip Stone Shuffle
+; ==============================================================
+
+; Hook gossip stone action function that is checking for a song
+.orga 0xEE78EC
+; Replaces: Entire Function
+    j       En_Gs_Update_Hack
     nop
 ; Hack Actor_RemoveFromCategory to prevent setting the room clear flag if the room has unspawned enemies from enemy spawn shuffle
 .orga 0xA9AFEC ; In memory: 0x8002508C
