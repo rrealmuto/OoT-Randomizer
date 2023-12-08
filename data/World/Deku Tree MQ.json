@@ -217,8 +217,6 @@
             "Deku Tree MQ Basement Back Room Grass 1": "here(has_fire_source_with_torch) and can_mow_the_lawn",
             "Deku Tree MQ Basement Back Room Grass 2": "here(has_fire_source_with_torch) and can_mow_the_lawn",
             "Deku Tree MQ Basement Back Room Grass 3": "here(has_fire_source_with_torch) and can_mow_the_lawn",
-            "Deku Tree MQ Basement Back Room Grass 4": "here(has_fire_source_with_torch) and can_mow_the_lawn",
-            "Deku Tree MQ Basement Back Room Grass 5": "here(has_fire_source_with_torch) and can_mow_the_lawn",
             "Deku Tree MQ GS Basement Graves Room": "
                 can_use(Longshot) or
                 (can_play(Song_of_Time) and (can_use(Boomerang) or can_use(Hookshot)))",
