@@ -113,6 +113,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 #### New Features
 * **Settings**
   * `Minor Items in Big/Gold chests` has been converted into a multiselect so you may granularly make bombchus, shields, or stick/nut capacity appear in big chests.
+  * New shuffle `Shuffle Wonderitems` which allows shuffling items the game refers to as Wonderitems. These items are obtained through a few ways: invisible items which drop when Link touches them (such as the rupees above the Hyrule Castle Town drawbridge), interactable switches (such as the torches on Hyrule Castle which drop items when shot with the slingshot), free multitag which gives an item when a certain set of points are touched (the stepping stones in Kokiri Forest), and ordered multitag where a set of points must be touched in a particular order (the grass stepping stones in Kokiri Forest). Wonderitems will indicate their prescence with sparkles color-coded to the type of wonderitem.
 * **Hints**
   * The `Clearer Hints` option now provides clearer hints for the rainbow bridge text on the altar in the Temple of Time.
   * New option in hint distribution `combine_trial_hints` which combines multiple trials hints into one.
