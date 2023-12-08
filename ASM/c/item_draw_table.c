@@ -165,7 +165,8 @@ item_draw_table_entry_t item_draw_table[] = {
     [0x93] = { draw_gi_c_button_horizontal, { 0x06000E10, 0xFFA000FF, 0 } }, // Cright button
     [0x94] = { draw_gi_fairy,               { 0x06000EF0 } }, // Fairy (not in a bottle but uses the fairy from the bottle)
     [0x95] = { draw_gi_nothing,             {}},
-    [0x96] = { draw_gi_various_opa0,        { 0x060011B8 }}
+    [0x96] = { draw_gi_various_opa0,        { 0x06001140 }}, // Fishie rod
+    [0x97] = { draw_gi_various_opa0,        { 0x06001160 }} // Fishie
 };
 
 void base_draw_gi_model(z64_game_t* game, uint32_t draw_id) {

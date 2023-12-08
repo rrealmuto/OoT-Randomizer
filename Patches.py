@@ -88,6 +88,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         ('object_gi_cbutton',     data_path('items/C_Button_Horizontal.zobj'), 0x1A9),  # C button Horizontal
         ('object_gi_cbutton',     data_path('items/C_Button_Vertical.zobj'),   0x1AA),  # C button Vertical
         ('object_gi_fishingrod',  data_path('items/FishingRod.zobj'),          0x1AB),  # Fishing Rod
+        ('object_gi_fish',        data_path('items/Fish.zobj'),                0x1AC),  # Fish
     )
 
     if world.settings.key_appearance_match_dungeon:

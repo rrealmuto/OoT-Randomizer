@@ -9,7 +9,7 @@
 #include "actor.h"
 #include "fishing.h"
 
-#define slot_count 25
+#define slot_count 24
 #define object_size 0x1E70
 #define num_vanilla_objects 0x192
 
