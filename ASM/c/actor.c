@@ -41,6 +41,7 @@ extern xflag_t* spawn_actor_with_flag;
 #define EN_GS               0x1B9   // Gossip Stone
 #define EN_KUSA             0x0125 // Grass/Bush
 #define OBJ_MURE2           0x0151 // Obj_Mure2 - Bush/Rock circles
+#define ACTOR_FISHING       0xFE // Fishing fish
 
 ActorOverlay* gActorOverlayTable = (ActorOverlay*)ACTOR_OVERLAY_TABLE_ADDR;
 uint8_t actor_spawn_as_child_flag = 0;
@@ -105,6 +106,7 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, xflag_t flag) {
             case EN_GS:
             case EN_KUSA:
             case OBJ_MURE2:
+            case ACTOR_FISHING:
             {
                 extra->flag = flag;
                 break;
@@ -146,6 +148,11 @@ void Actor_StoreFlagByIndex(z64_actor_t* actor, z64_game_t* game, uint16_t actor
 // Get an override for an actor with the new flags. If the override doesn't exist, or flag has already been set, return 0.
 override_t get_newflag_override(z64_actor_t *actor, z64_game_t *game) {
     xflag_t* flag = &Actor_GetAdditionalData(actor)->flag;
+    return get_newflag_override_by_flag(flag, game);
+}
+
+// Get an override for an actor with the new flags. If the override doesn't exist, or flag has already been set, return 0.
+override_t get_newflag_override_by_flag(xflag_t* flag, z64_game_t *game) {
     override_t override = lookup_override_by_newflag(flag);
     if(override.key.all != 0)
     {

@@ -71,6 +71,8 @@ inventory: dict[str, Entry] = dict(chain(
     _entry("ocarina_c_down_button",  "Ocarina C down Button", gui_text="Ocarina C down Button"),
     _entry("ocarina_c_left_button",  "Ocarina C left Button", gui_text="Ocarina C left Button"),
     _entry("ocarina_c_right_button", "Ocarina C right Button", gui_text="Ocarina C right Button"),
+    _entry("child_fish", "Fish (Child 10 lb)", gui_text="Child Fish"),
+    _entry("adult_fish", "Fish (Adult 16 lb)", gui_text="Adult Fish"),
 ))
 
 songs: dict[str, Entry] = dict(chain(
@@ -105,6 +107,7 @@ equipment: dict[str, Entry] = dict(chain(
     _entry("wallet", "Progressive Wallet", available=3),
     _entry("stone_of_agony", "Stone of Agony"),
     _entry("defense", "Double Defense"),
+    _entry("fishing_rod", "Fishing Rod")
 ))
 
 everything: dict[str, Entry] = {**equipment, **inventory, **songs}

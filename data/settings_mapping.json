@@ -213,7 +213,8 @@
             "shuffle_frog_song_rupees",
             "shuffle_loach_reward",
             "shuffle_individual_ocarina_notes",
-            "shuffle_enemy_spawns"
+            "shuffle_enemy_spawns",
+            "shuffle_fishies"
           ]
         },
         {

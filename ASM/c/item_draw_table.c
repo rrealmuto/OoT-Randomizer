@@ -167,6 +167,8 @@ item_draw_table_entry_t item_draw_table[] = {
     [0x95] = { draw_gi_nothing,             {}},
     [0x96] = { draw_gi_opa_with_flame,      { 0x060004D0, 0xC0C0C0FF, 0xC0C0C0FF } }, // Deku Stick
     [0x97] = { draw_gi_deku_nut_with_flame, { 0x06000E90, 0xC0C0C0FF, 0xC0C0C0FF } }, // Deku Nut
+    [0x98] = { draw_gi_various_opa0,        { 0x06001140 }}, // Fishie rod
+    [0x99] = { draw_gi_various_opa0,        { 0x06001160 }} // Fishie
 };
 
 void base_draw_gi_model(z64_game_t* game, uint32_t draw_id) {

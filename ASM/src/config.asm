@@ -133,7 +133,7 @@ INITIAL_SAVE_DATA:
 EXTENDED_INITIAL_SAVE_DATA:
 .endarea
 
-.area 0xD8, 0 ; size must be at least 8 * ((max object_id parameter Patches.add_to_extended_object_table is called with) - 0x192)
+.area 0xF0, 0 ; size must be at least 8 * ((max object_id parameter Patches.add_to_extended_object_table is called with) - 0x192)
 EXTENDED_OBJECT_TABLE:
 .endarea
 
@@ -200,6 +200,8 @@ SHUFFLE_OCARINA_BUTTONS:
 EPONAS_SONG_NOTES:
 .halfword 0x0000
 CFG_PREVENT_GUAY_RESPAWNS:
+.byte 0x00
+SHUFFLE_FISHIES:
 .byte 0x00
 .align 4
 

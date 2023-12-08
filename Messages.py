@@ -326,6 +326,15 @@ ITEM_MESSAGES: list[tuple[int, str]] = [
     (0x932C, "\x08You found the \x05\x41Soul of Twinrova\x05\x40!"),
     (0x932D, "\x08You found the \x05\x41Jabu Jabu Tentacle Souls\x05\x40!"),
     (0x932E, "\x08You found \x05\x41Dark Link's Soul\x05\x40!"),
+    
+    (0x9500, "\x08You found a \x05\x41Fishing Rod\x05\x40!"),
+    (0x9501, "\x08You found a \x05\x41Fish (Child 6lb)\x05\x40!"),
+    (0x9502, "\x08You found a \x05\x41Fish (Child 8lb)\x05\x40!"),
+    (0x9503, "\x08You found a \x05\x41Fish (Child 10lb)\x05\x40!"),
+    (0x9504, "\x08You found a \x05\x41Fish (Adult 10lb)\x05\x40!"),
+    (0x9505, "\x08You found a \x05\x41Fish (Adult 12lb)\x05\x40!"),
+    (0x9506, "\x08WHAT A LUNKER!\x01You found a \x05\x41Fish (Adult 16lb)\x05\x40!"),
+    (0x9507, "\x08You found a \x05\x41Hylian Loach\x05\x40!"),
 ]
 
 KEYSANITY_MESSAGES: list[tuple[int, str]] = [

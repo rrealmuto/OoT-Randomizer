@@ -87,6 +87,8 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         ('object_gi_abutton',     data_path('items/A_Button.zobj'),            0x1A8),  # A button
         ('object_gi_cbutton',     data_path('items/C_Button_Horizontal.zobj'), 0x1A9),  # C button Horizontal
         ('object_gi_cbutton',     data_path('items/C_Button_Vertical.zobj'),   0x1AA),  # C button Vertical
+        ('object_gi_fishingrod',  data_path('items/FishingRod.zobj'),          0x1AB),  # Fishing Rod
+        ('object_gi_fish',        data_path('items/Fish.zobj'),                0x1AC),  # Fish
     )
 
     if world.settings.key_appearance_match_dungeon:
@@ -94,6 +96,8 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
     extended_objects_start = start_address = rom.dma.free_space()
     for name, zobj_path, object_id in zobj_imports:
+        if name == 'object_gi_fishingrod':
+            print("here")
         with open(zobj_path, 'rb') as stream:
             obj_data = stream.read()
             rom.write_bytes(start_address, obj_data)
@@ -2264,6 +2268,22 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     for _, [door_byte, door_bits] in locked_doors.items():
         save_context.write_bits(door_byte, door_bits)
 
+    # Fishing game fish shuffle
+    if world.settings.shuffle_fishies:
+        rom.write_byte(rom.sym("SHUFFLE_FISHIES"), 1)
+
+        # Patch the owner messages
+        fishing_message_no_rod = "\x08He even stole all of my fishing rods\x01or I would let you practice."
+        fishing_message_start = "\x08Hi there. Unfortunately Ganondorf\x01stole all of my fish and littered\x01my pond."
+        fishing_message_rod = "\x08It looks like you have a fishing rod.\x01Do you want to practice? It's free!\x01\x1B\x05\x42Yes\x01No\x05\x40"
+        fishing_message_prize = "\x08Hey, is that a record breaking fish?\x01Thank you for bringing it back!\x01Here, take this reward!"
+        fishing_sign_message = "\x08\x06\x3F\x05\x44Fishing Pond\x05\x40\x01\x06\x14The fish aren't really biting\x01\x06\x14since Ganondorf stole them\x09 "
+        update_message_by_id(messages, 0x407B, fishing_message_start, 0x03)
+        update_message_by_id(messages, 0x407C, fishing_message_rod, 0x03)
+        update_message_by_id(messages, 0x407D, fishing_message_no_rod, 0x03)
+        update_message_by_id(messages, 0x407E, fishing_message_prize, 0x03)
+        update_message_by_id(messages, 0x023A, fishing_sign_message,0x13)
+
     # Fix chest animations
     BROWN_CHEST = 0
     GOLD_CHEST = 2
@@ -2593,7 +2613,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     rom.write_byte(0xCB4397, 0x00)
 
     # Behavior Modifications to make the loach easier to catch
-    if world.settings.shuffle_loach_reward == 'easy':
+    if world.settings.shuffle_loach_reward == 'easy' or world.settings.shuffle_fishies:
         # Make the loach always spawn
         # Rather than just nop the branch, replace it with instruction 'sb at, 0xB057(s0)'
         # this stores a non-zero value to an unused byte in the fishing overlay
@@ -2734,7 +2754,7 @@ def get_override_entry(location: Location) -> Optional[OverrideEntry]:
         return None
 
     # Don't add freestanding items, pots/crates, beehives to the override table if they're disabled. We use this check to determine how to draw and interact with them
-    if location.type in ["ActorOverride", "Freestanding", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive", "Wonderitem", "GossipStone", "Grass"] and location.disabled != DisableType.ENABLED:
+    if location.type in ["ActorOverride", "Freestanding", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive", "Wonderitem", "GossipStone", "Grass", "Fish"] and location.disabled != DisableType.ENABLED:
         return None
 
     #Don't add enemy drops to the override table if they're disabled.
@@ -2752,7 +2772,7 @@ def get_override_entry(location: Location) -> Optional[OverrideEntry]:
     elif location.type == 'Chest':
         type = 1
         default &= 0x1F
-    elif location.type in ['Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive', 'SilverRupee', 'Wonderitem', 'EnemyDrop', 'GossipStone', 'Grass']:
+    elif location.type in ['Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive', 'SilverRupee', 'Wonderitem', 'EnemyDrop', 'GossipStone', 'Grass', 'Fish']:
         type = 6
         if not (isinstance(location.default, list) or isinstance(location.default, tuple)):
             raise Exception("Not right")

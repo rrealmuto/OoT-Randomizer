@@ -7,6 +7,7 @@
 #include "z64.h"
 #include "shop_actors.h"
 #include "actor.h"
+#include "fishing.h"
 
 #define slot_count 24
 #define object_size 0x1E70
@@ -369,4 +370,14 @@ void bowling_heart_piece_draw(z64_actor_t* actor, z64_game_t* game) {
     };
     lookup_model(&model, actor, game, 0x3E);
     draw_model(model, actor, game, 1.0);
+}
+
+void fishing_draw(z64_actor_t* actor, z64_game_t* game) {
+    Fishing* fish = (Fishing*)actor;
+    model_t model = { 0 };
+    lookup_model_by_override(&model, fish->override);
+    loaded_object_t* object = get_object(model.object_id);
+    set_object_segment(object);
+    scale_top_matrix(50.0);
+    base_draw_gi_model(game, model.graphic_id - 1);
 }
