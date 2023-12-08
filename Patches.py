@@ -1881,7 +1881,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     rom.write_bytes(rom.sym('xflag_scene_table'), xflag_scene_table)
     if len(xflag_room_table) > 1000:
         raise RuntimeError(f'Exceeded xflag room table size: {len(xflag_room_table)}')
-    if len(xflag_room_blob) > 3000:
+    if len(xflag_room_blob) > 3500:
         raise RuntimeError(f'Exceed xflag blob table size: {len(xflag_room_blob)}')
     rom.write_bytes(rom.sym('xflag_room_table'), xflag_room_table)
     rom.write_bytes(rom.sym('xflag_room_blob'), xflag_room_blob)

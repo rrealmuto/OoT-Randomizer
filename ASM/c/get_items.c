@@ -53,7 +53,7 @@ uint8_t satisfied_pending_frames = 0;
 // Call get_xflag_bit_offset to retrieve the desired offset for a flag.
 uint16_t xflag_scene_table[101];
 uint8_t xflag_room_table[1000];
-uint8_t xflag_room_blob[3000];
+uint8_t xflag_room_blob[3500];
 alt_override_t alt_overrides[500];
 
 extern uint16_t CURR_ACTOR_SPAWN_INDEX;
