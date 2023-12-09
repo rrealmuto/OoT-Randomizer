@@ -511,6 +511,10 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
             pending_junk_pool.extend(song_list)
         if world.settings.shuffle_individual_ocarina_notes:
             pending_junk_pool.extend(['Ocarina A Button', 'Ocarina C up Button', 'Ocarina C left Button', 'Ocarina C down Button', 'Ocarina C right Button'])
+        if world.settings.shuffle_fishies:
+            pending_junk_pool.append('Fishing Rod')
+            pending_junk_pool.append('Fish (Child 10 lb)')
+            pending_junk_pool.append('Fish (Adult 16 lb)')
 
     if world.settings.item_pool_value == 'ludicrous':
         pending_junk_pool.extend(ludicrous_health)
