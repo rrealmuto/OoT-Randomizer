@@ -588,6 +588,10 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
             pending_junk_pool.extend(enemy_souls_core + enemy_souls_bosses)
         elif world.settings.shuffle_enemy_spawns == 'bosses':
             pending_junk_pool.extend(enemy_souls_bosses)
+        if world.settings.shuffle_fishies:
+            pending_junk_pool.append('Fishing Rod')
+            pending_junk_pool.append('Fish (Child 10 lb)')
+            pending_junk_pool.append('Fish (Adult 16 lb)')
 
     if world.settings.item_pool_value == 'ludicrous':
         pending_junk_pool.extend(ludicrous_health)
