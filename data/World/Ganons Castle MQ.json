@@ -287,6 +287,8 @@
             "Spirit Trial Clear": "can_use(Light_Arrows)"
         },
         "locations": {
+            
+            "Ganons Castle MQ Spirit Trial Wallmaster": "has_soul(Wallmaster)",
             "Ganons Castle MQ Spirit Trial Sun Front Left Chest": "True",
             "Ganons Castle MQ Spirit Trial Sun Back Left Chest": "True",
             "Ganons Castle MQ Spirit Trial Golden Gauntlets Chest": "True",
