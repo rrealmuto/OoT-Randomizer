@@ -163,7 +163,7 @@
             "Water Temple MQ Before Upper Water Switch Upper Small Crate": "Longshot",
             "Water Temple MQ GS Before Upper Water Switch": "Longshot",
             "Water Temple MQ Upper Water Switch Hookshot Wonderitem": "Hookshot",
-            "Water Temple MQ Before Upper Water Switch Lizalfos": "has_soul(Lizalfos_and_Dinalfos)",
+            "Water Temple MQ Before Upper Water Switch Lizalfos": "has_soul(Lizalfos_and_Dinalfos)"
         }
     },
     {
@@ -339,11 +339,6 @@
             "Water Temple MQ Dodongo Room Lower Crate 3": "can_break_crate",
             "Water Temple MQ Dodongo Room Upper Crate": "can_break_crate",
             "Water Temple MQ Dodongo Room Hall Crate": "can_break_crate",
-            "Water Temple MQ Freestanding Key Area Behind Gate Crate 1": "can_break_crate",
-            "Water Temple MQ Freestanding Key Area Behind Gate Crate 2": "can_break_crate",
-            "Water Temple MQ Freestanding Key Area Behind Gate Crate 3": "can_break_crate",
-            "Water Temple MQ Freestanding Key Area Behind Gate Crate 4": "can_break_crate",
-            "Water Temple MQ GS Freestanding Key Area": "True",
             "Water Temple MQ 3 Water Spouts Proximity Wonderitem 1": "True",
             "Water Temple MQ 3 Water Spouts Proximity Wonderitem 2": "True",
             "Water Temple MQ Dodongo Room Dodongo 1": "has_soul(Dodongo)",

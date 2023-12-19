@@ -3589,6 +3589,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Ganons Castle MQ Spirit Trial Redead 2",                         ("EnemyDrop",    0x0D,  (18,0,9), None,                    'Rupees (5)',                            ("Ganon's Castle", "Master Quest", "EnemyDrop"))),
     ("Ganons Castle MQ Spirit Trial Bubble 1",                         ("EnemyDrop",    0x0D,  (18,0,10), None,                   'Rupees (5)',                            ("Ganon's Castle", "Master Quest", "EnemyDrop"))),
     ("Ganons Castle MQ Spirit Trial Bubble 2",                         ("EnemyDrop",    0x0D,  (18,0,11), None,                   'Rupees (5)',                            ("Ganon's Castle", "Master Quest", "EnemyDrop"))),
+    ("Ganons Castle MQ Spirit Trial Wallmaster",                       ("EnemyDrop",    0x0D,  (18,0,25), None,                   'Rupees (5)',                            ("Ganon's Castle", "Master Quest", "EnemyDrop"))),
     
     # Ganon's Castle Shared
     ("Ganons Tower Boss Key Chest",                                  ("Chest",        0x0A,  0x0B, None,                            'Boss Key (Ganons Castle)',              ("Ganon's Tower", "Vanilla Dungeons", "Master Quest", "Chests",))),
