@@ -596,6 +596,7 @@ class SettingInfos:
                     'starting_age', 'shuffle_interior_entrances', 'shuffle_hideout_entrances',
                     'shuffle_grotto_entrances', 'shuffle_dungeon_entrances',
                     'shuffle_bosses', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops', 'warp_songs', 'spawn_positions',
+                    'mix_entrance_pools', 'decouple_entrances',
                     'triforce_hunt', 'triforce_count_per_world', 'triforce_goal_per_world', 'free_bombchu_drops', 'one_item_per_dungeon',
                     'shuffle_mapcompass', 'shuffle_smallkeys', 'shuffle_hideoutkeys', 'key_rings_choice', 'key_rings',
                     'shuffle_bosskeys', 'enhance_map_compass',
@@ -634,7 +635,8 @@ class SettingInfos:
                                          'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops',
                                          'warp_songs', 'spawn_positions', 'mq_dungeons_mode', 'mq_dungeons_specific',
                                          'mq_dungeons_count', 'shuffle_bosses', 'dungeon_shortcuts', 'deadly_bonks',
-                                         'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_beehives', 'shuffle_silver_rupees', 'shuffle_wonderitems']},
+                                         'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_beehives', 'shuffle_silver_rupees', 'shuffle_wonderitems',
+                                         'mix_entrance_pools', 'decouple_entrances']},
             'none':       {'settings': ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
         },
         shared         = True,
@@ -2198,13 +2200,15 @@ class SettingInfos:
     shuffle_bosses = Combobox(
         gui_text       = 'Shuffle Boss Entrances',
         gui_tooltip    = '''\
-            Shuffle dungeon boss rooms.  This affects the boss rooms of all stone and medallion dungeons.
+            Shuffle the pool of dungeon boss entrances.
+            This affects the boss rooms of all stone and medallion dungeons.
 
             'Age-Restricted':
-            Shuffle the locations of child boss rooms and adult boss rooms separately.
+            Shuffle the entrances of child and adult boss rooms separately.
 
             'Full':
-            Shuffle the locations of all boss rooms together.  Child may be expected to defeat Phantom Ganon and/or Bongo Bongo.
+            Shuffle the entrances of all boss rooms together.
+            Child may be expected to defeat Phantom Ganon and/or Bongo Bongo.
         ''',
         default        = 'off',
         choices        = {
@@ -2234,6 +2238,58 @@ class SettingInfos:
             Just like when shuffling interior entrances, shuffling overworld
             entrances disables trade timers and trade items never revert,
             even when dying or loading a save.
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    )
+
+    mix_entrance_pools = MultipleSelect(
+        gui_text        = 'Mix Entrance Pools',
+        choices         = {
+            'Interior': 'Interiors',
+            'GrottoGrave': 'Grottos',
+            'Dungeon': 'Dungeons',
+            'Overworld': 'Overworld',
+        },
+        gui_tooltip    = '''\
+            Shuffle the selected entrances into a mixed pool
+            instead of separate ones. Has no effect on pools
+            whose entrances aren't shuffled.
+
+            For example, enabling the settings to shuffle
+            grotto, dungeon, and overworld entrances and
+            selecting grotto and dungeon entrances here will
+            allow a dungeon to be inside a grotto or vice
+            versa, while overworld entrances are shuffled in
+            their own separate pool and indoors stay vanilla.
+        ''',
+        default        = [],
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+            'distribution':  [
+                ([], 2),
+                (['Interior', 'GrottoGrave', 'Dungeon'], 1),
+                (['Interior', 'GrottoGrave', 'Dungeon', 'Overworld'], 1),
+            ],
+        },
+    )
+
+    decouple_entrances = Checkbutton(
+        gui_text       = 'Decouple Entrances',
+        gui_tooltip    = '''\
+            Decouple entrances when shuffling them.
+            This means you are no longer guaranteed to end up back where you
+            came from when you go back through an entrance.
+
+            This also adds the one-way entrance from Gerudo Valley to Lake Hylia
+            in the pool of overworld entrances when they are shuffled.
+
+            Boss entrances are currently excluded from this setting and remain
+            coupled regardless.
         ''',
         default        = False,
         shared         = True,
@@ -2310,7 +2366,8 @@ class SettingInfos:
     free_bombchu_drops = Checkbutton(
         gui_text       = 'Add Bombchu Bag and Drops',
         gui_tooltip    = '''\
-            Bombchus are properly considered in logic.
+            Bombchus are properly considered in logic and
+            the game is changed to account for this fact.
 
             The first Bombchu pack will always be a
             Bombchu Bag giving the same amount of Bombchus
@@ -4221,8 +4278,26 @@ class SettingInfos:
             'randomize_key': 'randomize_all_cosmetics',
             'distribution':  [
                 ('Completely Random', 1),
-            ],
-        },
+            ]
+        }
+    )
+
+    extra_equip_colors = Checkbutton(
+        gui_text       = 'Randomize Extra Colors (Experimental)',
+        shared         = False,
+        cosmetic       = True,
+        gui_tooltip    = '''\
+            Randomize many other equipment and item colors.
+
+            More colors may be added to this setting in the future.
+        ''',
+        default        = False,
+        gui_params     = {
+            'randomize_key': 'randomize_all_cosmetics',
+            'distribution': [
+                (True, 1),
+            ]
+        }
     )
 
     heart_color = Combobox(

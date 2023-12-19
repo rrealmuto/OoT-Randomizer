@@ -1,0 +1,52 @@
+z_demo.c vram 80052310 / vrom AC8270
+CS_TERMINATOR / command 3E8 processed at func_80052F34, end at 80054C4C / offset C24 to 293C / vrom AC8E94 to ACABAC
+
+Blue warp cutscene exit IDs
+Dungeon: hex cutscene base / int cutscene base / vanilla exit const / vanilla exit hex
+
+Deku:   0x000E / 14 / ENTR_SPOT04_11 / 0x0457 / vram 80053440 / offset 0x1130 / vrom AC93A0 / index vrom AC93A2
+DC:     0x000C / 12 / ENTR_SPOT16_5  / 0x047A / vram 800533D4 / offset 0x10C4 / vrom AC9334 / index vrom AC9336
+Jabu:   0x000D / 13 / ENTR_SPOT08_0  / 0x010E / vram 80053408 / offset 0x10F8 / vrom AC9368 / index vrom AC936A
+Forest: 0x0045 / 69 / ENTR_SPOT04_12 / 0x05E8 / vram 80054034 / offset 0x1D24 / vrom AC9F94 / index vrom AC9F96
+        NOTE: Kokiri Forest near Sprout, not Minuet warp pad
+        NOTE: Rando overrides this to ENTR_SPOT05_3 0x0608 (Minuet warp pad/blue warp revisit) if boss shuffle, dungeon ER, or overworld ER on
+Fire:   0x0062 / 98 / ENTR_SPOT17_5  / 0x0564 / vram 800545B4 / offset 0x22A4 / vrom ACA514 / index vrom ACA516
+Water:  0x0029 / 41 / ENTR_SPOT06_5  / 0x04E6 / vram 800539F8 / offset 0x16E8 / vrom AC9958 / index vrom AC995A
+        NOTE: Rando overrides this to ENTR_SPOT06_9 0x060C (blue warp revisit) if boss shuffle or dungeon ER on
+Shadow: 0x0061 / 97 / ENTR_SPOT02_8  / 0x0580 / vram 80054534 / offset 0x2224 / vrom ACA494 / index vrom ACA496
+        NOTE: If both spirit/shadow medallions are obtained, redirect to chamber cutscene kenjyanoma_sceneCutsceneData0x0012A0,
+              which redirects to 0x0074 / 116 cutscene command. This checks EVENTCHKINF_C8 to determine if last dungeon
+              completed prior to all meds obtained was either spirit or shadow. Rando overrides this cutscene to never run,
+              so we don't need to edit exits for case 116.
+Spirit: 0x0060 / 96 / ENTR_SPOT11_8  / 0x0610 / vram 800544A0 / offset 0x2190 / vrom ACA400 / index vrom ACA402
+
+
+z_door_warp1.c vram 80904520 / vrom CA1CE0
+ChildWarpOut = func_80905820
+AdultWarpOut = func_809063B0
+RutoWarpOut not relevant, only used for cutscene for first blue warp entry, handled above in cutscene edits. Revisits handled in ChildWarpOut
+
+Blue warp revisit exit IDs (child)
+Dungeon: child exit const / child exit hex / adult exit const / adult exit hex
+NOTE: Child dungeons use the same entrance index for child and adult
+
+Deku:   ENTR_SPOT04_11 / 0x0457 / vram 80905980 / offset 0x1460 / vrom CA3140 / index vrom CA3142
+DC:     ENTR_SPOT16_5  / 0x047A / vram 80905908 / offset 0x13E8 / vrom CA30C8 / index vrom CA30CA
+Jabu:   ENTR_SPOT08_0  / 0x010E / vram 809059F0 / offset 0x14D0 / vrom CA31B0 / index vrom CA31B2
+Forest: ENTR_SPOT05_2  / 0x0600 / vram 809065A4 / offset 0x2084 / vrom CA3D64 / index vrom CA3D66
+Fire:   ENTR_SPOT17_4  / 0x04F6 / vram 80906630 / offset 0x2110 / vrom CA3DF0 / index vrom CA3DF2
+Water:  ENTR_SPOT06_8  / 0x0604 / vram 809066C0 / offset 0x21A0 / vrom CA3E80 / index vrom CA3E82
+Shadow: ENTR_SPOT02_7  / 0x0568 / vram 809067E0 / offset 0x22C0 / vrom CA3FA0 / index vrom CA3FA2
+Spirit: ENTR_SPOT11_5  / 0x01F1 / vram 80906750 / offset 0x2230 / vrom CA3F10 / index vrom CA3F12
+
+Blue warp revisit exit IDs (adult)
+Dungeon: child exit const / child exit hex / adult exit const / adult exit hex
+
+Deku:   N/A           / N/A    / 
+DC:     N/A           / N/A    / 
+Jabu:   N/A           / N/A    / 
+Forest: ENTR_SPOT05_3 / 0x0608 / vram 80906598 / offset 0x2078 / vrom CA3D58 / index vrom CA3D5A
+Fire:   ENTR_SPOT17_5 / 0x0564 / vram 80906624 / offset 0x2104 / vrom CA3DE4 / index vrom CA3DE6
+Water:  ENTR_SPOT06_9 / 0x060C / vram 809066B4 / offset 0x2194 / vrom CA3E74 / index vrom CA3E76
+Shadow: ENTR_SPOT02_8 / 0x0580 / vram 809067D4 / offset 0x22B4 / vrom CA3F94 / index vrom CA3F96
+Spirit: ENTR_SPOT11_8 / 0x0610 / vram 80906744 / offset 0x2224 / vrom CA3F04 / index vrom CA3F06

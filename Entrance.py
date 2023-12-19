@@ -20,6 +20,7 @@ class Entrance:
         self.assumed: Optional[Entrance] = None
         self.type: Optional[str] = None
         self.shuffled: bool = False
+        self.decoupled: bool = False
         self.data: Optional[dict[str, Any]] = None
         self.primary: bool = False
         self.always: bool = False
@@ -37,6 +38,7 @@ class Entrance:
         new_entrance.assumed = self.assumed
         new_entrance.type = self.type
         new_entrance.shuffled = self.shuffled
+        new_entrance.decoupled = self.decoupled
         new_entrance.data = self.data
         new_entrance.primary = self.primary
         new_entrance.always = self.always

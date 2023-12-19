@@ -131,8 +131,8 @@
           ]
         },
         {
-          "name": "open_section",
-          "text": "Open",
+          "name": "various_section",
+          "text": "Various",
           "row_span": [6,6,9],
           "settings": [
             "open_forest",
@@ -148,6 +148,11 @@
             "bridge_rewards",
             "bridge_tokens",
             "bridge_hearts",
+            "triforce_hunt",
+            "triforce_count_per_world",
+            "triforce_goal_per_world",
+            "free_bombchu_drops",
+            "one_item_per_dungeon",
             "trials_random",
             "trials"
           ]
@@ -170,15 +175,12 @@
             "shuffle_dungeon_entrances",
             "shuffle_bosses",
             "shuffle_overworld_entrances",
+            "mix_entrance_pools",
+            "decouple_entrances",
             "shuffle_gerudo_valley_river_exit",
             "owl_drops",
             "warp_songs",
-            "spawn_positions",
-            "triforce_hunt",
-            "triforce_count_per_world",
-            "triforce_goal_per_world",
-            "free_bombchu_drops",
-            "one_item_per_dungeon"
+            "spawn_positions"
           ]
         },
         {
@@ -451,7 +453,8 @@
             "zora_color",
             "silver_gauntlets_color",
             "golden_gauntlets_color",
-            "mirror_shield_frame_color"
+            "mirror_shield_frame_color",
+            "extra_equip_colors"
           ]
         },
         {

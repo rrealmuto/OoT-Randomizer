@@ -739,21 +739,21 @@ export class GUIGlobal implements OnDestroy {
       newVersion = newVersion.split("_")[1];
 
     let oldSplit = oldVersion.replace('v', '').replace(' ', '.').split('.');
-    let newSplit = newVersion.replace('v', '').replace(' ', '.').split('.');
+    let newSplit = newVersion.replace(' ', '.').split('.');
 
     //Version is not newer if the new version doesn't satisfy the format
-    if (newSplit.length < 3)
+    if (newSplit.length < 4)
       return false;
     else if (newSplit.length == 4)
       newSubVersion = newSubVersion == 0 ? Number(newSplit[3]) : 0;
 
     //Version is newer if the old version doesn't satisfy the format
-    if (oldSplit.length < 3)
+    if (oldSplit.length < 4)
       return true;
     else if (oldSplit.length == 4)
       oldSubVersion = oldSubVersion == 0 ? Number(oldSplit[3]) : 0;
 
-    //Compare major.minor.revision
+    //Compare major.minor.revision.r
     if (Number(newSplit[0]) > Number(oldSplit[0])) {
       return true;
     }

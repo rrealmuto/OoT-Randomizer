@@ -882,7 +882,6 @@ class TestTextShuffle(unittest.TestCase):
         shuffle_messages(messages)
         shuffle_messages(messages, False)
 
-<<<<<<< HEAD
 class TestSceneFlags(unittest.TestCase):
     def test_build_room_xflags(self):
         from SceneFlags import build_room_xflags, encode_room_xflags
@@ -911,7 +910,7 @@ class TestSceneFlags(unittest.TestCase):
         self.assertEqual(flags[46], 12)
         diff, encoded = encode_room_xflags(flags)
         self.assertListEqual(test_encoded, encoded)
-=======
+
 class TestCustomAudio(unittest.TestCase):
     def test_audiobank(self):
         AUDIOBANK_POINTER_TABLE = 0x00B896A0
@@ -937,4 +936,3 @@ class TestCustomAudio(unittest.TestCase):
         self.assertEqual(num_banks, 0x26)
         self.assertEqual(audiobanks[0x25].bank_offset, 0x19110)
         self.assertEqual(audiobanks[0x25].size, 0x3940)
->>>>>>> mmr_music

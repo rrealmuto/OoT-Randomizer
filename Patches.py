@@ -1126,6 +1126,23 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         rom.write_byte(0x021862E3, 0xC2)
 
 
+    if world.shuffle_special_dungeon_entrances:
+        # Move Hyrule's Castle Courtyard exit spawn to be before the crates so players don't skip Talon
+        rom.write_int16(0x21F607A, 0x033A) # Position X
+        rom.write_int16(0x21F607C, 0x0623) # Position Y
+        rom.write_int16(0x21F607E, 0xFF22) # Position Z
+
+        # Move Ganon's Castle exit spawn to be on the small ledge near the castle and not over the void
+        rom.write_int16(0x292B082, 0xFEA8) # Position X
+        rom.write_int16(0x292B084, 0x065C) # Position Y
+        rom.write_int16(0x292B086, 0x0290) # Position Z
+        rom.write_int16(0x292B08A, 0x0700) # Rotation Y
+        rom.write_int16(0x292B08E, 0x0DFF) # Init Params (Stationary spawn)
+
+        # Change the Rainbow Bridge cutscene trigger area to include Ganon's Castle exit
+        rom.write_int16(0xE2B46A, 0xC3C8) # Min X = -400.0f
+        rom.write_int32(0xE2B7A0, 0x44160000) # Min Y = 600.0f
+
     if world.settings.spawn_positions:
         # Fix save warping inside Link's House to not be a special case
         rom.write_int32(0xB06318, 0x00000000)
@@ -2169,6 +2186,12 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
                 load_table_pointer = rom.sym('GROTTO_LOAD_TABLE') + 4 * entrance.data['grotto_id']
                 rom.write_int16(load_table_pointer, entrance.data['entrance'])
                 rom.write_byte(load_table_pointer + 2, entrance.data['content'])
+            else:
+                return_table_pointer = rom.sym('GROTTO_RETURN_TABLE') + 32 * entrance.data['grotto_id']
+                rom.write_int16(return_table_pointer, entrance.data['entrance'])
+                rom.write_byte(return_table_pointer + 2, entrance.data['room'])
+                rom.write_int16(return_table_pointer + 4, entrance.data['angle'])
+                rom.write_int32s(return_table_pointer + 8, entrance.data['pos'])
 
         # Update grotto actors based on their new entrance
         set_grotto_shuffle_data(rom, world)
@@ -2454,6 +2477,14 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     build_altar_hints(world, messages,
                       include_rewards='altar' in world.settings.misc_hints and not world.settings.enhance_map_compass,
                       include_wincons='altar' in world.settings.misc_hints)
+
+    if world.settings.tokensanity == 'off':
+        # Change the GS token pickup message to fade out after 2 seconds (40 frames)
+        update_message_by_id(messages, 0x00B4, bytearray(get_message_by_id(messages, 0x00B4).raw_text)[:-1] + b'\x0E\x28')
+        # Prevent the GS token actor from freezing the player and waiting for the textbox to be closed 
+        rom.write_int32s(0xEC68C0, [0x00000000, 0x00000000])
+        rom.write_int32s(0xEC69B0, [0x00000000, 0x00000000])
+        rom.write_int32(0xEC6A10, 0x34020002) # li v0, 2
 
     # Fix Dead Hand spawn coordinates in vanilla shadow temple and bottom of the well to be the exact centre of the room
     # This prevents the extremely small possibility of Dead Hand spawning outside of collision

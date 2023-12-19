@@ -662,24 +662,37 @@ class WorldDistribution:
             entrance_found = False
             for pool_type, entrance_pool in entrance_pools.items():
                 try:
-                    matched_entrance = next(filter(lambda entrance: entrance.name == name, entrance_pool))
+                    matched_entrance = next(filter(lambda entrance: (entrance.name == name or (entrance.reverse and entrance.reverse.name == name and not entrance.decoupled)), entrance_pool))
                 except StopIteration:
                     continue
 
+                if matched_entrance.type == 'Overworld' and matched_entrance.name != name:
+                    reverse_entrance = matched_entrance
+                    matched_entrance = matched_entrance.reverse
+                    matched_entrance.reverse = reverse_entrance
+
                 entrance_found = True
                 if matched_entrance.connected_region is not None:
-                    if matched_entrance.type == 'Overworld':
+                    if matched_entrance.type == 'Overworld' or (pool_type == 'Mixed' and matched_entrance.replaces.type == 'Overworld'):
                         continue
                     else:
                         raise RuntimeError('Entrance already shuffled in world %d: %s' % (self.id + 1, name))
 
                 target_region = record.region
-
-                matched_targets_to_region = list(filter(lambda target: target.connected_region and target.connected_region.name == target_region,
+                
+                matched_targets_to_region = list(filter(lambda target: (target.connected_region and target.connected_region.name == target_region)
+                                                        or (target.reverse and target.reverse.connected_region and target.reverse.connected_region.name == target_region and not target.decoupled), 
                                                         target_entrance_pools[pool_type]))
                 if not matched_targets_to_region:
                     raise RuntimeError('No entrance found to replace with %s that leads to %s in world %d' %
                                                 (matched_entrance, target_region, self.id + 1))
+                index = 0
+                while index < len(matched_targets_to_region):
+                    if (matched_targets_to_region[index].connected_region and matched_targets_to_region[index].connected_region.name != target_region) or (matched_targets_to_region[index].connected_region is None):
+                        reverse_target = matched_targets_to_region[index]
+                        matched_targets_to_region[index] = matched_targets_to_region[index].reverse
+                        matched_targets_to_region[index].reverse = reverse_target
+                    index += 1
 
                 if record.origin:
                     target_parent = record.origin

@@ -635,7 +635,7 @@ def patch_magic_colors(rom: Rom, settings: Settings, log: CosmeticsLog, symbols:
             color = Colors.hex_to_color(magic_option)
             magic_option = 'Custom'
         rom.write_int16s(symbol, color)
-        if magic_option != 'Green' and settings.correct_model_colors:
+        if settings.correct_model_colors and magic_option != 'Green':
             patch_model_colors(rom, color, model_addresses)
             IconManip.patch_overworld_icon(rom, color, 0xF45650, data_path('icons/magicSmallExtras.raw'))  # Overworld Small Pot
             IconManip.patch_overworld_icon(rom, color, 0xF47650, data_path('icons/magicLargeExtras.raw'))  # Overworld Big Pot
@@ -736,6 +736,56 @@ def patch_button_colors(rom: Rom, settings: Settings, log: CosmeticsLog, symbols
                     rom.write_byte(b_addr, colors[patch][2])
 
             log_dict['colors'][patch] = Colors.color_to_hex(colors[patch])
+
+
+def patch_extra_equip_colors(rom: Rom, settings: Settings, log: CosmeticsLog, symbols: dict[str, int]) -> None:
+    # Various equipment color patches
+    extra_equip_patches = [
+        ('Mirror Shield Main', [0xFA722C, 0xFA7724, 0xFAA234, 0xFAC5D4, 0xFAC9F4, 0xFAEE44], ([0x16170FC], [0x1617104], [])),
+        ('Mirror Shield Symbol', [0xFA763C, 0xFA7A34, 0xFAA624, 0xFAC89C, 0xFACBE4, 0xFAEEE4], ([0x16171E4], [0x16171EC], [])),
+        ('Gauntlets Crystal', [0xFAB404, 0xFAB564, 0xFAB784, 0xFAB8E4], ([0x173B79C], [0x173B7A4], [])),
+        ('Kokiri Sword Blade', [0xFD216C, 0xFD5844], ([0x196897C], [0x1968984], [])),
+        ('Master Sword Blade', [0xFA7FEC, 0xFAD21C, 0xFD36F4], ([0x125CC24], [0x125CC2C], [])),
+        ('Biggoron Sword Blade', [0xFA9A84, 0xFA9F0C, 0xFAE9A4, 0xFAF39C], ([0x163F61C], [0x163F624], [])),
+        ('Hammer Metal', [0xFA94EC, 0xFAE394], ([0x163D9EC, 0x163DBB4], [], [])),
+        ('Hammer Handle', [0xFA945C, 0xFAE304], ([0x163DC2C], [0x163DC34], [])),
+        ('Bow Tip', [0xFA8E5C, 0xFADC34, 0xFB033C], ([0x1605BF4], [0x1605BFC], [])),
+        ('Bow Limbs', [0xFA8E8C, 0xFADC5C, 0xFB0374], ([0x16059AC], [0x16059B4], [])),
+        ('Bow Riser', [0xFA8E24, 0xFADC04, 0xFB02C4], ([0x1605AFC], [0x1605B04], [])),
+        ('Boomerang Main', [0xFD2744, 0xFD4944, 0xF0F7A4], ([0x1604A4C], [0x1604A54], [])),
+        ('Boomerang Crystal', [0xFD26CC, 0xF0F734], ([0x1604C8C], [0x1604C94], [])),
+    ]
+
+    for name, addresses, model_addresses in extra_equip_patches:
+        option = 'Completely Random' if settings.extra_equip_colors else 'Vanilla'
+
+        # Handle Plando
+        if log.src_dict.get('equipment_colors', {}).get(name, {}).get('color', ''):
+            option = log.src_dict['equipment_colors'][name]['color']
+
+        # handle completely random
+        if option == 'Completely Random':
+            color = [random.getrandbits(8), random.getrandbits(8), random.getrandbits(8)]
+        # handle vanilla
+        elif option == 'Vanilla':
+            color = rom.original.read_bytes(addresses[0], 3)
+        # build color from hex code
+        else:
+            color = Colors.hex_to_color(option)
+            option = 'Custom'
+
+        for address in addresses:
+            rom.write_bytes(address, color)
+
+        if settings.correct_model_colors and option != 'Vanilla':
+            patch_model_colors(rom, color, model_addresses)
+        else:
+            patch_model_colors(rom, None, model_addresses)
+
+        log.equipment_colors[name] = CollapseDict({
+            ':option': option,
+            'color': Colors.color_to_hex(color),
+        })
 
 
 def patch_sfx(rom: Rom, settings: Settings, log: CosmeticsLog, symbols: dict[str, int]) -> None:
@@ -983,6 +1033,7 @@ global_patch_sets: list[Callable[[Rom, Settings, CosmeticsLog, dict[str, int]], 
     patch_sword_trails,
     patch_gauntlet_colors,
     patch_shield_frame_colors,
+    patch_extra_equip_colors,
     patch_voices,
     patch_sfx,
     patch_instrument,
