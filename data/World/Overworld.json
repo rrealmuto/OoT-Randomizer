@@ -3,7 +3,7 @@
         "region_name": "Root",
         "hint": "ROOT",
         "events": {
-            #"Kakariko Village Gate Open": "open_kakariko == 'open' or (open_kakariko == 'zelda' and Zeldas_Letter)"
+            "Kakariko Village Gate Open": "open_kakariko == 'open' or (open_kakariko == 'zelda' and Zeldas_Letter)"
         },
         "locations": {
             "Links Pocket": "True",
@@ -1962,8 +1962,8 @@
         "scene": "Kakariko Village",
         "hint": "KAKARIKO_VILLAGE",
         "events": {
-            "Cojiro Access": "is_adult and at_day and 'Wake Up Adult Talon'"
-            #"Kakariko Village Gate Open": "is_child and Zeldas_Letter"
+            "Cojiro Access": "is_adult and at_day and 'Wake Up Adult Talon'",
+            "Kakariko Village Gate Open": "is_child and Zeldas_Letter"
         },
         "locations": {
             "Sheik in Kakariko": "
