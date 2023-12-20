@@ -2,17 +2,71 @@
 
 This is a randomizer for _The Legend of Zelda: Ocarina of Time_ for the Nintendo 64.
 
-**WARNING:** This branch is a modified version of the randomizer. It is **not** officially supported and may be **very unstable**.
-Please refrain from asking questions and from reporting issues in the main Randomizer Discord when using this branch.
-Instead, you can open an issue on this fork [here](https://github.com/Roman971/OoT-Randomizer/issues) or contact me directly on discord (Roman#7295) for any help, report or request.
+WARNING: This branch is a modified version of the randomizer. It is not officially supported and may be very unstable. Please refrain from asking questions and from reporting issues in the main Randomizer Discord when using this branch. Instead, you can open an issue on this fork here or contact me directly on discord (RealRob) for any help, report or request.
 
-Differences between this branch and the main Dev branch (on [Testrunner's Fork](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev)):
-* Various GUI tweaks and improvements along with setting tooltip/option changes
-* 2 new advanced ER settings: "Mixed Entrance Pools" and "Decouple Entrances"
-* Picking up Gold Skulltula Tokens in non-Tokensanity displays a self-closing textbox which no longer freezes the player.
-* New cosmetic setting to randomize the color of some additional equipment and items.
+This branch is based of of Roman971's fork of the randomizer and usually kept up to date with the latest changes in the main Dev fork, with the addition of the following developmental features:
+
+Enemy Drop Shuffle - All (almost) of the enemies in the game will give a shuffled item when killed.
+Wonderitem Shuffle - Shuffles wonderitems - which include invisible rupees and invisible hit markers.
+Gossip Stone Shuffle - Play Song of Time to a gossip stone to receive a shuffled item.
+Enemy Soul Shuffle - Shuffles enemy "souls" into the item pool. Enemies will not spawn into the world until their souls have been collected.
+Grass Shuffle - Shuffles grass
+Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the pond become items that you will collect upon catching. 
+    The fish themselves are shuffled as items that must be collected throughout the world. .
+    Finding a 10 lb (child) 16 lb (adult) and a hylian loach may be turned in to the pond owner for a reward.
+    The fishing rod becomes an item shuffled into the world which must be found before you can fish in the pond.
 
 ## Index
+
+* [RealRob's Changelog](#realrob-changelog)
+  * [v61](#v61)
+  * [v60](#v60)
+  * [v59](#v59)
+  * [v58](#v58)
+  * [v57](#v57)
+  * [v56](#v56)
+  * [v55](#v55)
+  * [v54](#v54)
+  * [v53](#v53)
+  * [v52](#v52)
+  * [v51](#v51)
+  * [v50](#v50)
+  * [v49](#v49)
+  * [v48](#v48)
+  * [v47](#v47)
+  * [v46](#v46)
+  * [v45](#v45)
+  * [v44](#v44)
+  * [v43](#v43)
+  * [v42](#v42)
+  * [v41](#v41)
+  * [v40](#v40)
+  * [v39](#v39)
+  * [v38](#v38)
+  * [v37](#v37)
+  * [v36](#v36)
+  * [v35](#v35)
+  * [v34](#v34)
+  * [v33](#v33)
+  * [v32](#v32)
+  * [v31](#v31)
+  * [v30](#v30)
+  * [v29](#v29)
+  * [v28](#v28)
+  * [v27](#v27)
+  * [v26](#v26)
+  * [v25](#v25)
+  * [v24](#v24)
+  * [v23](#v23)
+  * [v22](#v22)
+  * [v21](#v21)
+  * [v20](#v20)
+  * [v19](#v19)
+  * [v18](#v18)
+  * [v17](#v17)
+  * [v16](#v16)
+  * [v15](#v15)
+  * [v14](#v14)
 
 * [Installation](#installation)
 * [General Description](#general-description)
@@ -30,6 +84,206 @@ Differences between this branch and the main Dev branch (on [Testrunner's Fork](
   * [5.1](#51)
   * [5.0](#50)
   * [4.0](#40)
+
+## RealRob Changelog
+### v61
+  * Update to latest upstream 8.0.10
+  * New setting: Shuffle Fishing Game Fish
+  * Fix missing Wallmaster drop in MQ Light Trial
+
+### v60
+  * Fix MQ Spirit Child room not clearing in enemy soul shuffle
+
+### v59
+  * Fix Small Crates in MQ Fire Temple not shuffled
+
+### v58
+  * Fix missing Deku Tree Rotating Spike Skulltula
+
+### v57
+  * Fix missing grass in Lake Hylia
+
+### v56
+  * Fix incorrect overrides spawning in soul shuffle
+
+### v55
+  * Fix anubis spawns in enemy drop shuffle
+
+### v54
+  * Update multiworld coop context version #
+
+### v53
+  * Add souls to plentiful and ludicrous item pools
+  * Fix enemy minimap markers not displaying properly on some platforms.
+
+### v52
+  * Testing something that will hopeful improve seed generation
+
+### v51
+  * Add grass shuffle texture match contents
+  * Add MQ dungeons to grass shuffle
+  * Soul Logic fixes
+    * DMC Bubble Below Bridge To Fire Temple
+    * Deku Tree Basement Back Room Near GS Skulltula
+  * Fix Spirit Temple MQ Child Stalfos Fight Pot 4 not shuffled
+
+### v50
+  * New setting - Grass Shuffle ;P
+  * Add support for MMR custom music
+
+### v49
+  * Fix Temple of Time Gossip Stone Drops
+
+### v48
+  * Fix Forest Temple Upper Stalfos Drops
+  * Fix Dark Link drop
+  * Fix Skull Kids drops
+  * Fix Spirit Temple Child Bridge Bubble logic
+
+### v47
+  * Fix Forest Trial enemy logic
+
+### v46
+  * Potsanity Changes:
+    * Add new settings to shuffle empty pots/crates
+    * All fairy pots are now shuffled
+    * Update the animation when collecting a major item to spin above the player's head
+    * Lots of stuff under the hood
+  * Enemy drop shuffle tracker
+    * Adds a setting to enable a minimap tracker that displays the enemies that haven't been checked. Enemies display as red dots on the map.
+  * Soul Shuffle Logic improvements
+
+### v45
+  * Various soul shuffle logic fixes
+
+### v44
+  * Fix Shadow Temple GS Invisible Blades Room soul logic
+  * Fix Spirit Temple Child Bridge Bubble soul logic
+
+### v43
+  * Fix HF Cow Grotto Skulltula soul logic
+
+### v42
+  * Fix Forest Temple Right Courtyard Balcony Skullwalltula
+
+### v41
+  * Add flame effect to stick/nut upgrade so they are distinguishable
+
+### v40
+  * Enemy soul shuffle logic fixes:
+    * Forest Temple Map Chest
+    * GTG Beamos Chest
+    * GTG Stalfos Chest
+
+### v39
+  * Add MQ enemy soul shuffle logic
+
+### v38
+  * Fix souls and silver rupee save data not initializing properly on some platforms
+
+### v37
+  * Fix enemy souls not defaulting to enabled with only Bosses soul shuffle or starting with souls
+  * Fix soul menu not displaying correctly on Parallel emu core.
+
+### v36
+  * Add enemy soul shuffle menu
+
+### v35
+  * Fix dark link room not clearing in soul shuffle
+
+### v34
+  * Enemy Soul Shuffle Fixes:
+    * Fix logic for BOTW Dead Hand Chest
+    * Fix text for Dark Link soul incorrectly saying Ganondorf Soul
+
+### v33
+  * Forest temple soul logic fixes
+
+### v32
+  * Fix ganondorf not spawning in enemy soul shuffle
+
+### v31
+  * Fix missing souls from enemy drop logic in Ganons Castle
+
+### v30
+  * Add Dark Link to enemy soul shuffle
+
+### v29
+  * Add "Bosses" option to enemy soul shuffle
+
+### v28
+  * Fix broken flags in enemy soul shuffle
+
+### v27
+  * Add new setting 'Enemy Soul Shuffle'
+  * Enemy Drop logic improvements
+
+### v26
+  * Improve Fire Bubble logic in Enemy Drop Shuffle
+
+### v25
+  * Rebased onto main Dev version 7.1.139
+
+### v24
+  * Enemy Drop Shuffle Fixes:
+    * Fix logic for Ganons Castle MQ Water Trial Keese
+
+### v23
+  * Rebased onto main Dev version 7.1.118
+  * Enemy Drop Shuffle Fixes:
+    * Fix broken logic in Jabu
+    * Fix "Prevent Guays From Respawning" hack having weird invisible guay hitboxes on the ground.
+
+### v22
+  * New Cosmetic Option - Rainbow Tunic. Might also fix the weirdshot crash
+
+### v21
+  * New Setting - Individual Ocarina Note Shuffle
+  * Enemy Drop Shuffle Fixes:
+    * Fix broken Lost Woods Skullkid drop
+
+### v20
+  * New Ice Trap Settings:
+    * Custom Ice Trap Count
+      * Allows specifiying a number of junk items to be replaced w/ Ice Traps
+    * Custom Ice Trap Percent
+      * Allows specifying a percentage of junk items to be replaced w/ Ice Traps
+  * Gossip Stone Shuffle Fixes:
+    * Add MQ Dodongo's Cavern Gossip Stone
+
+### v19
+  * Enemy Drop Shuffle Fixes:
+    * Fix MQ GTG Heavy Block Room enemy logic
+
+### v18
+  * New Setting - Key Appearance Matches Dungeon
+    * When enabled, small keys, key rings, and boss keys will 
+    be colored to match their respective dungeons.
+
+### v17
+  * Silver Rupee Shuffle Fixes:
+    * Prevent items shuffled in silver rupee locations from being collected with boomerang
+    * Fix "TEXT ID ERROR" message when collecting the final silver rupee from a chest or shop
+
+### v16
+  * New Setting: Gossip Stone Shuffle
+  * Enemy Drop Shuffle Changes:
+    * Add skull kid drops
+  
+### v15
+
+  * Add Fast Armos Pushing
+
+### v14
+
+  * Silver Rupee Shuffle:
+    * Added Silver Rupee Pouches
+    * When silver rupees are collected, the text box will indicate how many rupees of that puzzle have been collected
+  * Enemy Drop Shuffle:
+    * Added setting under Misc. to prevent guays from respawning
+  * Bug Fixes:
+    * Fix bug where freestanding items would duplicate when reloading a room
+
 
 ## Installation
 
