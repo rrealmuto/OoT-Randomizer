@@ -14,6 +14,7 @@
 typedef struct {
     /* 0x00 */ uint16_t actor_id;
     /* 0x02 */ xflag_t flag;
+    /* 0x04 */ uint8_t minimap_draw_flags;
 } ActorAdditionalData;
 
 void Actor_After_UpdateAll_Hack(z64_actor_t *actor, z64_game_t *game);

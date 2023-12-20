@@ -1890,6 +1890,8 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
         if world.settings.prevent_guay_respawns:
             rom.write_byte(rom.sym('CFG_PREVENT_GUAY_RESPAWNS'), 0x01)
+        if world.settings.minimap_enemy_tracker:
+            rom.write_byte(rom.sym('CFG_MINIMAP_ENEMY_TRACKER'), 0x01)
 
     # Write flag table data
     #collectible_flag_table, alt_list = get_collectible_flag_table(world)

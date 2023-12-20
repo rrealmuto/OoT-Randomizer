@@ -2009,7 +2009,7 @@ class SettingInfos:
         },
         disable        = 
         {
-            False : { 'settings': ['prevent_guay_respawns']},   
+            False : { 'settings': ['prevent_guay_respawns', 'minimap_enemy_tracker']},   
         }
     )
 
@@ -3805,6 +3805,28 @@ class SettingInfos:
         gui_text       = 'Prevent guays from respawning',
         gui_tooltip    = '''\
             Enabling this prevents guays from respawning in enemy drop shuffle.
+            ''',
+        gui_params     = {
+            'hide_when_disabled' : True,
+        }
+    )
+
+    minimap_enemy_tracker = Checkbutton(
+        gui_text       = 'Enable enemy tracker (BETA)',
+        gui_tooltip    = '''\
+            In enemy drop shuffle, display enemies that have not been
+            checked on the minimap.
+
+            Only displays the enemies that are currently spawned.
+            
+            Doesn't work perfectly for scenes like Kokiri Forest where
+            a single minimap is used across multiple rooms.
+
+            Will display in dungeons even if the Dungeon Map has
+            not been collected. 
+
+            In scenes that don't have a minimap, it tends to draw
+            somewhere towards the bottom-middle of the screen.
             ''',
         gui_params     = {
             'hide_when_disabled' : True,

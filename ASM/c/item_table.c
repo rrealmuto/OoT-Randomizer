@@ -379,14 +379,14 @@ item_row_t item_table[] = {
     [0x202C] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x932C, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 44, -1, NULL),
     [0x202D] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x932D, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 45, -1, NULL),
     [0x202E] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x932E, 0x01AB, 0x63, no_upgrade, give_enemy_soul, 46, -1, NULL),
-    [0x2100] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9500, 0x01AB, 0x97, no_upgrade, give_fishing_rod, -1, -1, NULL), // Fishing Rod
-    [0x2101] = ITEM_ROW(0x53,      BROWN_CHEST, 0x41, -1, 0x9501, 0x01AC, 0x98, no_upgrade, give_fish,        6, 1, NULL), // Fish (child, 6 lb)
-    [0x2102] = ITEM_ROW(0x53,      BROWN_CHEST, 0x41, -1, 0x9502, 0x01AC, 0x98, no_upgrade, give_fish,        8, 1, NULL), // Fish (child, 8 lb)
-    [0x2103] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9503, 0x01AC, 0x98, no_upgrade, give_fish,        10, 1, NULL), // Fish (child, 10 lb)
-    [0x2104] = ITEM_ROW(0x53,      BROWN_CHEST, 0x41, -1, 0x9504, 0x01AC, 0x98, no_upgrade, give_fish,        10, 0, NULL), // Fish (adult, 10 lb)
-    [0x2105] = ITEM_ROW(0x53,      BROWN_CHEST, 0x41, -1, 0x9505, 0x01AC, 0x98, no_upgrade, give_fish,        12, 0, NULL), // Fish (adult, 12 lb)
-    [0x2106] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9506, 0x01AC, 0x98, no_upgrade, give_fish,        16, 0, NULL), // Fish (adult, 16 lb)
-    [0x2107] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9507, 0x01AC, 0x98, no_upgrade, give_fish,        30, 0, NULL), // Hylian Loach
+    [0x2100] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9500, 0x01AC, 0x99, no_upgrade, give_fishing_rod, -1, -1, NULL), // Fishing Rod
+    [0x2101] = ITEM_ROW(0x53,      BROWN_CHEST, 0x41, -1, 0x9501, 0x01AD, 0x9A, no_upgrade, give_fish,        6, 1, NULL), // Fish (child, 6 lb)
+    [0x2102] = ITEM_ROW(0x53,      BROWN_CHEST, 0x41, -1, 0x9502, 0x01AD, 0x9A, no_upgrade, give_fish,        8, 1, NULL), // Fish (child, 8 lb)
+    [0x2103] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9503, 0x01AD, 0x9A, no_upgrade, give_fish,        10, 1, NULL), // Fish (child, 10 lb)
+    [0x2104] = ITEM_ROW(0x53,      BROWN_CHEST, 0x41, -1, 0x9504, 0x01AD, 0x9A, no_upgrade, give_fish,        10, 0, NULL), // Fish (adult, 10 lb)
+    [0x2105] = ITEM_ROW(0x53,      BROWN_CHEST, 0x41, -1, 0x9505, 0x01AD, 0x9A, no_upgrade, give_fish,        12, 0, NULL), // Fish (adult, 12 lb)
+    [0x2106] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9506, 0x01AD, 0x9A, no_upgrade, give_fish,        16, 0, NULL), // Fish (adult, 16 lb)
+    [0x2107] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9507, 0x01AD, 0x9A, no_upgrade, give_fish,        30, 0, NULL), // Hylian Loach
 };
 
 /*  Determine which message to display based on the number of silver rupees collected.

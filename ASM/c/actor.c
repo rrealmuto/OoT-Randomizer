@@ -16,6 +16,7 @@
 #include "en_item00.h"
 #include "item_table.h"
 #include "enemy_spawn_shuffle.h"
+#include "minimap.h"
 
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
 extern uint16_t CURR_ACTOR_SPAWN_INDEX;
@@ -84,6 +85,10 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, xflag_t flag) {
         if(actor->actor_type == ACTORCAT_ENEMY && actor->actor_id != 0x0197) //Hack for most enemies. Specifically exclude gerudo fighters (0x197)
         {
             extra->flag = flag;
+            // Add marker for enemy drops
+            if(!Get_NewOverrideFlag(&flag)) {
+                extra->minimap_draw_flags = MINIMAP_FLAGS_DRAW | MINIMAP_FLAGS_ENEMY;
+            }
             return;
         }
 
@@ -109,6 +114,10 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, xflag_t flag) {
             case ACTOR_FISHING:
             {
                 extra->flag = flag;
+                // Add marker for enemy drops
+                if(!Get_NewOverrideFlag(&flag)) {
+                    extra->minimap_draw_flags = MINIMAP_FLAGS_DRAW | MINIMAP_FLAGS_ENEMY;
+                }
                 break;
             }
             default:
