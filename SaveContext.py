@@ -442,6 +442,8 @@ class SaveContext:
                     continue
 
                 address_value.value = value
+        elif item in ["Nothing", "Fairy Drop"]: # Don't do anything for Nothing and Fairy Drops
+            return
         else:
             raise ValueError("Cannot give unknown starting item %s" % item)
 
