@@ -957,8 +957,11 @@ class SaveContext:
                 'bongo_bongo': Address(extended=True, size=1, mask=0x08, pass_addr=True),
                 'twinrova': Address(extended=True, size=1, mask=0x10, pass_addr=True),
                 'jabu_jabu_tentacle': Address(extended=True, size=1, mask=0x20, pass_addr=True),
-                'dark_link': Address(extended=True, size=1, mask=0x40, pass_addr=True),
+                'dark_link': Address(extended=True, size=1, mask=0x40),
+                'pad_byte_1': Address(extended=True, size=1), # There are 8 bytes reserved for soul flags. Remove/add padding as required
+                'pad_byte_2': Address(extended=True, size=1)
             },
+            'enemy_spawn_enable_flag': Address(extended=True, size=8),
             'fishing': {
                 'fishing_rod': Address(extended=True, size=1),
                 'weight_adult': Address(extended=True, size=1),
