@@ -1212,6 +1212,13 @@ def add_item_messages(messages: list[Message], shop_items: Iterable[ShopItem], w
     update_item_messages(messages, world)
 
 
+def find_message_index(messages: list[Message], id):
+    
+    for i in range(0, len(messages)):
+        if messages[i].id == id:
+            return i
+    return -1
+
 # reads each of the game's messages into a list of Message objects
 def read_messages(rom: Rom) -> list[Message]:
     table_offset = ENG_TABLE_START

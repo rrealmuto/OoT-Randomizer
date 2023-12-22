@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v62](#v62)
   * [v61](#v61)
   * [v60](#v60)
   * [v59](#v59)
@@ -86,6 +87,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v62
+  * Fix fishing shuffle owner rewards not being given if you mash the text boxes
+
 ### v61
   * Update to latest upstream 8.0.10
   * New setting: Shuffle Fishing Game Fish

@@ -17,7 +17,7 @@ from Item import Item
 from ItemPool import song_list, trade_items, child_trade_items
 from Location import Location, DisableType
 from LocationList import business_scrubs
-from Messages import read_messages, update_message_by_id, read_shop_items, update_warp_song_text, \
+from Messages import read_messages, find_message_index, update_message_by_id, read_shop_items, update_warp_song_text, \
         write_shop_items, remove_unused_messages, make_player_message, \
         add_item_messages, repack_messages, shuffle_messages, \
         get_message_by_id, TextCode
@@ -2301,7 +2301,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         fishing_message_no_rod = "\x08He even stole all of my fishing rods\x01or I would let you practice."
         fishing_message_start = "\x08Hi there. Unfortunately Ganondorf\x01stole all of my fish and littered\x01my pond."
         fishing_message_rod = "\x08It looks like you have a fishing rod.\x01Do you want to practice? It's free!\x01\x1B\x05\x42Yes\x01No\x05\x40"
-        fishing_message_prize = "\x08Hey, is that a record breaking fish?\x01Thank you for bringing it back!\x01Here, take this reward!"
+        fishing_message_prize = "\x08Hey, is that a record breaking fish?\x01Thank you for bringing it back!\x01Here, take this reward!\x0B"
         fishing_sign_message = "\x08\x06\x3F\x05\x44Fishing Pond\x05\x40\x01\x06\x14The fish aren't really biting\x01\x06\x14since Ganondorf stole them\x09 "
         update_message_by_id(messages, 0x407B, fishing_message_start, 0x03)
         update_message_by_id(messages, 0x407C, fishing_message_rod, 0x03)
