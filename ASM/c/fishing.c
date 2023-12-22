@@ -19,6 +19,7 @@ extern xflag_t* spawn_actor_with_flag;
 #define Fishing_HandleOwnerDialog_ADDR (void*)0x80a419dc
 
 Fishing* caught_fish = NULL;
+int32_t fishing_get_item_id = 0;
 
 z64_actor_t* Fishing_Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params) {
     if(SHUFFLE_FISHIES) {
@@ -91,95 +92,111 @@ void Fishing_HandleOwnerDialog_Hook(Fishing* this, z64_game_t* globalCtx) {
     if(SHUFFLE_FISHIES) {
         if(*pFishingPlayState == 0) {
             switch(this->stateAndTimer) {
-            case 0:
-                if(*pFishingPlayState == 0) {
-                    this->actor.text_id = 0x407B;
-                }
+                case 0:
+                    if(*pFishingPlayState == 0) {
+                        this->actor.text_id = 0x407B;
+                    }
 
-                if(Actor_TalkOfferAccepted(&this->actor, globalCtx)) {
-                    this->stateAndTimer = 1;
-                }
-                else {
-                    Actor_OfferTalk(&this->actor, globalCtx, 100.0);
-                }
+                    if(Actor_TalkOfferAccepted(&this->actor, globalCtx)) {
+                        this->stateAndTimer = 1;
+                    }
+                    else {
+                        Actor_OfferTalk(&this->actor, globalCtx, 100.0);
+                    }
 
-                break;
-            case 1: // Advance message box based on rod and fish state
-                if(Message_ShouldAdvance(globalCtx)) {
-                    // First, check if we have already received the reward for the current age:
-                    if(LINK_IS_ADULT && !((HIGH_SCORE(HS_FISHING) & HS_FISH_PRIZE_ADULT) > 0) && (extended_savectx.largest_fish_found[0] >= 13)) {
-                        Message_ContinueTextbox(globalCtx, 0x407E);
-                        this->stateAndTimer = 4;
+                    break;
+                case 1: // Advance message box based on rod and fish state
+                    if(Message_GetState(&globalCtx->msgContext) == TEXT_STATE_DONE && Message_ShouldAdvance(globalCtx)) {
+                        // First, check if we have already received the reward for the current age:
+                        if(LINK_IS_ADULT && !((HIGH_SCORE(HS_FISHING) & HS_FISH_PRIZE_ADULT) > 0) && (extended_savectx.largest_fish_found[0] >= 13)) {
+                            Message_ContinueTextbox(globalCtx, 0x407E);
+                            this->stateAndTimer = 4;
+                        }
+                        else if(LINK_IS_CHILD && !((HIGH_SCORE(HS_FISHING) & HS_FISH_PRIZE_CHILD) > 0) && (extended_savectx.largest_fish_found[1] >= 9)) {
+                            Message_ContinueTextbox(globalCtx, 0x407E);
+                            this->stateAndTimer = 5;
+                        }
+                        else if(extended_savectx.has_loach && !((HIGH_SCORE(HS_FISHING) & HS_FISH_PRIZE_LOACH))) {
+                            Message_ContinueTextbox(globalCtx, 0x409B);
+                            this->stateAndTimer = 6;
+                        }
+                        else if(extended_savectx.has_fishing_rod) {
+                            Message_ContinueTextbox(globalCtx, 0x407C);
+                            this->stateAndTimer = 2;
+                        }
+                        else { // No fishing rod
+                            Message_ContinueTextbox(globalCtx, 0x407D);
+                            this->stateAndTimer = 3;
+                        }
                     }
-                    else if(LINK_IS_CHILD && !((HIGH_SCORE(HS_FISHING) & HS_FISH_PRIZE_CHILD) > 0) && (extended_savectx.largest_fish_found[1] >= 9)) {
-                        Message_ContinueTextbox(globalCtx, 0x407E);
-                        this->stateAndTimer = 5;
-                    }
-                    else if(extended_savectx.has_loach && !((HIGH_SCORE(HS_FISHING) & HS_FISH_PRIZE_LOACH))) {
-                        Message_ContinueTextbox(globalCtx, 0x409B);
-                        this->stateAndTimer = 6;
-                    }
-                    else if(extended_savectx.has_fishing_rod) {
-                        Message_ContinueTextbox(globalCtx, 0x407C);
-                        this->stateAndTimer = 2;
-                    }
-                    else { // No fishing rod
-                        Message_ContinueTextbox(globalCtx, 0x407D);
-                        this->stateAndTimer = 3;
-                    }
-                }
-                break;
-            case 2: // Has fishing rod
-                if(Message_ShouldAdvance(globalCtx)) {
-                    if(globalCtx->msgContext.choiceIndex == 0) {
-                        // Chose to fish. Set up fishing game
+                    break;
+                case 2: // Has fishing rod
+                    if(Message_GetState(&globalCtx->msgContext) == TEXT_STATE_CHOICE && Message_ShouldAdvance(globalCtx)) {
                         Message_CloseTextbox(globalCtx);
-                        globalCtx->unk_interfacectx_260_fishing = 1; // This is what sets the interface to "fishing" mode and lets you use the pole
-                        globalCtx->startPlayerFishing(globalCtx); // This does something
-                        *pFishingPlayState = 1;  // Tell's the Fishing actors that we're fishing
-                        this->stateAndTimer = 0; // Reset this so that the text gets handled normally.
-                    } else {
-                        // Chose not to fish
+                        if(globalCtx->msgContext.choiceIndex == 0) {
+                            // Chose to fish. Set up fishing game
+                            
+                            globalCtx->unk_interfacectx_260_fishing = 1; // This is what sets the interface to "fishing" mode and lets you use the pole
+                            globalCtx->startPlayerFishing(globalCtx); // This does something
+                            *pFishingPlayState = 1;  // Tell's the Fishing actors that we're fishing
+                            this->stateAndTimer = 0; // Reset this so that the text gets handled normally.
+                        } else {
+                            // Chose not to fish
+                            this->stateAndTimer = 0;
+                        }
+                    }
+                    break;
+                case 3: // No fishing rod
+                    if(Message_GetState(&globalCtx->msgContext) == TEXT_STATE_DONE && Message_ShouldAdvance(globalCtx)) {
                         Message_CloseTextbox(globalCtx);
                         this->stateAndTimer = 0;
                     }
-                }
-                break;
-            case 3: // No fishing rod
-                if(Message_ShouldAdvance(globalCtx)) {
-                    Message_CloseTextbox(globalCtx);
-                    this->stateAndTimer = 0;
-                }
-                break;
-            case 4: // Adult prize
-                if(Message_ShouldAdvance(globalCtx)) {
-                    Message_CloseTextbox(globalCtx);
-                    HIGH_SCORE(HS_FISHING) |= HS_FISH_PRIZE_ADULT;
-                    this->stateAndTimer = 0;
-                    // Give adult reward
-                    Actor_OfferGetItem(&this->actor, globalCtx, 56, 2000.0f, 1000.0f);
-                }
-                break;
-            case 5: // Child prize
-                if(Message_ShouldAdvance(globalCtx)) {
-                    Message_CloseTextbox(globalCtx);
-                    HIGH_SCORE(HS_FISHING) |= HS_FISH_PRIZE_CHILD;
-                    this->stateAndTimer = 0;
-                    // Give child reward
-                    Actor_OfferGetItem(&this->actor, globalCtx, 62, 2000.0f, 1000.0f);
-                    return;
-                }
-                break;
-            case 6: // Loach prize
-                if((Message_GetState(&globalCtx->msgContext) == TEXT_STATE_EVENT) && Message_ShouldAdvance(globalCtx)) {
-                    Message_CloseTextbox(globalCtx);
-                    HIGH_SCORE(HS_FISHING) |= HS_FISH_PRIZE_LOACH;
-                    this->stateAndTimer = 0;
-                    // Give child reward
-                    Actor_OfferGetItem(&this->actor, globalCtx, 0x56, 2000.0f, 1000.0f);
-                    return;
-                }
-                break;
+                    break;
+                case 4: // Adult prize
+                    if(((Message_GetState(&globalCtx->msgContext) == TEXT_STATE_EVENT) || (Message_GetState(&globalCtx->msgContext) == TEXT_STATE_NONE)) && Message_ShouldAdvance(globalCtx)) {
+                        Message_CloseTextbox(globalCtx);
+                        this->actor.parent = NULL;
+                        HIGH_SCORE(HS_FISHING) |= HS_FISH_PRIZE_ADULT;
+                        // Give adult reward
+                        fishing_get_item_id = 56;
+                        //Actor_OfferGetItem(&this->actor, globalCtx, 56, 2000.0f, 1000.0f);
+                        this->stateAndTimer = 7;
+                    }
+                    break;
+                case 5: // Child prize
+                    if(((Message_GetState(&globalCtx->msgContext) == TEXT_STATE_EVENT) || (Message_GetState(&globalCtx->msgContext) == TEXT_STATE_NONE)) && Message_ShouldAdvance(globalCtx)) {
+                        Message_CloseTextbox(globalCtx);
+                        this->actor.parent = NULL;
+                        HIGH_SCORE(HS_FISHING) |= HS_FISH_PRIZE_CHILD;
+                        // Give child reward
+                        fishing_get_item_id = 62;
+                        //Actor_OfferGetItem(&this->actor, globalCtx, 62, 2000.0f, 1000.0f);
+                        this->stateAndTimer = 7;
+                    }
+                    break;
+                case 6: // Loach prize
+                    if(((Message_GetState(&globalCtx->msgContext) == TEXT_STATE_EVENT) || (Message_GetState(&globalCtx->msgContext) == TEXT_STATE_NONE)) && Message_ShouldAdvance(globalCtx)) {
+                        Message_CloseTextbox(globalCtx);
+                        this->actor.parent = NULL;
+                        HIGH_SCORE(HS_FISHING) |= HS_FISH_PRIZE_LOACH;
+                        fishing_get_item_id = 0x56;
+                        //Actor_OfferGetItem(&this->actor, globalCtx, 0x56, 2000.0f, 1000.0f);
+                        this->stateAndTimer = 7;
+                    }
+                    break;
+                case 7: // GI loop? Idk but this is kinda what the original code does. Seems to work. Otherwise sometimes it doesn't give the item.
+                    if(this->actor.parent != NULL) {
+                        this->stateAndTimer = 8;
+                        fishing_get_item_id = 0;
+                    } else {
+                        Actor_OfferGetItem(&this->actor, globalCtx, fishing_get_item_id, 2000.0f, 1000.0f);
+                    }
+                    break;
+                case 8: // Wait to close get_item message box
+                    if((Message_GetState(&globalCtx->msgContext) == TEXT_STATE_DONE) && Message_ShouldAdvance(globalCtx)) {
+                        this->stateAndTimer = 0;
+                    }
+                    break;
             }
         }
         else {
