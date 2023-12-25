@@ -1,17 +1,16 @@
 #include "item_table.h"
 
+#include "dungeon_info.h"
 #include "item_effects.h"
 #include "item_upgrades.h"
+#include "save.h"
 #include "util.h"
 #include "z64.h"
-#include "save.h"
-#include "item_effects.h"
-#include "dungeon_info.h"
 
 extern uint8_t SHUFFLE_CHEST_GAME;
 
 #define ITEM_ROW( \
-        base_item_id_, chest_type_, action_id_, collectible_,  text_id_, object_id_, graphic_id_, \
+        base_item_id_, chest_type_, action_id_, collectible_, text_id_, object_id_, graphic_id_, \
         upgrade_, effect_, effect_arg1_, effect_arg2_, alt_text_func_) \
     { .base_item_id = base_item_id_, .chest_type = chest_type_, .action_id = action_id_, \
       .collectible = collectible_, .text_id = text_id_, .object_id = object_id_, .graphic_id = graphic_id_, \
@@ -140,7 +139,7 @@ item_row_t item_table[GI_RANDO_MAX] = {
     [GI_BOTTLE_BLUE_FIRE]                                       = ITEM_ROW(0x53,      GILDED_CHEST, 0x1C, -1, 0x005D, 0x0173, 0x67, no_upgrade, no_effect, -1, -1, NULL), // Blue Fire (Refill)
     [GI_BOTTLE_POE]                                             = ITEM_ROW(0x53,      GILDED_CHEST, 0x20, -1, 0x0097, 0x0176, 0x6A, no_upgrade, no_effect, -1, -1, NULL), // Poe (Refill)
     [GI_BOTTLE_BIG_POE]                                         = ITEM_ROW(0x53,      GILDED_CHEST, 0x1E, -1, 0x00F9, 0x0176, 0x70, no_upgrade, no_effect, -1, -1, NULL), // Big Poe (Refill)
-    [GI_DOOR_KEY]                                               = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x913E, 0x00AA, 0x02, upgrade_key_model, give_small_key, TCG_ID, -1, resolve_text_small_keys_cmg), // Small Key (Chest Game)
+    [GI_DOOR_KEY]                                               = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x00F3, 0x00AA, 0x02, upgrade_key_model, give_small_key, TCG_ID, -1, resolve_text_small_keys_cmg), // Small Key (Chest Game)
     [GI_RUPEE_GREEN_LOSE]                                       = ITEM_ROW(0x4D,       BROWN_CHEST, 0x84, -1, 0x00F4, 0x017F, 0x6D, no_upgrade, no_effect, -1, -1, NULL), // Green Rupee (Chest Game)
     [GI_RUPEE_BLUE_LOSE]                                        = ITEM_ROW(0x4D,       BROWN_CHEST, 0x85, -1, 0x00F5, 0x017F, 0x6E, no_upgrade, no_effect, -1, -1, NULL), // Blue Rupee (Chest Game)
     [GI_RUPEE_RED_LOSE]                                         = ITEM_ROW(0x4D,       BROWN_CHEST, 0x86, -1, 0x00F6, 0x017F, 0x6F, no_upgrade, no_effect, -1, -1, NULL), // Red Rupee (Chest Game)
@@ -157,18 +156,18 @@ item_row_t item_table[GI_RANDO_MAX] = {
     [GI_CAPPED_HEART_CONTAINER]                                 = ITEM_ROW(0x3E, HEART_CHEST_SMALL, 0x41, -1, 0x90C6, 0x00BD, 0x13, no_upgrade, full_heal, -1, -1, NULL), // Capped Heart Container
     [GI_CAPPED_PIECE_OF_HEART_CHESTGAME]                        = ITEM_ROW(0x53, HEART_CHEST_SMALL, 0x41, -1, 0x90FA, 0x00BD, 0x14, no_upgrade, full_heal, -1, -1, NULL), // Capped Piece of Heart (Chest Game)
 
-    [GI_PROGRESSIVE_HOOKSHOT]                                   = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,    -1, 0x00DD, 0x2D, hookshot_upgrade,  no_effect, -1, -1, NULL), // Progressive Hookshot
-    [GI_PROGRESSIVE_STRENGTH]                                   = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,    -1, 0x0147, 0x58, strength_upgrade,  no_effect, -1, -1, NULL), // Progressive Strength
-    [GI_PROGRESSIVE_BOMB_BAG]                                   = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,    -1, 0x00BF, 0x18, bomb_bag_upgrade,  no_effect, -1, -1, NULL), // Progressive Bomb Bag
-    [GI_PROGRESSIVE_BOW]                                        = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,    -1, 0x00E9, 0x35, bow_upgrade,       no_effect, -1, -1, NULL), // Progressive Bow
-    [GI_PROGRESSIVE_SLINGSHOT]                                  = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,    -1, 0x00E7, 0x33, slingshot_upgrade, no_effect, -1, -1, NULL), // Progressive Slingshot
-    [GI_PROGRESSIVE_WALLET]                                     = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,    -1, 0x00D1, 0x22, wallet_upgrade,    no_effect, -1, -1, NULL), // Progressive Wallet
-    [GI_PROGRESSIVE_SCALE]                                      = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,    -1, 0x00DB, 0x2A, scale_upgrade,     no_effect, -1, -1, NULL), // Progressive Scale
-    [GI_PROGRESSIVE_NUT_CAPACITY]                               = ITEM_ROW(  -1,       BROWN_CHEST,   -1, -1,    -1, 0x00BB, 0x12, nut_upgrade,       no_effect, -1, -1, NULL), // Progressive Nut Capacity
-    [GI_PROGRESSIVE_STICK_CAPACITY]                             = ITEM_ROW(  -1,       BROWN_CHEST,   -1, -1,    -1, 0x00C7, 0x1B, stick_upgrade,     no_effect, -1, -1, NULL), // Progressive Stick Capacity
-    [GI_PROGRESSIVE_BOMBCHUS]                                   = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,    -1, 0x00D9, 0x28, bombchu_upgrade,   no_effect, -1, -1, NULL), // Progressive Bombchus
-    [GI_PROGRESSIVE_MAGIC_METER]                                = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,    -1, 0x00CD, 0x1E, magic_upgrade,     no_effect, -1, -1, NULL), // Progressive Magic Meter
-    [GI_PROGRESSIVE_OCARINA]                                    = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,    -1, 0x010E, 0x46, ocarina_upgrade,   no_effect, -1, -1, NULL), // Progressive Ocarina
+    [GI_PROGRESSIVE_HOOKSHOT]                                   = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,     -1, 0x00DD, 0x2D, hookshot_upgrade,  no_effect, -1, -1, NULL), // Progressive Hookshot
+    [GI_PROGRESSIVE_STRENGTH]                                   = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,     -1, 0x0147, 0x58, strength_upgrade,  no_effect, -1, -1, NULL), // Progressive Strength
+    [GI_PROGRESSIVE_BOMB_BAG]                                   = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,     -1, 0x00BF, 0x18, bomb_bag_upgrade,  no_effect, -1, -1, NULL), // Progressive Bomb Bag
+    [GI_PROGRESSIVE_BOW]                                        = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,     -1, 0x00E9, 0x35, bow_upgrade,       no_effect, -1, -1, NULL), // Progressive Bow
+    [GI_PROGRESSIVE_SLINGSHOT]                                  = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,     -1, 0x00E7, 0x33, slingshot_upgrade, no_effect, -1, -1, NULL), // Progressive Slingshot
+    [GI_PROGRESSIVE_WALLET]                                     = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,     -1, 0x00D1, 0x22, wallet_upgrade,    no_effect, -1, -1, NULL), // Progressive Wallet
+    [GI_PROGRESSIVE_SCALE]                                      = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,     -1, 0x00DB, 0x2A, scale_upgrade,     no_effect, -1, -1, NULL), // Progressive Scale
+    [GI_PROGRESSIVE_NUT_CAPACITY]                               = ITEM_ROW(  -1,       BROWN_CHEST,   -1, -1,     -1, 0x00BB, 0x12, nut_upgrade,       no_effect, -1, -1, NULL), // Progressive Nut Capacity
+    [GI_PROGRESSIVE_STICK_CAPACITY]                             = ITEM_ROW(  -1,       BROWN_CHEST,   -1, -1,     -1, 0x00C7, 0x1B, stick_upgrade,     no_effect, -1, -1, NULL), // Progressive Stick Capacity
+    [GI_PROGRESSIVE_BOMBCHUS]                                   = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,     -1, 0x00D9, 0x28, bombchu_upgrade,   no_effect, -1, -1, NULL), // Progressive Bombchus
+    [GI_PROGRESSIVE_MAGIC_METER]                                = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,     -1, 0x00CD, 0x1E, magic_upgrade,     no_effect, -1, -1, NULL), // Progressive Magic Meter
+    [GI_PROGRESSIVE_OCARINA]                                    = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,     -1, 0x010E, 0x46, ocarina_upgrade,   no_effect, -1, -1, NULL), // Progressive Ocarina
 
     [GI_BOTTLE_WITH_RED_POTION]                                 = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x90A0, 0x00C6, 0x01, no_upgrade, give_bottle, 0x15, -1, NULL), // Bottle with Red Potion
     [GI_BOTTLE_WITH_GREEN_POTION]                               = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x90A1, 0x00C6, 0x01, no_upgrade, give_bottle, 0x16, -1, NULL), // Bottle with Green Potion
@@ -180,34 +179,34 @@ item_row_t item_table[GI_RANDO_MAX] = {
     [GI_BOTTLE_WITH_BIG_POE]                                    = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x90A7, 0x0176, 0x70, no_upgrade, give_bottle, 0x1E, -1, NULL), // Bottle with Big Poe
     [GI_BOTTLE_WITH_POE]                                        = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x90A8, 0x0176, 0x6A, no_upgrade, give_bottle, 0x20, -1, NULL), // Bottle with Poe
 
-    [GI_BOSS_KEY_FOREST_TEMPLE]                                 = ITEM_ROW(0x53,        GOLD_CHEST, 0x41, -1, 0x0006, 0x00B9, 0x0A, upgrade_key_model, give_dungeon_item, 0x01, FOREST_ID,    NULL), // Forest Temple Boss Key
-    [GI_BOSS_KEY_FIRE_TEMPLE]                                   = ITEM_ROW(0x53,        GOLD_CHEST, 0x41, -1, 0x001C, 0x00B9, 0x0A, upgrade_key_model, give_dungeon_item, 0x01, FIRE_ID,      NULL), // Fire Temple Boss Key
-    [GI_BOSS_KEY_WATER_TEMPLE]                                  = ITEM_ROW(0x53,        GOLD_CHEST, 0x41, -1, 0x001D, 0x00B9, 0x0A, upgrade_key_model, give_dungeon_item, 0x01, WATER_ID,     NULL), // Water Temple Boss Key
-    [GI_BOSS_KEY_SPIRIT_TEMPLE]                                 = ITEM_ROW(0x53,        GOLD_CHEST, 0x41, -1, 0x001E, 0x00B9, 0x0A, upgrade_key_model, give_dungeon_item, 0x01, SPIRIT_ID,    NULL), // Spirit Temple Boss Key
-    [GI_BOSS_KEY_SHADOW_TEMPLE]                                 = ITEM_ROW(0x53,        GOLD_CHEST, 0x41, -1, 0x002A, 0x00B9, 0x0A, upgrade_key_model, give_dungeon_item, 0x01, SHADOW_ID,    NULL), // Shadow Temple Boss Key
-    [GI_BOSS_KEY_GANONS_CASTLE]                                 = ITEM_ROW(0x53,        GOLD_CHEST, 0x41, -1, 0x0061, 0x00B9, 0x0A, upgrade_key_model, give_dungeon_item, 0x01, TOWER_ID,     NULL), // Ganon's Castle Boss Key
+    [GI_BOSS_KEY_FOREST_TEMPLE]                                 = ITEM_ROW(0x53,        GOLD_CHEST, 0x41, -1, 0x0006, 0x00B9, 0x0A, upgrade_key_model, give_dungeon_item, 0x01, FOREST_ID, NULL), // Forest Temple Boss Key
+    [GI_BOSS_KEY_FIRE_TEMPLE]                                   = ITEM_ROW(0x53,        GOLD_CHEST, 0x41, -1, 0x001C, 0x00B9, 0x0A, upgrade_key_model, give_dungeon_item, 0x01, FIRE_ID,   NULL), // Fire Temple Boss Key
+    [GI_BOSS_KEY_WATER_TEMPLE]                                  = ITEM_ROW(0x53,        GOLD_CHEST, 0x41, -1, 0x001D, 0x00B9, 0x0A, upgrade_key_model, give_dungeon_item, 0x01, WATER_ID,  NULL), // Water Temple Boss Key
+    [GI_BOSS_KEY_SPIRIT_TEMPLE]                                 = ITEM_ROW(0x53,        GOLD_CHEST, 0x41, -1, 0x001E, 0x00B9, 0x0A, upgrade_key_model, give_dungeon_item, 0x01, SPIRIT_ID, NULL), // Spirit Temple Boss Key
+    [GI_BOSS_KEY_SHADOW_TEMPLE]                                 = ITEM_ROW(0x53,        GOLD_CHEST, 0x41, -1, 0x002A, 0x00B9, 0x0A, upgrade_key_model, give_dungeon_item, 0x01, SHADOW_ID, NULL), // Shadow Temple Boss Key
+    [GI_BOSS_KEY_GANONS_CASTLE]                                 = ITEM_ROW(0x53,        GOLD_CHEST, 0x41, -1, 0x0061, 0x00B9, 0x0A, upgrade_key_model, give_dungeon_item, 0x01, TOWER_ID,  NULL), // Ganon's Castle Boss Key
 
-    [GI_COMPASS_DEKU_TREE]                                      = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x0062, 0x00B8, 0x0B, no_upgrade, give_dungeon_item, 0x02, DEKU_ID,      NULL), // Deku Tree Compass
-    [GI_COMPASS_DODONGOS_CAVERN]                                = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x0063, 0x00B8, 0x0B, no_upgrade, give_dungeon_item, 0x02, DODONGO_ID,   NULL), // Dodongo's Cavern Compass
-    [GI_COMPASS_JABU_JABU]                                      = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x0064, 0x00B8, 0x0B, no_upgrade, give_dungeon_item, 0x02, JABU_ID,      NULL), // Jabu Jabu Compass
-    [GI_COMPASS_FOREST_TEMPLE]                                  = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x0065, 0x00B8, 0x0B, no_upgrade, give_dungeon_item, 0x02, FOREST_ID,    NULL), // Forest Temple Compass
-    [GI_COMPASS_FIRE_TEMPLE]                                    = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x007C, 0x00B8, 0x0B, no_upgrade, give_dungeon_item, 0x02, FIRE_ID,      NULL), // Fire Temple Compass
-    [GI_COMPASS_WATER_TEMPLE]                                   = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x007D, 0x00B8, 0x0B, no_upgrade, give_dungeon_item, 0x02, WATER_ID,     NULL), // Water Temple Compass
-    [GI_COMPASS_SPIRIT_TEMPLE]                                  = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x007E, 0x00B8, 0x0B, no_upgrade, give_dungeon_item, 0x02, SPIRIT_ID,    NULL), // Spirit Temple Compass
-    [GI_COMPASS_SHADOW_TEMPLE]                                  = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x007F, 0x00B8, 0x0B, no_upgrade, give_dungeon_item, 0x02, SHADOW_ID,    NULL), // Shadow Temple Compass
-    [GI_COMPASS_BOTTOM_OF_THE_WELL]                             = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x00A2, 0x00B8, 0x0B, no_upgrade, give_dungeon_item, 0x02, BOTW_ID,      NULL), // Bottom of the Well Compass
-    [GI_COMPASS_ICE_CAVERN]                                     = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x0087, 0x00B8, 0x0B, no_upgrade, give_dungeon_item, 0x02, ICE_ID,       NULL), // Ice Cavern Compass
+    [GI_COMPASS_DEKU_TREE]                                      = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x0062, 0x00B8, 0x0B, no_upgrade, give_dungeon_item, 0x02, DEKU_ID,    NULL), // Deku Tree Compass
+    [GI_COMPASS_DODONGOS_CAVERN]                                = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x0063, 0x00B8, 0x0B, no_upgrade, give_dungeon_item, 0x02, DODONGO_ID, NULL), // Dodongo's Cavern Compass
+    [GI_COMPASS_JABU_JABU]                                      = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x0064, 0x00B8, 0x0B, no_upgrade, give_dungeon_item, 0x02, JABU_ID,    NULL), // Jabu Jabu Compass
+    [GI_COMPASS_FOREST_TEMPLE]                                  = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x0065, 0x00B8, 0x0B, no_upgrade, give_dungeon_item, 0x02, FOREST_ID,  NULL), // Forest Temple Compass
+    [GI_COMPASS_FIRE_TEMPLE]                                    = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x007C, 0x00B8, 0x0B, no_upgrade, give_dungeon_item, 0x02, FIRE_ID,    NULL), // Fire Temple Compass
+    [GI_COMPASS_WATER_TEMPLE]                                   = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x007D, 0x00B8, 0x0B, no_upgrade, give_dungeon_item, 0x02, WATER_ID,   NULL), // Water Temple Compass
+    [GI_COMPASS_SPIRIT_TEMPLE]                                  = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x007E, 0x00B8, 0x0B, no_upgrade, give_dungeon_item, 0x02, SPIRIT_ID,  NULL), // Spirit Temple Compass
+    [GI_COMPASS_SHADOW_TEMPLE]                                  = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x007F, 0x00B8, 0x0B, no_upgrade, give_dungeon_item, 0x02, SHADOW_ID,  NULL), // Shadow Temple Compass
+    [GI_COMPASS_BOTTOM_OF_THE_WELL]                             = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x00A2, 0x00B8, 0x0B, no_upgrade, give_dungeon_item, 0x02, BOTW_ID,    NULL), // Bottom of the Well Compass
+    [GI_COMPASS_ICE_CAVERN]                                     = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x0087, 0x00B8, 0x0B, no_upgrade, give_dungeon_item, 0x02, ICE_ID,     NULL), // Ice Cavern Compass
 
-    [GI_MAP_DEKU_TREE]                                          = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x0088, 0x00C8, 0x1C, no_upgrade, give_dungeon_item, 0x04, DEKU_ID,      NULL), // Deku Tree Map
-    [GI_MAP_DODONGOS_CAVERN]                                    = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x0089, 0x00C8, 0x1C, no_upgrade, give_dungeon_item, 0x04, DODONGO_ID,   NULL), // Dodongo's Cavern Map
-    [GI_MAP_JABU_JABU]                                          = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x008A, 0x00C8, 0x1C, no_upgrade, give_dungeon_item, 0x04, JABU_ID,      NULL), // Jabu Jabu Map
-    [GI_MAP_FOREST_TEMPLE]                                      = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x008B, 0x00C8, 0x1C, no_upgrade, give_dungeon_item, 0x04, FOREST_ID,    NULL), // Forest Temple Map
-    [GI_MAP_FIRE_TEMPLE]                                        = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x008C, 0x00C8, 0x1C, no_upgrade, give_dungeon_item, 0x04, FIRE_ID,      NULL), // Fire Temple Map
-    [GI_MAP_WATER_TEMPLE]                                       = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x008E, 0x00C8, 0x1C, no_upgrade, give_dungeon_item, 0x04, WATER_ID,     NULL), // Water Temple Map
-    [GI_MAP_SPIRIT_TEMPLE]                                      = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x008F, 0x00C8, 0x1C, no_upgrade, give_dungeon_item, 0x04, SPIRIT_ID,    NULL), // Spirit Temple Map
-    [GI_MAP_SHADOW_TEMPLE]                                      = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x00A3, 0x00C8, 0x1C, no_upgrade, give_dungeon_item, 0x04, SHADOW_ID,    NULL), // Shadow Temple Map
-    [GI_MAP_BOTTOM_OF_THE_WELL]                                 = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x00A5, 0x00C8, 0x1C, no_upgrade, give_dungeon_item, 0x04, BOTW_ID,      NULL), // Bottom of the Well Map
-    [GI_MAP_ICE_CAVERN]                                         = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x0092, 0x00C8, 0x1C, no_upgrade, give_dungeon_item, 0x04, ICE_ID,       NULL), // Ice Cavern Map
+    [GI_MAP_DEKU_TREE]                                          = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x0088, 0x00C8, 0x1C, no_upgrade, give_dungeon_item, 0x04, DEKU_ID,    NULL), // Deku Tree Map
+    [GI_MAP_DODONGOS_CAVERN]                                    = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x0089, 0x00C8, 0x1C, no_upgrade, give_dungeon_item, 0x04, DODONGO_ID, NULL), // Dodongo's Cavern Map
+    [GI_MAP_JABU_JABU]                                          = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x008A, 0x00C8, 0x1C, no_upgrade, give_dungeon_item, 0x04, JABU_ID,    NULL), // Jabu Jabu Map
+    [GI_MAP_FOREST_TEMPLE]                                      = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x008B, 0x00C8, 0x1C, no_upgrade, give_dungeon_item, 0x04, FOREST_ID,  NULL), // Forest Temple Map
+    [GI_MAP_FIRE_TEMPLE]                                        = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x008C, 0x00C8, 0x1C, no_upgrade, give_dungeon_item, 0x04, FIRE_ID,    NULL), // Fire Temple Map
+    [GI_MAP_WATER_TEMPLE]                                       = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x008E, 0x00C8, 0x1C, no_upgrade, give_dungeon_item, 0x04, WATER_ID,   NULL), // Water Temple Map
+    [GI_MAP_SPIRIT_TEMPLE]                                      = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x008F, 0x00C8, 0x1C, no_upgrade, give_dungeon_item, 0x04, SPIRIT_ID,  NULL), // Spirit Temple Map
+    [GI_MAP_SHADOW_TEMPLE]                                      = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x00A3, 0x00C8, 0x1C, no_upgrade, give_dungeon_item, 0x04, SHADOW_ID,  NULL), // Shadow Temple Map
+    [GI_MAP_BOTTOM_OF_THE_WELL]                                 = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x00A5, 0x00C8, 0x1C, no_upgrade, give_dungeon_item, 0x04, BOTW_ID,    NULL), // Bottom of the Well Map
+    [GI_MAP_ICE_CAVERN]                                         = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x0092, 0x00C8, 0x1C, no_upgrade, give_dungeon_item, 0x04, ICE_ID,     NULL), // Ice Cavern Map
 
     [GI_SMALL_KEY_FOREST_TEMPLE]                                = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x0093, 0x00AA, 0x02, upgrade_key_model, give_small_key, FOREST_ID, -1, resolve_text_small_keys), // Forest Temple Small Key
     [GI_SMALL_KEY_FIRE_TEMPLE]                                  = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x0094, 0x00AA, 0x02, upgrade_key_model, give_small_key, FIRE_ID,   -1, resolve_text_small_keys), // Fire Temple Small Key
@@ -223,11 +222,11 @@ item_row_t item_table[GI_RANDO_MAX] = {
     [GI_MAGIC_METER]                                            = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x00E4, 0x00CD, 0x1E, no_upgrade, give_magic,        -1, -1, NULL), // Magic Meter
     [GI_DOUBLE_MAGIC]                                           = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x00E8, 0x00CD, 0x1F, no_upgrade, give_double_magic, -1, -1, NULL), // Double Magic
 
-    [GI_MINUET_OF_FOREST]                                       = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9091, 0x0196, 0x78, no_upgrade, give_song, 6, -1, NULL), // Minuet of Forest
-    [GI_BOLERO_OF_FIRE]                                         = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9092, 0x0196, 0x79, no_upgrade, give_song, 7, -1, NULL), // Bolero of Fire
-    [GI_SERENADE_OF_WATER]                                      = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9093, 0x0196, 0x7A, no_upgrade, give_song, 8, -1, NULL), // Serenade of Water
-    [GI_REQUIEM_OF_SPIRIT]                                      = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9094, 0x0196, 0x7B, no_upgrade, give_song, 9, -1, NULL), // Requiem of Spirit
-    [GI_NOCTURNE_OF_SHADOW]                                      = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9095, 0x0196, 0x7C, no_upgrade, give_song, 10, -1, NULL), // Nocturn of Shadow
+    [GI_MINUET_OF_FOREST]                                       = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9091, 0x0196, 0x78, no_upgrade, give_song,  6, -1, NULL), // Minuet of Forest
+    [GI_BOLERO_OF_FIRE]                                         = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9092, 0x0196, 0x79, no_upgrade, give_song,  7, -1, NULL), // Bolero of Fire
+    [GI_SERENADE_OF_WATER]                                      = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9093, 0x0196, 0x7A, no_upgrade, give_song,  8, -1, NULL), // Serenade of Water
+    [GI_REQUIEM_OF_SPIRIT]                                      = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9094, 0x0196, 0x7B, no_upgrade, give_song,  9, -1, NULL), // Requiem of Spirit
+    [GI_NOCTURNE_OF_SHADOW]                                     = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9095, 0x0196, 0x7C, no_upgrade, give_song, 10, -1, NULL), // Nocturn of Shadow
     [GI_PRELUDE_OF_LIGHT]                                       = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9096, 0x0196, 0x7D, no_upgrade, give_song, 11, -1, NULL), // Prelude of Light
 
     [GI_ZELDAS_LULLABY]                                         = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x909A, 0x00B6, 0x04, no_upgrade, give_song, 12, -1, NULL), // Zelda's Lullaby
@@ -237,26 +236,26 @@ item_row_t item_table[GI_RANDO_MAX] = {
     [GI_SONG_OF_TIME]                                           = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x909E, 0x00B6, 0x05, no_upgrade, give_song, 16, -1, NULL), // Song of Time
     [GI_SONG_OF_STORMS]                                         = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x909F, 0x00B6, 0x07, no_upgrade, give_song, 17, -1, NULL), // Song of Storms
 
-    [GI_TYCOONS_WALLET]                                         = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x00F8, 0x00D1, 0x23, no_upgrade, give_tycoon_wallet, 3, -1, NULL), // Tycoon's Wallet
-    [GI_REDUNDANT_LETTER_BOTTLE]                                = ITEM_ROW(0x53,      GILDED_CHEST, 0x14, -1, 0x9099, 0x010B, 0x45, no_upgrade, no_effect, -1, -1, NULL), // Redundant Letter Bottle
-    [GI_MAGIC_BEAN_PACK]                                        = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9048, 0x00F3, 0x3E, no_upgrade, give_bean_pack, -1, -1, NULL), // Magic Bean Pack
+    [GI_TYCOONS_WALLET]                                         = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x00F8, 0x00D1, 0x23, no_upgrade, give_tycoon_wallet,   3, -1, NULL), // Tycoon's Wallet
+    [GI_REDUNDANT_LETTER_BOTTLE]                                = ITEM_ROW(0x53,      GILDED_CHEST, 0x14, -1, 0x9099, 0x010B, 0x45, no_upgrade, no_effect,           -1, -1, NULL), // Redundant Letter Bottle
+    [GI_MAGIC_BEAN_PACK]                                        = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9048, 0x00F3, 0x3E, no_upgrade, give_bean_pack,      -1, -1, NULL), // Magic Bean Pack
     [GI_TRIFORCE_PIECE]                                         = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9003, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1, NULL), // Triforce piece
 
-    [GI_SMALL_KEY_RING_FOREST_TEMPLE]                           = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, FOREST_ID, -1, resolve_text_keyrings), // Forest Temple Small Key Ring
-    [GI_SMALL_KEY_RING_FIRE_TEMPLE]                             = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, FIRE_ID,   -1, resolve_text_keyrings), // Fire Temple Small Key Ring
-    [GI_SMALL_KEY_RING_WATER_TEMPLE]                            = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, WATER_ID,  -1, resolve_text_keyrings), // Water Temple Small Key Ring
-    [GI_SMALL_KEY_RING_SPIRIT_TEMPLE]                           = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, SPIRIT_ID, -1, resolve_text_keyrings), // Spirit Temple Small Key Ring
-    [GI_SMALL_KEY_RING_SHADOW_TEMPLE]                           = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, SHADOW_ID, -1, resolve_text_keyrings), // Shadow Temple Small Key Ring
-    [GI_SMALL_KEY_RING_BOTTOM_OF_THE_WELL]                      = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, BOTW_ID,   -1, resolve_text_keyrings), // Bottom of the Well Small Key Ring
-    [GI_SMALL_KEY_RING_GERUDO_TRAINING]                         = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, GTG_ID,    -1, resolve_text_keyrings), // Gerudo Training Small Key Ring
-    [GI_SMALL_KEY_RING_THIEVES_HIDEOUT]                         = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, FORT_ID,   -1, resolve_text_keyrings), // Thieves' Hideout Small Key Ring
-    [GI_SMALL_KEY_RING_GANONS_CASTLE]                           = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, CASTLE_ID, -1, resolve_text_keyrings), // Ganon's Castle Small Key Ring
+    [GI_SMALL_KEY_RING_FOREST_TEMPLE]                           = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, FOREST_ID, 1, resolve_text_keyrings), // Forest Temple Small Key Ring
+    [GI_SMALL_KEY_RING_FIRE_TEMPLE]                             = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, FIRE_ID,   1, resolve_text_keyrings), // Fire Temple Small Key Ring
+    [GI_SMALL_KEY_RING_WATER_TEMPLE]                            = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, WATER_ID,  1, resolve_text_keyrings), // Water Temple Small Key Ring
+    [GI_SMALL_KEY_RING_SPIRIT_TEMPLE]                           = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, SPIRIT_ID, 1, resolve_text_keyrings), // Spirit Temple Small Key Ring
+    [GI_SMALL_KEY_RING_SHADOW_TEMPLE]                           = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, SHADOW_ID, 1, resolve_text_keyrings), // Shadow Temple Small Key Ring
+    [GI_SMALL_KEY_RING_BOTTOM_OF_THE_WELL]                      = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, BOTW_ID,   0, resolve_text_keyrings), // Bottom of the Well Small Key Ring
+    [GI_SMALL_KEY_RING_GERUDO_TRAINING]                         = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, GTG_ID,    0, resolve_text_keyrings), // Gerudo Training Small Key Ring
+    [GI_SMALL_KEY_RING_THIEVES_HIDEOUT]                         = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, FORT_ID,   0, resolve_text_keyrings), // Thieves' Hideout Small Key Ring
+    [GI_SMALL_KEY_RING_GANONS_CASTLE]                           = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, CASTLE_ID, 0, resolve_text_keyrings), // Ganon's Castle Small Key Ring
 
     [GI_BOMBCHU_BAG_20]                                         = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9019, 0x0197, 0x7E, no_upgrade, give_bombchus, 20, -1, NULL), // Bombchu Bag (20)
     [GI_BOMBCHU_BAG_10]                                         = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9019, 0x0197, 0x7E, no_upgrade, give_bombchus, 10, -1, NULL), // Bombchu Bag (10)
     [GI_BOMBCHU_BAG_5]                                          = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9019, 0x0197, 0x7E, no_upgrade, give_bombchus,  5, -1, NULL), // Bombchu Bag (5)
 
-    [GI_SMALL_KEY_RING_TREASURE_CHEST_GAME]                     = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, TCG_ID, -1, resolve_text_keyrings), // Treasure Chest Game Small Key Ring
+    [GI_SMALL_KEY_RING_TREASURE_CHEST_GAME]                     = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, TCG_ID, 0, resolve_text_keyrings), // Treasure Chest Game Small Key Ring
 
     [GI_SILVER_RUPEE_DODONGOS_CAVERN_STAIRCASE]                 = ITEM_ROW(0x4D,      SILVER_CHEST, 0x85, -1, 0x901B, 0x0198, 0x72, no_upgrade, give_silver_rupee, DODONGO_ID, 0x00, resolve_text_silver_rupees), // Silver Rupee (Dodongos Cavern Staircase)
     [GI_SILVER_RUPEE_ICE_CAVERN_SPINNING_SCYTHE]                = ITEM_ROW(0x4D,      SILVER_CHEST, 0x85, -1, 0x901C, 0x0198, 0x72, no_upgrade, give_silver_rupee, ICE_ID,     0x01, resolve_text_silver_rupees), // Silver Rupee (Ice Cavern Spinning Scythe)
@@ -312,12 +311,13 @@ item_row_t item_table[GI_RANDO_MAX] = {
     [GI_OCARINA_BUTTON_C_RIGHT]                                 = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9090, 0x01A9, 0x94, no_upgrade, unlock_ocarina_note, 4, -1, NULL), // Ocarina C right
 
     // Custom Key Models
-    [GI_BOSS_KEY_MODEL_FOREST_TEMPLE]                           = ITEM_ROW(0x53,        GOLD_CHEST, 0x41, -1, 0x0006, 0x01A3, 0x8A, no_upgrade, give_dungeon_item, 0x01, FOREST_ID, NULL ), // Forest Temple Boss Key
-    [GI_BOSS_KEY_MODEL_FIRE_TEMPLE]                             = ITEM_ROW(0x53,        GOLD_CHEST, 0x41, -1, 0x001C, 0x01A4, 0x8B, no_upgrade, give_dungeon_item, 0x01, FIRE_ID,   NULL ), // Fire Temple Boss Key
-    [GI_BOSS_KEY_MODEL_WATER_TEMPLE]                            = ITEM_ROW(0x53,        GOLD_CHEST, 0x41, -1, 0x001D, 0x01A5, 0x8C, no_upgrade, give_dungeon_item, 0x01, WATER_ID,  NULL ), // Water Temple Boss Key
-    [GI_BOSS_KEY_MODEL_SPIRIT_TEMPLE]                           = ITEM_ROW(0x53,        GOLD_CHEST, 0x41, -1, 0x001E, 0x01A6, 0x8D, no_upgrade, give_dungeon_item, 0x01, SPIRIT_ID, NULL ), // Spirit Temple Boss Key
-    [GI_BOSS_KEY_MODEL_SHADOW_TEMPLE]                           = ITEM_ROW(0x53,        GOLD_CHEST, 0x41, -1, 0x002A, 0x01A7, 0x8E, no_upgrade, give_dungeon_item, 0x01, SHADOW_ID, NULL ), // Shadow Temple Boss Key
-    [GI_BOSS_KEY_MODEL_GANONS_CASTLE]                           = ITEM_ROW(0x53,        GOLD_CHEST, 0x41, -1, 0x0061, 0x00B9, 0x8F, no_upgrade, give_dungeon_item, 0x01, TOWER_ID,  NULL ), // Ganon's Castle Boss Key
+    [GI_BOSS_KEY_MODEL_FOREST_TEMPLE]                           = ITEM_ROW(0x53,        GOLD_CHEST, 0x41, -1, 0x0006, 0x01A3, 0x8A, no_upgrade, give_dungeon_item, 0x01, FOREST_ID, NULL), // Forest Temple Boss Key
+    [GI_BOSS_KEY_MODEL_FIRE_TEMPLE]                             = ITEM_ROW(0x53,        GOLD_CHEST, 0x41, -1, 0x001C, 0x01A4, 0x8B, no_upgrade, give_dungeon_item, 0x01, FIRE_ID,   NULL), // Fire Temple Boss Key
+    [GI_BOSS_KEY_MODEL_WATER_TEMPLE]                            = ITEM_ROW(0x53,        GOLD_CHEST, 0x41, -1, 0x001D, 0x01A5, 0x8C, no_upgrade, give_dungeon_item, 0x01, WATER_ID,  NULL), // Water Temple Boss Key
+    [GI_BOSS_KEY_MODEL_SPIRIT_TEMPLE]                           = ITEM_ROW(0x53,        GOLD_CHEST, 0x41, -1, 0x001E, 0x01A6, 0x8D, no_upgrade, give_dungeon_item, 0x01, SPIRIT_ID, NULL), // Spirit Temple Boss Key
+    [GI_BOSS_KEY_MODEL_SHADOW_TEMPLE]                           = ITEM_ROW(0x53,        GOLD_CHEST, 0x41, -1, 0x002A, 0x01A7, 0x8E, no_upgrade, give_dungeon_item, 0x01, SHADOW_ID, NULL), // Shadow Temple Boss Key
+    [GI_BOSS_KEY_MODEL_GANONS_CASTLE]                           = ITEM_ROW(0x53,        GOLD_CHEST, 0x41, -1, 0x0061, 0x00B9, 0x8F, no_upgrade, give_dungeon_item, 0x01, TOWER_ID,  NULL), // Ganon's Castle Boss Key
+
     [GI_SMALL_KEY_MODEL_FOREST_TEMPLE]                          = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x0093, 0x0199, 0x80, no_upgrade, give_small_key, FOREST_ID, -1, resolve_text_small_keys), // Forest Temple Small Key
     [GI_SMALL_KEY_MODEL_FIRE_TEMPLE]                            = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x0094, 0x019A, 0x81, no_upgrade, give_small_key, FIRE_ID,   -1, resolve_text_small_keys), // Fire Temple Small Key
     [GI_SMALL_KEY_MODEL_WATER_TEMPLE]                           = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x0095, 0x019B, 0x82, no_upgrade, give_small_key, WATER_ID,  -1, resolve_text_small_keys), // Water Temple Small Key
@@ -328,7 +328,6 @@ item_row_t item_table[GI_RANDO_MAX] = {
     [GI_SMALL_KEY_MODEL_THIEVES_HIDEOUT]                        = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x00A0, 0x01A0, 0x87, no_upgrade, give_small_key, FORT_ID,   -1, resolve_text_small_keys), // Thieves' Hideout Small Key
     [GI_SMALL_KEY_MODEL_GANONS_CASTLE]                          = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x00A1, 0x01A1, 0x88, no_upgrade, give_small_key, CASTLE_ID, -1, resolve_text_small_keys), // Ganon's Castle Small Key
     [GI_SMALL_KEY_MODEL_CHEST_GAME]                             = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x913E, 0x01A2, 0x89, no_upgrade, give_small_key, TCG_ID,    -1, resolve_text_small_keys_cmg), // Small Key (Chest Game)
-
 };
 
 /*  Determine which message to display based on the number of silver rupees collected.
@@ -342,7 +341,7 @@ item_row_t item_table[GI_RANDO_MAX] = {
     Returns: text_id to use based on the logic above.
 */
 
-uint16_t resolve_text_silver_rupees(item_row_t *item_row, uint16_t item_id, bool is_outgoing) {
+uint16_t resolve_text_silver_rupees(item_row_t* item_row, bool is_outgoing) {
     // Get the arguments from the item_row struct.
     int16_t dungeon_id = item_row->effect_arg1;
     int16_t silver_rupee_id = item_row->effect_arg2;
@@ -365,7 +364,7 @@ uint16_t resolve_text_silver_rupees(item_row_t *item_row, uint16_t item_id, bool
     }
 }
 
-uint16_t resolve_text_silver_rupee_pouches(item_row_t *item_row, uint16_t item_id, bool is_outgoing) {
+uint16_t resolve_text_silver_rupee_pouches(item_row_t* item_row, bool is_outgoing) {
     // Get the arguments from the item_row struct.
     int16_t dungeon_id = item_row->effect_arg1;
     int16_t silver_rupee_id = item_row->effect_arg2;
@@ -382,7 +381,7 @@ uint16_t resolve_text_silver_rupee_pouches(item_row_t *item_row, uint16_t item_i
     }
 }
 
-uint16_t resolve_text_small_keys(item_row_t *item_row, uint16_t item_id, bool is_outgoing) {
+uint16_t resolve_text_small_keys(item_row_t* item_row, bool is_outgoing) {
     // Get the arguments from the item_row struct.
     int16_t dungeon_id = item_row->effect_arg1;
 
@@ -393,77 +392,61 @@ uint16_t resolve_text_small_keys(item_row_t *item_row, uint16_t item_id, bool is
 
     if (is_outgoing) {
         return item_row->text_id;
-    }
-    if (total_keys >= max_keys) {
+    } else if (total_keys >= max_keys) {
         // The player already has enough keys.
         return 0x9123 + dungeon_id;
     } else if (total_keys == 0) {
-        // This is the first key so use the stupid message.
+        // This is the first key.
         return 0x9101 + dungeon_id;
-    } else if (total_keys >= 1) {
+    } else {
         // Show number collected.
         return 0x9112 + dungeon_id;
-    } else {
-        // Should never actually get here but if we do, just use the regular message.
-        return item_row->text_id;
     }
 }
 
-uint16_t resolve_text_small_keys_cmg(item_row_t *item_row, uint16_t item_id, bool is_outgoing) {
-
+uint16_t resolve_text_small_keys_cmg(item_row_t* item_row, bool is_outgoing) {
     // Don't use custom message for Treasure Chest Game if it's not shuffled.
     if (!SHUFFLE_CHEST_GAME) {
         return item_row->text_id;
     }
 
-    return resolve_text_small_keys(item_row, item_id, is_outgoing);
+    return resolve_text_small_keys(item_row, is_outgoing);
 }
 
-uint16_t resolve_text_keyrings(item_row_t *item_row, uint16_t item_id, bool is_outgoing) {
+uint16_t resolve_text_keyrings(item_row_t* item_row, bool is_outgoing) {
     int16_t dungeon_id = item_row->effect_arg1;
-    if (item_id >= GI_SMALL_KEY_RING_TEMPLE_MIN && item_id <= GI_SMALL_KEY_RING_TEMPLE_MAX && KEYRING_BOSSKEY_CONDITION) {
+    int16_t has_boss_key = item_row->effect_arg2;
+
+    if (has_boss_key && KEYRING_BOSSKEY_CONDITION) {
         return item_row->text_id + dungeon_id + 14;
     }
     return item_row->text_id + dungeon_id;
 }
 
-item_row_t *get_item_row(uint16_t item_id) {
+item_row_t* get_item_row(uint16_t item_id) {
     if (item_id >= GI_RANDO_MAX) {
         return NULL;
     }
-    item_row_t *item_row = &(item_table[item_id]);
+    item_row_t* item_row = &(item_table[item_id]);
     if (item_row->base_item_id == 0) {
         return NULL;
     }
     return item_row;
 }
 
-/*
-uint16_t resolve_item_text_id(uint16_t item_id, bool is_outgoing) {
-    item_row_t *item_row = get_item_row(item_id);
-    if ((item_id >= GI_SMALL_KEY_MIN && item_id <= GI_SMALL_KEY_MAX) || (item_id >= GI_SMALL_KEY_MODEL_MIN && item_id <= GI_SMALL_KEY_MODEL_MAX) || (SHUFFLE_CHEST_GAME && (item_id == GI_DOOR_KEY || item_id == GI_SMALL_KEY_MODEL_CHEST_GAME)) && !is_outgoing) {
-        return item_row->text_id + (z64_file.scene_flags[item_row->effect_arg1].unk_00_ >> 0x10); // Dynamically select the text box based on key count
-    }
-    // Change message for key rings when they include boss keys
-    if (item_id >= GI_SMALL_KEY_RING_TEMPLE_MIN && item_id <= GI_SMALL_KEY_RING_TEMPLE_MAX && KEYRING_BOSSKEY_CONDITION) {
-        return item_row->text_id + 9;
-    }
-    return item_row->text_id;
-*/
-
-uint16_t resolve_item_text_id(item_row_t *item_row, uint16_t item_id, bool is_outgoing) {
+uint16_t resolve_item_text_id(item_row_t* item_row, bool is_outgoing) {
     if (item_row->alt_text_func == NULL) {
         return item_row->text_id;
     } else {
-        return item_row->alt_text_func(item_row, item_id, is_outgoing);
+        return item_row->alt_text_func(item_row, is_outgoing);
     }
 }
 
 uint16_t resolve_upgrades(override_t override) {
-    item_row_t *item_row = get_item_row(override.value.base.item_id);
+    item_row_t* item_row = get_item_row(override.value.base.item_id);
     return item_row->upgrade(&z64_file, override);
 }
 
-void call_effect_function(item_row_t *item_row) {
+void call_effect_function(item_row_t* item_row) {
     item_row->effect(&z64_file, item_row->effect_arg1, item_row->effect_arg2);
 }
