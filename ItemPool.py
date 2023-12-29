@@ -341,7 +341,7 @@ enemy_souls_core: list[str] = [
     'Flare Dancer Soul',
     'Dead hand Soul',
     'Shell Blade Soul',
-    'Like-like Soul',
+    'Like like Soul',
     'Spike Enemy Soul',
     'Anubis Soul',
     'Iron Knuckle Soul',

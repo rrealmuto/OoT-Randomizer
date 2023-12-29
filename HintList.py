@@ -562,7 +562,7 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'Flare Dancer Soul': (["the souls of the Flare Dancer"], None, 'item'),
     'Dead hand Soul': (["the souls of the Dead hand"], None, 'item'),
     'Shell Blade Soul': (["the souls of the Shell blade"], None, 'item'),
-    'Like-like Soul': (["the souls of the Like-like"], None, 'item'),
+    'Like like Soul': (["the souls of the Like like"], None, 'item'),
     'Spike Enemy Soul': (["the souls of the Spike Enemy"], None, 'item'),
     'Anubis Soul': (["the souls of the Anubis"], None, 'item'),
     'Iron Knuckle Soul': (["the souls of the Iron Knuckle"], None, 'item'),
@@ -665,7 +665,7 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'Shadow Temple MQ Stalfos Room Chest':                         ("near an #empty pedestal within the house of the dead# lies", "#stalfos in the Shadow Temple# guard", ['dungeon', 'sometimes']),
     'Ice Cavern Iron Boots Chest':                                 ("a #monster in a frozen cavern# guards", "the #final treasure of Ice Cavern# is", ['dungeon', 'sometimes']),
     'Ice Cavern MQ Iron Boots Chest':                              ("a #monster in a frozen cavern# guards", "the #final treasure of Ice Cavern# is", ['dungeon', 'sometimes']),
-    'Ganons Castle Shadow Trial Golden Gauntlets Chest':           ("#deep in the test of darkness# lies", "a #like-like in Ganon's Shadow Trial# guards", ['dungeon', 'sometimes']),
+    'Ganons Castle Shadow Trial Golden Gauntlets Chest':           ("#deep in the test of darkness# lies", "a #like like in Ganon's Shadow Trial# guards", ['dungeon', 'sometimes']),
     'Ganons Castle MQ Shadow Trial Eye Switch Chest':              ("#deep in the test of darkness# lies", "shooting an #eye switch in Ganon's Shadow Trial# reveals", ['dungeon', 'sometimes']),
 
     'Deku Theater Rewards':                                        ("the #Skull Mask and Mask of Truth# reward...^", None, 'dual'),
