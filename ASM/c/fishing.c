@@ -10,6 +10,7 @@
 
 extern uint8_t SHUFFLE_FISHIES;
 extern xflag_t* spawn_actor_with_flag;
+extern uint8_t PLAYER_ID;
         //0x80a44a50 - sFishOnHandLength
         //0x80a47eec - sFishOnHandIsLoach
         //0x80a47eee - sLureCaughtWith
@@ -75,10 +76,11 @@ void Fishing_GiveOverride_Kill(z64_actor_t* this) {
 void Fishing_CaughtFish_Textbox(z64_game_t* globalCtx, uint16_t messageID, z64_actor_t* actor) {
     if(caught_fish && caught_fish->override.key.all) {
         // Get the message ID from the override
+        uint8_t player = caught_fish->override.value.base.player;
         uint16_t resolved_item_id = resolve_upgrades(caught_fish->override);
         item_row_t* item_row = get_item_row(resolved_item_id);
         globalCtx->msgContext.choiceIndex = 0;
-        z64_DisplayTextbox(globalCtx, item_row->text_id, NULL);
+        z64_DisplayTextbox(globalCtx, resolve_item_text_id(item_row, player != PLAYER_ID), NULL);
         return;
     }
     z64_DisplayTextbox(globalCtx, messageID, NULL);
