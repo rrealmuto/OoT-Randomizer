@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v64](#v64)
   * [v63](#v63)
   * [v62](#v62)
   * [v61](#v61)
@@ -88,6 +89,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v64
+  * Smaller fish in fishing game shuffle are no longer considered major items
+
 ### v63
   * Fix certain textboxes not displaying correctly when catching fish in fishing shuffle
   * Fix unshuffled Spirit Temple MQ Wonderitems
