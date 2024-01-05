@@ -1237,8 +1237,8 @@
 804106D4 draw_file_select_hash,0000023C
 80410910 Fishing_Actor_Spawn_Hook,000001B0
 80410AC0 Fishing_SkeletonDraw_Hook,00000090
-80410B50 Fishing_GiveOverride_Kill,000000D4
-80410C24 Fishing_CaughtFish_Textbox,000000C0
+80410B50 Fishing_GiveOverride_Kill,00000080
+80410BD0 Fishing_CaughtFish_Textbox,00000114
 80410CE4 Fishing_HandleOwnerDialog_Hook,000004A0
 80411184 check_ganon_entry,00000048
 804111CC countSetBitsRec,00000054
