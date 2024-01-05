@@ -357,7 +357,7 @@ SYMBOL TABLE:
 0000d1cc g     F .text	00000118 draw_gi_various_opa0_xlu1
 00055a28 g     O .data	00000010 active_override
 00018a98 g     O .data	00000008 empty_dlist
-00009190 g     F .text	000000d4 Fishing_GiveOverride_Kill
+00009190 g     F .text	00000080 Fishing_GiveOverride_Kill
 0005e4a4 g     O .data	00000004 RANDOMIZER_RNG_SEED
 00016630 g     F .text	00000070 IsTradeItemTraded
 00000000         *UND*	00000000 INCOMING_ITEM
@@ -533,7 +533,7 @@ SYMBOL TABLE:
 00018b24 g     O .data	00000004 normal_no_dd
 00001200 g     F .text	000000a4 should_draw_forest_hallway_chest
 00018b14 g     O .data	00000004 b_button
-00009264 g     F .text	000000c0 Fishing_CaughtFish_Textbox
+00009210 g     F .text	00000114 Fishing_CaughtFish_Textbox
 000139b4 g     F .text	00000064 bowling_heart_piece_draw
 00014fa0 g     F .text	000000b0 Save_Open
 0000c2b0 g     F .text	00000238 gfx_init
