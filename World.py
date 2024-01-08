@@ -25,6 +25,7 @@ from SettingsList import SettingInfos, get_settings_from_section
 from Spoiler import Spoiler
 from State import State
 from Utils import data_path, read_logic_file
+from Boulders import BOULDER_TYPE
 
 
 class World:
@@ -49,6 +50,8 @@ class World:
         self.barren_dungeon: int = 0
         self.woth_dungeon: int = 0
         self.randomized_list: list[str] = []
+        self.boulders: dict[str, BOULDER_TYPE]
+        self.boulders_by_id: dict[tuple(int,int,int,int), BOULDER_TYPE]
 
         self.parser: Rule_AST_Transformer = Rule_AST_Transformer(self)
         self.event_items: set[str] = set()
@@ -361,6 +364,8 @@ class World:
         new_world.total_starting_triforce_count = self.total_starting_triforce_count
         new_world.maximum_wallets = self.maximum_wallets
         new_world.distribution = self.distribution
+        new_world.boulders = self.boulders
+        new_world.boulders_by_id = self.boulders_by_id
 
         new_world.dungeons = [dungeon for dungeon in self.dungeons]
         new_world.regions = [region for region in self.regions]

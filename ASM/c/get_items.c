@@ -76,7 +76,7 @@ void item_overrides_init() {
 
     // Create an actor satisfying the minimum requirements to give the player an item
     dummy_actor = heap_alloc(sizeof(z64_actor_t));
-    dummy_actor->main_proc = (void*)1;
+    dummy_actor->update = (void*)1;
 }
 
 override_key_t get_override_search_key_by_newflag(xflag_t* flag) {
@@ -941,7 +941,7 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t* link, z64_actor_t* from_
         return 0;
     }
 
-    if (!collectible_mutex && pItem->actor.main_proc != NULL) { // Check our mutex so that only one collectible can run at a time (if 2 run on the same frame you lose the message). Also make sure that this actor hasn't already been killed.
+    if (!collectible_mutex && pItem->actor.update != NULL) { // Check our mutex so that only one collectible can run at a time (if 2 run on the same frame you lose the message). Also make sure that this actor hasn't already been killed.
         collectible_mutex = (EnItem00*)from_actor;
         collectible_override = override;
         // resolve upgrades and figure out what item to give.
@@ -1025,7 +1025,7 @@ void get_skulltula_token(z64_actor_t* token_actor) {
     uint16_t resolved_item_id = resolve_upgrades(override);
     item_row_t* item_row = get_item_row(resolved_item_id);
 
-    token_actor->draw_proc = NULL;
+    token_actor->draw = NULL;
 
     PLAYER_NAME_ID = player;
     z64_DisplayTextbox(&z64_game, resolve_item_text_id(item_row, player != PLAYER_ID), 0);

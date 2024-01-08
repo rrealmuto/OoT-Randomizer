@@ -30,6 +30,7 @@ from Spoiler import Spoiler
 from Utils import default_output_path, is_bundled, run_process, data_path
 from World import World
 from version import __version__
+from Boulders import shuffle_boulders
 
 
 def main(settings: Settings, max_attempts: int = 10) -> Spoiler:
@@ -144,6 +145,9 @@ def build_world_graphs(settings: Settings) -> list[World]:
         # Compile the json rules based on settings
         savewarps_to_connect += world.create_dungeons()
         world.create_internal_locations()
+
+        
+        world.boulders, world.boulders_by_id = shuffle_boulders(world)
 
         if settings.shopsanity != 'off':
             world.random_shop_prices()

@@ -2,9 +2,10 @@ from Rom import *
 
 def get_actor_list(rom, actor_func):
     actors = {}
-    #scene_table = 0x00B71440
-    scene_table = 0x00BA0BB0 # for MQ
+    scene_table_vanilla = 0x00B71440
+    scene_table_mq = 0x00BA0BB0 # for MQ
     for scene in range(0x00, 0x65):
+        scene_table = scene_table_vanilla
         scene_data = rom.read_int32(scene_table + (scene * 0x14))
         actors.update(scene_get_actors(rom, actor_func, scene_data, scene))
     return actors
@@ -232,7 +233,6 @@ def process_wonderitem(actor_bytes):
         drop = dropTable[drop]
     else:
         drop = "Random " + str(drop)
-
     damage_type = None
     if type == 3: # Interact Switch, get damage type
         damage_type = (actor_bytes[12] << 8) + actor_bytes[13]
@@ -361,11 +361,11 @@ def process_pot(actor_bytes):
     }
 
 #rom = Rom("ZOOTDEC.z64")
-rom = Rom("zeloot_mqdebug.z64")
-pots = get_crates(rom)
+#rom = Rom("zeloot_mqdebug.z64")
+#pots = get_crates(rom)
 
-for pot in pots:
-    print(str(pot) + ": " + str(pots[pot]))
+#for pot in pots:
+#    print(str(pot) + ": " + str(pots[pot]))
 
 #rom = Rom("../zeloot_mqdebug.z64")
 #wonderitems = get_wonderitems(rom)

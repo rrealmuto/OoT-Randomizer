@@ -2344,6 +2344,18 @@ class SettingInfos:
         },
     )
 
+    shuffle_boulders = Checkbutton(
+        gui_text       = 'Shuffle Boulders',
+        gui_tooltip    = '''\
+            Boulders (and red ice blocks) will be
+            randomly shuffled around the world.
+        ''',
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    )
+
     shuffle_song_items = Combobox(
         gui_text       = 'Shuffle Songs',
         default        = 'song',

@@ -128,6 +128,9 @@ RANDO_CONTEXT:
 .include "armos.asm"
 .include "ocarina_buttons.asm"
 .include "fairy_ocarina.asm"
+.include "collider_override.asm"
+.include "objects.asm"
+
 
 .align 0x10
 .importobj "../build/bundle.o"

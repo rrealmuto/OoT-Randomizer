@@ -14,22 +14,32 @@
 
 
 extern uint8_t SHUFFLE_CHEST_GAME;
-extern uint32_t EXTENDED_OBJECT_TABLE;
+extern z64_object_table_t EXTENDED_OBJECT_TABLE[];
 extern EnItem00* collectible_mutex;
 
 loaded_object_t object_slots[slot_count] = { 0 };
 
-void load_object_file(uint32_t object_id, uint8_t* buf) {
-    z64_object_table_t* entry;
+z64_object_table_t* get_object_entry(uint32_t object_id) {
     if (object_id <= num_vanilla_objects) {
-        entry = &(z64_object_table[object_id]);
+        return &(z64_object_table[object_id]);
     } else {
-        z64_object_table_t* extended_table = (z64_object_table_t*) (&EXTENDED_OBJECT_TABLE);
-        entry = &extended_table[object_id - num_vanilla_objects - 1];
+        return &EXTENDED_OBJECT_TABLE[object_id - num_vanilla_objects - 1];
     }
+}
+
+uint32_t get_object_size(uint32_t object_id) {
+    z64_object_table_t *entry = get_object_entry(object_id);
+    uint32_t vrom_start = entry->vrom_start;
+    uint32_t size = entry->vrom_end - vrom_start;
+    return size;
+}
+
+uint32_t load_object_file(uint32_t object_id, uint8_t *buf) {
+    z64_object_table_t *entry = get_object_entry(object_id);
     uint32_t vrom_start = entry->vrom_start;
     uint32_t size = entry->vrom_end - vrom_start;
     read_file(buf, vrom_start, size);
+    return size;
 }
 
 void load_object(loaded_object_t* object, uint32_t object_id) {

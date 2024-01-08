@@ -3,10 +3,14 @@
 
 #include "z64.h"
 #include <stdbool.h>
+#include "get_items.h"
+
+typedef enum {
+    #include "actor_table.h"
+    /* 0x0192 */ ACTOR_ID_MAX // originally "ACTOR_DLF_MAX"
+} ActorID;
 
 #define ACTOR_OVERLAY_TABLE_ADDR 0x800E8530
-
-typedef void (*ActorFunc)(z64_actor_t*, z64_game_t*);
 
 typedef struct {
     /* 0x00 */ int16_t id;
@@ -47,5 +51,5 @@ z64_actor_t *Actor_SpawnEntry_Hack(void *actorCtx, ActorEntry *actorEntry, z64_g
 bool spawn_override_silver_rupee(ActorEntry *actorEntry, z64_game_t *globalCtx, bool* overridden);
 void after_spawn_override_silver_rupee(z64_actor_t* actor, bool overridden);
 ActorAdditionalData* Actor_GetAdditionalData(z64_actor_t* actor);
-
+bool spawn_override_enemizer(ActorEntry *actorEntry, z64_game_t *globalCtx, bool* overridden);
 #endif

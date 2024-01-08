@@ -8,6 +8,7 @@ from collections import defaultdict
 from collections.abc import Callable, Iterable, Sequence
 from functools import reduce
 from typing import TYPE_CHECKING, Any, Optional
+from Boulders import BOULDER_TYPE
 
 import StartingItems
 from Entrance import Entrance
@@ -49,6 +50,7 @@ per_world_keys = (
     ':goal_locations',
     ':barren_regions',
     'gossip_stones',
+    'boulders'
 )
 
 
@@ -273,6 +275,7 @@ class WorldDistribution:
         self.goal_locations: Optional[dict[str, dict[str, dict[str, LocationRecord | dict[str, LocationRecord]]]]] = None
         self.barren_regions: Optional[list[str]] = None
         self.gossip_stones: Optional[dict[str, GossipRecord]] = None
+        self.boulders: Optional[dict[str, BOULDER_TYPE]] = {}
 
         self.distribution: Distribution = distribution
         self.id: int = id
@@ -331,6 +334,7 @@ class WorldDistribution:
             ':goal_locations': self.goal_locations,
             ':barren_regions': self.barren_regions,
             'gossip_stones': SortedDict({name: [rec.to_json() for rec in record] if is_pattern(name) else record.to_json() for (name, record) in self.gossip_stones.items()}),
+            'boulders': {boulder:str(self.boulders[boulder]) for boulder in self.boulders}
         }
 
     def __str__(self) -> str:
@@ -1353,6 +1357,7 @@ class Distribution:
 
         for world in spoiler.worlds:
             world_dist = self.world_dists[world.id]
+            world_dist.boulders = world.boulders
             world_dist.randomized_settings = {randomized_item: getattr(world.settings, randomized_item) for randomized_item in world.randomized_list}
             world_dist.dungeons = {dung: DungeonRecord({ 'mq': world.dungeon_mq[dung] }) for dung in world.dungeon_mq}
             world_dist.empty_dungeons = {dung: EmptyDungeonRecord({ 'empty': world.empty_dungeons[dung].empty }) for dung in world.empty_dungeons}

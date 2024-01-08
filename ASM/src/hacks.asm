@@ -779,6 +779,10 @@ Actor_Spawn_Continue_Jump_Point:
     j       Actor_SpawnEntry_Hack
     nop
 
+; Hack Actor_Spawn to load unloaded objects
+;.orga 0xA9B1B4; In memory: 0x80025254
+;    jal     object_getindex_or_spawn_extended
+
 .orga 0xA99C98 ; In memory: 0x80023D38
     jal     Player_SpawnEntry_Hack
 
@@ -989,12 +993,12 @@ Actor_Spawn_Continue_Jump_Point:
 .endarea
 
 ;Hack to EnItem00_Init to spawn deku shield, hylian shield, and tunic objects
-.orga 0xA87DC8 ;In memory 0x80011E68
-    jal object_index_or_spawn ;Replace call to z64_ObjectIndex
-.orga 0xA87E24 ;In memory 0x80011EC4
-    jal object_index_or_spawn ;Replace call to z64_ObjectIndex
-.orga 0xA87E80 ;In memory 0x80011F20
-    jal object_index_or_spawn ;Replace call to z64_ObjectIndex
+;.orga 0xA87DC8 ;In memory 0x80011E68
+;    jal object_index_or_spawn ;Replace call to z64_ObjectIndex
+;.orga 0xA87E24 ;In memory 0x80011EC4
+;    jal object_index_or_spawn ;Replace call to z64_ObjectIndex
+;.orga 0xA87E80 ;In memory 0x80011F20
+;    jal object_index_or_spawn ;Replace call to z64_ObjectIndex
 
 ; Fix autocollect magic jar wonder items
 ; Replaces:
@@ -2328,6 +2332,19 @@ skip_bombchu_bowling_prize_switch:
     jal extended_object_lookup_load
     subu    t7, r0, a2
     lw      ra, 0x0C (sp)
+
+; extends object table lookup for calls to object_index_or_spawn
+
+.headersize (0x800110A0 - 0xA87000)
+.org 0x8008130C
+; Replaces:
+;   lui     t2, 0x8010
+;   multu   t7, v1
+;   addiu   t2, t2, 0x8FF8
+    multu   t7, v1
+    jal     extended_object_lookup_objectspawn
+    nop
+.headersize(0)
 
 ; extends object table lookup for shop item load
 .orga 0xAF74F8
@@ -4001,3 +4018,7 @@ courtyard_guards_kill:
 .include("hacks/ovl_obj_mure3.asm")
 .include("hacks/ovl_bg_haka_tubo.asm")
 .include("hacks/en_item00.asm")
+.include("hacks/ovl_en_ishi.asm")
+.include("hacks/ovl_obj_hamishi.asm")
+.include("hacks/code.asm")
+.include("hacks/object_fixes.asm")
