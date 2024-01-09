@@ -13,7 +13,7 @@ extern uint8_t INCORRECT_CHEST_APPEARANCES;
 
 struct EnBox;
 
-typedef void (*EnBoxActionFunc)(struct EnBox *, z64_game_t *);
+typedef void (*EnBoxActionFunc)(struct EnBox*, z64_game_t*);
 
 typedef struct EnBox
 {
@@ -43,9 +43,9 @@ typedef struct Chest
 } Chest;                        // size = 0x01EE
 
 uint8_t wrong_chest_type(uint8_t chest_type, override_key_t override_key, int16_t actor_id);
-void get_chest_override(z64_actor_t *actor);
-void draw_chest(z64_game_t *game, int32_t part, void *unk, void *unk2, z64_actor_t *actor, Gfx **opa_ptr);
-_Bool should_draw_forest_hallway_chest(z64_actor_t *actor, z64_game_t *game);
+void get_chest_override(z64_actor_t* actor);
+void draw_chest(z64_game_t* game, int32_t part, void* unk, void* unk2, z64_actor_t* actor, Gfx** opa_ptr);
+_Bool should_draw_forest_hallway_chest(z64_actor_t* actor, z64_game_t* game);
 void draw_forest_hallway_chest_base();
 void draw_forest_hallway_chest_lid();
 

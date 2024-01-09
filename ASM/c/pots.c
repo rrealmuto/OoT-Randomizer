@@ -6,22 +6,22 @@
 #include "get_items.h"
 #include "actor.h"
 
-#define DUNGEON_POT_SIDE_TEXTURE (uint8_t *)0x050108A0
-#define DUNGEON_POT_TOP_TEXTURE (uint8_t *)0x050118A0
-#define DUNGEON_POT_DLIST (z64_gfx_t *)0x05017870
+#define DUNGEON_POT_SIDE_TEXTURE (uint8_t*)0x050108A0
+#define DUNGEON_POT_TOP_TEXTURE (uint8_t*)0x050118A0
+#define DUNGEON_POT_DLIST (z64_gfx_t*)0x05017870
 
-#define POT_SIDE_TEXTURE (uint8_t *)0x06000000
-#define POT_TOP_TEXTURE (uint8_t *)0x06001000
-#define POT_DLIST (z64_gfx_t *)0x060017C0
+#define POT_SIDE_TEXTURE (uint8_t*)0x06000000
+#define POT_TOP_TEXTURE (uint8_t*)0x06001000
+#define POT_DLIST (z64_gfx_t*)0x060017C0
 
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
 
 
-void draw_pot(z64_actor_t *actor, z64_game_t *game) {
+void draw_pot(z64_actor_t* actor, z64_game_t* game) {
     // get original dlist and texture
-    z64_gfx_t *dlist = DUNGEON_POT_DLIST;
-    uint8_t *side_texture = DUNGEON_POT_SIDE_TEXTURE;
-    uint8_t *top_texture = DUNGEON_POT_TOP_TEXTURE;
+    z64_gfx_t* dlist = DUNGEON_POT_DLIST;
+    uint8_t* side_texture = DUNGEON_POT_SIDE_TEXTURE;
+    uint8_t* top_texture = DUNGEON_POT_TOP_TEXTURE;
 
     // overworld pot or hba pot
     if ((actor->actor_id == 0x111 && (actor->variable >> 8) & 1) || actor->actor_id == 0x117) {
@@ -31,11 +31,11 @@ void draw_pot(z64_actor_t *actor, z64_game_t *game) {
     }
 
     uint8_t chest_type = 0;
-    if (actor->actor_id == 0x111) { //Regular pot
+    if (actor->actor_id == 0x111) { // Regular pot
         chest_type = ((ObjTsubo*)actor)->chest_type;
-    } else if(actor->actor_id == 0x117) { //HBA Pot
+    } else if (actor->actor_id == 0x117) { // HBA Pot
         chest_type = BROWN_CHEST;
-    } else if(actor->actor_id == 0x11D) { //Flying pot
+    } else if (actor->actor_id == 0x11D) { // Flying pot
         chest_type = ((EnTuboTrap*)actor)->chest_type;
     }
 
@@ -69,7 +69,7 @@ void draw_pot(z64_actor_t *actor, z64_game_t *game) {
     }
 
     // push custom dlist (that sets the texture) to segment 09
-    z64_gfx_t *gfx = game->common.gfx;
+    z64_gfx_t* gfx = game->common.gfx;
     gfx->poly_opa.d -= 4;
     gDPSetTextureImage(gfx->poly_opa.d, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, side_texture);
     gSPEndDisplayList(gfx->poly_opa.d + 1);
@@ -84,19 +84,19 @@ void draw_pot(z64_actor_t *actor, z64_game_t *game) {
     z64_Gfx_DrawDListOpa(game, dlist);
 }
 
-void draw_pot_hack(z64_actor_t *actor, z64_game_t *game) {
+void draw_pot_hack(z64_actor_t* actor, z64_game_t* game) {
     draw_pot(actor, game);
 }
 
-void draw_hba_pot_hack(z64_actor_t *actor, z64_game_t *game) {
-    EnGSwitch *switch_actor = (EnGSwitch *)actor;
+void draw_hba_pot_hack(z64_actor_t* actor, z64_game_t* game) {
+    EnGSwitch* switch_actor = (EnGSwitch*)actor;
 
     if (!switch_actor->broken) {
         draw_pot(actor, game);
     }
 }
 
-void draw_flying_pot_hack(z64_actor_t* actor, z64_game_t *game) {
+void draw_flying_pot_hack(z64_actor_t* actor, z64_game_t* game) {
     draw_pot(actor, game);
 }
 
@@ -117,7 +117,7 @@ void ObjTsubo_SpawnCollectible_Hack(z64_actor_t *this, z64_game_t *game) {
     }
 }
 
-void EnTuboTrap_DropCollectible_Hack(z64_actor_t *this, z64_game_t *game) {
+void EnTuboTrap_DropCollectible_Hack(z64_actor_t* this, z64_game_t* game) {
     int16_t params = this->variable;
     int16_t param3FF = (params >> 6) & 0x3FF;
 

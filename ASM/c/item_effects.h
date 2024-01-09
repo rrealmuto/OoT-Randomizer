@@ -11,30 +11,30 @@ typedef void (*commit_scene_flags_fn)(z64_game_t* game_ctxt);
 typedef void (*save_game_fn)(void* unk);
 #define save_game ((save_game_fn)0x800905D4)
 
-void no_effect(z64_file_t *save, int16_t arg1, int16_t arg2);
-void full_heal(z64_file_t *save, int16_t arg1, int16_t arg2);
-void give_triforce_piece(z64_file_t *save, int16_t arg1, int16_t arg2);
-void give_tycoon_wallet(z64_file_t *save, int16_t arg1, int16_t arg2);
-void give_biggoron_sword(z64_file_t *save, int16_t arg1, int16_t arg2);
-void give_bottle(z64_file_t *save, int16_t bottle_item_id, int16_t arg2);
-void give_dungeon_item(z64_file_t *save, int16_t mask, int16_t dungeon_id);
-void give_small_key(z64_file_t *save, int16_t dungeon_id, int16_t arg2);
-void give_small_key_ring(z64_file_t *save, int16_t dungeon_id, int16_t include_boss_key);
-void give_silver_rupee(z64_file_t *save, int16_t dungeon_id, int16_t silver_rupee_id);
-void give_silver_rupee_pouch(z64_file_t *save, int16_t dungeon_id, int16_t silver_rupee_id);
-void give_defense(z64_file_t *save, int16_t arg1, int16_t arg2);
-void give_magic(z64_file_t *save, int16_t arg1, int16_t arg2);
-void give_double_magic(z64_file_t *save, int16_t arg1, int16_t arg2);
-void give_fairy_ocarina(z64_file_t *save, int16_t arg1, int16_t arg2);
-void give_quest_item(z64_file_t *save, int16_t quest_bit, int16_t arg2);
-void ice_trap_effect(z64_file_t *save, int16_t arg1, int16_t arg2);
-void give_bean_pack(z64_file_t *save, int16_t arg1, int16_t arg2);
-void fill_wallet_upgrade(z64_file_t *save, int16_t arg1, int16_t arg2);
-void clear_excess_hearts(z64_file_t *save, int16_t arg1, int16_t arg2);
-void open_mask_shop(z64_file_t *save, int16_t arg1, int16_t arg2);
-void give_bombchus(z64_file_t *save, int16_t arg1, int16_t arg2);
-void trade_quest_upgrade(z64_file_t *save, int16_t item_id, int16_t arg2);
-void unlock_ocarina_note(z64_file_t *save, int16_t arg1, int16_t arg2);
+void no_effect(z64_file_t* save, int16_t arg1, int16_t arg2);
+void full_heal(z64_file_t* save, int16_t arg1, int16_t arg2);
+void give_triforce_piece(z64_file_t* save, int16_t arg1, int16_t arg2);
+void give_tycoon_wallet(z64_file_t* save, int16_t arg1, int16_t arg2);
+void give_biggoron_sword(z64_file_t* save, int16_t arg1, int16_t arg2);
+void give_bottle(z64_file_t* save, int16_t bottle_item_id, int16_t arg2);
+void give_dungeon_item(z64_file_t* save, int16_t mask, int16_t dungeon_id);
+void give_small_key(z64_file_t* save, int16_t dungeon_id, int16_t arg2);
+void give_small_key_ring(z64_file_t* save, int16_t dungeon_id, int16_t include_boss_key);
+void give_silver_rupee(z64_file_t* save, int16_t dungeon_id, int16_t silver_rupee_id);
+void give_silver_rupee_pouch(z64_file_t* save, int16_t dungeon_id, int16_t silver_rupee_id);
+void give_defense(z64_file_t* save, int16_t arg1, int16_t arg2);
+void give_magic(z64_file_t* save, int16_t arg1, int16_t arg2);
+void give_double_magic(z64_file_t* save, int16_t arg1, int16_t arg2);
+void give_fairy_ocarina(z64_file_t* save, int16_t arg1, int16_t arg2);
+void give_quest_item(z64_file_t* save, int16_t quest_bit, int16_t arg2);
+void ice_trap_effect(z64_file_t* save, int16_t arg1, int16_t arg2);
+void give_bean_pack(z64_file_t* save, int16_t arg1, int16_t arg2);
+void fill_wallet_upgrade(z64_file_t* save, int16_t arg1, int16_t arg2);
+void clear_excess_hearts(z64_file_t* save, int16_t arg1, int16_t arg2);
+void open_mask_shop(z64_file_t* save, int16_t arg1, int16_t arg2);
+void give_bombchus(z64_file_t* save, int16_t arg1, int16_t arg2);
+void trade_quest_upgrade(z64_file_t* save, int16_t item_id, int16_t arg2);
+void unlock_ocarina_note(z64_file_t* save, int16_t arg1, int16_t arg2);
 
 typedef enum dungeon {
     DEKU_ID       = 0,

@@ -98,7 +98,7 @@ class Rom(BigStream):
         if rom_crc not in valid_crc:
             # Bad CRC validation
             raise RuntimeError(f'ROM file {input_file} is not a valid OoT 1.0 {"PAL" if pal else "US"} ROM.')
-        elif len(self.buffer) < 0x2000000 or len(self.buffer) > 0x4000000 or file_name[1].lower() not in ['.z64', '.n64']:
+        elif len(self.buffer) < 0x2000000 or len(self.buffer) > 0x4000000 or file_name[1].lower() not in ('.z64', '.n64'):
             # ROM is too big, or too small, or a bad type
             raise RuntimeError(f'ROM file {input_file} is not a valid OoT 1.0 {"PAL" if pal else "US"} ROM.')
         elif len(self.buffer) == 0x2000000:
@@ -122,9 +122,9 @@ class Rom(BigStream):
             else:
                 subcall = [sub_dir + "Decompress32.exe", input_file, output_file]
         elif platform.system() == 'Linux':
-            if platform.machine() in ['arm64', 'aarch64', 'aarch64_be', 'armv8b', 'armv8l']:
+            if platform.machine() in ('arm64', 'aarch64', 'aarch64_be', 'armv8b', 'armv8l'):
                 subcall = [sub_dir + "Decompress_ARM64", input_file, output_file]
-            elif platform.machine() in ['arm', 'armv7l', 'armhf']:
+            elif platform.machine() in ('arm', 'armv7l', 'armhf'):
                 subcall = [sub_dir + "Decompress_ARM32", input_file, output_file]
             else:
                 subcall = [sub_dir + "Decompress", input_file, output_file]

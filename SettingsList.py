@@ -725,7 +725,7 @@ class SettingInfos:
                                          'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops',
                                          'warp_songs', 'blue_warps', 'shuffle_child_spawn', 'shuffle_adult_spawn', 'mq_dungeons_mode', 'mq_dungeons_specific',
                                          'mq_dungeons_count', 'shuffle_bosses', 'shuffle_ganon_tower', 'dungeon_shortcuts', 'deadly_bonks',
-                                         'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_beehives', 'shuffle_silver_rupees',
+                                         'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_beehives', 'shuffle_silver_rupees', 'shuffle_wonderitems',
                                          'mix_entrance_pools', 'decouple_entrances', 'logic_water_gold_scale_no_entry']},
             'none':       {'settings': ['dungeon_back_access', 'allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'logic_water_gold_scale_no_entry', 'reachable_locations']},
         },
@@ -3267,6 +3267,36 @@ class SettingInfos:
         },
     )
 
+    shuffle_wonderitems = Checkbutton(
+        gui_text       = 'Shuffle Wonderitems',
+        gui_tooltip    = '''\
+            Enabling will shuffle drops from wonderitems.
+
+            Wonderitems are invisible items in the game that will drop an
+            item under a certain condition. These items will be marked in the game with a
+            sparkle effect when shuffled so they can be easily found. There
+            are 4 kinds of shuffled wonderitems.
+
+            Proximity Drop (Yellow): Gives an item when Link touches it.
+
+            Interact Switch (Red): Drops an item when hit with a certain damage type.
+                             (Sword, bow, slingshot, or hookshot)
+
+            Free Multitag (Blue): Gives an item when a certain set of tag points
+                           are touched. The only free multitag is the stepping stones
+                           in Kokiri Forest.
+
+            Ordered Multitag (Cyan): Gives an item when a set of tag points are touched
+                              in a specific order. The only ordered multitag is the
+                              grass stepping stones in Kokiri Forest.
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    )
+
     shuffle_kokiri_sword = Checkbutton(
         gui_text       = 'Shuffle Kokiri Sword',
         gui_tooltip    = '''\
@@ -3394,9 +3424,9 @@ class SettingInfos:
         ''',
         default        = 'off',
         choices        = {
-            'off': 'Off',
+            'off':     'Off',
             'vanilla': 'Vanilla Behavior',
-            'easy': 'Easier Behavior'
+            'easy':    'Easier Behavior',
         },
         shared         = True,
         gui_params     = {
@@ -3404,7 +3434,7 @@ class SettingInfos:
             'distribution': [
                 ('off',          1),
                 ('vanilla',      1),
-                ('easy',         1)
+                ('easy',         1),
             ],
         },
     )
@@ -4420,7 +4450,7 @@ class SettingInfos:
         default        = 'right',
         choices        = {
             'off':   'Off',
-            'left': 'On the left',
+            'left':  'On the left',
             'right': 'On the right',
         },
     )

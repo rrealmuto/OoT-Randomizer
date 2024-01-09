@@ -213,6 +213,7 @@
             "shuffle_empty_crates",
             "shuffle_cows",
             "shuffle_beehives",
+            "shuffle_wonderitems",
             "shuffle_kokiri_sword",
             "shuffle_ocarinas",
             "shuffle_gerudo_card",
@@ -572,7 +573,7 @@
           "text": "Items",
           "col_span": 2,
           "row_span": [5,5,5],
-          "settings": [     
+          "settings": [
             "sfx_ocarina",
             "sfx_bombchu_move",
             "sfx_hover_boots",
@@ -595,7 +596,7 @@
           "settings": [
             "sfx_link_adult",
             "sfx_link_child",
-            "sfx_link_unavailable_msg",         
+            "sfx_link_unavailable_msg",
             "sfx_navi_overworld",
             "sfx_navi_enemy",
             "sfx_horse_neigh",
