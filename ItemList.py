@@ -223,8 +223,8 @@ item_table: dict[str, tuple[str, Optional[bool], Optional[int], Optional[dict[st
     'Ocarina C down Button':                           ('Item',     True,  0x0106, {'ocarina_button': True}),
     'Ocarina C left Button':                           ('Item',     True,  0x0107, {'ocarina_button': True}),
     'Ocarina C right Button':                          ('Item',     True,  0x0108, {'ocarina_button': True}),
-    'Fairy Drop':                                      ('Item',     None,  0x1009, None),
-    'Nothing':                                         ('Item',     None,  0x100A, None),
+    'Fairy Drop':                                      ('Item',     None,  0x0119, None),
+    'Nothing':                                         ('Item',     None,  0x011A, None),
 
     'Easter Egg (Pink)':                               ('Item',     True,  0x1000, {'alias': ('Triforce Piece', 1), 'progressive': float('Inf')}),
     'Easter Egg (Orange)':                             ('Item',     True,  0x1001, {'alias': ('Triforce Piece', 1), 'progressive': float('Inf')}),

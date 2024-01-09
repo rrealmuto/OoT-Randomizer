@@ -16,7 +16,6 @@
 
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
 
-
 void draw_pot(z64_actor_t* actor, z64_game_t* game) {
     // get original dlist and texture
     z64_gfx_t* dlist = DUNGEON_POT_DLIST;

@@ -614,8 +614,8 @@ static const uint64_t kInitListMedallion[] = {
     0xd900000000220405, 0xdf00000000000000,
 };
 
-void draw_gi_medallions(z64_game_t *game, uint32_t draw_id) {
-    z64_gfx_t *gfx = game->common.gfx;
+void draw_gi_medallions(z64_game_t* game, uint32_t draw_id) {
+    z64_gfx_t* gfx = game->common.gfx;
 
     append_setup_dl_25_to_opa(gfx);
     gSPDisplayList(gfx->poly_opa.p++, (uint32_t)(&kInitListMedallion));
@@ -624,8 +624,8 @@ void draw_gi_medallions(z64_game_t *game, uint32_t draw_id) {
     gSPDisplayList(gfx->poly_opa.p++, item_draw_table[draw_id].args[1].dlist);
 }
 
-static void *pushOpaMatrix(z64_gfx_t *gfx, const float *mat) {
-    void *end = gfx->poly_opa.d;
+static void* pushOpaMatrix(z64_gfx_t* gfx, const float *mat) {
+    void* end = gfx->poly_opa.d;
     end = (char *)end - 0x40;
     gfx->poly_opa.d = end;
 
@@ -634,8 +634,8 @@ static void *pushOpaMatrix(z64_gfx_t *gfx, const float *mat) {
     return end;
 }
 
-static void *pushXluMatrix(z64_gfx_t *gfx, const float *mat) {
-    void *end = gfx->poly_xlu.d;
+static void* pushXluMatrix(z64_gfx_t* gfx, const float *mat) {
+    void* end = gfx->poly_xlu.d;
     end = (char *)end - 0x40;
     gfx->poly_xlu.d = end;
 
@@ -644,22 +644,22 @@ static void *pushXluMatrix(z64_gfx_t *gfx, const float *mat) {
     return end;
 }
 
-static void* dummyOpaSegment(z64_gfx_t *gfx) {
-    Gfx *end = gfx->poly_opa.d - 1;
+static void* dummyOpaSegment(z64_gfx_t* gfx) {
+    Gfx* end = gfx->poly_opa.d - 1;
     gfx->poly_opa.d = end;
     gSPEndDisplayList(end);
     return end;
 }
 
-static void *dummyXluSegment(z64_gfx_t *gfx) {
-    Gfx *end = gfx->poly_xlu.d - 1;
+static void* dummyXluSegment(z64_gfx_t* gfx) {
+    Gfx* end = gfx->poly_xlu.d - 1;
     gfx->poly_xlu.d = end;
     gSPEndDisplayList(end);
     return end;
 }
 
-void draw_gi_stones(z64_game_t *game, uint32_t draw_id) {
-    z64_gfx_t *gfx = game->common.gfx;
+void draw_gi_stones(z64_game_t* game, uint32_t draw_id) {
+    z64_gfx_t* gfx = game->common.gfx;
     colorRGBA8_t prim_color = item_draw_table[draw_id].args[2].color;
     colorRGBA8_t env_color = item_draw_table[draw_id].args[3].color;
 
@@ -691,8 +691,8 @@ void draw_gi_stones(z64_game_t *game, uint32_t draw_id) {
     gSPDisplayList(gfx->poly_opa.p++, item_draw_table[draw_id].args[1].dlist);
 }
 
-void draw_gi_fairy(z64_game_t *game, uint32_t draw_id) {
-    z64_gfx_t *gfx = game->common.gfx;
+void draw_gi_fairy(z64_game_t* game, uint32_t draw_id) {
+    z64_gfx_t* gfx = game->common.gfx;
 
     append_setup_dl_25_to_xlu(gfx);
     gSPSegment(gfx->poly_xlu.p++, 0x08,
@@ -712,6 +712,6 @@ void draw_gi_fairy(z64_game_t *game, uint32_t draw_id) {
     pop_sys_matrix();
 }
 
-void draw_gi_nothing(z64_game_t *game, uint32_t draw_id) {
+void draw_gi_nothing(z64_game_t* game, uint32_t draw_id) {
 
 }

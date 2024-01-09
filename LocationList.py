@@ -522,8 +522,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Kak Child Crate 4",                                            ("Crate",        0x52,  [(0,1,46),(0,0,53)], None,             'Nothing',                               ("Kakariko Village", "Crates",))),
     ("Kak Child Crate 5",                                            ("Crate",        0x52,  [(0,1,47),(0,0,54)], None,             'Nothing',                               ("Kakariko Village", "Crates",))),
 
-
-    # Kak Beehives
+    # Kakariko Village Beehives
     ("Kak Open Grotto Beehive 1",                                    ("Beehive",      0x3E,  (0,0x08,8), None,                      'Rupees (5)',                            ("Kakariko Village", "Grottos", "Beehives",))),
     ("Kak Open Grotto Beehive 2",                                    ("Beehive",      0x3E,  (0,0x08,9), None,                      'Rupees (20)',                           ("Kakariko Village", "Grottos", "Beehives",))),
     # Kakariko Village Wonderitems
