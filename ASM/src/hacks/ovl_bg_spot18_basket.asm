@@ -11,7 +11,7 @@
     or  s7, r0, r0 ; Use s7 as the loop variable instead of s0
 bg_spot18_basket_bombs_loopstart:
 
-.org 0x80ac7df4 
+.org 0x80ac7df4
 ; Replaces:
 ;   addiu   s0, s0, 0x01
 ;   bnel    s0, s1, bg_spot18_basket_bombs_loopstart
@@ -19,8 +19,8 @@ bg_spot18_basket_bombs_loopstart:
     addiu   s7, s7, 0x01 ; using s7 as loop variable so need to hack here to increment s7 instead of s0
     bnel    s7, s1, bg_spot18_basket_bombs_loopstart ; using s7 as loop variable so use it in the loop branch
     or      a0, s0, r0 ; need to copy s0 back into a0
-  
-; Replace call to Item_DropCollectible. 
+
+; Replace call to Item_DropCollectible.
 .org 0x80ac7dd4
 ; Replaces:
 ;   jal Item_DropCollectible
