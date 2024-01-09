@@ -1,0 +1,63 @@
+Actor 0x12d cannot load in room 1-0-0
+Actor 0x12d cannot load in room 1-0-0
+Actor 0x125 cannot load in room 1-b-0
+Actor 0x13 cannot load in room 5-0-0
+Actor 0x13 cannot load in room 5-0-0
+Actor 0x12d cannot load in room 6-17-0
+Actor 0xb7 cannot load in room d-0-0
+Actor 0x13 cannot load in room 53-1-2
+Actor 0x13 cannot load in room 53-1-2
+Actor 0x13 cannot load in room 53-1-2
+Actor 0x13 cannot load in room 53-1-2
+Actor 0x13 cannot load in room 53-1-2
+Actor 0x95 cannot load in room 53-1-2
+Actor 0x95 cannot load in room 53-1-2
+Actor 0x13 cannot load in room 53-1-3
+Actor 0x13 cannot load in room 53-1-3
+Actor 0x13 cannot load in room 53-1-3
+Actor 0x13 cannot load in room 53-1-3
+Actor 0x13 cannot load in room 53-1-3
+Actor 0x95 cannot load in room 53-1-3
+Actor 0x95 cannot load in room 53-1-3
+Actor 0x125 cannot load in room 57-0-0
+Actor 0x111 cannot load in room 57-0-0
+Actor 0x111 cannot load in room 57-0-0
+Actor 0xe cannot load in room 5b-3-0
+Actor 0xe cannot load in room 5b-3-2
+Actor 0x141 cannot load in room 5d-0-0
+Actor 0x141 cannot load in room 5d-0-0
+Actor 0x141 cannot load in room 5d-0-0
+Actor 0x111 cannot load in room 5f-0-0
+Actor 0x111 cannot load in room 5f-0-0
+
+(32669792, "Dodongo's Cavern", 1, 0, 0, 0, 301, 284)
+(32669808, "Dodongo's Cavern", 1, 0, 0, 1, 301, 284)
+(33149052, "Dodongo's Cavern", 1, 11, 0, 3, 293, 1)
+(39641208, 'Water Temple', 5, 0, 0, 2, 19, 13)
+(39641224, 'Water Temple', 5, 0, 0, 3, 19, 13)
+(45776976, 'Spirit Temple', 6, 23, 0, 0, 301, 284)
+(52101228, "Inside Ganon's Castle", 13, 0, 0, 2, 183, 171)
+(33747932, 'Spot 02 - Graveyard', 83, 1, 2, 2, 19, 13)
+(33747948, 'Spot 02 - Graveyard', 83, 1, 2, 3, 19, 13)
+(33747964, 'Spot 02 - Graveyard', 83, 1, 2, 4, 19, 13)
+(33747980, 'Spot 02 - Graveyard', 83, 1, 2, 5, 19, 13)
+(33747996, 'Spot 02 - Graveyard', 83, 1, 2, 6, 19, 13)
+(33748012, 'Spot 02 - Graveyard', 83, 1, 2, 7, 149, 36)
+(33748028, 'Spot 02 - Graveyard', 83, 1, 2, 8, 149, 36)
+(33748940, 'Spot 02 - Graveyard', 83, 1, 3, 2, 19, 13)
+(33748956, 'Spot 02 - Graveyard', 83, 1, 3, 3, 19, 13)
+(33748972, 'Spot 02 - Graveyard', 83, 1, 3, 4, 19, 13)
+(33748988, 'Spot 02 - Graveyard', 83, 1, 3, 5, 19, 13)
+(33749004, 'Spot 02 - Graveyard', 83, 1, 3, 6, 19, 13)
+(33749020, 'Spot 02 - Graveyard', 83, 1, 3, 7, 149, 36)
+(33749036, 'Spot 02 - Graveyard', 83, 1, 3, 8, 149, 36)
+(34500828, 'Spot 06 - Lake Hylia', 87, 0, 0, 6, 293, 1)
+(34500892, 'Spot 06 - Lake Hylia', 87, 0, 0, 10, 273, 1)
+(34500908, 'Spot 06 - Lake Hylia', 87, 0, 0, 11, 273, 1)
+(35029448, 'Spot 10 - Lost Woods', 91, 3, 2, 2, 14, 7)
+(35029136, 'Spot 10 - Lost Woods', 91, 3, 0, 2, 14, 7)
+(35377408, "Spot 12 - Gerudo's Fortress", 93, 0, 0, 9, 321, 303)
+(35377424, "Spot 12 - Gerudo's Fortress", 93, 0, 0, 10, 321, 303)
+(35377440, "Spot 12 - Gerudo's Fortress", 93, 0, 0, 11, 321, 303)
+(35713236, 'Spot 15 - Hyrule Castle', 95, 0, 0, 8, 273, 1)
+(35713252, 'Spot 15 - Hyrule Castle', 95, 0, 0, 9, 273, 1)

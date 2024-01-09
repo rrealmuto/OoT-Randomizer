@@ -44,7 +44,7 @@
                 Boomerang or (logic_spirit_fence_gs and Kokiri_Sword) or
                 (((Silver_Rupee_Spirit_Temple_Child_Early_Torches, 5) or logic_spirit_fence_gs) and
                     (Sticks or has_explosives or Slingshot or can_use(Dins_Fire)))",
-            "Deku Shield Pot": "fix_broken_drops"
+            "Deku Shield Pot": "fix_broken_actors"
         }
     },
     {

@@ -34,6 +34,7 @@ from TextBox import line_wrap
 from texture_util import ci4_rgba16patch_to_ci8, rgba16_patch
 from version import __version__
 from Boulders import patch_boulders, shuffle_boulders
+from ProcessActors import get_bad_actors
 
 if sys.version_info >= (3, 10):
     from typing import TypeAlias
@@ -922,7 +923,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     rom.write_byte(0x21A026F, 0xDD)
 
     # Remove the "...???" textbox outside the Crater Fairy (change it to an actor that does nothing)
-    rom.write_int16s(0x225E7DC, [0x00B5, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0xFFFF])
+    rom.write_int16s(0x225E7DC, [0xFFFF, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0xFFFF])
 
     # Forbid Sun's Song from a bunch of cutscenes
     Suns_scenes = [0x2016FC9, 0x2017219, 0x20173D9, 0x20174C9, 0x2017679, 0x20C1539, 0x20C15D9, 0x21A0719, 0x21A07F9, 0x2E90129, 0x2E901B9, 0x2E90249, 0x225E829, 0x225E939, 0x306D009]
@@ -2549,10 +2550,19 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
             if mask_segment_id not in (0x05, 0x06, 0x07, 0x0F, 0x15, 0x1C):
                 rom.write_int16s(0x00B66E60 + mask_segment_id * 0x12, [0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000])
 
-    if world.settings.fix_broken_drops:
+    if not world.settings.fix_broken_actors:
+        # Because we have our new object system, we actually need to patch out the actors if the setting is disabled
+        bad_actors = get_bad_actors(rom)
+        for (actor, scene_name,scene_id, room_id, setup, actor_index, actor_type, object) in bad_actors:
+            rom.write_int16(actor, 0xFFFF)
+
+        # And we need to fix the spirit temple shield pot to not drop anything
+        
+
+
+    if world.settings.fix_broken_actors:
         symbol = rom.sym('FIX_BROKEN_DROPS')
         rom.write_byte(symbol, 0x01)
-
         # Autocollect incoming_item_id for magic jars are swapped in vanilla code
         rom.write_int16(0xA88066, 0x0044)  # Change GI_MAGIC_SMALL to GI_MAGIC_LARGE
         rom.write_int16(0xA88072, 0x0043)  # Change GI_MAGIC_LARGE to GI_MAGIC_SMALL
@@ -2561,14 +2571,14 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         # Replace actor parameters in scene 06, room 27 actor list
     #    rom.write_int16(0x2BDC0C6, 0x603F)
 
+    if world.settings.shuffle_boulders:
+        patch_boulders(world.boulders_by_id, rom)
+
     # Have the Gold Skulltula Count in the pause menu turn red when equal to the
     # available number of skulls in the world instead of 100.
     rom.write_int16(0xBB340E, world.available_tokens)
 
     patch_songs(world, rom)
-
-    if world.settings.shuffle_boulders:
-        patch_boulders(world.boulders_by_id, rom)
 
     if world.settings.shuffle_individual_ocarina_notes:
         rom.write_byte(rom.sym('SHUFFLE_OCARINA_BUTTONS'), 1)

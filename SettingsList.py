@@ -3634,16 +3634,20 @@ class SettingInfos:
         shared         = True,
     )
 
-    fix_broken_drops = Checkbutton(
-        gui_text       = 'Fix Broken Drops',
+    fix_broken_actors = Checkbutton(
+        gui_text       = 'Fix Broken Actors',
         gui_tooltip    = '''\
-            Enabling this fixes drops that are broken in the vanilla game.
+            Enabling this fixes drops and actors that are broken in the vanilla game.
 
             There is a deku shield drop from a pot in the Spirit Temple child
             side Anubis room that does not appear in the vanilla game, and
-            logic might require you to get a deku shield this way. There is a
+            logic might require you to get a deku shield this way. 
+            
+            There is a
             magic jar on top of the Gerudo Training Ground eye statue that does
             not always refill your magic in the vanilla game.
+
+            There are a bunch of enemies as well.
         ''',
         shared         = True,
     )

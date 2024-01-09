@@ -368,7 +368,7 @@ SYMBOL TABLE:
 000108e8 g     F .text	0000005c nut_upgrade
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_PROP_OUTER_ENABLED
 00009bb8 g     F .text	00000064 push_coop_item
-00000624 g     F .text	00000094 Actor_Spawn_Hook
+00000740 g     F .text	00000094 Actor_Spawn_Hook
 000184cc g     O .data	00000004 scene_fog_distance
 00010d4c g     F .text	0000004c upgrade_key_model
 00014498 g     F .text	000001e4 draw_pot
@@ -612,7 +612,7 @@ SYMBOL TABLE:
 0000a018 g     F .text	000001e0 handle_pending_items
 000109f4 g     F .text	00000038 bombchu_upgrade
 0000ee74 g     F .text	000002d4 draw_gi_boss_altered
-0000056c g     F .text	000000b8 Player_SpawnEntry_Hack
+00000688 g     F .text	000000b8 Player_SpawnEntry_Hack
 00016edc g     F .text	00000024 heap_free
 00012954 g     F .text	000000a8 draw_model
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_SILVER_RUPEES
@@ -641,7 +641,7 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 CFG_SPEEDUP_MUSIC_FOR_LAST_TRIFORCE_PIECE
 00000000         *UND*	00000000 CFG_RAINBOW_BOOM_TRAIL_OUTER_ENABLED
 00018718 g     O .data	00000010 triforce_sprite
-00000784 g     F .text	0000011c Actor_SpawnEntry_Hack
+0000056c g     F .text	0000011c Actor_SpawnEntry_Hack
 00000000         *UND*	00000000 EXTERN_DAMAGE_MULTIPLYER
 0002628a g     O .data	00000001 MAX_RUPEES
 0000a4a0 g     F .text	00000310 get_xflag_bit_offset
@@ -704,7 +704,7 @@ SYMBOL TABLE:
 000135b8 g     F .text	000000ec ObjComb_Update
 0000fb54 g     F .text	00000038 base_draw_gi_model
 00000000         *UND*	00000000 OUTGOING_ITEM
-000006f0 g     F .text	00000094 spawn_override_enemizer
+0000080c g     F .text	00000094 spawn_override_enemizer
 00015de4 g     F .text	00000078 SaveFile_UpdateShiftableItem
 000164c8 g     F .text	00000018 IsCuccoGivenToCuccoLady
 00026288 g     O .data	00000001 COMPLETE_MASK_QUEST
@@ -724,7 +724,7 @@ SYMBOL TABLE:
 000127d4 g     F .text	0000004c set_object_segment
 00000a8c g     F .text	000001c8 draw_agony
 00010404 g     F .text	00000088 resolve_text_small_keys
-000006b8 g     F .text	00000038 is_enemy
+000007d4 g     F .text	00000038 is_enemy
 00016e88 g     F .text	00000030 heap_init
 000013f4 g     F .text	000000d4 draw_forest_hallway_chest_lid
 0001229c g     F .text	000000e0 FindHierarchy

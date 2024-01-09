@@ -1138,11 +1138,11 @@
 80406760 Actor_StoreChestType,00000188
 804068E8 Actor_After_UpdateAll_Hack,0000005C
 80406944 spawn_override_silver_rupee,00000108
-80406A4C Player_SpawnEntry_Hack,000000B8
-80406B04 Actor_Spawn_Hook,00000094
-80406B98 is_enemy,00000038
-80406BD0 spawn_override_enemizer,00000094
-80406C64 Actor_SpawnEntry_Hack,0000011C
+80406A4C Actor_SpawnEntry_Hack,0000011C
+80406B68 Player_SpawnEntry_Hack,000000B8
+80406C20 Actor_Spawn_Hook,00000094
+80406CB4 is_enemy,00000038
+80406CEC spawn_override_enemizer,00000094
 80406D80 Actor_Update_Hook,0000002C
 80406DAC agony_inside_radius_setup,00000008
 80406DB4 agony_outside_radius_setup,0000002C

@@ -185,7 +185,7 @@ class State:
         if self.solv_items[item.solver_id] > 0:
             self.solv_items[item.solver_id] -= 1
 
-    def region_has_shortcuts(self, region_name: str) -> bool:
+    def region_has_shortcuts(self, region_name: str, **kwargs) -> bool:
         return self.world.region_has_shortcuts(region_name)
 
     def has_all_notes_for_song(self, song: str, **kwargs) -> bool:

@@ -178,6 +178,10 @@ z64_actor_t* Actor_SpawnEntry_Hack(void* actorCtx, ActorEntry* actorEntry, z64_g
     bool continue_spawn = true;
     bool overridden = false;
     actor_after_spawn_func after_spawn_func = NULL;
+    if(actorEntry->id == 0xFFFF) {
+        return NULL;
+    }
+
     switch (actorEntry->id) {
         case EN_G_SWITCH: {
             continue_spawn = spawn_override_silver_rupee(actorEntry, globalCtx, &overridden);
@@ -188,7 +192,7 @@ z64_actor_t* Actor_SpawnEntry_Hack(void* actorCtx, ActorEntry* actorEntry, z64_g
             break;
         }
     }
-    continue_spawn = spawn_override_enemizer(actorEntry, globalCtx, &overridden);
+    //continue_spawn = spawn_override_enemizer(actorEntry, globalCtx, &overridden);
     z64_actor_t *spawned = NULL;
     if (continue_spawn) {
         spawned = z64_SpawnActor(actorCtx, globalCtx, actorEntry->id, actorEntry->pos.x, actorEntry->pos.y, actorEntry->pos.z,
