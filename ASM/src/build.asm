@@ -137,6 +137,9 @@ RANDO_CONTEXT:
 .include "enemy_spawn_shuffle.asm"
 .include "overlay.asm"
 .include "minimap.asm"
+.include "collider_override.asm"
+.include "objects.asm"
+
 
 .align 0x10
 .importobj "../build/bundle.o"

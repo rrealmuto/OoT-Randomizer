@@ -102,7 +102,17 @@ typedef enum {
 #define HS_FISH_CHEAT_ADULT 0x80000000 // used Sinking Lure as adult to catch record fish
 #define HS_FISH_PLAYED 0x10000 // incremented for every play. controls weather.
 
-typedef struct {
+typedef struct Arena {
+    /* 0x00 */ struct ArenaNode* head;
+    /* 0x04 */ void* start;
+    /* 0x08 */ OSMesgQueue lockQueue;
+    /* 0x20 */ uint8_t unk_20;
+    /* 0x21 */ uint8_t isInit;
+    /* 0x22 */ uint8_t flag;
+} Arena; // size = 0x24
+
+typedef struct
+{
   /* index of z64_col_type in scene file */
   uint16_t    type;
   /* vertex indices, a and b are bitmasked for some reason */
@@ -1082,7 +1092,7 @@ struct z64_actor_s
   z64_rot_t       rot_init;         /* 0x0014 */
   char            unk_01_[0x0002];  /* 0x001A */
   uint16_t        variable;         /* 0x001C */
-  uint8_t         alloc_index;      /* 0x001E */
+  uint8_t         obj_bank_index;   /* 0x001E */
   char            navi_tgt_dist;    /* 0x001F */
   uint16_t        sound_effect;     /* 0x0020 */
   char            unk_03_[0x0002];  /* 0x0022 */
@@ -1129,11 +1139,11 @@ struct z64_actor_s
   z64_actor_t    *child;            /* 0x011C */
   z64_actor_t    *prev;             /* 0x0120 */
   z64_actor_t    *next;             /* 0x0124 */
-  void           *ctor;             /* 0x0128 */
-  void           *dtor;             /* 0x012C */
-  void           *main_proc;        /* 0x0130 */
-  void           *draw_proc;        /* 0x0134 */
-  ActorOverlay *overlay_entry;    /* 0x0138 */
+  ActorFunc      *init;             /* 0x0128 */
+  ActorFunc      *destroy;             /* 0x012C */
+  ActorFunc      *update;        /* 0x0130 */
+  ActorFunc      *draw;        /* 0x0134 */
+  ActorOverlay   *overlay_entry;       /* 0x0138 */
                                     /* 0x013C */
 };
 
@@ -2031,8 +2041,6 @@ typedef enum {
 #define z64_UpdateItemButton_addr               0x8006FB50
 #define z64_GiveItem_addr                       0x8006FDCC
 #define z64_UpdateEquipment_addr                0x80079764
-#define z64_LoadRoom_addr                       0x80080A3C
-#define z64_UnloadRoom_addr                     0x80080C98
 #define z64_Io_addr                             0x80091474
 #define z64_entrance_offset_hook_addr           0x8009AA44
 #define z64_frame_update_func_addr              0x8009AF1C
@@ -2068,7 +2076,6 @@ typedef enum {
 #define z64_LinkInvincibility_addr              0x8038E578
 #define z64_LinkDamage_addr                     0x8038E6A8
 #define z64_ObjectSpawn_addr                    0x800812F0
-#define z64_ObjectIndex_addr                    0x80081628
 #define z64_ObjectIsLoaded_addr                 0x80081688
 #define z64_ActorSetLinkIncomingItemId_addr     0x80022CF4
 #define SsSram_ReadWrite_addr                   0x80091474
@@ -2134,11 +2141,6 @@ typedef z64_actor_t* (*z64_SpawnActor_proc)       (void* actor_ctxt, z64_game_t*
 typedef void (*z64_SwitchAgeEquips_proc)  (void);
 typedef void (*z64_UpdateItemButton_proc) (z64_game_t* game, int button_index);
 typedef void (*z64_UpdateEquipment_proc)  (z64_game_t* game, z64_link_t* link);
-typedef void (*z64_LoadRoom_proc)         (z64_game_t* game,
-                                           void* p_ctxt_room_index,
-                                           uint8_t room_index);
-typedef void (*z64_UnloadRoom_proc)       (z64_game_t* game,
-                                           void* p_ctxt_room_index);
 typedef void (*z64_Io_proc)               (uint32_t dev_addr, void* dram_addr,
                                            uint32_t size, int32_t direction);
 typedef void (*z64_SceneConfig_proc)      (z64_game_t* game);
@@ -2159,7 +2161,6 @@ typedef float (*z64_Math_SinS_proc)(int16_t angle);
 typedef void (*z64_EffectSsKiraKira_SpawnSmall_proc)(z64_game_t* globalCtx, z64_xyzf_t* pos, z64_xyzf_t* velocity, z64_xyzf_t* accel, colorRGBA8_t* primColor, colorRGBA8_t* envColor);
 
 typedef int32_t(*z64_ObjectSpawn_proc)    (z64_obj_ctxt_t* object_ctx, int16_t object_id);
-typedef int32_t(*z64_ObjectIndex_proc)    (z64_obj_ctxt_t* object_ctx, int16_t object_id);
 typedef int32_t(*z64_ObjectIsLoaded_proc) (z64_obj_ctxt_t* object_ctx, int32_t bank_index);
 
 typedef int32_t(*z64_ActorSetLinkIncomingItemId_proc) (z64_actor_t* actor, z64_game_t* game,
@@ -2230,9 +2231,6 @@ typedef void(*z64_Play_SetupRespawnPoint_proc)(z64_game_t *game, int32_t respawn
                                                       z64_UpdateItemButton_addr)
 #define z64_UpdateEquipment     ((z64_UpdateEquipment_proc)                   \
                                                       z64_UpdateEquipment_addr)
-#define z64_LoadRoom            ((z64_LoadRoom_proc)  z64_LoadRoom_addr)
-#define z64_UnloadRoom          ((z64_UnloadRoom_proc)                        \
-                                                      z64_UnloadRoom_addr)
 #define z64_Io                  ((z64_Io_proc)        z64_Io_addr)
 #define z64_DisplayTextbox      ((z64_DisplayTextbox_proc)                    \
                                                       z64_DisplayTextbox_addr)
@@ -2247,7 +2245,6 @@ typedef void(*z64_Play_SetupRespawnPoint_proc)(z64_game_t *game, int32_t respawn
 #define z64_Rand_ZeroOne        ((z64_Rand_ZeroOne_proc)z64_Rand_ZeroOne_addr)
 
 #define z64_ObjectSpawn         ((z64_ObjectSpawn_proc)z64_ObjectSpawn_addr)
-#define z64_ObjectIndex         ((z64_ObjectIndex_proc)z64_ObjectIndex_addr)
 #define z64_ObjectIsLoaded      ((z64_ObjectIsLoaded_proc)z64_ObjectIsLoaded_addr)
 
 #define z64_ActorSetLinkIncomingItemId ((z64_ActorSetLinkIncomingItemId_proc)z64_ActorSetLinkIncomingItemId_addr)
@@ -2549,4 +2546,18 @@ extern uint8_t Message_ShouldAdvance(z64_game_t* globalCtx);
 extern void Message_ContinueTextbox(z64_game_t* globalCtx, uint16_t text_id);
 extern void Message_CloseTextbox(z64_game_t* globalCtx);
 extern int32_t Actor_OfferGetItem(z64_actor_t* actor, z64_game_t* globalCtx, int32_t getItemId, float xzRange, float yRange);
+extern int32_t Object_IsLoaded(z64_obj_ctxt_t* objectCtx, int32_t bankIndex);
+extern int32_t Object_GetIndex(z64_obj_ctxt_t* objectCtx, int32_t object_id);
+extern void Actor_SetObjectDependency(z64_game_t* globalCtx, z64_actor_t* actor);
+extern void Scene_CommandObjectList(z64_game_t* globalCtx, void* scene_command);
+extern void Room_Change(z64_game_t* globalCtx, void* roomCtx);
+
+extern void __osMallocInit(Arena* arena, void* start, uint32_t size);
+extern void __osFree(Arena* arena, void* ptr);
+extern void* __osMalloc(Arena* arena, uint32_t size);
+extern void z64_LoadRoom(z64_game_t *game, void *p_ctxt_room_index, uint8_t room_index);
+extern void z64_UnloadRoom(z64_game_t *game, void *p_ctxt_room_index);
+
+extern uintptr_t z64_segments[16];
+
 #endif

@@ -65,7 +65,7 @@
         "region_name": "Child Spirit Temple Anubis Room",
         "dungeon": "Spirit Temple",
         "locations": {
-            "Deku Shield Pot": "fix_broken_drops",
+            "Deku Shield Pot": "fix_broken_actors",
             "Spirit Temple Child Anubis Pot 1": "True",
             "Spirit Temple Child Anubis Pot 2": "True",
             "Spirit Temple Child Anubis Pot 3": "True",

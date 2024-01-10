@@ -4,10 +4,13 @@
 #include "z64.h"
 #include "get_items.h"
 #include <stdbool.h>
-#include <stdint.h>
-#include "get_items.h"
 
 #define ACTOR_OVERLAY_TABLE_ADDR 0x800E8530
+
+typedef enum {
+    #include "actor_table.h"
+    /* 0x0192 */ ACTOR_ID_MAX // originally "ACTOR_DLF_MAX"
+} ActorID;
 
 // New data added to the end of every actor.
 // Make sure the size of this struct is equal to the amount of space added added in Actor_Spawn_Malloc_Hack from actor.asm
@@ -29,5 +32,5 @@ ActorAdditionalData* Actor_GetAdditionalData(z64_actor_t* actor);
 void* Actor_ResolveOverlayAddr(z64_actor_t* actor, void* addr);
 override_t get_newflag_override(z64_actor_t *actor, z64_game_t *game);
 override_t get_newflag_override_by_flag(xflag_t* flag, z64_game_t* game);
-
+bool spawn_override_enemizer(ActorEntry *actorEntry, z64_game_t *globalCtx, bool* overridden);
 #endif

@@ -180,7 +180,8 @@
             "shuffle_gerudo_valley_river_exit",
             "owl_drops",
             "warp_songs",
-            "spawn_positions"
+            "spawn_positions",
+            "shuffle_boulders"
           ]
         },
         {
@@ -377,7 +378,7 @@
             "no_collectible_hearts",
             "starting_tod",
             "blue_fire_arrows",
-            "fix_broken_drops",
+            "fix_broken_actors",
             "prevent_guay_respawns",
             "minimap_enemy_tracker"
           ]

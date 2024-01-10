@@ -1,14 +1,162 @@
 import sys
 from Rom import *
 
+class Actor:
+    def __init__(self, address: int, actor_bytes: bytearray):
+        self.addr = address
+        self.id = int.from_bytes(actor_bytes[0:2], 'big')
+        self.var = int.from_bytes(actor_bytes[14:16], 'big')
+
+class RoomSetup:
+    def __init__(self, rom: Rom, room_addr: int, header_addr: int):
+        # Process the room
+        command = 0
+        offset = header_addr
+        self.actors: list[Actor] = []
+        self.objects: list[int] = []
+        while command != 0x14:
+            command = rom.read_byte(offset)
+            if command == 0x01: # Actor List
+                num_actors = rom.read_byte(offset + 1)
+                actor_list_start = room_addr + (rom.read_int32(offset + 4) & 0x00FFFFFF)
+                # Read the actor list
+                for i in range(0, num_actors):
+                    actor_addr = actor_list_start + (i * 0x10)
+                    actor_bytes = rom.read_bytes(actor_addr, 0x10)
+                    self.actors.append(Actor(actor_addr, actor_bytes))
+            if command == 0x0B: # Object List
+                object_count = rom.read_byte(offset + 1)
+                object_table_offset = room_addr + (rom.read_int32(offset + 4) & 0x00FFFFFF)
+                for i in range(0, object_count):
+                    self.objects.append(rom.read_int16(object_table_offset + 2*i))
+            offset += 8
+
+        #room_list.append((scene_id, room_id, setup, room_data, room_actors, object_list, keep_id))
+
+class Room:
+    def __init__(self, rom: Rom, id: int, rom_addr: int):
+        self.id = id
+        self.setups: dict[int, RoomSetup] = Room.process_room(rom, rom_addr)
+        self.rom_addr = rom_addr
+    
+    @staticmethod
+    def process_room(rom: Rom, rom_addr: int) -> dict[int, RoomSetup]:
+        room_list = {}
+        Room._process_room(rom, room_list, rom_addr, rom_addr, 0)
+        return room_list
+
+    @staticmethod
+    def _process_room(rom, room_list, room_base, room_data, setup):
+        command = 0
+        offset = room_data
+        # Check for room alt headers
+        if setup == 0:
+            while command != 0x14:
+                command = rom.read_byte(offset)
+                if command == 0x18: # Alternate header list
+                    header_list_start = offset + (rom.read_int32(offset + 4) & 0x00FFFFFF)
+                    for i in range(0, 3):
+                        alt_header = rom.read_int32(header_list_start + 4*i) & 0x00FFFFFF
+                        if alt_header != 0:
+                            Room._process_room(rom, room_list, room_base, room_data + alt_header, i+1)
+                    break
+                offset += 8
+        room_list[setup] = RoomSetup(rom, room_base, room_data)
+    
+class Scene:
+    def __init__(self, rom: Rom, id: int, scene_addr: int):
+        self.rooms: list[Room] = []
+        self.keep_id = 0
+        self.id = id
+        self.process_scene(rom, scene_addr)
+        self.rom_addr = scene_addr
+
+    def process_scene(self, rom, scene_data):
+        command = 0
+        offset = scene_data
+        while command != 0x14: #0x14 = end header
+            command = rom.read_byte(offset)
+            if command == 0x07: # Special object
+                self.keep_id = rom.read_int16(offset + 6)
+            offset += 8 
+
+        command = 0
+        offset = scene_data
+        # Process the rooms
+        while command != 0x14:
+            command = rom.read_byte(offset)
+            if command == 0x04: # room list
+                room_count = rom.read_byte( offset + 1)
+                room_table_offset = scene_data + (rom.read_int32(offset + 4) & 0x00FFFFFF)
+                for i in range(0, room_count):
+                    room_start = rom.read_int32(room_table_offset + 8*i)
+                    room_end = rom.read_int32(room_table_offset + 4 + 8*i)
+                    room = Room(rom, i, room_start)
+                    self.rooms.append(room)
+                    # Read the room list
+            offset += 8
+
 def get_actor_list(rom, actor_func):
     actors = {}
-    scene_table = 0x00B71440
-    #scene_table = 0x00BA0BB0 # for MQ
+    scene_table_vanilla = 0x00B71440
+    scene_table_mq = 0x00BA0BB0 # for MQ
     for scene in range(0x00, 0x65):
+        scene_table = scene_table_vanilla
         scene_data = rom.read_int32(scene_table + (scene * 0x14))
         actors.update(scene_get_actors(rom, actor_func, scene_data, scene))
     return actors
+
+def process_scenes(rom) -> list[Scene]:
+    scene_table_vanilla = 0x00B71440
+    scenes = []
+    for i in range(0x00, 0x65):
+        scene_table = scene_table_vanilla
+        scene_data = rom.read_int32(scene_table + (i * 0x14))
+        scene = Scene(rom, i, scene_data)
+        scenes.append(scene)
+        print(f"{i} {scene}")
+    return scenes
+
+def process_room(rom, room_list, room_base, room_data, scene_id, room_id, setup, keep_id):
+    command = 0
+    offset = room_data
+
+    # Check for room alt headers
+    if setup == 0:
+        while command != 0x14:
+            command = rom.read_byte(offset)
+            if command == 0x18: # Alternate header list
+                header_list_start = offset + (rom.read_int32(offset + 4) & 0x00FFFFFF)
+                for i in range(0, 3):
+                    alt_header = rom.read_int32(header_list_start + 4*i) & 0x00FFFFFF
+                    if alt_header != 0:
+                        process_room(rom, room_list, room_base, room_data + alt_header, scene_id, room_id, i+1, keep_id)
+                break
+            offset += 8
+    # Process the room
+    command = 0
+    offset = room_data
+    room_actors = {}
+    object_list = []
+    while command != 0x14:
+        command = rom.read_byte(offset)
+        if command == 0x01: # Actor List
+            num_actors = rom.read_byte(offset + 1)
+            actor_list_start = room_base + (rom.read_int32(offset + 4) & 0x00FFFFFF)
+            # Read the actor list
+            for i in range(0, num_actors):
+                actor_addr = actor_list_start + (i * 0x10)
+                actor_bytes = rom.read_bytes(actor_addr, 0x10)
+                room_actors[actor_addr] = actor_bytes
+        if command == 0x0B: # Object List
+            object_count = rom.read_byte(offset + 1)
+            object_table_offset = room_base + (rom.read_int32(offset + 4) & 0x00FFFFFF)
+            for i in range(0, object_count):
+                object_list.append(rom.read_int16(object_table_offset + 2*i))
+        offset += 8
+    room_list[(scene_id, room_id, setup)] = (room_data, room_actors, object_list, keep_id)
+    #room_list.append((scene_id, room_id, setup, room_data, room_actors, object_list, keep_id))
+                
 
 def scene_get_actors(rom, actor_func, scene_data, scene, alternate=None, setup_num=0):
     actors = {}
@@ -31,7 +179,6 @@ def scene_get_actors(rom, actor_func, scene_data, scene, alternate=None, setup_n
                     header_data = scene_start + alt_header_addr
                     actors.update(scene_get_actors(rom, actor_func, header_data, scene, scene_start, alt_id+1))
                 header_list = header_list + 4
-
         scene_data = scene_data + 8
     return actors
 
@@ -249,7 +396,6 @@ def process_wonderitem(actor_bytes):
         drop = dropTable[drop]
     else:
         drop = "Random " + str(drop)
-
     damage_type = None
     if type == 3: # Interact Switch, get damage type
         damage_type = (actor_bytes[12] << 8) + actor_bytes[13]
@@ -406,6 +552,77 @@ def process_bush_circle(actor_bytes):
         }
     else: # Rocks/don't care
         pass
+def get_overlay_table_entry(rom, actor_id):
+    base = 0x00B5E490 + actor_id * 0x20
+    vrom_start = rom.read_int32(base)
+    vrom_end = rom.read_int32(base + 4)
+    vram_start = rom.read_int32(base + 8)
+    vram_end = rom.read_int32(base + 12)
+    file_ram = rom.read_int32(base + 16)
+    init_addr = rom.read_int32(base + 20)
+    
+    if vram_start:
+        init_vrom = init_addr - vram_start + vrom_start
+    else:
+        init_vrom = 0xA87000 + init_addr - 0x800110A0
+        
+    init_object = rom.read_int16(init_vrom + 8)
+    return {
+        'vrom_start': vrom_start,
+        'vrom_end': vrom_end,
+        'vram_start': vram_start,
+        'vram_end': vram_end,
+        'file_ram': file_ram,
+        'init_addr': init_addr,
+        'init_object':init_object
+    }
+
+
+def get_bad_actors(rom: Rom, scenes_data: list[Scene]):
+    bad_actors = []
+    keep_list = [1,2,3]
+    for scene in scenes_data:
+        for room in scene.rooms:
+            for setup in room.setups:
+                i = 0
+                for actor in room.setups[setup].actors:
+                    if actor.id != 0xFFFF: # Ignore any actors we've already patched out
+                        overlay_entry = get_overlay_table_entry(rom, actor.id) # Read the entry from the overlay table
+                        init_obj = overlay_entry['init_object']
+                        # Pots are dumb so handle them seperately
+                        if actor.id == 0x111:
+                            if scene.keep_id == 0x0003: # Dungeon pot
+                                init_obj = 0x0003
+                            else:
+                                init_obj = 0x12C # Overworld pots use their own object
+
+                        # ignore ganons tower rubble
+                        if actor.id == 0x0174:
+                            continue
+
+                        # Grass is also dumb
+                        if actor.id == 0x0125:
+                            params = rom.read_int16(actor.addr + 14)
+                            grass_obj_ids = [2, 0x012B, 0x012B]
+                            init_obj = grass_obj_ids[params & 0x0003]
+
+                        if init_obj not in room.setups[setup].objects and init_obj != scene.keep_id and init_obj != 1 and init_obj <= 0x0191: # Check if the init object is in the rooms data
+                            bad_actors.append((actor.addr, scenes[scene.id], scene.id, room.id, setup, i, actor.id, overlay_entry['init_object']))
+                        i += 1
+    for actor in bad_actors:
+        print(actor)
+    return bad_actors
+
+
+#rom = Rom("ZOOTDEC.z64")
+
+#get_bad_actors(rom)
+#scene_info = process_scenes(rom)
+#rom = Rom("zeloot_mqdebug.z64")
+#pots = get_crates(rom)
+
+#for pot in pots:
+#    print(str(pot) + ": " + str(pots[pot]))
 
 if __name__ == "__main__":
     #rom = Rom("ZOOTDEC.z64")
