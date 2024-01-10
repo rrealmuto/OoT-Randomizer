@@ -34,7 +34,7 @@ from TextBox import line_wrap
 from texture_util import ci4_rgba16patch_to_ci8, rgba16_patch
 from version import __version__
 from Boulders import patch_boulders, shuffle_boulders
-from ProcessActors import get_bad_actors
+from ProcessActors import get_bad_actors, process_scenes
 
 if sys.version_info >= (3, 10):
     from typing import TypeAlias
@@ -2551,14 +2551,18 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
                 rom.write_int16s(0x00B66E60 + mask_segment_id * 0x12, [0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000])
 
     if not world.settings.fix_broken_actors:
+        scene_data = process_scenes(rom)
         # Because we have our new object system, we actually need to patch out the actors if the setting is disabled
-        bad_actors = get_bad_actors(rom)
+        bad_actors = get_bad_actors(rom, scene_data)
         for (actor, scene_name,scene_id, room_id, setup, actor_index, actor_type, object) in bad_actors:
             rom.write_int16(actor, 0xFFFF)
 
         # And we need to fix the spirit temple shield pot to not drop anything
-        
-
+        # Remove deku shield drop from spirit pot because it's "vanilla behavior"
+        # Replace actor parameters in scene 06, room 27 actor list
+        if not world.dungeon_mq['Spirit Temple']:
+            spirit_shield_pot = scene_data[6].rooms[27].setups[0].actors[7]
+            rom.write_int16(spirit_shield_pot.addr + 14, 0x603F)
 
     if world.settings.fix_broken_actors:
         symbol = rom.sym('FIX_BROKEN_DROPS')
@@ -2566,10 +2570,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         # Autocollect incoming_item_id for magic jars are swapped in vanilla code
         rom.write_int16(0xA88066, 0x0044)  # Change GI_MAGIC_SMALL to GI_MAGIC_LARGE
         rom.write_int16(0xA88072, 0x0043)  # Change GI_MAGIC_LARGE to GI_MAGIC_SMALL
-    #else:
-        # Remove deku shield drop from spirit pot because it's "vanilla behavior"
-        # Replace actor parameters in scene 06, room 27 actor list
-    #    rom.write_int16(0x2BDC0C6, 0x603F)
 
     if world.settings.shuffle_boulders:
         patch_boulders(world.boulders_by_id, rom)
