@@ -380,7 +380,8 @@
             "blue_fire_arrows",
             "fix_broken_actors",
             "prevent_guay_respawns",
-            "minimap_enemy_tracker"
+            "minimap_enemy_tracker",
+            "enemizer"
           ]
         },
         {

@@ -2625,6 +2625,9 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
             if mask_segment_id not in (0x05, 0x06, 0x07, 0x0F, 0x15, 0x1C):
                 rom.write_int16s(0x00B66E60 + mask_segment_id * 0x12, [0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000])
 
+    if world.settings.enemizer:
+        rom.write_byte(rom.sym('ENEMIZER'), 0x01)
+
     if not world.settings.fix_broken_actors:
         scene_data = process_scenes(rom)
         # Because we have our new object system, we actually need to patch out the actors if the setting is disabled

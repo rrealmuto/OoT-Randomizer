@@ -3817,6 +3817,17 @@ class SettingInfos:
         shared         = True,
     )
 
+    enemizer = Checkbutton(
+        gui_text     = "Break Revven's Console",
+        gui_tooltip = '''\
+            Turning this on creates a 99% that the game will crash upon loading
+            into any room with an enemy.
+
+            There's a 1% chance that it works and shuffles enemies randomly
+            every time you enter a room.
+        '''
+    )
+
     prevent_guay_respawns = Checkbutton(
         gui_text       = 'Prevent guays from respawning',
         gui_tooltip    = '''\

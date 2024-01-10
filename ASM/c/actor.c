@@ -23,6 +23,7 @@ extern uint16_t CURR_ACTOR_SPAWN_INDEX;
 extern uint8_t SHUFFLE_SILVER_RUPEES;
 extern int8_t curr_scene_setup;
 extern xflag_t* spawn_actor_with_flag;
+extern uint8_t ENEMIZER;
 
 #define BG_HAKA_TUBO        0x00BB  // Shadow temple spinning pot
 #define BG_SPOT18_BASKET    0x015C  // Goron city spinning pot
@@ -248,7 +249,8 @@ z64_actor_t* Actor_SpawnEntry_Hack(void* actorCtx, ActorEntry* actorEntry, z64_g
     if (continue_spawn) {
         continue_spawn = spawn_override_enemy_spawn_shuffle(actorEntry, globalCtx, SPAWN_FLAGS_SPAWNENTRY);
     }
-    //continue_spawn = spawn_override_enemizer(actorEntry, globalCtx, &overridden);
+    
+    continue_spawn = spawn_override_enemizer(actorEntry, globalCtx, &overridden);
     z64_actor_t *spawned = NULL;
     if (continue_spawn) {
         spawned = z64_SpawnActor(actorCtx, globalCtx, actorEntry->id, actorEntry->pos.x, actorEntry->pos.y, actorEntry->pos.z,
@@ -465,12 +467,15 @@ bool is_enemy(ActorEntry* actorEntry) {
 int enemy_spawn_index = 0;
 
 bool spawn_override_enemizer(ActorEntry *actorEntry, z64_game_t *globalCtx, bool* overridden) {
-    if(is_enemy(actorEntry)) {
+    if(ENEMIZER) {
+        if(is_enemy(actorEntry)) {
         int16_t index = (int16_t)(z64_Rand_ZeroOne() * array_size(enemy_list));
         //int index = (enemy_spawn_index++) % (array_size(enemy_list));
         actorEntry->id = enemy_list[index].id;
         actorEntry->params = enemy_list[index].var;
         *overridden = true;
+        }  
+        return true;
     }
     return true;
 }
