@@ -168,8 +168,7 @@ def scene_get_actors(rom, actor_func, scene_data, scene, alternate=None, setup_n
             room_list = scene_start + (rom.read_int32(scene_data + 4) & 0x00FFFFFF)
             for room_id in range(0, room_count):
                 room_data = rom.read_int32(room_list)
-                actors, objects = room_get_actors(rom, actor_func, room_data, scene, room_id, setup_num)
-                actors.update(actors)
+                actors.update(room_get_actors(rom, actor_func, room_data, scene, room_id, setup_num))
                 room_list = room_list + 8
         if command == 0x18: # Alternate header list
             header_list = scene_start + (rom.read_int32(scene_data + 4) & 0x00FFFFFF)
@@ -179,14 +178,11 @@ def scene_get_actors(rom, actor_func, scene_data, scene, alternate=None, setup_n
                     header_data = scene_start + alt_header_addr
                     actors.update(scene_get_actors(rom, actor_func, header_data, scene, scene_start, alt_id+1))
                 header_list = header_list + 4
-
         scene_data = scene_data + 8
     return actors
 
 def room_get_actors(rom, actor_func, room_data, scene, room_id, setup_num, alternate=None):
     actors = {}
-    
-    objects = []
     room_start = alternate if alternate else room_data
     command = 0
     while command != 0x14: # 0x14 = end header
@@ -200,11 +196,6 @@ def room_get_actors(rom, actor_func, room_data, scene, room_id, setup_num, alter
                 if entry:
                     actors[actor_list] = entry
                 actor_list = actor_list + 16
-        if command == 0x0B: # object list
-            object_count = rom.read_byte(room_data + 1)
-            object_list_offset = room_start + (rom.read_int32(room_data + 4) & 0x00FFFFFF)
-            for i in range(0, object_count):
-                objects.append(rom.read_int16(object_list_offset + i*2))
         if command == 0x18: # Alternate header list
             header_list = room_start + (rom.read_int32(room_data + 4) & 0x00FFFFFF)
             for alt_id in range(0,3):
@@ -214,7 +205,7 @@ def room_get_actors(rom, actor_func, room_data, scene, room_id, setup_num, alter
                     actors.update(room_get_actors(rom, actor_func, header_data, scene,room_id, alt_id+1, room_start))
                 header_list = header_list + 4
         room_data = room_data + 8
-    return actors, objects
+    return actors
 
 def get_wonderitems(rom):
     def get_wonderitems_func(rom, actor_id, actor, scene, room_id, setup_num, actor_num):

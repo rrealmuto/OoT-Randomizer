@@ -39,8 +39,38 @@ jal Object_GetIndex
     addu    t0, t0, t7
     lw      t0, 0x0(t0)
     nop
-.org 0x80B75364 ; for some reason the entire routine occurs a second time. just nop the result i guess
-    nop
+
+; the second time around
+.org 0x80b75340
+;  t0 contains the slot
+;  put address in t4
+; Replaces:
+;  -   sll     t1, t0,  4
+;  -   addu    t1, t1, t0
+;     lui     $at, 0x8000
+;  -   sll     t1, t1,  2
+;     addu    t8, t6, t7
+;     addu    t9, t8, $at
+;  -   addu    t2, a1, t1
+;     sw      t9, 0x0204(a0)             # 00000204
+;  -   addu    t3, t2, a2
+;  -   lw      t4, 0x17B4(t3)             # 000017B4
+    lui     at, 0x8000
+    addu    t8, t6, t7
+    addu    t9, t8, at
+    sw      t9, 0x0204(a0)
+    li      t4, extended_object_ctx ; takes 2 instruction slots
+    addiu   t4, t4, 0x14
+    sll     t1, t0, 0x03
+    addu    t4, t4, t1
+    lw      t4, 0x0(t4)
+
+; Hack the call the Object_GetIndex in DoorKiller_Init to just call the vanilla function
+; So that the proper fake door object loads
+.org 0x80b742b0 
+; Replaces:
+;   jal Object_GetIndex ; (original, which is hacked)
+    jal Object_GetIndex ; (our version of the original, bypassing the hack)
 
 ; ovl_effect_ss_kakera (fragment ss effect used by boulders/pots/etc)
 ; Hack where it indexes the object table directly
