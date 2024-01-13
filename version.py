@@ -1,7 +1,7 @@
 __version__ = '8.0.11'
 
 # This is a supplemental version number for branches based off of main dev.
-supplementary_version = 65
+supplementary_version = 66
 
 # Pick a unique identifier byte for your fork if you are intending to have a long-lasting branch.
 # This will be 0x00 for main releases and 0x01 for main dev.

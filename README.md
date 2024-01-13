@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v66](#v66)
   * [v65](#v65)
   * [v64](#v64)
   * [v63](#v63)
@@ -90,6 +91,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v66
+  * Add Bunny Hood preset
+
 ### v65
   * Hopefully actually fix small key text boxes in fishing shuffle
 
