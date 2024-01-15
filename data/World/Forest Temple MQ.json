@@ -189,7 +189,7 @@
             "Forest Temple MQ Raised Island Courtyard Deku Baba 3": "can_kill_deku_baba",
             "Deku Baba Sticks": "has_soul(Deku_Baba) and (is_adult or Kokiri_Sword or Boomerang)",
             "Deku Baba Nuts": "
-                has_soul(Deku_Baba) and 
+                has_soul(Deku_Baba) and
                 (is_adult or Slingshot or Sticks or
                 has_explosives or Kokiri_Sword or can_use(Dins_Fire))"
         },

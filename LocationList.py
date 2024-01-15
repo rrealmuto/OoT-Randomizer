@@ -172,7 +172,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("KF Adult Deku Tree Deku Baba 4",                               ("EnemyDrop",    0x55, (1,2,6), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "EnemyDrop"))),
     ("KF Adult Deku Tree Deku Baba 5",                               ("EnemyDrop",    0x55, (1,2,7), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "EnemyDrop"))),
     ("KF Adult Deku Tree Deku Baba 6",                               ("EnemyDrop",    0x55, (1,2,8), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "EnemyDrop"))),
-    
+
 
     # Lost Woods
     ("LW Gift from Saria",                                           ("Cutscene",     0xFF,  0x02, None,                            'Ocarina',                               ("Lost Woods", "Forest Area", "NPCs",))),
@@ -250,7 +250,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("SFM Adult Maze Moblin 4",                                      ("EnemyDrop",    0x56, (0,2,9), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "EnemyDrop"))),
     ("SFM Adult Maze Moblin 5",                                      ("EnemyDrop",    0x56, (0,2,10), None,                      'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "EnemyDrop"))),
     ("SFM Adult Smashing Moblin",                                    ("EnemyDrop",    0x56, (0,2,11), None,                      'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "EnemyDrop"))),
-    
+
     ("SFM Wolfos Grotto Wolfos 1",                                   ("EnemyDrop",    0x3E, (7,0x0D,1), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
     ("SFM Wolfos Grotto Wolfos 2",                                   ("EnemyDrop",    0x3E, (7,0x0D,2), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
 
@@ -294,7 +294,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("HF Child South Field Peahat 3",                                ("EnemyDrop",    0x51, [(0,0,12),(0,1,8)], None,               'Rupees (5)',                            ("Hyrule Field", "EnemyDrop"))),
     ("HF Child South Field Flying Peahat",                           ("EnemyDrop",    0x51, [(0,0,15),(0,1,11)], None,              'Rupees (5)',                            ("Hyrule Field", "EnemyDrop"))),
     ("HF Child Near Valley Flying Peahat",                           ("EnemyDrop",    0x51, [(0,0,14),(0,1,10)], None,              'Rupees (5)',                            ("Hyrule Field", "EnemyDrop"))),
-    
+
     # Market
     ("Market Shooting Gallery Reward",                               ("NPC",          0x42,  0x60, None,                            'Slingshot',                             ("Market", "Minigames",))),
     ("Market Bombchu Bowling First Prize",                           ("NPC",          0x4B,  0x34, None,                            'Bomb Bag',                              ("Market", "Minigames",))),
@@ -530,7 +530,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("LLR Child Night Guay 13",                                      ("EnemyDrop",    0x63, (0,1,23), None,                     'Rupees (5)',                            ("Lon Lon Ranch", "EnemyDrop"))),
     ("LLR Child Night Guay 14",                                      ("EnemyDrop",    0x63, (0,1,24), None,                     'Rupees (5)',                            ("Lon Lon Ranch", "EnemyDrop"))),
     ("LLR Child Night Guay 15",                                      ("EnemyDrop",    0x63, (0,1,25), None,                     'Rupees (5)',                            ("Lon Lon Ranch", "EnemyDrop"))),
-    
+
     # Kakariko Village
     ("Kak Anju as Child",                                            ("NPC",          0x52,  0x0F, None,                            'Bottle',                                ("Kakariko Village", "Minigames",))),
     ("Kak Anju as Adult",                                            ("NPC",          0x52,  0x1D, None,                            'Pocket Egg',                            ("Kakariko Village", "NPCs",))),
@@ -613,7 +613,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     # Kakariko Village Enemies
     ("Kak Redead Grotto Redead Left",                                ("EnemyDrop",    0x3E, (2,0x07,1), None,                      'Rupees (5)',                            ("Kakariko Village", "Kakariko", "Grottos", "EnemyDrop"))),
     ("Kak Redead Grotto Redead Right",                               ("EnemyDrop",    0x3E, (2,0x07,2), None,                      'Rupees (5)',                            ("Kakariko Village", "Kakariko", "Grottos", "EnemyDrop"))),
-    
+
     # Graveyard
     ("Graveyard Shield Grave Chest",                                 ("Chest",        0x40,  0x00, None,                            'Hylian Shield',                         ("Graveyard", "Grottos", "Chests",))),
     ("Graveyard Heart Piece Grave Chest",                            ("Chest",        0x3F,  0x00, None,                            'Piece of Heart',                        ("Graveyard", "Grottos", "Chests",))),
@@ -677,7 +677,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Graveyard Dampe Race Redead 2",                                ("EnemyDrop",    0x48,  (2,0,5), None,                     'Rupees (5)',                            ("the Graveyard", "Kakariko", "EnemyDrop"))),
     ("Graveyard Dampe Race Redead 3",                                ("EnemyDrop",    0x48,  (3,0,3), None,                     'Rupees (5)',                            ("the Graveyard", "Kakariko", "EnemyDrop"))),
     ("Graveyard Dampe Race Redead 4",                                ("EnemyDrop",    0x48,  (3,0,4), None,                     'Rupees (5)',                            ("the Graveyard", "Kakariko", "EnemyDrop"))),
-    
+
 
     # Death Mountain Trail
     ("DMT Freestanding PoH",                                         ("Collectable",  0x60,  0x1E, None,                            'Piece of Heart',                        ("Death Mountain Trail", "Freestandings",))),
@@ -725,7 +725,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("DMT Child Summit Skullwalltula Lower",                         ("EnemyDrop",    0x60,  (0,0,0x07), None,                   'Rupees (5)',                            ("Death Mountain Trail", "Vanilla", "EnemyDrop"))),
     ("DMT Child Summit Skullwalltula Middle",                        ("EnemyDrop",    0x60,  (0,0,0x08), None,                   'Rupees (5)',                            ("Death Mountain Trail", "Vanilla", "EnemyDrop"))),
     ("DMT Child Summit Skullwalltula Upper",                         ("EnemyDrop",    0x60,  (0,0,0x09), None,                   'Rupees (5)',                            ("Death Mountain Trail", "Vanilla", "EnemyDrop"))),
-    
+
     # Goron City
     ("GC Darunias Joy",                                              ("NPC",          0x62,  0x54, None,                            'Progressive Strength Upgrade',          ("Goron City", "NPCs",))),
     ("GC Pot Freestanding PoH",                                      ("Collectable",  0x62,  0x1F, None,                            'Piece of Heart',                        ("Goron City", "Freestandings",))),
@@ -888,7 +888,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("ZR Adult Octorok 6",                                           ("EnemyDrop",    0x54, (0,2,8), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
     ("ZR Adult Octorok 7",                                           ("EnemyDrop",    0x54, (0,2,9), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
     ("ZR Adult Octorok 8",                                           ("EnemyDrop",    0x54, (0,2,10), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
-    
+
     # Zora's Domain
     ("ZD Diving Minigame",                                           ("NPC",          0x58,  0x37, None,                            'Progressive Scale',                     ("Zora's Domain", "Minigames",))),
     ("ZD Chest",                                                     ("Chest",        0x58,  0x00, None,                            'Piece of Heart',                        ("Zora's Domain", "Chests",))),
@@ -1007,7 +1007,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("LH Adult Tektite 6",                                           ("EnemyDrop",    0x57, (0,2,28), None,                       'Rupees (5)',                            ("Lake Hylia", "EnemyDrop"))),
     ("LH Adult Tektite 7",                                           ("EnemyDrop",    0x57, (0,2,29), None,                       'Rupees (5)',                            ("Lake Hylia", "EnemyDrop"))),
     ("LH Adult Tektite 8",                                           ("EnemyDrop",    0x57, (0,2,30), None,                       'Rupees (5)',                            ("Lake Hylia", "EnemyDrop"))),
-    
+
     # Gerudo Valley
     ("GV Crate Freestanding PoH",                                    ("Collectable",  0x5A,  0x02, None,                            'Piece of Heart',                        ("Gerudo Valley", "Freestandings",))),
     ("GV Waterfall Freestanding PoH",                                ("Collectable",  0x5A,  0x01, None,                            'Piece of Heart',                        ("Gerudo Valley", "Freestandings",))),
@@ -1195,7 +1195,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Deku Tree Basement Recovery Heart 3",                          ("Freestanding", 0x00,  (9,0,9), None,                         'Recovery Heart',                        ("Deku Tree", "Vanilla Dungeons", "Freestandings",))),
 
     # Deku Tree Enemies
-    
+
     #("Deku Tree Lobby Deku Baba 1",                                  ("EnemyDrop",    0x00,  (0, 0x12), None,                   'Rupees (5)',                            ("Deku Tree", "Vanilla", "EnemyDrop"))),
     #("Deku Tree Lobby Deku Baba 2",                                  ("EnemyDrop",    0x00,  (0, 0x13), None,                   'Rupees (5)',                            ("Deku Tree", "Vanilla", "EnemyDrop"))),
     #("Deku Tree Lobby Deku Baba 3",                                  ("EnemyDrop",    0x00,  (0, 0x14), None,                   'Rupees (5)',                            ("Deku Tree", "Vanilla", "EnemyDrop"))),
@@ -1378,7 +1378,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Dodongos Cavern Climb Switch Room Armos 2",                    ("EnemyDrop",    0x01,  (5, 0, 0x02), None,                   'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla", "EnemyDrop"))),
     ("Dodongos Cavern Climb Switch Room Armos 3",                    ("EnemyDrop",    0x01,  (5, 0, 0x03), None,                   'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla", "EnemyDrop"))),
     ("Dodongos Cavern Climb Switch Room Keese 1",                    ("EnemyDrop",    0x01,  (5, 0, 0x04), None,                   'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla", "EnemyDrop"))),
-    ("Dodongos Cavern Climb Switch Room Keese 2",                    ("EnemyDrop",    0x01,  (5, 0, 0x05), None,                   'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla", "EnemyDrop"))),    
+    ("Dodongos Cavern Climb Switch Room Keese 2",                    ("EnemyDrop",    0x01,  (5, 0, 0x05), None,                   'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla", "EnemyDrop"))),
     ("Dodongos Cavern Upper Bridge Keese 1",                         ("EnemyDrop",    0x01,  (0, 0, 0x06), None,                   'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla", "EnemyDrop"))),
     ("Dodongos Cavern Upper Bridge Keese 2",                         ("EnemyDrop",    0x01,  (0, 0, 0x07), None,                   'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla", "EnemyDrop"))),
     ("Dodongos Cavern Before Upper Lizalfos Baby Dodongo 1",         ("EnemyDrop",    0x01,  (10, 0, 0x02), None,                   'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla", "EnemyDrop"))),
@@ -1391,7 +1391,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Dodongos Cavern Before Back Room Keese 1",                     ("EnemyDrop",    0x01,  (8, 0, 0x01), None,                   'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla", "EnemyDrop"))),
     ("Dodongos Cavern Before Back Room Keese 2",                     ("EnemyDrop",    0x01,  (8, 0, 0x02), None,                   'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla", "EnemyDrop"))),
     ("Dodongos Cavern Back Room Armos",                              ("EnemyDrop",    0x01,  (14,0,0x01), None,                   'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla", "EnemyDrop"))),
-    
+
     # Dodongo's Cavern MQ
     ("Dodongos Cavern MQ Map Chest",                                 ("Chest",        0x01,  0x00, None,                            'Map (Dodongos Cavern)',                 ("Dodongo's Cavern MQ", "Master Quest", "Chests",))),
     ("Dodongos Cavern MQ Bomb Bag Chest",                            ("Chest",        0x01,  0x04, None,                            'Bomb Bag',                              ("Dodongo's Cavern MQ", "Master Quest", "Chests",))),
@@ -1471,7 +1471,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Dodongos Cavern MQ Staircase Silver Rupee Vines",              ("SilverRupee",  0x1,   (2,0,14), None,                     'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongo's Cavern MQ", "Master Quest", "Silver Rupees",))),
     ("Dodongos Cavern MQ Staircase Silver Rupee Top Right Crate",    ("SilverRupee",  0x1,   (2,0,15), None,                     'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongo's Cavern MQ", "Master Quest", "Silver Rupees",))),
 
-    
+
     # Dodongo's Cavern MQ Enemies
     ("Dodongos Cavern MQ Right Side Skulltula",                      ("EnemyDrop",    0x01,  (1,0,3), None,                         'Rupees (5)',                            ("Dodongo's Cavern", "Master Quest", "EnemyDrop"))),
     ("Dodongos Cavern MQ Right Side Keese",                          ("EnemyDrop",    0x01,  (1,0,5), None,                         'Rupees (5)',                            ("Dodongo's Cavern", "Master Quest", "EnemyDrop"))),
@@ -1523,7 +1523,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Dodongos Cavern MQ Song of Time Block Room Skulltula 1",       ("EnemyDrop",    0x01,  (15,0,2), None,                        'Rupees (5)',                            ("Dodongo's Cavern", "Master Quest", "EnemyDrop"))),
     ("Dodongos Cavern MQ Song of Time Block Room Skulltula 2",       ("EnemyDrop",    0x01,  (15,0,3), None,                        'Rupees (5)',                            ("Dodongo's Cavern", "Master Quest", "EnemyDrop"))),
     ("Dodongos Cavern MQ Song of Time Block Room Skulltula 3",       ("EnemyDrop",    0x01,  (15,0,4), None,                        'Rupees (5)',                            ("Dodongo's Cavern", "Master Quest", "EnemyDrop"))),
-    
+
     # Dodongo's Cavern Shared
     ("Dodongos Cavern Lower Lizalfos Hidden Recovery Heart",         ("Freestanding", 0x01,  (3,0,6), None,                         'Recovery Heart',                        ("Dodongo's Cavern", "Dodongo's Cavern MQ", "Vanilla Dungeons", "Master Quest", "Freestandings",))),
     ("Dodongos Cavern Boss Room Chest",                              ("Chest",        0x12,  0x00, None,                            'Bombs (5)',                             ("Dodongo's Cavern", "Dodongo's Cavern MQ", "Vanilla Dungeons", "Master Quest", "Chests",))),
@@ -1611,7 +1611,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Jabu Jabus Belly Before Boss Biri 3",                          ("EnemyDrop",    0x02,  (5, 0, 4), None,                'Rupees (5)',                            ("Jabu Jabu's Belly", "Vanilla", "EnemyDrop"))),
     ("Jabu Jabus Belly Before Boss Biri 4",                          ("EnemyDrop",    0x02,  (5, 0, 5), None,                'Rupees (5)',                            ("Jabu Jabu's Belly", "Vanilla", "EnemyDrop"))),
     ("Jabu Jabus Belly Before Boss Biri 5",                          ("EnemyDrop",    0x02,  (5, 0, 6), None,                'Rupees (5)',                            ("Jabu Jabu's Belly", "Vanilla", "EnemyDrop"))),
-    
+
 
     # Jabu Jabu's Belly MQ
     ("Jabu Jabus Belly MQ Map Chest",                                ("Chest",        0x02,  0x03, None,                            'Map (Jabu Jabus Belly)',                ("Jabu Jabu's Belly MQ", "Master Quest", "Chests",))),
@@ -1674,7 +1674,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Jabu Jabus Belly MQ Falling Like-Like Room Left Cow Wonderitem 3", ("Wonderitem",0x02, (11,0,25), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
 
 
-    
+
     # Jabu Jabu's Belly MQ Enemies
     ("Jabu Jabus Belly MQ Entryway Octorok",                         ("EnemyDrop",    0x02,  (0, 0, 1), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
     ("Jabu Jabus Belly MQ Entryway Shabom 1",                        ("EnemyDrop",    0x02,  (0, 0, 8), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
@@ -1709,7 +1709,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Jabu Jabus Belly MQ Basement Boomerang Room Stinger 2",        ("EnemyDrop",    0x02,  (14, 0, 2), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
     ("Jabu Jabus Belly MQ Basement Boomerang Room Like-like",        ("EnemyDrop",    0x02,  (14, 0, 4), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
     ("Jabu Jabus Belly MQ Basement Boomerang Room Lizalfos",         ("EnemyDrop",    0x02,  (14, 0, 5), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    
+
     # Jabu Jabu's Belly Shared
     ("Jabu Jabus Belly Barinade Heart",                              ("BossHeart",    0x13,  0x4F, None,                            'Heart Container',                       ("Jabu Jabu's Belly", "Jabu Jabu's Belly MQ", "Vanilla Dungeons", "Master Quest",))),
     ("Jabu Jabus Belly Barinade Pot 1",                              ("Pot",          0x13,  (1,0,2), None,                         'Recovery Heart',                        ("Jabu Jabu's Belly", "Jabu Jabu's Belly MQ", "Vanilla Dungeons", "Master Quest", "Pots",))),
@@ -1796,7 +1796,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Bottom of the Well Behind Right Locked Door Keese 3",          ("EnemyDrop",    0x08,  (5,0, 3), None,                    'Rupees (5)',                           ("Bottom of the Well", "Vanilla", "EnemyDrop"))),
     ("Bottom of the Well Behind Right Locked Door Keese 4",          ("EnemyDrop",    0x08,  (5,0, 4), None,                    'Rupees (5)',                           ("Bottom of the Well", "Vanilla", "EnemyDrop"))),
     #("Bottom of the Well Behind Left Locked Door Deku Baba",          ("EnemyDrop",    0x08,  (5,0, 3), None,                    'Rupees (5)',                           ("Bottom of the Well", "Vanilla", "EnemyDrop"))),
-    
+
     # Bottom of the Well MQ
     ("Bottom of the Well MQ Map Chest",                              ("Chest",        0x08,  0x03, None,                            'Map (Bottom of the Well)',              ("Bottom of the Well MQ", "Master Quest", "Chests",))),
     ("Bottom of the Well MQ East Inner Room Freestanding Key",       ("Collectable",  0x08,  0x01, None,                            'Small Key (Bottom of the Well)',        ("Bottom of the Well MQ", "Master Quest", "Freestandings",))),
@@ -2040,7 +2040,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Forest Temple MQ Second Twisted Hallway Bubble 1",             ("EnemyDrop",    0x03,  (20, 0, 1), None,                      'Rupees (5)',                            ("Forest Temple", "Master Quest", "EnemyDrop"))),
     ("Forest Temple MQ Second Twisted Hallway Bubble 2",             ("EnemyDrop",    0x03,  (20, 0, 2), None,                      'Rupees (5)',                            ("Forest Temple", "Master Quest", "EnemyDrop"))),
     ("Forest Temple MQ Balcony Floormaster",                         ("EnemyDrop",    0x03,  (21, 0, 1), None,                      'Rupees (5)',                            ("Forest Temple", "Master Quest", "EnemyDrop"))),
-    
+
     # Forest Temple Shared
     ("Forest Temple Phantom Ganon Heart",                            ("BossHeart",    0x14,  0x4F, None,                            'Heart Container',                       ("Forest Temple", "Forest Temple MQ", "Vanilla Dungeons", "Master Quest",))),
 
@@ -2144,7 +2144,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Fire Temple Before Lower Flare Dancer Torch Slug 4",           ("EnemyDrop",    0x04,  (15,0, 8), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla", "EnemyDrop"))),
     ("Fire Temple Before Lower Flare Dancer Like-Like",              ("EnemyDrop",    0x04,  (18,0, 1), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla", "EnemyDrop"))),
     ("Fire Temple Lower Flare Dancer",                               ("EnemyDrop",    0x04,  (3, 0, 1), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla", "EnemyDrop"))),
-    
+
 
     # Fire Temple MQ
     ("Fire Temple MQ Map Room Side Chest",                           ("Chest",        0x04,  0x02, None,                            'Hylian Shield',                         ("Fire Temple MQ", "Master Quest", "Chests",))),
@@ -2560,7 +2560,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Water Temple MQ Map Chest Stalfos 3",                          ("EnemyDrop",    0x05,  (19,0,3), None,                        'Rupees (5)',                            ("Water Temple", "Master Quest", "EnemyDrop"))),
     ("Water Temple MQ Lizalfos Hallway Lizalfos 1",                  ("EnemyDrop",    0x05,  (20,0,1), None,                        'Rupees (5)',                            ("Water Temple", "Master Quest", "EnemyDrop"))),
     ("Water Temple MQ Lizalfos Hallway Lizalfos 2",                  ("EnemyDrop",    0x05,  (20,0,2), None,                        'Rupees (5)',                            ("Water Temple", "Master Quest", "EnemyDrop"))),
-    
+
     # Water Temple Shared
     ("Water Temple Morpha Heart",                                    ("BossHeart",    0x16,  0x4F, None,                            'Heart Container',                       ("Water Temple", "Water Temple MQ", "Vanilla Dungeons", "Master Quest",))),
 
@@ -2650,7 +2650,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     # Shadow Temple Wonderitems
     ("Shadow Temple 3 Spinning Pots Wonderitem",                     ("Wonderitem",   0x07, (12,0,2), None,                         'Arrows (10)',                           ("Shadow Temple", "Vanilla", "Wonderitem"))),
 
-    
+
     # Shadow Temple Enemies
     ("Shadow Temple Map Chest Keese 1",                              ("EnemyDrop",    0x07,  (1, 0, 1), None,                'Rupees (5)',                                 ("Shadow Temple", "Vanilla", "EnemyDrop"))),
     ("Shadow Temple Map Chest Keese 2",                              ("EnemyDrop",    0x07,  (1, 0, 2), None,                'Rupees (5)',                                 ("Shadow Temple", "Vanilla", "EnemyDrop"))),
@@ -2689,7 +2689,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Shadow Temple After Wind Redead Right",                             ("EnemyDrop",    0x07,  (20,0, 2), None,                'Rupees (5)',                                 ("Shadow Temple", "Vanilla", "EnemyDrop"))),
     ("Shadow Temple Boat Stalfos 1",                                 ("EnemyDrop",    0x07,  (21,0, 14), None,                'Rupees (5)',                                ("Shadow Temple", "Vanilla", "EnemyDrop"))),
     ("Shadow Temple Boat Stalfos 2",                                 ("EnemyDrop",    0x07,  (21,0, 15), None,                'Rupees (5)',                                ("Shadow Temple", "Vanilla", "EnemyDrop"))),
-    
+
     # Shadow Temple MQ
     ("Shadow Temple MQ Early Gibdos Chest",                          ("Chest",        0x07,  0x03, None,                            'Small Key (Shadow Temple)',             ("Shadow Temple MQ", "Master Quest", "Chests",))),
     ("Shadow Temple MQ Map Chest",                                   ("Chest",        0x07,  0x02, None,                            'Map (Shadow Temple)',                   ("Shadow Temple MQ", "Master Quest", "Chests",))),
@@ -3083,7 +3083,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Spirit Temple MQ Early Child Torch Slug 1",                    ("EnemyDrop",    0x06,  (1,0,1), None,                         'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))),
     ("Spirit Temple MQ Early Child Torch Slug 2",                    ("EnemyDrop",    0x06,  (1,0,2), None,                         'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))),
     #("Spirit Temple MQ Early Child Keese 1",                         ("EnemyDrop",    0x06,  (1,0,3), None,                         'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))), #Don't spawn because object isn't loaded?
-    #("Spirit Temple MQ Early Child Keese 2",                         ("EnemyDrop",    0x06,  (1,0,4), None,                         'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))), 
+    #("Spirit Temple MQ Early Child Keese 2",                         ("EnemyDrop",    0x06,  (1,0,4), None,                         'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))),
     ("Spirit Temple MQ Before Gate Gibdo",                           ("EnemyDrop",    0x06,  (2,0,1), None,                         'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))),
     ("Spirit Temple MQ After Gate Gibdo 1",                          ("EnemyDrop",    0x06,  (2,0,2), None,                         'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))),
     ("Spirit Temple MQ After Gate Gibdo 2",                          ("EnemyDrop",    0x06,  (2,0,3), None,                         'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))),
@@ -3173,7 +3173,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Ice Cavern Near End Pot 1",                                    ("Pot",          0x09,  (6,0,1), None,                         'Recovery Heart',                        ("Ice Cavern", "Vanilla Dungeons", "Pots",))),
     ("Ice Cavern Near End Pot 2",                                    ("Pot",          0x09,  (6,0,2), None,                         'Recovery Heart',                        ("Ice Cavern", "Vanilla Dungeons", "Pots",))),
     ("Ice Cavern Frozen Pot",                                        ("Pot",          0x09,  (9,0,10), None,                        'Rupees (50)',                           ("Ice Cavern", "Vanilla Dungeons", "Pots",))),
-    
+
     # Ice Cavern Enemies
     ("Ice Cavern Entryway Freezard 1",                               ("EnemyDrop",    0x09,  (1,0, 2), None,                    'Rupees (5)',                           ("Ice Cavern", "Vanilla", "EnemyDrop"))),
     ("Ice Cavern Entryway Freezard 2",                               ("EnemyDrop",    0x09,  (1,0, 11), None,                    'Rupees (5)',                           ("Ice Cavern", "Vanilla", "EnemyDrop"))),
@@ -3195,7 +3195,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Ice Cavern Compass Chest Keese 1",                             ("EnemyDrop",    0x09,  (11,0, 1), None,                    'Rupees (5)',                           ("Ice Cavern", "Vanilla", "EnemyDrop"))),
     ("Ice Cavern Compass Chest Keese 2",                             ("EnemyDrop",    0x09,  (11,0, 2), None,                    'Rupees (5)',                           ("Ice Cavern", "Vanilla", "EnemyDrop"))),
     ("Ice Cavern Compass Chest Keese 3",                             ("EnemyDrop",    0x09,  (11,0, 3), None,                    'Rupees (5)',                           ("Ice Cavern", "Vanilla", "EnemyDrop"))),
-  
+
 
     # Ice Cavern Silver Rupees
     ("Ice Cavern Spinning Scythe Silver Rupee Icicles",              ("SilverRupee",  0x09,  (3,0,3), None,                     'Silver Rupee (Ice Cavern Spinning Scythe)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees",))),
@@ -3372,7 +3372,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Gerudo Training Ground MQ First Iron Knuckle",                 ("EnemyDrop",    0x0B,  (1,0,1), None,                         'Rupees (5)',                           ("Gerudo Training Ground", "Master Quest", "EnemyDrop"))),
     ("Gerudo Training Ground MQ Slopes Freezard",                    ("EnemyDrop",    0x0B,  (2,0,1), None,                         'Rupees (5)',                           ("Gerudo Training Ground", "Master Quest", "EnemyDrop"))),
     ("Gerudo Training Ground MQ Slopes Wallmaster 1",                ("EnemyDrop",    0x0B,  (2,0,18), None,                        'Rupees (5)',                           ("Gerudo Training Ground", "Master Quest", "EnemyDrop"))),
-    #("Gerudo Training Ground MQ Slopes Wallmaster 2",                ("EnemyDrop",    0x0B,  (2,0,22), None,                        'Rupees (5)',                           ("Gerudo Training Ground", "Master Quest", "EnemyDrop"))), Linked to switch flag 0x11 which doesn't trigger in this room? 
+    #("Gerudo Training Ground MQ Slopes Wallmaster 2",                ("EnemyDrop",    0x0B,  (2,0,22), None,                        'Rupees (5)',                           ("Gerudo Training Ground", "Master Quest", "EnemyDrop"))), Linked to switch flag 0x11 which doesn't trigger in this room?
     ("Gerudo Training Ground MQ Before Heavy Block Stalfos 1",       ("EnemyDrop",    0x0B,  (3,0,5), None,                        'Rupees (5)',                           ("Gerudo Training Ground", "Master Quest", "EnemyDrop"))),
     ("Gerudo Training Ground MQ Before Heavy Block Stalfos 2",       ("EnemyDrop",    0x0B,  (3,0,6), None,                        'Rupees (5)',                           ("Gerudo Training Ground", "Master Quest", "EnemyDrop"))),
     ("Gerudo Training Ground MQ Before Heavy Block Skulltula 1",     ("EnemyDrop",    0x0B,  (3,0,7), None,                        'Rupees (5)',                           ("Gerudo Training Ground", "Master Quest", "EnemyDrop"))),
@@ -3491,7 +3491,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Ganons Castle Spirit Trial Wrong Sun Wallmaster 1",             ("EnemyDrop",    0x0D,  (18,0,19), None,                     'Rupees (5)',                            ("Ganon's Castle", "Vanilla", "EnemyDrop"))),
     ("Ganons Castle Spirit Trial Wrong Sun Wallmaster 2",             ("EnemyDrop",    0x0D,  (18,0,21), None,                     'Rupees (5)',                            ("Ganon's Castle", "Vanilla", "EnemyDrop"))),
     ("Ganons Castle Spirit Trial Wrong Sun Wallmaster 3",             ("EnemyDrop",    0x0D,  (18,0,23), None,                     'Rupees (5)',                            ("Ganon's Castle", "Vanilla", "EnemyDrop"))),
-    
+
     # Ganon's Castle MQ
     ("Ganons Castle MQ Forest Trial Freestanding Key",               ("Collectable",  0x0D,  0x01, None,                            'Small Key (Ganons Castle)',             ("Ganon's Castle MQ", "Master Quest", "Freestandings",))),
     ("Ganons Castle MQ Forest Trial Eye Switch Chest",               ("Chest",        0x0D,  0x02, None,                            'Arrows (10)',                           ("Ganon's Castle MQ", "Master Quest", "Chests",))),
@@ -3590,7 +3590,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Ganons Castle MQ Spirit Trial Bubble 1",                         ("EnemyDrop",    0x0D,  (18,0,10), None,                   'Rupees (5)',                            ("Ganon's Castle", "Master Quest", "EnemyDrop"))),
     ("Ganons Castle MQ Spirit Trial Bubble 2",                         ("EnemyDrop",    0x0D,  (18,0,11), None,                   'Rupees (5)',                            ("Ganon's Castle", "Master Quest", "EnemyDrop"))),
     ("Ganons Castle MQ Spirit Trial Wallmaster",                       ("EnemyDrop",    0x0D,  (18,0,25), None,                   'Rupees (5)',                            ("Ganon's Castle", "Master Quest", "EnemyDrop"))),
-    
+
     # Ganon's Castle Shared
     ("Ganons Tower Boss Key Chest",                                  ("Chest",        0x0A,  0x0B, None,                            'Boss Key (Ganons Castle)',              ("Ganon's Tower", "Vanilla Dungeons", "Master Quest", "Chests",))),
 

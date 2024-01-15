@@ -13,7 +13,7 @@
             "Castle Grounds From Ganons Castle": "True",
             "Ganons Castle Main": "
                 here(
-                    (has_soul(Armos) and has_soul(Bubble) and has_soul(Iron_Knuckle)) and 
+                    (has_soul(Armos) and has_soul(Bubble) and has_soul(Iron_Knuckle)) and
                         (is_adult or
                         (Kokiri_Sword and (Sticks or has_explosives or Nuts or Boomerang)) or
                         (has_explosives and (Sticks or ((Nuts or Boomerang) and Slingshot)))))",
@@ -287,7 +287,7 @@
             "Spirit Trial Clear": "can_use(Light_Arrows)"
         },
         "locations": {
-            
+
             "Ganons Castle MQ Spirit Trial Wallmaster": "has_soul(Wallmaster)",
             "Ganons Castle MQ Spirit Trial Sun Front Left Chest": "True",
             "Ganons Castle MQ Spirit Trial Sun Back Left Chest": "True",

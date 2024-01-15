@@ -2668,7 +2668,7 @@
                 (is_child or here(can_plant_bean) or Hover_Boots or logic_zora_river_lower) and
                 can_cut_shrubs and has_bottle",
             "ZR Frogs Ocarina Minigame Hint": "True"
-            
+
         },
         "exits": {
             "ZR Front": "True",

@@ -1972,42 +1972,42 @@ class SettingInfos:
     shuffle_enemy_drops = Checkbutton(
         gui_text       = 'Shuffle Enemy Drops',
         gui_tooltip    = '''\
-            Enabling will allow every unique non-boss enemy that normally drops a random item to drop a shuffled item. 
+            Enabling will allow every unique non-boss enemy that normally drops a random item to drop a shuffled item.
             The item will be automatically awarded when killing the enemy.
-            
+
             There are a handful of exceptions:
                 Poes
                 Big Octo
                 Stahlchild
                 Leevers
                 And maybe some others :)
-            
+
             Some important tidbits:
 
-            In the vanilla game, Adult Kokiri Forest no longer has enemies after completing Forest Temple. 
+            In the vanilla game, Adult Kokiri Forest no longer has enemies after completing Forest Temple.
             Enabling this setting will force the enemies to always spawn.
 
-            Individual Guays respawn themselves 10 times after you kill them and then spawn a large Guay. 
+            Individual Guays respawn themselves 10 times after you kill them and then spawn a large Guay.
             Only the first guay will drop an item. Child Night Lon-Lon has 15 unique Guays. Good luck :)
 
             Enemies that spawn additional enemies when you kill them will drop items but with some caveats:
-                Bari (the large jellyfish things in Jabu) will only drop an item from the large jelly. 
+                Bari (the large jellyfish things in Jabu) will only drop an item from the large jelly.
                     The 3 smaller ones won't
-                Floormasters - After killing the floormaster, it will split in 3. 
+                Floormasters - After killing the floormaster, it will split in 3.
                     One of the children will drop an item.
 
-            Deku Babas are the ultimate enemy so they will only drop 
+            Deku Babas are the ultimate enemy so they will only drop
             their shuffled item if you hit them with Elemental Arrows.
-	    The Deku Babas in Deku Tree and Bottom of the Well don't have additional drops.
+        The Deku Babas in Deku Tree and Bottom of the Well don't have additional drops.
         ''',
         default        = False,
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
         },
-        disable        = 
+        disable        =
         {
-            False : { 'settings': ['prevent_guay_respawns', 'minimap_enemy_tracker']},   
+            False : { 'settings': ['prevent_guay_respawns', 'minimap_enemy_tracker']},
         }
     )
 
@@ -3722,12 +3722,12 @@ class SettingInfos:
             checked on the minimap.
 
             Only displays the enemies that are currently spawned.
-            
+
             Doesn't work perfectly for scenes like Kokiri Forest where
             a single minimap is used across multiple rooms.
 
             Will display in dungeons even if the Dungeon Map has
-            not been collected. 
+            not been collected.
 
             In scenes that don't have a minimap, it tends to draw
             somewhere towards the bottom-middle of the screen.

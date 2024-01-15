@@ -5,7 +5,7 @@
 int16_t tempX;
 int16_t tempZ;
 
-uint8_t blank_texture[] = {255, 0, 0, 255}; 
+uint8_t blank_texture[] = {255, 0, 0, 255};
 extern uint8_t CFG_MINIMAP_ENEMY_TRACKER;
 
 void MiniMap_Draw_Hack(z64_game_t* globalCtx)
@@ -14,7 +14,7 @@ void MiniMap_Draw_Hack(z64_game_t* globalCtx)
         // Need to actually do all of the actor lists
         z64_actor_t* curr = globalCtx->actor_list[0x05].first;
         //int16_t tempX, tempZ;
-        
+
         z64_disp_buf_t *db = &(z64_ctxt.gfx->overlay);
         gSPDisplayList(db->p++, 0x800F84A0); // Call setup DLIST 39 again
         gDPSetCombineMode(db->p++, G_CC_PRIMITIVE, G_CC_PRIMITIVE);
@@ -29,7 +29,7 @@ void MiniMap_Draw_Hack(z64_game_t* globalCtx)
         int32_t minimap_center_z = 120;
         //int32_t minimap_center_x = 0;
         //int32_t minimap_center_z = 0;
-        
+
         // Get the minimap scale/offset parameters. What if the room doesn't have a minimap, ex. grottos?
         uint16_t x_scale = *((uint16_t*)(0x801C6E90 + 0xF30));
         uint16_t y_scale = *((uint16_t*)(0x801C6E90 + 0xF32));
@@ -44,7 +44,7 @@ void MiniMap_Draw_Hack(z64_game_t* globalCtx)
         while(curr != NULL)
         {
             // Check if the actor has a newflag override (no because otherwise we would have to do this every frame).
-            // Just check if the flag is set. 
+            // Just check if the flag is set.
             if (Actor_GetAdditionalData(curr)->minimap_draw_flags & MINIMAP_FLAGS_DRAW)
             {
                 tempX = ((int16_t)curr->pos_world.x);
@@ -66,9 +66,9 @@ void MiniMap_Draw_Hack(z64_game_t* globalCtx)
                                             (rectTop + 1) << 2, G_TX_RENDERTILE, 0, 0, 0,
                                             0);
             }
-            
+
             curr = curr->next;
         }
     }
-    
+
 }

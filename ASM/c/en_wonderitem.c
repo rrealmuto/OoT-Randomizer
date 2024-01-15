@@ -132,13 +132,13 @@ void EnWonderItem_Update_Hack(EnWonderItem* this) {
 
 // Hack to not kill wonderitem when switch flag is set if we need to override still
 uint32_t EnWonderItem_Kill_Hack(EnWonderItem* this) {
-    
+
     xflag_t flag = { 0 };
     flag.flag = CURR_ACTOR_SPAWN_INDEX;
     flag.scene = z64_game.scene_index;
     flag.room = this->actor.room_index;
     flag.setup = curr_scene_setup;
-    
+
     // Check if the Wonderitem should be overridden
     override_t override = lookup_override_by_newflag(&flag);
 

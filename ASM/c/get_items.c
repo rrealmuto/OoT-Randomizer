@@ -991,11 +991,11 @@ void Item_DropCollectible_Random_Before(z64_game_t* globalCtx, z64_actor_t* from
                 z64_SpawnActor(&globalCtx->actor_ctxt, globalCtx, 21, z64_link.common.pos_world.x, z64_link.common.pos_world.y, z64_link.common.pos_world.z, 0, 0, 0, 0);
                 z64_bzero(&drop_collectible_override_flag, sizeof(drop_collectible_override_flag));
             }
-                
+
         }
-        
+
     }
-    
+
 }
 
 // Override hack for freestanding collectibles (green, blue, red rupees, recovery hearts)

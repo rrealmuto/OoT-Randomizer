@@ -10,7 +10,7 @@
             "Jabu Jabus Belly MQ Entryway Left Cow Wonderitem": "can_use(Slingshot)",
             "Jabu Jabus Belly MQ Entryway Right Cow Wonderitem": "can_use(Slingshot)",
             "Jabu Jabus Belly MQ Entryway Octorok": "can_kill_octorok_with_explosives",
-            "Jabu Jabus Belly MQ Entryway Shabom 1": "can_kill_shabom", 
+            "Jabu Jabus Belly MQ Entryway Shabom 1": "can_kill_shabom",
             "Jabu Jabus Belly MQ Entryway Shabom 2": "can_kill_shabom",
             "Jabu Jabus Belly MQ Entryway Shabom 3": "can_kill_shabom",
             "Nut Pot": "True"
@@ -140,7 +140,7 @@
             "Jabu Jabus Belly MQ Tentacle Hallway Lizalfos": "can_kill_lizalfos",
             "Jabu Jabus Belly MQ Falling Like-Like Room Like-Like 1": "can_kill_likelike",
             "Jabu Jabus Belly MQ Falling Like-Like Room Like-Like 2": "can_kill_likelike"
-            
+
         },
         "exits": {
             "Jabu Jabus Belly Past Big Octo": "has_soul(Octorok) and (Sticks or Kokiri_Sword) and Jabu_Jabus_Belly_Right_Tentacle_Cleared",

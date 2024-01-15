@@ -87,6 +87,8 @@
         "shuffle_expensive_merchants": false,
         "shuffle_frog_song_rupees": false,
         "shuffle_individual_ocarina_notes": false,
+        "shuffle_enemy_drops": false,
+        "shuffle_enemy_spawns": "off",
         "shuffle_loach_reward": "off",
         "logic_no_night_tokens_without_suns_song": true,
         "disabled_locations": [
@@ -251,6 +253,8 @@
         "shuffle_expensive_merchants": false,
         "shuffle_frog_song_rupees": false,
         "shuffle_individual_ocarina_notes": false,
+        "shuffle_enemy_drops": false,
+        "shuffle_enemy_spawns": "off",
         "shuffle_loach_reward": "off",
         "logic_no_night_tokens_without_suns_song": false,
         "disabled_locations": [
@@ -431,6 +435,8 @@
         "shuffle_expensive_merchants": false,
         "shuffle_frog_song_rupees": false,
         "shuffle_individual_ocarina_notes": false,
+        "shuffle_enemy_drops": false,
+        "shuffle_enemy_spawns": "off",
         "shuffle_loach_reward": "off",
         "logic_no_night_tokens_without_suns_song": false,
         "disabled_locations": [
@@ -607,6 +613,8 @@
         "shuffle_expensive_merchants": false,
         "shuffle_frog_song_rupees": false,
         "shuffle_individual_ocarina_notes": false,
+        "shuffle_enemy_drops": false,
+        "shuffle_enemy_spawns": "off",
         "shuffle_loach_reward": "off",
         "logic_no_night_tokens_without_suns_song": false,
         "disabled_locations": [
@@ -794,6 +802,8 @@
         "shuffle_expensive_merchants": false,
         "shuffle_frog_song_rupees": false,
         "shuffle_individual_ocarina_notes": false,
+        "shuffle_enemy_drops": false,
+        "shuffle_enemy_spawns": "off",
         "shuffle_loach_reward": "off",
         "logic_no_night_tokens_without_suns_song": false,
         "disabled_locations": [
@@ -971,6 +981,8 @@
         "shuffle_expensive_merchants": false,
         "shuffle_frog_song_rupees": false,
         "shuffle_individual_ocarina_notes": false,
+        "shuffle_enemy_drops": false,
+        "shuffle_enemy_spawns": "off",
         "shuffle_loach_reward": "off",
         "logic_no_night_tokens_without_suns_song": false,
         "disabled_locations": [
@@ -1166,6 +1178,8 @@
         "shuffle_expensive_merchants": true,
         "shuffle_frog_song_rupees": true,
         "shuffle_individual_ocarina_notes": true,
+        "shuffle_enemy_drops": true,
+        "shuffle_enemy_spawns": "all",
         "shuffle_loach_reward": "vanilla",
         "logic_no_night_tokens_without_suns_song": false,
         "disabled_locations": [],
@@ -1505,6 +1519,8 @@
         "shuffle_expensive_merchants": false,
         "shuffle_frog_song_rupees": false,
         "shuffle_individual_ocarina_notes": false,
+        "shuffle_enemy_drops": false,
+        "shuffle_enemy_spawns": "off",
         "shuffle_loach_reward": "off",
         "logic_no_night_tokens_without_suns_song": false,
         "disabled_locations": [
@@ -1671,6 +1687,8 @@
         "shuffle_expensive_merchants": false,
         "shuffle_frog_song_rupees": false,
         "shuffle_individual_ocarina_notes": false,
+        "shuffle_enemy_drops": false,
+        "shuffle_enemy_spawns": "off",
         "shuffle_loach_reward": "off",
         "logic_no_night_tokens_without_suns_song": false,
         "disabled_locations": [
@@ -1856,6 +1874,8 @@
         "shuffle_expensive_merchants": false,
         "shuffle_frog_song_rupees": false,
         "shuffle_individual_ocarina_notes": false,
+        "shuffle_enemy_drops": false,
+        "shuffle_enemy_spawns": "off",
         "shuffle_loach_reward": "off",
         "logic_no_night_tokens_without_suns_song": false,
         "disabled_locations": [

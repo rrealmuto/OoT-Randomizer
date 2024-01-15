@@ -55,7 +55,7 @@
             "Bottom of the Well Left Side Skulltula": "can_kill_skulltula",
             "Bottom of the Well Dead Hand Skulltula": "can_play(Zeldas_Lullaby) and can_kill_skulltula",
             "Bottom of the Well Patrolling Bubble": "can_kill_bubble",
-            "Bottom of the Well Basement Redead Near Water": "can_kill_redead",      
+            "Bottom of the Well Basement Redead Near Water": "can_kill_redead",
             "Bottom of the Well Basement Redead Near Chest": "can_kill_redead",
             "Bottom of the Well Coffin Room Redead": "can_kill_redead",
             "Bottom of the Well Dead Hand": "can_play(Zeldas_Lullaby) and (Kokiri_Sword or (Sticks and logic_child_deadhand)) and (has_soul(Dead_hand))"
@@ -112,14 +112,14 @@
             "Bottom of the Well GS East Inner Room": "Boomerang",
             "Bottom of the Well GS Like Like Cage": "Boomerang",
             "Bottom of the Well Like Like": "can_kill_likelike",
-            "Bottom of the Well Fire Keese 1": "can_kill_keese",                    
-            "Bottom of the Well Fire Keese 2": "can_kill_keese",                    
-            "Bottom of the Well Fire Keese 3": "can_kill_keese",                    
+            "Bottom of the Well Fire Keese 1": "can_kill_keese",
+            "Bottom of the Well Fire Keese 2": "can_kill_keese",
+            "Bottom of the Well Fire Keese 3": "can_kill_keese",
             "Bottom of the Well Fire Keese Room Beamos": "can_kill_beamos",
             "Bottom of the Well Behind Right Locked Door Keese 1": "can_kill_keese",
             "Bottom of the Well Behind Right Locked Door Keese 2": "can_kill_keese",
             "Bottom of the Well Behind Right Locked Door Keese 3": "can_kill_keese",
-            "Bottom of the Well Behind Right Locked Door Keese 4": "can_kill_keese"      
+            "Bottom of the Well Behind Right Locked Door Keese 4": "can_kill_keese"
         }
     }
 ]

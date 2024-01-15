@@ -75,7 +75,7 @@
         "dungeon": "Spirit Temple",
         "locations": {
             "Spirit Temple MQ Map Room Enemy Chest": "
-                can_use(Dins_Fire) and Slingshot and 
+                can_use(Dins_Fire) and Slingshot and
                 (has_soul(Keese) and has_soul(Anubis))"
         },
         "exits": {
@@ -246,7 +246,7 @@
     {
         "region_name": "Spirit Temple Symphony Room",
         "dungeon": "Spirit Temple",
-        "locations": { 
+        "locations": {
             "Spirit Temple MQ Symphony Room Chest": "True",
             "Spirit Temple MQ GS Symphony Room": "True",
             "Spirit Temple MQ Symphony Room Skulltula 1": "has_soul(Skulltula)",

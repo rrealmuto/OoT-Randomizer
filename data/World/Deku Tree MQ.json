@@ -26,7 +26,7 @@
             "Deku Tree MQ Lobby Vines Skullwalltula": "
                 has_soul(Skullwalltula) and (
                     (is_child and (Slingshot or Boomerang)) or
-                    (is_adult and Bow or Hookshot) or 
+                    (is_adult and Bow or Hookshot) or
                     (can_use(Dins_Fire) or Bombs or has_bombchus))",
             "Deku Tree MQ Lobby Gohma Larva 1": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)",
             "Deku Tree MQ Lobby Gohma Larva 2": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)",
