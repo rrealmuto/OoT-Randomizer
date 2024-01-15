@@ -133,7 +133,7 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, xflag_t flag) {
 // Flag consists of the room #, scene setup, and the actor index
 void Actor_StoreFlagByIndex(z64_actor_t* actor, z64_game_t* game, uint16_t actor_index) {
     // Zeroize extra data;
-    
+
     xflag_t flag = (xflag_t) { 0 };
 
     flag.scene = z64_game.scene_index;
