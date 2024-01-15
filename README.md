@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v67](#v67)
   * [v66](#v66)
   * [v65](#v65)
   * [v64](#v64)
@@ -91,6 +92,10 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v67
+  * New setting: Shuffle Boulders
+  * New setting: Fix Broken Actors (replaces Fix Broken Drops)
+
 ### v66
   * Add Bunny Hood preset
 
