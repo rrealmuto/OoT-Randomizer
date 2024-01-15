@@ -68,7 +68,7 @@ void Actor_After_UpdateAll_Hack(z64_actor_t* actor, z64_game_t* game) {
     // Hacks are responsible for checking that they are the correct actor.
     EnWonderitem_AfterInitHack(actor, game);
     bb_after_init_hack(actor, game);
-    
+
     CURR_ACTOR_SPAWN_INDEX = 0; // reset CURR_ACTOR_SPAWN_INDEX
 }
 
@@ -367,10 +367,10 @@ uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit
             }
             return 1;
         }
-        
+
         return 1;
     }
-    
+
 
     return 0;
 }

@@ -76,7 +76,7 @@
         "region_name": "Fire Temple Lower Locked Door After Stalfos",
         "dungeon": "Fire Temple",
         "locations": {
-            
+
             "Fire Temple MQ Map Chest": "can_use(Megaton_Hammer)",
             "Fire Temple MQ Iron Knuckle Room Pot 1": "True",
             "Fire Temple MQ Iron Knuckle Room Pot 2": "True",
@@ -100,7 +100,7 @@
             "Fire Temple MQ Megaton Hammer Chest": "
                 has_soul(Flare_Dancer) and (is_adult and (has_explosives or Megaton_Hammer or Hookshot))",
             "Fire Temple MQ Lower Flare Dancer": "
-                has_soul(Flare_Dancer) and ((is_adult and (Megaton_Hammer or Hookshot or has_explosives)) or 
+                has_soul(Flare_Dancer) and ((is_adult and (Megaton_Hammer or Hookshot or has_explosives)) or
                 (is_child and (Kokiri_Sword or Sticks) and has_explosives))"
         }
     },

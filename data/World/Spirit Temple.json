@@ -108,7 +108,7 @@
             "Spirit Temple Before Child Climb Small Wooden Crate 1": "True",
             "Spirit Temple Before Child Climb Small Wooden Crate 2": "True",
             "Nut Crate": "True"
-            
+
         },
         "exits": {
             "Child Spirit Temple Climb": "(Small_Key_Spirit_Temple, 1)"
@@ -183,7 +183,7 @@
                 has_projectile(both) or can_use(Dins_Fire) or
                 (can_take_damage and (Sticks or Kokiri_Sword or has_projectile(child)))",
             "Spirit Temple Child Climb Skullwalltula 1": "
-                (has_soul(Skullwalltula)) and 
+                (has_soul(Skullwalltula)) and
                 ((is_child and has_projectile(child) and
                     (Small_Key_Spirit_Temple, 5)) or
                 (is_adult and has_projectile(adult) and
@@ -191,7 +191,7 @@
                     ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops and not entrance_shuffle))) or
                 has_projectile(both) or can_use(Dins_Fire))",
             "Spirit Temple Child Climb Skullwalltula 2": "
-                (has_soul(Skullwalltula)) and 
+                (has_soul(Skullwalltula)) and
                 ((is_child and has_projectile(child) and
                     (Small_Key_Spirit_Temple, 5)) or
                 (is_adult and has_projectile(adult) and
@@ -199,7 +199,7 @@
                     ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops and not entrance_shuffle))) or
                 has_projectile(both) or can_use(Dins_Fire))",
             "Spirit Temple Child Climb Skullwalltula 3": "
-                (has_soul(Skullwalltula)) and 
+                (has_soul(Skullwalltula)) and
                 ((is_child and has_projectile(child) and
                     (Small_Key_Spirit_Temple, 5)) or
                 (is_adult and has_projectile(adult) and
@@ -207,7 +207,7 @@
                     ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops and not entrance_shuffle))) or
                 has_projectile(both) or can_use(Dins_Fire))",
             "Spirit Temple Child Climb Skullwalltula 4": "
-                (has_soul(Skullwalltula)) and 
+                (has_soul(Skullwalltula)) and
                 ((is_child and has_projectile(child) and
                     (Small_Key_Spirit_Temple, 5)) or
                 (is_adult and has_projectile(adult) and
@@ -328,7 +328,7 @@
             # Age-unknown logic is incompatible with the rest of the world.
             # Because adult might unlock all doors, child must require all 5 keys to pass.
             "Desert Colossus Hands": "
-                (has_soul(Iron_Knuckle)) and 
+                (has_soul(Iron_Knuckle)) and
                     ((Small_Key_Spirit_Temple, 5) or
                     (is_adult and has_explosives and (Small_Key_Spirit_Temple, 3)))"
         }

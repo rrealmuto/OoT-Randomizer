@@ -169,7 +169,7 @@
             "Shadow Temple After Wind Flying Pot 2": "has_soul(Flying_Pot)",
             "Shadow Temple After Wind Redead Left": "can_kill_redead",
             "Shadow Temple After Wind Redead Right": "can_kill_redead"
-            
+
         },
         "exits": {
             "Shadow Temple Boat": "(Small_Key_Shadow_Temple, 4)",

@@ -148,11 +148,11 @@ bool flags_setsoul(int table_index) {
     extended_savectx.soul_enable_flags[table_index/8] |= 1 << (table_index % 8);
 }
 
-bool get_soul_enabled(int table_index) { 
+bool get_soul_enabled(int table_index) {
     return (extended_savectx.soul_enable_flags[table_index/8] & (1 << (table_index % 8))) > 0;
 }
 
-bool toggle_soul_enabled(int table_index) { 
+bool toggle_soul_enabled(int table_index) {
     uint8_t flags = extended_savectx.soul_enable_flags[table_index/8];
     uint8_t mask = (1 << (table_index % 8));
     extended_savectx.soul_enable_flags[table_index/8] = flags ^ mask;
@@ -171,13 +171,13 @@ bool spawn_override_enemy_spawn_shuffle(ActorEntry *actorEntry, z64_game_t *glob
                     if (!enemy_spawn_table[i].override_func(actorEntry, globalCtx))
                         return true;
                 }
-                continue_spawn &= flags_getsoul(table_entry->index) & get_soul_enabled(table_entry->index); 
+                continue_spawn &= flags_getsoul(table_entry->index) & get_soul_enabled(table_entry->index);
                 curr_room_enemies_inhibited |= !continue_spawn;
                 return continue_spawn;
             }
         }
     }
-    
+
     return true;
 }
 

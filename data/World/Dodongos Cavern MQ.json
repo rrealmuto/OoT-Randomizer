@@ -108,7 +108,7 @@
         "region_name": "Dodongos Cavern Torch Puzzle Lower",
         "dungeon": "Dodongos Cavern",
         "locations": {
-            
+
             "Dodongos Cavern MQ Torch Puzzle Room Recovery Heart": "True",
             "Dodongos Cavern MQ Torch Puzzle Room Pot Pillar": "
                 can_use(Boomerang) or at('Dodongos Cavern Torch Puzzle Upper', True)"
@@ -181,7 +181,7 @@
         "dungeon": "Dodongos Cavern",
         "locations": {
             "Dodongos Cavern MQ Torch Puzzle Room Chest": "True",
-            
+
             "Dodongos Cavern MQ After Upper Lizalfos Pot 1": "True",
             "Dodongos Cavern MQ After Upper Lizalfos Pot 2": "True",
             "Dodongos Cavern MQ Torch Puzzle Room Pot Corner": "True",
