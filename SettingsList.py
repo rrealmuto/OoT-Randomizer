@@ -2443,6 +2443,18 @@ class SettingInfos:
         },
     )
 
+    shuffle_boulders = Checkbutton(
+        gui_text       = 'Shuffle Boulders',
+        gui_tooltip    = '''\
+            Boulders (and red ice blocks) will be
+            randomly shuffled around the world.
+        ''',
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    )
+
     shuffle_song_items = Combobox(
         gui_text       = 'Shuffle Songs',
         default        = 'song',
@@ -3787,18 +3799,38 @@ class SettingInfos:
         shared         = True,
     )
 
-    fix_broken_drops = Checkbutton(
-        gui_text       = 'Fix Broken Drops',
+    fix_broken_actors = Checkbutton(
+        gui_text       = 'Fix Broken Actors',
         gui_tooltip    = '''\
-            Enabling this fixes drops that are broken in the vanilla game.
+            Enabling this fixes drops and actors that are broken in the vanilla game.
 
             There is a deku shield drop from a pot in the Spirit Temple child
             side Anubis room that does not appear in the vanilla game, and
-            logic might require you to get a deku shield this way. There is a
+            logic might require you to get a deku shield this way. 
+            
+            There is a
             magic jar on top of the Gerudo Training Ground eye statue that does
             not always refill your magic in the vanilla game.
+
+            There are a bunch of enemies as well.
         ''',
+        default        = False,
         shared         = True,
+        disable        = { False: {'settings': ['dogs_anywhere']}}
+    )
+
+    dogs_anywhere = Checkbutton (
+        gui_text      = 'Allow dogs anywhere',
+        gui_tooltip   = '''\
+            Allow dogs to follow link through all loading zones.
+            This has no actual impact to the game,
+            but you can bring Richard to the Ganon fight
+            if you so choose.
+        ''',
+        shared        = True,
+        gui_params     = {
+            "hide_when_disabled": True
+        }
     )
 
     prevent_guay_respawns = Checkbutton(

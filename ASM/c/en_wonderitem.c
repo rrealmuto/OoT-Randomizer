@@ -21,7 +21,7 @@ extern uint16_t CURR_ACTOR_SPAWN_INDEX;
 
 void EnWonderitem_AfterInitHack(z64_actor_t* this, z64_game_t* globalCtx)
 {
-    if(this->main_proc == NULL)
+    if(this->update == NULL)
         return;
     if(this->actor_id != 0x112)
         return;

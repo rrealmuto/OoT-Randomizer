@@ -19,7 +19,7 @@
                     ( (Nuts or can_use(Boomerang)) and
                         (can_use(Kokiri_Sword) or Slingshot) ) ))",
             "Deku Shield Pot": "
-                fix_broken_drops and
+                fix_broken_actors and
                 (is_adult or (
                 (can_use(Boomerang) or Slingshot or has_bombchus or can_mega) and
                 (Sticks or has_explosives or

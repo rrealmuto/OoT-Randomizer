@@ -1,6 +1,6 @@
 {
   "settings": {
-    "fix_broken_drops": true,
+    "fix_broken_actors": true,
     "open_door_of_time": false,
     "open_forest": "open",
     "shuffle_interior_entrances": "simple",

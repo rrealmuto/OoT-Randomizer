@@ -3,7 +3,8 @@ from collections.abc import Iterable
 from typing import TYPE_CHECKING, Optional, Any
 
 from Item import Item, ItemInfo
-from RulesCommon import escape_name
+from RulesCommon import AccessRule, escape_name
+from Boulders import BOULDER_TYPE
 
 if TYPE_CHECKING:
     from Goals import GoalCategory, Goal
@@ -22,11 +23,18 @@ Ocarina_C_up_Button: int = ItemInfo.solver_ids['Ocarina_C_up_Button']
 Ocarina_C_down_Button: int = ItemInfo.solver_ids['Ocarina_C_down_Button']
 Ocarina_C_right_Button: int = ItemInfo.solver_ids['Ocarina_C_right_Button']
 
+Megaton_Hammer: int = ItemInfo.solver_ids['Megaton_Hammer']
+Progressive_Strength_Upgrade: int = ItemInfo.solver_ids['Progressive_Strength_Upgrade']
+Bomb_Bag: int = ItemInfo.solver_ids['Bomb_Bag']
+
 class State:
     def __init__(self, parent: World) -> None:
         self.solv_items: list[int] = [0] * len(ItemInfo.solver_ids)
         self.world: World = parent
         self.search: Optional[Search] = None
+
+        self.can_blast_or_smash: AccessRule = self.world.parser.parse_rule("can_blast_or_smash")
+        self.Blue_Fire: AccessRule = self.world.parser.parse_rule("Blue_Fire")
 
     def copy(self, new_world: Optional[World] = None) -> State:
         new_world = new_world if new_world else self.world
@@ -81,47 +89,47 @@ class State:
         # Extra Ruto's Letter are automatically emptied
         return self.has_any_of(ItemInfo.bottle_ids) or self.has(Rutos_Letter, 2)
 
-    def has_hearts(self, count: int) -> bool:
+    def has_hearts(self, count: int, **kwargs) -> bool:
         # Warning: This is limited by World.max_progressions so it currently only works if hearts are required for LACS, bridge, or Ganon bk
         return self.heart_count() >= count
 
-    def heart_count(self) -> int:
+    def heart_count(self, **kwargs) -> int:
         # Warning: This is limited by World.max_progressions so it currently only works if hearts are required for LACS, bridge, or Ganon bk
         return (
             self.item_count(Piece_of_Heart) // 4 # aliases ensure Heart Container and Piece of Heart (Treasure Chest Game) are included in this
             + 3 # starting hearts
         )
 
-    def has_medallions(self, count: int) -> bool:
+    def has_medallions(self, count: int, **kwargs) -> bool:
         return self.count_of(ItemInfo.medallion_ids) >= count
 
-    def has_stones(self, count: int) -> bool:
+    def has_stones(self, count: int, **kwargs) -> bool:
         return self.count_of(ItemInfo.stone_ids) >= count
 
 
-    def has_dungeon_rewards(self, count: int) -> bool:
+    def has_dungeon_rewards(self, count: int, **kwargs) -> bool:
         return (self.count_of(ItemInfo.medallion_ids) + self.count_of(ItemInfo.stone_ids)) >= count
 
-    def has_ocarina_buttons(self, count: int) -> bool:
+    def has_ocarina_buttons(self, count: int, **kwargs) -> bool:
         return (self.count_of(ItemInfo.ocarina_buttons_ids)) >= count
 
     # TODO: Store the item's solver id in the goal
-    def has_item_goal(self, item_goal: dict[str, Any]) -> bool:
+    def has_item_goal(self, item_goal: dict[str, Any], **kwargs) -> bool:
         return self.solv_items[ItemInfo.solver_ids[escape_name(item_goal['name'])]] >= item_goal['minimum']
 
-    def has_full_item_goal(self, category: GoalCategory, goal: Goal, item_goal: dict[str, Any]) -> bool:
+    def has_full_item_goal(self, category: GoalCategory, goal: Goal, item_goal: dict[str, Any], **kwargs) -> bool:
         local_goal = self.world.goal_categories[category.name].get_goal(goal.name)
         per_world_max_quantity = local_goal.get_item(item_goal['name'])['quantity']
         return self.solv_items[ItemInfo.solver_ids[escape_name(item_goal['name'])]] >= per_world_max_quantity
 
-    def has_all_item_goals(self) -> bool:
+    def has_all_item_goals(self, **kwargs) -> bool:
         for category in self.world.goal_categories.values():
             for goal in category.goals:
                 if not all(map(lambda i: self.has_full_item_goal(category, goal, i), goal.items)):
                     return False
         return True
 
-    def had_night_start(self) -> bool:
+    def had_night_start(self, **kwargs) -> bool:
         stod = self.world.settings.starting_tod
         # These are all not between 6:30 and 18:00
         if (stod == 'sunset' or         # 18
@@ -133,7 +141,7 @@ class State:
             return False
 
     # Used for fall damage and other situations where damage is unavoidable
-    def can_live_dmg(self, hearts: int) -> bool:
+    def can_live_dmg(self, hearts: int, **kwargs) -> bool:
         mult = self.world.settings.damage_multiplier
         if hearts*4 >= 3:
             return mult != 'ohko' and mult != 'quadruple'
@@ -177,14 +185,14 @@ class State:
         if self.solv_items[item.solver_id] > 0:
             self.solv_items[item.solver_id] -= 1
 
-    def region_has_shortcuts(self, region_name: str) -> bool:
+    def region_has_shortcuts(self, region_name: str, **kwargs) -> bool:
         return self.world.region_has_shortcuts(region_name)
 
-    def has_soul(self, enemy: str) -> bool:
+    def has_soul(self, enemy: str, **kwargs) -> bool:
         soul_str = enemy + " Soul"
         return (not self.world.shuffle_enemy_spawns or self.has(ItemInfo.solver_ids[escape_name(soul_str)]))
 
-    def has_all_notes_for_song(self, song: str) -> bool:
+    def has_all_notes_for_song(self, song: str, **kwargs) -> bool:
         # Scarecrow needs 2 different notes
         if song == 'Scarecrow Song':
             return self.has_ocarina_buttons(2)
@@ -222,3 +230,21 @@ class State:
                 for event in self.world.event_items
                 if self.solv_items[ItemInfo.solver_ids[event]]},
         }
+
+    def boulder_type(self, boulder: str, **kwargs) -> BOULDER_TYPE:
+        return self.world.boulders[boulder]
+
+    def can_pass_boulder(self, boulder: str, age: str, **kwargs) -> bool:
+        type: BOULDER_TYPE = self.world.boulders[boulder]
+        if type == BOULDER_TYPE.BRONZE:
+            # Check for hammer and adult
+            return age == 'adult' and self.has(Megaton_Hammer)
+        elif type == BOULDER_TYPE.SILVER:
+            # Check for adult+str2
+            return age == 'adult' and self.has(Progressive_Strength_Upgrade, 2)
+        elif type == BOULDER_TYPE.BROWN:
+            # Check for adult+hammer or explosives
+            return self.can_blast_or_smash(self)
+        elif type == BOULDER_TYPE.RED_ICE:
+            # Check for blue fire
+            return self.Blue_Fire(self)

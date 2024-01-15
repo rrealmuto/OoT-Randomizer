@@ -133,7 +133,7 @@ INITIAL_SAVE_DATA:
 EXTENDED_INITIAL_SAVE_DATA:
 .endarea
 
-.area 0xF0, 0 ; size must be at least 8 * ((max object_id parameter Patches.add_to_extended_object_table is called with) - 0x192)
+.area 0x100, 0 ; size must be at least 8 * ((max object_id parameter Patches.add_to_extended_object_table is called with) - 0x192)
 EXTENDED_OBJECT_TABLE:
 .endarea
 
@@ -177,7 +177,7 @@ HIDEOUT_SHUFFLED:
 .byte 0x00
 FAST_BUNNY_HOOD_ENABLED:
 .byte 0x00
-FIX_BROKEN_DROPS:
+CFG_OBJECT_SYSTEM:
 .byte 0x00
 SPOILER_AVAILABLE:
 .byte 0x00
