@@ -1,8 +1,6 @@
 #ifndef EN_GS_H
 #define EN_GS_H
 
-#define ACTOR_EN_ELF 24
-
 #include "z64.h"
 #include "stdint.h"
 

@@ -17,10 +17,11 @@
             "Bottom of the Well Underwater Left Chest": "can_play(Zeldas_Lullaby)",
             "Bottom of the Well Underwater Front Chest": "can_play(Zeldas_Lullaby)",
             "Bottom of the Well Map Chest": "
-                has_explosives or
+                (boulder_type('BOTW_CHEST_BOULDER_1') == 'BOULDER_TYPE.BROWN' or boulder_type('BOTW_CHEST_BOULDER_2') == 'BOULDER_TYPE.BROWN') and
+                (has_explosives or
                 (Progressive_Strength_Upgrade and
                     (at('Bottom of the Well Behind Locked Doors', True) or
-                        can_use(Dins_Fire) or (logic_botw_basement and Sticks)))",
+                        can_use(Dins_Fire) or (logic_botw_basement and Sticks))))",
             "Bottom of the Well Invisible Chest": "
                 can_play(Zeldas_Lullaby) and (logic_lens_botw or can_use(Lens_of_Truth))",
             # Sword not strictly necessary but being forced to do this with sticks isn't fair

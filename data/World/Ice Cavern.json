@@ -4,8 +4,9 @@
         "dungeon": "Ice Cavern",
         "locations":{
             "Ice Cavern Frozen Blue Rupee": "
-                Blue_Fire or logic_ice_frozen_rupee or
-                (logic_boomerang_boulders and can_use(Boomerang))",
+                can_pass_boulder('ICE_CAVERN_FREESTANDING_COLLECTIBLE_BOULDER') or
+                (boulder_type('ICE_CAVERN_FREESTANDING_COLLECTIBLE_BOULDER') == 'BOULDER_TYPE.RED_ICE' and (Blue_Fire or logic_ice_frozen_rupee or
+                (logic_boomerang_boulders and can_use(Boomerang))))",
             "Ice Cavern Entryway Freezard 1": "(has_soul(Freezard)) and (is_adult or has_explosives or can_use(Dins_Fire))",
             "Ice Cavern Entryway Freezard 2": "(has_soul(Freezard)) and (is_adult or has_explosives or can_use(Dins_Fire))",
             "Ice Cavern Entryway Freezard 3": "(has_soul(Freezard)) and (is_adult or has_explosives or can_use(Dins_Fire))",
@@ -37,18 +38,19 @@
         },
         "exits": {
             "Ice Cavern Map Room": "is_adult and (Silver_Rupee_Ice_Cavern_Spinning_Scythe, 5)",
-            "Ice Cavern Behind Ice Walls": "here(Blue_Fire)"
+            "Ice Cavern Compass Room": "can_pass_boulder('ICE_CAVERN_TOWARDS_COMPASS_BOULDER')",
+            "Ice Cavern Push Block Room": "can_pass_boulder('ICE_CAVERN_TOWARDS_BLOCK_PUSH_BOULDER')"
         }
     },
     {
         "region_name": "Ice Cavern Map Room",
         "dungeon": "Ice Cavern",
         "locations": {
-            "Ice Cavern Map Chest": "Blue_Fire",
+            "Ice Cavern Map Chest": "can_pass_boulder('ICE_CAVERN_MAP_BOULDER')",
             "Ice Cavern Map Room Recovery Heart 1": "True",
             "Ice Cavern Map Room Recovery Heart 2": "True",
             "Ice Cavern Map Room Recovery Heart 3": "True",
-            "Ice Cavern Frozen Pot": "Blue_Fire or logic_ice_frozen_pot",
+            "Ice Cavern Frozen Pot": "can_pass_boulder('ICE_CAVERN_NEAR_MAP_POT_BOULDER') or logic_ice_frozen_pot",
             "Blue Fire": "has_bottle",
             "Ice Cavern Sliding Spike Freezard": "has_soul(Freezard)",
             "Ice Cavern Map Chest Ice Keese 1": "can_kill_keese",
@@ -60,20 +62,28 @@
         }
     },
     {
-        "region_name": "Ice Cavern Behind Ice Walls",
+        "region_name": "Ice Cavern Compass Room",
         "dungeon": "Ice Cavern",
         "locations": {
-            "Ice Cavern Compass Chest": "True",
-            "Ice Cavern Freestanding PoH": "True",
+            "Ice Cavern Compass Chest": "can_pass_boulder('ICE_CAVERN_COMPASS_CHEST_BOULDER')",
+            "Ice Cavern Freestanding PoH": "can_pass_boulder('ICE_CAVERN_FREESTANDING_POH_BOULDER')",
+            "Ice Cavern GS Heart Piece Room": "can_use(Hookshot) or can_use(Boomerang)"
+        }
+    },
+    {
+        "region_name": "Ice Cavern Push Block Room",
+        "dungeon": "Ice Cavern",
+        "locations": {
+           
+            
             "Ice Cavern Push Block Room Red Rupee 1": "can_play(Song_of_Time) or can_use(Boomerang)",
             "Ice Cavern Push Block Room Red Rupee 2": "can_play(Song_of_Time) or can_use(Boomerang)",
             "Ice Cavern Push Block Room Red Rupee 3": "can_play(Song_of_Time) or can_use(Boomerang)",
             "Ice Cavern Push Block Silver Rupee Back Left": "True",
             "Ice Cavern Push Block Silver Rupee Back Center": "True",
             "Ice Cavern Push Block Silver Rupee Front Center": "True",
-            "Ice Cavern Push Block Silver Rupee Red Ice": "True",
+            "Ice Cavern Push Block Silver Rupee Red Ice": "can_pass_boulder('ICE_CAVERN_BLOCK_PUSH_SILVER_RUPEE_BOULDER')",
             "Ice Cavern Push Block Silver Rupee Front Left": "True",
-            "Ice Cavern GS Heart Piece Room": "can_use(Hookshot) or can_use(Boomerang)",
             "Ice Cavern GS Push Block Room": "
                 can_use(Hookshot) or can_use(Boomerang) or
                 (logic_ice_block_gs and can_use(Hover_Boots))",
@@ -85,7 +95,12 @@
             "Ice Cavern Compass Chest Keese 3": "can_kill_keese"
         },
         "exits": {
-            "Ice Cavern End": "(Silver_Rupee_Ice_Cavern_Push_Block, 5)"
+            "Ice Cavern End": "(Silver_Rupee_Ice_Cavern_Push_Block, 5) and 
+                (
+                    can_pass_boulder('ICE_CAVERN_NEAR_END_BOULDER_1') or 
+                    can_pass_boulder('ICE_CAVERN_NEAR_END_BOULDER_2') or 
+                    can_pass_boulder('ICE_CAVERN_NEAR_END_BOULDER_3')
+                )"
         }
     },
     {

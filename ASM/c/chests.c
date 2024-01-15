@@ -155,7 +155,7 @@ _Bool should_draw_forest_hallway_chest(z64_actor_t* actor, z64_game_t* game) {
 
     // Vanilla code
     return (box_obj_idx(actor) > 0)
-        && ((box_obj_idx(actor) = z64_ObjectIndex(&game->obj_ctxt, OBJECT_BOX)) > 0)
+        && ((box_obj_idx(actor) = Object_GetIndex(&game->obj_ctxt, OBJECT_BOX)) > 0)
         && z64_ObjectIsLoaded(&game->obj_ctxt, box_obj_idx(actor));
 }
 
