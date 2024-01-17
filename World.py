@@ -376,6 +376,11 @@ class World:
         # TODO: Why is this necessary over copying region.entrances on region copy?
         # new_world.initialize_entrances()
 
+        # copy any randomized settings to match the original copy
+        new_world.randomized_list = list(self.randomized_list)
+        for randomized_item in new_world.randomized_list:
+            setattr(new_world, randomized_item, getattr(self.settings, randomized_item))
+
         new_world.always_hints = list(self.always_hints)
         new_world.max_progressions = copy.copy(self.max_progressions)
         new_world.available_tokens = self.available_tokens
