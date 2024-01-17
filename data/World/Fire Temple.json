@@ -54,7 +54,7 @@
             "Fire Temple Before Lower Flare Dancer Torch Slug 2": "has_soul(Torch_Slug)",
             "Fire Temple Before Lower Flare Dancer Torch Slug 3": "has_soul(Torch_Slug)",
             "Fire Temple Before Lower Flare Dancer Torch Slug 4": "has_soul(Torch_Slug)",
-            "Fire Temple Before Lower Flare Dancer Like Like": "has_soul(Likelike) and has_soul(Keese) and has_soul(Torch_Slug)",
+            "Fire Temple Before Lower Flare Dancer Like-Like": "has_soul(Likelike) and has_soul(Keese) and has_soul(Torch_Slug)",
             "Fire Temple Lower Flare Dancer" : "has_soul(Keese) and has_soul(Torch_Slug) and has_soul(Flare_Dancer)"
         }
     },

@@ -252,7 +252,7 @@ item_table: dict[str, tuple[str, Optional[bool], Optional[int], Optional[dict[st
     'Flare Dancer Soul':                               ('Soul',     True,  0x2018, None),
     'Dead hand Soul':                                  ('Soul',     True,  0x2019, None),
     'Shell Blade Soul':                                ('Soul',     True,  0x201A, None),
-    'Like like Soul':                                  ('Soul',     True,  0x201B, None),
+    'Like-like Soul':                                  ('Soul',     True,  0x201B, None),
     'Spike Enemy Soul':                                ('Soul',     True,  0x201C, None),
     'Anubis Soul':                                     ('Soul',     True,  0x201D, None),
     'Iron Knuckle Soul':                               ('Soul',     True,  0x201E, None),

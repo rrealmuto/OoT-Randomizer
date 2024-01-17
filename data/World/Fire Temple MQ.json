@@ -7,7 +7,7 @@
                 has_soul(Likelike) and (is_adult or Kokiri_Sword or Sticks or Slingshot or Bombs or can_use(Dins_Fire))",
             "Fire Temple MQ First Room Pot 1": "True",
             "Fire Temple MQ First Room Pot 2": "True",
-            "Fire Temple MQ Map Chest Like Like": "can_kill_likelike"
+            "Fire Temple MQ Map Chest Like-Like": "can_kill_likelike"
         },
         "exits": {
             "DMC Fire Temple Entrance": "True",
