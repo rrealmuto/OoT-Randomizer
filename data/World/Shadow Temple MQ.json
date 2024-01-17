@@ -114,7 +114,7 @@
             "Shadow Temple MQ Invisible Blades Keese 1": "has_soul(Keese)",
             "Shadow Temple MQ Invisible Blades Keese 2": "has_soul(Keese)",
             "Shadow Temple MQ Invisible Blades Keese 3": "has_soul(Keese)",
-            "Shadow Temple MQ Invisible Blades Like-Like": "has_soul(Likelike)"
+            "Shadow Temple MQ Invisible Blades Like Like": "has_soul(Likelike)"
         },
         "exits": {
             "Shadow Temple Close Proximity to Invisible Blades": "
@@ -324,7 +324,7 @@
             "Shadow Temple MQ Spike Walls Skulltula 4": "has_soul(Skulltula) and (Small_Key_Shadow_Temple, 6)",
             "Shadow Temple MQ Invisible Wall Maze Bubble 1": "has_soul(Bubble)",
             "Shadow Temple MQ Invisible Wall Maze Bubble 2": "has_soul(Bubble)",
-            "Shadow Temple MQ Invisible Wall Maze Like-Like": "has_soul(Likelike)",
+            "Shadow Temple MQ Invisible Wall Maze Like Like": "has_soul(Likelike)",
             "Shadow Temple MQ Bomb Flower Deadhand": "
                 has_soul(Dead_hand) and (logic_lens_shadow_mq_dead_hand or can_use(Lens_of_Truth))"
         },

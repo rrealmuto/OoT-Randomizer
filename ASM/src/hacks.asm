@@ -1534,7 +1534,7 @@ nop
 ; Replaces:
 ;   beq     t1, at, 0x801E51E0
 .orga 0xD74964 ; In memory: 0x801E51B4
-    b       skip_steal_tunic  ; disable like-like stealing tunic
+    b       skip_steal_tunic  ; disable like like stealing tunic
 .orga 0xD74990
     skip_steal_tunic:
 

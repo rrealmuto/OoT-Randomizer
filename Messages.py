@@ -306,7 +306,7 @@ ITEM_MESSAGES: list[tuple[int, str]] = [
     (0x9318, "\x08You found the \x05\x41Flare Dancer Souls\x05\x40!"),
     (0x9319, "\x08You found the \x05\x41Dead hand Souls\x05\x40!"),
     (0x931A, "\x08You found the \x05\x41Shell Blade Souls\x05\x40!"),
-    (0x931B, "\x08You found the \x05\x41Like-like Souls\x05\x40!"),
+    (0x931B, "\x08You found the \x05\x41Like like Souls\x05\x40!"),
     (0x931C, "\x08You found the \x05\x41Spike Enemy Souls\x05\x40!"),
     (0x931D, "\x08You found the \x05\x41Anubis Souls\x05\x40!"),
     (0x931E, "\x08You found the \x05\x41Iron Knuckle Souls\x05\x40!"),
