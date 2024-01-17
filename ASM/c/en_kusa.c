@@ -52,7 +52,7 @@ void EnKusa_Draw_Hack(z64_actor_t* actor, z64_game_t* game) {
         case GILDED_CHEST:
             texture = custom_textures[actor->variable & 0x03];
             color.r = 255;
-            color.g = 200;
+            color.g = 243;
             color.b = 0;
             break;
 

@@ -400,9 +400,9 @@ def rebuild_sequences(rom: Rom, sequences: list[Sequence], log: CosmeticsLog, sy
     bank_index_base = (rom.read_int32(symbols['CFG_AUDIOBANK_TABLE_EXTENDED_ADDR']) - 0x80400000) + 0x3480000
     # Build new fanfare banks by copying each entry in audiobank_index
     for i in range(0, 0x26):
-        bank_entry = rom.read_bytes(bank_index_base + 0x10 + (0x10*i), 0x10) # Get the vanilla entry
+        bank_entry = rom.read_bytes(bank_index_base + 0x10 + 0x10 * i, 0x10) # Get the vanilla entry
         bank_entry[9] = 1 # Update the cache type to 1
-        rom.write_bytes(bank_index_base + 0x270 + 0x10*i, bank_entry) # Write the new entry at the end of the bank table.
+        rom.write_bytes(bank_index_base + 0x270 + 0x10 * i, bank_entry) # Write the new entry at the end of the bank table.
     rom.write_byte(bank_index_base + 0x01, 0x4C) # Updates AudioBank Index Header if no custom banks are present as this would be 0x26 which would crash the game if a fanfare was played
 
     added_banks: list[AudioBank] = [] # Store copies of all the banks we've added

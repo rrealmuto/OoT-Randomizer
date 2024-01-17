@@ -1465,9 +1465,9 @@ class SettingInfos:
             'remove':      'Remove',
             'vanilla':     'Vanilla Locations',
             'dungeon':     'Own Dungeon',
+            'regional':    'Regional',
             'overworld':   'Overworld Only',
             'any_dungeon': 'Any Dungeon',
-            'regional':    'Regional',
             'anywhere':    'Anywhere',
         },
         gui_tooltip    = '''\
@@ -1493,16 +1493,16 @@ class SettingInfos:
             'Own Dungeon': Silver Rupees can only appear
             in their respective dungeon.
 
+            'Regional': Silver Rupees can only appear in regions
+            near the original dungeon (including the dungeon
+            itself or other dungeons in the region).
+            <a href="https://wiki.ootrandomizer.com/index.php?title=Hints#Hint_Regions" target="_blank">The Wiki has a list of corresponding regions here.</a>
+
             'Overworld Only': Silver Rupees can only appear
             outside of dungeons.
 
             'Any Dungeon': Silver Rupees can only appear in a
             dungeon, but not necessarily the dungeon they are for.
-
-            'Regional': Silver Rupees can only appear in regions
-            near the original dungeon (including the dungeon
-            itself or other dungeons in the region).
-            <a href="https://wiki.ootrandomizer.com/index.php?title=Hints#Hint_Regions" target="_blank">The Wiki has a list of corresponding regions here.</a>
 
             'Anywhere': Silver Rupees can appear
             anywhere in the world.
@@ -1974,42 +1974,42 @@ class SettingInfos:
     shuffle_enemy_drops = Checkbutton(
         gui_text       = 'Shuffle Enemy Drops',
         gui_tooltip    = '''\
-            Enabling will allow every unique non-boss enemy that normally drops a random item to drop a shuffled item. 
+            Enabling will allow every unique non-boss enemy that normally drops a random item to drop a shuffled item.
             The item will be automatically awarded when killing the enemy.
-            
+
             There are a handful of exceptions:
                 Poes
                 Big Octo
                 Stahlchild
                 Leevers
                 And maybe some others :)
-            
+
             Some important tidbits:
 
-            In the vanilla game, Adult Kokiri Forest no longer has enemies after completing Forest Temple. 
+            In the vanilla game, Adult Kokiri Forest no longer has enemies after completing Forest Temple.
             Enabling this setting will force the enemies to always spawn.
 
-            Individual Guays respawn themselves 10 times after you kill them and then spawn a large Guay. 
+            Individual Guays respawn themselves 10 times after you kill them and then spawn a large Guay.
             Only the first guay will drop an item. Child Night Lon-Lon has 15 unique Guays. Good luck :)
 
             Enemies that spawn additional enemies when you kill them will drop items but with some caveats:
-                Bari (the large jellyfish things in Jabu) will only drop an item from the large jelly. 
+                Bari (the large jellyfish things in Jabu) will only drop an item from the large jelly.
                     The 3 smaller ones won't
-                Floormasters - After killing the floormaster, it will split in 3. 
+                Floormasters - After killing the floormaster, it will split in 3.
                     One of the children will drop an item.
 
-            Deku Babas are the ultimate enemy so they will only drop 
+            Deku Babas are the ultimate enemy so they will only drop
             their shuffled item if you hit them with Elemental Arrows.
-	    The Deku Babas in Deku Tree and Bottom of the Well don't have additional drops.
+        The Deku Babas in Deku Tree and Bottom of the Well don't have additional drops.
         ''',
         default        = False,
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
         },
-        disable        = 
+        disable        =
         {
-            False : { 'settings': ['prevent_guay_respawns', 'minimap_enemy_tracker']},   
+            False : { 'settings': ['prevent_guay_respawns', 'minimap_enemy_tracker']},
         }
     )
 
@@ -2443,6 +2443,18 @@ class SettingInfos:
         },
     )
 
+    shuffle_boulders = Checkbutton(
+        gui_text       = 'Shuffle Boulders',
+        gui_tooltip    = '''\
+            Boulders (and red ice blocks) will be
+            randomly shuffled around the world.
+        ''',
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    )
+
     shuffle_song_items = Combobox(
         gui_text       = 'Shuffle Songs',
         default        = 'song',
@@ -2721,7 +2733,7 @@ class SettingInfos:
         }
     )
     shuffle_empty_pots = Checkbutton(
-        gui_text       = 'Include empty pots',
+        gui_text       = 'Include Empty Pots',
         default        = False,
         gui_tooltip    = '''\
             Enabling this will include empty pots into the location
@@ -2761,7 +2773,7 @@ class SettingInfos:
     )
 
     shuffle_empty_crates = Checkbutton(
-        gui_text       = 'Include empty crates',
+        gui_text       = 'Include Empty Crates',
         default        = False,
         gui_tooltip    = '''\
             Enabling this will include empty crates into the location
@@ -2808,6 +2820,9 @@ class SettingInfos:
         gui_text       = 'Shuffle Grass',
         gui_tooltip    = '''\
             Grass will contain random items.
+
+            If you enable this, there's seriously
+            some what's wrong with you :)
         ''',
         default        = False,
         shared         = True,
@@ -2823,10 +2838,10 @@ class SettingInfos:
 
             Wonderitems are invisible items in the game that will drop an
             item under a certain condition. These items will be marked in the game with a
-            sparkle effect when shuffle so they can be easily found.There
+            sparkle effect when shuffled so they can be easily found. There
             are 4 kinds of shuffled wonderitems.
 
-            Proximity Drop (Yellow): Gives an item when link touches it.
+            Proximity Drop (Yellow): Gives an item when Link touches it.
 
             Interact Switch (Red): Drops an item when hit with a certain damage type.
                              (Sword, bow, slingshot, or hookshot)
@@ -2836,7 +2851,7 @@ class SettingInfos:
                            in Kokiri Forest.
 
             Ordered Multitag (Cyan): Gives an item when a set of tag points are touched
-                              in a specific ordered. The only ordered multitag is the
+                              in a specific order. The only ordered multitag is the
                               grass stepping stones in Kokiri Forest.
         ''',
         default        = False,
@@ -2845,13 +2860,13 @@ class SettingInfos:
             'randomize_key': 'randomize_settings',
         },
     )
-
+    
     shuffle_gossipstones = Checkbutton(
         gui_text       = 'Shuffle Gossip Stones',
         gui_tooltip    = '''\
             Playing Song of Time to Gossip Stones
             will cause them to drop an item.
-            ''',
+        ''',
         default        = False,
         shared         = True,
         gui_params     = {
@@ -2989,6 +3004,18 @@ class SettingInfos:
         },
     )
 
+    shuffle_fishies = Checkbutton(
+        gui_text       = 'Shuffle Fishing Game Fish',
+        gui_tooltip    = '''\
+            Fish shuffle?
+        ''',
+        default        = False,
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    )
+
     shuffle_loach_reward = Combobox(
         gui_text       = 'Shuffle Hyrule Loach Reward',
         gui_tooltip    = '''\
@@ -3012,9 +3039,9 @@ class SettingInfos:
         ''',
         default        = 'off',
         choices        = {
-            'off': 'Off',
+            'off':     'Off',
             'vanilla': 'Vanilla Behavior',
-            'easy': 'Easier Behavior'
+            'easy':    'Easier Behavior',
         },
         shared         = True,
         gui_params     = {
@@ -3022,7 +3049,7 @@ class SettingInfos:
             'distribution': [
                 ('off',          1),
                 ('vanilla',      1),
-                ('easy',         1)
+                ('easy',         1),
             ],
         },
     )
@@ -3437,19 +3464,25 @@ class SettingInfos:
         },
     )
 
-    minor_items_as_major_chest = Checkbutton(
+    minor_items_as_major_chest = MultipleSelect(
         gui_text       = 'Minor Items in Big/Gold chests',
+        choices        = {
+            'bombchus': 'Bombchus',
+            'shields':  'Deku & Hylian Shields',
+            'capacity': 'Deku Stick & Nut Capacity',
+        },
         gui_tooltip    = '''\
-            Chests with Hylian Shield, Deku Shield, or
-            Bombchus will appear in Big and/or Gold chests,
-            depending on the Chest Appearance Matches
-            Contents setting. Bombchus are always in big
-            chests if Add Bombchu Bag and Drops is on.
+            Chests with Hylian or Deku Shields, Deku Stick
+            or Nut Capacity, or Bombchus will appear in Big
+            and/or Gold chests, depending on the Chest
+            Appearance Matches Contents setting. Bombchus
+            are always in big chests if Add Bombchu Bag and
+            Drops is on.
         ''',
         shared         = True,
-        disabled_default = False,
-        gui_params       = {
-            "hide_when_disabled" : True
+        default        = [],
+        gui_params     = {
+            "hide_when_disabled" : True,
         },
     )
 
@@ -3766,18 +3799,38 @@ class SettingInfos:
         shared         = True,
     )
 
-    fix_broken_drops = Checkbutton(
-        gui_text       = 'Fix Broken Drops',
+    fix_broken_actors = Checkbutton(
+        gui_text       = 'Fix Broken Actors',
         gui_tooltip    = '''\
-            Enabling this fixes drops that are broken in the vanilla game.
+            Enabling this fixes drops and actors that are broken in the vanilla game.
 
             There is a deku shield drop from a pot in the Spirit Temple child
             side Anubis room that does not appear in the vanilla game, and
-            logic might require you to get a deku shield this way. There is a
+            logic might require you to get a deku shield this way. 
+            
+            There is a
             magic jar on top of the Gerudo Training Ground eye statue that does
             not always refill your magic in the vanilla game.
+
+            There are a bunch of enemies as well.
         ''',
+        default        = False,
         shared         = True,
+        disable        = { False: {'settings': ['dogs_anywhere']}}
+    )
+
+    dogs_anywhere = Checkbutton (
+        gui_text      = 'Allow dogs anywhere',
+        gui_tooltip   = '''\
+            Allow dogs to follow link through all loading zones.
+            This has no actual impact to the game,
+            but you can bring Richard to the Ganon fight
+            if you so choose.
+        ''',
+        shared        = True,
+        gui_params     = {
+            "hide_when_disabled": True
+        }
     )
 
     prevent_guay_respawns = Checkbutton(
@@ -3797,12 +3850,12 @@ class SettingInfos:
             checked on the minimap.
 
             Only displays the enemies that are currently spawned.
-            
+
             Doesn't work perfectly for scenes like Kokiri Forest where
             a single minimap is used across multiple rooms.
 
             Will display in dungeons even if the Dungeon Map has
-            not been collected. 
+            not been collected.
 
             In scenes that don't have a minimap, it tends to draw
             somewhere towards the bottom-middle of the screen.
@@ -4007,7 +4060,7 @@ class SettingInfos:
         default        = 'right',
         choices        = {
             'off':   'Off',
-            'left': 'On the left',
+            'left':  'On the left',
             'right': 'On the right',
         },
     )

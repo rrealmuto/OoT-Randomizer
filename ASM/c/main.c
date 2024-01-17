@@ -21,8 +21,10 @@
 #include "scene.h"
 #include "music.h"
 #include "uninvertYaxis.h"
+#include "debug.h"
 #include "enemy_spawn_shuffle.h"
 #include "ovl_kaleidoscope.h"
+#include "objects.h"
 
 void Gameplay_InitSkybox(z64_game_t* globalCtx, int16_t skyboxId);
 
@@ -36,6 +38,7 @@ void c_init() {
     models_init();
     init_textures();
     init_new_menus();
+    extended_objects_init();
 }
 
 void before_game_state_update() {
@@ -56,6 +59,7 @@ void after_game_state_update() {
         draw_triforce_count(&(z64_ctxt.gfx->overlay));
         draw_silver_rupee_count(&z64_game, &(z64_ctxt.gfx->overlay));
         draw_illegal_model_text(&(z64_ctxt.gfx->overlay));
+        debug_utilities(&(z64_ctxt.gfx->overlay));
     }
     give_ganon_boss_key();
 }
@@ -73,4 +77,5 @@ void after_scene_init() {
     check_model_skeletons();
     reset_collectible_mutex();
     get_current_scene_setup_number();
+    extended_objects_reset();
 }

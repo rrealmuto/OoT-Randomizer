@@ -145,6 +145,16 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("KF Storms Grotto Beehive 1",                                   ("Beehive",      0x3E,  (0,0x0C,8), None,        'Rupees (5)',                            ("Kokiri Forest", "Forest Area", "Grottos", "Beehives",))),
     ("KF Storms Grotto Beehive 2",                                   ("Beehive",      0x3E,  (0,0x0C,9), None,        'Rupees (20)',                           ("Kokiri Forest", "Forest Area", "Grottos", "Beehives",))),
 
+    # Kokiri Forest Wonderitems
+    ("KF Child Stepping Stones Wonderitem",                          ("Wonderitem",   0x55, (0,0,39), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("KF Child Water Wonderitem",                                    ("Wonderitem",   0x55, (0,0,34), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("KF Child Sign Wonderitem",                                     ("Wonderitem",   0x55, (0,0,33), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("KF Child Training Wonderitem 1",                               ("Wonderitem",   0x55, (0,0,40), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("KF Child Training Wonderitem 2",                               ("Wonderitem",   0x55, (0,0,41), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("KF Child Training Wonderitem 3",                               ("Wonderitem",   0x55, (0,0,42), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("KF Child Maze Grass Wonderitem 1",                             ("Wonderitem",   0x55, (2,0,6),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("KF Child Maze Grass Wonderitem 2",                             ("Wonderitem",   0x55, (2,0,7),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
+    ("KF Shop Wonderitem",                                           ("Wonderitem",   0x2D, (0,0,5),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
     # Kokiri Forest Enemies
     ("KF Adult Platforms Octorok",                                   ("EnemyDrop",    0x55, (0,2,2), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "EnemyDrop"))),
     ("KF Adult Near Shop Octorok",                                   ("EnemyDrop",    0x55, (0,2,3), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "EnemyDrop"))),
@@ -162,24 +172,13 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("KF Adult Deku Tree Deku Baba 4",                               ("EnemyDrop",    0x55, (1,2,6), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "EnemyDrop"))),
     ("KF Adult Deku Tree Deku Baba 5",                               ("EnemyDrop",    0x55, (1,2,7), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "EnemyDrop"))),
     ("KF Adult Deku Tree Deku Baba 6",                               ("EnemyDrop",    0x55, (1,2,8), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "EnemyDrop"))),
-    
+
     # Kokiri Forest Gossip Stones
     ("KF Deku Tree Gossip Stone (Left) Drop", ("GossipStone", 0x55, [(1,0,8),(1,2,9),(1,3,4)], None, 'Rupees (20)', ("Kokiri Forest", "Forest Area","GossipStone"))),
     ("KF Deku Tree Gossip Stone (Right) Drop", ("GossipStone", 0x55, [(1,0,9),(1,2,10),(1,3,5)], None, 'Rupees (20)', ("Kokiri Forest", "Forest Area","GossipStone"))),
     ("KF Gossip Stone Drop", ("GossipStone", 0x55, [(0,0,16),(0,2,25),(0,3,9)], None, 'Rupees (20)', ("Kokiri Forest", "Forest Area","GossipStone"))),
     ("KF Storms Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,0x0C,10), None, 'Rupees (20)', ("Kokiri Forest", "Forest Area", "Grottos", "GossipStone"))),
 
-
-    # Kokiri Forest Wonderitems
-    ("KF Child Stepping Stones Wonderitem",                          ("Wonderitem",   0x55, (0,0,39), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("KF Child Water Wonderitem",                                    ("Wonderitem",   0x55, (0,0,34), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("KF Child Sign Wonderitem",                                     ("Wonderitem",   0x55, (0,0,33), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("KF Child Training Wonderitem 1",                               ("Wonderitem",   0x55, (0,0,40), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("KF Child Training Wonderitem 2",                               ("Wonderitem",   0x55, (0,0,41), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("KF Child Training Wonderitem 3",                               ("Wonderitem",   0x55, (0,0,42), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("KF Child Maze Grass Wonderitem 1",                             ("Wonderitem",   0x55, (2,0,6),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("KF Child Maze Grass Wonderitem 2",                             ("Wonderitem",   0x55, (2,0,7),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
-    ("KF Shop Wonderitem",                                           ("Wonderitem",   0x2D, (0,0,5),  None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "Wonderitem"))),
     # Kokiri Forest Grass
     ("KF Storms Grotto Grass 1",                                     ("Grass",      0x3e, (0,0x0C,3), None,                         'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grottos", "Grass",))),
     ("KF Storms Grotto Grass 2",                                     ("Grass",      0x3e, (0,0x0C,4), None,                         'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grottos", "Grass",))),
@@ -253,6 +252,10 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("LW Near Shortcuts Grotto Beehive 1",                           ("Beehive",      0x3E,  (0,0x14,8), None,                         'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grottos", "Beehives",))),
     ("LW Near Shortcuts Grotto Beehive 2",                           ("Beehive",      0x3E,  (0,0x14,9), None,                         'Rupees (20)',                           ("Lost Woods", "Forest Area", "Grottos", "Beehives",))),
     ("LW Scrubs Grotto Beehive",                                     ("Beehive",      0x3E,  (6,0x15,4), None,                      'Rupees (20)',                           ("Lost Woods", "Forest Area", "Grottos", "Beehives",))),
+    # Lost Woods Wonderitems
+    ("LW Near Ocarina Game Wonderitem 1",                            ("Wonderitem",   0x5B, (1,0,6),  None,                       'Rupees (5)',                              ("Lost Woods", "Forest Area", "Wonderitem"))),
+    ("LW Near Ocarina Game Wonderitem 2",                            ("Wonderitem",   0x5B, (1,0,7),  None,                       'Rupees (5)',                              ("Lost Woods", "Forest Area", "Wonderitem"))),
+    ("LW Near Ocarina Game Wonderitem 3",                            ("Wonderitem",   0x5B, (1,0,8),  None,                       'Rupees (5)',                              ("Lost Woods", "Forest Area", "Wonderitem"))),
     # Lost Woods Enemies
     ("LW Adult Sarias Friend Skullkid",                              ("EnemyDrop",    0x5B,  (9,2,2), None,                         'Rupees (200)',                          ("Lost Woods", "Forest Area", "EnemyDrop"))),
     ("LW Adult Ocarina Game Skullkid 1",                             ("EnemyDrop",    0x5B,  (1,2,2), None,                         'Rupees (200)',                          ("Lost Woods", "Forest Area", "EnemyDrop"))),
@@ -260,10 +263,6 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     # Lost Woods Gossip Stones
     ("LW Gossip Stone Drop", ("GossipStone", 0x5B, [(5,2,2),(5,0,5)], None, 'Rupees (20)', ("Lost Woods", "Forest Area", "GossipStone"))),
     ("LW Near Shortcuts Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,0x14,10), None, 'Rupees (20)', ("Lost Woods", "Forest Area", "GossipStone"))),
-    # Lost Woods Wonderitems
-    ("LW Near Ocarina Game Wonderitem 1",                            ("Wonderitem",   0x5B, (1,0,6),  None,                       'Rupees (5)',                              ("Lost Woods", "Forest Area", "Wonderitem"))),
-    ("LW Near Ocarina Game Wonderitem 2",                            ("Wonderitem",   0x5B, (1,0,7),  None,                       'Rupees (5)',                              ("Lost Woods", "Forest Area", "Wonderitem"))),
-    ("LW Near Ocarina Game Wonderitem 3",                            ("Wonderitem",   0x5B, (1,0,8),  None,                       'Rupees (5)',                              ("Lost Woods", "Forest Area", "Wonderitem"))),
     # Lost Woods Grass
     ("LW Near Shortcuts Grotto Grass 1",                             ("Grass",      0x3e, (0,0x14,3),        None,                  'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grottos", "Grass",))),
     ("LW Near Shortcuts Grotto Grass 2",                             ("Grass",      0x3e, (0,0x14,4),        None,                  'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grottos", "Grass",))),
@@ -287,6 +286,19 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     # Sacred Forest Meadow Beehives
     ("SFM Storms Grotto Beehive",                                    ("Beehive",      0x3E, (9,0x0E,3), None,          'Rupees (20)',                           ("Sacred Forest Meadow", "Forest Area", "Grottos", "Beehives",))),
 
+    # Sacred Forest Meadow Wonderitems
+    ("SFM Near Lost Woods Wonderitem",                               ("Wonderitem",   0x56, [(0,0,16),
+                                                                                             (0,2,19)],   None,                       'Rupees (5)',                          ("Sacred Forest Meadow", "Forest Area", "Wonderitem"))),
+    ("SFM Maze Wonderitem 1",                                        ("Wonderitem",   0x56, [(0,0,13),
+                                                                                             (0,2,16)],   None,                       'Rupees (5)',                          ("Sacred Forest Meadow", "Forest Area", "Wonderitem"))),
+    ("SFM Maze Wonderitem 2",                                        ("Wonderitem",   0x56, [(0,0,14),
+                                                                                             (0,2,17)],   None,                       'Rupees (5)',                          ("Sacred Forest Meadow", "Forest Area", "Wonderitem"))),
+    ("SFM Maze Wonderitem 3",                                        ("Wonderitem",   0x56, [(0,0,15),
+                                                                                             (0,2,18)],   None,                       'Rupees (5)',                          ("Sacred Forest Meadow", "Forest Area", "Wonderitem"))),
+    ("SFM Maze Wonderitem 4",                                        ("Wonderitem",   0x56, [(0,0,17),
+                                                                                             (0,2,20)],   None,                       'Rupees (5)',                          ("Sacred Forest Meadow", "Forest Area", "Wonderitem"))),
+    ("SFM Maze Wonderitem 5",                                        ("Wonderitem",   0x56, [(0,0,18),
+                                                                                             (0,2,21)],   None,                       'Rupees (5)',                          ("Sacred Forest Meadow", "Forest Area", "Wonderitem"))),
     # Sacred Forest Meadow Enemies
     ("SFM Child Wolfos",                                             ("EnemyDrop",    0x56, (0,0,2), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "EnemyDrop"))),
     ("SFM Child Maze Scrub 1",                                       ("EnemyDrop",    0x56, (0,0,6), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "EnemyDrop"))),
@@ -301,28 +313,14 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("SFM Adult Maze Moblin 4",                                      ("EnemyDrop",    0x56, (0,2,9), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "EnemyDrop"))),
     ("SFM Adult Maze Moblin 5",                                      ("EnemyDrop",    0x56, (0,2,10), None,                      'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "EnemyDrop"))),
     ("SFM Adult Smashing Moblin",                                    ("EnemyDrop",    0x56, (0,2,11), None,                      'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "EnemyDrop"))),
-    ("SFM Wolfos Grotto Wolfos 1",                                   ("EnemyDrop",    0x3E, (7,0x0D,1), None,                    'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
-    ("SFM Wolfos Grotto Wolfos 2",                                   ("EnemyDrop",    0x3E, (7,0x0D,2), None,                    'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
+
+    ("SFM Wolfos Grotto Wolfos 1",                                   ("EnemyDrop",    0x3E, (7,0x0D,1), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
+    ("SFM Wolfos Grotto Wolfos 2",                                   ("EnemyDrop",    0x3E, (7,0x0D,2), None,                       'Rupees (5)',                            ("Sacred Forest Meadow", "Forest", "Grottos", "EnemyDrop"))),
 
     # Sacred Forest Meadow Gossip Stones
     ("SFM Maze Gossip Stone (Lower) Drop",                          ("GossipStone",  0x56,  [(0,0,3),(0,2,2)], None,               'Rupees (20)',                           ("Sacred Forest Meadow", "Forest Area", "GossipStone"))),
     ("SFM Maze Gossip Stone (Upper) Drop",                          ("GossipStone",  0x56,  [(0,0,4),(0,2,3)], None,               'Rupees (20)',                           ("Sacred Forest Meadow", "Forest Area", "GossipStone"))),
     ("SFM Saria Gossip Stone Drop",                                 ("GossipStone",  0x56,  [(0,0,5),(0,2,4)], None,               'Rupees (20)',                           ("Sacred Forest Meadow", "Forest Area", "GossipStone"))),
-
-    # Sacred Forest Meadow Wonderitems
-    ("SFM Near Lost Woods Wonderitem",                               ("Wonderitem",   0x56, [(0,0,16),
-                                                                                             (0,2,19)],   None,                       'Rupees (5)',                          ("Sacred Forest Meadow", "Forest Area", "Wonderitem"))),
-    ("SFM Maze Wonderitem 1",                                        ("Wonderitem",   0x56, [(0,0,13),
-                                                                                             (0,2,16)],   None,                       'Rupees (5)',                          ("Sacred Forest Meadow", "Forest Area", "Wonderitem"))),
-    ("SFM Maze Wonderitem 2",                                        ("Wonderitem",   0x56, [(0,0,14),
-                                                                                             (0,2,17)],   None,                       'Rupees (5)',                          ("Sacred Forest Meadow", "Forest Area", "Wonderitem"))),
-    ("SFM Maze Wonderitem 3",                                        ("Wonderitem",   0x56, [(0,0,15),
-                                                                                             (0,2,18)],   None,                       'Rupees (5)',                          ("Sacred Forest Meadow", "Forest Area", "Wonderitem"))),
-    ("SFM Maze Wonderitem 4",                                        ("Wonderitem",   0x56, [(0,0,17),
-                                                                                             (0,2,20)],   None,                       'Rupees (5)',                          ("Sacred Forest Meadow", "Forest Area", "Wonderitem"))),
-    ("SFM Maze Wonderitem 5",                                        ("Wonderitem",   0x56, [(0,0,18),
-                                                                                             (0,2,21)],   None,                       'Rupees (5)',                          ("Sacred Forest Meadow", "Forest Area", "Wonderitem"))),
-
 
     # Hyrule Field
     ("HF Ocarina of Time Item",                                      ("NPC",          0x51,  0x0C, None,                            'Ocarina',                               ("Hyrule Field", "Need Spiritual Stones", "NPCs",))),
@@ -359,6 +357,12 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("HF Southeast Grotto Grass 3",                                  ("Grass",        0x3e, (0,2,5), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Grass"))),
     ("HF Southeast Grotto Grass 4",                                  ("Grass",        0x3e, (0,2,6), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Grass"))),
 
+    # Hyrule Field Wonderitems
+    ("HF Child Above Drawbridge Wonderitem 1",                       ("Wonderitem",   0x51, [(0,0,53),(0,1,51)], None,              'Rupees (20)',                           ("Hyrule Field", "Wonderitem"))),
+    ("HF Child Above Drawbridge Wonderitem 2",                       ("Wonderitem",   0x51, [(0,0,54),(0,1,52)], None,              'Rupees (20)',                           ("Hyrule Field", "Wonderitem"))),
+    ("HF Child Above Drawbridge Wonderitem 3",                       ("Wonderitem",   0x51, [(0,0,55),(0,1,53)], None,              'Rupees (20)',                           ("Hyrule Field", "Wonderitem"))),
+
+
      # Hyrule Field Enemies
     ("HF Cow Grotto Skulltula",                                      ("EnemyDrop",    0x3E, (4,0x04,1), None,                       'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
     ("HF Tektite Grotto Tektite",                                    ("EnemyDrop",    0x3E, (10,0x01,3), None,                      'Rupees (5)',                            ("Hyrule Field", "Grottos", "EnemyDrop"))),
@@ -370,17 +374,12 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("HF Child South Field Peahat 3",                                ("EnemyDrop",    0x51, [(0,0,12),(0,1,8)], None,               'Rupees (5)',                            ("Hyrule Field", "EnemyDrop"))),
     ("HF Child South Field Flying Peahat",                           ("EnemyDrop",    0x51, [(0,0,15),(0,1,11)], None,              'Rupees (5)',                            ("Hyrule Field", "EnemyDrop"))),
     ("HF Child Near Valley Flying Peahat",                           ("EnemyDrop",    0x51, [(0,0,14),(0,1,10)], None,              'Rupees (5)',                            ("Hyrule Field", "EnemyDrop"))),
-    
+
     # Hyrule Field Gossip Stones
     ("HF Near Market Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,0,10), None, 'Rupees (20)', ("Hyrule Field", "Grottos", "GossipStone"))),
     ("HF Southeast Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,2,10), None, 'Rupees (20)',   ("Hyrule Field", "Grottos", "GossipStone"))),
     ("HF Open Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,3,10), None, 'Rupees (20)',        ("Hyrule Field", "Grottos", "GossipStone"))),
     ("HF Cow Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (4,0x4,11), None, 'Rupees (20)',       ("Hyrule Field", "Grottos", "GossipStone"))),
-
-    # Hyrule Field Wonderitems
-    ("HF Child Above Drawbridge Wonderitem 1",                       ("Wonderitem",   0x51, [(0,0,53),(0,1,51)], None,              'Rupees (20)',                           ("Hyrule Field", "Wonderitem"))),
-    ("HF Child Above Drawbridge Wonderitem 2",                       ("Wonderitem",   0x51, [(0,0,54),(0,1,52)], None,              'Rupees (20)',                           ("Hyrule Field", "Wonderitem"))),
-    ("HF Child Above Drawbridge Wonderitem 3",                       ("Wonderitem",   0x51, [(0,0,55),(0,1,53)], None,              'Rupees (20)',                           ("Hyrule Field", "Wonderitem"))),
 
     ("HF Cow Grotto Grass 1",                                        ("Grass",      0x3e,   (4,4,3), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Grass",))),
     ("HF Cow Grotto Grass 2",                                        ("Grass",      0x3e,   (4,4,4), None,          'Rupees (5)',                            ("Hyrule Field", "Grottos", "Grass",))),
@@ -601,15 +600,6 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Market Child Grass 7",                                         ("Grass",        0x20, [(0,0,30),(0,0,14)], None,              'Rupees (5)',                            ("Market", "Grass"))),
     ("Market Child Grass 8",                                         ("Grass",        0x20, [(0,0,31),(0,0,15)], None,              'Rupees (5)',                            ("Market", "Grass"))),
 
-    # Market Enemies
-    ("Market Adult Redead 1",                                        ("EnemyDrop",    0x22, (0, 0, 1), None,                    'Rupees (5)',                            ("the Market", "Market", "EnemyDrop"))),
-    ("Market Adult Redead 2",                                        ("EnemyDrop",    0x22, (0, 0, 2), None,                    'Rupees (5)',                            ("the Market", "Market", "EnemyDrop"))),
-    ("Market Adult Redead 3",                                        ("EnemyDrop",    0x22, (0, 0, 3), None,                    'Rupees (5)',                            ("the Market", "Market", "EnemyDrop"))),
-    ("Market Adult Redead 4",                                        ("EnemyDrop",    0x22, (0, 0, 4), None,                    'Rupees (5)',                            ("the Market", "Market", "EnemyDrop"))),
-    ("Market Adult Redead 5",                                        ("EnemyDrop",    0x22, (0, 0, 5), None,                    'Rupees (5)',                            ("the Market", "Market", "EnemyDrop"))),
-    ("Market Adult Redead 6",                                        ("EnemyDrop",    0x22, (0, 0, 6), None,                    'Rupees (5)',                            ("the Market", "Market", "EnemyDrop"))),
-    ("Market Adult Redead 7",                                        ("EnemyDrop",    0x22, (0, 0, 7), None,                    'Rupees (5)',                            ("the Market", "Market", "EnemyDrop"))),
-    ("Market Adult Redead 8",                                        ("EnemyDrop",    0x22, (0, 0, 8), None,                    'Rupees (5)',                            ("the Market", "Market", "EnemyDrop"))),
     # Market Wonderitems
     ("Market Daytime Balcony Wonderitem 1",                          ("Wonderitem",   0x20, (0,0,16),  None,                       'Rupees (5)',                             ("Market", "Wonderitem"))),
     ("Market Daytime Balcony Wonderitem 2",                          ("Wonderitem",   0x20, (0,0,17),  None,                       'Rupees (5)',                             ("Market", "Wonderitem"))),
@@ -619,6 +609,15 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Market Night Balcony Wonderitem 1",                            ("Wonderitem",   0x21, (0,0,6),   None,                       'Rupees (5)',                             ("Market", "Wonderitem"))),
     ("Market Night Balcony Wonderitem 2",                            ("Wonderitem",   0x21, (0,0,7),   None,                       'Rupees (5)',                             ("Market", "Wonderitem"))),
 
+    # Market Enemies
+    ("Market Adult Redead 1",                                        ("EnemyDrop",    0x22, (0, 0, 1), None,                    'Rupees (5)',                            ("the Market", "Market", "EnemyDrop"))),
+    ("Market Adult Redead 2",                                        ("EnemyDrop",    0x22, (0, 0, 2), None,                    'Rupees (5)',                            ("the Market", "Market", "EnemyDrop"))),
+    ("Market Adult Redead 3",                                        ("EnemyDrop",    0x22, (0, 0, 3), None,                    'Rupees (5)',                            ("the Market", "Market", "EnemyDrop"))),
+    ("Market Adult Redead 4",                                        ("EnemyDrop",    0x22, (0, 0, 4), None,                    'Rupees (5)',                            ("the Market", "Market", "EnemyDrop"))),
+    ("Market Adult Redead 5",                                        ("EnemyDrop",    0x22, (0, 0, 5), None,                    'Rupees (5)',                            ("the Market", "Market", "EnemyDrop"))),
+    ("Market Adult Redead 6",                                        ("EnemyDrop",    0x22, (0, 0, 6), None,                    'Rupees (5)',                            ("the Market", "Market", "EnemyDrop"))),
+    ("Market Adult Redead 7",                                        ("EnemyDrop",    0x22, (0, 0, 7), None,                    'Rupees (5)',                            ("the Market", "Market", "EnemyDrop"))),
+    ("Market Adult Redead 8",                                        ("EnemyDrop",    0x22, (0, 0, 8), None,                    'Rupees (5)',                            ("the Market", "Market", "EnemyDrop"))),
 
     # Hyrule Castle
     ("HC Malon Egg",                                                 ("NPC",          0x5F,  0x47, None,                            'Weird Egg',                             ("Hyrule Castle", "NPCs",))),
@@ -635,11 +634,9 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("HC Malon Gossip Stone Drop", ("GossipStone", 0x5F, (0,0,4), None, 'Rupees (20)', ("Hyrule Castle","GossipStone"))),
     ("HC Rock Wall Gossip Stone Drop", ("GossipStone", 0x5F, (0,0,3), None, 'Rupees (20)', ("Hyrule Castle","GossipStone"))),
     ("HC Storms Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (8,0x16,14), None, 'Rupees (20)', ("Hyrule Castle", "Grottos","GossipStone"))),
-
-    # Hyrule Castle Enemies
-    ("HC Storms Grotto Skullwalltula 1",                             ("EnemyDrop",    0x3E, (8,0x16,1), None,                      'Rupees (5)',                            ("Hyrule Castle", "Grottos", "EnemyDrop"))),
-    ("HC Storms Grotto Skullwalltula 2",                             ("EnemyDrop",    0x3E, (8,0x16,2), None,                      'Rupees (5)',                            ("Hyrule Castle", "Grottos", "EnemyDrop"))),
-
+    # Hyrule Castle Grass
+    ("Hyrule Castle Grass 1",                                        ("Grass",        0x5f, (0,0,47), None,                         'Rupees (5)',                            ("Hyrule Castle","Grass",))),
+    ("Hyrule Castle Grass 2",                                        ("Grass",        0x5f, (0,0,48), None,                         'Rupees (5)',                            ("Hyrule Castle","Grass",))),
 
     # Hyrule Castle Wonderitems
     ("HC Castle Torch Wonderitem 1",                                 ("Wonderitem",   0x5F,  (0,0,13), None,                        'Rupees (20)',                           ("Hyrule Castle", "Wonderitem"))),
@@ -655,9 +652,10 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("HC Castle Moat Wonderitem 9",                                  ("Wonderitem",   0x5F,  (0,0,41), None,                        'Rupee (1)',                             ("Hyrule Castle", "Wonderitem"))),
     ("HC Castle Moat Wonderitem 10",                                 ("Wonderitem",   0x5F,  (0,0,42), None,                        'Rupee (1)',                             ("Hyrule Castle", "Wonderitem"))),
     ("HC Zeldas Courtyard Mario Wonderitem",                         ("Wonderitem",   0x4A,  (0,0,6),  None,                        'Rupees (20)',                           ("Hyrule Castle", "Wonderitem"))),
-    # Hyrule Castle Grass
-    ("Hyrule Castle Grass 1",                                        ("Grass",        0x5f, (0,0,47), None,                         'Rupees (5)',                            ("Hyrule Castle","Grass",))),
-    ("Hyrule Castle Grass 2",                                        ("Grass",        0x5f, (0,0,48), None,                         'Rupees (5)',                            ("Hyrule Castle","Grass",))),
+    # Hyrule Castle Enemies
+    ("HC Storms Grotto Skullwalltula 1",                             ("EnemyDrop",    0x3E, (8,0x16,1), None,                      'Rupees (5)',                            ("Hyrule Castle", "Grottos", "EnemyDrop"))),
+    ("HC Storms Grotto Skullwalltula 2",                             ("EnemyDrop",    0x3E, (8,0x16,2), None,                      'Rupees (5)',                            ("Hyrule Castle", "Grottos", "EnemyDrop"))),
+
 
     ("LLR Talons Chickens",                                          ("NPC",          0x4C,  0x14, None,                            'Bottle with Milk',                      ("Lon Lon Ranch", "Minigames",))),
     ("LLR Freestanding PoH",                                         ("Collectable",  0x4C,  0x01, None,                            'Piece of Heart',                        ("Lon Lon Ranch", "Freestandings",))),
@@ -695,6 +693,10 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     # Lon Lon Ranch Beehives
     ("LLR Grotto Beehive",                                           ("Beehive",      0x3E,  (12,0x1C,4), None,        'Rupees (20)',                           ("Lon Lon Ranch", "Grottos", "Beehives",))),
 
+    # Lon Lon Ranch Wonderitems
+    ("LLR Epona Hurdle Wonderitem 1",                                ("Wonderitem",   0x63, [(0,2,25),(0,3,9)], None,           'Rupees (5)',                            ("Lon Lon Ranch", "Wonderitem"))),
+    ("LLR Epona Hurdle Wonderitem 2",                                ("Wonderitem",   0x63, [(0,2,26),(0,3,10)], None,           'Rupees (5)',                            ("Lon Lon Ranch", "Wonderitem"))),
+
     # Lon Lon Ranch Enemies
     ("LLR Child Night Guay 1",                                       ("EnemyDrop",    0x63, (0,1,11), None,                     'Rupees (5)',                            ("Lon Lon Ranch", "EnemyDrop"))),
     ("LLR Child Night Guay 2",                                       ("EnemyDrop",    0x63, (0,1,12), None,                     'Rupees (5)',                            ("Lon Lon Ranch", "EnemyDrop"))),
@@ -711,10 +713,6 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("LLR Child Night Guay 13",                                      ("EnemyDrop",    0x63, (0,1,23), None,                     'Rupees (5)',                            ("Lon Lon Ranch", "EnemyDrop"))),
     ("LLR Child Night Guay 14",                                      ("EnemyDrop",    0x63, (0,1,24), None,                     'Rupees (5)',                            ("Lon Lon Ranch", "EnemyDrop"))),
     ("LLR Child Night Guay 15",                                      ("EnemyDrop",    0x63, (0,1,25), None,                     'Rupees (5)',                            ("Lon Lon Ranch", "EnemyDrop"))),
-    
-    # Lon Lon Ranch Wonderitems
-    ("LLR Epona Hurdle Wonderitem 1",                                ("Wonderitem",   0x63, [(0,2,25),(0,3,9)], None,           'Rupees (5)',                            ("Lon Lon Ranch", "Wonderitem"))),
-    ("LLR Epona Hurdle Wonderitem 2",                                ("Wonderitem",   0x63, [(0,2,26),(0,3,10)], None,           'Rupees (5)',                            ("Lon Lon Ranch", "Wonderitem"))),
 
     # Kakariko Village
     ("Kak Anju as Child",                                            ("NPC",          0x52,  0x0F, None,                            'Bottle',                                ("Kakariko Village", "Minigames",))),
@@ -791,6 +789,9 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     # Kakariko Village Beehives
     ("Kak Open Grotto Beehive 1",                                    ("Beehive",      0x3E,  (0,0x08,8), None,         'Rupees (5)',                            ("Kakariko Village", "Grottos", "Beehives",))),
     ("Kak Open Grotto Beehive 2",                                    ("Beehive",      0x3E,  (0,0x08,9), None,         'Rupees (20)',                           ("Kakariko Village", "Grottos", "Beehives",))),
+    # Kakariko Village Wonderitems
+    ("Kak Child Construction Wonderitem",                            ("Wonderitem",   0x52,  [(0,0,56), (0,1,49)], None,        'Rupees (20)',                               ("Kakariko Village", "Wonderitem"))),
+    ("Kak Impas House Wonderitem",                                   ("Wonderitem",   0x37,  (0,0,7), None,                     'Rupees (20)',                               ("Kakariko Village", "Wonderitem"))),
 
     # Kakariko Village Enemies
     ("Kak Redead Grotto Redead Left",                                ("EnemyDrop",    0x3E, (2,0x07,1), None,                      'Rupees (5)',                            ("Kakariko Village", "Kakariko", "Grottos", "EnemyDrop"))),
@@ -798,14 +799,6 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
 
     # Kak Gossip Stones
     ("Kak Open Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,8,10), None, 'Rupees (20)', ("Kakariko Village", "Grottos", "GossipStone"))),
-
-    # Kakariko Village Wonderitems
-    ("Kak Child Construction Wonderitem",                            ("Wonderitem",   0x52,  [(0,0,56), (0,1,49)], None,        'Rupees (20)',                               ("Kakariko Village", "Kakariko", "Wonderitem"))),
-    ("Kak Impas House Wonderitem",                                   ("Wonderitem",   0x37,  (0,0,7), None,                     'Rupees (20)',                               ("Kakariko Village", "Kakariko", "Wonderitem"))),
-    # Kak Beehives
-    ("Kak Open Grotto Beehive 1",                                    ("Beehive",      0x3E,  (0,0x08,8), None,         'Rupees (5)',                            ("Kakariko Village", "Grottos", "Beehives",))),
-    ("Kak Open Grotto Beehive 2",                                    ("Beehive",      0x3E,  (0,0x08,9), None,         'Rupees (20)',                           ("Kakariko Village", "Grottos", "Beehives",))),
-
     # Kakariko Village Grass
     ("Kak Open Grotto Grass 1",                                     ("Grass",      0x3e, (0,0x08,3), None,                            'Rupees (5)',                         ("Kakariko Vaillage", "Grottos", "Grass",))),
     ("Kak Open Grotto Grass 2",                                     ("Grass",      0x3e, (0,0x08,4), None,                            'Rupees (5)',                         ("Kakariko Vaillage", "Grottos", "Grass",))),
@@ -850,7 +843,37 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Graveyard Dampe Pot 6",                                        ("Pot",          0x48,  (0,0,6), None,                         'Rupees (20)',                           ("Graveyard", "Grottos", "Pots",))),
     # Graveyard Gossip Stones
     ("Graveyard Gossip Stone Drop", ("GossipStone", 0x53, [(1,0,3),(1,1,51),(1,2,2),(1,3,2)], None, 'Rupees (20)', ("Graveyard","GossipStone"))),
+    # Graveyard Grass
+    ("Graveyard Grass Patch 1",                            ("Grass",      0x53,  [(1,0,17,1),(1,1,21,1),(1,2,30,1),(1,3,30,1)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
+    ("Graveyard Grass Patch 2",                            ("Grass",      0x53,  [(1,0,17,2),(1,1,21,2),(1,2,30,2),(1,3,30,2)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
+    ("Graveyard Grass Patch 3",                            ("Grass",      0x53,  [(1,0,17,3),(1,1,21,3),(1,2,30,3),(1,3,30,3)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
+    ("Graveyard Grass Patch 4",                            ("Grass",      0x53,  [(1,0,17,4),(1,1,21,4),(1,2,30,4),(1,3,30,4)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
+    ("Graveyard Grass Patch 5",                            ("Grass",      0x53,  [(1,0,17,5),(1,1,21,5),(1,2,30,5),(1,3,30,5)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
+    ("Graveyard Grass Patch 6",                            ("Grass",      0x53,  [(1,0,17,6),(1,1,21,6),(1,2,30,6),(1,3,30,6)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
+    ("Graveyard Grass Patch 7",                            ("Grass",      0x53,  [(1,0,17,7),(1,1,21,7),(1,2,30,7),(1,3,30,7)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
+    ("Graveyard Grass Patch 8",                            ("Grass",      0x53,  [(1,0,17,8),(1,1,21,8),(1,2,30,8),(1,3,30,8)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
+    ("Graveyard Grass Patch 9",                            ("Grass",      0x53,  [(1,0,17,9),(1,1,21,9),(1,2,30,9),(1,3,30,9)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
+    ("Graveyard Grass Patch 10",                           ("Grass",      0x53,  [(1,0,17,10),(1,1,21,10),(1,2,30,10),(1,3,30,10)], None,  'Rupees (5)',           ("Graveyard", "Grass"))),
+    ("Graveyard Grass Patch 11",                           ("Grass",      0x53,  [(1,0,17,11),(1,1,21,11),(1,2,30,11),(1,3,30,11)], None,  'Rupees (5)',           ("Graveyard", "Grass"))),
+    ("Graveyard Grass Patch 12",                           ("Grass",      0x53,  [(1,0,17,12),(1,1,21,12),(1,2,30,12),(1,3,30,12)], None,  'Rupees (5)',           ("Graveyard", "Grass"))),
 
+
+    # Graveyard Wonderitems
+    ("Graveyard Dampe Race Wonderitem 1",                            ("Wonderitem",   0x48, (1,0,6), None,                       'Rupees (5)',                               ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 2",                            ("Wonderitem",   0x48, (1,0,7), None,                       'Rupees (5)',                               ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 3",                            ("Wonderitem",   0x48, (1,0,8), None,                       'Rupees (5)',                               ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 4",                            ("Wonderitem",   0x48, (1,0,9), None,                       'Rupees (5)',                               ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 5",                            ("Wonderitem",   0x48, (1,0,10), None,                       'Rupees (5)',                              ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 6",                            ("Wonderitem",   0x48, (2,0,8), None,                       'Rupees (5)',                               ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 7",                            ("Wonderitem",   0x48, (2,0,9), None,                       'Rupees (5)',                               ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 8",                            ("Wonderitem",   0x48, (2,0,10), None,                       'Rupees (5)',                              ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 9",                            ("Wonderitem",   0x48, (2,0,11), None,                       'Rupees (5)',                              ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 10",                           ("Wonderitem",   0x48, (2,0,12), None,                       'Rupees (5)',                              ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 11",                           ("Wonderitem",   0x48, (3,0,9), None,                       'Rupees (5)',                               ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 12",                           ("Wonderitem",   0x48, (3,0,10), None,                       'Rupees (5)',                              ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 13",                           ("Wonderitem",   0x48, (3,0,11), None,                       'Rupees (5)',                              ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 14",                           ("Wonderitem",   0x48, (3,0,12), None,                       'Rupees (5)',                              ("Graveyard", "Grottos", "Wonderitem"))),
+    ("Graveyard Dampe Race Wonderitem 15",                           ("Wonderitem",   0x48, (3,0,13), None,                       'Rupees (5)',                              ("Graveyard", "Grottos", "Wonderitem"))),
     #Graveyard Enemies
     ("Graveyard Heart Piece Grave Redead",                           ("EnemyDrop",    0x3F,  (0,0,2), None,                     'Rupees (5)',                            ("the Graveyard", "Kakariko", "EnemyDrop"))),
     ("Graveyard Royal Familys Tomb Keese 1",                         ("EnemyDrop",    0x41,  (0,0,1), None,                     'Rupees (5)',                            ("the Graveyard", "Kakariko", "EnemyDrop"))),
@@ -870,37 +893,6 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Graveyard Dampe Race Redead 2",                                ("EnemyDrop",    0x48,  (2,0,5), None,                     'Rupees (5)',                            ("the Graveyard", "Kakariko", "EnemyDrop"))),
     ("Graveyard Dampe Race Redead 3",                                ("EnemyDrop",    0x48,  (3,0,3), None,                     'Rupees (5)',                            ("the Graveyard", "Kakariko", "EnemyDrop"))),
     ("Graveyard Dampe Race Redead 4",                                ("EnemyDrop",    0x48,  (3,0,4), None,                     'Rupees (5)',                            ("the Graveyard", "Kakariko", "EnemyDrop"))),
-    
-
-    # Graveyard Wonderitems
-    ("Graveyard Dampe Race Wonderitem 1",                            ("Wonderitem",   0x48, (1,0,6), None,                       'Rupees (5)',                               ("Graveyard", "Grottos", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 2",                            ("Wonderitem",   0x48, (1,0,7), None,                       'Rupees (5)',                               ("Graveyard", "Grottos", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 3",                            ("Wonderitem",   0x48, (1,0,8), None,                       'Rupees (5)',                               ("Graveyard", "Grottos", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 4",                            ("Wonderitem",   0x48, (1,0,9), None,                       'Rupees (5)',                               ("Graveyard", "Grottos", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 5",                            ("Wonderitem",   0x48, (1,0,10), None,                       'Rupees (5)',                              ("Graveyard", "Grottos", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 6",                            ("Wonderitem",   0x48, (2,0,8), None,                       'Rupees (5)',                               ("Graveyard", "Grottos", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 7",                            ("Wonderitem",   0x48, (2,0,9), None,                       'Rupees (5)',                               ("Graveyard", "Grottos", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 8",                            ("Wonderitem",   0x48, (2,0,10), None,                       'Rupees (5)',                              ("Graveyard", "Grottos", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 9",                            ("Wonderitem",   0x48, (2,0,11), None,                       'Rupees (5)',                              ("Graveyard", "Grottos", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 10",                           ("Wonderitem",   0x48, (2,0,12), None,                       'Rupees (5)',                              ("Graveyard", "Grottos", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 11",                           ("Wonderitem",   0x48, (3,0,9), None,                       'Rupees (5)',                               ("Graveyard", "Grottos", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 12",                           ("Wonderitem",   0x48, (3,0,10), None,                       'Rupees (5)',                              ("Graveyard", "Grottos", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 13",                           ("Wonderitem",   0x48, (3,0,11), None,                       'Rupees (5)',                              ("Graveyard", "Grottos", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 14",                           ("Wonderitem",   0x48, (3,0,12), None,                       'Rupees (5)',                              ("Graveyard", "Grottos", "Wonderitem"))),
-    ("Graveyard Dampe Race Wonderitem 15",                           ("Wonderitem",   0x48, (3,0,13), None,                       'Rupees (5)',                              ("Graveyard", "Grottos", "Wonderitem"))),
-    # Graveyard Grass
-    ("Graveyard Grass Patch 1",                            ("Grass",      0x53,  [(1,0,17,1),(1,1,21,1),(1,2,30,1),(1,3,30,1)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
-    ("Graveyard Grass Patch 2",                            ("Grass",      0x53,  [(1,0,17,2),(1,1,21,2),(1,2,30,2),(1,3,30,2)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
-    ("Graveyard Grass Patch 3",                            ("Grass",      0x53,  [(1,0,17,3),(1,1,21,3),(1,2,30,3),(1,3,30,3)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
-    ("Graveyard Grass Patch 4",                            ("Grass",      0x53,  [(1,0,17,4),(1,1,21,4),(1,2,30,4),(1,3,30,4)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
-    ("Graveyard Grass Patch 5",                            ("Grass",      0x53,  [(1,0,17,5),(1,1,21,5),(1,2,30,5),(1,3,30,5)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
-    ("Graveyard Grass Patch 6",                            ("Grass",      0x53,  [(1,0,17,6),(1,1,21,6),(1,2,30,6),(1,3,30,6)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
-    ("Graveyard Grass Patch 7",                            ("Grass",      0x53,  [(1,0,17,7),(1,1,21,7),(1,2,30,7),(1,3,30,7)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
-    ("Graveyard Grass Patch 8",                            ("Grass",      0x53,  [(1,0,17,8),(1,1,21,8),(1,2,30,8),(1,3,30,8)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
-    ("Graveyard Grass Patch 9",                            ("Grass",      0x53,  [(1,0,17,9),(1,1,21,9),(1,2,30,9),(1,3,30,9)],     None,  'Rupees (5)',           ("Graveyard", "Grass"))),
-    ("Graveyard Grass Patch 10",                           ("Grass",      0x53,  [(1,0,17,10),(1,1,21,10),(1,2,30,10),(1,3,30,10)], None,  'Rupees (5)',           ("Graveyard", "Grass"))),
-    ("Graveyard Grass Patch 11",                           ("Grass",      0x53,  [(1,0,17,11),(1,1,21,11),(1,2,30,11),(1,3,30,11)], None,  'Rupees (5)',           ("Graveyard", "Grass"))),
-    ("Graveyard Grass Patch 12",                           ("Grass",      0x53,  [(1,0,17,12),(1,1,21,12),(1,2,30,12),(1,3,30,12)], None,  'Rupees (5)',           ("Graveyard", "Grass"))),
 
 
     # Death Mountain Trail
@@ -958,7 +950,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("DMT Child Summit Skullwalltula Lower",                         ("EnemyDrop",    0x60,  (0,0,0x07), None,                   'Rupees (5)',                            ("Death Mountain Trail", "Vanilla", "EnemyDrop"))),
     ("DMT Child Summit Skullwalltula Middle",                        ("EnemyDrop",    0x60,  (0,0,0x08), None,                   'Rupees (5)',                            ("Death Mountain Trail", "Vanilla", "EnemyDrop"))),
     ("DMT Child Summit Skullwalltula Upper",                         ("EnemyDrop",    0x60,  (0,0,0x09), None,                   'Rupees (5)',                            ("Death Mountain Trail", "Vanilla", "EnemyDrop"))),
-    
+
     # Death Mountain Trail Gossip Stones
     ("DMT Gossip Stone Drop", ("GossipStone", 0x60, [(0,0,5),(0,2,2)], None, 'Rupees (20)', ("Death Mountain Trial","GossipStone"))),
     ("DMT Storms Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,0x17,10), None, 'Rupees (20)', ("Death Mountain Trial", "Grottos", "GossipStone"))),
@@ -1094,21 +1086,26 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("ZR Near Grottos Gossip Stone Drop", ("GossipStone", 0x54, [(0,0,8),(0,2,11)], None, 'Rupees (20)', ("Zora's River", "GossipStone"))),
     ("ZR Near Domain Gossip Stone Drop", ("GossipStone", 0x54, [(1,0,2),(1,2,6)], None, 'Rupees (20)',   ("Zora's River", "GossipStone"))),
     ("ZR Open Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,9,10), None, 'Rupees (20)',            ("Zora's River", "GossipStone"))),
+    # Zora's River Grass
+    ("ZR Open Grotto Grass 1",                                       ("Grass",      0x3e, (0,0x09,3), None,                'Rupees (5)',                        ("Zora's River", "Grottos", "Grass",))),
+    ("ZR Open Grotto Grass 2",                                       ("Grass",      0x3e, (0,0x09,4), None,                'Rupees (5)',                        ("Zora's River", "Grottos", "Grass",))),
+    ("ZR Open Grotto Grass 3",                                       ("Grass",      0x3e, (0,0x09,5), None,                'Rupees (5)',                        ("Zora's River", "Grottos", "Grass",))),
+    ("ZR Open Grotto Grass 4",                                       ("Grass",      0x3e, (0,0x09,6), None,                'Rupees (5)',                        ("Zora's River", "Grottos", "Grass",))),
+    ("ZR Near Freestanding PoH Grass",                               ("Grass",      0x54, [(0,0,53),(0,2,25)], None,       'Rupees (5)',                        ("Zora's River", "Grass"))),
+    ("ZR Front Grass Patch 1",                                       ("Grass",      0x54, [(0,0,54,1),(0,2,26,1)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
+    ("ZR Front Grass Patch 2",                                       ("Grass",      0x54, [(0,0,54,2),(0,2,26,2)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
+    ("ZR Front Grass Patch 3",                                       ("Grass",      0x54, [(0,0,54,3),(0,2,26,3)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
+    ("ZR Front Grass Patch 4",                                       ("Grass",      0x54, [(0,0,54,4),(0,2,26,4)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
+    ("ZR Front Grass Patch 5",                                       ("Grass",      0x54, [(0,0,54,5),(0,2,26,5)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
+    ("ZR Front Grass Patch 6",                                       ("Grass",      0x54, [(0,0,54,6),(0,2,26,6)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
+    ("ZR Front Grass Patch 7",                                       ("Grass",      0x54, [(0,0,54,7),(0,2,26,7)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
+    ("ZR Front Grass Patch 8",                                       ("Grass",      0x54, [(0,0,54,8),(0,2,26,8)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
+    ("ZR Front Grass Patch 9",                                       ("Grass",      0x54, [(0,0,54,9),(0,2,26,9)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
+    ("ZR Front Grass Patch 10",                                      ("Grass",      0x54, [(0,0,54,10),(0,2,26,10)], None, 'Rupees (5)',                        ("Zora's River", "Grass"))),
+    ("ZR Front Grass Patch 11",                                      ("Grass",      0x54, [(0,0,54,11),(0,2,26,11)], None, 'Rupees (5)',                        ("Zora's River", "Grass"))),
+    ("ZR Front Grass Patch 12",                                      ("Grass",      0x54, [(0,0,54,12),(0,2,26,12)], None, 'Rupees (5)',                        ("Zora's River", "Grass"))),
 
-    # Zora's River Enemies
-    ("ZR Child Octorok Near Bean Salesman",                          ("EnemyDrop",    0x54, (0,0,5), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
-    ("ZR Child Octorok Near Bridge",                                 ("EnemyDrop",    0x54, (0,0,6), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
-    ("ZR Child Near Frogs Tektite 1",                                ("EnemyDrop",    0x54, (0,0,43), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
-    ("ZR Child Near Frogs Tektite 2",                                ("EnemyDrop",    0x54, (0,0,44), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
-    ("ZR Adult Octorok 1",                                           ("EnemyDrop",    0x54, (0,2,3), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
-    ("ZR Adult Octorok 2",                                           ("EnemyDrop",    0x54, (0,2,4), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
-    ("ZR Adult Octorok 3",                                           ("EnemyDrop",    0x54, (0,2,5), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
-    ("ZR Adult Octorok 4",                                           ("EnemyDrop",    0x54, (0,2,6), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
-    ("ZR Adult Octorok 5",                                           ("EnemyDrop",    0x54, (0,2,7), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
-    ("ZR Adult Octorok 6",                                           ("EnemyDrop",    0x54, (0,2,8), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
-    ("ZR Adult Octorok 7",                                           ("EnemyDrop",    0x54, (0,2,9), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
-    ("ZR Adult Octorok 8",                                           ("EnemyDrop",    0x54, (0,2,10), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
-    
+
     # Zora's River Wonderitems
     ("ZR Child Front River Wonderitem 1",                            ("Wonderitem",   0x54, (0,0,17), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
     ("ZR Child Front River Wonderitem 2",                            ("Wonderitem",   0x54, (0,0,18), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
@@ -1141,25 +1138,20 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("ZR Child River Wonderitem 25",                                 ("Wonderitem",   0x54, (0,0,40), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
     ("ZR Child River Wonderitem 26",                                 ("Wonderitem",   0x54, (0,0,41), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
     ("ZR Child River Wonderitem 27",                                 ("Wonderitem",   0x54, (0,0,42), None,                       'Rupees (5)',                              ("Zora's River", "Wonderitem"))),
-    # Zora's River Grass
-    ("ZR Open Grotto Grass 1",                                       ("Grass",      0x3e, (0,0x09,3), None,                'Rupees (5)',                        ("Zora's River", "Grottos", "Grass",))),
-    ("ZR Open Grotto Grass 2",                                       ("Grass",      0x3e, (0,0x09,4), None,                'Rupees (5)',                        ("Zora's River", "Grottos", "Grass",))),
-    ("ZR Open Grotto Grass 3",                                       ("Grass",      0x3e, (0,0x09,5), None,                'Rupees (5)',                        ("Zora's River", "Grottos", "Grass",))),
-    ("ZR Open Grotto Grass 4",                                       ("Grass",      0x3e, (0,0x09,6), None,                'Rupees (5)',                        ("Zora's River", "Grottos", "Grass",))),
-    ("ZR Near Freestanding PoH Grass",                               ("Grass",      0x54, [(0,0,53),(0,2,25)], None,       'Rupees (5)',                        ("Zora's River", "Grass"))),
-    ("ZR Front Grass Patch 1",                                       ("Grass",      0x54, [(0,0,54,1),(0,2,26,1)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
-    ("ZR Front Grass Patch 2",                                       ("Grass",      0x54, [(0,0,54,2),(0,2,26,2)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
-    ("ZR Front Grass Patch 3",                                       ("Grass",      0x54, [(0,0,54,3),(0,2,26,3)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
-    ("ZR Front Grass Patch 4",                                       ("Grass",      0x54, [(0,0,54,4),(0,2,26,4)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
-    ("ZR Front Grass Patch 5",                                       ("Grass",      0x54, [(0,0,54,5),(0,2,26,5)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
-    ("ZR Front Grass Patch 6",                                       ("Grass",      0x54, [(0,0,54,6),(0,2,26,6)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
-    ("ZR Front Grass Patch 7",                                       ("Grass",      0x54, [(0,0,54,7),(0,2,26,7)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
-    ("ZR Front Grass Patch 8",                                       ("Grass",      0x54, [(0,0,54,8),(0,2,26,8)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
-    ("ZR Front Grass Patch 9",                                       ("Grass",      0x54, [(0,0,54,9),(0,2,26,9)], None,   'Rupees (5)',                        ("Zora's River", "Grass"))),
-    ("ZR Front Grass Patch 10",                                      ("Grass",      0x54, [(0,0,54,10),(0,2,26,10)], None, 'Rupees (5)',                        ("Zora's River", "Grass"))),
-    ("ZR Front Grass Patch 11",                                      ("Grass",      0x54, [(0,0,54,11),(0,2,26,11)], None, 'Rupees (5)',                        ("Zora's River", "Grass"))),
-    ("ZR Front Grass Patch 12",                                      ("Grass",      0x54, [(0,0,54,12),(0,2,26,12)], None, 'Rupees (5)',                        ("Zora's River", "Grass"))),
 
+    # Zora's River Enemies
+    ("ZR Child Octorok Near Bean Salesman",                          ("EnemyDrop",    0x54, (0,0,5), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
+    ("ZR Child Octorok Near Bridge",                                 ("EnemyDrop",    0x54, (0,0,6), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
+    ("ZR Child Near Frogs Tektite 1",                                ("EnemyDrop",    0x54, (0,0,43), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
+    ("ZR Child Near Frogs Tektite 2",                                ("EnemyDrop",    0x54, (0,0,44), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
+    ("ZR Adult Octorok 1",                                           ("EnemyDrop",    0x54, (0,2,3), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
+    ("ZR Adult Octorok 2",                                           ("EnemyDrop",    0x54, (0,2,4), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
+    ("ZR Adult Octorok 3",                                           ("EnemyDrop",    0x54, (0,2,5), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
+    ("ZR Adult Octorok 4",                                           ("EnemyDrop",    0x54, (0,2,6), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
+    ("ZR Adult Octorok 5",                                           ("EnemyDrop",    0x54, (0,2,7), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
+    ("ZR Adult Octorok 6",                                           ("EnemyDrop",    0x54, (0,2,8), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
+    ("ZR Adult Octorok 7",                                           ("EnemyDrop",    0x54, (0,2,9), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
+    ("ZR Adult Octorok 8",                                           ("EnemyDrop",    0x54, (0,2,10), None,                      'Rupees (5)',                            ("Zora's River", "EnemyDrop"))),
 
     # Zora's Domain
     ("ZD Diving Minigame",                                           ("NPC",          0x58,  0x37, None,                            'Progressive Scale',                     ("Zora's Domain", "Minigames",))),
@@ -1314,6 +1306,40 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Lake Hylia Grass Patch 34",                          ("Grass",      0x57,    [(0,0,33,10),(0,2,37,10)],   None,               'Rupees (5)',         ("Lake Hylia", "Grass",))),
     ("Lake Hylia Grass Patch 35",                          ("Grass",      0x57,    [(0,0,33,11),(0,2,37,11)],   None,               'Rupees (5)',         ("Lake Hylia", "Grass",))),
     ("Lake Hylia Grass Patch 36",                          ("Grass",      0x57,    [(0,0,33,12),(0,2,37,12)],   None,               'Rupees (5)',         ("Lake Hylia", "Grass",))),
+    # Lake Hylia Fish
+    ("LH Child Fish 1",                                              ("Fish",                0x49, (0,0,1,1), None,                        'Fish (Child 6 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 2",                                              ("Fish",                0x49, (0,0,1,2), None,                        'Fish (Child 6 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 3",                                              ("Fish",                0x49, (0,0,1,3), None,                        'Fish (Child 6 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 4",                                              ("Fish",                0x49, (0,0,1,4), None,                        'Fish (Child 6 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 5",                                              ("Fish",                0x49, (0,0,1,5), None,                        'Fish (Child 8 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 6",                                              ("Fish",                0x49, (0,0,1,6), None,                        'Fish (Child 8 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 7",                                              ("Fish",                0x49, (0,0,1,7), None,                        'Fish (Child 8 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 8",                                              ("Fish",                0x49, (0,0,1,8), None,                        'Fish (Child 8 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 9",                                              ("Fish",                0x49, (0,0,1,9), None,                        'Fish (Child 8 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 10",                                             ("Fish",                0x49, (0,0,1,10), None,                       'Fish (Child 8 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 11",                                             ("Fish",                0x49, (0,0,1,11), None,                       'Fish (Child 8 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 12",                                             ("Fish",                0x49, (0,0,1,12), None,                       'Fish (Child 8 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 13",                                             ("Fish",                0x49, (0,0,1,13), None,                       'Fish (Child 8 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 14",                                             ("Fish",                0x49, (0,0,1,14), None,                       'Fish (Child 10 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Fish 15",                                             ("Fish",                0x49, (0,0,1,15), None,                       'Fish (Child 10 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Loach 1",                                             ("Fish",                0x49, (0,0,1,16), None,                       'Hylian Loach',                                   ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Child Loach 2",                                             ("Fish",                0x49, (0,0,1,17), None,                       'Hylian Loach',                                   ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Adult Fish 1",                                              ("Fish",                0x49, (0,0,0,1), None,                        'Fish (Adult 10 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Adult Fish 2",                                              ("Fish",                0x49, (0,0,0,2), None,                        'Fish (Adult 10 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Adult Fish 3",                                              ("Fish",                0x49, (0,0,0,3), None,                        'Fish (Adult 10 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Adult Fish 4",                                              ("Fish",                0x49, (0,0,0,4), None,                        'Fish (Adult 10 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Adult Fish 5",                                              ("Fish",                0x49, (0,0,0,5), None,                        'Fish (Adult 10 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Adult Fish 6",                                              ("Fish",                0x49, (0,0,0,6), None,                        'Fish (Adult 12 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Adult Fish 7",                                              ("Fish",                0x49, (0,0,0,7), None,                        'Fish (Adult 12 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Adult Fish 8",                                              ("Fish",                0x49, (0,0,0,8), None,                        'Fish (Adult 12 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Adult Fish 9",                                              ("Fish",                0x49, (0,0,0,9), None,                        'Fish (Adult 12 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Adult Fish 10",                                             ("Fish",                0x49, (0,0,0,10), None,                       'Fish (Adult 12 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Adult Fish 11",                                             ("Fish",                0x49, (0,0,0,11), None,                       'Fish (Adult 12 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Adult Fish 12",                                             ("Fish",                0x49, (0,0,0,12), None,                       'Fish (Adult 12 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Adult Fish 13",                                             ("Fish",                0x49, (0,0,0,13), None,                       'Fish (Adult 16 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Adult Fish 14",                                             ("Fish",                0x49, (0,0,0,14), None,                       'Fish (Adult 16 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Adult Fish 15",                                             ("Fish",                0x49, (0,0,0,15), None,                       'Fish (Adult 10 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
+    ("LH Adult Loach",                                               ("Fish",                0x49, (0,0,0,16), None,                       'Hylian Loach',                                   ("Lake Hylia", "Minigames", "Fish"))),
 
 
 
@@ -1336,7 +1362,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("LH Adult Tektite 6",                                           ("EnemyDrop",    0x57, (0,2,28), None,                       'Rupees (5)',                            ("Lake Hylia", "EnemyDrop"))),
     ("LH Adult Tektite 7",                                           ("EnemyDrop",    0x57, (0,2,29), None,                       'Rupees (5)',                            ("Lake Hylia", "EnemyDrop"))),
     ("LH Adult Tektite 8",                                           ("EnemyDrop",    0x57, (0,2,30), None,                       'Rupees (5)',                            ("Lake Hylia", "EnemyDrop"))),
-    
+
     # Gerudo Valley
     ("GV Crate Freestanding PoH",                                    ("Collectable",  0x5A,  0x02, None,                            'Piece of Heart',                        ("Gerudo Valley", "Freestandings",))),
     ("GV Waterfall Freestanding PoH",                                ("Collectable",  0x5A,  0x01, None,                            'Piece of Heart',                        ("Gerudo Valley", "Freestandings",))),
@@ -1366,6 +1392,10 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     # Gerudo Valley Gossip Stones
     ("GV Gossip Stone Drop", ("GossipStone", 0x5A, [(0,0,9),(0,2,46)], None, 'Rupees (20)', ("Gerudo Valley","GossipStone"))),
 
+    # Gerudo Valley Wonderitems
+    ("GV Adult Upper Waterfall Wonderitem",                          ("Wonderitem",   0x5A, (0,2,41), None,                         'Rupees (20)',                           ("Gerudo Valley", "Wonderitem"))),
+    ("GV Adult Lower Waterfall Wonderitem",                          ("Wonderitem",   0x5A, (0,2,42), None,                         'Rupees (20)',                           ("Gerudo Valley", "Wonderitem"))),
+
     # Gerudo Valley Enemies
     ("GV Adult Upper Octorok 1",                                     ("EnemyDrop",    0x5A, (0, 2, 5), None,                    'Rupees (5)',                            ("Gerudo Valley", "Gerudo", "EnemyDrop"))),
     ("GV Adult Upper Octorok 2",                                     ("EnemyDrop",    0x5A, (0, 2, 7), None,                    'Rupees (5)',                            ("Gerudo Valley", "Gerudo", "EnemyDrop"))),
@@ -1373,11 +1403,6 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("GV Adult Lower Octorok 1",                                     ("EnemyDrop",    0x5A, (0, 2, 4), None,                    'Rupees (5)',                            ("Gerudo Valley", "Gerudo", "EnemyDrop"))),
     ("GV Adult Lower Octorok 2",                                     ("EnemyDrop",    0x5A, (0, 2, 6), None,                    'Rupees (5)',                            ("Gerudo Valley", "Gerudo", "EnemyDrop"))),
     ("GV Octorok Grotto Octorok",                                    ("EnemyDrop",    0x3E, (5, 0x12, 1), None,                    'Rupees (5)',                            ("Gerudo Valley", "Gerudo", "Grottos", "EnemyDrop"))),
-    
-    # Gerudo Valley Wonderitems
-    ("GV Adult Upper Waterfall Wonderitem",                          ("Wonderitem",   0x5A, (0,2,41), None,                         'Rupees (20)',                           ("Gerudo Valley", "Gerudo", "Wonderitem"))),
-    ("GV Adult Lower Waterfall Wonderitem",                          ("Wonderitem",   0x5A, (0,2,42), None,                         'Rupees (20)',                           ("Gerudo Valley", "Gerudo", "Wonderitem"))),
-
 
     # Gerudo's Fortress
     ("GF Chest",                                                     ("Chest",        0x5D,  0x00, None,                            'Piece of Heart',                        ("Gerudo's Fortress", "Chests",))),
@@ -1406,7 +1431,6 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("GF HBA Crate 11",                                              ("Crate",        0x5D,  [(1,3,12),(1,2,19),(1,0,11)], None,    'Nothing',                               ("Gerudo's Fortress", "Crates",))),
     ("GF HBA Crate 12",                                              ("Crate",        0x5D,  [(1,3,13),(1,2,20),(1,0,12)], None,    'Nothing',                               ("Gerudo's Fortress", "Crates",))),
     ("GF HBA Crate 13",                                              ("Crate",        0x5D,  [(1,3,14),(1,2,21),(1,0,13)], None,    'Nothing',                               ("Gerudo's Fortress", "Crates",))),
-
     # Gerudo's Fortress Wonderitems
     ("GF Sign Wonderitem Near Entrance",                             ("Wonderitem",   0x5D,  [(0,2,6),(0,3,6)], None,               'Rupees (20)',                           ("Gerudo's Fortress", "Wonderitem"))),
     ("GF Sign Wonderitem Near HBA",                                  ("Wonderitem",   0x5D,  [(0,2,7),(0,3,7)], None,               'Rupees (20)',                           ("Gerudo's Fortress", "Wonderitem"))),
@@ -1488,6 +1512,12 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     # Colossus Beehives
     ("Colossus Grotto Beehive",                                      ("Beehive",      0x3E,  (9,0x1D,3), None,         'Rupees (20)',                           ("Desert Colossus", "Grottos", "Beehives",))),
 
+    # Colossus Wonderitems
+    ("Colossus Tree Wonderitem 1",                                   ("Wonderitem",   0x5C, [(0,0,20),(0,2,23)], None,                         'Rupees (5)',                            ("Desert Colossus", "Wonderitem"))),
+    ("Colossus Tree Wonderitem 2",                                   ("Wonderitem",   0x5C, [(0,0,22),(0,2,24)], None,                         'Rupees (5)',                            ("Desert Colossus", "Wonderitem"))),
+    ("Colossus Tree Wonderitem 3 Child",                                   ("Wonderitem",   0x5C, (0,0,23), None,                         'Rupees (5)',                            ("Desert Colossus", "Wonderitem"))),
+    ("Colossus Tree Wonderitem 4",                                   ("Wonderitem",   0x5C, [(0,0,21),(0,2,25)], None,                         'Rupees (5)',                            ("Desert Colossus", "Wonderitem"))),
+    ("Colossus Tree Wonderitem 5",                                   ("Wonderitem",   0x5C, [(0,0,24),(0,2,26)], None,                         'Rupees (20)',                           ("Desert Colossus", "Wonderitem"))),
     # Colossus Enemies
     ("Colossus Child Guay 1",                                        ("EnemyDrop",    0x5C, (0,0,8), None,                               'Rupees (5)',                            ("Desert Colossus", "EnemyDrop"))),
     ("Colossus Child Guay 2",                                        ("EnemyDrop",    0x5C, (0,0,9), None,                               'Rupees (5)',                            ("Desert Colossus", "EnemyDrop"))),
@@ -1497,16 +1527,9 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Colossus Adult Guay 3",                                        ("EnemyDrop",    0x5C, (0,2,10), None,                               'Rupees (5)',                            ("Desert Colossus", "EnemyDrop"))),
     ("Colossus Adult Guay 4",                                        ("EnemyDrop",    0x5C, (0,2,11), None,                               'Rupees (5)',                            ("Desert Colossus", "EnemyDrop"))),
     ("Colossus Adult Guay 5",                                        ("EnemyDrop",    0x5C, (0,2,12), None,                               'Rupees (5)',                            ("Desert Colossus", "EnemyDrop"))),
-
     # Colossus Gossip Stone
     ("Colossus Gossip Stone Drop", ("GossipStone", 0x5C, [(0,0,4),(0,2,3)], None, 'Rupees (20)', ("Desert Colossus","GossipStone"))),
 
-    # Colossus Wonderitems
-    ("Colossus Tree Wonderitem 1",                                   ("Wonderitem",   0x5C, [(0,0,20),(0,2,23)], None,                         'Rupees (5)',                            ("Desert Colossus", "Wonderitem"))),
-    ("Colossus Tree Wonderitem 2",                                   ("Wonderitem",   0x5C, [(0,0,22),(0,2,24)], None,                         'Rupees (5)',                            ("Desert Colossus", "Wonderitem"))),
-    ("Colossus Tree Wonderitem 3 Child",                                   ("Wonderitem",   0x5C, (0,0,23), None,                         'Rupees (5)',                            ("Desert Colossus", "Wonderitem"))),
-    ("Colossus Tree Wonderitem 4",                                   ("Wonderitem",   0x5C, [(0,0,21),(0,2,25)], None,                         'Rupees (5)',                            ("Desert Colossus", "Wonderitem"))),
-    ("Colossus Tree Wonderitem 5",                                   ("Wonderitem",   0x5C, [(0,0,24),(0,2,26)], None,                         'Rupees (20)',                           ("Desert Colossus", "Wonderitem"))),
 
     # Outside Ganon's Castle
     ("OGC Great Fairy Reward",                                       ("Cutscene",     0xFF,  0x15, None,                            'Double Defense',                        ("Outside Ganon's Castle", "Great Fairies",))),
@@ -1568,7 +1591,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
 
 
     # Deku Tree Enemies
-    
+
     #("Deku Tree Lobby Deku Baba 1",                                  ("EnemyDrop",    0x00,  (0, 0x12), None,                   'Rupees (5)',                            ("Deku Tree", "Vanilla", "EnemyDrop"))),
     #("Deku Tree Lobby Deku Baba 2",                                  ("EnemyDrop",    0x00,  (0, 0x13), None,                   'Rupees (5)',                            ("Deku Tree", "Vanilla", "EnemyDrop"))),
     #("Deku Tree Lobby Deku Baba 3",                                  ("EnemyDrop",    0x00,  (0, 0x14), None,                   'Rupees (5)',                            ("Deku Tree", "Vanilla", "EnemyDrop"))),
@@ -1665,11 +1688,11 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Deku Tree MQ Basement Graves Room Grass 3",                    ("Grass",        0x0,   (7,0,15), None,                        'Rupees (5)',                            ("Deku Tree MQ", "Master Quest", "Grass",))),
     ("Deku Tree MQ Basement Graves Room Grass 4",                    ("Grass",        0x0,   (7,0,16), None,                        'Rupees (5)',                            ("Deku Tree MQ", "Master Quest", "Grass",))),
     ("Deku Tree MQ Basement Graves Room Grass 5",                    ("Grass",        0x0,   (7,0,17), None,                        'Rupees (5)',                            ("Deku Tree MQ", "Master Quest", "Grass",))),
-    ("Deku Tree MQ Basement Back Room Grass 1",                      ("Grass",        0x0,   (8,0,1), None,                         'Rupees (5)',                            ("Deku Tree MQ", "Master Quest", "Grass",))),
-    ("Deku Tree MQ Basement Back Room Grass 2",                      ("Grass",        0x0,   (8,0,2), None,                         'Rupees (5)',                            ("Deku Tree MQ", "Master Quest", "Grass",))),
-    ("Deku Tree MQ Basement Back Room Grass 3",                      ("Grass",        0x0,   (8,0,5), None,                         'Rupees (5)',                            ("Deku Tree MQ", "Master Quest", "Grass",))),
-    ("Deku Tree MQ Basement Back Room Grass 4",                      ("Grass",        0x0,   (8,0,6), None,                         'Rupees (5)',                            ("Deku Tree MQ", "Master Quest", "Grass",))),
-    ("Deku Tree MQ Basement Back Room Grass 5",                      ("Grass",        0x0,   (8,0,7), None,                         'Rupees (5)',                            ("Deku Tree MQ", "Master Quest", "Grass",))),
+    #("Deku Tree MQ Basement Back Room Grass 1",                      ("Grass",        0x0,   (8,0,1), None,                         'Rupees (5)',                            ("Deku Tree MQ", "Master Quest", "Grass",))), # Spawns below the room
+    #("Deku Tree MQ Basement Back Room Grass 2",                      ("Grass",        0x0,   (8,0,2), None,                         'Rupees (5)',                            ("Deku Tree MQ", "Master Quest", "Grass",))), # Spawns below the room
+    ("Deku Tree MQ Basement Back Room Grass 1",                      ("Grass",        0x0,   (8,0,5), None,                         'Rupees (5)',                            ("Deku Tree MQ", "Master Quest", "Grass",))),
+    ("Deku Tree MQ Basement Back Room Grass 2",                      ("Grass",        0x0,   (8,0,6), None,                         'Rupees (5)',                            ("Deku Tree MQ", "Master Quest", "Grass",))),
+    ("Deku Tree MQ Basement Back Room Grass 3",                      ("Grass",        0x0,   (8,0,7), None,                         'Rupees (5)',                            ("Deku Tree MQ", "Master Quest", "Grass",))),
     ("Deku Tree MQ Before Boss Grass 1",                             ("Grass",        0x0,   (9,0,1), None,                         'Rupees (5)',                            ("Deku Tree MQ", "Master Quest", "Grass",))),
     ("Deku Tree MQ Before Boss Grass 2",                             ("Grass",        0x0,   (9,0,2), None,                         'Rupees (5)',                            ("Deku Tree MQ", "Master Quest", "Grass",))),
     ("Deku Tree MQ Before Boss Grass 3",                             ("Grass",        0x0,   (9,0,3), None,                         'Rupees (5)',                            ("Deku Tree MQ", "Master Quest", "Grass",))),
@@ -1678,6 +1701,11 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Deku Tree MQ Slingshot Room Grass 3",                          ("Grass",        0x0,   (10,0,3), None,                        'Rupees (5)',                            ("Deku Tree MQ", "Master Quest", "Grass",))),
     ("Deku Tree MQ Slingshot Room Grass 4",                          ("Grass",        0x0,   (10,0,4), None,                        'Rupees (5)',                            ("Deku Tree MQ", "Master Quest", "Grass",))),
 
+    # Deku Tree MQ Wonderitems
+    ("Deku Tree MQ Basement Graves Wonderitem 1",                    ("Wonderitem",   0x00,  (7,0,10), None,                        'Recovery Heart',                        ("Deku Tree", "Master Quest", "Wonderitem"))),
+    ("Deku Tree MQ Basement Graves Wonderitem 2",                    ("Wonderitem",   0x00,  (7,0,11), None,                        'Recovery Heart',                        ("Deku Tree", "Master Quest", "Wonderitem"))),
+    ("Deku Tree MQ Basement Graves Wonderitem 3",                    ("Wonderitem",   0x00,  (7,0,12), None,                        'Recovery Heart',                        ("Deku Tree", "Master Quest", "Wonderitem"))),
+    ("Deku Tree MQ Basement Graves Wonderitem 4",                    ("Wonderitem",   0x00,  (7,0,13), None,                        'Recovery Heart',                        ("Deku Tree", "Master Quest", "Wonderitem"))),
     # Deku Tree MQ Enemies
     ("Deku Tree MQ Lobby Lower Keese",                               ("EnemyDrop",    0x00,  (0,0,3), None,                         'Rupees (5)',                            ("Deku Tree", "Master Quest", "EnemyDrop"))),
     ("Deku Tree MQ Lobby Upper Keese",                               ("EnemyDrop",    0x00,  (0,0,4), None,                         'Rupees (5)',                            ("Deku Tree", "Master Quest", "EnemyDrop"))),
@@ -1720,11 +1748,6 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Deku Tree MQ Basement Back Room Gohma Larva 2",                ("EnemyDrop",    0x00,  (8,0,9), None,                         'Rupees (5)',                            ("Deku Tree", "Master Quest", "EnemyDrop"))),
     ("Deku Tree MQ Basement Back Room Gohma Larva 3",                ("EnemyDrop",    0x00,  (8,0,10), None,                        'Rupees (5)',                            ("Deku Tree", "Master Quest", "EnemyDrop"))),
     ("Deku Tree MQ Basement Back Room Gohma Larva 4",                ("EnemyDrop",    0x00,  (8,0,11), None,                        'Rupees (5)',                            ("Deku Tree", "Master Quest", "EnemyDrop"))),
-    # Deku Tree MQ Wonderitems
-    ("Deku Tree MQ Basement Graves Wonderitem 1",                    ("Wonderitem",   0x00,  (7,0,10), None,                        'Recovery Heart',                        ("Deku Tree", "Master Quest", "Wonderitem"))),
-    ("Deku Tree MQ Basement Graves Wonderitem 2",                    ("Wonderitem",   0x00,  (7,0,11), None,                        'Recovery Heart',                        ("Deku Tree", "Master Quest", "Wonderitem"))),
-    ("Deku Tree MQ Basement Graves Wonderitem 3",                    ("Wonderitem",   0x00,  (7,0,12), None,                        'Recovery Heart',                        ("Deku Tree", "Master Quest", "Wonderitem"))),
-    ("Deku Tree MQ Basement Graves Wonderitem 4",                    ("Wonderitem",   0x00,  (7,0,13), None,                        'Recovery Heart',                        ("Deku Tree", "Master Quest", "Wonderitem"))),
 
     # Deku Tree Shared
     ("Deku Tree Queen Gohma Heart",                                  ("BossHeart",    0x11,  0x4F, None,                            'Heart Container',                       ("Deku Tree", "Deku Tree MQ", "Vanilla Dungeons", "Master Quest",))),
@@ -1812,7 +1835,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Dodongos Cavern Climb Switch Room Armos 2",                    ("EnemyDrop",    0x01,  (5, 0, 0x02), None,                   'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla", "EnemyDrop"))),
     ("Dodongos Cavern Climb Switch Room Armos 3",                    ("EnemyDrop",    0x01,  (5, 0, 0x03), None,                   'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla", "EnemyDrop"))),
     ("Dodongos Cavern Climb Switch Room Keese 1",                    ("EnemyDrop",    0x01,  (5, 0, 0x04), None,                   'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla", "EnemyDrop"))),
-    ("Dodongos Cavern Climb Switch Room Keese 2",                    ("EnemyDrop",    0x01,  (5, 0, 0x05), None,                   'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla", "EnemyDrop"))),    
+    ("Dodongos Cavern Climb Switch Room Keese 2",                    ("EnemyDrop",    0x01,  (5, 0, 0x05), None,                   'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla", "EnemyDrop"))),
     ("Dodongos Cavern Upper Bridge Keese 1",                         ("EnemyDrop",    0x01,  (0, 0, 0x06), None,                   'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla", "EnemyDrop"))),
     ("Dodongos Cavern Upper Bridge Keese 2",                         ("EnemyDrop",    0x01,  (0, 0, 0x07), None,                   'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla", "EnemyDrop"))),
     ("Dodongos Cavern Before Upper Lizalfos Baby Dodongo 1",         ("EnemyDrop",    0x01,  (10, 0, 0x02), None,                   'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla", "EnemyDrop"))),
@@ -1825,7 +1848,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Dodongos Cavern Before Back Room Keese 1",                     ("EnemyDrop",    0x01,  (8, 0, 0x01), None,                   'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla", "EnemyDrop"))),
     ("Dodongos Cavern Before Back Room Keese 2",                     ("EnemyDrop",    0x01,  (8, 0, 0x02), None,                   'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla", "EnemyDrop"))),
     ("Dodongos Cavern Back Room Armos",                              ("EnemyDrop",    0x01,  (14,0,0x01), None,                   'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla", "EnemyDrop"))),
-    
+
     # Dodongo's Cavern MQ
     ("Dodongos Cavern MQ Map Chest",                                 ("Chest",        0x01,  0x00, None,                            'Map (Dodongos Cavern)',                 ("Dodongo's Cavern MQ", "Master Quest", "Chests",))),
     ("Dodongos Cavern MQ Bomb Bag Chest",                            ("Chest",        0x01,  0x04, None,                            'Bomb Bag',                              ("Dodongo's Cavern MQ", "Master Quest", "Chests",))),
@@ -1899,11 +1922,11 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Dodongos Cavern MQ After Upper Lizalfos Crate 1",              ("Crate",        0x1,   (12,0,11), None,                       'Rupee (1)',                             ("Dodongo's Cavern MQ", "Master Quest", "Crates",))),
     ("Dodongos Cavern MQ After Upper Lizalfos Crate 2",              ("Crate",        0x1,   (12,0,12), None,                       'Rupee (1)',                             ("Dodongo's Cavern MQ", "Master Quest", "Crates",))),
     # Dodongo's Cavern MQ Silver Rupees
-    ("Dodongos Cavern MQ Staircase Silver Rupee Beamos",             ("SilverRupee",  0x1,   (2,0,11), None,                     'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongo's Cavern MQ", "Master Quest", "Silver Rupees"))),
-    ("Dodongos Cavern MQ Staircase Silver Rupee Lower Crate",        ("SilverRupee",  0x1,   (2,0,12), None,                     'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongo's Cavern MQ", "Master Quest", "Silver Rupees"))),
-    ("Dodongos Cavern MQ Staircase Silver Rupee Mid Left Crate",     ("SilverRupee",  0x1,   (2,0,13), None,                     'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongo's Cavern MQ", "Master Quest", "Silver Rupees"))),
-    ("Dodongos Cavern MQ Staircase Silver Rupee Vines",              ("SilverRupee",  0x1,   (2,0,14), None,                     'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongo's Cavern MQ", "Master Quest", "Silver Rupees"))),
-    ("Dodongos Cavern MQ Staircase Silver Rupee Top Right Crate",    ("SilverRupee",  0x1,   (2,0,15), None,                     'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongo's Cavern MQ", "Master Quest", "Silver Rupees"))),
+    ("Dodongos Cavern MQ Staircase Silver Rupee Beamos",             ("SilverRupee",  0x1,   (2,0,11), None,                     'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongo's Cavern MQ", "Master Quest", "Silver Rupees",))),
+    ("Dodongos Cavern MQ Staircase Silver Rupee Lower Crate",        ("SilverRupee",  0x1,   (2,0,12), None,                     'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongo's Cavern MQ", "Master Quest", "Silver Rupees",))),
+    ("Dodongos Cavern MQ Staircase Silver Rupee Mid Left Crate",     ("SilverRupee",  0x1,   (2,0,13), None,                     'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongo's Cavern MQ", "Master Quest", "Silver Rupees",))),
+    ("Dodongos Cavern MQ Staircase Silver Rupee Vines",              ("SilverRupee",  0x1,   (2,0,14), None,                     'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongo's Cavern MQ", "Master Quest", "Silver Rupees",))),
+    ("Dodongos Cavern MQ Staircase Silver Rupee Top Right Crate",    ("SilverRupee",  0x1,   (2,0,15), None,                     'Silver Rupee (Dodongos Cavern Staircase)', ("Dodongo's Cavern MQ", "Master Quest", "Silver Rupees",))),
     # Dodongo's Cavern MQ Grass
     ("Dodongos Cavern Compass Room Grass 1",                         ("Grass",        0x1,   (5,0,1), None,                      'Rupees (5)',                               ("Dodongo's Cavern MQ", "Master Quest", "Grass",))),
     ("Dodongos Cavern Compass Room Grass 2",                         ("Grass",        0x1,   (5,0,2), None,                      'Rupees (5)',                               ("Dodongo's Cavern MQ", "Master Quest", "Grass",))),
@@ -1915,6 +1938,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Dodongos Cavern Scrub Room Grass 1",                           ("Grass",        0x1,   (13,0,1), None,                     'Rupees (5)',                               ("Dodongo's Cavern MQ", "Master Quest", "Grass",))),
     ("Dodongos Cavern Scrub Room Grass 2",                           ("Grass",        0x1,   (13,0,2), None,                     'Rupees (5)',                               ("Dodongo's Cavern MQ", "Master Quest", "Grass",))),
     ("Dodongos Cavern Back Poe Room Grass",                          ("Grass",        0x1,   (14,0,1), None,                     'Rupees (5)',                               ("Dodongo's Cavern MQ", "Master Quest", "Grass",))),
+
 
     # Dodongo's Cavern MQ Enemies
     ("Dodongos Cavern MQ Right Side Skulltula",                      ("EnemyDrop",    0x01,  (1,0,3), None,                         'Rupees (5)',                            ("Dodongo's Cavern", "Master Quest", "EnemyDrop"))),
@@ -1969,7 +1993,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Dodongos Cavern MQ Song of Time Block Room Skulltula 3",       ("EnemyDrop",    0x01,  (15,0,4), None,                        'Rupees (5)',                            ("Dodongo's Cavern", "Master Quest", "EnemyDrop"))),
     # Dodongo's Cavern MQ Gossip Stones
     ("Dodongos Cavern MQ Gossip Stone Drop",                         ("GossipStone",  0x1,   (0,0,1), None,                         'Rupees (20)',                           ("Dodongo's Cavern MQ", "Master Quest", "GossipStone"))),
-    
+
     # Dodongo's Cavern Shared
     ("Dodongos Cavern Lower Lizalfos Hidden Recovery Heart",         ("Freestanding", 0x01,  (3,0,6), None,                         'Recovery Heart',                        ("Dodongo's Cavern", "Dodongo's Cavern MQ", "Vanilla Dungeons", "Master Quest", "Freestandings",))),
     ("Dodongos Cavern Boss Room Chest",                              ("Chest",        0x12,  0x00, None,                            'Bombs (5)',                             ("Dodongo's Cavern", "Dodongo's Cavern MQ", "Vanilla Dungeons", "Master Quest", "Chests",))),
@@ -2057,7 +2081,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Jabu Jabus Belly Before Boss Biri 3",                          ("EnemyDrop",    0x02,  (5, 0, 4), None,                'Rupees (5)',                            ("Jabu Jabu's Belly", "Vanilla", "EnemyDrop"))),
     ("Jabu Jabus Belly Before Boss Biri 4",                          ("EnemyDrop",    0x02,  (5, 0, 5), None,                'Rupees (5)',                            ("Jabu Jabu's Belly", "Vanilla", "EnemyDrop"))),
     ("Jabu Jabus Belly Before Boss Biri 5",                          ("EnemyDrop",    0x02,  (5, 0, 6), None,                'Rupees (5)',                            ("Jabu Jabu's Belly", "Vanilla", "EnemyDrop"))),
-    
+
 
     # Jabu Jabu's Belly MQ
     ("Jabu Jabus Belly MQ Map Chest",                                ("Chest",        0x02,  0x03, None,                            'Map (Jabu Jabus Belly)',                ("Jabu Jabu's Belly MQ", "Master Quest", "Chests",))),
@@ -2096,42 +2120,6 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Jabu Jabus Belly MQ Falling Like Like Room Pot 2",             ("Pot",          0x02,  (11,0,31), None,                       'Bombs (5)',                             ("Jabu Jabu's Belly MQ", "Master Quest", "Pots",))),
     ("Jabu Jabus Belly MQ Boomerang Room Pot 1",                     ("Pot",          0x02,  (14,0,11), None,                       'Bombs (5)',                             ("Jabu Jabu's Belly MQ", "Master Quest", "Pots",))),
     ("Jabu Jabus Belly MQ Boomerang Room Pot 2",                     ("Pot",          0x02,  (14,0,15), None,                       'Bombs (5)',                             ("Jabu Jabu's Belly MQ", "Master Quest", "Pots",))),
-    
-    # Jabu Jabu's Belly MQ Enemies
-    ("Jabu Jabus Belly MQ Entryway Octorok",                         ("EnemyDrop",    0x02,  (0, 0, 1), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Entryway Shabom 1",                        ("EnemyDrop",    0x02,  (0, 0, 8), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Entryway Shabom 2",                        ("EnemyDrop",    0x02,  (0, 0, 9), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Entryway Shabom 3",                        ("EnemyDrop",    0x02,  (0, 0, 10), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Elevator Biri 1",                          ("EnemyDrop",    0x02,  (1, 0, 4), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Elevator Biri 2",                          ("EnemyDrop",    0x02,  (1, 0, 5), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Elevator Stingray",                        ("EnemyDrop",    0x02,  (1, 0, 17), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Pit Room Biri 1",                          ("EnemyDrop",    0x02,  (2, 0, 3), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Pit Room Biri 2",                          ("EnemyDrop",    0x02,  (2, 0, 4), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Basement Biri",                            ("EnemyDrop",    0x02,  (3, 0, 4), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Basement Shabom",                          ("EnemyDrop",    0x02,  (3, 0, 11), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Wiggler Platforms Lizalfos",               ("EnemyDrop",    0x02,  (4, 0, 8), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Before Boss Like-Like 1",                  ("EnemyDrop",    0x02,  (5, 0, 5), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Before Boss Like-Like 2",                  ("EnemyDrop",    0x02,  (5, 0, 6), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ After Big Octo Bari",                      ("EnemyDrop",    0x02,  (6, 0, 1), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Tentacle Hallway Lizalfos",                ("EnemyDrop",    0x02,  (7, 0, 1), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Falling Like-Like Room Like-Like 1",       ("EnemyDrop",    0x02,  (11, 0, 6), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Falling Like-Like Room Like-Like 2",       ("EnemyDrop",    0x02,  (11, 0, 7), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Tailsparan Room Tailsparan 1",             ("EnemyDrop",    0x02,  (12, 0, 2), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Tailsparan Room Tailsparan 2",             ("EnemyDrop",    0x02,  (12, 0, 3), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Tailsparan Room Tailsparan 3",             ("EnemyDrop",    0x02,  (12, 0, 4), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Tailsparan Room Shabom 1",                 ("EnemyDrop",    0x02,  (12, 0, 10), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Tailsparan Room Shabom 2",                 ("EnemyDrop",    0x02,  (12, 0, 11), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Tailsparan Room Skullwalltula",            ("EnemyDrop",    0x02,  (12, 0, 1), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Invisible Enemies Room Keese 1",           ("EnemyDrop",    0x02,  (13, 0, 2), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Invisible Enemies Room Keese 2",           ("EnemyDrop",    0x02,  (13, 0, 3), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Invisible Enemies Room Keese 3",           ("EnemyDrop",    0x02,  (13, 0, 4), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Invisible Enemies Room Stingray 1",        ("EnemyDrop",    0x02,  (13, 0, 6), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Invisible Enemies Room Stingray 2",        ("EnemyDrop",    0x02,  (13, 0, 7), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Basement Boomerang Room Stinger 1",        ("EnemyDrop",    0x02,  (14, 0, 1), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Basement Boomerang Room Stinger 2",        ("EnemyDrop",    0x02,  (14, 0, 2), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Basement Boomerang Room Like-like",        ("EnemyDrop",    0x02,  (14, 0, 4), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    ("Jabu Jabus Belly MQ Basement Boomerang Room Lizalfos",         ("EnemyDrop",    0x02,  (14, 0, 5), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
-    
     # Jabu Jabu's Belly MQ Wonderitems
     ("Jabu Jabus Belly MQ Entryway Left Cow Wonderitem",             ("Wonderitem",   0x02,  (0,0,15), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
     ("Jabu Jabus Belly MQ Entryway Right Cow Wonderitem",            ("Wonderitem",   0x02,  (0,0,14), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
@@ -2148,12 +2136,12 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Jabu Jabus Belly MQ Before Boss Right Cow Wonderitem 2",       ("Wonderitem",   0x02,  (5,0,11), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
     ("Jabu Jabus Belly MQ Before Boss Left Cow Wonderitem",          ("Wonderitem",   0x02,  (5,0,12), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
     ("Jabu Jabus Belly MQ After Big Octo Cow Wonderitem",            ("Wonderitem",   0x02,  (6,0,8), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
-    ("Jabu Jabus Belly MQ Falling Like-Like Room Right Cow Wonderitem 1", ("Wonderitem",0x02,(11,0,20), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
-    ("Jabu Jabus Belly MQ Falling Like-Like Room Right Cow Wonderitem 2", ("Wonderitem",0x02,(11,0,21), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
-    ("Jabu Jabus Belly MQ Falling Like-Like Room Right Cow Wonderitem 3", ("Wonderitem",0x02,(11,0,22), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
-    ("Jabu Jabus Belly MQ Falling Like-Like Room Left Cow Wonderitem 1", ("Wonderitem",0x02, (11,0,23), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
-    ("Jabu Jabus Belly MQ Falling Like-Like Room Left Cow Wonderitem 2", ("Wonderitem",0x02, (11,0,24), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
-    ("Jabu Jabus Belly MQ Falling Like-Like Room Left Cow Wonderitem 3", ("Wonderitem",0x02, (11,0,25), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    ("Jabu Jabus Belly MQ Falling Like Like Room Right Cow Wonderitem 1", ("Wonderitem",0x02,(11,0,20), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    ("Jabu Jabus Belly MQ Falling Like Like Room Right Cow Wonderitem 2", ("Wonderitem",0x02,(11,0,21), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    ("Jabu Jabus Belly MQ Falling Like Like Room Right Cow Wonderitem 3", ("Wonderitem",0x02,(11,0,22), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    ("Jabu Jabus Belly MQ Falling Like Like Room Left Cow Wonderitem 1", ("Wonderitem",0x02, (11,0,23), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    ("Jabu Jabus Belly MQ Falling Like Like Room Left Cow Wonderitem 2", ("Wonderitem",0x02, (11,0,24), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
+    ("Jabu Jabus Belly MQ Falling Like Like Room Left Cow Wonderitem 3", ("Wonderitem",0x02, (11,0,25), None,                        'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest", "Wonderitem"))),
 
     # Jabu Jabu's Belly MQ Grass
     ("Jabu Jabus Belly MQ First Room Grass 1",                       ("Grass",        0x2,   (0,0,2), None,                         'Rupees (5)',                            ("Jabu Jabu's Belly MQ", "Master Quest", "Grass",))),
@@ -2170,6 +2158,42 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Jabu Jabus Belly MQ After Big Octo Grass 2",                   ("Grass",        0x2,   (6,0,6), None,                         'Rupees (5)',                            ("Jabu Jabu's Belly MQ", "Master Quest", "Grass",))),
     ("Jabu Jabus Belly MQ Falling Like Like Room Grass",             ("Grass",        0x2,   (11,0,5), None,                        'Rupees (5)',                            ("Jabu Jabu's Belly MQ", "Master Quest", "Grass",))),
     ("Jabu Jabus Belly MQ Basement Boomerang Room Grass",            ("Grass",        0x2,   (14,0,3), None,                        'Rupees (5)',                            ("Jabu Jabu's Belly MQ", "Master Quest", "Grass",))),
+
+
+    # Jabu Jabu's Belly MQ Enemies
+    ("Jabu Jabus Belly MQ Entryway Octorok",                         ("EnemyDrop",    0x02,  (0, 0, 1), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Entryway Shabom 1",                        ("EnemyDrop",    0x02,  (0, 0, 8), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Entryway Shabom 2",                        ("EnemyDrop",    0x02,  (0, 0, 9), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Entryway Shabom 3",                        ("EnemyDrop",    0x02,  (0, 0, 10), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Elevator Biri 1",                          ("EnemyDrop",    0x02,  (1, 0, 4), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Elevator Biri 2",                          ("EnemyDrop",    0x02,  (1, 0, 5), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Elevator Stingray",                        ("EnemyDrop",    0x02,  (1, 0, 17), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Pit Room Biri 1",                          ("EnemyDrop",    0x02,  (2, 0, 3), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Pit Room Biri 2",                          ("EnemyDrop",    0x02,  (2, 0, 4), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Basement Biri",                            ("EnemyDrop",    0x02,  (3, 0, 4), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Basement Shabom",                          ("EnemyDrop",    0x02,  (3, 0, 11), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Wiggler Platforms Lizalfos",               ("EnemyDrop",    0x02,  (4, 0, 8), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Before Boss Like Like 1",                  ("EnemyDrop",    0x02,  (5, 0, 5), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Before Boss Like Like 2",                  ("EnemyDrop",    0x02,  (5, 0, 6), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ After Big Octo Bari",                      ("EnemyDrop",    0x02,  (6, 0, 1), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Tentacle Hallway Lizalfos",                ("EnemyDrop",    0x02,  (7, 0, 1), None,                       'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Falling Like Like Room Like Like 1",       ("EnemyDrop",    0x02,  (11, 0, 6), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Falling Like Like Room Like Like 2",       ("EnemyDrop",    0x02,  (11, 0, 7), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Tailsparan Room Tailsparan 1",             ("EnemyDrop",    0x02,  (12, 0, 2), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Tailsparan Room Tailsparan 2",             ("EnemyDrop",    0x02,  (12, 0, 3), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Tailsparan Room Tailsparan 3",             ("EnemyDrop",    0x02,  (12, 0, 4), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Tailsparan Room Shabom 1",                 ("EnemyDrop",    0x02,  (12, 0, 10), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Tailsparan Room Shabom 2",                 ("EnemyDrop",    0x02,  (12, 0, 11), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Tailsparan Room Skullwalltula",            ("EnemyDrop",    0x02,  (12, 0, 1), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Invisible Enemies Room Keese 1",           ("EnemyDrop",    0x02,  (13, 0, 2), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Invisible Enemies Room Keese 2",           ("EnemyDrop",    0x02,  (13, 0, 3), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Invisible Enemies Room Keese 3",           ("EnemyDrop",    0x02,  (13, 0, 4), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Invisible Enemies Room Stingray 1",        ("EnemyDrop",    0x02,  (13, 0, 6), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Invisible Enemies Room Stingray 2",        ("EnemyDrop",    0x02,  (13, 0, 7), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Basement Boomerang Room Stinger 1",        ("EnemyDrop",    0x02,  (14, 0, 1), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Basement Boomerang Room Stinger 2",        ("EnemyDrop",    0x02,  (14, 0, 2), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Basement Boomerang Room Like like",        ("EnemyDrop",    0x02,  (14, 0, 4), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
+    ("Jabu Jabus Belly MQ Basement Boomerang Room Lizalfos",         ("EnemyDrop",    0x02,  (14, 0, 5), None,                      'Rupees (5)',                            ("Jabu Jabu's Belly", "Master Quest", "EnemyDrop"))),
 
     # Jabu Jabu's Belly Shared
     ("Jabu Jabus Belly Barinade Heart",                              ("BossHeart",    0x13,  0x4F, None,                            'Heart Container',                       ("Jabu Jabu's Belly", "Jabu Jabu's Belly MQ", "Vanilla Dungeons", "Master Quest",))),
@@ -2230,11 +2254,11 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Bottom of the Well West Inner Room Flying Pot 2",              ("FlyingPot",    0x08,  (6,0,4), None,                         'Recovery Heart',                        ("Bottom of the Well", "Vanilla Dungeons", "Flying Pots",))),
     ("Bottom of the Well West Inner Room Flying Pot 3",              ("FlyingPot",    0x08,  (6,0,5), None,                         'Recovery Heart',                        ("Bottom of the Well", "Vanilla Dungeons", "Flying Pots",))),
     # Bottom of the Well Silver Rupees
-    ("Bottom of the Well Basement Silver Rupee Wood Beam Front",     ("SilverRupee",  0x08, (1,0,43), None,                    'Silver Rupee (Bottom of the Well Basement)', ("Bottom of the Well", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Bottom of the Well Basement Silver Rupee Wood Beam Back",      ("SilverRupee",  0x08, (1,0,42), None,                    'Silver Rupee (Bottom of the Well Basement)', ("Bottom of the Well", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Bottom of the Well Basement Silver Rupee Ladders Bottom",      ("SilverRupee",  0x08, (1,0,41), None,                    'Silver Rupee (Bottom of the Well Basement)', ("Bottom of the Well", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Bottom of the Well Basement Silver Rupee Ladders Middle",      ("SilverRupee",  0x08, (1,0,40), None,                    'Silver Rupee (Bottom of the Well Basement)', ("Bottom of the Well", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Bottom of the Well Basement Silver Rupee Ladders Top",         ("SilverRupee",  0x08, (1,0,39), None,                    'Silver Rupee (Bottom of the Well Basement)', ("Bottom of the Well", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Bottom of the Well Basement Silver Rupee Wood Beam Front",     ("SilverRupee",  0x08, (1,0,43), None,                    'Silver Rupee (Bottom of the Well Basement)', ("Bottom of the Well", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Bottom of the Well Basement Silver Rupee Wood Beam Back",      ("SilverRupee",  0x08, (1,0,42), None,                    'Silver Rupee (Bottom of the Well Basement)', ("Bottom of the Well", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Bottom of the Well Basement Silver Rupee Ladders Bottom",      ("SilverRupee",  0x08, (1,0,41), None,                    'Silver Rupee (Bottom of the Well Basement)', ("Bottom of the Well", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Bottom of the Well Basement Silver Rupee Ladders Middle",      ("SilverRupee",  0x08, (1,0,40), None,                    'Silver Rupee (Bottom of the Well Basement)', ("Bottom of the Well", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Bottom of the Well Basement Silver Rupee Ladders Top",         ("SilverRupee",  0x08, (1,0,39), None,                    'Silver Rupee (Bottom of the Well Basement)', ("Bottom of the Well", "Vanilla Dungeons", "Silver Rupees",))),
     # Bottom of the Well Grass
     ("Bottom of the Well Basement Behind Rock Grass 1",              ("Grass",        0x08, (1,0,2),  None,                    'Rupees (5)',                                 ("Bottom of the Well", "Vanilla Dungeons", "Grass"))),
     ("Bottom of the Well Basement Behind Rock Grass 2",              ("Grass",        0x08, (1,0,3),  None,                    'Rupees (5)',                                 ("Bottom of the Well", "Vanilla Dungeons", "Grass"))),
@@ -2271,7 +2295,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Bottom of the Well Behind Right Locked Door Keese 3",          ("EnemyDrop",    0x08,  (5,0, 3), None,                    'Rupees (5)',                           ("Bottom of the Well", "Vanilla", "EnemyDrop"))),
     ("Bottom of the Well Behind Right Locked Door Keese 4",          ("EnemyDrop",    0x08,  (5,0, 4), None,                    'Rupees (5)',                           ("Bottom of the Well", "Vanilla", "EnemyDrop"))),
     #("Bottom of the Well Behind Left Locked Door Deku Baba",          ("EnemyDrop",    0x08,  (5,0, 3), None,                    'Rupees (5)',                           ("Bottom of the Well", "Vanilla", "EnemyDrop"))),
-    
+
     # Bottom of the Well MQ
     ("Bottom of the Well MQ Map Chest",                              ("Chest",        0x08,  0x03, None,                            'Map (Bottom of the Well)',              ("Bottom of the Well MQ", "Master Quest", "Chests",))),
     ("Bottom of the Well MQ East Inner Room Freestanding Key",       ("Collectable",  0x08,  0x01, None,                            'Small Key (Bottom of the Well)',        ("Bottom of the Well MQ", "Master Quest", "Freestandings",))),
@@ -2293,7 +2317,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Bottom of the Well MQ Center Room Right Pot 1",                ("Pot",          0x08,  (0,0,41), None,                        'Recovery Heart',                        ("Bottom of the Well MQ", "Master Quest", "Pots",))),
     ("Bottom of the Well MQ Center Room Right Pot 2",                ("Pot",          0x08,  (0,0,43), None,                        'Arrows (10)',                           ("Bottom of the Well MQ", "Master Quest", "Pots",))),
     ("Bottom of the Well MQ Center Room Right Pot 3",                ("Pot",          0x08,  (0,0,45), None,                        'Bombs (5)',                             ("Bottom of the Well MQ", "Master Quest", "Pots",))),
-    ("Bottom of the Well MQ Perimiter Behind Gate Pot",              ("Pot",          0x08,  (0,0,47), None,                        'Fairy Drop',                            ("Bottom of the Well MQ", "Master Quest", "Pots",))),
+    ("Bottom of the Well MQ Perimeter Behind Gate Pot",              ("Pot",          0x08,  (0,0,47), None,                        'Fairy Drop',                            ("Bottom of the Well MQ", "Master Quest", "Pots",))),
     ("Bottom of the Well MQ East Inner Room Pot 1",                  ("Pot",          0x08,  (5,0,7), None,                         'Recovery Heart',                        ("Bottom of the Well MQ", "Master Quest", "Pots",))),
     ("Bottom of the Well MQ East Inner Room Pot 2",                  ("Pot",          0x08,  (5,0,8), None,                         'Recovery Heart',                        ("Bottom of the Well MQ", "Master Quest", "Pots",))),
     ("Bottom of the Well MQ East Inner Room Pot 3",                  ("Pot",          0x08,  (5,0,9), None,                         'Recovery Heart',                        ("Bottom of the Well MQ", "Master Quest", "Pots",))),
@@ -2303,6 +2327,19 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Bottom of the Well Dead Hand Grass 3",                         ("Grass",        0x8,   (4,0,3), None,                         'Rupees (5)',                            ("Bottom of the Well MQ", "Master Quest", "Grass",))),
     ("Bottom of the Well Dead Hand Grass 4",                         ("Grass",        0x8,   (4,0,4), None,                         'Rupees (5)',                            ("Bottom of the Well MQ", "Master Quest", "Grass",))),
 
+    # Bottom of the Well MQ Wonderitems
+    ("Bottom of the Well MQ Main Area Left Slingshot Wonderitem 1",  ("Wonderitem",   0x08,  (0,0,6), None,                         'Rupees (20)',                           ("Bottom of the Well", "Master Quest", "Wonderitem"))),
+    ("Bottom of the Well MQ Main Area Left Slingshot Wonderitem 2",  ("Wonderitem",   0x08,  (0,0,7), None,                         'Rupees (20)',                           ("Bottom of the Well", "Master Quest", "Wonderitem"))),
+    ("Bottom of the Well MQ Main Area Left Slingshot Wonderitem 3",  ("Wonderitem",   0x08,  (0,0,9), None,                         'Deku Seeds (30)',                           ("Bottom of the Well", "Master Quest", "Wonderitem"))),
+    ("Bottom of the Well MQ Main Area Left Slingshot Wonderitem 4",  ("Wonderitem",   0x08,  (0,0,11), None,                         'Rupees (20)',                           ("Bottom of the Well", "Master Quest", "Wonderitem"))),
+    ("Bottom of the Well MQ Main Area Right Slingshot Wonderitem 1", ("Wonderitem",   0x08,  (0,0,8), None,                         'Rupees (20)',                           ("Bottom of the Well", "Master Quest", "Wonderitem"))),
+    ("Bottom of the Well MQ Main Area Right Slingshot Wonderitem 2", ("Wonderitem",   0x08,  (0,0,10), None,                        'Deku Seeds (30)',                       ("Bottom of the Well", "Master Quest", "Wonderitem"))),
+    ("Bottom of the Well MQ Main Area Right Slingshot Wonderitem 3", ("Wonderitem",   0x08,  (0,0,12), None,                        'Rupees (20)',                       ("Bottom of the Well", "Master Quest", "Wonderitem"))),
+    ("Bottom of the Well MQ Main Area Right Slingshot Wonderitem 4", ("Wonderitem",   0x08,  (0,0,13), None,                        'Rupees (20)',                       ("Bottom of the Well", "Master Quest", "Wonderitem"))),
+    ("Bottom of the Well MQ East Inner Room Slingshot Wonderitem 1", ("Wonderitem",   0x08,  (5,0,1), None,                        'Rupees (20)',                       ("Bottom of the Well", "Master Quest", "Wonderitem"))),
+    ("Bottom of the Well MQ East Inner Room Slingshot Wonderitem 2", ("Wonderitem",   0x08,  (5,0,2), None,                        'Rupees (20)',                       ("Bottom of the Well", "Master Quest", "Wonderitem"))),
+    ("Bottom of the Well MQ East Inner Room Slingshot Wonderitem 3", ("Wonderitem",   0x08,  (5,0,3), None,                        'Rupees (20)',                       ("Bottom of the Well", "Master Quest", "Wonderitem"))),
+    ("Bottom of the Well MQ East Inner Room Slingshot Wonderitem 4", ("Wonderitem",   0x08,  (5,0,4), None,                        'Rupees (20)',                       ("Bottom of the Well", "Master Quest", "Wonderitem"))),
     # Bottom of the Well MQ Enemies
     ("Bottom of the Well MQ First Hallway Redead",                      ("EnemyDrop",    0x08,  (0,0,5), None,                        'Rupees (5)',                                ("Bottom of the Well", "Master Quest", "EnemyDrop"))),
     ("Bottom of the Well MQ Inside Gate Skullwalltula Lower",           ("EnemyDrop",    0x08,  (0,0,1), None,                        'Rupees (5)',                                ("Bottom of the Well", "Master Quest", "EnemyDrop"))),
@@ -2327,19 +2364,6 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Bottom of the Well MQ West Inner Room Keese 3",                   ("EnemyDrop",    0x08,  (6,0,3), None,                        'Rupees (5)',                                ("Bottom of the Well", "Master Quest", "EnemyDrop"))),
     ("Bottom of the Well MQ West Inner Room Invisible Skulltula 1",     ("EnemyDrop",    0x08,  (6,0,4), None,                        'Rupees (5)',                                ("Bottom of the Well", "Master Quest", "EnemyDrop"))),
     ("Bottom of the Well MQ West Inner Room Invisible Skulltula 2",     ("EnemyDrop",    0x08,  (6,0,5), None,                        'Rupees (5)',                                ("Bottom of the Well", "Master Quest", "EnemyDrop"))),
-    # Bottom of the Well MQ Wonderitems
-    ("Bottom of the Well MQ Main Area Left Slingshot Wonderitem 1",  ("Wonderitem",   0x08,  (0,0,6), None,                         'Rupees (20)',                           ("Bottom of the Well", "Master Quest", "Wonderitem"))),
-    ("Bottom of the Well MQ Main Area Left Slingshot Wonderitem 2",  ("Wonderitem",   0x08,  (0,0,7), None,                         'Rupees (20)',                           ("Bottom of the Well", "Master Quest", "Wonderitem"))),
-    ("Bottom of the Well MQ Main Area Left Slingshot Wonderitem 3",  ("Wonderitem",   0x08,  (0,0,9), None,                         'Deku Seeds (30)',                           ("Bottom of the Well", "Master Quest", "Wonderitem"))),
-    ("Bottom of the Well MQ Main Area Left Slingshot Wonderitem 4",  ("Wonderitem",   0x08,  (0,0,11), None,                         'Rupees (20)',                           ("Bottom of the Well", "Master Quest", "Wonderitem"))),
-    ("Bottom of the Well MQ Main Area Right Slingshot Wonderitem 1", ("Wonderitem",   0x08,  (0,0,8), None,                         'Rupees (20)',                           ("Bottom of the Well", "Master Quest", "Wonderitem"))),
-    ("Bottom of the Well MQ Main Area Right Slingshot Wonderitem 2", ("Wonderitem",   0x08,  (0,0,10), None,                        'Deku Seeds (30)',                       ("Bottom of the Well", "Master Quest", "Wonderitem"))),
-    ("Bottom of the Well MQ Main Area Right Slingshot Wonderitem 3", ("Wonderitem",   0x08,  (0,0,12), None,                        'Rupees (20)',                       ("Bottom of the Well", "Master Quest", "Wonderitem"))),
-    ("Bottom of the Well MQ Main Area Right Slingshot Wonderitem 4", ("Wonderitem",   0x08,  (0,0,13), None,                        'Rupees (20)',                       ("Bottom of the Well", "Master Quest", "Wonderitem"))),
-    ("Bottom of the Well MQ East Inner Room Slingshot Wonderitem 1", ("Wonderitem",   0x08,  (5,0,1), None,                        'Rupees (20)',                       ("Bottom of the Well", "Master Quest", "Wonderitem"))),
-    ("Bottom of the Well MQ East Inner Room Slingshot Wonderitem 2", ("Wonderitem",   0x08,  (5,0,2), None,                        'Rupees (20)',                       ("Bottom of the Well", "Master Quest", "Wonderitem"))),
-    ("Bottom of the Well MQ East Inner Room Slingshot Wonderitem 3", ("Wonderitem",   0x08,  (5,0,3), None,                        'Rupees (20)',                       ("Bottom of the Well", "Master Quest", "Wonderitem"))),
-    ("Bottom of the Well MQ East Inner Room Slingshot Wonderitem 4", ("Wonderitem",   0x08,  (5,0,4), None,                        'Rupees (20)',                       ("Bottom of the Well", "Master Quest", "Wonderitem"))),
 
     # Forest Temple Vanilla
     ("Forest Temple First Room Chest",                               ("Chest",        0x03,  0x03, None,                            'Small Key (Forest Temple)',             ("Forest Temple", "Vanilla Dungeons", "Chests",))),
@@ -2520,7 +2544,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Forest Temple MQ Second Twisted Hallway Bubble 1",             ("EnemyDrop",    0x03,  (20, 0, 1), None,                      'Rupees (5)',                            ("Forest Temple", "Master Quest", "EnemyDrop"))),
     ("Forest Temple MQ Second Twisted Hallway Bubble 2",             ("EnemyDrop",    0x03,  (20, 0, 2), None,                      'Rupees (5)',                            ("Forest Temple", "Master Quest", "EnemyDrop"))),
     ("Forest Temple MQ Balcony Floormaster",                         ("EnemyDrop",    0x03,  (21, 0, 1), None,                      'Rupees (5)',                            ("Forest Temple", "Master Quest", "EnemyDrop"))),
-    
+
     # Forest Temple Shared
     ("Forest Temple Phantom Ganon Heart",                            ("BossHeart",    0x14,  0x4F, None,                            'Heart Container',                       ("Forest Temple", "Forest Temple MQ", "Vanilla Dungeons", "Master Quest",))),
 
@@ -2573,7 +2597,6 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Fire Temple Hammer Staircase Small Wooden Crate 1",            ("SmallCrate",   0x04,  (14,0,3), None,                        'Nothing',                               ("Fire Temple", "Vanilla Dungeons", "Small Crates",))),
     ("Fire Temple Hammer Staircase Small Wooden Crate 2",            ("SmallCrate",   0x04,  (14,0,4), None,                        'Nothing',                               ("Fire Temple", "Vanilla Dungeons", "Small Crates",))),
 
-
     # Fire Temple Enemies
     ("Fire Temple Lobby Keese 1",                                    ("EnemyDrop",    0x04,  (0, 0, 1), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla", "EnemyDrop"))),
     ("Fire Temple Lobby Keese 2",                                    ("EnemyDrop",    0x04,  (0, 0, 5), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla", "EnemyDrop"))),
@@ -2623,9 +2646,9 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Fire Temple Before Lower Flare Dancer Torch Slug 2",           ("EnemyDrop",    0x04,  (15,0, 4), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla", "EnemyDrop"))),
     ("Fire Temple Before Lower Flare Dancer Torch Slug 3",           ("EnemyDrop",    0x04,  (15,0, 6), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla", "EnemyDrop"))),
     ("Fire Temple Before Lower Flare Dancer Torch Slug 4",           ("EnemyDrop",    0x04,  (15,0, 8), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla", "EnemyDrop"))),
-    ("Fire Temple Before Lower Flare Dancer Like-Like",              ("EnemyDrop",    0x04,  (18,0, 1), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla", "EnemyDrop"))),
+    ("Fire Temple Before Lower Flare Dancer Like Like",              ("EnemyDrop",    0x04,  (18,0, 1), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla", "EnemyDrop"))),
     ("Fire Temple Lower Flare Dancer",                               ("EnemyDrop",    0x04,  (3, 0, 1), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla", "EnemyDrop"))),
-    
+
 
     # Fire Temple MQ
     ("Fire Temple MQ Map Room Side Chest",                           ("Chest",        0x04,  0x02, None,                            'Hylian Shield',                         ("Fire Temple MQ", "Master Quest", "Chests",))),
@@ -2709,26 +2732,6 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Fire Temple MQ Shoot Torch On Wall Room Small Wooden Crate 3", ("SmallCrate",   0x04,  (16,0,16), None,                       'Nothing',                               ("Fire Temple MQ", "Master Quest", "Small Crates",))),
     ("Fire Temple MQ Shoot Torch On Wall Room Small Wooden Crate 4", ("SmallCrate",   0x04,  (16,0,17), None,                       'Nothing',                               ("Fire Temple MQ", "Master Quest", "Small Crates",))),
     ("Fire Temple MQ Shoot Torch On Wall Room Small Wooden Crate 5", ("SmallCrate",   0x04,  (16,0,18), None,                       'Nothing',                               ("Fire Temple MQ", "Master Quest", "Small Crates",))),
-    
-    # Fire Temple MQ Enemies
-    ("Fire Temple MQ Lower Flare Dancer",                            ("EnemyDrop",    0x04,  (3,0,1), None,                         'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
-    ("Fire Temple MQ Shortcut Room Lizalfos",                        ("EnemyDrop",    0x04,  (4,0,4), None,                         'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
-    ("Fire Temple MQ Maze Lizalfos 1",                               ("EnemyDrop",    0x04,  (5,0,9), None,                         'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
-    ("Fire Temple MQ Maze Lizalfos 2",                               ("EnemyDrop",    0x04,  (5,0,10), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
-    ("Fire Temple MQ Maze Lizalfos 3",                               ("EnemyDrop",    0x04,  (5,0,11), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
-    ("Fire Temple MQ Maze Lizalfos 4",                               ("EnemyDrop",    0x04,  (5,0,12), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
-    ("Fire Temple MQ Lower Lizalfos Maze Skullwalltula",             ("EnemyDrop",    0x04,  (5,0,7), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
-    ("Fire Temple MQ Elevator Above Maze Torch Slug 1",              ("EnemyDrop",    0x04,  (7,0,3), None,                         'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
-    ("Fire Temple MQ Elevator Above Maze Torch Slug 2",              ("EnemyDrop",    0x04,  (7,0,4), None,                         'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
-    ("Fire Temple MQ Hammer Steps Stalfos 1",                        ("EnemyDrop",    0x04,  (14,0,3), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
-    ("Fire Temple MQ Hammer Steps Stalfos 2",                        ("EnemyDrop",    0x04,  (14,0,4), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
-    ("Fire Temple MQ Before Lower Flare Dancer Keese",               ("EnemyDrop",    0x04,  (15,0,1), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
-    ("Fire Temple MQ Before Lower Flare Dancer Stalfos 1",           ("EnemyDrop",    0x04,  (15,0,3), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
-    ("Fire Temple MQ Before Lower Flare Dancer Stalfos 2",           ("EnemyDrop",    0x04,  (15,0,4), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
-    ("Fire Temple MQ Map Chest Like-Like",                           ("EnemyDrop",    0x04,  (17,0,3), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
-    ("Fire Temple MQ Before Lower Flare Dancer Iron Knuckle",        ("EnemyDrop",    0x04,  (18,0,1), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
-    ("Fire Temple MQ Upper Flare Dancer",                            ("EnemyDrop",    0x04,  (24,0,1), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
-    ("Fire Temple MQ Flame Maze Side Room Lizalfos",                 ("EnemyDrop",    0x04,  (25,0,1), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
     # Fire Temple MQ Wonderitems
     ("Fire Temple MQ Shortcut Room Hammer Wonderitem 1",             ("Wonderitem",   0x04,  (4,0,7), None,                         'Rupees (20)',                           ("Fire Temple", "Master Quest", "Wonderitem"))),
     ("Fire Temple MQ Shortcut Room Hammer Wonderitem 2",             ("Wonderitem",   0x04,  (4,0,8), None,                         'Rupees (20)',                           ("Fire Temple", "Master Quest", "Wonderitem"))),
@@ -2744,6 +2747,26 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Fire Temple MQ Shoot Torch on Wall Room Hookshot Wonderitem",  ("Wonderitem",   0x04,  (16,0,1), None,                        'Rupees (20)',                           ("Fire Temple", "Master Quest", "Wonderitem"))),
     ("Fire Temple MQ Boss Key Hookshot Wonderitem",                  ("Wonderitem",   0x04,  (19,0,10), None,                        'Rupees (20)',                           ("Fire Temple", "Master Quest", "Wonderitem"))),
     ("Fire Temple MQ Boss Key Arrow Wonderitem",                     ("Wonderitem",   0x04,  (19,0,11), None,                        'Rupees (20)',                           ("Fire Temple", "Master Quest", "Wonderitem"))),
+
+    # Fire Temple MQ Enemies
+    ("Fire Temple MQ Lower Flare Dancer",                            ("EnemyDrop",    0x04,  (3,0,1), None,                         'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
+    ("Fire Temple MQ Shortcut Room Lizalfos",                        ("EnemyDrop",    0x04,  (4,0,4), None,                         'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
+    ("Fire Temple MQ Maze Lizalfos 1",                               ("EnemyDrop",    0x04,  (5,0,9), None,                         'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
+    ("Fire Temple MQ Maze Lizalfos 2",                               ("EnemyDrop",    0x04,  (5,0,10), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
+    ("Fire Temple MQ Maze Lizalfos 3",                               ("EnemyDrop",    0x04,  (5,0,11), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
+    ("Fire Temple MQ Maze Lizalfos 4",                               ("EnemyDrop",    0x04,  (5,0,12), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
+    ("Fire Temple MQ Lower Lizalfos Maze Skullwalltula",             ("EnemyDrop",    0x04,  (5,0,7), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
+    ("Fire Temple MQ Elevator Above Maze Torch Slug 1",              ("EnemyDrop",    0x04,  (7,0,3), None,                         'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
+    ("Fire Temple MQ Elevator Above Maze Torch Slug 2",              ("EnemyDrop",    0x04,  (7,0,4), None,                         'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
+    ("Fire Temple MQ Hammer Steps Stalfos 1",                        ("EnemyDrop",    0x04,  (14,0,3), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
+    ("Fire Temple MQ Hammer Steps Stalfos 2",                        ("EnemyDrop",    0x04,  (14,0,4), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
+    ("Fire Temple MQ Before Lower Flare Dancer Keese",               ("EnemyDrop",    0x04,  (15,0,1), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
+    ("Fire Temple MQ Before Lower Flare Dancer Stalfos 1",           ("EnemyDrop",    0x04,  (15,0,3), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
+    ("Fire Temple MQ Before Lower Flare Dancer Stalfos 2",           ("EnemyDrop",    0x04,  (15,0,4), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
+    ("Fire Temple MQ Map Chest Like Like",                           ("EnemyDrop",    0x04,  (17,0,3), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
+    ("Fire Temple MQ Before Lower Flare Dancer Iron Knuckle",        ("EnemyDrop",    0x04,  (18,0,1), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
+    ("Fire Temple MQ Upper Flare Dancer",                            ("EnemyDrop",    0x04,  (24,0,1), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
+    ("Fire Temple MQ Flame Maze Side Room Lizalfos",                 ("EnemyDrop",    0x04,  (25,0,1), None,                        'Rupees (5)',                            ("Fire Temple", "Master Quest", "EnemyDrop"))),
 
     # Fire Temple Shared
     ("Fire Temple Volvagia Heart",                                   ("BossHeart",    0x15,  0x4F, None,                            'Heart Container',                       ("Fire Temple", "Fire Temple MQ", "Vanilla Dungeons", "Master Quest",))),
@@ -2991,6 +3014,31 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Water Temple MQ Lizalfos Hallway Hall Crate 2",                ("Crate",        0x05,  (20,0,13), None,                       'Rupee (1)',                             ("Water Temple MQ", "Master Quest", "Crates",))),
     ("Water Temple MQ Lizalfos Hallway Hall Crate 3",                ("Crate",        0x05,  (20,0,14), None,                       'Rupee (1)',                             ("Water Temple MQ", "Master Quest", "Crates",))),
 
+    # Water Temple MQ Wonderitems
+    ("Water Temple MQ Below Central Pillar Hookshot Wonderitem",     ("Wonderitem",   0x05,  (2,0,25), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Triple Wall Torch Hookshot/Bow Wonderitem",    ("Wonderitem",   0x05,  (3,0,4), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Hookshot Waterfall Left Hookshot Wonderitem 1",("Wonderitem",   0x05,  (5,0,10), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Hookshot Waterfall Left Hookshot Wonderitem 2",("Wonderitem",   0x05,  (5,0,11), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Hookshot Waterfall Left Hookshot Wonderitem 3",("Wonderitem",   0x05,  (5,0,12), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Hookshot Waterfall Right Hookshot Wonderitem 1",("Wonderitem",   0x05,  (5,0,3), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Hookshot Waterfall Right Hookshot Wonderitem 2",("Wonderitem",   0x05,  (5,0,4), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Hookshot Waterfall Right Hookshot Wonderitem 3",("Wonderitem",   0x05,  (5,0,5), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ After Dark Link Hookshot Wonderitem",          ("Wonderitem",   0x05,  (7,0,1), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Dragon Statue Eyes Hookshot Wonderitem 1",     ("Wonderitem",   0x05,  (8,0,5), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Dragon Statue Eyes Hookshot Wonderitem 2",     ("Wonderitem",   0x05,  (8,0,7), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Dragon Statue Crates Hookshot Wonderitem",     ("Wonderitem",   0x05,  (8,0,6), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Upper Water Switch Hookshot Wonderitem",       ("Wonderitem",   0x05,  (10,0,2), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Boss Hallway Hookshot Wonderitem 1",           ("Wonderitem",   0x05,  (11,0,1), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Boss Hallway Hookshot Wonderitem 2",           ("Wonderitem",   0x05,  (11,0,2), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ 3 Water Spouts Proximity Wonderitem 1",        ("Wonderitem",   0x05,  (15,0,1), None,                        'Rupees (5)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ 3 Water Spouts Proximity Wonderitem 2",        ("Wonderitem",   0x05,  (15,0,2), None,                        'Arrows (10)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Freestanding Key Hookshot Wonderitem",         ("Wonderitem",   0x05,  (16,0,1), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Longshot Chest Hookshot Wonderitem",           ("Wonderitem",   0x05,  (17,0,8), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Compass Chest Hookshot Wonderitem",            ("Wonderitem",   0x05,  (18,0,4), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Map Chest Hookshot Wonderitem",                ("Wonderitem",   0x05,  (19,0,6), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+    ("Water Temple MQ Lizalfos Hallway Hookshot Wonderitem",         ("Wonderitem",   0x05,  (20,0,3), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
+
+
     # Water Temple MQ Enemies
     ("Water Temple MQ Central Pillar Spike",                         ("EnemyDrop",    0x05,  (2,0,2), None,                         'Rupees (5)',                            ("Water Temple", "Master Quest", "EnemyDrop"))),
     ("Water Temple MQ Triple Wall Torch Stalfos 1",                  ("EnemyDrop",    0x05,  (3,0,6), None,                         'Rupees (5)',                            ("Water Temple", "Master Quest", "EnemyDrop"))),
@@ -3016,31 +3064,6 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Water Temple MQ Map Chest Stalfos 3",                          ("EnemyDrop",    0x05,  (19,0,3), None,                        'Rupees (5)',                            ("Water Temple", "Master Quest", "EnemyDrop"))),
     ("Water Temple MQ Lizalfos Hallway Lizalfos 1",                  ("EnemyDrop",    0x05,  (20,0,1), None,                        'Rupees (5)',                            ("Water Temple", "Master Quest", "EnemyDrop"))),
     ("Water Temple MQ Lizalfos Hallway Lizalfos 2",                  ("EnemyDrop",    0x05,  (20,0,2), None,                        'Rupees (5)',                            ("Water Temple", "Master Quest", "EnemyDrop"))),
-    
-    # Water Temple MQ Wonderitems
-    ("Water Temple MQ Below Central Pillar Hookshot Wonderitem",     ("Wonderitem",   0x05,  (2,0,25), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
-    ("Water Temple MQ Triple Wall Torch Hookshot/Bow Wonderitem",    ("Wonderitem",   0x05,  (3,0,4), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
-    ("Water Temple MQ Hookshot Waterfall Left Hookshot Wonderitem 1",("Wonderitem",   0x05,  (5,0,10), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
-    ("Water Temple MQ Hookshot Waterfall Left Hookshot Wonderitem 2",("Wonderitem",   0x05,  (5,0,11), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
-    ("Water Temple MQ Hookshot Waterfall Left Hookshot Wonderitem 3",("Wonderitem",   0x05,  (5,0,12), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
-    ("Water Temple MQ Hookshot Waterfall Right Hookshot Wonderitem 1",("Wonderitem",   0x05,  (5,0,3), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
-    ("Water Temple MQ Hookshot Waterfall Right Hookshot Wonderitem 2",("Wonderitem",   0x05,  (5,0,4), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
-    ("Water Temple MQ Hookshot Waterfall Right Hookshot Wonderitem 3",("Wonderitem",   0x05,  (5,0,5), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
-    ("Water Temple MQ After Dark Link Hookshot Wonderitem",          ("Wonderitem",   0x05,  (7,0,1), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
-    ("Water Temple MQ Dragon Statue Eyes Hookshot Wonderitem 1",     ("Wonderitem",   0x05,  (8,0,5), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
-    ("Water Temple MQ Dragon Statue Eyes Hookshot Wonderitem 2",     ("Wonderitem",   0x05,  (8,0,7), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
-    ("Water Temple MQ Dragon Statue Crates Hookshot Wonderitem",     ("Wonderitem",   0x05,  (8,0,6), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
-    ("Water Temple MQ Upper Water Switch Hookshot Wonderitem",       ("Wonderitem",   0x05,  (10,0,2), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
-    ("Water Temple MQ Boss Hallway Hookshot Wonderitem 1",           ("Wonderitem",   0x05,  (11,0,1), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
-    ("Water Temple MQ Boss Hallway Hookshot Wonderitem 2",           ("Wonderitem",   0x05,  (11,0,2), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
-    ("Water Temple MQ 3 Water Spouts Proximity Wonderitem 1",        ("Wonderitem",   0x05,  (15,0,1), None,                        'Rupees (5)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
-    ("Water Temple MQ 3 Water Spouts Proximity Wonderitem 2",        ("Wonderitem",   0x05,  (15,0,2), None,                        'Arrows (10)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
-    ("Water Temple MQ Freestanding Key Hookshot Wonderitem",         ("Wonderitem",   0x05,  (16,0,1), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
-    ("Water Temple MQ Longshot Chest Hookshot Wonderitem",           ("Wonderitem",   0x05,  (17,0,8), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
-    ("Water Temple MQ Compass Chest Hookshot Wonderitem",            ("Wonderitem",   0x05,  (18,0,4), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
-    ("Water Temple MQ Map Chest Hookshot Wonderitem",                ("Wonderitem",   0x05,  (19,0,6), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
-    ("Water Temple MQ Lizalfos Hallway Hookshot Wonderitem",         ("Wonderitem",   0x05,  (20,0,3), None,                        'Rupees (20)',                           ("Water Temple", "Master Quest", "Wonderitem"))),
-
 
     # Water Temple Shared
     ("Water Temple Morpha Heart",                                    ("BossHeart",    0x16,  0x4F, None,                            'Heart Container',                       ("Water Temple", "Water Temple MQ", "Vanilla Dungeons", "Master Quest",))),
@@ -3113,25 +3136,25 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Shadow Temple Near Boss Pot 1",                                ("Pot",          0x07,  (21,0,19), None,                       'Arrows (30)',                           ("Shadow Temple", "Vanilla Dungeons", "Pots",))),
     ("Shadow Temple Near Boss Pot 2",                                ("Pot",          0x07,  (21,0,20), None,                       'Rupees (5)',                            ("Shadow Temple", "Vanilla Dungeons", "Pots",))),
     # Shadow Temple Silver Rupees
-    ("Shadow Temple Scythe Shortcut Silver Rupee Center Left",       ("SilverRupee",  0x07,  (6,0,1), None,                  'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Shadow Temple Scythe Shortcut Silver Rupee Center Right",      ("SilverRupee",  0x07,  (6,0,5), None,                  'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Shadow Temple Scythe Shortcut Silver Rupee Left Alcove",       ("SilverRupee",  0x07,  (6,0,4), None,                  'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Shadow Temple Scythe Shortcut Silver Rupee Back Alcove",       ("SilverRupee",  0x07,  (6,0,3), None,                  'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Shadow Temple Scythe Shortcut Silver Rupee Ledge",             ("SilverRupee",  0x07,  (6,0,2), None,                  'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Shadow Temple Huge Pit Silver Rupee Left",                     ("SilverRupee",  0x07,  (9,0,8),  None,                        'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Shadow Temple Huge Pit Silver Rupee Center Front",             ("SilverRupee",  0x07,  (9,0,10), None,                        'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Shadow Temple Huge Pit Silver Rupee Center",                   ("SilverRupee",  0x07,  (9,0,9),  None,                        'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Shadow Temple Huge Pit Silver Rupee Center Back",              ("SilverRupee",  0x07,  (9,0,11),  None,                       'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Shadow Temple Huge Pit Silver Rupee Right",                    ("SilverRupee",  0x07,  (9,0,7),  None,                        'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Shadow Temple Invisible Spikes Silver Rupee Right",            ("SilverRupee",  0x07,  (11,0,4), None,                'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Shadow Temple Invisible Spikes Silver Rupee Center",           ("SilverRupee",  0x07,  (11,0,5), None,                'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Shadow Temple Invisible Spikes Silver Rupee Left",             ("SilverRupee",  0x07,  (11,0,6), None,                'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Shadow Temple Invisible Spikes Silver Rupee Ledge",            ("SilverRupee",  0x07,  (11,0,3), None,                'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Shadow Temple Invisible Spikes Silver Rupee Near Ledge",       ("SilverRupee",  0x07,  (11,0,7), None,                'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Shadow Temple Scythe Shortcut Silver Rupee Center Left",       ("SilverRupee",  0x07,  (6,0,1), None,                  'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Shadow Temple Scythe Shortcut Silver Rupee Center Right",      ("SilverRupee",  0x07,  (6,0,5), None,                  'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Shadow Temple Scythe Shortcut Silver Rupee Left Alcove",       ("SilverRupee",  0x07,  (6,0,4), None,                  'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Shadow Temple Scythe Shortcut Silver Rupee Back Alcove",       ("SilverRupee",  0x07,  (6,0,3), None,                  'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Shadow Temple Scythe Shortcut Silver Rupee Ledge",             ("SilverRupee",  0x07,  (6,0,2), None,                  'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Shadow Temple Huge Pit Silver Rupee Left",                     ("SilverRupee",  0x07,  (9,0,8),  None,                        'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Shadow Temple Huge Pit Silver Rupee Center Front",             ("SilverRupee",  0x07,  (9,0,10), None,                        'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Shadow Temple Huge Pit Silver Rupee Center",                   ("SilverRupee",  0x07,  (9,0,9),  None,                        'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Shadow Temple Huge Pit Silver Rupee Center Back",              ("SilverRupee",  0x07,  (9,0,11), None,                        'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Shadow Temple Huge Pit Silver Rupee Right",                    ("SilverRupee",  0x07,  (9,0,7),  None,                        'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Shadow Temple Invisible Spikes Silver Rupee Right",            ("SilverRupee",  0x07,  (11,0,4), None,                'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Shadow Temple Invisible Spikes Silver Rupee Center",           ("SilverRupee",  0x07,  (11,0,5), None,                'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Shadow Temple Invisible Spikes Silver Rupee Left",             ("SilverRupee",  0x07,  (11,0,6), None,                'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Shadow Temple Invisible Spikes Silver Rupee Ledge",            ("SilverRupee",  0x07,  (11,0,3), None,                'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Shadow Temple Invisible Spikes Silver Rupee Near Ledge",       ("SilverRupee",  0x07,  (11,0,7), None,                'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple", "Vanilla Dungeons", "Silver Rupees",))),
     # Shadow Temple Wonderitems
     ("Shadow Temple 3 Spinning Pots Wonderitem",                     ("Wonderitem",   0x07, (12,0,2), None,                         'Arrows (10)',                           ("Shadow Temple", "Vanilla", "Wonderitem"))),
 
-    
+
     # Shadow Temple Enemies
     ("Shadow Temple Map Chest Keese 1",                              ("EnemyDrop",    0x07,  (1, 0, 1), None,                'Rupees (5)',                                 ("Shadow Temple", "Vanilla", "EnemyDrop"))),
     ("Shadow Temple Map Chest Keese 2",                              ("EnemyDrop",    0x07,  (1, 0, 2), None,                'Rupees (5)',                                 ("Shadow Temple", "Vanilla", "EnemyDrop"))),
@@ -3170,7 +3193,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Shadow Temple After Wind Redead Right",                             ("EnemyDrop",    0x07,  (20,0, 2), None,                'Rupees (5)',                                 ("Shadow Temple", "Vanilla", "EnemyDrop"))),
     ("Shadow Temple Boat Stalfos 1",                                 ("EnemyDrop",    0x07,  (21,0, 14), None,                'Rupees (5)',                                ("Shadow Temple", "Vanilla", "EnemyDrop"))),
     ("Shadow Temple Boat Stalfos 2",                                 ("EnemyDrop",    0x07,  (21,0, 15), None,                'Rupees (5)',                                ("Shadow Temple", "Vanilla", "EnemyDrop"))),
-    
+
     # Shadow Temple MQ
     ("Shadow Temple MQ Early Gibdos Chest",                          ("Chest",        0x07,  0x03, None,                            'Small Key (Shadow Temple)',             ("Shadow Temple MQ", "Master Quest", "Chests",))),
     ("Shadow Temple MQ Map Chest",                                   ("Chest",        0x07,  0x02, None,                            'Map (Shadow Temple)',                   ("Shadow Temple MQ", "Master Quest", "Chests",))),
@@ -3245,36 +3268,38 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Shadow Temple MQ Truth Spinner Small Wooden Crate 3",          ("SmallCrate",   0x07,  (2,0,18), None,                        'Bombs (5)',                             ("Shadow Temple MQ", "Master Quest", "Small Crates",))),
     ("Shadow Temple MQ Truth Spinner Small Wooden Crate 4",          ("SmallCrate",   0x07,  (2,0,19), None,                        'Recovery Heart',                        ("Shadow Temple MQ", "Master Quest", "Small Crates",))),
     # Shadow Temple MQ Silver Rupees
-    ("Shadow Temple MQ Scythe Shortcut Silver Rupee Center Left",    ("SilverRupee", 0x07, (6,0,7), None,                    'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Scythe Shortcut Silver Rupee Center Right",   ("SilverRupee", 0x07, (6,0,8), None,                    'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Scythe Shortcut Silver Rupee Ledge",          ("SilverRupee", 0x07, (6,0,6), None,                    'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Scythe Shortcut Silver Rupee Left Alcove",    ("SilverRupee", 0x07, (6,0,5), None,                    'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Scythe Shortcut Silver Rupee Back Alcove",    ("SilverRupee", 0x07, (6,0,9), None,                    'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Invisible Blades Silver Rupee 1",             ("SilverRupee", 0x07, (16,0,9),  None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Invisible Blades Silver Rupee 2",             ("SilverRupee", 0x07, (16,0,10), None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Invisible Blades Silver Rupee 3",             ("SilverRupee", 0x07, (16,0,11), None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Invisible Blades Silver Rupee 4",             ("SilverRupee", 0x07, (16,0,12), None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Invisible Blades Silver Rupee 5",             ("SilverRupee", 0x07, (16,0,13), None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Invisible Blades Silver Rupee 6",             ("SilverRupee", 0x07, (16,0,14), None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Invisible Blades Silver Rupee Back Right",    ("SilverRupee", 0x07, (16,0,15), None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Invisible Blades Silver Rupee Back Left",     ("SilverRupee", 0x07, (16,0,16), None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Invisible Blades Silver Rupee Like Like",     ("SilverRupee", 0x07, (16,0,17), None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Invisible Blades Silver Rupee Song of Time Block",("SilverRupee",0x07,(16,0,18),None,                'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Huge Pit Silver Rupee Center Front",          ("SilverRupee", 0x07, (9,0,18), None,                          'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Huge Pit Silver Rupee Center Back",           ("SilverRupee", 0x07, (9,0,14), None,                          'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Huge Pit Silver Rupee Right",                 ("SilverRupee", 0x07, (9,0,17), None,                          'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Huge Pit Silver Rupee Ceiling Upper",         ("SilverRupee", 0x07, (9,0,16), None,                          'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Huge Pit Silver Rupee Ceiling Lower",         ("SilverRupee", 0x07, (9,0,15), None,                          'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Invisible Spikes Silver Rupee Center Front",  ("SilverRupee", 0x07, (11,0,15), None,                 'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Invisible Spikes Silver Rupee Center Right",  ("SilverRupee", 0x07, (11,0,18), None,                 'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Invisible Spikes Silver Rupee Left Hookshot Target",("SilverRupee",0x07,(11,0,12),None,              'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Invisible Spikes Silver Rupee Right Hookshot Target",("SilverRupee",0x07,(11,0,20),None,             'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Invisible Spikes Silver Rupee Back Right",    ("SilverRupee", 0x07, (11,0,19), None,                 'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Invisible Spikes Silver Rupee Ledge",         ("SilverRupee", 0x07, (11,0,11), None,                 'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Invisible Spikes Silver Rupee Near Ledge",    ("SilverRupee", 0x07, (11,0,13), None,                 'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Invisible Spikes Silver Rupee Ceiling Front", ("SilverRupee", 0x07, (11,0,17), None,                 'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Invisible Spikes Silver Rupee Ceiling Middle",("SilverRupee", 0x07, (11,0,16), None,                 'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Shadow Temple MQ Invisible Spikes Silver Rupee Ceiling Back",  ("SilverRupee", 0x07, (11,0,14), None,                 'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Shadow Temple MQ Scythe Shortcut Silver Rupee Center Left",    ("SilverRupee", 0x07, (6,0,7), None,                    'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Scythe Shortcut Silver Rupee Center Right",   ("SilverRupee", 0x07, (6,0,8), None,                    'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Scythe Shortcut Silver Rupee Ledge",          ("SilverRupee", 0x07, (6,0,6), None,                    'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Scythe Shortcut Silver Rupee Left Alcove",    ("SilverRupee", 0x07, (6,0,5), None,                    'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Scythe Shortcut Silver Rupee Back Alcove",    ("SilverRupee", 0x07, (6,0,9), None,                    'Silver Rupee (Shadow Temple Scythe Shortcut)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Invisible Blades Silver Rupee 1",             ("SilverRupee", 0x07, (16,0,9),  None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Invisible Blades Silver Rupee 2",             ("SilverRupee", 0x07, (16,0,10), None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Invisible Blades Silver Rupee 3",             ("SilverRupee", 0x07, (16,0,11), None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Invisible Blades Silver Rupee 4",             ("SilverRupee", 0x07, (16,0,12), None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Invisible Blades Silver Rupee 5",             ("SilverRupee", 0x07, (16,0,13), None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Invisible Blades Silver Rupee 6",             ("SilverRupee", 0x07, (16,0,14), None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Invisible Blades Silver Rupee Back Right",    ("SilverRupee", 0x07, (16,0,15), None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Invisible Blades Silver Rupee Back Left",     ("SilverRupee", 0x07, (16,0,16), None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Invisible Blades Silver Rupee Like Like",     ("SilverRupee", 0x07, (16,0,17), None,                 'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Invisible Blades Silver Rupee Song of Time Block",("SilverRupee",0x07,(16,0,18),None,                'Silver Rupee (Shadow Temple Invisible Blades)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Huge Pit Silver Rupee Center Front",          ("SilverRupee", 0x07, (9,0,18), None,                          'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Huge Pit Silver Rupee Center Back",           ("SilverRupee", 0x07, (9,0,14), None,                          'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Huge Pit Silver Rupee Right",                 ("SilverRupee", 0x07, (9,0,17), None,                          'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Huge Pit Silver Rupee Ceiling Upper",         ("SilverRupee", 0x07, (9,0,16), None,                          'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Huge Pit Silver Rupee Ceiling Lower",         ("SilverRupee", 0x07, (9,0,15), None,                          'Silver Rupee (Shadow Temple Huge Pit)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Invisible Spikes Silver Rupee Center Front",  ("SilverRupee", 0x07, (11,0,15), None,                 'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Invisible Spikes Silver Rupee Center Right",  ("SilverRupee", 0x07, (11,0,18), None,                 'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Invisible Spikes Silver Rupee Left Hookshot Target",("SilverRupee",0x07,(11,0,12),None,              'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Invisible Spikes Silver Rupee Right Hookshot Target",("SilverRupee",0x07,(11,0,20),None,             'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Invisible Spikes Silver Rupee Back Right",    ("SilverRupee", 0x07, (11,0,19), None,                 'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Invisible Spikes Silver Rupee Ledge",         ("SilverRupee", 0x07, (11,0,11), None,                 'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Invisible Spikes Silver Rupee Near Ledge",    ("SilverRupee", 0x07, (11,0,13), None,                 'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Invisible Spikes Silver Rupee Ceiling Front", ("SilverRupee", 0x07, (11,0,17), None,                 'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Invisible Spikes Silver Rupee Ceiling Middle",("SilverRupee", 0x07, (11,0,16), None,                 'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Shadow Temple MQ Invisible Spikes Silver Rupee Ceiling Back",  ("SilverRupee", 0x07, (11,0,14), None,                 'Silver Rupee (Shadow Temple Invisible Spikes)', ("Shadow Temple MQ", "Master Quest", "Silver Rupees",))),
+    # Shadow Temple MQ Wonderitems
+    ("Shadow Temple MQ 3 Spinning Pots Wonderitem",                  ("Wonderitem",   0x07,  (12,0,2), None,                        'Arrows (10)',                           ("Shadow Temple", "Master Quest", "Wonderitem"))),
     # Shadow Temple MQ Enemies
     ("Shadow Temple MQ Compass Chest Redead 1",                      ("EnemyDrop",    0x07,  (1,0,1), None,                         'Rupees (5)',                            ("Shadow Temple", "Master Quest", "EnemyDrop"))),
     ("Shadow Temple MQ Compass Chest Redead 2",                      ("EnemyDrop",    0x07,  (1,0,2), None,                         'Rupees (5)',                            ("Shadow Temple", "Master Quest", "EnemyDrop"))),
@@ -3309,11 +3334,11 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Shadow Temple MQ Stalfos Room Stalfos 2",                      ("EnemyDrop",    0x07,  (14,0,6), None,                        'Rupees (5)',                            ("Shadow Temple", "Master Quest", "EnemyDrop"))),
     ("Shadow Temple MQ Invisible Wall Maze Bubble 1",                ("EnemyDrop",    0x07,  (15,0,1), None,                        'Rupees (5)',                            ("Shadow Temple", "Master Quest", "EnemyDrop"))),
     ("Shadow Temple MQ Invisible Wall Maze Bubble 2",                ("EnemyDrop",    0x07,  (15,0,2), None,                        'Rupees (5)',                            ("Shadow Temple", "Master Quest", "EnemyDrop"))),
-    ("Shadow Temple MQ Invisible Wall Maze Like-Like",               ("EnemyDrop",    0x07,  (15,0,3), None,                        'Rupees (5)',                            ("Shadow Temple", "Master Quest", "EnemyDrop"))),
+    ("Shadow Temple MQ Invisible Wall Maze Like Like",               ("EnemyDrop",    0x07,  (15,0,3), None,                        'Rupees (5)',                            ("Shadow Temple", "Master Quest", "EnemyDrop"))),
     ("Shadow Temple MQ Invisible Blades Keese 1",                    ("EnemyDrop",    0x07,  (16,0,1), None,                        'Rupees (5)',                            ("Shadow Temple", "Master Quest", "EnemyDrop"))),
     ("Shadow Temple MQ Invisible Blades Keese 2",                    ("EnemyDrop",    0x07,  (16,0,2), None,                        'Rupees (5)',                            ("Shadow Temple", "Master Quest", "EnemyDrop"))),
     ("Shadow Temple MQ Invisible Blades Keese 3",                    ("EnemyDrop",    0x07,  (16,0,3), None,                        'Rupees (5)',                            ("Shadow Temple", "Master Quest", "EnemyDrop"))),
-    ("Shadow Temple MQ Invisible Blades Like-Like",                  ("EnemyDrop",    0x07,  (16,0,4), None,                        'Rupees (5)',                            ("Shadow Temple", "Master Quest", "EnemyDrop"))),
+    ("Shadow Temple MQ Invisible Blades Like Like",                  ("EnemyDrop",    0x07,  (16,0,4), None,                        'Rupees (5)',                            ("Shadow Temple", "Master Quest", "EnemyDrop"))),
     ("Shadow Temple MQ Bomb Flower Deadhand",                        ("EnemyDrop",    0x07,  (17,0,1), None,                        'Rupees (5)',                            ("Shadow Temple", "Master Quest", "EnemyDrop"))),
     ("Shadow Temple MQ Wind Tunnel Skulltula",                       ("EnemyDrop",    0x07,  (18,0,1), None,                        'Rupees (5)',                            ("Shadow Temple", "Master Quest", "EnemyDrop"))),
     ("Shadow Temple MQ Wind Hint Redead 1",                          ("EnemyDrop",    0x07,  (19,0,1), None,                        'Rupees (5)',                            ("Shadow Temple", "Master Quest", "EnemyDrop"))),
@@ -3326,8 +3351,6 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Shadow Temple MQ Shortcut Skulltula",                          ("EnemyDrop",    0x07,  (21,0,5), None,                        'Rupees (5)',                            ("Shadow Temple", "Master Quest", "EnemyDrop"))),
     ("Shadow Temple MQ Boat Stalfos 1",                              ("EnemyDrop",    0x07,  (21,0,17), None,                        'Rupees (5)',                            ("Shadow Temple", "Master Quest", "EnemyDrop"))),
     ("Shadow Temple MQ Boat Stalfos 2",                              ("EnemyDrop",    0x07,  (21,0,18), None,                        'Rupees (5)',                            ("Shadow Temple", "Master Quest", "EnemyDrop"))),
-    # Shadow Temple MQ Wonderitems
-    ("Shadow Temple MQ 3 Spinning Pots Arrow Wonderitem",            ("Wonderitem",   0x07,  (12,0,2), None,                        'Arrows (10)',                           ("Shadow Temple", "Master Quest", "Wonderitem"))),
 
     # Shadow Temple Shared
     ("Shadow Temple Bongo Bongo Heart",                              ("BossHeart",    0x18,  0x4F, None,                            'Heart Container',                       ("Shadow Temple", "Shadow Temple MQ", "Vanilla Dungeons", "Master Quest",))),
@@ -3427,32 +3450,32 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Spirit Temple Big Mirror Flying Pot 5",                        ("FlyingPot",    0x06,  (25,0,9), None,                        'Recovery Heart',                        ("Spirit Temple", "Vanilla Dungeons", "Flying Pots",))),
     ("Spirit Temple Big Mirror Flying Pot 6",                        ("FlyingPot",    0x06,  (25,0,10), None,                       'Recovery Heart',                        ("Spirit Temple", "Vanilla Dungeons", "Flying Pots",))),
     #Spirit Temple Vanilla Silver Rupees
-    ("Spirit Temple Adult Boulder Silver Rupee Ledge",               ("SilverRupee", 0x06, (13,0,11), None,                   'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Spirit Temple Adult Boulder Silver Rupee Front Left",          ("SilverRupee", 0x06, (13,0,8),  None,                   'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Spirit Temple Adult Boulder Silver Rupee Front Right",         ("SilverRupee", 0x06, (13,0,9),  None,                   'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Spirit Temple Adult Boulder Silver Rupee Back Right",          ("SilverRupee", 0x06, (13,0,10), None,                   'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Spirit Temple Adult Boulder Silver Rupee Back Left",           ("SilverRupee", 0x06, (13,0,7),  None,                   'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Spirit Temple Sun Block Room Silver Rupee Left",               ("SilverRupee", 0x06, (8,0,16), None,                         'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Spirit Temple Sun Block Room Silver Rupee Center Front",       ("SilverRupee", 0x06, (8,0,15), None,                         'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Spirit Temple Sun Block Room Silver Rupee Center Back",        ("SilverRupee", 0x06, (8,0,14), None,                         'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Spirit Temple Sun Block Room Silver Rupee Right Front",        ("SilverRupee", 0x06, (8,0,17), None,                         'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Spirit Temple Sun Block Room Silver Rupee Right Back",         ("SilverRupee", 0x06, (8,0,13), None,                         'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Spirit Temple Child Early Torches Silver Rupee Top Right",     ("SilverRupee", 0x06, (2,0,13), None,               'Silver Rupee (Spirit Temple Child Early Torches)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Spirit Temple Child Early Torches Silver Rupee Bottom Right",  ("SilverRupee", 0x06, (2,0,14), None,               'Silver Rupee (Spirit Temple Child Early Torches)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Spirit Temple Child Early Torches Silver Rupee Bottom Left",   ("SilverRupee", 0x06, (2,0,15), None,               'Silver Rupee (Spirit Temple Child Early Torches)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Spirit Temple Child Early Torches Silver Rupee Top Left",      ("SilverRupee", 0x06, (2,0,16), None,               'Silver Rupee (Spirit Temple Child Early Torches)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Spirit Temple Child Early Torches Silver Rupee Near Torch",    ("SilverRupee", 0x06, (2,0,17), None,               'Silver Rupee (Spirit Temple Child Early Torches)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Spirit Temple Adult Boulder Silver Rupee Ledge",               ("SilverRupee", 0x06, (13,0,11), None,                   'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Spirit Temple Adult Boulder Silver Rupee Front Left",          ("SilverRupee", 0x06, (13,0,8),  None,                   'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Spirit Temple Adult Boulder Silver Rupee Front Right",         ("SilverRupee", 0x06, (13,0,9),  None,                   'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Spirit Temple Adult Boulder Silver Rupee Back Right",          ("SilverRupee", 0x06, (13,0,10), None,                   'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Spirit Temple Adult Boulder Silver Rupee Back Left",           ("SilverRupee", 0x06, (13,0,7),  None,                   'Silver Rupee (Spirit Temple Adult Boulders)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Spirit Temple Sun Block Room Silver Rupee Left",               ("SilverRupee", 0x06, (8,0,16), None,                         'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Spirit Temple Sun Block Room Silver Rupee Center Front",       ("SilverRupee", 0x06, (8,0,15), None,                         'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Spirit Temple Sun Block Room Silver Rupee Center Back",        ("SilverRupee", 0x06, (8,0,14), None,                         'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Spirit Temple Sun Block Room Silver Rupee Right Front",        ("SilverRupee", 0x06, (8,0,17), None,                         'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Spirit Temple Sun Block Room Silver Rupee Right Back",         ("SilverRupee", 0x06, (8,0,13), None,                         'Silver Rupee (Spirit Temple Sun Block)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Spirit Temple Child Early Torches Silver Rupee Top Right",     ("SilverRupee", 0x06, (2,0,13), None,               'Silver Rupee (Spirit Temple Child Early Torches)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Spirit Temple Child Early Torches Silver Rupee Bottom Right",  ("SilverRupee", 0x06, (2,0,14), None,               'Silver Rupee (Spirit Temple Child Early Torches)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Spirit Temple Child Early Torches Silver Rupee Bottom Left",   ("SilverRupee", 0x06, (2,0,15), None,               'Silver Rupee (Spirit Temple Child Early Torches)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Spirit Temple Child Early Torches Silver Rupee Top Left",      ("SilverRupee", 0x06, (2,0,16), None,               'Silver Rupee (Spirit Temple Child Early Torches)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Spirit Temple Child Early Torches Silver Rupee Near Torch",    ("SilverRupee", 0x06, (2,0,17), None,               'Silver Rupee (Spirit Temple Child Early Torches)', ("Spirit Temple", "Vanilla Dungeons", "Silver Rupees",))),
     # Spirit Temple MQ Silver Rupees
-    ("Spirit Temple MQ Lobby and Lower Adult Silver Rupee Left Boulder",("SilverRupee",0x06,(0,0,12), None,            'Silver Rupee (Spirit Temple Lobby and Lower Adult)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Spirit Temple MQ Lobby and Lower Adult Silver Rupee Right Boulder",("SilverRupee",0x06,(0,0,11),None,            'Silver Rupee (Spirit Temple Lobby and Lower Adult)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Spirit Temple MQ Lobby and Lower Adult Silver Rupee Water Jet",("SilverRupee", 0x06, (0,0,14), None,             'Silver Rupee (Spirit Temple Lobby and Lower Adult)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Spirit Temple MQ Lobby and Lower Adult Silver Rupee Behind Water Jet",("SilverRupee",0x06,(0,0,10),None,         'Silver Rupee (Spirit Temple Lobby and Lower Adult)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Spirit Temple MQ Lobby and Lower Adult Silver Rupee Near Door",("SilverRupee", 0x06, (0,0,13), None,             'Silver Rupee (Spirit Temple Lobby and Lower Adult)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Spirit Temple MQ Adult Climb Silver Rupee 1",                  ("SilverRupee", 0x06, (23,0,11), None,                      'Silver Rupee (Spirit Temple Adult Climb)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Spirit Temple MQ Adult Climb Silver Rupee 2",                  ("SilverRupee", 0x06, (23,0,12), None,                      'Silver Rupee (Spirit Temple Adult Climb)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Spirit Temple MQ Adult Climb Silver Rupee 3",                  ("SilverRupee", 0x06, (23,0,15), None,                      'Silver Rupee (Spirit Temple Adult Climb)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Spirit Temple MQ Adult Climb Silver Rupee 4",                  ("SilverRupee", 0x06, (23,0,13), None,                      'Silver Rupee (Spirit Temple Adult Climb)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees"))),
-    ("Spirit Temple MQ Adult Climb Silver Rupee 5",                  ("SilverRupee", 0x06, (23,0,14), None,                      'Silver Rupee (Spirit Temple Adult Climb)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees"))),
+    ("Spirit Temple MQ Lobby and Lower Adult Silver Rupee Left Boulder",("SilverRupee",0x06,(0,0,12), None,            'Silver Rupee (Spirit Temple Lobby and Lower Adult)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Spirit Temple MQ Lobby and Lower Adult Silver Rupee Right Boulder",("SilverRupee",0x06,(0,0,11),None,            'Silver Rupee (Spirit Temple Lobby and Lower Adult)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Spirit Temple MQ Lobby and Lower Adult Silver Rupee Water Jet",("SilverRupee", 0x06, (0,0,14), None,             'Silver Rupee (Spirit Temple Lobby and Lower Adult)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Spirit Temple MQ Lobby and Lower Adult Silver Rupee Behind Water Jet",("SilverRupee",0x06,(0,0,10),None,         'Silver Rupee (Spirit Temple Lobby and Lower Adult)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Spirit Temple MQ Lobby and Lower Adult Silver Rupee Near Door",("SilverRupee", 0x06, (0,0,13), None,             'Silver Rupee (Spirit Temple Lobby and Lower Adult)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Spirit Temple MQ Adult Climb Silver Rupee 1",                  ("SilverRupee", 0x06, (23,0,11), None,                      'Silver Rupee (Spirit Temple Adult Climb)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Spirit Temple MQ Adult Climb Silver Rupee 2",                  ("SilverRupee", 0x06, (23,0,12), None,                      'Silver Rupee (Spirit Temple Adult Climb)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Spirit Temple MQ Adult Climb Silver Rupee 3",                  ("SilverRupee", 0x06, (23,0,15), None,                      'Silver Rupee (Spirit Temple Adult Climb)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Spirit Temple MQ Adult Climb Silver Rupee 4",                  ("SilverRupee", 0x06, (23,0,13), None,                      'Silver Rupee (Spirit Temple Adult Climb)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees",))),
+    ("Spirit Temple MQ Adult Climb Silver Rupee 5",                  ("SilverRupee", 0x06, (23,0,14), None,                      'Silver Rupee (Spirit Temple Adult Climb)', ("Spirit Temple MQ", "Master Quest", "Silver Rupees",))),
 
     # Spirit Temple Enemies
     ("Spirit Temple Lobby Armos Left",                               ("EnemyDrop",    0x06,  (0,0, 1), None,                    'Rupees (5)',                           ("Spirit Temple", "Vanilla", "EnemyDrop"))),
@@ -3557,11 +3580,14 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Spirit Temple MQ Big Mirror Crate 3",                          ("Crate",        0x06,  (25,0,4), None,                        'Rupee (1)',                             ("Spirit Temple MQ", "Master Quest", "Crates",))),
     ("Spirit Temple MQ Big Mirror Crate 4",                          ("Crate",        0x06,  (25,0,5), None,                        'Rupee (1)',                             ("Spirit Temple MQ", "Master Quest", "Crates",))),
 
+    # Spirit Temple MQ Wonderitems
+    ("Spirit Temple MQ Chest Switch Sword Wonderitem",               ("Wonderitem",   0x06,  (18,0,10), None,                       'Recovery Heart',                        ("Spirit Temple", "Master Quest", "Wonderitem"))),
+    ("Spirit Temple MQ Chest Switch Hammer Wonderitem",              ("Wonderitem",   0x06,  (18,0,9), None,                        'Recovery Heart',                        ("Spirit Temple", "Master Quest", "Wonderitem"))),
     # Spirit Temple MQ Enemies
     ("Spirit Temple MQ Early Child Torch Slug 1",                    ("EnemyDrop",    0x06,  (1,0,1), None,                         'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))),
     ("Spirit Temple MQ Early Child Torch Slug 2",                    ("EnemyDrop",    0x06,  (1,0,2), None,                         'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))),
     #("Spirit Temple MQ Early Child Keese 1",                         ("EnemyDrop",    0x06,  (1,0,3), None,                         'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))), #Don't spawn because object isn't loaded?
-    #("Spirit Temple MQ Early Child Keese 2",                         ("EnemyDrop",    0x06,  (1,0,4), None,                         'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))), 
+    #("Spirit Temple MQ Early Child Keese 2",                         ("EnemyDrop",    0x06,  (1,0,4), None,                         'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))),
     ("Spirit Temple MQ Before Gate Gibdo",                           ("EnemyDrop",    0x06,  (2,0,1), None,                         'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))),
     ("Spirit Temple MQ After Gate Gibdo 1",                          ("EnemyDrop",    0x06,  (2,0,2), None,                         'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))),
     ("Spirit Temple MQ After Gate Gibdo 2",                          ("EnemyDrop",    0x06,  (2,0,3), None,                         'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))),
@@ -3575,7 +3601,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Spirit Temple MQ Child Climb Baby Dodongo 2",                  ("EnemyDrop",    0x06,  (4,0,2), None,                         'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))),
     ("Spirit Temple MQ Child Climb Baby Dodongo 3",                  ("EnemyDrop",    0x06,  (4,0,3), None,                         'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))),
     ("Spirit Temple MQ Child Climb Baby Dodongo 4",                  ("EnemyDrop",    0x06,  (4,0,4), None,                         'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))),
-    ("Spirit Temple MQ Child Climb Like-Like",                       ("EnemyDrop",    0x06,  (4,0,5), None,                         'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))),
+    ("Spirit Temple MQ Child Climb Like Like",                       ("EnemyDrop",    0x06,  (4,0,5), None,                         'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))),
     ("Spirit Temple MQ Child Climb Beamos",                          ("EnemyDrop",    0x06,  (4,0,12), None,                        'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))),
     ("Spirit Temple MQ Central Chamber Wallmaster",                  ("EnemyDrop",    0x06,  (5,0,1), None,                         'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))),
     ("Spirit Temple MQ Central Chamber Zeldas Lullaby Wallmaster",   ("EnemyDrop",    0x06,  (5,0,21), None,                        'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))),
@@ -3624,9 +3650,6 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Spirit Temple MQ Big Mirror Bubble 1",                         ("EnemyDrop",    0x06,  (26,0,7), None,                        'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))),
     ("Spirit Temple MQ Big Mirror Bubble 2",                         ("EnemyDrop",    0x06,  (26,0,8), None,                        'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))),
     ("Spirit Temple MQ Spinning Platform Stalfos",                   ("EnemyDrop",    0x06,  (27,0,8), None,                        'Rupees (5)',                                ("Spirit Temple", "Master Quest", "EnemyDrop"))),
-    # Spirit Temple MQ Wonderitems
-    ("Spirit Temple MQ Chest Switch Sword Wonderitem",               ("Wonderitem",   0x06,  (18,0,10), None,                       'Recovery Heart',                        ("Spirit Temple", "Master Quest", "Wonderitem"))),
-    ("Spirit Temple MQ Chest Switch Hammer Wonderitem",              ("Wonderitem",   0x06,  (18,0,9), None,                        'Recovery Heart',                        ("Spirit Temple", "Master Quest", "Wonderitem"))),
 
     # Ice Cavern Vanilla
     ("Ice Cavern Map Chest",                                         ("Chest",        0x09,  0x00, None,                            'Map (Ice Cavern)',                      ("Ice Cavern", "Vanilla Dungeons", "Chests",))),
@@ -3654,7 +3677,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Ice Cavern Near End Pot 1",                                    ("Pot",          0x09,  (6,0,1), None,                         'Recovery Heart',                        ("Ice Cavern", "Vanilla Dungeons", "Pots",))),
     ("Ice Cavern Near End Pot 2",                                    ("Pot",          0x09,  (6,0,2), None,                         'Recovery Heart',                        ("Ice Cavern", "Vanilla Dungeons", "Pots",))),
     ("Ice Cavern Frozen Pot",                                        ("Pot",          0x09,  (9,0,10), None,                        'Rupees (50)',                           ("Ice Cavern", "Vanilla Dungeons", "Pots",))),
-    
+
     # Ice Cavern Enemies
     ("Ice Cavern Entryway Freezard 1",                               ("EnemyDrop",    0x09,  (1,0, 2), None,                    'Rupees (5)',                           ("Ice Cavern", "Vanilla", "EnemyDrop"))),
     ("Ice Cavern Entryway Freezard 2",                               ("EnemyDrop",    0x09,  (1,0, 11), None,                    'Rupees (5)',                           ("Ice Cavern", "Vanilla", "EnemyDrop"))),
@@ -3676,19 +3699,19 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Ice Cavern Compass Chest Keese 1",                             ("EnemyDrop",    0x09,  (11,0, 1), None,                    'Rupees (5)',                           ("Ice Cavern", "Vanilla", "EnemyDrop"))),
     ("Ice Cavern Compass Chest Keese 2",                             ("EnemyDrop",    0x09,  (11,0, 2), None,                    'Rupees (5)',                           ("Ice Cavern", "Vanilla", "EnemyDrop"))),
     ("Ice Cavern Compass Chest Keese 3",                             ("EnemyDrop",    0x09,  (11,0, 3), None,                    'Rupees (5)',                           ("Ice Cavern", "Vanilla", "EnemyDrop"))),
-  
+
 
     # Ice Cavern Silver Rupees
-    ("Ice Cavern Spinning Scythe Silver Rupee Icicles",              ("SilverRupee",  0x09,  (3,0,3), None,                     'Silver Rupee (Ice Cavern Spinning Scythe)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ice Cavern Spinning Scythe Silver Rupee Center Left",          ("SilverRupee",  0x09,  (3,0,4), None,                     'Silver Rupee (Ice Cavern Spinning Scythe)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ice Cavern Spinning Scythe Silver Rupee Center Back",          ("SilverRupee",  0x09,  (3,0,5), None,                     'Silver Rupee (Ice Cavern Spinning Scythe)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ice Cavern Spinning Scythe Silver Rupee Center Right",         ("SilverRupee",  0x09,  (3,0,6), None,                     'Silver Rupee (Ice Cavern Spinning Scythe)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ice Cavern Spinning Scythe Silver Rupee Ledge",                ("SilverRupee",  0x09,  (3,0,7), None,                     'Silver Rupee (Ice Cavern Spinning Scythe)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ice Cavern Push Block Silver Rupee Back Left",                 ("SilverRupee",  0x09,  (5,0,11), None,                         'Silver Rupee (Ice Cavern Push Block)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ice Cavern Push Block Silver Rupee Back Center",               ("SilverRupee",  0x09,  (5,0,12), None,                         'Silver Rupee (Ice Cavern Push Block)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ice Cavern Push Block Silver Rupee Front Center",              ("SilverRupee",  0x09,  (5,0,13), None,                         'Silver Rupee (Ice Cavern Push Block)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ice Cavern Push Block Silver Rupee Red Ice",                   ("SilverRupee",  0x09,  (5,0,14), None,                         'Silver Rupee (Ice Cavern Push Block)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ice Cavern Push Block Silver Rupee Front Left",                ("SilverRupee",  0x09,  (5,0,15), None,                         'Silver Rupee (Ice Cavern Push Block)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ice Cavern Spinning Scythe Silver Rupee Icicles",              ("SilverRupee",  0x09,  (3,0,3), None,                     'Silver Rupee (Ice Cavern Spinning Scythe)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ice Cavern Spinning Scythe Silver Rupee Center Left",          ("SilverRupee",  0x09,  (3,0,4), None,                     'Silver Rupee (Ice Cavern Spinning Scythe)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ice Cavern Spinning Scythe Silver Rupee Center Back",          ("SilverRupee",  0x09,  (3,0,5), None,                     'Silver Rupee (Ice Cavern Spinning Scythe)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ice Cavern Spinning Scythe Silver Rupee Center Right",         ("SilverRupee",  0x09,  (3,0,6), None,                     'Silver Rupee (Ice Cavern Spinning Scythe)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ice Cavern Spinning Scythe Silver Rupee Ledge",                ("SilverRupee",  0x09,  (3,0,7), None,                     'Silver Rupee (Ice Cavern Spinning Scythe)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ice Cavern Push Block Silver Rupee Back Left",                 ("SilverRupee",  0x09,  (5,0,11), None,                         'Silver Rupee (Ice Cavern Push Block)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ice Cavern Push Block Silver Rupee Back Center",               ("SilverRupee",  0x09,  (5,0,12), None,                         'Silver Rupee (Ice Cavern Push Block)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ice Cavern Push Block Silver Rupee Front Center",              ("SilverRupee",  0x09,  (5,0,13), None,                         'Silver Rupee (Ice Cavern Push Block)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ice Cavern Push Block Silver Rupee Red Ice",                   ("SilverRupee",  0x09,  (5,0,14), None,                         'Silver Rupee (Ice Cavern Push Block)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ice Cavern Push Block Silver Rupee Front Left",                ("SilverRupee",  0x09,  (5,0,15), None,                         'Silver Rupee (Ice Cavern Push Block)', ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees",))),
 
     # Ice Cavern MQ
     ("Ice Cavern MQ Map Chest",                                      ("Chest",        0x09,  0x01, None,                            'Map (Ice Cavern)',                      ("Ice Cavern MQ", "Master Quest", "Chests",))),
@@ -3761,21 +3784,25 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Gerudo Training Ground Beamos Recovery Heart 1",               ("Freestanding", 0x0B,  (7,0,11), None,                        'Recovery Heart',                        ("Gerudo Training Ground", "Vanilla Dungeons", "Freestandings",))),
     ("Gerudo Training Ground Beamos Recovery Heart 2",               ("Freestanding", 0x0B,  (7,0,12), None,                        'Recovery Heart',                        ("Gerudo Training Ground", "Vanilla Dungeons", "Freestandings",))),
     # Gerudo Training Ground Silver Rupees
-    ("Gerudo Training Ground Lava Room Silver Rupee Front Left",     ("SilverRupee",  0x0B,  (6,0,11), None,                    'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Gerudo Training Ground Lava Room Silver Rupee Front Right",    ("SilverRupee",  0x0B,  (6,0,12), None,                    'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Gerudo Training Ground Lava Room Silver Rupee Flame Circle",   ("SilverRupee",  0x0B,  (6,0,13), None,                    'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Gerudo Training Ground Lava Room Silver Rupee Center Right",   ("SilverRupee",  0x0B,  (6,0,15), None,                    'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Gerudo Training Ground Lava Room Silver Rupee Hookshot Target",("SilverRupee",  0x0B,  (6,0,14), None,                    'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Gerudo Training Ground Underwater Silver Rupee Top",           ("SilverRupee",  0x0B,  (9,0,18), None,                   'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Gerudo Training Ground Underwater Silver Rupee Middle",        ("SilverRupee",  0x0B,  (9,0,20), None,                   'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Gerudo Training Ground Underwater Silver Rupee Bottom Front Right",("SilverRupee",0x0B,(9,0,21), None,                   'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Gerudo Training Ground Underwater Silver Rupee Bottom Center", ("SilverRupee",  0x0B,  (9,0,17), None,                   'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Gerudo Training Ground Underwater Silver Rupee Bottom Back Left",("SilverRupee",0x0B,  (9,0,19), None,                   'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Gerudo Training Ground Boulder Room Silver Rupee Bottom Right",("SilverRupee",  0x0B,  (2,0,10), None,                  'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Gerudo Training Ground Boulder Room Silver Rupee Bottom Left", ("SilverRupee",  0x0B,  (2,0,11), None,                  'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Gerudo Training Ground Boulder Room Silver Rupee Ceiling",     ("SilverRupee",  0x0B,  (2,0,12), None,                  'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Gerudo Training Ground Boulder Room Silver Rupee Ledge",       ("SilverRupee",  0x0B,  (2,0,13), None,                  'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Gerudo Training Ground Boulder Room Silver Rupee Top Left",    ("SilverRupee",  0x0B,  (2,0,14), None,                  'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Gerudo Training Ground Lava Room Silver Rupee Front Left",     ("SilverRupee",  0x0B,  (6,0,11), None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Gerudo Training Ground Lava Room Silver Rupee Front Right",    ("SilverRupee",  0x0B,  (6,0,12), None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Gerudo Training Ground Lava Room Silver Rupee Flame Circle",   ("SilverRupee",  0x0B,  (6,0,13), None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Gerudo Training Ground Lava Room Silver Rupee Center Right",   ("SilverRupee",  0x0B,  (6,0,15), None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Gerudo Training Ground Lava Room Silver Rupee Hookshot Target",("SilverRupee",  0x0B,  (6,0,14), None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Gerudo Training Ground Underwater Silver Rupee Top",           ("SilverRupee",  0x0B,  (9,0,18), None,                  'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Gerudo Training Ground Underwater Silver Rupee Middle",        ("SilverRupee",  0x0B,  (9,0,20), None,                  'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Gerudo Training Ground Underwater Silver Rupee Bottom Front Right",("SilverRupee",0x0B,(9,0,21), None,                  'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Gerudo Training Ground Underwater Silver Rupee Bottom Center", ("SilverRupee",  0x0B,  (9,0,17), None,                  'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Gerudo Training Ground Underwater Silver Rupee Bottom Back Left",("SilverRupee",0x0B,  (9,0,19), None,                  'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Gerudo Training Ground Boulder Room Silver Rupee Bottom Right",("SilverRupee",  0x0B,  (2,0,10), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Gerudo Training Ground Boulder Room Silver Rupee Bottom Left", ("SilverRupee",  0x0B,  (2,0,11), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Gerudo Training Ground Boulder Room Silver Rupee Ceiling",     ("SilverRupee",  0x0B,  (2,0,12), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Gerudo Training Ground Boulder Room Silver Rupee Ledge",       ("SilverRupee",  0x0B,  (2,0,13), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Gerudo Training Ground Boulder Room Silver Rupee Top Left",    ("SilverRupee",  0x0B,  (2,0,14), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground", "Vanilla Dungeons", "Silver Rupees",))),
+    # Gerudo Training Ground Wonderitems
+    ("Gerudo Training Ground Eye Statue Wonderitem",                 ("Wonderitem",   0x0B,  (4,0,3), None,                         'Arrows (10)',                           ("Shadow Temple", "Vanilla", "Wonderitem"))),
+    ("Gerudo Training Ground Hammer Room Wonderitem",                ("Wonderitem",   0x0B,  (5,0,17), None,                         'Arrows (10)',                           ("Shadow Temple", "Vanilla", "Wonderitem"))),
+    ("Gerudo Training Ground Beamos Wonderitem",                     ("Wonderitem",   0x0B,  (7,0,13), None,                         'Arrows (10)',                           ("Shadow Temple", "Vanilla", "Wonderitem"))),
     # Gerudo Training Ground Enemies
     ("Gerudo Training Ground Stalfos 1",                             ("EnemyDrop",    0x0B,  (1,0, 1), None,                    'Rupees (5)',                           ("Gerudo Training Ground", "Vanilla", "EnemyDrop"))),
     ("Gerudo Training Ground Stalfos 2",                             ("EnemyDrop",    0x0B,  (1,0, 2), None,                    'Rupees (5)',                           ("Gerudo Training Ground", "Vanilla", "EnemyDrop"))),
@@ -3801,10 +3828,6 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Gerudo Training Ground Underwater Shell Blade 3",              ("EnemyDrop",    0x0B,  (9,0, 7), None,                    'Rupees (5)',                           ("Gerudo Training Ground", "Vanilla", "EnemyDrop"))),
     ("Gerudo Training Ground Underwater Shell Blade 4",              ("EnemyDrop",    0x0B,  (9,0, 8), None,                    'Rupees (5)',                           ("Gerudo Training Ground", "Vanilla", "EnemyDrop"))),
     # Wallmaster slopes room
-    # Gerudo Training Ground Wonderitems
-    ("Gerudo Training Ground Eye Statue Wonderitem",                 ("Wonderitem",   0x0B,  (4,0,3), None,                         'Arrows (10)',                           ("Shadow Temple", "Vanilla", "Wonderitem"))),
-    ("Gerudo Training Ground Hammer Room Wonderitem",                ("Wonderitem",   0x0B,  (5,0,17), None,                         'Arrows (10)',                           ("Shadow Temple", "Vanilla", "Wonderitem"))),
-    ("Gerudo Training Ground Beamos Wonderitem",                     ("Wonderitem",   0x0B,  (7,0,13), None,                         'Arrows (10)',                           ("Shadow Temple", "Vanilla", "Wonderitem"))),
 
     # Gerudo Training Ground MQ
     ("Gerudo Training Ground MQ Lobby Left Chest",                   ("Chest",        0x0B,  0x13, None,                            'Arrows (10)',                           ("Gerudo Training Ground MQ", "Master Quest", "Chests",))),
@@ -3831,25 +3854,29 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Gerudo Training Ground MQ Lobby Right Pot 2",                  ("Pot",          0x0B,  (0,0,9), None,                         'Recovery Heart',                        ("Gerudo Training Ground MQ", "Master Quest", "Pots",))),
     ("Gerudo Training Ground MQ Maze Crate",                         ("Crate",        0x0B,  (8,0,2), None,                         'Rupee (1)',                             ("Gerudo Training Ground MQ", "Master Quest", "Crates",))),
     # Gerudo Training Ground MQ Silver Rupees
-    ("Gerudo Training Ground MQ Icicle Room Silver Rupee Freezard",  ("SilverRupee",  0x0B,  (2,0,28), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
-    ("Gerudo Training Ground MQ Icicle Room Silver Rupee Icicles",   ("SilverRupee",  0x0B,  (2,0,25), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
-    ("Gerudo Training Ground MQ Icicle Room Silver Rupee Center",    ("SilverRupee",  0x0B,  (2,0,26), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
-    ("Gerudo Training Ground MQ Icicle Room Silver Rupee Ceiling",   ("SilverRupee",  0x0B,  (2,0,27), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
-    ("Gerudo Training Ground MQ Icicle Room Silver Rupee Above Void",("SilverRupee",  0x0B,  (2,0,29), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
-    ("Gerudo Training Ground MQ Lava Room Silver Rupee Front Left",  ("SilverRupee",  0x0B,  (6,0,12), None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
-    ("Gerudo Training Ground MQ Lava Room Silver Rupee Front Center",("SilverRupee",  0x0B,  (6,0,13), None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
-    ("Gerudo Training Ground MQ Lava Room Silver Rupee Front Right", ("SilverRupee",  0x0B,  (6,0,11), None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
-    ("Gerudo Training Ground MQ Lava Room Silver Rupee Back Left",   ("SilverRupee",  0x0B,  (6,0,9),  None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
-    ("Gerudo Training Ground MQ Lava Room Silver Rupee Back Center", ("SilverRupee",  0x0B,  (6,0,10), None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
-    ("Gerudo Training Ground MQ Lava Room Silver Rupee Back Right",  ("SilverRupee",  0x0B,  (6,0,8),  None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
-    ("Gerudo Training Ground MQ Underwater Silver Rupee Middle",     ("SilverRupee",  0x0B,  (9,0,13), None,                  'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
-    ("Gerudo Training Ground MQ Underwater Silver Rupee Front Right",("SilverRupee",  0x0B,  (9,0,14), None,                  'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
-    ("Gerudo Training Ground MQ Underwater Silver Rupee Back Left",  ("SilverRupee",  0x0B,  (9,0,12), None,                  'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees"))),
+    ("Gerudo Training Ground MQ Icicle Room Silver Rupee Freezard",  ("SilverRupee",  0x0B,  (2,0,28), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees",))),
+    ("Gerudo Training Ground MQ Icicle Room Silver Rupee Icicles",   ("SilverRupee",  0x0B,  (2,0,25), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees",))),
+    ("Gerudo Training Ground MQ Icicle Room Silver Rupee Center",    ("SilverRupee",  0x0B,  (2,0,26), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees",))),
+    ("Gerudo Training Ground MQ Icicle Room Silver Rupee Ceiling",   ("SilverRupee",  0x0B,  (2,0,27), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees",))),
+    ("Gerudo Training Ground MQ Icicle Room Silver Rupee Above Void",("SilverRupee",  0x0B,  (2,0,29), None,                 'Silver Rupee (Gerudo Training Ground Slopes)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees",))),
+    ("Gerudo Training Ground MQ Lava Room Silver Rupee Front Left",  ("SilverRupee",  0x0B,  (6,0,12), None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees",))),
+    ("Gerudo Training Ground MQ Lava Room Silver Rupee Front Center",("SilverRupee",  0x0B,  (6,0,13), None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees",))),
+    ("Gerudo Training Ground MQ Lava Room Silver Rupee Front Right", ("SilverRupee",  0x0B,  (6,0,11), None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees",))),
+    ("Gerudo Training Ground MQ Lava Room Silver Rupee Back Left",   ("SilverRupee",  0x0B,  (6,0,9),  None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees",))),
+    ("Gerudo Training Ground MQ Lava Room Silver Rupee Back Center", ("SilverRupee",  0x0B,  (6,0,10), None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees",))),
+    ("Gerudo Training Ground MQ Lava Room Silver Rupee Back Right",  ("SilverRupee",  0x0B,  (6,0,8),  None,                   'Silver Rupee (Gerudo Training Ground Lava)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees",))),
+    ("Gerudo Training Ground MQ Underwater Silver Rupee Middle",     ("SilverRupee",  0x0B,  (9,0,13), None,                  'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees",))),
+    ("Gerudo Training Ground MQ Underwater Silver Rupee Front Right",("SilverRupee",  0x0B,  (9,0,14), None,                  'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees",))),
+    ("Gerudo Training Ground MQ Underwater Silver Rupee Back Left",  ("SilverRupee",  0x0B,  (9,0,12), None,                  'Silver Rupee (Gerudo Training Ground Water)', ("Gerudo Training Ground MQ", "Master Quest", "Silver Rupees",))),
+
+    # Gerudo Training Ground MQ Wonderitems
+    ("Gerudo Training Ground MQ Eye Statue Proximity Wonderitem",    ("Wonderitem",   0x0B,  (4,0,5), None,                         'Rupees (20)',                           ("Gerudo Training Ground", "Master Quest", "Wonderitem"))),
+    ("Gerudo Training Ground MQ Dinolfos Arrow Wonderitem",          ("Wonderitem",   0x0B,  (7,0,9), None,                         'Rupees (20)',                           ("Gerudo Training Ground", "Master Quest", "Wonderitem"))), # One of the actors in this room appears to have been deleted so this actor is #9. The 0x185 Checkable Spot actor is missing in MQU.json
     # Gerudo Training Ground MQ Enemies
     ("Gerudo Training Ground MQ First Iron Knuckle",                 ("EnemyDrop",    0x0B,  (1,0,1), None,                         'Rupees (5)',                           ("Gerudo Training Ground", "Master Quest", "EnemyDrop"))),
     ("Gerudo Training Ground MQ Slopes Freezard",                    ("EnemyDrop",    0x0B,  (2,0,1), None,                         'Rupees (5)',                           ("Gerudo Training Ground", "Master Quest", "EnemyDrop"))),
     ("Gerudo Training Ground MQ Slopes Wallmaster 1",                ("EnemyDrop",    0x0B,  (2,0,18), None,                        'Rupees (5)',                           ("Gerudo Training Ground", "Master Quest", "EnemyDrop"))),
-    #("Gerudo Training Ground MQ Slopes Wallmaster 2",                ("EnemyDrop",    0x0B,  (2,0,22), None,                        'Rupees (5)',                           ("Gerudo Training Ground", "Master Quest", "EnemyDrop"))), Linked to switch flag 0x11 which doesn't trigger in this room? 
+    #("Gerudo Training Ground MQ Slopes Wallmaster 2",                ("EnemyDrop",    0x0B,  (2,0,22), None,                        'Rupees (5)',                           ("Gerudo Training Ground", "Master Quest", "EnemyDrop"))), Linked to switch flag 0x11 which doesn't trigger in this room?
     ("Gerudo Training Ground MQ Before Heavy Block Stalfos 1",       ("EnemyDrop",    0x0B,  (3,0,5), None,                        'Rupees (5)',                           ("Gerudo Training Ground", "Master Quest", "EnemyDrop"))),
     ("Gerudo Training Ground MQ Before Heavy Block Stalfos 2",       ("EnemyDrop",    0x0B,  (3,0,6), None,                        'Rupees (5)',                           ("Gerudo Training Ground", "Master Quest", "EnemyDrop"))),
     ("Gerudo Training Ground MQ Before Heavy Block Skulltula 1",     ("EnemyDrop",    0x0B,  (3,0,7), None,                        'Rupees (5)',                           ("Gerudo Training Ground", "Master Quest", "EnemyDrop"))),
@@ -3876,10 +3903,6 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Gerudo Training Ground MQ Heavy Block Spike 1",                ("EnemyDrop",    0x0B,  (10,0,3), None,                        'Rupees (5)',                           ("Gerudo Training Ground", "Master Quest", "EnemyDrop"))),
     ("Gerudo Training Ground MQ Heavy Block Spike 2",                ("EnemyDrop",    0x0B,  (10,0,4), None,                        'Rupees (5)',                           ("Gerudo Training Ground", "Master Quest", "EnemyDrop"))),
     ("Gerudo Training Ground MQ Heavy Block Spike 3",                ("EnemyDrop",    0x0B,  (10,0,5), None,                        'Rupees (5)',                           ("Gerudo Training Ground", "Master Quest", "EnemyDrop"))),
-
-    # Gerudo Training Ground MQ Wonderitems
-    ("Gerudo Training Ground MQ Eye Statue Proximity Wonderitem",    ("Wonderitem",   0x0B,  (4,0,5), None,                         'Rupees (20)',                           ("Gerudo Training Ground", "Master Quest", "Wonderitem"))),
-    ("Gerudo Training Ground MQ Dinolfos Arrow Wonderitem",          ("Wonderitem",   0x0B,  (7,0,9), None,                         'Rupees (20)',                           ("Gerudo Training Ground", "Master Quest", "Wonderitem"))), # One of the actors in this room appears to have been deleted so this actor is #9. The 0x185 Checkable Spot actor is missing in MQU.json
 
     # Ganon's Castle Vanilla
     ("Ganons Castle Forest Trial Chest",                             ("Chest",        0x0D,  0x09, None,                            'Rupees (5)',                            ("Ganon's Castle", "Vanilla Dungeons", "Chests",))),
@@ -3925,26 +3948,26 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Ganons Castle Spirit Trial Pot 1",                             ("Pot",          0x0D,  (19,0,5), None,                        'Deku Nuts (5)',                         ("Ganon's Castle", "Vanilla Dungeons", "Pots",))),
     ("Ganons Castle Spirit Trial Pot 2",                             ("Pot",          0x0D,  (19,0,6), None,                        'Rupees (5)',                            ("Ganon's Castle", "Vanilla Dungeons", "Pots",))),
     # Ganon's Castle Silver Rupees
-    ("Ganons Castle Spirit Trial Silver Rupee Ceiling",              ("SilverRupee",  0x0D,  (17,0,22), None,                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ganons Castle Spirit Trial Silver Rupee Front Right",          ("SilverRupee",  0x0D,  (17,0,23), None,                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ganons Castle Spirit Trial Silver Rupee Center",               ("SilverRupee",  0x0D,  (17,0,24), None,                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ganons Castle Spirit Trial Silver Rupee Back Left",            ("SilverRupee",  0x0D,  (17,0,25), None,                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ganons Castle Spirit Trial Silver Rupee Back Right",           ("SilverRupee",  0x0D,  (17,0,26), None,                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ganons Castle Light Trial Silver Rupee Center Left",           ("SilverRupee",  0x0D,  (8,0,9), None,                      'Silver Rupee (Ganons Castle Light Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ganons Castle Light Trial Silver Rupee Center Top",            ("SilverRupee",  0x0D,  (8,0,7), None,                      'Silver Rupee (Ganons Castle Light Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ganons Castle Light Trial Silver Rupee Center Right",          ("SilverRupee",  0x0D,  (8,0,8), None,                      'Silver Rupee (Ganons Castle Light Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ganons Castle Light Trial Silver Rupee Left Alcove",           ("SilverRupee",  0x0D,  (8,0,6), None,                      'Silver Rupee (Ganons Castle Light Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ganons Castle Light Trial Silver Rupee Right Alcove",          ("SilverRupee",  0x0D,  (8,0,5), None,                      'Silver Rupee (Ganons Castle Light Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ganons Castle Fire Trial Silver Rupee Flamethrower",           ("SilverRupee",  0x0D,  (14,0,14), None,                     'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ganons Castle Fire Trial Silver Rupee Inside Pillar",          ("SilverRupee",  0x0D,  (14,0,17), None,                     'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ganons Castle Fire Trial Silver Rupee Right Front",            ("SilverRupee",  0x0D,  (14,0,16), None,                     'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ganons Castle Fire Trial Silver Rupee Right Center",           ("SilverRupee",  0x0D,  (14,0,15), None,                     'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ganons Castle Fire Trial Silver Rupee Right Back",             ("SilverRupee",  0x0D,  (14,0,13), None,                     'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ganons Castle Forest Trial Silver Rupee Front Left",           ("SilverRupee",  0x0D,  (6,0,8), None,                     'Silver Rupee (Ganons Castle Forest Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ganons Castle Forest Trial Silver Rupee Front Right",          ("SilverRupee",  0x0D,  (6,0,7), None,                     'Silver Rupee (Ganons Castle Forest Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ganons Castle Forest Trial Silver Rupee Center Left",          ("SilverRupee",  0x0D,  (6,0,11), None,                    'Silver Rupee (Ganons Castle Forest Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ganons Castle Forest Trial Silver Rupee Back Center",          ("SilverRupee",  0x0D,  (6,0,10), None,                    'Silver Rupee (Ganons Castle Forest Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
-    ("Ganons Castle Forest Trial Silver Rupee Back Right",           ("SilverRupee",  0x0D,  (6,0,9), None,                     'Silver Rupee (Ganons Castle Forest Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees"))),
+    ("Ganons Castle Spirit Trial Silver Rupee Ceiling",              ("SilverRupee",  0x0D,  (17,0,22), None,                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ganons Castle Spirit Trial Silver Rupee Front Right",          ("SilverRupee",  0x0D,  (17,0,23), None,                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ganons Castle Spirit Trial Silver Rupee Center",               ("SilverRupee",  0x0D,  (17,0,24), None,                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ganons Castle Spirit Trial Silver Rupee Back Left",            ("SilverRupee",  0x0D,  (17,0,25), None,                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ganons Castle Spirit Trial Silver Rupee Back Right",           ("SilverRupee",  0x0D,  (17,0,26), None,                   'Silver Rupee (Ganons Castle Spirit Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ganons Castle Light Trial Silver Rupee Center Left",           ("SilverRupee",  0x0D,  (8,0,9), None,                      'Silver Rupee (Ganons Castle Light Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ganons Castle Light Trial Silver Rupee Center Top",            ("SilverRupee",  0x0D,  (8,0,7), None,                      'Silver Rupee (Ganons Castle Light Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ganons Castle Light Trial Silver Rupee Center Right",          ("SilverRupee",  0x0D,  (8,0,8), None,                      'Silver Rupee (Ganons Castle Light Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ganons Castle Light Trial Silver Rupee Left Alcove",           ("SilverRupee",  0x0D,  (8,0,6), None,                      'Silver Rupee (Ganons Castle Light Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ganons Castle Light Trial Silver Rupee Right Alcove",          ("SilverRupee",  0x0D,  (8,0,5), None,                      'Silver Rupee (Ganons Castle Light Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ganons Castle Fire Trial Silver Rupee Flamethrower",           ("SilverRupee",  0x0D,  (14,0,14), None,                     'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ganons Castle Fire Trial Silver Rupee Inside Pillar",          ("SilverRupee",  0x0D,  (14,0,17), None,                     'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ganons Castle Fire Trial Silver Rupee Right Front",            ("SilverRupee",  0x0D,  (14,0,16), None,                     'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ganons Castle Fire Trial Silver Rupee Right Center",           ("SilverRupee",  0x0D,  (14,0,15), None,                     'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ganons Castle Fire Trial Silver Rupee Right Back",             ("SilverRupee",  0x0D,  (14,0,13), None,                     'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ganons Castle Forest Trial Silver Rupee Front Left",           ("SilverRupee",  0x0D,  (6,0,8), None,                     'Silver Rupee (Ganons Castle Forest Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ganons Castle Forest Trial Silver Rupee Front Right",          ("SilverRupee",  0x0D,  (6,0,7), None,                     'Silver Rupee (Ganons Castle Forest Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ganons Castle Forest Trial Silver Rupee Center Left",          ("SilverRupee",  0x0D,  (6,0,11), None,                    'Silver Rupee (Ganons Castle Forest Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ganons Castle Forest Trial Silver Rupee Back Center",          ("SilverRupee",  0x0D,  (6,0,10), None,                    'Silver Rupee (Ganons Castle Forest Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees",))),
+    ("Ganons Castle Forest Trial Silver Rupee Back Right",           ("SilverRupee",  0x0D,  (6,0,9), None,                     'Silver Rupee (Ganons Castle Forest Trial)', ("Ganon's Castle", "Vanilla Dungeons", "Silver Rupees",))),
 
     # Ganons Castle Enemies
     ("Ganons Castle Entry Hallway Beamos Left",                       ("EnemyDrop",    0x0D,  (0,0,2), None,                     'Rupees (5)',                            ("Ganon's Castle", "Vanilla", "EnemyDrop"))),
@@ -3972,7 +3995,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Ganons Castle Spirit Trial Wrong Sun Wallmaster 1",             ("EnemyDrop",    0x0D,  (18,0,19), None,                     'Rupees (5)',                            ("Ganon's Castle", "Vanilla", "EnemyDrop"))),
     ("Ganons Castle Spirit Trial Wrong Sun Wallmaster 2",             ("EnemyDrop",    0x0D,  (18,0,21), None,                     'Rupees (5)',                            ("Ganon's Castle", "Vanilla", "EnemyDrop"))),
     ("Ganons Castle Spirit Trial Wrong Sun Wallmaster 3",             ("EnemyDrop",    0x0D,  (18,0,23), None,                     'Rupees (5)',                            ("Ganon's Castle", "Vanilla", "EnemyDrop"))),
-    
+
     # Ganon's Castle MQ
     ("Ganons Castle MQ Forest Trial Freestanding Key",               ("Collectable",  0x0D,  0x01, None,                            'Small Key (Ganons Castle)',             ("Ganon's Castle MQ", "Master Quest", "Freestandings",))),
     ("Ganons Castle MQ Forest Trial Eye Switch Chest",               ("Chest",        0x0D,  0x02, None,                            'Arrows (10)',                           ("Ganon's Castle MQ", "Master Quest", "Chests",))),
@@ -4010,21 +4033,21 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Ganons Castle MQ Spirit Trial Pot 1",                          ("Pot",          0x0D,  (19,0,5), None,                        'Rupees (5)',                            ("Ganon's Castle MQ", "Master Quest", "Pots",))),
     ("Ganons Castle MQ Spirit Trial Pot 2",                          ("Pot",          0x0D,  (19,0,6), None,                        'Deku Nuts (5)',                         ("Ganon's Castle MQ", "Master Quest", "Pots",))),
     # Ganon's Castle MQ Silver Rupees
-    ("Ganons Castle MQ Fire Trial Silver Rupee Rising Platform",     ("SilverRupee", 0x0D, (14,0,22), None,                       'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
-    ("Ganons Castle MQ Fire Trial Silver Rupee Beamos",              ("SilverRupee", 0x0D, (14,0,19), None,                       'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
-    ("Ganons Castle MQ Fire Trial Silver Rupee Left Front",          ("SilverRupee", 0x0D, (14,0,23), None,                       'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
-    ("Ganons Castle MQ Fire Trial Silver Rupee Left Center",         ("SilverRupee", 0x0D, (14,0,20), None,                       'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
-    ("Ganons Castle MQ Fire Trial Silver Rupee Left Back",           ("SilverRupee", 0x0D, (14,0,21), None,                       'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
-    ("Ganons Castle MQ Shadow Trial Silver Rupee Moving Platform",   ("SilverRupee", 0x0D, (12,0,18), None,                     'Silver Rupee (Ganons Castle Shadow Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
-    ("Ganons Castle MQ Shadow Trial Silver Rupee Bomb Flower",       ("SilverRupee", 0x0D, (12,0,14), None,                     'Silver Rupee (Ganons Castle Shadow Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
-    ("Ganons Castle MQ Shadow Trial Silver Rupee First Beamos",      ("SilverRupee", 0x0D, (12,0,15), None,                     'Silver Rupee (Ganons Castle Shadow Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
-    ("Ganons Castle MQ Shadow Trial Silver Rupee Last Beamos",       ("SilverRupee", 0x0D, (12,0,16), None,                     'Silver Rupee (Ganons Castle Shadow Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
-    ("Ganons Castle MQ Shadow Trial Silver Rupee Guillotine",        ("SilverRupee", 0x0D, (12,0,17), None,                     'Silver Rupee (Ganons Castle Shadow Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
-    ("Ganons Castle MQ Water Trial Silver Rupee Hole",               ("SilverRupee", 0x0D, (3,0,8), None,                        'Silver Rupee (Ganons Castle Water Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
-    ("Ganons Castle MQ Water Trial Silver Rupee Near Blocks",        ("SilverRupee", 0x0D, (3,0,9), None,                        'Silver Rupee (Ganons Castle Water Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
-    ("Ganons Castle MQ Water Trial Silver Rupee Center Left",        ("SilverRupee", 0x0D, (3,0,12), None,                       'Silver Rupee (Ganons Castle Water Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
-    ("Ganons Castle MQ Water Trial Silver Rupee Red Ice",            ("SilverRupee", 0x0D, (3,0,10), None,                       'Silver Rupee (Ganons Castle Water Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
-    ("Ganons Castle MQ Water Trial Silver Rupee Above Void",         ("SilverRupee", 0x0D, (3,0,11), None,                       'Silver Rupee (Ganons Castle Water Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees"))),
+    ("Ganons Castle MQ Fire Trial Silver Rupee Rising Platform",     ("SilverRupee", 0x0D, (14,0,22), None,                       'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees",))),
+    ("Ganons Castle MQ Fire Trial Silver Rupee Beamos",              ("SilverRupee", 0x0D, (14,0,19), None,                       'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees",))),
+    ("Ganons Castle MQ Fire Trial Silver Rupee Left Front",          ("SilverRupee", 0x0D, (14,0,23), None,                       'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees",))),
+    ("Ganons Castle MQ Fire Trial Silver Rupee Left Center",         ("SilverRupee", 0x0D, (14,0,20), None,                       'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees",))),
+    ("Ganons Castle MQ Fire Trial Silver Rupee Left Back",           ("SilverRupee", 0x0D, (14,0,21), None,                       'Silver Rupee (Ganons Castle Fire Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees",))),
+    ("Ganons Castle MQ Shadow Trial Silver Rupee Moving Platform",   ("SilverRupee", 0x0D, (12,0,18), None,                     'Silver Rupee (Ganons Castle Shadow Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees",))),
+    ("Ganons Castle MQ Shadow Trial Silver Rupee Bomb Flower",       ("SilverRupee", 0x0D, (12,0,14), None,                     'Silver Rupee (Ganons Castle Shadow Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees",))),
+    ("Ganons Castle MQ Shadow Trial Silver Rupee First Beamos",      ("SilverRupee", 0x0D, (12,0,15), None,                     'Silver Rupee (Ganons Castle Shadow Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees",))),
+    ("Ganons Castle MQ Shadow Trial Silver Rupee Last Beamos",       ("SilverRupee", 0x0D, (12,0,16), None,                     'Silver Rupee (Ganons Castle Shadow Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees",))),
+    ("Ganons Castle MQ Shadow Trial Silver Rupee Guillotine",        ("SilverRupee", 0x0D, (12,0,17), None,                     'Silver Rupee (Ganons Castle Shadow Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees",))),
+    ("Ganons Castle MQ Water Trial Silver Rupee Hole",               ("SilverRupee", 0x0D, (3,0,8), None,                        'Silver Rupee (Ganons Castle Water Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees",))),
+    ("Ganons Castle MQ Water Trial Silver Rupee Near Blocks",        ("SilverRupee", 0x0D, (3,0,9), None,                        'Silver Rupee (Ganons Castle Water Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees",))),
+    ("Ganons Castle MQ Water Trial Silver Rupee Center Left",        ("SilverRupee", 0x0D, (3,0,12), None,                       'Silver Rupee (Ganons Castle Water Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees",))),
+    ("Ganons Castle MQ Water Trial Silver Rupee Red Ice",            ("SilverRupee", 0x0D, (3,0,10), None,                       'Silver Rupee (Ganons Castle Water Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees",))),
+    ("Ganons Castle MQ Water Trial Silver Rupee Above Void",         ("SilverRupee", 0x0D, (3,0,11), None,                       'Silver Rupee (Ganons Castle Water Trial)', ("Ganon's Castle MQ", "Master Quest", "Silver Rupees",))),
 
     # Ganon's Castle MQ Enemies
     ("Ganons Castle MQ Entry Hallway Armos 1",                         ("EnemyDrop",    0x0D,  (0,0,1), None,                     'Rupees (5)',                            ("Ganon's Castle", "Master Quest", "EnemyDrop"))),
@@ -4070,7 +4093,8 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Ganons Castle MQ Spirit Trial Redead 2",                         ("EnemyDrop",    0x0D,  (18,0,9), None,                    'Rupees (5)',                            ("Ganon's Castle", "Master Quest", "EnemyDrop"))),
     ("Ganons Castle MQ Spirit Trial Bubble 1",                         ("EnemyDrop",    0x0D,  (18,0,10), None,                   'Rupees (5)',                            ("Ganon's Castle", "Master Quest", "EnemyDrop"))),
     ("Ganons Castle MQ Spirit Trial Bubble 2",                         ("EnemyDrop",    0x0D,  (18,0,11), None,                   'Rupees (5)',                            ("Ganon's Castle", "Master Quest", "EnemyDrop"))),
-    
+    ("Ganons Castle MQ Spirit Trial Wallmaster",                       ("EnemyDrop",    0x0D,  (18,0,25), None,                   'Rupees (5)',                            ("Ganon's Castle", "Master Quest", "EnemyDrop"))),
+
     # Ganon's Castle Shared
     ("Ganons Tower Boss Key Chest",                                  ("Chest",        0x0A,  0x0B, None,                            'Boss Key (Ganons Castle)',              ("Ganon's Tower", "Vanilla Dungeons", "Master Quest", "Chests",))),
 
@@ -4230,5 +4254,5 @@ location_groups: dict[str, list[str]] = {
 
 
 def location_is_viewable(loc_name: str, correct_chest_appearances: str, fast_chests: bool) -> bool:
-    return (((correct_chest_appearances in ['textures', 'both', 'classic'] or not fast_chests) and loc_name in location_groups['Chest'])
+    return (((correct_chest_appearances in ('textures', 'both', 'classic') or not fast_chests) and loc_name in location_groups['Chest'])
             or loc_name in location_groups['CanSee'])

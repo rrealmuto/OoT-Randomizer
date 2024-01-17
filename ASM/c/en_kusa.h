@@ -19,7 +19,7 @@ typedef struct EnKusa {
     /* 0x0140 */ ColliderCylinder collider;
     /* 0x018C */ int16_t timer;
     /* 0x018E */ int8_t objBankIndex;
-    /* 0x0189 */ uint8_t chest_type;
+    /* 0x0190 */ uint8_t chest_type;
 } EnKusa; // size = 0x01A0 (we increased this by 0x10)
 
 #endif

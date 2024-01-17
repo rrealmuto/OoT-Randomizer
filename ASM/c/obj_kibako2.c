@@ -11,7 +11,7 @@
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
 
 // Hacks the regular crate spawn collectible function to spawn overridden collectibles
-void ObjKibako2_SpawnCollectible_Hack(ObjKibako2 *this, z64_game_t *globalCtx) {
+void ObjKibako2_SpawnCollectible_Hack(ObjKibako2* this, z64_game_t* globalCtx) {
     int16_t itemDropped;
     int16_t collectibleFlagTemp;
     collectibleFlagTemp = this->collectibleFlag & 0x3F;
@@ -30,12 +30,12 @@ void ObjKibako2_SpawnCollectible_Hack(ObjKibako2 *this, z64_game_t *globalCtx) {
     }
 }
 
-void ObjKibako2_Draw(z64_actor_t *actor, z64_game_t *game) {
+void ObjKibako2_Draw(z64_actor_t* actor, z64_game_t* game) {
     uint8_t* texture = get_texture(TEXTURE_ID_CRATE_DEFAULT);
 
     // get override palette and textures
 
-    ObjKibako2 *this = (ObjKibako2 *)actor;
+    ObjKibako2* this = (ObjKibako2*)actor;
 
     switch (this->chest_type) {
         case GILDED_CHEST:
@@ -65,7 +65,7 @@ void ObjKibako2_Draw(z64_actor_t *actor, z64_game_t *game) {
     }
 
     // push custom dlists (that set the palette and textures) to segment 09
-    z64_gfx_t *gfx = game->common.gfx;
+    z64_gfx_t* gfx = game->common.gfx;
     gfx->poly_opa.d -= 6;
     gDPSetTextureImage(gfx->poly_opa.d, G_IM_FMT_CI, G_IM_SIZ_16b, 1, texture + CRATE_CI8_TEXTURE_TOP_OFFSET);
     gSPEndDisplayList(gfx->poly_opa.d + 1);

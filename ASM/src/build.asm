@@ -1,7 +1,7 @@
 .n64
 .relativeinclude on
 
-// version guard, prevent people from building with older armips versions
+; version guard, prevent people from building with older armips versions
 .if (version() < 110)
 .notice version()
 .error   "Detected armips build is too old. Please install https://github.com/Kingcom/armips version 0.11 or later."
@@ -41,7 +41,7 @@
 .headersize (0x80400000 - 0x03480000)
 
 .org    0x80400000
-.area   0x00200000 //payload max memory
+.area   0x00200000 ; payload max memory
 PAYLOAD_START:
 
 .area 0x20, 0
@@ -117,11 +117,11 @@ RANDO_CONTEXT:
 .include "drop_overrides/bg_haka_tubo.asm"
 .include "drop_overrides/bg_spot18_basket.asm"
 .include "drop_overrides/obj_comb.asm"
+.include "drop_overrides/en_wonderitem.asm"
 .include "drop_overrides/enemy_drops.asm"
 .include "drop_overrides/ovl_en_bb.asm"
 .include "drop_overrides/ovl_en_crow.asm"
 .include "drop_overrides/ovl_en_skj.asm"
-.include "drop_overrides/en_wonderitem.asm"
 .include "drop_overrides/en_kusa.asm"
 .include "drop_overrides/obj_mure2.asm"
 .include "rand_seed.asm"
@@ -135,7 +135,11 @@ RANDO_CONTEXT:
 .include "ocarina_buttons.asm"
 .include "fairy_ocarina.asm"
 .include "enemy_spawn_shuffle.asm"
+.include "overlay.asm"
 .include "minimap.asm"
+.include "collider_override.asm"
+.include "objects.asm"
+
 
 .align 0x10
 .importobj "../build/bundle.o"
@@ -154,6 +158,6 @@ TRIFORCE_ICON_TEXTURE:
 AUDIO_THREAD_MEM_START:
 .skip AUDIO_THREAD_MEM_SIZE
 PAYLOAD_END:
-.endarea //payload max memory
+.endarea ; payload max memory
 
 .close

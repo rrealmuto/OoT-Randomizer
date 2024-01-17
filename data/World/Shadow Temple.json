@@ -169,7 +169,7 @@
             "Shadow Temple After Wind Flying Pot 2": "has_soul(Flying_Pot)",
             "Shadow Temple After Wind Redead Left": "can_kill_redead",
             "Shadow Temple After Wind Redead Right": "can_kill_redead"
-            
+
         },
         "exits": {
             "Shadow Temple Boat": "(Small_Key_Shadow_Temple, 4)",
@@ -202,14 +202,14 @@
             "Shadow Temple Invisible Floormaster Pot 2": "True",
             "Shadow Temple Spike Walls Pot": "True",
             "Shadow Temple GS Triple Giant Pot": "True",
+            "Shadow Temple 3 Spinning Pots Wonderitem": "can_use(Bow)",
             "Shadow Temple Spike Walls Left Redead": "can_use(Dins_Fire) and can_kill_redead",
             "Shadow Temple Spike Walls Right Redead": "can_use(Dins_Fire) and can_kill_redead",
             "Shadow Temple Invisible Walls Floormaster 1": "can_kill_floormaster",
             "Shadow Temple Invisible Walls Floormaster 2": "can_kill_floormaster",
             "Shadow Temple Invisible Floormaster": "can_kill_floormaster",
             "Shadow Temple Boat Stalfos 1": "can_kill_stalfos",
-            "Shadow Temple Boat Stalfos 2": "can_kill_stalfos",
-            "Shadow Temple 3 Spinning Pots Wonderitem": "can_use(Bow)"
+            "Shadow Temple Boat Stalfos 2": "can_kill_stalfos"
         },
         "exits": {
             "Shadow Temple 3 Spinning Pots Rupees": "

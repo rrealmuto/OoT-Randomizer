@@ -244,14 +244,14 @@ class SaveContext:
         extended_table = []
         for address, value in self.save_bits.items():
             table = save_table
-            if(address >= Address.EXTENDED_CONTEXT_START):
+            if address >= Address.EXTENDED_CONTEXT_START:
                 table = extended_table
                 address -= Address.EXTENDED_CONTEXT_START
             if value != 0:
                 table += [(address & 0xFF00) >> 8, address & 0xFF, 0x00, value]
         for address, value in self.save_bytes.items():
             table = save_table
-            if(address >= Address.EXTENDED_CONTEXT_START):
+            if address >= Address.EXTENDED_CONTEXT_START:
                 table = extended_table
                 address -= Address.EXTENDED_CONTEXT_START
             table += [(address & 0xFF00) >> 8, address & 0xFF, 0x01, value]
@@ -302,6 +302,8 @@ class SaveContext:
             self.give_health(count)
         elif item == "Bombchu Item":
             self.give_bombchu_item(world)
+        elif "Fish" in item and "lb" in item: # Pond fish
+            self.give_pond_fish(world, item)
         elif item == IGNORE_LOCATION:
             pass # used to disable some skipped and inaccessible locations
         elif item in SaveContext.save_writes_table:
@@ -411,7 +413,7 @@ class SaveContext:
                         "Fire Temple": 'dungeon_items.fire.boss_key',
                         "Water Temple": 'dungeon_items.water.boss_key',
                         "Spirit Temple": 'dungeon_items.spirit.boss_key',
-                        "Shadow Temple": 'dungeon_items.shadow.boss_key'
+                        "Shadow Temple": 'dungeon_items.shadow.boss_key',
                     }
                     save_writes[dungeon][bk_names[dungeon]] = True
             else:
@@ -443,11 +445,28 @@ class SaveContext:
                     continue
 
                 address_value.value = value
+        elif item in ["Nothing", "Fairy Drop"]: # Don't do anything for Nothing and Fairy Drops
+            return
         else:
             raise ValueError("Cannot give unknown starting item %s" % item)
 
     def give_bombchu_item(self, world: World) -> None:
         self.give_item(world, "Bombchus", 0)
+
+    def give_pond_fish(self, world:World, item:str) -> None:
+        # Split the name to figure out child/adult and the size
+        split = item.split('(')[1].split(')')[0].split(' ')
+        age = split[0].lower()
+        weight = int(split[1])
+
+        # Get the current value from addresses
+        addr = self.addresses['fishing'][f'weight_{age}']
+        if addr.value:
+            if weight > addr.value:
+                addr.value = weight
+        else:
+            addr.value = weight
+        return
 
     def equip_default_items(self, age: str) -> None:
         self.equip_items(age, 'equips_' + age)
@@ -921,7 +940,7 @@ class SaveContext:
                 'flare_dancer': Address(extended=True, size=1, mask=0x01, pass_addr=True),
                 'dead_hand': Address(extended=True, size=1, mask=0x02, pass_addr=True),
                 'shell_blade': Address(extended=True, size=1, mask=0x04, pass_addr=True),
-                'like-like': Address(extended=True, size=1, mask=0x08, pass_addr=True),
+                'like like': Address(extended=True, size=1, mask=0x08, pass_addr=True),
                 'spike_enemy': Address(extended=True, size=1, mask=0x10, pass_addr=True),
                 'anubis': Address(extended=True, size=1, mask=0x20, pass_addr=True),
                 'iron_knuckle': Address(extended=True, size=1, mask=0x40, pass_addr=True),
@@ -940,7 +959,16 @@ class SaveContext:
                 'bongo_bongo': Address(extended=True, size=1, mask=0x08, pass_addr=True),
                 'twinrova': Address(extended=True, size=1, mask=0x10, pass_addr=True),
                 'jabu_jabu_tentacle': Address(extended=True, size=1, mask=0x20, pass_addr=True),
-                'dark_link': Address(extended=True, size=1, mask=0x40, pass_addr=True),
+                'dark_link': Address(extended=True, size=1, mask=0x40),
+                'pad_byte_1': Address(extended=True, size=1), # There are 8 bytes reserved for soul flags. Remove/add padding as required
+                'pad_byte_2': Address(extended=True, size=1)
+            },
+            'enemy_spawn_enable_flag': Address(extended=True, size=8),
+            'fishing': {
+                'fishing_rod': Address(extended=True, size=1),
+                'weight_adult': Address(extended=True, size=1),
+                'weight_child': Address(extended=True, size=1),
+                'has_loach': Address(extended=True, size=1),
             }
         }
 
@@ -1388,7 +1416,7 @@ class SaveContext:
         'Flare Dancer Soul': {'enemy_spawn_flags.flare_dancer': None},
         'Dead hand Soul': {'enemy_spawn_flags.dead_hand': None},
         'Shell Blade Soul': {'enemy_spawn_flags.shell_blade': None},
-        'Like-like Soul': {'enemy_spawn_flags.like-like': None},
+        'Like like Soul': {'enemy_spawn_flags.like like': None},
         'Spike Enemy Soul': {'enemy_spawn_flags.spike_enemy': None},
         'Anubis Soul': {'enemy_spawn_flags.anubis': None},
         'Iron Knuckle Soul': {'enemy_spawn_flags.iron_knuckle': None},
@@ -1473,6 +1501,7 @@ class SaveContext:
         'Silver Rupee Pouch (Ganons Castle Shadow Trial)':           {'silver_rupee_counts.trials_shadow': 5},
         'Silver Rupee Pouch (Ganons Castle Water Trial)':            {'silver_rupee_counts.trials_water': 5},
         'Silver Rupee Pouch (Ganons Castle Forest Trial)':           {'silver_rupee_counts.trials_forest': 5},
+        'Fishing Rod':                                               {'fishing.fishing_rod': 1},
     }
 
     equipable_items: dict[str, dict[str, list[str]]] = {

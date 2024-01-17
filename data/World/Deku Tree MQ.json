@@ -41,7 +41,7 @@
             "Deku Tree MQ Lobby Vines Skullwalltula": "
                 has_soul(Skullwalltula) and (
                     (is_child and (Slingshot or Boomerang)) or
-                    (is_adult and Bow or Hookshot) or 
+                    (is_adult and Bow or Hookshot) or
                     (can_use(Dins_Fire) or Bombs or has_bombchus))",
             "Deku Tree MQ Lobby Gohma Larva 1": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)",
             "Deku Tree MQ Lobby Gohma Larva 2": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)",
@@ -186,9 +186,7 @@
             "Deku Tree MQ Basement Larva Room Gohma Larva 5": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)",
             "Deku Tree MQ Basement Larva Room Gohma Larva 6": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)",
             "Deku Tree MQ Basement Larva Room Gohma Larva 7": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)",
-            "Deku Tree MQ Basement Larva Room Gohma Larva 8": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)",
-            "Deku Tree MQ Basement Gohma Larvae Room Grass 1": "can_mow_the_lawn",
-            "Deku Tree MQ Basement Gohma Larvae Room Grass 2": "can_mow_the_lawn"
+            "Deku Tree MQ Basement Larva Room Gohma Larva 8": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)"
         },
         "exits": {
             "Deku Tree Basement Back Room": "(has_soul(Gohma_Larvae) and has_soul(Keese) and has_soul(Deku_Scrub)) and (here(is_adult or Kokiri_Sword or can_use_projectile or (Nuts and Sticks)))",
@@ -199,7 +197,8 @@
         "region_name": "Deku Tree Basement Larva Room",
         "dungeon": "Deku Tree",
         "locations": {
-            
+            "Deku Tree MQ Basement Gohma Larvae Room Grass 1": "can_mow_the_lawn",
+            "Deku Tree MQ Basement Gohma Larvae Room Grass 2": "can_mow_the_lawn"
         },
         "exits": {
             "Deku Tree Basement Back Room": "(here(is_adult or Kokiri_Sword or can_use_projectile or (Nuts and Sticks)))",
@@ -218,14 +217,16 @@
             "Deku Tree MQ Basement Back Room Grass 1": "here(has_fire_source_with_torch) and can_mow_the_lawn",
             "Deku Tree MQ Basement Back Room Grass 2": "here(has_fire_source_with_torch) and can_mow_the_lawn",
             "Deku Tree MQ Basement Back Room Grass 3": "here(has_fire_source_with_torch) and can_mow_the_lawn",
-            "Deku Tree MQ Basement Back Room Grass 4": "here(has_fire_source_with_torch) and can_mow_the_lawn",
-            "Deku Tree MQ Basement Back Room Grass 5": "here(has_fire_source_with_torch) and can_mow_the_lawn",
             "Deku Tree MQ GS Basement Graves Room": "
                 can_use(Longshot) or
                 (can_play(Song_of_Time) and (can_use(Boomerang) or can_use(Hookshot)))",
             "Deku Tree MQ GS Basement Back Room": "
                 here(has_fire_source_with_torch) and
                 (can_use(Hookshot) or can_use(Boomerang))",
+            "Deku Tree MQ Basement Graves Wonderitem 1": "can_jumpslash",
+            "Deku Tree MQ Basement Graves Wonderitem 2": "can_jumpslash",
+            "Deku Tree MQ Basement Graves Wonderitem 3": "can_jumpslash",
+            "Deku Tree MQ Basement Graves Wonderitem 4": "can_jumpslash",
             "Deku Tree MQ Basement Back Room Gohma Larva 1": "has_soul(Gohma_Larvae) and (here(has_fire_source_with_torch) and (is_adult or can_child_attack))",
             "Deku Tree MQ Basement Back Room Gohma Larva 2": "has_soul(Gohma_Larvae) and (here(has_fire_source_with_torch) and (is_adult or can_child_attack))",
             "Deku Tree MQ Basement Back Room Gohma Larva 3": "has_soul(Gohma_Larvae) and (here(has_fire_source_with_torch) and (is_adult or can_child_attack))",
@@ -233,11 +234,7 @@
             "Deku Tree MQ Basement Graves Room Keese 1": "can_kill_keese",
             "Deku Tree MQ Basement Graves Room Keese 2": "can_kill_keese",
             "Deku Tree MQ Basement Graves Room Keese 3": "can_kill_keese",
-            "Deku Tree MQ Basement Graves Room Keese 4": "can_kill_keese",
-            "Deku Tree MQ Basement Graves Wonderitem 1": "can_jumpslash",
-            "Deku Tree MQ Basement Graves Wonderitem 2": "can_jumpslash",
-            "Deku Tree MQ Basement Graves Wonderitem 3": "can_jumpslash",
-            "Deku Tree MQ Basement Graves Wonderitem 4": "can_jumpslash"
+            "Deku Tree MQ Basement Graves Room Keese 4": "can_kill_keese"
         },
         "exits": {
             "Deku Tree Basement Ledge": "is_child",

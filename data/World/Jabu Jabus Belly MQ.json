@@ -7,12 +7,12 @@
             "Jabu Jabus Belly MQ First Room Side Chest": "can_use(Slingshot)",
             "Jabu Jabus Belly MQ First Room Pot 1": "True",
             "Jabu Jabus Belly MQ First Room Pot 2": "True",
-            "Jabu Jabus Belly MQ Entryway Octorok": "can_kill_octorok_with_explosives",
-            "Jabu Jabus Belly MQ Entryway Shabom 1": "can_kill_shabom", 
-            "Jabu Jabus Belly MQ Entryway Shabom 2": "can_kill_shabom",
-            "Jabu Jabus Belly MQ Entryway Shabom 3": "can_kill_shabom",
             "Jabu Jabus Belly MQ Entryway Left Cow Wonderitem": "can_use(Slingshot)",
             "Jabu Jabus Belly MQ Entryway Right Cow Wonderitem": "can_use(Slingshot)",
+            "Jabu Jabus Belly MQ Entryway Octorok": "can_kill_octorok_with_explosives",
+            "Jabu Jabus Belly MQ Entryway Shabom 1": "can_kill_shabom",
+            "Jabu Jabus Belly MQ Entryway Shabom 2": "can_kill_shabom",
+            "Jabu Jabus Belly MQ Entryway Shabom 3": "can_kill_shabom",
             "Jabu Jabus Belly MQ First Room Grass 1": "can_mow_the_lawn",
             "Jabu Jabus Belly MQ First Room Grass 2": "can_mow_the_lawn",
             "Nut Pot": "True"
@@ -41,10 +41,10 @@
             "Jabu Jabus Belly MQ Underwater Green Rupee 3": "True",
             "Jabu Jabus Belly MQ Elevator Room Pot 1": "True",
             "Jabu Jabus Belly MQ Elevator Room Pot 2": "True",
+            "Jabu Jabus Belly MQ Elevator Room Cow Wonderitem": "can_use(Slingshot)",
             "Jabu Jabus Belly MQ Elevator Biri 1": "can_kill_biri",
             "Jabu Jabus Belly MQ Elevator Biri 2": "can_kill_biri",
-            "Jabu Jabus Belly MQ Elevator Stingray": "has_soul(Stinger) and (can_use(Slingshot) or can_use(Bow) or can_use(Hookshot))",
-            "Jabu Jabus Belly MQ Elevator Room Cow Wonderitem": "can_use(Slingshot)"
+            "Jabu Jabus Belly MQ Elevator Stingray": "has_soul(Stinger) and (can_use(Slingshot) or can_use(Bow) or can_use(Hookshot))"
         },
         "exits": {
             "Jabu Jabus Belly Main": "
@@ -74,20 +74,20 @@
             "Jabu Jabus Belly MQ GS Boomerang Chest Room": "
                 (can_play(Song_of_Time) and (can_child_attack or is_adult)) or
                 (logic_jabu_mq_sot_gs and can_use(Boomerang))",
+            "Jabu Jabus Belly MQ Basement Right Cow Wonderitem 1": "can_use(Slingshot)",
+            "Jabu Jabus Belly MQ Basement Right Cow Wonderitem 2": "can_use(Slingshot)",
+            "Jabu Jabus Belly MQ Basement Right Cow Wonderitem 3": "can_use(Slingshot)",
+            "Jabu Jabus Belly MQ Basement Left Cow Wonderitem 1": "can_use(Slingshot)",
+            "Jabu Jabus Belly MQ Basement Left Cow Wonderitem 2": "can_use(Slingshot)",
+            "Jabu Jabus Belly MQ Basement Left Cow Wonderitem 3": "can_use(Slingshot)",
             "Jabu Jabus Belly MQ Pit Room Biri 1": "can_kill_biri",
             "Jabu Jabus Belly MQ Pit Room Biri 2": "can_kill_biri",
             "Jabu Jabus Belly MQ Basement Biri": "can_kill_biri",
             "Jabu Jabus Belly MQ Basement Shabom": "can_kill_shabom",
             "Jabu Jabus Belly MQ Basement Boomerang Room Stinger 1": "can_kill_stinger",
             "Jabu Jabus Belly MQ Basement Boomerang Room Stinger 2": "can_kill_stinger",
-            "Jabu Jabus Belly MQ Basement Boomerang Room Like-like": "can_kill_likelike",
-            "Jabu Jabus Belly MQ Basement Boomerang Room Lizalfos": "can_kill_lizalfos",
-            "Jabu Jabus Belly MQ Basement Right Cow Wonderitem 1": "can_use(Slingshot)",
-            "Jabu Jabus Belly MQ Basement Right Cow Wonderitem 2": "can_use(Slingshot)",
-            "Jabu Jabus Belly MQ Basement Right Cow Wonderitem 3": "can_use(Slingshot)",
-            "Jabu Jabus Belly MQ Basement Left Cow Wonderitem 1": "can_use(Slingshot)",
-            "Jabu Jabus Belly MQ Basement Left Cow Wonderitem 2": "can_use(Slingshot)",
-            "Jabu Jabus Belly MQ Basement Left Cow Wonderitem 3": "can_use(Slingshot)"
+            "Jabu Jabus Belly MQ Basement Boomerang Room Like like": "can_kill_likelike",
+            "Jabu Jabus Belly MQ Basement Boomerang Room Lizalfos": "can_kill_lizalfos"
             # Lens of Truth cannot be used underwater.
             # Adult's legs are too long to swim directly onto the Hookshot pillar.
         },
@@ -137,18 +137,18 @@
             "Jabu Jabus Belly MQ Falling Like Like Room Chest": "has_soul(Likelike)",
             "Jabu Jabus Belly MQ Falling Like Like Room Pot 1": "True",
             "Jabu Jabus Belly MQ Falling Like Like Room Pot 2": "True",
+            "Jabu Jabus Belly MQ Falling Like Like Room Right Cow Wonderitem 1": "True",
+            "Jabu Jabus Belly MQ Falling Like Like Room Right Cow Wonderitem 2": "True",
+            "Jabu Jabus Belly MQ Falling Like Like Room Right Cow Wonderitem 3": "True",
+            "Jabu Jabus Belly MQ Falling Like Like Room Left Cow Wonderitem 1": "True",
+            "Jabu Jabus Belly MQ Falling Like Like Room Left Cow Wonderitem 2": "True",
+            "Jabu Jabus Belly MQ Falling Like Like Room Left Cow Wonderitem 3": "True",
             "Jabu Jabus Belly MQ Falling Like Like Room Grass": "True",
             "Jabu Jabus Belly MQ Hallway Small Crate 1": "True",
             "Jabu Jabus Belly MQ Hallway Small Crate 2": "True",
             "Jabu Jabus Belly MQ Tentacle Hallway Lizalfos": "can_kill_lizalfos",
-            "Jabu Jabus Belly MQ Falling Like-Like Room Like-Like 1": "can_kill_likelike",
-            "Jabu Jabus Belly MQ Falling Like-Like Room Like-Like 2": "can_kill_likelike",
-            "Jabu Jabus Belly MQ Falling Like-Like Room Right Cow Wonderitem 1": "True",
-            "Jabu Jabus Belly MQ Falling Like-Like Room Right Cow Wonderitem 2": "True",
-            "Jabu Jabus Belly MQ Falling Like-Like Room Right Cow Wonderitem 3": "True",
-            "Jabu Jabus Belly MQ Falling Like-Like Room Left Cow Wonderitem 1": "True",
-            "Jabu Jabus Belly MQ Falling Like-Like Room Left Cow Wonderitem 2": "True",
-            "Jabu Jabus Belly MQ Falling Like-Like Room Left Cow Wonderitem 3": "True"
+            "Jabu Jabus Belly MQ Falling Like Like Room Like Like 1": "can_kill_likelike",
+            "Jabu Jabus Belly MQ Falling Like Like Room Like Like 2": "can_kill_likelike"
         },
         "exits": {
             "Jabu Jabus Belly Past Big Octo": "has_soul(Octorok) and (Sticks or Kokiri_Sword) and Jabu_Jabus_Belly_Right_Tentacle_Cleared",
@@ -175,13 +175,14 @@
             "Jabu Jabus Belly Floor Lowered": "True"
         },
         "locations": {
-            "Jabu Jabus Belly MQ Small Crate Near Cow 1": "True",
-            "Jabu Jabus Belly MQ Small Crate Near Cow 2": "True",
             "Jabu Jabus Belly MQ Cow": "can_play(Eponas_Song)",
-            "Jabu Jabus Belly MQ After Big Octo Bari": "can_kill_biri",
-            "Jabu Jabus Belly MQ Wiggler Platforms Lizalfos": "can_kill_lizalfos",
             "Jabu Jabus Belly MQ After Big Octo Cow Wonderitem": "True",
             "Jabu Jabus Belly MQ Wiggler Platforms Cow Wonderitem": "True",
+            "Jabu Jabus Belly MQ Small Crate Near Cow 1": "True",
+            "Jabu Jabus Belly MQ Small Crate Near Cow 2": "True",
+            "Jabu Jabus Belly MQ After Big Octo Bari": "can_kill_biri",
+            "Jabu Jabus Belly MQ Wiggler Platforms Lizalfos": "can_kill_lizalfos",
+            "Jabu Jabus Belly MQ Cow": "can_play(Eponas_Song)",
             "Jabu Jabus Belly MQ After Big Octo Grass 1": "can_mow_the_lawn",
             "Jabu Jabus Belly MQ After Big Octo Grass 2": "can_mow_the_lawn",
             "Jabu Jabus Belly MQ Wiggler Platforms Grass": "can_mow_the_lawn"
@@ -206,12 +207,12 @@
             "Jabu Jabus Belly MQ Near Boss Chest": "can_use(Slingshot)",
             "Jabu Jabus Belly MQ GS Near Boss": "
                 can_use(Boomerang) or (logic_jabu_near_boss_ranged and can_use(Hookshot))",
-            "Jabu Jabus Belly MQ Near Boss Pot": "True",
-            "Jabu Jabus Belly MQ Before Boss Like-Like 1": "can_kill_likelike",
-            "Jabu Jabus Belly MQ Before Boss Like-Like 2": "can_kill_likelike",
             "Jabu Jabus Belly MQ Before Boss Right Cow Wonderitem 1": "can_use(Slingshot)",
             "Jabu Jabus Belly MQ Before Boss Right Cow Wonderitem 2": "can_use(Slingshot)",
             "Jabu Jabus Belly MQ Before Boss Left Cow Wonderitem": "can_use(Slingshot)",
+            "Jabu Jabus Belly MQ Near Boss Pot": "True",
+            "Jabu Jabus Belly MQ Before Boss Like Like 1": "can_kill_likelike",
+            "Jabu Jabus Belly MQ Before Boss Like Like 2": "can_kill_likelike",
             "Jabu Jabus Belly MQ Before Boss Grass 1": "can_mow_the_lawn",
             "Jabu Jabus Belly MQ Before Boss Grass 2": "can_mow_the_lawn",
             "Fairy Pot": "has_bottle"

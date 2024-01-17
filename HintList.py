@@ -224,7 +224,7 @@ conditional_always: dict[str, Callable[[World], bool]] = {
     'Kak 40 Gold Skulltula Reward': lambda world: tokens_required_by_settings(world) < 40 and '40_skulltulas' not in world.settings.misc_hints,
     'Kak 50 Gold Skulltula Reward': lambda world: tokens_required_by_settings(world) < 50 and '50_skulltulas' not in world.settings.misc_hints,
     'ZR Frogs Ocarina Game':        lambda world: 'frogs2' not in world.settings.misc_hints,
-    'LH Loach Fishing':             lambda world: world.settings.shuffle_loach_reward=='vanilla',
+    'LH Loach Fishing':             lambda world: world.settings.shuffle_loach_reward == 'vanilla',
 }
 
 # Entrance hints required under certain settings
@@ -253,17 +253,17 @@ conditional_sometimes: dict[str, Callable[[World], bool]] = {
     'ZD King Zora Thawed':                      lambda world: not world.settings.adult_trade_shuffle or 'Eyeball Frog' not in world.settings.adult_trade_start,
 
     # Conditional dual hints
-    'GV Pieces of Heart Ledges':                lambda world: not world.settings.shuffle_cows and world.settings.tokensanity not in ['overworld', 'all'],
+    'GV Pieces of Heart Ledges':                lambda world: not world.settings.shuffle_cows and world.settings.tokensanity not in ('overworld', 'all'),
     'LH Adult Bean Destination Checks':         lambda world: world.settings.shuffle_interior_entrances == 'off',
     'Castle Fairy Checks':                      lambda world: world.settings.shuffle_interior_entrances == 'off',
     'King Zora Items':                          lambda world: world.settings.adult_trade_shuffle and 'Eyeball Frog' in world.settings.adult_trade_start,
 
-    'Fire Temple Lower Loop':                   lambda world: world.settings.tokensanity not in ['dungeons', 'all'],
-    'Water Temple River Loop Chests':           lambda world: world.settings.tokensanity not in ['dungeons', 'all'],
-    'Water Temple MQ Lower Checks':             lambda world: world.settings.tokensanity not in ['dungeons', 'all'],
-    'Spirit Temple Child Lower':                lambda world: world.settings.tokensanity not in ['dungeons', 'all'],
-    'Spirit Temple Adult Lower':                lambda world: world.settings.tokensanity not in ['dungeons', 'all'],
-    'Shadow Temple Invisible Blades Chests':    lambda world: world.settings.tokensanity not in ['dungeons', 'all'],
+    'Fire Temple Lower Loop':                   lambda world: world.settings.tokensanity not in ('dungeons', 'all'),
+    'Water Temple River Loop Chests':           lambda world: world.settings.tokensanity not in ('dungeons', 'all'),
+    'Water Temple MQ Lower Checks':             lambda world: world.settings.tokensanity not in ('dungeons', 'all'),
+    'Spirit Temple Child Lower':                lambda world: world.settings.tokensanity not in ('dungeons', 'all'),
+    'Spirit Temple Adult Lower':                lambda world: world.settings.tokensanity not in ('dungeons', 'all'),
+    'Shadow Temple Invisible Blades Chests':    lambda world: world.settings.tokensanity not in ('dungeons', 'all'),
 
     # Conditional entrance hints
     'Ganons Castle Ledge -> Ganons Castle Lobby': lambda world: (world.settings.bridge != 'open'
@@ -526,6 +526,14 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'Ocarina C right Button':                                   (["a middle note"], "the Ocarina C right Button", 'item'),
     'Fairy Drop':                                               (["an annoying companion"], "a Stray Fairy", 'item'),
     'Nothing':                                                  (["emptiness", "loneliness"], "Nothing", 'item'),
+    'Fishing Rod':                                              (["a Fishing Rod"], "a Fishing Rod", 'item'),
+    'Fish (Child 6 lb)':                                        (["chum"], "a small fish (child)", 'item'),
+    'Fish (Child 8 lb)':                                        (["chum"], "a medium-sized fish (child)", 'item'),
+    'Fish (Child 10 lb)':                                       (["a LUNKER"], "a record setting fish (child)", 'item'),
+    'Fish (Adult 10 lb)':                                       (["chum"], "a small fish (adult)", 'item'),
+    'Fish (Adult 12 lb)':                                       (["chum"], "a medium-sized fish (adult)", 'item'),
+    'Fish (Adult 16 lb)':                                       (["a LUNKER"], "a record setting fish (adult)", 'item'),
+    'Hylian Loach':                                             (["a strange fish", "a Hylian Loach", 'item']),
 
     'Stalfos Soul': (["the souls of the Stalfos"], None, 'item'),
     'Octorok Soul': (["the souls of the Octorok"], None, 'item'),
@@ -554,7 +562,7 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'Flare Dancer Soul': (["the souls of the Flare Dancer"], None, 'item'),
     'Dead hand Soul': (["the souls of the Dead hand"], None, 'item'),
     'Shell Blade Soul': (["the souls of the Shell blade"], None, 'item'),
-    'Like-like Soul': (["the souls of the Like-like"], None, 'item'),
+    'Like like Soul': (["the souls of the Like like"], None, 'item'),
     'Spike Enemy Soul': (["the souls of the Spike Enemy"], None, 'item'),
     'Anubis Soul': (["the souls of the Anubis"], None, 'item'),
     'Iron Knuckle Soul': (["the souls of the Iron Knuckle"], None, 'item'),
@@ -657,7 +665,7 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'Shadow Temple MQ Stalfos Room Chest':                         ("near an #empty pedestal within the house of the dead# lies", "#stalfos in the Shadow Temple# guard", ['dungeon', 'sometimes']),
     'Ice Cavern Iron Boots Chest':                                 ("a #monster in a frozen cavern# guards", "the #final treasure of Ice Cavern# is", ['dungeon', 'sometimes']),
     'Ice Cavern MQ Iron Boots Chest':                              ("a #monster in a frozen cavern# guards", "the #final treasure of Ice Cavern# is", ['dungeon', 'sometimes']),
-    'Ganons Castle Shadow Trial Golden Gauntlets Chest':           ("#deep in the test of darkness# lies", "a #like-like in Ganon's Shadow Trial# guards", ['dungeon', 'sometimes']),
+    'Ganons Castle Shadow Trial Golden Gauntlets Chest':           ("#deep in the test of darkness# lies", "a #like like in Ganon's Shadow Trial# guards", ['dungeon', 'sometimes']),
     'Ganons Castle MQ Shadow Trial Eye Switch Chest':              ("#deep in the test of darkness# lies", "shooting an #eye switch in Ganon's Shadow Trial# reveals", ['dungeon', 'sometimes']),
 
     'Deku Theater Rewards':                                        ("the #Skull Mask and Mask of Truth# reward...^", None, 'dual'),

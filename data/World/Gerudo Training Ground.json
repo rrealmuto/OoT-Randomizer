@@ -17,13 +17,13 @@
             "Gerudo Training Ground Beamos Recovery Heart 2": "True",
             # In the Beamos room, shoot the Gerudo symbol above the door to the lava room.
             "Wall Fairy": "has_bottle and can_use(Bow)",
+            "Gerudo Training Ground Beamos Wonderitem": "can_use(Bow)",
             "Gerudo Training Ground Stalfos 1": "can_kill_stalfos",
             "Gerudo Training Ground Stalfos 2": "can_kill_stalfos",
             "Gerudo Training Ground Beamos": "can_kill_beamos",
             "Gerudo Training Ground Lizalfos 1": "(has_soul(Lizalfos_and_Dinalfos)) and (is_adult or Kokiri_Sword)",
             "Gerudo Training Ground Lizalfos 2": "(has_soul(Lizalfos_and_Dinalfos)) and (is_adult or Kokiri_Sword)",
-            "Gerudo Training Ground Slopes Wallmaster": "(has_soul(Stalfos) and has_soul(Wallmaster)) and (is_adult or Kokiri_Sword)",
-            "Gerudo Training Ground Beamos Wonderitem": "can_use(Bow)"
+            "Gerudo Training Ground Slopes Wallmaster": "(has_soul(Stalfos) and has_soul(Wallmaster)) and (is_adult or Kokiri_Sword)"
         },
         "exits": {
             "Gerudo Fortress": "True",
@@ -183,11 +183,11 @@
             "Gerudo Training Ground Hammer Room Clear Chest": "has_soul(Keese) and has_soul(Torch_Slug)",
             "Gerudo Training Ground Hammer Room Switch Chest": "Megaton_Hammer",
             "Gerudo Training Ground Lava Room Silver Rupee Hookshot Target": "Hookshot",
+            "Gerudo Training Ground Hammer Room Wonderitem": "can_use(Bow)",
             "Gerudo Training Ground Hammer Room Keese 1": "can_kill_keese",
             "Gerudo Training Ground Hammer Room Keese 2": "can_kill_keese",
             "Gerudo Training Ground Hammer Room Torch Slug 1": "has_soul(Torch_Slug)",
-            "Gerudo Training Ground Hammer Room Torch Slug 2": "has_soul(Torch_Slug)",
-            "Gerudo Training Ground Hammer Room Wonderitem": "can_use(Bow)"
+            "Gerudo Training Ground Hammer Room Torch Slug 2": "has_soul(Torch_Slug)"
         },
         "exits": {
             "Gerudo Training Ground Lava Room Back": "has_soul(Keese) and has_soul(Torch_Slug)",

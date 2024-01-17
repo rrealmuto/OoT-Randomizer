@@ -918,6 +918,8 @@ class TestCustomAudio(unittest.TestCase):
         AUDIOTABLE_INDEX_ADDR = 0xB8A1C0
         AUDIOTABLE_ADDR = 0x79470
 
+        if not os.path.isfile('./ZOOTDEC.z64'):
+            self.skipTest("Base ROM file not available.")
         
         rom: Rom = Rom("ZOOTDEC.z64")
         audiobank_file = rom.read_bytes(AUDIOBANK_ADDR, 0x1CA50)
@@ -934,115 +936,3 @@ class TestCustomAudio(unittest.TestCase):
         self.assertEqual(num_banks, 0x26)
         self.assertEqual(audiobanks[0x25].bank_offset, 0x19110)
         self.assertEqual(audiobanks[0x25].size, 0x3940)
-
-    def test_mmrs_oot(self):
-        AUDIOBANK_POINTER_TABLE = 0x00B896A0
-        AUDIOBANK_ADDR = 0xD390
-        AUDIOTABLE_INDEX_ADDR = 0xB8A1C0
-        AUDIOTABLE_ADDR = 0x79470
-
-        rom: Rom = Rom("ZOOTDEC.z64")
-        audiobank_file = rom.read_bytes(AUDIOBANK_ADDR, 0x1CA50)
-        audiotable_index = rom.read_bytes(AUDIOTABLE_INDEX_ADDR, 0x80) # Read audiotable index into bytearray
-        audiotable_file = rom.read_bytes(AUDIOTABLE_ADDR, 0x460AD0) # Read audiotable (samples) into bytearray
-        rom_bytes: bytearray = rom.buffer
-        audiobank_table_header = rom.read_bytes(AUDIOBANK_POINTER_TABLE, 0x10)
-        num_banks = int.from_bytes(audiobank_table_header[0:2], 'big')
-        oot_audiobanks: list[AudioBank] = []
-        for i in range(0, num_banks):
-            curr_entry = rom.read_bytes(AUDIOBANK_POINTER_TABLE + 0x10 + (0x10 * i), 0x10)
-            audiobank: AudioBank = AudioBank(curr_entry, audiobank_file, audiotable_file, audiotable_index)
-            oot_audiobanks.append(audiobank)
-        
-        mm_audiobank_index = open("data/Music/mm_audiobank_index.bin", 'rb').read()
-        mm_audiobank_file = open("data/Music/mm_audiobank.bin", 'rb').read()
-        mm_audiotable_index = open("data/Music/mm_audiotable_index.bin", 'rb').read()
-        mm_audiotable_file = open("data/Music/mm_audiotable.bin", 'rb').read()
-        num_banks = int.from_bytes(mm_audiobank_index[0:2])
-        offset = 0x10
-        mm_audiobanks: list[AudioBank] = []
-        for i in range(0, num_banks):
-            bank_entry = mm_audiobank_index[offset:offset+0x10]
-            audiobank: AudioBank = AudioBank(bank_entry, mm_audiobank_file, mm_audiotable_file, mm_audiotable_index)
-            mm_audiobanks.append(audiobank)
-            offset += 0x10
-
-        from zipfile import ZipFile, ZipInfo
-
-        mmrs = ZipFile("data/Music/inverted stone tower.zip", 'r')
-        newbank_data = None
-        bankmeta = None
-        meta = None
-        for file in mmrs.filelist:
-            if file.filename.endswith(".zbank"):
-                newbank_data = bytearray(mmrs.read(file))
-            if file.filename.endswith(".bankmeta"):
-                bankmeta = mmrs.read(file)
-            if file.filename.endswith(".meta"):
-                with mmrs.open(file, 'r') as f:
-                    meta = io.TextIOWrapper(f).readlines()
-                    
-        zsounds = []
-        # Process the zsounds out of the meta file
-        for line in meta:
-            if line.startswith("ZSOUND"):
-                line = line.rstrip()
-                zsound = {}
-                split = line.split(':')
-                zsound['type'] = split[1]
-                zsound['index'] = int(split[2])
-                zsound['alt'] = split[3]
-                zsound['filename'] = split[4]
-                zsounds.append(zsound)
-
-        if newbank_data and bankmeta:
-            bank_entry = bytearray(4) + len(newbank_data).to_bytes(4, 'big') + bankmeta
-            newbank: AudioBank = AudioBank(bank_entry, newbank_data, mm_audiotable_file, mm_audiotable_index)
-
-            mm_samples_to_add: list[Sample] = []
-            # Cross reference MM instrument data against OOT and update accordingly
-            all_samples = newbank.get_all_samples()
-            all_samples = [sample for sample in all_samples if sample.addr != -1]
-            for sample in all_samples:
-                match = find_sample_in_audiobanks(oot_audiobanks, sample.data)
-                if match: # Found a matching sample in OOT. Just update the bank with the corresponding sample address
-                    # Update the sample's offset in the new bank
-                    newbank_data[sample.bank_offset+4:sample.bank_offset+8] = match.audiotable_addr.to_bytes(4, 'big')
-                else: # Didn't find a matching sample, need to add the data to the end of audiotable and update the bank.
-                    mm_samples_to_add.append(sample)
-
-            # Check for any drums that need to be updated (they will have -1 in their sample addresses)
-            for drum_id in range(0, len(newbank.drums)):
-                if newbank.drums[drum_id] and newbank.drums[drum_id].sample and newbank.drums[drum_id].sample.addr == -1:
-                    for zsound in zsounds:
-                        if zsound['type'] == 'DRUM' and zsound['index'] == drum_id:
-                            newbank.drums[drum_id].sample.data = mmrs.read(zsound['filename'])
-                            break
-
-            # Check for any new SFX that need to be updated (they will have -1 in their sample addresses)
-            for sfx_id in range(0, len(newbank.SFX)):
-                if newbank.SFX[sfx_id] and newbank.SFX[sfx_id].sample and newbank.SFX[sfx_id].sample.addr == -1:
-                    for zsound in zsounds:
-                        if zsound['type'] == 'SFX' and zsound['index'] == sfx_id:
-                            newbank.SFX[sfx_id].sample.data = mmrs.read(zsound['filename'])
-                            break
-
-            # Check if any instruments need to be updated (they will have -1 in their sample addresses)
-            for instr_id in range(0, len(newbank.instruments)):
-                if newbank.instruments[instr_id]:
-                    instr = newbank.instruments[instr_id]
-                    if instr.lowNoteSample and instr.lowNoteSample.addr == -1:
-                        for zsound in zsounds:
-                            if zsound['type'] == 'INST' and zsound['index'] == instr_id and zsound['alt'] == 'LOW':
-                                instr.lowNoteSample.data = mmrs.read(zsound['filename'])
-                                break
-                    if instr.normalNoteSample and instr.normalNoteSample.addr == -1:
-                        for zsound in zsounds:
-                            if zsound['type'] == 'INST' and zsound['index'] == instr_id and zsound['alt'] == 'NORM':
-                                instr.normalNoteSample.data = mmrs.read(zsound['filename'])
-                                break
-                    if instr.highNoteSample and instr.highNoteSample.addr == -1:
-                        for zsound in zsounds:
-                            if zsound['type'] == 'INST' and zsound['index'] == instr_id and zsound['alt'] == 'HIGH':
-                                instr.highNoteSample.data = mmrs.read(zsound['filename'])
-                                break

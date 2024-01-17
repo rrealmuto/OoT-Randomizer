@@ -97,7 +97,6 @@ CFG_CUSTOM_MESSAGE_1:
 CFG_CUSTOM_MESSAGE_2:
 .endarea
 
-
 .align 4
 
 ; Version string
@@ -134,7 +133,7 @@ INITIAL_SAVE_DATA:
 EXTENDED_INITIAL_SAVE_DATA:
 .endarea
 
-.area 0xD8, 0 ; size must be at least 8 * ((max object_id parameter Patches.add_to_extended_object_table is called with) - 0x192)
+.area 0x100, 0 ; size must be at least 8 * ((max object_id parameter Patches.add_to_extended_object_table is called with) - 0x192)
 EXTENDED_OBJECT_TABLE:
 .endarea
 
@@ -178,7 +177,7 @@ HIDEOUT_SHUFFLED:
 .byte 0x00
 FAST_BUNNY_HOOD_ENABLED:
 .byte 0x00
-FIX_BROKEN_DROPS:
+CFG_OBJECT_SYSTEM:
 .byte 0x00
 SPOILER_AVAILABLE:
 .byte 0x00
@@ -199,10 +198,12 @@ CUSTOM_KEY_MODELS:
 SHUFFLE_OCARINA_BUTTONS:
 .byte 0x00
 EPONAS_SONG_NOTES:
-.byte 0x00
+.halfword 0x0000
 CFG_PREVENT_GUAY_RESPAWNS:
 .byte 0x00
 CFG_MINIMAP_ENEMY_TRACKER:
+.byte 0x00
+SHUFFLE_FISHIES:
 .byte 0x00
 .align 4
 

@@ -107,3 +107,15 @@ make_loach_follow_lure:
     jr      ra
     addiu   sp, sp, 0x0014
 
+; Store pointer to the fish that was caught
+; Fish is in s0
+; We can use any of the a registers just reset them when we're done
+; a1 - 0x2af8
+; a2 - 0x02
+Fish_Caught_Hook:
+    li  a2, caught_fish
+    sw  s0, 0x00(a2)
+    ; Replaced code and fix a2
+    li  a2, 0x02
+    j   0x80064624
+    nop

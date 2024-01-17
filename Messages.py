@@ -306,7 +306,7 @@ ITEM_MESSAGES: list[tuple[int, str]] = [
     (0x9318, "\x08You found the \x05\x41Flare Dancer Souls\x05\x40!"),
     (0x9319, "\x08You found the \x05\x41Dead hand Souls\x05\x40!"),
     (0x931A, "\x08You found the \x05\x41Shell Blade Souls\x05\x40!"),
-    (0x931B, "\x08You found the \x05\x41Like-like Souls\x05\x40!"),
+    (0x931B, "\x08You found the \x05\x41Like like Souls\x05\x40!"),
     (0x931C, "\x08You found the \x05\x41Spike Enemy Souls\x05\x40!"),
     (0x931D, "\x08You found the \x05\x41Anubis Souls\x05\x40!"),
     (0x931E, "\x08You found the \x05\x41Iron Knuckle Souls\x05\x40!"),
@@ -326,6 +326,15 @@ ITEM_MESSAGES: list[tuple[int, str]] = [
     (0x932C, "\x08You found the \x05\x41Soul of Twinrova\x05\x40!"),
     (0x932D, "\x08You found the \x05\x41Jabu Jabu Tentacle Souls\x05\x40!"),
     (0x932E, "\x08You found \x05\x41Dark Link's Soul\x05\x40!"),
+    
+    (0x9500, "\x08You found a \x05\x41Fishing Rod\x05\x40!"),
+    (0x9501, "\x08You found a \x05\x41Fish (Child 6lb)\x05\x40!"),
+    (0x9502, "\x08You found a \x05\x41Fish (Child 8lb)\x05\x40!"),
+    (0x9503, "\x08WHAT A LUNKER!\x01You found a \x05\x41Fish (Child 10lb)\x05\x40!"),
+    (0x9504, "\x08You found a \x05\x41Fish (Adult 10lb)\x05\x40!"),
+    (0x9505, "\x08You found a \x05\x41Fish (Adult 12lb)\x05\x40!"),
+    (0x9506, "\x08WHAT A LUNKER!\x01You found a \x05\x41Fish (Adult 16lb)\x05\x40!"),
+    (0x9507, "\x08You found a \x05\x41Hylian Loach\x05\x40!"),
 ]
 
 KEYSANITY_MESSAGES: list[tuple[int, str]] = [
@@ -364,7 +373,7 @@ KEYSANITY_MESSAGES: list[tuple[int, str]] = [
     (0x00A5, "\x13\x76\x08You found the \x05\x41Dungeon Map\x05\x40\x01for the \x05\x45Bottom of the Well\x05\x40!\x09"),
     (0x00A6, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for the \x05\x46Spirit Temple\x05\x40!\x09"),
     (0x00A9, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for the \x05\x45Shadow Temple\x05\x40!\x09"),
-    (0x913E, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for the \x05\x44Treasure Box Shop\x05\x40!\x09"),
+    (0x00F3, "\x13\x77\x08You found a \x05\x41Small Key\x05\x40\x01for the \x05\x44Treasure Box Shop\x05\x40!\x09"),
     # 0x9019 and 0x901A used above
     # Silver Rupee Messages with count.
     (0x901B, "\x08You found a \x05\x44Silver Rupee\x05\x40 for the\x01staircase room in \x05\x41Dodongo's Cavern\x05\x40!\x01You have found \x05\x41\xF0\x00\x05\x40 so far!\x09"),
@@ -505,7 +514,6 @@ i = 0x9101
 #       0x9101 - Small key messages for the first one collected
 #       0x9112 - Small key messages containing the count
 #       0x9123 - Small key messages for collecting more than enough
-#       0x91
 
 for dungeon_name in dungeon_names:
     if dungeon_name is not None:
@@ -1204,6 +1212,13 @@ def add_item_messages(messages: list[Message], shop_items: Iterable[ShopItem], w
     update_item_messages(messages, world)
 
 
+def find_message_index(messages: list[Message], id):
+    
+    for i in range(0, len(messages)):
+        if messages[i].id == id:
+            return i
+    return -1
+
 # reads each of the game's messages into a list of Message objects
 def read_messages(rom: Rom) -> list[Message]:
     table_offset = ENG_TABLE_START
@@ -1219,7 +1234,7 @@ def read_messages(rom: Rom) -> list[Message]:
         if id == 0xFFFF:
             break # this marks the end of the table
 
-        messages.append( Message.from_rom(rom, index) )
+        messages.append(Message.from_rom(rom, index))
 
         index += 1
         table_offset += 8

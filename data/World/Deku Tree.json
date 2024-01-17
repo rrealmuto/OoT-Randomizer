@@ -62,10 +62,10 @@
                 (logic_deku_basement_gs and (is_adult or Sticks or Kokiri_Sword))"
         },
         "exits": {
+            "Deku Tree Basement Ledge": "deku_tree_shortcuts or here(is_adult) or logic_deku_b1_skip",
             "Deku Tree Basement Eye Switch Room": "
                 here(has_fire_source_with_torch or can_use(Bow)) and
-                here(can_use(Slingshot) or can_use(Bow))",
-            "Deku Tree Basement Ledge": "deku_tree_shortcuts or here(is_adult) or logic_deku_b1_skip"
+                here(can_use(Slingshot) or can_use(Bow))"
         }
     },
     {
@@ -85,7 +85,18 @@
         "region_name": "Deku Tree Basement Rotating Spike Room",
         "dungeon": "Deku Tree",
         "locations": {
-            "Deku Tree Rotating Spike Skulltula": "can_kill_skulltula",
+            "Deku Tree Rotating Spike Skulltula": "can_kill_skulltula"
+        },
+        "exits":
+        {
+            "Deku Tree Basement Back Room" : "True"
+        }
+    },
+    
+    {
+        "region_name": "Deku Tree Basement Rotating Spike Room",
+        "dungeon": "Deku Tree",
+        "locations": {
             "Deku Tree Basement Rotating Spike Grass 1": "can_mow_the_lawn",
             "Deku Tree Basement Rotating Spike Grass 2": "can_mow_the_lawn"
         },

@@ -1,22 +1,43 @@
 #include "util.h"
+#include "z64.h"
+#include "actor.h"
+
+Arena randoArena;
 
 extern char C_HEAP[];
-void *heap_next = NULL;
+extern ActorOverlay* gActorOverlayTable;
+void* heap_next = NULL;
 
 void heap_init() {
-    heap_next = &C_HEAP[0];
+    __osMallocInit(&randoArena, (void*)C_HEAP, 0x1FF000);
+    //heap_next = &C_HEAP[0];
 }
 
-void *heap_alloc(int bytes) {
+void* heap_alloc(int bytes) {
+    return __osMalloc(&randoArena, bytes);
+}
+
+void heap_free(void* ptr) {
+    __osFree(&randoArena, ptr);
+}
+
+/*void *heap_alloc(int bytes) {
     int rem = bytes % 16;
     if (rem) bytes += 16 - rem;
 
-    void *result = heap_next;
+    void* result = heap_next;
     heap_next = (char*)heap_next + bytes;
     return result;
-}
+}*/
 
-void file_init(file_t *file) {
+void file_init(file_t* file) {
     file->buf = heap_alloc(file->size);
     read_file(file->buf, file->vrom_start, file->size);
+}
+
+void* resolve_overlay_addr(void* addr, uint16_t overlay_id) {
+    ActorOverlay overlay = gActorOverlayTable[overlay_id];
+    if(overlay.loadedRamAddr)
+        return addr - overlay.vramStart + overlay.loadedRamAddr;
+    return NULL;
 }

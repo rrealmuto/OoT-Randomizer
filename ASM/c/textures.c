@@ -38,7 +38,7 @@ texture_t texture_table[TEXTURE_ID_MAX] = {
     [TEXTURE_ID_GRASS_CUSTOM] = { .textureID = TEXTURE_ID_GRASS_CUSTOM },
 };
 
-uint8_t *get_texture(TextureId textureID) {
+uint8_t* get_texture(TextureId textureID) {
     return texture_table[textureID].file.buf;
 }
 

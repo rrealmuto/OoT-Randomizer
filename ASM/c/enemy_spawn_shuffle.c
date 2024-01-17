@@ -27,7 +27,7 @@ soul_menu_info SOUL_MENU_NAMES[] = {
     {SOUL_ID_IRON_KNUCKLE, "Iron Knuckle"},
     {SOUL_ID_JABU_JABU_TENTACLE, "Jabu Jabu Tentacle"},
     {SOUL_ID_KEESE, "Keese"},
-    {SOUL_ID_LIKE_LIKE, "Like-like"},
+    {SOUL_ID_LIKE_LIKE, "Like like"},
     {SOUL_ID_LIZALFOS_AND_DINALFOS, "Lizalfos and Dinalfos"},
     {SOUL_ID_MOBLIN, "Moblin"},
     {SOUL_ID_OCTOROK, "Octorok"},
@@ -88,7 +88,7 @@ enemy_spawn_table_entry enemy_spawn_table[] = {
     ENEMY_SPAWN_TABLE_ENTRY(0x0099, 24,  SPAWN_FLAGS_SPAWNENTRY, NULL), //En_Fd (Flare Dancer)
     ENEMY_SPAWN_TABLE_ENTRY(0x00A4, 25,  SPAWN_FLAGS_SPAWNENTRY, NULL), //En_Dh (Dead hand)
     ENEMY_SPAWN_TABLE_ENTRY(0x00C5, 26,  SPAWN_FLAGS_SPAWNENTRY, NULL), //En_Sb (Shell blade)
-    ENEMY_SPAWN_TABLE_ENTRY(0x00DD, 27,  SPAWN_FLAGS_SPAWNENTRY, NULL), //En_Rr (Like-like)
+    ENEMY_SPAWN_TABLE_ENTRY(0x00DD, 27,  SPAWN_FLAGS_SPAWNENTRY, NULL), //En_Rr (Like like)
     ENEMY_SPAWN_TABLE_ENTRY(0x00EC, 28,  SPAWN_FLAGS_SPAWNENTRY, NULL), //En_Ny (spike)
     ENEMY_SPAWN_TABLE_ENTRY(0x00F6, 29,  SPAWN_FLAGS_SPAWNENTRY, NULL), //En_Anubice_Tag, En_Anubice (Anubis (spawner))
     ENEMY_SPAWN_TABLE_ENTRY(0x0113, 30,  SPAWN_FLAGS_SPAWNENTRY, NULL), //En_Ik (Iron Knuckle)
@@ -148,11 +148,11 @@ bool flags_setsoul(int table_index) {
     extended_savectx.soul_enable_flags[table_index/8] |= 1 << (table_index % 8);
 }
 
-bool get_soul_enabled(int table_index) { 
+bool get_soul_enabled(int table_index) {
     return (extended_savectx.soul_enable_flags[table_index/8] & (1 << (table_index % 8))) > 0;
 }
 
-bool toggle_soul_enabled(int table_index) { 
+bool toggle_soul_enabled(int table_index) {
     uint8_t flags = extended_savectx.soul_enable_flags[table_index/8];
     uint8_t mask = (1 << (table_index % 8));
     extended_savectx.soul_enable_flags[table_index/8] = flags ^ mask;
@@ -171,13 +171,13 @@ bool spawn_override_enemy_spawn_shuffle(ActorEntry *actorEntry, z64_game_t *glob
                     if (!enemy_spawn_table[i].override_func(actorEntry, globalCtx))
                         return true;
                 }
-                continue_spawn &= flags_getsoul(table_entry->index) & get_soul_enabled(table_entry->index); 
+                continue_spawn &= flags_getsoul(table_entry->index) & get_soul_enabled(table_entry->index);
                 curr_room_enemies_inhibited |= !continue_spawn;
                 return continue_spawn;
             }
         }
     }
-    
+
     return true;
 }
 

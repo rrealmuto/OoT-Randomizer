@@ -75,7 +75,7 @@
         "dungeon": "Spirit Temple",
         "locations": {
             "Spirit Temple MQ Map Room Enemy Chest": "
-                can_use(Dins_Fire) and Slingshot and 
+                can_use(Dins_Fire) and Slingshot and
                 (has_soul(Keese) and has_soul(Anubis))"
         },
         "exits": {
@@ -187,7 +187,7 @@
             "Spirit Temple MQ Child Climb Baby Dodongo 2": "has_soul(Baby_Dodongo) and (Small_Key_Spirit_Temple, 6)",
             "Spirit Temple MQ Child Climb Baby Dodongo 3": "has_soul(Baby_Dodongo) and (Small_Key_Spirit_Temple, 6)",
             "Spirit Temple MQ Child Climb Baby Dodongo 4": "has_soul(Baby_Dodongo) and (Small_Key_Spirit_Temple, 6)",
-            "Spirit Temple MQ Child Climb Like-Like": "has_soul(Likelike) and (Small_Key_Spirit_Temple, 6)",
+            "Spirit Temple MQ Child Climb Like Like": "has_soul(Likelike) and (Small_Key_Spirit_Temple, 6)",
             "Spirit Temple MQ Child Climb Beamos": "(Small_Key_Spirit_Temple, 6) and can_kill_beamos",
             "Spirit Temple MQ Central Chamber Wallmaster": "(is_child and can_kill_wallmaster and (Small_Key_Spirit_Temple, 7)) or is_adult",
             "Spirit Temple MQ Sun Block Room Bubble 1": "
@@ -246,7 +246,7 @@
     {
         "region_name": "Spirit Temple Symphony Room",
         "dungeon": "Spirit Temple",
-        "locations": { 
+        "locations": {
             "Spirit Temple MQ Symphony Room Chest": "True",
             "Spirit Temple MQ GS Symphony Room": "True",
             "Spirit Temple MQ Symphony Room Skulltula 1": "has_soul(Skulltula)",

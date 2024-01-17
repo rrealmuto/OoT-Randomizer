@@ -5,10 +5,10 @@
 #include "obj_comb.h"
 #include "actor.h"
 
-#define GAMEPLAY_FIELD_KEEP_BEEHIVE_TEXTURE (uint8_t *)0x05008900
+#define GAMEPLAY_FIELD_KEEP_BEEHIVE_TEXTURE (uint8_t*)0x05008900
 
 // Hack beehives to drop a collectible w / an extended flag, based on the grotto param
-void obj_comb_drop_collectible(z64_actor_t *actor, int16_t params) {
+void obj_comb_drop_collectible(z64_actor_t* actor, int16_t params) {
     // Check if we're in a grotto
     xflag_t* flag = &(Actor_GetAdditionalData(actor)->flag);
 
@@ -26,7 +26,7 @@ void obj_comb_drop_collectible(z64_actor_t *actor, int16_t params) {
     }
 }
 
-void ObjComb_Update(z64_actor_t *thisx, z64_game_t *game) {
+void ObjComb_Update(z64_actor_t* thisx, z64_game_t* game) {
     ObjComb *this = (ObjComb *)thisx;
     if (this->actor.dropFlag > 0) {
         this->actor.dropFlag --;
@@ -45,14 +45,14 @@ void ObjComb_Update(z64_actor_t *thisx, z64_game_t *game) {
 
 /*
 // Left here if we ever want to do beehive textures.
-void ObjComb_Draw_Hack(z64_actor_t *this, z64_game_t *game) {
-    uint8_t *texture = GAMEPLAY_FIELD_KEEP_BEEHIVE_TEXTURE;
+void ObjComb_Draw_Hack(z64_actor_t* this, z64_game_t* game) {
+    uint8_t* texture = GAMEPLAY_FIELD_KEEP_BEEHIVE_TEXTURE;
 
     override_t override = get_beehive_override(this, game);
 
     if(override.key.all != 0) {
         uint16_t item_id = resolve_upgrades(override);
-        item_row_t *row = get_item_row(override.value.looks_like_item_id);
+        item_row_t* row = get_item_row(override.value.looks_like_item_id);
         if (row == NULL) {
             row = get_item_row(override.value.item_id);
         }
@@ -74,7 +74,7 @@ void ObjComb_Draw_Hack(z64_actor_t *this, z64_game_t *game) {
         }
     }
 
-    z64_gfx_t *gfx = game->common.gfx;
+    z64_gfx_t* gfx = game->common.gfx;
     gfx->poly_opa.d -= 2;
     gDPSetTextureImage(gfx->poly_opa.d, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, texture);
     gSPEndDisplayList(gfx->poly_opa.d + 1);

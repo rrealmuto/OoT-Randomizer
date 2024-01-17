@@ -29,7 +29,7 @@ void init_new_menus() {
     }
 }
 
-void draw_map_background(z64_game_t* globalCtx, z64_gfx_t* gfx, float x, float y, float w, float h) 
+void draw_map_background(z64_game_t* globalCtx, z64_gfx_t* gfx, float x, float y, float w, float h)
 {
     Vtx* v = &background_vertices[0];
 
@@ -115,7 +115,7 @@ void update_soul_menu(z64_game_t* globalCtx) {
     else if(soul_menu_ctx.cursor_delay > 0) {
         soul_menu_ctx.cursor_delay--;
     }
-    
+
     if(soul_menu_ctx.curr_line < soul_menu_ctx.curr_min_line) {
         soul_menu_ctx.curr_min_line = soul_menu_ctx.curr_line;
     }
@@ -132,7 +132,7 @@ void draw_soul_menu(z64_game_t* globalCtx, z64_gfx_t* gfx) {
     // Set up the pipeline to use the new buffer, save old buffer?
 
     OPEN_DISPS(gfx);
-    
+
     gDPPipeSync(POLY_OPA_DISP++);
     gDPSetOtherMode(POLY_OPA_DISP++, G_AD_DISABLE | G_CD_DISABLE |
         G_CK_NONE | G_TC_FILT |
@@ -147,7 +147,7 @@ void draw_soul_menu(z64_game_t* globalCtx, z64_gfx_t* gfx) {
     int y = 60;
     //gDPSetCombineLERP(POLY_OPA_DISP++, PRIMITIVE, PRIMITIVE, TEXEL0, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0, PRIMITIVE,
     //                  PRIMITIVE, TEXEL0, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0);
-    
+
     menu_dl_p = &menu_dl_buffer[0];
 
     gDPPipeSync(menu_dl_p++);
@@ -191,21 +191,21 @@ void print_char(z64_game_t* globalCtx, char c, int x, int y, float scale) {
     int32_t sCharTexScale = 1024.0f / (scale);
 
     gDPPipeSync(menu_dl_p++);
-    
+
     //gDPSetTextureImage(POLY_OPA_DISP++, G_IM_FMT_I, G_IM_SIZ_4b, FONT_CHAR_TEX_WIDTH, textureImage);
     //gDPLoadTile(gfx++, G_TX_LOADTILE, 0, 0, (FONT_CHAR_TEX_WIDTH - 1) << 2, (FONT_CHAR_TEX_HEIGHT - 1) << 2);
 
     gDPLoadTextureBlock_4b(menu_dl_p++, textureImage, G_IM_FMT_I, FONT_CHAR_TEX_WIDTH, FONT_CHAR_TEX_HEIGHT, 0,
                            G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                            G_TX_NOLOD);
-    
+
     gDPPipeSync(menu_dl_p++);
     gSPTextureRectangle(menu_dl_p++, x << 2, y << 2, (x + sCharTexSize) << 2, (y + sCharTexSize) << 2, G_TX_RENDERTILE, 0, 0,
                         sCharTexScale, sCharTexScale);
 }
 
 int print_string(z64_game_t* globalCtx, char* str, int x, int y, float scale) {
-    
+
     while(*str != 0x00) {
         print_char(globalCtx, *str, x,y, scale);
         x += 8;
@@ -218,7 +218,7 @@ void draw_new_menus(z64_game_t* globalCtx, z64_gfx_t* gfx) {
     OPEN_DISPS(gfx)
     draw_map_background(globalCtx, gfx, -110.f, 59.f, 217.f, 128.f);
     CLOSE_DISPS();
-    
+
     if(globalCtx->pause_ctxt.state == 6 && globalCtx->pause_ctxt.changing == 0 && globalCtx->pause_ctxt.screen_idx == 1) {
         globalCtx->pause_ctxt.cursor_pos = 0;
         menus[menu_page]->handler(globalCtx, gfx);
@@ -233,7 +233,7 @@ void draw_new_menus(z64_game_t* globalCtx, z64_gfx_t* gfx) {
             }
         }*/
     }
-    
+
 }
 
 void KaleidoScope_DrawNewMap(z64_game_t* globalCtx, z64_gfx_t* gfx, kaleido_handler handler) {
@@ -248,7 +248,7 @@ void KaleidoScope_DrawNewMap(z64_game_t* globalCtx, z64_gfx_t* gfx, kaleido_hand
         handler = KaleidoManager_GetRamAddr(handler);
         handler(globalCtx, gfx);
     }
-    
+
 }
 
 void KaleidoScope_DrawWorldMap_Callhook(z64_game_t* globalCtx, z64_gfx_t* gfx) {

@@ -32,15 +32,23 @@
             "Bottom of the Well MQ GS Basement": "can_child_attack",
             "Bottom of the Well MQ GS Coffin Room": "
                 (Small_Key_Bottom_of_the_Well, 2) and can_child_attack",
-            "Bottom of the Well MQ Perimiter Behind Gate Pot": "has_explosives and Slingshot",
+            "Bottom of the Well MQ Main Area Left Slingshot Wonderitem 1": "Slingshot",
+            "Bottom of the Well MQ Main Area Left Slingshot Wonderitem 2": "Slingshot",
+            "Bottom of the Well MQ Main Area Left Slingshot Wonderitem 3": "Slingshot",
+            "Bottom of the Well MQ Main Area Left Slingshot Wonderitem 4": "Slingshot",
+            "Bottom of the Well MQ Main Area Right Slingshot Wonderitem 1": "Slingshot",
+            "Bottom of the Well MQ Main Area Right Slingshot Wonderitem 2": "Slingshot",
+            "Bottom of the Well MQ Main Area Right Slingshot Wonderitem 3": "Slingshot",
+            "Bottom of the Well MQ Main Area Right Slingshot Wonderitem 4": "Slingshot",
+            "Bottom of the Well MQ Perimeter Behind Gate Pot": "has_explosives and Slingshot",
             "Bottom of the Well MQ First Hallway Redead": "can_kill_redead",
             "Bottom of the Well MQ Center Room Pitfall Skulltula": "
                 has_soul(Skulltula) and (has_explosives or can_use(Dins_Fire) or
-                (can_play(Zeldas_Lullaby) and 
+                (can_play(Zeldas_Lullaby) and
                     (Slingshot or (logic_botw_mq_pits and can_kill_skulltula))))",
             "Bottom of the Well MQ Basement Wallmaster": "can_kill_wallmaster",
-            "Bottom of the Well MQ Basement Skulltula 1": "can_kill_skulltula",                
-            "Bottom of the Well MQ Basement Skulltula 2": "can_kill_skulltula",                
+            "Bottom of the Well MQ Basement Skulltula 1": "can_kill_skulltula",
+            "Bottom of the Well MQ Basement Skulltula 2": "can_kill_skulltula",
             "Bottom of the Well MQ Basement Skulltula 3": "can_kill_skulltula",
             "Bottom of the Well MQ Basement Redead 1": "can_kill_redead",
             "Bottom of the Well MQ Basement Redead 2": "can_kill_redead",
@@ -52,14 +60,6 @@
             "Bottom of the Well MQ False Floor Floormaster": "(Slingshot or Boomerang) and can_kill_floormaster",
             "Bottom of the Well MQ Deadhand": "
                 has_soul(Dead_hand) and (Kokiri_Sword or (Sticks and logic_child_deadhand))",
-            "Bottom of the Well MQ Main Area Left Slingshot Wonderitem 1": "Slingshot",
-            "Bottom of the Well MQ Main Area Left Slingshot Wonderitem 2": "Slingshot",
-            "Bottom of the Well MQ Main Area Left Slingshot Wonderitem 3": "Slingshot",
-            "Bottom of the Well MQ Main Area Left Slingshot Wonderitem 4": "Slingshot",
-            "Bottom of the Well MQ Main Area Right Slingshot Wonderitem 1": "Slingshot",
-            "Bottom of the Well MQ Main Area Right Slingshot Wonderitem 2": "Slingshot",
-            "Bottom of the Well MQ Main Area Right Slingshot Wonderitem 3": "Slingshot",
-            "Bottom of the Well MQ Main Area Right Slingshot Wonderitem 4": "Slingshot",
             "Wall Fairy": "has_bottle and Slingshot" # The fairy pot is obsolete
         },
         "exits": {
@@ -82,12 +82,12 @@
             "Bottom of the Well MQ East Inner Room Pot 1": "True",
             "Bottom of the Well MQ East Inner Room Pot 2": "True",
             "Bottom of the Well MQ East Inner Room Pot 3": "True",
+            "Bottom of the Well MQ GS West Inner Room": "
+                can_child_attack and (logic_botw_mq_pits or has_explosives)",
             "Bottom of the Well MQ East Inner Room Slingshot Wonderitem 1": "Slingshot",
             "Bottom of the Well MQ East Inner Room Slingshot Wonderitem 2": "Slingshot",
             "Bottom of the Well MQ East Inner Room Slingshot Wonderitem 3": "Slingshot",
             "Bottom of the Well MQ East Inner Room Slingshot Wonderitem 4": "Slingshot",
-            "Bottom of the Well MQ GS West Inner Room": "
-                can_child_attack and (logic_botw_mq_pits or has_explosives)",
             "Bottom of the Well MQ Center Room Wallmaster": "can_kill_wallmaster",
             "Bottom of the Well MQ West Inner Room Keese 1": "(logic_botw_mq_pits or has_explosives) and (can_kill_keese)",
             "Bottom of the Well MQ West Inner Room Keese 2": "(logic_botw_mq_pits or has_explosives) and (can_kill_keese)",

@@ -11,11 +11,11 @@
 #include "textures.h"
 #include "en_bb.h"
 #include "actor.h"
+#include "en_wonderitem.h"
 #include "scene.h"
 #include "en_item00.h"
 #include "item_table.h"
 #include "enemy_spawn_shuffle.h"
-#include "en_wonderitem.h"
 #include "minimap.h"
 
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
@@ -34,14 +34,15 @@ extern xflag_t* spawn_actor_with_flag;
 #define OBJ_KIBAKO          0x110   // Small Crate
 #define OBJ_KIBAKO2         0x1A0   // Large Crate
 #define EN_G_SWITCH         0x0117 //Silver Rupee
+#define EN_WONDER_ITEM      0x0112  // Wonder Item
 #define EN_ANUBICE_TAG      0x00F6  // Anubis Spawner
 #define EN_IK               0x0113  // Iron Knuckes
 #define EN_SW               0x0095  // Skullwalltula
 #define EN_BB               0x0069  // Bubble
 #define EN_GS               0x1B9   // Gossip Stone
-#define EN_WONDER_ITEM      0x0112  // Wonder Item
 #define EN_KUSA             0x0125 // Grass/Bush
 #define OBJ_MURE2           0x0151 // Obj_Mure2 - Bush/Rock circles
+#define ACTOR_FISHING       0xFE // Fishing fish
 
 ActorOverlay* gActorOverlayTable = (ActorOverlay*)ACTOR_OVERLAY_TABLE_ADDR;
 uint8_t actor_spawn_as_child_flag = 0;
@@ -59,16 +60,20 @@ void* Actor_ResolveOverlayAddr(z64_actor_t* actor, void* addr) {
 
 // Called from Actor_UpdateAll when spawning the actors in the scene's/room's actor list to store flags in the new space that we added to the actors.
 // Prior to being called, CURR_ACTOR_SPAWN_INDEX is set to the current position in the actor spawn list.
-void Actor_After_UpdateAll_Hack(z64_actor_t *actor, z64_game_t* game) {
+void Actor_After_UpdateAll_Hack(z64_actor_t* actor, z64_game_t* game) {
+    Actor_StoreFlagByIndex(actor, game, CURR_ACTOR_SPAWN_INDEX);
+    Actor_StoreChestType(actor, game);
+
     // Add additional actor hacks here. These get called shortly after the call to actor_init
     // Hacks are responsible for checking that they are the correct actor.
-    Actor_StoreFlagByIndex(actor, game, CURR_ACTOR_SPAWN_INDEX);
-    Actor_StoreChestType(actor,game);
-    bb_after_init_hack(actor, game);
     EnWonderitem_AfterInitHack(actor, game);
+    bb_after_init_hack(actor, game);
+
     CURR_ACTOR_SPAWN_INDEX = 0; // reset CURR_ACTOR_SPAWN_INDEX
 }
 
+// For pots/crates/beehives, store the flag in the new space in the actor instance.
+// Flag consists of the room #, scene setup, and the actor index
 void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, xflag_t flag) {
     ActorAdditionalData* extra = Actor_GetAdditionalData(actor);
     flag = resolve_alternative_flag(&flag);
@@ -99,17 +104,14 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, xflag_t flag) {
             case BG_SPOT18_BASKET:
             case OBJ_MURE3:
             case BG_HAKA_TUBO:
-            case EN_KUSA:
-            case OBJ_MURE2:
-            {
-                extra->flag = flag;
-                break;
-            }
+            case EN_WONDER_ITEM:
             case EN_IK: // Check for iron knuckles (they use actor category 9 (boss) and change to category 5 but a frame later if the object isnt loaded)
             case EN_SW: // Check for skullwalltula (en_sw). They start as category 4 (npc) and change to category 5 but a frame later if the object isnt laoded
             case EN_ANUBICE_TAG: //Check for anubis spawns
             case EN_GS:
-            case EN_WONDER_ITEM:
+            case EN_KUSA:
+            case OBJ_MURE2:
+            case ACTOR_FISHING:
             {
                 extra->flag = flag;
                 // Add marker for enemy drops
@@ -124,13 +126,13 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, xflag_t flag) {
             }
         }
     }
+
 }
 
 // For pots/crates/beehives, store the flag in the new space in the actor instance.
 // Flag consists of the room #, scene setup, and the actor index
 void Actor_StoreFlagByIndex(z64_actor_t* actor, z64_game_t* game, uint16_t actor_index) {
     // Zeroize extra data;
-    
 
     xflag_t flag = (xflag_t) { 0 };
 
@@ -155,6 +157,11 @@ void Actor_StoreFlagByIndex(z64_actor_t* actor, z64_game_t* game, uint16_t actor
 // Get an override for an actor with the new flags. If the override doesn't exist, or flag has already been set, return 0.
 override_t get_newflag_override(z64_actor_t *actor, z64_game_t *game) {
     xflag_t* flag = &Actor_GetAdditionalData(actor)->flag;
+    return get_newflag_override_by_flag(flag, game);
+}
+
+// Get an override for an actor with the new flags. If the override doesn't exist, or flag has already been set, return 0.
+override_t get_newflag_override_by_flag(xflag_t* flag, z64_game_t *game) {
     override_t override = lookup_override_by_newflag(flag);
     if(override.key.all != 0)
     {
@@ -204,9 +211,9 @@ void Actor_StoreChestType(z64_actor_t* actor, z64_game_t* game) {
     if (override.key.all != 0 && pChestType != NULL) { // If we don't have an override key, then either this item doesn't have an override entry, or it has already been collected.
         if (POTCRATE_TEXTURES_MATCH_CONTENTS == PTMC_UNCHECKED && override.key.all > 0) { // For "unchecked" PTMC setting: Check if we have an override which means it wasn't collected.
             *pChestType = GILDED_CHEST;
-        } else if(POTCRATE_TEXTURES_MATCH_CONTENTS == PTMC_CONTENTS) {
+        } else if (POTCRATE_TEXTURES_MATCH_CONTENTS == PTMC_CONTENTS) {
             uint16_t item_id = resolve_upgrades(override);
-            item_row_t *row = get_item_row(override.value.looks_like_item_id);
+            item_row_t* row = get_item_row(override.value.looks_like_item_id);
             if (row == NULL) {
                 row = get_item_row(override.value.base.item_id);
             }
@@ -217,9 +224,9 @@ void Actor_StoreChestType(z64_actor_t* actor, z64_game_t* game) {
     }
 }
 
-typedef void(*actor_after_spawn_func)(z64_actor_t* actor, bool overridden);
+typedef void (*actor_after_spawn_func)(z64_actor_t* actor, bool overridden);
 
-z64_actor_t *Actor_SpawnEntry_Hack(void *actorCtx, ActorEntry *actorEntry, z64_game_t *globalCtx) {
+z64_actor_t* Actor_SpawnEntry_Hack(void* actorCtx, ActorEntry* actorEntry, z64_game_t* globalCtx) {
     bool continue_spawn = true;
     bool overridden = false;
     actor_after_spawn_func after_spawn_func = NULL;
@@ -241,11 +248,17 @@ z64_actor_t *Actor_SpawnEntry_Hack(void *actorCtx, ActorEntry *actorEntry, z64_g
     if (continue_spawn) {
         continue_spawn = spawn_override_enemy_spawn_shuffle(actorEntry, globalCtx, SPAWN_FLAGS_SPAWNENTRY);
     }
+    /*
+    if(continue_spawn)
+    {
+        continue_spawn = spawn_override_enemizer(actorEntry, globalCtx, &overridden);
+    }
+    */
     z64_actor_t *spawned = NULL;
     if (continue_spawn) {
         spawned = z64_SpawnActor(actorCtx, globalCtx, actorEntry->id, actorEntry->pos.x, actorEntry->pos.y, actorEntry->pos.z,
             actorEntry->rot.x, actorEntry->rot.y, actorEntry->rot.z, actorEntry->params);
-        if(spawned && after_spawn_func) {
+        if (spawned && after_spawn_func) {
             after_spawn_func(spawned, overridden);
         }
     }
@@ -253,7 +266,7 @@ z64_actor_t *Actor_SpawnEntry_Hack(void *actorCtx, ActorEntry *actorEntry, z64_g
 }
 
 // Override silver rupee spawns.
-bool spawn_override_silver_rupee(ActorEntry *actorEntry, z64_game_t *globalCtx, bool* overridden) {
+bool spawn_override_silver_rupee(ActorEntry* actorEntry, z64_game_t* globalCtx, bool* overridden) {
     *overridden = false;
     if (SHUFFLE_SILVER_RUPEES) { // Check if silver rupee shuffle is enabled.
         xflag_t flag = {
@@ -285,16 +298,15 @@ bool spawn_override_silver_rupee(ActorEntry *actorEntry, z64_game_t *globalCtx, 
 }
 
 // After silver rupee spawns as enitem00
-void after_spawn_override_silver_rupee(z64_actor_t* spawned, bool overridden)
-{
-    if(overridden) {
+void after_spawn_override_silver_rupee(z64_actor_t* spawned, bool overridden) {
+    if (overridden) {
         EnItem00* this = (EnItem00*)spawned;
         this->is_silver_rupee = true;
-        this->collider.info.bumper.dmgFlags = 0; //Remove clear the bumper collider flags so it doesn't interact w/ boomerang
+        this->collider.info.bumper.dmgFlags = 0; // Remove clear the bumper collider flags so it doesn't interact w/ boomerang
     }
 }
 
-z64_actor_t *Player_SpawnEntry_Hack(void *actorCtx, ActorEntry *playerEntry, z64_game_t *globalCtx) {
+z64_actor_t* Player_SpawnEntry_Hack(void* actorCtx, ActorEntry* playerEntry, z64_game_t* globalCtx) {
     if (z64_file.entrance_index == 0x423) {
         playerEntry->pos.y = 1000;
         playerEntry->pos.z = -1960;
@@ -355,10 +367,10 @@ uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit
             }
             return 1;
         }
-        
+
         return 1;
     }
-    
+
 
     return 0;
 }
@@ -366,7 +378,7 @@ uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit
 // This is our entrypoint back into Actor_Spawn. Call/return this to spawn the actor
 extern z64_actor_t *Actor_Spawn_Continue(void* actorCtx, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params);
 
-z64_actor_t * Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int16_t actorId, 
+z64_actor_t * Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int16_t actorId,
                                 float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params) {
     bool continue_spawn = true;
 
@@ -379,11 +391,9 @@ z64_actor_t * Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int16_t ac
     entry.rot.x = rotX;
     entry.rot.y = rotY;
     entry.rot.z = rotZ;
-    continue_spawn = spawn_override_enemy_spawn_shuffle(&entry, globalCtx, SPAWN_FLAGS_ACTORSPAWN);
-    
+
     if(continue_spawn) {
         z64_actor_t* spawned = Actor_Spawn_Continue(actorCtx, globalCtx, actorId, posX, posY, posZ, rotX, rotY, rotZ, params);
-        
         if(spawned) {
             if(spawn_actor_with_flag)
             {
@@ -404,4 +414,77 @@ z64_actor_t * Actor_SpawnAsChild_Hook(void* actorCtx, z64_actor_t* parent, z64_g
     actor_spawn_as_child_flag = 0;
     actor_spawn_as_child_parent = NULL;
     return spawned;
+}
+
+typedef struct {
+    int16_t id;
+    uint16_t var;
+} enemy_list_entry_t;
+
+enemy_list_entry_t enemy_list[] = {
+    { ACTOR_EN_TEST, 0x0003 }, //Stalfos, 0000 makes it invisible
+//    { ACTOR_EN_ANUBICE, 0x0000 }, // don't really work by themselves. maybe use spawner
+    { ACTOR_EN_BB, 0xFFFF }, // Probably make it so it can pick between green/white/blue/fire?
+    { ACTOR_EN_BILI, 0x0000 },
+    { ACTOR_EN_BUBBLE, 0x0000 },
+    { ACTOR_EN_CROW, 0x0000 },
+    { ACTOR_EN_DEKUBABA, 0x0000 },
+    { ACTOR_EN_DODOJR, 0x0000 },
+    { ACTOR_EN_DODONGO, 0x0000 },
+    { ACTOR_EN_FIREFLY, 0x0000 },
+    { ACTOR_EN_FLOORMAS, 0x0000 },
+    { ACTOR_EN_PEEHAT, 0x0000 },
+    { ACTOR_EN_MB, 0x0000 },
+    { ACTOR_EN_IK, 0xFF02 }, // Maybe random white/black. 0x0000 is nabooru which crashes
+    { ACTOR_EN_SKJ, 0x0000 }, //Always backflips away
+    //{ ACTOR_EN_TUBO_TRAP, 0x0000 },
+    { ACTOR_EN_POH, 0x0000 },
+    { ACTOR_EN_TITE, 0x0000 },
+    { ACTOR_EN_ZF, 0xFF80 }, // maybe also pick dinalfos
+    { ACTOR_EN_ZF, 0xFFFE }, // maybe also pick dinalfos
+    { ACTOR_EN_TP, 0xFFFF }, // Crashes on death?? not really. Definitely screws up drawing.
+    { ACTOR_EN_ST, 0x0000 },
+    { ACTOR_EN_BW, 0x0000 },
+    { ACTOR_EN_AM, 0x0000 },
+    { ACTOR_EN_DEKUNUTS, 0x0000 },
+    { ACTOR_EN_VM, 0x0000 },
+     //{ ACTOR_EN_RD, 0x0000 },
+     //{ ACTOR_EN_FD, 0x0000 },
+    { ACTOR_EN_SB, 0x0000 },
+    { ACTOR_EN_NY, 0x0000 },
+    { ACTOR_EN_FZ, 0x0000 },
+    { ACTOR_EN_EIYER, 0x000A }, // This is the ring of 4 from jabu. Maybe just use one.
+    { ACTOR_EN_WF, 0xFF00 },
+    { ACTOR_EN_RR, 0x0000},
+    { ACTOR_EN_REEBA, 0x0000},
+    { ACTOR_EN_SKB, 0x0000}
+};
+
+bool is_enemy(ActorEntry* actorEntry) {
+    for(int i = 0; i < array_size(enemy_list); i++) {
+        if(enemy_list[i].id == actorEntry->id)
+            return true;
+    }
+    return false;
+}
+
+int enemy_spawn_index = 0;
+
+bool spawn_override_enemizer(ActorEntry *actorEntry, z64_game_t *globalCtx, bool* overridden) {
+    if(is_enemy(actorEntry)) {
+        int16_t index = (int16_t)(z64_Rand_ZeroOne() * array_size(enemy_list));
+        //int index = (enemy_spawn_index++) % (array_size(enemy_list));
+        actorEntry->id = enemy_list[index].id;
+        actorEntry->params = enemy_list[index].var;
+        *overridden = true;
+    }
+    return true;
+}
+
+z64_actor_t* curr_updating_actor = NULL;
+
+void Actor_Update_Hook(z64_actor_t* actor, z64_game_t* globalCtx, ActorFunc updateFunc) {
+    curr_updating_actor = actor;
+    updateFunc(actor, globalCtx);
+    curr_updating_actor = NULL;
 }

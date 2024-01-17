@@ -30,6 +30,7 @@ from Spoiler import Spoiler
 from Utils import default_output_path, is_bundled, run_process, data_path
 from World import World
 from version import __version__
+from Boulders import shuffle_boulders
 
 
 def main(settings: Settings, max_attempts: int = 10) -> Spoiler:
@@ -145,6 +146,9 @@ def build_world_graphs(settings: Settings) -> list[World]:
         savewarps_to_connect += world.create_dungeons()
         world.create_internal_locations()
 
+        
+        world.boulders, world.boulders_by_id = shuffle_boulders(world)
+
         if settings.shopsanity != 'off':
             world.random_shop_prices()
         world.set_scrub_prices()
@@ -221,9 +225,9 @@ def compress_rom(input_file: str, output_file: str, delete_input: bool = False) 
         else:
             compressor_path += "Compress32.exe"
     elif platform.system() == 'Linux':
-        if platform.machine() in ['arm64', 'aarch64', 'aarch64_be', 'armv8b', 'armv8l']:
+        if platform.machine() in ('arm64', 'aarch64', 'aarch64_be', 'armv8b', 'armv8l'):
             compressor_path += "Compress_ARM64"
-        elif platform.machine() in ['arm', 'armv7l', 'armhf']:
+        elif platform.machine() in ('arm', 'armv7l', 'armhf'):
             compressor_path += "Compress_ARM32"
         else:
             compressor_path += "Compress"
@@ -258,9 +262,9 @@ def generate_wad(wad_file: str, rom_file: str, output_file: str, channel_title: 
         else:
             gzinject_path += "gzinject32.exe"
     elif platform.system() == 'Linux':
-        if platform.machine() in ['arm64', 'aarch64', 'aarch64_be', 'armv8b', 'armv8l']:
+        if platform.machine() in ('arm64', 'aarch64', 'aarch64_be', 'armv8b', 'armv8l'):
             gzinject_path += "gzinject_ARM64"
-        elif platform.machine() in ['arm', 'armv7l', 'armhf']:
+        elif platform.machine() in ('arm', 'armv7l', 'armhf'):
             gzinject_path += "gzinject_ARM32"
         else:
             gzinject_path += "gzinject"

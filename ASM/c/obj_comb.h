@@ -5,7 +5,7 @@
 
 struct ObjComb;
 
-typedef void (*ObjCombActionFunc)(struct ObjComb *, z64_game_t *);
+typedef void (*ObjCombActionFunc)(struct ObjComb*, z64_game_t*);
 
 typedef struct ObjComb {
     /* 0x0000 */ z64_actor_t actor;

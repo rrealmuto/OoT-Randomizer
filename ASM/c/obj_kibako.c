@@ -5,12 +5,12 @@
 #include "obj_kibako.h"
 #include "actor.h"
 
-#define SMALLCRATE_DLIST (z64_gfx_t *)0x05005290
-#define SMALLCRATE_TEXTURE (uint8_t *)0x05011CA0
+#define SMALLCRATE_DLIST (z64_gfx_t*)0x05005290
+#define SMALLCRATE_TEXTURE (uint8_t*)0x05011CA0
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
 
-void ObjKibako_Draw(z64_actor_t *actor, z64_game_t *game) {
-    uint8_t *texture = SMALLCRATE_TEXTURE; // get original texture
+void ObjKibako_Draw(z64_actor_t* actor, z64_game_t* game) {
+    uint8_t* texture = SMALLCRATE_TEXTURE; // get original texture
 
     ObjKibako* this = (ObjKibako*)actor;
 
@@ -42,7 +42,7 @@ void ObjKibako_Draw(z64_actor_t *actor, z64_game_t *game) {
     }
 
     // push custom dlists (that set the palette and textures) to segment 09
-    z64_gfx_t *gfx = game->common.gfx;
+    z64_gfx_t* gfx = game->common.gfx;
     gfx->poly_opa.d -= 2;
     gDPSetTextureImage(gfx->poly_opa.d, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, texture);
     gSPEndDisplayList(gfx->poly_opa.d + 1);

@@ -34,7 +34,7 @@
             "Gerudo Training Ground MQ Dodongo 1": "is_adult and has_soul(Dodongo)",
             "Gerudo Training Ground MQ Dodongo 2": "is_adult and has_soul(Dodongo)",
             "Gerudo Training Ground MQ Armos": "is_adult and has_soul(Armos)",
-            
+
             # Shoot the Gerudo symbol above the door to the lava room.
             "Gerudo Training Ground MQ Dinolfos Arrow Wonderitem": "can_use(Bow)",
             "Wall Fairy": "has_bottle and can_use(Bow)"
@@ -137,7 +137,7 @@
         "locations": {
             "Gerudo Training Ground MQ First Iron Knuckle Chest": "(is_adult or Kokiri_Sword or has_explosives) and has_soul(Iron_Knuckle)",
             "Gerudo Training Ground MQ First Iron Knuckle": "(is_adult or Kokiri_Sword or has_explosives) and has_soul(Iron_Knuckle)"
-            
+
         },
         "exits": {
             "Gerudo Training Ground Slopes": "(is_adult or Kokiri_Sword or has_explosives) and has_soul(Iron_Knuckle)"
@@ -203,10 +203,10 @@
             "Gerudo Training Ground MQ Eye Statue Chest": "Bow",
             "Gerudo Training Ground MQ Second Iron Knuckle Chest": "has_soul(Iron_Knuckle) and has_soul(Torch_Slug)",
             "Gerudo Training Ground MQ Flame Circle Chest": "Hookshot or Bow or has_explosives",
+            "Gerudo Training Ground MQ Eye Statue Proximity Wonderitem": "can_use(Hover_Boots) or can_use(Longshot) or logic_gtg_eye_statue_wonderitem",
             "Gerudo Training Ground MQ Second Iron Knuckle": "has_soul(Iron_Knuckle)",
             "Gerudo Training Ground MQ Second Iron Knuckle Torch Slug 1": "has_soul(Torch_Slug)",
-            "Gerudo Training Ground MQ Second Iron Knuckle Torch Slug 2": "has_soul(Torch_Slug)",
-            "Gerudo Training Ground MQ Eye Statue Proximity Wonderitem": "can_use(Hover_Boots) or can_use(Longshot) or logic_gtg_eye_statue_wonderitem"
+            "Gerudo Training Ground MQ Second Iron Knuckle Torch Slug 2": "has_soul(Torch_Slug)"
         },
         "exits": {
             "Gerudo Training Ground Central Maze Right": "Megaton_Hammer",
