@@ -4,12 +4,12 @@
         "dungeon": "Bottom of the Well",
         "exits": {
             "Kakariko Village": "True",
-            "Bottom of the Well Perimiter": "is_child",
+            "Bottom of the Well Perimeter": "is_child",
             "Farores Wind Warp": "can_use(Farores_Wind)"
         }
     },
     {
-        "region_name": "Bottom of the Well Perimiter",
+        "region_name": "Bottom of the Well Perimeter",
         "dungeon": "Bottom of the Well",
         "locations": {
             "Bottom of the Well MQ Compass Chest": "
@@ -40,15 +40,15 @@
             "Bottom of the Well MQ Main Area Right Slingshot Wonderitem 2": "Slingshot",
             "Bottom of the Well MQ Main Area Right Slingshot Wonderitem 3": "Slingshot",
             "Bottom of the Well MQ Main Area Right Slingshot Wonderitem 4": "Slingshot",
-            "Bottom of the Well MQ Perimiter Behind Gate Pot": "has_explosives and Slingshot",
+            "Bottom of the Well MQ Perimeter Behind Gate Pot": "has_explosives and Slingshot",
             "Bottom of the Well MQ First Hallway Redead": "can_kill_redead",
             "Bottom of the Well MQ Center Room Pitfall Skulltula": "
                 has_soul(Skulltula) and (has_explosives or can_use(Dins_Fire) or
-                (can_play(Zeldas_Lullaby) and 
+                (can_play(Zeldas_Lullaby) and
                     (Slingshot or (logic_botw_mq_pits and can_kill_skulltula))))",
             "Bottom of the Well MQ Basement Wallmaster": "can_kill_wallmaster",
-            "Bottom of the Well MQ Basement Skulltula 1": "can_kill_skulltula",                
-            "Bottom of the Well MQ Basement Skulltula 2": "can_kill_skulltula",                
+            "Bottom of the Well MQ Basement Skulltula 1": "can_kill_skulltula",
+            "Bottom of the Well MQ Basement Skulltula 2": "can_kill_skulltula",
             "Bottom of the Well MQ Basement Skulltula 3": "can_kill_skulltula",
             "Bottom of the Well MQ Basement Redead 1": "can_kill_redead",
             "Bottom of the Well MQ Basement Redead 2": "can_kill_redead",

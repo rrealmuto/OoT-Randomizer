@@ -19,6 +19,11 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v67](#v67)
+  * [v66](#v66)
+  * [v65](#v65)
+  * [v64](#v64)
+  * [v63](#v63)
   * [v62](#v62)
   * [v61](#v61)
   * [v60](#v60)
@@ -87,6 +92,23 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v67
+  * New setting: Shuffle Boulders
+  * New setting: Fix Broken Actors (replaces Fix Broken Drops)
+
+### v66
+  * Add Bunny Hood preset
+
+### v65
+  * Hopefully actually fix small key text boxes in fishing shuffle
+
+### v64
+  * Smaller fish in fishing game shuffle are no longer considered major items
+
+### v63
+  * Fix certain textboxes not displaying correctly when catching fish in fishing shuffle
+  * Fix unshuffled Spirit Temple MQ Wonderitems
+
 ### v62
   * Fix fishing shuffle owner rewards not being given if you mash the text boxes
 

@@ -67,7 +67,7 @@
             "Forest Temple NE Outdoors": "(Progressive_Scale, 2)",
             # Other methods of crossing through the well are not currently relevant.
             "Forest Temple Outdoors High Balconies": "
-                here((has_soul(Bubble)) and 
+                here((has_soul(Bubble)) and
                     (is_adult or has_explosives or
                         ((Boomerang or Nuts or Deku_Shield) and (Sticks or Kokiri_Sword or Slingshot))))",
             "Forest Temple NW Outdoors Freestandings": "logic_forest_courtyard_hearts and can_use(Boomerang)"
@@ -260,7 +260,7 @@
         "locations": {
             "Forest Temple Basement Chest": "True",
             "Forest Temple GS Basement": "can_use(Hookshot) or can_use(Boomerang)",
-            "Forest Temple Basement Skulltula": "can_kill_skulltula"             
+            "Forest Temple Basement Skulltula": "can_kill_skulltula"
         },
         "exits": {
             "Forest Temple Central Area": "forest_temple_shortcuts",

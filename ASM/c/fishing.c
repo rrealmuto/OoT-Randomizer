@@ -10,6 +10,7 @@
 
 extern uint8_t SHUFFLE_FISHIES;
 extern xflag_t* spawn_actor_with_flag;
+extern uint8_t PLAYER_ID;
         //0x80a44a50 - sFishOnHandLength
         //0x80a47eec - sFishOnHandIsLoach
         //0x80a47eee - sLureCaughtWith
@@ -57,11 +58,6 @@ void Fishing_SkeletonDraw_Hook(z64_game_t* globalCtx, void** skeleton, z64_xyz_t
 void Fishing_GiveOverride_Kill(z64_actor_t* this) {
     Fishing* fish = (Fishing*)this;
     if(fish->override.key.all) {
-        ActorAdditionalData* extras = Actor_GetAdditionalData(this);
-        uint16_t resolved_item_id = resolve_upgrades(fish->override);
-        item_row_t* item_row = get_item_row(resolved_item_id);
-        Set_NewOverrideFlag(&(extras->flag));
-        dispatch_item(resolved_item_id, fish->override.value.base.player, &(fish->override), item_row);
         // Reset the fishing variables that keep track if we have caught a fish
         float* pFishOnHandLength = (float*)resolve_overlay_addr(pFishOnHandLength_VRAM, 0xFE);
         uint8_t* pFishOnHandIsLoach = (float*)resolve_overlay_addr(pFishOnHandIsLoach_VRAM, 0xFE);
@@ -75,10 +71,14 @@ void Fishing_GiveOverride_Kill(z64_actor_t* this) {
 void Fishing_CaughtFish_Textbox(z64_game_t* globalCtx, uint16_t messageID, z64_actor_t* actor) {
     if(caught_fish && caught_fish->override.key.all) {
         // Get the message ID from the override
+        ActorAdditionalData* extras = Actor_GetAdditionalData(&caught_fish->actor);
+        uint8_t player = caught_fish->override.value.base.player;
         uint16_t resolved_item_id = resolve_upgrades(caught_fish->override);
         item_row_t* item_row = get_item_row(resolved_item_id);
+        z64_DisplayTextbox(globalCtx, resolve_item_text_id(item_row, player != PLAYER_ID), NULL);
+        Set_NewOverrideFlag(&(extras->flag));
+        dispatch_item(resolved_item_id, caught_fish->override.value.base.player, &(caught_fish->override), item_row);
         globalCtx->msgContext.choiceIndex = 0;
-        z64_DisplayTextbox(globalCtx, item_row->text_id, NULL);
         return;
     }
     z64_DisplayTextbox(globalCtx, messageID, NULL);

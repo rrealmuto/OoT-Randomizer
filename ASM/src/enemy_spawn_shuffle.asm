@@ -1,7 +1,7 @@
 Actor_UpdateAll_ClearRoomEnemyInhibit:
 
     lui     t6, hi(curr_room_enemies_inhibited)
-    sb      r0, lo(curr_room_enemies_inhibited)(t6)  
+    sb      r0, lo(curr_room_enemies_inhibited)(t6)
     ; Replaced code
     lw      v0, 0x0004(a1); rest of replaced code
     lui     t0, 0x8012

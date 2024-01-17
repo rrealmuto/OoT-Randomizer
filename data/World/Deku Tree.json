@@ -87,7 +87,7 @@
         "locations": {
             "Deku Tree Rotating Spike Skulltula": "can_kill_skulltula"
         },
-        "exits": 
+        "exits":
         {
             "Deku Tree Basement Back Room" : "True"
         }

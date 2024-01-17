@@ -202,11 +202,11 @@
             "Water Temple North Basement Block Puzzle Stingray 4": "has_soul(Stinger)",
             "Water Temple North Basement Block Puzzle Stingray 5": "has_soul(Stinger)",
             "Water Temple Triple Water Spout Tektite 1": "
-                (has_soul(Tektite)) and 
+                (has_soul(Tektite)) and
                 (logic_water_north_basement_ledge_jump or Hover_Boots or
                     (has_explosives and Progressive_Strength_Upgrade))",
             "Water Temple Triple Water Spout Tektite 2": "
-                (has_soul(Tektite)) and 
+                (has_soul(Tektite)) and
                 (logic_water_north_basement_ledge_jump or Hover_Boots or
                     (has_explosives and Progressive_Strength_Upgrade))"
         },

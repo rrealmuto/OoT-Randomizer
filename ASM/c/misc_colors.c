@@ -42,7 +42,7 @@ extern uint8_t CFG_RAINBOW_BOOM_TRAIL_OUTER_ENABLED;
 void update_boomerang_trail_colors()
 {
     z64_actor_t* boomerang = z64_link.boomerang_actor;
-    if (boomerang != NULL && boomerang->main_proc != NULL)
+    if (boomerang != NULL && boomerang->update != NULL)
     {
         uint32_t effect_index = *((uint32_t*)(((uint32_t)boomerang) + 0x1C8));
 
@@ -101,7 +101,7 @@ void update_bombchu_trail_colors()
     z64_actor_t* explosive = z64_game.actor_list[ACTORTYPE_EXPLOSIVES].first;
     while (explosive != NULL)
     {
-        if (explosive->main_proc != NULL && explosive->actor_id == 0xDA) // En_Bom_Chu
+        if (explosive->update != NULL && explosive->actor_id == 0xDA) // En_Bom_Chu
         {
             uint32_t effect_index_1 = *((uint32_t*)(((uint32_t)explosive) + 0x16C));
             uint32_t effect_index_2 = *((uint32_t*)(((uint32_t)explosive) + 0x170));
@@ -232,7 +232,7 @@ void update_navi_colors()
     }
 
     z64_actor_t* navi = z64_link.navi_actor;
-    if (navi != NULL && navi->main_proc != NULL)
+    if (navi != NULL && navi->update != NULL)
     {
         colorRGBAf_t* navi_colors = (colorRGBAf_t*)(((uint32_t)navi) + 0x234);
         if (rainbow_inner_enabled)

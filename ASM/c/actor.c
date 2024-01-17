@@ -68,7 +68,7 @@ void Actor_After_UpdateAll_Hack(z64_actor_t* actor, z64_game_t* game) {
     // Hacks are responsible for checking that they are the correct actor.
     EnWonderitem_AfterInitHack(actor, game);
     bb_after_init_hack(actor, game);
-    
+
     CURR_ACTOR_SPAWN_INDEX = 0; // reset CURR_ACTOR_SPAWN_INDEX
 }
 
@@ -133,7 +133,7 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, xflag_t flag) {
 // Flag consists of the room #, scene setup, and the actor index
 void Actor_StoreFlagByIndex(z64_actor_t* actor, z64_game_t* game, uint16_t actor_index) {
     // Zeroize extra data;
-    
+
     xflag_t flag = (xflag_t) { 0 };
 
     flag.scene = z64_game.scene_index;
@@ -248,6 +248,12 @@ z64_actor_t* Actor_SpawnEntry_Hack(void* actorCtx, ActorEntry* actorEntry, z64_g
     if (continue_spawn) {
         continue_spawn = spawn_override_enemy_spawn_shuffle(actorEntry, globalCtx, SPAWN_FLAGS_SPAWNENTRY);
     }
+    /*
+    if(continue_spawn)
+    {
+        continue_spawn = spawn_override_enemizer(actorEntry, globalCtx, &overridden);
+    }
+    */
     z64_actor_t *spawned = NULL;
     if (continue_spawn) {
         spawned = z64_SpawnActor(actorCtx, globalCtx, actorEntry->id, actorEntry->pos.x, actorEntry->pos.y, actorEntry->pos.z,
@@ -361,10 +367,10 @@ uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit
             }
             return 1;
         }
-        
+
         return 1;
     }
-    
+
 
     return 0;
 }
@@ -408,4 +414,77 @@ z64_actor_t * Actor_SpawnAsChild_Hook(void* actorCtx, z64_actor_t* parent, z64_g
     actor_spawn_as_child_flag = 0;
     actor_spawn_as_child_parent = NULL;
     return spawned;
+}
+
+typedef struct {
+    int16_t id;
+    uint16_t var;
+} enemy_list_entry_t;
+
+enemy_list_entry_t enemy_list[] = {
+    { ACTOR_EN_TEST, 0x0003 }, //Stalfos, 0000 makes it invisible
+//    { ACTOR_EN_ANUBICE, 0x0000 }, // don't really work by themselves. maybe use spawner
+    { ACTOR_EN_BB, 0xFFFF }, // Probably make it so it can pick between green/white/blue/fire?
+    { ACTOR_EN_BILI, 0x0000 },
+    { ACTOR_EN_BUBBLE, 0x0000 },
+    { ACTOR_EN_CROW, 0x0000 },
+    { ACTOR_EN_DEKUBABA, 0x0000 },
+    { ACTOR_EN_DODOJR, 0x0000 },
+    { ACTOR_EN_DODONGO, 0x0000 },
+    { ACTOR_EN_FIREFLY, 0x0000 },
+    { ACTOR_EN_FLOORMAS, 0x0000 },
+    { ACTOR_EN_PEEHAT, 0x0000 },
+    { ACTOR_EN_MB, 0x0000 },
+    { ACTOR_EN_IK, 0xFF02 }, // Maybe random white/black. 0x0000 is nabooru which crashes
+    { ACTOR_EN_SKJ, 0x0000 }, //Always backflips away
+    //{ ACTOR_EN_TUBO_TRAP, 0x0000 },
+    { ACTOR_EN_POH, 0x0000 },
+    { ACTOR_EN_TITE, 0x0000 },
+    { ACTOR_EN_ZF, 0xFF80 }, // maybe also pick dinalfos
+    { ACTOR_EN_ZF, 0xFFFE }, // maybe also pick dinalfos
+    { ACTOR_EN_TP, 0xFFFF }, // Crashes on death?? not really. Definitely screws up drawing.
+    { ACTOR_EN_ST, 0x0000 },
+    { ACTOR_EN_BW, 0x0000 },
+    { ACTOR_EN_AM, 0x0000 },
+    { ACTOR_EN_DEKUNUTS, 0x0000 },
+    { ACTOR_EN_VM, 0x0000 },
+     //{ ACTOR_EN_RD, 0x0000 },
+     //{ ACTOR_EN_FD, 0x0000 },
+    { ACTOR_EN_SB, 0x0000 },
+    { ACTOR_EN_NY, 0x0000 },
+    { ACTOR_EN_FZ, 0x0000 },
+    { ACTOR_EN_EIYER, 0x000A }, // This is the ring of 4 from jabu. Maybe just use one.
+    { ACTOR_EN_WF, 0xFF00 },
+    { ACTOR_EN_RR, 0x0000},
+    { ACTOR_EN_REEBA, 0x0000},
+    { ACTOR_EN_SKB, 0x0000}
+};
+
+bool is_enemy(ActorEntry* actorEntry) {
+    for(int i = 0; i < array_size(enemy_list); i++) {
+        if(enemy_list[i].id == actorEntry->id)
+            return true;
+    }
+    return false;
+}
+
+int enemy_spawn_index = 0;
+
+bool spawn_override_enemizer(ActorEntry *actorEntry, z64_game_t *globalCtx, bool* overridden) {
+    if(is_enemy(actorEntry)) {
+        int16_t index = (int16_t)(z64_Rand_ZeroOne() * array_size(enemy_list));
+        //int index = (enemy_spawn_index++) % (array_size(enemy_list));
+        actorEntry->id = enemy_list[index].id;
+        actorEntry->params = enemy_list[index].var;
+        *overridden = true;
+    }
+    return true;
+}
+
+z64_actor_t* curr_updating_actor = NULL;
+
+void Actor_Update_Hook(z64_actor_t* actor, z64_game_t* globalCtx, ActorFunc updateFunc) {
+    curr_updating_actor = actor;
+    updateFunc(actor, globalCtx);
+    curr_updating_actor = NULL;
 }
