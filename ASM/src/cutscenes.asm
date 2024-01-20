@@ -1,6 +1,7 @@
 override_great_fairy_cutscene:
     ; a0 = global context
-    ; a2 = fairy actor
+    ; a2 = fairy actor - but not really. fairy actor is stored in 0x0028(sp)
+    lw      a2, 0x0028(sp)
     addiu   sp, sp, -0x18
     sw      ra, 0x10 (sp)
 
