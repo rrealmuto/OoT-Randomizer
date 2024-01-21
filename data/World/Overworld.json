@@ -2880,8 +2880,7 @@
         "exits": {
             "DMC Lower Local": "can_use(Goron_Tunic)",
             "GC Darunias Chamber": "True",
-            #"DMC Great Fairy Fountain": "can_pass_boulder('DMC_FAIRY_BOULDER_1') or can_pass_boulder('DMC_FAIRY_BOULDER_2')",
-            "DMC Great Fairy Fountain": "boulder_type('DMC_BOULDER_NEAR_FAIRY') in [BOULDER_TYPE_BROWN, BOULDER_TYPE_BRONZE]",
+            "DMC Great Fairy Fountain": "can_pass_boulder('DMC_FAIRY_BOULDER_1') or can_pass_boulder('DMC_FAIRY_BOULDER_2')",
             "DMC Hammer Grotto": "can_pass_boulder('DMC_SCRUB_GROTTO_BOULDER')"
         }
     },
