@@ -254,7 +254,7 @@
         },
         "exits": {
             "Forest Temple Falling Room": "
-                (Small_Key_Forest_Temple, 5) and (can_use(Bow) or can_use(Dins_Fire))"
+                (Small_Key_Forest_Temple, 5) and (can_use(Bow) or can_use(Dins_Fire)) and Forest_Temple_MQ_Wolfos_Clear and has_soul(Stalfos)"
             # Only 5 keys because you must have had access to falling ceiling room to have wasted a key there
         }
     },

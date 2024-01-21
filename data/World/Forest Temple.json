@@ -127,9 +127,9 @@
                 Progressive_Strength_Upgrade and (can_use(Bow) or can_use(Slingshot))",
             "Forest Temple After First Locked Door Skulltula": "can_kill_skulltula",
             "Forest Temple Block Push Room Lower Bubble": "can_kill_bubble",
-            "Forest Temple Block Push Room Upper Bubble 1": "Progressive_Strength_Upgrade and can_kill_bubble",
-            "Forest Temple Block Push Room Upper Bubble 2": "Progressive_Strength_Upgrade and can_kill_bubble",
-            "Forest Temple First Twisted Hallway Wallmaster": "Progressive_Strength_Upgrade and (Small_Key_Forest_Temple,2) and can_kill_wallmaster"
+            "Forest Temple Block Push Room Upper Bubble 1": "Progressive_Strength_Upgrade and can_kill_bubble and is_adult",
+            "Forest Temple Block Push Room Upper Bubble 2": "Progressive_Strength_Upgrade and can_kill_bubble and is_adult",
+            "Forest Temple First Twisted Hallway Wallmaster": "Progressive_Strength_Upgrade and (Small_Key_Forest_Temple,2) and can_kill_wallmaster and is_adult"
         },
         "exits": {
             "Forest Temple Outside Upper Ledge": "
