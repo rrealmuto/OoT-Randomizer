@@ -63,6 +63,9 @@
                 can_bonk or (can_play(Zeldas_Lullaby) and can_blast_or_smash)",
             "Water Temple MQ Lizalfos Hallway Room Crate 5": "
                 can_bonk or (can_play(Zeldas_Lullaby) and can_blast_or_smash)",
+            "Water Temple MQ Map Chest Hookshot Wonderitem": "has_fire_source and Hookshot",
+            "Water Temple MQ Lizalfos Hallway Hookshot Wonderitem": "Hookshot",
+            "Water Temple MQ Longshot Chest Hookshot Wonderitem": "Hookshot",
             "Water Temple MQ Map Chest Stalfos 1": "has_fire_source and Hookshot and has_soul(Stalfos)",
             "Water Temple MQ Map Chest Stalfos 2": "has_fire_source and Hookshot and has_soul(Stalfos)",
             "Water Temple MQ Map Chest Stalfos 3": "has_fire_source and Hookshot and has_soul(Stalfos)",
