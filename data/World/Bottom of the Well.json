@@ -17,7 +17,7 @@
             "Bottom of the Well Underwater Left Chest": "can_play(Zeldas_Lullaby)",
             "Bottom of the Well Underwater Front Chest": "can_play(Zeldas_Lullaby)",
             "Bottom of the Well Map Chest": "
-                (boulder_type('BOTW_CHEST_BOULDER_1') == 'BOULDER_TYPE.BROWN' or boulder_type('BOTW_CHEST_BOULDER_2') == 'BOULDER_TYPE.BROWN') and
+                (boulder_type('BOTW_CHEST_BOULDER_1') == BOULDER_TYPE_BROWN or boulder_type('BOTW_CHEST_BOULDER_2') == BOULDER_TYPE_BROWN) and
                 (has_explosives or
                 (Progressive_Strength_Upgrade and
                     (at('Bottom of the Well Behind Locked Doors', True) or
