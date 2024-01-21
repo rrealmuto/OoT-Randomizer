@@ -19,6 +19,8 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v69](#v69)
+  * [v68](#v68)
   * [v67](#v67)
   * [v66](#v66)
   * [v65](#v65)
@@ -92,6 +94,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v69
+  * Boulder shuffle logic fixes
+
 ### v68
   * Fix broken Great Fairy Fountains
 
