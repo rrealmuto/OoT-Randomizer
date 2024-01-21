@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v70](#v70)
   * [v69](#v69)
   * [v68](#v68)
   * [v67](#v67)
@@ -94,6 +95,16 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v70
+  * Enemy drops/souls logic fixes:
+    * MQ Forest Falling Room
+    * Forest Temple Block Push Room Upper Bubbles
+    * Forest Temple First Twisted Hallway Wallmaster
+    * Spirit Temple MQ Child Stalfos Fight Pot
+    * Spirit Temple MQ Central Chamber Flying Pots
+    * MQ Water Dragon Statue Wonderitems
+  * Add missing Deku Tree MQ Basement Larva Room Deku Scrub drop
+  * Fix accidentally removed MQ Water wonderitems
 ### v69
   * Boulder shuffle logic fixes
 

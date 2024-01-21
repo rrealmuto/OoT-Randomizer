@@ -102,10 +102,10 @@
         "region_name": "Child Spirit Stalfos Room",
         "dungeon": "Spirit Temple",
         "locations": {
-            "Spirit Temple MQ Child Stalfos Fight Pot 1": "True",
-            "Spirit Temple MQ Child Stalfos Fight Pot 2": "True",
-            "Spirit Temple MQ Child Stalfos Fight Pot 3": "True",
-            "Spirit Temple MQ Child Stalfos Fight Pot 4": "True",
+            "Spirit Temple MQ Child Stalfos Fight Pot 1": "(Sticks or Kokiri_Sword) and has_soul(Stalfos)",
+            "Spirit Temple MQ Child Stalfos Fight Pot 2": "(Sticks or Kokiri_Sword) and has_soul(Stalfos)",
+            "Spirit Temple MQ Child Stalfos Fight Pot 3": "(Sticks or Kokiri_Sword) and has_soul(Stalfos)",
+            "Spirit Temple MQ Child Stalfos Fight Pot 4": "(Sticks or Kokiri_Sword) and has_soul(Stalfos)",
             "Spirit Temple MQ Spinning Platform Stalfos": "(Sticks or Kokiri_Sword) and has_soul(Stalfos)"
         },
         "exits": {
@@ -157,11 +157,11 @@
             "Spirit Temple MQ Central Chamber Floor Pot 1": "True",
             "Spirit Temple MQ Central Chamber Floor Pot 2": "True",
             "Spirit Temple MQ Central Chamber Floor Pot 3": "True",
-            "Spirit Temple MQ Central Chamber Flying Pot Floor": "True",
-            "Spirit Temple MQ Central Chamber Flying Pot Stairs": "True",
+            "Spirit Temple MQ Central Chamber Flying Pot Floor": "has_soul(Flying_Pot)",
+            "Spirit Temple MQ Central Chamber Flying Pot Stairs": "has_soul(Flying_Pot)",
             "Spirit Temple MQ Central Chamber Flying Pot Top Left": "
-                (is_adult and (Hover_Boots or logic_spirit_lobby_jump)) or
-                can_play(Song_of_Time)",
+                has_soul(Flying_Pot) and ((is_adult and (Hover_Boots or logic_spirit_lobby_jump)) or
+                can_play(Song_of_Time))",
             "Spirit Temple MQ Central Chamber Top Left Pot (Left)": "
                 (is_adult and (Hover_Boots or logic_spirit_lobby_jump)) or
                 can_play(Song_of_Time)",

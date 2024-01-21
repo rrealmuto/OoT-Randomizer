@@ -599,7 +599,7 @@ uint8_t room_flags[256]; // Stores the bit offset for each actor in the currentl
 // Determine the bit offset into the collectible_override_flags for a flag
 // Caches the bit offets for every actor in the current scene/room/setup into room_flags so that we don't have to search the table over and over.
 uint16_t get_xflag_bit_offset(xflag_t* flag) {
-    uint8_t i = 0;
+    int i = 0;
     uint8_t room_id_temp = 0;
     uint8_t room_id = 0;
     uint8_t setup_id_temp;
@@ -680,6 +680,11 @@ uint16_t get_xflag_bit_offset(xflag_t* flag) {
         room_flags[0] = 0;
         loaded_scene_room_setup = test_scene_room_setup;
         uint8_t sum = 0;
+
+        // Clear room flags
+        for(i = 0; i < 256; i++) {
+            room_flags[i] = 0;
+        }
 
         // Read and decode the RLC, data and store it into room_flags
         for(i = 0; i < rlc_size; i++) {

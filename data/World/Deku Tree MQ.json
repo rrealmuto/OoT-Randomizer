@@ -179,6 +179,7 @@
         "dungeon": "Deku Tree",
         "locations": {
             "Deku Tree MQ Basement Larva Room Keese": "has_soul(Keese) and (is_adult or can_child_attack)",
+            "Deku Tree MQ Basement Larva Room Deku Scrub": "has_soul(Deku_Scrub) and (is_adult or can_child_attack)",
             "Deku Tree MQ Basement Larva Room Gohma Larva 1": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)",
             "Deku Tree MQ Basement Larva Room Gohma Larva 2": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)",
             "Deku Tree MQ Basement Larva Room Gohma Larva 3": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)",
