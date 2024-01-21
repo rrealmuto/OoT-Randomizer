@@ -3,14 +3,22 @@
 from Rom import *
 from ProcessActors import get_actor_list, scenes
 import random
-from enum import Enum
+from enum import IntEnum
 
-class BOULDER_TYPE(Enum):
+class BOULDER_TYPE(IntEnum):
     BROWN = 0
     BRONZE = 1
     SILVER = 2
     RED_ICE = 3
     HEAVY_BLOCK = 4
+
+boulder_rules = {
+    'BOULDER_TYPE_BROWN': int(BOULDER_TYPE.BROWN),
+    'BOULDER_TYPE_BRONZE': int(BOULDER_TYPE.BRONZE),
+    'BOULDER_TYPE_SILVER': int(BOULDER_TYPE.SILVER),
+    'BOULDER_TYPE_RED_ICE': int(BOULDER_TYPE.RED_ICE),
+    'BOULDER_TYPE_HEAVY_BLOCK': int(BOULDER_TYPE.HEAVY_BLOCK)
+}
 
 vanilla_dungeon_boulders = {
     'Bottom of the Well': {

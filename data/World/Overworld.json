@@ -2417,7 +2417,7 @@
                 (is_adult and here(can_plant_bean and (plant_beans or has_explosives or Progressive_Strength_Upgrade)))",
             "DMT Rock Red Rupee": "
                 is_child and (
-                    (here(can_pass_boulder('DMT_MIDDLE_BOULDER')) and ((boulder_type('DMT_UPPER_BOULDER') == 'BOULDER_TYPE.BROWN') and here(can_blast_or_smash)) or (boulder_type('DMT_UPPER_BOULDER') == 'BOULDER_TYPE.BRONZE') and here(can_use(Megaton_Hammer)))
+                    (here(can_pass_boulder('DMT_MIDDLE_BOULDER')) and ((boulder_type('DMT_UPPER_BOULDER') == BOULDER_TYPE_BROWN) and here(can_blast_or_smash)) or (boulder_type('DMT_UPPER_BOULDER') == BOULDER_TYPE_BRONZE) and here(can_use(Megaton_Hammer)))
                     or (logic_boomerang_boulders and Boomerang))",
             "DMT Rock Blue Rupee": "
                 is_child and (can_pass_boulder('DMT_CHILD_LOWER_BOULDER') or (logic_boomerang_boulders and Boomerang))",
@@ -2440,7 +2440,7 @@
             "Kak Behind Gate": "True",
             "Goron City": "True",
             "Death Mountain Summit": "
-                (here(can_pass_boulder('DMT_MIDDLE_BOULDER')) and ((boulder_type('DMT_UPPER_BOULDER') == 'BOULDER_TYPE.BROWN') and here(can_blast_or_smash)) or (boulder_type('DMT_UPPER_BOULDER') == 'BOULDER_TYPE.BRONZE') and here(can_use(Megaton_Hammer))) or
+                (here(can_pass_boulder('DMT_MIDDLE_BOULDER')) and ((boulder_type('DMT_UPPER_BOULDER') == BOULDER_TYPE_BROWN) and here(can_blast_or_smash)) or (boulder_type('DMT_UPPER_BOULDER') == BOULDER_TYPE_BRONZE) and here(can_use(Megaton_Hammer))) or
                 (is_adult and here(can_plant_bean and (plant_beans or Progressive_Strength_Upgrade))) or
                 (logic_dmt_climb_hovers and can_use(Hover_Boots))",
             "Dodongos Cavern Beginning": "
@@ -2499,9 +2499,9 @@
             "Goron City Child Fire": "is_child and can_use(Dins_Fire)",
             "GC Woods Warp Open": "
                 (can_pass_boulder('GC_LW_BOULDER_1') or can_pass_boulder('GC_LW_BOULDER_2') or can_pass_boulder('GC_LW_BOULDER_3')) or
-                ((boulder_type('GC_LW_BOULDER_1') == 'BOULDER_TYPE.BROWN' or
-                 boulder_type('GC_LW_BOULDER_2') == 'BOULDER_TYPE.BROWN' or
-                 boulder_type('GC_LW_BOULDER_3') == 'BOULDER_TYPE.BROWN') and 
+                ((boulder_type('GC_LW_BOULDER_1') == BOULDER_TYPE_BROWN or
+                 boulder_type('GC_LW_BOULDER_2') == BOULDER_TYPE_BROWN or
+                 boulder_type('GC_LW_BOULDER_3') == BOULDER_TYPE_BROWN) and
                     (can_blast_or_smash or can_use(Dins_Fire) or can_use(Bow) or
                     Progressive_Strength_Upgrade or 'Goron City Child Fire'))",
             "Stop GC Rolling Goron as Adult": "
@@ -2732,9 +2732,9 @@
         "events": {
             "GC Woods Warp Open": "(can_pass_boulder('GC_LW_BOULDER_1') or can_pass_boulder('GC_LW_BOULDER_2') or can_pass_boulder('GC_LW_BOULDER_3')) or 
             (
-                (boulder_type('GC_LW_BOULDER_1') == 'BOULDER_TYPE.BROWN' or
-                boulder_type('GC_LW_BOULDER_2') == 'BOULDER_TYPE.BROWN' or
-                boulder_type('GC_LW_BOULDER_3') == 'BOULDER_TYPE.BROWN') and
+                (boulder_type('GC_LW_BOULDER_1') == BOULDER_TYPE_BROWN or
+                boulder_type('GC_LW_BOULDER_2') == BOULDER_TYPE_BROWN or
+                boulder_type('GC_LW_BOULDER_3') == BOULDER_TYPE_BROWN) and
                     can_use(Dins_Fire))"
         },
         "exits": {
@@ -2863,7 +2863,7 @@
             "DMC Lower Nearby": "
                 is_adult and
                 (Hover_Boots or at('DMC Lower Nearby', can_pass_boulder('DMC_BOULDER_NEAR_FAIRY')) or
-                    ((logic_crater_boulder_jumpslash or logic_crater_boulder_skip) and boulder_type('DMC_BOULDER_NEAR_FAIRY') in ['BOULDER_TYPE.BROWN', 'BOULDER_TYPE.BRONZE'] and Megaton_Hammer) or
+                    ((logic_crater_boulder_jumpslash or logic_crater_boulder_skip) and boulder_type('DMC_BOULDER_NEAR_FAIRY') in [BOULDER_TYPE_BROWN, BOULDER_TYPE_BRONZE] and Megaton_Hammer) or
                     (logic_crater_boulder_skip and Goron_Tunic))"
         }
     },
@@ -2880,7 +2880,8 @@
         "exits": {
             "DMC Lower Local": "can_use(Goron_Tunic)",
             "GC Darunias Chamber": "True",
-            "DMC Great Fairy Fountain": "can_pass_boulder('DMC_FAIRY_BOULDER_1') or can_pass_boulder('DMC_FAIRY_BOULDER_2')",
+            #"DMC Great Fairy Fountain": "can_pass_boulder('DMC_FAIRY_BOULDER_1') or can_pass_boulder('DMC_FAIRY_BOULDER_2')",
+            "DMC Great Fairy Fountain": "boulder_type('DMC_BOULDER_NEAR_FAIRY') in [BOULDER_TYPE_BROWN, BOULDER_TYPE_BRONZE]",
             "DMC Hammer Grotto": "can_pass_boulder('DMC_SCRUB_GROTTO_BOULDER')"
         }
     },
