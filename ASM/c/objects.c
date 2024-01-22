@@ -95,7 +95,7 @@ void Room_Change_Hook(z64_game_t* globalCtx, void* roomCtx) {
 int32_t Object_GetIndex_Hook(z64_obj_ctxt_t *object_ctx, int16_t object_id) {
     int32_t index = Object_GetIndex(object_ctx, object_id);
     int32_t free_index = -1;
-    if (index == -1 && (CFG_OBJECT_SYSTEM & ENABLE_OBJECT_SYSTEM_FLAG)) {
+    if (index == -1) {
         // Check if the object is in our table already
         for(int i = OBJECT_EXCHANGE_BANK_MAX; i < OBJECT_EXCHANGE_BANK_EXTENDED_MAX; i++) {
             if(free_index < 0 && extended_object_ctx.slots[i].id == 0) {
