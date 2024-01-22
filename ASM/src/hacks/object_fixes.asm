@@ -421,3 +421,15 @@ jal Object_GetIndex
 ; Replaces:
 ;   jal     Object_GetIndex ; (original which jumps to our hack)
     jal     Object_GetIndex_EnDog ; (special hacked version just for doggos)
+
+; Hacks in En_Hy to just not use the extended objects system
+.headersize(0x80AE4EE0 - 0x00E641C0)
+; Replace calls to Object_GetIndex in EnHy_FindSkelAndHeadObjects
+.org 0x80ae4f44
+    jal     Object_GetIndex
+.org 0x80ae4f7c
+    jal     Object_GetIndex
+.org 0x80ae4fbc
+    jal     Object_GetIndex
+.org 0x80ae5098
+    jal     Object_GetIndex
