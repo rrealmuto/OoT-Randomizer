@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v72](#v72)
   * [v71](#v71)
   * [v70](#v70)
   * [v69](#v69)
@@ -96,6 +97,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v72
+  * Don't delete all of the boulders
+
 ### v71
   * Fix burning kak crash in boulder shuffle
 
