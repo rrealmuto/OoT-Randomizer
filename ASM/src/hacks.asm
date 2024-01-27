@@ -243,7 +243,7 @@ Gameplay_InitSkybox:
 
     li      at, 0x117A4 //object table
     addu    a0, a0, at
-    jal     0x80081628          //check if object file is loaded
+    jal     Object_GetIndex          //check if object file is loaded. This calls the original version instead of the hooked one.
     addiu   a1, r0, 0x02        //gameplay_field_keep
     b       @return_check_if_object_loaded
     nop
