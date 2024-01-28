@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v74](#v74)
   * [v73](#v73)
   * [v72](#v72)
   * [v71](#v71)
@@ -98,6 +99,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v74
+  * Properly resize boulders that replace red ice walls
+
 ### v73
   * Fix sandstorm transitions occassionally crashing
 
