@@ -205,6 +205,8 @@ CFG_MINIMAP_ENEMY_TRACKER:
 .byte 0x00
 SHUFFLE_FISHIES:
 .byte 0x00
+CFG_BOULDER_SHUFFLE:
+.byte 0x00
 .align 4
 
 ; These configuration values are given fixed addresses to aid auto-trackers.

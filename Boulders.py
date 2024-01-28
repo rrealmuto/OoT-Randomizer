@@ -54,6 +54,10 @@ mq_dungeon_boulders = {
 
 }
 
+def patch_kz_boulder(type: BOULDER_TYPE, rom: Rom):
+    rom.write_byte(rom.sym('KZ_BOULDER_TYPE'), type)
+    return
+
 boulder_list = {
     
     'HF_UNNAMED_1': {(81, 0, 1, 27): {'type': BOULDER_TYPE.SILVER, 'switch': 60, }, (81, 0, 2, 37): {'type': BOULDER_TYPE.SILVER, 'switch': 60, }, (81, 0, 0, 30): {'type': BOULDER_TYPE.SILVER, 'switch': 60, },},
@@ -71,6 +75,7 @@ boulder_list = {
     'ZR_FAIRY_GROTTO_BOULDER': {(84, 0, 0, 61): {'type': BOULDER_TYPE.BROWN, 'switch': 5, }, (84, 0, 2, 27): {'type': BOULDER_TYPE.BROWN, 'switch': 5, },},
     'HF_UNNAMED_6': {(84, 0, 0, 64): {'type': BOULDER_TYPE.BROWN, 'switch': 10, },},
     'ZD_ADULT_SHOP_BOULDER': {(88, 1, 2, 15): {'type': BOULDER_TYPE.RED_ICE, 'switch': 4, },},
+    'ZD_KING_ZORA_BOULDER': {(88,-1, -1, -1): {'type': BOULDER_TYPE.RED_ICE, 'switch': -1, 'patch': patch_kz_boulder },},
     'ZF_SECRET_SILVER_BOULDER': {(89, 0, 0, 5): {'type': BOULDER_TYPE.SILVER, 'switch': 60, }, (89, 0, 1, 5): {'type': BOULDER_TYPE.SILVER, 'switch': 60, }, (89, 0, 2, 48): {'type': BOULDER_TYPE.SILVER, 'switch': 60, },},
     'ZF_UNNAMED_1': {(89, 0, 0, 16): {'type': BOULDER_TYPE.BROWN, 'switch': 21, }, (89, 0, 1, 16): {'type': BOULDER_TYPE.BROWN, 'switch': 21, }, (89, 0, 2, 52): {'type': BOULDER_TYPE.BROWN, 'switch': 21, },},
     'ZF_SECRET_BROWN_BOULDER': {(89, 0, 0, 17): {'type': BOULDER_TYPE.BROWN, 'switch': 22, }, (89, 0, 1, 17): {'type': BOULDER_TYPE.BROWN, 'switch': 22, }, (89, 0, 2, 53): {'type': BOULDER_TYPE.BROWN, 'switch': 22, },},
@@ -177,6 +182,7 @@ boulder_list = {
     'OGC_UNNAMED_7': {(100, 0, 0, 9): {'type': BOULDER_TYPE.SILVER, 'switch': 60, },},
 }
 
+
 def process_brown_boulder(actor_bytes):
     return {
         "type": BOULDER_TYPE.BROWN,
@@ -246,7 +252,7 @@ convert = {
     BOULDER_TYPE.HEAVY_BLOCK: convert_heavyblock
 }
 
-def shuffle_boulders(world) -> tuple[dict[str, dict[tuple[int,int,int,int], dict[str, any]]], dict[tuple[int,int,int,int], BOULDER_TYPE]]:
+def shuffle_boulders(world) -> tuple[dict[str, dict[tuple[int,int,int,int], dict[str, any]]], dict[tuple[int,int,int,int], tuple[str,BOULDER_TYPE]]]:
     # Build the full boulder list from the overworld ones + dungeons
     boulders = boulder_list
 
@@ -272,24 +278,35 @@ def shuffle_boulders(world) -> tuple[dict[str, dict[tuple[int,int,int,int], dict
         boulder_key = boulder_keys[i]
         boulder = boulders[boulder_key] # Contains a dict of boulders for this because we have multiple scene setups
         shuffled_boulders [boulder_key] = target_types[i]
+
         #shuffled_boulders[boulder_key] = BOULDER_TYPE.BROWN
         for id in boulder:
-            shuffled_boulders_by_id[(id[0], id[1], id[2], id[3])] = target_types[i]
+            if 'patch' in list(boulder[id]):
+                patch_func = boulder[id]['patch']
+            else:
+                patch_func = None
+            shuffled_boulders_by_id[(id[0], id[1], id[2], id[3])] = (boulder_keys[i], target_types[i], patch_func)
             #shuffled_boulders_by_id[(id[0], id[1], id[2], id[3])] = BOULDER_TYPE.BROWN
             
 
     return shuffled_boulders, shuffled_boulders_by_id
 
-def patch_boulders(boulders: dict[tuple[int,int,int,int], BOULDER_TYPE], rom: Rom):
+def patch_boulders(boulders: dict[tuple[int,int,int,int], tuple[str,BOULDER_TYPE]], rom: Rom):
     boulder_rom_actors = get_boulder_shuffle_actors(rom)
     rom_boulders = {(boulder_rom_actors[addr][0],boulder_rom_actors[addr][1],boulder_rom_actors[addr][2],boulder_rom_actors[addr][3]): {'addr': addr, 'type':boulder_rom_actors[addr][5]['type'], 'switch':boulder_rom_actors[addr][5]['switch']} for addr in list(boulder_rom_actors.keys())}
     for key in boulders:
-        new_type = boulders[key]
-        rom_actor = rom_boulders[key]
-        if new_type != rom_actor['type']:
-            (id, var) = convert[new_type](rom_actor)
-            rom.write_int16(rom_actor['addr'], id)
-            rom.write_int16(rom_actor['addr'] + 14, var)
+        boulder_name, new_type, patch_func = boulders[key]
+        if patch_func is None:
+            rom_actor = rom_boulders[key]
+            if new_type != rom_actor['type']:
+                (id, var) = convert[new_type](rom_actor)
+                rom.write_int16(rom_actor['addr'], id)
+                rom.write_int16(rom_actor['addr'] + 14, var)
+        else:
+            # King zora
+            patch_func(new_type, rom)
+            continue
+
 
 
 #rom = Rom("ZOOTDEC.z64")

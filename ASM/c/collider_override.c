@@ -29,6 +29,7 @@ collidercylinder_override collidercylinder_override_table[] = {
     { .scene = 0x58, .pad = 0, .setup = 2, .room = 1, .flag = 16, .radius_override = 80 }, // ZD Shop red ice
     { .scene = 0x09, .pad = 0, .setup = 0, .room = 3, .flag = 18, .radius_override = 80 }, // Ice cavern red ice wall
     { .scene = 0x09, .pad = 0, .setup = 0, .room = 3, .flag = 19, .radius_override = 80 }, // Ice cavern red ice wall
+    { .scene = 0x58, .pad = 0, .setup = 2, .room = 0, .flag = 1, .radius_override = 120 }, // ZD KZ
     { .scene = 0x00, .all = 0, .radius_override = 0 }
 };
 
@@ -64,3 +65,4 @@ int32_t Collider_SetCylinder_Hook(z64_game_t* globalCtx, ColliderCylinder* colli
     
     return Collider_SetCylinder(globalCtx, collider, actor, &copy_collider_init);
 }
+

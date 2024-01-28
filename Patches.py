@@ -2657,6 +2657,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     if world.settings.shuffle_boulders:
         broken_actors_cfg |= 0x80
         rom.write_byte(symbol, 0x80)
+        rom.write_byte(rom.sym('CFG_BOULDER_SHUFFLE'), 1)
         patch_boulders(world.boulders_by_id, rom)
 
         # Update brown bombable boulders to use collider for explosion detection instead of fixed distance
