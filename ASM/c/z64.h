@@ -894,7 +894,9 @@ typedef struct {
   uint32_t        temp_collect_flags;       /* 0x1380 */
   char            unk_11_[0x0013];          /* 0x1384 */
   uint8_t         grotto_id;                /* 0x1397 */
-  char            unk_12_[0x0030];          /* 0x1398 */
+  char            unk_12_[0x002C];          /* 0x1398 */
+  int16_t         dog_params;                /* 0x13C4 */
+  char            unk_12_2[0x0002];         /* 0x13C6*/
   uint16_t        nayrus_love_timer;        /* 0x13C8 */
   char            unk_13_[0x0004];          /* 0x13CA */
   int16_t         timer_1_state;            /* 0x13CE */

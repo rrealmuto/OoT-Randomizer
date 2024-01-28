@@ -4249,3 +4249,4 @@ courtyard_guards_kill:
 .include("hacks/code.asm")
 .include("hacks/object_fixes.asm")
 .include("hacks/ovl_en_kz.asm")
+.include("hacks/ovl_boss_ganon.asm")
