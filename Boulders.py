@@ -272,8 +272,11 @@ def shuffle_boulders(world) -> tuple[dict[str, dict[tuple[int,int,int,int], dict
         boulder_key = boulder_keys[i]
         boulder = boulders[boulder_key] # Contains a dict of boulders for this because we have multiple scene setups
         shuffled_boulders [boulder_key] = target_types[i]
+        #shuffled_boulders[boulder_key] = BOULDER_TYPE.BROWN
         for id in boulder:
             shuffled_boulders_by_id[(id[0], id[1], id[2], id[3])] = target_types[i]
+            #shuffled_boulders_by_id[(id[0], id[1], id[2], id[3])] = BOULDER_TYPE.BROWN
+            
 
     return shuffled_boulders, shuffled_boulders_by_id
 
