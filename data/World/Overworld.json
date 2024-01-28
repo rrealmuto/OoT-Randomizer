@@ -3117,7 +3117,7 @@
         "scene": "Zoras Domain",
         "hint": "ZORAS_DOMAIN",
         "events": {
-            "King Zora Thawed": "is_adult and Blue_Fire",
+            "King Zora Thawed": "is_adult and can_pass_boulder('ZD_KING_ZORA_BOULDER')",
             "Eyeball Frog Access": "
                 is_adult and 'King Zora Thawed' and
                 (((Eyedrops or Eyeball_Frog) and not disable_trade_revert) or

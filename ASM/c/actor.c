@@ -406,7 +406,6 @@ z64_actor_t * Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int16_t ac
     return NULL;
 }
 
-extern z64_actor_t * Actor_SpawnAsChild(void* actorCtx, z64_actor_t* parent, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params);
 z64_actor_t * Actor_SpawnAsChild_Hook(void* actorCtx, z64_actor_t* parent, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params) {
     actor_spawn_as_child_flag = 1;
     actor_spawn_as_child_parent = parent;

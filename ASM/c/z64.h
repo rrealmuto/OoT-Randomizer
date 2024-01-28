@@ -2555,6 +2555,7 @@ extern void __osFree(Arena* arena, void* ptr);
 extern void* __osMalloc(Arena* arena, uint32_t size);
 extern void z64_LoadRoom(z64_game_t *game, void *p_ctxt_room_index, uint8_t room_index);
 extern void z64_UnloadRoom(z64_game_t *game, void *p_ctxt_room_index);
+extern z64_actor_t * Actor_SpawnAsChild(void* actorCtx, z64_actor_t* parent, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params);
 
 extern uintptr_t z64_segments[16];
 
