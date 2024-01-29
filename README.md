@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v77](#v77)
   * [v76](#v76)
   * [v75](#v75)
   * [v74](#v74)
@@ -101,6 +102,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+###
+  * Fix Hylian loach fishing shuffle logic
+
 ### v76
   * Add King Zora red ice to boulder shuffle
 
