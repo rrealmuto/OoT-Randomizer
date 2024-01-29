@@ -597,7 +597,7 @@
         "locations": {
             "LH Child Fishing": "is_child and (not shuffle_fishies or Fish_Child_10_lb)",
             "LH Adult Fishing": "is_adult and (not shuffle_fishies or Fish_Adult_16_lb)",
-            "LH Loach Fishing": "True",
+            "LH Loach Fishing": "not shuffle_fishies or Hylian_Loach",
             "LH Child Fish 1": "is_child and can_fish",
             "LH Child Fish 2": "is_child and can_fish",
             "LH Child Fish 3": "is_child and can_fish",
