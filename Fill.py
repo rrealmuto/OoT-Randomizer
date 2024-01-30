@@ -199,13 +199,13 @@ def distribute_items_restrictive(worlds: list[World], fill_locations: Optional[l
     # placed in the location, not checking reachability. This is important
     # for things like Ice Traps that can't be found at some locations
     logger.info('Placing priority items.')
-    fill_restrictive_fast(worlds, fill_locations, prioitempool)
+    fill_restrictive_fast(worlds, fill_locations, prioitempool, search)
 
     # Place the rest of the items.
     # No restrictions at all. Places them completely randomly. Since they
     # cannot affect the beatability, we don't need to check them
     logger.info('Placing the rest of the items.')
-    fast_fill(fill_locations, restitempool)
+    fill_restrictive_fast(worlds, fill_locations, restitempool, search)
 
     # Log unplaced item/location warnings
     for item in progitempool + prioitempool + restitempool:
@@ -511,7 +511,7 @@ def fill_restrictive(worlds: list[World], base_search: Search, locations: list[L
 # This places items in the itempool into the locations
 # It does not check for reachability, only that the item is
 # allowed in the location
-def fill_restrictive_fast(worlds: list[World], locations: list[Location], itempool: list[Item]) -> None:
+def fill_restrictive_fast(worlds: list[World], locations: list[Location], itempool: list[Item], search) -> None:
     while itempool and locations:
         item_to_place = itempool.pop()
         random.shuffle(locations)
@@ -519,7 +519,7 @@ def fill_restrictive_fast(worlds: list[World], locations: list[Location], itempo
         # get location that allows this item
         spot_to_fill = None
         for location in locations:
-            if location.can_fill_fast(item_to_place):
+            if location.can_fill(search.state_list[location.world.id], item_to_place):
                 spot_to_fill = location
                 break
 
@@ -539,7 +539,7 @@ def fill_restrictive_fast(worlds: list[World], locations: list[Location], itempo
 # this places item in item_pool completely randomly into
 # fill_locations. There is no checks for validity since
 # there should be none for these remaining items
-def fast_fill(locations: list[Location], itempool: list[Item]) -> None:
+def fast_fill(locations: list[Location], itempool: list[Item], search) -> None:
     random.shuffle(locations)
     while itempool and locations:
         spot_to_fill = locations.pop()

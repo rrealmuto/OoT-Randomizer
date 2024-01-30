@@ -92,6 +92,8 @@ class Location:
         self.access_rules = [lambda_rule]
 
     def can_fill(self, state: State, item: Item, check_access: bool = True) -> bool:
+        if self.name == "HC Great Fairy Reward":
+            pass
         if state.search is None:
             return False
         if self.minor_only and item.majoritem:
