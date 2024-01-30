@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v78](#v78)
   * [v77](#v77)
   * [v76](#v76)
   * [v75](#v75)
@@ -102,6 +103,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v78
+  * Spirit Temple MQ Soul Shuffle Logic fixes
+
 ### v77
   * Fix Hylian loach fishing shuffle logic
   * Fix MQ DC Soul Shuffle Logic
