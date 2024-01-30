@@ -217,8 +217,13 @@
             "Dodongos Cavern MQ Right Side Baby Dodongo 2": "has_soul(Baby_Dodongo) and (is_adult or (Kokiri_Sword or Sticks or Slingshot or Boomerang or has_explosives))"
         },
         "exits": {
+            # Logic for child only access to the poes room. Adult has access directly from the lobby
             "Dodongos Cavern Poes Room": "
-                (here(can_use(Bow)) or Progressive_Strength_Upgrade or
+                 has_soul(Lizalfos_and_Dinalfos) and ((here(can_use(Bow)) or Progressive_Strength_Upgrade or
+                    can_use(Dins_Fire) or has_explosives) and
+                can_use(Slingshot))",
+            # Need to have access to the lower lizalfos room to access the recovery heart
+            "Dodongos Cavern Lower Lizalfos" : "(here(can_use(Bow)) or Progressive_Strength_Upgrade or
                     can_use(Dins_Fire) or has_explosives) and
                 can_use(Slingshot)"
         }

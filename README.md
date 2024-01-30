@@ -104,6 +104,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## RealRob Changelog
 ###
   * Fix Hylian loach fishing shuffle logic
+  * Fix MQ DC Soul Shuffle Logic
 
 ### v76
   * Add King Zora red ice to boulder shuffle
