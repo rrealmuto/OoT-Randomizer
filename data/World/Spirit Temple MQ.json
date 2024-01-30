@@ -149,10 +149,11 @@
                 can_play(Song_of_Time) or logic_spirit_mq_sun_block_sot or
                 is_adult",
             "Spirit Temple Silver Gauntlets Chest": "
+                has_soul(Iron_Knuckle) and (
                 ((Small_Key_Spirit_Temple, 7) and
                     (can_play(Song_of_Time) or logic_spirit_mq_sun_block_sot or is_adult)) or
                 ((Small_Key_Spirit_Temple, 4) and can_play(Song_of_Time) and (has_explosives or Nuts) and
-                    (logic_lens_spirit_mq or can_use(Lens_of_Truth)))",
+                    (has_soul(Floormaster) and (logic_lens_spirit_mq or can_use(Lens_of_Truth)))))",
             "Spirit Temple MQ Child Climb Pot": "(Small_Key_Spirit_Temple, 6)",
             "Spirit Temple MQ Central Chamber Floor Pot 1": "True",
             "Spirit Temple MQ Central Chamber Floor Pot 2": "True",
@@ -207,7 +208,7 @@
                 has_soul(Iron_Knuckle) and (((Small_Key_Spirit_Temple, 7) and
                     (can_play(Song_of_Time) or logic_spirit_mq_sun_block_sot or is_adult)) or
                 ((Small_Key_Spirit_Temple, 4) and can_play(Song_of_Time) and (has_explosives or Nuts) and
-                    (logic_lens_spirit_mq or can_use(Lens_of_Truth))))"
+                    (has_soul(Floormaster) and (logic_lens_spirit_mq or can_use(Lens_of_Truth)))))"
         },
         "exits": {
             "Desert Colossus Hands": "
@@ -234,7 +235,7 @@
             "Spirit Temple MQ Adult Climb Wallmaster 2": "has_soul(Wallmaster)",
             "Spirit Temple MQ Adult Climb Wallmaster 3": "has_soul(Wallmaster)",
             "Spirit Temple MQ Adult Climb Wallmaster 4": "has_soul(Wallmaster)",
-            "Spirit Temple MQ Boulder Room Moblin": "has_soul(Moblin)"
+            "Spirit Temple MQ Boulder Room Moblin": "has_soul(Moblin) and (Small_Key_Spirit_Temple, 7)"
         },
         "exits": {
             "Spirit Temple Symphony Room": "
