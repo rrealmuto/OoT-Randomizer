@@ -215,7 +215,7 @@
                 has_soul(Iron_Knuckle) and (((Small_Key_Spirit_Temple, 7) and
                     (can_play(Song_of_Time) or logic_spirit_mq_sun_block_sot or is_adult)) or
                 ((Small_Key_Spirit_Temple, 4) and can_play(Song_of_Time) and (has_explosives or Nuts) and
-                    (logic_lens_spirit_mq or can_use(Lens_of_Truth)) and is_adult))"
+                    has_soul(Floormaster) and (logic_lens_spirit_mq or can_use(Lens_of_Truth)) and is_adult))"
         }
     },
     {
