@@ -519,7 +519,7 @@ def fill_restrictive_fast(worlds: list[World], locations: list[Location], itempo
         # get location that allows this item
         spot_to_fill = None
         for location in locations:
-            if location.can_fill(search.state_list[location.world.id], item_to_place):
+            if location.can_fill(search.state_list[location.world.id], item_to_place, not worlds[0].check_beatable_only):
                 spot_to_fill = location
                 break
 
