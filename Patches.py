@@ -33,7 +33,7 @@ from World import World
 from TextBox import line_wrap
 from texture_util import ci4_rgba16patch_to_ci8, rgba16_from_file, rgba16_patch
 from version import __version__
-from Boulders import patch_boulders, shuffle_boulders
+from Boulders import patch_boulders
 from ProcessActors import get_bad_actors, process_scenes
 
 if sys.version_info >= (3, 10):

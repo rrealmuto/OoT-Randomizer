@@ -269,6 +269,13 @@ boulder_list = {
     'OGC_UNNAMED_7': {(100, 0, 0, 9): {'type': BOULDER_TYPE.SILVER, 'switch': 60, },},
 }
 
+# These boulders have to be the following types in ALR
+priority_boulders = {
+    'HC_CHILD_FAIRY_BOULDER': [BOULDER_TYPE.BROWN, BOULDER_TYPE.RED_ICE],
+    'DMT_CHILD_LOWER_BOULDER': [BOULDER_TYPE.BROWN, BOULDER_TYPE.RED_ICE],
+    'DMT_UPPER_BOULDER': [BOULDER_TYPE.BROWN, BOULDER_TYPE.BRONZE, BOULDER_TYPE.RED_ICE]
+}
+
 
 def process_brown_boulder(actor_bytes):
     return {
@@ -338,49 +345,6 @@ convert = {
     BOULDER_TYPE.RED_ICE: convert_red_ice,
     BOULDER_TYPE.HEAVY_BLOCK: convert_heavyblock
 }
-
-def shuffle_boulders(world) -> tuple[dict[str, dict[tuple[int,int,int,int], dict[str, any]]], dict[tuple[int,int,int,int], tuple[str,BOULDER_TYPE]]]:
-    # Build the full boulder list from the overworld ones + dungeons
-    boulders = boulder_list
-
-    mq_dungeons = [dungeon for dungeon in world.dungeon_mq if world.dungeon_mq[dungeon] == True]
-    vanilla_dungeons = [dungeon for dungeon in world.dungeon_mq if world.dungeon_mq[dungeon] == False]
-
-    for dungeon in mq_dungeons:
-        if dungeon in mq_dungeon_boulders.keys():
-            boulders.update(mq_dungeon_boulders[dungeon])
-    
-    for dungeon in vanilla_dungeons:
-        if dungeon in vanilla_dungeon_boulders.keys():
-            boulders.update(vanilla_dungeon_boulders[dungeon])
-
-    # Get each boulder's type which we'll shuffle
-    target_types = [boulders[boulder][list(boulders[boulder])[0]]['type'] for boulder in boulders]
-    if world.settings.shuffle_boulders:
-        random.shuffle(target_types)
-    shuffled_boulders_by_id = {}
-    shuffled_boulders = {}
-    boulder_keys = list(boulders)
-    for i in range(0,len(boulders)):
-        boulder_key = boulder_keys[i]
-        boulder = boulders[boulder_key] # Contains a dict of boulders for this because we have multiple scene setups
-        shuffled_boulders [boulder_key] = target_types[i]
-
-        #shuffled_boulders[boulder_key] = BOULDER_TYPE.BROWN
-        for id in boulder:
-            if 'patch' in list(boulder[id]):
-                patch_func = boulder[id]['patch']
-            else:
-                patch_func = None
-            if 'collider_override' in list(boulder[id]):
-                collider_override = boulder[id]['collider_override']
-            else:
-                collider_override = None
-            shuffled_boulders_by_id[(id[0], id[1], id[2], id[3])] = (boulder_keys[i], target_types[i], patch_func, collider_override)
-            #shuffled_boulders_by_id[(id[0], id[1], id[2], id[3])] = BOULDER_TYPE.BROWN
-            
-
-    return shuffled_boulders, shuffled_boulders_by_id
 
 def patch_boulders(boulders: dict[tuple[int,int,int,int], tuple[str,BOULDER_TYPE]], rom: Rom):
     boulder_rom_actors = get_boulder_shuffle_actors(rom)

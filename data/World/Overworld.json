@@ -2416,9 +2416,10 @@
                 can_take_damage or can_use(Hover_Boots) or
                 (is_adult and here(can_plant_bean and (plant_beans or has_explosives or Progressive_Strength_Upgrade)))",
             "DMT Rock Red Rupee": "
-                is_child and (
-                    (here(can_pass_boulder('DMT_MIDDLE_BOULDER')) and ((boulder_type('DMT_UPPER_BOULDER') == BOULDER_TYPE_BROWN) and here(can_blast_or_smash)) or (boulder_type('DMT_UPPER_BOULDER') == BOULDER_TYPE_BRONZE) and here(can_use(Megaton_Hammer)))
-                    or (logic_boomerang_boulders and Boomerang))",
+                (is_child and (
+                    (here(can_pass_boulder('DMT_MIDDLE_BOULDER')) and ((boulder_type('DMT_UPPER_BOULDER') == BOULDER_TYPE_BROWN) and here(can_blast_or_smash)) or ((boulder_type('DMT_UPPER_BOULDER') == BOULDER_TYPE_BRONZE) and here(can_use(Megaton_Hammer))) or at('Death Mountain Summit', (boulder_type('DMT_UPPER_BOULDER') == BOULDER_TYPE_RED_ICE) and Blue_Fire))
+                    or (logic_boomerang_boulders and Boomerang)))
+                    ",
             "DMT Rock Blue Rupee": "
                 is_child and (can_pass_boulder('DMT_CHILD_LOWER_BOULDER') or (logic_boomerang_boulders and Boomerang))",
             "DMT GS Bean Patch": "
@@ -2440,7 +2441,7 @@
             "Kak Behind Gate": "True",
             "Goron City": "True",
             "Death Mountain Summit": "
-                (here(can_pass_boulder('DMT_MIDDLE_BOULDER')) and ((boulder_type('DMT_UPPER_BOULDER') == BOULDER_TYPE_BROWN) and here(can_blast_or_smash)) or (boulder_type('DMT_UPPER_BOULDER') == BOULDER_TYPE_BRONZE) and here(can_use(Megaton_Hammer))) or
+                (here(can_pass_boulder('DMT_MIDDLE_BOULDER')) and ((boulder_type('DMT_UPPER_BOULDER') == BOULDER_TYPE_BROWN) and here(can_blast_or_smash)) or ((boulder_type('DMT_UPPER_BOULDER') == BOULDER_TYPE_BRONZE) and here(can_use(Megaton_Hammer))) or at('Death Mountain Summit', (boulder_type('DMT_UPPER_BOULDER') == BOULDER_TYPE_RED_ICE) and Blue_Fire)) or
                 (is_adult and here(can_plant_bean and (plant_beans or Progressive_Strength_Upgrade))) or
                 (logic_dmt_climb_hovers and can_use(Hover_Boots))",
             "Dodongos Cavern Beginning": "
