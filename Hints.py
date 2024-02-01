@@ -2115,7 +2115,10 @@ def hint_dist_list() -> dict[str, str]:
     dists = {}
     for d in hint_dist_files():
         with open(d, 'r') as dist_file:
-            dist = json.load(dist_file)
+            try:
+                dist = json.load(dist_file)
+            except json.JSONDecodeError as e:
+                raise ValueError(f'Could not parse hint distribution file {os.path.basename(d)!r}. Make sure the file is valid JSON or reach out to Support on Discord for help. Details: {e}') from e
         dists[dist['name']] = dist['gui_name']
     return dists
 

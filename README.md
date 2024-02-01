@@ -193,6 +193,10 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * The `Clearer Hints` option now provides clearer hints for the rainbow bridge text on the altar in the Temple of Time.
   * New option in hint distribution `combine_trial_hints` which combines multiple trials hints into one.
 
+#### Bug Fixes
+* Fix the `Silver Rupee Pouches` setting not being hidden when `Silver Rupee Pouches Mode` is set to `Random Puzzles`.
+* Fix an issue in the Co-op hint distribution which caused seed generation failures for some settings.
+
 ### 8.0
 
 #### New Features

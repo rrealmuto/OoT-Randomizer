@@ -1746,9 +1746,9 @@ class SettingInfos:
         ''',
         shared         = True,
         disable        = {
-            'off': {'settings' : ['silver_rupee_pouches']},
-            'all': {'settings' : ['silver_rupee_pouches']},
-            'random': {'setings' : ['silver_rupee_pouches']},
+            'off':    {'settings' : ['silver_rupee_pouches']},
+            'all':    {'settings' : ['silver_rupee_pouches']},
+            'random': {'settings' : ['silver_rupee_pouches']},
         },
         gui_params     = {
             "hide_when_disabled": True,
