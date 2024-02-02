@@ -5,8 +5,8 @@
         "locations":{
             "Ice Cavern Frozen Blue Rupee": "
                 can_pass_boulder('ICE_CAVERN_FREESTANDING_COLLECTIBLE_BOULDER') or
-                (boulder_type('ICE_CAVERN_FREESTANDING_COLLECTIBLE_BOULDER') == BOULDER_TYPE_RED_ICE and (Blue_Fire or logic_ice_frozen_rupee or
-                (logic_boomerang_boulders and can_use(Boomerang))))",
+                (boulder_type('ICE_CAVERN_FREESTANDING_COLLECTIBLE_BOULDER') == BOULDER_TYPE_RED_ICE and (Blue_Fire or logic_ice_frozen_rupee)) or
+                (logic_boomerang_boulders and can_use(Boomerang))",
             "Ice Cavern Entryway Freezard 1": "(has_soul(Freezard)) and (is_adult or has_explosives or can_use(Dins_Fire))",
             "Ice Cavern Entryway Freezard 2": "(has_soul(Freezard)) and (is_adult or has_explosives or can_use(Dins_Fire))",
             "Ice Cavern Entryway Freezard 3": "(has_soul(Freezard)) and (is_adult or has_explosives or can_use(Dins_Fire))",

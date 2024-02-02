@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v79](#v79)
   * [v78](#v78)
   * [v77](#v77)
   * [v76](#v76)
@@ -103,6 +104,11 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v79
+  * Fix boulder resizing hacks
+  * Properly resize Water Trial red ice boulders
+  * Some boulder shuffle logic fixes
+
 ### v78
   * Spirit Temple MQ Soul Shuffle Logic fixes
 
