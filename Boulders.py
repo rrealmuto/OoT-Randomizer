@@ -33,8 +33,8 @@ vanilla_dungeon_boulders = {
         'ICE_CAVERN_UNNAMED_1': {(9, 0, 0, 5): {'type': BOULDER_TYPE.RED_ICE, 'switch': 0, },},
         'ICE_CAVERN_FREESTANDING_COLLECTIBLE_BOULDER': {(9, 1, 0, 8): {'type': BOULDER_TYPE.RED_ICE, 'switch': 3, },},
         'ICE_CAVERN_UNNAMED_2': {(9, 1, 0, 9): {'type': BOULDER_TYPE.RED_ICE, 'switch': 4, },},
-        'ICE_CAVERN_TOWARDS_COMPASS_BOULDER': {(9, 3, 0, 17): {'type': BOULDER_TYPE.RED_ICE, 'switch': 12, },},
-        'ICE_CAVERN_TOWARDS_BLOCK_PUSH_BOULDER': {(9, 3, 0, 18): {'type': BOULDER_TYPE.RED_ICE, 'switch': 13, },},
+        'ICE_CAVERN_TOWARDS_COMPASS_BOULDER': {(9, 3, 0, 17): {'type': BOULDER_TYPE.RED_ICE, 'switch': 12, 'collider_override': 80 },},
+        'ICE_CAVERN_TOWARDS_BLOCK_PUSH_BOULDER': {(9, 3, 0, 18): {'type': BOULDER_TYPE.RED_ICE, 'switch': 13, 'collider_override': 80 },},
         'ICE_CAVERN_BLOCK_PUSH_SILVER_RUPEE_BOULDER': {(9, 5, 0, 19): {'type': BOULDER_TYPE.RED_ICE, 'switch': 16, },},
         'ICE_CAVERN_NEAR_END_BOULDER_1': {(9, 6, 0, 14): {'type': BOULDER_TYPE.RED_ICE, 'switch': 17, },},
         'ICE_CAVERN_NEAR_END_BOULDER_2': {(9, 6, 0, 15): {'type': BOULDER_TYPE.RED_ICE, 'switch': 18, },},
@@ -45,8 +45,8 @@ vanilla_dungeon_boulders = {
         'ICE_CAVERN_FREESTANDING_POH_BOULDER': {(9, 11, 0, 27): {'type': BOULDER_TYPE.RED_ICE, 'switch': 15, },},
     },
     'Ganons Castle': {
-        'IGC_WATER_TRIAL_BOULDER_1': {(13, 2, 0, 28): {'type': BOULDER_TYPE.RED_ICE, 'switch': 6, },},
-        'IGC_WATER_TRIAL_BOULDER_2': {(13, 3, 0, 5): {'type': BOULDER_TYPE.RED_ICE, 'switch': 39, },},
+        'IGC_WATER_TRIAL_BOULDER_1': {(13, 2, 0, 28): {'type': BOULDER_TYPE.RED_ICE, 'switch': 6, 'collider_override':96 },},
+        'IGC_WATER_TRIAL_BOULDER_2': {(13, 3, 0, 5): {'type': BOULDER_TYPE.RED_ICE, 'switch': 39, 'collider_override':80 },},
     }
 }
 
@@ -54,8 +54,10 @@ mq_dungeon_boulders = {
 
 }
 
-def patch_kz_boulder(type: BOULDER_TYPE, rom: Rom):
-    rom.write_byte(rom.sym('KZ_BOULDER_TYPE'), type)
+def patch_kz_boulder(boulder, rom: Rom, key: tuple[int,int,int,int], collider_overrides: list):
+    boulder_name, new_type, patch_func, collider_override = boulder
+    rom.write_byte(rom.sym('KZ_BOULDER_TYPE'), new_type)
+    collider_overrides.append((key,1,collider_override))
     return
 
 boulder_list = {
@@ -74,8 +76,8 @@ boulder_list = {
     'ZR_CHILD_ENTRY_BOULDER_3': {(84, 0, 0, 63): {'type': BOULDER_TYPE.BROWN, 'switch': 9, },},
     'ZR_FAIRY_GROTTO_BOULDER': {(84, 0, 0, 61): {'type': BOULDER_TYPE.BROWN, 'switch': 5, }, (84, 0, 2, 27): {'type': BOULDER_TYPE.BROWN, 'switch': 5, },},
     'HF_UNNAMED_6': {(84, 0, 0, 64): {'type': BOULDER_TYPE.BROWN, 'switch': 10, },},
-    'ZD_ADULT_SHOP_BOULDER': {(88, 1, 2, 15): {'type': BOULDER_TYPE.RED_ICE, 'switch': 4, },},
-    'ZD_KING_ZORA_BOULDER': {(88,-1, -1, -1): {'type': BOULDER_TYPE.RED_ICE, 'switch': -1, 'patch': patch_kz_boulder },},
+    'ZD_ADULT_SHOP_BOULDER': {(88, 1, 2, 15): {'type': BOULDER_TYPE.RED_ICE, 'switch': 4, 'collider_override': 80 },},
+    'ZD_KING_ZORA_BOULDER': {(88, 0, 2, 0): {'type': BOULDER_TYPE.RED_ICE, 'switch': -1, 'collider_override': 120, 'patch': patch_kz_boulder },},
     'ZF_SECRET_SILVER_BOULDER': {(89, 0, 0, 5): {'type': BOULDER_TYPE.SILVER, 'switch': 60, }, (89, 0, 1, 5): {'type': BOULDER_TYPE.SILVER, 'switch': 60, }, (89, 0, 2, 48): {'type': BOULDER_TYPE.SILVER, 'switch': 60, },},
     'ZF_UNNAMED_1': {(89, 0, 0, 16): {'type': BOULDER_TYPE.BROWN, 'switch': 21, }, (89, 0, 1, 16): {'type': BOULDER_TYPE.BROWN, 'switch': 21, }, (89, 0, 2, 52): {'type': BOULDER_TYPE.BROWN, 'switch': 21, },},
     'ZF_SECRET_BROWN_BOULDER': {(89, 0, 0, 17): {'type': BOULDER_TYPE.BROWN, 'switch': 22, }, (89, 0, 1, 17): {'type': BOULDER_TYPE.BROWN, 'switch': 22, }, (89, 0, 2, 53): {'type': BOULDER_TYPE.BROWN, 'switch': 22, },},
@@ -285,7 +287,11 @@ def shuffle_boulders(world) -> tuple[dict[str, dict[tuple[int,int,int,int], dict
                 patch_func = boulder[id]['patch']
             else:
                 patch_func = None
-            shuffled_boulders_by_id[(id[0], id[1], id[2], id[3])] = (boulder_keys[i], target_types[i], patch_func)
+            if 'collider_override' in list(boulder[id]):
+                collider_override = boulder[id]['collider_override']
+            else:
+                collider_override = None
+            shuffled_boulders_by_id[(id[0], id[1], id[2], id[3])] = (boulder_keys[i], target_types[i], patch_func, collider_override)
             #shuffled_boulders_by_id[(id[0], id[1], id[2], id[3])] = BOULDER_TYPE.BROWN
             
 
@@ -294,20 +300,42 @@ def shuffle_boulders(world) -> tuple[dict[str, dict[tuple[int,int,int,int], dict
 def patch_boulders(boulders: dict[tuple[int,int,int,int], tuple[str,BOULDER_TYPE]], rom: Rom):
     boulder_rom_actors = get_boulder_shuffle_actors(rom)
     rom_boulders = {(boulder_rom_actors[addr][0],boulder_rom_actors[addr][1],boulder_rom_actors[addr][2],boulder_rom_actors[addr][3]): {'addr': addr, 'type':boulder_rom_actors[addr][5]['type'], 'switch':boulder_rom_actors[addr][5]['switch']} for addr in list(boulder_rom_actors.keys())}
+    # Build list of collider overrides
+    collider_overrides = []
     for key in boulders:
-        boulder_name, new_type, patch_func = boulders[key]
+        boulder_name, new_type, patch_func, collider_override = boulders[key]
         if patch_func is None:
             rom_actor = rom_boulders[key]
             if new_type != rom_actor['type']:
                 (id, var) = convert[new_type](rom_actor)
                 rom.write_int16(rom_actor['addr'], id)
                 rom.write_int16(rom_actor['addr'] + 14, var)
+                if collider_override:
+                    collider_overrides.append((key, collider_override))
         else:
             # King zora
-            patch_func(new_type, rom)
+            patch_func(boulders[key], rom, key, collider_overrides)
             continue
 
-
+    sym = rom.sym('collidercylinder_override_table')
+    i = 0
+    for collider_override in collider_overrides:
+        if len(collider_override) == 2:
+            key, override = collider_override
+            subflag = 0
+        elif len(collider_override) == 3: # Has a subflag
+            key, subflag, override = collider_override
+        # Write to the collider_override_table
+        scene, room, setup, flag = key
+        bytes = [scene, 0x00, 0x00, 0x00, 0x00, 
+                                       ((setup & 0x03) << 6) | (room & 0x3f),
+                                       flag + 1,
+                                       subflag,
+                                       ]
+        bytes.extend(override.to_bytes(2, 'big'))
+        bytes.extend([0x00, 0x00])
+        rom.write_bytes(sym + i * 12, bytes)
+        i += 1
 
 #rom = Rom("ZOOTDEC.z64")
 #boulder_rom_actors = get_boulder_shuffle_actors(rom)

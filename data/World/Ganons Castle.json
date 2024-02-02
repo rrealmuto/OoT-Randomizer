@@ -75,7 +75,7 @@
             "Ganons Castle Water Trial Freezard 2" : "(has_soul(Freezard)) and (is_adult or has_explosives or can_use(Dins_Fire))"
         },
         "exits": {
-            "Ganons Castle Water Trial Block Push": "Blue_Fire and (has_soul(Freezard) and (is_adult or has_explosives or can_use(Dins_Fire)))"
+            "Ganons Castle Water Trial Block Push": "can_pass_boulder('IGC_WATER_TRIAL_BOULDER_1') and (has_soul(Freezard) and (is_adult or has_explosives or can_use(Dins_Fire)))"
         }
     },
     {
@@ -86,7 +86,7 @@
             "Fairy Pot": "True"
         },
         "exits": {
-            "Ganons Castle Water Trial Ending": "Blue_Fire and can_use(Megaton_Hammer)"
+            "Ganons Castle Water Trial Ending": "can_pass_boulder('IGC_WATER_TRIAL_BOULDER_2') and can_use(Megaton_Hammer)"
         }
     },
     {
