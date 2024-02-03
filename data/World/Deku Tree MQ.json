@@ -107,7 +107,7 @@
                     )
                     or
                     ((boulder_type('DEKU_COMPASS_BOULDER_1') == BOULDER_TYPE_RED_ICE) or (boulder_type('DEKU_COMPASS_BOULDER_2') == BOULDER_TYPE_RED_ICE)) and (
-                        blue_fire_arrows and can_use(Blue_Fire_Arrows)
+                        Blue_Fire or (blue_fire_arrows and can_use(Blue_Fire_Arrows))
                     )
                 )",
             "Deku Tree MQ Compass Room Left Skullwalltula": "

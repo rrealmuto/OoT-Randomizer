@@ -76,6 +76,12 @@ def _shuffle_boulders(world) -> tuple[dict[str, dict[tuple[int,int,int,int], dic
     shuffled_boulders = {}
     boulder_keys = list(boulders)
 
+    # Place plandoed boulders first
+    if world.distribution.boulders:
+        for boulder_id in world.distribution.boulders.keys():
+            boulder_keys.remove(boulder_id)
+            shuffled_boulders[boulder_id] = world.distribution.boulders[boulder_id]
+
     # Place priority boulders if all locations reachable
     if world.settings.reachable_locations == 'all':
         for priority_boulder_id in priority_boulders.keys():

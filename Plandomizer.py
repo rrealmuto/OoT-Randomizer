@@ -302,6 +302,7 @@ class WorldDistribution:
             'goal_locations': None,
             'barren_regions': None,
             'gossip_stones': {name: [GossipRecord(rec) for rec in record] if is_pattern(name) else GossipRecord(record) for (name, record) in src_dict.get('gossip_stones', {}).items()},
+            'boulders': {name: BOULDER_TYPE[record] for (name, record) in src_dict.get('boulders', {}).items()},
         }
 
         if update_all:
