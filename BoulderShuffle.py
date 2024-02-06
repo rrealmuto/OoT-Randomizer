@@ -45,22 +45,28 @@ def shuffle_boulders(worlds):
     non_drop_locations = [location for world in worlds for location in world.get_locations() if location.type not in ('Drop', 'Event')]
 
     for world in worlds:
-        max_search = Search.max_explore([world.state], complete_itempool)
-        max_search.visit_locations(non_drop_locations)
-        locations_to_ensure_reachable = list(filter(max_search.visited, non_drop_locations))
+        unreached = True
+        while unreached:
+            orig_boulders = world.boulders.copy()
+            orig_boulders_by_id = world.boulders_by_id.copy()
+            max_search = Search.max_explore([world.state], complete_itempool)
+            max_search.visit_locations(non_drop_locations)
+            locations_to_ensure_reachable = list(filter(max_search.visited, non_drop_locations))
 
-        world.boulders, world.boulders_by_id = _shuffle_boulders(world)
-        max_search = Search.max_explore([world.state], complete_itempool)
-        max_search.visit_locations(non_drop_locations)
-        reachable_locations = list(filter(max_search.visited, non_drop_locations))
+            world.boulders, world.boulders_by_id = _shuffle_boulders(world)
+            max_search = Search.max_explore([world.state], complete_itempool)
+            max_search.visit_locations(non_drop_locations)
+            reachable_locations = list(filter(max_search.visited, non_drop_locations))
 
-        for location in locations_to_ensure_reachable:
-            if location not in reachable_locations:
-                print(location.name)
-
-        for location in reachable_locations:
-            if location not in locations_to_ensure_reachable:
-                print(location.name)
+            unreached = False
+            for location in locations_to_ensure_reachable:
+                if location not in reachable_locations:
+                    unreached = True
+                    print(location.name)
+            if unreached:
+                world.boulders = orig_boulders
+                world.boulders_by_id = orig_boulders_by_id
+                print("Retrying...")
 
 
 def _shuffle_boulders(world) -> tuple[dict[str, dict[tuple[int,int,int,int], dict[str, any]]], dict[tuple[int,int,int,int], tuple[str,BOULDER_TYPE]]]:
