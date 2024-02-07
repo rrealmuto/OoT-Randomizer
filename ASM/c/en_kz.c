@@ -58,8 +58,13 @@ z64_actor_t* EnKz_SpawnRedIce_Hook(z64_actor_ctxt_t* actorCtx, z64_actor_t* pare
 
 void EnKz_Update_Hook(z64_actor_t* this, z64_game_t* globalCtx) {
     ActorUpdateFunc EnKz_Update = Actor_ResolveOverlayAddr(this, 0x80ad6d70);
-    if((this->child == NULL) || (this->child->update == NULL)) {
-        this->child = NULL;
+    if(CFG_BOULDER_SHUFFLE) {
+        if((this->child == NULL) || (this->child->update == NULL)) {
+            this->child = NULL;
+            EnKz_Update(this, globalCtx);
+        }
+    }
+    else {
         EnKz_Update(this, globalCtx);
     }
 }
