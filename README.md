@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v80](#v80)
   * [v79](#v79)
   * [v78](#v78)
   * [v77](#v77)
@@ -104,6 +105,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v80
+  * Unfix the KZ unfreeze glitch
+
 ### v79
   * Fix boulder resizing hacks
   * Properly resize Water Trial red ice boulders
