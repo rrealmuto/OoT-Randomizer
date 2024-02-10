@@ -428,9 +428,9 @@ def rebuild_sequences(rom: Rom, sequences: list[Sequence], log: CosmeticsLog, sy
     audiobank = rom.read_bytes(AUDIOBANK_ADDR, 0x1CA50)
     audiotable_index = rom.read_bytes(AUDIOTABLE_INDEX_ADDR, 0x80) # Read audiotable index into bytearray
     audiotable = rom.read_bytes(AUDIOTABLE_ADDR, 0x460AD0) # Read audiotable (samples) into bytearray
-    
+
     oot_audiobin: Audiobin = Audiobin(audiobank, audiobank_index, audiotable, audiotable_index)
-    
+
     # Load MM Audiobin if needed
     mm_audiobin: Audiobin = None
     for i in range(0x6E): # Loop through all the replacement sequences
@@ -455,7 +455,7 @@ def rebuild_sequences(rom: Rom, sequences: list[Sequence], log: CosmeticsLog, sy
             bankdata = None
             bank_entry = None
             audiobin = oot_audiobin if j.game == SequenceGame.OOT else mm_audiobin # Load the correct audiobin
-            
+
             # Handle MMR .zseq files. These use vanilla MM banks so just build the bank using the data from the MM audiobin. We'll update it with OOT data later
             if j.name.lower().endswith('.zseq'):
                 # Get the entry from Audiobank_index
@@ -509,7 +509,7 @@ def rebuild_sequences(rom: Rom, sequences: list[Sequence], log: CosmeticsLog, sy
                 else:
                     newbank = AudioBank(bank_entry, bankdata, audiobin.Audiotable, audiobin.Audiotable_index)
                 newbank.bank_index = new_bank_index
-                
+
                 zsound_samples: list[Sample] = []
                 # Handle new zsounds
                 tempbank = AudioBank(bank_entry, bankdata, None, None)

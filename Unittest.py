@@ -823,7 +823,7 @@ class TestValidSpoilers(unittest.TestCase):
                     self.verify_woth(spoiler)
                     self.verify_playthrough(spoiler)
                     self.verify_disables(spoiler)
-    
+
     # remove this to run the fuzzer
     @unittest.skip("generally slow and failures can be ignored")
     def test_fuzzer(self):
@@ -875,7 +875,7 @@ class TestCustomAudio(unittest.TestCase):
 
         if not os.path.isfile('./ZOOTDEC.z64'):
             self.skipTest("Base ROM file not available.")
-        
+
         rom: Rom = Rom("ZOOTDEC.z64")
         audiobank_file = rom.read_bytes(AUDIOBANK_ADDR, 0x1CA50)
         audiotable_index = rom.read_bytes(AUDIOTABLE_INDEX_ADDR, 0x80) # Read audiotable index into bytearray
