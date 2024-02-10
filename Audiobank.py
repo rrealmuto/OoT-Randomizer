@@ -1,3 +1,4 @@
+from __future__ import annotations
 from io import FileIO
 from Rom import Rom
 
