@@ -23,8 +23,12 @@
                 (can_blast_or_smash or Progressive_Strength_Upgrade) and
                 can_summon_gossip_fairy and has_bottle"
         },
+        "events": {
+            "DC MQ Lobby Switch Under Boulder Pressed": "can_pass_boulder('DC_LOBBY_SWITCH_BOULDER') or 
+                ((boulder_type('DC_LOBBY_SWITCH_BOULDER') == BOULDER_TYPE_BROWN) and Progressive_Strength_Upgrade)"
+        },
         "exits": {
-            "Dodongos Cavern Elevator": "here(can_blast_or_smash or Progressive_Strength_Upgrade)",
+            "Dodongos Cavern Elevator": "here(DC_MQ_Lobby_Switch_Under_Boulder_Pressed)",
             "Dodongos Cavern Lower Right Side": "here(can_blast_or_smash)",
             "Dodongos Cavern Poes Room": "is_adult",
             "Dodongos Cavern Mouth": "dodongos_cavern_shortcuts"
@@ -69,8 +73,21 @@
         "exits": {
             "Dodongos Cavern Above Staircase": "is_adult or can_child_attack or Nuts",
             "Dodongos Cavern Torch Puzzle Upper": "
-                here(can_blast_or_smash or can_use(Dins_Fire)) or
-                at('Dodongos Cavern Torch Puzzle Upper', Progressive_Strength_Upgrade)",
+                here(
+                    can_pass_boulder('DC_LOBBY_UPPER_BOULDER_1') or 
+                    can_pass_boulder('DC_LOBBY_UPPER_BOULDER_2') or 
+                    can_pass_boulder('DC_LOBBY_UPPER_BOULDER_3')
+                ) or
+                ((
+                    (boulder_type('DC_LOBBY_UPPER_BOULDER_1') == BOULDER_TYPE_BROWN) or
+                    (boulder_type('DC_LOBBY_UPPER_BOULDER_2') == BOULDER_TYPE_BROWN) or
+                    (boulder_type('DC_LOBBY_UPPER_BOULDER_3') == BOULDER_TYPE_BROWN)
+                )
+                and (
+                    here(can_use(Dins_Fire)) 
+                    or 
+                    at('Dodongos Cavern Torch Puzzle Upper', Progressive_Strength_Upgrade)
+                ))",
             "Dodongos Cavern Poes Room": "
                 logic_dc_mq_child_bombs and (Kokiri_Sword or Sticks) and can_take_damage",
             "Dodongos Cavern Mouth": "has_explosives"
