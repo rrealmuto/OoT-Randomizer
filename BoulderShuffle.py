@@ -91,6 +91,7 @@ def _shuffle_boulders(world) -> tuple[dict[str, dict[tuple[int,int,int,int], dic
         for forced_boulder_id in force_boulders.keys():
             if forced_boulder_id in boulder_keys:
                 forced_type = random.choice(force_boulders[forced_boulder_id])
+                target_types.remove(forced_type)
                 boulder_keys.remove(forced_boulder_id)
                 shuffled_boulders[forced_boulder_id] = forced_type
 

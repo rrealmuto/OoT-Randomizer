@@ -3,7 +3,7 @@
         "region_name": "Jabu Jabus Belly Beginning",
         "dungeon": "Jabu Jabus Belly",
         "locations": {
-            "Jabu Jabus Belly MQ Map Chest": "can_blast_or_smash",
+            "Jabu Jabus Belly MQ Map Chest": "can_pass_boulder('JABU_ENTRANCE_BOULDER')",
             "Jabu Jabus Belly MQ First Room Side Chest": "can_use(Slingshot)",
             "Jabu Jabus Belly MQ First Room Pot 1": "True",
             "Jabu Jabus Belly MQ First Room Pot 2": "True",
@@ -65,8 +65,9 @@
                 (has_soul(Stinger) and has_soul(Lizalfos_and_Dinalfos) and has_soul(Likelike)) and (Kokiri_Sword or Slingshot or Bombs or Sticks or is_adult)",
             "Jabu Jabus Belly MQ Boomerang Room Pot 1": "True",
             "Jabu Jabus Belly MQ Boomerang Room Pot 2": "True",
-            "Jabu Jabus Belly MQ Pit Room Grass 1": "can_blast_or_smash",
-            "Jabu Jabus Belly MQ Pit Room Grass 2": "can_blast_or_smash",
+            # These grass can be reached with a spin attack through the boulder regardless of boulder type
+            "Jabu Jabus Belly MQ Pit Room Grass 1": "(is_child and (Kokiri_Sword or can_pass_boulder('JABU_PITS_GRASS_BOULDER_2') and can_mow_the_lawn)) or is_adult",
+            "Jabu Jabus Belly MQ Pit Room Grass 2": "(is_child and (Kokiri_Sword or can_pass_boulder('JABU_PITS_GRASS_BOULDER_1') and can_mow_the_lawn)) or is_adult",
             "Jabu Jabus Belly MQ Basement Grass 1": "can_mow_the_lawn",
             "Jabu Jabus Belly MQ Basement Grass 2": "can_mow_the_lawn",
             "Jabu Jabus Belly MQ Basement Grass 3": "can_mow_the_lawn",
@@ -130,7 +131,7 @@
         "region_name": "Jabu Jabus Belly Depths",
         "dungeon": "Jabu Jabus Belly",
         "events": {
-            "Jabu Jabus Belly Parasitic Tentacle Cleared": "has_soul(Jabu_Jabu_Tentacle)",
+            "Jabu Jabus Belly Parasitic Tentacle Cleared": "has_soul(Jabu_Jabu_Tentacle) and can_pass_boulder('JABU_DEPTHS_BOULDER_1') and can_pass_boulder('JABU_DEPTHS_BOULDER_2')",
             "Jabu Jabus Belly Right Tentacle Cleared": "has_soul(Jabu_Jabu_Tentacle) and ((Sticks and has_soul(Likelike)) or can_use(Dins_Fire))"
         },
         "locations": {
@@ -166,7 +167,7 @@
             "Jabu Jabus Belly MQ Tailsparan Room Tailsparan 3": "can_kill_tailsparan",
             "Jabu Jabus Belly MQ Tailsparan Room Shabom 1": "can_kill_shabom",
             "Jabu Jabus Belly MQ Tailsparan Room Shabom 2": "can_kill_shabom",
-            "Jabu Jabus Belly MQ Tailsparan Room Skullwalltula": "has_explosives and has_soul(Skullwalltula)"
+            "Jabu Jabus Belly MQ Tailsparan Room Skullwalltula": "can_pass_boulder('JABU_TAILS_BOULDER_FLOOR') and has_soul(Skullwalltula)"
         }
     },
     {
@@ -176,7 +177,6 @@
             "Jabu Jabus Belly Floor Lowered": "True"
         },
         "locations": {
-            "Jabu Jabus Belly MQ Cow": "can_play(Eponas_Song)",
             "Jabu Jabus Belly MQ After Big Octo Cow Wonderitem": "True",
             "Jabu Jabus Belly MQ Wiggler Platforms Cow Wonderitem": "True",
             "Jabu Jabus Belly MQ Small Crate Near Cow 1": "True",
