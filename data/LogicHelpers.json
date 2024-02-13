@@ -26,6 +26,7 @@
     "Sticks": "Buy_Deku_Stick_1 or Deku_Stick_Drop",
     "Bugs": "'Bugs' or Buy_Bottle_Bug",
     "Blue_Fire": "'Blue Fire' or Buy_Blue_Fire or (blue_fire_arrows and can_use(Blue_Fire_Arrows))",
+    "Blue_Fire_in_fire": "((can_use(Goron_Tunic) or damage_multiplier != 'ohko') and ('Blue Fire' or Buy_Blue_Fire)) or (blue_fire_arrows and can_use(Blue_Fire_Arrows))",
     "Fish": "'Fish' or Buy_Fish",
     "Fairy": "'Fairy' or Buy_Fairys_Spirit",
     # "Big_Poe": "'Big Poe'",

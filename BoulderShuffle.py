@@ -70,13 +70,7 @@ def shuffle_boulders(worlds):
 
 
 def _shuffle_boulders(world) -> tuple[dict[str, dict[tuple[int,int,int,int], dict[str, any]]], dict[tuple[int,int,int,int], tuple[str,BOULDER_TYPE]]]:
-    # Build the full boulder list from the overworld ones + dungeons
     boulders = world.boulders
-
-    # Get each boulder's type which we'll shuffle
-    target_types = [boulders[boulder] for boulder in boulders]
-    if world.settings.shuffle_boulders:
-        random.shuffle(target_types)
 
     shuffled_boulders_by_id = {}
     shuffled_boulders = {}
@@ -88,13 +82,26 @@ def _shuffle_boulders(world) -> tuple[dict[str, dict[tuple[int,int,int,int], dic
             boulder_keys.remove(boulder_id)
             shuffled_boulders[boulder_id] = world.distribution.boulders[boulder_id]
 
-    # Place priority boulders if all locations reachable
-    if world.settings.reachable_locations == 'all':
-        for priority_boulder_id in priority_boulders.keys():
-            priority_type = random.choice(priority_boulders[priority_boulder_id])
-            target_types.remove(priority_type)
-            boulder_keys.remove(priority_boulder_id)
-            shuffled_boulders[priority_boulder_id] = priority_type
+    # Get each boulder's type which we'll shuffle
+    target_types = [boulders[boulder] for boulder in boulders]
+    if world.settings.shuffle_boulders:
+        random.shuffle(target_types)
+
+        # Place forced boulders. For these, we don't care about the ALR setting
+        for forced_boulder_id in force_boulders.keys():
+            if forced_boulder_id in boulder_keys:
+                forced_type = random.choice(force_boulders[forced_boulder_id])
+                boulder_keys.remove(forced_boulder_id)
+                shuffled_boulders[forced_boulder_id] = forced_type
+
+        # Place priority boulders if all locations reachable
+        if world.settings.reachable_locations == 'all':
+            for priority_boulder_id in priority_boulders.keys():
+                if priority_boulder_id in boulder_keys:
+                    priority_type = random.choice(priority_boulders[priority_boulder_id])
+                    target_types.remove(priority_type)
+                    boulder_keys.remove(priority_boulder_id)
+                    shuffled_boulders[priority_boulder_id] = priority_type
              
     for boulder_id in boulder_keys:
         shuffled_boulders [boulder_id] = target_types.pop(0)

@@ -76,7 +76,7 @@ mq_dungeon_boulders = {
         'DC_UPPER_LIZALFOS_BOULDER_10': {(1, 3, 0, 20) :{'type': BOULDER_TYPE.BROWN, 'switch': 63}},
         'DC_UPPER_LIZALFOS_BOULDER_11': {(1, 3, 0, 21) :{'type': BOULDER_TYPE.BROWN, 'switch': 63}},
         'DC_UPPER_LIZALFOS_BOULDER_12': {(1, 3, 0, 22) :{'type': BOULDER_TYPE.BROWN, 'switch': 63}},
-        'DC_EYESWITCH_ROOM_BOULDER': {(1, 12, 0, 9) :{'type': BOULDER_TYPE.BROWN, 'switch': 4}},
+        'DC_TWOFLAMES_BOULDER': {(1, 12, 0, 9) :{'type': BOULDER_TYPE.BROWN, 'switch': 4}},
     },
     'Jabu Jabus Belly': {
         'JABU_ENTRANCE_BOULDER': {(2, 0, 0, 6,): {'type': BOULDER_TYPE.BROWN, 'switch': 0}},
@@ -269,11 +269,16 @@ boulder_list = {
     'OGC_UNNAMED_7': {(100, 0, 0, 9): {'type': BOULDER_TYPE.SILVER, 'switch': 60, },},
 }
 
+# These boulders should always be set to the following types
+force_boulders = {
+    'DC_LOWER_HALL_EYESWITCH_BOULDER': [BOULDER_TYPE.BROWN]
+}
+
 # These boulders have to be the following types in ALR
 priority_boulders = {
     'HC_CHILD_FAIRY_BOULDER': [BOULDER_TYPE.BROWN, BOULDER_TYPE.RED_ICE],
     'DMT_CHILD_LOWER_BOULDER': [BOULDER_TYPE.BROWN, BOULDER_TYPE.RED_ICE],
-    'DMT_UPPER_BOULDER': [BOULDER_TYPE.BROWN, BOULDER_TYPE.BRONZE, BOULDER_TYPE.RED_ICE]
+    'DMT_UPPER_BOULDER': [BOULDER_TYPE.BROWN, BOULDER_TYPE.BRONZE, BOULDER_TYPE.RED_ICE],
 }
 
 
