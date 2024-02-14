@@ -6,7 +6,7 @@
             "Spirit Temple MQ Entrance Front Left Chest": "True",
             "Spirit Temple MQ Entrance Front Right Chest": "(Silver_Rupee_Spirit_Temple_Lobby_and_Lower_Adult, 5)",
             "Spirit Temple MQ Entrance Back Left Chest": "
-                here(can_blast_or_smash) and (can_use(Slingshot) or can_use(Bow))",
+                here(can_pass_boulder('SPIRIT_LOBBY_EYESWITCH_BOULDER')) and (can_use(Slingshot) or can_use(Bow))",
             "Spirit Temple MQ Entrance Back Right Chest": "
                 has_bombchus or can_use(Bow) or can_use(Hookshot) or
                 can_use(Slingshot) or can_use(Boomerang)",
@@ -14,8 +14,8 @@
             "Spirit Temple MQ Lobby Pot 2": "True",
             "Spirit Temple MQ Lobby Pot 3": "True",
             "Spirit Temple MQ Lobby Pot 4": "True",
-            "Spirit Temple MQ Lobby and Lower Adult Silver Rupee Right Boulder": "can_blast_or_smash",
-            "Spirit Temple MQ Lobby and Lower Adult Silver Rupee Left Boulder": "can_blast_or_smash"
+            "Spirit Temple MQ Lobby and Lower Adult Silver Rupee Right Boulder": "can_pass_boulder('SPIRIT_LOBBY_BOULDER_LOWER_RIGHT')",
+            "Spirit Temple MQ Lobby and Lower Adult Silver Rupee Left Boulder": "can_pass_boulder('SPIRIT_LOBBY_BOULDER_LOWER_LEFT')"
         },
         "exits": {
             "Desert Colossus From Spirit Lobby": "True",
@@ -50,8 +50,8 @@
             "Child Spirit Gibdo Room": "has_soul(Torch_Slug) and (Sticks or Kokiri_Sword or has_explosives)",
             "Spirit Temple Shared": "
                 (Small_Key_Spirit_Temple, 2) and
-                (has_bombchus or at('Adult Spirit Temple', (Small_Key_Spirit_Temple, 7) and
-                    logic_rusted_switches and Megaton_Hammer))"
+                ((has_bombchus and boulder_type('SPIRIT_CHILD_CRAWLSPACE_BOULDER') == BOULDER_TYPE_BROWN) or at('Adult Spirit Temple', (Small_Key_Spirit_Temple, 7) and
+                    logic_rusted_switches and Megaton_Hammer) and (boulder_type('SPIRIT_CHILD_CRAWLSPACE_BOULDER') == BOULDER_TYPE_BROWN or boulder_type('SPIRIT_CHILD_CRAWLSPACE_BOULDER') == BOULDER_TYPE_BRONZE))"
         }
     },
     {
@@ -85,17 +85,20 @@
     {
         "region_name": "Child Spirit Gibdo Room",
         "dungeon": "Spirit Temple",
+        "events": {
+            "Spirit Temple MQ Child Gibdo Room Switch Hit": "(boulder_type('SPIRIT_CHILD_GATE_EYESWITCH_BOULDER') == BOULDER_TYPE_BROWN) and has_bombchus and Slingshot"
+        },
         "locations": {
             "Spirit Temple MQ Child 3 Gibdo Room Pot 1": "
-                (Sticks or Kokiri_Sword or (Bombs and can_use(Dins_Fire))) and has_bombchus and Slingshot",
+                (Sticks or Kokiri_Sword or (Bombs and can_use(Dins_Fire))) and Spirit_Temple_MQ_Child_Gibdo_Room_Switch_Hit",
             "Spirit Temple MQ Child 3 Gibdo Room Pot 2": "
-                (Sticks or Kokiri_Sword or (Bombs and can_use(Dins_Fire))) and has_bombchus and Slingshot",
+                (Sticks or Kokiri_Sword or (Bombs and can_use(Dins_Fire))) and Spirit_Temple_MQ_Child_Gibdo_Room_Switch_Hit",
             "Spirit Temple MQ Before Gate Gibdo": "has_soul(Redead_and_Gibdo) and (Sticks or Kokiri_Sword)",
-            "Spirit Temple MQ After Gate Gibdo 1": "has_soul(Redead_and_Gibdo) and ((Sticks or Kokiri_Sword) and has_bombchus and Slingshot)",
-            "Spirit Temple MQ After Gate Gibdo 2": "has_soul(Redead_and_Gibdo) and ((Sticks or Kokiri_Sword) and has_bombchus and Slingshot)"
+            "Spirit Temple MQ After Gate Gibdo 1": "has_soul(Redead_and_Gibdo) and ((Sticks or Kokiri_Sword) and Spirit_Temple_MQ_Child_Gibdo_Room_Switch_Hit)",
+            "Spirit Temple MQ After Gate Gibdo 2": "has_soul(Redead_and_Gibdo) and ((Sticks or Kokiri_Sword) and Spirit_Temple_MQ_Child_Gibdo_Room_Switch_Hit)"
         },
         "exits": {
-            "Child Spirit Stalfos Room": "has_soul(Redead_and_Gibdo) and ((Sticks or Kokiri_Sword) and has_bombchus and Slingshot)"
+            "Child Spirit Stalfos Room": "has_soul(Redead_and_Gibdo) and ((Sticks or Kokiri_Sword) and Spirit_Temple_MQ_Child_Gibdo_Room_Switch_Hit)"
         }
     },
     {
@@ -227,7 +230,7 @@
             "Spirit Temple MQ Lobby and Lower Adult Silver Rupee Near Door": "True",
             "Spirit Temple MQ Lobby and Lower Adult Silver Rupee Behind Water Jet": "True",
             "Spirit Temple MQ Lobby and Lower Adult Silver Rupee Water Jet": "
-                Megaton_Hammer or
+                (can_pass_boulder('SPIRIT_EARLY_ADULT_BOULDER') and Megaton_Hammer) or
                 (logic_spirit_mq_water_rupee and (Silver_Rupee_Spirit_Temple_Lobby_and_Lower_Adult, 5))",
             "Spirit Temple MQ GS Leever Room": "True",
             "Spirit Temple MQ Adult Climb Wallmaster 1": "has_soul(Wallmaster)",

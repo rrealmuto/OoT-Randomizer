@@ -2654,7 +2654,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         if world.settings.dogs_anywhere:
             broken_actors_cfg |= 0x02
 
-    if world.settings.shuffle_boulders:
+    if world.settings.shuffle_boulders or world.distribution.boulders:
         broken_actors_cfg |= 0x80
         rom.write_byte(symbol, 0x80)
         rom.write_byte(rom.sym('CFG_BOULDER_SHUFFLE'), 1)

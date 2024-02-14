@@ -83,7 +83,7 @@ def _shuffle_boulders(world) -> tuple[dict[str, dict[tuple[int,int,int,int], dic
             shuffled_boulders[boulder_id] = world.distribution.boulders[boulder_id]
 
     # Get each boulder's type which we'll shuffle
-    target_types = [boulders[boulder] for boulder in boulders]
+    target_types = [boulders[boulder] for boulder in boulder_keys]
     if world.settings.shuffle_boulders:
         random.shuffle(target_types)
 
@@ -103,7 +103,7 @@ def _shuffle_boulders(world) -> tuple[dict[str, dict[tuple[int,int,int,int], dic
                     target_types.remove(priority_type)
                     boulder_keys.remove(priority_boulder_id)
                     shuffled_boulders[priority_boulder_id] = priority_type
-             
+
     for boulder_id in boulder_keys:
         shuffled_boulders [boulder_id] = target_types.pop(0)
         #shuffled_boulders[boulder_key] = BOULDER_TYPE.BROWN

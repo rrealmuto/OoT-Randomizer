@@ -39,7 +39,6 @@
         "dungeon": "Dodongos Cavern",
         "exits": {
             "Dodongos Cavern Lower Staircase": "True",
-            "Dodongos Cavern Above Staircase": "is_adult or can_child_attack or Nuts",
             "Dodongos Cavern Torch Puzzle Upper": "DC_Elevator_Boulders_Passed",
             "Dodongos Cavern Poes Room": "
                 logic_dc_mq_child_bombs and (Kokiri_Sword or Sticks) and can_take_damage",
@@ -68,6 +67,7 @@
         "region_name": "Dodongos Cavern Song of Time Block Room",
         "dungeon": "Dodongos Cavern",
         "locations": {
+            "Deku Baba Sticks": "has_soul(Deku_Baba) and (is_adult or Kokiri_Sword or Boomerang)",
             "Dodongos Cavern MQ GS Song of Time Block Room": "
                 can_play(Song_of_Time) and (can_child_attack or is_adult)",
             "Dodongos Cavern MQ Song of Time Block Room Skullwalltula": "has_soul(Skullwalltula) and (is_adult or (is_child and can_play(Song_of_Time) and can_child_attack))",
@@ -80,18 +80,16 @@
         "region_name": "Dodongos Cavern Lower Staircase",
         "dungeon": "Dodongos Cavern",
         "locations": {
-            "Dodongos Cavern MQ Deku Scrub Staircase": "can_stun_deku",
             "Dodongos Cavern MQ Staircase Crate Bottom Left": "can_break_crate or Progressive_Strength_Upgrade",
             "Dodongos Cavern MQ Staircase Crate Bottom Right": "can_break_crate or Progressive_Strength_Upgrade",
             "Dodongos Cavern MQ Staircase Pot 1": "True",
             "Dodongos Cavern MQ Staircase Pot 2": "True",
             "Dodongos Cavern MQ Staircase Pot 3": "True",
             "Dodongos Cavern MQ Staircase Pot 4": "True",
-            "Dodongos Cavern MQ Staircase Beamos 1": "can_kill_beamos",
-            "Dodongos Cavern MQ Staircase Beamos 2": "can_kill_beamos",
+            "Dodongos Cavern MQ Staircase Beamos 1": "can_kill_beamos_with_bomb_flower",
+            "Dodongos Cavern MQ Staircase Beamos 2": "can_kill_beamos_with_bomb_flower",
             "Dodongos Cavern MQ Staircase Silver Rupee Beamos": "True",
-            "Dodongos Cavern MQ Staircase Silver Rupee Lower Crate": "can_break_crate or Progressive_Strength_Upgrade",
-            "Deku Baba Sticks": "has_soul(Deku_Baba) and (is_adult or Kokiri_Sword or Boomerang)"
+            "Dodongos Cavern MQ Staircase Silver Rupee Lower Crate": "can_break_crate or Progressive_Strength_Upgrade"
         },
         "exits": {
             "Dodongos Cavern Song of Time Block Room": "True",
@@ -102,6 +100,7 @@
         "region_name": "Dodongos Cavern Upper Staircase",
         "dungeon": "Dodongos Cavern",
         "locations": {
+            "Dodongos Cavern MQ Deku Scrub Staircase": "can_stun_deku",
             "Dodongos Cavern MQ Staircase Crate Mid Left": "can_break_crate",
             "Dodongos Cavern MQ Staircase Crate Mid Right": "can_break_crate",
             "Dodongos Cavern MQ Staircase Crate Top Left": "can_break_crate",
@@ -131,13 +130,13 @@
         "region_name": "Dodongos Cavern Compass Chest Room",
         "dungeon": "Dodongos Cavern",
         "locations": {
-            "Dodongos Cavern MQ Compass Chest": "can_kill_dodongo",
-            "Dodongos Cavern MQ Compass Room Dodongo 1": "can_kill_dodongo",
-            "Dodongos Cavern MQ Compass Room Dodongo 2": "can_kill_dodongo",
-            "Dodongos Cavern MQ Compass Room Dodongo 3": "can_kill_dodongo"
+            "Dodongos Cavern MQ Compass Chest": "can_kill_dodongo_with_bomb_flower",
+            "Dodongos Cavern MQ Compass Room Dodongo 1": "can_kill_dodongo_with_bomb_flower",
+            "Dodongos Cavern MQ Compass Room Dodongo 2": "can_kill_dodongo_with_bomb_flower",
+            "Dodongos Cavern MQ Compass Room Dodongo 3": "can_kill_dodongo_with_bomb_flower"
         },
         "exits": {
-            "Dodongos Cavern Torch Puzzle Lower": "can_kill_dodongo",
+            "Dodongos Cavern Torch Puzzle Lower": "can_kill_dodongo_with_bomb_flower",
             "Dodongos Cavern Above Staircase": "True" # The door towards the staircase doesnt get barred shut regardless of how you enter the room
         }
     },
@@ -152,7 +151,7 @@
         "exits": {
             "Dodongos Cavern Compass Chest Room": "True",
             "Dodongos Cavern Larvae Room": "has_fire_source_with_torch",
-            "Dodongos Cavern Before Upper Lizalfos": "has_fire_source_with_torch",
+            "Dodongos Cavern Before Upper Lizalfos": "here(has_fire_source_with_torch)",
             "Dodongos Cavern Torch Puzzle Upper": "
                 is_adult and (logic_dc_jump or Hover_Boots or Hookshot)"
         }
@@ -193,7 +192,7 @@
             "Dodongos Cavern MQ Single Pillar Baby Dodongo 3": "has_soul(Baby_Dodongo)"
         },
         "exits": {
-            "Dodongos Cavern Upper Lizalfos": "(can_use(Sticks) and Progressive_Strength_Upgrade) or can_blast_or_smash"
+            "Dodongos Cavern Upper Lizalfos": "here((can_use(Sticks) and Progressive_Strength_Upgrade) or can_blast_or_smash)"
         }
     },
     {
