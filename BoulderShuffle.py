@@ -6,7 +6,7 @@ def set_boulders(worlds: list[World]):
     for world in worlds:
         build_boulders(world)
 
-def build_boulders(world):
+def build_boulders(world: World):
     # Build the full boulder list from the overworld ones + dungeons
     boulders = boulder_list.copy()
 
@@ -40,18 +40,19 @@ def build_boulders(world):
     world.boulders = shuffled_boulders
     world.boulders_by_id = shuffled_boulders_by_id
 
-def shuffle_boulders(worlds):
+def shuffle_boulders(worlds: list[World]):
     complete_itempool = [item for world in worlds for item in world.get_itempool_with_dungeon_items()]
     non_drop_locations = [location for world in worlds for location in world.get_locations() if location.type not in ('Drop', 'Event')]
 
     for world in worlds:
         unreached = True
+        retries = 0
         while unreached:
             orig_boulders = world.boulders.copy()
             orig_boulders_by_id = world.boulders_by_id.copy()
             max_search = Search.max_explore([world.state], complete_itempool)
             max_search.visit_locations(non_drop_locations)
-            locations_to_ensure_reachable = list(filter(max_search.visited, non_drop_locations))
+            locations_to_ensure_reachable = list(filter(max_search.visited, non_drop_locations)) if world.settings.reachable_locations == 'all' else []
 
             world.boulders, world.boulders_by_id = _shuffle_boulders(world)
             max_search = Search.max_explore([world.state], complete_itempool)
@@ -66,6 +67,9 @@ def shuffle_boulders(worlds):
             if unreached:
                 world.boulders = orig_boulders
                 world.boulders_by_id = orig_boulders_by_id
+                retries += 1
+                if retries >= 100:
+                    raise Exception(f"Could not generate boulder layout to ensure all locations reachable in world {world.id}")
                 print("Retrying...")
 
 

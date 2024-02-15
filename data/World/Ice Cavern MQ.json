@@ -24,8 +24,9 @@
             "Ice Cavern Map Room": "
                 has_soul(Freezard) and has_soul(Wolfos) and (is_adult or can_use(Dins_Fire) or
                 (has_explosives and (can_use(Sticks) or can_use(Slingshot) or Kokiri_Sword)))",
-            "Ice Cavern Compass Room": "is_adult and Blue_Fire",
-            "Ice Cavern Iron Boots Region": "Blue_Fire",
+            "Ice Cavern Compass Room": "is_adult and (can_pass_boulder('ICE_TOWARDS_COMPASS_BOULDER_1') or can_pass_boulder('ICE_TOWARDS_COMPASS_BOULDER_2') or can_pass_boulder('ICE_TOWARDS_COMPASS_BOULDER_3'))",
+            "Ice Cavern Large Room": "(can_pass_boulder('ICE_TOWARDS_LARGE_ROOM_BOULDER_1') or can_pass_boulder('ICE_TOWARDS_LARGE_ROOM_BOULDER_3')) or
+                ((boulder_type('ICE_TOWARDS_LARGE_ROOM_BOULDER_1') == BOULDER_TYPE_RED_ICE) and (boulder_type('ICE_TOWARDS_LARGE_ROOM_BOULDER_3') == BOULDER_TYPE_RED_ICE) and can_pass_boulder('ICE_TOWARDS_LARGE_ROOM_BOULDER_2'))", # Breaking the middle alone doesn't work unless both side ones are red ice
             "Farores Wind Warp": "can_use(Farores_Wind)"
         }
     },
@@ -34,7 +35,7 @@
         "dungeon": "Ice Cavern",
         "locations": {
             "Ice Cavern MQ Map Chest": "
-                Blue_Fire and
+                can_pass_boulder('ICE_MAP_BOULDER') and
                 (is_adult or can_use(Sticks) or Kokiri_Sword or can_use_projectile)",
             "Blue Fire": "has_bottle",
             "Ice Cavern MQ Map Room Wolfos 1": "has_soul(Wolfos)",
@@ -50,12 +51,36 @@
             "Ice Cavern MQ Freestanding PoH": "has_explosives",
             "Ice Cavern MQ Compass Room Pot 1": "True",
             "Ice Cavern MQ Compass Room Pot 2": "True",
-            "Ice Cavern MQ GS Red Ice": "can_play(Song_of_Time) or logic_ice_mq_red_ice_gs",
+            "Ice Cavern MQ GS Red Ice": "
+                (boulder_type('ICE_COMPASS_SKULLTULA_BOULDER') == BOULDER_TYPE_BROWN and can_blast_or_smash) or
+                (boulder_type('ICE_COMPASS_SKULLTULA_BOULDER') == BOULDER_TYPE_BRONZE and Megaton_Hammer) or
+                (boulder_type('ICE_COMPASS_SKULLTULA_BOULDER') == BOULDER_TYPE_RED_ICE and (blue_fire_arrows and can_use(Blue_Fire_Arrows)) or (Blue_Fire and (can_play(Song_of_Time) or logic_ice_mq_red_ice_gs))) or
+                (boulder_type('ICE_COMPASS_SKULLTULA_BOULDER') == BOULDER_TYPE_SILVER and can_play(Song_of_Time) and Silver_Gauntlets)",
             "Ice Cavern MQ Before Compass Freezard 1": "has_soul(Freezard)",
             "Ice Cavern MQ Before Compass Freezard 2": "has_soul(Freezard)",
             "Ice Cavern MQ Compass Room Freezard 1": "has_soul(Freezard)",
             "Ice Cavern MQ Compass Room Freezard 2": "has_soul(Freezard)",
             "Ice Cavern MQ Compass Room Freezard 3": "has_soul(Freezard)"
+        }
+    },
+    {
+        "region_name": "Ice Cavern Large Room",
+        "dungeon": "Ice Cavern",
+        "locations": {
+            
+            "Ice Cavern MQ GS Ice Block": "is_adult or can_child_attack",
+            "Ice Cavern MQ GS Scarecrow": "
+                can_use(Scarecrow) or (Hover_Boots and can_use(Longshot)) or
+                (logic_ice_mq_scarecrow and is_adult)",
+            "Ice Cavern MQ Large Room Wolfos 1": "has_soul(Wolfos) and (is_adult or can_child_attack)",
+            "Ice Cavern MQ Large Room Wolfos 2": "has_soul(Wolfos) and (is_adult or can_child_attack)",
+            "Ice Cavern MQ Large Room Ice Keese 1": "has_soul(Keese)",
+            "Ice Cavern MQ Large Room Ice Keese 2": "has_soul(Keese)"
+        },
+        "exits": {
+            "Ice Cavern Iron Boots Region": "(can_pass_boulder('ICE_LARGE_ROOM_BOULDER_1') and not boulder_type('ICE_LARGE_ROOM_BOULDER_1') == BOULDER_TYPE_SILVER)
+                                          or (can_pass_boulder('ICE_LARGE_ROOM_BOULDER_2') and not boulder_type('ICE_LARGE_ROOM_BOULDER_2') == BOULDER_TYPE_SILVER)
+                                          or (can_pass_boulder('ICE_LARGE_ROOM_BOULDER_3') and not boulder_type('ICE_LARGE_ROOM_BOULDER_3') == BOULDER_TYPE_SILVER)" # Can't lift these if they're silver boulders
         }
     },
     {
@@ -66,14 +91,6 @@
             "Sheik in Ice Cavern": "is_adult and has_soul(Stalfos)",
             "Ice Cavern MQ Near End Pot 1": "is_adult",
             "Ice Cavern MQ Near End Pot 2": "is_adult",
-            "Ice Cavern MQ GS Ice Block": "is_adult or can_child_attack",
-            "Ice Cavern MQ GS Scarecrow": "
-                can_use(Scarecrow) or (Hover_Boots and can_use(Longshot)) or
-                (logic_ice_mq_scarecrow and is_adult)",
-            "Ice Cavern MQ Large Room Wolfos 1": "has_soul(Wolfos) and (is_adult or can_child_attack)",
-            "Ice Cavern MQ Large Room Wolfos 2": "has_soul(Wolfos) and (is_adult or can_child_attack)",
-            "Ice Cavern MQ Large Room Ice Keese 1": "has_soul(Keese)",
-            "Ice Cavern MQ Large Room Ice Keese 2": "has_soul(Keese)",
             "Ice Cavern MQ Near End Ice Keese 1": "is_adult and has_soul(Keese)",
             "Ice Cavern MQ Near End Ice Keese 2": "is_adult and has_soul(Keese)",
             "Ice Cavern MQ Iron Boots Room Stalfos": "is_adult and has_soul(Stalfos)"
