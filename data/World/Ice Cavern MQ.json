@@ -55,7 +55,7 @@
                 (boulder_type('ICE_COMPASS_SKULLTULA_BOULDER') == BOULDER_TYPE_BROWN and can_blast_or_smash) or
                 (boulder_type('ICE_COMPASS_SKULLTULA_BOULDER') == BOULDER_TYPE_BRONZE and Megaton_Hammer) or
                 (boulder_type('ICE_COMPASS_SKULLTULA_BOULDER') == BOULDER_TYPE_RED_ICE and (blue_fire_arrows and can_use(Blue_Fire_Arrows)) or (Blue_Fire and (can_play(Song_of_Time) or logic_ice_mq_red_ice_gs))) or
-                (boulder_type('ICE_COMPASS_SKULLTULA_BOULDER') == BOULDER_TYPE_SILVER and can_play(Song_of_Time) and Silver_Gauntlets)",
+                (boulder_type('ICE_COMPASS_SKULLTULA_BOULDER') == BOULDER_TYPE_SILVER and can_play(Song_of_Time) and can_use(Silver_Gauntlets))",
             "Ice Cavern MQ Before Compass Freezard 1": "has_soul(Freezard)",
             "Ice Cavern MQ Before Compass Freezard 2": "has_soul(Freezard)",
             "Ice Cavern MQ Compass Room Freezard 1": "has_soul(Freezard)",
