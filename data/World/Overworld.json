@@ -12,7 +12,7 @@
         "exits": {
             "Root Exits": "is_starting_age or Time_Travel",
             "HC Garden Locations": "skip_child_zelda",
-            "GF Above Jail Child Locations": "not shuffle_hideout_entrances"
+            "GF Above Jail Child Locations": "shuffle_gerudo_fortress_heart_piece == 'remove' or not shuffle_hideout_entrances"
         }
     },
     {
