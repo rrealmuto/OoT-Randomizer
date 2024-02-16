@@ -361,11 +361,11 @@ def process_pot(actor_bytes):
     }
 
 #rom = Rom("ZOOTDEC.z64")
-rom = Rom("zeloot_mqdebug.z64")
-pots = get_crates(rom)
+#rom = Rom("zeloot_mqdebug.z64")
+#pots = get_crates(rom)
 
-for pot in pots:
-    print(str(pot) + ": " + str(pots[pot]))
+#for pot in pots:
+#    print(str(pot) + ": " + str(pots[pot]))
 
 #rom = Rom("../zeloot_mqdebug.z64")
 #wonderitems = get_wonderitems(rom)

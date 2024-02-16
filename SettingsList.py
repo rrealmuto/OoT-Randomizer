@@ -2893,7 +2893,8 @@ class SettingInfos:
         choices        = {
             'off': 'Off',
             'all': 'All',
-            'bosses': 'Bosses'
+            'bosses': 'Bosses',
+            'regional': 'Regional'
         },
         shared         = True,
         gui_params     = {

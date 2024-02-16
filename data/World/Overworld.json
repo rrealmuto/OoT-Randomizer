@@ -1449,7 +1449,7 @@
     },
     {
         "region_name": "HC Garden",
-        "scene": "Castle Grounds",
+        "scene": "Castle Courtyard",
         "hint": "HYRULE_CASTLE",
         "locations": {
             "HC Zeldas Courtyard Mario Wonderitem": "can_use(Slingshot)"
@@ -1462,7 +1462,7 @@
     {
         # Directly reachable from Root in "Free Zelda"
         "region_name": "HC Garden Locations",
-        "scene": "Castle Grounds",
+        "scene": "Castle Courtyard",
         "hint": "HYRULE_CASTLE",
         "locations": {
             "HC Zeldas Letter": "True",

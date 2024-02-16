@@ -242,6 +242,7 @@
     },
     {
         "region_name": "Dodongos Cavern Hall Before Lower Lizalfos",
+        "dungeon": "Dodongos Cavern",
         "locations": {
             "Dodongos Cavern MQ Right Side Baby Dodongo 1": "has_soul(Baby_Dodongo) and (is_adult or (Kokiri_Sword or Sticks or Slingshot or Boomerang or has_explosives))",
             "Dodongos Cavern MQ Right Side Baby Dodongo 2": "has_soul(Baby_Dodongo) and (is_adult or (Kokiri_Sword or Sticks or Slingshot or Boomerang or has_explosives))"

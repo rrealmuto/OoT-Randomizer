@@ -12,7 +12,7 @@ from Region import Region, TimeOfDay
 from Rules import set_entrances_based_rules
 from State import State
 from Item import ItemFactory
-from Hints import HintArea, HintAreaNotFound
+from HintArea import HintArea, HintAreaNotFound
 from HintList import misc_item_hint_table
 
 if TYPE_CHECKING:

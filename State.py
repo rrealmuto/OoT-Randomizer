@@ -4,12 +4,16 @@ from typing import TYPE_CHECKING, Optional, Any
 
 from Item import Item, ItemInfo
 from RulesCommon import escape_name
+from Location import Location
+from HintArea import HintArea
 
 if TYPE_CHECKING:
     from Goals import GoalCategory, Goal
     from Location import Location
     from Search import Search
     from World import World
+
+from Scene import get_scene_group, scene_groups, scene_list
 
 Triforce_Piece: int = ItemInfo.solver_ids['Triforce_Piece']
 Triforce: int = ItemInfo.solver_ids['Triforce']
@@ -180,11 +184,33 @@ class State:
     def region_has_shortcuts(self, region_name: str) -> bool:
         return self.world.region_has_shortcuts(region_name)
 
-    def has_soul(self, enemy: str) -> bool:
-        soul_str = enemy + " Soul"
+    def has_soul(self, enemy: str, **kwargs) -> bool:
+        # Get the spot (this can be a location, an entrance (region transition), or an Event)
+        spot = kwargs['spot']
+        
+        if self.world.settings.shuffle_enemy_spawns == 'regional': # Regional soul shuffle so determine the region soul from the spot's parent region's scene
+            scene = None
+            if type(spot) is Location and spot.scene and spot.scene != 0xFF and spot.scene != 62: # For actual item locations we can get the scene from the location directly
+                scene = scene_list[spot.scene]
+            # Other types of locations we need to be a bit creative
+            # All regions should be marked with either a scene or a dungeon
+            # We can resolve the scene id from those hopefully
+            elif type(spot) is Location and spot.scene == 62: # Grotto locations
+                scene = "Grottos"
+            elif spot.parent_region.scene:
+                scene = spot.parent_region.scene
+            elif spot.parent_region.dungeon:
+                scene = spot.parent_region.dungeon.name
+            if scene is not None:
+                # We have a scene name so loop through our scene groups
+                group = get_scene_group(scene)
+            soul_str = group + " Souls"
+            return self.has(ItemInfo.solver_ids[escape_name(soul_str)])
+        else:
+            soul_str = enemy + " Soul"
         return (not self.world.shuffle_enemy_spawns or self.has(ItemInfo.solver_ids[escape_name(soul_str)]))
 
-    def has_all_notes_for_song(self, song: str) -> bool:
+    def has_all_notes_for_song(self, song: str, **kwargs) -> bool:
         # Scarecrow needs 2 different notes
         if song == 'Scarecrow Song':
             return self.has_ocarina_buttons(2)

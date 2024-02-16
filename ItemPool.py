@@ -366,6 +366,31 @@ enemy_souls_bosses: list[str] = [
     'Twinrova Soul',
 ]
 
+region_souls: list[str] = [
+    'Deku Tree Souls',
+    'Dodongos Cavern Souls',
+    'Jabu Jabus Belly Souls',
+    'Forest Temple Souls',
+    'Fire Temple Souls',
+    'Water Temple Souls',
+    'Shadow Temple Souls',
+    'Spirit Temple Souls',
+    'Bottom of the Well Souls',
+    'Ice Cavern Souls',
+    'Gerudo Training Ground Souls',
+    'Ganons Castle Souls',
+    'Forest Area Souls',
+    'Hyrule Field Souls',
+    'Lake Hylia Souls',
+    'Gerudo Area Souls',
+    'Market Area Souls',
+    'Kakariko Area Souls',
+    'Goron Area Souls',
+    'Zora Area Souls',
+    'Lon Lon Ranch Souls',
+    'Grottos Souls',
+]
+
 song_list: list[str] = [item.name for item in sorted([i for n, i in ItemInfo.items.items() if i.type == 'Song'], key=lambda x: x.index if x.index is not None else 0)]
 junk_pool_base: list[tuple[str, int]] = [(item, weight) for (item, weight) in sorted(ItemInfo.junk_weight.items()) if weight > 0]
 remove_junk_items: list[str] = [item for (item, weight) in sorted(ItemInfo.junk_weight.items()) if weight >= 0]
@@ -569,6 +594,8 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
             pending_junk_pool.extend(enemy_souls_core + enemy_souls_bosses)
         elif world.settings.shuffle_enemy_spawns == 'bosses':
             pending_junk_pool.extend(enemy_souls_bosses)
+        elif world.settings.shuffle_enemy_spawns == 'regional':
+            pending_junk_pool.extend(region_souls)
 
     if world.settings.item_pool_value == 'ludicrous':
         pending_junk_pool.extend(ludicrous_health)
@@ -586,6 +613,8 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
         pending_junk_pool.extend(enemy_souls_core + enemy_souls_bosses)
     elif world.settings.shuffle_enemy_spawns == 'bosses':
         pending_junk_pool.extend(enemy_souls_bosses)
+    elif world.settings.shuffle_enemy_spawns == 'regional':
+        pending_junk_pool.extend(region_souls)
 
     # Use the vanilla items in the world's locations when appropriate.
     vanilla_items_processed = Counter()
