@@ -2696,7 +2696,12 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
     # Enemy soul shuffle
     if world.settings.shuffle_enemy_spawns != 'off':
-        rom.write_byte(rom.sym('CFG_ENEMY_SPAWN_SHUFFLE'), 1)
+        SPAWN_SHUFFLE_DICT = {
+            'all': 1,
+            'bosses': 1,
+            'regional': 2
+        }
+        rom.write_byte(rom.sym('CFG_ENEMY_SPAWN_SHUFFLE'), SPAWN_SHUFFLE_DICT[world.settings.shuffle_enemy_spawns])
 
         # There are two keese in MQ spirit temple that don't spawn because their object isn't loaded
         # This causes the room clear check hacks to break because soul shuffle will normally see the actor when spawning, and inhibit it

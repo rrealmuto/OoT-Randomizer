@@ -80,15 +80,25 @@ typedef struct enemy_spawn_table_entry {
     alt_spawn_override_fn override_func;
 } enemy_spawn_table_entry;
 
+typedef struct regional_enemy_spawn_table_entry{
+    uint8_t* scene_group;
+    uint8_t scene_group_length; 
+} regional_enemy_spawn_table_entry;
+
 typedef struct soul_menu_info {
     SOUL_ID soul_id;
     char* name;
 } soul_menu_info;
 
+#define CFG_ENEMY_SPAWN_SHUFFLE_NONE 0
+#define CFG_ENEMY_SPAWN_SHUFFLE_STANDARD 1
+#define CFG_ENEMY_SPAWN_SHUFFLE_REGIONAL 2
+
 extern uint8_t CFG_ENEMY_SPAWN_SHUFFLE;
 extern soul_menu_info SOUL_MENU_NAMES[];
 
 #define ENEMY_SPAWN_TABLE_ENTRY(actor_id_,index_,flags_,override_func_) {.actor_id = actor_id_, .index = index_, .flags = flags_, .override_func = override_func_}
+#define REGIONAL_ENEMY_SPAWN_TABLE_ENTRY(scene_group_) {.scene_group = scene_group_, .scene_group_length = array_size(scene_group_)}
 
 bool spawn_override_enemy_spawn_shuffle(ActorEntry *actorEntry, z64_game_t *globalCtx, SPAWN_FLAGS flag);
 

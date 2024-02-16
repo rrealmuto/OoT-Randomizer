@@ -23,7 +23,7 @@ Gfx* menu_dl_p __attribute__ ((aligned (16)));
 
 void init_new_menus() {
     // Add menus here
-    if(CFG_ENEMY_SPAWN_SHUFFLE) {
+    if(CFG_ENEMY_SPAWN_SHUFFLE == CFG_ENEMY_SPAWN_SHUFFLE_STANDARD) {
         menu_page = (MENU_PAGE)menu_count;
         menus[menu_count++] = &soul_menu_ctx;
     }

@@ -348,8 +348,8 @@ class Rule_AST_Transformer(ast.NodeTransformer):
     # Generates an ast.Call invoking the given State function 'name',
     # providing given args and keywords, and adding in additional
     # keyword args from kwarg_defaults (age, etc.)
-    
-    defaults = [ast.keyword(arg='age',value=ast.Name(id="age", ctx=ast.Load()))]
+    defaults = [ast.keyword(arg='age',value=ast.Name(id="age", ctx=ast.Load())),
+                ast.keyword(arg='spot',value=ast.Name(id="spot", ctx=ast.Load()))]
     def make_call(self, node: ast.AST, name: str, args: list[Any], keywords: list[ast.keyword]) -> ast.Call:
         if not hasattr(State, name):
             raise Exception('Parse Error: No such function State.%s' % name, self.current_spot.name, ast.dump(node, False))

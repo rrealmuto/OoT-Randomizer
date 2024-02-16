@@ -27,7 +27,6 @@ from State import State
 from Utils import data_path, read_logic_file
 from Boulders import BOULDER_TYPE
 
-
 class World:
     def __init__(self, world_id: int, settings: Settings, resolve_randomized_settings: bool = True) -> None:
         self.id: int = world_id
@@ -569,6 +568,8 @@ class World:
         savewarps_to_connect = []
 
         for region in region_json:
+            if 'scene' not in region and 'dungeon' not in region:
+                print(region['region_name'])
             new_region = Region(self, region['region_name'])
             if 'scene' in region:
                 new_region.scene = region['scene']
