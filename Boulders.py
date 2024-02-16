@@ -51,7 +51,92 @@ vanilla_dungeon_boulders = {
 }
 
 mq_dungeon_boulders = {
-
+    'Deku Tree':{
+        'DEKU_COMPASS_BOULDER_1': {(0, 2, 0, 20) : {'type': BOULDER_TYPE.BROWN, 'switch': 3}},
+        'DEKU_COMPASS_BOULDER_2': {(0, 2, 0, 21) : {'type': BOULDER_TYPE.BROWN, 'switch': 4}},
+        'DEKU_COMPASS_BOULDER_3': {(0, 2, 0, 22) : {'type': BOULDER_TYPE.BROWN, 'switch': 8}},
+    },
+    'Dodongos Cavern': {
+        'DC_LOBBY_SWITCH_BOULDER': {(1, 0, 0, 22) :{'type': BOULDER_TYPE.BROWN, 'switch': 14}},
+        'DC_LOBBY_UNK': {(1, 0, 0, 23) :{'type': BOULDER_TYPE.BROWN, 'switch': 17}},
+        'DC_LOBBY_UPPER_BOULDER_1': {(1, 0, 0, 24) :{'type': BOULDER_TYPE.BROWN, 'switch': 21}},
+        'DC_LOBBY_UPPER_BOULDER_2': {(1, 0, 0, 25) :{'type': BOULDER_TYPE.BROWN, 'switch': 21}},
+        'DC_LOBBY_UPPER_BOULDER_3': {(1, 0, 0, 26) :{'type': BOULDER_TYPE.BROWN, 'switch': 21}},
+        'DC_LOWER_HALL_FLOWER_BOULDER': {(1, 1, 0, 24) :{'type': BOULDER_TYPE.BROWN, 'switch': 8}},
+        'DC_LOWER_HALL_EYESWITCH_BOULDER': {(1, 1, 0, 25) :{'type': BOULDER_TYPE.BROWN, 'switch': 18}},
+        'DC_UPPER_LIZALFOS_BOULDER_1': {(1, 3, 0, 11) :{'type': BOULDER_TYPE.BROWN, 'switch': 63}},
+        'DC_UPPER_LIZALFOS_BOULDER_2': {(1, 3, 0, 12) :{'type': BOULDER_TYPE.BROWN, 'switch': 63}},
+        'DC_UPPER_LIZALFOS_BOULDER_3': {(1, 3, 0, 13) :{'type': BOULDER_TYPE.BROWN, 'switch': 63}},
+        'DC_UPPER_LIZALFOS_BOULDER_4': {(1, 3, 0, 14) :{'type': BOULDER_TYPE.BROWN, 'switch': 63}},
+        'DC_UPPER_LIZALFOS_BOULDER_5': {(1, 3, 0, 15) :{'type': BOULDER_TYPE.BROWN, 'switch': 63}},
+        'DC_UPPER_LIZALFOS_BOULDER_6': {(1, 3, 0, 16) :{'type': BOULDER_TYPE.BROWN, 'switch': 63}},
+        'DC_UPPER_LIZALFOS_BOULDER_7': {(1, 3, 0, 17) :{'type': BOULDER_TYPE.BROWN, 'switch': 63}},
+        'DC_UPPER_LIZALFOS_BOULDER_8': {(1, 3, 0, 18) :{'type': BOULDER_TYPE.BROWN, 'switch': 63}},
+        'DC_UPPER_LIZALFOS_BOULDER_9': {(1, 3, 0, 19) :{'type': BOULDER_TYPE.BROWN, 'switch': 63}},
+        'DC_UPPER_LIZALFOS_BOULDER_10': {(1, 3, 0, 20) :{'type': BOULDER_TYPE.BROWN, 'switch': 63}},
+        'DC_UPPER_LIZALFOS_BOULDER_11': {(1, 3, 0, 21) :{'type': BOULDER_TYPE.BROWN, 'switch': 63}},
+        'DC_UPPER_LIZALFOS_BOULDER_12': {(1, 3, 0, 22) :{'type': BOULDER_TYPE.BROWN, 'switch': 63}},
+        'DC_TWOFLAMES_BOULDER': {(1, 12, 0, 9) :{'type': BOULDER_TYPE.BROWN, 'switch': 4}},
+    },
+    'Jabu Jabus Belly': {
+        'JABU_ENTRANCE_BOULDER': {(2, 0, 0, 6,): {'type': BOULDER_TYPE.BROWN, 'switch': 0}},
+        'JABU_PITS_GRASS_BOULDER_1': {(2, 2, 0, 8,): {'type': BOULDER_TYPE.BROWN, 'switch': 8}},
+        'JABU_PITS_GRASS_BOULDER_2': {(2, 2, 0, 9,): {'type': BOULDER_TYPE.BROWN, 'switch': 9}},
+        'JABU_PITS_WALL_BOULDER_1': {(2, 2, 0, 7,): {'type': BOULDER_TYPE.BROWN, 'switch': 6}},
+        'JABU_PITS_WALL_BOULDER_2': {(2, 2, 0, 10): {'type': BOULDER_TYPE.BROWN, 'switch': 17}},
+        'JABU_PITS_WALL_BOULDER_3': {(2, 2, 0, 11): {'type': BOULDER_TYPE.BROWN, 'switch': 26}},
+        'JABU_DEPTHS_BOULDER_1': {(2, 7, 0, 3): {'type': BOULDER_TYPE.BROWN, 'switch': 28}},
+        'JABU_DEPTHS_BOULDER_2': {(2, 7, 0, 4): {'type': BOULDER_TYPE.BROWN, 'switch': 28}},
+        'JABU_TAILS_BOULDER_WALL': {(2, 12, 0, 7): {'type': BOULDER_TYPE.BROWN, 'switch': 14}},
+        'JABU_TAILS_BOULDER_FLOOR': {(2, 12, 0, 8): {'type': BOULDER_TYPE.BROWN, 'switch': 16}},
+    },
+    'Spirit Temple': {
+        'SPIRIT_LOBBY_BOULDER_LOWER_LEFT': {(6, 0, 0, 1): {'type': BOULDER_TYPE.BROWN, 'switch': 11}},
+        'SPIRIT_LOBBY_CEILING_BOULDER': {(6, 0, 0, 2): {'type': BOULDER_TYPE.BROWN, 'switch': 12}},
+        'SPIRIT_LOBBY_EYESWITCH_BOULDER': {(6, 0, 0, 3): {'type': BOULDER_TYPE.BROWN, 'switch': 14}},
+        'SPIRIT_LOBBY_BOULDER_LOWER_RIGHT': {(6, 0, 0, 4): {'type': BOULDER_TYPE.BROWN, 'switch': 16}},
+        'SPIRIT_EARLY_ADULT_BOULDER': {(6, 0, 0, 5): {'type': BOULDER_TYPE.BROWN, 'switch': 29}},
+        'SPIRIT_CHILD_CRAWLSPACE_BOULDER': {(6, 1, 0, 4): {'type': BOULDER_TYPE.BROWN, 'switch': 5}},
+        'SPIRIT_CHILD_GATE_EYESWITCH_BOULDER': {(6, 2, 0, 7): {'type': BOULDER_TYPE.BROWN, 'switch': 40}},
+        'SPIRIT_CHILD_GATE_WALL_BOULDER_1': {(6, 2, 0, 10): {'type': BOULDER_TYPE.BROWN, 'switch': 60}},
+        'SPIRIT_CHILD_GATE_WALL_BOULDER_2': {(6, 2, 0, 11): {'type': BOULDER_TYPE.BROWN, 'switch': 61}},
+    },
+    'Bottom of the Well': {
+        'BOTW_LEFT_SIDE_BOULDER_1': {(8, 0, 0, 19): {'type': BOULDER_TYPE.BROWN, 'switch': 6}},
+        'BOTW_LEFT_SIDE_BOULDER_2': {(8, 0, 0, 20): {'type': BOULDER_TYPE.BROWN, 'switch': 7}},
+        'BOTW_EYESWITCH_WALL_BOULDER': {(8, 0, 0, 26): {'type': BOULDER_TYPE.BROWN, 'switch': 11}},
+    },
+    'Ice Cavern': {
+        'ICE_TOWARDS_LARGE_ROOM_BOULDER_1': {(9, 3, 0, 9): {'type': BOULDER_TYPE.RED_ICE, 'switch': 33}},
+        'ICE_TOWARDS_LARGE_ROOM_BOULDER_2': {(9, 3, 0, 10): {'type': BOULDER_TYPE.RED_ICE, 'switch': 34}},
+        'ICE_TOWARDS_LARGE_ROOM_BOULDER_3': {(9, 3, 0, 11): {'type': BOULDER_TYPE.RED_ICE, 'switch': 35}},
+        'ICE_TOWARDS_COMPASS_BOULDER_1': {(9, 3, 0, 14): {'type': BOULDER_TYPE.RED_ICE, 'switch': 41}},
+        'ICE_TOWARDS_COMPASS_BOULDER_2': {(9, 3, 0, 16): {'type': BOULDER_TYPE.RED_ICE, 'switch': 42}},
+        'ICE_TOWARDS_COMPASS_BOULDER_3': {(9, 3, 0, 17): {'type': BOULDER_TYPE.RED_ICE, 'switch': 43}},
+        'ICE_LARGE_ROOM_BOULDER_1': {(9, 5, 0, 14): {'type': BOULDER_TYPE.RED_ICE, 'switch': 45}},
+        'ICE_LARGE_ROOM_BOULDER_2': {(9, 5, 0, 15): {'type': BOULDER_TYPE.RED_ICE, 'switch': 46}},
+        'ICE_LARGE_ROOM_BOULDER_3': {(9, 5, 0, 16): {'type': BOULDER_TYPE.RED_ICE, 'switch': 47}},
+        'ICE_COMPASS_SKULLTULA_BOULDER': {(9, 9, 0, 18): {'type': BOULDER_TYPE.RED_ICE, 'switch': 59}},
+        'ICE_MAP_BOULDER': {(9, 11, 0, 0): {'type': BOULDER_TYPE.RED_ICE, 'switch': 63}},
+    },
+    'Gerudo Training Ground': {
+        'GTG_STALFOS_ROOM_BOULDER': {(11, 3, 0, 13): {'type': BOULDER_TYPE.RED_ICE, 'switch': 15}},
+    },
+    'Ganons Castle': {
+        'IGC_WATER_TRIAL_CHEST_BOULDER': {(13, 2, 0, 19):{'type': BOULDER_TYPE.RED_ICE, 'switch': 63}},
+        'IGC_WATER_TRIAL_RECOVERYHEART_BOULDER': {(13, 2, 0, 20):{'type': BOULDER_TYPE.RED_ICE, 'switch': 63}},
+        'IGC_WATER_TRIAL_UNK_1': {(13, 2, 0, 21):{'type': BOULDER_TYPE.RED_ICE, 'switch': 63}},
+        'IGC_WATER_TRIAL_FIRST_ROOM_DOOR_BOULDER_1': {(13, 2, 0, 23):{'type': BOULDER_TYPE.RED_ICE, 'switch': 13}},
+        'IGC_WATER_TRIAL_FIRST_ROOM_DOOR_BOULDER_2': {(13, 2, 0, 24):{'type': BOULDER_TYPE.RED_ICE, 'switch': 13}},
+        'IGC_WATER_TRIAL_FIRST_ROOM_DOOR_BOULDER_3': {(13, 2, 0, 25):{'type': BOULDER_TYPE.RED_ICE, 'switch': 13}},
+        'IGC_WATER_TRIAL_FIRST_ROOM_DOOR_BOULDER_4': {(13, 2, 0, 26):{'type': BOULDER_TYPE.RED_ICE, 'switch': 13}},
+        'IGC_WATER_TRIAL_SILVER_RUPEE_BOULDER': {(13, 3, 0, 6 ):{'type': BOULDER_TYPE.RED_ICE, 'switch': 63}},
+        'IGC_WATER_TRIAL_ENDING_BOULDER_1': {(13, 3, 0, 13):{'type': BOULDER_TYPE.RED_ICE, 'switch': 6}},
+        'IGC_WATER_TRIAL_ENDING_BOULDER_2': {(13, 3, 0, 14):{'type': BOULDER_TYPE.RED_ICE, 'switch': 6}},
+        'IGC_WATER_TRIAL_ENDING_BOULDER_3': {(13, 3, 0, 15):{'type': BOULDER_TYPE.RED_ICE, 'switch': 6}},
+        'IGC_WATER_TRIAL_ENDING_BOULDER_4': {(13, 3, 0, 16):{'type': BOULDER_TYPE.RED_ICE, 'switch': 6}},
+        'IGC_WATER_TRIAL_ENDING_BOULDER_5': {(13, 3, 0, 17):{'type': BOULDER_TYPE.RED_ICE, 'switch': 6}},
+    }
 }
 
 def patch_kz_boulder(boulder, rom: Rom, key: tuple[int,int,int,int], collider_overrides: list):
@@ -184,6 +269,32 @@ boulder_list = {
     'OGC_UNNAMED_7': {(100, 0, 0, 9): {'type': BOULDER_TYPE.SILVER, 'switch': 60, },},
 }
 
+# These boulders should always be set to the following types
+force_boulders = {
+    'DC_LOWER_HALL_EYESWITCH_BOULDER': [BOULDER_TYPE.BROWN],
+    'JABU_PITS_WALL_BOULDER_1': [BOULDER_TYPE.BROWN],
+    'JABU_PITS_WALL_BOULDER_2': [BOULDER_TYPE.BROWN],
+    'JABU_PITS_WALL_BOULDER_3': [BOULDER_TYPE.BROWN],
+    'JABU_TAILS_BOULDER_WALL': [BOULDER_TYPE.BROWN],
+    'SPIRIT_LOBBY_CEILING_BOULDER': [BOULDER_TYPE.BROWN],
+    'BOTW_EYESWITCH_WALL_BOULDER': [BOULDER_TYPE.BROWN]
+}
+
+# These boulders have to be the following types in ALR
+priority_boulders = {
+    'HC_CHILD_FAIRY_BOULDER': [BOULDER_TYPE.BROWN, BOULDER_TYPE.RED_ICE],
+    'DMT_CHILD_LOWER_BOULDER': [BOULDER_TYPE.BROWN, BOULDER_TYPE.RED_ICE],
+    'DMT_UPPER_BOULDER': [BOULDER_TYPE.BROWN, BOULDER_TYPE.BRONZE, BOULDER_TYPE.RED_ICE],
+    'JABU_DEPTHS_BOULDER_1': [BOULDER_TYPE.BROWN, BOULDER_TYPE.RED_ICE],
+    'JABU_DEPTHS_BOULDER_2': [BOULDER_TYPE.BROWN, BOULDER_TYPE.RED_ICE],
+    'SPIRIT_CHILD_GATE_EYESWITCH_BOULDER': [BOULDER_TYPE.BROWN],
+    'BOTW_LEFT_SIDE_BOULDER_1': [BOULDER_TYPE.BROWN, BOULDER_TYPE.RED_ICE],
+    'BOTW_LEFT_SIDE_BOULDER_2': [BOULDER_TYPE.BROWN, BOULDER_TYPE.RED_ICE],
+    'ICE_LARGE_ROOM_BOULDER_1': [BOULDER_TYPE.BROWN, BOULDER_TYPE.BRONZE, BOULDER_TYPE.RED_ICE],
+    'ICE_LARGE_ROOM_BOULDER_2': [BOULDER_TYPE.BROWN, BOULDER_TYPE.BRONZE, BOULDER_TYPE.RED_ICE],
+    'ICE_LARGE_ROOM_BOULDER_3': [BOULDER_TYPE.BROWN, BOULDER_TYPE.BRONZE, BOULDER_TYPE.RED_ICE],
+}
+
 
 def process_brown_boulder(actor_bytes):
     return {
@@ -253,49 +364,6 @@ convert = {
     BOULDER_TYPE.RED_ICE: convert_red_ice,
     BOULDER_TYPE.HEAVY_BLOCK: convert_heavyblock
 }
-
-def shuffle_boulders(world) -> tuple[dict[str, dict[tuple[int,int,int,int], dict[str, any]]], dict[tuple[int,int,int,int], tuple[str,BOULDER_TYPE]]]:
-    # Build the full boulder list from the overworld ones + dungeons
-    boulders = boulder_list
-
-    mq_dungeons = [dungeon for dungeon in world.dungeon_mq if world.dungeon_mq[dungeon] == True]
-    vanilla_dungeons = [dungeon for dungeon in world.dungeon_mq if world.dungeon_mq[dungeon] == False]
-
-    for dungeon in mq_dungeons:
-        if dungeon in mq_dungeon_boulders.keys():
-            boulders.update(mq_dungeon_boulders[dungeon])
-    
-    for dungeon in vanilla_dungeons:
-        if dungeon in vanilla_dungeon_boulders.keys():
-            boulders.update(vanilla_dungeon_boulders[dungeon])
-
-    # Get each boulder's type which we'll shuffle
-    target_types = [boulders[boulder][list(boulders[boulder])[0]]['type'] for boulder in boulders]
-    if world.settings.shuffle_boulders:
-        random.shuffle(target_types)
-    shuffled_boulders_by_id = {}
-    shuffled_boulders = {}
-    boulder_keys = list(boulders)
-    for i in range(0,len(boulders)):
-        boulder_key = boulder_keys[i]
-        boulder = boulders[boulder_key] # Contains a dict of boulders for this because we have multiple scene setups
-        shuffled_boulders [boulder_key] = target_types[i]
-
-        #shuffled_boulders[boulder_key] = BOULDER_TYPE.BROWN
-        for id in boulder:
-            if 'patch' in list(boulder[id]):
-                patch_func = boulder[id]['patch']
-            else:
-                patch_func = None
-            if 'collider_override' in list(boulder[id]):
-                collider_override = boulder[id]['collider_override']
-            else:
-                collider_override = None
-            shuffled_boulders_by_id[(id[0], id[1], id[2], id[3])] = (boulder_keys[i], target_types[i], patch_func, collider_override)
-            #shuffled_boulders_by_id[(id[0], id[1], id[2], id[3])] = BOULDER_TYPE.BROWN
-            
-
-    return shuffled_boulders, shuffled_boulders_by_id
 
 def patch_boulders(boulders: dict[tuple[int,int,int,int], tuple[str,BOULDER_TYPE]], rom: Rom):
     boulder_rom_actors = get_boulder_shuffle_actors(rom)

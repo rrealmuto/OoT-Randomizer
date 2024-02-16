@@ -12,7 +12,7 @@ from typing import Optional
 
 
 from Cosmetics import CosmeticsLog, patch_cosmetics
-from EntranceShuffle import set_entrances
+from EntranceShuffle import set_entrances, shuffle_random_entrances
 from Fill import distribute_items_restrictive, ShuffleError
 from Goals import update_goal_items, replace_goal_names
 from Hints import build_gossip_hints
@@ -23,15 +23,14 @@ from Models import patch_model_adult, patch_model_child
 from N64Patch import create_patch_file, apply_patch_file
 from Patches import patch_rom
 from Rom import Rom
-from Rules import set_rules, set_shop_rules
+from Rules import set_entrances_based_rules, set_rules, set_shop_rules
 from Settings import Settings
 from SettingsList import logic_tricks
 from Spoiler import Spoiler
 from Utils import default_output_path, is_bundled, run_process, data_path
 from World import World
 from version import __version__
-from Boulders import shuffle_boulders
-
+from BoulderShuffle import set_boulders, shuffle_boulders
 
 def main(settings: Settings, max_attempts: int = 10) -> Spoiler:
     clear_hint_exclusion_cache()
@@ -146,9 +145,6 @@ def build_world_graphs(settings: Settings) -> list[World]:
         savewarps_to_connect += world.create_dungeons()
         world.create_internal_locations()
 
-        
-        world.boulders, world.boulders_by_id = shuffle_boulders(world)
-
         if settings.shopsanity != 'off':
             world.random_shop_prices()
         world.set_scrub_prices()
@@ -167,6 +163,16 @@ def build_world_graphs(settings: Settings) -> list[World]:
 
     logger.info('Setting Entrances.')
     set_entrances(worlds, savewarps_to_connect)
+
+    set_boulders(worlds)
+
+    if worlds[0].entrance_shuffle:
+        shuffle_random_entrances(worlds)
+
+    shuffle_boulders(worlds)
+
+    set_entrances_based_rules(worlds)
+
     return worlds
 
 

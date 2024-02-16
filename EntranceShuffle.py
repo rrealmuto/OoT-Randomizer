@@ -437,12 +437,6 @@ def set_entrances(worlds: list[World], savewarps_to_connect: list[tuple[Entrance
             # Set entrance data for all entrances, even those we aren't shuffling
             set_all_entrances_data(world)
 
-    if worlds[0].entrance_shuffle:
-        shuffle_random_entrances(worlds)
-
-    set_entrances_based_rules(worlds)
-
-
 # Shuffles entrances that need to be shuffled in all worlds
 def shuffle_random_entrances(worlds: list[World]) -> None:
     # Store all locations reachable before shuffling to differentiate which locations were already unreachable from those we made unreachable
