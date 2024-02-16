@@ -55,6 +55,53 @@ soul_menu_info SOUL_MENU_NAMES[] = {
     {SOUL_ID_BONGO_BONGO, "Bongo Bongo"},
     {SOUL_ID_TWINROVA, "Twinrova"},
 };
+uint8_t SCENE_GROUP_DEKU_TREE[]           = {0, 17};
+uint8_t SCENE_GROUP_DODONGOS_CAVERN[]     = {1,18};
+uint8_t SCENE_GROUP_JABU[]                = {2,19};
+uint8_t SCENE_GROUP_FOREST_TEMPLE[]       = {3,20};
+uint8_t SCENE_GROUP_FIRE_TEMPLE[]         = {4,21};
+uint8_t SCENE_GROUP_WATER_TEMPLE[]        = {5,22};
+uint8_t SCENE_GROUP_SHADOW_TEMPLE[]       = {6,23};
+uint8_t SCENE_GROUP_SPIRIT_TEMPLE[]       = {7,24};
+uint8_t SCENE_GROUP_BOTW[]                = {8};
+uint8_t SCENE_GROUP_ICE_CAVERN[]          = {9};
+uint8_t SCENE_GROUP_GTG[]                 = {11};
+uint8_t SCENE_GROUP_GANONS_CASTLE[]       = {10,13,14,15,25,26,79};
+uint8_t SCENE_GROUP_FOREST_AREA[]         = {38,39,40,41,45,52,85,86,91};
+uint8_t SCENE_GROUP_HYRULE_FIELD[]        = {81};
+uint8_t SCENE_GROUP_LAKE_HYLIA[]          = {56,87,73};
+uint8_t SCENE_GROUP_GERUDO_AREA[]         = {57,90,92,93,94};
+uint8_t SCENE_GROUP_MARKET_AREA[]         = {16,27,28,29,30,31,32,33,34,35,36,37,43,49,50,51,53,77,75,67,68,69,70,74,95,100};
+uint8_t SCENE_GROUP_KAKARIKO_AREA[]       = {42,48,58,63,65,72,78,80,82,83};
+uint8_t SCENE_GROUP_GORON_AREA[]          = {46,98,96,97};
+uint8_t SCENE_GROUP_ZORA_AREA[]           = {47,84,88,89};
+uint8_t SCENE_GROUP_LLR[]                 = {54,55,76,99};
+uint8_t SCENE_GROUP_GROTTOS[]             = {62,64};
+
+regional_enemy_spawn_table_entry regional_enemy_spawn_table[] = {
+    REGIONAL_ENEMY_SPAWN_TABLE_ENTRY(SCENE_GROUP_DEKU_TREE),
+    REGIONAL_ENEMY_SPAWN_TABLE_ENTRY(SCENE_GROUP_DODONGOS_CAVERN),
+    REGIONAL_ENEMY_SPAWN_TABLE_ENTRY(SCENE_GROUP_JABU),
+    REGIONAL_ENEMY_SPAWN_TABLE_ENTRY(SCENE_GROUP_FOREST_TEMPLE),
+    REGIONAL_ENEMY_SPAWN_TABLE_ENTRY(SCENE_GROUP_FIRE_TEMPLE),
+    REGIONAL_ENEMY_SPAWN_TABLE_ENTRY(SCENE_GROUP_WATER_TEMPLE),
+    REGIONAL_ENEMY_SPAWN_TABLE_ENTRY(SCENE_GROUP_SHADOW_TEMPLE),
+    REGIONAL_ENEMY_SPAWN_TABLE_ENTRY(SCENE_GROUP_SPIRIT_TEMPLE),
+    REGIONAL_ENEMY_SPAWN_TABLE_ENTRY(SCENE_GROUP_BOTW),
+    REGIONAL_ENEMY_SPAWN_TABLE_ENTRY(SCENE_GROUP_ICE_CAVERN),
+    REGIONAL_ENEMY_SPAWN_TABLE_ENTRY(SCENE_GROUP_GTG),
+    REGIONAL_ENEMY_SPAWN_TABLE_ENTRY(SCENE_GROUP_GANONS_CASTLE),
+    REGIONAL_ENEMY_SPAWN_TABLE_ENTRY(SCENE_GROUP_FOREST_AREA),
+    REGIONAL_ENEMY_SPAWN_TABLE_ENTRY(SCENE_GROUP_HYRULE_FIELD),
+    REGIONAL_ENEMY_SPAWN_TABLE_ENTRY(SCENE_GROUP_LAKE_HYLIA),
+    REGIONAL_ENEMY_SPAWN_TABLE_ENTRY(SCENE_GROUP_GERUDO_AREA),
+    REGIONAL_ENEMY_SPAWN_TABLE_ENTRY(SCENE_GROUP_MARKET_AREA),
+    REGIONAL_ENEMY_SPAWN_TABLE_ENTRY(SCENE_GROUP_KAKARIKO_AREA),
+    REGIONAL_ENEMY_SPAWN_TABLE_ENTRY(SCENE_GROUP_GORON_AREA),
+    REGIONAL_ENEMY_SPAWN_TABLE_ENTRY(SCENE_GROUP_ZORA_AREA),
+    REGIONAL_ENEMY_SPAWN_TABLE_ENTRY(SCENE_GROUP_LLR),
+    REGIONAL_ENEMY_SPAWN_TABLE_ENTRY(SCENE_GROUP_GROTTOS),
+};
 
 enemy_spawn_table_entry enemy_spawn_table[] = {
     ENEMY_SPAWN_TABLE_ENTRY(0x0002, 0,   SPAWN_FLAGS_SPAWNENTRY, NULL), //En_Test (Stalfos)
@@ -165,15 +212,38 @@ bool spawn_override_enemy_spawn_shuffle(ActorEntry *actorEntry, z64_game_t *glob
     if ( CFG_ENEMY_SPAWN_SHUFFLE ) { // Only if the setting is enabled
         for (int i = 0; i < array_size(enemy_spawn_table); i++) { //Loop through the enemy_spawn_table
             if ((actorEntry->id == enemy_spawn_table[i].actor_id) && (enemy_spawn_table[i].flags & flag)) {
-                enemy_spawn_table_entry *table_entry = &(enemy_spawn_table[i]);
-                bool continue_spawn = true;
-                if (enemy_spawn_table[i].override_func) {
-                    if (!enemy_spawn_table[i].override_func(actorEntry, globalCtx))
-                        return true;
+                
+                // For standard enemy spawn shuffle, check if we collected the soul for that enemy
+                if (CFG_ENEMY_SPAWN_SHUFFLE == CFG_ENEMY_SPAWN_SHUFFLE_STANDARD) {
+                    enemy_spawn_table_entry *table_entry = &(enemy_spawn_table[i]);
+                    bool continue_spawn = true;
+                    if (enemy_spawn_table[i].override_func) {
+                        if (!enemy_spawn_table[i].override_func(actorEntry, globalCtx))
+                            return true;
+                    }
+                    continue_spawn &= flags_getsoul(table_entry->index) & get_soul_enabled(table_entry->index);
+                    curr_room_enemies_inhibited |= !continue_spawn;
+                    return continue_spawn;
                 }
-                continue_spawn &= flags_getsoul(table_entry->index) & get_soul_enabled(table_entry->index);
-                curr_room_enemies_inhibited |= !continue_spawn;
-                return continue_spawn;
+                // For regional enemy spawn shuffle, check if we collected the soul for that region
+                else if (CFG_ENEMY_SPAWN_SHUFFLE == CFG_ENEMY_SPAWN_SHUFFLE_REGIONAL) {
+                    // Loop through the regional spawn table and check for the current scene
+                    for(int j = 0; j < array_size(regional_enemy_spawn_table); j++) {
+                        // Loop throught the scene group
+                        for(int k = 0; k < regional_enemy_spawn_table[j].scene_group_length; k++) {
+                            if(regional_enemy_spawn_table[j].scene_group[k] == globalCtx->scene_index) {
+                                // found a scene group matching the current scene
+                                // Check if we have that flag
+                                bool continue_spawn = flags_getsoul(j);
+                                curr_room_enemies_inhibited |= !continue_spawn;
+                                return continue_spawn;
+                            }
+                        }
+                    }
+                    // If we got here, we didn't find a scene group for this enemy. This should probably never happen
+                    // But just spawn the enemy if it does
+                    return true;
+                }
             }
         }
     }
