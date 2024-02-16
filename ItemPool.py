@@ -684,7 +684,7 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
         # Gerudo Fortress Freestanding Heart Piece
         elif location.vanilla_item == 'Piece of Heart (Out of Logic)':
             shuffle_item = False #TODO setting to shuffle this
-            if world.settings.shuffle_hideout_entrances:
+            if world.settings.shuffle_hideout_entrances or world.settings.logic_rules == 'glitched':
                 item = 'Piece of Heart'
 
         # Thieves' Hideout
