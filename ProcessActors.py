@@ -2,11 +2,25 @@ import sys
 from Rom import *
 from PIL import Image, ImageDraw
 
+
+class Vtx:
+    def __init__(self, x, y, z):
+        self.x = x
+        self.y = y
+        self.z = z
+
+    def from_bytes(bytes: bytearray):
+        x = int.from_bytes(bytes[0:2],'big', signed=True)
+        y = int.from_bytes(bytes[2:4],'big', signed=True)
+        z = int.from_bytes(bytes[4:6],'big', signed=True)
+        return Vtx(x,y,z)
+
 class Actor:
     def __init__(self, address: int, actor_bytes: bytearray):
         self.addr = address
         self.id = int.from_bytes(actor_bytes[0:2], 'big')
         self.var = int.from_bytes(actor_bytes[14:16], 'big')
+        self.pos: Vtx = Vtx.from_bytes(actor_bytes[2:8])
 
 class RoomSetup:
     def __init__(self, rom: Rom, room_addr: int, header_addr: int):
@@ -64,12 +78,6 @@ class Room:
                 offset += 8
         room_list[setup] = RoomSetup(rom, room_base, room_data)
 
-class Vtx:
-    def __init__(self, x, y, z):
-        self.x = x
-        self.y = y
-        self.z = z
-
 class Poly:
     def __init__(self, poly_bytes: bytearray):
         self.type = int.from_bytes(poly_bytes[0:2], 'big')
@@ -102,6 +110,15 @@ class SceneCollision:
             poly_bytes = rom.read_bytes(scene_addr + (self.poly_array_offset & 0x00FFFFFF) + (0x10*i), 0x10)
             self.poly.append(Poly(poly_bytes))
         
+    def normalize_vtx(self, vtx: Vtx):
+        normalized = Vtx(vtx.x, vtx.y, vtx.z)
+        normalized.x -= self.min.x
+        normalized.x /= self.max.x - self.min.x
+        normalized.y -= self.min.y
+        normalized.y /= self.max.y - self.min.y
+        normalized.z -= self.min.z
+        normalized.z /= self.max.z - self.min.z
+        return normalized
 
     def draw_collider_mesh(self):
         # Normalize vertex coordinates using the bounding box
@@ -111,7 +128,9 @@ class SceneCollision:
                 
             min = Vtx(self.vertex[0].x, self.vertex[0].y, self.vertex[0].z)
             max = Vtx(self.vertex[0].x, self.vertex[0].y, self.vertex[0].z)
-            
+            self.min = min
+            self.max = max
+
             for v in self.vertex:
                 if v.x < min.x:
                     min.x = v.x
@@ -143,9 +162,14 @@ class SceneCollision:
             # Figure out how big to make our image
             x_size = max.x - min.x
             y_size = max.z - min.z
+            self.x_size = x_size
+            self.y_size = y_size
 
             im = Image.new('L',(x_size + 1, y_size + 1))
             draw = ImageDraw.Draw(im)
+
+            self.im = im
+            self.draw = draw
             # draw each poly
             for p in self.poly:
                 # draw lines connecting each vertex
@@ -158,9 +182,16 @@ class SceneCollision:
                 draw.line([(v0n.x * x_size, v0n.z * y_size), (v1n.x * x_size, v1n.z * y_size)], fill=255)
                 draw.line([(v1n.x * x_size, v1n.z * y_size), (v2n.x * x_size, v2n.z * y_size)], fill=255)
                 draw.line([(v2n.x * x_size, v2n.z * y_size), (v0n.x * x_size, v0n.z * y_size)], fill=255)
-            im.save(scenes[self.scene.id] + '.png','png')
+            return im
         except Exception:
             pass
+        return None
+    
+    def draw_room_actors(self,room: Room):
+        for actor in room.setups[0].actors:
+            if actor.id == 0x0A:
+                pos_norm = self.normalize_vtx(actor.pos)
+                self.draw.rectangle(((pos_norm.x * self.x_size - 10, pos_norm.z * self.y_size -10), (pos_norm.x * self.x_size + 10, pos_norm.z * self.y_size + 10)), 255, width=10)
 
 class Scene:
     def __init__(self, rom: Rom, id: int, scene_addr: int):
@@ -716,7 +747,6 @@ def get_bad_actors(rom: Rom, scenes_data: list[Scene]):
         print(actor)
     return bad_actors
 
-
 #rom = Rom("ZOOTDEC.z64")
 
 #get_bad_actors(rom)
@@ -732,7 +762,13 @@ if __name__ == "__main__":
     rom = Rom("ZOOTDEC.z64")
     rom_scenes = process_scenes(rom)
     for scene in rom_scenes:
-        scene.collision.draw_collider_mesh()
+        im: Image = scene.collision.draw_collider_mesh()
+        if im:
+            draw = ImageDraw.Draw(im)
+            for room in scene.rooms:
+                scene.collision.draw_room_actors(room)
+            scene.collision.im.save(scenes[scene.id] + ".png", "PNG")
+        
     #rom = Rom("../zeloot_mqdebug.z64")
     #wonderitems = get_wonderitems(rom)
 
