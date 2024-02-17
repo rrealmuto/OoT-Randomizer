@@ -103,7 +103,7 @@ class State:
         return self.count_of(ItemInfo.stone_ids) >= count
 
 
-    def has_dungeon_rewards(self, count: int) -> bool:
+    def has_dungeon_rewards(self, count: int, **kwargs) -> bool:
         return (self.count_of(ItemInfo.medallion_ids) + self.count_of(ItemInfo.stone_ids)) >= count
 
     def has_ocarina_buttons(self, count: int) -> bool:

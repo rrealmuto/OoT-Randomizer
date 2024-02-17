@@ -212,15 +212,15 @@ bool spawn_override_enemy_spawn_shuffle(ActorEntry *actorEntry, z64_game_t *glob
     if ( CFG_ENEMY_SPAWN_SHUFFLE ) { // Only if the setting is enabled
         for (int i = 0; i < array_size(enemy_spawn_table); i++) { //Loop through the enemy_spawn_table
             if ((actorEntry->id == enemy_spawn_table[i].actor_id) && (enemy_spawn_table[i].flags & flag)) {
-                
+                if (enemy_spawn_table[i].override_func) {
+                    if (!enemy_spawn_table[i].override_func(actorEntry, globalCtx))
+                        return true;
+                }
                 // For standard enemy spawn shuffle, check if we collected the soul for that enemy
                 if (CFG_ENEMY_SPAWN_SHUFFLE == CFG_ENEMY_SPAWN_SHUFFLE_STANDARD) {
                     enemy_spawn_table_entry *table_entry = &(enemy_spawn_table[i]);
                     bool continue_spawn = true;
-                    if (enemy_spawn_table[i].override_func) {
-                        if (!enemy_spawn_table[i].override_func(actorEntry, globalCtx))
-                            return true;
-                    }
+                    
                     continue_spawn &= flags_getsoul(table_entry->index) & get_soul_enabled(table_entry->index);
                     curr_room_enemies_inhibited |= !continue_spawn;
                     return continue_spawn;
