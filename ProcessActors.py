@@ -1,5 +1,6 @@
 import sys
 from Rom import *
+from PIL import Image, ImageDraw
 
 class Actor:
     def __init__(self, address: int, actor_bytes: bytearray):
@@ -62,12 +63,111 @@ class Room:
                     break
                 offset += 8
         room_list[setup] = RoomSetup(rom, room_base, room_data)
-    
+
+class Vtx:
+    def __init__(self, x, y, z):
+        self.x = x
+        self.y = y
+        self.z = z
+
+class Poly:
+    def __init__(self, poly_bytes: bytearray):
+        self.type = int.from_bytes(poly_bytes[0:2], 'big')
+        self.vertex = []
+        self.vertex.append(int.from_bytes(poly_bytes[2:4], 'big') & 0x1FFF)
+        self.vertex.append(int.from_bytes(poly_bytes[4:6], 'big') & 0x1FFF)
+        self.vertex.append(int.from_bytes(poly_bytes[6:8], 'big') & 0x1FFF)
+
+class SceneCollision:
+    # Read a scene's collision data given the collision command in the scene header
+    def __init__(self, rom: Rom, scene, scene_addr: int, collision_command: bytearray):
+        # read the collision command
+        self.scene = scene
+        self.segment_offset = int.from_bytes(collision_command[4:8], 'big') & 0x00FFFFFF
+        self.header_bytes = rom.read_bytes(scene_addr + self.segment_offset, 0x28)
+        bb_min = self.header_bytes[0:6]
+        bb_max = self.header_bytes[6:12]
+        self.vertex_count = int.from_bytes(self.header_bytes[12:14], 'big')
+        self.vertex_array_offset = int.from_bytes(self.header_bytes[16:20], 'big')
+        self.poly_count = int.from_bytes(self.header_bytes[20:22], 'big')
+        self.poly_array_offset = int.from_bytes(self.header_bytes[24:28], 'big')
+        self.bounding_box_min = Vtx(int.from_bytes(bb_min[0:2],'big',signed=True), int.from_bytes(bb_min[2:4],'big',signed=True), int.from_bytes(bb_min[4:6],'big',signed=True))
+        self.bounding_box_max = Vtx(int.from_bytes(bb_max[0:2],'big',signed=True), int.from_bytes(bb_max[2:4],'big',signed=True), int.from_bytes(bb_max[4:6],'big',signed=True))
+        self.vertex: list[Vtx] = []
+        self.poly: list[Poly] = []
+        for i in range(0, self.vertex_count):
+            vtx_bytes = rom.read_bytes(scene_addr + (self.vertex_array_offset & 0x00FFFFFF) + (6*i), 6)
+            self.vertex.append(Vtx(int.from_bytes(vtx_bytes[0:2],'big',signed=True), int.from_bytes(vtx_bytes[2:4],'big',signed=True), int.from_bytes(vtx_bytes[4:6],'big',signed=True)))
+        for i in range(0, self.poly_count):
+            poly_bytes = rom.read_bytes(scene_addr + (self.poly_array_offset & 0x00FFFFFF) + (0x10*i), 0x10)
+            self.poly.append(Poly(poly_bytes))
+        
+
+    def draw_collider_mesh(self):
+        # Normalize vertex coordinates using the bounding box
+
+        # Find the real bounding box
+        try:
+                
+            min = Vtx(self.vertex[0].x, self.vertex[0].y, self.vertex[0].z)
+            max = Vtx(self.vertex[0].x, self.vertex[0].y, self.vertex[0].z)
+            
+            for v in self.vertex:
+                if v.x < min.x:
+                    min.x = v.x
+                if v.y < min.y:
+                    min.y = v.y
+                if v.z < min.z:
+                    min.z = v.z
+
+                if v.x > max.x:
+                    max.x = v.x
+                if v.y > max.y:
+                    max.y = v.y
+                if v.z > max.z:
+                    max.z = v.z
+
+            vertex_normalized = []
+            for i in range(0, len(self.vertex)):
+                normalized = Vtx(self.vertex[i].x, self.vertex[i].y, self.vertex[i].z)
+                normalized.x -= min.x
+                normalized.x /= max.x - min.x
+                normalized.y -= min.y
+                normalized.y /= max.y - min.y
+                normalized.z -= min.z
+                normalized.z /= max.z - min.z
+
+                vertex_normalized.append(normalized)
+            self.vertex_normalized = vertex_normalized
+
+            # Figure out how big to make our image
+            x_size = max.x - min.x
+            y_size = max.z - min.z
+
+            im = Image.new('L',(x_size + 1, y_size + 1))
+            draw = ImageDraw.Draw(im)
+            # draw each poly
+            for p in self.poly:
+                # draw lines connecting each vertex
+                # 0, 1
+                # 1, 2
+                # 2, 0
+                v0n = self.vertex_normalized[p.vertex[0]]
+                v1n = self.vertex_normalized[p.vertex[1]]
+                v2n = self.vertex_normalized[p.vertex[2]]
+                draw.line([(v0n.x * x_size, v0n.z * y_size), (v1n.x * x_size, v1n.z * y_size)], fill=255)
+                draw.line([(v1n.x * x_size, v1n.z * y_size), (v2n.x * x_size, v2n.z * y_size)], fill=255)
+                draw.line([(v2n.x * x_size, v2n.z * y_size), (v0n.x * x_size, v0n.z * y_size)], fill=255)
+            im.save(scenes[self.scene.id] + '.png','png')
+        except Exception:
+            pass
+
 class Scene:
     def __init__(self, rom: Rom, id: int, scene_addr: int):
         self.rooms: list[Room] = []
         self.keep_id = 0
         self.id = id
+        self.collision = None
         self.process_scene(rom, scene_addr)
         self.rom_addr = scene_addr
 
@@ -94,6 +194,9 @@ class Scene:
                     room = Room(rom, i, room_start)
                     self.rooms.append(room)
                     # Read the room list
+            if command == 0x03: # collision header
+                collision_command = rom.read_bytes(offset, 8)
+                self.collision = SceneCollision(rom, self, scene_data, collision_command)
             offset += 8
 
 def get_actor_list(rom, actor_func):
@@ -627,18 +730,9 @@ def get_bad_actors(rom: Rom, scenes_data: list[Scene]):
 if __name__ == "__main__":
     #rom = Rom("ZOOTDEC.z64")
     rom = Rom("ZOOTDEC.z64")
-    actors = get_grass(rom)
-
-    for actor in actors:
-        #print(str(actor) + ": " + str(actors[actor]))
-        scene, room,setup,actor_num, scene_name, data = actors[actor]
-        actor_num += 1
-        if data['type'] == "Scattered Bushes":
-            for i in range(1,12+1):
-                print(f"(\"{scene_name} Room {room} {actor_num} Grass Patch {i}\",    (\"Grass\",      {hex(scene)}, ({room},{setup},{actor_num},{i}), None,     'Rupees (5)',         (,))),")
-        else:
-            print(f"(\"{scene_name} Room {room} Grass {actor_num}\",    (\"Grass\",      {hex(scene)}, ({room},{setup},{actor_num}), None,     'Rupees (5)',         (,))),")
-
+    rom_scenes = process_scenes(rom)
+    for scene in rom_scenes:
+        scene.collision.draw_collider_mesh()
     #rom = Rom("../zeloot_mqdebug.z64")
     #wonderitems = get_wonderitems(rom)
 
