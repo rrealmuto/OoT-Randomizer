@@ -3985,10 +3985,19 @@ courtyard_guards_kill:
 ; Replaces:
 ;jal     func_80834000
 .orga 0xBE28EC
-    jal     player_save_mask
+    jal     player_restore_mask
 
-; Dumb hack to not relocate the function call to player_save_mask
+; Dumb hack to not relocate the function call to player_restore_mask
 .orga 0xBF2C14
+    nop
+
+; Save the current mask on file save
+; replaces
+;lh      t8, 0xA4(s1)
+;lui     t1, 0x8012
+; SaveContext->save.info.playerData.savedSceneId = play->sceneId;
+.orga 0xBC5120
+    jal     player_save_mask
     nop
 
 ;===================================================================================================

@@ -4433,10 +4433,10 @@
             "Claim Check"
         ]
     },
-    "League S5": {
+    "League S6": {
         "language": "english",
         "show_seed_info": true,
-        "user_message": "OoTR League S5",
+        "user_message": "OoTR League S6",
         "world_count": 1,
         "create_spoiler": false,
         "randomize_settings": false,
@@ -4489,7 +4489,7 @@
         "gerudo_fortress": "fast",
         "dungeon_shortcuts_choice": "off",
         "dungeon_shortcuts": [],
-        "starting_age": "random",
+        "starting_age": "adult",
         "mq_dungeons_mode": "vanilla",
         "mq_dungeons_specific": [],
         "mq_dungeons_count": 0,
@@ -4583,7 +4583,7 @@
         "complete_mask_quest": false,
         "useful_cutscenes": false,
         "fast_chests": true,
-        "free_scarecrow": false,
+        "free_scarecrow": true,
         "fast_bunny_hood": true,
         "auto_equip_masks": false,
         "plant_beans": false,
@@ -4593,7 +4593,7 @@
         "big_poe_count": 1,
         "easier_fire_arrow_entry": false,
         "fae_torch_count": 3,
-        "ruto_already_f1_jabu": false,
+        "ruto_already_f1_jabu": true,
         "ocarina_songs": [],
         "correct_chest_appearances": "both",
         "minor_items_as_major_chest": [],
