@@ -87,14 +87,14 @@ SONG_TABLE: dict[str, tuple[Optional[int], str, str]] = {
 }
 
 
-# checks if one list is a sublist of the other (in either direction)
+# checks if the first list is a sublist of the second
 # python is magic.....
 def subsong(song1: Song, song2: Song) -> bool:
     # convert both lists to strings
-    s1 = ''.join( map(chr, song1.activation))
-    s2 = ''.join( map(chr, song2.activation))
-    # check if either is a substring of the other
-    return (s1 in s2) or (s2 in s1)
+    s1 = ''.join(map(chr, song1.activation))
+    s2 = ''.join(map(chr, song2.activation))
+    # check if the first is a substring of the second
+    return s1 in s2
 
 
 # give random durations and volumes to the notes
@@ -420,7 +420,7 @@ def generate_song_list(world: World, frog: bool, warp: bool, frogs2: bool) -> di
             is_good = True
 
             for other_song in chain((song for name, song in fixed_songs.items() if name != 'ZR Frogs Ocarina Game'), random_songs):
-                if subsong(song, other_song):
+                if subsong(song, other_song) or subsong(other_song, song):
                     is_good = False
             if is_good:
                 random_songs.append(song)
