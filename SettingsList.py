@@ -3175,7 +3175,7 @@ class SettingInfos:
         gui_text       = 'Randomize Ocarina Melodies',
         default        = [],
         choices        = {
-            'frog':   'Frog Songs',
+            'frog':   'Top Row Songs',
             'warp':   'Warp Songs',
             'frogs2': 'Frogs Ocarina Game',
         },
@@ -3183,11 +3183,12 @@ class SettingInfos:
             Will need to memorize a new set of songs.
             Can be silly, but difficult. All songs are
             generally sensible, but warp songs are
-            typically more difficult than frog songs.
+            typically more difficult than top row
+            songs.
 
-            "Frog Songs": Randomizes Zelda's Lullaby,
-            Epona's Song, Saria's Song, Sun's Song,
-            Song of Time, and Song of Storms.
+            "Top Row Songs": Randomizes Zelda's
+            Lullaby, Epona's Song, Saria's Song, Sun's
+            Song, Song of Time, and Song of Storms.
 
             "Warp Songs": Randomizes Minuet of Forest,
             Bolero of Fire, Serenade of Water, Requiem
