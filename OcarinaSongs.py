@@ -408,7 +408,7 @@ def generate_song_list(world: World, frog: bool, warp: bool, frogs2: bool) -> di
             if len(song1.activation) > 8:
                 raise ValueError(f'{name1} is too long (maximum is 8 notes)')
         for name2, song2 in fixed_songs.items():
-            if name1 != name2 and subsong(song1, song2):
+            if name2 != 'ZR Frogs Ocarina Game' and name1 != name2 and subsong(song1, song2):
                 raise ValueError(f'{name2} is unplayable because it contains {name1}')
     random_songs = []
 
@@ -419,7 +419,7 @@ def generate_song_list(world: World, frog: bool, warp: bool, frogs2: bool) -> di
             # test the song against all existing songs
             is_good = True
 
-            for other_song in chain(fixed_songs.values(), random_songs):
+            for other_song in chain((song for name, song in fixed_songs.items() if name != 'ZR Frogs Ocarina Game'), random_songs):
                 if subsong(song, other_song):
                     is_good = False
             if is_good:
