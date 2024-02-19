@@ -59,32 +59,25 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, xflag_t flag) {
         extra->actor_id = CURR_ACTOR_SPAWN_INDEX;
     }
     override_t override = lookup_override_by_newflag(&flag);
-    if(override.key.all)
-    {
-        switch(actor->actor_id)
-        {
-            // For the following actors we store the flag in the new space added to the actor.
-            case OBJ_TSUBO:
-            case EN_TUBO_TRAP:
-            case OBJ_KIBAKO:
-            case OBJ_COMB:
-            case OBJ_KIBAKO2:
-            case EN_ITEM00:
-            case BG_SPOT18_BASKET:
-            case OBJ_MURE3:
-            case BG_HAKA_TUBO:
-            case EN_WONDER_ITEM:
-            {
-                extra->flag = flag;
-                break;
-            }
-            default:
-            {
-                break;
-            }
+    switch (actor->actor_id) {
+        // For the following actors we store the flag in the new space added to the actor.
+        case OBJ_TSUBO:
+        case EN_TUBO_TRAP:
+        case OBJ_KIBAKO:
+        case OBJ_COMB:
+        case OBJ_KIBAKO2:
+        case EN_ITEM00:
+        case BG_SPOT18_BASKET:
+        case OBJ_MURE3:
+        case BG_HAKA_TUBO:
+        case EN_WONDER_ITEM: {
+            extra->flag = flag;
+            break;
+        }
+        default: {
+            break;
         }
     }
-
 }
 
 // For pots/crates/beehives, store the flag in the new space in the actor instance.
@@ -111,14 +104,11 @@ void Actor_StoreFlagByIndex(z64_actor_t* actor, z64_game_t* game, uint16_t actor
 
 }
 
-// Get an override for an actor with the new flags. If the override doesn't exist, or flag has already been set, return 0.
-override_t get_newflag_override(z64_actor_t *actor, z64_game_t *game) {
-    xflag_t* flag = &Actor_GetAdditionalData(actor)->flag;
+// Get an override for new flag. If the override doesn't exist, or flag has already been set, return 0.
+override_t get_newflag_override(xflag_t* flag) {
     override_t override = lookup_override_by_newflag(flag);
-    if(override.key.all != 0)
-    {
-        if(!Get_NewOverrideFlag(flag))
-        {
+    if (override.key.all != 0) {
+        if (!Get_NewFlag(flag)) {
             return override;
         }
     }
@@ -130,30 +120,21 @@ override_t get_newflag_override(z64_actor_t *actor, z64_game_t *game) {
 void Actor_StoreChestType(z64_actor_t* actor, z64_game_t* game) {
     uint8_t* pChestType = NULL;
     override_t override = { 0 };
-
-    if(actor->actor_id == OBJ_TSUBO) //Pots
-    {
-        override = get_newflag_override(actor, game);
+    xflag_t* flag = &(Actor_GetAdditionalData(actor)->flag);
+    if (actor->actor_id == OBJ_TSUBO) { //Pots
+        override = get_newflag_override(flag);
         pChestType = &(((ObjTsubo*)actor)->chest_type);
-    }
-    else if(actor->actor_id == EN_TUBO_TRAP) // Flying Pots
-    {
-        override = get_newflag_override(actor, game);
+    } else if (actor->actor_id == EN_TUBO_TRAP) { // Flying Pots
+        override = get_newflag_override(flag);
         pChestType = &(((EnTuboTrap*)actor)->chest_type);
-    }
-    else if(actor->actor_id == OBJ_KIBAKO2) // Large Crates
-    {
-        override = get_newflag_override(actor, game);
+    } else if (actor->actor_id == OBJ_KIBAKO2) { // Large Crates
+        override = get_newflag_override(flag);
         pChestType = &(((ObjKibako2*)actor)->chest_type);
-    }
-    else if(actor->actor_id == OBJ_KIBAKO) // Small wooden crates
-    {
-        override = get_newflag_override(actor, game);
+    } else if (actor->actor_id == OBJ_KIBAKO) { // Small wooden crates
+        override = get_newflag_override(flag);
         pChestType = &(((ObjKibako*)actor)->chest_type);
-    }
-    else if(actor->actor_id == OBJ_COMB)
-    {
-        override = get_newflag_override(actor, game);
+    } else if (actor->actor_id == OBJ_COMB) {
+        override = get_newflag_override(flag);
         pChestType = &(((ObjComb *)actor)->chest_type);
     }
     if (override.key.all != 0 && pChestType != NULL) { // If we don't have an override key, then either this item doesn't have an override entry, or it has already been collected.
@@ -218,7 +199,7 @@ bool spawn_override_silver_rupee(ActorEntry* actorEntry, z64_game_t* globalCtx, 
         }
         override_t override = lookup_override_by_newflag(&flag);
         if (override.key.all != 0) {
-            if (type == 1 && !Get_NewOverrideFlag(&flag)) {
+            if (type == 1 && !Get_NewFlag(&flag)) {
                 // Spawn a green rupee which will be overridden using the collectible hacks.
                 actorEntry->params = 0;
                 actorEntry->id = EN_ITEM00;

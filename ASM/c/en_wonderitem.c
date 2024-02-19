@@ -29,7 +29,7 @@ void EnWonderitem_AfterInitHack(z64_actor_t* this, z64_game_t* globalCtx) {
     xflag_t flag = Actor_GetAdditionalData(this)->flag;
 
     // Check if the Wonderitem should be overridden
-    if (flag.all && !Get_NewOverrideFlag(&flag)) {
+    if (flag.all && !Get_NewFlag(&flag)) {
         wonderitem->overridden = 1;
     }
 }
@@ -134,7 +134,7 @@ uint32_t EnWonderItem_Kill_Hack(EnWonderItem* this) {
     // Check if the Wonderitem should be overridden
     override_t override = lookup_override_by_newflag(&flag);
 
-    if (override.key.all != 0 && !Get_NewOverrideFlag(&flag)) return 0;
+    if (override.key.all != 0 && !Get_NewFlag(&flag)) return 0;
     if (this->switchFlag >= 0 && z64_Flags_GetSwitch(&z64_game, this->switchFlag)) return 1;
     return 0;
 }
