@@ -28,7 +28,7 @@ z64_actor_t* Fishing_Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int
         fish_flag.room = globalCtx->room_index;
         fish_flag.scene = globalCtx->scene_index;
         fish_flag.setup = curr_scene_setup;
-        fish_flag.flag = globalCtx->link_age; // Use the current age as the flag to distinguish child/adult fish
+        fish_flag.flag = globalCtx->link_age + 1; // Use the current age as the flag to distinguish child/adult fish
         fish_flag.subflag = params - 100; // Params contains the value 100 + i from the spawn loop. Add 1
         override_t override = get_newflag_override_by_flag(&fish_flag, globalCtx);
         if(override.key.all) {

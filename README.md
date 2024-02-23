@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v81](#v81)
   * [v80](#v80)
   * [v79](#v79)
   * [v78](#v78)
@@ -105,6 +106,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v81
+  * Fishing LH Adult Fish 1 missing
+
 ### v80
   * Unfix the KZ unfreeze glitch
 
