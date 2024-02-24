@@ -43,8 +43,11 @@
             "Bottom of the Well MQ Perimiter Behind Gate Pot": "has_explosives and Slingshot",
             "Bottom of the Well MQ First Hallway Redead": "can_kill_redead",
             "Bottom of the Well MQ Center Room Pitfall Skulltula": "
-                has_soul(Skulltula) and (has_explosives or can_use(Dins_Fire) or
-                (can_play(Zeldas_Lullaby) and 
+                has_soul(Skulltula) and 
+                (
+                ((can_pass_boulder('BOTW_LEFT_SIDE_BOULDER_1') or can_pass_boulder('BOTW_LEFT_SIDE_BOULDER_1')) and can_child_attack or Nuts)
+                or can_use(Dins_Fire) 
+                or (can_play(Zeldas_Lullaby) and 
                     (Slingshot or (logic_botw_mq_pits and can_kill_skulltula))))",
             "Bottom of the Well MQ Basement Wallmaster": "can_kill_wallmaster",
             "Bottom of the Well MQ Basement Skulltula 1": "can_kill_skulltula",                
@@ -66,6 +69,9 @@
             "Bottom of the Well Middle": "
                 can_play(Zeldas_Lullaby) or (logic_botw_mq_pits and has_explosives)",
             "Bottom of the Well Skulltula Gate": "(Slingshot or Boomerang) and (Small_Key_Bottom_of_the_Well, 2)"
+        },
+        "events": {
+            "Bottom of the Well West Switch Pressed": "((can_pass_boulder('BOTW_LEFT_SIDE_BOULDER_1') or can_pass_boulder('BOTW_LEFT_SIDE_BOULDER_1')) and can_child_attack or Nuts) or (can_play(Zeldas_Lullaby) and logic_botw_mq_pits)"
         }
     },
     {
@@ -89,11 +95,11 @@
             "Bottom of the Well MQ East Inner Room Slingshot Wonderitem 3": "Slingshot",
             "Bottom of the Well MQ East Inner Room Slingshot Wonderitem 4": "Slingshot",
             "Bottom of the Well MQ Center Room Wallmaster": "can_kill_wallmaster",
-            "Bottom of the Well MQ West Inner Room Keese 1": "(logic_botw_mq_pits or has_explosives) and (can_kill_keese)",
-            "Bottom of the Well MQ West Inner Room Keese 2": "(logic_botw_mq_pits or has_explosives) and (can_kill_keese)",
-            "Bottom of the Well MQ West Inner Room Keese 3": "(logic_botw_mq_pits or has_explosives) and (can_kill_keese)",
-            "Bottom of the Well MQ West Inner Room Invisible Skulltula 1": "(logic_botw_mq_pits or has_explosives) and (can_kill_skulltula)",
-            "Bottom of the Well MQ West Inner Room Invisible Skulltula 2": "(logic_botw_mq_pits or has_explosives) and (can_kill_skulltula)"
+            "Bottom of the Well MQ West Inner Room Keese 1": "(Bottom_of_the_Well_West_Switch_Pressed) and (can_kill_keese)",
+            "Bottom of the Well MQ West Inner Room Keese 2": "(Bottom_of_the_Well_West_Switch_Pressed) and (can_kill_keese)",
+            "Bottom of the Well MQ West Inner Room Keese 3": "(Bottom_of_the_Well_West_Switch_Pressed) and (can_kill_keese)",
+            "Bottom of the Well MQ West Inner Room Invisible Skulltula 1": "(Bottom_of_the_Well_West_Switch_Pressed) and (can_kill_skulltula)",
+            "Bottom of the Well MQ West Inner Room Invisible Skulltula 2": "(Bottom_of_the_Well_West_Switch_Pressed) and (can_kill_skulltula)"
         }
     },
     {

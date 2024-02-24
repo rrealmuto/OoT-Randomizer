@@ -176,7 +176,7 @@
         },
         "exits": {
             "Gerudo Training Ground Back Areas": "
-                is_adult and has_soul(Stalfos) and has_soul(Skulltula) and (logic_lens_gtg_mq or can_use(Lens_of_Truth)) and Blue_Fire and
+                is_adult and has_soul(Stalfos) and has_soul(Skulltula) and (logic_lens_gtg_mq or can_use(Lens_of_Truth)) and can_pass_boulder('GTG_STALFOS_ROOM_BOULDER') and
                 (can_play(Song_of_Time) or (logic_gtg_fake_wall and Hover_Boots))",
             "Gerudo Training Ground Heavy Block Room": "is_adult and has_soul(Stalfos) and has_soul(Skulltula) and can_use(Silver_Gauntlets)"
         }

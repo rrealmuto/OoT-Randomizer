@@ -302,6 +302,7 @@ class WorldDistribution:
             'goal_locations': None,
             'barren_regions': None,
             'gossip_stones': {name: [GossipRecord(rec) for rec in record] if is_pattern(name) else GossipRecord(record) for (name, record) in src_dict.get('gossip_stones', {}).items()},
+            'boulders': {name: BOULDER_TYPE[record] for (name, record) in src_dict.get('boulders', {}).items()},
         }
 
         if update_all:
@@ -1284,15 +1285,18 @@ class Distribution:
         for itemsetting in starting_items:
             if itemsetting in StartingItems.everything:
                 item = StartingItems.everything[itemsetting]
+                item_name = item.item_name
+                if(item_name == "Ice Arrows" and self.settings.blue_fire_arrows):
+                    item_name = "Blue Fire Arrows"
                 if not item.special:
-                    add_starting_item_with_ammo(data, item.item_name)
+                    add_starting_item_with_ammo(data, item_name)
                 else:
-                    if item.item_name == 'Rutos Letter' and self.settings.zora_fountain != 'open':
+                    if item_name == 'Rutos Letter' and self.settings.zora_fountain != 'open':
                         data['Rutos Letter'].count += 1
-                    elif item.item_name in ('Bottle', 'Rutos Letter'):
+                    elif item_name in ('Bottle', 'Rutos Letter'):
                         data['Bottle'].count += 1
                     else:
-                        raise KeyError("invalid special item: {}".format(item.item_name))
+                        raise KeyError("invalid special item: {}".format(item_name))
             else:
                 raise KeyError("invalid starting item: {}".format(itemsetting))
         self.settings.starting_equipment = []
