@@ -250,7 +250,8 @@ class State:
             return self.can_blast_or_smash(self)
         elif boulder_type == BOULDER_TYPE.RED_ICE:
             # Check for blue fire
-            return self.Blue_Fire(self)
+            #return self.world.parser.parse_rule('Blue_Fire')(self, age=age)
+            return self.Blue_Fire(self, age=age)
         
         # Should never get here
         return False
