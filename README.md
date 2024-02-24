@@ -106,6 +106,12 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v82
+  * New Enemy Soul Shuffle option: Regional
+  * Add MQ support for Boulder Shuffle
+  * Fix Boulder Shuffle not obeying "All Locations Reacable"
+  * Fix Fishing Shuffle progressive items drawing incorrect model after caught
+
 ### v81
   * Fishing LH Adult Fish 1 missing
 

@@ -57,8 +57,11 @@ class Address:
     EXTENDED_CONTEXT_START = 0x1450
 
     def __init__(self, address: Optional[int] = None, extended: bool = False, size: int = 4, mask: int = 0xFFFFFFFF, max: Optional[int] = None,
-                 choices: Optional[dict[str, int]] = None, value: Optional[str] = None, pass_addr: Optional[bool] = False) -> None:
+                 choices: Optional[dict[str, int]] = None, value: Optional[str] = None, pass_addr: Optional[bool] = False, reset: Optional[int] = 0) -> None:
         self.address: int = Address.prev_address if address is None else address
+        if reset:
+            self.address -= reset
+            Address.prev_address -= reset
         if extended and address is not None:
             self.address += Address.EXTENDED_CONTEXT_START
         self.value: Optional[str | int] = value
@@ -963,6 +966,35 @@ class SaveContext:
                 'pad_byte_1': Address(extended=True, size=1), # There are 8 bytes reserved for soul flags. Remove/add padding as required
                 'pad_byte_2': Address(extended=True, size=1)
             },
+            'regional_enemy_spawn_flags': {
+                'deku_tree': Address(extended=True, size=1, mask=0x01, pass_addr=True, reset=8),
+                'dodongos_cavern': Address(extended=True, size=1, mask=0x02, pass_addr=True),
+                'jabu': Address(extended=True, size=1, mask=0x04, pass_addr=True),
+                'forest_temple': Address(extended=True, size=1, mask=0x08, pass_addr=True),
+                'fire_temple': Address(extended=True, size=1, mask=0x10, pass_addr=True),
+                'water_temple': Address(extended=True, size=1, mask=0x20, pass_addr=True),
+                'shadow_temple': Address(extended=True, size=1, mask=0x40, pass_addr=True),
+                'spirit_temple': Address(extended=True, size=1, mask=0x80), # 1
+                'botw': Address(extended=True, size=1, mask=0x01, pass_addr=True),
+                'ice_cavern': Address(extended=True, size=1, mask=0x02, pass_addr=True),
+                'gtg': Address(extended=True, size=1, mask=0x04, pass_addr=True),
+                'ganons_castle': Address(extended=True, size=1, mask=0x08, pass_addr=True),
+                'forest_region': Address(extended=True, size=1, mask=0x10, pass_addr=True),
+                'hyrule_field': Address(extended=True, size=1, mask=0x20, pass_addr=True),
+                'lake_hylia': Address(extended=True, size=1, mask=0x40, pass_addr=True),
+                'gerudo_region': Address(extended=True, size=1, mask=0x80), # 2
+                'market_region': Address(extended=True, size=1, mask=0x01, pass_addr=True),
+                'kakariko_region': Address(extended=True, size=1, mask=0x02, pass_addr=True),
+                'goron_region': Address(extended=True, size=1, mask=0x04, pass_addr=True),
+                'zora_region': Address(extended=True, size=1, mask=0x08, pass_addr=True),
+                'llr': Address(extended=True, size=1, mask=0x10, pass_addr=True),
+                'grottos': Address(extended=True, size=1, mask=0x20), # 3
+                'pad_byte_1': Address(extended=True, size=1), # There are 8 bytes reserved for soul flags. Remove/add padding as required
+                'pad_byte_2': Address(extended=True, size=1), # There are 8 bytes reserved for soul flags. Remove/add padding as required
+                'pad_byte_3': Address(extended=True, size=1), # There are 8 bytes reserved for soul flags. Remove/add padding as required
+                'pad_byte_4': Address(extended=True, size=1), # There are 8 bytes reserved for soul flags. Remove/add padding as required
+                'pad_byte_5': Address(extended=True, size=1), # There are 8 bytes reserved for soul flags. Remove/add padding as required
+            },
             'enemy_spawn_enable_flag': Address(extended=True, size=8),
             'fishing': {
                 'fishing_rod': Address(extended=True, size=1),
@@ -1436,6 +1468,29 @@ class SaveContext:
         'Twinrova Soul': {'enemy_spawn_flags.twinrova': None},
         'Jabu Jabu Tentacle Soul': {'enemy_spawn_flags.jabu_jabu_tentacle': None},
         'Dark Link Soul': {'enemy_spawn_flags.dark_link': None},
+
+        'Deku Tree Souls': {'regional_enemy_spawn_flags.deku_tree': None},
+        'Dodongos Cavern Souls': {'regional_enemy_spawn_flags.dodongos_cavern': None},
+        'Jabu Jabus Belly Souls': {'regional_enemy_spawn_flags.jabu': None},
+        'Forest Temple Souls': {'regional_enemy_spawn_flags.forest_temple': None},
+        'Fire Temple Souls': {'regional_enemy_spawn_flags.fire_temple': None},
+        'Water Temple Souls': {'regional_enemy_spawn_flags.water_temple': None},
+        'Shadow Temple Souls': {'regional_enemy_spawn_flags.shadow_temple': None},
+        'Spirit Temple Souls': {'regional_enemy_spawn_flags.spirit_temple': None},
+        'Bottom of the Well Souls': {'regional_enemy_spawn_flags.botw': None},
+        'Ice Cavern Souls': {'regional_enemy_spawn_flags.ice_cavern': None},
+        'Gerudo Training Ground Souls': {'regional_enemy_spawn_flags.gtg': None},
+        'Ganons Castle Souls': {'regional_enemy_spawn_flags.ganons_castle': None},
+        'Forest Area Souls': {'regional_enemy_spawn_flags.forest_region': None},
+        'Hyrule Field Souls': {'regional_enemy_spawn_flags.hyrule_field': None},
+        'Lake Hylia Souls': {'regional_enemy_spawn_flags.lake_hylia': None},
+        'Gerudo Area Souls': {'regional_enemy_spawn_flags.gerudo_region': None},
+        'Market Area Souls': {'regional_enemy_spawn_flags.market_region': None},
+        'Kakariko Area Souls': {'regional_enemy_spawn_flags.kakariko_region': None},
+        'Goron Area Souls': {'regional_enemy_spawn_flags.goron_region': None},
+        'Zora Area Souls': {'regional_enemy_spawn_flags.zora_region': None},
+        'Lon Lon Ranch Souls': {'regional_enemy_spawn_flags.llr': None},
+        'Grottos Souls': {'regional_enemy_spawn_flags.grottos': None},
 
         # HACK: these counts aren't used since exact counts based on whether the dungeon is MQ are defined above,
         # but the entries need to be there for key rings to be valid starting items

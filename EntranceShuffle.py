@@ -12,7 +12,7 @@ from Region import Region, TimeOfDay
 from Rules import set_entrances_based_rules
 from State import State
 from Item import ItemFactory
-from Hints import HintArea, HintAreaNotFound
+from HintArea import HintArea, HintAreaNotFound
 from HintList import misc_item_hint_table
 
 if TYPE_CHECKING:
@@ -436,12 +436,6 @@ def set_entrances(worlds: list[World], savewarps_to_connect: list[tuple[Entrance
         if world.settings.logic_rules != 'glitched':
             # Set entrance data for all entrances, even those we aren't shuffling
             set_all_entrances_data(world)
-
-    if worlds[0].entrance_shuffle:
-        shuffle_random_entrances(worlds)
-
-    set_entrances_based_rules(worlds)
-
 
 # Shuffles entrances that need to be shuffled in all worlds
 def shuffle_random_entrances(worlds: list[World]) -> None:

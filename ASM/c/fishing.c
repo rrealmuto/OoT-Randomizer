@@ -47,6 +47,9 @@ extern void Fishing_DrawFish(z64_actor_t* this, z64_game_t* globalCtx);
 void Fishing_SkeletonDraw_Hook(z64_game_t* globalCtx, void** skeleton, z64_xyz_t* jointTable, int32_t dListCount, OverrideLimbDrawOpa overrideLimbDraw, PostLimbDrawOpa postLimbDraw, void* this) {
     Fishing* fish = (Fishing*)this;
     if(fish->override.key.all) {
+        if(caught_fish != fish) {
+            lookup_model_by_override(&(fish->model), fish->override);
+        }
         postLimbDraw(globalCtx, fish->isLoach ? 0x0B : 0x0D, NULL, NULL, this); // Call the postLimbDraw function. This is used to set the mouth position which affects where the lure moves.
         fishing_draw(&(fish->actor), globalCtx);
         return;

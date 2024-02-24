@@ -14,6 +14,9 @@ typedef struct Fishing {
     /* 0x014C */ int16_t stateAndTimer;
     /* 0x014E */ uint8_t fish_unk_14E[0x3F2];
     /* 0x0540 */ override_t override;
+                 model_t model;
 } Fishing; //size = 0x0570 (we added 0x30)
+
+extern Fishing* caught_fish;
 
 #endif

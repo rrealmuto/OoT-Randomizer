@@ -286,3 +286,7 @@ void unlock_ocarina_note(z64_file_t* save, int16_t arg1, int16_t arg2) {
 void give_enemy_soul(z64_file_t *save, int16_t arg1, int16_t arg2) {
     flags_setsoul(arg1);
 }
+
+void give_regional_enemy_soul(z64_file_t *save, int16_t arg1, int16_t arg2) {
+    flags_setsoul(arg1);
+}

@@ -33,7 +33,7 @@ from World import World
 from TextBox import line_wrap
 from texture_util import ci4_rgba16patch_to_ci8, rgba16_from_file, rgba16_patch
 from version import __version__
-from Boulders import patch_boulders, shuffle_boulders
+from Boulders import patch_boulders
 from ProcessActors import get_bad_actors, process_scenes
 
 if sys.version_info >= (3, 10):
@@ -2654,7 +2654,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         if world.settings.dogs_anywhere:
             broken_actors_cfg |= 0x02
 
-    if world.settings.shuffle_boulders:
+    if world.settings.shuffle_boulders or world.distribution.boulders:
         broken_actors_cfg |= 0x80
         rom.write_byte(symbol, 0x80)
         rom.write_byte(rom.sym('CFG_BOULDER_SHUFFLE'), 1)
@@ -2696,7 +2696,12 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
     # Enemy soul shuffle
     if world.settings.shuffle_enemy_spawns != 'off':
-        rom.write_byte(rom.sym('CFG_ENEMY_SPAWN_SHUFFLE'), 1)
+        SPAWN_SHUFFLE_DICT = {
+            'all': 1,
+            'bosses': 1,
+            'regional': 2
+        }
+        rom.write_byte(rom.sym('CFG_ENEMY_SPAWN_SHUFFLE'), SPAWN_SHUFFLE_DICT[world.settings.shuffle_enemy_spawns])
 
         # There are two keese in MQ spirit temple that don't spawn because their object isn't loaded
         # This causes the room clear check hacks to break because soul shuffle will normally see the actor when spawning, and inhibit it

@@ -384,10 +384,8 @@ void bowling_heart_piece_draw(z64_actor_t* actor, z64_game_t* game) {
 
 void fishing_draw(z64_actor_t* actor, z64_game_t* game) {
     Fishing* fish = (Fishing*)actor;
-    model_t model = { 0 };
-    lookup_model_by_override(&model, fish->override);
-    loaded_object_t* object = get_object(model.object_id);
+    loaded_object_t* object = get_object(fish->model.object_id);
     set_object_segment(object);
     scale_top_matrix(50.0);
-    base_draw_gi_model(game, model.graphic_id - 1);
+    base_draw_gi_model(game, fish->model.graphic_id - 1);
 }
