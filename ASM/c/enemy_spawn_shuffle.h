@@ -116,12 +116,18 @@ typedef struct soul_menu_info {
     char* name;
 } soul_menu_info;
 
+typedef struct regional_soul_menu_info {
+    SOUL_ID_REGIONAL soul_id;
+    char* name;
+} regional_soul_menu_info;
+
 #define CFG_ENEMY_SPAWN_SHUFFLE_NONE 0
 #define CFG_ENEMY_SPAWN_SHUFFLE_STANDARD 1
 #define CFG_ENEMY_SPAWN_SHUFFLE_REGIONAL 2
 
 extern uint8_t CFG_ENEMY_SPAWN_SHUFFLE;
 extern soul_menu_info SOUL_MENU_NAMES[];
+extern regional_soul_menu_info REGIONAL_SOUL_MENU_NAMES[];
 
 #define ENEMY_SPAWN_TABLE_ENTRY(actor_id_,index_,flags_,override_func_) {.actor_id = actor_id_, .index = index_, .flags = flags_, .override_func = override_func_}
 #define REGIONAL_ENEMY_SPAWN_TABLE_ENTRY(scene_group_) {.scene_group = scene_group_, .scene_group_length = array_size(scene_group_)}

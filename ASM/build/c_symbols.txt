@@ -3,119 +3,119 @@ build/bundle.o:     file format elf32-bigmips
 
 SYMBOL TABLE:
 00000000 l    d  .text	00000000 .text
-00018610 l    d  .rodata	00000000 .rodata
-00018f90 l    d  .data	00000000 .data
-0006a0cc l    d  .reginfo	00000000 .reginfo
-0006a0cc l    d  .pdr	00000000 .pdr
-0006a0c9 l    d  .gnu.attributes	00000000 .gnu.attributes
-0006a0c9 l    d  .mdebug.abi32	00000000 .mdebug.abi32
+00018638 l    d  .rodata	00000000 .rodata
+00019110 l    d  .data	00000000 .data
+0006a30c l    d  .reginfo	00000000 .reginfo
+0006a30c l    d  .pdr	00000000 .pdr
+0006a309 l    d  .gnu.attributes	00000000 .gnu.attributes
+0006a309 l    d  .mdebug.abi32	00000000 .mdebug.abi32
 00000000 l    d  .comment	00000000 .comment
 00000000 l    df *ABS*	00000000 En_Blkobj.c
 00000000 l    df *ABS*	00000000 actor.c
 00000000 l    df *ABS*	00000000 agony.c
-00018f94 l     O .data	00000004 alpha_frame
-00018610 l     O .rodata	00000028 ALPHA_DATA
+00019114 l     O .data	00000004 alpha_frame
+00018638 l     O .rodata	00000028 ALPHA_DATA
 00000000 l    df *ABS*	00000000 bombchu_bowling.c
 00000000 l    df *ABS*	00000000 chests.c
 800ab900 l       *ABS*	00000000 write_matrix_stack_top
-0001864c l       .rodata	00000000 $LC0
-00018650 l       .rodata	00000000 $LC1
-00018654 l       .rodata	00000000 $LC2
-00018658 l       .rodata	00000000 $LC3
-0001865c l       .rodata	00000000 $LC4
+00018674 l       .rodata	00000000 $LC0
+00018678 l       .rodata	00000000 $LC1
+0001867c l       .rodata	00000000 $LC2
+00018680 l       .rodata	00000000 $LC3
+00018684 l       .rodata	00000000 $LC4
 00000000 l    df *ABS*	00000000 debug.c
-000546ec l     O .data	0000000a debugNumberIsInUsage
-000546c4 l     O .data	00000028 debugNumbers
-0005469c l     O .data	00000028 debugNumbersFloat
-00054690 l     O .data	00000004 show_warp_menu
-00054694 l     O .data	00000006 current_menu_indexes
-00018660 l       .rodata	00000000 $LC0
-00018668 l       .rodata	00000000 $LC1
-00018670 l       .rodata	00000000 $LC2
-00018678 l       .rodata	00000000 $LC3
-00018664 l       .rodata	00000000 $LC4
+0005492c l     O .data	0000000a debugNumberIsInUsage
+00054904 l     O .data	00000028 debugNumbers
+000548dc l     O .data	00000028 debugNumbersFloat
+000548d0 l     O .data	00000004 show_warp_menu
+000548d4 l     O .data	00000006 current_menu_indexes
+00018688 l       .rodata	00000000 $LC0
+00018690 l       .rodata	00000000 $LC1
+00018698 l       .rodata	00000000 $LC2
+000186a0 l       .rodata	00000000 $LC3
+0001868c l       .rodata	00000000 $LC4
 00000000 l    df *ABS*	00000000 dpad.c
 00000000 l    df *ABS*	00000000 dungeon_info.c
-0001867c l       .rodata	00000000 $LC0
-00018680 l       .rodata	00000000 $LC1
+000186a4 l       .rodata	00000000 $LC0
+000186a8 l       .rodata	00000000 $LC1
 00000000 l    df *ABS*	00000000 en_bb.c
-00019ae8 l     O .data	00000004 sEffectEnvColor
-00019aec l     O .data	00000004 sEffectPrimColor
-00019ad0 l     O .data	0000000c sEffectAccel
-00019adc l     O .data	0000000c sEffectVelocity
-00018688 l       .rodata	00000000 $LC0
+00019c68 l     O .data	00000004 sEffectEnvColor
+00019c6c l     O .data	00000004 sEffectPrimColor
+00019c50 l     O .data	0000000c sEffectAccel
+00019c5c l     O .data	0000000c sEffectVelocity
+000186b0 l       .rodata	00000000 $LC0
 00000000 l    df *ABS*	00000000 en_item00.c
-00018690 l       .rodata	00000000 $LC0
-00018698 l       .rodata	00000000 $LC1
-000186a0 l       .rodata	00000000 $LC2
-000186a4 l       .rodata	00000000 $LC3
-000186a8 l       .rodata	00000000 $LC4
-000186ac l       .rodata	00000000 $LC5
-000186b0 l       .rodata	00000000 $LC6
-000186b4 l       .rodata	00000000 $LC7
-000186b8 l       .rodata	00000000 $LC8
-000186bc l       .rodata	00000000 $LC9
+000186b8 l       .rodata	00000000 $LC0
+000186c0 l       .rodata	00000000 $LC1
+000186c8 l       .rodata	00000000 $LC2
+000186cc l       .rodata	00000000 $LC3
+000186d0 l       .rodata	00000000 $LC4
+000186d4 l       .rodata	00000000 $LC5
+000186d8 l       .rodata	00000000 $LC6
+000186dc l       .rodata	00000000 $LC7
+000186e0 l       .rodata	00000000 $LC8
+000186e4 l       .rodata	00000000 $LC9
 00000000 l    df *ABS*	00000000 en_skj.c
 00000000 l    df *ABS*	00000000 en_wonderitem.c
-00019b14 l     O .data	00000004 sEffectPrimColorBlue
-00019b0c l     O .data	00000004 sEffectPrimColorCyan
-00019b08 l     O .data	00000004 sEffectEnvColor
-00019af0 l     O .data	0000000c sEffectAccel
-00019afc l     O .data	0000000c sEffectVelocity
-000186c0 l     O .rodata	00000018 dropTable.0
-00019b10 l     O .data	00000004 sEffectPrimColorYellow
-00019b18 l     O .data	00000004 sEffectPrimColorRed
+00019c94 l     O .data	00000004 sEffectPrimColorBlue
+00019c8c l     O .data	00000004 sEffectPrimColorCyan
+00019c88 l     O .data	00000004 sEffectEnvColor
+00019c70 l     O .data	0000000c sEffectAccel
+00019c7c l     O .data	0000000c sEffectVelocity
+000186e8 l     O .rodata	00000018 dropTable.0
+00019c90 l     O .data	00000004 sEffectPrimColorYellow
+00019c98 l     O .data	00000004 sEffectPrimColorRed
 00000000 l    df *ABS*	00000000 enemy_spawn_shuffle.c
 00000000 l    df *ABS*	00000000 extern_ctxt.c
-0001894c l       .rodata	00000000 $LC0
-00018950 l       .rodata	00000000 $LC1
+00018ac8 l       .rodata	00000000 $LC0
+00018acc l       .rodata	00000000 $LC1
 00000000 l    df *ABS*	00000000 file_icons.c
-00007d78 l     F .text	00000024 color_product
-00007d9c l     F .text	000000dc make_digits
-00007e78 l     F .text	00000070 draw_square_sprite
-0001a078 l     O .data	00000100 fixed_tile_positions
-0001a058 l     O .data	0000001e counter_positions
-000546fc l     O .data	00000030 draw_data
-00018958 l     O .rodata	00000010 MASK_LOOKUP
-0005472c l     O .data	00000004 hasTriforceGoalBeenReached
-000189c0 l     O .rodata	00000015 variable_tile_positions
-00018984 l     O .rodata	0000003c song_note_data
-00018968 l     O .rodata	00000019 button_note_data
-000546f8 l     O .data	00000001 frame_counter.0
-00018954 l       .rodata	00000000 $LC0
+00007d90 l     F .text	00000024 color_product
+00007db4 l     F .text	000000dc make_digits
+00007e90 l     F .text	00000070 draw_square_sprite
+0001a2a8 l     O .data	00000100 fixed_tile_positions
+0001a288 l     O .data	0000001e counter_positions
+0005493c l     O .data	00000030 draw_data
+00018ad4 l     O .rodata	00000010 MASK_LOOKUP
+0005496c l     O .data	00000004 hasTriforceGoalBeenReached
+00018b3c l     O .rodata	00000015 variable_tile_positions
+00018b00 l     O .rodata	0000003c song_note_data
+00018ae4 l     O .rodata	00000019 button_note_data
+00054938 l     O .data	00000001 frame_counter.0
+00018ad0 l       .rodata	00000000 $LC0
 00000000 l    df *ABS*	00000000 file_message.c
-000092e8 l     F .text	00000050 print_msg
-000189e4 l       .rodata	00000000 $LC0
-000189e8 l       .rodata	00000000 $LC1
-000189fc l       .rodata	00000000 $LC2
-00018a10 l       .rodata	00000000 $LC3
-00018a1c l       .rodata	00000000 $LC4
+00009300 l     F .text	00000050 print_msg
+00018b60 l       .rodata	00000000 $LC0
+00018b64 l       .rodata	00000000 $LC1
+00018b78 l       .rodata	00000000 $LC2
+00018b8c l       .rodata	00000000 $LC3
+00018b98 l       .rodata	00000000 $LC4
 00000000 l    df *ABS*	00000000 file_select.c
 00000000 l    df *ABS*	00000000 ganon.c
 00000000 l    df *ABS*	00000000 ganon_boss_key.c
 00000000 l    df *ABS*	00000000 get_items.c
-00018a3c l       .rodata	00000000 $LC0
-00018a40 l       .rodata	00000000 $LC1
-00018a44 l       .rodata	00000000 $LC2
-00018a48 l       .rodata	00000000 $LC3
-00018a4c l       .rodata	00000000 $LC4
-00018a50 l       .rodata	00000000 $LC5
-00018a54 l       .rodata	00000000 $LC6
+00018bb8 l       .rodata	00000000 $LC0
+00018bbc l       .rodata	00000000 $LC1
+00018bc0 l       .rodata	00000000 $LC2
+00018bc4 l       .rodata	00000000 $LC3
+00018bc8 l       .rodata	00000000 $LC4
+00018bcc l       .rodata	00000000 $LC5
+00018bd0 l       .rodata	00000000 $LC6
 00000000 l    df *ABS*	00000000 gfx.c
 00000000 l    df *ABS*	00000000 hud_colors.c
 00000000 l    df *ABS*	00000000 icetrap.c
 00000000 l    df *ABS*	00000000 item_draw_functions.c
-00018a74 l       .rodata	00000000 $LC0
-00018a78 l       .rodata	00000000 $LC1
-00018a7c l       .rodata	00000000 $LC2
-00018a80 l       .rodata	00000000 $LC3
-00018a84 l       .rodata	00000000 $LC4
-00018a88 l       .rodata	00000000 $LC5
-00018a8c l       .rodata	00000000 $LC6
-00018a90 l       .rodata	00000000 $LC7
-00018a94 l       .rodata	00000000 $LC8
-00018aa0 l       .rodata	00000000 $LC9
-00018a98 l       .rodata	00000000 $LC10
+00018bf0 l       .rodata	00000000 $LC0
+00018bf4 l       .rodata	00000000 $LC1
+00018bf8 l       .rodata	00000000 $LC2
+00018bfc l       .rodata	00000000 $LC3
+00018c00 l       .rodata	00000000 $LC4
+00018c04 l       .rodata	00000000 $LC5
+00018c08 l       .rodata	00000000 $LC6
+00018c0c l       .rodata	00000000 $LC7
+00018c10 l       .rodata	00000000 $LC8
+00018c18 l       .rodata	00000000 $LC9
+00018c14 l       .rodata	00000000 $LC10
 00000000 l    df *ABS*	00000000 item_draw_table.c
 00000000 l    df *ABS*	00000000 item_effects.c
 00000000 l    df *ABS*	00000000 item_table.c
@@ -124,377 +124,378 @@ SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 menu.c
 00000000 l    df *ABS*	00000000 message.c
 00000000 l    df *ABS*	00000000 minimap.c
-00018ac0 l       .rodata	00000000 $LC0
-00018ac8 l       .rodata	00000000 $LC1
-00018ad0 l       .rodata	00000000 $LC2
+00018c38 l       .rodata	00000000 $LC0
+00018c40 l       .rodata	00000000 $LC1
+00018c48 l       .rodata	00000000 $LC2
 00000000 l    df *ABS*	00000000 misc_colors.c
-0005ef98 l     O .data	00000004 frames
-00018ad8 l       .rodata	00000000 $LC0
-00018adc l       .rodata	00000000 $LC1
-00018ae0 l       .rodata	00000000 $LC2
-00018ae4 l       .rodata	00000000 $LC3
-00018ae8 l       .rodata	00000000 $LC4
-00018aec l       .rodata	00000000 $LC5
+0005f1d8 l     O .data	00000004 frames
+00018c50 l       .rodata	00000000 $LC0
+00018c54 l       .rodata	00000000 $LC1
+00018c58 l       .rodata	00000000 $LC2
+00018c5c l       .rodata	00000000 $LC3
+00018c60 l       .rodata	00000000 $LC4
+00018c64 l       .rodata	00000000 $LC5
 00000000 l    df *ABS*	00000000 model_text.c
-00018b54 l       .rodata	00000000 $LC2
+00018ccc l       .rodata	00000000 $LC2
 00000000 l    df *ABS*	00000000 models.c
-00018ba4 l       .rodata	00000000 $LC5
-00018ba0 l       .rodata	00000000 $LC4
-00018ba8 l       .rodata	00000000 $LC6
-00018bac l       .rodata	00000000 $LC7
-00018bb0 l       .rodata	00000000 $LC8
-00018bb4 l       .rodata	00000000 $LC9
-00018bb8 l       .rodata	00000000 $LC10
+00018d1c l       .rodata	00000000 $LC5
+00018d18 l       .rodata	00000000 $LC4
+00018d20 l       .rodata	00000000 $LC6
+00018d24 l       .rodata	00000000 $LC7
+00018d28 l       .rodata	00000000 $LC8
+00018d2c l       .rodata	00000000 $LC9
+00018d30 l       .rodata	00000000 $LC10
 00000000 l    df *ABS*	00000000 music.c
-0005f065 l     O .data	00000001 isSlowedDown
-0005f066 l     O .data	00000002 previousSeqIndexChange
-0005f064 l     O .data	00000001 isSpeedup
-00018bbc l       .rodata	00000000 $LC0
-00018bc0 l       .rodata	00000000 $LC1
-00018bc4 l       .rodata	00000000 $LC2
+0005f2a5 l     O .data	00000001 isSlowedDown
+0005f2a6 l     O .data	00000002 previousSeqIndexChange
+0005f2a4 l     O .data	00000001 isSpeedup
+00018d34 l       .rodata	00000000 $LC0
+00018d38 l       .rodata	00000000 $LC1
+00018d3c l       .rodata	00000000 $LC2
 00000000 l    df *ABS*	00000000 obj_comb.c
-00018bc8 l       .rodata	00000000 $LC0
-00018bcc l       .rodata	00000000 $LC1
+00018d40 l       .rodata	00000000 $LC0
+00018d44 l       .rodata	00000000 $LC1
 00000000 l    df *ABS*	00000000 obj_kibako.c
 00000000 l    df *ABS*	00000000 obj_kibako2.c
 00000000 l    df *ABS*	00000000 obj_mure3.c
 00000000 l    df *ABS*	00000000 objects.c
-00018c64 l       .rodata	00000000 $LC1
-00018c60 l       .rodata	00000000 $LC0
+00018ddc l       .rodata	00000000 $LC1
+00018dd8 l       .rodata	00000000 $LC0
 00000000 l    df *ABS*	00000000 ocarina_buttons.c
 00000000 l    df *ABS*	00000000 ovl_bg_haka_tubo.c
 00000000 l    df *ABS*	00000000 ovl_bg_spot18_basket.c
 00000000 l    df *ABS*	00000000 ovl_kaleido_scope.c
-00018c6c l       .rodata	00000000 $LC0
-00018c70 l       .rodata	00000000 $LC1
-00018c74 l       .rodata	00000000 $LC2
-00018c68 l       .rodata	00000000 $LC3
-00018c80 l       .rodata	00000000 $LC6
-00018c84 l       .rodata	00000000 $LC7
-00018c78 l       .rodata	00000000 $LC4
-00018c7c l       .rodata	00000000 $LC5
+00018de4 l       .rodata	00000000 $LC0
+00018de8 l       .rodata	00000000 $LC1
+00018dec l       .rodata	00000000 $LC2
+00018de0 l       .rodata	00000000 $LC3
+00018df8 l       .rodata	00000000 $LC6
+00018dfc l       .rodata	00000000 $LC7
+00018df0 l       .rodata	00000000 $LC4
+00018df4 l       .rodata	00000000 $LC5
 00000000 l    df *ABS*	00000000 pots.c
 00000000 l    df *ABS*	00000000 rainbow.c
-00018cd0 l     O .rodata	00000015 cycle_colors
-00018ce8 l       .rodata	00000000 $LC0
-00018cf0 l       .rodata	00000000 $LC1
-00018cf4 l       .rodata	00000000 $LC2
+00018e48 l     O .rodata	00000015 cycle_colors
+00018e60 l       .rodata	00000000 $LC0
+00018e68 l       .rodata	00000000 $LC1
+00018e6c l       .rodata	00000000 $LC2
 00000000 l    df *ABS*	00000000 refill.c
 00000000 l    df *ABS*	00000000 rng.c
-00018cf8 l       .rodata	00000000 $LC0
-00018cfc l       .rodata	00000000 $LC1
+00018e70 l       .rodata	00000000 $LC0
+00018e74 l       .rodata	00000000 $LC1
 00000000 l    df *ABS*	00000000 save.c
 00000000 l    df *ABS*	00000000 scarecrow.c
 00000000 l    df *ABS*	00000000 scene.c
 00000000 l    df *ABS*	00000000 text.c
-0006a0b4 l     O .data	00000004 text_buf
-0006a0b8 l     O .data	00000004 text_end
+0006a2f4 l     O .data	00000004 text_buf
+0006a2f8 l     O .data	00000004 text_end
 00000000 l    df *ABS*	00000000 textures.c
 00000000 l    df *ABS*	00000000 trade_quests.c
-00018d00 l     O .rodata	00000008 sMaskPaymentPrice
+00018e78 l     O .rodata	00000008 sMaskPaymentPrice
 00000000 l    df *ABS*	00000000 triforce.c
-0006a0bc l     O .data	00000004 render_triforce_flag
-0006a0c0 l     O .data	00000004 frames
-00018f70 l       .rodata	00000000 $LC0
-00018f78 l       .rodata	00000000 $LC1
-00018f80 l       .rodata	00000000 $LC2
-00018f88 l       .rodata	00000000 $LC3
+0006a2fc l     O .data	00000004 render_triforce_flag
+0006a300 l     O .data	00000004 frames
+000190e8 l       .rodata	00000000 $LC0
+000190f0 l       .rodata	00000000 $LC1
+000190f8 l       .rodata	00000000 $LC2
+00019100 l       .rodata	00000000 $LC3
 00000000 l    df *ABS*	00000000 twinrova.c
 00000000 l    df *ABS*	00000000 uninvertYaxis.c
 00000000 l    df *ABS*	00000000 util.c
 00000000 l    df *ABS*	00000000 weather.c
-0000de04 g     F .text	00000114 draw_gi_deku_nut
-0005447c g     O .data	00000004 RNG_SEED_INT
-0001360c g     F .text	00000054 scale_factor
-0000bf88 g     F .text	000004c0 sprite_texture
-00017404 g     F .text	0000003c SaveFile_SetMaskAsPaid
-0005468c g     O .data	00000001 menu_not_on_dup
-00010a34 g     F .text	0000001c give_defense
-00010f9c g     F .text	0000002c call_effect_function
-00014b40 g     F .text	000000dc BgSpot18Basket_BombDropHook
-00007ee8 g     F .text	00000560 read_file_data
+0000de1c g     F .text	00000114 draw_gi_deku_nut
+000546bc g     O .data	00000004 RNG_SEED_INT
+00013624 g     F .text	00000054 scale_factor
+0000bfa0 g     F .text	000004c0 sprite_texture
+0001742c g     F .text	0000003c SaveFile_SetMaskAsPaid
+000548cc g     O .data	00000001 menu_not_on_dup
+00010a4c g     F .text	0000001c give_defense
+00010fb4 g     F .text	0000002c call_effect_function
+00014b58 g     F .text	000000dc BgSpot18Basket_BombDropHook
+00007f00 g     F .text	00000560 read_file_data
 000005a0 g     F .text	00000108 spawn_override_silver_rupee
 00007310 g     F .text	000000a4 EnWonderItem_Multitag_DrawHack
 00000000         *UND*	00000000 PLAYER_ID
-00010b14 g     F .text	0000001c clear_excess_hearts
-000148a8 g     F .text	00000078 object_index_or_spawn
-0000cb8c g     F .text	00000088 give_ice_trap
+00010b2c g     F .text	0000001c clear_excess_hearts
+000148c0 g     F .text	00000078 object_index_or_spawn
+0000cba4 g     F .text	00000088 give_ice_trap
 00000000         *UND*	00000000 SHUFFLE_OCARINA_BUTTONS
-00016104 g     F .text	00000214 Sram_WriteSave
-000160d4 g     F .text	00000030 SsSram_ReadWrite_Safe
-00012410 g     F .text	00000274 update_bombchu_trail_colors
+0001612c g     F .text	00000214 Sram_WriteSave
+000160fc g     F .text	00000030 SsSram_ReadWrite_Safe
+00012428 g     F .text	00000274 update_bombchu_trail_colors
 000017c8 g     F .text	00000038 draw_debug_float
-00017130 g     F .text	0000003c GetTradeSlot
-00011ab4 g     F .text	000000f0 Message_AddInteger
+00017158 g     F .text	0000003c GetTradeSlot
+00011acc g     F .text	000000f0 Message_AddInteger
 00000000         *UND*	00000000 EXTENDED_INITIAL_SAVE_DATA
-00009ac4 g     F .text	0000008c item_overrides_init
+00009adc g     F .text	0000008c item_overrides_init
 00000000         *UND*	00000000 MW_SEND_OWN_ITEMS
-00054678 g     O .data	00000001 actor_spawn_as_child_flag
+000548b8 g     O .data	00000001 actor_spawn_as_child_flag
 00000000         *UND*	00000000 en_item00_update
-00015ac8 g     F .text	0000001c draw_pot_hack
-0001126c g     F .text	0000005c scale_upgrade
-0001829c g     F .text	00000014 clear_twinrova_vars
-0001a368 g     O .data	00000004 a_note_glow_max
+00015af0 g     F .text	0000001c draw_pot_hack
+00011284 g     F .text	0000005c scale_upgrade
+000182c4 g     F .text	00000014 clear_twinrova_vars
+0001a598 g     O .data	00000004 a_note_glow_max
 00004964 g     F .text	00000184 draw_int
-000176bc g     F .text	00000044 TurnInTradeItem
+000176e4 g     F .text	00000044 TurnInTradeItem
 00004908 g     F .text	0000005c d_right_dungeon_idx
-00054688 g     O .data	00000004 CHEST_TEXTURE_MATCH_CONTENTS
-0000cf34 g     F .text	0000009c draw_gi_various_opa0
+000548c8 g     O .data	00000004 CHEST_TEXTURE_MATCH_CONTENTS
+0000cf4c g     F .text	0000009c draw_gi_various_opa0
 000028a0 g     F .text	000001e8 draw_int_helper
-00019ec0 g     O .data	00000002 SCENE_GROUP_DEKU_TREE
+0001a040 g     O .data	00000002 SCENE_GROUP_DEKU_TREE
 00000000         *UND*	00000000 CFG_DPAD_ON_THE_LEFT
 00000000         *UND*	00000000 CFG_HEART_COLOR
 000072a0 g     F .text	00000070 EnWonderitem_AfterInitHack
-00019eb0 g     O .data	00000002 SCENE_GROUP_FIRE_TEMPLE
+0001a030 g     O .data	00000002 SCENE_GROUP_FIRE_TEMPLE
 00000000         *UND*	00000000 CFG_CHILD_TRADE_SHUFFLE
-0000d7d0 g     F .text	0000012c draw_gi_magic_arrows
+0000d7e8 g     F .text	0000012c draw_gi_magic_arrows
 000000d0 g     F .text	00000008 Actor_GetAdditionalData
-00017700 g     F .text	0000001c IsClaimCheckTraded
-00019e7c g     O .data	00000003 SCENE_GROUP_LAKE_HYLIA
+00017728 g     F .text	0000001c IsClaimCheckTraded
+00019ffc g     O .data	00000003 SCENE_GROUP_LAKE_HYLIA
 00000000         *UND*	00000000 EnItem00_Draw
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_ENEMY_INNER_ENABLED
-0000cb14 g     F .text	0000004c rupee_hud_color
-000099c4 g     F .text	000000d4 Collectible_WaitForMessageBox
+0000cb2c g     F .text	0000004c rupee_hud_color
+000099dc g     F .text	000000d4 Collectible_WaitForMessageBox
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_IDLE_OUTER_ENABLED
-00010fd8 g     F .text	00000058 hookshot_upgrade
-000121c8 g     F .text	000000a4 update_sword_trail_colors
-00017260 g     F .text	00000038 SaveFile_TradeItemIsOwned
-00009d98 g     F .text	0000005c lookup_override
-00017070 g     F .text	00000054 init_textures
+00010ff0 g     F .text	00000058 hookshot_upgrade
+000121e0 g     F .text	000000a4 update_sword_trail_colors
+00017288 g     F .text	00000038 SaveFile_TradeItemIsOwned
+00009db0 g     F .text	0000005c lookup_override
+00017098 g     F .text	00000054 init_textures
 00000000         *UND*	00000000 Actor_SpawnAsChild
-00054674 g     O .data	00000004 actor_spawn_as_child_parent
-00018b4c g     O .rodata	00000004 text_height
+000548b4 g     O .data	00000004 actor_spawn_as_child_parent
+00018cc4 g     O .rodata	00000004 text_height
 00000000         *UND*	00000000 CFG_CORRECT_MODEL_COLORS
-00011324 g     F .text	0000005c stick_upgrade
-00018667 g     O .rodata	00000001 debug_text_width
-000151cc g     F .text	000001dc print_char
-00054374 g     O .data	000000fc adultSkeleton
-00019980 g     O .data	00000018 medals
-00016dc4 g     F .text	0000002c text_init
+0001133c g     F .text	0000005c stick_upgrade
+0001868f g     O .rodata	00000001 debug_text_width
+000151f4 g     F .text	000001dc print_char
+000545a4 g     O .data	000000fc adultSkeleton
+00019b00 g     O .data	00000018 medals
+00016dec g     F .text	0000002c text_init
 00000000         *UND*	00000000 INCOMING_PLAYER
-0001a3a0 g     O .data	00000004 beating_no_dd
-0001a350 g     O .data	00000004 c_note_font_glow_max
+0001a5d0 g     O .data	00000004 beating_no_dd
+0001a580 g     O .data	00000004 c_note_font_glow_max
 00000000         *UND*	00000000 TRIFORCE_PIECES_REQUIRED
-00007ae8 g     F .text	00000290 process_extern_ctxt
-0001b8bc g     O .data	00000108 silver_rupee_vars
+00007b00 g     F .text	00000290 process_extern_ctxt
+0001baec g     O .data	00000108 silver_rupee_vars
 00001814 g     F .text	0000108c draw_debug_menu
 00006fcc g     F .text	00000088 EnItem00_ProximityCheck_Hack
-0000b274 g     F .text	00000084 drop_bombs_or_chus
-0000e76c g     F .text	0000018c draw_gi_gs_token
-0000f548 g     F .text	000002d4 draw_gi_boss_keys
+0000b28c g     F .text	00000084 drop_bombs_or_chus
+0000e784 g     F .text	0000018c draw_gi_gs_token
+0000f560 g     F .text	000002d4 draw_gi_boss_keys
 00007760 g     F .text	0000000c spawn_check_armos
 00000000 g     F .text	000000b8 En_Blkobj_Actor_Find_Hook
-00019eac g     O .data	00000002 SCENE_GROUP_WATER_TEMPLE
-00012f74 g     F .text	00000074 FindSize
-000565e0 g     O .data	00000004 active_override_is_outgoing
-00015428 g     F .text	0000024c draw_soul_menu
-00015190 g     F .text	0000003c text_new_init
-00010a6c g     F .text	00000024 give_double_magic
-0001a394 g     O .data	00000004 normal_dd
-0000c778 g     F .text	0000039c update_hud_colors
-0000af58 g     F .text	00000050 Set_NewOverrideFlag
-00054274 g     O .data	00000004 blank_texture
-0000d39c g     F .text	000000c0 draw_gi_various_xlu01
+0001a02c g     O .data	00000002 SCENE_GROUP_WATER_TEMPLE
+00012f8c g     F .text	00000074 FindSize
+00056820 g     O .data	00000004 active_override_is_outgoing
+00015450 g     F .text	0000023c draw_soul_menu
+000151b8 g     F .text	0000003c text_new_init
+00010a84 g     F .text	00000024 give_double_magic
+0001a5c4 g     O .data	00000004 normal_dd
+0000c790 g     F .text	0000039c update_hud_colors
+0000af70 g     F .text	00000050 Set_NewOverrideFlag
+000544a4 g     O .data	00000004 blank_texture
+0000d3b4 g     F .text	000000c0 draw_gi_various_xlu01
 00000000         *UND*	00000000 CFG_DUNGEON_REWARDS
-00019e84 g     O .data	00000009 SCENE_GROUP_FOREST_AREA
-0006a000 g     O .data	00000008 menus
-00017d50 g     F .text	0000001c CanBuy_RightSideMask
-00019970 g     O .data	00000003 debug_text_color
-0005ef9e g     O .data	00000001 adult_safe
-000115cc g     F .text	0000007c letter_to_bottle
+0001a004 g     O .data	00000009 SCENE_GROUP_FOREST_AREA
+0006a240 g     O .data	0000000c menus
+00017d78 g     F .text	0000001c CanBuy_RightSideMask
+00019af0 g     O .data	00000003 debug_text_color
+0005f1de g     O .data	00000001 adult_safe
+000115e4 g     F .text	0000007c letter_to_bottle
 00000000         *UND*	00000000 CFG_B_BUTTON_COLOR
-000565c2 g     O .data	00000001 satisfied_pending_frames
-00009df4 g     F .text	0000006c resolve_alternative_override
+00056802 g     O .data	00000001 satisfied_pending_frames
+00009e0c g     F .text	0000006c resolve_alternative_override
 00000000         *UND*	00000000 CFG_CUSTOM_MESSAGE_1
-0000fdc4 g     F .text	000002d8 draw_gi_chubag
-000170e4 g     F .text	0000004c GetTradeItemByAP
-0006a010 g     O .data	00000040 background_vertices
-00013af8 g     F .text	00000064 ocarina_of_time_draw
-000097d0 g     F .text	00000048 check_ganon_entry
-0001a2e0 g     O .data	00000010 items_sprite
+0000fddc g     F .text	000002d8 draw_gi_chubag
+0001710c g     F .text	0000004c GetTradeItemByAP
+0006a250 g     O .data	00000040 background_vertices
+00013b10 g     F .text	00000064 ocarina_of_time_draw
+000097e8 g     F .text	00000048 check_ganon_entry
+0001a510 g     O .data	00000010 items_sprite
 00000000         *UND*	00000000 CFG_DUNGEON_REWARD_AREAS
-000546f6 g     O .data	00000001 curr_room_enemies_inhibited
-000139ac g     F .text	00000084 collectible_draw_other
+00054936 g     O .data	00000001 curr_room_enemies_inhibited
+000139c4 g     F .text	00000084 collectible_draw_other
 00007808 g     F .text	00000038 get_soul_enabled
-0000dcfc g     F .text	00000108 draw_gi_goron_swords
+0000dd14 g     F .text	00000108 draw_gi_goron_swords
 00003528 g     F .text	000012b8 draw_dpad_and_menu_utilities
-0000f36c g     F .text	000001dc draw_gi_shrink_keys
+0000f384 g     F .text	000001dc draw_gi_shrink_keys
 00000000         *UND*	00000000 CFG_DISPLAY_DPAD
-0001189c g     F .text	0000003c before_skybox_init
-00014c1c g     F .text	000000dc BgSpot18Basket_RupeeDropHook
-0000b568 g     F .text	000000ac dispatch_item
-0001a200 g     O .data	00000002 loaded_room_bit_offset
-0005efa0 g     O .data	00000002 illegal_model
-000565cc g     O .data	00000004 active_item_graphic_id
-0001a2b0 g     O .data	00000010 dpad_sprite
-0001a390 g     O .data	00000004 a_button
+000118b4 g     F .text	0000003c before_skybox_init
+00014c34 g     F .text	000000dc BgSpot18Basket_RupeeDropHook
+0000b580 g     F .text	000000ac dispatch_item
+0001a430 g     O .data	00000002 loaded_room_bit_offset
+0005f1e0 g     O .data	00000002 illegal_model
+0005680c g     O .data	00000004 active_item_graphic_id
+0001a4e0 g     O .data	00000010 dpad_sprite
+0001a5c0 g     O .data	00000004 a_button
 00000000         *UND*	00000000 CFG_SHOW_SETTING_INFO
-0001a1b8 g     O .data	00000008 hash_sprites
-00009f64 g     F .text	0000013c activate_override
-000117d4 g     F .text	0000004c before_game_state_update
-00016cb4 g     F .text	00000048 store_scarecrow_fix
-000141d8 g     F .text	000000ec obj_comb_drop_collectible
+0001a3e8 g     O .data	00000008 hash_sprites
+00009f7c g     F .text	0000013c activate_override
+000117ec g     F .text	0000004c before_game_state_update
+00016cdc g     F .text	00000048 store_scarecrow_fix
+000141f0 g     F .text	000000ec obj_comb_drop_collectible
 00002a88 g     F .text	000003a8 draw_debug_numbers
-0000d210 g     F .text	0000018c draw_gi_silver_rupee_pouch
-00017d6c g     F .text	00000028 set_triforce_render
-0000b614 g     F .text	0000026c Item_DropCollectible_Random_Before
-000144b8 g     F .text	000000e0 ObjKibako_SpawnCollectible_Hack
-0001a384 g     O .data	00000004 a_note_r
-00010d58 g     F .text	0000008c resolve_text_silver_rupee_pouches
+0000d228 g     F .text	0000018c draw_gi_silver_rupee_pouch
+00017d94 g     F .text	00000028 set_triforce_render
+0000b62c g     F .text	0000026c Item_DropCollectible_Random_Before
+000144d0 g     F .text	000000e0 ObjKibako_SpawnCollectible_Hack
+0001a5b4 g     O .data	00000004 a_note_r
+00010d70 g     F .text	0000008c resolve_text_silver_rupee_pouches
 00000000         *UND*	00000000 CFG_C_NOTE_COLOR
 00000000         *UND*	00000000 OUTGOING_PLAYER
-000564f8 g     O .data	000000ca xflag_scene_table
+00056738 g     O .data	000000ca xflag_scene_table
 0000768c g     F .text	000000b8 EnWonderItem_Kill_Hack
-000183d0 g     F .text	00000240 override_weather_state
-00054174 g     O .data	00000100 FILENAME_ENCODING
-0000a344 g     F .text	0000004c push_delayed_item
-0001117c g     F .text	00000078 slingshot_upgrade
-00016950 g     F .text	000001d0 Sram_CopySave
-00010e6c g     F .text	00000034 resolve_text_small_keys_cmg
-0001996c g     O .data	00000001 float_precision
-00019ea8 g     O .data	00000002 SCENE_GROUP_SPIRIT_TEMPLE
-0001a3a4 g     O .data	00001518 item_draw_table
-00015f20 g     F .text	00000028 health_and_magic_refill
-00015fdc g     F .text	00000048 Seeded_Rand_Centered
-000107f0 g     F .text	000000f0 set_silver_rupee_flags
-0000e8f8 g     F .text	000001d0 draw_gi_blue_fire_candle
-00017058 g     F .text	00000018 get_texture
-0001747c g     F .text	000000ac SaveFile_NextOwnedTradeItem
-00010534 g     F .text	00000008 no_effect
+000183f8 g     F .text	00000240 override_weather_state
+000543a4 g     O .data	00000100 FILENAME_ENCODING
+0000a35c g     F .text	0000004c push_delayed_item
+00011194 g     F .text	00000078 slingshot_upgrade
+00016978 g     F .text	000001d0 Sram_CopySave
+00010e84 g     F .text	00000034 resolve_text_small_keys_cmg
+00019aec g     O .data	00000001 float_precision
+0001a028 g     O .data	00000002 SCENE_GROUP_SPIRIT_TEMPLE
+0001a5d4 g     O .data	00001518 item_draw_table
+00015f48 g     F .text	00000028 health_and_magic_refill
+00016004 g     F .text	00000048 Seeded_Rand_Centered
+00010808 g     F .text	000000f0 set_silver_rupee_flags
+0000e910 g     F .text	000001d0 draw_gi_blue_fire_candle
+00017080 g     F .text	00000018 get_texture
+000174a4 g     F .text	000000ac SaveFile_NextOwnedTradeItem
+000546a4 g     O .data	0000000c regional_soul_menu_ctx
+0001054c g     F .text	00000008 no_effect
 00006df4 g     F .text	00000098 bb_red_wait_hack
-000158a0 g     F .text	00000044 PauseMapMark_Draw_CallHook
-00017028 g     F .text	00000030 text_flush
+000158c8 g     F .text	00000044 PauseMapMark_Draw_CallHook
+00017050 g     F .text	00000030 text_flush
 00000000         *UND*	00000000 CFG_RAINBOW_SWORD_INNER_ENABLED
-00016df0 g     F .text	000000a8 text_print_size
-0006a0b0 g     O .data	00000001 curr_scene_setup
-00019e44 g     O .data	00000004 SCENE_GROUP_ZORA_AREA
-000548d8 g     O .data	00000c80 alt_overrides
+00016e18 g     F .text	000000a8 text_print_size
+0006a2f0 g     O .data	00000001 curr_scene_setup
+00019fc4 g     O .data	00000004 SCENE_GROUP_ZORA_AREA
+00054b18 g     O .data	00000c80 alt_overrides
 00007744 g     F .text	0000001c spawn_check_gs
-00017994 g     F .text	00000154 SetupMaskShopHelloDialogOverride
-0001a2f0 g     O .data	00000010 medals_sprite
-00007a6c g     F .text	00000064 interpolate
-00011110 g     F .text	0000006c bow_upgrade
+000179bc g     F .text	00000154 SetupMaskShopHelloDialogOverride
+0001a520 g     O .data	00000010 medals_sprite
+00007a84 g     F .text	00000064 interpolate
+00011128 g     F .text	0000006c bow_upgrade
 00000000         *UND*	00000000 VERSION_STRING_TXT
 00000bc0 g     F .text	00000034 agony_vibrate_setup
-000108e0 g     F .text	00000090 give_silver_rupee
-0001a260 g     O .data	00000010 item_digit_sprite
-00054474 g     O .data	00000008 soul_menu_ctx
-00009338 g     F .text	0000025c draw_file_message
-00019e3c g     O .data	00000002 SCENE_GROUP_GROTTOS
-0000b078 g     F .text	000001fc Item00_KillActorIfFlagIsSet
+000108f8 g     F .text	00000090 give_silver_rupee
+0001a490 g     O .data	00000010 item_digit_sprite
+000546b0 g     O .data	0000000c soul_menu_ctx
+00009350 g     F .text	0000025c draw_file_message
+00019fbc g     O .data	00000002 SCENE_GROUP_GROTTOS
+0000b090 g     F .text	000001fc Item00_KillActorIfFlagIsSet
 00001790 g     F .text	00000038 draw_debug_int
-0000a4d8 g     F .text	0000009c after_item_received
+0000a4f0 g     F .text	0000009c after_item_received
 0000025c g     F .text	000000c4 Actor_StoreFlagByIndex
 00000000         *UND*	00000000 SPOILER_AVAILABLE
-00010fc8 g     F .text	00000010 no_upgrade
-000128f8 g     F .text	00000224 update_navi_colors
-0000986c g     F .text	00000158 give_ganon_boss_key
-00015f74 g     F .text	0000000c Seeded_Rand_Seed
-00011474 g     F .text	00000070 arrows_to_rupee
-0001a360 g     O .data	00000004 a_note_font_glow_max
-00018d08 g     O .rodata	00000268 trade_quest_items
-0000d45c g     F .text	00000118 draw_gi_various_opa0_xlu1
-000565e8 g     O .data	00000010 active_override
-0001a310 g     O .data	00000008 empty_dlist
-00019eb8 g     O .data	00000002 SCENE_GROUP_JABU
-0006a050 g     O .data	00000004 RANDOMIZER_RNG_SEED
-0001771c g     F .text	00000070 IsTradeItemTraded
+00010fe0 g     F .text	00000010 no_upgrade
+00012910 g     F .text	00000224 update_navi_colors
+00009884 g     F .text	00000158 give_ganon_boss_key
+00015f9c g     F .text	0000000c Seeded_Rand_Seed
+0001148c g     F .text	00000070 arrows_to_rupee
+0001a590 g     O .data	00000004 a_note_font_glow_max
+00018e80 g     O .rodata	00000268 trade_quest_items
+0000d474 g     F .text	00000118 draw_gi_various_opa0_xlu1
+00056828 g     O .data	00000010 active_override
+0001a540 g     O .data	00000008 empty_dlist
+0001a038 g     O .data	00000002 SCENE_GROUP_JABU
+0006a290 g     O .data	00000004 RANDOMIZER_RNG_SEED
+00017744 g     F .text	00000070 IsTradeItemTraded
 00000000         *UND*	00000000 INCOMING_ITEM
-00019e58 g     O .data	0000001a SCENE_GROUP_MARKET_AREA
-0001a388 g     O .data	00000004 c_button
-00019acc g     O .data	00000004 dungeon_count
-00010680 g     F .text	00000014 give_dungeon_item
+00019fd8 g     O .data	0000001a SCENE_GROUP_MARKET_AREA
+0001a5b8 g     O .data	00000004 c_button
+00019c4c g     O .data	00000004 dungeon_count
+00010698 g     F .text	00000014 give_dungeon_item
 000047e0 g     F .text	00000128 draw_background
-000112c8 g     F .text	0000005c nut_upgrade
+000112e0 g     F .text	0000005c nut_upgrade
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_PROP_OUTER_ENABLED
-0000a2e0 g     F .text	00000064 push_coop_item
+0000a2f8 g     F .text	00000064 push_coop_item
 00000a7c g     F .text	00000094 Actor_Spawn_Hook
-0001a054 g     O .data	00000004 scene_fog_distance
-0001172c g     F .text	0000004c upgrade_key_model
-000158e4 g     F .text	000001e4 draw_pot
+0001a284 g     O .data	00000004 scene_fog_distance
+00011744 g     F .text	0000004c upgrade_key_model
+0001590c g     F .text	000001e4 draw_pot
 00000000         *UND*	00000000 CFG_BOMBCHU_TRAIL_OUTER_COLOR
-000178b8 g     F .text	00000068 SetBiggoronAnimationState
-00018f90 g     O .data	00000004 gActorOverlayTable
-00017348 g     F .text	0000003c SaveFile_UnsetTradeItemAsTraded
-00013754 g     F .text	00000024 models_reset
+000178e0 g     F .text	00000068 SetBiggoronAnimationState
+00019110 g     O .data	00000004 gActorOverlayTable
+00017370 g     F .text	0000003c SaveFile_UnsetTradeItemAsTraded
+0001376c g     F .text	00000024 models_reset
 00000000         *UND*	00000000 TIME_STRING_TXT
 00000b8c g     F .text	00000008 agony_inside_radius_setup
-000101d4 g     F .text	00000190 draw_gi_c_button_vertical
-0000e28c g     F .text	0000016c draw_gi_scales
+000101ec g     F .text	00000190 draw_gi_c_button_vertical
+0000e2a4 g     F .text	0000016c draw_gi_scales
 00001648 g     F .text	00000074 draw_forest_hallway_chest_base
 00001808 g     F .text	0000000c debug_menu_is_drawn
-0001a2d0 g     O .data	00000010 quest_items_sprite
-0000a3ec g     F .text	00000070 after_key_received
+0001a500 g     O .data	00000010 quest_items_sprite
+0000a404 g     F .text	00000070 after_key_received
 00000000         *UND*	00000000 PLANDOMIZER_USED
-0006a0c8 g     O .data	00000001 KAKARIKO_WEATHER_FORECAST
-00018350 g     F .text	0000003c heap_alloc
-000565dc g     O .data	00000004 active_item_row
-00011820 g     F .text	0000007c after_game_state_update
+0006a308 g     O .data	00000001 KAKARIKO_WEATHER_FORECAST
+00018378 g     F .text	0000003c heap_alloc
+0005681c g     O .data	00000004 active_item_row
+00011838 g     F .text	0000007c after_game_state_update
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_REWARD_SUMMARY_ENABLE
-00054850 g     O .data	00000080 outgoing_queue
-00015b14 g     F .text	0000001c draw_flying_pot_hack
-00010970 g     F .text	000000c4 give_silver_rupee_pouch
+00054a90 g     O .data	00000080 outgoing_queue
+00015b3c g     F .text	0000001c draw_flying_pot_hack
+00010988 g     F .text	000000c4 give_silver_rupee_pouch
 00001218 g     F .text	00000024 get_chest_type
 000070b0 g     F .text	000000d0 en_item00_update_hook
-00019750 g     O .data	000001ba dungeon_warps
-00011648 g     F .text	0000003c health_upgrade_cap
+000198d0 g     O .data	000001ba dungeon_warps
+00011660 g     F .text	0000003c health_upgrade_cap
 00004e00 g     F .text	00001ff4 draw_dungeon_info
-000118d8 g     F .text	0000004c after_scene_init
-00019b1c g     O .data	00000270 enemy_spawn_table
+000118f0 g     F .text	0000004c after_scene_init
+00019c9c g     O .data	00000270 enemy_spawn_table
 00000000         *UND*	00000000 FONT_TEXTURE
-00010364 g     F .text	00000190 draw_gi_c_button_horizontal
-00019374 g     O .data	00000154 bosses_warps
+0001037c g     F .text	00000190 draw_gi_c_button_horizontal
+000194f4 g     O .data	00000154 bosses_warps
 00000000         *UND*	00000000 SRAM_SLOTS
 00000000         *UND*	00000000 CFG_FILE_SELECT_HASH
-00067080 g     O .data	00002f80 font_textures
-000189d8 g     O .rodata	0000000c icon_sprites
+000672c0 g     O .data	00002f80 font_textures
+00018b54 g     O .rodata	0000000c icon_sprites
 00000000         *UND*	00000000 OCARINAS_SHUFFLED
-00016eb8 g     F .text	00000170 text_flush_size
-0000a920 g     F .text	0000029c get_item
-0000d8fc g     F .text	00000144 draw_gi_various_opa10_xlu32
-0001a36c g     O .data	00000004 a_note_glow_base
-00054684 g     O .data	00000004 CHEST_SIZE_MATCH_CONTENTS
+00016ee0 g     F .text	00000170 text_flush_size
+0000a938 g     F .text	0000029c get_item
+0000d914 g     F .text	00000144 draw_gi_various_opa10_xlu32
+0001a59c g     O .data	00000004 a_note_glow_base
+000548c4 g     O .data	00000004 CHEST_SIZE_MATCH_CONTENTS
 00000000         *UND*	00000000 CFG_ADULT_TRADE_SHUFFLE
-0001a364 g     O .data	00000004 a_note_font_glow_base
+0001a594 g     O .data	00000004 a_note_font_glow_base
 00000000         *UND*	00000000 CFG_RAINBOW_BOMBCHU_TRAIL_OUTER_ENABLED
 00000000         *UND*	00000000 CFG_RAINBOW_SWORD_OUTER_ENABLED
-00010a50 g     F .text	0000001c give_magic
-0001a250 g     O .data	00000010 linkhead_skull_sprite
-000565d4 g     O .data	00000004 active_item_text_id
-00007a34 g     F .text	00000038 Actor_RemoveFromCategory_SetTempClear_Hack
-0000cb60 g     F .text	00000014 ice_trap_is_pending
-00056610 g     O .data	00008980 cfg_item_overrides
-0001a340 g     O .data	00000004 text_cursor_border_max
-0001009c g     F .text	00000138 draw_gi_a_button
+00010a68 g     F .text	0000001c give_magic
+0001a480 g     O .data	00000010 linkhead_skull_sprite
+00056814 g     O .data	00000004 active_item_text_id
+00007a4c g     F .text	00000038 Actor_RemoveFromCategory_SetTempClear_Hack
+0000cb78 g     F .text	00000014 ice_trap_is_pending
+00056850 g     O .data	00008980 cfg_item_overrides
+0001a570 g     O .data	00000004 text_cursor_border_max
+000100b4 g     F .text	00000138 draw_gi_a_button
 00000000         *UND*	00000000 DPAD_TEXTURE
 00000000         *UND*	00000000 SHUFFLE_CHEST_GAME
-0000a258 g     F .text	00000088 push_pending_item
-0000d574 g     F .text	0000012c draw_rutos_letter
-00054738 g     O .data	00000100 room_flags
-00010728 g     F .text	000000c8 give_small_key_ring
+0000a270 g     F .text	00000088 push_pending_item
+0000d58c g     F .text	0000012c draw_rutos_letter
+00054978 g     O .data	00000100 room_flags
+00010740 g     F .text	000000c8 give_small_key_ring
 00000b94 g     F .text	0000002c agony_outside_radius_setup
 00000000         *UND*	00000000 CFG_DPAD_DUNGEON_INFO_ENABLE
-00015ae4 g     F .text	00000030 draw_hba_pot_hack
-00017384 g     F .text	00000080 SaveFile_TradeItemIsTraded
-00014004 g     F .text	0000005c Health_IsCritical
-00017920 g     F .text	0000005c ShouldSkullKidSpawn
-000565d0 g     O .data	00000004 active_item_object_id
+00015b0c g     F .text	00000030 draw_hba_pot_hack
+000173ac g     F .text	00000080 SaveFile_TradeItemIsTraded
+0001401c g     F .text	0000005c Health_IsCritical
+00017948 g     F .text	0000005c ShouldSkullKidSpawn
+00056810 g     O .data	00000004 active_item_object_id
 00007840 g     F .text	00000038 toggle_soul_enabled
 00000000         *UND*	00000000 CFG_RAINBOW_BOOM_TRAIL_INNER_ENABLED
-000111f4 g     F .text	00000078 wallet_upgrade
+0001120c g     F .text	00000078 wallet_upgrade
 00000000         *UND*	00000000 EPONAS_SONG_NOTES
-00014f94 g     F .text	000001fc update_soul_menu
-000130c8 g     F .text	000000ec check_skeleton
-000565c8 g     O .data	00000004 active_item_fast_chest
-000548d4 g     O .data	00000002 num_override_flags
-00010bf4 g     F .text	0000007c unlock_ocarina_note
-0001a374 g     O .data	00000004 c_note_g
-00019ea4 g     O .data	00000002 SCENE_GROUP_SHADOW_TEMPLE
-00009594 g     F .text	0000023c draw_file_select_hash
-00012e04 g     F .text	00000170 FindModelData
-0001a354 g     O .data	00000004 c_note_font_glow_base
+00014fec g     F .text	000001cc update_soul_menu
+000130e0 g     F .text	000000ec check_skeleton
+00056808 g     O .data	00000004 active_item_fast_chest
+00054b14 g     O .data	00000002 num_override_flags
+00010c0c g     F .text	0000007c unlock_ocarina_note
+0001a5a4 g     O .data	00000004 c_note_g
+0001a024 g     O .data	00000002 SCENE_GROUP_SHADOW_TEMPLE
+000095ac g     F .text	0000023c draw_file_select_hash
+00012e1c g     F .text	00000170 FindModelData
+0001a584 g     O .data	00000004 c_note_font_glow_base
 000010a4 g     F .text	0000002c set_bombchu_bowling_prize_flag
-00054470 g     O .data	00000004 menu_count
+000546a0 g     O .data	00000004 menu_count
 000075f4 g     F .text	00000098 EnWonderItem_Update_Hack
 00000000         *UND*	00000000 MW_PROGRESSIVE_ITEMS_STATE
 000010d0 g     F .text	00000148 get_chest_override
@@ -502,349 +503,350 @@ SYMBOL TABLE:
 00000000         *UND*	00000000 POTCRATE_TEXTURES_MATCH_CONTENTS
 00002e30 g     F .text	000006f8 handle_dpad
 00000000         *UND*	00000000 START_TWINROVA_FIGHT
-0000c448 g     F .text	000000f8 sprite_draw
+0000c460 g     F .text	000000f8 sprite_draw
 00000000         *UND*	00000000 CFG_BOOM_TRAIL_OUTER_COLOR
-00019e4c g     O .data	0000000a SCENE_GROUP_KAKARIKO_AREA
-0001a280 g     O .data	00000010 key_rupee_clock_sprite
-0001063c g     F .text	0000000c give_biggoron_sword
-00015f48 g     F .text	0000002c Seeded_Rand_Next
-0000a0f4 g     F .text	000000c8 push_outgoing_override
-0000bc28 g     F .text	00000070 give_sarias_gift
+00019fcc g     O .data	0000000a SCENE_GROUP_KAKARIKO_AREA
+0001a4b0 g     O .data	00000010 key_rupee_clock_sprite
+00010654 g     F .text	0000000c give_biggoron_sword
+00015f70 g     F .text	0000002c Seeded_Rand_Next
+0000a10c g     F .text	000000c8 push_outgoing_override
+0000bc40 g     F .text	00000070 give_sarias_gift
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_ENEMY_OUTER_ENABLED
-0000aeec g     F .text	0000006c Get_NewOverrideFlag
-0001a358 g     O .data	00000004 c_note_glow_max
+0000af04 g     F .text	0000006c Get_NewOverrideFlag
+0001a588 g     O .data	00000004 c_note_glow_max
 00000000         *UND*	00000000 CFG_SLOWDOWN_MUSIC_WHEN_LOWHP
-00013948 g     F .text	00000064 heart_piece_draw
+00013960 g     F .text	00000064 heart_piece_draw
 00000000         *UND*	00000000 CFG_RAINBOW_BOMBCHU_TRAIL_INNER_ENABLED
-00014cf8 g     F .text	000000e4 BgSpot18Basket_Heartpiecerupee_DropHook
-00017224 g     F .text	0000003c SaveFile_UnsetTradeItemAsOwned
-0000da40 g     F .text	0000015c draw_gi_bullet_bags
-0000bde8 g     F .text	000001a0 sprite_load
-0000cd70 g     F .text	000000a4 draw_gi_sold_out
-0000ecb4 g     F .text	000001d8 draw_gi_fairy
+00014d10 g     F .text	000000e4 BgSpot18Basket_Heartpiecerupee_DropHook
+0001724c g     F .text	0000003c SaveFile_UnsetTradeItemAsOwned
+0000da58 g     F .text	0000015c draw_gi_bullet_bags
+0000be00 g     F .text	000001a0 sprite_load
+0000cd88 g     F .text	000000a4 draw_gi_sold_out
+0000eccc g     F .text	000001d8 draw_gi_fairy
 000003b0 g     F .text	00000188 Actor_StoreChestType
-0001a300 g     O .data	00000010 stones_sprite
+0001a530 g     O .data	00000010 stones_sprite
 00000000         *UND*	00000000 NO_COLLECTIBLE_HEARTS
 00000000         *UND*	00000000 OUTGOING_KEY
-00018f98 g     O .data	000003da items_debug
-00019e48 g     O .data	00000004 SCENE_GROUP_GORON_AREA
-00018b50 g     O .rodata	00000004 text_width
-000156b0 g     F .text	000000d4 draw_new_menus
-0001a03c g     O .data	00000014 extern_ctxt
-000175d4 g     F .text	000000e8 UpdateTradeEquips
-000114e4 g     F .text	00000070 bombs_to_rupee
-0001a348 g     O .data	00000004 text_cursor_inner_max
-0001a37c g     O .data	00000004 a_note_b
-0005467c g     O .data	00000004 EXTRA_BOWLING_SHUFFLE
-00019e98 g     O .data	00000001 SCENE_GROUP_GTG
-000104f4 g     F .text	00000008 draw_gi_nothing
+00019118 g     O .data	000003da items_debug
+00019fc8 g     O .data	00000004 SCENE_GROUP_GORON_AREA
+00018cc8 g     O .rodata	00000004 text_width
+000156d8 g     F .text	000000d4 draw_new_menus
+0001a26c g     O .data	00000014 extern_ctxt
+000175fc g     F .text	000000e8 UpdateTradeEquips
+000114fc g     F .text	00000070 bombs_to_rupee
+0001a578 g     O .data	00000004 text_cursor_inner_max
+0001a5ac g     O .data	00000004 a_note_b
+000548bc g     O .data	00000004 EXTRA_BOWLING_SHUFFLE
+0001a018 g     O .data	00000001 SCENE_GROUP_GTG
+0001050c g     F .text	00000008 draw_gi_nothing
 00000000         *UND*	00000000 Gameplay_InitSkybox
-0001a1c0 g     O .data	00000040 num_to_bits
-0001a318 g     O .data	00000028 setup_db
-00013480 g     F .text	00000060 get_object
-00010548 g     F .text	000000bc give_triforce_piece
-0001b9e8 g     O .data	0003878c item_table
-00019e74 g     O .data	00000005 SCENE_GROUP_GERUDO_AREA
+0001a3f0 g     O .data	00000040 num_to_bits
+0001a548 g     O .data	00000028 setup_db
+00013498 g     F .text	00000060 get_object
+00010560 g     F .text	000000bc give_triforce_piece
+0001bc18 g     O .data	0003878c item_table
+00019ff4 g     O .data	00000005 SCENE_GROUP_GERUDO_AREA
 00000000         *UND*	00000000 CFG_UNINVERT_YAXIS_IN_FIRST_PERSON_CAMERA
-0001a2c0 g     O .data	00000010 font_sprite
+0001a4f0 g     O .data	00000010 font_sprite
 00000538 g     F .text	00000068 Actor_After_UpdateAll_Hack
-0001352c g     F .text	00000068 scale_top_matrix
-0000a45c g     F .text	0000007c pop_ice_trap
-0000df18 g     F .text	00000118 draw_gi_recovery_heart
-00019974 g     O .data	00000009 reward_rows
-00054838 g     O .data	00000010 collectible_override
+00013544 g     F .text	00000068 scale_top_matrix
+0000a474 g     F .text	0000007c pop_ice_trap
+0000df30 g     F .text	00000118 draw_gi_recovery_heart
+00019af4 g     O .data	00000009 reward_rows
+00054a78 g     O .data	00000010 collectible_override
 00000000         *UND*	00000000 TWINROVA_ACTION_TIMER
-00012bcc g     F .text	00000048 update_misc_colors
-00054734 g     O .data	00000001 GANON_BOSS_KEY_CONDITION
-0000bdb8 g     F .text	00000030 sprite_bytes
-00017528 g     F .text	000000ac SaveFile_PrevOwnedTradeItem
-0001a378 g     O .data	00000004 c_note_r
+00012be4 g     F .text	00000048 update_misc_colors
+00054974 g     O .data	00000001 GANON_BOSS_KEY_CONDITION
+0000bdd0 g     F .text	00000030 sprite_bytes
+00017550 g     F .text	000000ac SaveFile_PrevOwnedTradeItem
+0001a5a8 g     O .data	00000004 c_note_r
 00000000         *UND*	00000000 CFG_C_BUTTON_COLOR
-000110a0 g     F .text	00000070 bomb_bag_upgrade
-00054480 g     O .data	00000004 Sram_InitNewSave
-00011a24 g     F .text	00000090 Message_AddCharacter
+000110b8 g     F .text	00000070 bomb_bag_upgrade
+000546c0 g     O .data	00000004 Sram_InitNewSave
+00011a3c g     F .text	00000090 Message_AddCharacter
 00006e8c g     F .text	00000078 bb_after_init_hack
-00011380 g     F .text	00000054 magic_upgrade
-0001a220 g     O .data	00000010 buttons_sprite
-00010f18 g     F .text	00000030 resolve_item_text_id
-00009eac g     F .text	0000005c lookup_override_by_newflag
-00019e90 g     O .data	00000007 SCENE_GROUP_GANONS_CASTLE
-0001a204 g     O .data	00000004 loaded_scene_room_setup
-00011030 g     F .text	00000070 strength_upgrade
-00010b30 g     F .text	00000090 open_mask_shop
-00013458 g     F .text	00000028 load_object
-00016b20 g     F .text	00000074 Save_Write_Hook
-0001140c g     F .text	00000068 ocarina_upgrade
+00011398 g     F .text	00000054 magic_upgrade
+0001a450 g     O .data	00000010 buttons_sprite
+00010f30 g     F .text	00000030 resolve_item_text_id
+00009ec4 g     F .text	0000005c lookup_override_by_newflag
+0001a010 g     O .data	00000007 SCENE_GROUP_GANONS_CASTLE
+0001a434 g     O .data	00000004 loaded_scene_room_setup
+00011048 g     F .text	00000070 strength_upgrade
+00010b48 g     F .text	00000090 open_mask_shop
+00013470 g     F .text	00000028 load_object
+00016b48 g     F .text	00000074 Save_Write_Hook
+00011424 g     F .text	00000068 ocarina_upgrade
 00000b10 g     F .text	0000007c Actor_SpawnAsChild_Hook
-000546f7 g     O .data	00000001 CFG_ENEMY_SPAWN_SHUFFLE
-0000db9c g     F .text	00000160 draw_gi_small_rupees
-00010f48 g     F .text	00000054 resolve_upgrades
-000149cc g     F .text	0000004c c_block_ocarina
-00014ddc g     F .text	0000004c init_new_menus
+00054937 g     O .data	00000001 CFG_ENEMY_SPAWN_SHUFFLE
+0000dbb4 g     F .text	00000160 draw_gi_small_rupees
+00010f60 g     F .text	00000054 resolve_upgrades
+000149e4 g     F .text	0000004c c_block_ocarina
+00014df4 g     F .text	0000008c init_new_menus
 0000123c g     F .text	0000018c set_chest_texture
-0001a290 g     O .data	00000010 song_note_sprite
+0001a4c0 g     O .data	00000010 song_note_sprite
 00000000         *UND*	00000000 CFG_A_NOTE_COLOR
-0001a39c g     O .data	00000004 normal_no_dd
+0001a5cc g     O .data	00000004 normal_no_dd
 00001590 g     F .text	000000a4 should_draw_forest_hallway_chest
-0001a38c g     O .data	00000004 b_button
-00013fa0 g     F .text	00000064 bowling_heart_piece_draw
-00016024 g     F .text	000000b0 Save_Open
-0000c540 g     F .text	00000238 gfx_init
-00009a98 g     F .text	0000002c override_flags_init
-00018a64 g     O .rodata	00000006 defaultDDHeart
-00018666 g     O .rodata	00000001 debug_text_height
-00018908 g     O .rodata	00000042 freecam_modes
-0001053c g     F .text	0000000c full_heal
-0001a370 g     O .data	00000004 c_note_b
-0000bb48 g     F .text	000000e0 get_skulltula_token
+0001a5bc g     O .data	00000004 b_button
+00013fb8 g     F .text	00000064 bowling_heart_piece_draw
+0001604c g     F .text	000000b0 Save_Open
+0000c558 g     F .text	00000238 gfx_init
+00009ab0 g     F .text	0000002c override_flags_init
+00018be0 g     O .rodata	00000006 defaultDDHeart
+0001868e g     O .rodata	00000001 debug_text_height
+00018a84 g     O .rodata	00000042 freecam_modes
+00010554 g     F .text	0000000c full_heal
+0001a5a0 g     O .data	00000004 c_note_b
+0000bb60 g     F .text	000000e0 get_skulltula_token
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_IDLE_INNER_ENABLED
-0006a058 g     O .data	00000058 extended_savectx
-00010c8c g     F .text	0000001c give_regional_enemy_soul
-0000bc98 g     F .text	000000bc fairy_ocarina_getitem
-0000cb74 g     F .text	00000018 push_pending_ice_trap
+0006a298 g     O .data	00000058 extended_savectx
+00010ca4 g     F .text	0000001c give_regional_enemy_soul
+0000bcb0 g     F .text	000000bc fairy_ocarina_getitem
+0000cb8c g     F .text	00000018 push_pending_ice_trap
+0001a044 g     O .data	000000b0 REGIONAL_SOUL_MENU_NAMES
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_REWARD_ENABLE
-00013e5c g     F .text	00000144 bowling_bomb_bag_draw
-00014684 g     F .text	00000148 ObjKibako2_Draw
+00013e74 g     F .text	00000144 bowling_bomb_bag_draw
+0001469c g     F .text	00000148 ObjKibako2_Draw
 00000000         *UND*	00000000 WORLD_STRING_TXT
 00006f04 g     F .text	000000c8 EnItem00_OutgoingAction
-00009e60 g     F .text	0000004c get_override_search_key_by_newflag
-00015f80 g     F .text	00000014 Seeded_Reset
-0001a398 g     O .data	00000004 beating_dd
+00009e78 g     F .text	0000004c get_override_search_key_by_newflag
+00015fa8 g     F .text	00000014 Seeded_Reset
+0001a5c8 g     O .data	00000004 beating_dd
 00000bf4 g     F .text	00000158 draw_agony_graphic
-00011554 g     F .text	00000078 seeds_to_rupee
-00010a90 g     F .text	0000000c give_fairy_ocarina
-00013804 g     F .text	00000050 lookup_model
-0005ef91 g     O .data	00000001 OPEN_KAKARIKO
-000548d0 g     O .data	00000004 collectible_override_flags
+0001156c g     F .text	00000078 seeds_to_rupee
+00010aa8 g     F .text	0000000c give_fairy_ocarina
+0001381c g     F .text	00000050 lookup_model
+0005f1d1 g     O .data	00000001 OPEN_KAKARIKO
+00054b10 g     O .data	00000004 collectible_override_flags
 80099dbc g       *ABS*	00000000 KaleidoManager_GetRamAddr
-00012c14 g     F .text	000001f0 draw_illegal_model_text
+00012c2c g     F .text	000001f0 draw_illegal_model_text
 0000776c g     F .text	0000000c spawn_check_big_octo
 00000000         *UND*	00000000 CHEST_LENS_ONLY
-00019998 g     O .data	00000134 dungeons
-0001990c g     O .data	00000060 menu_categories
+00019b18 g     O .data	00000134 dungeons
+00019a8c g     O .data	00000060 menu_categories
 00000000         *UND*	00000000 CFG_CUSTOM_MESSAGE_2
-0005ef9d g     O .data	00000001 child_safe
+0005f1dd g     O .data	00000001 child_safe
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_ENABLE
 00000000         *UND*	00000000 CFG_DUNGEON_IS_MQ
-0005ef9c g     O .data	00000001 missing_dlist
-00056604 g     O .data	00000004 dummy_actor
-0001226c g     F .text	000001a4 update_boomerang_trail_colors
+0005f1dc g     O .data	00000001 missing_dlist
+00056844 g     O .data	00000004 dummy_actor
+00012284 g     F .text	000001a4 update_boomerang_trail_colors
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_NPC_OUTER_ENABLED
-0000faf0 g     F .text	000002d4 draw_gi_boss_altflip
+0000fb08 g     F .text	000002d4 draw_gi_boss_altflip
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_REWARD_NEED_COMPASS
-00007878 g     F .text	000001bc spawn_override_enemy_spawn_shuffle
-0001a34c g     O .data	00000004 text_cursor_inner_base
+00007878 g     F .text	000001d4 spawn_override_enemy_spawn_shuffle
+0001a57c g     O .data	00000004 text_cursor_inner_base
 00000000         *UND*	00000000 CFG_MINIMAP_ENEMY_TRACKER
 00000000         *UND*	00000000 CUSTOM_KEY_MODELS
 00000000         *UND*	00000000 EnItem00_Init
-00016e98 g     F .text	00000020 text_print
-000171c8 g     F .text	00000024 IsAdultTradeItem
-00010bc0 g     F .text	00000018 give_bombchus
-00015c0c g     F .text	000000e8 EnTuboTrap_DropCollectible_Hack
-0005f080 g     O .data	00008000 menu_dl_buffer
-00013778 g     F .text	0000008c lookup_model_by_override
-0001a35c g     O .data	00000004 c_note_glow_base
-00009818 g     F .text	00000054 countSetBitsRec
-00019e40 g     O .data	00000004 SCENE_GROUP_LLR
-00054732 g     O .data	00000002 GANON_BOSS_KEY_CONDITION_COUNT
-0005ef96 g     O .data	00000002 tempX
-00010604 g     F .text	00000038 give_tycoon_wallet
+00016ec0 g     F .text	00000020 text_print
+000171f0 g     F .text	00000024 IsAdultTradeItem
+00010bd8 g     F .text	00000018 give_bombchus
+00015c34 g     F .text	000000e8 EnTuboTrap_DropCollectible_Hack
+0005f2c0 g     O .data	00008000 menu_dl_buffer
+00013790 g     F .text	0000008c lookup_model_by_override
+0001a58c g     O .data	00000004 c_note_glow_base
+00009830 g     F .text	00000054 countSetBitsRec
+00019fc0 g     O .data	00000004 SCENE_GROUP_LLR
+00054972 g     O .data	00000002 GANON_BOSS_KEY_CONDITION_COUNT
+0005f1d6 g     O .data	00000002 tempX
+0001061c g     F .text	00000038 give_tycoon_wallet
 00000000         *UND*	00000000 CFG_RAINBOW_TUNIC_ENABLED
-0001a344 g     O .data	00000004 text_cursor_border_base
-00056608 g     O .data	00000004 item_overrides_count
-0000f094 g     F .text	0000013c draw_gi_song_notes
+0001a574 g     O .data	00000004 text_cursor_border_base
+00056848 g     O .data	00000004 item_overrides_count
+0000f0ac g     F .text	0000013c draw_gi_song_notes
 00000000         *UND*	00000000 CFG_BOOM_TRAIL_INNER_COLOR
-00015b30 g     F .text	000000dc ObjTsubo_SpawnCollectible_Hack
-0000cfd0 g     F .text	000000f0 draw_gi_various_opa1023
-00017184 g     F .text	00000018 GetTradeItemMax
-0001716c g     F .text	00000018 GetTradeItemMin
-0000a740 g     F .text	000001e0 handle_pending_items
-000113d4 g     F .text	00000038 bombchu_upgrade
-0000f81c g     F .text	000002d4 draw_gi_boss_altered
+00015b58 g     F .text	000000dc ObjTsubo_SpawnCollectible_Hack
+0000cfe8 g     F .text	000000f0 draw_gi_various_opa1023
+000171ac g     F .text	00000018 GetTradeItemMax
+00017194 g     F .text	00000018 GetTradeItemMin
+0000a758 g     F .text	000001e0 handle_pending_items
+000113ec g     F .text	00000038 bombchu_upgrade
+0000f834 g     F .text	000002d4 draw_gi_boss_altered
 00007788 g     F .text	00000038 flags_getsoul
-0006a008 g     O .data	00000004 menu_page
+0006a24c g     O .data	00000004 menu_page
 000007e4 g     F .text	000000b8 Player_SpawnEntry_Hack
-00013660 g     F .text	000000a8 draw_model
+00013678 g     F .text	000000a8 draw_model
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_SILVER_RUPEES
-00016b94 g     F .text	00000120 Save_Init_Write_Hook
-00010ad0 g     F .text	00000018 give_bean_pack
+00016bbc g     F .text	00000120 Save_Init_Write_Hook
+00010ae8 g     F .text	00000018 give_bean_pack
 00000000         *UND*	00000000 Actor_Spawn_Continue
-0001719c g     F .text	0000002c IsTradeItem
-0000d0c0 g     F .text	00000150 draw_gi_wallets
-00013854 g     F .text	000000f4 shop_draw
-00014a5c g     F .text	000000e4 BgHakaTubo_DropCollectible_Hack
-00012684 g     F .text	00000274 get_bombchu_back_color
-0000b01c g     F .text	0000005c Room_Change_Actor_Kill_Hack
-00016318 g     F .text	00000638 Sram_VerifyAndLoadAllSaves
-00010a9c g     F .text	00000018 give_song
+000171c4 g     F .text	0000002c IsTradeItem
+0000d0d8 g     F .text	00000150 draw_gi_wallets
+0001386c g     F .text	000000f4 shop_draw
+00014a74 g     F .text	000000e4 BgHakaTubo_DropCollectible_Hack
+0001269c g     F .text	00000274 get_bombchu_back_color
+0000b034 g     F .text	0000005c Room_Change_Actor_Kill_Hack
+00016340 g     F .text	00000638 Sram_VerifyAndLoadAllSaves
+00010ab4 g     F .text	00000018 give_song
 80000df0 g       *ABS*	00000000 DmaMgr_RequestSync
-0001a050 g     O .data	00000004 last_fog_distance
+0001a280 g     O .data	00000004 last_fog_distance
 00000000         *UND*	00000000 FREE_BOMBCHU_DROPS
-00011684 g     F .text	000000a8 bombchus_to_bag
-00018a6c g     O .rodata	00000006 defaultHeart
-000565c4 g     O .data	00000002 incoming_junk
-0001a380 g     O .data	00000004 a_note_g
-00011778 g     F .text	0000005c c_init
-00017ae8 g     F .text	00000268 TryPaybackMaskOverride
-00019ebc g     O .data	00000002 SCENE_GROUP_DODONGOS_CAVERN
-00014060 g     F .text	00000178 manage_music_changes
+0001169c g     F .text	000000a8 bombchus_to_bag
+00018be8 g     O .rodata	00000006 defaultHeart
+00056804 g     O .data	00000002 incoming_junk
+0001a5b0 g     O .data	00000004 a_note_g
+00011790 g     F .text	0000005c c_init
+00017b10 g     F .text	00000268 TryPaybackMaskOverride
+0001a03c g     O .data	00000002 SCENE_GROUP_DODONGOS_CAVERN
+00014078 g     F .text	00000178 manage_music_changes
 00000000         *UND*	00000000 CFG_SPEEDUP_MUSIC_FOR_LAST_TRIFORCE_PIECE
 00000000         *UND*	00000000 CFG_RAINBOW_BOOM_TRAIL_OUTER_ENABLED
-0001a2a0 g     O .data	00000010 triforce_sprite
+0001a4d0 g     O .data	00000010 triforce_sprite
 000006a8 g     F .text	0000013c Actor_SpawnEntry_Hack
 00000000         *UND*	00000000 EXTERN_DAMAGE_MULTIPLYER
-0005ef92 g     O .data	00000001 MAX_RUPEES
-0000abc8 g     F .text	00000324 get_xflag_bit_offset
-00013b5c g     F .text	00000300 item_etcetera_draw
-0001a230 g     O .data	00000010 ocarina_button_sprite
-000147cc g     F .text	000000dc Obj_Mure3_RupeeCircle_DropRupee
-00019eb4 g     O .data	00000002 SCENE_GROUP_FOREST_TEMPLE
-00010ca8 g     F .text	000000b0 resolve_text_silver_rupees
+0005f1d2 g     O .data	00000001 MAX_RUPEES
+0000abe0 g     F .text	00000324 get_xflag_bit_offset
+00013b74 g     F .text	00000300 item_etcetera_draw
+0001a460 g     O .data	00000010 ocarina_button_sprite
+000147e4 g     F .text	000000dc Obj_Mure3_RupeeCircle_DropRupee
+0001a034 g     O .data	00000002 SCENE_GROUP_FOREST_TEMPLE
+00010cc0 g     F .text	000000b0 resolve_text_silver_rupees
 00000000         *UND*	00000000 SPEED_MULTIPLIER
-00008448 g     F .text	00000ea0 draw_file_icons
-000171ec g     F .text	00000038 SaveFile_SetTradeItemAsOwned
-000565d8 g     O .data	00000004 active_item_action_id
-00055558 g     O .data	00000bb8 xflag_room_blob
-0000a574 g     F .text	000001cc try_pending_item
-0000ce14 g     F .text	00000120 draw_gi_compass
-00054484 g     O .data	000001f0 texture_table
-00010ae8 g     F .text	0000002c fill_wallet_upgrade
-0000ccb0 g     F .text	000000c0 draw_gi_eggs_and_medallions
-00019d8c g     O .data	000000b0 regional_enemy_spawn_table
-0006a0c4 g     O .data	00000004 heap_next
+00008460 g     F .text	00000ea0 draw_file_icons
+00017214 g     F .text	00000038 SaveFile_SetTradeItemAsOwned
+00056818 g     O .data	00000004 active_item_action_id
+00055798 g     O .data	00000bb8 xflag_room_blob
+0000a58c g     F .text	000001cc try_pending_item
+0000ce2c g     F .text	00000120 draw_gi_compass
+000546c4 g     O .data	000001f0 texture_table
+00010b00 g     F .text	0000002c fill_wallet_upgrade
+0000ccc8 g     F .text	000000c0 draw_gi_eggs_and_medallions
+00019f0c g     O .data	000000b0 regional_enemy_spawn_table
+0006a304 g     O .data	00000004 heap_next
 00001800 g     F .text	00000008 debug_utilities
 00000000         *UND*	00000000 TRIFORCE_ICON_TEXTURE
 00000000         *UND*	00000000 MW_PROGRESSIVE_ITEMS_ENABLE
-00010ab4 g     F .text	0000001c ice_trap_effect
-00017440 g     F .text	0000003c SaveFile_MaskIsPaid
-00019e80 g     O .data	00000001 SCENE_GROUP_HYRULE_FIELD
-0000ee8c g     F .text	00000208 draw_gi_poe_bottles
-00011924 g     F .text	00000100 c_equipment_menu_slot_filled
+00010acc g     F .text	0000001c ice_trap_effect
+00017468 g     F .text	0000003c SaveFile_MaskIsPaid
+0001a000 g     O .data	00000001 SCENE_GROUP_HYRULE_FIELD
+0000eea4 g     F .text	00000208 draw_gi_poe_bottles
+0001193c g     F .text	00000100 c_equipment_menu_slot_filled
 00000000         *UND*	00000000 FAST_CHESTS
-000153a8 g     F .text	00000080 print_string
+000153d0 g     F .text	00000080 print_string
 00000000         *UND*	00000000 CURR_ACTOR_SPAWN_INDEX
-00010648 g     F .text	00000038 give_bottle
+00010660 g     F .text	00000038 give_bottle
 000077c0 g     F .text	00000048 flags_setsoul
-00015880 g     F .text	00000020 KaleidoScope_DrawDungeonMap_Callhook
+000158a8 g     F .text	00000020 KaleidoScope_DrawDungeonMap_Callhook
 000000b8 g     F .text	00000018 after_spawn_override_silver_rupee
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_REWARD_NEED_ALTAR
-0001a240 g     O .data	00000010 heart_sprite
+0001a470 g     O .data	00000010 heart_sprite
 00000f14 g     F .text	00000190 select_bombchu_bowling_prize
-00009ca8 g     F .text	000000f0 lookup_override_by_key
-000131b4 g     F .text	00000238 check_model_skeletons
-0000abbc g     F .text	0000000c reset_collectible_mutex
-00014e28 g     F .text	0000016c draw_map_background
+00009cc0 g     F .text	000000f0 lookup_override_by_key
+000131cc g     F .text	00000238 check_model_skeletons
+0000abd4 g     F .text	0000000c reset_collectible_mutex
+00014e80 g     F .text	0000016c draw_map_background
 000073b4 g     F .text	00000240 EnWonderItem_DropCollectible_Hack
-000565fc g     O .data	00000008 drop_collectible_override_flag
+0005683c g     O .data	00000008 drop_collectible_override_flag
 00000000         *UND*	00000000 SHUFFLE_SILVER_RUPEES
-000133ec g     F .text	0000006c load_object_file
-0000b2f8 g     F .text	00000270 get_override_drop_id
-00009f08 g     F .text	0000005c resolve_alternative_flag
-0000e138 g     F .text	00000154 draw_gi_magic_spells
-000143b0 g     F .text	00000108 ObjKibako_Draw
-0000a1bc g     F .text	0000009c move_outgoing_queue
+00013404 g     F .text	0000006c load_object_file
+0000b310 g     F .text	00000270 get_override_drop_id
+00009f20 g     F .text	0000005c resolve_alternative_flag
+0000e150 g     F .text	00000154 draw_gi_magic_spells
+000143c8 g     F .text	00000108 ObjKibako_Draw
+0000a1d4 g     F .text	0000009c move_outgoing_queue
 00004ae8 g     F .text	00000318 draw_silver_rupee_count
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_NPC_INNER_ENABLED
-00054278 g     O .data	000000fc childSkeleton
-00054680 g     O .data	00000004 CHEST_SIZE_TEXTURE
-00013594 g     F .text	00000078 draw_model_low_level
-0000eac8 g     F .text	000001ec draw_gi_fairy_lantern
-00014598 g     F .text	000000ec ObjKibako2_SpawnCollectible_Hack
-00014920 g     F .text	000000ac enitem00_set_link_incoming_item_id
-0000e5c8 g     F .text	000001a4 draw_gi_mirror_shield
+000544a8 g     O .data	000000fc childSkeleton
+000548c0 g     O .data	00000004 CHEST_SIZE_TEXTURE
+000135ac g     F .text	00000078 draw_model_low_level
+0000eae0 g     F .text	000001ec draw_gi_fairy_lantern
+000145b0 g     F .text	000000ec ObjKibako2_SpawnCollectible_Hack
+00014938 g     F .text	000000ac enitem00_set_link_incoming_item_id
+0000e5e0 g     F .text	000001a4 draw_gi_mirror_shield
 00000000         *UND*	00000000 PLAYER_NAMES
 000071e8 g     F .text	000000b8 en_skj_drop_collectible_hack
-00019e9c g     O .data	00000001 SCENE_GROUP_ICE_CAVERN
-0001778c g     F .text	0000012c Inventory_ReplaceItem_Override
+0001a01c g     O .data	00000001 SCENE_GROUP_ICE_CAVERN
+000177b4 g     F .text	0000012c Inventory_ReplaceItem_Override
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_MQ_NEED_MAP
-00016cfc g     F .text	000000c8 get_current_scene_setup_number
-000142c4 g     F .text	000000ec ObjComb_Update
-000104fc g     F .text	00000038 base_draw_gi_model
+00016d24 g     F .text	000000c8 get_current_scene_setup_number
+000142dc g     F .text	000000ec ObjComb_Update
+00010514 g     F .text	00000038 base_draw_gi_model
 00000000         *UND*	00000000 OUTGOING_ITEM
-00017298 g     F .text	00000078 SaveFile_UpdateShiftableItem
-0001797c g     F .text	00000018 IsCuccoGivenToCuccoLady
-0005ef90 g     O .data	00000001 COMPLETE_MASK_QUEST
-00010c70 g     F .text	0000001c give_enemy_soul
-00013a94 g     F .text	00000064 skull_token_draw
-0000afa8 g     F .text	00000074 Item_DropCollectible_Room_Hack
-00017310 g     F .text	00000038 SaveFile_SetTradeItemAsTraded
-00015674 g     F .text	0000003c soul_menu_handler
+000172c0 g     F .text	00000078 SaveFile_UpdateShiftableItem
+000179a4 g     F .text	00000018 IsCuccoGivenToCuccoLady
+0005f1d0 g     O .data	00000001 COMPLETE_MASK_QUEST
+00010c88 g     F .text	0000001c give_enemy_soul
+00013aac g     F .text	00000064 skull_token_draw
+0000afc0 g     F .text	00000074 Item_DropCollectible_Room_Hack
+00017338 g     F .text	00000038 SaveFile_SetTradeItemAsTraded
+0001568c g     F .text	0000004c soul_menu_handler
 00007054 g     F .text	0000005c EnItem00_Init_Hook
-00019ea0 g     O .data	00000001 SCENE_GROUP_BOTW
+0001a020 g     O .data	00000001 SCENE_GROUP_BOTW
 00000000         *UND*	00000000 CFG_TEXT_CURSOR_COLOR
 000000d8 g     F .text	00000184 Actor_StoreFlag
-0000f1d0 g     F .text	0000019c draw_gi_small_keys
+0000f1e8 g     F .text	0000019c draw_gi_small_keys
 00001488 g     F .text	000000c0 draw_chest_lid
-0001a178 g     O .data	00000040 hash_symbols
-00014a18 g     F .text	00000044 can_spawn_epona
-00011d10 g     F .text	0000014c Message_Decode_Additional_Control_Codes
-00007ad0 g     F .text	00000018 extern_scene_init
+0001a3a8 g     O .data	00000040 hash_symbols
+00014a30 g     F .text	00000044 can_spawn_epona
+00011d28 g     F .text	0000014c Message_Decode_Additional_Control_Codes
+00007ae8 g     F .text	00000018 extern_scene_init
 00007180 g     F .text	00000068 EnItem00_Draw_Hook
-000134e0 g     F .text	0000004c set_object_segment
+000134f8 g     F .text	0000004c set_object_segment
 00000d4c g     F .text	000001c8 draw_agony
-00010de4 g     F .text	00000088 resolve_text_small_keys
-0001833c g     F .text	00000014 heap_init
+00010dfc g     F .text	00000088 resolve_text_small_keys
+00018364 g     F .text	00000014 heap_init
 000016bc g     F .text	000000d4 draw_forest_hallway_chest_lid
-00012fe8 g     F .text	000000e0 FindHierarchy
+00013000 g     F .text	000000e0 FindHierarchy
 00000000         *UND*	00000000 CFG_RAINBOW_NAVI_PROP_INNER_ENABLED
-00013a30 g     F .text	00000064 heart_container_draw
-000565f8 g     O .data	00000004 spawn_actor_with_flag
-0000cc14 g     F .text	0000009c draw_gi_bombchu_and_masks
-0005efa4 g     O .data	000000c0 object_slots
-000194c8 g     O .data	00000286 overworld_warps
-00010694 g     F .text	00000094 give_small_key
+00013a48 g     F .text	00000064 heart_container_draw
+00056838 g     O .data	00000004 spawn_actor_with_flag
+0000cc2c g     F .text	0000009c draw_gi_bombchu_and_masks
+0005f1e4 g     O .data	000000c0 object_slots
+00019648 g     O .data	00000286 overworld_warps
+000106ac g     F .text	00000094 give_small_key
 00000000         *UND*	00000000 CFG_DUNGEON_INFO_MQ_ENABLE
 00001634 g     F .text	00000014 get_dummy_chest
 0000089c g     F .text	000001e0 Actor_Spawn_Clear_Check_Hack
-0001a208 g     O .data	00000015 items
-0000e3f8 g     F .text	000001d0 draw_gi_potions
-0001a270 g     O .data	00000010 rupee_digit_sprite
+0001a438 g     O .data	00000015 items
+0000e410 g     F .text	000001d0 draw_gi_potions
+0001a4a0 g     O .data	00000010 rupee_digit_sprite
 00000000         *UND*	00000000 C_HEAP
-0000b880 g     F .text	000002c8 item_give_collectible
-00015cf4 g     F .text	0000022c get_rainbow_color
+0000b898 g     F .text	000002c8 item_give_collectible
+00015d1c g     F .text	0000022c get_rainbow_color
 00000000         *UND*	00000000 CFG_BOMBCHU_TRAIL_INNER_COLOR
 00000000         *UND*	00000000 KEYRING_BOSSKEY_CONDITION
-00009b50 g     F .text	00000158 get_override_search_key
-00054730 g     O .data	00000001 NO_ESCAPE_SEQUENCE
-0000a0a0 g     F .text	00000054 clear_override
-00011e5c g     F .text	0000036c MiniMap_Draw_Hack
+00009b68 g     F .text	00000158 get_override_search_key
+00054970 g     O .data	00000001 NO_ESCAPE_SEQUENCE
+0000a0b8 g     F .text	00000054 clear_override
+00011e74 g     F .text	0000036c MiniMap_Draw_Hack
 80025b0c g       *ABS*	00000000 z64_ActorFind
-000182b0 g     F .text	0000008c manage_uninvert_yaxis
-0000d6a0 g     F .text	00000130 draw_gi_coins_and_cuccos
-0000a390 g     F .text	0000005c pop_pending_item
-00015f94 g     F .text	00000048 Seeded_Rand_ZeroOne
-00010ea0 g     F .text	0000003c resolve_text_keyrings
-00011c28 g     F .text	000000e8 Message_AddFileName
+000182d8 g     F .text	0000008c manage_uninvert_yaxis
+0000d6b8 g     F .text	00000130 draw_gi_coins_and_cuccos
+0000a3a8 g     F .text	0000005c pop_pending_item
+00015fbc g     F .text	00000048 Seeded_Rand_ZeroOne
+00010eb8 g     F .text	0000003c resolve_text_keyrings
+00011c40 g     F .text	000000e8 Message_AddFileName
 00001548 g     F .text	00000048 draw_chest
 00000000         *UND*	00000000 CFG_A_BUTTON_COLOR
-00019ec4 g     O .data	00000178 SOUL_MENU_NAMES
-00056110 g     O .data	000003e8 xflag_room_table
+0001a0f4 g     O .data	00000178 SOUL_MENU_NAMES
+00056350 g     O .data	000003e8 xflag_room_table
 00000000         *UND*	00000000 FIX_BROKEN_DROPS
 00000000         *UND*	00000000 GET_ITEM_SEQ_ID
 00007778 g     F .text	00000010 spawn_check_skullkid
-0000bd54 g     F .text	00000064 sprite_bytes_per_tile
-00015860 g     F .text	00000020 KaleidoScope_DrawWorldMap_Callhook
-00010edc g     F .text	0000003c get_item_row
-0005ef94 g     O .data	00000002 tempZ
+0000bd6c g     F .text	00000064 sprite_bytes_per_tile
+00015888 g     F .text	00000020 KaleidoScope_DrawWorldMap_Callhook
+00010ef4 g     F .text	0000003c get_item_row
+0005f1d4 g     O .data	00000002 tempZ
 00000000         *UND*	00000000 DISABLE_TIMERS
-0001838c g     F .text	00000044 file_init
-00012b1c g     F .text	000000b0 update_tunic_colors
-00054848 g     O .data	00000004 collectible_mutex
-00018a58 g     O .rodata	0000000c rupee_colors
-00015784 g     F .text	000000dc KaleidoScope_DrawNewMap
-00010bd8 g     F .text	0000001c trade_quest_upgrade
+000183b4 g     F .text	00000044 file_init
+00012b34 g     F .text	000000b0 update_tunic_colors
+00054a88 g     O .data	00000004 collectible_mutex
+00018bd4 g     O .rodata	0000000c rupee_colors
+000157ac g     F .text	000000dc KaleidoScope_DrawNewMap
+00010bf0 g     F .text	0000001c trade_quest_upgrade
 00000000         *UND*	00000000 EXTENDED_OBJECT_TABLE
-00017d94 g     F .text	00000508 draw_triforce_count
+00017dbc g     F .text	00000508 draw_triforce_count
 00000000         *UND*	00000000 PLAYER_NAME_ID
 00000320 g     F .text	00000090 get_newflag_override
-000170c4 g     F .text	00000020 GetTradeItemIndex
+000170ec g     F .text	00000020 GetTradeItemIndex
 00000000         *UND*	00000000 CFG_TUNIC_COLORS
 000013c8 g     F .text	000000c0 draw_chest_base
-00011ba4 g     F .text	00000084 Message_AddString
+00011bbc g     F .text	00000084 Message_AddString
 00000000         *UND*	00000000 TRIFORCE_HUNT_ENABLED
-0000e030 g     F .text	00000108 draw_gi_fish_bottle
-00013708 g     F .text	0000004c models_init
-0005f070 g     O .data	00000004 menu_dl_p
-0001b9c4 g     O .data	00000022 key_counts
+0000e048 g     F .text	00000108 draw_gi_fish_bottle
+00013720 g     F .text	0000004c models_init
+0005f2b0 g     O .data	00000004 menu_dl_p
+0001bbf4 g     O .data	00000022 key_counts
 
 

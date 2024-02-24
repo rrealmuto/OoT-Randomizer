@@ -55,6 +55,33 @@ soul_menu_info SOUL_MENU_NAMES[] = {
     {SOUL_ID_BONGO_BONGO, "Bongo Bongo"},
     {SOUL_ID_TWINROVA, "Twinrova"},
 };
+
+regional_soul_menu_info REGIONAL_SOUL_MENU_NAMES[] = {
+    {SOUL_ID_REGIONAL_DEKU_TREE, "Deku Tree"},
+    {SOUL_ID_REGIONAL_DODONGOS_CAVERN, "Dodongos Cavern"},
+    {SOUL_ID_REGIONAL_JABU, "Jabu Jabu's Belly"},
+    {SOUL_ID_REGIONAL_FOREST_TEMPLE, "Forest Temple"},
+    {SOUL_ID_REGIONAL_FIRE_TEMPLE, "Fire Temple"},
+    {SOUL_ID_REGIONAL_WATER_TEMPLE, "Water Temple"},
+    {SOUL_ID_REGIONAL_SPIRIT_TEMPLE, "Spirit Temple"},
+    {SOUL_ID_REGIONAL_SHADOW_TEMPLE, "Shadow Temple"},
+    {SOUL_ID_REGIONAL_BOTW, "Bottom of the Well"},
+    {SOUL_ID_REGIONAL_ICE_CAVERN, "Ice Cavern"},
+    {SOUL_ID_REGIONAL_GTG, "Gerudo Training Ground"},
+    {SOUL_ID_REGIONAL_GANONS_CASTLE, "Ganons Castle"},
+    {SOUL_ID_REGIONAL_FOREST_AREA, "Forest Region"},
+    {SOUL_ID_REGIONAL_HYRULE_FIELD, "Hyrule Field"},
+    {SOUL_ID_REGIONAL_LAKE_HYLIA, "Lake Hylia"},
+    {SOUL_ID_REGIONAL_GERUDO_AREA, "Gerudo Region"},
+    {SOUL_ID_REGIONAL_MARKET_AREA, "Market Region"},
+    {SOUL_ID_REGIONAL_KAKARIKO_AREA, "Kakariko Region"},
+    {SOUL_ID_REGIONAL_GORON_AREA, "Goron Region"},
+    {SOUL_ID_REGIONAL_ZORA_AREA, "Zora Region"},
+    {SOUL_ID_REGIONAL_LLR, "Lon Lon Ranch"},
+    {SOUL_ID_REGIONAL_GROTTOS, "Grottos"},
+};
+
+
 uint8_t SCENE_GROUP_DEKU_TREE[]           = {0, 17};
 uint8_t SCENE_GROUP_DODONGOS_CAVERN[]     = {1,18};
 uint8_t SCENE_GROUP_JABU[]                = {2,19};
@@ -234,7 +261,7 @@ bool spawn_override_enemy_spawn_shuffle(ActorEntry *actorEntry, z64_game_t *glob
                             if(regional_enemy_spawn_table[j].scene_group[k] == globalCtx->scene_index) {
                                 // found a scene group matching the current scene
                                 // Check if we have that flag
-                                bool continue_spawn = flags_getsoul(j);
+                                bool continue_spawn = flags_getsoul(j) && get_soul_enabled(j);
                                 curr_room_enemies_inhibited |= !continue_spawn;
                                 return continue_spawn;
                             }

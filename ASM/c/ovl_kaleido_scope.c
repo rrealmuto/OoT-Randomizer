@@ -10,12 +10,13 @@
 
 #define MAX_LINES 13
 
-menu_ctx soul_menu_ctx = {0, NUM_ENEMY_SOULS, 0, 0, soul_menu_handler};
+menu_ctx soul_menu_ctx = {0, NUM_ENEMY_SOULS, 0, 0, soul_menu_handler, SOUL_MENU_NAMES};
+menu_ctx regional_soul_menu_ctx = {0, NUM_REGIONAL_ENEMY_SOULS, 0,0, soul_menu_handler, REGIONAL_SOUL_MENU_NAMES};
 
 Vtx background_vertices[4];
 int menu_count = 1;
 MENU_PAGE menu_page = 0;
-menu_ctx* menus[2]; // Increase this to add more menus
+menu_ctx* menus[3]; // Increase this to add more menus. Index 0 is unused and corresponds to the vanilla map menu
 uint8_t font_textures[NUM_FONT_CHARS * FONT_CHAR_TEX_WIDTH * FONT_CHAR_TEX_HEIGHT / 2] __attribute__ ((aligned (8)));
 Gfx menu_dl_buffer[0x1000] __attribute__ ((aligned (16)));
 Gfx* menu_dl_p __attribute__ ((aligned (16)));
@@ -26,6 +27,10 @@ void init_new_menus() {
     if(CFG_ENEMY_SPAWN_SHUFFLE == CFG_ENEMY_SPAWN_SHUFFLE_STANDARD) {
         menu_page = (MENU_PAGE)menu_count;
         menus[menu_count++] = &soul_menu_ctx;
+    }
+    else if(CFG_ENEMY_SPAWN_SHUFFLE == CFG_ENEMY_SPAWN_SHUFFLE_REGIONAL) {
+        menu_page = (MENU_PAGE)menu_count;
+        menus[menu_count++] = &regional_soul_menu_ctx;
     }
 }
 
@@ -73,59 +78,64 @@ void draw_map_background(z64_game_t* globalCtx, z64_gfx_t* gfx, float x, float y
     CLOSE_DISPS();
 }
 
-
-void soul_menu_handler(z64_game_t* globalCtx, z64_gfx_t* gfx) {
-    update_soul_menu(globalCtx);
-    draw_soul_menu(globalCtx, gfx);
+void soul_menu_handler(menu_ctx* menu, z64_game_t* globalCtx, z64_gfx_t* gfx) {
+    update_soul_menu(menu, globalCtx);
+    draw_soul_menu(menu, globalCtx, gfx);
 }
 
-void update_soul_menu(z64_game_t* globalCtx) {
+void update_soul_menu(menu_ctx* menu, z64_game_t* globalCtx) {
+    soul_menu_info* names = (soul_menu_info*)menu->extra;
+
+    // Pressing A on a soul in the menu will toggle the soul on/off
     if(globalCtx->common.input->pad_pressed.a) {
-        uint8_t soul_index = SOUL_MENU_NAMES[soul_menu_ctx.curr_line].soul_id;
-        if(flags_getsoul(soul_index)) {
-            toggle_soul_enabled(soul_index);
-            z64_Audio_PlaySoundGeneral(NA_SE_SY_DECIDE, (void *)0x80104394, 4, (float *)0x801043A0, (float *)0x801043A0, (uint8_t *)0x801043A8);
+        uint8_t soul_index = names[menu->curr_line].soul_id;
+        if(flags_getsoul(soul_index)) { // Make sure we have the soul
+            toggle_soul_enabled(soul_index); // Toggle the soul
+            z64_Audio_PlaySoundGeneral(NA_SE_SY_DECIDE, (void *)0x80104394, 4, (float *)0x801043A0, (float *)0x801043A0, (uint8_t *)0x801043A8); // Play the menu sound
         }
     }
 
-    if(soul_menu_ctx.cursor_delay == 0) {
+    // Handle menu navigation
+    if(menu->cursor_delay == 0) { // Use a few frames of delay so we don't move too fast
+        // Down
         if(globalCtx->common.input[0].adjusted_y < -30) {
-            soul_menu_ctx.curr_line++;
-            soul_menu_ctx.cursor_delay = 2;
-            if(soul_menu_ctx.curr_line > soul_menu_ctx.total_lines - 1)
+            menu->curr_line++;
+            menu->cursor_delay = 2;
+            if(menu->curr_line > menu->total_lines - 1)
             {
-                soul_menu_ctx.curr_line = soul_menu_ctx.total_lines - 1;
+                menu->curr_line = menu->total_lines - 1;
             }
             else {
                 z64_Audio_PlaySoundGeneral(NA_SE_SY_CURSOR, (void *)0x80104394, 4, (float *)0x801043A0, (float *)0x801043A0, (uint8_t *)0x801043A8);
             }
         }
+        // Up
         else if(globalCtx->common.input[0].adjusted_y > 30) {
-            soul_menu_ctx.curr_line--;
-            soul_menu_ctx.cursor_delay = 2;
-            if(soul_menu_ctx.curr_line < 0)
+            menu->curr_line--;
+            menu->cursor_delay = 2;
+            if(menu->curr_line < 0)
             {
-                soul_menu_ctx.curr_line = 0;
+                menu->curr_line = 0;
             }
             else {
                 z64_Audio_PlaySoundGeneral(NA_SE_SY_CURSOR, (void *)0x80104394, 4, (float *)0x801043A0, (float *)0x801043A0, (uint8_t *)0x801043A8);
             }
         }
     }
-    else if(soul_menu_ctx.cursor_delay > 0) {
-        soul_menu_ctx.cursor_delay--;
+    else if(menu->cursor_delay > 0) {
+        menu->cursor_delay--; // Decrement the delay timer
     }
 
-    if(soul_menu_ctx.curr_line < soul_menu_ctx.curr_min_line) {
-        soul_menu_ctx.curr_min_line = soul_menu_ctx.curr_line;
+    // Restrict to min/max
+    if(menu->curr_line < menu->curr_min_line) {
+        menu->curr_min_line = menu->curr_line;
     }
-    if(soul_menu_ctx.curr_line > soul_menu_ctx.curr_min_line + MAX_LINES - 1) {
-        soul_menu_ctx.curr_min_line = soul_menu_ctx.curr_line - MAX_LINES + 1;
+    if(menu->curr_line > menu->curr_min_line + MAX_LINES - 1) {
+        menu->curr_min_line = menu->curr_line - MAX_LINES + 1;
     }
 }
 
-
-void draw_soul_menu(z64_game_t* globalCtx, z64_gfx_t* gfx) {
+void draw_soul_menu(menu_ctx* menu, z64_game_t* globalCtx, z64_gfx_t* gfx) {
     // test, just draw a red triangle
     // 1) Render the menu to a frame buffer
 
@@ -150,10 +160,12 @@ void draw_soul_menu(z64_game_t* globalCtx, z64_gfx_t* gfx) {
 
     menu_dl_p = &menu_dl_buffer[0];
 
+    soul_menu_info* names = (soul_menu_info*)menu->extra;
+
     gDPPipeSync(menu_dl_p++);
-    for(int i = soul_menu_ctx.curr_min_line; i < soul_menu_ctx.curr_min_line + MAX_LINES; i++) {
-        if(flags_getsoul(SOUL_MENU_NAMES[i].soul_id)) {
-            if(get_soul_enabled(SOUL_MENU_NAMES[i].soul_id)) {
+    for(int i = menu->curr_min_line; i < menu->curr_min_line + MAX_LINES; i++) {
+        if(flags_getsoul(names[i].soul_id)) {
+            if(get_soul_enabled(names[i].soul_id)) {
                 gDPSetPrimColor(menu_dl_p++, 0,0,255,255,255,255);
             }
             else {
@@ -163,8 +175,8 @@ void draw_soul_menu(z64_game_t* globalCtx, z64_gfx_t* gfx) {
         else {
             gDPSetPrimColor(menu_dl_p++, 0,0,85,85,85,255);
         }
-        int x = print_string(globalCtx, SOUL_MENU_NAMES[i].name, 50, y, .5);
-        if(soul_menu_ctx.curr_line == i) {
+        int x = print_string(globalCtx, names[i].name, 50, y, .5);
+        if(menu->curr_line == i) {
             print_string(globalCtx, "*", x, y, .5);
         }
         y+= 10;
@@ -175,7 +187,6 @@ void draw_soul_menu(z64_game_t* globalCtx, z64_gfx_t* gfx) {
     //gDPSetColorImage(POLY_OPA_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 320, gfx->frame_buffer);
     CLOSE_DISPS();
 }
-
 
 void text_new_init() {
     // Load the font texture from nes_font_static
@@ -221,7 +232,7 @@ void draw_new_menus(z64_game_t* globalCtx, z64_gfx_t* gfx) {
 
     if(globalCtx->pause_ctxt.state == 6 && globalCtx->pause_ctxt.changing == 0 && globalCtx->pause_ctxt.screen_idx == 1) {
         globalCtx->pause_ctxt.cursor_pos = 0;
-        menus[menu_page]->handler(globalCtx, gfx);
+        menus[menu_page]->handler(menus[menu_page],globalCtx, gfx);
         /*switch(menu_page) {
             case(MENU_PAGE_SOULS): {
                 update_soul_menu(globalCtx, gfx);
@@ -236,7 +247,7 @@ void draw_new_menus(z64_game_t* globalCtx, z64_gfx_t* gfx) {
 
 }
 
-void KaleidoScope_DrawNewMap(z64_game_t* globalCtx, z64_gfx_t* gfx, kaleido_handler handler) {
+void KaleidoScope_DrawNewMap(z64_game_t* globalCtx, z64_gfx_t* gfx, kaleido_base_handler handler) {
     if(globalCtx->common.input[0].pad_pressed.cu && globalCtx->pause_ctxt.screen_idx == 1 && globalCtx->pause_ctxt.state == 6 && globalCtx->pause_ctxt.changing == 0) {
         menu_page = (menu_page + 1) % menu_count;
     }
