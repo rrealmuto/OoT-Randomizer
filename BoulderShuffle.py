@@ -50,12 +50,12 @@ def shuffle_boulders(worlds: list[World]):
         while unreached:
             orig_boulders = world.boulders.copy()
             orig_boulders_by_id = world.boulders_by_id.copy()
-            max_search = Search.max_explore([world.state], complete_itempool)
+            max_search = Search.max_explore([w.state for w in worlds], complete_itempool)
             max_search.visit_locations(non_drop_locations)
             locations_to_ensure_reachable = list(filter(max_search.visited, non_drop_locations)) if world.settings.reachable_locations == 'all' else []
 
             world.boulders, world.boulders_by_id = _shuffle_boulders(world)
-            max_search = Search.max_explore([world.state], complete_itempool)
+            max_search = Search.max_explore([w.state for w in worlds], complete_itempool)
             max_search.visit_locations(non_drop_locations)
             reachable_locations = list(filter(max_search.visited, non_drop_locations))
 
