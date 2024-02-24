@@ -272,6 +272,8 @@ item_table: dict[str, tuple[str, Optional[bool], Optional[int], Optional[dict[st
     'Twinrova Soul':                                   ('Soul',     True,  0x202C, None),
     'Jabu Jabu Tentacle Soul':                         ('Soul',     True,  0x202D, None),
     'Dark Link Soul':                                  ('Soul',     True,  0x202E, None),
+
+    # Regional souls
     'Deku Tree Souls':                                 ('Soul',     True,  0x202F, None),
     'Dodongos Cavern Souls':                           ('Soul',     True,  0x2030, None),
     'Jabu Jabus Belly Souls':                          ('Soul',     True,  0x2031, None),
