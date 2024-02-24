@@ -273,7 +273,7 @@ class State:
             return age == 'adult' and self.has(Progressive_Strength_Upgrade, 2)
         elif boulder_type == BOULDER_TYPE.BROWN:
             # Check for adult+hammer or explosives
-            return self.can_blast_or_smash(self)
+            return self.can_blast_or_smash(self, age=age)
         elif boulder_type == BOULDER_TYPE.RED_ICE:
             # Check for blue fire
             #return self.world.parser.parse_rule('Blue_Fire')(self, age=age)
