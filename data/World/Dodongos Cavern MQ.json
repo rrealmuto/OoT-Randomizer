@@ -287,7 +287,7 @@
         "exits": {
             "Dodongos Cavern Torch Puzzle Lower": "True",
             "Dodongos Cavern Two Flames Room": "True",
-            "Dodongos Cavern Lower Right Side": "DC_Elevator_Boulders_Passed and Progress_Strength_Upgrade and can_take_damage",
+            "Dodongos Cavern Lower Right Side": "DC_Elevator_Boulders_Passed and Progressive_Strength_Upgrade and can_take_damage",
             "Dodongos Cavern Mouth": "
                 Progressive_Strength_Upgrade and
                 here((logic_dc_mq_eyes_adult and is_adult) or (logic_dc_mq_eyes_child and is_child))"
