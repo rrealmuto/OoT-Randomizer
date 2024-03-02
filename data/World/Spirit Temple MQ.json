@@ -193,7 +193,7 @@
             "Spirit Temple MQ Child Climb Baby Dodongo 4": "has_soul(Baby_Dodongo) and (Small_Key_Spirit_Temple, 6)",
             "Spirit Temple MQ Child Climb Like-Like": "has_soul(Likelike) and (Small_Key_Spirit_Temple, 6)",
             "Spirit Temple MQ Child Climb Beamos": "(Small_Key_Spirit_Temple, 6) and can_kill_beamos",
-            "Spirit Temple MQ Central Chamber Wallmaster": "(is_child and can_kill_wallmaster and (Small_Key_Spirit_Temple, 7)) or is_adult",
+            "Spirit Temple MQ Central Chamber Wallmaster": "(is_child and can_kill_wallmaster and (Small_Key_Spirit_Temple, 7)) or (is_adult and has_soul(Wallmaster))",
             "Spirit Temple MQ Sun Block Room Bubble 1": "
                 has_soul(Bubble) and (can_play(Song_of_Time) or logic_spirit_mq_sun_block_sot or is_adult)",
             "Spirit Temple MQ Sun Block Room Bubble 2": "
