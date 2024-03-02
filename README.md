@@ -19,6 +19,8 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v83](#v83)
+  * [v82](#v82)
   * [v81](#v81)
   * [v80](#v80)
   * [v79](#v79)
@@ -106,6 +108,10 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v83
+  * Fix MQ DC failing to generate
+  * Fix soul shuffle logic for Spirit Temple MQ Central Chamber Wallmaster
+
 ### v82
   * New Enemy Soul Shuffle option: Regional
   * Add MQ support for Boulder Shuffle
