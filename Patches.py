@@ -2499,7 +2499,10 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
                     area = GossipText(area.text(world.settings.clearer_hints, preposition=True), [area.color], prefix='')
                     compass_message = "\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for %s\x05\x40!\x01The %s can be found\x01%s!\x09" % (dungeon_name, vanilla_reward, area) #TODO figure out why the player name isn't being displayed
                 else:
-                    boss_location = next(filter(lambda loc: loc.type == 'Boss', world.get_entrance(f'{dungeon} Before Boss -> {boss_name} Boss Room').connected_region.locations))
+                    if world.settings.logic_rules == 'glitched':
+                        boss_location = world.get_location(boss_name)
+                    else:
+                        boss_location = next(filter(lambda loc: loc.type == 'Boss', world.get_entrance(f'{dungeon} Before Boss -> {boss_name} Boss Room').connected_region.locations))
                     dungeon_reward = reward_list[boss_location.item.name]
                     compass_message = "\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for %s\x05\x40!\x01It holds the %s!\x09" % (dungeon_name, dungeon_reward)
                 update_message_by_id(messages, compass_id, compass_message)
@@ -3155,8 +3158,25 @@ def get_doors_to_unlock(rom: Rom, world: World) -> dict[int, list[int]]:
                 return [0x00D4 + scene * 0x1C + 0x04 + flag_byte, flag_bits]
 
         # Return Boss Doors that should be unlocked
-        if (world.settings.shuffle_bosskeys == 'remove' and scene != 0x0A) or (world.settings.shuffle_ganon_bosskey == 'remove' and scene == 0x0A) or (world.settings.shuffle_pots and scene == 0x0A and switch_flag == 0x15):
-            if actor_id == 0x002E and door_type == 0x05:
+        if actor_id == 0x002E and door_type == 0x05:
+            dungeons = {
+                0x00: 'Deku Tree',
+                0x01: 'Dodongos Cavern',
+                0x02: 'Jabu Jabus Belly',
+                0x03: 'Forest Temple',
+                0x04: 'Fire Temple',
+                0x05: 'Water Temple',
+                0x06: 'Spirit Temple',
+                0x07: 'Shadow Temple',
+                0x0A: 'Ganons Castle',
+            }
+            if scene in dungeons and world.keyring_give_bk(dungeons[scene]):
+                setting = world.settings.shuffle_smallkeys
+            elif scene == 0x0A:
+                setting = world.settings.shuffle_ganon_bosskey
+            else:
+                setting = world.settings.shuffle_bosskeys
+            if setting == 'remove' or (world.settings.shuffle_pots and scene == 0x0A and switch_flag == 0x15):
                 return [0x00D4 + scene * 0x1C + 0x04 + flag_byte, flag_bits]
 
     return get_actor_list(rom, get_door_to_unlock)

@@ -1,6 +1,8 @@
 # This script is called by GitHub Actions, see .github/workflows/python.yml
 # To fix code style errors, run: python3 ./CI.py --fix --no_unit_tests
 
+from __future__ import annotations
+
 import argparse
 import json
 import os.path
@@ -16,13 +18,15 @@ from SettingsList import SettingInfos, logic_tricks, validate_settings
 from Utils import data_path
 
 
-def error(msg: str, can_fix: bool) -> None:
+def error(msg: str, can_fix: bool | str) -> None:
     if not hasattr(error, "count"):
         error.count = 0
     print(msg, file=sys.stderr)
     error.count += 1
     if can_fix:
         error.can_fix = True
+        if can_fix == 'release':
+            error.can_fix_release = True
     else:
         error.cannot_fix = True
 
@@ -108,6 +112,22 @@ def check_hell_mode_tricks(fix_errors: bool = False) -> None:
             print(file=file)
 
 
+def check_release_presets(fix_errors: bool = False) -> None:
+    # Check to make sure spoiler logs are enabled for all presets.
+    with open(data_path('presets_default.json'), encoding='utf-8') as f:
+        presets = json.load(f)
+
+    for preset_name, preset in presets.items():
+        if not preset['create_spoiler']:
+            error(f'{preset_name} preset does not create spoiler logs', 'release')
+            preset['create_spoiler'] = True
+
+    if fix_errors:
+        with open(data_path('presets_default.json'), 'w', encoding='utf-8', newline='') as file:
+            json.dump(presets, file, indent=4)
+            print(file=file)
+
+
 def check_code_style(fix_errors: bool = False) -> None:
     # Check for code style errors
     repo_dir = pathlib.Path(os.path.dirname(os.path.realpath(__file__)))
@@ -175,6 +195,7 @@ def run_ci_checks() -> NoReturn:
     parser = argparse.ArgumentParser()
     parser.add_argument('--no_unit_tests', help="Skip unit tests", action='store_true')
     parser.add_argument('--only_unit_tests', help="Only run unit tests", action='store_true')
+    parser.add_argument('--release', help="Include checks for release branch", action='store_true')
     parser.add_argument('--fix', help='Automatically apply fixes where possible', action='store_true')
     args = parser.parse_args()
 
@@ -185,6 +206,8 @@ def run_ci_checks() -> NoReturn:
         check_hell_mode_tricks(args.fix)
         check_code_style(args.fix)
         check_presets_formatting(args.fix)
+        if args.release:
+            check_release_presets(args.fix)
 
     exit_ci(args.fix)
 
@@ -201,10 +224,15 @@ def exit_ci(fix_errors: bool = False) -> NoReturn:
                 sys.exit(0)
         else:
             if getattr(error, 'can_fix', False):
-                if getattr(error, 'cannot_fix', False):
-                    print('Run `CI.py --fix --no_unit_tests` to automatically fix some of these errors.', file=sys.stderr)
+                if getattr(error, 'can_fix_release', False):
+                    release_arg = ' --release'
                 else:
-                    print('Run `CI.py --fix --no_unit_tests` to automatically fix these errors.', file=sys.stderr)
+                    release_arg = ''
+                if getattr(error, 'cannot_fix', False):
+                    which_errors = 'some of these errors'
+                else:
+                    which_errors = 'these errors'
+                print(f'Run `CI.py --fix --no_unit_tests{release_arg}` to automatically fix {which_errors}.', file=sys.stderr)
             sys.exit(1)
     else:
         print(f'CI checks successful.')
