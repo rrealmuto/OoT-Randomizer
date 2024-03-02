@@ -113,57 +113,6 @@
         }
     },
     {
-        "region_name": "Dodongos Cavern Song of Time Block Room",
-        "dungeon": "Dodongos Cavern",
-        "locations": {
-            "Dodongos Cavern MQ GS Song of Time Block Room": "
-                can_play(Song_of_Time) and (can_child_attack or is_adult)",
-            "Dodongos Cavern MQ Song of Time Block Room Skullwalltula": "has_soul(Skullwalltula) and (is_adult or (is_child and can_play(Song_of_Time) and can_child_attack))",
-            "Dodongos Cavern MQ Song of Time Block Room Skulltula 1": "has_soul(Skulltula) and (is_adult or (is_child and can_play(Song_of_Time) and can_child_attack))",
-            "Dodongos Cavern MQ Song of Time Block Room Skulltula 2": "has_soul(Skulltula) and (is_adult or (is_child and can_play(Song_of_Time) and can_child_attack))",
-            "Dodongos Cavern MQ Song of Time Block Room Skulltula 3": "has_soul(Skulltula) and (is_adult or (is_child and can_play(Song_of_Time) and can_child_attack))"
-        }
-    },
-    {
-        "region_name": "Dodongos Cavern Lower Staircase",
-        "dungeon": "Dodongos Cavern",
-        "locations": {
-            "Dodongos Cavern MQ Deku Scrub Staircase": "can_stun_deku",
-            "Dodongos Cavern MQ Staircase Crate Bottom Left": "can_break_crate or Progressive_Strength_Upgrade",
-            "Dodongos Cavern MQ Staircase Crate Bottom Right": "can_break_crate or Progressive_Strength_Upgrade",
-            "Dodongos Cavern MQ Staircase Pot 1": "True",
-            "Dodongos Cavern MQ Staircase Pot 2": "True",
-            "Dodongos Cavern MQ Staircase Pot 3": "True",
-            "Dodongos Cavern MQ Staircase Pot 4": "True",
-            "Dodongos Cavern MQ Staircase Beamos 1": "can_kill_beamos",
-            "Dodongos Cavern MQ Staircase Beamos 2": "can_kill_beamos",
-            "Dodongos Cavern MQ Staircase Silver Rupee Beamos": "True",
-            "Dodongos Cavern MQ Staircase Silver Rupee Lower Crate": "can_break_crate or Progressive_Strength_Upgrade",
-            "Deku Baba Sticks": "has_soul(Deku_Baba) and (is_adult or Kokiri_Sword or Boomerang)"
-        },
-        "exits": {
-            "Dodongos Cavern Song of Time Block Room": "True",
-            "Dodongos Cavern Upper Staircase": "Progressive_Strength_Upgrade or has_explosives or can_use(Dins_Fire)"
-        }
-    },
-    {
-        "region_name": "Dodongos Cavern Upper Staircase",
-        "dungeon": "Dodongos Cavern",
-        "locations": {
-            "Dodongos Cavern MQ Staircase Crate Mid Left": "can_break_crate",
-            "Dodongos Cavern MQ Staircase Crate Mid Right": "can_break_crate",
-            "Dodongos Cavern MQ Staircase Crate Top Left": "can_break_crate",
-            "Dodongos Cavern MQ Staircase Crate Top Right": "can_break_crate",
-            "Dodongos Cavern MQ Staircase Silver Rupee Mid Left Crate": "can_break_crate",
-            "Dodongos Cavern MQ Staircase Silver Rupee Top Right Crate": "can_break_crate",
-            "Dodongos Cavern MQ Staircase Skulltula 1": "can_kill_skulltula",
-            "Dodongos Cavern MQ Staircase Skulltula 2": "can_kill_skulltula"
-        },
-        "exits": {
-            "Dodongos Cavern Above Staircase":"is_adult or can_child_attack or Nuts"
-        }
-    },
-    {
         "region_name": "Dodongos Cavern Above Staircase",
         "dungeon": "Dodongos Cavern",
         "locations": {
