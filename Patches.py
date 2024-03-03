@@ -2646,7 +2646,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     broken_actors_symbol = rom.sym('CFG_OBJECT_SYSTEM')
     if world.settings.fix_broken_actors:
         broken_actors_cfg |= 0x81
-        rom.write_byte(symbol, 0x81)
         # Autocollect incoming_item_id for magic jars are swapped in vanilla code
         rom.write_int16(0xA88066, 0x0044)  # Change GI_MAGIC_SMALL to GI_MAGIC_LARGE
         rom.write_int16(0xA88072, 0x0043)  # Change GI_MAGIC_LARGE to GI_MAGIC_SMALL
@@ -2656,7 +2655,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
     if world.settings.shuffle_boulders or world.distribution.boulders:
         broken_actors_cfg |= 0x80
-        rom.write_byte(symbol, 0x80)
         rom.write_byte(rom.sym('CFG_BOULDER_SHUFFLE'), 1)
         patch_boulders(world.boulders_by_id, rom)
 
