@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v85](#v85)
   * [v84](#v84)
   * [v83](#v83)
   * [v82](#v82)
@@ -109,6 +110,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v85
+  * Fix King Zora boulder flag in boulder shuffle
+
 ### v84
   * Fix dark link in soul shuffle... again
 
