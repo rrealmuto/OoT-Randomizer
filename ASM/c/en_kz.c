@@ -31,13 +31,13 @@ z64_actor_t* EnKz_SpawnRedIce_Hook(z64_actor_ctxt_t* actorCtx, z64_actor_t* pare
         spawn_actor_with_flag = &flag;
         switch(KZ_BOULDER_TYPE) {
             case BOULDER_TYPE_BROWN:
-                spawned = Actor_SpawnAsChild(actorCtx, parent, globalCtx, ACTOR_OBJ_BOMBIWA, posX, posY, posZ, rotX, rotY, rotZ, 0);
+                spawned = Actor_SpawnAsChild(actorCtx, parent, globalCtx, ACTOR_OBJ_BOMBIWA, posX, posY, posZ, rotX, rotY, rotZ, 0x3F);
                 break;
             case BOULDER_TYPE_BRONZE:
-                spawned = Actor_SpawnAsChild(actorCtx, parent, globalCtx, ACTOR_OBJ_HAMISHI, posX, posY, posZ, rotX, rotY, rotZ, 0);
+                spawned = Actor_SpawnAsChild(actorCtx, parent, globalCtx, ACTOR_OBJ_HAMISHI, posX, posY, posZ, rotX, rotY, rotZ, 0x3F);
                 break;
             case BOULDER_TYPE_SILVER:
-                spawned = Actor_SpawnAsChild(actorCtx, parent, globalCtx, ACTOR_EN_ISHI, posX, posY, posZ, rotX, rotY, rotZ, 0x01);
+                spawned = Actor_SpawnAsChild(actorCtx, parent, globalCtx, ACTOR_EN_ISHI, posX, posY, posZ, rotX, rotY, rotZ, 0xF0C1);
                 spawned->parent = NULL;
                 break;
             case BOULDER_TYPE_RED_ICE:
