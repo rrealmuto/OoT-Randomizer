@@ -1539,7 +1539,7 @@ def build_ganon_boss_key_string(world: World) -> str:
 # fun new lines for Ganon during the final battle
 def build_ganon_text(world: World, messages: list[Message]) -> None:
     # empty now unused messages to make space for ganon lines
-    update_message_by_id(messages, 0x70C8, " ")
+    update_message_by_id(messages, 0x70C8, "What is that mangey mutt doing\x01here?!? Don't you know I'm allergic?")
     update_message_by_id(messages, 0x70C9, " ")
     update_message_by_id(messages, 0x70CA, " ")
 
