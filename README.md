@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v86](#v86)
   * [v85](#v85)
   * [v84](#v84)
   * [v83](#v83)
@@ -110,6 +111,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v86
+  * Fix disabled enemy drop locations giving shuffled items and appearing on minimap tracker
+
 ### v85
   * Fix King Zora boulder flag in boulder shuffle
 
