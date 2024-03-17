@@ -2785,12 +2785,7 @@
             "ZF Adult Octorok 2": "is_adult and can_kill_octorok_with_explosives",
             "ZF Adult Octorok 3": "is_adult and can_kill_octorok_with_explosives",
             "ZF Adult Octorok 4": "is_adult and can_kill_octorok_with_explosives",
-            "ZF Adult Tektite": "is_adult and can_kill_tektite",
-            "ZF Adult Hidden Cave Skulltula 1": "(has_soul(Skulltula)) and (can_use(Silver_Gauntlets) and can_blast_or_smash)",
-            "ZF Adult Hidden Cave Skulltula 2": "(has_soul(Skulltula)) and (can_use(Silver_Gauntlets) and can_blast_or_smash)",
-            "ZF Adult Hidden Cave Skulltula 3": "(has_soul(Skulltula)) and (can_use(Silver_Gauntlets) and can_blast_or_smash)",
-            "ZF Adult Hidden Cave Skulltula 4": "(has_soul(Skulltula)) and (can_use(Silver_Gauntlets) and can_blast_or_smash)",
-            "ZF Adult Hidden Cave Skulltula 5": "(has_soul(Skulltula)) and (can_use(Silver_Gauntlets) and can_blast_or_smash)"
+            "ZF Adult Tektite": "is_adult and can_kill_tektite"
         },
         "exits": {
             "ZD Behind King Zora": "True",
@@ -2835,6 +2830,11 @@
             "ZF Hidden Cave Pot 1": "True",
             "ZF Hidden Cave Pot 2": "True",
             "ZF Hidden Cave Pot 3": "True",
+            "ZF Adult Hidden Cave Skulltula 1": "has_soul(Skulltula)",
+            "ZF Adult Hidden Cave Skulltula 2": "has_soul(Skulltula)",
+            "ZF Adult Hidden Cave Skulltula 3": "has_soul(Skulltula)",
+            "ZF Adult Hidden Cave Skulltula 4": "has_soul(Skulltula)",
+            "ZF Adult Hidden Cave Skulltula 5": "has_soul(Skulltula)",
             "ZF GS Hidden Cave": "Hookshot and at_night"
         }
     },
