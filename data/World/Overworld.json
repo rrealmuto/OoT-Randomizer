@@ -3210,7 +3210,7 @@
             "ZF Ice Ledge": "is_adult",
             "ZF Great Fairy Fountain": "has_explosives",
             "ZF Underwater": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or Zora_Tunic)",
-            "ZF Hidden Cave": "can_use(Silver_Gauntlets) and can_blast_or_smash"
+            "ZF Hidden Cave": "can_pass_boulder('ZF_SECRET_SILVER_BOULDER') and can_pass_boulder('ZF_SECRET_BROWN_BOULDER')"
         }
     },
     {
