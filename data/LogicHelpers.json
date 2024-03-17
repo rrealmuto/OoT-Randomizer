@@ -123,6 +123,7 @@
     "can_kill_wallmaster" : "has_soul(Wallmaster) and (is_adult or can_child_attack)",
     "can_kill_likelike": "has_soul(Likelike) and (is_adult or (is_child and (Kokiri_Sword or Sticks or has_explosives or can_use(Dins_Fire))))",
     "can_kill_lizalfos": "has_soul(Lizalfos_and_Dinalfos) and ((Slingshot or Sticks or Bombs or Kokiri_Sword) or is_adult)",
+    "can_kill_dinalfos": "has_soul(Lizalfos_and_Dinalfos) and ((Slingshot or Sticks or Bombs or Kokiri_Sword) or is_adult)",
     "can_kill_deku_baba": "has_soul(Deku_Baba) and (can_use(Fire_Arrows) or can_use(Ice_Arrows) or can_use(Light_Arrows) or (blue_fire_arrows and can_use(Blue_Fire_Arrows)))",
     "can_kill_dodongo": "has_soul(Dodongo) and (is_adult or Kokiri_Sword or Sticks or Slingshot or has_explosives)",
     "can_kill_gohma_larva": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)",
