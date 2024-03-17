@@ -2941,7 +2941,7 @@
                 is_adult and (Hover_Boots or Hookshot or here(can_plant_bean) or plant_beans)",
             "DMC Upper Nearby": "is_adult and (here(can_plant_bean) or plant_beans)",
             "DMC Fire Temple Entrance": "
-                (is_child and ((shuffle_dungeon_entrances and not boulder_shuffle) or (can_pass_boulder('DMC_CHILD_FIRE_TEMPLE_BOULDER_1') or can_pass_boulder('DMC_CHILD_FIRE_TEMPLE_BOULDER_2') or can_pass_boulder('DMC_CHILD_FIRE_TEMPLE_BOULDER_3')))) or
+                (is_child and ((shuffle_dungeon_entrances and not shuffle_boulders) or (can_pass_boulder('DMC_CHILD_FIRE_TEMPLE_BOULDER_1') or can_pass_boulder('DMC_CHILD_FIRE_TEMPLE_BOULDER_2') or can_pass_boulder('DMC_CHILD_FIRE_TEMPLE_BOULDER_3')))) or
                 (is_adult and (logic_fewer_tunic_requirements or Goron_Tunic))",
             "DMC Pierre Platform": "can_use(Distant_Scarecrow)"
         }
