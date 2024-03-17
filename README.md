@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v89](#v89)
   * [v88](#v88)
   * [v87](#v87)
   * [v86](#v86)
@@ -113,6 +114,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v89
+  * Boulder Shuffle and Soul Shuffle fixes
+
 ### v88
   * Fix a typo
 
