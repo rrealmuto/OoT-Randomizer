@@ -148,9 +148,9 @@ def patch_kz_boulder(boulder, rom: Rom, key: tuple[int,int,int,int], collider_ov
 boulder_list = {
     
     'HF_UNNAMED_1': {(81, 0, 1, 27): {'type': BOULDER_TYPE.SILVER, 'switch': 60, }, (81, 0, 2, 37): {'type': BOULDER_TYPE.SILVER, 'switch': 60, }, (81, 0, 0, 30): {'type': BOULDER_TYPE.SILVER, 'switch': 60, },},
-    'HF_FAIRY_GROTTO_BOULDER': {(81, 0, 0, 68): {'type': BOULDER_TYPE.BROWN, 'switch': 8, }, (81, 0, 1, 68): {'type': BOULDER_TYPE.BROWN, 'switch': 8, }, (81, 0, 2, 67): {'type': BOULDER_TYPE.BROWN, 'switch': 8, },},
+    'HF_SOUTHEAST_GROTTO_BOULDER': {(81, 0, 0, 68): {'type': BOULDER_TYPE.BROWN, 'switch': 8, }, (81, 0, 1, 68): {'type': BOULDER_TYPE.BROWN, 'switch': 8, }, (81, 0, 2, 67): {'type': BOULDER_TYPE.BROWN, 'switch': 8, },},
     'HF_NEAR_MARKET_GROTTO_BOULDER': {(81, 0, 0, 69): {'type': BOULDER_TYPE.BROWN, 'switch': 14, }, (81, 0, 1, 67): {'type': BOULDER_TYPE.BROWN, 'switch': 14, }, (81, 0, 2, 68): {'type': BOULDER_TYPE.BROWN, 'switch': 14, },},
-    'HF_SOUTHEAST_GROTTO_BOULDER': {(81, 0, 0, 70): {'type': BOULDER_TYPE.BROWN, 'switch': 16, }, (81, 0, 1, 66): {'type': BOULDER_TYPE.BROWN, 'switch': 16, }, (81, 0, 2, 69): {'type': BOULDER_TYPE.BROWN, 'switch': 16, },},
+    'HF_FAIRY_GROTTO_BOULDER': {(81, 0, 0, 70): {'type': BOULDER_TYPE.BROWN, 'switch': 16, }, (81, 0, 1, 66): {'type': BOULDER_TYPE.BROWN, 'switch': 16, }, (81, 0, 2, 69): {'type': BOULDER_TYPE.BROWN, 'switch': 16, },},
     'HF_COW_GROTTO_ADULT_BOULDER': {(81, 0, 2, 8): {'type': BOULDER_TYPE.BRONZE, 'switch': 17, },},
     'HF_UNNAMED_2': {(81, 0, 2, 9): {'type': BOULDER_TYPE.BRONZE, 'switch': 18, },},
     'HF_UNNAMED_3': {(81, 0, 2, 10): {'type': BOULDER_TYPE.BRONZE, 'switch': 20, },},
@@ -277,6 +277,7 @@ force_boulders = {
     'JABU_PITS_WALL_BOULDER_3': [BOULDER_TYPE.BROWN],
     'JABU_TAILS_BOULDER_WALL': [BOULDER_TYPE.BROWN],
     'SPIRIT_LOBBY_CEILING_BOULDER': [BOULDER_TYPE.BROWN],
+    'SPIRIT_LOBBY_EYESWITCH_BOULDER': [BOULDER_TYPE.BROWN, BOULDER_TYPE.BRONZE, BOULDER_TYPE.RED_ICE],
     'BOTW_EYESWITCH_WALL_BOULDER': [BOULDER_TYPE.BROWN]
 }
 
