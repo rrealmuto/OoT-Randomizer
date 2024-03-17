@@ -2524,8 +2524,6 @@
             "GC Upper Staircase Pot 2": "True",
             "GC Upper Staircase Pot 3": "True",
             "GC Medigoron Pot": "can_blast_or_smash or Progressive_Strength_Upgrade",
-            "GC Boulder Maze Crate": "(can_blast_or_smash or can_use(Silver_Gauntlets)) and can_break_crate",
-            "GC GS Boulder Maze": "is_child and has_explosives",
             "GC GS Center Platform": "is_adult",
             "GC Maze Gossip Stone Drop": "can_play(Song_of_Time) and (can_blast_or_smash or can_use(Silver_Gauntlets))",
             "GC Maze Gossip Stone": "can_blast_or_smash or can_use(Silver_Gauntlets)",
@@ -2713,7 +2711,9 @@
         "hint": "GORON_CITY",
         "locations": {
             "GC Maze Center Chest": "True",
-            "GC Maze Right Chest": "True"
+            "GC Maze Right Chest": "True",
+            "GC Boulder Maze Crate": "can_break_crate",
+            "GC GS Boulder Maze": "is_child"
         },
         "exits": {
             "GC Boulder Maze Left Chest": "
@@ -2941,7 +2941,7 @@
                 is_adult and (Hover_Boots or Hookshot or here(can_plant_bean) or plant_beans)",
             "DMC Upper Nearby": "is_adult and (here(can_plant_bean) or plant_beans)",
             "DMC Fire Temple Entrance": "
-                (is_child and (shuffle_dungeon_entrances or (can_pass_boulder('DMC_CHILD_FIRE_TEMPLE_BOULDER_1') or can_pass_boulder('DMC_CHILD_FIRE_TEMPLE_BOULDER_2') or can_pass_boulder('DMC_CHILD_FIRE_TEMPLE_BOULDER_3')))) or
+                (is_child and ((shuffle_dungeon_entrances and not boulder_shuffle) or (can_pass_boulder('DMC_CHILD_FIRE_TEMPLE_BOULDER_1') or can_pass_boulder('DMC_CHILD_FIRE_TEMPLE_BOULDER_2') or can_pass_boulder('DMC_CHILD_FIRE_TEMPLE_BOULDER_3')))) or
                 (is_adult and (logic_fewer_tunic_requirements or Goron_Tunic))",
             "DMC Pierre Platform": "can_use(Distant_Scarecrow)"
         }
