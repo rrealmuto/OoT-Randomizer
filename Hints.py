@@ -2029,7 +2029,7 @@ def build_ganon_text(world: World, messages: list[Message]) -> None:
     update_message_by_id(messages, 0x70CB, text)
 
 
-def build_misc_item_hints(world: World, messages: list[Message]) -> None:
+def build_misc_item_hints(world: World, messages: list[Message], allow_duplicates: bool = False) -> None:
     for hint_type, data in misc_item_hint_table.items():
         if hint_type in world.settings.misc_hints:
             item = world.misc_hint_items[hint_type]
@@ -2059,7 +2059,7 @@ def build_misc_item_hints(world: World, messages: list[Message]) -> None:
             for find, replace in data.get('replace', {}).items():
                 text = text.replace(find, replace)
 
-            update_message_by_id(messages, data['id'], str(GossipText(text, ['Green'], prefix='')))
+            update_message_by_id(messages, data['id'], str(GossipText(text, ['Green'], prefix='')), allow_duplicates=allow_duplicates)
 
 
 def build_misc_location_hints(world: World, messages: list[Message]) -> None:

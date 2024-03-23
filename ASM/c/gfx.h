@@ -41,5 +41,7 @@ void sprite_draw(z64_disp_buf_t* db, sprite_t* sprite, int tile_index,
 
 void sprite_texture(z64_disp_buf_t* db, sprite_t* sprite, int tile_index,
         int16_t left, int16_t top, int16_t width, int16_t height);
+void sprite_texture_4b(z64_disp_buf_t* db, sprite_t* sprite, int tile_index,
+        int16_t left, int16_t top, int16_t width, int16_t height);
 
 #endif

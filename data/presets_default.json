@@ -1,5 +1,8 @@
 {
     "Fenhl's Casual": {
+        "aliases": [
+            "fenhl"
+        ],
         "language": "english",
         "show_seed_info": true,
         "user_message": "Fenhl's Casual",
@@ -196,6 +199,9 @@
         ]
     },
     "Vanilla": {
+        "aliases": [
+            "vanilla"
+        ],
         "language": "english",
         "show_seed_info": true,
         "user_message": "Vanilla",
@@ -357,6 +363,9 @@
         "adult_trade_start": []
     },
     "Fast Vanilla": {
+        "aliases": [
+            "fast_vanilla"
+        ],
         "language": "english",
         "show_seed_info": true,
         "user_message": "Fast Vanilla",
@@ -518,6 +527,9 @@
         "adult_trade_start": []
     },
     "Vanilla (Master Quest)": {
+        "aliases": [
+            "vanilla_mq"
+        ],
         "language": "english",
         "show_seed_info": true,
         "user_message": "Vanilla (Master Quest)",
@@ -692,6 +704,9 @@
         "adult_trade_start": []
     },
     "Fast Vanilla (Master Quest)": {
+        "aliases": [
+            "fast_vanilla_mq"
+        ],
         "language": "english",
         "show_seed_info": true,
         "user_message": "Fast Vanilla (Master Quest)",
@@ -866,6 +881,9 @@
         "adult_trade_start": []
     },
     "Ice%": {
+        "aliases": [
+            "ice_percent"
+        ],
         "language": "english",
         "show_seed_info": true,
         "user_message": "Ice%",
@@ -1076,6 +1094,9 @@
         ]
     },
     "2nd Mixed Pools Tournament": {
+        "aliases": [
+            "mixed"
+        ],
         "language": "english",
         "show_seed_info": true,
         "user_message": "2nd Mixed Pools Tournament",
@@ -1278,6 +1299,10 @@
         ]
     },
     "Standard Anti-Weekly Settings (Beginner)": {
+        "aliases": [
+            "saws_beginner",
+            "saws"
+        ],
         "language": "english",
         "show_seed_info": true,
         "user_message": "Standard Anti-Weekly Settings (Beginner)",
@@ -1764,6 +1789,9 @@
         ]
     },
     "Standard Anti-Weekly Settings (Advanced)": {
+        "aliases": [
+            "saws_advanced"
+        ],
         "language": "english",
         "show_seed_info": true,
         "user_message": "Standard Anti-Weekly Settings (Advanced)",
@@ -2250,6 +2278,9 @@
         ]
     },
     "Triforce Blitz S2": {
+        "aliases": [
+            "tfb"
+        ],
         "language": "english",
         "show_seed_info": true,
         "user_message": "Triforce Blitz S2",
@@ -2457,6 +2488,7 @@
         ]
     },
     "Hell's Angels Co-Op": {
+        "aliases": [],
         "language": "english",
         "show_seed_info": true,
         "user_message": "Co-Op Tournament Season 3",
@@ -2661,6 +2693,9 @@
         ]
     },
     "Easy Mode": {
+        "aliases": [
+            "easy"
+        ],
         "language": "english",
         "show_seed_info": true,
         "user_message": "Easy Mode",
@@ -2849,6 +2884,10 @@
         ]
     },
     "S7 Tournament": {
+        "aliases": [
+            "s7",
+            "tournament"
+        ],
         "language": "english",
         "show_seed_info": true,
         "user_message": "S7 Tournament",
@@ -3050,7 +3089,11 @@
             "Claim Check"
         ]
     },
-    "Standard Weekly (Latest)": {
+    "Standard Weekly (2023-08-12)": {
+        "aliases": [
+            "Standard Weekly (Latest)",
+            "weekly"
+        ],
         "language": "english",
         "show_seed_info": true,
         "user_message": "Standard Weekly (Latest)",
@@ -3251,6 +3294,10 @@
         ]
     },
     "DDR Weekly (2023-06-12)": {
+        "aliases": [
+            "ddr",
+            "ddrweekly"
+        ],
         "language": "english",
         "show_seed_info": true,
         "user_message": "DDR Season 2",
@@ -3459,6 +3506,9 @@
         ]
     },
     "Scrub Tournament": {
+        "aliases": [
+            "scrub"
+        ],
         "language": "english",
         "show_seed_info": true,
         "user_message": "Scrub Tournament",
@@ -3660,6 +3710,10 @@
         ]
     },
     "Multiworld Tournament Season 4": {
+        "aliases": [
+            "mw",
+            "mw_s4"
+        ],
         "language": "english",
         "show_seed_info": true,
         "user_message": "Multiworld Tournament Season 4",
@@ -3865,6 +3919,9 @@
         ]
     },
     "Hell Mode": {
+        "aliases": [
+            "hell"
+        ],
         "language": "english",
         "show_seed_info": true,
         "user_message": "Hell Mode",
@@ -4246,6 +4303,9 @@
         ]
     },
     "Bingo": {
+        "aliases": [
+            "bingo"
+        ],
         "language": "english",
         "show_seed_info": true,
         "user_message": "Bingo",
@@ -4434,6 +4494,10 @@
         ]
     },
     "League S6": {
+        "aliases": [
+            "league",
+            "league_s6"
+        ],
         "language": "english",
         "show_seed_info": true,
         "user_message": "OoTR League S6",
@@ -4637,6 +4701,11 @@
         ]
     },
     "Co-Op Tournament Season 3": {
+        "aliases": [
+            "co-op",
+            "co-op_s3",
+            "coop"
+        ],
         "language": "english",
         "show_seed_info": true,
         "user_message": "Co-Op Tournament Season 3",

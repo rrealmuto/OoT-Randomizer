@@ -4246,6 +4246,35 @@ courtyard_guards_kill:
     jal      fairy_ocarina_getitem_override
     nop
 
+;===================================================================================================
+; Adds a textbox for adult shooting gallery if game was played without a bow
+;===================================================================================================
+.orga 0xD36164
+; Replaces sw      t4, 0x01EC(a2)
+;          sw      t1, 0x0118(a2)
+    jal     shooting_gallery_no_bow
+    nop
+
+;===================================================================================================
+; Cancel Volvagia flying form hitbox when her health is already at O
+;===================================================================================================
+; Replaces addiu   a2, $zero, 0x0004
+;          andi    t6, a1, 0x0002
+.orga 0xCEA41C
+    jal     volvagia_flying_hitbox
+    nop
+
+;===================================================================================================
+; Prevent the trade quest timer to start if you get the Zora Tunic item from King Zora with
+; Eyeball Frog in inventory.
+;===================================================================================================
+
+; Replaces     lh      t6, 0x01D0(a1)
+;              addiu   $at, $zero, 0x0003
+.orga 0xE56B38
+    jal     kz_no_timer
+    addiu   $at, $zero, 0x0003
+
 .include("hacks/ovl_bg_spot18_basket.asm")
 .include("hacks/ovl_obj_mure3.asm")
 .include("hacks/ovl_bg_haka_tubo.asm")

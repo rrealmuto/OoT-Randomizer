@@ -46,7 +46,7 @@ def complete_presets(new_presets, interactive, *, preset=None, source=None):
             new_presets[preset_name] = {}
         SettingsList.validate_settings(new_presets[preset_name], check_conflicts=False)
         for setting_name, setting in SETTINGS_DICT.items():
-            if setting_name != 'starting_items' and setting.shared and setting_name not in new_presets[preset_name]:
+            if setting_name != 'starting_items' and (setting.shared or setting_name == 'aliases') and setting_name not in new_presets[preset_name]:
                 if setting_name in old_preset:
                     try:
                         new_presets[preset_name][setting_name] = old_preset[setting_name]
@@ -89,12 +89,12 @@ if __name__ == '__main__':
         print(json.dumps(non_default, indent=4))
     elif arguments['diff']:
         if arguments['<left>'] == 'default':
-            left = {setting_name: setting.default for setting_name, setting in SETTINGS_DICT.items() if setting.shared}
+            left = {setting_name: setting.default for setting_name, setting in SETTINGS_DICT.items() if setting.shared or setting_name == 'aliases'}
         else:
             with open('data/presets_default.json', encoding='utf-8') as f:
                 left = json.load(f)[arguments['<left>']]
         if arguments['<right>'] == 'default':
-            right = {setting_name: setting.default for setting_name, setting in SETTINGS_DICT.items() if setting.shared}
+            right = {setting_name: setting.default for setting_name, setting in SETTINGS_DICT.items() if setting.shared or setting_name == 'aliases'}
         else:
             with open('data/presets_default.json', encoding='utf-8') as f:
                 right = json.load(f)[arguments['<right>']]

@@ -26,6 +26,7 @@ if TYPE_CHECKING:
 
 class SettingInfos:
     # Internal & Non-GUI Settings
+    aliases = SettingInfoList(None, None, False)
     cosmetics_only = Checkbutton(None)
     check_version = Checkbutton(None)
     checked_version = SettingInfoStr(None, None)
@@ -4509,6 +4510,16 @@ class SettingInfos:
         default        = False,
     )
 
+    input_viewer = Checkbutton(
+        gui_text       = 'Input Viewer',
+        shared         = False,
+        cosmetic       = True,
+        gui_tooltip    = '''\
+            Show the controller inputs in form of icons at the bottom of the screen.
+        ''',
+        default        = False,
+    )
+
     model_adult = Combobox(
         gui_text       = 'Adult Link Model',
         shared         = False,
@@ -5832,6 +5843,8 @@ def validate_settings(settings_dict: dict[str, Any], *, allow_world_entries: boo
             raise TypeError('Supplied choice %r for setting %r is of type %r, expecting %r' % (choice, setting, type(choice).__name__, info.type.__name__))
         # If setting is a list, must check each element
         if isinstance(choice, list):
+            if not info.choice_list:
+                continue
             for element in choice:
                 if element not in info.choice_list:
                     raise ValueError('%r is not a valid choice for setting %r. %s' % (element, setting, build_close_match(element, 'choice', info.choice_list)))

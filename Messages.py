@@ -131,6 +131,8 @@ GOSSIP_STONE_MESSAGES += [0x2053, 0x2054]  # shared initial stone messages
 TEMPLE_HINTS_MESSAGES: list[int] = [0x7057, 0x707A]  # dungeon reward hints from the temple of time pedestal
 ERROR_MESSAGE: int = 0x0001
 
+new_messages = [] # Used to keep track of new/updated messages to prevent duplicates. Clear it at the start of patches
+
 # messages for shorter item messages
 # ids are in the space freed up by move_shop_item_messages()
 ITEM_MESSAGES: list[tuple[int, str]] = [
@@ -520,50 +522,51 @@ COLOR_MAP: dict[str, str] = {
     'Black':      '\x47',
 }
 
-MISC_MESSAGES: dict[int, tuple[str | bytearray, int]] = {
-    0x0032: ("\x08\x13\x02You got \x05\x41Bombs\x05\x40!\x01If you see something\x01suspicious, bomb it!", 0x23),
-    0x0033: ("\x08\x13\x09You got \x05\x41Bombchus\x05\x40!", 0x23),
-    0x0034: ("\x08\x13\x01You got a \x05\x41Deku Nut\x05\x40!", 0x23),
-    0x0037: ("\x08\x13\x00You got a \x05\x41Deku Stick\x05\x40!", 0x23),
-    0x0043: ("\x08\x13\x15You got a \x05\x41Red Potion\x05\x40!\x01It will restore your health", 0x23),
-    0x0044: ("\x08\x13\x16You got a \x05\x42Green Potion\x05\x40!\x01It will restore your magic.", 0x23),
-    0x0045: ("\x08\x13\x17You got a \x05\x43Blue Potion\x05\x40!\x01It will recover your health\x01and magic.", 0x23),
-    0x0046: ("\x08\x13\x18You caught a \x05\x41Fairy\x05\x40 in a bottle!\x01It will revive you\x01the moment you run out of life \x01energy.", 0x23),
-    0x0047: ("\x08\x13\x19You got a \x05\x41Fish\x05\x40!\x01It looks so fresh and\x01delicious!", 0x23),
-    0x004C: ("\x08\x13\x3EYou got a \x05\x44Deku Shield\x05\x40!", 0x23),
-    0x004D: ("\x08\x13\x3FYou got a \x05\x44Hylian Shield\x05\x40!", 0x23),
-    0x0050: ("\x08\x13\x42You got a \x05\x41Goron Tunic\x05\x40!\x01Going to a hot place? No worry!", 0x23),
-    0x0051: ("\x08\x13\x43You got a \x05\x43Zora Tunic\x05\x40!\x01Wear it, and you won't drown\x01underwater.", 0x23),
-    0x0055: ("\x08You got a \x05\x45Recovery Heart\x05\x40!\x01Your life energy is recovered!", 0x23),
-    0x005D: ("\x08\x13\x1CYou put a \x05\x44Blue Fire\x05\x40\x01into the bottle!\x01This is a cool flame you can\x01use on red ice.", 0x23),
-    0x007A: ("\x08\x13\x1DYou put a \x05\x41Bug \x05\x40in the bottle!\x01This kind of bug prefers to\x01live in small holes in the ground.", 0x23),
-    0x0097: ("\x08\x13\x20You caught a \x05\x41Poe \x05\x40in a bottle!\x01Something good might happen!", 0x23),
-    0x00DC: ("\x08\x13\x58You got \x05\x41Deku Seeds\x05\x40!\x01Use these as bullets\x01for your Slingshot.", 0x23),
-    0x00E6: ("\x08You got a \x05\x46bundle of arrows\x05\x40!", 0x23),
-    0x00F9: ("\x08\x13\x1EYou put a \x05\x41Big Poe \x05\x40in a bottle!\x01Let's sell it at the \x05\x41Ghost Shop\x05\x40!\x01Something good might happen!", 0x23),
-    0x507B: (bytearray(
+MISC_MESSAGES: list[tuple[int, tuple[str | bytearray, int]]] = [
+    (0x0032, ("\x08\x13\x02You got \x05\x41Bombs\x05\x40!\x01If you see something\x01suspicious, bomb it!", 0x23)),
+    (0x0033, ("\x08\x13\x09You got \x05\x41Bombchus\x05\x40!", 0x23)),
+    (0x0034, ("\x08\x13\x01You got a \x05\x41Deku Nut\x05\x40!", 0x23)),
+    (0x0037, ("\x08\x13\x00You got a \x05\x41Deku Stick\x05\x40!", 0x23)),
+    (0x0043, ("\x08\x13\x15You got a \x05\x41Red Potion\x05\x40!\x01It will restore your health", 0x23)),
+    (0x0044, ("\x08\x13\x16You got a \x05\x42Green Potion\x05\x40!\x01It will restore your magic.", 0x23)),
+    (0x0045, ("\x08\x13\x17You got a \x05\x43Blue Potion\x05\x40!\x01It will recover your health\x01and magic.", 0x23)),
+    (0x0046, ("\x08\x13\x18You caught a \x05\x41Fairy\x05\x40 in a bottle!\x01It will revive you\x01the moment you run out of life \x01energy.", 0x23)),
+    (0x0047, ("\x08\x13\x19You got a \x05\x41Fish\x05\x40!\x01It looks so fresh and\x01delicious!", 0x23)),
+    (0x004C, ("\x08\x13\x3EYou got a \x05\x44Deku Shield\x05\x40!", 0x23)),
+    (0x004D, ("\x08\x13\x3FYou got a \x05\x44Hylian Shield\x05\x40!", 0x23)),
+    (0x0050, ("\x08\x13\x42You got a \x05\x41Goron Tunic\x05\x40!\x01Going to a hot place? No worry!", 0x23)),
+    (0x0051, ("\x08\x13\x43You got a \x05\x43Zora Tunic\x05\x40!\x01Wear it, and you won't drown\x01underwater.", 0x23)),
+    (0x0055, ("\x08You got a \x05\x45Recovery Heart\x05\x40!\x01Your life energy is recovered!", 0x23)),
+    (0x005D, ("\x08\x13\x1CYou put a \x05\x44Blue Fire\x05\x40\x01into the bottle!\x01This is a cool flame you can\x01use on red ice.", 0x23)),
+    (0x007A, ("\x08\x13\x1DYou put a \x05\x41Bug \x05\x40in the bottle!\x01This kind of bug prefers to\x01live in small holes in the ground.", 0x23)),
+    (0x0097, ("\x08\x13\x20You caught a \x05\x41Poe \x05\x40in a bottle!\x01Something good might happen!", 0x23)),
+    (0x00DC, ("\x08\x13\x58You got \x05\x41Deku Seeds\x05\x40!\x01Use these as bullets\x01for your Slingshot.", 0x23)),
+    (0x00E6, ("\x08You got a \x05\x46bundle of arrows\x05\x40!", 0x23)),
+    (0x00F9, ("\x08\x13\x1EYou put a \x05\x41Big Poe \x05\x40in a bottle!\x01Let's sell it at the \x05\x41Ghost Shop\x05\x40!\x01Something good might happen!", 0x23)),
+    (0x507B, (bytearray(
             b"\x08I tell you, I saw him!\x04"
             b"\x08I saw the ghostly figure of Damp\x96\x01"
             b"the gravekeeper sinking into\x01"
             b"his grave. It looked like he was\x01"
             b"holding some kind of \x05\x41treasure\x05\x40!\x02"
-            ), 0x00),
-    0x0422: ("They say that once \x05\x41Morpha's Curse\x05\x40\x01is lifted, striking \x05\x42this stone\x05\x40 can\x01shift the tides of \x05\x44Lake Hylia\x05\x40.\x02", 0x23),
-    0x401C: ("Please find my dear \05\x41Princess Ruto\x05\x40\x01immediately... Zora!\x12\x68\x7A", 0x03),
-    0x9100: ("I am out of goods now.\x01Sorry!\x04The mark that will lead you to\x01the Spirit Temple is the \x05\x41flag on\x01the left \x05\x40outside the shop.\x01Be seeing you!\x02", 0x00),
-    0x0451: ("\x12\x68\x7AMweep\x07\x04\x52", 0x23),
-    0x0452: ("\x12\x68\x7AMweep\x07\x04\x53", 0x23),
-    0x0453: ("\x12\x68\x7AMweep\x07\x04\x54", 0x23),
-    0x0454: ("\x12\x68\x7AMweep\x07\x04\x55", 0x23),
-    0x0455: ("\x12\x68\x7AMweep\x07\x04\x56", 0x23),
-    0x0456: ("\x12\x68\x7AMweep\x07\x04\x57", 0x23),
-    0x0457: ("\x12\x68\x7AMweep\x07\x04\x58", 0x23),
-    0x0458: ("\x12\x68\x7AMweep\x07\x04\x59", 0x23),
-    0x0459: ("\x12\x68\x7AMweep\x07\x04\x5A", 0x23),
-    0x045A: ("\x12\x68\x7AMweep\x07\x04\x5B", 0x23),
-    0x045B: ("\x12\x68\x7AMweep", 0x23),
-    0x6013: ("Hey, newcomer!\x04Want me to throw you in jail?\x01\x01\x1B\x05\x42No\x01Yes\x05\x40", 0x00),
-}
+            ), 0x00)),
+    (0x0422, ("They say that once \x05\x41Morpha's Curse\x05\x40\x01is lifted, striking \x05\x42this stone\x05\x40 can\x01shift the tides of \x05\x44Lake Hylia\x05\x40.\x02", 0x23)),
+    (0x401C, ("Please find my dear \05\x41Princess Ruto\x05\x40\x01immediately... Zora!\x12\x68\x7A", 0x03)),
+    (0x9100, ("I am out of goods now.\x01Sorry!\x04The mark that will lead you to\x01the Spirit Temple is the \x05\x41flag on\x01the left \x05\x40outside the shop.\x01Be seeing you!\x02", 0x00)),
+    (0x0451, ("\x12\x68\x7AMweep\x07\x04\x52", 0x23)),
+    (0x0452, ("\x12\x68\x7AMweep\x07\x04\x53", 0x23)),
+    (0x0453, ("\x12\x68\x7AMweep\x07\x04\x54", 0x23)),
+    (0x0454, ("\x12\x68\x7AMweep\x07\x04\x55", 0x23)),
+    (0x0455, ("\x12\x68\x7AMweep\x07\x04\x56", 0x23)),
+    (0x0456, ("\x12\x68\x7AMweep\x07\x04\x57", 0x23)),
+    (0x0457, ("\x12\x68\x7AMweep\x07\x04\x58", 0x23)),
+    (0x0458, ("\x12\x68\x7AMweep\x07\x04\x59", 0x23)),
+    (0x0459, ("\x12\x68\x7AMweep\x07\x04\x5A", 0x23)),
+    (0x045A, ("\x12\x68\x7AMweep\x07\x04\x5B", 0x23)),
+    (0x045B, ("\x12\x68\x7AMweep", 0x23)),
+    (0x045C, ("Come back when you have\x01your own bow and you'll get the\x01\x05\x41real prize\x05\x40!\x0E\x78", 0x00)),
+    (0x6013, ("Hey, newcomer!\x04Want me to throw you in jail?\x01\x01\x1B\x05\x42No\x01Yes\x05\x40", 0x00)),
+]
 
 
 # convert byte array to an integer
@@ -933,7 +936,14 @@ class Message:
 
 # wrapper for updating the text of a message, given its message id
 # if the id does not exist in the list, then it will add it
-def update_message_by_id(messages: list[Message], id: int, text: bytearray | str, opts: Optional[int] = None) -> None:
+# Checks if the message being updated is a newly added message in order to prevent duplicates.
+# Use allow_duplicates=True if the same message is purposely updated multiple times
+def update_message_by_id(messages: list[Message], id: int, text: bytearray | str, opts: Optional[int] = None, allow_duplicates: bool = False):
+    # Check is we have previously added/modified this message.
+    if id in new_messages and not allow_duplicates:
+        raise Exception(f'Attempting to add duplicate message {hex(id)}')
+
+    new_messages.append(id)
     # get the message index
     index = next( (m.index for m in messages if m.id == id), -1)
     # update if it was found
@@ -1091,6 +1101,9 @@ def move_shop_item_messages(messages: list[Message], shop_items: Iterable[ShopIt
             raise(TypeError("duplicate id in move_shop_item_messages"))
 
         for message in relevant_messages:
+            if message.id in new_messages: # Check if this was a message we've modified and update its ID in that table.
+                index = new_messages.index(message.id)
+                new_messages[index] |= 0x8000
             message.id |= 0x8000
     # update them in the shop item list
     for shop in shop_items:
@@ -1157,7 +1170,7 @@ def update_item_messages(messages: list[Message], world: World) -> None:
         else:
             update_message_by_id(messages, id, text, 0x23)
 
-    for id, (text, opt) in MISC_MESSAGES.items():
+    for id, (text, opt) in MISC_MESSAGES:
         update_message_by_id(messages, id, text, opt)
 
 
@@ -1325,10 +1338,6 @@ def shuffle_messages(messages: list[Message], except_hints: bool = True) -> list
         shuffle_messages.scrubs_message_ids +
         [0x5036, 0x70F5] # Chicken count and poe count respectively
     )
-    shuffle_exempt = [
-        0x208D,         # "One more lap!" for Cow in House race.
-        0xFFFC,         # Character data from JP table used on title and file select screens
-    ]
 
     permutation = [i for i, _ in enumerate(messages)]
 
@@ -1343,6 +1352,7 @@ def shuffle_messages(messages: list[Message], except_hints: bool = True) -> list
             [0x5036, 0x70F5] # Chicken count and poe count respectively
         )
         shuffle_exempt = [
+            0x045C,         # Adult shooting gallery helping message when the player wins without having a bow
             0x208D,         # "One more lap!" for Cow in House race.
             0xFFFC,         # Character data from JP table used on title and file select screens
         ]
