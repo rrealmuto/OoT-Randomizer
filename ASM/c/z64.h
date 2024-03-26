@@ -6,6 +6,10 @@
 #include "color.h"
 #include "z64collision_check.h"
 
+
+#define PHYSICAL_TO_VIRTUAL(addr) (void*)((uintptr_t)(addr) + 0x80000000)
+#define VIRTUAL_TO_PHYSICAL(addr) (uintptr_t)((u8*)(addr) - 0x80000000)
+
 #define Z64_OOT10             0x00
 #define Z64_OOT11             0x01
 #define Z64_OOT12             0x02
@@ -867,6 +871,11 @@ typedef struct {
 } z64_controller_t;
 
 typedef enum {
+    /* 0 */ MTXMODE_NEW,  // generates a new matrix
+    /* 1 */ MTXMODE_APPLY // applies transformation to the current matrix
+} MatrixMode;
+
+typedef enum {
     ACTORTYPE_SWITCH,
     ACTORTYPE_BG,
     ACTORTYPE_PLAYER,
@@ -880,6 +889,44 @@ typedef enum {
     ACTORTYPE_DOOR,
     ACTORTYPE_CHEST
 } actor_type_t;
+
+struct z64_game_t;
+
+typedef void (*ActorFunc)(struct z64_actor_t*, struct z64_game_t*);
+
+typedef struct {
+    /* 0x00 */ int16_t id;
+    /* 0x02 */ uint8_t category; // Classifies actor and determines when it will update or draw
+    /* 0x04 */ uint32_t flags;
+    /* 0x08 */ int16_t objectId;
+    /* 0x0C */ uint32_t instanceSize;
+    /* 0x10 */ ActorFunc init; // Constructor
+    /* 0x14 */ ActorFunc destroy; // Destructor
+    /* 0x18 */ ActorFunc update; // Update Function
+    /* 0x1C */ ActorFunc draw; // Draw function
+} ActorInit; // size = 0x20
+
+typedef struct {
+    /* 0x00 */ uintptr_t vromStart;
+    /* 0x04 */ uintptr_t vromEnd;
+    /* 0x08 */ void* vramStart;
+    /* 0x0C */ void* vramEnd;
+    /* 0x10 */ void* loadedRamAddr; // original name: "allocp"
+    /* 0x14 */ ActorInit* initInfo;
+    /* 0x18 */ char* name;
+    /* 0x1C */ uint16_t allocType; // See `ACTOROVL_ALLOC_` defines
+    /* 0x1E */ int8_t numLoaded; // original name: "clients"
+} ActorOverlay; // size = 0x20
+
+typedef struct {
+    /* 0x00 */ void* loadedRamAddr;
+    /* 0x04 */ uintptr_t vromStart;
+    /* 0x08 */ uintptr_t vromEnd;
+    /* 0x0C */ void* vramStart;
+    /* 0x10 */ void* vramEnd;
+    /* 0x14 */ void* unk_14;
+    /* 0x18 */ void* ramFileName;
+} PausePlayerOverlay;
 
 typedef struct z64_actor_s z64_actor_t;
 struct z64_actor_s
@@ -1783,7 +1830,7 @@ typedef enum {
     /* 4 */ PAUSE_BG_PRERENDER_MAX,
 } PauseBgPreRenderState;
 
-
+typedef int32_t (*OverrideLimbDrawOpa)(z64_game_t* play, int32_t limbIndex, Gfx** dList, z64_xyzf_t* pos, z64_xyz_t* rot, void*);
 
 /* helper macros */
 #define LINK_IS_ADULT (z64_file.link_age == 0)
@@ -2324,5 +2371,14 @@ typedef void(*z64_Play_SetupRespawnPoint_proc)(z64_game_t *game, int32_t respawn
 #define ITEMGETINF_3A 0x3A
 #define ITEMGETINF_3B 0x3B
 #define ITEMGETINF_3F 0x3F
+
+extern ActorOverlay gActorOverlayTable[];
+extern PausePlayerOverlay gPausePlayerOverlayTable[];
+extern void Matrix_Scale(float x, float y, float z, uint8_t mode);
+extern Mtx* Matrix_ToMtx(Mtx* dest);
+extern Mtx* Matrix_NewMtx(z64_gfx_t* gfxCtx);
+extern void Matrix_Translate(float x, float y, float z, uint8_t mode);
+extern void Matrix_Push();
+extern void Matrix_Pop();
 
 #endif

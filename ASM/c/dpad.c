@@ -64,6 +64,10 @@ void handle_dpad() {
         if (pad_pressed.dd && CAN_USE_OCARINA) {
             z64_usebutton(&z64_game,&z64_link,z64_file.items[Z64_SLOT_OCARINA], 2);
         }
+
+        if(pad_pressed.du && ((z64_file.items[Z64_SLOT_CHILD_TRADE] == ITEM_MASK_BUNNY) || SaveFile_TradeItemIsOwned(ITEM_MASK_BUNNY))) {
+            z64_usebutton(&z64_game, &z64_link, ITEM_MASK_BUNNY, 2);
+        }
     }
 }
 
@@ -217,6 +221,7 @@ void draw_dpad_and_menu_utilities() {
                 }
             }
 
+            // Child trade item on dpad right
             if (z64_file.items[Z64_SLOT_CHILD_TRADE] >= Z64_ITEM_WEIRD_EGG && z64_file.items[Z64_SLOT_CHILD_TRADE] <= Z64_ITEM_MASK_OF_TRUTH && z64_file.link_age == 1) {
                 if (!CAN_USE_DPAD || !CAN_USE_CHILD_TRADE) {
                     gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, alpha * 0x46 / 0xFF);
@@ -224,13 +229,15 @@ void draw_dpad_and_menu_utilities() {
                     gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, alpha);
                 }
                 sprite_load(db, &items_sprite, z64_file.items[Z64_SLOT_CHILD_TRADE], 1);
-                if (z64_link.current_mask >= 1 && z64_link.current_mask <= 9) {
+                if (z64_link.current_mask > 0 && (z64_link.current_mask + 35 == z64_file.items[Z64_SLOT_CHILD_TRADE])) {
+//                if (z64_link.current_mask >= 1 && z64_link.current_mask <= 9 && z64_file.items[Z64_SLOT_CHILD_TRADE] >= ITEM_MASK_KEATON && z64_file.items[Z64_SLOT_CHILD_TRADE] <= ITEM_MASK_TRUTH) {
                     sprite_draw(db, &items_sprite, 0, left_main_dpad + 12, top_main_dpad, 16, 16);
                 } else {
                     sprite_draw(db, &items_sprite, 0, left_main_dpad + 14, top_main_dpad + 2, 12, 12);
                 }
             }
 
+            // Ocarina on dpad down
             if (z64_file.items[Z64_SLOT_OCARINA] == Z64_ITEM_FAIRY_OCARINA || z64_file.items[Z64_SLOT_OCARINA] == Z64_ITEM_OCARINA_OF_TIME) {
                 if (!CAN_USE_DPAD || !CAN_USE_OCARINA) {
                     gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, alpha * 0x46 / 0xFF);
@@ -240,6 +247,22 @@ void draw_dpad_and_menu_utilities() {
                 }
                 sprite_load(db, &items_sprite, z64_file.items[Z64_SLOT_OCARINA], 1);
                 sprite_draw(db, &items_sprite, 0, left_main_dpad + 2, top_main_dpad + 13, 12,12);
+            }
+
+            // Adult bunny hood on dpad up
+            if (z64_file.items[Z64_SLOT_CHILD_TRADE] == ITEM_MASK_BUNNY || SaveFile_TradeItemIsOwned(ITEM_MASK_BUNNY)) {
+                if (!CAN_USE_DPAD || !CAN_USE_CHILD_TRADE) {
+                    gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, alpha * 0x46 / 0xFF);
+                } else {
+                    gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, alpha);
+                }
+                sprite_load(db, &items_sprite, ITEM_MASK_BUNNY, 1);
+
+                if (z64_link.current_mask == ITEM_MASK_BUNNY - ITEM_MASK_KEATON + 1) {
+                    sprite_draw(db, &items_sprite, 0, left_main_dpad, top_main_dpad - 15, 16, 16);
+                } else {
+                    sprite_draw(db, &items_sprite, 0, left_main_dpad + 2, top_main_dpad - 11, 12, 12);
+                }
             }
         }
         gDPPipeSync(db->p++);

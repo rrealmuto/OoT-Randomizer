@@ -10,6 +10,7 @@ uint16_t SaveFile_PrevOwnedTradeItem(uint16_t itemId);
 
 void SaveFile_SetTradeItemAsOwned(uint16_t itemId);
 void SaveFile_UnsetTradeItemAsOwned(uint16_t itemId);
+uint32_t SaveFile_TradeItemIsOwned(uint16_t itemId);
 
 uint16_t IsTradeItem(uint16_t itemId);
 uint16_t IsAdultTradeItem(uint16_t itemId);

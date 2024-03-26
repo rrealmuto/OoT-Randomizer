@@ -207,7 +207,7 @@ void UpdateTradeEquips(uint16_t itemId, int16_t tradeSlot) {
     z64_file.items[tradeSlot] = itemId;
     // Update player trade progression for other actors
     //z64_link.exchange_item_id = trade_quest_items[GetTradeItemIndex(itemId)].exchange_item_id;
-    for (int i = 0; i < 3; i++) {
+    /*for (int i = 0; i < 3; i++) {
         // Handle current age C button equips, if any
         if (z64_file.c_button_slots[i] == tradeSlot) {
             z64_file.button_items[i + 1] = itemId;
@@ -218,7 +218,7 @@ void UpdateTradeEquips(uint16_t itemId, int16_t tradeSlot) {
             z64_file.child_button_items[i + 1] = itemId;
         if (z64_file.adult_c_button_slots[i] == tradeSlot)
             z64_file.adult_button_items[i + 1] = itemId;
-    }
+    }*/
 }
 
 void TurnInTradeItem(uint16_t itemId) {

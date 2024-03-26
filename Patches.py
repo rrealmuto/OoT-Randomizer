@@ -40,7 +40,8 @@ else:
     TypeAlias = str
 
 OverrideEntry: TypeAlias = "tuple[int, int, int, int, int, int]"
-
+FileEntry: TypeAlias = "tuple[str, int, int]"
+PatchEntry: TypeAlias = "tuple[int, list[int]]"
 
 def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     with open(data_path('generated/rom_patch.txt'), 'r') as stream:
@@ -103,28 +104,66 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         start_address = end_address
 
     # Make new models by applying patches to existing ones
-    zobj_patches = (
-        ('object_gi_hearts', 0x014D9000, 0x014DA590, 0x194, ( # Heart Container -> Double Defense
-            (0x1294, [0xFF, 0xCF, 0x0F]), # Exterior Primary Color
-            (0x12B4, [0xFF, 0x46, 0x32]), # Exterior Env Color
-            (0x1474, [0xFF, 0xFF, 0xFF]), # Interior Primary Color
-            (0x1494, [0xFF, 0xFF, 0xFF]), # Interior Env Color
-            (0x12A8, [0xFC, 0x17, 0x3C, 0x60, 0x15, 0x0C, 0x93, 0x7F]), # Exterior Combine Mode
-        )),
-        ('object_gi_rupy', 0x01914000, 0x01914800, 0x198, ( # Huge Rupee -> Silver Rupee
-            (0x052C, [0xAA, 0xAA, 0xAA]), # Inner Primary Color?
-            (0x0534, [0x5A, 0x5A, 0x5A]), # Inner Env Color?
-            (0x05CC, [0xFF, 0xFF, 0xFF]), # Outer Primary Color?
-            (0x05D4, [0xFF, 0xFF, 0xFF]), # Outer Env Color?
-        )),
-    )
+    zobj_patches: list[tuple[str, int, list[FileEntry], list[PatchEntry]]] = [
+        ('object_double_defense', 0x194, # Heart Container -> Double Defense
+            [
+                ('object_gi_hearts', 0x014D9000, 0x014DA590),
+            ],
+            [
+                (0x1294, [0xFF, 0xCF, 0x0F]), # Exterior Primary Color
+                (0x12B4, [0xFF, 0x46, 0x32]), # Exterior Env Color
+                (0x1474, [0xFF, 0xFF, 0xFF]), # Interior Primary Color
+                (0x1494, [0xFF, 0xFF, 0xFF]), # Interior Env Color
+                (0x12A8, [0xFC, 0x17, 0x3C, 0x60, 0x15, 0x0C, 0x93, 0x7F]), # Exterior Combine Mode
+            ]),
+        ('object_silver_rupee', 0x198, # Huge Rupee -> Silver Rupee
+            [
+                ('object_gi_rupy', 0x01914000, 0x01914800),
+            ],
+            [
+                (0x052C, [0xAA, 0xAA, 0xAA]), # Inner Primary Color?
+                (0x0534, [0x5A, 0x5A, 0x5A]), # Inner Env Color?
+                (0x05CC, [0xFF, 0xFF, 0xFF]), # Outer Primary Color?
+                (0x05D4, [0xFF, 0xFF, 0xFF]), # Outer Env Color?
+            ]),
+        ('object_bunny_hood', 0x1AF,
+            [
+                ('object_link_child', 0x00FE9A28, 0x00FE9C28), # 0000 : gLinkChildBunnyHoodEyeTex
+                ('object_link_child', 0x00FE9C28, 0x00FEA028), # 0200 : gLinkChildBunnyHoodTex
+                ('object_link_child', 0x00FEA028, 0x00FEA428), # 0600 : gLinkChildBunnyHoodEarTex
+                ('object_link_child', 0x00FEA428, 0x00FEA5B8), # 0A00 : vtx_set_1
+                ('object_link_child', 0x00FEA5B8, 0x00FEA658), # 0B90 : vtx_set_2
+                ('object_link_child', 0x00FEA658, 0x00FEA6A8), # 0C30 : vtx_set_3
+                ('object_link_child', 0x00FEA6A8, 0x00FEA848), # 0C80 : vtx_set_4
+                ('object_link_child', 0x00FEA848, 0x00FEA898), # 0E20 : vtx_set_5
+                ('object_link_child', 0x00FEA898, 0x00FEAA38), # 0E70 : vtx_set_6
+                ('object_link_child', 0x00FEAA38, 0x00FEADC8), # 1010 : gLinkChildBunnyHoodDL
+            ],
+            [
+                (0x1010 + 0x0034, [0x06, 0x00, 0x00, 0x00]), # gsDPLoadTextureBlock(gLinkChildBunnyHoodEyeTex ...)
+                (0x1010 + 0x0094, [0x06, 0x00, 0x0A, 0x00]), # gsSPVertex(vtx_set_1,
+                (0x1010 + 0x0104, [0x06, 0x00, 0x02, 0x00]), # gsDPLoadTextureBlock(gLinkChildBunnyHoodTex ...)
+                (0x1010 + 0x014C, [0x06, 0x00, 0x0B, 0x90]), # gsSPVertex(vtx_set_2,
+                (0x1010 + 0x018C, [0x06, 0x00, 0x0C, 0x30]), # gsSPVertex(vtx_set_3
+                (0x1010 + 0x01C4, [0x06, 0x00, 0x06, 0x00]), # gsDPLoadTextureBlock(gLinkChildBunnyHoodEarTex ...)
+                (0x1010 + 0x021C, [0x06, 0x00, 0x0C, 0x80]), # gsSPVertex(vtx_set_4
+                (0x1010 + 0x029C, [0x06, 0x00, 0x0E, 0x20]), # gsSPVertex(vtx_set_5
+                (0x1010 + 0x02D4, [0x06, 0x00, 0x06, 0x00]), # gsDPLoadTextureBlock(gLinkChildBunnyHoodEarTex, 
+                (0x1010 + 0x032C, [0x06, 0x00, 0x0E, 0x70]), # gsSPVertex(vtx_set_6
+            ]
+         )
+    ]
 
     # Add the new models to the extended object file.
-    for name, start, end, object_id, patches in zobj_patches:
-        end_address = start_address + end - start
-        rom.buffer[start_address:end_address] = rom.buffer[start:end]
+    for name, object_id, file_entries, patch_entries in zobj_patches:
+        # Combine file entries into a single file
+        assert all(end > start for (_name, start, end) in file_entries)
+        end_address = start_address + sum(end - start for (_name, start, end) in file_entries)
+        buffers = [rom.buffer[start:end] for (_name, start, end) in file_entries]
+        rom.buffer[start_address:end_address] = bytearray(itertools.chain(*buffers))
         # Apply patches
-        for offset, patch in patches:
+        for offset, patch in patch_entries:
+            assert start_address + offset < end_address
             rom.write_bytes(start_address + offset, patch)
         # Add it to the extended object table
         add_to_extended_object_table(rom, object_id, start_address, end_address)

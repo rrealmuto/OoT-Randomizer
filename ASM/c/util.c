@@ -1,4 +1,5 @@
 #include "util.h"
+#include "z64.h"
 
 extern char C_HEAP[];
 void* heap_next = NULL;
@@ -19,4 +20,25 @@ void* heap_alloc(int bytes) {
 void file_init(file_t* file) {
     file->buf = heap_alloc(file->size);
     read_file(file->buf, file->vrom_start, file->size);
+}
+
+void* resolve_overlay_addr(void* addr, uint16_t overlay_id) {
+    ActorOverlay overlay = gActorOverlayTable[overlay_id];
+    if(overlay.loadedRamAddr)
+        return addr - overlay.vramStart + overlay.loadedRamAddr;
+    return NULL;
+}
+
+void* resolve_player_ovl_addr(void* addr) {
+    PausePlayerOverlay overlay = gPausePlayerOverlayTable[1];
+    if(overlay.loadedRamAddr)
+        return addr - overlay.vramStart + overlay.loadedRamAddr;
+    return NULL;
+}
+
+void* resolve_kaleido_ovl_addr(void* addr) {
+    PausePlayerOverlay overlay = gPausePlayerOverlayTable[0];
+    if(overlay.loadedRamAddr)
+        return addr - overlay.vramStart + overlay.loadedRamAddr;
+    return NULL;
 }

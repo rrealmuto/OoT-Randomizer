@@ -1398,14 +1398,6 @@ nop
     jal     item_menu_prevent_empty_equip
     addu    s1, t6, t7
 
-; Prevent empty slots from being equipped
-; Replaces:
-;   lbu     v0, 0x0000 (s1)
-;   addiu   at, r0, 0x0009
-.orga 0xBB7D10 ; In memory: 0x8038F690
-    jal     item_menu_prevent_empty_equip
-    nop
-
 ;==================================================================================================
 ; Song Fixes
 ;==================================================================================================
@@ -3684,12 +3676,6 @@ courtyard_guards_kill:
 .orga 0xBC780C
     .byte 0x09               ; Replaces: 0x01
 
-;==================================================================================================
-; Prevent Mask de-equip if not on a C-button
-;==================================================================================================
-.orga 0xBCF8CC
-    jal     mask_check_trade_slot   ; sb      zero, 0x014F(t0)
-
 ;===================================================================================================
 ; Randomize Frog Song Purple Rupees
 ;===================================================================================================
@@ -4103,3 +4089,6 @@ courtyard_guards_kill:
 .orga 0xE56B38
     jal     kz_no_timer
     addiu   $at, $zero, 0x0003
+
+.include "hacks/player.asm"
+.include "hacks/ovl_kaleido_scope.asm"
