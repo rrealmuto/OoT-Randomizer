@@ -59,7 +59,7 @@ void ObjKibako_SpawnCollectible_Hack(z64_actor_t* this, z64_game_t* globalCtx) {
     collectible = this->variable & 0x1F;
 
     xflag_t* flag = &Actor_GetAdditionalData(this)->flag;
-    if (flag->all && !Get_NewFlag(flag)) {
+    if (flag->all && !Get_NewOverrideFlag(flag)) {
         drop_collectible_override_flag = *flag;
         EnItem00* spawned = z64_Item_DropCollectible(globalCtx, &this->pos_world, 0);
         z64_bzero(&drop_collectible_override_flag, sizeof(drop_collectible_override_flag));

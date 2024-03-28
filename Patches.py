@@ -2039,7 +2039,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     rom.write_bytes(rom.sym('xflag_scene_table'), xflag_scene_table)
     if len(xflag_room_table) > 700:
         raise RuntimeError(f'Exceeded xflag room table size: {len(xflag_room_table)}')
-    if len(xflag_room_blob) > 3000:
+    if len(xflag_room_blob) > 2000:
         raise RuntimeError(f'Exceed xflag blob table size: {len(xflag_room_blob)}')
     rom.write_bytes(rom.sym('xflag_room_table'), xflag_room_table)
     rom.write_bytes(rom.sym('xflag_room_blob'), xflag_room_blob)
@@ -2879,14 +2879,14 @@ def get_override_entry(location: Location) -> Optional[OverrideEntry]:
 
         if len(default) == 3:
             room, scene_setup, flag = default
-            subflag = 0
+            subflag = 1
         elif len(default) == 4:
             room, scene_setup, flag, subflag = default
 
         if location.scene == 0x3E: # handle grottos separately...
-            default = ((scene_setup & 0x1F) << 19) + ((room & 0x0F) << 15) + ((flag & 0x7F) << 8) + (subflag & 0xFF) #scene_setup = grotto_id
+            default = ((scene_setup & 0x1F) << 19) + ((room & 0x0F) << 15) + ((flag & 0x7F) << 8) + (subflag & 0xFF) - 1 #scene_setup = grotto_id
         else:
-            default = (scene_setup << 22) + (room << 16) + (flag << 8) + subflag
+            default = (scene_setup << 22) + (room << 16) + (flag << 8) + subflag - 1
     elif location.type in ('Collectable', 'ActorOverride'):
         type = 2
     elif location.type == 'GS Token':

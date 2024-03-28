@@ -55,7 +55,7 @@ override_key_t get_override_search_key(z64_actor_t* actor, uint8_t scene, uint8_
 void Collectible_WaitForMessageBox(EnItem00* this, z64_game_t* game);
 void reset_collectible_mutex();
 void override_flags_init();
-bool Get_NewFlag(xflag_t* flag);
+bool Get_NewOverrideFlag(xflag_t* flag);
 
 extern xflag_t drop_collectible_override_flag;
 extern EnItem00* collectible_mutex;
