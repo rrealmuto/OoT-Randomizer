@@ -190,11 +190,14 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * New cosmetic option `Input Viewer` for showing control stick values and pressed buttons at the bottom of the screen.
 * A text box has been added when completing the adult shooting gallery without a bow to warn the player that they haven't received the real reward.
 * Settings presets can have aliases. Command-line users may use an alias instead of the name to specify the preset.
+* The plando-only `item_hints` setting can now include special items such as songs or keys.
 
 #### Bug Fixes
 * Goal hints can now hint items required to defeat Ganon even if they're not required for the rainbow bridge, Ganon's boss key, or the trials. These items will be hinted as being on the "path of the hero".
 * Fix a softlock present in the original game when damaging Volvagia's second hitbox during the death cutscene.
 * Don't start the trade sequence timer if getting the `ZD King Zora Thawed` item while the Eyeball Frog is in the inventory.
+* Fix missing visual frost effect for ice traps in most chests.
+* Fix the items on the right side of the mask shop being available without paying for all borrowed masks first.
 
 #### Other Changes
 * Clarified the error message shown when an unshuffled trade quest item is used as a starting item.
