@@ -156,22 +156,13 @@
             "Deku Tree MQ Basement Torches Deku Scrub": "has_soul(Deku_Scrub) and (is_adult or can_child_attack)",
             "Deku Tree MQ Basement Torches Gohma Larva 1": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)",
             "Deku Tree MQ Basement Torches Gohma Larva 2": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)",
-            "Deku Tree MQ Basement Torches Gohma Larva 3": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)"
-        },
-        "exits" : {
-            "Deku Tree Basement Water Room Front": "here(has_fire_source_with_torch)"
-        }
-    },
-    {
-        "region_name": "Deku Tree Basement Torches Room",
-        "dungeon": "Deku Tree",
-        "locations": {
+            "Deku Tree MQ Basement Torches Gohma Larva 3": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)",
             "Deku Tree MQ Basement Torch Room Grass 1": "can_mow_the_lawn",
             "Deku Tree MQ Basement Torch Room Grass 2": "can_mow_the_lawn",
             "Deku Tree MQ Basement Torch Room Grass 3": "can_mow_the_lawn",
             "Deku Tree MQ Basement Torch Room Grass 4": "can_mow_the_lawn"
         },
-        "exits": {
+        "exits" : {
             "Deku Tree Basement Water Room Front": "here(has_fire_source_with_torch)"
         }
     },
@@ -224,23 +215,13 @@
             "Deku Tree MQ Basement Larva Room Gohma Larva 5": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)",
             "Deku Tree MQ Basement Larva Room Gohma Larva 6": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)",
             "Deku Tree MQ Basement Larva Room Gohma Larva 7": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)",
-            "Deku Tree MQ Basement Larva Room Gohma Larva 8": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)"
-        },
-        "exits": {
-            "Deku Tree Basement Back Room": "(has_soul(Gohma_Larvae) and has_soul(Keese) and has_soul(Deku_Scrub)) and (here(is_adult or Kokiri_Sword or can_use_projectile or (Nuts and Sticks)))",
-            "Deku Tree Basement Water Room Back": "(has_soul(Gohma_Larvae) and has_soul(Keese) and has_soul(Deku_Scrub)) and (can_use(Kokiri_Sword) or can_use_projectile or (Nuts and can_use(Sticks)))"
-        }
-    },
-    {
-        "region_name": "Deku Tree Basement Larva Room",
-        "dungeon": "Deku Tree",
-        "locations": {
+            "Deku Tree MQ Basement Larva Room Gohma Larva 8": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)",
             "Deku Tree MQ Basement Gohma Larvae Room Grass 1": "can_mow_the_lawn",
             "Deku Tree MQ Basement Gohma Larvae Room Grass 2": "can_mow_the_lawn"
         },
         "exits": {
-            "Deku Tree Basement Back Room": "(here(is_adult or Kokiri_Sword or can_use_projectile or (Nuts and Sticks)))",
-            "Deku Tree Basement Water Room Back": "(can_use(Kokiri_Sword) or can_use_projectile or (Nuts and can_use(Sticks)))"
+            "Deku Tree Basement Back Room": "(has_soul(Gohma_Larvae) and has_soul(Keese) and has_soul(Deku_Scrub)) and (here(is_adult or Kokiri_Sword or can_use_projectile or (Nuts and Sticks)))",
+            "Deku Tree Basement Water Room Back": "(has_soul(Gohma_Larvae) and has_soul(Keese) and has_soul(Deku_Scrub)) and (can_use(Kokiri_Sword) or can_use_projectile or (Nuts and can_use(Sticks)))"
         }
     },
     {
