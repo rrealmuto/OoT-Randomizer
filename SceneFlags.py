@@ -141,9 +141,9 @@ def get_alt_list_bytes(alt_list: list[tuple[Location, tuple[int, int, int], tupl
         if location.scene == 0x0A:
             alt_scene = 0x19
 
-        alt_override = (scene_setup << 22) + (room << 16) + (flag << 8) + (subflag - 1)
+        alt_override = (scene_setup << 22) | (room << 16) | (flag << 8) | subflag
         room, scene_setup, flag, subflag = primary
-        primary_override = (scene_setup << 22) + (room << 16) + (flag << 8) + (subflag - 1)
+        primary_override = (scene_setup << 22) | (room << 16) | (flag << 8) | subflag
         bytes.append(alt_scene)
         bytes.append(0x06)
         bytes.append(0x00)

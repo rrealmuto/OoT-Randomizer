@@ -2037,9 +2037,9 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     xflags_tables, alt_list = build_xflags_from_world(world)
     xflag_scene_table, xflag_room_table, xflag_room_blob, max_bit = build_xflag_tables(xflags_tables)
     rom.write_bytes(rom.sym('xflag_scene_table'), xflag_scene_table)
-    if len(xflag_room_table) > 700:
+    if len(xflag_room_table) > rom.sym_length('xflag_room_table'):
         raise RuntimeError(f'Exceeded xflag room table size: {len(xflag_room_table)}')
-    if len(xflag_room_blob) > 3000:
+    if len(xflag_room_blob) > rom.sym_length('xflag_room_blob'):
         raise RuntimeError(f'Exceed xflag blob table size: {len(xflag_room_blob)}')
     rom.write_bytes(rom.sym('xflag_room_table'), xflag_room_table)
     rom.write_bytes(rom.sym('xflag_room_blob'), xflag_room_blob)
@@ -2054,16 +2054,17 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     #rom.write_bytes(rom.sym('collectible_scene_flags_table'), collectible_flag_table_bytes)
     #num_collectible_flags += num_collectible_flags % 8
     #rom.write_bytes(rom.sym('num_override_flags'), num_collectible_flags.to_bytes(2, 'big'))
-    if len(alt_list) > 200:
+    if len(alt_list_bytes) > rom.sym_length('alt_overrides'):
         raise RuntimeError(f'Exceeded alt override table size: {len(alt_list)}')
     rom.write_bytes(rom.sym('alt_overrides'), alt_list_bytes)
 
     # Write item overrides
     check_location_dupes(world)
     override_table = get_override_table(world)
-    if len(override_table) >= 2200:
+    override_table_bytes = get_override_table_bytes(override_table)
+    if len(override_table_bytes) >= rom.sym_length('cfg_item_overrides'):
         raise(RuntimeError("Exceeded override table size: " + str(len(override_table))))
-    rom.write_bytes(rom.sym('cfg_item_overrides'), get_override_table_bytes(override_table))
+    rom.write_bytes(rom.sym('cfg_item_overrides'), override_table_bytes)
     rom.write_byte(rom.sym('PLAYER_ID'), world.id + 1)  # Write player ID
 
     # Revert Song Get Override Injection
