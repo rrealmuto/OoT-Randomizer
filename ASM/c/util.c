@@ -5,7 +5,6 @@
 Arena randoArena;
 
 extern char C_HEAP[];
-extern ActorOverlay* gActorOverlayTable;
 void* heap_next = NULL;
 
 void heap_init() {
@@ -37,6 +36,20 @@ void file_init(file_t* file) {
 
 void* resolve_overlay_addr(void* addr, uint16_t overlay_id) {
     ActorOverlay overlay = gActorOverlayTable[overlay_id];
+    if(overlay.loadedRamAddr)
+        return addr - overlay.vramStart + overlay.loadedRamAddr;
+    return NULL;
+}
+
+void* resolve_player_ovl_addr(void* addr) {
+    PausePlayerOverlay overlay = gPausePlayerOverlayTable[1];
+    if(overlay.loadedRamAddr)
+        return addr - overlay.vramStart + overlay.loadedRamAddr;
+    return NULL;
+}
+
+void* resolve_kaleido_ovl_addr(void* addr) {
+    PausePlayerOverlay overlay = gPausePlayerOverlayTable[0];
     if(overlay.loadedRamAddr)
         return addr - overlay.vramStart + overlay.loadedRamAddr;
     return NULL;

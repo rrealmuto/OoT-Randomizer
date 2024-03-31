@@ -45,7 +45,6 @@ OverrideEntry: TypeAlias = "tuple[int, int, int, int, int, int]"
 FileEntry: TypeAlias = "tuple[str, int, int]"
 PatchEntry: TypeAlias = "tuple[int, list[int]]"
 
-
 def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     with open(data_path('generated/rom_patch.txt'), 'r') as stream:
         for line in stream:
@@ -160,6 +159,32 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
                 (0x0C64, [0x06, 0x00, 0x00, 0x00]), # gsDPSetTextureImage(..., silver_rock_tlut)
                 (0x0CB4, [0x06, 0x00, 0x0A, 0xF0]), # gsSPVertex(..., fragments_vertices)
             ]),
+        ('object_bunny_hood', 0x1AF,
+            [
+                ('object_link_child', 0x00FE9A28, 0x00FE9C28), # 0000 : gLinkChildBunnyHoodEyeTex
+                ('object_link_child', 0x00FE9C28, 0x00FEA028), # 0200 : gLinkChildBunnyHoodTex
+                ('object_link_child', 0x00FEA028, 0x00FEA428), # 0600 : gLinkChildBunnyHoodEarTex
+                ('object_link_child', 0x00FEA428, 0x00FEA5B8), # 0A00 : vtx_set_1
+                ('object_link_child', 0x00FEA5B8, 0x00FEA658), # 0B90 : vtx_set_2
+                ('object_link_child', 0x00FEA658, 0x00FEA6A8), # 0C30 : vtx_set_3
+                ('object_link_child', 0x00FEA6A8, 0x00FEA848), # 0C80 : vtx_set_4
+                ('object_link_child', 0x00FEA848, 0x00FEA898), # 0E20 : vtx_set_5
+                ('object_link_child', 0x00FEA898, 0x00FEAA38), # 0E70 : vtx_set_6
+                ('object_link_child', 0x00FEAA38, 0x00FEADC8), # 1010 : gLinkChildBunnyHoodDL
+            ],
+            [
+                (0x1010 + 0x0034, [0x06, 0x00, 0x00, 0x00]), # gsDPLoadTextureBlock(gLinkChildBunnyHoodEyeTex ...)
+                (0x1010 + 0x0094, [0x06, 0x00, 0x0A, 0x00]), # gsSPVertex(vtx_set_1,
+                (0x1010 + 0x0104, [0x06, 0x00, 0x02, 0x00]), # gsDPLoadTextureBlock(gLinkChildBunnyHoodTex ...)
+                (0x1010 + 0x014C, [0x06, 0x00, 0x0B, 0x90]), # gsSPVertex(vtx_set_2,
+                (0x1010 + 0x018C, [0x06, 0x00, 0x0C, 0x30]), # gsSPVertex(vtx_set_3
+                (0x1010 + 0x01C4, [0x06, 0x00, 0x06, 0x00]), # gsDPLoadTextureBlock(gLinkChildBunnyHoodEarTex ...)
+                (0x1010 + 0x021C, [0x06, 0x00, 0x0C, 0x80]), # gsSPVertex(vtx_set_4
+                (0x1010 + 0x029C, [0x06, 0x00, 0x0E, 0x20]), # gsSPVertex(vtx_set_5
+                (0x1010 + 0x02D4, [0x06, 0x00, 0x06, 0x00]), # gsDPLoadTextureBlock(gLinkChildBunnyHoodEarTex, 
+                (0x1010 + 0x032C, [0x06, 0x00, 0x0E, 0x70]), # gsSPVertex(vtx_set_6
+            ]
+         )
     ]
 
     # Add the new models to the extended object file.
@@ -2617,6 +2642,8 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     if world.settings.fast_bunny_hood:
         symbol = rom.sym('FAST_BUNNY_HOOD_ENABLED')
         rom.write_byte(symbol, 0x01)
+    if world.settings.adult_bunny_hood:
+        rom.write_byte(rom.sym('ADULT_BUNNY_HOOD'), 0x01)
 
     # Automatically re-equip the current mask on scene change
     if world.settings.auto_equip_masks:

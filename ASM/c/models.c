@@ -13,12 +13,12 @@
 #define object_size 0x1E70
 #define num_vanilla_objects 0x192
 
-
 extern uint8_t SHUFFLE_CHEST_GAME;
 extern z64_object_table_t EXTENDED_OBJECT_TABLE[];
 extern EnItem00* collectible_mutex;
 
 loaded_object_t object_slots[slot_count] = { 0 };
+loaded_object_t bunny_hood_obj = { 0 };
 
 z64_object_table_t* get_object_entry(uint32_t object_id) {
     if (object_id <= num_vanilla_objects) {
@@ -120,6 +120,8 @@ void models_init() {
         object_slots[i].object_id = 0;
         object_slots[i].buf = heap_alloc(object_size);
     }
+    bunny_hood_obj.buf = heap_alloc(object_size);
+    load_object_file(0x1AF, bunny_hood_obj.buf);
 }
 
 void models_reset() {

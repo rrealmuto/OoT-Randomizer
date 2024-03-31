@@ -20,5 +20,7 @@ typedef void (*read_file_fn)(void* mem_addr, uint32_t vrom_addr,
 
 void file_init(file_t* file);
 void* resolve_overlay_addr(void* addr, uint16_t overlay_id);
+void* resolve_player_ovl_addr(void* addr);
+void* resolve_kaleido_ovl_addr(void* addr);
 
 #endif

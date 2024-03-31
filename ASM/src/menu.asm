@@ -1,13 +1,18 @@
 item_menu_prevent_empty_equip:
     ; t1 = item under cursor
-    bne     t1, 0xFF, @@return
+    ; a3 = slot?
+    ; v0 - set to the usability value, or 0xFF to prevent equip
+    
+    bne     t1, 0xFF, @@check_usability ; Branch if item under cursor is not empty
     lbu     v0, 0x00 (s1) ; Load from usability table
 
     li      v0, 0xFF ; Prevent equip
-
-@@return:
     jr      ra
-    li      at, 9 ; Restore value expected by caller
+    li      at, 9
+
+@@check_usability:
+    j   item_menu_check_age_requirements_hook
+    or  v0, r0, a3
 
 ;==================================================================================================
 
@@ -92,3 +97,115 @@ equipment_menu_fix:
 @@return:
     jr      ra
     nop
+
+item_menu_check_age_requirements_hook:
+    addiu   sp, sp, -0x80
+    sw      ra, 0x10(sp)
+    sw      s0, 0x14(sp)
+    sw      s1, 0x18(sp)
+    sw      s2, 0x1C(sp)
+    sw      s3, 0x20(sp)
+    sw      s4, 0x24(sp)
+    sw      s5, 0x28(sp)
+    sw      s6, 0x2C(sp)
+    sw      s7, 0x30(sp)
+    sw      a0, 0x34(sp)
+    sw      a1, 0x38(sp)
+    sw      a2, 0x3C(sp)
+    sw      t0, 0x40(sp)
+    sw      t1, 0x44(sp)
+    sw      t2, 0x48(sp)
+    sw      t3, 0x4C(sp)
+    sw      t4, 0x50(sp)
+    sw      t5, 0x54(sp)
+    sw      t6, 0x58(sp)
+    sw      t7, 0x5C(sp)
+    sw      t8, 0x60(sp)
+    sw      t9, 0x64(sp)
+    sw      at, 0x68(sp)
+    sw      v1, 0x6C(sp)
+    or      a0, v0, r0 ; Copy current item slot into 
+    jal     check_slot_age_requirements
+    nop
+    lw      s0, 0x14(sp)
+    lw      s1, 0x18(sp)
+    lw      s2, 0x1C(sp)
+    lw      s3, 0x20(sp)
+    lw      s4, 0x24(sp)
+    lw      s5, 0x28(sp)
+    lw      s6, 0x2C(sp)
+    lw      s7, 0x30(sp)
+    lw      a0, 0x34(sp)
+    lw      a1, 0x38(sp)
+    lw      a2, 0x3C(sp)
+    lw      t0, 0x40(sp)
+    lw      t1, 0x44(sp)
+    lw      t2, 0x48(sp)
+    lw      t3, 0x4C(sp)
+    lw      t4, 0x50(sp)
+    lw      t5, 0x54(sp)
+    lw      t6, 0x58(sp)
+    lw      t7, 0x5C(sp)
+    lw      t8, 0x60(sp)
+    lw      t9, 0x64(sp)
+    lw      at, 0x68(sp)
+    lw      v1, 0x6C(sp)
+    lw      ra, 0x10(sp)
+    jr      ra
+    addiu   sp, sp, 0x80
+
+item_menu_check_age_requirements_item_hook:
+    addiu   sp, sp, -0x80
+    sw      ra, 0x10(sp)
+    sw      s0, 0x14(sp)
+    sw      s1, 0x18(sp)
+    sw      s2, 0x1C(sp)
+    sw      s3, 0x20(sp)
+    sw      s4, 0x24(sp)
+    sw      s5, 0x28(sp)
+    sw      s6, 0x2C(sp)
+    sw      s7, 0x30(sp)
+    sw      a0, 0x34(sp)
+    sw      a1, 0x38(sp)
+    sw      a2, 0x3C(sp)
+    sw      t0, 0x40(sp)
+    sw      t1, 0x44(sp)
+    sw      t2, 0x48(sp)
+    sw      t3, 0x4C(sp)
+    sw      t4, 0x50(sp)
+    sw      t5, 0x54(sp)
+    sw      t6, 0x58(sp)
+    sw      t7, 0x5C(sp)
+    sw      t8, 0x60(sp)
+    sw      t9, 0x64(sp)
+    sw      at, 0x68(sp)
+    sw      v1, 0x6C(sp)
+    or      a0, v0, r0 ; Copy current item slot into
+    jal     check_item_age_requirements
+    nop
+    lw      s0, 0x14(sp)
+    lw      s1, 0x18(sp)
+    lw      s2, 0x1C(sp)
+    lw      s3, 0x20(sp)
+    lw      s4, 0x24(sp)
+    lw      s5, 0x28(sp)
+    lw      s6, 0x2C(sp)
+    lw      s7, 0x30(sp)
+    lw      a0, 0x34(sp)
+    lw      a1, 0x38(sp)
+    lw      a2, 0x3C(sp)
+    lw      t0, 0x40(sp)
+    lw      t1, 0x44(sp)
+    lw      t2, 0x48(sp)
+    lw      t3, 0x4C(sp)
+    lw      t4, 0x50(sp)
+    lw      t5, 0x54(sp)
+    lw      t6, 0x58(sp)
+    lw      t7, 0x5C(sp)
+    lw      t8, 0x60(sp)
+    lw      t9, 0x64(sp)
+    lw      at, 0x68(sp)
+    lw      v1, 0x6C(sp)
+    lw      ra, 0x10(sp)
+    jr      ra
+    addiu   sp, sp, 0x80

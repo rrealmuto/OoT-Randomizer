@@ -3,7 +3,7 @@
 SPEED_MULTIPLIER:
     .float 1.0
 
-bunny_hood :
+bunny_hood:
     ori     t0, r0, 0x04
     la      t1, GLOBAL_CONTEXT
     lw      t1, 0x1C44(t1)     ; Player in actor instance table
