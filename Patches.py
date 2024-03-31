@@ -2532,6 +2532,8 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     if world.settings.fast_bunny_hood:
         symbol = rom.sym('FAST_BUNNY_HOOD_ENABLED')
         rom.write_byte(symbol, 0x01)
+    if world.settings.adult_bunny_hood:
+        rom.write_byte(rom.sym('ADULT_BUNNY_HOOD'), 0x01)
 
     # Automatically re-equip the current mask on scene change
     if world.settings.auto_equip_masks:

@@ -3083,6 +3083,23 @@ class SettingInfos:
             in Majora's Mask and makes you go 1.5× faster.
         ''',
         shared         = True,
+        disable        = {
+            False: {'settings' : ['adult_bunny_hood']},
+        },
+    )
+
+    adult_bunny_hood = Checkbutton(
+        gui_text       = 'Adult Bunny Hood',
+        gui_tooltip    = '''\
+            The Bunny Hood can be worn as adult.
+            It can be equipped to C buttons
+            and can be accessed via the D-pad
+            by holding down Z and pressing D-down.
+        ''',
+        shared         = True,
+        gui_params     = {
+            "hide_when_disabled": True
+        },
     )
 
     auto_equip_masks = Checkbutton(

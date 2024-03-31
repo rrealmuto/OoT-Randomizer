@@ -12,6 +12,8 @@
 #define CHECK_AGE_REQ_SLOT(slot) ((gSlotAgeReqs[slot] == AGE_REQ_NONE) || gSlotAgeReqs[slot] == ((void)0, z64_file.link_age))
 #define CHECK_AGE_REQ_ITEM(item) ((gItemAgeReqs[item] == AGE_REQ_NONE) || (gItemAgeReqs[item] == ((void)0, z64_file.link_age)))
 
+extern uint8_t ADULT_BUNNY_HOOD;
+
 _Bool c_equipment_menu_slot_filled() {
     if (z64_game.pause_ctxt.equipment_x == 0) {
         if (z64_game.pause_ctxt.equipment_y == 0) {
@@ -33,7 +35,7 @@ bool check_slot_age_requirements(uint16_t cursorSlot) {
 
     // Get the item in the slot
     int8_t item = z64_file.items[cursorSlot];
-    if(item == ITEM_MASK_BUNNY)
+    if(ADULT_BUNNY_HOOD && (item == ITEM_MASK_BUNNY))
         return true;
 
     return CHECK_AGE_REQ_SLOT(cursorSlot);
@@ -43,7 +45,7 @@ bool check_item_age_requirements(uint16_t item) {
     uint8_t* gItemAgeReqs = resolve_kaleido_ovl_addr(gItemAgeReqsAddr);
     uint8_t* gSlotAgeReqs = resolve_kaleido_ovl_addr(gSlotAgeReqsAddr);
     
-    if(item == ITEM_MASK_BUNNY)
+    if(ADULT_BUNNY_HOOD && (item == ITEM_MASK_BUNNY))
         return true;
 
     return CHECK_AGE_REQ_ITEM(item);
