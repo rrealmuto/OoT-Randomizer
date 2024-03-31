@@ -3093,8 +3093,11 @@ class SettingInfos:
         gui_tooltip    = '''\
             The Bunny Hood can be worn as adult.
             It can be equipped to C buttons
-            and can be accessed via the D-pad
-            by holding down Z and pressing D-down.
+            and can be accessed via the D-pad.
+
+            If you have found both Ocarina and
+            Bunny Hood, hold down Z to access
+            the Bunny Hood on the D-pad.
         ''',
         shared         = True,
         gui_params     = {
