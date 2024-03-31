@@ -47,7 +47,7 @@ extern uint16_t CFG_CHILD_TRADE_SHUFFLE;
 
 #define CAN_USE_TRADE_DPAD  (CAN_DRAW_TRADE_DPAD && z64_game.pause_ctxt.changing != 3)
 
-#define DISPLAY_DPAD        ((((z64_file.iron_boots || z64_file.hover_boots) && z64_file.link_age == 0) || \
+#define DISPLAY_DPAD        ((((z64_file.iron_boots || z64_file.hover_boots || (ADULT_BUNNY_HOOD && (z64_file.items[Z64_SLOT_CHILD_TRADE] == ITEM_MASK_BUNNY) || SaveFile_TradeItemIsOwned(ITEM_MASK_BUNNY))) && z64_file.link_age == 0) || \
                             ((z64_file.items[Z64_SLOT_CHILD_TRADE] >= Z64_ITEM_WEIRD_EGG && z64_file.items[Z64_SLOT_CHILD_TRADE] <= Z64_ITEM_MASK_OF_TRUTH) && z64_file.link_age == 1) || \
                             z64_file.items[Z64_SLOT_OCARINA] == Z64_ITEM_FAIRY_OCARINA || z64_file.items[Z64_SLOT_OCARINA] == Z64_ITEM_OCARINA_OF_TIME) && \
                             !CAN_DRAW_TRADE_DPAD)
