@@ -20,7 +20,7 @@ def build_xflags_from_world(world: World) ->  tuple[dict[int, dict[tuple[int,int
                     if len(primary_tuple) == 3:
                         room, setup, flag = primary_tuple
                         subflag = 0
-                    primary_tuple = (room, setup, flag, subflag)
+                        primary_tuple = (room, setup, flag, subflag)
                     for c in range(1, len(default)):
                         alt = default[c]
                         if len(alt) == 3:

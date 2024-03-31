@@ -46,6 +46,7 @@ void Actor_StoreChestType(z64_actor_t* actor, z64_game_t* game);
 z64_actor_t *Actor_SpawnEntry_Hack(void* actorCtx, ActorEntry* actorEntry, z64_game_t* globalCtx);
 bool spawn_override_silver_rupee(ActorEntry* actorEntry, z64_game_t* globalCtx, bool* overridden);
 void after_spawn_override_silver_rupee(z64_actor_t* actor, bool overridden);
+void Actor_BuildFlag(z64_actor_t* actor, xflag_t* flag, uint16_t actor_index, uint8_t subflag);
 ActorAdditionalData* Actor_GetAdditionalData(z64_actor_t* actor);
 override_t get_newflag_override(xflag_t* flag);
 

@@ -27,17 +27,17 @@ class Rom(BigStream):
         self.force_patch: list[int] = []
         self.dma: DMAIterator = DMAIterator(self, DMADATA_START)
 
+        if not pal:
+            with open(data_path('generated/symbols.json'), 'r') as stream:
+                symbols = json.load(stream)
+                self.symbols: dict[str, int] = {name: {'address': int(sym['address'], 16), 'length': sym['length']} for name, sym in symbols.items()}
+
         if file is None:
             return
 
         decompressed_file: str = local_path('ZOOTDEC-PAL.z64' if pal else 'ZOOTDEC.z64')
 
         os.chdir(local_path())
-
-        if not pal:
-            with open(data_path('generated/symbols.json'), 'r') as stream:
-                symbols = json.load(stream)
-                self.symbols: dict[str, int] = {name: {'address':int(sym['address'], 16), 'length':sym['length']} for name, sym in symbols.items()}
 
         if os.path.isfile(decompressed_file):
             # Try to read from previously decompressed rom if one exists.

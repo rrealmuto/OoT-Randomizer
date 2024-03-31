@@ -2796,6 +2796,8 @@ NUM_VANILLA_OBJECTS: int = 0x192
 def add_to_extended_object_table(rom: Rom, object_id: int, start_address: int, end_address: int) -> None:
     extended_id = object_id - NUM_VANILLA_OBJECTS - 1
     extended_object_table = rom.sym('EXTENDED_OBJECT_TABLE')
+    if (extended_id + 1) * 8 > rom.sym_length('EXTENDED_OBJECT_TABLE'):
+        raise RuntimeError(f"Exceeded EXTENDED_OBJECT_TABLE size: {extended_id}")
     rom.write_int32s(extended_object_table + extended_id * 8, [start_address, end_address])
 
 

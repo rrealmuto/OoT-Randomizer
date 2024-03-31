@@ -37,6 +37,22 @@ ActorAdditionalData* Actor_GetAdditionalData(z64_actor_t* actor) {
     return (ActorAdditionalData*)(((uint8_t*)actor) - 0x10);
 }
 
+// Build an xflag from actor ID and subflag
+// Store the flag using the pointer
+void Actor_BuildFlag(z64_actor_t* actor, xflag_t* flag, uint16_t actor_index, uint8_t subflag) {
+    flag->scene = z64_game.scene_index;
+    if (z64_game.scene_index == 0x3E) {
+        flag->grotto.room = actor->room_index;
+        flag->grotto.grotto_id = z64_file.grotto_id & 0x1F;
+        flag->grotto.flag = actor_index;
+        flag->grotto.subflag = subflag;
+    } else {
+        flag->room = actor->room_index;
+        flag->setup = curr_scene_setup;
+        flag->flag = actor_index;
+        flag->subflag = subflag;
+    }
+}
 
 // Called from Actor_UpdateAll when spawning the actors in the scene's/room's actor list to store flags in the new space that we added to the actors.
 // Prior to being called, CURR_ACTOR_SPAWN_INDEX is set to the current position in the actor spawn list.
@@ -67,10 +83,18 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, xflag_t flag) {
         case OBJ_COMB:
         case OBJ_KIBAKO2:
         case EN_ITEM00:
+        case EN_WONDER_ITEM: {
+            // For these actors, only store the flag if there is a valid override
+            if (override.key.all) {
+                extra->flag = flag;
+            }
+            break;
+        }
         case BG_SPOT18_BASKET:
         case OBJ_MURE3:
-        case BG_HAKA_TUBO:
-        case EN_WONDER_ITEM: {
+        case BG_HAKA_TUBO: {
+            // For these actors which use subflags, always store the flag which serves as the base when calculating the subflag.
+            // Don't really need to do this since we will recalculate the flag and check the override when spawning the subflags.
             extra->flag = flag;
             break;
         }
@@ -86,22 +110,8 @@ void Actor_StoreFlagByIndex(z64_actor_t* actor, z64_game_t* game, uint16_t actor
     // Zeroize extra data;
 
     xflag_t flag = (xflag_t) { 0 };
-
-    flag.scene = z64_game.scene_index;
-    if (z64_game.scene_index == 0x3E) {
-        flag.grotto.room = actor->room_index;
-        flag.grotto.grotto_id = z64_file.grotto_id & 0x1F;
-        flag.grotto.flag = actor_index;
-        flag.grotto.subflag = 0;
-    } else {
-        flag.room = actor->room_index;
-        flag.setup = curr_scene_setup;
-        flag.flag = actor_index;
-        flag.subflag = 0;
-    }
-
+    Actor_BuildFlag(actor, &flag, actor_index, 0);
     Actor_StoreFlag(actor, game, flag);
-
 }
 
 // Get an override for new flag. If the override doesn't exist, or flag has already been set, return 0.
