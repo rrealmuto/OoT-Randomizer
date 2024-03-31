@@ -24,6 +24,7 @@ if TYPE_CHECKING:
 
 class SettingInfos:
     # Internal & Non-GUI Settings
+    aliases = SettingInfoList(None, None, False)
     cosmetics_only = Checkbutton(None)
     check_version = Checkbutton(None)
     checked_version = SettingInfoStr(None, None)
@@ -3615,7 +3616,7 @@ class SettingInfos:
         gui_type       = None,
         gui_text       = None,
         shared         = True,
-        choices        = [name for name, item in ItemInfo.items.items() if item.type == 'Item']
+        choices        = [name for name, item in ItemInfo.items.items() if item.type not in ('Drop', 'Event', 'Refill', 'Shop')]
     )
 
     hint_dist_user = SettingInfoDict(None, None, True, {})
@@ -4111,6 +4112,16 @@ class SettingInfos:
             Uninvert the Y axis in first person camera.
             Note that this can make some tricks or glitches
             harder to pull off.
+        ''',
+        default        = False,
+    )
+
+    input_viewer = Checkbutton(
+        gui_text       = 'Input Viewer',
+        shared         = False,
+        cosmetic       = True,
+        gui_tooltip    = '''\
+            Show the controller inputs in form of icons at the bottom of the screen.
         ''',
         default        = False,
     )
@@ -5434,6 +5445,8 @@ def validate_settings(settings_dict: dict[str, Any], *, check_conflicts: bool = 
             raise TypeError('Supplied choice %r for setting %r is of type %r, expecting %r' % (choice, setting, type(choice).__name__, info.type.__name__))
         # If setting is a list, must check each element
         if isinstance(choice, list):
+            if not info.choice_list:
+                continue
             for element in choice:
                 if element not in info.choice_list:
                     raise ValueError('%r is not a valid choice for setting %r. %s' % (element, setting, build_close_match(element, 'choice', info.choice_list)))

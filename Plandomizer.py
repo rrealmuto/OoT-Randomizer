@@ -588,7 +588,7 @@ class WorldDistribution:
                         except KeyError:
                             raise KeyError('Tried to start with a Pocket Egg but could not remove it from the item pool. Are both Pocket Egg and Pocket Cucco shuffled?')
                     elif 'Pocket Cucco' not in world.settings.adult_trade_start:
-                        raise RuntimeError('An unshuffled trade item was included as a starting item. Please remove %s from starting items' % item_name)
+                        raise RuntimeError(f'An unshuffled trade item was included as a starting item. Please either remove {item_name} from starting items or add it to Adult Trade Sequence Items.')
                     else:
                         self.pool_remove_item([pool], "Pocket Cucco", record.count)
                 except KeyError:
@@ -602,7 +602,7 @@ class WorldDistribution:
                     if 'Weird Egg' in world.settings.shuffle_child_trade:
                         self.pool_remove_item([pool], "Weird Egg", record.count)
                     elif 'Chicken' not in world.settings.shuffle_child_trade:
-                        raise RuntimeError('An unshuffled trade item was included as a starting item. Please remove %s from starting items' % item_name)
+                        raise RuntimeError(f'An unshuffled trade item was included as a starting item. Please either remove {item_name} from starting items or add it to Shuffled Child Trade Sequence Items.')
                     else:
                         self.pool_remove_item([pool], "Chicken", record.count)
                 except KeyError:
@@ -1133,7 +1133,7 @@ class WorldDistribution:
                         effective_adult_trade_item_index = trade_items.index(item_name)
                         effective_adult_trade_item = items[item_name]
                 else:
-                    raise RuntimeError('An unshuffled trade item was included as a starting item. Please remove %s from starting items' % item_name)
+                    raise RuntimeError(f'An unshuffled trade item was included as a starting item. Please either remove {item_name} from starting items or add it to Adult Trade Sequence Items.')
                 del items[item_name]
             if item_name in child_trade_items:
                 if item_name in world.settings.shuffle_child_trade or item_name == 'Zeldas Letter':
@@ -1141,7 +1141,7 @@ class WorldDistribution:
                         effective_child_trade_item_index = child_trade_items.index(item_name)
                         effective_child_trade_item = items[item_name]
                 else:
-                    raise RuntimeError('An unshuffled trade item was included as a starting item. Please remove %s from starting items' % item_name)
+                    raise RuntimeError(f'An unshuffled trade item was included as a starting item. Please either remove {item_name} from starting items or add it to Shuffled Child Trade Sequence Items.')
                 del items[item_name]
 
         if effective_child_trade_item_index >= 0:

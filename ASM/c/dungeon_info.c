@@ -87,30 +87,6 @@ int d_right_dungeon_idx(int i) {
     return dungeon_idx;
 }
 
-// Helper function for drawing numbers to the HUD.
-void draw_int(z64_disp_buf_t* db, uint16_t number, int16_t left, int16_t top, colorRGBA8_t color) {
-    uint8_t digits[10];
-    uint8_t j = 0;
-    // Extract each digit. They are added, in reverse order, to digits[]
-    do {
-        digits[j] = number % 10;
-        number = number / 10;
-        j++;
-    }
-    while (number > 0);
-    // This combiner mode makes it look like the rupee count
-    gDPSetCombineLERP(db->p++, 0, 0, 0, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, PRIMITIVE,
-        TEXEL0, 0, PRIMITIVE, 0);
-
-    // Set the color
-    gDPSetPrimColor(db->p++, 0, 0, color.r, color.g, color.b, color.a);
-    // Draw each digit
-    for (uint8_t c = j; c > 0; c--) {
-        sprite_texture(db, &rupee_digit_sprite, digits[c-1], left, top, 8, 16);
-        left += 8;
-    }
-}
-
 // When in a silver rupee room, draw the silver rupee count for that room.
 void draw_silver_rupee_count(z64_game_t* globalCtx, z64_disp_buf_t* db) {
     if (!CFG_DUNGEON_INFO_SILVER_RUPEES) return;

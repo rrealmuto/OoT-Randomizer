@@ -22,3 +22,17 @@ kz_moved_check:
 @@return_true:
     jr      ra
     li      t1, 1
+
+
+kz_no_timer:
+    ; Displaced code
+    lh      t6, 0x01D0(a1)
+
+    lw      t2, 0x01F9(a1)           ; isTrading flag
+    bnez    t2, @@return             ; if not istrading, we're getting the zora tunic item
+    nop
+    li      t6, 0                    ; in that case, make sure we don't start the timer
+
+@@return:
+    jr      ra
+    nop
