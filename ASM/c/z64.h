@@ -939,7 +939,7 @@ struct z64_actor_s
   z64_rot_t       rot_init;         /* 0x0014 */
   char            unk_01_[0x0002];  /* 0x001A */
   uint16_t        variable;         /* 0x001C */
-  uint8_t         alloc_index;      /* 0x001E */
+  uint8_t         object_slot;      /* 0x001E */
   char            navi_tgt_dist;    /* 0x001F */
   uint16_t        sound_effect;     /* 0x0020 */
   char            unk_03_[0x0002];  /* 0x0022 */

@@ -3496,13 +3496,6 @@ courtyard_guards_kill:
     jal     stick_as_adult
     nop
 
-; Masks
-; Replaces: sw      t6, 0x0004(v0)
-;           lb      t7, 0x013F(s0)
-.orga 0xBE5D8C
-    jal     masks_as_adult
-    nop
-
 ;==================================================================================================
 ; Carpet Salesman Shop Shuffle
 ;==================================================================================================
