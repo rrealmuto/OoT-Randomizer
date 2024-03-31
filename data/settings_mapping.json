@@ -44,7 +44,6 @@
           "col_span": 4,
           "row_span": [1,1,1],
           "settings": [
-            "version_msg",
             "language",
             "enable_distribution_file",
             "enable_cosmetic_file",

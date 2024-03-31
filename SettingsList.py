@@ -250,10 +250,6 @@ class SettingInfos:
         },
     )
 
-    version_msg = Textbox(
-        gui_text = f"Ocarina of Time Randomizer version {__version__}",
-    )
-
     language = Combobox(
         gui_text       = 'Language',
         default        = 'english',
