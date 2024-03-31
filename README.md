@@ -59,6 +59,7 @@ Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Ra
   * “Standard Anti-Weekly Settings (Advanced)” adds “Shuffle Rupees & Hearts”, “Shuffle Pots”, “Shuffle Crates”, “Shuffle Beehives”, and “Shuffle Silver Rupees”, has a minimal item pool, and adds extra ice traps.
   * “Triforce Blitz S2” is a fast-paced game mode with very powerful hints used for [a tournament](https://midos.house/event/tfb/2), taken from [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev). Note that the tournament itself was played on that branch, not this one. See [the official website](https://www.triforceblitz.com/) for details.
 * Other changes:
+  * The magic meter has a new model to prepare for shuffled magic refills ([#2081](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2081))
   * Fairy pots are now included in “Shuffle Pots.” Major items from pots, crates, etc now display above Link's head while the text box is open. Gameplay is no longer interrupted if you receive a junk item from another player in multiworld. (parts of [#2069](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2069))
   * Plandos can specify different settings for each world ([#2055](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2055))
   * The text box no longer shows the player's own gold skulltula token count when finding a token for another player (part of [#2055](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2055))

@@ -89,6 +89,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         ('object_gi_abutton',     data_path('items/A_Button.zobj'),            0x1A8),  # A button
         ('object_gi_cbutton',     data_path('items/C_Button_Horizontal.zobj'), 0x1A9),  # C button Horizontal
         ('object_gi_cbutton',     data_path('items/C_Button_Vertical.zobj'),   0x1AA),  # C button Vertical
+        ('object_gi_magic_meter', data_path('items/MagicMeter.zobj'),          0x1AB),  # Magic Meter
     )
 
     models_to_update = []
@@ -203,19 +204,19 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
             (0x05CC, [0xFF, 0xFF, 0xFF]), # Outer Primary Color?
             (0x05D4, [0xFF, 0xFF, 0xFF]), # Outer Env Color?
         )),
-        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1B4, ( # Weird Egg -> Pink Easter Egg
+        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1B5, ( # Weird Egg -> Pink Easter Egg
             (0x0FF4, [0xDB, 0xA9, 0xD8]), # Primary Color
             (0x0FFC, [0xD1, 0x7B, 0xCC]), # Env Color
         )),
-        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1B5, ( # Weird Egg -> Orange Easter Egg
+        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1B6, ( # Weird Egg -> Orange Easter Egg
             (0x0FF4, [0xDB, 0xA9, 0x77]), # Primary Color
             (0x0FFC, [0xD1, 0x7B, 0x25]), # Env Color
         )),
-        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1B6, ( # Weird Egg -> Green Easter Egg
+        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1B7, ( # Weird Egg -> Green Easter Egg
             (0x0FF4, [0x77, 0xDB, 0x77]), # Primary Color
             (0x0FFC, [0x25, 0xD1, 0x25]), # Env Color
         )),
-        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1B7, ( # Weird Egg -> Blue Easter Egg
+        ('object_gi_egg', 0x015B6000, 0x015B7320, 0x1B8, ( # Weird Egg -> Blue Easter Egg
             (0x0FF4, [0x77, 0x77, 0xDB]), # Primary Color
             (0x0FFC, [0x25, 0x25, 0xD1]), # Env Color
         )),
@@ -234,15 +235,15 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
     # Make new model files by splitting existing ones to fit into the get item memory slot
     zobj_splits = (
-        ('object_gi_jewel_emerald',  0x0145A000, 0x0145D680, (0x1240, 0x10E0), 0x1AB), # Kokiri Emerald
-        ('object_gi_jewel_ruby',     0x0145A000, 0x0145D680, (0x20A0, 0x1FB0), 0x1AC), # Goron Ruby
-        ('object_gi_jewel_sapphire', 0x0145A000, 0x0145D680, (0x3530, 0x3370), 0x1AD), # Zora Sapphire
-        ('object_gi_medal_light',    0x014BB000, 0x014C0370, (0x5220, 0x0E18), 0x1AE), # Light Medallion
-        ('object_gi_medal_forest',   0x014BB000, 0x014C0370, (0x0CB0, 0x0E18), 0x1AF), # Forest Medallion
-        ('object_gi_medal_fire',     0x014BB000, 0x014C0370, (0x1AF0, 0x0E18), 0x1B0), # Fire Medallion
-        ('object_gi_medal_water',    0x014BB000, 0x014C0370, (0x2830, 0x0E18), 0x1B1), # Water Medallion
-        ('object_gi_medal_shadow',   0x014BB000, 0x014C0370, (0x4330, 0x0E18), 0x1B2), # Shadow Medallion
-        ('object_gi_medal_spirit',   0x014BB000, 0x014C0370, (0x3610, 0x0E18), 0x1B3), # Spirit Medallion
+        ('object_gi_jewel_emerald',  0x0145A000, 0x0145D680, (0x1240, 0x10E0), 0x1AC), # Kokiri Emerald
+        ('object_gi_jewel_ruby',     0x0145A000, 0x0145D680, (0x20A0, 0x1FB0), 0x1AD), # Goron Ruby
+        ('object_gi_jewel_sapphire', 0x0145A000, 0x0145D680, (0x3530, 0x3370), 0x1AE), # Zora Sapphire
+        ('object_gi_medal_light',    0x014BB000, 0x014C0370, (0x5220, 0x0E18), 0x1AF), # Light Medallion
+        ('object_gi_medal_forest',   0x014BB000, 0x014C0370, (0x0CB0, 0x0E18), 0x1B0), # Forest Medallion
+        ('object_gi_medal_fire',     0x014BB000, 0x014C0370, (0x1AF0, 0x0E18), 0x1B1), # Fire Medallion
+        ('object_gi_medal_water',    0x014BB000, 0x014C0370, (0x2830, 0x0E18), 0x1B2), # Water Medallion
+        ('object_gi_medal_shadow',   0x014BB000, 0x014C0370, (0x4330, 0x0E18), 0x1B3), # Shadow Medallion
+        ('object_gi_medal_spirit',   0x014BB000, 0x014C0370, (0x3610, 0x0E18), 0x1B4), # Spirit Medallion
     )
     for name, start, end, offsets, object_id in zobj_splits:
         obj_file = File(name, start, end)

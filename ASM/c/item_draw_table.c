@@ -163,17 +163,18 @@ item_draw_table_entry_t item_draw_table[] = {
     [0x91] = { draw_gi_c_button_vertical,   { 0x06000960, 0xFFA000FF, 1 } }, // Cdown button
     [0x92] = { draw_gi_c_button_horizontal, { 0x06000E10, 0xFFA000FF, 1 } }, // Cleft button
     [0x93] = { draw_gi_c_button_horizontal, { 0x06000E10, 0xFFA000FF, 0 } }, // Cright button
-    [0x94] = { draw_gi_medallions,          { 0x060004d0, 0x06000f80 } }, // Light Medallion
-    [0x95] = { draw_gi_medallions,          { 0x06000370, 0x06000e40 } }, // Forest Medallion
-    [0x96] = { draw_gi_medallions,          { 0x060001b0, 0x06000c30 } }, // Fire Medallion
-    [0x97] = { draw_gi_medallions,          { 0x06000330, 0x06000e00 } }, // Water Medallion
-    [0x98] = { draw_gi_medallions,          { 0x060002d0, 0x06000d60 } }, // Shadow Medallion
-    [0x99] = { draw_gi_medallions,          { 0x06000380, 0x06000e40 } }, // Spirit Medallion
-    [0x9A] = { draw_gi_stones,              { 0x06000b50, 0x06001290, 0xffffa0ff, 0x00ff00ff } }, // Kokiri Emerald
-    [0x9B] = { draw_gi_stones,              { 0x06000620, 0x06000920, 0xffaaffff, 0xff0064ff } }, // Goron Ruby
-    [0x9C] = { draw_gi_stones,              { 0x06000b00, 0x060012f0, 0x32ffffff, 0x320096ff } }, // Zora Sapphire
-    [0x9D] = { draw_gi_fairy,               { 0x06000EF0 } }, // Fairy (not in a bottle but uses the fairy from the bottle)
-    [0x9E] = { draw_gi_nothing,             {} },
+    [0x94] = { draw_gi_magic_meter,         { 0x06000A80, 0x06000F80, 0x060014C0, 0x00CE00FF, 0xFFFFFFFF, 0x000000FF } }, // Magic Meter , 0x000000FF -- 0x06000F70, 0x00CE00FF, --, 0x06009C0, 0x06001030, 0x00CE00FF, 0xFFFFFFFF
+    [0x95] = { draw_gi_medallions,          { 0x060004d0, 0x06000f80 } }, // Light Medallion
+    [0x96] = { draw_gi_medallions,          { 0x06000370, 0x06000e40 } }, // Forest Medallion
+    [0x97] = { draw_gi_medallions,          { 0x060001b0, 0x06000c30 } }, // Fire Medallion
+    [0x98] = { draw_gi_medallions,          { 0x06000330, 0x06000e00 } }, // Water Medallion
+    [0x99] = { draw_gi_medallions,          { 0x060002d0, 0x06000d60 } }, // Shadow Medallion
+    [0x9A] = { draw_gi_medallions,          { 0x06000380, 0x06000e40 } }, // Spirit Medallion
+    [0x9B] = { draw_gi_stones,              { 0x06000b50, 0x06001290, 0xffffa0ff, 0x00ff00ff } }, // Kokiri Emerald
+    [0x9C] = { draw_gi_stones,              { 0x06000620, 0x06000920, 0xffaaffff, 0xff0064ff } }, // Goron Ruby
+    [0x9D] = { draw_gi_stones,              { 0x06000b00, 0x060012f0, 0x32ffffff, 0x320096ff } }, // Zora Sapphire
+    [0x9E] = { draw_gi_fairy,               { 0x06000EF0 } }, // Fairy (not in a bottle but uses the fairy from the bottle)
+    [0x9F] = { draw_gi_nothing,             {} },
 };
 
 void base_draw_gi_model(z64_game_t* game, uint32_t draw_id) {
