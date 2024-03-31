@@ -14,19 +14,24 @@ void Player_DrawGameplay_Hook(z64_game_t* globalCtx, z64_link_t* this, int32_t l
     Player_DrawGameplay_Func Player_DrawGameplay = resolve_player_ovl_addr(Player_DrawGameplay_Orig_Addr);
     Player_DrawGameplay(globalCtx, this, lod, cullDList, overrideLimbDraw);
     z64_gfx_t* gfx = globalCtx->common.gfx;
-    
     if(this->current_mask)
     {
         uint32_t* sMaskDlists;
-        if(this->current_mask == PLAYER_MASK_BUNNY && LINK_IS_ADULT) {
-            // If player is wearing bunny hood, set the object segment to the bunny hood object which is kept in RAM.
-            gSPSegment(gfx->poly_opa.p++, 0x06, bunny_hood_obj.buf);
+        if(LINK_IS_ADULT) {
             sMaskDlists = sMaskDlistsAdult;
+            if(this->current_mask == PLAYER_MASK_BUNNY) {
+                // If adult is wearing bunny hood, set the object segment to the bunny hood object which is kept in RAM.
+                gSPSegment(gfx->poly_opa.p++, 0x06, bunny_hood_obj.buf);
+            }
         }
         else {
              sMaskDlists = (uint32_t*)resolve_player_ovl_addr(sMaskDlists_Addr);
         }
         // Call the correct mask dlist
-        gSPDisplayList(gfx->poly_opa.p++, sMaskDlists[this->current_mask - 1]);
+        if (sMaskDlists[this->current_mask - 1]) {
+            gSPDisplayList(gfx->poly_opa.p++, sMaskDlists[this->current_mask - 1]);
+        }
+        // Reset the object segment 0x06
+        gSPSegment(gfx->poly_opa.p++, 0x06, globalCtx->obj_ctxt.objects[this->common.obj_bank_index].data);
     }
 }
