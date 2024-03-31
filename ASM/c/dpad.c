@@ -61,10 +61,10 @@ void handle_dpad() {
             }
         }
 
-        if ((!ADULT_BUNNY_HOOD || !pad_held.z) && pad_pressed.dd && CAN_USE_OCARINA) {
+        if (((z64_file.link_age == 1) || (!ADULT_BUNNY_HOOD || !pad_held.z)) && pad_pressed.dd && CAN_USE_OCARINA) {
             z64_usebutton(&z64_game,&z64_link,z64_file.items[Z64_SLOT_OCARINA], 2);
         }
-        else if(ADULT_BUNNY_HOOD && pad_pressed.dd && ((z64_file.items[Z64_SLOT_CHILD_TRADE] == ITEM_MASK_BUNNY) || SaveFile_TradeItemIsOwned(ITEM_MASK_BUNNY))) {
+        else if((z64_file.link_age == 0) && ADULT_BUNNY_HOOD && pad_pressed.dd && ((z64_file.items[Z64_SLOT_CHILD_TRADE] == ITEM_MASK_BUNNY) || SaveFile_TradeItemIsOwned(ITEM_MASK_BUNNY))) {
             z64_usebutton(&z64_game, &z64_link, ITEM_MASK_BUNNY, 2);
         }
     }
@@ -238,7 +238,7 @@ void draw_dpad_and_menu_utilities() {
             }
 
             // Ocarina on dpad down
-            if ((!ADULT_BUNNY_HOOD || !pad_held.z) && (z64_file.items[Z64_SLOT_OCARINA] == Z64_ITEM_FAIRY_OCARINA || z64_file.items[Z64_SLOT_OCARINA] == Z64_ITEM_OCARINA_OF_TIME)) {
+            if (((z64_file.link_age == 1) || (!ADULT_BUNNY_HOOD || !pad_held.z)) && (z64_file.items[Z64_SLOT_OCARINA] == Z64_ITEM_FAIRY_OCARINA || z64_file.items[Z64_SLOT_OCARINA] == Z64_ITEM_OCARINA_OF_TIME)) {
                 if (!CAN_USE_DPAD || !CAN_USE_OCARINA) {
                     gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, alpha * 0x46 / 0xFF);
                 }
@@ -248,8 +248,8 @@ void draw_dpad_and_menu_utilities() {
                 sprite_load(db, &items_sprite, z64_file.items[Z64_SLOT_OCARINA], 1);
                 sprite_draw(db, &items_sprite, 0, left_main_dpad + 2, top_main_dpad + 14, 12,12);
             }
-            // Adult bunny hood on dpad down when holding r
-            else if (ADULT_BUNNY_HOOD && (z64_file.items[Z64_SLOT_CHILD_TRADE] == ITEM_MASK_BUNNY || SaveFile_TradeItemIsOwned(ITEM_MASK_BUNNY))) {
+            // Adult bunny hood on dpad down when holding z
+            else if ((z64_file.link_age == 0) && ADULT_BUNNY_HOOD && (z64_file.items[Z64_SLOT_CHILD_TRADE] == ITEM_MASK_BUNNY || SaveFile_TradeItemIsOwned(ITEM_MASK_BUNNY))) {
                 if (!CAN_USE_DPAD || !CAN_USE_CHILD_TRADE) {
                     gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, alpha * 0x46 / 0xFF);
                 } else {
