@@ -1287,7 +1287,7 @@ class World:
             and not self.full_one_ways):
             # Nayru's Love may be required to prevent forced damage
             self.exclude_item_list.append('Nayrus Love')
-        if 'logic_grottos_without_agony' in self.settings.allowed_tricks and self.settings.hints != 'agony':
+        if ('logic_grottos_without_agony' in self.settings.allowed_tricks or self.settings.logic_rules != 'glitchless') and self.settings.hints != 'agony':
             # Stone of Agony skippable if not used for hints or grottos
             self.exclude_item_list.append('Stone of Agony')
         if (not self.shuffle_special_interior_entrances and not self.settings.shuffle_overworld_entrances and self.settings.warp_songs == 'off'
