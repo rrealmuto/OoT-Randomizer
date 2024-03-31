@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v93](#v93)
   * [v92](#v92)
   * [v91](#v91)
   * [v90](#v90)
@@ -118,6 +119,10 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v93
+  * Update to main Dev 8.1.13
+  * Add Adult Bunny Hood setting
+
 ### v92
   * Fix King Dobonko
 
