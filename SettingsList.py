@@ -2541,9 +2541,6 @@ class SettingInfos:
             This means you are no longer guaranteed to end up back where you
             came from when you go back through an entrance.
 
-            This also adds the one-way entrance from Gerudo Valley to Lake Hylia
-            in the pool of overworld entrances when they are shuffled.
-
             Boss entrances are currently excluded from this setting and remain
             coupled regardless.
         ''',
