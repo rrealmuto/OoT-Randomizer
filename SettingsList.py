@@ -2339,7 +2339,7 @@ class SettingInfos:
         ''',
         shared         = True,
         disable        = {
-            False: {'settings': ['shuffle_gerudo_fortress_heart_piece']},
+            'off': {'settings': ['shuffle_gerudo_fortress_heart_piece']},
         },
         gui_params     = {
             'randomize_key': 'randomize_settings',
