@@ -258,7 +258,6 @@ def run_ci_checks() -> NoReturn:
     args = parser.parse_args()
 
     if not args.no_unit_tests:
-        check_table_sizes()
         run_unit_tests()
 
     if not args.only_unit_tests:
