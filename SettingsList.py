@@ -680,7 +680,7 @@ class SettingInfos:
                 'settings': [
                     'open_deku', 'open_forest', 'require_gohma', 'open_kakariko', 'open_door_of_time', 'zora_fountain', 'gerudo_fortress', 'dungeon_shortcuts_choice',
                     'dungeon_shortcuts', 'trials_random', 'trials',
-                    'starting_age', 'shuffle_interior_entrances', 'shuffle_hideout_entrances',
+                    'starting_age', 'shuffle_interior_entrances', 'shuffle_hideout_entrances', 'shuffle_gerudo_fortress_heart_piece',
                     'shuffle_grotto_entrances', 'shuffle_dungeon_entrances',
                     'shuffle_bosses', 'shuffle_ganon_tower', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops', 'warp_songs', 'blue_warps', 'shuffle_child_spawn', 'shuffle_adult_spawn',
                     'mix_entrance_pools', 'decouple_entrances', 'exclusive_one_ways',
@@ -718,7 +718,7 @@ class SettingInfos:
         ''',
         disable        = {
             'glitchless': {'settings': ['tricks_list_msg']},
-            'glitched':   {'settings': ['allowed_tricks', 'shuffle_interior_entrances', 'shuffle_hideout_entrances', 'shuffle_grotto_entrances',
+            'glitched':   {'settings': ['allowed_tricks', 'shuffle_interior_entrances', 'shuffle_hideout_entrances', 'shuffle_gerudo_fortress_heart_piece', 'shuffle_grotto_entrances',
                                          'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops',
                                          'warp_songs', 'blue_warps', 'shuffle_child_spawn', 'shuffle_adult_spawn', 'mq_dungeons_mode', 'mq_dungeons_specific',
                                          'mq_dungeons_count', 'shuffle_bosses', 'shuffle_ganon_tower', 'dungeon_shortcuts', 'deadly_bonks',
@@ -2307,7 +2307,7 @@ class SettingInfos:
         ''',
         shared         = True,
         disable        = {
-            'off': {'settings': ['shuffle_hideout_entrances']},
+            'off': {'settings': ['shuffle_hideout_entrances', 'shuffle_gerudo_fortress_heart_piece']},
         },
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -2333,15 +2333,14 @@ class SettingInfos:
 
             If set to "On (Savewarp to 1-Torch Jail)", savewarping in any
             room of Thieves' Hideout takes you to the first room (with 1
-            torch). If set to "On (Savewarp to Overworld)", savewarping in
-            the Hideout takes you to the overworld spawn depending on
-            Link's current age.
-
-            There is an extra heart piece on the balcony above the jail in
-            Gerudo's Fortress if accessed as child. This is not shuffled
-            and not considered in logic.
+            torch), as in the vanilla game. If set to "On (Savewarp to
+            Overworld)", savewarping in the Hideout takes you to the
+            overworld spawn depending on Link's current age.
         ''',
         shared         = True,
+        disable        = {
+            False: {'settings': ['shuffle_gerudo_fortress_heart_piece']},
+        },
         gui_params     = {
             'randomize_key': 'randomize_settings',
             'distribution':  [
@@ -2349,6 +2348,41 @@ class SettingInfos:
                 ('hideout_savewarp', 1),
                 ('overworld_savewarp', 1),
             ],
+        },
+    )
+
+    shuffle_gerudo_fortress_heart_piece = Combobox(
+        gui_text       = 'Shuffle Gerudo Fortress Heart Piece',
+        default        = 'remove',
+        choices        = {
+            'remove':  'Remove',
+            'vanilla': 'Vanilla',
+            'shuffle': 'Shuffle',
+        },
+        gui_tooltip    = '''\
+            There is an extra heart piece on the balcony above the jail in
+            Gerudo's Fortress if accessed as child. Normally, this is not
+            reachable without glitches, so it's not shuffled and not
+            considered in logic. With the Thieves' Hideout entrances
+            shuffled, it becomes reachable, so use this setting to decide
+            how to handle that.
+
+            'Remove':
+            The heart piece is completely removed from the game. There is
+            no freestanding item to collect above the jail.
+
+            'Vanilla':
+            The heart piece exists as an unshuffled heart piece. It is
+            considered in logic for the purpose of heart win conditions.
+
+            'Shuffle':
+            There is a shuffled item above the jail and the extra heart
+            piece is shuffled into the item pool. Both are considered in
+            logic.
+        ''',
+        shared         = True,
+        gui_params     = {
+            "hide_when_disabled": True,
         },
     )
 

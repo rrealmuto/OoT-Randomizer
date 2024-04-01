@@ -13,6 +13,7 @@ This branch (`dev-fenhl`) is based on [Roman971](https://github.com/Roman971)'s 
 Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Randomizer):
 
 * New settings and options:
+  * New “Shuffle Gerudo Fortress Heart Piece” setting to control the behavior of this check with “Shuffle Thieves' Hideout Entrances” ([#2179](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2179))
   * New settings “Include Empty Pots” and “Include Empty Crates” ([#2069](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2069))
   * New “Frogs Ocarina Game” option for the “Randomize Ocarina Song Notes” setting ([#2064](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2064))
   * New “Shuffle Ganon's Tower Entrance” setting ([#2063](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2063))
@@ -68,6 +69,8 @@ Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Ra
   * Gold skulltula tokens can be on excluded locations if there are no checks requiring them (such as in SAWS)
   * The GUI tweaks made by [`Dev-R`](https://github.com/Roman971/OoT-Randomizer) are further adjusted to balance consistency with [main `Dev`](https://github.com/OoTRandomizer/OoT-Randomizer) and ease of use.
   * The Lens of Truth can be in a foolish area if Treasure Chest Game keys are shuffled and all relevant “lensless” tricks are enabled.
+* Bug fixes:
+  * The heart piece in Gerudo Fortress now behaves correctly when already at 20 hearts, and is considered in glitched logic (part of [#2179](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2179))
 
 Differences between [`Dev-R`](https://github.com/Roman971/OoT-Randomizer) and [`Dev`](https://github.com/OoTRandomizer/OoT-Randomizer):
 

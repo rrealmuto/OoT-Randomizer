@@ -47,7 +47,7 @@ triforce_pieces: tuple[str, ...] = (
     *triforce_blitz_items,
 )
 
-plentiful_items: list[str] = ([
+plentiful_items: list[str] = [
     'Biggoron Sword',
     'Boomerang',
     'Lens of Truth',
@@ -69,14 +69,8 @@ plentiful_items: list[str] = ([
     'Deku Nut Capacity',
     'Bow',
     'Bomb Bag',
-    'Double Defense'] +
-    ['Heart Container'] * 8
-)
-
-# Ludicrous replaces all health upgrades with heart containers
-# as done in plentiful. The item list is used separately to
-# dynamically replace all junk with even levels of each item.
-ludicrous_health: list[str] = ['Heart Container'] * 8
+    'Double Defense',
+]
 
 # List of items that can be multiplied in ludicrous mode.
 # Used to filter the pre-plando pool for candidates instead
@@ -252,12 +246,8 @@ ludicrous_exclusions: tuple[str, ...] = (
 )
 
 item_difficulty_max: dict[str, dict[str, int]] = {
-    'ludicrous': {
-        'Piece of Heart': 3,
-    },
-    'plentiful': {
-        'Piece of Heart': 3,
-    },
+    'ludicrous': {},
+    'plentiful': {},
     'balanced': {},
     'scarce': {
         'Bombchus (5)': 1,
@@ -566,9 +556,6 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
         if world.settings.shuffle_individual_ocarina_notes:
             pending_junk_pool.extend(['Ocarina A Button', 'Ocarina C up Button', 'Ocarina C left Button', 'Ocarina C down Button', 'Ocarina C right Button'])
 
-    if world.settings.item_pool_value == 'ludicrous':
-        pending_junk_pool.extend(ludicrous_health)
-
     if world.settings.triforce_hunt:
         if world.settings.triforce_hunt_mode == 'normal':
             pending_junk_pool.extend(['Triforce Piece'] * world.triforce_count_per_world)
@@ -751,6 +738,15 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
                     shuffle_item = True
                 else:
                     shuffle_item = False
+
+        # Gerudo Fortress Freestanding Heart Piece
+        elif location.vanilla_item == 'Piece of Heart (Out of Logic)':
+            shuffle_item = world.settings.shuffle_gerudo_fortress_heart_piece == 'shuffle'
+            if world.settings.shuffle_hideout_entrances or world.settings.logic_rules == 'glitched':
+                if world.settings.shuffle_hideout_entrances and world.settings.shuffle_gerudo_fortress_heart_piece == 'remove':
+                    item = IGNORE_LOCATION
+                else:
+                    item = 'Piece of Heart'
 
         # Thieves' Hideout
         elif location.vanilla_item == 'Small Key (Thieves Hideout)':
@@ -1013,6 +1009,13 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
 
     for item, maximum in item_difficulty_max[world.settings.item_pool_value].items():
         replace_max_item(pool, item, maximum)
+    # Dynamically condense regular heart pieces into heart containers depending on how many are in the pool
+    # (which varies based on the Shuffle Gerudo Fortress Heart Piece setting)
+    if world.settings.item_pool_value in ('plentiful', 'ludicrous'):
+        indices = [items_idx for items_idx, val in enumerate(pool) if val == 'Piece of Heart']
+        num_full_hearts = (len(indices) // 4) * 4
+        for hearts_idx, items_idx in enumerate(indices[:num_full_hearts]):
+            pool[items_idx] = 'Heart Container' if hearts_idx % 4 == 0 else get_junk_item()[0]
 
     world.distribution.alter_pool(world, pool)
 
