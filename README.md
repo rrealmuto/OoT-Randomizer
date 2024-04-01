@@ -537,6 +537,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Don't start the trade sequence timer if getting the `ZD King Zora Thawed` item while the Eyeball Frog is in the inventory.
 * Fix missing visual frost effect for ice traps in most chests.
 * Fix the items on the right side of the mask shop being available without paying for all borrowed masks first.
+* The Stone of Agony can now be foolish in Glitched Logic and No Logic, as it already was with the `Hidden Grottos without Stone of Agony` trick enabled.
 
 #### Other Changes
 * Clarified the error message shown when an unshuffled trade quest item is used as a starting item.
