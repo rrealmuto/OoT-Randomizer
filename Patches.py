@@ -2481,6 +2481,16 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
             for world_dist in world.settings.distribution.world_dists
         )
         rom.write_byte(rom.sym('HEART_CHEST_SIZES'), 2 * any_big_heart_chests + any_small_heart_chests)
+
+    # Specify which textures we want
+    rom.write_byte(rom.sym('CHEST_GILDED_TEXTURE'), 'major' in world.settings.chest_textures_specific)
+    rom.write_byte(rom.sym('CHEST_GOLD_TEXTURE'), 'bosskeys' in world.settings.chest_textures_specific)
+    rom.write_byte(rom.sym('CHEST_SILVER_TEXTURE'), 'keys' in world.settings.chest_textures_specific)
+    rom.write_byte(rom.sym('CHEST_SKULL_TEXTURE'), 'tokens' in world.settings.chest_textures_specific)
+    rom.write_byte(rom.sym('CHEST_HEART_TEXTURE'), 'hearts' in world.settings.chest_textures_specific)
+
+    rom.write_byte(rom.sym('SOA_UNLOCKS_CHEST_TEXTURE'), world.settings.soa_unlocks_chest_texture)
+
     if world.settings.correct_chest_appearances == 'classic' or world.settings.correct_chest_appearances == 'both':
         # Move Ganon's Castle's Zelda's Lullaby Chest back so is reachable if large
         if not world.dungeon_mq['Ganons Castle']:
@@ -2524,6 +2534,15 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     }
     symbol = rom.sym('POTCRATE_TEXTURES_MATCH_CONTENTS')
     rom.write_byte(symbol, ptmc_options[world.settings.correct_potcrate_appearances])
+
+    # Specify which textures we want
+    rom.write_byte(rom.sym('POTCRATE_GILDED_TEXTURE'), 'major' in world.settings.potcrate_textures_specific)
+    rom.write_byte(rom.sym('POTCRATE_GOLD_TEXTURE'), 'bosskeys' in world.settings.potcrate_textures_specific)
+    rom.write_byte(rom.sym('POTCRATE_SILVER_TEXTURE'), 'keys' in world.settings.potcrate_textures_specific)
+    rom.write_byte(rom.sym('POTCRATE_SKULL_TEXTURE'), 'tokens' in world.settings.potcrate_textures_specific)
+    rom.write_byte(rom.sym('POTCRATE_HEART_TEXTURE'), 'hearts' in world.settings.potcrate_textures_specific)
+
+    rom.write_byte(rom.sym('SOA_UNLOCKS_POTCRATE_TEXTURE'), world.settings.soa_unlocks_potcrate_texture)
 
     # give dungeon items the correct messages
     add_item_messages(messages, shop_items, world)

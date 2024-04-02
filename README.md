@@ -14,6 +14,7 @@ Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Ra
 
 * New settings and options:
   * New “Shuffle Gerudo Fortress Heart Piece” setting to control the behavior of this check with “Shuffle Thieves' Hideout Entrances” ([#2179](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2179))
+  * New settings “Chest Textures”, “Stone of Agony Unlocks Chest Textures”, “Pot and Crate Textures”, and “Stone of Agony Unlocks Pot and Crate Textures” ([#2096](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2096))
   * New settings “Include Empty Pots” and “Include Empty Crates” ([#2069](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2069))
   * New “Frogs Ocarina Game” option for the “Randomize Ocarina Song Notes” setting ([#2064](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2064))
   * New “Shuffle Ganon's Tower Entrance” setting ([#2063](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2063))

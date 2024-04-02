@@ -3928,7 +3928,42 @@ class SettingInfos:
         ''',
         shared         = True,
         disable        = {
-            'off': {'settings': ['minor_items_as_major_chest']},
+            'off': {'settings': ['minor_items_as_major_chest', 'chest_textures_specific']},
+            'classic': {'settings': ['chest_textures_specific']},
+            '!textures': {'settings': ['soa_unlocks_chest_texture']},
+        },
+    )
+
+    chest_textures_specific = MultipleSelect(
+        gui_text        = 'Chest Textures',
+        choices         = {
+            'major':    "Major items",
+            'bosskeys': "Boss keys",
+            'keys':     "Small keys",
+            'tokens':   "Gold Skulltula tokens",
+            'hearts':   "Hearts",
+        },
+        default         = ['major', 'bosskeys','keys', 'tokens', 'hearts'],
+        gui_tooltip     = '''\
+            Select specific chest textures.
+            Any unchecked option will make all items in the category
+            appear in brown chests.
+        ''',
+        shared          = True,
+        gui_params     = {
+            "hide_when_disabled": True,
+        },
+    )
+
+    soa_unlocks_chest_texture = Checkbutton(
+        gui_text       = 'Stone of Agony Unlocks Chest Textures',
+        gui_tooltip    = '''\
+            Textures for chests will only be correct
+            when Stone of Agony is found.
+        ''',
+        shared         = True,
+        gui_params     = {
+            "hide_when_disabled": True,
         },
     )
 
@@ -3992,6 +4027,42 @@ class SettingInfos:
             Beehives will wiggle until their item is collected.
         ''',
         shared         = True,
+        disable        = {
+            '!textures_content': {'settings': ['potcrate_textures_specific', 'soa_unlocks_potcrate_texture']},
+        },
+    )
+
+    potcrate_textures_specific = MultipleSelect(
+        gui_text        = 'Pot and Crate Textures',
+        choices         = {
+            'major':    "Major items",
+            'bosskeys': "Boss keys",
+            'keys':     "Small keys",
+            'tokens':   "Gold Skulltula tokens",
+            'hearts':   "Hearts",
+        },
+        default         = ['major', 'bosskeys', 'keys', 'tokens', 'hearts'],
+        gui_tooltip     = '''\
+            Select specific pots and crates textures.
+            Any unchecked option will make all items in the category
+            appear in regular pots/crates.
+        ''',
+        shared          = True,
+        gui_params     = {
+            "hide_when_disabled": True,
+        },
+    )
+
+    soa_unlocks_potcrate_texture = Checkbutton(
+        gui_text       = 'Stone of Agony Unlocks Pot and Crate Textures',
+        gui_tooltip    = '''\
+            Textures for pots and crates will only be correct
+            when Stone of Agony is found.
+        ''',
+        shared         = True,
+        gui_params     = {
+            "hide_when_disabled": True,
+        },
     )
 
     incorrect_chest_appearances = Checkbutton(

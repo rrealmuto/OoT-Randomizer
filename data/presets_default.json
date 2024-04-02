@@ -161,9 +161,25 @@
             "frogs2"
         ],
         "correct_chest_appearances": "off",
+        "chest_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_chest_texture": false,
         "minor_items_as_major_chest": [],
         "invisible_chests": false,
         "correct_potcrate_appearances": "off",
+        "potcrate_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_potcrate_texture": false,
         "incorrect_chest_appearances": false,
         "clearer_item_models": [],
         "clearer_hints": true,
@@ -350,9 +366,25 @@
         "ruto_already_f1_jabu": false,
         "ocarina_songs": [],
         "correct_chest_appearances": "off",
+        "chest_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_chest_texture": false,
         "minor_items_as_major_chest": [],
         "invisible_chests": false,
         "correct_potcrate_appearances": "off",
+        "potcrate_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_potcrate_texture": false,
         "incorrect_chest_appearances": false,
         "clearer_item_models": [],
         "clearer_hints": false,
@@ -515,9 +547,25 @@
         "ruto_already_f1_jabu": false,
         "ocarina_songs": [],
         "correct_chest_appearances": "off",
+        "chest_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_chest_texture": false,
         "minor_items_as_major_chest": [],
         "invisible_chests": false,
         "correct_potcrate_appearances": "off",
+        "potcrate_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_potcrate_texture": false,
         "incorrect_chest_appearances": false,
         "clearer_item_models": [],
         "clearer_hints": false,
@@ -693,9 +741,25 @@
         "ruto_already_f1_jabu": false,
         "ocarina_songs": [],
         "correct_chest_appearances": "off",
+        "chest_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_chest_texture": false,
         "minor_items_as_major_chest": [],
         "invisible_chests": false,
         "correct_potcrate_appearances": "off",
+        "potcrate_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_potcrate_texture": false,
         "incorrect_chest_appearances": false,
         "clearer_item_models": [],
         "clearer_hints": false,
@@ -871,9 +935,25 @@
         "ruto_already_f1_jabu": false,
         "ocarina_songs": [],
         "correct_chest_appearances": "off",
+        "chest_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_chest_texture": false,
         "minor_items_as_major_chest": [],
         "invisible_chests": false,
         "correct_potcrate_appearances": "off",
+        "potcrate_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_potcrate_texture": false,
         "incorrect_chest_appearances": false,
         "clearer_item_models": [],
         "clearer_hints": false,
@@ -1066,11 +1146,27 @@
         "ruto_already_f1_jabu": true,
         "ocarina_songs": [],
         "correct_chest_appearances": "both",
+        "chest_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_chest_texture": false,
         "minor_items_as_major_chest": [
             "bombchus"
         ],
         "invisible_chests": false,
         "correct_potcrate_appearances": "off",
+        "potcrate_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_potcrate_texture": false,
         "incorrect_chest_appearances": false,
         "clearer_item_models": [
             "keyrings",
@@ -1282,9 +1378,25 @@
         "ruto_already_f1_jabu": false,
         "ocarina_songs": [],
         "correct_chest_appearances": "both",
+        "chest_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_chest_texture": false,
         "minor_items_as_major_chest": [],
         "invisible_chests": false,
         "correct_potcrate_appearances": "off",
+        "potcrate_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_potcrate_texture": false,
         "incorrect_chest_appearances": false,
         "clearer_item_models": [],
         "clearer_hints": true,
@@ -1765,9 +1877,25 @@
         "ruto_already_f1_jabu": true,
         "ocarina_songs": [],
         "correct_chest_appearances": "off",
+        "chest_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_chest_texture": false,
         "minor_items_as_major_chest": [],
         "invisible_chests": false,
         "correct_potcrate_appearances": "off",
+        "potcrate_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_potcrate_texture": false,
         "incorrect_chest_appearances": false,
         "clearer_item_models": [],
         "clearer_hints": false,
@@ -2255,9 +2383,25 @@
         "ruto_already_f1_jabu": true,
         "ocarina_songs": [],
         "correct_chest_appearances": "off",
+        "chest_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_chest_texture": false,
         "minor_items_as_major_chest": [],
         "invisible_chests": false,
         "correct_potcrate_appearances": "textures_content",
+        "potcrate_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_potcrate_texture": false,
         "incorrect_chest_appearances": false,
         "clearer_item_models": [],
         "clearer_hints": false,
@@ -2470,11 +2614,27 @@
         "ruto_already_f1_jabu": false,
         "ocarina_songs": [],
         "correct_chest_appearances": "both",
+        "chest_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_chest_texture": false,
         "minor_items_as_major_chest": [
             "bombchus"
         ],
         "invisible_chests": false,
         "correct_potcrate_appearances": "off",
+        "potcrate_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_potcrate_texture": false,
         "incorrect_chest_appearances": false,
         "clearer_item_models": [
             "keyrings",
@@ -2676,9 +2836,25 @@
         "ruto_already_f1_jabu": false,
         "ocarina_songs": [],
         "correct_chest_appearances": "both",
+        "chest_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_chest_texture": false,
         "minor_items_as_major_chest": [],
         "invisible_chests": false,
         "correct_potcrate_appearances": "textures_unchecked",
+        "potcrate_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_potcrate_texture": false,
         "incorrect_chest_appearances": false,
         "clearer_item_models": [
             "keyrings",
@@ -2861,9 +3037,25 @@
         "ruto_already_f1_jabu": false,
         "ocarina_songs": [],
         "correct_chest_appearances": "off",
+        "chest_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_chest_texture": false,
         "minor_items_as_major_chest": [],
         "invisible_chests": false,
         "correct_potcrate_appearances": "textures_unchecked",
+        "potcrate_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_potcrate_texture": false,
         "incorrect_chest_appearances": false,
         "clearer_item_models": [
             "keyrings",
@@ -3072,9 +3264,25 @@
         "ruto_already_f1_jabu": false,
         "ocarina_songs": [],
         "correct_chest_appearances": "both",
+        "chest_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_chest_texture": false,
         "minor_items_as_major_chest": [],
         "invisible_chests": false,
         "correct_potcrate_appearances": "textures_content",
+        "potcrate_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_potcrate_texture": false,
         "incorrect_chest_appearances": false,
         "clearer_item_models": [
             "keyrings",
@@ -3278,9 +3486,25 @@
         "ruto_already_f1_jabu": false,
         "ocarina_songs": [],
         "correct_chest_appearances": "both",
+        "chest_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_chest_texture": false,
         "minor_items_as_major_chest": [],
         "invisible_chests": false,
         "correct_potcrate_appearances": "textures_content",
+        "potcrate_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_potcrate_texture": false,
         "incorrect_chest_appearances": false,
         "clearer_item_models": [
             "keyrings",
@@ -3487,9 +3711,25 @@
         "ruto_already_f1_jabu": false,
         "ocarina_songs": [],
         "correct_chest_appearances": "off",
+        "chest_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_chest_texture": false,
         "minor_items_as_major_chest": [],
         "invisible_chests": false,
         "correct_potcrate_appearances": "textures_unchecked",
+        "potcrate_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_potcrate_texture": false,
         "incorrect_chest_appearances": false,
         "clearer_item_models": [
             "keyrings",
@@ -3700,9 +3940,25 @@
         "ruto_already_f1_jabu": true,
         "ocarina_songs": [],
         "correct_chest_appearances": "textures",
+        "chest_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_chest_texture": false,
         "minor_items_as_major_chest": [],
         "invisible_chests": false,
         "correct_potcrate_appearances": "textures_unchecked",
+        "potcrate_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_potcrate_texture": false,
         "incorrect_chest_appearances": false,
         "clearer_item_models": [
             "keyrings",
@@ -3906,9 +4162,25 @@
         "ruto_already_f1_jabu": true,
         "ocarina_songs": [],
         "correct_chest_appearances": "textures",
+        "chest_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_chest_texture": false,
         "minor_items_as_major_chest": [],
         "invisible_chests": false,
         "correct_potcrate_appearances": "textures_content",
+        "potcrate_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_potcrate_texture": false,
         "incorrect_chest_appearances": false,
         "clearer_item_models": [
             "keys",
@@ -4294,9 +4566,25 @@
             "frogs2"
         ],
         "correct_chest_appearances": "off",
+        "chest_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_chest_texture": false,
         "minor_items_as_major_chest": [],
         "invisible_chests": true,
         "correct_potcrate_appearances": "off",
+        "potcrate_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_potcrate_texture": false,
         "incorrect_chest_appearances": false,
         "clearer_item_models": [],
         "clearer_hints": false,
@@ -4485,9 +4773,25 @@
         "ruto_already_f1_jabu": false,
         "ocarina_songs": [],
         "correct_chest_appearances": "off",
+        "chest_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_chest_texture": false,
         "minor_items_as_major_chest": [],
         "invisible_chests": false,
         "correct_potcrate_appearances": "textures_unchecked",
+        "potcrate_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_potcrate_texture": false,
         "incorrect_chest_appearances": false,
         "clearer_item_models": [
             "keyrings",
@@ -4690,9 +4994,25 @@
         "ruto_already_f1_jabu": true,
         "ocarina_songs": [],
         "correct_chest_appearances": "both",
+        "chest_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_chest_texture": false,
         "minor_items_as_major_chest": [],
         "invisible_chests": false,
         "correct_potcrate_appearances": "textures_content",
+        "potcrate_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_potcrate_texture": false,
         "incorrect_chest_appearances": false,
         "clearer_item_models": [
             "keyrings",
@@ -4903,9 +5223,25 @@
         "ruto_already_f1_jabu": false,
         "ocarina_songs": [],
         "correct_chest_appearances": "off",
+        "chest_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_chest_texture": false,
         "minor_items_as_major_chest": [],
         "invisible_chests": false,
         "correct_potcrate_appearances": "textures_unchecked",
+        "potcrate_textures_specific": [
+            "major",
+            "bosskeys",
+            "keys",
+            "tokens",
+            "hearts"
+        ],
+        "soa_unlocks_potcrate_texture": false,
         "incorrect_chest_appearances": false,
         "clearer_item_models": [
             "keyrings",

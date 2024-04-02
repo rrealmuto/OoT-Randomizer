@@ -384,9 +384,13 @@
           "settings": [
             "ocarina_songs",
             "correct_chest_appearances",
+            "chest_textures_specific",
+            "soa_unlocks_chest_texture",
             "minor_items_as_major_chest",
             "invisible_chests",
             "correct_potcrate_appearances",
+            "potcrate_textures_specific",
+            "soa_unlocks_potcrate_texture",
             "clearer_item_models",
             "clearer_hints",
             "hints",
