@@ -91,5 +91,6 @@ void Collectible_WaitForMessageBox(EnItem00* this, z64_game_t* game);
 void reset_collectible_mutex();
 void override_flags_init();
 bool Get_CollectibleOverrideFlag(EnItem00* item00);
+void push_pending_item(override_t override);
 
 #endif

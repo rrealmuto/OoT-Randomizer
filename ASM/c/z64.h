@@ -1791,6 +1791,8 @@ typedef enum {
 #define INV_CONTENT(item) z64_file.items[SLOT(item)]
 
 /* dram addresses */
+#define z64_osPiGetAccess_addr                  0x80001DB0
+#define z64_osPiRelAccess_addr                  0x80001DF4
 #define z64_EnItem00Action_addr                 0x800127E0
 #define z64_ActorKill_addr                      0x80020EB4
 #define z64_Message_GetState_addr               0x800DD464
@@ -1899,6 +1901,8 @@ typedef enum {
 #define z64_ctxt_game_size                      0x00012518
 
 /* function prototypes */
+typedef void (*z64_osPiGetAccess_proc)(void);
+typedef void (*z64_osPiRelAccess_proc)(void);
 typedef void(*z64_ActorKillFunc)(z64_actor_t*);
 typedef uint8_t(*z64_Message_GetStateFunc)(uint8_t*);
 typedef void(*z64_Flags_SetCollectibleFunc)(z64_game_t* game, uint32_t flag);
@@ -1993,6 +1997,9 @@ typedef void(*z64_Play_SetupRespawnPoint_proc)(z64_game_t *game, int32_t respawn
 
 
 /* functions */
+#define z64_osPiGetAccess           ((z64_osPiGetAccess_proc) z64_osPiGetAccess_addr)
+#define z64_osPiRelAccess           ((z64_osPiRelAccess_proc) z64_osPiRelAccess_addr)
+
 #define z64_ActorKill               ((z64_ActorKillFunc)    z64_ActorKill_addr)
 #define z64_MessageGetState         ((z64_Message_GetStateFunc)z64_Message_GetState_addr)
 #define z64_SetCollectibleFlags     ((z64_Flags_SetCollectibleFunc)z64_SetCollectibleFlags_addr)

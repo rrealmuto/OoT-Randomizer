@@ -28,11 +28,11 @@ from SaveContext import SaveContext, Scenes, FlagType
 from SceneFlags import get_alt_list_bytes, get_collectible_flag_table, get_collectible_flag_table_bytes
 from Sounds import move_audiobank_table
 from Spoiler import Spoiler
-from Utils import data_path
+from Utils import data_path, get_version_bytes
 from World import World
 from TextBox import line_wrap
 from texture_util import ci4_rgba16patch_to_ci8, rgba16_patch
-from version import __version__
+from version import __version__, base_version, branch_identifier, supplementary_version
 
 if sys.version_info >= (3, 10):
     from typing import TypeAlias
@@ -252,6 +252,12 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
     if world.settings.free_bombchu_drops:
         rom.write_int32(rom.sym('FREE_BOMBCHU_DROPS'), 1)
+
+    # include version info
+    rom.write_bytes(rom.sym('CFG_RANDO_VERSION_MAJOR'), get_version_bytes(base_version, branch_identifier, supplementary_version))
+
+    # initialize world ID
+    rom.write_byte(rom.sym('PLAYER_ID'), world.id + 1)
 
     # show seed info on file select screen
     def make_bytes(txt: str, size: int) -> list[int]:

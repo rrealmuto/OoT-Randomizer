@@ -1,11 +1,13 @@
+#include <stdbool.h>
+
 #include "get_items.h"
 
-#include "trade_quests.h"
+#include "en_item00.h"
+#include "everdrive.h"
 #include "icetrap.h"
 #include "item_table.h"
-#include "stdbool.h"
+#include "trade_quests.h"
 #include "util.h"
-#include "en_item00.h"
 #include "z64.h"
 
 extern uint8_t SHUFFLE_CHEST_GAME;
@@ -300,6 +302,12 @@ void pop_pending_item() {
 
 void after_key_received(override_key_t key) {
     if (key.type == OVR_DELAYED && key.flag == 0xFF) {
+        extern uint8_t everdrive_protocol_state;
+        uint8_t EVERDRIVE_MESSAGE_ITEM_RECEIVED[16] = { 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+
+        if (everdrive_protocol_state == EVERDRIVE_PROTOCOL_STATE_MW) {
+            everdrive_write(EVERDRIVE_MESSAGE_ITEM_RECEIVED);
+        }
         INCOMING_ITEM = 0;
         INCOMING_PLAYER = 0;
         uint16_t* received_item_counter = (uint16_t*)(z64_file_addr + 0x90);

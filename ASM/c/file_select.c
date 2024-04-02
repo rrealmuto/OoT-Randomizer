@@ -1,5 +1,6 @@
 #include "file_select.h"
 
+#include "everdrive.h"
 #include "file_icons.h"
 #include "file_message.h"
 #include "gfx.h"
@@ -56,6 +57,8 @@ hash_symbol_t hash_symbols[32] = {
 extern uint8_t CFG_FILE_SELECT_HASH[5];
 
 void draw_file_select_hash(uint32_t fade_out_alpha, z64_menudata_t* menu_data) {
+    everdrive_frame();
+
     z64_disp_buf_t* db = &(z64_ctxt.gfx->poly_opa);
 
     // Call setup display list
