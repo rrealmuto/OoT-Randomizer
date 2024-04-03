@@ -271,6 +271,8 @@ extern uint8_t MW_PROGRESSIVE_ITEMS_ENABLE;
 extern uint8_t PLAYER_NAMES[256][8];
 extern mw_progressive_items_state_t MW_PROGRESSIVE_ITEMS_STATE[256];
 
+uint8_t everdrive_in_game = 2;
+char everdrive_file_name[0x08] = { 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF };
 uint8_t everdrive_protocol_state = EVERDRIVE_PROTOCOL_STATE_INIT;
 
 uint8_t EVERDRIVE_MESSAGE_PING[16] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
@@ -303,11 +305,65 @@ void everdrive_handshake() {
     }
 }
 
-void everdrive_frame() {
+void everdrive_update_in_game(bool in_game) {
+    if (in_game) {
+        uint8_t state_packet[16] = {
+            0x02, // State: In Game
+            z64_file.ammo[4], // internal item count, hi
+            z64_file.ammo[5], // internal item count, lo
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, //TODO send relevant parts of save data (which?)
+        };
+        everdrive_write(state_packet);
+        everdrive_in_game = 1;
+    } else {
+        uint8_t state_packet[16] = {
+            0x01, // State: File Select
+            z64_file.file_name[0],
+            z64_file.file_name[1],
+            z64_file.file_name[2],
+            z64_file.file_name[3],
+            z64_file.file_name[4],
+            z64_file.file_name[5],
+            z64_file.file_name[6],
+            z64_file.file_name[7],
+            0, 0, 0, 0, 0, 0, 0,
+        };
+        everdrive_write(state_packet);
+        everdrive_in_game = 0;
+        for (int i = 0; i < 8; i++) {
+            everdrive_file_name[i] = z64_file.file_name[i];
+        }
+    }
+}
+
+void everdrive_frame(bool in_game) {
     if (everdrive_detect()) {
-        if (everdrive_protocol_state == EVERDRIVE_PROTOCOL_STATE_MW && ++frames_since_last_ping >= 5 * 20) {
-            everdrive_write(EVERDRIVE_MESSAGE_PING);
-            frames_since_last_ping = 0;
+        if (everdrive_protocol_state == EVERDRIVE_PROTOCOL_STATE_MW) {
+            if (++frames_since_last_ping >= 5 * 20) {
+                everdrive_write(EVERDRIVE_MESSAGE_PING);
+                frames_since_last_ping = 0;
+            }
+            if (in_game) {
+                if (
+                    everdrive_in_game != 1
+                    && z64_logo_state != 0x802C5880
+                    && z64_logo_state != 0
+                    && z64_file.game_mode == 0
+                ) {
+                    everdrive_update_in_game(in_game);
+                }
+            } else {
+                bool filenames_match = true;
+                for (int i = 0; i < 8; i++) {
+                    if (z64_file.file_name[i] != everdrive_file_name[i]) {
+                        filenames_match = false;
+                        break;
+                    }
+                }
+                if (everdrive_in_game != 0 || !filenames_match) {
+                    everdrive_update_in_game(in_game);
+                }
+            }
         }
         if (everdrive_read(EVERDRIVE_READ_BUF)) {
             switch (everdrive_protocol_state) {
@@ -323,7 +379,15 @@ void everdrive_frame() {
                         } else {
                             MW_SEND_OWN_ITEMS = EVERDRIVE_READ_BUF[3];
                             MW_PROGRESSIVE_ITEMS_ENABLE = EVERDRIVE_READ_BUF[4];
-                            //TODO send state packet
+                            if (!in_game || (
+                                z64_logo_state != 0x802C5880
+                                && z64_logo_state != 0
+                                && z64_file.game_mode == 0
+                            )) {
+                                everdrive_update_in_game(in_game);
+                            } else {
+                                everdrive_in_game = 2; // uninitialized; ensure state packet is sent
+                            }
                             everdrive_protocol_state = EVERDRIVE_PROTOCOL_STATE_MW;
                         }
                     } else if (EVERDRIVE_READ_BUF[0] == 'c') {
@@ -344,9 +408,9 @@ void everdrive_frame() {
                             PLAYER_NAMES[player_id][i] = EVERDRIVE_READ_BUF[2 + i];
                         }
                         MW_PROGRESSIVE_ITEMS_STATE[player_id] = *((mw_progressive_items_state_t*) (&EVERDRIVE_READ_BUF[10]));
-                    } else if (EVERDRIVE_READ_BUF[1] == 0x02) {
+                    } else if (EVERDRIVE_READ_BUF[0] == 0x02) {
                         // get item
-                        uint16_t incoming_item = EVERDRIVE_READ_BUF[2] << 8 | EVERDRIVE_READ_BUF[3];
+                        uint16_t incoming_item = EVERDRIVE_READ_BUF[1] << 8 | EVERDRIVE_READ_BUF[2];
                         override_t override = { 0 };
                         override.key.scene = 0xFF;
                         override.key.type = OVR_DELAYED;

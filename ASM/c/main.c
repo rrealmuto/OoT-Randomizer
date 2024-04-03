@@ -39,7 +39,7 @@ void c_init() {
 }
 
 void before_game_state_update() {
-    everdrive_frame();
+    everdrive_frame(true);
     handle_pending_items();
     handle_dpad();
     update_misc_colors();

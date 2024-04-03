@@ -31,6 +31,7 @@ extern uint16_t OUTGOING_ITEM;
 extern uint16_t OUTGOING_PLAYER;
 extern uint16_t GET_ITEM_SEQ_ID;
 uint16_t drop_collectible_override_flag = 0; // Flag used by hacks in Item_DropCollectible to override the item being dropped. Set it to the flag for the overridden item.
+extern uint8_t everdrive_protocol_state;
 
 override_t active_override = { 0 };
 int active_override_is_outgoing = 0;
@@ -252,6 +253,23 @@ void move_outgoing_queue() {
             outgoing_queue[i] = outgoing_queue[i + 1];
         }
         outgoing_queue[7] = (override_t){ 0 };
+    } else if (everdrive_detect() && everdrive_protocol_state == EVERDRIVE_PROTOCOL_STATE_MW) {
+        uint8_t send_item_packet[16] = {
+            0x03, // Send Item
+            0, 0, 0, 0, // reserved for 64-bit OUTGOING_KEY (https://github.com/OoTRandomizer/OoT-Randomizer/pull/2069)
+            (OUTGOING_KEY.all & 0xFF000000) >> 24,
+            (OUTGOING_KEY.all & 0x00FF0000) >> 16,
+            (OUTGOING_KEY.all & 0x0000FF00) >> 8,
+            OUTGOING_KEY.all & 0x000000FF,
+            (OUTGOING_ITEM & 0xFF00) >> 8,
+            OUTGOING_ITEM & 0x00FF,
+            OUTGOING_PLAYER,
+            0, 0, 0, 0,
+        };
+        everdrive_write(send_item_packet);
+        OUTGOING_ITEM = 0;
+        OUTGOING_PLAYER = 0;
+        OUTGOING_KEY.all = 0;
     }
 }
 
@@ -305,7 +323,7 @@ void after_key_received(override_key_t key) {
         extern uint8_t everdrive_protocol_state;
         uint8_t EVERDRIVE_MESSAGE_ITEM_RECEIVED[16] = { 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
-        if (everdrive_protocol_state == EVERDRIVE_PROTOCOL_STATE_MW) {
+        if (everdrive_detect() && everdrive_protocol_state == EVERDRIVE_PROTOCOL_STATE_MW) {
             everdrive_write(EVERDRIVE_MESSAGE_ITEM_RECEIVED);
         }
         INCOMING_ITEM = 0;
