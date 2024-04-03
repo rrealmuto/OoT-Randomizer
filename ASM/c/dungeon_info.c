@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include "dungeon_info.h"
+#include "everdrive.h"
 #include "gfx.h"
 #include "text.h"
 #include "z64.h"
@@ -65,6 +66,8 @@ extern uint8_t CFG_DUNGEON_INFO_SILVER_RUPEES;
 
 extern extended_savecontext_static_t extended_savectx;
 extern silver_rupee_data_t silver_rupee_vars[0x16][2];
+
+extern uint8_t EVERDRIVE_READ_BUF[16];
 
 void draw_background(z64_disp_buf_t* db, int bg_left, int bg_top, int bg_width, int bg_height) {
     gDPSetCombineMode(db->p++, G_CC_PRIMITIVE, G_CC_PRIMITIVE);
@@ -141,8 +144,8 @@ void draw_silver_rupee_count(z64_game_t* globalCtx, z64_disp_buf_t* db) {
 void draw_dungeon_info(z64_disp_buf_t* db) {
     pad_t pad_held = z64_ctxt.input[0].raw.pad;
     int draw = CAN_DRAW_DUNGEON_INFO && !CAN_DRAW_TRADE_DPAD && (
-        ((pad_held.dl || pad_held.dr || pad_held.dd) && CFG_DPAD_DUNGEON_INFO_ENABLE) ||
-        ((pad_held.dl || pad_held.dr || pad_held.dd) && !CFG_DPAD_DUNGEON_INFO_ENABLE && pad_held.a) ||
+        ((pad_held.dl || pad_held.dr || pad_held.dd || pad_held.du) && CFG_DPAD_DUNGEON_INFO_ENABLE) ||
+        ((pad_held.dl || pad_held.dr || pad_held.dd || pad_held.du) && !CFG_DPAD_DUNGEON_INFO_ENABLE && pad_held.a) ||
         pad_held.a);
     if (!draw) {
         return;
@@ -153,7 +156,7 @@ void draw_dungeon_info(z64_disp_buf_t* db) {
     // Call setup display list
     gSPDisplayList(db->p++, &setup_db);
 
-    if (pad_held.a && !((pad_held.dl || pad_held.dr || pad_held.dd) && !CFG_DPAD_DUNGEON_INFO_ENABLE)) {
+    if (pad_held.a && !((pad_held.dl || pad_held.dr || pad_held.dd || pad_held.du) && !CFG_DPAD_DUNGEON_INFO_ENABLE)) {
         uint16_t altar_flags = z64_file.inf_table[27];
         int show_medals = CFG_DUNGEON_INFO_REWARD_ENABLE && (!CFG_DUNGEON_INFO_REWARD_NEED_ALTAR || (altar_flags & 1)) && CFG_DUNGEON_INFO_REWARD_SUMMARY_ENABLE;
         int show_stones = CFG_DUNGEON_INFO_REWARD_ENABLE && (!CFG_DUNGEON_INFO_REWARD_NEED_ALTAR || (altar_flags & 2)) && CFG_DUNGEON_INFO_REWARD_SUMMARY_ENABLE;
@@ -472,6 +475,91 @@ void draw_dungeon_info(z64_disp_buf_t* db) {
 
         // Finish
 
+    } else if (pad_held.du) {
+        extern uint8_t everdrive_detection_state;
+        extern uint8_t everdrive_protocol_state;
+
+        int icon_size = 16;
+        int padding = 1;
+        int rows = 4;
+        int bg_width =
+            (23 * font_sprite.tile_w) +
+            (2 * padding);
+
+        int bg_height = (rows * icon_size) + ((rows + 1) * padding);
+        int bg_left = (Z64_SCREEN_WIDTH - bg_width) / 2;
+        int bg_top = (Z64_SCREEN_HEIGHT - bg_height) / 2;
+
+        int left = bg_left + padding;
+        int top = bg_top + padding;
+
+        draw_background(db, bg_left, bg_top, bg_width, bg_height);
+        gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF);
+
+        if (everdrive_detection_state == ED64_DETECTION_PRESENT) {
+            char top_text[16] = "EverDrive found";
+            text_print(top_text, left, top);
+            top += icon_size + padding;
+            switch (everdrive_protocol_state) {
+                case EVERDRIVE_PROTOCOL_STATE_INIT: {
+                    char state_text[12] = "state: init";
+                    text_print(state_text, left, top);
+                    break;
+                }
+                case EVERDRIVE_PROTOCOL_STATE_HANDSHAKE: {
+                    char state_text[17] = "state: handshake";
+                    text_print(state_text, left, top);
+                    break;
+                }
+                case EVERDRIVE_PROTOCOL_STATE_MW: {
+                    char state_text[18] = "state: multiworld";
+                    text_print(state_text, left, top);
+                    break;
+                }
+                default: {
+                    char state_text[11] = "state: ???";
+                    text_print(state_text, left, top);
+                    break;
+                }
+            }
+            top += icon_size + padding;
+            char buf_line_1[24] = "OO OO OO OO OO OO OO OO";
+            for (int i = 0; i < 8; i++) {
+                uint8_t hi = EVERDRIVE_READ_BUF[i] >> 4;
+                if (hi > 9) {
+                    buf_line_1[3 * i] = 'A' + (hi - 0xA);
+                } else if (hi) {
+                    buf_line_1[3 * i] = '0' + hi;
+                }
+                uint8_t lo = EVERDRIVE_READ_BUF[i] & 0x0F;
+                if (lo > 9) {
+                    buf_line_1[3 * i + 1] = 'A' + (lo - 0xA);
+                } else if (lo) {
+                    buf_line_1[3 * i + 1] = '0' + lo;
+                }
+            }
+            text_print(buf_line_1, left, top);
+            top += icon_size + padding;
+            char buf_line_2[24] = "OO OO OO OO OO OO OO OO";
+            for (int i = 8; i < 16; i++) {
+                uint8_t hi = EVERDRIVE_READ_BUF[i] >> 4;
+                if (hi > 9) {
+                    buf_line_2[3 * i] = 'A' + (hi - 0xA);
+                } else if (hi) {
+                    buf_line_2[3 * i] = '0' + hi;
+                }
+                uint8_t lo = EVERDRIVE_READ_BUF[i] & 0x0F;
+                if (lo > 9) {
+                    buf_line_2[3 * i + 1] = 'A' + (lo - 0xA);
+                } else if (lo) {
+                    buf_line_2[3 * i + 1] = '0' + lo;
+                }
+            }
+            text_print(buf_line_2, left, top);
+        } else {
+            char bottom_text[20] = "EverDrive not found";
+            text_print(bottom_text, left, top);
+        }
     } else if (pad_held.dd) {
         uint16_t altar_flags = z64_file.inf_table[27];
         int show_medals = CFG_DUNGEON_INFO_REWARD_ENABLE && (!CFG_DUNGEON_INFO_REWARD_NEED_ALTAR || (altar_flags & 1));

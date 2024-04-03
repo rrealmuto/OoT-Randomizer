@@ -65,6 +65,7 @@ Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Ra
   * Fairy pots are now included in “Shuffle Pots.” Major items from pots, crates, etc now display above Link's head while the text box is open. Gameplay is no longer interrupted if you receive a junk item from another player in multiworld. (parts of [#2069](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2069))
   * Plandos can specify different settings for each world ([#2055](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2055))
   * The text box no longer shows the player's own gold skulltula token count when finding a token for another player (part of [#2055](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2055))
+  * Support for multiworld on EverDrive ([#2042](https://github.com/OoTRandomizer/OoT-Randomizer/issues/2042))
   * Some settings have been renamed for clarity ([#1560](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1560))
   * The conditions for forcing one-way entrances that lead to the Bolero, Nocturne, and Requiem warp pads have been adjusted to increase variety with some settings, such as “Guarantee Reachable Locations” set to “All Goals”, “Shuffle Dungeon Rewards”, or “Mix Entrance Pools” (based on [#1440](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1440))
   * Gold skulltula tokens can be on excluded locations if there are no checks requiring them (such as in SAWS)

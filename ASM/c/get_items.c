@@ -1,11 +1,13 @@
+#include <stdbool.h>
+
 #include "get_items.h"
 
-#include "trade_quests.h"
+#include "en_item00.h"
+#include "everdrive.h"
 #include "icetrap.h"
 #include "item_table.h"
-#include "stdbool.h"
+#include "trade_quests.h"
 #include "util.h"
-#include "en_item00.h"
 #include "z64.h"
 #include "scene.h"
 #include "actor.h"
@@ -35,6 +37,7 @@ extern uint16_t OUTGOING_PLAYER;
 extern uint16_t GET_ITEM_SEQ_ID;
 xflag_t drop_collectible_override_flag; // Flag used by hacks in Item_DropCollectible to override the item being dropped. Set it to the flag for the overridden item.
 xflag_t* spawn_actor_with_flag = NULL;
+extern uint8_t everdrive_protocol_state;
 
 override_t active_override = { 0 };
 int active_override_is_outgoing = 0;
@@ -297,6 +300,26 @@ void move_outgoing_queue() {
             outgoing_queue[i] = outgoing_queue[i + 1];
         }
         outgoing_queue[7] = (override_t){ 0 };
+    } else if (everdrive_detect() && everdrive_protocol_state == EVERDRIVE_PROTOCOL_STATE_MW) {
+        uint8_t send_item_packet[16] = {
+            0x03, // Send Item
+            (OUTGOING_KEY.all & 0xFF00000000000000) >> 56,
+            (OUTGOING_KEY.all & 0x00FF000000000000) >> 48,
+            (OUTGOING_KEY.all & 0x0000FF0000000000) >> 40,
+            (OUTGOING_KEY.all & 0x000000FF00000000) >> 32,
+            (OUTGOING_KEY.all & 0x00000000FF000000) >> 24,
+            (OUTGOING_KEY.all & 0x0000000000FF0000) >> 16,
+            (OUTGOING_KEY.all & 0x000000000000FF00) >> 8,
+            OUTGOING_KEY.all & 0x00000000000000FF,
+            (OUTGOING_ITEM & 0xFF00) >> 8,
+            OUTGOING_ITEM & 0x00FF,
+            OUTGOING_PLAYER,
+            0, 0, 0, 0,
+        };
+        everdrive_write(send_item_packet);
+        OUTGOING_ITEM = 0;
+        OUTGOING_PLAYER = 0;
+        OUTGOING_KEY.all = 0;
     }
 }
 
@@ -344,6 +367,12 @@ void pop_pending_item() {
 
 void after_key_received(override_key_t key) {
     if (key.type == OVR_DELAYED && key.flag == 0xFF) {
+        extern uint8_t everdrive_protocol_state;
+        uint8_t EVERDRIVE_MESSAGE_ITEM_RECEIVED[16] = { 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+
+        if (everdrive_detect() && everdrive_protocol_state == EVERDRIVE_PROTOCOL_STATE_MW) {
+            everdrive_write(EVERDRIVE_MESSAGE_ITEM_RECEIVED);
+        }
         INCOMING_ITEM = 0;
         INCOMING_PLAYER = 0;
         uint16_t* received_item_counter = (uint16_t*)(z64_file_addr + 0x90);

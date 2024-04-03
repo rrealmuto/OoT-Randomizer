@@ -236,6 +236,20 @@ SOA_UNLOCKS_CHEST_TEXTURE:
 .byte 0x00
 SOA_UNLOCKS_POTCRATE_TEXTURE:
 .byte 0x00
+.align 16
+.area 16, 0
+EVERDRIVE_READ_BUF:
+.endarea
+CFG_RANDO_VERSION_MAJOR:
+.byte 0
+CFG_RANDO_VERSION_MINOR:
+.byte 0
+CFG_RANDO_VERSION_PATCH:
+.byte 0
+CFG_RANDO_VERSION_BRANCH:
+.byte 0
+CFG_RANDO_VERSION_SUPPLEMENTARY:
+.byte 0
 .align 4
 
 ; These configuration values are given fixed addresses to aid auto-trackers.
