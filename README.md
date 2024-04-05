@@ -52,6 +52,12 @@ Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Ra
   * “Triforce Blitz S2” is the hint distribution used for the [Triforce Blitz Season 2 Tournament](https://midos.house/event/tfb/2), taken from [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev). Note that the tournament itself was played on that branch, not this one.
 * New settings presets:
   * “Fenhl's Casual” is my preferred flavor of playing OoTR, with everything shuffled, full entrance randomizer, chaos hints, warp song note shuffle, half damage, no Master Quest, and no tricks enabled. The rainbow bridge requires all dungeon rewards and Ganon's boss key requires all 100 gold skulltula tokens.
+  * “Fenhl's Casual (TOoTR compat)” is Fenhl's Casual but with the following changes for compatibility with [TOoTR](https://mracsys.github.io/tootr/):
+    * Thieves' Hideout savewarp goes to overworld spawn instead of 1-torch jail ([TOoTR#48](https://github.com/mracsys/tootr/issues/48))
+    * Gerudo Fortress heart piece is removed instead of shuffled
+    * Ganon's tower is unshuffled
+    * Blue warps go to the dungeon entrance instead of anywhere
+    * Other one-way entrances are balanced instead of full
   * “Vanilla” generates a seed that's as close to the vanilla game as possible with current randomizer features. Unlike the vanilla seed available on <https://ootrandomizer.com/>, this preset uses glitchless logic to produce a useful spoiler log playthrough.
   * “Fast Vanilla” is “Vanilla” but with speed-ups like fast bunny hood, fast chest cutscenes, or “Skip Some Minigame Phases” enabled.
   * “Vanilla (Master Quest)” and “Fast Vanilla (Master Quest)” are “Vanilla” and “Fast Vanilla” but with all dungeons from Master Quest.

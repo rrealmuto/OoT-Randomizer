@@ -635,6 +635,9 @@ class SettingInfos:
             and no tricks enabled. The rainbow bridge requires all dungeon rewards and Ganon's boss key
             requires all 100 gold skulltula tokens.
 
+            <b>Fenhl's Casual (TOoTR compat)</b> is Fenhl's Casual but with settings not available on
+            <a href="https://mracsys.github.io/tootr/">TOoTR</a> disabled.
+
             <b>Vanilla</b> generates a seed that's as close to the vanilla game as possible with current
             randomizer features. Unlike the vanilla seed available on ootrandomizer.com, this preset
             uses glitchless logic to produce a useful spoiler log playthrough.

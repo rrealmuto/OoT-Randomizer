@@ -75,15 +75,22 @@ def complete_presets(new_presets, interactive, *, preset=None, source=None):
                     else:
                         raise ValueError(f'Missing setting {setting_name!r} in preset {preset_name!r}')
 
+def get_preset(presets, name):
+    if name in presets:
+        return presets[name]
+    elif any(name in preset.get('aliases', []) for preset in presets.values()):
+        return next(preset for preset in presets.values() if name in preset.get('aliases', []))
+    else:
+        return None
+
 if __name__ == '__main__':
     arguments = docopt.docopt(__doc__)
     new_presets = {}
     if arguments['list-non-default']:
         with open('data/presets_default.json', encoding='utf-8') as f:
             presets = json.load(f)
-        if arguments['<preset>'] in presets:
-            preset = presets[arguments['<preset>']]
-        else:
+        preset = get_preset(presets, arguments['<preset>'])
+        if preset is None:
             preset = json.loads(subprocess.run([sys.executable, 'OoTRandomizer.py', '--convert_settings', '--settings_string', arguments['<preset>']], stdout=subprocess.PIPE, encoding='utf-8', check=True).stdout)
         non_default = {name: value for name, value in preset.items() if value != SETTINGS_DICT[name].default}
         print(json.dumps(non_default, indent=4))
@@ -92,12 +99,12 @@ if __name__ == '__main__':
             left = {setting_name: setting.default for setting_name, setting in SETTINGS_DICT.items() if setting.shared or setting_name == 'aliases'}
         else:
             with open('data/presets_default.json', encoding='utf-8') as f:
-                left = json.load(f)[arguments['<left>']]
+                left = get_preset(json.load(f), arguments['<left>'])
         if arguments['<right>'] == 'default':
             right = {setting_name: setting.default for setting_name, setting in SETTINGS_DICT.items() if setting.shared or setting_name == 'aliases'}
         else:
             with open('data/presets_default.json', encoding='utf-8') as f:
-                right = json.load(f)[arguments['<right>']]
+                right = get_preset(json.load(f), arguments['<right>'])
         with open('left.json', 'w', encoding='utf-8') as left_f:
             json.dump(left, left_f, indent=4)
         with open('right.json', 'w', encoding='utf-8') as right_f:
