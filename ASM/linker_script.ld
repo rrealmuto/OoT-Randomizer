@@ -38,3 +38,4 @@ Matrix_Scale = 0x800aa8fc;
 Matrix_Translate = 0x800aa7f4;
 Matrix_Push = 0x800aa6ec;
 Matrix_Pop = 0x800aa724;
+Player_OverrideLimbDrawGameplayDefault = 0x8007AA94;
