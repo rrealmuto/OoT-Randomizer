@@ -3239,6 +3239,16 @@ class SettingInfos:
         shared         = True,
     )
 
+    dampe_all_night = Checkbutton(
+        gui_text      = 'Dampe All Night',
+        gui_tooltip   = '''\
+            As child, normally Dampe will only spawn at certain hours
+            of the night for the Grave Digging Tour.
+            Enabling this forces him to spawn at any
+            time of the night.
+        '''
+    )
+
     complete_mask_quest = Checkbutton(
         gui_text       = 'Complete Mask Quest',
         gui_tooltip    = '''\
