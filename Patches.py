@@ -2524,6 +2524,13 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     # available number of skulls in the world instead of 100.
     rom.write_int16(0xBB340E, world.available_tokens)
 
+    # Dampe all night
+    # Just nop the time of day checks in EnTk_Init
+    # He doesn't spawn during the day because he's not in the actor or object list
+    # Fix that eventually with the new object system :)
+    if world.settings.dampe_all_night:
+        rom.write_bytes(0xCC3B70, [0x00] * 4 * 4 )
+
     patch_songs(world, rom)
 
     if world.settings.shuffle_individual_ocarina_notes:
