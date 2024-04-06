@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v96](#v96)
   * [v95](#v95)
   * [v94](#v94)
   * [v93](#v93)
@@ -121,6 +122,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v96
+  * Add dampe all night setting
+
 ### v95
   * Fix masks rendering when in first person view
 
