@@ -1269,7 +1269,7 @@ def entrance_unreachable_as(entrance: Entrance, age: str, already_checked: Optio
     if entrance.type in ('WarpSong', 'BlueWarp', 'OverworldOneWay', 'Overworld'):
         # Note that we consider all overworld entrances as potentially accessible as both ages, to be completely safe
         return False
-    elif entrance.type in ('OwlDrop', 'Child Spawn'):
+    elif entrance.type in ('OwlDrop', 'ChildSpawn'):
         return age == 'adult'
     elif entrance.type == 'AdultSpawn':
         return age == 'child'
