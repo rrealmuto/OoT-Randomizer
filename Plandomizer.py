@@ -2,6 +2,7 @@ from __future__ import annotations
 import itertools
 import json
 import math
+import re
 import random
 from collections import defaultdict
 from collections.abc import Callable, Iterable, Sequence
