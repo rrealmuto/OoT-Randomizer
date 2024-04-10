@@ -29,7 +29,7 @@ from SettingsList import logic_tricks
 from Spoiler import Spoiler
 from Utils import default_output_path, is_bundled, run_process, data_path
 from World import World
-from version import __version__
+from rs.version import __version__
 
 
 def main(base_settings: Settings, max_attempts: int = 10) -> Spoiler:

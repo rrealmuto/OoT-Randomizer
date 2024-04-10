@@ -11,7 +11,7 @@ from collections.abc import Sequence
 from typing import AnyStr, Optional, Any
 from urllib.error import URLError, HTTPError
 
-from version import __version__, base_version, supplementary_version, branch_url
+from rs.version import __version__, base_version, supplementary_version, branch_url
 
 
 def is_bundled() -> bool:

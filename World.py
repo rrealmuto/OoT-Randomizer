@@ -12,7 +12,8 @@ from Dungeon import Dungeon
 from Entrance import Entrance
 from Goals import Goal, GoalCategory
 from HintList import get_required_hints, misc_item_hint_table, misc_location_hint_table
-from Hints import HintArea, hint_dist_keys, hint_dist_files
+from Hints import hint_dist_keys, hint_dist_files
+from rs.hints import HintArea
 from Item import Item, ItemFactory, ItemInfo, make_event_item
 from ItemPool import reward_list, triforce_pieces
 from Location import Location, LocationFactory
@@ -1239,7 +1240,7 @@ class World:
         return [entrance for entrance in self.get_entrances() if (type is None or entrance.type == type) and (not only_primary or entrance.primary)]
 
     def get_shufflable_entrances_reverse(self, type=None) -> list[Entrance]:
-        return [entrance for entrance in self.get_entrances() if (type == None or entrance.type == type) and not entrance.primary]
+        return [entrance for entrance in self.get_entrances() if (type is None or entrance.type == type) and not entrance.primary]
 
     def get_shuffled_entrances(self, type=None, only_primary=False) -> list[Entrance]:
         return [entrance for entrance in self.get_shufflable_entrances(type=type, only_primary=only_primary) if entrance.shuffled]

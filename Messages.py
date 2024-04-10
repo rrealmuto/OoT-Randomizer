@@ -6,6 +6,7 @@ from collections.abc import Callable, Iterable
 from typing import TYPE_CHECKING, Optional, Any
 
 from HintList import misc_item_hint_table, misc_location_hint_table
+from rs.hints import HintArea
 from TextBox import line_wrap
 from Utils import find_last
 
@@ -1390,8 +1391,6 @@ def shuffle_messages(messages: list[Message], except_hints: bool = True) -> list
 
 # Update warp song text boxes for ER
 def update_warp_song_text(messages: list[Message], world: World) -> None:
-    from Hints import HintArea
-
     msg_list = {
         0x088D: 'Minuet of Forest Warp -> Sacred Forest Meadow',
         0x088E: 'Bolero of Fire Warp -> DMC Central Local',

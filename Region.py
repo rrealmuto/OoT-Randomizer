@@ -2,12 +2,12 @@ from __future__ import annotations
 from enum import Enum, unique
 from typing import TYPE_CHECKING, Optional, Any
 
+from rs.hints import HintArea
 from ItemList import REWARD_COLORS
 
 if TYPE_CHECKING:
     from Dungeon import Dungeon
     from Entrance import Entrance
-    from Hints import HintArea
     from Item import Item
     from Location import Location
     from World import World
@@ -77,22 +77,17 @@ class Region:
 
     @property
     def hint(self) -> Optional[HintArea]:
-        from Hints import HintArea
-
         if self.hint_name is not None:
-            return HintArea[self.hint_name]
+            return HintArea.from_str(self.hint_name)
         if self.dungeon:
             return self.dungeon.hint
 
     @property
     def alt_hint(self) -> Optional[HintArea]:
-        from Hints import HintArea
-
         if self.alt_hint_name is not None:
             return HintArea[self.alt_hint_name]
 
     def can_fill(self, item: Item, manual: bool = False) -> bool:
-        from Hints import HintArea
         from ItemPool import closed_forest_restricted_items, triforce_blitz_items
 
         if not manual and self.world.settings.empty_dungeons_mode != 'none' and item.dungeonitem:

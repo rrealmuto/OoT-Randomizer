@@ -5,6 +5,7 @@ from collections import OrderedDict
 from itertools import chain
 from typing import TYPE_CHECKING, Any
 
+from rs.entrance_shuffle import EntranceKind
 from Item import Item
 from LocationList import location_sort_order
 from Search import Search, RewindableSearch
@@ -94,23 +95,23 @@ class Spoiler:
             self.locations[world.id] = OrderedDict([(str(location), location.item) for location in spoiler_locations if location.item is not None])
 
         entrance_sort_order = {
-            "ChildSpawn": 0,
-            "AdultSpawn": 1,
-            "WarpSong": 2,
-            "OwlDrop": 3,
-            "BlueWarp": 4,
-            "OverworldOneWay": 5,
-            "Overworld": 6,
-            "Dungeon": 7,
-            "DungeonSpecial": 8,
-            "ChildBoss": 9,
-            "AdultBoss": 10,
-            "SpecialBoss": 11,
-            "Hideout": 12,
-            "SpecialInterior": 13,
-            "Interior": 13,
-            "Grotto": 14,
-            "Grave": 14,
+            EntranceKind.ChildSpawn: 0,
+            EntranceKind.AdultSpawn: 1,
+            EntranceKind.WarpSong: 2,
+            EntranceKind.OwlDrop: 3,
+            EntranceKind.BlueWarp: 4,
+            EntranceKind.OverworldOneWay: 5,
+            EntranceKind.Overworld: 6,
+            EntranceKind.Dungeon: 7,
+            EntranceKind.DungeonSpecial: 8,
+            EntranceKind.ChildBoss: 9,
+            EntranceKind.AdultBoss: 10,
+            EntranceKind.SpecialBoss: 11,
+            EntranceKind.Hideout: 12,
+            EntranceKind.SpecialInterior: 13,
+            EntranceKind.Interior: 13,
+            EntranceKind.Grotto: 14,
+            EntranceKind.Grave: 14,
         }
         for (sphere_nr, sphere) in self.entrance_playthrough.items():
             sorted_sphere = [entrance for entrance in sphere]
@@ -121,7 +122,7 @@ class Spoiler:
 
         self.entrances = {}
         for world in self.worlds:
-            spoiler_entrances = [entrance for entrance in world.get_shuffled_entrances() if entrance.primary or entrance.type == 'Overworld' or entrance.decoupled]
+            spoiler_entrances = [entrance for entrance in world.get_shuffled_entrances() if entrance.primary or entrance.type == EntranceKind.Overworld or entrance.decoupled]
             spoiler_entrances.sort(key=lambda entrance: entrance.name)
             spoiler_entrances.sort(key=lambda entrance: entrance_sort_order.get(entrance.type, -1))
             self.entrances[world.id] = spoiler_entrances

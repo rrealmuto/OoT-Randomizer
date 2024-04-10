@@ -14,7 +14,8 @@ from typing import Literal, Optional, Any, overload
 
 from EntranceShuffle import EntranceShuffleError
 from Fill import ShuffleError
-from Hints import HintArea, build_misc_item_hints
+from Hints import build_misc_item_hints
+from rs.hints import HintArea
 from Item import ItemInfo
 from ItemPool import remove_junk_items, remove_junk_ludicrous_items, ludicrous_items_base, ludicrous_items_extended, trade_items, ludicrous_exclusions, triforce_blitz_items
 from LocationList import location_is_viewable

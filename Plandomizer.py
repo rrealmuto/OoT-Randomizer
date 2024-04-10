@@ -2,7 +2,6 @@ from __future__ import annotations
 import itertools
 import json
 import math
-import re
 import random
 from collections import defaultdict
 from collections.abc import Callable, Iterable, Sequence
@@ -12,8 +11,10 @@ from typing import TYPE_CHECKING, Any, Optional
 import StartingItems
 from Entrance import Entrance
 from EntranceShuffle import EntranceShuffleError, change_connections, confirm_replacement, validate_world, check_entrances_compatibility
+from rs.entrance_shuffle import EntranceKind
 from Fill import FillError
-from Hints import HintArea, gossipLocations, GossipText
+from Hints import gossipLocations, GossipText
+from rs.hints import HintArea
 from Item import ItemFactory, ItemInfo, ItemIterator, is_item, Item
 from ItemPool import item_groups, get_junk_item, song_list, trade_items, child_trade_items, eggs, triforce_blitz_items, triforce_pieces
 from JSONDump import dump_obj, CollapseList, CollapseDict, AlignedDict, SortedDict
@@ -22,7 +23,7 @@ from LocationList import location_groups, location_table
 from Search import Search
 from SettingsList import build_close_match, validate_settings
 from Spoiler import Spoiler, HASH_ICONS
-from version import __version__
+from rs.version import __version__
 
 if TYPE_CHECKING:
     from SaveContext import SaveContext
@@ -203,7 +204,7 @@ class EntranceRecord(Record):
 
     @staticmethod
     def from_entrance(entrance: Entrance) -> EntranceRecord:
-        if entrance.replaces.primary and entrance.replaces.type in ('Interior', 'SpecialInterior', 'Grotto', 'Grave'):
+        if entrance.replaces.primary and entrance.replaces.type in (EntranceKind.Interior, EntranceKind.SpecialInterior, EntranceKind.Grotto, EntranceKind.Grave):
             origin_name = None
         else:
             origin_name = entrance.replaces.parent_region.name
@@ -684,7 +685,7 @@ class WorldDistribution:
 
                 entrance_found = True
                 if matched_entrance.connected_region is not None:
-                    if matched_entrance.type == 'Overworld':
+                    if matched_entrance.type == EntranceKind.Overworld:
                         continue
                     else:
                         raise RuntimeError('Entrance already shuffled in world %d: %s' % (self.id + 1, name))

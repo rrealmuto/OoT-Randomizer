@@ -3,7 +3,7 @@ from collections.abc import Iterator
 from typing import TYPE_CHECKING, Optional, Any
 
 if TYPE_CHECKING:
-    from Hints import HintArea
+    from rs.hints import HintArea
     from Item import Item
     from Region import Region
     from World import World

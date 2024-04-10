@@ -10,9 +10,11 @@ from collections.abc import Callable, Iterable
 from typing import Optional, Any
 
 from Entrance import Entrance
+from rs.entrance_shuffle import EntranceKind
 from HintList import get_hint
-from Hints import GossipText, HintArea, write_gossip_stone_hints, build_altar_hints, \
+from Hints import GossipText, write_gossip_stone_hints, build_altar_hints, \
         build_ganon_text, build_misc_item_hints, build_misc_location_hints, get_simple_hint_no_prefix, get_item_generic_name
+from rs.hints import HintArea
 from Item import Item
 from ItemList import REWARD_COLORS
 from ItemPool import song_list, trade_items, child_trade_items
@@ -34,7 +36,7 @@ from Utils import data_path, get_version_bytes
 from World import World
 from ntype import BigStream
 from texture_util import ci4_rgba16patch_to_ci8, rgba16_patch
-from version import __version__, base_version, branch_identifier, supplementary_version
+from rs.version import __version__, base_version, branch_identifier, supplementary_version
 
 if sys.version_info >= (3, 10):
     from typing import TypeAlias
@@ -1204,7 +1206,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
             for address in new_entrance.get('addresses', []):
                 rom.write_int16(address, replaced_entrance.get('child_index', replaced_entrance['index']))
 
-            if entrance.type == 'BlueWarp' and replaced_entrance['index'] < 0x1000:
+            if entrance.type == EntranceKind.BlueWarp and replaced_entrance['index'] < 0x1000:
                 # Blue warps have multiple hardcodes leading to them. The good news is
                 # the blue warps (excluding deku sprout and lake fill special cases) each
                 # have a nice consistent 4-entry in the table we can just shuffle. So just
@@ -1321,7 +1323,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         or world.settings.blue_warps in ('balanced', 'full')
         or world.full_one_ways
     )
-    set_entrance_updates(entrance for entrance in world.get_shufflable_entrances() if entrance.shuffled or (patch_blue_warps and entrance.type == 'BlueWarp'))
+    set_entrance_updates(entrance for entrance in world.get_shufflable_entrances() if entrance.shuffled or (patch_blue_warps and entrance.type == EntranceKind.BlueWarp))
 
     for k, v in exit_updates:
         if k in exit_table:
@@ -2322,7 +2324,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     # This changes the behavior of deathwarps after exiting grottos, so only apply it if required.
     if world.settings.shuffle_grotto_entrances or world.full_one_ways:
         # Build the Grotto Load Table based on grotto entrance data
-        for entrance in world.get_shufflable_entrances(type='Grotto'):
+        for entrance in world.get_shufflable_entrances(type=EntranceKind.Grotto):
             if entrance.primary:
                 load_table_pointer = rom.sym('GROTTO_LOAD_TABLE') + 4 * entrance.data['grotto_id']
                 rom.write_int16(load_table_pointer, entrance.data['entrance'])
@@ -3098,7 +3100,7 @@ def set_grotto_shuffle_data(rom: Rom, world: World) -> None:
 
     # Build the override table based on shuffled grotto entrances
     grotto_entrances_override = {}
-    for entrance in world.get_shufflable_entrances(type='Grotto'):
+    for entrance in world.get_shufflable_entrances(type=EntranceKind.Grotto):
         if entrance.primary:
             grotto_actor_id = (entrance.data['scene'] << 8) + entrance.data['content']
             grotto_entrances_override[grotto_actor_id] = (entrance.replaces or entrance).data['index']

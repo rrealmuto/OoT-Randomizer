@@ -42,3 +42,11 @@ tests/Output
 /ASM/build/bundle_d.txt
 
 **/.DS_Store
+
+# Added by cargo
+
+/target
+
+# Rust build scaffolding
+
+/rs.pyd

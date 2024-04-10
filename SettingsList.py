@@ -18,7 +18,7 @@ from SettingTypes import SettingInfo, SettingInfoStr, SettingInfoList, SettingIn
 import Sounds
 import StartingItems
 from Utils import data_path
-from version import __version__
+from rs.version import __version__
 
 if TYPE_CHECKING:
     from Entrance import Entrance

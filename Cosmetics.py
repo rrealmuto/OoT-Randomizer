@@ -14,7 +14,7 @@ import Sounds
 from JSONDump import dump_obj, CollapseList, CollapseDict, AlignedDict
 from Plandomizer import InvalidFileException
 from Utils import data_path
-from version import __version__
+from rs.version import __version__
 
 if TYPE_CHECKING:
     from Rom import Rom

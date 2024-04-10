@@ -17,7 +17,6 @@ def start() -> None:
     settings, gui, args_loglevel, no_log_file, diff_rom = get_settings_from_command_line_args()
 
     # set up logger
-    loglevel = {'error': logging.ERROR, 'info': logging.INFO, 'warning': logging.WARNING, 'debug': logging.DEBUG}[args_loglevel]
     logging.basicConfig(format='%(message)s', level=loglevel)
 
     logger = logging.getLogger('')
@@ -39,10 +38,7 @@ def start() -> None:
             logger.warning(str(e))
 
     try:
-        if gui:
-            from Gui import gui_main
-            gui_main()
-        elif diff_rom:
+        if diff_rom:
             diff_roms(settings, diff_rom)
         elif settings.cosmetics_only:
             cosmetic_patch(settings)
@@ -58,7 +54,3 @@ def start() -> None:
     except Exception as ex:
         logger.exception(ex)
         sys.exit(1)
-
-
-if __name__ == '__main__':
-    start()

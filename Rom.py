@@ -11,7 +11,7 @@ from Models import restrictiveBytes
 from Utils import is_bundled, subprocess_args, local_path, data_path, get_version_bytes
 from crc import calculate_crc
 from ntype import BigStream
-from version import base_version, branch_identifier, supplementary_version
+from rs.version import base_version, branch_identifier, supplementary_version
 
 DMADATA_START: int = 0x7430  # NTSC 1.0/1.1: 0x7430, NTSC 1.2: 0x7960, Debug: 0x012F70
 

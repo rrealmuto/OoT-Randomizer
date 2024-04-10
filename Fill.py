@@ -3,7 +3,7 @@ import random
 import logging
 from typing import TYPE_CHECKING, Optional
 
-from Hints import HintArea
+from rs.hints import HintArea
 from Item import Item, ItemFactory, ItemInfo
 from ItemPool import remove_junk_items
 from Location import Location, DisableType

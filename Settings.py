@@ -14,7 +14,7 @@ from collections.abc import Iterable
 from typing import Any, Optional
 
 import StartingItems
-from version import __version__
+from rs.version import __version__
 from Utils import local_path, data_path
 from SettingsList import SettingInfos, validate_settings
 from Plandomizer import Distribution
