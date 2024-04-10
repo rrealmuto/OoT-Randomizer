@@ -15,7 +15,7 @@ use {
 
 #[pyclass]
 #[derive(Clone, Copy, PartialEq, Eq, Hash)]
-enum EntranceKind {
+pub(crate) enum EntranceKind {
     Dungeon,
     DungeonSpecial,
     ChildBoss,
@@ -38,14 +38,6 @@ enum EntranceKind {
 
 #[pymethods]
 impl EntranceKind {
-    fn __richcmp__(&self, py: Python<'_>, rhs: Option<EntranceKind>, op: CompareOp) -> Py<PyAny> {
-        match op {
-            CompareOp::Eq => PyBool::new(py, rhs.map_or(false, |rhs| *self == rhs)).into(),
-            CompareOp::Ne => PyBool::new(py, rhs.map_or(true, |rhs| *self != rhs)).into(),
-            _ => py.NotImplemented(),
-        }
-    }
-
     fn __hash__(&self) -> isize {
         let mut hasher = DefaultHasher::new();
         self.hash(&mut hasher);

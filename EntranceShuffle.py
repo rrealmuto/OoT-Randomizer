@@ -11,8 +11,10 @@ from Fill import ShuffleError
 from Search import Search
 from Region import Region, TimeOfDay
 from Rules import set_entrances_based_rules
-from Search import Search
 from State import State
+from Item import ItemFactory
+from rs.hints import HintArea, HintAreaNotFound
+from HintList import misc_item_hint_table
 
 if TYPE_CHECKING:
     from Entrance import Entrance
@@ -607,7 +609,7 @@ def shuffle_random_entrances(worlds: list[World]) -> None:
         one_way_target_entrance_pools = {}
         for pool_type, entrance_pool in one_way_entrance_pools.items():
             # One way entrances are extra entrances that will be connected to entrance positions from a selection of entrance pools
-            if pool_type == 'OverworldOneWay':
+            if pool_type == EntranceKind.OverworldOneWay:
                 valid_target_types = (EntranceKind.WarpSong, EntranceKind.BlueWarp, EntranceKind.OwlDrop, EntranceKind.OverworldOneWay, EntranceKind.Overworld, EntranceKind.Extra)
                 valid_target_types_reverse = (EntranceKind.Overworld, EntranceKind.Interior, EntranceKind.SpecialInterior)
                 exclude = []
@@ -620,7 +622,7 @@ def shuffle_random_entrances(worlds: list[World]) -> None:
                 else:
                     exclude.append('Prelude of Light Warp -> Temple of Time')
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse, exclude=exclude)
-            elif pool_type == 'OwlDrop':
+            elif pool_type == EntranceKind.OwlDrop:
                 valid_target_types = (EntranceKind.WarpSong, EntranceKind.BlueWarp, EntranceKind.OwlDrop, EntranceKind.OverworldOneWay, EntranceKind.Overworld, EntranceKind.Extra)
                 valid_target_types_reverse = (EntranceKind.Overworld,)
                 exclude = ['OGC Great Fairy Fountain -> Castle Grounds']
@@ -635,7 +637,7 @@ def shuffle_random_entrances(worlds: list[World]) -> None:
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse, exclude=exclude)
                 for target in one_way_target_entrance_pools[pool_type]:
                     target.set_rule(lambda state, age=None, **kwargs: age == 'child')
-            elif pool_type == 'ChildSpawn':
+            elif pool_type == EntranceKind.ChildSpawn:
                 valid_target_types = (EntranceKind.ChildSpawn, EntranceKind.AdultSpawn, EntranceKind.WarpSong, EntranceKind.BlueWarp, EntranceKind.OwlDrop, EntranceKind.OverworldOneWay, EntranceKind.Overworld, EntranceKind.Interior, EntranceKind.SpecialInterior, EntranceKind.Extra)
                 valid_target_types_reverse = (EntranceKind.Overworld, EntranceKind.Interior, EntranceKind.SpecialInterior)
                 exclude = []
@@ -650,7 +652,7 @@ def shuffle_random_entrances(worlds: list[World]) -> None:
                     # Restrict spawn entrances from linking to regions with no or extremely specific glitchless itemless escapes.
                     exclude.extend(('Volvagia Boss Room -> DMC Central Local', 'Bolero of Fire Warp -> DMC Central Local', 'Queen Gohma Boss Room -> KF Outside Deku Tree'))
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse, exclude=exclude)
-            elif pool_type == 'AdultSpawn':
+            elif pool_type == EntranceKind.AdultSpawn:
                 valid_target_types = (EntranceKind.ChildSpawn, EntranceKind.AdultSpawn, EntranceKind.WarpSong, EntranceKind.BlueWarp, EntranceKind.OwlDrop, EntranceKind.OverworldOneWay, EntranceKind.Overworld, EntranceKind.Interior, EntranceKind.SpecialInterior, EntranceKind.Extra)
                 valid_target_types_reverse = (EntranceKind.Overworld, EntranceKind.Interior, EntranceKind.SpecialInterior)
                 exclude = []
@@ -665,7 +667,7 @@ def shuffle_random_entrances(worlds: list[World]) -> None:
                     # Restrict spawn entrances from linking to regions with no or extremely specific glitchless itemless escapes.
                     exclude.extend(('Volvagia Boss Room -> DMC Central Local', 'Bolero of Fire Warp -> DMC Central Local', 'Queen Gohma Boss Room -> KF Outside Deku Tree'))
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse, exclude=exclude)
-            elif pool_type == 'WarpSong':
+            elif pool_type == EntranceKind.WarpSong:
                 valid_target_types = (EntranceKind.ChildSpawn, EntranceKind.AdultSpawn, EntranceKind.WarpSong, EntranceKind.BlueWarp, EntranceKind.OwlDrop, EntranceKind.OverworldOneWay, EntranceKind.Overworld, EntranceKind.Interior, EntranceKind.SpecialInterior, EntranceKind.Extra)
                 valid_target_types_reverse = (EntranceKind.Overworld, EntranceKind.Interior, EntranceKind.SpecialInterior)
                 if world.settings.warp_songs == 'full':
@@ -675,7 +677,7 @@ def shuffle_random_entrances(worlds: list[World]) -> None:
                         valid_target_types = (EntranceKind.ChildBoss, EntranceKind.AdultBoss, EntranceKind.SpecialBoss, *valid_target_types)
                         valid_target_types_reverse = (EntranceKind.ChildBoss, EntranceKind.AdultBoss, EntranceKind.SpecialBoss, *valid_target_types_reverse)
                 one_way_target_entrance_pools[pool_type] = build_one_way_targets(world, valid_target_types, valid_target_types_reverse)
-            elif pool_type == 'BlueWarp':
+            elif pool_type == EntranceKind.BlueWarp:
                 valid_target_types = (EntranceKind.ChildSpawn, EntranceKind.AdultSpawn, EntranceKind.WarpSong, EntranceKind.BlueWarp, EntranceKind.OwlDrop, EntranceKind.OverworldOneWay, EntranceKind.Extra)
                 valid_target_types_reverse = ()
                 if world.settings.blue_warps == 'full':

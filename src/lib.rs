@@ -1,3 +1,5 @@
+#![allow(warnings)] //TODO
+
 use pyo3::prelude::*;
 
 macro_rules! py_mod {

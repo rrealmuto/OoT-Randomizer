@@ -1,6 +1,6 @@
 [package]
 name = "ootr"
-version = "8.1.16-fenhl.3.riir.9"
+version = "8.1.16-fenhl.3.riir.10"
 edition = "2021"
 
 [lib]
@@ -28,7 +28,7 @@ version = "0.4"
 features = ["pure", "tokio"]
 
 [dependencies.pyo3]
-version = "0.16"
+version = "0.21"
 features = ["anyhow", "auto-initialize", "extension-module"]
 
 [dependencies.tokio]

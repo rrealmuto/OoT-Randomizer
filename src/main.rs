@@ -1,3 +1,5 @@
+#![allow(warnings)] //TODO
+
 use {
     std::{
         fs,
@@ -90,7 +92,7 @@ fn main(Args { log_level, settings_string, convert_settings, settings, settings_
         if let Some(preset_name) = settings_preset {
             if let Some(preset) = settings_mod.call_method0("get_preset_files")?.iter()?.filter_map(|filename| filename.map_err(Error::from).and_then(|filename| {
                 let presets = json.call_method1("loads", (fs::read_to_string(filename.extract::<&str>()?)?,))?.downcast::<PyDict>()?;
-                Ok(presets.get_item(&preset_name)) //TODO deal with preset aliases
+                presets.get_item(&preset_name).map_err(Error::from) //TODO deal with preset aliases
             }).transpose()).next() {
                 settings_base.call_method1("update", (preset?,))?;
             } else {

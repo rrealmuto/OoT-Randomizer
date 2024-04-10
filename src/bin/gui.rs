@@ -1,3 +1,5 @@
+#![allow(warnings)] //TODO
+
 use {
     std::sync::Arc,
     futures::future::FutureExt as _,

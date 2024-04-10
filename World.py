@@ -197,8 +197,8 @@ class World:
                 self['Spirit Temple'] = self.EmptyDungeonInfo('Twinrova')
                 self['Shadow Temple'] = self.EmptyDungeonInfo('Bongo Bongo')
 
-                for area in HintArea:
-                    if area.is_dungeon and area.dungeon_name in self:
+                for area in HintArea.all_dungeons():
+                    if area.dungeon_name in self:
                         self[area.dungeon_name].hint_name = area
 
             def __missing__(self, dungeon_name: str) -> EmptyDungeonInfo:
@@ -707,12 +707,12 @@ class World:
 
     def create_dungeons(self) -> list[tuple[Entrance, str]]:
         savewarps_to_connect = []
-        for hint_area in HintArea:
-            if (name := hint_area.dungeon_name) is not None:
-                logic_folder = 'Glitched World' if self.settings.logic_rules == 'glitched' else 'World'
-                file_name = name + (' MQ.json' if self.dungeon_mq[name] else '.json')
-                savewarps_to_connect += self.load_regions_from_json(os.path.join(data_path(logic_folder), file_name))
-                self.dungeons.append(Dungeon(self, name, hint_area))
+        for hint_area in HintArea.all_dungeons():
+            name = hint_area.dungeon_name
+            logic_folder = 'Glitched World' if self.settings.logic_rules == 'glitched' else 'World'
+            file_name = name + (' MQ.json' if self.dungeon_mq[name] else '.json')
+            savewarps_to_connect += self.load_regions_from_json(os.path.join(data_path(logic_folder), file_name))
+            self.dungeons.append(Dungeon(self, name, hint_area))
         return savewarps_to_connect
 
     def create_internal_locations(self) -> None:

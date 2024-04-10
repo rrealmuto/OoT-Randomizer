@@ -85,7 +85,7 @@ class Region:
     @property
     def alt_hint(self) -> Optional[HintArea]:
         if self.alt_hint_name is not None:
-            return HintArea[self.alt_hint_name]
+            return HintArea.from_str(self.alt_hint_name)
 
     def can_fill(self, item: Item, manual: bool = False) -> bool:
         from ItemPool import closed_forest_restricted_items, triforce_blitz_items
