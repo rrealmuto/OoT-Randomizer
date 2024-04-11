@@ -122,6 +122,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v97
+  * Fix KZ crash - wasn't my fault this time :)
+
 ### v96
   * Add dampe all night setting
 
