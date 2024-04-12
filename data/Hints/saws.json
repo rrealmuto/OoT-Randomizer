@@ -1,0 +1,62 @@
+{
+    "name":                  "saws",
+    "gui_name":              "SAWS",
+    "description":           "Hint Distribution for the Standard Anti-Weekly Settings. 4 Always hints, 2 Dual Always hints, 5 Goal hints, 3 Barren hints, 1 Dual hint, 5 Sometimes hints.",
+    "add_locations":         [
+        { "location": "HC Zeldas Letter", "types": ["always"] },
+        { "location": "ZF GS Hidden Cave", "types": ["always"] },
+        { "location": "DMC Child Upper Checks", "types": ["dual_always"] },
+        { "location": "HF Valley Grotto", "types": ["dual_always"] },
+        { "location": "GV Child GS", "types": ["dual"] },
+        { "location": "LW Adult Trade", "types": ["dual"] },
+        { "location": "DMT Adult Trade", "types": ["dual"] },
+        { "location": "LH Lab SAWS Checks", "types": ["dual"] },
+        { "location": "Shadow Temple GS Triple Giant Pot", "types": ["sometimes"] },
+        { "location": "GF GS Archery Range", "types": ["sometimes"] },
+        { "location": "Deku Tree GS Basement Back Room", "types": ["sometimes"] },
+        { "location": "GC GS Boulder Maze", "types": ["sometimes"] },
+        { "location": "DMT GS Bean Patch", "types": ["sometimes"] },
+        { "location": "ZD Trade Prescription", "types": ["sometimes"] },
+        { "location": "LH Loach Fishing", "types": ["sometimes"] },
+        { "location": "ZR Frogs Zeldas Lullaby", "types": ["sometimes"] },
+        { "location": "ZR Frogs Eponas Song", "types": ["sometimes"] },
+        { "location": "ZR Frogs Sarias Song", "types": ["sometimes"] },
+        { "location": "ZR Frogs Suns Song", "types": ["sometimes"] },
+        { "location": "ZR Frogs Song of Time", "types": ["sometimes"] },
+        { "location": "Wasteland Bombchu Salesman", "types": ["sometimes"] },
+        { "location": "LH GS Tree", "types": ["sometimes"] }
+    ],
+    "remove_locations":      [
+        { "location": "Colossus Nighttime GS", "types": ["dual"] },
+        { "location": "Dodongos Cavern Upper Business Scrubs", "types": ["dual"] },
+        { "location": "Bottom of the Well Inner Rooms GS", "types": ["dual"] }
+    ],
+    "add_items":             [],
+    "remove_items":          [
+        { "item": "Zeldas Lullaby", "types": ["goal"] }
+    ],
+    "dungeons_barren_limit": 1,
+    "named_items_required":  true,
+    "vague_named_items":     false,
+    "use_default_goals":     true,
+    "distribution":          {
+        "trial":           {"order":  1, "weight": 0.0, "fixed": 0, "copies": 2},
+        "entrance_always": {"order":  2, "weight": 0.0, "fixed": 0, "copies": 2},
+        "always":          {"order":  3, "weight": 0.0, "fixed": 0, "copies": 2},
+        "dual_always":     {"order":  4, "weight": 0.0, "fixed": 0, "copies": 2},
+        "goal":            {"order":  5, "weight": 0.0, "fixed": 5, "copies": 2},
+        "barren":          {"order":  6, "weight": 0.0, "fixed": 3, "copies": 2},
+        "dual":            {"order":  7, "weight": 0.0, "fixed": 1, "copies": 2},
+        "entrance":        {"order":  8, "weight": 1.0, "fixed": 0, "copies": 2},
+        "sometimes":       {"order":  9, "weight": 1.0, "fixed": 0, "copies": 2},
+        "random":          {"order": 10, "weight": 0.0, "fixed": 0, "copies": 2},
+        "item":            {"order":  0, "weight": 0.0, "fixed": 0, "copies": 2},
+        "song":            {"order":  0, "weight": 0.0, "fixed": 0, "copies": 2},
+        "overworld":       {"order":  0, "weight": 0.0, "fixed": 0, "copies": 2},
+        "dungeon":         {"order":  0, "weight": 0.0, "fixed": 0, "copies": 2},
+        "junk":            {"order":  0, "weight": 0.0, "fixed": 0, "copies": 2},
+        "named-item":      {"order":  0, "weight": 0.0, "fixed": 0, "copies": 2},
+        "woth":            {"order":  0, "weight": 0.0, "fixed": 0, "copies": 2},
+        "important_check": {"order":  0, "weight": 0.0, "fixed": 0, "copies": 0}
+    }
+}

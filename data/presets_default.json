@@ -2126,7 +2126,7 @@
         "clearer_item_models": [],
         "clearer_hints": false,
         "hints": "always",
-        "hint_dist": "tournament_s6",
+        "hint_dist": "saws",
         "item_hints": [],
         "hint_dist_user": {},
         "misc_hints": [
@@ -2632,7 +2632,7 @@
         "clearer_item_models": [],
         "clearer_hints": false,
         "hints": "always",
-        "hint_dist": "tournament_s6",
+        "hint_dist": "saws",
         "item_hints": [],
         "hint_dist_user": {},
         "misc_hints": [

@@ -62,11 +62,11 @@ defaultHintDists: list[str] = [
     'mixed_pools.json',
     'mw_path.json',
     'mw_woth.json',
+    'saws.json',
     'scrubs.json',
     'strong.json',
     'tournament.json',
     'tournament_s3.json',
-    'tournament_s6.json',
     'triforce_blitz_s2.json',
     'useless.json',
     'very_strong.json',
@@ -100,9 +100,10 @@ class GossipText:
         self.colors: Optional[list[str]] = colors
         self.hinted_locations: Optional[list[str]] = hinted_locations
         self.hinted_items: Optional[list[str]] = hinted_items
+        self.hint_type: Optional[str] = None
 
     def to_json(self) -> dict:
-        return {'text': self.text, 'colors': self.colors, 'hinted_locations': self.hinted_locations, 'hinted_items': self.hinted_items}
+        return {'text': self.text, 'colors': self.colors, 'hinted_locations': self.hinted_locations, 'hinted_items': self.hinted_items, 'hint_type': self.hint_type}
 
     def __str__(self) -> str:
         return get_raw_text(line_wrap(color_text(self)))
@@ -195,6 +196,8 @@ def is_restricted_dungeon_item(item: Item) -> bool:
 
 def add_hint(spoiler: Spoiler, world: World, groups: list[list[int]], gossip_text: GossipText, count: int,
              locations: Optional[list[Location]] = None, force_reachable: bool = False, hint_type: str = None) -> bool:
+    gossip_text.hint_type = hint_type
+
     random.shuffle(groups)
     skipped_groups = []
     duplicates = []

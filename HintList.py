@@ -114,7 +114,16 @@ def get_hint_group(group: str, world: World) -> list[Hint]:
                         if location.item.name in world.item_hint_type_overrides[group]:
                             type_override = True
 
-        if group in hint.type and (name not in hint_exclusions(world)) and not type_override and (conditional_keep or type_append):
+        if (
+            group in hint.type
+            and name not in hint_exclusions(world)
+            and (
+                name not in multiTable.keys()
+                or all(locationName not in hint_exclusions(world) for locationName in get_multi(name).locations)
+            )
+            and not type_override
+            and (conditional_keep or type_append)
+        ):
             ret.append(hint)
     return ret
 
@@ -699,6 +708,13 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'Bongo Bongo Rewards':                                         ("the #Phantom Shadow Beast# holds...^", "#Bongo Bongo# holds...^", 'dual'),
     'Twinrova Rewards':                                            ("the #Sorceress Sisters# hold...^", "#Twinrova# holds...^", 'dual'),
 
+    'GV Child GS':                                                 ("in a #valley, a child finds spiders# holding...^", "in #Gerudo Valley, a child finds spiders# holding...^", 'dual_exclude'),
+    'LW Adult Trade':                                              ("in a #forest, an adult may trade# for...^", "trading #Cojiro and the Odd Potion# rewards...^", 'dual_exclude'),
+    'DMT Adult Trade':                                             ("#Biggoron barters# for...^", "showing the #Broken Sword and Eyedrops to Biggoron# rewards...^", 'dual_exclude'),
+    'LH Lab SAWS Checks':                                          ("the #lakeside lab# holds...^", None, 'dual_exclude'),
+
+    'ZD Trade Prescription':                                       ("a #royal recipe requires#", "showing the #Prescription to King Zora# rewards", 'exclude'),
+
     'KF Kokiri Sword Chest':                                       ("the #hidden treasure of the Kokiri# is", None, 'exclude'),
     'KF Midos Top Left Chest':                                     ("the #leader of the Kokiri# hides", "#inside Mido's house# is", 'exclude'),
     'KF Midos Top Right Chest':                                    ("the #leader of the Kokiri# hides", "#inside Mido's house# is", 'exclude'),
@@ -782,11 +798,11 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'Hideout 3 Torches Jail Gerudo Key':                           ("#defeating Gerudo guards# reveals", None, 'exclude'),
     'Hideout 4 Torches Jail Gerudo Key':                           ("#defeating Gerudo guards# reveals", None, 'exclude'),
 
-    'ZR Frogs Zeldas Lullaby':                                     ("after hearing #Zelda's Lullaby, frogs gift#", None, 'exclude'),
-    'ZR Frogs Eponas Song':                                        ("after hearing #Epona's Song, frogs gift#", None, 'exclude'),
-    'ZR Frogs Sarias Song':                                        ("after hearing #Saria's Song, frogs gift#", None, 'exclude'),
-    'ZR Frogs Suns Song':                                          ("after hearing the #Sun's Song, frogs gift#", None, 'exclude'),
-    'ZR Frogs Song of Time':                                       ("after hearing the #Song of Time, frogs gift#", None, 'exclude'),
+    'ZR Frogs Zeldas Lullaby':                                     (["after hearing #a song of royal slumber, frogs gift#", "after hearing #a triforce tune, frogs gift#"], "after hearing #Zelda's Lullaby, frogs gift#", 'exclude'),
+    'ZR Frogs Eponas Song':                                        (["after hearing #an equestrian etude, frogs gift#", "after hearing #Malon's melody, frogs gift#", "after hearing #a ranch song, frogs gift#"], "after hearing #Epona's Song, frogs gift#", 'exclude'),
+    'ZR Frogs Sarias Song':                                        (["after hearing #a song of dancing Gorons, frogs gift#", "after hearing #Saria's phone number, frogs gift#"], "after hearing #Saria's Song, frogs gift#", 'exclude'),
+    'ZR Frogs Suns Song':                                          (["after hearing #Sunny Day, frogs gift#", "after hearing #the ReDead's bane, frogs gift#", "after hearing #the Gibdo's bane, frogs gift#"], "after hearing the #Sun's Song, frogs gift#", 'exclude'),
+    'ZR Frogs Song of Time':                                       (["after hearing #a song 7 years long, frogs gift#", "after hearing #the tune of ages, frogs gift#"], "after hearing the #Song of Time, frogs gift#", 'exclude'),
 
     'Deku Tree Map Chest':                                         ("in the #center of the Deku Tree# lies", None, 'exclude'),
     'Deku Tree Slingshot Chest':                                   ("the #treasure guarded by a scrub# in the Deku Tree is", None, 'exclude'),
@@ -1828,6 +1844,11 @@ multiTable: dict[str, list[str]] = {
     'Morpha Rewards':                                           ['Water Temple Morpha Heart', 'Morpha'],
     'Bongo Bongo Rewards':                                      ['Shadow Temple Bongo Bongo Heart', 'Bongo Bongo'],
     'Twinrova Rewards':                                         ['Spirit Temple Twinrova Heart', 'Twinrova'],
+
+    'GV Child GS':                                              ['GV GS Bean Patch', 'GV GS Small Bridge'],
+    'LW Adult Trade':                                           ['LW Trade Cojiro', 'LW Trade Odd Potion'],
+    'DMT Adult Trade':                                          ['DMT Trade Broken Sword', 'DMT Trade Eyedrops'],
+    'LH Lab SAWS Checks':                                       ['LH Trade Eyeball Frog', 'LH GS Lab Crate'],
 }
 
 # TODO: Make these a type of some sort instead of a dict.
@@ -1977,13 +1998,15 @@ def hint_exclusions(world: World, clear_cache: bool = False) -> list[str]:
                  'dungeon',
                  'song',
                  'dual',
-                 'exclude']):
+                 'exclude',
+                 'dual_exclude']):
             location_hints.append(hint)
 
     for hint in location_hints:
         if any(item in hint.type for item in
                 ['dual',
-                 'dual_always']):
+                 'dual_always',
+                 'dual_exclude']):
             multi = get_multi(hint.name)
             exclude_hint = False
             for location in multi.locations:
