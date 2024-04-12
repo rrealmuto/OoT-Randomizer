@@ -1200,7 +1200,8 @@ def get_random_location_hint(spoiler: Spoiler, world: World, checked: set[str]) 
         and not location.locked
         and location.name not in world.hint_exclusions
         and location.name not in world.hint_type_overrides['item']
-        and location.item.name not in world.item_hint_type_overrides['item'],
+        and location.item.name not in world.item_hint_type_overrides['item']
+        and (location.world.settings.empty_dungeons_mode == 'none' or not location.world.empty_dungeons[HintArea.at(location).dungeon_name].empty),
         world.get_filled_locations()))
     if not locations:
         return None
@@ -1219,8 +1220,16 @@ def get_random_location_hint(spoiler: Spoiler, world: World, checked: set[str]) 
 
 
 def get_specific_hint(spoiler: Spoiler, world: World, checked: set[str], hint_type: str) -> HintReturn:
+    def is_valid_hint(hint: Hint) -> bool:
+        location = world.get_location(hint.name)
+        if not is_not_checked([world.get_location(hint.name)], checked):
+            return False
+        if location.world.settings.empty_dungeons_mode != 'none' and location.world.empty_dungeons[HintArea.at(location).dungeon_name].empty:
+            return False
+        return True
+
     hint_group = get_hint_group(hint_type, world)
-    hint_group = list(filter(lambda hint: is_not_checked([world.get_location(hint.name)], checked), hint_group))
+    hint_group = list(filter(is_valid_hint, hint_group))
     if not hint_group:
         return None
 

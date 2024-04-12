@@ -79,6 +79,7 @@ Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Ra
   * The Lens of Truth can be in a foolish area if Treasure Chest Game keys are shuffled and all relevant “lensless” tricks are enabled.
 * Bug fixes:
   * The heart piece in Gerudo Fortress now behaves correctly when already at 20 hearts, and is considered in glitched logic (part of [#2179](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2179))
+  * Sometimes hints no longer hint locations in precompleted dungeons ([#2097](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2097))
 
 Differences between [`Dev-R`](https://github.com/Roman971/OoT-Randomizer) and [`Dev`](https://github.com/OoTRandomizer/OoT-Randomizer):
 
