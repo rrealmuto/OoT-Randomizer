@@ -259,6 +259,17 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     # initialize world ID
     rom.write_byte(rom.sym('PLAYER_ID'), world.id + 1)
 
+    # set fallback player names
+    for player_name_id in range(256):
+        if player_name_id < 10:
+            fallback_name = [0xBA, 0xD0, 0xC5, 0xDD, 0xC9, 0xD6, 0xDF, player_name_id] # Player N
+        elif player_name_id < 100:
+            fallback_name = [0xBA, 0xD0, 0xC5, 0xDD, 0xC9, 0xD6, *divmod(player_name_id, 10)] # PlayerNN
+        else:
+            tens, ones = divmod(player_name_id, 10)
+            fallback_name = [0xBA, 0xD0, 0xC5, 0xDD, 0xD6, *divmod(tens, 10), ones] # PlayrNNN
+        rom.write_bytes(rom.sym('PLAYER_NAMES') + 8 * player_name_id, fallback_name)
+
     # show seed info on file select screen
     def make_bytes(txt: str, size: int) -> list[int]:
         bytes = list(ord(c) for c in txt[:size-1]) + [0] * size
