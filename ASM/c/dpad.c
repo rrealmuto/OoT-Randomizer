@@ -64,7 +64,7 @@ void handle_dpad() {
         if (((z64_file.link_age == 1) || (!ADULT_BUNNY_HOOD || !pad_held.z)) && pad_pressed.dd && CAN_USE_OCARINA) {
             z64_usebutton(&z64_game,&z64_link,z64_file.items[Z64_SLOT_OCARINA], 2);
         }
-        else if((z64_file.link_age == 0) && ADULT_BUNNY_HOOD && pad_pressed.dd && ((z64_file.items[Z64_SLOT_CHILD_TRADE] == ITEM_MASK_BUNNY) || SaveFile_TradeItemIsOwned(ITEM_MASK_BUNNY))) {
+        else if((z64_file.link_age == 0) && ADULT_BUNNY_HOOD && pad_pressed.dd && (z64_game.pause_ctxt.state == 0) && ((z64_file.items[Z64_SLOT_CHILD_TRADE] == ITEM_MASK_BUNNY) || SaveFile_TradeItemIsOwned(ITEM_MASK_BUNNY))) {
             z64_usebutton(&z64_game, &z64_link, ITEM_MASK_BUNNY, 2);
         }
     }
