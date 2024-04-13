@@ -713,6 +713,10 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'DMT Adult Trade':                                             ("#Biggoron barters# for...^", "showing the #Broken Sword and Eyedrops to Biggoron# rewards...^", 'dual_exclude'),
     'LH Lab SAWS Checks':                                          ("the #lakeside lab# holds...^", None, 'dual_exclude'),
 
+    'Dancing Darunia and Skull Kid':                               ("a #music-loving Goron and skull kid# give you...^", None, 'dual_exclude'),
+    'LH Child and Adult Fishing':                                  ("catching the #biggest fish# as child and as an adult reward you with...^", None, 'dual_exclude'),
+    'Fire Temple Pierre and Hammer':                               ("a #scarecrow and a flare dancer# atop the Fire Temple guard...^", None, 'dual_exclude'),
+
     'ZD Trade Prescription':                                       ("a #royal recipe requires#", "showing the #Prescription to King Zora# rewards", 'exclude'),
 
     'KF Kokiri Sword Chest':                                       ("the #hidden treasure of the Kokiri# is", None, 'exclude'),
@@ -1849,6 +1853,10 @@ multiTable: dict[str, list[str]] = {
     'LW Adult Trade':                                           ['LW Trade Cojiro', 'LW Trade Odd Potion'],
     'DMT Adult Trade':                                          ['DMT Trade Broken Sword', 'DMT Trade Eyedrops'],
     'LH Lab SAWS Checks':                                       ['LH Trade Eyeball Frog', 'LH GS Lab Crate'],
+
+    'Dancing Darunia and Skull Kid':                            ['GC Darunias Joy', 'LW Skull Kid'],
+    'LH Child and Adult Fishing':                               ['LH Child Fishing', 'LH Adult Fishing'],
+    'Fire Temple Pierre and Hammer':                            ['Fire Temple Scarecrow Chest', 'Fire Temple Megaton Hammer Chest'],
 }
 
 # TODO: Make these a type of some sort instead of a dict.

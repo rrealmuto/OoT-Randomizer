@@ -2,6 +2,7 @@
 
 Usage:
   update-presets.py [options]
+  update-presets.py add <preset>
   update-presets.py list-non-default <preset>
   update-presets.py diff <left> <right>
   update-presets.py (-h | --help)
@@ -28,17 +29,24 @@ if hasattr(SettingsList, 'si_dict'):
 else:
     SETTINGS_DICT = SettingsList.SettingInfos.setting_infos
 
-def complete_presets(new_presets, interactive, *, preset=None, source=None):
+def complete_presets(new_presets, interactive, *, add=False, preset=None, source=None):
     with open('data/presets_default.json', encoding='utf-8') as f:
         current = json.load(f)
     names = set(current)
     if source is not None:
         names |= set(source)
+    if preset is not None and preset not in names:
+        if add:
+            names.add(preset)
+        else:
+            raise ValueError(f'No such preset: {preset}')
     for preset_name in sorted(names, key=lambda name: (list(current).index(name) if name in current else len(current), name)):
-        if source is None or preset_name not in source or (preset is not None and preset_name != preset):
+        if source is not None and preset_name in source and (preset is None or preset_name == preset):
+            old_preset = source[preset_name]
+        elif preset_name in current:
             old_preset = current[preset_name]
         else:
-            old_preset = source[preset_name]
+            old_preset = {}
         if preset is not None and preset_name != preset:
             new_presets[preset_name] = old_preset
             continue
@@ -121,7 +129,10 @@ if __name__ == '__main__':
             source = json.loads(subprocess.run(['git', 'show', f'{arguments["--from"]}:data/presets_default.json'], encoding='utf-8', stdout=subprocess.PIPE, check=True).stdout)
         else:
             source = None
-        complete_presets(new_presets, True, preset=arguments['--preset'], source=source)
+        preset = arguments['--preset']
+        if arguments['add']:
+            preset = arguments['<preset>']
+        complete_presets(new_presets, True, add=arguments['add'], preset=preset, source=source)
         with open('data/presets_default.json', 'w', encoding='utf-8', newline='\n') as f:
             json.dump(new_presets, f, indent=4)
             print(file=f)

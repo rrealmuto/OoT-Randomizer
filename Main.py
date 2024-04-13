@@ -156,6 +156,8 @@ def build_world_graphs(world_settings: list[Settings]) -> list[World]:
         world.set_drop_location_names()
         if world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward'):
             world.fill_bosses()
+            if world.settings.empty_dungeons_mode == 'rewards':
+                world.set_empty_dungeon_rewards(world.settings.empty_dungeons_rewards)
 
     if any(world.settings.triforce_hunt for world in worlds):
         settings.distribution.configure_triforce_hunt(worlds)
