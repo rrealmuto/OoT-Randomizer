@@ -1,6 +1,6 @@
 [package]
 name = "ootr"
-version = "8.1.16-fenhl.9.riir.16"
+version = "8.1.16-fenhl.10.riir.17"
 edition = "2021"
 
 [lib]

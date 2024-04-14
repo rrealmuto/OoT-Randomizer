@@ -161,7 +161,7 @@ def get_upgrade_hint_list(world: World, locations: list[str]) -> list[Hint]:
                                     type_override = True
 
                     if world.hint_dist_user['upgrade_hints'] == 'limited':
-                        if world.hint_dist_user['distribution'][hint_type]['copies'] > 0:
+                        if world.hint_dist_user['distribution'].get(hint_type, {'copies': 0})['copies'] > 0:
                             accepted_type = True
                     if not type_override:
                         accepted_type = True
