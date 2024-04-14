@@ -400,6 +400,9 @@ class World:
                 if goal_list1 != [goal.name for goal in category.goals] and category.name not in minor_goal_categories:
                     self.one_hint_per_goal = False
 
+        if 'one_hint_per_goal' in self.hint_dist_user:
+            self.one_hint_per_goal = self.hint_dist_user['one_hint_per_goal']
+
         # initialize category check for first rounds of goal hints
         self.hinted_categories = []
 
@@ -840,6 +843,14 @@ class World:
             elif self.settings.shuffle_dungeon_rewards == 'reward':
                 item = prizepool.pop()
             self.push_item(loc, item)
+
+    def set_empty_dungeon_rewards(self, emptyRewards=[]) -> None:
+        empty_dungeon_bosses = list(map(lambda reward: self.find_items(reward)[0].name, emptyRewards))
+        for boss in empty_dungeon_bosses:
+            for dungeon_item in self.empty_dungeons.items():
+                if dungeon_item[1].boss_name == boss:
+                    dungeon_item[1].empty = True
+                    self.hint_type_overrides['barren'].append(dungeon_item[1].hint_name)
 
     def set_goals(self) -> None:
         # Default goals are divided into 3 primary categories:

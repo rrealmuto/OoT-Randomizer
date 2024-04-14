@@ -169,8 +169,6 @@ def distribute_items_restrictive(worlds: list[World], fill_locations: Optional[l
                            if location.world.empty_dungeons[HintArea.at(location).dungeon_name].empty]
         for location in empty_locations:
             fill_locations.remove(location)
-            location.world.hint_type_overrides['sometimes'].append(location.name)
-            location.world.hint_type_overrides['random'].append(location.name)
 
         # Non-empty dungeon items may be present in restitempool but yet we
         # don't want to place them in an empty dungeon
