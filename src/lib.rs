@@ -22,5 +22,6 @@ macro_rules! py_mod {
 py_mod!(
     entrance_shuffle,
     hints,
+    search,
     version,
 );

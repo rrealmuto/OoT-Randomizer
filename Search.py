@@ -1,12 +1,11 @@
 from __future__ import annotations
-import copy
 import itertools
 import sys
 from collections.abc import Callable, Iterable
-from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Optional
 
 from Region import Region, TimeOfDay
+from rs.search import SearchCache
 from State import State
 
 if sys.version_info >= (3, 10):
@@ -21,21 +20,6 @@ if TYPE_CHECKING:
     from Goals import GoalCategory
 
 ValidGoals: TypeAlias = "dict[str, bool | dict[str, list[int] | dict[int, list[str]]]]"
-
-
-@dataclass
-class SearchCache:
-    child_queue: list[Entrance] = field(default_factory=list)
-    adult_queue: list[Entrance] = field(default_factory=list)
-    visited_locations: set[Location] = field(default_factory=set)
-    child_regions: dict[Region, int] = field(default_factory=dict)
-    adult_regions: dict[Region, int] = field(default_factory=dict)
-
-    def copy(self) -> SearchCache:
-        new = type(self)()
-        for name, value in self.__dict__.items():
-            setattr(new, name, copy.copy(value))
-        return new
 
 
 class Search:
