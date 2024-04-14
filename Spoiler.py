@@ -3,12 +3,12 @@ import logging
 import random
 from collections import OrderedDict
 from itertools import chain
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING
 
 from rs.entrance_shuffle import EntranceKind
 from Item import Item
 from LocationList import location_sort_order
-from Search import Search, RewindableSearch
+from Search import Search
 
 if TYPE_CHECKING:
     from Dungeon import Dungeon
@@ -157,7 +157,7 @@ class Spoiler:
         if not Search([world.state for world in worlds]).can_beat_game():
             raise RuntimeError('Uncopied world beatable but copied world is not.')
 
-        search = RewindableSearch([world.state for world in worlds])
+        search = Search([world.state for world in worlds])
         logger.debug('Initial search: %s', search.state_list[0].get_prog_items())
         # Get all item locations in the worlds
         item_locations = search.progression_locations()

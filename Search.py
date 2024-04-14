@@ -92,7 +92,15 @@ class Search:
     # in sphere 0, so unvisiting them will discard the entire cache.
     # Not safe to call during iteration.
     def unvisit(self, location: Location) -> None:
-        raise Exception('Unimplemented for Search. Perhaps you want RewindableSearch.')
+        # A location being unvisited is either:
+        # in the top two caches (if it's the first being unvisited for a sphere)
+        # in the topmost cache only (otherwise)
+        # After we unvisit every location in a sphere, the top two caches have identical visited locations.
+        assert location in self.cached_spheres[-1].visited_locations
+        if location in self.cached_spheres[-2].visited_locations:
+            self.cached_spheres.pop()
+            self._cache = self.cached_spheres[-1]
+        self._cache.visited_locations.discard(location)
 
     # Drops the item from its respective state.
     # Has no effect on cache!
@@ -105,7 +113,8 @@ class Search:
     # Does not uncollect any items!
     # Not safe to call during iteration.
     def reset(self) -> None:
-        raise Exception('Unimplemented for Search. Perhaps you want RewindableSearch.')
+        self._cache = self.cached_spheres[0]
+        self.cached_spheres[1:] = []
 
     # Internal to the iteration. Modifies the exit_queue, regions.
     # Returns a queue of the exits whose access rule failed,
@@ -358,23 +367,6 @@ class Search:
                     and spot.access_rule(self.state_list[spot.world.id], spot=spot, age='adult', tod=tod)) or (
                             self.can_reach(spot.parent_region, age='child', tod=tod)
                             and spot.access_rule(self.state_list[spot.world.id], spot=spot, age='child', tod=tod))
-
-
-class RewindableSearch(Search):
-    def unvisit(self, location: Location) -> None:
-        # A location being unvisited is either:
-        # in the top two caches (if it's the first being unvisited for a sphere)
-        # in the topmost cache only (otherwise)
-        # After we unvisit every location in a sphere, the top two caches have identical visited locations.
-        assert location in self.cached_spheres[-1].visited_locations
-        if location in self.cached_spheres[-2].visited_locations:
-            self.cached_spheres.pop()
-            self._cache = self.cached_spheres[-1]
-        self._cache.visited_locations.discard(location)
-
-    def reset(self) -> None:
-        self._cache = self.cached_spheres[0]
-        self.cached_spheres[1:] = []
 
     # Adds a new layer to the sphere cache, as a copy of the previous.
     def checkpoint(self) -> None:
