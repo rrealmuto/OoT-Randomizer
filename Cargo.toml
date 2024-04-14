@@ -1,6 +1,6 @@
 [package]
 name = "ootr"
-version = "8.1.16-fenhl.9.riir.14"
+version = "8.1.16-fenhl.9.riir.15"
 edition = "2021"
 
 [lib]
@@ -9,32 +9,17 @@ crate-type = ["cdylib"]
 
 [dependencies]
 anyhow = "1"
+clap = { version = "4", features = ["derive"] }
 collect-mac = "0.1"
 futures = "0.3"
+iced = { version = "0.4", features = ["pure", "tokio"] }
 iced_native = "0.5"
 itertools = "0.10"
 lazy-regex = "2"
+pyo3 = { version = "0.21", features = ["anyhow", "auto-initialize", "extension-module"] }
 rand = "0.8"
 rfd = "0.9"
 semver = "1"
 thiserror = "1"
-
-[dependencies.clap]
-version = "4"
-features = ["derive"]
-
-[dependencies.iced]
-version = "0.4"
-features = ["pure", "tokio"]
-
-[dependencies.pyo3]
-version = "0.21"
-features = ["anyhow", "auto-initialize", "extension-module"]
-
-[dependencies.tokio]
-version = "1"
-features = ["rt-multi-thread"]
-
-[dependencies.wheel]
-git = "https://github.com/fenhl/wheel"
-branch = "main"
+tokio = { version = "1", features = ["rt-multi-thread"] }
+wheel = { git = "https://github.com/fenhl/wheel", branch = "main" }
