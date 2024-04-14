@@ -59,7 +59,7 @@ seed_condition = lambda spoiler: True
 
 if not arguments['--no-rebuild']:
     subprocess.run(['cargo', 'build', *(['--release'] if arguments['--release'] else [])], check=True)
-    shutil.copy('target/debug/rs.dll', 'rs.pyd')
+    shutil.copy(f'target/{"release" if arguments["--release"] else "debug"}/rs.dll', 'rs.pyd')
     if subprocess.run(['git', 'diff', '--quiet', 'HEAD', '--', 'ASM']).returncode != 0: # any staged or unstaged changes to the ASM directory?
         subprocess.run(['wsl', 'ASM/build.py', '--compile-c'], check=True)
 
