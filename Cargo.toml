@@ -1,6 +1,6 @@
 [package]
 name = "ootr"
-version = "8.1.16-fenhl.9.riir.15"
+version = "8.1.16-fenhl.9.riir.16"
 edition = "2021"
 
 [lib]
@@ -14,11 +14,11 @@ collect-mac = "0.1"
 futures = "0.3"
 iced = { version = "0.4", features = ["pure", "tokio"] }
 iced_native = "0.5"
-itertools = "0.10"
-lazy-regex = "2"
+itertools = "0.12"
+lazy-regex = "3"
 pyo3 = { version = "0.21", features = ["anyhow", "auto-initialize", "extension-module"] }
 rand = "0.8"
-rfd = "0.9"
+rfd = "0.14"
 semver = "1"
 thiserror = "1"
 tokio = { version = "1", features = ["rt-multi-thread"] }
