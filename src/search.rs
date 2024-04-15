@@ -41,8 +41,8 @@ impl SearchCache {
     }
 }
 
-pub(crate) fn module(py: Python<'_>) -> PyResult<&PyModule> {
-    let m = PyModule::new(py, "search")?;
+pub(crate) fn module(py: Python<'_>) -> PyResult<Bound<'_, PyModule>> {
+    let m = PyModule::new_bound(py, "search")?;
     m.add_class::<SearchCache>()?;
     Ok(m)
 }

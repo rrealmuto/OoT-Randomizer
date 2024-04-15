@@ -17,10 +17,7 @@ use {
         exceptions::*,
         prelude::*,
         pyclass::CompareOp,
-        types::{
-            PyBool,
-            PyType,
-        },
+        types::PyBool,
     },
     crate::entrance_shuffle::EntranceKind,
 };
@@ -45,20 +42,21 @@ macro_rules! hint_areas {
             // May fail to find a hint if the given spot is only accessible from the root and not from any other region with a hint area
             #[staticmethod]
             #[pyo3(signature = (spot, use_alt_hint = false, gc_woods_warp_is_forest = false))]
-            fn at(py: Python<'_>, spot: &PyAny, use_alt_hint: bool, gc_woods_warp_is_forest: bool) -> PyResult<Self> {
-                let region_class = py.import("Region")?.getattr("Region")?.downcast()?;
+            fn at(py: Python<'_>, spot: &Bound<'_, PyAny>, use_alt_hint: bool, gc_woods_warp_is_forest: bool) -> PyResult<Self> {
+                let region_class = py.import_bound("Region")?.getattr("Region")?;
+                let region_class = region_class.downcast()?;
                 let original_parent = if spot.is_instance(region_class)? {
-                    spot
+                    spot.clone()
                 } else {
                     spot.getattr("parent_region")?
                 };
                 let mut already_checked = Vec::default();
-                let mut spot_queue = iter::once(spot).collect::<VecDeque<_>>();
+                let mut spot_queue = iter::once(spot.clone()).collect::<VecDeque<_>>();
                 let mut fallback_spot_queue = VecDeque::default();
                 while let Some(current_spot) = spot_queue.pop_front() {
-                    already_checked.push(current_spot);
+                    already_checked.push(current_spot.clone());
                     let parent_region = if current_spot.is_instance(region_class)? {
-                        current_spot
+                        current_spot.clone()
                     } else {
                         current_spot.getattr("parent_region")?
                     };
@@ -97,8 +95,8 @@ macro_rules! hint_areas {
                 Err(HintAreaNotFound::new_err(format!("No hint area could be found for {spot} [World {}]", spot.getattr("world")?.getattr("id")?)))
             }
 
-            #[classmethod]
-            fn for_dungeon(cls: &Bound<'_, PyType>, mut dungeon_name: &str) -> Option<Self> {
+            #[staticmethod]
+            fn for_dungeon(mut dungeon_name: &str) -> Option<Self> {
                 if let Some((_, part)) = dungeon_name.split_once('(') {
                     if let Some((part, _)) = part.split_once(')') {
                         // A dungeon item name was passed in - get the name of the dungeon from it.
@@ -137,8 +135,8 @@ macro_rules! hint_areas {
             // override since default impl raises on foreign rhs
             fn __richcmp__(&self, py: Python<'_>, rhs: &Self, op: CompareOp) -> Py<PyAny> {
                 match op {
-                    CompareOp::Eq => PyBool::new(py, self == rhs).into(),
-                    CompareOp::Ne => PyBool::new(py, self != rhs).into(),
+                    CompareOp::Eq => PyBool::new_bound(py, self == rhs).to_owned().into_any().unbind(),
+                    CompareOp::Ne => PyBool::new_bound(py, self != rhs).to_owned().into_any().unbind(),
                     _ => py.NotImplemented(),
                 }
             }
@@ -185,7 +183,7 @@ macro_rules! hint_areas {
                 self.dungeon_name().is_some()
             }
 
-            fn dungeon<'p>(&self, world: &'p PyAny) -> PyResult<Option<&'p PyAny>> {
+            fn dungeon<'p>(&self, world: Bound<'p, PyAny>) -> PyResult<Option<Bound<'p, PyAny>>> {
                 for dungeon in world.getattr("dungeons")?.iter()? {
                     let dungeon = dungeon?;
                     if dungeon.getattr("name")?.eq(self.dungeon_name())? {
@@ -195,7 +193,7 @@ macro_rules! hint_areas {
                 Ok(None)
             }
 
-            fn is_dungeon_item(&self, item: &PyAny) -> PyResult<bool> {
+            fn is_dungeon_item(&self, item: Bound<'_, PyAny>) -> PyResult<bool> {
                 for dungeon in item.getattr("world")?.getattr("dungeons")?.iter()? {
                     let dungeon = dungeon?;
                     if dungeon.getattr("name")?.eq(self.dungeon_name())? {
@@ -219,11 +217,11 @@ macro_rules! hint_areas {
             /// Dungeons are hinted differently depending on the `clearer_hints` setting.
             #[pyo3(signature = (clearer_hints, preposition = false, use_2nd_person = false, world = None))]
             fn text<'p>(&self, py: Python<'p>, clearer_hints: bool, preposition: bool, use_2nd_person: bool, world: Option<u8>) -> PyResult<Cow<'p, str>> {
-                let mut text = Cow::Borrowed(if self.is_dungeon() {
-                    py.import("HintList")?.call_method1("get_hint", (self.dungeon_name(), clearer_hints))?.getattr("text")?.extract()?
+                let mut text = if self.is_dungeon() {
+                    Cow::Owned(py.import_bound("HintList")?.call_method1("get_hint", (self.dungeon_name(), clearer_hints))?.getattr("text")?.extract()?)
                 } else {
-                    self.__str__()
-                });
+                    Cow::Borrowed(self.__str__())
+                };
                 if let Some(world) = world {
                     text = Cow::Owned(text.replace('#', ""));
                     text = Cow::Owned(if let Some((prefix, suffix)) = text.split_once(' ') {
@@ -304,9 +302,9 @@ hint_areas! {
 
 create_exception!(hints, HintAreaNotFound, PyRuntimeError);
 
-pub(crate) fn module(py: Python<'_>) -> PyResult<&PyModule> {
-    let m = PyModule::new(py, "hints")?;
+pub(crate) fn module(py: Python<'_>) -> PyResult<Bound<'_, PyModule>> {
+    let m = PyModule::new_bound(py, "hints")?;
     m.add_class::<HintArea>()?;
-    m.add("HintAreaNotFound", py.get_type::<HintAreaNotFound>())?;
+    m.add("HintAreaNotFound", py.get_type_bound::<HintAreaNotFound>())?;
     Ok(m)
 }

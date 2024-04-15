@@ -6,11 +6,11 @@ use {
     semver::Version,
 };
 
-pub(crate) fn module(py: Python<'_>) -> PyResult<&PyModule> {
+pub(crate) fn module(py: Python<'_>) -> PyResult<Bound<'_, PyModule>> {
     let Version { major, minor, patch, pre, build: _ } = env!("CARGO_PKG_VERSION").parse().context("failed to parse cargo package version")?;
     let (_, fenhl, riir) = regex_captures!(r"^fenhl\.([0-9]+)\.riir\.([0-9]+)$", &pre).context("failed to parse cargo package version suffix")?;
     let riir = riir.parse::<NonZeroU8>()?;
-    let m = PyModule::new(py, "version")?;
+    let m = PyModule::new_bound(py, "version")?;
     m.add("supplementary_version", riir.get())?;
     m.add("branch_identifier", 0xff_u8)?;
     m.add("branch_url", "https://github.com/fenhl/OoT-Randomizer/tree/riir1")?;

@@ -6,11 +6,7 @@ use {
             Hasher as _,
         },
     },
-    pyo3::{
-        prelude::*,
-        pyclass::CompareOp,
-        types::PyBool,
-    },
+    pyo3::prelude::*,
 };
 
 #[pyclass]
@@ -45,8 +41,8 @@ impl EntranceKind {
     }
 }
 
-pub(crate) fn module(py: Python<'_>) -> PyResult<&PyModule> {
-    let m = PyModule::new(py, "entrance_shuffle")?;
+pub(crate) fn module(py: Python<'_>) -> PyResult<Bound<'_, PyModule>> {
+    let m = PyModule::new_bound(py, "entrance_shuffle")?;
     m.add_class::<EntranceKind>()?;
     Ok(m)
 }

@@ -99,7 +99,7 @@ class Location:
         return (
             not self.is_disabled and
             self.can_fill_fast(item) and
-            (not check_access or state.search.spot_access(self, 'either'))
+            (not check_access or state.search.spot_access(self, age='either'))
         )
 
     def can_fill_fast(self, item: Item, manual: bool = False) -> bool:

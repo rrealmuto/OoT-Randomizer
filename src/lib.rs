@@ -1,4 +1,4 @@
-#![allow(warnings)] //TODO
+#![deny(warnings)]
 
 use pyo3::prelude::*;
 
@@ -7,11 +7,11 @@ macro_rules! py_mod {
         $(mod $name;)*
 
         #[pymodule]
-        fn rs(py: Python<'_>, m: &PyModule) -> PyResult<()> {
-            let sys_modules = py.import("sys")?.getattr("modules")?;
+        fn rs(py: Python<'_>, m: Bound<'_, PyModule>) -> PyResult<()> {
+            let sys_modules = py.import_bound("sys")?.getattr("modules")?;
             $(
                 let $name = $name::module(py)?;
-                m.add_submodule($name)?;
+                m.add_submodule(&$name)?;
                 sys_modules.set_item(concat!("rs.", stringify!($name)), $name)?;
             )*
             Ok(())
