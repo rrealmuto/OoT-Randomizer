@@ -829,6 +829,18 @@ class World:
                     dot_items.append({'name': 'Song of Time', 'quantity': 2 if self.settings.shuffle_song_items == 'any' and self.settings.item_pool_value == 'plentiful' else 1, 'minimum': 1, 'hintable': True})
                     if self.settings.shuffle_ocarinas:
                         dot_items.append({'name': 'Ocarina', 'quantity': 3 if self.settings.item_pool_value == 'plentiful' else 2, 'minimum': 1, 'hintable': True})
+                    if self.settings.shuffle_individual_ocarina_notes:
+                        notes = str(self.song_notes['Song of Time'])
+                        if 'A' in notes:
+                            dot_items.append({'name': 'Ocarina A Button', 'quantity': 2 if self.settings.item_pool_value == 'plentiful' else 1, 'minimum': 1, 'hintable': True})
+                        if 'v' in notes:
+                            dot_items.append({'name': 'Ocarina C down Button', 'quantity': 2 if self.settings.item_pool_value == 'plentiful' else 1, 'minimum': 1, 'hintable': True})
+                        if '>' in notes:
+                            dot_items.append({'name': 'Ocarina C right Button', 'quantity': 2 if self.settings.item_pool_value == 'plentiful' else 1, 'minimum': 1, 'hintable': True})
+                        if '<' in notes:
+                            dot_items.append({'name': 'Ocarina C left Button', 'quantity': 2 if self.settings.item_pool_value == 'plentiful' else 1, 'minimum': 1, 'hintable': True})
+                        if '^' in notes:
+                            dot_items.append({'name': 'Ocarina C up Button', 'quantity': 2 if self.settings.item_pool_value == 'plentiful' else 1, 'minimum': 1, 'hintable': True})
                 dot.add_goal(Goal(self, 'Door of Time', 'path of time', 'Light Blue', items=dot_items))
                 self.goal_categories[dot.name] = dot
 
