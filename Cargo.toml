@@ -1,7 +1,11 @@
 [package]
 name = "ootr"
-version = "8.1.16-fenhl.11.riir.20"
+version = "8.1.16-fenhl.11.riir.21"
 edition = "2021"
+
+[profile.release]
+lto = true
+strip = true
 
 [lib]
 name = "rs"

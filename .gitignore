@@ -3,6 +3,7 @@
 .vscode
 .idea
 /ASM/build/bin
+/ASM/build/librust_n64_test.a
 /Output
 /build
 /dist
@@ -43,10 +44,8 @@ tests/Output
 
 **/.DS_Store
 
-# Added by cargo
-
-/target
-
 # Rust build scaffolding
 
+/crate/rust-n64-test/target
 /rs.pyd
+/target

@@ -1,0 +1,11 @@
+[package]
+name = "rust-n64-test"
+version = "8.1.16-fenhl.11.riir.21"
+edition = "2021"
+
+[profile.release]
+lto = true
+strip = true
+
+[lib]
+crate-type = ["staticlib"]

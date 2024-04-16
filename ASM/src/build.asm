@@ -134,6 +134,9 @@ RANDO_CONTEXT:
 .importobj "../build/bundle.o"
 
 .align 0x10
+.importobj "../build/librust_n64_test.a"
+
+.align 0x10
 
 .skip 0x1000 ; Temporary address bump to avoid audio issues
 
