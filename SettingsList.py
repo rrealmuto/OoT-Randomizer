@@ -725,7 +725,7 @@ class SettingInfos:
                                          'shuffle_dungeon_entrances', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops',
                                          'warp_songs', 'blue_warps', 'shuffle_child_spawn', 'shuffle_adult_spawn', 'mq_dungeons_mode', 'mq_dungeons_specific',
                                          'mq_dungeons_count', 'shuffle_bosses', 'shuffle_ganon_tower', 'dungeon_shortcuts', 'deadly_bonks',
-                                         'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_beehives', 'shuffle_silver_rupees', 'shuffle_wonderitems',
+                                         'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_empty_pots', 'shuffle_crates', 'shuffle_empty_crates', 'shuffle_beehives', 'shuffle_silver_rupees', 'shuffle_wonderitems',
                                          'mix_entrance_pools', 'decouple_entrances', 'logic_water_gold_scale_no_entry']},
             'none':       {'settings': ['dungeon_back_access', 'allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'logic_water_gold_scale_no_entry', 'reachable_locations']},
         },
@@ -874,7 +874,7 @@ class SettingInfos:
                 'shuffle_ganon_bosskey', 'ganon_bosskey_medallions', 'ganon_bosskey_stones', 'ganon_bosskey_rewards', 'ganon_bosskey_tokens', 'ganon_bosskey_hearts',
                 'shuffle_bosskeys', 'shuffle_smallkeys', 'shuffle_hideoutkeys', 'shuffle_tcgkeys', 'key_rings_choice', 'key_rings', 'keyring_give_bk', 'shuffle_silver_rupees', 'silver_rupee_pouches_choice', 'silver_rupee_pouches', 'shuffle_mapcompass',
                 'one_item_per_dungeon',
-                'shuffle_song_items', 'shopsanity', 'special_deal_price_distribution', 'special_deal_price_min', 'special_deal_price_max', 'tokensanity', 'shuffle_scrubs', 'shuffle_child_trade', 'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_crates', 'shuffle_cows', 'shuffle_beehives', 'shuffle_kokiri_sword', 'shuffle_ocarinas', 'shuffle_gerudo_card', 'shuffle_beans', 'shuffle_expensive_merchants', 'shuffle_frog_song_rupees', 'shuffle_individual_ocarina_notes', 'shuffle_loach_reward', 'shuffle_base_item_pool',
+                'shuffle_song_items', 'shopsanity', 'special_deal_price_distribution', 'special_deal_price_min', 'special_deal_price_max', 'tokensanity', 'shuffle_scrubs', 'shuffle_child_trade', 'shuffle_freestanding_items', 'shuffle_pots', 'shuffle_empty_pots', 'shuffle_crates', 'shuffle_empty_crates', 'shuffle_cows', 'shuffle_beehives', 'shuffle_wonderitems', 'shuffle_kokiri_sword', 'shuffle_ocarinas', 'shuffle_gerudo_card', 'shuffle_beans', 'shuffle_expensive_merchants', 'shuffle_frog_song_rupees', 'shuffle_individual_ocarina_notes', 'shuffle_loach_reward', 'shuffle_base_item_pool',
                 'disabled_locations',
                 'item_pool_value', 'junk_ice_traps', 'adult_trade_shuffle', 'adult_trade_start',
             ]}
