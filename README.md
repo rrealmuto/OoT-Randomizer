@@ -83,6 +83,7 @@ Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Ra
   * The GUI tweaks made by [`Dev-R`](https://github.com/Roman971/OoT-Randomizer) are further adjusted to balance consistency with [main `Dev`](https://github.com/OoTRandomizer/OoT-Randomizer) and ease of use.
   * The Lens of Truth can be in a foolish area if Treasure Chest Game keys are shuffled and all relevant “lensless” tricks are enabled.
 * Bug fixes:
+  * The ocarina buttons required to play the Song of Time are now included on the path of time. ([#2203](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2203))
   * The heart piece in Gerudo Fortress now behaves correctly when already at 20 hearts, and is considered in glitched logic (part of [#2179](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2179))
   * Sometimes hints no longer hint locations in precompleted dungeons ([#2097](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2097))
 

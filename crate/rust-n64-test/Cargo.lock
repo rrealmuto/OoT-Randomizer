@@ -4,4 +4,4 @@ version = 3
 
 [[package]]
 name = "rust-n64-test"
-version = "8.1.16-fenhl.11.riir.21"
+version = "8.1.16-fenhl.12.riir.22"
