@@ -4,6 +4,7 @@
 #include "hud_colors.h"
 #include "triforce.h"
 #include "ocarina_buttons.h"
+#include "save.h"
 
 #define ICON_SIZE    0x0C
 #define MUSIC_WIDTH  0x06
@@ -381,7 +382,7 @@ static void populate_adult_trade(const z64_file_t* file, variable_tile_t* tile);
 static void populate_magic(const z64_file_t* file, variable_tile_t* tile);
 static void populate_upgrade_equip(const z64_file_t* file, variable_tile_t* tile, uint8_t value, uint8_t max, uint8_t base_tile);
 
-static void populate_variable(const z64_file_t* file, variable_tile_info_t* info) {
+void populate_variable(const z64_file_t* file, variable_tile_info_t* info) {
     variable_tile_t* tile = info->tiles;
 
     populate_upgrade_item( file, tile++, Z64_SLOT_OCARINA, Z64_ITEM_FAIRY_OCARINA);
@@ -390,7 +391,8 @@ static void populate_variable(const z64_file_t* file, variable_tile_info_t* info
     populate_adult_trade(  file, tile++);
     populate_magic(        file, tile++);
     populate_upgrade_equip(file, tile++, file->strength_upgrade, 3, Z64_ITEM_GORONS_BRACELET);
-    populate_upgrade_equip(file, tile++, file->diving_upgrade,   2, Z64_ITEM_SILVER_SCALE);
+    extended_savecontext_static_t* extended = &(((extended_sram_file_t*)file)->additional_save_data.extended);
+    populate_upgrade_equip(file, tile++, extended->extended_scale,   2, Z64_ITEM_SILVER_SCALE);
 }
 
 

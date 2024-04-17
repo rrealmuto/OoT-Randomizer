@@ -52,7 +52,7 @@ void set_new_respawn() {
 void manage_swim() {
 
     // We found the first scale.
-    if (extended_savectx.extended_scale[0] > 0) {
+    if (extended_savectx.extended_scale > 0) {
         return;
     }
 

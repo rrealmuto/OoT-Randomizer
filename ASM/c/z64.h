@@ -4,6 +4,7 @@
 #include <n64.h>
 #include "z64_math.h"
 #include "color.h"
+#include "save.h"
 #include "z64collision_check.h"
 
 #define Z64_OOT10             0x00
@@ -790,7 +791,10 @@ typedef struct {
 } SramContext; // size = 0x4
 
 typedef struct {
-  uint8_t data[0xBA8];
+  union {
+    uint8_t data[0xBA8];
+    extended_savecontext_static_t extended;
+  };
 } extended_save_data_t;
 
 typedef struct {
