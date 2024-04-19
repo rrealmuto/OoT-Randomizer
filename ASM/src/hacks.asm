@@ -4259,16 +4259,6 @@ courtyard_guards_kill:
     jal     volvagia_flying_hitbox
     nop
 
-;===================================================================================================
-; Prevent the trade quest timer to start if you get the Zora Tunic item from King Zora with
-; Eyeball Frog in inventory.
-;===================================================================================================
-
-; Replaces     lh      t6, 0x01D0(a1)
-;              addiu   $at, $zero, 0x0003
-.orga 0xE56B38
-    jal     kz_no_timer
-    addiu   $at, $zero, 0x0003
 
 ;================================================================
 ; Include hacks in other files to start keeping things organized

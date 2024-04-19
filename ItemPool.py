@@ -561,7 +561,7 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
             # Make the duplicate item consistent with that.
             if 'Pocket Egg' in world.settings.adult_trade_start and 'Pocket Cucco' in world.settings.adult_trade_start:
                 pending_junk_pool.remove('Pocket Cucco')
-        else:
+        elif world.settings.adult_trade_start:
             # With adult trade shuffle off, add a random extra adult trade item
             item = random.choice(world.settings.adult_trade_start)
             pending_junk_pool.append(item)
