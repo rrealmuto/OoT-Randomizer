@@ -19,6 +19,12 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v98](#v98)
+  * [v97](#v97)
+  * [v96](#v96)
+  * [v95](#v95)
+  * [v94](#v94)
+  * [v93](#v93)
   * [v92](#v92)
   * [v91](#v91)
   * [v90](#v90)
@@ -118,6 +124,28 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v99
+  * Temp removing adult bunny hood and dampe all night
+
+### v98
+  * Fix crash when pressing dpad down on equipment screen
+
+### v97
+  * Fix KZ crash - wasn't my fault this time :)
+
+### v96
+  * Add dampe all night setting
+
+### v95
+  * Fix masks rendering when in first person view
+
+### v94
+  * Bunny hood dpad fixes
+
+### v93
+  * Update to main Dev 8.1.13
+  * Add Adult Bunny Hood setting
+
 ### v92
   * Fix King Dobonko
 
