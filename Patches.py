@@ -1172,6 +1172,9 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
         scene_table = 0x00B71440
         for scene in range(0x00, 0x65):
+            if scene in (0x45, 0x46):
+                # skip castle hedge maze scenes to avoid Ganon's Castle ER messing with the exit
+                continue
             scene_start = rom.read_int32(scene_table + (scene * 0x14))
             add_scene_exits(scene_start)
 
@@ -2792,6 +2795,9 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         else: # Patch for redeads in MQ. ROM positions are calculated dyanmically by MQ.py but should remain static.
             rom.write_byte(0x280CDDE, 0)
             rom.write_byte(0x280CDEE, 0)
+
+    # Meg respawns after 30 frames instead of 100 frames after getting hit
+    rom.write_byte(0xCDA723, 0x1E)
 
     # actually write the save table to rom
     world.distribution.give_items(world, save_context)

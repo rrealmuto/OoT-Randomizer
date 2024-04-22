@@ -553,6 +553,7 @@
             "custom_music_directorypicker",
             "custom_music_unavailable_msg",
             "background_music",
+            "display_custom_song_names",
             "fanfares",
             "ocarina_fanfares",
             "credits_music"

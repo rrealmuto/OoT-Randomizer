@@ -126,6 +126,8 @@ RANDO_CONTEXT:
 .include "chest_game.asm"
 .include "en_item00.asm"
 .include "volvagia.asm"
+.include "key_counter.asm"
+
 .include "armos.asm"
 .include "ocarina_buttons.asm"
 .include "fairy_ocarina.asm"
