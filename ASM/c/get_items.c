@@ -949,7 +949,7 @@ void Item_DropCollectible_Random_Before(z64_game_t* globalCtx, z64_actor_t* from
             }
             case 0x0002: //Stalfos, specifically the ones in the upper bow area of forest temple
             {
-                if(fromActor->parent != NULL && globalCtx->scene_index == 0x03 && globalCtx->room_index == 6)
+                if(fromActor->parent != NULL && globalCtx->scene_index == 0x03 && globalCtx->room_ctx.curRoom.num == 6)
                 {
                     flag.all = 0;
                     if(fromActor->variable == 1)

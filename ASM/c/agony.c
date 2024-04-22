@@ -86,7 +86,7 @@ void draw_agony() {
         int hoffset = alpha_frame->pos;
         alpha_frame = ALPHA_DATA + alpha_frame->next;
         int scene_index = z64_game.scene_index;
-        int room_index = z64_game.room_index;
+        int room_index = z64_game.room_ctx.curRoom.num;
         int voffset = 0;
         if (scene_index < 0x11 && z64_file.dungeon_keys[scene_index] >= 0) {
             // small keys displayed

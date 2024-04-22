@@ -1470,6 +1470,42 @@ typedef enum {
     /* 0x15 */ CAM_MODE_MAX
 } CameraModeType;
 
+typedef struct {
+    /* 0x00 */ uintptr_t    vromAddr; // VROM address (source)
+    /* 0x04 */ void*        dramAddr; // DRAM address (destination)
+    /* 0x08 */ size_t       size;     // File Transfer size
+    /* 0x0C */ const char*  filename; // Filename for debugging
+    /* 0x10 */ int32_t          line;     // Line for debugging
+    /* 0x14 */ int32_t          unk_14;
+    /* 0x18 */ OSMesgQueue* notifyQueue; // Message queue for the notification message
+    /* 0x1C */ OSMesg       notifyMsg;   // Completion notification message
+} DmaRequest; // size = 0x20
+
+typedef struct {
+    /* 0x00 */ int8_t   num;
+    /* 0x01 */ uint8_t   unk_01;
+    /* 0x02 */ uint8_t   behaviorType2;
+    /* 0x03 */ uint8_t   behaviorType1;
+    /* 0x04 */ int8_t   echo;
+    /* 0x05 */ uint8_t   lensMode;
+    /* 0x08 */ void* roomShape; // original name: "ground_shape"
+    /* 0x0C */ void* segment;
+    /* 0x10 */ char unk_10[0x4];
+} Room; // size = 0x14
+
+typedef struct {
+  /* 0x00 */ Room  curRoom;
+    /* 0x14 */ Room  prevRoom;
+    /* 0x28 */ void* bufPtrs[2];
+    /* 0x30 */ uint8_t    unk_30;
+    /* 0x31 */ int8_t    status;
+    /* 0x34 */ void* unk_34;
+    /* 0x38 */ DmaRequest dmaRequest;
+    /* 0x58 */ OSMesgQueue loadQueue;
+    /* 0x70 */ OSMesg loadMsg;
+    /* 0x74 */ int16_t unk_74[2]; // context-specific data used by the current scene draw config
+} RoomContext; // size = 0x78
+
 /* game context */
 struct z64_game_t;
 typedef struct {
@@ -1573,10 +1609,8 @@ typedef struct {
   z64_pause_ctxt_t pause_ctxt;             /* 0x10760 */
   char             unk_15_[0x0D90];        /* 0x10A14 */
   z64_obj_ctxt_t   obj_ctxt;               /* 0x117A4 */
-  int8_t           room_index;             /* 0x11CBC */
-  char             unk_16_[0x000B];        /* 0x11CBD */
-  void            *room_ptr;               /* 0x11CC8 */
-  char             unk_17_[0x007C];        /* 0x11CCC */
+  RoomContext      room_ctx;               /* 0x11CBC */
+  char             unk_16_[0x14];          /* 0x11D34 */
   int32_t          (*startPlayerFishing)(struct z64_game_t* globalCtx); /* 0x11D48*/
   char             unk_17_2[0x0054];       /* 0x11D4C */
   float            billboard_mtx[4][4];    /* 0x11DA0 */

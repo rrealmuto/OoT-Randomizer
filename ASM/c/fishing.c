@@ -25,7 +25,7 @@ int32_t fishing_get_item_id = 0;
 z64_actor_t* Fishing_Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params) {
     if(SHUFFLE_FISHIES) {
         xflag_t fish_flag = { 0 };
-        fish_flag.room = globalCtx->room_index;
+        fish_flag.room = globalCtx->room_ctx.curRoom.num;
         fish_flag.scene = globalCtx->scene_index;
         fish_flag.setup = curr_scene_setup;
         fish_flag.flag = globalCtx->link_age; // Use the current age as the flag to distinguish child/adult fish

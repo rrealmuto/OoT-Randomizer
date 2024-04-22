@@ -116,7 +116,7 @@ void draw_silver_rupee_count(z64_game_t* globalCtx, z64_disp_buf_t* db) {
     if (!CFG_DUNGEON_INFO_SILVER_RUPEES) return;
 
     uint8_t scene = globalCtx->scene_index;
-    uint8_t room = globalCtx->room_index;
+    uint8_t room = globalCtx->room_ctx.curRoom.num;
 
     for (int i = 0; i < dungeon_count; i++) {
         if (scene != dungeons[i].index) continue;
