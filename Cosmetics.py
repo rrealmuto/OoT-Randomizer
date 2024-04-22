@@ -1252,13 +1252,13 @@ patch_sets[0x1F073FE1] = {
     }
 }
 
-# 8.1.16
-patch_sets[0x1F073FE1] = {
-    "patches": patch_sets[0x1F073FE0]["patches"] + [
+# 8.1.29
+patch_sets[0x1F073FE2] = {
+    "patches": patch_sets[0x1F073FE1]["patches"] + [
         patch_song_names,
     ],
     "symbols": {
-        **patch_sets[0x1F073FE0]["symbols"],
+        **patch_sets[0x1F073FE1]["symbols"],
         "CFG_SONG_NAME_POSITION": 0x006C,
         "CFG_SONG_NAMES": 0x006D,
     }
