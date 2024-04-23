@@ -19,6 +19,8 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v100](#v100)
+  * [v99](#v99)
   * [v98](#v98)
   * [v97](#v97)
   * [v96](#v96)
@@ -124,6 +126,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v100
+  * Fix crash in MQ DC hallway before lower lizalfos with boulder shuffle
+
 ### v99
   * Temp removing adult bunny hood and dampe all night
 

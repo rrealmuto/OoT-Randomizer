@@ -73,23 +73,29 @@ void EnHoll_Room_Change_Hack(z64_game_t* globalCtx, void* roomCtx, EnHoll* holl)
     extended_object_ctx.inhibit_clear_flag = 0;
 }
 
-void Room_Change_Hook(z64_game_t* globalCtx, void* roomCtx) {
+void Room_Change_Hook(z64_game_t* globalCtx, RoomContext* roomCtx) {
+    int8_t prevRoom = roomCtx->prevRoom.num;
     Room_Change(globalCtx, roomCtx);
+    
     if(extended_object_ctx.inhibit_clear_flag)
         return;
-    extended_object_t* slot = &extended_object_ctx.slots[OBJECT_EXCHANGE_BANK_MAX];
-    for(int i = OBJECT_EXCHANGE_BANK_MAX; i < OBJECT_EXCHANGE_BANK_EXTENDED_MAX; i++) {
-        if(slot->data && slot->is_active) {
-            slot->is_active = 0;
+    
+    if(prevRoom >= 0){
+        extended_object_t* slot = &extended_object_ctx.slots[OBJECT_EXCHANGE_BANK_MAX];
+        for(int i = OBJECT_EXCHANGE_BANK_MAX; i < OBJECT_EXCHANGE_BANK_EXTENDED_MAX; i++) {
+            if(slot->data && slot->is_active) {
+                slot->is_active = 0;
+            }
+            else {
+                // The slot is no longer active so free the slot and the data from the heap
+                heap_free(slot->data);
+                slot->id = 0;
+                slot->data = 0;
+            }
+            slot++;
         }
-        else {
-            // The slot is no longer active so free the slot and the data from the heap
-            heap_free(slot->data);
-            slot->id = 0;
-            slot->data = 0;
-        }
-        slot++;
     }
+    
 }
 
 int32_t Object_GetIndex_Hook(z64_obj_ctxt_t *object_ctx, int16_t object_id) {

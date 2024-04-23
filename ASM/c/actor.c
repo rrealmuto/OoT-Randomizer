@@ -272,7 +272,7 @@ bool spawn_override_silver_rupee(ActorEntry* actorEntry, z64_game_t* globalCtx, 
         xflag_t flag = {
         .scene = globalCtx->scene_index,
         .setup = curr_scene_setup,
-        .room = globalCtx->room_index,
+        .room = globalCtx->room_ctx.curRoom.num,
         .flag = CURR_ACTOR_SPAWN_INDEX,
         .subflag = 0
         };
@@ -335,7 +335,7 @@ uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit
             }
         }
     }
-    if((actorInit->category == ACTORCAT_ENEMY) && z64_Flags_GetClear(globalCtx, globalCtx->room_index))
+    if((actorInit->category == ACTORCAT_ENEMY) && z64_Flags_GetClear(globalCtx, globalCtx->room_ctx.curRoom.num))
     {
         //Check if we're spawning an actor from the room's actor spawn list
         if(flag > 0)
@@ -345,13 +345,13 @@ uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit
 
             xflag.scene = globalCtx->scene_index;
             if(globalCtx->scene_index == 0x3E) {
-                xflag.grotto.room = globalCtx->room_index;
+                xflag.grotto.room = globalCtx->room_ctx.curRoom.num;
                 xflag.grotto.grotto_id = z64_file.grotto_id & 0x1F;
                 xflag.grotto.flag = flag;
                 xflag.grotto.subflag = 0;
             }
             else {
-                xflag.room = globalCtx->room_index;
+                xflag.room = globalCtx->room_ctx.curRoom.num;
                 xflag.setup = curr_scene_setup;
                 xflag.flag = flag;
                 xflag.subflag = 0;

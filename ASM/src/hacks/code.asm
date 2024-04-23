@@ -105,3 +105,9 @@ Room_Change_Continue:
 ;   nop
     jal     Actor_Update_Hook ; Call our hook
     or      a2, r0, t9  ; Copy the function pointer in a2 so we can call it
+
+; Always show the debugger
+.org 0x800af360
+; Replaces:
+;   jal     0x800ae6bc
+    nop
