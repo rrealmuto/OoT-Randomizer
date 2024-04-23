@@ -1034,8 +1034,8 @@ def patch_song_names(rom: Rom, settings: Settings, log: CosmeticsLog, symbols: d
         if settings.display_custom_song_names == 'pause':
             rom.write_byte(symbols['CFG_SONG_NAME_POSITION'], 0x01)
 
-
-    for area, song_name in log.bgm.items():
+    for index in range(47):
+        song_name = list(log.bgm.values())[index]
         if len(song_name) > 50:
             song_name_cropped = song_name[:50]
             text_bytes = [ord(c) for c in song_name_cropped]
