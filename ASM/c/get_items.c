@@ -918,8 +918,8 @@ void dispatch_item(uint16_t resolved_item_id, uint8_t player, override_t* overri
     if (resolved_item_id == 0xCA) {
         // Send triforce to everyone
         push_outgoing_override(override);
-        z64_GiveItem(&z64_game, item_row->action_id);
         call_effect_function(item_row);
+        z64_GiveItem(&z64_game, item_row->action_id);
     } else if (player != PLAYER_ID) {
         // Item is for another world. Set outgoing item.
         push_outgoing_override(override);
@@ -929,8 +929,8 @@ void dispatch_item(uint16_t resolved_item_id, uint8_t player, override_t* overri
             // Also send to multiworld plugin for informational purposes if requested
             push_outgoing_override(override);
         }
-        z64_GiveItem(&z64_game, item_row->action_id);
         call_effect_function(item_row);
+        z64_GiveItem(&z64_game, item_row->action_id);
     }
 }
 

@@ -226,12 +226,10 @@ int print_string(z64_game_t* globalCtx, char* str, int x, int y, float scale) {
 }
 
 void draw_new_menus(z64_game_t* globalCtx, z64_gfx_t* gfx) {
-    OPEN_DISPS(gfx)
     draw_map_background(globalCtx, gfx, -110.f, 59.f, 217.f, 128.f);
-    CLOSE_DISPS();
 
     if(globalCtx->pause_ctxt.state == 6 && globalCtx->pause_ctxt.changing == 0 && globalCtx->pause_ctxt.screen_idx == 1) {
-        globalCtx->pause_ctxt.cursor_pos = 0;
+        globalCtx->pause_ctxt.cursor_special_pos = 0;
         menus[menu_page]->handler(menus[menu_page],globalCtx, gfx);
         /*switch(menu_page) {
             case(MENU_PAGE_SOULS): {

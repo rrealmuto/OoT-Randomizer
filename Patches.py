@@ -1016,6 +1016,9 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
         scene_table = 0x00B71440
         for scene in range(0x00, 0x65):
+            if scene in (0x45, 0x46):
+                # skip castle hedge maze scenes to avoid Ganon's Castle ER messing with the exit
+                continue
             scene_start = rom.read_int32(scene_table + (scene * 0x14))
             add_scene_exits(scene_start)
 
@@ -2406,7 +2409,17 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     if world.settings.correct_chest_appearances == 'both':
         symbol = rom.sym('CHEST_SIZE_TEXTURE')
         rom.write_int32(symbol, 0x00000001)
-        # Move Ganon's Castle's Zelda's Lullaby Chest back so is reachable if large
+
+    # Specify which textures we want
+    rom.write_byte(rom.sym('CHEST_GILDED_TEXTURE'), 'major' in world.settings.chest_textures_specific)
+    rom.write_byte(rom.sym('CHEST_GOLD_TEXTURE'), 'bosskeys' in world.settings.chest_textures_specific)
+    rom.write_byte(rom.sym('CHEST_SILVER_TEXTURE'), 'keys' in world.settings.chest_textures_specific)
+    rom.write_byte(rom.sym('CHEST_SKULL_TEXTURE'), 'tokens' in world.settings.chest_textures_specific)
+    rom.write_byte(rom.sym('CHEST_HEART_TEXTURE'), 'hearts' in world.settings.chest_textures_specific)
+
+    rom.write_byte(rom.sym('SOA_UNLOCKS_CHEST_TEXTURE'), world.settings.soa_unlocks_chest_texture)
+
+    # Move Ganon's Castle's Zelda's Lullaby Chest back so is reachable if large
     if world.settings.correct_chest_appearances == 'classic' or world.settings.correct_chest_appearances == 'both':
         if not world.dungeon_mq['Ganons Castle']:
             chest_name = 'Ganons Castle Light Trial Lullaby Chest'
@@ -2449,6 +2462,15 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     }
     symbol = rom.sym('POTCRATE_TEXTURES_MATCH_CONTENTS')
     rom.write_byte(symbol, ptmc_options[world.settings.correct_potcrate_appearances])
+
+    # Specify which textures we want
+    rom.write_byte(rom.sym('POTCRATE_GILDED_TEXTURE'), 'major' in world.settings.potcrate_textures_specific)
+    rom.write_byte(rom.sym('POTCRATE_GOLD_TEXTURE'), 'bosskeys' in world.settings.potcrate_textures_specific)
+    rom.write_byte(rom.sym('POTCRATE_SILVER_TEXTURE'), 'keys' in world.settings.potcrate_textures_specific)
+    rom.write_byte(rom.sym('POTCRATE_SKULL_TEXTURE'), 'tokens' in world.settings.potcrate_textures_specific)
+    rom.write_byte(rom.sym('POTCRATE_HEART_TEXTURE'), 'hearts' in world.settings.potcrate_textures_specific)
+
+    rom.write_byte(rom.sym('SOA_UNLOCKS_POTCRATE_TEXTURE'), world.settings.soa_unlocks_potcrate_texture)
 
     # give dungeon items the correct messages
     add_item_messages(messages, shop_items, world)
@@ -2759,6 +2781,9 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         else: # Patch for redeads in MQ. ROM positions are calculated dyanmically by MQ.py but should remain static.
             rom.write_byte(0x280CDDE, 0)
             rom.write_byte(0x280CDEE, 0)
+
+    # Meg respawns after 30 frames instead of 100 frames after getting hit
+    rom.write_byte(0xCDA723, 0x1E)
 
     # actually write the save table to rom
     world.distribution.give_items(world, save_context)

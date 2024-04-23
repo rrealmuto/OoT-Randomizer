@@ -599,8 +599,8 @@ class SettingInfos:
                     'shuffle_bosses', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops', 'warp_songs', 'spawn_positions',
                     'mix_entrance_pools', 'decouple_entrances',
                     'triforce_hunt', 'triforce_count_per_world', 'triforce_goal_per_world', 'free_bombchu_drops', 'one_item_per_dungeon',
-                    'shuffle_mapcompass', 'shuffle_smallkeys', 'shuffle_hideoutkeys', 'key_rings_choice', 'key_rings',
-                    'shuffle_bosskeys', 'enhance_map_compass',
+                    'shuffle_mapcompass', 'shuffle_smallkeys', 'shuffle_hideoutkeys', 'shuffle_tcgkeys', 'key_rings_choice', 'key_rings',
+                    'shuffle_silver_rupees', 'silver_rupee_pouches_choice', 'silver_rupee_pouches', 'shuffle_bosskeys', 'enhance_map_compass',
                 ],
             },
         },
@@ -3460,7 +3460,42 @@ class SettingInfos:
         ''',
         shared         = True,
         disable        = {
-            'off': {'settings': ['minor_items_as_major_chest']},
+            'off': {'settings': ['minor_items_as_major_chest', 'chest_textures_specific']},
+            'classic': {'settings': ['chest_textures_specific']},
+            '!textures': {'settings': ['soa_unlocks_chest_texture']},
+        },
+    )
+
+    chest_textures_specific = MultipleSelect(
+        gui_text        = 'Chest Textures',
+        choices         = {
+            'major':    "Major items",
+            'bosskeys': "Boss keys",
+            'keys':     "Small keys",
+            'tokens':   "Gold Skulltula tokens",
+            'hearts':   "Hearts",
+        },
+        default         = ['major', 'bosskeys','keys', 'tokens', 'hearts'],
+        gui_tooltip     = '''\
+            Select specific chest textures.
+            Any unchecked option will make all items in the category
+            appear in brown chests.
+        ''',
+        shared          = True,
+        gui_params     = {
+            "hide_when_disabled": True,
+        },
+    )
+
+    soa_unlocks_chest_texture = Checkbutton(
+        gui_text       = 'Stone of Agony Unlocks Chest Textures',
+        gui_tooltip    = '''\
+            Textures for chests will only be correct
+            when Stone of Agony is found.
+        ''',
+        shared         = True,
+        gui_params     = {
+            "hide_when_disabled": True,
         },
     )
 
@@ -3524,6 +3559,42 @@ class SettingInfos:
             Beehives will wiggle until their item is collected.
         ''',
         shared         = True,
+        disable        = {
+            '!textures_content': {'settings': ['potcrate_textures_specific', 'soa_unlocks_potcrate_texture']},
+        },
+    )
+
+    potcrate_textures_specific = MultipleSelect(
+        gui_text        = 'Pot and Crate Textures',
+        choices         = {
+            'major':    "Major items",
+            'bosskeys': "Boss keys",
+            'keys':     "Small keys",
+            'tokens':   "Gold Skulltula tokens",
+            'hearts':   "Hearts",
+        },
+        default         = ['major', 'bosskeys', 'keys', 'tokens', 'hearts'],
+        gui_tooltip     = '''\
+            Select specific pots and crates textures.
+            Any unchecked option will make all items in the category
+            appear in regular pots/crates.
+        ''',
+        shared          = True,
+        gui_params     = {
+            "hide_when_disabled": True,
+        },
+    )
+
+    soa_unlocks_potcrate_texture = Checkbutton(
+        gui_text       = 'Stone of Agony Unlocks Pot and Crate Textures',
+        gui_tooltip    = '''\
+            Textures for pots and crates will only be correct
+            when Stone of Agony is found.
+        ''',
+        shared         = True,
+        gui_params     = {
+            "hide_when_disabled": True,
+        },
     )
 
     key_appearance_match_dungeon = Checkbutton(
@@ -4873,6 +4944,28 @@ class SettingInfos:
                 ('random', 1),
             ]
         },
+    )
+
+    display_custom_song_names = Combobox(
+        gui_text       = 'Display Custom Music Names',
+        shared         = False,
+        cosmetic       = True,
+        default        = 'off',
+        choices        = {
+            'off':   'Off',
+            'top':   'At the top of the screen',
+            'pause': 'In pause screen only',
+        },
+        gui_tooltip    = '''\
+            'off': Not displayed.
+
+            'At the top of the screen': The song name will be briefly
+            displayed at the top of the screen at every scene transition,
+            and permanently on the pause screen.
+
+            'In pause screen only': The song name will be displayed only
+            on the pause screen.
+        ''',
     )
 
     fanfares = Combobox(

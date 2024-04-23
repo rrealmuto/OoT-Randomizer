@@ -554,6 +554,9 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * A text box has been added when completing the adult shooting gallery without a bow to warn the player that they haven't received the real reward.
 * Settings presets can have aliases. Command-line users may use an alias instead of the name to specify the preset.
 * The plando-only `item_hints` setting can now include special items such as songs or keys.
+* Add new options for chest/pot/etc. textures, including `Stone of Agony Unlocks Chest Textures` which gives new functionality to the Stone of Agony.
+* A boss key icon will now be displayed near the small key icon in dungeons where it has been obtained.
+* The name of the currently playing custom music will now be displayed.
 
 #### Bug Fixes
 * Goal hints can now hint items required to defeat Ganon even if they're not required for the rainbow bridge, Ganon's boss key, or the trials. These items will be hinted as being on the "path of the hero".
@@ -563,9 +566,15 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Fix the items on the right side of the mask shop being available without paying for all borrowed masks first.
 * The Stone of Agony can now be foolish in Glitched Logic and No Logic, as it already was with the `Hidden Grottos without Stone of Agony` trick enabled.
 * Fix seeds with Plentiful item pool and no adult trade items selected failing to generate.
+* Fix castle courtyard exiting to incorrect area in Ganon's Castle Dungeon ER.
+* Fix heart piece count getting zeroed out incorrectly in certain circumstances.
 
 #### Other Changes
 * Clarified the error message shown when an unshuffled trade quest item is used as a starting item.
+* Locations in pre-completed dungeons will no longer be hinted.
+* Treasure Chest Game key and silver rupee options are now included in `Randomize Main Rule Settings`.
+* Meg will now take less time before respawning after getting hurt.
+* Pause menu has been modified so that equip swap will work again.
 
 ### 8.1
 
