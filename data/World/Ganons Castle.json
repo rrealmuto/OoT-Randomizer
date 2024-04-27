@@ -106,8 +106,8 @@
         "locations": {
             "Ganons Castle Shadow Trial Front Chest": "
                 is_child or can_use(Fire_Arrows) or Hookshot or Hover_Boots or can_play(Song_of_Time)",
-            "Ganons Castle Shadow Trial Bubble": "(has_soul(Bubble)) and can_use(Bow)",
-            "Ganons Castle Shadow Trial Like Like" : "(has_soul(Likelike)) and (can_use(Longshot) or can_use(Bow))"
+            "Ganons Castle Shadow Trial Bubble": "(has_soul(Bubble)) and (can_use(Bow) or can_use(Slingshot))",
+            "Ganons Castle Shadow Trial Like Like" : "(has_soul(Likelike)) and (can_use(Longshot) or can_use(Bow) or can_use(Slingshot))"
         },
         "exits": {
             "Ganons Castle Shadow Trial First Gap": "(can_use(Longshot) and (has_soul(Likelike))) or can_use(Fire_Arrows)"
