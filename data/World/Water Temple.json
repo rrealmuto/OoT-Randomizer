@@ -61,10 +61,10 @@
             "Water Temple Near Compass Pot 1" : "(can_play(Zeldas_Lullaby) or Iron_Boots) and Hookshot",
             "Water Temple Near Compass Pot 2" : "(can_play(Zeldas_Lullaby) or Iron_Boots) and Hookshot",
             "Water Temple Near Compass Pot 3" : "(can_play(Zeldas_Lullaby) or Iron_Boots) and Hookshot",
-            "Water Temple Before Compass Chest Stingray 1": "(has_soul(Stinger)) and (can_play(Zeldas_Lullaby) or (Iron_Boots and Hookshot))",
-            "Water Temple Before Compass Chest Stingray 2": "(has_soul(Stinger)) and (can_play(Zeldas_Lullaby) or (Iron_Boots and Hookshot))",
-            "Water Temple Before Compass Chest Stingray 3": "(has_soul(Stinger)) and (can_play(Zeldas_Lullaby) or (Iron_Boots and Hookshot))",
-            "Water Temple Before Compass Chest Stingray 4": "(has_soul(Stinger)) and (can_play(Zeldas_Lullaby) or (Iron_Boots and Hookshot))",
+            "Water Temple Before Compass Chest Stingray 1": "has_soul(Stinger) and (Iron_Boots and Hookshot)",
+            "Water Temple Before Compass Chest Stingray 2": "has_soul(Stinger) and (Iron_Boots and Hookshot)",
+            "Water Temple Before Compass Chest Stingray 3": "has_soul(Stinger) and (Iron_Boots and Hookshot)",
+            "Water Temple Before Compass Chest Stingray 4": "has_soul(Stinger) and (Iron_Boots and Hookshot)",
             "Water Temple Map Chest Spike 1": "(has_soul(Spike_Enemy)) and Raise_Water_Level",
             "Water Temple Map Chest Spike 2": "(has_soul(Spike_Enemy)) and Raise_Water_Level",
             "Water Temple Map Chest Spike 3": "(has_soul(Spike_Enemy)) and Raise_Water_Level",
@@ -136,7 +136,7 @@
             "Water Temple Behind Gate Pot 3": "True",
             "Water Temple Behind Gate Pot 4": "True",
             "Water Temple GS Behind Gate": "True",
-            "Water Temple South Basement Shell Blade": "has_soul(Shell_Blade)",
+            "Water Temple South Basement Shell Blade": "has_soul(Shell_Blade) and Iron_Boots and Hookshot",
             "Water Temple South Basement Tektite 1": "has_soul(Tektite)",
             "Water Temple South Basement Tektite 2": "has_soul(Tektite)"
         }
@@ -289,8 +289,8 @@
         "dungeon": "Water Temple",
         "locations": {
             "Water Temple Dragon Chest": "True",
-            "Water Temple Dragon Statue Shell Blade 1": "has_soul(Shell_Blade)",
-            "Water Temple Dragon Statue Shell Blade 2": "has_soul(Shell_Blade)",
+            "Water Temple Dragon Statue Shell Blade 1": "has_soul(Shell_Blade) and Iron_Boots and Hookshot",
+            "Water Temple Dragon Statue Shell Blade 2": "has_soul(Shell_Blade) and Iron_Boots and Hookshot",
             "Water Temple Water Spout Tektite": "can_kill_tektite"
         }
     }
