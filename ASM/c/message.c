@@ -132,7 +132,7 @@ void shooting_gallery_message() {
         return;
     }
     // Check if we have a bow.
-    if (z64_file.items[ITEM_BOW] != -1) {
+    if (z64_file.items[ITEM_BOW] != ITEM_NONE) {
         return;
     }
     // Check if the message was already displayed once.

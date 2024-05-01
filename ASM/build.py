@@ -50,7 +50,7 @@ if compile_c:
 
 if not diff_only:
     os.chdir(run_dir + '/src')
-    call(['armips', '-sym2', '../build/asm_symbols.txt', 'build.asm'])
+    call(['/mnt/c/Users/fenhl/git/github.com/Kingcom/armips/main/build/Release/armips.exe', '-sym2', '../build/asm_symbols.txt', 'build.asm'])
 
 os.chdir(run_dir)
 
@@ -67,7 +67,7 @@ c_sym_types = {}
 
 with open('build/c_symbols.txt', 'r') as f:
     for line in f:
-        m = re.match('''
+        m = re.match(r'''
                 ^
                 [0-9a-fA-F]+
                 .*

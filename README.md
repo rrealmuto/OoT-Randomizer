@@ -14,7 +14,6 @@ Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Ra
 
 * New settings and options:
   * New “Shuffle Gerudo Fortress Heart Piece” setting to control the behavior of this check with “Shuffle Thieves' Hideout Entrances” ([#2179](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2179))
-  * New settings “Chest Textures”, “Stone of Agony Unlocks Chest Textures”, “Pot and Crate Textures”, and “Stone of Agony Unlocks Pot and Crate Textures” ([#2096](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2096))
   * New settings “Include Empty Pots” and “Include Empty Crates” ([#2069](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2069))
   * New “Frogs Ocarina Game” option for the “Randomize Ocarina Song Notes” setting ([#2064](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2064))
   * New “Shuffle Ganon's Tower Entrance” setting ([#2063](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2063))
@@ -71,6 +70,7 @@ Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Ra
   * “SGL 2023 Tournament” is a game mode that was used for [a tournament at SpeedGaming Live 2023](https://midos.house/event/sgl/2023live) as well as [an online tournament](https://midos.house/event/sgl/2023onl), taken from [Elagatua's `feature/sgl-2023` branch](https://github.com/Elagatua/OoT-Randomizer/tree/feature/sgl-2023). Note that the tournament itself was played on that branch, not this one. See [the official document](https://docs.google.com/document/d/1EACqBl8ZOreD6xT5jQ2HrdLOnpBpKyjS3FUYK8XFeqg/edit) for details.
   * “SDG Bingo Tournament 3” is a variant of “Bingo” used for an ongoing tournament. Note that the tournament itself is being played on version 8.0 of the randomizer, not this branch. See [the official document](https://docs.google.com/document/d/1fpDPSBGH9YQeC9W3P1SMDE7FhoikVgbFTJapqKnMmL4/edit) for details.
 * Other changes:
+  * On Wii Virtual Console, additional information is displayed while the game is loading and when it crashes ([#2153](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2153))
   * The magic meter has a new model to prepare for shuffled magic refills ([#2081](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2081))
   * Fairy pots are now included in “Shuffle Pots.” Major items from pots, crates, etc now display above Link's head while the text box is open. Gameplay is no longer interrupted if you receive a junk item from another player in multiworld. (parts of [#2069](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2069))
   * Plandos can specify different settings for each world ([#2055](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2055))
@@ -85,7 +85,6 @@ Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Ra
 * Bug fixes:
   * The ocarina buttons required to play the Song of Time are now included on the path of time. ([#2203](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2203))
   * The heart piece in Gerudo Fortress now behaves correctly when already at 20 hearts, and is considered in glitched logic (part of [#2179](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2179))
-  * Sometimes hints no longer hint locations in precompleted dungeons ([#2097](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2097))
 
 Differences between [`Dev-R`](https://github.com/Roman971/OoT-Randomizer) and [`Dev`](https://github.com/OoTRandomizer/OoT-Randomizer):
 
@@ -210,6 +209,9 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * A text box has been added when completing the adult shooting gallery without a bow to warn the player that they haven't received the real reward.
 * Settings presets can have aliases. Command-line users may use an alias instead of the name to specify the preset.
 * The plando-only `item_hints` setting can now include special items such as songs or keys.
+* Add new options for chest/pot/etc. textures, including `Stone of Agony Unlocks Chest Textures` which gives new functionality to the Stone of Agony.
+* A boss key icon will now be displayed near the small key icon in dungeons where it has been obtained.
+* The name of the currently playing custom music will now be displayed.
 
 #### Bug Fixes
 * Goal hints can now hint items required to defeat Ganon even if they're not required for the rainbow bridge, Ganon's boss key, or the trials. These items will be hinted as being on the "path of the hero".
@@ -219,9 +221,15 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Fix the items on the right side of the mask shop being available without paying for all borrowed masks first.
 * The Stone of Agony can now be foolish in Glitched Logic and No Logic, as it already was with the `Hidden Grottos without Stone of Agony` trick enabled.
 * Fix seeds with Plentiful item pool and no adult trade items selected failing to generate.
+* Fix castle courtyard exiting to incorrect area in Ganon's Castle Dungeon ER.
+* Fix heart piece count getting zeroed out incorrectly in certain circumstances.
 
 #### Other Changes
 * Clarified the error message shown when an unshuffled trade quest item is used as a starting item.
+* Locations in pre-completed dungeons will no longer be hinted.
+* Treasure Chest Game key and silver rupee options are now included in `Randomize Main Rule Settings`.
+* Meg will now take less time before respawning after getting hurt.
+* Pause menu has been modified so that equip swap will work again.
 
 ### 8.1
 

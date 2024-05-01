@@ -688,8 +688,8 @@ class SettingInfos:
                     'shuffle_bosses', 'shuffle_ganon_tower', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops', 'warp_songs', 'blue_warps', 'shuffle_child_spawn', 'shuffle_adult_spawn',
                     'mix_entrance_pools', 'decouple_entrances', 'exclusive_one_ways',
                     'triforce_hunt', 'triforce_hunt_mode', 'triforce_count_per_world', 'triforce_goal_per_world', 'free_bombchu_drops', 'one_item_per_dungeon',
-                    'shuffle_mapcompass', 'shuffle_smallkeys', 'shuffle_hideoutkeys', 'key_rings_choice', 'key_rings',
-                    'shuffle_bosskeys', 'enhance_map_compass',
+                    'shuffle_mapcompass', 'shuffle_smallkeys', 'shuffle_hideoutkeys', 'shuffle_tcgkeys', 'key_rings_choice', 'key_rings',
+                    'shuffle_silver_rupees', 'silver_rupee_pouches_choice', 'silver_rupee_pouches', 'shuffle_bosskeys', 'enhance_map_compass',
                 ],
             },
         },
@@ -5397,6 +5397,28 @@ class SettingInfos:
                 ('random', 1),
             ]
         },
+    )
+
+    display_custom_song_names = Combobox(
+        gui_text       = 'Display Custom Music Names',
+        shared         = False,
+        cosmetic       = True,
+        default        = 'off',
+        choices        = {
+            'off':   'Off',
+            'top':   'At the top of the screen',
+            'pause': 'In pause screen only',
+        },
+        gui_tooltip    = '''\
+            'off': Not displayed.
+
+            'At the top of the screen': The song name will be briefly
+            displayed at the top of the screen at every scene transition,
+            and permanently on the pause screen.
+
+            'In pause screen only': The song name will be displayed only
+            on the pause screen.
+        ''',
     )
 
     fanfares = Combobox(
