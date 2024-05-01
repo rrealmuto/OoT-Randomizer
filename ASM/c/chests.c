@@ -7,7 +7,6 @@
 #include "gfx.h"
 #include "sys_matrix.h"
 #include "textures.h"
-#include "objects.h"
 
 #define BROWN_FRONT_TEXTURE 0x06001798
 #define BROWN_BASE_TEXTURE 0x06002798
@@ -178,10 +177,10 @@ void get_chest_override(z64_actor_t* actor) {
     Chest* chest = (Chest*)actor;
     uint8_t size = chest->en_box.type;
     uint8_t color = size;
-    uint8_t item_id = (actor->variable & 0x0FE0) >> 5;
-    uint8_t scene = z64_game.scene_index;
-    override_t override = lookup_override(actor, scene, item_id);
     if (CHEST_SIZE_MATCH_CONTENTS || CHEST_SIZE_TEXTURE || CHEST_TEXTURE_MATCH_CONTENTS) {
+        uint8_t scene = z64_game.scene_index;
+        uint8_t item_id = (actor->variable & 0x0FE0) >> 5;
+        override_t override = lookup_override(actor, scene, item_id);
         if (override.value.base.item_id != 0) {
             item_row_t* item_row = get_item_row(override.value.looks_like_item_id);
             if (item_row == NULL) {
@@ -210,15 +209,6 @@ void get_chest_override(z64_actor_t* actor) {
         // Actor flag 7 makes actors invisible
         // Usually only applies to chest types 4 and 6
         actor->flags |= 0x80;
-    }
-
-    // If the chest has an ice trap, load OBJECT_FZ (0x0114) to make the ice smoke effect work.
-    if (override.value.base.item_id == 0x7C) {
-        int object_fz_index = z64_ObjectIndex(&z64_game.obj_ctxt, 0x0114);
-        // No need to spawn more than one by scene.
-        if (!z64_ObjectIsLoaded(&z64_game.obj_ctxt, object_fz_index)) {
-            object_index_or_spawn(&z64_game.obj_ctxt, 0x0114);
-        }
     }
 }
 

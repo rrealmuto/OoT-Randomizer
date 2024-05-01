@@ -217,7 +217,6 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Goal hints can now hint items required to defeat Ganon even if they're not required for the rainbow bridge, Ganon's boss key, or the trials. These items will be hinted as being on the "path of the hero".
 * Fix a softlock present in the original game when damaging Volvagia's second hitbox during the death cutscene.
 * Don't start the trade sequence timer if getting the `ZD King Zora Thawed` item while the Eyeball Frog is in the inventory.
-* Fix missing visual frost effect for ice traps in most chests.
 * Fix the items on the right side of the mask shop being available without paying for all borrowed masks first.
 * The Stone of Agony can now be foolish in Glitched Logic and No Logic, as it already was with the `Hidden Grottos without Stone of Agony` trick enabled.
 * Fix seeds with Plentiful item pool and no adult trade items selected failing to generate.
