@@ -1,6 +1,6 @@
 [package]
 name = "ootr"
-version = "8.1.16-fenhl.12.riir.22"
+version = "8.1.16-fenhl.12.riir.23"
 edition = "2021"
 
 [profile.release]

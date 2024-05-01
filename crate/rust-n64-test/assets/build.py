@@ -2,9 +2,8 @@ import os
 import shutil
 import subprocess
 
-subprocess.run(['cargo', 'clean'], cwd='crate/rust-n64-test', check=True) #DEBUG
 subprocess.run(
-    ['cargo', '+nightly-2024-04-14', 'build', '-Zbuild-std=core', '--release', '--target=assets/mips-ultra64-cpu.json'], # running on this nightly due to https://github.com/rust-lang/rust/issues/124042
+    ['cargo', '+nightly', 'build', '-Zbuild-std=core', '-Zbuild-std-features=compiler-builtins-mem', '--release', '--target=assets/mips-ultra64-cpu.json'],
     cwd='crate/rust-n64-test',
     env={**os.environ, 'RUSTFLAGS': '-Csymbol-mangling-version=v0'}, # symbol-mangling-version (https://github.com/rust-lang/rust/issues/60705) required for armips to accept the symbols
     check=True,
