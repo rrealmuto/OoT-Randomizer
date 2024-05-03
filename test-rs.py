@@ -6,19 +6,19 @@ Usage:
 
 Options:
   -E, --no-emu                  don't automatically launch BizHawk
+  -c, --cosmetics               include cosmetics from cosmetics-plando.json
   -e, --everdrive               test world 1 on EverDrive
   -h, --help                    show this help message and exit
   -l, --log                     open the spoiler log in VS Code
   -n, --worlds=<count>          generate a multiworld seed for this many players [default: 1] [type: int]
   -o, --output=<path>           save randomizer output to the given file
+  -p, --preset=<preset>         use this settings preset instead of or in addition to plando.json
   -v, --verbose                 always show randomizer output
-  --cosmetics                   include cosmetics from cosmetics-plando.json
   --mhmw-stage                  test using the gitdir stage of Mido's House Multiworld
   --no-rebuild                  don't recompile ASM/C/Rust even if it was changed
   --no-wait                     don't wait for input before deleting the seed
   --patch                       generate a .zpf file
   --player=<id>                 only launch the given world [type: int]
-  --preset=<preset>             use this settings preset instead of or in addition to plando.json
   --release                     compile Rust code with optimizations
   --seed=<seed>                 generate a set seed
   --seeds=<count>               generate the given number of seeds and count successes and failures. Implies --no-emu [default: 1] [type: int]
