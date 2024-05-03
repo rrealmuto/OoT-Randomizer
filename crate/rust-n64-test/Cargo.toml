@@ -1,6 +1,6 @@
 [package]
 name = "rust-n64-test"
-version = "8.1.32-fenhl.1.riir.1"
+version = "8.1.32-fenhl.3.riir.2"
 edition = "2021"
 
 [profile.release]
