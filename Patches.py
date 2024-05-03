@@ -472,6 +472,10 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     version_str = "version " + __version__
     if len(version_str) > line_len:
         version_str = "ver. " + __version__
+    if len(version_str) > line_len:
+        version_str = "v. " + __version__
+    if len(version_str) > line_len:
+        version_str = "v" + __version__
     rom.write_bytes(rom.sym('VERSION_STRING_TXT'), make_bytes(version_str, 25))
 
     if world.settings.create_spoiler:
