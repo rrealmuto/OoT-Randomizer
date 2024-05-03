@@ -941,24 +941,45 @@ def get_unlock_hint(spoiler: Spoiler, world: World, checked: set[str], hint_type
     item_text = get_hint(get_item_generic_name(location.item), world.settings.clearer_hints).text
     required_item_text = get_hint(get_item_generic_name(required_location.item), world.settings.clearer_hints).text
 
-    if location.item.world.id == world.id:
-        item_player_text = ''
-    else:
-        item_player_text = "Player %s's " % (location.item.world.id + 1)
-
     if required_location.item.world.id == world.id:
         required_item_player_text = ''
     else:
-        required_item_player_text = "Player %s's " % (required_location.item.world.id + 1)
+        required_item_player_text = f"player {required_location.item.world.id + 1}'s "
 
+    prefix, suffix = item_text.replace('#', '').split(' ', 1)
+    prefixes = ('a', 'an', 'the')
+    if location.item.world.id == world.id:
+        if hint_type == 'unlock-playthrough':
+            if prefix in prefixes:
+                item_text = f"{'a' if prefix == 'an' else prefix} #wanderer's# #{suffix}#"
+            else:
+                if '#' not in item_text:
+                    item_text = f'#{item_text}#'
+                item_text = f"the #wanderer's# {item_text}"
+        else:
+            if '#' not in item_text:
+                item_text = f'#{item_text}#'
+    else:
+        if prefix in prefixes:
+            if hint_type == 'unlock-playthrough':
+                item_text = f"player {location.item.world.id + 1}'s #wanderer's# #{suffix}#"
+            else:
+                item_text = f"player {location.item.world.id + 1}'s #{suffix}#"
+        else:
+            if '#' not in item_text:
+                item_text = f'#{item_text}#'
+            if hint_type == 'unlock-playthrough':
+                item_text = f"player {location.item.world.id + 1}'s #wanderer's# {item_text}"
+            else:
+                item_text = f"player {location.item.world.id + 1}'s {item_text}"
+
+    gossip_text = f'{required_item_player_text}#{required_item_text}# unlocks the way to {item_text}.'
     if hint_type == 'unlock-playthrough':
-        gossip_text = '%s#%s# unlocks the way to the #wanderer\'s# %s#%s#.'
         gossip_colors = ['Light Blue', 'Yellow', 'Light Blue']
     else:
-        gossip_text = '%s#%s# unlocks the way to %s#%s#.'
         gossip_colors = ['Light Blue', 'Light Blue']
 
-    return (GossipText(gossip_text % (required_item_player_text, required_item_text, item_player_text, item_text), gossip_colors, [required_location.name, location.name], [required_location.item.name, location.item.name]), [required_location, location])
+    return (GossipText(gossip_text, gossip_colors, [required_location.name, location.name], [required_location.item.name, location.item.name]), [required_location, location])
 
 def get_barren_hint(spoiler: Spoiler, world: World, checked: set[str], all_checked: set[str]) -> HintReturn:
     if not hasattr(world, 'get_barren_hint_prev'):
