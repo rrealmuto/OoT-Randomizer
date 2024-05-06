@@ -231,6 +231,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Treasure Chest Game key and silver rupee options are now included in `Randomize Main Rule Settings`.
 * Meg will now take less time before respawning after getting hurt.
 * Pause menu has been modified so that equip swap will work again.
+* The cutscenes for stealing Epona by jumping over a fence are now sped up. Previously, only the cutscene for jumping over the front gate was shortened.
 
 ### 8.1
 
