@@ -26,7 +26,7 @@
         "exits": {
             "Ganons Castle Forest Trial": "here(is_adult or Kokiri_Sword)",
             "Ganons Castle Water Trial": "True",
-            "Ganons Castle Shadow Trial": "is_adult",
+            "Ganons Castle Shadow Trial": "True",
             "Ganons Castle Fire Trial": "logic_fewer_tunic_requirements or can_use(Goron_Tunic)",
             "Ganons Castle Light Trial": "can_use(Golden_Gauntlets)",
             "Ganons Castle Spirit Trial": "True",
@@ -130,19 +130,15 @@
         "dungeon": "Ganons Castle",
         "locations": {
             "Ganons Castle MQ Shadow Trial Bomb Flower Chest": "
-                (Bow and (Hookshot or Hover_Boots)) or
+                is_adult and ((Bow and (Hookshot or Hover_Boots)) or
                 at('Ganons Castle Shadow Trial Moving Platform',
-                    has_explosives or Progressive_Strength_Upgrade or can_use(Dins_Fire))",
-            "Ganons Castle MQ Shadow Trial Bubble": "has_soul(Bubble) and (Bow or Magic_Meter)",
-            "Ganons Castle MQ Shadow Trial Beamos 1": "Hover_Boots and (logic_lens_castle_mq or can_use(Lens_of_Truth)) and can_kill_beamos",
-            "Ganons Castle MQ Shadow Trial Beamos 2": "Hover_Boots and (logic_lens_castle_mq or can_use(Lens_of_Truth)) and can_kill_beamos",
-            "Ganons Castle MQ Shadow Trial Beamos 3": "Hover_Boots and (logic_lens_castle_mq or can_use(Lens_of_Truth)) and can_kill_beamos",
-            "Ganons Castle MQ Shadow Trial Beamos 4": "Hover_Boots and (logic_lens_castle_mq or can_use(Lens_of_Truth)) and can_kill_beamos"
+                    has_explosives or Progressive_Strength_Upgrade or can_use(Dins_Fire)))",
+            "Ganons Castle MQ Shadow Trial Bubble": "has_soul(Bubble) and ((is_adult and (Bow or Magic_Meter)) or Slingshot)"
         },
         "exits": {
             "Ganons Castle Shadow Trial Moving Platform": "
-                (logic_lens_shadow_trial_mq or can_use(Lens_of_Truth)) and
-                (Hover_Boots or (Bow and Hookshot))"
+                is_adult and ((logic_lens_shadow_trial_mq or can_use(Lens_of_Truth)) and
+                (Hover_Boots or (Bow and Hookshot)))"
         }
     },
     {
@@ -151,7 +147,8 @@
         "locations": {
             "Ganons Castle MQ Shadow Trial Silver Rupee Moving Platform": "True",
             "Ganons Castle MQ Shadow Trial Silver Rupee Bomb Flower": "True",
-            "Ganons Castle MQ Shadow Trial Silver Rupee First Beamos": "True"
+            "Ganons Castle MQ Shadow Trial Silver Rupee First Beamos": "True",
+            "Ganons Castle MQ Shadow Trial First Beamos": "can_kill_beamos"
         },
         "exits": {
             "Ganons Castle Shadow Trial Second Gap": "Hover_Boots or has_fire_source or logic_shadow_trial_mq"
@@ -163,7 +160,10 @@
         "locations": {
             "Ganons Castle MQ Shadow Trial Eye Switch Chest": "Bow",
             "Ganons Castle MQ Shadow Trial Silver Rupee Last Beamos": "True",
-            "Ganons Castle MQ Shadow Trial Silver Rupee Guillotine": "True"
+            "Ganons Castle MQ Shadow Trial Silver Rupee Guillotine": "True",
+            "Ganons Castle MQ Shadow Trial Far Beamos 1": "can_kill_beamos",
+            "Ganons Castle MQ Shadow Trial Far Beamos 2": "can_kill_beamos",
+            "Ganons Castle MQ Shadow Trial Far Beamos 3": "can_kill_beamos"
         },
         "exits": {
             "Ganons Castle Shadow Trial Ending": "(Silver_Rupee_Ganons_Castle_Shadow_Trial, 5)"

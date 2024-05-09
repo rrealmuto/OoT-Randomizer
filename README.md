@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v102](#v102)
   * [v101](#v101)
   * [v100](#v100)
   * [v99](#v99)
@@ -127,6 +128,11 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v102
+  * (Hopefully) Fix generating boss soul shuffle with random settings
+  * Ganons Castle/MQ enemy logic fixes
+  * Water Temple enemy logic fixes
+
 ### v101
   * Reverting Dev merge
 
