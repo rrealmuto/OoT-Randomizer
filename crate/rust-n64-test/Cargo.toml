@@ -1,11 +1,16 @@
 [package]
 name = "rust-n64-test"
-version = "8.1.33-fenhl.1.riir.1"
-edition = "2021"
+version.workspace = true
+edition.workspace = true
 
-[profile.release]
-lto = true
-strip = true
+[lints.rust]
+rust_2018_idioms = "deny"
+unused = "deny"
+unused_crate_dependencies = "deny"
+unused_import_braces = "deny"
+unused_lifetimes = "deny"
+unused_qualifications = "deny"
+warnings = "deny"
 
 [lib]
 crate-type = ["staticlib"]

@@ -46,6 +46,5 @@ tests/Output
 
 # Rust build scaffolding
 
-/crate/rust-n64-test/target
 /rs.pyd
 /target
