@@ -9,6 +9,7 @@ Usage:
 
 Options:
   -h, --help         show this help message and exit
+  --defaults         fill in missing settings with their default values
   --from=<rev>       update presets to match the given git commit
   --hook             run noninteractively for git pre-commit hook purposes
   --preset=<preset>  only update the named preset
@@ -29,7 +30,7 @@ if hasattr(SettingsList, 'si_dict'):
 else:
     SETTINGS_DICT = SettingsList.SettingInfos.setting_infos
 
-def complete_presets(new_presets, interactive, *, add=False, preset=None, source=None):
+def complete_presets(new_presets, interactive, *, add=False, defaults=False, preset=None, source=None):
     with open('data/presets_default.json', encoding='utf-8') as f:
         current = json.load(f)
     names = set(current)
@@ -60,7 +61,9 @@ def complete_presets(new_presets, interactive, *, add=False, preset=None, source
                         new_presets[preset_name][setting_name] = old_preset[setting_name]
                         SettingsList.validate_settings(new_presets[preset_name], check_conflicts=False)
                     except TypeError:
-                        if interactive:
+                        if defaults:
+                            new_presets[preset_name][setting_name] = SETTINGS_DICT[setting_name].default
+                        elif interactive:
                             while True:
                                 try:
                                     new_presets[preset_name][setting_name] = json.loads(input(f'{preset_name}[{setting_name}] (previously {json.dumps(old_preset[setting_name])}): ').strip())
@@ -72,7 +75,9 @@ def complete_presets(new_presets, interactive, *, add=False, preset=None, source
                         else:
                             raise
                 else:
-                    if interactive:
+                    if defaults:
+                        new_presets[preset_name][setting_name] = SETTINGS_DICT[setting_name].default
+                    elif interactive:
                         while True:
                             try:
                                 new_presets[preset_name][setting_name] = json.loads(input(f'{preset_name}[{setting_name}]: ').strip())
@@ -132,7 +137,7 @@ if __name__ == '__main__':
         preset = arguments['--preset']
         if arguments['add']:
             preset = arguments['<preset>']
-        complete_presets(new_presets, True, add=arguments['add'], preset=preset, source=source)
+        complete_presets(new_presets, True, add=arguments['add'], defaults=arguments['--defaults'], preset=preset, source=source)
         with open('data/presets_default.json', 'w', encoding='utf-8', newline='\n') as f:
             json.dump(new_presets, f, indent=4)
             print(file=f)
