@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v103](#v103)
   * [v102](#v102)
   * [v101](#v101)
   * [v100](#v100)
@@ -128,6 +129,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v103
+  * Merge the rest of Potsanity 3.0. Probably just breaking things
+
 ### v102
   * (Hopefully) Fix generating boss soul shuffle with random settings
   * Ganons Castle/MQ enemy logic fixes

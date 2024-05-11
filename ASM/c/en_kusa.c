@@ -16,7 +16,7 @@ int enkusa_dropcollectible_hack(z64_actor_t* actor, z64_game_t* game)
 {
     // Get our flag from the actor
     ActorAdditionalData* extra = Actor_GetAdditionalData(actor);
-    if(extra->flag.all && !Get_NewOverrideFlag(&(extra->flag))) {
+    if(extra->flag.all && !Get_NewFlag(&(extra->flag))) {
         drop_collectible_override_flag = extra->flag;
         z64_Item_DropCollectible(game, &(actor->pos_world), 0);
         z64_bzero(&drop_collectible_override_flag, sizeof(drop_collectible_override_flag));
@@ -41,7 +41,7 @@ void EnKusa_Draw_Hack(z64_actor_t* actor, z64_game_t* game) {
 
     // Check if the item has already been collected to properly redraw the color
     ActorAdditionalData* extras = Actor_GetAdditionalData(actor);
-    if(extras->flag.all && Get_NewOverrideFlag(&(extras->flag))) {
+    if(extras->flag.all && Get_NewFlag(&(extras->flag))) {
         // Flag is set so clear the chest type
         this->chest_type = -1;
         extras->flag.all = 0;

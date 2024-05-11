@@ -1936,9 +1936,9 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     xflags_tables, alt_list = build_xflags_from_world(world)
     xflag_scene_table, xflag_room_table, xflag_room_blob, max_bit = build_xflag_tables(xflags_tables)
     rom.write_bytes(rom.sym('xflag_scene_table'), xflag_scene_table)
-    if len(xflag_room_table) > 1000:
+    if len(xflag_room_table) > rom.sym_length('xflag_room_table'):
         raise RuntimeError(f'Exceeded xflag room table size: {len(xflag_room_table)}')
-    if len(xflag_room_blob) > 3500:
+    if len(xflag_room_blob) > rom.sym_length('xflag_room_blob'):
         raise RuntimeError(f'Exceed xflag blob table size: {len(xflag_room_blob)}')
     rom.write_bytes(rom.sym('xflag_room_table'), xflag_room_table)
     rom.write_bytes(rom.sym('xflag_room_blob'), xflag_room_blob)
@@ -1953,16 +1953,17 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     #rom.write_bytes(rom.sym('collectible_scene_flags_table'), collectible_flag_table_bytes)
     #num_collectible_flags += num_collectible_flags % 8
     #rom.write_bytes(rom.sym('num_override_flags'), num_collectible_flags.to_bytes(2, 'big'))
-    if(len(alt_list) > 500):
+    if(len(alt_list_bytes) > rom.sym_length('alt_overrides')):
         raise(RuntimeError(f'Exceeded alt override table size: {len(alt_list)}'))
     rom.write_bytes(rom.sym('alt_overrides'), alt_list_bytes)
 
     # Write item overrides
     check_location_dupes(world)
     override_table = get_override_table(world)
-    if len(override_table) >= 2700:
+    override_table_bytes = get_override_table_bytes(override_table)
+    if len(override_table_bytes) >= rom.sym_length('cfg_item_overrides'):
         raise(RuntimeError("Exceeded override table size: " + str(len(override_table))))
-    rom.write_bytes(rom.sym('cfg_item_overrides'), get_override_table_bytes(override_table))
+    rom.write_bytes(rom.sym('cfg_item_overrides'), override_table_bytes)
     rom.write_byte(rom.sym('PLAYER_ID'), world.id + 1)  # Write player ID
 
     # Revert Song Get Override Injection
@@ -2802,6 +2803,8 @@ NUM_VANILLA_OBJECTS: int = 0x192
 def add_to_extended_object_table(rom: Rom, object_id: int, start_address: int, end_address: int) -> None:
     extended_id = object_id - NUM_VANILLA_OBJECTS - 1
     extended_object_table = rom.sym('EXTENDED_OBJECT_TABLE')
+    if (extended_id + 1) * 8 > rom.sym_length('EXTENDED_OBJECT_TABLE'):
+        raise RuntimeError(f"Exceeded EXTENDED_OBJECT_TABLE size: {extended_id}")
     rom.write_int32s(extended_object_table + extended_id * 8, [start_address, end_address])
 
 
@@ -2890,14 +2893,14 @@ def get_override_entry(location: Location) -> Optional[OverrideEntry]:
 
         if len(default) == 3:
             room, scene_setup, flag = default
-            subflag = 1
+            subflag = 0
         elif len(default) == 4:
             room, scene_setup, flag, subflag = default
 
         if location.scene == 0x3E: # handle grottos separately...
-            default = ((scene_setup & 0x1F) << 19) + ((room & 0x0F) << 15) + ((flag & 0x7F) << 8) + ((subflag & 0xFF) - 1) #scene_setup = grotto_id
+            default = ((scene_setup & 0x1F) << 19) + ((room & 0x0F) << 15) + ((flag & 0x7F) << 8) + ((subflag & 0xFF)) #scene_setup = grotto_id
         else:
-            default = (scene_setup << 22) + (room << 16) + (flag << 8) + (subflag-1)
+            default = (scene_setup << 22) + (room << 16) + (flag << 8) + (subflag)
     elif location.type in ('Collectable', 'ActorOverride'):
         type = 2
     elif location.type == 'GS Token':

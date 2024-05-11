@@ -58,6 +58,24 @@ void* Actor_ResolveOverlayAddr(z64_actor_t* actor, void* addr) {
     return (addr - actor->overlay_entry->vramStart + actor->overlay_entry->loadedRamAddr);
 }
 
+// Build an xflag from actor ID and subflag
+// Store the flag using the pointer
+void Actor_BuildFlag(z64_actor_t* actor, xflag_t* flag, uint16_t actor_index, uint8_t subflag) {
+    flag->scene = z64_game.scene_index;
+    if(z64_game.scene_index == 0x3E) {
+        flag->grotto.room = actor->room_index;
+        flag->grotto.grotto_id = z64_file.grotto_id & 0x1F;
+        flag->grotto.flag = actor_index;
+        flag->grotto.subflag = subflag;
+    }
+    else {
+        flag->room = actor->room_index;
+        flag->setup = curr_scene_setup;
+        flag->flag = actor_index;
+        flag->subflag = subflag;
+    }
+}
+
 // Called from Actor_UpdateAll when spawning the actors in the scene's/room's actor list to store flags in the new space that we added to the actors.
 // Prior to being called, CURR_ACTOR_SPAWN_INDEX is set to the current position in the actor spawn list.
 void Actor_After_UpdateAll_Hack(z64_actor_t* actor, z64_game_t* game) {
@@ -80,13 +98,14 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, xflag_t flag) {
     if(CURR_ACTOR_SPAWN_INDEX)
         extra->actor_id = CURR_ACTOR_SPAWN_INDEX;
     override_t override = lookup_override_by_newflag(&flag);
+
     if(override.key.all)
     {
         if(actor->actor_type == ACTORCAT_ENEMY && actor->actor_id != 0x0197) //Hack for most enemies. Specifically exclude gerudo fighters (0x197)
         {
             extra->flag = flag;
             // Add marker for enemy drops
-            if(!Get_NewOverrideFlag(&flag)) {
+            if(!Get_NewFlag(&flag)) {
                 extra->minimap_draw_flags = MINIMAP_FLAGS_DRAW | MINIMAP_FLAGS_ENEMY;
             }
             return;
@@ -115,7 +134,7 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, xflag_t flag) {
             {
                 extra->flag = flag;
                 // Add marker for enemy drops
-                if(!Get_NewOverrideFlag(&flag)) {
+                if(!Get_NewFlag(&flag)) {
                     extra->minimap_draw_flags = MINIMAP_FLAGS_DRAW | MINIMAP_FLAGS_ENEMY;
                 }
                 break;
@@ -126,7 +145,6 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, xflag_t flag) {
             }
         }
     }
-
 }
 
 // For pots/crates/beehives, store the flag in the new space in the actor instance.
@@ -135,38 +153,15 @@ void Actor_StoreFlagByIndex(z64_actor_t* actor, z64_game_t* game, uint16_t actor
     // Zeroize extra data;
 
     xflag_t flag = (xflag_t) { 0 };
-
-    flag.scene = z64_game.scene_index;
-    if(z64_game.scene_index == 0x3E) {
-        flag.grotto.room = actor->room_index;
-        flag.grotto.grotto_id = z64_file.grotto_id & 0x1F;
-        flag.grotto.flag = actor_index;
-        flag.grotto.subflag = 0;
-    }
-    else {
-        flag.room = actor->room_index;
-        flag.setup = curr_scene_setup;
-        flag.flag = actor_index;
-        flag.subflag = 0;
-    }
-
+    Actor_BuildFlag(actor, &flag, actor_index, 0);
     Actor_StoreFlag(actor, game, flag);
-
 }
 
-// Get an override for an actor with the new flags. If the override doesn't exist, or flag has already been set, return 0.
-override_t get_newflag_override(z64_actor_t *actor, z64_game_t *game) {
-    xflag_t* flag = &Actor_GetAdditionalData(actor)->flag;
-    return get_newflag_override_by_flag(flag, game);
-}
-
-// Get an override for an actor with the new flags. If the override doesn't exist, or flag has already been set, return 0.
-override_t get_newflag_override_by_flag(xflag_t* flag, z64_game_t *game) {
+// Get an override for new flag. If the override doesn't exist, or flag has already been set, return 0.
+override_t get_newflag_override(xflag_t* flag) {
     override_t override = lookup_override_by_newflag(flag);
-    if(override.key.all != 0)
-    {
-        if(!Get_NewOverrideFlag(flag))
-        {
+    if(override.key.all != 0) {
+        if(!Get_NewFlag(flag)) {
             return override;
         }
     }
@@ -178,34 +173,34 @@ override_t get_newflag_override_by_flag(xflag_t* flag, z64_game_t *game) {
 void Actor_StoreChestType(z64_actor_t* actor, z64_game_t* game) {
     uint8_t* pChestType = NULL;
     override_t override = { 0 };
-
+    xflag_t* flag = &(Actor_GetAdditionalData(actor)->flag);
     if(actor->actor_id == OBJ_TSUBO) //Pots
     {
-        override = get_newflag_override(actor, game);
+        override = get_newflag_override(flag);
         pChestType = &(((ObjTsubo*)actor)->chest_type);
     }
     else if(actor->actor_id == EN_TUBO_TRAP) // Flying Pots
     {
-        override = get_newflag_override(actor, game);
+        override = get_newflag_override(flag);
         pChestType = &(((EnTuboTrap*)actor)->chest_type);
     }
     else if(actor->actor_id == OBJ_KIBAKO2) // Large Crates
     {
-        override = get_newflag_override(actor, game);
+        override = get_newflag_override(flag);
         pChestType = &(((ObjKibako2*)actor)->chest_type);
     }
     else if(actor->actor_id == OBJ_KIBAKO) // Small wooden crates
     {
-        override = get_newflag_override(actor, game);
+        override = get_newflag_override(flag);
         pChestType = &(((ObjKibako*)actor)->chest_type);
     }
     else if(actor->actor_id == OBJ_COMB)
     {
-        override = get_newflag_override(actor, game);
+        override = get_newflag_override(flag);
         pChestType = &(((ObjComb *)actor)->chest_type);
     }
     else if(actor->actor_id == EN_KUSA) {
-        override = get_newflag_override(actor, game);
+        override = get_newflag_override(flag);
         pChestType = &(((EnKusa*)actor)->chest_type);
     }
     if (override.key.all != 0 && pChestType != NULL) { // If we don't have an override key, then either this item doesn't have an override entry, or it has already been collected.
@@ -284,7 +279,7 @@ bool spawn_override_silver_rupee(ActorEntry* actorEntry, z64_game_t* globalCtx, 
         }
         override_t override = lookup_override_by_newflag(&flag);
         if (override.key.all != 0) {
-            if (type == 1 && !Get_NewOverrideFlag(&flag)) {
+            if (type == 1 && !Get_NewFlag(&flag)) {
                 // Spawn a green rupee which will be overridden using the collectible hacks.
                 actorEntry->params = 0;
                 actorEntry->id = EN_ITEM00;
@@ -329,7 +324,7 @@ uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit
         if (xflag.all) {
             xflag = resolve_alternative_flag(&xflag);
             override_t override = lookup_override_by_newflag(&xflag);
-            if(override.key.all != 0 && !(Get_NewOverrideFlag(&xflag)>0))
+            if(override.key.all != 0 && !(Get_NewFlag(&xflag)>0))
             {
                 return 0;
             }
@@ -361,7 +356,7 @@ uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit
             override_t override = lookup_override_by_newflag(&xflag);
 
             //Check if this actor is in the override list
-            if(override.key.all != 0 && !(Get_NewOverrideFlag(&xflag)>0))
+            if(override.key.all != 0 && !(Get_NewFlag(&xflag)>0))
             {
                 return 0;
             }

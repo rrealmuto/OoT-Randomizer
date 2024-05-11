@@ -61,7 +61,7 @@ void EnItem00_Init_Hook(EnItem00* this, z64_game_t* globalCtx) {
 void en_item00_update_hook(EnItem00* this, z64_game_t* globalCtx)
 {
     xflag_t* flag = &(Actor_GetAdditionalData(&this->actor)->flag);
-    if (this->override.key.type != OVR_DELAYED && Get_NewOverrideFlag(flag) && !((collectible_mutex == this) || this->actor.dropFlag == 1))
+    if (this->override.key.type != OVR_DELAYED && Get_NewFlag(flag) && !((collectible_mutex == this) || this->actor.dropFlag == 1))
     {
         this->override = (override_t) { 0 };
     }

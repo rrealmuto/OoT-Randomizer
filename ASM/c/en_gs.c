@@ -24,7 +24,8 @@ void En_Gs_Update_Hack(EnGs* this, z64_game_t* globalCtx) {
                     (globalCtx->msgContext.unk_E3F2 == OCARINA_SONG_LULLABY) ||
                     (globalCtx->msgContext.unk_E3F2 == OCARINA_SONG_SUNS) ||
                     (globalCtx->msgContext.unk_E3F2 == OCARINA_SONG_TIME)) {
-                        if(globalCtx->msgContext.unk_E3F2 == OCARINA_SONG_TIME && get_newflag_override(&(this->actor), globalCtx).key.all)
+                        xflag_t* flag = &(Actor_GetAdditionalData(this)->flag);
+                        if(globalCtx->msgContext.unk_E3F2 == OCARINA_SONG_TIME && flag->all && !Get_NewFlag(flag))
                         {
                             xflag_t* flag = &(Actor_GetAdditionalData(&this->actor)->flag);
                             drop_collectible_override_flag = *flag;

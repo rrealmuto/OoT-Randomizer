@@ -30,7 +30,7 @@ z64_actor_t* Fishing_Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int
         fish_flag.setup = curr_scene_setup;
         fish_flag.flag = globalCtx->link_age + 1; // Use the current age as the flag to distinguish child/adult fish
         fish_flag.subflag = params - 100; // Params contains the value 100 + i from the spawn loop. Add 1
-        override_t override = get_newflag_override_by_flag(&fish_flag, globalCtx);
+        override_t override = get_newflag_override(&fish_flag);
         if(override.key.all) {
             spawn_actor_with_flag = &fish_flag;
             Fishing* fish = z64_SpawnActor(actorCtx, globalCtx, actorId, posX, posY, posZ, rotX, rotY, rotZ, params);
@@ -79,7 +79,7 @@ void Fishing_CaughtFish_Textbox(z64_game_t* globalCtx, uint16_t messageID, z64_a
         uint16_t resolved_item_id = resolve_upgrades(caught_fish->override);
         item_row_t* item_row = get_item_row(resolved_item_id);
         z64_DisplayTextbox(globalCtx, resolve_item_text_id(item_row, player != PLAYER_ID), NULL);
-        Set_NewOverrideFlag(&(extras->flag));
+        Set_NewFlag(&(extras->flag));
         dispatch_item(resolved_item_id, caught_fish->override.value.base.player, &(caught_fish->override), item_row);
         globalCtx->msgContext.choiceIndex = 0;
         return;

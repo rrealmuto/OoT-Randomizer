@@ -2873,10 +2873,10 @@
         "scene": "Death Mountain Crater",
         "hint": "DEATH_MOUNTAIN_CRATER",
         "locations": {
-            "DMC Near GC Pot 1": "is_adult",
-            "DMC Near GC Pot 2": "is_adult",
-            "DMC Near GC Pot 3": "is_adult",
-            "DMC Near GC Pot 4": "is_adult"
+            "DMC Near GC Pot 1": "is_adult or shuffle_empty_pots",
+            "DMC Near GC Pot 2": "is_adult or shuffle_empty_pots",
+            "DMC Near GC Pot 3": "is_adult or shuffle_empty_pots",
+            "DMC Near GC Pot 4": "is_adult or shuffle_empty_pots"
         },
         "exits": {
             "DMC Lower Local": "can_use(Goron_Tunic)",
