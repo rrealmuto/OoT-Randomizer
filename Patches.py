@@ -1536,18 +1536,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     if world.settings.open_kakariko != 'closed':
         rom.write_byte(rom.sym('OPEN_KAKARIKO'), 1)
 
-    # Mark starting trade items as owned
-    # The effective starting item seen in the player inventory will be the
-    # latest shuffled item in the trade sequence, calculated in
-    # Plandomizer.WorldDistribution.configure_effective_starting_items.
-    owned_flags = 0
-    for item_name in world.settings.starting_items.keys():
-        if item_name in child_trade_items:
-            owned_flags += 0x1 << (child_trade_items.index(item_name))
-        if item_name in trade_items:
-            owned_flags += 0x1 << (trade_items.index(item_name) + 11)
-    save_context.write_permanent_flags(Scenes.DEATH_MOUNTAIN_TRAIL, FlagType.UNK00, owned_flags)
-
     # Mark unreachable trade-ins as traded. Only applicable with trade quest shuffle off,
     # and only practically affects the Blue Potion purchase from Granny's Potion Shop.
     if not world.settings.adult_trade_shuffle and len(world.settings.adult_trade_start) > 0:
