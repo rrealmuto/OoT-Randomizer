@@ -3,14 +3,17 @@
 This is a randomizer for _The Legend of Zelda: Ocarina of Time_ for the Nintendo 64.
 
 **WARNING:** This branch is a modified version of the randomizer. It is **not** officially supported and may be **very unstable**.
-When asking questions or reporting issues in the main Randomizer Discord, please make sure to include the full version number in the `A.B.C Fenhl-D` format — that last part is important!
+When asking questions or reporting issues in the main Randomizer Discord, please make sure to include the full version number in the `A.B.C Fenhl-D riir-E` format — those last two parts are important!
 You can also [open an issue](https://github.com/fenhl/OoT-Randomizer/issues/new) on this fork or contact me directly on Discord (`@fenhl`) for any help, report or request.
 
-This branch is available to use online at <https://ootrandomizer.com/generatorDev?version=devFenhl_> (may be outdated).
+This branch (`riir`) is based on the [`dev-fenhl`](https://github.com/fenhl/OoT-Randomizer) branch, which is in turn based on [Roman971](https://github.com/Roman971)'s branch ([`Dev-R`](https://github.com/Roman971/OoT-Randomizer)), which is in turn based on the main [`Dev`](https://github.com/OoTRandomizer/OoT-Randomizer) branch.
 
-This branch (`dev-fenhl`) is based on [Roman971](https://github.com/Roman971)'s branch ([`Dev-R`](https://github.com/Roman971/OoT-Randomizer)) which is in turn based on the main [`Dev`](https://github.com/OoTRandomizer/OoT-Randomizer) branch.
+Differences between `riir` and [`dev-fenhl`](https://github.com/fenhl/OoT-Randomizer):
 
-Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Randomizer):
+* Additional setup required. For now, it is recommended to run the randomizer via the `test-rs.py` script.
+* Performance improvements.
+
+Differences between [`dev-fenhl`](https://github.com/fenhl/OoT-Randomizer) and [`Dev-R`](https://github.com/Roman971/OoT-Randomizer):
 
 * New settings and options:
   * New “Shuffle Gerudo Fortress Heart Piece” setting to control the behavior of this check with “Shuffle Thieves' Hideout Entrances” ([#2179](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2179))
