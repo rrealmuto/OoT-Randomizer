@@ -708,7 +708,7 @@ def get_barren_hint(spoiler: Spoiler, world: World, checked: set[str], all_check
             and location.name not in world.hint_exclusions
             and location.name not in hint_exclusions(world)
             and HintArea.at(location) == area
-            for location in world.get_locations()
+            for location in world.get_filled_locations()
         ),
         world.empty_areas))
 
