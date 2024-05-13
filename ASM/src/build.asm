@@ -136,7 +136,7 @@ RANDO_CONTEXT:
 .importobj "../build/bundle.o"
 
 .align 0x10
-.importobj "../build/librust_n64_test.a"
+.importobj "../../target/mips-ultra64-cpu/release/librust_n64_test.a"
 
 .align 0x10
 

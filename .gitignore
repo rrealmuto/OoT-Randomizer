@@ -3,7 +3,6 @@
 .vscode
 .idea
 /ASM/build/bin
-/ASM/build/librust_n64_test.a
 /Output
 /build
 /dist
