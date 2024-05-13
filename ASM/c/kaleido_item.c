@@ -39,6 +39,10 @@ void KaleidoScope_DrawItemSelect(z64_game_t* play) {
         if (pause_ctxt->cursor_special_pos == 0) {
             pause_ctxt->cursor_color_set = 4;
 
+            if (cursor_item == PAUSE_ITEM_NONE) {
+                pause_ctxt->stick_movement_x = 40;
+            }
+
             // Code for ensuring an empty deku stick slot isn't selected when entering the screen for the first time
             // has been removed for randomizer. It's a valid position for the cursor to start and empty slots can't equip
             // items so there is no need for this.
