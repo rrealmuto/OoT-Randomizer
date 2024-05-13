@@ -372,9 +372,9 @@ item_row_t item_table[] = {
     [0x101D] = ITEM_ROW(0x53,   HEART_CHEST_BIG, 0x7A, -1, 0x00FA, 0x00BD, 0x14, health_upgrade_cap, full_heal,           -1, -1, NULL), // Piece of Heart (Chest Game) (big chest)
     [0x101E] = ITEM_ROW(0x53,      GILDED_CHEST, 0x3E, -1, 0x004C, 0x00CB, 0x1D, no_upgrade,         no_effect,           -1, -1, NULL), // Deku Shield (big chest)
     [0x101F] = ITEM_ROW(0x53,      GILDED_CHEST, 0x3F, -1, 0x004D, 0x00DC, 0x2C, no_upgrade,         no_effect,           -1, -1, NULL), // Hylian Shield (big chest)
-    [0x1020] = ITEM_ROW(0x4D,      GILDED_CHEST, 0x96, -1, 0x0033, 0x00D9, 0x28, no_upgrade,         no_effect,           -1, -1, NULL), // Bombchu (5) (big chest)
-    [0x1021] = ITEM_ROW(0x4D,      GILDED_CHEST, 0x09, -1, 0x0033, 0x00D9, 0x28, no_upgrade,         no_effect,           -1, -1, NULL), // Bombchu (10) (big chest)
-    [0x1022] = ITEM_ROW(0x4D,      GILDED_CHEST, 0x97, -1, 0x0033, 0x00D9, 0x28, no_upgrade,         no_effect,           -1, -1, NULL), // Bombchu (20) (big chest)
+    [0x1020] = ITEM_ROW(0x4D,      GILDED_CHEST, 0x96, -1, 0x0033, 0x00D9, 0x28, bombchus_to_bag,    no_effect,           -1, -1, NULL), // Bombchu (5) (big chest)
+    [0x1021] = ITEM_ROW(0x4D,      GILDED_CHEST, 0x09, -1, 0x0033, 0x00D9, 0x28, bombchus_to_bag,    no_effect,           -1, -1, NULL), // Bombchu (10) (big chest)
+    [0x1022] = ITEM_ROW(0x4D,      GILDED_CHEST, 0x97, -1, 0x0033, 0x00D9, 0x28, bombchus_to_bag,    no_effect,           -1, -1, NULL), // Bombchu (20) (big chest)
     [0x1023] = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,     -1, 0x00BB, 0x12, nut_upgrade,        no_effect,           -1, -1, NULL), // Progressive Nut Capacity (big chest)
     [0x1024] = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,     -1, 0x00C7, 0x1B, stick_upgrade,      no_effect,           -1, -1, NULL), // Progressive Stick Capacity (big chest)
 };
