@@ -659,9 +659,9 @@ void draw_gi_medallions(z64_game_t* game, uint32_t draw_id) {
     gSPDisplayList(gfx->poly_opa.p++, item_draw_table[draw_id].args[1].dlist);
 }
 
-static void* pushOpaMatrix(z64_gfx_t* gfx, const float *mat) {
+static void* pushOpaMatrix(z64_gfx_t* gfx, const float* mat) {
     void* end = gfx->poly_opa.d;
-    end = (char *)end - 0x40;
+    end = (char*)end - 0x40;
     gfx->poly_opa.d = end;
 
     convert_matrix(mat, end);
@@ -669,9 +669,9 @@ static void* pushOpaMatrix(z64_gfx_t* gfx, const float *mat) {
     return end;
 }
 
-static void* pushXluMatrix(z64_gfx_t* gfx, const float *mat) {
+static void* pushXluMatrix(z64_gfx_t* gfx, const float* mat) {
     void* end = gfx->poly_xlu.d;
-    end = (char *)end - 0x40;
+    end = (char*)end - 0x40;
     gfx->poly_xlu.d = end;
 
     convert_matrix(mat, end);

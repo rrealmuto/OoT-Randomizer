@@ -942,7 +942,7 @@ class World:
                             dot_items.append({'name': 'Ocarina C left Button', 'quantity': 2 if self.settings.item_pool_value == 'plentiful' else 1, 'minimum': 1, 'hintable': True})
                         if '^' in notes:
                             dot_items.append({'name': 'Ocarina C up Button', 'quantity': 2 if self.settings.item_pool_value == 'plentiful' else 1, 'minimum': 1, 'hintable': True})
-                dot.add_goal(Goal(self, 'Door of Time', 'path of time', 'Light Blue', items=dot_items))
+                dot.add_goal(Goal(self, 'Door of Time', 'path of #time#', 'Light Blue', items=dot_items))
                 self.goal_categories[dot.name] = dot
 
             # Bridge goals will always be defined as they have the most immediate priority

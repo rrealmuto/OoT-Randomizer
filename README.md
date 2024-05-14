@@ -20,7 +20,7 @@ Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Ra
   * New “Special Deal Prices”, “Minimum Special Deal Price”, and “Maximum Special Deal Price” settings replacing “Shopsanity Prices” ([#2037](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2037))
   * New plando-only “Chest, Pot, Crate, & Beehive Appearance Does Not Match Contents” setting which makes each chest etc. randomly choose any appearance except the correct one ([#1950](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1950))
   * New “Vanilla Locations” option for the “Shuffle Songs” setting ([#1882](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1882))
-  * New “Shuffle Dungeon Rewards” setting ([#1833](https://github.com/OoTRandomizer/OoT-Randomizer/issues/1833))
+  * New “Shuffle Dungeon Rewards” and “Free Reward from Rauru” settings ([#1833](https://github.com/OoTRandomizer/OoT-Randomizer/issues/1833))
   * New “Bosses” option for the “Mix Entrance Pools” setting (based on [#1820](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1820))
   * New “Triforce Hunt Mode” setting with “Normal”, “Easter Egg Hunt”, “Ice%”, and “Triforce Blitz” options (Easter Egg Hunt based on [#1804](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1804), Triforce Blitz based on [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev))
   * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1536))
@@ -61,6 +61,7 @@ Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Ra
     * Blue warps go to the dungeon entrance instead of anywhere
     * Other one-way entrances are balanced instead of full
     * Hint distribution is “Fenhl's Casual (TOoTR compat)” instead of “Chaos!!! (dev-fenhl)”
+    * The reward from Rauru is a starting item
   * “Vanilla” generates a seed that's as close to the vanilla game as possible with current randomizer features. Unlike the vanilla seed available on <https://ootrandomizer.com/>, this preset uses glitchless logic to produce a useful spoiler log playthrough.
   * “Fast Vanilla” is “Vanilla” but with speed-ups like fast bunny hood, fast chest cutscenes, or “Skip Some Minigame Phases” enabled.
   * “Vanilla (Master Quest)” and “Fast Vanilla (Master Quest)” are “Vanilla” and “Fast Vanilla” but with all dungeons from Master Quest.

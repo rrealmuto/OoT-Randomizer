@@ -59,7 +59,7 @@ def shop_address(shop_id: int, shelf_id: int) -> int:
 #   Location:                                                        Type             Scene  Default Addresses                      Vanilla Item                             Categories
 location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAddresses, Optional[str], LocationFilterTags]] = OrderedDict([
     ## Dungeon Rewards
-    ("Links Pocket",                                                 ("Boss",         None,  None, None,                            'Light Medallion',                       ("Temple of Time", "NPCs", "Dungeon Rewards",))),
+    ("ToT Reward from Rauru",                                        ("Cutscene",     0xFF,  0x04, None,                            'Light Medallion',                       ("Temple of Time", "NPCs", "Dungeon Rewards",))),
     ("Queen Gohma",                                                  ("Boss",         0x11,  0x65, None,                            'Kokiri Emerald',                        ("Deku Tree", "Deku Tree MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
     ("King Dodongo",                                                 ("Boss",         0x12,  0x65, None,                            'Goron Ruby',                            ("Dodongo's Cavern", "Dodongo's Cavern MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
     ("Barinade",                                                     ("Boss",         0x13,  0x65, None,                            'Zora Sapphire',                         ("Jabu Jabu's Belly", "Jabu Jabu's Belly MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
@@ -2629,7 +2629,7 @@ location_groups: dict[str, list[str]] = {
     'Song': [name for (name, data) in location_table.items() if data[0] == 'Song'],
     'Chest': [name for (name, data) in location_table.items() if data[0] == 'Chest'],
     'Collectable': [name for (name, data) in location_table.items() if data[0] == 'Collectable'],
-    'Boss': [name for (name, data) in location_table.items() if data[0] == 'Boss'],
+    'Boss': [name for (name, data) in location_table.items() if data[0] == 'Boss' or name == 'ToT Reward from Rauru'],
     'ActorOverride': [name for (name, data) in location_table.items() if data[0] == 'ActorOverride'],
     'BossHeart': [name for (name, data) in location_table.items() if data[0] == 'BossHeart'],
     'CollectableLike': [name for (name, data) in location_table.items() if data[0] in ('Collectable', 'BossHeart', 'GS Token', 'SilverRupee')],

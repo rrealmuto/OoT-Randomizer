@@ -665,7 +665,7 @@ void draw_dungeon_info(z64_disp_buf_t* db) {
                         break;
                     case 2:
                         if (i != 3) { // always display Light Medallion
-                            dungeon_entry_t *d = &(dungeons[i - (i < 3 ? 0 : 1)]); // vanilla location of the reward
+                            dungeon_entry_t* d = &(dungeons[i - (i < 3 ? 0 : 1)]); // vanilla location of the reward
                             display_area = z64_file.dungeon_items[d->index].compass;
                         }
                         break;

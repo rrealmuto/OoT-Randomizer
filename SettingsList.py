@@ -3675,6 +3675,16 @@ class SettingInfos:
 
     # Other
 
+    skip_reward_from_rauru = Checkbutton(
+        gui_text       = 'Free Reward from Rauru',
+        gui_tooltip    = '''\
+            The item given by Rauru beyond the Door of Time
+            (the Light Medallion in the vanilla game) is
+            given as a starting item instead.
+        ''',
+        shared         = True,
+    )
+
     no_escape_sequence = Checkbutton(
         gui_text       = 'Skip Tower Escape Sequence',
         gui_tooltip    = '''\
