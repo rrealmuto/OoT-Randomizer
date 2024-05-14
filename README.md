@@ -87,6 +87,7 @@ Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Ra
   * The GUI tweaks made by [`Dev-R`](https://github.com/Roman971/OoT-Randomizer) are further adjusted to balance consistency with [main `Dev`](https://github.com/OoTRandomizer/OoT-Randomizer) and ease of use.
   * The Lens of Truth can be in a foolish area if Treasure Chest Game keys are shuffled and all relevant “lensless” tricks are enabled.
 * Bug fixes:
+  * Non-ASCII characters in song names are displayed as question marks instead of either being displayed as spaces or causing an error during patching ([#2222](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2222))
   * Areas where all locations are already hinted can once again no longer be hinted Barren ([#2220](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2220))
   * A trade item obtained from a skipped location is no longer lost upon obtaining a different item from the same trade quest ([#2217](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2217))
   * The ocarina buttons required to play the Song of Time are now included on the path of time ([#2203](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2203))
