@@ -150,9 +150,9 @@ uint16_t bombchus_to_bag(z64_file_t* save, override_t override) {
         // tell player about chu drops. Different bags
         // to preserve original chu refill count.
         switch (override.value.base.item_id) {
-            case 0x03: return 0xD5; // 10 pack
-            case 0x6A: return 0xD6; // 5 pack
-            case 0x6B: return 0xD4; // 20 pack
+            case 0x006A: case 0x1020: return 0x00D6; // 5 pack
+            case 0x0003: case 0x1021: return 0x00D5; // 10 pack
+            case 0x006B: case 0x1022: return 0x00D4; // 20 pack
         }
     } else {
         // Subsequent chu packs stay as chu packs

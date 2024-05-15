@@ -833,11 +833,14 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
                 location.disabled = DisableType.DISABLED
 
         # Dungeon Rewards
+        elif location.name == 'ToT Reward from Rauru':
+            if world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward'):
+                pass # handled in World.fill_bosses
+            else:
+                shuffle_item = True
         elif location.type == 'Boss':
             if world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward'):
                 pass # handled in World.fill_bosses
-            elif location.name == 'Links Pocket':
-                shuffle_item = True
             elif world.settings.shuffle_dungeon_rewards in ('any_dungeon', 'overworld', 'regional', 'anywhere'):
                 shuffle_item = True
             else:

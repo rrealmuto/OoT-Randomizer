@@ -417,8 +417,9 @@ def get_checked_areas(world: World, checked: set[str]) -> set[HintArea | str]:
         except Exception:
             return check
         # Don't consider dungeons as already hinted from the reward hint on the Temple of Time altar
-        if location.type != 'Boss' or world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'):
-            return HintArea.at(location)
+        if (location.type == 'Boss' or location.name == 'ToT Reward from Rauru') and world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward'):
+            return None
+        return HintArea.at(location)
 
     return set(get_area_from_name(check) for check in checked)
 
@@ -822,7 +823,7 @@ def get_barren_hint(spoiler: Spoiler, world: World, checked: set[str], all_check
             and location.name not in world.hint_exclusions
             and location.name not in hint_exclusions(world)
             and HintArea.at(location) == area
-            for location in world.get_locations()
+            for location in world.get_filled_locations()
         ),
         world.empty_areas))
 

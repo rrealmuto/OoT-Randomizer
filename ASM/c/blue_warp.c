@@ -7,7 +7,7 @@
 #define TEXT_STATE_CLOSING 2
 
 // Original function copied over
-int32_t DoorWarp1_PlayerInRange(z64_actor_t *actor, z64_game_t *game) {
+int32_t DoorWarp1_PlayerInRange(z64_actor_t* actor, z64_game_t* game) {
     if (actor->xzdist_from_link < 60.0f) {
         if ((z64_link.common.pos_world.y - 20.0f) < actor->pos_world.y) {
             if (actor->pos_world.y < (z64_link.common.pos_world.y + 20.0f)) {
@@ -19,7 +19,7 @@ int32_t DoorWarp1_PlayerInRange(z64_actor_t *actor, z64_game_t *game) {
 };
 
 // Routine taken from Majora's Mask blue warps
-int32_t DoorWarp1_PlayerInRange_Overwrite(z64_actor_t *actor, z64_game_t *game) {
+int32_t DoorWarp1_PlayerInRange_Overwrite(z64_actor_t* actor, z64_game_t* game) {
     // Check vanilla range
     if (DoorWarp1_PlayerInRange(actor, game)) {
 
@@ -41,7 +41,7 @@ int32_t DoorWarp1_PlayerInRange_Overwrite(z64_actor_t *actor, z64_game_t *game) 
         }
 
         // Wait until Link closes the textbox displaying the getItem reward
-        if (z64_MessageGetState(((uint8_t *)(&z64_game)) + 0x20D8) == TEXT_STATE_CLOSING) {
+        if (z64_MessageGetState(((uint8_t*)(&z64_game)) + 0x20D8) == TEXT_STATE_CLOSING) {
             if ((game->scene_index != 0x17) && (game->scene_index != 0x18)) {
                 extended_savectx.collected_dungeon_rewards[game->scene_index - 0x0011] = true;
             }

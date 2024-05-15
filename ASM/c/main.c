@@ -14,7 +14,7 @@
 #include "chests.h"
 #include "ganon.h"
 #include "twinrova.h"
-#include "ganon_boss_key.h"
+#include "sage_gifts.h"
 #include "extern_ctxt.h"
 #include "weather.h"
 #include "textures.h"
@@ -63,7 +63,7 @@ void after_game_state_update() {
         display_song_name(&(z64_ctxt.gfx->overlay));
         debug_utilities(&(z64_ctxt.gfx->overlay));
     }
-    give_ganon_boss_key();
+    give_sage_gifts();
     ice_percent_credits_warp();
 }
 

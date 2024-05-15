@@ -1075,7 +1075,9 @@ class WorldDistribution:
             add_starting_item_with_ammo(items, 'Deku Sticks', 99)
             add_starting_item_with_ammo(items, 'Deku Nuts', 99)
 
-        skipped_locations = ['Links Pocket']
+        skipped_locations: list[str] = []
+        if world.settings.skip_reward_from_rauru:
+            skipped_locations += ['ToT Reward from Rauru']
         if world.skip_child_zelda:
             skipped_locations += ['HC Zeldas Letter', 'Song from Impa']
         if world.settings.gerudo_fortress == 'open' and not world.settings.shuffle_gerudo_card:

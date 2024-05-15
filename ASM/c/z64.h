@@ -1996,8 +1996,7 @@ typedef int32_t(*z64_ObjectIndex_proc)    (z64_obj_ctxt_t* object_ctx, int16_t o
 typedef int32_t(*z64_ObjectIsLoaded_proc) (z64_obj_ctxt_t* object_ctx, int32_t bank_index);
 
 typedef int32_t (*z64_ActorHasParent_proc)(z64_actor_t* actor, z64_game_t* game);
-typedef int32_t (*z64_ActorOfferGetItem_proc)(z64_actor_t* actor, z64_game_t* game,
-                                              int32_t get_item_id, float xz_range, float y_range);
+typedef int32_t (*z64_ActorOfferGetItem_proc)(z64_actor_t* actor, z64_game_t* game, int32_t get_item_id, float xz_range, float y_range);
 typedef void(*z64_RandSeed_proc) (uint32_t seed);
 typedef float(*z64_Rand_ZeroOne_proc)();
 typedef void(*Font_LoadChar_proc)(void* font, uint8_t character, uint16_t codePointIndex);

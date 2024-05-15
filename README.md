@@ -23,7 +23,7 @@ Differences between [`dev-fenhl`](https://github.com/fenhl/OoT-Randomizer) and [
   * New “Special Deal Prices”, “Minimum Special Deal Price”, and “Maximum Special Deal Price” settings replacing “Shopsanity Prices” ([#2037](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2037))
   * New plando-only “Chest, Pot, Crate, & Beehive Appearance Does Not Match Contents” setting which makes each chest etc. randomly choose any appearance except the correct one ([#1950](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1950))
   * New “Vanilla Locations” option for the “Shuffle Songs” setting ([#1882](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1882))
-  * New “Shuffle Dungeon Rewards” setting ([#1833](https://github.com/OoTRandomizer/OoT-Randomizer/issues/1833))
+  * New “Shuffle Dungeon Rewards” and “Free Reward from Rauru” settings ([#1833](https://github.com/OoTRandomizer/OoT-Randomizer/issues/1833))
   * New “Bosses” option for the “Mix Entrance Pools” setting (based on [#1820](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1820))
   * New “Triforce Hunt Mode” setting with “Normal”, “Easter Egg Hunt”, “Ice%”, and “Triforce Blitz” options (Easter Egg Hunt based on [#1804](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1804), Triforce Blitz based on [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev))
   * New “Open Deku Tree” setting separate from “Open Forest” ([#1536](https://github.com/OoTRandomizer/OoT-Randomizer/pull/1536))
@@ -64,6 +64,7 @@ Differences between [`dev-fenhl`](https://github.com/fenhl/OoT-Randomizer) and [
     * Blue warps go to the dungeon entrance instead of anywhere
     * Other one-way entrances are balanced instead of full
     * Hint distribution is “Fenhl's Casual (TOoTR compat)” instead of “Chaos!!! (dev-fenhl)”
+    * The reward from Rauru is a starting item
   * “Vanilla” generates a seed that's as close to the vanilla game as possible with current randomizer features. Unlike the vanilla seed available on <https://ootrandomizer.com/>, this preset uses glitchless logic to produce a useful spoiler log playthrough.
   * “Fast Vanilla” is “Vanilla” but with speed-ups like fast bunny hood, fast chest cutscenes, or “Skip Some Minigame Phases” enabled.
   * “Vanilla (Master Quest)” and “Fast Vanilla (Master Quest)” are “Vanilla” and “Fast Vanilla” but with all dungeons from Master Quest.
@@ -75,6 +76,7 @@ Differences between [`dev-fenhl`](https://github.com/fenhl/OoT-Randomizer) and [
   * “SGL 2023 Tournament” is a game mode that was used for [a tournament at SpeedGaming Live 2023](https://midos.house/event/sgl/2023live) as well as [an online tournament](https://midos.house/event/sgl/2023onl), taken from [Elagatua's `feature/sgl-2023` branch](https://github.com/Elagatua/OoT-Randomizer/tree/feature/sgl-2023). Note that the tournament itself was played on that branch, not this one. See [the official document](https://docs.google.com/document/d/1EACqBl8ZOreD6xT5jQ2HrdLOnpBpKyjS3FUYK8XFeqg/edit) for details.
   * “SDG Bingo Tournament 3” is a variant of “Bingo” used for an ongoing tournament. Note that the tournament itself is being played on version 8.0 of the randomizer, not this branch. See [the official document](https://docs.google.com/document/d/1fpDPSBGH9YQeC9W3P1SMDE7FhoikVgbFTJapqKnMmL4/edit) for details.
 * Other changes:
+  * The time travel cutscenes are shortened, and the Kakariko well draining cutscene is shortened further ([#2219](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2219))
   * On Wii Virtual Console, additional information is displayed while the game is loading and when it crashes ([#2153](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2153))
   * The magic meter has a new model to prepare for shuffled magic refills ([#2081](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2081))
   * Fairy pots are now included in “Shuffle Pots.” Major items from pots, crates, etc now display above Link's head while the text box is open. Gameplay is no longer interrupted if you receive a junk item from another player in multiworld. (parts of [#2069](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2069))
@@ -88,8 +90,10 @@ Differences between [`dev-fenhl`](https://github.com/fenhl/OoT-Randomizer) and [
   * The GUI tweaks made by [`Dev-R`](https://github.com/Roman971/OoT-Randomizer) are further adjusted to balance consistency with [main `Dev`](https://github.com/OoTRandomizer/OoT-Randomizer) and ease of use.
   * The Lens of Truth can be in a foolish area if Treasure Chest Game keys are shuffled and all relevant “lensless” tricks are enabled.
 * Bug fixes:
-  * A trade item obtained from a skipped location is no longer lost upon obtaining a different item from the same trade quest. ([#2217](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2217))
-  * The ocarina buttons required to play the Song of Time are now included on the path of time. ([#2203](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2203))
+  * Non-ASCII characters in song names are displayed as question marks instead of either being displayed as spaces or causing an error during patching ([#2222](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2222))
+  * Areas where all locations are already hinted can once again no longer be hinted Barren ([#2220](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2220))
+  * A trade item obtained from a skipped location is no longer lost upon obtaining a different item from the same trade quest ([#2217](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2217))
+  * The ocarina buttons required to play the Song of Time are now included on the path of time ([#2203](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2203))
   * The heart piece in Gerudo Fortress now behaves correctly when already at 20 hearts, and is considered in glitched logic (part of [#2179](https://github.com/OoTRandomizer/OoT-Randomizer/pull/2179))
 
 Differences between [`Dev-R`](https://github.com/Roman971/OoT-Randomizer) and [`Dev`](https://github.com/OoTRandomizer/OoT-Randomizer):

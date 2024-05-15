@@ -119,7 +119,7 @@ class GoalCategory:
         raise KeyError('No such goal %r' % goal)
 
     def is_beaten(self, search: Search) -> bool:
-        # if the category requirements are already satisfied by starting items (such as Links Pocket),
+        # if the category requirements are already satisfied by starting items (including skipped locations),
         # do not generate hints for other goals in the category
         starting_goals = search.beatable_goals_fast({ self.name: self })
         return all(map(lambda s: len(starting_goals[self.name]['stateReverse'][s.world.id]) >= self.minimum_goals, search.state_list))
@@ -150,7 +150,12 @@ class GoalCategory:
 def replace_goal_names(worlds: list[World]) -> None:
     for world in worlds:
         if world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward'):
-            bosses = [location for location in world.get_filled_locations() if location.item.type == 'DungeonReward']
+            bosses = [
+                location
+                for location in world.get_filled_locations()
+                if location.type == 'Boss'
+                or (location.name == 'ToT Reward from Rauru' and not world.settings.skip_reward_from_rauru)
+            ]
             for category in world.goal_categories.values():
                 for goal in category.goals:
                     if isinstance(goal.hint_text, dict):

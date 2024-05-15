@@ -331,6 +331,18 @@ item_row_t item_table[] = {
     [0x0119] = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x90B4, 0x0177, 0x9F, no_upgrade, full_heal, -1, -1, NULL), // Fairy
     [0x011A] = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x90B5, 0x0177, 0xA0, no_upgrade, no_effect, -1, -1, NULL), // Nothing :)
 
+    // 0x011B through 0x0126 reserved for https://github.com/OoTRandomizer/OoT-Randomizer/pull/2108
+
+    [0x0127] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0080, 0x01AC, 0x9C, no_upgrade, give_quest_item, 18, -1, NULL), // Kokiri Emerald
+    [0x0128] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0081, 0x01AD, 0x9D, no_upgrade, give_quest_item, 19, -1, NULL), // Goron Ruby
+    [0x0129] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0082, 0x01AE, 0x9E, no_upgrade, give_quest_item, 20, -1, NULL), // Zora Sapphire
+    [0x012A] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0040, 0x01AF, 0x96, no_upgrade, give_quest_item,  5, -1, NULL), // Light Medallion
+    [0x012B] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x003E, 0x01B0, 0x97, no_upgrade, give_quest_item,  0, -1, NULL), // Forest Medallion
+    [0x012C] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x003C, 0x01B1, 0x98, no_upgrade, give_quest_item,  1, -1, NULL), // Fire Medallion
+    [0x012D] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x003D, 0x01B2, 0x99, no_upgrade, give_quest_item,  2, -1, NULL), // Water Medallion
+    [0x012E] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0041, 0x01B3, 0x9A, no_upgrade, give_quest_item,  4, -1, NULL), // Shadow Medallion
+    [0x012F] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x003F, 0x01B4, 0x9B, no_upgrade, give_quest_item,  3, -1, NULL), // Spirit Medallion
+
     // New items in dev-fenhl which are not in main Dev
     // Some previously used IDs may be skipped, to simplify auto-tracker support
 
@@ -347,16 +359,7 @@ item_row_t item_table[] = {
     [0x1008] = ITEM_ROW(0x5B,   SKULL_CHEST_BIG, 0x71, -1, 0x00B5, 0x015C, 0x63, no_upgrade, no_effect, -1, -1, resolve_text_skull_token), // Gold Skulltula Token (big chest, normal text)
 
     // 0x1009 and 0x100A previously used for Fairy and Nothing respectively
-
-    [0x100B] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0080, 0x01AC, 0x9C, no_upgrade, give_quest_item, 18, -1, NULL), // Kokiri Emerald
-    [0x100C] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0081, 0x01AD, 0x9D, no_upgrade, give_quest_item, 19, -1, NULL), // Goron Ruby
-    [0x100D] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0082, 0x01AE, 0x9E, no_upgrade, give_quest_item, 20, -1, NULL), // Zora Sapphire
-    [0x100E] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0040, 0x01AF, 0x96, no_upgrade, give_quest_item,  5, -1, NULL), // Light Medallion
-    [0x100F] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x003E, 0x01B0, 0x97, no_upgrade, give_quest_item,  0, -1, NULL), // Forest Medallion
-    [0x1010] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x003C, 0x01B1, 0x98, no_upgrade, give_quest_item,  1, -1, NULL), // Fire Medallion
-    [0x1011] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x003D, 0x01B2, 0x99, no_upgrade, give_quest_item,  2, -1, NULL), // Water Medallion
-    [0x1012] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0041, 0x01B3, 0x9A, no_upgrade, give_quest_item,  4, -1, NULL), // Shadow Medallion
-    [0x1013] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x003F, 0x01B4, 0x9B, no_upgrade, give_quest_item,  3, -1, NULL), // Spirit Medallion
+    // 0x100B through 0x1013 previously used for dungeon rewards
 
     [0x1014] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9211, 0x0195, 0x77, no_upgrade, give_small_key_ring, FOREST_ID, true, NULL), // Forest Temple Key Ring (with boss key)
     [0x1015] = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9212, 0x0195, 0x77, no_upgrade, give_small_key_ring, FIRE_ID,   true, NULL), // Fire Temple Key Ring (with boss key)
@@ -372,9 +375,9 @@ item_row_t item_table[] = {
     [0x101D] = ITEM_ROW(0x53,   HEART_CHEST_BIG, 0x7A, -1, 0x00FA, 0x00BD, 0x14, health_upgrade_cap, full_heal,           -1, -1, NULL), // Piece of Heart (Chest Game) (big chest)
     [0x101E] = ITEM_ROW(0x53,      GILDED_CHEST, 0x3E, -1, 0x004C, 0x00CB, 0x1D, no_upgrade,         no_effect,           -1, -1, NULL), // Deku Shield (big chest)
     [0x101F] = ITEM_ROW(0x53,      GILDED_CHEST, 0x3F, -1, 0x004D, 0x00DC, 0x2C, no_upgrade,         no_effect,           -1, -1, NULL), // Hylian Shield (big chest)
-    [0x1020] = ITEM_ROW(0x4D,      GILDED_CHEST, 0x96, -1, 0x0033, 0x00D9, 0x28, no_upgrade,         no_effect,           -1, -1, NULL), // Bombchu (5) (big chest)
-    [0x1021] = ITEM_ROW(0x4D,      GILDED_CHEST, 0x09, -1, 0x0033, 0x00D9, 0x28, no_upgrade,         no_effect,           -1, -1, NULL), // Bombchu (10) (big chest)
-    [0x1022] = ITEM_ROW(0x4D,      GILDED_CHEST, 0x97, -1, 0x0033, 0x00D9, 0x28, no_upgrade,         no_effect,           -1, -1, NULL), // Bombchu (20) (big chest)
+    [0x1020] = ITEM_ROW(0x4D,      GILDED_CHEST, 0x96, -1, 0x0033, 0x00D9, 0x28, bombchus_to_bag,    no_effect,           -1, -1, NULL), // Bombchu (5) (big chest)
+    [0x1021] = ITEM_ROW(0x4D,      GILDED_CHEST, 0x09, -1, 0x0033, 0x00D9, 0x28, bombchus_to_bag,    no_effect,           -1, -1, NULL), // Bombchu (10) (big chest)
+    [0x1022] = ITEM_ROW(0x4D,      GILDED_CHEST, 0x97, -1, 0x0033, 0x00D9, 0x28, bombchus_to_bag,    no_effect,           -1, -1, NULL), // Bombchu (20) (big chest)
     [0x1023] = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,     -1, 0x00BB, 0x12, nut_upgrade,        no_effect,           -1, -1, NULL), // Progressive Nut Capacity (big chest)
     [0x1024] = ITEM_ROW(  -1,      GILDED_CHEST,   -1, -1,     -1, 0x00C7, 0x1B, stick_upgrade,      no_effect,           -1, -1, NULL), // Progressive Stick Capacity (big chest)
 };
