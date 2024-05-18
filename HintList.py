@@ -1431,6 +1431,15 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'Ganons Castle Ledge -> Ganons Castle Lobby':               ("the #rainbow bridge# leads to", None, 'entrance'),
     'Ganons Castle Main -> Ganons Castle Tower':                ("a #castle barrier# protects the way to", "#Ganon's trials# protect the way to", 'entrance'),
 
+    'Deku Tree Before Boss -> Queen Gohma Boss Room':           ("punishing #scrubs in the proper order# leads to", "the #boss door in the Deku Tree# leads to", 'entrance_exclude'),
+    'Dodongos Cavern Before Boss -> King Dodongo Boss Room':    ("pushing a #block in a leviathan's mouth# leads to", "the #boss door in Dodongo's Cavern# leads to", 'entrance_exclude'),
+    'Jabu Jabus Belly Before Boss -> Barinade Boss Room':       ("the final #door in the belly of a deity# leads to", "the #boss door in Jabu Jabu's Belly# leads to", 'entrance_exclude'),
+    'Forest Temple Before Boss -> Phantom Ganon Boss Room':     (["past a #big lock in a deep forest# waits", "beyond #revolving walls# in a basement, one can find"], "the #boss door in the Forest Temple# leads to", 'entrance_exclude'),
+    'Fire Temple Before Boss -> Volvagia Boss Room':            (["past a #big lock on a high mountain# waits", "locking the door behind himself, #Darunia# finds"], "the #boss door in the Fire Temple# leads to", 'entrance_exclude'),
+    'Water Temple Before Boss -> Morpha Boss Room':             (["past a #big lock under a vast lake# waits", "dodging #moving spikes on a slope# leads to"], "the #boss door in the Water Temple# leads to", 'entrance_exclude'),
+    'Shadow Temple Before Boss -> Bongo Bongo Boss Room':       (["past a #big lock within the house of the dead# waits", "#invisible stepping stones# past a ferry reveal"], "the #boss door in the Shadow Temple# leads to", 'entrance_exclude'),
+    'Spirit Temple Before Boss -> Twinrova Boss Room':          (["past a #big lock inside a goddess of the sand# waits", "a #crumbling face# reveals"], "the #boss door in the Spirit Temple# leads to", 'entrance_exclude'),
+
     'KF Links House':                                           ("Link's House", None, 'region'),
     'Temple of Time':                                           ("the #Temple of Time#", None, 'region'),
     'KF Midos House':                                           ("Mido's house", None, 'region'),
