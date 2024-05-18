@@ -4,7 +4,7 @@ default-members = ["."]
 resolver = "2"
 
 [workspace.package]
-version = "8.1.36-fenhl.3.riir.1"
+version = "8.1.36-fenhl.6.riir.2"
 edition = "2021"
 
 [workspace.lints.rust]

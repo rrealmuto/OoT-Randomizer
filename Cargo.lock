@@ -2209,7 +2209,7 @@ checksum = "3fdb12b2476b595f9358c5161aa467c2438859caa136dec86c26fdd2efe17b92"
 
 [[package]]
 name = "ootr"
-version = "8.1.36-fenhl.3.riir.1"
+version = "8.1.36-fenhl.6.riir.2"
 dependencies = [
  "anyhow",
  "clap",
@@ -2720,7 +2720,7 @@ dependencies = [
 
 [[package]]
 name = "rust-n64-test"
-version = "8.1.36-fenhl.3.riir.1"
+version = "8.1.36-fenhl.6.riir.2"
 
 [[package]]
 name = "rustc-demangle"
