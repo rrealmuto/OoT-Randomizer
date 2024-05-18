@@ -48,7 +48,7 @@ Differences between `dev-fenhl` and [`Dev-R`](https://github.com/Roman971/OoT-Ra
   * “Chaos!!! (dev-fenhl, no goal hints)” is like “Chaos!!! (no goal hints)” but including hint types not available on [`Dev-R`](https://github.com/Roman971/OoT-Randomizer).
   * “Fenhl's Casual (TOoTR compat)” is the subset of “Chaos!!! (dev-fenhl)” that can be tracked using [TOoTR](https://mracsys.github.io/tootr/), namely Always, Trial, Dual Always, and Entrance Always hints.
   * “Ice%” consists of only Sometimes hints, and replaces the hookshot hint in Dampé's diary with a blue fire arrows hint.
-  * “Mixed Pools Tournament” is the hint distribution that was used for the [2nd Mixed Pools Tournament](https://midos.house/event/mp/2). Note that the tournament itself used [a previous version](https://github.com/fenhl/OoT-Randomizer/releases/tag/7.1.117-fenhl.17) of this branch.
+  * “Mixed Pools Tournament” is the hint distribution that will be used for the [3nd Mixed Pools Tournament](https://midos.house/event/mp/3).
   * “SAWS” is the hint distribution used for the Standard Anti-Weekly Settings presets (see below).
   * “SGL 2023” is the hint distribution used for the SpeedGaming Live 2023 tournaments (see below).
   * “Triforce Blitz S2” is the hint distribution used for the [Triforce Blitz Season 2 Tournament](https://midos.house/event/tfb/2), taken from [Elagatua's `Dev` branch](https://github.com/Elagatua/OoT-Randomizer/tree/Dev). Note that the tournament itself was played on that branch, not this one.

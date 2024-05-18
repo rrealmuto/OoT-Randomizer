@@ -814,7 +814,7 @@ class TestValidSpoilers(unittest.TestCase):
             with open(fn, encoding='utf-8') as f:
                 presets = json.load(f)
             for name, settings_dict in presets.items():
-                if name in ("Fenhl's Casual", "Fenhl's Casual (TOoTR compat)", '2nd Mixed Pools Tournament', 'Hell Mode'):
+                if name in ("Fenhl's Casual", "Fenhl's Casual (TOoTR compat)", '3rd Mixed Pools Tournament', 'Hell Mode'):
                     continue #TODO investigate high failure rates with full mixed pools
                 ofile = 'preset_' + re.sub(r'[^a-zA-Z0-9_-]+', '_', name)
                 with self.subTest(name, filename=ofile):
