@@ -2713,7 +2713,7 @@
             "GC Boulder Maze Crate": "can_break_crate",
             "GC GS Boulder Maze": "is_child",
             "GC Maze Gossip Stone Drop": "can_play(Song_of_Time)",
-            "GC Maze Gossip Stone": "True",
+            "GC Maze Gossip Stone": "True"
         },
         "exits": {
             "GC Boulder Maze Left Chest": "
