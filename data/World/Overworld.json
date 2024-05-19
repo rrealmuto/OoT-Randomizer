@@ -228,8 +228,8 @@
             # placement this is not an issue as Adult can go back to forest for the Baba's there.
             # Entrance rando cannot rely on this for the case forest completion was done on non
             # repeatable access.
-            "Deku Baba Sticks": "(is_adult and not entrance_shuffle) or can_use(Kokiri_Sword) or can_use(Boomerang)",
-            "Deku Baba Nuts": "is_adult and not entrance_shuffle",
+            "Deku Baba Sticks": "has_soul(Deku_Baba) and ((is_adult and not entrance_shuffle) or can_use(Kokiri_Sword) or can_use(Boomerang))",
+            "Deku Baba Nuts": "has_soul(Deku_Baba) and (is_adult and not entrance_shuffle)",
             "KF Deku Tree Gossip Stone (Left)": "True",
             "KF Deku Tree Gossip Stone (Right)": "True"
         },
