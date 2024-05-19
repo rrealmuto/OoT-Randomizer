@@ -131,6 +131,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## RealRob Changelog
 ### v103
   * Merge the rest of Potsanity 3.0. Probably just breaking things
+  * Fix GC Gossip Stone logic for boulder shuffle
 
 ### v102
   * (Hopefully) Fix generating boss soul shuffle with random settings

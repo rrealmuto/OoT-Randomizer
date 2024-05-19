@@ -2525,8 +2525,6 @@
             "GC Upper Staircase Pot 3": "True",
             "GC Medigoron Pot": "can_blast_or_smash or Progressive_Strength_Upgrade",
             "GC GS Center Platform": "is_adult",
-            "GC Maze Gossip Stone Drop": "can_play(Song_of_Time) and (can_blast_or_smash or can_use(Silver_Gauntlets))",
-            "GC Maze Gossip Stone": "can_blast_or_smash or can_use(Silver_Gauntlets)",
             "GC Medigoron Gossip Stone Drop": "can_play(Song_of_Time) and (can_blast_or_smash or Progressive_Strength_Upgrade)",
             "GC Medigoron Gossip Stone": "can_blast_or_smash or Progressive_Strength_Upgrade",
             "Gossip Stone Fairy": "
@@ -2713,7 +2711,9 @@
             "GC Maze Center Chest": "True",
             "GC Maze Right Chest": "True",
             "GC Boulder Maze Crate": "can_break_crate",
-            "GC GS Boulder Maze": "is_child"
+            "GC GS Boulder Maze": "is_child",
+            "GC Maze Gossip Stone Drop": "can_play(Song_of_Time)",
+            "GC Maze Gossip Stone": "True",
         },
         "exits": {
             "GC Boulder Maze Left Chest": "
