@@ -397,7 +397,7 @@ def rebuild_sequences(rom: Rom, sequences: list[Sequence], log: CosmeticsLog, sy
         return
 
     # Builds new audio bank entrys for fanfares to prevent fanfares killing bgm in areas like Goron City
-    bank_index_base = (rom.read_int32(symbols['CFG_AUDIOBANK_TABLE_EXTENDED_ADDR']) - 0x80400000) + 0x3480000
+    bank_index_base = (rom.read_int32(symbols['CFG_AUDIOBANK_TABLE_EXTENDED_ADDR']) - 0x80680000) + 0x3480000
     # Build new fanfare banks by copying each entry in audiobank_index
     for i in range(0, 0x26):
         bank_entry = rom.read_bytes(bank_index_base + 0x10 + 0x10 * i, 0x10) # Get the vanilla entry
@@ -445,7 +445,7 @@ def rebuild_sequences(rom: Rom, sequences: list[Sequence], log: CosmeticsLog, sy
             break
 
     for i in range(0x6E):
-        bank_table_base = (rom.read_int32(symbols['CFG_AUDIOBANK_TABLE_EXTENDED_ADDR']) - 0x80400000) + 0x3480000
+        bank_table_base = (rom.read_int32(symbols['CFG_AUDIOBANK_TABLE_EXTENDED_ADDR']) - 0x80680000) + 0x3480000
         seq_bank_base = 0xB89911 + 0xDD + (i * 2)
         j = replacement_dict.get(i if new_sequences[i].size else new_sequences[i].address, None)
         if j is not None and j.new_instrument_set:

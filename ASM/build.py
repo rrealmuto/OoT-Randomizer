@@ -128,7 +128,7 @@ for (name, sym) in symbols.items():
     if sym['type'] == 'data':
         addr = int(sym['address'], 16)
         if PAYLOAD_START <= addr < PAYLOAD_END:
-            addr = addr - 0x80400000 + 0x03480000
+            addr = addr - PAYLOAD_START + 0x03480000
         else:
             continue
         data_symbols[name] = {

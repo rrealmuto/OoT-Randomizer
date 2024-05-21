@@ -3,9 +3,27 @@ from Rom import *
 
 class Actor:
     def __init__(self, address: int, actor_bytes: bytearray):
-        self.addr = address
-        self.id = int.from_bytes(actor_bytes[0:2], 'big')
-        self.var = int.from_bytes(actor_bytes[14:16], 'big')
+        self.addr: int = address
+        self.id: int = int.from_bytes(actor_bytes[0:2], 'big')
+        self.x: int = int.from_bytes(actor_bytes[2:4], 'big')
+        self.y: int = int.from_bytes(actor_bytes[4:6], 'big')
+        self.z: int = int.from_bytes(actor_bytes[6:8], 'big')
+        self.rot_x: int = int.from_bytes(actor_bytes[8:10], 'big')
+        self.rot_y: int = int.from_bytes(actor_bytes[10:12], 'big')
+        self.rot_z: int = int.from_bytes(actor_bytes[12:14], 'big')
+        self.var: int = int.from_bytes(actor_bytes[14:16], 'big')
+    
+    def get_bytes(self) -> bytearray:
+        bytes: bytearray = bytearray()
+        bytes.extend(self.id.to_bytes(2, 'big'))
+        bytes.extend(self.x.to_bytes(2, 'big'))
+        bytes.extend(self.y.to_bytes(2, 'big'))
+        bytes.extend(self.z.to_bytes(2, 'big'))
+        bytes.extend(self.rot_x.to_bytes(2, 'big'))
+        bytes.extend(self.rot_y.to_bytes(2, 'big'))
+        bytes.extend(self.rot_z.to_bytes(2, 'big'))
+        bytes.extend(self.var.to_bytes(2, 'big'))
+        return bytes
 
 class RoomSetup:
     def __init__(self, rom: Rom, room_addr: int, header_addr: int):

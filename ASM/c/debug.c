@@ -1,5 +1,17 @@
 #include "debug.h"
 
+extern void ZeldaArena_GetSizes(uint32_t* outMaxFree, uint32_t* outFree, uint32_t* outAlloc);
+extern void ArenaImpl_GetSizes(Arena* zrena, uint32_t* outMaxFree, uint32_t* outFree, uint32_t* outAlloc);
+
+extern Arena randoArena;
+
+uint32_t zarena_maxFree;
+uint32_t zarena_free;
+uint32_t zarena_alloc;
+uint32_t randoarena_maxFree;
+uint32_t randoarena_free;
+uint32_t randoarena_alloc;
+
 const int8_t debug_text_width = 16;
 const int8_t debug_text_height = 16;
 colorRGB8_t debug_text_color = { 0xE0, 0xE0, 0x10 }; // Yellow
@@ -121,6 +133,15 @@ void debug_utilities(z64_disp_buf_t *db)
     if (z64_game.common.input[0].raw.pad.l) {
         z64_link.common.vel_1.y = 6.34375f;
     }
+    ZeldaArena_GetSizes(&zarena_maxFree, &zarena_free, &zarena_alloc);
+    ArenaImpl_GetSizes(&randoArena, &randoarena_maxFree, &randoarena_free, &randoarena_alloc);
+    draw_debug_int(2, zarena_maxFree);
+    draw_debug_int(3, zarena_free);
+    draw_debug_int(4, zarena_alloc);
+    draw_debug_int(5, randoarena_maxFree);
+    draw_debug_int(6, randoarena_free);
+    draw_debug_int(7, randoarena_alloc);
+    
 
     draw_debug_menu(db);
     draw_debug_numbers(db);

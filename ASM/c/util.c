@@ -5,15 +5,29 @@
 Arena randoArena;
 
 extern char C_HEAP[];
+extern char PAYLOAD_START[];
 void* heap_next = NULL;
 
+
 void heap_init() {
-    __osMallocInit(&randoArena, (void*)C_HEAP, 0x1FF000);
+    __osMallocInit(&randoArena, (void*)C_HEAP, PAYLOAD_START - C_HEAP);
     //heap_next = &C_HEAP[0];
 }
 
 void* heap_alloc(int bytes) {
-    return __osMalloc(&randoArena, bytes);
+    void* ret = __osMalloc(&randoArena, bytes);
+    char error_msg[256];
+    if(ret == NULL) {
+                
+        uint32_t randoarena_maxFree;
+        uint32_t randoarena_free;
+        uint32_t randoarena_alloc;
+        ArenaImpl_GetSizes(&randoArena, &randoarena_maxFree, &randoarena_free, &randoarena_alloc);
+        sprintf(error_msg, "maxFree = %x\nfree = %x\nalloc = %x", (int)randoarena_maxFree, (int)randoarena_free, (int)randoarena_alloc);
+        Fault_AddHungupAndCrashImpl("Rando arena overflow!", error_msg);
+    }
+    
+    return ret;
 }
 
 void heap_free(void* ptr) {

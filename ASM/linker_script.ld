@@ -44,5 +44,7 @@ z64_segments = 0x80120C38;
 __osMallocInit = 0x800CDD90;
 __osFree = 0x800CE2B4;
 __osMalloc = 0x800CE060;
+ZeldaArena_GetSizes = 0x80066d10;
+ArenaImpl_GetSizes = 0x800ce688;
 z64_LoadRoom_addr = 0x80080A3C;
 z64_UnloadRoom = 0x80080C98;

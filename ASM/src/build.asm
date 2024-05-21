@@ -38,12 +38,10 @@
 .include "item_restriction_flags.asm"
 
 
-.headersize (0x80400000 - 0x03480000)
+.headersize (PAYLOAD_START - 0x03480000)
 
-.org    0x80400000
-.area   0x00200000 ; payload max memory
-PAYLOAD_START:
-
+.org    PAYLOAD_START
+.area   0x80800000 - 0x4b000 - PAYLOAD_START; payload max memory
 .area 0x20, 0
 RANDO_CONTEXT:
 .word COOP_CONTEXT

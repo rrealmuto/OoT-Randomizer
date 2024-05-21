@@ -10,6 +10,7 @@ from collections.abc import Callable, Iterable
 from typing import Optional, Any
 
 from Cutscenes import patch_cutscenes
+from Enemizer import shuffle_enemies
 from Entrance import Entrance
 from HintList import get_hint
 from Hints import GossipText, HintArea, write_gossip_stone_hints, build_altar_hints, \
@@ -2286,6 +2287,9 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         rom.write_bytes(0xE061CC, [0x0c, 0x00, 0x99, 0x32, 0x26, 0x05, 0x01, 0x3c])
 
     rom.write_byte(broken_actors_symbol, broken_actors_cfg)
+
+    scene_data = process_scenes(rom)
+    shuffle_enemies(scene_data, rom)
 
     # Have the Gold Skulltula Count in the pause menu turn red when equal to the
     # available number of skulls in the world instead of 100.

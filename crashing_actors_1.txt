@@ -1,0 +1,741 @@
+OoT_FE63B_0ZRWU41018.z64
+(0, 0, 0, 0) - Guay
+(0, 0, 0, 1) - Iron Knuckle
+(0, 0, 0, 2) - Gohma Larva
+(0, 0, 0, 3) - Bari
+(0, 0, 0, 4) - Torch Slug
+(0, 0, 0, 5) - Wolfos
+(0, 0, 0, 11) - Torch Slug
+(0, 0, 0, 12) - Whithered Deku Baba
+(0, 0, 0, 13) - Skulltula
+(0, 3, 0, 0) - Deku Scrub
+(0, 3, 0, 3) - Iron Knuckle
+(0, 3, 0, 4) - Baby Dodongo
+(0, 3, 0, 5) - Bari
+(0, 3, 0, 12) - Deku Scrub
+(0, 3, 0, 15) - Skull Kid
+(0, 5, 0, 0) - Spike
+(0, 6, 0, 0) - Baby Dodongo
+(0, 6, 0, 1) - Stinger
+(0, 6, 0, 4) - Iron Knuckle
+(0, 7, 0, 0) - Gohma Larva
+(0, 7, 0, 1) - Wolfos
+(0, 7, 0, 4) - Floormaster
+(0, 7, 0, 5) - Skull Kid
+(0, 7, 0, 6) - Moblin
+(0, 7, 0, 7) - Stalfos
+(0, 8, 0, 0) - Bubble
+(0, 8, 0, 1) - Deku Baba
+(0, 10, 0, 0) - Octorok
+(0, 10, 0, 1) - Dead Hand
+(0, 10, 0, 4) - Skullwaltula
+(0, 10, 0, 9) - Skull Kid
+(1, 0, 0, 5) - Keese
+(1, 0, 0, 6) - Redead/Gibdo
+(1, 0, 0, 7) - Bari
+(1, 0, 0, 8) - Torch Slug
+(1, 0, 0, 9) - Deku Scrub
+(1, 1, 0, 0) - Dodongo
+(1, 1, 0, 1) - Dodongo
+(1, 1, 0, 2) - Whithered Deku Baba
+(1, 1, 0, 3) - Biri
+(1, 1, 0, 4) - Biri
+(1, 1, 0, 5) - Bari
+(1, 1, 0, 6) - Tektite
+(1, 1, 0, 7) - Biri
+(1, 1, 0, 8) - Biri
+(1, 1, 0, 9) - Whithered Deku Baba
+(1, 1, 0, 11) - Wolfos
+(1, 2, 0, 0) - Armos
+(1, 2, 0, 19) - Deku Baba
+(1, 2, 0, 21) - Bubble
+(1, 3, 0, 1) - Guay
+(1, 3, 0, 2) - Shabom
+(1, 3, 0, 3) - Spike
+(1, 3, 0, 4) - Tektite
+(1, 4, 0, 0) - Skull Kid
+(1, 4, 0, 1) - Guay
+(1, 4, 0, 2) - Freezard
+(1, 5, 0, 0) - Stalfos
+(1, 5, 0, 1) - Tektite
+(1, 5, 0, 2) - Freezard
+(1, 5, 0, 3) - Stinger
+(1, 5, 0, 4) - Shell Blade
+(1, 5, 0, 9) - Deku Scrub
+(1, 7, 0, 1) - Baby Dodongo
+(1, 7, 0, 2) - Freezard
+(1, 8, 0, 0) - Wallmaster
+(1, 8, 0, 1) - Flare Dancer
+(1, 10, 0, 1) - Skull Kid
+(1, 10, 0, 2) - Redead/Gibdo
+(1, 10, 0, 3) - Biri
+(1, 11, 0, 0) - Stinger
+(1, 11, 0, 1) - Redead/Gibdo
+(1, 11, 0, 2) - Octorok
+(1, 11, 0, 5) - Wolfos
+(1, 14, 0, 0) - Baby Dodongo
+(1, 14, 0, 1) - Anubis Spawner
+(1, 15, 0, 0) - Shabom
+(1, 15, 0, 3) - Like like
+(1, 15, 0, 4) - Wallmaster
+(2, 0, 0, 0) - Floormaster
+(2, 0, 0, 1) - Stinger
+(2, 0, 0, 3) - Skull Kid
+(2, 0, 0, 4) - Skullwaltula
+(2, 1, 0, 0) - Baby Dodongo
+(2, 1, 0, 1) - Whithered Deku Baba
+(2, 2, 0, 1) - Tektite
+(2, 2, 0, 2) - Shell Blade
+(2, 2, 0, 4) - Tailpasaran
+(2, 2, 0, 5) - Flare Dancer
+(2, 2, 0, 6) - Gohma Larva
+(2, 3, 0, 1) - Iron Knuckle
+(2, 3, 0, 2) - Peahat
+(2, 3, 0, 3) - Skulltula
+(2, 3, 0, 4) - Skull Kid
+(2, 3, 0, 6) - Dead Hand
+(2, 3, 0, 7) - Gohma Larva
+(2, 4, 0, 0) - Anubis Spawner
+(2, 5, 0, 1) - Peahat
+(2, 5, 0, 2) - Spike
+(2, 5, 0, 3) - Singray
+(2, 5, 0, 4) - Tektite
+(2, 5, 0, 5) - Deku Baba
+(2, 5, 0, 7) - Keese
+(2, 6, 0, 0) - Spike
+(2, 6, 0, 1) - Beamos
+(2, 7, 0, 0) - Stalfos
+(2, 7, 0, 1) - Moblin
+(2, 7, 0, 2) - Skull Kid
+(2, 7, 0, 3) - Skull Kid
+(2, 7, 0, 4) - Floormaster
+(2, 8, 0, 1) - Whithered Deku Baba
+(2, 8, 0, 2) - Lizalfos/Dinalfos
+(2, 8, 0, 3) - Redead/Gibdo
+(2, 8, 0, 4) - Armos
+(2, 9, 0, 0) - Singray
+(2, 9, 0, 1) - Peahat
+(2, 9, 0, 2) - Dodongo
+(2, 9, 0, 3) - Wallmaster
+(2, 12, 0, 2) - Deku Scrub
+(2, 12, 0, 3) - Octorok
+(2, 12, 0, 4) - Stinger
+(2, 12, 0, 5) - Stalfos
+(2, 12, 0, 6) - Wallmaster
+(2, 12, 0, 7) - Bari
+(2, 12, 0, 8) - Flare Dancer
+(2, 12, 0, 9) - Stalfos
+(2, 12, 0, 10) - Guay
+(2, 13, 0, 0) - Tailpasaran
+(2, 13, 0, 1) - Torch Slug
+(2, 14, 0, 0) - Anubis Spawner
+(2, 14, 0, 1) - Singray
+(2, 14, 0, 2) - Flare Dancer
+(2, 14, 0, 6) - Skull Kid
+(2, 14, 0, 10) - Deku Baba
+(2, 14, 0, 11) - Skull Kid
+(2, 14, 0, 12) - Peahat
+(2, 14, 0, 13) - Skull Kid
+(2, 14, 0, 14) - Wallmaster
+(2, 14, 0, 15) - Deku Baba
+(2, 14, 0, 16) - Stinger
+(3, 0, 0, 0) - Torch Slug
+(3, 0, 0, 1) - Tailpasaran
+(3, 0, 0, 2) - Bari
+(3, 1, 0, 0) - Deku Baba
+(3, 2, 0, 4) - Whithered Deku Baba
+(3, 3, 0, 4) - Baby Dodongo
+(3, 4, 0, 0) - Wolfos
+(3, 5, 0, 4) - Octorok
+(3, 6, 0, 0) - Biri
+(3, 6, 0, 1) - Bari
+(3, 7, 0, 2) - Skulltula
+(3, 7, 0, 3) - Guay
+(3, 7, 0, 4) - Torch Slug
+(3, 7, 0, 5) - Tailpasaran
+(3, 7, 0, 6) - Shabom
+(3, 8, 0, 0) - Gohma Larva
+(3, 8, 0, 1) - Shabom
+(3, 8, 0, 2) - Dodongo
+(3, 8, 0, 3) - Tektite
+(3, 8, 0, 4) - Anubis Spawner
+(3, 8, 0, 5) - Tektite
+(3, 8, 0, 6) - Moblin
+(3, 10, 0, 0) - Baby Dodongo
+(3, 11, 0, 0) - Stalfos
+(3, 11, 0, 1) - Freezard
+(3, 11, 0, 2) - Iron Knuckle
+(3, 15, 0, 0) - Redead/Gibdo
+(3, 15, 0, 1) - Skulltula
+(3, 15, 0, 2) - Singray
+(3, 17, 0, 0) - Flare Dancer
+(3, 17, 0, 3) - Bubble
+(3, 18, 0, 0) - Lizalfos/Dinalfos
+(3, 19, 0, 0) - Like like
+(3, 20, 0, 0) - Guay
+(3, 20, 0, 1) - Freezard
+(3, 20, 0, 2) - Dodongo
+(3, 21, 0, 0) - Flare Dancer
+(3, 21, 0, 1) - Singray
+(4, 0, 0, 0) - Stalfos
+(4, 0, 0, 4) - Keese
+(4, 1, 0, 1) - Like like
+(4, 1, 0, 3) - Skull Kid
+(4, 1, 0, 5) - Gohma Larva
+(4, 1, 0, 6) - Shabom
+(4, 1, 0, 8) - Keese
+(4, 1, 0, 11) - Singray
+(4, 1, 0, 12) - Skull Kid
+(4, 1, 0, 13) - Skull Kid
+(4, 1, 0, 14) - Armos
+(4, 1, 0, 15) - Octorok
+(4, 1, 0, 16) - Bari
+(4, 1, 0, 17) - Guay
+(4, 1, 0, 22) - Shabom
+(4, 3, 0, 0) - Peahat
+(4, 4, 0, 0) - Wolfos
+(4, 4, 0, 3) - Beamos
+(4, 5, 0, 4) - Gohma Larva
+(4, 5, 0, 6) - Redead/Gibdo
+(4, 5, 0, 11) - Tektite
+(4, 5, 0, 17) - Moblin
+(4, 7, 0, 0) - Biri
+(4, 8, 0, 1) - Dead Hand
+(4, 10, 0, 14) - Tektite
+(4, 10, 0, 25) - Shell Blade
+(4, 10, 0, 44) - Wolfos
+(4, 13, 0, 2) - Tailpasaran
+(4, 13, 0, 8) - Deku Scrub
+(4, 13, 0, 9) - Bubble
+(4, 14, 0, 0) - Baby Dodongo
+(4, 14, 0, 1) - Peahat
+(4, 14, 0, 6) - Armos
+(4, 14, 0, 7) - Skulltula
+(4, 15, 0, 0) - Shell Blade
+(4, 15, 0, 1) - Anubis Spawner
+(4, 15, 0, 2) - Wallmaster
+(4, 15, 0, 3) - Redead/Gibdo
+(4, 15, 0, 5) - Keese
+(4, 15, 0, 6) - Singray
+(4, 15, 0, 7) - Bubble
+(4, 16, 0, 0) - Like like
+(4, 16, 0, 1) - Guay
+(4, 16, 0, 2) - Stalfos
+(4, 16, 0, 3) - Biri
+(4, 16, 0, 4) - Redead/Gibdo
+(4, 18, 0, 0) - Like like
+(4, 18, 0, 6) - Stinger
+(4, 19, 0, 0) - Moblin
+(4, 19, 0, 9) - Skull Kid
+(4, 21, 0, 0) - Whithered Deku Baba
+(4, 21, 0, 1) - Wolfos
+(4, 21, 0, 3) - Tailpasaran
+(4, 21, 0, 4) - Bari
+(4, 24, 0, 0) - Like like
+(5, 0, 0, 2) - Wolfos
+(5, 0, 0, 3) - Beamos
+(5, 0, 0, 4) - Anubis Spawner
+(5, 0, 0, 5) - Wallmaster
+(5, 0, 0, 12) - Skullwaltula
+(5, 0, 0, 13) - Bari
+(5, 1, 0, 3) - Singray
+(5, 2, 0, 0) - Shell Blade
+(5, 2, 0, 1) - Deku Baba
+(5, 2, 0, 2) - Guay
+(5, 2, 0, 3) - Beamos
+(5, 2, 0, 4) - Bubble
+(5, 2, 0, 5) - Bubble
+(5, 2, 0, 6) - Redead/Gibdo
+(5, 3, 0, 0) - Skulltula
+(5, 3, 0, 2) - Redead/Gibdo
+(5, 3, 0, 3) - Singray
+(5, 3, 0, 4) - Whithered Deku Baba
+(5, 4, 0, 1) - Floormaster
+(5, 4, 0, 2) - Deku Scrub
+(5, 4, 0, 3) - Skulltula
+(5, 4, 0, 4) - Like like
+(5, 5, 0, 3) - Dead Hand
+(5, 5, 0, 4) - Armos
+(5, 5, 0, 7) - Moblin
+(5, 6, 0, 0) - Beamos
+(5, 6, 0, 1) - Skulltula
+(5, 6, 0, 2) - Whithered Deku Baba
+(5, 6, 0, 3) - Gohma Larva
+(5, 6, 0, 4) - Tektite
+(5, 6, 0, 5) - Anubis Spawner
+(5, 8, 0, 2) - Armos
+(5, 8, 0, 3) - Gohma Larva
+(5, 9, 0, 0) - Bari
+(5, 10, 0, 1) - Bari
+(5, 12, 0, 0) - Octorok
+(5, 12, 0, 3) - Iron Knuckle
+(5, 12, 0, 4) - Tailpasaran
+(5, 12, 0, 5) - Gohma Larva
+(5, 12, 0, 6) - Beamos
+(5, 12, 0, 7) - Skull Kid
+(5, 12, 0, 8) - Deku Baba
+(5, 12, 0, 11) - Skull Kid
+(5, 14, 0, 0) - Tailpasaran
+(5, 14, 0, 1) - Baby Dodongo
+(5, 14, 0, 2) - Wolfos
+(5, 14, 0, 3) - Iron Knuckle
+(5, 14, 0, 4) - Bubble
+(5, 15, 0, 0) - Peahat
+(5, 15, 0, 1) - Dead Hand
+(5, 18, 0, 0) - Beamos
+(5, 18, 0, 1) - Deku Baba
+(5, 18, 0, 2) - Armos
+(5, 19, 0, 0) - Deku Baba
+(5, 19, 0, 1) - Anubis Spawner
+(5, 19, 0, 2) - Dodongo
+(5, 19, 0, 3) - Tektite
+(5, 21, 0, 10) - Redead/Gibdo
+(6, 0, 0, 0) - Flare Dancer
+(6, 0, 0, 1) - Peahat
+(6, 0, 0, 2) - Beamos
+(6, 1, 0, 0) - Wolfos
+(6, 1, 0, 1) - Beamos
+(6, 1, 0, 2) - Tailpasaran
+(6, 1, 0, 3) - Lizalfos/Dinalfos
+(6, 1, 0, 4) - Skullwaltula
+(6, 2, 0, 0) - Singray
+(6, 2, 0, 1) - Shabom
+(6, 2, 0, 2) - Like like
+(6, 2, 0, 3) - Like like
+(6, 2, 0, 5) - Shabom
+(6, 2, 0, 6) - Peahat
+(6, 2, 0, 7) - Skulltula
+(6, 3, 0, 0) - Like like
+(6, 3, 0, 3) - Torch Slug
+(6, 4, 0, 0) - Shell Blade
+(6, 4, 0, 1) - Floormaster
+(6, 4, 0, 2) - Skullwaltula
+(6, 4, 0, 3) - Skullwaltula
+(6, 4, 0, 4) - Singray
+(6, 4, 0, 5) - Floormaster
+(6, 4, 0, 6) - Keese
+(6, 5, 0, 5) - Floormaster
+(6, 5, 0, 11) - Redead/Gibdo
+(6, 5, 0, 19) - Bari
+(6, 8, 0, 4) - Floormaster
+(6, 8, 0, 5) - Shabom
+(6, 8, 0, 6) - Skulltula
+(6, 9, 0, 0) - Flare Dancer
+(6, 10, 0, 0) - Guay
+(6, 12, 0, 0) - Wallmaster
+(6, 13, 0, 0) - Wolfos
+(6, 14, 0, 0) - Dodongo
+(6, 15, 0, 8) - Singray
+(6, 15, 0, 9) - Dead Hand
+(6, 15, 0, 12) - Tailpasaran
+(6, 16, 0, 0) - Singray
+(6, 17, 0, 0) - Freezard
+(6, 17, 0, 1) - Wallmaster
+(6, 17, 0, 2) - Stalfos
+(6, 17, 0, 3) - Redead/Gibdo
+(6, 18, 0, 0) - Bari
+(6, 18, 0, 1) - Spike
+(6, 18, 0, 2) - Peahat
+(6, 18, 0, 3) - Bubble
+(6, 20, 0, 0) - Guay
+(6, 22, 0, 10) - Gohma Larva
+(6, 22, 0, 11) - Whithered Deku Baba
+(6, 22, 0, 12) - Skull Kid
+(6, 22, 0, 13) - Beamos
+(6, 23, 0, 1) - Iron Knuckle
+(6, 23, 0, 4) - Skullwaltula
+(6, 23, 0, 5) - Whithered Deku Baba
+(6, 23, 0, 6) - Lizalfos/Dinalfos
+(6, 23, 0, 7) - Iron Knuckle
+(6, 26, 0, 0) - Flare Dancer
+(6, 26, 0, 1) - Deku Scrub
+(6, 26, 0, 2) - Tektite
+(6, 26, 0, 3) - Bubble
+(6, 26, 0, 4) - Deku Baba
+(6, 27, 0, 0) - Shabom
+(7, 1, 0, 0) - Peahat
+(7, 1, 0, 1) - Deku Scrub
+(7, 1, 0, 2) - Like like
+(7, 2, 0, 0) - Octorok
+(7, 4, 0, 6) - Octorok
+(7, 5, 0, 0) - Skull Kid
+(7, 7, 0, 0) - Anubis Spawner
+(7, 7, 0, 1) - Skulltula
+(7, 8, 0, 0) - Beamos
+(7, 8, 0, 1) - Octorok
+(7, 8, 0, 2) - Stalfos
+(7, 8, 0, 3) - Keese
+(7, 9, 0, 1) - Skullwaltula
+(7, 9, 0, 2) - Wallmaster
+(7, 9, 0, 5) - Freezard
+(7, 9, 0, 12) - Octorok
+(7, 10, 0, 1) - Lizalfos/Dinalfos
+(7, 11, 0, 0) - Tektite
+(7, 11, 0, 1) - Bari
+(7, 12, 0, 0) - Skull Kid
+(7, 13, 0, 0) - Deku Scrub
+(7, 13, 0, 1) - Deku Scrub
+(7, 14, 0, 0) - Shell Blade
+(7, 14, 0, 1) - Shell Blade
+(7, 14, 0, 2) - Shabom
+(7, 14, 0, 3) - Wallmaster
+(7, 14, 0, 4) - Like like
+(7, 15, 0, 0) - Keese
+(7, 15, 0, 1) - Singray
+(7, 16, 0, 0) - Deku Baba
+(7, 16, 0, 1) - Singray
+(7, 16, 0, 2) - Anubis Spawner
+(7, 16, 0, 3) - Wallmaster
+(7, 16, 0, 6) - Bari
+(7, 17, 0, 0) - Dead Hand
+(7, 18, 0, 0) - Stalfos
+(7, 19, 0, 0) - Guay
+(7, 19, 0, 1) - Beamos
+(7, 20, 0, 0) - Dead Hand
+(7, 20, 0, 1) - Skullwaltula
+(7, 21, 0, 11) - Bubble
+(7, 21, 0, 13) - Armos
+(7, 21, 0, 14) - Keese
+(8, 0, 0, 0) - Skulltula
+(8, 0, 0, 1) - Wolfos
+(8, 0, 0, 2) - Octorok
+(8, 0, 0, 3) - Floormaster
+(8, 0, 0, 4) - Deku Baba
+(8, 0, 0, 5) - Moblin
+(8, 0, 0, 7) - Iron Knuckle
+(8, 0, 0, 33) - Keese
+(8, 1, 0, 13) - Skull Kid
+(8, 1, 0, 14) - Skullwaltula
+(8, 2, 0, 0) - Bubble
+(8, 3, 0, 0) - Freezard
+(8, 3, 0, 1) - Whithered Deku Baba
+(8, 3, 0, 2) - Spike
+(8, 3, 0, 4) - Like like
+(8, 4, 0, 4) - Tailpasaran
+(8, 5, 0, 0) - Like like
+(8, 5, 0, 1) - Skull Kid
+(8, 5, 0, 2) - Tektite
+(8, 5, 0, 3) - Skullwaltula
+(8, 5, 0, 5) - Octorok
+(8, 6, 0, 0) - Wolfos
+(8, 6, 0, 1) - Peahat
+(9, 1, 0, 1) - Deku Baba
+(9, 1, 0, 10) - Freezard
+(9, 1, 0, 11) - Guay
+(9, 1, 0, 12) - Torch Slug
+(9, 3, 0, 1) - Freezard
+(9, 5, 0, 3) - Like like
+(9, 5, 0, 4) - Octorok
+(9, 5, 0, 5) - Deku Scrub
+(9, 5, 0, 6) - Anubis Spawner
+(9, 6, 0, 17) - Tektite
+(9, 6, 0, 18) - Dodongo
+(9, 7, 0, 0) - Octorok
+(9, 8, 0, 8) - Dodongo
+(9, 9, 0, 0) - Bubble
+(9, 9, 0, 1) - Spike
+(9, 9, 0, 2) - Moblin
+(9, 9, 0, 4) - Singray
+(9, 9, 0, 13) - Iron Knuckle
+(9, 9, 0, 14) - Gohma Larva
+(9, 11, 0, 0) - Deku Scrub
+(9, 11, 0, 1) - Armos
+(9, 11, 0, 2) - Deku Baba
+(9, 11, 0, 4) - Singray
+(10, 0, 0, 1) - Peahat
+(10, 0, 0, 2) - Bari
+(10, 2, 0, 5) - Anubis Spawner
+(10, 2, 0, 6) - Bubble
+(10, 4, 0, 1) - Octorok
+(10, 4, 0, 2) - Octorok
+(10, 7, 0, 1) - Lizalfos/Dinalfos
+(10, 7, 0, 2) - Shell Blade
+(10, 7, 0, 3) - Dodongo
+(10, 7, 0, 4) - Wolfos
+(10, 7, 0, 5) - Skulltula
+(10, 7, 0, 6) - Tailpasaran
+(10, 7, 0, 7) - Armos
+(11, 1, 0, 0) - Peahat
+(11, 1, 0, 1) - Redead/Gibdo
+(11, 2, 0, 4) - Anubis Spawner
+(11, 2, 0, 5) - Beamos
+(11, 3, 0, 1) - Keese
+(11, 3, 0, 2) - Guay
+(11, 3, 0, 4) - Tektite
+(11, 3, 0, 5) - Torch Slug
+(11, 5, 0, 1) - Whithered Deku Baba
+(11, 5, 0, 2) - Stalfos
+(11, 5, 0, 3) - Octorok
+(11, 5, 0, 4) - Deku Scrub
+(11, 6, 0, 2) - Spike
+(11, 6, 0, 3) - Shell Blade
+(11, 7, 0, 0) - Shabom
+(11, 7, 0, 1) - Anubis Spawner
+(11, 7, 0, 13) - Beamos
+(11, 9, 0, 4) - Octorok
+(11, 9, 0, 5) - Beamos
+(11, 9, 0, 6) - Anubis Spawner
+(11, 9, 0, 7) - Tailpasaran
+(11, 10, 0, 0) - Like like
+(11, 10, 0, 1) - Bubble
+(11, 10, 0, 2) - Beamos
+(13, 0, 0, 0) - Keese
+(13, 0, 0, 1) - Stalfos
+(13, 2, 0, 0) - Flare Dancer
+(13, 2, 0, 1) - Dodongo
+(13, 3, 0, 6) - Freezard
+(13, 5, 0, 0) - Singray
+(13, 6, 0, 1) - Anubis Spawner
+(13, 8, 0, 11) - Shell Blade
+(13, 9, 0, 6) - Singray
+(13, 9, 0, 7) - Whithered Deku Baba
+(13, 9, 0, 8) - Flare Dancer
+(13, 9, 0, 9) - Anubis Spawner
+(13, 10, 0, 1) - Redead/Gibdo
+(13, 12, 0, 0) - Bari
+(13, 12, 0, 3) - Shabom
+(13, 14, 0, 3) - Stinger
+(13, 14, 0, 4) - Skulltula
+(13, 14, 0, 5) - Tektite
+(13, 14, 0, 6) - Wallmaster
+(13, 14, 0, 7) - Deku Scrub
+(13, 17, 0, 10) - Beamos
+(13, 17, 0, 12) - Bubble
+(13, 17, 0, 13) - Gohma Larva
+(13, 17, 0, 14) - Skull Kid
+(13, 17, 0, 15) - Spike
+(13, 18, 0, 6) - Armos
+(13, 18, 0, 7) - Shell Blade
+(13, 18, 0, 18) - Flare Dancer
+(13, 18, 0, 20) - Tektite
+(13, 18, 0, 22) - Freezard
+(15, 0, 0, 4) - Tektite
+(23, 1, 0, 0) - Torch Slug
+(34, 0, 0, 0) - Skullwaltula
+(34, 0, 0, 1) - Biri
+(34, 0, 0, 2) - Flare Dancer
+(34, 0, 0, 3) - Stalfos
+(34, 0, 0, 4) - Armos
+(34, 0, 0, 5) - Bubble
+(34, 0, 0, 6) - Keese
+(34, 0, 0, 7) - Torch Slug
+(62, 2, 0, 0) - Deku Baba
+(62, 2, 0, 1) - Singray
+(62, 4, 0, 0) - Deku Baba
+(62, 4, 0, 4) - Deku Scrub
+(62, 5, 0, 0) - Baby Dodongo
+(62, 7, 0, 0) - Deku Scrub
+(62, 7, 0, 1) - Bari
+(62, 8, 0, 0) - Keese
+(62, 8, 0, 1) - Keese
+(62, 8, 0, 5) - Octorok
+(62, 10, 0, 2) - Peahat
+(62, 13, 0, 0) - Shabom
+(62, 13, 0, 1) - Stinger
+(63, 0, 0, 1) - Redead/Gibdo
+(65, 0, 0, 0) - Bubble
+(65, 0, 0, 1) - Wolfos
+(65, 0, 0, 3) - Deku Baba
+(65, 0, 0, 4) - Torch Slug
+(65, 1, 0, 0) - Keese
+(65, 1, 0, 1) - Shabom
+(65, 1, 0, 2) - Moblin
+(72, 2, 0, 3) - Dodongo
+(72, 2, 0, 4) - Dodongo
+(72, 3, 0, 2) - Flare Dancer
+(72, 3, 0, 3) - Freezard
+(81, 0, 1, 4) - Octorok
+(81, 0, 1, 5) - Stinger
+(81, 0, 1, 6) - Dodongo
+(81, 0, 1, 7) - Tektite
+(81, 0, 1, 8) - Moblin
+(81, 0, 1, 9) - Iron Knuckle
+(81, 0, 1, 10) - Dead Hand
+(81, 0, 0, 8) - Redead/Gibdo
+(81, 0, 0, 9) - Bari
+(81, 0, 0, 10) - Floormaster
+(81, 0, 0, 11) - Dodongo
+(81, 0, 0, 12) - Redead/Gibdo
+(81, 0, 0, 13) - Bubble
+(81, 0, 0, 14) - Like like
+(82, 0, 1, 23) - Anubis Spawner
+(82, 0, 1, 24) - Lizalfos/Dinalfos
+(82, 0, 1, 25) - Octorok
+(82, 0, 1, 26) - Moblin
+(82, 0, 3, 18) - Skulltula
+(83, 1, 1, 51) - Deku Baba
+(83, 1, 2, 2) - Floormaster
+(83, 1, 2, 3) - Keese
+(83, 1, 2, 4) - Singray
+(83, 1, 2, 5) - Flare Dancer
+(83, 1, 2, 6) - Tailpasaran
+(83, 1, 2, 7) - Octorok
+(83, 1, 2, 8) - Skulltula
+(83, 1, 3, 2) - Tektite
+(83, 1, 3, 3) - Torch Slug
+(83, 1, 3, 4) - Dead Hand
+(83, 1, 3, 5) - Moblin
+(83, 1, 3, 6) - Singray
+(83, 1, 3, 7) - Singray
+(83, 1, 3, 8) - Tektite
+(84, 0, 2, 2) - Spike
+(84, 0, 2, 3) - Torch Slug
+(84, 0, 2, 4) - Deku Baba
+(84, 0, 2, 5) - Like like
+(84, 0, 2, 6) - Whithered Deku Baba
+(84, 0, 2, 7) - Bubble
+(84, 0, 2, 8) - Dodongo
+(84, 0, 2, 9) - Gohma Larva
+(84, 0, 2, 14) - Freezard
+(84, 0, 0, 4) - Beamos
+(84, 0, 0, 5) - Like like
+(84, 0, 0, 42) - Anubis Spawner
+(84, 0, 0, 43) - Octorok
+(84, 1, 2, 8) - Shabom
+(84, 1, 0, 4) - Skullwaltula
+(85, 0, 2, 1) - Floormaster
+(85, 0, 2, 2) - Whithered Deku Baba
+(85, 0, 2, 3) - Baby Dodongo
+(85, 0, 2, 4) - Deku Scrub
+(85, 0, 2, 5) - Keese
+(85, 0, 2, 6) - Gohma Larva
+(85, 0, 2, 7) - Wolfos
+(85, 0, 2, 8) - Deku Baba
+(85, 0, 2, 9) - Lizalfos/Dinalfos
+(85, 0, 2, 10) - Bubble
+(85, 0, 2, 25) - Tektite
+(85, 0, 3, 16) - Gohma Larva
+(85, 0, 0, 30) - Freezard
+(85, 1, 2, 2) - Keese
+(85, 1, 2, 3) - Keese
+(85, 1, 2, 4) - Spike
+(85, 1, 2, 5) - Skull Kid
+(85, 1, 2, 6) - Stalfos
+(85, 1, 2, 7) - Biri
+(85, 1, 0, 1) - Singray
+(85, 1, 0, 2) - Like like
+(85, 1, 0, 3) - Deku Scrub
+(85, 1, 0, 4) - Wolfos
+(85, 1, 0, 5) - Deku Scrub
+(86, 0, 2, 5) - Iron Knuckle
+(86, 0, 2, 6) - Skullwaltula
+(86, 0, 2, 7) - Octorok
+(86, 0, 2, 8) - Floormaster
+(86, 0, 2, 9) - Shabom
+(86, 0, 2, 10) - Skull Kid
+(86, 0, 2, 14) - Armos
+(86, 0, 0, 1) - Singray
+(86, 0, 0, 5) - Like like
+(86, 0, 0, 6) - Skull Kid
+(86, 0, 0, 7) - Spike
+(86, 0, 0, 8) - Moblin
+(86, 0, 0, 9) - Skull Kid
+(86, 0, 0, 10) - Floormaster
+(87, 0, 2, 15) - Anubis Spawner
+(87, 0, 2, 16) - Moblin
+(87, 0, 2, 17) - Skulltula
+(87, 0, 2, 18) - Wallmaster
+(87, 0, 2, 20) - Torch Slug
+(87, 0, 2, 22) - Iron Knuckle
+(87, 0, 2, 23) - Keese
+(87, 0, 2, 24) - Anubis Spawner
+(87, 0, 2, 25) - Deku Scrub
+(87, 0, 2, 26) - Lizalfos/Dinalfos
+(87, 0, 2, 27) - Flare Dancer
+(87, 0, 2, 28) - Like like
+(87, 0, 2, 29) - Moblin
+(87, 0, 0, 3) - Spike
+(87, 0, 0, 4) - Tailpasaran
+(87, 0, 0, 5) - Torch Slug
+(87, 0, 0, 19) - Bari
+(87, 0, 0, 20) - Flare Dancer
+(87, 0, 0, 21) - Wolfos
+(87, 0, 0, 40) - Peahat
+(87, 0, 0, 41) - Stinger
+(88, 1, 2, 7) - Anubis Spawner
+(89, 0, 1, 15) - Whithered Deku Baba
+(89, 0, 2, 18) - Whithered Deku Baba
+(89, 0, 2, 19) - Singray
+(89, 0, 2, 20) - Deku Baba
+(89, 0, 2, 21) - Shabom
+(89, 0, 2, 24) - Wolfos
+(89, 0, 2, 25) - Moblin
+(89, 0, 2, 26) - Armos
+(89, 0, 2, 27) - Gohma Larva
+(89, 0, 2, 28) - Tektite
+(89, 0, 2, 47) - Stalfos
+(89, 0, 2, 50) - Moblin
+(90, 0, 2, 3) - Beamos
+(90, 0, 2, 4) - Skulltula
+(90, 0, 2, 5) - Flare Dancer
+(90, 0, 2, 6) - Moblin
+(90, 0, 2, 7) - Skullwaltula
+(90, 0, 2, 46) - Redead/Gibdo
+(90, 0, 2, 47) - Peahat
+(90, 0, 0, 16) - Deku Scrub
+(91, 1, 2, 1) - Biri
+(91, 1, 2, 2) - Torch Slug
+(91, 1, 0, 1) - Shell Blade
+(91, 1, 0, 2) - Skulltula
+(91, 1, 0, 3) - Baby Dodongo
+(91, 3, 2, 2) - Gohma Larva
+(91, 3, 0, 2) - Flare Dancer
+(91, 6, 2, 1) - Whithered Deku Baba
+(91, 9, 2, 1) - Guay
+(91, 9, 0, 0) - Whithered Deku Baba
+(91, 9, 0, 1) - Moblin
+(92, 0, 2, 7) - Gohma Larva
+(92, 0, 2, 8) - Guay
+(92, 0, 2, 9) - Redead/Gibdo
+(92, 0, 2, 10) - Guay
+(92, 0, 2, 11) - Torch Slug
+(92, 0, 2, 19) - Flare Dancer
+(92, 0, 2, 20) - Anubis Spawner
+(92, 0, 0, 7) - Like like
+(92, 0, 0, 8) - Whithered Deku Baba
+(92, 0, 0, 9) - Moblin
+(93, 0, 3, 21) - Freezard
+(93, 1, 3, 14) - Dodongo
+(94, 0, 0, 4) - Skull Kid
+(96, 0, 2, 2) - Skullwaltula
+(96, 0, 2, 3) - Peahat
+(96, 0, 2, 4) - Floormaster
+(96, 0, 2, 6) - Skulltula
+(96, 0, 2, 7) - Whithered Deku Baba
+(96, 0, 2, 8) - Wallmaster
+(96, 0, 2, 32) - Moblin
+(96, 0, 2, 33) - Tailpasaran
+(96, 0, 2, 34) - Keese
+(96, 0, 0, 6) - Stalfos
+(96, 0, 0, 7) - Skull Kid
+(96, 0, 0, 8) - Skulltula
+(96, 0, 0, 9) - Deku Baba
+(96, 0, 0, 10) - Octorok
+(96, 0, 0, 11) - Redead/Gibdo
+(96, 0, 0, 12) - Moblin
+(96, 0, 0, 24) - Flare Dancer
+(97, 1, 2, 8) - Armos
+(97, 1, 2, 9) - Spike
+(97, 1, 2, 10) - Lizalfos/Dinalfos
+(97, 1, 2, 11) - Baby Dodongo
+(97, 1, 2, 12) - Deku Scrub
+(98, 3, 2, 14) - Biri
+(99, 0, 1, 10) - Deku Baba
+(99, 0, 1, 11) - Keese
+(99, 0, 1, 12) - Baby Dodongo
+(99, 0, 1, 13) - Octorok
+(99, 0, 1, 14) - Bubble
+(99, 0, 1, 15) - Stinger
+(99, 0, 1, 16) - Freezard
+(99, 0, 1, 17) - Skulltula
+(99, 0, 1, 18) - Tailpasaran
+(99, 0, 1, 19) - Anubis Spawner
+(99, 0, 1, 20) - Baby Dodongo
+(99, 0, 1, 21) - Floormaster
+(99, 0, 1, 22) - Bubble
+(99, 0, 1, 23) - Spike
+(99, 0, 1, 24) - Octorok
+(99, 0, 1, 25) - Spike
+(99, 0, 1, 26) - Guay
+(99, 0, 1, 27) - Redead/Gibdo
+(100, 0, 0, 2) - Biri

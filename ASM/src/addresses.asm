@@ -7,5 +7,6 @@
 
 ; Extended memory map:
 //AUDIO_THREAD_FREE             0x8018EE60 ; size 0x37F00
-.definelabel DEBUG_BUFFER,      0x80600000 ; size 0x1000
-.definelabel C_HEAP,            0x80601000
+.definelabel DEBUG_BUFFER,      0x80500000 ; size 0x1000
+.definelabel C_HEAP,            0x80510000 ; size 
+.definelabel PAYLOAD_START,     0x80680000
