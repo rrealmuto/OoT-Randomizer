@@ -5,6 +5,7 @@
 #include "z64_math.h"
 #include "color.h"
 #include "z64collision_check.h"
+#include "save.h"
 
 #define Z64_OOT10             0x00
 #define Z64_OOT11             0x01
@@ -26,6 +27,7 @@
 #define Z64_ETAB_LENGTH       0x0614
 
 #define NA_BGM_SMALL_ITEM_GET 0x39
+#define NA_SE_SY_CORRECT_CHIME 0x4802
 #define NA_SE_SY_GET_RUPY     0x4803
 #define NA_SE_SY_GET_ITEM     0x4824
 #define NA_SE_SY_ERROR 0x4806
@@ -770,7 +772,10 @@ typedef struct {
 } SramContext; // size = 0x4
 
 typedef struct {
-  uint8_t data[0xBA8];
+  union {
+    uint8_t data[0xBA8];
+    extended_savecontext_static_t extended;
+  };
 } extended_save_data_t;
 
 typedef struct {
