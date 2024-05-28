@@ -1,5 +1,6 @@
 #include "file_select.h"
 
+#include "audio.h"
 #include "file_icons.h"
 #include "file_message.h"
 #include "gfx.h"
@@ -7,7 +8,7 @@
 #include "text.h"
 #include "util.h"
 #include "save.h"
-
+#include "debug.h"
 
 sprite_t* hash_sprites[2] = {
     &items_sprite,
@@ -59,38 +60,71 @@ extern uint8_t CFG_FILE_SELECT_HASH[5];
 uint8_t password_state = 0;
 #define TEXT_WIDTH 8
 #define TEXT_HEIGHT 9
-#define BUTTON_WIDTH 10
-#define BUTTON_HEIGHT 10
-#define PASSWORD_LENGTH 6
-uint8_t password[6] = {-1, -1, -1, -1, -1, -1,};
-uint8_t password_fake[6] = {0, 0, 0, 0, 0, 0,};
+#define BUTTON_WIDTH 12
+#define BUTTON_HEIGHT 12
+extern uint8_t PASSWORD[PASSWORD_LENGTH];
+uint8_t buffer_password[PASSWORD_LENGTH] = {-1, -1, -1, -1, -1, -1,};
+
+uint8_t is_saved_password_clear(z64_menudata_t* menu_data) {
+    // Player can save in file 1 and use file 2 later, so we look at both of them.
+    uint8_t fileOkPassword[2] = {1, 1};
+    for (uint8_t slotFile = 0; slotFile < 2; slotFile++) {
+        z64_file_t* file = &menu_data->sram_buffer->primary_saves[slotFile].original_save;
+        extended_savecontext_static_t* extended = &(((extended_sram_file_t*)file)->additional_save_data.extended);
+        for (uint8_t i = 0 ; i < PASSWORD_LENGTH; i++) {
+            if (extended->password[i] != PASSWORD[i]) {
+                fileOkPassword[slotFile] = 0;
+            }
+        }
+    }
+    return (fileOkPassword[0] || fileOkPassword[1]) ? 1 : 0;
+}
+
+uint8_t is_buffer_password_clear() {
+    for (uint8_t i = 0 ; i < PASSWORD_LENGTH; i++) {
+        if (buffer_password[i] != PASSWORD[i]) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+void reset_buffer() {
+    for (uint8_t i = 0 ; i < PASSWORD_LENGTH; i++) {
+        buffer_password[i] = -1;
+    }
+}
 
 void manage_password(z64_disp_buf_t* db, z64_menudata_t* menu_data) {
-    z64_file_t file = menu_data->sram_buffer->primary_saves[menu_data->selected_file].original_save;
-    extended_savecontext_static_t* extended = &(((extended_sram_file_t*)&file)->additional_save_data.extended);
+
+    if (is_saved_password_clear(menu_data) == 0 && is_buffer_password_clear() == 0) { // Draw "Password locked" at the place of the Controls texture.
+        int left = 90;
+        int top = 204;
+        int padding = 8;
+        sprite_load(db, &quest_items_sprite, 17, 1);
+
+        gDPPipeSync(db->p++);
+        gDPSetCombineMode(db->p++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
+        gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF);
+        sprite_draw(db, &quest_items_sprite, 0, left, top - 2, BUTTON_WIDTH, BUTTON_HEIGHT);
+        text_print_size("Password locked", left + TEXT_HEIGHT + padding, top, TEXT_WIDTH);
+        sprite_draw(db, &quest_items_sprite, 0, left + TEXT_WIDTH + 2*padding + 15*font_sprite.tile_w, top - 2, BUTTON_WIDTH, BUTTON_HEIGHT);
+        text_flush_size(db, TEXT_WIDTH, TEXT_HEIGHT, 0, 0);
+    }
 
     if (menu_data->menu_transition > 0) { // In the File 1/File 2 menu.
+
         if (password_state > 0) {
-            uint8_t left = 0x37 + 0x4E;
-            uint8_t top = 0x5C;
+            uint8_t left_password = 0x37;
+            uint8_t top_password = 0x5C;
 
             gDPPipeSync(db->p++);
             gDPSetCombineMode(db->p++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
             gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF);
-            text_print_size("Enter Password", left, top, TEXT_WIDTH);
-
+            text_print_size("Enter Password", left_password, top_password, TEXT_WIDTH);
             text_flush_size(db, TEXT_WIDTH, TEXT_HEIGHT, 0, 0);
 
-            for (uint8_t i = 0 ; i < PASSWORD_LENGTH; i++) {
-                if (password[i] != password_fake[i] /*extended->password[i]*/) {
-                    break;
-                }
-                if (i == PASSWORD_LENGTH - 1 && password[i] == password_fake[i]/*extended->password[i]*/) {
-                    extended_savectx.password_clear = 1;
-                }
-            }
-
-            if (extended_savectx.password_clear == 1) {
+            if (is_buffer_password_clear()) {
                 password_state = 0;
                 z64_PlaySFXID(NA_SE_SY_CORRECT_CHIME);
             }
@@ -98,48 +132,45 @@ void manage_password(z64_disp_buf_t* db, z64_menudata_t* menu_data) {
                 if (z64_game.common.input[0].pad_pressed.b || password_state > 6) {
                     z64_PlaySFXID(NA_SE_SY_ERROR);
                     password_state = 0;
+                    reset_buffer();
                 }
                 else {
                     sprite_load(db, &ocarina_button_sprite, 0, 5);
                     if (z64_game.common.input[0].pad_pressed.a) {
-                        password[password_state - 1] = 0;
+                        buffer_password[password_state - 1] = 0;
                         password_state++;
                     }
                     if (z64_game.common.input[0].pad_pressed.cd) {
-                        password[password_state - 1] = 1;
+                        buffer_password[password_state - 1] = 1;
                         password_state++;
                     }
                     if (z64_game.common.input[0].pad_pressed.cr) {
-                        password[password_state - 1] = 2;
+                        buffer_password[password_state - 1] = 2;
                         password_state++;
                     }
                     if (z64_game.common.input[0].pad_pressed.cl) {
-                        password[password_state - 1] = 3;
+                        buffer_password[password_state - 1] = 3;
                         password_state++;
                     }
                     if (z64_game.common.input[0].pad_pressed.cu) {
-                        password[password_state - 1] = 4;
+                        buffer_password[password_state - 1] = 4;
                         password_state++;
                     }
                     for (uint8_t i = 0 ; i < PASSWORD_LENGTH; i++) {
                         gDPSetPrimColor(db->p++, 0, 0, 0xF4, 0xEC, 0x30, 0xFF); // Yellow C buttons
-                        if (password[i] == 0) { // A is blue
+                        if (buffer_password[i] == 0) { // A is blue
                             gDPSetPrimColor(db->p++, 0, 0, 0x00, 0x00, 0xFF, 0xFF);
                         }
-                        sprite_draw(db, &ocarina_button_sprite, password[i], left + i * (BUTTON_WIDTH + 5), top + 0x0C, BUTTON_WIDTH, BUTTON_HEIGHT);
+                        sprite_draw(db, &ocarina_button_sprite, buffer_password[i],
+                            left_password + i * (BUTTON_WIDTH + 5), top_password + 0x0C, BUTTON_WIDTH, BUTTON_HEIGHT);
                     }
                 }
-            }
-        }
-        else {
-            for (uint8_t i = 0 ; i < PASSWORD_LENGTH; i++) {
-                password[i] = -1;
             }
         }
 
         if (menu_data->selected_sub_item == 0) { // On the Ok option.
             if (z64_game.common.input[0].pad_pressed.a || z64_game.common.input[0].pad_pressed.s) {
-                if (extended_savectx.password_clear == 1) { // Vanilla behaviour.
+                if (is_saved_password_clear(menu_data) || is_buffer_password_clear()) { // Vanilla behaviour.
                     z64_PlaySFXID(NA_SE_SY_FSEL_DECIDE_L);
                     menu_data->menu_transition = 6; // SM_FADE_OUT
                     Audio_StopCurrentMusic(0xF);

@@ -12,12 +12,15 @@
 
 ; Load the game
 .org 0x80810CA8
-; Replaces:
-;    addiu   t1, $zero, 0x0006
+; Replaces addiu   t1, $zero, 0x0006
     addiu   t1, $zero, 0x0003
 
 ; Stop the menu music
 .org 0x80810CB0
-; Replaces:
-;    jal     func_800C7684
+; Replaces jal     func_800C7684
     nop
+
+; Remove the Controls texture so we can display Password locked in its place.
+.org 0x80811ADC
+; Replaces slti    $at, v0, 0x0024
+    slti    $at, v0, 0x0000

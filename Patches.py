@@ -834,6 +834,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     configure_dungeon_info(rom, world)
 
     rom.write_bytes(rom.sym('CFG_FILE_SELECT_HASH'), spoiler.file_hash)
+    rom.write_bytes(rom.sym('PASSWORD'), spoiler.password)
 
     save_context = SaveContext()
 

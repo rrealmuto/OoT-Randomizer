@@ -238,6 +238,9 @@ CFG_DUNGEON_REWARD_WORLDS:
 .align 4
 CFG_BIGOCTO_OVERRIDE_KEY:
 .word 0
+.area 6, 0x00
+PASSWORD:
+.endarea
 .align 4
 
 ; These configuration values are given fixed addresses to aid auto-trackers.

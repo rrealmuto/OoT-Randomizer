@@ -21,7 +21,7 @@ from Location import Location, LocationIterator, LocationFactory
 from LocationList import location_groups, location_table
 from Search import Search
 from SettingsList import build_close_match, validate_settings
-from Spoiler import Spoiler, HASH_ICONS
+from Spoiler import Spoiler, HASH_ICONS, PASSWORD_NOTES
 from version import __version__
 
 if TYPE_CHECKING:
@@ -1137,6 +1137,7 @@ class WorldDistribution:
 class Distribution:
     def __init__(self, settings: Settings, src_dict: Optional[dict[str, Any]] = None) -> None:
         self.file_hash: Optional[list[str]] = None
+        self.password: Optional[list[str]] = None
         self.playthrough: Optional[dict[str, dict[str, LocationRecord]]] = None
         self.entrance_playthrough: Optional[dict[str, dict[str, EntranceRecord]]] = None
 
@@ -1156,6 +1157,7 @@ class Distribution:
         # One-time init
         update_dict = {
             'file_hash': (self.src_dict.get('file_hash', []) + [None, None, None, None, None])[0:5],
+            'password': (self.src_dict.get('password', []) + [None, None, None, None, None, None])[0:6],
             'playthrough': None,
             'entrance_playthrough': None,
             '_settings': self.src_dict.get('settings', {}),
@@ -1292,6 +1294,7 @@ class Distribution:
         self_dict = {
             ':version': __version__,
             'file_hash': CollapseList(self.file_hash),
+            'password': CollapseList(self.password),
             ':seed': self.settings.seed,
             ':settings_string': self.settings.settings_string,
             ':enable_distribution_file': self.settings.enable_distribution_file,
@@ -1337,6 +1340,7 @@ class Distribution:
 
     def update_spoiler(self, spoiler: Spoiler, output_spoiler: bool) -> None:
         self.file_hash = [HASH_ICONS[icon] for icon in spoiler.file_hash]
+        self.password = [PASSWORD_NOTES[note] for note in spoiler.password]
 
         if not output_spoiler:
             return

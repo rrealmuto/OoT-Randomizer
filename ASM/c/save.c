@@ -1,5 +1,6 @@
 #include "z64.h"
 #include "save.h"
+#include "file_select.h"
 
 #define SRAM_BASE 0x08000000
 #define SRAM_SIZE 0x8000
@@ -247,7 +248,7 @@ void Save_Write_Hook(uint32_t addr, void* dramAddr, size_t size, uint32_t direct
     uint16_t slot_offset = SRAM_SLOTS[z64_file.file_index] + SLOT_SIZE - (num_override_flags);
     SsSram_ReadWrite_Safe(SRAM_BASE + slot_offset, collectible_override_flags, num_override_flags, direction);
 }
-
+extern uint8_t buffer_password[PASSWORD_LENGTH];
 // Hook the Save open function to load the saved collectible flags
 void Save_Open(char* sramBuffer) {
     uint16_t slot_offset = SRAM_SLOTS[z64_file.file_index] + SLOT_SIZE - (num_override_flags);
@@ -255,6 +256,12 @@ void Save_Open(char* sramBuffer) {
 
     // Copy extended savectx
     z64_memcopy(&extended_savectx, sramBuffer + SRAM_SLOTS[z64_file.file_index] + SRAM_ORIGINAL_SLOT_SIZE, sizeof(extended_savecontext_static_t));
+    // If password has been entered the first time, copy it to save context.
+    if (is_buffer_password_clear()) {
+        for (uint8_t i = 0 ; i < PASSWORD_LENGTH; i++) {
+            extended_savectx.password[i] = buffer_password[i];
+        }
+    }
 }
 
 // Hook the init save function's call to SsSram_ReadWrite in order to zeroize the the collectible flags.

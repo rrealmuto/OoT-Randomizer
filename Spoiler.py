@@ -54,6 +54,13 @@ HASH_ICONS: list[str] = [
     'Big Magic',
 ]
 
+PASSWORD_NOTES: list[str] = [
+    'A',
+    'C down',
+    'C right',
+    'C left',
+    'C up',
+]
 
 class Spoiler:
     def __init__(self, worlds: list[World]) -> None:
@@ -70,11 +77,16 @@ class Spoiler:
         self.goal_categories: dict[int, dict[str, GoalCategory]] = {}
         self.hints: dict[int, dict[int, GossipText]] = {world.id: {} for world in worlds}
         self.file_hash: list[int] = []
+        self.password: list[int] = []
 
     def build_file_hash(self) -> None:
         dist_file_hash = self.settings.distribution.file_hash
         for i in range(5):
             self.file_hash.append(random.randint(0, 31) if dist_file_hash[i] is None else HASH_ICONS.index(dist_file_hash[i]))
+
+    def build_password(self) -> None:
+        for i in range(6):
+            self.password.append(random.randint(0, 4))
 
     def parse_data(self) -> None:
         for (sphere_nr, sphere) in self.playthrough.items():
