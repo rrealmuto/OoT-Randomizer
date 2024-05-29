@@ -4,6 +4,14 @@
 
 Arena randoArena;
 
+uint32_t zarena_maxFree;
+uint32_t zarena_free;
+uint32_t zarena_alloc;
+uint32_t randoarena_maxFree;
+uint32_t randoarena_free;
+uint32_t randoarena_alloc;
+uint32_t lastAllocSize;
+
 extern char C_HEAP[];
 extern char PAYLOAD_START[];
 void* heap_next = NULL;
@@ -11,10 +19,11 @@ void* heap_next = NULL;
 
 void heap_init() {
     __osMallocInit(&randoArena, (void*)C_HEAP, PAYLOAD_START - C_HEAP);
-    //heap_next = &C_HEAP[0];
+    heap_next = &C_HEAP[0];
 }
 
 void* heap_alloc(int bytes) {
+    lastAllocSize = bytes;
     void* ret = __osMalloc(&randoArena, bytes);
     char error_msg[256];
     if(ret == NULL) {
@@ -32,6 +41,7 @@ void* heap_alloc(int bytes) {
 
 void heap_free(void* ptr) {
     __osFree(&randoArena, ptr);
+    //ZeldaArena_Free(ptr);
 }
 
 /*void *heap_alloc(int bytes) {
@@ -53,5 +63,12 @@ void* resolve_overlay_addr(void* addr, uint16_t overlay_id) {
     if (overlay.loadedRamAddr) {
         return addr - overlay.vramStart + overlay.loadedRamAddr;
     }
+    return NULL;
+}
+
+void* resolve_player_ovl_addr(void* addr) {
+    PausePlayerOverlay overlay = gPausePlayerOverlayTable[1];
+    if(overlay.loadedRamAddr)
+        return addr - overlay.vramStart + overlay.loadedRamAddr;
     return NULL;
 }

@@ -33,10 +33,12 @@ void Gameplay_InitSkybox(z64_game_t* globalCtx, int16_t skyboxId);
 void c_init() {
     heap_init();
     gfx_init();
-    item_overrides_init();
-    override_flags_init();
-    models_init();
     init_textures();
+    models_reset();
+    override_flags_init();
+    reset_collectible_mutex();
+    extended_objects_reset();
+    item_overrides_init();
     init_new_menus();
     extended_objects_init();
 }
@@ -80,10 +82,17 @@ void before_skybox_init(z64_game_t* game, int16_t skyboxId) {
 void after_scene_init() {
     check_ganon_entry();
     clear_twinrova_vars();
-    models_reset();
     extern_scene_init();
     check_model_skeletons();
-    reset_collectible_mutex();
     get_current_scene_setup_number();
-    extended_objects_reset();
+}
+
+extern void Play_Init(z64_game_t*);
+
+// Hooked Play_Init entry point which is called at the beginning of every scene change
+// This is where we should reset heap because ZeldaArena is reinitialized every time
+void Play_Init_Hook(z64_game_t* this) {
+    Play_Init(this);
+    
+    
 }

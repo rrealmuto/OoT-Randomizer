@@ -24,3 +24,10 @@ Static_ctxt_Init:
     jr      ra
     ; Displaced code
     li      v0, 0x15C0
+
+; New Play_Init entry point
+Play_Init:
+; Replaced code
+    addiu   sp, sp, -0x90
+    j       Play_Init_Hook_Continue
+    sw      s2, 0x28(sp)

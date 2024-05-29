@@ -34,16 +34,20 @@ uint32_t get_object_size(uint32_t object_id) {
     return size;
 }
 
-uint32_t load_object_file(uint32_t object_id, uint8_t *buf) {
+uint32_t load_object_file(uint32_t object_id, uint8_t* buf) {
     z64_object_table_t *entry = get_object_entry(object_id);
     uint32_t vrom_start = entry->vrom_start;
     uint32_t size = entry->vrom_end - vrom_start;
+
     read_file(buf, vrom_start, size);
     return size;
 }
 
 void load_object(loaded_object_t* object, uint32_t object_id) {
+    
     object->object_id = object_id;
+    // Allocate buffer for object
+    object->buf = heap_alloc(get_object_size(object_id));
     load_object_file(object_id, object->buf);
 }
 
@@ -114,16 +118,12 @@ void draw_model(model_t model, z64_actor_t* actor, z64_game_t* game, float base_
     }
 }
 
-void models_init() {
-    for (int i = 0; i < slot_count; i++) {
-        object_slots[i].object_id = 0;
-        object_slots[i].buf = heap_alloc(object_size);
-    }
-}
-
 void models_reset() {
     for (int i = 0; i < slot_count; i++) {
         object_slots[i].object_id = 0;
+        if(object_slots[i].buf != NULL) {
+            heap_free(object_slots[i].buf);
+        }
     }
 }
 

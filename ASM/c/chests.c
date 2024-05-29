@@ -182,10 +182,10 @@ _Bool should_draw_forest_hallway_chest(z64_actor_t* actor, z64_game_t* game) {
 }
 
 void get_dummy_chest(Chest* dummy_chest) {
-    z64_actor_t dummy_actor;
-    dummy_actor.actor_id = 0x000A;
-    dummy_actor.variable = 0x27EE;
-    dummy_chest->en_box.dyna.actor = dummy_actor;
+    z64_actor_t dummy;
+    dummy.actor_id = 0x000A;
+    dummy.variable = 0x27EE;
+    dummy_chest->en_box.dyna.actor = dummy;
 }
 
 void draw_forest_hallway_chest_base() {

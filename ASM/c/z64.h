@@ -1096,6 +1096,16 @@ typedef struct {
     /* 0x1E */ int8_t numLoaded; // original name: "clients"
 } ActorOverlay; // size = 0x20
 
+typedef struct {
+    /* 0x00 */ void* loadedRamAddr;
+    /* 0x04 */ uintptr_t vromStart;
+    /* 0x08 */ uintptr_t vromEnd;
+    /* 0x0C */ void* vramStart;
+    /* 0x10 */ void* vramEnd;
+    /* 0x14 */ void* unk_14;
+    /* 0x18 */ void* ramFileName;
+} PausePlayerOverlay;
+
 typedef struct z64_actor_s z64_actor_t;
 struct z64_game_t;
 
@@ -2176,8 +2186,6 @@ typedef enum {
 #define z64_link_addr                           0x801DAA30
 #define z64_state_ovl_tab_addr                  0x800F1340
 #define z64_event_state_1_addr                  0x800EF1B0
-#define z64_LinkInvincibility_addr              0x8038E578
-#define z64_LinkDamage_addr                     0x8038E6A8
 #define z64_ObjectSpawn_addr                    0x800812F0
 #define z64_ObjectIsLoaded_addr                 0x80081688
 #define z64_ActorOfferGetItem_addr              0x80022BD4
@@ -2201,7 +2209,6 @@ typedef enum {
 #define z64_Audio_GetActiveSeqId_addr           0x800CAB18
 #define z64_Play_SetupRespawnPoint_addr         0x8009D94C
 #define z64_EffectSsKiraKira_SpawnSmall_addr    0x8001C66C
-#define z64_ActorOverlayTable_addr              0x800E8530
 
 /* rom addresses */
 #define z64_icon_item_static_vaddr              0x007BD000
@@ -2252,10 +2259,7 @@ typedef void (*z64_DisplayTextbox_proc)   (z64_game_t* game, uint16_t text_id,
                                            int unknown_);
 typedef void (*z64_GiveItem_proc)         (z64_game_t* game, uint8_t item);
 
-typedef void(*z64_LinkDamage_proc)        (z64_game_t* ctxt, z64_link_t* link,
-                                           uint8_t damage_type, float unk_00, uint32_t unk_01,
-                                           uint16_t unk_02);
-typedef void(*z64_LinkInvincibility_proc) (z64_link_t* link, uint8_t frames);
+
 typedef float* (*z64_GetMatrixStackTop_proc)();
 typedef void (*SsSram_ReadWrite_proc)(uint32_t addr, void* dramAddr, size_t size, uint32_t direction);
 typedef void* (*z64_memcopy_proc)(void* dest, void* src, uint32_t size);
@@ -2339,10 +2343,6 @@ typedef void(*z64_Play_SetupRespawnPoint_proc)(z64_game_t *game, int32_t respawn
 #define z64_DisplayTextbox      ((z64_DisplayTextbox_proc)                    \
                                                       z64_DisplayTextbox_addr)
 #define z64_GiveItem            ((z64_GiveItem_proc)  z64_GiveItem_addr)
-
-#define z64_LinkDamage          ((z64_LinkDamage_proc)z64_LinkDamage_addr)
-#define z64_LinkInvincibility   ((z64_LinkInvincibility_proc)                 \
-                                                      z64_LinkInvincibility_addr)
 #define z64_GetMatrixStackTop   ((z64_GetMatrixStackTop_proc) \
                                                       z64_GetMatrixStackTop_addr)
 #define z64_RandSeed            ((z64_RandSeed_proc)z64_RandSeed_addr)
@@ -2641,6 +2641,8 @@ typedef void(*z64_Play_SetupRespawnPoint_proc)(z64_game_t *game, int32_t respawn
 #define ITEMGETINF_3F 0x3F
 
 // Functions defined in the base ROM but we use the linkscript to link them externally.
+
+extern PausePlayerOverlay gPausePlayerOverlayTable[];
 extern z64_actor_t* z64_ActorFind(void* actorCtx, int32_t actorId, int32_t actorCategory);
 extern int32_t DmaMgr_RequestSync(void* ram, uint32_t* vrom, unsigned long size);
 extern void SkelAnime_DrawFlexOpa(z64_game_t* globalCtx, void** skeleton, z64_xyz_t* jointTable, int32_t dListCount, OverrideLimbDrawOpa overrideLimbDraw, PostLimbDrawOpa postLimbDraw, void* this);
@@ -2659,6 +2661,8 @@ extern void Room_Change(z64_game_t* globalCtx, void* roomCtx);
 extern void __osMallocInit(Arena* arena, void* start, uint32_t size);
 extern void __osFree(Arena* arena, void* ptr);
 extern void* __osMalloc(Arena* arena, uint32_t size);
+extern void* ZeldaArena_Malloc(uint32_t size);
+extern void ZeldaArena_Free(void* ptr);
 extern void z64_LoadRoom(z64_game_t *game, void *p_ctxt_room_index, uint8_t room_index);
 extern void z64_UnloadRoom(z64_game_t *game, void *p_ctxt_room_index);
 extern z64_actor_t * Actor_SpawnAsChild(void* actorCtx, z64_actor_t* parent, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params);

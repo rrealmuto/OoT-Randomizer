@@ -1,5 +1,6 @@
 #include "icetrap.h"
 #include "z64.h"
+#include "player.h"
 
 _Bool ice_trap_is_pending() {
     return z64_file.scene_flags[0x49].unk_00_ > 0; //Unused word in scene x49.

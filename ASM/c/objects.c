@@ -102,6 +102,10 @@ int32_t Object_GetIndex_Hook(z64_obj_ctxt_t *object_ctx, int16_t object_id) {
     int32_t index = Object_GetIndex(object_ctx, object_id);
     int32_t free_index = -1;
     if (index == -1) {
+        if(object_id == 1 || object_id == 2) {
+            // Don't spawn gameplay_field/dungeon keep on our extended space
+            return index;
+        }
         // Check if the object is in our table already
         for(int i = OBJECT_EXCHANGE_BANK_MAX; i < OBJECT_EXCHANGE_BANK_EXTENDED_MAX; i++) {
             if(free_index < 0 && extended_object_ctx.slots[i].id == 0) {

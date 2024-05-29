@@ -3,14 +3,13 @@
 extern void ZeldaArena_GetSizes(uint32_t* outMaxFree, uint32_t* outFree, uint32_t* outAlloc);
 extern void ArenaImpl_GetSizes(Arena* zrena, uint32_t* outMaxFree, uint32_t* outFree, uint32_t* outAlloc);
 
+extern uint32_t zarena_maxFree;
+extern uint32_t zarena_free;
+extern uint32_t zarena_alloc;
+extern uint32_t randoarena_maxFree;
+extern uint32_t randoarena_free;
+extern uint32_t randoarena_alloc;
 extern Arena randoArena;
-
-uint32_t zarena_maxFree;
-uint32_t zarena_free;
-uint32_t zarena_alloc;
-uint32_t randoarena_maxFree;
-uint32_t randoarena_free;
-uint32_t randoarena_alloc;
 
 const int8_t debug_text_width = 16;
 const int8_t debug_text_height = 16;
@@ -202,6 +201,7 @@ void draw_debug_menu(z64_disp_buf_t *db) {
             if (current_menu_indexes.main_index == 5) {
                 if (z64_game.common.input[0].pad_pressed.a) {
                     z64_GiveItem(&z64_game, Z64_ITEM_BUNNY_HOOD);
+                    usebutton_t z64_usebutton = (usebutton_t)resolve_player_ovl_addr(Player_UseItem_Addr);
                     z64_usebutton(&z64_game, &z64_link, Z64_ITEM_BUNNY_HOOD, 2);
                 }
             }

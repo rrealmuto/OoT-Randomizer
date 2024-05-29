@@ -20,7 +20,7 @@ extern uint32_t FREE_BOMBCHU_DROPS;
 override_t cfg_item_overrides[2700] = { 0 };
 int item_overrides_count = 0;
 
-z64_actor_t* dummy_actor = NULL;
+z64_actor_t dummy_actor = { 0 };
 
 // Co-op state
 extern uint8_t PLAYER_ID;
@@ -78,8 +78,7 @@ void item_overrides_init() {
     }
 
     // Create an actor satisfying the minimum requirements to give the player an item
-    dummy_actor = heap_alloc(sizeof(z64_actor_t));
-    dummy_actor->update = (void*)1;
+    dummy_actor.update = (void*)1;
 }
 
 override_key_t get_override_search_key_by_newflag(xflag_t* flag) {
@@ -428,7 +427,7 @@ void try_pending_item() {
         after_key_received(override.key);
     } else {
         activate_override(override);
-        z64_link.incoming_item_actor = dummy_actor;
+        z64_link.incoming_item_actor = &dummy_actor;
         z64_link.incoming_item_id = active_item_row->base_item_id;
     }
 }

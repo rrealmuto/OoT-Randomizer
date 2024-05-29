@@ -8,6 +8,8 @@
 #include "text.h"
 #include "item_effects.h"
 
+#define Player_UseItem_Addr ((usebutton_t)    0x80834000)
+
 typedef struct {
     int8_t main_index;
     int8_t sub_menu_index;
@@ -48,7 +50,6 @@ static menu_index_t current_menu_indexes = {0, 0, 0, 0};
 static int show_warp_menu = 0;
 
 typedef void(*usebutton_t)(z64_game_t *game, z64_link_t *link, uint8_t item, uint8_t button);
-#define z64_usebutton ((usebutton_t)    0x8038C9A0)
 
 void debug_utilities(z64_disp_buf_t *db);
 void draw_debug_menu(z64_disp_buf_t *db);

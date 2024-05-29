@@ -1,5 +1,16 @@
 .headersize (0x800110A0 - 0xA87000)
 
+; ==================================
+; Hook Play_Init
+; ==================================
+.org 0x8009a750
+; Replaces
+;   addiu   sp, sp, -0x90
+;   sw      s2, 0x28(sp)
+    j   Play_Init_Hook
+    nop
+Play_Init_Hook_Continue:
+
 ; Hook at the start collider_setcylinder so we can override cylinder radii
 .org 0x8004acec
 ; Replaces:
