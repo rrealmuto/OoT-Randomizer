@@ -57,13 +57,15 @@ hash_symbol_t hash_symbols[32] = {
 
 extern uint8_t CFG_FILE_SELECT_HASH[5];
 
-uint8_t password_state = 0;
+uint8_t password_index = 0;
+uint16_t tentatives = 0;
+uint16_t cooldown = 0;
 #define TEXT_WIDTH 8
 #define TEXT_HEIGHT 9
 #define BUTTON_WIDTH 12
 #define BUTTON_HEIGHT 12
 extern uint8_t PASSWORD[PASSWORD_LENGTH];
-uint8_t buffer_password[PASSWORD_LENGTH] = {-1, -1, -1, -1, -1, -1,};
+uint8_t buffer_password[PASSWORD_LENGTH] = {0, 0, 0, 0, 0, 0,};
 
 uint8_t is_saved_password_clear(z64_menudata_t* menu_data) {
     // Player can save in file 1 and use file 2 later, so we look at both of them.
@@ -74,6 +76,7 @@ uint8_t is_saved_password_clear(z64_menudata_t* menu_data) {
         for (uint8_t i = 0 ; i < PASSWORD_LENGTH; i++) {
             if (extended->password[i] != PASSWORD[i]) {
                 fileOkPassword[slotFile] = 0;
+                break;
             }
         }
     }
@@ -91,21 +94,29 @@ uint8_t is_buffer_password_clear() {
 
 void reset_buffer() {
     for (uint8_t i = 0 ; i < PASSWORD_LENGTH; i++) {
-        buffer_password[i] = -1;
+        buffer_password[i] = 0;
     }
 }
 
 void manage_password(z64_disp_buf_t* db, z64_menudata_t* menu_data) {
 
+    if (cooldown > 0) {
+        cooldown--;
+    }
     if (is_saved_password_clear(menu_data) == 0 && is_buffer_password_clear() == 0) { // Draw "Password locked" at the place of the Controls texture.
         int left = 90;
         int top = 204;
         int padding = 8;
-        sprite_load(db, &quest_items_sprite, 17, 1);
 
+        gDPPipeSync(db->p++);
+        if (cooldown > 0) {
+            colorRGBA8_t color = { 0xFF, 0xFF, 0xFF, 0xFF};
+            draw_int_size(db, 1 + (cooldown / 60), left - 2*padding, top, color, 6, 12);
+        }
         gDPPipeSync(db->p++);
         gDPSetCombineMode(db->p++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
         gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF);
+        sprite_load(db, &quest_items_sprite, 17, 1);
         sprite_draw(db, &quest_items_sprite, 0, left, top - 2, BUTTON_WIDTH, BUTTON_HEIGHT);
         text_print_size("Password locked", left + TEXT_HEIGHT + padding, top, TEXT_WIDTH);
         sprite_draw(db, &quest_items_sprite, 0, left + TEXT_WIDTH + 2*padding + 15*font_sprite.tile_w, top - 2, BUTTON_WIDTH, BUTTON_HEIGHT);
@@ -114,7 +125,27 @@ void manage_password(z64_disp_buf_t* db, z64_menudata_t* menu_data) {
 
     if (menu_data->menu_transition > 0) { // In the File 1/File 2 menu.
 
-        if (password_state > 0) {
+        if (menu_data->selected_sub_item == 0) { // On the Ok option.
+            if (z64_game.common.input[0].pad_pressed.a || z64_game.common.input[0].pad_pressed.s) {
+                if (is_saved_password_clear(menu_data) || is_buffer_password_clear()) { // Vanilla behaviour.
+                    z64_PlaySFXID(NA_SE_SY_FSEL_DECIDE_L);
+                    menu_data->menu_transition = 6; // SM_FADE_OUT
+                    Audio_StopCurrentMusic(0xF);
+                }
+                else {
+                    if (password_index == 0) {
+                        if (cooldown == 0) {
+                            password_index++;
+                            return;
+                        }
+                        else {
+                            z64_PlaySFXID(NA_SE_SY_ERROR);
+                        }
+                    }
+                }
+            }
+        }
+        if (password_index > 0) {
             uint8_t left_password = 0x37;
             uint8_t top_password = 0x5C;
 
@@ -125,59 +156,54 @@ void manage_password(z64_disp_buf_t* db, z64_menudata_t* menu_data) {
             text_flush_size(db, TEXT_WIDTH, TEXT_HEIGHT, 0, 0);
 
             if (is_buffer_password_clear()) {
-                password_state = 0;
+                password_index = 0;
                 z64_PlaySFXID(NA_SE_SY_CORRECT_CHIME);
+                return;
             }
             else {
-                if (z64_game.common.input[0].pad_pressed.b || password_state > 6) {
+                if (z64_game.common.input[0].pad_pressed.b || password_index > 6) {
+                    // If player pressed B, don't count it as a try.
+                    if (password_index > 6) {
+                        tentatives++;
+                        // Penalty cooldown every 3 tries, starting from the 6th one.
+                        // File select is 60 fps, so 10sec.
+                        if (tentatives > 5 && (tentatives % 3) == 0) {
+                            cooldown = 600;
+                        }
+                    }
                     z64_PlaySFXID(NA_SE_SY_ERROR);
-                    password_state = 0;
+                    password_index = 0;
                     reset_buffer();
                 }
                 else {
                     sprite_load(db, &ocarina_button_sprite, 0, 5);
                     if (z64_game.common.input[0].pad_pressed.a) {
-                        buffer_password[password_state - 1] = 0;
-                        password_state++;
+                        buffer_password[password_index - 1] = 1;
+                        password_index++;
                     }
                     if (z64_game.common.input[0].pad_pressed.cd) {
-                        buffer_password[password_state - 1] = 1;
-                        password_state++;
+                        buffer_password[password_index - 1] = 2;
+                        password_index++;
                     }
                     if (z64_game.common.input[0].pad_pressed.cr) {
-                        buffer_password[password_state - 1] = 2;
-                        password_state++;
+                        buffer_password[password_index - 1] = 3;
+                        password_index++;
                     }
                     if (z64_game.common.input[0].pad_pressed.cl) {
-                        buffer_password[password_state - 1] = 3;
-                        password_state++;
+                        buffer_password[password_index - 1] = 4;
+                        password_index++;
                     }
                     if (z64_game.common.input[0].pad_pressed.cu) {
-                        buffer_password[password_state - 1] = 4;
-                        password_state++;
+                        buffer_password[password_index - 1] = 5;
+                        password_index++;
                     }
-                    for (uint8_t i = 0 ; i < PASSWORD_LENGTH; i++) {
+                    for (uint8_t i = 0 ; i < password_index; i++) {
                         gDPSetPrimColor(db->p++, 0, 0, 0xF4, 0xEC, 0x30, 0xFF); // Yellow C buttons
-                        if (buffer_password[i] == 0) { // A is blue
+                        if (buffer_password[i] - 1 == 0) { // A is blue
                             gDPSetPrimColor(db->p++, 0, 0, 0x00, 0x00, 0xFF, 0xFF);
                         }
-                        sprite_draw(db, &ocarina_button_sprite, buffer_password[i],
+                        sprite_draw(db, &ocarina_button_sprite, buffer_password[i] - 1, 
                             left_password + i * (BUTTON_WIDTH + 5), top_password + 0x0C, BUTTON_WIDTH, BUTTON_HEIGHT);
-                    }
-                }
-            }
-        }
-
-        if (menu_data->selected_sub_item == 0) { // On the Ok option.
-            if (z64_game.common.input[0].pad_pressed.a || z64_game.common.input[0].pad_pressed.s) {
-                if (is_saved_password_clear(menu_data) || is_buffer_password_clear()) { // Vanilla behaviour.
-                    z64_PlaySFXID(NA_SE_SY_FSEL_DECIDE_L);
-                    menu_data->menu_transition = 6; // SM_FADE_OUT
-                    Audio_StopCurrentMusic(0xF);
-                }
-                else {
-                    if (password_state == 0) {
-                        password_state++;
                     }
                 }
             }
@@ -214,7 +240,7 @@ void draw_file_select_hash(uint32_t fade_out_alpha, z64_menudata_t* menu_data) {
     }
 
     draw_file_message(db, menu_data);
-    if (password_state == 0) {
+    if (password_index == 0) {
         draw_file_icons(db, menu_data);
     }
     display_song_name_on_file_select(db);

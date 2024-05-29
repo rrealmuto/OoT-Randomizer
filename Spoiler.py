@@ -86,7 +86,7 @@ class Spoiler:
 
     def build_password(self) -> None:
         for i in range(6):
-            self.password.append(random.randint(0, 4))
+            self.password.append(random.randint(1, 5))
 
     def parse_data(self) -> None:
         for (sphere_nr, sphere) in self.playthrough.items():

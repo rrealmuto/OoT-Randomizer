@@ -1340,7 +1340,7 @@ class Distribution:
 
     def update_spoiler(self, spoiler: Spoiler, output_spoiler: bool) -> None:
         self.file_hash = [HASH_ICONS[icon] for icon in spoiler.file_hash]
-        self.password = [PASSWORD_NOTES[note] for note in spoiler.password]
+        self.password = [PASSWORD_NOTES[note - 1] for note in spoiler.password]
 
         if not output_spoiler:
             return
