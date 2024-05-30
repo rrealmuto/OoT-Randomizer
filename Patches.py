@@ -9,7 +9,7 @@ import zlib
 from collections.abc import Callable, Iterable
 from typing import Optional, Any
 
-from Cutscenes import patch_cutscenes
+from Cutscenes import patch_cutscenes, patch_wondertalk2
 from Entrance import Entrance
 from HintList import get_hint
 from Hints import GossipText, HintArea, write_gossip_stone_hints, build_altar_hints, \
@@ -437,6 +437,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         rom.write_byte(rom.sym('SONGS_AS_ITEMS'), 1)
 
     patch_cutscenes(rom, songs_as_items)
+    patch_wondertalk2(rom)
 
     if world.settings.shuffle_ocarinas:
         symbol = rom.sym('OCARINAS_SHUFFLED')
@@ -587,9 +588,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     # Fix "...???" textbox outside Child Colossus Fairy to use the right flag and disappear once the wall is destroyed
     rom.write_byte(0x21A026F, 0xDD)
 
-    # Remove the "...???" textbox outside the Crater Fairy (change it to an actor that does nothing)
-    rom.write_int16s(0x225E7DC, [0x00B5, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0xFFFF])
-
     # Forbid Sun's Song from a bunch of cutscenes
     Suns_scenes = [0x2016FC9, 0x2017219, 0x20173D9, 0x20174C9, 0x2017679, 0x20C1539, 0x20C15D9, 0x21A0719, 0x21A07F9, 0x2E90129, 0x2E901B9, 0x2E90249, 0x225E829, 0x225E939, 0x306D009]
     for address in Suns_scenes:
@@ -599,13 +597,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     rom.write_int32(0xC7B9C0, 0x00000000)
     rom.write_int32(0xC7BAEC, 0x00000000)
     rom.write_int32(0xc7BCA4, 0x00000000)
-
-    # Remove disruptive text from Gerudo Training Ground and early Shadow Temple (vanilla)
-    wonder_text = [0x27C00BC, 0x27C00CC, 0x27C00DC, 0x27C00EC, 0x27C00FC, 0x27C010C, 0x27C011C, 0x27C012C, 0x27CE080,
-                   0x27CE090, 0x2887070, 0x2887080, 0x2887090, 0x2897070, 0x28C7134, 0x28D91BC, 0x28A60F4, 0x28AE084,
-                   0x28B9174, 0x28BF168, 0x28BF178, 0x28BF188, 0x28A1144, 0x28A6104, 0x28D0094]
-    for address in wonder_text:
-        rom.write_byte(address, 0xFB)
 
     # Speed dig text for Dampe
     rom.write_bytes(0x9532F8, [0x08, 0x08, 0x08, 0x59])
