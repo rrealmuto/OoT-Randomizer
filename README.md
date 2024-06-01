@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v104](#v104)
   * [v103](#v103)
   * [v102](#v102)
   * [v101](#v101)
@@ -129,6 +130,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v104
+  * Fix missing fish again
+
 ### v103
   * Merge the rest of Potsanity 3.0. Probably just breaking things
   * Fix GC Gossip Stone logic for boulder shuffle
