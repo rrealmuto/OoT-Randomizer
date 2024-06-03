@@ -1301,6 +1301,9 @@ class Distribution:
             'settings': self.settings.to_json(),
         }
 
+        if not self.settings.password_lock:
+            self_dict.pop('password')
+
         if spoiler:
             world_dist_dicts = [world_dist.to_json() for world_dist in self.world_dists]
             if self.settings.world_count > 1:

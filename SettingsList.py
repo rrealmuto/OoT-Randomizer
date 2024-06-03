@@ -571,6 +571,20 @@ class SettingInfos:
             ''',
     )
 
+    password_lock = Checkbutton(
+        gui_text         = "Lock the seed behind a password",
+        default          = False,
+        gui_tooltip      = '''\
+            The file select screen will be locked behind a password provided in the spoiler log.
+        ''',
+        shared           = True,
+        disabled_default = 0,
+        gui_params       = {
+            'optional':           True,
+            "hide_when_disabled": True,
+        },
+    )
+
     # Main Rules (and "Guarantee Reachable Locations")
 
     randomize_settings = Checkbutton(
