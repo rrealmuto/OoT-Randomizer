@@ -84,9 +84,12 @@ class Spoiler:
         for i in range(5):
             self.file_hash.append(random.randint(0, 31) if dist_file_hash[i] is None else HASH_ICONS.index(dist_file_hash[i]))
 
-    def build_password(self) -> None:
+    def build_password(self, password: bool = False) -> None:
         for i in range(6):
-            self.password.append(random.randint(1, 5))
+            if password:
+                self.password.append(random.randint(1, 5))
+            else:
+                self.password.append(0)
 
     def parse_data(self) -> None:
         for (sphere_nr, sphere) in self.playthrough.items():
