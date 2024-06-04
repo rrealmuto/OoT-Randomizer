@@ -6,8 +6,6 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#define ACTOR_OVERLAY_TABLE_ADDR 0x800E8530
-
 typedef enum {
     #include "actor_table.h"
     /* 0x0192 */ ACTOR_ID_MAX // originally "ACTOR_DLF_MAX"
@@ -33,4 +31,5 @@ ActorAdditionalData* Actor_GetAdditionalData(z64_actor_t* actor);
 void* Actor_ResolveOverlayAddr(z64_actor_t* actor, void* addr);
 override_t get_newflag_override(xflag_t* flag);
 bool spawn_override_enemizer(ActorEntry *actorEntry, z64_game_t *globalCtx, bool* overridden);
+extern ActorOverlay gActorOverlayTable[];
 #endif

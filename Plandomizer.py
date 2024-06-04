@@ -904,9 +904,6 @@ class WorldDistribution:
 
             player_id = self.id if record.player is None else record.player - 1
 
-            if record.item in item_groups['DungeonReward']:
-                raise RuntimeError('Cannot place dungeon reward %s in world %d in location %s.' % (record.item, self.id + 1, location_name))
-
             if record.item == '#Junk' and location.type == 'Song' and world.settings.shuffle_song_items == 'song' and not any(name in song_list and r.count for name, r in world.settings.starting_items.items()):
                 record.item = '#JunkSong'
 
@@ -1094,32 +1091,34 @@ class WorldDistribution:
             add_starting_item_with_ammo(items, 'Deku Sticks', 99)
             add_starting_item_with_ammo(items, 'Deku Nuts', 99)
 
-        skipped_locations = ['Links Pocket']
-        if world.skip_child_zelda:
-            skipped_locations += ['HC Zeldas Letter', 'Song from Impa']
-        if world.settings.gerudo_fortress == 'open' and not world.settings.shuffle_gerudo_card:
-            skipped_locations.append('Hideout Gerudo Membership Card')
-        if world.settings.empty_dungeons_mode != 'none':
-            skipped_locations_from_dungeons = []
-            if True: #TODO dungeon rewards not shuffled
-                skipped_locations_from_dungeons += location_groups['Boss']
-            if world.settings.shuffle_song_items == 'song':
-                skipped_locations_from_dungeons += location_groups['Song']
-            elif world.settings.shuffle_song_items == 'dungeon':
-                skipped_locations_from_dungeons += location_groups['BossHeart']
-            for location_name in skipped_locations_from_dungeons:
-                location = world.get_location(location_name)
-                hint_area = HintArea.at(location)
-                if hint_area.is_dungeon and world.empty_dungeons[hint_area.dungeon_name].empty:
-                    skipped_locations.append(location.name)
-                    world.item_added_hint_types['barren'].append(location.item.name)
         for iter_world in worlds:
+            skipped_locations: list[Location] = []
+            if iter_world.settings.skip_reward_from_rauru:
+                skipped_locations.append(iter_world.get_location('ToT Reward from Rauru'))
+            if iter_world.skip_child_zelda:
+                skipped_locations += [iter_world.get_location('HC Zeldas Letter'), iter_world.get_location('Song from Impa')]
+            if iter_world.settings.gerudo_fortress == 'open' and not iter_world.settings.shuffle_gerudo_card:
+                skipped_locations.append(iter_world.get_location('Hideout Gerudo Membership Card'))
+            if iter_world.settings.empty_dungeons_mode != 'none':
+                skipped_locations_from_dungeons: list[Location] = []
+                if iter_world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward'):
+                    skipped_locations_from_dungeons += [world.get_location(loc_name) for loc_name in location_groups['Boss']]
+                elif world.settings.shuffle_dungeon_rewards == 'dungeon':
+                    skipped_locations_from_dungeons += [location for location in iter_world.get_filled_locations() if location.item.type == 'DungeonReward']
+                if world.settings.shuffle_song_items == 'song':
+                    skipped_locations_from_dungeons += [world.get_location(loc_name) for loc_name in location_groups['Song']]
+                elif world.settings.shuffle_song_items == 'dungeon':
+                    skipped_locations_from_dungeons += [world.get_location(loc_name) for loc_name in location_groups['BossHeart']]
+                for location in skipped_locations_from_dungeons:
+                    hint_area = HintArea.at(location)
+                    if hint_area.is_dungeon and iter_world.empty_dungeons[hint_area.dungeon_name].empty:
+                        skipped_locations.append(location)
+                        world.item_added_hint_types['barren'].append(location.item.name)
             for location in skipped_locations:
-                loc = iter_world.get_location(location)
                 if iter_world.id == world.id:
-                    self.skipped_locations.append(loc)
-                if loc.item is not None and world.id == loc.item.world.id:
-                    add_starting_item_with_ammo(items, loc.item.name)
+                    self.skipped_locations.append(location)
+                if location.item is not None and world.id == location.item.world.id:
+                    add_starting_item_with_ammo(items, location.item.name)
 
         effective_adult_trade_item_index = -1
         effective_child_trade_item_index = -1

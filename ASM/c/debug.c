@@ -286,7 +286,7 @@ void draw_debug_menu(z64_disp_buf_t *db) {
                         item_t *d = &(items_debug[current_menu_indexes.item_index]);
                         // Songs don't work somehow? So use the rando function instead.
                         if ((d->item_index >= ITEM_SONG_MINUET) && (d->item_index <= ITEM_SONG_STORMS)) {
-                            give_song(&z64_file, d->item_index - 0x54, 0);
+                            give_quest_item(&z64_file, d->item_index - 0x54, 0);
                         }
                         else {
                             if (d->item_index == Z64_ITEM_BIGGORON_SWORD) {

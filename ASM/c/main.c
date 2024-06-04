@@ -14,7 +14,7 @@
 #include "chests.h"
 #include "ganon.h"
 #include "twinrova.h"
-#include "ganon_boss_key.h"
+#include "sage_gifts.h"
 #include "extern_ctxt.h"
 #include "weather.h"
 #include "textures.h"
@@ -60,12 +60,14 @@ void after_game_state_update() {
     if (R_PAUSE_BG_PRERENDER_STATE != PAUSE_BG_PRERENDER_PROCESS) {
         draw_dungeon_info(&(z64_ctxt.gfx->overlay));
         draw_triforce_count(&(z64_ctxt.gfx->overlay));
+        draw_boss_key(&z64_game, &(z64_ctxt.gfx->overlay));
         draw_silver_rupee_count(&z64_game, &(z64_ctxt.gfx->overlay));
         draw_illegal_model_text(&(z64_ctxt.gfx->overlay));
         draw_input_viewer(&(z64_ctxt.gfx->overlay));
+        display_song_name(&(z64_ctxt.gfx->overlay));
         debug_utilities(&(z64_ctxt.gfx->overlay));
     }
-    give_ganon_boss_key();
+    give_sage_gifts();
 }
 
 void before_skybox_init(z64_game_t* game, int16_t skyboxId) {

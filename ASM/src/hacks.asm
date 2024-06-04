@@ -1455,52 +1455,12 @@ nop
 ; Item menu
 ;==================================================================================================
 
-; Left movement check
+; Reimplement KaleidoScope_DrawItemSelect
 ; Replaces:
-;   beq     s4, t5, 0x8038F2B4
-;   nop
-.orga 0xBB77B4 ; In memory: 0x8038F134
-    nop
-    nop
-
-; Right movement check
-; Replaces:
-;   beq     s4, t4, 0x8038F2B4
-;   nop
-.orga 0xBB7894 ; In memory: 0x8038F214
-    nop
-    nop
-
-; Upward movement check
-; Replaces:
-;   beq     s4, t4, 0x8038F598
-;   nop
-.orga 0xBB7BA0 ; In memory: 0x8038F520
-    nop
-    nop
-
-; Downward movement check
-; Replaces:
-;   beq     s4, t4, 0x8038F598
-;   nop
-.orga 0xBB7BFC ; In memory: 0x8038F57C
-    nop
-    nop
-
-; Remove "to Equip" text if the cursor is on an empty slot
-; Replaces:
-;   addu    s1, t6, t7
-;   lbu     v0, 0x0000 (s1)
-.orga 0xBB7C88 ; In memory: 0x8038F608
-    jal     item_menu_prevent_empty_equip
-    addu    s1, t6, t7
-
-; Prevent empty slots from being equipped
-; Replaces:
-;   lbu     v0, 0x0000 (s1)
-;   addiu   at, r0, 0x0009
-.orga 0xBB7D10 ; In memory: 0x8038F690
-    jal     item_menu_prevent_empty_equip
+;   addiu       sp, sp, -0xA8
+;   sw          s5, 0x0030 (sp)
+.orga 0xBB7670 ; In memory: 0x8038EFF0
+    j     KaleidoScope_DrawItemSelect
     nop
 
 ;==================================================================================================
@@ -2174,6 +2134,176 @@ skip_bombchu_bowling_prize_switch:
 .orga 0xBE4A60
     j       agony_post_hook
     nop
+
+;==================================================================================================
+; Blue Warps
+;==================================================================================================
+
+; Child blue warps
+; Replaces:
+;   jal     func_809056E8 ; DoorWarp1_PlayerInRange
+.orga 0xCA2F38 ; In Memory: 0x80905778
+    jal     DoorWarp1_PlayerInRange_Overwrite
+
+; Ruto blue warp
+; Replaces:
+;   jal     func_809056E8 ; DoorWarp1_PlayerInRange
+.orga 0xCA3404 ; In Memory: 0x80905C44
+    jal     DoorWarp1_PlayerInRange_Overwrite
+
+; Adult blue warps
+; Replaces:
+;   jal     func_809056E8 ; DoorWarp1_PlayerInRange
+.orga 0xCA3A10 ; In Memory: 0x80906250
+    jal     DoorWarp1_PlayerInRange_Overwrite
+
+; As the above replaces overlay functions with a global function,
+; Need to null out the reloc entries
+
+; Child blue warps
+; Replaces:
+;   .word   0x44001258
+.orga 0xCA5D4C
+.word   0x00000000
+
+; Ruto blue warp
+; Replaces:
+;   .word   0x44001724
+.orga 0xCA5D7C
+.word   0x00000000
+
+; Adult blue warps
+; Replaces:
+;   .word   0x44001D30
+.orga 0xCA5E08
+.word   0x00000000
+
+
+; Overwrite warp conditions for Shadow and Spirit medallions
+
+; Replaces:
+;   lui     t3, 0x8010
+;   lw      t3, -0x7404(t3)
+;   lw      t4, 0x00A4(v1)
+;   or      a0, s0, $zero
+;   addiu   a1, $zero, 0x0069
+;   and     t5, t3, t4
+.orga 0xCA3EA0 ; In Memory: 0x809066E0
+    nop
+    jal     DoorWarp1_IsSpiritRewardObtained
+    nop
+    or      t5, v0, $zero
+    or      a0, s0, $zero
+    addiu   a1, $zero, 0x0069
+
+; Replaces:
+;   lui     t2, 0x8010
+;   lw      t2, -0x7400(t2)
+;   lw      t3, 0x00A4(v1)
+;   or      a0, s0, $zero
+;   addiu   a1, $zero, 0x006A
+;   and     t4, t2, t3
+.orga 0xCA3F30 ; In Memory: 0x80906770
+    nop
+    jal     DoorWarp1_IsShadowRewardObtained
+    nop
+    or      t4, v0, $zero
+    or      a0, s0, $zero
+    addiu   a1, $zero, 0x006A
+
+
+; Overwrite Item_Give to set data and flags from skipped cutscenes
+
+
+; Kokiri Emerald
+
+; Replaces:
+;   jal     Item_Give
+.orga 0xCA3158 ; In Memory: 0x80905998
+    jal     DoorWarp1_KokiriEmerald_Overwrite
+.orga 0xCA3168
+    addiu   t5, $zero, 0x0457 ; nextEntranceIndex
+.orga 0xCA3174
+    ori     t6, $zero, 0 ; nextCutsceneIndex
+
+
+; Goron Ruby
+
+; Replaces:
+;   jal     Item_Give
+.orga 0xCA30D8 ; In Memory: 0x80905918
+    jal     DoorWarp1_GoronRuby_Overwrite
+.orga 0xCA30E8
+    addiu   t2, $zero, 0x047A ; nextEntranceIndex
+.orga 0xCA30F4
+    ori     t3, $zero, 0 ; nextCutsceneIndex
+
+
+; Zora Sapphire
+
+; Replaces:
+;   jal     Item_Give
+.orga 0xCA36F0 ; In Memory: 0x80905F30
+    jal     DoorWarp1_ZoraSapphire_Overwrite
+.orga 0xCA3710
+    ori     t5, $zero, 0 ; nextCutsceneIndex
+
+
+; Forest medallion
+
+; Replaces:
+;   jal     Item_Give
+.orga 0xCA3D18 ; In Memory: 0x80906558
+    jal     DoorWarp1_ForestMedallion_Overwrite
+; Set destination
+.orga 0xCA3D30
+    addiu   t3, $zero, 0x05E8 ; nextEntranceIndex
+
+
+; Fire medallion
+
+; Replaces:
+;   jal     Item_Give
+.orga 0xCA3DA4 ; In Memory: 0x809065E4
+    jal     DoorWarp1_FireMedallion_Overwrite
+; Set destination
+.orga 0xCA3DBC
+    addiu   t9, $zero, 0x0564 ; nextEntranceIndex
+.orga 0xCA3DC8
+    ori     t1, $zero, 0
+
+
+; Water medallion
+
+; Replaces:
+;   jal     Item_Give
+.orga 0xCA3E30 ; In Memory: 0x80906670
+    jal     DoorWarp1_WaterMedallion_Overwrite
+; Set destination
+.orga 0xCA3E48
+    addiu   t7, $zero, 0x04E6 ; nextEntranceIndex
+
+
+; Spirit medallion
+
+; Replaces:
+;   jal     Item_Give
+.orga 0xCA3EC0 ; In Memory: 0x80906700
+    jal     DoorWarp1_SpiritMedallion_Overwrite
+; Set destination
+.orga 0xCA3ED8
+    addiu   t6, $zero, 0x0610 ; nextEntranceIndex
+
+
+; Shadow medallion
+
+; Replaces:
+;   jal     Item_Give
+.orga 0xCA3F50 ; In Memory: 0x80906790
+    jal     DoorWarp1_ShadowMedallion_Overwrite
+; Set destination
+.orga 0xCA3F68
+    addiu   t5, $zero, 0x0580 ; nextEntranceIndex
 
 ;==================================================================================================
 ; Correct Chest Sizes
@@ -2873,7 +3003,7 @@ courtyard_guards_kill:
     jal     Static_ctxt_Init
 
 ;==================================================================================================
-; burning kak from any entrance to kak
+; burning kak from any entrance to kak (except the grottos)
 ;==================================================================================================
 ; Replaces: lw      t9, 0x0000(s0)
 ;           addiu   at, 0x01E1
@@ -3652,13 +3782,22 @@ courtyard_guards_kill:
     sw     a1, 0x64(sp)
 
 ;==================================================================================================
-; Jabu Spiritual Stone Actor Override
+; Override appearance of Zoras Sapphire spiritual stone inside Jabu
 ;==================================================================================================
-; Replaces: addiu   t8, zero, 0x0006
-;           sh      t8, 0x017C(a0)
-.orga 0xCC8594
-    jal     demo_effect_medal_init
-    addiu   t8, zero, 0x0006
+.headersize(0x8092ACC0 - 0x00CC8430)
+; Increase the size of DemoEffect actor to store override
+.org 0x8093019c
+; Replaces: .d32 0x00000190
+.d32 0x000001C0
+
+; Hook the function DemoEffect_DrawJewel
+.org 0x8092e3f8
+; Replaces:
+;   addiu   sp, sp, -0x78
+;   sw      s3, 0x40(sp)
+    j   DemoEffect_DrawJewel_Hook
+    nop
+DemoEffect_DrawJewel_AfterHook:
 
 ;==================================================================================================
 ; Use Sticks and Masks as Adult
@@ -4007,15 +4146,6 @@ courtyard_guards_kill:
     addiu   t9, $zero, 0x0221
 
 ;===================================================================================================
-; Death Mountain cloud color checks for Volvagia flag
-;===================================================================================================
-; Replaces: lhu     t3, 0x0ED8(v0)
-;           andi    t4, t3, 0x8000
-.orga 0xD7C864
-    lhu     t3, 0x0EDC(v0)
-    andi    t4, t3, 0x0200
-
-;===================================================================================================
 ; Prevent Gohma from being stunned when climbing
 ;===================================================================================================
 ; Replaces lui     a1, 0x40A0
@@ -4259,10 +4389,12 @@ courtyard_guards_kill:
     jal     volvagia_flying_hitbox
     nop
 
-
 ;================================================================
 ; Include hacks in other files to start keeping things organized
 ;================================================================
+.include "hacks/z_parameter.asm"
+.include "hacks/ovl_en_kz.asm"
+.include "hacks/ovl_en_dns.asm"
 .include("hacks/ovl_bg_spot18_basket.asm")
 .include("hacks/ovl_obj_mure3.asm")
 .include("hacks/ovl_bg_haka_tubo.asm")
@@ -4276,5 +4408,5 @@ courtyard_guards_kill:
 .include("hacks/ovl_obj_hamishi.asm")
 .include("hacks/code.asm")
 .include("hacks/object_fixes.asm")
-.include("hacks/ovl_en_kz.asm")
 .include("hacks/ovl_boss_ganon.asm")
+

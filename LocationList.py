@@ -1,7 +1,7 @@
 from __future__ import annotations
 import sys
 from collections import OrderedDict
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
 
 if sys.version_info >= (3, 10):
     from typing import TypeAlias
@@ -12,6 +12,9 @@ LocationDefault: TypeAlias = "Optional[int | tuple[int, ...] | list[tuple[int, .
 LocationAddress: TypeAlias = "Optional[int | list[int]]"
 LocationAddresses: TypeAlias = "Optional[tuple[LocationAddress, LocationAddress]]"
 LocationFilterTags: TypeAlias = "Optional[tuple[str, ...] | str]"
+
+if TYPE_CHECKING:
+    from World import World
 
 
 def shop_address(shop_id: int, shelf_id: int) -> int:
@@ -59,15 +62,15 @@ def shop_address(shop_id: int, shelf_id: int) -> int:
 #   Location:                                                        Type             Scene  Default Addresses                      Vanilla Item                             Categories
 location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAddresses, Optional[str], LocationFilterTags]] = OrderedDict([
     ## Dungeon Rewards
-    ("Links Pocket",                                                 ("Boss",         None,  None, None,                            'Light Medallion',                       None)),
-    ("Queen Gohma",                                                  ("Boss",         None,  0x6C, (0x0CA315F, 0x2079571),          'Kokiri Emerald',                        None)),
-    ("King Dodongo",                                                 ("Boss",         None,  0x6D, (0x0CA30DF, 0x2223309),          'Goron Ruby',                            None)),
-    ("Barinade",                                                     ("Boss",         None,  0x6E, (0x0CA36EB, 0x2113C19),          'Zora Sapphire',                         None)),
-    ("Phantom Ganon",                                                ("Boss",         None,  0x66, (0x0CA3D07, 0x0D4ED79),          'Forest Medallion',                      None)),
-    ("Volvagia",                                                     ("Boss",         None,  0x67, (0x0CA3D93, 0x0D10135),          'Fire Medallion',                        None)),
-    ("Morpha",                                                       ("Boss",         None,  0x68, (0x0CA3E1F, 0x0D5A3A9),          'Water Medallion',                       None)),
-    ("Bongo Bongo",                                                  ("Boss",         None,  0x6A, (0x0CA3F43, 0x0D13E19),          'Shadow Medallion',                      None)),
-    ("Twinrova",                                                     ("Boss",         None,  0x69, (0x0CA3EB3, 0x0D39FF1),          'Spirit Medallion',                      None)),
+    ("ToT Reward from Rauru",                                        ("Cutscene",     0xFF,  0x04, None,                            'Light Medallion',                       ("Temple of Time", "NPCs", "Dungeon Rewards",))),
+    ("Queen Gohma",                                                  ("Boss",         0x11,  0x65, None,                            'Kokiri Emerald',                        ("Deku Tree", "Deku Tree MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
+    ("King Dodongo",                                                 ("Boss",         0x12,  0x65, None,                            'Goron Ruby',                            ("Dodongo's Cavern", "Dodongo's Cavern MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
+    ("Barinade",                                                     ("Boss",         0x13,  0x65, None,                            'Zora Sapphire',                         ("Jabu Jabu's Belly", "Jabu Jabu's Belly MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
+    ("Phantom Ganon",                                                ("Boss",         0x14,  0x65, None,                            'Forest Medallion',                      ("Forest Temple", "Forest Temple MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
+    ("Volvagia",                                                     ("Boss",         0x15,  0x65, None,                            'Fire Medallion',                        ("Fire Temple", "Fire Temple MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
+    ("Morpha",                                                       ("Boss",         0x16,  0x65, None,                            'Water Medallion',                       ("Water Temple", "Water Temple MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
+    ("Bongo Bongo",                                                  ("Boss",         0x18,  0x65, None,                            'Shadow Medallion',                      ("Shadow Temple", "Shadow Temple MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
+    ("Twinrova",                                                     ("Boss",         0x17,  0x65, None,                            'Spirit Medallion',                      ("Spirit Temple", "Spirit Temple MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
     ("Ganon",                                                        ("Event",        None,  None, None,                            'Triforce',                              None)),
     ("Gift from Sages",                                              ("Cutscene",     0xFF,  0x03, None,                             None,                                   None)),
 
@@ -4274,7 +4277,7 @@ location_groups: dict[str, list[str]] = {
     'Song': [name for (name, data) in location_table.items() if data[0] == 'Song'],
     'Chest': [name for (name, data) in location_table.items() if data[0] == 'Chest'],
     'Collectable': [name for (name, data) in location_table.items() if data[0] == 'Collectable'],
-    'Boss': [name for (name, data) in location_table.items() if data[0] == 'Boss'],
+    'Boss': [name for (name, data) in location_table.items() if data[0] == 'Boss' or name == 'ToT Reward from Rauru'],
     'ActorOverride': [name for (name, data) in location_table.items() if data[0] == 'ActorOverride'],
     'BossHeart': [name for (name, data) in location_table.items() if data[0] == 'BossHeart'],
     'CollectableLike': [name for (name, data) in location_table.items() if data[0] in ('Collectable', 'BossHeart', 'GS Token', 'SilverRupee')],
@@ -4286,6 +4289,9 @@ location_groups: dict[str, list[str]] = {
 }
 
 
-def location_is_viewable(loc_name: str, correct_chest_appearances: str, fast_chests: bool) -> bool:
-    return (((correct_chest_appearances in ('textures', 'both', 'classic') or not fast_chests) and loc_name in location_groups['Chest'])
-            or loc_name in location_groups['CanSee'])
+def location_is_viewable(loc_name: str, correct_chest_appearances: str, fast_chests: bool, *, world: Optional[World] = None) -> bool:
+    return (
+        ((correct_chest_appearances in ('textures', 'both', 'classic') or not fast_chests) and loc_name in location_groups['Chest'])
+        or loc_name in location_groups['CanSee']
+        or (world is not None and world.bigocto_location() is not None and world.bigocto_location().name == loc_name)
+    )

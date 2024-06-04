@@ -666,3 +666,86 @@ void draw_gi_deku_nut_with_flame(z64_game_t* game, uint32_t draw_id) {
     draw_gi_deku_nut(game, draw_id);
     draw_gi_flame(game, item_draw_table[draw_id].args[1].color, item_draw_table[draw_id].args[2].color);
 }
+
+static const uint64_t kInitListMedallion[] = {
+    0xe700000000000000, 0xd7000002ffffffff,
+    0xfc11fe23fffff7fb, 0xef082c1000552078,
+    0xd900000000220405, 0xdf00000000000000,
+};
+
+void draw_gi_medallions(z64_game_t* game, uint32_t draw_id) {
+    z64_gfx_t* gfx = game->common.gfx;
+
+    append_setup_dl_25_to_opa(gfx);
+    gSPDisplayList(gfx->poly_opa.p++, (uint32_t)(&kInitListMedallion));
+    gSPMatrix(gfx->poly_opa.p++, append_sys_matrix(gfx), G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+    gSPDisplayList(gfx->poly_opa.p++, item_draw_table[draw_id].args[0].dlist);
+    gSPDisplayList(gfx->poly_opa.p++, item_draw_table[draw_id].args[1].dlist);
+}
+
+static void* pushOpaMatrix(z64_gfx_t* gfx, const float* mat) {
+    void* end = gfx->poly_opa.d;
+    end = (char*)end - 0x40;
+    gfx->poly_opa.d = end;
+
+    convert_matrix(mat, end);
+
+    return end;
+}
+
+static void* pushXluMatrix(z64_gfx_t* gfx, const float* mat) {
+    void* end = gfx->poly_xlu.d;
+    end = (char*)end - 0x40;
+    gfx->poly_xlu.d = end;
+
+    convert_matrix(mat, end);
+
+    return end;
+}
+
+static void* dummyOpaSegment(z64_gfx_t* gfx) {
+    Gfx* end = gfx->poly_opa.d - 1;
+    gfx->poly_opa.d = end;
+    gSPEndDisplayList(end);
+    return end;
+}
+
+static void* dummyXluSegment(z64_gfx_t* gfx) {
+    Gfx* end = gfx->poly_xlu.d - 1;
+    gfx->poly_xlu.d = end;
+    gSPEndDisplayList(end);
+    return end;
+}
+
+void draw_gi_stones(z64_game_t* game, uint32_t draw_id) {
+    z64_gfx_t* gfx = game->common.gfx;
+    colorRGBA8_t prim_color = item_draw_table[draw_id].args[2].color;
+    colorRGBA8_t env_color = item_draw_table[draw_id].args[3].color;
+
+    static const float kMatrixRot[] = {
+        1.f, 0.f, 0.f, 0.f,
+        0.f, 0.f, 1.f, 0.f,
+        0.f, -1.f, 0.f, 0.f,
+        0.f, 0.f, 0.f, 1.f,
+    };
+
+    /* Matrix setup */
+    gSPMatrix(gfx->poly_xlu.p++, append_sys_matrix(gfx), G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+    gSPMatrix(gfx->poly_xlu.p++, pushXluMatrix(gfx, kMatrixRot), G_MTX_NOPUSH | G_MTX_MUL | G_MTX_MODELVIEW);
+    gSPMatrix(gfx->poly_opa.p++, append_sys_matrix(gfx), G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+    gSPMatrix(gfx->poly_opa.p++, pushOpaMatrix(gfx, kMatrixRot), G_MTX_NOPUSH | G_MTX_MUL | G_MTX_MODELVIEW);
+
+    /* Segment setup */
+    gSPSegment(gfx->poly_xlu.p++, 9, dummyXluSegment(gfx));
+    gSPSegment(gfx->poly_opa.p++, 8, dummyOpaSegment(gfx));
+
+    append_setup_dl_25_to_xlu(gfx);
+    gDPSetPrimColor(gfx->poly_xlu.p++, 0x00, 0x80, prim_color.r, prim_color.g, prim_color.b, prim_color.a);
+    gDPSetEnvColor(gfx->poly_xlu.p++, env_color.r, env_color.g, env_color.b, env_color.a);
+    gSPDisplayList(gfx->poly_xlu.p++, item_draw_table[draw_id].args[0].dlist);
+
+    append_setup_dl_25_to_opa(gfx);
+    gDPSetPrimColor(gfx->poly_opa.p++, 0x00, 0x80, 0xff, 0xff, 0xaa, 0xff);
+    gDPSetEnvColor(gfx->poly_opa.p++, 0x96, 0x78, 0x00, 0xFF);
+    gSPDisplayList(gfx->poly_opa.p++, item_draw_table[draw_id].args[1].dlist);
+}

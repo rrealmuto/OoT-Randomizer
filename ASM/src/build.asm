@@ -132,6 +132,7 @@ RANDO_CONTEXT:
 .include "chest_game.asm"
 .include "en_item00.asm"
 .include "volvagia.asm"
+.include "key_counter.asm"
 .include "armos.asm"
 .include "ocarina_buttons.asm"
 .include "fairy_ocarina.asm"
@@ -140,7 +141,7 @@ RANDO_CONTEXT:
 .include "minimap.asm"
 .include "collider_override.asm"
 .include "objects.asm"
-
+.include "en_dns.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"

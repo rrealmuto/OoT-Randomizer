@@ -44,7 +44,6 @@ extern xflag_t* spawn_actor_with_flag;
 #define OBJ_MURE2           0x0151 // Obj_Mure2 - Bush/Rock circles
 #define ACTOR_FISHING       0xFE // Fishing fish
 
-ActorOverlay* gActorOverlayTable = (ActorOverlay*)ACTOR_OVERLAY_TABLE_ADDR;
 uint8_t actor_spawn_as_child_flag = 0;
 z64_actor_t* actor_spawn_as_child_parent = NULL;
 

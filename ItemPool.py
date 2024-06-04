@@ -86,6 +86,15 @@ ludicrous_items_base: list[str] = [
 ]
 
 ludicrous_items_extended: list[str] = [
+    'Kokiri Emerald',
+    'Goron Ruby',
+    'Zora Sapphire',
+    'Light Medallion',
+    'Forest Medallion',
+    'Fire Medallion',
+    'Water Medallion',
+    'Shadow Medallion',
+    'Spirit Medallion',
     'Zeldas Lullaby',
     'Eponas Song',
     'Suns Song',
@@ -391,6 +400,7 @@ region_souls: list[str] = [
     'Grottos Souls',
 ]
 
+reward_list: list[str] = [item.name for item in sorted([i for n, i in ItemInfo.items.items() if i.type == 'DungeonReward'], key=lambda x: x.special['item_id'])]
 song_list: list[str] = [item.name for item in sorted([i for n, i in ItemInfo.items.items() if i.type == 'Song'], key=lambda x: x.index if x.index is not None else 0)]
 junk_pool_base: list[tuple[str, int]] = [(item, weight) for (item, weight) in sorted(ItemInfo.junk_weight.items()) if weight > 0]
 remove_junk_items: list[str] = [item for (item, weight) in sorted(ItemInfo.junk_weight.items()) if weight >= 0]
@@ -440,7 +450,7 @@ item_groups: dict[str, Sequence[str]] = {
     'HealthUpgrade': ('Heart Container', 'Piece of Heart', 'Piece of Heart (Treasure Chest Game)'),
     'ProgressItem': sorted([name for name, item in ItemInfo.items.items() if item.type == 'Item' and item.advancement]),
     'MajorItem': sorted([name for name, item in ItemInfo.items.items() if item.type in ('Item', 'Song') and item.advancement and name not in exclude_from_major]),
-    'DungeonReward': [item.name for item in sorted([i for n, i in ItemInfo.items.items() if i.type == 'DungeonReward'], key=lambda x: x.special['item_id'])],
+    'DungeonReward': reward_list,
     'Map': sorted([name for name, item in ItemInfo.items.items() if item.type == 'Map']),
     'Compass': sorted([name for name, item in ItemInfo.items.items() if item.type == 'Compass']),
     'BossKey': sorted([name for name, item in ItemInfo.items.items() if item.type == 'BossKey']),
@@ -531,6 +541,8 @@ def generate_itempool(world: World) -> None:
 
 
 def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
+    from Dungeon import Dungeon
+
     pool = []
     placed_items = {}
     remain_shop_items = []
@@ -605,6 +617,8 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
                     pending_junk_pool.append(f"Silver Rupee Pouch ({puzzle})")
                 else:
                     pending_junk_pool.append(f"Silver Rupee ({puzzle})")
+        if world.settings.shuffle_dungeon_rewards in ('any_dungeon', 'overworld', 'anywhere', 'regional'):
+            pending_junk_pool.extend(reward_list)
         if world.settings.shuffle_song_items == 'any':
             pending_junk_pool.extend(song_list)
         if world.settings.shuffle_individual_ocarina_notes:
@@ -915,6 +929,21 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
                 shuffle_item = False
                 location.disabled = DisableType.DISABLED
 
+        # Dungeon Rewards
+        elif location.name == 'ToT Reward from Rauru':
+            if world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward'):
+                pass # handled in World.fill_bosses
+            else:
+                shuffle_item = True
+        elif location.type == 'Boss':
+            if world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward'):
+                pass # handled in World.fill_bosses
+            elif world.settings.shuffle_dungeon_rewards in ('any_dungeon', 'overworld', 'regional', 'anywhere'):
+                shuffle_item = True
+            else:
+                dungeon = Dungeon.from_vanilla_reward(ItemFactory(location.vanilla_item, world))
+                dungeon.reward.append(ItemFactory(item, world))
+
         # Dungeon Items
         elif location.dungeon is not None:
             dungeon = location.dungeon
@@ -1092,7 +1121,13 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
         # Replace all junk items with major items
         # Overrides plando'd junk items
         # Songs are in the unrestricted pool even if their fill is restricted. Filter from candidates
-        duplicate_candidates = [item for item in ludicrous_items_extended if item in pool and (ItemInfo.items[item].type != 'Song' or world.settings.shuffle_song_items == 'any')]
+        duplicate_candidates = [
+            item
+            for item in ludicrous_items_extended
+            if item in pool
+            and (ItemInfo.items[item].type != 'Song' or world.settings.shuffle_song_items == 'any')
+            and (ItemInfo.items[item].type != 'DungeonReward' or world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward'))
+        ]
         duplicate_candidates.extend(ludicrous_items_base)
         if world.settings.shuffle_enemy_spawns == 'all':
             duplicate_candidates.extend(enemy_souls_core + enemy_souls_bosses)

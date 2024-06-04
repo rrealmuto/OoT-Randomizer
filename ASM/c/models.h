@@ -12,8 +12,9 @@ typedef struct model_t {
 
 typedef struct {
     uint16_t object_id;
-    uint8_t *buf;
+    uint8_t* buf;
 } loaded_object_t;
+
 
 void models_init();
 void models_reset();
@@ -23,5 +24,8 @@ void fishing_draw(z64_actor_t* actor, z64_game_t* game) ;
 uint32_t load_object_file(uint32_t object_id, uint8_t *buf);
 uint32_t get_object_size(uint32_t object_id);
 z64_object_table_t* get_object_entry(uint32_t object_id);
+
+void lookup_model_by_override(model_t* model, override_t override);
+void draw_model(model_t model, z64_actor_t* actor, z64_game_t* game, float base_scale);
 
 #endif

@@ -2,7 +2,7 @@
 
 ; Hack the actor initialization variable to use the new standalone object
 .org 0x80AB4420
-dh  0x01AE
+dh  0x01B5
 
 ; Hack the params of the draw function to pass in the segment offset of our new display list
 .org 0x80ab43a8
@@ -26,7 +26,7 @@ dh  0x01AE
 .org 0x80ab34b8
 ; Replaces
 ;   li      t5, 0x2
-    li      t5, 0x1AE
+    li      t5, 0x1B5
 
 ; Make it a bit easier to pick up en_ishi when they're resized
 .org 0x80ab3cdc

@@ -225,6 +225,7 @@
           "text": "Shuffle Dungeon Items",
           "row_span": [6,6,9],
           "settings": [
+            "shuffle_dungeon_rewards",
             "shuffle_mapcompass",
             "shuffle_smallkeys",
             "shuffle_hideoutkeys",
@@ -336,6 +337,7 @@
           "text": "Timesavers",
           "row_span": [1,1,1],
           "settings": [
+            "skip_reward_from_rauru",
             "no_escape_sequence",
             "no_guard_stealth",
             "no_epona_race",
@@ -363,9 +365,13 @@
           "settings": [
             "ocarina_songs",
             "correct_chest_appearances",
+            "chest_textures_specific",
+            "soa_unlocks_chest_texture",
             "minor_items_as_major_chest",
             "invisible_chests",
             "correct_potcrate_appearances",
+            "potcrate_textures_specific",
+            "soa_unlocks_potcrate_texture",
             "key_appearance_match_dungeon",
             "clearer_hints",
             "hints",
@@ -532,6 +538,7 @@
             "custom_music_directorypicker",
             "custom_music_unavailable_msg",
             "background_music",
+            "display_custom_song_names",
             "fanfares",
             "ocarina_fanfares",
             "credits_music"

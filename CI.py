@@ -11,13 +11,11 @@ import sys
 import unittest
 from io import StringIO
 from typing import NoReturn
-
-from Messages import ITEM_MESSAGES, KEYSANITY_MESSAGES, MISC_MESSAGES
-
 from Main import resolve_settings
 from Patches import get_override_table, get_override_table_bytes
 from Rom import Rom
 import Unittest as Tests
+from Messages import ITEM_MESSAGES, KEYSANITY_MESSAGES, MISC_MESSAGES
 from SettingsList import SettingInfos, logic_tricks, validate_settings
 import Unittest as Tests
 from Utils import data_path
@@ -257,10 +255,10 @@ def run_ci_checks() -> NoReturn:
         check_hell_mode_tricks(args.fix)
         check_code_style(args.fix)
         check_presets_formatting(args.fix)
+        check_table_sizes()
         if args.release:
             check_release_presets(args.fix)
         check_message_duplicates()
-        check_table_sizes()
 
     exit_ci(args.fix)
 

@@ -67,7 +67,7 @@ c_sym_types = {}
 
 with open('build/c_symbols.txt', 'r') as f:
     for line in f:
-        m = re.match('''
+        m = re.match(r'''
                 ^
                 [0-9a-fA-F]+
                 .*
