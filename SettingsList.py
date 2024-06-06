@@ -3277,6 +3277,15 @@ class SettingInfos:
         shared         = True,
     )
 
+    fast_shadow_boat = Checkbutton(
+        gui_text       = 'Fast Shadow Boat',
+        gui_tooltip    = '''\
+            The boat sequence in Shadow Temple will be massively sped up.
+        ''',
+        default        = False,
+        shared         = True,
+    )
+
     ocarina_songs = Combobox(
         gui_text       = 'Randomize Ocarina Melodies',
         default        = 'off',

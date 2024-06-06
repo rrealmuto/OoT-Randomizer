@@ -436,7 +436,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     if songs_as_items:
         rom.write_byte(rom.sym('SONGS_AS_ITEMS'), 1)
 
-    patch_cutscenes(rom, songs_as_items)
+    patch_cutscenes(rom, songs_as_items, world.settings)
 
     if world.settings.shuffle_ocarinas:
         symbol = rom.sym('OCARINAS_SHUFFLED')
