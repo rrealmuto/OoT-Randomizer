@@ -49,7 +49,7 @@ void Sram_WriteSave(SramContext* sramCtx, extended_sram_file_t* sramFile) {
     }
 
     ptr = (uint16_t*)extendedSaveContextToSave;
-    for (offset = 0; offset < sizeof(extendedSaveContextToSave) / 2; offset++) {
+    for (offset = 0; offset < sizeof(extended_savecontext_static_t) / 2; offset++) {
         checksum += *ptr++;
     }
 
@@ -118,7 +118,7 @@ void Sram_VerifyAndLoadAllSaves(z64_FileChooseContext_t* fileChooseCtx, SramCont
         }
         // Calculate the extended savectx in the checksum
         ptr = (uint16_t*)&extended_savectx;
-        for (i = 0; i < sizeof(extended_savectx) / 2; i++) {
+        for (i = 0; i < sizeof(extended_savecontext_static_t) / 2; i++) {
             newChecksum += *ptr++;
         }
         // Calculate the collectible flags in the checksum
@@ -133,12 +133,18 @@ void Sram_VerifyAndLoadAllSaves(z64_FileChooseContext_t* fileChooseCtx, SramCont
             // checksum didnt match, try backup save
             offset = SRAM_SLOTS[slotNum + 3];
             z64_memcopy(&z64_file, sramCtx->readBuff + offset, SAVE_SIZE);
+            z64_memcopy(&extended_savectx, sramCtx->readBuff + offset + SRAM_ORIGINAL_SLOT_SIZE, sizeof(extended_savecontext_static_t));
             z64_memcopy(collectible_override_flags, sramCtx->readBuff + offset + SLOT_SIZE - num_override_flags, num_override_flags);
             oldChecksum = z64_file.checksum;
             z64_file.checksum = 0;
             ptr = (uint16_t*)&z64_file;
 
             for (i = newChecksum = j = 0; i < CHECKSUM_SIZE; i++) {
+                newChecksum += *ptr++;
+            }
+            // Calculate the extended savectx in the checksum
+            ptr = (uint16_t*)&extended_savectx;
+            for (i = 0; i < sizeof(extended_savectx) / 2; i++) {
                 newChecksum += *ptr++;
             }
             // Calculate the collectible flags in the checksum
@@ -178,6 +184,7 @@ void Sram_VerifyAndLoadAllSaves(z64_FileChooseContext_t* fileChooseCtx, SramCont
 
             uint16_t slot_offset = i + SLOT_SIZE - (num_override_flags);
             SsSram_ReadWrite_Safe(SRAM_BASE + slot_offset, collectible_override_flags, num_override_flags, OS_WRITE);
+            
         }
     }
 
