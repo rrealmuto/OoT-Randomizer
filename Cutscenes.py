@@ -70,7 +70,7 @@ def patch_cutscene_misc_command(rom: Rom, address: int, start_frame:int, end_fra
     rom.write_int16(address + 2, start_frame)
     rom.write_int16(address + 4, end_frame)
 
-def patch_cutscenes(rom: Rom, songs_as_items:bool, settings:Settings) -> None:
+def patch_cutscenes(rom: Rom, songs_as_items: bool, settings: Settings) -> None:
     # Speed scene after Deku Tree
     # Deku Tree talking to Link.
     # Cut to 1 frame and redirect destination to the get Emerald cutscene (0x07).
@@ -391,10 +391,13 @@ def patch_cutscenes(rom: Rom, songs_as_items:bool, settings:Settings) -> None:
         # Remove all camera cues of the cutscene past the first one by changing the size of keyFrameCount to 1.
         rom.write_int16(0xAE010E, 0x0001)
         # Change first camera cue point of view to be less awkward.
-        # New value : { 4290.0f, -1075.0f, -1900.0f }, { 4155.0f, -1100.0f, -1840.0f }
-        rom.write_int32s(0xB69804, [0x4583B800, 0xC4866000, 0xC502F000, 0x457E6000, 0xC4898000, 0xC4FD2000])
-        # First camera cue last 4 sec instead of 2 sec.
+        # Change viewFlags to 2121, this will make the camera focus on Link.
+        rom.write_int16(0xB697F6, 0x2121)
+        # Change the length to 4 sec instead of 2 sec.
         rom.write_int16(0xB697F8, 0x0050)
+        # Change the at/eye camera values to follow Link from behind.
+        # New value : { 0.0f, 0.0f, 0.0f }, { 50.0f, 30.0f, -200.0f}
+        rom.write_int32s(0xB69804, [0x00000000, 0x00000000, 0x00000000, 0x42480000, 0x42480000, 0xC3480000])
 
     # Speed scene after Shadow Temple
     # Impa becomes a Sage cutscene.

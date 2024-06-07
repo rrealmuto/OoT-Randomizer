@@ -3281,6 +3281,8 @@ class SettingInfos:
         gui_text       = 'Fast Shadow Boat',
         gui_tooltip    = '''\
             The boat sequence in Shadow Temple will be massively sped up.
+            The two Stalfos will still fall on the boat, but you
+            won't have time to fight them.
         ''',
         default        = False,
         shared         = True,
