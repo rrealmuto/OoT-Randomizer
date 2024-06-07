@@ -509,6 +509,7 @@ SRAM_SLOTS:
 ;   jal     Save_Write_Hook
 .org 0x800905D4
     j       Sram_WriteSave
+    or      a1, r0, r0
 
 ; Hack Open_Save function to retrieve additional collectible flags
 ; At the start of the Sram_OpenSave function, SramContext address is stored in A0 and also on the stack at 0x20(SP)

@@ -181,7 +181,7 @@ void manage_password(z64_disp_buf_t* db, z64_menudata_t* menu_data) {
                 for (uint8_t i = 0 ; i < PASSWORD_LENGTH; i++) {
                     extended->password[i] = buffer_password[i];
                 }
-                Sram_WriteSave(NULL, &(menu_data->sram_buffer->primary_saves[0]);
+                Sram_WriteSave(NULL, &(menu_data->sram_buffer->primary_saves[0]));
                 return;
             }
             else {
