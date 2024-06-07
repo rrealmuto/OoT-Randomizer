@@ -783,6 +783,8 @@ typedef struct {
   extended_save_data_t additional_save_data;
 } extended_sram_file_t;
 
+void Sram_WriteSave(SramContext* sramCtx, extended_sram_file_t* sramFile);
+
 typedef struct {
     uint8_t               sound_options;           /* 0x0000 */
     uint8_t               z_target_options;        /* 0x0001 */

@@ -175,6 +175,13 @@ void manage_password(z64_disp_buf_t* db, z64_menudata_t* menu_data) {
             if (is_buffer_password_clear()) {
                 password_index = 0;
                 z64_PlaySFXID(NA_SE_SY_CORRECT_CHIME);
+                // Write the password in save context.
+                z64_file_t* file = &menu_data->sram_buffer->primary_saves[0].original_save;
+                extended_savecontext_static_t* extended = &(((extended_sram_file_t*)file)->additional_save_data.extended);
+                for (uint8_t i = 0 ; i < PASSWORD_LENGTH; i++) {
+                    extended->password[i] = buffer_password[i];
+                }
+                Sram_WriteSave(NULL, &(menu_data->sram_buffer->primary_saves[0]);
                 return;
             }
             else {
