@@ -539,6 +539,11 @@ SRAM_SLOTS:
     j       Sram_CopySave
     nop
 
+; Hack Sram_EraseSave to actually just erase the entire slot
+.org 0x80090eb8
+    j       Sram_EraseSave
+    nop
+
 ; Increase the size of EnItem00 instances to store the override
 .orga 0xB5D6BE ; Address in ROM of the enitem00 init params
     .halfword 0x01BC ; Originally 0x019C

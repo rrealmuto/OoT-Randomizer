@@ -92,7 +92,6 @@ void Sram_VerifyAndLoadAllSaves(z64_FileChooseContext_t* fileChooseCtx, SramCont
     uint16_t newChecksum;
     uint16_t slotNum;
     uint16_t offset;
-    uint16_t j;
     uint16_t oldChecksum;
     uint16_t* ptr;
     uint16_t dayTime;
@@ -112,8 +111,8 @@ void Sram_VerifyAndLoadAllSaves(z64_FileChooseContext_t* fileChooseCtx, SramCont
         oldChecksum = z64_file.checksum;
         z64_file.checksum = 0;
         ptr = (uint16_t*)&z64_file;
-
-        for (i = newChecksum = j = 0; i < CHECKSUM_SIZE; i++) {
+        newChecksum = 0;
+        for (i = 0; i < CHECKSUM_SIZE; i++) {
             newChecksum += *ptr++;
         }
         // Calculate the extended savectx in the checksum
@@ -139,12 +138,13 @@ void Sram_VerifyAndLoadAllSaves(z64_FileChooseContext_t* fileChooseCtx, SramCont
             z64_file.checksum = 0;
             ptr = (uint16_t*)&z64_file;
 
-            for (i = newChecksum = j = 0; i < CHECKSUM_SIZE; i++) {
+            newChecksum = 0;
+            for (i = 0; i < CHECKSUM_SIZE; i++) {
                 newChecksum += *ptr++;
             }
             // Calculate the extended savectx in the checksum
             ptr = (uint16_t*)&extended_savectx;
-            for (i = 0; i < sizeof(extended_savectx) / 2; i++) {
+            for (i = 0; i < sizeof(extended_savecontext_static_t) / 2; i++) {
                 newChecksum += *ptr++;
             }
             // Calculate the collectible flags in the checksum
@@ -155,41 +155,33 @@ void Sram_VerifyAndLoadAllSaves(z64_FileChooseContext_t* fileChooseCtx, SramCont
             // "(B) SAVE checksum calculation"
 
             if (newChecksum != oldChecksum) {
-                // backup save didnt work, make new save
-                z64_bzero(&z64_file.entrance_index, sizeof(int32_t));
-                z64_bzero(&z64_file.link_age, sizeof(int32_t));
-                z64_bzero(&z64_file.cutscene_index, sizeof(int32_t));
-                // note that z64_file.dayTime is not actually the sizeof(int32_t)
-                z64_bzero(&z64_file.day_time, sizeof(int32_t));
-                z64_bzero(&z64_file.night_flag, sizeof(int32_t));
-                z64_bzero(&z64_file.total_days, sizeof(int32_t));
-                z64_bzero(&z64_file.bgs_day_count, sizeof(int32_t));
+                // backup save didnt work, erase save
 
-                Sram_InitNewSave();
+                // Zeroize the entire file in sram buffer for both original and backup slot
+                z64_bzero(sramCtx->readBuff + SRAM_SLOTS[slotNum], SLOT_SIZE);
+                z64_bzero(sramCtx->readBuff + SRAM_SLOTS[slotNum + 3], SLOT_SIZE);
 
-                ptr = (uint16_t*)&z64_file;
-
-                for (i = newChecksum = j = 0; i < CHECKSUM_SIZE; i++) {
-                    newChecksum += *ptr++;
-                }
-                z64_file.checksum = newChecksum;
-
+                // Write the empty slots to SRAM
+                i = SRAM_SLOTS[slotNum];
+                SsSram_ReadWrite_Safe(SRAM_BASE + i, sramCtx->readBuff + i, SLOT_SIZE, OS_WRITE);
                 i = SRAM_SLOTS[slotNum + 3];
-                SsSram_ReadWrite_Safe(SRAM_BASE + i, &z64_file, SRAM_ORIGINAL_SLOT_SIZE, OS_WRITE);
-                z64_bzero(collectible_override_flags, num_override_flags);
+                SsSram_ReadWrite_Safe(SRAM_BASE + i, sramCtx->readBuff + i, SLOT_SIZE, OS_WRITE);
             }
-
-            i = SRAM_SLOTS[slotNum];
-            SsSram_ReadWrite_Safe(SRAM_BASE + i, &z64_file, SRAM_ORIGINAL_SLOT_SIZE, OS_WRITE);
-
-            uint16_t slot_offset = i + SLOT_SIZE - (num_override_flags);
-            SsSram_ReadWrite_Safe(SRAM_BASE + slot_offset, collectible_override_flags, num_override_flags, OS_WRITE);
-            
+            else {
+                // Backup save is good so copy it to the original
+                z64_memcopy(sramCtx->readBuff + SRAM_SLOTS[slotNum], sramCtx->readBuff + SRAM_SLOTS[slotNum + 3], SLOT_SIZE);
+                
+                // Write the original slot
+                SsSram_ReadWrite_Safe(SRAM_BASE + SRAM_SLOTS[slotNum], sramCtx->readBuff + SRAM_SLOTS[slotNum], SLOT_SIZE, OS_WRITE);
+            }
         }
     }
 
+    // Finished verifying each slot, read the entire contents of SRAM again
     z64_bzero(sramCtx->readBuff, SRAM_SIZE);
     SsSram_ReadWrite_Safe(SRAM_BASE, sramCtx->readBuff, SRAM_SIZE, OS_READ);
+
+    // Populate data for the file select screen
     z64_file.day_time = dayTime;
 
     z64_memcopy(&fileChooseCtx->deaths[0], sramCtx->readBuff + SRAM_SLOTS[0] + DEATHS_OFFSET, sizeof(fileChooseCtx->deaths[0]));
@@ -246,6 +238,22 @@ void Sram_CopySave(z64_FileChooseContext_t* fileChooseCtx, SramContext* sramCtx)
     z64_memcopy(&fileChooseCtx->defense[fileChooseCtx->copyDestFileIndex], sramCtx->readBuff + dst_offset + DEFENSE_OFFSET,
             sizeof(fileChooseCtx->defense[0]));
 
+}
+
+// Reimplementation of Sram_EraseSave. Actually just erase the entire slot and backup slot instead of create a new blank file
+void Sram_EraseSave(z64_FileChooseContext_t* fileChooseCtx, SramContext* sramCtx) {
+    
+    // Zero out the data in the primary slot
+    int32_t offset = SRAM_SLOTS[fileChooseCtx->selectedFileIndex];
+    z64_bzero(sramCtx->readBuff + offset, SLOT_SIZE);
+    // Write to SRAM
+    SsSram_ReadWrite_Safe(SRAM_BASE + offset, sramCtx->readBuff + offset, SLOT_SIZE, OS_WRITE);
+
+    // Zero out the data in the secondary slot
+    offset = SRAM_SLOTS[fileChooseCtx->selectedFileIndex + 3];
+    z64_bzero(sramCtx->readBuff + offset, SLOT_SIZE);
+    // Write to SRAM
+    SsSram_ReadWrite_Safe(SRAM_BASE + offset, sramCtx->readBuff + offset, SLOT_SIZE, OS_WRITE);
 }
 
 // Hook the Save Write function to write the flags to SRAM
