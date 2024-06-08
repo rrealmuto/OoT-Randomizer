@@ -85,18 +85,7 @@
         "region_name": "Deku Tree Basement Rotating Spike Room",
         "dungeon": "Deku Tree",
         "locations": {
-            "Deku Tree Rotating Spike Skulltula": "can_kill_skulltula"
-        },
-        "exits":
-        {
-            "Deku Tree Basement Back Room" : "True"
-        }
-    },
-    
-    {
-        "region_name": "Deku Tree Basement Rotating Spike Room",
-        "dungeon": "Deku Tree",
-        "locations": {
+            "Deku Tree Rotating Spike Skulltula": "can_kill_skulltula",
             "Deku Tree Basement Rotating Spike Grass 1": "can_mow_the_lawn",
             "Deku Tree Basement Rotating Spike Grass 2": "can_mow_the_lawn"
         },
