@@ -47,7 +47,7 @@ $(OBJECTS): | $(OBJDIR)
 
 $(RESOURCES): | $(RESOURCEDIR)
 
-bundle: $(RESOURCES) $(OBJECTS)
+bundle: $(OBJECTS) $(RESOURCES)
 	$(LD) -T linker_script.ld -T ootSymbols.ld -o $(OUTDIR)/bundle.o -i -L. $(patsubst %.o,-l:%.o,$(OBJECTS) $(RESOURCES))
 
 symbols: bundle
