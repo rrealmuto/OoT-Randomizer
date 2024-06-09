@@ -6,7 +6,6 @@ from Item import Item, ItemInfo
 from RulesCommon import AccessRule, escape_name
 from Boulders import BOULDER_TYPE
 from Location import Location
-from HintArea import HintArea
 
 if TYPE_CHECKING:
     from Goals import GoalCategory, Goal
