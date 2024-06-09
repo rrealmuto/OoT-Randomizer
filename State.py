@@ -5,7 +5,6 @@ from typing import TYPE_CHECKING, Optional, Any
 from Item import Item, ItemInfo
 from RulesCommon import escape_name
 from Location import Location
-from HintArea import HintArea
 
 if TYPE_CHECKING:
     from Goals import GoalCategory, Goal
