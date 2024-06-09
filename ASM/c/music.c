@@ -87,7 +87,7 @@ void display_song_name(z64_disp_buf_t* db) {
             alpha = 255;
             frames = 0;
         }
-        if (!(display_song_name_flag == 1 || z64_game.pause_ctxt.state == 6)) {
+        if (!(display_song_name_flag == 1 || z64_game.pause_ctxt.state == PAUSE_STATE_MAIN)) {
             return;
         }
 
@@ -96,7 +96,7 @@ void display_song_name(z64_disp_buf_t* db) {
             return;
         }
 
-        if (z64_game.pause_ctxt.state == 6) {
+        if (z64_game.pause_ctxt.state == PAUSE_STATE_MAIN) {
             alpha = 255;
             frames = 0;
         }

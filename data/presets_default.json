@@ -603,13 +603,13 @@
             "Claim Check"
         ]
     },
-    "Standard Weekly (2024-05-30)": {
+    "Standard Weekly (2024-06-08)": {
         "aliases": [
             "Standard Weekly (Latest)",
             "weekly"
         ],
         "show_seed_info": true,
-        "user_message": "Standard Weekly (Latest)",
+        "user_message": "Standard Weekly (2024-06-08)",
         "world_count": 1,
         "create_spoiler": true,
         "randomize_settings": false,
@@ -750,7 +750,7 @@
         "fast_bunny_hood": true,
         "auto_equip_masks": false,
         "plant_beans": false,
-        "chicken_count_random": false,
+        "chicken_count_random": true,
         "chicken_count": 7,
         "big_poe_count_random": false,
         "big_poe_count": 1,
@@ -781,7 +781,7 @@
         "key_appearance_match_dungeon": false,
         "clearer_hints": true,
         "hints": "always",
-        "hint_dist": "tournament",
+        "hint_dist": "weekly",
         "item_hints": [],
         "hint_dist_user": {},
         "misc_hints": [
@@ -789,8 +789,7 @@
             "ganondorf",
             "warp_songs_and_owls",
             "40_skulltulas",
-            "50_skulltulas",
-            "unique_merchants"
+            "50_skulltulas"
         ],
         "text_shuffle": "none",
         "damage_multiplier": "normal",
