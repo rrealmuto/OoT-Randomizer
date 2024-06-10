@@ -244,6 +244,9 @@ PASSWORD:
 .endarea
 REWARDS_AS_ITEMS:
 .byte 0x00
+.area 14, 0x00
+CFG_DUNGEON_PRECOMPLETED:
+.endarea
 .align 4
 
 ; These configuration values are given fixed addresses to aid auto-trackers.
