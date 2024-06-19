@@ -28,7 +28,7 @@ class Rom(BigStream):
 
         with open(data_path('generated/symbols.json'), 'r') as stream:
             symbols = json.load(stream)
-            self.symbols: dict[str, int] = {name: {'address':int(sym['address'], 16), 'length':sym['length']} for name, sym in symbols.items()}
+            self.symbols: dict[str, int] = {name: {'address': int(sym['address'], 16), 'length': sym['length']} for name, sym in symbols.items()}
 
         if file is None:
             return

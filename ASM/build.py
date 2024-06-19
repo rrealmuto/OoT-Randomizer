@@ -132,9 +132,9 @@ for (name, sym) in symbols.items():
         else:
             continue
         data_symbols[name] = {
-            "address": '{0:08X}'.format(addr),
-            "length": sym['length'] if 'length' in sym.keys() else 0
-            }
+            'address': f'{addr:08X}',
+            'length': sym.get('length', 0),
+        }
 with open('../data/generated/symbols.json', 'w') as f:
     json.dump(data_symbols, f, indent=4, sort_keys=True)
 

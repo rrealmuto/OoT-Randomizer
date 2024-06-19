@@ -47,45 +47,39 @@ bool EnItem00_ProximityCheck_Hack(EnItem00* this, z64_game_t* GlobalCtx) {
 extern void EnItem00_Init(EnItem00* this, z64_game_t* globalCtx);
 extern void en_item00_update(EnItem00* this, z64_game_t* globalCtx);
 
-
 void EnItem00_Init_Hook(EnItem00* this, z64_game_t* globalCtx) {
     EnItem00_Init(this, globalCtx);
     // Reset the scale for overridden collectibles
-    if(this->override.key.all) {
+    if (this->override.key.all) {
         this->scale = this->actor.scale.x = this->actor.scale.y = this->actor.scale.z = 0.015f;
         this->actor.yOffset = 750.0f;
     }
 }
 
-
-void en_item00_update_hook(EnItem00* this, z64_game_t* globalCtx)
-{
+void en_item00_update_hook(EnItem00* this, z64_game_t* globalCtx) {
     xflag_t* flag = &(Actor_GetAdditionalData(&this->actor)->flag);
-    if (this->override.key.type != OVR_DELAYED && Get_NewFlag(flag) && !((collectible_mutex == this) || this->actor.dropFlag == 1))
-    {
+    if (this->override.key.type != OVR_DELAYED && Get_NewFlag(flag) && !((collectible_mutex == this) || this->actor.dropFlag == 1)) {
         this->override = (override_t) { 0 };
     }
-    if(this->override.key.all && this->actionFunc != Collectible_WaitForMessageBox)
-    {
+    if (this->override.key.all && this->actionFunc != Collectible_WaitForMessageBox) {
         lookup_model_by_override(&this->model, this->override);
     }
     en_item00_update(this, globalCtx);
 }
 
 void EnItem00_Draw_Hook(z64_actor_t* actor, z64_game_t* globalCtx) {
-    EnItem00 *this = (EnItem00 *)actor;
+    EnItem00* this = (EnItem00*)actor;
     model_t model = {
         .object_id = 0x0000,
         .graphic_id = 0x00,
     };
 
-    if(this->override.key.all) {
+    if (this->override.key.all) {
         model = this->model;
-        if(model.object_id != 0x0000) {
+        if (model.object_id != 0x0000) {
             draw_model(model, actor, globalCtx, 25.0);
         }
-    }
-    else {
-        EnItem00_Draw(&(this->actor),globalCtx);
+    } else {
+        EnItem00_Draw(&(this->actor), globalCtx);
     }
 }

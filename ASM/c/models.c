@@ -199,7 +199,7 @@ void collectible_draw_other(z64_actor_t* actor, z64_game_t* game) {
         draw_model(model, actor, game, 10.0);
         return;
     }
-    base_collectable_draw(actor,game);
+    base_collectable_draw(actor, game);
 }
 
 void heart_container_draw(z64_actor_t* actor, z64_game_t* game) {

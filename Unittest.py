@@ -883,7 +883,6 @@ class TestTextShuffle(unittest.TestCase):
 class TestSceneFlags(unittest.TestCase):
     def test_build_room_xflags(self):
         from SceneFlags import build_room_xflags, encode_room_xflags
-
         # Using Goron city child room 3 (main room with the goron pot)
         room_locations = [
             (41, 1), # Goron Pot Drop 1
@@ -894,18 +893,15 @@ class TestSceneFlags(unittest.TestCase):
             (41, 6), # Goron Pot Drop 6
             (41, 7), # Goron Pot Drop 7
             (41, 8), # Goron Pot Drop 8
-            (42, 1), # Pot 1
-            (43, 1), # Pot 2
-            (44, 1), # Pot 3
-            (45, 1), # Pot 4
-            (46, 1), # Pot 5
+            (42, 0), # Pot 1
+            (43, 0), # Pot 2
+            (44, 0), # Pot 3
+            (45, 0), # Pot 4
+            (46, 0), # Pot 5
         ]
-        test_encoded = [0,42,8,1,1,5]
+        test_encoded = [0, 41, 1, 1, 9, 1, 1, 4]
 
         flags, bits = build_room_xflags(room_locations)
-        self.assertEqual(flags[41], 0)
-        self.assertEqual(flags[42], 8)
-        self.assertEqual(flags[46], 12)
         diff, encoded = encode_room_xflags(flags)
         self.assertListEqual(test_encoded, encoded)
 

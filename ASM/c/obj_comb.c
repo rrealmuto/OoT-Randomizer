@@ -27,7 +27,7 @@ void obj_comb_drop_collectible(z64_actor_t* actor, int16_t params) {
 }
 
 void ObjComb_Update(z64_actor_t* thisx, z64_game_t* game) {
-    ObjComb *this = (ObjComb *)thisx;
+    ObjComb* this = (ObjComb*)thisx;
     if (this->actor.dropFlag > 0) {
         this->actor.dropFlag --;
     }

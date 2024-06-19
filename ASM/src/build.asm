@@ -148,7 +148,13 @@ RANDO_CONTEXT:
 
 .align 0x10
 
-.skip 0x200 ; Temporary address bump to avoid audio issues
+; This address bump avoids an audio issue where random crackling or buzzing noises play at possibly
+; very high volume during the entire game, even on the N64 logo screen. If this issue reappears,
+; double this number.
+;
+; For possible proper fixes, see:
+; https://discord.com/channels/274180765816848384/512048482677424138/1251961594380947587
+.skip 0x200
 
 AUDIO_THREAD_MEM_START:
 .skip AUDIO_THREAD_MEM_SIZE

@@ -4,8 +4,6 @@ from collections.abc import Callable, Iterable
 from enum import IntEnum
 from typing import TYPE_CHECKING, Optional, Any
 
-from ItemPool import IGNORE_LOCATION
-
 if sys.version_info >= (3, 10):
     from typing import TypeAlias
 else:
@@ -299,7 +297,7 @@ class SaveContext:
 
         if item in SaveContext.bottle_types:
             self.give_bottle(item, count)
-        elif item in ["Piece of Heart", "Piece of Heart (Treasure Chest Game)"]:
+        elif item in ("Piece of Heart", "Piece of Heart (Treasure Chest Game)"):
             self.give_health(count / 4)
         elif item == "Heart Container":
             self.give_health(count)
@@ -307,8 +305,6 @@ class SaveContext:
             self.give_bombchu_item(world)
         elif "Fish" in item and "lb" in item: # Pond fish
             self.give_pond_fish(world, item)
-        elif item == IGNORE_LOCATION:
-            pass # used to disable some skipped and inaccessible locations
         elif item in SaveContext.save_writes_table:
             if item.startswith('Silver Rupee (') or item.startswith('Silver Rupee Pouch ('):
                 puzzle = item[:-1].split(' (', 1)[1]
@@ -448,8 +444,6 @@ class SaveContext:
                     continue
 
                 address_value.value = value
-        elif item in ["Nothing", "Fairy Drop"]: # Don't do anything for Nothing and Fairy Drops
-            return
         else:
             raise ValueError("Cannot give unknown starting item %s" % item)
 
@@ -1172,6 +1166,9 @@ class SaveContext:
     }
 
     save_writes_table: dict[str, dict[str, Any]] = {
+        "Nothing"        : {},
+        "Recovery Heart" : {},
+        "Fairy Drop"     : {},
         "Deku Stick Capacity": {
             'item_slot.stick'            : 'stick',
             'upgrades.stick_upgrade'     : [2, 3],

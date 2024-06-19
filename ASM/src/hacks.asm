@@ -150,9 +150,9 @@ Gameplay_InitSkybox:
 ;   skip
 ;   sb      a1, 0x3468(v0)
     li      t6, FONTLOADSTATUS_EXTENDED
-    .skip   4
+.skip 4
     lbu     t7, 0x00(v0)
-    .skip   12
+.skip 12
     sb      a1, 0x00(v0)
 
 ; Hacks in AudioLoad_SyncLoadFont
@@ -397,7 +397,7 @@ Gameplay_InitSkybox:
 ;   sw      s1, 0x0020(sp)
 .headersize(0x800110A0 - 0xA87000)
 .org 0x80012938
-    j   en_item00_update_hook
+    j       en_item00_update_hook
     nop
 en_item00_update_continue:
 
@@ -884,7 +884,7 @@ Actor_Spawn_Continue_Jump_Point:
 ; Replaces:
 ;   jal     0x80066C90
 ;   or      a0, s0, r0
-    .skip   4
+.skip 4
     addiu   a0, s0, -0x10
 
 ; Hack for enemy drop shuffle to display enemy markers on the minimap
@@ -1636,9 +1636,9 @@ nop
 ; lhu t9, 0xef0(v1)
 .orga 0xEBB85C
     jal     Deku_Check_Sold_Out
-    .skip 4
+.skip 4
     bnez    v0, @Deku_Check_True
-    .skip 4
+.skip 4
     b       @Deku_Check_False
 .orga 0xEBB8B0
 @Deku_Check_True:
@@ -4395,18 +4395,17 @@ DemoEffect_DrawJewel_AfterHook:
 .include "hacks/z_parameter.asm"
 .include "hacks/ovl_en_kz.asm"
 .include "hacks/ovl_en_dns.asm"
-.include("hacks/ovl_bg_spot18_basket.asm")
-.include("hacks/ovl_obj_mure3.asm")
-.include("hacks/ovl_bg_haka_tubo.asm")
-.include("hacks/en_item00.asm")
+.include "hacks/ovl_bg_spot18_basket.asm"
+.include "hacks/ovl_obj_mure3.asm"
+.include "hacks/ovl_bg_haka_tubo.asm"
+.include "hacks/en_item00.asm"
 .include "hacks/ovl/ovl_kaleido_scope.asm"
-.include("hacks/ovl_en_kusa.asm")
-.include("hacks/ovl_obj_mure2.asm")
-.include("hacks/ovl_obj_hana.asm")
-.include("hacks/ovl_fishing.asm")
-.include("hacks/ovl_en_ishi.asm")
-.include("hacks/ovl_obj_hamishi.asm")
-.include("hacks/code.asm")
-.include("hacks/object_fixes.asm")
-.include("hacks/ovl_boss_ganon.asm")
-
+.include "hacks/ovl_en_kusa.asm"
+.include "hacks/ovl_obj_mure2.asm"
+.include "hacks/ovl_obj_hana.asm"
+.include "hacks/ovl_fishing.asm"
+.include "hacks/ovl_en_ishi.asm"
+.include "hacks/ovl_obj_hamishi.asm"
+.include "hacks/code.asm"
+.include "hacks/object_fixes.asm"
+.include "hacks/ovl_boss_ganon.asm"

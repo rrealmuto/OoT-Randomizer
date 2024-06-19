@@ -7,7 +7,7 @@ if TYPE_CHECKING:
     from World import World
 
 # Loop through all of the locations in the world. Extract ones that use our flag system to start building our xflag tables
-def build_xflags_from_world(world: World) ->  tuple[dict[int, dict[tuple[int,int], list[tuple[int,int]]]], list[tuple[Location, tuple[int,int,int,int],tuple[int,int,int,int]]]]:
+def build_xflags_from_world(world: World) ->  tuple[dict[int, dict[tuple[int, int], list[tuple[int, int]]]], list[tuple[Location, tuple[int, int, int, int], tuple[int, int, int, int]]]]:
     scene_flags = {}
     alt_list = []
     for i in range(0, 101):

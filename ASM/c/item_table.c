@@ -330,6 +330,7 @@ item_row_t item_table[] = {
 
     [0x0119] = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x90B4, 0x0177, 0x9E, no_upgrade, full_heal, -1, -1, NULL), // Fairy
     [0x011A] = ITEM_ROW(0x53,       BROWN_CHEST, 0x41, -1, 0x90B5, 0x0177, 0x9F, no_upgrade, no_effect, -1, -1, NULL), // Nothing :)
+
     // 0x011B through 0x0126 reserved for https://github.com/OoTRandomizer/OoT-Randomizer/pull/2108
 
     [0x0127] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x0080, 0x01AB, 0x9B, no_upgrade, give_quest_item, 18, -1, NULL), // Kokiri Emerald

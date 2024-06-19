@@ -198,6 +198,10 @@ def check_code_style(fix_errors: bool = False) -> None:
     for path in (repo_dir / 'ASM' / 'src').iterdir():
         if path.suffix == '.asm':
             check_file_format(path)
+    for subdir in ('drop_overrides', 'hacks'):
+        for path in (repo_dir / 'ASM' / 'src' / subdir).iterdir():
+            if path.suffix == '.asm':
+                check_file_format(path)
     for subdir in ('Glitched World', 'Hints', 'World'):
         for path in (repo_dir / 'data' / subdir).iterdir():
             if path.suffix == '.json':
@@ -232,13 +236,13 @@ def check_table_sizes() -> None:
     if len(xflag_room_blob) > rom.sym_length('xflag_room_blob'):
         error(f'Exceed xflag blob table size: {len(xflag_room_blob)}', False)
     alt_list_bytes = get_alt_list_bytes(alt_list)
-    if(len(alt_list_bytes) > rom.sym_length('alt_overrides')):
+    if len(alt_list_bytes) > rom.sym_length('alt_overrides'):
         error(f'Exceeded alt override table size: {len(alt_list)}', False)
 
     override_table = get_override_table(world)
     override_table_bytes = get_override_table_bytes(override_table)
     if len(override_table_bytes) >= rom.sym_length('cfg_item_overrides'):
-        error("Exceeded override table size: " + str(len(override_table)), False)
+        error(f'Exceeded override table size: {len(override_table)}', False)
 
 def run_ci_checks() -> NoReturn:
     parser = argparse.ArgumentParser()

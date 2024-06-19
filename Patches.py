@@ -1447,7 +1447,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
     # Update "Princess Ruto got the Spiritual Stone!" text before the midboss in Jabu
     location = world.bigocto_location()
-    if location is None or location.item is None:
+    if location is None or location.item is None or location.item.name == 'Nothing':
         jabu_item = None
         new_message = f"\x08Princess Ruto got \x01\x05\x43nothing\x05\x40!\x01Well, that's disappointing...\x02"
     elif location.item.looks_like_item is not None:
@@ -1522,8 +1522,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
         for location in actor_override_locations:
             patch_actor_override(location, rom)
-        #for location in rupeetower_locations:
-        #    patch_rupee_tower(location, rom)
 
     if world.shuffle_silver_rupees:
         rom.write_byte(rom.sym('SHUFFLE_SILVER_RUPEES'), 1)
@@ -1558,7 +1556,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
             rom.write_int16(0x32E92C6, 0xFD78)
 
     # Write flag table data
-    #collectible_flag_table, alt_list = get_collectible_flag_table(world)
     xflags_tables, alt_list = build_xflags_from_world(world)
     xflag_scene_table, xflag_room_table, xflag_room_blob, max_bit = build_xflag_tables(xflags_tables)
     rom.write_bytes(rom.sym('xflag_scene_table'), xflag_scene_table)
@@ -1572,15 +1569,9 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     num_collectible_flag_bytes += num_collectible_flag_bytes % 8
     rom.write_bytes(rom.sym('num_override_flags'), num_collectible_flag_bytes.to_bytes(2, 'big'))
 
-    #collectible_flag_table_bytes, num_collectible_flags = get_collectible_flag_table_bytes(collectible_flag_table)
     alt_list_bytes = get_alt_list_bytes(alt_list)
-    #if len(collectible_flag_table_bytes) > 600:
-    #    raise RuntimeError(f'Exceeded collectible override table size: {len(collectible_flag_table_bytes)}')
-    #rom.write_bytes(rom.sym('collectible_scene_flags_table'), collectible_flag_table_bytes)
-    #num_collectible_flags += num_collectible_flags % 8
-    #rom.write_bytes(rom.sym('num_override_flags'), num_collectible_flags.to_bytes(2, 'big'))
-    if(len(alt_list_bytes) > rom.sym_length('alt_overrides')):
-        raise(RuntimeError(f'Exceeded alt override table size: {len(alt_list)}'))
+    if len(alt_list_bytes) > rom.sym_length('alt_overrides'):
+        raise RuntimeError(f'Exceeded alt override table size: {len(alt_list)}')
     rom.write_bytes(rom.sym('alt_overrides'), alt_list_bytes)
 
     # Write item overrides
@@ -1588,7 +1579,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     override_table = get_override_table(world)
     override_table_bytes = get_override_table_bytes(override_table)
     if len(override_table_bytes) >= rom.sym_length('cfg_item_overrides'):
-        raise(RuntimeError("Exceeded override table size: " + str(len(override_table))))
+        raise RuntimeError("Exceeded override table size: " + str(len(override_table)))
     rom.write_bytes(rom.sym('cfg_item_overrides'), override_table_bytes)
     rom.write_byte(rom.sym('PLAYER_ID'), world.id + 1)  # Write player ID
 
@@ -2423,7 +2414,7 @@ def add_to_extended_object_table(rom: Rom, object_id: int, start_address: int, e
     extended_id = object_id - NUM_VANILLA_OBJECTS - 1
     extended_object_table = rom.sym('EXTENDED_OBJECT_TABLE')
     if (extended_id + 1) * 8 > rom.sym_length('EXTENDED_OBJECT_TABLE'):
-        raise RuntimeError(f"Exceeded EXTENDED_OBJECT_TABLE size: {extended_id}")
+        raise RuntimeError(f'Exceeded EXTENDED_OBJECT_TABLE size: {extended_id}')
     rom.write_int32s(extended_object_table + extended_id * 8, [start_address, end_address])
 
 

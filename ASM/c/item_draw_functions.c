@@ -390,8 +390,8 @@ void draw_gi_fairy_lantern(z64_game_t* game, uint32_t draw_id) {
     pop_sys_matrix();
 }
 
-void draw_gi_fairy(z64_game_t *game, uint32_t draw_id) {
-    z64_gfx_t *gfx = game->common.gfx;
+void draw_gi_fairy(z64_game_t* game, uint32_t draw_id) {
+    z64_gfx_t* gfx = game->common.gfx;
 
     append_setup_dl_25_to_xlu(gfx);
     gSPSegment(gfx->poly_xlu.p++, 0x08,
@@ -629,8 +629,7 @@ void draw_gi_c_button_horizontal(z64_game_t* game, uint32_t draw_id) {
     gSPDisplayList(gfx->poly_opa.p++, item_draw_table[draw_id].args[0].dlist);
 }
 
-void draw_gi_nothing(z64_game_t *game, uint32_t draw_id) {
-
+void draw_gi_nothing(z64_game_t* game, uint32_t draw_id) {
 }
 void draw_gi_flame(z64_game_t *game, colorRGBA8_t prim, colorRGBA8_t env) {
     z64_gfx_t *gfx = game->common.gfx;
