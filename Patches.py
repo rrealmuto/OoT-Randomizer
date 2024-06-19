@@ -2068,6 +2068,8 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     # update warp song preview text boxes
     update_warp_song_text(messages, world)
 
+    rom.write_int32(0xC231B8, 0x00202000) # Add light block damage type to light arrow collider
+
     if world.settings.blue_fire_arrows:
         rom.write_byte(0xC230C1, 0x29)  # Adds AT_TYPE_OTHER to arrows to allow collision with red ice
         rom.write_byte(0xDB38FE, 0xEF)  # disables ice arrow collision on secondary cylinder for red ice crystals
