@@ -18,38 +18,18 @@ int32_t DoorWarp1_PlayerInRange(z64_actor_t* actor, z64_game_t* game) {
     return false;
 };
 
-// Routine taken from Majora's Mask blue warps
 int32_t DoorWarp1_PlayerInRange_Overwrite(z64_actor_t* actor, z64_game_t* game) {
     // Check vanilla range
     if (DoorWarp1_PlayerInRange(actor, game)) {
-
-        // Check if dungeon reward has already been collected
-        if (extended_savectx.collected_dungeon_rewards[game->scene_index - 0x0011]) {
-            return true;
+        uint8_t boss_idx = game->scene_index - 0x0011;
+        // queue the item if not already collected
+        if (!extended_savectx.collected_dungeon_rewards[boss_idx]) {
+            push_delayed_item(0x05 + boss_idx);
+            extended_savectx.collected_dungeon_rewards[boss_idx] = true;
         }
-
-        // Null out blue warp parent if it is still the dungeon boss
-        if (z64_ActorHasParent(actor, game) && (actor->parent != &z64_link.common)) {
-            actor->parent = NULL;
-        }
-
-        // Link will attach as the parent actor once the GetItem is accepted. Until then, offer the dungeon reward for Link.
-        if (!z64_ActorHasParent(actor, game)) {
-            // Put a dummy item value on the blue warp, which will be overwritten by the medallions
-            z64_ActorOfferGetItem(actor, game, 0x65, 60.0f, 20.0f);
-            return false;
-        }
-
-        // Wait until Link closes the textbox displaying the getItem reward
-        if (z64_MessageGetState(((uint8_t*)(&z64_game)) + 0x20D8) == TEXT_STATE_CLOSING) {
-            if ((game->scene_index != 0x17) && (game->scene_index != 0x18)) {
-                extended_savectx.collected_dungeon_rewards[game->scene_index - 0x0011] = true;
-            }
-            return true;
-        }
+        // immediately activate the blue warp. Queued item will be given after the warp
+        return true;
     }
-
-
     return false;
 }
 

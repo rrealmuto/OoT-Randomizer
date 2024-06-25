@@ -575,7 +575,7 @@ def get_checked_areas(world: World, checked: set[str]) -> set[HintArea | str]:
         except Exception:
             return check
         # Don't consider dungeons as already hinted from the reward hint on the Temple of Time altar
-        if (location.type == 'Boss' or location.name == 'ToT Reward from Rauru') and world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward'):
+        if location.type == 'Boss' and world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward'):
             return None
         return HintArea.at(location)
 
