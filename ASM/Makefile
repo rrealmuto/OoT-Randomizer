@@ -43,11 +43,7 @@ $(OBJDIR)/%_bin.o: $(RESOURCEDIR)/%.bin
 $(RESOURCEDIR):
 	mkdir -p $@
 
-$(OBJECTS): | $(OBJDIR)
-
-$(RESOURCES): | $(RESOURCEDIR)
-
-bundle: $(OBJECTS) $(RESOURCES)
+bundle: $(OBJDIR) $(OBJECTS) $(RESOURCEDIR) $(RESOURCES)
 	$(LD) -T linker_script.ld -T ootSymbols.ld -o $(OUTDIR)/bundle.o -i -L. $(patsubst %.o,-l:%.o,$(OBJECTS) $(RESOURCES))
 
 symbols: bundle
