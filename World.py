@@ -54,7 +54,7 @@ class World:
 
         self.parser: Rule_AST_Transformer = Rule_AST_Transformer(self)
         self.event_items: set[str] = set()
-        self.settings: Settings = settings
+        self.settings: Settings = settings.copy()
         self.distribution: WorldDistribution = settings.distribution.world_dists[world_id]
 
         # rename a few attributes...
