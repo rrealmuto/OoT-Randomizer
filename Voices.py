@@ -109,6 +109,279 @@ adult_link_sfx = [
     ("Adult Link - Dramatic Gasp", 0x86)
 ]
 
+voice_link_adult_attack
+voice_link_adult_attack_long
+voice_link_adult_epona
+voice_link_adult_ledge_grab
+voice_link_adult_ledge_climb
+voice_link_adult_hurt
+voice_link_adult_frozen
+voice_link_adult_fall_short
+voice_link_adult_fall_long
+voice_link_adult_low_health
+voice_link_adult_drink_gasp
+voice_link_adult_death
+voice_link_adult_wallmaster
+voice_link_adult_grabbed
+voice_link_adult_sneeze
+voice_link_adult_sweat
+voice_link_adult_drink
+voice_link_adult_idle
+voice_link_adult_sword_swing_unused
+voice_link_child_shiver
+voice_link_adult_jump
+voice_link_adult_cast_spell1
+voice_link_adult_shock
+voice_link_adult_cast_spell2
+voice_link_adult_push_block
+voice_link_adult_hookshot_hang
+voice_link_adult_knockback
+voice_link_adult_unused
+voice_link_adult_cast_spell3
+voice_link_adult_fall_long
+voice_link_adult_knockback_unused
+voice_link_adult_attack
+voice_link_child_attack
+voice_link_child_attack_long
+voice_link_adult_epona
+voice_link_child_ledge_grab
+voice_link_child_ledge_climb
+voice_link_child_hurt
+voice_link_child_frozen
+voice_link_child_fall_short
+voice_link_child_fall_long
+voice_link_child_low_health
+voice_link_child_drink_gasp
+voice_link_child_death
+voice_link_child_wallmaster
+voice_link_child_grabbed
+voice_link_child_sneeze
+voice_link_child_sweat
+voice_link_child_drink
+voice_link_child_idle
+voice_link_child_sword_swing_unused
+voice_link_child_shiver
+voice_link_child_jump
+voice_link_child_cast_spell1
+voice_link_child_shock
+voice_link_child_cast_spell2
+voice_link_child_push_block
+voice_link_child_hookshot_hang
+voice_link_child_knockback
+voice_link_child_unused
+voice_link_child_cast_spell3
+voice_link_child_fall_long
+voice_link_child_cutscene_attacked
+voice_link_adult_attack
+
+/* 0x6800 */ DEFINE_SFX(NA_SE_VO_LI_SWORD_N, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6801 */ DEFINE_SFX(NA_SE_VO_LI_SWORD_L, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6802 */ DEFINE_SFX(NA_SE_VO_LI_LASH, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6803 */ DEFINE_SFX(NA_SE_VO_LI_HANG, 0x20, 2, 0, SFX_FLAG_10)
+/* 0x6804 */ DEFINE_SFX(NA_SE_VO_LI_CLIMB_END, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6805 */ DEFINE_SFX(NA_SE_VO_LI_DAMAGE_S, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6806 */ DEFINE_SFX(NA_SE_VO_LI_FREEZE, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6807 */ DEFINE_SFX(NA_SE_VO_LI_FALL_S, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6808 */ DEFINE_SFX(NA_SE_VO_LI_FALL_L, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6809 */ DEFINE_SFX(NA_SE_VO_LI_BREATH_REST, 0x30, 2, 1, SFX_FLAG_10)
+/* 0x680A */ DEFINE_SFX(NA_SE_VO_LI_BREATH_DRINK, 0x30, 2, 1, SFX_FLAG_10)
+/* 0x680B */ DEFINE_SFX(NA_SE_VO_LI_DOWN, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x680C */ DEFINE_SFX(NA_SE_VO_LI_TAKEN_AWAY, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x680D */ DEFINE_SFX(NA_SE_VO_LI_HELD, 0x50, 2, 0, SFX_FLAG_10)
+/* 0x680E */ DEFINE_SFX(NA_SE_VO_LI_SNEEZE, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x680F */ DEFINE_SFX(NA_SE_VO_LI_SWEAT, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6810 */ DEFINE_SFX(NA_SE_VO_LI_DRINK, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6811 */ DEFINE_SFX(NA_SE_VO_LI_RELAX, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6812 */ DEFINE_SFX(NA_SE_VO_LI_SWORD_PUTAWAY, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6813 */ DEFINE_SFX(NA_SE_VO_LI_GROAN, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6814 */ DEFINE_SFX(NA_SE_VO_LI_AUTO_JUMP, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6815 */ DEFINE_SFX(NA_SE_VO_LI_MAGIC_NALE, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6816 */ DEFINE_SFX(NA_SE_VO_LI_SURPRISE, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6817 */ DEFINE_SFX(NA_SE_VO_LI_MAGIC_FROL, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6818 */ DEFINE_SFX(NA_SE_VO_LI_PUSH, 0x30, 2, 2, SFX_FLAG_10)
+/* 0x6819 */ DEFINE_SFX(NA_SE_VO_LI_HOOKSHOT_HANG, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x681A */ DEFINE_SFX(NA_SE_VO_LI_LAND_DAMAGE_S, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x681B */ DEFINE_SFX(NA_SE_VO_LI_NULL_0x1b, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x681C */ DEFINE_SFX(NA_SE_VO_LI_MAGIC_ATTACK, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x681D */ DEFINE_SFX(NA_SE_VO_BL_DOWN, 0x80, 2, 0, SFX_FLAG_10)
+/* 0x681E */ DEFINE_SFX(NA_SE_VO_LI_DEMO_DAMAGE, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x681F */ DEFINE_SFX(NA_SE_VO_LI_ELECTRIC_SHOCK_LV, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6820 */ DEFINE_SFX(NA_SE_VO_LI_SWORD_N_KID, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6821 */ DEFINE_SFX(NA_SE_VO_LI_ROLLING_CUT_KID, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6822 */ DEFINE_SFX(NA_SE_VO_LI_LASH_KID, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6823 */ DEFINE_SFX(NA_SE_VO_LI_HANG_KID, 0x20, 2, 0, SFX_FLAG_10)
+/* 0x6824 */ DEFINE_SFX(NA_SE_VO_LI_CLIMB_END_KID, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6825 */ DEFINE_SFX(NA_SE_VO_LI_DAMAGE_S_KID, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6826 */ DEFINE_SFX(NA_SE_VO_LI_FREEZE_KID, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6827 */ DEFINE_SFX(NA_SE_VO_LI_FALL_S_KID, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6828 */ DEFINE_SFX(NA_SE_VO_LI_FALL_L_KID, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6829 */ DEFINE_SFX(NA_SE_VO_LI_BREATH_REST_KID, 0x30, 2, 1, SFX_FLAG_10)
+/* 0x682A */ DEFINE_SFX(NA_SE_VO_LI_BREATH_DRINK_KID, 0x30, 2, 1, SFX_FLAG_10)
+/* 0x682B */ DEFINE_SFX(NA_SE_VO_LI_DOWN_KID, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x682C */ DEFINE_SFX(NA_SE_VO_LI_TAKEN_AWAY_KID, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x682D */ DEFINE_SFX(NA_SE_VO_LI_HELD_KID, 0x50, 2, 0, SFX_FLAG_10)
+/* 0x682E */ DEFINE_SFX(NA_SE_VO_LI_SNEEZE_KID, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x682F */ DEFINE_SFX(NA_SE_VO_LI_SWEAT_KID, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6830 */ DEFINE_SFX(NA_SE_VO_LI_DRINK_KID, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6831 */ DEFINE_SFX(NA_SE_VO_LI_RELAX_KID, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6832 */ DEFINE_SFX(NA_SE_VO_LI_SWORD_PUTAWAY_KID, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6833 */ DEFINE_SFX(NA_SE_VO_LI_GROAN_KID, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6834 */ DEFINE_SFX(NA_SE_VO_LI_AUTO_JUMP_KID, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6835 */ DEFINE_SFX(NA_SE_VO_LI_MAGIC_NALE_KID, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6836 */ DEFINE_SFX(NA_SE_VO_LI_SURPRISE_KID, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6837 */ DEFINE_SFX(NA_SE_VO_LI_MAGIC_FROL_KID, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x6838 */ DEFINE_SFX(NA_SE_VO_LI_PUSH_KID, 0x30, 1, 2, SFX_FLAG_10)
+/* 0x6839 */ DEFINE_SFX(NA_SE_VO_LI_HOOKSHOT_HANG_KID, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x683A */ DEFINE_SFX(NA_SE_VO_LI_LAND_DAMAGE_S_KID, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x683B */ DEFINE_SFX(NA_SE_VO_LI_NULL_0x1b_KID, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x683C */ DEFINE_SFX(NA_SE_VO_LI_MAGIC_ATTACK_KID, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x683D */ DEFINE_SFX(NA_SE_VO_BL_DOWN_KID, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x683E */ DEFINE_SFX(NA_SE_VO_LI_DEMO_DAMAGE_KID, 0x30, 2, 0, SFX_FLAG_10)
+/* 0x683F */ DEFINE_SFX(NA_SE_VO_LI_ELECTRIC_SHOCK_LV_KID, 0x30, 2, 0, SFX_FLAG_10)
+
+        <Effects>
+            <Effect Name="Adult Link - Attack 1" Enum="LINK_ADULT_ATTACK_0"/>
+            <Effect Name="Adult Link - Attack 2" Enum="LINK_ADULT_ATTACK_1"/>
+            <Effect Name="Adult Link - Attack 3" Enum="LINK_ADULT_ATTACK_2"/>
+            <Effect Name="Adult Link - Attack 4" Enum="LINK_ADULT_ATTACK_3"/>
+            <Effect Name="Adult Link - Strong Attack 1" Enum="LINK_ADULT_MAJOR_0"/>
+            <Effect Name="Adult Link - Strong Attack 2" Enum="LINK_ADULT_MAJOR_1"/>
+            <Effect Name="Adult Link - Dangling Grunt" Enum="LINK_ADULT_LEDGE_0"/>
+            <Effect Name="Adult Link - Climb Edge" Enum="LINK_ADULT_CLIMB"/>
+            <Effect Name="Adult Link - Dangling Gasp 1" Enum="LINK_ADULT_LEDGE_1"/>
+            <Effect Name="Adult Link - Hurt 1" Enum="LINK_ADULT_HURT_0"/>
+            <Effect Name="Adult Link - Hurt 2" Enum="LINK_ADULT_HURT_1"/>
+            <Effect Name="Adult Link - Hurt 3" Enum="LINK_ADULT_HURT_2"/>
+            <Effect Name="Adult Link - Hurt 4" Enum="LINK_ADULT_HURT_3"/>
+            <Effect Name="Adult Link - Knocked Back" Enum="LINK_ADULT_KNOCKBACK"/>
+            <Effect Name="Adult Link - Hurt 5" Enum="LINK_ADULT_HURT_4"/>
+            <Effect Name="Adult Link - Falling 1" Enum="LINK_ADULT_FALL_0"/>
+            <Effect Name="Adult Link - Falling 2" Enum="LINK_ADULT_FALL_1"/>
+            <Effect Name="Adult Link - Gasp 1" Enum="LINK_ADULT_GASP_0"/>
+            <Effect Name="Adult Link - Gasp 2" Enum="LINK_ADULT_GASP_1"/>
+            <Effect Name="Adult Link - Pant 1" Enum="LINK_ADULT_PANT_0"/>
+            <Effect Name="Child Link - Dying Gasp" Enum="LINK_CHILD_DEATH_0"/>
+            <Effect Name="Adult Link - Spur Horse 1" Enum="LINK_ADULT_SPUR_0"/>
+            <Effect Name="Adult Link - Spur Horse 2" Enum="LINK_ADULT_SPUR_1"/>
+            <Effect Name="Adult Link - Pant 2" Enum="LINK_ADULT_PANT_1"/>
+            <Effect Name="Adult Link - Painful Landing" Enum="LINK_ADULT_FALL_DMG"/>
+            <Effect Name="Adult Link - Dangling Gasp 2" Enum="LINK_ADULT_LEDGE_2"/>
+            <Effect Name="Adult Link - Hup" Enum="LINK_ADULT_JUMP"/>
+            <Effect Name="Adult Link - Gasp 3" Enum="LINK_ADULT_GASP_2"/>
+            <Effect Name="Child Link - Attack 1" Enum="LINK_CHILD_ATTACK_0"/>
+            <Effect Name="Child Link - Attack 2" Enum="LINK_CHILD_ATTACK_1"/>
+            <Effect Name="Child Link - Attack 3" Enum="LINK_CHILD_ATTACK_2"/>
+            <Effect Name="Child Link - Attack 4" Enum="LINK_CHILD_ATTACK_3"/>
+            <Effect Name="Child Link - Strong Attack 1" Enum="LINK_CHILD_STRONG_0"/>
+            <Effect Name="Child Link - Strong Attack 2" Enum="LINK_CHILD_STRONG_1"/>
+            <Effect Name="Child Link - Dangling Gasp 1" Enum="LINK_CHILD_LEDGE_0"/>
+            <Effect Name="Child Link - Sigh 1" Enum="LINK_CHILD_SIGH_0"/>
+            <Effect Name="Child Link - Sigh 2" Enum="LINK_CHILD_SIGH_1"/>
+            <Effect Name="Child Link - Hurt 1" Enum="LINK_CHILD_HURT_0"/>
+            <Effect Name="Child Link - Hurt 2" Enum="LINK_CHILD_HURT_1"/>
+            <Effect Name="Child Link - Hurt 3" Enum="LINK_CHILD_HURT_2"/>
+            <Effect Name="Child Link - Hurt 4" Enum="LINK_CHILD_HURT_3"/>
+            <Effect Name="Child Link - Knocked Back" Enum="LINK_CHILD_KNOCKBACK"/>
+            <Effect Name="Child Link - Hurt 5" Enum="LINK_CHILD_HURT_4"/>
+            <Effect Name="Child Link - Falling 1" Enum="LINK_CHILD_FALL_0"/>
+            <Effect Name="Child Link - Falling 2" Enum="LINK_CHILD_FALL_1"/>
+            <Effect Name="Child Link - Gasp 1" Enum="LINK_CHILD_GASP_0"/>
+            <Effect Name="Child Link - Gasp 2" Enum="LINK_CHILD_GASP_1"/>
+            <Effect Name="Child Link - Wheeze" Enum="LINK_CHILD_WHEEZE"/>
+            <Effect Name="Child Link - Exhausted Panting" Enum="LINK_CHILD_PANT"/>
+            <Effect Name="Child Link - Painful Landing" Enum="LINK_CHILD_FALL_DMG"/>
+            <Effect Name="Child Link - Danging Gasp 2" Enum="LINK_CHILD_LEDGE_1"/>
+            <Effect Name="Child Link - Glug" Enum="LINK_CHILD_DRINK"/>
+            <Effect Name="Child Link - Refreshed" Enum="LINK_CHILD_REFRESH"/>
+            <Effect Name="Child Link - Hup 1" Enum="LINK_CHILD_JUMP_0"/>
+            <Effect Name="Child Link - Hup 2" Enum="LINK_ADULT_JUMP_1"/>
+            <Effect Name="Adult Link - Glug" Enum="LINK_ADULT_DRINK"/>
+            <Effect Name="Adult Link - Refreshed" Enum="LINK_ADULT_REFRESH"/>
+            <Effect Name="Navi - Watch Out!" Enum="NAVI_WATCH_OUT"/>
+            <Effect Name="Navi - Look!" Enum="NAVI_LOOK"/>
+            <Effect Name="Navi - Hey!" Enum="NAVI_HEY"/>
+            <Effect Name="Adult Link - Lift" Enum="LINK_ADULT_LIFT"/>
+            <Effect Name="Adult Link - Cast Spell" Enum="LINK_ADULT_SPELL"/>
+            <Effect Name="Child Link - Charge Up" Enum="LINK_CHILD_CHARGE"/>
+            <Effect Name="Child Link - Cast Spell" Enum="LINK_CHILD_SPELL"/>
+            <Effect Name="Child Link - Dying Gasp" Enum="LINK_CHILD_DEATH_1"/>
+            <Effect Name="Child Link - Strangled" Enum="LINK_CHILD_STRANGLED"/>
+            <Effect Name="Child Link - Gasp 3" Enum="LINK_CHILD_GASP_2"/>
+            <Effect Name="Child Link - Shiver" Enum="LINK_CHILD_SHIVER"/>
+            <Effect/>
+            <Effect Name="Child Link - Sneeze" Enum="LINK_CHILD_SNEEZE"/>
+            <Effect Name="Child Link - Grunt" Enum="LINK_CHILD_GRUNT"/>
+            <Effect Name="Child Link - Moans From Heat" Enum="LINK_CHILD_HEAT_0"/>
+            <Effect Name="Child Link - Awakening Grunt" Enum="LINK_CHILD_WAKE_0"/>
+            <Effect Name="Child Link - Wiping Off Sweat" Enum="LINK_CHILD_HEAT_1"/>
+            <Effect Name="Child Link - Yawn Starts" Enum="LINK_CHILD_WAKE_1"/>
+            <Effect Name="Child Link - Yawn and Stretch" Enum="LINK_CHILD_WAKE_2"/>
+            <Effect Name="Child Link - Stretch Refreshingly" Enum="LINK_CHILD_WAKE_3"/>
+            <Effect Name="Adult Link - Hurt 6" Enum="LINK_ADULT_HURT_5"/>
+            <Effect Name="Adult Link - Choking" Enum="LINK_ADULT_CHOKE"/>
+            <Effect Name="Adult Link - Gasping" Enum="LINK_ADULT_GASPING"/>
+            <Effect Name="Adult Link - Small Gasp" Enum="LINK_ADULT_GASP_3"/>
+            <Effect Name="Adult Link - Unsettled Moan" Enum="LINK_ADULT_MOAN"/>
+            <Effect Name="Adult Link - Sneeze" Enum="LINK_ADULT_SNEEZE"/>
+            <Effect Name="Adult Link - Sigh 1" Enum="LINK_ADULT_SIGH_0"/>
+            <Effect Name="Adult Link - Sigh 2" Enum="LINK_ADULT_SIGH_1"/>
+            <Effect Name="Adult Link - Sigh 3" Enum="LINK_ADULT_SIGH_2"/>
+            <Effect Name="Adult Link - Stretch Start" Enum="LINK_ADULT_STRETCH_0"/>
+            <Effect Name="Adult Link - Stretching" Enum="LINK_ADULT_STRETCH_1"/>
+            <Effect Name="Adult Link - Finished Stretching" Enum="LINK_ADULT_STRETCH_2"/>
+            <Effect Name="Talon Snoring" Enum="TALON_SNORE"/>
+            <Effect Name="Talon Startled" Enum="TALON_SURPRISE"/>
+            <Effect Name="Talon Distressed" Enum="TALON_CURIOUS"/>
+            <Effect Name="Talon Fearful" Enum="TALON_SCARED"/>
+            <Effect Name="Ingo Yowls" Enum="INGO_MAD"/>
+            <Effect Name="Ingo Exclaims" Enum="INGO_SHOUT"/>
+            <Effect Name="Ingo Spurs Horse 1" Enum="INGO_SPUR_0"/>
+            <Effect Name="Ingo Spurs Horse 2" Enum="INGO_SPUR_1"/>
+            <Effect Name="Great Fairy Laughs" Enum="GREAT_FAIRY_LAUGH_0"/>
+            <Effect Name="Great Fairy Titters" Enum="GREAT_FAIRY_LAUGH_1"/>
+            <Effect Name="Zelda Gasps" Enum="ZELDA_GASP"/>
+            <Effect Name="Girl Screams 1" Enum="GIRL_SCREAM_0"/>
+            <Effect Name="Girl Inquiring 1" Enum="GIRL_INQUIRE_0"/>
+            <Effect Name="Navi - Watch Out! 2" Enum="NAVI_WATCH_OUT_1"/>
+            <Effect Name="Navi - Look! 2" Enum="NAVI_LOOK_1"/>
+            <Effect Name="Navi - Hey! 2" Enum="NAVI_HEY_1"/>
+            <Effect Name="Girl Hurt" Enum="GIRL_HURT"/>
+            <Effect Name="Girl Startled 1" Enum="GIRL_SHOCK_0"/>
+            <Effect Name="Girl Screams 2" Enum="GIRL_SCREAM_1"/>
+            <Effect Name="Girl Delighted" Enum="GIRL_GIGGLE"/>
+            <Effect Name="Girl Surprised 1" Enum="GIRL_SURPRISE_0"/>
+            <Effect Name="Girl Surprised 2" Enum="GIRL_SURPRISE_1"/>
+            <Effect Name="Girl Discombobulated" Enum="GIRL_UPSET"/>
+            <Effect Name="Skulltula Screaming" Enum="SKULLTULA_UPSET"/>
+            <Effect Name="Skulltula Grunts Angrily" Enum="SKULLTULA_ANGRY"/>
+            <Effect Name="Girl Sighs" Enum="GIRL_SIGH_0"/>
+            <Effect Name="Girl Startled 2" Enum="GIRL_SHOCK_1"/>
+            <Effect Name="Girl Inquiring 2" Enum="GIRL_INQUIRE_1"/>
+            <Effect Name="Girl Disappointed" Enum="GIRL_SIGH_1"/>
+            <Effect Name="Girl Laughing" Enum="GIRL_LAUGH"/>
+            <Effect Name="Girl Startled 3" Enum="GIRL_SHOCK_2"/>
+            <Effect Name="Girl Grunts in Effort" Enum="GIRL_GRUNT"/>
+            <Effect Name="Woman Yells" Enum="WOMAN_YELL_0"/>
+            <Effect Name="Woman Startled, Yells" Enum="WOMAN_YELL_1"/>
+            <Effect Name="Woman Grunts" Enum="WOMAN_GRUNT"/>
+            <Effect Name="Navi - Listen!" Enum="NAVI_LISTEN"/>
+            <Effect Name="Woman Hup" Enum="WOMAN_HUP"/>
+            <Effect Name="Girl Screams 3" Enum="GIRL_SCREAM_2"/>
+            <Effect Name="Girl Screams 4" Enum="GIRL_SCREAM_3"/>
+            <Effect Name="Girl Sighs Contentedly" Enum="GIRL_SIGH_2"/>
+            <Effect Name="Girl Surprised 3" Enum="GIRL_SHOCK_3"/>
+            <Effect Name="Girl Scared" Enum="GIRL_SCARED"/>
+            <Effect Name="King Zora Scoots" Enum="MWINK"/>
+            <Effect Name="Navi - Hello!" Enum="NAVI_HELLO"/>
+            <Effect/>
+            <Effect Name="Adult Link - Dramatic Gasp" Enum="LINK_ADULT_GASP_4"/>
+            <Effect Name="Child Link - Dramatic Gasp" Enum="LINK_CHILD_GASP_3"/>
+        </Effects>
+
+sfx_id_map = {
+
+}
+
 class VOICE_PACK_AGE(Enum):
     CHILD = 0
     ADULT = 1

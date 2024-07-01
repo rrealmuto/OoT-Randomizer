@@ -5,7 +5,23 @@ class ML64Pak:
     def __init__(self, pak_data: bytearray):
         self.pak_data = pak_data
 
-    def decompress(self):
+    def decompress(self, directory):
+        
+        # Process the .pak file
+
+        # Starts with a ModLoader64 Header?
+        # 0x0F long
+        # Last 2 bytes: xx yy
+        # xx = the number of items
+        # yy = ???
+
+        # Then each item is of the form:
+        # DEFL xxxx yyyy zzzz
+        # DEFL - deflate command. Means the data is compressed using DEFLATE algorithm. zlib.decompress and handle it
+        # xxxx - file offset to the name of the compressed data file. Strings are terminated with 0xFF instead of 0x00 wtf
+        # yyyy - file offset to the start of the data
+        # zzzz - file offset to the end of the data
+
         header = self.pak_data[0:16]
 
         num_items = header[14]
@@ -39,33 +55,26 @@ class ML64Pak:
 
             decompressed = zlib.decompress(file_compressed)
 
-            file = Path(file_name)
+            file = Path(directory, file_name)
             file.parent.mkdir(parents=True, exist_ok=True)
             file.write_text("toto")
 
             # Open a new file
-            f = open(file_name, 'wb')
+            f = open(file, 'wb')
             f.write(decompressed)
             f.close()
 
+#ex: python3 ML64Unpack.py LuigiSmashUltimateVoice.pak ../../../data/Voices/cache
+
 if __name__ == "__main__":
+    # Read arguments
+    # 1 - input file
+    # 2 - output directory root
+    pak_file = sys.argv[1]
+    out_dir = sys.argv[2]
     # Read the .pak file from the stdin
-    pak_data = sys.stdin.buffer.read()
+    with open(pak_file, 'rb') as f:
+        pak_data = f.read()
 
-    # Process the .pak file
-
-    # Starts with a ModLoader64 Header?
-    # 0x0F long
-    # Last 2 bytes: xx yy
-    # xx = the number of items
-    # yy = ???
-
-    # Then each item is of the form:
-    # DEFL xxxx yyyy zzzz
-    # DEFL - deflate command. Means the data is compressed using DEFLATE algorithm. zlib.decompress and handle it
-    # xxxx - file offset to the name of the compressed data file. Strings are terminated with 0xFF instead of 0x00 wtf
-    # yyyy - file offset to the start of the data
-    # zzzz - file offset to the end of the data
-
-    pak = ML64Pak(pak_data)
-    pak.decompress()
+        pak = ML64Pak(pak_data)
+        pak.decompress(out_dir)
