@@ -3219,7 +3219,7 @@
             "ZF Ice Ledge": "is_adult",
             "ZF Great Fairy Fountain": "has_explosives",
             "ZF Underwater": "is_adult and Iron_Boots and (logic_fewer_tunic_requirements or Zora_Tunic)",
-            "ZF Hidden Cave": "can_pass_boulder('ZF_SECRET_SILVER_BOULDER') and can_pass_boulder('ZF_SECRET_BROWN_BOULDER')"
+            "ZF Hidden Cave Adult": "is_adult and (can_pass_boulder('ZF_SECRET_SILVER_BOULDER') and can_pass_boulder('ZF_SECRET_BROWN_BOULDER'))"
         }
     },
     {
@@ -3249,7 +3249,7 @@
         }
     },
     {
-        "region_name": "ZF Hidden Cave",
+        "region_name": "ZF Hidden Cave Adult",
         "scene": "Zoras Fountain",
         "hint": "ZORAS_FOUNTAIN",
         "locations": {
