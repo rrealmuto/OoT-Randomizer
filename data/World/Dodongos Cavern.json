@@ -153,14 +153,14 @@
             "Dodongos Cavern Blade Room Grass": "can_mow_the_lawn"
         },
         "exits": {
-            "Dodongos Cavern Before Upper Lizalfos": "
+            "Dodongos Cavern Single Eye Switch Room": "
                 here(can_blast_or_smash or Progressive_Strength_Upgrade)",
             "Dodongos Cavern Far Bridge": "
                 is_adult and (logic_dc_jump or Hover_Boots or Longshot)"
         }
     },
     {
-        "region_name": "Dodongos Cavern Before Upper Lizalfos",
+        "region_name": "Dodongos Cavern Single Eye Switch Room",
         "dungeon": "Dodongos Cavern",
         "locations": {
             "Dodongos Cavern Single Eye Switch Room Pot 1": "True",
@@ -168,8 +168,17 @@
             "Dodongos Cavern Single Eye Switch Room Grass": "can_mow_the_lawn"
         },
         "exits": {
-            "Dodongos Cavern Upper Lizalfos": "
+            "Dodongos Cavern Before Upper Lizalfos": "
                 (is_child and (Slingshot or logic_dc_slingshot_skip)) or can_use(Bow)"
+        }
+    },
+    {
+        "region_name": "Dodongos Cavern Before Upper Lizalfos",
+        "dungeon":"Dodongos Cavern",
+        "locations": {
+            "Dodongos Cavern Before Upper Lizalfos Baby Dodongo 1": "can_kill_baby_dodongo",
+            "Dodongos Cavern Before Upper Lizalfos Baby Dodongo 2": "can_kill_baby_dodongo",
+            "Dodongos Cavern Before Upper Lizalfos Baby Dodongo 3": "can_kill_baby_dodongo"
         }
     },
     {
@@ -179,13 +188,10 @@
             "Dodongos Cavern Lizalfos Upper Recovery Heart 1": "True",
             "Dodongos Cavern Lizalfos Upper Recovery Heart 2": "True",
             "Dodongos Cavern Upper Lizalfos 1" : "can_kill_lizalfos",
-            "Dodongos Cavern Upper Lizalfos 2" : "can_kill_lizalfos",
-            "Dodongos Cavern Before Upper Lizalfos Baby Dodongo 1": "can_kill_baby_dodongo",
-            "Dodongos Cavern Before Upper Lizalfos Baby Dodongo 2": "can_kill_baby_dodongo",
-            "Dodongos Cavern Before Upper Lizalfos Baby Dodongo 3": "can_kill_baby_dodongo"
+            "Dodongos Cavern Upper Lizalfos 2" : "can_kill_lizalfos"
         },
         "exits": {
-            "Dodongos Cavern Before Upper Lizalfos": "True",
+            "Dodongos Cavern Before Upper Lizalfos": "(is_adult or Sticks or Slingshot or Bombs or Kokiri_Sword) and (has_soul(Lizalfos_and_Dinalfos))",
             "Dodongos Cavern Far Bridge": "(is_adult or Sticks or Slingshot or Bombs or Kokiri_Sword) and (has_soul(Lizalfos_and_Dinalfos))"
         }
     },
