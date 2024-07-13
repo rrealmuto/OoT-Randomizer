@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v107](#v107)
   * [v106](#v106)
   * [v105](#v105)
   * [v104](#v104)
@@ -132,6 +133,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v107
+  * Fix DC Upper Lizalfos Region soul logic
+
 ### v106
   * Fix ZF hidden cave logic
 
