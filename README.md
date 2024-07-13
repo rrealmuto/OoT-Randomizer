@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v106](#v106)
   * [v105](#v105)
   * [v104](#v104)
   * [v103](#v103)
@@ -131,6 +132,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v106
+  * Fix ZF hidden cave logic
+
 ### v105
   * Merge main Dev
   * Fix duplicate region "Deku Tree Basement Rotating Spike Room"
