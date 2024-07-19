@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v108](#v108)
   * [v107](#v107)
   * [v106](#v106)
   * [v105](#v105)
@@ -133,6 +134,11 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v108
+  * Fix MQ Spirit Child keese logic with fix_broken_actors
+  * Fix MQ Spirit Big Mirror enemy logic.
+  * Fix MQ Shadow Invisible Blades SoT blocks trick logic
+
 ### v107
   * Fix DC Upper Lizalfos Region soul logic
 
