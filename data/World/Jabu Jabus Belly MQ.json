@@ -94,7 +94,7 @@
         },
         "exits": {
             "Jabu Jabus Belly Depths": "has_explosives and can_use(Boomerang) and can_use(Slingshot)",
-            "Jabu Jabus Belly Invisible Enemies Room": "(at('Jabu Jabus Belly Depths', has_soul(Jabu_Jabu_Tentacle)) or jabu_shortcuts)"
+            "Jabu Jabus Belly Invisible Enemies Room": "'Jabu Jabus Belly Parasitic Tentacle Cleared' or jabu_shortcuts"
         }
     },
     {
