@@ -355,11 +355,7 @@
             "Spirit Temple MQ Big Mirror Crate 1": "can_break_crate",
             "Spirit Temple MQ Big Mirror Crate 2": "can_break_crate",
             "Spirit Temple MQ Big Mirror Crate 3": "can_break_crate",
-            "Spirit Temple MQ Big Mirror Crate 4": "can_break_crate",
-            "Spirit Temple MQ Big Mirror Torch Slug": "has_soul(Torch_Slug)",
-            "Spirit Temple MQ Big Mirror Lizalfos": "has_soul(Lizalfos_and_Dinalfos)",
-            "Spirit Temple MQ Big Mirror Bubble 1": "has_soul(Bubble)",
-            "Spirit Temple MQ Big Mirror Bubble 2": "has_soul(Bubble)"
+            "Spirit Temple MQ Big Mirror Crate 4": "can_break_crate"
         },
         "exits": {
             "Spirit Temple Mirror Puzzle": "Megaton_Hammer"
@@ -369,7 +365,11 @@
         "region_name": "Spirit Temple Mirror Puzzle",
         "dungeon": "Spirit Temple",
         "locations": {
-            "Spirit Temple MQ Mirror Puzzle Invisible Chest": "logic_lens_spirit_mq or can_use(Lens_of_Truth)"
+            "Spirit Temple MQ Mirror Puzzle Invisible Chest": "logic_lens_spirit_mq or can_use(Lens_of_Truth)",
+            "Spirit Temple MQ Big Mirror Torch Slug": "has_soul(Torch_Slug)",
+            "Spirit Temple MQ Big Mirror Lizalfos": "has_soul(Lizalfos_and_Dinalfos)",
+            "Spirit Temple MQ Big Mirror Bubble 1": "has_soul(Bubble)",
+            "Spirit Temple MQ Big Mirror Bubble 2": "has_soul(Bubble)"
         },
         "exits": {
             "Spirit Temple Before Boss": "Mirror_Shield"
