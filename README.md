@@ -134,6 +134,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v109
+  * Fix Jabu Jabus Belly Invisible Enemies Room logic.
+
 ### v108
   * Fix MQ Spirit Child keese logic with fix_broken_actors
   * Fix MQ Spirit Big Mirror enemy logic.
