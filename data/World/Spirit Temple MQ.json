@@ -44,12 +44,12 @@
             "Spirit Temple MQ Child Torch Slugs Room Pot": "True",
             "Fairy Pot": "
                 has_bottle and (Sticks or Kokiri_Sword) and has_bombchus and Slingshot",
-            "Spirit Temple MQ Early Child Torch Slug 1": "has_soul(Torch_Slug) and (Sticks or Kokiri_Sword or has_explosives)",
-            "Spirit Temple MQ Early Child Torch Slug 2": "has_soul(Torch_Slug) and (Sticks or Kokiri_Sword or has_explosives)"
+            "Spirit Temple MQ Early Child Torch Slug 1": "has_soul(Torch_Slug) and (Sticks or Kokiri_Sword or Bombs)",
+            "Spirit Temple MQ Early Child Torch Slug 2": "has_soul(Torch_Slug) and (Sticks or Kokiri_Sword or Bombs)"
         },
         "exits": {
-            "Child Spirit Map Room": "(has_soul(Torch_Slug) and (not fix_broken_actors or has_soul(Keese))) and (Sticks or Kokiri_Sword or has_explosives)",
-            "Child Spirit Gibdo Room": "(has_soul(Torch_Slug) and (not fix_broken_actors or has_soul(Keese))) and (Sticks or Kokiri_Sword or has_explosives)",
+            "Child Spirit Map Room": "(has_soul(Torch_Slug) and (not fix_broken_actors or has_soul(Keese))) and (Sticks or Kokiri_Sword or Bombs)",
+            "Child Spirit Gibdo Room": "(has_soul(Torch_Slug) and (not fix_broken_actors or has_soul(Keese))) and (Sticks or Kokiri_Sword or Bombs)",
             "Spirit Temple Shared": "
                 (Small_Key_Spirit_Temple, 2) and
                 ((has_bombchus and boulder_type('SPIRIT_CHILD_CRAWLSPACE_BOULDER') == BOULDER_TYPE_BROWN) or at('Adult Spirit Temple', (Small_Key_Spirit_Temple, 7) and
