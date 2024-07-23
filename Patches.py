@@ -22,7 +22,7 @@ from LocationList import business_scrubs
 from Messages import read_messages, find_message_index, update_message_by_id, read_shop_items, update_warp_song_text, \
         write_shop_items, remove_unused_messages, make_player_message, \
         add_item_messages, repack_messages, shuffle_messages, \
-        get_message_by_id, TextCode, new_messages, COLOR_MAP
+        get_message_by_id, remove_message_by_id, TextCode, new_messages, COLOR_MAP
 from OcarinaSongs import patch_songs
 from MQ import patch_files, File, update_dmadata, insert_space, add_relocations
 from Rom import Rom
@@ -1766,20 +1766,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     rom.write_int32(0x340A02C, 0x0300D400)
     rom.write_int16s(0x3417400, list(shop_objs))
 
-    # Scrub text stuff.
-    def update_scrub_text(message: bytearray, text_replacement: list[str], default_price: int, price: int,
-                          item_name: Optional[str] = None) -> bytearray:
-        scrub_strip_text = ["some ", "1 piece   ", "5 pieces   ", "30 pieces   "]
-        for text in scrub_strip_text:
-            message = message.replace(text.encode(), b'')
-        message = message.replace(text_replacement[0].encode(), text_replacement[1].encode())
-        message = message.replace(b'they are', b'it is')
-        if default_price != price:
-            message = message.replace(('%d Rupees' % default_price).encode(), ('%d Rupees' % price).encode())
-        if item_name is not None:
-            message = message.replace(b'mysterious item', item_name.encode())
-        return message
-
     single_item_scrubs = {
         0x3E: world.get_location("HF Deku Scrub Grotto"),
         0x77: world.get_location("LW Deku Scrub Near Bridge"),
@@ -1787,6 +1773,8 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     }
 
     scrub_message_dict = {}
+    
+    shuffle_messages.scrubs_message_ids = []
     if world.settings.shuffle_scrubs == 'off':
         # Revert Deku Scrubs changes
         rom.write_int32s(0xEBB85C, [
@@ -1801,10 +1789,16 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         for (scrub_item, default_price, text_id, text_replacement) in business_scrubs:
             if scrub_item not in single_item_scrubs.keys():
                 continue
-            scrub_message_dict[text_id] = update_scrub_text(get_message_by_id(messages, text_id).raw_text, text_replacement, default_price, default_price)
+            if 'scrubs' in world.settings.misc_hints:
+                scrub_message_dict[text_id] = update_scrub_text(get_message_by_id(messages, text_id).raw_text, text_replacement, default_price, default_price, single_item_scrubs[scrub_item].item.name)
+            else:
+                scrub_message_dict[text_id] = update_scrub_text(get_message_by_id(messages, text_id).raw_text, text_replacement, default_price, default_price)
     else:
         # Rebuild Business Scrub Item Table
         rom.seek_address(0xDF8684)
+        # Read the base scrub message because we might delete it
+        base_scrub_message = get_message_by_id(messages, 0x10A0)
+
         for (scrub_item, default_price, text_id, text_replacement) in business_scrubs:
             price = world.scrub_prices[scrub_item]
             rom.write_int16(None, price)       # Price
@@ -1813,16 +1807,21 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
             rom.write_int32(None, 0x80A74FF8)  # Can_Buy_Func
             rom.write_int32(None, 0x80A75354)  # Buy_Func
 
-            scrub_message_dict[text_id] = update_scrub_text(get_message_by_id(messages, text_id).raw_text, text_replacement, default_price, price)
+            if 'scrubs' in world.settings.misc_hints:
+                # Remove original messages because we're using our new ones
+                remove_message_by_id(messages, text_id)
+            else:
+                scrub_message_dict[text_id] = update_scrub_text(get_message_by_id(messages, text_id).raw_text, text_replacement, default_price, price)
 
+        scrub_locations = [location for location in world.get_locations() if location.type == 'Scrub']
+        grotto_scrub_locations = [location for location in world.get_locations() if location.type == 'GrottoScrub']
         # update actor IDs
-        set_deku_salesman_data(rom)
+        set_deku_salesman_data(rom, world, scrub_locations, grotto_scrub_locations, messages, base_scrub_message)
 
     # Update scrub messages.
-    shuffle_messages.scrubs_message_ids = []
     for text_id, message in scrub_message_dict.items():
         update_message_by_id(messages, text_id, message)
-        if world.settings.shuffle_scrubs == 'random':
+        if world.settings.shuffle_scrubs == 'random' or 'scrubs' in world.settings.misc_hints:
             shuffle_messages.scrubs_message_ids.append(text_id)
 
     if world.settings.shuffle_grotto_entrances:
@@ -2470,6 +2469,7 @@ def get_override_entry(location: Location) -> Optional[OverrideEntry]:
     scene = location.scene
     default = location.default
     item_id = location.item.index
+
     if None in (scene, default, item_id):
         return None
 
@@ -2699,15 +2699,106 @@ def set_grotto_shuffle_data(rom: Rom, world: World) -> None:
     # Override grotto actors data with the new data
     get_actor_list(rom, override_grotto_data)
 
+# Scrub text stuff.
+def update_scrub_text(message: bytearray, text_replacement: list[str], default_price: int, price: int,
+                      item_name: Optional[str] = None) -> bytearray:
+    scrub_strip_text = ["some ", "1 piece   ", "5 pieces   ", "30 pieces   "]
+    for text in scrub_strip_text:
+        message = message.replace(text.encode(), b'')
+    message = message.replace(text_replacement[0].encode(), text_replacement[1].encode())
+    message = message.replace(b'they are', b'it is')
+    if default_price != price:
+        message = message.replace(('%d Rupees' % default_price).encode(), ('%d Rupees' % price).encode())
+    if item_name is not None:
+        message = message.replace(b'mysterious item', item_name.encode())
+    return message
 
-def set_deku_salesman_data(rom: Rom) -> None:
-    def set_deku_salesman(rom: Rom, actor_id: int, actor: int, scene: int) -> None:
-        if actor_id == 0x0195:  # Salesman
-            actor_var = rom.read_int16(actor + 14)
-            if actor_var == 6:
-                rom.write_int16(actor + 14, 0x0003)
+from ProcessActors import get_scrub_salesman
 
-    get_actor_list(rom, set_deku_salesman)
+def set_deku_salesman_data(rom: Rom, world: World, scrub_locations: list[Location], grotto_scrub_locations: list[Location], messages: list[Message], base_scrub_message: Message) -> None:
+    
+    scrub_actors = get_scrub_salesman(rom)
+    
+    for actor in scrub_actors.keys():
+        (scene, room_id, setup_num, actor_num, scene_name, var) = scrub_actors[actor]
+        if var == 0x0006:
+            var = 0x0003
+            rom.write_int16(actor + 14, var)
+            scrub_actors[actor] = (scene, room_id, setup_num, actor_num, scene_name, var)
+
+    if 'scrubs' in world.settings.misc_hints:
+
+        scrub_var_map = {
+            0x63: 0, # Deku Nuts (5)
+            0x7: 1, # Deku Sticks (1)
+            0x3E: 2, # Heart Piece?
+            0x69: 3, # Deku Seeds (30)
+            0x29: 4, # Deku Shield
+            0x01: 5, # Bombs (5)
+            0x4B: 6, # Arrows (30)
+            0x10: 7, # Red Potion
+            0x11: 8, # Green Potions
+            0x77: 9, # Deku Stick Upgrade
+            0x79: 10, # Deku Nut Upgrade
+            0x30: 0, 
+            0x31: 1, 
+            0x33: 3, 
+            0x34: 4, 
+            0x37: 5, 
+            0x38: 6, 
+            0x39: 7, 
+            0x3A: 8, 
+            
+        }
+
+        # Start scrub messages at 0xA000
+        scrub_index = 1
+        for scrub in scrub_locations:
+            # Find the corresponding scrub actor for this scrub
+            print(scrub)
+            def_var = scrub_var_map[scrub.default]
+            for actor, (scene, room_id, setup_num, actor_num, scene_name, var) in scrub_actors.items():
+                if scene == scrub.scene and def_var == var:
+                    print("Match")
+                    # Patch the actor with the message
+                    rom.write_int16(actor + 14, var | (scrub_index << 8))
+                    new_msg = update_scrub_text(base_scrub_message.raw_text, ["Deku Nuts", "a \x05\x42mysterious item\x05\x40"], 20, world.scrub_prices[scrub.default], scrub.item.name)
+                    # Write the message
+                    new_msg_id = 0xA000 + scrub_index - 1
+                    shuffle_messages.scrubs_message_ids.append(new_msg_id)
+                    update_message_by_id(messages,new_msg_id, new_msg, opts=base_scrub_message.opts)
+                    scrub_index += 1
+                    break
+        
+        # Start grotto scrub messages at 0xA100
+        
+        # Patch the grotto scrubs
+        grotto_rooms = {}
+        grotto_scrubs = {}
+        for actor, (scene, room_id, setup_num, actor_num, scene_name, var) in scrub_actors.items():
+            if scene == 0x3E:
+                if room_id in grotto_rooms.keys():
+                    scrub_index = grotto_rooms[room_id]
+                else:
+                    scrub_index = 1
+                    grotto_rooms[room_id] = 1
+                # Patch the actor with the message + room_id
+                rom.write_int16(actor + 14, var | (scrub_index << 8))
+                grotto_scrubs[(room_id, actor_num)] = scrub_index
+                grotto_rooms[room_id] += 1
+
+        # Write the messages for grotto_scrubs
+        for scrub in grotto_scrub_locations:
+            # Get the grotto id from the location
+            grotto_id = scrub.scene & 0x1F
+            room = scrub.address
+            scrub_index = scrub.address2
+            
+            new_msg = update_scrub_text(base_scrub_message.raw_text, ["Deku Nuts", "a \x05\x42mysterious item\x05\x40"], 20, world.scrub_prices[scrub.default], scrub.item.name)
+            new_msg_id =  0xA100 + (0x10*grotto_id) + scrub_index - 1
+            shuffle_messages.scrubs_message_ids.append(new_msg_id)
+            # Write the message
+            update_message_by_id(messages, new_msg_id, new_msg, base_scrub_message.opts)
 
 
 def set_jabu_stone_actors(rom: Rom, jabu_actor_type: int) -> None:

@@ -263,6 +263,13 @@ def get_grass(rom):
             return bush
 
     return get_actor_list(rom, get_grass_func)
+def get_scrub_salesman(rom: Rom):
+    def get_scrub_salesman_func(rom: Rom, actor_id, actor, scene, room_id, setup_num, actor_num):
+        if actor_id == 0x195:
+            var = rom.read_int16(actor + 14)
+            scrub = (scene, room_id, setup_num, actor_num, scenes[scene], var)
+            return scrub
+    return get_actor_list(rom, get_scrub_salesman_func)
 
 wondertypes = [
     'MULTITAG_FREE',
