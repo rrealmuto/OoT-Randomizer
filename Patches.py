@@ -2554,6 +2554,7 @@ def update_scrub_text(message: bytearray, text_replacement: list[str], default_p
         message = message.replace(('%d Rupees' % default_price).encode(), ('%d Rupees' % price).encode())
     if item_name is not None:
         message = message.replace(b'mysterious item', item_name.encode())
+    message = line_wrap(message, True, False, False)
     return message
 
 from ProcessActors import get_scrub_salesman
