@@ -3641,6 +3641,7 @@ class SettingInfos:
             'frogs2':         'Frogs Ocarina Game',
             'mask_shop':  'Shuffled Mask Shop',
             'unique_merchants':  'Unique Merchants',
+            'scrubs': 'Business Scrubs'
         },
         gui_tooltip    = '''\
             This setting adds some hints at locations

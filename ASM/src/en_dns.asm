@@ -20,3 +20,28 @@ EnDns_TakePayment:
     lw      ra, 0x10(sp)
     jr      ra
     addiu   sp, sp, 0x20
+
+; Hack in EnDns_Init to store the message passed into the actor variable
+; Actor pointer: s0
+EnDns_Init_StoreMessage:
+
+    ; Get the actor variable
+    lh      t6, 0x1C(s0)
+
+    ; Mask out the message ID and put it pack into the variable
+    andi    t8, t6, 0x00FF
+    sh      t8, 0x1C(s0)
+
+    ; Get the message ID out of the top half
+    andi    t6, t6, 0xFF00
+    srl     t6, t6, 0x08
+
+    ; Store the message ID into our new space in the actor
+    sb      t6, 0x2b8(s0)
+
+    ; Replaced code
+    lh      v0, 0x1c(s0)
+    li      at, 0x06
+
+    jr      ra
+    nop

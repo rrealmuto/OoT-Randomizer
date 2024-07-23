@@ -21,3 +21,4 @@ z64_sEquipAnimTimer = 0x8039EAB4;
 z64_sEquipMoveTimer = 0x8039EAB8;
 gActorOverlayTable = 0x800E8530;
 Message_CloseTextbox = 0x800d6218;
+Actor_SetScale = 0x80020f88;

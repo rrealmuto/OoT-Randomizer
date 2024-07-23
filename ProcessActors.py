@@ -2,8 +2,7 @@ from Rom import *
 
 def get_actor_list(rom, actor_func):
     actors = {}
-    #scene_table = 0x00B71440
-    scene_table = 0x00BA0BB0 # for MQ
+    scene_table = 0x00B71440
     for scene in range(0x00, 0x65):
         scene_data = rom.read_int32(scene_table + (scene * 0x14))
         actors.update(scene_get_actors(rom, actor_func, scene_data, scene))
@@ -99,6 +98,14 @@ def get_empty_and_fairy_pots(rom):
             if pot[5]['item_id'] == "Empty" or pot[5]['item_id'] == "Flexible (Fairy)":
                 return pot
     return get_actor_list(rom, get_pot_func)
+
+def get_scrub_salesman(rom: Rom):
+    def get_scrub_salesman_func(rom: Rom, actor_id, actor, scene, room_id, setup_num, actor_num):
+        if actor_id == 0x195:
+            var = rom.read_int16(actor + 14)
+            scrub = (scene, room_id, setup_num, actor_num, scenes[scene], var)
+            return scrub
+    return get_actor_list(rom, get_scrub_salesman_func)
 
 wondertypes = [
     'MULTITAG_FREE',
@@ -359,16 +366,3 @@ def process_pot(actor_bytes):
         'variable': hex(variable),
         'item_id': item_dict[item_id],
     }
-
-#rom = Rom('ZOOTDEC.z64')
-rom = Rom('zeloot_mqdebug.z64')
-pots = get_crates(rom)
-
-for pot in pots:
-    print(f'{pot}: {pots[pot]}')
-
-#rom = Rom('../zeloot_mqdebug.z64')
-#wonderitems = get_wonderitems(rom)
-
-#for wonderitem in wonderitems:
-    #print(f'{wonderitem}: {wonderitems[wonderitem]}')

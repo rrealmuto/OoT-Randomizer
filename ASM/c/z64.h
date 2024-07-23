@@ -2443,5 +2443,6 @@ typedef void(*z64_Play_SetupRespawnPoint_proc)(z64_game_t *game, int32_t respawn
 
 extern void Fault_AddHungupAndCrashImpl(const char* msg1, const char* msg2);
 extern int32_t sprintf(char* dst, char* fmt, ...);
+extern void Actor_SetScale(z64_actor_t* actor, float scale);
 
 #endif

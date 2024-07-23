@@ -938,6 +938,18 @@ def get_message_by_id(messages: list[Message], id: int) -> Optional[Message]:
     else:
         return None
 
+def remove_message_by_id(messages: list[Message], id: int) -> Optional[Message]: 
+    # get the message index
+    index = next( (m.index for m in messages if m.id == id), -1)
+    if index >= 0:
+        msg = messages[index]
+        del messages[index]
+        # Re-enumerate messages
+        for index, m in enumerate(messages):
+            m.index = index
+        return msg
+    else:
+        return None
 
 # wrapper for updating the text of a message, given its index in the list
 def update_message_by_index(messages: list[Message], index: int, text: bytearray | str, opts: Optional[int] = None) -> None:
