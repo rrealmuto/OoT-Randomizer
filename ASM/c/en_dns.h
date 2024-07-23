@@ -1,6 +1,8 @@
-#include "z64.h"
 #ifndef __EN_DNS_H__
 # define __EN_DNS_H__
+
+#include "z64.h"
+#include "actor.h"
 
 #define BUSINESS_SCRUB_LIMB_MAX 18
 

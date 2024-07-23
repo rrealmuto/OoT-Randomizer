@@ -37,10 +37,10 @@ EnDns_Init_StoreMessage:
     srl     t6, t6, 0x08
 
     ; Store the message ID into our new space in the actor
-    sb      t6, 0x2b8(s0)
+    sb      t6, 0x2B8(s0)
 
     ; Replaced code
-    lh      v0, 0x1c(s0)
+    lh      v0, 0x1C(s0)
     li      at, 0x06
 
     jr      ra

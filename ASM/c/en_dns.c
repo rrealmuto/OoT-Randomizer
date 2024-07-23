@@ -2,7 +2,7 @@
 #include "util.h"
 #include "en_dns.h"
 
-const uint16_t* sStartingTextIds_Addr = (uint16_t*)0x80a75d2c;
+extern uint16_t* OVL_EN_DNS_sStartingTextIds; // Vanilla text ID array
 
 void EnDns_SetTextId(z64_actor_t* thisx, float scale) {
     // Set the actor's text ID based on the message offset that was passed into the actor variable, and stored into the actor instance
@@ -23,9 +23,9 @@ void EnDns_SetTextId(z64_actor_t* thisx, float scale) {
     else {
         // Otherwise just use the original message ID
         // Resolve sStartingTextIds array from overlay
-        uint16_t* sStartingTextIds = resolve_overlay_addr((void*)sStartingTextIds_Addr, thisx->actor_id);
+        uint16_t* sStartingTextIds = resolve_overlay_addr(OVL_EN_DNS_sStartingTextIds, thisx->actor_id);
         this->actor.text_id = sStartingTextIds[DNS_GET_TYPE(thisx)];
     }
 
-    Actor_SetScale(thisx, scale);
+    Actor_SetScale(thisx, scale); // Replaced code
 }
