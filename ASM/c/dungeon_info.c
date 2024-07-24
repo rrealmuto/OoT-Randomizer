@@ -295,14 +295,17 @@ void draw_dungeon_info(z64_disp_buf_t* db) {
 
         left += icon_size + padding;
 
-        // First draw precompleted dungeons, greyed out with a small rectangle to cross them.
-        gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0xBF);
+        // Draw the list of dungeons.
+        // Pre completed dungeons are grayed and crossed out.
         for (int i = 0; i < rows; i++) {
+            gDPPipeSync(db->p++);
             dungeon_entry_t* d = &(dungeons[i]);
             int empty = CFG_DUNGEON_PRECOMPLETED[d->index];
+            int top = start_top + ((icon_size + padding) * i) + 1;
             if (empty == 1) {
-                int top = start_top + ((icon_size + padding) * i) + 1;
-                int sizeRectangle = text_print_size(d->name, left, top, font_width) * font_width;
+                gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0x7F);
+                int sizeRectangle = text_print_size(db, d->name, left, top, font_width, font_height) - left;
+                gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0xBF);
                 gDPSetCombineMode(db->p++, G_CC_PRIMITIVE, G_CC_PRIMITIVE);
                 gSPTextureRectangle(db->p++,
                         left<<2, (top + 5) <<2,
@@ -310,23 +313,13 @@ void draw_dungeon_info(z64_disp_buf_t* db) {
                         0,
                         0, 0,
                         1<<10, 1<<10);
-                gDPPipeSync(db->p++);
                 gDPSetCombineMode(db->p++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
             }
-        }
-        gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0x7F);
-        text_flush_size(db, font_width, font_height, 0, 0);
-        // Then the rest in white.
-        gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF);
-        for (int i = 0; i < rows; i++) {
-            dungeon_entry_t* d = &(dungeons[i]);
-            int empty = CFG_DUNGEON_PRECOMPLETED[d->index];
-            if (empty == 0) {
-                int top = start_top + ((icon_size + padding) * i) + 1;
-                text_print_size(d->name, left, top, font_width);
+            else {
+                gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF);
+                text_print_size(db, d->name, left, top, font_width, font_height);
             }
         }
-        text_flush_size(db, font_width, font_height, 0, 0);
 
         left += ((SHUFFLE_CHEST_GAME == 1 ? 11 : 8) * font_width) + padding;
 
@@ -336,54 +329,24 @@ void draw_dungeon_info(z64_disp_buf_t* db) {
             // Draw small key counts
             sprite_load(db, &quest_items_sprite, 17, 1);
 
-            // First draw precompleted dungeons keys grayed out.
-            gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0x7F);
             for (int i = 0; i < rows; i++) {
                 dungeon_entry_t* d = &(dungeons[i]);
-                int empty = CFG_DUNGEON_PRECOMPLETED[d->index];
-                if (empty == 1) {
-                    if (!d->has_keys) continue;
+                if (!d->has_keys) continue;
 
-                    int8_t current_keys = z64_file.dungeon_keys[d->index];
-                    if (current_keys < 0) current_keys = 0;
-                    if (current_keys > 9) current_keys = 9;
+                int8_t current_keys = z64_file.dungeon_keys[d->index];
+                if (current_keys < 0) current_keys = 0;
+                if (current_keys > 9) current_keys = 9;
 
-                    int8_t total_keys = z64_file.scene_flags[d->index].unk_00_ >> 0x10;
-                    if (total_keys < 0) total_keys = 0;
-                    if (total_keys > 9) total_keys = 9;
+                int8_t total_keys = z64_file.scene_flags[d->index].unk_00_ >> 0x10;
+                if (total_keys < 0) total_keys = 0;
+                if (total_keys > 9) total_keys = 9;
 
-                    char count[5] = "O(O)"; // we use O instead of 0 because it's easier to distinguish from 8
-                    if (current_keys > 0) count[0] = current_keys + '0';
-                    if (total_keys > 0) count[2] = total_keys + '0';
-                    int top = start_top + ((icon_size + padding) * i) + 1;
-                    text_print_size(count, left, top, font_width);
-                }
+                char count[5] = "O(O)"; // we use O instead of 0 because it's easier to distinguish from 8
+                if (current_keys > 0) count[0] = current_keys + '0';
+                if (total_keys > 0) count[2] = total_keys + '0';
+                int top = start_top + ((icon_size + padding) * i) + 1;
+                text_print_size(db, count, left, top, font_width, font_height);
             }
-            text_flush_size(db, font_width, font_height, 0, 0);
-            // Then the rest in white.
-            gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF);
-            for (int i = 0; i < rows; i++) {
-                dungeon_entry_t* d = &(dungeons[i]);
-                int empty = CFG_DUNGEON_PRECOMPLETED[d->index];
-                if (empty == 0) {
-                    if (!d->has_keys) continue;
-
-                    int8_t current_keys = z64_file.dungeon_keys[d->index];
-                    if (current_keys < 0) current_keys = 0;
-                    if (current_keys > 9) current_keys = 9;
-
-                    int8_t total_keys = z64_file.scene_flags[d->index].unk_00_ >> 0x10;
-                    if (total_keys < 0) total_keys = 0;
-                    if (total_keys > 9) total_keys = 9;
-
-                    char count[5] = "O(O)"; // we use O instead of 0 because it's easier to distinguish from 8
-                    if (current_keys > 0) count[0] = current_keys + '0';
-                    if (total_keys > 0) count[2] = total_keys + '0';
-                    int top = start_top + ((icon_size + padding) * i) + 1;
-                    text_print_size(count, left, top, font_width);
-                }
-            }
-            text_flush_size(db, font_width, font_height, 0, 0);
 
             left += (4 * font_width) + padding;
 
@@ -892,8 +855,24 @@ void draw_dungeon_info(z64_disp_buf_t* db) {
 
         for (int i = 0; i < 12; i++) {
             dungeon_entry_t* d = &(dungeons[i + (i > 9 ? 1 : 0)]); // skip Hideout
+            int empty = CFG_DUNGEON_PRECOMPLETED[d->index];
             int top = start_top + ((icon_size + padding) * i) + 1;
-            text_print(db, d->name, left, top);
+            if (empty == 1) {
+                gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0x7F);
+                int sizeRectangle = text_print(db, d->name, left, top) - left;
+                gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0xBF);
+                gDPSetCombineMode(db->p++, G_CC_PRIMITIVE, G_CC_PRIMITIVE);
+                gSPTextureRectangle(db->p++,
+                        left<<2, (top + 6) <<2,
+                        (left + sizeRectangle)<<2, (top + 6 + 2)<<2,
+                        0,
+                        0, 0,
+                        1<<10, 1<<10);
+                gDPSetCombineMode(db->p++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
+            }
+            else {
+                text_print(db, d->name, left, top);
+            }
         }
 
         left += (8 * font_sprite.tile_w) + padding;
