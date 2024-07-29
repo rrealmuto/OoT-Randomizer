@@ -1706,9 +1706,8 @@ def build_boss_string(reward: str, color: str, world: World) -> str:
 
 
 def build_bridge_reqs_string(world: World) -> str:
-    string = "\x13\x3C" # Master Sword icon
     if world.settings.bridge == 'open':
-        string += "The awakened ones will have #already created a bridge# to the castle where the evil dwells."
+        string = "The awakened ones will have #already created a bridge# to the castle where the evil dwells."
     else:
         if world.settings.bridge == 'vanilla':
             item_req_string = "the #Shadow and Spirit Medallions# as well as the #Light Arrows#"
@@ -1722,9 +1721,9 @@ def build_bridge_reqs_string(world: World) -> str:
             }[world.settings.bridge]
             item_req_string = f'{count} {singular if count == 1 else plural}'
         if world.settings.clearer_hints:
-            string += f"The rainbow bridge will be built once the Hero collects {item_req_string}."
+            string = f"The rainbow bridge will be built once the Hero collects {item_req_string}."
         else:
-            string += f"The awakened ones will await for the Hero to collect {item_req_string}."
+            string = f"The awakened ones will await for the Hero to collect {item_req_string}."
     return str(GossipText(string, ['Green'], prefix=''))
 
 
