@@ -4143,7 +4143,7 @@ DemoEffect_DrawJewel_AfterHook:
 ;================================================================================
 ; Replaces sh   $zero, 0x4c0(at)
 ;          lhu  a3, 0x4c0(a3)
-.org 0x800da34c
+.org 0x800DA34C
     j Message_Decode_reset_msgCtx.textPosX
     nop
 

@@ -131,8 +131,8 @@ shooting_gallery_no_bow:
     addiu   sp, sp, 0x20
 
 Message_Decode_reset_msgCtx.textPosX:
-    sb      $zero, 0x4be(at)
-    sh      $zero, 0x4c0(at)
-    lhu     a3, 0x4c0(a3)
-    j       0x800da354
+    sb      $zero, 0x4BE(at)
+    sh      $zero, 0x4C0(at)
+    lhu     a3, 0x4C0(a3)
+    j       0x800DA354
     nop
