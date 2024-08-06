@@ -609,7 +609,7 @@ class SettingInfos:
                     'starting_age', 'shuffle_interior_entrances', 'shuffle_hideout_entrances',
                     'shuffle_grotto_entrances', 'shuffle_dungeon_entrances',
                     'shuffle_bosses', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops', 'warp_songs', 'spawn_positions',
-                    'triforce_hunt', 'triforce_count_per_world', 'triforce_goal_per_world', 'free_bombchu_drops', 'one_item_per_dungeon',
+                    'triforce_hunt', 'triforce_count_per_world', 'triforce_goal_per_world', 'free_bombchu_drops',
                     'shuffle_mapcompass', 'shuffle_smallkeys', 'shuffle_hideoutkeys', 'shuffle_tcgkeys', 'key_rings_choice', 'key_rings',
                     'shuffle_silver_rupees', 'silver_rupee_pouches_choice', 'silver_rupee_pouches', 'shuffle_bosskeys', 'enhance_map_compass',
                 ],
@@ -2400,49 +2400,6 @@ class SettingInfos:
         },
     )
 
-    one_item_per_dungeon = Checkbutton(
-        gui_text       = 'Dungeons Have One Major Item',
-        gui_tooltip    = '''\
-            Dungeons have exactly one major item.
-            This naturally makes each dungeon similar in value
-            rather than vary based on shuffled locations.
-
-            Spirit Temple Colossus hands count as part
-            of the dungeon. Spirit Temple has TWO items
-            to match vanilla distribution.
-
-            Boss Keys and Fortress Keys only count as
-            major items if they are shuffled Anywhere
-            (Keysanity) or in Any Dungeon, and Small
-            Keys only count as major items if they are
-            shuffled Anywhere (Keysanity). This setting
-            is disabled if Small Keys are shuffled in
-            Any Dungeon.
-
-            GS Tokens only count as major items if the
-            bridge or Ganon Boss Key requirements are
-            set to "GS Tokens".
-
-            Heart Containers and Pieces of Heart only
-            count as major items if the bridge or Ganon
-            Boss Key requirements are set to "Hearts".
-
-            Bombchus only count as major items if they
-            are considered in logic.
-
-            Pre-completed dungeons (if any) won't have
-            a major item.
-
-            This setting has potential to conflict with
-            other randomizer settings. Should seeds continuously
-            fail to generate, consider turning this option off.
-        ''',
-        shared         = True,
-        gui_params     = {
-            'randomize_key': 'randomize_settings',
-        },
-    )
-
     shuffle_song_items = Combobox(
         gui_text       = 'Shuffle Songs',
         default        = 'song',
@@ -3789,6 +3746,46 @@ class SettingInfos:
 
             Daytime officially starts at 6:30,
             nighttime at 18:00 (6:00 PM).
+        ''',
+        shared         = True,
+    )
+
+    one_item_per_dungeon = Checkbutton(
+        gui_text       = 'Dungeons Have One Major Item',
+        gui_tooltip    = '''\
+            Dungeons have exactly one major item.
+            This naturally makes each dungeon similar in value
+            rather than vary based on shuffled locations.
+
+            Spirit Temple Colossus hands count as part
+            of the dungeon. Spirit Temple has TWO items
+            to match vanilla distribution.
+
+            Boss Keys and Fortress Keys only count as
+            major items if they are shuffled Anywhere
+            (Keysanity) or in Any Dungeon, and Small
+            Keys only count as major items if they are
+            shuffled Anywhere (Keysanity). This setting
+            is disabled if Small Keys are shuffled in
+            Any Dungeon.
+
+            GS Tokens only count as major items if the
+            bridge or Ganon Boss Key requirements are
+            set to "GS Tokens".
+
+            Heart Containers and Pieces of Heart only
+            count as major items if the bridge or Ganon
+            Boss Key requirements are set to "Hearts".
+
+            Bombchus only count as major items if the
+            "Add Bombchu Bag and Drops" setting is enabled.
+
+            Pre-completed dungeons (if any) won't have
+            a major item.
+
+            This setting has potential to conflict with
+            other randomizer settings. Should seeds continuously
+            fail to generate, consider turning this option off.
         ''',
         shared         = True,
     )
