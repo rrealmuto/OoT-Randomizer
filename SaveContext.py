@@ -995,7 +995,10 @@ class SaveContext:
                 'weight_adult': Address(extended=True, size=1),
                 'weight_child': Address(extended=True, size=1),
                 'has_loach': Address(extended=True, size=1),
-            }
+            },
+            'collected_dungeon_rewards': Address(extended=True, size=8),
+            'password' : Address(extended=True, size=6),
+
         }
 
     item_id_map: dict[str, int] = {

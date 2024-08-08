@@ -556,6 +556,7 @@
           "settings": [
             "custom_music_directorypicker",
             "background_music",
+            "display_custom_song_names",
             "fanfares",
             "ocarina_fanfares",
             "credits_music"

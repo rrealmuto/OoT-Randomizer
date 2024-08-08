@@ -1,6 +1,7 @@
 #include "z64.h"
 #include "actor.h"
 #include "minimap.h"
+#include "gfx.h"
 
 int16_t tempX;
 int16_t tempZ;
@@ -15,7 +16,7 @@ void MiniMap_Draw_Hack(z64_game_t* globalCtx)
         z64_actor_t* curr = globalCtx->actor_list[0x05].first;
         //int16_t tempX, tempZ;
 
-        z64_disp_buf_t *db = &(z64_ctxt.gfx->overlay);
+        z64_disp_buf_t* db = &rando_overlay_db;
         gSPDisplayList(db->p++, 0x800F84A0); // Call setup DLIST 39 again
         gDPSetCombineMode(db->p++, G_CC_PRIMITIVE, G_CC_PRIMITIVE);
         gDPPipeSync(db->p++);
@@ -54,7 +55,7 @@ void MiniMap_Draw_Hack(z64_game_t* globalCtx)
                 //tempX /= x_scale;
                 //tempZ /= y_scale;
 
-                z64_disp_buf_t *db = &(z64_ctxt.gfx->overlay);
+                db = &rando_overlay_db;
 
                 gDPPipeSync(db->p++);
                 gDPLoadTextureBlock(db->p++, &blank_texture, G_IM_FMT_RGBA, G_IM_SIZ_32b,

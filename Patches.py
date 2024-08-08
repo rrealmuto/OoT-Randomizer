@@ -902,6 +902,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     configure_dungeon_info(rom, world)
 
     rom.write_bytes(rom.sym('CFG_FILE_SELECT_HASH'), spoiler.file_hash)
+    rom.write_bytes(rom.sym('PASSWORD'), spoiler.password)
 
     save_context = SaveContext()
 
@@ -2803,7 +2804,7 @@ def create_fake_name(name: str) -> str:
     # keeping the game E...
     new_name = ''.join(list_name)
     censor = ['cum', 'cunt', 'dike', 'penis', 'puss', 'rape', 'shit']
-    new_name_az = re.sub(r'[^a-zA-Z]', '', new_name.lower(), re.UNICODE)
+    new_name_az = re.sub(r'[^a-zA-Z]', '', new_name.lower())
     for cuss in censor:
         if cuss in new_name_az:
             return create_fake_name(name)

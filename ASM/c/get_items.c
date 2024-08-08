@@ -47,6 +47,8 @@ uint32_t active_item_fast_chest = 0;
 uint16_t incoming_junk = 0;
 
 uint8_t satisfied_pending_frames = 0;
+// Minimum number that prevents Sheik at Temple and ToT Reward from Rauru from overlapping, see https://github.com/OoTRandomizer/OoT-Randomizer/issues/2247
+const uint8_t REQUIRED_PENDING_FRAMES = 6;
 
 // These tables contain the flag bit offset for a particular scene/room/setup. These tables also index into xflag_room_blob to obtain the bit assignment for each actor in that room
 // xlflag_room_blob contains a compressed table of actor bit assignments for each scene/room/setup.
@@ -392,7 +394,7 @@ inline uint32_t link_is_ready() {
     } else {
         satisfied_pending_frames = 0;
     }
-    if (satisfied_pending_frames >= 2) {
+    if (satisfied_pending_frames >= REQUIRED_PENDING_FRAMES) {
         satisfied_pending_frames = 0;
         return 1;
     }

@@ -18,11 +18,15 @@ int menu_count = 1;
 MENU_PAGE menu_page = 0;
 menu_ctx* menus[3]; // Increase this to add more menus. Index 0 is unused and corresponds to the vanilla map menu
 uint8_t font_textures[NUM_FONT_CHARS * FONT_CHAR_TEX_WIDTH * FONT_CHAR_TEX_HEIGHT / 2] __attribute__ ((aligned (8)));
-Gfx menu_dl_buffer[0x1000] __attribute__ ((aligned (16)));
-Gfx* menu_dl_p __attribute__ ((aligned (16)));
-
+Gfx menu_dl_buffer[2][0x1000] __attribute__ ((aligned (16)));
+z64_disp_buf_t menu_dl;
+uint8_t menu_dl_index;
 
 void init_new_menus() {
+    menu_dl_index = 0;
+    menu_dl.buf = &menu_dl_buffer[0];
+    menu_dl.p = &menu_dl.buf[0];
+    menu_dl.size = 0x1000;
     // Add menus here
     if(CFG_ENEMY_SPAWN_SHUFFLE == CFG_ENEMY_SPAWN_SHUFFLE_STANDARD) {
         menu_page = (MENU_PAGE)menu_count;
@@ -135,16 +139,14 @@ void update_soul_menu(menu_ctx* menu, z64_game_t* globalCtx) {
     }
 }
 
-void draw_soul_menu(menu_ctx* menu, z64_game_t* globalCtx, z64_gfx_t* gfx) {
+void draw_soul_menu(menu_ctx* menu, z64_game_t* globalCtx, z64_disp_buf_t* dl) {
     // test, just draw a red triangle
     // 1) Render the menu to a frame buffer
 
     // Set up the pipeline to use the new buffer, save old buffer?
 
-    OPEN_DISPS(gfx);
-
-    gDPPipeSync(POLY_OPA_DISP++);
-    gDPSetOtherMode(POLY_OPA_DISP++, G_AD_DISABLE | G_CD_DISABLE |
+    gDPPipeSync(dl->p++);
+    gDPSetOtherMode(dl->p++, G_AD_DISABLE | G_CD_DISABLE |
         G_CK_NONE | G_TC_FILT |
         G_TD_CLAMP | G_TP_NONE |
         G_TL_TILE | G_TT_NONE |
@@ -152,99 +154,52 @@ void draw_soul_menu(menu_ctx* menu, z64_game_t* globalCtx, z64_gfx_t* gfx) {
         G_TF_BILERP, // HI
         G_AC_NONE | G_ZS_PRIM |
         G_RM_XLU_SURF | G_RM_XLU_SURF2), // LO
-    gDPSetCombineMode(POLY_OPA_DISP++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
+    gDPSetCombineMode(dl->p++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
 
     int y = 60;
     //gDPSetCombineLERP(POLY_OPA_DISP++, PRIMITIVE, PRIMITIVE, TEXEL0, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0, PRIMITIVE,
     //                  PRIMITIVE, TEXEL0, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0);
 
-    menu_dl_p = &menu_dl_buffer[0];
-
     soul_menu_info* names = (soul_menu_info*)menu->extra;
 
-    gDPPipeSync(menu_dl_p++);
+    gDPPipeSync(dl->p++);
     for(int i = menu->curr_min_line; i < menu->curr_min_line + MAX_LINES; i++) {
         if(flags_getsoul(names[i].soul_id)) {
             if(get_soul_enabled(names[i].soul_id)) {
-                gDPSetPrimColor(menu_dl_p++, 0,0,255,255,255,255);
+                gDPSetPrimColor(dl->p++, 0,0,255,255,255,255);
             }
             else {
-                gDPSetPrimColor(menu_dl_p++, 0,0,255,0,0,255);
+                gDPSetPrimColor(dl->p++, 0,0,255,0,0,255);
             }
         }
         else {
-            gDPSetPrimColor(menu_dl_p++, 0,0,85,85,85,255);
+            gDPSetPrimColor(dl->p++, 0,0,85,85,85,255);
         }
-        int x = print_string(globalCtx, names[i].name, 50, y, .5);
+        int x = text_print_size(dl, names[i].name,50, y,8,8);
         if(menu->curr_line == i) {
-            print_string(globalCtx, "*", x, y, .5);
+            text_print_size(dl, "*", x, y, 8, 8);
         }
         y+= 10;
     }
-    gSPEndDisplayList(menu_dl_p++);
-    gSPDisplayList(POLY_OPA_DISP++, &menu_dl_buffer[0]);
+    gSPEndDisplayList(dl->p++);
     //gDPSetCycleType(POLY_OPA_DISP++, G_CYC_1CYCLE);
     //gDPSetColorImage(POLY_OPA_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 320, gfx->frame_buffer);
-    CLOSE_DISPS();
-}
-
-void text_new_init() {
-    // Load the font texture from nes_font_static
-    // Stored at 0x00928000
-    // We really only need the first 95 characters
-    DmaMgr_RequestSync(&(font_textures[0]), 0x928000, NUM_FONT_CHARS * FONT_CHAR_TEX_WIDTH * FONT_CHAR_TEX_HEIGHT / 2);
-    menu_dl_p = &menu_dl_buffer[0];
-}
-
-void print_char(z64_game_t* globalCtx, char c, int x, int y, float scale) {
-    void* textureImage = &(font_textures[0]) + (c - ' ') * 16 * 16 / 2;
-    int32_t sCharTexSize = (scale) * 16.0f;
-    int32_t sCharTexScale = 1024.0f / (scale);
-
-    gDPPipeSync(menu_dl_p++);
-
-    //gDPSetTextureImage(POLY_OPA_DISP++, G_IM_FMT_I, G_IM_SIZ_4b, FONT_CHAR_TEX_WIDTH, textureImage);
-    //gDPLoadTile(gfx++, G_TX_LOADTILE, 0, 0, (FONT_CHAR_TEX_WIDTH - 1) << 2, (FONT_CHAR_TEX_HEIGHT - 1) << 2);
-
-    gDPLoadTextureBlock_4b(menu_dl_p++, textureImage, G_IM_FMT_I, FONT_CHAR_TEX_WIDTH, FONT_CHAR_TEX_HEIGHT, 0,
-                           G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
-                           G_TX_NOLOD);
-
-    gDPPipeSync(menu_dl_p++);
-    gSPTextureRectangle(menu_dl_p++, x << 2, y << 2, (x + sCharTexSize) << 2, (y + sCharTexSize) << 2, G_TX_RENDERTILE, 0, 0,
-                        sCharTexScale, sCharTexScale);
-}
-
-int print_string(z64_game_t* globalCtx, char* str, int x, int y, float scale) {
-
-    while(*str != 0x00) {
-        print_char(globalCtx, *str, x,y, scale);
-        x += 8;
-        str++;
-    }
-    return x;
 }
 
 void draw_new_menus(z64_game_t* globalCtx, z64_gfx_t* gfx) {
     OPEN_DISPS(gfx);
     draw_map_background(globalCtx, gfx, -110.f, 59.f, 217.f, 128.f);
-    CLOSE_DISPS();
+
+    menu_dl_index++;
+    menu_dl.buf = &menu_dl_buffer[menu_dl_index & 1];
+    menu_dl.p = &menu_dl_buffer[menu_dl_index & 1];
 
     if(globalCtx->pause_ctxt.state == 6 && globalCtx->pause_ctxt.changing == 0 && globalCtx->pause_ctxt.screen_idx == 1) {
         globalCtx->pause_ctxt.cursor_special_pos = 0;
-        menus[menu_page]->handler(menus[menu_page],globalCtx, gfx);
-        /*switch(menu_page) {
-            case(MENU_PAGE_SOULS): {
-                update_soul_menu(globalCtx, gfx);
-                draw_soul_menu(globalCtx, gfx);
-                break;
-            }
-            default: {
-                break;
-            }
-        }*/
+        menus[menu_page]->handler(menus[menu_page],globalCtx, &menu_dl);
+        gSPDisplayList(POLY_OPA_DISP++, menu_dl.buf);
     }
-
+    CLOSE_DISPS();
 }
 
 void KaleidoScope_DrawNewMap(z64_game_t* globalCtx, z64_gfx_t* gfx, kaleido_base_handler handler) {

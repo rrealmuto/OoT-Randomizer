@@ -9,7 +9,7 @@
 #define NUM_FONT_CHARS 95
 
 
-typedef void(*kaleido_handler)(struct menu_ctx* menu, z64_game_t* globalCtx, z64_gfx_t* gfx);
+typedef void(*kaleido_handler)(struct menu_ctx* menu, z64_game_t* globalCtx, z64_disp_buf_t* dl);
 
 typedef struct menu_ctx {
     int8_t curr_line;
@@ -32,7 +32,6 @@ typedef enum {
 
 void init_new_menus();
 void soul_menu_handler(menu_ctx* menu_ctx, z64_game_t* globalCtx, z64_gfx_t* gfx);
-int print_string(z64_game_t* globalCtx, char* str, int x, int y, float scale);
 
 extern void* KaleidoManager_GetRamAddr(void* vram);
 

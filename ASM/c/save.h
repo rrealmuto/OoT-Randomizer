@@ -1,9 +1,7 @@
 #ifndef SAVE_H
 #define SAVE_H
 #include <stdbool.h>
-
-#include "z64.h"
-#include "get_items.h"
+#include "override.h"
 
 // Struct for storing additional data in SRAM. This has to always be a multiple of 2 bytes long supposedly.
 typedef struct {
@@ -14,6 +12,7 @@ typedef struct {
     uint8_t largest_fish_found[2]; // index 1 = child, index 0 = adult
     uint8_t has_loach;
     bool collected_dungeon_rewards[8];
+    uint8_t password[6];
     override_t incoming_queue[3]; // Keep this at the end so it doesn't screw up anything which we defined in SaveContext.py
 } extended_savecontext_static_t __attribute__ ((aligned (8)));
 

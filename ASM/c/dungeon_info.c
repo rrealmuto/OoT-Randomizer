@@ -298,9 +298,8 @@ void draw_dungeon_info(z64_disp_buf_t* db) {
         for (int i = 0; i < rows; i++) {
             dungeon_entry_t* d = &(dungeons[i]);
             int top = start_top + ((icon_size + padding) * i) + 1;
-            text_print_size(d->name, left, top, font_width);
+            text_print_size(db, d->name, left, top, font_width, font_height);
         }
-        text_flush_size(db, font_width, font_height, 0, 0);
 
         left += ((SHUFFLE_CHEST_GAME == 1 ? 11 : 8) * font_width) + padding;
 
@@ -326,9 +325,8 @@ void draw_dungeon_info(z64_disp_buf_t* db) {
                 if (current_keys > 0) count[0] = current_keys + '0';
                 if (total_keys > 0) count[2] = total_keys + '0';
                 int top = start_top + ((icon_size + padding) * i) + 1;
-                text_print_size(count, left, top, font_width);
+                text_print_size(db, count, left, top, font_width, font_height);
             }
-            text_flush_size(db, font_width, font_height, 0, 0);
 
             left += (4 * font_width) + padding;
 
@@ -426,12 +424,11 @@ void draw_dungeon_info(z64_disp_buf_t* db) {
                 }
                 char* str = CFG_DUNGEON_IS_MQ[d->index] ? "MQ" : "Normal";
                 int top = start_top + ((icon_size + padding) * i) + 1;
-                text_print_size(str, left, top, font_width);
+                text_print_size(db, str, left, top, font_width, font_height);
             }
 
             left += (6 * font_width) + padding;
         }
-        text_flush_size(db, font_width, font_height, 0, 0);
 
         if (CFG_DUNGEON_INFO_SILVER_RUPEES) {
             // Draw silver rupee icons
@@ -605,7 +602,7 @@ void draw_dungeon_info(z64_disp_buf_t* db) {
                     world_text[3] = world % 10 + '0';
                 }
                 int top = start_top + ((icon_size + padding) * i) + 1;
-                text_print(world_text, left, top);
+                text_print(db, world_text, left, top);
             }
             left += 5 * font_sprite.tile_w;
         }
@@ -639,7 +636,7 @@ void draw_dungeon_info(z64_disp_buf_t* db) {
                     continue;
                 }
                 int top = start_top + ((icon_size + padding) * i) + 1;
-                text_print(CFG_DUNGEON_REWARD_AREAS[i], left, top);
+                text_print(db, CFG_DUNGEON_REWARD_AREAS[i], left, top);
             }
         }
 
@@ -675,7 +672,7 @@ void draw_dungeon_info(z64_disp_buf_t* db) {
         for (int i = 0; i < rows; i++) {
             dungeon_entry_t* d = &(dungeons[d_right_dungeon_idx(i)]); // skip Deku/DC/Jabu/Ice dynamically
             int top = start_top + ((icon_size + padding) * i) + 1;
-            text_print(d->name, left, top);
+            text_print(db, d->name, left, top);
         }
 
         left += ((SHUFFLE_CHEST_GAME == 1 ? 11 : 8) * font_sprite.tile_w) + padding;
@@ -702,7 +699,7 @@ void draw_dungeon_info(z64_disp_buf_t* db) {
             if (current_keys > 0) count[0] = current_keys + '0';
             if (total_keys > 0) count[2] = total_keys + '0';
             int top = start_top + ((icon_size + padding) * i) + 1;
-            text_print(count, left, top);
+            text_print(db, count, left, top);
         }
 
         left += (4 * font_sprite.tile_w) + padding;
@@ -839,7 +836,7 @@ void draw_dungeon_info(z64_disp_buf_t* db) {
         for (int i = 0; i < 12; i++) {
             dungeon_entry_t* d = &(dungeons[i + (i > 9 ? 1 : 0)]); // skip Hideout
             int top = start_top + ((icon_size + padding) * i) + 1;
-            text_print(d->name, left, top);
+            text_print(db, d->name, left, top);
         }
 
         left += (8 * font_sprite.tile_w) + padding;
@@ -906,7 +903,7 @@ void draw_dungeon_info(z64_disp_buf_t* db) {
                 }
                 char* str = CFG_DUNGEON_IS_MQ[d->index] ? "MQ" : "Normal";
                 int top = start_top + ((icon_size + padding) * i) + 1;
-                text_print(str, left, top);
+                text_print(db, str, left, top);
             }
 
             left += icon_size + padding;
@@ -914,7 +911,6 @@ void draw_dungeon_info(z64_disp_buf_t* db) {
     }
 
     // Finish
-    text_flush(db);
 }
 
 int dungeon_info_is_drawn() {

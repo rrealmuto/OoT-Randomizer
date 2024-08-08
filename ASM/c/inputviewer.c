@@ -10,11 +10,15 @@ const int16_t left_alignment = Z64_SCREEN_WIDTH / 12;
 const int16_t top_alignment = 11 * Z64_SCREEN_HEIGHT / 12 + 2;
 
 void draw_x_stick(z64_disp_buf_t* db) {
+    gSPDisplayList(db->p++, &setup_db);
+    gDPPipeSync(db->p++);
     colorRGBA8_t color = {0xF4, 0xEC, 0x30, 0xFF};
     draw_int_size(db, z64_game.common.input[0].raw.x, left_alignment, top_alignment, color, input_number_width, input_number_height);
 }
 
 void draw_y_stick(z64_disp_buf_t* db) {
+    gSPDisplayList(db->p++, &setup_db);
+    gDPPipeSync(db->p++);
     colorRGBA8_t color = {0xF4, 0xEC, 0x30, 0xFF};
     int8_t xy_stick_length = 3 * rupee_digit_sprite.tile_w + font_sprite.tile_w;
     draw_int_size(db, z64_game.common.input[0].raw.y, left_alignment + xy_stick_length, top_alignment, color, input_number_width, input_number_height);
@@ -22,6 +26,8 @@ void draw_y_stick(z64_disp_buf_t* db) {
 
 void draw_a(z64_disp_buf_t* db) {
     if (z64_game.common.input[0].raw.pad.a) {
+        gSPDisplayList(db->p++, &setup_db);
+        gDPPipeSync(db->p++);
         gDPSetPrimColor(db->p++, 0, 0, CFG_A_BUTTON_COLOR.r, CFG_A_BUTTON_COLOR.g, CFG_A_BUTTON_COLOR.b, 0xFF);
         int8_t xy_stick_length = 3 * rupee_digit_sprite.tile_w + font_sprite.tile_w - 2;
         sprite_texture_4b(db, &buttons_sprite, 0, left_alignment + 2 * xy_stick_length, top_alignment, input_icon_width, input_icon_height);
@@ -30,6 +36,8 @@ void draw_a(z64_disp_buf_t* db) {
 
 void draw_b(z64_disp_buf_t* db) {
     if (z64_game.common.input[0].raw.pad.b) {
+        gSPDisplayList(db->p++, &setup_db);
+        gDPPipeSync(db->p++);
         gDPSetPrimColor(db->p++, 0, 0, CFG_B_BUTTON_COLOR.r, CFG_B_BUTTON_COLOR.g, CFG_B_BUTTON_COLOR.b, 0xFF);
         int8_t xy_stick_length = 3 * rupee_digit_sprite.tile_w + font_sprite.tile_w - 2;
         sprite_texture_4b(db, &buttons_sprite, 1, left_alignment + 2 * xy_stick_length + input_icon_width,
@@ -39,15 +47,18 @@ void draw_b(z64_disp_buf_t* db) {
 
 void draw_start(z64_disp_buf_t* db) {
     if (z64_game.common.input[0].raw.pad.s) {
+        gSPDisplayList(db->p++, &setup_db);
+        gDPPipeSync(db->p++);
         gDPSetPrimColor(db->p++, 0, 0, 0xDC, 0xDC, 0xDC, 0xFF); // grey
         int8_t xy_stick_length = 3 * rupee_digit_sprite.tile_w + font_sprite.tile_w - 2;
-        text_print_size("S", left_alignment + 2 * xy_stick_length + buttons_sprite.tile_w, top_alignment, input_icon_width);
-        text_flush_size(db, input_icon_width, input_icon_height, 0, 0);
+        text_print_size(db, "S", left_alignment + 2 * xy_stick_length + buttons_sprite.tile_w, top_alignment, input_icon_width, input_icon_height);
     }
 }
 
 void draw_cdown(z64_disp_buf_t* db) {
     if (z64_game.common.input[0].raw.pad.cd) {
+        gSPDisplayList(db->p++, &setup_db);
+        gDPPipeSync(db->p++);
         gDPSetPrimColor(db->p++, 0, 0, CFG_C_BUTTON_COLOR.r, CFG_C_BUTTON_COLOR.g, CFG_C_BUTTON_COLOR.b, 0xFF);
         int8_t xy_stick_length = 3 * rupee_digit_sprite.tile_w + font_sprite.tile_w - 2;
         sprite_texture(db, &buttons_sprite, 7, left_alignment + 2 * xy_stick_length + 2 * input_icon_width,
@@ -67,6 +78,8 @@ void draw_cup(z64_disp_buf_t* db) {
 
 void draw_cleft(z64_disp_buf_t* db) {
     if (z64_game.common.input[0].raw.pad.cl) {
+        gSPDisplayList(db->p++, &setup_db);
+        gDPPipeSync(db->p++);
         gDPSetPrimColor(db->p++, 0, 0, CFG_C_BUTTON_COLOR.r, CFG_C_BUTTON_COLOR.g, CFG_C_BUTTON_COLOR.b, 0xFF);
         int8_t xy_stick_length = 3 * rupee_digit_sprite.tile_w + font_sprite.tile_w - 2;
         sprite_texture_4b(db, &buttons_sprite, 8, left_alignment + 2 * xy_stick_length + 4 * input_icon_width,
@@ -76,6 +89,8 @@ void draw_cleft(z64_disp_buf_t* db) {
 
 void draw_cright(z64_disp_buf_t* db) {
     if (z64_game.common.input[0].raw.pad.cr) {
+        gSPDisplayList(db->p++, &setup_db);
+        gDPPipeSync(db->p++);
         gDPSetPrimColor(db->p++, 0, 0, CFG_C_BUTTON_COLOR.r, CFG_C_BUTTON_COLOR.g, CFG_C_BUTTON_COLOR.b, 0xFF);
         int8_t xy_stick_length = 3 * rupee_digit_sprite.tile_w + font_sprite.tile_w - 2;
         sprite_texture_4b(db, &buttons_sprite, 9, left_alignment + 2 * xy_stick_length + 3 * input_icon_width,
@@ -85,6 +100,8 @@ void draw_cright(z64_disp_buf_t* db) {
 
 void draw_z(z64_disp_buf_t* db) {
     if (z64_game.common.input[0].raw.pad.z) {
+        gSPDisplayList(db->p++, &setup_db);
+        gDPPipeSync(db->p++);
         gDPSetPrimColor(db->p++, 0, 0, 0xDC, 0xDC, 0xDC, 0xFF); // grey
         int8_t xy_stick_length = 3 * rupee_digit_sprite.tile_w + font_sprite.tile_w - 2;
         sprite_texture_4b(db, &buttons_sprite, 5, left_alignment + 2 * xy_stick_length + 6 * input_icon_width,
@@ -94,6 +111,8 @@ void draw_z(z64_disp_buf_t* db) {
 
 void draw_l(z64_disp_buf_t* db) {
     if (z64_game.common.input[0].raw.pad.l) {
+        gSPDisplayList(db->p++, &setup_db);
+        gDPPipeSync(db->p++);
         gDPSetPrimColor(db->p++, 0, 0, 0xDC, 0xDC, 0xDC, 0xFF); // grey
         int8_t xy_stick_length = 3 * rupee_digit_sprite.tile_w + font_sprite.tile_w - 2;
         sprite_texture_4b(db, &buttons_sprite, 3, left_alignment + 2 * xy_stick_length + 7 * input_icon_width,
@@ -103,6 +122,8 @@ void draw_l(z64_disp_buf_t* db) {
 
 void draw_r(z64_disp_buf_t* db) {
     if (z64_game.common.input[0].raw.pad.r) {
+        gSPDisplayList(db->p++, &setup_db);
+        gDPPipeSync(db->p++);
         gDPSetPrimColor(db->p++, 0, 0, 0xDC, 0xDC, 0xDC, 0xFF); // grey
         int8_t xy_stick_length = 3 * rupee_digit_sprite.tile_w + font_sprite.tile_w - 2;
         sprite_texture_4b(db, &buttons_sprite, 4, left_alignment + 2 * xy_stick_length + 8 * input_icon_width,
@@ -112,6 +133,8 @@ void draw_r(z64_disp_buf_t* db) {
 
 void draw_ddown(z64_disp_buf_t* db) {
     if (z64_game.common.input[0].raw.pad.dd) {
+        gSPDisplayList(db->p++, &setup_db);
+        gDPPipeSync(db->p++);
         gDPSetPrimColor(db->p++, 0, 0, 0xDC, 0xDC, 0xDC, 0xFF); // grey
         int8_t xy_stick_length = 3 * rupee_digit_sprite.tile_w + font_sprite.tile_w - 2;
         sprite_texture(db, &buttons_sprite, 7, left_alignment + 2 * xy_stick_length + 9 * input_icon_width,
@@ -121,6 +144,8 @@ void draw_ddown(z64_disp_buf_t* db) {
 
 void draw_dup(z64_disp_buf_t* db) {
     if (z64_game.common.input[0].raw.pad.du) {
+        gSPDisplayList(db->p++, &setup_db);
+        gDPPipeSync(db->p++);
         gDPSetPrimColor(db->p++, 0, 0, 0xDC, 0xDC, 0xDC, 0xFF); // grey
         int8_t xy_stick_length = 3 * rupee_digit_sprite.tile_w + font_sprite.tile_w - 2;
         sprite_texture_4b(db, &buttons_sprite, 6, left_alignment + 2 * xy_stick_length + 12 * input_icon_width,
@@ -131,6 +156,8 @@ void draw_dup(z64_disp_buf_t* db) {
 
 void draw_dleft(z64_disp_buf_t* db) {
     if (z64_game.common.input[0].raw.pad.dl) {
+        gSPDisplayList(db->p++, &setup_db);
+        gDPPipeSync(db->p++);
         gDPSetPrimColor(db->p++, 0, 0, 0xDC, 0xDC, 0xDC, 0xFF); // grey
         int8_t xy_stick_length = 3 * rupee_digit_sprite.tile_w + font_sprite.tile_w - 2;
         sprite_texture_4b(db, &buttons_sprite, 8, left_alignment + 2 * xy_stick_length + 11 * input_icon_width,
@@ -140,6 +167,8 @@ void draw_dleft(z64_disp_buf_t* db) {
 
 void draw_dright(z64_disp_buf_t* db) {
     if (z64_game.common.input[0].raw.pad.dr) {
+        gSPDisplayList(db->p++, &setup_db);
+        gDPPipeSync(db->p++);
         gDPSetPrimColor(db->p++, 0, 0, 0xDC, 0xDC, 0xDC, 0xFF); // grey
         int8_t xy_stick_length = 3 * rupee_digit_sprite.tile_w + font_sprite.tile_w - 2;
         sprite_texture_4b(db, &buttons_sprite, 9, left_alignment + 2 * xy_stick_length + 10 * input_icon_width,

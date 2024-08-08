@@ -248,6 +248,12 @@ def get_empty_and_fairy_pots(rom):
                 return pot
     return get_actor_list(rom, get_pot_func)
 
+def get_actors_by_id(rom: Rom, actor_ids: list[int]):
+    def get_actor_func(rom, actor_id, actor, scene, room_id, setup_num, actor_num):
+        if actor_id in actor_ids:
+            return (scene, room_id, setup_num, actor_num, scenes[scene], None)
+    return get_actor_list(rom, get_actor_func)
+
 def get_grass(rom):
     def get_grass_func(rom, actor_id, actor, scene, room_id, setup_num, actor_num):
         func = None
@@ -628,17 +634,18 @@ def get_bad_actors(rom: Rom, scenes_data: list[Scene]):
 if __name__ == "__main__":
     #rom = Rom("ZOOTDEC.z64")
     rom = Rom("ZOOTDEC.z64")
-    actors = get_grass(rom)
+    actors = get_actors_by_id(rom, [0xC7])
 
     for actor in actors:
+        print(actors[actor])
         #print(str(actor) + ": " + str(actors[actor]))
-        scene, room,setup,actor_num, scene_name, data = actors[actor]
-        actor_num += 1
-        if data['type'] == "Scattered Bushes":
-            for i in range(1,12+1):
-                print(f"(\"{scene_name} Room {room} {actor_num} Grass Patch {i}\",    (\"Grass\",      {hex(scene)}, ({room},{setup},{actor_num},{i}), None,     'Rupees (5)',         (,))),")
-        else:
-            print(f"(\"{scene_name} Room {room} Grass {actor_num}\",    (\"Grass\",      {hex(scene)}, ({room},{setup},{actor_num}), None,     'Rupees (5)',         (,))),")
+        #scene, room,setup,actor_num, scene_name, data = actors[actor]
+        #actor_num += 1
+        #if data['type'] == "Scattered Bushes":
+        #    for i in range(1,12+1):
+        #        print(f"(\"{scene_name} Room {room} {actor_num} Grass Patch {i}\",    (\"Grass\",      {hex(scene)}, ({room},{setup},{actor_num},{i}), None,     'Rupees (5)',         (,))),")
+        #else:
+        #    print(f"(\"{scene_name} Room {room} Grass {actor_num}\",    (\"Grass\",      {hex(scene)}, ({room},{setup},{actor_num}), None,     'Rupees (5)',         (,))),")
 
     #rom = Rom("../zeloot_mqdebug.z64")
     #wonderitems = get_wonderitems(rom)

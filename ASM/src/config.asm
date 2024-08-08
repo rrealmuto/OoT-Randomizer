@@ -90,7 +90,7 @@ CFG_DPAD_ON_THE_LEFT:
 CFG_INPUT_VIEWER:
 .byte 0x00
 
-CFG_SONG_NAME_POSITION:
+CFG_SONG_NAME_STATE:
 .byte 0x00
 
 .area 0xA5A, 0
@@ -245,9 +245,13 @@ CFG_DUNGEON_INFO_REWARD_WORLDS_ENABLE:
 .area 9, 0
 CFG_DUNGEON_REWARD_WORLDS:
 .endarea
-.align 4
+.align 8
 CFG_BIGOCTO_OVERRIDE_KEY:
 .word 0
+.word 0
+.area 6, 0x00
+PASSWORD:
+.endarea
 .align 4
 
 ; These configuration values are given fixed addresses to aid auto-trackers.

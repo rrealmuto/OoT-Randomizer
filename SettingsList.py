@@ -571,6 +571,18 @@ class SettingInfos:
             ''',
     )
 
+    password_lock = Checkbutton(
+        gui_text         = "Lock Seed Behind Password",
+        gui_tooltip      = '''\
+            Starting the seed will be locked behind a password provided in the spoiler log.
+            The password is a sequence of 6 button presses (A and C).
+        ''',
+        shared           = True,
+        gui_params       = {
+            'optional': True,
+        },
+    )
+
     # Main Rules (and "Guarantee Reachable Locations")
 
     randomize_settings = Checkbutton(
@@ -3622,8 +3634,8 @@ class SettingInfos:
     invisible_chests = Checkbutton(
         gui_text       = 'Invisible Chests',
         gui_tooltip    = '''\
-            Chests will be only be visible with
-            the Lens of Truth. Lens is not logically
+            Chests will only be visible with the
+            Lens of Truth. Lens is not logically
             required for normally visible chests.
         ''',
         shared         = True,

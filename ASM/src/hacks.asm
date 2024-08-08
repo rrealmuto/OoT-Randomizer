@@ -519,6 +519,7 @@ SRAM_SLOTS:
 ;   jal     Save_Write_Hook
 .org 0x800905D4
     j       Sram_WriteSave
+    or      a1, r0, r0
 
 ; Hack Open_Save function to retrieve additional collectible flags
 ; At the start of the Sram_OpenSave function, SramContext address is stored in A0 and also on the stack at 0x20(SP)
@@ -546,6 +547,11 @@ SRAM_SLOTS:
 ; Hack Sram_CopySave to use our new version of the function
 .org 0x80090FD0
     j       Sram_CopySave
+    nop
+
+; Hack Sram_EraseSave to actually just erase the entire slot
+.org 0x80090eb8
+    j       Sram_EraseSave
     nop
 
 ; Increase the size of EnItem00 instances to store the override
@@ -4371,3 +4377,4 @@ DemoEffect_DrawJewel_AfterHook:
 .include "hacks/object_fixes.asm"
 .include "hacks/ovl_boss_ganon.asm"
 .include "hacks/ovl_bg_gate_shutter.asm"
+.include "hacks/z_file_choose.asm"
