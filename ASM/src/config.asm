@@ -242,6 +242,8 @@ CFG_BIGOCTO_OVERRIDE_KEY:
 .area 6, 0x00
 PASSWORD:
 .endarea
+REWARDS_AS_ITEMS:
+.byte 0x00
 .align 4
 
 ; These configuration values are given fixed addresses to aid auto-trackers.
