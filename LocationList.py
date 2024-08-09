@@ -57,6 +57,8 @@ def shop_address(shop_id: int, shelf_id: int) -> int:
 #   Actor ID - The position of the actor in the actor table.
 # The default variable can also be a list of such tuples in the case that multiple scene setups contain the same locations to be shuffled together.
 
+# For cutscene/song/boss locations, the Scene is set to 0xFF. This matches the behavior of the push_delayed_item C function.
+
 # Note: for ActorOverride locations, the "Addresses" variable is in the form ([addresses], [bytes]) where addresses is a list of memory locations in ROM to be updated, and bytes is the data that will be written to that location
 
 #   Location:                                                        Type             Scene  Default Addresses                      Vanilla Item                             Categories
