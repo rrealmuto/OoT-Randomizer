@@ -1,3 +1,4 @@
+/*
 #include "audio.h"
 #include "gfx.h"
 #include "kaleido_item.h"
@@ -423,3 +424,4 @@ void KaleidoScope_DrawItemSelect(z64_game_t* play) {
 
     CLOSE_DISPS(play->common.gfx);
 }
+*/

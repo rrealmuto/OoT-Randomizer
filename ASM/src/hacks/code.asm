@@ -122,3 +122,8 @@ Room_Change_Continue:
 ; Replaces:
 ;   jal     0x800ae6bc
     nop
+
+.org 0x800af64c
+; Replaces:
+;   jal     0x800ae6bc
+    nop

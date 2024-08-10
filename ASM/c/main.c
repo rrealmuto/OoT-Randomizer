@@ -92,6 +92,8 @@ extern void Play_Init(z64_game_t*);
 // Hooked Play_Init entry point which is called at the beginning of every scene change
 // This is where we should reset heap because ZeldaArena is reinitialized every time
 void Play_Init_Hook(z64_game_t* this) {
+    
+    extended_objects_reset();
     Play_Init(this);
     
     
