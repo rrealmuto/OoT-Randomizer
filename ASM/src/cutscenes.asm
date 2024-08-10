@@ -690,7 +690,13 @@ heavy_block_shorten_anim:
 @@check_end:
     li      t4, 0x43790000   ;249.0f
     bne     t3, t4, @@return
-    li      t1, 0x803A967C
+    li      t1, 0x80850cdc ; Player_Action_CsAction static reference to reloc in player overlay so need to resolve this.
+    ; Get current player overlay address
+    li      t2, gPausePlayerOverlayTable ; Addr of player/pause overlay table
+    lw      t3, 0x1C(t2) ; Get RAM address of player
+    lw      t4, 0x28(t2) ; Get VRAM address of player
+    sub     t1, t1, t4 ; Calculate correct RAM address
+    add     t1, t1, t3
     sw      t1, 0x664(t0)
 @@return:
     jr      ra
