@@ -167,13 +167,13 @@
         "region_name": "Ganons Castle Tower",
         "dungeon": "Ganons Castle",
         "locations": {
-            "Ganons Tower Boss Key Chest": "can_kill_lizalfos and can_kill_stalfos",
-            "Ganons Tower Lizalfos 1": "can_kill_lizalfos",
-            "Ganons Tower Lizalfos 2": "can_kill_lizalfos",
-            "Ganons Tower Stalfos 1": "can_kill_lizalfos and can_kill_stalfos",
-            "Ganons Tower Stalfos 2": "can_kill_lizalfos and can_kill_stalfos",
-            "Ganons Tower White Knuckle": "can_kill_lizalfos and can_kill_stalfos and can_kill_iron_knuckle",
-            "Ganons Tower Black Knuckle": "can_kill_lizalfos and can_kill_stalfos and can_kill_iron_knuckle",
+            "Ganons Tower Boss Key Chest": "can_clear_room(GANONS_TOWER_LIZALFOS) and can_clear_room(GANONS_TOWER_STALFOS)",
+            "Ganons Tower Lizalfos 1": "can_kill_this",
+            "Ganons Tower Lizalfos 2": "can_kill_this",
+            "Ganons Tower Stalfos 1": "can_clear_room(GANONS_TOWER_LIZALFOS) and can_kill_this",
+            "Ganons Tower Stalfos 2": "can_clear_room(GANONS_TOWER_LIZALFOS) and can_kill_this",
+            "Ganons Tower White Knuckle": "can_clear_room(GANONS_TOWER_LIZALFOS) and can_clear_room(GANONS_TOWER_STALFOS) and can_kill_this",
+            "Ganons Tower Black Knuckle": "can_clear_room(GANONS_TOWER_LIZALFOS) and can_clear_room(GANONS_TOWER_STALFOS) and can_kill_this",
             "Ganons Tower Keese 1": "can_kill_keese",
             "Ganons Tower Keese 2": "can_kill_keese",
             "Ganons Tower Keese 3": "can_kill_keese",
@@ -184,8 +184,7 @@
         },
         "exits": {
             "Ganons Castle Tower Below Boss": "
-                (is_adult or Kokiri_Sword) and
-                (has_soul(Lizalfos_and_Dinalfos) and has_soul(Stalfos) and has_soul(Iron_Knuckle)) and
+                (can_clear_room(GANONS_TOWER_LIZALFOS) and can_clear_room(GANONS_TOWER_STALFOS) and can_clear_room(GANONS_TOWER_KNUCKLES)) and
                 (Boss_Key_Ganons_Castle or (shuffle_pots != 'off'))"
         }
     },
