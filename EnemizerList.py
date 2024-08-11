@@ -1185,6 +1185,11 @@ class Enemy:
         else:
             self.soul_name = self.name
 
+class EnemyWithOpts(Enemy):
+    def __init__(self, enemyOpts: list[Enemy], filter_func=None):
+        self.enemyOpts: list[Enemy] = enemyOpts
+        self.filter_func = filter_func
+
 # Filter functions, return false to filter out enemy from being shuffled
 
 def filter_skullwalltula(actor: Actor):
@@ -1208,7 +1213,10 @@ enemy_actor_types = {
     0x0012: Enemy("Dodongo", kill_logic='can_kill_dodongo'),
     0x0013: Enemy("Keese", kill_logic='can_kill_keese'),
     0x001B: Enemy("Tektite", kill_logic='can_kill_tektite'),
-    0x001D: Enemy("Peahat"),
+    0x001D: EnemyWithOpts([
+        Enemy("Peahat", var=0xFFFF, kill_logic='can_kill_peahat'),
+        Enemy("Flying Peahat", var=0x0000, kill_logic='can_kill_flying_peahat')
+    ]),
     0x0025: Enemy("Lizalfos/Dinalfos", var=0xFF80, soul_name="Lizalfos and Dinalfos", kill_logic='can_kill_lizalfos'),
     0x002B: Enemy("Gohma Larva", var=0x0006, soul_name="Gohma Larvae", kill_logic='can_kill_gohma_larva'),
     0x002D: Enemy("Shabom", kill_logic='can_kill_shabom'),

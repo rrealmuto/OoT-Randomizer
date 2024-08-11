@@ -58,12 +58,10 @@ def _shuffle_enemies(enemy_list: dict[tuple[int,int,int,int],int]) -> dict[tuple
     for enemy_key in enemy_list:
         enemy_type = enemy_list[enemy_key]
         choice = random.choice(enemy_choices)
-        #choice = 0x002B
-        if(choice != enemy_type):
-            shuffled[enemy_key] = (choice, True)
-        else:
-            print("Skipping duplicate enemy")
-            shuffled[enemy_key] = (choice, False)
+        enemy = enemy_actor_types[choice]
+        if type(enemy) is EnemyWithOpts:
+            enemy = random.choice(enemy.enemyOpts)
+        shuffled[enemy_key] = (choice, enemy, True)
     return shuffled
 
 def patch_enemies(enemy_list: dict[tuple[int,int,int,int],Actor], shuffled_enemies: dict[tuple[int,int,int,int], tuple[int,bool]], rom):
@@ -76,11 +74,11 @@ def patch_enemies(enemy_list: dict[tuple[int,int,int,int],Actor], shuffled_enemi
             else:
                 keys.append(base_enemy_alts[enemy_key])
         for key in keys:
-            enemy_id, shuffled = shuffled_enemies[enemy_key]
+            enemy_id, enemy, shuffled = shuffled_enemies[enemy_key]
             enemy_actor = enemy_list[key]
             if shuffled:
                 enemy_actor.rot_x = 0
                 enemy_actor.rot_z = 0
                 enemy_actor.id = enemy_id
-                enemy_actor.var = enemy_actor_types[enemy_id].var
+                enemy_actor.var = enemy.var
                 rom.write_bytes(enemy_actor.addr, enemy_actor.get_bytes())

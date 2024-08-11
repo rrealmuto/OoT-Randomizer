@@ -474,7 +474,7 @@ class Rule_AST_Transformer(ast.NodeTransformer):
         return ast.Constant(True)
 
     def at_night(self, node: ast.Call) -> ast.expr:
-        if self.current_spot.type == 'GS Token' and self.world.settings.logic_no_night_tokens_without_suns_song:
+        if self.current_spot and self.current_spot.type == 'GS Token' and self.world.settings.logic_no_night_tokens_without_suns_song:
             # Using visit here to resolve 'can_play' rule
             return self.visit(ast.parse('can_play(Suns_Song)', mode='eval').body)
         if self.world.ensure_tod_access:

@@ -241,13 +241,13 @@ class State:
     # Logic helper for determining if an enemy at a particular spot can be killed. Used when logic for one spot depends on killing a specific enemy
     def can_kill(self, scene,room,setup,index, **kwargs) -> bool:
         enemies = self.world.enemies_by_scene[scene][room][setup]
-        enemy_type, shuffled = enemies[scene,room,setup,index]
+        enemy_type, enemy_obj, shuffled = enemies[scene,room,setup,index]
         # Check soul for this enemy
-        has_soul = self.has_soul(enemy_actor_types[enemy_type].soul_name, **kwargs)
+        has_soul = self.has_soul(enemy_obj.soul_name, **kwargs)
     
         # TODO Build an ID -> Defeatibility check mapping
         # Check defeatibility
-        can_kill = self.world.parser.parse_rule(enemy_actor_types[enemy_type].kill_logic)(self, **kwargs)
+        can_kill = self.world.parser.parse_rule(enemy_obj.kill_logic)(self, **kwargs)
 
         return has_soul and can_kill
 
@@ -272,8 +272,8 @@ class State:
         # Loop through each enemy and determine defeatability
         # Need to check for the soul for each enemy, and the defeatability function
         for enemy in enemies:
-            enemy_type, shuffled = enemies[enemy]
-            if not self.has_soul(enemy_actor_types[enemy_type].soul_name, **kwargs):
+            enemy_type, enemy_obj, shuffled = enemies[enemy]
+            if not self.has_soul(enemy_obj.soul_name, **kwargs):
                 return False
 
         return True

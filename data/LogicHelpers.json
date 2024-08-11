@@ -137,7 +137,7 @@
     "can_kill_baby_dodongo": "has_soul(Baby_Dodongo) and (is_adult or (Kokiri_Sword or Sticks or Slingshot or Boomerang or has_explosives))",
     "can_kill_stalfos": "has_soul(Stalfos) and (is_adult or Kokiri_Sword or Sticks)",
     "can_kill_peahat": "has_soul(Peahat) and ((at_night and Bombs) or (at_day and is_adult or (Kokiri_Sword or Sticks or Slingshot)))",
-    "can_kill_flying_peahat": "has_soul(Peahat) and ((at_day and can_use(Slingshot) or can_use(Bow)) or (at_night and Bombs)",
+    "can_kill_flying_peahat": "has_soul(Peahat) and (at_day and can_use(Slingshot) or can_use(Bow)) or (at_night and Bombs)",
     "can_kill_iron_knuckle": "has_soul(Iron_Knuckle) and ((is_adult) or (is_child and (Bombs or Kokiri_Sword or Sticks)))",
     "can_kill_shell_blade": "has_soul(Shell_Blade) and (is_adult and (Bow or Hookshot))",
     "can_kill_freezard": "has_soul(Freezard) and (is_adult or has_explosives or can_use(Dins_Fire))",
