@@ -12,6 +12,7 @@ from typing import Optional
 
 
 from Cosmetics import CosmeticsLog, patch_cosmetics
+from Enemizer import set_enemies, shuffle_enemies
 from EntranceShuffle import set_entrances, shuffle_random_entrances
 from Fill import distribute_items_restrictive, ShuffleError
 from Goals import update_goal_items, replace_goal_names
@@ -133,6 +134,8 @@ def build_world_graphs(settings: Settings) -> list[World]:
         # Load common json rule files (those used regardless of MQ status)
         if settings.logic_rules == 'glitched':
             path = 'Glitched World'
+        elif settings.enemizer:
+            path = 'EnemizerWorld'
         else:
             path = 'World'
         path = data_path(path)
@@ -168,6 +171,10 @@ def build_world_graphs(settings: Settings) -> list[World]:
     set_entrances(worlds, savewarps_to_connect)
 
     set_boulders(worlds)
+
+    set_enemies(worlds)
+
+    shuffle_enemies(worlds)
 
     if worlds[0].entrance_shuffle:
         shuffle_random_entrances(worlds)

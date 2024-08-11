@@ -1,0 +1,362 @@
+[
+    {
+        "region_name": "Shadow Temple Entryway",
+        "dungeon": "Shadow Temple",
+        "exits": {
+            "Graveyard Warp Pad Region": "True",
+            "Shadow Temple Beginning": "
+                (logic_lens_shadow_mq or can_use(Lens_of_Truth)) and
+                (can_use(Hover_Boots) or can_use(Hookshot))",
+            "Farores Wind Warp": "can_use(Farores_Wind)"
+        }
+    },
+    {
+        "region_name": "Shadow Temple Beginning",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple MQ Truth Spinner Small Wooden Crate 1": "True",
+            "Shadow Temple MQ Truth Spinner Small Wooden Crate 2": "True",
+            "Shadow Temple MQ Truth Spinner Small Wooden Crate 3": "True",
+            "Shadow Temple MQ Truth Spinner Small Wooden Crate 4": "True"
+        },
+        "exits": {
+            "Shadow Temple First Beamos": "
+                shadow_temple_shortcuts or can_use(Fire_Arrows) or Hover_Boots or
+                (logic_shadow_mq_gap and Longshot)",
+            "Shadow Temple Dead Hand Area": "has_explosives and (Small_Key_Shadow_Temple, 6)"
+        }
+    },
+    {
+        "region_name": "Shadow Temple Dead Hand Area",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple MQ Compass Chest": "has_soul(Redead_and_Gibdo)",
+            "Shadow Temple MQ Hover Boots Chest": "has_soul(Dead_hand) and can_play(Song_of_Time) and Bow",
+            "Shadow Temple MQ Whispering Walls Pot 1": "True",
+            "Shadow Temple MQ Whispering Walls Pot 2": "True",
+            "Shadow Temple MQ Compass Room Pot 1": "True",
+            "Shadow Temple MQ Compass Room Pot 2": "True",
+            "Shadow Temple MQ Whispering Walls Before Time Block Flying Pot 1": "has_soul(Flying_Pot)",
+            "Shadow Temple MQ Whispering Walls Before Time Block Flying Pot 2": "has_soul(Flying_Pot)",
+            "Shadow Temple MQ Whispering Walls After Time Block Flying Pot 1": "(has_soul(Flying_Pot)) and can_play(Song_of_Time)",
+            "Shadow Temple MQ Whispering Walls After Time Block Flying Pot 2": "(has_soul(Flying_Pot)) and can_play(Song_of_Time)",
+            "Shadow Temple MQ Compass Chest Redead 1": "has_soul(Redead_and_Gibdo)",
+            "Shadow Temple MQ Compass Chest Redead 2": "has_soul(Redead_and_Gibdo)",
+            "Shadow Temple MQ Compass Chest Redead 3": "has_soul(Redead_and_Gibdo)",
+            "Shadow Temple MQ Compass Chest Redead 4": "has_soul(Redead_and_Gibdo)",
+            "Shadow Temple MQ Deadhand": "has_soul(Dead_hand) and can_play(Song_of_Time) and Bow"
+        }
+    },
+    {
+        "region_name": "Shadow Temple First Beamos",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple MQ Map Chest": "(Silver_Rupee_Shadow_Temple_Scythe_Shortcut, 5)",
+            "Shadow Temple MQ Early Gibdos Chest": "has_soul(Redead_and_Gibdo)",
+            "Shadow Temple MQ Near Ship Invisible Chest": "True",
+            "Shadow Temple MQ Scythe Shortcut Silver Rupee Center Left": "True",
+            "Shadow Temple MQ Scythe Shortcut Silver Rupee Ledge": "True",
+            "Shadow Temple MQ Scythe Shortcut Silver Rupee Back Alcove": "True",
+            "Shadow Temple MQ Scythe Shortcut Silver Rupee Left Alcove": "True",
+            "Shadow Temple MQ Scythe Shortcut Silver Rupee Center Right": "True",
+            "Shadow Temple MQ First Beamos": "can_kill_beamos",
+            "Shadow Temple MQ Spinning Scythe Skulltula 1": "has_soul(Skulltula)",
+            "Shadow Temple MQ Spinning Scythe Skulltula 2": "has_soul(Skulltula)",
+            "Shadow Temple MQ Spinning Scythe Skulltula 3": "has_soul(Skulltula)",
+            "Shadow Temple MQ Spinning Scythe Skulltula 4": "has_soul(Skulltula) and (Silver_Rupee_Shadow_Temple_Scythe_Shortcut, 5)",
+            "Shadow Temple MQ Early Gibdo 1": "has_soul(Redead_and_Gibdo)",
+            "Shadow Temple MQ Early Gibdo 2": "has_soul(Redead_and_Gibdo)"
+        },
+        # When shadow shortcuts are on, the central areas of the dungeon will require all 6 keys to
+        # access. However, the final locked door does not actually prevent you from reaching any area
+        # since all opening it does is complete the loop through the dungeon. We can take advantage of
+        # this to reduce the key requirement to 5 by confirming we have the items to reach the check
+        # regardless of which door is unlocked into any given room. An exception can be made for using
+        # the Longshot to get from the lower door of huge pit room up to the invisible blades room.
+        # Since Longshot is required to use the final key on the door to the BK chest room, you must
+        # either have Longshot or be unable to spend more than 5 keys.
+        "exits": {
+            "Shadow Temple Upper Huge Pit": "
+                has_explosives and
+                (((Small_Key_Shadow_Temple, 2) and not shadow_temple_shortcuts) or
+                    (Small_Key_Shadow_Temple, 5))",
+            "Shadow Temple Boat": "shadow_temple_shortcuts"
+        }
+    },
+    {
+        "region_name": "Shadow Temple Upper Huge Pit",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple MQ Guillotine Hallway Skulltula": "has_soul(Skulltula)",
+            "Shadow Temple MQ Guillotine Hallway Beamos 1": "can_kill_beamos",
+            "Shadow Temple MQ Guillotine Hallway Beamos 2": "can_kill_beamos",
+            "Shadow Temple MQ Huge Pit Bubble": "has_soul(Bubble)",
+            "Shadow Temple MQ Huge Pit Upper Beamos 1": "can_kill_beamos",
+            "Shadow Temple MQ Huge Pit Upper Beamos 2": "can_kill_beamos"
+        },
+        "exits": {
+            "Shadow Temple Invisible Blades Room": "
+                not shadow_temple_shortcuts or (Small_Key_Shadow_Temple, 6) or
+                ((logic_lens_shadow_mq_platform or can_use(Lens_of_Truth)) and Hover_Boots)",
+            "Shadow Temple Lower Huge Pit": "has_fire_source or logic_shadow_mq_huge_pit"
+        }
+    },
+    {
+        "region_name": "Shadow Temple Invisible Blades Room",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple MQ Invisible Blades Visible Chest": "
+                (Silver_Rupee_Shadow_Temple_Invisible_Blades, 10)",
+            "Shadow Temple MQ Invisible Blades Invisible Chest": "
+                (Silver_Rupee_Shadow_Temple_Invisible_Blades, 10)",
+            "Shadow Temple MQ Invisible Blades Silver Rupee Back Left": "True",
+            "Shadow Temple MQ Invisible Blades Silver Rupee Back Right": "True",
+            "Shadow Temple MQ Invisible Blades Keese 1": "has_soul(Keese)",
+            "Shadow Temple MQ Invisible Blades Keese 2": "has_soul(Keese)",
+            "Shadow Temple MQ Invisible Blades Keese 3": "has_soul(Keese)",
+            "Shadow Temple MQ Invisible Blades Like-Like": "has_soul(Likelike)"
+        },
+        "exits": {
+            "Shadow Temple Close Proximity to Invisible Blades": "
+                logic_lens_shadow_mq_invisible_blades or can_use(Lens_of_Truth) or
+                can_use(Nayrus_Love)",
+            "Shadow Temple Invisible Blades Song of Time Blocks": "
+                can_play(Song_of_Time) or
+                (logic_shadow_mq_invisible_blades and damage_multiplier != 'ohko' and has_soul(Likelike))"
+        }
+    },
+    {
+        "region_name": "Shadow Temple Close Proximity to Invisible Blades",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple MQ Invisible Blades Silver Rupee 1": "True",
+            "Shadow Temple MQ Invisible Blades Silver Rupee 2": "True",
+            "Shadow Temple MQ Invisible Blades Silver Rupee 3": "True",
+            "Shadow Temple MQ Invisible Blades Silver Rupee 4": "True",
+            "Shadow Temple MQ Invisible Blades Silver Rupee 5": "True",
+            "Shadow Temple MQ Invisible Blades Silver Rupee 6": "True",
+            "Shadow Temple MQ Invisible Blades Silver Rupee Like Like": "has_soul(Likelike)"
+        }
+    },
+    {
+        "region_name": "Shadow Temple Invisible Blades Song of Time Blocks",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple MQ Invisible Blades Recovery Heart 1": "True",
+            "Shadow Temple MQ Invisible Blades Recovery Heart 2": "True",
+            "Shadow Temple MQ Invisible Blades Silver Rupee Song of Time Block": "True"
+        }
+    },
+    {
+        "region_name": "Shadow Temple Lower Huge Pit",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple MQ Huge Pit Lower Beamos": "has_soul(Beamos)"
+        },
+        "exits": {
+            "Shadow Temple Falling Spikes": "
+                not shadow_temple_shortcuts or (Small_Key_Shadow_Temple, 6) or
+                ((logic_lens_shadow_mq_platform or can_use(Lens_of_Truth)) and Hover_Boots and
+                    (has_fire_source or logic_shadow_mq_huge_pit))",
+            "Shadow Temple Invisible Spikes": "
+                (logic_lens_shadow_mq_platform or can_use(Lens_of_Truth)) and
+                Hover_Boots and (Small_Key_Shadow_Temple, 3)",
+            "Shadow Temple Upper Huge Pit": "Longshot"
+        }
+    },
+    {
+        "region_name": "Shadow Temple Falling Spikes",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple MQ Beamos Silver Rupees Chest": "(Silver_Rupee_Shadow_Temple_Huge_Pit, 5)",
+            "Shadow Temple MQ Falling Spikes Lower Chest": "True",
+            "Shadow Temple MQ Falling Spikes Upper Chest": "
+                (logic_shadow_umbrella and Hover_Boots) or Progressive_Strength_Upgrade",
+            "Shadow Temple MQ Falling Spikes Switch Chest": "
+                (logic_shadow_umbrella and Hover_Boots) or Progressive_Strength_Upgrade",
+            "Shadow Temple MQ Falling Spikes Lower Pot 1": "True",
+            "Shadow Temple MQ Falling Spikes Lower Pot 2": "True",
+            "Shadow Temple MQ Falling Spikes Upper Pot 1": "
+                (logic_shadow_umbrella and Hover_Boots) or Progressive_Strength_Upgrade",
+            "Shadow Temple MQ Falling Spikes Upper Pot 2": "
+                (logic_shadow_umbrella and Hover_Boots) or Progressive_Strength_Upgrade",
+            "Shadow Temple MQ Huge Pit Silver Rupee Center Front": "True",
+            "Shadow Temple MQ Huge Pit Silver Rupee Center Back": "True",
+            "Shadow Temple MQ Huge Pit Silver Rupee Right": "True",
+            "Shadow Temple MQ Huge Pit Silver Rupee Ceiling Upper": "Longshot",
+            "Shadow Temple MQ Huge Pit Silver Rupee Ceiling Lower": "Longshot",
+            "Shadow Temple MQ GS Falling Spikes Room": "
+                (logic_shadow_umbrella_gs and Hover_Boots) or Hookshot"
+        }
+    },
+    {
+        "region_name": "Shadow Temple Invisible Spikes",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple MQ Invisible Spikes Chest": "has_soul(Redead_and_Gibdo)",
+            "Shadow Temple MQ Stalfos Room Chest": "(Silver_Rupee_Shadow_Temple_Invisible_Spikes, 10) and has_soul(Stalfos)",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee Center Front": "True",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee Center Right": "True",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee Left Hookshot Target": "Hookshot",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee Right Hookshot Target": "Hookshot",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee Back Right": "Hookshot",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee Ledge": "Hookshot",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee Near Ledge": "Hookshot",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee Ceiling Front": "Hookshot",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee Ceiling Middle": "Hookshot",
+            "Shadow Temple MQ Invisible Spikes Silver Rupee Ceiling Back": "Hookshot",
+            "Shadow Temple MQ Invisible Spikes Redead 1": "has_soul(Redead_and_Gibdo)",
+            "Shadow Temple MQ Invisible Spikes Redead 2": "has_soul(Redead_and_Gibdo)",
+            "Shadow Temple MQ Stalfos Room Stalfos 1": "(Silver_Rupee_Shadow_Temple_Invisible_Spikes, 10) and has_soul(Stalfos)",
+            "Shadow Temple MQ Stalfos Room Stalfos 2": "(Silver_Rupee_Shadow_Temple_Invisible_Spikes, 10) and has_soul(Stalfos)"
+        },
+        "exits": {
+            "Shadow Temple Wind Tunnel": "Hookshot and (Small_Key_Shadow_Temple, 4)",
+            "Shadow Temple Lower Huge Pit": "
+                (logic_lens_shadow_mq_platform or can_use(Lens_of_Truth)) and Hover_Boots"
+        }
+    },
+    {
+        "region_name": "Shadow Temple Wind Tunnel",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple MQ Wind Hint Chest": "True",
+            "Shadow Temple MQ GS Wind Hint Room": "Hookshot",
+            "Shadow Temple MQ Wind Tunnel Skulltula": "has_soul(Skulltula)",
+            "Shadow Temple MQ Wind Hint Redead 1": "has_soul(Redead_and_Gibdo)",
+            "Shadow Temple MQ Wind Hint Redead 2": "has_soul(Redead_and_Gibdo)",
+            "Shadow Temple MQ Wind Hint Redead 3": "has_soul(Redead_and_Gibdo)",
+            "Shadow Temple MQ Wind Hint Redead 4": "has_soul(Redead_and_Gibdo)"
+        },
+        "exits": {
+            "Shadow Temple After Wind": "True",
+            "Shadow Temple Invisible Spikes": "Hookshot"
+        }
+    },
+    {
+        "region_name": "Shadow Temple After Wind",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple MQ After Wind Enemy Chest": "has_soul(Redead_and_Gibdo)",
+            "Shadow Temple MQ After Wind Hidden Chest": "has_explosives",
+            "Shadow Temple MQ After Wind Pot 1": "True",
+            "Shadow Temple MQ After Wind Pot 2": "True",
+            "Shadow Temple MQ After Wind Flying Pot 1": "has_soul(Flying_Pot)",
+            "Shadow Temple MQ After Wind Flying Pot 2": "has_soul(Flying_Pot)",
+            "Shadow Temple MQ GS After Wind": "True",
+            "Shadow Temple MQ After Wind Gibdo 1": "has_soul(Redead_and_Gibdo)",
+            "Shadow Temple MQ After Wind Gibdo 2": "has_soul(Redead_and_Gibdo)",
+            "Nut Pot": "True"
+        },
+        "exits": {
+            "Shadow Temple Boat": "(Small_Key_Shadow_Temple, 5)",
+            "Shadow Temple Wind Tunnel": "Hover_Boots or logic_shadow_mq_windy_walkway"
+        }
+    },
+    {
+        "region_name": "Shadow Temple Boat",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple MQ Before Boat Recovery Heart 1": "can_use(Distant_Scarecrow)",
+            "Shadow Temple MQ Before Boat Recovery Heart 2": "can_use(Distant_Scarecrow)",
+            "Shadow Temple MQ Before Boat Skullwalltula": "has_soul(Skullwalltula)",
+            "Shadow Temple MQ Shortcut Skulltula": "has_soul(Skulltula)"
+        },
+        "exits": {
+            "Shadow Temple After Wind": "(Small_Key_Shadow_Temple, 5)",
+            "Shadow Temple Beyond Boat": "can_play(Zeldas_Lullaby)"
+        }
+    },
+    {
+        "region_name": "Shadow Temple Beyond Boat",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple MQ After Boat Pot 1": "True",
+            "Shadow Temple MQ After Boat Pot 2": "True",
+            "Shadow Temple MQ GS After Ship": "
+                Hookshot or (logic_shadow_mq_after_boat_gs and
+                   (has_explosives or Bow or can_use(Dins_Fire) or can_shield))",
+            "Shadow Temple MQ Boat Stalfos 1": "has_soul(Stalfos)",
+            "Shadow Temple MQ Boat Stalfos 2": "has_soul(Stalfos)"
+        },
+        "exits": {
+            "Shadow Temple Across Chasm": "
+                Bow or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts"
+        }
+    },
+    {
+        "region_name": "Shadow Temple Across Chasm",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple MQ After Boat Lower Recovery Heart": "True",
+            "Shadow Temple MQ Near Boss Pot 1": "True",
+            "Shadow Temple MQ Near Boss Pot 2": "True"
+        },
+        "exits": {
+            "Shadow Temple Invisible Maze": "Bow and can_play(Song_of_Time) and Longshot",
+            "Shadow Temple Before Boss": "Hover_Boots"
+        }
+    },
+    {
+        "region_name": "Shadow Temple Invisible Maze",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple MQ Bomb Flower Chest": "
+                has_soul(Dead_hand) and (logic_lens_shadow_mq_dead_hand or can_use(Lens_of_Truth))",
+            "Shadow Temple MQ Freestanding Key": "True",
+            "Shadow Temple MQ Spike Walls Left Chest": "
+                (Small_Key_Shadow_Temple, 6) and can_use(Dins_Fire)",
+            "Shadow Temple MQ Boss Key Chest": "
+                (Small_Key_Shadow_Temple, 6) and can_use(Dins_Fire)",
+            "Shadow Temple MQ After Boat Upper Recovery Heart 1": "True",
+            "Shadow Temple MQ After Boat Upper Recovery Heart 2": "True",
+            "Shadow Temple MQ Bomb Flower Room Pot 1": "True",
+            "Shadow Temple MQ Bomb Flower Room Pot 2": "True",
+            "Shadow Temple MQ Spike Walls Pot": "(Small_Key_Shadow_Temple, 6)",
+            "Shadow Temple MQ 3 Spinning Pots Wonderitem": "True",
+            "Shadow Temple MQ Spike Walls Keese 1": "has_soul(Keese) and (Small_Key_Shadow_Temple, 6)",
+            "Shadow Temple MQ Spike Walls Keese 2": "has_soul(Keese) and (Small_Key_Shadow_Temple, 6)",
+            "Shadow Temple MQ Spike Walls Keese 3": "has_soul(Keese) and (Small_Key_Shadow_Temple, 6)",
+            "Shadow Temple MQ Spike Walls Keese 4": "has_soul(Keese) and (Small_Key_Shadow_Temple, 6)",
+            "Shadow Temple MQ Spike Walls Skulltula 1": "has_soul(Skulltula) and (Small_Key_Shadow_Temple, 6)",
+            "Shadow Temple MQ Spike Walls Skulltula 2": "has_soul(Skulltula) and (Small_Key_Shadow_Temple, 6)",
+            "Shadow Temple MQ Spike Walls Skulltula 3": "has_soul(Skulltula) and (Small_Key_Shadow_Temple, 6)",
+            "Shadow Temple MQ Spike Walls Skulltula 4": "has_soul(Skulltula) and (Small_Key_Shadow_Temple, 6)",
+            "Shadow Temple MQ Invisible Wall Maze Bubble 1": "has_soul(Bubble)",
+            "Shadow Temple MQ Invisible Wall Maze Bubble 2": "has_soul(Bubble)",
+            "Shadow Temple MQ Invisible Wall Maze Like-Like": "has_soul(Likelike)",
+            "Shadow Temple MQ Bomb Flower Deadhand": "
+                has_soul(Dead_hand) and (logic_lens_shadow_mq_dead_hand or can_use(Lens_of_Truth))"
+        },
+        "exits": {
+            "Shadow Temple 3 Spinning Pots Rupees": "
+                Bombs or Progressive_Strength_Upgrade or (logic_shadow_triple_pots and has_bombchus)"
+        }
+    },
+    {
+        "region_name": "Shadow Temple 3 Spinning Pots Rupees",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple MQ 3 Spinning Pots Rupee 1": "True",
+            "Shadow Temple MQ 3 Spinning Pots Rupee 2": "True",
+            "Shadow Temple MQ 3 Spinning Pots Rupee 3": "True",
+            "Shadow Temple MQ 3 Spinning Pots Rupee 4": "True",
+            "Shadow Temple MQ 3 Spinning Pots Rupee 5": "True",
+            "Shadow Temple MQ 3 Spinning Pots Rupee 6": "True",
+            "Shadow Temple MQ 3 Spinning Pots Rupee 7": "True",
+            "Shadow Temple MQ 3 Spinning Pots Rupee 8": "True",
+            "Shadow Temple MQ 3 Spinning Pots Rupee 9": "True"
+        }
+    },
+    {
+        "region_name": "Shadow Temple Before Boss",
+        "dungeon": "Shadow Temple",
+        "savewarp": "Graveyard Warp Pad Region -> Shadow Temple Entryway",
+        "locations": {
+            "Shadow Temple MQ GS Near Boss": "has_projectile(adult) or can_use(Dins_Fire)"
+        },
+        "exits": {
+            "Bongo Bongo Boss Room": "Boss_Key_Shadow_Temple"
+        }
+    }
+]

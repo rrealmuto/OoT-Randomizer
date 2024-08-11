@@ -24,6 +24,7 @@ from Search import Search
 from SettingsList import build_close_match, validate_settings
 from Spoiler import Spoiler, HASH_ICONS, PASSWORD_NOTES
 from version import __version__
+from EnemizerList import enemy_actor_types
 
 if TYPE_CHECKING:
     from SaveContext import SaveContext
@@ -50,7 +51,8 @@ per_world_keys = (
     ':goal_locations',
     ':barren_regions',
     'gossip_stones',
-    'boulders'
+    'boulders',
+    'enemies'
 )
 
 
@@ -276,6 +278,7 @@ class WorldDistribution:
         self.barren_regions: Optional[list[str]] = None
         self.gossip_stones: Optional[dict[str, GossipRecord]] = None
         self.boulders: Optional[dict[str, BOULDER_TYPE]] = {}
+        self.shuffled_enemies: Optional[dict[tuple[int,int,int,int],int]] = {}
 
         self.distribution: Distribution = distribution
         self.id: int = id
@@ -304,6 +307,7 @@ class WorldDistribution:
             'barren_regions': None,
             'gossip_stones': {name: [GossipRecord(rec) for rec in record] if is_pattern(name) else GossipRecord(record) for (name, record) in src_dict.get('gossip_stones', {}).items()},
             'boulders': {name: BOULDER_TYPE[record] for (name, record) in src_dict.get('boulders', {}).items()},
+            #'shuffled_enemies': src_dict.get('shuffled_enemies')
         }
 
         if update_all:
@@ -336,7 +340,8 @@ class WorldDistribution:
             ':goal_locations': self.goal_locations,
             ':barren_regions': self.barren_regions,
             'gossip_stones': SortedDict({name: [rec.to_json() for rec in record] if is_pattern(name) else record.to_json() for (name, record) in self.gossip_stones.items()}),
-            'boulders': {boulder:str(self.boulders[boulder]) for boulder in self.boulders}
+            'boulders': {boulder:str(self.boulders[boulder]) for boulder in self.boulders},
+            'enemies': {enemy: enemy_actor_types[self.shuffled_enemies[enemy][0]].name for enemy in self.shuffled_enemies}
         }
 
     def __str__(self) -> str:
@@ -1385,6 +1390,7 @@ class Distribution:
         for world in spoiler.worlds:
             world_dist = self.world_dists[world.id]
             world_dist.boulders = world.boulders
+            world_dist.shuffled_enemies = world.shuffled_enemies
             world_dist.randomized_settings = {randomized_item: getattr(world.settings, randomized_item) for randomized_item in world.randomized_list}
             world_dist.dungeons = {dung: DungeonRecord({ 'mq': world.dungeon_mq[dung] }) for dung in world.dungeon_mq}
             world_dist.empty_dungeons = {dung: EmptyDungeonRecord({ 'empty': world.empty_dungeons[dung].empty }) for dung in world.empty_dungeons}

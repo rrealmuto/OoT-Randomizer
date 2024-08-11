@@ -374,6 +374,7 @@ class World:
         new_world.distribution = self.distribution
         new_world.boulders = self.boulders
         new_world.boulders_by_id = self.boulders_by_id
+        new_world.enemies_by_scene = self.enemies_by_scene
 
         new_world.dungeons = [dungeon for dungeon in self.dungeons]
         new_world.regions = [region for region in self.regions]
@@ -643,7 +644,7 @@ class World:
         savewarps_to_connect = []
         for hint_area in HintArea:
             if (name := hint_area.dungeon_name) is not None:
-                logic_folder = 'Glitched World' if self.settings.logic_rules == 'glitched' else 'World'
+                logic_folder = 'Glitched World' if self.settings.logic_rules == 'glitched' else 'EnemizerWorld' if self.settings.enemizer else 'World'
                 file_name = name + (' MQ.json' if self.dungeon_mq[name] else '.json')
                 savewarps_to_connect += self.load_regions_from_json(os.path.join(data_path(logic_folder), file_name))
                 self.dungeons.append(Dungeon(self, name, hint_area))

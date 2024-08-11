@@ -1,0 +1,231 @@
+[
+    # Boss and boss door logic.
+    # This is separated from individual dungeons because region names must match between normal/MQ
+    # And there are no differences in boss rooms between normal/MQ as they are separate areas.
+    {
+        "region_name": "Queen Gohma Boss Room",
+        "scene": "Deku Tree Boss",
+        "is_boss_room": true,
+        "events": {
+            "Defeat Queen Gohma": "
+                has_soul(Queen_Gohma) and
+                    ((Nuts or can_use(Slingshot)) and can_jumpslash)"
+        },
+        "locations": {
+            "Deku Tree Queen Gohma Heart": "'Defeat Queen Gohma'",
+            "Queen Gohma": "'Defeat Queen Gohma'",
+            "Deku Tree Gohma Grass 1": "can_mow_the_lawn",
+            "Deku Tree Gohma Grass 2": "can_mow_the_lawn",
+            "Deku Tree Gohma Grass 3": "can_mow_the_lawn",
+            "Deku Tree Gohma Grass 4": "can_mow_the_lawn",
+            "Deku Tree Gohma Grass 5": "can_mow_the_lawn",
+            "Deku Tree Gohma Grass 6": "can_mow_the_lawn",
+            "Deku Tree Gohma Grass 7": "can_mow_the_lawn",
+            "Deku Tree Gohma Grass 8": "can_mow_the_lawn"
+        },
+        "exits": {
+            "Deku Tree Before Boss": "True",
+            "KF Outside Deku Tree": "'Defeat Queen Gohma'"
+        }
+    },
+    {
+        "region_name": "King Dodongo Boss Room",
+        "scene": "Dodongos Cavern Boss",
+        "is_boss_room": true,
+        "events": {
+            "Defeat King Dodongo": "
+                has_soul(King_Dodongo) and
+                    (((can_use(Megaton_Hammer) and logic_dc_hammer_floor) or
+                        has_explosives or king_dodongo_shortcuts) and
+                    (((Bombs or Progressive_Strength_Upgrade) and can_jumpslash) or deadly_bonks == 'ohko'))"
+        },
+        "locations": {
+            "Dodongos Cavern Boss Room Chest": "True",
+            "Dodongos Cavern King Dodongo Heart": "'Defeat King Dodongo'",
+            "King Dodongo": "'Defeat King Dodongo'"
+        },
+        "exits": {
+            "Dodongos Cavern Mouth": "True",
+            "Death Mountain": "'Defeat King Dodongo'"
+        }
+    },
+    {
+        "region_name": "Barinade Boss Room",
+        "scene": "Jabu Jabus Belly Boss",
+        "is_boss_room": true,
+        "events": {
+            "Defeat Barinade": "has_soul(Barinade) and
+                (can_use(Boomerang) and (Sticks or Kokiri_Sword))"
+        },
+        "locations": {
+            "Jabu Jabus Belly Barinade Heart": "'Defeat Barinade'",
+            "Barinade": "'Defeat Barinade'",
+            "Jabu Jabus Belly Barinade Pot 1": "True",
+            "Jabu Jabus Belly Barinade Pot 2": "True",
+            "Jabu Jabus Belly Barinade Pot 3": "True",
+            "Jabu Jabus Belly Barinade Pot 4": "True",
+            "Jabu Jabus Belly Barinade Pot 5": "True",
+            "Jabu Jabus Belly Barinade Pot 6": "True"
+        },
+        "exits": {
+            "Jabu Jabus Belly Before Boss": "False",
+            "Zoras Fountain": "'Defeat Barinade'"
+        }
+    },
+    {
+        "region_name": "Phantom Ganon Boss Room",
+        "scene": "Forest Temple Boss",
+        "is_boss_room": true,
+        "events": {
+            "Defeat Phantom Ganon": "
+                has_soul(Phantom_Ganon) and
+                    (can_use(Hookshot) or can_use(Bow) or (can_use(Slingshot) and Kokiri_Sword))"
+        },
+        "locations": {
+            "Forest Temple Phantom Ganon Heart": "'Defeat Phantom Ganon'",
+            "Phantom Ganon": "'Defeat Phantom Ganon'"
+        },
+        "exits": {
+            "Forest Temple Before Boss": "False",
+            "Sacred Forest Meadow": "'Defeat Phantom Ganon'"
+        }
+    },
+    {
+        "region_name": "Volvagia Boss Room",
+        "scene": "Fire Temple Boss",
+        "is_boss_room": true,
+        "events": {
+            "Defeat Volvagia": "
+                has_soul(Volvagia) and
+                    (can_use(Goron_Tunic) and can_use(Megaton_Hammer))"
+        },
+        "locations": {
+            "Fire Temple Volvagia Heart": "'Defeat Volvagia'",
+            "Volvagia": "'Defeat Volvagia'"
+        },
+        "exits": {
+            "Fire Temple Before Boss": "False",
+            "DMC Central Local": "'Defeat Volvagia'"
+        }
+    },
+    {
+        "region_name": "Morpha Boss Room",
+        "scene": "Water Temple Boss",
+        "is_boss_room": true,
+        "events": {
+            "Defeat Morpha": "
+                has_soul(Morpha) and
+                    (can_use(Hookshot) or (logic_water_morpha and (is_adult or Kokiri_Sword)))",
+            "Water Temple Clear": "'Defeat Morpha'"
+        },
+        "locations": {
+            "Morpha": "'Defeat Morpha'",
+            "Water Temple Morpha Heart": "'Defeat Morpha'"
+        },
+        "exits": {
+            "Water Temple Before Boss": "False",
+            "Lake Hylia": "'Defeat Morpha'"
+        }
+    },
+    {
+        "region_name": "Bongo Bongo Boss Room",
+        "scene": "Shadow Temple Boss",
+        "is_boss_room": true,
+        "events": {
+            "Defeat Bongo Bongo": "
+                has_soul(Bongo_Bongo) and
+                    ((Kokiri_Sword or is_adult) and
+                    (can_use(Hookshot) or can_use(Bow) or can_use(Slingshot) or logic_shadow_bongo) and
+                    (can_use(Lens_of_Truth) or logic_lens_bongo))"
+        },
+        "locations": {
+            "Shadow Temple Bongo Bongo Heart": "'Defeat Bongo Bongo'",
+            "Bongo Bongo": "'Defeat Bongo Bongo'"
+        },
+        "exits": {
+            "Shadow Temple Before Boss": "False",
+            "Graveyard Warp Pad Region": "'Defeat Bongo Bongo'"
+        }
+    },
+    {
+        "region_name": "Twinrova Boss Room",
+        "scene": "Spirit Temple Boss",
+        "is_boss_room": true,
+        "events": {
+            "Defeat Twinrova": "has_soul(Twinrova) and has_soul(Iron_Knuckle) and can_use(Mirror_Shield)"
+        },
+        "locations": {
+            "Spirit Temple Twinrova Heart": "'Defeat Twinrova'",
+            "Twinrova": "'Defeat Twinrova'"
+        },
+        "exits": {
+            "Spirit Temple Before Boss": "False",
+            "Desert Colossus": "'Defeat Twinrova'"
+        }
+    },
+    {
+        "region_name": "Ganons Castle Tower",
+        "dungeon": "Ganons Castle",
+        "locations": {
+            "Ganons Tower Boss Key Chest": "can_kill_lizalfos and can_kill_stalfos",
+            "Ganons Tower Lizalfos 1": "can_kill_lizalfos",
+            "Ganons Tower Lizalfos 2": "can_kill_lizalfos",
+            "Ganons Tower Stalfos 1": "can_kill_lizalfos and can_kill_stalfos",
+            "Ganons Tower Stalfos 2": "can_kill_lizalfos and can_kill_stalfos",
+            "Ganons Tower White Knuckle": "can_kill_lizalfos and can_kill_stalfos and can_kill_iron_knuckle",
+            "Ganons Tower Black Knuckle": "can_kill_lizalfos and can_kill_stalfos and can_kill_iron_knuckle",
+            "Ganons Tower Keese 1": "can_kill_keese",
+            "Ganons Tower Keese 2": "can_kill_keese",
+            "Ganons Tower Keese 3": "can_kill_keese",
+            "Ganons Tower Keese 4": "can_kill_keese",
+            "Ganons Tower Keese 5": "can_kill_keese",
+            "Ganons Tower Keese 6": "can_kill_keese",
+            "Ganons Tower Keese 7": "can_kill_keese"
+        },
+        "exits": {
+            "Ganons Castle Tower Below Boss": "
+                (is_adult or Kokiri_Sword) and
+                (has_soul(Lizalfos_and_Dinalfos) and has_soul(Stalfos) and has_soul(Iron_Knuckle)) and
+                (Boss_Key_Ganons_Castle or (shuffle_pots != 'off'))"
+        }
+    },
+    {
+        "region_name": "Ganons Castle Tower Below Boss",
+        "dungeon": "Ganons Castle",
+        "hint": "INSIDE_GANONS_CASTLE",
+        "alt_hint": "GANONDORFS_CHAMBER",
+        "locations": {
+            "Ganons Tower Pot 1": "True",
+            "Ganons Tower Pot 2": "True",
+            "Ganons Tower Pot 3": "True",
+            "Ganons Tower Pot 4": "True",
+            "Ganons Tower Pot 5": "True",
+            "Ganons Tower Pot 6": "True",
+            "Ganons Tower Pot 7": "True",
+            "Ganons Tower Pot 8": "True",
+            "Ganons Tower Pot 9": "True",
+            "Ganons Tower Pot 10": "True",
+            "Ganons Tower Pot 11": "True",
+            "Ganons Tower Pot 12": "True",
+            "Ganons Tower Pot 13": "True",
+            "Ganons Tower Pot 14": "True",
+            "Ganons Tower Pot 15": "True",
+            "Ganons Tower Pot 16": "True",
+            "Ganons Tower Pot 17": "True",
+            "Ganons Tower Pot 18": "True"
+        },
+        "exits": {
+            "Ganondorf Boss Room": "Boss_Key_Ganons_Castle"
+        }
+    },
+    {
+        "region_name": "Ganondorf Boss Room",
+        "dungeon": "Ganons Castle",
+        "hint": "INSIDE_GANONS_CASTLE",
+        "alt_hint": "GANONDORFS_CHAMBER",
+        "locations": {
+            "Ganondorf Hint": "True",
+            "Ganon": "can_use(Light_Arrows)"
+        }
+    }
+]

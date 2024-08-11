@@ -106,6 +106,8 @@
     "can_jumpslash": "is_adult or Sticks or Kokiri_Sword",
 
     # Enemy killing
+    "worst_case_kill_logic": "False",
+    "can_kill_basic": "is_adult or can_child_attack",
     "can_kill_armos": "has_soul(Armos) and (is_adult or (Sticks or has_explosives or ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot))))",
     "can_kill_octorok": "has_soul(Octorok) and ((is_child and (Boomerang or Slingshot or Deku_Shield)) or (is_adult and (Bow or Hylian_Shield)))",
     "can_kill_octorok_with_explosives" : "has_soul(Octorok) and (Bomb_Bag or can_kill_octorok)",
@@ -134,9 +136,13 @@
     "can_kill_gohma_larva": "has_soul(Gohma_Larvae) and (is_adult or can_child_attack)",
     "can_kill_baby_dodongo": "has_soul(Baby_Dodongo) and (is_adult or (Kokiri_Sword or Sticks or Slingshot or Boomerang or has_explosives))",
     "can_kill_stalfos": "has_soul(Stalfos) and (is_adult or Kokiri_Sword or Sticks)",
-    "can_kill_peahat": "has_soul(Peahat) and is_child and ((at_night and Bombs and Deku_Shield) or (at_day and (Kokiri_Sword or Sticks or Slingshot)))",
-    "can_kill_flying_peahat": "has_soul(Peahat) and is_child and ((at_day and Slingshot) or (at_night and Bombs and Deku_Shield))",
+    "can_kill_peahat": "has_soul(Peahat) and ((at_night and Bombs) or (at_day and is_adult or (Kokiri_Sword or Sticks or Slingshot)))",
+    "can_kill_flying_peahat": "has_soul(Peahat) and ((at_day and can_use(Slingshot) or can_use(Bow)) or (at_night and Bombs)",
     "can_kill_iron_knuckle": "has_soul(Iron_Knuckle) and ((is_adult) or (is_child and (Bombs or Kokiri_Sword or Sticks)))",
+    "can_kill_shell_blade": "has_soul(Shell_Blade) and (is_adult and (Bow or Hookshot))",
+    "can_kill_freezard": "has_soul(Freezard) and (is_adult or has_explosives or can_use(Dins_Fire))",
+    "can_kill_flare_dancer": "has_soul(Flare_Dancer) and ((is_adult and Megaton_Hammer) or (is_child and Bomb_Bag and Kokiri_Sword))",
+    "can_kill_spike_enemy": "has_soul(Spike_Enemy) and (is_adult or (Bomb_Bag or can_use(Dins_Fire) or Sticks))",
 
     # Bridge Requirements
     "has_all_stones": "Kokiri_Emerald and Goron_Ruby and Zora_Sapphire",

@@ -2554,6 +2554,15 @@ class SettingInfos:
         },
     )
 
+    enemizer = Checkbutton(
+        gui_text       = 'Enemizer',
+        gui_tooltip    = ":)",
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
+    )
+
     shuffle_song_items = Combobox(
         gui_text       = 'Shuffle Songs',
         default        = 'song',

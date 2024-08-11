@@ -182,7 +182,8 @@
             "owl_drops",
             "warp_songs",
             "spawn_positions",
-            "shuffle_boulders"
+            "shuffle_boulders",
+            "enemizer"
           ]
         },
         {

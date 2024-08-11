@@ -13,6 +13,7 @@ from RulesCommon import AccessRule, allowed_globals, escape_name
 from State import State
 from Utils import data_path, read_logic_file
 from Boulders import boulder_rules
+from EnemizerList import named_rooms
 
 if TYPE_CHECKING:
     from World import World
@@ -73,8 +74,12 @@ class Rule_AST_Transformer(ast.NodeTransformer):
         self.rule_cache: dict[str, AccessRule] = {}
 
     def visit_Name(self, node: ast.Name) -> Any:
+        if "REDEAD_GROTTO" in node.id:
+            pass
         if node.id.startswith('BOULDER_TYPE'):
             return ast.Constant(value=boulder_rules[node.id])
+        if node.id in named_rooms.keys():
+            return ast.Constant(value=node.id)
         if node.id in dir(self):
             return getattr(self, node.id)(node)
         elif node.id in rule_aliases:
