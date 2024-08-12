@@ -356,6 +356,15 @@ class SettingInfos:
         },
     )
 
+    web_id = Numberinput(
+        gui_text         = "Web Seed ID",
+        shared           = False,
+        default          = 0,
+        gui_params       = {
+            'optional': True,
+        },
+    )
+
     user_message = Textinput(
         gui_text       = "User-Configurable Message",
         shared         = True,

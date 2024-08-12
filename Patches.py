@@ -364,11 +364,17 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     if world.settings.world_count > 1:
         world_str = f"{world.id + 1} of {world.settings.world_count}"
     else:
-        world_str = ""
+        world_str = ''
     rom.write_bytes(rom.sym('WORLD_STRING_TXT'), make_bytes(world_str, 12))
 
     time_str = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M") + " UTC"
     rom.write_bytes(rom.sym('TIME_STRING_TXT'), make_bytes(time_str, 25))
+
+    if world.settings.web_id > 0:
+        web_id_str = f'{world.settings.web_id:10}'
+    else:
+        web_id_str = ''
+    rom.write_bytes(rom.sym('WEB_ID_STRING_TXT'), make_bytes(web_id_str, 12))
 
     if world.settings.show_seed_info:
         rom.write_byte(rom.sym('CFG_SHOW_SETTING_INFO'), 0x01)
