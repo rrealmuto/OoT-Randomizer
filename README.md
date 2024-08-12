@@ -144,6 +144,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Fix inverted cursor in the pause menu when pausing while in first person with the `Uninvert Y-Axis in First Person Camera` cosmetic setting enabled.
 * Fix some inconsistent tags for wonderitem locations in the `Exclude Locations` list.
 * Fix swapped `Hideout Kitchen Wonderitem` and `Hideout Kitchen Stove Wonderitem` locations.
+* Fix a bug where a foolish hint could be generated for an area despite not having any shuffled item locations.
 
 #### New Speedups
 * Meg will now take less time before respawning after getting hurt.
