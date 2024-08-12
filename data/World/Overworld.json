@@ -2693,7 +2693,7 @@
             "ZR Child River Wonderitem 25": "is_child",
             "ZR Child River Wonderitem 26": "is_child",
             "ZR Child River Wonderitem 27": "is_child",
-            "ZR Near Freestanding PoH Grass": "is_child or here(can_plant_bean) or Hover_Boots or logic_zora_river_lower",
+            "ZR Near Freestanding PoH Grass": "can_mow_the_lawn and (is_child or here(can_plant_bean) or Hover_Boots or logic_zora_river_lower)",
             "ZR GS Ladder": "is_child and at_night and can_child_attack",
             "ZR GS Near Raised Grottos": "can_use(Hookshot) and at_night",
             "ZR GS Above Bridge": "can_use(Hookshot) and at_night",
