@@ -3076,7 +3076,7 @@
             "ZR Adult Octorok 6": "is_adult and can_kill_octorok_with_explosives",
             "ZR Adult Octorok 7": "is_adult and can_kill_octorok_with_explosives",
             "ZR Adult Octorok 8": "is_adult and can_kill_octorok_with_explosives",
-            "ZR Near Freestanding PoH Grass": "is_child or here(can_plant_bean) or Hover_Boots or logic_zora_river_lower",
+            "ZR Near Freestanding PoH Grass": "can_mow_the_lawn and (is_child or here(can_plant_bean) or Hover_Boots or logic_zora_river_lower)",
             "ZR GS Ladder": "is_child and at_night and can_child_attack",
             "ZR GS Near Raised Grottos": "can_use(Hookshot) and at_night",
             "ZR GS Above Bridge": "can_use(Hookshot) and at_night",
