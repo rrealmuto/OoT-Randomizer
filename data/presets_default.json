@@ -815,7 +815,7 @@
         "show_seed_info": true,
         "user_message": "Scrub Tournament",
         "world_count": 1,
-        "create_spoiler": false,
+        "create_spoiler": true,
         "password_lock": false,
         "randomize_settings": false,
         "logic_rules": "glitchless",
@@ -910,7 +910,6 @@
         "shuffle_loach_reward": "off",
         "logic_no_night_tokens_without_suns_song": false,
         "disabled_locations": [
-            "Sheik in Ice Cavern",
             "Deku Theater Mask of Truth",
             "Kak 40 Gold Skulltula Reward",
             "Kak 50 Gold Skulltula Reward",
