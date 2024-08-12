@@ -39,11 +39,14 @@ $(OBJDIR)/%_bin.o: $(RESOURCEDIR)/%.bin
 	$(OBJCOPY) --redefine-sym _binary_resources_$*_bin_end=$(call UC,$*)_RESOURCE_END $@
 	$(OBJCOPY) --redefine-sym _binary_resources_$*_bin_size=$(call UC,$*)_RESOURCE_SIZE $@
 
-
 $(RESOURCEDIR):
 	mkdir -p $@
 
-bundle: $(OBJDIR) $(OBJECTS) $(RESOURCEDIR) $(RESOURCES)
+$(OBJECTS): | $(OBJDIR)
+
+$(RESOURCES): | $(OBJDIR) $(RESOURCEDIR)
+
+bundle: $(RESOURCES) $(OBJECTS)
 	$(LD) -T linker_script.ld -T ootSymbols.ld -o $(OUTDIR)/bundle.o -i -L. $(patsubst %.o,-l:%.o,$(OBJECTS) $(RESOURCES))
 
 symbols: bundle
