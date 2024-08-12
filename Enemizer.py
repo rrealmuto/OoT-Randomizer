@@ -75,10 +75,13 @@ def patch_enemies(enemy_list: dict[tuple[int,int,int,int],Actor], shuffled_enemi
                 keys.append(base_enemy_alts[enemy_key])
         for key in keys:
             enemy_id, enemy, shuffled = shuffled_enemies[enemy_key]
-            enemy_actor = enemy_list[key]
-            if shuffled:
-                enemy_actor.rot_x = 0
-                enemy_actor.rot_z = 0
-                enemy_actor.id = enemy_id
-                enemy_actor.var = enemy.var
-                rom.write_bytes(enemy_actor.addr, enemy_actor.get_bytes())
+            if key in enemy_list.keys():
+                enemy_actor = enemy_list[key]
+                if shuffled:
+                    enemy_actor.rot_x = 0
+                    enemy_actor.rot_z = 0
+                    enemy_actor.id = enemy_id
+                    enemy_actor.var = enemy.var
+                    rom.write_bytes(enemy_actor.addr, enemy_actor.get_bytes())
+            else:
+                print(f"Missing enemy actor {key}")

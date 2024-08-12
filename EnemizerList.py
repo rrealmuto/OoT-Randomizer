@@ -1215,7 +1215,7 @@ enemy_actor_types = {
     0x001B: Enemy("Tektite", kill_logic='can_kill_tektite'),
     0x001D: EnemyWithOpts([
         Enemy("Peahat", var=0xFFFF, kill_logic='can_kill_peahat'),
-        Enemy("Flying Peahat", var=0x0000, kill_logic='can_kill_flying_peahat')
+        Enemy("Flying Peahat", var=0x0000, kill_logic='can_kill_flying_peahat', soul_name="Peahat")
     ]),
     0x0025: Enemy("Lizalfos/Dinalfos", var=0xFF80, soul_name="Lizalfos and Dinalfos", kill_logic='can_kill_lizalfos'),
     0x002B: Enemy("Gohma Larva", var=0x0006, soul_name="Gohma Larvae", kill_logic='can_kill_gohma_larva'),
