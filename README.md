@@ -19,6 +19,8 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v110](#v110)
+  * [v109](#v109)
   * [v108](#v108)
   * [v107](#v107)
   * [v106](#v106)
@@ -134,6 +136,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v110
+  * Various logic fixes
+
 ### v109
   * Fix Jabu Jabus Belly Invisible Enemies Room logic.
 
