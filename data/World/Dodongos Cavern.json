@@ -179,6 +179,9 @@
             "Dodongos Cavern Before Upper Lizalfos Baby Dodongo 1": "can_kill_baby_dodongo",
             "Dodongos Cavern Before Upper Lizalfos Baby Dodongo 2": "can_kill_baby_dodongo",
             "Dodongos Cavern Before Upper Lizalfos Baby Dodongo 3": "can_kill_baby_dodongo"
+        },
+        "exits": {
+            "Dodongos Cavern Upper Lizalfos": "True"
         }
     },
     {

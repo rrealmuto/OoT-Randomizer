@@ -197,17 +197,17 @@ class State:
         
         if self.world.settings.shuffle_enemy_spawns == 'regional': # Regional soul shuffle so determine the region soul from the spot's parent region's scene
             scene = None
-            if type(spot) is Location and spot.scene and spot.scene != 0xFF and spot.scene != 62: # For actual item locations we can get the scene from the location directly
-                scene = scene_list[spot.scene]
             # Other types of locations we need to be a bit creative
             # All regions should be marked with either a scene or a dungeon
             # We can resolve the scene id from those hopefully
-            elif type(spot) is Location and spot.scene == 62: # Grotto locations
+            if type(spot) is Location and spot.scene == 62: # Grotto locations
                 scene = "Grottos"
-            elif spot.parent_region.scene:
-                scene = spot.parent_region.scene
             elif spot.parent_region.dungeon:
                 scene = spot.parent_region.dungeon.name
+            elif type(spot) is Location and spot.scene and spot.scene != 0xFF and spot.scene != 62: # For actual item locations we can get the scene from the location directly
+                scene = scene_list[spot.scene]
+            elif spot.parent_region.scene:
+                scene = spot.parent_region.scene
             if scene is not None:
                 # We have a scene name so loop through our scene groups
                 group = get_scene_group(scene)
