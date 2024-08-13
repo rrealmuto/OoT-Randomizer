@@ -587,11 +587,7 @@ def get_goal_category(spoiler: Spoiler, world: World, goal_categories: dict[str,
     cat_names = []
     zero_weights = True
     goal_category = None
-    excluded_goal_categories = world.hint_dist_user.get('excluded_goal_categories', [])
-    hintable_goal_categories = [cat for cat in world.goal_categories.values() if cat.name not in excluded_goal_categories]
     for cat_name, category in goal_categories.items():
-        if cat_name in excluded_goal_categories:
-            continue
         # Only add weights if the category has goals with hintable items
         if world.id in spoiler.goal_locations and cat_name in spoiler.goal_locations[world.id]:
             # Build lists for weighted choice
@@ -602,7 +598,7 @@ def get_goal_category(spoiler: Spoiler, world: World, goal_categories: dict[str,
             #   2. All goals in all categories have been hinted at least once
             if (not world.one_hint_per_goal or
                len([goal for goal in category.goals if goal.weight > 0]) > 0 or
-               len([goal for cat in hintable_goal_categories for goal in cat.goals if goal.weight == 0]) == len([goal for cat in hintable_goal_categories for goal in cat.goals])):
+               len([goal for cat in world.goal_categories.values() for goal in cat.goals if goal.weight == 0]) == len([goal for cat in world.goal_categories.values() for goal in cat.goals])):
                 cat_sizes.append(category.weight)
                 cat_names.append(category.name)
             # Depends on category order to choose next in the priority list
