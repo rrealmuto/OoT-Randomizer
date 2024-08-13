@@ -2288,12 +2288,14 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
     rom.write_byte(broken_actors_symbol, broken_actors_cfg)
 
-    scene_data = process_scenes(rom)
-    rom_enemies = get_rom_enemies(scene_data, rom)
-    #for enemy in rom_enemies:
-    #    print(f"{enemy}: {rom_enemies[enemy].id}, # {enemy_actor_typesrom_enemies[enemy].id].name}")
-    
-    patch_enemies(rom_enemies, world.shuffled_enemies, rom)
+    if world.settings.enemizer:
+        scene_data = process_scenes(rom)
+        rom_enemies = get_rom_enemies(scene_data, rom)
+        #for enemy in rom_enemies:
+        #    print(f"{enemy}: {rom_enemies[enemy].id}, # {enemy_actor_typesrom_enemies[enemy].id].name}")
+        
+        patch_enemies(rom_enemies, world.shuffled_enemies, rom)
+        rom.write_byte(rom.sym('CFG_PREVENT_GUAY_RESPAWNS'), 1)
 
     # Have the Gold Skulltula Count in the pause menu turn red when equal to the
     # available number of skulls in the world instead of 100.
