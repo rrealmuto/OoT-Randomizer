@@ -64,8 +64,8 @@ typedef struct EnHoll {
     /* 0x0140 */ void* actionFunc;
 } EnHoll; // size = 0x0144
 
-void EnHoll_Room_Change_Hack(z64_game_t* globalCtx, void* roomCtx, EnHoll* holl) {
-    if(holl->actor.room_index == extended_object_ctx.holl_last_room) {
+void EnHoll_Room_Change_Hack(z64_game_t* globalCtx, RoomContext* roomCtx, EnHoll* holl) {
+    if((holl->actor.room_index == extended_object_ctx.holl_last_room) || (holl->actor.room_index == roomCtx->curRoom.num)) {
         extended_object_ctx.inhibit_clear_flag = 1;
     }
     z64_UnloadRoom(globalCtx, roomCtx);
