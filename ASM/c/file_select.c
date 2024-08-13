@@ -122,8 +122,8 @@ void manage_password(z64_disp_buf_t* db, z64_menudata_t* menu_data) {
         gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF);
         sprite_load(db, &quest_items_sprite, 17, 1);
         sprite_draw(db, &quest_items_sprite, 0, left, top - 2, BUTTON_WIDTH, BUTTON_HEIGHT);
+        sprite_draw(db, &quest_items_sprite, 0, left + TEXT_WIDTH + 1.7 * padding + 15 * font_sprite.tile_w, top - 2, BUTTON_WIDTH, BUTTON_HEIGHT);
         text_print_size(db, "Password locked", left + TEXT_HEIGHT + padding, top, TEXT_WIDTH, TEXT_HEIGHT);
-        sprite_draw(db, &quest_items_sprite, 0, left + TEXT_WIDTH + 2 * padding + 15 * font_sprite.tile_w, top - 2, BUTTON_WIDTH, BUTTON_HEIGHT);
     }
     if (menu_data->menu_transition == SM_CONFIRM_FILE) {
         if (password_index < 0) {
