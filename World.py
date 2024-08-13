@@ -302,6 +302,11 @@ class World:
         self.goal_categories: dict[str, GoalCategory] = OrderedDict()
         if self.hint_dist_user['use_default_goals']:
             self.set_goals()
+            for cat in self.hint_dist_user.get('excluded_goal_categories', []):
+                try:
+                    del self.goal_categories[cat]
+                except KeyError:
+                    pass # don't crash when a hint distro doesn't exist due to selected settings
 
         # import goals from hint plando
         if 'custom_goals' in self.hint_dist_user:
