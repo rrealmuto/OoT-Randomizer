@@ -61,7 +61,23 @@
                     (((Small_Key_Shadow_Temple, 1) and not shadow_temple_shortcuts) or
                     (Small_Key_Shadow_Temple, 5) or
                     ((Small_Key_Shadow_Temple, 4) and (logic_lens_shadow_platform or can_use(Lens_of_Truth))))",
+            "Shadow Temple Guillotine Hallway": "
+                has_explosives and 
+                    (((Small_Key_Shadow_Temple, 1) and not shadow_temple_shortcuts) or
+                    (Small_Key_Shadow_Temple, 5) or
+                    ((Small_Key_Shadow_Temple, 4) and Longshot and (logic_lens_shadow_platform or can_use(Lens_of_Truth))))",
             "Shadow Temple Boat": "shadow_temple_shortcuts"
+        }
+    },
+    {
+        "region_name": "Shadow Temple Guillotine Hallway",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple Guillotine Hallway Skulltula 1": "can_kill_skulltula",
+            "Shadow Temple Guillotine Hallway Skulltula 2": "can_kill_skulltula",
+            "Shadow Temple Guillotine Hallway Skulltula 3": "can_kill_skulltula",
+            "Shadow Temple Guillotine Hallway Skulltula 4": "can_kill_skulltula",
+            "Shadow Temple Huge Pit Bubble": "can_kill_bubble"
         }
     },
     {
@@ -78,11 +94,6 @@
             "Shadow Temple Huge Pit Silver Rupee Center Front": "True",
             "Shadow Temple Huge Pit Silver Rupee Center Back": "True",
             "Shadow Temple GS Invisible Blades Room": "has_soul(Likelike) and has_soul(Keese)",
-            "Shadow Temple Guillotine Hallway Skulltula 1": "can_kill_skulltula",
-            "Shadow Temple Guillotine Hallway Skulltula 2": "can_kill_skulltula",
-            "Shadow Temple Guillotine Hallway Skulltula 3": "can_kill_skulltula",
-            "Shadow Temple Guillotine Hallway Skulltula 4": "can_kill_skulltula",
-            "Shadow Temple Huge Pit Bubble": "can_kill_bubble",
             "Shadow Temple Huge Pit Wallmaster": "can_kill_wallmaster",
             "Shadow Temple Huge Pit Beamos": "can_kill_beamos",
             "Shadow Temple Huge Pit Stalfos": "can_kill_stalfos",
@@ -138,7 +149,7 @@
             "Shadow Temple Spinning Pot Keese 4": "can_kill_keese and (Silver_Rupee_Shadow_Temple_Invisible_Spikes, 5)"
         },
         "exits": {
-            "Shadow Temple Wind Tunnel": "Hookshot and (Small_Key_Shadow_Temple, 3)",
+            "Shadow Temple Wind Tunnel": "((has_soul(Redead_and_Gibdo) and Hookshot) or Longshot) and (Small_Key_Shadow_Temple, 3)",
             "Shadow Temple Huge Pit": "logic_lens_shadow_platform or can_use(Lens_of_Truth)"
         }
     },

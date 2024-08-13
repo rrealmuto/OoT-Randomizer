@@ -416,11 +416,11 @@
         "length": 1
     },
     "DPAD_RESOURCE": {
-        "address": "034A6460",
+        "address": "034A6468",
         "length": 0
     },
     "DPAD_RESOURCE_END": {
-        "address": "034A6C60",
+        "address": "034A6C68",
         "length": 0
     },
     "DUNGEONS_SHUFFLED": {
@@ -472,19 +472,19 @@
         "length": 160
     },
     "FONT_CHAR_TEX_HEIGHT": {
-        "address": "034A61C8",
+        "address": "034A61D0",
         "length": 4
     },
     "FONT_CHAR_TEX_WIDTH": {
-        "address": "034A61CC",
+        "address": "034A61D4",
         "length": 4
     },
     "FONT_RESOURCE": {
-        "address": "034A6C60",
+        "address": "034A6C68",
         "length": 0
     },
     "FONT_RESOURCE_END": {
-        "address": "034A8128",
+        "address": "034A8130",
         "length": 0
     },
     "FREE_BOMBCHU_DROPS": {
@@ -616,7 +616,7 @@
         "length": 1
     },
     "NUM_FONT_CHARS": {
-        "address": "034A61C4",
+        "address": "034A61CC",
         "length": 4
     },
     "OCARINAS_SHUFFLED": {
@@ -716,7 +716,7 @@
         "length": 176
     },
     "REQUIRED_PENDING_FRAMES": {
-        "address": "034A5E04",
+        "address": "034A5E0C",
         "length": 1
     },
     "RNG_SEED_INT": {
@@ -912,12 +912,12 @@
         "length": 2
     },
     "TRIFORCE_SPRITE_RESOURCE": {
-        "address": "034A8128",
+        "address": "034A8130",
         "length": 0
     },
     "TRIFORCE_SPRITE_RESOURCE_END": {
-        "address": "034A9128",
-        "length": 0
+        "address": "034A9130",
+        "length": 128
     },
     "TWINROVA_ACTION_TIMER": {
         "address": "03485B8C",
@@ -1148,19 +1148,19 @@
         "length": 3
     },
     "debug_text_height": {
-        "address": "034A581A",
+        "address": "034A5822",
         "length": 1
     },
     "debug_text_width": {
-        "address": "034A581B",
+        "address": "034A5823",
         "length": 1
     },
     "defaultDDHeart": {
-        "address": "034A5E80",
+        "address": "034A5E88",
         "length": 6
     },
     "defaultHeart": {
-        "address": "034A5E88",
+        "address": "034A5E90",
         "length": 6
     },
     "dpad_sprite": {
@@ -1232,7 +1232,7 @@
         "length": 12160
     },
     "freecam_modes": {
-        "address": "034A5C94",
+        "address": "034A5C9C",
         "length": 66
     },
     "hash_sprites": {
@@ -1252,7 +1252,7 @@
         "length": 16
     },
     "icon_sprites": {
-        "address": "034A5D64",
+        "address": "034A5D6C",
         "length": 12
     },
     "illegal_model": {
@@ -1264,19 +1264,19 @@
         "length": 2
     },
     "input_icon_height": {
-        "address": "034A5E9A",
+        "address": "034A5EA2",
         "length": 1
     },
     "input_icon_width": {
-        "address": "034A5E9B",
+        "address": "034A5EA3",
         "length": 1
     },
     "input_number_height": {
-        "address": "034A5E98",
+        "address": "034A5EA0",
         "length": 1
     },
     "input_number_width": {
-        "address": "034A5E99",
+        "address": "034A5EA1",
         "length": 1
     },
     "item_digit_sprite": {
@@ -1320,7 +1320,7 @@
         "length": 4
     },
     "left_alignment": {
-        "address": "034A5E96",
+        "address": "034A5E9E",
         "length": 2
     },
     "linkhead_skull_sprite": {
@@ -1456,7 +1456,7 @@
         "length": 256
     },
     "rupee_colors": {
-        "address": "034A5E74",
+        "address": "034A5E7C",
         "length": 12
     },
     "rupee_digit_sprite": {
@@ -1528,11 +1528,11 @@
         "length": 4
     },
     "text_height": {
-        "address": "034A5FFC",
+        "address": "034A6004",
         "length": 4
     },
     "text_width": {
-        "address": "034A6000",
+        "address": "034A6008",
         "length": 4
     },
     "texture_table": {
@@ -1540,11 +1540,11 @@
         "length": 528
     },
     "top_alignment": {
-        "address": "034A5E94",
+        "address": "034A5E9C",
         "length": 2
     },
     "trade_quest_items": {
-        "address": "034A61D8",
+        "address": "034A61E0",
         "length": 616
     },
     "triforce_sprite": {

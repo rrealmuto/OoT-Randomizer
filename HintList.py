@@ -598,7 +598,7 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'Jabu Jabus Belly Souls':       (["the Enemy Souls of Jabu Jabu's Belly"], None, 'item'),
     'Forest Temple Souls':          (["the Enemy Souls of Forest Temple"], None, 'item'),
     'Fire Temple Souls':            (["the Enemy Souls of Fire Temple"], None, 'item'),
-    'Water Temple Souls':           (["the Enemy Souls of Water Tempe"], None, 'item'),
+    'Water Temple Souls':           (["the Enemy Souls of Water Temple"], None, 'item'),
     'Shadow Temple Souls':          (["the Enemy Souls of Shadow Temple"], None, 'item'),
     'Spirit Temple Souls':          (["the Enemy Souls of Spirit Temple"], None, 'item'),
     'Bottom of the Well Souls':     (["the Enemy Souls of Bottom of the Well"], None, 'item'),
