@@ -662,7 +662,7 @@ vanilla_dungeon_enemies = {
         (13, 18, 0, 20): 17, # Wallmaster
         (13, 18, 0, 22): 17, # Wallmaster
     },
-    'Gerudo Training Grounds': {
+    'Gerudo Training Ground': {
         (11, 1, 0, 0): 2, # Stalfos
         (11, 1, 0, 1): 2, # Stalfos
         (11, 2, 0, 4): 17, # Wallmaster
@@ -675,15 +675,15 @@ vanilla_dungeon_enemies = {
         (11, 5, 0, 2): 56, # Torch Slug
         (11, 5, 0, 3): 19, # Keese
         (11, 5, 0, 4): 19, # Keese
-        (11, 6, 0, 2): 105, # Bubble
-        (11, 6, 0, 3): 105, # Bubble
+        (11, 6, 0, 2): EnemyLocation(105, [ENEMY_RESTRICTION.FLOATING], []), # Bubble
+        (11, 6, 0, 3): EnemyLocation(105, [ENEMY_RESTRICTION.FLOATING], []), # Bubble
         (11, 7, 0, 0): 37, # Lizalfos/Dinalfos
         (11, 7, 0, 1): 37, # Lizalfos/Dinalfos
         (11, 7, 0, 13): 138, # Beamos
-        (11, 9, 0, 4): 197, # Shell Blade
-        (11, 9, 0, 5): 197, # Shell Blade
-        (11, 9, 0, 6): 197, # Shell Blade
-        (11, 9, 0, 7): 197, # Shell Blade
+        (11, 9, 0, 4): EnemyLocation(197, [ENEMY_RESTRICTION.UNDERWATER], []), # Shell Blade
+        (11, 9, 0, 5): EnemyLocation(197, [ENEMY_RESTRICTION.UNDERWATER], []), # Shell Blade
+        (11, 9, 0, 6): EnemyLocation(197, [ENEMY_RESTRICTION.UNDERWATER], []), # Shell Blade
+        (11, 9, 0, 7): EnemyLocation(197, [ENEMY_RESTRICTION.UNDERWATER], []), # Shell Blade
         (11, 10, 0, 0): 221, # Like like
         (11, 10, 0, 1): 221, # Like like
         (11, 10, 0, 2): 221, # Like like
@@ -1091,7 +1091,7 @@ mq_dungeon_enemies = {
     (9, 11, 0, 12): 431, # Wolfos
     (9, 11, 0, 13): 149, # Skullwaltula
     },
-    'Gerudo Training Grounds': {
+    'Gerudo Training Ground': {
         (11, 1, 0, 0): 275, # Iron Knuckle
     (11, 2, 0, 0): 289, # Freezard
     (11, 2, 0, 17): 17, # Wallmaster
@@ -1189,11 +1189,17 @@ named_rooms: dict[str, tuple[int,int]] = {
     'SHADOW TEMPLE INVISIBLE BLADES': (7,16),
     'SHADOW TEMPLE INVISIBLE SPIKES': (7,11),
     'SHADOW TEMPLE AFTER WIND': (7,20),
-    'GANONS CASTLE WATER TRIAL ENTRY': (13,2),
-    'GANONS CASTLE LIGHT TRIAL INVISIBLE ENEMIES': (13,9),
+    'ICE CAVERN ENTRYWAY': (9,1),
     'GANONS TOWER LIZALFOS': (10,0),
     'GANONS TOWER STALFOS': (10,2),
     'GANONS TOWER KNUCKLES': (10,4),
+    'GTG STALFOS ROOM': (11,1),
+    'GTG BEAMOS ROOM': (11,7),
+    'GTG BEFORE HEAVY BLOCK': (11,3),
+    'GTG HEAVY BLOCK': (11,10),
+    'GTG HAMMER ROOM': (11,5),
+    'GANONS CASTLE WATER TRIAL ENTRY': (13,2),
+    'GANONS CASTLE LIGHT TRIAL INVISIBLE ENEMIES': (13,9),
 }
 
 class Enemy:

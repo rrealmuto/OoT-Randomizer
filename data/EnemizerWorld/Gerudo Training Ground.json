@@ -5,8 +5,8 @@
         "locations": {
             "Gerudo Training Ground Lobby Left Chest": "can_use(Bow) or can_use(Slingshot)",
             "Gerudo Training Ground Lobby Right Chest": "can_use(Bow) or can_use(Slingshot)",
-            "Gerudo Training Ground Stalfos Chest": "has_soul(Stalfos) and (is_adult or Kokiri_Sword)",
-            "Gerudo Training Ground Beamos Chest": "has_explosives and has_soul(Lizalfos_and_Dinalfos) and has_soul(Beamos) and (is_adult or Kokiri_Sword)",
+            "Gerudo Training Ground Stalfos Chest": "can_clear_room(GTG_STALFOS_ROOM)",
+            "Gerudo Training Ground Beamos Chest": "can_clear_room(GTG_BEAMOS_ROOM)",
             "Gerudo Training Ground Hidden Ceiling Chest": "
                 (Small_Key_Gerudo_Training_Ground, 3) and (logic_lens_gtg or can_use(Lens_of_Truth))",
             "Gerudo Training Ground Maze Path First Chest": "(Small_Key_Gerudo_Training_Ground, 4)",
@@ -18,19 +18,18 @@
             # In the Beamos room, shoot the Gerudo symbol above the door to the lava room.
             "Wall Fairy": "has_bottle and can_use(Bow)",
             "Gerudo Training Ground Beamos Wonderitem": "can_use(Bow)",
-            "Gerudo Training Ground Stalfos 1": "can_kill_stalfos",
-            "Gerudo Training Ground Stalfos 2": "can_kill_stalfos",
-            "Gerudo Training Ground Beamos": "can_kill_beamos",
-            "Gerudo Training Ground Lizalfos 1": "(has_soul(Lizalfos_and_Dinalfos)) and (is_adult or Kokiri_Sword)",
-            "Gerudo Training Ground Lizalfos 2": "(has_soul(Lizalfos_and_Dinalfos)) and (is_adult or Kokiri_Sword)",
-            "Gerudo Training Ground Slopes Wallmaster": "(has_soul(Stalfos) and has_soul(Wallmaster)) and (is_adult or Kokiri_Sword)"
+            "Gerudo Training Ground Stalfos 1": "can_kill_this",
+            "Gerudo Training Ground Stalfos 2": "can_kill_this",
+            "Gerudo Training Ground Beamos": "can_kill_this",
+            "Gerudo Training Ground Lizalfos 1": "can_kill_this",
+            "Gerudo Training Ground Lizalfos 2": "can_kill_this",
+            "Gerudo Training Ground Slopes Wallmaster": "can_clear_room(GTG_STALFOS_ROOM) and can_kill_this"
         },
         "exits": {
             "Gerudo Fortress": "True",
-            "Gerudo Training Ground Lava Room Front": "
-                (has_soul(Lizalfos_and_Dinalfos) and has_soul(Beamos)) and here(has_explosives and (is_adult or Kokiri_Sword))",
+            "Gerudo Training Ground Lava Room Front": "can_clear_room(GTG_BEAMOS_ROOM)",
             "Gerudo Training Ground Central Maze Right": "(Small_Key_Gerudo_Training_Ground, 9)",
-            "Gerudo Training Ground Boulder Room": "(has_soul(Stalfos)) and (is_adult or Kokiri_Sword)",
+            "Gerudo Training Ground Boulder Room": "can_clear_room(GTG_STALFOS_ROOM)",
             "Farores Wind Warp": "can_use(Farores_Wind)"
         }
     },
@@ -42,7 +41,7 @@
             "Gerudo Training Ground Lava Room Silver Rupee Front Right": "True",
             "Gerudo Training Ground Lava Room Silver Rupee Flame Circle": "
                 is_child or can_play(Song_of_Time) or Hover_Boots",
-            "Gerudo Training Ground Lava Room Bubble 1": "(has_soul(Bubble)) and (is_adult and (Bow or Magic_Meter))"
+            "Gerudo Training Ground Lava Room Bubble 1": "can_kill_this"
         },
         "exits": {
             "Gerudo Training Ground Central Maze Right": "is_child or can_play(Song_of_Time)",
@@ -56,7 +55,7 @@
         "dungeon": "Gerudo Training Ground",
         "locations": {
             "Gerudo Training Ground Lava Room Silver Rupee Center Right": "True",
-            "Gerudo Training Ground Lava Room Bubble 2": "(has_soul(Bubble)) and (is_adult and (Bow or Magic_Meter))"
+            "Gerudo Training Ground Lava Room Bubble 2": "can_kill_this"
         },
         "exits": {
             "Gerudo Training Ground Central Maze Right": "can_play(Song_of_Time)",
@@ -89,10 +88,10 @@
             "Gerudo Training Ground Underwater Silver Rupee Bottom Back Left": "True",
             "Gerudo Training Ground Underwater Silver Rupee Middle": "True",
             "Gerudo Training Ground Underwater Silver Rupee Bottom Front Right": "True",
-            "Gerudo Training Ground Underwater Shell Blade 1": "(has_soul(Shell_Blade)) and Hookshot",
-            "Gerudo Training Ground Underwater Shell Blade 2": "(has_soul(Shell_Blade)) and Hookshot",
-            "Gerudo Training Ground Underwater Shell Blade 3": "(has_soul(Shell_Blade)) and Hookshot",
-            "Gerudo Training Ground Underwater Shell Blade 4": "(has_soul(Shell_Blade)) and Hookshot"
+            "Gerudo Training Ground Underwater Shell Blade 1": "can_kill_this",
+            "Gerudo Training Ground Underwater Shell Blade 2": "can_kill_this",
+            "Gerudo Training Ground Underwater Shell Blade 3": "can_kill_this",
+            "Gerudo Training Ground Underwater Shell Blade 4": "can_kill_this"
         }
     },
     {
@@ -116,8 +115,7 @@
             "Gerudo Training Ground Boulder Room Silver Rupee Bottom Left": "True",
             "Gerudo Training Ground Boulder Room Silver Rupee Ledge": "True",
             "Gerudo Training Ground Boulder Room Silver Rupee Top Left": "True",
-            "Gerudo Training Ground Boulder Room Silver Rupee Ceiling": "
-                can_use(Hookshot) or logic_gtg_without_hookshot"
+            "Gerudo Training Ground Boulder Room Silver Rupee Ceiling": "can_use(Hookshot)"
         },
         "exits": {
             "Gerudo Training Ground Heavy Block Room": "
@@ -129,11 +127,11 @@
         "region_name": "Gerudo Training Ground Heavy Block Room",
         "dungeon": "Gerudo Training Ground",
         "locations": {
-            "Gerudo Training Ground Before Heavy Block Chest": "can_kill_wolfos",
-            "Gerudo Training Ground Heavy Block Wolfos 1": "can_kill_wolfos",
-            "Gerudo Training Ground Heavy Block Wolfos 2": "can_kill_wolfos",
-            "Gerudo Training Ground Heavy Block Wolfos 3": "can_kill_wolfos",
-            "Gerudo Training Ground Heavy Block Wolfos 4": "can_kill_wolfos"
+            "Gerudo Training Ground Before Heavy Block Chest": "can_clear_room(GTG_BEFORE_HEAVY_BLOCK)",
+            "Gerudo Training Ground Heavy Block Wolfos 1": "can_kill_this",
+            "Gerudo Training Ground Heavy Block Wolfos 2": "can_kill_this",
+            "Gerudo Training Ground Heavy Block Wolfos 3": "can_kill_this",
+            "Gerudo Training Ground Heavy Block Wolfos 4": "can_kill_this"
         },
         "exits": {
             "Gerudo Training Ground Eye Statue Upper": "
@@ -157,13 +155,13 @@
         "region_name": "Gerudo Training Ground Like Like Room",
         "dungeon": "Gerudo Training Ground",
         "locations": {
-            "Gerudo Training Ground Heavy Block First Chest": "can_kill_likelike",
-            "Gerudo Training Ground Heavy Block Second Chest": "can_kill_likelike",
+            "Gerudo Training Ground Heavy Block First Chest": "can_clear_room(GTG_HEAVY_BLOCK)",
+            "Gerudo Training Ground Heavy Block Second Chest": "can_clear_room(GTG_HEAVY_BLOCK)",
             "Gerudo Training Ground Heavy Block Third Chest": "True",
             "Gerudo Training Ground Heavy Block Fourth Chest": "True",
-            "Gerudo Training Ground Heavy Block Like Like 1": "can_kill_likelike",
-            "Gerudo Training Ground Heavy Block Like Like 2": "can_kill_likelike",
-            "Gerudo Training Ground Heavy Block Like Like 3": "can_kill_likelike"
+            "Gerudo Training Ground Heavy Block Like Like 1": "can_kill_this",
+            "Gerudo Training Ground Heavy Block Like Like 2": "can_kill_this",
+            "Gerudo Training Ground Heavy Block Like Like 3": "can_kill_this"
         }
     },
     {
@@ -180,17 +178,17 @@
         "region_name": "Gerudo Training Ground Hammer Room",
         "dungeon": "Gerudo Training Ground",
         "locations": {
-            "Gerudo Training Ground Hammer Room Clear Chest": "has_soul(Keese) and has_soul(Torch_Slug)",
+            "Gerudo Training Ground Hammer Room Clear Chest": "can_clear_room(GTG_HAMMER_ROOM)",
             "Gerudo Training Ground Hammer Room Switch Chest": "Megaton_Hammer",
             "Gerudo Training Ground Lava Room Silver Rupee Hookshot Target": "Hookshot",
             "Gerudo Training Ground Hammer Room Wonderitem": "can_use(Bow)",
-            "Gerudo Training Ground Hammer Room Keese 1": "can_kill_keese",
-            "Gerudo Training Ground Hammer Room Keese 2": "can_kill_keese",
-            "Gerudo Training Ground Hammer Room Torch Slug 1": "has_soul(Torch_Slug)",
-            "Gerudo Training Ground Hammer Room Torch Slug 2": "has_soul(Torch_Slug)"
+            "Gerudo Training Ground Hammer Room Keese 1": "can_kill_this",
+            "Gerudo Training Ground Hammer Room Keese 2": "can_kill_this",
+            "Gerudo Training Ground Hammer Room Torch Slug 1": "can_kill_this",
+            "Gerudo Training Ground Hammer Room Torch Slug 2": "can_kill_this"
         },
         "exits": {
-            "Gerudo Training Ground Lava Room Back": "has_soul(Keese) and has_soul(Torch_Slug)",
+            "Gerudo Training Ground Lava Room Back": "can_clear_room(GTG_HAMMER_ROOM)",
             "Gerudo Training Ground Eye Statue Lower": "Megaton_Hammer and Bow"
         }
     }

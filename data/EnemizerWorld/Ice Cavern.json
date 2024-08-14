@@ -7,15 +7,15 @@
                 can_pass_boulder('ICE_CAVERN_FREESTANDING_COLLECTIBLE_BOULDER') or
                 (boulder_type('ICE_CAVERN_FREESTANDING_COLLECTIBLE_BOULDER') == BOULDER_TYPE_RED_ICE and (Blue_Fire or logic_ice_frozen_rupee)) or
                 (logic_boomerang_boulders and can_use(Boomerang))",
-            "Ice Cavern Entryway Freezard 1": "(has_soul(Freezard)) and (is_adult or has_explosives or can_use(Dins_Fire))",
-            "Ice Cavern Entryway Freezard 2": "(has_soul(Freezard)) and (is_adult or has_explosives or can_use(Dins_Fire))",
-            "Ice Cavern Entryway Freezard 3": "(has_soul(Freezard)) and (is_adult or has_explosives or can_use(Dins_Fire))",
-            "Ice Cavern Entryway Freezard 4": "(has_soul(Freezard)) and (is_adult or has_explosives or can_use(Dins_Fire))"
+            "Ice Cavern Entryway Freezard 1": "can_kill_this",
+            "Ice Cavern Entryway Freezard 2": "can_kill_this",
+            "Ice Cavern Entryway Freezard 3": "can_kill_this",
+            "Ice Cavern Entryway Freezard 4": "can_kill_this"
         },
         "exits": {
             "ZF Ice Ledge": "True",
             # Freezards are immune to Kokiri Sword. It would take a lot of sticks.
-            "Ice Cavern Spinning Scythe Room": "(has_soul(Freezard)) and here(is_adult or has_explosives or can_use(Dins_Fire))",
+            "Ice Cavern Spinning Scythe Room": "can_clear_room(ICE_CAVERN_ENTRYWAY)",
             "Farores Wind Warp": "can_use(Farores_Wind)"
         }
     },
@@ -52,13 +52,13 @@
             "Ice Cavern Map Room Recovery Heart 3": "True",
             "Ice Cavern Frozen Pot": "can_pass_boulder('ICE_CAVERN_NEAR_MAP_POT_BOULDER') or logic_ice_frozen_pot",
             "Blue Fire": "has_bottle",
-            "Ice Cavern Sliding Spike Freezard": "has_soul(Freezard)",
-            "Ice Cavern Map Chest Ice Keese 1": "can_kill_keese",
-            "Ice Cavern Map Chest Ice Keese 2": "can_kill_keese",
-            "Ice Cavern Map Chest Ice Keese 3": "can_kill_keese",
-            "Ice Cavern Map Chest Freezard Ground": "has_soul(Freezard)",
-            "Ice Cavern Map Chest Freezard Lower Platform": "has_soul(Freezard)",
-            "Ice Cavern Map Chest Freezard Upper Platform": "has_soul(Freezard)"
+            "Ice Cavern Sliding Spike Freezard": "can_kill_this",
+            "Ice Cavern Map Chest Ice Keese 1": "can_kill_this",
+            "Ice Cavern Map Chest Ice Keese 2": "can_kill_this",
+            "Ice Cavern Map Chest Ice Keese 3": "can_kill_this",
+            "Ice Cavern Map Chest Freezard Ground": "can_kill_this",
+            "Ice Cavern Map Chest Freezard Lower Platform": "can_kill_this",
+            "Ice Cavern Map Chest Freezard Upper Platform": "can_kill_this"
         }
     },
     {
@@ -87,12 +87,12 @@
             "Ice Cavern GS Push Block Room": "
                 can_use(Hookshot) or can_use(Boomerang) or
                 (logic_ice_block_gs and can_use(Hover_Boots))",
-            "Ice Cavern Block Push Ice Keese 1": "can_kill_keese",
-            "Ice Cavern Block Push Ice Keese 2": "can_kill_keese",
-            "Ice Cavern Block Push Ice Keese 3": "can_kill_keese",
-            "Ice Cavern Compass Chest Keese 1": "can_kill_keese",
-            "Ice Cavern Compass Chest Keese 2": "can_kill_keese",
-            "Ice Cavern Compass Chest Keese 3": "can_kill_keese"
+            "Ice Cavern Block Push Ice Keese 1": "can_kill_this",
+            "Ice Cavern Block Push Ice Keese 2": "can_kill_this",
+            "Ice Cavern Block Push Ice Keese 3": "can_kill_this",
+            "Ice Cavern Compass Chest Keese 1": "can_kill_this",
+            "Ice Cavern Compass Chest Keese 2": "can_kill_this",
+            "Ice Cavern Compass Chest Keese 3": "can_kill_this"
         },
         "exits": {
             "Ice Cavern End": "(Silver_Rupee_Ice_Cavern_Push_Block, 5) and 
@@ -107,15 +107,13 @@
         "region_name": "Ice Cavern End",
         "dungeon": "Ice Cavern",
         "locations": {
-            "Ice Cavern Iron Boots Chest": "
-                (has_soul(Wolfos)) and (is_adult or Slingshot or Sticks or Kokiri_Sword or can_use(Dins_Fire))",
-            "Sheik in Ice Cavern": "
-                (has_soul(Wolfos)) and (is_adult or Slingshot or Sticks or Kokiri_Sword or can_use(Dins_Fire))",
+            "Ice Cavern Iron Boots Chest": "can_kill_named('Ice Cavern Wolfos')",
+            "Sheik in Ice Cavern": "can_kill_named('Ice Cavern Wolfos')",
             "Ice Cavern Near End Pot 1": "True",
             "Ice Cavern Near End Pot 2": "True",
-            "Ice Cavern Near End Freezard 1": "(has_soul(Freezard)) and (is_adult or has_explosives or can_use(Dins_Fire))",
-            "Ice Cavern Near End Freezard 2": "(has_soul(Freezard)) and (is_adult or has_explosives or can_use(Dins_Fire))",
-            "Ice Cavern Wolfos": "(has_soul(Wolfos)) and (is_adult or Slingshot or Sticks or Kokiri_Sword or can_use(Dins_Fire))"
+            "Ice Cavern Near End Freezard 1": "can_kill_this",
+            "Ice Cavern Near End Freezard 2": "can_kill_this",
+            "Ice Cavern Wolfos": "can_kill_this"
         }
     }
 ]
